@@ -19,10 +19,12 @@ import {
 import {
   BORG_DYNAMIC_NATIVE_RUN_SOURCE,
   BORG_DYNAMIC_NATIVE_RUNNER_VERSION,
+  createBorgDynamicNativeRunConfig,
   createBorgDynamicNativeRunner,
   createBorgFrameSetsFromRows,
   mergeBorgFrameRows,
 } from "../src/apps/borg/BorgDynamicNativeRunner.js";
+import { buildBorgFixtureDataModule } from "../scripts/borg/write-fixture-data.mjs";
 
 const MASTER_EQUATION_SOLVER_MODE = "native-fixed-parameter-master-equation";
 const NEXT_MASTER_EQUATION_BURDEN = "migrate-borg-through-certified-eom-shadow-run";
@@ -41,6 +43,30 @@ const ALLOWED_MASTER_EQUATION_FAILURE_CODES = new Set([
   "native_master_equation_fixture_missing",
   "native_master_equation_solver_pending",
 ]);
+
+test("Borg path history is on and visible by default", () => {
+  assert.ok(BORG_APP_SURFACE_DESIGN_V1.firstViewport.defaultVisibleLayers.includes("path-history"));
+  assert.ok(!BORG_APP_SURFACE_DESIGN_V1.firstViewport.defaultHiddenLayers.includes("path-history"));
+  assert.equal(
+    BORG_APP_SURFACE_DESIGN_V1.layerStrip.find((entry) => entry.layer === "path-history")?.state,
+    "on",
+  );
+});
+
+test("Borg fixture writer preserves the non-EOM compatibility quarantine", async () => {
+  const { module, trajectoryAsset } = await buildBorgFixtureDataModule();
+  const trajectory = JSON.parse(trajectoryAsset);
+
+  assert.doesNotMatch(module, /"canonicalEomEvidence": true/);
+  assert.doesNotMatch(module, /"eomEvidenceStatus": "native_master_equation_fixed_parameter_evidence"/);
+  assert.match(module, /"canonicalEomEvidence": false/);
+  assert.match(module, /"eomEvidenceStatus": "non_eom_compatibility_output"/);
+  assert.match(module, /"productionSolver": "central-solver-compatibility-output"/);
+  assert.match(module, /"eomMigrationStatus": "shadow-adapter-available-promotion-gated"/);
+  assert.equal(trajectory.canonicalEomEvidence, false);
+  assert.equal(trajectory.eomEvidenceStatus, "non_eom_compatibility_output");
+  assert.equal(trajectory.currentStateFrames.length, 24_016);
+});
 
 test("Borg fixture preserves central-solver output with explicit non-EOM provenance", () => {
   validateBorgFixtureSnapshot({
@@ -82,6 +108,29 @@ test("Borg fixture preserves central-solver output with explicit non-EOM provena
   assert.equal(probe.valueAuthority, "authoritative-solver-output");
   assert.equal(probe.canonicalEomEvidence, false);
   assert.equal(probe.eomEvidenceStatus, "non_eom_compatibility_output");
+});
+
+test("Borg uses the canonical unit field speed", () => {
+  assert.equal(BORG_DATASET_MANIFEST_V1.simulationEnvelope.fieldSpeed, 1);
+  assert.equal(BORG_DATASET_MANIFEST_V1.simulationEnvelope.historyDepth, 10);
+  assert.equal(BORG_DATASET_MANIFEST_V1.simulationEnvelope.wakeHorizon, 10);
+
+  const noncanonicalManifest = structuredClone(BORG_DATASET_MANIFEST_V1);
+  noncanonicalManifest.simulationEnvelope.fieldSpeed = 3;
+  assert.throws(
+    () => validateBorgFixtureSnapshot({
+      manifest: noncanonicalManifest,
+      surfaceDesign: BORG_APP_SURFACE_DESIGN_V1,
+    }),
+    /field speed is not canonical/,
+  );
+
+  const fallbackConfig = createBorgDynamicNativeRunConfig({
+    simulationEnvelope: {},
+    sourceBridgeRun: {},
+    nativeMasterEquationProbe: {},
+  });
+  assert.equal(fallbackConfig.fieldSpeed, 1);
 });
 
 test("Borg native master-equation frame data carries non-linear path evidence", async () => {
@@ -223,7 +272,7 @@ test("Borg path-history renderer uses native row segments, not visual smoothing 
   assert.match(runtimeSource, /updateMeasuredRunPresetCalibration/);
   assert.match(runtimeSource, /effectiveTargetDuration/);
   assert.match(runtimeSource, /readLiveRunBudgetSnapshot/);
-  assert.match(runtimeSource, /createSeededDistributionFrameRows/);
+  assert.match(runtimeSource, /createBorgSeededInitialConditionRows/);
   assert.equal(runtimeSource.includes("Live 3000 / 20"), false);
   assert.match(runtimeSource, /toggleRunDurationMode/);
   assert.match(runtimeSource, /startDynamicNativeRunnerIfNeeded/);
@@ -289,6 +338,7 @@ test("Borg dynamic native runner builds first-class live master-equation chunks"
   assert.equal(requests[0].config.masterEquationRequest.initialStates.length, 16);
   assert.equal(requests[0].config.masterEquationRequest.startTime, 0);
   assert.equal(requests[0].config.masterEquationRequest.endTime, 0.4);
+  assert.equal(requests[0].config.masterEquationRequest.fieldSpeed, 1);
   assert.equal(firstChunk.source, BORG_DYNAMIC_NATIVE_RUN_SOURCE);
   assert.equal(firstChunk.bufferCount, 1);
   assert.equal(firstChunk.bufferByteLength, firstChunk.frames.length * 64);

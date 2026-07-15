@@ -426,6 +426,30 @@
         background: #8bd17c;
       }
 
+      .borg-range[data-mode="live-follow"] {
+        cursor: default;
+        opacity: 1;
+      }
+
+      .borg-range[data-mode="live-follow"]::-webkit-slider-runnable-track {
+        background: #65705f;
+      }
+
+      .borg-range[data-mode="live-follow"]::-webkit-slider-thumb {
+        border-color: #e4eadf;
+        background: #aeb8aa;
+      }
+
+      .borg-range[data-mode="live-follow"]::-moz-range-track,
+      .borg-range[data-mode="live-follow"]::-moz-range-progress {
+        background: #65705f;
+      }
+
+      .borg-range[data-mode="live-follow"]::-moz-range-thumb {
+        border-color: #e4eadf;
+        background: #aeb8aa;
+      }
+
       .borg-time-output {
         color: #eaf6df;
         font-size: 12px;
@@ -457,6 +481,13 @@
         gap: 9px;
       }
 
+      .borg-initial-form {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 9px;
+        margin-bottom: 9px;
+      }
+
       .borg-eom-controls[hidden] {
         display: none;
       }
@@ -465,7 +496,8 @@
         grid-column: 1 / -1;
       }
 
-      .borg-eom-control {
+      .borg-eom-control,
+      .borg-initial-control {
         display: grid;
         gap: 4px;
         color: #abc09f;
@@ -476,7 +508,9 @@
       }
 
       .borg-eom-control input,
-      .borg-eom-action {
+      .borg-initial-control input,
+      .borg-eom-action,
+      .borg-initial-action {
         min-width: 0;
         height: 34px;
         border: 1px solid rgba(139, 164, 126, 0.34);
@@ -486,13 +520,15 @@
         font: inherit;
       }
 
-      .borg-eom-control input {
+      .borg-eom-control input,
+      .borg-initial-control input {
         box-sizing: border-box;
         width: 100%;
         padding: 0 8px;
       }
 
-      .borg-eom-action {
+      .borg-eom-action,
+      .borg-initial-action {
         cursor: pointer;
         font-size: 11px;
         font-weight: 780;
@@ -501,6 +537,31 @@
       .borg-eom-action.is-stop {
         border-color: rgba(229, 116, 99, 0.52);
         color: #ffd0c9;
+      }
+
+      .borg-initial-action,
+      .borg-initial-feedback {
+        grid-column: 1 / -1;
+      }
+
+      .borg-initial-action {
+        border-color: rgba(94, 183, 183, 0.58);
+        color: #c2f2f1;
+      }
+
+      .borg-initial-feedback {
+        min-height: 16px;
+        color: #c8dbbd;
+        font-size: 11px;
+        line-height: 1.35;
+      }
+
+      .borg-initial-feedback[data-tone="pending"] {
+        color: #ffdf93;
+      }
+
+      .borg-initial-feedback[data-tone="bad"] {
+        color: #ffb8ad;
       }
 
       .borg-eom-progress {
@@ -667,6 +728,26 @@
 
         <section class="borg-section" aria-label="Initial condition fields">
           <h2>Initial Condition</h2>
+          <form id="borg-initial-condition-form" class="borg-initial-form" novalidate>
+            <label class="borg-initial-control">
+              Electrinos
+              <input id="borg-electrino-count" type="number" min="0" max="512" step="1" value="8" inputmode="numeric" />
+            </label>
+            <label class="borg-initial-control">
+              Positrinos
+              <input id="borg-positrino-count" type="number" min="0" max="512" step="1" value="8" inputmode="numeric" />
+            </label>
+            <label class="borg-initial-control">
+              Max |velocity component|
+              <input id="borg-velocity-max-component" type="number" min="0" step="0.001" value="0.042" inputmode="decimal" />
+            </label>
+            <label class="borg-initial-control">
+              Minimum speed
+              <input id="borg-velocity-min-speed" type="number" min="0" step="0.001" value="0.0144" inputmode="decimal" />
+            </label>
+            <button id="borg-apply-initial-condition" class="borg-initial-action" type="submit">Apply &amp; run</button>
+            <output id="borg-initial-condition-feedback" class="borg-initial-feedback" data-tone="accepted">Manifest values active</output>
+          </form>
           <div id="borg-initial-condition-fields" class="borg-field-list"></div>
         </section>
 

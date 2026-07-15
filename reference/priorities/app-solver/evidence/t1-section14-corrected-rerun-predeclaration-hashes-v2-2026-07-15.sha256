@@ -1,0 +1,6 @@
+# Created 2026-07-15 18:18:05 -0400 after the fail-closed zero-metadata repair and before any replacement official ladder output.
+# Supersedes the first corrected-run authorization hashes. Frozen protocol remains unchanged:
+# target C=0.97; comparison tolerance 0.005; ladder 2000,4000,8000;
+# live-convergence rule unchanged from the amended evidence predeclaration.
+b1ab4996c82af9e84f6007170be80e71f7c93cdb33cd2e22d86f2b8e5a1da9d9  reference/priorities/app-solver/evidence/t1-reduction-layer-cross-verification-2026-07-15.md
+9e58100bbc3ee8c3d5dda8b45de7f2a13a02de78f798d0fa8af929372b3279bf  scripts/eom-verification/t1_section14_native.cpp

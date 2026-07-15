@@ -31,7 +31,7 @@ const SIMULATION_ENVELOPE = Object.freeze({
   duration: 300,
   sampleInterval: 0.2,
   historyDepth: 10,
-  fieldSpeed: 3,
+  fieldSpeed: 1,
   centralObservationInterval: 300,
   centralBoundaryTolerance: 1e-3,
 });
@@ -93,11 +93,11 @@ const MASTER_EQUATION_FIXTURE_SETTINGS = Object.freeze({
   softeningLength: 1,
   durationNormalization: "none",
   masterEquationSelectionDecision: "native-master-equation-selected",
-  canonicalEomEvidence: true,
-  eomEvidenceStatus: "native_master_equation_fixed_parameter_evidence",
+  canonicalEomEvidence: false,
+  eomEvidenceStatus: "non_eom_compatibility_output",
   eomEvidenceReason:
-    "Native central solver emitted fixed-parameter master-equation frames and path-history rows.",
-  nextSolverBurden: "build-native-wake-history-and-boundary-residual-fixture",
+    "The central-solver compatibility ABI emitted frames without retained-history causal roots, self-pairs, receiver-normal factors, or certified EOM evolution.",
+  nextSolverBurden: "migrate-borg-through-certified-eom-shadow-run",
 });
 
 const INITIAL_STATE_COUNT = 16;
@@ -147,6 +147,12 @@ export function assertBorgFixtureManifest(manifest, native) {
   assertEqual(manifest.sourceBridgeRun.fixtureProfileId, LONG_FIXTURE_PROFILE.fixtureProfileId, "fixture profile");
   assertEqual(manifest.simulationEnvelope.duration, SIMULATION_ENVELOPE.duration, "fixture duration");
   assertEqual(manifest.simulationEnvelope.sampleInterval, SIMULATION_ENVELOPE.sampleInterval, "fixture sample interval");
+  assertEqual(manifest.simulationEnvelope.fieldSpeed, 1, "canonical field speed");
+  assertEqual(
+    manifest.simulationEnvelope.wakeHorizon,
+    SIMULATION_ENVELOPE.historyDepth,
+    "canonical field-speed wake horizon",
+  );
   assert(
     manifest.currentStateAndFrameSources.nativeKeyframeCount >=
       LONG_FIXTURE_PROFILE.expectedNativeKeyframeRange[0] &&
@@ -232,7 +238,7 @@ export function assertBorgFixtureManifest(manifest, native) {
     "native master-equation fallback decision",
   );
   if (selectedMasterEquation) {
-    assertEqual(manifest.sourceBridgeRun.canonicalEomEvidence, true, "canonical EOM evidence");
+    assertEqual(manifest.sourceBridgeRun.canonicalEomEvidence, false, "canonical EOM evidence");
     assertEqual(
       manifest.sourceBridgeRun.eomEvidenceStatus,
       MASTER_EQUATION_FIXTURE_SETTINGS.eomEvidenceStatus,
@@ -1137,9 +1143,13 @@ function normalizeNativeMasterEquationFixtureRun(masterEquationRun) {
           DEFAULT_MOTION_SETTINGS.masterEquationRequiredNativeExport,
         masterEquationFallbackDecision:
           MASTER_EQUATION_FIXTURE_SETTINGS.masterEquationSelectionDecision,
-        canonicalEomEvidence: response.summary.canonicalEomEvidence,
-        eomEvidenceStatus: response.summary.eomEvidenceStatus,
-        eomEvidenceReason: response.summary.eomEvidenceReason,
+        // The central bridge reports that its fixed-parameter integration ran.
+        // Borg still lacks the retained-history causal roots, self-pairs,
+        // receiver-normal factors, and certified EOM migration required for
+        // canonical EOM evidence, so quarantine the generated fixture here.
+        canonicalEomEvidence: MASTER_EQUATION_FIXTURE_SETTINGS.canonicalEomEvidence,
+        eomEvidenceStatus: MASTER_EQUATION_FIXTURE_SETTINGS.eomEvidenceStatus,
+        eomEvidenceReason: MASTER_EQUATION_FIXTURE_SETTINGS.eomEvidenceReason,
         nextSolverBurden: MASTER_EQUATION_FIXTURE_SETTINGS.nextSolverBurden,
       },
     },
@@ -1163,9 +1173,15 @@ function createNativeMasterEquationProbeSummary(masterEquationProbe) {
     fixedPhysicalParameterAuthority: summary.fixedPhysicalParameterAuthority,
     masterEquationVersion: DEFAULT_MOTION_SETTINGS.masterEquationVersion,
     forceLawVersion: DEFAULT_MOTION_SETTINGS.masterEquationForceLawVersion,
-    canonicalEomEvidence: summary.canonicalEomEvidence,
-    eomEvidenceStatus: summary.eomEvidenceStatus,
-    eomEvidenceReason: summary.eomEvidenceReason,
+    canonicalEomEvidence: selectedMasterEquation
+      ? MASTER_EQUATION_FIXTURE_SETTINGS.canonicalEomEvidence
+      : summary.canonicalEomEvidence,
+    eomEvidenceStatus: selectedMasterEquation
+      ? MASTER_EQUATION_FIXTURE_SETTINGS.eomEvidenceStatus
+      : summary.eomEvidenceStatus,
+    eomEvidenceReason: selectedMasterEquation
+      ? MASTER_EQUATION_FIXTURE_SETTINGS.eomEvidenceReason
+      : summary.eomEvidenceReason,
     firstFailureCode: summary.firstFailureCode,
     requiredNativeExport:
       response.masterEquation?.requiredNativeExport ??

@@ -162,7 +162,7 @@ export function createBorgEomShadowRunConfig(manifest, options = {}) {
   const sideLength = positiveNumber(manifest.simulationEnvelope?.sideLength, 100);
   const fieldSpeed = positiveNumber(
     options.fieldSpeed,
-    manifest.simulationEnvelope?.fieldSpeed ?? 3,
+    manifest.simulationEnvelope?.fieldSpeed ?? 1,
   );
   const geometricDelayBound = (Math.sqrt(3) * sideLength) / fieldSpeed;
   const historySafetyMargin = positiveNumber(

@@ -283,6 +283,84 @@ which the retired §99 screen never tested.
 No chirality claim (no cap dipole is modeled). No constitutive-sea claim
 (no sea is modeled). No temporal claim (nothing survived to release).
 
+## Coplanar hexagonal family (operator-directed extension, 2026-07-15)
+
+The operator directed a focused family: $d_1 = d_2 = 0$, all three binaries
+of a braid in one plane at the same radius, binaries evenly offset — so each
+braid collapses to a **rigid hexagonal 6-site ring** (the barrel-like
+one-ring-with-phase-offsets geometry), two such rings contra-rotating across
+a gap that starts very small. A counting fact fixes the polarity options:
+with three antipodal conjugate binaries on one hexagon there are exactly
+**two** polarity arrangements up to rotation and global conjugation —
+**alternating** ($+-+-+-$; binary phases $0, 2\pi/3, 4\pi/3$) and **blocked**
+($+++---$; binary phases $0, \pi/3, 2\pi/3$). The trail ring's
+polarity-conjugation variant is absorbed by the phase sweep (conjugation
+equals a $60°$ rotation for alternating, $180°$ for blocked).
+
+**Declared grid (stage HEX, 5,760 rows):** common $v \in \{0.3, 0.6, 0.9,
+0.99, 1.1, 1.25\}$ ($1.0$ exact excluded as a rest-pin, bracketed by
+$0.99/1.1$); $g \in \{0.05, 0.1, 0.2, 0.35, 0.5, 0.75, 1.0, 1.5\}$; both
+polarity classes; $\Delta \in \{0°, 15°, \dots, 165°\}$;
+$u \in \{0, 0.99, 0.999, 0.9999, 1\}$. Senses uniform within a ring
+(opposite senses at one radius in one plane collide); trail contra-rotates
+by the mirror rule.
+
+**Result: force-dead everywhere** (grade: measured, same instrument, ladder-
+converged). Zero bind passes in all 20 cells. Converged (24-sample) minima
+among certified $\kappa_\star > 0$ rows: alternating rest $0.833$; blocked
+rest $0.999$; at every drift both classes converge to $\epsilon_{\rm bind}
+\approx 1.000$ with $\kappa_\star \to 0$ — the summed delayed force on a
+drifting hexagon pair has essentially **no coherent centripetal component at
+all**. All 1,152 $u = c_f$ rows fail closed on the luminal band, as in P4.
+
+**Instrument lesson (kept deliberately):** the 3-sample screen showed one
+spectacular false minimum — alternating, $v = 1.1$, $g = 0.05$,
+$\Delta = 0$, $\epsilon_{\rm bind} = 0.0629$ with $\kappa_\star = -16$ —
+that is **pure sampling aliasing**: the hexagon's 6-fold symmetry beats
+against 3- and 6-sample screens (identical values at both), and at 12/24
+samples the row converges to $\epsilon_{\rm bind} = 0.996$ with the coupling
+sign flipping. The declared champion-replay ladder caught it; for hexagonal
+rings the ladder must reach 12+ samples before any number is quotable.
+Shards `hex-*.jsonl` and `summary-hex.json` sit beside the main campaign
+output; rerun via `--mode=screen-hex` / `--mode=summarize-hex`.
+
+## Wake-pattern probe (E-B recovery diagnostic, first cut, 2026-07-15)
+
+`--mode=eb-pattern` measures the static-test-charge wake field
+$E(x,t) = \sum_{\rm roots} q_s (c_f/|D_s|)\,\hat r/r^2$ around held
+assemblies (evaluator grade; pattern probe only — no binding, stability, or
+Maxwell-recovery claim). Two facts, one derived and one measured:
+
+1. **Derived: no instantaneous magnetic-like force.** The receiver-velocity
+   coupling per root is $\partial a/\partial v_r \propto -\hat r\hat
+   r^{\mathsf T}$ — symmetric — because $v_r$ enters only through
+   $D_T = c_f - \hat r \cdot v_r$. A $v \times B$ force is antisymmetric in
+   $v$, so at a single reception event the master equation has **zero**
+   $v\times B$ structure; any magnetic-like phenomenology must emerge from
+   accumulated motion through the wake pattern, not from a pointwise field.
+2. **Measured: the co-moving wake of every tested bare geometry is
+   longitudinal, not transverse.** For observers riding beside the assembly
+   at transverse offsets $\rho \in \{3, 6, 12\}$ at $u = 0.99$ (delays are
+   $\gamma$-scaled, $\Delta \approx \rho/\sqrt{1-u^2}$ — the emission
+   direction collapses onto the drift axis), the oscillating field is
+   $\sim 98\%$ longitudinal ($\hat z$) for the hex pair and $\sim 91\%$ for
+   the stacked champion; the small transverse remainder is $\ge 98\%$
+   linearly polarized with its axis locked to the observer's azimuth
+   (radial, electrostatic-like — not a wave polarization). Contra- vs
+   co-rotating vs single-braid controls differ only mildly (falloff exponent
+   over the probed $\rho$ range: hex contra $0.78$, co $0.84$, single
+   $1.52$; stacked $\approx 2.3$–$2.4$). **No tested bare geometry produces
+   a transverse plane-polarized co-moving pattern.** Output:
+   `.tmp/canonical-photon-search/eb-pattern.json`.
+
+The sharper recovery probe — not yet run — is the **static-observer pulse**:
+the transient $E(t)$ waveform a fixed observer sees as the assembly passes,
+which is what an emergent Maxwell wave must reproduce; and both probes
+should be repeated inside a modeled sea, since the derived absence of
+pointwise $v\times B$ structure already argues the E-B pair is a property of
+propagating disturbances in the medium rather than of any bare source
+geometry.
+
 ## Reproduction
 
 ```bash

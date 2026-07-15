@@ -105,10 +105,10 @@ class BorgPathTrail {
    *
    * This uploads the whole buffer rather than the appended sub-range. Partial
    * uploads via addUpdateRange are only drained when the object is actually
-   * rendered, and this layer is off by default — so on a hidden trail the
-   * pending ranges would accumulate for the life of the run and then flush as
-   * thousands of tiny writes the moment it was switched on. A full upload of a
-   * few tens of kilobytes once per chunk is not worth that.
+   * rendered. When the operator hides this layer, pending ranges would
+   * accumulate for the life of the run and then flush as thousands of tiny
+   * writes the moment it was switched on. A full upload of a few tens of
+   * kilobytes once per chunk is not worth that.
    */
   flush() {
     if (!this.dirty) {

@@ -6,6 +6,7 @@ import {
   BORG_EOM_COMPATIBILITY_HISTORY_PROVENANCE,
   BORG_EOM_SHADOW_RUN_SOURCE,
   createBorgContinuousRetainedHistories,
+  createBorgEomShadowRunConfig,
   createBorgEomShadowRunner,
 } from "../src/apps/borg/BorgEomShadowRunner.js";
 import { encodeNativeRequest } from "../scripts/eom/BorgNativeEomProcessClient.mjs";
@@ -15,6 +16,29 @@ import { loadBorgFixtureTrajectoryFrames } from "../src/apps/borg/BorgFixtureTra
 // The manifest carries only the seed state; retained history comes from the
 // recorded trajectory asset, which is exactly what these tests exercise.
 const trajectoryFrames = await loadBorgFixtureTrajectoryFrames();
+
+test("Borg EOM migration uses canonical field speed for its history window", () => {
+  const config = createBorgEomShadowRunConfig(BORG_DATASET_MANIFEST_V1, {
+    startTime: 300,
+    targetDuration: 300.2,
+    sampleInterval: 0.2,
+  });
+  const expectedGeometricDelayBound = Math.sqrt(3) * 100;
+
+  assert.equal(config.fieldSpeed, 1);
+  assert.equal(config.geometricDelayBound, expectedGeometricDelayBound);
+  assert.ok(config.historyDepth > expectedGeometricDelayBound);
+  assert.ok(Math.abs(config.historyStartTime - (300 - config.historyDepth)) < 1e-12);
+
+  const fallbackConfig = createBorgEomShadowRunConfig({
+    simulationEnvelope: { sideLength: 100, sampleInterval: 0.2 },
+    population: { architrinoCount: 1 },
+    trajectoryRecord: { historyStartTime: 0, historyEndTime: 300 },
+  }, {
+    targetDuration: 300.2,
+  });
+  assert.equal(fallbackConfig.fieldSpeed, 1);
+});
 
 test("Borg EOM migration imports a complete continuous past, never a state-only start", () => {
   const histories = createBorgContinuousRetainedHistories(
@@ -72,6 +96,7 @@ test("Borg EOM shadow runner sends retained histories and derives frames only fr
   assert.equal(request.numericalControls.threadCount, 4);
   assert.equal(request.modelControls.selfPairs, "included-except-coincident-endpoint");
   assert.equal(request.modelControls.futurePathPolicy, "prohibited");
+  assert.equal(request.modelControls.fieldSpeed, "1");
   assert.equal("initialStates" in request, false);
   assert.equal("futurePaths" in request, false);
 

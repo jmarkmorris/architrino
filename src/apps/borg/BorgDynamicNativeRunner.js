@@ -194,7 +194,7 @@ export function createBorgDynamicNativeRunConfig(manifest, options = {}) {
       "architrino-master-equation-v1",
     fieldSpeed: positiveNumber(
       options.fieldSpeed,
-      manifest.simulationEnvelope?.fieldSpeed ?? 3,
+      manifest.simulationEnvelope?.fieldSpeed ?? 1,
     ),
     historyDepth: Math.max(
       0,

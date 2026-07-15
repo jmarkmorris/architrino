@@ -1,0 +1,96 @@
+import test from "node:test";
+import assert from "node:assert/strict";
+
+import { BORG_DATASET_MANIFEST_V1 } from "../src/apps/borg/BorgFixtureData.js";
+import {
+  BORG_MAX_INITIAL_ARCHITRINO_COUNT,
+  createBorgInitialConditionConfig,
+  createBorgSeededInitialConditionRows,
+  validateBorgInitialConditionConfig,
+} from "../src/apps/borg/BorgInitialConditions.js";
+
+test("Borg initial-condition controls start from the accepted manifest values", () => {
+  assert.deepEqual(
+    createBorgInitialConditionConfig(BORG_DATASET_MANIFEST_V1.initialConditions),
+    {
+      electrinoCount: 8,
+      positrinoCount: 8,
+      randomVelocityMaxComponentMagnitude: 0.042,
+      randomVelocityMinSpeed: 0.0144,
+    },
+  );
+});
+
+test("Borg initial-condition controls reject impossible populations and velocity ranges", () => {
+  assert.equal(validateBorgInitialConditionConfig({
+    electrinoCount: 0,
+    positrinoCount: 0,
+    randomVelocityMaxComponentMagnitude: 0.042,
+    randomVelocityMinSpeed: 0.0144,
+  }).ok, false);
+  assert.equal(validateBorgInitialConditionConfig({
+    electrinoCount: BORG_MAX_INITIAL_ARCHITRINO_COUNT,
+    positrinoCount: 1,
+    randomVelocityMaxComponentMagnitude: 0.042,
+    randomVelocityMinSpeed: 0.0144,
+  }).ok, false);
+  assert.equal(validateBorgInitialConditionConfig({
+    electrinoCount: 1,
+    positrinoCount: 1,
+    randomVelocityMaxComponentMagnitude: 0.01,
+    randomVelocityMinSpeed: 0.02,
+  }).ok, false);
+});
+
+test("Borg seeded initial-condition rows honor counts, polarity, and velocity limits", () => {
+  const config = {
+    electrinoCount: 3,
+    positrinoCount: 2,
+    randomVelocityMaxComponentMagnitude: 0.02,
+    randomVelocityMinSpeed: 0.01,
+  };
+  const first = createBorgSeededInitialConditionRows({
+    manifest: BORG_DATASET_MANIFEST_V1,
+    seedIndex: 7,
+    config,
+  });
+  const repeated = createBorgSeededInitialConditionRows({
+    manifest: BORG_DATASET_MANIFEST_V1,
+    seedIndex: 7,
+    config,
+  });
+  const next = createBorgSeededInitialConditionRows({
+    manifest: BORG_DATASET_MANIFEST_V1,
+    seedIndex: 8,
+    config,
+  });
+
+  assert.deepEqual(first, repeated);
+  assert.notDeepEqual(first, next);
+  assert.equal(first.length, 5);
+  assert.equal(new Set(first.map((row) => row.pathKey)).size, 5);
+  assert.equal(first.filter((row) => row.stateFlags === 1).length, 2);
+  assert.equal(first.filter((row) => row.stateFlags === 2).length, 3);
+  first.forEach((row) => {
+    assert.ok(Math.max(...Object.values(row.velocity).map(Math.abs)) <= 0.02);
+    assert.ok(Math.hypot(row.velocity.x, row.velocity.y, row.velocity.z) >= 0.01);
+    assert.ok(row.position.x >= 10 && row.position.x <= 90);
+    assert.ok(row.position.y >= 10 && row.position.y <= 90);
+    assert.ok(row.position.z >= 10 && row.position.z <= 90);
+  });
+});
+
+test("Borg initial-condition controls support an explicit zero-velocity population", () => {
+  const rows = createBorgSeededInitialConditionRows({
+    manifest: BORG_DATASET_MANIFEST_V1,
+    seedIndex: 1,
+    config: {
+      electrinoCount: 1,
+      positrinoCount: 0,
+      randomVelocityMaxComponentMagnitude: 0,
+      randomVelocityMinSpeed: 0,
+    },
+  });
+
+  assert.deepEqual(rows[0].velocity, { x: 0, y: 0, z: 0 });
+});

@@ -1046,3 +1046,23 @@ This file holds dated decisions, implementation status, validation results, fail
   work counts, controller decisions, and corrector iterations were unchanged.
   Evidence:
   [section-86-mpfr-worker-local-storage-pool-2026-07-15.md](evidence/section-86-mpfr-worker-local-storage-pool-2026-07-15.md).
+
+## 2026-07-15 — MPFR direct precision slots
+
+- Replaced the remaining linear worker-local precision-bucket lookup with
+  direct 128-, 256-, and 512-bit free-list slots. Storage records its owning
+  free list, making release direct; a stable fallback retains API-valid
+  nonstandard precisions.
+- Two clean linear-lookup runs averaged `22.653049375` seconds and two direct-
+  slot runs averaged `21.368022521`: a measured `1.060138x` speedup and
+  `5.6726%` wall reduction, from `4.530609875` to `4.273604504` seconds per
+  accepted step.
+- Complete-run phase-matched profiles reduced normalized `MpFloat`
+  constructor samples by `30.6310%`; normalized `mpfr_mul` samples changed by
+  only `+0.8033%`, isolating constructor lookup rather than arithmetic work.
+- The merged build passed 32 EOM tests plus forced 96-, 192-, and 384-bit
+  fallback checks. All A/B, profile, and merged trajectories were byte-
+  identical with SHA-256
+  `48d245cb35bf95a093621495a50a6b5aa790e0d4d1b0f283bc40388d6075b351`.
+  Evidence:
+  [section-86-mpfr-direct-precision-slots-2026-07-15.md](evidence/section-86-mpfr-direct-precision-slots-2026-07-15.md).

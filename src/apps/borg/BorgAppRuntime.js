@@ -28,6 +28,12 @@ import {
 import { BORG_RELEASE_BUDGET_MANIFEST_V1 } from "./BorgReleaseBudgetManifest.js";
 import { createBorgPathTrails } from "./BorgPathTrails.js";
 import { loadBorgFixtureTrajectoryFrames } from "./BorgFixtureTrajectory.js";
+import {
+  BORG_MAX_INITIAL_ARCHITRINO_COUNT,
+  createBorgInitialConditionConfig,
+  createBorgSeededInitialConditionRows,
+  validateBorgInitialConditionConfig,
+} from "./BorgInitialConditions.js";
 
 const TARGET_CENTRAL_WORLD_SIDE = 4.96;
 const BORG_LIVE_RUN_BUDGET_VERSION = "borg-live-run-budget.v1";
@@ -43,7 +49,6 @@ const DEFAULT_PLAYBACK_SPEED_PRESET_ID = "normal";
 const DEFAULT_RUN_CONTROL_PRESET_ID = "live-forever";
 const FINITE_RUN_CONTROL_PRESET_ID = "live-20s";
 const DEFAULT_DISTRIBUTION_LABEL = "manifest initial distribution";
-const DISTRIBUTION_POSITION_INSET_RATIO = 0.08;
 const PLAYBACK_SPEED_PRESETS = Object.freeze([
   Object.freeze({ id: "detail", label: "Detail", msPerNativeStep: 120 }),
   Object.freeze({ id: "normal", label: "Normal", msPerNativeStep: 1000 / 60 }),
@@ -178,6 +183,12 @@ export function mountBorgApp(options = {}) {
     layerStrip: queryRequiredElement(documentLike, "#borg-layer-strip"),
     envelopeFields: queryRequiredElement(documentLike, "#borg-envelope-fields"),
     initialConditionFields: queryRequiredElement(documentLike, "#borg-initial-condition-fields"),
+    initialConditionForm: queryRequiredElement(documentLike, "#borg-initial-condition-form"),
+    electrinoCount: queryRequiredElement(documentLike, "#borg-electrino-count"),
+    positrinoCount: queryRequiredElement(documentLike, "#borg-positrino-count"),
+    velocityMaxComponent: queryRequiredElement(documentLike, "#borg-velocity-max-component"),
+    velocityMinSpeed: queryRequiredElement(documentLike, "#borg-velocity-min-speed"),
+    initialConditionFeedback: queryRequiredElement(documentLike, "#borg-initial-condition-feedback"),
     nativeStatus: queryRequiredElement(documentLike, "#borg-native-status"),
     manifestStatus: queryRequiredElement(documentLike, "#borg-manifest-status"),
     sourceFields: queryRequiredElement(documentLike, "#borg-source-fields"),
@@ -320,6 +331,8 @@ export function mountBorgApp(options = {}) {
     distributionFrameRows: null,
     distributionSeedIndex: 0,
     distributionLabel: DEFAULT_DISTRIBUTION_LABEL,
+    initialConditionConfig: createBorgInitialConditionConfig(manifest.initialConditions),
+    initialConditionEditStatus: "manifest-values-active",
     resizeObserver: null,
   };
 
@@ -327,6 +340,7 @@ export function mountBorgApp(options = {}) {
   renderStaticPanels();
   renderLayerStrip();
   configureTimeline();
+  configureInitialConditionControls();
   configureEomControls();
   resetView();
   bindEvents();
@@ -362,6 +376,16 @@ export function mountBorgApp(options = {}) {
     outerCubeGroup.visible = false;
 
     rebuildPathTrails();
+
+    rebuildParticleObjects();
+  }
+
+  function rebuildParticleObjects() {
+    disposeParticleObjects();
+    particleStyles.clear();
+    createParticleStyles(currentFrames).forEach((style, pathKey) => {
+      particleStyles.set(pathKey, style);
+    });
 
     getPathKeys().forEach((pathKey) => {
       const style = getParticleStyle(pathKey, particleStyles);
@@ -403,6 +427,22 @@ export function mountBorgApp(options = {}) {
       velocityGroup.add(velocityLine);
       velocityLines.set(pathKey, velocityLine);
     });
+  }
+
+  function disposeParticleObjects() {
+    state.selectedPathKey = null;
+    particleObjects.forEach((point) => {
+      pointGroup.remove(point);
+      point.geometry.dispose();
+      point.material.dispose();
+    });
+    velocityLines.forEach((line) => {
+      velocityGroup.remove(line);
+      line.geometry.dispose();
+      line.material.dispose();
+    });
+    particleObjects.clear();
+    velocityLines.clear();
   }
 
   function createCubeEdges({ sideLength, color, opacity }) {
@@ -493,6 +533,10 @@ export function mountBorgApp(options = {}) {
       ["Preset target", formatRunTargetDuration(activePreset)],
       ["Preset chunk", activePreset?.effectiveChunkDuration ?? "static"],
       ["Distribution", state.distributionLabel],
+      ["Active electrinos", state.initialConditionConfig.electrinoCount],
+      ["Active positrinos", state.initialConditionConfig.positrinoCount],
+      ["Velocity component max", state.initialConditionConfig.randomVelocityMaxComponentMagnitude],
+      ["Velocity minimum speed", state.initialConditionConfig.randomVelocityMinSpeed],
       ["Run budget", state.liveRunBudget.status],
       ["Live status", state.dynamicRunnerStatus],
       ["Runner kind", state.dynamicRunnerKind],
@@ -529,6 +573,7 @@ export function mountBorgApp(options = {}) {
   }
 
   function renderEnvelopeFields() {
+    const runtimePopulationCount = state.distributionFrameRows?.length ?? null;
     renderFieldRows(dom.envelopeFields, [
       ["sideLength", manifest.simulationEnvelope.sideLength],
       ["centralVolumeSideLength", manifest.simulationEnvelope.centralVolumeSideLength],
@@ -540,22 +585,25 @@ export function mountBorgApp(options = {}) {
       ["wakeHorizon", manifest.simulationEnvelope.wakeHorizon],
       ["centralVelocityBound", manifest.simulationEnvelope.centralVelocityBound],
       ["centralObservationInterval", manifest.simulationEnvelope.centralObservationInterval],
-      ["centralArchitrinoCount", manifest.population.centralArchitrinoCount],
-      ["architrinoCount", manifest.population.architrinoCount],
-      ["bufferArchitrinoCount", manifest.population.bufferArchitrinoCount],
+      ["centralArchitrinoCount", runtimePopulationCount ?? manifest.population.centralArchitrinoCount],
+      ["architrinoCount", runtimePopulationCount ?? manifest.population.architrinoCount],
+      ["bufferArchitrinoCount", runtimePopulationCount == null ? manifest.population.bufferArchitrinoCount : 0],
       ["strictCentralBufferStatus", manifest.simulationEnvelope.strictCentralBufferStatus],
     ]);
   }
 
   function renderInitialConditionFields() {
+    const config = state.initialConditionConfig;
     renderFieldRows(dom.initialConditionFields, [
-      ["family", manifest.initialConditions.initialConditionFamily],
-      ["seed", manifest.initialConditions.initialConditionSeed ?? "null"],
-      ["electrinoCount", manifest.initialConditions.electrinoCount],
-      ["positrinoCount", manifest.initialConditions.positrinoCount],
+      ["family", state.distributionFrameRows ? "seeded-random-runtime" : manifest.initialConditions.initialConditionFamily],
+      ["seed", state.distributionFrameRows ? state.distributionLabel : manifest.initialConditions.initialConditionSeed ?? "null"],
+      ["electrinoCount", config.electrinoCount],
+      ["positrinoCount", config.positrinoCount],
       ["velocityPolicy", manifest.initialConditions.velocityPolicy],
+      ["maxVelocityComponent", config.randomVelocityMaxComponentMagnitude],
+      ["minimumSpeed", config.randomVelocityMinSpeed],
       ["velocity rays", "off"],
-      ["customEditStatus", manifest.initialConditions.customEditStatus],
+      ["customEditStatus", state.initialConditionEditStatus],
     ]);
   }
 
@@ -636,6 +684,52 @@ export function mountBorgApp(options = {}) {
     dom.playbackSpeed.value = state.playbackSpeedPresetId;
   }
 
+  function configureInitialConditionControls() {
+    dom.electrinoCount.max = String(BORG_MAX_INITIAL_ARCHITRINO_COUNT);
+    dom.positrinoCount.max = String(BORG_MAX_INITIAL_ARCHITRINO_COUNT);
+    syncInitialConditionInputs();
+    setInitialConditionFeedback("Manifest values active", "accepted");
+  }
+
+  function syncInitialConditionInputs() {
+    const config = state.initialConditionConfig;
+    dom.electrinoCount.value = String(config.electrinoCount);
+    dom.positrinoCount.value = String(config.positrinoCount);
+    dom.velocityMaxComponent.value = String(config.randomVelocityMaxComponentMagnitude);
+    dom.velocityMinSpeed.value = String(config.randomVelocityMinSpeed);
+  }
+
+  function readInitialConditionControls() {
+    const validation = validateBorgInitialConditionConfig({
+      electrinoCount: dom.electrinoCount.value,
+      positrinoCount: dom.positrinoCount.value,
+      randomVelocityMaxComponentMagnitude: dom.velocityMaxComponent.value,
+      randomVelocityMinSpeed: dom.velocityMinSpeed.value,
+    });
+    if (!validation.ok) {
+      state.initialConditionEditStatus = "rejected-runtime-edit";
+      setInitialConditionFeedback(validation.errors[0], "bad");
+      renderInitialConditionFields();
+      return null;
+    }
+    state.initialConditionConfig = validation.config;
+    state.initialConditionEditStatus = "accepted-runtime-edit";
+    syncInitialConditionInputs();
+    return validation.config;
+  }
+
+  function setInitialConditionFeedback(message, tone) {
+    dom.initialConditionFeedback.value = message;
+    dom.initialConditionFeedback.textContent = message;
+    dom.initialConditionFeedback.dataset.tone = tone;
+  }
+
+  function markInitialConditionControlsPending() {
+    state.initialConditionEditStatus = "pending-runtime-edit";
+    setInitialConditionFeedback("Pending changes; apply to start a new run", "pending");
+    renderInitialConditionFields();
+  }
+
   function configureEomControls() {
     const enabled = Boolean(options.eomShadowRunner);
     dom.eomControls.hidden = !enabled;
@@ -707,15 +801,19 @@ export function mountBorgApp(options = {}) {
 
   function updateTimelineBounds() {
     const frameIndexes = frameSets.map((entry) => entry.frameIndex);
-    dom.timelineRange.min = String(Math.min(...frameIndexes));
-    dom.timelineRange.max = String(Math.max(...frameIndexes));
+    const presentation = getBorgTimelineRangePresentation({
+      frameIndexes,
+      activeFrameIndex: state.activeFrameIndex,
+      isForever: isForeverRunPreset(getRunControlPreset(state.runControlPresetId)),
+      isPlaying: state.playing,
+    });
+    dom.timelineRange.min = String(presentation.min);
+    dom.timelineRange.max = String(presentation.max);
     dom.timelineRange.step = "1";
-    dom.timelineRange.dataset.mode = isForeverRunPreset(getRunControlPreset(state.runControlPresetId))
-      ? "live-buffer"
-      : "finite-run";
-    dom.timelineRange.value = String(
-      clamp(state.activeFrameIndex, Number(dom.timelineRange.min), Number(dom.timelineRange.max)),
-    );
+    dom.timelineRange.value = String(presentation.value);
+    dom.timelineRange.disabled = presentation.disabled;
+    dom.timelineRange.dataset.mode = presentation.mode;
+    dom.timelineRange.title = presentation.title;
   }
 
   function formatActiveTimelineLabel(time, frameIndex) {
@@ -737,6 +835,11 @@ export function mountBorgApp(options = {}) {
     });
     dom.startButton.addEventListener("click", goToStartFrame);
     dom.newDistributionButton.addEventListener("click", startNewDistributionRun);
+    dom.initialConditionForm.addEventListener("submit", (event) => {
+      event.preventDefault();
+      startNewDistributionRun();
+    });
+    dom.initialConditionForm.addEventListener("input", markInitialConditionControlsPending);
     dom.runDurationButton.addEventListener("click", toggleRunDurationMode);
     dom.eomStopButton.addEventListener("click", stopEomRun);
     dom.eomRestartButton.addEventListener("click", restartEomRun);
@@ -818,7 +921,9 @@ export function mountBorgApp(options = {}) {
 
   function applyFrameSet(frameSet, { outputLabel, rangeValue }) {
     state.activeFrameIndex = frameSet.frameIndex;
-    dom.timelineRange.value = String(rangeValue);
+    if (dom.timelineRange.dataset.mode !== "live-follow") {
+      dom.timelineRange.value = String(rangeValue);
+    }
     dom.timelineOutput.value = outputLabel;
     dom.timelineRange.setAttribute("aria-valuetext", outputLabel);
     particleObjects.forEach((particle) => {
@@ -926,6 +1031,7 @@ export function mountBorgApp(options = {}) {
     }
     state.playing = true;
     setPlayButtonPresentation(true);
+    updateTimelineBounds();
     ensureDynamicFramesAhead();
     startPlaybackSegment(currentSetIndex);
   }
@@ -934,6 +1040,7 @@ export function mountBorgApp(options = {}) {
     state.playing = false;
     setPlayButtonPresentation(false);
     cancelQueuedPlaybackFrame();
+    updateTimelineBounds();
   }
 
   function togglePlayback() {
@@ -1200,6 +1307,7 @@ export function mountBorgApp(options = {}) {
     windowLike.removeEventListener("keydown", handleKeyDown);
     disposeDynamicRunner();
     disposePathTrails();
+    disposeParticleObjects();
     architrinoPointTexture.dispose();
     renderer.dispose();
   }
@@ -1372,6 +1480,9 @@ export function mountBorgApp(options = {}) {
         const appendedFrameRows = Array.isArray(chunk.frames) ? chunk.frames.length : 0;
         applyLiveRunRetentionIfNeeded();
         frameSets = createBorgFrameSetsFromRows(currentFrames);
+        if (replaceFixture || state.liveRunRetention?.compactedThisPass) {
+          reanchorPlaybackAfterFrameSetRebuild();
+        }
         state.liveRunBudget = createLiveRunBudgetMeasurement({
           before: budgetBefore,
           after: readLiveRunBudgetSnapshot(windowLike),
@@ -1426,10 +1537,17 @@ export function mountBorgApp(options = {}) {
           state.sourceMode = "precomputed-fixture";
           state.distributionFrameRows = null;
           state.distributionLabel = DEFAULT_DISTRIBUTION_LABEL;
+          state.initialConditionConfig = createBorgInitialConditionConfig(manifest.initialConditions);
+          state.initialConditionEditStatus = "fixture-fallback";
           currentFrames = [...fixtureFrames];
           frameSets = createBorgFrameSetsFromRows(currentFrames);
           resetLiveRunRetentionState();
-          rebuildPathTrails();
+          rebuildParticleObjects();
+          rebuildPathTrails({ recreateMaterials: true });
+          syncInitialConditionInputs();
+          setInitialConditionFeedback("Live run rejected; manifest fixture restored", "bad");
+          renderEnvelopeFields();
+          renderInitialConditionFields();
           updateTimelineBounds();
           updateFrame(frameSets[0]?.frameIndex ?? 0);
         }
@@ -1497,6 +1615,16 @@ export function mountBorgApp(options = {}) {
     }
   }
 
+  function reanchorPlaybackAfterFrameSetRebuild() {
+    if (!state.playing) {
+      return;
+    }
+    const anchor = getBorgPlaybackReanchor(frameSets, state.activeFrameIndex);
+    state.playbackFromSetIndex = anchor.fromSetIndex;
+    state.playbackToSetIndex = anchor.toSetIndex;
+    state.playbackSegmentStartedAt = null;
+  }
+
   function applyLiveRunRetentionIfNeeded() {
     if (!isForeverRunPreset(getRunControlPreset(state.runControlPresetId))) {
       state.compactedPathHistory = Object.freeze({});
@@ -1524,7 +1652,10 @@ export function mountBorgApp(options = {}) {
    * new distribution, or a retention pass that moved rows into compacted
    * history. Ordinary chunk arrivals append instead.
    */
-  function rebuildPathTrails() {
+  function rebuildPathTrails({ recreateMaterials = false } = {}) {
+    if (recreateMaterials) {
+      pathTrails.dispose();
+    }
     pathTrails.reset({
       frameRows: currentFrames,
       compactedPathHistory: state.compactedPathHistory,
@@ -1639,11 +1770,14 @@ export function mountBorgApp(options = {}) {
     disposeDynamicRunner();
     state.distributionFrameRows = null;
     state.distributionLabel = DEFAULT_DISTRIBUTION_LABEL;
+    state.initialConditionConfig = createBorgInitialConditionConfig(manifest.initialConditions);
+    state.initialConditionEditStatus = "fixture-fallback";
     ensureFixtureTrajectoryLoaded();
     currentFrames = [...fixtureFrames];
     frameSets = createBorgFrameSetsFromRows(currentFrames);
     resetLiveRunRetentionState();
-    rebuildPathTrails();
+    rebuildParticleObjects();
+    rebuildPathTrails({ recreateMaterials: true });
     state.sourceMode = "precomputed-fixture";
     state.dynamicRunnerStatus = "precomputed-fixture";
     state.dynamicRunnerMessage = "static native fixture loaded";
@@ -1652,6 +1786,10 @@ export function mountBorgApp(options = {}) {
     state.dynamicTargetDuration = null;
     state.dynamicChunkDuration = null;
     state.liveRunBudget = createEmptyLiveRunBudget();
+    syncInitialConditionInputs();
+    setInitialConditionFeedback("Manifest fixture active", "accepted");
+    renderEnvelopeFields();
+    renderInitialConditionFields();
     updateTimelineBounds();
     updateFrame(frameSets[0]?.frameIndex ?? 0);
     syncRunDurationButton();
@@ -1664,7 +1802,8 @@ export function mountBorgApp(options = {}) {
     currentFrames = [...getRunInitialFrameRows()];
     frameSets = createBorgFrameSetsFromRows(currentFrames);
     resetLiveRunRetentionState();
-    rebuildPathTrails();
+    rebuildParticleObjects();
+    rebuildPathTrails({ recreateMaterials: true });
     state.sourceMode = state.distributionFrameRows
       ? "seeded-random-live-initial-state"
       : "precomputed-fixture";
@@ -1675,6 +1814,8 @@ export function mountBorgApp(options = {}) {
     state.dynamicTargetDuration = null;
     state.dynamicChunkDuration = null;
     state.liveRunBudget = createEmptyLiveRunBudget();
+    renderEnvelopeFields();
+    renderInitialConditionFields();
     updateTimelineBounds();
     updateFrame(frameSets[0]?.frameIndex ?? 0);
     updateSourceStatusPresentation();
@@ -1684,14 +1825,22 @@ export function mountBorgApp(options = {}) {
   }
 
   function startNewDistributionRun() {
+    const config = readInitialConditionControls();
+    if (!config) {
+      return;
+    }
     stopPlayback();
     state.distributionSeedIndex += 1;
-    state.distributionFrameRows = createSeededDistributionFrameRows(
+    state.distributionFrameRows = createBorgSeededInitialConditionRows({
       manifest,
-      fixtureFrames,
-      state.distributionSeedIndex,
-    );
+      seedIndex: state.distributionSeedIndex,
+      config,
+    });
     state.distributionLabel = `seeded distribution ${state.distributionSeedIndex}`;
+    setInitialConditionFeedback(
+      `Accepted ${config.electrinoCount} electrinos + ${config.positrinoCount} positrinos`,
+      "accepted",
+    );
     state.runControlPresetId = getRunControlPreset(state.runControlPresetId).id;
     syncRunDurationButton();
     disposeDynamicRunner();
@@ -1971,107 +2120,6 @@ function createLiveRunBudgetMeasurement({
   });
 }
 
-function createSeededDistributionFrameRows(manifest, baseFrames, seedIndex) {
-  const rng = createSeededRandom(
-    `${manifest.initialConditions?.initialConditionSeed ?? "borg"}:${manifest.initialConditions?.velocitySeed ?? "velocity"}:${seedIndex}`,
-  );
-  const bounds = manifest.simulationEnvelope?.centralVolume?.bounds ?? {};
-  const pathFrames = selectInitialPathFrames(baseFrames);
-  const velocityMax = positiveFiniteNumber(
-    manifest.initialConditions?.randomVelocityMaxComponentMagnitude,
-    0.035,
-  );
-  const velocityMin = positiveFiniteNumber(
-    manifest.initialConditions?.randomVelocityMinSpeed,
-    velocityMax * 0.35,
-  );
-
-  return Object.freeze(
-    pathFrames.map((frame) =>
-      Object.freeze({
-        ...frame,
-        frameIndex: 0,
-        time: 0,
-        position: createRandomCentralPosition(bounds, rng),
-        velocity: createRandomVelocity(rng, velocityMax, velocityMin),
-        errorBound: 0,
-        runSource: "seeded-random-live-initial-state",
-        valueAuthority: "app-generated-native-run-initial-condition",
-      }),
-    ),
-  );
-}
-
-function selectInitialPathFrames(frames) {
-  const byPathKey = new Map();
-  frames.forEach((frame) => {
-    const existing = byPathKey.get(frame.pathKey);
-    if (!existing || Number(frame.time) < Number(existing.time)) {
-      byPathKey.set(frame.pathKey, frame);
-    }
-  });
-  return [...byPathKey.values()].sort((left, right) => left.pathKey - right.pathKey);
-}
-
-function createRandomCentralPosition(bounds, rng) {
-  return {
-    x: randomAxisValue(bounds.x, rng),
-    y: randomAxisValue(bounds.y, rng),
-    z: randomAxisValue(bounds.z, rng),
-  };
-}
-
-function randomAxisValue(axisBounds, rng) {
-  const [min, max] = Array.isArray(axisBounds) ? axisBounds : [0, 1];
-  const low = finiteBudgetNumber(min) ?? 0;
-  const high = finiteBudgetNumber(max) ?? low + 1;
-  const span = Math.max(1, high - low);
-  const inset = Math.min(span * DISTRIBUTION_POSITION_INSET_RATIO, span * 0.4);
-  return low + inset + rng() * Math.max(0, span - inset * 2);
-}
-
-function createRandomVelocity(rng, maxComponentMagnitude, minSpeed) {
-  for (let attempt = 0; attempt < 24; attempt += 1) {
-    const velocity = {
-      x: randomSignedMagnitude(rng, maxComponentMagnitude),
-      y: randomSignedMagnitude(rng, maxComponentMagnitude),
-      z: randomSignedMagnitude(rng, maxComponentMagnitude),
-    };
-    if (vectorLength(velocity) >= minSpeed) {
-      return velocity;
-    }
-  }
-  return {
-    x: minSpeed,
-    y: randomSignedMagnitude(rng, maxComponentMagnitude * 0.25),
-    z: randomSignedMagnitude(rng, maxComponentMagnitude * 0.25),
-  };
-}
-
-function randomSignedMagnitude(rng, magnitude) {
-  return (rng() * 2 - 1) * magnitude;
-}
-
-function createSeededRandom(seedText) {
-  let state = hashSeedText(seedText);
-  return () => {
-    state += 0x6d2b79f5;
-    let value = state;
-    value = Math.imul(value ^ (value >>> 15), value | 1);
-    value ^= value + Math.imul(value ^ (value >>> 7), value | 61);
-    return ((value ^ (value >>> 14)) >>> 0) / 4294967296;
-  };
-}
-
-function hashSeedText(seedText) {
-  let hash = 2166136261;
-  String(seedText).split("").forEach((character) => {
-    hash ^= character.charCodeAt(0);
-    hash = Math.imul(hash, 16777619);
-  });
-  return hash >>> 0;
-}
-
 function selectFrameRowsByPathCount(frameRows, pathCount) {
   const selectedPathKeys = [...new Set(frameRows.map((row) => Number(row.pathKey)))]
     .filter(Number.isFinite)
@@ -2096,11 +2144,6 @@ function positiveControlNumber(value, fallback) {
 function finiteBudgetNumber(value) {
   const number = Number(value);
   return Number.isFinite(number) ? number : null;
-}
-
-function positiveFiniteNumber(value, fallback) {
-  const number = finiteBudgetNumber(value);
-  return number != null && number > 0 ? number : fallback;
 }
 
 function interpolateFrameSet(fromFrameSet, toFrameSet, progress) {
@@ -2204,4 +2247,66 @@ function setTone(element, status) {
 
 function clamp(value, min, max) {
   return Math.min(max, Math.max(min, value));
+}
+
+export function getBorgTimelineRangePresentation({
+  frameIndexes,
+  activeFrameIndex,
+  isForever,
+  isPlaying,
+}) {
+  if (isForever && isPlaying) {
+    return Object.freeze({
+      min: 0,
+      max: 100,
+      value: 50,
+      disabled: true,
+      mode: "live-follow",
+      title: "Following live playback. Pause to scrub buffered frames.",
+    });
+  }
+  const min = Math.min(...frameIndexes);
+  const max = Math.max(...frameIndexes);
+  return Object.freeze({
+    min,
+    max,
+    value: clamp(activeFrameIndex, min, max),
+    disabled: false,
+    mode: isForever ? "live-buffer" : "finite-run",
+    title: isForever
+      ? "Buffered-frame scrubber; a Forever run has no finite completion percentage."
+      : "Run progress and frame scrubber.",
+  });
+}
+
+export function getBorgPlaybackReanchor(frameSets, activeFrameIndex) {
+  if (!Array.isArray(frameSets) || frameSets.length === 0) {
+    return Object.freeze({
+      fromSetIndex: 0,
+      toSetIndex: 0,
+      fromFrameIndex: null,
+      toFrameIndex: null,
+    });
+  }
+  let activeSetIndex = frameSets.findIndex(
+    (frameSet) => Number(frameSet?.frameIndex) === Number(activeFrameIndex),
+  );
+  if (activeSetIndex < 0) {
+    activeSetIndex = frameSets.findIndex(
+      (frameSet) => Number(frameSet?.frameIndex) > Number(activeFrameIndex),
+    );
+  }
+  if (activeSetIndex < 0) {
+    activeSetIndex = frameSets.length - 1;
+  }
+  const fromSetIndex = frameSets.length < 2
+    ? 0
+    : Math.min(activeSetIndex, frameSets.length - 2);
+  const toSetIndex = Math.min(fromSetIndex + 1, frameSets.length - 1);
+  return Object.freeze({
+    fromSetIndex,
+    toSetIndex,
+    fromFrameIndex: frameSets[fromSetIndex]?.frameIndex ?? null,
+    toFrameIndex: frameSets[toSetIndex]?.frameIndex ?? null,
+  });
 }
