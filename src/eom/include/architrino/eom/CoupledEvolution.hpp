@@ -26,6 +26,11 @@ struct NativeCoupledPathInput {
   RetainedHistory history;
 };
 
+struct NativePublishedPath {
+  std::string path_id;
+  RetainedHistory history;
+};
+
 struct NativeCoupledEvolutionRequest {
   std::string run_id;
   std::vector<NativeCoupledPathInput> paths;
@@ -103,6 +108,16 @@ struct NativeCoupledEvolutionRequest {
   // Diagnostics only: invoked after an accepted step is atomically published.
   std::function<void(std::size_t, const std::string&)>
       accepted_step_callback;
+  // Diagnostics only: invoked before a failed corrected-substep candidate is
+  // discarded.  The callback cannot alter publication; rejected steps still
+  // publish their input histories only.
+  std::function<void(
+      const std::string&,
+      const std::string&,
+      const std::string&,
+      std::size_t,
+      const std::vector<NativePublishedPath>&)>
+      failed_substep_candidate_callback;
 };
 
 struct NativeFoldCausticImpulseCertificate {
@@ -304,11 +319,6 @@ struct NativePathLocalError {
   std::string path_id;
   double position_error;
   double velocity_error;
-};
-
-struct NativePublishedPath {
-  std::string path_id;
-  RetainedHistory history;
 };
 
 [[nodiscard]] std::optional<NativeEndpointRootContinuationCertificate>

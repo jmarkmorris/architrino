@@ -212,7 +212,7 @@ In $\mathbb{A}\mathbb{A}\mathbb{A}$ terms, intracluster light is not dark matter
 
 ### Baryonic Assemblies
 
-Baryons (protons, neutrons, and their composites) are Noether braid assemblies with specific axial patterns. Their clustering behavior is governed by the effective growth equation above, modified by pressure support (thermal motion) and radiative cooling. Before recombination, baryonic assemblies are tightly coupled to photon-channel packets carried by coaxial contra-rotating pro/anti planar pairs propagating through the Noether sea, producing acoustic oscillations. After decoupling, baryons fall into potential wells already established by the dark sector.
+Baryons (protons, neutrons, and their composites) are Noether braid assemblies with specific axial patterns. Their clustering behavior is governed by the effective growth equation above, modified by pressure support (thermal motion) and radiative cooling. Before recombination, baryonic assemblies are tightly coupled to photon-channel packets carried by coaxial contra-rotating polarity-conjugate planar pairs propagating through the Noether sea, producing acoustic oscillations. After decoupling, baryons fall into potential wells already established by the dark sector.
 
 ### Neutral Assemblies (Dark-Matter Candidates)
 

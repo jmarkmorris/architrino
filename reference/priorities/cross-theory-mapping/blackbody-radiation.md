@@ -15,7 +15,7 @@ The case is observationally anchored in thermal spectra and cosmologically sharp
 
 ## Existing $\mathbb{A}\mathbb{A}\mathbb{A}$ Signals
 
-This is the cleaner replacement for listing "UV divergence" as an observational case. $\mathbb{A}\mathbb{A}\mathbb{A}$ should use blackbody radiation to test photon Gate C, basin measures, thermalization depth, and CMB handoff. The target is not to import quantization as a postulate, but to recover a stable occupancy law for coaxial contra-rotating pro/anti planar pair modes interacting with matter and the Noether sea.
+This is the cleaner replacement for listing "UV divergence" as an observational case. $\mathbb{A}\mathbb{A}\mathbb{A}$ should use blackbody radiation to test photon Gate C, basin measures, thermalization depth, and CMB handoff. The target is not to import quantization as a postulate, but to recover a stable occupancy law for coaxial contra-rotating polarity-conjugate planar pair modes interacting with matter and the Noether sea.
 
 ## Canon Representation
 
@@ -34,7 +34,7 @@ Claim split:
 
 | Bucket | Blackbody / UV-divergence claim |
 | --- | --- |
-| Ontology | The continuum mode count is not primitive. Photon output is carried by coaxial contra-rotating pro/anti planar pair modes, and high-frequency attempts must remain within admitted assembly and Noether sea configurations. |
+| Ontology | The continuum mode count is not primitive. Photon output is carried by coaxial contra-rotating polarity-conjugate planar pair modes, and high-frequency attempts must remain within admitted assembly and Noether sea configurations. |
 | Derivation-closure target | Recover Planck occupation, mode density, detailed balance, thermalization depth, and zero effective photon chemical potential from assembly return maps and event ledgers. |
 | Effective summary | Planck's law, Rayleigh-Jeans divergence, and CMB blackbody measurements are comparison objects used to test the mapping. |
 | Open / speculative component | The exact relationship between the local maximum-curvature scale, the Planck-alignment scale, and the effective photon-channel mode density remains to be derived. |
@@ -66,7 +66,7 @@ The UV-failure test is therefore two-sided: the mapping fails if it leaves the R
 
 ## High-Occupation Photon-Bath Limit
 
-The Bose occupation side should be recovered from the same photon branch, not assumed because the observer-level carrier is a boson. A large photon occupation number means many coaxial contra-rotating pro/anti planar pair ledgers occupy the same effective phase-space cell while preserving their Gate A kinematics, Gate B transverse records, and Gate C emission/capture exchange rows.
+The Bose occupation side should be recovered from the same photon branch, not assumed because the observer-level carrier is a boson. A large photon occupation number means many coaxial contra-rotating polarity-conjugate planar pair ledgers occupy the same effective phase-space cell while preserving their Gate A kinematics, Gate B transverse records, and Gate C emission/capture exchange rows.
 
 For a phase-space cell $B_\nu$ in a material or Noether sea environment $\Omega$, write the retained occupation and the branch headroom as
 $$

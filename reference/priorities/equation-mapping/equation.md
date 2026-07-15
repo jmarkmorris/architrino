@@ -1550,7 +1550,7 @@ up to the common $1/E$ scaling and sign convention.
 
 The immediate lesson is not that the three three-binary frequencies should literally be observed as three absolute neutrino clocks. The observed relation says something subtler: a common carrier phase can factor out, while a residual propagation operator supplies two independent observable phase gaps.
 
-The near-photon interpretation adds a second inverse clue. A neutrino should sit close enough to the photon channel to explain high propagation speed and weak exterior exposure, but it must fail to complete the photon lock. If the pro/anti planar pair fully locked, the residual internal-binary rows would be hidden inside a photon-channel ledger and no neutrino oscillation operator would remain. The target is therefore an almost-locked neutral branch with a large common propagation phase and a nonzero internal-binary residual:
+The near-photon interpretation adds a second inverse clue. A neutrino should sit close enough to the photon channel to explain high propagation speed and weak exterior exposure, but it must fail to complete the photon lock. If the polarity-conjugate planar pair fully locked, the residual internal-binary rows would be hidden inside a photon-channel ledger and no neutrino oscillation operator would remain. The target is therefore an almost-locked neutral branch with a large common propagation phase and a nonzero internal-binary residual:
 
 $$
 \Omega^{(\nu)}

@@ -19,7 +19,7 @@ Provide a **high-level structural language** (categories, functors, moduli space
      - inactive-root gaps,
      - Floquet or stability gaps,
      - energy, momentum, angular-momentum, event, and observer-export ledgers.
-   - Treat binaries, nested shell braids, coaxial contra-rotating pro/anti planar pairs, and composite assemblies as typed objects only after their retained records supply the required rows.
+   - Treat binaries, nested shell braids, coaxial contra-rotating polarity-conjugate planar pairs, and composite assemblies as typed objects only after their retained records supply the required rows.
    - Treat morphisms as physically allowed causal surgeries, retunings, reactions, associations, dissociations, emissions, absorptions, and branch transitions that preserve declared ledgers or report the exact ledger break.
 
 2. **Moduli of admissible branches**

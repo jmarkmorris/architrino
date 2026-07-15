@@ -27,6 +27,7 @@ class BorgPathTrail {
     this.capacity = Math.max(2, capacity);
     this.pointCount = 0;
     this.drawnPointCount = -1;
+    this.dirty = false;
     this.points = new Float32Array(this.capacity * 3);
     this.frameIndices = new Int32Array(this.capacity);
     this.geometry = new THREE.BufferGeometry();
@@ -67,6 +68,7 @@ class BorgPathTrail {
     this.frameIndices = nextFrameIndices;
     this.setSegmentPositions(nextSegmentPositions);
     this.drawnPointCount = -1;
+    this.dirty = true;
   }
 
   appendPoint(x, y, z, frameIndex) {
@@ -93,9 +95,26 @@ class BorgPathTrail {
       this.segmentPositions[segmentOffset + 3] = x;
       this.segmentPositions[segmentOffset + 4] = y;
       this.segmentPositions[segmentOffset + 5] = z;
-      this.attribute.addUpdateRange(segmentOffset / 3, 2);
+      this.dirty = true;
     }
     this.pointCount = pointIndex + 1;
+  }
+
+  /**
+   * Hand the batch to the GPU, once.
+   *
+   * This uploads the whole buffer rather than the appended sub-range. Partial
+   * uploads via addUpdateRange are only drained when the object is actually
+   * rendered, and this layer is off by default — so on a hidden trail the
+   * pending ranges would accumulate for the life of the run and then flush as
+   * thousands of tiny writes the moment it was switched on. A full upload of a
+   * few tens of kilobytes once per chunk is not worth that.
+   */
+  flush() {
+    if (!this.dirty) {
+      return;
+    }
+    this.dirty = false;
     this.attribute.needsUpdate = true;
   }
 
@@ -200,6 +219,7 @@ export function createBorgPathTrails({
       toWorld(row.position, scratch);
       trail.appendPoint(scratch.x, scratch.y, scratch.z, Number(row.frameIndex));
     });
+    retainedTrails.forEach((trail) => trail.flush());
     applyThroughFrameIndex();
   }
 
@@ -234,6 +254,7 @@ export function createBorgPathTrails({
         trail.appendPoint(scratch.x, scratch.y, scratch.z, Number(point.frameIndex));
       });
     });
+    compactedTrails.forEach((trail) => trail.flush());
     applyThroughFrameIndex();
   }
 

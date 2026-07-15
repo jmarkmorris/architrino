@@ -148,7 +148,7 @@ where $c$ is the speed of light.
 
 **Architrino Interpretation:**
 
-The speed of light $c$ is **not fundamental**. It is the low-gradient operational speed of photon assemblies, modeled as coaxial contra-rotating pro/anti planar pairs, propagating through the Noether sea.
+The speed of light $c$ is **not fundamental**. It is the low-gradient operational speed of photon assemblies, modeled as coaxial contra-rotating polarity-conjugate planar pairs, propagating through the Noether sea.
 
 **Key relation:**
 $$
@@ -163,7 +163,7 @@ c \approx c_f \quad (\text{small corrections from Noether sea refraction})
 $$
 
 **What we must show:**
-- Photons are coaxial contra-rotating pro/anti planar pairs whose bosonic/statistical behavior is recovered as a downstream closure target
+- Photons are coaxial contra-rotating polarity-conjugate planar pairs whose bosonic/statistical behavior is recovered as a downstream closure target
 - Their propagation through the Noether sea is **not instantaneous** but limited by $c_f$
 - The effective speed $c$ measured by operational observers (made of assemblies) matches $c_f$ within experimental precision (~$10^{-17}$ for Lorentz tests)
 

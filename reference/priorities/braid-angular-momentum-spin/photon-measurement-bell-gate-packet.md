@@ -53,7 +53,7 @@ P_{\perp}^{ab}=h^{ab}-\hat e^a\hat e^b,
 P_{\parallel}^{ab}=\hat e^a\hat e^b.
 $$
 
-For an incoming coaxial contra-rotating pro/anti planar-pair ledger $a^a$, the accepted free-photon ledger is
+For an incoming coaxial contra-rotating polarity-conjugate planar-pair ledger $a^a$, the accepted free-photon ledger is
 $$
 a_{\perp}^a=P_{\perp}^{a}{}_{b}a^b,
 \qquad
@@ -110,7 +110,7 @@ Fail criteria:
 - The candidate needs a third free photon polarization.
 - A longitudinal or mixed-axis response is not reclassified as a massive $W/Z$-like corridor, material recoupling, gauge redundancy, or Gate A failure mode.
 
-Blocked dependency: deriving $a^a$, the conserved photon-side angular-momentum ledger, and $J_{\gamma,\parallel}$ from the coaxial contra-rotating pro/anti planar pair still depends on the lower fundamental angular-momentum ledger.
+Blocked dependency: deriving $a^a$, the conserved photon-side angular-momentum ledger, and $J_{\gamma,\parallel}$ from the coaxial contra-rotating polarity-conjugate planar pair still depends on the lower fundamental angular-momentum ledger.
 
 ## Analyzer Projector And Pass-Basin Gate
 

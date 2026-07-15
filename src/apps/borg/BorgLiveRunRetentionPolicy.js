@@ -94,9 +94,10 @@ function compactPathRows(frameRows, compactedPathHistory, policy) {
 
   const next = { ...compactedPathHistory };
   byPathKey.forEach((rows, key) => {
+    const sampleStride = positiveInteger(policy.compactionSampleStride, 1);
     const sampled = sampleRowsByStride(
       rows.sort(compareFrameRows),
-      positiveInteger(policy.compactionSampleStride, 1),
+      sampleStride,
     ).map((row) => ({
       frameIndex: row.frameIndex,
       time: row.time,
@@ -106,6 +107,7 @@ function compactPathRows(frameRows, compactedPathHistory, policy) {
     next[key] = Object.freeze(limitCompactedPoints(
       merged,
       positiveInteger(policy.compactedPointsPerPathLimit, 512),
+      sampleStride,
     ));
   });
 
@@ -116,32 +118,36 @@ function sampleRowsByStride(rows, stride) {
   if (rows.length <= 2 || stride <= 1) {
     return rows;
   }
-  const sampled = [];
-  rows.forEach((row, index) => {
-    if (index === 0 || index === rows.length - 1 || index % stride === 0) {
-      sampled.push(row);
-    }
-  });
-  return sampled;
+  return selectStableFrameLattice(rows, stride);
 }
 
-function limitCompactedPoints(points, limit) {
+function limitCompactedPoints(points, limit, baseStride) {
   if (points.length <= limit) {
     return points;
   }
   if (limit <= 2) {
     return [points[0], points.at(-1)];
   }
-  const limited = [];
-  const lastIndex = points.length - 1;
-  for (let index = 0; index < limit; index += 1) {
-    const sourceIndex = Math.round((index * lastIndex) / (limit - 1));
-    const point = points[sourceIndex];
-    if (limited.at(-1) !== point) {
-      limited.push(point);
-    }
+  // Keep a fixed absolute frame lattice. When the cap is reached, double the
+  // stride until the points fit. Every coarser lattice is a subset of the
+  // previous one, so old trail vertices disappear occasionally but never
+  // slide to different historical frames as new chunks arrive.
+  let stride = Math.max(1, positiveInteger(baseStride, 1));
+  let limited = selectStableFrameLattice(points, stride);
+  while (limited.length > limit) {
+    stride *= 2;
+    limited = selectStableFrameLattice(points, stride);
   }
   return limited;
+}
+
+function selectStableFrameLattice(points, stride) {
+  const lastIndex = points.length - 1;
+  return points.filter((point, index) => (
+    index === 0 ||
+    index === lastIndex ||
+    Number(point.frameIndex) % stride === 0
+  ));
 }
 
 function dedupeCompactedPoints(points) {

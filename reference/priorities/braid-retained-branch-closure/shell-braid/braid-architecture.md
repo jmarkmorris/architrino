@@ -588,7 +588,7 @@ $$
 \right),
 $$
 
-and it should be compared with the canonical photon requirement that a free photon is a coaxial contra-rotating pro/anti planar pair. The shell braid choreography may supply a route into that branch, but it does not by itself define the photon.
+and it should be compared with the canonical photon requirement that a free photon is a coaxial contra-rotating polarity-conjugate planar pair. The shell braid choreography may supply a route into that branch, but it does not by itself define the photon.
 
 ---
 

@@ -209,6 +209,67 @@ test("reset clears history and reapplies the current time bound", () => {
   assert.equal(drawnPointCount(onlyTrail(group)), 4);
 });
 
+/**
+ * Replay three r161 WebGLAttributes.updateBuffer against a zeroed buffer.
+ *
+ * The trail writes into a persistent array and marks it for upload; nothing in
+ * the unit tests renders, so an upload that names the wrong region is invisible
+ * until it reaches a GPU as a mangled trail. This reproduces what the renderer
+ * would actually send.
+ */
+function simulateGpuUpload(attribute) {
+  const gpu = new Float32Array(attribute.array.length);
+  if (attribute.updateRanges.length === 0) {
+    // updateRange.count === -1 && updateRanges.length === 0 -> full bufferSubData
+    gpu.set(attribute.array, 0);
+    return gpu;
+  }
+  for (const range of attribute.updateRanges) {
+    gpu.set(attribute.array.subarray(range.start, range.start + range.count), range.start);
+  }
+  return gpu;
+}
+
+test("what the GPU receives reproduces the trail geometry exactly", () => {
+  const group = createGroupStub();
+  const trails = createTrails(group);
+  trails.appendFrameRows(straightPathRows(6));
+  trails.setThroughFrameIndex(5);
+
+  const trail = onlyTrail(group);
+  const attribute = trail.geometry.getAttribute("position");
+  // needsUpdate is write-only in three; version is what it bumps, and what the
+  // renderer reads to decide whether to re-upload.
+  assert.ok(attribute.version > 0, "the batch was marked for upload");
+
+  const gpu = simulateGpuUpload(attribute);
+  const drawnFloats = trail.geometry.drawRange.count * 3;
+  assert.deepEqual(
+    Array.from(gpu.subarray(0, drawnFloats)),
+    Array.from(attribute.array.subarray(0, drawnFloats)),
+    "uploaded buffer must match the geometry the trail built",
+  );
+});
+
+test("a hidden trail does not accumulate pending uploads for the life of the run", () => {
+  const group = createGroupStub();
+  const trails = createTrails(group);
+  // The path layer is off by default, and three only drains pending update
+  // ranges when an object is actually rendered.
+  trails.setVisible(false);
+  for (let chunk = 0; chunk < 200; chunk += 1) {
+    trails.appendFrameRows(
+      straightPathRows(16).map((row) => ({ ...row, frameIndex: chunk * 16 + row.frameIndex })),
+    );
+  }
+  const attribute = onlyTrail(group).geometry.getAttribute("position");
+  assert.equal(
+    attribute.updateRanges.length,
+    0,
+    "pending update ranges must not grow without bound while the layer is hidden",
+  );
+});
+
 test("dispose releases every trail object and its GPU resources", () => {
   const group = createGroupStub();
   const trails = createTrails(group);

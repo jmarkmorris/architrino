@@ -685,7 +685,7 @@ This chart is a reduced proof bridge, not a replacement for the full three-dimen
 
 - the $x:y:z$ frequency-pattern search, including iso-frequency, integer-ratio, and doubling-frequency families;
 - the braid symmetry-breaking point, where the planar chart becomes the terminal-alignment slice of the nested shell braid;
-- the photon channel, where two planarized pro/anti braid records form the coaxial contra-rotating pro/anti planar pair.
+- the photon channel, where two planarized polarity-conjugate braid records form the coaxial contra-rotating polarity-conjugate planar pair.
 
 Taxonomically, this remains a chart label. It becomes `PL-NSH-0` evidence only when the local calculation is testing lower-rank nested shell retention on a declared branch record. It becomes `NSH-TERM` evidence only when the local calculation is the terminal hinge or braid symmetry-breaking boundary. In the photon-channel use, it is bridge evidence consumed by photon closure; it does not certify a Noether braid branch by itself.
 

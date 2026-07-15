@@ -1502,7 +1502,7 @@ $$
 
 where $\hat{\boldsymbol\jmath}$ is the spin axis (exact, from the rank-one kinematic spine), $\hat{\mathbf d}$ is the cap polarity dipole direction (exactly axial at all times, by the dipole identity), $\theta_O$ is the cap azimuthal offset supplying the transverse phase reference, and $\mathcal R$ is the same causal-root and self-hit ledger as before. The handedness label is the pseudoscalar pairing $h=\hat{\mathbf d}\cdot\hat{\boldsymbol\jmath}$ — pseudoscalar because the dipole is a polar vector and the spin axis an axial one — and the ground-state geometry locks the triple's relative orientation, with the lock measured maximal under drift. The frame the spinor target needs is therefore not assembled from three approximate normals; it is a single measured glove.
 
-The discrete-symmetry structure of the label is inherited from the spindle braid's results at their stated claim level. Polarity conjugation (C) reverses $\hat{\mathbf d}$ while preserving $\hat{\boldsymbol\jmath}$, so it flips $h$: braid and anti-braid are the exactly degenerate glove pair. A true mirror reverses the rotation sense while preserving the dipole, flipping $h$ again. The combined CP operation restores $h$, which is the frame-level statement of the CP degeneracy. Consequently the gauge quotient on the spindle frame must not remove dipole reversal, rotation-sense reversal, or causal-root branch change — exactly the discipline stated for the nested chart below.
+The discrete-symmetry structure of the label is inherited from the spindle braid's results at their stated claim level. Polarity conjugation $C$ reverses $\hat{\mathbf d}$ while preserving $\hat{\boldsymbol\jmath}$, so it flips $h$: a braid and its polarity-conjugate braid are the exactly degenerate glove pair at fixed worldline order. A true mirror reverses the ordered orientation and flips $h$ again. The combined $CP$ operation restores $h$. The pro/anti ordered-orientation sign is therefore not the same object as the polarity-conjugation sign; their product supplies the polarity-weighted handedness $h$. Consequently the gauge quotient on the spindle frame must not remove polarity assignment, ordered-orientation reversal, or causal-root branch change — exactly the discipline stated for the nested chart below.
 
 The spinor question itself carries over unchanged, and gains a cleaner arena. A $2\pi$ spatial rotation about $\hat{\boldsymbol\jmath}$ returns the visible geometry of the locked triple; whether the *retained* phase-and-root history returns — or returns only after $4\pi$ — is precisely the parity test $\epsilon_r^{2\pi}$ defined below, now posed on the retained rows of a frame whose ordering is measured rather than hypothesized. The nested chart that follows is retained as the nested-comparison realization of the same target.
 
@@ -1938,7 +1938,7 @@ This is a recovery target for $\Psi_{\mathrm{env}}$, the external envelope of an
 
 The ordered-frame spinor target also carries the C/P/T burden inherited from standard fermion physics. The substrate proof does not need to import a particular representation of Dirac spinors, but it must recover the effective actions that those representations summarize. In the observer-level fermion chart:
 
-- $C_{\mathrm{eff}}$ must map a fermion record to the corresponding charge-conjugate record by reversing the effective polarity bookkeeping and pro/anti orientation while preserving the appropriate spin-state comparison data.
+- $C_{\mathrm{eff}}$ must map a fermion record to the corresponding charge-conjugate record by reversing the effective polarity bookkeeping while preserving the pro/anti ordered orientation and the appropriate spin-state comparison data.
 - $P_{\mathrm{eff}}$ must reverse the effective spatial orientation used by the observer chart, including helicity sign when a momentum or propagation axis is part of the record.
 - $T_{\mathrm{eff}}$ must reverse the effective motion, cycle orientation, and phase-flow record without turning the positive-energy comparison branch into an unphysical negative-energy sector.
 - $(CPT)_{\mathrm{eff}}$ must return an admissible fermion-sector record in every validated regime, even though $C$, $P$, $T$, and their pairwise combinations may be violated by weak-sector and flavor-sector data.
@@ -2449,7 +2449,7 @@ $$
 \frac{\mathbf{S}\cdot\hat{\mathbf{p}}}{\hbar}
 $$
 
-For photons, the target is strict. A free photon has no rest frame and no physical longitudinal polarization in the validated free-space regime. Its observer-level spin information appears as helicity $\pm1$. The $\mathbb{A}\mathbb{A}\mathbb{A}$ photon model must therefore show how the coaxial contra-rotating pro/anti planar pair carries exactly two transverse modes, helicity $\pm1$, Malus' law, and no unacceptable longitudinal free mode.
+For photons, the target is strict. A free photon has no rest frame and no physical longitudinal polarization in the validated free-space regime. Its observer-level spin information appears as helicity $\pm1$. The $\mathbb{A}\mathbb{A}\mathbb{A}$ photon model must therefore show how the coaxial contra-rotating polarity-conjugate planar pair carries exactly two transverse modes, helicity $\pm1$, Malus' law, and no unacceptable longitudinal free mode.
 
 The photon scaffold is a transverse ledger, not a rest-frame spin ledger. Let $\hat{\mathbf{k}}$ be the propagation axis supplied by the Gate A kinematic branch, and choose orthonormal transverse axes $(\hat{\mathbf{u}},\hat{\mathbf{v}})$ with $\hat{\mathbf{u}}\cdot\hat{\mathbf{k}}=\hat{\mathbf{v}}\cdot\hat{\mathbf{k}}=0$. The effective Gate B state can be written as
 
@@ -2475,14 +2475,14 @@ is the target bridge to helicity. A helicity eigenmode must first be stated as a
 $$
 \mathbf J_{\gamma}^{\mathrm{sub}}
 =
-\mathbf J_{\mathrm{pro}}
+\mathbf J_{\mathfrak B}
 +
-\mathbf J_{\mathrm{anti}}
+\mathbf J_{C(\mathfrak B)}
 +
 \mathbf J_{\gamma,\mathrm{wake}}
 $$
 
-where the terms are the photon-side pro/anti planar-pair and photon-carried wake contributions. Source remnant, recoil, material handoff, and unrelated medium rows belong to the event ledger, not inside the photon-only helicity vector. The helicity residual is
+where the terms are the photon-side polarity-conjugate planar-pair and photon-carried wake contributions. Source remnant, recoil, material handoff, and unrelated medium rows belong to the event ledger, not inside the photon-only helicity vector. The helicity residual is
 
 $$
 \Delta_{\mathrm{hel}}^\gamma
@@ -2506,7 +2506,7 @@ P_{\perp}\mathbf J_{\gamma}^{\mathrm{sub}}
 \lambda_{\mathrm{hel}}\in\{+1,-1\}
 $$
 
-where $P_{\perp}$ projects transverse to the propagation axis. Linear polarization is then a real transverse-axis state, while circular polarization is a quarter-cycle phase relation between the two transverse axes. The generic coherent case is elliptical polarization: both transverse components are retained with a stable relative phase, with linear and circular polarization as limiting cases. Unpolarized and partially polarized light are ensemble or source-window summaries over retained transverse ledgers, not separate single-photon substrate objects. The scalar summary $\hat{\mathbf k}\cdot\mathbf J_{\gamma}^{\mathrm{sub}}\approx\lambda_{\mathrm{hel}}\hbar$ is allowed only after Gate A, the substrate planar-pair rows, and the event-balance rows pass. The proof burden is to show that the coaxial contra-rotating pro/anti planar pair carries this spin-$1$ transverse ledger and not a scalar, spinor, or longitudinal free mode.
+where $P_{\perp}$ projects transverse to the propagation axis. Linear polarization is then a real transverse-axis state, while circular polarization is a quarter-cycle phase relation between the two transverse axes. The generic coherent case is elliptical polarization: both transverse components are retained with a stable relative phase, with linear and circular polarization as limiting cases. Unpolarized and partially polarized light are ensemble or source-window summaries over retained transverse ledgers, not separate single-photon substrate objects. The scalar summary $\hat{\mathbf k}\cdot\mathbf J_{\gamma}^{\mathrm{sub}}\approx\lambda_{\mathrm{hel}}\hbar$ is allowed only after Gate A, the substrate planar-pair rows, and the event-balance rows pass. The proof burden is to show that the coaxial contra-rotating polarity-conjugate planar pair carries this spin-$1$ transverse ledger and not a scalar, spinor, or longitudinal free mode.
 
 The useful algebraic consequence is an event-window helicity projection lemma. For a finite radiative event window,
 
@@ -3795,7 +3795,7 @@ This bridge leaves several derivations open beyond the partition scaffold above.
 6. Prove or falsify the $SU(2)\to SO(3)$ spinor lift on the spindle braid's locked frame — the non-coplanar chart has no uniaxial image, so the lift question must be posed on the locked triple's retained rows — retaining the ordered non-coplanar nested version as comparison, then test whether the same lifted ordered-frame response extends to an effective $SL(2,\mathbb C)\to SO^+(1,3)$ spinor compatibility map in the recovered relativistic observer sector.
 7. Evaluate the Master-Equation apparatus branch-sum impulse rate $d\mathbf J_{C}^{\text{app}}/dT$ and record-cycle phase density $d\nu_{\text{rec}}$ for a minimal Noether braid apparatus simulation, and test when they reduce to the ideal $\Sigma_{\hat{\mathbf{m}}}^{\text{SG,red}}$ chart with uniform record phase.
 8. Derive the effective spinor coordinate and substrate preparation measures $\mu_{\alpha}$ whose pushforward into the reduced spinor-record chart gives the computed spin-$\tfrac{1}{2}$ half-angle law.
-9. Recover photon helicity $\pm1$, exactly two physical transverse photon modes, the material analyzer projector, the analyzer return-map measure $d\nu_{\hat{\mathbf a}}$, the uniform pass-threshold pushforward for $\eta_{\hat{\mathbf a}}$, the sequential analyzer relocking map, Malus' law, and no-signaling polarization statistics from the coaxial contra-rotating pro/anti planar pair.
+9. Recover photon helicity $\pm1$, exactly two physical transverse photon modes, the material analyzer projector, the analyzer return-map measure $d\nu_{\hat{\mathbf a}}$, the uniform pass-threshold pushforward for $\eta_{\hat{\mathbf a}}$, the sequential analyzer relocking map, Malus' law, and no-signaling polarization statistics from the coaxial contra-rotating polarity-conjugate planar pair.
 10. Separate photon helicity closure from massive vector-boson spin closure.
 11. Derive integer phase-winding closure for nested shell braid energy levels by computing the admissible ledgers $(k_I,k_M,k_O,\mathcal R)$ and their allowed changes under $\Delta A_{\text{cycle}}=h$ transactions.
 12. Derive the effective far-zone causal-wake envelope of an integer-closed nested shell braid and decompose its angular content into recovery coefficients that can be compared with spherical-harmonic orbital modes.

@@ -185,7 +185,7 @@ High-leverage review targets:
 Standing advancement programs to watch for when relevant:
 - Noether sea / Noether sea usage: use `Noether sea` as the standalone noun and `Noether sea` only as a compound modifier.
 - Density and delay notation: use `\rho_{\text{NS}}(\mathbf{x},t)` for physical Noether braid density, reserve `n(\mathbf{x},t)` for normalized Noether braid density, and use `\chi_{\text{sea}}(\mathbf{x},t)\equiv c_f/c_{\text{eff}}(\mathbf{x},t)` only for the Noether sea delay factor.
-- Photon ontology: use the canonical description `coaxial contra-rotating pro/anti planar pair`; avoid weaker variants such as `photon planar-pair`, `photon planar pair`, or `photon-like planar pair` unless quoted as a stale phrase to fix.
+- Photon ontology: use the canonical description `coaxial contra-rotating polarity-conjugate planar pair`; avoid weaker variants such as `photon planar-pair`, `photon planar pair`, or `photon-like planar pair` unless quoted as a stale phrase to fix.
 - Mass and inertia: mass is the externally exposed response of trapped internal causal history, shielding, and Noether sea coupling. Ordinary dissipative drag is a failure channel or transport effect, not the mass mechanism.
 - Lorentz behavior: Lorentz symmetry, time dilation, length contraction, and invariant signal speed are theorem/closure targets. The closure ladder should name moving-assembly deformation, clock/ruler retuning, two-way signal synchronization, and bounded preferred-frame leakage.
 - Nested shell braid minimality: treat as a theorem target unless a local derivation is present.

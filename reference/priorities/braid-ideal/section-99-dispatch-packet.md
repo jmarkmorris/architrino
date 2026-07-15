@@ -1,12 +1,12 @@
 # §99 Dispatch Packet — Planar Assembled Free Particle (Photon + Electron)
 
 **Date:** 2026-07-12
-**Status:** dispatched and completed; negative seed-grade verdict recorded in [planar-assembled-free-particle-spec.md](planar-assembled-free-particle-spec.md)
+**Status:** dispatched and completed; negative seed-grade verdict recorded in [planar-assembled-free-particle-spec.md](planar-assembled-free-particle-spec.md). **2026-07-15: the photon branch is SUPERSEDED for photon claims — the screened object was non-canonical (see the model-audit banner in the spec); successor: [canonical-photon-search-dispatch-packet.md](canonical-photon-search-dispatch-packet.md).**
 **Object:** the ASSEMBLY, not the isolated triple. No isolated-triple pre-gate survives.
 
 ---
 
-Closure goal: Determine whether the two truly-stable planar assemblies are recovered as native free particles — PHOTON = neutral contra-rotating pro/anti braid pair with no payload (fully locked, stable, selects the $c_f$ limit); ELECTRON = same neutral pair + an explicit six-electrino payload in the pocket (net $-1e$, bound, stable at rest and boosted) — gating the WHOLE complex with one common $\kappa_\star$ and a *validated* full-assembly stability operator, with native release gated simultaneously on bind, pump cancellation, lock, full stability, and the explicit charge ledger.
+Closure goal: Determine whether the two truly-stable planar assemblies are recovered as native free particles — PHOTON = neutral contra-rotating polarity-conjugate braid pair with no payload (fully locked, stable, selects the $c_f$ limit); ELECTRON = same neutral pair + an explicit six-electrino payload in the pocket (net $-1e$, bound, stable at rest and boosted) — gating the WHOLE complex with one common $\kappa_\star$ and a *validated* full-assembly stability operator, with native release gated simultaneously on bind, pump cancellation, lock, full stability, and the explicit charge ledger.
 
 ## Object definition (verify first, before any number is trusted)
 

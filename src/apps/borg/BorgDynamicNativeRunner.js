@@ -218,7 +218,10 @@ export function createBorgDynamicMasterEquationRunRequest({
   endTime,
   initialStates,
 }) {
-  const maxFrames = Math.floor((endTime - startTime) / config.sampleInterval) + 1;
+  // A chunk whose endpoint is not on the sample grid emits the regular grid
+  // frames plus that explicit endpoint. Ceil reserves both; floor undercounts
+  // by one and makes the bridge reject the otherwise valid request.
+  const maxFrames = Math.ceil((endTime - startTime) / config.sampleInterval) + 1;
   return createSolverRunRequest({
     requestId: `${config.requestIdPrefix}:chunk-${chunkIndex}`,
     runId: `${config.runIdPrefix}:chunk-${chunkIndex}`,
@@ -301,8 +304,14 @@ export function createBorgDynamicMasterEquationRunRequest({
         coordinateFrame: "absolute-lab-frame",
         scaleNormalization: "borg-dynamic-native-runner-units",
         interpolationRule: "native-master-equation-integration",
-        valueAuthority: "central-solver-compatibility-output",
-        appBufferAuthority: "central-solver-compatibility-output",
+        // The bridge contract's valueAuthority enum is numeric authority
+        // (authoritative | approximate | display-only | rejected), not an
+        // evidence grade. Sending Borg's own display vocabulary here made the
+        // bridge reject every run request, so the live run always fell back to
+        // replaying the fixture. The EOM claim is not laundered by this: it is
+        // carried, still downgraded, in the provenance block below.
+        valueAuthority: "authoritative",
+        appBufferAuthority: "authoritative",
         provenance: {
           runKind: "masterEquation",
           source: "borg-dynamic-native-runner",

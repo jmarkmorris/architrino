@@ -159,7 +159,7 @@ Promotion prerequisites:
 | Noether conservation | `theorem-target` until closed | energy, momentum, angular momentum, charge, source provenance, Noether sea exchange, and event rows on the same ledger |
 | stability | `theorem-target` until closed | root-dependent variational equation, gauge split, monodromy or return-map data, and declared stability class |
 | Lorentz export | `theorem-target` | moving-assembly deformation, clock/ruler extraction, two-way signal synchronization, and bounded preferred-frame leakage |
-| photon closure | `theorem-target` | branch-transition row matching the coaxial contra-rotating pro/anti planar pair requirement, event ledger, and photon-channel speed status |
+| photon closure | `theorem-target` | branch-transition row matching the coaxial contra-rotating polarity-conjugate planar pair requirement, event ledger, and photon-channel speed status |
 | mass map | `theorem-target` | history-dressed energy, exposure tensor, scalar exposure quotient, and Noether sea medium-response tensor on the same branch |
 | color, strong-field, or cosmology export | `speculation-comparison` until computed | continuous phase-bundle or finite-boundary/observer-level recovery rows as appropriate, plus `passed`, `failed`, or `not_computed` status |
 

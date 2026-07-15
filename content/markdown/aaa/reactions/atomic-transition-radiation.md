@@ -4,7 +4,7 @@ Atomic transition radiation is the line-emission and line-absorption channel in 
 
 This page specializes the shared routing skeleton in [Radiation](radiation.md). The envelope energies and spectral labels are inherited from [Atomic Spectra](../nuclear-atomic/atomic-spectra.md), while photon ontology and Gate A/B/C closure requirements are inherited from [Electroweak Bosons](../assemblies/bosons/electroweak-bosons.md#photon-closure-interface). Reaction provenance follows [Reaction Ledger](../validation/reaction-ledger.md), and cosmology-facing photon records remain downstream of [Reaction-Cosmology Provenance Ledger](../validation/reaction-cosmology-provenance-ledger.md).
 
-This chapter is not a completed derivation of atomic transition rates. Its role is to state the first event record for the Gate C vertex: how a bound atomic envelope sheds or captures a coaxial contra-rotating pro/anti planar pair while preserving energy, momentum, angular momentum, local Noether sea state, and path-history provenance.
+This chapter is not a completed derivation of atomic transition rates. Its role is to state the first event record for the Gate C vertex: how a bound atomic envelope sheds or captures a coaxial contra-rotating polarity-conjugate planar pair while preserving energy, momentum, angular momentum, local Noether sea state, and path-history provenance.
 
 ## Basin Transition
 
@@ -103,7 +103,7 @@ E_\gamma
 \Delta_{\gamma}^{\mathrm{tol}}
 $$
 
-The benchmark fails if a Rydberg-consistent line can be obtained only by dropping recoil, medium excitation, or residual atomic energy from the ledger; if the planar-mode gate is changed between hydrogen lines; if the photon-channel speed used by the spectral comparison differs from the emitted photon record; or if path-history provenance is not sufficient to replay which envelope transition produced the coaxial contra-rotating pro/anti planar pair.
+The benchmark fails if a Rydberg-consistent line can be obtained only by dropping recoil, medium excitation, or residual atomic energy from the ledger; if the planar-mode gate is changed between hydrogen lines; if the photon-channel speed used by the spectral comparison differs from the emitted photon record; or if path-history provenance is not sufficient to replay which envelope transition produced the coaxial contra-rotating polarity-conjugate planar pair.
 
 ## Planar-Mode Gate
 
@@ -204,7 +204,7 @@ The minimum event record is:
 
 ## Absorption and Stimulated Channels
 
-Absorption is the inverse Gate C vertex: an incoming coaxial contra-rotating pro/anti planar pair is captured by the atomic assembly and folded into a higher envelope basin when the capture geometry and gap condition match. In compact form,
+Absorption is the inverse Gate C vertex: an incoming coaxial contra-rotating polarity-conjugate planar pair is captured by the atomic assembly and folded into a higher envelope basin when the capture geometry and gap condition match. In compact form,
 
 $$
 b+\gamma \to a,
@@ -318,7 +318,7 @@ Cosmology-facing use of any line should keep source-branch changes separate from
 
 ## Closure Status
 
-Accepted ontology: a photon emitted or captured in this channel is a coaxial contra-rotating pro/anti planar pair, and atomic line radiation is a routed assembly-level transition rather than excitation of a separate fundamental electromagnetic field.
+Accepted ontology: a photon emitted or captured in this channel is a coaxial contra-rotating polarity-conjugate planar pair, and atomic line radiation is a routed assembly-level transition rather than excitation of a separate fundamental electromagnetic field.
 
 Derivation targets: compute $\mathcal S_{\gamma}^{\mathrm{at}}$, recover the weak-coupling transition-rate limit, derive selection-rule basin measures, close recoil and medium ledgers, and recover detailed balance without changing the Noether sea state map between emission, absorption, and thermal ensembles.
 

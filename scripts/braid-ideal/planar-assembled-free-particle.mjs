@@ -4,6 +4,17 @@
 // is always the complete pro/anti pair, with an explicit six-electrino payload
 // for the electron and an explicitly labeled ambient-sea proxy. The central
 // causal-root runtime is imported and is never modified.
+//
+// SUPERSEDED FOR PHOTON CLAIMS (2026-07-15 model audit): the photon family
+// screened here is NON-CANONICAL — (3,2,3) rows are charged 8-architrino
+// braids (canonical braid: 6 architrinos, 3 of each polarity, ring = binary);
+// within-braid phasing is hard-coded; rotation is rigid contra-rotation only;
+// geometry is frozen across drift speeds (no flattening toward planar at
+// u -> c_f). Do not cite this runner's negative against the canonical
+// 12-worldline photon. The analytic symmetric-pair anchor and the section
+// 92/93/95 control reproductions remain valid implementation tests. See
+// reference/priorities/braid-ideal/planar-assembled-free-particle-spec.md
+// (audit banner) and canonical-photon-search-dispatch-packet.md (successor).
 
 import { fileURLToPath } from "node:url";
 

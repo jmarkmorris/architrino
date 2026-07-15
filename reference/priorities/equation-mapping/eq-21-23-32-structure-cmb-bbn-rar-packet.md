@@ -291,7 +291,7 @@ where $\mathcal{T}_{\mathrm{CMB}}^{XY}$ is an observer-level transfer operator. 
 
 ### Noether Braid Variables
 
-- Photon-channel packet record for the coaxial contra-rotating pro/anti planar pair.
+- Photon-channel packet record for the coaxial contra-rotating polarity-conjugate planar pair.
 - Source or last-thermalization branch record $\theta_{\mathrm{source}}$.
 - Baryon-loading and helium handoff rows from nucleon/light-element assembly ledgers.
 - Neutrino-sector row from neutral-lepton branch records.

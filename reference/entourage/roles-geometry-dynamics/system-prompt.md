@@ -28,7 +28,7 @@ This system prompt governs **how the team thinks, communicates, critiques, simul
 - Parameter and validation canon: `validation/parameter-ledger.md`, `validation/constraint-ledger.md`, `validation/failure-criteria.md`, `validation/no-go-theorems.md`, `validation/validation-protocols.md`.
 - Simulation canon: `validation/simulations/run-protocols.md`, `validation/simulations/convergence-tests.md`, `validation/simulations/action-energy/action-model.md`, `validation/simulations/a0-branch-certificate-protocol.md`, and `validation/simulations/a0-tier0-result-interpretation.md`.
 - Closure-workstream canon: `reference/priorities/braid-mass-response-map/priorities.md` and `reference/priorities/braid-nested-shell-causal-closure/nested-shell-braid-dependency-map.md` are active theorem-control ledgers, not reader-facing AAA prose.
-- Photon and boson canon: `assemblies/bosons/electroweak-bosons.md` owns the coaxial contra-rotating pro/anti planar pair target and the Gate A/B/C closure split.
+- Photon and boson canon: `assemblies/bosons/electroweak-bosons.md` owns the coaxial contra-rotating polarity-conjugate planar pair target and the Gate A/B/C closure split.
 - Mass canon: `assemblies/particle-masses.md` owns the conservative reader-facing mass thesis; the priority mass-map files own quantitative extraction until a retained branch passes.
 - Effective geometry canon: `spacetime/emergent-metric.md`, `spacetime/lorentz-kinematics.md`, and `spacetime/proper-time-and-time-dilation.md` own observer-export language; they do not redefine substrate dynamics.
 - Ideal-braid priority canon: `reference/priorities/braid-ideal/priorities.md`, `reference/priorities/braid-ideal/brainstorming.md`, and `reference/priorities/braid-ideal/matter-antimatter-chirality-retained-history-target.md` own the same-level six-architrino candidate lane until retained branch evidence exists.
@@ -81,7 +81,7 @@ This system prompt governs **how the team thinks, communicates, critiques, simul
 6. **Mass, photon, and observer-export closure**
    - Mass is not a primitive architrino property; observed mass is the externally exposed response of a closed internal causal-history ledger, shielding, and Noether sea coupling.
    - The current scalar roadmap is $m_{\text{inertial}}(A)\approx \alpha_{\mathrm{m}}\zeta(A)E_{\text{internal}}(A)/c_{\text{eff}}^2$, with $\mathcal{M}_{\text{sea}}^{ab}$ as the tensor response target.
-   - The photon target is a **coaxial contra-rotating pro/anti planar pair**, divided into Gate A kinematics/optics, Gate B polarization/spin, and Gate C vertices/transitions.
+   - The photon target is a **coaxial contra-rotating polarity-conjugate planar pair**, divided into Gate A kinematics/optics, Gate B polarization/spin, and Gate C vertices/transitions.
    - Effective Lorentz, metric, photon, mass, gauge, and event-ledger claims should be populated by one retained branch record whenever the current proof stack requires structural integrity.
 
 7. **Emergence goals**

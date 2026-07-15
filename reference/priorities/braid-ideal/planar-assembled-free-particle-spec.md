@@ -2,6 +2,45 @@
 
 **Date:** 2026-07-12
 
+## Model audit — 2026-07-15: SUPERSEDED FOR PHOTON CLAIMS (non-canonical object)
+
+An operator-driven audit of the runner and fixture found that the §99 photon
+screen does not model the canonical photon and its negative must not be read
+as a canonical-photon result. Specific defects, each checkable in
+`scripts/braid-ideal/planar-assembled-free-particle.mjs` and
+`planar-assembled-free-particle-fixture.mjs`:
+
+- **Non-canonical occupancy.** Roughly half the photon rows use occupancy
+  $(3,2,3)$ — 8 architrinos per braid, 16 per assembly — and the
+  ordinal-alternating polarity assignment gives each 3-site ring net charge
+  $\pm1$ and each braid net $\pm2$; the assembly is neutral only because the
+  anti braid flips signs. The canonical braid has 6 architrinos, 3 of each
+  polarity, with each ring a $+/-$ binary; the canonical photon has 12
+  worldlines.
+- **Phasing not searched.** Within-braid per-binary phases are hard-coded
+  constants; the only phase knob is one whole-braid relative phase over four
+  values. The front/back binary-pair phasing lattice was never explored.
+- **Rotation not searched.** Rigid contra-rotation only (pro braid all
+  $+\omega$, anti all $-\omega$); no per-binary sense or frequency
+  combinations (one base $\omega$ and two scale triples).
+- **No speed-dependent geometry.** The rest-selected geometry was continued
+  frozen through every drift speed; the canonical expectation that braids
+  flatten toward planar as $u \to c_f$ is absent, and the exact $u=c_f$
+  endpoint was excluded.
+- **Thin sampling.** 12 photon configurations were strided-sampled from a
+  $\sim$1,024-point factor lattice.
+
+**Surviving scope.** The T1 non-bind/pump/charge/causal-root rows remain
+valid for the specific non-canonical screened family only. The analytic
+symmetric-pair anchor and the §92/§93/§95 control reproductions remain valid
+implementation tests. The decision string below is narrowed accordingly: it
+claims nothing about the canonical 12-worldline photon.
+
+**Successor:** the canonical-photon configuration space and search plan live
+in [canonical-photon-search-dispatch-packet.md](canonical-photon-search-dispatch-packet.md),
+gated on the validated coupled delayed-history integrator per the 2026-07-12
+quarantine worklist.
+
 **Claim level:** seed-grade force-balance, charge, geometry, and pump screen;
 the target stability and locking readings are retired as void; no
 retained-branch acceptance
@@ -26,7 +65,7 @@ the target eigenvalues and saddle readings are historical only. See the
 
 ## Decision target
 
-This packet evaluates the free-particle candidate as one assembly from the start. No isolated-triple gate is present. The photon candidate is a neutral contra-rotating pro/anti planar pair with no payload. The electron candidate is the same pair plus six explicit electrino worldlines in the axial pocket, with charge
+This packet evaluates the free-particle candidate as one assembly from the start. No isolated-triple gate is present. The photon candidate is a neutral contra-rotating polarity-conjugate planar pair with no payload. The electron candidate is the same pair plus six explicit electrino worldlines in the axial pocket, with charge
 
 $$
 Q=6\left(-\frac{|e|}{6}\right)=-1e.
@@ -141,6 +180,13 @@ This is a planarity result only. The evaluator has no explicit cap degree of fre
 ## Decision
 
 Decision: `neither_planar_assembly_closes_in_declared_geometry_payload_and_proxy_sea_coverage`.
+
+Scope narrowing (2026-07-15 model audit): "declared geometry" here includes
+non-canonical $(3,2,3)$ charged-braid rows, hard-coded within-braid phasing,
+rigid contra-rotation, and geometry frozen across speeds. This decision is a
+negative for that screened family only; it is not a negative for the
+canonical 12-worldline photon, whose search is specified in
+[canonical-photon-search-dispatch-packet.md](canonical-photon-search-dispatch-packet.md).
 
 The photon and electron charge ledgers close, and some rows cancel the net pump,
 but neither object reaches radial closure. Because the targets are not

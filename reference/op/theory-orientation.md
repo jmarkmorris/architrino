@@ -6,6 +6,8 @@ Use this guide when a thread is theory-facing and no narrower procedure already 
 
 Read the smallest set that can ground the current claim. Do not bulk-load the entire corpus.
 
+Before any physics reasoning, apply the Theory Layer Discipline section of [AGENTS.md](../../AGENTS.md): standard physics is emergent output to recover, never input to assume at the architrino level.
+
 For active corpus advancement, use the shared [corpus advancement pass](../entourage/archie/prompts/corpus-advancement-pass.md). For external sources, use the [source-mining best-practice guide](source-mining-best-practice.md).
 
 ## Startup Path

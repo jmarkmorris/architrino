@@ -148,7 +148,7 @@ The row passes only if the clock, ruler, two-way synchronization, and preferred-
 
 ## 5. Photon Export
 
-The photon export is a transition-row target. It may pass only if the branch transition produces or consumes the canonical photon ontology as a coaxial contra-rotating pro/anti planar pair and closes the event ledger:
+The photon export is a transition-row target. It may pass only if the branch transition produces or consumes the canonical photon ontology as a coaxial contra-rotating polarity-conjugate planar pair and closes the event ledger:
 
 $$
 \mathcal{R}_{\gamma}

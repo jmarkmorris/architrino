@@ -6,9 +6,9 @@ This chapter collects the quark catalog for $\mathbb{A}\mathbb{A}\mathbb{A}$ in 
 
 The aim is narrower than a full QCD derivation. This page states, in a single canonical reference, how the six quark flavors are built from the nested shell braid program, how their axial patterns encode charge, how color is assigned, how many architrinos each flavor contains, and what a gluon is allowed to do to a quark state. The catalog is the bookkeeping target; confinement, running couplings, hadron spectra, and nonperturbative QCD recovery remain downstream closure problems.
 
-The useful first picture is a layered object. The Noether braid scaffold carries the neutral branch, generation tier, and matter/antimatter orientation. The axial layer carries the exposed polarity pattern. Color appears when one H/M/L axis is exceptional relative to the other two. The quark catalog is the table of those allowed exposed patterns.
+The useful first picture is a layered object. The Noether braid scaffold carries the neutral branch and generation tier. Whole-branch polarity conjugation distinguishes matter from antimatter, while pro/anti ordered orientation is a separate parity-facing label. The axial layer carries the exposed polarity pattern. Color appears when one H/M/L axis is exceptional relative to the other two. The quark catalog is the table of those allowed exposed patterns.
 
-At the substrate level, a quark is a Noether braid assembly with an axial layer. The braid scaffold fixes generation tier and matter chirality. The six-site axial layer fixes electric charge and the weak-active axial pattern. Color then appears when one axis is exceptional relative to the other two. At the effective level this reproduces the quark triplet structure of the Standard Model and supplies the coupling channel for gluons.
+At the substrate level, a quark is a Noether braid assembly with an axial layer. The braid scaffold fixes generation tier, and the retained polarity-conjugation record fixes its matter/antimatter relation. The six-site axial layer fixes electric charge and the weak-active axial pattern. Color then appears when one axis is exceptional relative to the other two. At the effective level this reproduces the quark triplet structure of the Standard Model and supplies the coupling channel for gluons.
 
 The chapter uses axis strings and tables so the catalog is explicit without depending on artwork.
 
@@ -21,7 +21,7 @@ The quark construction used here follows the same Noether braid-plus-axial split
 - The **Noether braid** is the neutral braid scaffold.
 - The **axial layer** is the six-site organization carrying the visible charge pattern.
 
-For matter quarks, the braid scaffold is a **pro-braid**. It is neutral in total charge and differs across generations by shielding-coherence level, not by changing the gauge-facing color frame:
+For matter quarks, the braid scaffold is a **matter branch**. It is neutral in total charge and differs across generations by shielding-coherence level, not by changing the gauge-facing color frame. The matter branch may carry either pro or anti ordered orientation; polarity conjugation preserves that orientation while producing the corresponding antimatter branch:
 
 - **Generation I:** nested shell braid shielding branch, 6 coherent scaffold architrinos.
 - **Generation II:** Generation-II shielding branch, 4 coherent scaffold architrinos; the outer support tier is depleted on the branch lifetime window.
@@ -113,7 +113,7 @@ Both families satisfy the same structural rule: two axes are in one class and on
 
 ### Right-handed singlet bookkeeping
 
-The right-handed pro-braid weak-coupling posture matches the bookkeeping already used elsewhere in the repo and is useful to state explicitly here.
+The right-handed matter-branch weak-coupling posture matches the bookkeeping already used elsewhere in the repo and is useful to state explicitly here.
 
 For right-handed quarks:
 
@@ -139,7 +139,7 @@ The same count logic is what places the right-handed quark sector on the singlet
 
 ### Left-handed doublet bookkeeping (conjectural implementation candidate)
 
-The corresponding left-handed pro-braid weak-coupling posture gives a useful implementation candidate:
+The corresponding left-handed matter-branch weak-coupling posture gives a useful implementation candidate:
 
 - the left-handed quark states are the exposed-coupling branches of the same six-site axial inventories,
 - the up-type and down-type quarks then occupy the two branches of the same electroweak doublet,
@@ -174,9 +174,9 @@ The value of this conjecture is that it places the quark doublet in the same six
 
 That places the quark sector in the same ordered axial-inventory ledger as the lepton sector rather than in a separate lookup table. At present, the geometric continuity across that ledger should be treated as a unifying implementation candidate, not a closed proof of weak-sector geometry.
 
-### Anti-braid mirror bookkeeping and implementation status
+### Polarity-conjugate mirror bookkeeping and implementation status
 
-Once the pro-braid rows are fixed, the Standard Model comparison layer fixes the mirror bookkeeping: right-handed antiquarks are the charge-conjugate mirrors of the left-handed quark doublets, and left-handed antiquarks are the charge-conjugate mirrors of the right-handed quark singlets. What remains conjectural is the substrate implementation claim that anti-braid branch orientation plus handedness-swap weak exposure realizes those rows in the branch geometry. This is branch-record bookkeeping, not a constituent relabel: matter/antimatter is carried by pro/anti orientation plus retained path-history rows, causal-root rows, wake-history rows, action rows, and stability rows. The axial polarity inventory supplies the charge and color bookkeeping row; it is not itself the matter/antimatter label.
+Once the matter-branch rows are fixed, the Standard Model comparison layer fixes the mirror bookkeeping: right-handed antiquarks are the charge-conjugate mirrors of the left-handed quark doublets, and left-handed antiquarks are the charge-conjugate mirrors of the right-handed quark singlets. What remains conjectural is the substrate implementation claim that whole-branch polarity conjugation plus handedness-swap weak exposure realizes those rows in the branch geometry. This is branch-record bookkeeping, not a constituent relabel: matter/antimatter is carried by polarity-conjugate retained path-history, causal-root, wake-history, action, and stability rows. The axial polarity inventory supplies the charge and color bookkeeping row; it is not itself the matter/antimatter label. Pro/anti ordered orientation is independent and remains unchanged under polarity conjugation.
 
 Start by mapping the quark axial inventories to their charged-sector conjugate rows:
 
@@ -191,22 +191,22 @@ Start by mapping the quark axial inventories to their charged-sector conjugate r
 
 The geometric implementation candidate then reads:
 
-- **right-handed anti-braid branches** behave as the electroweak mirrors of the pro-braid left-handed doublets,
-- **left-handed anti-braid branches** behave as the electroweak mirrors of the pro-braid right-handed singlets.
+- **right-handed polarity-conjugate antimatter branches** behave as the electroweak mirrors of the matter-branch left-handed doublets,
+- **left-handed polarity-conjugate antimatter branches** behave as the electroweak mirrors of the matter-branch right-handed singlets.
 
 This is structurally attractive because it matches the Standard-Model statement already used elsewhere in the repo: charged-current weak interactions act on left-handed quarks and, equivalently, on right-handed antiquarks.
-At a broader bookkeeping level, it also suggests a compact charged-fermion rule: pro-left doublets mirror anti-right doublets, while pro-right singlets mirror anti-left singlets.
+At a broader bookkeeping level, it also suggests a compact charged-fermion rule: matter-branch left doublets mirror polarity-conjugate antimatter right doublets, while matter-branch right singlets mirror polarity-conjugate antimatter left singlets.
 
 #### Right-handed antiquark bookkeeping
 
 At the fixed comparison-bookkeeping layer:
 
-| State family | Axial count | Electric charge $Q$ | Right-handed anti-braid assignment |
+| State family | Axial count | Electric charge $Q$ | Right-handed antimatter assignment |
 | --- | --- | ---: | ---: |
 | $\bar u^R,\bar c^R,\bar t^R$ | $1\epsilon_+,5\epsilon_-$ | $-2/3$ | $T_3=-1/2,\ Y=-1/3$ |
 | $\bar d^R,\bar s^R,\bar b^R$ | $4\epsilon_+,2\epsilon_-$ | $+1/3$ | $T_3=+1/2,\ Y=-1/3$ |
 
-These are exactly the charge-conjugate mirrors of the pro-braid left-handed quark doublet:
+These are exactly the charge-conjugate mirrors of the matter-branch left-handed quark doublet:
 $$
 \left(+\frac{1}{2},+\frac{1}{3}\right)\mapsto \left(-\frac{1}{2},-\frac{1}{3}\right),\qquad
 \left(-\frac{1}{2},+\frac{1}{3}\right)\mapsto \left(+\frac{1}{2},-\frac{1}{3}\right)
@@ -214,22 +214,22 @@ $$
 
 #### Left-handed antiquark bookkeeping
 
-For the left-handed anti-braid branch, the same mirror logic gives:
+For the left-handed polarity-conjugate antimatter branch, the same mirror logic gives:
 
-| State family | Axial count | Electric charge $Q$ | Left-handed anti-braid assignment |
+| State family | Axial count | Electric charge $Q$ | Left-handed antimatter assignment |
 | --- | --- | ---: | ---: |
 | $\bar u^L,\bar c^L,\bar t^L$ | $1\epsilon_+,5\epsilon_-$ | $-2/3$ | $T_3=0,\ Y=-4/3$ |
 | $\bar d^L,\bar s^L,\bar b^L$ | $4\epsilon_+,2\epsilon_-$ | $+1/3$ | $T_3=0,\ Y=+2/3$ |
 
-These are the charge-conjugate mirrors of the pro-braid right-handed singlets:
+These are the charge-conjugate mirrors of the matter-branch right-handed singlets:
 $$
 \left(0,+\frac{4}{3}\right)\mapsto \left(0,-\frac{4}{3}\right),\qquad
 \left(0,-\frac{2}{3}\right)\mapsto \left(0,+\frac{2}{3}\right)
 $$
 
-The practical advantage of this rule is that it closes the quark-sector bookkeeping without inventing a separate anti-braid lookup system. Once the pro-braid sector is specified, the anti-braid sector follows at the comparison layer by charge conjugation; at the implementation layer it must still be realized by anti-braid branch orientation, the conjugate charged-sector polarity ledger, and the handedness swap in weak exposure.
+The practical advantage of this rule is that it closes the quark-sector bookkeeping without inventing a separate antimatter lookup system. Once the matter sector is specified, the polarity-conjugate antimatter sector follows at the comparison layer by charge conjugation; at the implementation layer it must still be realized by a polarity-conjugate retained branch, the conjugate charged-sector polarity ledger, and the handedness swap in weak exposure.
 
-The $(T_3,Y)$ mirror rows above are fixed Standard Model comparison bookkeeping once the pro-braid rows are declared. The open claim is the substrate implementation: anti-braid orientation, conjugate charged-sector polarity ledger, and handedness-swap weak exposure must still be derived as one branch geometry rather than simply matched to the comparison table.
+The $(T_3,Y)$ mirror rows above are fixed Standard Model comparison bookkeeping once the matter-branch rows are declared. The open claim is the substrate implementation: a polarity-conjugate retained branch, conjugate charged-sector polarity ledger, and handedness-swap weak exposure must still be derived as one branch geometry rather than simply matched to the comparison table.
 
 ### Electroweak-plane embedding (conjectural map)
 
@@ -359,7 +359,7 @@ $$
 $$
 on the exceptional axis should be treated as two micro-configurations within the same color sector unless a later derivation shows that one of them carries an additional observable phase, helicity bias, or stability difference. At present they are best regarded as implementation-level variants of the same color assignment.
 
-The corresponding antiquark is obtained by the charged-sector conjugate axial pattern together with anti-braid orientation, giving the anti-red, anti-green, and anti-blue states.
+The corresponding antiquark is obtained by the charged-sector conjugate axial pattern together with the polarity-conjugate antimatter branch, giving the anti-red, anti-green, and anti-blue states. Its pro/anti ordered orientation is inherited unchanged under that conjugation.
 
 ### Down-type color tables
 

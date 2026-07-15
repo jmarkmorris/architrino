@@ -50,6 +50,20 @@ const directPatterns = [
     label: "legacy numeric polarity transition",
     pattern: /\b\d+\s*[PE]\s*(?:→|↔|->|<->|\\to|\\leftrightarrow)\s*\d+\s*[PE]\b/g,
   },
+  {
+    label: "deprecated pro/anti photon or near-photon pair label",
+    pattern:
+      /\b(?:coaxial contra-rotating|near-photon|near-planar|planarized)\s+pro\/anti\b|\bpro\/anti\s+(?:planar|braid[- ]pair)\b/gi,
+  },
+  {
+    label: "deprecated pro-braid or anti-braid conjugation shorthand",
+    pattern: /\b(?:pro|anti)-braid\b/gi,
+    scope: "AAA authored markdown",
+    excludePaths: new Set([
+      "content/markdown/aaa/archie/comparative-glossary.md",
+      "content/markdown/aaa/archie/terminology-usage.md",
+    ]),
+  },
 ];
 
 const compactCountPattern = /\b\d+[PE]\b/g;
@@ -78,7 +92,7 @@ if (findings.length) {
 }
 
 console.log(
-  `[polarity-notation] scanned ${filesScanned} files; epsilon polarity inventory notation is clean`
+  `[polarity-notation] scanned ${filesScanned} files; polarity inventory and braid-conjugation terminology are clean`
 );
 
 function collectFiles(relativeDir, extensions) {
@@ -132,6 +146,12 @@ function scanFile(relativePath, label) {
     }
 
     for (const patternConfig of directPatterns) {
+      if (patternConfig.scope && patternConfig.scope !== label) {
+        continue;
+      }
+      if (patternConfig.excludePaths?.has(relativePath)) {
+        continue;
+      }
       patternConfig.pattern.lastIndex = 0;
       if (!patternConfig.pattern.test(line)) {
         continue;

@@ -134,6 +134,44 @@ test("Borg first paint does not parse the recorded trajectory", () => {
   assert.equal(BORG_DATASET_MANIFEST_V1.currentStateAndFrameSources.trajectoryFrameIds, undefined);
 });
 
+test("Borg run-request metadata satisfies the solver-app-bridge contract enums", async () => {
+  // A fake solver client accepts whatever the app sends, so asserting the
+  // request against the app's own vocabulary proves only that the app agrees
+  // with itself. This checks the request against the published contract
+  // schema, which is authored separately from the runner.
+  const schema = JSON.parse(
+    readFileSync(
+      new URL("../src/contracts/solver-app-bridge/v1/schema.json", import.meta.url),
+      "utf8",
+    ),
+  );
+  const allowedValueAuthority = schema.$defs.valueAuthorityId.enum;
+
+  const requests = [];
+  const runner = createBorgDynamicNativeRunner(BORG_DATASET_MANIFEST_V1, {
+    initialFrameRows: BORG_DATASET_MANIFEST_V1.currentStateFrames,
+    targetDuration: 0.4,
+    chunkDuration: 0.4,
+    solverClient: {
+      async runSimulation(request) {
+        requests.push(request);
+        return { status: { code: "ok" }, frames: [], summary: {}, diagnostics: [] };
+      },
+    },
+  });
+  await runner.computeNextChunk().catch(() => {});
+
+  const metadata = requests[0].config.metadata;
+  assert.ok(
+    allowedValueAuthority.includes(metadata.valueAuthority),
+    `metadata.valueAuthority ${JSON.stringify(metadata.valueAuthority)} is not in the contract enum ${JSON.stringify(allowedValueAuthority)}`,
+  );
+  assert.ok(
+    allowedValueAuthority.includes(metadata.appBufferAuthority),
+    `metadata.appBufferAuthority ${JSON.stringify(metadata.appBufferAuthority)} is not in the contract enum ${JSON.stringify(allowedValueAuthority)}`,
+  );
+});
+
 test("Borg solver WASM loader points at deployed artifacts, not the build directory", () => {
   // .tmp/ is gitignored, so a loader pointed there resolves in a local dev
   // checkout and 404s on the published site, where the app silently falls back
@@ -238,15 +276,16 @@ test("Borg dynamic native runner builds first-class live master-equation chunks"
   assert.equal(requests[0].configVersion, BORG_DYNAMIC_NATIVE_RUNNER_VERSION);
   assert.equal(requests[0].config.appId, "borg");
   assert.equal(requests[0].config.fallbackPolicy, "fail-closed");
-  assert.equal(
-    requests[0].config.metadata.valueAuthority,
-    "central-solver-compatibility-output",
-  );
-  assert.equal(
-    requests[0].config.metadata.appBufferAuthority,
-    "central-solver-compatibility-output",
-  );
+  // valueAuthority is the bridge contract's numeric-authority enum, not an
+  // evidence grade. The EOM claim is carried by provenance, below, and stays
+  // downgraded.
+  assert.equal(requests[0].config.metadata.valueAuthority, "authoritative");
+  assert.equal(requests[0].config.metadata.appBufferAuthority, "authoritative");
   assert.equal(requests[0].config.metadata.provenance.canonicalEomEvidence, false);
+  assert.equal(
+    requests[0].config.metadata.provenance.eomEvidenceStatus,
+    "non_eom_compatibility_output",
+  );
   assert.equal(requests[0].config.masterEquationRequest.initialStates.length, 16);
   assert.equal(requests[0].config.masterEquationRequest.startTime, 0);
   assert.equal(requests[0].config.masterEquationRequest.endTime, 0.4);
@@ -334,6 +373,34 @@ test("Borg dynamic native runner applies measured target and chunk limits", asyn
     [0.2, 0.4, 0.5],
   );
   assert.equal(runner.canComputeNextChunk(), false);
+
+  await runner.dispose();
+});
+
+test("Borg non-grid chunk reserves the explicit endpoint frame", async () => {
+  const solverClient = {
+    async runSimulation(request) {
+      const masterRequest = request.config.masterEquationRequest;
+      // Independent closed form: 0, 0.2, and 0.4 are grid frames, while the
+      // requested 0.5 endpoint is a fourth frame. The former floor-based cap
+      // reserved only three slots and the real bridge rejected the request.
+      assert.equal(masterRequest.startTime, 0);
+      assert.equal(masterRequest.endTime, 0.5);
+      assert.equal(masterRequest.step, 0.2);
+      assert.equal(masterRequest.maxFrames, 4);
+      return createFakeBorgDynamicRunResponse(request);
+    },
+    async dispose() {},
+  };
+  const runner = createBorgDynamicNativeRunner(BORG_DATASET_MANIFEST_V1, {
+    solverClient,
+    targetDuration: 0.5,
+    chunkDuration: 0.5,
+    sampleInterval: 0.2,
+  });
+
+  const chunk = await runner.computeNextChunk();
+  assert.equal(chunk.statusCode, "ok");
 
   await runner.dispose();
 });

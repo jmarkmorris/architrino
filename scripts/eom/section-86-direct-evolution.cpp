@@ -1,3 +1,4 @@
+#include "architrino/eom/Checkpoint.hpp"
 #include "architrino/eom/CoupledEvolution.hpp"
 
 #include <algorithm>
@@ -6,6 +7,7 @@
 #include <cmath>
 #include <cstddef>
 #include <fstream>
+#include <filesystem>
 #include <iomanip>
 #include <iostream>
 #include <limits>
@@ -81,6 +83,8 @@ struct Options {
   double velocity_tolerance = 2e-6;
   std::string output;
   std::string state_output;
+  std::string checkpoint_output;
+  std::string failed_candidate_output_prefix;
   bool snapshot_only = false;
   bool skip_control = false;
   bool adaptive_step_growth = false;
@@ -142,6 +146,51 @@ std::string option_string(
     }
   }
   return fallback;
+}
+
+void write_failed_candidate_histories_atomic(
+    const std::string& path,
+    const std::string& start_time,
+    const std::string& reception_time,
+    const std::string& failure_code,
+    std::size_t correction_iteration,
+    const std::vector<eom::NativePublishedPath>& histories) {
+  const std::string temporary = path + ".tmp";
+  std::ofstream stream(temporary, std::ios::trunc);
+  if (!stream) {
+    throw std::runtime_error("failed to open failed-candidate output");
+  }
+  stream << "start_time\treception_time\tfailure_code\tcorrection_iteration"
+            "\tpath_id\thistory_id"
+            "\thistory_fingerprint\tsegment_index\tt_start\tt_end"
+            "\tx0\tx1\tx2\tx3\ty0\ty1\ty2\ty3"
+            "\tz0\tz1\tz2\tz3\tposition_error\tvelocity_error\n";
+  for (const auto& path_record : histories) {
+    std::size_t segment_index = 0U;
+    for (const auto& segment : path_record.history.segments()) {
+      stream << start_time << '\t' << reception_time << '\t'
+             << failure_code << '\t' << correction_iteration << '\t'
+             << path_record.path_id << '\t'
+             << path_record.history.history_id() << '\t'
+             << path_record.history.provenance_fingerprint() << '\t'
+             << segment_index << '\t' << segment.t_start_token() << '\t'
+             << segment.t_end_token();
+      for (const auto& axis : segment.coefficient_tokens()) {
+        for (const auto& coefficient : axis) {
+          stream << '\t' << coefficient;
+        }
+      }
+      stream << '\t' << segment.position_error_token() << '\t'
+             << segment.velocity_error_token() << '\n';
+      ++segment_index;
+    }
+  }
+  stream.flush();
+  if (!stream) {
+    throw std::runtime_error("failed to write failed-candidate output");
+  }
+  stream.close();
+  std::filesystem::rename(temporary, path);
 }
 
 bool has_flag(int argc, char** argv, const std::string& flag) {
@@ -666,6 +715,11 @@ int main(int argc, char** argv) {
     options.output = option_string(argc, argv, "output", options.output);
     options.state_output =
         option_string(argc, argv, "state-output", options.state_output);
+    options.checkpoint_output = option_string(
+        argc, argv, "checkpoint-output", options.checkpoint_output);
+    options.failed_candidate_output_prefix = option_string(
+        argc, argv, "failed-candidate-output-prefix",
+        options.failed_candidate_output_prefix);
     options.thread_count =
         option_size(argc, argv, "thread-count", options.thread_count);
     options.heartbeat_steps =
@@ -919,7 +973,37 @@ int main(int argc, char** argv) {
           eom::evolve_native_coupled_histories(control_request);
     }
     attach_heartbeat(request, "perturbed");
+    if (!options.failed_candidate_output_prefix.empty()) {
+      request.failed_substep_candidate_callback =
+          [prefix = options.failed_candidate_output_prefix,
+           sequence = std::size_t{0}](
+              const std::string& start_time,
+              const std::string& reception_time,
+              const std::string& failure_code,
+              std::size_t correction_iteration,
+              const std::vector<eom::NativePublishedPath>& histories) mutable {
+            const std::string path =
+                prefix + ".candidate-" + std::to_string(sequence++) + ".tsv";
+            write_failed_candidate_histories_atomic(
+                path, start_time, reception_time, failure_code,
+                correction_iteration, histories);
+            std::cerr << "failed_candidate start=" << start_time
+                      << " t=" << reception_time
+                      << " failure=" << failure_code
+                      << " iteration=" << correction_iteration
+                      << " output=" << path << std::endl;
+          };
+    }
     const auto evolution = eom::evolve_native_coupled_histories(request);
+    if (!options.checkpoint_output.empty()) {
+      eom::write_native_evolution_checkpoint_atomic(
+          options.checkpoint_output,
+          eom::create_native_evolution_checkpoint(request, evolution));
+      std::cerr << "checkpoint accepted_step="
+                << evolution.accepted_step_count
+                << " t=" << evolution.accepted_end_time
+                << " output=" << options.checkpoint_output << std::endl;
+    }
     const auto report_steps = [](const char* label, const auto& run) {
       for (const auto& step : run.steps) {
         if (step.status == "accepted") {

@@ -940,16 +940,24 @@ DoubleAttempt run_double_attempt(const ExactPairRequest& request) {
 }
 
 class MpFloatPool;
+struct MpFloatStorage;
+
+struct MpFloatFreeList {
+  mpfr_prec_t bits;
+  MpFloatStorage* head;
+};
 
 struct MpFloatStorage {
-  MpFloatStorage(MpFloatPool* owner_value, mpfr_prec_t bits_value)
-      : owner(owner_value), bits(bits_value) {
+  MpFloatStorage(MpFloatPool* owner_value, MpFloatFreeList* free_list_value)
+      : owner(owner_value), free_list(free_list_value),
+        bits(free_list_value->bits) {
     mpfr_init2(value, bits);
   }
 
   ~MpFloatStorage() { mpfr_clear(value); }
 
   MpFloatPool* owner;
+  MpFloatFreeList* free_list;
   mpfr_t value;
   mpfr_prec_t bits;
   MpFloatStorage* next_free = nullptr;
@@ -958,47 +966,52 @@ struct MpFloatStorage {
 class MpFloatPool {
  public:
   MpFloatStorage* acquire(mpfr_prec_t bits) {
-    FreeList* free_list = nullptr;
-    for (auto& candidate : free_lists_) {
-      if (candidate.bits == bits) {
-        free_list = &candidate;
-        break;
-      }
-    }
-    if (free_list == nullptr) {
-      free_lists_.push_back({bits, nullptr});
-      free_list = &free_lists_.back();
-    }
+    MpFloatFreeList* free_list = free_list_for(bits);
     if (free_list->head != nullptr) {
       MpFloatStorage* storage = free_list->head;
       free_list->head = storage->next_free;
       storage->next_free = nullptr;
       return storage;
     }
-    auto storage = std::make_unique<MpFloatStorage>(this, bits);
+    auto storage = std::make_unique<MpFloatStorage>(this, free_list);
     MpFloatStorage* result = storage.get();
     storage_.push_back(std::move(storage));
     return result;
   }
 
   void release(MpFloatStorage* storage) noexcept {
-    for (auto& free_list : free_lists_) {
-      if (free_list.bits == storage->bits) {
-        storage->next_free = free_list.head;
-        free_list.head = storage;
-        return;
-      }
-    }
-    std::terminate();
+    MpFloatFreeList* free_list = storage->free_list;
+    storage->next_free = free_list->head;
+    free_list->head = storage;
   }
 
  private:
-  struct FreeList {
-    mpfr_prec_t bits;
-    MpFloatStorage* head;
-  };
+  MpFloatFreeList* free_list_for(mpfr_prec_t bits) {
+    switch (bits) {
+      case 128:
+        return &standard_free_lists_[0];
+      case 256:
+        return &standard_free_lists_[1];
+      case 512:
+        return &standard_free_lists_[2];
+      default:
+        break;
+    }
+    for (const auto& candidate : fallback_free_lists_) {
+      if (candidate->bits == bits) {
+        return candidate.get();
+      }
+    }
+    auto free_list = std::make_unique<MpFloatFreeList>(
+        MpFloatFreeList{bits, nullptr});
+    MpFloatFreeList* result = free_list.get();
+    fallback_free_lists_.push_back(std::move(free_list));
+    return result;
+  }
 
-  std::vector<FreeList> free_lists_;
+  std::array<MpFloatFreeList, 3> standard_free_lists_{{
+      {128, nullptr}, {256, nullptr}, {512, nullptr}}};
+  std::vector<std::unique_ptr<MpFloatFreeList>> fallback_free_lists_;
   std::vector<std::unique_ptr<MpFloatStorage>> storage_;
 };
 

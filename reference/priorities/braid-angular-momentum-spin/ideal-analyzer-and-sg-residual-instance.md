@@ -606,7 +606,7 @@ The zero residuals above are exact within their declared reduced charts. They do
 
 | Dependency | Status in this packet | Needed for full closure |
 | --- | --- | --- |
-| Coaxial contra-rotating pro/anti planar-pair ledger | Not derived. | Supplies $a_{\perp}$, helicity $\pm1$, and the local photon angular-momentum ledger. |
+| Coaxial contra-rotating polarity-conjugate planar-pair ledger | Not derived. | Supplies $a_{\perp}$, helicity $\pm1$, and the local photon angular-momentum ledger. |
 | Material analyzer return map | Replaced by the ideal quotient $[0,1)$ and measure-preserving rotation. | Derives $\Theta_{\hat{\mathbf a}}$, $T_s$, $d\nu_{\hat{\mathbf a}}$, and $\eta_{\hat{\mathbf a}}$ from a concrete analyzer assembly. |
 | Pass/reject material recoil ledger | Not evaluated. | Closes energy, momentum, angular momentum, wake, and Noether sea recoil for each material record. |
 | Effective spinor coordinate | Assumed only as reduced input. | Derives $\psi(Z)$ from ordered Noether braid history and validates the spin-$\tfrac12$ projector chart. |

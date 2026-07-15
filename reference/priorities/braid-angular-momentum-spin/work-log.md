@@ -259,7 +259,7 @@ $$
 
 The packet requires a sheet coordinate, component return data, gauge controls, quotient witness, doubled-path restoration, and angular-momentum residual for the same retained row. The bucket still has no populated row-local sheet coordinate or causal-writhe ledger, so the spinor route is sharpened rather than closed.
 
-[planar-pair-symbolic-substrate-instance.md](planar-pair-symbolic-substrate-instance.md) applies the planar-pair substrate residual to a symbolic coaxial contra-rotating pro/anti planar pair:
+[planar-pair-symbolic-substrate-instance.md](planar-pair-symbolic-substrate-instance.md) applies the planar-pair substrate residual to a symbolic coaxial contra-rotating polarity-conjugate planar pair:
 
 $$
 \mathbf a_{\mathrm{pro}}

@@ -905,6 +905,10 @@ SubstepAttempt corrected_substep_impl(
     const std::string failure = predictor_snapshot.failure_code.empty()
         ? "root_completeness_not_certified"
         : predictor_snapshot.failure_code;
+    if (request.failed_substep_candidate_callback) {
+      request.failed_substep_candidate_callback(
+          start_time, end_time, failure, 0U, predictor_histories);
+    }
     return {
         failed_substep_certificate(
             start_time, end_time, std::move(start_snapshot),
@@ -935,6 +939,10 @@ SubstepAttempt corrected_substep_impl(
       const std::string failure = endpoint_snapshot.failure_code.empty()
           ? "root_completeness_not_certified"
           : endpoint_snapshot.failure_code;
+      if (request.failed_substep_candidate_callback) {
+        request.failed_substep_candidate_callback(
+            start_time, end_time, failure, iteration, candidate_histories);
+      }
       return {
           failed_substep_certificate(
               start_time, end_time, std::move(start_snapshot),

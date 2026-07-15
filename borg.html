@@ -83,7 +83,7 @@
 
       .borg-panel-header {
         display: grid;
-        grid-template-columns: minmax(0, 1fr) auto;
+        grid-template-columns: minmax(0, 1fr);
         align-items: start;
         gap: 10px;
         margin-bottom: 12px;
@@ -108,12 +108,15 @@
       .borg-status-stack {
         display: grid;
         gap: 6px;
-        justify-items: end;
+        min-width: 0;
+        justify-items: stretch;
       }
 
       .borg-status-chip {
         display: inline-grid;
         align-items: center;
+        justify-content: start;
+        min-width: 0;
         min-height: 24px;
         max-width: 100%;
         padding: 0 8px;
@@ -124,6 +127,7 @@
         font-size: 11px;
         font-weight: 740;
         line-height: 1.1;
+        overflow-wrap: anywhere;
       }
 
       .borg-status-chip[data-tone="good"] {
@@ -380,8 +384,46 @@
       }
 
       .borg-range {
+        appearance: none;
         width: 100%;
-        accent-color: #8bd17c;
+        height: 20px;
+        background: transparent;
+        cursor: pointer;
+      }
+
+      .borg-range::-webkit-slider-runnable-track {
+        height: 4px;
+        border-radius: 999px;
+        background: #4d5848;
+      }
+
+      .borg-range::-webkit-slider-thumb {
+        appearance: none;
+        width: 16px;
+        height: 16px;
+        margin-top: -6px;
+        border: 2px solid #d9f0d2;
+        border-radius: 50%;
+        background: #8bd17c;
+      }
+
+      .borg-range::-moz-range-track {
+        height: 4px;
+        border-radius: 999px;
+        background: #4d5848;
+      }
+
+      .borg-range::-moz-range-progress {
+        height: 4px;
+        background: #4d5848;
+      }
+
+      .borg-range::-moz-range-thumb {
+        width: 14px;
+        height: 14px;
+        border: 2px solid #d9f0d2;
+        border-radius: 50%;
+        background: #8bd17c;
       }
 
       .borg-time-output {
@@ -597,8 +639,8 @@
             <p>native fixture surface</p>
           </div>
           <div class="borg-status-stack">
-            <span id="borg-native-status" class="borg-status-chip">native</span>
-            <span id="borg-manifest-status" class="borg-status-chip">manifest</span>
+            <span id="borg-native-status" class="borg-status-chip">Live compute</span>
+            <span id="borg-manifest-status" class="borg-status-chip">Developer test</span>
           </div>
         </header>
 
@@ -711,7 +753,7 @@
             <path d="M17 6l3 3-3 3"></path>
           </svg>
         </button>
-        <input id="borg-time-range" class="borg-range" type="range" min="0" max="2" step="1" value="2" aria-label="Keyframe" />
+        <input id="borg-time-range" class="borg-range" type="range" min="0" max="2" step="1" value="2" aria-label="Keyframe" title="Buffered-frame scrubber; a Forever run has no finite completion percentage." />
         <button id="borg-run-duration-button" class="borg-run-duration-button" type="button" aria-label="Run duration: Forever" title="Toggle run duration">Forever</button>
         <select id="borg-playback-speed" class="borg-playback-speed" aria-label="Playback speed"></select>
         <output id="borg-time-output" class="borg-time-output">solver t 2 | keyframe 2</output>

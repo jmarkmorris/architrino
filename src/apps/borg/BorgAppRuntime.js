@@ -113,7 +113,7 @@ const STATUS_TONE = Object.freeze({
   "eom-shadow-running": "warn",
   "eom-shadow-output": "warn",
   "canonical-eom-output": "good",
-  "live-native-running": "good",
+  "live-native-running": "warn",
   "precomputed-fixture": "warn",
   // A fallback means no solver was reachable and the app is replaying a
   // recording. That is a failure, not a caution: read as a warning it looks
@@ -127,6 +127,17 @@ const STATUS_TONE = Object.freeze({
   failed: "bad",
   passed: "good",
   "not-measured": "warn",
+});
+
+const STATUS_LABEL = Object.freeze({
+  "computed-central-solver-compatibility-chunks": "Live compute",
+  "live-native-running": "Live compute",
+  "computed-eom-shadow-chunks": "EOM compute",
+  "eom-shadow-running": "EOM compute",
+  "precomputed-fixture": "Fixture replay",
+  "fixture-fallback": "Fixture fallback",
+  "live-native-error": "Solver stopped",
+  "completed-live-native-run": "Live complete",
 });
 
 const SOLVER_FAILURE_BANNERS = Object.freeze({
@@ -408,7 +419,9 @@ export function mountBorgApp(options = {}) {
 
   function renderStaticPanels() {
     updateSourceStatusPresentation();
-    dom.manifestStatus.textContent = surfaceDesign.claimLevel;
+    dom.manifestStatus.textContent = "Developer test";
+    dom.manifestStatus.dataset.status = surfaceDesign.claimLevel;
+    dom.manifestStatus.title = surfaceDesign.claimLevel;
     setTone(dom.manifestStatus, "app-facing-projection");
 
     renderSourceFields();
@@ -697,9 +710,21 @@ export function mountBorgApp(options = {}) {
     dom.timelineRange.min = String(Math.min(...frameIndexes));
     dom.timelineRange.max = String(Math.max(...frameIndexes));
     dom.timelineRange.step = "1";
+    dom.timelineRange.dataset.mode = isForeverRunPreset(getRunControlPreset(state.runControlPresetId))
+      ? "live-buffer"
+      : "finite-run";
     dom.timelineRange.value = String(
       clamp(state.activeFrameIndex, Number(dom.timelineRange.min), Number(dom.timelineRange.max)),
     );
+  }
+
+  function formatActiveTimelineLabel(time, frameIndex) {
+    const label = formatTimelineLabel(time, frameIndex);
+    if (!isForeverRunPreset(getRunControlPreset(state.runControlPresetId))) {
+      return label;
+    }
+    const bufferedThrough = frameSets.at(-1)?.frameIndex ?? frameIndex;
+    return `${label} | buffer ${bufferedThrough}`;
   }
 
   function bindEvents() {
@@ -786,7 +811,7 @@ export function mountBorgApp(options = {}) {
       return;
     }
     applyFrameSet(frameSet, {
-      outputLabel: formatTimelineLabel(frameSet.time, frameSet.frameIndex),
+      outputLabel: formatActiveTimelineLabel(frameSet.time, frameSet.frameIndex),
       rangeValue: frameSet.frameIndex,
     });
   }
@@ -795,6 +820,7 @@ export function mountBorgApp(options = {}) {
     state.activeFrameIndex = frameSet.frameIndex;
     dom.timelineRange.value = String(rangeValue);
     dom.timelineOutput.value = outputLabel;
+    dom.timelineRange.setAttribute("aria-valuetext", outputLabel);
     particleObjects.forEach((particle) => {
       particle.visible = false;
     });
@@ -989,7 +1015,7 @@ export function mountBorgApp(options = {}) {
           return;
         }
         applyFrameSet(frameSets.at(-1), {
-          outputLabel: formatTimelineLabel(frameSets.at(-1).time, frameSets.at(-1).frameIndex),
+          outputLabel: formatActiveTimelineLabel(frameSets.at(-1).time, frameSets.at(-1).frameIndex),
           rangeValue: frameSets.at(-1).frameIndex,
         });
         stopPlayback();
@@ -1006,12 +1032,12 @@ export function mountBorgApp(options = {}) {
     const displayFrameSet = interpolateFrameSet(fromFrameSet, toFrameSet, progress);
     const currentFrameIndex = progress < 0.5 ? fromFrameSet.frameIndex : toFrameSet.frameIndex;
     applyFrameSet(displayFrameSet, {
-      outputLabel: formatTimelineLabel(displayFrameSet.time, currentFrameIndex),
+      outputLabel: formatActiveTimelineLabel(displayFrameSet.time, currentFrameIndex),
       rangeValue: currentFrameIndex,
     });
     if (progress >= 1) {
       applyFrameSet(toFrameSet, {
-        outputLabel: formatTimelineLabel(toFrameSet.time, toFrameSet.frameIndex),
+        outputLabel: formatActiveTimelineLabel(toFrameSet.time, toFrameSet.frameIndex),
         rangeValue: toFrameSet.frameIndex,
       });
       if (state.playbackToSetIndex >= frameSets.length - 1) {
@@ -1516,7 +1542,11 @@ export function mountBorgApp(options = {}) {
   }
 
   function updateSourceStatusPresentation() {
-    dom.nativeStatus.textContent = state.dynamicRunnerStatus;
+    dom.nativeStatus.textContent = STATUS_LABEL[state.dynamicRunnerStatus] ?? state.dynamicRunnerStatus;
+    dom.nativeStatus.dataset.status = state.dynamicRunnerStatus;
+    dom.nativeStatus.title = state.dynamicRunnerMessage
+      ? `${state.dynamicRunnerStatus}: ${state.dynamicRunnerMessage}`
+      : state.dynamicRunnerStatus;
     setTone(dom.nativeStatus, state.dynamicRunnerStatus);
     updateSolverBanner();
   }

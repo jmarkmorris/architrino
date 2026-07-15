@@ -37,7 +37,7 @@ We separate two structures that are often spoken about together but should not b
 The [Noether braid](../../noether-braid/noether-braid.md) is the neutral nested shell braid scaffold. It defines:
 
 - generation via shielding level,
-- matter/antimatter braid orientation,
+- the retained matter-versus-polarity-conjugate branch relation,
 - the three reference axes $(H,M,L)$,
 - the geometric seat of spinor behavior.
 
@@ -173,7 +173,7 @@ The following are **not** rotating in this note:
 
 - the H/M/L Noether braid scaffold itself,
 - the binary nesting order that defines generation,
-- the matter/antimatter braid orientation,
+- the retained matter-versus-polarity-conjugate branch relation,
 - the topological structure used to motivate spin-$\tfrac{1}{2}$ behavior.
 
 This separation is important because otherwise one mixes together three different jobs:
@@ -350,7 +350,7 @@ Potential redundancies include:
 - reversing a principal axis together with a pole relabeling,
 - rotating by $180^\circ$ and exchanging equivalent background axes,
 - relabelings of the color basis that can be absorbed into the existing SU(3)-like axis labeling,
-- matter/antimatter branch-record conjugation, where pro/anti orientation and retained path-history, wake-history, causal-root, and stability rows conjugate with the same scaffold, while any polarity reversal belongs to the charged-sector ledger rather than the primitive matter/antimatter label.
+- matter/antimatter branch-record conjugation, where every architrino polarity reverses at fixed worldlines and the retained path-history, wake-history, causal-root, and stability rows transform with the same scaffold. The pro/anti ordered orientation is unchanged, while a charged-sector ledger maps to its opposite effective-charge row.
 
 So the real task is not to enumerate all multiples of $30^\circ$, but to identify the **small quotient set of inequivalent minima** after these symmetries are imposed.
 

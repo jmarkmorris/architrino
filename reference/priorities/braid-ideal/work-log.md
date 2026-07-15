@@ -6,6 +6,12 @@ Use `brainstorming.md` for provisional ideas, insights, conceptual maps, and dra
 
 ## Log Entries
 
+### 2026-07-15 - Entry 43 Pro/Anti Terminology Conflict Resolved and Promoted
+
+Promoted the terminology split into the Archie canon and propagated it through the main particle, photon, Noether-sea, horizon, and discrete-symmetry consumers. `Pro/anti` now names only the retained three-dimensional `HML/HLM` ordered orientation; polarity conjugation $C$ reverses every architrino polarity at fixed worldlines and leaves that orientation unchanged. Matter/antimatter follows the whole polarity-conjugate retained branch, not pro/anti orientation. In the planar limit the ordered orientation has no carrier, so photon and near-photon records use `polarity-conjugate planar pair` and member labels $\mathfrak B,C(\mathfrak B)$.
+
+Claim level: definition-level terminology decision plus derived transformation bookkeeping for the declared fixed-worldline $C$ operation. This does not establish a retained braid, photon lock, or matter/antimatter production mechanism. Entry 43 was removed from `brainstorming.md` because the live decision target is closed; the retired neutrino conjugation record now points to the canonical terminology section.
+
 ### 2026-07-14 - Antipodal Binary Sub-Field Phase-Collapse Test Rejects a Prehistory-Independent Spiral
 
 Executed the revised [antipodal binary dispatch](antipodal-binary-spiral-law-dispatch-packet.md) on the sub-field family before any rail crossing. Four admissible histories — circular, log-spiral-in, log-spiral-out, and smooth perturbed — were matched at the same $(R_0,s_0)$ within each $s_0\in\{0.25,0.5,0.75\}$ row and evolved to at least two memory depths with the corrected effective coupling $K_\star=0.90036722258974714607$. All twelve production rows remained below $c_f$ and completed with zero rejected steps.
@@ -238,7 +244,7 @@ Executed the first numerical hunt for the $u=0$ rotating-wave spectrum via the n
 
 ### 2026-07-06 - Downstream Cascade And Consilience Principle
 
-Began the cross-directory cascade of braid-scene insights at operator direction. [black-holes.md](../../../content/markdown/aaa/spacetime/black-holes.md) Horizon Interface section now carries the dipole-quiet horizon hypothesis (alignment condition = vanishing axial polarity dipole; entropy label counting enumerates the surviving higher-moment and phase content; precession and dipole extinguish together), with the braid-scene evidence boundary inherited. [particle-masses.md](../../../content/markdown/aaa/assemblies/particle-masses.md) exposed-response section now carries the dressing quietness ladder as the candidate mechanism setting $\zeta(A)$ and $\mathcal Z_{\mathrm{tf}}^{ab}(A)$ for dressed fermions, labeled routing hypothesis. [noether-braid.md](../../../content/markdown/aaa/noether-braid/noether-braid.md) now states the consilience working principle: multi-route convergences are treated as seams of the ontology, unified mechanisms must earn one new prediction, and stubborn convergences mark missing parts. Noted during the pass: the corpus already declares the photon carrier as a coaxial contra-rotating pro/anti planar pair (black-holes.md Horizon-Adjacent Photon Channel), so the speed-budget composite-photon argument independently supports existing canon rather than proposing new structure — logged as a consilience instance. Remaining cascade targets staged: singularity-resolution.md (maximum-curvature core vs dipole-quiet limit), the photon chapters (speed-budget constraint and rotation-sense polarization algebra), lorentz-kinematics.md (exact quadrature channel), quantum statistics chapters (click ensembles), and theory-bridges ('t Hooft cogwheel comparison).
+Began the cross-directory cascade of braid-scene insights at operator direction. [black-holes.md](../../../content/markdown/aaa/spacetime/black-holes.md) Horizon Interface section now carries the dipole-quiet horizon hypothesis (alignment condition = vanishing axial polarity dipole; entropy label counting enumerates the surviving higher-moment and phase content; precession and dipole extinguish together), with the braid-scene evidence boundary inherited. [particle-masses.md](../../../content/markdown/aaa/assemblies/particle-masses.md) exposed-response section now carries the dressing quietness ladder as the candidate mechanism setting $\zeta(A)$ and $\mathcal Z_{\mathrm{tf}}^{ab}(A)$ for dressed fermions, labeled routing hypothesis. [noether-braid.md](../../../content/markdown/aaa/noether-braid/noether-braid.md) now states the consilience working principle: multi-route convergences are treated as seams of the ontology, unified mechanisms must earn one new prediction, and stubborn convergences mark missing parts. Noted during the pass: the corpus already declares the photon carrier as a coaxial contra-rotating polarity-conjugate planar pair (black-holes.md Horizon-Adjacent Photon Channel), so the speed-budget composite-photon argument independently supports existing canon rather than proposing new structure — logged as a consilience instance. Remaining cascade targets staged: singularity-resolution.md (maximum-curvature core vs dipole-quiet limit), the photon chapters (speed-budget constraint and rotation-sense polarization algebra), lorentz-kinematics.md (exact quadrature channel), quantum statistics chapters (click ensembles), and theory-bridges ('t Hooft cogwheel comparison).
 
 ### 2026-07-06 - Operator Batch Integration: Corrections, Speed Budget, Spectrum Packet, Lissajou Lane
 
@@ -1974,3 +1980,32 @@ MM-analog pass 1 ([spec Section 28](fold-crossing-chart-spec.md#28-mm-analog-fir
   the common-phase quotient, remains visible at synchronized time, and leaves a
   physical radial offset visible. This validates the measurement transform,
   not the pending V5 outcome.
+
+## 2026-07-15 — C-image vs CP-image fork added to the chirality target; hypothesis ratified into canon
+
+- Operator ratified the `orientation-antimatter correspondence hypothesis` into
+  canon (`terminology-usage.md` §Pro/Anti Orientation gained the named
+  subsection; §Spontaneous Assembly now invokes it, resolving their conflict;
+  `pro-anti fermion pair` is licensed hypothesis-attached shorthand).
+  Validation `--check --strict` green (0 errors, 0 warnings).
+- [matter-antimatter-chirality-retained-history-target.md](matter-antimatter-chirality-retained-history-target.md)
+  extended with the adjudication fork: $\mathfrak C_{CP}$ (orientation reversal
+  + charged-sector conjugation; the hypothesis route, sea-sourced pair) versus
+  $\mathfrak C_C$ (polarity conjugation at fixed worldlines; orientation
+  preserved). New discriminator booking $R_{\chi_{\mathrm{pol}}}$: relative
+  polarity-weighted handedness across the pair — $\mathfrak C_C$ flips it,
+  $\mathfrak C_{CP}$ preserves it. Adjudicated at the comparison layer against
+  the weak-handedness benchmark through the open $C_{\mathrm{eff}}$ chart
+  obligation of angular-momentum-and-spin.md.
+- Guards written into the target: booking requires nonzero polarity dipole and
+  three-dimensional retained order (planar charts report `not-assignable`);
+  pair-production-sourced adjudication is integrator-gated per the 2026-07-12
+  quarantine; prescribed-row chart bookings are definition-level readings and
+  may run now; new failure mode bars adjudicating the fork with one map
+  instantiated.
+- Named implementation debt (not executed here): producer extension of
+  `braid_ideal_chirality_retained_history_target.v0` with paired
+  $\chi_{\mathrm{pol}}$ measurement rows and the relative-sign residual for
+  both maps on the same record. Claim level of everything above: spec/canon
+  edits plus definition-level bookkeeping; no measurement, no retained branch,
+  nothing adjudicated.

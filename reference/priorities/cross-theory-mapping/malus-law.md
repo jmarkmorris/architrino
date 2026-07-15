@@ -14,7 +14,7 @@ The benchmark is narrower than Bell. It tests a single local analyzer channel: t
 
 ## Existing $\mathbb{A}\mathbb{A}\mathbb{A}$ Signals
 
-The proof owner is photon Gate B, not this cross-theory card. The current corpus already routes Malus' law through the coaxial contra-rotating pro/anti planar pair, the rank-two transverse projector, the rank-one material analyzer projector, and the invariant unresolved-material measure. The cross-theory value is to isolate the simplest photon-polarization benchmark before pair provenance and Bell correlations enter.
+The proof owner is photon Gate B, not this cross-theory card. The current corpus already routes Malus' law through the coaxial contra-rotating polarity-conjugate planar pair, the rank-two transverse projector, the rank-one material analyzer projector, and the invariant unresolved-material measure. The cross-theory value is to isolate the simplest photon-polarization benchmark before pair provenance and Bell correlations enter.
 
 ## Task Queue
 

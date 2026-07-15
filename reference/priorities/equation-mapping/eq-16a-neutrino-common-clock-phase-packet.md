@@ -284,7 +284,7 @@ Thus the iso-frequency row must pass two conditions at once:
 
 ## Near-Photon Handedness Stability Discriminator
 
-The legacy weak-force source suggests a useful but speculative discriminator: near the photon boundary, the observed left-handed neutrino and right-handed antineutrino channels may survive because their near-planar pro/anti braid-pair branches remain dynamically stable, while the mirror channels are unstable, sterile, or too weakly exposed to appear as ordinary weak products. In current terminology this is not a claim that neutrinos are photon precursors or photon remnants. It is a priority-only stability test on the near-photon neutral-lepton branch.
+The legacy weak-force source suggests a useful but speculative discriminator: near the photon boundary, the observed left-handed neutrino and right-handed antineutrino channels may survive because their near-planar polarity-conjugate braid-pair branches remain dynamically stable, while the mirror channels are unstable, sterile, or too weakly exposed to appear as ordinary weak products. In current terminology this is not a claim that neutrinos are photon precursors or photon remnants. It is a priority-only stability test on the near-photon neutral-lepton branch.
 
 Let $B_{\nu}^{L}$ and $B_{\bar\nu}^{R}$ denote the weak-visible survivor candidates, and let $B_{\nu}^{R}$ and $B_{\bar\nu}^{L}$ denote the mirror candidates under the same near-photon branch family. For any candidate branch $B$, define a local stability readout
 $$

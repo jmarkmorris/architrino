@@ -20,7 +20,7 @@ Muon and tau branches do not introduce new charged-lepton axial inventories. The
 | $\mu^-$ | $(1,1,0)$ | Generation-II shielding branch | $6\epsilon_-$ | Generation-II charged-lepton target |
 | $\tau^-$ | $(1,0,0)$ | Generation-III shielding branch | $6\epsilon_-$ | Generation-III charged-lepton target |
 
-The corresponding antileptons use anti-braid orientation and $6\epsilon_+$ axial inventory. Generation changes exposed mass response, shielding leakage, and branch lifetime; it must not change electric charge, weak hypercharge bookkeeping, or the existence of the charged-lepton weak-coupling triad.
+The corresponding antileptons use the polarity-conjugate antimatter branch and $6\epsilon_+$ axial inventory. Polarity conjugation leaves the independent pro/anti ordered orientation unchanged. Generation changes exposed mass response, shielding leakage, and branch lifetime; it must not change electric charge, weak hypercharge bookkeeping, or the existence of the charged-lepton weak-coupling triad.
 
 This gives the charged-lepton side of lepton universality in a disciplined form. The common axial inventory supplies the shared electromagnetic and weak bookkeeping for $e$, $\mu$, and $\tau$. Differences in observed rates, lifetimes, and response corrections are allowed only after the same weak-coupling-triad exposure rule, shielding map, and Noether sea response record have been declared.
 
