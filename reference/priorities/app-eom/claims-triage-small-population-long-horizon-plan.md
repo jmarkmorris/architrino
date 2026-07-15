@@ -21,10 +21,10 @@ dependency of this plan.
 2. Add a provenance-bound drifting-circular retained-history factory so the
    converged sub-$c_f$ §98 `M-O-I` object can retain its recorded common axial
    drift rather than being replaced by a different object.
-3. Repair the remaining exact-root and coupled-correction snapshot cost after
-   the exact-$v=c_f$ pinned-fold temporal step removed the first-order onset
-   estimator artifact. The analytic fold integral and temporal onset are no
-   longer the limiting enclosures.
+3. Attribute and then repair the exact-root cost after the exact-$v=c_f$
+   pinned-fold temporal step removed the first-order onset estimator artifact.
+   Clean serialized measurement now assigns 99.2861% of one accepted §86 step
+   to exact-pair root certification and only 0.7117% to finite-width execution.
 4. Re-run §97 and §98 to their required horizons and refinement ladders; do not
    adjudicate a sign from the current short, nonconverged histories.
 5. After §86 becomes feasible, run its horizon and refinement ladders before
@@ -39,7 +39,7 @@ dependency of this plan.
 | Continuous retained-history input | Implemented for stationary circular histories | Preserve exact object provenance, add uniformly drifting circular history, and reject state-only starts | Immediate §98 blocker and required for every rerun |
 | Complete partner and self-root accounting | Implemented for the native correctness nucleus; evolving §97 rows currently exhaust certification at 512 and 1024 MPFR bits | Repair root continuation/enclosure across the identified off-diagonal and antipodal-pair walls without relaxing fail-closed tolerances | Immediate §97 blocker and required for every rerun |
 | Atomic coupled accepted steps | Implemented | Preserve fail-closed publication through longer runs | Required for every rerun |
-| Finite-width fold/caustic route | Analytic exact-$v=c_f$ circular-prefix treatment and provenance-gated temporal onset step certified; onset accepts $5\times10^{-4}$ and post-onset accepts $10^{-3}$ | Repair exact-root/correction snapshot cost and the evolved-history root-path defect before long ladders | Blocks §86 and §90 on horizon cost; integral and onset-step collapse are closed |
+| Finite-width fold/caustic route | Analytic exact-$v=c_f$ circular-prefix treatment and provenance-gated temporal onset step certified; onset accepts $5\times10^{-4}$ and post-onset accepts $10^{-3}$ | Preserve the certified route; do not treat its 1,928-cell count as a cost proxy | Not the §86 step-time owner; integral and onset-step collapse are closed |
 | Persistent long-run history ownership | Partial; worker persists but complete histories are still transported per chunk | Keep native histories resident across accepted windows and checkpoint them without reconstruction drift | Needed for all long-horizon campaigns |
 | Checkpoint/restart | Single-host foundation implemented | Bind restart to the campaign manifest, continuation identities, precision state, and observable accumulators | Needed for practical multi-hour runs |
 | Precision escalation | MPFR difficult-row routes exist | Exercise and validate only the precision routes encountered by each bounded-population object; add split absolute time before long horizons threaten local resolution | Needed for claim authority |
@@ -106,7 +106,7 @@ The analytic integral artifact is complete: it encloses an independent
 tolerances. It does not make the horizon feasible because larger steps still
 fail the velocity budget and exact-root/correction work dominates wall time.
 
-The four-way atomic-step ablation now separates two numerical mechanisms:
+The four-way atomic-step ablation separated two numerical mechanisms:
 
 1. correlation-preserving self-chord evaluation, using the fact that receiver
    and source are the same retained worldline rather than hulling two
@@ -121,30 +121,32 @@ but did not reduce the maximum. The exact-circle stable residual was active in
 zero cells at the cost maximum because that maximum occurs on evolved history,
 outside the exact analytic circular prefix. Concurrent-load step times were
 `623.540`, `603.705`, `543.591`, and `601.144` seconds respectively; they are
-diagnostic only while the §97 horizon run is active and do not replace a clean
-timing repeat. Correct classification therefore still takes the same
-finite-width route at the same portable cost.
+diagnostic only while the §97 horizon run is active. Correct classification
+therefore still takes the same finite-width route at the same cell count. The
+result is accepted as a clean negative: neither mechanism is an active
+performance target.
 
-The next accepted artifact must identify the exact receiver-source pair,
-snapshot stage, reception interval, and delay cell that owns the 1,928-cell
-maximum, then test a cancellation-stable residual for evolved polynomial self
-history. The candidate algebra factors the total delay from the correlated
-self chord before subtracting $c_f$, so the residual is evaluated as
-$D(\|\bar v\|-c_f)$ rather than as the difference of two nearly equal
-$O(D)$ quantities. It must have an independent-oracle enclosure and the same
-four-way whole-step measurement before promotion.
+A clean serialized measurement then suspended the competing §97 campaign,
+ran one §86 worker, and resumed §97 afterward. One fixed `0.0005` step accepted
+on its first attempt in `632.318909` seconds. Exact-pair root certification
+used `627.804960` seconds (`99.2861%`), of which MPFR used `626.152585` CPU
+seconds (`99.0248%` of total wall). Finite-width execution used `4.500060`
+seconds (`0.7117%`). Retained-history reconstruction, traversal, copy, and hash
+used `0.008046` seconds (`0.00127%`). The corrector executed nine iterations
+across three accepted substeps (`4,3,2`), with no rejected substep or atomic
+retry; its `581.400232` inclusive seconds are snapshot certification work,
+while exclusive corrector control used `0.000175` seconds. Additional MPFR
+precision attempts used `445.736570` seconds (`70.4924%`) inside the exact-root
+total. Profiler samples place allocation/free activity at `26.9130%` of the
+active worker, also nested inside MPFR root work.
 
-That artifact must then establish one of:
+The 1,928-cell value remains useful only as a deterministic-work check. It does
+not track wall cost and no localization of its owner is active. The attribution
+is recorded in
+[section-86-step-cost-attribution-2026-07-14.json](evidence/section-86-step-cost-attribution-2026-07-14.json).
 
-1. a pinned-fold-aware temporal integration rule whose larger accepted steps
-   preserve the certified analytic fold acceleration and unchanged state-error
-   budgets; or
-2. a lower-bound certificate showing that the present step scale reflects
-   genuine stiffness at self-hit onset rather than the full-step/two-half-step
-   formulation.
-
-Frequency continuation is not an acceptable shortcut because it crosses a
-self-root topology change.
+Frequency continuation remains outside the accepted fixture because it crosses
+a self-root topology change.
 
 ### Lane C — Remaining Ledger Campaign
 

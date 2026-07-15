@@ -105,6 +105,10 @@ std::string checkpoint_content_fingerprint(
   hash_token(state, checkpoint.run_id);
   hash_token(state, checkpoint.accepted_time);
   hash_token(state, checkpoint.controller_step_size);
+  hash_token(
+      state,
+      std::to_string(
+          checkpoint.controller_certificate_cost_cooldown_remaining));
   hash_token(state, checkpoint.model_fingerprint);
   hash_token(state, std::to_string(checkpoint.accepted_step_count));
   hash_token(state, std::to_string(checkpoint.rejected_step_count));
@@ -214,7 +218,7 @@ NativeCheckpointPath take_history(
 
 void require_checkpoint_consistency(
     const NativeEvolutionCheckpoint& checkpoint) {
-  if (checkpoint.schema != "eom_native_evolution_checkpoint/v2" ||
+  if (checkpoint.schema != "eom_native_evolution_checkpoint/v3" ||
       checkpoint.run_id.empty() || checkpoint.paths.empty()) {
     throw std::invalid_argument("checkpoint identity or path domain is invalid");
   }
@@ -275,6 +279,18 @@ std::string model_fingerprint(
       request.force_event_precision_escalation ? "1" : "0",
       std::to_string(request.max_correction_iterations),
       request.use_adaptive_step_growth ? "1" : "0",
+      request.use_continuous_adaptive_step ? "1" : "0",
+      request.adaptive_step_safety_factor,
+      request.adaptive_step_minimum_scale,
+      request.adaptive_step_maximum_scale,
+      request.use_synchronized_multirate_publication ? "1" : "0",
+      request.multirate_synchronization_fraction,
+      request.use_certificate_cost_feedback ? "1" : "0",
+      std::to_string(
+          request.certificate_cost_maximum_probe_adjustments),
+      request.certificate_cost_probe_scale,
+      std::to_string(
+          request.certificate_cost_unavoidable_cooldown_steps),
   };
   if (include_pinned_fold_controls) {
     controls.push_back(request.use_analytic_pinned_fold ? "1" : "0");
@@ -284,9 +300,11 @@ std::string model_fingerprint(
         request.use_pinned_fold_aware_temporal_step ? "1" : "0");
   }
   controls.push_back(request.use_certified_history_window ? "1" : "0");
-  controls.push_back(request.use_pinned_fold_aware_temporal_step
-                         ? kNativeIntegrationMethod
-                         : kLegacyNativeIntegrationMethod);
+  controls.push_back(request.use_synchronized_multirate_publication
+                         ? kNativeMultirateIntegrationMethod
+                         : (request.use_pinned_fold_aware_temporal_step
+                                ? kNativeIntegrationMethod
+                                : kLegacyNativeIntegrationMethod));
   controls.push_back(kDeterministicReductionPolicy);
   for (const auto& control : controls) {
     hash_token(state, control);
@@ -327,10 +345,12 @@ NativeEvolutionCheckpoint create_native_evolution_checkpoint(
         "checkpoint source is not an atomic result for the request");
   }
   NativeEvolutionCheckpoint checkpoint{
-      .schema = "eom_native_evolution_checkpoint/v2",
+      .schema = "eom_native_evolution_checkpoint/v3",
       .run_id = certificate.run_id,
       .accepted_time = certificate.accepted_end_time,
       .controller_step_size = certificate.controller_step_size,
+      .controller_certificate_cost_cooldown_remaining =
+          certificate.controller_certificate_cost_cooldown_remaining,
       .model_fingerprint = native_evolution_model_fingerprint(request),
       .checkpoint_fingerprint = "",
       .accepted_step_count = certificate.accepted_step_count,
@@ -365,6 +385,9 @@ std::vector<unsigned char> serialize_native_evolution_checkpoint(
   append_string(bytes, checkpoint.run_id);
   append_string(bytes, checkpoint.accepted_time);
   append_string(bytes, checkpoint.controller_step_size);
+  append_u64(
+      bytes,
+      checkpoint.controller_certificate_cost_cooldown_remaining);
   append_string(bytes, checkpoint.model_fingerprint);
   append_string(bytes, checkpoint.checkpoint_fingerprint);
   append_u64(bytes, checkpoint.accepted_step_count);
@@ -399,6 +422,8 @@ NativeEvolutionCheckpoint deserialize_native_evolution_checkpoint(
       .run_id = take_string(bytes, cursor, payload_end),
       .accepted_time = take_string(bytes, cursor, payload_end),
       .controller_step_size = take_string(bytes, cursor, payload_end),
+      .controller_certificate_cost_cooldown_remaining =
+          static_cast<std::size_t>(take_u64(bytes, cursor, payload_end)),
       .model_fingerprint = take_string(bytes, cursor, payload_end),
       .checkpoint_fingerprint = take_string(bytes, cursor, payload_end),
       .accepted_step_count = static_cast<std::size_t>(
@@ -525,6 +550,8 @@ NativeCoupledEvolutionCertificate resume_native_coupled_histories(
   resumed.start_time = checkpoint.accepted_time;
   resumed.end_time = requested_end_time;
   resumed.initial_step = checkpoint.controller_step_size;
+  resumed.certificate_cost_initial_cooldown_steps =
+      checkpoint.controller_certificate_cost_cooldown_remaining;
   resumed.paths.clear();
   resumed.paths.reserve(checkpoint.paths.size());
   for (const auto& path : checkpoint.paths) {

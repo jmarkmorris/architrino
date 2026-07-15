@@ -2,6 +2,7 @@
 
 #include <algorithm>
 #include <array>
+#include <chrono>
 #include <cmath>
 #include <cstddef>
 #include <fstream>
@@ -69,21 +70,33 @@ struct Options {
   double history_depth = 8.0;
   double history_segment_step = 0.02;
   double amplitude = 1e-3;
+  double prehistory_amplitude = 0.03;
   double omega_scale = 1.0;
   std::string seed = "imx";
+  std::string prehistory_seed = "circular";
   std::string chart = "sharp";
   double acceleration_tolerance = 5e-3;
   double quadrature_tolerance = 5e-3;
   double position_tolerance = 2e-6;
   double velocity_tolerance = 2e-6;
   std::string output;
+  std::string state_output;
   bool snapshot_only = false;
   bool skip_control = false;
   bool adaptive_step_growth = false;
+  bool continuous_adaptive_step = false;
+  bool synchronized_multirate = false;
+  bool certificate_cost_feedback = false;
+  std::size_t certificate_cost_probe_adjustments = 1;
+  double certificate_cost_probe_scale = 0.5;
   bool analytic_pinned_fold = true;
   bool correlated_self_chord = true;
   bool stable_circular_residual = true;
   bool pinned_fold_aware_temporal_step = true;
+  bool warm_root_exclusion = true;
+  std::size_t thread_count = 8;
+  std::size_t heartbeat_steps = 100;
+  std::size_t accepted_steps = 0;
 };
 
 std::string token(double value) {
@@ -99,6 +112,20 @@ double option_double(
     const std::string argument = argv[index];
     if (argument.starts_with(prefix)) {
       return std::stod(argument.substr(prefix.size()));
+    }
+  }
+  return fallback;
+}
+
+std::size_t option_size(
+    int argc, char** argv, const std::string& name,
+    std::size_t fallback) {
+  const std::string prefix = "--" + name + "=";
+  for (int index = 1; index < argc; ++index) {
+    const std::string argument = argv[index];
+    if (argument.starts_with(prefix)) {
+      return static_cast<std::size_t>(
+          std::stoull(argument.substr(prefix.size())));
     }
   }
   return fallback;
@@ -131,10 +158,32 @@ Vector subtract(const Vector& left, const Vector& right) {
   return {left[0] - right[0], left[1] - right[1], left[2] - right[2]};
 }
 
+Vector add(const Vector& left, const Vector& right) {
+  return {left[0] + right[0], left[1] + right[1], left[2] + right[2]};
+}
+
+Vector scale(const Vector& value, double factor) {
+  return {factor * value[0], factor * value[1], factor * value[2]};
+}
+
 Vector cross(const Vector& left, const Vector& right) {
   return {left[1] * right[2] - left[2] * right[1],
           left[2] * right[0] - left[0] * right[2],
           left[0] * right[1] - left[1] * right[0]};
+}
+
+Vector rotate_x(const Vector& value, double angle) {
+  const double cosine = std::cos(angle);
+  const double sine = std::sin(angle);
+  return {value[0], cosine * value[1] - sine * value[2],
+          sine * value[1] + cosine * value[2]};
+}
+
+Vector rotate_y(const Vector& value, double angle) {
+  const double cosine = std::cos(angle);
+  const double sine = std::sin(angle);
+  return {cosine * value[0] + sine * value[2], value[1],
+          -sine * value[0] + cosine * value[2]};
 }
 
 double dot(const Vector& left, const Vector& right) {
@@ -222,6 +271,121 @@ eom::RetainedHistory circular_history(
       });
 }
 
+struct SeedHistoryState {
+  Vector position;
+  Vector velocity;
+};
+
+std::pair<double, double> prehistory_envelope(double time, double depth) {
+  const double phase = kPi * time / depth;
+  const double envelope =
+      std::sin(phase) * std::sin(phase) +
+      0.35 * std::sin(2.0 * phase) * std::sin(2.0 * phase);
+  const double derivative =
+      (kPi / depth) *
+      (std::sin(2.0 * phase) + 0.7 * std::sin(4.0 * phase));
+  return {envelope, derivative};
+}
+
+SeedHistoryState custom_seed_state(
+    const Options& options, const Layer& layer, int sign,
+    std::size_t layer_index, double endpoint_tilt_x,
+    double endpoint_tilt_y, double time) {
+  const double nominal_radius = layer.radius * std::cos(layer.alpha);
+  const double tangential_speed = std::abs(nominal_radius * gOmega);
+  const double cylindrical_radius = tangential_speed / std::abs(gOmega);
+  const double height = sign * layer.radius * std::sin(layer.alpha);
+  const double phase = layer.phase + (sign < 0 ? kPi : 0.0) + gOmega * time;
+  const auto [envelope, envelope_derivative] =
+      prehistory_envelope(time, options.history_depth);
+
+  double radius = cylindrical_radius;
+  double radial_velocity = 0.0;
+  double tilt_x = endpoint_tilt_x;
+  double tilt_x_velocity = 0.0;
+  if (options.prehistory_seed == "radial-breath" ||
+      options.prehistory_seed == "radial-breath-io") {
+    radius *= 1.0 + options.prehistory_amplitude * envelope;
+    radial_velocity = cylindrical_radius * options.prehistory_amplitude *
+        envelope_derivative;
+  } else if (options.prehistory_seed == "tilt-modulated" ||
+             options.prehistory_seed == "tilt-modulated-io") {
+    constexpr std::array<double, 3> layer_pattern{1.0, -1.0, -0.5};
+    tilt_x += layer_pattern[layer_index] * options.prehistory_amplitude *
+        envelope;
+    tilt_x_velocity = layer_pattern[layer_index] *
+        options.prehistory_amplitude * envelope_derivative;
+  } else {
+    throw std::invalid_argument(
+        "prehistory seed must be circular, radial-breath, radial-breath-io, "
+        "tilt-modulated, or tilt-modulated-io");
+  }
+
+  const double cosine = std::cos(phase);
+  const double sine = std::sin(phase);
+  Vector position{radius * cosine, radius * sine, height};
+  Vector velocity{
+      radial_velocity * cosine - radius * gOmega * sine,
+      radial_velocity * sine + radius * gOmega * cosine,
+      0.0};
+
+  position = rotate_x(position, tilt_x);
+  velocity = add(
+      rotate_x(velocity, tilt_x),
+      scale(cross({1.0, 0.0, 0.0}, position), tilt_x_velocity));
+  position = rotate_y(position, endpoint_tilt_y);
+  velocity = rotate_y(velocity, endpoint_tilt_y);
+  return {position, velocity};
+}
+
+eom::RetainedHistory custom_seed_history(
+    const Options& options, const std::string& id, const Layer& layer,
+    int sign, std::size_t layer_index, double endpoint_tilt_x,
+    double endpoint_tilt_y) {
+  const std::size_t segment_count = static_cast<std::size_t>(
+      std::ceil(options.history_depth / options.history_segment_step));
+  if (segment_count == 0U) {
+    throw std::invalid_argument("custom V5 prehistory has no segments");
+  }
+  const double step =
+      options.history_depth / static_cast<double>(segment_count);
+  std::vector<eom::CubicHistorySegment> segments;
+  segments.reserve(segment_count);
+  for (std::size_t index = 0; index < segment_count; ++index) {
+    const double t0 = index == 0U
+        ? -options.history_depth
+        : -options.history_depth + step * static_cast<double>(index);
+    const double t1 = index + 1U == segment_count
+        ? 0.0
+        : -options.history_depth +
+            step * static_cast<double>(index + 1U);
+    const double dt = t1 - t0;
+    const auto start = custom_seed_state(
+        options, layer, sign, layer_index, endpoint_tilt_x,
+        endpoint_tilt_y, t0);
+    const auto end = custom_seed_state(
+        options, layer, sign, layer_index, endpoint_tilt_x,
+        endpoint_tilt_y, t1);
+    eom::CubicCoefficientTokens coefficients{};
+    for (std::size_t axis = 0; axis < 3; ++axis) {
+      const double delta = end.position[axis] - start.position[axis];
+      coefficients[axis] = {
+          token(start.position[axis]), token(start.velocity[axis]),
+          token(
+              3.0 * delta / (dt * dt) -
+              (2.0 * start.velocity[axis] + end.velocity[axis]) / dt),
+          token(
+              -2.0 * delta / (dt * dt * dt) +
+              (start.velocity[axis] + end.velocity[axis]) / (dt * dt))};
+    }
+    // The piecewise cubic is the admitted retained history. These enclosures
+    // absorb decimal construction roundoff at exact segment joins.
+    segments.emplace_back(
+        token(t0), token(t1), std::move(coefficients), "1e-14", "1e-13");
+  }
+  return eom::RetainedHistory(id, std::move(segments));
+}
+
 std::vector<eom::NativeCoupledPathInput> make_paths(const Options& options) {
   const std::array<Layer, 3> layers{{
       {"I", 0.5540023029040714, -0.4738568919164604,
@@ -237,12 +401,23 @@ std::vector<eom::NativeCoupledPathInput> make_paths(const Options& options) {
     for (const int sign : {1, -1}) {
       const std::string suffix = sign > 0 ? "+" : "-";
       const std::string path_id = layers[layer_index].name + suffix;
+      const bool io_seed =
+          options.prehistory_seed == "radial-breath-io" ||
+          options.prehistory_seed == "tilt-modulated-io";
+      const bool use_circular_history =
+          options.prehistory_seed == "circular" ||
+          (io_seed && layer_index == 1U);
+      const auto history = use_circular_history
+          ? circular_history(
+                path_id + "-history", layers[layer_index], sign,
+                tilts.x[layer_index], tilts.y[layer_index],
+                options.history_depth, options.history_segment_step)
+          : custom_seed_history(
+                options, path_id + "-history", layers[layer_index], sign,
+                layer_index, tilts.x[layer_index], tilts.y[layer_index]);
       paths.push_back({
           path_id, sign > 0 ? kCharge : kNegativeCharge,
-          circular_history(
-              path_id + "-history", layers[layer_index], sign,
-              tilts.x[layer_index], tilts.y[layer_index],
-              options.history_depth, options.history_segment_step)});
+          std::move(history)});
     }
   }
   return paths;
@@ -394,6 +569,44 @@ void write_samples(const std::string& output, const std::vector<Sample>& samples
   }
 }
 
+void write_endpoint_states(
+    const std::string& output,
+    const eom::NativeCoupledEvolutionCertificate& evolution) {
+  if (output.empty()) return;
+  std::ofstream stream(output);
+  if (!stream) {
+    throw std::runtime_error("cannot open endpoint-state output: " + output);
+  }
+  stream << "accepted_step,time,path_id,x,y,z,vx,vy,vz,"
+            "x_radius,y_radius,z_radius,vx_radius,vy_radius,vz_radius\n";
+  stream << std::setprecision(17);
+  std::size_t accepted_step = 0U;
+  for (const auto& step : evolution.steps) {
+    if (step.status != "accepted") continue;
+    ++accepted_step;
+    const eom::Interval time = eom::Interval::decimal_token(step.accepted_time);
+    for (const auto& path : step.published_histories) {
+      const auto position = path.history.position_hull(time);
+      const auto velocity = path.history.velocity_hull(time);
+      stream << accepted_step << ',' << step.accepted_time << ','
+             << path.path_id;
+      for (const auto& component : position) {
+        stream << ',' << component.midpoint();
+      }
+      for (const auto& component : velocity) {
+        stream << ',' << component.midpoint();
+      }
+      for (const auto& component : position) {
+        stream << ',' << 0.5 * component.width();
+      }
+      for (const auto& component : velocity) {
+        stream << ',' << 0.5 * component.width();
+      }
+      stream << '\n';
+    }
+  }
+}
+
 const std::vector<eom::NativePublishedPath>* histories_covering(
     const eom::NativeCoupledEvolutionCertificate& evolution,
     double time) {
@@ -431,6 +644,10 @@ int main(int argc, char** argv) {
     options.amplitude =
         option_double(argc, argv, "amplitude", options.amplitude);
     options.seed = option_string(argc, argv, "seed", options.seed);
+    options.prehistory_amplitude = option_double(
+        argc, argv, "prehistory-amplitude", options.prehistory_amplitude);
+    options.prehistory_seed = option_string(
+        argc, argv, "prehistory-seed", options.prehistory_seed);
     options.omega_scale =
         option_double(argc, argv, "omega-scale", options.omega_scale);
     gOmega = kOmega * options.omega_scale;
@@ -447,10 +664,30 @@ int main(int argc, char** argv) {
     options.velocity_tolerance = option_double(
         argc, argv, "velocity-tolerance", options.velocity_tolerance);
     options.output = option_string(argc, argv, "output", options.output);
+    options.state_output =
+        option_string(argc, argv, "state-output", options.state_output);
+    options.thread_count =
+        option_size(argc, argv, "thread-count", options.thread_count);
+    options.heartbeat_steps =
+        option_size(argc, argv, "heartbeat-steps", options.heartbeat_steps);
+    options.accepted_steps =
+        option_size(argc, argv, "accepted-steps", options.accepted_steps);
+    options.certificate_cost_probe_adjustments = option_size(
+        argc, argv, "certificate-cost-probe-adjustments",
+        options.certificate_cost_probe_adjustments);
+    options.certificate_cost_probe_scale = option_double(
+        argc, argv, "certificate-cost-probe-scale",
+        options.certificate_cost_probe_scale);
     options.snapshot_only = has_flag(argc, argv, "snapshot-only");
     options.skip_control = has_flag(argc, argv, "skip-control");
     options.adaptive_step_growth =
         has_flag(argc, argv, "adaptive-step-growth");
+    options.continuous_adaptive_step =
+        has_flag(argc, argv, "continuous-adaptive-step");
+    options.synchronized_multirate =
+        has_flag(argc, argv, "synchronized-multirate");
+    options.certificate_cost_feedback =
+        has_flag(argc, argv, "certificate-cost-feedback");
     options.analytic_pinned_fold =
         !has_flag(argc, argv, "disable-analytic-pinned-fold");
     options.correlated_self_chord =
@@ -459,6 +696,8 @@ int main(int argc, char** argv) {
         !has_flag(argc, argv, "disable-stable-circular-residual");
     options.pinned_fold_aware_temporal_step =
         !has_flag(argc, argv, "disable-pinned-fold-temporal-step");
+    options.warm_root_exclusion =
+        !has_flag(argc, argv, "disable-warm-root-exclusion");
 
     auto paths = make_paths(options);
     eom::NativeCoupledEvolutionRequest request{
@@ -495,14 +734,26 @@ int main(int argc, char** argv) {
         .max_correction_iterations = 12,
         .max_step_attempts = 200000,
         .max_rejected_steps = 1000,
-        .thread_count = 8,
+        .thread_count = options.thread_count,
         .use_adaptive_step_growth = options.adaptive_step_growth,
+        .use_continuous_adaptive_step =
+            options.continuous_adaptive_step,
+        .use_synchronized_multirate_publication =
+            options.synchronized_multirate,
+        .use_certificate_cost_feedback =
+            options.certificate_cost_feedback,
+        .certificate_cost_maximum_probe_adjustments =
+            options.certificate_cost_probe_adjustments,
+        .certificate_cost_probe_scale =
+            token(options.certificate_cost_probe_scale),
         .use_analytic_pinned_fold = options.analytic_pinned_fold,
         .use_correlated_self_chord = options.correlated_self_chord,
         .use_stable_circular_residual =
             options.stable_circular_residual,
         .use_pinned_fold_aware_temporal_step =
             options.pinned_fold_aware_temporal_step,
+        .use_warm_root_exclusion = options.warm_root_exclusion,
+        .diagnostic_maximum_accepted_steps = options.accepted_steps,
     };
     std::vector<eom::NativePublishedPath> initial_histories;
     for (const auto& path : paths) {
@@ -558,6 +809,7 @@ int main(int argc, char** argv) {
     Options control_options = options;
     control_options.seed = "none";
     control_options.amplitude = 0.0;
+    control_options.prehistory_seed = "circular";
     const auto control_paths = make_paths(control_options);
     std::vector<eom::NativePublishedPath> control_initial_histories;
     for (const auto& path : control_paths) {
@@ -565,6 +817,18 @@ int main(int argc, char** argv) {
     }
     const Sample initial = measure_difference(
         control_initial_histories, initial_histories, "0");
+    double maximum_endpoint_position_difference = 0.0;
+    double maximum_endpoint_velocity_difference = 0.0;
+    for (std::size_t index = 0; index < initial_histories.size(); ++index) {
+      const State control = state_at(control_initial_histories[index].history, "0");
+      const State candidate = state_at(initial_histories[index].history, "0");
+      maximum_endpoint_position_difference = std::max(
+          maximum_endpoint_position_difference,
+          norm(subtract(candidate.x, control.x)));
+      maximum_endpoint_velocity_difference = std::max(
+          maximum_endpoint_velocity_difference,
+          norm(subtract(candidate.v, control.v)));
+    }
     std::cout << std::setprecision(17)
               << "object worldlines=6 net_charge=0 omega=" << gOmega
               << " omega_scale=" << options.omega_scale
@@ -582,10 +846,21 @@ int main(int argc, char** argv) {
               << " maximum_step=" << options.maximum_step
               << " adaptive_step_growth="
               << options.adaptive_step_growth
+              << " continuous_adaptive_step="
+              << options.continuous_adaptive_step
+              << " synchronized_multirate="
+              << options.synchronized_multirate
+              << " certificate_cost_feedback="
+              << options.certificate_cost_feedback
+              << " certificate_cost_probe_adjustments="
+              << options.certificate_cost_probe_adjustments
+              << " certificate_cost_probe_scale="
+              << options.certificate_cost_probe_scale
               << " analytic_pinned_fold="
               << options.analytic_pinned_fold
               << " pinned_fold_aware_temporal_step="
               << options.pinned_fold_aware_temporal_step
+              << " warm_root_exclusion=" << options.warm_root_exclusion
               << " chart=" << options.chart
               << " acceleration_tolerance="
               << options.acceleration_tolerance
@@ -593,8 +868,16 @@ int main(int argc, char** argv) {
               << options.quadrature_tolerance
               << " position_tolerance=" << options.position_tolerance
               << " velocity_tolerance=" << options.velocity_tolerance
+              << " thread_count=" << options.thread_count
+              << " diagnostic_accepted_steps=" << options.accepted_steps
               << " seed=" << options.seed
               << " seed_scale=" << options.amplitude
+              << " prehistory_seed=" << options.prehistory_seed
+              << " prehistory_amplitude=" << options.prehistory_amplitude
+              << " endpoint_position_match="
+              << maximum_endpoint_position_difference
+              << " endpoint_velocity_match="
+              << maximum_endpoint_velocity_difference
               << " initial_amplitude=" << initial.amplitude << '\n'
               << "snapshot status=" << snapshot.status
               << " failure=" << snapshot.failure_code
@@ -610,11 +893,32 @@ int main(int argc, char** argv) {
     auto control_request = request;
     control_request.run_id = "section-86-direct-control";
     control_request.paths = control_paths;
+    const auto attach_heartbeat = [&](auto& run_request, const char* label) {
+      const auto heartbeat_start = std::chrono::steady_clock::now();
+      std::cerr << "heartbeat run=" << label
+                << " step=0 t=" << run_request.start_time
+                << " wall_seconds=0" << std::endl;
+      run_request.accepted_step_callback =
+          [heartbeat_start, interval = options.heartbeat_steps,
+           label](std::size_t step_index, const std::string& time) {
+            if (interval == 0U || step_index % interval != 0U) {
+              return;
+            }
+            const double wall_seconds = std::chrono::duration<double>(
+                std::chrono::steady_clock::now() - heartbeat_start).count();
+            std::cerr << "heartbeat run=" << label
+                      << " step=" << step_index
+                      << " t=" << time
+                      << " wall_seconds=" << wall_seconds << std::endl;
+          };
+    };
     std::optional<eom::NativeCoupledEvolutionCertificate> control_evolution;
     if (!options.skip_control) {
+      attach_heartbeat(control_request, "control");
       control_evolution =
           eom::evolve_native_coupled_histories(control_request);
     }
+    attach_heartbeat(request, "perturbed");
     const auto evolution = eom::evolve_native_coupled_histories(request);
     const auto report_steps = [](const char* label, const auto& run) {
       for (const auto& step : run.steps) {
@@ -626,9 +930,19 @@ int main(int argc, char** argv) {
           std::size_t maximum_analytic_fold_cells = 0U;
           std::size_t maximum_correlated_self_chord_cells = 0U;
           std::size_t maximum_stable_circular_residual_cells = 0U;
+          std::size_t maximum_root_reevaluated_cells = 0U;
+          std::size_t maximum_root_warm_excluded_cells = 0U;
           bool middle_endpoint_continuation = false;
           bool middle_interior_fold = false;
           const auto observe_snapshot_cost = [&](const auto& observed) {
+            for (const auto& row : observed.root_certificates) {
+              maximum_root_reevaluated_cells = std::max(
+                  maximum_root_reevaluated_cells,
+                  row.certificate.reevaluated_cells);
+              maximum_root_warm_excluded_cells = std::max(
+                  maximum_root_warm_excluded_cells,
+                  row.certificate.warm_excluded_cells);
+            }
             for (const auto& pair :
                  observed.acceleration.pair_certificates) {
               maximum_quadrature_cells = std::max(
@@ -667,6 +981,8 @@ int main(int argc, char** argv) {
           }
           double maximum_position_error = 0.0;
           double maximum_velocity_error = 0.0;
+          double maximum_multirate_position_error = 0.0;
+          double maximum_multirate_velocity_error = 0.0;
           std::size_t pinned_fold_onset_paths = 0U;
           for (const auto& substep : step.substeps) {
             observe_snapshot_cost(substep.start_snapshot);
@@ -715,9 +1031,24 @@ int main(int argc, char** argv) {
             maximum_velocity_error = std::max(
                 maximum_velocity_error, error.velocity_error);
           }
+          for (const auto& error : step.multirate_synchronization_errors) {
+            maximum_multirate_position_error = std::max(
+                maximum_multirate_position_error, error.position_error);
+            maximum_multirate_velocity_error = std::max(
+                maximum_multirate_velocity_error, error.velocity_error);
+          }
+          std::ostringstream multirate_coarse_paths;
+          for (std::size_t index = 0;
+               index < step.multirate_coarse_path_ids.size(); ++index) {
+            if (index > 0U) multirate_coarse_paths << ',';
+            multirate_coarse_paths << step.multirate_coarse_path_ids[index];
+          }
           std::cerr << label << " step=" << step.step_index
                     << " status=accepted"
                     << " accepted_time=" << step.accepted_time
+                    << " step_size="
+                    << (std::stod(step.accepted_time) -
+                        std::stod(step.attempted_start))
                     << " atomic=" << step.publication_atomic
                     << " accepted_snapshot="
                     << (step.accepted_snapshot.has_value()
@@ -735,6 +1066,25 @@ int main(int argc, char** argv) {
                     << maximum_correlated_self_chord_cells
                     << " maximum_stable_circular_residual_cells="
                     << maximum_stable_circular_residual_cells
+                    << " maximum_root_reevaluated_cells="
+                    << maximum_root_reevaluated_cells
+                    << " maximum_root_warm_excluded_cells="
+                    << maximum_root_warm_excluded_cells
+                    << " history_window_active_lower="
+                    << (step.accepted_snapshot.has_value()
+                            ? step.accepted_snapshot->causal_prefix_exclusion
+                                  .active_search_lower
+                            : "")
+                    << " history_window_excluded_duration="
+                    << (step.accepted_snapshot.has_value()
+                            ? step.accepted_snapshot->causal_prefix_exclusion
+                                  .excluded_duration
+                            : 0.0)
+                    << " history_window_separation_upper="
+                    << (step.accepted_snapshot.has_value()
+                            ? step.accepted_snapshot->causal_prefix_exclusion
+                                  .separation_upper
+                            : 0.0)
                     << " step_wall_seconds="
                     << step.timing.total_wall_seconds
                     << " middle_self_root_classification="
@@ -743,12 +1093,34 @@ int main(int argc, char** argv) {
                     << maximum_position_error
                     << " maximum_velocity_error="
                     << maximum_velocity_error
+                    << " multirate_coarse_paths="
+                    << (step.multirate_coarse_path_ids.empty()
+                            ? "none"
+                            : multirate_coarse_paths.str())
+                    << " maximum_multirate_position_error="
+                    << maximum_multirate_position_error
+                    << " maximum_multirate_velocity_error="
+                    << maximum_multirate_velocity_error
+                    << " certificate_cost_probe="
+                    << step.certificate_cost_probe
+                    << " certificate_cost_deferred_pairs="
+                    << step.certificate_cost_deferred_pair_count
+                    << " certificate_cost_mpfr_attempts="
+                    << step.certificate_cost_mpfr_attempt_count
+                    << " certificate_cost_cooldown_remaining="
+                    << step.certificate_cost_cooldown_remaining
                     << " pinned_fold_onset_paths="
                     << pinned_fold_onset_paths << '\n';
         } else {
           std::cerr << label << " step=" << step.step_index
                     << " status=" << step.status
-                    << " failure=" << step.failure_code << '\n';
+                    << " failure=" << step.failure_code
+                    << " certificate_cost_probe="
+                    << step.certificate_cost_probe
+                    << " certificate_cost_deferred_pairs="
+                    << step.certificate_cost_deferred_pair_count
+                    << " certificate_cost_mpfr_attempts="
+                    << step.certificate_cost_mpfr_attempt_count << '\n';
           for (const auto& substep : step.substeps) {
             std::cerr << "  substep " << substep.start_time << "->"
                       << substep.end_time
@@ -831,6 +1203,7 @@ int main(int argc, char** argv) {
       }
     }
     write_samples(options.output, samples);
+    write_endpoint_states(options.state_output, evolution);
     const Sample& final = samples.back();
     const double fit_start = std::min(0.25 * gPeriod, final.time * 0.2);
     if (control_evolution.has_value()) {
@@ -844,11 +1217,47 @@ int main(int argc, char** argv) {
     } else {
       std::cout << "control status=skipped_diagnostic_only\n";
     }
+    std::size_t accepted_corrector_iterations = 0U;
+    std::size_t rejected_corrector_iterations = 0U;
+    std::size_t accepted_corrector_substeps = 0U;
+    std::size_t rejected_corrector_substeps = 0U;
+    double correction_snapshot_wall_seconds = 0.0;
+    std::vector<std::size_t> corrector_iterations;
+    double accepted_step_size = 0.0;
+    for (const auto& step : evolution.steps) {
+      if (step.status == "accepted") {
+        accepted_step_size = std::stod(step.accepted_time) -
+            std::stod(step.attempted_start);
+      }
+      for (const auto& substep : step.substeps) {
+        corrector_iterations.push_back(substep.correction_iterations);
+        correction_snapshot_wall_seconds +=
+            substep.timing.snapshot_total_wall_seconds;
+        if (substep.status == "accepted_candidate") {
+          ++accepted_corrector_substeps;
+          accepted_corrector_iterations += substep.correction_iterations;
+        } else {
+          ++rejected_corrector_substeps;
+          rejected_corrector_iterations += substep.correction_iterations;
+        }
+      }
+    }
+    const double corrector_exclusive_wall_seconds = std::max(
+        0.0,
+        evolution.timing.correction_wall_seconds -
+            correction_snapshot_wall_seconds -
+            evolution.timing.history_copy_hash_wall_seconds);
     std::cout << "evolution status=" << evolution.status
               << " halt=" << evolution.halt_code
               << " accepted_end=" << evolution.accepted_end_time
+              << " attempted_steps=" << evolution.steps.size()
               << " accepted_steps=" << evolution.accepted_step_count
               << " rejected_steps=" << evolution.rejected_step_count
+              << " controller_step_size="
+              << evolution.controller_step_size
+              << " certificate_cost_cooldown_remaining="
+              << evolution.controller_certificate_cost_cooldown_remaining
+              << " accepted_step_size=" << accepted_step_size
               << " final_cycles=" << final.time / gPeriod
               << " final_amplitude=" << final.amplitude
               << " amplitude_ratio="
@@ -866,14 +1275,84 @@ int main(int argc, char** argv) {
               << " slope_stride_10="
               << log_slope(samples, 10U, fit_start, 0.25) << '\n';
     std::cout << "timing total=" << evolution.timing.total_wall_seconds
+              << " snapshot_total="
+              << evolution.timing.snapshot_total_wall_seconds
+              << " snapshot_count=" << evolution.timing.snapshot_count
+              << " history_window="
+              << evolution.timing.history_window_wall_seconds
+              << " traversal=" << evolution.timing.traversal_wall_seconds
               << " root_batch="
               << evolution.timing.exact_root_batch_wall_seconds
+              << " root_binary64_cpu="
+              << evolution.timing.root_binary64_cpu_seconds
+              << " root_pair_count="
+              << evolution.timing.root_pair_count
+              << " root_reevaluated_cells="
+              << evolution.timing.root_reevaluated_cells
+              << " root_warm_excluded_cells="
+              << evolution.timing.root_warm_excluded_cells
+              << " root_mpfr_cpu="
+              << evolution.timing.root_mpfr_cpu_seconds
+              << " root_mpfr_escalation_cpu="
+              << evolution.timing.root_mpfr_escalation_cpu_seconds
+              << " root_mpfr_escalation_attempts="
+              << evolution.timing.root_mpfr_escalation_attempt_count
+              << " root_mpfr_pairs="
+              << evolution.timing.root_mpfr_pair_count
+              << " acceleration="
+              << evolution.timing.acceleration_wall_seconds
+              << " finite_width_union="
+              << evolution.timing.finite_width_execution_union_wall_seconds
+              << " sharp_union="
+              << evolution.timing.sharp_execution_union_wall_seconds
+              << " finite_sharp_overlap="
+              << evolution.timing.finite_width_sharp_overlap_wall_seconds
+              << " acceleration_worker_idle="
+              << evolution.timing
+                     .acceleration_worker_idle_orchestration_wall_seconds
+              << " acceleration_precision_escalation_worker="
+              << evolution.timing
+                     .acceleration_precision_escalation_worker_seconds
+              << " acceleration_precision_escalation_attempts="
+              << evolution.timing
+                     .acceleration_precision_escalation_attempt_count
+              << " history_copy_hash="
+              << evolution.timing.history_copy_hash_wall_seconds
               << " correction=" << evolution.timing.correction_wall_seconds
+              << " correction_snapshot="
+              << correction_snapshot_wall_seconds
+              << " corrector_exclusive="
+              << corrector_exclusive_wall_seconds
+              << " recertification="
+              << evolution.timing.recertification_wall_seconds
+              << " rejection=" << evolution.timing.rejection_wall_seconds
               << " mpfr_attempts="
-              << evolution.timing.root_mpfr_attempt_count << '\n';
+              << evolution.timing.root_mpfr_attempt_count
+              << " accepted_corrector_substeps="
+              << accepted_corrector_substeps
+              << " rejected_corrector_substeps="
+              << rejected_corrector_substeps
+              << " accepted_corrector_iterations="
+              << accepted_corrector_iterations
+              << " rejected_corrector_iterations="
+              << rejected_corrector_iterations
+              << " corrector_iterations=";
+    for (std::size_t index = 0; index < corrector_iterations.size(); ++index) {
+      if (index > 0U) {
+        std::cout << ',';
+      }
+      std::cout << corrector_iterations[index];
+    }
+    std::cout << '\n';
+    const auto expected_completion = [&](const auto& run) {
+      return run.status == "completed" ||
+          (options.accepted_steps > 0U &&
+           run.halt_code == "diagnostic_accepted_step_limit_reached" &&
+           run.accepted_step_count == options.accepted_steps);
+    };
     const bool control_completed = !control_evolution.has_value() ||
-        control_evolution->status == "completed";
-    return control_completed && evolution.status == "completed"
+        expected_completion(*control_evolution);
+    return control_completed && expected_completion(evolution)
         ? 0
         : 3;
   } catch (const std::exception& error) {

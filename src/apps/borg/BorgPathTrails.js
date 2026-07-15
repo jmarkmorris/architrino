@@ -1,0 +1,273 @@
+import * as THREE from "../../../vendor/three/three.module.js";
+
+const INITIAL_POINT_CAPACITY = 512;
+const RETAINED_TRAIL_OPACITY = 0.9;
+const COMPACTED_TRAIL_OPACITY = 0.42;
+
+/**
+ * Path-history trails for the Borg app.
+ *
+ * Two rules drive this module:
+ *
+ * 1. A trail is a record of where an architrino has already been. Only points
+ *    at or before the displayed frame index are drawn, so the trail always
+ *    ends at the architrino and never runs ahead of it. Frame rows are
+ *    computed ahead of playback, so an unfiltered trail draws the future.
+ * 2. Trails are appended to, never rebuilt. Each trail owns a growable vertex
+ *    buffer; a new chunk writes only its own points, and advancing a frame
+ *    moves a draw range rather than allocating geometry.
+ *
+ * Adjacent native rows are joined by their own line segment, with interior
+ * points duplicated so that k points yield 2*(k-1) vertices. Nothing is
+ * interpolated, smoothed, or fitted between rows: what is drawn is what the
+ * solver reported.
+ */
+class BorgPathTrail {
+  constructor({ color, opacity, renderOrder, capacity = INITIAL_POINT_CAPACITY }) {
+    this.capacity = Math.max(2, capacity);
+    this.pointCount = 0;
+    this.drawnPointCount = -1;
+    this.points = new Float32Array(this.capacity * 3);
+    this.frameIndices = new Int32Array(this.capacity);
+    this.geometry = new THREE.BufferGeometry();
+    this.setSegmentPositions(new Float32Array((this.capacity - 1) * 6));
+    this.geometry.setDrawRange(0, 0);
+    this.material = new THREE.LineBasicMaterial({
+      color,
+      transparent: true,
+      opacity,
+      depthTest: false,
+      depthWrite: false,
+    });
+    this.object = new THREE.LineSegments(this.geometry, this.material);
+    // The trail grows past its initial bounds every chunk; a stale bounding
+    // sphere would cull it out of view.
+    this.object.frustumCulled = false;
+    this.object.renderOrder = renderOrder;
+    this.object.visible = false;
+  }
+
+  setSegmentPositions(segmentPositions) {
+    this.segmentPositions = segmentPositions;
+    this.attribute = new THREE.BufferAttribute(this.segmentPositions, 3);
+    this.attribute.setUsage(THREE.DynamicDrawUsage);
+    this.geometry.setAttribute("position", this.attribute);
+  }
+
+  grow() {
+    const nextCapacity = this.capacity * 2;
+    const nextPoints = new Float32Array(nextCapacity * 3);
+    nextPoints.set(this.points);
+    const nextFrameIndices = new Int32Array(nextCapacity);
+    nextFrameIndices.set(this.frameIndices);
+    const nextSegmentPositions = new Float32Array((nextCapacity - 1) * 6);
+    nextSegmentPositions.set(this.segmentPositions);
+    this.capacity = nextCapacity;
+    this.points = nextPoints;
+    this.frameIndices = nextFrameIndices;
+    this.setSegmentPositions(nextSegmentPositions);
+    this.drawnPointCount = -1;
+  }
+
+  appendPoint(x, y, z, frameIndex) {
+    // Rows arrive in frame order. A row at or behind the last appended point
+    // is a duplicate from an overlapping chunk, not new history.
+    if (this.pointCount > 0 && frameIndex <= this.frameIndices[this.pointCount - 1]) {
+      return;
+    }
+    if (this.pointCount === this.capacity) {
+      this.grow();
+    }
+    const pointIndex = this.pointCount;
+    const pointOffset = pointIndex * 3;
+    this.points[pointOffset] = x;
+    this.points[pointOffset + 1] = y;
+    this.points[pointOffset + 2] = z;
+    this.frameIndices[pointIndex] = frameIndex;
+    if (pointIndex > 0) {
+      const previousOffset = (pointIndex - 1) * 3;
+      const segmentOffset = (pointIndex - 1) * 6;
+      this.segmentPositions[segmentOffset] = this.points[previousOffset];
+      this.segmentPositions[segmentOffset + 1] = this.points[previousOffset + 1];
+      this.segmentPositions[segmentOffset + 2] = this.points[previousOffset + 2];
+      this.segmentPositions[segmentOffset + 3] = x;
+      this.segmentPositions[segmentOffset + 4] = y;
+      this.segmentPositions[segmentOffset + 5] = z;
+      this.attribute.addUpdateRange(segmentOffset / 3, 2);
+    }
+    this.pointCount = pointIndex + 1;
+    this.attribute.needsUpdate = true;
+  }
+
+  clear() {
+    this.pointCount = 0;
+    this.drawnPointCount = -1;
+    this.geometry.setDrawRange(0, 0);
+  }
+
+  /** Number of points at or before frameIndex, by binary search. */
+  countPointsThrough(frameIndex) {
+    let low = 0;
+    let high = this.pointCount;
+    while (low < high) {
+      const middle = (low + high) >>> 1;
+      if (this.frameIndices[middle] <= frameIndex) {
+        low = middle + 1;
+      } else {
+        high = middle;
+      }
+    }
+    return low;
+  }
+
+  setThroughFrameIndex(frameIndex) {
+    const visiblePointCount = Number.isFinite(frameIndex)
+      ? this.countPointsThrough(frameIndex)
+      : this.pointCount;
+    if (visiblePointCount === this.drawnPointCount) {
+      return;
+    }
+    this.drawnPointCount = visiblePointCount;
+    this.geometry.setDrawRange(0, Math.max(0, visiblePointCount - 1) * 2);
+  }
+
+  dispose() {
+    this.geometry.dispose();
+    this.material.dispose();
+  }
+}
+
+export function createBorgPathTrails({
+  group,
+  renderOrder,
+  getStyle,
+  toWorld,
+}) {
+  const retainedTrails = new Map();
+  const compactedTrails = new Map();
+  let visible = false;
+  let throughFrameIndex = Number.POSITIVE_INFINITY;
+  let compactedSource = null;
+  const scratch = { x: 0, y: 0, z: 0 };
+
+  return {
+    reset,
+    appendFrameRows,
+    setCompactedPathHistory,
+    setThroughFrameIndex,
+    setVisible,
+    dispose,
+    get retainedTrailCount() {
+      return retainedTrails.size;
+    },
+  };
+
+  function trailColor(pathKey) {
+    const style = getStyle(pathKey);
+    return style.pathColor ?? style.velocityColor ?? style.color;
+  }
+
+  function ensureTrail(trails, pathKey, { opacity, order }) {
+    const existing = trails.get(pathKey);
+    if (existing) {
+      return existing;
+    }
+    const trail = new BorgPathTrail({
+      color: trailColor(pathKey),
+      opacity,
+      renderOrder: order,
+    });
+    trail.object.visible = visible;
+    group.add(trail.object);
+    trails.set(pathKey, trail);
+    return trail;
+  }
+
+  function appendFrameRows(frameRows) {
+    if (!Array.isArray(frameRows) || frameRows.length === 0) {
+      return;
+    }
+    // Rows for one frame index arrive interleaved across path keys, already in
+    // frame order, so a single pass suffices; no per-path filter or sort.
+    frameRows.forEach((row) => {
+      if (!row?.position || !Number.isFinite(Number(row.frameIndex))) {
+        return;
+      }
+      const trail = ensureTrail(retainedTrails, row.pathKey, {
+        opacity: RETAINED_TRAIL_OPACITY,
+        order: renderOrder,
+      });
+      toWorld(row.position, scratch);
+      trail.appendPoint(scratch.x, scratch.y, scratch.z, Number(row.frameIndex));
+    });
+    applyThroughFrameIndex();
+  }
+
+  function reset({ frameRows = [], compactedPathHistory = {} } = {}) {
+    retainedTrails.forEach((trail) => trail.clear());
+    compactedSource = null;
+    setCompactedPathHistory(compactedPathHistory);
+    appendFrameRows(frameRows);
+  }
+
+  function setCompactedPathHistory(compactedPathHistory) {
+    // Compaction runs once every few hundred frame sets; identity is stable
+    // between passes, so rebuilding only on change keeps this off the hot path.
+    if (compactedPathHistory === compactedSource) {
+      return;
+    }
+    compactedSource = compactedPathHistory;
+    compactedTrails.forEach((trail) => trail.clear());
+    Object.entries(compactedPathHistory ?? {}).forEach(([pathKey, points]) => {
+      if (!Array.isArray(points) || points.length < 2) {
+        return;
+      }
+      const trail = ensureTrail(compactedTrails, Number(pathKey), {
+        opacity: COMPACTED_TRAIL_OPACITY,
+        order: renderOrder - 1,
+      });
+      points.forEach((point) => {
+        if (!point?.position) {
+          return;
+        }
+        toWorld(point.position, scratch);
+        trail.appendPoint(scratch.x, scratch.y, scratch.z, Number(point.frameIndex));
+      });
+    });
+    applyThroughFrameIndex();
+  }
+
+  function setThroughFrameIndex(frameIndex) {
+    throughFrameIndex = frameIndex;
+    applyThroughFrameIndex();
+  }
+
+  function applyThroughFrameIndex() {
+    retainedTrails.forEach((trail) => trail.setThroughFrameIndex(throughFrameIndex));
+    compactedTrails.forEach((trail) => trail.setThroughFrameIndex(throughFrameIndex));
+  }
+
+  function setVisible(nextVisible) {
+    visible = Boolean(nextVisible);
+    retainedTrails.forEach((trail) => {
+      trail.object.visible = visible;
+    });
+    compactedTrails.forEach((trail) => {
+      trail.object.visible = visible;
+    });
+  }
+
+  function dispose() {
+    retainedTrails.forEach((trail) => {
+      group.remove(trail.object);
+      trail.dispose();
+    });
+    compactedTrails.forEach((trail) => {
+      group.remove(trail.object);
+      trail.dispose();
+    });
+    retainedTrails.clear();
+    compactedTrails.clear();
+    compactedSource = null;
+  }
+}

@@ -1,7 +1,7 @@
 # Dispatch Packet — §86 Flutter Re-Run on the Validated EOM Engine
 
 **Date:** 2026-07-13
-**Status:** analytic fold and pinned-fold temporal onset certified; exact-V5 feasibility wall remains in exact-root/correction snapshot cost
+**Status:** **REWRITTEN 2026-07-14 as a multi-seed collapse campaign.** The engine is no longer the blocker — the token-dominance gate cut the step cost $88.4\times$ and the accepted step grew $53\times$, putting one braid cycle within hours. The blocker is now the **question**: a one-seed flutter rate is not a claim the ledger can accept. See [Superseding design](#superseding-design--2026-07-14-multi-seed-collapse).
 **Supersedes evidentiary basis of:** the §86 linear-pencil flutter claim (Re λ = +0.199), quarantined in [claims-triage-ledger-2026-07-12.md](../app-solver/claims-triage-ledger-2026-07-12.md) as the lead T2 item.
 
 ---
@@ -181,3 +181,104 @@ is enlarged further.
 Closure goal (next): repair and profile the exact-root/coupled-correction
 snapshot path on the pinned-fold-aware exact V5 evolution, then determine
 whether the $t\gtrsim5$ convergence ladder is computationally reachable.
+
+---
+
+## Superseding design — 2026-07-14, multi-seed collapse
+
+Everything above assumed the hard part was the engine. It isn't any more, and it was never the whole problem.
+
+### What changed
+
+**The engine is fast enough.** The token-dominance gate removed 70.49% of the step cost that was provably futile MPFR escalation ($88.39\times$), the accepted step grew $53\times$ to $5\times10^{-4}$, and eight workers bring it to $2.286$ s/step. One braid cycle is hours, not months. Three subsequent optimization rounds returned $1.04\times$, $1.12\times$, $1.38\times$ and the stopping rule fired correctly — the remaining cost is the pin, and the pin is the physics.
+
+**The question was wrong.** A [collapse test on the antipodal
+binary](evidence/antipodal-binary-prehistory-collapse-test-2026-07-14.md) —
+four materially different prehistories seeded to the *identical* $(R_0,s_0)$
+to 16 significant figures — shows the futures **do not collapse**. Seed spread
+in $s$ reaches $40.7\%$ and remains $38.1\%$ at $t=65=6.5h$, against a
+refinement control of $1.5\times10^{-8}$. Signal-to-noise at the original
+plateau is $2.6\times10^{7}$. On the enlarged common-radius interval, the phase
+spread dips only from $0.13881$ to $0.13604$ and then grows to $0.14399$.
+
+This is a delay system: the state is a *function* on $[-h,0]$, every history
+is admissible, and each gives a different future. **A circular prehistory does
+not approximate the answer — it selects one.** On the simplest object in the
+theory, that selection remains worth about $38\%$ after $6.5$ memory depths.
+
+So the original method here — seed a circular prehistory, evolve, fit a log slope — would deliver *the circular-seed flutter rate*, not $\mathrm{Re}\,\lambda$. Running it on the repaired engine reproduces the original error at higher precision.
+
+### The new question
+
+**Does the V5 have an attracting flutter, or is its growth rate seed-indexed?**
+
+This is prior to any $\lambda$. It is also genuinely open in both directions: the binary is 2 worldlines and 4 ordered pairs with no self-hit below $c_f$; the V5 is 6 and 36 with a middle layer pinned at $v=c_f$. **Nobody knows whether more coupling supplies the attractor the bare binary lacks or destroys it faster.** One seed cannot touch the question.
+
+### Method
+
+1. **At least three materially different prehistories** at matched initial state — the exact circular history, and two genuinely different histories consistent with the same $(R,\alpha,\theta,\omega)$ at $t=0$ (e.g. a slow radial breath and a tilt-modulated history). Match the $t=0$ state to full precision and report the match; that is what makes the comparison controlled.
+2. **Certify seed clearance, then evolve for several cleared-memory depths.**
+   Do not infer clearance from $t>h$ alone. Require the root ledger to show that
+   no active root reaches the seeded interval $t<0$, because the largest active
+   delay can change as the object evolves.
+3. **Collapse first, growth second.** Plot the control-relative amplitude and
+   the layer geometry as **phase curves against each other**, never against
+   $t$. Report synchronized seed spread versus $t/h$ as a diagnostic, but do
+   not use its shrinkage alone as the verdict: on the binary, the circular/out
+   synchronized speed gap falls from $0.06807$ at $t=25$ to $0.03859$ at
+   $t=65$ while their same-radius phase gap grows from $0.05930$ to $0.06132$.
+   The verdict requires contraction on common phase branches and in the other
+   state observables needed for the V5.
+4. **Only if the seeds collapse** does a seed-independent evolved growth rate
+   exist. Then fit the common collapse curve, state the tested basin, and make
+   that curve the replacement §86 answer.
+5. **Include the refinement control** — half step, half prehistory segment, and
+   a deeper history boundary whose added interval is proven inactive — on at
+   least one seed. Add a sampling ladder for any fitted rate. On the binary the
+   original seed-to-refinement ratio was $2.6\times10^{7}$.
+
+### Dispositions
+
+- **Legacy disposition now:** the object-level one-number claim
+  $\operatorname{Re}\lambda=0.199$ is **reclassified as not well-posed as
+  stated**. It declares neither a retained prehistory nor a basin in the delay
+  state space. It is no longer a quarantined number awaiting a more precise
+  rerun.
+- **Replacement campaign:** §86 remains a **V5 collapse test**. If its declared
+  seeds collapse, the common curve can resolve §86 and may resolve §90. If they
+  do not, report seed-indexed conditional curves; do not replace $0.199$ with a
+  different universal number.
+- **Local-to-global boundary:** the binary negative requires this method but
+  does not prove V5 non-collapse. Six-worldline coupling may supply an attractor
+  that the binary lacks.
+
+### Campaign preflight — 2026-07-14
+
+The runner now separates endpoint perturbations from retained-prehistory
+perturbations. A circular seed, an inner/outer radial-breath seed, and an
+inner/outer tilt-modulated seed match all six endpoint positions and velocities
+to binary64 midpoint differences below $5.0\times10^{-16}$. Their start
+snapshots certify with zero unresolved root rows, and the two noncircular
+inner/outer first steps publish atomically in about $2.1$ seconds with zero
+production MPFR pairs.
+
+Perturbing the pinned middle-layer prehistory is a separate expensive basin:
+two certified steps cost $475.791$ and $468.618$ seconds and use 42 MPFR pair
+certifications. The executable first campaign therefore declares the
+inner/outer preparation basin while retaining the exact circular middle-layer
+history. This is basin coverage, not a universality claim.
+
+No seed has reached root-ledger clearance in this preflight, so it supplies no
+collapse, non-collapse, flutter, return, or saturation verdict. Evidence and
+the prepared baseline/refinement family are recorded in
+[section-86-v5-collapse-campaign-preflight-2026-07-14.md](evidence/section-86-v5-collapse-campaign-preflight-2026-07-14.md).
+
+### What this implies beyond §86
+
+The ledger quarantined every T3 claim pending re-derivation on a validated integrator. **That remedy is insufficient.** §83 release, §60 expansion, §92/§93 locking, §94 settling, and the collinear breather are each "we picked a prehistory and reported what happened." Re-running them on `src/eom` with a circular seed reproduces the same error with better arithmetic.
+
+**Every T3 re-run needs a collapse test, or its result is not about the object.** This is a correction to the re-run protocol itself, not to any single row, and it was not visible until the binary was cheap enough to seed four ways.
+
+Closure goal (next): execute the V5 multi-seed phase-collapse campaign with at
+least three endpoint-matched prehistories, using synchronized spread only as a
+diagnostic and common-branch phase contraction as the acceptance criterion.

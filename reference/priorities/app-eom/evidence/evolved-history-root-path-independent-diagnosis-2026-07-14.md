@@ -137,14 +137,13 @@ remaining evidence:
    accepted checkpoint chain through the required horizon, reporting the first
    divergent step and pair if one appears.
 3. Repeat the Section 86 timing without a competing long run. The instrument
-   now reports the portable cost and classification with every accepted step.
+   now reports whole-step stage timing and classification with every accepted step.
    `maximum_quadrature_cells` is the maximum across all acceleration snapshots
    evaluated inside that accepted atomic step, not merely the final accepted
    snapshot. The earlier final-snapshot-only row was `32.4315` wall seconds,
    `maximum_quadrature_cells=1928`, and
    `middle_self_root_classification=coincident_endpoint_root_continuation`;
-   it is preliminary and superseded for cost reporting until the clean
-   all-stage repeat is complete.
+   it is preliminary and superseded by the clean all-stage attribution below.
 
 ### Measured adjudicator follow-up folded into acceptance
 
@@ -169,13 +168,12 @@ D_{\mathrm{noise}}
 $$
 
 For $\epsilon=2\times10^{-6}$, this gives about `0.0354`, close to the
-observed difficult delay near `0.0419`. The remaining §86 acceptance work must
-therefore measure four routes: independent endpoint errors, correlated
+observed difficult delay near `0.0419`. The §86 acceptance work therefore
+measured four routes: independent endpoint errors, correlated
 self-chord only, stable circular residual only, and both corrections. Each row
 must report whole-step maximum quadrature cells, wall seconds, and the
-middle-self classification. An unchanged finite-width route and unchanged
-cost under correct classification is a valid negative result and must be
-reported as such.
+middle-self classification. The unchanged finite-width route and cell count
+under correct classification are accepted as a clean negative result.
 
 The active §97 horizon continuation uses position and velocity publication
 tolerances of `2e-7`, ten times tighter than the earlier `2e-6` envelope.
@@ -185,7 +183,8 @@ general repair from cube-root noise-floor mitigation. This comparison does not
 change the required §97 horizon, step-refinement, prehistory-segment-refinement,
 or evolved-history parity plan.
 
-No engine, migration, or theory claim is promoted until those rows close.
+No engine, migration, or theory claim is promoted until the required §97 rows
+close.
 
 ### Section 86 atomic-step ablation result
 
@@ -194,7 +193,7 @@ The four routes were measured on the same one-step V5 fixture with step
 quadrature tolerances `0.005`, the finite-width fallback chart, and the full
 atomic acceptance matrix. The §97 horizon process was active concurrently, so
 the seconds below are diagnostic-load observations, not clean machine
-benchmarks. The maximum cell count remains the portable result.
+benchmarks. The maximum cell count remains a deterministic-work result.
 
 | Route | Maximum quadrature cells | Correlated self-chord cells | Stable circular-residual cells | Step seconds | Middle self-root classification |
 | --- | ---: | ---: | ---: | ---: | --- |
@@ -208,12 +207,39 @@ not select a cheaper acceleration path. Cross-segment self correlation is
 active and removes the independently manufactured endpoint error, but it does
 not reduce the maximum subdivision count. The cancellation-stable exact-circle
 formula is not active at the cost-driving evolved-history stage; enabling it
-cannot reduce that stage's cells. The next §86 cost artifact must name the
-pair, snapshot stage, reception interval, and delay cell that owns the maximum,
-then independently validate a delay-factored residual for evolved polynomial
-self history before repeating this matrix. A clean idle-machine timing repeat
-remains necessary, but timing alone cannot overturn the unchanged 1,928-cell
-result.
+cannot reduce that stage's cells. These two levers are refuted and are not
+active targets. The unchanged 1,928-cell result is retained as a determinism
+check, not as a cost proxy.
+
+### Section 86 clean serialized step attribution
+
+The competing §97 process was suspended with `SIGSTOP`, the §86 step was run
+with one native worker, and §97 was resumed with `SIGCONT` after the profiler
+and runner completed. This makes the result serialized against the competing
+project computation. The accepted fixed step was `0.0005`.
+
+| Measured component | Seconds | Fraction of total wall | Accounting |
+| --- | ---: | ---: | --- |
+| Finite-width execution union | 4.500060 | 0.7117% | Primary stage |
+| Exact-pair root batch | 627.804960 | 99.2861% | Primary stage |
+| Retained-history reconstruction, traversal, copy, and hash | 0.008046 | 0.00127% | Primary stage |
+| Corrector control excluding its snapshots and history copy/hash | 0.000175 | 0.0000277% | Primary stage |
+| Additional MPFR precision attempts | 445.736570 | 70.4924% | Nested inside exact-pair roots |
+| Allocation/free profiler samples | 14,132 / 52,510 | 26.9130% | Exclusive active-worker samples, nested inside MPFR roots |
+
+Total wall time was `632.318909` seconds. Binary64 root work used `1.650611`
+CPU seconds and MPFR root work used `626.152585` CPU seconds. Acceleration-stage
+precision escalation had zero attempts. The corrector used nine iterations
+across three accepted substeps (`4,3,2`); there were zero rejected corrector
+substeps, zero rejected atomic steps, and no retry. Fourteen acceleration
+snapshots were certified. Corrector-inclusive time was `581.400232` seconds,
+but `581.395545` seconds of it was nested snapshot certification, so it must
+not be added to the root and finite-width rows.
+
+The middle self pair remained
+`coincident_endpoint_root_continuation`, and the maximum was 1,928 quadrature
+cells. The cells do not track the measured cost. The exact evidence record is
+[section-86-step-cost-attribution-2026-07-14.json](section-86-step-cost-attribution-2026-07-14.json).
 
 ## Comparison with the adjudicator after independent capture
 
@@ -241,3 +267,22 @@ root-wall packet and claims-triage ledger.
   failures occur only after the original wall is removed. They are additional
   engine findings and do not alter the adjudicator's retirement of Section
   97/98 flutter as void.
+
+## Section 86 token-dominance escalation repair
+
+The escalation trigger now separates arithmetic-limited enclosures from
+retained-error-token-dominated enclosures. Token-dominated simple roots take a
+binary64 tolerance-bounded strict-sign IVT bracket; a source-normal enclosure
+whose zero overlap and width are explained by the retained position and
+velocity radii fails closed to the finite-width route without entering MPFR.
+Every accepted bracket still requires a sign-definite source-normal hull.
+
+On the same serialized fixed `0.0005` step, wall time fell from `632.318909`
+seconds to `7.153516` seconds. MPFR fell from `626.152585` CPU seconds and 80
+attempts to zero seconds, zero pair certifications, and zero attempts. The
+accepted result retained 14 acceleration snapshots, corrector iterations
+`4,3,2`, 1,928 maximum quadrature cells, and
+`coincident_endpoint_root_continuation`. The 72-row evolved-history
+native/oracle replay and all four root, history, acceleration, and coupled
+evolution suites passed. Exact evidence:
+[section-86-token-dominance-root-gate-2026-07-14.json](section-86-token-dominance-root-gate-2026-07-14.json).

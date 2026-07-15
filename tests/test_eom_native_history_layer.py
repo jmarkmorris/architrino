@@ -312,6 +312,43 @@ class NativeHistoryLayerTests(unittest.TestCase):
         self.assertFalse(tangent["root_free_complement"])
         self.assertEqual(tangent["roots"], [])
 
+    def test_automatic_mpfr_gate_certifies_a_genuinely_arithmetic_limited_row(
+        self,
+    ) -> None:
+        row = self.pair("automatic_mpfr_precision_gate")
+        self.assertEqual(row["status"], "certified_complete")
+        self.assertTrue(row["root_free_complement"])
+        self.assertTrue(row["precision_escalated"])
+        self.assertEqual(row["achieved_precision_bits"], 128)
+        self.assertEqual(len(row["roots"]), 2)
+        self.assertEqual(
+            {root["precision_route"] for root in row["roots"]},
+            {"mpfr_directed_interval"},
+        )
+
+    def test_mpfr_gate_can_defer_to_cost_feedback_without_promotion(
+        self,
+    ) -> None:
+        row = self.pair("deferred_mpfr_precision_gate")
+        self.assertEqual(row["status"], "uncertified")
+        self.assertEqual(
+            row["failure_code"],
+            "numeric_precision_escalation_deferred_for_cost_feedback",
+        )
+        self.assertFalse(row["root_free_complement"])
+        self.assertFalse(row["precision_escalated"])
+        self.assertEqual(row["roots"], [])
+
+    def test_warm_complement_reuses_only_sign_stable_root_free_cells(self) -> None:
+        row = self.pair("warm_complement_current")
+        self.assertEqual(row["status"], "certified_complete")
+        self.assertTrue(row["root_free_complement"])
+        self.assertEqual(row["roots"], [])
+        self.assertGreater(row["warm_excluded_cells"], 0)
+        self.assertEqual(row["reevaluated_cells"], 0)
+        self.assertGreater(row["root_free_cell_count"], 0)
+        self.assertGreater(row["warm_residual_drift_upper"], 0)
+
     def test_history_error_midpoint_root_uses_tolerance_scaled_bracket(self) -> None:
         row = self.pair("uncertain_midpoint_root")
         receiver = PiecewisePolynomialHistory.from_segments(
@@ -359,7 +396,8 @@ class NativeHistoryLayerTests(unittest.TestCase):
         )
         self.assertEqual(row["status"], "certified_complete")
         self.assertEqual(row["status"], oracle.status)
-        self.assertTrue(row["precision_escalated"])
+        self.assertFalse(row["precision_escalated"])
+        self.assertEqual(row["achieved_precision_bits"], 53)
         self.assertEqual(len(row["roots"]), 1)
         self.assertEqual(len(row["roots"]), len(oracle.roots))
         root = row["roots"][0]
@@ -485,6 +523,8 @@ class NativeHistoryLayerTests(unittest.TestCase):
         )
         self.assertEqual(row["status"], "certified_complete")
         self.assertEqual(row["status"], oracle.status)
+        self.assertFalse(row["precision_escalated"])
+        self.assertEqual(row["achieved_precision_bits"], 53)
         self.assertEqual(len(row["roots"]), 1)
         self.assertEqual(len(oracle.roots), 1)
         root = row["roots"][0]

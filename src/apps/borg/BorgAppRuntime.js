@@ -26,6 +26,8 @@ import {
   applyBorgLiveRunRetention,
 } from "./BorgLiveRunRetentionPolicy.js";
 import { BORG_RELEASE_BUDGET_MANIFEST_V1 } from "./BorgReleaseBudgetManifest.js";
+import { createBorgPathTrails } from "./BorgPathTrails.js";
+import { loadBorgFixtureTrajectoryFrames } from "./BorgFixtureTrajectory.js";
 
 const TARGET_CENTRAL_WORLD_SIDE = 4.96;
 const BORG_LIVE_RUN_BUDGET_VERSION = "borg-live-run-budget.v1";
@@ -113,7 +115,10 @@ const STATUS_TONE = Object.freeze({
   "canonical-eom-output": "good",
   "live-native-running": "good",
   "precomputed-fixture": "warn",
-  "fixture-fallback": "warn",
+  // A fallback means no solver was reachable and the app is replaying a
+  // recording. That is a failure, not a caution: read as a warning it looks
+  // like a slow live run.
+  "fixture-fallback": "bad",
   "live-native-error": "bad",
   "completed-live-native-run": "good",
   "measured-live-run-budget": "good",
@@ -122,6 +127,13 @@ const STATUS_TONE = Object.freeze({
   failed: "bad",
   passed: "good",
   "not-measured": "warn",
+});
+
+const SOLVER_FAILURE_BANNERS = Object.freeze({
+  "fixture-fallback":
+    "Not computing. No solver could be reached, so this is a replay of a saved recording.",
+  "live-native-error":
+    "Computing stopped. The solver failed part-way; everything after the last good frame is missing.",
 });
 
 const PARTICLE_POLARITY_STYLES = Object.freeze({
@@ -150,6 +162,7 @@ export function mountBorgApp(options = {}) {
 
   const dom = {
     app: queryRequiredElement(documentLike, "#borg-app"),
+    solverBanner: documentLike.querySelector?.("#borg-solver-banner") ?? null,
     canvas: queryRequiredElement(documentLike, "#borg-canvas"),
     layerStrip: queryRequiredElement(documentLike, "#borg-layer-strip"),
     envelopeFields: queryRequiredElement(documentLike, "#borg-envelope-fields"),
@@ -183,7 +196,12 @@ export function mountBorgApp(options = {}) {
     focusButton: queryRequiredElement(documentLike, "#borg-focus-selected-button"),
   };
 
-  const fixtureFrames = [...manifest.currentStateFrames];
+  // Only the seed rows are parsed before the first paint. The recorded
+  // trajectory is a separate asset, fetched on demand by the two consumers
+  // that need it: the fixture fallback and the EOM shadow run.
+  let fixtureFrames = [...(options.fixtureTrajectoryFrames ?? manifest.currentStateFrames)];
+  let fixtureTrajectoryLoaded = Boolean(options.fixtureTrajectoryFrames);
+  let fixtureTrajectoryPromise = null;
   let currentFrames = [...fixtureFrames];
   let frameSets = createBorgFrameSetsFromRows(currentFrames);
   const worldUnitsPerSolverUnit =
@@ -219,10 +237,21 @@ export function mountBorgApp(options = {}) {
   const raycaster = new THREE.Raycaster();
   raycaster.params.Points.threshold = ARCHITRINO_PICK_THRESHOLD;
   const pointerNdc = new THREE.Vector2();
+  // Scratch vectors reused every frame. These conversions run once per
+  // architrino per frame; allocating here is what makes the garbage collector
+  // a visible part of the frame budget.
+  const velocityStart = new THREE.Vector3();
+  const velocityDirection = new THREE.Vector3();
   const particleObjects = new Map();
   const velocityLines = new Map();
   const architrinoPointTexture = createArchitrinoPointTexture(documentLike);
   const particleStyles = createParticleStyles(currentFrames);
+  const pathTrails = createBorgPathTrails({
+    group: pathGroup,
+    renderOrder: PATH_RENDER_ORDER,
+    getStyle: (pathKey) => getParticleStyle(pathKey, particleStyles),
+    toWorld: writeSolverPositionToWorld,
+  });
 
   const state = {
     activeFrameIndex: frameSets[0]?.frameIndex ?? 0,
@@ -321,28 +350,7 @@ export function mountBorgApp(options = {}) {
     );
     outerCubeGroup.visible = false;
 
-    getPathKeys().forEach((pathKey) => {
-      const style = getParticleStyle(pathKey, particleStyles);
-      const points = currentFrames
-        .filter((frame) => frame.pathKey === pathKey)
-        .sort((left, right) => left.frameIndex - right.frameIndex)
-        .map((frame) => solverPositionToWorld(frame.position));
-      if (points.length < 2) {
-        return;
-      }
-      const geometry = createPathSegmentGeometry(points);
-      const material = new THREE.LineBasicMaterial({
-        color: style.pathColor ?? style.velocityColor ?? style.color,
-        transparent: true,
-        opacity: 0.9,
-        depthTest: false,
-        depthWrite: false,
-      });
-      const trail = new THREE.LineSegments(geometry, material);
-      trail.visible = false;
-      trail.renderOrder = PATH_RENDER_ORDER;
-      pathGroup.add(trail);
-    });
+    rebuildPathTrails();
 
     getPathKeys().forEach((pathKey) => {
       const style = getParticleStyle(pathKey, particleStyles);
@@ -375,7 +383,11 @@ export function mountBorgApp(options = {}) {
         new THREE.Vector3(),
         new THREE.Vector3(1, 0, 0),
       ]);
+      velocityGeometry.getAttribute("position").setUsage(THREE.DynamicDrawUsage);
       const velocityLine = new THREE.Line(velocityGeometry, velocityMaterial);
+      // Endpoints are rewritten in place every frame; a cached bounding sphere
+      // would cull the line once the architrino leaves its initial bounds.
+      velocityLine.frustumCulled = false;
       velocityLine.visible = false;
       velocityGroup.add(velocityLine);
       velocityLines.set(pathKey, velocityLine);
@@ -749,13 +761,14 @@ export function mountBorgApp(options = {}) {
     cubeGroup.visible = state.activeLayers.has("simulation-window");
     pointGroup.visible = state.activeLayers.has("architrino-position");
     pathGroup.visible = state.activeLayers.has("path-history");
-    pathGroup.children.forEach((trail) => {
-      trail.visible = pathGroup.visible;
-    });
+    pathTrails.setVisible(pathGroup.visible);
     velocityGroup.visible = state.activeLayers.has("velocity-vectors");
     velocityLines.forEach((line) => {
       line.visible = velocityGroup.visible;
     });
+    if (velocityGroup.visible) {
+      refreshVelocityLines();
+    }
   }
 
   function syncLayerButtons() {
@@ -788,18 +801,35 @@ export function mountBorgApp(options = {}) {
     velocityLines.forEach((line) => {
       line.visible = false;
     });
+    const showVelocity = state.activeLayers.has("velocity-vectors");
+    const showPoints = state.activeLayers.has("architrino-position");
     frameSet.frames.forEach((frame) => {
       const particle = particleObjects.get(frame.pathKey);
       if (!particle) {
         return;
       }
-      particle.visible = state.activeLayers.has("architrino-position");
-      particle.position.copy(solverPositionToWorld(frame.position));
+      particle.visible = showPoints;
+      writeSolverPositionToWorld(frame.position, particle.position);
       particle.userData.frame = frame;
-      updateVelocityLine(frame);
+      if (showVelocity) {
+        updateVelocityLine(frame);
+      }
     });
+    // The trail is history: it ends at the architrino and never runs ahead of
+    // it. Rows are computed ahead of playback, so this bound is what keeps the
+    // future off screen.
+    pathTrails.setThroughFrameIndex(frameSet.frameIndex);
     updateSelectedTag();
     render();
+  }
+
+  function refreshVelocityLines() {
+    particleObjects.forEach((particle) => {
+      const frame = particle.userData.frame;
+      if (frame) {
+        updateVelocityLine(frame);
+      }
+    });
   }
 
   function updateVelocityLine(frame) {
@@ -807,14 +837,24 @@ export function mountBorgApp(options = {}) {
     if (!line) {
       return;
     }
-    const start = solverPositionToWorld(frame.position);
-    const velocity = new THREE.Vector3(frame.velocity.x, frame.velocity.y, frame.velocity.z);
-    const speed = velocity.length();
-    const direction = speed > 0 ? velocity.normalize() : new THREE.Vector3(1, 0, 0);
-    const end = start
-      .clone()
-      .add(direction.multiplyScalar(Math.log10(1 + speed) * 0.88));
-    line.geometry.setFromPoints([start, end]);
+    writeSolverPositionToWorld(frame.position, velocityStart);
+    velocityDirection.set(frame.velocity.x, frame.velocity.y, frame.velocity.z);
+    const speed = velocityDirection.length();
+    if (speed > 0) {
+      velocityDirection.normalize();
+    } else {
+      velocityDirection.set(1, 0, 0);
+    }
+    const length = Math.log10(1 + speed) * 0.88;
+    const positions = line.geometry.getAttribute("position");
+    positions.setXYZ(0, velocityStart.x, velocityStart.y, velocityStart.z);
+    positions.setXYZ(
+      1,
+      velocityStart.x + velocityDirection.x * length,
+      velocityStart.y + velocityDirection.y * length,
+      velocityStart.z + velocityDirection.z * length,
+    );
+    positions.needsUpdate = true;
     line.visible = state.activeLayers.has("velocity-vectors");
   }
 
@@ -1138,14 +1178,15 @@ export function mountBorgApp(options = {}) {
     renderer.dispose();
   }
 
-  function solverPositionToWorld(position) {
+  /** Write solver coordinates into an existing {x,y,z} target; no allocation. */
+  function writeSolverPositionToWorld(position, target) {
     const center = manifest.simulationEnvelope.centralVolume.center;
-    return new THREE.Vector3(
-      (position.x - center.x) * worldUnitsPerSolverUnit,
-      (position.y - center.y) * worldUnitsPerSolverUnit,
-      (position.z - center.z) * worldUnitsPerSolverUnit,
-    );
+    target.x = (position.x - center.x) * worldUnitsPerSolverUnit;
+    target.y = (position.y - center.y) * worldUnitsPerSolverUnit;
+    target.z = (position.z - center.z) * worldUnitsPerSolverUnit;
+    return target;
   }
+
 
   function fitCameraToCentralCube(margin) {
     const worldSide = manifest.simulationEnvelope.centralVolumeSideLength * worldUnitsPerSolverUnit;
@@ -1323,7 +1364,14 @@ export function mountBorgApp(options = {}) {
         );
         applyMeasuredPresetLimitsToDynamicRunner();
         syncRunDurationButton();
-        rebuildPathTrails();
+        if (replaceFixture || state.liveRunRetention?.compactedThisPass) {
+          // History changed underneath the trails: the fixture was swapped for
+          // live rows, or a retention pass moved older rows into compacted
+          // history. Otherwise the chunk is pure new history, so append it.
+          rebuildPathTrails();
+        } else {
+          appendPathTrailRows(chunk.frames);
+        }
         updateTimelineBounds();
         if (replaceFixture) {
           updateFrame(frameSets[0]?.frameIndex ?? 0);
@@ -1444,68 +1492,59 @@ export function mountBorgApp(options = {}) {
     state.liveRunRetention = createBorgLiveRunRetentionSnapshot({ frameRows: currentFrames });
   }
 
+  /**
+   * Discard every trail and rewrite it from the current rows. Only for the
+   * cases where history genuinely changed underneath us: a fixture restore, a
+   * new distribution, or a retention pass that moved rows into compacted
+   * history. Ordinary chunk arrivals append instead.
+   */
   function rebuildPathTrails() {
-    disposePathTrails();
-    renderCompactedPathTrails();
-    getPathKeys().forEach((pathKey) => {
-      const style = getParticleStyle(pathKey, particleStyles);
-      const points = currentFrames
-        .filter((frame) => frame.pathKey === pathKey)
-        .sort((left, right) => left.frameIndex - right.frameIndex)
-        .map((frame) => solverPositionToWorld(frame.position));
-      if (points.length < 2) {
-        return;
-      }
-      const geometry = createPathSegmentGeometry(points);
-      const material = new THREE.LineBasicMaterial({
-        color: style.pathColor ?? style.velocityColor ?? style.color,
-        transparent: true,
-        opacity: 0.9,
-        depthTest: false,
-        depthWrite: false,
-      });
-      const trail = new THREE.LineSegments(geometry, material);
-      trail.visible = pathGroup.visible;
-      trail.renderOrder = PATH_RENDER_ORDER;
-      pathGroup.add(trail);
+    pathTrails.reset({
+      frameRows: currentFrames,
+      compactedPathHistory: state.compactedPathHistory,
     });
+    pathTrails.setThroughFrameIndex(state.activeFrameIndex);
   }
 
-  function renderCompactedPathTrails() {
-    Object.entries(state.compactedPathHistory).forEach(([pathKey, points]) => {
-      if (!Array.isArray(points) || points.length < 2) {
-        return;
-      }
-      const style = getParticleStyle(Number(pathKey), particleStyles);
-      const geometry = createPathSegmentGeometry(
-        points.map((point) => solverPositionToWorld(point.position)),
-      );
-      const material = new THREE.LineBasicMaterial({
-        color: style.pathColor ?? style.velocityColor ?? style.color,
-        transparent: true,
-        opacity: 0.42,
-        depthTest: false,
-        depthWrite: false,
-      });
-      const trail = new THREE.LineSegments(geometry, material);
-      trail.visible = pathGroup.visible;
-      trail.renderOrder = PATH_RENDER_ORDER - 1;
-      pathGroup.add(trail);
-    });
+  function appendPathTrailRows(frameRows) {
+    pathTrails.setCompactedPathHistory(state.compactedPathHistory);
+    pathTrails.appendFrameRows(frameRows);
   }
 
   function disposePathTrails() {
-    while (pathGroup.children.length > 0) {
-      const child = pathGroup.children[0];
-      pathGroup.remove(child);
-      child.geometry?.dispose?.();
-      child.material?.dispose?.();
-    }
+    pathTrails.dispose();
   }
 
   function updateSourceStatusPresentation() {
     dom.nativeStatus.textContent = state.dynamicRunnerStatus;
     setTone(dom.nativeStatus, state.dynamicRunnerStatus);
+    updateSolverBanner();
+  }
+
+  /**
+   * Say plainly when nothing is being computed. A silent fallback to a
+   * recording is indistinguishable from a live run that is merely slow, which
+   * is the failure this banner exists to prevent.
+   */
+  function updateSolverBanner() {
+    const banner = dom.solverBanner;
+    if (!banner) {
+      return;
+    }
+    const message = SOLVER_FAILURE_BANNERS[state.dynamicRunnerStatus];
+    if (!message) {
+      banner.hidden = true;
+      banner.textContent = "";
+      return;
+    }
+    banner.textContent = "";
+    const headline = documentLike.createElement("div");
+    headline.textContent = message;
+    const detail = documentLike.createElement("div");
+    detail.className = "borg-solver-banner-detail";
+    detail.textContent = state.dynamicRunnerMessage ?? "";
+    banner.append(headline, detail);
+    banner.hidden = false;
   }
 
   function switchRunControlPreset(presetId) {
@@ -1537,10 +1576,40 @@ export function mountBorgApp(options = {}) {
     startDynamicNativeRunner();
   }
 
+  /**
+   * Fetch the recorded trajectory the first time a fixture replay needs it.
+   * Until it arrives the app shows the seed state, which is honest: that is
+   * all the history it has.
+   */
+  function ensureFixtureTrajectoryLoaded() {
+    if (fixtureTrajectoryLoaded || fixtureTrajectoryPromise) {
+      return fixtureTrajectoryPromise;
+    }
+    const load = options.loadFixtureTrajectoryFrames ?? loadBorgFixtureTrajectoryFrames;
+    fixtureTrajectoryPromise = Promise.resolve()
+      .then(() => load({ manifest }))
+      .then((frames) => {
+        fixtureTrajectoryLoaded = true;
+        fixtureFrames = [...frames];
+        if (state.sourceMode === "precomputed-fixture") {
+          restoreFixtureRun();
+        }
+        return frames;
+      })
+      .catch((error) => {
+        state.dynamicRunnerMessage = `recorded trajectory unavailable: ${error?.message ?? error}`;
+        updateSourceStatusPresentation();
+        renderSourceFields();
+        return null;
+      });
+    return fixtureTrajectoryPromise;
+  }
+
   function restoreFixtureRun() {
     disposeDynamicRunner();
     state.distributionFrameRows = null;
     state.distributionLabel = DEFAULT_DISTRIBUTION_LABEL;
+    ensureFixtureTrajectoryLoaded();
     currentFrames = [...fixtureFrames];
     frameSets = createBorgFrameSetsFromRows(currentFrames);
     resetLiveRunRetentionState();
@@ -1608,14 +1677,6 @@ export function mountBorgApp(options = {}) {
     runner?.dispose?.();
     updateEomControlPresentation();
   }
-}
-
-function createPathSegmentGeometry(points) {
-  const segmentPoints = [];
-  for (let index = 1; index < points.length; index += 1) {
-    segmentPoints.push(points[index - 1], points[index]);
-  }
-  return new THREE.BufferGeometry().setFromPoints(segmentPoints);
 }
 
 function queryRequiredElement(documentLike, selector) {
@@ -1761,7 +1822,7 @@ function createDefaultEomShadowRunnerOptions(
   }
   const historyEndTime = finiteBudgetNumber(
     configured.startTime ?? options.eomHistoryEndTime ??
-      Math.max(...(manifest.currentStateFrames ?? []).map((row) => Number(row.time))),
+      manifest.trajectoryRecord?.historyEndTime,
   );
   const requestedTarget = configured.targetDuration ?? preset.effectiveTargetDuration ?? preset.targetDuration;
   const targetDuration = Number.isFinite(Number(requestedTarget))

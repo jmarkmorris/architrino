@@ -1,5 +1,6 @@
 import assert from "node:assert/strict";
-import { readFileSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
+import { fileURLToPath } from "node:url";
 import { test } from "node:test";
 
 import {
@@ -7,6 +8,14 @@ import {
   BORG_DATASET_MANIFEST_V1,
   validateBorgFixtureSnapshot,
 } from "../src/apps/borg/BorgFixtureData.js";
+import {
+  loadBorgFixtureTrajectory,
+  loadBorgFixtureTrajectoryFrames,
+} from "../src/apps/borg/BorgFixtureTrajectory.js";
+import {
+  createBorgDefaultSolverWasmBaseUrl,
+  createBorgDefaultSolverWasmLoaderUrl,
+} from "../src/apps/borg/BorgSolverBridgeOptions.js";
 import {
   BORG_DYNAMIC_NATIVE_RUN_SOURCE,
   BORG_DYNAMIC_NATIVE_RUNNER_VERSION,
@@ -75,11 +84,70 @@ test("Borg fixture preserves central-solver output with explicit non-EOM provena
   assert.equal(probe.eomEvidenceStatus, "non_eom_compatibility_output");
 });
 
-test("Borg native master-equation frame data carries non-linear path evidence", () => {
-  const maxDeviation = maxNativeFrameDeviationFromPathLine(BORG_DATASET_MANIFEST_V1.currentStateFrames);
+test("Borg native master-equation frame data carries non-linear path evidence", async () => {
+  // The curvature evidence lives in the recorded trajectory asset, which the
+  // browser no longer parses on first paint. The rows are unchanged.
+  const trajectoryFrames = await loadBorgFixtureTrajectoryFrames();
+  const maxDeviation = maxNativeFrameDeviationFromPathLine(trajectoryFrames);
   assert.ok(
     maxDeviation > 1,
     `native fixed-parameter master-equation paths must show solver-owned curvature; max deviation ${maxDeviation}`,
+  );
+});
+
+test("Borg fixture trajectory record matches the manifest that describes it", async () => {
+  const trajectory = await loadBorgFixtureTrajectory();
+  const record = BORG_DATASET_MANIFEST_V1.trajectoryRecord;
+
+  assert.equal(trajectory.schema, "borg-fixture-trajectory.v1");
+  assert.equal(trajectory.currentStateFrames.length, record.frameCount);
+  assert.equal(trajectory.currentStateFrames.length, BORG_DATASET_MANIFEST_V1.sourceBridgeRun.frameCount);
+  assert.equal(trajectory.trajectoryFrameIds.length, record.trajectoryFrameIdCount);
+  assert.equal(trajectory.historyEndTime, record.historyEndTime);
+
+  // The seed rows the browser does parse must be the frameIndex-0 slice of the
+  // record, not a separately maintained copy that could drift from it.
+  assert.deepEqual(
+    BORG_DATASET_MANIFEST_V1.currentStateFrames,
+    trajectory.currentStateFrames.filter((row) => Number(row.frameIndex) === 0),
+  );
+  assert.equal(BORG_DATASET_MANIFEST_V1.currentStateFrames.length, record.seedFrameCount);
+
+  // The record carries the same evidence grade as the run that produced it.
+  // Central-solver output is not canonical EOM evidence.
+  assert.equal(trajectory.canonicalEomEvidence, false);
+  assert.equal(record.canonicalEomEvidence, false);
+  assert.equal(trajectory.eomEvidenceStatus, "non_eom_compatibility_output");
+});
+
+test("Borg first paint does not parse the recorded trajectory", () => {
+  const fixtureSource = readFileSync(
+    new URL("../src/apps/borg/BorgFixtureData.js", import.meta.url),
+    "utf8",
+  );
+  // The whole point of the split: the module the browser blocks on must stay
+  // small. It previously carried 24k inline frame rows at ~11 MB.
+  assert.ok(
+    fixtureSource.length < 512 * 1024,
+    `BorgFixtureData.js is ${fixtureSource.length} bytes; the trajectory belongs in its own asset`,
+  );
+  assert.equal(BORG_DATASET_MANIFEST_V1.currentStateAndFrameSources.trajectoryFrameIds, undefined);
+});
+
+test("Borg solver WASM loader points at deployed artifacts, not the build directory", () => {
+  // .tmp/ is gitignored, so a loader pointed there resolves in a local dev
+  // checkout and 404s on the published site, where the app silently falls back
+  // to replaying a recording instead of computing.
+  const loaderUrl = createBorgDefaultSolverWasmLoaderUrl();
+  const baseUrl = createBorgDefaultSolverWasmBaseUrl();
+  assert.doesNotMatch(loaderUrl, /\.tmp\//);
+  assert.doesNotMatch(baseUrl, /\.tmp\//);
+  assert.match(loaderUrl, /\/src\/solver\/wasm\/runtime\/architrino_solver_wasm_smoke\.mjs$/);
+  assert.match(baseUrl, /\/src\/solver\/wasm\/runtime\/$/);
+  assert.ok(existsSync(fileURLToPath(loaderUrl)), `deployed solver WASM loader missing at ${loaderUrl}`);
+  assert.ok(
+    existsSync(fileURLToPath(new URL("architrino_solver_wasm_smoke.wasm", baseUrl))),
+    "deployed solver WASM binary missing",
   );
 });
 
@@ -89,11 +157,19 @@ test("Borg path-history renderer uses native row segments, not visual smoothing 
     "utf8",
   );
   const htmlSource = readFileSync(new URL("../borg.html", import.meta.url), "utf8");
+  // Trail rendering moved to BorgPathTrails.js; the no-smoothing guard follows
+  // the code it guards.
+  const pathTrailsSource = readFileSync(
+    new URL("../src/apps/borg/BorgPathTrails.js", import.meta.url),
+    "utf8",
+  );
 
-  assert.match(runtimeSource, /new THREE\.LineSegments/);
-  assert.match(runtimeSource, /createPathSegmentGeometry/);
+  assert.match(pathTrailsSource, /new THREE\.LineSegments/);
+  assert.doesNotMatch(pathTrailsSource, /CatmullRomCurve3/);
+  assert.doesNotMatch(pathTrailsSource, /TubeGeometry/);
   assert.doesNotMatch(runtimeSource, /CatmullRomCurve3/);
   assert.doesNotMatch(runtimeSource, /TubeGeometry/);
+  assert.match(runtimeSource, /rebuildPathTrails/);
   assert.match(runtimeSource, /PLAYBACK_SPEED_PRESETS/);
   assert.doesNotMatch(runtimeSource, /PLAYBACK_MS_PER_NATIVE_STEP/);
   assert.match(runtimeSource, /RUN_CONTROL_PRESETS/);

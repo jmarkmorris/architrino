@@ -6,6 +6,7 @@
 #include "architrino/eom/History.hpp"
 
 #include <cstddef>
+#include <functional>
 #include <optional>
 #include <string>
 #include <vector>
@@ -16,6 +17,8 @@ inline constexpr const char* kNativeIntegrationMethod =
     "coupled_cubic_corrector_with_pinned_fold_onset/v1";
 inline constexpr const char* kLegacyNativeIntegrationMethod =
     "coupled_cubic_corrector_with_step_doubling/v0";
+inline constexpr const char* kNativeMultirateIntegrationMethod =
+    "coupled_cubic_corrector_with_synchronized_block_step_publication/v1";
 
 struct NativeCoupledPathInput {
   std::string path_id;
@@ -61,15 +64,45 @@ struct NativeCoupledEvolutionRequest {
   std::size_t max_rejected_steps = 1000;
   std::size_t thread_count = 1;
   bool use_adaptive_step_growth = false;
+  // Replace the legacy two-hit power-of-two growth rule with a bounded
+  // error-scaled controller. Acceptance tolerances are unchanged.
+  bool use_continuous_adaptive_step = false;
+  std::string adaptive_step_safety_factor = "0.9";
+  std::string adaptive_step_minimum_scale = "0.5";
+  std::string adaptive_step_maximum_scale = "2";
+  // Publish a single certified coarse segment for paths whose dense
+  // full-versus-two-half synchronization error has explicit headroom. Other
+  // paths retain the two half-step segments; every path still synchronizes and
+  // publishes atomically at the same accepted receiver time.
+  bool use_synchronized_multirate_publication = false;
+  std::string multirate_synchronization_fraction = "0.125";
+  // Probe endpoint root searches in binary64 before paying MPFR. One bounded
+  // shorter landing is attempted first; the unchanged error controller
+  // retains acceptance authority. Any adjusted acceptance starts a recovery
+  // cooldown and suppresses immediate regrowth, preventing a Zeno approach to
+  // a persistent precision boundary.
+  bool use_certificate_cost_feedback = false;
+  std::size_t certificate_cost_maximum_probe_adjustments = 1;
+  std::string certificate_cost_probe_scale = "0.5";
+  std::size_t certificate_cost_unavoidable_cooldown_steps = 4;
+  // Dynamic restart state, normally populated from a checkpoint.
+  std::size_t certificate_cost_initial_cooldown_steps = 0;
   bool use_analytic_pinned_fold = true;
   bool use_correlated_self_chord = true;
   bool use_stable_circular_residual = true;
   bool use_pinned_fold_aware_temporal_step = true;
   bool use_certified_history_window = true;
+  bool use_warm_root_exclusion = true;
   bool use_certified_traversal = true;
   std::uint64_t traversal_exact_tile_pair_limit = 4096;
   std::size_t traversal_maximum_nodes = 1000000;
   std::uint64_t traversal_maximum_exact_pairs = 10000000;
+  // Diagnostics only: stop after this many atomically accepted steps.
+  // Zero preserves the ordinary requested-end-time behavior.
+  std::size_t diagnostic_maximum_accepted_steps = 0;
+  // Diagnostics only: invoked after an accepted step is atomically published.
+  std::function<void(std::size_t, const std::string&)>
+      accepted_step_callback;
 };
 
 struct NativeFoldCausticImpulseCertificate {
@@ -153,9 +186,21 @@ struct NativeSnapshotTiming {
   double exact_root_batch_wall_seconds = 0.0;
   // Worker CPU sums can exceed wall time when exact pairs run concurrently.
   double root_binary64_cpu_seconds = 0.0;
+  std::size_t root_pair_count = 0;
+  std::size_t root_reevaluated_cells = 0;
+  std::size_t root_warm_excluded_cells = 0;
   double root_mpfr_cpu_seconds = 0.0;
+  std::size_t root_mpfr_pair_count = 0;
   std::size_t root_mpfr_attempt_count = 0;
+  double root_mpfr_escalation_cpu_seconds = 0.0;
+  std::size_t root_mpfr_escalation_attempt_count = 0;
   double acceleration_wall_seconds = 0.0;
+  double finite_width_execution_union_wall_seconds = 0.0;
+  double sharp_execution_union_wall_seconds = 0.0;
+  double finite_width_sharp_overlap_wall_seconds = 0.0;
+  double acceleration_worker_idle_orchestration_wall_seconds = 0.0;
+  double acceleration_precision_escalation_worker_seconds = 0.0;
+  std::size_t acceleration_precision_escalation_attempt_count = 0;
   double total_wall_seconds = 0.0;
 };
 
@@ -177,6 +222,27 @@ struct NativeAccelerationSnapshotCertificate {
 struct NativeCorrectedSubstepTiming {
   double history_copy_hash_wall_seconds = 0.0;
   std::size_t reused_start_snapshot_count = 0;
+  double snapshot_total_wall_seconds = 0.0;
+  std::size_t snapshot_count = 0;
+  double history_window_wall_seconds = 0.0;
+  double traversal_wall_seconds = 0.0;
+  double exact_root_batch_wall_seconds = 0.0;
+  double root_binary64_cpu_seconds = 0.0;
+  std::size_t root_pair_count = 0;
+  std::size_t root_reevaluated_cells = 0;
+  std::size_t root_warm_excluded_cells = 0;
+  double root_mpfr_cpu_seconds = 0.0;
+  std::size_t root_mpfr_pair_count = 0;
+  std::size_t root_mpfr_attempt_count = 0;
+  double root_mpfr_escalation_cpu_seconds = 0.0;
+  std::size_t root_mpfr_escalation_attempt_count = 0;
+  double acceleration_wall_seconds = 0.0;
+  double finite_width_execution_union_wall_seconds = 0.0;
+  double sharp_execution_union_wall_seconds = 0.0;
+  double finite_width_sharp_overlap_wall_seconds = 0.0;
+  double acceleration_worker_idle_orchestration_wall_seconds = 0.0;
+  double acceleration_precision_escalation_worker_seconds = 0.0;
+  std::size_t acceleration_precision_escalation_attempt_count = 0;
   double total_wall_seconds = 0.0;
 };
 
@@ -283,6 +349,12 @@ struct NativeAtomicStepCertificate {
   std::optional<NativeAccelerationSnapshotCertificate> accepted_snapshot;
   std::optional<NativeAccelerationSnapshotCertificate> recertification_snapshot;
   std::vector<NativePathLocalError> local_errors;
+  std::vector<NativePathLocalError> multirate_synchronization_errors;
+  std::vector<std::string> multirate_coarse_path_ids;
+  bool certificate_cost_probe = false;
+  std::size_t certificate_cost_deferred_pair_count = 0;
+  std::size_t certificate_cost_mpfr_attempt_count = 0;
+  std::size_t certificate_cost_cooldown_remaining = 0;
   std::string failure_code;
   std::string evidence_status;
   std::string integration_method;
@@ -292,13 +364,27 @@ struct NativeAtomicStepCertificate {
 };
 
 struct NativeEvolutionTiming {
+  double snapshot_total_wall_seconds = 0.0;
+  std::size_t snapshot_count = 0;
   double history_window_wall_seconds = 0.0;
   double traversal_wall_seconds = 0.0;
   double exact_root_batch_wall_seconds = 0.0;
   double root_binary64_cpu_seconds = 0.0;
+  std::size_t root_pair_count = 0;
+  std::size_t root_reevaluated_cells = 0;
+  std::size_t root_warm_excluded_cells = 0;
   double root_mpfr_cpu_seconds = 0.0;
+  std::size_t root_mpfr_pair_count = 0;
   std::size_t root_mpfr_attempt_count = 0;
+  double root_mpfr_escalation_cpu_seconds = 0.0;
+  std::size_t root_mpfr_escalation_attempt_count = 0;
   double acceleration_wall_seconds = 0.0;
+  double finite_width_execution_union_wall_seconds = 0.0;
+  double sharp_execution_union_wall_seconds = 0.0;
+  double finite_width_sharp_overlap_wall_seconds = 0.0;
+  double acceleration_worker_idle_orchestration_wall_seconds = 0.0;
+  double acceleration_precision_escalation_worker_seconds = 0.0;
+  std::size_t acceleration_precision_escalation_attempt_count = 0;
   double history_copy_hash_wall_seconds = 0.0;
   // Correction wall time includes its nested snapshot and history phases.
   double correction_wall_seconds = 0.0;
@@ -320,6 +406,7 @@ struct NativeCoupledEvolutionCertificate {
   std::size_t accepted_step_count;
   std::size_t rejected_step_count;
   std::string controller_step_size;
+  std::size_t controller_certificate_cost_cooldown_remaining = 0;
   std::string halt_code;
   std::string evidence_status;
   bool all_steps_atomic;
@@ -330,7 +417,10 @@ struct NativeCoupledEvolutionCertificate {
 certify_native_acceleration_snapshot(
     const NativeCoupledEvolutionRequest& request,
     const std::vector<NativePublishedPath>& histories,
-    const std::string& reception_time);
+    const std::string& reception_time,
+    const NativeAccelerationSnapshotCertificate* warm_snapshot = nullptr,
+    const std::vector<NativePublishedPath>* warm_histories = nullptr,
+    bool defer_root_precision_escalation = false);
 
 [[nodiscard]] NativeFoldCausticImpulseCertificate
 certify_native_fold_caustic_impulse(
@@ -359,7 +449,8 @@ certify_native_regulator_convergence(
     const std::string& start_time,
     const std::string& end_time,
     const NativeAccelerationSnapshotCertificate* reusable_start_snapshot =
-        nullptr);
+        nullptr,
+    bool defer_endpoint_root_precision_escalation = false);
 
 [[nodiscard]] NativeCoupledEvolutionCertificate evolve_native_coupled_histories(
     const NativeCoupledEvolutionRequest& request);

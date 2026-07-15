@@ -478,7 +478,8 @@
         width: 88px;
       }
 
-      #borg-boot-error {
+      #borg-boot-error,
+      #borg-solver-banner {
         position: absolute;
         left: 16px;
         right: 16px;
@@ -491,6 +492,17 @@
         color: #ffd0c9;
         font-size: 13px;
         font-weight: 760;
+      }
+
+      #borg-solver-banner[hidden] {
+        display: none;
+      }
+
+      #borg-solver-banner .borg-solver-banner-detail {
+        margin-top: 4px;
+        font-weight: 560;
+        font-size: 12px;
+        color: #f0bdb3;
       }
 
       @media (max-width: 980px) {
@@ -577,6 +589,7 @@
   </head>
   <body>
     <div id="borg-app">
+      <div id="borg-solver-banner" role="status" hidden></div>
       <aside class="borg-side-rail is-left" aria-label="Simulation envelope">
         <header class="borg-panel-header">
           <div class="borg-title">

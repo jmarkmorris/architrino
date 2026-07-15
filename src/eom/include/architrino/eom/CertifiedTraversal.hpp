@@ -71,8 +71,10 @@ struct CertifiedTraversalExactBatchRequest {
   std::size_t root_max_cells = 500000;
   unsigned initial_mpfr_bits = 128;
   unsigned maximum_mpfr_bits = 512;
+  bool defer_precision_escalation = false;
   std::uint64_t maximum_exact_pairs = 10000000;
   std::size_t thread_count = 1;
+  const std::vector<ExactPairWarmStart>* warm_starts = nullptr;
 };
 
 struct CertifiedTraversalExactBatchCertificate {

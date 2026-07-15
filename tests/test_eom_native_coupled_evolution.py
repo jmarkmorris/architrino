@@ -159,7 +159,7 @@ class NativeCoupledEvolutionTests(unittest.TestCase):
     def test_checkpoint_roundtrip_is_atomic_tamper_evident_and_continuous(self) -> None:
         checkpoint = self.packet["checkpoint"]
         self.assertEqual(
-            checkpoint["schema"], "eom_native_evolution_checkpoint/v2"
+            checkpoint["schema"], "eom_native_evolution_checkpoint/v3"
         )
         self.assertGreater(checkpoint["byte_length"], 0)
         self.assertEqual(
@@ -172,6 +172,7 @@ class NativeCoupledEvolutionTests(unittest.TestCase):
         )
         self.assertTrue(checkpoint["tamper_rejected"])
         self.assertTrue(checkpoint["circular_certificate_preserved"])
+        self.assertEqual(checkpoint["certificate_cost_cooldown_roundtrip"], 4)
         self.assertEqual(
             checkpoint["direct_histories"], checkpoint["resumed_histories"]
         )
@@ -526,6 +527,75 @@ class NativeCoupledEvolutionTests(unittest.TestCase):
                 for step in growth["steps"][1:]
             )
         )
+
+    def test_continuous_adaptive_controller_uses_bounded_error_scaled_steps(
+        self,
+    ) -> None:
+        adaptive = self.evolution("static-continuous-adaptive")
+        self.assertEqual(adaptive["status"], "completed")
+        self.assertEqual(adaptive["rejected_step_count"], 0)
+        widths = [
+            Decimal(step["attempted_end"]) - Decimal(step["attempted_start"])
+            for step in adaptive["steps"]
+        ]
+        expected_widths = [
+            Decimal("0.01"),
+            Decimal("0.02"),
+            Decimal("0.04"),
+            Decimal("0.01"),
+        ]
+        self.assertEqual(len(widths), len(expected_widths))
+        for actual, expected in zip(widths, expected_widths, strict=True):
+            self.assertLessEqual(abs(actual - expected), Decimal("1e-15"))
+        self.assertTrue(adaptive["all_steps_atomic"])
+
+    def test_synchronized_multirate_publishes_coarse_slow_path_atomically(
+        self,
+    ) -> None:
+        multirate = self.evolution("static-synchronized-multirate")
+        baseline = self.evolution("static-multistep")
+        self.assertEqual(multirate["status"], "completed")
+        self.assertEqual(multirate["rejected_step_count"], 0)
+        self.assertTrue(multirate["all_steps_atomic"])
+        self.assertTrue(
+            all(
+                step["multirate_coarse_path_count"] == 1
+                for step in multirate["steps"]
+            )
+        )
+        self.assertLess(
+            multirate["histories"][0]["segment_count"],
+            baseline["histories"][0]["segment_count"],
+        )
+
+    def test_certificate_cost_feedback_adjusts_before_mpfr_once(self) -> None:
+        evolution = self.evolution("static-certificate-cost-feedback")
+        self.assertEqual(evolution["status"], "halted")
+        self.assertEqual(
+            evolution["halt_code"], "diagnostic_accepted_step_limit_reached"
+        )
+        self.assertEqual(evolution["accepted_step_count"], 1)
+        self.assertEqual(evolution["rejected_step_count"], 1)
+        deferred, accepted = evolution["steps"]
+        self.assertEqual(deferred["status"], "rejected")
+        self.assertEqual(
+            deferred["failure_code"],
+            "root_precision_escalation_deferred_for_cost_feedback",
+        )
+        self.assertTrue(deferred["certificate_cost_probe"])
+        self.assertGreater(deferred["certificate_cost_deferred_pair_count"], 0)
+        self.assertEqual(deferred["certificate_cost_mpfr_attempt_count"], 0)
+        self.assertEqual(accepted["status"], "accepted")
+        self.assertFalse(accepted["certificate_cost_probe"])
+        self.assertGreater(accepted["certificate_cost_mpfr_attempt_count"], 0)
+        self.assertEqual(accepted["certificate_cost_cooldown_remaining"], 4)
+        self.assertEqual(
+            evolution["controller_certificate_cost_cooldown_remaining"], 4
+        )
+        accepted_width = Decimal(accepted["attempted_end"]) - Decimal(
+            accepted["attempted_start"]
+        )
+        self.assertLessEqual(abs(accepted_width - Decimal("0.005")), Decimal("1e-15"))
 
     def test_future_history_input_is_rejected_and_replay_is_deterministic(self) -> None:
         self.assertTrue(self.packet["future_history_rejected"])

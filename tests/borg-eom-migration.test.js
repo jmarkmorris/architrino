@@ -10,10 +10,15 @@ import {
 } from "../src/apps/borg/BorgEomShadowRunner.js";
 import { encodeNativeRequest } from "../scripts/eom/BorgNativeEomProcessClient.mjs";
 import { createBorgEomHttpClient } from "../src/apps/borg/BorgEomHttpClient.js";
+import { loadBorgFixtureTrajectoryFrames } from "../src/apps/borg/BorgFixtureTrajectory.js";
+
+// The manifest carries only the seed state; retained history comes from the
+// recorded trajectory asset, which is exactly what these tests exercise.
+const trajectoryFrames = await loadBorgFixtureTrajectoryFrames();
 
 test("Borg EOM migration imports a complete continuous past, never a state-only start", () => {
   const histories = createBorgContinuousRetainedHistories(
-    BORG_DATASET_MANIFEST_V1.currentStateFrames,
+    trajectoryFrames,
     BORG_DATASET_MANIFEST_V1,
     { historyEndTime: 10 },
   );
@@ -31,7 +36,7 @@ test("Borg EOM migration imports a complete continuous past, never a state-only 
   assert.throws(
     () =>
       createBorgContinuousRetainedHistories(
-        BORG_DATASET_MANIFEST_V1.currentStateFrames.filter((row) => row.time === 0),
+        trajectoryFrames.filter((row) => row.time === 0),
         BORG_DATASET_MANIFEST_V1,
         { historyEndTime: 0 },
       ),
@@ -49,6 +54,7 @@ test("Borg EOM shadow runner sends retained histories and derives frames only fr
   };
   const runner = createBorgEomShadowRunner(BORG_DATASET_MANIFEST_V1, {
     eomClient,
+    initialFrameRows: trajectoryFrames,
     startTime: 10,
     targetDuration: 10.2,
     chunkDuration: 0.2,
@@ -89,9 +95,7 @@ test("Borg EOM shadow runner supports a deterministic retained-history populatio
       },
     },
     pathCount: 4,
-    initialFrameRows: BORG_DATASET_MANIFEST_V1.currentStateFrames.filter(
-      (row) => Number(row.pathKey) <= 1004,
-    ),
+    initialFrameRows: trajectoryFrames.filter((row) => Number(row.pathKey) <= 1004),
     startTime: 10,
     targetDuration: 10.2,
     chunkDuration: 0.2,
@@ -105,6 +109,7 @@ test("Borg EOM shadow runner supports a deterministic retained-history populatio
 test("Borg EOM UI duration and atomic chunk cannot be overridden by measured limits", () => {
   const runner = createBorgEomShadowRunner(BORG_DATASET_MANIFEST_V1, {
     eomClient: { async evolveRetainedHistories() {} },
+    initialFrameRows: trajectoryFrames,
     startTime: 10,
     targetDuration: 10.1,
     chunkDuration: 0.01,
@@ -123,6 +128,7 @@ test("Borg promotion remains fail-closed until both canonical evidence and the m
   };
   const runner = createBorgEomShadowRunner(BORG_DATASET_MANIFEST_V1, {
     eomClient,
+    initialFrameRows: trajectoryFrames,
     startTime: 10,
     targetDuration: 10.2,
     chunkDuration: 0.2,
@@ -149,6 +155,7 @@ test("Borg EOM shadow response rejects reordered or incomplete published histori
   };
   const runner = createBorgEomShadowRunner(BORG_DATASET_MANIFEST_V1, {
     eomClient,
+    initialFrameRows: trajectoryFrames,
     startTime: 10,
     targetDuration: 10.2,
     chunkDuration: 0.2,
@@ -171,6 +178,7 @@ test("Borg EOM fail-closed responses preserve native diagnostics", async () => {
         };
       },
     },
+    initialFrameRows: trajectoryFrames,
     startTime: 10,
     targetDuration: 10.2,
     chunkDuration: 0.2,
@@ -191,6 +199,7 @@ test("Borg native process protocol carries the same continuous-history request",
         return createFakeEomResponse(request, "executable_architecture_evidence");
       },
     },
+    initialFrameRows: trajectoryFrames,
     startTime: 10,
     targetDuration: 10.2,
     chunkDuration: 0.2,

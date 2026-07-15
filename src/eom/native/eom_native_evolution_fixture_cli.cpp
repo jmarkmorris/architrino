@@ -165,6 +165,14 @@ void print_steps(const std::vector<eom::NativeAtomicStepCertificate>& steps) {
                       : 0.0)
               << ",\"reused_start_snapshot_count\":"
               << step.timing.reused_start_snapshot_count
+              << ",\"certificate_cost_probe\":"
+              << (step.certificate_cost_probe ? "true" : "false")
+              << ",\"certificate_cost_deferred_pair_count\":"
+              << step.certificate_cost_deferred_pair_count
+              << ",\"certificate_cost_mpfr_attempt_count\":"
+              << step.certificate_cost_mpfr_attempt_count
+              << ",\"certificate_cost_cooldown_remaining\":"
+              << step.certificate_cost_cooldown_remaining
               << ",\"correction_iterations\":[";
     for (std::size_t substep_index = 0;
          substep_index < step.substeps.size(); ++substep_index) {
@@ -181,6 +189,8 @@ void print_steps(const std::vector<eom::NativeAtomicStepCertificate>& steps) {
           substep.regulator_convergence_certificates.size();
     }
     std::cout << "]"
+              << ",\"multirate_coarse_path_count\":"
+              << step.multirate_coarse_path_ids.size()
               << ",\"event_impulse_count\":" << event_impulse_count
               << ",\"regulator_certificate_count\":"
               << regulator_certificate_count
@@ -211,6 +221,8 @@ void print_evolution(
             << certificate.accepted_step_count
             << ",\"rejected_step_count\":"
             << certificate.rejected_step_count
+            << ",\"controller_certificate_cost_cooldown_remaining\":"
+            << certificate.controller_certificate_cost_cooldown_remaining
             << ",\"halt_code\":\"" << certificate.halt_code
             << "\",\"all_steps_atomic\":"
             << (certificate.all_steps_atomic ? "true" : "false")
@@ -442,6 +454,11 @@ void print_all() {
       "2", "2.2", "0.1", "0.1");
   const auto static_result =
       eom::evolve_native_coupled_histories(static_request);
+  auto static_multirate_request = static_request;
+  static_multirate_request.run_id = "static-synchronized-multirate";
+  static_multirate_request.use_synchronized_multirate_publication = true;
+  const auto static_multirate_result =
+      eom::evolve_native_coupled_histories(static_multirate_request);
   auto static_growth_request = request(
       "static-adaptive-growth",
       {{"p", "1", history("static-growth-history", "2", {"0", "0", "0", "0"})}},
@@ -450,6 +467,33 @@ void print_all() {
   static_growth_request.use_adaptive_step_growth = true;
   const auto static_growth_result =
       eom::evolve_native_coupled_histories(static_growth_request);
+  auto static_continuous_request = static_growth_request;
+  static_continuous_request.run_id = "static-continuous-adaptive";
+  static_continuous_request.use_continuous_adaptive_step = true;
+  const auto static_continuous_result =
+      eom::evolve_native_coupled_histories(static_continuous_request);
+  auto certificate_cost_request = request(
+      "static-certificate-cost-feedback",
+      {{"p", "1", history(
+          "static-certificate-cost-history", "2", {"0", "0", "0", "0"})}},
+      "2", "2.02", "0.01", "0.001");
+  certificate_cost_request.maximum_step = "0.02";
+  certificate_cost_request.root_tolerance = "1e-20";
+  certificate_cost_request.use_adaptive_step_growth = true;
+  certificate_cost_request.use_continuous_adaptive_step = true;
+  certificate_cost_request.use_certificate_cost_feedback = true;
+  certificate_cost_request.certificate_cost_maximum_probe_adjustments = 1U;
+  certificate_cost_request.certificate_cost_probe_scale = "0.5";
+  certificate_cost_request.diagnostic_maximum_accepted_steps = 1U;
+  const auto certificate_cost_result =
+      eom::evolve_native_coupled_histories(certificate_cost_request);
+  const auto certificate_cost_checkpoint =
+      eom::create_native_evolution_checkpoint(
+          certificate_cost_request, certificate_cost_result);
+  const auto certificate_cost_checkpoint_roundtrip =
+      eom::deserialize_native_evolution_checkpoint(
+          eom::serialize_native_evolution_checkpoint(
+              certificate_cost_checkpoint));
 
   auto checkpoint_partial_request = static_request;
   checkpoint_partial_request.run_id = "static-checkpoint-restart";
@@ -903,6 +947,9 @@ void print_all() {
             << (checkpoint_tamper_rejected ? "true" : "false")
             << ",\"circular_certificate_preserved\":"
             << (circular_certificate_preserved ? "true" : "false")
+            << ",\"certificate_cost_cooldown_roundtrip\":"
+            << certificate_cost_checkpoint_roundtrip
+                   .controller_certificate_cost_cooldown_remaining
             << ",\"direct_histories\":";
   print_histories(
       checkpoint_direct.histories, checkpoint_direct.accepted_end_time);
@@ -912,7 +959,13 @@ void print_all() {
   std::cout << "},\"evolutions\":[";
   print_evolution(static_result);
   std::cout << ',';
+  print_evolution(static_multirate_result);
+  std::cout << ',';
   print_evolution(static_growth_result);
+  std::cout << ',';
+  print_evolution(static_continuous_result);
+  std::cout << ',';
+  print_evolution(certificate_cost_result);
   std::cout << ',';
   print_evolution(fast_result);
   std::cout << ',';

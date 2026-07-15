@@ -5,6 +5,7 @@
 #include <mpfr.h>
 
 #include <algorithm>
+#include <array>
 #include <atomic>
 #include <chrono>
 #include <cmath>
@@ -21,6 +22,7 @@
 #include <stdexcept>
 #include <string>
 #include <thread>
+#include <unordered_map>
 #include <utility>
 #include <vector>
 
@@ -94,16 +96,38 @@ struct DoubleRoot {
   std::vector<std::size_t> source_segment_indices;
 };
 
+struct DoubleRootFreeCell {
+  std::size_t source_segment_index;
+  double lower;
+  double upper;
+  Interval residual;
+  Interval receiver_normal;
+};
+
 struct DoubleAttempt {
   bool complete = true;
   bool memory_boundary_contact = false;
   bool coincident_endpoint_excluded = false;
   bool caustic_candidate = false;
+  bool token_dominated_failure = false;
   std::size_t visited_cells = 0;
   std::size_t excluded_cells = 0;
   std::size_t difficult_cells = 0;
+  std::size_t warm_excluded_cells = 0;
+  double warm_residual_drift_upper = 0.0;
   std::vector<DoubleRoot> roots;
+  std::vector<DoubleRootFreeCell> root_free_cells;
 };
+
+bool same_segment_tokens(
+    const CubicHistorySegment& left,
+    const CubicHistorySegment& right) {
+  return left.t_start_token() == right.t_start_token() &&
+      left.t_end_token() == right.t_end_token() &&
+      left.coefficient_tokens() == right.coefficient_tokens() &&
+      left.position_error_token() == right.position_error_token() &&
+      left.velocity_error_token() == right.velocity_error_token();
+}
 
 bool same_history_endpoint(
     const ExactPairRequest& request,
@@ -135,8 +159,15 @@ bool uniform_circular_self_search_is_root_free(
   }
   const auto& certificate =
       request.source->uniform_circular_endpoint_certificate();
-  if (!certificate.has_value() ||
-      certificate->valid_reception_time != request.reception_time) {
+  if (!certificate.has_value()) {
+    return false;
+  }
+  const Interval valid_reception =
+      Interval::decimal_token(certificate->valid_reception_time);
+  const Interval requested_reception =
+      Interval::decimal_token(request.reception_time);
+  if (valid_reception.lower() != requested_reception.lower() ||
+      valid_reception.upper() != requested_reception.upper()) {
     return false;
   }
   const Interval tangential_speed =
@@ -148,8 +179,11 @@ bool uniform_circular_self_search_is_root_free(
   // the open search interval. The factory-bound certificate is deliberately
   // unavailable to an arbitrary cubic history; in particular, a straight
   // v=c_f rail retains its unresolved coincidence continuum.
-  return tangential_speed.lower() > 0.0 &&
-         tangential_speed.upper() <= field_speed.lower();
+  const bool at_or_below_field_speed =
+      (tangential_speed.lower() == field_speed.lower() &&
+       tangential_speed.upper() == field_speed.upper()) ||
+      tangential_speed.upper() <= field_speed.lower();
+  return tangential_speed.lower() > 0.0 && at_or_below_field_speed;
 }
 
 bool merge_double_roots(std::vector<DoubleRoot>& roots) {
@@ -184,6 +218,204 @@ bool merge_double_roots(std::vector<DoubleRoot>& roots) {
   }
   roots = std::move(merged);
   return true;
+}
+
+double correlated_self_token_radius(
+    const RetainedHistory& history,
+    double reception,
+    double emission) {
+  const auto emission_index = history.segment_index_at(emission);
+  const auto reception_index = history.segment_index_at(reception);
+  if (emission_index == reception_index) {
+    const auto& segment = history.segments()[emission_index];
+    return std::sqrt(3.0) * std::min(
+        2.0 * segment.position_error(),
+        segment.velocity_error() * std::max(0.0, reception - emission));
+  }
+
+  double component_radius = 0.0;
+  for (std::size_t index = emission_index; index <= reception_index; ++index) {
+    const auto& segment = history.segments()[index];
+    const double lower = std::max(emission, segment.t_start());
+    const double upper = std::min(reception, segment.t_end());
+    if (lower < upper) {
+      component_radius += segment.velocity_error() * (upper - lower);
+    }
+  }
+  return std::sqrt(3.0) * component_radius;
+}
+
+bool double_point_residual_is_token_dominated(
+    const ExactPairRequest& request,
+    const CubicHistorySegment& receiver_segment,
+    const CubicHistorySegment& source_segment,
+    const DoubleGeometry& geometry,
+    double reception,
+    double emission,
+    double field_speed,
+    bool correlated_self_chord) {
+  const double token_radius = correlated_self_chord
+      ? correlated_self_token_radius(*request.source, reception, emission)
+      : std::sqrt(3.0) *
+            (receiver_segment.position_error() +
+             source_segment.position_error());
+  const double arithmetic_scale = std::max({
+      1.0,
+      std::abs(reception),
+      std::abs(emission),
+      std::abs(field_speed * (reception - emission)),
+      std::abs(geometry.residual.lower()),
+      std::abs(geometry.residual.upper()),
+  });
+  const double arithmetic_width =
+      256.0 * std::numeric_limits<double>::epsilon() * arithmetic_scale;
+  const double enclosure_width = geometry.residual.width();
+  // A retained-history token is epistemic: MPFR cannot shrink it.  Require
+  // the token radius to exceed the binary64 rounding envelope and to explain
+  // the whole residual enclosure before selecting the binary64 IVT route.
+  return token_radius > arithmetic_width &&
+      enclosure_width > arithmetic_width &&
+      enclosure_width <= 2.0 * token_radius + arithmetic_width;
+}
+
+bool double_source_normal_is_token_dominated(
+    const CubicHistorySegment& source_segment,
+    const Interval& source_normal,
+    double cell_width) {
+  if (!source_normal.contains_zero() ||
+      (source_segment.position_error() <= 0.0 &&
+       source_segment.velocity_error() <= 0.0)) {
+    return false;
+  }
+  const double coordinate_radius = std::sqrt(3.0);
+  const double direction_scale = std::max(
+      cell_width, 256.0 * std::numeric_limits<double>::epsilon());
+  const double token_radius =
+      coordinate_radius * source_segment.velocity_error() +
+      4.0 * coordinate_radius * source_segment.position_error() /
+          direction_scale;
+  const double arithmetic_width =
+      256.0 * std::numeric_limits<double>::epsilon() *
+      std::max({1.0, std::abs(source_normal.lower()),
+                std::abs(source_normal.upper())});
+  const double zero_overlap = std::min(
+      std::abs(source_normal.lower()), std::abs(source_normal.upper()));
+  return source_normal.width() > arithmetic_width &&
+      token_radius > arithmetic_width &&
+      source_normal.width() <= 2.0 * token_radius + arithmetic_width &&
+      zero_overlap <= 2.0 * token_radius + arithmetic_width;
+}
+
+std::optional<std::pair<double, double>> surround_double_root(
+    const DoubleReceiverState& receiver,
+    const CubicHistorySegment& source_segment,
+    const Interval& reception,
+    const Interval& field_speed,
+    double point,
+    double bracket_lower,
+    double bracket_upper,
+    double tolerance) {
+  double radius = tolerance / 64.0;
+  for (unsigned stage = 0; stage <= 5; ++stage) {
+    const double lower = std::max(
+        bracket_lower,
+        std::nextafter(point - radius,
+                       -std::numeric_limits<double>::infinity()));
+    const double upper = std::min(
+        bracket_upper,
+        std::nextafter(point + radius,
+                       std::numeric_limits<double>::infinity()));
+    if (lower < point && point < upper && upper - lower <= tolerance) {
+      const int lower_sign =
+          double_geometry(receiver, source_segment, reception,
+                          Interval::point(lower), field_speed)
+              .residual.strict_sign();
+      const int upper_sign =
+          double_geometry(receiver, source_segment, reception,
+                          Interval::point(upper), field_speed)
+              .residual.strict_sign();
+      if (lower_sign != 0 && upper_sign != 0 && lower_sign != upper_sign) {
+        return std::make_pair(lower, upper);
+      }
+    }
+    radius *= 2.0;
+  }
+  return std::nullopt;
+}
+
+std::optional<DoubleRoot> surround_double_segment_join_root(
+    const DoubleReceiverState& receiver,
+    const CubicHistorySegment& left_segment,
+    const CubicHistorySegment& right_segment,
+    std::size_t left_segment_index,
+    std::size_t right_segment_index,
+    const Interval& reception,
+    const Interval& field_speed,
+    double search_lower,
+    double search_upper,
+    double tolerance) {
+  const double boundary = left_segment.t_end();
+  if (boundary <= search_lower || boundary >= search_upper) {
+    return std::nullopt;
+  }
+  double radius = tolerance / 64.0;
+  for (unsigned stage = 0; stage <= 5; ++stage) {
+    const double lower = std::max(
+        search_lower,
+        std::nextafter(boundary - radius,
+                       -std::numeric_limits<double>::infinity()));
+    const double upper = std::min(
+        search_upper,
+        std::nextafter(boundary + radius,
+                       std::numeric_limits<double>::infinity()));
+    if (!(lower < boundary && boundary < upper) ||
+        upper - lower > tolerance) {
+      radius *= 2.0;
+      continue;
+    }
+    const int lower_sign =
+        double_geometry(receiver, left_segment, reception,
+                        Interval::point(lower), field_speed)
+            .residual.strict_sign();
+    const int upper_sign =
+        double_geometry(receiver, right_segment, reception,
+                        Interval::point(upper), field_speed)
+            .residual.strict_sign();
+    if (lower_sign == 0 || upper_sign == 0 || lower_sign == upper_sign) {
+      radius *= 2.0;
+      continue;
+    }
+
+    const auto left_geometry = double_geometry(
+        receiver, left_segment, reception, Interval(lower, boundary),
+        field_speed);
+    const auto right_geometry = double_geometry(
+        receiver, right_segment, reception, Interval(boundary, upper),
+        field_speed);
+    if (!left_geometry.source_normal.has_value() ||
+        !right_geometry.source_normal.has_value() ||
+        !left_geometry.receiver_normal.has_value() ||
+        !right_geometry.receiver_normal.has_value()) {
+      return std::nullopt;
+    }
+    const Interval source_normal = left_geometry.source_normal->hull(
+        *right_geometry.source_normal);
+    if (source_normal.strict_sign() == 0 ||
+        source_normal.strict_sign() !=
+            left_geometry.source_normal->strict_sign() ||
+        source_normal.strict_sign() !=
+            right_geometry.source_normal->strict_sign()) {
+      return std::nullopt;
+    }
+    return DoubleRoot{
+        lower,
+        upper,
+        source_normal,
+        left_geometry.receiver_normal->hull(*right_geometry.receiver_normal),
+        {left_segment_index, right_segment_index},
+    };
+  }
+  return std::nullopt;
 }
 
 DoubleAttempt run_double_attempt(const ExactPairRequest& request) {
@@ -228,12 +460,72 @@ DoubleAttempt run_double_attempt(const ExactPairRequest& request) {
       request.receiver->velocity_hull(reception),
       same_retained_history,
       same_retained_history ? request.source : nullptr};
+  const double receiver_normal_abs_bound =
+      (field_speed + norm(receiver_state.velocity)).upper();
+  const Interval fallback_receiver_normal =
+      Interval::point(0.0).inflate(receiver_normal_abs_bound);
+  const auto& receiver_segment = request.receiver->segments()[
+      request.receiver->segment_index_at(reception_value)];
 
+  bool warm_start_eligible = false;
+  if (request.warm_start != nullptr &&
+      request.warm_start->certificate != nullptr &&
+      request.warm_start->receiver != nullptr &&
+      request.warm_start->source != nullptr) {
+    const auto& prior = *request.warm_start->certificate;
+    const auto& prior_receiver = *request.warm_start->receiver;
+    const auto& prior_source = *request.warm_start->source;
+    const double prior_reception =
+        parse_double(prior.reception_time, "warm-start reception time");
+    const Interval prior_reception_interval =
+        Interval::decimal_token(prior.reception_time);
+    warm_start_eligible =
+        prior.status == "certified_complete" &&
+        prior.root_free_complement &&
+        prior.field_speed == request.field_speed &&
+        prior.receiver_history_id == prior_receiver.history_id() &&
+        prior.source_history_id == prior_source.history_id() &&
+        prior_receiver.history_id() == request.receiver->history_id() &&
+        prior_source.history_id() == request.source->history_id() &&
+        prior_receiver.covers(prior_reception_interval);
+    if (warm_start_eligible) {
+      const Interval receiver_displacement = norm(subtract(
+          receiver_state.position,
+          prior_receiver.position_hull(prior_reception_interval)));
+      const Interval reception_drift = field_speed * Interval::point(
+          std::abs(reception_value - prior_reception));
+      double residual_drift_upper =
+          (receiver_displacement + reception_drift).upper();
+      const Interval reception_span(
+          std::min(reception_value, prior_reception),
+          std::max(reception_value, prior_reception));
+      if (request.receiver->covers(reception_span)) {
+        const Interval candidate_correction = norm(subtract(
+            request.receiver->position_hull(prior_reception_interval),
+            prior_receiver.position_hull(prior_reception_interval)));
+        const Interval receiver_normal_abs =
+            field_speed + norm(request.receiver->velocity_hull(reception_span));
+        const Interval identity_drift = candidate_correction +
+            receiver_normal_abs * Interval::point(
+                std::abs(reception_value - prior_reception));
+        residual_drift_upper =
+            std::min(residual_drift_upper, identity_drift.upper());
+      }
+      attempt.warm_residual_drift_upper = residual_drift_upper;
+    }
+  }
+
+  struct WarmCellView {
+    double lower;
+    double upper;
+    Interval residual;
+  };
   struct Cell {
     std::size_t segment_index;
     double lower;
     double upper;
     std::size_t depth;
+    const WarmCellView* warm_cell = nullptr;
   };
 
   std::vector<Cell> cells;
@@ -250,11 +542,70 @@ DoubleAttempt run_double_attempt(const ExactPairRequest& request) {
     const double lower = std::max(search_lower, segment.t_start());
     const double upper = std::min(search_upper, segment.t_end());
     if (lower < upper) {
-      cells.push_back({index, lower, upper, 0});
+      cells.push_back({index, lower, upper, 0, nullptr});
     }
   }
   if (cells.empty()) {
     throw std::out_of_range("root search has no covered source segment");
+  }
+  std::vector<std::vector<WarmCellView>> warm_cells_by_segment;
+  if (warm_start_eligible &&
+      !request.warm_start->certificate->root_free_cells.empty()) {
+    warm_cells_by_segment.resize(request.source->segments().size());
+    for (const auto& prior_cell :
+         request.warm_start->certificate->root_free_cells) {
+      const std::size_t index = prior_cell.source_segment_index;
+      if (index >= request.source->segments().size() ||
+          index >= request.warm_start->source->segments().size() ||
+          !same_segment_tokens(
+              request.source->segments()[index],
+              request.warm_start->source->segments()[index])) {
+        continue;
+      }
+      warm_cells_by_segment[index].push_back({
+          .lower = parse_double(
+              prior_cell.lower, "warm-start cell lower"),
+          .upper = parse_double(
+              prior_cell.upper, "warm-start cell upper"),
+          .residual = Interval(
+              parse_double(prior_cell.residual_lower,
+                           "warm-start residual lower"),
+              parse_double(prior_cell.residual_upper,
+                           "warm-start residual upper")),
+      });
+    }
+    for (auto& segment_cells : warm_cells_by_segment) {
+      std::sort(
+          segment_cells.begin(), segment_cells.end(),
+          [](const auto& left, const auto& right) {
+            return left.lower < right.lower;
+          });
+    }
+    std::vector<Cell> partitioned;
+    for (const auto& base : cells) {
+      double cursor = base.lower;
+      for (const auto& prior_cell :
+           warm_cells_by_segment[base.segment_index]) {
+        const double lower = std::max(
+            cursor, std::max(base.lower, prior_cell.lower));
+        const double upper = std::min(base.upper, prior_cell.upper);
+        if (!(lower < upper)) {
+          continue;
+        }
+        if (cursor < lower) {
+          partitioned.push_back(
+              {base.segment_index, cursor, lower, 0, nullptr});
+        }
+        partitioned.push_back(
+            {base.segment_index, lower, upper, 0, &prior_cell});
+        cursor = upper;
+      }
+      if (cursor < base.upper) {
+        partitioned.push_back(
+            {base.segment_index, cursor, base.upper, 0, nullptr});
+      }
+    }
+    cells = std::move(partitioned);
   }
   std::vector<bool> subfield_suffix(
       request.source->segments().size() + 1U, true);
@@ -285,10 +636,88 @@ DoubleAttempt run_double_attempt(const ExactPairRequest& request) {
             field_speed.lower();
   };
 
+  auto add_token_dominated_endpoint_root = [&] (
+      const CubicHistorySegment& source_segment,
+      std::size_t segment_index,
+      double point,
+      double cell_lower,
+      double cell_upper,
+      const DoubleGeometry& point_geometry) {
+    if (!double_point_residual_is_token_dominated(
+            request, receiver_segment, source_segment, point_geometry,
+            reception_value, point, field_speed_value,
+            same_retained_history)) {
+      return false;
+    }
+
+    if (const auto surrounded = surround_double_root(
+            receiver_state, source_segment, reception, field_speed, point,
+            cell_lower, cell_upper, tolerance);
+        surrounded.has_value()) {
+      const auto root_geometry = double_geometry(
+          receiver_state, source_segment, reception,
+          Interval(surrounded->first, surrounded->second), field_speed);
+      if (!root_geometry.source_normal.has_value() ||
+          !root_geometry.receiver_normal.has_value() ||
+          root_geometry.source_normal->contains_zero()) {
+        return false;
+      }
+      if (point == search_lower) {
+        attempt.memory_boundary_contact = true;
+      }
+      attempt.roots.push_back({
+          surrounded->first,
+          surrounded->second,
+          *root_geometry.source_normal,
+          *root_geometry.receiver_normal,
+          {segment_index},
+      });
+      return true;
+    }
+
+    std::optional<DoubleRoot> join_root;
+    if (point == source_segment.t_end() &&
+        segment_index + 1U < request.source->segments().size()) {
+      join_root = surround_double_segment_join_root(
+          receiver_state, source_segment,
+          request.source->segments()[segment_index + 1U], segment_index,
+          segment_index + 1U, reception, field_speed, search_lower,
+          search_upper, tolerance);
+    } else if (point == source_segment.t_start() && segment_index > 0U) {
+      join_root = surround_double_segment_join_root(
+          receiver_state, request.source->segments()[segment_index - 1U],
+          source_segment, segment_index - 1U, segment_index, reception,
+          field_speed, search_lower, search_upper, tolerance);
+    }
+    if (!join_root.has_value()) {
+      return false;
+    }
+    attempt.roots.push_back(*join_root);
+    ++attempt.excluded_cells;
+    return true;
+  };
+
   std::function<void(const Cell&)> classify;
   classify = [&](const Cell& cell) {
     if (!attempt.complete) {
       return;
+    }
+    if (cell.warm_cell != nullptr) {
+      const Interval carried_residual =
+          cell.warm_cell->residual.inflate(
+              attempt.warm_residual_drift_upper);
+      if (carried_residual.excludes_zero()) {
+        ++attempt.excluded_cells;
+        ++attempt.warm_excluded_cells;
+        attempt.root_free_cells.push_back({
+            cell.segment_index,
+            cell.lower,
+            cell.upper,
+            carried_residual,
+            fallback_receiver_normal,
+        });
+        return;
+      }
     }
     ++attempt.visited_cells;
     if (attempt.visited_cells > request.max_cells ||
@@ -332,6 +761,13 @@ DoubleAttempt run_double_attempt(const ExactPairRequest& request) {
         receiver_state, source_segment, reception, emission, field_speed);
     if (geometry.residual.excludes_zero()) {
       ++attempt.excluded_cells;
+      attempt.root_free_cells.push_back({
+          cell.segment_index,
+          cell.lower,
+          cell.upper,
+          geometry.residual,
+          geometry.receiver_normal.value_or(fallback_receiver_normal),
+      });
       return;
     }
     if (!geometry.source_normal.has_value() ||
@@ -340,6 +776,11 @@ DoubleAttempt run_double_attempt(const ExactPairRequest& request) {
           cell.depth == request.max_depth) {
         attempt.complete = false;
         attempt.caustic_candidate = true;
+        attempt.token_dominated_failure =
+            geometry.source_normal.has_value() &&
+            double_source_normal_is_token_dominated(
+                source_segment, *geometry.source_normal,
+                cell.upper - cell.lower);
         ++attempt.difficult_cells;
         return;
       }
@@ -374,9 +815,39 @@ DoubleAttempt run_double_attempt(const ExactPairRequest& request) {
     }
     if (lower_sign != 0 && lower_sign == upper_sign) {
       ++attempt.excluded_cells;
+      const Interval endpoint_residual =
+          lower_geometry.residual.hull(upper_geometry.residual);
+      const Interval endpoint_receiver_normal =
+          lower_geometry.receiver_normal.has_value() &&
+                  upper_geometry.receiver_normal.has_value()
+              ? lower_geometry.receiver_normal->hull(
+                    *upper_geometry.receiver_normal)
+              : fallback_receiver_normal;
+      attempt.root_free_cells.push_back({
+          cell.segment_index,
+          cell.lower,
+          cell.upper,
+          endpoint_residual,
+          endpoint_receiver_normal,
+      });
       return;
     }
-    if (lower_sign == 0 || upper_sign == 0) {
+    if (lower_sign == 0) {
+      if (add_token_dominated_endpoint_root(
+              source_segment, cell.segment_index, cell.lower, cell.lower,
+              cell.upper, lower_geometry)) {
+        return;
+      }
+      attempt.complete = false;
+      ++attempt.difficult_cells;
+      return;
+    }
+    if (upper_sign == 0) {
+      if (add_token_dominated_endpoint_root(
+              source_segment, cell.segment_index, cell.upper, cell.lower,
+              cell.upper, upper_geometry)) {
+        return;
+      }
       attempt.complete = false;
       ++attempt.difficult_cells;
       return;
@@ -394,14 +865,38 @@ DoubleAttempt run_double_attempt(const ExactPairRequest& request) {
         ++attempt.difficult_cells;
         return;
       }
-      const int middle_sign =
-          double_geometry(receiver_state, source_segment, reception,
-                          Interval::point(middle), field_speed)
-              .residual.strict_sign();
+      const auto middle_geometry = double_geometry(
+          receiver_state, source_segment, reception, Interval::point(middle),
+          field_speed);
+      int middle_sign = middle_geometry.residual.strict_sign();
       if (middle_sign == 0) {
-        attempt.complete = false;
-        ++attempt.difficult_cells;
-        return;
+        if (!double_point_residual_is_token_dominated(
+                request, receiver_segment, source_segment, middle_geometry,
+                reception_value, middle, field_speed_value,
+                same_retained_history)) {
+          attempt.complete = false;
+          ++attempt.difficult_cells;
+          return;
+        }
+        const auto surrounded = surround_double_root(
+            receiver_state, source_segment, reception, field_speed, middle,
+            lower, upper, tolerance);
+        if (!surrounded.has_value()) {
+          attempt.complete = false;
+          ++attempt.difficult_cells;
+          return;
+        }
+        lower = surrounded->first;
+        upper = surrounded->second;
+        refined_lower_sign =
+            double_geometry(receiver_state, source_segment, reception,
+                            Interval::point(lower), field_speed)
+                .residual.strict_sign();
+        refined_upper_sign =
+            double_geometry(receiver_state, source_segment, reception,
+                            Interval::point(upper), field_speed)
+                .residual.strict_sign();
+        break;
       }
       if (middle_sign == refined_lower_sign) {
         lower = middle;
@@ -523,6 +1018,54 @@ class MpFloat {
   mpfr_prec_t bits_;
 };
 
+struct MpDecimalCache {
+  mpfr_prec_t bits = 0;
+  std::unordered_map<std::string, MpFloat> downward;
+  std::unordered_map<std::string, MpFloat> upward;
+  std::unordered_map<std::string, MpFloat> nearest;
+};
+
+MpDecimalCache& mp_decimal_cache() {
+  thread_local MpDecimalCache cache;
+  return cache;
+}
+
+void reset_mp_decimal_cache(mpfr_prec_t bits) {
+  auto& cache = mp_decimal_cache();
+  cache.bits = bits;
+  cache.downward.clear();
+  cache.upward.clear();
+  cache.nearest.clear();
+}
+
+// Segment coefficients, error radii, and time bounds are immutable decimal
+// tokens during one precision attempt. Parsing each token once per directed
+// rounding mode preserves the exact MPFR enclosure: subsequent mpfr_set copies
+// at the same precision are exact, independent of the requested rounding mode.
+MpFloat mp_cached_decimal(
+    const std::string& token,
+    mpfr_prec_t bits,
+    mpfr_rnd_t rounding) {
+  auto& cache = mp_decimal_cache();
+  if (cache.bits != bits) {
+    reset_mp_decimal_cache(bits);
+  }
+  auto* values = &cache.nearest;
+  if (rounding == MPFR_RNDD) {
+    values = &cache.downward;
+  } else if (rounding == MPFR_RNDU) {
+    values = &cache.upward;
+  }
+  const auto found = values->find(token);
+  if (found != values->end()) {
+    return found->second;
+  }
+  auto [inserted, was_inserted] = values->emplace(
+      token, MpFloat::decimal(token, bits, rounding));
+  (void)was_inserted;
+  return inserted->second;
+}
+
 MpFloat mp_add(
     const MpFloat& left,
     const MpFloat& right,
@@ -584,8 +1127,8 @@ class MpInterval {
 
   static MpInterval decimal(const std::string& token, mpfr_prec_t bits) {
     return MpInterval(
-        MpFloat::decimal(token, bits, MPFR_RNDD),
-        MpFloat::decimal(token, bits, MPFR_RNDU));
+        mp_cached_decimal(token, bits, MPFR_RNDD),
+        mp_cached_decimal(token, bits, MPFR_RNDU));
   }
 
   static MpInterval point(const MpFloat& value) {
@@ -617,6 +1160,9 @@ class MpInterval {
   }
   [[nodiscard]] MpInterval inflate(const std::string& radius_token) const {
     const MpInterval radius = decimal(radius_token, bits());
+    return inflate(radius);
+  }
+  [[nodiscard]] MpInterval inflate(const MpInterval& radius) const {
     if (radius.lower().compare_zero() < 0) {
       throw std::invalid_argument("MPFR inflation radius must be nonnegative");
     }
@@ -642,14 +1188,16 @@ MpInterval operator-(const MpInterval& left, const MpInterval& right) {
       mp_subtract(left.upper(), right.lower(), MPFR_RNDU));
 }
 
-MpFloat minimum(std::vector<MpFloat>& values) {
+template <std::size_t Size>
+MpFloat minimum(const std::array<MpFloat, Size>& values) {
   return *std::min_element(values.begin(), values.end(),
                            [](const auto& left, const auto& right) {
                              return left.compare(right) < 0;
                            });
 }
 
-MpFloat maximum(std::vector<MpFloat>& values) {
+template <std::size_t Size>
+MpFloat maximum(const std::array<MpFloat, Size>& values) {
   return *std::max_element(values.begin(), values.end(),
                            [](const auto& left, const auto& right) {
                              return left.compare(right) < 0;
@@ -657,18 +1205,18 @@ MpFloat maximum(std::vector<MpFloat>& values) {
 }
 
 MpInterval operator*(const MpInterval& left, const MpInterval& right) {
-  std::vector<MpFloat> lower_candidates;
-  std::vector<MpFloat> upper_candidates;
-  lower_candidates.reserve(4);
-  upper_candidates.reserve(4);
-  for (const auto* left_value : {&left.lower(), &left.upper()}) {
-    for (const auto* right_value : {&right.lower(), &right.upper()}) {
-      lower_candidates.push_back(
-          mp_multiply(*left_value, *right_value, MPFR_RNDD));
-      upper_candidates.push_back(
-          mp_multiply(*left_value, *right_value, MPFR_RNDU));
-    }
-  }
+  const std::array<MpFloat, 4> lower_candidates = {
+      mp_multiply(left.lower(), right.lower(), MPFR_RNDD),
+      mp_multiply(left.lower(), right.upper(), MPFR_RNDD),
+      mp_multiply(left.upper(), right.lower(), MPFR_RNDD),
+      mp_multiply(left.upper(), right.upper(), MPFR_RNDD),
+  };
+  const std::array<MpFloat, 4> upper_candidates = {
+      mp_multiply(left.lower(), right.lower(), MPFR_RNDU),
+      mp_multiply(left.lower(), right.upper(), MPFR_RNDU),
+      mp_multiply(left.upper(), right.lower(), MPFR_RNDU),
+      mp_multiply(left.upper(), right.upper(), MPFR_RNDU),
+  };
   return MpInterval(minimum(lower_candidates), maximum(upper_candidates));
 }
 
@@ -695,11 +1243,11 @@ MpInterval mp_square(const MpInterval& value) {
                         : std::move(upper_square);
     return MpInterval(zero, std::move(upper));
   }
-  std::vector<MpFloat> lower_candidates = {
+  const std::array<MpFloat, 2> lower_candidates = {
       mp_multiply(value.lower(), value.lower(), MPFR_RNDD),
       mp_multiply(value.upper(), value.upper(), MPFR_RNDD),
   };
-  std::vector<MpFloat> upper_candidates = {
+  const std::array<MpFloat, 2> upper_candidates = {
       mp_multiply(value.lower(), value.lower(), MPFR_RNDU),
       mp_multiply(value.upper(), value.upper(), MPFR_RNDU),
   };
@@ -742,66 +1290,135 @@ MpVector mp_divide_vector(const MpVector& value, const MpInterval& divisor) {
   return {value[0] / divisor, value[1] / divisor, value[2] / divisor};
 }
 
-MpInterval mp_polynomial(
-    const CubicHistorySegment& segment,
-    std::size_t axis,
-    const MpInterval& time,
+// One immutable segment image for one MPFR precision attempt. Position and
+// derivative coefficients use the same directed interval operations as the
+// former per-evaluation path; compiling them only changes when that work runs.
+struct MpCompiledSegment {
+  const CubicHistorySegment* source;
+  MpInterval start_time;
+  MpInterval end_time;
+  std::array<std::array<MpInterval, 4>, 3> position_coefficients;
+  std::array<std::array<MpInterval, 3>, 3> velocity_coefficients;
+  MpInterval position_error;
+  MpInterval velocity_error;
+};
+
+std::array<MpInterval, 4> mp_compile_position_axis(
+    const auto& tokens,
     mpfr_prec_t bits) {
-  const auto& coefficients = segment.coefficient_tokens()[axis];
-  const MpInterval local_time =
-      time - MpInterval::decimal(segment.t_start_token(), bits);
-  MpInterval result = MpInterval::decimal(coefficients[3], bits);
+  return {
+      MpInterval::decimal(tokens[0], bits),
+      MpInterval::decimal(tokens[1], bits),
+      MpInterval::decimal(tokens[2], bits),
+      MpInterval::decimal(tokens[3], bits),
+  };
+}
+
+std::array<MpInterval, 3> mp_compile_velocity_axis(
+    const std::array<MpInterval, 4>& position_coefficients,
+    const MpInterval& two,
+    const MpInterval& three) {
+  return {
+      position_coefficients[1],
+      two * position_coefficients[2],
+      three * position_coefficients[3],
+  };
+}
+
+MpCompiledSegment mp_compile_segment(
+    const CubicHistorySegment& segment,
+    const MpInterval& two,
+    const MpInterval& three,
+    mpfr_prec_t bits) {
+  const auto& tokens = segment.coefficient_tokens();
+  std::array<std::array<MpInterval, 4>, 3> position_coefficients = {
+      mp_compile_position_axis(tokens[0], bits),
+      mp_compile_position_axis(tokens[1], bits),
+      mp_compile_position_axis(tokens[2], bits),
+  };
+  std::array<std::array<MpInterval, 3>, 3> velocity_coefficients = {
+      mp_compile_velocity_axis(position_coefficients[0], two, three),
+      mp_compile_velocity_axis(position_coefficients[1], two, three),
+      mp_compile_velocity_axis(position_coefficients[2], two, three),
+  };
+  return {
+      .source = &segment,
+      .start_time = MpInterval::decimal(segment.t_start_token(), bits),
+      .end_time = MpInterval::decimal(segment.t_end_token(), bits),
+      .position_coefficients = std::move(position_coefficients),
+      .velocity_coefficients = std::move(velocity_coefficients),
+      .position_error =
+          MpInterval::decimal(segment.position_error_token(), bits),
+      .velocity_error =
+          MpInterval::decimal(segment.velocity_error_token(), bits),
+  };
+}
+
+std::vector<MpCompiledSegment> mp_compile_history(
+    const RetainedHistory& history,
+    mpfr_prec_t bits) {
+  const MpInterval two = MpInterval::decimal("2", bits);
+  const MpInterval three = MpInterval::decimal("3", bits);
+  std::vector<MpCompiledSegment> compiled;
+  compiled.reserve(history.segments().size());
+  for (const auto& segment : history.segments()) {
+    compiled.push_back(mp_compile_segment(segment, two, three, bits));
+  }
+  return compiled;
+}
+
+MpInterval mp_polynomial(
+    const MpCompiledSegment& segment,
+    std::size_t axis,
+    const MpInterval& time) {
+  const auto& coefficients = segment.position_coefficients[axis];
+  const MpInterval local_time = time - segment.start_time;
+  MpInterval result = coefficients[3];
   for (int index = 2; index >= 0; --index) {
     result = result * local_time +
-             MpInterval::decimal(coefficients[static_cast<std::size_t>(index)], bits);
+        coefficients[static_cast<std::size_t>(index)];
   }
+  return result;
+}
+
+MpInterval mp_velocity_polynomial(
+    const MpCompiledSegment& segment,
+    std::size_t axis,
+    const MpInterval& time) {
+  const auto& coefficients = segment.velocity_coefficients[axis];
+  const MpInterval local_time = time - segment.start_time;
+  MpInterval result = coefficients[2];
+  result = result * local_time + coefficients[1];
+  result = result * local_time + coefficients[0];
   return result;
 }
 
 MpVector mp_position(
-    const CubicHistorySegment& segment,
-    const MpInterval& time,
-    mpfr_prec_t bits) {
+    const MpCompiledSegment& segment,
+    const MpInterval& time) {
   return {
-      mp_polynomial(segment, 0, time, bits).inflate(segment.position_error_token()),
-      mp_polynomial(segment, 1, time, bits).inflate(segment.position_error_token()),
-      mp_polynomial(segment, 2, time, bits).inflate(segment.position_error_token()),
+      mp_polynomial(segment, 0, time).inflate(segment.position_error),
+      mp_polynomial(segment, 1, time).inflate(segment.position_error),
+      mp_polynomial(segment, 2, time).inflate(segment.position_error),
   };
 }
 
 MpVector mp_velocity(
-    const CubicHistorySegment& segment,
-    const MpInterval& time,
-    mpfr_prec_t bits) {
-  const MpInterval local_time =
-      time - MpInterval::decimal(segment.t_start_token(), bits);
-  const MpInterval two = MpInterval::decimal("2", bits);
-  const MpInterval three = MpInterval::decimal("3", bits);
-  MpVector result = {
-      MpInterval::decimal("0", bits), MpInterval::decimal("0", bits),
-      MpInterval::decimal("0", bits)};
-  for (std::size_t axis = 0; axis < 3; ++axis) {
-    const auto& coefficients = segment.coefficient_tokens()[axis];
-    MpInterval derivative =
-        three * MpInterval::decimal(coefficients[3], bits);
-    derivative = derivative * local_time +
-                 two * MpInterval::decimal(coefficients[2], bits);
-    derivative = derivative * local_time +
-                 MpInterval::decimal(coefficients[1], bits);
-    result[axis] = derivative.inflate(segment.velocity_error_token());
-  }
-  return result;
+    const MpCompiledSegment& segment,
+    const MpInterval& time) {
+  return {
+      mp_velocity_polynomial(segment, 0, time).inflate(segment.velocity_error),
+      mp_velocity_polynomial(segment, 1, time).inflate(segment.velocity_error),
+      mp_velocity_polynomial(segment, 2, time).inflate(segment.velocity_error),
+  };
 }
 
-const CubicHistorySegment& mp_segment_at(
-    const RetainedHistory& history,
+const MpCompiledSegment& mp_segment_at(
+    const std::vector<MpCompiledSegment>& history,
     const MpFloat& time) {
-  for (const auto& segment : history.segments()) {
-    const MpFloat start =
-        MpFloat::decimal(segment.t_start_token(), time.bits(), MPFR_RNDD);
-    const MpFloat end =
-        MpFloat::decimal(segment.t_end_token(), time.bits(), MPFR_RNDU);
-    if (time.compare(start) >= 0 && time.compare(end) <= 0) {
+  for (const auto& segment : history) {
+    if (time.compare(segment.start_time.lower()) >= 0 &&
+        time.compare(segment.end_time.upper()) <= 0) {
       return segment;
     }
   }
@@ -818,52 +1435,49 @@ struct MpReceiverState {
   MpVector position;
   MpVector velocity;
   bool correlated_self_chord = false;
-  const RetainedHistory* correlated_history = nullptr;
+  const std::vector<MpCompiledSegment>* correlated_history = nullptr;
 };
 
 std::optional<MpVector> mp_correlated_self_displacement(
     const MpReceiverState& receiver,
     const MpInterval& reception,
-    const MpInterval& emission,
-    mpfr_prec_t bits) {
+    const MpInterval& emission) {
   if (!receiver.correlated_self_chord ||
       receiver.correlated_history == nullptr ||
       emission.upper().compare(reception.lower()) > 0) {
     return std::nullopt;
   }
+  const mpfr_prec_t bits = reception.bits();
   MpVector result{
       MpInterval::decimal("0", bits),
       MpInterval::decimal("0", bits),
       MpInterval::decimal("0", bits)};
   bool started = false;
-  for (const auto& segment : receiver.correlated_history->segments()) {
-    const MpInterval segment_start =
-        MpInterval::decimal(segment.t_start_token(), bits);
-    const MpInterval segment_end =
-        MpInterval::decimal(segment.t_end_token(), bits);
+  for (const auto& segment : *receiver.correlated_history) {
     const bool contains_emission =
-        emission.lower().compare(segment_start.lower()) >= 0 &&
-        emission.upper().compare(segment_end.upper()) <= 0;
+        emission.lower().compare(segment.start_time.lower()) >= 0 &&
+        emission.upper().compare(segment.end_time.upper()) <= 0;
     const bool contains_reception =
-        reception.lower().compare(segment_start.lower()) >= 0 &&
-        reception.upper().compare(segment_end.upper()) <= 0;
+        reception.lower().compare(segment.start_time.lower()) >= 0 &&
+        reception.upper().compare(segment.end_time.upper()) <= 0;
     if (!started && !contains_emission) {
       continue;
     }
     started = true;
-    const MpInterval local_lower = contains_emission ? emission : segment_start;
-    const MpInterval local_upper = contains_reception ? reception : segment_end;
+    const MpInterval& local_lower =
+        contains_emission ? emission : segment.start_time;
+    const MpInterval& local_upper =
+        contains_reception ? reception : segment.end_time;
     if (local_lower.upper().compare(local_upper.lower()) > 0) {
       return std::nullopt;
     }
     const MpInterval duration = local_upper - local_lower;
     const MpFloat radius =
-        (MpInterval::decimal(segment.velocity_error_token(), bits) * duration)
-            .upper();
+        (segment.velocity_error * duration).upper();
     for (std::size_t axis = 0; axis < result.size(); ++axis) {
       MpInterval contribution =
-          mp_polynomial(segment, axis, local_upper, bits) -
-          mp_polynomial(segment, axis, local_lower, bits);
+          mp_polynomial(segment, axis, local_upper) -
+          mp_polynomial(segment, axis, local_lower);
       contribution = MpInterval(
           mp_subtract(contribution.lower(), radius, MPFR_RNDD),
           mp_add(contribution.upper(), radius, MPFR_RNDU));
@@ -878,18 +1492,17 @@ std::optional<MpVector> mp_correlated_self_displacement(
 
 MpGeometry mp_geometry(
     const MpReceiverState& receiver,
-    const CubicHistorySegment& source_segment,
+    const MpCompiledSegment& source_segment,
     const MpInterval& reception,
     const MpInterval& emission,
-    const MpInterval& field_speed,
-    mpfr_prec_t bits) {
-  const auto source_velocity = mp_velocity(source_segment, emission, bits);
+    const MpInterval& field_speed) {
+  const auto source_velocity = mp_velocity(source_segment, emission);
   const auto correlated_displacement =
-      mp_correlated_self_displacement(receiver, reception, emission, bits);
+      mp_correlated_self_displacement(receiver, reception, emission);
   const auto displacement = correlated_displacement.has_value()
       ? *correlated_displacement
       : mp_subtract_vector(
-            receiver.position, mp_position(source_segment, emission, bits));
+            receiver.position, mp_position(source_segment, emission));
   const MpInterval separation = mp_norm(displacement);
   const MpInterval residual = separation - field_speed * (reception - emission);
   if (separation.contains_zero()) {
@@ -987,7 +1600,7 @@ bool mp_width_within(
 
 std::optional<std::pair<MpFloat, MpFloat>> surround_mp_root(
     const MpReceiverState& receiver,
-    const CubicHistorySegment& source_segment,
+    const MpCompiledSegment& source_segment,
     const MpInterval& reception,
     const MpInterval& field_speed,
     const MpFloat& point,
@@ -997,10 +1610,8 @@ std::optional<std::pair<MpFloat, MpFloat>> surround_mp_root(
     mpfr_prec_t bits) {
   MpFloat adjacent_lower(point);
   MpFloat adjacent_upper(point);
-  const MpFloat segment_lower = MpFloat::decimal(
-      source_segment.t_start_token(), bits, MPFR_RNDD);
-  const MpFloat segment_upper = MpFloat::decimal(
-      source_segment.t_end_token(), bits, MPFR_RNDU);
+  const MpFloat& segment_lower = source_segment.start_time.lower();
+  const MpFloat& segment_upper = source_segment.end_time.upper();
   for (unsigned stage = 0; stage <= 20; ++stage) {
     const unsigned long advances =
         stage == 0 ? 1UL : (1UL << (stage - 1U));
@@ -1015,12 +1626,12 @@ std::optional<std::pair<MpFloat, MpFloat>> surround_mp_root(
     const int lower_sign =
         mp_geometry(
             receiver, source_segment, reception,
-            MpInterval::point(adjacent_lower), field_speed, bits)
+            MpInterval::point(adjacent_lower), field_speed)
             .residual.strict_sign();
     const int upper_sign =
         mp_geometry(
             receiver, source_segment, reception,
-            MpInterval::point(adjacent_upper), field_speed, bits)
+            MpInterval::point(adjacent_upper), field_speed)
             .residual.strict_sign();
     if (lower_sign != 0 && upper_sign != 0 && lower_sign != upper_sign) {
       return std::make_pair(adjacent_lower, adjacent_upper);
@@ -1045,11 +1656,11 @@ std::optional<std::pair<MpFloat, MpFloat>> surround_mp_root(
     }
     const int lower_sign =
         mp_geometry(receiver, source_segment, reception, MpInterval::point(lower),
-                    field_speed, bits)
+                    field_speed)
             .residual.strict_sign();
     const int upper_sign =
         mp_geometry(receiver, source_segment, reception, MpInterval::point(upper),
-                    field_speed, bits)
+                    field_speed)
             .residual.strict_sign();
     if (lower_sign != 0 && upper_sign != 0 && lower_sign != upper_sign) {
       return std::make_pair(lower, upper);
@@ -1061,8 +1672,8 @@ std::optional<std::pair<MpFloat, MpFloat>> surround_mp_root(
 
 std::optional<MpRoot> surround_mp_segment_join_root(
     const MpReceiverState& receiver,
-    const CubicHistorySegment& left_segment,
-    const CubicHistorySegment& right_segment,
+    const MpCompiledSegment& left_segment,
+    const MpCompiledSegment& right_segment,
     std::size_t left_segment_index,
     std::size_t right_segment_index,
     const MpInterval& reception,
@@ -1071,10 +1682,8 @@ std::optional<MpRoot> surround_mp_segment_join_root(
     const MpFloat& search_upper,
     const MpFloat& tolerance,
     mpfr_prec_t bits) {
-  const MpFloat boundary_lower = MpFloat::decimal(
-      left_segment.t_end_token(), bits, MPFR_RNDD);
-  const MpFloat boundary_upper = MpFloat::decimal(
-      left_segment.t_end_token(), bits, MPFR_RNDU);
+  const MpFloat& boundary_lower = left_segment.end_time.lower();
+  const MpFloat& boundary_upper = left_segment.end_time.upper();
   if (boundary_upper.compare(search_lower) <= 0 ||
       boundary_lower.compare(search_upper) >= 0) {
     return std::nullopt;
@@ -1082,9 +1691,9 @@ std::optional<MpRoot> surround_mp_segment_join_root(
   if (boundary_lower.compare(boundary_upper) == 0) {
     const MpInterval boundary = MpInterval::point(boundary_lower);
     const auto left_residual = mp_geometry(
-        receiver, left_segment, reception, boundary, field_speed, bits).residual;
+        receiver, left_segment, reception, boundary, field_speed).residual;
     const auto right_residual = mp_geometry(
-        receiver, right_segment, reception, boundary, field_speed, bits).residual;
+        receiver, right_segment, reception, boundary, field_speed).residual;
     if (left_residual.is_exact_zero() && right_residual.is_exact_zero()) {
       return std::nullopt;
     }
@@ -1110,11 +1719,11 @@ std::optional<MpRoot> surround_mp_segment_join_root(
 
     const int lower_sign =
         mp_geometry(receiver, left_segment, reception, MpInterval::point(lower),
-                    field_speed, bits)
+                    field_speed)
             .residual.strict_sign();
     const int upper_sign =
         mp_geometry(receiver, right_segment, reception,
-                    MpInterval::point(upper), field_speed, bits)
+                    MpInterval::point(upper), field_speed)
             .residual.strict_sign();
     if (lower_sign == 0 || upper_sign == 0 || lower_sign == upper_sign) {
       mpfr_mul_2ui(radius.raw(), radius.raw(), 1, MPFR_RNDU);
@@ -1123,10 +1732,10 @@ std::optional<MpRoot> surround_mp_segment_join_root(
 
     const auto left_geometry = mp_geometry(
         receiver, left_segment, reception,
-        MpInterval::bounds(lower, boundary_upper), field_speed, bits);
+        MpInterval::bounds(lower, boundary_upper), field_speed);
     const auto right_geometry = mp_geometry(
         receiver, right_segment, reception,
-        MpInterval::bounds(boundary_lower, upper), field_speed, bits);
+        MpInterval::bounds(boundary_lower, upper), field_speed);
     if (!left_geometry.source_normal.has_value() ||
         !right_geometry.source_normal.has_value() ||
         !left_geometry.receiver_normal.has_value() ||
@@ -1153,7 +1762,7 @@ std::optional<MpRoot> surround_mp_segment_join_root(
 
 bool mp_self_endpoint_open_cell_is_root_free(
     const ExactPairRequest& request,
-    const CubicHistorySegment& source_segment,
+    const MpCompiledSegment& source_segment,
     const MpInterval& emission,
     const MpInterval& reception,
     const MpInterval& field_speed,
@@ -1178,7 +1787,7 @@ bool mp_self_endpoint_open_cell_is_root_free(
   if (emission.upper().compare(reception.upper()) != 0) {
     return false;
   }
-  const MpVector velocity = mp_velocity(source_segment, emission, bits);
+  const MpVector velocity = mp_velocity(source_segment, emission);
   const MpInterval speed = mp_norm(velocity);
   if (speed.upper().compare(field_speed.lower()) < 0) {
     return true;
@@ -1194,27 +1803,36 @@ bool mp_self_endpoint_open_cell_is_root_free(
 
 MpAttempt run_mpfr_attempt(const ExactPairRequest& request, unsigned bits_value) {
   const mpfr_prec_t bits = static_cast<mpfr_prec_t>(bits_value);
+  reset_mp_decimal_cache(bits);
   MpAttempt attempt;
   const MpInterval reception =
       MpInterval::decimal(request.reception_time, bits);
   const MpInterval field_speed = MpInterval::decimal(request.field_speed, bits);
   const MpFloat search_lower =
-      MpFloat::decimal(request.search_lower, bits, MPFR_RNDD);
+      mp_cached_decimal(request.search_lower, bits, MPFR_RNDD);
   const MpFloat search_upper =
-      MpFloat::decimal(request.search_upper, bits, MPFR_RNDU);
+      mp_cached_decimal(request.search_upper, bits, MPFR_RNDU);
   const MpFloat tolerance =
-      MpFloat::decimal(request.root_tolerance, bits, MPFR_RNDU);
+      mp_cached_decimal(request.root_tolerance, bits, MPFR_RNDU);
   const bool same_retained_history =
       request.receiver->history_id() == request.source->history_id() &&
       request.receiver->provenance_fingerprint() ==
           request.source->provenance_fingerprint();
+  const auto source_history = mp_compile_history(*request.source, bits);
+  std::optional<std::vector<MpCompiledSegment>> receiver_history_storage;
+  const std::vector<MpCompiledSegment>* receiver_history = &source_history;
+  if (request.receiver != request.source) {
+    receiver_history_storage.emplace(
+        mp_compile_history(*request.receiver, bits));
+    receiver_history = &*receiver_history_storage;
+  }
   const auto& receiver_segment = mp_segment_at(
-      *request.receiver, mp_midpoint(reception.lower(), reception.upper()));
+      *receiver_history, mp_midpoint(reception.lower(), reception.upper()));
   const MpReceiverState receiver_state{
-      mp_position(receiver_segment, reception, bits),
-      mp_velocity(receiver_segment, reception, bits),
+      mp_position(receiver_segment, reception),
+      mp_velocity(receiver_segment, reception),
       same_retained_history,
-      same_retained_history ? request.receiver : nullptr};
+      same_retained_history ? receiver_history : nullptr};
 
   struct Cell {
     std::size_t segment_index;
@@ -1225,28 +1843,24 @@ MpAttempt run_mpfr_attempt(const ExactPairRequest& request, unsigned bits_value)
 
   std::vector<Cell> cells;
   std::size_t first_segment = 0U;
-  std::size_t suffix_upper = request.source->segments().size();
+  std::size_t suffix_upper = source_history.size();
   while (first_segment < suffix_upper) {
     const std::size_t middle =
         first_segment + (suffix_upper - first_segment) / 2U;
-    const MpFloat segment_end = MpFloat::decimal(
-        request.source->segments()[middle].t_end_token(), bits, MPFR_RNDU);
-    if (segment_end.compare(search_lower) <= 0) {
+    if (source_history[middle].end_time.upper().compare(search_lower) <= 0) {
       first_segment = middle + 1U;
     } else {
       suffix_upper = middle;
     }
   }
   for (std::size_t index = first_segment;
-       index < request.source->segments().size(); ++index) {
-    const auto& segment = request.source->segments()[index];
-    const MpFloat segment_lower =
-        MpFloat::decimal(segment.t_start_token(), bits, MPFR_RNDD);
+       index < source_history.size(); ++index) {
+    const auto& segment = source_history[index];
+    const MpFloat& segment_lower = segment.start_time.lower();
     if (segment_lower.compare(search_upper) >= 0) {
       break;
     }
-    const MpFloat segment_upper =
-        MpFloat::decimal(segment.t_end_token(), bits, MPFR_RNDU);
+    const MpFloat& segment_upper = segment.end_time.upper();
     const MpFloat lower =
         search_lower.compare(segment_lower) >= 0 ? search_lower : segment_lower;
     const MpFloat upper =
@@ -1259,14 +1873,12 @@ MpAttempt run_mpfr_attempt(const ExactPairRequest& request, unsigned bits_value)
     throw std::out_of_range("MPFR root search has no covered segment");
   }
   std::vector<bool> subfield_suffix(
-      request.source->segments().size() + 1U, true);
+      source_history.size() + 1U, true);
   if (same_retained_history) {
-    for (std::size_t index = request.source->segments().size(); index-- > 0U;) {
-      const auto& segment = request.source->segments()[index];
-      const MpFloat lower = MpFloat::decimal(
-          segment.t_start_token(), bits, MPFR_RNDD);
-      const MpFloat segment_upper = MpFloat::decimal(
-          segment.t_end_token(), bits, MPFR_RNDU);
+    for (std::size_t index = source_history.size(); index-- > 0U;) {
+      const auto& segment = source_history[index];
+      const MpFloat& lower = segment.start_time.lower();
+      const MpFloat& segment_upper = segment.end_time.upper();
       const MpFloat upper =
           segment_upper.compare(reception.upper()) <= 0
           ? segment_upper : reception.upper();
@@ -1274,7 +1886,7 @@ MpAttempt run_mpfr_attempt(const ExactPairRequest& request, unsigned bits_value)
       if (lower.compare(upper) < 0) {
         segment_subfield =
             mp_norm(mp_velocity(
-                segment, MpInterval::bounds(lower, upper), bits))
+                segment, MpInterval::bounds(lower, upper)))
                 .upper()
                 .compare(field_speed.lower()) < 0;
       }
@@ -1287,19 +1899,18 @@ MpAttempt run_mpfr_attempt(const ExactPairRequest& request, unsigned bits_value)
         !subfield_suffix[cell.segment_index + 1U]) {
       return false;
     }
-    const auto& segment = request.source->segments()[cell.segment_index];
-    const MpFloat segment_upper = MpFloat::decimal(
-        segment.t_end_token(), bits, MPFR_RNDU);
+    const auto& segment = source_history[cell.segment_index];
+    const MpFloat& segment_upper = segment.end_time.upper();
     const MpFloat upper = segment_upper.compare(reception.upper()) <= 0
         ? segment_upper : reception.upper();
     return cell.lower.compare(upper) < 0 &&
         mp_norm(mp_velocity(
-            segment, MpInterval::bounds(cell.lower, upper), bits))
+            segment, MpInterval::bounds(cell.lower, upper)))
             .upper()
             .compare(field_speed.lower()) < 0;
   };
 
-  auto add_endpoint_root = [&](const CubicHistorySegment& source_segment,
+  auto add_endpoint_root = [&](const MpCompiledSegment& source_segment,
                                std::size_t segment_index,
                                const MpFloat& point,
                                const MpFloat& cell_lower,
@@ -1313,20 +1924,18 @@ MpAttempt run_mpfr_attempt(const ExactPairRequest& request, unsigned bits_value)
           cell_lower, cell_upper, tolerance, bits);
       if (!surrounded.has_value()) {
         std::optional<MpRoot> join_root;
-        const MpFloat segment_start = MpFloat::decimal(
-            source_segment.t_start_token(), bits, MPFR_RNDD);
-        const MpFloat segment_end = MpFloat::decimal(
-            source_segment.t_end_token(), bits, MPFR_RNDU);
+        const MpFloat& segment_start = source_segment.start_time.lower();
+        const MpFloat& segment_end = source_segment.end_time.upper();
         if (point.compare(segment_end) == 0 &&
-            segment_index + 1U < request.source->segments().size()) {
+            segment_index + 1U < source_history.size()) {
           join_root = surround_mp_segment_join_root(
               receiver_state, source_segment,
-              request.source->segments()[segment_index + 1U], segment_index,
+              source_history[segment_index + 1U], segment_index,
               segment_index + 1U, reception, field_speed, search_lower,
               search_upper, tolerance, bits);
         } else if (point.compare(segment_start) == 0 && segment_index > 0U) {
           join_root = surround_mp_segment_join_root(
-              receiver_state, request.source->segments()[segment_index - 1U],
+              receiver_state, source_history[segment_index - 1U],
               source_segment, segment_index - 1U, segment_index, reception,
               field_speed, search_lower, search_upper, tolerance, bits);
         }
@@ -1345,8 +1954,7 @@ MpAttempt run_mpfr_attempt(const ExactPairRequest& request, unsigned bits_value)
     }
     const auto root_geometry = mp_geometry(
         receiver_state, source_segment, reception,
-        MpInterval::bounds(lower, upper),
-        field_speed, bits);
+        MpInterval::bounds(lower, upper), field_speed);
     if (!root_geometry.source_normal.has_value() ||
         !root_geometry.receiver_normal.has_value() ||
         root_geometry.source_normal->contains_zero()) {
@@ -1375,7 +1983,7 @@ MpAttempt run_mpfr_attempt(const ExactPairRequest& request, unsigned bits_value)
       ++attempt.difficult_cells;
       return;
     }
-    const auto& source_segment = request.source->segments()[cell.segment_index];
+    const auto& source_segment = source_history[cell.segment_index];
     const MpInterval emission = MpInterval::bounds(cell.lower, cell.upper);
     if (self_path_from_cell_is_subfield(cell)) {
       if (search_upper.compare(reception.upper()) == 0) {
@@ -1392,7 +2000,7 @@ MpAttempt run_mpfr_attempt(const ExactPairRequest& request, unsigned bits_value)
       return;
     }
     const auto geometry = mp_geometry(
-        receiver_state, source_segment, reception, emission, field_speed, bits);
+        receiver_state, source_segment, reception, emission, field_speed);
     if (geometry.residual.excludes_zero()) {
       ++attempt.excluded_cells;
       return;
@@ -1419,10 +2027,10 @@ MpAttempt run_mpfr_attempt(const ExactPairRequest& request, unsigned bits_value)
 
     const auto lower_geometry = mp_geometry(
         receiver_state, source_segment, reception, MpInterval::point(cell.lower),
-        field_speed, bits);
+        field_speed);
     const auto upper_geometry = mp_geometry(
         receiver_state, source_segment, reception, MpInterval::point(cell.upper),
-        field_speed, bits);
+        field_speed);
     const int lower_sign = lower_geometry.residual.strict_sign();
     const int upper_sign = upper_geometry.residual.strict_sign();
     if (same_retained_history &&
@@ -1464,7 +2072,7 @@ MpAttempt run_mpfr_attempt(const ExactPairRequest& request, unsigned bits_value)
       const MpFloat middle = mp_split(lower, upper);
       int middle_sign =
           mp_geometry(receiver_state, source_segment, reception,
-                      MpInterval::point(middle), field_speed, bits)
+                      MpInterval::point(middle), field_speed)
               .residual.strict_sign();
       if (middle_sign == 0) {
         const auto surrounded = surround_mp_root(
@@ -1502,8 +2110,7 @@ MpAttempt run_mpfr_attempt(const ExactPairRequest& request, unsigned bits_value)
     }
     const auto root_geometry = mp_geometry(
         receiver_state, source_segment, reception,
-        MpInterval::bounds(lower, upper),
-        field_speed, bits);
+        MpInterval::bounds(lower, upper), field_speed);
     if (!root_geometry.source_normal.has_value() ||
         !root_geometry.receiver_normal.has_value() ||
         root_geometry.source_normal->contains_zero()) {
@@ -1575,6 +2182,39 @@ ExactPairCertificate double_certificate(
         .precision_bits = 53,
     });
   }
+  certificate.warm_excluded_cells = attempt.warm_excluded_cells;
+  certificate.reevaluated_cells = attempt.visited_cells;
+  certificate.warm_residual_drift_upper =
+      attempt.warm_residual_drift_upper;
+  certificate.root_free_cells.reserve(attempt.root_free_cells.size());
+  for (const auto& cell : attempt.root_free_cells) {
+    certificate.root_free_cells.push_back({
+        .source_segment_index = cell.source_segment_index,
+        .lower = double_token(cell.lower),
+        .upper = double_token(cell.upper),
+        .residual_lower = double_token(cell.residual.lower()),
+        .residual_upper = double_token(cell.residual.upper()),
+        .receiver_normal_lower =
+            double_token(cell.receiver_normal.lower()),
+        .receiver_normal_upper =
+            double_token(cell.receiver_normal.upper()),
+    });
+  }
+  return certificate;
+}
+
+ExactPairCertificate double_token_dominated_failure_certificate(
+    const ExactPairRequest& request,
+    const DoubleAttempt& attempt) {
+  auto certificate = double_certificate(request, attempt);
+  certificate.status = attempt.caustic_candidate
+      ? "caustic_route_required" : "uncertified";
+  certificate.failure_code = attempt.caustic_candidate
+      ? "numeric_source_normal_sign_uncertified"
+      : "numeric_root_count_uncertified";
+  certificate.root_free_complement = false;
+  certificate.memory_boundary_contact = false;
+  certificate.roots.clear();
   return certificate;
 }
 
@@ -1629,6 +2269,7 @@ ExactPairCertificate mpfr_certificate(
       .roots = {},
   };
   if (!complete) {
+    certificate.reevaluated_cells = attempt.visited_cells;
     return certificate;
   }
   certificate.roots.reserve(attempt.roots.size());
@@ -1646,6 +2287,7 @@ ExactPairCertificate mpfr_certificate(
         .precision_bits = bits,
     });
   }
+  certificate.reevaluated_cells = attempt.visited_cells;
   return certificate;
 }
 
@@ -1797,22 +2439,46 @@ ExactPairCertificate certify_exact_pair(const ExactPairRequest& request) {
     certificate.binary64_cpu_seconds = binary64_seconds;
     return certificate;
   }
-
+  if (fast.token_dominated_failure) {
+    auto certificate =
+        double_token_dominated_failure_certificate(request, fast);
+    certificate.binary64_cpu_seconds = binary64_seconds;
+    return certificate;
+  }
+  if (request.defer_precision_escalation) {
+    auto certificate =
+        double_token_dominated_failure_certificate(request, fast);
+    certificate.status = "uncertified";
+    certificate.failure_code =
+        "numeric_precision_escalation_deferred_for_cost_feedback";
+    certificate.binary64_cpu_seconds = binary64_seconds;
+    return certificate;
+  }
   unsigned bits = request.initial_mpfr_bits;
   MpAttempt latest;
   double mpfr_seconds = 0.0;
   std::size_t mpfr_attempt_count = 0;
+  double mpfr_escalation_seconds = 0.0;
+  std::size_t mpfr_escalation_attempt_count = 0;
   while (true) {
     const auto mpfr_start = Clock::now();
     latest = run_mpfr_attempt(request, bits);
-    mpfr_seconds +=
+    const double attempt_seconds =
         std::chrono::duration<double>(Clock::now() - mpfr_start).count();
+    mpfr_seconds += attempt_seconds;
     ++mpfr_attempt_count;
+    if (mpfr_attempt_count > 1U) {
+      mpfr_escalation_seconds += attempt_seconds;
+      ++mpfr_escalation_attempt_count;
+    }
     if (latest.complete) {
       auto certificate = mpfr_certificate(request, latest, bits, false);
       certificate.binary64_cpu_seconds = binary64_seconds;
       certificate.mpfr_cpu_seconds = mpfr_seconds;
       certificate.mpfr_attempt_count = mpfr_attempt_count;
+      certificate.mpfr_escalation_cpu_seconds = mpfr_escalation_seconds;
+      certificate.mpfr_escalation_attempt_count =
+          mpfr_escalation_attempt_count;
       return certificate;
     }
     if (bits >= request.maximum_mpfr_bits) {
@@ -1820,6 +2486,9 @@ ExactPairCertificate certify_exact_pair(const ExactPairRequest& request) {
       certificate.binary64_cpu_seconds = binary64_seconds;
       certificate.mpfr_cpu_seconds = mpfr_seconds;
       certificate.mpfr_attempt_count = mpfr_attempt_count;
+      certificate.mpfr_escalation_cpu_seconds = mpfr_escalation_seconds;
+      certificate.mpfr_escalation_attempt_count =
+          mpfr_escalation_attempt_count;
       return certificate;
     }
     bits = std::min(request.maximum_mpfr_bits, bits * 2U);

@@ -292,6 +292,12 @@ CertifiedTraversalExactBatchCertificate certify_traversal_exact_pair_batch(
     result.failure_code = "resource_envelope_exceeded";
     return result;
   }
+  if (request.warm_starts != nullptr &&
+      request.warm_starts->size() !=
+          traversal.receivers.size() * traversal.sources.size()) {
+    throw std::invalid_argument(
+        "traversal exact batch warm-start domain is incomplete");
+  }
   std::vector<ExactPairRequest> exact_requests;
   exact_requests.reserve(
       static_cast<std::size_t>(certificate.exact_fallback_pairs));
@@ -302,6 +308,8 @@ CertifiedTraversalExactBatchCertificate certify_traversal_exact_pair_batch(
            source_index < tile.source_end; ++source_index) {
         const auto& receiver = traversal.receivers[receiver_index];
         const auto& source = traversal.sources[source_index];
+        const std::size_t logical_index =
+            receiver_index * traversal.sources.size() + source_index;
         exact_requests.push_back({
             .row_id = traversal.traversal_id + "/" + receiver.path_id + "/" +
                 source.path_id,
@@ -317,6 +325,11 @@ CertifiedTraversalExactBatchCertificate certify_traversal_exact_pair_batch(
             .initial_mpfr_bits = request.initial_mpfr_bits,
             .maximum_mpfr_bits = request.maximum_mpfr_bits,
             .force_precision_escalation = false,
+            .defer_precision_escalation =
+                request.defer_precision_escalation,
+            .warm_start = request.warm_starts == nullptr
+                ? nullptr
+                : &(*request.warm_starts)[logical_index],
         });
       }
     }

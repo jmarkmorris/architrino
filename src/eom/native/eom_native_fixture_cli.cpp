@@ -89,6 +89,13 @@ void print_pair(const eom::ExactPairCertificate& certificate) {
             << ",\"achieved_precision_bits\":"
             << certificate.achieved_precision_bits
             << ",\"visited_cells\":" << certificate.visited_cells
+            << ",\"reevaluated_cells\":" << certificate.reevaluated_cells
+            << ",\"warm_excluded_cells\":"
+            << certificate.warm_excluded_cells
+            << ",\"warm_residual_drift_upper\":"
+            << certificate.warm_residual_drift_upper
+            << ",\"root_free_cell_count\":"
+            << certificate.root_free_cells.size()
             << ",\"excluded_cells\":" << certificate.excluded_cells
             << ",\"difficult_cells\":" << certificate.difficult_cells
             << ",\"roots\":[";
@@ -245,7 +252,7 @@ std::vector<eom::ExactPairCertificate> pair_fixture() {
   auto add = [&](std::string row_id, const eom::RetainedHistory& target,
                  const eom::RetainedHistory& source, std::string reception,
                  std::string lower, std::string upper, std::string tolerance,
-                 bool force = false) {
+                 bool force = false, bool defer = false) {
     requests.push_back({
         .row_id = std::move(row_id),
         .receiver = &target,
@@ -260,6 +267,7 @@ std::vector<eom::ExactPairCertificate> pair_fixture() {
         .initial_mpfr_bits = 128,
         .maximum_mpfr_bits = 512,
         .force_precision_escalation = force,
+        .defer_precision_escalation = defer,
     });
   };
   add("one_root", receiver, one_root, "5", "0", "4.5", "1e-12");
@@ -271,6 +279,10 @@ std::vector<eom::ExactPairCertificate> pair_fixture() {
       "1e-12");
   add("difficult_close_roots", receiver, close_roots, "3", "0.5", "1.5",
       "1e-16");
+  add("automatic_mpfr_precision_gate", receiver, close_roots, "3", "0.5",
+      "1.5", "1e-14");
+  add("deferred_mpfr_precision_gate", receiver, close_roots, "3", "0.5",
+      "1.5", "1e-14", false, true);
   add("tangent", receiver, tangent, "3", "0", "2.5", "1e-16", true);
   add("self_subfield", self_static, self_static, "3", "0", "3", "1e-12");
   add("self_rail", self_rail, self_rail, "3", "0", "3", "1e-12", true);
@@ -287,7 +299,42 @@ std::vector<eom::ExactPairCertificate> pair_fixture() {
       "-0.5", "0.5", "1e-5");
   add("uncertain_segment_join_root", uncertain_join_receiver,
       uncertain_join_source, "1", "-1", "0.5", "1e-5");
-  return eom::certify_exact_pair_batch(requests, 4);
+  auto certificates = eom::certify_exact_pair_batch(requests, 4);
+  const auto prior = eom::certify_exact_pair({
+      .row_id = "warm_complement_prior",
+      .receiver = &receiver,
+      .source = &root_free,
+      .reception_time = "3",
+      .search_lower = "0",
+      .search_upper = "2.5",
+      .field_speed = "1",
+      .root_tolerance = "1e-12",
+      .max_depth = 256,
+      .max_cells = 500000,
+      .initial_mpfr_bits = 128,
+      .maximum_mpfr_bits = 512,
+  });
+  const eom::ExactPairWarmStart warm_start{
+      .certificate = &prior,
+      .receiver = &receiver,
+      .source = &root_free,
+  };
+  certificates.push_back(eom::certify_exact_pair({
+      .row_id = "warm_complement_current",
+      .receiver = &receiver,
+      .source = &root_free,
+      .reception_time = "3.001",
+      .search_lower = "0",
+      .search_upper = "2.5",
+      .field_speed = "1",
+      .root_tolerance = "1e-12",
+      .max_depth = 256,
+      .max_cells = 500000,
+      .initial_mpfr_bits = 128,
+      .maximum_mpfr_bits = 512,
+      .warm_start = &warm_start,
+  }));
+  return certificates;
 }
 
 void print_all() {

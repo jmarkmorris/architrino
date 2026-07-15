@@ -2,8 +2,11 @@
 #include "architrino/eom/MultiprecisionAcceleration.hpp"
 
 #include <algorithm>
+#include <array>
 #include <atomic>
+#include <chrono>
 #include <cmath>
+#include <condition_variable>
 #include <cstddef>
 #include <exception>
 #include <functional>
@@ -23,9 +26,112 @@
 namespace architrino::eom {
 namespace {
 
+using SteadyClock = std::chrono::steady_clock;
+
+double wall_seconds_since(const SteadyClock::time_point& start) {
+  return std::chrono::duration<double>(SteadyClock::now() - start).count();
+}
+
 class AccelerationCertificationError : public std::runtime_error {
  public:
   using std::runtime_error::runtime_error;
+};
+
+class DeterministicParallelExecutor {
+ public:
+  explicit DeterministicParallelExecutor(std::size_t thread_count) {
+    const std::size_t helper_count = thread_count > 1U ? thread_count - 1U : 0U;
+    helpers_.reserve(helper_count);
+    for (std::size_t index = 0; index < helper_count; ++index) {
+      helpers_.emplace_back([this]() { helper_loop(); });
+    }
+  }
+
+  DeterministicParallelExecutor(const DeterministicParallelExecutor&) = delete;
+  DeterministicParallelExecutor& operator=(
+      const DeterministicParallelExecutor&) = delete;
+
+  ~DeterministicParallelExecutor() {
+    {
+      std::lock_guard<std::mutex> lock(mutex_);
+      stopping_ = true;
+      ++generation_;
+    }
+    ready_.notify_all();
+    for (auto& helper : helpers_) {
+      helper.join();
+    }
+  }
+
+  void run(
+      std::size_t task_count,
+      const std::function<void(std::size_t)>& task) {
+    if (helpers_.empty() || task_count < 2U) {
+      for (std::size_t index = 0; index < task_count; ++index) {
+        task(index);
+      }
+      return;
+    }
+    {
+      std::lock_guard<std::mutex> lock(mutex_);
+      task_ = task;
+      task_count_ = task_count;
+      next_task_.store(0U);
+      completed_helpers_ = 0U;
+      ++generation_;
+    }
+    ready_.notify_all();
+    consume_tasks();
+    std::unique_lock<std::mutex> lock(mutex_);
+    complete_.wait(lock, [&]() {
+      return completed_helpers_ == helpers_.size();
+    });
+    task_ = {};
+  }
+
+ private:
+  void consume_tasks() {
+    while (true) {
+      const std::size_t index = next_task_.fetch_add(1U);
+      if (index >= task_count_) {
+        return;
+      }
+      task_(index);
+    }
+  }
+
+  void helper_loop() {
+    std::size_t observed_generation = 0U;
+    while (true) {
+      {
+        std::unique_lock<std::mutex> lock(mutex_);
+        ready_.wait(lock, [&]() {
+          return stopping_ || generation_ != observed_generation;
+        });
+        if (stopping_) {
+          return;
+        }
+        observed_generation = generation_;
+      }
+      consume_tasks();
+      {
+        std::lock_guard<std::mutex> lock(mutex_);
+        ++completed_helpers_;
+      }
+      complete_.notify_one();
+    }
+  }
+
+  std::vector<std::thread> helpers_;
+  std::mutex mutex_;
+  std::condition_variable ready_;
+  std::condition_variable complete_;
+  std::function<void(std::size_t)> task_;
+  std::atomic<std::size_t> next_task_{0U};
+  std::size_t task_count_ = 0U;
+  std::size_t completed_helpers_ = 0U;
+  std::size_t generation_ = 0U;
+  bool stopping_ = false;
 };
 
 Interval token_bounds(const std::string& lower, const std::string& upper) {
@@ -906,10 +1012,10 @@ FiniteWidthAttempt reconstruct_finite_width(
   };
 
   FiniteWidthAttempt attempt;
+  DeterministicParallelExecutor quadrature_executor(
+      request.quadrature_thread_count);
   std::size_t next_id = 0U;
-  const auto make_cell = [&](double cell_lower, double cell_upper,
-                             std::size_t segment_group,
-                             std::size_t depth, std::size_t id) {
+  const auto require_cell_budget = [&]() {
     ++attempt.visited_cells;
     if (attempt.visited_cells > request.quadrature_max_cells) {
       throw AccelerationCertificationError(
@@ -921,13 +1027,13 @@ FiniteWidthAttempt reconstruct_finite_width(
           ";largest_cell_width=" +
           std::to_string(attempt.last_largest_cell_width));
     }
+  };
+  const auto assemble_cell = [&] (
+      double cell_lower, double cell_upper,
+      std::size_t segment_group, std::size_t depth, std::size_t id,
+      const std::optional<CenteredFiniteWidthIntegral>& centered_integral,
+      const std::optional<CenteredFiniteWidthIntegral>& monotone_integral) {
     const Interval cell(cell_lower, cell_upper);
-    const auto centered_integral = centered_finite_width_integral(
-        request, cell, receiver_charge, source_charge, coupling,
-        causal_width, core_scale);
-    const auto monotone_integral = monotone_finite_width_integral(
-        request, cell, receiver_charge, source_charge, coupling,
-        causal_width, core_scale);
     const auto integrand = centered_integral.has_value()
         ? FiniteWidthIntegrand{
               .value = centered_integral->value,
@@ -981,6 +1087,21 @@ FiniteWidthAttempt reconstruct_finite_width(
         .id = id,
         .integral = cell_integral,
     };
+  };
+  const auto make_cell = [&](double cell_lower, double cell_upper,
+                             std::size_t segment_group,
+                             std::size_t depth, std::size_t id) {
+    require_cell_budget();
+    const Interval cell(cell_lower, cell_upper);
+    const auto centered_integral = centered_finite_width_integral(
+        request, cell, receiver_charge, source_charge, coupling,
+        causal_width, core_scale);
+    const auto monotone_integral = monotone_finite_width_integral(
+        request, cell, receiver_charge, source_charge, coupling,
+        causal_width, core_scale);
+    return assemble_cell(
+        cell_lower, cell_upper, segment_group, depth, id,
+        centered_integral, monotone_integral);
   };
 
   std::multiset<Cell, CellOrder> cells;
@@ -1068,12 +1189,53 @@ FiniteWidthAttempt reconstruct_finite_width(
         throw AccelerationCertificationError(
             "finite-width quadrature time resolution exhausted");
       }
-      cells.insert(make_cell(
-          parent.lower, midpoint, parent.segment_group,
-          parent.depth + 1U, next_id++));
-      cells.insert(make_cell(
-          midpoint, parent.upper, parent.segment_group,
-          parent.depth + 1U, next_id++));
+      struct ChildSpec {
+        double lower;
+        double upper;
+        std::size_t id;
+      };
+      const std::array<ChildSpec, 2> children{{
+          {parent.lower, midpoint, next_id++},
+          {midpoint, parent.upper, next_id++},
+      }};
+      require_cell_budget();
+      require_cell_budget();
+      std::array<std::optional<CenteredFiniteWidthIntegral>, 2>
+          centered_integrals;
+      std::array<std::optional<CenteredFiniteWidthIntegral>, 2>
+          monotone_integrals;
+      std::array<std::exception_ptr, 4> failures{};
+      quadrature_executor.run(4U, [&](std::size_t task_index) {
+        const std::size_t child_index = task_index / 2U;
+        const Interval child(
+            children[child_index].lower, children[child_index].upper);
+        try {
+          if (task_index % 2U == 0U) {
+            centered_integrals[child_index] = centered_finite_width_integral(
+                request, child, receiver_charge, source_charge, coupling,
+                causal_width, core_scale);
+          } else {
+            monotone_integrals[child_index] = monotone_finite_width_integral(
+                request, child, receiver_charge, source_charge, coupling,
+                causal_width, core_scale);
+          }
+        } catch (...) {
+          failures[task_index] = std::current_exception();
+        }
+      });
+      for (const auto& failure : failures) {
+        if (failure != nullptr) {
+          std::rethrow_exception(failure);
+        }
+      }
+      for (std::size_t child_index = 0; child_index < children.size();
+           ++child_index) {
+        cells.insert(assemble_cell(
+            children[child_index].lower, children[child_index].upper,
+            parent.segment_group, parent.depth + 1U,
+            children[child_index].id, centered_integrals[child_index],
+            monotone_integrals[child_index]));
+      }
     }
   }
 }
@@ -1093,6 +1255,10 @@ void validate_pair_request(const NativePairAccelerationRequest& request) {
       request.maximum_mpfr_bits < request.initial_mpfr_bits) {
     throw std::invalid_argument("invalid acceleration MPFR precision ladder");
   }
+  if (request.quadrature_thread_count == 0U) {
+    throw std::invalid_argument(
+        "finite-width quadrature requires at least one thread");
+  }
 }
 
 NativePairAccelerationCertificate uncertified_pair(
@@ -1103,7 +1269,11 @@ NativePairAccelerationCertificate uncertified_pair(
     std::size_t correlated_self_chord_visited_cells,
     std::size_t stable_circular_residual_visited_cells,
     bool acceleration_precision_escalated,
-    unsigned achieved_acceleration_precision_bits) {
+    unsigned achieved_acceleration_precision_bits,
+    double pair_wall_seconds,
+    double finite_width_wall_seconds,
+    double precision_escalation_wall_seconds,
+    std::size_t precision_escalation_attempt_count) {
   return {
       .schema = "eom_native_pair_acceleration_certificate/v0",
       .row_id = request.row_id,
@@ -1123,6 +1293,12 @@ NativePairAccelerationCertificate uncertified_pair(
       .acceleration_precision_escalated = acceleration_precision_escalated,
       .achieved_acceleration_precision_bits =
           achieved_acceleration_precision_bits,
+      .pair_wall_seconds = pair_wall_seconds,
+      .finite_width_wall_seconds = finite_width_wall_seconds,
+      .precision_escalation_wall_seconds =
+          precision_escalation_wall_seconds,
+      .precision_escalation_attempt_count =
+          precision_escalation_attempt_count,
       .reconstruction_matches = false,
       .rows = {},
       .total_acceleration = std::nullopt,
@@ -1133,6 +1309,7 @@ NativePairAccelerationCertificate uncertified_pair(
 
 NativePairAccelerationCertificate certify_pair_acceleration(
     const NativePairAccelerationRequest& request) {
+  const auto pair_timing_start = SteadyClock::now();
   validate_pair_request(request);
   const auto& root_certificate = *request.root_certificate;
   std::size_t quadrature_visited_cells = 0;
@@ -1141,6 +1318,9 @@ NativePairAccelerationCertificate certify_pair_acceleration(
   std::size_t stable_circular_residual_visited_cells = 0;
   bool acceleration_precision_escalated = false;
   unsigned achieved_acceleration_precision_bits = 53;
+  double finite_width_wall_seconds = 0.0;
+  double precision_escalation_wall_seconds = 0.0;
+  std::size_t precision_escalation_attempt_count = 0U;
   try {
     if (root_certificate.schema != "eom_native_exact_pair_certificate/v0") {
       throw AccelerationCertificationError("unsupported root certificate schema");
@@ -1217,6 +1397,7 @@ NativePairAccelerationCertificate certify_pair_acceleration(
       bool binary_certified = false;
       std::string binary_failure;
       if (!request.force_precision_escalation) {
+        const auto finite_width_timing_start = SteadyClock::now();
         try {
           const auto attempt = reconstruct_finite_width(
               request, receiver_charge, source_charge, coupling, causal_width,
@@ -1237,14 +1418,22 @@ NativePairAccelerationCertificate certify_pair_acceleration(
         } catch (const AccelerationCertificationError& error) {
           binary_failure = error.what();
         }
+        finite_width_wall_seconds +=
+            wall_seconds_since(finite_width_timing_start);
       }
       if (!binary_certified) {
         acceleration_precision_escalated = true;
         std::string mpfr_failure = binary_failure;
         unsigned bits = request.initial_mpfr_bits;
         while (true) {
+          const auto escalation_timing_start = SteadyClock::now();
           const auto attempt =
               certify_mpfr_finite_width_acceleration(request, bits);
+          const double escalation_seconds =
+              wall_seconds_since(escalation_timing_start);
+          finite_width_wall_seconds += escalation_seconds;
+          precision_escalation_wall_seconds += escalation_seconds;
+          ++precision_escalation_attempt_count;
           quadrature_visited_cells = attempt.visited_cells;
           achieved_acceleration_precision_bits = bits;
           if (attempt.certified) {
@@ -1350,6 +1539,12 @@ NativePairAccelerationCertificate certify_pair_acceleration(
         .acceleration_precision_escalated = acceleration_precision_escalated,
         .achieved_acceleration_precision_bits =
             achieved_acceleration_precision_bits,
+        .pair_wall_seconds = wall_seconds_since(pair_timing_start),
+        .finite_width_wall_seconds = finite_width_wall_seconds,
+        .precision_escalation_wall_seconds =
+            precision_escalation_wall_seconds,
+        .precision_escalation_attempt_count =
+            precision_escalation_attempt_count,
         .reconstruction_matches = true,
         .rows = std::move(rows),
         .total_acceleration = total,
@@ -1361,7 +1556,10 @@ NativePairAccelerationCertificate certify_pair_acceleration(
         correlated_self_chord_visited_cells,
         stable_circular_residual_visited_cells,
         acceleration_precision_escalated,
-        achieved_acceleration_precision_bits);
+        achieved_acceleration_precision_bits,
+        wall_seconds_since(pair_timing_start), finite_width_wall_seconds,
+        precision_escalation_wall_seconds,
+        precision_escalation_attempt_count);
   } catch (const std::runtime_error& error) {
     return uncertified_pair(
         request, error.what(), quadrature_visited_cells,
@@ -1369,7 +1567,10 @@ NativePairAccelerationCertificate certify_pair_acceleration(
         correlated_self_chord_visited_cells,
         stable_circular_residual_visited_cells,
         acceleration_precision_escalated,
-        achieved_acceleration_precision_bits);
+        achieved_acceleration_precision_bits,
+        wall_seconds_since(pair_timing_start), finite_width_wall_seconds,
+        precision_escalation_wall_seconds,
+        precision_escalation_attempt_count);
   }
 }
 
@@ -1416,6 +1617,20 @@ NativeAccelerationReconstructionCertificate certify_acceleration_reconstruction(
         throw std::invalid_argument("ordered-pair acceleration domain is incomplete");
       }
       canonical_requests.push_back(pair_requests[found->second]);
+    }
+  }
+  const std::size_t finite_width_request_count = static_cast<std::size_t>(
+      std::count_if(
+          canonical_requests.begin(), canonical_requests.end(),
+          [](const auto& request) { return request.chart == "finite_width"; }));
+  const std::size_t finite_width_threads = finite_width_request_count == 0U
+      ? 1U
+      : std::max<std::size_t>(
+            1U, std::min<std::size_t>(
+                    4U, thread_count / finite_width_request_count));
+  for (auto& request : canonical_requests) {
+    if (request.chart == "finite_width") {
+      request.quadrature_thread_count = finite_width_threads;
     }
   }
 
@@ -1472,6 +1687,13 @@ NativeAccelerationReconstructionCertificate certify_acceleration_reconstruction(
 
   std::vector<NativePairAccelerationCertificate> pair_certificates(
       canonical_requests.size());
+  struct PairExecutionWindow {
+    SteadyClock::time_point start;
+    SteadyClock::time_point end;
+    bool finite_width = false;
+  };
+  std::vector<PairExecutionWindow> execution_windows(
+      canonical_requests.size());
   const std::size_t worker_count =
       std::min(thread_count, canonical_requests.size());
   std::atomic<std::size_t> next_index{0};
@@ -1479,6 +1701,7 @@ NativeAccelerationReconstructionCertificate certify_acceleration_reconstruction(
   std::mutex failure_mutex;
   std::vector<std::thread> workers;
   workers.reserve(worker_count);
+  const auto pair_batch_timing_start = SteadyClock::now();
   for (std::size_t worker = 0; worker < worker_count; ++worker) {
     workers.emplace_back([&]() {
       try {
@@ -1487,8 +1710,12 @@ NativeAccelerationReconstructionCertificate certify_acceleration_reconstruction(
           if (index >= canonical_requests.size()) {
             return;
           }
+          execution_windows[index].start = SteadyClock::now();
+          execution_windows[index].finite_width =
+              canonical_requests[index].chart == "finite_width";
           pair_certificates[index] =
               certify_pair_acceleration(canonical_requests[index]);
+          execution_windows[index].end = SteadyClock::now();
         }
       } catch (...) {
         std::lock_guard<std::mutex> lock(failure_mutex);
@@ -1504,6 +1731,59 @@ NativeAccelerationReconstructionCertificate certify_acceleration_reconstruction(
   if (failure != nullptr) {
     std::rethrow_exception(failure);
   }
+  const double pair_batch_wall_seconds =
+      wall_seconds_since(pair_batch_timing_start);
+
+  struct ExecutionEvent {
+    SteadyClock::time_point time;
+    int total_delta;
+    int finite_width_delta;
+    int sharp_delta;
+  };
+  std::vector<ExecutionEvent> events;
+  events.reserve(execution_windows.size() * 2U);
+  for (const auto& window : execution_windows) {
+    const int finite_delta = window.finite_width ? 1 : 0;
+    const int sharp_delta = window.finite_width ? 0 : 1;
+    events.push_back({window.start, 1, finite_delta, sharp_delta});
+    events.push_back({window.end, -1, -finite_delta, -sharp_delta});
+  }
+  std::sort(events.begin(), events.end(), [](const auto& left, const auto& right) {
+    if (left.time != right.time) {
+      return left.time < right.time;
+    }
+    return left.total_delta < right.total_delta;
+  });
+  double pair_execution_union_wall_seconds = 0.0;
+  double finite_width_execution_union_wall_seconds = 0.0;
+  double sharp_execution_union_wall_seconds = 0.0;
+  double finite_width_sharp_overlap_wall_seconds = 0.0;
+  int active_total = 0;
+  int active_finite_width = 0;
+  int active_sharp = 0;
+  auto prior_event_time = events.front().time;
+  for (const auto& event : events) {
+    const double duration =
+        std::chrono::duration<double>(event.time - prior_event_time).count();
+    if (active_total > 0) {
+      pair_execution_union_wall_seconds += duration;
+    }
+    if (active_finite_width > 0) {
+      finite_width_execution_union_wall_seconds += duration;
+    }
+    if (active_sharp > 0) {
+      sharp_execution_union_wall_seconds += duration;
+    }
+    if (active_finite_width > 0 && active_sharp > 0) {
+      finite_width_sharp_overlap_wall_seconds += duration;
+    }
+    active_total += event.total_delta;
+    active_finite_width += event.finite_width_delta;
+    active_sharp += event.sharp_delta;
+    prior_event_time = event.time;
+  }
+  const double worker_idle_orchestration_wall_seconds = std::max(
+      0.0, pair_batch_wall_seconds - pair_execution_union_wall_seconds);
 
   const bool all_certified = std::all_of(
       pair_certificates.begin(), pair_certificates.end(), [](const auto& pair) {
@@ -1537,6 +1817,16 @@ NativeAccelerationReconstructionCertificate certify_acceleration_reconstruction(
       .logical_ordered_pairs = expected_count,
       .complete_ordered_pair_domain = true,
       .reconstruction_matches = reconstruction_matches,
+      .pair_execution_union_wall_seconds =
+          pair_execution_union_wall_seconds,
+      .finite_width_execution_union_wall_seconds =
+          finite_width_execution_union_wall_seconds,
+      .sharp_execution_union_wall_seconds =
+          sharp_execution_union_wall_seconds,
+      .finite_width_sharp_overlap_wall_seconds =
+          finite_width_sharp_overlap_wall_seconds,
+      .worker_idle_orchestration_wall_seconds =
+          worker_idle_orchestration_wall_seconds,
       .path_ids = path_ids,
       .pair_certificates = std::move(pair_certificates),
       .receiver_totals = std::move(receiver_totals),

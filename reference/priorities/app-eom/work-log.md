@@ -767,7 +767,241 @@ This file holds dated decisions, implementation status, validation results, fail
   seconds. They are not clean benchmarks because the §97 horizon process was
   active. The portable result is unchanged cost: correct classification and
   both numerical corrections still take the same finite-width route.
-- Next localize the owning pair, atomic snapshot stage, reception interval, and
-  delay cell, then test an oracle-certified delay-factored residual for evolved
-  polynomial self history. No §86 feasibility, horizon, flutter, migration, or
-  score claim advances from this negative cost result.
+- The proposed localization and delay-factored residual follow-up is retired.
+  The unchanged 1,928-cell count is a determinism check, not a cost proxy. No
+  §86 feasibility, horizon, flutter, migration, or score claim advances from
+  this negative result.
+
+## 2026-07-14 — §86 clean step attribution assigns cost to MPFR roots
+
+- Suspended the competing §97 horizon process, ran the §86 fixture with one
+  native worker and a 10 ms sampling profiler, then resumed §97. The fixed
+  `0.0005` step accepted on its first attempt in `632.318909` seconds with zero
+  rejected steps or substeps.
+- Exact-pair root certification used `627.804960` seconds (`99.2861%` of wall),
+  including `626.152585` MPFR CPU seconds (`99.0248%`). Finite-width execution
+  used `4.500060` seconds (`0.7117%`). Retained-history reconstruction,
+  traversal, copy, and hash used `0.008046` seconds (`0.00127%`).
+- The corrector ran nine iterations across three accepted substeps (`4,3,2`).
+  Its `581.400232` inclusive seconds contain `581.395545` seconds of snapshot
+  certification; exclusive corrector control used `0.000175` seconds. There
+  was no rejected-then-retried work.
+- Fifty-two additional MPFR precision attempts used `445.736570` seconds
+  (`70.4924%`), nested inside the root total. The profiler attributed 14,132 of
+  52,510 active-worker top-of-stack samples (`26.9130%`) to allocation/free
+  activity, also nested inside MPFR roots. Acceleration-stage precision
+  escalation had zero attempts.
+- The middle self pair remained
+  `coincident_endpoint_root_continuation`; maximum quadrature cells remained
+  1,928. Cells are retained as a determinism check only. Evidence:
+  [section-86-step-cost-attribution-2026-07-14.json](evidence/section-86-step-cost-attribution-2026-07-14.json).
+
+## 2026-07-14 — Token-dominance gate removes the §86 MPFR wall
+
+- Added an explicit retained-error-token dominance test before precision
+  escalation. Token-dominated simple roots now use the tolerance-scale
+  strict-sign IVT bracket at binary64, including continuous segment joins.
+- Preserved the unchanged `1e-5` root tolerance, `1e-24` source-normal floor,
+  and fail-closed policy. Root uniqueness still requires a sign-definite
+  source-normal hull across the accepted bracket.
+- The same serialized fixed `0.0005` step fell from `632.318909` to `7.153516`
+  seconds (`88.39x`). MPFR fell to zero pair certifications, zero attempts, and
+  zero CPU seconds. The accepted step retained 14 snapshots, corrector
+  iterations `4,3,2`, 1,928 cells, and
+  `coincident_endpoint_root_continuation`.
+- The evolved-history native/oracle replay passed 72 ordered-pair rows. The
+  four suites passed 23 root-oracle, 12 native-history, 12 native-acceleration,
+  and 14 native-coupled-evolution tests. Fourteen unaffected fixture pair
+  certificates were bit-identical before and after.
+- The root repair had already enlarged the accepted step from `9.4e-6` to
+  `5e-4` (`53.19x`), reducing a braid cycle from about 640,000 steps to 12,065.
+  At the previously projected approximately 6 seconds per step, the full
+  six-rung ladder is 26 days rather than 7.3 years. Evidence:
+  [section-86-token-dominance-root-gate-2026-07-14.json](evidence/section-86-token-dominance-root-gate-2026-07-14.json).
+
+## 2026-07-14 — Warm-complement carry and certified delay window
+
+- Verified the supplied exact-pin calculation. At `D=0.042`,
+  `D_s=+2.3919909609593226e-4`, but
+  `g(D)=-3.348840740262371e-6`; the point is not a root. The live difficult
+  cell likewise has two strictly negative point residual signs. A strict
+  derivative hull proves uniqueness, not IVT existence, so the proposed
+  simple-root reroute would weaken the root certificate and move the accepted
+  finite-width self contribution.
+- Rejected bracket-only corrector reuse because it does not re-certify the
+  root-free complement on the new candidate history. A sound reuse path needs
+  either a complete exclusion partition or a global topology-preserving
+  homotopy certificate.
+- Implemented the operator's corrected proof object: transport complete
+  root-free residual cells, not root brackets. Reuse requires exact source
+  segment token identity and a strict residual sign after widening by the
+  receiver-normal time bound plus certified candidate correction. Marginal
+  cells return to the unchanged fail-closed classifier.
+- Tightened the certified history window from a global position box to the
+  per-history-segment radial triangle bound. The accepted §86 snapshot proves
+  a `2.00966` maximum delay and excludes `5.9908` of the eight retained time
+  units before root classification.
+- The same-window diagnostic reduces root-cell re-evaluations from `207234`
+  to `168320` (`18.78%`), while snapshots and ordered-pair searches remain
+  `14` and `504`. The fair one-worker step improves from the accepted
+  `7.153516` seconds to `6.388428` seconds (`1.1197615x`), so this is the
+  second consecutive round below the corrected `1.5x` threshold rather than a
+  physics-launch condition.
+- Added an unforced arithmetic-limited MPFR fixture. It certifies two roots at
+  128 bits through `mpfr_directed_interval`, while the §86 production row
+  remains at zero MPFR pairs and attempts. Evidence:
+  [section-86-fold-routing-warm-start-soundness-audit-2026-07-14.md](evidence/section-86-fold-routing-warm-start-soundness-audit-2026-07-14.md).
+- The accepted trajectory CSV is byte-identical, corrector iterations remain
+  `4,3,2`, rejections remain zero, the middle self classification remains
+  `coincident_endpoint_root_continuation`, and the independent evolved-history
+  replay remains 72/72 with no divergence. Machine-readable evidence:
+  [section-86-warm-complement-delay-window-2026-07-14.json](evidence/section-86-warm-complement-delay-window-2026-07-14.json).
+- The prematurely launched physics process was alive at approximately 195%
+  CPU and was interrupted to serialize the optimization work. No replacement
+  physics run was launched.
+
+## 2026-07-14 — Parallel scaling diagnosis, deterministic cell sharding, and physics relaunch
+
+- Profiled the post-token-gate eight-worker path before changing execution.
+  Allocator leaves were only tens of samples, while condition-variable waits
+  were 32,236 samples and the main thread waited in acceleration joins. The
+  root worker CPU sum was only `1.85x` root wall time. Warm exclusion had made
+  most of the 36 logical pairs cheap; two self pairs dominated both the root
+  and finite-width phases. The live bottleneck was ordered-pair work
+  imbalance, not allocator contention.
+- Kept adaptive parent selection, cell IDs, insertion order, and the fixed
+  interval reduction tree serially identical. For each selected split, the
+  independent left/right centered and monotone enclosures now use four
+  workers per finite-width self pair, consuming all eight requested workers
+  across the two dominant pairs without changing a certificate operation.
+- The five-step eight-worker mean fell from the accepted `3.163710` to
+  `2.285774` seconds per step (`1.38410x`). Current one-worker timing was
+  `6.187034` seconds, so eight-worker efficiency rose from `25.24%` to
+  `33.83%`. The finite-width phase improved `1.63192x`; the root phase stayed
+  flat and remains the measured imbalance. Because the total round remained
+  below `1.5x`, this is the third consecutive failed round and the corrected
+  stopping rule is now active.
+- Physics stayed fixed: step `0.0005`, 14 first-step snapshots, 504 first-step
+  root searches, corrector iterations `4,3,2`, zero rejections,
+  `coincident_endpoint_root_continuation`, and zero production MPFR pairs or
+  attempts. One-worker, old eight-worker, and new eight-worker trajectory CSVs
+  are byte-identical with SHA-256
+  `41692e362af72a2d12097cfbdcbde99e2a9c2a92612c8c0381a27fc0c69d316a`.
+  Independent evolved-history parity passed 72/72 rows with no divergence;
+  12 root-oracle, 14 native-history, 12 native-acceleration, 14 native-coupled
+  tests, and all three CMake fixtures passed.
+- Added a diagnostics-only post-publication callback and the §86 runner now
+  flushes `step`, `t`, and elapsed wall seconds initially and every 100
+  accepted steps. Rebuilt the physics binary at `19:31:31-0400`, 193 seconds
+  newer than the latest `src/eom` change at `19:28:18-0400`.
+- Relaunched the serialized one-cycle control-plus-perturbed run as PID 89129.
+  It wrote the initial control heartbeat immediately and was alive at `199.2%`
+  CPU. Live log: `.tmp/section86-physics-one-cycle-imx.log`; final trajectory:
+  `.tmp/section86-physics-one-cycle-imx.csv`. Evidence:
+  [section-86-parallel-scaling-heartbeat-2026-07-14.json](evidence/section-86-parallel-scaling-heartbeat-2026-07-14.json).
+
+## 2026-07-14 — Adaptive step-permission measurement
+
+- Added a diagnostics-only accepted-step limit and endpoint-state output. The
+  acceptance rule, tolerances, fold-aware method, and controller rule were not
+  changed.
+- The 20-step adaptive run accepted every attempt and grew
+  `0.0005 -> 0.001 -> 0.002`, then stayed at `0.002`. Every plateau velocity
+  estimate was below the `2e-6` acceptance tolerance but above the `2.5e-7`
+  growth threshold, so the plateau follows the declared controller rule.
+- The run took `4707.580491333` seconds (`235.379` seconds per accepted step
+  overall; `109.924` seconds over the last ten plateau steps). Accepted-step
+  cost was strongly nonuniform, so step-count reduction alone does not predict
+  cycle time.
+- Cold-start fixed steps `0.001`, `0.002`, and `0.005` each rejected on their
+  first attempt through the middle-path velocity budget. No coarse fixed row
+  published a trajectory, so no `0.0005` trajectory comparison exists.
+- Evidence:
+  [section-86-adaptive-step-permission-2026-07-14.md](evidence/section-86-adaptive-step-permission-2026-07-14.md).
+
+## 2026-07-14 — Continuous controller and synchronized multirate publication
+
+- Added an opt-in bounded continuous adaptive controller using the existing
+  cubic step-doubling error law without changing an acceptance tolerance.
+- Added opt-in mixed accepted-history cadence. Dense outward full-versus-half
+  error bounds select coarse paths, enlarge their published remainder to
+  enclose the fine path, recertify the mixed histories, and retain one common
+  receiver time and atomic publication.
+- The four-step continuous run reached `t=0.0036611301578` in
+  `405.305441583` seconds with zero rejections. The legacy controller needed
+  `598.08552` seconds to reach only `t=0.0035`, establishing an early-horizon
+  gain of at least `1.47564x` without a cycle-time extrapolation.
+- Two multirate samples took `383.861501917` and `470.764073375` seconds.
+  Their variance crosses the continuous-only result, so no multirate wall-
+  time gain is established. All 108 interval components at the first three
+  shared endpoints overlap, and the feature remains opt-in.
+- Three paired warm-locality samples averaged `9.243083305` seconds with
+  carry and `9.465927084` without it (`1.02411x`). Re-evaluated root cells
+  fell `19.16%`; cell reduction again exceeded wall-time reduction.
+- Final validation passed 16 coupled-evolution tests, 14 history/root-layer
+  tests, the EOM CMake build, and scoped whitespace checks. Evidence:
+  [section-86-continuous-controller-multirate-performance-2026-07-14.md](evidence/section-86-continuous-controller-multirate-performance-2026-07-14.md).
+
+## 2026-07-14 — Certificate-cost feedback
+
+- Added opt-in deterministic certificate-cost feedback. Endpoint root searches
+  may report impending MPFR escalation before paying it; the controller makes
+  one `0.5` landing adjustment, suppresses immediate regrowth, and persists a
+  four-step cooldown through checkpoint schema v3. Acceptance tolerances are
+  unchanged.
+- Live probes rejected repeated subdivision because it formed a Zeno approach
+  to a persistent precision boundary near `t=0.00343`. A `1.25` landing-growth
+  probe was also rejected after exceeding `10:34`, at least `1.56x` slower than
+  the continuous-only baseline. Neither prototype remains in the policy.
+- At the continuous-only endpoint `t=0.0036611301578`, the retained policy took
+  `350.498944625` seconds versus `405.305441583`: measured `1.156367x` speedup
+  and `13.5223%` less wall time. It used five accepted steps and one advisory
+  rejection, retaining three of the four steps saved against pinned `0.0005`.
+- Endpoint midpoint deltas were at most `1.63735e-10` in position and
+  `1.95358e-7` in velocity; every position and velocity interval overlapped.
+  Final validation passed 17 coupled-evolution tests, 15 history/root-layer
+  tests, the EOM CMake build, and scoped whitespace checks. Evidence:
+  [section-86-certificate-cost-feedback-2026-07-14.md](evidence/section-86-certificate-cost-feedback-2026-07-14.md).
+
+## 2026-07-15 — Middle self-pair MPFR decimal cache
+
+- Replicated certificate feedback against a contemporaneous continuous-only
+  control on the same pre-cache binary: `299.337702083` versus
+  `318.615554583` seconds, a measured `1.064402x` speedup and `6.0505%` wall
+  reduction. This confirmed the direction but not the prior one-sample
+  `13.5223%` magnitude.
+- A live sample placed repeated `mpfr_strtofr` conversion inside
+  `mp_polynomial`/`mp_geometry` on the two active middle self-pair workers.
+  Added a thread-local, attempt-local directed-rounding cache for immutable
+  MPFR decimal tokens. It resets at every precision level and changes no
+  interval arithmetic, certificate rule, or controller decision.
+- Two matched optimized runs took `171.606387417` and `177.428446334` seconds,
+  averaging `174.517416876`. Against the paired feedback baseline this is a
+  measured `1.715231x` speedup and `41.6988%` wall reduction. The final MPFR
+  step fell from `290.256` to a `164.1975`-second mean.
+- Pre-cache and both optimized trajectory CSVs were byte-identical with SHA-256
+  `48d245cb35bf95a093621495a50a6b5aa790e0d4d1b0f283bc40388d6075b351`.
+  MPFR attempts, root cells, accepted/rejected steps, and corrector iterations
+  were unchanged. Evidence:
+  [section-86-mpfr-decimal-cache-performance-2026-07-15.md](evidence/section-86-mpfr-decimal-cache-performance-2026-07-15.md).
+
+## 2026-07-15 — MPFR compiled segment constants
+
+- Compiled every retained-history segment once per exact-pair precision
+  attempt: directed time bounds, twelve cubic coefficients, three derivative
+  polynomials, and both error radii. Geometry and correlated self-displacement
+  now reference these immutable intervals. Replaced interval-multiplication
+  candidate vectors with fixed arrays while preserving order and rounding.
+- Two matched runs took `74.158367708` and `73.169065167` seconds, averaging
+  `73.663716438`. This is a measured `2.369110x` speedup and `57.7900%` wall
+  reduction versus the prior decimal-cache mean. The final MPFR step fell from
+  `164.1975` to a `64.78275`-second mean.
+- The complete retained stack is `4.325271x` faster than the paired
+  continuous-only control (`318.615554583` seconds) and `4.063570x` faster than
+  the paired pre-cache certificate-feedback baseline (`299.337702083`).
+- Prior-cache and both compiled-segment trajectory CSVs were byte-identical
+  with SHA-256
+  `48d245cb35bf95a093621495a50a6b5aa790e0d4d1b0f283bc40388d6075b351`.
+  MPFR attempts, root cells, controller decisions, and corrector iterations
+  were unchanged. Evidence:
+  [section-86-mpfr-compiled-segment-performance-2026-07-15.md](evidence/section-86-mpfr-compiled-segment-performance-2026-07-15.md).

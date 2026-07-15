@@ -31,6 +31,9 @@ struct NativePairAccelerationRequest {
   std::string quadrature_tolerance = "1e-9";
   std::size_t quadrature_max_depth = 32;
   std::size_t quadrature_max_cells = 200000;
+  // Cost-only execution budget. Cell identities and reductions remain serially
+  // ordered; only independent enclosure evaluations may run concurrently.
+  std::size_t quadrature_thread_count = 1;
   unsigned initial_mpfr_bits = 128;
   unsigned maximum_mpfr_bits = 512;
   bool force_precision_escalation = false;
@@ -82,6 +85,10 @@ struct NativePairAccelerationCertificate {
   std::size_t stable_circular_residual_visited_cells = 0;
   bool acceleration_precision_escalated;
   unsigned achieved_acceleration_precision_bits;
+  double pair_wall_seconds = 0.0;
+  double finite_width_wall_seconds = 0.0;
+  double precision_escalation_wall_seconds = 0.0;
+  std::size_t precision_escalation_attempt_count = 0;
   bool reconstruction_matches;
   std::vector<NativeAccelerationRow> rows;
   std::optional<IntervalVector> total_acceleration;
@@ -100,6 +107,11 @@ struct NativeAccelerationReconstructionCertificate {
   std::size_t logical_ordered_pairs;
   bool complete_ordered_pair_domain;
   bool reconstruction_matches;
+  double pair_execution_union_wall_seconds = 0.0;
+  double finite_width_execution_union_wall_seconds = 0.0;
+  double sharp_execution_union_wall_seconds = 0.0;
+  double finite_width_sharp_overlap_wall_seconds = 0.0;
+  double worker_idle_orchestration_wall_seconds = 0.0;
   std::vector<std::string> path_ids;
   std::vector<NativePairAccelerationCertificate> pair_certificates;
   std::vector<NativeReceiverAcceleration> receiver_totals;

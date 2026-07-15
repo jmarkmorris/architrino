@@ -1,6 +1,11 @@
+// The deployed runtime artifacts, matching the deployedWasmLoader/
+// deployedWasmBinary entrypoints in the solver package manifest. The
+// .tmp/solver-build/ build directory is gitignored, so a loader pointed there
+// resolves locally and 404s on the published site, where the app then falls
+// back to replaying a recording instead of computing.
 const DEFAULT_SOLVER_WASM_RELATIVE_URL =
-  "../../../.tmp/solver-build/wasm/architrino_solver_wasm_smoke.mjs";
-const DEFAULT_SOLVER_WASM_BASE_RELATIVE_URL = "../../../.tmp/solver-build/wasm/";
+  "../../solver/wasm/runtime/architrino_solver_wasm_smoke.mjs";
+const DEFAULT_SOLVER_WASM_BASE_RELATIVE_URL = "../../solver/wasm/runtime/";
 const DEFAULT_WASM_FACTORY_EXPORTS = Object.freeze([
   "default",
   "createArchitrinoSolverModule",

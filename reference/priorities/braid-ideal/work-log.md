@@ -6,6 +6,14 @@ Use `brainstorming.md` for provisional ideas, insights, conceptual maps, and dra
 
 ## Log Entries
 
+### 2026-07-14 - Antipodal Binary Sub-Field Phase-Collapse Test Rejects a Prehistory-Independent Spiral
+
+Executed the revised [antipodal binary dispatch](antipodal-binary-spiral-law-dispatch-packet.md) on the sub-field family before any rail crossing. Four admissible histories — circular, log-spiral-in, log-spiral-out, and smooth perturbed — were matched at the same $(R_0,s_0)$ within each $s_0\in\{0.25,0.5,0.75\}$ row and evolved to at least two memory depths with the corrected effective coupling $K_\star=0.90036722258974714607$. All twelve production rows remained below $c_f$ and completed with zero rejected steps.
+
+Result: the post-memory $s(R)$ curves do not collapse. The fixed-radius speed spread is about $0.138$ across the $s_0=0.25$ common branch, grows $0.0477\to0.0536$ for $s_0=0.5$, and grows $0.0289\to0.0311$ for $s_0=0.75$. Synchronized seed spread also survives past $h$. Step-size, prehistory-segment, history-depth, and live token-gate parity refinements preserve the result. The durable [evidence packet](evidence/antipodal-binary-phase-collapse-2026-07-14.md), phase CSVs, and temporal-spread CSVs record the measurement.
+
+Disposition `sub_field_phase_curves_do_not_collapse_seed_indexed_family`: no prehistory-independent spiral law $s(R)$ is measured for the antipodal binary, no exponent is fitted, and the negative is priority-only with `scoreMovement=no_score_increase`. The rail-caustic and token-dominance/MPFR discrimination test is explicitly deferred as a separate campaign.
+
 - 2026-07-11: The operator accepted option (a) for `intrinsic_drift_precession_synthesis_decision`. The [scope decision](intrinsic-drift-precession-spin-interleaving-scope-decision.md) separates relative phase-and-tilt dynamics from ordered-frame spinor return, assigns distinct proof objects and falsifiers, and permits a future join only through a same-record invariant that controls both bounded dynamics and nontrivial $4\pi$ return. The discussion task was replaced by two priority-only programs; no implementation or corpus promotion was authorized. `DF-03` was removed from the Operator Discussion Queue and the remaining rows were reranked.
 
 ### 2026-07-07 - Sustained-Alignment Window Measured: Cross-Hit Clicks Are Transient and Insufficient; Both Surviving Retention Routes Reduce to One Formation-History Burden
@@ -1843,3 +1851,126 @@ MM-analog pass 1 ([spec Section 28](fold-crossing-chart-spec.md#28-mm-analog-fir
 - §86 remains T2 quarantined, §90 remains T3 quarantined, $0.199$ remains
   non-authoritative, and $0.60113$ remains a seed transient. Evidence:
   `evidence/section-86-direct-evolution-blocker-2026-07-14.md`.
+
+## 2026-07-14 — antipodal binary spiral law: force formula verified; rail is a singular boundary
+
+- Added [antipodal-binary-spiral-law.cpp](../../../scripts/eom/antipodal-binary-spiral-law.cpp) and the [evidence packet](evidence/antipodal-binary-spiral-law-2026-07-14.md). The two-worldline native instrument certifies all four ordered pairs, reproduces the partner/self hinge gates and the $s=0.5$ direct-evolution anchor, and cross-checks the dimensionless circular root-sum law through the $s=3$ multi-root row. A separate partner-only gate reproduces the three dispatched $s=5$ roots with a certified root-free complement.
+- Extended the revised packet's primary-root formula to a complete-root sum. On the one-partner/one-self sheet the exact radial-balance cutoff is $s=\pi/(2\sqrt2)$, and the self tangential contribution changes sign only at $s=\pi/2$. Near $s=1^+$, $F_r\sim-1/(4\sqrt{6(s-1)})$ while $F_\theta\sim1/(24(s-1))$: the newborn self-hit is an outward radial divergence and a stronger forward pump, not a brake.
+- The $s=0.5$ anchor reproduces $R(2)=1.1532465268881593$, $v(2)=0.6886482861893841$, and $\dot R(2)=0.2150273962646203$ with 200 accepted steps and zero rejections. The extension peaks at $s=0.7014857337$ and never reaches the rail. A radially balanced $s=0.95$ start reaches $s=0.9991564982$ at $t=0.0205$ and follows $R(s)=R_0+0.1366559777(s-0.95)^3$ to relative-span residual $9.5\times10^{-5}$ before the sharp self-root wall.
+- Both sharp and finite-width-fallback attempts to publish through the rail enter the singular self-root boundary. The derived law shows this is mathematical, not the §86 worldline-count cost wall: the sharp acceleration has no finite right-hand limit at $s=1$. A through-rail path requires an additional declared regularization or constitutive law and was not tuned into this run.
+- The revised packet's analytic refutation is native-confirmed. `retainedBranchClaim=false`; `scoreMovement=no_score_increase`; promotion `defer with blocker` pending review of the singular-boundary interpretation and any physical finite-width completion.
+
+## 2026-07-14 — antipodal binary spiral law: adjudicated; derivation lands, dispatched question not attempted
+
+- Adjudication: [evidence/antipodal-binary-spiral-law-adjudication-2026-07-14.md](evidence/antipodal-binary-spiral-law-adjudication-2026-07-14.md). Instrument: an independent 90-digit `mpmath` oracle written for the adjudication, importing nothing from `src/eom` or from the campaign's C++ instrument.
+- Campaign status corrected from `executed` to **partially executed**. The dispatch's target is prehistory-independence via phase-plane collapse; every reported evolution seeds a circular prehistory. Zero materially different seeds, no $s$-versus-$R$ curves across seeds, no seed spread against $t/h$. The question is untouched.
+- The analytic yield is real and independently confirmed: closed forms to $\le6\times10^{-42}$, $s_R=\pi/(2\sqrt2)$ to $2.7\times10^{-51}$, $24\varepsilon F_\theta\to1$, $\delta(1.05)$ to 16 digits, $K(1.2)$ to 15 digits, and $F_\theta>0$ on the **complete** root sums across $s\in[0.25,10]$ (min $+0.0638$ at $s=0.25$). The T1 negative — no circular equilibrium at any speed, no field-speed pin on the bare binary — stands.
+- $R(s)=R_0+0.1366559777(s-0.95)^3$ **demoted to seed transient**, joining $0.60113$. Fit window $t=0.0205$ against a partner delay of $0.4988076023$: $4.1\%$ of one causal delay, $t/h\approx0.005$. The packet's own $\dot R(0)=\ddot R(0)=0$ explanation is the concession — it is the launch's leading Taylor coefficient. Only the $s=0.5$, $T=6$ run clears one memory depth, and barely: the late-time delay grows to $4.9164908$, so six time units buy $\approx1.2$ late-time delays, on one seed.
+- `not_a_two_sided_attractor` **withdrawn**. The prediction's mechanism is refuted (the self-hit pumps) but no evolution bears on whether the rail attracts, and "two-sided" is vacuous while no through-rail continuation exists. The singular-boundary result is held at **derivation-grade on the circular family**; the caustic $D_s^{\rm self}\to1-s\to0$ is expected generic and unproven off the manifold.
+- Dispatch packet corrections: the self hinge is $\delta=2s\lvert\sin(\delta/2)\rvert$ (the unsigned form drops every root with $\delta>2\pi$, real from $s\approx4.61$); the primary-root force form is valid only for $s\lesssim2.99$; the $s=10$ figures are $-1.506$ against $+4.827$, not $-2.95$ against $+12.14$; $F_r(3)=+0.849$, not $+0.312$; $\varrho(10)=0.31$, not $0.24$. Conclusions unaffected, magnitudes above $s\approx3$ wrong. The spindle-braid $\varrho$ contradiction verdict is unchanged — still on the brake-loses side.
+- Two smaller findings recorded in the evidence packet: the declared $s=0.5$ coupling misses radial balance by $2.17\times10^{-5}$ ($K_\star=2s\varphi=0.90036722258974714607$), and the $s=2$ hinge cross-check's two engine-side routes agree with each other five times better than either agrees with the exact root $3.790988534073$ — a shared-tolerance smell, inside the declared residual, 8 digits rather than 9.
+- **Advancement — closed-form root-count certificate, both channels.** A root pair is born where $y=\delta$ goes tangent to $y=2s\lvert f(\delta/2)\rvert$; both tangencies sit at radius $2\sqrt{s^2-1}$. Partner: $\sqrt{s^2-1}+\arcsin(1/s)=\pi m$. Self: $\sqrt{s^2-1}-\arccos(1/s)=\pi m$. They interleave because $\arcsin(1/s)+\arccos(1/s)=\pi/2$. This discharges the dispatch's root-completeness gate by formula at every $s$ instead of per row. Confirmed by two independent routes — closed form vs bracket scan — agreeing on all six thresholds. The **self family was already promoted** at `content/markdown/aaa/dynamics/binary-dynamics.md:868`; the dispatch restated that file's principal branch as the whole equation and dropped the winding family 500 lines below it, so the campaign's $s=3$/$s=5$ multi-root surprises were a regression against the corpus, not discoveries. The partner family is the new companion and is a promotion candidate alongside it.
+- Refuted-prediction row: the successor adjudication briefing carried the unsigned self hinge and the single-root $s=10$ figures as "verified on the independent 90-digit oracle." Neither was. A handoff summary promoted its source's claim level by paraphrase; caught by measuring, as every prior instance of this role's errors has been.
+
+## 2026-07-14 — antipodal binary collapse negative survives the $6.5h$ overturn test
+
+- Stopped the $s>1$ rail campaign. No caustic or token-dominance/MPFR row was
+  attempted after the sub-$c_f$ collapse negative.
+- Extended the complete $s_0=0.25$, $R_0=3.7101819613481504$, $h=10$
+  four-seed family unchanged through $t=65=6.5h$. Every trajectory completed
+  $6501/6501$ accepted steps with zero rejections; maximum evolved speed was
+  $0.3892364333<c_f$.
+- The slow-attractor overturn fails. Relative speed diameter is $39.4\%$ at
+  $2.5h$ and $38.1\%$ at $6.5h$. On the enlarged common outward interval
+  $R\in[4.4067,8.6568]$, same-radius phase diameter dips only to $0.13604$ and
+  then grows to $0.14399$.
+- The earlier radius convergence is a projection crossing, not attraction.
+  $\Delta R$ falls from $1.5036$ at $t=16$ to a minimum $0.35984$ at
+  $t=28.68$, then reopens to $6.9339$ at $t=65$. Near the minimum the inward
+  and outward seeds have nearly equal $R\approx5.728$ but speeds $0.35604$ and
+  $0.22000$ with different radial and tangential velocity components.
+- The specifically requested circular/out pair supplies a necessary gate
+  correction. Its synchronized $s(t)$ gap shrinks from $0.06807$ at $t=25$ to
+  $0.03859$ at $t=65$, but its same-radius phase gap grows from $0.05930$ to
+  $0.06132$. At $t=33.83$ the pair is co-radial within $4.41\times10^{-5}$
+  while remaining separated by $0.05945$ in speed. Synchronized shrinkage is
+  therefore diagnostic, not an attractor verdict.
+- Verdict: `seed_indexed_family`; no prehistory-independent spiral law $s(R)$;
+  no exponent fit; no score movement; priority-only. Evidence:
+  `evidence/antipodal-binary-prehistory-collapse-test-2026-07-14.md` and
+  `evidence/antipodal-binary-phase-collapse-2026-07-14.md`.
+
+## 2026-07-14 — current-tree controlled-pair reproduction and T3 protocol adjudication
+
+- Rebuilt `eom_native` after the latest `CoupledEvolution.cpp` source change,
+  reran the endpoint-matched circular and perturbed $s_0=0.25$ histories to
+  $t=60=6h$, and reproduced the committed-engine endpoints above to printed
+  precision. Both live-tree rows completed $6001/6001$ steps with zero
+  rejections. This is same-method reproduction, not an independent physics
+  oracle; the independent 90-digit hinge oracle was rerun for the analytic
+  force corner.
+- The controlled pair isolates prehistory: its endpoint positions and
+  velocities are identical. At common radius its speed gap bottoms at
+  $1.1823\times10^{-3}$ near $R=5.9890$ and grows to
+  $1.3326\times10^{-3}$ at the last common radius. The synchronized-time gap
+  shrinks and then rises, confirming again that synchronized shrinkage is not
+  the collapse metric.
+- Adjudication separates two decisions. The legacy object-level
+  $\operatorname{Re}\lambda=0.199$ claim is retired as not well-posed without a
+  retained prehistory or basin. The replacement §86 campaign remains a V5
+  collapse test; the binary negative does not prove the V5 outcome.
+- The claims-triage ledger now defines the T3 order: complete endpoint matching,
+  active-root seed-clearance certificate, common-phase quotient distance,
+  numerical envelope, declared basin, and only then an outcome fit. The
+  [current-tree reproduction packet](evidence/antipodal-binary-prehistory-extension-adjudication-2026-07-14.md)
+  and controlled-pair CSVs carry the details. No reader-facing promotion or
+  score movement follows.
+
+## 2026-07-15 — §86 V5 multi-seed collapse campaign launched under `launchd`
+
+- Rebuilt `eom_native` after the latest participating source change and rebuilt
+  the Section 86 runner at `2026-07-15 02:27:01 -0400`; all three native CMake
+  fixtures passed. The current launch binary SHA-256 is
+  `110a87d3529ac46618e143fbfbf88ebe80d7acccc5d9479c739b676f3e9dd71c`.
+- Measured start checks on the launch binary certify the circular,
+  radial-breath inner/outer, and tilt-modulated inner/outer histories with zero
+  unresolved root rows. The noncircular endpoint mismatches remain at most
+  $1.39\times10^{-17}$ in position and $5.00\times10^{-16}$ in velocity.
+- The first launch exposed an evolved-state certificate cost cliff. Its step
+  ending at $t=0.0035$ took $404.55$ seconds in MPFR, while the preceding six
+  fixed $5\times10^{-4}$ steps completed in $13.33$ seconds with zero MPFR
+  attempts. A half-step diagnostic hit the same MPFR path at the same reception
+  time, so the cliff is not caused by step doubling. Logs are retained under
+  `attempt-1-adaptive-growth/` and `attempt-3-fixed-step-state-cliff/`.
+  A separate short fixed-step launch was stopped and archived under
+  `attempt-2-stale-fixed-step/` when a concurrent `ExactPairBatch.cpp` change
+  made its binary stale; no output from any stopped attempt enters the
+  collapse comparison.
+- A cost-aware continuous diagnostic moved its reception endpoints off the
+  fixed cliff and reached $t=0.0224938$ in 14 accepted steps over $613.36$
+  seconds. The serialized five-case campaign is therefore active on continuous
+  adaptive stepping with certificate-cost feedback under LaunchAgent
+  `com.architrino.section86-v5-collapse`; the refinement retains half initial,
+  minimum, and maximum steps. At verification, supervisor PID `25763` was
+  parented by PID 1 and the circular case was emitting accepted-step
+  heartbeats. A launch preflight now fails closed if any EOM or runner source
+  is newer than the binary.
+  Observable state is under `.tmp/section86-v5-collapse-campaign/`, with
+  `campaign.log`, `CURRENT`, `STATUS`, per-case logs, and endpoint-state CSVs.
+- No seed-clearance or collapse verdict follows from launch. The replacement
+  §86 row and downstream §90 row remain open until every baseline seed clears
+  the active-root ledger, the common-phase distances are compared against the
+  refinement envelope, and the declared inner/outer preparation basin is
+  adjudicated. `retainedBranchClaim=false`; `scoreMovement=no_score_increase`.
+- Prepared `scripts/eom/analyze-section-86-v5-phase-collapse.mjs` for the
+  completed artifacts. It finds the first root-free accepted-step suffix,
+  intersects the post-clearance middle-layer phase branches, removes common
+  translation and axial rotation, and reports separate six-worldline RMS
+  position and velocity diameters against the radial-out refinement distance.
+  It also emits synchronized-time position and velocity spread against $t/h$
+  with an explicit diagnostic-only disposition, so time synchronization cannot
+  be mistaken for the collapse gate.
+  Its synthetic test independently verifies that a timestamp warp vanishes in
+  the common-phase quotient, remains visible at synchronized time, and leaves a
+  physical radial offset visible. This validates the measurement transform,
+  not the pending V5 outcome.

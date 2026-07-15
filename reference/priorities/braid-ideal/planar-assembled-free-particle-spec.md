@@ -2,7 +2,21 @@
 
 **Date:** 2026-07-12
 
-**Claim level:** seed-grade full-assembly production-root screen; no retained-branch acceptance
+**Claim level:** seed-grade force-balance, charge, geometry, and pump screen;
+the target stability and locking readings are retired as void; no
+retained-branch acceptance
+
+## Recovery adjudication — 2026-07-14
+
+The force-balance precondition retires the Section 99 target stability and
+local-locking row. The best photon replay has
+$\epsilon_{\rm bind}=0.9922225625$ and the electron rest target has
+$\epsilon_{\rm bind}=0.9999927135$, both far outside the declared $0.03$ gate.
+The analytic symmetric-pair anchor remains a strong implementation test, but an
+anchor cannot turn either screened target into an equilibrium. The non-bind,
+charge, pump, causal-root, and planarity rows survive at T1 diagnostic scope;
+the target eigenvalues and saddle readings are historical only. See the
+[retirement evidence](evidence/section-99-stability-force-balance-retirement-2026-07-14.md).
 
 **Runner:** `scripts/braid-ideal/planar-assembled-free-particle.mjs`
 
@@ -43,7 +57,7 @@ V(\phi)
 \right].
 $$
 
-At $R=0.75$ and $d=1.4$, the analytic Hessian is $0.5402209218336725$, the numerical integration weight is $1.125$, and the expected frequency is $0.6929620299578214$. The pencil returns $0.6929620299578213$, an error of $1.11\times10^{-16}$. The anchor passes.
+At $R=0.75$ and $d=1.4$, the analytic Hessian is $0.5402209218336725$, the numerical integration weight is $1.125$, and the expected frequency is $0.6929620299578214$. The pencil returns $0.6929620299578213$, an error of $1.11\times10^{-16}$. The anchor passes as an implementation control; it does not authorize a stability claim for a target that fails force balance.
 
 Compatibility replays also pass at $10^{-9}$:
 
@@ -80,7 +94,16 @@ The best coarse photon row has $\kappa_\star=0.09446654050233466$, pump residual
 
 The null is not near the $0.03$ binding threshold and does not improve with the sampling ladder.
 
-The same selected photon geometry was continued through every declared speed rather than re-optimized at each speed. Every row has correct neutral charge and converged causal roots, but every row fails binding, locking, and stability. At $u/c_f=0.9999$, the row has $\epsilon_{\rm bind}=0.9999005117$, a phase/pocket saddle with symmetric eigenvalues $(+0.0459749578,-0.1731764580)$, and $\operatorname{Re}\lambda_{\rm lead}=+0.8610716517$. The rest row also fails, so no forbidden stable rest photon was found; however, the near-$c_f$ continuation does not pass and therefore does not recover the photon.
+The same selected photon geometry was continued through every declared speed
+rather than re-optimized at each speed. Every row has correct neutral charge
+and converged causal roots, but every row fails binding. At $u/c_f=0.9999$, the
+row has $\epsilon_{\rm bind}=0.9999005117$. Its historical frozen-target pencil
+returned a phase/pocket saddle with symmetric eigenvalues
+$(+0.0459749578,-0.1731764580)$ and
+$\operatorname{Re}\lambda_{\rm lead}=+0.8610716517$, but those values carry no
+stability authority after the force-balance failure. The rest row also fails
+force balance, so no force-balanced rest-photon candidate was found in the
+declared coverage; the near-$c_f$ continuation does not recover the photon.
 
 ## Electron result
 
@@ -94,7 +117,14 @@ $$
 \epsilon_{\rm bind}=0.9999927135,
 $$
 
-a phase/pocket saddle with symmetric eigenvalues $(+7.12958\times10^{-4},-2.01234\times10^{-4})$, and $\operatorname{Re}\lambda_{\rm lead}=+0.8639279470$. Every boosted row retains correct charge and pump cancellation but fails binding, locking, and stability. The $3\to6\to12\to24$ replay keeps $\epsilon_{\rm bind}$ within $3.1\times10^{-7}$ of one and does not expose a coarse-sampling null.
+The historical frozen-target pencil returned a phase/pocket saddle with
+symmetric eigenvalues
+$(+7.12958\times10^{-4},-2.01234\times10^{-4})$ and
+$\operatorname{Re}\lambda_{\rm lead}=+0.8639279470$; these values are void as
+stability and locking claims. Every boosted row retains correct charge and pump
+cancellation but fails binding. The $3\to6\to12\to24$ replay keeps
+$\epsilon_{\rm bind}$ within $3.1\times10^{-7}$ of one and does not expose a
+coarse-sampling null.
 
 ## Confirmatory planarity sweep
 
@@ -112,7 +142,11 @@ This is a planarity result only. The evaluator has no explicit cap degree of fre
 
 Decision: `neither_planar_assembly_closes_in_declared_geometry_payload_and_proxy_sea_coverage`.
 
-The photon and electron charge ledgers close, and some rows cancel the net pump, but neither object reaches radial closure, a relative-coordinate well, or a stable full-assembly spectrum. No native retained-history release is authorized. `retainedBranchClaim=false`; `scoreMovement=no_score_increase`.
+The photon and electron charge ledgers close, and some rows cancel the net pump,
+but neither object reaches radial closure. Because the targets are not
+equilibria, their relative-coordinate and full-spectrum readings are not
+stability verdicts. No native retained-history release is authorized.
+`retainedBranchClaim=false`; `scoreMovement=no_score_increase`.
 
 This is a negative result for the declared planar geometry, explicit payload families, and proxy-sea coverage. It is not evidence that a constitutive Noether sea law has failed, and it does not establish that the constitutive law is the sole remaining lever. Promotion classification: priority-only; no reader-facing corpus claim is earned.
 

@@ -18,8 +18,17 @@ export function createBorgEomShadowRunner(manifest, options = {}) {
     );
   }
   const config = createBorgEomShadowRunConfig(manifest, options);
+  // The shadow run replays a continuous past, and the manifest carries only
+  // the seed state. History must be handed in explicitly — silently seeding
+  // from one frame per path would look like a history and behave like none.
+  if (!Array.isArray(options.initialFrameRows) || options.initialFrameRows.length === 0) {
+    throw new TypeError(
+      "Borg EOM shadow runner requires initialFrameRows carrying a continuous retained history. " +
+        "Load them with loadBorgFixtureTrajectoryFrames().",
+    );
+  }
   let histories = createBorgContinuousRetainedHistories(
-    options.initialFrameRows ?? manifest.currentStateFrames,
+    options.initialFrameRows,
     manifest,
     {
       historyStartTime: config.historyStartTime,
@@ -128,7 +137,9 @@ export function createBorgEomShadowRunConfig(manifest, options = {}) {
   );
   const startTime = finiteNumber(
     options.startTime,
-    Math.max(...(manifest.currentStateFrames ?? []).map((row) => Number(row.time))),
+    // The history cut is the end of the recorded trajectory. The manifest
+    // carries only the seed rows now, so the record supplies this bound.
+    manifest.trajectoryRecord?.historyEndTime,
   );
   const chunkDuration = positiveNumber(options.chunkDuration, sampleInterval);
   const targetDuration = finiteNumber(
@@ -172,7 +183,7 @@ export function createBorgEomShadowRunConfig(manifest, options = {}) {
     sampleInterval,
     fieldSpeed,
     historyStartTime: roundTime(Math.max(
-      Math.min(...(manifest.currentStateFrames ?? []).map((row) => Number(row.time))),
+      manifest.trajectoryRecord?.historyStartTime ?? 0,
       startTime - historyDepth,
     )),
     historyDepth,
