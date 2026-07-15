@@ -1005,3 +1005,44 @@ This file holds dated decisions, implementation status, validation results, fail
   MPFR attempts, root cells, controller decisions, and corrector iterations
   were unchanged. Evidence:
   [section-86-mpfr-compiled-segment-performance-2026-07-15.md](evidence/section-86-mpfr-compiled-segment-performance-2026-07-15.md).
+
+## 2026-07-15 — MPFR sign-directed interval products
+
+- A five-second exact-pair sample placed `mpfr_mul` first among active leaves.
+  Generic interval products paid eight directed MPFR multiplications even when
+  endpoint signs selected only one lower and one upper corner.
+- Replaced exhaustive corner evaluation with sign-directed extremal corners.
+  Ordinary products now use two MPFR multiplications, mixed-by-mixed products
+  use four, and nonzero squares use two. The retained operations use the same
+  corner operands and directed rounding as the exhaustive enclosure.
+- An A-B-A bracket run beside the same unrelated PID 25817 load measured
+  baseline and optimized means of `67.931424396` and `40.245635104` seconds:
+  `1.687920x` faster and `40.7555%` less wall time. Root MPFR CPU fell from
+  `113.114911125` to `58.251022191` seconds (`1.941853x`).
+- Pre/post five-second samples reduced `mpfr_mul` active leaves from 1,115 to
+  526. Allocation/free is now ahead of multiplication in the active profile.
+- All five comparison trajectories were byte-identical with SHA-256
+  `48d245cb35bf95a093621495a50a6b5aa790e0d4d1b0f283bc40388d6075b351`;
+  work counts and controller decisions were unchanged. Evidence:
+  [section-86-mpfr-sign-directed-products-2026-07-15.md](evidence/section-86-mpfr-sign-directed-products-2026-07-15.md).
+
+## 2026-07-15 — MPFR worker-local storage pool
+
+- Added a precision-keyed storage pool owned by each exact-pair worker.
+  Short-lived `MpFloat` values now lease initialized MPFR buffers and return
+  them to an intrusive free list; 128-, 256-, and 512-bit buffers cannot mix.
+  Arithmetic operations, operands, and directed rounding are unchanged.
+- Two uncontested unsampled baselines averaged `39.716161209` seconds; two
+  pooled runs averaged `21.507466459`: a measured `1.846622x` speedup and
+  `45.8471%` wall reduction. The final MPFR-heavy interval improved
+  `2.385423x`, and summed MPFR CPU improved `2.684336x`.
+- Normalized `sample` leaves for `_xzm_free` fell `97.9462%`. Tiny allocation,
+  `mpfr_init2`, and `mpfr_free_func` each fell below the five-sample reporting
+  threshold, implying reductions greater than `99.1522%`, `95.9886%`, and
+  `95.4630%` against their baseline rates.
+- All six profiled and clean pre/post trajectories were byte-identical with
+  SHA-256
+  `48d245cb35bf95a093621495a50a6b5aa790e0d4d1b0f283bc40388d6075b351`;
+  work counts, controller decisions, and corrector iterations were unchanged.
+  Evidence:
+  [section-86-mpfr-worker-local-storage-pool-2026-07-15.md](evidence/section-86-mpfr-worker-local-storage-pool-2026-07-15.md).

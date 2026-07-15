@@ -16,6 +16,7 @@
 #include <functional>
 #include <iomanip>
 #include <limits>
+#include <memory>
 #include <mutex>
 #include <optional>
 #include <sstream>
@@ -938,47 +939,117 @@ DoubleAttempt run_double_attempt(const ExactPairRequest& request) {
   return attempt;
 }
 
+class MpFloatPool;
+
+struct MpFloatStorage {
+  MpFloatStorage(MpFloatPool* owner_value, mpfr_prec_t bits_value)
+      : owner(owner_value), bits(bits_value) {
+    mpfr_init2(value, bits);
+  }
+
+  ~MpFloatStorage() { mpfr_clear(value); }
+
+  MpFloatPool* owner;
+  mpfr_t value;
+  mpfr_prec_t bits;
+  MpFloatStorage* next_free = nullptr;
+};
+
+class MpFloatPool {
+ public:
+  MpFloatStorage* acquire(mpfr_prec_t bits) {
+    FreeList* free_list = nullptr;
+    for (auto& candidate : free_lists_) {
+      if (candidate.bits == bits) {
+        free_list = &candidate;
+        break;
+      }
+    }
+    if (free_list == nullptr) {
+      free_lists_.push_back({bits, nullptr});
+      free_list = &free_lists_.back();
+    }
+    if (free_list->head != nullptr) {
+      MpFloatStorage* storage = free_list->head;
+      free_list->head = storage->next_free;
+      storage->next_free = nullptr;
+      return storage;
+    }
+    auto storage = std::make_unique<MpFloatStorage>(this, bits);
+    MpFloatStorage* result = storage.get();
+    storage_.push_back(std::move(storage));
+    return result;
+  }
+
+  void release(MpFloatStorage* storage) noexcept {
+    for (auto& free_list : free_lists_) {
+      if (free_list.bits == storage->bits) {
+        storage->next_free = free_list.head;
+        free_list.head = storage;
+        return;
+      }
+    }
+    std::terminate();
+  }
+
+ private:
+  struct FreeList {
+    mpfr_prec_t bits;
+    MpFloatStorage* head;
+  };
+
+  std::vector<FreeList> free_lists_;
+  std::vector<std::unique_ptr<MpFloatStorage>> storage_;
+};
+
+MpFloatPool& mp_float_pool() {
+  thread_local MpFloatPool pool;
+  return pool;
+}
+
 class MpFloat {
  public:
-  explicit MpFloat(mpfr_prec_t bits) : bits_(bits) { mpfr_init2(value_, bits_); }
+  explicit MpFloat(mpfr_prec_t bits)
+      : storage_(mp_float_pool().acquire(bits)) {}
 
-  MpFloat(const MpFloat& other) : bits_(other.bits_) {
-    mpfr_init2(value_, bits_);
-    mpfr_set(value_, other.value_, MPFR_RNDN);
+  MpFloat(const MpFloat& other) : MpFloat(other.bits()) {
+    mpfr_set(raw(), other.raw(), MPFR_RNDN);
   }
 
-  MpFloat(MpFloat&& other) noexcept : bits_(other.bits_) {
-    mpfr_init2(value_, bits_);
-    mpfr_swap(value_, other.value_);
-  }
+  MpFloat(MpFloat&& other) noexcept
+      : storage_(std::exchange(other.storage_, nullptr)) {}
 
   MpFloat& operator=(const MpFloat& other) {
     if (this != &other) {
-      if (bits_ != other.bits_) {
-        mpfr_set_prec(value_, other.bits_);
-        bits_ = other.bits_;
+      if (storage_ == nullptr || bits() != other.bits()) {
+        MpFloat replacement(other);
+        std::swap(storage_, replacement.storage_);
+      } else {
+        mpfr_set(raw(), other.raw(), MPFR_RNDN);
       }
-      mpfr_set(value_, other.value_, MPFR_RNDN);
     }
     return *this;
   }
 
   MpFloat& operator=(MpFloat&& other) noexcept {
     if (this != &other) {
-      mpfr_swap(value_, other.value_);
-      std::swap(bits_, other.bits_);
+      std::swap(storage_, other.storage_);
     }
     return *this;
   }
 
-  ~MpFloat() { mpfr_clear(value_); }
+  ~MpFloat() {
+    if (storage_ != nullptr) {
+      storage_->owner->release(storage_);
+    }
+  }
 
   static MpFloat decimal(
       const std::string& token,
       mpfr_prec_t bits,
       mpfr_rnd_t rounding) {
     MpFloat result(bits);
-    if (mpfr_set_str(result.value_, token.c_str(), 10, rounding) != 0) {
+    if (mpfr_set_str(result.raw(), token.c_str(), 10, rounding) != 0) {
       throw std::invalid_argument("invalid MPFR decimal token: " + token);
     }
     return result;
@@ -988,34 +1059,33 @@ class MpFloat {
       unsigned long value,
       mpfr_prec_t bits) {
     MpFloat result(bits);
-    mpfr_set_ui(result.value_, value, MPFR_RNDN);
+    mpfr_set_ui(result.raw(), value, MPFR_RNDN);
     return result;
   }
 
-  [[nodiscard]] mpfr_prec_t bits() const noexcept { return bits_; }
-  [[nodiscard]] mpfr_srcptr raw() const noexcept { return value_; }
-  [[nodiscard]] mpfr_ptr raw() noexcept { return value_; }
+  [[nodiscard]] mpfr_prec_t bits() const noexcept { return storage_->bits; }
+  [[nodiscard]] mpfr_srcptr raw() const noexcept { return storage_->value; }
+  [[nodiscard]] mpfr_ptr raw() noexcept { return storage_->value; }
   [[nodiscard]] int compare(const MpFloat& other) const {
-    return mpfr_cmp(value_, other.value_);
+    return mpfr_cmp(raw(), other.raw());
   }
-  [[nodiscard]] int compare_zero() const { return mpfr_sgn(value_); }
+  [[nodiscard]] int compare_zero() const { return mpfr_sgn(raw()); }
   [[nodiscard]] std::string token(mpfr_rnd_t rounding) const {
     const int digits =
-        static_cast<int>(std::ceil(static_cast<double>(bits_) * 0.30103)) + 3;
+        static_cast<int>(std::ceil(static_cast<double>(bits()) * 0.30103)) + 3;
     const char* format = rounding == MPFR_RNDD ? "%.*RDg" : "%.*RUg";
-    const int size = mpfr_snprintf(nullptr, 0, format, digits, value_);
+    const int size = mpfr_snprintf(nullptr, 0, format, digits, raw());
     if (size < 0) {
       throw std::runtime_error("MPFR string formatting failed");
     }
     std::string result(static_cast<std::size_t>(size) + 1U, '\0');
-    mpfr_snprintf(result.data(), result.size(), format, digits, value_);
+    mpfr_snprintf(result.data(), result.size(), format, digits, raw());
     result.resize(static_cast<std::size_t>(size));
     return result;
   }
 
  private:
-  mpfr_t value_;
-  mpfr_prec_t bits_;
+  MpFloatStorage* storage_;
 };
 
 struct MpDecimalCache {
@@ -1026,6 +1096,9 @@ struct MpDecimalCache {
 };
 
 MpDecimalCache& mp_decimal_cache() {
+  // Construct the pool before the cache so thread-local destruction releases
+  // cached values while their owning pool is still alive.
+  (void)mp_float_pool();
   thread_local MpDecimalCache cache;
   return cache;
 }
@@ -1188,36 +1261,69 @@ MpInterval operator-(const MpInterval& left, const MpInterval& right) {
       mp_subtract(left.upper(), right.lower(), MPFR_RNDU));
 }
 
-template <std::size_t Size>
-MpFloat minimum(const std::array<MpFloat, Size>& values) {
-  return *std::min_element(values.begin(), values.end(),
-                           [](const auto& left, const auto& right) {
-                             return left.compare(right) < 0;
-                           });
-}
-
-template <std::size_t Size>
-MpFloat maximum(const std::array<MpFloat, Size>& values) {
-  return *std::max_element(values.begin(), values.end(),
-                           [](const auto& left, const auto& right) {
-                             return left.compare(right) < 0;
-                           });
-}
-
 MpInterval operator*(const MpInterval& left, const MpInterval& right) {
-  const std::array<MpFloat, 4> lower_candidates = {
-      mp_multiply(left.lower(), right.lower(), MPFR_RNDD),
-      mp_multiply(left.lower(), right.upper(), MPFR_RNDD),
-      mp_multiply(left.upper(), right.lower(), MPFR_RNDD),
-      mp_multiply(left.upper(), right.upper(), MPFR_RNDD),
-  };
-  const std::array<MpFloat, 4> upper_candidates = {
-      mp_multiply(left.lower(), right.lower(), MPFR_RNDU),
-      mp_multiply(left.lower(), right.upper(), MPFR_RNDU),
-      mp_multiply(left.upper(), right.lower(), MPFR_RNDU),
-      mp_multiply(left.upper(), right.upper(), MPFR_RNDU),
-  };
-  return MpInterval(minimum(lower_candidates), maximum(upper_candidates));
+  const bool left_nonnegative = left.lower().compare_zero() >= 0;
+  const bool left_nonpositive = left.upper().compare_zero() <= 0;
+  const bool right_nonnegative = right.lower().compare_zero() >= 0;
+  const bool right_nonpositive = right.upper().compare_zero() <= 0;
+
+  // The extrema of an interval product occur at corners. Once operand signs
+  // are known, monotonicity selects the same directed corner products as the
+  // exhaustive eight-product enclosure without evaluating dominated corners.
+  if (left_nonnegative) {
+    if (right_nonnegative) {
+      return MpInterval(
+          mp_multiply(left.lower(), right.lower(), MPFR_RNDD),
+          mp_multiply(left.upper(), right.upper(), MPFR_RNDU));
+    }
+    if (right_nonpositive) {
+      return MpInterval(
+          mp_multiply(left.upper(), right.lower(), MPFR_RNDD),
+          mp_multiply(left.lower(), right.upper(), MPFR_RNDU));
+    }
+    return MpInterval(
+        mp_multiply(left.upper(), right.lower(), MPFR_RNDD),
+        mp_multiply(left.upper(), right.upper(), MPFR_RNDU));
+  }
+  if (left_nonpositive) {
+    if (right_nonnegative) {
+      return MpInterval(
+          mp_multiply(left.lower(), right.upper(), MPFR_RNDD),
+          mp_multiply(left.upper(), right.lower(), MPFR_RNDU));
+    }
+    if (right_nonpositive) {
+      return MpInterval(
+          mp_multiply(left.upper(), right.upper(), MPFR_RNDD),
+          mp_multiply(left.lower(), right.lower(), MPFR_RNDU));
+    }
+    return MpInterval(
+        mp_multiply(left.lower(), right.upper(), MPFR_RNDD),
+        mp_multiply(left.lower(), right.lower(), MPFR_RNDU));
+  }
+  if (right_nonnegative) {
+    return MpInterval(
+        mp_multiply(left.lower(), right.upper(), MPFR_RNDD),
+        mp_multiply(left.upper(), right.upper(), MPFR_RNDU));
+  }
+  if (right_nonpositive) {
+    return MpInterval(
+        mp_multiply(left.upper(), right.lower(), MPFR_RNDD),
+        mp_multiply(left.lower(), right.lower(), MPFR_RNDU));
+  }
+
+  MpFloat lower_left =
+      mp_multiply(left.lower(), right.upper(), MPFR_RNDD);
+  MpFloat lower_right =
+      mp_multiply(left.upper(), right.lower(), MPFR_RNDD);
+  MpFloat upper_left =
+      mp_multiply(left.lower(), right.lower(), MPFR_RNDU);
+  MpFloat upper_right =
+      mp_multiply(left.upper(), right.upper(), MPFR_RNDU);
+  MpFloat lower = lower_left.compare(lower_right) <= 0
+      ? std::move(lower_left) : std::move(lower_right);
+  MpFloat upper = upper_left.compare(upper_right) >= 0
+      ? std::move(upper_left) : std::move(upper_right);
+  return MpInterval(std::move(lower), std::move(upper));
 }
 
 MpInterval operator/(const MpInterval& left, const MpInterval& right) {
@@ -1243,15 +1349,14 @@ MpInterval mp_square(const MpInterval& value) {
                         : std::move(upper_square);
     return MpInterval(zero, std::move(upper));
   }
-  const std::array<MpFloat, 2> lower_candidates = {
-      mp_multiply(value.lower(), value.lower(), MPFR_RNDD),
+  if (value.lower().compare_zero() > 0) {
+    return MpInterval(
+        mp_multiply(value.lower(), value.lower(), MPFR_RNDD),
+        mp_multiply(value.upper(), value.upper(), MPFR_RNDU));
+  }
+  return MpInterval(
       mp_multiply(value.upper(), value.upper(), MPFR_RNDD),
-  };
-  const std::array<MpFloat, 2> upper_candidates = {
-      mp_multiply(value.lower(), value.lower(), MPFR_RNDU),
-      mp_multiply(value.upper(), value.upper(), MPFR_RNDU),
-  };
-  return MpInterval(minimum(lower_candidates), maximum(upper_candidates));
+      mp_multiply(value.lower(), value.lower(), MPFR_RNDU));
 }
 
 MpInterval mp_sqrt(const MpInterval& value) {
