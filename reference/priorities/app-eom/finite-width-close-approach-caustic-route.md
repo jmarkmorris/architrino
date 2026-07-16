@@ -176,6 +176,38 @@ finite-width result; it does not silently replace the model input.
 Claim grade: `derived-design`. Falsifier: any required level is uncertified, or
 the recomputed maximum ladder distance exceeds its recorded budget.
 
+## Outer Step Recovery
+
+The Borg shadow request carries the controller triple
+`initial_step`, `minimum_step`, and `maximum_step`, plus the Boolean
+`use_adaptive_step_growth`. The Borg default is the nominal controller height
+$h_0=0.1$, the existing floor $h_{\min}=10^{-4}$, and
+$h_{\max}=\max(h_0,\Delta T_{\mathrm{chunk}})$. The actual attempted height is
+
+$$
+h_{\mathrm{try}}
+=
+\min\!\left(h_{\mathrm{controller}},T_1-T\right),
+$$
+
+so no atomic request can cross its chunk endpoint. With the current Borg chunk
+length $\Delta T_{\mathrm{chunk}}=0.05$, the first attempted height is $0.05$
+even though the nominal controller token is `0.1`.
+
+A rejected step retains the existing fail-closed reduction rule. After an
+accepted step, growth is allowed only after two consecutive accepted steps for
+which every path's position and velocity local-error rows use at most one
+eighth of their unchanged budgets. The controller then doubles the height,
+capped by $h_{\max}$ and by the remaining chunk interval. Thus a difficult
+encounter can reduce $h$ without converting that reduction into a permanent
+smooth-phase cost. No tolerance, minimum-step floor, caustic predicate, or
+publication rule changes.
+
+Claim grade: `derived-design`. Falsifier: a Borg request omits either new
+control, the EOM solver grows after a local-error row exceeds the one-eighth
+gate, or an attempted step exceeds either `maximum_step` or the remaining
+chunk interval.
+
 ## Exit Predicate
 
 An event candidate returns to the sharp chart only when complete endpoint scans
