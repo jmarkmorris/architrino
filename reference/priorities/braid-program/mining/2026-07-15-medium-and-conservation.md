@@ -4,7 +4,7 @@ All items: grade **idea (unproven lead)**. Sources are inert plain-string citati
 
 ## 1. The wake must own a local density and current
 
-**The idea.** With delayed pair interactions, the two directions of a transaction use different emission events, so directed exchanges generically fail to cancel instant-by-instant; a particle-only conservation ledger can never close. The wake in flight must carry its own local storage density and current, and a global action-level argument fixes only totals — a *local* rule for where in-flight wake charge lives and how it couples is a genuinely missing piece of the ontology.
+**The idea.** With delayed pair interactions, the two directions of a transaction use different emission events, so directed exchanges generically fail to cancel instant-by-instant; an architrino-only conservation ledger can never close. The wake in flight must carry its own local storage density and current, and a global action-level argument fixes only totals — a *local* rule for where in-flight wake charge lives and how it couples is a genuinely missing piece of the ontology.
 **Why it matters.** Deepest open object in the framework; prerequisite for trustworthy conservation-based verdicts (binding, radiation, drag) at every N-ladder rung.
 **Confirm/kill.** Construct a wake localization-and-coupling rule and show it closes the pair defect identically on one resolved record; a proof that none exists is equally load-bearing.
 **Source:** `braid-archive/braid-ideal/retained-sea-angular-momentum-ward-identity-and-transport-kernel.md`, Sections 2–3.
@@ -58,7 +58,7 @@ All items: grade **idea (unproven lead)**. Sources are inert plain-string citati
 **Source:** `braid-archive/braid-ideal/brainstorming.md`, metabolism entry (~L3047) and local-versus-global drain distinction (~L3067).
 **Recommended disposition:** brainstorming entry (pairs with item 8; promote together).
 
-## 8. The particle-plus-medium complex as one jointly solved object, judged by a four-gate flow budget
+## 8. The assembly-plus-medium complex as one jointly solved object, judged by a four-gate flow budget
 
 **The idea.** Stop asking whether an isolated assembly balances locally; solve assembly and surrounding medium as a single self-consistent object, everything dynamical at once. Success is a global flow budget through named gates — injection, transport out of the injection region, medium uptake where it has authority, escape residual — with attribution by switching channels individually. A charge unbalanceable where injected may balance globally after transport.
 **Why it matters.** The archive's strongest reframing: the theory's bound state may be the complex, not the bare assembly; the gate budget is a portable success criterion for release campaigns.

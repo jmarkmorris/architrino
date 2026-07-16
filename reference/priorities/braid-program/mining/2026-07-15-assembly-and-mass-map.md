@@ -12,7 +12,7 @@ All items: grade **idea (unproven lead)**. Sources are inert plain-string citati
 
 ## 2. The multipole quietness ladder: mass as leakage, confinement as multipole completion
 
-**The idea.** Read apparent mass as the residual an assembly's dressing fails to shield: the quietest dressing arrangement (all low-order moments cancelled) gives a light, resilient particle; sparser dressings leak at lower moment order, couple harder, and are unstable alone. Confinement reads as multipole completion — constituents that leak individually combine dressing inventories into quieter composites, so isolation is forbidden by unquenched moments rather than by decree.
+**The idea.** Read apparent mass as the residual an assembly's dressing fails to shield: the quietest dressing arrangement (all low-order moments cancelled) gives an assembly that reads observer-side as a light, resilient particle; sparser dressings leak at lower moment order, couple harder, and are unstable alone. Confinement reads as multipole completion — constituents that leak individually combine dressing inventories into quieter composites, so isolation is forbidden by unquenched moments rather than by decree.
 **Why it matters.** One organizing hypothesis for lepton/quark stability asymmetry, confinement, and mass ordering — computable as pure moment arithmetic before any dynamics.
 **Confirm/kill.** For candidate dressing counts, compute lowest unquenched moments in isolation and in composites; requires composites (and only composites) to admit quiet arrangements.
 **Source:** `braid-archive/braid-ideal/brainstorming.md` (~L2764–2767). (The dressing ladder survives in corpus at hypothesis level; this adds the confinement-as-completion inversion.)

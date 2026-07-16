@@ -10,7 +10,7 @@ All items: grade **idea (unproven lead)** except where marked as standing discip
 
 ## 2. Pinned versus tuned: interrogate every special value
 
-**The lesson.** Distinguish tuned knife-edges (measure-zero parameter settings with no restoring response) from dynamically pinned critical surfaces (setpoints of two-sided feedback). Universal particle properties demand the latter; any claimed special value must come with a feedback mechanism or be treated as tuning. Cautionary companion: an earlier proposed speed-holding mechanism failed exactly this test when its two-sided condition was examined — any revival must re-derive the condition first.
+**The lesson.** Distinguish tuned knife-edges (measure-zero parameter settings with no restoring response) from dynamically pinned critical surfaces (setpoints of two-sided feedback). Universally identical observed-particle properties demand the latter; any claimed special value must come with a feedback mechanism or be treated as tuning. Cautionary companion: an earlier proposed speed-holding mechanism failed exactly this test when its two-sided condition was examined — any revival must re-derive the condition first.
 **Recommended disposition:** method.md addition (claim-grading rider for "special value" claims).
 **Source:** `braid-archive/braid-ideal/brainstorming.md` (~L3053–3061).
 
