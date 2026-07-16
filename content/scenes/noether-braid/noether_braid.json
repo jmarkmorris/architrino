@@ -22,6 +22,14 @@
         "scenePath": "content/scenes/noether-braid/braid_recovery_requirements.json"
       },
       {
+        "nodeId": "noether_braid_configuration_space",
+        "scenePath": "content/scenes/noether-braid/noether_braid_configuration_space.json"
+      },
+      {
+        "nodeId": "explored_braid_geometries",
+        "scenePath": "content/scenes/noether-braid/explored_braid_geometries.json"
+      },
+      {
         "nodeId": "braid_mathematics",
         "scenePath": "content/scenes/noether-braid/braid_mathematics.json"
       },
@@ -30,24 +38,16 @@
         "scenePath": "content/scenes/noether-braid/spindle_braid.json"
       },
       {
-        "nodeId": "explored_braid_geometries",
-        "scenePath": "content/scenes/noether-braid/explored_braid_geometries.json"
+        "nodeId": "doubling_frequency_lock",
+        "scenePath": "content/scenes/noether-braid/doubling_frequency_lock.json"
       },
       {
         "nodeId": "braid_envelope_geometry",
         "scenePath": "content/scenes/noether-braid/braid_envelope_geometry.json"
       },
       {
-        "nodeId": "noether_braid_configuration_space",
-        "scenePath": "content/scenes/noether-braid/noether_braid_configuration_space.json"
-      },
-      {
         "nodeId": "noether_braid_topological_charge",
         "scenePath": "content/scenes/noether-braid/noether_braid_topological_charge.json"
-      },
-      {
-        "nodeId": "doubling_frequency_lock",
-        "scenePath": "content/scenes/noether-braid/doubling_frequency_lock.json"
       }
     ]
   },
@@ -69,6 +69,22 @@
       "labelBadge": "doc"
     },
     {
+      "id": "noether_braid_configuration_space",
+      "title": "Noether Braid Configuration Space",
+      "radius": 2.05,
+      "color": "#3f6658",
+      "labelTitle": "Noether Braid Configuration Space",
+      "labelBadge": "doc"
+    },
+    {
+      "id": "explored_braid_geometries",
+      "title": "Braid Families",
+      "radius": 2.05,
+      "color": "#4f7466",
+      "labelTitle": "Braid Families",
+      "labelBadge": "doc"
+    },
+    {
       "id": "braid_mathematics",
       "title": "Braid Mathematics",
       "radius": 2.05,
@@ -85,11 +101,11 @@
       "labelBadge": "doc"
     },
     {
-      "id": "explored_braid_geometries",
-      "title": "Braid Families",
+      "id": "doubling_frequency_lock",
+      "title": "Doubling-Frequency Resonance Lock",
       "radius": 2.05,
-      "color": "#4f7466",
-      "labelTitle": "Braid Families",
+      "color": "#5a5f7a",
+      "labelTitle": "Doubling-Frequency Resonance Lock",
       "labelBadge": "doc"
     },
     {
@@ -101,27 +117,11 @@
       "labelBadge": "doc"
     },
     {
-      "id": "noether_braid_configuration_space",
-      "title": "Noether Braid Configuration Space",
-      "radius": 2.05,
-      "color": "#3f6658",
-      "labelTitle": "Noether Braid Configuration Space",
-      "labelBadge": "doc"
-    },
-    {
       "id": "noether_braid_topological_charge",
       "title": "Noether Braid Topological Charge",
       "radius": 2.05,
       "color": "#315f4d",
       "labelTitle": "Noether Braid Topological Charge",
-      "labelBadge": "doc"
-    },
-    {
-      "id": "doubling_frequency_lock",
-      "title": "Doubling-Frequency Resonance Lock",
-      "radius": 2.05,
-      "color": "#5a5f7a",
-      "labelTitle": "Doubling-Frequency Resonance Lock",
       "labelBadge": "doc"
     }
   ]

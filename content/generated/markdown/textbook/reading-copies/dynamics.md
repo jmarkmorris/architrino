@@ -4515,7 +4515,7 @@ In $\mathbb{A}\mathbb{A}\mathbb{A}$, energy accounting begins with moving archit
 
 This chapter answers four linked questions. What kinetic bookkeeping is allowed for a single architrino? How does work occur when a receiver crosses delayed causal wakes? How do assemblies hide or expose internal energy? How can Noether sea coupling make energy, inertia, and effective geometry appear at larger scales?
 
-The chapter underwrites [Particle Masses](../../../../markdown/aaa/assemblies/particle-masses.md), [Nested Shell Braid Dynamics](../../../../markdown/aaa/noether-braid/explored-braid-geometries.md#nested-shell-braid-dynamics), [Noether Braid](../../../../markdown/aaa/noether-braid/noether-braid.md), [Noether Sea Pro/Anti Coupling](../../../../markdown/aaa/spacetime/noether-sea-pro-anti-coupling.md), [Emergent Metric](../../../../markdown/aaa/spacetime/emergent-metric.md), and the constructive delay-energy standard in [Delay Dynamics Energy](../../../../markdown/aaa/validation/simulations/action-energy/delay-dynamics-energy.md).
+The chapter underwrites [Particle Masses](../../../../markdown/aaa/assemblies/particle-masses.md), [Nested Shell Braid Dynamics](../../../../markdown/aaa/noether-braid/braid-families.md#nested-shell-braid-dynamics), [Noether Braid](../../../../markdown/aaa/noether-braid/noether-braid.md), [Noether Sea Pro/Anti Coupling](../../../../markdown/aaa/spacetime/noether-sea-pro-anti-coupling.md), [Emergent Metric](../../../../markdown/aaa/spacetime/emergent-metric.md), and the constructive delay-energy standard in [Delay Dynamics Energy](../../../../markdown/aaa/validation/simulations/action-energy/delay-dynamics-energy.md).
 
 All such dynamics unfold on a fixed ontological background: absolute time plus the Euclidean void. Forces and motion arise from **delayed causal hits from causal isochrons**, with line-of-action direction and receiver-normal branch strength, on this fixed background. We work in units with causal-wake propagation speed $c_f=1$.
 
@@ -8275,7 +8275,7 @@ That delay makes the binary the first serious test of the Master Equation. Partn
 
 Read the chapter as a branch atlas, not as a single orbit story. The partner-only row shows why ordinary circular central-force intuition fails. The self-hit rows show where the system becomes path-history dependent. The maximum-curvature and spiral sections are candidate ways to control that delayed feedback, and each must close its own root, action, wake, and stability ledger before it can become an assembly building block.
 
-This chapter is the foundational precursor to [Nested Shell Braid Dynamics](../../../../markdown/aaa/noether-braid/explored-braid-geometries.md#nested-shell-braid-dynamics), [Noether Braid Doubling-Frequency Resonance Lock](../../../../markdown/aaa/noether-braid/explored-braid-geometries.md#noether-braid-doubling-frequency-resonance-lock), [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md), and the assembly-level [Noether Braid](../../../../markdown/aaa/noether-braid/noether-braid.md). The primitive-entity ontology in [Architrino](../../../../markdown/aaa/foundations/architrino.md) points here once the discussion becomes a behavioral regime or assembly-stability mechanism.
+This chapter is the foundational precursor to [Nested Shell Braid Dynamics](../../../../markdown/aaa/noether-braid/braid-families.md#nested-shell-braid-dynamics), [Noether Braid Doubling-Frequency Resonance Lock](../../../../markdown/aaa/noether-braid/doubling-frequency-lock.md), [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md), and the assembly-level [Noether Braid](../../../../markdown/aaa/noether-braid/noether-braid.md). The primitive-entity ontology in [Architrino](../../../../markdown/aaa/foundations/architrino.md) points here once the discussion becomes a behavioral regime or assembly-stability mechanism.
 
 ### The Spiral Orbiting Binary and the Contraction Phase
 
@@ -10392,7 +10392,7 @@ c_1[\theta^O,\theta^M,\theta^I]
 \in\mathbb{Z}^2
 $$
 
-when the relative phase connection closes on the branch. This is the topological content of integer resonance lock: the lock ratios $(m,n)$ in [Noether Braid Doubling-Frequency Resonance Lock](../../../../markdown/aaa/noether-braid/explored-braid-geometries.md#noether-braid-doubling-frequency-resonance-lock) make the phase-entry data integral rather than irrationally drifting. The symbol $c_1$ is retained as the established phase-entry notation, but here it means return-map degree data, not a scalar curvature integral. The effective Hamiltonian chart is therefore globally promotable only on resonance-locked branches where the returned phase torus and causal-root ledger close together. Off-lock, the same $I_\alpha$ may exist on a local patch but acquires monodromy under return, so quantization and measure preservation become local fitting statements rather than global chart facts.
+when the relative phase connection closes on the branch. This is the topological content of integer resonance lock: the lock ratios $(m,n)$ in [Noether Braid Doubling-Frequency Resonance Lock](../../../../markdown/aaa/noether-braid/doubling-frequency-lock.md) make the phase-entry data integral rather than irrationally drifting. The symbol $c_1$ is retained as the established phase-entry notation, but here it means return-map degree data, not a scalar curvature integral. The effective Hamiltonian chart is therefore globally promotable only on resonance-locked branches where the returned phase torus and causal-root ledger close together. Off-lock, the same $I_\alpha$ may exist on a local patch but acquires monodromy under return, so quantization and measure preservation become local fitting statements rather than global chart facts.
 
 More precisely, the action variables $I_\alpha$ are sections of a flat action bundle over the retained branch family. They are globally defined only when the return holonomy is trivial on the admitted observables; equivalently, the phase-return degree pair closes by integer multiples of $2\pi$ on the same causal-root ledger. A Bohr-Sommerfeld-like condition is therefore admissible only on this trivial-holonomy locus:
 
@@ -20948,7 +20948,7 @@ This is the correct point from which to resume work on the broader dynamics stac
 - [master-equation.md](../../../../markdown/aaa/dynamics/master-equation.md)
 - [collinear-breather.md](../../../../markdown/aaa/proof-programs/collinear-breather.md)
 - [binary-dynamics.md](../../../../markdown/aaa/dynamics/binary-dynamics.md)
-- [Nested Shell Braid Dynamics](../../../../markdown/aaa/noether-braid/explored-braid-geometries.md#nested-shell-braid-dynamics)
+- [Nested Shell Braid Dynamics](../../../../markdown/aaa/noether-braid/braid-families.md#nested-shell-braid-dynamics)
 - [energy.md](../../../../markdown/aaa/dynamics/energy.md)
 
 ### Collinear Breather
@@ -31911,7 +31911,7 @@ Here "closed-form solution" means an elementary formula for the orbit. It does n
 - [binary-dynamics.md](../../../../markdown/aaa/dynamics/binary-dynamics.md)
 - [causal-action-functional.md](../../../../markdown/aaa/dynamics/causal-action-functional.md)
 - [energy.md](../../../../markdown/aaa/dynamics/energy.md)
-- [Noether Braid Doubling-Frequency Resonance Lock](../../../../markdown/aaa/noether-braid/explored-braid-geometries.md#noether-braid-doubling-frequency-resonance-lock)
+- [Noether Braid Doubling-Frequency Resonance Lock](../../../../markdown/aaa/noether-braid/doubling-frequency-lock.md)
 
 ### Closed-Form Collinear Breather Ansatz
 
@@ -34035,12 +34035,12 @@ If planar bridge closure fails, those higher-level chapters must become more con
 - [Causal Action Functional](../../../../markdown/aaa/dynamics/causal-action-functional.md): branch labels, coarea reduction, and the Jacobian-null bifurcation criterion.
 - [Collinear Breather](../../../../markdown/aaa/proof-programs/collinear-breather.md): reduced return-map architecture and tame-envelope philosophy.
 - [Master-Equation Breather Program](../../../../markdown/aaa/proof-programs/master-equation-breather.md): global roadmap that this chapter instantiates in the first planar regime.
-- [Nested Shell Braid Dynamics](../../../../markdown/aaa/noether-braid/explored-braid-geometries.md#nested-shell-braid-dynamics): higher-dimensional geometric target that eventually inherits the planar bridge machinery.
+- [Nested Shell Braid Dynamics](../../../../markdown/aaa/noether-braid/braid-families.md#nested-shell-braid-dynamics): higher-dimensional geometric target that eventually inherits the planar bridge machinery.
 - [Horizon Chirality and Planar Spin](../../../../markdown/aaa/spacetime/horizon-chirality.md): downstream interpretation of planar branch selection once the planar bridge is mathematically under control.
 
 ### Terminal Alignment
 
-This proof program carries the strong-field endpoint of the braid stack: the braid symmetry-breaking point, the local black-hole duality target, and the horizon-interface entropy counting whose comparison target is the area-normalized label entropy $\bar\alpha_{\mathrm{align}}\to1/4$. The program was developed on the nested shell braid realization of [Explored Braid Geometries](../../../../markdown/aaa/noether-braid/explored-braid-geometries.md#nested-shell-braid) — its labels and restrictions are stated on that family's three-band scaffold and closure label $\Lambda_{\text{NS}}$ — and it is stated here so that its targets, transfer-matrix machinery, and recorded negative results survive that family's demotion intact. The alignment condition itself (coplanarity and co-linearity at field speed, precession ceasing) is a whole-assembly statement that any retained braid family must either realize or replace; re-hosting the program onto the [spindle braid](../../../../markdown/aaa/noether-braid/spindle-braid.md) terminal behavior is an open obligation of the leading-candidate track.
+This proof program carries the strong-field endpoint of the braid stack: the braid symmetry-breaking point, the local black-hole duality target, and the horizon-interface entropy counting whose comparison target is the area-normalized label entropy $\bar\alpha_{\mathrm{align}}\to1/4$. The program was developed on the nested shell braid realization of [Explored Braid Geometries](../../../../markdown/aaa/noether-braid/braid-families.md#nested-shell-braid) — its labels and restrictions are stated on that family's three-band scaffold and closure label $\Lambda_{\text{NS}}$ — and it is stated here so that its targets, transfer-matrix machinery, and recorded negative results survive that family's demotion intact. The alignment condition itself (coplanarity and co-linearity at field speed, precession ceasing) is a whole-assembly statement that any retained braid family must either realize or replace; re-hosting the program onto the [spindle braid](../../../../markdown/aaa/noether-braid/spindle-braid.md) terminal behavior is an open obligation of the leading-candidate track.
 
 Downstream consumers: [Entropy](../../../../markdown/aaa/dynamics/entropy.md) consumes the label-count target; [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md) consumes the common-center stationarity obstruction lemma; [Black Holes](../../../../markdown/aaa/spacetime/black-holes.md), [Singularity Resolution](../../../../markdown/aaa/spacetime/singularity-resolution.md), and [Horizon Chirality](../../../../markdown/aaa/spacetime/horizon-chirality.md) consume the alignment condition and duality pattern.
 
@@ -35369,7 +35369,7 @@ $$
 $$
 The terminal label is conserved only when the increments of all three totals vanish within the declared branch tolerance, after subtracting the Euler-residual and endpoint-leakage terms. The projected action increment $\Delta I_{\mathrm{ME}}$ and any torque integral remain numerical diagnostics until these three totals close on the same $\mathcal{B}_{\mathrm{term}}(\lambda)$ rows.
 
-This scaffold identifies the smallest missing dynamics. The delayed equations must enumerate $\Lambda_{\theta}^{\mathrm{loc}}$ and derive the edge maps $\mathcal{E}_{\nu}^{\pm}$ from the terminal aligned branch. [Noether Braid Doubling-Frequency Resonance Lock](../../../../markdown/aaa/noether-braid/explored-braid-geometries.md#noether-braid-doubling-frequency-resonance-lock) supplies the candidate integer phase lattice, and [Binary Dynamics](../../../../markdown/aaa/dynamics/binary-dynamics.md#self-hit-definition-and-diagnostics) supplies the self-hit and partner-hit root vocabulary, but neither document yet computes the terminal aligned edge projections from the full three-layer dynamics.
+This scaffold identifies the smallest missing dynamics. The delayed equations must enumerate $\Lambda_{\theta}^{\mathrm{loc}}$ and derive the edge maps $\mathcal{E}_{\nu}^{\pm}$ from the terminal aligned branch. [Noether Braid Doubling-Frequency Resonance Lock](../../../../markdown/aaa/noether-braid/doubling-frequency-lock.md) supplies the candidate integer phase lattice, and [Binary Dynamics](../../../../markdown/aaa/dynamics/binary-dynamics.md#self-hit-definition-and-diagnostics) supplies the self-hit and partner-hit root vocabulary, but neither document yet computes the terminal aligned edge projections from the full three-layer dynamics.
 
 The local-horizon coefficient requires the area-normalized terminal density
 $$

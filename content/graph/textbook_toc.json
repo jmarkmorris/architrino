@@ -8,8 +8,8 @@
       "markdownIndex": "content/markdown/markdown_index.json"
     },
     "counts": {
-      "entries": 183,
-      "sections": 1489
+      "entries": 181,
+      "sections": 1491
     }
   },
   "tocRoot": {
@@ -2365,24 +2365,6 @@
             ]
           },
           {
-            "id": "noether_braid__neutral_braid",
-            "title": "Neutral Braid",
-            "kind": "markdown-view",
-            "sceneType": "Scene-Markdown-View",
-            "scenePath": "content/scenes/noether-braid/neutral_braid.json",
-            "markdownPath": "content/markdown/aaa/noether-braid/neutral-braid.md",
-            "sections": [
-              {
-                "kind": "markdown-section",
-                "title": "Retained-Branch Certificate Target",
-                "markdownPath": "content/markdown/aaa/noether-braid/neutral-braid.md",
-                "markdownSection": "Retained-Branch Certificate Target",
-                "sectionKey": "retained branch certificate target",
-                "headingLevel": 2
-              }
-            ]
-          },
-          {
             "id": "noether_braid__braid_recovery_requirements",
             "title": "Braid Recovery Requirements",
             "kind": "markdown-view",
@@ -2444,6 +2426,242 @@
                 "markdownPath": "content/markdown/aaa/noether-braid/braid-recovery-requirements.md",
                 "markdownSection": "Reading Discipline",
                 "sectionKey": "reading discipline",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Base-Family Certificate Instantiation",
+                "markdownPath": "content/markdown/aaa/noether-braid/braid-recovery-requirements.md",
+                "markdownSection": "Base-Family Certificate Instantiation",
+                "sectionKey": "base family certificate instantiation",
+                "headingLevel": 2
+              }
+            ]
+          },
+          {
+            "id": "noether_braid__configuration_space",
+            "title": "Noether Braid Configuration Space",
+            "kind": "markdown-view",
+            "sceneType": "Scene-Markdown-View",
+            "scenePath": "content/scenes/noether-braid/noether_braid_configuration_space.json",
+            "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-configuration-space.md",
+            "sections": [
+              {
+                "kind": "markdown-section",
+                "title": "Document Role",
+                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-configuration-space.md",
+                "markdownSection": "Document Role",
+                "sectionKey": "document role",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Evidence-Level Terms",
+                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-configuration-space.md",
+                "markdownSection": "Evidence-Level Terms",
+                "sectionKey": "evidence level terms",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "A Named Candidate: The Spindle Braid",
+                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-configuration-space.md",
+                "markdownSection": "A Named Candidate: The Spindle Braid",
+                "sectionKey": "a named candidate the spindle braid",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Classification Axes",
+                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-configuration-space.md",
+                "markdownSection": "Classification Axes",
+                "sectionKey": "classification axes",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Base Inventory",
+                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-configuration-space.md",
+                "markdownSection": "Base Inventory",
+                "sectionKey": "base inventory",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Support Geometry",
+                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-configuration-space.md",
+                "markdownSection": "Support Geometry",
+                "sectionKey": "support geometry",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Angular-Momentum Frame",
+                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-configuration-space.md",
+                "markdownSection": "Angular-Momentum Frame",
+                "sectionKey": "angular momentum frame",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Polarity Placement",
+                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-configuration-space.md",
+                "markdownSection": "Polarity Placement",
+                "sectionKey": "polarity placement",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Angular-Momentum Handedness",
+                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-configuration-space.md",
+                "markdownSection": "Angular-Momentum Handedness",
+                "sectionKey": "angular momentum handedness",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Speed, Hinge, And Frequency Families",
+                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-configuration-space.md",
+                "markdownSection": "Speed, Hinge, And Frequency Families",
+                "sectionKey": "speed hinge and frequency families",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Scope Of The Hypothesis",
+                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-configuration-space.md",
+                "markdownSection": "Scope Of The Hypothesis",
+                "sectionKey": "scope of the hypothesis",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Why Three Retained Rows",
+                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-configuration-space.md",
+                "markdownSection": "Why Three Retained Rows",
+                "sectionKey": "why three retained rows",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "General Branch State",
+                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-configuration-space.md",
+                "markdownSection": "General Branch State",
+                "sectionKey": "general branch state",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Branch Group Velocity",
+                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-configuration-space.md",
+                "markdownSection": "Branch Group Velocity",
+                "sectionKey": "branch group velocity",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Candidate And Certified Braids",
+                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-configuration-space.md",
+                "markdownSection": "Candidate And Certified Braids",
+                "sectionKey": "candidate and certified braids",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Momentum And Principal-Direction Decomposition",
+                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-configuration-space.md",
+                "markdownSection": "Momentum And Principal-Direction Decomposition",
+                "sectionKey": "momentum and principal direction decomposition",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Unordered Layer Semantics",
+                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-configuration-space.md",
+                "markdownSection": "Unordered Layer Semantics",
+                "sectionKey": "unordered layer semantics",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Super-Field-Speed Carrier Rows",
+                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-configuration-space.md",
+                "markdownSection": "Super-Field-Speed Carrier Rows",
+                "sectionKey": "super field speed carrier rows",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Stability In A Sea Of Like Assemblies",
+                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-configuration-space.md",
+                "markdownSection": "Stability In A Sea Of Like Assemblies",
+                "sectionKey": "stability in a sea of like assemblies",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Toward A Periodic Table Of The Noether Braid",
+                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-configuration-space.md",
+                "markdownSection": "Toward A Periodic Table Of The Noether Braid",
+                "sectionKey": "toward a periodic table of the noether braid",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Accessory-Architrino Capture",
+                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-configuration-space.md",
+                "markdownSection": "Accessory-Architrino Capture",
+                "sectionKey": "accessory architrino capture",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Frame Orthogonality And Framing Anisotropy",
+                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-configuration-space.md",
+                "markdownSection": "Frame Orthogonality And Framing Anisotropy",
+                "sectionKey": "frame orthogonality and framing anisotropy",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Relation To The Doubling-frequency Chapter",
+                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-configuration-space.md",
+                "markdownSection": "Relation To The Doubling-frequency Chapter",
+                "sectionKey": "relation to the doubling frequency chapter",
+                "headingLevel": 2
+              }
+            ]
+          },
+          {
+            "id": "noether_braid__explored_braid_geometries",
+            "title": "Braid Families",
+            "kind": "markdown-view",
+            "sceneType": "Scene-Markdown-View",
+            "scenePath": "content/scenes/noether-braid/explored_braid_geometries.json",
+            "markdownPath": "content/markdown/aaa/noether-braid/braid-families.md",
+            "sections": [
+              {
+                "kind": "markdown-section",
+                "title": "The Neutral Braid: Base of the Family Ladder",
+                "markdownPath": "content/markdown/aaa/noether-braid/braid-families.md",
+                "markdownSection": "The Neutral Braid: Base of the Family Ladder",
+                "sectionKey": "the neutral braid base of the family ladder",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Symmetric Shell Braid",
+                "markdownPath": "content/markdown/aaa/noether-braid/braid-families.md",
+                "markdownSection": "Symmetric Shell Braid",
+                "sectionKey": "symmetric shell braid",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Nested Shell Braid",
+                "markdownPath": "content/markdown/aaa/noether-braid/braid-families.md",
+                "markdownSection": "Nested Shell Braid",
+                "sectionKey": "nested shell braid",
                 "headingLevel": 2
               }
             ]
@@ -2612,34 +2830,18 @@
               },
               {
                 "kind": "markdown-section",
-                "title": "Why Rigidity: The Harmonic-Matching Principle",
+                "title": "The Harmonic-Matching Hypothesis",
                 "markdownPath": "content/markdown/aaa/noether-braid/spindle-braid.md",
-                "markdownSection": "Why Rigidity: The Harmonic-Matching Principle",
-                "sectionKey": "why rigidity the harmonic matching principle",
+                "markdownSection": "The Harmonic-Matching Hypothesis",
+                "sectionKey": "the harmonic matching hypothesis",
                 "headingLevel": 2
               },
               {
                 "kind": "markdown-section",
-                "title": "How the Family Was Found",
+                "title": "Motion as Screw",
                 "markdownPath": "content/markdown/aaa/noether-braid/spindle-braid.md",
-                "markdownSection": "How the Family Was Found",
-                "sectionKey": "how the family was found",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "The Field-Speed Pin and the Escapement",
-                "markdownPath": "content/markdown/aaa/noether-braid/spindle-braid.md",
-                "markdownSection": "The Field-Speed Pin and the Escapement",
-                "sectionKey": "the field speed pin and the escapement",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Motion, Inertia, and Isotropy",
-                "markdownPath": "content/markdown/aaa/noether-braid/spindle-braid.md",
-                "markdownSection": "Motion, Inertia, and Isotropy",
-                "sectionKey": "motion inertia and isotropy",
+                "markdownSection": "Motion as Screw",
+                "sectionKey": "motion as screw",
                 "headingLevel": 2
               },
               {
@@ -2648,14 +2850,6 @@
                 "markdownPath": "content/markdown/aaa/noether-braid/spindle-braid.md",
                 "markdownSection": "Discrete-Symmetry Structure",
                 "sectionKey": "discrete symmetry structure",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "The Confinement Problem",
-                "markdownPath": "content/markdown/aaa/noether-braid/spindle-braid.md",
-                "markdownSection": "The Confinement Problem",
-                "sectionKey": "the confinement problem",
                 "headingLevel": 2
               },
               {
@@ -2669,35 +2863,147 @@
             ]
           },
           {
-            "id": "noether_braid__explored_braid_geometries",
-            "title": "Explored Braid Geometries",
+            "id": "noether_braid__doubling_frequency_lock",
+            "title": "Doubling-Frequency Resonance Lock",
             "kind": "markdown-view",
             "sceneType": "Scene-Markdown-View",
-            "scenePath": "content/scenes/noether-braid/explored_braid_geometries.json",
-            "markdownPath": "content/markdown/aaa/noether-braid/explored-braid-geometries.md",
+            "scenePath": "content/scenes/noether-braid/doubling_frequency_lock.json",
+            "markdownPath": "content/markdown/aaa/noether-braid/doubling-frequency-lock.md",
             "sections": [
               {
                 "kind": "markdown-section",
-                "title": "Symmetric Shell Braid",
-                "markdownPath": "content/markdown/aaa/noether-braid/explored-braid-geometries.md",
-                "markdownSection": "Symmetric Shell Braid",
-                "sectionKey": "symmetric shell braid",
+                "title": "Status and Assumptions",
+                "markdownPath": "content/markdown/aaa/noether-braid/doubling-frequency-lock.md",
+                "markdownSection": "Status and Assumptions",
+                "sectionKey": "status and assumptions",
                 "headingLevel": 2
               },
               {
                 "kind": "markdown-section",
-                "title": "Nested Shell Braid",
-                "markdownPath": "content/markdown/aaa/noether-braid/explored-braid-geometries.md",
-                "markdownSection": "Nested Shell Braid",
-                "sectionKey": "nested shell braid",
+                "title": "Exact Kinematic Identity",
+                "markdownPath": "content/markdown/aaa/noether-braid/doubling-frequency-lock.md",
+                "markdownSection": "Exact Kinematic Identity",
+                "sectionKey": "exact kinematic identity",
                 "headingLevel": 2
               },
               {
                 "kind": "markdown-section",
-                "title": "Noether Braid Doubling-Frequency Resonance Lock",
-                "markdownPath": "content/markdown/aaa/noether-braid/explored-braid-geometries.md",
-                "markdownSection": "Noether Braid Doubling-Frequency Resonance Lock",
-                "sectionKey": "noether braid doubling frequency resonance lock",
+                "title": "Assumption 1 (Middle Caustic-Grazing Closure)",
+                "markdownPath": "content/markdown/aaa/noether-braid/doubling-frequency-lock.md",
+                "markdownSection": "Assumption 1 (Middle Caustic-Grazing Closure)",
+                "sectionKey": "assumption 1 middle caustic grazing closure",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Assumption 2 (Exact Integer Phase Closure)",
+                "markdownPath": "content/markdown/aaa/noether-braid/doubling-frequency-lock.md",
+                "markdownSection": "Assumption 2 (Exact Integer Phase Closure)",
+                "sectionKey": "assumption 2 exact integer phase closure",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Assumption 3 (Fixed Relative Phase Lock)",
+                "markdownPath": "content/markdown/aaa/noether-braid/doubling-frequency-lock.md",
+                "markdownSection": "Assumption 3 (Fixed Relative Phase Lock)",
+                "sectionKey": "assumption 3 fixed relative phase lock",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Bundle Holonomy Reading",
+                "markdownPath": "content/markdown/aaa/noether-braid/doubling-frequency-lock.md",
+                "markdownSection": "Bundle Holonomy Reading",
+                "sectionKey": "bundle holonomy reading",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Assumption 4 (Bundle-Flatness and Cancellation Selection Principle)",
+                "markdownPath": "content/markdown/aaa/noether-braid/doubling-frequency-lock.md",
+                "markdownSection": "Assumption 4 (Bundle-Flatness and Cancellation Selection Principle)",
+                "sectionKey": "assumption 4 bundle flatness and cancellation selection principle",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Non-Assumptions",
+                "markdownPath": "content/markdown/aaa/noether-braid/doubling-frequency-lock.md",
+                "markdownSection": "Non-Assumptions",
+                "sectionKey": "non assumptions",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Immediate Consequences",
+                "markdownPath": "content/markdown/aaa/noether-braid/doubling-frequency-lock.md",
+                "markdownSection": "Immediate Consequences",
+                "sectionKey": "immediate consequences",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Proposition 1 (Exterior Integer Lock Formulas)",
+                "markdownPath": "content/markdown/aaa/noether-braid/doubling-frequency-lock.md",
+                "markdownSection": "Proposition 1 (Exterior Integer Lock Formulas)",
+                "sectionKey": "proposition 1 exterior integer lock formulas",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Could $1{:}2{:}4$ Be a Solution?",
+                "markdownPath": "content/markdown/aaa/noether-braid/doubling-frequency-lock.md",
+                "markdownSection": "Could $1{:}2{:}4$ Be a Solution?",
+                "sectionKey": "could 1 2 4 be a solution",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "What Exact Periodicity Gives, and What It Does Not",
+                "markdownPath": "content/markdown/aaa/noether-braid/doubling-frequency-lock.md",
+                "markdownSection": "What Exact Periodicity Gives, and What It Does Not",
+                "sectionKey": "what exact periodicity gives and what it does not",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Interpreting the Cancellation Principle",
+                "markdownPath": "content/markdown/aaa/noether-braid/doubling-frequency-lock.md",
+                "markdownSection": "Interpreting the Cancellation Principle",
+                "sectionKey": "interpreting the cancellation principle",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "RG-Style Truncation Test",
+                "markdownPath": "content/markdown/aaa/noether-braid/doubling-frequency-lock.md",
+                "markdownSection": "RG-Style Truncation Test",
+                "sectionKey": "rg style truncation test",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Reduced-Theorem Target",
+                "markdownPath": "content/markdown/aaa/noether-braid/doubling-frequency-lock.md",
+                "markdownSection": "Reduced-Theorem Target",
+                "sectionKey": "reduced theorem target",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Recurrence Diagnostic",
+                "markdownPath": "content/markdown/aaa/noether-braid/doubling-frequency-lock.md",
+                "markdownSection": "Recurrence Diagnostic",
+                "sectionKey": "recurrence diagnostic",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Ancillary Symmetry Check",
+                "markdownPath": "content/markdown/aaa/noether-braid/doubling-frequency-lock.md",
+                "markdownSection": "Ancillary Symmetry Check",
+                "sectionKey": "ancillary symmetry check",
                 "headingLevel": 2
               }
             ]
@@ -2793,128 +3099,6 @@
             ]
           },
           {
-            "id": "noether_braid__configuration_space",
-            "title": "Noether Braid Configuration Space",
-            "kind": "markdown-view",
-            "sceneType": "Scene-Markdown-View",
-            "scenePath": "content/scenes/noether-braid/noether_braid_configuration_space.json",
-            "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-configuration-space.md",
-            "sections": [
-              {
-                "kind": "markdown-section",
-                "title": "Document Role",
-                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-configuration-space.md",
-                "markdownSection": "Document Role",
-                "sectionKey": "document role",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Scope Of The Hypothesis",
-                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-configuration-space.md",
-                "markdownSection": "Scope Of The Hypothesis",
-                "sectionKey": "scope of the hypothesis",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Why Three Retained Rows",
-                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-configuration-space.md",
-                "markdownSection": "Why Three Retained Rows",
-                "sectionKey": "why three retained rows",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "General Branch State",
-                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-configuration-space.md",
-                "markdownSection": "General Branch State",
-                "sectionKey": "general branch state",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Branch Group Velocity",
-                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-configuration-space.md",
-                "markdownSection": "Branch Group Velocity",
-                "sectionKey": "branch group velocity",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Candidate And Certified Braids",
-                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-configuration-space.md",
-                "markdownSection": "Candidate And Certified Braids",
-                "sectionKey": "candidate and certified braids",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Momentum And Principal-Direction Decomposition",
-                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-configuration-space.md",
-                "markdownSection": "Momentum And Principal-Direction Decomposition",
-                "sectionKey": "momentum and principal direction decomposition",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Unordered Layer Semantics",
-                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-configuration-space.md",
-                "markdownSection": "Unordered Layer Semantics",
-                "sectionKey": "unordered layer semantics",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Super-Field-Speed Carrier Rows",
-                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-configuration-space.md",
-                "markdownSection": "Super-Field-Speed Carrier Rows",
-                "sectionKey": "super field speed carrier rows",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Stability In A Sea Of Like Assemblies",
-                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-configuration-space.md",
-                "markdownSection": "Stability In A Sea Of Like Assemblies",
-                "sectionKey": "stability in a sea of like assemblies",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Toward A Periodic Table Of The Noether Braid",
-                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-configuration-space.md",
-                "markdownSection": "Toward A Periodic Table Of The Noether Braid",
-                "sectionKey": "toward a periodic table of the noether braid",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Accessory-Architrino Capture",
-                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-configuration-space.md",
-                "markdownSection": "Accessory-Architrino Capture",
-                "sectionKey": "accessory architrino capture",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Frame Orthogonality And Framing Anisotropy",
-                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-configuration-space.md",
-                "markdownSection": "Frame Orthogonality And Framing Anisotropy",
-                "sectionKey": "frame orthogonality and framing anisotropy",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Relation To The Doubling-frequency Chapter",
-                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-configuration-space.md",
-                "markdownSection": "Relation To The Doubling-frequency Chapter",
-                "sectionKey": "relation to the doubling frequency chapter",
-                "headingLevel": 2
-              }
-            ]
-          },
-          {
             "id": "noether_braid__topological_charge",
             "title": "Noether Braid Topological Charge",
             "kind": "markdown-view",
@@ -2976,194 +3160,6 @@
                 "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-topological-charge.md",
                 "markdownSection": "Status",
                 "sectionKey": "status",
-                "headingLevel": 2
-              }
-            ]
-          },
-          {
-            "id": "noether_braid__taxonomy",
-            "title": "Noether Braid Taxonomy",
-            "kind": "markdown-view",
-            "sceneType": "Scene-Markdown-View",
-            "scenePath": "content/scenes/noether-braid/noether_braid_taxonomy.json",
-            "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-taxonomy.md",
-            "sections": [
-              {
-                "kind": "markdown-section",
-                "title": "Local Terms",
-                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-taxonomy.md",
-                "markdownSection": "Local Terms",
-                "sectionKey": "local terms",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Document Role",
-                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-taxonomy.md",
-                "markdownSection": "Document Role",
-                "sectionKey": "document role",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Proof Search Roadmap",
-                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-taxonomy.md",
-                "markdownSection": "Proof Search Roadmap",
-                "sectionKey": "proof search roadmap",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Leading Candidate: The Spindle Braid",
-                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-taxonomy.md",
-                "markdownSection": "Leading Candidate: The Spindle Braid",
-                "sectionKey": "leading candidate the spindle braid",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Taxonomy Axes",
-                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-taxonomy.md",
-                "markdownSection": "Taxonomy Axes",
-                "sectionKey": "taxonomy axes",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Base Inventory",
-                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-taxonomy.md",
-                "markdownSection": "Base Inventory",
-                "sectionKey": "base inventory",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Support Geometry",
-                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-taxonomy.md",
-                "markdownSection": "Support Geometry",
-                "sectionKey": "support geometry",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Angular-Momentum Frame",
-                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-taxonomy.md",
-                "markdownSection": "Angular-Momentum Frame",
-                "sectionKey": "angular momentum frame",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Polarity Placement",
-                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-taxonomy.md",
-                "markdownSection": "Polarity Placement",
-                "sectionKey": "polarity placement",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Angular-Momentum Handedness",
-                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-taxonomy.md",
-                "markdownSection": "Angular-Momentum Handedness",
-                "sectionKey": "angular momentum handedness",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Speed, Hinge, And Frequency Families",
-                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-taxonomy.md",
-                "markdownSection": "Speed, Hinge, And Frequency Families",
-                "sectionKey": "speed hinge and frequency families",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Proof Status And Environment",
-                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-taxonomy.md",
-                "markdownSection": "Proof Status And Environment",
-                "sectionKey": "proof status and environment",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Proof ID Decoder",
-                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-taxonomy.md",
-                "markdownSection": "Proof ID Decoder",
-                "sectionKey": "proof id decoder",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Compact Proof Index",
-                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-taxonomy.md",
-                "markdownSection": "Compact Proof Index",
-                "sectionKey": "compact proof index",
-                "headingLevel": 2
-              }
-            ]
-          },
-          {
-            "id": "noether_braid__proof_map",
-            "title": "Noether Braid Proof Map",
-            "kind": "markdown-view",
-            "sceneType": "Scene-Markdown-View",
-            "scenePath": "content/scenes/noether-braid/noether_braid_proof_map.json",
-            "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-proof-map.md",
-            "sections": [
-              {
-                "kind": "markdown-section",
-                "title": "Proof Burden Order",
-                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-proof-map.md",
-                "markdownSection": "Proof Burden Order",
-                "sectionKey": "proof burden order",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Evidence-Handle Cleanup Decisions",
-                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-proof-map.md",
-                "markdownSection": "Evidence-Handle Cleanup Decisions",
-                "sectionKey": "evidence handle cleanup decisions",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Current Work Index",
-                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-proof-map.md",
-                "markdownSection": "Current Work Index",
-                "sectionKey": "current work index",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Neutral Braid Proof IDs",
-                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-proof-map.md",
-                "markdownSection": "Neutral Braid Proof IDs",
-                "sectionKey": "neutral braid proof ids",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Shell Braid Proof IDs",
-                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-proof-map.md",
-                "markdownSection": "Shell Braid Proof IDs",
-                "sectionKey": "shell braid proof ids",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Nested Shell Braid Proof IDs",
-                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-proof-map.md",
-                "markdownSection": "Nested Shell Braid Proof IDs",
-                "sectionKey": "nested shell braid proof ids",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Planar Lower-Rank Proof IDs",
-                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-proof-map.md",
-                "markdownSection": "Planar Lower-Rank Proof IDs",
-                "sectionKey": "planar lower rank proof ids",
                 "headingLevel": 2
               }
             ]

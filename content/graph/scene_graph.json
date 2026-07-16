@@ -9,11 +9,11 @@
       "elementLegendSource": "content/graph/runtime_routes.json"
     },
     "counts": {
-      "nodes": 601,
-      "edges": 1367,
-      "scenes": 384,
+      "nodes": 597,
+      "edges": 1363,
+      "scenes": 382,
       "markdownIndexes": 0,
-      "markdownDocs": 200,
+      "markdownDocs": 198,
       "runtimeEdges": 476,
       "periodicGridRoutes": 119,
       "elementLegendTargets": 3
@@ -1499,12 +1499,6 @@
       "nodeType": "scene"
     },
     {
-      "id": "noether_braid__neutral_braid",
-      "name": "Neutral Braid",
-      "path": "content/scenes/noether-braid/neutral_braid.json",
-      "nodeType": "scene"
-    },
-    {
       "id": "noether_braid__configuration_space",
       "name": "Noether Braid Configuration Space",
       "path": "content/scenes/noether-braid/noether_braid_configuration_space.json",
@@ -1514,12 +1508,6 @@
       "id": "noether_braid__overview",
       "name": "Noether Braid",
       "path": "content/scenes/noether-braid/noether_braid_overview.json",
-      "nodeType": "scene"
-    },
-    {
-      "id": "noether_braid__taxonomy",
-      "name": "Noether Braid Taxonomy",
-      "path": "content/scenes/noether-braid/noether_braid_taxonomy.json",
       "nodeType": "scene"
     },
     {
@@ -2399,12 +2387,6 @@
       "nodeType": "scene"
     },
     {
-      "id": "noether_braid__proof_map",
-      "name": "Noether Braid Proof Map",
-      "path": "content/scenes/noether-braid/noether_braid_proof_map.json",
-      "nodeType": "scene"
-    },
-    {
       "id": "fermions__muon_tau",
       "name": "Muon and Tau",
       "path": "content/scenes/assemblies/muon_tau.json",
@@ -2450,6 +2432,12 @@
       "id": "proof_programs__terminal_alignment",
       "name": "Terminal Alignment",
       "path": "content/scenes/proof-programs/terminal_alignment.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "noether_braid__doubling_frequency_lock",
+      "name": "Doubling-Frequency Resonance Lock",
+      "path": "content/scenes/noether-braid/doubling_frequency_lock.json",
       "nodeType": "scene"
     },
     {
@@ -2933,6 +2921,12 @@
       "nodeType": "markdown_doc"
     },
     {
+      "id": "content/markdown/aaa/noether-braid/braid-families.md",
+      "name": "Braid Families",
+      "path": "content/markdown/aaa/noether-braid/braid-families.md",
+      "nodeType": "markdown_doc"
+    },
+    {
       "id": "content/markdown/aaa/noether-braid/braid-mathematics.md",
       "name": "Braid Mathematics",
       "path": "content/markdown/aaa/noether-braid/braid-mathematics.md",
@@ -2945,33 +2939,15 @@
       "nodeType": "markdown_doc"
     },
     {
-      "id": "content/markdown/aaa/noether-braid/explored-braid-geometries.md",
-      "name": "Explored Braid Geometries",
-      "path": "content/markdown/aaa/noether-braid/explored-braid-geometries.md",
-      "nodeType": "markdown_doc"
-    },
-    {
-      "id": "content/markdown/aaa/noether-braid/neutral-braid.md",
-      "name": "Neutral Braid",
-      "path": "content/markdown/aaa/noether-braid/neutral-braid.md",
+      "id": "content/markdown/aaa/noether-braid/doubling-frequency-lock.md",
+      "name": "Doubling-Frequency Resonance Lock",
+      "path": "content/markdown/aaa/noether-braid/doubling-frequency-lock.md",
       "nodeType": "markdown_doc"
     },
     {
       "id": "content/markdown/aaa/noether-braid/noether-braid-configuration-space.md",
       "name": "Noether Braid Configuration Space",
       "path": "content/markdown/aaa/noether-braid/noether-braid-configuration-space.md",
-      "nodeType": "markdown_doc"
-    },
-    {
-      "id": "content/markdown/aaa/noether-braid/noether-braid-proof-map.md",
-      "name": "Noether Braid Proof Map",
-      "path": "content/markdown/aaa/noether-braid/noether-braid-proof-map.md",
-      "nodeType": "markdown_doc"
-    },
-    {
-      "id": "content/markdown/aaa/noether-braid/noether-braid-taxonomy.md",
-      "name": "Noether Braid Taxonomy",
-      "path": "content/markdown/aaa/noether-braid/noether-braid-taxonomy.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -5734,21 +5710,21 @@
       "implicit": false
     },
     {
+      "nodeId": "scene:content/scenes/noether-braid/doubling_frequency_lock.json",
+      "nodeType": "scene",
+      "id": "noether_braid__doubling_frequency_lock",
+      "name": "Doubling-Frequency Resonance Lock",
+      "path": "content/scenes/noether-braid/doubling_frequency_lock.json",
+      "searchTarget": "content/scenes/noether-braid/doubling_frequency_lock.json",
+      "implicit": false
+    },
+    {
       "nodeId": "scene:content/scenes/noether-braid/explored_braid_geometries.json",
       "nodeType": "scene",
       "id": "noether_braid__explored_braid_geometries",
       "name": "Explored Braid Geometries",
       "path": "content/scenes/noether-braid/explored_braid_geometries.json",
       "searchTarget": "content/scenes/noether-braid/explored_braid_geometries.json",
-      "implicit": false
-    },
-    {
-      "nodeId": "scene:content/scenes/noether-braid/neutral_braid.json",
-      "nodeType": "scene",
-      "id": "noether_braid__neutral_braid",
-      "name": "Neutral Braid",
-      "path": "content/scenes/noether-braid/neutral_braid.json",
-      "searchTarget": "content/scenes/noether-braid/neutral_braid.json",
       "implicit": false
     },
     {
@@ -5767,24 +5743,6 @@
       "name": "Noether Braid",
       "path": "content/scenes/noether-braid/noether_braid_overview.json",
       "searchTarget": "content/scenes/noether-braid/noether_braid_overview.json",
-      "implicit": false
-    },
-    {
-      "nodeId": "scene:content/scenes/noether-braid/noether_braid_proof_map.json",
-      "nodeType": "scene",
-      "id": "noether_braid__proof_map",
-      "name": "Noether Braid Proof Map",
-      "path": "content/scenes/noether-braid/noether_braid_proof_map.json",
-      "searchTarget": "content/scenes/noether-braid/noether_braid_proof_map.json",
-      "implicit": false
-    },
-    {
-      "nodeId": "scene:content/scenes/noether-braid/noether_braid_taxonomy.json",
-      "nodeType": "scene",
-      "id": "noether_braid__taxonomy",
-      "name": "Noether Braid Taxonomy",
-      "path": "content/scenes/noether-braid/noether_braid_taxonomy.json",
-      "searchTarget": "content/scenes/noether-braid/noether_braid_taxonomy.json",
       "implicit": false
     },
     {
@@ -7831,6 +7789,15 @@
       "implicit": false
     },
     {
+      "nodeId": "markdown_doc:content/markdown/aaa/noether-braid/braid-families.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/noether-braid/braid-families.md",
+      "name": "Braid Families",
+      "path": "content/markdown/aaa/noether-braid/braid-families.md",
+      "searchTarget": "content/markdown/aaa/noether-braid/braid-families.md",
+      "implicit": false
+    },
+    {
       "nodeId": "markdown_doc:content/markdown/aaa/noether-braid/braid-mathematics.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/noether-braid/braid-mathematics.md",
@@ -7849,21 +7816,12 @@
       "implicit": false
     },
     {
-      "nodeId": "markdown_doc:content/markdown/aaa/noether-braid/explored-braid-geometries.md",
+      "nodeId": "markdown_doc:content/markdown/aaa/noether-braid/doubling-frequency-lock.md",
       "nodeType": "markdown_doc",
-      "id": "content/markdown/aaa/noether-braid/explored-braid-geometries.md",
-      "name": "Explored Braid Geometries",
-      "path": "content/markdown/aaa/noether-braid/explored-braid-geometries.md",
-      "searchTarget": "content/markdown/aaa/noether-braid/explored-braid-geometries.md",
-      "implicit": false
-    },
-    {
-      "nodeId": "markdown_doc:content/markdown/aaa/noether-braid/neutral-braid.md",
-      "nodeType": "markdown_doc",
-      "id": "content/markdown/aaa/noether-braid/neutral-braid.md",
-      "name": "Neutral Braid",
-      "path": "content/markdown/aaa/noether-braid/neutral-braid.md",
-      "searchTarget": "content/markdown/aaa/noether-braid/neutral-braid.md",
+      "id": "content/markdown/aaa/noether-braid/doubling-frequency-lock.md",
+      "name": "Doubling-Frequency Resonance Lock",
+      "path": "content/markdown/aaa/noether-braid/doubling-frequency-lock.md",
+      "searchTarget": "content/markdown/aaa/noether-braid/doubling-frequency-lock.md",
       "implicit": false
     },
     {
@@ -7873,24 +7831,6 @@
       "name": "Noether Braid Configuration Space",
       "path": "content/markdown/aaa/noether-braid/noether-braid-configuration-space.md",
       "searchTarget": "content/markdown/aaa/noether-braid/noether-braid-configuration-space.md",
-      "implicit": false
-    },
-    {
-      "nodeId": "markdown_doc:content/markdown/aaa/noether-braid/noether-braid-proof-map.md",
-      "nodeType": "markdown_doc",
-      "id": "content/markdown/aaa/noether-braid/noether-braid-proof-map.md",
-      "name": "Noether Braid Proof Map",
-      "path": "content/markdown/aaa/noether-braid/noether-braid-proof-map.md",
-      "searchTarget": "content/markdown/aaa/noether-braid/noether-braid-proof-map.md",
-      "implicit": false
-    },
-    {
-      "nodeId": "markdown_doc:content/markdown/aaa/noether-braid/noether-braid-taxonomy.md",
-      "nodeType": "markdown_doc",
-      "id": "content/markdown/aaa/noether-braid/noether-braid-taxonomy.md",
-      "name": "Noether Braid Taxonomy",
-      "path": "content/markdown/aaa/noether-braid/noether-braid-taxonomy.md",
-      "searchTarget": "content/markdown/aaa/noether-braid/noether-braid-taxonomy.md",
       "implicit": false
     },
     {
@@ -12535,42 +12475,42 @@
       "to": "scene:content/scenes/noether-braid/braid_envelope_geometry.json",
       "edgeType": "subscene",
       "source": "content/scenes/noether-braid/noether_braid.json",
-      "field": "scene.children[6]"
+      "field": "scene.children[7]"
     },
     {
       "from": "scene:content/scenes/noether-braid/noether_braid.json",
       "to": "scene:content/scenes/noether-braid/braid_mathematics.json",
       "edgeType": "subscene",
       "source": "content/scenes/noether-braid/noether_braid.json",
-      "field": "scene.children[3]"
+      "field": "scene.children[4]"
     },
     {
       "from": "scene:content/scenes/noether-braid/noether_braid.json",
       "to": "scene:content/scenes/noether-braid/braid_recovery_requirements.json",
       "edgeType": "subscene",
       "source": "content/scenes/noether-braid/noether_braid.json",
-      "field": "scene.children[2]"
+      "field": "scene.children[1]"
+    },
+    {
+      "from": "scene:content/scenes/noether-braid/noether_braid.json",
+      "to": "scene:content/scenes/noether-braid/doubling_frequency_lock.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/noether-braid/noether_braid.json",
+      "field": "scene.children[6]"
     },
     {
       "from": "scene:content/scenes/noether-braid/noether_braid.json",
       "to": "scene:content/scenes/noether-braid/explored_braid_geometries.json",
       "edgeType": "subscene",
       "source": "content/scenes/noether-braid/noether_braid.json",
-      "field": "scene.children[5]"
-    },
-    {
-      "from": "scene:content/scenes/noether-braid/noether_braid.json",
-      "to": "scene:content/scenes/noether-braid/neutral_braid.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/noether-braid/noether_braid.json",
-      "field": "scene.children[1]"
+      "field": "scene.children[3]"
     },
     {
       "from": "scene:content/scenes/noether-braid/noether_braid.json",
       "to": "scene:content/scenes/noether-braid/noether_braid_configuration_space.json",
       "edgeType": "subscene",
       "source": "content/scenes/noether-braid/noether_braid.json",
-      "field": "scene.children[7]"
+      "field": "scene.children[2]"
     },
     {
       "from": "scene:content/scenes/noether-braid/noether_braid.json",
@@ -12578,20 +12518,6 @@
       "edgeType": "subscene",
       "source": "content/scenes/noether-braid/noether_braid.json",
       "field": "scene.children[0]"
-    },
-    {
-      "from": "scene:content/scenes/noether-braid/noether_braid.json",
-      "to": "scene:content/scenes/noether-braid/noether_braid_proof_map.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/noether-braid/noether_braid.json",
-      "field": "scene.children[10]"
-    },
-    {
-      "from": "scene:content/scenes/noether-braid/noether_braid.json",
-      "to": "scene:content/scenes/noether-braid/noether_braid_taxonomy.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/noether-braid/noether_braid.json",
-      "field": "scene.children[9]"
     },
     {
       "from": "scene:content/scenes/noether-braid/noether_braid.json",
@@ -12605,7 +12531,7 @@
       "to": "scene:content/scenes/noether-braid/spindle_braid.json",
       "edgeType": "subscene",
       "source": "content/scenes/noether-braid/noether_braid.json",
-      "field": "scene.children[4]"
+      "field": "scene.children[5]"
     },
     {
       "from": "scene:content/scenes/nuclear/atom.json",
@@ -14344,17 +14270,17 @@
       "field": "scene.source.path"
     },
     {
-      "from": "scene:content/scenes/noether-braid/explored_braid_geometries.json",
-      "to": "markdown_doc:content/markdown/aaa/noether-braid/explored-braid-geometries.md",
+      "from": "scene:content/scenes/noether-braid/doubling_frequency_lock.json",
+      "to": "markdown_doc:content/markdown/aaa/noether-braid/doubling-frequency-lock.md",
       "edgeType": "markdown_doc",
-      "source": "content/scenes/noether-braid/explored_braid_geometries.json",
+      "source": "content/scenes/noether-braid/doubling_frequency_lock.json",
       "field": "scene.source.path"
     },
     {
-      "from": "scene:content/scenes/noether-braid/neutral_braid.json",
-      "to": "markdown_doc:content/markdown/aaa/noether-braid/neutral-braid.md",
+      "from": "scene:content/scenes/noether-braid/explored_braid_geometries.json",
+      "to": "markdown_doc:content/markdown/aaa/noether-braid/braid-families.md",
       "edgeType": "markdown_doc",
-      "source": "content/scenes/noether-braid/neutral_braid.json",
+      "source": "content/scenes/noether-braid/explored_braid_geometries.json",
       "field": "scene.source.path"
     },
     {
@@ -14369,20 +14295,6 @@
       "to": "markdown_doc:content/markdown/aaa/noether-braid/noether-braid.md",
       "edgeType": "markdown_doc",
       "source": "content/scenes/noether-braid/noether_braid_overview.json",
-      "field": "scene.source.path"
-    },
-    {
-      "from": "scene:content/scenes/noether-braid/noether_braid_proof_map.json",
-      "to": "markdown_doc:content/markdown/aaa/noether-braid/noether-braid-proof-map.md",
-      "edgeType": "markdown_doc",
-      "source": "content/scenes/noether-braid/noether_braid_proof_map.json",
-      "field": "scene.source.path"
-    },
-    {
-      "from": "scene:content/scenes/noether-braid/noether_braid_taxonomy.json",
-      "to": "markdown_doc:content/markdown/aaa/noether-braid/noether-braid-taxonomy.md",
-      "edgeType": "markdown_doc",
-      "source": "content/scenes/noether-braid/noether_braid_taxonomy.json",
       "field": "scene.source.path"
     },
     {

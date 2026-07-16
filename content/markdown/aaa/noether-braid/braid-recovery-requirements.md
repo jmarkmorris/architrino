@@ -8,7 +8,7 @@ Nothing in this chapter is a retained-branch result. Every row below is an oblig
 
 ## Document Role
 
-This chapter owns the realization-independent statement of the braid proof burden: the retained-branch certificate row structure, the first-failure reporting discipline, the ordered proof-burden ladder, and the full recovery-target inventory consumed by the downstream theory. It deliberately owns no geometry and no evidence. The base-family definitions live in [Braid Families](braid-families.md#the-neutral-braid-base-of-the-family-ladder), [Symmetric Shell Braid](braid-families.md#symmetric-shell-braid), and [Nested Shell Braid](braid-families.md#nested-shell-braid); the shared mathematical machinery lives in [Braid Mathematics](braid-mathematics.md); Proof dispositions and environment-qualified rounds live with the research program's tracking; the classification grammar is defined in [Noether Braid Configuration Space](noether-braid-configuration-space.md).
+This chapter owns the realization-independent statement of the braid proof burden: the retained-branch certificate row structure, the first-failure reporting discipline, the ordered proof-burden ladder, and the full recovery-target inventory consumed by the downstream theory. It deliberately owns no geometry and no evidence. The base-family definitions live in [Braid Families](braid-families.md#the-neutral-braid-base-of-the-family-ladder), [Symmetric Shell Braid](braid-families.md#symmetric-shell-braid), and [Nested Shell Braid](braid-families.md#nested-shell-braid); the shared mathematical machinery lives in [Braid Mathematics](braid-mathematics.md); Proof dispositions are not carried in this chapter; the classification axes are defined in [Noether Braid Configuration Space](noether-braid-configuration-space.md).
 
 A reader should use this chapter the way an engineer uses a requirements specification: to know what any proposed design must eventually satisfy, and to recognize when a reported success addresses one row while leaving the blocking rows untouched.
 
@@ -146,7 +146,7 @@ Three rules keep this contract usable. First, requirements are not evidence: add
 
 ## Base-Family Certificate Instantiation
 
-The neutral braid claim is a theorem target, not a retained-branch result. A candidate branch $B$ over a test window $W$ is retained only if the required rows close on one ledger identity. The master certificate can be summarized as
+This section instantiates the general contract for the base family, the **neutral braid** — the six-architrino, polarity-balanced case whose full definition follows in [Braid Families](braid-families.md#the-neutral-braid-base-of-the-family-ladder); the inventory facts used here (three electrinos, three positrinos, thirty ordered distinct source pairs) are all a reader needs in advance. The neutral braid claim is a theorem target, not a retained-branch result. A candidate branch $B$ over a test window $W$ is retained only if the required rows close on one ledger identity. The master certificate can be summarized as
 
 $$
 \mathsf{R}_{\mathrm{NB}}(B,W)

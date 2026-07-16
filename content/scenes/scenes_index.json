@@ -1126,11 +1126,6 @@
       "path": "content/scenes/foundations/foundations.json"
     },
     {
-      "id": "noether_braid__neutral_braid",
-      "name": "Neutral Braid",
-      "path": "content/scenes/noether-braid/neutral_braid.json"
-    },
-    {
       "id": "noether_braid__configuration_space",
       "name": "Noether Braid Configuration Space",
       "path": "content/scenes/noether-braid/noether_braid_configuration_space.json"
@@ -1139,11 +1134,6 @@
       "id": "noether_braid__overview",
       "name": "Noether Braid",
       "path": "content/scenes/noether-braid/noether_braid_overview.json"
-    },
-    {
-      "id": "noether_braid__taxonomy",
-      "name": "Noether Braid Taxonomy",
-      "path": "content/scenes/noether-braid/noether_braid_taxonomy.json"
     },
     {
       "id": "noether_braid__topological_charge",
@@ -1876,11 +1866,6 @@
       "path": "content/scenes/archie/presentations.json"
     },
     {
-      "id": "noether_braid__proof_map",
-      "name": "Noether Braid Proof Map",
-      "path": "content/scenes/noether-braid/noether_braid_proof_map.json"
-    },
-    {
       "id": "fermions__muon_tau",
       "name": "Muon and Tau",
       "path": "content/scenes/assemblies/muon_tau.json"
@@ -1919,6 +1904,11 @@
       "id": "proof_programs__terminal_alignment",
       "name": "Terminal Alignment",
       "path": "content/scenes/proof-programs/terminal_alignment.json"
+    },
+    {
+      "id": "noether_braid__doubling_frequency_lock",
+      "name": "Doubling-Frequency Resonance Lock",
+      "path": "content/scenes/noether-braid/doubling_frequency_lock.json"
     }
   ]
 }

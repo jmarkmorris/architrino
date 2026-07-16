@@ -42,7 +42,7 @@ In the terminology of [Noether Braid Configuration Space](noether-braid-configur
 
 This chapter is the downstream classifier for retained Noether braid branch charts. It owns $[\mathfrak B]_{\mathrm{top}}$, the signed-degree refinement, invariance conditions, allowed transitions, and simulation extraction order for the topological label.
 
-It does not certify branch retention by itself and does not create a base Proof ID. It consumes a same-record branch chart from the neutral, shell, nested shell, rank-three, or lower-rank proof effort; the label becomes physical only after the causal-root, phase-return, gluing, wake-boundary, and stability rows close on that same record.
+It does not certify branch retention by itself and does not create a base classification label. It consumes a same-record branch chart from the neutral, shell, nested shell, rank-three, or lower-rank proof effort; the label becomes physical only after the causal-root, phase-return, gluing, wake-boundary, and stability rows close on that same record.
 
 ## Source Of The Three Entries
 
@@ -145,7 +145,7 @@ c_1[\theta_O,\theta_M,\theta_I]
 \right)
 =(m,n)
 $$
-records this phase-return degree data. The `NSH-421` doubling-frequency candidate is the outer-normalized case $(m,n)=(2,4)$, equivalently canonical `I:M:O` frequency order $4:2:1$.
+records this phase-return degree data. The doubling-frequency `4:2:1` candidate is the outer-normalized case $(m,n)=(2,4)$, equivalently canonical `I:M:O` frequency order $4:2:1$.
 
 The symbol $c_1$ is retained as the established phase-entry notation, but it should not be read here as a literal first Chern class of principal circle bundles over the outer phase circle. Such bundles over $S^1_O$ are topologically trivial because $H^2(S^1_O;\mathbb{Z})=0$. The claim is the degree-pair claim
 $$

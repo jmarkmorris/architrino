@@ -210,6 +210,39 @@ async function runBurnIn() {
       });
       const response = await client.evolveRetainedHistories(request);
       if (response.status !== "completed") {
+        const acceptedEndTime = Number(response.acceptedEndTime);
+        const partialAccepted =
+          Number.isFinite(acceptedEndTime) &&
+          acceptedEndTime > startTime &&
+          acceptedEndTime < endTime &&
+          Array.isArray(response.histories) &&
+          response.histories.length === pathCount &&
+          response.histories.every(
+            (history) => Number(history.coverageEnd) === acceptedEndTime,
+          );
+        if (partialAccepted) {
+          lastGoodHistories = response.histories;
+          nextStartTime = acceptedEndTime;
+          acceptedChunkRows.push({
+            chunkIndex: completedChunks,
+            startTime,
+            endTime: acceptedEndTime,
+            requestedEndTime: endTime,
+            partialTransportChunk: true,
+            initialStep: config.initialStep,
+            minimumStep: config.minimumStep,
+            rootTolerance: config.rootTolerance,
+            transportChunkDuration: burnInChunkDuration,
+            wallSeconds: (performance.now() - chunkStartedAt) / 1000,
+            acceptedStepCount: response.acceptedStepCount,
+            rejectedStepCount: response.rejectedStepCount,
+            rootFailureCount: countRootFailures(response.diagnostics),
+          });
+          completedChunks += 1;
+          process.stderr.write(
+            `burn-in partial checkpoint chunks=${completedChunks} time=${nextStartTime}\n`,
+          );
+        }
         await writeBurnInCheckpoint({
           histories: lastGoodHistories,
           completedChunks,
