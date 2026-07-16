@@ -563,6 +563,8 @@ export function mountBorgApp(options = {}) {
       ["Active positrinos", state.initialConditionConfig.positrinoCount],
       ["Velocity component max", state.initialConditionConfig.randomVelocityMaxComponentMagnitude],
       ["Velocity minimum speed", state.initialConditionConfig.randomVelocityMinSpeed],
+      ["Required initial separation", manifest.initialConditions.minimumPairSeparation],
+      ["Measured initial separation", state.eomSeedCertificate?.geometryCertificate?.measuredMinimumSeparation ?? "not-certified"],
       ["Run budget", state.liveRunBudget.status],
       ["Forward EOM status", state.dynamicRunnerStatus],
       ["Runner kind", state.dynamicRunnerKind],
@@ -627,6 +629,8 @@ export function mountBorgApp(options = {}) {
       ["velocityPolicy", manifest.initialConditions.velocityPolicy],
       ["maxVelocityComponent", config.randomVelocityMaxComponentMagnitude],
       ["minimumSpeed", config.randomVelocityMinSpeed],
+      ["minimumPairSeparation", manifest.initialConditions.minimumPairSeparation],
+      ["measuredMinimumSeparation", state.eomSeedCertificate?.geometryCertificate?.measuredMinimumSeparation ?? "not-certified"],
       ["velocity rays", "off"],
       ["customEditStatus", state.initialConditionEditStatus],
     ]);

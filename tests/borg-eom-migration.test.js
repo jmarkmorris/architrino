@@ -63,8 +63,8 @@ test("Borg mounts EOM idle by default and reserves automatic compute for explici
   assert.equal(defaultMounts[0].manifest.simulationEnvelope.sideLength, 1);
   assert.equal(defaultMounts[0].manifest.simulationEnvelope.centralVolumeSideLength, 0.8);
   assert.equal(defaultMounts[0].manifest.simulationEnvelope.faceBufferMargin, 0.1);
-  assert.equal(defaultMounts[0].manifest.modelControls.coupling, 0.0001);
-  assert.equal(defaultMounts[0].eomShadowRunner.coupling, "0.0001");
+  assert.equal(defaultMounts[0].manifest.modelControls.coupling, 0.005);
+  assert.equal(defaultMounts[0].eomShadowRunner.coupling, "0.005");
   assert.equal(defaultMounts[0].eomShadowRunner.chunkDuration, 0.05);
   assert.equal(defaultMounts[0].eomShadowRunner.minimumStep, "0.0001");
   assert.deepEqual(defaultMounts[0].manifest.simulationEnvelope.centralVolume.bounds, {
@@ -77,6 +77,11 @@ test("Borg mounts EOM idle by default and reserves automatic compute for explici
   assert.equal(defaultMounts[0].initialEomSeed.certificate.accepted, true);
   assert.equal(defaultMounts[0].initialEomSeed.certificate.eomOutput, false);
   assert.equal(defaultMounts[0].initialEomSeed.certificate.canonicalEomEvidence, false);
+  assert.equal(defaultMounts[0].initialEomSeed.certificate.geometryCertificate.accepted, true);
+  assert.equal(
+    defaultMounts[0].initialEomSeed.certificate.geometryCertificate.requiredMinimumSeparation,
+    0.2,
+  );
   assert.equal(defaultMounts[0].eomShadowRunner.eomClient, eomClient);
   assert.equal(defaultMounts[0].eomShadowRunner.pathCount, 16);
   assert.equal(defaultMounts[0].eomShadowRunner.startTime, 0);
@@ -104,9 +109,14 @@ test("Borg mounts EOM idle by default and reserves automatic compute for explici
   assert.deepEqual(defaultMounts[0].initialConditionConfig, {
     electrinoCount: 8,
     positrinoCount: 8,
-    randomVelocityMaxComponentMagnitude: 0.042,
-    randomVelocityMinSpeed: 0.0144,
+    randomVelocityMaxComponentMagnitude: 0,
+    randomVelocityMinSpeed: 0,
   });
+  assert.equal(
+    defaultMounts[0].initialEomSeed.endpointRows.every((row) =>
+      row.velocity.x === 0 && row.velocity.y === 0 && row.velocity.z === 0),
+    true,
+  );
   assert.deepEqual(
     defaultMounts[0].initialEomSeed.endpointRows.map((row) => row.pathKey),
     [

@@ -101,12 +101,16 @@ export function createBorgSeededInitialConditionRows({ manifest, seedIndex = 0, 
     accepted.electrinoCount,
     accepted.positrinoCount,
   );
-  const positions = createSeparatedRandomCentralPositions(
+  const latticePositions = createDeclaredLatticePositions(
     stateFlags.length,
-    bounds,
-    rng,
-    nonNegativeNumber(manifest?.initialConditions?.minimumPairSeparation, 0),
+    manifest?.initialConditions,
   );
+  const positions = latticePositions ?? createSeparatedRandomCentralPositions(
+      stateFlags.length,
+      bounds,
+      rng,
+      nonNegativeNumber(manifest?.initialConditions?.minimumPairSeparation, 0),
+    );
 
   return Object.freeze(stateFlags.map((flags, index) => Object.freeze({
     pathKey: FIRST_PATH_KEY + index,
@@ -404,6 +408,32 @@ function createSeparatedRandomCentralPositions(count, bounds, rng, minimumSepara
       );
     }
     positions.push(accepted);
+  }
+  return Object.freeze(positions);
+}
+
+function createDeclaredLatticePositions(count, initialConditions = {}) {
+  if (initialConditions.initialLinePolicy !== "minimum-separation-lattice-4x2x2") {
+    return null;
+  }
+  const dimensions = initialConditions.latticeDimensions ?? {};
+  const expectedCount = Number(dimensions.x) * Number(dimensions.y) * Number(dimensions.z);
+  if (count !== expectedCount) {
+    return null;
+  }
+  const origin = initialConditions.latticeOrigin ?? {};
+  const spacing = initialConditions.latticeSpacing ?? {};
+  const positions = [];
+  for (let xIndex = 0; xIndex < dimensions.x; xIndex += 1) {
+    for (let yIndex = 0; yIndex < dimensions.y; yIndex += 1) {
+      for (let zIndex = 0; zIndex < dimensions.z; zIndex += 1) {
+        positions.push(Object.freeze({
+          x: Number(origin.x) + xIndex * Number(spacing.x),
+          y: Number(origin.y) + yIndex * Number(spacing.y),
+          z: Number(origin.z) + zIndex * Number(spacing.z),
+        }));
+      }
+    }
   }
   return Object.freeze(positions);
 }

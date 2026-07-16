@@ -50,7 +50,7 @@ export const BORG_DATASET_MANIFEST_V1 = deepFreeze({
     "wakeHorizon": 10
   },
   "modelControls": {
-    "coupling": 0.0001
+    "coupling": 0.005
   },
   "population": {
     "centralArchitrinoCount": 8,
@@ -67,21 +67,35 @@ export const BORG_DATASET_MANIFEST_V1 = deepFreeze({
     }
   },
   "initialConditions": {
-    "initialConditionFamily": "seeded-random",
-    "initialConditionSeed": "borg-sixteen-random-interior-position-seed.v1",
+    "initialConditionFamily": "minimum-separation-lattice",
+    "initialConditionSeed": "borg-sixteen-minimum-separation-lattice.v1",
     "electrinoCount": 8,
     "positrinoCount": 8,
     "polarityAssignmentSource": "seeded-balanced",
     "polaritySignConvention": "positrino-positive-electrino-negative",
     "positrinoCharge": 1,
     "electrinoCharge": -1,
-    "velocityPolicy": "seeded-random-small-3d",
-    "initialLinePolicy": "seeded-random-interior-cube",
-    "velocitySeed": "borg-sixteen-random-small-3d-velocity-seed.v1",
-    "minimumPairSeparation": 0.125,
-    "randomVelocityMaxComponentMagnitude": 0.042,
-    "randomVelocityMinSpeed": 0.0144,
-    "velocityBoundScaleFromV1": 1.2,
+    "velocityPolicy": "zero-initial-velocity",
+    "initialLinePolicy": "minimum-separation-lattice-4x2x2",
+    "velocitySeed": "zero-initial-velocity",
+    "latticeDimensions": {
+      "x": 4,
+      "y": 2,
+      "z": 2
+    },
+    "latticeOrigin": {
+      "x": 0.2,
+      "y": 0.3,
+      "z": 0.3
+    },
+    "latticeSpacing": {
+      "x": 0.2,
+      "y": 0.4,
+      "z": 0.4
+    },
+    "minimumPairSeparation": 0.2,
+    "randomVelocityMaxComponentMagnitude": 0,
+    "randomVelocityMinSpeed": 0,
     "customEditStatus": "accepted"
   },
   "diagnostics": {
@@ -355,14 +369,14 @@ export function validateBorgManifest({
   if (manifest.population.maximumArchitrinoCount < manifest.population.architrinoCount) {
     failures.push("maximum population is smaller than the default population");
   }
-  if (manifest.initialConditions.initialLinePolicy !== "seeded-random-interior-cube") {
-    failures.push("seeded random interior-cube initial layout policy is missing");
+  if (manifest.initialConditions.initialLinePolicy !== "minimum-separation-lattice-4x2x2") {
+    failures.push("minimum-separation 4x2x2 initial layout policy is missing");
   }
   if (manifest.initialConditions.initialConditionSeed == null) {
     failures.push("seeded random initial condition seed is missing");
   }
-  if (manifest.initialConditions.velocityPolicy !== "seeded-random-small-3d") {
-    failures.push("seeded random small 3D velocity policy is missing");
+  if (manifest.initialConditions.velocityPolicy !== "zero-initial-velocity") {
+    failures.push("zero initial velocity policy is missing");
   }
   if (manifest.initialConditions.velocitySeed == null) {
     failures.push("seeded random velocity seed is missing");
@@ -373,14 +387,14 @@ export function validateBorgManifest({
   if (manifest.initialConditions.positrinoCharge !== 1 || manifest.initialConditions.electrinoCharge !== -1) {
     failures.push("Borg polarity charge signs are not canonical");
   }
-  if (manifest.initialConditions.randomVelocityMaxComponentMagnitude !== 0.042) {
-    failures.push("seeded random velocity max component magnitude is not 0.042");
+  if (manifest.initialConditions.randomVelocityMaxComponentMagnitude !== 0) {
+    failures.push("default maximum velocity component is not zero");
   }
-  if (manifest.initialConditions.randomVelocityMinSpeed !== 0.0144) {
-    failures.push("seeded random velocity min speed is not 0.0144");
+  if (manifest.initialConditions.randomVelocityMinSpeed !== 0) {
+    failures.push("default minimum speed is not zero");
   }
-  if (manifest.initialConditions.velocityBoundScaleFromV1 !== 1.2) {
-    failures.push("seeded random velocity bound scale is not 1.2");
+  if (manifest.initialConditions.minimumPairSeparation !== 0.2) {
+    failures.push("default minimum pair separation is not 0.2");
   }
   if (!surfaceDesign.firstViewport.defaultVisibleLayers.includes("simulation-window")) {
     failures.push("simulation-window layer is not default visible");
