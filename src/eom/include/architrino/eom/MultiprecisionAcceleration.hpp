@@ -28,6 +28,7 @@ struct MpfrEventImpulseRequest {
   std::string causal_width;
   std::string core_scale;
   std::string impulse_tolerance;
+  std::string position_moment_tolerance;
   std::size_t max_depth;
   std::size_t max_cells;
 };
@@ -36,6 +37,7 @@ struct MpfrEventImpulseAttempt {
   bool certified;
   std::string failure_code;
   IntervalVector impulse;
+  IntervalVector position_moment;
   std::size_t visited_cells;
   unsigned precision_bits;
 };

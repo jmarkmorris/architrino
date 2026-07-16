@@ -394,6 +394,53 @@ std::vector<std::pair<std::string, std::string>> changed_topology_pairs(
   return changed;
 }
 
+bool pair_is_adjudicated_finite_width(
+    const NativeCoupledEvolutionRequest& request,
+    const std::string& receiver,
+    const std::string& source) {
+  return std::find(
+      request.adjudicated_finite_width_pairs.begin(),
+      request.adjudicated_finite_width_pairs.end(),
+      std::make_pair(receiver, source)) !=
+      request.adjudicated_finite_width_pairs.end();
+}
+
+std::vector<std::pair<std::string, std::string>>
+certified_opposite_polarity_core_pairs(
+    const NativeCoupledEvolutionRequest& request,
+    const NativeAccelerationSnapshotCertificate& snapshot) {
+  const Interval core_scale = Interval::decimal_token(request.core_scale);
+  std::vector<std::pair<std::string, std::string>> result;
+  for (const auto& pair : snapshot.acceleration.pair_certificates) {
+    const Interval charge_product =
+        Interval::decimal_token(path_charge(request, pair.receiver_path_id)) *
+        Interval::decimal_token(path_charge(request, pair.source_path_id));
+    if (!(charge_product.upper() < 0.0) || pair.status == "uncertified") {
+      continue;
+    }
+    const bool intersects_core = std::any_of(
+        pair.rows.begin(), pair.rows.end(), [&](const auto& row) {
+          return row.separation.has_value() &&
+              row.separation->lower() <= core_scale.upper();
+        });
+    if (intersects_core) {
+      result.emplace_back(pair.receiver_path_id, pair.source_path_id);
+    }
+  }
+  return result;
+}
+
+std::vector<std::pair<std::string, std::string>> finite_width_pairs(
+    const NativeAccelerationSnapshotCertificate& snapshot) {
+  std::vector<std::pair<std::string, std::string>> result;
+  for (const auto& pair : snapshot.acceleration.pair_certificates) {
+    if (pair.chart == "finite_width" && pair.status != "uncertified") {
+      result.emplace_back(pair.receiver_path_id, pair.source_path_id);
+    }
+  }
+  return result;
+}
+
 std::optional<NativeEndpointRootContinuationCertificate>
 certify_coincident_endpoint_root_continuation_impl(
     const NativeAccelerationSnapshotCertificate& start,
@@ -962,8 +1009,22 @@ SubstepAttempt corrected_substep_impl(
           regulator_convergence_certificates;
       std::vector<NativeEndpointRootContinuationCertificate>
           endpoint_root_continuations;
-      if (topology_signature(start_snapshot) !=
-          topology_signature(endpoint_snapshot)) {
+      const bool topology_changed =
+          topology_signature(start_snapshot) !=
+          topology_signature(endpoint_snapshot);
+      auto event_pairs = changed_topology_pairs(
+          start_snapshot, endpoint_snapshot);
+      const auto append_finite_width_pairs = [&](const auto& snapshot) {
+        for (const auto& pair : finite_width_pairs(snapshot)) {
+          if (std::find(event_pairs.begin(), event_pairs.end(), pair) ==
+              event_pairs.end()) {
+            event_pairs.push_back(pair);
+          }
+        }
+      };
+      append_finite_width_pairs(start_snapshot);
+      append_finite_width_pairs(endpoint_snapshot);
+      if (!event_pairs.empty()) {
         if (request.chart_policy == "sharp") {
           return {
               failed_substep_certificate(
@@ -975,15 +1036,16 @@ SubstepAttempt corrected_substep_impl(
           };
         }
         const double step = scalar_token(end_time) - scalar_token(start_time);
-        for (const auto& [receiver_id, source_id] :
-             changed_topology_pairs(start_snapshot, endpoint_snapshot)) {
-          const auto endpoint_continuation =
-              certify_coincident_endpoint_root_continuation_impl(
-                  start_snapshot, endpoint_snapshot,
-                  receiver_id, source_id);
-          if (endpoint_continuation.has_value()) {
-            endpoint_root_continuations.push_back(*endpoint_continuation);
-            continue;
+        for (const auto& [receiver_id, source_id] : event_pairs) {
+          if (topology_changed) {
+            const auto endpoint_continuation =
+                certify_coincident_endpoint_root_continuation_impl(
+                    start_snapshot, endpoint_snapshot,
+                    receiver_id, source_id);
+            if (endpoint_continuation.has_value()) {
+              endpoint_root_continuations.push_back(*endpoint_continuation);
+              continue;
+            }
           }
           auto regulator = certify_native_regulator_convergence(
               request,
@@ -995,10 +1057,12 @@ SubstepAttempt corrected_substep_impl(
           auto event = regulator.accepted_event_impulse;
           if (regulator.status != "certified_convergent" ||
               event.status != "certified_complete" ||
-              !event.impulse.has_value()) {
-            const std::string failure = regulator.failure_code.empty()
-                ? "regulator_convergence_failed"
-                : regulator.failure_code;
+              !event.impulse.has_value() ||
+              !event.position_moment.has_value()) {
+            const std::string failure =
+                event.failure_code == "insufficient_history_depth"
+                ? "insufficient_history_depth"
+                : "caustic_eta_convergence_failed";
             event_impulses.push_back(std::move(event));
             regulator_convergence_certificates.push_back(
                 std::move(regulator));
@@ -1027,14 +1091,24 @@ SubstepAttempt corrected_substep_impl(
               Interval::point(step * 0.5),
               add(*start_pair.total_acceleration,
                   *end_pair.total_acceleration));
-          if (!vectors_overlap(trapezoid, *event.impulse)) {
+          const IntervalVector trapezoid_position_moment = scale(
+              Interval::point(step * step / 6.0),
+              add(
+                  scale(
+                      Interval::point(2.0),
+                      *start_pair.total_acceleration),
+                  *end_pair.total_acceleration));
+          if (!vectors_overlap(trapezoid, *event.impulse) ||
+              !vectors_overlap(
+                  trapezoid_position_moment,
+                  *event.position_moment)) {
             event_impulses.push_back(std::move(event));
             regulator_convergence_certificates.push_back(
                 std::move(regulator));
             auto failed = failed_substep_certificate(
                 start_time, end_time, std::move(start_snapshot),
                 std::move(endpoint_snapshot), iteration, correction_error,
-                "event_impulse_requires_subdivision", candidate_histories,
+                "caustic_state_reconstruction_failed", candidate_histories,
                 pinned_fold_onset_certificates);
             failed.event_impulses = std::move(event_impulses);
             failed.regulator_convergence_certificates =
@@ -1070,14 +1144,33 @@ SubstepAttempt corrected_substep_impl(
     }
     endpoint_guess = evaluated;
   }
-  return {
-      failed_substep_certificate(
-          start_time, end_time, std::move(start_snapshot),
-          std::move(last_snapshot), request.max_correction_iterations,
-          correction_error, "coupled_correction_failed", last_histories,
-          pinned_fold_onset_certificates),
-      std::nullopt,
-  };
+  auto failed = failed_substep_certificate(
+      start_time, end_time, std::move(start_snapshot),
+      std::move(last_snapshot), request.max_correction_iterations,
+      correction_error,
+      request.adjudicated_finite_width_pairs.empty()
+          ? "coupled_correction_failed"
+          : "caustic_correction_failed",
+      last_histories, pinned_fold_onset_certificates);
+  if (!request.adjudicated_finite_width_pairs.empty()) {
+    for (const auto& [receiver_id, source_id] :
+         request.adjudicated_finite_width_pairs) {
+      auto regulator = certify_native_regulator_convergence(
+          request,
+          path_history(last_histories, receiver_id),
+          path_history(last_histories, source_id),
+          path_charge(request, receiver_id),
+          path_charge(request, source_id),
+          start_time, end_time);
+      failed.event_impulses.push_back(regulator.accepted_event_impulse);
+      if (regulator.status != "certified_convergent") {
+        failed.failure_code = "caustic_eta_convergence_failed";
+      }
+      failed.regulator_convergence_certificates.push_back(
+          std::move(regulator));
+    }
+  }
+  return {std::move(failed), std::nullopt};
 }
 
 SubstepAttempt corrected_substep(
@@ -1154,6 +1247,9 @@ void validate_request(const NativeCoupledEvolutionRequest& request) {
     tolerance_value(request.core_scale, "core scale");
     tolerance_value(request.quadrature_tolerance, "quadrature tolerance");
     tolerance_value(request.event_impulse_tolerance, "event impulse tolerance");
+    tolerance_value(
+        request.event_position_moment_tolerance,
+        "event position-moment tolerance");
     const double refinement_ratio =
         exact_decimal_value(request.regulator_refinement_ratio);
     if (!(refinement_ratio > 0.0 && refinement_ratio < 1.0)) {
@@ -1776,7 +1872,7 @@ certify_binary64_fold_caustic_impulse(
     const std::string& reception_lower_token,
     const std::string& reception_upper_token) {
   NativeFoldCausticImpulseCertificate certificate{
-      .schema = "eom_native_fold_caustic_impulse_certificate/v0",
+      .schema = "eom_native_fold_caustic_impulse_certificate/v1",
       .status = "uncertified",
       .receiver_path_id = receiver.path_id,
       .source_path_id = source.path_id,
@@ -1785,6 +1881,7 @@ certify_binary64_fold_caustic_impulse(
       .causal_width = request.causal_width,
       .core_scale = request.core_scale,
       .impulse = std::nullopt,
+      .position_moment = std::nullopt,
       .visited_cells = 0,
       .precision_route = "binary64_outward_joint_quadrature",
       .precision_bits = 53,
@@ -1815,6 +1912,9 @@ certify_binary64_fold_caustic_impulse(
     }
     const double tolerance = tolerance_value(
         request.event_impulse_tolerance, "event impulse tolerance");
+    const double position_moment_tolerance = tolerance_value(
+        request.event_position_moment_tolerance,
+        "event position-moment tolerance");
     double active_search_lower = search_lower;
     double tail_impulse_bound = 0.0;
     const Interval field_speed = Interval::decimal_token(request.field_speed);
@@ -1884,11 +1984,13 @@ certify_binary64_fold_caustic_impulse(
       std::size_t depth;
       std::size_t id;
       IntervalVector integral;
+      IntervalVector position_moment;
 
       [[nodiscard]] double score() const {
         return std::max(
             {integral[0].width(), integral[1].width(),
-             integral[2].width()});
+             integral[2].width(), position_moment[0].width(),
+             position_moment[1].width(), position_moment[2].width()});
       }
     };
     struct EventCellOrder {
@@ -2013,6 +2115,10 @@ certify_binary64_fold_caustic_impulse(
           integral[axis] = *intersection;
         }
       }
+      const Interval position_weight(
+          reception_upper - t_upper, reception_upper - t_lower);
+      const IntervalVector position_moment =
+          scale(position_weight, integral);
       return EventCell{
           .t_lower = t_lower,
           .t_upper = t_upper,
@@ -2021,6 +2127,7 @@ certify_binary64_fold_caustic_impulse(
           .depth = depth,
           .id = next_cell_id++,
           .integral = integral,
+          .position_moment = position_moment,
       };
     };
 
@@ -2064,6 +2171,8 @@ certify_binary64_fold_caustic_impulse(
     }
     IntervalVector total{
         Interval::point(0.0), Interval::point(0.0), Interval::point(0.0)};
+    IntervalVector total_position_moment{
+        Interval::point(0.0), Interval::point(0.0), Interval::point(0.0)};
     while (true) {
       std::vector<const EventCell*> chronological;
       chronological.reserve(cells.size());
@@ -2080,17 +2189,30 @@ certify_binary64_fold_caustic_impulse(
             return left->id < right->id;
           });
       std::vector<IntervalVector> totals;
+      std::vector<IntervalVector> position_moment_totals;
       totals.reserve(chronological.size());
+      position_moment_totals.reserve(chronological.size());
       for (const EventCell* cell : chronological) {
         totals.push_back(cell->integral);
+        position_moment_totals.push_back(cell->position_moment);
       }
       total = fixed_pairwise_sum(totals);
+      total_position_moment = fixed_pairwise_sum(position_moment_totals);
       certificate.last_maximum_component_width = std::max(
           {total[0].width(), total[1].width(), total[2].width()});
+      certificate.last_maximum_position_moment_component_width = std::max(
+          {total_position_moment[0].width(),
+           total_position_moment[1].width(),
+           total_position_moment[2].width()});
       certificate.last_largest_cell_width = cells.rbegin()->score();
       if (std::all_of(
               total.begin(), total.end(), [&](const Interval& component) {
                 return component.width() <= active_tolerance;
+              }) &&
+          std::all_of(
+              total_position_moment.begin(), total_position_moment.end(),
+              [&](const Interval& component) {
+                return component.width() <= position_moment_tolerance;
               })) {
         break;
       }
@@ -2146,6 +2268,12 @@ certify_binary64_fold_caustic_impulse(
     if (tail_impulse_bound > 0.0) {
       const Interval tail(-tail_impulse_bound, tail_impulse_bound);
       total = add(total, IntervalVector{tail, tail, tail});
+      const double moment_tail_bound =
+          (reception_upper - reception_lower) * tail_impulse_bound;
+      const Interval moment_tail(-moment_tail_bound, moment_tail_bound);
+      total_position_moment = add(
+          total_position_moment,
+          IntervalVector{moment_tail, moment_tail, moment_tail});
     }
     if (std::any_of(
             total.begin(), total.end(), [&](const Interval& component) {
@@ -2155,8 +2283,18 @@ certify_binary64_fold_caustic_impulse(
           "event_impulse_enclosure_exceeds_tolerance";
       return certificate;
     }
+    if (std::any_of(
+            total_position_moment.begin(), total_position_moment.end(),
+            [&](const Interval& component) {
+              return component.width() > position_moment_tolerance;
+            })) {
+      certificate.failure_code =
+          "event_position_moment_enclosure_exceeds_tolerance";
+      return certificate;
+    }
     certificate.status = "certified_complete";
     certificate.impulse = total;
+    certificate.position_moment = total_position_moment;
     certificate.failure_code.clear();
     return certificate;
   } catch (const std::exception& error) {
@@ -2176,6 +2314,9 @@ NativeFoldCausticImpulseCertificate certify_native_fold_caustic_impulse(
   tolerance_value(request.causal_width, "causal width");
   tolerance_value(request.core_scale, "core scale");
   tolerance_value(request.event_impulse_tolerance, "event impulse tolerance");
+  tolerance_value(
+      request.event_position_moment_tolerance,
+      "event position-moment tolerance");
   if (request.event_max_depth == 0U || request.event_max_cells == 0U ||
       request.initial_mpfr_bits == 0U ||
       request.initial_mpfr_bits > request.maximum_mpfr_bits) {
@@ -2216,6 +2357,8 @@ NativeFoldCausticImpulseCertificate certify_native_fold_caustic_impulse(
             .causal_width = request.causal_width,
             .core_scale = request.core_scale,
             .impulse_tolerance = request.event_impulse_tolerance,
+            .position_moment_tolerance =
+                request.event_position_moment_tolerance,
             .max_depth = request.event_max_depth,
             .max_cells = request.event_max_cells,
         },
@@ -2225,10 +2368,12 @@ NativeFoldCausticImpulseCertificate certify_native_fold_caustic_impulse(
     certificate.precision_bits = bits;
     certificate.failure_code = attempt.failure_code;
     certificate.impulse = std::nullopt;
+    certificate.position_moment = std::nullopt;
     certificate.status = "uncertified";
     if (attempt.certified) {
       certificate.status = "certified_complete";
       certificate.impulse = attempt.impulse;
+      certificate.position_moment = attempt.position_moment;
       certificate.failure_code.clear();
       return certificate;
     }
@@ -2279,7 +2424,8 @@ NativeRegulatorConvergenceCertificate certify_native_regulator_convergence(
       .failure_code = "regulator_convergence_failed",
   };
   if (base_event.status != "certified_complete" ||
-      !base_event.impulse.has_value()) {
+      !base_event.impulse.has_value() ||
+      !base_event.position_moment.has_value()) {
     certificate.failure_code = base_event.failure_code.empty()
         ? "numeric_event_impulse_uncertified"
         : base_event.failure_code;
@@ -2312,14 +2458,18 @@ NativeRegulatorConvergenceCertificate certify_native_regulator_convergence(
             .core_scale = request.core_scale,
             .event_impulse = base_event,
             .maximum_impulse_delta_from_previous = std::nullopt,
+            .maximum_position_moment_delta_from_previous = std::nullopt,
         }},
         .final_impulse_delta = std::nullopt,
         .maximum_ladder_impulse_delta = std::nullopt,
+        .final_position_moment_delta = std::nullopt,
+        .maximum_ladder_position_moment_delta = std::nullopt,
         .converged = false,
     };
     double scale = 1.0;
     bool all_levels_certified = true;
     double previous_delta = 0.0;
+    double previous_position_moment_delta = 0.0;
     for (std::size_t level = 1;
          level < request.regulator_refinement_levels; ++level) {
       scale *= ratio;
@@ -2335,10 +2485,16 @@ NativeRegulatorConvergenceCertificate certify_native_regulator_convergence(
           refined_request, receiver, source, receiver_charge, source_charge,
           reception_lower, reception_upper);
       std::optional<double> delta;
-      if (event.status == "certified_complete" && event.impulse.has_value()) {
+      std::optional<double> position_moment_delta;
+      if (event.status == "certified_complete" && event.impulse.has_value() &&
+          event.position_moment.has_value()) {
         delta = maximum_delta(
             *series.levels.back().event_impulse.impulse, *event.impulse);
+        position_moment_delta = maximum_delta(
+            *series.levels.back().event_impulse.position_moment,
+            *event.position_moment);
         previous_delta = *delta;
+        previous_position_moment_delta = *position_moment_delta;
       } else {
         all_levels_certified = false;
       }
@@ -2348,6 +2504,8 @@ NativeRegulatorConvergenceCertificate certify_native_regulator_convergence(
           .core_scale = refined_request.core_scale,
           .event_impulse = std::move(event),
           .maximum_impulse_delta_from_previous = delta,
+          .maximum_position_moment_delta_from_previous =
+              position_moment_delta,
       });
       if (!all_levels_certified) {
         break;
@@ -2356,7 +2514,10 @@ NativeRegulatorConvergenceCertificate certify_native_regulator_convergence(
     if (all_levels_certified &&
         series.levels.size() == request.regulator_refinement_levels) {
       series.final_impulse_delta = previous_delta;
+      series.final_position_moment_delta =
+          previous_position_moment_delta;
       double maximum_ladder_delta = 0.0;
+      double maximum_ladder_position_moment_delta = 0.0;
       for (std::size_t left = 0; left < series.levels.size(); ++left) {
         for (std::size_t right = left + 1U; right < series.levels.size();
              ++right) {
@@ -2365,10 +2526,18 @@ NativeRegulatorConvergenceCertificate certify_native_regulator_convergence(
               maximum_delta(
                   *series.levels[left].event_impulse.impulse,
                   *series.levels[right].event_impulse.impulse));
+          maximum_ladder_position_moment_delta = std::max(
+              maximum_ladder_position_moment_delta,
+              maximum_delta(
+                  *series.levels[left].event_impulse.position_moment,
+                  *series.levels[right].event_impulse.position_moment));
         }
       }
       series.maximum_ladder_impulse_delta = maximum_ladder_delta;
-      series.converged = maximum_ladder_delta <= tolerance;
+      series.maximum_ladder_position_moment_delta =
+          maximum_ladder_position_moment_delta;
+      series.converged = maximum_ladder_delta <= tolerance &&
+          maximum_ladder_position_moment_delta <= tolerance;
     }
     certificate.refinement_series.push_back(std::move(series));
   }
@@ -2743,7 +2912,9 @@ NativeAccelerationSnapshotCertificate certify_native_acceleration_snapshot(
               request.chart_policy == "finite_width" ||
                       (request.chart_policy ==
                            "sharp_with_finite_width_fallback" &&
-                       ((self_pair_on_or_above_rail &&
+                       (pair_is_adjudicated_finite_width(
+                            request, receiver.path_id, source.path_id) ||
+                        (self_pair_on_or_above_rail &&
                          root.status == "certified_complete" &&
                          !root.memory_boundary_contact) ||
                         (root.status == "caustic_route_required" &&
@@ -3253,6 +3424,8 @@ NativeCoupledEvolutionCertificate evolve_native_coupled_histories(
   std::string current_time_token = request.start_time;
   std::size_t consecutive_growth_headroom_steps = 0U;
   std::size_t certificate_cost_probe_adjustments = 0U;
+  std::vector<std::pair<std::string, std::string>>
+      adjudicated_finite_width_pairs;
   std::size_t certificate_cost_cooldown_remaining =
       request.certificate_cost_initial_cooldown_steps;
 
@@ -3292,8 +3465,11 @@ NativeCoupledEvolutionCertificate evolve_native_coupled_histories(
         attempted_step > minimum_step +
             absolute_time_rounding_envelope(
                 current_time, current_time + attempted_step);
+    auto step_request = request;
+    step_request.adjudicated_finite_width_pairs =
+        adjudicated_finite_width_pairs;
     auto step = certify_native_atomic_coupled_step(
-        request, histories, steps.size(), current_time_token, attempted_end,
+        step_request, histories, steps.size(), current_time_token, attempted_end,
         reusable_start_snapshot, certificate_cost_probe);
     const CertificateCostSignal cost_signal = certificate_cost_signal(step);
     step.certificate_cost_probe = certificate_cost_probe;
@@ -3302,6 +3478,7 @@ NativeCoupledEvolutionCertificate evolve_native_coupled_histories(
     step.certificate_cost_mpfr_attempt_count =
         cost_signal.mpfr_attempt_count;
     if (step.status == "accepted") {
+      adjudicated_finite_width_pairs.clear();
       const bool accepted_after_certificate_cost_adjustment =
           certificate_cost_probe_adjustments > 0U;
       const bool growth_headroom = request.use_adaptive_step_growth &&
@@ -3375,8 +3552,43 @@ NativeCoupledEvolutionCertificate evolve_native_coupled_histories(
              !steps.back().local_errors.empty()
          ? continuous_step_scale(request, steps.back(), false)
          : 0.5);
+    if (next_step < minimum_step &&
+        attempted_step > minimum_step +
+            absolute_time_rounding_envelope(
+                current_time, current_time + attempted_step)) {
+      step_size = minimum_step;
+      continue;
+    }
+    if (next_step < minimum_step &&
+        adjudicated_finite_width_pairs.empty() &&
+        steps.back().failure_code == "coupled_correction_failed") {
+      const NativeAccelerationSnapshotCertificate* diagnostic_snapshot =
+          nullptr;
+      for (auto substep = steps.back().substeps.rbegin();
+           substep != steps.back().substeps.rend(); ++substep) {
+        if (substep->endpoint_snapshot.has_value()) {
+          diagnostic_snapshot = &*substep->endpoint_snapshot;
+          break;
+        }
+        if (substep->start_snapshot.status == "certified_complete") {
+          diagnostic_snapshot = &substep->start_snapshot;
+          break;
+        }
+      }
+      if (diagnostic_snapshot != nullptr) {
+        adjudicated_finite_width_pairs =
+            certified_opposite_polarity_core_pairs(
+                request, *diagnostic_snapshot);
+      }
+      if (!adjudicated_finite_width_pairs.empty()) {
+        step_size = attempted_step;
+        continue;
+      }
+    }
     if (next_step < minimum_step) {
-      halt_code = "minimum_step_exhausted";
+      halt_code = steps.back().failure_code.rfind("caustic_", 0U) == 0U
+          ? "caustic_transit_uncertified"
+          : "minimum_step_exhausted";
       break;
     }
     step_size = next_step;

@@ -403,7 +403,7 @@ class NativeCoupledEvolutionTests(unittest.TestCase):
             exhausted["published_fingerprints"],
         )
         self.assertEqual(
-            exhausted["failure_code"], "event_impulse_cell_limit_exhausted"
+            exhausted["failure_code"], "caustic_eta_convergence_failed"
         )
 
     def test_native_fold_impulse_has_oracle_parity_and_fails_closed(self) -> None:
@@ -440,6 +440,10 @@ class NativeCoupledEvolutionTests(unittest.TestCase):
             native["impulse"], oracle.impulse
         ):
             assert_overlaps(self, native_component, oracle_component)
+        for native_component, oracle_component in zip(
+            native["position_moment"], oracle.position_moment
+        ):
+            assert_overlaps(self, native_component, oracle_component)
         mpfr = self.packet["event_mpfr"]
         self.assertEqual(mpfr["status"], "certified_complete")
         self.assertEqual(
@@ -448,6 +452,10 @@ class NativeCoupledEvolutionTests(unittest.TestCase):
         self.assertGreaterEqual(mpfr["precision_bits"], 128)
         for native_component, oracle_component in zip(
             mpfr["impulse"], oracle.impulse
+        ):
+            assert_overlaps(self, native_component, oracle_component)
+        for native_component, oracle_component in zip(
+            mpfr["position_moment"], oracle.position_moment
         ):
             assert_overlaps(self, native_component, oracle_component)
         exhausted = self.packet["event_resource_failure"]

@@ -32,6 +32,41 @@ struct IncrementalSnapshotCache {
   std::vector<eom::NativePublishedPath> histories;
 };
 
+std::string caustic_contract_row(
+    const eom::NativeAtomicStepCertificate& step) {
+  if (step.failure_code == "caustic_eta_convergence_failed") {
+    bool causal_width_failed = false;
+    bool core_scale_failed = false;
+    for (const auto& substep : step.substeps) {
+      for (const auto& regulator :
+           substep.regulator_convergence_certificates) {
+        for (const auto& series : regulator.refinement_series) {
+          causal_width_failed = causal_width_failed ||
+              (series.control_id == "causal_width_refinement" &&
+               !series.converged);
+          core_scale_failed = core_scale_failed ||
+              (series.control_id == "core_scale_refinement" &&
+               !series.converged);
+        }
+      }
+    }
+    if (causal_width_failed && core_scale_failed) {
+      return "FWC-REG-01/FWC-REG-02";
+    }
+    return core_scale_failed ? "FWC-REG-02" : "FWC-REG-01";
+  }
+  if (step.failure_code == "caustic_state_reconstruction_failed") {
+    return "FWC-STATE-01";
+  }
+  if (step.failure_code == "caustic_correction_failed") {
+    return "FWC-STATE-02";
+  }
+  if (step.failure_code == "caustic_exit_not_certified") {
+    return "FWC-EXIT-01";
+  }
+  return "";
+}
+
 bool same_segment_tokens(
     const eom::CubicHistorySegment& left,
     const eom::CubicHistorySegment& right) {
@@ -312,6 +347,7 @@ void run(
       .core_scale = "0.2",
       .quadrature_tolerance = run[9],
       .event_impulse_tolerance = "1e-7",
+      .event_position_moment_tolerance = "1e-7",
       .regulator_refinement_ratio = "0.5",
       .regulator_convergence_tolerance = "1e-3",
       .position_tolerance = run[10],
@@ -461,6 +497,14 @@ void run(
       std::cout << ',';
     }
     const auto& step = result.steps[step_index];
+    std::optional<double> correction_error;
+    for (auto substep = step.substeps.rbegin();
+         substep != step.substeps.rend(); ++substep) {
+      if (substep->correction_error.has_value()) {
+        correction_error = substep->correction_error;
+        break;
+      }
+    }
     const eom::NativeAccelerationSnapshotCertificate* diagnostic_snapshot =
         step.accepted_snapshot.has_value()
         ? &*step.accepted_snapshot
@@ -469,7 +513,15 @@ void run(
               << json_escape(step.status)
               << "\",\"failureCode\":\""
               << json_escape(step.failure_code)
-              << "\",\"attemptedStart\":\""
+              << "\",\"causticContractRow\":\""
+              << caustic_contract_row(step)
+              << "\",\"correctionResidual\":";
+    if (correction_error.has_value()) {
+      std::cout << *correction_error;
+    } else {
+      std::cout << "null";
+    }
+    std::cout << ",\"attemptedStart\":\""
               << json_escape(step.attempted_start)
               << "\",\"attemptedEnd\":\""
               << json_escape(step.attempted_end)
@@ -731,6 +783,18 @@ void run(
           } else {
             std::cout << "null";
           }
+          std::cout << ",\"finalPositionMomentDelta\":";
+          if (series.final_position_moment_delta.has_value()) {
+            std::cout << *series.final_position_moment_delta;
+          } else {
+            std::cout << "null";
+          }
+          std::cout << ",\"maximumLadderPositionMomentDelta\":";
+          if (series.maximum_ladder_position_moment_delta.has_value()) {
+            std::cout << *series.maximum_ladder_position_moment_delta;
+          } else {
+            std::cout << "null";
+          }
           std::cout << ",\"levels\":[";
           for (std::size_t level_index = 0;
                level_index < series.levels.size(); ++level_index) {
@@ -754,9 +818,17 @@ void run(
             } else {
               std::cout << "null";
             }
+            std::cout << ",\"maximumPositionMomentDeltaFromPrevious\":";
+            if (level.maximum_position_moment_delta_from_previous.has_value()) {
+              std::cout << *level.maximum_position_moment_delta_from_previous;
+            } else {
+              std::cout << "null";
+            }
             std::cout << ",\"visitedCells\":" << event.visited_cells
                       << ",\"lastMaximumComponentWidth\":"
                       << event.last_maximum_component_width
+                      << ",\"lastMaximumPositionMomentComponentWidth\":"
+                      << event.last_maximum_position_moment_component_width
                       << ",\"lastLargestCellWidth\":"
                       << event.last_largest_cell_width
                       << ",\"precisionRoute\":\""

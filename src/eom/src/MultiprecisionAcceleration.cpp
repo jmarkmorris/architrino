@@ -674,6 +674,8 @@ MpfrEventImpulseAttempt certify_mpfr_event_impulse(
       .failure_code = "numeric_event_impulse_uncertified",
       .impulse = {Interval::point(0.0), Interval::point(0.0),
                   Interval::point(0.0)},
+      .position_moment = {Interval::point(0.0), Interval::point(0.0),
+                          Interval::point(0.0)},
       .visited_cells = 0,
       .precision_bits = precision_bits,
   };
@@ -721,6 +723,8 @@ MpfrEventImpulseAttempt certify_mpfr_event_impulse(
 
     const MpInterval tolerance =
         MpInterval::decimal(request.impulse_tolerance, bits);
+    const MpInterval position_moment_tolerance =
+        MpInterval::decimal(request.position_moment_tolerance, bits);
     const MpInterval total_area = causal_domain_area(
         reception_lower, reception_upper, search_lower, reception_upper,
         bits);
@@ -730,7 +734,8 @@ MpfrEventImpulseAttempt certify_mpfr_event_impulse(
       return result;
     }
 
-    std::function<MpVector(
+    using MpEventMoments = std::pair<MpVector, MpVector>;
+    std::function<MpEventMoments(
         double, double, double, double, std::size_t)> integrate;
     integrate = [&](double t_lower, double t_upper, double s_lower,
                     double s_upper, std::size_t depth) {
@@ -741,9 +746,10 @@ MpfrEventImpulseAttempt certify_mpfr_event_impulse(
       const MpInterval area = causal_domain_area(
           t_lower, t_upper, s_lower, s_upper, bits);
       if (area.upper().compare(zero) <= 0) {
-        return MpVector{
+        const MpVector zero_vector{
             MpInterval::integer(0, bits), MpInterval::integer(0, bits),
             MpInterval::integer(0, bits)};
+        return MpEventMoments{zero_vector, zero_vector};
       }
       const MpInterval reception(
           MpNumber::decimal(double_token(t_lower), bits, MPFR_RNDD),
@@ -756,22 +762,43 @@ MpfrEventImpulseAttempt certify_mpfr_event_impulse(
           event_integrand(
               request, reception, t_lower, t_upper, emission, s_lower,
               s_upper, bits));
+      const MpInterval position_weight(
+          MpNumber::decimal(
+              double_token(reception_upper - t_upper), bits, MPFR_RNDD),
+          MpNumber::decimal(
+              double_token(reception_upper - t_lower), bits, MPFR_RNDU));
+      const MpVector position_moment =
+          scale_vector(position_weight, integral);
       MpNumber budget(bits);
+      MpNumber position_moment_budget(bits);
       if (area.lower().compare(zero) <= 0) {
         mpfr_set_zero(budget.raw(), 0);
+        mpfr_set_zero(position_moment_budget.raw(), 0);
       } else {
         mpfr_mul(
             budget.raw(), tolerance.lower().raw(), area.lower().raw(),
             MPFR_RNDD);
         mpfr_div(
             budget.raw(), budget.raw(), total_area.upper().raw(), MPFR_RNDD);
+        mpfr_mul(
+            position_moment_budget.raw(),
+            position_moment_tolerance.lower().raw(), area.lower().raw(),
+            MPFR_RNDD);
+        mpfr_div(
+            position_moment_budget.raw(), position_moment_budget.raw(),
+            total_area.upper().raw(), MPFR_RNDD);
       }
       if (std::all_of(
               integral.begin(), integral.end(),
               [&](const MpInterval& component) {
                 return width_within(component, budget);
+              }) &&
+          std::all_of(
+              position_moment.begin(), position_moment.end(),
+              [&](const MpInterval& component) {
+                return width_within(component, position_moment_budget);
               })) {
-        return integral;
+        return MpEventMoments{integral, position_moment};
       }
       if (depth >= request.max_depth) {
         throw std::runtime_error("event_impulse_depth_exhausted");
@@ -781,17 +808,25 @@ MpfrEventImpulseAttempt certify_mpfr_event_impulse(
         if (!(midpoint > t_lower && midpoint < t_upper)) {
           throw std::runtime_error("event_impulse_time_resolution_exhausted");
         }
-        return add_vector(
-            integrate(t_lower, midpoint, s_lower, s_upper, depth + 1U),
-            integrate(midpoint, t_upper, s_lower, s_upper, depth + 1U));
+        const auto left =
+            integrate(t_lower, midpoint, s_lower, s_upper, depth + 1U);
+        const auto right =
+            integrate(midpoint, t_upper, s_lower, s_upper, depth + 1U);
+        return MpEventMoments{
+            add_vector(left.first, right.first),
+            add_vector(left.second, right.second)};
       }
       const double midpoint = s_lower + (s_upper - s_lower) * 0.5;
       if (!(midpoint > s_lower && midpoint < s_upper)) {
         throw std::runtime_error("event_impulse_time_resolution_exhausted");
       }
-      return add_vector(
-          integrate(t_lower, t_upper, s_lower, midpoint, depth + 1U),
-          integrate(t_lower, t_upper, midpoint, s_upper, depth + 1U));
+      const auto left =
+          integrate(t_lower, t_upper, s_lower, midpoint, depth + 1U);
+      const auto right =
+          integrate(t_lower, t_upper, midpoint, s_upper, depth + 1U);
+      return MpEventMoments{
+          add_vector(left.first, right.first),
+          add_vector(left.second, right.second)};
     };
 
     std::set<double> reception_points{reception_lower, reception_upper};
@@ -816,7 +851,7 @@ MpfrEventImpulseAttempt certify_mpfr_event_impulse(
         emission_points.insert(segment.t_end());
       }
     }
-    std::vector<MpVector> totals;
+    std::vector<MpEventMoments> totals;
     for (auto t = reception_points.begin();
          std::next(t) != reception_points.end(); ++t) {
       for (auto s = emission_points.begin();
@@ -830,16 +865,21 @@ MpfrEventImpulseAttempt certify_mpfr_event_impulse(
       return result;
     }
     while (totals.size() > 1U) {
-      std::vector<MpVector> next;
+      std::vector<MpEventMoments> next;
       next.reserve((totals.size() + 1U) / 2U);
       for (std::size_t index = 0; index < totals.size(); index += 2U) {
         next.push_back(index + 1U < totals.size()
-            ? add_vector(totals[index], totals[index + 1U])
+            ? MpEventMoments{
+                  add_vector(
+                      totals[index].first, totals[index + 1U].first),
+                  add_vector(
+                      totals[index].second, totals[index + 1U].second)}
             : totals[index]);
       }
       totals = std::move(next);
     }
-    const MpVector& total = totals.front();
+    const MpVector& total = totals.front().first;
+    const MpVector& total_position_moment = totals.front().second;
     if (!std::all_of(
             total.begin(), total.end(), [&](const MpInterval& component) {
               return width_within(component, tolerance.upper());
@@ -847,8 +887,22 @@ MpfrEventImpulseAttempt certify_mpfr_event_impulse(
       result.failure_code = "event_impulse_enclosure_exceeds_tolerance";
       return result;
     }
+    if (!std::all_of(
+            total_position_moment.begin(), total_position_moment.end(),
+            [&](const MpInterval& component) {
+              return width_within(
+                  component, position_moment_tolerance.upper());
+            })) {
+      result.failure_code =
+          "event_position_moment_enclosure_exceeds_tolerance";
+      return result;
+    }
     result.impulse = {
         total[0].projection(), total[1].projection(), total[2].projection()};
+    result.position_moment = {
+        total_position_moment[0].projection(),
+        total_position_moment[1].projection(),
+        total_position_moment[2].projection()};
     result.certified = true;
     result.failure_code.clear();
     return result;

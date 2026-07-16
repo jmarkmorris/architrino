@@ -369,6 +369,12 @@ void print_event(
   } else {
     std::cout << "null";
   }
+  std::cout << ",\"position_moment\":";
+  if (certificate.position_moment.has_value()) {
+    print_vector(*certificate.position_moment);
+  } else {
+    std::cout << "null";
+  }
   std::cout << '}';
 }
 
@@ -400,6 +406,18 @@ void print_regulator(
     } else {
       std::cout << "null";
     }
+    std::cout << ",\"final_position_moment_delta\":";
+    if (series.final_position_moment_delta.has_value()) {
+      std::cout << *series.final_position_moment_delta;
+    } else {
+      std::cout << "null";
+    }
+    std::cout << ",\"maximum_ladder_position_moment_delta\":";
+    if (series.maximum_ladder_position_moment_delta.has_value()) {
+      std::cout << *series.maximum_ladder_position_moment_delta;
+    } else {
+      std::cout << "null";
+    }
     std::cout << ",\"levels\":[";
     for (std::size_t level_index = 0; level_index < series.levels.size();
          ++level_index) {
@@ -418,6 +436,12 @@ void print_regulator(
                 << ",\"maximum_impulse_delta_from_previous\":";
       if (level.maximum_impulse_delta_from_previous.has_value()) {
         std::cout << *level.maximum_impulse_delta_from_previous;
+      } else {
+        std::cout << "null";
+      }
+      std::cout << ",\"maximum_position_moment_delta_from_previous\":";
+      if (level.maximum_position_moment_delta_from_previous.has_value()) {
+        std::cout << *level.maximum_position_moment_delta_from_previous;
       } else {
         std::cout << "null";
       }
@@ -781,6 +805,7 @@ void print_all() {
   event_control_request.causal_width = "0.25";
   event_control_request.core_scale = "0.2";
   event_control_request.event_impulse_tolerance = "0.08";
+  event_control_request.event_position_moment_tolerance = "0.0016";
   event_control_request.regulator_convergence_tolerance = "0.08";
   event_control_request.regulator_refinement_levels = 3;
   event_control_request.event_max_depth = 24;

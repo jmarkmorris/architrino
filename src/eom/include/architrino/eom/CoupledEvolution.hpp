@@ -9,6 +9,7 @@
 #include <functional>
 #include <optional>
 #include <string>
+#include <utility>
 #include <vector>
 
 namespace architrino::eom {
@@ -49,6 +50,7 @@ struct NativeCoupledEvolutionRequest {
   std::string core_scale = "0.2";
   std::string quadrature_tolerance = "1e-8";
   std::string event_impulse_tolerance = "1e-7";
+  std::string event_position_moment_tolerance = "1e-7";
   std::string regulator_refinement_ratio = "0.5";
   std::string regulator_convergence_tolerance = "1e-3";
   std::string position_tolerance = "1e-8";
@@ -98,6 +100,11 @@ struct NativeCoupledEvolutionRequest {
   bool use_pinned_fold_aware_temporal_step = true;
   bool use_certified_history_window = true;
   bool use_warm_root_exclusion = true;
+  // Internal adjudication state: a floor-level sharp correction failure may
+  // rerun only the certified opposite-polarity core-proximity pairs through
+  // the finite-width chart. Callers normally leave this empty.
+  std::vector<std::pair<std::string, std::string>>
+      adjudicated_finite_width_pairs;
   bool use_certified_traversal = true;
   std::uint64_t traversal_exact_tile_pair_limit = 4096;
   std::size_t traversal_maximum_nodes = 1000000;
@@ -130,12 +137,14 @@ struct NativeFoldCausticImpulseCertificate {
   std::string causal_width;
   std::string core_scale;
   std::optional<IntervalVector> impulse;
+  std::optional<IntervalVector> position_moment;
   std::size_t visited_cells;
   std::size_t gaussian_tail_cells = 0;
   std::size_t centered_emission_cells = 0;
   std::size_t monotone_residual_cells = 0;
   std::size_t direct_joint_cells = 0;
   double last_maximum_component_width = 0.0;
+  double last_maximum_position_moment_component_width = 0.0;
   double last_largest_cell_width = 0.0;
   std::string precision_route;
   unsigned precision_bits;
@@ -148,6 +157,7 @@ struct NativeRegulatorRefinementLevel {
   std::string core_scale;
   NativeFoldCausticImpulseCertificate event_impulse;
   std::optional<double> maximum_impulse_delta_from_previous;
+  std::optional<double> maximum_position_moment_delta_from_previous;
 };
 
 struct NativeRegulatorRefinementSeries {
@@ -155,6 +165,8 @@ struct NativeRegulatorRefinementSeries {
   std::vector<NativeRegulatorRefinementLevel> levels;
   std::optional<double> final_impulse_delta;
   std::optional<double> maximum_ladder_impulse_delta;
+  std::optional<double> final_position_moment_delta;
+  std::optional<double> maximum_ladder_position_moment_delta;
   bool converged;
 };
 

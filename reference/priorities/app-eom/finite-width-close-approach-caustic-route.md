@@ -5,12 +5,13 @@
 - Packet id: `eom_finite_width_close_approach_caustic_route/v0`
 - Date opened: 2026-07-16
 - Claim level: `derived-design`
-- Implementation status: `specification-staged-before-engine-change`
+- Implementation status: `adjudicated-native-route-implemented; live-core-ladder-fails-closed; certified-transit-open`
 - Owning queue item: `coupled_retained_history_integrator`
 - Mathematical authority:
   [master-eom-binding-v0.md](master-eom-binding-v0.md)
 - Evolution authority: [evolution-contract-v0.md](evolution-contract-v0.md)
-- Production authority: none until every acceptance row below passes
+- Production authority: fail-closed adjudication only; transit authority remains
+  absent until every acceptance row below passes
 
 ## Closure Target
 
@@ -75,9 +76,11 @@ certified from the same attempted coupled candidate:
 1. `FWC-ENTRY-01/history`: the complete reception/emission causal triangle is
    covered by accepted retained histories and the memory boundary is root-free;
 2. `FWC-ENTRY-02/stratum`: the exact-pair certificate reports
-   `caustic_route_required` with a source-normal enclosure containing zero, or
+   `caustic_route_required` with a source-normal enclosure containing zero,
    independent start/end complete scans certify an interior opposite-sign root
-   pair birth/death $\Delta N_{ij}=\pm2$, $\Delta D_{ij}=0$;
+   pair birth/death $\Delta N_{ij}=\pm2$, $\Delta D_{ij}=0$, or a consumed
+   sharp-root separation enclosure intersects the declared core-route radius
+   $r\le\epsilon_c$;
 3. `FWC-ENTRY-03/order`: the difficult cell is consistent with a finite-order
    isolated fold; a persistent zero normal, unresolved accumulation, cusp, or
    higher stratum is not admitted;
@@ -93,8 +96,9 @@ Receiver-normal silence $D_T=0$ also does not enter the route unless the
 source-normal predicate independently passes.
 
 Claim grade: `derived-design`. Falsifier: a route entry whose same-record root
-certificate has neither a zero-containing $D_s$ enclosure nor the certified
-opposite-sign interior topology change.
+certificate has neither a zero-containing $D_s$ enclosure, the certified
+opposite-sign interior topology change, nor a separation enclosure intersecting
+the declared core-route radius.
 
 ## Coupled Event Corrector
 
