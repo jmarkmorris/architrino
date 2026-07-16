@@ -6,13 +6,13 @@ Use `brainstorming.md` for provisional ideas, insights, conceptual maps, and dra
 
 ## Log Entries
 
-### 2026-07-02 Moving-Circular Native Row Production
+### 2026-07-02 Moving-Circular Row Production
 
-Resumed the paused Photon #1 solver-row work after the priority-directory split and kept the live tracker concise. Current branch state already carries the fourth-pass implementation: Photon remains the app-level constrained source-history provider, while the native C ABI then owned moving-circular source-root rows, source velocity rows, source phase-at-hit rows, observer-field contribution rows, and observer-field summary rows when WebAssembly is loaded.
+Resumed the paused Photon #1 row work after the priority-directory split and kept the live tracker concise. Current branch state carries the fourth-pass implementation: Photon is the app-level constrained source-history provider, and the shared analysis facades produce moving-circular source-root rows, source velocity rows, source phase-at-hit rows, observer-field contribution rows, and observer-field summary rows.
 
-Verification recorded for the completed row-production pass: `node scripts/build-solver-smoke.mjs native`, `node --test tests/photon-runtime.test.js`, `node scripts/check-solver-wasm-bridge.mjs`, `node scripts/check-solver-app-bridge.mjs`, `node scripts/check-solver-contract-fixtures.mjs`, and `git diff --check`.
+Verification recorded for the completed row-production pass: `node --test tests/photon-runtime.test.js` and `git diff --check`.
 
-The current blocker is no longer source-to-observer native row production. The next app-photon solver action is to promote the helical same-source moving-circular facade into native/WASM ABI row production and then deepen rejected-root reasons for same-source rows.
+The next app-photon action is to deepen rejected-root reasons for same-source rows.
 
 ### 2026-07-02 Photon Guide Promotion Note
 

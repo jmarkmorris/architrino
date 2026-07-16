@@ -12,9 +12,9 @@ The audit is priority-design material. It does not promote app output to proof e
 | --- | --- |
 | [requirements-and-design](requirements-and-design.md) | Borg app requirements, first-screen layout, layer defaults, logarithmic UI, diagnostic status vocabulary. |
 | [face-boundary-replay](face-boundary-replay.md) | Outbound/inbound face-boundary summary and replay fixture requirements. |
-| Engine bridge of the audit era (removed 2026-07-16) | Production solver boundary at audit time; the EOM solver now holds this boundary. |
+| EOM solver boundary | Production solver boundary for stepping, state frames, and row products. |
 | Existing simulation runtime surfaces | Current state, trajectory frames, bounded trails, and visualization-frame evidence. |
-| First fixture + screen-spec generators (removed 2026-07-16) | Bound bridge output into `borg-dataset-manifest.v1` and `borg-app-surface-design.v1` at audit time; the surviving design objects live in `src/apps/borg/BorgAppManifest.js`. |
+| Design-owned manifest and screen-spec objects in `src/apps/borg/BorgAppManifest.js` | Bind `borg-dataset-manifest.v1` and `borg-app-surface-design.v1` policy into checkable constants. |
 
 ## Capability Classification
 

@@ -111,6 +111,9 @@ export function createBorgSeededInitialConditionRows({ manifest, seedIndex = 0, 
       rng,
       nonNegativeNumber(manifest?.initialConditions?.minimumPairSeparation, 0),
     );
+  const initialStateRunSource = latticePositions
+    ? "minimum-separation-lattice-initial-state"
+    : "seeded-random-minimum-separation-initial-state";
 
   return Object.freeze(stateFlags.map((flags, index) => Object.freeze({
     pathKey: FIRST_PATH_KEY + index,
@@ -124,7 +127,7 @@ export function createBorgSeededInitialConditionRows({ manifest, seedIndex = 0, 
     ),
     errorBound: 0,
     stateFlags: flags,
-    runSource: "seeded-random-live-initial-state",
+    runSource: initialStateRunSource,
     valueAuthority: "app-generated-native-run-initial-condition",
   })));
 }

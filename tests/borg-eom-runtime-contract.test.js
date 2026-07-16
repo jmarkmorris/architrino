@@ -84,8 +84,12 @@ test("Borg app manifest is design-owned policy and passes validation", () => {
     manifest.population.architrinoCount,
     manifest.initialConditions.electrinoCount + manifest.initialConditions.positrinoCount,
   );
-  assert.equal(manifest.initialConditions.initialLinePolicy, "seeded-random-interior-cube");
-  assert.equal(manifest.initialConditions.velocityPolicy, "seeded-random-small-3d");
+  assert.equal(
+    manifest.initialConditions.initialLinePolicy,
+    "minimum-separation-lattice-4x2x2",
+  );
+  assert.equal(manifest.initialConditions.minimumPairSeparation, 0.2);
+  assert.equal(manifest.initialConditions.velocityPolicy, "zero-initial-velocity");
   assert.equal(manifest.initialConditions.positrinoCharge, 1);
   assert.equal(manifest.initialConditions.electrinoCharge, -1);
 });

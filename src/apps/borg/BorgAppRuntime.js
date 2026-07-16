@@ -621,8 +621,14 @@ export function mountBorgApp(options = {}) {
 
   function renderInitialConditionFields() {
     const config = state.initialConditionConfig;
+    const activeInitialRow = state.eomSeedEndpointRows?.[0] ?? state.distributionFrameRows?.[0];
+    const activeFamily = activeInitialRow?.runSource === "minimum-separation-lattice-initial-state"
+      ? "minimum-separation-lattice"
+      : activeInitialRow
+        ? "seeded-random-minimum-separation"
+        : manifest.initialConditions.initialConditionFamily;
     renderFieldRows(dom.initialConditionFields, [
-      ["family", state.distributionFrameRows ? "seeded-random-runtime" : manifest.initialConditions.initialConditionFamily],
+      ["family", activeFamily],
       ["seed", state.distributionFrameRows ? state.distributionLabel : manifest.initialConditions.initialConditionSeed ?? "null"],
       ["electrinoCount", config.electrinoCount],
       ["positrinoCount", config.positrinoCount],
