@@ -2050,7 +2050,7 @@ function createPhotonDelayedEmissionFieldResult(fieldSum, rootSets, sourceRefs, 
   };
 }
 
-async function computePhotonAbsoluteDelayedEmissionFieldWithCentralSolverRun(
+async function computePhotonAbsoluteDelayedEmissionFieldWithFacadeRun(
   state,
   observationTime,
   sourceRefs,
@@ -2138,7 +2138,7 @@ export async function computePhotonDelayedEmissionFieldWithPrescribedPathAnalysi
     measurement.sourceHistoryMode === "absolute_history" &&
     options.useSeparateAbsoluteHistorySolverSteps !== true
   ) {
-    return computePhotonAbsoluteDelayedEmissionFieldWithCentralSolverRun(
+    return computePhotonAbsoluteDelayedEmissionFieldWithFacadeRun(
       state,
       observationTime,
       sourceRefs,

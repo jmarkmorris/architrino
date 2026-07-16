@@ -74,7 +74,7 @@ Each implementation step should follow the same loop:
 2. **Complete: playback bridge**: add a dataset playback path in animator so sampled solver frames can drive particle positions, trails, timeline scrubbing, and diagnostics without touching authored-path behavior.
 3. **Complete: motion-source separation**: add explicit UI/state separation between solver-derived motion and authored motion, including visible provenance, mode labels, and independent source visibility controls.
 4. **Complete: 2-D planar mode**: add an animator view mode for planar simulations, preserving solver-derived diagnostics while allowing a flat 2-D view for cases where the simulation target is planar.
-5. **Complete (superseded 2026-07-16)**: Animator simulation work now displays recorded EOM datasets.
+5. **Complete**: Animator simulation work displays recorded EOM datasets.
 6. **Complete: worker simulation runner**: add a Web Worker runner that can generate or stream simulation frames into animator using typed arrays or another profiled frame-buffer format.
 7. **Complete: field-shell rendering**: render solver-derived shell semantics in animator as 3-D spherical emission shells, including expanding shells, shell visibility controls, opacity controls, and white zero-field semantics where appropriate.
 8. **Complete: delayed-hit rendering**: render solver-derived delayed hits with emission points, receiver points, branch/Jacobian diagnostics, hit connectors, and hit-table data.
@@ -82,7 +82,7 @@ Each implementation step should follow the same loop:
 10. **Current: simulation authoring UI**: add scene setup, particle setup, solver parameters, run/cache controls, and diagnostic panels to the animator authoring surface.
     - **Review gate**: Marko needs to review the Simulation authoring panel before this step is marked complete.
 11. **Offline/cache workflow**: support long-running or high-precision simulations that bake datasets for animator playback, inspection, and export.
-12. **Complete (superseded 2026-07-16)**: Animator displays recorded EOM datasets only.
+12. **Complete**: Animator displays recorded EOM datasets only.
 
 ## Non-Goals
 
