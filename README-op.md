@@ -75,8 +75,6 @@ This file is the agent's living feedback backlog for improving operator/develope
 - [ ] Keep the active priority surface small enough that completed tasks can be removed and renumbered immediately.
 - [ ] After updating priority buckets, mark each new packet as promoted, deferred, or priority-only with its corpus target and blocker.
 - [ ] After large theory pushes, run one consolidation pass to eliminate duplicated labels and stale TODOs.
-- [ ] 2026-07-14: `causal-delay-feedback` and `ideal-braid` still load solver WASM from the gitignored `.tmp/solver-build/wasm/` build directory, so they resolve in a local checkout and 404 on the published site. `borg` and `photon` now use the deployed `src/solver/wasm/runtime/` artifacts. Point the remaining two at the deployed path, or state why they are local-only.
-- [ ] 2026-07-14: `scripts/borg/write-fixture-data.mjs --check` fails for a pre-existing reason unrelated to any current task: the generator emits `canonicalEomEvidence: true` for zombie-solver output while the committed artifact correctly carries `false`. Fix the generator's claim labels so `--check` can go green without re-upgrading a quarantined claim. Do not run `--write` until then.
 - [ ] 2026-07-14: `tests/animator-draft-scaffold-runtime.test.js` and `tests/animator-simulation-frame-buffer-runtime.test.js` fail on numeric expectations, independent of Borg work. Unowned; confirm whether these are known-red.
 
 ## Resolved

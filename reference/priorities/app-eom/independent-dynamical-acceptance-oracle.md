@@ -19,7 +19,6 @@
 The oracle is an independently authored correctness implementation. It may read
 the frozen EOM contracts, but it must not import, link, translate, or call:
 
-- any retired pre-EOM evaluator;
 - the future production EOM kernel;
 - a production root finder, history interpolator, reduction, or integrator;
 - production-generated expected outputs;
@@ -167,7 +166,7 @@ For `eom_independent_oracle/v0` it provides:
   nonincreasing;
 - `eom_independent_oracle_phase4_acceptance/v0`, which requires the complete
   declared control set, reference-only evidence, nonempty evidence digests,
-  and no dependency on any retired pre-EOM evaluator, a production EOM backend,
+  and no dependency on a production EOM backend
   or a prescribed future path.
 
 These are independent-oracle controls. The checkpoint is an exact reference

@@ -246,7 +246,7 @@ cutoff, or a GPU throughput kernel does not satisfy this profile.
 
 ## Compatibility Boundary
 
-This amendment does not resurrect any pre-EOM engine (removed 2026-07-16 — see [pre-eom-evaluator-removal](../operations/pre-eom-evaluator-removal.md)). It
+This amendment introduces no engine other than EOM. It
 does not grant authority to a prototype, prescribed-path app, approximate
 N-body method, or display surface. It raises the scale requirement that the new
 EOM architecture must satisfy before million-path capability may be claimed.

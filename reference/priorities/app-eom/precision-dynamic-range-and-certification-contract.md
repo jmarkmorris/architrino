@@ -8,7 +8,7 @@
 - Evolution authority: [evolution-contract-v0.md](evolution-contract-v0.md)
 - Production implementation: not selected
 - Production language and accelerator stack: not selected
-- Any pre-EOM evaluator output: no numeric authority for EOM (engine removed 2026-07-16)
+- Non-EOM output of any origin: no numeric authority for EOM
 
 ## Purpose
 

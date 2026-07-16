@@ -25,7 +25,6 @@ import {
 } from "../src/apps/borg/BorgInitialConditions.js";
 import {
   BORG_DEFAULT_RUNTIME_MODE,
-  BORG_EOM_MIGRATION_PATH_COUNT,
   BORG_RECORD_REPLAY_RUNTIME_MODE,
   bootBorgApp,
   resolveBorgRuntimeMode,
@@ -64,21 +63,22 @@ test("Borg mounts EOM idle by default and reserves automatic compute for explici
   assert.equal(defaultMounts[0].manifest.simulationEnvelope.sideLength, 1);
   assert.equal(defaultMounts[0].manifest.simulationEnvelope.centralVolumeSideLength, 0.8);
   assert.equal(defaultMounts[0].manifest.simulationEnvelope.faceBufferMargin, 0.1);
-  assert.equal(defaultMounts[0].manifest.modelControls.coupling, 0.005);
-  assert.equal(defaultMounts[0].eomShadowRunner.coupling, "0.005");
+  assert.equal(defaultMounts[0].manifest.modelControls.coupling, 0.0001);
+  assert.equal(defaultMounts[0].eomShadowRunner.coupling, "0.0001");
+  assert.equal(defaultMounts[0].eomShadowRunner.chunkDuration, 0.05);
   assert.equal(defaultMounts[0].eomShadowRunner.minimumStep, "0.0001");
   assert.deepEqual(defaultMounts[0].manifest.simulationEnvelope.centralVolume.bounds, {
     x: [0.1, 0.9],
     y: [0.1, 0.9],
     z: [0.1, 0.9],
   });
-  assert.equal(defaultMounts[0].initialEomSeed.rows.length, 8 * 2);
-  assert.equal(defaultMounts[0].initialEomSeed.endpointRows.length, 8);
+  assert.equal(defaultMounts[0].initialEomSeed.rows.length, 16 * 2);
+  assert.equal(defaultMounts[0].initialEomSeed.endpointRows.length, 16);
   assert.equal(defaultMounts[0].initialEomSeed.certificate.accepted, true);
   assert.equal(defaultMounts[0].initialEomSeed.certificate.eomOutput, false);
   assert.equal(defaultMounts[0].initialEomSeed.certificate.canonicalEomEvidence, false);
   assert.equal(defaultMounts[0].eomShadowRunner.eomClient, eomClient);
-  assert.equal(defaultMounts[0].eomShadowRunner.pathCount, BORG_EOM_MIGRATION_PATH_COUNT);
+  assert.equal(defaultMounts[0].eomShadowRunner.pathCount, 16);
   assert.equal(defaultMounts[0].eomShadowRunner.startTime, 0);
   assert.equal(
     defaultMounts[0].eomShadowRunner.historyDepth,
@@ -102,14 +102,17 @@ test("Borg mounts EOM idle by default and reserves automatic compute for explici
   assert.equal(defaultMounts[0].eomShadowRunner.targetDuration, 60);
   assert.equal(defaultMounts[0].eomShadowRunner.runDuration, 60);
   assert.deepEqual(defaultMounts[0].initialConditionConfig, {
-    electrinoCount: 4,
-    positrinoCount: 4,
+    electrinoCount: 8,
+    positrinoCount: 8,
     randomVelocityMaxComponentMagnitude: 0.042,
     randomVelocityMinSpeed: 0.0144,
   });
   assert.deepEqual(
     defaultMounts[0].initialEomSeed.endpointRows.map((row) => row.pathKey),
-    [1001, 1002, 1003, 1004, 1005, 1006, 1007, 1008],
+    [
+      1001, 1002, 1003, 1004, 1005, 1006, 1007, 1008,
+      1009, 1010, 1011, 1012, 1013, 1014, 1015, 1016,
+    ],
   );
 
   const explicitShadowMounts = [];
@@ -240,6 +243,13 @@ test("Borg EOM migration uses canonical field speed and the declared memory dept
   assert.equal(config.geometricDelayBound, expectedGeometricDelayBound);
   assert.equal(config.historyDepth, 10);
   assert.ok(Math.abs(config.historyStartTime - (300 - config.historyDepth)) < 1e-12);
+
+  const expandedPopulationConfig = createBorgEomShadowRunConfig(BORG_DATASET_MANIFEST_V1, {
+    startTime: 0,
+    targetDuration: 0.01,
+    pathCount: 32,
+  });
+  assert.equal(expandedPopulationConfig.pathCount, 32);
 
   const fallbackConfig = createBorgEomShadowRunConfig({
     simulationEnvelope: { sideLength: 100, sampleInterval: 0.2 },

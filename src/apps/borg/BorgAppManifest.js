@@ -50,12 +50,13 @@ export const BORG_DATASET_MANIFEST_V1 = deepFreeze({
     "wakeHorizon": 10
   },
   "modelControls": {
-    "coupling": 0.005
+    "coupling": 0.0001
   },
   "population": {
     "centralArchitrinoCount": 8,
     "architrinoCount": 16,
     "bufferArchitrinoCount": 8,
+    "maximumArchitrinoCount": 512,
     "countDerivation": {
       "formulaId": "N_calc=ceil(N_C*(1+2*b_face/L_C)^3)",
       "centralArchitrinoCount": 8,
@@ -349,6 +350,9 @@ export function validateBorgManifest({
     manifest.initialConditions.electrinoCount + manifest.initialConditions.positrinoCount
   ) {
     failures.push("population count does not match declared polarity counts");
+  }
+  if (manifest.population.maximumArchitrinoCount < manifest.population.architrinoCount) {
+    failures.push("maximum population is smaller than the default population");
   }
   if (manifest.initialConditions.initialLinePolicy !== "seeded-random-interior-cube") {
     failures.push("seeded random interior-cube initial layout policy is missing");

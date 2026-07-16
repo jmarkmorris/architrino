@@ -14,7 +14,6 @@
 - Native acceleration layer: certified sharp rows and deterministic complete receiver reduction implemented
 - Native coupled evolution: sharp cubic correction, step doubling, and atomic in-memory publication implemented
 - Production distributed block-exclusion engine: not started
-- Pre-EOM evaluator: removed 2026-07-16
 
 ## Outcome
 
@@ -244,7 +243,7 @@ This measurement establishes a working end-to-end route and a concrete
 performance/numeric blocker. It does not pass convergence, interactive
 latency, production ABI, or migration gates. Detailed attempts and authority
 limits are recorded in
-`eom-native-traversal-checkpoint-borg-shadow-apple-m3-2026-07-13.json`. (Evidence withdrawn 2026-07-16: its retained-history baseline was imported from the removed pre-EOM evaluator — see reference/priorities/operations/pre-eom-evaluator-removal.md; the refinement ladder now seeds app-authored certified inertial history, re-measurement queued.)
+`eom-native-traversal-checkpoint-borg-shadow-apple-m3-2026-07-13.json`. (Evidence withdrawn 2026-07-16: its retained-history baseline did not meet the current EOM provenance requirement; the refinement ladder now seeds app-authored certified inertial history, re-measurement queued.)
 
 ## Measured Local Results
 
@@ -332,7 +331,7 @@ root tolerance `1e-8`. Its maximum endpoint state delta was about `2.84e-14`,
 and the one-thread and four-thread `0.0025` histories were byte identical.
 
 This control is not the Borg acceptance gate. It covers one of sixteen Borg
-histories and began from imported pre-EOM compatibility history (that import path and its evidence were withdrawn 2026-07-16). The
+histories and began from an imported non-EOM history (that import path and its evidence were withdrawn 2026-07-16). The
 follow-up 16-history attempt failed closed for steps `0.01`, `0.005`, and
 `0.0025`: all 240 off-diagonal ordered pairs reached
 `numeric_precision_limit_exhausted` on every row. The four-thread `0.0025`
@@ -343,7 +342,7 @@ deterministic receiver reducer, so the control does not demonstrate compressed
 million-path reduction. Full-population precision closure, native history
 ownership, representative accepted-step throughput, accelerator difficult-row
 return, and distributed-history execution remain required. Evidence:
-`eom-borg-ui-persistent-traversal-refinement-apple-m3-2026-07-13.json`. (Evidence withdrawn 2026-07-16: its retained-history baseline was imported from the removed pre-EOM evaluator — see reference/priorities/operations/pre-eom-evaluator-removal.md; the refinement ladder now seeds app-authored certified inertial history, re-measurement queued.)
+`eom-borg-ui-persistent-traversal-refinement-apple-m3-2026-07-13.json`. (Evidence withdrawn 2026-07-16: its retained-history baseline did not meet the current EOM provenance requirement; the refinement ladder now seeds app-authored certified inertial history, re-measurement queued.)
 
 The 2026-07-15 control replaces that imported compatibility history with the
 accepted exact inertial $C^1$ seed. On this input, the strict 16-path ladder

@@ -330,7 +330,7 @@ export function mountBorgApp(options = {}) {
       options.eomShadowRunner?.pathCount,
       manifest.population?.architrinoCount ?? 1,
       1,
-      manifest.population?.architrinoCount ?? 1,
+      manifest.population?.maximumArchitrinoCount ?? BORG_MAX_INITIAL_ARCHITRINO_COUNT,
     ),
     eomRunDuration: positiveControlNumber(
       options.eomShadowRunner?.runDuration ??
@@ -567,6 +567,7 @@ export function mountBorgApp(options = {}) {
       ["Forward EOM status", state.dynamicRunnerStatus],
       ["Runner kind", state.dynamicRunnerKind],
       ["EOM architrinos", options.eomShadowRunner ? state.eomPathCount : "not-applicable"],
+      ["EOM ordered pairs", options.eomShadowRunner ? state.eomPathCount ** 2 : "not-applicable"],
       ["EOM requested duration", options.eomShadowRunner ? state.eomRunDuration : "not-applicable"],
       ["Forward EOM target", state.dynamicTargetDuration ?? "not-started"],
       ["Forward EOM chunk duration", state.dynamicChunkDuration ?? "not-started"],
@@ -705,7 +706,7 @@ export function mountBorgApp(options = {}) {
 
   function configureInitialConditionControls() {
     const maximumPopulation = options.eomShadowRunner
-      ? manifest.population?.architrinoCount ?? 1
+      ? manifest.population?.maximumArchitrinoCount ?? BORG_MAX_INITIAL_ARCHITRINO_COUNT
       : BORG_MAX_INITIAL_ARCHITRINO_COUNT;
     dom.electrinoCount.max = String(maximumPopulation);
     dom.positrinoCount.max = String(maximumPopulation);
@@ -731,7 +732,7 @@ export function mountBorgApp(options = {}) {
       },
       {
         maximumTotalCount: options.eomShadowRunner
-          ? manifest.population?.architrinoCount ?? 1
+          ? manifest.population?.maximumArchitrinoCount ?? BORG_MAX_INITIAL_ARCHITRINO_COUNT
           : BORG_MAX_INITIAL_ARCHITRINO_COUNT,
       },
     );
@@ -1901,7 +1902,7 @@ export function mountBorgApp(options = {}) {
     }
     state.distributionLabel = `seeded distribution ${state.distributionSeedIndex}`;
     setInitialConditionFeedback(
-      `Accepted ${config.electrinoCount} electrinos + ${config.positrinoCount} positrinos`,
+      `Accepted ${config.electrinoCount} electrinos + ${config.positrinoCount} positrinos; ${state.eomPathCount ** 2} ordered EOM pairs`,
       "accepted",
     );
     state.runControlPresetId = getRunControlPreset(state.runControlPresetId).id;
@@ -2065,7 +2066,7 @@ function createDefaultEomShadowRunnerOptions(
       runtimeControls.pathCount,
       configured.pathCount ?? manifest.population?.architrinoCount ?? 1,
       1,
-      manifest.population?.architrinoCount ?? 1,
+      manifest.population?.maximumArchitrinoCount ?? BORG_MAX_INITIAL_ARCHITRINO_COUNT,
     ),
     chunkDuration: configured.chunkDuration ?? preset.effectiveChunkDuration ?? preset.chunkDuration,
     initialFrameRows: configured.initialFrameRows ?? initialFrameRows ?? undefined,

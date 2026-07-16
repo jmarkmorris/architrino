@@ -1,7 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 
-// This file previously tested the removed pre-EOM replay adapter. That
+// The causal-delay-feedback app replays recorded EOM datasets only. That
 // adapter (appPlayback/motionSimulation/pairInteraction run kinds) is deleted;
 // the causal-delay-feedback app now replays recorded EOM datasets only. These
 // tests pin the EOM replay adapter contract.

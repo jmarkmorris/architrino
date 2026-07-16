@@ -10,7 +10,6 @@ import {
 
 export const BORG_DEFAULT_RUNTIME_MODE = "eom-shadow";
 export const BORG_RECORD_REPLAY_RUNTIME_MODE = "eom-record-replay";
-export const BORG_EOM_MIGRATION_PATH_COUNT = 8;
 
 export async function bootBorgApp({
   search = globalThis.location?.search ?? "",
@@ -44,9 +43,7 @@ export async function bootBorgApp({
     seedIndex: 0,
     config: initialConditionConfig,
   });
-  const endpointRows = Object.freeze(
-    fullPopulationEndpointRows.slice(0, BORG_EOM_MIGRATION_PATH_COUNT),
-  );
+  const endpointRows = fullPopulationEndpointRows;
   const activeInitialConditionConfig = Object.freeze({
     ...initialConditionConfig,
     electrinoCount: endpointRows.filter((row) => row.stateFlags === 2).length,
@@ -76,8 +73,8 @@ export async function bootBorgApp({
       targetDuration: eomStartTime + eomDuration,
       runDuration: eomDuration,
       historyDepth,
-      pathCount: BORG_EOM_MIGRATION_PATH_COUNT,
-      chunkDuration: 0.01,
+      pathCount: endpointRows.length,
+      chunkDuration: 0.05,
       sampleInterval,
       initialStep: "0.01",
       minimumStep: "0.0001",

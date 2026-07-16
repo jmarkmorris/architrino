@@ -110,8 +110,7 @@ test("Borg uses the canonical unit field speed", () => {
 });
 
 test("Borg ships no stored trajectory data; runs are computed from seeded initial conditions", () => {
-  // The stored pre-EOM trajectory and its seed rows were removed 2026-07-16
-  // (see reference/priorities/operations/pre-eom-evaluator-removal.md). The
+  // Borg ships no stored trajectory data; all frames come from EOM runs. The
   // manifest carries only declared policy, never computed frames.
   const manifest = BORG_DATASET_MANIFEST_V1;
   assert.equal(manifest.currentStateFrames, undefined);

@@ -642,10 +642,9 @@ test("bulk-step client carries unresolved-root segment sidecar as fail-closed sh
   assert.equal(replaySource.summary.retainedBranch, false);
   assert.equal(replaySource.summary.provesBranchAdmissibility, false);
 
-  // The native T3BulkStep.hpp layout cross-check was removed with the
-  // pre-EOM native producer (removed 2026-07-16). The removed-native
-  // descriptor strings in this file and the engine are historical provenance
-  // for recorded rows, not live wiring.
+  // The removed-native descriptor strings in this file and the engine are
+  // historical provenance labels for recorded rows, not live wiring; no
+  // native producer exists for them.
 });
 
 test("solver run summary uses native bulk T3 route without per-particle fallback", async () => {

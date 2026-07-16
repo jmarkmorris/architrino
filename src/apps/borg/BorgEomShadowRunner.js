@@ -1,7 +1,7 @@
 export const BORG_EOM_SHADOW_RUNNER_VERSION = "borg-eom-shadow-runner.v0";
 export const BORG_EOM_SHADOW_RUN_SOURCE = "computed-eom-shadow-chunks";
 export const BORG_EOM_COMPATIBILITY_HISTORY_PROVENANCE =
-  "pre-eom-compatibility-history";
+  "non-eom-history";
 export const BORG_EOM_ACCEPTED_INITIAL_HISTORY_EVOLUTION_CLAIM_LEVEL =
   "eom-evolution-conditioned-on-accepted-initial-history";
 
@@ -164,10 +164,13 @@ export function createBorgEomShadowRunConfig(manifest, options = {}) {
   );
   const chunkDuration = positiveNumber(options.chunkDuration, sampleInterval);
   const maximumPathCount = positiveInteger(
-    manifest.population?.architrinoCount,
+    manifest.population?.maximumArchitrinoCount,
     Number.MAX_SAFE_INTEGER,
   );
-  const pathCount = positiveInteger(options.pathCount, maximumPathCount);
+  const pathCount = positiveInteger(
+    options.pathCount,
+    manifest.population?.architrinoCount ?? maximumPathCount,
+  );
   if (pathCount > maximumPathCount) {
     throw new RangeError(
       `Borg EOM path count ${pathCount} exceeds the ${maximumPathCount} retained histories available.`,
