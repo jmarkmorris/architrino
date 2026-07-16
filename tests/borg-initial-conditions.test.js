@@ -150,7 +150,7 @@ test("Borg seeded initial-condition rows honor counts, polarity, and velocity li
   });
 });
 
-test("Borg default lattice certifies minimum separation and zero initial velocity", () => {
+test("Borg default seeded-random geometry certifies minimum separation and zero initial velocity", () => {
   const rows = createBorgSeededInitialConditionRows({
     manifest: BORG_DATASET_MANIFEST_V1,
     seedIndex: 0,
@@ -161,11 +161,19 @@ test("Borg default lattice certifies minimum separation and zero initial velocit
   });
 
   assert.equal(rows.length, 16);
-  assert.equal(rows[0].runSource, "minimum-separation-lattice-initial-state");
+  assert.equal(rows[0].runSource, "seeded-random-minimum-separation-initial-state");
+  assert.notDeepEqual(
+    rows.map((row) => row.position),
+    [...rows].sort((left, right) =>
+      left.position.x - right.position.x ||
+      left.position.y - right.position.y ||
+      left.position.z - right.position.z
+    ).map((row) => row.position),
+  );
   assert.equal(rows.every((row) => Object.values(row.velocity).every((value) => value === 0)), true);
   assert.equal(certificate.accepted, true);
   assert.equal(certificate.requiredMinimumSeparation, 0.2);
-  assert.ok(Math.abs(certificate.measuredMinimumSeparation - 0.2) < 1e-12);
+  assert.ok(certificate.measuredMinimumSeparation >= 0.2);
 });
 
 test("Borg initial-condition controls support an explicit zero-velocity population", () => {

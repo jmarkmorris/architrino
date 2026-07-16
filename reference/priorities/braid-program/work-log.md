@@ -107,3 +107,80 @@ Append-only. Dated entries, newest last. One entry per completed unit of work: w
   suites 21/21; oracle Phase 4 suite 12/12; oracle reference-kernel suite 6/6;
   `git diff --check`. These checks do not overturn the provenance defect because
   the converter tests establish replay interpolation, not EOM segment origin.
+
+## 2026-07-16 — Path-provenance repair passed; Campaign 1 specified under execution hold
+
+- Operator selected the preferred F1 disposition: implement exact native
+  segment emission and bar the sampled converter from evolved-record booking.
+  The [repair audit](evidence/2026-07-16-eom-path-provenance-repair-audit.md)
+  now records **PASS for path provenance (derived, with measured serialization
+  checks)**. This supersedes the earlier audit's live verdict without rewriting
+  that write-once evidence file.
+- The checkpoint-chunked harness now writes `assembly-view-record.json`
+  atomically from checkpoint-retained histories after every accepted chunk and
+  at run close. It copies exact decimal segment time, coefficient, and error
+  tokens; records the retained-history fingerprint; and separates declared
+  prehistory count from evolved-extension count. A serialization-only checkpoint
+  dumper was added for exact comparison. No `src/eom` evolution semantics were
+  changed by this repair.
+- Correction to the earlier instrument-gate entry: replay conversion does **not**
+  inherit booking authority. The converter now hard-codes
+  `claimGrade: chart-hypothesis` and `evidenceStatus: display-only`; its source
+  evidence label is non-authoritative metadata. The instrument gate is ratified
+  with this bar and the exact-native schema fields.
+- Measured smoke validation used a rebuilt EOM solver newer than the last
+  `src/eom` source change. A two-path opposite-polarity straight-prehistory run
+  completed one accepted step with release root clearance certified. Each
+  record worldline contained one declared prehistory segment and two evolved
+  half-step segments; every path id, fingerprint, time, coefficient, and error
+  token compared exactly equal to the checkpoint. The shared adapter ingested
+  the record. Focused JavaScript suites passed 21/21.
+- [Campaign 1](campaigns/campaign-1-subfield-binary.md) is now specified before
+  runs: 27 strictly sub-field release configurations; three exact cubic,
+  endpoint-matched prehistories per configuration; a three-level step/history/
+  root/chunking refinement envelope; full-trajectory residual and root gates;
+  one independent-oracle window per production run; symmetry-reduced collapse
+  and fate gates; record booking; and a named falsifier. The $\theta=0$ rows feed
+  the collinear queue item.
+- No campaign physics run or fate classification was booked. The instrument
+  gate forbids upgrading an instrument in the same change that first exercises
+  it, so production waits for a separate ratification change and an independently
+  checked implementation of the Campaign 1 binary workload.
+
+## 2026-07-16 — Exact record emission ratified; Campaign 1 workload constructed
+
+- Crossed the instrument gate's separate-change boundary for exact native
+  `assembly-view-record.v0` emission. The prior repair had implemented and first
+  exercised the emitter; this change independently inspected the checkpoint and
+  record projections and accepted G3 emission duty. Before and after workload
+  integration, both path ids, both retained-history fingerprints, and every
+  segment time, coefficient, and error token matched exactly.
+- Reconfirmed build freshness before the instrument check. The completed EOM
+  build (`2026-07-16 13:39:20 -0400`) was newer than the last `src/eom` change
+  (`2026-07-16 13:33:56 -0400`), and both audit harnesses were compiled later
+  with warnings enabled and no diagnostics. No `src/eom` semantics changed.
+- Implemented `campaign1-subfield-binary-v1` in the checkpoint-chunked harness:
+  the declared $d\times s\times\theta$ grid, exact opposite-polarity release
+  states, `P0-inertial`, `P1-lateral`, and `P2-longitudinal`, and the fixed
+  R0/R1/R2 step/history/root/chunk rows. The cubic histories are declared inputs
+  on $[-20,0]`; their decimal rebases carry explicit `1e-11` position and
+  velocity enclosures. The production run manifest now names the binary
+  coordinate and refinement.
+- Added a construction-only harness mode that instantiates all workload rows and
+  exits before root search or evolution. Its measured inventory was 27 release
+  configurations, 81 configuration/prehistory coordinates, 243 refinement rows,
+  486 paths, 226,800 retained segments, and 2,430 analytic probes.
+- Added a separately authored JavaScript checker. It reconstructed the grid,
+  release state, cubic $q$ and $q'$, endpoint groups, old-history displacement,
+  and refinement envelope from the campaign spec. All checks passed; maximum
+  probed position/velocity interval widths were approximately $2.0031\times
+  10^{-11}$ and $2.0001\times10^{-11}$. This agreement is graded measured
+  implementation parity because both implementations landed in one change; the
+  closed-form endpoint identities are recorded separately as a derived theorem.
+- Booked the durable [ratification and workload evidence](evidence/2026-07-16-checkpoint-record-emitter-ratification-and-campaign-1-workload-validation.md),
+  updated the forward-only instrument gate and campaign specification, and moved
+  queue item 3 to ready-for-production state.
+- No Campaign 1 master-equation evolution, fate classification, residual/root
+  ledger, oracle parity window, collapse result, or canonical claim was run or
+  booked. Production remains a separate change starting with a fresh build
+  identity check.

@@ -5,12 +5,14 @@
 // that the viewer apps replay directly (borg.html?eomRecord=<url>).
 //
 // Viewer-not-instrument rule: this converter computes no physics. It rebuilds
-// retained piecewise-cubic segments from the replay's own sampled
+// display-only piecewise-cubic segments from the replay's own sampled
 // position+velocity rows using the declared cubic-Hermite interpolation rule
 // (`piecewise-cubic-hermite/v0` — the same rule Borg's EOM seed import uses),
-// and stamps that reconstruction into the record's provenance. The converted
-// record inherits the source's evidence status; conversion never upgrades a
-// claim.
+// and stamps that reconstruction into the record's provenance. Because these
+// cubics are not the EOM solver's published retained-history segments, every
+// converted record is a chart hypothesis and display-only. The source evidence
+// status is retained as metadata only and is never inherited or consumed as
+// authority.
 //
 // Usage:
 //   node scripts/eom/convert-borg-trajectory-to-assembly-view-record.mjs \
@@ -59,8 +61,8 @@ export function convertBorgTrajectoryToAssemblyViewRecord(trajectory, options = 
       engineId: options.engineId ?? "eom-solver",
       engineVersion: options.engineVersion ?? null,
       runId,
-      claimGrade: "evolved-record",
-      evidenceStatus: trajectory.eomEvidenceStatus ?? null,
+      claimGrade: "chart-hypothesis",
+      evidenceStatus: "display-only",
       generatingSpec: options.generatingSpec ?? null,
       date: options.date ?? new Date().toISOString().slice(0, 10),
       conversion: {
@@ -68,6 +70,7 @@ export function convertBorgTrajectoryToAssemblyViewRecord(trajectory, options = 
         sourceSchema: "borg-fixture-trajectory.v1",
         sourceClaimLevel: trajectory.claimLevel ?? null,
         sourceRecordAuthority: trajectory.recordAuthority ?? null,
+        sourceEvidenceStatus: trajectory.eomEvidenceStatus ?? null,
         interpolation: "piecewise-cubic-hermite/v0",
       },
     },

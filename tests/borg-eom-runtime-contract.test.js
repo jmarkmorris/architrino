@@ -86,7 +86,7 @@ test("Borg app manifest is design-owned policy and passes validation", () => {
   );
   assert.equal(
     manifest.initialConditions.initialLinePolicy,
-    "minimum-separation-lattice-4x2x2",
+    "seeded-random-interior-cube",
   );
   assert.equal(manifest.initialConditions.minimumPairSeparation, 0.2);
   assert.equal(manifest.initialConditions.velocityPolicy, "zero-initial-velocity");
@@ -323,6 +323,9 @@ test("Borg path-history renderer uses native row segments, not visual smoothing 
   assert.match(htmlSource, /id="borg-run-duration-button"/);
   assert.doesNotMatch(htmlSource, /id="borg-eom-path-count"/);
   assert.match(htmlSource, /id="borg-eom-duration"[^>]*value="60"/);
+  assert.match(htmlSource, /id="borg-coupling"[^>]*value="0\.005"/);
+  assert.match(htmlSource, /Max per-axis speed/);
+  assert.match(htmlSource, /Minimum total speed/);
   assert.match(
     htmlSource,
     /id="borg-eom-controls"[\s\S]*id="borg-initial-condition-form"[\s\S]*id="borg-initial-condition-fields"/,
@@ -341,6 +344,7 @@ test("Borg path-history renderer uses native row segments, not visual smoothing 
     /id="borg-run-duration-button"[\s\S]*Finite duration \(s\)[\s\S]*Initial conditions[\s\S]*id="borg-eom-stop-button"[\s\S]*id="borg-eom-restart-button"[\s\S]*id="borg-apply-initial-condition"/,
   );
   assert.match(runtimeSource, /dom\.eomProgress\.hidden = forever/);
+  assert.match(runtimeSource, /runtimeControls\.coupling \?\? configured\.coupling/);
   assert.match(runtimeSource, /forward EOM chunks/);
   assert.match(runtimeSource, /Exact polynomial initial history \(C1 inertial\)/);
   assert.match(runtimeSource, /function startRunAndPlayback\(\)[\s\S]*firstChunk\.then[\s\S]*startPlayback\(\)/);

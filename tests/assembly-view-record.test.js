@@ -156,7 +156,7 @@ test("assembly-view-record worldlines without segments fail closed", () => {
   );
 });
 
-test("converter turns harness replay files into exact assembly-view records", () => {
+test("converter bars sampled replay reconstruction from evolved-record evidence", () => {
   const record = convertBorgTrajectoryToAssemblyViewRecord(createBorgTrajectoryFixture(), {
     generatingSpec: "reference/priorities/eom-attractor-search/priorities.md",
     delayHorizon: 10,
@@ -165,10 +165,13 @@ test("converter turns harness replay files into exact assembly-view records", ()
 
   assert.equal(record.schema, ASSEMBLY_VIEW_RECORD_SCHEMA);
   assert.equal(record.provenance.runId, "harness-demo-run");
-  assert.equal(record.provenance.claimGrade, "evolved-record");
-  // Conversion inherits, never upgrades, the source evidence status.
-  assert.equal(record.provenance.evidenceStatus, "executable_architecture_evidence");
+  assert.equal(record.provenance.claimGrade, "chart-hypothesis");
+  assert.equal(record.provenance.evidenceStatus, "display-only");
   assert.equal(record.provenance.conversion.sourceSchema, "borg-fixture-trajectory.v1");
+  assert.equal(
+    record.provenance.conversion.sourceEvidenceStatus,
+    "executable_architecture_evidence",
+  );
   assert.equal(record.provenance.conversion.interpolation, "piecewise-cubic-hermite/v0");
   assert.equal(record.window.start, 0);
   assert.equal(record.window.end, 1);
@@ -214,7 +217,7 @@ test("Borg record replay runner plays assembly-view records directly", async () 
   });
 
   assert.equal(runner.config.runId, "harness-demo-run");
-  assert.equal(runner.config.claimGrade, "evolved-record");
+  assert.equal(runner.config.claimGrade, "chart-hypothesis");
 
   const chunk = await runner.computeNextChunk();
   assert.equal(chunk.statusCode, "ok");

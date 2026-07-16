@@ -186,6 +186,7 @@ export function mountBorgApp(options = {}) {
     initialConditionForm: queryRequiredElement(documentLike, "#borg-initial-condition-form"),
     electrinoCount: queryRequiredElement(documentLike, "#borg-electrino-count"),
     positrinoCount: queryRequiredElement(documentLike, "#borg-positrino-count"),
+    coupling: queryRequiredElement(documentLike, "#borg-coupling"),
     velocityMaxComponent: queryRequiredElement(documentLike, "#borg-velocity-max-component"),
     velocityMinSpeed: queryRequiredElement(documentLike, "#borg-velocity-min-speed"),
     initialConditionFeedback: queryRequiredElement(documentLike, "#borg-initial-condition-feedback"),
@@ -336,6 +337,10 @@ export function mountBorgApp(options = {}) {
       options.eomShadowRunner?.runDuration ??
         Number(options.eomShadowRunner?.targetDuration) - Number(options.eomShadowRunner?.startTime),
       60,
+    ),
+    eomCoupling: positiveControlNumber(
+      options.eomShadowRunner?.coupling,
+      manifest.modelControls?.coupling ?? 1,
     ),
     liveRunBudget: createEmptyLiveRunBudget(),
     compactedPathHistory: Object.freeze({}),
@@ -561,8 +566,9 @@ export function mountBorgApp(options = {}) {
       ["Distribution", state.distributionLabel],
       ["Active electrinos", state.initialConditionConfig.electrinoCount],
       ["Active positrinos", state.initialConditionConfig.positrinoCount],
-      ["Velocity component max", state.initialConditionConfig.randomVelocityMaxComponentMagnitude],
-      ["Velocity minimum speed", state.initialConditionConfig.randomVelocityMinSpeed],
+      ["EOM coupling κ", state.eomCoupling],
+      ["Per-axis speed maximum", state.initialConditionConfig.randomVelocityMaxComponentMagnitude],
+      ["Total-speed minimum", state.initialConditionConfig.randomVelocityMinSpeed],
       ["Required initial separation", manifest.initialConditions.minimumPairSeparation],
       ["Measured initial separation", state.eomSeedCertificate?.geometryCertificate?.measuredMinimumSeparation ?? "not-certified"],
       ["Run budget", state.liveRunBudget.status],
@@ -611,7 +617,7 @@ export function mountBorgApp(options = {}) {
       ["sampleInterval", manifest.simulationEnvelope.sampleInterval],
       ["historyDepth", runtimeHistoryDepth],
       ["fieldSpeed", manifest.simulationEnvelope.fieldSpeed],
-      ["coupling", manifest.modelControls?.coupling ?? "not declared"],
+      ["coupling", state.eomCoupling],
       ["wakeHorizon", runtimeWakeHorizon],
       ["centralArchitrinoCount", runtimePopulationCount ?? manifest.population.centralArchitrinoCount],
       ["architrinoCount", runtimePopulationCount ?? manifest.population.architrinoCount],
@@ -632,9 +638,10 @@ export function mountBorgApp(options = {}) {
       ["seed", state.distributionFrameRows ? state.distributionLabel : manifest.initialConditions.initialConditionSeed ?? "null"],
       ["electrinoCount", config.electrinoCount],
       ["positrinoCount", config.positrinoCount],
+      ["coupling κ", state.eomCoupling],
       ["velocityPolicy", manifest.initialConditions.velocityPolicy],
-      ["maxVelocityComponent", config.randomVelocityMaxComponentMagnitude],
-      ["minimumSpeed", config.randomVelocityMinSpeed],
+      ["maxPerAxisSpeed", config.randomVelocityMaxComponentMagnitude],
+      ["minimumTotalSpeed", config.randomVelocityMinSpeed],
       ["minimumPairSeparation", manifest.initialConditions.minimumPairSeparation],
       ["measuredMinimumSeparation", state.eomSeedCertificate?.geometryCertificate?.measuredMinimumSeparation ?? "not-certified"],
       ["velocity rays", "off"],
@@ -728,11 +735,19 @@ export function mountBorgApp(options = {}) {
     const config = state.initialConditionConfig;
     dom.electrinoCount.value = String(config.electrinoCount);
     dom.positrinoCount.value = String(config.positrinoCount);
+    dom.coupling.value = String(state.eomCoupling);
     dom.velocityMaxComponent.value = String(config.randomVelocityMaxComponentMagnitude);
     dom.velocityMinSpeed.value = String(config.randomVelocityMinSpeed);
   }
 
   function readInitialConditionControls() {
+    const coupling = Number(dom.coupling.value);
+    if (!Number.isFinite(coupling) || coupling <= 0) {
+      state.initialConditionEditStatus = "rejected-runtime-edit";
+      setInitialConditionFeedback("κ coupling must be a number greater than zero.", "bad");
+      renderInitialConditionFields();
+      return null;
+    }
     const validation = validateBorgInitialConditionConfig(
       {
         electrinoCount: dom.electrinoCount.value,
@@ -753,6 +768,7 @@ export function mountBorgApp(options = {}) {
       return null;
     }
     state.initialConditionConfig = validation.config;
+    state.eomCoupling = coupling;
     state.eomPathCount = validation.config.electrinoCount + validation.config.positrinoCount;
     state.initialConditionEditStatus = "accepted-runtime-edit";
     syncInitialConditionInputs();
@@ -1469,6 +1485,7 @@ export function mountBorgApp(options = {}) {
         pathCount: state.eomPathCount,
         runDuration: state.eomRunDuration,
         historyDepth: state.eomHistoryDepth,
+        coupling: state.eomCoupling,
       },
     );
     const runnerOptions = eomRunnerOptions ?? createDefaultEomRecordReplayOptions(
@@ -1913,7 +1930,7 @@ export function mountBorgApp(options = {}) {
     }
     state.distributionLabel = `seeded distribution ${state.distributionSeedIndex}`;
     setInitialConditionFeedback(
-      `Accepted ${config.electrinoCount} electrinos + ${config.positrinoCount} positrinos; ${state.eomPathCount ** 2} ordered EOM pairs`,
+      `Accepted κ=${state.eomCoupling}; ${config.electrinoCount} electrinos + ${config.positrinoCount} positrinos; ${state.eomPathCount ** 2} ordered EOM pairs`,
       "accepted",
     );
     state.runControlPresetId = getRunControlPreset(state.runControlPresetId).id;
@@ -2073,6 +2090,9 @@ function createDefaultEomShadowRunnerOptions(
     targetDuration: historyEndTime + runDuration,
     runDuration,
     historyDepth,
+    coupling: String(
+      runtimeControls.coupling ?? configured.coupling ?? manifest.modelControls?.coupling ?? 1,
+    ),
     pathCount: boundedInteger(
       runtimeControls.pathCount,
       configured.pathCount ?? manifest.population?.architrinoCount ?? 1,

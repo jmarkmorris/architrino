@@ -535,6 +535,10 @@
         padding: 0 8px;
       }
 
+      .borg-initial-control.is-wide {
+        grid-column: 1 / -1;
+      }
+
       .borg-eom-action,
       .borg-initial-action {
         cursor: pointer;
@@ -783,13 +787,17 @@
               Positrinos
               <input id="borg-positrino-count" type="number" min="0" max="512" step="1" value="8" inputmode="numeric" />
             </label>
-            <label class="borg-initial-control">
-              Max |velocity component|
-              <input id="borg-velocity-max-component" type="number" min="0" step="0.001" value="0.042" inputmode="decimal" />
+            <label class="borg-initial-control is-wide">
+              κ coupling
+              <input id="borg-coupling" type="number" min="0.000001" step="0.001" value="0.005" inputmode="decimal" title="Universal EOM coupling scale in Borg's normalized units; larger values strengthen every pair acceleration." />
             </label>
             <label class="borg-initial-control">
-              Minimum speed
-              <input id="borg-velocity-min-speed" type="number" min="0" step="0.001" value="0.0144" inputmode="decimal" />
+              Max per-axis speed
+              <input id="borg-velocity-max-component" type="number" min="0" step="0.001" value="0" inputmode="decimal" title="Maximum magnitude allowed separately for vx, vy, and vz." />
+            </label>
+            <label class="borg-initial-control">
+              Minimum total speed
+              <input id="borg-velocity-min-speed" type="number" min="0" step="0.001" value="0" inputmode="decimal" title="Minimum magnitude of the complete initial velocity vector: sqrt(vx² + vy² + vz²)." />
             </label>
             <button id="borg-eom-stop-button" class="borg-eom-action is-stop" type="button">Stop</button>
             <button id="borg-eom-restart-button" class="borg-eom-action" type="button">Start / restart</button>

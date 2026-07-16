@@ -67,8 +67,8 @@ export const BORG_DATASET_MANIFEST_V1 = deepFreeze({
     }
   },
   "initialConditions": {
-    "initialConditionFamily": "minimum-separation-lattice",
-    "initialConditionSeed": "borg-sixteen-minimum-separation-lattice.v1",
+    "initialConditionFamily": "seeded-random",
+    "initialConditionSeed": "borg-sixteen-minimum-separation-random.v1",
     "electrinoCount": 8,
     "positrinoCount": 8,
     "polarityAssignmentSource": "seeded-balanced",
@@ -76,23 +76,8 @@ export const BORG_DATASET_MANIFEST_V1 = deepFreeze({
     "positrinoCharge": 1,
     "electrinoCharge": -1,
     "velocityPolicy": "zero-initial-velocity",
-    "initialLinePolicy": "minimum-separation-lattice-4x2x2",
+    "initialLinePolicy": "seeded-random-interior-cube",
     "velocitySeed": "zero-initial-velocity",
-    "latticeDimensions": {
-      "x": 4,
-      "y": 2,
-      "z": 2
-    },
-    "latticeOrigin": {
-      "x": 0.2,
-      "y": 0.3,
-      "z": 0.3
-    },
-    "latticeSpacing": {
-      "x": 0.2,
-      "y": 0.4,
-      "z": 0.4
-    },
     "minimumPairSeparation": 0.2,
     "randomVelocityMaxComponentMagnitude": 0,
     "randomVelocityMinSpeed": 0,
@@ -369,8 +354,8 @@ export function validateBorgManifest({
   if (manifest.population.maximumArchitrinoCount < manifest.population.architrinoCount) {
     failures.push("maximum population is smaller than the default population");
   }
-  if (manifest.initialConditions.initialLinePolicy !== "minimum-separation-lattice-4x2x2") {
-    failures.push("minimum-separation 4x2x2 initial layout policy is missing");
+  if (manifest.initialConditions.initialLinePolicy !== "seeded-random-interior-cube") {
+    failures.push("seeded-random interior-cube initial layout policy is missing");
   }
   if (manifest.initialConditions.initialConditionSeed == null) {
     failures.push("seeded random initial condition seed is missing");
