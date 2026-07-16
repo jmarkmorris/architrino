@@ -81,7 +81,7 @@ A source hash change means this target should be regenerated and then skimmed fo
 | [reference/op/codex-multiprompt.md](codex-multiprompt.md) | 97 | `d15ca9c97840ca90` |
 | [reference/op/theory-orientation.md](theory-orientation.md) | 44 | `71c93c7c8c865d68` |
 | [reference/op/source-mining-best-practice.md](source-mining-best-practice.md) | 495 | `a0613465356e98a5` |
-| [reference/op/codex-pr-branch.md](codex-pr-branch.md) | 669 | `7cfad788ce838e51` |
+| [reference/op/codex-pr-branch.md](codex-pr-branch.md) | 669 | `4b7beea4da3411a0` |
 | [reference/priorities/README.md](../priorities/README.md) | 42 | `d5716324f0e54b71` |
 | [reference/entourage/archie/prompts/README.md](../entourage/archie/prompts/README.md) | 42 | `6261a43d434131e8` |
 | [reference/entourage/archie/prompts/corpus-advancement-pass.md](../entourage/archie/prompts/corpus-advancement-pass.md) | 637 | `bbbc5d6fe1df6081` |

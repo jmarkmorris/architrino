@@ -610,9 +610,9 @@ export function buildOctahedralRootLedger(options = {}) {
     artifact_id: "neutral_braid_octahedral_root_ledger.certified.v1",
     promotion_status: PROMOTION_STATUS,
     sources: [
-      "reference/priorities/braid-retained-branch-closure/shell-braid/octahedral-carrier-worked-example.md",
-      "reference/priorities/braid-retained-branch-closure/neutral-braid/all-pairs-root-ledger.md",
-      "reference/priorities/braid-retained-branch-closure/neutral-braid/neutral-braid-first-execution-ledger.md",
+      "reference/priorities/braid-archive/braid-retained-branch-closure/shell-braid/octahedral-carrier-worked-example.md",
+      "reference/priorities/braid-archive/braid-retained-branch-closure/neutral-braid/all-pairs-root-ledger.md",
+      "reference/priorities/braid-archive/braid-retained-branch-closure/neutral-braid/neutral-braid-first-execution-ledger.md",
     ],
     artifact_claim: {
       kind: "certified_rigid_octahedral_root_ledger",

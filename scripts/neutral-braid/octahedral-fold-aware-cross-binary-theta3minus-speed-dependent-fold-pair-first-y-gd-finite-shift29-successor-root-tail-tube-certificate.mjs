@@ -714,11 +714,11 @@ export function buildOctahedralFoldAwareCrossBinaryTheta3minusSpeedDependentFold
     packet_id: PACKET_ID,
     promotion_status: PROMOTION_STATUS,
     predecessor_packets: [
-      "reference/priorities/braid-geometry-export-bridge/octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-finite-shift27-u-root-tail-tube-certificate.md",
-      "reference/priorities/braid-geometry-export-bridge/octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-twenty-fifth-order-post-u-successor-coefficient-certificate.md",
+      "reference/priorities/braid-archive/braid-geometry-export-bridge/octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-finite-shift27-u-root-tail-tube-certificate.md",
+      "reference/priorities/braid-archive/braid-geometry-export-bridge/octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-twenty-fifth-order-post-u-successor-coefficient-certificate.md",
     ],
     priority_packet:
-      "reference/priorities/braid-geometry-export-bridge/octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-finite-shift29-successor-root-tail-tube-certificate.md",
+      "reference/priorities/braid-archive/braid-geometry-export-bridge/octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-finite-shift29-successor-root-tail-tube-certificate.md",
     finite_shift29_successor_root_tail_tube_parameters: {
       receiver_label: "1+",
       source_label: "3-",

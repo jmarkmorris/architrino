@@ -33,7 +33,7 @@ const HOLD_ROTATION_MAX_ANGLE_STEP = 0.005;
 // static face-opposite six-site decoration with aligned orientation and a declared
 // held history window. One-way environment: the held neighbors act on the released
 // seed; the seed does not back-react on the neighbors (declared held histories).
-// See reference/priorities/braid-ideal/sh-0-sea-diagnostic-candidate-model.md,
+// See reference/priorities/braid-archive/braid-ideal/sh-0-sea-diagnostic-candidate-model.md,
 // Computed Dipole Wake-Sum Result.
 const FCC_SEA_DIRECTIONS = Object.freeze([
   [1, 1, 0], [1, -1, 0], [-1, 1, 0], [-1, -1, 0],

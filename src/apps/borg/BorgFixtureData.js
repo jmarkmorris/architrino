@@ -39,7 +39,7 @@ export const BORG_DATASET_MANIFEST_V1 = deepFreeze({
       "parameterSetId": "borg-fixed-physical-parameters.v1",
       "duration": 300,
       "sampleInterval": 0.2,
-      "fieldSpeed": 3,
+      "fieldSpeed": 1,
       "historyDepth": 10,
       "acceleration": {
         "x": 0,
@@ -131,8 +131,8 @@ export const BORG_DATASET_MANIFEST_V1 = deepFreeze({
     "duration": 300,
     "sampleInterval": 0.2,
     "historyDepth": 10,
-    "fieldSpeed": 3,
-    "wakeHorizon": 30,
+    "fieldSpeed": 1,
+    "wakeHorizon": 10,
     "wakeFloor": null,
     "aggregationBins": [],
     "centralVelocityBound": 0.08905050860171246,
@@ -786,7 +786,7 @@ export const BORG_APP_SURFACE_DESIGN_V1 = deepFreeze({
       "parameterSetId": "borg-fixed-physical-parameters.v1",
       "duration": 300,
       "sampleInterval": 0.2,
-      "fieldSpeed": 3,
+      "fieldSpeed": 1,
       "historyDepth": 10,
       "acceleration": {
         "x": 0,
@@ -856,10 +856,10 @@ export const BORG_APP_SURFACE_DESIGN_V1 = deepFreeze({
     "defaultVisibleLayers": [
       "simulation-window",
       "architrino-position",
+      "path-history",
       "diagnostics"
     ],
     "defaultHiddenLayers": [
-      "path-history",
       "velocity-vectors"
     ],
     "defaultDisabledLayers": [
@@ -961,7 +961,7 @@ export const BORG_APP_SURFACE_DESIGN_V1 = deepFreeze({
     },
     {
       "layer": "path-history",
-      "state": "off",
+      "state": "on",
       "sourceFields": [
         "pathHistory.pathHistoryStreamIds",
         "pathHistory.pathReplayIndexIds"
@@ -1037,12 +1037,12 @@ export const BORG_APP_SURFACE_DESIGN_V1 = deepFreeze({
       },
       {
         "fieldId": "fieldSpeed",
-        "value": 3,
+        "value": 1,
         "valueAuthority": "authoritative-solver-output"
       },
       {
         "fieldId": "wakeHorizon",
-        "value": 30,
+        "value": 10,
         "valueAuthority": "app-facing-projection",
         "formulaId": "wakeHorizon=c_f*h"
       },
@@ -1446,6 +1446,15 @@ export function validateBorgFixtureSnapshot({
   if (manifest.currentStateAndFrameSources.interpolatedFrameCount !== 0) {
     failures.push("manifest records interpolated frame rows");
   }
+  if (manifest.simulationEnvelope.fieldSpeed !== 1) {
+    failures.push("Borg field speed is not canonical c_f=1");
+  }
+  if (
+    manifest.simulationEnvelope.wakeHorizon !==
+    manifest.simulationEnvelope.fieldSpeed * manifest.simulationEnvelope.historyDepth
+  ) {
+    failures.push("Borg wake horizon does not equal fieldSpeed times historyDepth");
+  }
   if (manifest.initialConditions.initialLinePolicy !== "seeded-random-interior-cube") {
     failures.push("seeded random interior-cube initial layout policy is missing");
   }
@@ -1563,6 +1572,9 @@ export function validateBorgFixtureSnapshot({
   }
   if (!surfaceDesign.firstViewport.defaultVisibleLayers.includes("architrino-position")) {
     failures.push("architrino-position layer is not default visible");
+  }
+  if (!surfaceDesign.firstViewport.defaultVisibleLayers.includes("path-history")) {
+    failures.push("path-history layer is not default visible");
   }
   if (!surfaceDesign.firstViewport.defaultDisabledLayers.includes("wake-streams")) {
     failures.push("wake-streams layer is not disabled");

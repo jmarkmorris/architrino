@@ -298,9 +298,9 @@ export function buildOctahedralFoldAwareCrossBinarySourceAtlasQuarterCellReducti
     packet_id: PACKET_ID,
     promotion_status: PROMOTION_STATUS,
     predecessor_packet:
-      "reference/priorities/braid-geometry-export-bridge/octahedral-fold-aware-cross-binary-source-atlas.md",
+      "reference/priorities/braid-archive/braid-geometry-export-bridge/octahedral-fold-aware-cross-binary-source-atlas.md",
     priority_packet:
-      "reference/priorities/braid-geometry-export-bridge/octahedral-fold-aware-cross-binary-source-atlas-quarter-cell-reduction.md",
+      "reference/priorities/braid-archive/braid-geometry-export-bridge/octahedral-fold-aware-cross-binary-source-atlas-quarter-cell-reduction.md",
     source_atlas_check: {
       schema: atlas.schema,
       valid: atlasErrors.length === 0,

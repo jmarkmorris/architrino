@@ -22,7 +22,7 @@ import { partnerPump } from "./super-field-tangential-balance-diagnostic.mjs";
 
 export const SCHEMA = "field_speed_pin_attractor_diagnostic.v0";
 export const SPEC_PACKET_REF =
-  "reference/priorities/braid-ideal/fold-crossing-chart-spec.md";
+  "reference/priorities/braid-archive/braid-ideal/fold-crossing-chart-spec.md";
 
 export const FAIL_CLOSED = Object.freeze({
   retainedBranchClaim: false,

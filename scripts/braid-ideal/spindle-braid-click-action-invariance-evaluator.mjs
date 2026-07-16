@@ -24,7 +24,7 @@ import { fileURLToPath } from "node:url";
 import { buildBraid, wakeAccel, residuals, CHAMPION } from "./spindle-braid-screw-drift-evaluator.mjs";
 
 export const SCHEMA = "spindle_braid_click_action_invariance_evaluator.v0";
-export const SPEC_PACKET_REF = "reference/priorities/braid-ideal/fold-crossing-chart-spec.md";
+export const SPEC_PACKET_REF = "reference/priorities/braid-archive/braid-ideal/fold-crossing-chart-spec.md";
 export const FAIL_CLOSED = Object.freeze({
   retainedBranchClaim: false, acceptedSameLevelBranchClaim: false, retainedBranch: null,
   scoreMovement: "no_score_increase", acceptedSeedPathCertificate: false,

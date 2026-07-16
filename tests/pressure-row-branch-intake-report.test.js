@@ -443,7 +443,7 @@ test("pressure-row branch intake report rejects cross-row bundle negative contro
   );
   assert.ok(sourceConflict);
   assert.equal(
-    sourceConflict.values.includes("reference/priorities/braid-mass-response-map/a0-reduced-branch-certificate.md"),
+    sourceConflict.values.includes("reference/priorities/braid-archive/braid-mass-response-map/a0-reduced-branch-certificate.md"),
     true
   );
   assert.equal(
@@ -451,7 +451,7 @@ test("pressure-row branch intake report rejects cross-row bundle negative contro
     true
   );
   assert.equal(
-    sourceConflict.values.includes("reference/priorities/braid-mass-response-map/pressure-response-coefficient-closure.md"),
+    sourceConflict.values.includes("reference/priorities/braid-archive/braid-mass-response-map/pressure-response-coefficient-closure.md"),
     true
   );
 });

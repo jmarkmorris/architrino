@@ -79,7 +79,7 @@
       ]
     },
     {
-      "path": "reference/priorities/braid-mass-response-map/noether-braid-envelope-hessian-toy-branch.md",
+      "path": "reference/priorities/braid-archive/braid-mass-response-map/noether-braid-envelope-hessian-toy-branch.md",
       "candidate_kind": "finite_branch_hessian_target_packet",
       "source_status": "toy_branch_hessian_not_accepted_branch_output",
       "rejection_codes": [
@@ -90,7 +90,7 @@
       ]
     },
     {
-      "path": "reference/priorities/braid-mass-response-map/a0-branch-chart-revision-contract.md",
+      "path": "reference/priorities/braid-archive/braid-mass-response-map/a0-branch-chart-revision-contract.md",
       "candidate_kind": "a0_branch_chart_revision_contract",
       "source_status": "priority_only_until_accepted_corrected_branch_row_exists",
       "rejection_codes": [
@@ -101,7 +101,7 @@
       ]
     },
     {
-      "path": "reference/priorities/braid-mass-response-map/pressure-replay-fe-cr-toy.md",
+      "path": "reference/priorities/braid-archive/braid-mass-response-map/pressure-replay-fe-cr-toy.md",
       "candidate_kind": "toy_pressure_replay_packet",
       "source_status": "toy_pressure_replay_not_branch_source",
       "rejection_codes": [
@@ -111,7 +111,7 @@
       ]
     },
     {
-      "path": "reference/priorities/braid-mass-response-map/pressure-replay-fe-cr-empirical-skeleton.md",
+      "path": "reference/priorities/braid-archive/braid-mass-response-map/pressure-replay-fe-cr-empirical-skeleton.md",
       "candidate_kind": "empirical_pressure_replay_skeleton",
       "source_status": "empirical_skeleton_not_branch_source",
       "rejection_codes": [
@@ -121,7 +121,7 @@
       ]
     },
     {
-      "path": "reference/priorities/braid-mass-response-map/a0-energy-shielding-extraction.md",
+      "path": "reference/priorities/braid-archive/braid-mass-response-map/a0-energy-shielding-extraction.md",
       "candidate_kind": "exposure_source_theorem_target",
       "source_status": "accepted_branch_required_not_emitted",
       "rejection_codes": [
@@ -131,7 +131,7 @@
       ]
     },
     {
-      "path": "reference/priorities/braid-mass-response-map/a0-medium-response-tensor-probe.md",
+      "path": "reference/priorities/braid-archive/braid-mass-response-map/a0-medium-response-tensor-probe.md",
       "candidate_kind": "noether_sea_response_probe_target",
       "source_status": "accepted_branch_packet_required_not_emitted",
       "rejection_codes": [

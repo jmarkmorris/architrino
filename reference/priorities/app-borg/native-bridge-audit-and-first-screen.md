@@ -63,7 +63,7 @@ The smallest first screen should be a quiet simulation workspace with one 3D sim
 | `simulation-window` | On and locked. | Provides orientation and prevents scale confusion. |
 | `architrino-position` | On. | The app is unusable without visible architrino positions. |
 | `velocity-vectors` | Off by default; toggleable in staging and playback. | The launch state should stay visually sparse while selected-object editing still exposes exact velocity. |
-| `path-history` | Off but available. | Bounded trails and trajectory frames exist; keep off by default for minimal screen. |
+| `path-history` | On. | Bounded trails and trajectory frames exist; show native history by default. |
 | `wake-streams` | Off and disabled or display-only until wake rows exist. | No retained wake-history row authority yet. |
 | `face-boundary-status` | Contextual. | Boundary rows do not exist yet, but the app must reserve the diagnostic lane. |
 | `diagnostics` | Contextual. | Show compact tags and fail-closed alerts by default; full rail on selection. |
@@ -146,7 +146,7 @@ The fixture is a `developer-test` artifact. It does not grant authority to repla
 1. `schema = borg-app-surface-design.v1`;
 2. source manifest id is `borg-first-native-backed-fixture-manifest`;
 3. `simulation-window` is `on-locked` and `architrino-position` is `on`;
-4. `path-history` and `velocity-vectors` are off by default;
+4. `path-history` is on by default and `velocity-vectors` are off by default;
 5. `wake-streams`, `face-boundary-status`, and `outbound-face-background` remain disabled or contextual-disabled;
 6. native current-state frame count is 24016, native keyframe count is 1501, and native path-history row count is 24000;
 7. render manifest uses 3840 by 2160 pixels;

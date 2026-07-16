@@ -53,6 +53,11 @@ export function createBorgNativeEomProcessClient({ binaryPath, timeoutMs = 12000
     });
     worker.stdout.setEncoding("utf8");
     worker.stderr.setEncoding("utf8");
+    // Cancelling a browser request can close the worker's stdin while a queued
+    // write is settling. Consume that stream error and route it through the
+    // same generation guard as process errors instead of letting EPIPE crash
+    // the local development server.
+    worker.stdin.on("error", (error) => failWorkerGeneration(generation, error));
     worker.stdout.on("data", (chunk) => receiveWorkerOutput(generation, chunk));
     worker.stderr.on("data", (chunk) => {
       if (generation !== workerGeneration) {

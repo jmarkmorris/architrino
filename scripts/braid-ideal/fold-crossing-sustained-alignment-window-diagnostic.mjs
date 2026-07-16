@@ -32,8 +32,8 @@
 // claim, no stability claim, no click-mechanism closure. Every output fails closed at the
 // central seed-path certificate and the central retained-history row. Zero free amplitude.
 //
-// See reference/priorities/braid-ideal/fold-crossing-chart-spec.md (Sections 2, 7) and
-// reference/priorities/braid-ideal/fold-crossing-sustained-alignment-window-packet.md.
+// See reference/priorities/braid-archive/braid-ideal/fold-crossing-chart-spec.md (Sections 2, 7) and
+// reference/priorities/braid-archive/braid-ideal/fold-crossing-sustained-alignment-window-packet.md.
 
 import crypto from "node:crypto";
 import { fileURLToPath } from "node:url";

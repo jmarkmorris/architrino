@@ -474,9 +474,9 @@ export function buildOctahedralFoldAwareCrossBinaryForcingIntervalSignEnclosureT
     packet_id: PACKET_ID,
     promotion_status: PROMOTION_STATUS,
     predecessor_packet:
-      "reference/priorities/braid-geometry-export-bridge/octahedral-fold-aware-cross-binary-forcing-sign-topology-margin-atlas.md",
+      "reference/priorities/braid-archive/braid-geometry-export-bridge/octahedral-fold-aware-cross-binary-forcing-sign-topology-margin-atlas.md",
     priority_packet:
-      "reference/priorities/braid-geometry-export-bridge/octahedral-fold-aware-cross-binary-forcing-interval-sign-enclosure-target-atlas.md",
+      "reference/priorities/braid-archive/braid-geometry-export-bridge/octahedral-fold-aware-cross-binary-forcing-interval-sign-enclosure-target-atlas.md",
     source_margin_atlas_check: {
       schema: marginAtlas.schema,
       valid: marginAtlasErrors.length === 0,

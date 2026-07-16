@@ -19,7 +19,7 @@ This packet adds no new validation gate. It sharpens the existing Bell gate by g
 | --- | --- | --- |
 | [transfer-operator-basin-measure](transfer-operator-basin-measure.md) | Basin measures, invariant or metastable measures, detector-kernel discipline. | Specializes the measure grammar to a two-wing source event and joint record basins. |
 | `scripts/quantum/bell-family-residual-harness.mjs` | CHSH, GHZ, Hardy, no-signaling, measurement-independence, product-screening diagnostics. | Identifies the source and apparatus variables that a future generated scenario must supply. |
-| [photon-measurement-bell-gates](../braid-angular-momentum-spin/photon-measurement-bell-gates.md) | Angular-momentum, Stern-Gerlach, photon Gate B, and Bell placement. | Supplies the quantum-closure side of the pair-provenance source-measure contract. |
+| photon-measurement-bell-gates (legacy-braid ref: `braid-archive/braid-angular-momentum-spin/photon-measurement-bell-gates.md`) | Angular-momentum, Stern-Gerlach, photon Gate B, and Bell placement. | Supplies the quantum-closure side of the pair-provenance source-measure contract. |
 
 The value is live because it protects contact with tested Bell-family data and prevents a proof from passing by naming shared provenance while silently re-entering the Bell-local class.
 

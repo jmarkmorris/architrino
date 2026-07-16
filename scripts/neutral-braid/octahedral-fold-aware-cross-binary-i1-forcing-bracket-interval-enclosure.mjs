@@ -228,11 +228,11 @@ export function buildOctahedralFoldAwareCrossBinaryI1ForcingBracketIntervalEnclo
     packet_id: PACKET_ID,
     promotion_status: PROMOTION_STATUS,
     predecessor_packets: [
-      "reference/priorities/braid-geometry-export-bridge/octahedral-fold-aware-cross-binary-forcing-interval-sign-enclosure-target-atlas.md",
-      "reference/priorities/braid-geometry-export-bridge/octahedral-fold-aware-cross-binary-finite-interval-closure-reduction.md",
+      "reference/priorities/braid-archive/braid-geometry-export-bridge/octahedral-fold-aware-cross-binary-forcing-interval-sign-enclosure-target-atlas.md",
+      "reference/priorities/braid-archive/braid-geometry-export-bridge/octahedral-fold-aware-cross-binary-finite-interval-closure-reduction.md",
     ],
     priority_packet:
-      "reference/priorities/braid-geometry-export-bridge/octahedral-fold-aware-cross-binary-i1-forcing-bracket-interval-enclosure.md",
+      "reference/priorities/braid-archive/braid-geometry-export-bridge/octahedral-fold-aware-cross-binary-i1-forcing-bracket-interval-enclosure.md",
     enclosure_parameters: {
       receiver_label: "1+",
       theta_domain: "[0,H/4]",

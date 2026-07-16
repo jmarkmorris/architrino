@@ -229,7 +229,7 @@ export function buildOctahedralForceResidual(options = {}) {
     artifact_id: "neutral_braid_octahedral_force_residual.sampled_diagnostic.v1",
     promotion_status: PROMOTION_STATUS,
     sources: [
-      "reference/priorities/braid-retained-branch-closure/shell-braid/octahedral-carrier-worked-example.md",
+      "reference/priorities/braid-archive/braid-retained-branch-closure/shell-braid/octahedral-carrier-worked-example.md",
       "scripts/neutral-braid/octahedral-root-ledger.mjs",
     ],
     artifact_claim: {

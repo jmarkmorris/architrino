@@ -495,11 +495,11 @@ export function buildOctahedralFoldAwareCrossBinaryI1BracketLocalDerivativeVaria
     packet_id: PACKET_ID,
     promotion_status: PROMOTION_STATUS,
     predecessor_packets: [
-      "reference/priorities/braid-geometry-export-bridge/octahedral-fold-aware-cross-binary-i1-local-zero-isolation-burden-reduction.md",
-      "reference/priorities/braid-geometry-export-bridge/octahedral-fold-aware-cross-binary-i1-bracket-derivative-mesh-barrier.md",
+      "reference/priorities/braid-archive/braid-geometry-export-bridge/octahedral-fold-aware-cross-binary-i1-local-zero-isolation-burden-reduction.md",
+      "reference/priorities/braid-archive/braid-geometry-export-bridge/octahedral-fold-aware-cross-binary-i1-bracket-derivative-mesh-barrier.md",
     ],
     priority_packet:
-      "reference/priorities/braid-geometry-export-bridge/octahedral-fold-aware-cross-binary-i1-bracket-local-derivative-variation-certificate.md",
+      "reference/priorities/braid-archive/braid-geometry-export-bridge/octahedral-fold-aware-cross-binary-i1-bracket-local-derivative-variation-certificate.md",
     burden_reduction_check: {
       schema: burdenReductionPacket.schema,
       valid: burdenReductionErrors.length === 0,

@@ -3,7 +3,7 @@
 // Answers the closure goal following the vt095 measurement: does a hinge
 // geometry exist whose causal-root fold is born at FINITE chord r_c = O(rho),
 // restoring the generic Whitney fold (A2) and the finite chart impulse of
-// reference/priorities/braid-ideal/fold-crossing-chart-spec.md Section 2, rather
+// reference/priorities/braid-archive/braid-ideal/fold-crossing-chart-spec.md Section 2, rather
 // than the cusp-at-coincidence of the symmetric self-hit (Section 6)?
 //
 // Two results:
@@ -27,7 +27,7 @@ import { fileURLToPath } from "node:url";
 
 export const SCHEMA = "fold_crossing_hinge_geometry_diagnostic.v0";
 export const SPEC_PACKET_REF =
-  "reference/priorities/braid-ideal/fold-crossing-chart-spec.md";
+  "reference/priorities/braid-archive/braid-ideal/fold-crossing-chart-spec.md";
 
 export const FAIL_CLOSED = Object.freeze({
   retainedBranchClaim: false,

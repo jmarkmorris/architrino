@@ -2147,11 +2147,11 @@ export function buildOctahedralFoldAwareCrossBinaryI1CompactComplementDirectedRo
     packet_id: PACKET_ID,
     promotion_status: PROMOTION_STATUS,
     predecessor_packets: [
-      "reference/priorities/braid-geometry-export-bridge/octahedral-fold-aware-cross-binary-i1-complement-sign-exclusion-scan.md",
-      "reference/priorities/braid-geometry-export-bridge/octahedral-fold-aware-cross-binary-i1-f1-critical-exhaustion-integration.md",
+      "reference/priorities/braid-archive/braid-geometry-export-bridge/octahedral-fold-aware-cross-binary-i1-complement-sign-exclusion-scan.md",
+      "reference/priorities/braid-archive/braid-geometry-export-bridge/octahedral-fold-aware-cross-binary-i1-f1-critical-exhaustion-integration.md",
     ],
     priority_packet:
-      "reference/priorities/braid-geometry-export-bridge/octahedral-fold-aware-cross-binary-i1-compact-complement-directed-rounded-interval-enclosure.md",
+      "reference/priorities/braid-archive/braid-geometry-export-bridge/octahedral-fold-aware-cross-binary-i1-compact-complement-directed-rounded-interval-enclosure.md",
     interval_parameters: {
       receiver_label: "1+",
       theta_domain: "[0,H/4]",

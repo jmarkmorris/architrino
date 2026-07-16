@@ -1,6 +1,6 @@
 // Canonical-photon search fixture — declared configuration space, grids, and
 // protocol constants. Successor to the retired §99 photon branch; governed by
-// reference/priorities/braid-ideal/canonical-photon-search-dispatch-packet.md.
+// reference/priorities/braid-archive/braid-ideal/canonical-photon-search-dispatch-packet.md.
 //
 // EVERY range and grid below is declared BEFORE any run is scored and is
 // echoed verbatim in the coverage statement of the spec. Range rationale is
@@ -17,7 +17,7 @@
 
 export const CANONICAL_PHOTON_SEARCH_SCHEMA = "canonical_photon_search.v1";
 export const CANONICAL_PHOTON_SEARCH_SPEC =
-  "reference/priorities/braid-ideal/canonical-photon-search-spec.md";
+  "reference/priorities/braid-archive/braid-ideal/canonical-photon-search-spec.md";
 
 export const CANONICAL_PHOTON_SEARCH_FIXTURE = {
   fieldSpeed: 1,
@@ -72,6 +72,24 @@ export const CANONICAL_PHOTON_SEARCH_FIXTURE = {
     // is selected.
     partnerOffset: [0, Math.PI / 2, Math.PI, (3 * Math.PI) / 2],
     partnerOffsetPrimary: Math.PI,
+  },
+
+  // Stage HEX (operator-directed coplanar family, 2026-07-15): d_1 = d_2 = 0
+  // collapses each braid to a rigid hexagonal 6-site ring (all binaries in
+  // one plane, same radius R = 1 gauge, common speed so the hexagon
+  // persists). Exactly two polarity classes exist up to rotation and global
+  // conjugation: alternating (+-+-+-; binaries at 120 degrees) and blocked
+  // (+++---; binaries at 60 degrees). The trail ring contra-rotates by the
+  // mirror rule; its polarity-conjugation variant is absorbed by the Delta
+  // sweep (conjugation = 60-degree rotation for alternating, 180 for
+  // blocked), so conj is not a separate knob here. Gap starts very small
+  // per the operator; the collision floor gate (0.02) still applies.
+  hexPlanar: {
+    speed: [0.3, 0.6, 0.9, 0.99, 1.1, 1.25], // common v; 1.0 exact excluded (luminalSelfPin at rest) in favor of 0.99/1.1 brackets
+    gap: [0.05, 0.1, 0.2, 0.35, 0.5, 0.75, 1.0, 1.5],
+    classes: ["alternating", "blocked"],
+    partnerOffset: Array.from({ length: 12 }, (_, k) => (k * Math.PI) / 12), // 0..165 degrees in 15-degree steps
+    drift: [0, 0.99, 0.999, 0.9999, 1.0],
   },
 
   // Champion-selection protocol (fixed before scoring): rank certified rows

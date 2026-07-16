@@ -324,7 +324,7 @@ export function buildOctahedralAffineExposureProbe(options = {}) {
     packet_id: PACKET_ID,
     promotion_status: PROMOTION_STATUS,
     source_root_ledger: "scripts/neutral-braid/octahedral-root-ledger.mjs",
-    priority_packet: "reference/priorities/braid-geometry-export-bridge/octahedral-affine-exposure-matrix.md",
+    priority_packet: "reference/priorities/braid-archive/braid-geometry-export-bridge/octahedral-affine-exposure-matrix.md",
     conventions: {
       seed: "rigid-octahedral-carrier",
       exposure_weights: "equal all-pairs W_ext=1",

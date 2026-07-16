@@ -400,6 +400,29 @@ export function stageP1bRows(fixture = FIXTURE) {
   return rows;
 }
 
+// Coplanar hexagonal family: both braids collapse to rigid 6-site rings.
+// alternating: + sites at 0/120/240 degrees (binary phases 0, 2pi/3, 4pi/3);
+// blocked: + sites at 0/60/120 degrees (binary phases 0, pi/3, 2pi/3).
+export function stageHexRows(fixture = FIXTURE) {
+  const h = fixture.hexPlanar;
+  const rows = [];
+  for (const u of h.drift)
+    for (const v of h.speed)
+      for (const gap of h.gap)
+        for (const cls of h.classes)
+          for (const delta of h.partnerOffset) {
+            const [phiM, phiO] = cls === "alternating"
+              ? [(2 * Math.PI) / 3, (4 * Math.PI) / 3]
+              : [Math.PI / 3, (2 * Math.PI) / 3];
+            rows.push({
+              id: `hex:${rows.length}`, stage: "hex", hexClass: cls,
+              u, RI: 1, RO: 1, vI: v, vM: v, vO: v, d1: 0, d2: 0, gap,
+              phiM, phiO, senses: [1, 1, 1], conj: false, delta,
+            });
+          }
+  return rows;
+}
+
 export function stageP2Rows(champions, fixture = FIXTURE) {
   const g = fixture.grids;
   const rows = [];
@@ -530,6 +553,35 @@ async function main() {
 
   if (mode === "screen-p1b") {
     runScreen({ rows: stageP1bRows(), offset, limit, out, tag: "p1b", samples });
+    return;
+  }
+
+  if (mode === "screen-hex") {
+    runScreen({ rows: stageHexRows(), offset, limit, out, tag: "hex", samples });
+    return;
+  }
+
+  if (mode === "summarize-hex") {
+    const rows = readShardRows(out, "hex-");
+    const best = (list) => list.slice().sort((a, b) => a.bindingResidual - b.bindingResidual)[0] ?? null;
+    const cells = {};
+    for (const r of rows) {
+      const key = `${r.config.hexClass}|u=${r.config.u}`;
+      (cells[key] ??= []).push(r);
+    }
+    const table = Object.fromEntries(Object.entries(cells).map(([k, list]) => {
+      const certified = list.filter((r) => r.certified);
+      const b = best(certified);
+      return [k, {
+        rows: list.length, certified: certified.length,
+        bindPasses: certified.filter((r) => r.gates.bind).length,
+        minBindingResidual: b?.bindingResidual ?? null,
+        best: b ? { id: b.config.id, v: b.config.vI, gap: b.config.gap, deltaOverPi: b.config.delta / Math.PI, kappaStar: b.kappaStar, pump: b.axialPump, flags: b.flags } : null,
+      }];
+    }));
+    const summary = { schema: SCHEMA, stage: "hex", generatedAt: new Date().toISOString(), cells: table };
+    writeFileSync(path.join(out, "summary-hex.json"), JSON.stringify(summary, null, 2));
+    process.stdout.write(JSON.stringify(summary, null, 2) + "\n");
     return;
   }
 
@@ -676,6 +728,112 @@ async function main() {
     };
     writeFileSync(path.join(out, "summary.json"), JSON.stringify(summary, null, 2));
     process.stdout.write(JSON.stringify(summary, null, 2) + "\n");
+    return;
+  }
+
+  if (mode === "eb-pattern") {
+    // Wake-pattern diagnostic (observer-level E-like field recovery probe).
+    // The master equation's receiver-velocity coupling per root is the
+    // SYMMETRIC tensor -kappa q q W' r_hat r_hat^T (from D_T = c_f - r_hat.v),
+    // so no instantaneous antisymmetric (v x B)-like force exists; the
+    // measurable recovery target is the static-test-charge wake field
+    // E(x,t) = sum_roots q_s (c_f/|D_s|) r_hat / r^2 and its pattern:
+    // transversality, polarization (linear vs circular), and radial falloff.
+    // Sources are HELD assemblies (prescribed helices) — evaluator grade,
+    // pattern probe only; no binding, stability, or Maxwell-recovery claim.
+    const hexBase = { RI: 1, RO: 1, d1: 0, d2: 0, phiM: (2 * Math.PI) / 3, phiO: (4 * Math.PI) / 3, senses: [1, 1, 1], conj: false, delta: 0 };
+    const configs = {
+      hexContra: { ...hexBase, id: "eb:hexContra", stage: "eb", u: 0.99, vI: 0.9, vM: 0.9, vO: 0.9, gap: 0.5 },
+      stackedContra: { id: "eb:stacked", stage: "eb", u: 0.99, RI: 0.55, RO: 0.55, vI: 1.25, vM: 0.6, vO: 1.25, d1: 0.35, d2: 0.35, gap: 1.5, phiM: 0, phiO: 0, senses: [1, 1, 1], conj: false, delta: Math.PI },
+    };
+    const cf = 1;
+    const results = {};
+    for (const [name, config] of Object.entries(configs)) {
+      let sites = buildCanonicalPhoton(config);
+      const variants = { contra: sites };
+      // co-rotating control (non-canonical; violates the mirror rule on purpose)
+      variants.co = sites.map((s) => (s.braid === "trail" ? { ...s, omega: -s.omega } : s));
+      // single-braid control
+      variants.single = sites.filter((s) => s.braid === "lead");
+      for (const [variant, vSites] of Object.entries(variants)) {
+        const u = config.u;
+        const omega = Math.abs(vSites[0].omega);
+        const period = (2 * Math.PI) / omega;
+        const rows = [];
+        for (const rho of [3, 6, 12]) {
+          for (const alpha of [0, Math.PI / 2]) {
+            const samplesT = 16;
+            const et = [];
+            for (let k = 0; k < samplesT; k++) {
+              const t = (k * period) / samplesT;
+              const x = [rho * Math.cos(alpha), rho * Math.sin(alpha), u * t];
+              const E = [0, 0, 0];
+              const flags = { tangentRoot: false, causticDs: false, scanBudgetExhausted: false };
+              for (const s of vSites) {
+                // co-moving observers receive the near-luminal wake at delay
+                // ~ rho/sqrt(1-u^2): the window must be gamma-scaled.
+                const gammaDelay = rho / Math.sqrt(Math.max(1 - u * u, 1e-12));
+                const window = 1.5 * gammaDelay + rho + config.gap + 2 * (config.d1 + config.d2) + 4 + 3 * period;
+                const points = Math.ceil((window * omega * 16) / (2 * Math.PI));
+                const roots = scanRoots({ receiverPos: x, source: s, u, t, cf, window, points, exclusion: 0, screen: FIXTURE.screen, flags });
+                for (const root of roots) {
+                  const a = s.omega * root.tau + s.phase;
+                  const sp = [s.radius * Math.cos(a), s.radius * Math.sin(a), s.z + u * root.tau];
+                  const sv = [-s.radius * s.omega * Math.sin(a), s.radius * s.omega * Math.cos(a), u];
+                  const dx = x[0] - sp[0], dy = x[1] - sp[1], dz = x[2] - sp[2];
+                  const dist = Math.hypot(dx, dy, dz);
+                  const n = [dx / dist, dy / dist, dz / dist];
+                  const ds = cf - (n[0] * sv[0] + n[1] * sv[1] + n[2] * sv[2]);
+                  if (Math.abs(ds) < FIXTURE.screen.sourceNormalFloor) continue;
+                  const w = (s.charge * cf) / Math.abs(ds) / (dist * dist);
+                  E[0] += w * n[0]; E[1] += w * n[1]; E[2] += w * n[2];
+                }
+              }
+              et.push(E);
+            }
+            // oscillating part
+            const mean = [0, 1, 2].map((c) => et.reduce((s, e) => s + e[c], 0) / et.length);
+            const osc = et.map((e) => e.map((v, c) => v - mean[c]));
+            const rms = (list) => Math.sqrt(list.reduce((s, v) => s + v * v, 0) / list.length);
+            const rmsX = rms(osc.map((e) => e[0])), rmsY = rms(osc.map((e) => e[1])), rmsZ = rms(osc.map((e) => e[2]));
+            const rmsTotal = Math.sqrt(rmsX * rmsX + rmsY * rmsY + rmsZ * rmsZ);
+            // transverse polarization: covariance eigen-decomposition
+            let cxx = 0, cyy = 0, cxy = 0;
+            for (const e of osc) { cxx += e[0] * e[0]; cyy += e[1] * e[1]; cxy += e[0] * e[1]; }
+            const tr = cxx + cyy, det = cxx * cyy - cxy * cxy;
+            const disc = Math.sqrt(Math.max(0, tr * tr / 4 - det));
+            const lMax = tr / 2 + disc, lMin = Math.max(0, tr / 2 - disc);
+            rows.push({
+              rho, alpha,
+              oscAmplitude: rmsTotal,
+              longitudinalFraction: rmsZ / (rmsTotal || 1),
+              linearPolarizationFraction: lMax > 0 ? 1 - Math.sqrt(lMin / lMax) : 0,
+              polarizationAxisDeg: (Math.atan2(2 * cxy, cxx - cyy) / 2) * (180 / Math.PI),
+            });
+          }
+        }
+        // falloff exponent between rho=3 and rho=12 (azimuth-averaged)
+        const amp = (rho) => rows.filter((r) => r.rho === rho).reduce((s, r) => s + r.oscAmplitude, 0) / 2;
+        results[`${name}:${variant}`] = {
+          u: config.u,
+          falloffExponent: Math.log(amp(3) / amp(12)) / Math.log(4),
+          rows,
+        };
+      }
+    }
+    mkdirSync(out, { recursive: true });
+    writeFileSync(path.join(out, "eb-pattern.json"), JSON.stringify(results, null, 2));
+    const brief = Object.fromEntries(Object.entries(results).map(([k, v]) => {
+      const r6 = v.rows.filter((r) => r.rho === 6);
+      return [k, {
+        falloff: +v.falloffExponent.toFixed(3),
+        longFrac: +(r6.reduce((s, r) => s + r.longitudinalFraction, 0) / r6.length).toFixed(3),
+        linFrac: +(r6.reduce((s, r) => s + r.linearPolarizationFraction, 0) / r6.length).toFixed(3),
+        axisSpreadDeg: +Math.abs(r6[0].polarizationAxisDeg - r6[1].polarizationAxisDeg).toFixed(1),
+        amp6: +r6[0].oscAmplitude.toExponential(2),
+      }];
+    }));
+    process.stdout.write(JSON.stringify(brief, null, 2) + "\n");
     return;
   }
 

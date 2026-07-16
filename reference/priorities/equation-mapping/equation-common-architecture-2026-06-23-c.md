@@ -41,7 +41,7 @@ Packets inspected for this second pass:
 - [EQ-21 Through EQ-23 And EQ-32 Structure/CMB/BBN/RAR Packet](eq-21-23-32-structure-cmb-bbn-rar-packet.md)
 - [EQ-21 Through EQ-23 And EQ-32 Shared Observation Residual Packet](eq-21-23-32-shared-observation-residual-packet.md)
 - [EQ-26 Through EQ-31 Observation-First Precision Packet](eq-26-31-observation-first-precision-packet.md)
-- [Equation-Map Bearing On Braid Configuration Search](../braid-retained-branch-closure/equation-map-bearing-on-braid-configuration-search.md)
+- Equation-Map Bearing On Braid Configuration Search (legacy-braid ref: `braid-archive/braid-retained-branch-closure/equation-map-bearing-on-braid-configuration-search.md`)
 
 The unpacketed inventory rows also matter architecturally:
 

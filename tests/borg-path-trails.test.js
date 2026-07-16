@@ -254,7 +254,7 @@ test("what the GPU receives reproduces the trail geometry exactly", () => {
 test("a hidden trail does not accumulate pending uploads for the life of the run", () => {
   const group = createGroupStub();
   const trails = createTrails(group);
-  // The path layer is off by default, and three only drains pending update
+  // The operator can hide the path layer, and three only drains pending update
   // ranges when an object is actually rendered.
   trails.setVisible(false);
   for (let chunk = 0; chunk < 200; chunk += 1) {

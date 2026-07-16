@@ -522,7 +522,7 @@ The photon app is an exploratory diagnostic. It may visualize candidate planar-p
 
 ## Related Priorities
 
-- [Photon planar-pair ledger substrate packet](../braid-angular-momentum-spin/photon-planar-pair-ledger-substrate-packet.md)
-- [Planar-pair symbolic substrate instance](../braid-angular-momentum-spin/planar-pair-symbolic-substrate-instance.md)
-- [Photon event ledger balance diagnostic](../braid-angular-momentum-spin/photon-event-ledger-balance-diagnostic.md)
+- Photon planar-pair ledger substrate packet (legacy-braid ref: `braid-archive/braid-angular-momentum-spin/photon-planar-pair-ledger-substrate-packet.md`)
+- Planar-pair symbolic substrate instance (legacy-braid ref: `braid-archive/braid-angular-momentum-spin/planar-pair-symbolic-substrate-instance.md`)
+- Photon event ledger balance diagnostic (legacy-braid ref: `braid-archive/braid-angular-momentum-spin/photon-event-ledger-balance-diagnostic.md`)
 - [Malus' law](../cross-theory-mapping/malus-law.md)

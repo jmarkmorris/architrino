@@ -29,8 +29,8 @@
 // no stability claim. Every output fails closed at the central seed-path certificate
 // and the central retained-history row.
 //
-// See reference/priorities/braid-ideal/fold-crossing-click-impulse-packet.md and
-// reference/priorities/braid-ideal/sh-0-sea-diagnostic-candidate-model.md
+// See reference/priorities/braid-archive/braid-ideal/fold-crossing-click-impulse-packet.md and
+// reference/priorities/braid-archive/braid-ideal/sh-0-sea-diagnostic-candidate-model.md
 // (Self-Hit Probe Inside the Sea Shell).
 
 import crypto from "node:crypto";

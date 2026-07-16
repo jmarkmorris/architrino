@@ -1,7 +1,7 @@
 // Fold-crossing chart MEASUREMENT on the vt095 sea+self-hit crossing.
 //
 // This implements the fold-crossing chart contract of
-// reference/priorities/braid-ideal/fold-crossing-chart-spec.md as a MEASUREMENT
+// reference/priorities/braid-archive/braid-ideal/fold-crossing-chart-spec.md as a MEASUREMENT
 // over the recorded `sh0sea-a4.25-selfhit-vt095-moving-prehistory` crossing,
 // extracting the fold normal-form coefficients (a, r_c, mu-scale), the branch
 // orientation factor, the click impulse and its regulator dependence, the click
@@ -23,7 +23,7 @@ import { fileURLToPath } from "node:url";
 
 export const SCHEMA = "fold_crossing_chart_measurement.v0";
 export const SPEC_PACKET_REF =
-  "reference/priorities/braid-ideal/fold-crossing-chart-spec.md";
+  "reference/priorities/braid-archive/braid-ideal/fold-crossing-chart-spec.md";
 export const RUN_HANDLE = "sh0sea-a4.25-selfhit-vt095-moving-prehistory";
 
 export const FAIL_CLOSED = Object.freeze({

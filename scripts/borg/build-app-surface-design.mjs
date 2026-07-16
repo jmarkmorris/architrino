@@ -68,8 +68,8 @@ export function createBorgAppSurfaceDesign(manifest) {
       sourceClaimLevel: manifest.claimLevel,
     },
     nativeSolverBoundary: {
-      productionSolver: "native-central-solver",
-      newSolverStatus: "forbidden",
+      productionSolver: "central-solver-compatibility-output",
+      eomMigrationStatus: "shadow-adapter-available-promotion-gated",
       bridgeExecutionPath: manifest.sourceBridgeRun.executionPath,
       currentStateAuthority: manifest.currentStateAndFrameSources.projectionStatus,
       pathHistoryAuthority: manifest.pathHistory.streamSummary.valueAuthority,
@@ -88,8 +88,8 @@ export function createBorgAppSurfaceDesign(manifest) {
         "right-diagnostics-rail",
         "bottom-timeline",
       ],
-      defaultVisibleLayers: ["simulation-window", "architrino-position", "diagnostics"],
-      defaultHiddenLayers: ["path-history", "velocity-vectors"],
+      defaultVisibleLayers: ["simulation-window", "architrino-position", "path-history", "diagnostics"],
+      defaultHiddenLayers: ["velocity-vectors"],
       defaultDisabledLayers: ["wake-streams", "face-boundary-status", "outbound-face-background"],
       authorityPromotionRule: "least-authoritative-applicable-status-wins",
     },
@@ -347,13 +347,21 @@ export function assertBorgAppSurfaceDesign(surfaceDesign, manifest) {
     "next solver burden",
   );
   assertEqual(surfaceDesign.nextBuildBurden, manifest.sourceBridgeRun.nextSolverBurden, "next build burden");
-  assertEqual(surfaceDesign.nativeSolverBoundary.productionSolver, "native-central-solver", "production solver");
-  assertEqual(surfaceDesign.nativeSolverBoundary.newSolverStatus, "forbidden", "new solver status");
+  assertEqual(
+    surfaceDesign.nativeSolverBoundary.productionSolver,
+    "central-solver-compatibility-output",
+    "production solver boundary",
+  );
+  assertEqual(
+    surfaceDesign.nativeSolverBoundary.eomMigrationStatus,
+    "shadow-adapter-available-promotion-gated",
+    "EOM migration status",
+  );
   assertEqual(surfaceDesign.firstViewport.renderPixelSize, REQUIRED_RENDER_PIXEL_SIZE, "required render size");
   assertLayerState(surfaceDesign, "simulation-window", "on-locked");
   assertLayerState(surfaceDesign, "architrino-position", "on");
   assertLayerState(surfaceDesign, "velocity-vectors", "off");
-  assertLayerState(surfaceDesign, "path-history", "off");
+  assertLayerState(surfaceDesign, "path-history", "on");
   assertLayerState(surfaceDesign, "wake-streams", "disabled");
   assertLayerState(surfaceDesign, "face-boundary-status", "contextual-disabled");
   assertLayerState(surfaceDesign, "outbound-face-background", "disabled");
@@ -429,7 +437,7 @@ function createLayerStrip(manifest) {
     },
     {
       layer: "path-history",
-      state: "off",
+      state: "on",
       sourceFields: ["pathHistory.pathHistoryStreamIds", "pathHistory.pathReplayIndexIds"],
       displayTransform: "adjacent-native-row-line-segments",
       smoothingPolicy: "none",

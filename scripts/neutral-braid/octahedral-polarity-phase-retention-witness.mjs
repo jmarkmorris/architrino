@@ -12,7 +12,7 @@ export const OCTAHEDRAL_POLARITY_PHASE_RETENTION_WITNESS_SCHEMA =
 const PACKET_ID = "octahedral_polarity_phase_retention_witness";
 const PROMOTION_STATUS = "priority-only";
 const CLOSURE_STATUS = "closed-rejected:polarity-phase-improvement-implies-retention";
-const SOURCE_PACKET = "reference/priorities/braid-retained-branch-closure/shell-braid/polarity-phase-rigid-screen-results.md";
+const SOURCE_PACKET = "reference/priorities/braid-archive/braid-retained-branch-closure/shell-braid/polarity-phase-rigid-screen-results.md";
 
 const CONSUMED_BEST_ROW = Object.freeze({
   source_rank: 1,

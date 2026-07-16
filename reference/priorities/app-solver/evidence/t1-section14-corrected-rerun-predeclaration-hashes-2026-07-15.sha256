@@ -1,0 +1,5 @@
+# Created 2026-07-15 18:14:10 -0400 before any corrected official ladder output.
+# Frozen protocol: target C=0.97; comparison tolerance 0.005; ladder 2000,4000,8000;
+# live-convergence rule unchanged from the evidence predeclaration.
+e2fe949e37e902ecf177ff54fd3850fcb1876b57b20d4c7a2ca6060836fb2a93  reference/priorities/app-solver/evidence/t1-reduction-layer-cross-verification-2026-07-15.md
+596601f65d17eacdea698a9c578731330eb8d3a31d7f7a05df75dfe4d113c8ac  scripts/eom-verification/t1_section14_native.cpp

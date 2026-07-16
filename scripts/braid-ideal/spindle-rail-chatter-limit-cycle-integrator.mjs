@@ -23,7 +23,7 @@
 import { fileURLToPath } from "node:url";
 
 export const SCHEMA = "spindle_rail_chatter_limit_cycle_integrator.v0";
-export const SPEC_PACKET_REF = "reference/priorities/braid-ideal/fold-crossing-chart-spec.md";
+export const SPEC_PACKET_REF = "reference/priorities/braid-archive/braid-ideal/fold-crossing-chart-spec.md";
 export const FAIL_CLOSED = Object.freeze({
   retainedBranchClaim: false, acceptedSameLevelBranchClaim: false, retainedBranch: null,
   scoreMovement: "no_score_increase", acceptedSeedPathCertificate: false,

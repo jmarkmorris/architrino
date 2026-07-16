@@ -114,11 +114,11 @@ export function buildOctahedralFoldAwareClockLengthOrbitSymmetryReduction(option
     packet_id: PACKET_ID,
     promotion_status: PROMOTION_STATUS,
     predecessor_packet:
-      "reference/priorities/braid-geometry-export-bridge/octahedral-fold-aware-clock-length-orbit-scan.md",
+      "reference/priorities/braid-archive/braid-geometry-export-bridge/octahedral-fold-aware-clock-length-orbit-scan.md",
     successor_packet:
-      "reference/priorities/braid-geometry-export-bridge/octahedral-fold-aware-clock-length-chart-closure-proof.md",
+      "reference/priorities/braid-archive/braid-geometry-export-bridge/octahedral-fold-aware-clock-length-chart-closure-proof.md",
     priority_packet:
-      "reference/priorities/braid-geometry-export-bridge/octahedral-fold-aware-clock-length-orbit-symmetry-reduction.md",
+      "reference/priorities/braid-archive/braid-geometry-export-bridge/octahedral-fold-aware-clock-length-orbit-symmetry-reduction.md",
     source_orbit_check: {
       schema: orbitScan.schema,
       valid: orbitErrors.length === 0,

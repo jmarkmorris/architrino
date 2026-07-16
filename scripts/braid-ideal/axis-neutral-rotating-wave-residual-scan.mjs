@@ -1,5 +1,5 @@
 // Priority-only diagnostic scan for the u=0 rigid rotating-wave residual system
-// on the axis-neutral channel (see reference/priorities/braid-ideal/axis-neutral-rotating-wave-spectrum-packet.md).
+// on the axis-neutral channel (see reference/priorities/braid-archive/braid-ideal/axis-neutral-rotating-wave-spectrum-packet.md).
 // Units: rho=1, c_f=1, kappa=1, softening=0. Unknowns: alpha=h/rho, beta=omega*rho.
 // Fail-closed: this scan never authorizes a retained branch, an admissible spectrum row,
 // accepted evidence, or score movement.

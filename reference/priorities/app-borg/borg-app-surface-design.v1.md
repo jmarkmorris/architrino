@@ -57,6 +57,9 @@ The current `borg-first-screen-from-native-fixture` surface contract binds these
 | `faceBufferMargin` | `10` solver units |
 | `duration` | `300` solver-time units |
 | `sampleInterval` | `0.2` solver-time units |
+| `fieldSpeed` | `1`, the canonical normalized $c_f$ |
+| `historyDepth` | `10` solver-time units |
+| `wakeHorizon` | `10` solver-length units, computed as $c_f h$ |
 | `nativeKeyframeCount` | `1501` native keyframes |
 | `frameCount` | `24016` native current-state frame rows, sixteen architrino rows per keyframe |
 | `pathRowCount` | `24000` native adjacent path-history rows |
@@ -74,8 +77,8 @@ The current `borg-first-screen-from-native-fixture` surface contract binds these
 | `nativeMasterEquationProbe.firstFailureCode` | `none` |
 | `nativeMasterEquationProbe.requiredNativeExport` | `architrino_solver_integrate_master_equation_motion_f64` |
 | `nativeMasterEquationProbe.fallbackDecision` | `native-master-equation-selected` |
-| `canonicalEomEvidence` | `true` for fixed-parameter frame/path evidence |
-| `eomEvidenceStatus` | `native_master_equation_fixed_parameter_evidence` |
+| `canonicalEomEvidence` | `false` |
+| `eomEvidenceStatus` | `non_eom_compatibility_output` |
 | `initialLinePolicy` | `seeded-random-interior-cube` |
 | `polaritySignConvention` | `positrino-positive-electrino-negative`, with positrino charge `1` and electrino charge `-1` |
 | `velocityPolicy` | `seeded-random-small-3d`, with `randomVelocityMaxComponentMagnitude = 0.042`, `randomVelocityMinSpeed = 0.0144`, and `velocityBoundScaleFromV1 = 1.2` |
@@ -89,20 +92,22 @@ The current `borg-first-screen-from-native-fixture` surface contract binds these
 
 These values are valid only as a developer-test screen contract. They do not establish proof evidence, production rendering performance, benign-noise authority, or central-volume acceleration authority.
 
+The browser surface also provides exact runtime controls for electrino count, positrino count, maximum random velocity-component magnitude, and minimum random speed. Applying them replaces the staged population, rebuilds particle and path objects, and starts a new live central-solver compatibility run. These controls do not change the fixture values in the table and do not promote the resulting trajectory to canonical equation-of-motion evidence.
+
 ## First-Screen Layer Contract
 
 | Layer | State | Authority |
 | --- | --- | --- |
 | `simulation-window` | `on-locked` | `app-facing-projection` |
 | `architrino-position` | `on` | `authoritative-solver-output` |
-| `path-history` | `off` | `authoritative-solver-output` |
+| `path-history` | `on` | `authoritative-solver-output` |
 | `velocity-vectors` | `off` | raw values are `authoritative-solver-output`; ray geometry is `app-facing-projection` |
 | `wake-streams` | `disabled` | `fail-closed-value` |
 | `face-boundary-status` | `contextual-disabled` | `fail-closed-value` |
 | `diagnostics` | `on-locked` | exposes fail-closed diagnostics without upgrading values |
 | `outbound-face-background` | `disabled` | `fail-closed-value` |
 
-The visible default is `simulation-window`, `architrino-position`, and `diagnostics`. The first static page does not expose `simulation-window` or `architrino-position` as buttons because those core layers are not useful toggles in the first-screen workflow. Path history and velocity vectors are available but off. Wake streams, face-boundary status, and outbound-face background are disabled because their source rows do not yet exist in the native-backed manifest.
+The visible default is `simulation-window`, `architrino-position`, `path-history`, and `diagnostics`. The first static page does not expose `simulation-window` or `architrino-position` as buttons because those core layers are not useful toggles in the first-screen workflow. Path history starts on and velocity vectors remain available but off. Wake streams, face-boundary status, and outbound-face background are disabled because their source rows do not yet exist in the native-backed manifest.
 
 The `architrino-position` layer renders architrinos as small fixed-screen points, not shaded 3D spheres. `electrino` rows render pure blue and `positrino` rows render pure red until a later Borg visual convention changes that polarity map.
 

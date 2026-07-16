@@ -45,7 +45,7 @@ import {
 } from "./spindle-support-ratio-targeted-search.mjs";
 
 export const SCHEMA = "lagrange_dressed_electron_native_pilot.v0";
-export const SPEC_PACKET_REF = "reference/priorities/braid-angular-momentum-spin/lagrange-dressed-electron-native-pilot-spec.md";
+export const SPEC_PACKET_REF = "reference/priorities/braid-archive/braid-angular-momentum-spin/lagrange-dressed-electron-native-pilot-spec.md";
 export const FAIL_CLOSED = Object.freeze({
   retainedBranchClaim: false, acceptedSameLevelBranchClaim: false, retainedBranch: null,
   scoreMovement: "no_score_increase", acceptedSeedPathCertificate: false,

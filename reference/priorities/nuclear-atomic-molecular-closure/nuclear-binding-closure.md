@@ -24,7 +24,7 @@ $$
 
 The priority opportunity is to turn this into a minimal nuclear benchmark ladder instead of leaving it as descriptive structure.
 
-When residual strong channels, beta stability, or nuclear reaction routes become event claims, this packet consumes the shared [residual-routing event-ledger theorem](../braid-nested-shell-causal-closure/residual-routing-event-ledger.md). It owns the hadronic and nuclear residual definitions; the shared packet owns the common channel-routing and $\mathcal{L}_{E\mathbf{p}\mathbf{J}}$ ledger contract.
+When residual strong channels, beta stability, or nuclear reaction routes become event claims, this packet consumes the shared residual-routing event-ledger theorem (legacy-braid ref: `braid-archive/braid-nested-shell-causal-closure/residual-routing-event-ledger.md`). It owns the hadronic and nuclear residual definitions; the shared packet owns the common channel-routing and $\mathcal{L}_{E\mathbf{p}\mathbf{J}}$ ledger contract.
 
 ## Benchmark Ladder
 

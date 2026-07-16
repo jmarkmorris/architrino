@@ -218,11 +218,11 @@ export function buildOctahedralFoldAwareCrossBinaryI1LocalZeroIsolationBurdenRed
     packet_id: PACKET_ID,
     promotion_status: PROMOTION_STATUS,
     predecessor_packets: [
-      "reference/priorities/braid-geometry-export-bridge/octahedral-fold-aware-cross-binary-i1-bracket-local-zero-isolation-mesh-composition.md",
-      "reference/priorities/braid-geometry-export-bridge/octahedral-fold-aware-cross-binary-forcing-interval-sign-enclosure-target-atlas.md",
+      "reference/priorities/braid-archive/braid-geometry-export-bridge/octahedral-fold-aware-cross-binary-i1-bracket-local-zero-isolation-mesh-composition.md",
+      "reference/priorities/braid-archive/braid-geometry-export-bridge/octahedral-fold-aware-cross-binary-forcing-interval-sign-enclosure-target-atlas.md",
     ],
     priority_packet:
-      "reference/priorities/braid-geometry-export-bridge/octahedral-fold-aware-cross-binary-i1-local-zero-isolation-burden-reduction.md",
+      "reference/priorities/braid-archive/braid-geometry-export-bridge/octahedral-fold-aware-cross-binary-i1-local-zero-isolation-burden-reduction.md",
     local_zero_isolation_composition_check: {
       schema: localCompositionPacket.schema,
       valid: localCompositionErrors.length === 0,

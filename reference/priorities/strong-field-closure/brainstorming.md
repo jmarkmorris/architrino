@@ -18,14 +18,14 @@ Discussion disposition: operator option (a), 2026-07-11. The [scope decision](te
 
 This is a sibling brainstorming file for [strong-field-closure](priorities.md). It exists to keep strong-field and three-binary ideas alive while the quantitative closures tighten, without letting them outrank the derivation spine.
 
-This file should not grow into a proof queue. Any hypothesis that becomes actionable should be promoted into [strong-field-closure](priorities.md), [doubling-frequency-lock](../braid-doubling-frequency-lock/priorities.md), or another active workstream.
+This file should not grow into a proof queue. Any hypothesis that becomes actionable should be promoted into [strong-field-closure](priorities.md), doubling-frequency-lock (legacy-braid ref: `braid-archive/braid-doubling-frequency-lock/priorities.md`), or another active workstream.
 
 ## Routing Map
 
 | Watch item | Detailed source | Promotion target | Promotion gate |
 | --- | --- | --- | --- |
 | `keep_hypothesis_registry` | This file | [strong-field-closure](priorities.md) and [black-holes](../../../content/markdown/aaa/spacetime/black-holes.md) | A preserved hypothesis gains a concrete boundary condition, equation, simulation target, or observable before leaving the watchlist. |
-| `protect_421_model` | This file | [doubling-frequency-lock](../braid-doubling-frequency-lock/priorities.md), [nested-shell-braid-dynamics](../../../content/markdown/aaa/noether-braid/explored-braid-geometries.md#nested-shell-braid-dynamics), or [planck-scale-nested-shell-braid-alignment](../../../content/markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-braid-alignment.md) | The `4:2:1` idea is rederived from a reduced-map, branch-ledger, or Planck-alignment result before being promoted beyond hypothesis status. |
+| `protect_421_model` | This file | doubling-frequency-lock (legacy-braid ref: `braid-archive/braid-doubling-frequency-lock/priorities.md`), [nested-shell-braid-dynamics](../../../content/markdown/aaa/noether-braid/explored-braid-geometries.md#nested-shell-braid-dynamics), or [planck-scale-nested-shell-braid-alignment](../../../content/markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-braid-alignment.md) | The `4:2:1` idea is rederived from a reduced-map, branch-ledger, or Planck-alignment result before being promoted beyond hypothesis status. |
 | `dark_sector_photon_like_modes` | [dark-sector-photon-like-mode](../dark-sector/dark-sector-photon-like-mode.md), [black-holes](../../../content/markdown/aaa/spacetime/black-holes.md), [CMB](../../../content/markdown/aaa/cosmology/CMB.md), [radiation](../../../content/markdown/aaa/reactions/radiation.md), and [cosmology-closure](../cosmology-closure/priorities.md) | [dark-sector](../dark-sector/priorities.md), [strong-field-closure](priorities.md), [CMB](../../../content/markdown/aaa/cosmology/CMB.md), or [black-holes](../../../content/markdown/aaa/spacetime/black-holes.md) | The hypothesis gains a release-channel boundary condition, an event-ledger route through radiation Gate C, a redshift / thermalization / re-entry criterion, and at least one discriminating observable before being promoted beyond watchlist status. |
 
 ## Hypotheses To Preserve
@@ -65,7 +65,7 @@ The expanded dark-sector photon-like mode brainstorm, candidate assembly registr
 
 - [strong-field-closure](priorities.md)
 - [dark-sector](../dark-sector/priorities.md)
-- [phenomenological-heuristics](../braid-doubling-frequency-lock/phenomenological-heuristics.md)
+- phenomenological-heuristics (legacy-braid ref: `braid-archive/braid-doubling-frequency-lock/phenomenological-heuristics.md`)
 - [cosmology-closure](../cosmology-closure/priorities.md)
 
 ## Related $\mathbb{A}\mathbb{A}\mathbb{A}$ Notes

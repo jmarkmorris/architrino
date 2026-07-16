@@ -244,7 +244,7 @@ const ACTION_MEASURE_BRANCH_SCOPE_REQUIRED_ACCEPTANCE_BINDINGS = [
 ];
 const ACTION_MEASURE_BRANCH_SCOPE_AUDIT_SEARCH_ROOTS = [
   "scripts/neutral-braid",
-  "reference/priorities/braid-retained-branch-closure",
+  "reference/priorities/braid-archive/braid-retained-branch-closure",
 ];
 const ACTION_MEASURE_BRANCH_SCOPE_AUDIT_SEARCH_TERMS = [
   "branch_scope",
@@ -396,7 +396,7 @@ function buildFiniteModeActionMeasureRowProducerTarget(candidate) {
     expected_source_object:
       "bounded-speed-factor-finite-mode-solver-artifact-with-action-measure-row",
     expected_source_packet:
-      "reference/priorities/braid-retained-branch-closure/shell-braid/bounded-speed-factor-finite-mode-branch-system.md",
+      "reference/priorities/braid-archive/braid-retained-branch-closure/shell-braid/bounded-speed-factor-finite-mode-branch-system.md",
     source_after_normal_packet: "bounded-speed-normal-reconstruction-candidate",
     source_normal_reconstruction_candidate_id:
       candidate.normal_reconstruction_candidate_id,
@@ -4908,7 +4908,7 @@ export function buildOctahedralZeroMeanCorrectionIntake(options = {}) {
     promotion_status: PROMOTION_STATUS,
     sources: [
       "scripts/neutral-braid/octahedral-speed-ode-diagnostic.mjs",
-      "reference/priorities/braid-retained-branch-closure/shell-braid/bounded-speed-factor-speed-ode-zero-mean-correction-target.md",
+      "reference/priorities/braid-archive/braid-retained-branch-closure/shell-braid/bounded-speed-factor-speed-ode-zero-mean-correction-target.md",
     ],
     artifact_claim: {
       kind: "zero_mean_correction_intake",

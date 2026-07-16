@@ -11,7 +11,7 @@ import { axisPencilSpectrum } from "./kapitza-flutter-stabilization.mjs";
 import { MOVING_PHASE_MATCHED_STACKED_RINGS_FIXTURE as DEFAULT_FIXTURE } from "./moving-phase-matched-stacked-rings-fixture.mjs";
 
 export const MOVING_PHASE_MATCHED_STACKED_RINGS_SCHEMA = "moving_phase_matched_stacked_rings_braid.v0";
-export const MOVING_PHASE_MATCHED_STACKED_RINGS_SPEC = "reference/priorities/braid-ideal/moving-phase-matched-stacked-rings-braid-spec.md";
+export const MOVING_PHASE_MATCHED_STACKED_RINGS_SPEC = "reference/priorities/braid-archive/braid-ideal/moving-phase-matched-stacked-rings-braid-spec.md";
 
 const TAU = 2 * Math.PI;
 const zeros = (n, m = n) => Array.from({ length: n }, () => Array(m).fill(0));

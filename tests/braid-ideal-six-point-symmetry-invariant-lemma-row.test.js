@@ -14,7 +14,7 @@ import {
 } from "../scripts/braid-ideal/six-point-symmetry-invariant-lemma-row.mjs";
 
 const PROOF_PACKET_REF =
-  "priority-proof-packet:reference/priorities/braid-ideal/six-point-symmetry-invariant-lemma-proof-packet.md";
+  "priority-proof-packet:reference/priorities/braid-archive/braid-ideal/six-point-symmetry-invariant-lemma-proof-packet.md";
 
 test("six-point symmetry invariant lemma row is deterministic and fail closed", () => {
   const first = buildSixPointSymmetryInvariantLemmaRow();

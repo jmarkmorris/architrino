@@ -19,7 +19,7 @@ import { contraRotatingProAntiPairInstrument } from "./contra-rotating-pro-anti-
 import { CONTRA_ROTATING_CROSS_COUPLING_FIXTURE } from "./contra-rotating-pro-anti-cross-coupling-fixture.mjs";
 
 export const CONTRA_ROTATING_CROSS_COUPLING_SCHEMA = "contra_rotating_pro_anti_cross_coupling.v0";
-export const CONTRA_ROTATING_CROSS_COUPLING_SPEC = "reference/priorities/braid-ideal/fold-crossing-chart-spec.md#93-contra-rotating-pair-cross-coupling-completion-2026-07-12";
+export const CONTRA_ROTATING_CROSS_COUPLING_SPEC = "reference/priorities/braid-archive/braid-ideal/fold-crossing-chart-spec.md#93-contra-rotating-pair-cross-coupling-completion-2026-07-12";
 
 const TAU = 2 * Math.PI;
 const LAYERS = Object.freeze(["I", "M", "O"]);

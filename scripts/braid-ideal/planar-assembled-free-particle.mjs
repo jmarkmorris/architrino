@@ -13,7 +13,7 @@
 // u -> c_f). Do not cite this runner's negative against the canonical
 // 12-worldline photon. The analytic symmetric-pair anchor and the section
 // 92/93/95 control reproductions remain valid implementation tests. See
-// reference/priorities/braid-ideal/planar-assembled-free-particle-spec.md
+// reference/priorities/braid-archive/braid-ideal/planar-assembled-free-particle-spec.md
 // (audit banner) and canonical-photon-search-dispatch-packet.md (successor).
 
 import { fileURLToPath } from "node:url";
@@ -26,7 +26,7 @@ import { dressedContraRotatingElectronCompletion } from "./dressed-contra-rotati
 import { PLANAR_ASSEMBLED_FREE_PARTICLE_FIXTURE as DEFAULT_FIXTURE } from "./planar-assembled-free-particle-fixture.mjs";
 
 export const PLANAR_ASSEMBLED_FREE_PARTICLE_SCHEMA = "planar_assembled_free_particle.v0";
-export const PLANAR_ASSEMBLED_FREE_PARTICLE_SPEC = "reference/priorities/braid-ideal/planar-assembled-free-particle-spec.md";
+export const PLANAR_ASSEMBLED_FREE_PARTICLE_SPEC = "reference/priorities/braid-archive/braid-ideal/planar-assembled-free-particle-spec.md";
 
 const TAU = 2 * Math.PI;
 const zeros = (n, m = n) => Array.from({ length: n }, () => Array(m).fill(0));

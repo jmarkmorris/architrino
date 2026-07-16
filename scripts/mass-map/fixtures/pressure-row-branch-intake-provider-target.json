@@ -1,7 +1,7 @@
 {
   "schema": "pressure_row_branch_intake_provider_target/v0",
   "row_id": "retained-pressure-row-branch-intake-provider-target",
-  "source_ref": "reference/priorities/braid-mass-response-map/pressure-response-coefficient-closure.md",
+  "source_ref": "reference/priorities/braid-archive/braid-mass-response-map/pressure-response-coefficient-closure.md",
   "provider_source_status": "target_only_not_accepted_source",
   "target_status": "same_row_branch_intake_provider_missing",
   "provider_target": {

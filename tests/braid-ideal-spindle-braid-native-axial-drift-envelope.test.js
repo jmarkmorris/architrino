@@ -26,7 +26,7 @@ const deg = (d) => (d * Math.PI) / 180;
 
 // ---------------------------------------------------------------------------
 // Native axial-drift envelope instrument — validation fixture (build spec
-// reference/priorities/braid-ideal/native-axial-drift-envelope-instrument-spec.md
+// reference/priorities/braid-archive/braid-ideal/native-axial-drift-envelope-instrument-spec.md
 // Section "Minimal extension", fixture parts a-d). All tests restore
 // DECLARED.axialDrift and the tabled row in a finally block.
 // ---------------------------------------------------------------------------

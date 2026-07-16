@@ -4,7 +4,7 @@ This detailed priority file supports [Standard Model Closure](priorities.md). It
 
 The file gathers the geometry-first closure program for quark masses, CKM / PMNS mixing, confinement energetics, weak `V-A` chirality, and weak-corridor provenance. The main workstream file keeps rank, status, and queue control.
 
-For sector visibility, this packet consumes the shared [exposure-quotient theorem](../braid-mass-response-map/exposure-quotient-theorem.md). It owns the Standard Model geometry, color exceptionality, and confinement-facing exposure questions; the shared packet owns the projection/quotient grammar that decides which internal geometry becomes visible to mass, weak, color, photon, or vector-corridor sectors.
+For sector visibility, this packet consumes the shared exposure-quotient theorem (legacy-braid ref: `braid-archive/braid-mass-response-map/exposure-quotient-theorem.md`). It owns the Standard Model geometry, color exceptionality, and confinement-facing exposure questions; the shared packet owns the projection/quotient grammar that decides which internal geometry becomes visible to mass, weak, color, photon, or vector-corridor sectors.
 
 ## Target AAA Notes
 

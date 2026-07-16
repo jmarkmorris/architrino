@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 // Spindle Braid Native Retained-History Confirmation Run.
 //
-// Scope contract: reference/priorities/braid-ideal/spindle-braid-native-confirmation-handoff.md
+// Scope contract: reference/priorities/braid-archive/braid-ideal/spindle-braid-native-confirmation-handoff.md
 // (the named candidate row for `native_retained_history_promotion`, queue item 4).
 //
 // What this run does (packet Section 2):
@@ -43,7 +43,7 @@ import {
 
 export const SCHEMA = "spindle_braid_native_retained_history_confirmation_run.v0";
 export const HANDOFF_PACKET_REF =
-  "reference/priorities/braid-ideal/spindle-braid-native-confirmation-handoff.md";
+  "reference/priorities/braid-archive/braid-ideal/spindle-braid-native-confirmation-handoff.md";
 export const FAIL_CLOSED = Object.freeze({
   retainedBranchClaim: false,
   acceptedSameLevelBranchClaim: false,
@@ -187,7 +187,7 @@ export const DECLARED = {
   fieldSpeed: 1, // c_f
   omega: 1, // pinned transverse cadence (beta_M = 1 on the rail); set by selectTabledRow
   // Native axial-drift envelope instrument (build spec
-  // reference/priorities/braid-ideal/native-axial-drift-envelope-instrument-spec.md;
+  // reference/priorities/braid-archive/braid-ideal/native-axial-drift-envelope-instrument-spec.md;
   // theorem target ../master-equation-closure/boosted-delay-attractor-theorem-target.md):
   // boost velocity u along +z (the aligned spin axis), in units of c_f. This is
   // expressed ENTIRELY through the existing centerVelocity/receiver-velocity
@@ -4031,7 +4031,7 @@ if (isMain()) {
       theoremTargetRef:
         "reference/priorities/master-equation-closure/boosted-delay-attractor-theorem-target.md",
       instrumentSpecRef:
-        "reference/priorities/braid-ideal/native-axial-drift-envelope-instrument-spec.md",
+        "reference/priorities/braid-archive/braid-ideal/native-axial-drift-envelope-instrument-spec.md",
       declared: {
         candidateRow: DECLARED.candidateRow,
         driftRotations,

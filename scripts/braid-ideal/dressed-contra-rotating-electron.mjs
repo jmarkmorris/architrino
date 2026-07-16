@@ -28,7 +28,7 @@ import { gyroscopicTiltAnalysisFull } from "./spindle-support-ratio-targeted-sea
 import { DRESSED_CONTRA_ROTATING_ELECTRON_FIXTURE } from "./dressed-contra-rotating-electron-fixture.mjs";
 
 export const DRESSED_CONTRA_ROTATING_ELECTRON_SCHEMA = "dressed_contra_rotating_electron.v0";
-export const DRESSED_CONTRA_ROTATING_ELECTRON_SPEC = "reference/priorities/braid-ideal/dressed-contra-rotating-electron-spec.md";
+export const DRESSED_CONTRA_ROTATING_ELECTRON_SPEC = "reference/priorities/braid-archive/braid-ideal/dressed-contra-rotating-electron-spec.md";
 
 const TAU = 2 * Math.PI;
 const add = (a, b) => a.map((v, i) => v + b[i]);

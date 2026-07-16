@@ -23,7 +23,7 @@ import { fileURLToPath } from "node:url";
 import { gyroscopicTiltAnalysisFull } from "./spindle-support-ratio-targeted-search.mjs";
 
 export const KAPITZA_FLUTTER_SCHEMA = "kapitza_flutter_stabilization.v0";
-export const KAPITZA_FLUTTER_SPEC = "reference/priorities/braid-ideal/fold-crossing-chart-spec.md#91-kapitza-dynamic-stabilization-of-the-flutter-does-buffeting-quiet-it-2026-07-11";
+export const KAPITZA_FLUTTER_SPEC = "reference/priorities/braid-archive/braid-ideal/fold-crossing-chart-spec.md#91-kapitza-dynamic-stabilization-of-the-flutter-does-buffeting-quiet-it-2026-07-11";
 
 const zeros = (n) => Array.from({ length: n }, () => Array(n).fill(0));
 const add = (A, B) => A.map((r, i) => r.map((v, j) => v + B[i][j]));

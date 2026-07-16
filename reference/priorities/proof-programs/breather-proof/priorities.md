@@ -476,7 +476,7 @@ T_{\mathrm{cyc}},
 $$
 fixed across `phi_cyc.json`, `mesh.json`, `causal_ledger.json`, `branch_chart.json`, and `seed_chart_interval_report.md`.
 - The branch chart is accepted only as an authorized refinement of the null-coordinate pre-ledger: every simple branch must point to one `simple_root` pre-ledger row, empty rows must stay inactive with positive gaps, and fold-layer rows must not be reduced to branch-sum formulas.
-- Treat [braid](../../braid-retained-branch-closure/priorities.md) as a separate active-development synthesis workstream, not as a replacement for the finite certificate packet. Before deployment, unresolved synthesis items must be closed, kept as explicit roadmap targets, routed into the relevant priority workstream, or cut.
+- Treat braid (legacy-braid ref: `braid-archive/braid-retained-branch-closure/priorities.md`) as a separate active-development synthesis workstream, not as a replacement for the finite certificate packet. Before deployment, unresolved synthesis items must be closed, kept as explicit roadmap targets, routed into the relevant priority workstream, or cut.
 
 ## Active Cross-Document Action Plan
 

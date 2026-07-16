@@ -196,3 +196,26 @@ any feasibility verdict on it.
 
 Closure goal (next): with the root path repaired, re-measure the §86 step-cost
 wall, then run the T3 temporal set as direct evolutions in ledger order.
+
+## Witness case registered 2026-07-15 — T1 §14 certified-reduction exhaustion (minimal reproducible probe)
+
+The independent T1 reduction layer's clean complete-root certificate reported
+`analytic_interval_exhausted` during the §14 nested-inner-binary cross-hit
+reduction: $N_T=2000$ rung, 1-based reception sample 1957, pair slot 3
+(`r1 <- s0`). Reproduction assets: fixture packet
+[t1-fixture-data-2026-07-15.json](evidence/t1-fixture-data-2026-07-15.json),
+native reduction `scripts/eom-verification/t1_section14_native.cpp`, evidence
+[t1-reduction-layer-cross-verification-2026-07-15.md](evidence/t1-reduction-layer-cross-verification-2026-07-15.md).
+Why this witness is valuable to this packet: it is a **small, frozen, prescribed
+configuration** (two-frequency nested pair, one reception window) that walls the
+certificate at a named sample — far cheaper to probe than the evolved-history
+§86/§97 instances of the same class. Companion observation: the same run
+family's earlier diagnostic ladder ($C=0.9591\to0.9704\to0.9468$ under
+$N_T=2000\to8000$) did **not** settle (movement increasing with refinement),
+while the legacy §14 instrument's ladder ($0.214\to0.220\to0.224$) reported
+smooth convergence on a fixed 128-subdivision scan — the pairing is consistent
+with either fold-adjacent root misses in the legacy scan (the audit's P2-1
+fixed-grid warning) or over-conservative interval growth in the certified
+route near the fold. Deciding which is exactly this packet's business.
+Claim level: measured (wall location, ladders); the legacy-vs-certified
+interpretation fork is inferred, undecided.

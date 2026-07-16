@@ -59,7 +59,7 @@ function makeMasterEquationRequest() {
         fixedPhysicalParameterSetId: "borg-fixed-physical-parameters.v1",
         masterEquationVersion: "master-equation-fixed-parameter-v1",
         forceLawVersion: "architrino-master-equation-v1",
-        fieldSpeed: 3,
+        fieldSpeed: 1,
         historyDepth: 1,
         integrationTolerance: 1e-11,
         initialStates: [

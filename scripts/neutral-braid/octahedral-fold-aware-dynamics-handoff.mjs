@@ -370,9 +370,9 @@ export function buildOctahedralFoldAwareDynamicsHandoff(options = {}) {
     promotion_status: PROMOTION_STATUS,
     predecessor_schema: OCTAHEDRAL_FOLD_AWARE_ZERO_BRACKET_CERTIFICATE_SCHEMA,
     predecessor_packet:
-      "reference/priorities/braid-geometry-export-bridge/octahedral-fold-aware-zero-bracket-certificate.md",
+      "reference/priorities/braid-archive/braid-geometry-export-bridge/octahedral-fold-aware-zero-bracket-certificate.md",
     priority_packet:
-      "reference/priorities/braid-geometry-export-bridge/octahedral-fold-aware-dynamics-handoff.md",
+      "reference/priorities/braid-archive/braid-geometry-export-bridge/octahedral-fold-aware-dynamics-handoff.md",
     source_certificate_check: sourceCertificateCheck,
   };
 

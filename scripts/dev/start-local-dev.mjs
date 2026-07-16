@@ -14,11 +14,27 @@ const SCRIPT_DIR = dirname(fileURLToPath(import.meta.url));
 const REPO_ROOT = resolve(SCRIPT_DIR, "../..");
 const PORT = Number.parseInt(process.env.PORT ?? "5173", 10);
 const HOST = process.env.HOST ?? "127.0.0.1";
-const EOM_BORG_SHADOW_ENABLED = isEnabledEnvironmentFlag(process.env.EOM_BORG_SHADOW);
+const EOM_BORG_SHADOW_ENABLED = !isDisabledEnvironmentFlag(process.env.EOM_BORG_SHADOW);
 const EOM_BUILD_DIR = resolve(REPO_ROOT, ".tmp/eom-native-dev");
 
 function isEnabledEnvironmentFlag(value = "") {
   return /^(1|true|yes|on)$/iu.test(String(value || "").trim());
+}
+
+function isDisabledEnvironmentFlag(value = "") {
+  return /^(0|false|no|off)$/iu.test(String(value || "").trim());
+}
+
+function resolveExecutable(name, fallbackPaths = []) {
+  const pathCandidates = String(process.env.PATH || "")
+    .split(":")
+    .filter(Boolean)
+    .map((directory) => resolve(directory, name));
+  const executable = [...pathCandidates, ...fallbackPaths].find((candidate) => existsSync(candidate));
+  if (!executable) {
+    throw new Error(`${name} executable is required but was not found.`);
+  }
+  return executable;
 }
 
 const pdgLiveArtifactRuntime = isEnabledEnvironmentFlag(process.env.PDG_LIVE_ARTIFACTS)
@@ -30,13 +46,19 @@ const pdgLiveArtifactRuntime = isEnabledEnvironmentFlag(process.env.PDG_LIVE_ART
     })
   : null;
 
-const eomBorgClient = EOM_BORG_SHADOW_ENABLED
-  ? createBorgNativeEomProcessClient({
-      binaryPath: prepareEomBorgNativeBinary(),
-      timeoutMs: 180000,
-    })
-  : null;
+let eomBorgClient = null;
 let eomBorgQueue = Promise.resolve();
+
+function getEomBorgClient() {
+  if (!EOM_BORG_SHADOW_ENABLED) {
+    return null;
+  }
+  eomBorgClient ??= createBorgNativeEomProcessClient({
+    binaryPath: prepareEomBorgNativeBinary(),
+    timeoutMs: 180000,
+  });
+  return eomBorgClient;
+}
 
 const MIME_TYPES = new Map([
   [".css", "text/css; charset=utf-8"],
@@ -80,21 +102,29 @@ function sendNotFound(response) {
 }
 
 function prepareEomBorgNativeBinary() {
+  const cmakeExecutable = resolveExecutable("cmake", [
+    "/opt/homebrew/bin/cmake",
+    "/usr/local/bin/cmake",
+  ]);
   const configure = spawnSync(
-    "cmake",
+    cmakeExecutable,
     ["-S", resolve(REPO_ROOT, "src/eom"), "-B", EOM_BUILD_DIR, "-DCMAKE_BUILD_TYPE=Release"],
     { cwd: REPO_ROOT, encoding: "utf8" },
   );
   if (configure.status !== 0) {
-    throw new Error(`EOM configure failed: ${configure.stderr || configure.stdout}`);
+    throw new Error(
+      `EOM configure failed: ${configure.error?.message || configure.stderr || configure.stdout || "unknown error"}`,
+    );
   }
   const build = spawnSync(
-    "cmake",
+    cmakeExecutable,
     ["--build", EOM_BUILD_DIR, "--target", "eom_borg_shadow_cli", "--parallel", "8"],
     { cwd: REPO_ROOT, encoding: "utf8" },
   );
   if (build.status !== 0) {
-    throw new Error(`EOM build failed: ${build.stderr || build.stdout}`);
+    throw new Error(
+      `EOM build failed: ${build.error?.message || build.stderr || build.stdout || "unknown error"}`,
+    );
   }
   return resolve(EOM_BUILD_DIR, "eom_borg_shadow_cli");
 }
@@ -124,18 +154,29 @@ function readJsonRequest(request, maximumBytes = 64 * 1024 * 1024) {
 }
 
 async function serveEomBorgShadow(request, response) {
-  if (!eomBorgClient || request.method !== "POST") {
+  if (!EOM_BORG_SHADOW_ENABLED || request.method !== "POST") {
     sendNotFound(response);
     return;
   }
   const body = await readJsonRequest(request);
+  let client = null;
   let responseCompleted = false;
   response.once("close", () => {
-    if (!responseCompleted) {
-      eomBorgClient.dispose();
+    if (!responseCompleted && client) {
+      client.dispose();
+      if (eomBorgClient === client) {
+        eomBorgClient = null;
+      }
     }
   });
-  const execute = () => eomBorgClient.evolveRetainedHistories(body);
+  // Acquire the shared worker only when this queued request starts. A stopped
+  // browser request may close while its replacement is already waiting; if the
+  // replacement captured the old client here, it would inherit a worker that
+  // the close handler is about to dispose.
+  const execute = () => {
+    client = getEomBorgClient();
+    return client.evolveRetainedHistories(body);
+  };
   const resultPromise = eomBorgQueue.then(execute, execute);
   eomBorgQueue = resultPromise.catch(() => undefined);
   const result = await resultPromise;
@@ -202,9 +243,9 @@ server.listen(PORT, HOST, () => {
     process.stdout.write("[pdg] live artifact refresh disabled; set PDG_LIVE_ARTIFACTS=1 to enable.\n");
   }
   process.stdout.write(
-    eomBorgClient
-      ? "[eom] Borg native shadow endpoint enabled; open /borg.html?eom=shadow.\n"
-      : "[eom] Borg native shadow endpoint disabled; set EOM_BORG_SHADOW=1 to enable.\n",
+    EOM_BORG_SHADOW_ENABLED
+      ? "[eom] Borg native shadow endpoint enabled by default; open /borg.html.\n"
+      : "[eom] Borg native shadow endpoint disabled; use /borg.html?eom=compatibility.\n",
   );
 });
 pdgLiveArtifactRuntime?.start();

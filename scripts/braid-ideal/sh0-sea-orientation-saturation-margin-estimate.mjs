@@ -19,7 +19,7 @@ import { fileURLToPath } from "node:url";
 import { buildBraid, residuals } from "./spindle-braid-screw-drift-evaluator.mjs";
 
 export const SCHEMA = "sh0_sea_orientation_saturation_margin_estimate.v0";
-export const SPEC_PACKET_REF = "reference/priorities/braid-ideal/fold-crossing-chart-spec.md";
+export const SPEC_PACKET_REF = "reference/priorities/braid-archive/braid-ideal/fold-crossing-chart-spec.md";
 export const FAIL_CLOSED = Object.freeze({
   retainedBranchClaim: false, acceptedSameLevelBranchClaim: false, retainedBranch: null,
   scoreMovement: "no_score_increase", acceptedSeedPathCertificate: false,

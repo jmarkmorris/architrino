@@ -387,4 +387,4 @@ These themes overlap conceptually with live $\mathbb{A}\mathbb{A}\mathbb{A}$ que
 
 - [quantum-closure](../../quantum-closure/priorities.md)
 - [source-mining](../../source-mining/priorities.md)
-- [angular-momentum-spin](../../braid-angular-momentum-spin/priorities.md)
+- angular-momentum-spin (legacy-braid ref: `braid-archive/braid-angular-momentum-spin/priorities.md`)

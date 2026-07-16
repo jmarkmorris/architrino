@@ -5,7 +5,7 @@
 // fail-closed: retainedBranchClaim=false, scoreMovement=no_score_increase.
 //
 // It encodes two things from the fold-crossing chart specification packet
-// (reference/priorities/braid-ideal/fold-crossing-chart-spec.md):
+// (reference/priorities/braid-archive/braid-ideal/fold-crossing-chart-spec.md):
 //
 //   1. The chart-defined finite click impulse (normal-form derivation), whose
 //      value is independent of the receiver-normal numerator D_T and of the
@@ -17,9 +17,9 @@ import { fileURLToPath } from "node:url";
 
 export const SCHEMA = "fold_crossing_chart_fixture.v0";
 export const SPEC_PACKET_REF =
-  "reference/priorities/braid-ideal/fold-crossing-chart-spec.md";
+  "reference/priorities/braid-archive/braid-ideal/fold-crossing-chart-spec.md";
 export const WITNESS_REF =
-  "reference/priorities/braid-ideal/sh-0-sea-diagnostic-candidate-model.md#self-hit-probe-inside-the-sea-shell---2026-07-07";
+  "reference/priorities/braid-archive/braid-ideal/sh-0-sea-diagnostic-candidate-model.md#self-hit-probe-inside-the-sea-shell---2026-07-07";
 
 // Certified anti-damping pump constant (lower band edge), from the delayed
 // escape certificate interval certificate. Phi_tan(beta) >= c1 * beta.
