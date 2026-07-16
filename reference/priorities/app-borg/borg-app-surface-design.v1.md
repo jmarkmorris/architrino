@@ -6,8 +6,7 @@
 - Status: `design-complete`
 - Claim level: `developer-test-screen-spec`
 - Schema id: `borg-app-surface-design.v1`
-- Source fixture: removed 2026-07-16
-- Surface artifact: design-owned constant in `src/apps/borg/BorgAppManifest.js` (its generator was removed 2026-07-16)
+- Surface artifact: design-owned constant in `src/apps/borg/BorgAppManifest.js`
 - Source manifest: [borg-dataset-manifest.v1](borg-dataset-manifest.v1.md)
 - Requirements source: [requirements-and-design](requirements-and-design.md)
 - Native bridge source: [native-bridge-audit-and-first-screen](native-bridge-audit-and-first-screen.md)
@@ -37,7 +36,7 @@ The surface object (the design-owned constant `BORG_APP_SURFACE_DESIGN_V1` in `s
 
 ## First Developer-Test Values
 
-The current `borg-eom-first-screen` surface contract binds these checked values (all design-owned policy; run-derived values were removed 2026-07-16):
+The current `borg-eom-first-screen` surface contract binds these checked values (all design-owned policy):
 
 | Field | Value |
 | --- | --- |
@@ -68,13 +67,13 @@ The browser surface also provides exact runtime controls for electrino count, po
 | `diagnostics` | `on-locked` | exposes fail-closed diagnostics without upgrading values |
 | `outbound-face-background` | `disabled` | `fail-closed-value` |
 
-The visible default is `simulation-window`, `architrino-position`, `path-history`, and `diagnostics`. The first static page does not expose `simulation-window` or `architrino-position` as buttons because those core layers are not useful toggles in the first-screen workflow. Path history starts on and velocity vectors remain available but off. Wake streams, face-boundary status, and outbound-face background are disabled because their source rows do not yet exist in the native-backed manifest.
+The visible default is `simulation-window`, `architrino-position`, `path-history`, and `diagnostics`. The first static page does not expose `simulation-window` or `architrino-position` as buttons because those core layers are not useful toggles in the first-screen workflow. Path history starts on and velocity vectors remain available but off. Wake streams, face-boundary status, and outbound-face background are disabled because their source rows do not yet exist in the manifest.
 
 The `architrino-position` layer renders architrinos as small fixed-screen points, not shaded 3D spheres. `electrino` rows render pure blue and `positrino` rows render pure red until a later Borg visual convention changes that polarity map.
 
 The `path-history` layer renders adjacent native path rows as straight line segments with `smoothingPolicy = none`. Trail color and thickness are app-facing visualization only; the path authority still comes from the native path-history rows. The first static page must not spline, tube-smooth, or otherwise curve native rows beyond the solver-emitted frame sequence.
 
-The first static page uses the native fixture frame sets as keyframes and may interpolate between adjacent keyframes for smoother display playback. Interpolated playback frames are display-only visualization and must not be counted as additional EOM solver output, path-history evidence, wake rows, face-boundary evidence, or proof evidence.
+The first static page uses the EOM-run frame sets as keyframes and may interpolate between adjacent keyframes for smoother display playback. Interpolated playback frames are display-only visualization and must not be counted as additional EOM solver output, path-history evidence, wake rows, face-boundary evidence, or proof evidence.
 
 ## Simulation-Envelope Rail Contract
 
@@ -101,15 +100,15 @@ The current screen spec surfaces these first-failure codes from the source manif
 | Code | Surface consequence |
 | --- | --- |
 | `wake_history_gap_unclassified` | `wake-streams` remains disabled and central wake-background authority remains closed. |
-| `missing_face_crossing_coverage` | `face-boundary-status` remains contextual-disabled because this long fixture keeps the pair inside the outer cube and emits no native face-crossing event rows. |
+| `missing_face_crossing_coverage` | `face-boundary-status` remains contextual-disabled because EOM runs do not yet emit face-crossing event rows. |
 | `face_influence_model_missing` | `outbound-face-background` remains disabled and no face influence model can drive replay. |
 | `six_face_boundary_policy_missing` | Six-face benign-noise status cannot receive reduced-model authority. |
 | `velocity_sampling_protocol_missing` | Velocity-scale replay sampling remains research-open. |
 | `required_residual_unmeasured` | `R_boundary->central` is not measured, so central-volume acceleration and replay-affected diagnostics remain fail-closed. |
 
-## Validation Command
+## Validation
 
-Removed 2026-07-16. The generator, the stored fixture module, and the trajectory asset are deleted. The surviving design-owned surface object lives in `src/apps/borg/BorgAppManifest.js` and is validated by `validateBorgManifest`, pinned by `tests/borg-eom-runtime-contract.test.js`.
+The design-owned surface object lives in `src/apps/borg/BorgAppManifest.js` and is validated by `validateBorgManifest`, pinned by `tests/borg-eom-runtime-contract.test.js`.
 
 ## First Static Page Artifact
 

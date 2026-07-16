@@ -25,7 +25,7 @@ The audit is priority-design material. It does not promote app output to proof e
 | Scale controls | `manifest-gap` | Existing configs carry side length and scale-like fields. | Manifest must record outer computed `sideLength`, displayed `centralVolumeSideLength`, `faceBufferMargin`, `centralArchitrinoCount`, derived outer `architrinoCount`, `bufferArchitrinoCount`, `scaleFactor`, `historyDepth`, `wakeHorizon = c_f h`, `wakeFloor`, `boundaryMode`, and error budget. |
 | Initial conditions | `native-backed-now` for random/lattice/clustered/explicit families; `manifest-gap` for app-facing provenance | Current setup supports generated and explicit state families plus polarity/composition encoding. | First screen can expose random 50/50 launch state, central-count presets, derived outer computed count, and velocity policies; manifest must preserve exact resolved assignments. |
 | No physical mass input | `native-backed-now` for app contract policy | The app requirement labels numerical scalars as `integrationWeight` / `integrationWeights`. | UI, bridge schema, and manifest language must keep preventing physical-mass wording. |
-| Path history | `native-backed-now` for fixed-parameter master-equation path rows and the bridge-level path-history stream contract | The Borg fixture binds `pathHistoryStreamIds`, replay-index ids, and adjacent native path rows from `architrino_solver_integrate_master_equation_motion_f64`. | First screen can show native row-segment trails with solver authority for path rows; wake and boundary consumers still fail closed until their row products exist. |
+| Path history | `native-backed-now` for the EOM path-history stream contract | EOM runs carry `pathHistoryStreamIds`, replay-index ids, and adjacent path rows. | First screen can show row-segment trails with EOM authority for path rows; wake and boundary consumers still fail closed until their row products exist. |
 | Wake history rows | `native-capability-gap` | Resolved row-bound wake-history output is not yet available as an app manifest product. | Wake streams must remain disabled/display-only until retained wake rows exist. |
 | Face-boundary rows | `native-capability-gap` | No bridge rows currently emit `borg-face-summary.v1`, `borg-face-replay-source.v1`, outbound wake summaries, inbound replay rows, or $R_{\mathrm{face\ replay}}$. | Boundary layer starts disabled or display-only until face-boundary rows exist. |
 | Path-derived face influence model | `native-capability-gap` | No current bridge product emits `borg-face-influence-model.v1` from native path streams, path indices, kernels, and face distribution models. | Per-point face projection caches remain display/debug only; the first fixture emits fail-closed gap rows for `faceInfluenceModelIds`. |
@@ -37,7 +37,7 @@ The audit is priority-design material. It does not promote app output to proof e
 | Visualization resolution | `display-only` | The EOM solver owns simulation values, not canvas pixel density. | Produced screenshots, captures, review output, and quality-mode views must be 4K UHD, 3840 by 2160; lower adaptive internal render scale is only an interaction fallback. |
 | Layer toggles | `display-only` | Existing visualization flags can inform, but not define, the app layer controller. | New app-surface layer controller should keep solver data immutable. |
 | Logarithmic UI | `display-only` | Velocity display transforms are app projections. | Use floating exponent labels on active velocity rays; exact solver values remain in diagnostics. |
-| Dataset manifest and first-screen consumer | `developer-test` screen-spec and static page consumer complete | The design-owned manifest and screen-spec objects live in `src/apps/borg/BorgAppManifest.js` (their generators were removed 2026-07-16); [borg.html](../../../borg.html) renders the static developer-test surface from the EOM run path. | The next implementation artifact should add native wake-history rows, boundary residual rows, and required acceleration-contribution diagnostics while keeping missing replay authority fail-closed. |
+| Dataset manifest and first-screen consumer | `developer-test` screen-spec and static page consumer complete | The design-owned manifest and screen-spec objects live in `src/apps/borg/BorgAppManifest.js`; [borg.html](../../../borg.html) renders the static developer-test surface from the EOM run path. | The next implementation artifact should add native wake-history rows, boundary residual rows, and required acceleration-contribution diagnostics while keeping missing replay authority fail-closed. |
 
 ## Smallest Elegant First Screen
 
@@ -116,13 +116,13 @@ Minimum timeline:
 5. Add selected-object diagnostics using current state, run summary, and diagnostic status vocabulary.
 6. Keep wake streams, face-boundary replay, six-face benign-noise status, velocity-sampling promotion, and acceleration decomposition disabled or fail-closed until native and manifest support exists.
 
-## First Native-Backed Fixture Artifact
+## Manifest Policy Artifact
 
-Removed 2026-07-16. The generator script and every run value it recorded were removed 2026-07-16. The design-owned policy it validated (envelope split, seeded initial-condition contract, canonical `fieldSpeed = 1`, and the explicit fail-closed gap-row vocabulary for wake history, face-boundary rows, face influence, six-face boundary noise, velocity sampling, and `R_boundary->central`) survives in `src/apps/borg/BorgAppManifest.js`.
+The design-owned policy — envelope split, seeded initial-condition contract, canonical `fieldSpeed = 1`, and the explicit fail-closed gap-row vocabulary for wake history, face-boundary rows, face influence, six-face boundary noise, velocity sampling, and `R_boundary->central` — lives in `src/apps/borg/BorgAppManifest.js`.
 
 ## First App Surface Design Artifact
 
-`borg-app-surface-design.v1` is now the design-owned constant `BORG_APP_SURFACE_DESIGN_V1` in `src/apps/borg/BorgAppManifest.js` (its generator was removed 2026-07-16). `validateBorgManifest` pins these screen-spec facts:
+`borg-app-surface-design.v1` is the design-owned constant `BORG_APP_SURFACE_DESIGN_V1` in `src/apps/borg/BorgAppManifest.js`. `validateBorgManifest` pins these screen-spec facts:
 
 1. `schema = borg-app-surface-design.v1`;
 2. the surface's source manifest id matches the app manifest;

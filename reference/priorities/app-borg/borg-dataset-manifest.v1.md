@@ -481,13 +481,13 @@ The manifest must report the first applicable failure before displaying affected
 
 This manifest contract is `priority-design`. It does not upgrade app output beyond `candidate-run` or `developer-test` without native-backed rows, error budgets, residuals, row-conservation counts, and measured velocity-scale sampling results for any replay-affected diagnostic.
 
-## First Native-Backed Fixture Artifact
+## Design-Owned Policy Object
 
-Removed 2026-07-16. The fixture generator, its stored manifest/trajectory data, and every value it produced were removed 2026-07-16. The design-owned pieces it exercised survive in `src/apps/borg/BorgAppManifest.js`: the simulation envelope, the population sizing rule, the seeded initial-condition policy (`initialLinePolicy = seeded-random-interior-cube`, `polaritySignConvention = positrino-positive-electrino-negative`, `velocityPolicy = seeded-random-small-3d`), canonical normalized `fieldSpeed = 1`, and the fail-closed gap-row vocabulary for retained wake rows, face-boundary summaries, `borg-face-influence-model.v1`, `borg-six-face-boundary-noise-policy.v1`, velocity sampling, and `R_boundary->central`.
+The design-owned pieces live in `src/apps/borg/BorgAppManifest.js`: the simulation envelope, the population sizing rule, the seeded initial-condition policy (`initialLinePolicy = seeded-random-interior-cube`, `polaritySignConvention = positrino-positive-electrino-negative`, `velocityPolicy = seeded-random-small-3d`), canonical normalized `fieldSpeed = 1`, and the fail-closed gap-row vocabulary for retained wake rows, face-boundary summaries, `borg-face-influence-model.v1`, `borg-six-face-boundary-noise-policy.v1`, velocity sampling, and `R_boundary->central`.
 
 ## First App Surface Design Artifact
 
-`borg-app-surface-design.v1` is now a design-owned constant in `src/apps/borg/BorgAppManifest.js` (its generator was removed 2026-07-16).
+`borg-app-surface-design.v1` is a design-owned constant in `src/apps/borg/BorgAppManifest.js`.
 
 The surface design binds the displayed central cube, optional outer computed cube overlay, EOM-run current-state frames, path-history availability, simulation-envelope rail, initial-condition summary, layer strip, bottom timeline, diagnostics rail, deployment budget placeholders, and 4K UHD render manifest. It keeps `simulation-window`, `architrino-position`, `path-history`, and `diagnostics` visible by default, keeps `velocity-vectors` off by default, and disables `wake-streams`, `face-boundary-status`, and `outbound-face-background` until their required native-backed rows exist. The app-facing visual convention renders architrinos as small fixed-screen points, with `electrino` rows pure blue and `positrino` rows pure red. The path-history visual rule is `displayTransform = adjacent-native-row-line-segments` and `smoothingPolicy = none`, so the page cannot imply curved interaction dynamics beyond the EOM rows it renders.
 
