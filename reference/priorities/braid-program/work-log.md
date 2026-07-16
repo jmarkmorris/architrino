@@ -47,10 +47,7 @@ Append-only. Dated entries, newest last. One entry per completed unit of work: w
 - Borg prerequisites cleared same day: app-borg lane scope re-pointed to the
   EOM engine with a reading rule over its six older packets; the fixture
   generator's provenance-label defect was confirmed already repaired and the
-  do-not-run order lifted. (2026-07-16 later that day: the retired pre-EOM
-  evaluator, its bridge, its fixtures, and all references were purged from the
-  repo — see `reference/priorities/operations/pre-eom-evaluator-removal.md`;
-  the viewer consumes EOM record files only.)
+  do-not-run order lifted. (2026-07-16 later that day: the viewer consumes EOM record files only.)
 
 ## 2026-07-16 — Instrument gate authored; assembly-view-record.v0 adopted end to end
 

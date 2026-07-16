@@ -1,10 +1,7 @@
 # EOM Solver
 
 This directory is the C++20 host implementation for EOM, the endorsed solver
-and sole forward production target. The former zombie-solver (`src/solver`)
-was deleted on 2026-07-16 after consumer-by-consumer migration; its history
-lives in git, and its audit and quarantine records remain under
-`reference/priorities/app-solver/`.
+and sole forward production target. EOM is the only engine in the repo.
 
 The executable layer currently contains:
 

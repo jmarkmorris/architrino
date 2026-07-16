@@ -7,7 +7,7 @@ Use this prompt to run the decision hub: a main thread whose job is not to build
 ## Read the real record first
 
 - Do not adjudicate from a pasted summary alone. Read the actual session transcript, or the memo or spec it wrote, before accepting a verdict. A session's own closeout is a claim to be checked, not a conclusion.
-- Confirm the discipline was kept: the zombie-solver and other owned engines untouched; runner and fixture only where required; regression to the prior baseline exact; validation run; write set scoped; generator drift reported, not run.
+- Confirm the discipline was kept: owned engines untouched; runner and fixture only where required; regression to the prior baseline exact; validation run; write set scoped; generator drift reported, not run.
 
 ## Adjudicate
 

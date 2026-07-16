@@ -110,7 +110,7 @@ export class T3BulkStepEngine {
       },
       bulkStepSummary,
       periodicWrapEvidence,
-      executionPath: response?.executionPath ?? "central_solver_bridge",
+      executionPath: response?.executionPath ?? "bulk_step_client",
     };
     this.interactionPipeline.afterStep(this.createContext(state, result));
     return result;

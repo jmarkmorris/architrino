@@ -78,6 +78,7 @@ export const BORG_DATASET_MANIFEST_V1 = deepFreeze({
     "velocityPolicy": "seeded-random-small-3d",
     "initialLinePolicy": "seeded-random-interior-cube",
     "velocitySeed": "borg-sixteen-random-small-3d-velocity-seed.v1",
+    "minimumPairSeparation": 0.125,
     "randomVelocityMaxComponentMagnitude": 0.042,
     "randomVelocityMinSpeed": 0.0144,
     "velocityBoundScaleFromV1": 1.2,

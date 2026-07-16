@@ -59,6 +59,7 @@ export async function bootBorgApp({
   const initialEomSeed = await createBorgAcceptedInertialSeedHistory(endpointRows, {
     historyStartTime: eomStartTime - historyDepth,
     historyEndTime: eomStartTime,
+    minimumPairSeparation: manifest.initialConditions.minimumPairSeparation,
   });
   return mountApp({
     manifest: runtimeManifest,

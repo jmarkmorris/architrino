@@ -1883,6 +1883,7 @@ export function mountBorgApp(options = {}) {
           historyStartTime: eomConfig.historyStartTime,
           historyEndTime: eomConfig.startTime,
           sampleInterval: eomConfig.sampleInterval,
+          minimumPairSeparation: manifest.initialConditions.minimumPairSeparation,
         });
         state.distributionFrameRows = seed.rows;
         state.eomSeedEndpointRows = seed.endpointRows;

@@ -12,9 +12,9 @@ The audit is priority-design material. It does not promote app output to proof e
 | --- | --- |
 | [requirements-and-design](requirements-and-design.md) | Borg app requirements, first-screen layout, layer defaults, logarithmic UI, diagnostic status vocabulary. |
 | [face-boundary-replay](face-boundary-replay.md) | Outbound/inbound face-boundary summary and replay fixture requirements. |
-| Pre-EOM evaluator bridge (removed 2026-07-16 — see [pre-eom-evaluator-removal](../operations/pre-eom-evaluator-removal.md)) | Production solver boundary at audit time; the EOM solver now holds this boundary. |
+| Engine bridge of the audit era (removed 2026-07-16) | Production solver boundary at audit time; the EOM solver now holds this boundary. |
 | Existing simulation runtime surfaces | Current state, trajectory frames, bounded trails, and visualization-frame evidence. |
-| First fixture + screen-spec generators (removed 2026-07-16 — see [pre-eom-evaluator-removal](../operations/pre-eom-evaluator-removal.md)) | Bound bridge output into `borg-dataset-manifest.v1` and `borg-app-surface-design.v1` at audit time; the surviving design objects live in `src/apps/borg/BorgAppManifest.js`. |
+| First fixture + screen-spec generators (removed 2026-07-16) | Bound bridge output into `borg-dataset-manifest.v1` and `borg-app-surface-design.v1` at audit time; the surviving design objects live in `src/apps/borg/BorgAppManifest.js`. |
 
 ## Capability Classification
 
@@ -37,7 +37,7 @@ The audit is priority-design material. It does not promote app output to proof e
 | Visualization resolution | `display-only` | The EOM solver owns simulation values, not canvas pixel density. | Produced screenshots, captures, review output, and quality-mode views must be 4K UHD, 3840 by 2160; lower adaptive internal render scale is only an interaction fallback. |
 | Layer toggles | `display-only` | Existing visualization flags can inform, but not define, the app layer controller. | New app-surface layer controller should keep solver data immutable. |
 | Logarithmic UI | `display-only` | Velocity display transforms are app projections. | Use floating exponent labels on active velocity rays; exact solver values remain in diagnostics. |
-| Dataset manifest and first-screen consumer | `developer-test` screen-spec and static page consumer complete | The design-owned manifest and screen-spec objects live in `src/apps/borg/BorgAppManifest.js` (their generators were removed 2026-07-16 — see [pre-eom-evaluator-removal](../operations/pre-eom-evaluator-removal.md)); [borg.html](../../../borg.html) renders the static developer-test surface from the EOM run path. | The next implementation artifact should add native wake-history rows, boundary residual rows, and required acceleration-contribution diagnostics while keeping missing replay authority fail-closed. |
+| Dataset manifest and first-screen consumer | `developer-test` screen-spec and static page consumer complete | The design-owned manifest and screen-spec objects live in `src/apps/borg/BorgAppManifest.js` (their generators were removed 2026-07-16); [borg.html](../../../borg.html) renders the static developer-test surface from the EOM run path. | The next implementation artifact should add native wake-history rows, boundary residual rows, and required acceleration-contribution diagnostics while keeping missing replay authority fail-closed. |
 
 ## Smallest Elegant First Screen
 
@@ -118,11 +118,11 @@ Minimum timeline:
 
 ## First Native-Backed Fixture Artifact
 
-Removed 2026-07-16 — see [pre-eom-evaluator-removal](../operations/pre-eom-evaluator-removal.md). The generator script and every run value it recorded were deleted with the pre-EOM evaluator. The design-owned policy it validated (envelope split, seeded initial-condition contract, canonical `fieldSpeed = 1`, and the explicit fail-closed gap-row vocabulary for wake history, face-boundary rows, face influence, six-face boundary noise, velocity sampling, and `R_boundary->central`) survives in `src/apps/borg/BorgAppManifest.js`.
+Removed 2026-07-16. The generator script and every run value it recorded were removed 2026-07-16. The design-owned policy it validated (envelope split, seeded initial-condition contract, canonical `fieldSpeed = 1`, and the explicit fail-closed gap-row vocabulary for wake history, face-boundary rows, face influence, six-face boundary noise, velocity sampling, and `R_boundary->central`) survives in `src/apps/borg/BorgAppManifest.js`.
 
 ## First App Surface Design Artifact
 
-`borg-app-surface-design.v1` is now the design-owned constant `BORG_APP_SURFACE_DESIGN_V1` in `src/apps/borg/BorgAppManifest.js` (its generator was removed 2026-07-16 — see [pre-eom-evaluator-removal](../operations/pre-eom-evaluator-removal.md)). `validateBorgManifest` pins these screen-spec facts:
+`borg-app-surface-design.v1` is now the design-owned constant `BORG_APP_SURFACE_DESIGN_V1` in `src/apps/borg/BorgAppManifest.js` (its generator was removed 2026-07-16). `validateBorgManifest` pins these screen-spec facts:
 
 1. `schema = borg-app-surface-design.v1`;
 2. the surface's source manifest id matches the app manifest;

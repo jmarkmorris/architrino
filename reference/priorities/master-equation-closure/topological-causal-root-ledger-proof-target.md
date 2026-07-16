@@ -521,7 +521,7 @@ open downstream proof burden.
 ## Native T3 Run Envelope Handoff 2026-06-29
 
 The neutral T3 simulator now emits a `t3-run-summary.v1` record from
-`src/solver/t3/T3UniverseSimulator.mjs` when `run()` returns. The record is a
+`src/t3/T3UniverseSimulator.mjs` when `run()` returns. The record is a
 run envelope, not a causal-root proof. In solver mode it
 aggregates the native bulk T3 step summaries returned through
 `solverClient.stepT3UniverseF64` and records:
@@ -563,7 +563,7 @@ objects exist, this remains priority-only executable evidence.
 ## T3 Oriented Boundary Prototype 2026-06-29
 
 The smallest executable prototype now lives in
-`src/solver/t3/T3OrientedBoundaryOperator.mjs` and is attached to each
+`src/t3/T3OrientedBoundaryOperator.mjs` and is attached to each
 `t3-run-summary.v1` record as `orientedBoundaryPrototype`. Its schema is
 `t3-oriented-boundary-prototype.v1`, with `promotionStatus:
 priority-only executable evidence`, `masterEomDependency: false`,

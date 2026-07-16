@@ -31,7 +31,7 @@ Aggressive promotion never means overclaiming. Preserve every claim-level discip
 
 ## Discipline
 
-- Do not edit the zombie-solver `src/solver/app/AbsoluteHistoryRootRuntime.mjs` or other owned engines in a promotion pass.
+- Do not edit owned engines in a promotion pass.
 - KaTeX `$...$` with balanced delimiters; follow the existing notation of the chapter.
 - Run `node scripts/validate-content.mjs --check --strict` and `git diff --check`. Report generator drift with the exact `node scripts/build-scene-graph.mjs --write` and `node scripts/build-textbook-md-pdf.mjs --write` commands; do not run `--write` unless the operator asks or the task is in final PR flow.
 - Keep the write set scoped; treat a dirty multi-agent worktree as normal and do not revert unrelated changes.

@@ -201,8 +201,7 @@ action-increment packet emits matching root-ledger and conservation-pullback
 hashes.
 
 Shared H39 provider boundary. Removed 2026-07-16 — legacy candidate intake
-retired with the pre-EOM evaluator; see
-`reference/priorities/operations/pre-eom-evaluator-removal.md`. Re-derivation
+retired 2026-07-16. Re-derivation
 from EOM evidence is queued.
 
 Minimum non-fixture `accepted_transition_source` object:
@@ -260,8 +259,7 @@ hashes.
 
 Candidate-intake scanner, torque/wake same-row diagnostic, and rank 2 / rank 6
 branch-source join. Removed 2026-07-16 — legacy candidate intake retired with
-the pre-EOM evaluator; see
-`reference/priorities/operations/pre-eom-evaluator-removal.md`. Re-derivation
+2026-07-16. Re-derivation
 from EOM evidence is queued.
 
 The remaining promotion blockers are executable, not editorial: no current artifact has shown same-row active-root identity under refinement, a positive Jacobian floor through the approach-to-$c_f$ scan, bounded particle-plus-wake energy on the retained branch rows, delayed-Noether status above `diagnostic-only`, stable one-cluster $\Delta I_{\mathrm{ME}}$ behavior, and a failing negative control with content hashes.

@@ -8,7 +8,7 @@ Use `brainstorming.md` for provisional ideas, insights, conceptual maps, and dra
 
 ### 2026-07-02 Moving-Circular Native Row Production
 
-Resumed the paused Photon #1 solver-row work after the priority-directory split and kept the live tracker concise. Current branch state already carries the fourth-pass implementation: Photon remains the app-level constrained source-history provider, while the zombie-solver C ABI owns moving-circular source-root rows, source velocity rows, source phase-at-hit rows, observer-field contribution rows, and observer-field summary rows when WebAssembly is loaded.
+Resumed the paused Photon #1 solver-row work after the priority-directory split and kept the live tracker concise. Current branch state already carries the fourth-pass implementation: Photon remains the app-level constrained source-history provider, while the native C ABI then owned moving-circular source-root rows, source velocity rows, source phase-at-hit rows, observer-field contribution rows, and observer-field summary rows when WebAssembly is loaded.
 
 Verification recorded for the completed row-production pass: `node scripts/build-solver-smoke.mjs native`, `node --test tests/photon-runtime.test.js`, `node scripts/check-solver-wasm-bridge.mjs`, `node scripts/check-solver-app-bridge.mjs`, `node scripts/check-solver-contract-fixtures.mjs`, and `git diff --check`.
 

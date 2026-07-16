@@ -8,7 +8,7 @@ The app is a design target until native-backed runs and retained same-record evi
 
 ## Non-Negotiable Boundaries
 
-1. The native EOM solver is the production solver for architrino motion, causal roots, delayed hits, path histories, wake history, simulation-window stepping, and solver-owned geometry. (The pre-EOM evaluator that previously held this role was removed 2026-07-16 — see [pre-eom-evaluator-removal](../operations/pre-eom-evaluator-removal.md).)
+1. The native EOM solver is the production solver for architrino motion, causal roots, delayed hits, path histories, wake history, simulation-window stepping, and solver-owned geometry. 
 2. The app must not create a new production solver, parallel solver stack, app-local solver, or alternate default engine.
 3. JavaScript-only paths may exist only as explicitly named `reference`, `fallback`, `test`, fixture, or comparison code.
 4. Architrino primitives do not have physical mass. If the app exposes a numerical integration scalar, it must label it as `integrationWeight` / `integrationWeights`, not physical mass.

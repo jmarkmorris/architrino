@@ -6,8 +6,8 @@
 - Status: `design-complete`
 - Claim level: `developer-test-screen-spec`
 - Schema id: `borg-app-surface-design.v1`
-- Source fixture: removed 2026-07-16 — see [pre-eom-evaluator-removal](../operations/pre-eom-evaluator-removal.md)
-- Surface artifact: design-owned constant in `src/apps/borg/BorgAppManifest.js` (its generator was removed 2026-07-16 — see [pre-eom-evaluator-removal](../operations/pre-eom-evaluator-removal.md))
+- Source fixture: removed 2026-07-16
+- Surface artifact: design-owned constant in `src/apps/borg/BorgAppManifest.js` (its generator was removed 2026-07-16)
 - Source manifest: [borg-dataset-manifest.v1](borg-dataset-manifest.v1.md)
 - Requirements source: [requirements-and-design](requirements-and-design.md)
 - Native bridge source: [native-bridge-audit-and-first-screen](native-bridge-audit-and-first-screen.md)
@@ -37,7 +37,7 @@ The surface object (the design-owned constant `BORG_APP_SURFACE_DESIGN_V1` in `s
 
 ## First Developer-Test Values
 
-The current `borg-eom-first-screen` surface contract binds these checked values (all design-owned policy; run-derived values were removed 2026-07-16 — see [pre-eom-evaluator-removal](../operations/pre-eom-evaluator-removal.md)):
+The current `borg-eom-first-screen` surface contract binds these checked values (all design-owned policy; run-derived values were removed 2026-07-16):
 
 | Field | Value |
 | --- | --- |
@@ -109,7 +109,7 @@ The current screen spec surfaces these first-failure codes from the source manif
 
 ## Validation Command
 
-Removed 2026-07-16 — see [pre-eom-evaluator-removal](../operations/pre-eom-evaluator-removal.md). The generator, the stored fixture module, and the trajectory asset are deleted. The surviving design-owned surface object lives in `src/apps/borg/BorgAppManifest.js` and is validated by `validateBorgManifest`, pinned by `tests/borg-eom-runtime-contract.test.js`.
+Removed 2026-07-16. The generator, the stored fixture module, and the trajectory asset are deleted. The surviving design-owned surface object lives in `src/apps/borg/BorgAppManifest.js` and is validated by `validateBorgManifest`, pinned by `tests/borg-eom-runtime-contract.test.js`.
 
 ## First Static Page Artifact
 

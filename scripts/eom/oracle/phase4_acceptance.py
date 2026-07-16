@@ -1417,7 +1417,7 @@ PHASE4_REQUIRED_CONTROLS = (
 )
 
 _FORBIDDEN_DEPENDENCIES = {
-    "retired_pre_eom_evaluator",
+    "non_eom_engine",
     "production_eom",
     "prescribed_future_path",
 }

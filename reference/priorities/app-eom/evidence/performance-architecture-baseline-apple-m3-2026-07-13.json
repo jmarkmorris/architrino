@@ -615,7 +615,6 @@
     ]
   },
   "survey_disposition": {
-    "existing_central_solver": "unchanged",
     "local_baseline": "complete",
     "next_evidence": [
       "general moving-history certified block-bound prototype",

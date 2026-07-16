@@ -101,12 +101,18 @@ export function createBorgSeededInitialConditionRows({ manifest, seedIndex = 0, 
     accepted.electrinoCount,
     accepted.positrinoCount,
   );
+  const positions = createSeparatedRandomCentralPositions(
+    stateFlags.length,
+    bounds,
+    rng,
+    nonNegativeNumber(manifest?.initialConditions?.minimumPairSeparation, 0),
+  );
 
   return Object.freeze(stateFlags.map((flags, index) => Object.freeze({
     pathKey: FIRST_PATH_KEY + index,
     frameIndex: 0,
     time: 0,
-    position: createRandomCentralPosition(bounds, rng),
+    position: positions[index],
     velocity: createRandomVelocity(
       rng,
       accepted.randomVelocityMaxComponentMagnitude,
@@ -167,7 +173,13 @@ export function calculateBorgInertialHistoryDepth(
 
 export async function createBorgAcceptedInertialSeedHistory(
   endpointRows,
-  { historyStartTime, historyEndTime, sampleInterval = 0.01, digest = sha256Hex } = {},
+  {
+    historyStartTime,
+    historyEndTime,
+    sampleInterval = 0.01,
+    minimumPairSeparation = 0,
+    digest = sha256Hex,
+  } = {},
 ) {
   const startTime = Number(historyStartTime);
   const endTime = Number(historyEndTime);
@@ -182,6 +194,14 @@ export async function createBorgAcceptedInertialSeedHistory(
   const segmentCount = Math.round(duration / interval);
   if (!(interval > 0) || Math.abs(segmentCount * interval - duration) > 1e-9) {
     throw new RangeError("Borg accepted EOM seed interval must contain whole sample intervals.");
+  }
+  const geometryCertificate = certifyBorgMinimumSeparation(endpointRows, {
+    minimumPairSeparation,
+  });
+  if (!geometryCertificate.accepted) {
+    throw new RangeError(
+      `Borg initial geometry minimum separation ${geometryCertificate.measuredMinimumSeparation} is below ${geometryCertificate.requiredMinimumSeparation}.`,
+    );
   }
   const rows = Object.freeze(endpointRows.flatMap((row) => {
     const position = cloneVector(row.position);
@@ -221,6 +241,7 @@ export async function createBorgAcceptedInertialSeedHistory(
     historyEndTime: endTime,
     sampleInterval: interval,
     pathCount: endpointRows.length,
+    geometryCertificate,
     paths: endpointRows
       .map((row) => ({
         pathKey: Number(row.pathKey),
@@ -252,6 +273,42 @@ export async function createBorgAcceptedInertialSeedHistory(
       velocity: Object.freeze(cloneVector(row.velocity)),
     }))),
     certificate,
+  });
+}
+
+export function certifyBorgMinimumSeparation(
+  endpointRows,
+  { minimumPairSeparation = 0 } = {},
+) {
+  const required = nonNegativeNumber(minimumPairSeparation, 0);
+  let measured = Number.POSITIVE_INFINITY;
+  let closestPair = null;
+  for (let left = 0; left < endpointRows.length; left += 1) {
+    for (let right = left + 1; right < endpointRows.length; right += 1) {
+      const separation = vectorDistance(
+        endpointRows[left].position,
+        endpointRows[right].position,
+      );
+      if (separation < measured) {
+        measured = separation;
+        closestPair = Object.freeze([
+          endpointRows[left].pathKey,
+          endpointRows[right].pathKey,
+        ]);
+      }
+    }
+  }
+  if (!Number.isFinite(measured)) {
+    measured = Number.POSITIVE_INFINITY;
+  }
+  return Object.freeze({
+    schema: "borg-minimum-separation-certificate.v1",
+    claimLevel: "measured-endpoint-geometry",
+    instrument: "all-unordered-pair-euclidean-distance-at-T0",
+    requiredMinimumSeparation: required,
+    measuredMinimumSeparation: measured,
+    closestPair,
+    accepted: measured >= required,
   });
 }
 
@@ -326,6 +383,27 @@ function createRandomCentralPosition(bounds, rng) {
     y: randomAxisValue(bounds.y, rng),
     z: randomAxisValue(bounds.z, rng),
   };
+}
+
+function createSeparatedRandomCentralPositions(count, bounds, rng, minimumSeparation) {
+  const positions = [];
+  for (let index = 0; index < count; index += 1) {
+    let accepted = null;
+    for (let attempt = 0; attempt < 4096; attempt += 1) {
+      const candidate = createRandomCentralPosition(bounds, rng);
+      if (positions.every((position) => vectorDistance(position, candidate) >= minimumSeparation)) {
+        accepted = Object.freeze(candidate);
+        break;
+      }
+    }
+    if (!accepted) {
+      throw new RangeError(
+        `Borg could not place ${count} architrinos with minimum separation ${minimumSeparation}.`,
+      );
+    }
+    positions.push(accepted);
+  }
+  return Object.freeze(positions);
 }
 
 function randomAxisValue(axisBounds, rng) {
