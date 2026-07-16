@@ -188,7 +188,7 @@ test("pair interaction context exposes receiver normal factor rows", () => {
   assert.equal(rows[0].receiverNormalFactor, 2);
 });
 
-test("central solver engine advances particles through bulk T3 solver client", async () => {
+test("bulk-step client engine advances particles through bulk T3 solver client", async () => {
   const calls = [];
   const solverClient = {
     async stepT3UniverseF64(request) {
@@ -231,7 +231,7 @@ test("central solver engine advances particles through bulk T3 solver client", a
         particles: [{ id: "solver-runner", position: [9.8, 1, 1], velocity: [0.5, 0, 0] }],
       },
       interactions: { interactionRadius: 1 },
-      solver: { engine: "solver", timestep: 1, centralSolverConcurrency: 1 },
+      solver: { engine: "solver", timestep: 1, bulkStepConcurrency: 1 },
     },
     solverClient,
   });
@@ -239,7 +239,7 @@ test("central solver engine advances particles through bulk T3 solver client", a
   const result = await simulator.step();
 
   assert.equal(result.engine, "solver");
-  assert.equal(result.mode, "central-solver-bulk-t3");
+  assert.equal(result.mode, "bulk-step-t3");
   assert.equal(result.executionPath, "native_c_abi");
   assert.equal(calls.length, 1);
   assert.equal(calls[0].schema, "solver-t3-step-request.v1");
@@ -253,7 +253,7 @@ test("central solver engine advances particles through bulk T3 solver client", a
   assert.equal(simulator.state.imageOffsets[0], 1);
 });
 
-test("central solver carries unresolved-root segment sidecar as fail-closed shape evidence", async () => {
+test("bulk-step client carries unresolved-root segment sidecar as fail-closed shape evidence", async () => {
   const directTopology = createT3Topology({ sideLength: 4 });
   const directRequest = createT3BulkStepRequest({
     state: createInitialT3State({
@@ -409,11 +409,11 @@ test("central solver carries unresolved-root segment sidecar as fail-closed shap
             causticRouteStatus: "missing",
             proofObjectProvenanceStatus: "candidate_sidecar_shape_evidence",
             proofObjectProvenance: {
-              nativeProducer: "src/solver/src/T3BulkStep.cpp::step_t3_universe",
+              nativeProducer: "removed-native/T3BulkStep.cpp::step_t3_universe",
               nativeRow: "T3RetainedCausalRootReplayRowF64",
               sourceNativeRow: "T3UnresolvedRootSegmentRowF64",
               bridgeReader:
-                "src/solver/app/SolverAppBridge.mjs::readT3RetainedCausalRootReplayRowF64",
+                "removed-native/bridge::readT3RetainedCausalRootReplayRowF64",
               provenanceStatus: "candidate_sidecar_shape_evidence",
             },
             rowStatus: "candidate_same_record_binding",
@@ -457,7 +457,7 @@ test("central solver carries unresolved-root segment sidecar as fail-closed shap
         ],
       },
       interactions: { interactionRadius: 1, spatialIndexCellSize: 1 },
-      solver: { engine: "solver", timestep: 0.25, tolerance: 1e-7, centralSolverConcurrency: 1 },
+      solver: { engine: "solver", timestep: 0.25, tolerance: 1e-7, bulkStepConcurrency: 1 },
     },
     solverClient,
   });
@@ -563,9 +563,9 @@ test("central solver carries unresolved-root segment sidecar as fail-closed shap
       rowPresent: true,
       nativeRow: "T3RetainedCausalRootReplayRowF64",
       nativeStruct:
-        "src/solver/include/architrino/solver/T3BulkStep.hpp::T3RetainedCausalRootReplayRowF64",
+        "removed-native/T3BulkStep.hpp::T3RetainedCausalRootReplayRowF64",
       bridgeReader:
-        "src/solver/app/SolverAppBridge.mjs::readT3RetainedCausalRootReplayRowF64",
+        "removed-native/bridge::readT3RetainedCausalRootReplayRowF64",
       rowSchema: "t3-retained-causal-root-replay-native-row.v1",
       rowStatus: "candidate_same_record_binding",
       retainedSourceBindingStatus: "candidate_same_record_binding",
@@ -585,11 +585,11 @@ test("central solver carries unresolved-root segment sidecar as fail-closed shap
       },
       proofObjectProvenanceStatus: "candidate_sidecar_shape_evidence",
       proofObjectProvenance: {
-        nativeProducer: "src/solver/src/T3BulkStep.cpp::step_t3_universe",
+        nativeProducer: "removed-native/T3BulkStep.cpp::step_t3_universe",
         nativeRow: "T3RetainedCausalRootReplayRowF64",
         sourceNativeRow: "T3UnresolvedRootSegmentRowF64",
         bridgeReader:
-          "src/solver/app/SolverAppBridge.mjs::readT3RetainedCausalRootReplayRowF64",
+          "removed-native/bridge::readT3RetainedCausalRootReplayRowF64",
         provenanceStatus: "candidate_sidecar_shape_evidence",
       },
       sameRecordReplayId: 1001,
@@ -643,9 +643,9 @@ test("central solver carries unresolved-root segment sidecar as fail-closed shap
   assert.equal(replaySource.summary.provesBranchAdmissibility, false);
 
   // The native T3BulkStep.hpp layout cross-check was removed with the
-  // zombie-solver (deleted 2026-07-16). The src/solver descriptor strings in
-  // this file and the engine are historical provenance for recorded rows, not
-  // live wiring.
+  // pre-EOM native producer (removed 2026-07-16). The removed-native
+  // descriptor strings in this file and the engine are historical provenance
+  // for recorded rows, not live wiring.
 });
 
 test("solver run summary uses native bulk T3 route without per-particle fallback", async () => {
@@ -703,7 +703,7 @@ test("solver run summary uses native bulk T3 route without per-particle fallback
         particles: [{ id: "solver-runner", position: [0.75, 0.2, 0.2], velocity: [0.5, 0, 0] }],
       },
       interactions: { interactionRadius: 0.5, spatialIndexCellSize: 0.5 },
-      solver: { engine: "solver", timestep: 1, centralSolverConcurrency: 1 },
+      solver: { engine: "solver", timestep: 1, bulkStepConcurrency: 1 },
     },
     solverClient,
   });
@@ -1168,9 +1168,9 @@ test("solver run summary uses native bulk T3 route without per-particle fallback
     schema: "t3-native-bridge-field-source-boundary.v1",
     sourceObjectSchema: "solver-t3-step-response.v1",
     nativeRow: "T3ParticleStepRowF64",
-    nativeStruct: "src/solver/include/architrino/solver/T3BulkStep.hpp::T3ParticleStepRowF64",
-    nativeProducer: "src/solver/src/T3BulkStep.cpp::step_t3_universe",
-    bridgeReader: "src/solver/app/SolverAppBridge.mjs::readT3ParticleStepRowF64",
+    nativeStruct: "removed-native/T3BulkStep.hpp::T3ParticleStepRowF64",
+    nativeProducer: "removed-native/T3BulkStep.cpp::step_t3_universe",
+    bridgeReader: "removed-native/bridge::readT3ParticleStepRowF64",
     availableNativeBridgeFields: [
       "pathKey",
       "position",
@@ -1222,14 +1222,14 @@ test("oriented boundary exposes unresolved-root sidecar replay producer contract
     sourceObjectRowSchema: "t3-unresolved-root-segment-row.v1",
     sourceObjectRowStatus: "candidate_shape_evidence",
     nativeRow: "T3UnresolvedRootSegmentRowF64",
-    bridgeReader: "src/solver/app/SolverAppBridge.mjs::readT3UnresolvedRootSegmentRowF64",
+    bridgeReader: "removed-native/bridge::readT3UnresolvedRootSegmentRowF64",
     companionNativeReplayRow: {
       rowPresent: true,
       nativeRow: "T3RetainedCausalRootReplayRowF64",
       nativeStruct:
-        "src/solver/include/architrino/solver/T3BulkStep.hpp::T3RetainedCausalRootReplayRowF64",
+        "removed-native/T3BulkStep.hpp::T3RetainedCausalRootReplayRowF64",
       bridgeReader:
-        "src/solver/app/SolverAppBridge.mjs::readT3RetainedCausalRootReplayRowF64",
+        "removed-native/bridge::readT3RetainedCausalRootReplayRowF64",
       rowSchema: "t3-retained-causal-root-replay-native-row.v1",
       rowStatus: "candidate_same_record_binding",
       retainedSourceBindingStatus: "candidate_same_record_binding",
@@ -1249,11 +1249,11 @@ test("oriented boundary exposes unresolved-root sidecar replay producer contract
       },
       proofObjectProvenanceStatus: "candidate_sidecar_shape_evidence",
       proofObjectProvenance: {
-        nativeProducer: "src/solver/src/T3BulkStep.cpp::step_t3_universe",
+        nativeProducer: "removed-native/T3BulkStep.cpp::step_t3_universe",
         nativeRow: "T3RetainedCausalRootReplayRowF64",
         sourceNativeRow: "T3UnresolvedRootSegmentRowF64",
         bridgeReader:
-          "src/solver/app/SolverAppBridge.mjs::readT3RetainedCausalRootReplayRowF64",
+          "removed-native/bridge::readT3RetainedCausalRootReplayRowF64",
         provenanceStatus: "candidate_sidecar_shape_evidence",
       },
       sameRecordReplayId: 1001,

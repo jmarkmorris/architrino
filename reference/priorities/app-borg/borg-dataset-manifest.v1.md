@@ -19,14 +19,14 @@ The manifest is priority-design material. It does not authorize a new solver, do
 
 ## EOM Solver Contract
 
-Every manifest must identify the native zombie-solver contract used to produce the dataset. If a value is not native-backed, the manifest must say whether it is a bridge/schema gap, a missing native capability, an app-facing projection, or display-only visualization.
+Every manifest must identify the native EOM solver contract used to produce the dataset. If a value is not native-backed, the manifest must say whether it is a bridge/schema gap, a missing native capability, an app-facing projection, or display-only visualization.
 
 | Field | Required content |
 | --- | --- |
 | `schema` | Literal `borg-dataset-manifest.v1`. |
 | `manifestId` | Stable manifest id. |
 | `runId` | Stable run or replay dataset id. |
-| `modelContractId` | Native zombie-solver model contract id. |
+| `modelContractId` | Native EOM solver model contract id. |
 | `nativeSolverStatus` | `native-backed-now`, `manifest-gap`, `bridge-schema-gap`, `native-capability-gap`, `display-only`, or `fail-closed`. |
 | `nativeSolverVersion` | EOM solver build, ABI, or commit identifier when available. |
 | `bridgeSchemaVersion` | Bridge schema version consumed by the app. |
@@ -298,7 +298,7 @@ The least-authoritative applicable status wins in this order: `fail-closed-value
 | `retained-local-evidence` | Same-record source and receiver path history exists, required causal roots are solved inside the error budget, and the row does not depend on statistical boundary replay. | Supports local simulation-window diagnostics only. |
 | `reduced-model-boundary` | Value comes from declared face statistics, replay source ids, sampling seed, replay policy, and error budget. | Supports boundary approximation only. |
 | `boundary-generated-value` | Inbound architrino or reconstructed wake history is generated from face-boundary statistics. | New identity or reconstructed history; not retained same-record evidence. |
-| `authoritative-solver-output` | Native zombie-solver value inside declared error budget with manifest and model contract metadata. | Solver value for the declared run, not a proof-level claim by itself. |
+| `authoritative-solver-output` | Native EOM solver value inside declared error budget with manifest and model contract metadata. | Solver value for the declared run, not a proof-level claim by itself. |
 | `app-facing-projection` | Display transform, interpolation, binning, downsampling, or logarithmic view derived from a source value. | App-facing view only; source value must remain traceable. |
 | `display-only-visualization` | Visual aid that does not feed solver state, receiver acceleration, branch evidence, or validation rows. | Inspection only. |
 | `missing-error-budget` | Required error-budget metadata is absent. | Blocks authoritative use. |
@@ -318,7 +318,7 @@ Deployment budget is separate from EOM solver throughput. The manifest must fail
 | `gpuMemoryBudget` | GPU/WebGL/WebGPU memory for 4K UHD rendering, point buffers, line buffers, trails, wake visualization, and render targets. |
 | `browserStorageBudget` | IndexedDB, Cache Storage, local replay datasets, captures, and downloaded manifests retained by the browser. |
 | `actionsArtifactBudget` | CI/review artifacts, generated captures, benchmark output, and logs retained by GitHub Actions. |
-| `nativeSolverThroughput` | Steps, rows, candidates, and retained records per second under the native zombie-solver. |
+| `nativeSolverThroughput` | Steps, rows, candidates, and retained records per second under the native EOM solver. |
 | `deploymentBudgetStatus` | `passed`, `warning`, `missing-budget`, `exceeded-budget`, or `fail-closed`. |
 
 `borg-release-budget-manifest.v1` is the first concrete release-facing runtime budget cover sheet for the Borg app. It binds the measured preset calibration sweep to browser/runtime ceilings for chunk wall time, frame append rate, browser heap growth, WASM worker memory, run frame rows, target duration, and chunk duration. It is separate from EOM solver throughput and from the remaining unmeasured deployment budgets: bundle size, static assets, Pages bandwidth, GPU memory, browser storage, Actions artifacts, and EOM solver throughput remain separately reported fields.
@@ -431,7 +431,7 @@ The manifest must report the first applicable failure before displaying affected
 
 | Code | Meaning |
 | --- | --- |
-| `new_production_solver_required` | The implementation path requires a production solver outside the native zombie-solver. |
+| `new_production_solver_required` | The implementation path requires a production solver outside the native EOM solver. |
 | `native_solver_status_missing` | The manifest lacks model contract or EOM solver status. |
 | `manifest_schema_missing_required_field` | A required manifest field is missing. |
 | `physical_mass_input_present` | Architrino physical mass appears as an input or explanatory field. |
@@ -479,30 +479,26 @@ The manifest must report the first applicable failure before displaying affected
 
 ## Claim-Level Status
 
-This manifest contract is `priority-design` and now has a first longer native-backed `developer-test` fixture. It does not upgrade app output beyond `candidate-run` or `developer-test` without native-backed rows, error budgets, residuals, row-conservation counts, and measured velocity-scale sampling results for any replay-affected diagnostic.
+This manifest contract is `priority-design`. It does not upgrade app output beyond `candidate-run` or `developer-test` without native-backed rows, error budgets, residuals, row-conservation counts, and measured velocity-scale sampling results for any replay-affected diagnostic.
 
 ## First Native-Backed Fixture Artifact
 
-`borg-first-native-backed-fixture` is implemented by `scripts/borg/build-first-native-backed-fixture.mjs` (retired with the zombie-solver, 2026-07-16). It emits a live `borg-dataset-manifest.v1` object from the existing native central bridge rather than from a static JSON hand sketch.
-
-The fixture submits a fixed-parameter native central-bridge `masterEquation` run. The manifest records that probe as `nativeMasterEquationProbe.statusCode = ok`, `firstFailureCode = none`, `requiredNativeExport = architrino_solver_integrate_master_equation_motion_f64`, and `fallbackDecision = native-master-equation-selected`. The selected source uses `fixtureProfileId = borg-first-native-default-motion-fixture.v1`, `runKind = masterEquation`, `solverMode = native-fixed-parameter-master-equation`, `motionLaw = architrino-master-equation-v1`, `fixedPhysicalParameterSetId = borg-fixed-physical-parameters.v1`, `fixedPhysicalParameterAuthority = manifest-declared-fixed-parameter-contract`, `visualTuningStatus = not-visual-tuned`, `visualBehaviorAuthority = native-output-only`, outer `sideLength = 100`, displayed `centralVolumeSideLength = 80`, `faceBufferMargin = 10`, `duration = 300`, `sampleInterval = 0.2`, canonical normalized `fieldSpeed = 1`, `historyDepth = 10`, and computed `wakeHorizon = 10`. The initial placement uses `initialLinePolicy = seeded-random-interior-cube` with `initialConditionSeed = borg-sixteen-random-interior-position-seed.v1`; the initial polarity contract uses `polaritySignConvention = positrino-positive-electrino-negative`, `positrinoCharge = 1`, and `electrinoCharge = -1`; the initial velocity uses `velocityPolicy = seeded-random-small-3d`, `velocitySeed = borg-sixteen-random-small-3d-velocity-seed.v1`, `randomVelocityMaxComponentMagnitude = 0.042`, `randomVelocityMinSpeed = 0.0144`, and `velocityBoundScaleFromV1 = 1.2`. The manifest records `executionPath = native_c_abi`, `playbackFrameSource = native-keyframes`, `interpolationAuthority = display-only-between-native-keyframes`, `nativeKeyframeCount = 1501`, `frameCount = 24016` native current-state rows, `pathRowCount = 24000` native path-history rows, path-history stream ids, the outer/central cube split, derived `architrinoCount = 16`, `bufferArchitrinoCount = 8`, path bounds that stay inside the outer computed cube, deployment budget placeholders, and a 4K UHD render manifest placeholder. It does not expose a tuned pair action scale. Its current-state and adjacent path-history rows are quarantined as compatibility output with `nativeMasterEquationStatus = native-fixed-parameter-master-equation`, `canonicalEomEvidence = false`, and `eomEvidenceStatus = non_eom_compatibility_output`.
-
-The fixture intentionally fails closed for replay authority. It emits explicit gap rows for retained wake rows, face-boundary summaries, `borg-face-influence-model.v1`, `borg-six-face-boundary-noise-policy.v1`, velocity sampling, and `R_boundary->central`. Its valid claim is `developer-test`, not proof evidence and not measured benign-noise authority.
+Removed 2026-07-16 — see [pre-eom-evaluator-removal](../operations/pre-eom-evaluator-removal.md). The fixture generator, its stored manifest/trajectory data, and every value it produced were deleted with the pre-EOM evaluator. The design-owned pieces it exercised survive in `src/apps/borg/BorgAppManifest.js`: the simulation envelope, the population sizing rule, the seeded initial-condition policy (`initialLinePolicy = seeded-random-interior-cube`, `polaritySignConvention = positrino-positive-electrino-negative`, `velocityPolicy = seeded-random-small-3d`), canonical normalized `fieldSpeed = 1`, and the fail-closed gap-row vocabulary for retained wake rows, face-boundary summaries, `borg-face-influence-model.v1`, `borg-six-face-boundary-noise-policy.v1`, velocity sampling, and `R_boundary->central`.
 
 ## First App Surface Design Artifact
 
-`borg-app-surface-design.v1` is implemented by `scripts/borg/build-app-surface-design.mjs` (retired with the zombie-solver, 2026-07-16). It consumes the live dataset manifest and emits the first Borg screen-spec object from the native-backed fixture.
+`borg-app-surface-design.v1` is now a design-owned constant in `src/apps/borg/BorgAppManifest.js` (its generator was removed 2026-07-16 — see [pre-eom-evaluator-removal](../operations/pre-eom-evaluator-removal.md)).
 
-The surface design binds the displayed central cube, optional outer computed cube overlay, native current-state frames, native path-history availability, simulation-envelope rail, initial-condition summary, layer strip, bottom timeline, diagnostics rail, deployment budget placeholders, and 4K UHD render manifest. It keeps `simulation-window`, `architrino-position`, `path-history`, and `diagnostics` visible by default, keeps `velocity-vectors` off by default, and disables `wake-streams`, `face-boundary-status`, and `outbound-face-background` until their required native-backed rows exist. The app-facing visual convention renders architrinos as small fixed-screen points, with `electrino` rows pure blue and `positrino` rows pure red. The path-history visual rule is `displayTransform = adjacent-native-row-line-segments` and `smoothingPolicy = none`, so the first page cannot imply curved interaction dynamics before native master-equation rows exist.
+The surface design binds the displayed central cube, optional outer computed cube overlay, EOM-run current-state frames, path-history availability, simulation-envelope rail, initial-condition summary, layer strip, bottom timeline, diagnostics rail, deployment budget placeholders, and 4K UHD render manifest. It keeps `simulation-window`, `architrino-position`, `path-history`, and `diagnostics` visible by default, keeps `velocity-vectors` off by default, and disables `wake-streams`, `face-boundary-status`, and `outbound-face-background` until their required native-backed rows exist. The app-facing visual convention renders architrinos as small fixed-screen points, with `electrino` rows pure blue and `positrino` rows pure red. The path-history visual rule is `displayTransform = adjacent-native-row-line-segments` and `smoothingPolicy = none`, so the page cannot imply curved interaction dynamics beyond the EOM rows it renders.
 
 The surface design intentionally preserves fail-closed authority for wake history, face-boundary replay, benign-noise status, and central-volume acceleration. Its valid claim is `developer-test-screen-spec`, not production UI readiness and not proof evidence.
 
 ## First Static Page Artifact
 
-[borg.html](../../../borg.html) is the first static page consumer for the dataset manifest and surface design. It uses [BorgFixtureData.js](../../../src/apps/borg/BorgFixtureData.js) as a browser-safe snapshot of the native-backed fixture summary and [BorgAppRuntime.js](../../../src/apps/borg/BorgAppRuntime.js) to render the central cube, current-state positions, frame scrubber, layer controls, render/deployment placeholders, and fail-closed diagnostics.
+[borg.html](../../../borg.html) is the first static page consumer for the dataset manifest and surface design. It uses [BorgAppManifest.js](../../../src/apps/borg/BorgAppManifest.js) as the browser-safe design-owned policy object and [BorgAppRuntime.js](../../../src/apps/borg/BorgAppRuntime.js) to render the central cube, EOM-run current-state positions, frame scrubber, layer controls, render/deployment placeholders, and fail-closed diagnostics.
 
-The page is static and developer-test scoped. It does not replace `scripts/borg/build-first-native-backed-fixture.mjs` (retired with the zombie-solver, 2026-07-16) as the native-backed fixture source, does not run a browser solver, and does not grant authority to replay-affected values.
+The page is static and developer-test scoped. All displayed motion comes from the EOM run path; the page does not run a browser solver and does not grant authority to replay-affected values.
 
 ## Next Exact Build Burden
 
-The next build burden is `build-native-wake-history-and-boundary-residual-fixture`: extend the central EOM solver contract and bridge so the manifest can add retained wake/interaction rows, row-conservation counts, boundary-to-central residual rows, and required acceleration-contribution diagnostics on top of the current fixed-parameter master-equation frame/path evidence. Browser surface-budget measurement remains required later, but it must not precede the EOM solver evidence needed for Borg physics interpretation.
+The next build burden is `build-native-wake-history-and-boundary-residual-fixture`: extend the EOM contracts and native implementation so the manifest can add retained wake/interaction rows, row-conservation counts, boundary-to-central residual rows, and required acceleration-contribution diagnostics on top of the EOM run path. Browser surface-budget measurement remains required later, but it must not precede the EOM solver evidence needed for Borg physics interpretation.

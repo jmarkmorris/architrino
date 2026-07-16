@@ -4,7 +4,7 @@ import { createT3SpatialIndex } from "./T3SpatialIndex.mjs";
 import { computeParticleStatistics } from "./T3Statistics.mjs";
 import { createT3State } from "./T3State.mjs";
 import { createT3Topology } from "./T3Topology.mjs";
-import { createT3CentralSolverEngine } from "./T3CentralSolverEngine.mjs";
+import { createT3BulkStepEngine } from "./T3BulkStepEngine.mjs";
 import { createT3OrientedBoundaryPrototype } from "./T3OrientedBoundaryOperator.mjs";
 import { referenceActionSolver } from "./T3ActionSolver.mjs";
 import {
@@ -197,9 +197,9 @@ export function normalizeT3UniverseConfig(input = {}) {
       tolerance: positiveFiniteNumber(solverInput.tolerance ?? input.tolerance ?? 1e-6, "tolerance"),
       deterministic: solverInput.deterministic ?? true,
       checkpointRestart: true,
-      centralSolverConcurrency: positiveInteger(
-        solverInput.centralSolverConcurrency ?? input.centralSolverConcurrency ?? 32,
-        "centralSolverConcurrency"
+      bulkStepConcurrency: positiveInteger(
+        solverInput.bulkStepConcurrency ?? input.bulkStepConcurrency ?? 32,
+        "bulkStepConcurrency"
       ),
     },
     output: {
@@ -222,7 +222,7 @@ export function normalizeT3UniverseConfig(input = {}) {
 
 function createIntegrationSolver(input) {
   if (input.config.solver.engine === "solver") {
-    return createT3CentralSolverEngine(input);
+    return createT3BulkStepEngine(input);
   }
   if (input.config.solver.engine === "reference") {
     return referenceActionSolver.create(input);
@@ -287,7 +287,7 @@ function createT3RunSummary(input) {
   const executionPaths = stepResults.map((result) => result.executionPath ?? "reference");
   const interactionPresets = stepResults.map((result) => result.interactionLaw ?? "reference");
   const nativeBulkStepCount = stepResults.filter(
-    (result) => result.mode === "central-solver-bulk-t3" && result.executionPath === "native_c_abi"
+    (result) => result.mode === "bulk-step-t3" && result.executionPath === "native_c_abi"
   ).length;
   const referenceStepCount = stepResults.filter(
     (result) => result.engine === "reference" || result.executionPath == null

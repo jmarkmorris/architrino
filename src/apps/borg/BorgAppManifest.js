@@ -44,16 +44,13 @@ export const BORG_DATASET_MANIFEST_V1 = deepFreeze({
     "faceBufferMargin": 0.1,
     "scaleFactor": 1,
     "timeStepPolicy": "fixed",
-    "sampleInterval": 0.2,
+    "sampleInterval": 0.01,
     "historyDepth": 10,
     "fieldSpeed": 1,
     "wakeHorizon": 10
   },
   "modelControls": {
-    "coupling": 0.1
-  },
-  "modelControls": {
-    "coupling": 0.1
+    "coupling": 0.005
   },
   "population": {
     "centralArchitrinoCount": 8,

@@ -8,7 +8,7 @@ The app is a design target until native-backed runs and retained same-record evi
 
 ## Non-Negotiable Boundaries
 
-1. The native zombie-solver is the production solver for architrino motion, causal roots, delayed hits, path histories, wake history, simulation-window stepping, and solver-owned geometry.
+1. The native EOM solver is the production solver for architrino motion, causal roots, delayed hits, path histories, wake history, simulation-window stepping, and solver-owned geometry. (The pre-EOM evaluator that previously held this role was removed 2026-07-16 — see [pre-eom-evaluator-removal](../operations/pre-eom-evaluator-removal.md).)
 2. The app must not create a new production solver, parallel solver stack, app-local solver, or alternate default engine.
 3. JavaScript-only paths may exist only as explicitly named `reference`, `fallback`, `test`, fixture, or comparison code.
 4. Architrino primitives do not have physical mass. If the app exposes a numerical integration scalar, it must label it as `integrationWeight` / `integrationWeights`, not physical mass.
@@ -98,7 +98,7 @@ The app should expose scale as a declared simulation envelope, not as cosmetic z
 | `faceBufferMargin` | Minimum distance $b_{\mathrm{face}}(\mathcal C)$ from the central volume to the outer computed faces | Must satisfy the strict central-volume buffer target or trigger boundary-to-central residual validation. |
 | `centralBoundaryTolerance` | Declared tolerance $\tau_{\mathcal C}$ for face-boundary influence on the central volume | Required before central-volume values can be presented as inside the declared boundary-influence budget. |
 
-The Borg simulation envelope uses the canonical normalized field speed $c_f=1$. Any different numeric value requires an explicit unit transform in the run manifest; an unexplained fixture-local override is invalid. With the current `historyDepth = 10`, the corresponding `wakeHorizon` is therefore `10` solver-length units.
+The Borg simulation envelope uses the canonical normalized field speed $c_f=1$. Any different numeric value requires an explicit unit transform in the run manifest; an unexplained fixture-local override is invalid. The live app computes `historyDepth` from the full simulation-envelope diameter and active source-speed bound, then declares `wakeHorizon = c_f h`; for the default one-unit seeded geometry, both are `1.83`.
 
 `historyDepth` and `wakeHorizon` must not be collapsed into one UI field. `historyDepth` is the retained time window, while `wakeHorizon = c_f h` is the corresponding length scale. If `wakeHorizon` is small compared with `faceBufferMargin`, the central volume can be interpreted as local with respect to retained wakes, subject to the velocity-bound term above. If `wakeHorizon` is comparable to or larger than `faceBufferMargin`, face-boundary diagnostics, outbound face statistics, inbound replay policy, and wake-background status become relevant for central-volume interpretation.
 
@@ -116,7 +116,7 @@ The app should support several initial-condition families while preserving expli
 | `explicit` | Per-architrino position, velocity, identity, and optional path segment input | Best first path for reproducible fixtures. |
 | `imported` | Manifest id, schema version, source hash, units, and scale normalization | Must preserve source provenance and schema version. |
 
-The current browser implementation exposes the first `seeded-random` launch-state controls directly in the Initial Condition panel: exact `electrinoCount`, exact `positrinoCount`, `randomVelocityMaxComponentMagnitude`, and `randomVelocityMinSpeed`. `Apply & run` validates a combined population from 1 through 512, rejects an unreachable minimum-speed request, creates a deterministic staged state inside the central cube, and starts a new live zombie-solver compatibility run. A rejected edit leaves the active run unchanged. These runtime-generated rows are app-generated initial conditions for compatibility testing; they are not canonical equation-of-motion evidence. Per-architrino position and velocity-vector editing remains outside this implemented control set.
+The current browser implementation exposes the first `seeded-random` launch-state controls directly in the Initial Condition panel: exact `electrinoCount`, exact `positrinoCount`, `randomVelocityMaxComponentMagnitude`, and `randomVelocityMinSpeed`. `Apply & run` validates a combined population from 1 through 512, rejects an unreachable minimum-speed request, creates a deterministic staged state inside the central cube, and starts a new EOM run from a certified artificial retained history. A rejected edit leaves the active run unchanged. These runtime-generated rows are app-generated initial conditions; they are accepted input, not canonical equation-of-motion evidence. Per-architrino position and velocity-vector editing remains outside this implemented control set.
 
 The first launch preset should be `random`: architrinos scattered randomly in the cube, with a 50/50 electrino/positrino mix and random velocities. The preset is an editable starting point, not evidence for a physical ensemble. With velocity rays off by default, the first design target may start at 256 architrinos in the displayed central cube. The app should still expose 32, 128, 256, and 512 as first central-count presets; 128 is the conservative fallback until native throughput is measured, 256 is the preferred first-screen central-count target, and 512 is a solver-throughput stress preset for the displayed central cube. Larger central counts are gated by measured native-solver and rendered-viewport performance.
 
@@ -423,7 +423,7 @@ The first deployment budget should report:
 | `gpuMemoryBudget` | Expected GPU/WebGL/WebGPU memory for 4K UHD rendering, point buffers, line buffers, trails, wake visualization, and render targets. | Solver numeric authority. |
 | `browserStorageBudget` | IndexedDB, Cache Storage, local replay datasets, captures, and downloaded manifests retained by the browser. | Git repository size or Pages published-site size. |
 | `actionsArtifactBudget` | CI/review artifacts, generated captures, benchmark output, and logs retained by GitHub Actions. | Pages bandwidth. |
-| `nativeSolverThroughput` | Steps, rows, candidates, and retained records per second under the native zombie-solver. | Static hosting or browser rendering pressure. |
+| `nativeSolverThroughput` | Steps, rows, candidates, and retained records per second under the native EOM solver. | Static hosting or browser rendering pressure. |
 
 The deployment budget must fail closed when the app cannot distinguish static transfer, browser runtime memory, GPU memory, browser storage, GitHub Actions artifacts, GitHub Pages bandwidth, and EOM solver throughput. A beautiful 4K UHD render does not imply the deployment footprint is acceptable, and a small bundle does not imply solver or browser memory is safe.
 
@@ -569,7 +569,7 @@ The app should use a small diagnostic status vocabulary for every displayed solv
 
 | Status | Meaning | UI obligation |
 | --- | --- | --- |
-| `authoritative-solver-output` | The value comes from the native zombie-solver, is inside the declared error budget, and has the required run manifest, model contract, precision path, and value-authority metadata. | May be styled as authoritative; exact value, units, precision path, and error-budget state must be available. |
+| `authoritative-solver-output` | The value comes from the native EOM solver, is inside the declared error budget, and has the required run manifest, model contract, precision path, and value-authority metadata. | May be styled as authoritative; exact value, units, precision path, and error-budget state must be available. |
 | `app-facing-projection` | The value is derived from authoritative solver output for rendering, downsampling, interpolation, binning, or logarithmic display. | Must identify the source authoritative value and the projection rule; must not be styled as raw solver output. |
 | `display-only-visualization` | The value or geometry is drawn only to help the operator inspect the run, such as preview wake shells, visual trails, camera overlays, or non-authoritative layer effects. | Must be visually distinct from solver authority; must not feed receiver acceleration, branch evidence, or validation rows. |
 | `missing-error-budget` | The value lacks the error-budget metadata required for its claimed use. | Must be shown as unavailable, warning, or fail-closed; must not be styled as authoritative. |

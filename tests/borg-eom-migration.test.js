@@ -64,9 +64,9 @@ test("Borg mounts EOM idle by default and reserves automatic compute for explici
   assert.equal(defaultMounts[0].manifest.simulationEnvelope.sideLength, 1);
   assert.equal(defaultMounts[0].manifest.simulationEnvelope.centralVolumeSideLength, 0.8);
   assert.equal(defaultMounts[0].manifest.simulationEnvelope.faceBufferMargin, 0.1);
-  assert.equal(defaultMounts[0].manifest.modelControls.coupling, 0.1);
-  assert.equal(defaultMounts[0].eomShadowRunner.coupling, "0.1");
-  assert.equal(defaultMounts[0].eomShadowRunner.minimumStep, "0.001");
+  assert.equal(defaultMounts[0].manifest.modelControls.coupling, 0.005);
+  assert.equal(defaultMounts[0].eomShadowRunner.coupling, "0.005");
+  assert.equal(defaultMounts[0].eomShadowRunner.minimumStep, "0.0001");
   assert.deepEqual(defaultMounts[0].manifest.simulationEnvelope.centralVolume.bounds, {
     x: [0.1, 0.9],
     y: [0.1, 0.9],
@@ -82,7 +82,9 @@ test("Borg mounts EOM idle by default and reserves automatic compute for explici
   assert.equal(defaultMounts[0].eomShadowRunner.startTime, 0);
   assert.equal(
     defaultMounts[0].eomShadowRunner.historyDepth,
-    calculateBorgInertialHistoryDepth(defaultMounts[0].initialEomSeed.endpointRows),
+    calculateBorgInertialHistoryDepth(defaultMounts[0].initialEomSeed.endpointRows, {
+      maximumSeparation: Math.sqrt(3),
+    }),
   );
   assert.equal(
     defaultMounts[0].manifest.simulationEnvelope.historyDepth,
@@ -212,6 +214,10 @@ test("Borg computes artificial-history depth from causal separation and source s
     },
   ];
   assert.equal(calculateBorgInertialHistoryDepth(rows), 6.01);
+  assert.equal(
+    calculateBorgInertialHistoryDepth(rows, { maximumSeparation: 4 }),
+    8.01,
+  );
   assert.throws(
     () => calculateBorgInertialHistoryDepth([{
       pathKey: 3,
@@ -355,6 +361,7 @@ test("Borg EOM shadow runner supports a deterministic retained-history populatio
     startTime: 10,
     targetDuration: 10.2,
     chunkDuration: 0.2,
+    sampleInterval: 0.2,
   });
   const chunk = await runner.computeNextChunk();
   assert.equal(requests[0].histories.length, 4);

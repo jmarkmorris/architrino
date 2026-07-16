@@ -1870,6 +1870,7 @@ export function mountBorgApp(options = {}) {
       const historyDepth = calculateBorgInertialHistoryDepth(endpointRows, {
         fieldSpeed: options.eomShadowRunner.fieldSpeed ?? manifest.simulationEnvelope?.fieldSpeed ?? 1,
         sampleInterval: options.eomShadowRunner.sampleInterval ?? manifest.simulationEnvelope?.sampleInterval ?? 0.01,
+        maximumSeparation: Math.sqrt(3) * manifest.simulationEnvelope.sideLength,
       });
       const eomConfig = createBorgEomShadowRunConfig(manifest, {
         ...options.eomShadowRunner,

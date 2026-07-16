@@ -5,7 +5,7 @@ export const PARTIAL_PROPAGATING_ARCS = "partial_propagating_arcs";
 export const FULL_CIRCULAR_ARCS = "full_circular_arcs";
 export const DEFAULT_PRESET_ID = "accepted_tight_bright";
 export const DEFAULT_CANVAS_ID = "architrinoPurple";
-export const CENTRAL_SOLVER_BRIDGE_TARGET = "central_solver_bridge_path_history_stream";
+export const EOM_NATIVE_STREAM_TARGET = "eom_native_path_history_stream";
 export const TEMPORARY_MOCK_ADAPTER = "temporary_mock_adapter";
 export const REPRESENTATIVE_MOCK_SOLVER_REPLAY = "representative_mock_solver_replay";
 export const DIRECT_MANIPULATION_DRAFT_PREVIEW = "direct_manipulation_draft_preview";
@@ -222,7 +222,7 @@ export function getAngleDegrees(center, point) {
 export function createTemporaryMockReplayAdapter() {
   return {
     id: TEMPORARY_MOCK_ADAPTER,
-    futureSolverTarget: CENTRAL_SOLVER_BRIDGE_TARGET,
+    futureSolverTarget: EOM_NATIVE_STREAM_TARGET,
     createReplay({ presetId = DEFAULT_PRESET_ID } = {}) {
       return createMockCausalDelayReplayDataset(presetId);
     },
@@ -273,7 +273,7 @@ export function createMockCausalDelayReplayDataset(presetId = DEFAULT_PRESET_ID)
     runId: `causal-delay-feedback:${preset.id}`,
     datasetSource: REPRESENTATIVE_MOCK_SOLVER_REPLAY,
     solverIntegrationPath: TEMPORARY_MOCK_ADAPTER,
-    futureSolverTarget: CENTRAL_SOLVER_BRIDGE_TARGET,
+    futureSolverTarget: EOM_NATIVE_STREAM_TARGET,
     wakeArcDisplayMode: preset.wakeArcDisplayMode,
     canvasColorId: preset.canvasColorId ?? DEFAULT_CANVAS_ID,
     ...(Number.isFinite(Number(preset.assemblyThreshold))

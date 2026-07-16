@@ -1,7 +1,7 @@
 import { getAnimatorSimulationDataset } from "./AnimatorSimulationPlaybackRuntime.js";
 
 // Legacy authoring-draft engine label. The simulation worker no longer runs
-// the central solver bridge; drafts that request this engine fail closed at
+// a removed pre-EOM stream source; drafts that request this engine fail closed at
 // the worker until authoring is re-pointed at recorded EOM datasets.
 export const ANIMATOR_SOLVER_BRIDGE_ENGINE_ID = "architrino-solver-app-bridge";
 

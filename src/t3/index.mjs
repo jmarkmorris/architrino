@@ -30,16 +30,16 @@ export {
 } from "./T3InteractionRuntime.mjs";
 export { referenceActionSolver, T3ActionSolver } from "./T3ActionSolver.mjs";
 export {
-  applyFallbackCentralSolverFrames,
+  applyFallbackBulkStepFrames,
   applyT3BulkStepRows,
   createNativeT3InteractionSpec,
   createT3BulkStepRequest,
-  createT3CentralSolverEngine,
+  createT3BulkStepEngine,
   createT3FallbackMotionIntegrationRequest,
   integrateParticlesWithFallbackCentralMotionSolver,
   summarizeT3ImageDeltas,
-  T3CentralSolverEngine,
-} from "./T3CentralSolverEngine.mjs";
+  T3BulkStepEngine,
+} from "./T3BulkStepEngine.mjs";
 export { computeKineticEnergy, computeMomentum, computeParticleStatistics, computeSpeedSummary } from "./T3Statistics.mjs";
 export {
   createT3OrientedBoundaryPrototype,

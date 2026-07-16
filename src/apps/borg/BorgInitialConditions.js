@@ -121,7 +121,12 @@ export function createBorgSeededInitialConditionRows({ manifest, seedIndex = 0, 
 
 export function calculateBorgInertialHistoryDepth(
   endpointRows,
-  { fieldSpeed = 1, sampleInterval = 0.01, safetyMargin = sampleInterval } = {},
+  {
+    fieldSpeed = 1,
+    sampleInterval = 0.01,
+    safetyMargin = sampleInterval,
+    maximumSeparation = 0,
+  } = {},
 ) {
   const speed = Number(fieldSpeed);
   const interval = Number(sampleInterval);
@@ -133,6 +138,7 @@ export function calculateBorgInertialHistoryDepth(
     throw new RangeError("Borg inertial history coverage requires positive field speed and sample interval.");
   }
   let delayUpperBound = 0;
+  let maximumSourceSpeed = 0;
   endpointRows.forEach((receiver) => {
     endpointRows.forEach((source) => {
       const sourceSpeed = vectorMagnitude(source.velocity);
@@ -141,6 +147,7 @@ export function calculateBorgInertialHistoryDepth(
           `Borg inertial initial history requires sub-field source speed for path ${source.pathKey}.`,
         );
       }
+      maximumSourceSpeed = Math.max(maximumSourceSpeed, sourceSpeed);
       const separation = vectorDistance(receiver.position, source.position);
       delayUpperBound = Math.max(
         delayUpperBound,
@@ -148,6 +155,13 @@ export function calculateBorgInertialHistoryDepth(
       );
     });
   });
+  const separationBound = Number(maximumSeparation);
+  if (Number.isFinite(separationBound) && separationBound > 0) {
+    delayUpperBound = Math.max(
+      delayUpperBound,
+      separationBound / (speed - maximumSourceSpeed),
+    );
+  }
   return Number((Math.ceil((delayUpperBound + margin) / interval) * interval).toFixed(12));
 }
 

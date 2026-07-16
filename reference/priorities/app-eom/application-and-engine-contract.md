@@ -5,7 +5,7 @@
 - Stage: `priority-design`
 - Implementation: `not-started`
 - Authority: operator-selected EOM boundary
-- Existing zombie-solver: preserved unchanged for current dependencies
+- Pre-EOM evaluator: removed 2026-07-16 — see [pre-eom-evaluator-removal](../operations/pre-eom-evaluator-removal.md)
 - Frozen normative requirements: [evolution-contract-v0.md](evolution-contract-v0.md)
 - Million-path amendment: [eom_evolution_contract/v0/amendment-1](evolution-contract-v0-amendment-1-million-path-scale.md)
 - Million-path architecture: [eom_million_path_execution/v0](million-path-certified-execution-architecture.md)

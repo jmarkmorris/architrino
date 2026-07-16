@@ -88,7 +88,7 @@
         ],
         "applications": [
           {
-            "command": "node --test tests/photon-runtime.test.js tests/causal-delay-feedback-central-bridge-adapter.test.js",
+            "command": "node --test tests/photon-runtime.test.js tests/causal-delay-feedback-eom-replay-adapter.test.js",
             "reason": "Recheck application surfaces that display delayed-hit or Master Equation state."
           }
         ]
@@ -215,8 +215,7 @@
         ],
         "applications": [
           "Causal Delay Feedback app",
-          "Animator motion source",
-          "SolverAppBridge"
+          "Animator motion source"
         ],
         "validation": [
           "content validation",
@@ -244,7 +243,7 @@
         ],
         "applications": [
           {
-            "command": "node --test tests/causal-delay-feedback-runtime.test.js tests/causal-delay-feedback-central-bridge-adapter.test.js tests/animator-motion-source-runtime.test.js",
+            "command": "node --test tests/causal-delay-feedback-runtime.test.js tests/causal-delay-feedback-eom-replay-adapter.test.js tests/animator-motion-source-runtime.test.js",
             "reason": "Recheck app surfaces that expose causal-delay behavior."
           }
         ]
@@ -792,7 +791,7 @@
       "reevaluation": {
         "simulations": [
           {
-            "command": "node --test tests/t3-universe-simulator.test.js tests/borg-eom-runtime-contract.test.js tests/ideal-braid-runtime.test.js tests/causal-delay-feedback-central-bridge-adapter.test.js",
+            "command": "node --test tests/t3-universe-simulator.test.js tests/borg-eom-runtime-contract.test.js tests/ideal-braid-runtime.test.js tests/causal-delay-feedback-eom-replay-adapter.test.js",
             "reason": "Recheck recorded-dataset simulation and replay paths."
           }
         ],
@@ -802,7 +801,7 @@
             "reason": "Recheck animator runtime wiring after display-adapter changes."
           },
           {
-            "command": "node --test tests/photon-runtime.test.js tests/ideal-braid-runtime.test.js tests/borg-eom-runtime-contract.test.js tests/causal-delay-feedback-central-bridge-adapter.test.js",
+            "command": "node --test tests/photon-runtime.test.js tests/ideal-braid-runtime.test.js tests/borg-eom-runtime-contract.test.js tests/causal-delay-feedback-eom-replay-adapter.test.js",
             "reason": "Recheck app runtimes that display recorded EOM datasets."
           }
         ]

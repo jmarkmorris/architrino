@@ -350,7 +350,7 @@ test("causal delay feedback readout summarizes selected wake link", () => {
   assert.equal(readout.children[10].textContent, "arc wakes");
 });
 
-test("causal delay feedback wake readout includes central solver diagnostics", () => {
+test("causal delay feedback wake readout includes engine diagnostics", () => {
   const { runtime, readout } = createRuntimeForReadout();
   const link = runtime.dataset.wakeLinks[0];
   Object.assign(link, {

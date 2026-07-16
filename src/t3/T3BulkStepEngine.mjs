@@ -1,18 +1,18 @@
-export const T3_CENTRAL_SOLVER_ENGINE_SCHEMA = "t3-central-solver-engine.v1";
+export const T3_BULK_STEP_ENGINE_SCHEMA = "t3-bulk-step-engine.v1";
 
-export class T3CentralSolverEngine {
+export class T3BulkStepEngine {
   constructor(input = {}) {
     if (!input.topology) {
-      throw new TypeError("T3CentralSolverEngine requires a topology");
+      throw new TypeError("T3BulkStepEngine requires a topology");
     }
     if (!input.spatialIndex) {
-      throw new TypeError("T3CentralSolverEngine requires a spatialIndex");
+      throw new TypeError("T3BulkStepEngine requires a spatialIndex");
     }
     if (!input.interactionPipeline) {
-      throw new TypeError("T3CentralSolverEngine requires an interactionPipeline");
+      throw new TypeError("T3BulkStepEngine requires an interactionPipeline");
     }
     this.id = "solver";
-    this.schema = T3_CENTRAL_SOLVER_ENGINE_SCHEMA;
+    this.schema = T3_BULK_STEP_ENGINE_SCHEMA;
     this.topology = input.topology;
     this.spatialIndex = input.spatialIndex;
     this.interactionPipeline = input.interactionPipeline;
@@ -25,7 +25,7 @@ export class T3CentralSolverEngine {
   async step(state, options = {}) {
     if (!this.solverClient) {
       throw new TypeError(
-        "T3 central solver engine requires solverClient; pass createSolverAppBridgeClient(...) or choose solver.engine=\"reference\""
+        "T3 bulk-step engine requires solverClient; inject a bulk-step client or choose solver.engine=\"reference\""
       );
     }
     if (typeof this.solverClient.stepT3UniverseF64 !== "function") {
@@ -76,7 +76,7 @@ export class T3CentralSolverEngine {
     this.solverCallCount += 1;
     const result = {
       schema: "t3-solver-step-result.v1",
-      mode: "central-solver-bulk-t3",
+      mode: "bulk-step-t3",
       engine: "solver",
       accepted: true,
       timestep: dt,
@@ -130,7 +130,7 @@ export class T3CentralSolverEngine {
 
   snapshot() {
     return {
-      schema: "t3-central-solver-engine-snapshot.v1",
+      schema: "t3-bulk-step-engine-snapshot.v1",
       id: this.id,
       solverCallCount: this.solverCallCount,
       lastAcceptedTimestep: this.lastAcceptedTimestep,
@@ -139,8 +139,8 @@ export class T3CentralSolverEngine {
   }
 }
 
-export function createT3CentralSolverEngine(input = {}) {
-  return new T3CentralSolverEngine(input);
+export function createT3BulkStepEngine(input = {}) {
+  return new T3BulkStepEngine(input);
 }
 
 export function createT3BulkStepRequest(input = {}) {
@@ -556,14 +556,14 @@ function createUnresolvedRootSegmentReplayProducerContract(input) {
     sourceObjectRowSchema: row?.schema ?? "t3-unresolved-root-segment-row.v1",
     sourceObjectRowStatus: row?.rowStatus ?? "candidate_shape_evidence",
     nativeRow: "T3UnresolvedRootSegmentRowF64",
-    bridgeReader: "src/solver/app/SolverAppBridge.mjs::readT3UnresolvedRootSegmentRowF64",
+    bridgeReader: "removed-native/bridge::readT3UnresolvedRootSegmentRowF64",
     companionNativeReplayRow: {
       rowPresent: nativeReplayRow != null,
       nativeRow: "T3RetainedCausalRootReplayRowF64",
       nativeStruct:
-        "src/solver/include/architrino/solver/T3BulkStep.hpp::T3RetainedCausalRootReplayRowF64",
+        "removed-native/T3BulkStep.hpp::T3RetainedCausalRootReplayRowF64",
       bridgeReader:
-        "src/solver/app/SolverAppBridge.mjs::readT3RetainedCausalRootReplayRowF64",
+        "removed-native/bridge::readT3RetainedCausalRootReplayRowF64",
       rowSchema: nativeReplayRow?.schema ?? null,
       rowStatus: nativeReplayRow?.rowStatus ?? null,
       retainedSourceBindingStatus: nativeReplayRow?.retainedSourceBindingStatus ?? null,
@@ -1025,14 +1025,14 @@ export async function integrateParticlesWithFallbackCentralMotionSolver(input) {
   return results;
 }
 
-export function applyFallbackCentralSolverFrames(state, framesByParticle, topology) {
+export function applyFallbackBulkStepFrames(state, framesByParticle, topology) {
   if (framesByParticle.length !== state.particleCount) {
-    throw new TypeError("central solver frame count must match particle count");
+    throw new TypeError("bulk-step client frame count must match particle count");
   }
   for (let particleIndex = 0; particleIndex < state.particleCount; particleIndex += 1) {
     const frame = framesByParticle[particleIndex];
     if (!frame) {
-      throw new TypeError(`missing central solver frame for particle ${particleIndex}`);
+      throw new TypeError(`missing bulk-step client frame for particle ${particleIndex}`);
     }
     const offset = particleIndex * 3;
     state.positions[offset] = frame.position.x;
@@ -1048,14 +1048,14 @@ export function applyFallbackCentralSolverFrames(state, framesByParticle, topolo
 function selectFinalFrame(response, request) {
   const frames = response?.frames ?? response?.response?.frames ?? [];
   if (!Array.isArray(frames) || frames.length === 0) {
-    throw new TypeError("central solver response must include frames");
+    throw new TypeError("bulk-step client response must include frames");
   }
   const finalFrame = frames[frames.length - 1];
   if (!finalFrame.position || !finalFrame.velocity) {
-    throw new TypeError("central solver final frame must include position and velocity");
+    throw new TypeError("bulk-step client final frame must include position and velocity");
   }
   if (Math.abs(finalFrame.time - request.endTime) > Math.max(1e-12, request.step * 1e-9)) {
-    throw new TypeError("central solver final frame time does not match requested endTime");
+    throw new TypeError("bulk-step client final frame time does not match requested endTime");
   }
   return finalFrame;
 }

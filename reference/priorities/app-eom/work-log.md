@@ -7,7 +7,7 @@ This file holds dated decisions, implementation status, validation results, fail
 - Created `reference/priorities/app-eom/` for the operator-selected `EOM` Equation of Motion application.
 - Recorded the defining contract as retained past paths plus an absolute-time interval in, Master-EOM-evolved paths out.
 - Prohibited prescribed future paths, path constraints, guidance, snapping, analytic target orbits, and display curves from serving as EOM evolution.
-- Recorded the decision to leave the existing zombie-solver and all current dependencies in place during the standalone EOM build.
+- Recorded the decision to leave the then-current pre-EOM engine and its dependencies in place during the standalone EOM build. (That engine and all its outputs were removed 2026-07-16 — see ../operations/pre-eom-evaluator-removal.md.)
 - Ranked the initial work around the evolution contract, canonical Master EOM binding, independent oracle, coupled retained-history integrator, timestep/event control, deterministic multithreading, precision/convergence, streaming/checkpointing, application surface, knowledge-tree quarantine, Borg shadow migration, and later consumer-by-consumer migration.
 - Recorded the initial quarantine disposition for Borg, Causal Delay Feedback, Animator, Photon, Ideal Braid, legacy braid workstream research instruments, T3, and unclassified consumers.
 - No solver source, app source, generated artifact, fixture, or current priority packet was changed.
@@ -120,7 +120,7 @@ This file holds dated decisions, implementation status, validation results, fail
 - Designed deterministic receiver ownership, immutable content-addressed history chunks, causal residency and prefetch, heterogeneous regular and difficult queues, fixed reduction identities, atomic accepted-window publication, streamed output manifests, and reproducible distributed restart.
 - Added an honest dense-workload boundary: if certified exclusion and controlled aggregation cannot reduce a noncompressible workload inside the declared hardware envelope, preflight returns `resource_envelope_exceeded` before publishing candidate evolution.
 - Added the $N=10^4$, $10^5$, and $10^6$ benchmark ladder, million-path certified sparse evolution, exhaustive nested parity controls, heterogeneous parity, restart/output reconstruction, and dense fail-closed validation.
-- Preserved the existing zombie-solver, current dependencies, independent oracle, Master Equation binding, and numeric certification contract unchanged.
+- Preserved the then-current pre-EOM engine, dependencies, independent oracle, Master Equation binding, and numeric certification contract unchanged.
 
 ## 2026-07-13 — Certified Acceleration Reconstruction Layer Completed
 
@@ -197,7 +197,7 @@ This file holds dated decisions, implementation status, validation results, fail
 ## 2026-07-13 — Independent Oracle Phase 4 Completed
 
 - Added `phase4_acceptance.py` as a reference-only layer; it imports neither
-  the current zombie-solver nor a future production EOM implementation.
+  any pre-EOM evaluator nor a future production EOM implementation.
 - Added certified reception-time root tubes. Persistent identities are issued
   only when every matched branch has a uniform nonzero source normal, strict
   residual signs on the tube walls, disjoint tubes, and a certified root-free
@@ -215,7 +215,7 @@ This file holds dated decisions, implementation status, validation results, fail
   levels and nonincreasing endpoint position and velocity deltas.
 - Added the versioned `eom_independent_oracle_phase4_acceptance/v0` matrix. It
   rejects missing or failed controls, empty evidence, non-reference authority,
-  and dependencies on the current zombie-solver, a production EOM backend, or
+  and dependencies on any pre-EOM evaluator, a production EOM backend, or
   prescribed future paths.
 - Added twelve Phase 4 controls covering persistent identities, root-event
   routing, tangent-event impulse, event resource exhaustion, restart identity,
@@ -233,7 +233,7 @@ This file holds dated decisions, implementation status, validation results, fail
 - Added the versioned reference-only
   `eom_performance_architecture_baseline/v0` driver, a C++20 native kernel
   probe, a Metal bulk-bound probe, and five unit controls. None imports or
-  changes the existing zombie-solver, and none implements production EOM.
+  changes the then-current pre-EOM engine, and none implements production EOM.
 - Recorded an Apple M3 evidence packet with an independent 90-digit
   decimal-interval oracle cost, NumPy binary64 kernels, C++ scalar and
   auto-vector candidates, deterministic fixed-tree reduction, one-to-eight CPU
@@ -279,7 +279,7 @@ This file holds dated decisions, implementation status, validation results, fail
   Recorded MPFR/GMP directed interval arithmetic as the first implemented
   difficult-row precision route while preserving the separately authored
   Python decimal-interval oracle.
-- Added a modular `src/eom` C++ library without changing `src/solver`, its ABI,
+- Added a modular `src/eom` C++ library without changing the then-current pre-EOM engine, its ABI,
   or any current consumer. The new layer is executable architecture evidence,
   not yet coupled EOM evolution or migration authority.
 - Implemented continuous piecewise-cubic retained histories with position and
@@ -478,7 +478,7 @@ This file holds dated decisions, implementation status, validation results, fail
   checkpointed continuation reproduces the uninterrupted retained-history
   fingerprint exactly.
 - Corrected Borg's false EOM provenance without removing its compatibility
-  runtime. Its fixture and dynamic zombie-solver runner now state
+  runtime. Its fixture and dynamic pre-EOM runner (both since removed) then stated
   `canonicalEomEvidence=false` and
   `eomEvidenceStatus=non_eom_compatibility_output`.
 - Added a separate Borg EOM shadow adapter. It imports a continuous cubic past
@@ -501,7 +501,7 @@ This file holds dated decisions, implementation status, validation results, fail
   compatibility solver, the tolerance is coarse, no convergence ladder
   passed, and Borg promotion remained false.
 - Recorded the complete packet in
-  `evidence/eom-native-traversal-checkpoint-borg-shadow-apple-m3-2026-07-13.json`.
+  `evidence/eom-native-traversal-checkpoint-borg-shadow-apple-m3-2026-07-13.json`. (Evidence withdrawn 2026-07-16: its retained-history baseline was imported from the removed pre-EOM evaluator — see reference/priorities/operations/pre-eom-evaluator-removal.md; the refinement ladder now seeds app-authored certified inertial history, re-measurement queued.)
   The traversal is not yet connected to coupled acceleration snapshots, and
   persistent workers, production million-path traversal, GPU, multi-GPU,
   distributed history, split time, multirate evolution, and canonical Borg
@@ -547,7 +547,7 @@ This file holds dated decisions, implementation status, validation results, fail
   failures. Four threads reduced the `0.0025` attempt from about `54.0`
   seconds to `21.7` seconds without changing the certified result.
 - Recorded the packet in
-  `evidence/eom-borg-ui-persistent-traversal-refinement-apple-m3-2026-07-13.json`.
+  `evidence/eom-borg-ui-persistent-traversal-refinement-apple-m3-2026-07-13.json`. (Evidence withdrawn 2026-07-16: its retained-history baseline was imported from the removed pre-EOM evaluator — see reference/priorities/operations/pre-eom-evaluator-removal.md; the refinement ladder now seeds app-authored certified inertial history, re-measurement queued.)
   Borg promotion remains blocked: the full-population precision route fails
   closed, imported history is non-EOM compatibility output, and the
   million-path, GPU, and distributed-history gates remain open.
@@ -620,7 +620,7 @@ This file holds dated decisions, implementation status, validation results, fail
 
 - Recorded the operator decision that EOM is the endorsed solver and sole
   forward production target.
-- Limited the existing zombie-solver to temporary compatibility for current
+- Limited the then-current pre-EOM engine to temporary compatibility for current
   dependencies. New consumers, physical capabilities, evidence claims, and
   forward solver work may not adopt or extend it.
 - Strengthened the EOM priority queue with explicit legacy-solver containment,
@@ -1071,7 +1071,7 @@ This file holds dated decisions, implementation status, validation results, fail
 
 - The operator directed Borg to use EOM by default. Ordinary `/borg.html`
   now loads the retained-history asset and mounts the fail-closed EOM shadow
-  runner; the old zombie-solver path is available only through
+  runner; the old pre-EOM path was reachable only through
   `?eom=compatibility` for diagnostics.
 - The local development server enables the same-origin EOM solver endpoint by
   default and constructs its process client lazily on the first request. An

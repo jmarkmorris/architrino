@@ -257,7 +257,7 @@ convergence, ledger reconstruction, and evidence negative controls also pass.
 
 ## Implementation Boundaries
 
-- The current zombie-solver and all current dependencies remain unchanged.
+- No pre-EOM engine is involved at any scale (removed 2026-07-16 — see [pre-eom-evaluator-removal](../operations/pre-eom-evaluator-removal.md)).
 - The independent Python oracle remains correctness-first and is not ported into
   the production batch engine.
 - The production language remains an evidence-gated decision.

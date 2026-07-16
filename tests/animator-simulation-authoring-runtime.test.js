@@ -140,7 +140,7 @@ test("simulation authoring worker payload normalizes invalid choices fail-closed
   assert.deepEqual(payload.config.solverBridge, DEFAULT_SOLVER_BRIDGE_CONFIG);
 });
 
-test("simulation authoring worker payload can configure the central solver bridge", () => {
+test("simulation authoring worker payload can configure the simulation stream source", () => {
   const motionRequest = {
     pathKey: 7,
     segment: {
@@ -178,7 +178,7 @@ test("simulation authoring worker payload can configure the central solver bridg
   });
 });
 
-test("simulation authoring worker payload keeps the central solver bridge enabled", () => {
+test("simulation authoring worker payload keeps the simulation stream source enabled", () => {
   const payload = buildAnimatorSimulationAuthoringWorkerPayload(
     {
       solverBridge: { enabled: false },
