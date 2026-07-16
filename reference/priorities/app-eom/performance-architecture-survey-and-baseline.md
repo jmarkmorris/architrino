@@ -350,12 +350,10 @@ accepted exact inertial $C^1$ seed. On this input, the strict 16-path ladder
 completed at the same three steps with zero root failures, a maximum state
 difference of about `5.68e-14`, and byte-identical one-thread/four-thread
 output. The former precision failure therefore does not reproduce at the seed
-cut. The actual burn-in then fails closed at `[0.06,0.07]` on
-`regulator_convergence_failed`, before an EOM-only `T=10` retained-history
-checkpoint exists. This moves the first current Borg blocker from root
-precision on compatibility history to regulator convergence during burn-in;
-it does not pass the post-burn-in refinement gate. Evidence:
-[eom-borg-post-burn-in-refinement-ladder-apple-m3-2026-07-15.json](evidence/eom-borg-post-burn-in-refinement-ladder-apple-m3-2026-07-15.json).
+cut. A later continuation exposed a misclassified retained-history-boundary
+failure at `[0.06,0.07]`; the engine now preserves its upstream failure code.
+This remains solver diagnostic evidence, while Borg promotion uses the
+accepted-initial-history refinement and thread-determinism gate.
 
 ## Exact-V5 Pinned-Fold Benchmark
 

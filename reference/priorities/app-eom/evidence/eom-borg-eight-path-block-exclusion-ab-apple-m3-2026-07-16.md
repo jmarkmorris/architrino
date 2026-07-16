@@ -4,12 +4,12 @@ Date: 2026-07-16
 
 Authority: executable performance and equivalence diagnostic
 
-Verdict: **no material acceleration; keep the long burn-in paused**
+Verdict: **no material acceleration on this saved continuation checkpoint**
 
 ## Question and fixed controls
 
 The matched replay asks whether certified recursive block exclusion accelerates
-the strict eight-path Borg EOM burn-in at the saved checkpoint without changing
+the strict eight-path Borg EOM continuation at the saved checkpoint without changing
 an accepted result. Both modes used the same freshly built EOM solver executable,
 checkpoint, interval, tolerances, thread count, and MPFR ceiling. The control
 disabled certified traversal; the candidate forced recursive traversal down to
@@ -32,15 +32,9 @@ one-pair leaves. This isolates the route choice from compiler and source drift.
 - Declared material gate: both mean and median internal EOM solver speedup at
   least `1.10x`
 
-The replay command was:
-
-```text
-node scripts/eom/benchmark-borg-block-exclusion-replay.mjs \
-  .tmp/eom-borg-block-ab-build/eom_borg_shadow_cli \
-  .tmp/eom-borg-8-post-32.48.checkpoint.json \
-  .tmp/eom-borg-block-ab-final-5x.json \
-  --repetitions=5 --material-speedup=1.1
-```
+The retired benchmark harness invocation is preserved in the raw replay record;
+the migration-specific harness was removed when this continuation ceased to be
+a Borg promotion gate.
 
 The raw replay record has SHA-256
 `3d8d639961fffdbf7d23ec782b13c70e9bad4930b24e52ca57cf12c51c9e9fce`.
@@ -106,12 +100,11 @@ slower on both internal EOM solver aggregates.
 respect to the present block certificate: no ordered pair can be removed before
 exact root certification. Because the candidate preserves all of the expensive
 exact work and adds traversal work, this route is not a useful accelerator for
-the strict eight-path burn-in here.
+the strict eight-path continuation here.
 
-The saved checkpoint is unchanged, and the long burn-in remains paused while
-the operator reconsiders the startup-history requirement. This negative
-performance result changes no master-equation rule, trajectory value, accepted
-history, or promotion decision.
+The saved checkpoint is unchanged. This negative performance result changes no
+master-equation rule, trajectory value, accepted history, or Borg promotion
+decision; the current startup contract does not depend on this continuation.
 
 The decision is falsified by a matched replay from the same checkpoint that
 certifies at least one real exclusion, keeps complete disjoint root accounting,

@@ -33,12 +33,12 @@ The direct H39 sources inspected for this audit are:
 - octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-h39-shared-domain-coefficient-series-engine.md
 - [theta3minus-fold-pair-first-y-gd-h39-recurrence-refined-subcover-diagnostic.mjs](../../../scripts/neutral-braid/theta3minus-fold-pair-first-y-gd-h39-recurrence-refined-subcover-diagnostic.mjs)
 - [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-h39-shared-domain-primitive-diagnostic.mjs](../../../scripts/neutral-braid/octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-h39-shared-domain-primitive-diagnostic.mjs)
-- [h39-shared-domain-primitive-replay.mjs](../../../scripts/solver-audits/h39-shared-domain-primitive-replay.mjs)
-- [h39-terminal-graph-remainder-budget-replay.mjs](../../../scripts/solver-audits/h39-terminal-graph-remainder-budget-replay.mjs)
+- `scripts/solver-audits/h39-shared-domain-primitive-replay.mjs`
+- `scripts/solver-audits/h39-terminal-graph-remainder-budget-replay.mjs`
 - [neutral-braid-theta3minus-fold-pair-first-y-gd-shared-domain-evaluator.test.js](../../../tests/neutral-braid-theta3minus-fold-pair-first-y-gd-shared-domain-evaluator.test.js)
 - [neutral-braid-octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-h39-shared-domain-primitive-diagnostic.test.js](../../../tests/neutral-braid-octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-h39-shared-domain-primitive-diagnostic.test.js)
-- [solver-h39-shared-domain-primitive-replay.test.js](../../../tests/solver-h39-shared-domain-primitive-replay.test.js)
-- [solver-h39-terminal-graph-remainder-budget-replay.test.js](../../../tests/solver-h39-terminal-graph-remainder-budget-replay.test.js)
+- `tests/solver-h39-shared-domain-primitive-replay.test.js`
+- `tests/solver-h39-terminal-graph-remainder-budget-replay.test.js`
 - [receiver-normal-branch-strength-certificate.md](../master-equation-closure/receiver-normal-branch-strength-certificate.md)
 - [branch-provider-evidence-report.md](branch-provider-evidence-report.md)
 
@@ -92,8 +92,8 @@ Implemented first fixture: `h39_shared_domain_primitive_replay`.
 
 Executable artifacts:
 
-- [h39-shared-domain-primitive-replay.mjs](../../../scripts/solver-audits/h39-shared-domain-primitive-replay.mjs)
-- [solver-h39-shared-domain-primitive-replay.test.js](../../../tests/solver-h39-shared-domain-primitive-replay.test.js)
+- `scripts/solver-audits/h39-shared-domain-primitive-replay.mjs`
+- `tests/solver-h39-shared-domain-primitive-replay.test.js`
 
 Reasons this was the right first fixture:
 
@@ -119,8 +119,8 @@ Implemented second fixture: `h39_terminal_graph_remainder_budget_replay`.
 
 Executable artifacts:
 
-- [h39-terminal-graph-remainder-budget-replay.mjs](../../../scripts/solver-audits/h39-terminal-graph-remainder-budget-replay.mjs)
-- [solver-h39-terminal-graph-remainder-budget-replay.test.js](../../../tests/solver-h39-terminal-graph-remainder-budget-replay.test.js)
+- `scripts/solver-audits/h39-terminal-graph-remainder-budget-replay.mjs`
+- `tests/solver-h39-terminal-graph-remainder-budget-replay.test.js`
 
 Reasons this was the right second fixture:
 

@@ -1106,18 +1106,16 @@ This file holds dated decisions, implementation status, validation results, fail
   retained the 1+1 population, and produced no browser log entries. The server
   remained listening on port 5173 after the cancellation/restart sequence.
 
-## 2026-07-15 — Borg accepted seed and complete EOM burn-in horizon
+## 2026-07-15 — Borg accepted continuous initial history
 
 - Replaced Borg's default compatibility-fixture and app-authored prescribed
   initial past with one exact inertial $C^1$ polynomial per selected path. Its
   SHA-256 certificate accepts it only as EOM continuous initial datum and
   records `eomOutput=false`, `canonicalEomEvidence=false`, no future path
   prescription, and zero interpolation error for the inertial polynomial.
-- Added an explicit burn-in phase from $T=0$ through the declared ten-unit
-  memory horizon. Borg withholds all burn-in frames from the viewport. At
-  $T=10$, the runner drops every seed segment and marks the retained $[0,10]$
-  window as EOM-produced shadow history. Later requests keep the moving
-  $[T-10,T]$ EOM window; they do not keep the whole solver trajectory.
+- A superseded implementation withheld frames until the seed segments left the
+  retained window. The operator later replaced that policy with immediate EOM
+  publication conditioned on the certified initial history.
 - The first sampled-row seed attempt failed the native continuity checker with
   `retained-history position is discontinuous`. Direct measurement showed a
   1+1 request containing 2,000 seed segments occupied 541,357 bytes. Replacing
@@ -1131,27 +1129,16 @@ This file holds dated decisions, implementation status, validation results, fail
 - The complete Borg JavaScript suite passed 62/62 tests, the native Borg
   process suite passed 4/4 tests, the fixture writer passed `--check`, and the
   independent oracle reference-kernel and certified-evolution suites passed
-  6/6 and 10/10 tests. The new runner test verifies that the burn-in handoff
-  contains no seed segment and that the next request identifies its input as
-  EOM output while retaining non-canonical claim level.
-- Measured in the in-app browser, a 1+1 Forever run completed all 1,000 burn-in
-  chunks, changed its retained-history status to EOM output only, and then
-  published 81 live chunks before the operator Stop action. The viewport stayed
-  at the seed endpoint during burn-in and began the live path at $T=10$. No
-  compatibility trajectory was loaded by the default EOM bootstrap.
-- This closes Borg's seed-provenance and complete-burn-in implementation
-  burden. Borg promotion remains blocked by the independent 16-path precision
-  and convergence gate; the seed and the measured browser run are not canonical
-  dynamical evidence.
+  6/6 and 10/10 tests. Those tests established exact seed representation and
+  fail-closed retained-history transport; they do not require delayed viewport
+  publication under the current contract.
 
-## 2026-07-15 — Borg 16-path post-burn-in refinement adjudication
+## 2026-07-15 — Borg 16-path retained-history refinement diagnostic
 
-- Added `scripts/eom/run-borg-post-burn-in-refinement-ladder.mjs` to build the
-  accepted exact inertial $C^1$ seed, run the strict 16-path seed-cut control,
-  checkpoint the complete 90-unit burn-in horizon, and run the post-burn-in
-  ladder only when a seed-free EOM checkpoint exists. The harness now supports
-  restart, durable evidence output, explicit precision and quadrature resource
-  ceilings, and pair-level root and acceleration failure diagnostics.
+- A now-retired long-horizon harness built the accepted exact inertial $C^1$
+  seed and measured strict 16-path refinement, restart, precision ceilings, and
+  pair-level root and acceleration diagnostics. Its delayed-publication gate is
+  not part of the current Borg contract.
 - Measured with the final rebuilt native Borg binary, the strict seed-cut
   ladder completed at steps `0.01`, `0.005`, and `0.0025` with state and root
   tolerances `1e-8`. The worst state difference was
@@ -1159,12 +1146,12 @@ This file holds dated decisions, implementation status, validation results, fail
   were byte-identical; and every case reported zero root failures. The former
   240-off-diagonal-pair `numeric_precision_limit_exhausted` failure was not
   observed on this seed input.
-- A checkpointed coarse burn-in certified through $T=36$, then isolated one
+- A checkpointed coarse continuation certified through $T=36$, then isolated one
   off-diagonal row at a time with `numeric_precision_limit_exhausted`. Each row
   left one difficult cell after excluding all others. The internal reason was
   `interior_root_not_surrounded`; a 512-to-1024-bit replay produced the same
   pair sequence and cell counts, so arithmetic precision did not move the wall.
-- Raising the coarse burn-in root tolerance from `1e-3` to `1e-2` crossed that
+- Raising the coarse continuation root tolerance from `1e-3` to `1e-2` crossed that
   wall and certified through $T=39.5$. Path `1013` then entered a self-caustic
   route. The declared finite-width fallback ran but exhausted its quadrature
   proof budget. Raising the budget from 200,000 cells at depth 32 to 1,000,000
@@ -1174,27 +1161,24 @@ This file holds dated decisions, implementation status, validation results, fail
   under five times the cell budget identify retained-history enclosure width as
   the active floor. A tighter accepted-history construction that certifies this
   event would falsify that inference.
-- No EOM-only $T=90$ retained-history checkpoint exists for this population, so
-  the requested strict post-burn-in ladder did not run. The former 240-pair
-  failure is absent at the seed cut, a narrower precision failure does occur
-  during EOM evolution, and the exact post-burn-in verdict remains indeterminate
-  because the finite-width self-caustic fails closed first. The native process
-  tests pass 4/4 and the Borg contract tests pass 30/30. Evidence:
-  [eom-borg-post-burn-in-refinement-ladder-apple-m3-2026-07-15.json](evidence/eom-borg-post-burn-in-refinement-ladder-apple-m3-2026-07-15.json).
+- The former 240-pair failure is absent at the seed cut. A narrower precision
+  failure occurred later in this diagnostic, but it no longer controls Borg
+  startup or promotion. General solver validation owns that continuing work.
 
-## 2026-07-16 — Borg eight-path strict burn-in adjudication
+## 2026-07-16 — Borg eight-path strict retained-history adjudication
 
 - The operator changed Borg's bounded migration target from 16 paths to the
   deterministic eight-path prefix `1001`–`1008`. This preserves the selected
   seed positions, velocities, and polarities and removes paths `1009`–`1016`
   from the target; it does not alter any retained trajectory value or master-
   equation rule. The selected population's maximum inertial-seed causal delay
-  is about `79.36964`, so the adjudication retained the 90-unit history horizon.
+  is about `79.36964`; current startup computes and outward-rounds its required
+  retained-history depth from the selected state.
 - The eight-path strict seed-cut ladder passed at `h=0.01`, `h/2=0.005`, and
   `h/4=0.0025`. The maximum state differences were about `5.04e-14` and
   `6.30e-14`; the one-thread and four-thread `h/4` histories were byte
   identical; and no root failure occurred.
-- A rebuilt EOM solver then ran a fresh burn-in with root, acceleration,
+- A rebuilt EOM solver then ran a long continuation diagnostic with root, acceleration,
   position, velocity, and correction tolerances all set to `1e-8`. It accepted
   3,241 fixed `0.01` steps through $T=32.41$ in about 4,037 seconds. The next
   step failed closed only for ordered pair `1003<-1004`: 5,134 of 5,135 root
@@ -1221,9 +1205,8 @@ This file holds dated decisions, implementation status, validation results, fail
   cases rejected their first step with 19 ordinary pair-root failures plus a
   path-`1003` self-caustic route. The first missing accepted object is therefore
   the complete interior delayed-root certificate for `1003<-1004` near
-  $T=32.48`. No strict seed-free $T=90$ checkpoint exists, so the post-burn-in
-  ladder remains correctly unrun and Borg migration remains blocked. Evidence:
-  [eom-borg-eight-path-post-burn-in-refinement-ladder-apple-m3-2026-07-16.json](evidence/eom-borg-eight-path-post-burn-in-refinement-ladder-apple-m3-2026-07-16.json).
+  $T=32.48`. The later simple-root certificate closed that local diagnostic;
+  the accepted-initial-history ladder is the current Borg migration evidence.
 - The complete Borg JavaScript suite passes 63/63, including an exact native
   checkpoint-time regression, and the native Borg process suite passes 4/4.
 
@@ -1375,7 +1358,7 @@ This file holds dated decisions, implementation status, validation results, fail
 - Evidence and falsifiers:
   [eom-recursive-block-exclusion-accelerating-population-apple-m3-2026-07-16.md](evidence/eom-recursive-block-exclusion-accelerating-population-apple-m3-2026-07-16.md).
 
-## 2026-07-16 — Borg eight-path promotion rerun remains fail-closed
+## 2026-07-16 — Borg eight-path long-continuation diagnostic
 
 - **Derived:** the retired 16-path `[0.06,0.07]` failure was misclassified.
   Ordered pair `1004<-1013` reached a base finite-width event certificate with
@@ -1392,21 +1375,16 @@ This file holds dated decisions, implementation status, validation results, fail
   `0.01`, `0.005`, and `0.0025`; its maximum state delta is
   `6.291495102672684e-14`, and one-thread/four-thread `0.0025` histories are
   byte-identical.
-- **Measured:** the best accepted strict burn-in checkpoint reaches
+- **Measured:** the best accepted strict continuation checkpoint reaches
   $T=34.4940625$. A resumed adaptive continuation with root, acceleration,
   position, velocity, and correction tolerances all `1e-8`, initial step `0.5`,
   and minimum step `0.0003125` consumed `600.174` seconds and hit the process
   timeout before publishing another accepted boundary.
-- No seed-free $T=90$ checkpoint exists. The strict post-burn-in ladder was
-  therefore not run, promotion did not pass, and no Borg compatibility file was
-  deleted by this campaign. During the run, a separate concurrent worktree
-  batch removed the compatibility query branch and runner files under separate
-  operator authorization. That retirement was not caused by, and is not
-  evidence of, a promotion pass. The files were neither restored nor absorbed
-  by this campaign, to avoid overwriting another active agent's work. A
-  continuation that reaches $T=90$ inside an explicit observed resource
-  envelope, followed by the unchanged post-burn-in ladder, would falsify the
-  current blocker.
+- The operator subsequently selected certified artificial retained history as
+  part of Borg's randomized initial condition. Under that contract, the strict
+  seed-cut ladder and thread parity are the consumer promotion evidence; the
+  long continuation is not a startup gate. Compatibility retirement remained
+  separately operator-authorized.
 - Evidence:
   [eom-borg-eight-path-promotion-attempt-apple-m3-2026-07-16.md](evidence/eom-borg-eight-path-promotion-attempt-apple-m3-2026-07-16.md).
 
@@ -1419,20 +1397,19 @@ This file holds dated decisions, implementation status, validation results, fail
   had launched the retired 16-path population with only the legacy 10-unit
   fixture horizon.
 - Aligned the live bootstrap with the current bounded migration target: the
-  deterministic path prefix `1001`-`1008`, the independently adjudicated
-  90-unit retained-history horizon, and the corresponding 4+4 polarity counts.
+  deterministic path prefix `1001`-`1008`, computed causal coverage for the
+  accepted initial history, and the corresponding 4+4 polarity counts.
   The Simulation Envelope panel now reports the active EOM history depth and
   wake horizon rather than the compatibility fixture values. No EOM equation,
   tolerance, certificate, or fail-closed rule changed.
 - **Measured:** after the native rebuild check, the former failing interval and
   the next five chunks completed directly through `T=0.12`. In the in-app
-  browser the corrected run reached 213 accepted burn-in chunks before an
-  observed operator stop, with no solver failure. Borg's full seed-free
-  `T=90` burn-in and promotion ladder remain open.
+  browser the corrected run reached 213 accepted continuation chunks before an
+  observed operator stop, with no solver failure.
 - Validation: Borg JavaScript contract suites pass 30/30 and the native Borg
   process suite passes 4/4. A repeated `insufficient_history_depth` inside the
-  90-unit eight-path seed, incomplete pair accounting, or failure to cross the
-  former `[0.06,0.07]` interval would falsify this repair.
+  computed eight-path initial-history interval, incomplete pair accounting, or
+  failure to cross the former `[0.06,0.07]` interval would falsify this repair.
 
 ## 2026-07-16 — Borg eight-path block-exclusion matched replay
 
@@ -1449,9 +1426,38 @@ This file holds dated decisions, implementation status, validation results, fail
   the mean and `0.9665x` by the median, below the predeclared `1.10x` material
   gate. The outer-process mean and median were `0.9904x` and `0.9881x`.
 - **Inferred decision:** the present block certificate does not accelerate this
-  dense eight-path checkpoint. The long burn-in remains paused; no accepted
-  result, master-equation rule, trajectory value, or promotion decision changed.
-- The long $T=90$ burn-in also remains paused while the operator reconsiders the
-  startup-history requirement.
+  dense eight-path checkpoint. No accepted result, master-equation rule, or
+  trajectory value changed. The benchmark is retained as a performance
+  diagnostic and no longer controls Borg promotion.
 - Evidence and falsifier:
   [eom-borg-eight-path-block-exclusion-ab-apple-m3-2026-07-16.md](evidence/eom-borg-eight-path-block-exclusion-ab-apple-m3-2026-07-16.md).
+
+## 2026-07-16 — Borg accepted-initial-history promotion
+
+- **Operator decision:** certified artificial retained history is part of
+  Borg's randomized initial condition. Borg does not require the artificial
+  segment to be displaced before publishing EOM evolution. General solver
+  validation remains owned by the separate EOM validation workstream.
+- **Derived:** for receiver endpoint $i$ and inertial source $j$, causal delay
+  is bounded above by
+  $\|\mathbf x_i-\mathbf x_j\|/(c_f-\|\mathbf v_j\|)$. Borg takes the maximum
+  over ordered pairs, adds a declared margin, and rounds outward to the sample
+  interval. The selected eight-path seed resolves to an initial-history depth
+  of `79.86`; generation is one exact polynomial segment per path, not a
+  sequence of evolved startup chunks.
+- Borg ordinary startup now stays idle. Explicit shadow mode or **Start /
+  restart** begins EOM evolution at $T=0$. Published frames carry
+  `eom-evolution-conditioned-on-accepted-initial-history`; the initial-history
+  certificate continues to record `eomOutput=false`.
+- **Measured:** the existing strict eight-path `0.01`, `0.005`, and `0.0025`
+  refinement ladder passes with maximum state delta
+  `6.291495102672684e-14`; one-thread/four-thread `0.0025` histories are
+  byte-identical. This is the completed Borg consumer promotion gate under the
+  selected contract.
+- Removed the obsolete long-horizon promotion harness, its gate-specific
+  records, and the dedicated block-exclusion benchmark harness. The measured
+  root and performance conclusions remain preserved as historical diagnostics.
+- Falsifier: reject Borg promotion if initial-history coverage is incomplete,
+  its certificate does not bind the selected population, strict refinement or
+  thread determinism fails, or the app labels artificial input history as EOM
+  output.

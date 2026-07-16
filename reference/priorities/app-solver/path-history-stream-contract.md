@@ -344,12 +344,12 @@ The contract should be accepted only after these fixtures pass:
 
 | Fixture | Status | Required proof |
 | --- | --- | --- |
-| `path_stream_round_trip` | Implemented in [check-solver-contract-fixtures.mjs](../../../scripts/check-solver-contract-fixtures.mjs). | Deterministic multi-path run writes chunks, reads the same ranges, preserves byte-stable fields where declared, and detects checksum faults. |
-| `stream_replay_invariants` | Implemented in [check-solver-contract-fixtures.mjs](../../../scripts/check-solver-contract-fixtures.mjs). | Path, root, and replay invariants survive write/read/projection with declared error bounds and ordering. |
-| `history_age_out_and_deep_index` | Implemented in [check-solver-contract-fixtures.mjs](../../../scripts/check-solver-contract-fixtures.mjs). | Safe chunks age out, unsafe chunks remain hot or halt, and optional deep indices build without replacing authoritative replay. |
-| `interrupted_stream_recovery` | Implemented in [check-solver-contract-fixtures.mjs](../../../scripts/check-solver-contract-fixtures.mjs). | Partial writes, missing trailers, stale sidecars, and manifest mismatch produce deterministic recovery or quarantine events. |
-| `high_speed_readback_budget` | Implemented in [check-solver-contract-fixtures.mjs](../../../scripts/check-solver-contract-fixtures.mjs). | Indexed readback meets the declared range-read behavior without full-run scans under the test memory budget. |
-| `fast_spill_budget` | Implemented in [check-solver-contract-fixtures.mjs](../../../scripts/check-solver-contract-fixtures.mjs). | Long synthetic histories stay inside active-window memory by chunking, spilling, backpressure, or explicit halt. |
+| `path_stream_round_trip` | Implemented in `scripts/check-solver-contract-fixtures.mjs`. | Deterministic multi-path run writes chunks, reads the same ranges, preserves byte-stable fields where declared, and detects checksum faults. |
+| `stream_replay_invariants` | Implemented in `scripts/check-solver-contract-fixtures.mjs`. | Path, root, and replay invariants survive write/read/projection with declared error bounds and ordering. |
+| `history_age_out_and_deep_index` | Implemented in `scripts/check-solver-contract-fixtures.mjs`. | Safe chunks age out, unsafe chunks remain hot or halt, and optional deep indices build without replacing authoritative replay. |
+| `interrupted_stream_recovery` | Implemented in `scripts/check-solver-contract-fixtures.mjs`. | Partial writes, missing trailers, stale sidecars, and manifest mismatch produce deterministic recovery or quarantine events. |
+| `high_speed_readback_budget` | Implemented in `scripts/check-solver-contract-fixtures.mjs`. | Indexed readback meets the declared range-read behavior without full-run scans under the test memory budget. |
+| `fast_spill_budget` | Implemented in `scripts/check-solver-contract-fixtures.mjs`. | Long synthetic histories stay inside active-window memory by chunking, spilling, backpressure, or explicit halt. |
 
 ## Close And Remaining Status
 

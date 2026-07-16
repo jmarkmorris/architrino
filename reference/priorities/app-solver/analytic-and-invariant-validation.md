@@ -258,14 +258,14 @@ invariant validation statuses.
 
 Current relevant implementation surfaces:
 
-- [solver_analytic_smoke.cpp](../../../src/solver/native/solver_analytic_smoke.cpp)
-- [solver_invariant_smoke.cpp](../../../src/solver/native/solver_invariant_smoke.cpp)
-- [solver_root_transition_smoke.cpp](../../../src/solver/native/solver_root_transition_smoke.cpp)
-- [solver_stream_smoke.cpp](../../../src/solver/native/solver_stream_smoke.cpp)
-- [InvariantChecks.hpp](../../../src/solver/include/architrino/solver/InvariantChecks.hpp)
-- [InvariantChecks.cpp](../../../src/solver/src/InvariantChecks.cpp)
-- [SolverAppBridge.mjs](../../../src/solver/app/SolverAppBridge.mjs)
-- [check-solver-contract-fixtures.mjs](../../../scripts/check-solver-contract-fixtures.mjs)
+- `src/solver/native/solver_analytic_smoke.cpp`
+- `src/solver/native/solver_invariant_smoke.cpp`
+- `src/solver/native/solver_root_transition_smoke.cpp`
+- `src/solver/native/solver_stream_smoke.cpp`
+- `src/solver/include/architrino/solver/InvariantChecks.hpp`
+- `src/solver/src/InvariantChecks.cpp`
+- `src/solver/app/SolverAppBridge.mjs`
+- `scripts/check-solver-contract-fixtures.mjs`
 
 Small implementation additions are allowed only when they keep the validation
 surface isolated: a native smoke fixture, a bridge fixture assertion, or a

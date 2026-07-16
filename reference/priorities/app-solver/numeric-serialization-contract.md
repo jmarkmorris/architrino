@@ -12,9 +12,9 @@ Primary dependency: [precision.md](precision.md)
 
 Implementation surfaces:
 
-- [NumericSerialization.hpp](../../../src/solver/include/architrino/solver/NumericSerialization.hpp)
-- [NumericSerialization.cpp](../../../src/solver/src/NumericSerialization.cpp)
-- [SolverAppBridge.mjs](../../../src/solver/app/SolverAppBridge.mjs)
+- `src/solver/include/architrino/solver/NumericSerialization.hpp`
+- `src/solver/src/NumericSerialization.cpp`
+- `src/solver/app/SolverAppBridge.mjs`
 - [schema.json](../../../src/contracts/solver-app-bridge/v1/schema.json)
 
 ## Purpose

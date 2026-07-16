@@ -23,8 +23,8 @@ Implementation surfaces:
 - [AnimatorDelayedHitRows.mjs](../../../src/apps/animator/display/AnimatorDelayedHitRows.mjs)
 - [AnimatorSimulationAuthoringRuntime.js](../../../src/apps/animator/AnimatorSimulationAuthoringRuntime.js)
 - [AnimatorSimulationWorker.js](../../../src/apps/animator/AnimatorSimulationWorker.js)
-- [SolverAppAdapters.mjs](../../../src/solver/app/SolverAppAdapters.mjs)
-- [check-solver-baseline-sandbox.mjs](../../../scripts/check-solver-baseline-sandbox.mjs)
+- `src/solver/app/SolverAppAdapters.mjs`
+- `scripts/check-solver-baseline-sandbox.mjs`
 - [animator-simulation-worker-runtime.test.js](../../../tests/animator-simulation-worker-runtime.test.js)
 - [animator-simulation-authoring-runtime.test.js](../../../tests/animator-simulation-authoring-runtime.test.js)
 - [animator-receiver-path-descriptors.test.js](../../../tests/animator-receiver-path-descriptors.test.js)
@@ -70,12 +70,12 @@ sample rows.
 
 Current validation evidence:
 
-- [check-solver-baseline-sandbox.mjs](../../../scripts/check-solver-baseline-sandbox.mjs)
+- `scripts/check-solver-baseline-sandbox.mjs`
   includes four Animator cases: causal-root smoke, path-history smoke,
   motion dynamic replay smoke, and worker solver bridge smoke.
 - The current baseline sandbox manifest classifies all four Animator cases as
   `baseline_within_tolerance`.
-- [check-solver-migration-parity.mjs](../../../scripts/check-solver-migration-parity.mjs)
+- `scripts/check-solver-migration-parity.mjs`
   includes all four Animator cases in the ordered migration parity report.
 - [animator-simulation-worker-runtime.test.js](../../../tests/animator-simulation-worker-runtime.test.js)
   covers solver-bridge worker request conversion, owned bridge client creation,
@@ -93,7 +93,7 @@ Current validation evidence:
   verifies solver-owned receiver `path_segment.v1` descriptor construction from
   document/dataset/cadence state and verifies those descriptors feed the
   solver-owned delayed-hit row helper.
-- [animator-field-shell-event-stream.test.js](../../../tests/animator-field-shell-event-stream.test.js)
+- `tests/animator-field-shell-event-stream.test.js`
   verifies solver-owned field-shell emitter source-history sampling, cadence
   rows, stream-package metadata, durable native-file `field_shell_events.v1`
   chunks/index/manifests, render shell rows, and delayed-hit emission descriptor

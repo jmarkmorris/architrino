@@ -37,8 +37,6 @@ export function createBorgEomRecordReplayRunner(record, options = {}) {
     targetDuration: clampToWindow(options.targetDuration, windowStart, windowEnd),
     chunkDuration: positiveNumber(options.chunkDuration, Math.max(sampleInterval, (windowEnd - windowStart) / 8)),
     sampleInterval,
-    burnInDuration: 0,
-    burnInEndTime: windowStart,
     memoryBudgetBytes: positiveNumber(options.memoryBudgetBytes, DEFAULT_MEMORY_BUDGET_BYTES),
   });
   const frameValueAuthority = historyDataset.provenance.evidenceStatus === "canonical"
@@ -124,9 +122,6 @@ function createChunk(config, chunkIndex, startTime, endTime, frames, statusCode)
     endTime,
     sampleInterval: config.sampleInterval,
     phase: "live",
-    burnInComplete: true,
-    burnInEndTime: config.burnInEndTime,
-    burnInChunksCompleted: 0,
     frames: Object.freeze(frames),
     promotionEligible: false,
     diagnostics: Object.freeze([]),

@@ -18,8 +18,8 @@ Implementation surfaces:
 - [IdealBraidRuntime.js](../../../src/apps/ideal-braid/IdealBraidRuntime.js)
 - [IdealBraidPathPotentialProfile.js](../../../src/apps/ideal-braid/IdealBraidPathPotentialProfile.js)
 - IdealBraidSolverBridgeOptions.js (removed with the zombie-solver migration: `src/apps/ideal-braid/IdealBraidSolverBridgeOptions.js`)
-- [SolverAppAdapters.mjs](../../../src/solver/app/SolverAppAdapters.mjs)
-- [check-solver-baseline-sandbox.mjs](../../../scripts/check-solver-baseline-sandbox.mjs)
+- `src/solver/app/SolverAppAdapters.mjs`
+- `scripts/check-solver-baseline-sandbox.mjs`
 - [ideal-braid-runtime.test.js](../../../tests/ideal-braid-runtime.test.js)
 
 ## Adapter Scope
@@ -44,13 +44,13 @@ mapping, viewport transforms, and visual presentation remain app responsibilitie
 
 Current validation evidence:
 
-- [check-solver-baseline-sandbox.mjs](../../../scripts/check-solver-baseline-sandbox.mjs)
+- `scripts/check-solver-baseline-sandbox.mjs`
   includes five Ideal Braid cases: causal-root smoke, shared-geometry smoke,
   flight-time facade, flight-time WebAssembly client, and self-hit WebAssembly
   client.
 - The current baseline sandbox manifest classifies all five Ideal Braid cases as
   `baseline_within_tolerance`.
-- [check-solver-migration-parity.mjs](../../../scripts/check-solver-migration-parity.mjs)
+- `scripts/check-solver-migration-parity.mjs`
   includes all five Ideal Braid cases in the ordered migration parity report.
 - [ideal-braid-runtime.test.js](../../../tests/ideal-braid-runtime.test.js)
   covers solver-bridge potential samples, flight-time rows, client/worker bridge

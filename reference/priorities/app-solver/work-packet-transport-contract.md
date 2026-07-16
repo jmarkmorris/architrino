@@ -157,16 +157,16 @@ This preserves one transport format while allowing later WebGPU, Metal, CUDA-lik
 
 | Requirement | Current support |
 | --- | --- |
-| Native header and result types | Implemented in [WorkPacket.hpp](../../../src/solver/include/architrino/solver/WorkPacket.hpp). |
-| Native validation, canonical serialization, checksums, and deterministic ordering | Implemented in [WorkPacket.cpp](../../../src/solver/src/WorkPacket.cpp). |
-| Native smoke fixture | Implemented in [solver_work_packet_smoke.cpp](../../../src/solver/native/solver_work_packet_smoke.cpp). |
-| App bridge methods | Implemented as `prepareWorkPacketHeader`, `orderWorkPacketResults`, and `planPathHistoryWorkPackets` in [SolverAppBridge.mjs](../../../src/solver/app/SolverAppBridge.mjs). |
+| Native header and result types | Implemented in `src/solver/include/architrino/solver/WorkPacket.hpp`. |
+| Native validation, canonical serialization, checksums, and deterministic ordering | Implemented in `src/solver/src/WorkPacket.cpp`. |
+| Native smoke fixture | Implemented in `src/solver/native/solver_work_packet_smoke.cpp`. |
+| App bridge methods | Implemented as `prepareWorkPacketHeader`, `orderWorkPacketResults`, and `planPathHistoryWorkPackets` in `src/solver/app/SolverAppBridge.mjs`. |
 | Packetized solver operations | Implemented for emission-shell broad-phase candidate packets, including the `emission_shell_broad_phase_v0` indexed candidate path, and packet-scoped emission-shell root refinement. `refineEmissionShellCandidateRootsF64` validates candidate chunk ownership against packet ranges and emits packet-scoped `root_ledger.v1` and `delayed_hit_events.v1` result references. |
-| App bridge type surface | Implemented as `SolverWorkPacketHeader`, `SolverWorkPacketBufferRef`, `SolverWorkPacketResultRef`, and `SolverPathHistoryWorkPacketPlanRequest` in [SolverAppBridgeContract.d.ts](../../../src/solver/app/SolverAppBridgeContract.d.ts). |
+| App bridge type surface | Implemented as `SolverWorkPacketHeader`, `SolverWorkPacketBufferRef`, `SolverWorkPacketResultRef`, and `SolverPathHistoryWorkPacketPlanRequest` in `src/solver/app/SolverAppBridgeContract.d.ts`. |
 | JSON schema | Implemented as `workPacketHeader`, `workPacketBufferRef`, `workPacketResultRef`, `workPacketResultOrderRequest`, `workPacketResultOrderResponse`, `pathHistoryWorkPacketPlanRequest`, and `pathHistoryWorkPacketPlanResponse` in [schema.json](../../../src/contracts/solver-app-bridge/v1/schema.json). |
 | Capability declaration | Implemented as `solver-work-packet-capabilities.v1` with helpers, path-history filters, deterministic merge order, and row-size validation in the app bridge capability response. |
-| Fixture checks | Implemented in [check-solver-contract-fixtures.mjs](../../../scripts/check-solver-contract-fixtures.mjs) and [check-solver-app-bridge.mjs](../../../scripts/check-solver-app-bridge.mjs). |
-| README implementation summary | Documented in [src/solver/README.md](../../../src/solver/README.md). |
+| Fixture checks | Implemented in `scripts/check-solver-contract-fixtures.mjs` and `scripts/check-solver-app-bridge.mjs`. |
+| README implementation summary | Documented in `src/solver/README.md`. |
 
 ## Missing Or Intentionally Deferred
 

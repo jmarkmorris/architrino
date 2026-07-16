@@ -167,11 +167,11 @@ Initial benchmark target:
 
 ## Prototype Benchmark Evidence
 
-Implemented solver API: `query_emission_shell_broad_phase_indexed_v0` in [Geometry.hpp](../../../src/solver/include/architrino/solver/Geometry.hpp) and [Geometry.cpp](../../../src/solver/src/Geometry.cpp).
+Implemented solver API: `query_emission_shell_broad_phase_indexed_v0` in `src/solver/include/architrino/solver/Geometry.hpp` and `src/solver/src/Geometry.cpp`.
 
 Implemented app-facing ABI and bridge path: `architrino_solver_query_emission_shell_broad_phase_indexed_v0_f64`, `indexOptions.strategy = "emission_shell_broad_phase_v0"`, and `scanSummary.executionPath = "native_c_abi_indexed_v0"`.
 
-Implemented benchmark case: `emission-shell-broad-phase-v0` in [solver_benchmark.cpp](../../../src/solver/native/solver_benchmark.cpp).
+Implemented benchmark case: `emission-shell-broad-phase-v0` in `src/solver/native/solver_benchmark.cpp`.
 
 The v0 fixture builds synthetic source and receiver path-history streams, replays the rows from chunk-backed storage, compares the solver-owned indexed candidate set against brute-force chunk replay, and fails if any oracle broad-phase candidate is missing or if sampled narrow-phase hit counts change. It also splits each scenario into deterministic work packets, validates `solver-work-packet.v1` headers with `emission_shell_candidate.v1` outputs, merges packet results through the solver merge-order helper, and fails if packet replay changes the indexed candidate set.
 
@@ -205,7 +205,7 @@ This is a solver-owned native API, C ABI, app-bridge opt-in path, benchmark fixt
 
 ## Stress-Scale Acceptance Gate
 
-`node scripts/benchmark-solver.mjs` writes `solver-benchmark-report.v1` and then invokes [check-solver-benchmark-thresholds.mjs](../../../scripts/check-solver-benchmark-thresholds.mjs) by default. The gate is intentionally non-wall-clock: it accepts structural coverage, oracle correctness, pair-pressure reduction, stream replay, and deterministic packet replay. It does not claim a machine-independent runtime budget.
+`node scripts/benchmark-solver.mjs` writes `solver-benchmark-report.v1` and then invokes `scripts/check-solver-benchmark-thresholds.mjs` by default. The gate is intentionally non-wall-clock: it accepts structural coverage, oracle correctness, pair-pressure reduction, stream replay, and deterministic packet replay. It does not claim a machine-independent runtime budget.
 
 The `emission-shell-broad-phase-v0` case must satisfy:
 

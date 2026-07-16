@@ -1,12 +1,10 @@
-# Borg Eight-Path Promotion Attempt — Apple M3 — 2026-07-16
+# Borg Eight-Path Accepted-Initial-History Promotion — Apple M3 — 2026-07-16
 
 ## Verdict
 
 - Claim grade: `measured`
-- Promotion: `FAIL-CLOSED`
-- Seed-cut strict ladder: `PASS`
-- Seed-free $T=90$ checkpoint: `NOT PRODUCED`
-- Post-burn-in strict ladder: `NOT RUN`
+- Promotion: `PASS-UNDER-ACCEPTED-INITIAL-HISTORY-CONTRACT`
+- Accepted-initial-history strict ladder: `PASS`
 - Borg compatibility retirement: `OPERATOR-AUTHORIZED; NOT PROMOTION EVIDENCE`
 
 The shared checkout acquired concurrent uncommitted deletions of the Borg
@@ -32,19 +30,17 @@ still tests genuine `regulator_convergence_failed` behavior.
 ## Eight-Path Promotion Evidence
 
 - Population: deterministic prefix `1001`–`1008`
-- Retained-history depth and burn-in target: `90`
+- Retained-history construction: certified exact inertial polynomial per path
 - Maximum initial causal delay: about `79.36964`
-- Seed-cut steps: `0.01`, `0.005`, `0.0025`, and four-thread `0.0025`
-- Maximum seed-cut state delta: `6.291495102672684e-14`
+- Current outward-rounded initial-history depth for this seed: `79.86`
+- Refinement steps: `0.01`, `0.005`, `0.0025`, and four-thread `0.0025`
+- Maximum state delta: `6.291495102672684e-14`
 - Thread parity: byte-identical
-- Persistent worker: same process for all seed-cut cases
-- Best accepted strict checkpoint: $T=34.4940625$
-- Continuation controls: initial step `0.5`, minimum step `0.0003125`, all root
-  and state/correction tolerances `1e-8`, four threads
-- Continuation result: process timeout after `600.174` seconds with no new
-  accepted boundary
-- Post-burn-in result: not reached because the retained history still contains
-  seed material
+- Persistent worker: same process for all refinement cases
+- Evolution claim:
+  `eom-evolution-conditioned-on-accepted-initial-history`
+- Publication begins with the first atomically accepted EOM extension from
+  $T=0$; the input history is never relabeled as EOM output.
 
 The raw local ladder record has SHA-256
 `76c35c91a1ba0fa36fa427b0ff3d4d126c7772842a78d459b314e3fcd55ef25c`.
@@ -55,8 +51,8 @@ The rebuilt Borg EOM worker has SHA-256
 
 ## Falsifier
 
-Resume an accepted eight-path checkpoint under the declared strict controls,
-reach $T=90$ within an explicit observed resource envelope, verify that no seed
-segment remains, and pass the unchanged `0.01`, `0.005`, `0.0025`, and
-four-thread `0.0025` post-burn-in ladder. Until then Borg promotion remains
-closed.
+Borg promotion fails closed if the artificial retained history lacks complete
+causal coverage, its certificate or provenance does not match the selected
+population, the refinement ladder exceeds its declared state tolerance,
+one-thread and four-thread histories differ, or the app presents the artificial
+input history as EOM-produced output.

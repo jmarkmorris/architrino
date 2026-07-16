@@ -2,6 +2,7 @@ import { mountBorgApp } from "./BorgAppRuntime.js";
 import { createBorgEomHttpClient } from "./BorgEomHttpClient.js";
 import { BORG_DATASET_MANIFEST_V1 } from "./BorgFixtureData.js";
 import {
+  calculateBorgInertialHistoryDepth,
   createBorgAcceptedInertialSeedHistory,
   createBorgInitialConditionConfig,
   createBorgSeededInitialConditionRows,
@@ -9,9 +10,7 @@ import {
 
 export const BORG_DEFAULT_RUNTIME_MODE = "eom-shadow";
 export const BORG_RECORD_REPLAY_RUNTIME_MODE = "eom-record-replay";
-export const BORG_FIXTURE_RUNTIME_MODE = "fixture-replay";
 export const BORG_EOM_MIGRATION_PATH_COUNT = 8;
-export const BORG_EOM_MIGRATION_HISTORY_DEPTH = 90;
 
 export async function bootBorgApp({
   search = globalThis.location?.search ?? "",
@@ -22,9 +21,6 @@ export async function bootBorgApp({
 } = {}) {
   const query = new URLSearchParams(search);
   const runtimeMode = resolveBorgRuntimeMode(query);
-  if (runtimeMode === BORG_FIXTURE_RUNTIME_MODE) {
-    return mountApp({});
-  }
   if (runtimeMode === BORG_RECORD_REPLAY_RUNTIME_MODE) {
     const recordUrl = query.get("eomRecord");
     const response = await fetchLike(recordUrl);
@@ -42,11 +38,6 @@ export async function bootBorgApp({
 
   const eomStartTime = 0;
   const eomDuration = queryPositiveNumber(query.get("eomDuration"), 60);
-  // The bounded Borg migration target is the independently adjudicated
-  // deterministic eight-path prefix. Its measured maximum seed-cut causal
-  // delay is about 79.37, so the retained initial datum must use the declared
-  // 90-unit migration horizon rather than the legacy 10-unit fixture horizon.
-  const historyDepth = BORG_EOM_MIGRATION_HISTORY_DEPTH;
   const initialConditionConfig = createBorgInitialConditionConfig(manifest.initialConditions);
   const fullPopulationEndpointRows = createBorgSeededInitialConditionRows({
     manifest,
@@ -60,6 +51,11 @@ export async function bootBorgApp({
     ...initialConditionConfig,
     electrinoCount: endpointRows.filter((row) => row.stateFlags === 2).length,
     positrinoCount: endpointRows.filter((row) => row.stateFlags === 1).length,
+  });
+  const sampleInterval = 0.01;
+  const historyDepth = calculateBorgInertialHistoryDepth(endpointRows, {
+    fieldSpeed: manifest.simulationEnvelope?.fieldSpeed ?? 1,
+    sampleInterval,
   });
   const initialEomSeed = await createBorgAcceptedInertialSeedHistory(endpointRows, {
     historyStartTime: eomStartTime - historyDepth,
@@ -75,13 +71,12 @@ export async function bootBorgApp({
     eomShadowRunner: {
       eomClient: createEomClient(),
       startTime: eomStartTime,
-      targetDuration: eomStartTime + historyDepth + eomDuration,
+      targetDuration: eomStartTime + eomDuration,
       runDuration: eomDuration,
-      burnInDuration: historyDepth,
       historyDepth,
       pathCount: BORG_EOM_MIGRATION_PATH_COUNT,
       chunkDuration: 0.01,
-      sampleInterval: 0.01,
+      sampleInterval,
       initialStep: "0.01",
       minimumStep: "0.01",
       rootTolerance: "1e-3",
@@ -100,9 +95,6 @@ export function resolveBorgRuntimeMode(queryOrSearch = "") {
     : new URLSearchParams(queryOrSearch);
   if (query.get("eomRecord")) {
     return BORG_RECORD_REPLAY_RUNTIME_MODE;
-  }
-  if (query.get("eom") === "fixture") {
-    return BORG_FIXTURE_RUNTIME_MODE;
   }
   return BORG_DEFAULT_RUNTIME_MODE;
 }

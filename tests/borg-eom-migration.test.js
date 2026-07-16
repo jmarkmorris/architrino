@@ -3,8 +3,7 @@ import { test } from "node:test";
 
 import { BORG_DATASET_MANIFEST_V1 } from "../src/apps/borg/BorgFixtureData.js";
 import {
-  BORG_EOM_BURN_IN_HISTORY_PROVENANCE,
-  BORG_EOM_COMPATIBILITY_HISTORY_PROVENANCE,
+  BORG_EOM_ACCEPTED_INITIAL_HISTORY_EVOLUTION_CLAIM_LEVEL,
   BORG_EOM_SHADOW_RUN_SOURCE,
   createBorgContinuousRetainedHistories,
   createBorgEomShadowRequest,
@@ -14,31 +13,39 @@ import {
 } from "../src/apps/borg/BorgEomShadowRunner.js";
 import { encodeNativeRequest } from "../scripts/eom/BorgNativeEomProcessClient.mjs";
 import { createBorgEomHttpClient } from "../src/apps/borg/BorgEomHttpClient.js";
-import { loadBorgFixtureTrajectoryFrames } from "../src/apps/borg/BorgFixtureTrajectory.js";
 import {
   BORG_ACCEPTED_SEED_HISTORY_CLAIM_LEVEL,
   BORG_ACCEPTED_SEED_HISTORY_PROVENANCE,
   BORG_PRESCRIBED_INITIAL_HISTORY_CLAIM_LEVEL,
   BORG_PRESCRIBED_INITIAL_HISTORY_PROVENANCE,
+  calculateBorgInertialHistoryDepth,
   createBorgAcceptedInertialSeedHistory,
   createBorgPrescribedLinearHistoryRows,
   createBorgSeededInitialConditionRows,
 } from "../src/apps/borg/BorgInitialConditions.js";
 import {
   BORG_DEFAULT_RUNTIME_MODE,
-  BORG_EOM_MIGRATION_HISTORY_DEPTH,
   BORG_EOM_MIGRATION_PATH_COUNT,
-  BORG_FIXTURE_RUNTIME_MODE,
   BORG_RECORD_REPLAY_RUNTIME_MODE,
   bootBorgApp,
   resolveBorgRuntimeMode,
 } from "../src/apps/borg/BorgBootstrap.js";
 
-// Compatibility-history tests still exercise the recorded trajectory asset.
-// Default Borg boot no longer loads that asset into the EOM path.
-const trajectoryFrames = await loadBorgFixtureTrajectoryFrames();
+const trajectoryFrames = createBorgPrescribedLinearHistoryRows(
+  createBorgSeededInitialConditionRows({
+    manifest: BORG_DATASET_MANIFEST_V1,
+    seedIndex: 17,
+    config: {
+      electrinoCount: 8,
+      positrinoCount: 8,
+      randomVelocityMaxComponentMagnitude: 0.042,
+      randomVelocityMinSpeed: 0.0144,
+    },
+  }),
+  { historyStartTime: 0, historyEndTime: 10 },
+);
 
-test("Borg boots the EOM runner by default with fixture and record replay as explicit modes", async () => {
+test("Borg mounts EOM idle by default and reserves automatic compute for explicit shadow mode", async () => {
   const eomClient = { async evolveRetainedHistories() {} };
   const defaultMounts = [];
   let defaultTrajectoryLoads = 0;
@@ -71,13 +78,9 @@ test("Borg boots the EOM runner by default with fixture and record replay as exp
   assert.equal(defaultMounts[0].eomShadowRunner.startTime, 0);
   assert.equal(
     defaultMounts[0].eomShadowRunner.historyDepth,
-    BORG_EOM_MIGRATION_HISTORY_DEPTH,
+    calculateBorgInertialHistoryDepth(defaultMounts[0].initialEomSeed.endpointRows),
   );
-  assert.equal(
-    defaultMounts[0].eomShadowRunner.burnInDuration,
-    BORG_EOM_MIGRATION_HISTORY_DEPTH,
-  );
-  assert.equal(defaultMounts[0].eomShadowRunner.targetDuration, 150);
+  assert.equal(defaultMounts[0].eomShadowRunner.targetDuration, 60);
   assert.equal(defaultMounts[0].eomShadowRunner.runDuration, 60);
   assert.deepEqual(defaultMounts[0].initialConditionConfig, {
     electrinoCount: 4,
@@ -102,18 +105,6 @@ test("Borg boots the EOM runner by default with fixture and record replay as exp
   assert.equal(explicitShadowMounts.length, 1);
   assert.equal(explicitShadowMounts[0].autoStartEom, true);
 
-  const fixtureMounts = [];
-  const fixtureResult = await bootBorgApp({
-    search: "?eom=fixture",
-    mountApp(options) {
-      fixtureMounts.push(options);
-      return "fixture-mounted";
-    },
-  });
-
-  assert.equal(resolveBorgRuntimeMode("?eom=fixture"), BORG_FIXTURE_RUNTIME_MODE);
-  assert.equal(fixtureResult, "fixture-mounted");
-  assert.deepEqual(fixtureMounts, [{}]);
 
   const record = {
     contractId: "eom_evolution_contract/v0",
@@ -190,6 +181,30 @@ test("Borg EOM accepts individual polarity counts through a continuous prescribe
   assert.equal(histories[0].sourceClaimLevel, BORG_PRESCRIBED_INITIAL_HISTORY_CLAIM_LEVEL);
 });
 
+test("Borg computes artificial-history depth from causal separation and source speed", () => {
+  const rows = [
+    {
+      pathKey: 1,
+      position: { x: 0, y: 0, z: 0 },
+      velocity: { x: 0, y: 0, z: 0 },
+    },
+    {
+      pathKey: 2,
+      position: { x: 3, y: 0, z: 0 },
+      velocity: { x: 0.5, y: 0, z: 0 },
+    },
+  ];
+  assert.equal(calculateBorgInertialHistoryDepth(rows), 6.01);
+  assert.throws(
+    () => calculateBorgInertialHistoryDepth([{
+      pathKey: 3,
+      position: { x: 0, y: 0, z: 0 },
+      velocity: { x: 1, y: 0, z: 0 },
+    }]),
+    /requires sub-field source speed/,
+  );
+});
+
 test("Borg EOM migration uses canonical field speed and the declared memory depth", () => {
   const config = createBorgEomShadowRunConfig(BORG_DATASET_MANIFEST_V1, {
     startTime: 300,
@@ -201,8 +216,6 @@ test("Borg EOM migration uses canonical field speed and the declared memory dept
   assert.equal(config.fieldSpeed, 1);
   assert.equal(config.geometricDelayBound, expectedGeometricDelayBound);
   assert.equal(config.historyDepth, 10);
-  assert.equal(config.burnInDuration, 10);
-  assert.equal(config.burnInEndTime, 310);
   assert.ok(Math.abs(config.historyStartTime - (300 - config.historyDepth)) < 1e-12);
 
   const fallbackConfig = createBorgEomShadowRunConfig({
@@ -226,10 +239,10 @@ test("Borg EOM migration imports a complete continuous past, never a state-only 
   for (const history of histories) {
     assert.equal(history.coverageStart, "0");
     assert.equal(history.coverageEnd, "10");
-    assert.equal(history.segments.length, 50);
+    assert.equal(history.segments.length, 1);
     assert.equal(history.interpolation, "piecewise-cubic-hermite/v0");
-    assert.equal(history.sourceProvenance, BORG_EOM_COMPATIBILITY_HISTORY_PROVENANCE);
-    assert.equal(history.sourceClaimLevel, "conditional-non-eom-history");
+    assert.equal(history.sourceProvenance, BORG_PRESCRIBED_INITIAL_HISTORY_PROVENANCE);
+    assert.equal(history.sourceClaimLevel, BORG_PRESCRIBED_INITIAL_HISTORY_CLAIM_LEVEL);
   }
 
   assert.throws(
@@ -276,7 +289,7 @@ test("Borg EOM shadow runner sends retained histories and derives frames only fr
   assert.equal("futurePaths" in request, false);
 
   assert.equal(chunk.source, BORG_EOM_SHADOW_RUN_SOURCE);
-  assert.equal(chunk.phase, "burn-in");
+  assert.equal(chunk.phase, "live");
   assert.equal(chunk.statusCode, "ok");
   assert.equal(chunk.evidenceStatus, "executable_architecture_evidence");
   assert.equal(chunk.promotionEligible, false);
@@ -354,17 +367,35 @@ test("Borg EOM preserves the finite UI duration, supports Forever, and keeps its
   assert.equal(runner.canComputeNextChunk(), true);
 });
 
-test("Borg promotion remains fail-closed during burn-in even when the migration gate passes", async () => {
+test("Borg promotion accepts canonical evolution from certified initial history", async () => {
   const eomClient = {
     async evolveRetainedHistories(request) {
       return createFakeEomResponse(request, "canonical");
     },
   };
+  const endpointRows = createBorgSeededInitialConditionRows({
+    manifest: BORG_DATASET_MANIFEST_V1,
+    seedIndex: 9,
+    config: {
+      electrinoCount: 1,
+      positrinoCount: 1,
+      randomVelocityMaxComponentMagnitude: 0.02,
+      randomVelocityMinSpeed: 0.01,
+    },
+  });
+  const seed = await createBorgAcceptedInertialSeedHistory(endpointRows, {
+    historyStartTime: -0.2,
+    historyEndTime: 0,
+    sampleInterval: 0.2,
+    digest: async () => "promotion-seed-digest",
+  });
   const runner = createBorgEomShadowRunner(BORG_DATASET_MANIFEST_V1, {
     eomClient,
-    initialFrameRows: trajectoryFrames,
-    startTime: 10,
-    targetDuration: 10.2,
+    initialFrameRows: seed.rows,
+    pathCount: 2,
+    startTime: 0,
+    historyDepth: 0.2,
+    targetDuration: 0.2,
     chunkDuration: 0.2,
     sampleInterval: 0.2,
     acceptanceGate: {
@@ -375,11 +406,19 @@ test("Borg promotion remains fail-closed during burn-in even when the migration 
   });
 
   const chunk = await runner.computeNextChunk();
-  assert.equal(chunk.promotionEligible, false);
-  assert.equal(chunk.frames.every((frame) => frame.valueAuthority === "canonical-eom-output"), true);
+  assert.equal(chunk.promotionEligible, true);
+  assert.equal(chunk.initialHistoryAccepted, true);
+  assert.equal(
+    chunk.evolutionClaimLevel,
+    BORG_EOM_ACCEPTED_INITIAL_HISTORY_EVOLUTION_CLAIM_LEVEL,
+  );
+  assert.equal(chunk.frames.every(
+    (frame) => frame.valueAuthority ===
+      "canonical-eom-output-conditioned-on-accepted-initial-history"
+  ), true);
 });
 
-test("Borg replaces the accepted seed with a complete EOM burn-in horizon", async () => {
+test("Borg publishes EOM evolution from accepted initial history at T=0", async () => {
   const endpointRows = createBorgSeededInitialConditionRows({
     manifest: BORG_DATASET_MANIFEST_V1,
     seedIndex: 4,
@@ -410,7 +449,6 @@ test("Borg replaces the accepted seed with a complete EOM burn-in horizon", asyn
     pathCount: 2,
     startTime: 0,
     historyDepth: 0.02,
-    burnInDuration: 0.02,
     targetDuration: 0.03,
     chunkDuration: 0.01,
     sampleInterval: 0.01,
@@ -420,18 +458,17 @@ test("Borg replaces the accepted seed with a complete EOM burn-in horizon", asyn
   const second = await runner.computeNextChunk();
   const live = await runner.computeNextChunk();
 
-  assert.equal(first.phase, "burn-in");
-  assert.equal(first.burnInComplete, false);
-  assert.equal(second.phase, "burn-in");
-  assert.equal(second.burnInComplete, true);
+  assert.equal(first.phase, "live");
+  assert.equal(first.frames.length > 0, true);
+  assert.equal(first.initialHistoryAccepted, true);
+  assert.equal(second.phase, "live");
   assert.equal(second.histories.every((history) => history.coverageStart === "0"), true);
-  assert.equal(second.histories.every((history) => history.sourceIsEomOutput === true), true);
-  assert.equal(second.histories.every((history) => history.sourceAcceptedInitialDatum === false), true);
-  assert.equal(second.histories.every((history) => history.sourceProvenance === BORG_EOM_BURN_IN_HISTORY_PROVENANCE), true);
+  assert.equal(second.histories.every((history) => history.sourceAcceptedInitialDatum === true), true);
+  assert.equal(second.histories.every((history) => history.sourceProvenance === BORG_ACCEPTED_SEED_HISTORY_PROVENANCE), true);
   assert.equal(second.histories.every((history) => history.segments.every((segment) => Number(segment.startTime) >= 0)), true);
   assert.equal(live.phase, "live");
   assert.equal(requests[0].provenance.importedHistoryIsAcceptedInitialDatum, true);
-  assert.equal(requests[2].provenance.importedHistoryIsEomOutput, true);
+  assert.equal(requests[2].provenance.importedHistoryIsAcceptedInitialDatum, true);
 });
 
 test("Borg refuses to approximate a retained-history trim between segment boundaries", () => {
@@ -507,7 +544,7 @@ test("Borg native process protocol carries the same continuous-history request",
   const protocol = encodeNativeRequest(requests[0]);
   assert.match(protocol, /^EOM_BORG_NATIVE_V0\nRUN\t/u);
   assert.equal(protocol.match(/^PATH\t/gmu)?.length, 16);
-  assert.equal(protocol.match(/^SEG\t/gmu)?.length, 800);
+  assert.equal(protocol.match(/^SEG\t/gmu)?.length, 16);
   assert.match(protocol, /\nEND\n$/u);
   assert.equal(protocol.includes("initialStates"), false);
   assert.equal(protocol.includes("futurePaths"), false);

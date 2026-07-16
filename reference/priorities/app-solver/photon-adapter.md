@@ -17,8 +17,8 @@ Implementation surfaces:
 
 - [PhotonFormulaRuntime.js](../../../src/apps/photon/PhotonFormulaRuntime.js)
 - PhotonSolverBridgeOptions.js (removed with the zombie-solver migration: `src/apps/photon/PhotonSolverBridgeOptions.js`)
-- [SolverAppAdapters.mjs](../../../src/solver/app/SolverAppAdapters.mjs)
-- [check-solver-baseline-sandbox.mjs](../../../scripts/check-solver-baseline-sandbox.mjs)
+- `src/solver/app/SolverAppAdapters.mjs`
+- `scripts/check-solver-baseline-sandbox.mjs`
 - [photon-runtime.test.js](../../../tests/photon-runtime.test.js)
 
 ## Adapter Scope
@@ -48,14 +48,14 @@ field-contribution rows.
 
 Current validation evidence:
 
-- [check-solver-baseline-sandbox.mjs](../../../scripts/check-solver-baseline-sandbox.mjs)
+- `scripts/check-solver-baseline-sandbox.mjs`
   includes eight Photon cases: causal-root smoke, facade path, WebAssembly client
   path, circular-source roots/hits ledger facade and WebAssembly paths,
   normalized circular-source ledger, normalized circular-source run, and phase
   diagnostics.
 - The current baseline sandbox manifest classifies all eight Photon cases as
   `baseline_within_tolerance`.
-- [check-solver-migration-parity.mjs](../../../scripts/check-solver-migration-parity.mjs)
+- `scripts/check-solver-migration-parity.mjs`
   includes all eight Photon cases in the ordered migration parity report.
 - [photon-runtime.test.js](../../../tests/photon-runtime.test.js) covers Photon
   bridge client creation, worker-client creation, circular-source bridge paths,

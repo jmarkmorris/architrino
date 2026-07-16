@@ -15,9 +15,9 @@ Primary dependencies:
 
 Implementation surfaces:
 
-- [check-solver-baseline-sandbox.mjs](../../../scripts/check-solver-baseline-sandbox.mjs)
-- [check-solver-migration-parity.mjs](../../../scripts/check-solver-migration-parity.mjs)
-- [SolverBaselineComparison.mjs](../../../src/solver/app/SolverBaselineComparison.mjs)
+- `scripts/check-solver-baseline-sandbox.mjs`
+- `scripts/check-solver-migration-parity.mjs`
+- `src/solver/app/SolverBaselineComparison.mjs`
 
 Generated evidence:
 
@@ -74,7 +74,7 @@ All 17 current cases classify as `baseline_within_tolerance`.
 
 ## Migration Parity Report
 
-[check-solver-migration-parity.mjs](../../../scripts/check-solver-migration-parity.mjs)
+`scripts/check-solver-migration-parity.mjs`
 consumes the sandbox manifest and checks the ordered migration plan:
 
 1. Animator;

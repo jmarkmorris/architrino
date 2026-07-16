@@ -17,24 +17,24 @@ Primary dependencies:
 
 Implementation surfaces:
 
-- [CMakeLists.txt](../../../src/solver/CMakeLists.txt)
-- [README.md](../../../src/solver/README.md)
-- [SolverCAbi.hpp](../../../src/solver/include/architrino/solver/SolverCAbi.hpp)
-- [SolverCAbi.cpp](../../../src/solver/src/SolverCAbi.cpp)
-- [CausalRootSolver.cpp](../../../src/solver/src/CausalRootSolver.cpp)
-- [CausalRootBatchSolver.cpp](../../../src/solver/src/CausalRootBatchSolver.cpp)
-- [MotionSampler.cpp](../../../src/solver/src/MotionSampler.cpp)
-- [PrecisionPathSolver.cpp](../../../src/solver/src/PrecisionPathSolver.cpp)
-- [RootLedger.cpp](../../../src/solver/src/RootLedger.cpp)
-- [RootLedgerTransition.cpp](../../../src/solver/src/RootLedgerTransition.cpp)
-- [PathHistoryStream.cpp](../../../src/solver/src/PathHistoryStream.cpp)
-- [AssemblyGraph.cpp](../../../src/solver/src/AssemblyGraph.cpp)
-- [SpaceTimeIndex.cpp](../../../src/solver/src/SpaceTimeIndex.cpp)
-- [WorkPacket.cpp](../../../src/solver/src/WorkPacket.cpp)
-- [SolverAppBridge.mjs](../../../src/solver/app/SolverAppBridge.mjs)
-- [SolverAppAdapters.mjs](../../../src/solver/app/SolverAppAdapters.mjs)
-- [build-solver-smoke.mjs](../../../scripts/build-solver-smoke.mjs)
-- [benchmark-solver.mjs](../../../scripts/benchmark-solver.mjs)
+- `src/solver/CMakeLists.txt`
+- `src/solver/README.md`
+- `src/solver/include/architrino/solver/SolverCAbi.hpp`
+- `src/solver/src/SolverCAbi.cpp`
+- `src/solver/src/CausalRootSolver.cpp`
+- `src/solver/src/CausalRootBatchSolver.cpp`
+- `src/solver/src/MotionSampler.cpp`
+- `src/solver/src/PrecisionPathSolver.cpp`
+- `src/solver/src/RootLedger.cpp`
+- `src/solver/src/RootLedgerTransition.cpp`
+- `src/solver/src/PathHistoryStream.cpp`
+- `src/solver/src/AssemblyGraph.cpp`
+- `src/solver/src/SpaceTimeIndex.cpp`
+- `src/solver/src/WorkPacket.cpp`
+- `src/solver/app/SolverAppBridge.mjs`
+- `src/solver/app/SolverAppAdapters.mjs`
+- `scripts/build-solver-smoke.mjs`
+- `scripts/benchmark-solver.mjs`
 
 ## Core Boundary
 
@@ -68,15 +68,15 @@ production default replacement for app-local fallback logic.
 
 Current closeout evidence:
 
-- [build-solver-smoke.mjs](../../../scripts/build-solver-smoke.mjs) passes the
+- `scripts/build-solver-smoke.mjs` passes the
   native C++ smoke targets, WebAssembly smoke calls, package manifest,
   app-bridge check, baseline sandbox, and migration parity.
-- [check-solver-app-bridge.mjs](../../../scripts/check-solver-app-bridge.mjs)
+- `scripts/check-solver-app-bridge.mjs`
   passes direct and worker bridge coverage for roots, roots/hits, circular-source
   ledgers, normalized runs, precision paths, motion/path-history, assembly graph,
   stream/readback, threading plans, work packets, admission, status taxonomy, and
   app adapters.
-- [benchmark-solver.mjs](../../../scripts/benchmark-solver.mjs) passes the
+- `scripts/benchmark-solver.mjs` passes the
   current Release benchmark sanity suite.
 - [cpp-clang-runtime-validation.md](cpp-clang-runtime-validation.md) records the
   full runtime closeout evidence from 2026-06-20.

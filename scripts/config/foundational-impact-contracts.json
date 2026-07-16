@@ -19,13 +19,13 @@
       "id": "master-equation.causal-root-geometry",
       "title": "Master Equation causal-root geometry",
       "severity": "P0",
-      "rationale": "The causal-hit constraint, emission-root selection, and delayed separation convention feed the solver, proof programs, simulations, photon app, and causal-delay app.",
+      "rationale": "The causal-hit constraint, emission-root selection, and delayed separation convention feed the EOM engine, proof programs, simulations, photon app, and causal-delay app.",
       "pathTriggers": [
         "content/markdown/aaa/dynamics/master-equation.md",
         "content/markdown/aaa/foundations/architrino.md",
         "content/markdown/aaa/foundations/absolute-time.md",
         "content/markdown/aaa/validation/simulations/action-energy/**",
-        "src/solver/**",
+        "src/eom/**",
         "src/t3/**",
         "src/apps/animator/display/**",
         "src/apps/causal-delay-feedback/**",
@@ -54,7 +54,6 @@
           "causal-delay feedback runtime"
         ],
         "applications": [
-          "SolverAppBridge",
           "Photon app",
           "Causal Delay Feedback app",
           "Animator delayed-hit rows"
@@ -89,18 +88,8 @@
         ],
         "applications": [
           {
-            "command": "node --test tests/solver-app-bridge-native-master-equation-status.test.js tests/solver-app-bridge-native-pair-status.test.js tests/photon-runtime.test.js tests/causal-delay-feedback-central-bridge-adapter.test.js",
-            "reason": "Recheck application bridges that surface delayed-hit or Master Equation state."
-          }
-        ],
-        "solver": [
-          {
-            "command": "node scripts/check-solver-contract-fixtures.mjs",
-            "reason": "Recheck solver request/response contracts that carry root and hit rows."
-          },
-          {
-            "command": "node scripts/check-solver-app-bridge.mjs",
-            "reason": "Recheck bridge schema and app adapter expectations."
+            "command": "node --test tests/photon-runtime.test.js tests/causal-delay-feedback-central-bridge-adapter.test.js",
+            "reason": "Recheck application surfaces that display delayed-hit or Master Equation state."
           }
         ]
       }
@@ -119,7 +108,6 @@
         "scripts/proof-programs/**",
         "scripts/nested-shell-braid/**",
         "src/apps/photon/**",
-        "src/solver/app/**",
         "src/apps/animator/display/**"
       ],
       "textTriggers": [
@@ -148,12 +136,10 @@
           "field-speed self-hit scans"
         ],
         "applications": [
-          "PhotonFormulaRuntime",
-          "SolverAppBridge"
+          "PhotonFormulaRuntime"
         ],
         "validation": [
-          "receiver-normal clean slate",
-          "solver app bridge contracts"
+          "receiver-normal clean slate"
         ]
       },
       "reevaluation": {
@@ -185,7 +171,7 @@
         ],
         "applications": [
           {
-            "command": "node --test tests/solver-app-bridge-native-master-equation-status.test.js tests/solver-app-bridge-native-pair-status.test.js tests/photon-constituent-root-route-diagnostic.test.js",
+            "command": "node --test tests/photon-constituent-root-route-diagnostic.test.js",
             "reason": "Recheck app-facing receiver-normal field requirements."
           }
         ]
@@ -202,7 +188,7 @@
         "content/markdown/aaa/dynamics/master-equation.md",
         "content/markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-braid.md",
         "content/markdown/aaa/philosophy-history/theory-bridges/entanglement-nonlocality.md",
-        "src/solver/**",
+        "src/eom/**",
         "src/t3/**",
         "src/apps/animator/display/**",
         "src/apps/causal-delay-feedback/**"
@@ -274,8 +260,7 @@
         "content/markdown/aaa/foundations/ontology.md",
         "content/markdown/aaa/philosophy-history/geometry-and-ontology.md",
         "content/markdown/aaa/spacetime/emergent-metric.md",
-        "src/solver/src/Geometry.cpp",
-        "src/solver/include/architrino/solver/Geometry.hpp"
+        "src/eom/**"
       ],
       "textTriggers": [
         { "type": "literal", "value": "E(3)" },
@@ -298,7 +283,6 @@
           "geometry and affine exposure probes"
         ],
         "applications": [
-          "solver geometry inventory",
           "ideal braid visual surfaces"
         ],
         "validation": [
@@ -322,12 +306,6 @@
           {
             "command": "node --test tests/neutral-braid-octahedral-affine-force-mean-derivative.test.js tests/neutral-braid-octahedral-force-residual.test.js",
             "reason": "Recheck geometry-sensitive force and affine-response probes."
-          }
-        ],
-        "solver": [
-          {
-            "command": "node scripts/check-solver-geometry-inventory.mjs",
-            "reason": "Recheck solver geometry inventory if the Euclidean metric contract changes."
           }
         ]
       }
@@ -732,12 +710,10 @@
           "photon helical self-hit phase-lock sweep"
         ],
         "applications": [
-          "Photon app",
-          "SolverAppBridge"
+          "Photon app"
         ],
         "validation": [
-          "content validation",
-          "solver bridge checks"
+          "content validation"
         ]
       },
       "reevaluation": {
@@ -749,8 +725,8 @@
         ],
         "proofPrograms": [
           {
-            "command": "node --test tests/photon-constituent-root-route-diagnostic.test.js tests/solver-app-bridge-native-pair-status.test.js",
-            "reason": "Recheck photon route diagnostics and pair bridge rows."
+            "command": "node --test tests/photon-constituent-root-route-diagnostic.test.js",
+            "reason": "Recheck photon route diagnostics."
           }
         ],
         "simulations": [
@@ -761,48 +737,45 @@
         ],
         "applications": [
           {
-            "command": "node --test tests/photon-runtime.test.js tests/solver-app-bridge-native-pair-status.test.js",
-            "reason": "Recheck photon app and solver bridge surfaces."
+            "command": "node --test tests/photon-runtime.test.js",
+            "reason": "Recheck photon app surfaces."
           }
         ]
       }
     },
     {
-      "id": "simulation.central-solver-contract",
-      "title": "Central solver bridge and production solver contract",
+      "id": "simulation.eom-record-and-app-surface-contract",
+      "title": "EOM engine, recorded-dataset contract, and app display surfaces",
       "severity": "P0",
-      "rationale": "Production solver schema and bridge changes can invalidate simulations, apps, proof fixtures, and generated solver package manifests.",
+      "rationale": "EOM engine, eom_evolution_contract/v0 record schema, and shared display-adapter changes can invalidate simulations, apps, proof fixtures, and recorded evidence replay.",
       "pathTriggers": [
-        "src/solver/**",
+        "src/eom/**",
         "src/t3/**",
+        "src/apps/shared/**",
         "src/apps/animator/**",
         "src/apps/photon/**",
         "src/apps/ideal-braid/**",
         "src/apps/borg/**",
         "src/apps/causal-delay-feedback/**",
-        "scripts/check-solver-*.mjs",
-        "scripts/build-solver-*.mjs",
-        "tests/solver-*",
-        "tests/*solver*"
+        "src/prescribed-path-analysis/**",
+        "scripts/eom/**"
       ],
       "textTriggers": [
-        { "type": "literal", "value": "SolverAppBridge" },
-        { "type": "literal", "value": "SolverContract" },
+        { "type": "literal", "value": "eom_evolution_contract" },
+        { "type": "literal", "value": "EomHistoryDataset" },
         { "type": "literal", "value": "field_shell_events" },
         { "type": "literal", "value": "branchWeight" },
-        { "type": "literal", "value": "central solver" },
-        { "type": "literal", "value": "production solver" }
+        { "type": "literal", "value": "canonicalEomEvidence" }
       ],
       "consumers": {
         "proofPrograms": [
-          "solver-backed retained-history rows",
+          "recorded EOM evidence replay",
           "topological causal-root ledger"
         ],
         "simulations": [
           "T3 simulator",
-          "Borg EOM solver",
-          "causal-delay feedback",
-          "ideal braid solver bridge"
+          "Borg EOM record replay",
+          "causal-delay feedback EOM replay"
         ],
         "applications": [
           "Animator",
@@ -812,53 +785,25 @@
           "Causal Delay Feedback"
         ],
         "validation": [
-          "solver contract fixtures",
-          "solver app bridge",
-          "solver migration parity",
-          "solver smoke"
+          "Borg fixture quarantine labels",
+          "animator runtime wiring"
         ]
       },
       "reevaluation": {
-        "validation": [
-          {
-            "command": "node scripts/check-solver-contract-fixtures.mjs",
-            "reason": "Recheck solver schema fixtures."
-          },
-          {
-            "command": "node scripts/check-solver-app-bridge.mjs",
-            "reason": "Recheck app bridge schema and generated types."
-          },
-          {
-            "command": "node scripts/check-solver-migration-parity.mjs",
-            "reason": "Recheck migration parity for solver-backed app paths."
-          }
-        ],
-        "proofPrograms": [
-          {
-            "command": "node --test tests/solver-work-packet-transport-contract.test.js",
-            "reason": "Recheck proof fixtures that consume solver-backed transport rows."
-          }
-        ],
         "simulations": [
           {
-            "command": "node --test tests/t3-universe-simulator.test.js tests/borg-native-solver-contract.test.js tests/ideal-braid-runtime.test.js tests/causal-delay-feedback-central-bridge-adapter.test.js",
-            "reason": "Recheck solver-backed simulation paths."
+            "command": "node --test tests/t3-universe-simulator.test.js tests/borg-eom-runtime-contract.test.js tests/ideal-braid-runtime.test.js tests/causal-delay-feedback-central-bridge-adapter.test.js",
+            "reason": "Recheck recorded-dataset simulation and replay paths."
           }
         ],
         "applications": [
           {
             "command": "node scripts/check-animator-runtime-wiring.mjs",
-            "reason": "Recheck animator runtime wiring after solver bridge changes."
+            "reason": "Recheck animator runtime wiring after display-adapter changes."
           },
           {
-            "command": "node --test tests/photon-runtime.test.js tests/ideal-braid-runtime.test.js tests/borg-native-solver-contract.test.js tests/causal-delay-feedback-central-bridge-adapter.test.js",
-            "reason": "Recheck app runtimes that use the central solver bridge."
-          }
-        ],
-        "solver": [
-          {
-            "command": "node scripts/build-solver-smoke.mjs all",
-            "reason": "Rebuild and smoke-test the compiled central solver package."
+            "command": "node --test tests/photon-runtime.test.js tests/ideal-braid-runtime.test.js tests/borg-eom-runtime-contract.test.js tests/causal-delay-feedback-central-bridge-adapter.test.js",
+            "reason": "Recheck app runtimes that display recorded EOM datasets."
           }
         ]
       }

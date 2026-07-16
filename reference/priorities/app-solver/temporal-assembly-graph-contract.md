@@ -249,7 +249,7 @@ Required event kinds:
 | `ambiguous_membership` | The solver records an inferred or unresolved membership candidate that is not authoritative without an explicit consumer policy. |
 
 The bridge enum names these same numeric event families in
-[AssemblyGraph.hpp](../../../src/solver/include/architrino/solver/AssemblyGraph.hpp).
+`src/solver/include/architrino/solver/AssemblyGraph.hpp`.
 Textual names in this note are the priority-contract labels; numeric encodings
 belong to the bridge schema and native ABI.
 
@@ -338,102 +338,10 @@ not authoritative unless they match the membership and state rows.
 Required path-to-graph join:
 
 ```text
-path row P at time interval [P.timeStart, P.timeEnd)
-  -> membership rows M where M.pathKey == P.pathKey
-     and intervals overlap
-  -> assembly-state rows S where S.assemblyKey == M.assemblyKey
-     and S.assemblyStateKey == M.assemblyStateKey when present
-     and intervals overlap
-  -> hierarchy rows H where H.childAssemblyKey or H.parentAssemblyKey
-     equals M.assemblyKey and intervals overlap
-  -> event rows E where E.relatedPathKey == P.pathKey
-     or E.relatedAssemblyKey == M.assemblyKey
-     and E.eventTime lies in the requested replay window
-```
-
-When `assemblyStateKey` is present on a membership row, it is the preferred
-state join. When it is absent or zero in a future schema, the reader selects the
-unique assembly-state row for `assemblyKey` whose interval covers the query
-time. If that selection is not unique at the required claim level, the replay
-fails closed with a graph ambiguity diagnostic.
-
-Path rows can therefore remain compact:
-
-```text
-path row:
-  pathKey
-  segment id
-  time interval
-  kinematic or dynamic path fields
-  optional assemblyKey cache
-  optional assemblyStateKey cache
-  optional membershipVersion cache
-```
-
-The full assembly state stays in `assembly_state.v1`. Membership and hierarchy
-changes stay in the graph event and interval rows. This is how architrinos can
-change assemblies without duplicating assembly state into every path-history row.
-
-## Hierarchy Replay Rules
-
-Replay reconstructs the temporal graph at a selected time or time range from
-the authoritative rows.
-
-Deterministic replay order:
-
-1. Load the graph manifest, schema versions, numeric type, byte order, row
-   counts, checksums, and index status.
-2. Select rows by time range and key filters using graph indices when available.
-3. Validate finite interval endpoints, `timeStart < timeEnd`, key presence, and
-   row layout version.
-4. Apply interval closures at a boundary before interval openings at the same
-   boundary.
-5. Apply event rows at the boundary in `eventTime`, `eventKind`, and `eventKey`
-   order for deterministic diagnostics.
-6. Reconstruct active membership rows for each requested `pathKey`.
-7. Join active assembly-state rows for those memberships.
-8. Reconstruct active hierarchy rows and validate containment acyclicity.
-9. Report ambiguous, overlapping, missing, stale-index, or checksum failures as
-   graph diagnostics rather than silently repairing the replay.
-
-Events do not override rows. If rows and events disagree, the rows define the
-replay state and the mismatch becomes a validation diagnostic. A future repair
-artifact may supersede bad rows, but it must do so through explicit replacement
-metadata and checksums.
-
-## Graph Indices
-
-The graph store must support indexed readback without requiring a full scan for
-ordinary path, assembly, hierarchy, or event queries.
-
-Minimum index families:
-
-| Index family | Key | Target rows |
-| --- | --- | --- |
-| Path membership | `pathKey`, time range | `assembly_membership.v1`, related `assembly_events.v1` |
-| Assembly state | `assemblyKey`, time range | `assembly_state.v1`, `assembly_membership.v1`, related `assembly_events.v1` |
-| Parent hierarchy | `parentAssemblyKey`, time range | `assembly_hierarchy.v1` |
-| Child hierarchy | `childAssemblyKey`, time range | `assembly_hierarchy.v1` |
-| Row range | layout id, row offset, row count | Any graph layout |
-| Byte range | layout id, byte offset, byte length | Any graph layout |
-
-Bridge v1 exposes index key kinds `path`, `assembly`, `parent-assembly`, and
-`child-assembly`, with row and byte ranges in the assembly graph store index.
-Those indices are acceleration metadata. They do not replace authoritative graph
-rows, and a stale index must block indexed readback or force a declared full
-validation scan.
-
-## Bridge V1 Alignment
-
-The current bridge and native row contracts already contain the first concrete
-surfaces needed by this priority artifact:
-
-| Contract area | Live surface |
-| --- | --- |
-| Dataset request and response | `SolverAssemblyGraphDatasetF64Request` and `SolverAssemblyGraphDatasetF64Response` in [SolverAppBridgeContract.d.ts](../../../src/solver/app/SolverAppBridgeContract.d.ts). |
+path row P at time interval `src/solver/app/SolverAppBridgeContract.d.ts`. |
 | Store manifest and indexed readback | `SolverAssemblyGraphStoreManifest`, `SolverAssemblyGraphStoreIndex`, `SolverAssemblyGraphStoreReadF64Request`, and `SolverAssemblyGraphStoreReadF64Response`. |
 | Row layouts | `SolverAssemblyStateF64`, `SolverAssemblyMembershipF64`, `SolverAssemblyHierarchyF64`, and `SolverAssemblyEventF64`. |
-| Native event families | `AssemblyEventKind` in [AssemblyGraph.hpp](../../../src/solver/include/architrino/solver/AssemblyGraph.hpp). |
+| Native event families | `AssemblyEventKind` in `src/solver/include/architrino/solver/AssemblyGraph.hpp`. |
 | Fixture coverage | `scripts/check-solver-contract-fixtures.mjs` validates `assembly_state.v1`, `assembly_membership.v1`, `assembly_hierarchy.v1`, and `assembly_events.v1` fixture buffers. |
 
 This priority artifact defines the semantics of those rows. It does not require

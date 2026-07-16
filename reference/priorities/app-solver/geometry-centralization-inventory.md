@@ -15,7 +15,7 @@ Historical naming: **zombie-solver (then called the central solver)**.
 
 This inventory records app-side geometry calculations that should be owned by the zombie-solver, identifies duplicated geometry across Photon, Ideal Braid, and Animator, classifies the current migration state, and recommends safe removals.
 
-The existing solver inventory checker, [check-solver-geometry-inventory.mjs](../../../scripts/check-solver-geometry-inventory.mjs), already names the bridge-facing migration targets. This document records the remaining app-local geometry around those targets so removals can be sequenced without deleting display-only renderer work.
+The existing solver inventory checker, `scripts/check-solver-geometry-inventory.mjs`, already names the bridge-facing migration targets. This document records the remaining app-local geometry around those targets so removals can be sequenced without deleting display-only renderer work.
 
 ## Classification
 

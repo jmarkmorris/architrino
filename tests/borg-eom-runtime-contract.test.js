@@ -20,7 +20,6 @@ import {
   BORG_EOM_RECORD_REPLAY_RUN_SOURCE,
   createBorgEomRecordReplayRunner,
 } from "../src/apps/borg/BorgEomRecordReplayRunner.js";
-import { buildBorgFixtureDataModule } from "../scripts/borg/write-fixture-data.mjs";
 
 const MASTER_EQUATION_SOLVER_MODE = "native-fixed-parameter-master-equation";
 const NEXT_MASTER_EQUATION_BURDEN = "migrate-borg-through-certified-eom-shadow-run";
@@ -94,9 +93,15 @@ test("Borg path history is on and visible by default", () => {
   );
 });
 
-test("Borg fixture writer preserves the non-EOM compatibility quarantine", async () => {
-  const { module, trajectoryAsset } = await buildBorgFixtureDataModule();
-  const trajectory = JSON.parse(trajectoryAsset);
+test("Borg stored compatibility fixture preserves the non-EOM quarantine", async () => {
+  // The bridge-era fixture writer was retired with the zombie-solver. The
+  // stored fixture module and trajectory asset are frozen compatibility data
+  // and must keep their quarantine labels verbatim.
+  const module = readFileSync(
+    new URL("../src/apps/borg/BorgFixtureData.js", import.meta.url),
+    "utf8",
+  );
+  const trajectory = await loadBorgFixtureTrajectory();
 
   assert.doesNotMatch(module, /"canonicalEomEvidence": true/);
   assert.doesNotMatch(module, /"eomEvidenceStatus": "native_master_equation_fixed_parameter_evidence"/);
@@ -229,7 +234,6 @@ test("Borg record replay chunks carry recorded frames with record provenance", a
   assert.equal(runner.config.runId, "borg-record-replay-fixture-run");
   assert.equal(runner.config.engineId, "eom-solver");
   assert.equal(runner.config.claimGrade, "evolved-record");
-  assert.equal(runner.config.burnInDuration, 0);
 
   const firstChunk = await runner.computeNextChunk();
   assert.equal(firstChunk.source, BORG_EOM_RECORD_REPLAY_RUN_SOURCE);
@@ -379,6 +383,7 @@ test("Borg path-history renderer uses native row segments, not visual smoothing 
   assert.equal(runtimeSource.includes("Live 3000 / 20"), false);
   assert.match(runtimeSource, /toggleRunDurationMode/);
   assert.match(runtimeSource, /startDynamicNativeRunnerIfNeeded/);
+  assert.match(runtimeSource, /if \(autoStartEom\) \{\s*startDynamicNativeRunner\(\);\s*\}/);
   assert.match(runtimeSource, /applyLiveRunRetentionIfNeeded/);
   assert.match(runtimeSource, /compactedPathHistory/);
   assert.match(runtimeSource, /switchRunControlPreset/);
@@ -396,7 +401,6 @@ test("Borg path-history renderer uses native row segments, not visual smoothing 
     runtimeSource,
     /currentFrames = replaceCurrentFrames[\s\S]*applyLiveRunRetentionIfNeeded\(\);[\s\S]*frameSets = createBorgFrameSetsFromRows\(currentFrames\);/,
   );
-  assert.match(runtimeSource, /chunk\.phase === "burn-in"/);
   assert.match(runtimeSource, /createBorgAcceptedInertialSeedHistory/);
   assert.match(runtimeSource, /appendedFrameRows = Array\.isArray\(chunk\.frames\)/);
   assert.doesNotMatch(htmlSource, /M9\.8 6\.2a6\.8/);
@@ -413,6 +417,20 @@ test("Borg path-history renderer uses native row segments, not visual smoothing 
   assert.match(htmlSource, /id="borg-eom-history-status"/);
   assert.match(htmlSource, /id="borg-eom-stop-button"/);
   assert.match(htmlSource, /id="borg-eom-restart-button"/);
+  assert.match(htmlSource, /id="borg-eom-restart-button"[^>]*>Start \/ restart<\/button>/);
+  assert.match(htmlSource, /id="borg-eom-progress"[^>]*value="0"[^>]*hidden/);
+  assert.match(htmlSource, /\.borg-eom-form \.borg-run-duration-button \{\s*align-self: end;/);
+  assert.match(htmlSource, /Initial history[\s\S]*Exact inertial polynomial/);
+  assert.match(htmlSource, /Forward evolution[\s\S]*EOM chunks after T=0/);
+  assert.match(
+    htmlSource,
+    /id="borg-run-duration-button"[\s\S]*Finite duration \(s\)[\s\S]*Initial conditions[\s\S]*id="borg-eom-stop-button"[\s\S]*id="borg-eom-restart-button"[\s\S]*id="borg-apply-initial-condition"/,
+  );
+  assert.match(runtimeSource, /dom\.eomProgress\.hidden = forever/);
+  assert.match(runtimeSource, /forward EOM chunks/);
+  assert.match(runtimeSource, /Exact polynomial initial history \(C1 inertial\)/);
+  assert.match(runtimeSource, /function startRunAndPlayback\(\)[\s\S]*firstChunk\.then[\s\S]*startPlayback\(\)/);
+  assert.match(runtimeSource, /selected; press Start \/ restart to run/);
   assert.doesNotMatch(htmlSource, /id="borg-run-source"/);
   assert.match(htmlSource, /id="borg-playback-speed"/);
 });

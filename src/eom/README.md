@@ -1,9 +1,10 @@
 # EOM Solver
 
 This directory is the C++20 host implementation for EOM, the endorsed solver
-and sole forward production target. It is separate from `src/solver`; the
-existing zombie-solver remains available only as temporary compatibility for
-current dependencies during consumer-by-consumer migration.
+and sole forward production target. The former zombie-solver (`src/solver`)
+was deleted on 2026-07-16 after consumer-by-consumer migration; its history
+lives in git, and its audit and quarantine records remain under
+`reference/priorities/app-solver/`.
 
 The executable layer currently contains:
 
@@ -91,12 +92,13 @@ materialized for the existing deterministic receiver reducer, so compressed
 million-path reduction remains open. The persistent worker still receives the
 full retained-history request at each atomic chunk. GPU, multi-GPU,
 distributed histories, split absolute time, multirate scheduling, and the
-production million-path run remain open. Borg shadow output remains
-noncanonical. The strict one-path Borg refinement control passes, but the
-eight-path strict seed control passes, and strict burn-in now continues beyond
-the former `1003<-1004` tolerance-edge root wall at $T=32.48$. A seed-free
-$T=90$ checkpoint, its post-burn-in convergence ladder, and the performance
-gates must still pass before migration.
+production million-path run remain open. Borg uses a certified artificial
+retained history as part of its randomized initial condition and publishes
+accepted EOM extensions from $T=0$ with conditional provenance. The strict
+eight-path refinement control passes at `0.01`, `0.005`, and `0.0025`, with
+byte-identical one-thread/four-thread output at `0.0025`. That is the completed
+Borg consumer gate; the broader correctness and scale obligations above remain
+owned by EOM validation.
 
 Build and run the native fixture:
 

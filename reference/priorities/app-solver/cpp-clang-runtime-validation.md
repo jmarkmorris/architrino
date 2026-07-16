@@ -42,7 +42,7 @@ migration parity, and benchmark-sanity gates are green on the live tree.
 ### Native CMake And Clang
 
 The compiled zombie-solver is configured under
-[src/solver/CMakeLists.txt](../../../src/solver/CMakeLists.txt):
+`src/solver/CMakeLists.txt`:
 
 - project language: C++ only;
 - standard: C++20, required, no compiler extensions;
@@ -56,7 +56,7 @@ The compiled zombie-solver is configured under
   space-time index, storage lifecycle, stream, work packet, and benchmark
   targets.
 
-[src/solver/CMakePresets.json](../../../src/solver/CMakePresets.json) defines:
+`src/solver/CMakePresets.json` defines:
 
 - `native-debug`: Ninja, Debug, `/opt/homebrew/opt/llvm/bin/clang++`, build dir
   `.tmp/solver-build/native`;
@@ -65,12 +65,12 @@ The compiled zombie-solver is configured under
 
 There is no CMake preset at the repository root. Run preset-based solver builds
 from `src/solver`, or use the explicit `-S src/solver -B .tmp/...` form used by
-[scripts/build-solver-smoke.mjs](../../../scripts/build-solver-smoke.mjs).
+`scripts/build-solver-smoke.mjs`.
 
 ### WebAssembly Setup
 
 The WebAssembly smoke target is gated by `ARCHITRINO_SOLVER_BUILD_WASM=ON` in
-[src/solver/CMakeLists.txt](../../../src/solver/CMakeLists.txt). The target:
+`src/solver/CMakeLists.txt`. The target:
 
 - builds `architrino_solver_wasm_smoke.mjs` and `.wasm`;
 - uses Emscripten `MODULARIZE`, `EXPORT_ES6`, and `ENVIRONMENT=web,worker,node`;
@@ -80,7 +80,7 @@ The WebAssembly smoke target is gated by `ARCHITRINO_SOLVER_BUILD_WASM=ON` in
   store, space-time index, emission-shell queries, path-history stream IO, and
   storage lifecycle.
 
-[scripts/build-solver-smoke.mjs](../../../scripts/build-solver-smoke.mjs)
+`scripts/build-solver-smoke.mjs`
 verifies the generated ES module by importing it in Node and calling:
 
 - `architrino_solver_smoke`;
@@ -94,14 +94,14 @@ invocations.
 
 Primary runtime checks covered by this validation capture:
 
-- [scripts/solver-toolchain-preflight.mjs](../../../scripts/solver-toolchain-preflight.mjs)
-- [scripts/build-solver-smoke.mjs](../../../scripts/build-solver-smoke.mjs)
-- [scripts/benchmark-solver.mjs](../../../scripts/benchmark-solver.mjs)
-- [scripts/check-solver-contract-fixtures.mjs](../../../scripts/check-solver-contract-fixtures.mjs)
-- [scripts/check-solver-geometry-inventory.mjs](../../../scripts/check-solver-geometry-inventory.mjs)
-- [scripts/check-solver-app-bridge.mjs](../../../scripts/check-solver-app-bridge.mjs)
-- [scripts/check-solver-baseline-sandbox.mjs](../../../scripts/check-solver-baseline-sandbox.mjs)
-- [scripts/check-solver-migration-parity.mjs](../../../scripts/check-solver-migration-parity.mjs)
+- `scripts/solver-toolchain-preflight.mjs`
+- `scripts/build-solver-smoke.mjs`
+- `scripts/benchmark-solver.mjs`
+- `scripts/check-solver-contract-fixtures.mjs`
+- `scripts/check-solver-geometry-inventory.mjs`
+- `scripts/check-solver-app-bridge.mjs`
+- `scripts/check-solver-baseline-sandbox.mjs`
+- `scripts/check-solver-migration-parity.mjs`
 
 ## Commands Run
 

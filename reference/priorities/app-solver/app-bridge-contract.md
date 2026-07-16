@@ -17,12 +17,12 @@ Primary dependencies:
 
 Implementation surfaces:
 
-- [SolverAppBridge.mjs](../../../src/solver/app/SolverAppBridge.mjs)
-- [SolverAppWorkerBridge.mjs](../../../src/solver/app/SolverAppWorkerBridge.mjs)
-- [SolverAppBridgeContract.d.ts](../../../src/solver/app/SolverAppBridgeContract.d.ts)
+- `src/solver/app/SolverAppBridge.mjs`
+- `src/solver/app/SolverAppWorkerBridge.mjs`
+- `src/solver/app/SolverAppBridgeContract.d.ts`
 - [schema.json](../../../src/contracts/solver-app-bridge/v1/schema.json)
-- [check-solver-app-bridge.mjs](../../../scripts/check-solver-app-bridge.mjs)
-- [check-solver-contract-fixtures.mjs](../../../scripts/check-solver-contract-fixtures.mjs)
+- `scripts/check-solver-app-bridge.mjs`
+- `scripts/check-solver-contract-fixtures.mjs`
 
 ## Purpose
 
@@ -151,14 +151,14 @@ Capabilities are discovery metadata, not permission to weaken a run's model, pre
 
 | Requirement | Current support |
 | --- | --- |
-| Direct shared client | Implemented by `createSolverAppBridgeClient` in [SolverAppBridge.mjs](../../../src/solver/app/SolverAppBridge.mjs). |
-| Worker protocol | Implemented as `solver-app-worker/v1` in [SolverAppWorkerBridge.mjs](../../../src/solver/app/SolverAppWorkerBridge.mjs). |
-| TypeScript declaration surface | Implemented as `SolverClient`, run, stream, status, capability, storage, work-packet, and lifecycle declarations in [SolverAppBridgeContract.d.ts](../../../src/solver/app/SolverAppBridgeContract.d.ts). |
+| Direct shared client | Implemented by `createSolverAppBridgeClient` in `src/solver/app/SolverAppBridge.mjs`. |
+| Worker protocol | Implemented as `solver-app-worker/v1` in `src/solver/app/SolverAppWorkerBridge.mjs`. |
+| TypeScript declaration surface | Implemented as `SolverClient`, run, stream, status, capability, storage, work-packet, and lifecycle declarations in `src/solver/app/SolverAppBridgeContract.d.ts`. |
 | JSON schema | Implemented in [schema.json](../../../src/contracts/solver-app-bridge/v1/schema.json), including worker methods, request/response envelopes, status records, capabilities, storage policy, run outputs, stream readback, storage lifecycle, and work-packet helpers. |
-| App request builders | Implemented in [SolverAppAdapters.mjs](../../../src/solver/app/SolverAppAdapters.mjs) for shared run requests, Photon, Ideal Braid, Animator, Causal Delay Feedback, path-history streams, storage lifecycle, work packets, emission-shell queries, and validation replay. |
+| App request builders | Implemented in `src/solver/app/SolverAppAdapters.mjs` for shared run requests, Photon, Ideal Braid, Animator, Causal Delay Feedback, path-history streams, storage lifecycle, work packets, emission-shell queries, and validation replay. |
 | Capability declaration | Implemented as `solver-app-bridge-capabilities.v1`, with app adapters, dense transport, worker model, browser/native storage fallback, precision routing, status taxonomy, stream-query helpers, and work-packet helpers. |
-| Direct and worker smoke coverage | Implemented in [check-solver-app-bridge.mjs](../../../scripts/check-solver-app-bridge.mjs), including direct client calls, worker dispatch, stream reads, manifest-path reads, cancellation, close, dispose, lifecycle application, native-file streams, packetized emission-shell queries, `native_c_abi_indexed_v0` index-option execution, and normalized contract errors. |
-| Schema and fixture drift guard | Implemented in [check-solver-contract-fixtures.mjs](../../../scripts/check-solver-contract-fixtures.mjs), which checks schema/runtime method parity, contract fixtures, nested stream and lifecycle artifacts, work-packet fixtures, app bridge capabilities, and fixture-backed request/response schemas. |
+| Direct and worker smoke coverage | Implemented in `scripts/check-solver-app-bridge.mjs`, including direct client calls, worker dispatch, stream reads, manifest-path reads, cancellation, close, dispose, lifecycle application, native-file streams, packetized emission-shell queries, `native_c_abi_indexed_v0` index-option execution, and normalized contract errors. |
+| Schema and fixture drift guard | Implemented in `scripts/check-solver-contract-fixtures.mjs`, which checks schema/runtime method parity, contract fixtures, nested stream and lifecycle artifacts, work-packet fixtures, app bridge capabilities, and fixture-backed request/response schemas. |
 
 ## Validation Obligations
 

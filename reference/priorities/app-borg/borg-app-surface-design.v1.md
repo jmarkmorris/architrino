@@ -6,8 +6,8 @@
 - Status: `design-complete`
 - Claim level: `developer-test-screen-spec`
 - Schema id: `borg-app-surface-design.v1`
-- Source fixture: [build-first-native-backed-fixture.mjs](../../../scripts/borg/build-first-native-backed-fixture.mjs)
-- Surface artifact: [build-app-surface-design.mjs](../../../scripts/borg/build-app-surface-design.mjs)
+- Source fixture: `scripts/borg/build-first-native-backed-fixture.mjs` (retired with the zombie-solver, 2026-07-16)
+- Surface artifact: `scripts/borg/build-app-surface-design.mjs` (retired with the zombie-solver, 2026-07-16)
 - Source manifest: [borg-dataset-manifest.v1](borg-dataset-manifest.v1.md)
 - Requirements source: [requirements-and-design](requirements-and-design.md)
 - Native bridge source: [native-bridge-audit-and-first-screen](native-bridge-audit-and-first-screen.md)
@@ -20,7 +20,7 @@ The artifact is a manifest consumer, not a new solver and not a production brows
 
 ## Minimum Surface Object
 
-The surface object emitted by [build-app-surface-design.mjs](../../../scripts/borg/build-app-surface-design.mjs) must include:
+The surface object emitted by `scripts/borg/build-app-surface-design.mjs` (retired with the zombie-solver, 2026-07-16) must include:
 
 | Field | Required content |
 | --- | --- |
@@ -148,13 +148,7 @@ The current screen spec surfaces these first-failure codes from the source manif
 
 ## Validation Command
 
-Run:
-
-```bash
-node scripts/borg/build-app-surface-design.mjs
-```
-
-The command fails if the screen spec stops binding the native fixture, loses the 4K UHD render manifest, enables disabled wake or face layers, drops the fail-closed rows, or promotes central-volume acceleration beyond `fail-closed-value`.
+Retired 2026-07-16 with the zombie-solver: the generator `scripts/borg/build-app-surface-design.mjs` is deleted. The stored fixture module (`src/apps/borg/BorgFixtureData.js`) and trajectory asset are historical compatibility data; their quarantine labels are pinned by `tests/borg-eom-runtime-contract.test.js` and they are not a Borg runtime mode.
 
 ## First Static Page Artifact
 

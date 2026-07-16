@@ -14,8 +14,8 @@ The audit is priority-design material. It does not promote app output to proof e
 | [face-boundary-replay](face-boundary-replay.md) | Outbound/inbound face-boundary summary and replay fixture requirements. |
 | Existing zombie-solver bridge | Current production solver boundary and ABI extension point. |
 | Existing simulation runtime surfaces | Current state, trajectory frames, bounded trails, and visualization-frame evidence. |
-| [build-first-native-backed-fixture.mjs](../../../scripts/borg/build-first-native-backed-fixture.mjs) | First Borg developer-test fixture that binds native bridge output into `borg-dataset-manifest.v1`. |
-| [build-app-surface-design.mjs](../../../scripts/borg/build-app-surface-design.mjs) | First Borg developer-test screen-spec consumer for the native-backed manifest fixture. |
+| `scripts/borg/build-first-native-backed-fixture.mjs` (retired with the zombie-solver, 2026-07-16) | First Borg developer-test fixture that binds native bridge output into `borg-dataset-manifest.v1`. |
+| `scripts/borg/build-app-surface-design.mjs` (retired with the zombie-solver, 2026-07-16) | First Borg developer-test screen-spec consumer for the native-backed manifest fixture. |
 
 ## Capability Classification
 
@@ -38,7 +38,7 @@ The audit is priority-design material. It does not promote app output to proof e
 | Visualization resolution | `display-only` | The EOM solver owns simulation values, not canvas pixel density. | Produced screenshots, captures, review output, and quality-mode views must be 4K UHD, 3840 by 2160; lower adaptive internal render scale is only an interaction fallback. |
 | Layer toggles | `display-only` | Existing visualization flags can inform, but not define, the app layer controller. | New app-surface layer controller should keep solver data immutable. |
 | Logarithmic UI | `display-only` | Velocity display transforms are app projections. | Use floating exponent labels on active velocity rays; exact solver values remain in diagnostics. |
-| Dataset manifest and first-screen consumer | `developer-test` fixture, screen-spec, and static page consumer complete | [build-first-native-backed-fixture.mjs](../../../scripts/borg/build-first-native-backed-fixture.mjs) emits the app-facing run cover sheet from native-backed current-state frames and path-history rows; [build-app-surface-design.mjs](../../../scripts/borg/build-app-surface-design.mjs) consumes it into `borg-app-surface-design.v1`; [borg.html](../../../borg.html) renders the static developer-test surface. | The next implementation artifact should add native wake-history rows, boundary residual rows, and required acceleration-contribution diagnostics while keeping missing replay authority fail-closed. |
+| Dataset manifest and first-screen consumer | `developer-test` fixture, screen-spec, and static page consumer complete | `scripts/borg/build-first-native-backed-fixture.mjs` (retired with the zombie-solver, 2026-07-16) emits the app-facing run cover sheet from native-backed current-state frames and path-history rows; `scripts/borg/build-app-surface-design.mjs` (retired with the zombie-solver, 2026-07-16) consumes it into `borg-app-surface-design.v1`; [borg.html](../../../borg.html) renders the static developer-test surface. | The next implementation artifact should add native wake-history rows, boundary residual rows, and required acceleration-contribution diagnostics while keeping missing replay authority fail-closed. |
 
 ## Smallest Elegant First Screen
 
@@ -110,8 +110,8 @@ Minimum timeline:
 
 ## Implementation Order
 
-1. Use [build-first-native-backed-fixture.mjs](../../../scripts/borg/build-first-native-backed-fixture.mjs) as the first developer-test manifest source. It already distinguishes native-backed frames/path history from explicit wake, face-boundary, face influence, six-face policy, velocity sampling, and residual gap rows.
-2. Use [build-app-surface-design.mjs](../../../scripts/borg/build-app-surface-design.mjs) as the first developer-test first-screen contract.
+1. Use `scripts/borg/build-first-native-backed-fixture.mjs` (retired with the zombie-solver, 2026-07-16) as the first developer-test manifest source. It already distinguishes native-backed frames/path history from explicit wake, face-boundary, face influence, six-face policy, velocity sampling, and residual gap rows.
+2. Use `scripts/borg/build-app-surface-design.mjs` (retired with the zombie-solver, 2026-07-16) as the first developer-test first-screen contract.
 3. Add a 3D viewport surface that consumes current visualization frames without changing solver behavior.
 4. Add the layer controller with default-visible `simulation-window` and `architrino-position`; keep velocity rays behind the layer toggle and selected-object editing.
 5. Add selected-object diagnostics using current state, run summary, and diagnostic status vocabulary.
@@ -119,7 +119,7 @@ Minimum timeline:
 
 ## First Native-Backed Fixture Artifact
 
-`borg-first-native-backed-fixture` is implemented by [build-first-native-backed-fixture.mjs](../../../scripts/borg/build-first-native-backed-fixture.mjs). The script runs a fixed-parameter native central-bridge `masterEquation` request through `architrino_solver_integrate_master_equation_motion_f64` and selects that result for the Borg developer-test fixture. It validates these manifest facts:
+`borg-first-native-backed-fixture` is implemented by `scripts/borg/build-first-native-backed-fixture.mjs` (retired with the zombie-solver, 2026-07-16). The script runs a fixed-parameter native central-bridge `masterEquation` request through `architrino_solver_integrate_master_equation_motion_f64` and selects that result for the Borg developer-test fixture. It validates these manifest facts:
 
 1. `nativeSolverStatus = native-backed-now`;
 2. `executionPath = native_c_abi`;
@@ -141,7 +141,7 @@ The fixture is a `developer-test` artifact. It does not grant authority to repla
 
 ## First App Surface Design Artifact
 
-`borg-app-surface-design.v1` is implemented by [build-app-surface-design.mjs](../../../scripts/borg/build-app-surface-design.mjs). The script consumes the native-backed fixture and validates these screen-spec facts:
+`borg-app-surface-design.v1` is implemented by `scripts/borg/build-app-surface-design.mjs` (retired with the zombie-solver, 2026-07-16). The script consumes the native-backed fixture and validates these screen-spec facts:
 
 1. `schema = borg-app-surface-design.v1`;
 2. source manifest id is `borg-first-native-backed-fixture-manifest`;
@@ -159,7 +159,7 @@ The surface design is a `developer-test-screen-spec` artifact. It does not imple
 
 [borg.html](../../../borg.html) implements the first static browser consumer for `borg-app-surface-design.v1`. It uses [BorgFixtureData.js](../../../src/apps/borg/BorgFixtureData.js), [BorgAppRuntime.js](../../../src/apps/borg/BorgAppRuntime.js), and [main.js](../../../src/apps/borg/main.js). The page renders the displayed central cube with Three.js, consumes the native current-state frame snapshot, exposes path-history and velocity-vector layers as visibility controls, and keeps wake streams, face-boundary status, outbound-face background, benign-noise status, and central-volume acceleration fail-closed.
 
-The page is an app-surface developer test, not EOM solver integration in the browser. [build-first-native-backed-fixture.mjs](../../../scripts/borg/build-first-native-backed-fixture.mjs) remains the native-backed fixture source.
+The page is an app-surface developer test, not EOM solver integration in the browser. `scripts/borg/build-first-native-backed-fixture.mjs` (retired with the zombie-solver, 2026-07-16) remains the native-backed fixture source.
 
 ## Next Exact Build Burden
 

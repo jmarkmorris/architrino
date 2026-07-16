@@ -2,10 +2,8 @@ export const BORG_EOM_SHADOW_RUNNER_VERSION = "borg-eom-shadow-runner.v0";
 export const BORG_EOM_SHADOW_RUN_SOURCE = "computed-eom-shadow-chunks";
 export const BORG_EOM_COMPATIBILITY_HISTORY_PROVENANCE =
   "central-solver-compatibility-history-non-eom";
-export const BORG_EOM_BURN_IN_HISTORY_PROVENANCE =
-  "eom-produced-complete-burn-in-window/v1";
-export const BORG_EOM_BURN_IN_HISTORY_CLAIM_LEVEL =
-  "eom-evolved-shadow-history-not-canonical";
+export const BORG_EOM_ACCEPTED_INITIAL_HISTORY_EVOLUTION_CLAIM_LEVEL =
+  "eom-evolution-conditioned-on-accepted-initial-history";
 
 const POSITRINO_STATE_FLAG = 1;
 const ELECTRINO_STATE_FLAG = 2;
@@ -22,8 +20,8 @@ export function createBorgEomShadowRunner(manifest, options = {}) {
     );
   }
   const config = createBorgEomShadowRunConfig(manifest, options);
-  // A declared C1 initial datum is required. It is not EOM output; the runner
-  // must evolve it through a complete memory horizon before live publication.
+  // A declared C1 initial datum is required. It is not EOM output; every live
+  // extension remains explicitly conditioned on this accepted input history.
   if (!Array.isArray(options.initialFrameRows) || options.initialFrameRows.length === 0) {
     throw new TypeError(
         "Borg EOM shadow runner requires initialFrameRows carrying an accepted continuous seed history.",
@@ -44,8 +42,9 @@ export function createBorgEomShadowRunner(manifest, options = {}) {
   let targetDuration = config.targetDuration;
   let chunkDuration = config.chunkDuration;
   let chunkIndex = 0;
-  let burnInChunkCount = 0;
-  let burnInComplete = config.burnInDuration === 0;
+  const initialHistoryAccepted = histories.every(
+    (history) => history.sourceAcceptedInitialDatum === true,
+  );
   let disposed = false;
 
   return Object.freeze({
@@ -58,13 +57,7 @@ export function createBorgEomShadowRunner(manifest, options = {}) {
       return chunkIndex;
     },
     get phase() {
-      return burnInComplete ? "live" : "burn-in";
-    },
-    get burnInComplete() {
-      return burnInComplete;
-    },
-    get burnInChunkCount() {
-      return burnInChunkCount;
+      return "live";
     },
     get targetDuration() {
       return targetDuration;
@@ -95,10 +88,8 @@ export function createBorgEomShadowRunner(manifest, options = {}) {
         return createCompleteChunk(config, chunkIndex, nextStartTime);
       }
       const startTime = nextStartTime;
-      const phase = startTime < config.burnInEndTime ? "burn-in" : "live";
       const endTime = Math.min(
         targetDuration,
-        phase === "burn-in" ? config.burnInEndTime : Number.POSITIVE_INFINITY,
         roundTime(startTime + chunkDuration),
       );
       const request = createBorgEomShadowRequest({
@@ -112,21 +103,9 @@ export function createBorgEomShadowRunner(manifest, options = {}) {
       const rawResponse = await client.evolveRetainedHistories(request);
       const response = normalizeEomResponse(rawResponse, request);
       nextStartTime = endTime;
-      histories = response.histories;
-      if (phase === "burn-in") {
-        burnInChunkCount += 1;
-      }
-      if (!burnInComplete && nextStartTime >= config.burnInEndTime) {
-        histories = trimBorgRetainedHistories(histories, {
-          coverageStart: roundTime(nextStartTime - config.historyDepth),
-        });
-        histories = markBorgBurnInHistories(histories);
-        burnInComplete = true;
-      } else if (burnInComplete) {
-        histories = trimBorgRetainedHistories(histories, {
-          coverageStart: roundTime(nextStartTime - config.historyDepth),
-        });
-      }
+      histories = retainBorgHistoryWindow(response.histories, {
+        minimumCoverageStart: roundTime(nextStartTime - config.historyDepth),
+      });
       const frames = createFramesFromHistories(
         histories,
         startTime,
@@ -134,6 +113,7 @@ export function createBorgEomShadowRunner(manifest, options = {}) {
         config.sampleInterval,
         chunkIndex,
         response.evidenceStatus,
+        initialHistoryAccepted,
       );
       chunkIndex += 1;
       return Object.freeze({
@@ -146,16 +126,16 @@ export function createBorgEomShadowRunner(manifest, options = {}) {
         startTime,
         endTime,
         sampleInterval: config.sampleInterval,
-        phase,
-        burnInComplete,
-        burnInEndTime: config.burnInEndTime,
-        burnInChunksCompleted: burnInChunkCount,
+        phase: "live",
+        initialHistoryAccepted,
+        evolutionClaimLevel: initialHistoryAccepted
+          ? BORG_EOM_ACCEPTED_INITIAL_HISTORY_EVOLUTION_CLAIM_LEVEL
+          : "eom-evolution-conditioned-on-unaccepted-history",
         frames: Object.freeze(frames),
         histories,
         evidenceStatus: response.evidenceStatus,
         promotionEligible:
-          phase === "live" &&
-          burnInComplete &&
+          initialHistoryAccepted &&
           isBorgEomPromotionEligible(response, options.acceptanceGate),
         diagnostics: Object.freeze(response.diagnostics),
         bufferCount: 0,
@@ -207,14 +187,9 @@ export function createBorgEomShadowRunConfig(manifest, options = {}) {
     options.historyDepth,
     manifest.simulationEnvelope?.historyDepth ?? 10,
   );
-  const burnInDuration = positiveNumber(options.burnInDuration, historyDepth);
-  if (burnInDuration < historyDepth) {
-    throw new RangeError("Borg EOM burn-in duration must cover the complete retained-history horizon.");
-  }
-  const burnInEndTime = roundTime(startTime + burnInDuration);
   const targetDuration = finiteNumber(
     options.targetDuration,
-    roundTime(burnInEndTime + chunkDuration),
+    roundTime(startTime + chunkDuration),
   );
   if (targetDuration <= startTime) {
     throw new RangeError("Borg EOM target duration must exceed its initial-history cut.");
@@ -230,8 +205,6 @@ export function createBorgEomShadowRunConfig(manifest, options = {}) {
     fieldSpeed,
     historyStartTime: roundTime(startTime - historyDepth),
     historyDepth,
-    burnInDuration,
-    burnInEndTime,
     geometricDelayBound,
     historySafetyMargin,
     coupling: requiredNumericToken(options.coupling ?? "1", "coupling"),
@@ -438,14 +411,26 @@ export function trimBorgRetainedHistories(histories, { coverageStart } = {}) {
   }));
 }
 
-function markBorgBurnInHistories(histories) {
-  return Object.freeze(histories.map((history) => Object.freeze({
-    ...history,
-    sourceProvenance: BORG_EOM_BURN_IN_HISTORY_PROVENANCE,
-    sourceClaimLevel: BORG_EOM_BURN_IN_HISTORY_CLAIM_LEVEL,
-    sourceAcceptedInitialDatum: false,
-    sourceIsEomOutput: true,
-  })));
+export function retainBorgHistoryWindow(histories, { minimumCoverageStart } = {}) {
+  const lowerBound = requiredFiniteNumber(
+    minimumCoverageStart,
+    "retained-history minimum coverage start",
+  );
+  return Object.freeze(histories.map((history) => {
+    const segments = history.segments.filter(
+      (segment) => Number(segment.endTime) > lowerBound + 1e-9,
+    );
+    if (segments.length === 0) {
+      throw new Error(
+        `Borg EOM retained history ${history.pathId} has no segment covering ${lowerBound}.`,
+      );
+    }
+    return Object.freeze({
+      ...history,
+      coverageStart: String(Number(segments[0].startTime)),
+      segments: Object.freeze(segments),
+    });
+  }));
 }
 
 export function isBorgEomPromotionEligible(response, acceptanceGate) {
@@ -532,6 +517,7 @@ function createFramesFromHistories(
   sampleInterval,
   chunkIndex,
   evidenceStatus,
+  initialHistoryAccepted,
 ) {
   const frames = [];
   const sampleCount = Math.round((endTime - startTime) / sampleInterval);
@@ -551,9 +537,13 @@ function createFramesFromHistories(
         stateFlags: history.stateFlags ?? 0,
         dynamicChunkIndex: chunkIndex,
         runSource: BORG_EOM_SHADOW_RUN_SOURCE,
-        valueAuthority: evidenceStatus === "canonical"
-          ? "canonical-eom-output"
-          : "eom-shadow-output",
+        valueAuthority: initialHistoryAccepted
+          ? evidenceStatus === "canonical"
+            ? "canonical-eom-output-conditioned-on-accepted-initial-history"
+            : "eom-shadow-output-conditioned-on-accepted-initial-history"
+          : evidenceStatus === "canonical"
+            ? "canonical-eom-output"
+            : "eom-shadow-output",
       }));
     });
   }
@@ -595,9 +585,9 @@ function createCompleteChunk(config, chunkIndex, time) {
     startTime: time,
     endTime: time,
     sampleInterval: config.sampleInterval,
-    phase: time < config.burnInEndTime ? "burn-in" : "live",
-    burnInComplete: time >= config.burnInEndTime,
-    burnInEndTime: config.burnInEndTime,
+    phase: "live",
+    initialHistoryAccepted: false,
+    evolutionClaimLevel: "not-applicable",
     frames: Object.freeze([]),
     histories: Object.freeze([]),
     evidenceStatus: "failed",

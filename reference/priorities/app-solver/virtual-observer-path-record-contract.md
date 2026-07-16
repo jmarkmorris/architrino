@@ -16,9 +16,9 @@ Primary dependencies:
 
 Implementation evidence:
 
-- [CausalRootSolver.hpp](../../../src/solver/include/architrino/solver/CausalRootSolver.hpp) defines `LinearPathSegment` with path identity, time bounds, endpoint state, numeric type, and error bound.
-- [PathHistoryStream.hpp](../../../src/solver/include/architrino/solver/PathHistoryStream.hpp) defines `PathHistoryRowF64`, `PathHistoryIndexRow`, chunk rows, stream metadata, and range query fields.
-- [SolverAppBridgeContract.d.ts](../../../src/solver/app/SolverAppBridgeContract.d.ts) exposes `path_segment.v1`, `SolverPathHistoryRowF64`, `solver-path-history-stream-metadata.v1`, and dynamic replay metadata.
+- `src/solver/include/architrino/solver/CausalRootSolver.hpp` defines `LinearPathSegment` with path identity, time bounds, endpoint state, numeric type, and error bound.
+- `src/solver/include/architrino/solver/PathHistoryStream.hpp` defines `PathHistoryRowF64`, `PathHistoryIndexRow`, chunk rows, stream metadata, and range query fields.
+- `src/solver/app/SolverAppBridgeContract.d.ts` exposes `path_segment.v1`, `SolverPathHistoryRowF64`, `solver-path-history-stream-metadata.v1`, and dynamic replay metadata.
 - [schema.json](../../../src/contracts/solver-app-bridge/v1/schema.json) validates `pathHistoryRowF64`, `streamDescriptor`, path-history stream metadata, numeric type ids, numeric chart ids, and indexed range readback.
 
 ## Purpose

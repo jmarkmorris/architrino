@@ -1,5 +1,4 @@
 import assert from "node:assert/strict";
-import { readFileSync } from "node:fs";
 import test from "node:test";
 
 import {
@@ -643,22 +642,10 @@ test("central solver carries unresolved-root segment sidecar as fail-closed shap
   assert.equal(replaySource.summary.retainedBranch, false);
   assert.equal(replaySource.summary.provesBranchAdmissibility, false);
 
-  const t3BulkStepHeader = readFileSync(
-    new URL("../src/solver/include/architrino/solver/T3BulkStep.hpp", import.meta.url),
-    "utf8"
-  );
-  const particleStepRowMatch = t3BulkStepHeader.match(
-    /struct T3ParticleStepRowF64 \{([\s\S]*?)\n\};/
-  );
-  assert.ok(particleStepRowMatch);
-  for (const forbiddenField of [
-    "rootLedgerRecordId",
-    "causticRoute",
-    "sourcePathSegmentId",
-    "unresolvedRootSegment",
-  ]) {
-    assert.equal(particleStepRowMatch[1].includes(forbiddenField), false);
-  }
+  // The native T3BulkStep.hpp layout cross-check was removed with the
+  // zombie-solver (deleted 2026-07-16). The src/solver descriptor strings in
+  // this file and the engine are historical provenance for recorded rows, not
+  // live wiring.
 });
 
 test("solver run summary uses native bulk T3 route without per-particle fallback", async () => {

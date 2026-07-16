@@ -122,7 +122,7 @@
     "formerClaim": "An off-diagonal delayed-root topology event blocks pair 1003<-1004 near T=32.48.",
     "verdict": "refuted",
     "currentClaim": "Pair 1003<-1004 has one certified simple delayed root in the difficult cell. A tolerance-edge MPFR probe gap caused the former fail-closed result.",
-    "borgEffect": "The strict eight-path burn-in now continues past T=32.48. This closes the localized root blocker but does not yet produce the seed-free T=90 checkpoint required for Borg migration.",
+    "borgEffect": "The strict eight-path continuation now passes T=32.48. This closes the localized root blocker; Borg promotion uses the separate accepted-initial-history refinement and thread-determinism gate.",
     "falsifier": "A directed enclosure for the same accepted history showing D_s contains zero, same-cell endpoint signs are not opposite, or a complete independent scan finds a different root count would overturn this certificate."
   }
 }

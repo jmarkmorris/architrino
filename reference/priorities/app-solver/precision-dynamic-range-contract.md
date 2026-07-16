@@ -10,10 +10,10 @@ Primary source: [precision.md](precision.md)
 
 Implementation surfaces:
 
-- [SolverAppBridge.mjs](../../../src/solver/app/SolverAppBridge.mjs)
-- [SolverAppBridgeContract.d.ts](../../../src/solver/app/SolverAppBridgeContract.d.ts)
+- `src/solver/app/SolverAppBridge.mjs`
+- `src/solver/app/SolverAppBridgeContract.d.ts`
 - [schema.json](../../../src/contracts/solver-app-bridge/v1/schema.json)
-- [RootLedger.hpp](../../../src/solver/include/architrino/solver/RootLedger.hpp)
+- `src/solver/include/architrino/solver/RootLedger.hpp`
 
 ## Purpose
 

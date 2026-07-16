@@ -27,17 +27,17 @@ Primary dependencies:
 Implementation surfaces:
 
 - [schema.json](../../../src/contracts/solver-app-bridge/v1/schema.json)
-- [SolverAppBridgeContract.d.ts](../../../src/solver/app/SolverAppBridgeContract.d.ts)
-- [SolverAppBridge.mjs](../../../src/solver/app/SolverAppBridge.mjs)
-- [SolverTypes.hpp](../../../src/solver/include/architrino/solver/SolverTypes.hpp)
-- [SolverContract.hpp](../../../src/solver/include/architrino/solver/SolverContract.hpp)
-- [SolverCAbi.hpp](../../../src/solver/include/architrino/solver/SolverCAbi.hpp)
-- [SolverContract.cpp](../../../src/solver/src/SolverContract.cpp)
-- [SolverCAbi.cpp](../../../src/solver/src/SolverCAbi.cpp)
-- [check-solver-contract-fixtures.mjs](../../../scripts/check-solver-contract-fixtures.mjs)
-- [check-solver-app-bridge.mjs](../../../scripts/check-solver-app-bridge.mjs)
-- [build-solver-smoke.mjs](../../../scripts/build-solver-smoke.mjs)
-- [benchmark-solver.mjs](../../../scripts/benchmark-solver.mjs)
+- `src/solver/app/SolverAppBridgeContract.d.ts`
+- `src/solver/app/SolverAppBridge.mjs`
+- `src/solver/include/architrino/solver/SolverTypes.hpp`
+- `src/solver/include/architrino/solver/SolverContract.hpp`
+- `src/solver/include/architrino/solver/SolverCAbi.hpp`
+- `src/solver/src/SolverContract.cpp`
+- `src/solver/src/SolverCAbi.cpp`
+- `scripts/check-solver-contract-fixtures.mjs`
+- `scripts/check-solver-app-bridge.mjs`
+- `scripts/build-solver-smoke.mjs`
+- `scripts/benchmark-solver.mjs`
 
 ## Contract Boundary
 
@@ -80,23 +80,23 @@ belong in future scoped tasks that consume this contract.
 
 The contract baseline is supported by current checks:
 
-1. [check-solver-contract-fixtures.mjs](../../../scripts/check-solver-contract-fixtures.mjs)
+1. `scripts/check-solver-contract-fixtures.mjs`
    verifies the app-bridge schema entrypoint, worker-message schemas, capability
    schemas, run request/response schemas, binary layouts, model contract,
    simulation envelope, manifests, validation artifacts, storage lifecycle,
    path-history stream artifacts, root ledger, phase-at-hit, threading plan,
    numeric serialization, assembly graph, space-time index, motion, geometry, and
    all fixture-backed request/response variants.
-2. [check-solver-app-bridge.mjs](../../../scripts/check-solver-app-bridge.mjs)
+2. `scripts/check-solver-app-bridge.mjs`
    exercises direct client initialization, capabilities, app adapters, ABI sizes,
    status taxonomy, precision routing, admission, threading plans, work-packet
    helpers, assembly graph, root ledgers, phase-at-hit rows, path-history streams,
    storage lifecycle, run manifests, worker dispatch, cancellation, disposal, and
    app-contract error normalization.
-3. [build-solver-smoke.mjs](../../../scripts/build-solver-smoke.mjs) validates
+3. `scripts/build-solver-smoke.mjs` validates
    the native C++/Clang smoke path, WebAssembly smoke calls, package manifest,
    app bridge, baseline sandbox, and migration parity together.
-4. [benchmark-solver.mjs](../../../scripts/benchmark-solver.mjs) provides the
+4. `scripts/benchmark-solver.mjs` provides the
    current benchmark-sanity report for causal-root, thread-scaling,
    emission-shell broad-phase, space-time index, stream/store IO, path-history
    spill, readback, deep-index, and recovery-detection cases.

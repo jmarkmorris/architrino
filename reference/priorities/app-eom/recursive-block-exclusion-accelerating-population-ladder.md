@@ -104,7 +104,7 @@ active-aggregation, or production-evolution performance.
 ## Deliverables
 
 - scoped accelerating benchmark fixtures and tests;
-- a focused evidence record under [evidence/](evidence/);
+- a focused evidence record under `evidence/`;
 - a concise dated [work-log.md](work-log.md) entry;
 - measured sparse and dense accelerating-population ladders;
 - claim grades and explicit falsifiers.

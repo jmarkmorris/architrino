@@ -17,12 +17,12 @@ Primary dependencies:
 
 Implementation surfaces:
 
-- [SolverAppBridgeContract.d.ts](../../../src/solver/app/SolverAppBridgeContract.d.ts)
-- [SolverAppBridge.mjs](../../../src/solver/app/SolverAppBridge.mjs)
+- `src/solver/app/SolverAppBridgeContract.d.ts`
+- `src/solver/app/SolverAppBridge.mjs`
 - [schema.json](../../../src/contracts/solver-app-bridge/v1/schema.json)
-- [ParallelExecution.hpp](../../../src/solver/include/architrino/solver/ParallelExecution.hpp)
-- [CausalRootBatchSolver.hpp](../../../src/solver/include/architrino/solver/CausalRootBatchSolver.hpp)
-- [solver_benchmark.cpp](../../../src/solver/native/solver_benchmark.cpp)
+- `src/solver/include/architrino/solver/ParallelExecution.hpp`
+- `src/solver/include/architrino/solver/CausalRootBatchSolver.hpp`
+- `src/solver/native/solver_benchmark.cpp`
 
 ## Purpose
 

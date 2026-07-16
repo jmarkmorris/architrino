@@ -119,6 +119,38 @@ export function createBorgSeededInitialConditionRows({ manifest, seedIndex = 0, 
   })));
 }
 
+export function calculateBorgInertialHistoryDepth(
+  endpointRows,
+  { fieldSpeed = 1, sampleInterval = 0.01, safetyMargin = sampleInterval } = {},
+) {
+  const speed = Number(fieldSpeed);
+  const interval = Number(sampleInterval);
+  const margin = Number(safetyMargin);
+  if (!Array.isArray(endpointRows) || endpointRows.length === 0) {
+    throw new TypeError("Borg inertial history coverage requires endpoint rows.");
+  }
+  if (!(speed > 0) || !(interval > 0) || !(margin >= 0)) {
+    throw new RangeError("Borg inertial history coverage requires positive field speed and sample interval.");
+  }
+  let delayUpperBound = 0;
+  endpointRows.forEach((receiver) => {
+    endpointRows.forEach((source) => {
+      const sourceSpeed = vectorMagnitude(source.velocity);
+      if (!(sourceSpeed < speed)) {
+        throw new RangeError(
+          `Borg inertial initial history requires sub-field source speed for path ${source.pathKey}.`,
+        );
+      }
+      const separation = vectorDistance(receiver.position, source.position);
+      delayUpperBound = Math.max(
+        delayUpperBound,
+        separation / (speed - sourceSpeed),
+      );
+    });
+  });
+  return Number((Math.ceil((delayUpperBound + margin) / interval) * interval).toFixed(12));
+}
+
 export async function createBorgAcceptedInertialSeedHistory(
   endpointRows,
   { historyStartTime, historyEndTime, sampleInterval = 0.01, digest = sha256Hex } = {},
@@ -351,6 +383,28 @@ function hashSeedText(seedText) {
     hash = Math.imul(hash, 16777619);
   });
   return hash >>> 0;
+}
+
+function vectorMagnitude(vector) {
+  const x = Number(vector?.x);
+  const y = Number(vector?.y);
+  const z = Number(vector?.z);
+  if (![x, y, z].every(Number.isFinite)) {
+    throw new TypeError("Borg inertial history coverage requires finite velocity components.");
+  }
+  return Math.hypot(x, y, z);
+}
+
+function vectorDistance(left, right) {
+  const values = [
+    Number(left?.x) - Number(right?.x),
+    Number(left?.y) - Number(right?.y),
+    Number(left?.z) - Number(right?.z),
+  ];
+  if (!values.every(Number.isFinite)) {
+    throw new TypeError("Borg inertial history coverage requires finite positions.");
+  }
+  return Math.hypot(...values);
 }
 
 function strictNonNegativeInteger(value) {
