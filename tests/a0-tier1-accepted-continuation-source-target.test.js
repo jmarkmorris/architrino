@@ -15,61 +15,6 @@ import {
 const SCRIPT_PATH = fileURLToPath(
   new URL("../scripts/mass-map/a0-tier1-accepted-continuation-source-target.mjs", import.meta.url)
 );
-const A0_BRANCH_SOURCE_PARTIAL_FIXTURE = fileURLToPath(
-  new URL("../scripts/mass-map/fixtures/pressure-row-branch-intake-a0-branch-source-partial.json", import.meta.url)
-);
-
-test("A0 Tier 1 accepted-continuation source target rejects current fixture-backed partial", () => {
-  const fixture = JSON.parse(fs.readFileSync(A0_BRANCH_SOURCE_PARTIAL_FIXTURE, "utf8"));
-  const report = buildAcceptedContinuationSourceTarget(fixture, {
-    sourceRef: A0_BRANCH_SOURCE_PARTIAL_FIXTURE,
-  });
-
-  assert.deepEqual(validationErrors(report), []);
-  assert.equal(report.schema, "a0-tier1-accepted-continuation-source/v1");
-  assert.equal(report.claim_level, "fail-closed producer target, not accepted continuation evidence");
-  assert.equal(report.accepted_source_candidate_available, false);
-  assert.equal(report.authorizes_retained_pressure_row_provider, false);
-  assert.equal(report.first_failure, "accepted_tier1_continuation_source_missing");
-  assert.equal(report.first_missing_field, "provider_source_status");
-  assert.equal(report.rejected_source_family_codes.includes("fixture_ref"), true);
-  assert.equal(report.rejected_source_family_codes.includes("diagnostic_row"), true);
-  assert.equal(
-    report.missing_or_rejected_fields_by_group.provider_provenance.includes("branch_certificate_ref"),
-    true
-  );
-  assert.equal(
-    report.missing_or_rejected_fields_by_group.direct_one_period_residual_ledger.includes(
-      "direct_one_period_residual_ledger.residuals_below_tolerance"
-    ),
-    true
-  );
-  assert.equal(
-    report.missing_or_rejected_fields_by_group.quotient_monodromy.includes(
-      "quotient_monodromy.Delta_k_positive"
-    ),
-    true
-  );
-  assert.equal(
-    report.missing_or_rejected_fields_by_group.eta_ladder_persistence.includes(
-      "eta_ladder_persistence.same_branch_persists_across_eta_ladder"
-    ),
-    true
-  );
-  assert.equal(
-    report.missing_or_rejected_fields_by_group.retained_source_binding.includes(
-      "retained_source_binding.source_artifact_hash"
-    ),
-    true
-  );
-  assert.equal(
-    report.missing_or_rejected_fields_by_group.receiver_normal_branch_strength.includes(
-      "receiver_normal_branch_strength.W_rec"
-    ),
-    true
-  );
-});
-
 test("A0 Tier 1 accepted-continuation source target rejects fixture or shortcut provenance even with accepted-looking fields", () => {
   const candidate = completeAcceptedLookingCandidate({
     source_ref: "scripts/mass-map/fixtures/accepted-looking-a0-source.json",
@@ -133,30 +78,6 @@ test("A0 Tier 1 source target translates corrected rerun residuals without accep
   assert.equal(report.corrected_rerun_source_boundary.pass_fail_fields.no_secular_center_drift, true);
   assert.equal(report.corrected_rerun_source_boundary.pass_fail_fields.Delta_k_positive, false);
   assert.equal(report.corrected_rerun_source_boundary.measured_residuals.R_root, 40.11722462935903);
-});
-
-test("A0 Tier 1 accepted-continuation source target CLI emits and validates fixture-backed partial report", () => {
-  const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), "a0-tier1-source-target-"));
-  const reportPath = path.join(tempDir, "report.json");
-
-  execFileSync(
-    process.execPath,
-    [SCRIPT_PATH, "--source", A0_BRANCH_SOURCE_PARTIAL_FIXTURE, "--out", reportPath, "--pretty"],
-    { encoding: "utf8" }
-  );
-
-  const report = JSON.parse(fs.readFileSync(reportPath, "utf8"));
-  assert.equal(report.accepted_source_candidate_available, false);
-  assert.equal(report.first_missing_field, "provider_source_status");
-
-  const validation = JSON.parse(
-    execFileSync(process.execPath, [SCRIPT_PATH, "--validate", reportPath, "--pretty"], {
-      encoding: "utf8",
-    })
-  );
-  assert.equal(validation.valid, true);
-  assert.equal(validation.first_failure, "accepted_tier1_continuation_source_missing");
-  assert.equal(validation.first_missing_field, "provider_source_status");
 });
 
 test("A0 Tier 1 source target CLI emits measured corrected-rerun boundary", () => {

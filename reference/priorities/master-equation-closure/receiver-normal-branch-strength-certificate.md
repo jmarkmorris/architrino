@@ -404,29 +404,11 @@ carry the same retained branch labels, receiver-normal fields, derivative
 fields, projection or normalization identity, and consumer checksum before
 aggregation erases branch identity.
 
-The executable H39 branch-provider audit sharpens this boundary in
-[Branch Provider Evidence Report](../app-solver/branch-provider-evidence-report.md#receiver-normal-first-derivative-readout):
-the target names five shared source cells, 15 terminal rows, and 30 `P_-` /
-`P_+` branch rows, but the manifest emits zero accepted provider-object branch
-intervals and no same-record $D_s$, $D_T$, $D_vD_s$, $D_vD_T$, or
-$D_vW^{\mathrm{rec}}$ rows. Its first derivative-evidence verdict is therefore
-`h39-receiver-normal-first-derivative-evidence-not-populated`, with the
-provider-object branch rows still missing before receiver-normal derivative
-binding can even be attempted. The precise executable first missing field is
-`source_map_provider_object_branch_split_map_available_terminal_row_count`;
-the next H39 producer-side source surface,
-`terminal-expression-level-source-map-provider-object-branch-antisymmetric-equation-extractor`,
-is emitted only as an absence readout with `0 / 15` available
-$A_P=P_- - P_+$ terminal rows and `0 / 30` explicit `P_-` / `P_+` rows.
-Populated variable-owned alpha, row-local branch-feed, and term-pushforward
-candidate diagnostics remain negative-control evidence until the same-domain
-$P_b$ identity, pushforward operator, and normalization identity are present.
-The H39 primitive-vector replay, hybrid prefix-Cauchy order diagnostic, and
-coefficient-series source-map residual provider candidates fail even earlier as
-`h39-primitive-vector-provider-provenance-only-not-retained-record-preimage` or
-`h39-coefficient-series-provider-candidate-not-retained-record-preimage`: they
-may guide provider-object construction, but they do not emit an accepted
-$A_P=P_- - P_+$ row or a retained causal-root derivative record.
+The executable H39 branch-provider audit that formerly sharpened this
+boundary was removed 2026-07-16 — legacy candidate intake retired with the
+pre-EOM evaluator; see
+`reference/priorities/operations/pre-eom-evaluator-removal.md`. Re-derivation
+from EOM evidence is queued.
 The H39-specific preimage row target is
 `h39-receiver-normal-retained-record-preimage-row/v0`: it first requires an
 accepted provider-object branch row, then a retained causal-root force/action

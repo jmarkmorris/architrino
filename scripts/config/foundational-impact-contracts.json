@@ -159,13 +159,13 @@
             "reason": "Recheck causal-ledger proof intake."
           },
           {
-            "command": "node --test tests/torque-wake-same-row-diagnostic-report.test.js tests/nested-shell-braid-action-increment-source-contract.test.js tests/action-boundary-pullback-diagnostic.test.js",
+            "command": "node --test tests/nested-shell-braid-action-increment-source-contract.test.js tests/action-boundary-pullback-diagnostic.test.js",
             "reason": "Recheck nested-shell rows that distinguish force/action weight from diagnostics."
           }
         ],
         "simulations": [
           {
-            "command": "node --test tests/field-speed-action-self-hit-scan-source-binding-report.test.js tests/field-speed-action-self-hit-scan-source-binding-candidate-intake-report.test.js",
+            "command": "node --test tests/field-speed-action-self-hit-scan-source-binding-report.test.js",
             "reason": "Recheck self-hit/action scans that consume branch-strength rows."
           }
         ],
@@ -231,7 +231,7 @@
         ],
         "proofPrograms": [
           {
-            "command": "node --test tests/field-speed-action-self-hit-scan-source-binding-report.test.js tests/field-speed-action-self-hit-scan-source-binding-candidate-intake-report.test.js",
+            "command": "node --test tests/field-speed-action-self-hit-scan-source-binding-report.test.js",
             "reason": "Recheck proof-program packets that consume field-speed causal windows."
           }
         ],
