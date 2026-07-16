@@ -10,7 +10,7 @@ A 3D viewer for looking at the assemblies this program models and the emergent a
 
 The viewer computes no physics: no accelerations, no causal roots, no evolution, no residuals. It draws recorded data only. Every scene shows a provenance banner — engine, run id, claim grade (`chart-hypothesis` or `evolved-record`), and instrument references. Rationale: the legacy failure mode was app-facing paths quietly computing non-canonical physics under production labels; a pure viewer cannot launder a claim. Any derived display quantity (speed color, trail depth) is computed from the record's own samples by declared arithmetic, never by re-running dynamics.
 
-## Assembly View Record (schema v0 sketch — to be finalized in the instrument gate)
+## Assembly View Record (schema v0 — finalized in [instrument-gate.md](instrument-gate.md) §4, which is the source of truth; the sketch below is the ratified requirements baseline)
 
 - `schema`: `assembly-view-record.v0`.
 - `provenance`: engine id and version; run id; claim grade (`chart-hypothesis` | `evolved-record`); generating spec/campaign reference; date.
@@ -21,7 +21,7 @@ The viewer computes no physics: no accelerations, no causal roots, no evolution,
 - `events[]` (optional): field-speed crossings, root-count transitions, or other engine-declared events with timestamps and worldline ids.
 - Sidecar-friendly: records are plain files the engine emits; the viewer never talks to a live engine in v0.
 
-The instrument-gate spec should adopt this schema so the first N-ladder campaign run emits viewable records from day one.
+The instrument gate has adopted this schema (2026-07-16): every booked campaign run and collapse-protocol seed emits a record, the shared display adapter (`src/apps/shared/EomHistoryDataset.mjs`) ingests it, and Borg replays record files directly at `borg.html?eomRecord=<url>`.
 
 ## Display Modes
 

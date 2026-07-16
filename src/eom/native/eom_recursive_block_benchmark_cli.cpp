@@ -23,10 +23,40 @@ namespace eom = architrino::eom;
 namespace {
 
 using Clock = std::chrono::steady_clock;
+using ScaledDecimal = std::int64_t;
+constexpr ScaledDecimal decimal_scale = INT64_C(1000000000000);
 
 std::string token(double value) {
   std::ostringstream stream;
   stream << std::setprecision(17) << value;
+  return stream.str();
+}
+
+ScaledDecimal scaled_decimal(double value) {
+  const long double scaled =
+      static_cast<long double>(value) * decimal_scale;
+  if (scaled < static_cast<long double>(
+                   std::numeric_limits<ScaledDecimal>::min()) ||
+      scaled > static_cast<long double>(
+                   std::numeric_limits<ScaledDecimal>::max())) {
+    throw std::overflow_error("fixed decimal token exceeds int64 range");
+  }
+  return static_cast<ScaledDecimal>(std::llround(scaled));
+}
+
+std::string exact_token(ScaledDecimal value) {
+  const bool negative = value < 0;
+  const std::uint64_t magnitude = negative
+      ? static_cast<std::uint64_t>(-(value + 1)) + 1U
+      : static_cast<std::uint64_t>(value);
+  const std::uint64_t whole = magnitude / decimal_scale;
+  const std::uint64_t fractional = magnitude % decimal_scale;
+  std::ostringstream stream;
+  if (negative) {
+    stream << '-';
+  }
+  stream << whole << '.' << std::setfill('0') << std::setw(12)
+         << fractional;
   return stream.str();
 }
 
@@ -42,6 +72,46 @@ eom::RetainedHistory linear_history(
               std::array<std::string, 4>{"0", "0", "0", "0"},
               std::array<std::string, 4>{"0", "0", "0", "0"}},
           "0", "0")});
+}
+
+eom::RetainedHistory piecewise_cubic_history(
+    const std::string& id, double position, double velocity,
+    double quadratic, double cubic) {
+  const ScaledDecimal exact_position = scaled_decimal(position);
+  const ScaledDecimal exact_velocity = scaled_decimal(velocity);
+  const ScaledDecimal exact_quadratic = scaled_decimal(quadratic);
+  const ScaledDecimal exact_cubic = scaled_decimal(cubic);
+  const std::string exact_position_token = exact_token(exact_position);
+  const std::string velocity_token = exact_token(exact_velocity);
+  const std::string quadratic_token = exact_token(exact_quadratic);
+  const std::string cubic_token = exact_token(exact_cubic);
+  const std::string join_position = exact_token(
+      exact_position + exact_velocity + exact_quadratic + exact_cubic);
+  const std::string join_velocity = exact_token(
+      exact_velocity + 2 * exact_quadratic + 3 * exact_cubic);
+  const std::string second_quadratic =
+      exact_token(-3 * exact_quadratic / 4);
+  const std::string second_cubic = exact_token(-exact_cubic / 2);
+  return eom::RetainedHistory(
+      id,
+      {eom::CubicHistorySegment(
+           "0", "1",
+           eom::CubicCoefficientTokens{
+               std::array<std::string, 4>{
+                   exact_position_token, velocity_token, quadratic_token,
+                   cubic_token},
+               std::array<std::string, 4>{"0", "0", "0", "0"},
+               std::array<std::string, 4>{"0", "0", "0", "0"}},
+           "0", "0"),
+       eom::CubicHistorySegment(
+           "1", "2",
+           eom::CubicCoefficientTokens{
+               std::array<std::string, 4>{
+                   join_position, join_velocity, second_quadratic,
+                   second_cubic},
+               std::array<std::string, 4>{"0", "0", "0", "0"},
+               std::array<std::string, 4>{"0", "0", "0", "0"}},
+           "0", "0")});
 }
 
 std::uint64_t checked_logical(std::size_t population) {
@@ -137,9 +207,12 @@ Population make_population(std::string_view kind, std::size_t count) {
   Population population;
   population.receivers.reserve(count);
   population.sources.reserve(count);
-  const bool moving =
+  const bool accelerating =
+      kind == "accelerating_sparse" || kind == "accelerating_dense";
+  const bool moving = accelerating ||
       kind == "moving_sparse" || kind == "moving_dense";
-  const bool sparse = kind == "sparse" || kind == "moving_sparse";
+  const bool sparse = kind == "sparse" || kind == "moving_sparse" ||
+      kind == "accelerating_sparse";
   const std::size_t sparse_near_count =
       std::max<std::size_t>(4U, count / 100U);
   for (std::size_t index = 0; index < count; ++index) {
@@ -172,12 +245,40 @@ Population make_population(std::string_view kind, std::size_t count) {
         }
       }
     }
-    population.receivers.push_back(linear_history(
-        "receiver-" + std::to_string(index), receiver_position,
-        receiver_velocity));
-    population.sources.push_back(linear_history(
-        "source-" + std::to_string(index), source_position,
-        source_velocity));
+    const double receiver_quadratic =
+        0.002 + 0.0002 * static_cast<double>(index % 5U);
+    const double receiver_cubic =
+        0.0001 + 0.00002 * static_cast<double>(index % 3U);
+    double source_quadratic =
+        -0.0014 - 0.0001 * static_cast<double>(index % 5U);
+    double source_cubic =
+        0.00008 + 0.00001 * static_cast<double>(index % 3U);
+    if (sparse && index + sparse_near_count < count) {
+      source_quadratic =
+          -0.001 + 0.00015 * static_cast<double>(index % 5U);
+      source_cubic =
+          -0.00007 - 0.00001 * static_cast<double>(index % 3U);
+    } else if (sparse) {
+      source_quadratic =
+          0.001 + 0.00015 * static_cast<double>(index % 5U);
+      source_cubic =
+          0.00005 + 0.00001 * static_cast<double>(index % 3U);
+    }
+    if (accelerating) {
+      population.receivers.push_back(piecewise_cubic_history(
+          "receiver-" + std::to_string(index), receiver_position,
+          receiver_velocity, receiver_quadratic, receiver_cubic));
+      population.sources.push_back(piecewise_cubic_history(
+          "source-" + std::to_string(index), source_position,
+          source_velocity, source_quadratic, source_cubic));
+    } else {
+      population.receivers.push_back(linear_history(
+          "receiver-" + std::to_string(index), receiver_position,
+          receiver_velocity));
+      population.sources.push_back(linear_history(
+          "source-" + std::to_string(index), source_position,
+          source_velocity));
+    }
   }
   population.receiver_members.reserve(count);
   population.source_members.reserve(count);
@@ -232,7 +333,8 @@ void run_traversal(
     std::string_view kind, std::size_t count, std::size_t threads,
     std::uint64_t maximum_exact_pairs, bool complete_path) {
   const std::uint64_t logical = checked_logical(count);
-  if ((kind == "dense" || kind == "moving_dense") &&
+  if ((kind == "dense" || kind == "moving_dense" ||
+       kind == "accelerating_dense") &&
       logical > maximum_exact_pairs) {
     print_common(
         complete_path ? "recursive_complete" : "recursive_traversal",
@@ -361,7 +463,8 @@ int main(int argc, char** argv) {
     if (argc != 6) {
       std::cerr << "usage: eom_recursive_block_benchmark_cli "
                    "traversal|recursive|exhaustive "
-                   "sparse|dense|moving_sparse|moving_dense population threads "
+                   "sparse|dense|moving_sparse|moving_dense|"
+                   "accelerating_sparse|accelerating_dense population threads "
                    "maximum_exact_pairs\n";
       return EXIT_FAILURE;
     }
@@ -370,7 +473,8 @@ int main(int argc, char** argv) {
     if ((route != "traversal" && route != "recursive" &&
          route != "exhaustive") ||
         (kind != "sparse" && kind != "dense" &&
-         kind != "moving_sparse" && kind != "moving_dense")) {
+         kind != "moving_sparse" && kind != "moving_dense" &&
+         kind != "accelerating_sparse" && kind != "accelerating_dense")) {
       throw std::invalid_argument("unsupported route or population kind");
     }
     const std::size_t population = positive_size(argv[3], "population");

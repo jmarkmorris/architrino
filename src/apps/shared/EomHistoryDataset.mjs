@@ -10,28 +10,39 @@
 // sketch sanctions for derived display quantities. There is no integrator,
 // no interaction law, and no causal-root solving here, and none may be added.
 //
-// Field naming is aligned with the planned `assembly-view-record.v0` schema
-// where cheap: `provenance` (engine, run id, claim grade), `window`,
-// `worldlines[]` (id, polarity, sampled t/position/velocity), `events[]`.
+// It also ingests `assembly-view-record.v0`, the braid-program viewer record
+// schema (finalized in reference/priorities/braid-program/campaigns/
+// instrument-gate.md): `provenance` (engine, run id, claim grade), `window`,
+// `worldlines[]` (id, polarity, retained segments; optional display samples),
+// `events[]`. Retained segments are the authoritative state in both schemas;
+// sampled rows are display convenience only and are never evaluated.
 
 export const EOM_EVOLUTION_CONTRACT_ID = "eom_evolution_contract/v0";
+export const ASSEMBLY_VIEW_RECORD_SCHEMA = "assembly-view-record.v0";
 export const EOM_HISTORY_DATASET_SCHEMA = "eom-history-dataset.v0";
 export const EOM_HISTORY_DEFAULT_ENGINE_ID = "eom-solver";
+export const ASSEMBLY_VIEW_CLAIM_GRADES = Object.freeze(["chart-hypothesis", "evolved-record"]);
 
 const AXES = Object.freeze(["x", "y", "z"]);
 const CUBIC_COEFFICIENT_COUNT = 4;
 
 export function createEomHistoryDataset(record, options = {}) {
   if (!record || typeof record !== "object") {
-    throw new TypeError("EOM history dataset requires an eom_evolution_contract/v0 record.");
-  }
-  if (record.contractId !== EOM_EVOLUTION_CONTRACT_ID) {
     throw new TypeError(
-      `EOM history dataset requires contractId ${EOM_EVOLUTION_CONTRACT_ID}; received ${String(record.contractId ?? "none")}.`,
+      "EOM history dataset requires an eom_evolution_contract/v0 or assembly-view-record.v0 record.",
     );
   }
-  const provenance = normalizeProvenance(record, options);
-  const worldlines = normalizeWorldlines(record.histories);
+  const isAssemblyViewRecord = record.schema === ASSEMBLY_VIEW_RECORD_SCHEMA;
+  if (!isAssemblyViewRecord && record.contractId !== EOM_EVOLUTION_CONTRACT_ID) {
+    throw new TypeError(
+      `EOM history dataset requires contractId ${EOM_EVOLUTION_CONTRACT_ID} or schema ${ASSEMBLY_VIEW_RECORD_SCHEMA}; received ${String(record.contractId ?? record.schema ?? "none")}.`,
+    );
+  }
+  const provenance = normalizeProvenance(record, options, { isAssemblyViewRecord });
+  const worldlines = normalizeWorldlines(
+    record.histories ?? record.worldlines,
+    { isAssemblyViewRecord },
+  );
   const window = normalizeWindow(record, worldlines);
   const worldlinesById = new Map(worldlines.map((worldline) => [worldline.id, worldline]));
 
@@ -103,25 +114,34 @@ export function createEomHistoryDataset(record, options = {}) {
   return Object.freeze({
     schema: EOM_HISTORY_DATASET_SCHEMA,
     contractId: EOM_EVOLUTION_CONTRACT_ID,
+    sourceSchema: isAssemblyViewRecord ? ASSEMBLY_VIEW_RECORD_SCHEMA : EOM_EVOLUTION_CONTRACT_ID,
     provenance,
     window,
     worldlines,
     events: Object.freeze(Array.isArray(record.events) ? [...record.events] : []),
+    binaries: Object.freeze(Array.isArray(record.binaries) ? [...record.binaries] : []),
+    ansatz: Object.freeze(Array.isArray(record.ansatz) ? [...record.ansatz] : []),
     evaluateWorldline,
     createFrameSamples,
     createTrailSamples,
   });
 }
 
-function normalizeProvenance(record, options) {
+function normalizeProvenance(record, options, { isAssemblyViewRecord = false } = {}) {
   const claimGrade =
+    record.provenance?.claimGrade ??
     record.claimGrade ?? record.claimLevel ?? options.claimGrade ?? options.claimLevel;
   if (typeof claimGrade !== "string" || claimGrade.length === 0) {
     throw new TypeError(
       "EOM history dataset requires a claim grade (record.claimGrade/claimLevel); displayed datasets must carry provenance.",
     );
   }
-  const runId = record.runId ?? options.runId;
+  if (isAssemblyViewRecord && !ASSEMBLY_VIEW_CLAIM_GRADES.includes(claimGrade)) {
+    throw new TypeError(
+      `assembly-view-record.v0 claim grade must be one of ${ASSEMBLY_VIEW_CLAIM_GRADES.join("|")}; received ${claimGrade}.`,
+    );
+  }
+  const runId = record.provenance?.runId ?? record.runId ?? options.runId;
   if (typeof runId !== "string" || runId.length === 0) {
     throw new TypeError("EOM history dataset requires a runId; displayed datasets must carry provenance.");
   }
@@ -133,7 +153,8 @@ function normalizeProvenance(record, options) {
     requestId: record.requestId ?? null,
     contractId: EOM_EVOLUTION_CONTRACT_ID,
     claimGrade,
-    evidenceStatus: record.evidenceStatus ?? null,
+    evidenceStatus: record.provenance?.evidenceStatus ?? record.evidenceStatus ?? null,
+    generatingSpec: record.provenance?.generatingSpec ?? null,
     sourceProvenance: record.provenance?.importedHistoryAuthority ?? null,
   });
 }
@@ -141,8 +162,14 @@ function normalizeProvenance(record, options) {
 function normalizeWindow(record, worldlines) {
   const coverageStart = Math.max(...worldlines.map((worldline) => worldline.coverage.start));
   const coverageEnd = Math.min(...worldlines.map((worldline) => worldline.coverage.end));
-  const start = finiteNumber(record.absoluteTimeInterval?.start, coverageStart);
-  const end = finiteNumber(record.absoluteTimeInterval?.end, coverageEnd);
+  const start = finiteNumber(
+    record.window?.start ?? record.absoluteTimeInterval?.start,
+    coverageStart,
+  );
+  const end = finiteNumber(
+    record.window?.end ?? record.absoluteTimeInterval?.end,
+    coverageEnd,
+  );
   if (!(end > start) && !(end === start)) {
     throw new RangeError("EOM history dataset window is empty or inverted.");
   }
@@ -156,24 +183,34 @@ function normalizeWindow(record, worldlines) {
   });
 }
 
-function normalizeWorldlines(histories) {
+function normalizeWorldlines(histories, { isAssemblyViewRecord = false } = {}) {
   if (!Array.isArray(histories) || histories.length === 0) {
-    throw new TypeError("EOM history dataset requires a nonempty histories array.");
+    throw new TypeError("EOM history dataset requires a nonempty histories/worldlines array.");
   }
-  return Object.freeze(histories.map((history) => normalizeWorldline(history)));
+  return Object.freeze(histories.map((history) =>
+    normalizeWorldline(history, { isAssemblyViewRecord }),
+  ));
 }
 
-function normalizeWorldline(history) {
+function normalizeWorldline(history, { isAssemblyViewRecord = false } = {}) {
   if (!history || typeof history !== "object") {
     throw new TypeError("EOM history dataset worldline must be an object.");
   }
-  const id = String(history.pathId ?? "");
+  const id = String(history.pathId ?? history.id ?? "");
   if (id.length === 0) {
-    throw new TypeError("EOM history dataset worldline requires a pathId.");
+    throw new TypeError("EOM history dataset worldline requires a pathId/id.");
   }
-  const charge = requiredFiniteNumber(history.charge, `worldline ${id} charge`);
+  const charge = requiredFiniteNumber(
+    history.charge ?? history.polarity,
+    `worldline ${id} charge/polarity`,
+  );
   if (!Array.isArray(history.segments) || history.segments.length === 0) {
-    throw new TypeError(`EOM worldline ${id} lacks retained segments.`);
+    throw new TypeError(
+      isAssemblyViewRecord
+        ? `assembly-view-record worldline ${id} lacks retained segments; the state of a delay ` +
+          "system is its history, so sampled-only worldlines cannot be animated as state."
+        : `EOM worldline ${id} lacks retained segments.`,
+    );
   }
   const segments = history.segments.map((segment, index) =>
     normalizeSegment(segment, id, index),
@@ -200,6 +237,9 @@ function normalizeWorldline(history) {
     sourceProvenance: history.sourceProvenance ?? null,
     sourceClaimLevel: history.sourceClaimLevel ?? null,
     segments: Object.freeze(segments),
+    // Optional display-only sampled rows (assembly-view-record.v0 sidecar);
+    // never evaluated as state.
+    samples: Object.freeze(Array.isArray(history.samples) ? [...history.samples] : []),
   });
 }
 

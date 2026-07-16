@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 """Independent self-root and self-force comparator for the canonical-photon
-search screen (scripts/braid-ideal/canonical-photon-search.mjs).
+search screen (scripts/braid-ideal/canonical-photon-search.mjs; instrument
+retired 2026-07-16 with the legacy braid-ideal set, recoverable from git
+history).
 
 Reference: the closed-form helical self-root residual, derivable by hand from
 the drifting-circle chord,

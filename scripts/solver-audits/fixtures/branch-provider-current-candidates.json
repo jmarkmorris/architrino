@@ -95,7 +95,7 @@
       "active_root_or_live_ledger_identity": "route-root-key:2856731379702547500",
       "conservation_pullback_hash": null,
       "branch_local_projection_or_normalization_identity": "same-row force/partition/torque/wake diagnostic row ids",
-      "notes": "The diagnostic attaches sampled same-row torque and wake rows but leaves retainedBranchClaim=false and branch_certificate_ref absent. source_ref target retired 2026-07-16 with the legacy instruments (Decision A); the runner is recoverable from git history and its fixtures are archived at reference/priorities/braid-archive/retired-instrument-fixtures/."
+      "notes": "The diagnostic attaches sampled same-row torque and wake rows but leaves retainedBranchClaim=false and branch_certificate_ref absent. source_ref target retired 2026-07-16 with the legacy instruments (Decision A); the runner and its fixtures are recoverable from git history."
     },
     {
       "id": "h39-aggregate-p-provider-preaggregation-construction-attempt",

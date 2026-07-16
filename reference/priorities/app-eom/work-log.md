@@ -1353,3 +1353,82 @@ This file holds dated decisions, implementation status, validation results, fail
   relationship as unresolved rather than publishing a candidate result.
 - Evidence and falsifiers:
   [eom-recursive-block-exclusion-moving-population-apple-m3-2026-07-16.md](evidence/eom-recursive-block-exclusion-moving-population-apple-m3-2026-07-16.md).
+
+## 2026-07-16 — accelerating piecewise-cubic block-exclusion ladder
+
+- Extended the same recursive certificate to accepted histories with two
+  accelerating cubic segments and exact position/velocity continuity at the
+  segment join. No traversal, accounting, exact-fallback, or approximation
+  rule changed.
+- **Measured:** accelerating recursive controls passed 9/9, the history/root
+  suite with the independent decimal oracle passed 18/18, and native CTest
+  passed 3/3. Every excluded accelerating block was independently root-free,
+  complete exact fallback crossed the join and found active roots, and the
+  permitted schedules produced byte-identical exact packets.
+- **Measured:** the complete sparse route reached 10,000 paths and 100,000,000
+  logical pairs in 48.728 seconds with 98.96% exact-search reduction, zero
+  unresolved membership, and 1.391 GiB peak resident memory. Matched one-
+  thread speedups were 4.320x at 128 and 14.020x at 512 paths.
+- **Measured:** the dense accelerating control excluded nothing and stopped at
+  2,048 paths with `resource_envelope_exceeded`, accounting every projected
+  pair as unresolved rather than publishing a candidate result.
+- Evidence and falsifiers:
+  [eom-recursive-block-exclusion-accelerating-population-apple-m3-2026-07-16.md](evidence/eom-recursive-block-exclusion-accelerating-population-apple-m3-2026-07-16.md).
+
+## 2026-07-16 — Borg eight-path promotion rerun remains fail-closed
+
+- **Derived:** the retired 16-path `[0.06,0.07]` failure was misclassified.
+  Ordered pair `1004<-1013` reached a base finite-width event certificate with
+  `insufficient_history_depth`; because no event impulse existed, the regulator
+  wrapper had no refinement series to compare. The engine nevertheless emitted
+  `regulator_convergence_failed`. The engine now preserves the upstream event
+  failure code, while true completed-but-nonconvergent regulator ladders retain
+  `regulator_convergence_failed`.
+- **Measured:** a manufactured boundary-entry control at the exact interval
+  `[0.06,0.07]` rejects atomically with `insufficient_history_depth`. The full
+  native coupled-evolution test covering that control passes.
+- The operator confirmed that Borg's active promotion population is eight
+  paths, not sixteen. The live eight-path strict seed-cut ladder passes at
+  `0.01`, `0.005`, and `0.0025`; its maximum state delta is
+  `6.291495102672684e-14`, and one-thread/four-thread `0.0025` histories are
+  byte-identical.
+- **Measured:** the best accepted strict burn-in checkpoint reaches
+  $T=34.4940625$. A resumed adaptive continuation with root, acceleration,
+  position, velocity, and correction tolerances all `1e-8`, initial step `0.5`,
+  and minimum step `0.0003125` consumed `600.174` seconds and hit the process
+  timeout before publishing another accepted boundary.
+- No seed-free $T=90$ checkpoint exists. The strict post-burn-in ladder was
+  therefore not run, promotion did not pass, and no Borg compatibility file was
+  deleted by this campaign. During the run, a separate concurrent worktree
+  batch removed the compatibility query branch and runner files. Those
+  uncommitted deletions are not authorized by this promotion verdict and were
+  neither restored nor absorbed here, to avoid overwriting another active
+  agent's work. A continuation that reaches $T=90$ inside an explicit observed
+  resource envelope, followed by the unchanged post-burn-in ladder, would
+  falsify the current blocker.
+- Evidence:
+  [eom-borg-eight-path-promotion-attempt-apple-m3-2026-07-16.md](evidence/eom-borg-eight-path-promotion-attempt-apple-m3-2026-07-16.md).
+
+## 2026-07-16 — Borg live bootstrap causal-history repair
+
+- **Measured:** the port-5173 developer surface halted after six accepted
+  chunks. The rejected `[0.06,0.07]` request reported
+  `minimum_step_exhausted`, whose underlying atomic-step failure was
+  `insufficient_history_depth` for ordered pair `1004<-1013`. The active app
+  had launched the retired 16-path population with only the legacy 10-unit
+  fixture horizon.
+- Aligned the live bootstrap with the current bounded migration target: the
+  deterministic path prefix `1001`-`1008`, the independently adjudicated
+  90-unit retained-history horizon, and the corresponding 4+4 polarity counts.
+  The Simulation Envelope panel now reports the active EOM history depth and
+  wake horizon rather than the compatibility fixture values. No EOM equation,
+  tolerance, certificate, or fail-closed rule changed.
+- **Measured:** after the native rebuild check, the former failing interval and
+  the next five chunks completed directly through `T=0.12`. In the in-app
+  browser the corrected run reached 213 accepted burn-in chunks before an
+  observed operator stop, with no solver failure. Borg's full seed-free
+  `T=90` burn-in and promotion ladder remain open.
+- Validation: Borg JavaScript contract suites pass 30/30 and the native Borg
+  process suite passes 4/4. A repeated `insufficient_history_depth` inside the
+  90-unit eight-path seed, incomplete pair accounting, or failure to cross the
+  former `[0.06,0.07]` interval would falsify this repair.

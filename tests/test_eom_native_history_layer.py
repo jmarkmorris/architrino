@@ -38,6 +38,38 @@ def history(
     )
 
 
+def piecewise_history(
+    history_id: str,
+    first: tuple[str, str, str, str],
+    second: tuple[str, str, str, str],
+) -> PiecewisePolynomialHistory:
+    segments = (
+        CubicHistorySegment.from_decimal_tokens(
+            t_start="0",
+            t_end="1",
+            coefficients=(
+                first,
+                ("0", "0", "0", "0"),
+                ("0", "0", "0", "0"),
+            ),
+            precision=90,
+        ),
+        CubicHistorySegment.from_decimal_tokens(
+            t_start="1",
+            t_end="2",
+            coefficients=(
+                second,
+                ("0", "0", "0", "0"),
+                ("0", "0", "0", "0"),
+            ),
+            precision=90,
+        ),
+    )
+    return PiecewisePolynomialHistory.from_segments(
+        segments, history_id=history_id
+    )
+
+
 class NativeHistoryLayerTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls) -> None:
@@ -299,6 +331,126 @@ class NativeHistoryLayerTests(unittest.TestCase):
                 root_tolerance="1e-12",
                 max_depth=128,
                 max_cells=10000,
+            )
+            self.assertEqual(oracle.status, "certified_complete")
+            independently_active = independently_active or bool(oracle.roots)
+        self.assertTrue(independently_active)
+
+    def test_accelerating_recursive_cells_have_independent_complete_root_accounting(
+        self,
+    ) -> None:
+        traversal = self.packet["accelerating_traversal"]
+        exact = self.packet["accelerating_traversal_exact_batch"]
+        single = self.packet[
+            "accelerating_traversal_exact_batch_single_thread"
+        ]
+        self.assertEqual(traversal["status"], "certified_complete")
+        self.assertTrue(traversal["coverage_disjoint_complete"])
+        self.assertEqual(traversal["logical_ordered_pairs"], 8)
+        self.assertEqual(traversal["excluded_pairs"], 4)
+        self.assertEqual(traversal["exact_fallback_pairs"], 4)
+        self.assertEqual(traversal["enclosed_pairs"], 0)
+        self.assertEqual(traversal["unresolved_pairs"], 0)
+        self.assertEqual(
+            traversal["excluded_pairs"]
+            + traversal["exact_fallback_pairs"]
+            + traversal["enclosed_pairs"]
+            + traversal["unresolved_pairs"],
+            traversal["logical_ordered_pairs"],
+        )
+        self.assertEqual(exact["status"], "certified_complete")
+        self.assertEqual(exact["exact_pairs_requested"], 4)
+        self.assertEqual(exact["exact_pairs_completed"], 4)
+        self.assertEqual(exact["unresolved_pairs"], 0)
+        self.assertEqual(single, exact)
+
+        receivers = (
+            piecewise_history(
+                "accelerating-receiver-a",
+                ("0", "0.02", "0.002", "0.0001"),
+                ("0.0221", "0.0243", "-0.0015", "-0.00005"),
+            ),
+            piecewise_history(
+                "accelerating-receiver-b",
+                ("0.5", "0.03", "0.0022", "0.00012"),
+                ("0.53232", "0.03476", "-0.00165", "-0.00006"),
+            ),
+        )
+        sources = (
+            piecewise_history(
+                "accelerating-far-a",
+                ("20", "-0.01", "-0.001", "-0.00007"),
+                ("19.98893", "-0.01221", "0.00075", "0.000035"),
+            ),
+            piecewise_history(
+                "accelerating-far-b",
+                ("22", "-0.006", "-0.00085", "-0.00008"),
+                ("21.99307", "-0.00794", "0.0006375", "0.00004"),
+            ),
+            piecewise_history(
+                "accelerating-near-a",
+                ("0.75", "0.005", "0.001", "0.00005"),
+                ("0.75605", "0.00715", "-0.00075", "-0.000025"),
+            ),
+            piecewise_history(
+                "accelerating-near-b",
+                ("1", "0.008", "0.00115", "0.00006"),
+                ("1.00921", "0.01048", "-0.0008625", "-0.00003"),
+            ),
+        )
+        for retained in (*receivers, *sources):
+            first_state = retained.segments[0].nominal_state(Decimal("1"))
+            second_state = retained.segments[1].nominal_state(Decimal("1"))
+            self.assertEqual(first_state, second_state)
+
+        excluded_nodes = [
+            node for node in traversal["nodes"] if node["status"] == "excluded"
+        ]
+        self.assertTrue(
+            any(
+                Decimal(str(node["emission_lower"])) <= Decimal("1")
+                <= Decimal(str(node["emission_upper"]))
+                for node in excluded_nodes
+            )
+        )
+        for node in excluded_nodes:
+            lower = max(Decimal("0"), Decimal(str(node["emission_lower"])))
+            upper = Decimal(str(node["emission_upper"]))
+            for receiver_index in range(node["receiver_begin"], node["receiver_end"]):
+                for source_index in range(node["source_begin"], node["source_end"]):
+                    oracle = certify_causal_roots(
+                        receiver=receivers[receiver_index],
+                        source=sources[source_index],
+                        reception_time="2",
+                        field_speed="1",
+                        search_lower=str(lower),
+                        search_upper=str(upper),
+                        root_tolerance="1e-12",
+                        max_depth=192,
+                        max_cells=300000,
+                    )
+                    self.assertEqual(oracle.status, "certified_complete")
+                    self.assertEqual(oracle.roots, ())
+
+        exact_pairs = {
+            (receiver_index, source_index)
+            for tile in traversal["membership_tiles"]
+            if tile["status"] == "exact_tile"
+            for receiver_index in range(tile["receiver_begin"], tile["receiver_end"])
+            for source_index in range(tile["source_begin"], tile["source_end"])
+        }
+        independently_active = False
+        for receiver_index, source_index in sorted(exact_pairs):
+            oracle = certify_causal_roots(
+                receiver=receivers[receiver_index],
+                source=sources[source_index],
+                reception_time="2",
+                field_speed="1",
+                search_lower="0",
+                search_upper="2",
+                root_tolerance="1e-12",
+                max_depth=192,
+                max_cells=300000,
             )
             self.assertEqual(oracle.status, "certified_complete")
             independently_active = independently_active or bool(oracle.roots)

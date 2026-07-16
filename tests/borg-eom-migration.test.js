@@ -25,8 +25,11 @@ import {
   createBorgSeededInitialConditionRows,
 } from "../src/apps/borg/BorgInitialConditions.js";
 import {
-  BORG_COMPATIBILITY_RUNTIME_MODE,
   BORG_DEFAULT_RUNTIME_MODE,
+  BORG_EOM_MIGRATION_HISTORY_DEPTH,
+  BORG_EOM_MIGRATION_PATH_COUNT,
+  BORG_FIXTURE_RUNTIME_MODE,
+  BORG_RECORD_REPLAY_RUNTIME_MODE,
   bootBorgApp,
   resolveBorgRuntimeMode,
 } from "../src/apps/borg/BorgBootstrap.js";
@@ -35,7 +38,7 @@ import {
 // Default Borg boot no longer loads that asset into the EOM path.
 const trajectoryFrames = await loadBorgFixtureTrajectoryFrames();
 
-test("Borg boots the EOM runner by default and preserves compatibility as an explicit diagnostic mode", async () => {
+test("Borg boots the EOM runner by default with fixture and record replay as explicit modes", async () => {
   const eomClient = { async evolveRetainedHistories() {} };
   const defaultMounts = [];
   let defaultTrajectoryLoads = 0;
@@ -57,40 +60,88 @@ test("Borg boots the EOM runner by default and preserves compatibility as an exp
   assert.equal(defaultTrajectoryLoads, 0);
   assert.equal(defaultMounts.length, 1);
   assert.equal(defaultMounts[0].fixtureTrajectoryFrames, undefined);
-  assert.equal(defaultMounts[0].initialEomSeed.rows.length, 16 * 2);
-  assert.equal(defaultMounts[0].initialEomSeed.endpointRows.length, 16);
+  assert.equal(defaultMounts[0].initialEomSeed.rows.length, 8 * 2);
+  assert.equal(defaultMounts[0].initialEomSeed.endpointRows.length, 8);
   assert.equal(defaultMounts[0].initialEomSeed.certificate.accepted, true);
   assert.equal(defaultMounts[0].initialEomSeed.certificate.eomOutput, false);
   assert.equal(defaultMounts[0].initialEomSeed.certificate.canonicalEomEvidence, false);
   assert.equal(defaultMounts[0].eomShadowRunner.eomClient, eomClient);
-  assert.equal(defaultMounts[0].eomShadowRunner.pathCount, 16);
+  assert.equal(defaultMounts[0].eomShadowRunner.pathCount, BORG_EOM_MIGRATION_PATH_COUNT);
   assert.equal(defaultMounts[0].eomShadowRunner.startTime, 0);
-  assert.equal(defaultMounts[0].eomShadowRunner.historyDepth, 10);
-  assert.equal(defaultMounts[0].eomShadowRunner.burnInDuration, 10);
-  assert.equal(defaultMounts[0].eomShadowRunner.targetDuration, 70);
+  assert.equal(
+    defaultMounts[0].eomShadowRunner.historyDepth,
+    BORG_EOM_MIGRATION_HISTORY_DEPTH,
+  );
+  assert.equal(
+    defaultMounts[0].eomShadowRunner.burnInDuration,
+    BORG_EOM_MIGRATION_HISTORY_DEPTH,
+  );
+  assert.equal(defaultMounts[0].eomShadowRunner.targetDuration, 150);
   assert.equal(defaultMounts[0].eomShadowRunner.runDuration, 60);
+  assert.deepEqual(defaultMounts[0].initialConditionConfig, {
+    electrinoCount: 4,
+    positrinoCount: 4,
+    randomVelocityMaxComponentMagnitude: 0.042,
+    randomVelocityMinSpeed: 0.0144,
+  });
+  assert.deepEqual(
+    defaultMounts[0].initialEomSeed.endpointRows.map((row) => row.pathKey),
+    [1001, 1002, 1003, 1004, 1005, 1006, 1007, 1008],
+  );
 
-  const compatibilityMounts = [];
-  let compatibilityTrajectoryLoads = 0;
-  const compatibilityResult = await bootBorgApp({
-    search: "?eom=compatibility",
-    loadFixtureTrajectoryFrames: async () => {
-      compatibilityTrajectoryLoads += 1;
-      return trajectoryFrames;
+  const fixtureMounts = [];
+  const fixtureResult = await bootBorgApp({
+    search: "?eom=fixture",
+    mountApp(options) {
+      fixtureMounts.push(options);
+      return "fixture-mounted";
+    },
+  });
+
+  assert.equal(resolveBorgRuntimeMode("?eom=fixture"), BORG_FIXTURE_RUNTIME_MODE);
+  assert.equal(fixtureResult, "fixture-mounted");
+  assert.deepEqual(fixtureMounts, [{}]);
+
+  const record = {
+    contractId: "eom_evolution_contract/v0",
+    runId: "borg-boot-record-run",
+    claimLevel: "evolved-record",
+    histories: [],
+  };
+  const recordMounts = [];
+  const fetchCalls = [];
+  const recordResult = await bootBorgApp({
+    search: "?eomRecord=https://example.test/run.json",
+    fetchLike: async (url) => {
+      fetchCalls.push(url);
+      return { ok: true, async json() { return record; } };
     },
     mountApp(options) {
-      compatibilityMounts.push(options);
-      return "compatibility-mounted";
+      recordMounts.push(options);
+      return "record-replay-mounted";
     },
   });
 
   assert.equal(
-    resolveBorgRuntimeMode("?eom=compatibility"),
-    BORG_COMPATIBILITY_RUNTIME_MODE,
+    resolveBorgRuntimeMode("?eomRecord=https://example.test/run.json"),
+    BORG_RECORD_REPLAY_RUNTIME_MODE,
   );
-  assert.equal(compatibilityResult, "compatibility-mounted");
-  assert.equal(compatibilityTrajectoryLoads, 0);
-  assert.deepEqual(compatibilityMounts, [{}]);
+  assert.equal(recordResult, "record-replay-mounted");
+  assert.deepEqual(fetchCalls, ["https://example.test/run.json"]);
+  assert.equal(recordMounts.length, 1);
+  assert.equal(recordMounts[0].eomRecordReplay.record, record);
+  assert.equal(recordMounts[0].eomShadowRunner, undefined);
+
+  await assert.rejects(
+    bootBorgApp({
+      search: "?eomRecord=https://example.test/missing.json",
+      fetchLike: async () => ({ ok: false, status: 404 }),
+      mountApp() {
+        throw new Error("must not mount on a failed record fetch");
+      },
+    }),
+    /Borg EOM record fetch failed \(404\)/,
+  );
 });
 
 test("Borg EOM accepts individual polarity counts through a continuous prescribed initial history", () => {

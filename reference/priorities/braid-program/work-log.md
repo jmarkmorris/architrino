@@ -60,3 +60,37 @@ Append-only. Dated entries, newest last. One entry per completed unit of work: w
   (app-animator, app-photon, app-causal-delay-feedback, master-equation-closure,
   aaa-work-threads, open-problems, operations) — Borg-class stale-scope
   candidates, unswept.
+
+## 2026-07-16 — Instrument gate authored; assembly-view-record.v0 adopted end to end
+
+- Queue item "author the instrument gate" executed: [campaigns/instrument-gate.md](campaigns/instrument-gate.md)
+  drafted (pending operator ratification with the charter set). Contents:
+  accepted capabilities G1–G5 with evidence pointers (EOM Stage E engine at
+  `executable_architecture_evidence`; fresh-authored residual reduction;
+  checkpoint-chunked harness with chunking booked in the refinement envelope;
+  release root-clearance; per-campaign independent-oracle parity duty against
+  `eom_independent_oracle/v0`); barred list (zombie-solver anything, field-speed
+  fold windows pending the root-completeness extension, prescribed-orbit-as-
+  evolution, toy laws, sampled-only state, canonical claims pre-acceptance-gate);
+  the per-campaign booking checklist; and §4 finalizing `assembly-view-record.v0`
+  (segments authoritative, samples display-only, claim-grade enum fail-closed).
+- Schema adopted in code the same day (measured — suites named below green):
+  the shared display adapter `src/apps/shared/EomHistoryDataset.mjs` ingests
+  `assembly-view-record.v0` alongside `eom_evolution_contract/v0`, so Borg
+  (`borg.html?eomRecord=<url>`), causal-delay-feedback, and the animator worker
+  replay records with no further app changes; a converter
+  (`scripts/eom/convert-borg-trajectory-to-assembly-view-record.mjs`) rebuilds
+  retained segments from the harness's existing `borg-fixture-trajectory.v1`
+  replay files under the declared `piecewise-cubic-hermite/v0` rule, stamping
+  conversion provenance and inheriting (never upgrading) source evidence
+  status. Contract tests: `tests/assembly-view-record.test.js` 6/6, adapter
+  consumers 51/51 (Hermite round-trip reproduces inertial closed form to
+  1e-12 — measured). Native record emission from the harness is deferred until
+  the EOM optimization lane is quiet; the converter bridges rung-1 from day one.
+
+## 2026-07-16 — Operator ratified the segments-authoritative schema decision
+
+- In-session operator agreement (2026-07-16): `assembly-view-record.v0`
+  worldlines carry retained segments as the authoritative state; sampled rows
+  are display-only. The gate as a whole remains DRAFT pending ratification of
+  the charter set.

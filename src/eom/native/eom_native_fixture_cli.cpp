@@ -459,6 +459,70 @@ void print_all() {
   exact_resource_request.maximum_exact_pairs = 2;
   const auto exact_resource_failure =
       eom::certify_traversal_exact_pair_batch(exact_resource_request);
+  const eom::RetainedHistory accelerating_receiver_a(
+      "accelerating-receiver-a",
+      {segment("0", "1", {"0", "0.02", "0.002", "0.0001"}),
+       segment("1", "2", {"0.0221", "0.0243", "-0.0015", "-0.00005"})});
+  const eom::RetainedHistory accelerating_receiver_b(
+      "accelerating-receiver-b",
+      {segment("0", "1", {"0.5", "0.03", "0.0022", "0.00012"}),
+       segment("1", "2", {"0.53232", "0.03476", "-0.00165", "-0.00006"})});
+  const eom::RetainedHistory accelerating_far_a(
+      "accelerating-far-a",
+      {segment("0", "1", {"20", "-0.01", "-0.001", "-0.00007"}),
+       segment("1", "2", {"19.98893", "-0.01221", "0.00075", "0.000035"})});
+  const eom::RetainedHistory accelerating_far_b(
+      "accelerating-far-b",
+      {segment("0", "1", {"22", "-0.006", "-0.00085", "-0.00008"}),
+       segment("1", "2", {"21.99307", "-0.00794", "0.0006375", "0.00004"})});
+  const eom::RetainedHistory accelerating_near_a(
+      "accelerating-near-a",
+      {segment("0", "1", {"0.75", "0.005", "0.001", "0.00005"}),
+       segment("1", "2", {"0.75605", "0.00715", "-0.00075", "-0.000025"})});
+  const eom::RetainedHistory accelerating_near_b(
+      "accelerating-near-b",
+      {segment("0", "1", {"1", "0.008", "0.00115", "0.00006"}),
+       segment("1", "2", {"1.00921", "0.01048", "-0.0008625", "-0.00003"})});
+  const eom::CertifiedTraversalRequest accelerating_traversal_request{
+      .traversal_id = "mixed-accelerating-history",
+      .receivers = {
+          {"receiver-a", &accelerating_receiver_a, true},
+          {"receiver-b", &accelerating_receiver_b, true}},
+      .sources = {
+          {"far-a", &accelerating_far_a, true},
+          {"far-b", &accelerating_far_b, true},
+          {"near-a", &accelerating_near_a, true},
+          {"near-b", &accelerating_near_b, true}},
+      .reception = {"2", "2"},
+      .emission = {"0", "2"},
+      .field_speed = "1",
+      .exact_tile_pair_limit = 4,
+      .maximum_nodes = 32,
+      .maximum_emission_depth = 2,
+  };
+  const auto accelerating_traversal =
+      eom::certify_moving_history_traversal(accelerating_traversal_request);
+  const eom::CertifiedTraversalExactBatchRequest accelerating_exact_request{
+      .traversal_request = &accelerating_traversal_request,
+      .traversal_certificate = &accelerating_traversal,
+      .reception_time = "2",
+      .search_lower = "0",
+      .search_upper = "2",
+      .root_tolerance = "1e-10",
+      .root_max_depth = 192,
+      .root_max_cells = 300000,
+      .initial_mpfr_bits = 128,
+      .maximum_mpfr_bits = 512,
+      .maximum_exact_pairs = 16,
+      .thread_count = 4,
+  };
+  const auto accelerating_exact =
+      eom::certify_traversal_exact_pair_batch(accelerating_exact_request);
+  auto accelerating_exact_single_request = accelerating_exact_request;
+  accelerating_exact_single_request.thread_count = 1;
+  const auto accelerating_exact_single =
+      eom::certify_traversal_exact_pair_batch(
+          accelerating_exact_single_request);
   bool discontinuity_rejected = false;
   try {
     const eom::RetainedHistory discontinuous(
@@ -518,6 +582,12 @@ void print_all() {
   print_traversal(traversal_resource_failure);
   std::cout << ",\"traversal_exact_resource_failure\":";
   print_traversal_exact_batch(exact_resource_failure);
+  std::cout << ",\"accelerating_traversal\":";
+  print_traversal(accelerating_traversal);
+  std::cout << ",\"accelerating_traversal_exact_batch\":";
+  print_traversal_exact_batch(accelerating_exact);
+  std::cout << ",\"accelerating_traversal_exact_batch_single_thread\":";
+  print_traversal_exact_batch(accelerating_exact_single);
   std::cout << ",\"pairs\":[";
   const auto pairs = pair_fixture();
   for (std::size_t index = 0; index < pairs.size(); ++index) {

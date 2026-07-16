@@ -1,6 +1,5 @@
 import assert from "node:assert/strict";
-import { existsSync, readFileSync } from "node:fs";
-import { fileURLToPath } from "node:url";
+import { readFileSync } from "node:fs";
 import { test } from "node:test";
 
 import {
@@ -13,17 +12,14 @@ import {
   loadBorgFixtureTrajectoryFrames,
 } from "../src/apps/borg/BorgFixtureTrajectory.js";
 import {
-  createBorgDefaultSolverWasmBaseUrl,
-  createBorgDefaultSolverWasmLoaderUrl,
-} from "../src/apps/borg/BorgSolverBridgeOptions.js";
-import {
-  BORG_DYNAMIC_NATIVE_RUN_SOURCE,
-  BORG_DYNAMIC_NATIVE_RUNNER_VERSION,
-  createBorgDynamicNativeRunConfig,
-  createBorgDynamicNativeRunner,
   createBorgFrameSetsFromRows,
   mergeBorgFrameRows,
-} from "../src/apps/borg/BorgDynamicNativeRunner.js";
+} from "../src/apps/borg/BorgFrameRows.js";
+import {
+  BORG_EOM_RECORD_REPLAY_RUNNER_VERSION,
+  BORG_EOM_RECORD_REPLAY_RUN_SOURCE,
+  createBorgEomRecordReplayRunner,
+} from "../src/apps/borg/BorgEomRecordReplayRunner.js";
 import { buildBorgFixtureDataModule } from "../scripts/borg/write-fixture-data.mjs";
 
 const MASTER_EQUATION_SOLVER_MODE = "native-fixed-parameter-master-equation";
@@ -43,6 +39,51 @@ const ALLOWED_MASTER_EQUATION_FAILURE_CODES = new Set([
   "native_master_equation_fixture_missing",
   "native_master_equation_solver_pending",
 ]);
+
+function inertialSegment(startTime, endTime, position, velocity) {
+  return {
+    startTime: String(startTime),
+    endTime: String(endTime),
+    coefficients: [
+      [String(position[0]), String(velocity[0]), "0", "0"],
+      [String(position[1]), String(velocity[1]), "0", "0"],
+      [String(position[2]), String(velocity[2]), "0", "0"],
+    ],
+    positionError: "0",
+    velocityError: "0",
+  };
+}
+
+function createBorgEomRecordFixture(overrides = {}) {
+  return {
+    contractId: "eom_evolution_contract/v0",
+    runId: "borg-record-replay-fixture-run",
+    claimLevel: "evolved-record",
+    absoluteTimeInterval: { start: "0", end: "0.6" },
+    provenance: { engineId: "eom-solver" },
+    histories: [
+      {
+        pathId: "1",
+        pathKey: 1,
+        charge: "1",
+        stateFlags: 1,
+        coverageStart: "0",
+        coverageEnd: "0.6",
+        segments: [inertialSegment(0, 0.6, [1, 2, 3], [0.5, 0, -0.25])],
+      },
+      {
+        pathId: "2",
+        pathKey: 2,
+        charge: "-1",
+        stateFlags: 2,
+        coverageStart: "0",
+        coverageEnd: "0.6",
+        segments: [inertialSegment(0, 0.6, [-1, 0, 0], [0, 0.5, 0])],
+      },
+    ],
+    ...overrides,
+  };
+}
 
 test("Borg path history is on and visible by default", () => {
   assert.ok(BORG_APP_SURFACE_DESIGN_V1.firstViewport.defaultVisibleLayers.includes("path-history"));
@@ -124,13 +165,6 @@ test("Borg uses the canonical unit field speed", () => {
     }),
     /field speed is not canonical/,
   );
-
-  const fallbackConfig = createBorgDynamicNativeRunConfig({
-    simulationEnvelope: {},
-    sourceBridgeRun: {},
-    nativeMasterEquationProbe: {},
-  });
-  assert.equal(fallbackConfig.fieldSpeed, 1);
 });
 
 test("Borg native master-equation frame data carries non-linear path evidence", async () => {
@@ -183,59 +217,115 @@ test("Borg first paint does not parse the recorded trajectory", () => {
   assert.equal(BORG_DATASET_MANIFEST_V1.currentStateAndFrameSources.trajectoryFrameIds, undefined);
 });
 
-test("Borg run-request metadata satisfies the solver-app-bridge contract enums", async () => {
-  // A fake solver client accepts whatever the app sends, so asserting the
-  // request against the app's own vocabulary proves only that the app agrees
-  // with itself. This checks the request against the published contract
-  // schema, which is authored separately from the runner.
-  const schema = JSON.parse(
-    readFileSync(
-      new URL("../src/contracts/solver-app-bridge/v1/schema.json", import.meta.url),
-      "utf8",
-    ),
-  );
-  const allowedValueAuthority = schema.$defs.valueAuthorityId.enum;
-
-  const requests = [];
-  const runner = createBorgDynamicNativeRunner(BORG_DATASET_MANIFEST_V1, {
-    initialFrameRows: BORG_DATASET_MANIFEST_V1.currentStateFrames,
-    targetDuration: 0.4,
+test("Borg record replay chunks carry recorded frames with record provenance", async () => {
+  const runner = createBorgEomRecordReplayRunner(createBorgEomRecordFixture(), {
+    targetDuration: 0.6,
     chunkDuration: 0.4,
-    solverClient: {
-      async runSimulation(request) {
-        requests.push(request);
-        return { status: { code: "ok" }, frames: [], summary: {}, diagnostics: [] };
-      },
-    },
+    sampleInterval: 0.2,
   });
-  await runner.computeNextChunk().catch(() => {});
 
-  const metadata = requests[0].config.metadata;
-  assert.ok(
-    allowedValueAuthority.includes(metadata.valueAuthority),
-    `metadata.valueAuthority ${JSON.stringify(metadata.valueAuthority)} is not in the contract enum ${JSON.stringify(allowedValueAuthority)}`,
+  assert.equal(runner.schema, BORG_EOM_RECORD_REPLAY_RUNNER_VERSION);
+  assert.equal(runner.config.runSource, BORG_EOM_RECORD_REPLAY_RUN_SOURCE);
+  assert.equal(runner.config.runId, "borg-record-replay-fixture-run");
+  assert.equal(runner.config.engineId, "eom-solver");
+  assert.equal(runner.config.claimGrade, "evolved-record");
+  assert.equal(runner.config.burnInDuration, 0);
+
+  const firstChunk = await runner.computeNextChunk();
+  assert.equal(firstChunk.source, BORG_EOM_RECORD_REPLAY_RUN_SOURCE);
+  assert.equal(firstChunk.statusCode, "ok");
+  assert.equal(firstChunk.runId, "borg-record-replay-fixture-run");
+  assert.equal(firstChunk.claimGrade, "evolved-record");
+  assert.deepEqual(uniqueFrameIndexes(firstChunk.frames), [0, 1, 2]);
+  // Closed form: the record is inertial, position = x0 + v * t.
+  const path1AtHalf = firstChunk.frames.find(
+    (frame) => frame.pathKey === 1 && frame.frameIndex === 1,
   );
-  assert.ok(
-    allowedValueAuthority.includes(metadata.appBufferAuthority),
-    `metadata.appBufferAuthority ${JSON.stringify(metadata.appBufferAuthority)} is not in the contract enum ${JSON.stringify(allowedValueAuthority)}`,
-  );
+  assert.ok(Math.abs(path1AtHalf.position.x - 1.1) < 1e-12);
+  assert.ok(Math.abs(path1AtHalf.position.z - 2.95) < 1e-12);
+  assert.equal(path1AtHalf.stateFlags, 1);
+  assert.equal(path1AtHalf.runSource, BORG_EOM_RECORD_REPLAY_RUN_SOURCE);
+  // No evidenceStatus on the record: replay output is recorded, not canonical.
+  assert.equal(path1AtHalf.valueAuthority, "recorded-eom-output");
+
+  const secondChunk = await runner.computeNextChunk();
+  assert.deepEqual(uniqueFrameIndexes(secondChunk.frames), [2, 3]);
+
+  const mergedFrames = mergeBorgFrameRows(firstChunk.frames, secondChunk.frames);
+  const frameSets = createBorgFrameSetsFromRows(mergedFrames);
+  assert.deepEqual(frameSets.map((frameSet) => frameSet.frameIndex), [0, 1, 2, 3]);
+  assert.equal(frameSets.at(-1).frames.length, 2);
+  assert.equal(runner.canComputeNextChunk(), false);
+
+  await runner.dispose();
 });
 
-test("Borg solver WASM loader points at deployed artifacts, not the build directory", () => {
-  // .tmp/ is gitignored, so a loader pointed there resolves in a local dev
-  // checkout and 404s on the published site, where the app silently falls back
-  // to replaying a recording instead of computing.
-  const loaderUrl = createBorgDefaultSolverWasmLoaderUrl();
-  const baseUrl = createBorgDefaultSolverWasmBaseUrl();
-  assert.doesNotMatch(loaderUrl, /\.tmp\//);
-  assert.doesNotMatch(baseUrl, /\.tmp\//);
-  assert.match(loaderUrl, /\/src\/solver\/wasm\/runtime\/architrino_solver_wasm_smoke\.mjs$/);
-  assert.match(baseUrl, /\/src\/solver\/wasm\/runtime\/$/);
-  assert.ok(existsSync(fileURLToPath(loaderUrl)), `deployed solver WASM loader missing at ${loaderUrl}`);
-  assert.ok(
-    existsSync(fileURLToPath(new URL("architrino_solver_wasm_smoke.wasm", baseUrl))),
-    "deployed solver WASM binary missing",
+test("Borg record replay marks canonical records with canonical value authority", async () => {
+  const runner = createBorgEomRecordReplayRunner(
+    createBorgEomRecordFixture({ evidenceStatus: "canonical" }),
+    { targetDuration: 0.6, chunkDuration: 0.6, sampleInterval: 0.2 },
   );
+  const chunk = await runner.computeNextChunk();
+  assert.equal(chunk.evidenceStatus, "canonical");
+  assert.equal(chunk.frames[0].valueAuthority, "canonical-eom-output");
+  await runner.dispose();
+});
+
+test("Borg record replay never extends past recorded coverage", async () => {
+  // The recorded window is a hard ceiling: a replay runner is not a solver and
+  // must refuse to synthesize frames the engine never evolved.
+  const runner = createBorgEomRecordReplayRunner(createBorgEomRecordFixture(), {
+    targetDuration: Number.POSITIVE_INFINITY,
+    chunkDuration: 0.4,
+    sampleInterval: 0.2,
+  });
+
+  assert.equal(runner.targetDuration, 0.6);
+  runner.setRunLimits({ targetDuration: Number.POSITIVE_INFINITY, chunkDuration: 0.4 });
+  assert.equal(runner.targetDuration, 0.6);
+
+  await runner.computeNextChunk();
+  const finalChunk = await runner.computeNextChunk();
+  assert.equal(finalChunk.endTime, 0.6);
+  assert.equal(runner.canComputeNextChunk(), false);
+
+  const completeChunk = await runner.computeNextChunk();
+  assert.equal(completeChunk.statusCode, "complete");
+  assert.deepEqual(completeChunk.frames, []);
+
+  await runner.dispose();
+});
+
+test("Borg record replay applies measured target and chunk limits within the window", async () => {
+  const runner = createBorgEomRecordReplayRunner(createBorgEomRecordFixture(), {
+    targetDuration: 0.6,
+    chunkDuration: 0.4,
+    sampleInterval: 0.2,
+  });
+
+  runner.setRunLimits({ targetDuration: 0.4, chunkDuration: 0.2 });
+  assert.equal(runner.targetDuration, 0.4);
+  assert.equal(runner.chunkDuration, 0.2);
+
+  const chunkEndTimes = [];
+  while (runner.canComputeNextChunk()) {
+    chunkEndTimes.push((await runner.computeNextChunk()).endTime);
+  }
+  assert.deepEqual(chunkEndTimes, [0.2, 0.4]);
+
+  await runner.dispose();
+});
+
+test("Borg record replay fails closed on foreign or ungraded records", () => {
+  assert.throws(
+    () => createBorgEomRecordReplayRunner(
+      createBorgEomRecordFixture({ contractId: "solver-app-bridge/v1" }),
+    ),
+    /requires contractId eom_evolution_contract\/v0/,
+  );
+  const ungraded = createBorgEomRecordFixture();
+  delete ungraded.claimLevel;
+  assert.throws(() => createBorgEomRecordReplayRunner(ungraded), /claim grade/);
 });
 
 test("Borg path-history renderer uses native row segments, not visual smoothing curves", () => {
@@ -293,8 +383,14 @@ test("Borg path-history renderer uses native row segments, not visual smoothing 
   assert.match(runtimeSource, /compactedPathHistory/);
   assert.match(runtimeSource, /switchRunControlPreset/);
   assert.match(runtimeSource, /startNewDistributionRun/);
-  assert.match(runtimeSource, /createBorgDynamicNativeRunner/);
-  assert.match(runtimeSource, /BorgSolverBridgeWorker\.js/);
+  // The zombie-bridge path is retired: the only non-fixture sources are the
+  // live EOM shadow runner and recorded EOM dataset replay.
+  assert.match(runtimeSource, /createBorgEomRecordReplayRunner/);
+  assert.match(runtimeSource, /createBorgEomShadowRunner/);
+  assert.doesNotMatch(runtimeSource, /BorgDynamicNativeRunner/);
+  assert.doesNotMatch(runtimeSource, /BorgSolverBridgeWorker/);
+  assert.doesNotMatch(runtimeSource, /SolverAppBridge/);
+  assert.doesNotMatch(runtimeSource, /central-solver-compatibility/);
   assert.match(runtimeSource, /mergeBorgFrameRows/);
   assert.match(
     runtimeSource,
@@ -319,161 +415,6 @@ test("Borg path-history renderer uses native row segments, not visual smoothing 
   assert.match(htmlSource, /id="borg-eom-restart-button"/);
   assert.doesNotMatch(htmlSource, /id="borg-run-source"/);
   assert.match(htmlSource, /id="borg-playback-speed"/);
-});
-
-test("Borg dynamic native runner builds first-class live master-equation chunks", async () => {
-  const requests = [];
-  const solverClient = {
-    async runSimulation(request) {
-      requests.push(request);
-      return createFakeBorgDynamicRunResponse(request);
-    },
-    async dispose() {},
-  };
-  const runner = createBorgDynamicNativeRunner(BORG_DATASET_MANIFEST_V1, {
-    solverClient,
-    targetDuration: 0.6,
-    chunkDuration: 0.4,
-    sampleInterval: 0.2,
-  });
-
-  assert.equal(runner.schema, BORG_DYNAMIC_NATIVE_RUNNER_VERSION);
-  assert.equal(runner.config.runSource, BORG_DYNAMIC_NATIVE_RUN_SOURCE);
-
-  const firstChunk = await runner.computeNextChunk();
-  assert.equal(requests[0].appId, "borg");
-  assert.equal(requests[0].runKind, "masterEquation");
-  assert.equal(requests[0].configVersion, BORG_DYNAMIC_NATIVE_RUNNER_VERSION);
-  assert.equal(requests[0].config.appId, "borg");
-  assert.equal(requests[0].config.fallbackPolicy, "fail-closed");
-  // valueAuthority is the bridge contract's numeric-authority enum, not an
-  // evidence grade. The EOM claim is carried by provenance, below, and stays
-  // downgraded.
-  assert.equal(requests[0].config.metadata.valueAuthority, "authoritative");
-  assert.equal(requests[0].config.metadata.appBufferAuthority, "authoritative");
-  assert.equal(requests[0].config.metadata.provenance.canonicalEomEvidence, false);
-  assert.equal(
-    requests[0].config.metadata.provenance.eomEvidenceStatus,
-    "non_eom_compatibility_output",
-  );
-  assert.equal(requests[0].config.masterEquationRequest.initialStates.length, 16);
-  assert.equal(requests[0].config.masterEquationRequest.startTime, 0);
-  assert.equal(requests[0].config.masterEquationRequest.endTime, 0.4);
-  assert.equal(requests[0].config.masterEquationRequest.fieldSpeed, 1);
-  assert.equal(firstChunk.source, BORG_DYNAMIC_NATIVE_RUN_SOURCE);
-  assert.equal(firstChunk.bufferCount, 1);
-  assert.equal(firstChunk.bufferByteLength, firstChunk.frames.length * 64);
-  assert.deepEqual(uniqueFrameIndexes(firstChunk.frames), [0, 1, 2]);
-
-  const secondChunk = await runner.computeNextChunk();
-  assert.equal(requests[1].appId, "borg");
-  assert.equal(requests[1].config.masterEquationRequest.startTime, 0.4);
-  assert.equal(requests[1].config.masterEquationRequest.endTime, 0.6);
-  const firstPathKey = firstChunk.frames[0].pathKey;
-  assert.deepEqual(
-    requests[1].config.masterEquationRequest.initialStates[0].initialPosition,
-    lastFrameForPath(firstChunk.frames, firstPathKey).position,
-  );
-  assert.deepEqual(uniqueFrameIndexes(secondChunk.frames), [2, 3]);
-
-  const mergedFrames = mergeBorgFrameRows(firstChunk.frames, secondChunk.frames);
-  const frameSets = createBorgFrameSetsFromRows(mergedFrames);
-  assert.deepEqual(frameSets.map((frameSet) => frameSet.frameIndex), [0, 1, 2, 3]);
-  assert.equal(frameSets.at(-1).frames.length, 16);
-
-  await runner.dispose();
-});
-
-test("Borg dynamic native runner can continue beyond finite preset windows", async () => {
-  const requests = [];
-  const solverClient = {
-    async runSimulation(request) {
-      requests.push(request);
-      return createFakeBorgDynamicRunResponse(request);
-    },
-    async dispose() {},
-  };
-  const runner = createBorgDynamicNativeRunner(BORG_DATASET_MANIFEST_V1, {
-    solverClient,
-    targetDuration: Number.POSITIVE_INFINITY,
-    chunkDuration: 0.4,
-    sampleInterval: 0.2,
-  });
-
-  assert.equal(runner.targetDuration, Number.POSITIVE_INFINITY);
-
-  await runner.computeNextChunk();
-  await runner.computeNextChunk();
-  await runner.computeNextChunk();
-
-  assert.deepEqual(
-    requests.map((request) => request.config.masterEquationRequest.endTime),
-    [0.4, 0.8, 1.2],
-  );
-  assert.equal(runner.canComputeNextChunk(), true);
-
-  await runner.dispose();
-});
-
-test("Borg dynamic native runner applies measured target and chunk limits", async () => {
-  const requests = [];
-  const solverClient = {
-    async runSimulation(request) {
-      requests.push(request);
-      return createFakeBorgDynamicRunResponse(request);
-    },
-    async dispose() {},
-  };
-  const runner = createBorgDynamicNativeRunner(BORG_DATASET_MANIFEST_V1, {
-    solverClient,
-    targetDuration: 1,
-    chunkDuration: 0.4,
-    sampleInterval: 0.2,
-  });
-
-  runner.setRunLimits({ targetDuration: 0.5, chunkDuration: 0.2 });
-  assert.equal(runner.targetDuration, 0.5);
-  assert.equal(runner.chunkDuration, 0.2);
-
-  await runner.computeNextChunk();
-  await runner.computeNextChunk();
-  await runner.computeNextChunk();
-
-  assert.deepEqual(
-    requests.map((request) => request.config.masterEquationRequest.endTime),
-    [0.2, 0.4, 0.5],
-  );
-  assert.equal(runner.canComputeNextChunk(), false);
-
-  await runner.dispose();
-});
-
-test("Borg non-grid chunk reserves the explicit endpoint frame", async () => {
-  const solverClient = {
-    async runSimulation(request) {
-      const masterRequest = request.config.masterEquationRequest;
-      // Independent closed form: 0, 0.2, and 0.4 are grid frames, while the
-      // requested 0.5 endpoint is a fourth frame. The former floor-based cap
-      // reserved only three slots and the real bridge rejected the request.
-      assert.equal(masterRequest.startTime, 0);
-      assert.equal(masterRequest.endTime, 0.5);
-      assert.equal(masterRequest.step, 0.2);
-      assert.equal(masterRequest.maxFrames, 4);
-      return createFakeBorgDynamicRunResponse(request);
-    },
-    async dispose() {},
-  };
-  const runner = createBorgDynamicNativeRunner(BORG_DATASET_MANIFEST_V1, {
-    solverClient,
-    targetDuration: 0.5,
-    chunkDuration: 0.5,
-    sampleInterval: 0.2,
-  });
-
-  const chunk = await runner.computeNextChunk();
-  assert.equal(chunk.statusCode, "ok");
-
-  await runner.dispose();
 });
 
 test("Borg surface advertises certified EOM shadow migration as the next build burden", () => {
@@ -535,96 +476,8 @@ function maxNativeFrameDeviationFromPathLine(frames) {
   return maxDeviation;
 }
 
-function createFakeBorgDynamicRunResponse(request) {
-  const masterRequest = request.config.masterEquationRequest;
-  const times = createSampleTimes(
-    masterRequest.startTime,
-    masterRequest.endTime,
-    masterRequest.step,
-  );
-  const frames = [];
-  times.forEach((time, frameIndex) => {
-    masterRequest.initialStates.forEach((state) => {
-      const elapsed = time - masterRequest.startTime;
-      frames.push({
-        pathKey: state.pathKey,
-        frameIndex,
-        time,
-        position: {
-          x: state.initialPosition.x + state.initialVelocity.x * elapsed,
-          y: state.initialPosition.y + state.initialVelocity.y * elapsed,
-          z: state.initialPosition.z + state.initialVelocity.z * elapsed,
-        },
-        velocity: { ...state.initialVelocity },
-        errorBound: 0,
-        stateFlags: state.stateFlags,
-      });
-    });
-  });
-  return {
-    requestId: request.requestId,
-    runId: request.runId,
-    datasetId: request.datasetId,
-    acceptedPrecisionPath: "scaled_f64_strict",
-    status: { code: "ok", severity: "ok" },
-    response: {
-      runId: request.runId,
-      datasetId: request.datasetId,
-      status: { code: "ok", severity: "ok" },
-      summary: {
-        frameCount: frames.length,
-        pathRowCount: Math.max(0, times.length - 1) * masterRequest.initialStates.length,
-        executionPath: "native_c_abi",
-        nativeMasterEquationStatus: "native-fixed-parameter-master-equation",
-        firstFailureCode: "none",
-      },
-      frames,
-      buffers: [
-        {
-          bufferId: `${request.datasetId}:frames`,
-          layout: "borg-frame-row.v1",
-          rowCount: frames.length,
-          rowSizeBytes: 64,
-          byteLength: frames.length * 64,
-          buffer: new ArrayBuffer(frames.length * 64),
-        },
-      ],
-      pathHistory: {
-        streamId: request.config.streamId,
-        rowCount: Math.max(0, times.length - 1) * masterRequest.initialStates.length,
-      },
-      diagnostics: [],
-      streams: [],
-      masterEquation: {
-        runKind: "masterEquation",
-        executionPath: "native_c_abi",
-        nativeMasterEquationStatus: "native-fixed-parameter-master-equation",
-        firstFailureCode: "none",
-      },
-    },
-  };
-}
-
-function createSampleTimes(startTime, endTime, step) {
-  const times = [];
-  for (let time = startTime; time <= endTime + step * 0.5; time += step) {
-    times.push(Number(Math.min(time, endTime).toFixed(12)));
-  }
-  if (times.at(-1) !== endTime) {
-    times.push(endTime);
-  }
-  return times;
-}
-
 function uniqueFrameIndexes(frames) {
   return [...new Set(frames.map((frame) => frame.frameIndex))];
-}
-
-function lastFrameForPath(frames, pathKey) {
-  return frames
-    .filter((frame) => frame.pathKey === pathKey)
-    .sort((left, right) => left.time - right.time)
-    .at(-1);
 }
 
 function subtractVectors(left, right) {

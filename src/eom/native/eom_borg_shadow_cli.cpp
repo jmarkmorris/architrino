@@ -146,7 +146,9 @@ void print_segment(const eom::CubicHistorySegment& segment) {
 void run(
     unsigned maximum_mpfr_bits,
     std::size_t quadrature_max_depth,
-    std::size_t quadrature_max_cells) {
+    std::size_t quadrature_max_cells,
+    bool use_certified_traversal,
+    std::uint64_t traversal_exact_tile_pair_limit) {
   if (read_required_line("protocol magic") != "EOM_BORG_NATIVE_V0") {
     throw std::invalid_argument("unsupported Borg EOM native protocol");
   }
@@ -229,7 +231,8 @@ void run(
       .thread_count = 1,
   };
   request.thread_count = parse_size(run[13], "thread count");
-  request.traversal_exact_tile_pair_limit = 64;
+  request.use_certified_traversal = use_certified_traversal;
+  request.traversal_exact_tile_pair_limit = traversal_exact_tile_pair_limit;
   request.paths.reserve(parsed_paths.size());
   for (const auto& path : parsed_paths) {
     request.paths.push_back({path.path_id, path.charge, path.history});
@@ -246,13 +249,20 @@ void run(
             << "\",\"timing\":{"
             << "\"historyWindowWallSeconds\":"
             << result.timing.history_window_wall_seconds
-            << ","
-            << "\"rootBatchWallSeconds\":"
+            << ",\"traversalWallSeconds\":"
+            << result.timing.traversal_wall_seconds
+            << ",\"rootBatchWallSeconds\":"
             << result.timing.exact_root_batch_wall_seconds
             << ",\"rootBinary64CpuSeconds\":"
             << result.timing.root_binary64_cpu_seconds
+            << ",\"rootPairCount\":"
+            << result.timing.root_pair_count
+            << ",\"rootReevaluatedCells\":"
+            << result.timing.root_reevaluated_cells
             << ",\"rootMpfrCpuSeconds\":"
             << result.timing.root_mpfr_cpu_seconds
+            << ",\"rootMpfrPairCount\":"
+            << result.timing.root_mpfr_pair_count
             << ",\"historyCopyHashWallSeconds\":"
             << result.timing.history_copy_hash_wall_seconds
             << ",\"correctionWallSeconds\":"
@@ -295,6 +305,88 @@ void run(
               << (diagnostic_snapshot != nullptr
                       ? diagnostic_snapshot->traversal_exact_pairs
                       : 0U)
+              << ",\"traversalLogicalPairs\":"
+              << (diagnostic_snapshot != nullptr &&
+                          diagnostic_snapshot->traversal_certificate.has_value()
+                      ? diagnostic_snapshot->traversal_certificate
+                            ->logical_ordered_pairs
+                      : (diagnostic_snapshot != nullptr
+                             ? diagnostic_snapshot->root_certificates.size()
+                             : 0U))
+              << ",\"traversalUnresolvedPairs\":"
+              << (diagnostic_snapshot != nullptr &&
+                          diagnostic_snapshot->traversal_certificate.has_value()
+                      ? diagnostic_snapshot->traversal_certificate
+                            ->unresolved_pairs
+                      : 0U)
+              << ",\"traversalVisitedNodes\":"
+              << (diagnostic_snapshot != nullptr &&
+                          diagnostic_snapshot->traversal_certificate.has_value()
+                      ? diagnostic_snapshot->traversal_certificate->visited_nodes
+                      : 0U)
+              << ",\"traversalCoverageDisjointComplete\":"
+              << (diagnostic_snapshot != nullptr &&
+                          diagnostic_snapshot->traversal_certificate.has_value()
+                      ? (diagnostic_snapshot->traversal_certificate
+                                 ->coverage_disjoint_complete
+                             ? "true"
+                             : "false")
+                      : (diagnostic_snapshot != nullptr ? "true" : "false"))
+              << ",\"rootCertificateCount\":"
+              << (diagnostic_snapshot != nullptr
+                      ? diagnostic_snapshot->root_certificates.size()
+                      : 0U)
+              << ",\"rootAccounting\":[";
+    if (diagnostic_snapshot != nullptr) {
+      for (std::size_t root_index = 0;
+           root_index < diagnostic_snapshot->root_certificates.size();
+           ++root_index) {
+        if (root_index > 0U) {
+          std::cout << ',';
+        }
+        const auto& root_row =
+            diagnostic_snapshot->root_certificates[root_index];
+        const auto& certificate = root_row.certificate;
+        std::cout << "{\"receiverPathId\":\""
+                  << json_escape(root_row.receiver_path_id)
+                  << "\",\"sourcePathId\":\""
+                  << json_escape(root_row.source_path_id)
+                  << "\",\"status\":\""
+                  << json_escape(certificate.status)
+                  << "\",\"failureCode\":\""
+                  << json_escape(certificate.failure_code)
+                  << "\",\"rootFreeComplement\":"
+                  << (certificate.root_free_complement ? "true" : "false")
+                  << ",\"memoryBoundaryContact\":"
+                  << (certificate.memory_boundary_contact ? "true" : "false")
+                  << ",\"roots\":[";
+        for (std::size_t bracket_index = 0;
+             bracket_index < certificate.roots.size(); ++bracket_index) {
+          if (bracket_index > 0U) {
+            std::cout << ',';
+          }
+          const auto& bracket = certificate.roots[bracket_index];
+          std::cout << "{\"lower\":\"" << json_escape(bracket.lower)
+                    << "\",\"upper\":\"" << json_escape(bracket.upper)
+                    << "\",\"sourceNormalLower\":\""
+                    << json_escape(bracket.source_normal_lower)
+                    << "\",\"sourceNormalUpper\":\""
+                    << json_escape(bracket.source_normal_upper)
+                    << "\",\"receiverNormalLower\":\""
+                    << json_escape(bracket.receiver_normal_lower)
+                    << "\",\"receiverNormalUpper\":\""
+                    << json_escape(bracket.receiver_normal_upper)
+                    << "\",\"sourceNormalSign\":"
+                    << bracket.source_normal_sign
+                    << ",\"precisionRoute\":\""
+                    << json_escape(bracket.precision_route)
+                    << "\",\"precisionBits\":" << bracket.precision_bits
+                    << '}';
+        }
+        std::cout << "]}";
+      }
+    }
+    std::cout << "]"
               << ",\"rootFailures\":[";
     bool first_root_failure = true;
     const auto print_snapshot_failures = [&](
@@ -527,17 +619,23 @@ int main(int argc, char** argv) {
                    "borg-shadow-v0|borg-shadow-server-v0 "
                    "[--maximum-mpfr-bits=N] "
                    "[--quadrature-max-depth=N] "
-                   "[--quadrature-max-cells=N]\n";
+                   "[--quadrature-max-cells=N] "
+                   "[--disable-certified-traversal] "
+                   "[--traversal-exact-tile-pair-limit=N]\n";
       return EXIT_FAILURE;
     }
     unsigned maximum_mpfr_bits = 512;
     std::size_t quadrature_max_depth = 32;
     std::size_t quadrature_max_cells = 200000;
+    bool use_certified_traversal = true;
+    std::uint64_t traversal_exact_tile_pair_limit = 64;
     for (int argument_index = 2; argument_index < argc; ++argument_index) {
       const std::string option = argv[argument_index];
       constexpr const char* precision_prefix = "--maximum-mpfr-bits=";
       constexpr const char* depth_prefix = "--quadrature-max-depth=";
       constexpr const char* cells_prefix = "--quadrature-max-cells=";
+      constexpr const char* traversal_tile_prefix =
+          "--traversal-exact-tile-pair-limit=";
       if (option.starts_with(precision_prefix)) {
         const std::size_t parsed = parse_size(
             option.substr(std::char_traits<char>::length(precision_prefix)),
@@ -561,16 +659,31 @@ int main(int argc, char** argv) {
         if (quadrature_max_cells == 0U) {
           throw std::invalid_argument("quadrature maximum cells must be positive");
         }
+      } else if (option == "--disable-certified-traversal") {
+        use_certified_traversal = false;
+      } else if (option.starts_with(traversal_tile_prefix)) {
+        traversal_exact_tile_pair_limit = parse_size(
+            option.substr(std::char_traits<char>::length(
+                traversal_tile_prefix)),
+            "traversal exact tile pair limit");
+        if (traversal_exact_tile_pair_limit == 0U) {
+          throw std::invalid_argument(
+              "traversal exact tile pair limit must be positive");
+        }
       } else {
         throw std::invalid_argument("unsupported Borg EOM native option");
       }
     }
     const std::string mode = argv[1];
     if (mode == "borg-shadow-v0") {
-      run(maximum_mpfr_bits, quadrature_max_depth, quadrature_max_cells);
+      run(
+          maximum_mpfr_bits, quadrature_max_depth, quadrature_max_cells,
+          use_certified_traversal, traversal_exact_tile_pair_limit);
     } else if (mode == "borg-shadow-server-v0") {
       while (std::cin.peek() != std::char_traits<char>::eof()) {
-        run(maximum_mpfr_bits, quadrature_max_depth, quadrature_max_cells);
+        run(
+            maximum_mpfr_bits, quadrature_max_depth, quadrature_max_cells,
+            use_certified_traversal, traversal_exact_tile_pair_limit);
         std::cout.flush();
       }
     } else {
@@ -578,7 +691,9 @@ int main(int argc, char** argv) {
                    "borg-shadow-v0|borg-shadow-server-v0 "
                    "[--maximum-mpfr-bits=N] "
                    "[--quadrature-max-depth=N] "
-                   "[--quadrature-max-cells=N]\n";
+                   "[--quadrature-max-cells=N] "
+                   "[--disable-certified-traversal] "
+                   "[--traversal-exact-tile-pair-limit=N]\n";
       return EXIT_FAILURE;
     }
     return EXIT_SUCCESS;

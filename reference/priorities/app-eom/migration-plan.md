@@ -40,30 +40,47 @@ state: different past paths can end at the same state while producing different
 delayed interactions. Borg must therefore receive an explicit retained-history
 input before the EOM can extend it forward.
 Applying a new Borg population constructs one exact inertial polynomial per
-selected path over the declared ten-unit memory interval. This is an accepted
+selected path over the declared retained-history interval. This is an accepted
 initial datum under the frozen EOM contract, not an evolved past and not
-canonical EOM evidence. The runner evolves it from $T=0$ through $T=10$ without
-publishing burn-in frames. At $T=10$, the complete retained interval $[0,10]$
-is EOM-produced; the seed interval $[-10,0]$ is removed. Thereafter the solver
-keeps only the moving EOM window $[T-10,T]$, not the whole trajectory.
-The 16-path seed-cut control has executable architecture evidence only; it is
-not eligible for promotion because it still consumes the accepted seed.
+canonical EOM evidence. The ordinary developer shadow still uses its short
+interactive burn-in, but the active promotion target is the deterministic
+eight-path prefix `1001`–`1008` with a 90-unit history interval. Its maximum
+initial causal delay is about `79.36964`, so the promotion harness evolves from
+$T=0$ through $T=90$ without publishing burn-in frames. Only at $T=90$ can it
+remove the seed interval $[-90,0]$ and retain an EOM-only moving window.
+The eight-path seed-cut control has executable architecture evidence only; it
+is not eligible for promotion because it still consumes the accepted seed.
 The Borg shadow surface now supports a selected continuous-history subset of
 1–16 architrinos, requested duration, automatic fixed-size chunks, progress,
-native cancellation, and clean restart. A strict 16-path seed-cut timestep
+native cancellation, and clean restart. A strict eight-path seed-cut timestep
 ladder at root and state tolerances `1e-8` completed at steps `0.01`, `0.005`,
-and `0.0025`. Its maximum state difference was about `5.68e-14`; the
+and `0.0025`. Its maximum state difference was about `6.30e-14`; the
 one-thread and four-thread `0.0025` histories were byte-identical; and no
 causal-root failure was reported. This measured control does not reproduce the
-former 240-off-diagonal-pair `numeric_precision_limit_exhausted` failure, but
+former off-diagonal-pair `numeric_precision_limit_exhausted` failure, but
 it is not the post-burn-in migration gate because the input still contains the
-accepted seed. The 16-path burn-in currently fails closed at `[0.06,0.07]` on
-`regulator_convergence_failed`, after all 256 ordered pairs enter exact
-traversal with zero root failures. It therefore does not create the EOM-only
-`T=10` checkpoint from which the strict post-burn-in ladder must run. The
-post-burn-in precision verdict remains unreached, and the regulator event is
+accepted seed. The strict burn-in has accepted through $T=34.4940625$. A
+strict-tolerance adaptive continuation from that checkpoint consumed the
+600-second process budget without publishing another accepted boundary. It
+therefore did not create the EOM-only $T=90$ checkpoint from which the strict
+post-burn-in ladder must run. The post-burn-in precision verdict remains
+unreached, and bounded-run completion within the declared resource envelope is
 the first current blocker. The long-term million-path, GPU, multi-GPU, and
-distributed-history gates do not block Borg's 16-path migration.
+distributed-history gates do not block Borg's eight-path migration.
+
+The shared checkout currently contains a concurrent, uncommitted removal of
+the Borg compatibility runner and query branch. That work did not follow from
+this promotion verdict and is not accepted promotion evidence. It must not be
+integrated as a promotion result unless a later run produces the seed-free
+$T=90$ checkpoint and passes the post-burn-in ladder.
+
+The former 16-path `[0.06,0.07]` diagnostic was not regulator divergence. Its
+base finite-width event certificate failed on a causal root entering through
+the oldest retained-history boundary, but the regulator wrapper masked
+`insufficient_history_depth` as `regulator_convergence_failed`. The engine now
+preserves the upstream failure code and an interval regression verifies atomic
+rejection. That retired 16-path event is not part of the active eight-path
+promotion envelope.
 
 ## Initial Consumer Disposition
 

@@ -995,13 +995,16 @@ SubstepAttempt corrected_substep_impl(
           if (regulator.status != "certified_convergent" ||
               event.status != "certified_complete" ||
               !event.impulse.has_value()) {
+            const std::string failure = regulator.failure_code.empty()
+                ? "regulator_convergence_failed"
+                : regulator.failure_code;
             event_impulses.push_back(std::move(event));
             regulator_convergence_certificates.push_back(
                 std::move(regulator));
             auto failed = failed_substep_certificate(
                 start_time, end_time, std::move(start_snapshot),
                 std::move(endpoint_snapshot), iteration, correction_error,
-                "regulator_convergence_failed", candidate_histories,
+                failure, candidate_histories,
                 pinned_fold_onset_certificates);
             failed.event_impulses = std::move(event_impulses);
             failed.regulator_convergence_certificates =
@@ -2276,6 +2279,9 @@ NativeRegulatorConvergenceCertificate certify_native_regulator_convergence(
   };
   if (base_event.status != "certified_complete" ||
       !base_event.impulse.has_value()) {
+    certificate.failure_code = base_event.failure_code.empty()
+        ? "numeric_event_impulse_uncertified"
+        : base_event.failure_code;
     return certificate;
   }
   const double base_causal_width = exact_decimal_value(request.causal_width);
