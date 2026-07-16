@@ -21,7 +21,7 @@ Use this file as the staging ledger before broad cleanup of Noether braid markdo
 
 ## Proof ID Vocabulary
 
-The active Proof ID source of truth is the proof map in [Noether Braid Taxonomy](../../../../content/markdown/aaa/noether-braid/noether-braid-taxonomy.md#proof-map-table). This ledger uses the following working categories:
+The active Proof ID source of truth is the proof map in [Noether Braid Taxonomy](../../../../content/markdown/aaa/noether-braid/noether-braid-configuration-space.md#proof-map-table). This ledger uses the following working categories:
 
 | Category | Meaning |
 | --- | --- |

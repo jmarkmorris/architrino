@@ -27,6 +27,6 @@ The lane is also an external-contact opportunity: Lissajous and spherical-Lissaj
 
 ## Related AAA Notes
 
-- [shell-braid](../../../content/markdown/aaa/noether-braid/explored-braid-geometries.md)
-- [nested-shell-braid](../../../content/markdown/aaa/noether-braid/explored-braid-geometries.md)
-- [noether-braid-doubling-frequency-resonance-lock](../../../content/markdown/aaa/noether-braid/explored-braid-geometries.md#noether-braid-doubling-frequency-resonance-lock)
+- [shell-braid](../../../content/markdown/aaa/noether-braid/braid-families.md)
+- [nested-shell-braid](../../../content/markdown/aaa/noether-braid/braid-families.md)
+- [noether-braid-doubling-frequency-resonance-lock](../../../content/markdown/aaa/noether-braid/braid-families.md#noether-braid-doubling-frequency-resonance-lock)

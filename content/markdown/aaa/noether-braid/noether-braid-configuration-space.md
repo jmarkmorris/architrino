@@ -1,6 +1,6 @@
 # Noether Braid Configuration Space
 
-This chapter gives the Noether braid search space for cases where three retained angular-momentum rows may form a full internal 3D frame. It comes after the family map in [Noether Braid](noether-braid.md) and the base branch definitions in [Neutral Braid](neutral-braid.md), [Symmetric Shell Braid](explored-braid-geometries.md#symmetric-shell-braid), and [Nested Shell Braid](explored-braid-geometries.md#nested-shell-braid), and before any named configuration such as the doubling-frequency `4:2:1` lock, an iso-frequency candidate, or a field-speed hinge-occupancy candidate. Within the rank-three sublocus, a branch candidate is a three-row retained state whose energies, phase offsets, angular-momentum rows, plane orientations, causal-root ledgers, frequencies, radii, speeds, and whole-branch group velocity must be solved together.
+This chapter gives the Noether braid search space for cases where three retained angular-momentum rows may form a full internal 3D frame. It comes after the family map in [Noether Braid](noether-braid.md) and the base branch definitions in [Braid Families](braid-families.md#the-neutral-braid-base-of-the-family-ladder), [Symmetric Shell Braid](braid-families.md#symmetric-shell-braid), and [Nested Shell Braid](braid-families.md#nested-shell-braid), and before any named configuration such as the doubling-frequency `4:2:1` lock, an iso-frequency candidate, or a field-speed hinge-occupancy candidate. Within the rank-three sublocus, a branch candidate is a three-row retained state whose energies, phase offsets, angular-momentum rows, plane orientations, causal-root ledgers, frequencies, radii, speeds, and whole-branch group velocity must be solved together.
 
 This is a search architecture and theorem target, not a completed classification theorem. The goal is to find which regions of the Noether braid configuration space support stable retained branches in a Noether sea populated by like assemblies, identify which branches remain candidate braids and which can be promoted to certified braids, and then use those branches as the entry point for assembly topological charge, energy differentials, shielding, and accessory-architrino capture.
 
@@ -12,7 +12,182 @@ This distinction prevents premature naming. A three-row branch is valuable becau
 
 This chapter owns the rank-three angular-momentum-frame search variables: unordered layer labels, angular-momentum two-form rows, the plane-frame determinant, group velocity, energy/frequency/speed/radius ledgers, role assignment, and permutation accounting. It is the place to ask whether a candidate branch supplies three retained angular-momentum rows with enough conditioning to form a volumetric internal frame.
 
-It does not exhaust the full Noether braid class, certify nested shell support, or make `I:M:O`, `4:2:1`, iso-frequency, or field-speed hinge assumptions the default. Those are specializations that must declare their support base and same-record branch rows before they can be mapped onto a Proof ID in [Noether Braid Taxonomy](noether-braid-taxonomy.md).
+It does not exhaust the full Noether braid class, certify nested shell support, or make `I:M:O`, `4:2:1`, iso-frequency, or field-speed hinge assumptions the default. Those are specializations that must declare their support base and same-record branch rows before any classification label is attached.
+
+## Evidence-Level Terms
+
+This chapter uses four evidence-level terms in a controlled way:
+
+| Term | Meaning in this chapter | What it does not claim by itself |
+| --- | --- | --- |
+| branch | A candidate whole six-architrino Noether braid history over a declared finite memory window. The branch is the object whose inventory, paths, causal roots, wakes, energy/action rows, angular-momentum rows, phases, support data, response-center data, and Noether sea row are tested together. | A branch is not a single path, a single binary row, or a visual braid drawing. It is also not automatically stable or physical. |
+| retained | Evidential status for a branch, row, or chart whose required data close on the same record under the declared tolerance, event/domain convention, and stability conditions. | `Retained` does not mean assumed, preferred, or merely still under discussion. If the same-record ledgers are missing, the object remains a candidate. |
+| support | The geometric region, band, envelope, or comparison chart occupied by the branch data. Shell support, nested shell support, oblate spheroidal envelope support, and axial comparison support are different ways to describe where the six paths or their derived ledgers live. | Support is not a force law and not proof of retention. A support label says how the candidate is represented geometrically, not that the delayed dynamics preserve it. |
+| record | The finite ledger attached to one branch over the declared memory window. It includes only data that can still affect the next delayed update or certificate: inventory, path history, causal-root rows, wake rows, energy/action rows, momentum and angular-momentum rows, phase and plane-orientation rows, support claims, response-center and group-velocity rows, and the local Noether sea row. | A record is not a narrative summary or a loose collection of diagnostics. A proof claim must say which rows close on the same record. |
+
+This chapter is the front door for classifying Noether braid configurations. It names the independent axes used to describe a candidate branch before any adjudication of retention. The taxonomy is therefore a configuration language, not a classification theorem.
+
+A Noether braid taxonomy record for a candidate branch $\mathfrak B$ can be written schematically as
+
+$$
+\mathsf{Tax}_{\mathfrak B}
+=
+\left(
+\mathsf{Inventory},
+\mathsf{Support},
+\mathsf{AngularMomentumFrame},
+\mathsf{Polarity},
+\mathsf{Handedness},
+\mathsf{Speed},
+\mathsf{Hinge},
+\mathsf{Frequency}
+\right).
+$$
+
+Each entry records a different kind of structure. Mixing the entries creates a candidate configuration; it does not by itself prove that the delayed dynamics admit a stable branch. Retention and certification are evidence statuses, not configuration axes.
+
+
+## A Named Candidate: The Spindle Braid
+
+A reader who wants one concrete configuration to hold in mind while reading the axes below can hold this one. The **spindle braid** ([Spindle Braid](spindle-braid.md)) is the rigid uniaxial iso-frequency family: all six architrinos co-rotate at one common frequency about a single axis, each binary a tilted antipodal pair, with the tilt angles decoupling each layer's speed from its nesting radius. Its name is literal dynamics, not only appearance: the opposite-polarity attraction channels form the staggered [drum lacing](braid-mathematics.md#drum-geometry), and rotation winds that lacing into helices, so the static drum picture and the braid picture are the same channel viewed at two levels. It contains the planar tri-binary and the axial-dipole configurations as its flat and full-tilt limits, so those are best read as boundary members of the spindle family rather than rivals.
+
+The status discipline binds. The spindle braid is a named candidate family, not a retained branch, and no family ranking is asserted: comparative adjudication among the families is an open obligation of the theory, and every family in this classifier remains a live candidate on equal footing. The alternative families below are the search's bookkeeping: the comparison population any candidate must eventually be measured against.
+
+
+## Classification Axes
+
+| Axis | Reader-facing purpose | Example values |
+| --- | --- | --- |
+| Base inventory | Which six architrinos are in the candidate branch | neutral braid |
+| Support geometry | Where the six paths live geometrically | shell braid, nested shell braid, oblate spheroidal envelope |
+| Angular-momentum frame | Whether three retained angular-momentum rows form a full internal 3D frame | rank-three frame, planar lower-rank braid (`PL`) |
+| Polarity placement | How `+++` and `---` populate opposite axial pairs | axis-neutral, axis-polarized |
+| Angular-momentum handedness | Orientation of the ordered rank-three frame | positive-handed, negative-handed |
+| Speed regime | Whether branch speed rows sit below, at, or above the field speed $c_f$ | sub-field-speed, field-speed, super-field-speed, mixed |
+| Field-speed hinge occupancy | Whether one or more rows sit near $c_f$, where self-hit access may change | no hinge row, single-hinge, multi-hinge, terminal hinge |
+| Frequency-ratio family | Return or winding-frequency relation | iso-frequency `1:1:1`, integer-ratio `3:2:1`, doubling-frequency `4:2:1` |
+
+The axes are intentionally independent. A nested shell braid may be studied with or without an exact rank-three frame. A doubling-frequency family may be studied on an axis-neutral or axis-polarized polarity placement. A row with field-speed hinge occupancy may or may not belong to an iso-frequency or integer-ratio family. A positive-handed angular-momentum frame may be a candidate diagnostic without yet being a retained branch certificate.
+
+## Base Inventory
+
+The base inventory is the neutral six-architrino case described in [Braid Families](braid-families.md#the-neutral-braid-base-of-the-family-ladder). It contains three positive-polarity architrinos and three negative-polarity architrinos:
+
+$$
+\#\{i:\sigma_i=+1\}
+=
+\#\{i:\sigma_i=-1\}
+=3,
+\qquad
+\sum_i \sigma_i=0.
+$$
+
+This inventory says only that the candidate has the required polarity count and a shared causal-return ledger. It does not assume exact binary pairs, shell support, an orthogonal angular-momentum frame, or a protected topological class.
+
+## Support Geometry
+
+Support geometry records how the six paths occupy their branch support. These labels describe where the branch data live geometrically; they do not by themselves certify the branch dynamics or the observer-export law.
+
+| Support value | Meaning | Claim level |
+| --- | --- | --- |
+| no declared shell support | Candidate branch whose base inventory has not declared a controlled radial band or common shell. | Absence of a support claim, not proof of branch failure. |
+| shell braid | Neutral braid with one declared controlled radial support band or common shell. | Support class requiring radial control rows for retention. |
+| nested shell braid | Shell braid with three ordered radial support bands. | Support class defined in [Nested Shell Braid](braid-families.md#nested-shell-braid) and used by [Braid Envelope Geometry](braid-envelope-geometry.md) and the nested dynamics material in [Explored Braid Geometries](braid-families.md#nested-shell-braid-dynamics). |
+| oblate spheroidal envelope | Candidate support or envelope geometry whose path-history boundary is flattened relative to a spherical support while treating the two transverse semiaxes as equal. | Explored support variation, not a retained class by name alone and not proof of Lorentz deformation. |
+
+Support geometry should not be confused with binary grouping or with Lorentz deformation. A branch may have shell support before it proves three persistent binary rows. Conversely, a rank-three frame may be used as a reduced diagnostic without proving that the full six-body support is a retained nested shell braid. An oblate spheroidal envelope is a geometry label: it records a branch-envelope axis ratio such as $\xi=R_{\parallel}/R_{\perp} < 1$ on the declared chart. Lorentz deformation is tested separately as a moving-branch clock/ruler export law.
+
+## Angular-Momentum Frame
+
+The angular-momentum-frame axis asks whether the retained branch emits enough angular-momentum rows to define a full internal 3D frame. The rows are ledger data extracted from the branch, not assumed circular orbits. The three-row or rank-three search region is developed in [Noether Braid Configuration Space](noether-braid-configuration-space.md), but it remains only one region inside the broader Noether braid taxonomy rather than the definition of every Noether braid.
+
+| Frame value | Meaning | What it does not prove |
+| --- | --- | --- |
+| not assigned | The branch has not yet supplied retained angular-momentum rows. | It does not reject the branch; it only leaves the frame axis open. |
+| rank-three frame | The branch supplies three retained angular-momentum rows with nonzero frame determinant. | It does not by itself prove shell support, frequency lock, polarity placement, or certification. |
+| planar lower-rank braid (`PL`) | The branch is lower-rank on this axis because $D_{\mathrm{plane}}=0$ (defined below) or because no retained three-row frame exists. | It is not automatically the planar reduced chart and not automatically a terminal nested-shell boundary. |
+
+For a rank-three frame, the branch record includes three angular-momentum two-form classes. Here class means a ledger-extracted angular-momentum two-form row up to the declared branch-window equivalence, not a de Rham cohomology class of the Euclidean void:
+
+$$
+[\omega_J^{(a)}],
+\qquad
+a\in\{1,2,3\},
+$$
+
+with derived plane normals $\hat{\mathbf n}_a$ when the Hodge-dual direction is nonzero. The frame is volumetric only when
+
+$$
+D_{\mathrm{plane}}
+=
+\det
+\begin{bmatrix}
+\hat{\mathbf n}_1 & \hat{\mathbf n}_2 & \hat{\mathbf n}_3
+\end{bmatrix}
+\ne 0.
+$$
+
+A planar lower-rank braid (`PL`) may still be dynamically meaningful, but it is not a promoted rank-three Noether braid branch until the three-row frame condition and its conditioning floor are supplied on the same retained record.
+
+The planar reduced chart is different. A reduced planar chart is a proof or simulation representation that places branch data into a common plane or near-plane so a restricted calculation can be performed. The canonical planar rank-three Noether braid reduced chart is the rank-three instance of this reduced chart usage. Such a chart may also represent a `PL` candidate, the terminal boundary of a nested shell braid, or the photon-channel bridge described by the coaxial contra-rotating polarity-conjugate planar pair. It should therefore be named as a chart, not used as a base-family name.
+
+## Polarity Placement
+
+Polarity placement records how the three positive-polarity and three negative-polarity architrinos populate opposite axial pairs in an axial comparison chart. Let an axial chart have three opposite coordinate pairs
+
+$$
+A_k=\{+\hat{\mathbf e}_k,-\hat{\mathbf e}_k\},
+\qquad
+k\in\{1,2,3\}.
+$$
+
+The two final polarity-placement terms are:
+
+| Term | Axial population pattern | Meaning |
+| --- | --- | --- |
+| axis-neutral | Each opposite axial pair contains one positive and one negative endpoint. | The schematic polarity row is `-+`, `-+`, `-+`, up to axis and endpoint relabeling. |
+| axis-polarized | One opposite axial pair contains two positives, one contains two negatives, and one remains mixed. | The schematic polarity row is `--`, `-+`, `++`, up to axis and endpoint relabeling. |
+
+These are polarity placements, not force laws. They classify a polarity placement on a chosen axial comparison chart. They do not decide whether the underlying paths are axial, circular, or retained by the delayed dynamics.
+
+## Angular-Momentum Handedness
+
+Angular-momentum handedness records the orientation of the ordered rank-three frame when the frame exists. If the retained branch supplies ordered plane normals $\hat{\mathbf n}_1,\hat{\mathbf n}_2,\hat{\mathbf n}_3$, then the sign of $D_{\mathrm{plane}}$ gives the handedness of that ordered frame:
+
+$$
+\operatorname{sgn}(D_{\mathrm{plane}})
+=
+\begin{cases}
++1, & \text{positive-handed},\\
+-1, & \text{negative-handed}.
+\end{cases}
+$$
+
+When $D_{\mathrm{plane}}=0$ or the branch has no retained three-row frame, handedness is not assigned as a rank-three property. It may still have planar chirality, circulation signs, or other lower-rank orientation diagnostics, but those are separate rows.
+
+## Speed, Hinge, And Frequency Families
+
+The speed regime records how retained speed rows relate to the field speed $c_f$. Sub-field-speed rows satisfy speeds below the local field-speed hinge; field-speed rows sit at the transition scale; super-field-speed rows enter regimes where delayed self-interaction can become available. In nested `I:M:O` notation, these rows are assigned only after the retained branch supplies the role map.
+
+Field-speed hinge occupancy is a separate axis. It asks which row, if any, operates within a declared tolerance of $c_f$, and it must say which speed statistic is being tested: transverse carrier speed, orbital/circulation speed, or another branch-declared component. A hinge row is not automatically a self-hit row. It is the speed-regime condition at which the branch can transition from the partner-only regime toward a ledger with both partner-hit and self-hit access, provided the same-source causal-root ledger and transversality rows also close.
+
+| Hinge value | Meaning |
+| --- | --- |
+| no hinge row | No retained row is declared within the $c_f$ hinge tolerance. |
+| single-hinge | One row is organized around the field-speed hinge. |
+| multi-hinge | More than one row is organized around the field-speed hinge. |
+| terminal hinge | The branch approaches a terminal-alignment regime, such as the braid symmetry-breaking point, where hinge occupancy and loss of volumetric slack must be tested together. |
+
+The frequency-ratio family records return or winding-frequency relations. The main examples are:
+
+| Frequency-ratio value | Meaning |
+| --- | --- |
+| iso-frequency `1:1:1` | Candidate family with common return rate across the three retained rows. The rigid uniaxial member is the **spindle braid** (see the named-candidate note above). |
+| integer-ratio `3:2:1` | Candidate family with integer return rates but no repeated-doubling assumption. |
+| doubling-frequency `4:2:1` | Candidate nested `I:M:O` family in which each inward row doubles the next outer row, studied in [Noether Braid Doubling-Frequency Resonance Lock](doubling-frequency-lock.md). |
+
+Frequency-ratio labels are candidate-family labels until the phase-return degree, causal-root ledger, finite-memory gluing, and stability rows close on the same branch. Hinge labels require their own speed and causal-root rows; they are not frequency-ratio names.
+
 
 ## Scope Of The Hypothesis
 

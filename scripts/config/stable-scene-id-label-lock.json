@@ -62,11 +62,9 @@
       "objects": {
         "braid_envelope_geometry": "Braid Envelope Geometry",
         "doubling_frequency_lock": "Doubling-Frequency Resonance Lock",
-        "explored_braid_geometries": "Explored Braid Geometries",
-        "neutral_braid": "Neutral Braid",
+        "explored_braid_geometries": "Braid Families",
         "noether_braid_configuration_space": "Noether Braid Configuration Space",
         "noether_braid_overview": "Noether Braid",
-        "noether_braid_taxonomy": "Noether Braid Taxonomy",
         "noether_braid_topological_charge": "Noether Braid Topological Charge",
         "spindle_braid": "Spindle Braid"
       }

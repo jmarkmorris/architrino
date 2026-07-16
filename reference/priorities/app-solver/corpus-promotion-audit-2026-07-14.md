@@ -26,7 +26,7 @@ So these are not over-graded claims. They are claims whose *stated provenance is
 false*, and the claim-level sentence attached to them asserts the false
 provenance as its warrant. Verified examples, quoted from source:
 
-- `noether-braid/noether-braid-taxonomy.md:88` — "the first tabled rest-state
+- `noether-braid/noether-braid-configuration-space.md:88` — "the first tabled rest-state
   realization, **released on the native retained-history solver at declared
   regulators**, did not self-support — the wake forces at the fitted coupling
   under-supplied the required centripetal support and **the configuration
@@ -50,12 +50,12 @@ happen as described.
 |---|---|---|---|
 | `noether-braid/spindle-braid.md` | **T2 + T3, 11 native-dynamics phrases** | yes | L232–234 "Released Behavior" section; L262 flutter "not an instrument artifact"; L108 native speed-attractor |
 | `philosophy-history/theory-bridges/angular-momentum-and-spin.md` | **T2 + T3** | yes | L307–319 flutter verdict $\lambda=+0.18\pm0.38i$; L317 native-release corroboration |
-| `noether-braid/noether-braid-taxonomy.md` | **T3** | yes, severable | L88 "released on the native retained-history solver… dispersed" |
-| `noether-braid/explored-braid-geometries.md` | **T3** | yes | L71 "expands without any later inward acceleration row"; L77 escape claim |
+| `noether-braid/noether-braid-configuration-space.md` | **T3** | yes, severable | L88 "released on the native retained-history solver… dispersed" |
+| `noether-braid/braid-families.md` | **T3** | yes | L71 "expands without any later inward acceleration row"; L77 escape claim |
 | `spacetime/lorentz-kinematics.md` | **T3 + T2** | moderate | L528 "A release of the drifting rigid family confirms the ruler law"; flutter cited as the limitation on higher-drift rows |
 | `noether-braid/noether-braid.md` | **T3, framing** | yes, severable | L23 "did not self-support under native release" |
 | `assemblies/particle-masses.md` | borderline — **survives as T1** | yes | L565 "the arrest is coupling-scale self-support" ("arrest" implies settling; the equilibrium itself is T1) |
-| `noether-braid/neutral-braid.md` | clean | — | — |
+| `noether-braid/braid-families.md#the-neutral-braid-base-of-the-family-ladder` | clean | — | — |
 | `noether-braid/braid-recovery-requirements.md` | clean | — | — |
 | `cosmology/expansion-mechanism.md` | clean | — | — |
 | `dynamics/binary-dynamics.md` | clean | — | — |
@@ -63,7 +63,7 @@ happen as described.
 ## Three structural observations
 
 1. **The two hardest T3 claims carry no claim-level tag at all.**
-   `explored-braid-geometries.md:71` and `noether-braid-taxonomy.md:88` both
+   `braid-families.md:71` and `noether-braid-configuration-space.md:88` both
    assert solver-measured time evolution with no "Claim level:" sentence.
    `angular-momentum-and-spin.md` tags everything and makes the *larger* claim —
    the tagged file is the more honest one. Tagging discipline is inversely

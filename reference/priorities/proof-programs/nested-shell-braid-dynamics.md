@@ -1,7 +1,7 @@
 # Nested Shell Braid Dynamics — Mechanism and Certificate Targets
 
 Status: requirements and theorem-target material relocated 2026-07-15 from the corpus chapter
-`content/markdown/aaa/noether-braid/explored-braid-geometries.md` per the braid-program
+`content/markdown/aaa/noether-braid/braid-families.md` per the braid-program
 [corpus reconciliation plan](../braid-program/corpus-reconciliation.md). This is proof-program
 tracking, not reader-facing prose. No result herein is relied on: certificate targets, diagnostics,
 and roadmaps are obligations for the validated engine; any measured or status language surviving
@@ -10,7 +10,7 @@ as citations only.
 
 This section carries the nested family's mechanism and certificate-target material: how a nested shell braid could stay together as a moving delayed system, extending the two-body causal-wake problem into a three-band assembly whose inner, middle, and outer support bands must keep compatible branch records instead of behaving like three independent orbits. Stability is treated as same-record closure: the branch must carry the period, active-root ledger, deformation map, medium response, observer-export packet, and event ledger together, and a visually plausible frequency pattern or useful envelope shape is not enough unless it belongs to the same retained delayed record.
 
-The realization-independent machinery first stated here now lives with the shared mathematics — the substrate levels, speed hierarchy, transverse causal budget lemma, spiral-helical motion picture, mass thesis, hinge equation sketch, and acceleration-gradient comparison are in [Braid Mathematics](../../../content/markdown/aaa/noether-braid/braid-mathematics.md#substrate-and-effective-levels — and the strong-field endpoint (the braid symmetry-breaking point, the local black-hole duality target, and the terminal-alignment label-count program) lives in the [Terminal Alignment](../../../content/markdown/aaa/proof-programs/terminal-alignment.md proof program. What remains below is the nested-specific mechanism scaffold, read together with [Binary Dynamics](../../../content/markdown/aaa/dynamics/binary-dynamics.md and [Noether Braid Doubling-Frequency Resonance Lock](../../../content/markdown/aaa/noether-braid/explored-braid-geometries.md#noether-braid-doubling-frequency-resonance-lock.
+The realization-independent machinery first stated here now lives with the shared mathematics — the substrate levels, speed hierarchy, transverse causal budget lemma, spiral-helical motion picture, mass thesis, hinge equation sketch, and acceleration-gradient comparison are in [Braid Mathematics](../../../content/markdown/aaa/noether-braid/braid-mathematics.md#substrate-and-effective-levels — and the strong-field endpoint (the braid symmetry-breaking point, the local black-hole duality target, and the terminal-alignment label-count program) lives in the [Terminal Alignment](../../../content/markdown/aaa/proof-programs/terminal-alignment.md proof program. What remains below is the nested-specific mechanism scaffold, read together with [Binary Dynamics](../../../content/markdown/aaa/dynamics/binary-dynamics.md and [Noether Braid Doubling-Frequency Resonance Lock](../../../content/markdown/aaa/noether-braid/braid-families.md#noether-braid-doubling-frequency-resonance-lock.
 
 ## Relation to Causal Closure
 

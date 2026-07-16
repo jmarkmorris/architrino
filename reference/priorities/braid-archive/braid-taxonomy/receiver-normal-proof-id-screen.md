@@ -26,8 +26,8 @@ Source-normal, Jacobian-only, quotient, fixture, frozen-ledger, old force-residu
 ## Authored-Corpus Patch Decisions
 
 - Noether Braid Proof Map (removed corpus chapter: `noether-braid-proof-map.md`) now carries cleanup rows for `NB-0`, `NSH-0`, and `PL-*`.
-- [Noether Braid Taxonomy](../../../../content/markdown/aaa/noether-braid/noether-braid-taxonomy.md) now names receiver-normal branch-strength rows in the proof-search roadmap and retained-branch status.
-- [Nested Shell Braid Dynamics](../../../../content/markdown/aaa/noether-braid/explored-braid-geometries.md#nested-shell-braid-dynamics) now describes the planar reduced chart as projecting declared branch rows until the residual closes, rather than assuming retained rows at the chart-definition step.
+- [Noether Braid Taxonomy](../../../../content/markdown/aaa/noether-braid/noether-braid-configuration-space.md) now names receiver-normal branch-strength rows in the proof-search roadmap and retained-branch status.
+- [Nested Shell Braid Dynamics](../../../../content/markdown/aaa/noether-braid/braid-families.md#nested-shell-braid-dynamics) now describes the planar reduced chart as projecting declared branch rows until the residual closes, rather than assuming retained rows at the chart-definition step.
 
 ## Next Audit Boundary
 

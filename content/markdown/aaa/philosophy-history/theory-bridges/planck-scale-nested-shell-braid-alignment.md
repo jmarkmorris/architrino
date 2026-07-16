@@ -2,7 +2,7 @@
 
 This chapter treats the Planck scale as an exploratory alignment-horizon problem for the nested shell braid rather than as a finished derivation. Its purpose is to translate familiar Planck-unit relations into concrete geometric and dynamical targets inside the delayed nested shell braid sector, then test which parts survive once full closure conditions are imposed.
 
-Its closest companions are [Nested Shell Braid Dynamics](../../noether-braid/explored-braid-geometries.md#nested-shell-braid-dynamics), [Noether Braid Doubling-Frequency Resonance Lock](../../noether-braid/doubling-frequency-lock.md), [Angular Momentum and Spin](./angular-momentum-and-spin.md), [Horizon Chirality](../../spacetime/horizon-chirality.md), [Black Holes](../../spacetime/black-holes.md), and [Effective Lagrangian](../../dynamics/effective-lagrangian.md).
+Its closest companions are [Nested Shell Braid Dynamics](../../noether-braid/braid-families.md#nested-shell-braid-dynamics), [Noether Braid Doubling-Frequency Resonance Lock](../../noether-braid/doubling-frequency-lock.md), [Angular Momentum and Spin](./angular-momentum-and-spin.md), [Horizon Chirality](../../spacetime/horizon-chirality.md), [Black Holes](../../spacetime/black-holes.md), and [Effective Lagrangian](../../dynamics/effective-lagrangian.md).
 
 The opening sections state the working thesis and the immediate kinematic map; later sections separate conjectural alignment, causal-wake framing, constant-mapping proposals, and failure modes. The reader should treat the whole note as a live mapping program, with explicit hypotheses rather than settled closure.
 
@@ -120,7 +120,7 @@ approaches $c^5/G$ when $M$ is estimated by the Planck mass, but that substituti
 - In this chapter, "$v_{\text{trans}} \to c_f$" and "$v_{\text{orb}}^{\text{tan}} \to c_f$" are component-speed saturation statements in the terminal alignment regime.
 - The statement "$v_{\text{eff}} > c_f$" refers to a **combined in-plane effective motion** used for Mach-wedge causal geometry, not a claim that either component speed is individually $> c_f$.
 - The local one-way starvation condition begins when a forward component approaches $c_f$; the Mach-wedge condition is the stronger combined-speed condition $v_{\text{eff}}>c_f$.
-- The CFT-exterior role label "outer binary $v < c_f$" remains valid away from the terminal/horizon regime (see the regime map in [Nested Shell Braid Dynamics](../../noether-braid/explored-braid-geometries.md#nested-shell-braid-dynamics)).
+- The CFT-exterior role label "outer binary $v < c_f$" remains valid away from the terminal/horizon regime (see the regime map in [Nested Shell Braid Dynamics](../../noether-braid/braid-families.md#nested-shell-braid-dynamics)).
 
 ---
 

@@ -23,12 +23,18 @@ import {
 const binaryPath = process.argv[2];
 if (!binaryPath) {
   throw new Error(
-    "usage: run-borg-post-burn-in-refinement-ladder.mjs <eom_borg_shadow_cli> [--history-depth=<time>] [--burn-in-chunk=<time>] [--burn-in-step=<time>] [--burn-in-minimum-step=<time>] [--burn-in-root-tolerance=<time>] [--maximum-mpfr-bits=<bits>] [--quadrature-max-depth=<count>] [--quadrature-max-cells=<count>] [--checkpoint=<path>] [--resume=<path>] [--output=<path>] [--seed-only]",
+    "usage: run-borg-post-burn-in-refinement-ladder.mjs <eom_borg_shadow_cli> [--path-count=<count>] [--history-depth=<time>] [--burn-in-chunk=<time>] [--burn-in-step=<time>] [--burn-in-minimum-step=<time>] [--burn-in-root-tolerance=<time>] [--maximum-mpfr-bits=<bits>] [--quadrature-max-depth=<count>] [--quadrature-max-cells=<count>] [--checkpoint=<path>] [--resume=<path>] [--output=<path>] [--seed-only]",
   );
 }
 
 const manifest = BORG_DATASET_MANIFEST_V1;
-const pathCount = manifest.population.architrinoCount;
+const manifestPathCount = manifest.population.architrinoCount;
+const pathCount = optionalPositiveIntegerArgument("--path-count=", manifestPathCount);
+if (pathCount > manifestPathCount) {
+  throw new RangeError(
+    `--path-count cannot exceed the manifest population of ${manifestPathCount}.`,
+  );
+}
 const historyDepth = optionalPositiveArgument(
   "--history-depth=",
   manifest.simulationEnvelope.historyDepth,
@@ -56,9 +62,9 @@ const burnInRootTolerance = optionalPositiveArgument(
   "--burn-in-root-tolerance=",
   1e-3,
 );
-const maximumMpfrBits = optionalPositiveArgument("--maximum-mpfr-bits=", 512);
-const quadratureMaxDepth = optionalPositiveArgument("--quadrature-max-depth=", 32);
-const quadratureMaxCells = optionalPositiveArgument("--quadrature-max-cells=", 200000);
+const maximumMpfrBits = optionalPositiveIntegerArgument("--maximum-mpfr-bits=", 512);
+const quadratureMaxDepth = optionalPositiveIntegerArgument("--quadrature-max-depth=", 32);
+const quadratureMaxCells = optionalPositiveIntegerArgument("--quadrature-max-cells=", 200000);
 const strictCases = Object.freeze([
   Object.freeze({ id: "h", step: "0.01", threadCount: 1 }),
   Object.freeze({ id: "h_over_2", step: "0.005", threadCount: 1 }),
@@ -66,11 +72,12 @@ const strictCases = Object.freeze([
   Object.freeze({ id: "h_over_4_threads_4", step: "0.0025", threadCount: 4 }),
 ]);
 
-const endpointRows = createBorgSeededInitialConditionRows({
+const fullPopulationEndpointRows = createBorgSeededInitialConditionRows({
   manifest,
   seedIndex: 0,
   config: createBorgInitialConditionConfig(manifest.initialConditions),
 });
+const endpointRows = Object.freeze(fullPopulationEndpointRows.slice(0, pathCount));
 const seed = await createBorgAcceptedInertialSeedHistory(endpointRows, {
   historyStartTime: burnInStart - historyDepth,
   historyEndTime: burnInStart,
@@ -108,7 +115,7 @@ try {
           : "not_run_no_eom_only_checkpoint",
         reason: seedOnly
           ? "The diagnostic was explicitly limited to the seed-cut ladder."
-          : `The 16-path burn-in halted before the complete memory horizon, so no EOM-only retained history exists at T=${burnInEnd}.`,
+          : `The ${pathCount}-path burn-in halted before the complete memory horizon, so no EOM-only retained history exists at T=${burnInEnd}.`,
       });
 } finally {
   await client.dispose();
@@ -121,6 +128,10 @@ const evidence = {
   binaryPath,
   manifestId: manifest.manifestId,
   pathCount,
+  populationSelection: {
+    route: "deterministic_manifest_seed_path_prefix",
+    pathIds: endpointRows.map((row) => String(row.pathKey)),
+  },
   orderedPairsPerSnapshot: pathCount * pathCount,
   offDiagonalOrderedPairsPerSnapshot: pathCount * (pathCount - 1),
   seedCertificate: seed.certificate,
@@ -487,7 +498,8 @@ function adjudicate(seedControl, burnInResult, postBurnInResult) {
   const oldFailureAtSeedCut = seedControl.cases.some((control) =>
     control.diagnostics.some((diagnostic) =>
       diagnostic.stepFailures.some((step) =>
-        step.rootFailureCounts.numeric_precision_limit_exhausted === 240),
+        step.rootFailureCounts.numeric_precision_limit_exhausted ===
+          pathCount * (pathCount - 1)),
     ),
   );
   if (burnInResult.status === "not_run_seed_only") {
@@ -510,9 +522,9 @@ function adjudicate(seedControl, burnInResult, postBurnInResult) {
         .flatMap((diagnostic) => diagnostic.stepFailures)
         .at(-1)?.failureCode ?? burnInResult.failureCode,
       conclusion:
-        `The requested T=${burnInEnd} strict ladder cannot run because the 16-path EOM burn-in fails closed before it produces an EOM-only retained-history checkpoint.`,
+        `The requested T=${burnInEnd} strict ladder cannot run because the ${pathCount}-path EOM burn-in fails closed before it produces an EOM-only retained-history checkpoint.`,
       falsifier:
-        `A 16-path burn-in that reaches T=${burnInEnd} with no seed segment would create the checkpoint needed to rerun the requested strict ladder.`,
+        `A ${pathCount}-path burn-in that reaches T=${burnInEnd} with no seed segment would create the checkpoint needed to rerun the requested strict ladder.`,
     });
   }
   return Object.freeze({
@@ -523,9 +535,17 @@ function adjudicate(seedControl, burnInResult, postBurnInResult) {
       ? "reproduced"
       : "not_observed",
     conclusion: postBurnInResult.strictControlPassed
-      ? "The strict 16-path ladder passes from the EOM-only post-burn-in history."
-      : "The strict 16-path ladder fails from the EOM-only post-burn-in history.",
+      ? `The strict ${pathCount}-path ladder passes from the EOM-only post-burn-in history.`
+      : `The strict ${pathCount}-path ladder fails from the EOM-only post-burn-in history.`,
   });
+}
+
+function optionalPositiveIntegerArgument(prefix, fallback) {
+  const value = optionalPositiveArgument(prefix, fallback);
+  if (!Number.isSafeInteger(value)) {
+    throw new RangeError(`${prefix.slice(0, -1)} must be a positive whole number.`);
+  }
+  return value;
 }
 
 function optionalPositiveArgument(prefix, fallback) {

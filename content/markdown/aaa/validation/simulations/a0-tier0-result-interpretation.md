@@ -6,7 +6,7 @@ Tier 0 asks one deliberately small question: is this reduced branch chart organi
 
 That boundary is the point of the document. A candidate row can be useful without being promoted. The artifact must make that difference machine-readable so a diagnostic success does not turn into an accidental theory claim.
 
-The Tier 0 artifact is not an attractor proof. It is a certificate-facing filter that decides whether a reduced carrier chart is disciplined enough to seed Tier 1 $\eta > 0$ continuation. Its output should be read together with the mass thesis in [Particle Masses](../../assemblies/particle-masses.md), the energy ledger definitions in [Energy](../../dynamics/energy.md), the dynamics baseline in [Nested Shell Braid Dynamics](../../noether-braid/explored-braid-geometries.md#nested-shell-braid-dynamics), and the closure bookkeeping in [Parameter Ledger](../parameter-ledger.md).
+The Tier 0 artifact is not an attractor proof. It is a certificate-facing filter that decides whether a reduced carrier chart is disciplined enough to seed Tier 1 $\eta > 0$ continuation. Its output should be read together with the mass thesis in [Particle Masses](../../assemblies/particle-masses.md), the energy ledger definitions in [Energy](../../dynamics/energy.md), the dynamics baseline in [Nested Shell Braid Dynamics](../../noether-braid/braid-families.md#nested-shell-braid-dynamics), and the closure bookkeeping in [Parameter Ledger](../parameter-ledger.md).
 
 ## Output Status
 

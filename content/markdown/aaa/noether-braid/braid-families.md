@@ -1,10 +1,54 @@
-# Explored Braid Geometries
+# Braid Families
 
-This chapter defines two braid families of the Noether braid case structure: the **symmetric shell braid** (the one-band family and its maximal-symmetry member) and the **nested shell braid** (the three-band frequency-separated family). Together with the [spindle braid](spindle-braid.md), whose flat and full-tilt limits absorb the planar and axial configurations once treated as separate alternatives ([Spindle Braid](spindle-braid.md#boundary-members)), they form the candidate population of the braid search. No family ranking is asserted in this chapter: every family here is a live candidate on equal footing, and comparative adjudication among the families is an open obligation of the theory.
+This chapter defines the base family ladder of the Noether braid case structure — the **neutral braid** (the base six-body case), then: the **symmetric shell braid** (the one-band family and its maximal-symmetry member) and the **nested shell braid** (the three-band frequency-separated family). Together with the [spindle braid](spindle-braid.md), whose flat and full-tilt limits absorb the planar and axial configurations once treated as separate alternatives ([Spindle Braid](spindle-braid.md#boundary-members)), they form the candidate population of the braid search. No family ranking is asserted in this chapter: every family here is a live candidate on equal footing, and comparative adjudication among the families is an open obligation of the theory.
 
-The status discipline of the braid stack binds throughout — no family on this page is a retained branch, and the retained-branch certificate target of [Neutral Braid](neutral-braid.md) remains open for every realization named here.
+The status discipline of the braid stack binds throughout — no family on this page is a retained branch, and the retained-branch certificate target of [Neutral Braid](#the-neutral-braid-base-of-the-family-ladder) remains open for every realization named here.
 
 One neighboring chapter remains the active home of machinery first developed on these families: [Braid Envelope Geometry](braid-envelope-geometry.md) carries the exclusion-envelope and observer-export interface consumed by the spacetime and nuclear-atomic chapters. Those interfaces are stated family-generally where possible and are expected to be re-hosted onto whichever family is eventually retained. The fully analytic doubling-frequency lock study lives in its own chapter, [Doubling-Frequency Resonance Lock](doubling-frequency-lock.md).
+
+## The Neutral Braid: Base of the Family Ladder
+This chapter defines the base six-body family in the [Noether Braid](noether-braid.md) sequence. It owns the neutral inventory, all-pairs branch ledger, and retained-branch certificate target before shell support, exact binary grouping, or nested ordering is added.
+
+Neutral does not mean featureless. It means the signed polarity inventory balances before any further geometry is imposed. The branch still has many attractive and repulsive channels, and the proof burden is to show that those channels can be organized into one coherent causal-return record rather than merely into a visually balanced arrangement.
+
+A **neutral braid** is the base six-architrino case. It contains three electrinos and three positrinos, indexed by $i\in\{1,\ldots,6\}$ with polarity signs $\sigma_i\in\{+1,-1\}$ satisfying
+
+$$
+\#\{i:\sigma_i=+1\}
+=
+\#\{i:\sigma_i=-1\}
+=3,
+\qquad
+\sum_{i=1}^{6}\sigma_i=0
+$$
+
+Equivalently, the compact polarity inventory is $3\epsilon_+ + 3\epsilon_-$. This polarity-neutral ledger is imposed before any binary partition, shell ordering, or near-antipodal matching is assumed. Each positive-polarity architrino has three attractive channels to negative-polarity architrinos and two repulsive channels to the other positive-polarity architrinos. Each negative-polarity architrino has the polarity-reversed version of the same count: three attractive channels to positives and two repulsive channels to negatives. That $3+2$ channel count is part of the neutral braid bookkeeping even when no binary partition has been certified. On the face-opposite symmetry channel, the same count becomes the [drum-lacing geometry](braid-mathematics.md#drum-geometry): same-polarity repulsion spaces the two rings, opposite-polarity attraction laces them together, and rotation winds those ties into a braid.
+
+Every more specific braid family adds structure to this base case. One named example — the [**spindle braid**](spindle-braid.md), the rigid uniaxial iso-frequency family — is a neutral braid in exactly this sense: three tilted antipodal binaries sharing one axis and one frequency, with the retained-branch certificate target of this chapter still the open burden.
+
+We work in units with field speed $c_f=1$ unless stated otherwise.
+
+The intrinsic path of architrino $i$ may be represented by a closed arclength curve
+
+$$
+\mathbf Y_i:\mathbb{R}/L_i\mathbb{Z}\to\mathbb{R}^3,
+\qquad
+\left\| \mathbf Y_i'(s)\right\|=1
+$$
+
+The quotient domain means that $s$ and $s+L_i$ label the same point on the support curve.
+
+Its physical trajectory is allowed to move along that support with a bounded speed factor,
+
+$$
+\mathbf X_i(T)=\mathbf Y_i(\lambda_i(T)),
+\qquad
+\frac{d\lambda_i}{dT}(T)=\nu_i(T),
+\qquad
+0<\nu_-\leq\nu_i(T)\leq\nu_+<\infty
+$$
+
+The bounded speed factor $\nu_i(T)$ is where nonuniform speed enters the architecture. A branch may temporarily push an architrino over a local hinge into a self-hit mode, but an admissible neutral braid must still return to a closed causal ledger within the branch's recovery tolerance. The neutral braid therefore allows changing support geometry, nonuniform speed, changing local curvature, and delayed multi-channel response without first reducing the motion to exact binary rows.
 
 ## Symmetric Shell Braid
 
@@ -12,7 +56,7 @@ The **symmetric shell braid** is the maximal-symmetry one-band member of the bra
 
 ### The One-Band Family
 
-A shell braid adds controlled radial support to a [neutral braid](neutral-braid.md) without yet asserting the three ordered support bands of a [nested shell braid](#nested-shell-braid).
+A shell braid adds controlled radial support to a [neutral braid](#the-neutral-braid-base-of-the-family-ladder) without yet asserting the three ordered support bands of a [nested shell braid](#nested-shell-braid).
 
 A shell braid is the first step from balanced inventory toward spatial organization. The word `shell` says that the six paths stay within a controlled support band around a branch center. It does not say that the branch has already retained, that exact binary pairs exist, or that nested support bands have appeared.
 
@@ -131,7 +175,7 @@ The recursive binary picture remains valuable inside this case. Just as an Elect
 
 Nested shell braid diagrams may therefore use logarithmic radius rather than literal radius. A log-radius diagram is a visualization convention: it may compress empty intervals between support bands and label the bands by scale, but it must preserve the declared inner/middle/outer radial order, cadence ordering, support-band widths, and branch-ledger quantities. It must not be read as evidence that a stable branch exists or that the three bands have fixed spacing in physical radius.
 
-In this case, a candidate stable configuration is the **nested shell braid with exact binary assumptions**. It consists of three binaries, one in each ordered shell, and supplies the assembly scaffold later used in [Nested Shell Braid Dynamics](explored-braid-geometries.md#nested-shell-braid-dynamics).
+In this case, a candidate stable configuration is the **nested shell braid with exact binary assumptions**. It consists of three binaries, one in each ordered shell, and supplies the assembly scaffold later used in [Nested Shell Braid Dynamics](braid-families.md#nested-shell-braid-dynamics).
 
 -   **Why Three?** The stability of a three-shell nested structure is a theorem target tied to the three-dimensional nature of Euclidean space. Each binary defines an orbital plane or dominant support sheet. The working claim is that three mutually orthogonal support sheets can form a dynamically stable, symmetric, three-dimensional structure that is resistant to perturbation; the proof burden is to derive that role count from the delayed causal dynamics rather than assuming it.
 
@@ -145,7 +189,7 @@ Three consequences keep this statement in its proper place. First, absence of a 
 
 The symmetry relationship supplies the natural observable for that question: **precession**. On the symmetric shell channel the kinematic angular momentum is pinned exactly along the axis-neutral direction by the three-fold symmetry, so the axis cannot wander — a braid on the symmetric channel does not precess, and any precession is a direct signature of broken pair-permutation symmetry. A nested or freshly captured configuration, with its unequal binaries, precesses; a configuration relaxing toward the symmetric channel should show decaying precession as it rings down; and the terminal-alignment statement that precession ceases at the horizon condition is the strong-field endpoint of the same diagnostic. Precession amplitude is therefore a candidate symmetry-distance meter across the whole braid family, from formation transients to horizon alignment.
 
-Comparative standing: no family ranking is asserted. The **spindle braid** — the rigid uniaxial iso-frequency family in which tilt angles, not frequency ratios, decouple layer speeds from nesting radii ([Spindle Braid](spindle-braid.md), [Noether Braid Taxonomy](noether-braid-taxonomy.md#a-named-candidate-the-spindle-braid)) — is a structurally distinct sibling candidate. The nested shell families in this chapter remain named candidates alongside it, and the generation and dressing hypotheses developed below are stated so that they can be re-hosted on whichever family is eventually retained.
+Comparative standing: no family ranking is asserted. The **spindle braid** — the rigid uniaxial iso-frequency family in which tilt angles, not frequency ratios, decouple layer speeds from nesting radii ([Spindle Braid](spindle-braid.md), [Noether Braid Taxonomy](noether-braid-configuration-space.md#a-named-candidate-the-spindle-braid)) — is a structurally distinct sibling candidate. The nested shell families in this chapter remain named candidates alongside it, and the generation and dressing hypotheses developed below are stated so that they can be re-hosted on whichever family is eventually retained.
 
 ### Properties of the Nested Shell Braid
 

@@ -121,7 +121,7 @@ The branch-response reduction and its observer-facing check are formalized in th
 
 | Priority artifact | Candidate corpus destination | Promotion gate |
 | --- | --- | --- |
-| Branch-local response theorem target | [Nested Shell Braid Dynamics](../../../../content/markdown/aaa/noether-braid/explored-braid-geometries.md#nested-shell-braid-dynamics) | $\mathcal{R}_B$, root-sensitive linearization, and gauge quotient are stated without claiming branch retention. |
+| Branch-local response theorem target | [Nested Shell Braid Dynamics](../../../../content/markdown/aaa/noether-braid/braid-families.md#nested-shell-braid-dynamics) | $\mathcal{R}_B$, root-sensitive linearization, and gauge quotient are stated without claiming branch retention. |
 | Assembly interface variation | [Nested Shell Braid Geometry](../../../../content/markdown/aaa/noether-braid/braid-envelope-geometry.md) | The level-set variation uses the existing $D_{a,X}$ diagnostic and one consistent branch ledger. |
 | ADM/Cartan projection row | [Emergent Metric](../../../../content/markdown/aaa/spacetime/emergent-metric.md) | The projection consumes $\mathcal{K}_{B}^{\mathrm{geom}}$ and keeps metric language observer-level. |
 | Action compatibility result | [Causal Action Functional](../../../../content/markdown/aaa/dynamics/causal-action-functional.md) or [Effective Lagrangian](../../../../content/markdown/aaa/dynamics/effective-lagrangian.md) | The virtual-work curl test passes or fails with a clear status and root convention. |

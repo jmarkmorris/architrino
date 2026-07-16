@@ -19,7 +19,7 @@
 
 ## Scope
 
-Treat [Noether Braid Doubling-Frequency Resonance Lock](../../../../content/markdown/aaa/noether-braid/explored-braid-geometries.md#noether-braid-doubling-frequency-resonance-lock) as the live note for a candidate doubling-frequency lock, not as proof that the full dynamics uniquely select `1:2:4`.
+Treat [Noether Braid Doubling-Frequency Resonance Lock](../../../../content/markdown/aaa/noether-braid/braid-families.md#noether-braid-doubling-frequency-resonance-lock) as the live note for a candidate doubling-frequency lock, not as proof that the full dynamics uniquely select `1:2:4`.
 
 This workstream owns the reduced-map proof path for doubling-frequency resonance selection. It should keep archive heuristics subordinate to finite-$\eta$ phase-amplitude stability tests and to the breather-certificate discipline described below.
 
@@ -31,8 +31,8 @@ Approved disposition 2026-06-23: [Noether Braid Scaling and Packing](noether-bra
 
 | File | Role | Target AAA notes |
 | --- | --- | --- |
-| [phenomenological-heuristics.md](phenomenological-heuristics.md) | Preserved archive for conjectural geometry, scaling, and cosmology intuitions that should not drive the active derivation unless rederived from the reduced dynamics. | [Noether Braid Doubling-Frequency Resonance Lock](../../../../content/markdown/aaa/noether-braid/explored-braid-geometries.md#noether-braid-doubling-frequency-resonance-lock), [binary-dynamics](../../../../content/markdown/aaa/dynamics/binary-dynamics.md), [mode-taxonomy](../../../../content/markdown/aaa/reactions/mode-taxonomy.md) |
-| [Noether Braid Scaling and Packing](noether-braid-scaling-and-packing.md) | Priority scaffold for ideal Noether braid same-energy scaling, outer-binary radius/speed equations, and exclusion-envelope packing center density. | [Noether Braid Doubling-Frequency Resonance Lock](../../../../content/markdown/aaa/noether-braid/explored-braid-geometries.md#noether-braid-doubling-frequency-resonance-lock), [binary-dynamics](../../../../content/markdown/aaa/dynamics/binary-dynamics.md), [noether-braid](../../../../content/markdown/aaa/noether-braid/noether-braid.md), [nested-shell-braid-geometry](../../../../content/markdown/aaa/noether-braid/braid-envelope-geometry.md), [noether-sea](../../../../content/markdown/aaa/spacetime/noether-sea.md) |
+| [phenomenological-heuristics.md](phenomenological-heuristics.md) | Preserved archive for conjectural geometry, scaling, and cosmology intuitions that should not drive the active derivation unless rederived from the reduced dynamics. | [Noether Braid Doubling-Frequency Resonance Lock](../../../../content/markdown/aaa/noether-braid/braid-families.md#noether-braid-doubling-frequency-resonance-lock), [binary-dynamics](../../../../content/markdown/aaa/dynamics/binary-dynamics.md), [mode-taxonomy](../../../../content/markdown/aaa/reactions/mode-taxonomy.md) |
+| [Noether Braid Scaling and Packing](noether-braid-scaling-and-packing.md) | Priority scaffold for ideal Noether braid same-energy scaling, outer-binary radius/speed equations, and exclusion-envelope packing center density. | [Noether Braid Doubling-Frequency Resonance Lock](../../../../content/markdown/aaa/noether-braid/braid-families.md#noether-braid-doubling-frequency-resonance-lock), [binary-dynamics](../../../../content/markdown/aaa/dynamics/binary-dynamics.md), [noether-braid](../../../../content/markdown/aaa/noether-braid/noether-braid.md), [nested-shell-braid-geometry](../../../../content/markdown/aaa/noether-braid/braid-envelope-geometry.md), [noether-sea](../../../../content/markdown/aaa/spacetime/noether-sea.md) |
 
 ## What Is Solid
 
@@ -64,9 +64,9 @@ Approved disposition 2026-06-23: [Noether Braid Scaling and Packing](noether-bra
 
 | Task | Detailed file | Primary promotion target | Promotion gate |
 | --- | --- | --- | --- |
-| `phase_bundle_return_map` | [phenomenological-heuristics.md](phenomenological-heuristics.md) as archive source only | [Noether Braid Doubling-Frequency Resonance Lock](../../../../content/markdown/aaa/noether-braid/explored-braid-geometries.md#noether-braid-doubling-frequency-resonance-lock) and [Noether Braid Topological Charge](../../../../content/markdown/aaa/noether-braid/noether-braid-topological-charge.md) | A finite-$\eta$ return map with phase, amplitude/speed, signed binary root-complex rows $(N_s,M_p,D_{ij})$, $(m,n)$ return-map degree/holonomy, promoted assembly topological charge fields $[\mathfrak B]_{\mathrm{top}}$, $D_{\mathrm{plane}}$, Jacobian floors, caustic impulse rows, gluing-overlap rows, continuation-family cardinality, and starvation-scale status for any forward partner row. |
-| `caustic_weighted_selection_score` | [phenomenological-heuristics.md](phenomenological-heuristics.md) as archive source only | [Noether Braid Doubling-Frequency Resonance Lock](../../../../content/markdown/aaa/noether-braid/explored-braid-geometries.md#noether-braid-doubling-frequency-resonance-lock) | The exposed-leakage score and residual-curvature score use branch-derived caustic-weighted amplitudes, verify the polygon condition in the first all-layer block, and report a fold-exponent-based truncation/winner gap. |
-| `flat_moduli_floquet_test` | [phenomenological-heuristics.md](phenomenological-heuristics.md) as archive source only | [Noether Braid Doubling-Frequency Resonance Lock](../../../../content/markdown/aaa/noether-braid/explored-braid-geometries.md#noether-braid-doubling-frequency-resonance-lock) and [mode-taxonomy](../../../../content/markdown/aaa/reactions/mode-taxonomy.md) | The candidate lock has holonomy-defect recurrence, zero flat-modulus exponent for quotiented directions, contraction off $G$, preservation of the pulled-back memory-corrected symplectic form, and nonzero $D_{\mathrm{plane}}$; otherwise the failure mode is recorded without promoting the heuristic branch ledger. |
+| `phase_bundle_return_map` | [phenomenological-heuristics.md](phenomenological-heuristics.md) as archive source only | [Noether Braid Doubling-Frequency Resonance Lock](../../../../content/markdown/aaa/noether-braid/braid-families.md#noether-braid-doubling-frequency-resonance-lock) and [Noether Braid Topological Charge](../../../../content/markdown/aaa/noether-braid/noether-braid-topological-charge.md) | A finite-$\eta$ return map with phase, amplitude/speed, signed binary root-complex rows $(N_s,M_p,D_{ij})$, $(m,n)$ return-map degree/holonomy, promoted assembly topological charge fields $[\mathfrak B]_{\mathrm{top}}$, $D_{\mathrm{plane}}$, Jacobian floors, caustic impulse rows, gluing-overlap rows, continuation-family cardinality, and starvation-scale status for any forward partner row. |
+| `caustic_weighted_selection_score` | [phenomenological-heuristics.md](phenomenological-heuristics.md) as archive source only | [Noether Braid Doubling-Frequency Resonance Lock](../../../../content/markdown/aaa/noether-braid/braid-families.md#noether-braid-doubling-frequency-resonance-lock) | The exposed-leakage score and residual-curvature score use branch-derived caustic-weighted amplitudes, verify the polygon condition in the first all-layer block, and report a fold-exponent-based truncation/winner gap. |
+| `flat_moduli_floquet_test` | [phenomenological-heuristics.md](phenomenological-heuristics.md) as archive source only | [Noether Braid Doubling-Frequency Resonance Lock](../../../../content/markdown/aaa/noether-braid/braid-families.md#noether-braid-doubling-frequency-resonance-lock) and [mode-taxonomy](../../../../content/markdown/aaa/reactions/mode-taxonomy.md) | The candidate lock has holonomy-defect recurrence, zero flat-modulus exponent for quotiented directions, contraction off $G$, preservation of the pulled-back memory-corrected symplectic form, and nonzero $D_{\mathrm{plane}}$; otherwise the failure mode is recorded without promoting the heuristic branch ledger. |
 
 ## Breather Certificate Discipline
 
@@ -90,7 +90,7 @@ Here $\Delta\phi_{ab}$ is the retained phase offset, $n_a\omega_a-n_b\omega_b$ i
 
 ## Immediate Next Move
 
-1. Use [Noether Braid Doubling-Frequency Resonance Lock](../../../../content/markdown/aaa/noether-braid/explored-braid-geometries.md#noether-braid-doubling-frequency-resonance-lock) as the live dynamics note and keep [phenomenological-heuristics](phenomenological-heuristics.md) as the scratch/archive notebook.
+1. Use [Noether Braid Doubling-Frequency Resonance Lock](../../../../content/markdown/aaa/noether-braid/braid-families.md#noether-braid-doubling-frequency-resonance-lock) as the live dynamics note and keep [phenomenological-heuristics](phenomenological-heuristics.md) as the scratch/archive notebook.
 2. Build the regularized phase-bundle return map at fixed finite $\eta > 0$, not a pure phase-only or amplitude-only reduction.
 3. Add signed root-complex rows $(N_s,M_p,D_{ij})$, the promoted assembly topological charge fields $[\mathfrak B]_{\mathrm{top}}$, $D_{\mathrm{plane}}$, holonomy-defect $\Theta$, flat-moduli directions, negative-sheet eligibility, middle-caustic impulse rows, causal-root gluing-overlap rows, continuation-family cardinality, and starvation-scale status to the branch state.
 4. Use the causal-action circular tangency theorem target to compute signed-sheet self-hit degree parity or lower-bound rows for each candidate winding/frequency family, including iso-frequency candidates.
@@ -107,7 +107,7 @@ Here $\Delta\phi_{ab}$ is the retained phase offset, $n_a\omega_a-n_b\omega_b$ i
 
 ## Related AAA Notes
 
-- [Noether Braid Doubling-Frequency Resonance Lock](../../../../content/markdown/aaa/noether-braid/explored-braid-geometries.md#noether-braid-doubling-frequency-resonance-lock)
+- [Noether Braid Doubling-Frequency Resonance Lock](../../../../content/markdown/aaa/noether-braid/braid-families.md#noether-braid-doubling-frequency-resonance-lock)
 - [Noether Braid Topological Charge](../../../../content/markdown/aaa/noether-braid/noether-braid-topological-charge.md)
 - [binary-dynamics](../../../../content/markdown/aaa/dynamics/binary-dynamics.md)
 - [mode-taxonomy](../../../../content/markdown/aaa/reactions/mode-taxonomy.md)

@@ -8,7 +8,7 @@ Nothing in this chapter is a retained-branch result. Every row below is an oblig
 
 ## Document Role
 
-This chapter owns the realization-independent statement of the braid proof burden: the retained-branch certificate row structure, the first-failure reporting discipline, the ordered proof-burden ladder, and the full recovery-target inventory consumed by the downstream theory. It deliberately owns no geometry and no evidence. The base-family definitions live in [Neutral Braid](neutral-braid.md), [Symmetric Shell Braid](explored-braid-geometries.md#symmetric-shell-braid), and [Nested Shell Braid](explored-braid-geometries.md#nested-shell-braid); the shared mathematical machinery lives in [Braid Mathematics](braid-mathematics.md); Proof dispositions and environment-qualified rounds live with the research program's tracking; the classification grammar is defined in [Noether Braid Taxonomy](noether-braid-taxonomy.md).
+This chapter owns the realization-independent statement of the braid proof burden: the retained-branch certificate row structure, the first-failure reporting discipline, the ordered proof-burden ladder, and the full recovery-target inventory consumed by the downstream theory. It deliberately owns no geometry and no evidence. The base-family definitions live in [Braid Families](braid-families.md#the-neutral-braid-base-of-the-family-ladder), [Symmetric Shell Braid](braid-families.md#symmetric-shell-braid), and [Nested Shell Braid](braid-families.md#nested-shell-braid); the shared mathematical machinery lives in [Braid Mathematics](braid-mathematics.md); Proof dispositions and environment-qualified rounds live with the research program's tracking; the classification grammar is defined in [Noether Braid Configuration Space](noether-braid-configuration-space.md).
 
 A reader should use this chapter the way an engineer uses a requirements specification: to know what any proposed design must eventually satisfy, and to recognize when a reported success addresses one row while leaving the blocking rows untouched.
 
@@ -65,7 +65,7 @@ P_{\mathrm{stab}}
 P_{\mathrm{conv}}
 $$
 
-Every predicate must use the same source-pair policy, same-source policy, memory depth, support descriptor, action convention, event interval, and inventory ledger. If any row changes those conventions, the result is a ledger mismatch, not a retention result. The neutral-braid statement of this certificate, with the base-family notation, is given in [Neutral Braid](neutral-braid.md#retained-branch-certificate-target); a shell or nested realization inherits the same rows and may compress the all-pairs ledger only after its reduction row proves how the compressed rows are inherited.
+Every predicate must use the same source-pair policy, same-source policy, memory depth, support descriptor, action convention, event interval, and inventory ledger. If any row changes those conventions, the result is a ledger mismatch, not a retention result. The neutral-braid statement of this certificate, with the base-family notation, is given in [Neutral Braid](braid-recovery-requirements.md#base-family-certificate-instantiation); a shell or nested realization inherits the same rows and may compress the all-pairs ledger only after its reduction row proves how the compressed rows are inherited.
 
 ## The First-Failure Ladder
 
@@ -116,7 +116,7 @@ A retained, transportable braid branch is the theory's proposed common cause for
 | Target | Requirement | Owning chapters |
 | --- | --- | --- |
 | Mass map | Observed particle masses must be extracted as effective inertial response of retained branches — small observed mass from large shielded interior energy — with the extraction rule derived from the same branch record used for retention. | [Particle Masses](../assemblies/particle-masses.md) |
-| Fermion generations | The three-generation ladder must be recovered as a structural ladder of the braid family — the working reading is a shielding-tier ladder — with the generation count derived from the delayed dynamics rather than postulated. | [Nested Shell Braid](explored-braid-geometries.md#the-nested-shell-braid-hierarchy-and-fermion-generations), [Muon and Tau](../assemblies/fermions/muon-tau.md) |
+| Fermion generations | The three-generation ladder must be recovered as a structural ladder of the braid family — the working reading is a shielding-tier ladder — with the generation count derived from the delayed dynamics rather than postulated. | [Nested Shell Braid](braid-families.md#the-nested-shell-braid-hierarchy-and-fermion-generations), [Muon and Tau](../assemblies/fermions/muon-tau.md) |
 | Spin-statistics and exchange | Fermionic antisymmetry and bosonic shared occupation must be recovered from braid envelope geometry plus an exchange sign consumed from the same retained row that supplies spinor closure, not from a separately selected bookkeeping sign. | [Fermi-Dirac and Bose-Einstein Statistics](../quantum/fermi-dirac-and-bose-einstein-statistics.md), [Angular Momentum and Spin](../philosophy-history/theory-bridges/angular-momentum-and-spin.md) |
 | Photon and Maxwell recovery | The photon channel must be recovered as a propagating assembly of released action history whose superposed delayed potentials reproduce Maxwell behavior, transverse polarization, and propagation at the recovered signal speed. | [Electroweak Bosons](../assemblies/bosons/electroweak-bosons.md), [Radiation](../reactions/radiation.md) |
 | Strong force and color | Color bookkeeping, gluon-like exchange, and confinement must be recovered from braid substructure and its interaction channels, including why isolated color-carrying assemblies are unstable. | [Color Charge and SU(3)](../assemblies/fermions/color-charge-su3.md), [Gluons](../assemblies/bosons/gluons.md), [Nucleon Structure](../nuclear-atomic/nucleon-structure.md) |
@@ -143,3 +143,86 @@ Transparency is a bounded-response condition, not zero coupling: the medium must
 ## Reading Discipline
 
 Three rules keep this contract usable. First, requirements are not evidence: adding, sharpening, or reorganizing rows in this chapter changes no proof status anywhere. Second, claim levels travel with their owning chapters: a row stated here in working-theory voice may be a derivation, a closure target, or a comparison target at its source, and the source governs. Third, the ladder is ordered: any reported success should be located on the proof-burden ladder before it is celebrated, and any reported failure should be located on the first-failure ladder before it is generalized.
+
+## Base-Family Certificate Instantiation
+
+The neutral braid claim is a theorem target, not a retained-branch result. A candidate branch $B$ over a test window $W$ is retained only if the required rows close on one ledger identity. The master certificate can be summarized as
+
+$$
+\mathsf{R}_{\mathrm{NB}}(B,W)
+=
+\left(
+\mathsf{Inventory},
+\mathsf{Curves}^{\nu},
+\mathsf{Support},
+\mathsf{Root}^{\nu},
+\mathsf{Tail}^{\nu},
+\mathsf{Dynamics}^{\nu},
+\mathsf{Action}_{\Gamma}^{\nu},
+\mathsf{Noether}^{\nu},
+\mathsf{Event}^{\nu},
+\mathsf{Stability}^{\nu},
+\mathsf{Convergence},
+\mathsf{Status}
+\right)
+$$
+
+The corresponding retention predicate is
+
+$$
+\mathrm{Retain}_{\mathrm{NB}}(B,W)
+\Longleftrightarrow
+P_{\mathrm{inventory}}
+\wedge
+P_{\mathrm{curves}}
+\wedge
+P_{\mathrm{support}}
+\wedge
+P_{\mathrm{root}}
+\wedge
+P_{\mathrm{tail}}
+\wedge
+P_{\mathrm{dyn}}
+\wedge
+P_{\Gamma}
+\wedge
+P_{\mathrm{Noether}}
+\wedge
+P_{\mathrm{event}}
+\wedge
+P_{\mathrm{stab}}
+\wedge
+P_{\mathrm{conv}}
+$$
+
+Every predicate in this conjunction must use the same source-pair policy, same-source policy, memory depth, support descriptor, action convention, event interval, and inventory ledger. If any row changes those conventions, the status is a ledger mismatch rather than a retention result.
+
+The root row begins with all ordered distinct source pairs. With $I=\{1,\ldots,6\}$,
+
+$$
+\Pi_{\mathrm{all}}
+=
+\{(i,j)\in I\times I:i\ne j\},
+\qquad
+|\Pi_{\mathrm{all}}|=30
+$$
+
+Same-source rows $(i,i)$ are governed by the declared same-source policy and are deliberately excluded from $\Pi_{\mathrm{all}}$; the ordered distinct-pair count is therefore $6\times5=30$. The $3$ attractive and $2$ repulsive source-site counts for each receiver are inventory facts, not a compressed force law. The force row must still be assembled from the actual retained causal roots, delays, Jacobian floors, receiver-normal branch strengths, and line-of-action vectors for these ordered pairs. A shell braid or nested shell braid can reduce this ledger only after its reduction row proves how the compressed rows are inherited from the all-pairs ledger.
+
+The certificate should report the first blocking row as
+
+$$
+\mathsf{F}_{\mathrm{NB}}(B,W)
+=
+\left(
+\mathrm{first\_failed\_row},
+\mathrm{ledger\_id},
+\mathrm{margin},
+\mathrm{blocking\_packet},
+\mathrm{repair\_or\_rejection}
+\right)
+$$
+
+Rows through convergence block branch retention. Case-reduction and observer-export rows classify downstream structure only after the required neutral rows close. Therefore a favorable Lorentz, photon, topology, mass-map, or shell-geometry diagnostic cannot rescue an open root, tail, dynamics, action, event, stability, or convergence row.
+
+Reading discipline for future diagnostics on this chart, retained from earlier work at method level: a resolved causal-root ledger does not imply force closure; inventory attraction bias does not imply force closure; resolved positive-delay root rows do not imply force closure; and sampled phase or polarity-phase improvements do not imply retention. A negative result for one rigid carrier hypothesis is not a rejection of the broader neutral braid, shell braid, nested shell braid, bounded-speed, controlled self-hit, fold-layer, or medium-response programs. No measured residuals are carried in this chapter: results enter only when established, with instrument and claim level stated.

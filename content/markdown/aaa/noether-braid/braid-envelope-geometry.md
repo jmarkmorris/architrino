@@ -1,6 +1,6 @@
 # Braid Envelope Geometry
 
-This chapter is the canonical home for the geometric footprint of a Noether braid assembly: its dynamic exclusion envelope, the envelope forms of the named families, the canonical geometry variables, and the assembly-level deformation channels. It faces the Noether sea and effective-spacetime consumers because the geometry of many such envelopes is the local material out of which Noether sea density, strain, and delay variables are coarse-grained. The machinery here is stated family-generally wherever possible: the family scaffolds belong to [Spindle Braid](spindle-braid.md) and [Explored Braid Geometries](explored-braid-geometries.md), and the delayed dynamics that stabilize and deform a braid belong to the mechanism material of those chapters.
+This chapter is the canonical home for the geometric footprint of a Noether braid assembly: its dynamic exclusion envelope, the envelope forms of the named families, the canonical geometry variables, and the assembly-level deformation channels. It faces the Noether sea and effective-spacetime consumers because the geometry of many such envelopes is the local material out of which Noether sea density, strain, and delay variables are coarse-grained. The machinery here is stated family-generally wherever possible: the family scaffolds belong to [Spindle Braid](spindle-braid.md) and [Braid Families](braid-families.md), and the delayed dynamics that stabilize and deform a braid belong to the mechanism material of those chapters.
 
 A Noether braid is not a static object. It is a dynamic system of six architrinos whose high-frequency paths sweep out a persistent volume of intense wake activity. That swept volume is the assembly's effective exclusion envelope.
 
@@ -20,7 +20,7 @@ This chapter is the envelope and export-interface chapter for braid geometry. It
 This chapter does not own:
 
 - primitive architrino ontology; see [Architrino](../foundations/architrino.md),
-- the family scaffolds; see [Spindle Braid](spindle-braid.md) and [Explored Braid Geometries](explored-braid-geometries.md),
+- the family scaffolds; see [Spindle Braid](spindle-braid.md) and [Braid Families](braid-families.md),
 - exact delay-root dynamics; see [Master Equation](../dynamics/master-equation.md),
 - observer clocks and rulers; see [Proper Time and Time Dilation](../spacetime/proper-time-and-time-dilation.md),
 - or metric reconstruction; see [Emergent Metric](../spacetime/emergent-metric.md).
@@ -760,7 +760,7 @@ The envelope is therefore the visible projection of the retained causal-root led
 
 ## Retuning Projection to Envelope Variables
 
-This section is the nested family's instantiation of the envelope projection, stated on its cadence-scale retuning map ([Explored Braid Geometries](explored-braid-geometries.md#cadence-scale-retuning-hypothesis)); the corresponding projection for the spindle family is an open obligation of the leading-candidate track.
+This section is the nested family's instantiation of the envelope projection, stated on its cadence-scale retuning map ([Explored Braid Geometries](braid-families.md#cadence-scale-retuning-hypothesis)); the corresponding projection for the spindle family is an open obligation of the leading-candidate track.
 
 The cadence-scale retuning map must project into $(\lambda,\xi)$ through the envelope geometry, not by assigning those variables independently. Let
 
@@ -846,7 +846,7 @@ For local assembly modeling, use this page as the geometric source for:
 - deformation of the family-leading envelope paths under local gradients,
 - and exclusion-volume changes relevant to packing, shielding, and collision channels.
 
-For the nested-family definitions, use [Explored Braid Geometries](explored-braid-geometries.md), where the oblate causal envelope is treated as a delay-geometry input. For the spindle-family definition, use [Spindle Braid](spindle-braid.md); its moving-envelope projection remains open.
+For the nested-family definitions, use [Braid Families](braid-families.md), where the oblate causal envelope is treated as a delay-geometry input. For the spindle-family definition, use [Spindle Braid](spindle-braid.md); its moving-envelope projection remains open.
 
 For Noether sea modeling, use [Noether sea](../spacetime/noether-sea.md) and [Noether Sea Pro/Anti Coupling](../spacetime/noether-sea-pro-anti-coupling.md), where many Noether braids become a coupled medium rather than isolated assembly envelopes.
 

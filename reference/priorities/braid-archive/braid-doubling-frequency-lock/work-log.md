@@ -6,4 +6,4 @@ Use `brainstorming.md` for provisional ideas, insights, conceptual maps, and dra
 
 ## Log Entries
 
-- 2026-07-06: Integrator-reviewer pass on `content/markdown/aaa/noether-braid/explored-braid-geometries.md` found that rest-level scaling coefficients are used locally and detailed in `noether-braid-scaling-and-packing.md`, but are not yet registered in `content/markdown/aaa/validation/parameter-ledger.md`; added `rest_scaling_parameter_ledger_rows` to the compact queue.
+- 2026-07-06: Integrator-reviewer pass on `content/markdown/aaa/noether-braid/braid-families.md` found that rest-level scaling coefficients are used locally and detailed in `noether-braid-scaling-and-packing.md`, but are not yet registered in `content/markdown/aaa/validation/parameter-ledger.md`; added `rest_scaling_parameter_ledger_rows` to the compact queue.
