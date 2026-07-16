@@ -325,6 +325,90 @@ void run() {
         print_snapshot_failures(*substep.endpoint_snapshot);
       }
     }
+    std::cout << "],\"regulatorFailures\":[";
+    bool first_regulator_failure = true;
+    for (const auto& substep : step.substeps) {
+      for (const auto& regulator :
+           substep.regulator_convergence_certificates) {
+        if (!first_regulator_failure) {
+          std::cout << ',';
+        }
+        first_regulator_failure = false;
+        std::cout << "{\"receiverPathId\":\""
+                  << json_escape(regulator.receiver_path_id)
+                  << "\",\"sourcePathId\":\""
+                  << json_escape(regulator.source_path_id)
+                  << "\",\"status\":\""
+                  << json_escape(regulator.status)
+                  << "\",\"failureCode\":\""
+                  << json_escape(regulator.failure_code)
+                  << "\",\"acceptedEventStatus\":\""
+                  << json_escape(regulator.accepted_event_impulse.status)
+                  << "\",\"acceptedEventFailureCode\":\""
+                  << json_escape(
+                         regulator.accepted_event_impulse.failure_code)
+                  << "\",\"series\":[";
+        for (std::size_t series_index = 0;
+             series_index < regulator.refinement_series.size();
+             ++series_index) {
+          if (series_index > 0U) {
+            std::cout << ',';
+          }
+          const auto& series = regulator.refinement_series[series_index];
+          std::cout << "{\"controlId\":\""
+                    << json_escape(series.control_id)
+                    << "\",\"converged\":"
+                    << (series.converged ? "true" : "false")
+                    << ",\"finalImpulseDelta\":";
+          if (series.final_impulse_delta.has_value()) {
+            std::cout << *series.final_impulse_delta;
+          } else {
+            std::cout << "null";
+          }
+          std::cout << ",\"maximumLadderImpulseDelta\":";
+          if (series.maximum_ladder_impulse_delta.has_value()) {
+            std::cout << *series.maximum_ladder_impulse_delta;
+          } else {
+            std::cout << "null";
+          }
+          std::cout << ",\"levels\":[";
+          for (std::size_t level_index = 0;
+               level_index < series.levels.size(); ++level_index) {
+            if (level_index > 0U) {
+              std::cout << ',';
+            }
+            const auto& level = series.levels[level_index];
+            const auto& event = level.event_impulse;
+            std::cout << "{\"level\":" << level.level
+                      << ",\"causalWidth\":\""
+                      << json_escape(level.causal_width)
+                      << "\",\"coreScale\":\""
+                      << json_escape(level.core_scale)
+                      << "\",\"eventStatus\":\""
+                      << json_escape(event.status)
+                      << "\",\"eventFailureCode\":\""
+                      << json_escape(event.failure_code)
+                      << "\",\"maximumImpulseDeltaFromPrevious\":";
+            if (level.maximum_impulse_delta_from_previous.has_value()) {
+              std::cout << *level.maximum_impulse_delta_from_previous;
+            } else {
+              std::cout << "null";
+            }
+            std::cout << ",\"visitedCells\":" << event.visited_cells
+                      << ",\"lastMaximumComponentWidth\":"
+                      << event.last_maximum_component_width
+                      << ",\"lastLargestCellWidth\":"
+                      << event.last_largest_cell_width
+                      << ",\"precisionRoute\":\""
+                      << json_escape(event.precision_route)
+                      << "\",\"precisionBits\":"
+                      << event.precision_bits << '}';
+          }
+          std::cout << "]}";
+        }
+        std::cout << "]}";
+      }
+    }
     std::cout << "]}";
   }
   std::cout << "],\"publishedExtensions\":[";

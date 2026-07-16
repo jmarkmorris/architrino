@@ -46,20 +46,24 @@ canonical EOM evidence. The runner evolves it from $T=0$ through $T=10$ without
 publishing burn-in frames. At $T=10$, the complete retained interval $[0,10]$
 is EOM-produced; the seed interval $[-10,0]$ is removed. Thereafter the solver
 keeps only the moving EOM window $[T-10,T]$, not the whole trajectory.
-The first 16-path shadow step completed, but only at coarse tolerances and with
-`executable_architecture_evidence`; it is not eligible for promotion.
+The 16-path seed-cut control has executable architecture evidence only; it is
+not eligible for promotion because it still consumes the accepted seed.
 The Borg shadow surface now supports a selected continuous-history subset of
 1–16 architrinos, requested duration, automatic fixed-size chunks, progress,
-native cancellation, and clean restart. A strict one-path timestep ladder at
-root tolerance `1e-8` passed through four requests on one persistent worker,
-with maximum endpoint delta about `2.84e-14` and byte-identical one-thread and
-four-thread output. This is a control success, not the Borg migration gate. A
-subsequent 16-history ladder failed closed at every tested step: all 240
-off-diagonal ordered pairs reported `numeric_precision_limit_exhausted`, while
-the 16 self-pairs did not appear in the root-failure set. Imported-history
-provenance and the bounded-population precision and convergence gates also
-remain unresolved. The long-term million-path, GPU, multi-GPU, and distributed-
-history gates do not block Borg's 16-path migration.
+native cancellation, and clean restart. A strict 16-path seed-cut timestep
+ladder at root and state tolerances `1e-8` completed at steps `0.01`, `0.005`,
+and `0.0025`. Its maximum state difference was about `5.68e-14`; the
+one-thread and four-thread `0.0025` histories were byte-identical; and no
+causal-root failure was reported. This measured control does not reproduce the
+former 240-off-diagonal-pair `numeric_precision_limit_exhausted` failure, but
+it is not the post-burn-in migration gate because the input still contains the
+accepted seed. The 16-path burn-in currently fails closed at `[0.06,0.07]` on
+`regulator_convergence_failed`, after all 256 ordered pairs enter exact
+traversal with zero root failures. It therefore does not create the EOM-only
+`T=10` checkpoint from which the strict post-burn-in ladder must run. The
+post-burn-in precision verdict remains unreached, and the regulator event is
+the first current blocker. The long-term million-path, GPU, multi-GPU, and
+distributed-history gates do not block Borg's 16-path migration.
 
 ## Initial Consumer Disposition
 

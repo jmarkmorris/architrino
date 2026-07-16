@@ -1143,3 +1143,29 @@ This file holds dated decisions, implementation status, validation results, fail
   burden. Borg promotion remains blocked by the independent 16-path precision
   and convergence gate; the seed and the measured browser run are not canonical
   dynamical evidence.
+
+## 2026-07-15 — Borg 16-path post-burn-in refinement adjudication
+
+- Added `scripts/eom/run-borg-post-burn-in-refinement-ladder.mjs` to build the
+  accepted exact inertial $C^1$ seed, run the strict 16-path seed-cut control,
+  attempt the actual 1,000-chunk burn-in, and run the post-burn-in ladder only
+  when a seed-free EOM checkpoint exists.
+- Measured twice with the rebuilt native Borg binary, the strict seed-cut
+  ladder completed at steps `0.01`, `0.005`, and `0.0025` with state and root
+  tolerances `1e-8`. The worst state difference was
+  `5.684341886080802e-14`; the one-thread and four-thread `0.0025` histories
+  were byte-identical; and every case reported zero root failures. The former
+  240-off-diagonal-pair `numeric_precision_limit_exhausted` failure was not
+  observed on this seed input.
+- The 16-path burn-in accepted six atomic chunks through $T=0.06$, then failed
+  closed on $[0.06,0.07]$. The failed row recorded
+  `regulator_convergence_failed`, 256 exact traversed pairs, zero excluded
+  pairs, and zero causal-root failures; the outer halt was
+  `minimum_step_exhausted`. The same last-good-history digest and failure row
+  repeated in both runs.
+- No EOM-only $T=10$ retained-history checkpoint exists for this population,
+  so the requested strict post-burn-in ladder did not run. The former precision
+  failure is not reproduced at the seed cut, but its post-burn-in verdict is
+  still indeterminate. The first current blocker is regulator convergence, not
+  root precision. Evidence:
+  [eom-borg-post-burn-in-refinement-ladder-apple-m3-2026-07-15.json](evidence/eom-borg-post-burn-in-refinement-ladder-apple-m3-2026-07-15.json).
