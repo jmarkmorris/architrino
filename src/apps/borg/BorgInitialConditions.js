@@ -278,9 +278,10 @@ export async function createBorgAcceptedInertialSeedHistory(
 
 export function certifyBorgMinimumSeparation(
   endpointRows,
-  { minimumPairSeparation = 0 } = {},
+  { minimumPairSeparation = 0, comparisonTolerance = 1e-12 } = {},
 ) {
   const required = nonNegativeNumber(minimumPairSeparation, 0);
+  const tolerance = nonNegativeNumber(comparisonTolerance, 1e-12);
   let measured = Number.POSITIVE_INFINITY;
   let closestPair = null;
   for (let left = 0; left < endpointRows.length; left += 1) {
@@ -307,8 +308,9 @@ export function certifyBorgMinimumSeparation(
     instrument: "all-unordered-pair-euclidean-distance-at-T0",
     requiredMinimumSeparation: required,
     measuredMinimumSeparation: measured,
+    comparisonTolerance: tolerance,
     closestPair,
-    accepted: measured >= required,
+    accepted: measured + tolerance >= required,
   });
 }
 

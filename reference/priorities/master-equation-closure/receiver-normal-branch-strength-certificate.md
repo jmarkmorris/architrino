@@ -405,10 +405,8 @@ fields, projection or normalization identity, and consumer checksum before
 aggregation erases branch identity.
 
 The executable H39 branch-provider audit that formerly sharpened this
-boundary was removed 2026-07-16 — legacy candidate intake retired with the
-pre-EOM evaluator; see
-`reference/priorities/operations/pre-eom-evaluator-removal.md`. Re-derivation
-from EOM evidence is queued.
+boundary was removed 2026-07-16 with the legacy candidate intake.
+Re-derivation from EOM evidence is queued.
 The H39-specific preimage row target is
 `h39-receiver-normal-retained-record-preimage-row/v0`: it first requires an
 accepted provider-object branch row, then a retained causal-root force/action

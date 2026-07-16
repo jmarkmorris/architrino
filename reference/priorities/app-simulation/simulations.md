@@ -200,9 +200,8 @@ Current live v0 status remains `source_row_binding_open` until a non-fixture
 action-increment packet emits matching root-ledger and conservation-pullback
 hashes.
 
-Shared H39 provider boundary. Removed 2026-07-16 — legacy candidate intake
-retired 2026-07-16. Re-derivation
-from EOM evidence is queued.
+Shared H39 provider boundary: removed 2026-07-16 with the legacy candidate
+intake. Re-derivation from EOM evidence is queued.
 
 Minimum non-fixture `accepted_transition_source` object:
 
