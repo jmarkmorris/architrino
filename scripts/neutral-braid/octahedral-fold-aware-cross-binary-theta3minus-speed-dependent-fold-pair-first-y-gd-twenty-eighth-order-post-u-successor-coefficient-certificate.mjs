@@ -612,10 +612,10 @@ export function buildOctahedralFoldAwareCrossBinaryTheta3minusSpeedDependentFold
     packet_id: PACKET_ID,
     promotion_status: PROMOTION_STATUS,
     predecessor_packets: [
-      "reference/priorities/braid-geometry-export-bridge/octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-twenty-seventh-order-post-u-successor-coefficient-certificate.md",
+      "reference/priorities/braid-archive/braid-geometry-export-bridge/octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-twenty-seventh-order-post-u-successor-coefficient-certificate.md",
     ],
     priority_packet:
-      "reference/priorities/braid-geometry-export-bridge/octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-twenty-eighth-order-post-u-successor-coefficient-certificate.md",
+      "reference/priorities/braid-archive/braid-geometry-export-bridge/octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-twenty-eighth-order-post-u-successor-coefficient-certificate.md",
     twenty_eighth_order_post_u_successor_coefficient_parameters: {
       receiver_label: "1+",
       source_label: "3-",

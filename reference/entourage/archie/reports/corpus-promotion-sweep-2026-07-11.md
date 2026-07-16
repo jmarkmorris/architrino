@@ -36,17 +36,17 @@ Claim-level shorthand: `O` = ontology already established in the corpus; `D` = d
 
 | Candidate file | Substantive items found before editing | Claim guess and candidate owner |
 | --- | --- | --- |
-| `reference/priorities/braid-angular-momentum-spin/brainstorming.md` | Merge pointer only. | N/A; substance inventoried under `braid-ideal`. |
-| `reference/priorities/braid-doubling-frequency-lock/brainstorming.md` | Merge pointer only. | N/A; substance inventoried under `braid-ideal`. |
-| `reference/priorities/braid-geometry-export-bridge/brainstorming.md` | Merge pointer only. | N/A; substance inventoried under `braid-ideal`. |
-| `reference/priorities/braid-mass-response-map/brainstorming.md` | Merge pointer only. | N/A; substance inventoried under `braid-ideal`. |
-| `reference/priorities/braid-nested-shell-causal-closure/brainstorming.md` | Merge pointer only. | N/A; substance inventoried under `braid-ideal`. |
-| `reference/priorities/braid-retained-branch-closure/brainstorming.md` | Merge pointer only. | N/A; substance inventoried under `braid-ideal`. |
-| `reference/priorities/braid-retained-branch-closure/nested-shell-braid/brainstorming.md` | Merge pointer only. | N/A; substance inventoried under `braid-ideal`. |
-| `reference/priorities/braid-retained-branch-closure/neutral-braid/brainstorming.md` | Merge pointer only. | N/A; substance inventoried under `braid-ideal`. |
-| `reference/priorities/braid-retained-branch-closure/shell-braid/brainstorming.md` | Merge pointer only. | N/A; substance inventoried under `braid-ideal`. |
-| `reference/priorities/braid-taxonomy/brainstorming.md` | Merge pointer only. | N/A; substance inventoried under `braid-ideal`. |
-| `reference/priorities/braid-ideal/brainstorming.md` | Strategy-memo implementation capture; face-opposite and alternate octahedral seed classes; held-release, symmetry, wiggle, self-hit, reduced-radius, return-response, and group-zero diagnostics; collapse-stop-reversion map; matter/antimatter chirality target; translating group-velocity baseline; oblate-spheroid ansatz and two-speed curve; prefilter, sampled residual, dynamic return, support, branch-clock, basin, reserve, route-matrix, causal-root, residual, sea-pressure, and fixed-frequency targets; ideal-braid/noncircular/translating-ellipsoid/$h$-basin hypotheses; axis-neutral transport, drum, helicity, accessory dressing, quietness, neutrino, action-click, fold, and absorber insights; merged spin/export/mass/nested-shell/retained-branch targets; mass-response doctrine; champion-geometry weak-angle/chirality/temperature/clock-hypothesis springboards; field-speed pin, $d_0$, Planck/action, mass, radiation, stability, sea-shell, orientation/magnetism, and vacuum-energy-style syntheses; terminal barrel and super-field family-change proposal. | Mixed D/T/S. Existing promoted subsets belong to `noether-braid/explored-braid-geometries.md`, `noether-braid/spindle-braid.md`, `noether-braid/braid-mathematics.md`, and `noether-braid/braid-recovery-requirements.md`. Residual targets remain in braid proof packets; broad sea-energy, vacuum-energy, terminal-barrel, weak-angle, chirality, and dressed-object syntheses are S/discuss-first. |
+| `reference/priorities/braid-archive/braid-angular-momentum-spin/brainstorming.md` | Merge pointer only. | N/A; substance inventoried under `braid-ideal`. |
+| `reference/priorities/braid-archive/braid-doubling-frequency-lock/brainstorming.md` | Merge pointer only. | N/A; substance inventoried under `braid-ideal`. |
+| `reference/priorities/braid-archive/braid-geometry-export-bridge/brainstorming.md` | Merge pointer only. | N/A; substance inventoried under `braid-ideal`. |
+| `reference/priorities/braid-archive/braid-mass-response-map/brainstorming.md` | Merge pointer only. | N/A; substance inventoried under `braid-ideal`. |
+| `reference/priorities/braid-archive/braid-nested-shell-causal-closure/brainstorming.md` | Merge pointer only. | N/A; substance inventoried under `braid-ideal`. |
+| `reference/priorities/braid-archive/braid-retained-branch-closure/brainstorming.md` | Merge pointer only. | N/A; substance inventoried under `braid-ideal`. |
+| `reference/priorities/braid-archive/braid-retained-branch-closure/nested-shell-braid/brainstorming.md` | Merge pointer only. | N/A; substance inventoried under `braid-ideal`. |
+| `reference/priorities/braid-archive/braid-retained-branch-closure/neutral-braid/brainstorming.md` | Merge pointer only. | N/A; substance inventoried under `braid-ideal`. |
+| `reference/priorities/braid-archive/braid-retained-branch-closure/shell-braid/brainstorming.md` | Merge pointer only. | N/A; substance inventoried under `braid-ideal`. |
+| `reference/priorities/braid-archive/braid-taxonomy/brainstorming.md` | Merge pointer only. | N/A; substance inventoried under `braid-ideal`. |
+| `reference/priorities/braid-archive/braid-ideal/brainstorming.md` | Strategy-memo implementation capture; face-opposite and alternate octahedral seed classes; held-release, symmetry, wiggle, self-hit, reduced-radius, return-response, and group-zero diagnostics; collapse-stop-reversion map; matter/antimatter chirality target; translating group-velocity baseline; oblate-spheroid ansatz and two-speed curve; prefilter, sampled residual, dynamic return, support, branch-clock, basin, reserve, route-matrix, causal-root, residual, sea-pressure, and fixed-frequency targets; ideal-braid/noncircular/translating-ellipsoid/$h$-basin hypotheses; axis-neutral transport, drum, helicity, accessory dressing, quietness, neutrino, action-click, fold, and absorber insights; merged spin/export/mass/nested-shell/retained-branch targets; mass-response doctrine; champion-geometry weak-angle/chirality/temperature/clock-hypothesis springboards; field-speed pin, $d_0$, Planck/action, mass, radiation, stability, sea-shell, orientation/magnetism, and vacuum-energy-style syntheses; terminal barrel and super-field family-change proposal. | Mixed D/T/S. Existing promoted subsets belong to `noether-braid/explored-braid-geometries.md`, `noether-braid/spindle-braid.md`, `noether-braid/braid-mathematics.md`, and `noether-braid/braid-recovery-requirements.md`. Residual targets remain in braid proof packets; broad sea-energy, vacuum-energy, terminal-barrel, weak-angle, chirality, and dressed-object syntheses are S/discuss-first. |
 
 ### Theory, Closure, And Cross-Domain Lanes
 
@@ -234,7 +234,7 @@ Final dispositions are appended below in bounded batches. A source note is recon
    ```text
    Closure goal: Separate the terminal-barrel, horizon-alignment, 4:2:1, and dark-sector photon-like release ideas into defensible theorem targets or rejected speculation without merging horizon and light-ring conditions.
 
-   Use the AAA corpus advancement skill in discussion mode. Review `reference/priorities/braid-ideal/brainstorming.md`, `reference/priorities/high-energy-astrophysics/brainstorming.md`, and `reference/priorities/strong-field-closure/brainstorming.md` against the live black-hole, singularity-resolution, and Planck-alignment chapters. Preserve the distinction among field-speed rail, all-rail barrel, horizon-interface, light ring, super-field family change, and $d_0$ regulator. Expected output: disposition of each claim, exact required equations/records, and no ontology promotion without explicit approval.
+   Use the AAA corpus advancement skill in discussion mode. Review `reference/priorities/braid-archive/braid-ideal/brainstorming.md`, `reference/priorities/high-energy-astrophysics/brainstorming.md`, and `reference/priorities/strong-field-closure/brainstorming.md` against the live black-hole, singularity-resolution, and Planck-alignment chapters. Preserve the distinction among field-speed rail, all-rail barrel, horizon-interface, light ring, super-field family change, and $d_0$ regulator. Expected output: disposition of each claim, exact required equations/records, and no ontology promotion without explicit approval.
    ```
 
 6. Provenance-compliance coarse-graining
@@ -251,7 +251,7 @@ Reconciled promoted or already-promoted source items in:
 
 - `reference/priorities/nuclear-atomic-molecular-closure/brainstorming.md` — radioisotope metastability;
 - `reference/priorities/open-problems/brainstorming.md` — prescribed-family $h$-constancy negative result;
-- `reference/priorities/braid-ideal/brainstorming.md` — the corresponding two $h$-constancy entries;
+- `reference/priorities/braid-archive/braid-ideal/brainstorming.md` — the corresponding two $h$-constancy entries;
 - `reference/priorities/app-simulation/brainstorming.md` — simulation scope and provenance method;
 - `reference/priorities/source-mining/brainstorming.md` — progenitor-age/source-calibration lesson;
 - `reference/priorities/master-equation-closure/brainstorming.md` — steady-channel non-radiation and accelerated-sector target.

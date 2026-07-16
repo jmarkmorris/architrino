@@ -344,11 +344,11 @@ export function buildOctahedralFoldAwareCrossBinaryFiniteIntervalClosureReductio
     packet_id: PACKET_ID,
     promotion_status: PROMOTION_STATUS,
     predecessor_packets: [
-      "reference/priorities/braid-geometry-export-bridge/octahedral-fold-aware-cross-binary-source-atlas-interval-implication.md",
-      "reference/priorities/braid-geometry-export-bridge/octahedral-fold-aware-cross-binary-interval-bridge-predicate-reduction.md",
+      "reference/priorities/braid-archive/braid-geometry-export-bridge/octahedral-fold-aware-cross-binary-source-atlas-interval-implication.md",
+      "reference/priorities/braid-archive/braid-geometry-export-bridge/octahedral-fold-aware-cross-binary-interval-bridge-predicate-reduction.md",
     ],
     priority_packet:
-      "reference/priorities/braid-geometry-export-bridge/octahedral-fold-aware-cross-binary-finite-interval-closure-reduction.md",
+      "reference/priorities/braid-archive/braid-geometry-export-bridge/octahedral-fold-aware-cross-binary-finite-interval-closure-reduction.md",
     source_interval_implication_check: {
       schema: intervalImplication.schema,
       valid: implicationErrors.length === 0,

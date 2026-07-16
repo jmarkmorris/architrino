@@ -10,7 +10,7 @@ Every bare-assembly negative in the program — §83/§84 torque-null no-go,
 §92/§93 pair pump/flutter, §97/§98 isolated-triple non-bind, §99 planar
 assembly, and the 2026-07-15 canonical-photon scoped negative (75,876 rows
 stacked + 5,760 coplanar-hexagonal; zero force balance; see
-canonical-photon-search-spec.md (legacy-braid ref: `braid-ideal/canonical-photon-search-spec.md`))
+canonical-photon-search-spec.md (legacy-braid ref: `braid-archive/braid-ideal/canonical-photon-search-spec.md`))
 — shares three assumptions: the assembly is **isolated** in empty void, its
 motion is **rigid** (prescribed circles/helices), and success is **static
 force balance** in a co-moving sense. The established result (measured,

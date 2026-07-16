@@ -322,11 +322,11 @@ export function buildOctahedralFoldAwareCrossBinaryI1F1FullIntervalZeroIsolation
     packet_id: PACKET_ID,
     promotion_status: PROMOTION_STATUS,
     predecessor_packets: [
-      "reference/priorities/braid-geometry-export-bridge/octahedral-fold-aware-cross-binary-i1-forcing-bracket-interval-enclosure.md",
-      "reference/priorities/braid-geometry-export-bridge/octahedral-fold-aware-cross-binary-i1-bracket-local-derivative-peak-budget-reduction.md",
+      "reference/priorities/braid-archive/braid-geometry-export-bridge/octahedral-fold-aware-cross-binary-i1-forcing-bracket-interval-enclosure.md",
+      "reference/priorities/braid-archive/braid-geometry-export-bridge/octahedral-fold-aware-cross-binary-i1-bracket-local-derivative-peak-budget-reduction.md",
     ],
     priority_packet:
-      "reference/priorities/braid-geometry-export-bridge/octahedral-fold-aware-cross-binary-i1-f1-full-interval-zero-isolation-composition.md",
+      "reference/priorities/braid-archive/braid-geometry-export-bridge/octahedral-fold-aware-cross-binary-i1-f1-full-interval-zero-isolation-composition.md",
     forcing_bracket_certificate_check: {
       schema: forcingPacket.schema,
       valid: forcingErrors.length === 0,

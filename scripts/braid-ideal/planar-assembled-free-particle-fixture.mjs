@@ -4,7 +4,7 @@
 // constants; ring z-offsets do not flatten with drift speed. Kept unchanged
 // so the section 99 scoped negative and its anchor/controls remain
 // reproducible. Canonical-photon search:
-// reference/priorities/braid-ideal/canonical-photon-search-dispatch-packet.md
+// reference/priorities/braid-archive/braid-ideal/canonical-photon-search-dispatch-packet.md
 
 const TAU = 2 * Math.PI;
 

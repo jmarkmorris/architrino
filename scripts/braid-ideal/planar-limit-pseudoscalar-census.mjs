@@ -42,7 +42,7 @@
 import { buildBraid } from "./rigid-tilted-nested-braid-evaluator.mjs";
 
 export const SCHEMA = "planar_limit_pseudoscalar_census.v1";
-export const ENTRY_REF = "reference/priorities/braid-ideal/brainstorming.md#entry-40";
+export const ENTRY_REF = "reference/priorities/braid-archive/braid-ideal/brainstorming.md#entry-40";
 
 // ---------------------------------------------------------------- site positions
 // Per the buildBraid parameterization documented in the evaluator header.

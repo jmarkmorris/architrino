@@ -281,7 +281,7 @@ try {
     solverBacked: true,
     claimLevel: "priority-only evidence; not retained-branch certification",
     sourcePriorityFile:
-      "reference/priorities/braid-angular-momentum-spin/braid-partition-and-spinor.md",
+      "reference/priorities/braid-archive/braid-angular-momentum-spin/braid-partition-and-spinor.md",
     frequencyTripletNotation: createFrequencyTripletNotation(),
     layerRoleOrder: LAYER_ROLES,
     solverGeometryPublicContract: createSolverGeometryPublicContract(),

@@ -353,9 +353,9 @@ export function buildOctahedralFoldAwareCrossBinaryCriticalValueAtlas(
     packet_id: PACKET_ID,
     promotion_status: PROMOTION_STATUS,
     predecessor_packet:
-      "reference/priorities/braid-geometry-export-bridge/octahedral-fold-aware-cross-binary-primitive-critical-atlas.md",
+      "reference/priorities/braid-archive/braid-geometry-export-bridge/octahedral-fold-aware-cross-binary-primitive-critical-atlas.md",
     priority_packet:
-      "reference/priorities/braid-geometry-export-bridge/octahedral-fold-aware-cross-binary-critical-value-atlas.md",
+      "reference/priorities/braid-archive/braid-geometry-export-bridge/octahedral-fold-aware-cross-binary-critical-value-atlas.md",
     source_primitive_critical_atlas_check: {
       schema: primitiveAtlas.schema,
       valid: primitiveAtlasErrors.length === 0,

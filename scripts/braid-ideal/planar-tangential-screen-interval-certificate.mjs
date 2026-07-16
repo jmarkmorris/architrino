@@ -1,7 +1,7 @@
 // Priority-only interval certificate for the planar tangential anti-damping screen.
 // Executes the directed-rounding certification whose target band and burdens are
 // stated in the Interval Certification Home section of
-// reference/priorities/braid-ideal/delayed-escape-certificate-lemma-proof-packet.md:
+// reference/priorities/braid-archive/braid-ideal/delayed-escape-certificate-lemma-proof-packet.md:
 //   c1 * beta <= Phi_tan(beta) <= c2 * beta  for all beta in [betaLo, betaHi],
 // on the exact planar rotating channel of
 // scripts/braid-ideal/axis-neutral-rotating-wave-residual-scan.mjs
@@ -25,7 +25,7 @@ import { fileURLToPath } from "node:url";
 
 export const SCHEMA = "planar_tangential_screen_interval_certificate.v1";
 export const PROOF_PACKET_REF =
-  "priority-proof-packet:reference/priorities/braid-ideal/delayed-escape-certificate-lemma-proof-packet.md";
+  "priority-proof-packet:reference/priorities/braid-archive/braid-ideal/delayed-escape-certificate-lemma-proof-packet.md";
 
 const PAD_REL = 1e-13;
 const PAD_TRIG = 1e-12;

@@ -72,7 +72,7 @@ Each of these outcomes is still informative because it identifies the exact geom
 
 - [breather-proof](../breather-proof/priorities.md)
 - [master-equation-closure](../../master-equation-closure/priorities.md)
-- doubling-frequency-lock (legacy-braid ref: `braid-doubling-frequency-lock/priorities.md`)
+- doubling-frequency-lock (legacy-braid ref: `braid-archive/braid-doubling-frequency-lock/priorities.md`)
 - [strong-field brainstorming](../../strong-field-closure/brainstorming.md)
 
 ## Related $\mathbb{A}\mathbb{A}\mathbb{A}$ Notes

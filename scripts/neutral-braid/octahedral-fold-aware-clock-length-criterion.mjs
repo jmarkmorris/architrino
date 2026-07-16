@@ -126,11 +126,11 @@ export function buildOctahedralFoldAwareClockLengthCriterion(options = {}) {
     promotion_status: PROMOTION_STATUS,
     predecessor_schema: OCTAHEDRAL_FOLD_AWARE_SPEED_PRIMITIVE_EXISTENCE_SCHEMA,
     predecessor_packet:
-      "reference/priorities/braid-geometry-export-bridge/octahedral-fold-aware-speed-primitive-existence.md",
+      "reference/priorities/braid-archive/braid-geometry-export-bridge/octahedral-fold-aware-speed-primitive-existence.md",
     priority_packet:
-      "reference/priorities/braid-geometry-export-bridge/octahedral-fold-aware-clock-length-criterion.md",
+      "reference/priorities/braid-archive/braid-geometry-export-bridge/octahedral-fold-aware-clock-length-criterion.md",
     successor_packet:
-      "reference/priorities/braid-geometry-export-bridge/octahedral-fold-aware-clock-length-profile-scan.md",
+      "reference/priorities/braid-archive/braid-geometry-export-bridge/octahedral-fold-aware-clock-length-profile-scan.md",
     source_speed_primitive_check: {
       schema: primitive.schema,
       valid: primitiveErrors.length === 0,

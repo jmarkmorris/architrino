@@ -14,7 +14,7 @@ import { movingPhaseMatchedStackedRingsBraid } from "./moving-phase-matched-stac
 import { FULL_DOF_STACKED_TILTED_FIXTURE as DEFAULT_FIXTURE } from "./full-dof-stacked-tilted-braid-fixture.mjs";
 
 export const FULL_DOF_STACKED_TILTED_SCHEMA = "full_dof_stacked_tilted_braid.v0";
-export const FULL_DOF_STACKED_TILTED_SPEC = "reference/priorities/braid-ideal/full-dof-stacked-tilted-braid-spec.md";
+export const FULL_DOF_STACKED_TILTED_SPEC = "reference/priorities/braid-archive/braid-ideal/full-dof-stacked-tilted-braid-spec.md";
 const TAU = 2 * Math.PI;
 const zeros = (n, m = n) => Array.from({ length: n }, () => Array(m).fill(0));
 const add = (a, b) => a.map((v, i) => v + b[i]);
@@ -707,7 +707,7 @@ export function section98FullDofSearch({ fixture = DEFAULT_FIXTURE } = {}) {
   const randomFlutterFreeAtConvergedSampling = randomExploration.bestProbeConvergence.flutter.at(-1).gates.flutterFree;
   return {
     schema: "full_dof_stacked_tilted_section_98.v0",
-    spec: "reference/priorities/braid-ideal/full-dof-stacked-tilted-braid-section-98-spec.md",
+    spec: "reference/priorities/braid-archive/braid-ideal/full-dof-stacked-tilted-braid-section-98-spec.md",
     claimLevel: "seed_grade_joint_optimization_and_exploratory_full_dof_scan_not_a_retained_history_release",
     controls, jointOptimization, randomExploration,
     pair: triplePasses ? { gated: false, status: "generic_candidate_pair_adapter_required_before_section_93_replay" } : { gated: true, status: "not_run_because_no_converged_binding_flutter_free_triple" },

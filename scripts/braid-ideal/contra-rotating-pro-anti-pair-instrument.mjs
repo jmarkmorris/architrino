@@ -19,7 +19,7 @@ import {
 import { CONTRA_ROTATING_PAIR_FIXTURE } from "./contra-rotating-pro-anti-pair-fixture.mjs";
 
 export const CONTRA_ROTATING_PAIR_SCHEMA = "contra_rotating_pro_anti_pair_instrument.v0";
-export const CONTRA_ROTATING_PAIR_SPEC = "reference/priorities/braid-ideal/fold-crossing-chart-spec.md#92-contra-rotating-proanti-pair-native-self-sinking-instrument-2026-07-12";
+export const CONTRA_ROTATING_PAIR_SPEC = "reference/priorities/braid-archive/braid-ideal/fold-crossing-chart-spec.md#92-contra-rotating-proanti-pair-native-self-sinking-instrument-2026-07-12";
 
 const zeros = (rows, cols = rows) => Array.from({ length: rows }, () => Array(cols).fill(0));
 const symmetricPart = (A) => A.map((row, i) => row.map((v, j) => (v + A[j][i]) / 2));

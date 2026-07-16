@@ -1,6 +1,6 @@
 // Canonical-photon search fixture — declared configuration space, grids, and
 // protocol constants. Successor to the retired §99 photon branch; governed by
-// reference/priorities/braid-ideal/canonical-photon-search-dispatch-packet.md.
+// reference/priorities/braid-archive/braid-ideal/canonical-photon-search-dispatch-packet.md.
 //
 // EVERY range and grid below is declared BEFORE any run is scored and is
 // echoed verbatim in the coverage statement of the spec. Range rationale is
@@ -17,7 +17,7 @@
 
 export const CANONICAL_PHOTON_SEARCH_SCHEMA = "canonical_photon_search.v1";
 export const CANONICAL_PHOTON_SEARCH_SPEC =
-  "reference/priorities/braid-ideal/canonical-photon-search-spec.md";
+  "reference/priorities/braid-archive/braid-ideal/canonical-photon-search-spec.md";
 
 export const CANONICAL_PHOTON_SEARCH_FIXTURE = {
   fieldSpeed: 1,

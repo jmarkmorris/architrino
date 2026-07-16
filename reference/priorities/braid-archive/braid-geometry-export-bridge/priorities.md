@@ -1,0 +1,4322 @@
+# Braid Geometry Export Bridge
+
+## Workstream Metadata
+
+- Kind: `priority`
+- Rank: `9`
+- Value: `24.27`
+- Cost: `6.6`
+- ROI: `3.68`
+- Status: `active`
+
+Current pause: the H39/H38 source-covariance path remains paused until a same-domain branch-bearing source-map provider object exists upstream of aggregate `P`; the pause note is preserved in [work-log.md](work-log.md#2026-07-02-source-covariance-pause-note).
+
+## Scope
+
+This priority folder owns the focused mathematics and geometry attack plan for moving from the Master Equation of Motion to emergent assembly geometry without jumping directly to full observer-level GR. The workstream exists because the current stack has strong pieces in the Master EOM, Noether braid architecture, nested shell braid geometry, and emergent metric map, but it lacks one controlled intermediate object:
+
+$$
+\text{Master EOM}
+\longrightarrow
+\text{branch-local assembly response}
+\longrightarrow
+\text{Noether sea / observer-geometry export}.
+$$
+
+The central target is a branch-local response theorem. For a candidate assembly branch $B$, define a retained state
+
+$$
+z_B
+=
+\left(
+Y,\nu,\eta,J,\Lambda,\mathcal{E}_{\mathrm{hist}},
+Q_{ab},\mathcal{Z}^{ab},\mathcal{M}_{\mathrm{sea}}^{ab}
+\right),
+$$
+
+and a local environment or Noether sea record $\theta$. The first bridge object is a residual equation
+
+$$
+\mathcal{R}_B(z_B;\theta)=0
+$$
+
+on a root-regular, ledger-consistent branch chart. The first variation is
+
+$$
+D_z\mathcal{R}_B[\delta z]
++
+D_\theta\mathcal{R}_B[\delta\theta]
+=0.
+$$
+
+After quotienting gauge directions and fixing the root-ledger convention, a valid response row has the form
+
+$$
+\delta z
+=
+-
+\mathcal{G}_B
+D_\theta\mathcal{R}_B[\delta\theta],
+$$
+
+where $\mathcal{G}_B$ is the inverse or bordered generalized inverse of $D_z\mathcal{R}_B$ on the retained non-gauge subspace.
+
+The output is not a metric yet. The output is the geometry-export packet
+
+$$
+\mathcal{K}_{B}^{\mathrm{geom}}
+:
+\delta\theta
+\mapsto
+\left(
+\delta\ln T_B,\,
+\delta Q_{ab},\,
+\delta\mathcal{Z}^{ab},\,
+\delta\mathcal{M}_{\mathrm{sea}}^{ab},\,
+\mathcal{R}_{\mathrm{pf}},\,
+\mathcal{R}_{\mathrm{ledger}}
+\right).
+$$
+
+Only after this packet is branch-certified should [Emergent Metric](../../../../content/markdown/aaa/spacetime/emergent-metric.md) consume it as candidate input for $N$, $u^i_{\mathrm{sea,eff}}$, $e^a{}_i$, and $\gamma_{ij}^{\mathrm{eff}}$.
+
+## Core Theory Advance
+
+The branch-response reduction and its observer-facing check are formalized in this lane's theory packets; this queue references them rather than restating the derivation inline (2026-07-08 sort, route-by-content-type de-duplication). The gauge-quotiented branch-response object $\mathcal{R}_B(z_B;\theta)=0$ with the boxed non-gauge response $\delta z_\perp=-\mathcal{G}_B\Pi_B^\perp D_\theta\mathcal{R}_B[\delta\theta]$ is defined in [branch-local-response-object.md](branch-local-response-object.md) (§4, Linear Response and Geometry Export). The weak-field Weyl-versus-dynamical residual $\mathcal{R}_{\mathrm{Weyl=dyn},B}=\delta N+\tfrac{1}{6}h^{ij}\delta\gamma_{ij}=0$ (equivalently $\Psi_{\mathrm{sp}}=\Phi_{\mathrm{dyn}}$) is derived in [axial-response-adm-projection.md](axial-response-adm-projection.md). The Staged Theory Packets table below catalogs the full advance across the response, ADM/Cartan, and medium-response packets. The verbatim prior inline text is preserved in [work-log.md](work-log.md).
+
+## Priority List
+
+1. `branch_local_response_object` — Define the exact residual object $\mathcal{R}_B(z_B;\theta)$ for one diagnostic branch chart, including root variables, bounded speed factors if used, branch labels, energy/action rows, shape tensor, exposure tensor, and Noether sea response tensor. Status: `staged`; packet: [branch-local-response-object](branch-local-response-object.md). Depends on: none.
+
+2. `root_sensitive_linearization` — Derive the root-sensitive first variation of $\mathcal{R}_B$, including $D\eta$, $DJ$, delayed force variation, support variation, speed-factor variation, and event-endpoint variation. Status: `staged`; packet: [branch-local-response-object](branch-local-response-object.md). Depends on: `branch_local_response_object`.
+
+3. `gauge_quotient_and_bordered_inverse` — Identify translation, rotation, phase, period, root-label, and branch-family gauge directions, then define the bordered inverse or generalized inverse $\mathcal{G}_B$ used in the response equation. Status: `staged`; packet: [branch-local-response-object](branch-local-response-object.md). Depends on: `root_sensitive_linearization`.
+
+4. `geometry_export_packet` — Compute the branch-local geometry export $\mathcal{K}_{B}^{\mathrm{geom}}$, with first rows $\delta\ln T_B$, $\delta Q_{ab}$, $\delta\mathcal{Z}^{ab}$, $\delta\mathcal{M}_{\mathrm{sea}}^{ab}$, preferred-frame leakage, and ledger mismatch residuals. Status: `staged`; packet: [geometry-export-and-interface-variation](geometry-export-and-interface-variation.md). Depends on: `gauge_quotient_and_bordered_inverse`.
+
+5. `assembly_interface_variation` — Apply the response packet to the assembly-Noether sea interface diagnostic $D_{a,X}(\mathbf{x},t)$ and derive the first variation of the level set $\partial\Omega_a(D_X,t)$. Status: `staged`; packet: [geometry-export-and-interface-variation](geometry-export-and-interface-variation.md). Depends on: `geometry_export_packet`.
+
+6. `virtual_work_curl_test` — Test whether the branch-local delayed-force response is action-compatible by computing the finite-mode virtual-work curl $\mathcal{C}_{pq}=\partial_pW_q-\partial_qW_p$ on the same retained root stratum. Status: `staged`; packet: [action-curl-and-adm-projection](action-curl-and-adm-projection.md). Depends on: `root_sensitive_linearization`.
+
+7. `adm_cartan_projection` — Translate a passed geometry-export packet into the ADM/Cartan observer fields $N$, $u^i_{\mathrm{sea,eff}}$, $e^a{}_i$, and $\gamma_{ij}^{\mathrm{eff}}$ as a constitutive projection, not as substrate curvature. Status: `single-mode-axial-cancellation-closed`; packets: [action-curl-and-adm-projection](action-curl-and-adm-projection.md), [axial-response-adm-projection](axial-response-adm-projection.md), [axial-projection-coefficient-ratio](axial-projection-coefficient-ratio.md), [axial-medium-response-realization](axial-medium-response-realization.md), [axial-tensor-coefficient-extraction](axial-tensor-coefficient-extraction.md), [specific-branch-medium-response-row](specific-branch-medium-response-row.md), [retained-branch-medium-response-candidate](retained-branch-medium-response-candidate.md), [retained-medium-action-ledger-row](retained-medium-action-ledger-row.md), [retained-medium-response-object-emission](retained-medium-response-object-emission.md), [octahedral-exposure-derivative-adjoint](octahedral-exposure-derivative-adjoint.md), [octahedral-affine-exposure-matrix](octahedral-affine-exposure-matrix.md), and [octahedral-full-coordinate-exposure-matrix](octahedral-full-coordinate-exposure-matrix.md). Depends on: `geometry_export_packet` and `virtual_work_curl_test`.
+
+8. `minimal_worked_branch` — Choose the smallest available branch chart, likely the current exact-antipodal $M=3$ shell braid row or the no-fixed-speed-window source-atlas successor, and populate the response packet far enough to classify it as `response-passed`, `response-open`, or `response-rejected`. Status: `h39-primitive-vector-promotion-theorem-bridge-emitted`; packets: [minimal-worked-branch-response](minimal-worked-branch-response.md), [specific-branch-response-insertion](specific-branch-response-insertion.md), [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-twentieth-order-jet-coefficient-interval-certificate](octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-twentieth-order-jet-coefficient-interval-certificate.md), [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-twenty-first-order-shifted-tail-cancellation-certificate](octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-twenty-first-order-shifted-tail-cancellation-certificate.md), [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-twenty-first-order-root-tail-seed-certificate](octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-twenty-first-order-root-tail-seed-certificate.md), [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-finite-e-root-tail-tube-certificate](octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-finite-e-root-tail-tube-certificate.md), [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-twenty-second-order-post-seed-coefficient-certificate](octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-twenty-second-order-post-seed-coefficient-certificate.md), [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-finite-shift25-e-root-tail-tube-certificate](octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-finite-shift25-e-root-tail-tube-certificate.md), [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-positive-gd-quotient-subcell-certificate](octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-positive-gd-quotient-subcell-certificate.md), [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-twenty-third-order-u-seed-coefficient-certificate](octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-twenty-third-order-u-seed-coefficient-certificate.md), [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-finite-shift27-u-root-tail-tube-certificate](octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-finite-shift27-u-root-tail-tube-certificate.md), [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-twenty-fourth-order-post-u-coefficient-certificate](octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-twenty-fourth-order-post-u-coefficient-certificate.md), [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-twenty-fifth-order-post-u-successor-coefficient-certificate](octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-twenty-fifth-order-post-u-successor-coefficient-certificate.md), [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-finite-shift29-successor-root-tail-tube-certificate](octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-finite-shift29-successor-root-tail-tube-certificate.md), [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-c1-twenty-sixth-order-tail-bound-certificate](octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-c1-twenty-sixth-order-tail-bound-certificate.md), [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-twenty-sixth-order-post-u-successor-coefficient-certificate](octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-twenty-sixth-order-post-u-successor-coefficient-certificate.md), [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-finite-shift31-next-successor-root-tail-tube-certificate](octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-finite-shift31-next-successor-root-tail-tube-certificate.md), [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-c1-twenty-seventh-order-tail-bound-certificate](octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-c1-twenty-seventh-order-tail-bound-certificate.md), [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-twenty-seventh-order-lower-coefficient-cancellation-certificate](octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-twenty-seventh-order-lower-coefficient-cancellation-certificate.md), [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-twenty-seventh-order-post-u-successor-coefficient-certificate](octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-twenty-seventh-order-post-u-successor-coefficient-certificate.md), [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-twenty-eighth-order-post-u-successor-coefficient-certificate](octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-twenty-eighth-order-post-u-successor-coefficient-certificate.md), [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-twenty-ninth-order-post-u-successor-coefficient-certificate](octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-twenty-ninth-order-post-u-successor-coefficient-certificate.md), [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-thirtieth-order-post-u-successor-coefficient-certificate](octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-thirtieth-order-post-u-successor-coefficient-certificate.md), [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-thirty-first-order-post-u-successor-coefficient-certificate](octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-thirty-first-order-post-u-successor-coefficient-certificate.md), [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-thirty-second-order-post-u-successor-coefficient-certificate](octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-thirty-second-order-post-u-successor-coefficient-certificate.md), [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-thirty-third-order-post-u-successor-coefficient-certificate](octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-thirty-third-order-post-u-successor-coefficient-certificate.md), [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-thirty-fourth-order-post-u-successor-coefficient-certificate](octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-thirty-fourth-order-post-u-successor-coefficient-certificate.md), [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-thirty-fifth-order-post-u-successor-coefficient-certificate](octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-thirty-fifth-order-post-u-successor-coefficient-certificate.md), [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-thirty-sixth-order-post-u-successor-coefficient-certificate](octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-thirty-sixth-order-post-u-successor-coefficient-certificate.md), [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-thirty-seventh-order-post-u-successor-coefficient-certificate](octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-thirty-seventh-order-post-u-successor-coefficient-certificate.md), [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-thirty-eighth-order-post-u-successor-coefficient-certificate](octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-thirty-eighth-order-post-u-successor-coefficient-certificate.md), [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-successor-coefficient-recurrence-lemma](octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-successor-coefficient-recurrence-lemma.md), [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-root-tangent-cauchy-majorant-tail-lemma](octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-root-tangent-cauchy-majorant-tail-lemma.md), [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-h39-shared-domain-primitive-diagnostic](octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-h39-shared-domain-primitive-diagnostic.md), [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-continuous-post-seed-tail-bound-target](octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-continuous-post-seed-tail-bound-target.md), [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-regular-root-cell-certificate](octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-regular-root-cell-certificate.md), and [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-regular-root-complement-slab-certificate](octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-regular-root-complement-slab-certificate.md). Depends on: `branch_local_response_object`.
+
+
+   Historical H39 evaluator, regular-root, root-graph, and h29-through-h38 coefficient status updates are preserved in [work-log.md](work-log.md#2026-07-02-minimal-worked-branch-status-addendum-block). Compact live blocker: the retained branch is still not closed; the current H39/y44 route needs a directed-rounded same-domain replacement for the live source-term derivative slots before the $S_{37}$ division target can certify the selected row.
+
+9. `promotion_decision` — Promote only theorem-target material that is reader-facing and branch-safe into the AAA corpus; preserve diagnostics, failed branches, and unproven response rows in this priority folder. Status: `pending`. Depends on: `geometry_export_packet` and `minimal_worked_branch`.
+
+## Claim Discipline
+
+| Claim | Current status | Promotion blocker |
+| --- | --- | --- |
+| Master EOM supplies delayed causal-root forces | already corpus-level | none for the primitive force law |
+| Assembly branch response tensor exists | theorem target | needs one root-regular branch chart and bordered response row |
+| Assembly interface level set has computable first variation | theorem target | needs $D_{a,X}$ response under one branch ledger |
+| Geometry export can feed ADM/Cartan fields | theorem target | needs one shared clock, shape, exposure, and medium-response record |
+| Emergent metric recovery follows | downstream theorem target | needs PPN, lensing, signal, clock, ruler, and preferred-frame residuals from one record |
+
+## Promotion Map
+
+| Priority artifact | Candidate corpus destination | Promotion gate |
+| --- | --- | --- |
+| Branch-local response theorem target | [Nested Shell Braid Dynamics](../../../../content/markdown/aaa/noether-braid/explored-braid-geometries.md#nested-shell-braid-dynamics) | $\mathcal{R}_B$, root-sensitive linearization, and gauge quotient are stated without claiming branch retention. |
+| Assembly interface variation | [Nested Shell Braid Geometry](../../../../content/markdown/aaa/noether-braid/braid-envelope-geometry.md) | The level-set variation uses the existing $D_{a,X}$ diagnostic and one consistent branch ledger. |
+| ADM/Cartan projection row | [Emergent Metric](../../../../content/markdown/aaa/spacetime/emergent-metric.md) | The projection consumes $\mathcal{K}_{B}^{\mathrm{geom}}$ and keeps metric language observer-level. |
+| Action compatibility result | [Causal Action Functional](../../../../content/markdown/aaa/dynamics/causal-action-functional.md) or [Effective Lagrangian](../../../../content/markdown/aaa/dynamics/effective-lagrangian.md) | The virtual-work curl test passes or fails with a clear status and root convention. |
+
+## Staged Theory Packets
+
+| Packet | Mathematical advance | Claim level |
+| --- | --- | --- |
+| [branch-local-response-object](branch-local-response-object.md) | Defines $\mathcal{R}_B(z_B;\theta)=0$ and the implicit response theorem $\delta z=-\mathcal{G}_BD_\theta\mathcal{R}_B[\delta\theta]$ on a gauge-quotiented root stratum. | theorem target |
+| [geometry-export-and-interface-variation](geometry-export-and-interface-variation.md) | Defines $\mathcal{K}_B^{\mathrm{geom}}$ and proves the level-set response $\delta s_X=-\delta D_{a,X}/\|\nabla D_{a,X}\|$ for assembly-interface motion. | theorem target |
+| [action-curl-and-adm-projection](action-curl-and-adm-projection.md) | Separates response geometry from action-derived geometry using the root-sensitive curl $\mathcal{C}_{pq}^{B}$, then states the constitutive ADM/Cartan projection. | theorem target |
+| [minimal-worked-branch-response](minimal-worked-branch-response.md) | Computes the isotropic affine probe: $\delta\eta_\rho=\eta_\rho\varepsilon/J_\rho$, $\delta\ln w_\rho=-2\varepsilon/J_\rho$, and the resulting interface displacement. | symbolic response row |
+| [specific-branch-response-insertion](specific-branch-response-insertion.md) | Inserts the certified rigid octahedral all-pairs root ledger into the symbolic rows: $\delta\ln T_{\mathrm{oct,root}}\approx0.8460213966\varepsilon$, $\langle1/J\rangle_{\mathrm{oct}}\approx0.8265938388$, and a nonzero trace-free exposure response under equal all-pairs exposure. | root-ledger response row |
+| [specific-branch-response-closure](specific-branch-response-closure.md) | Reduces the octahedral response to root-band integrals and the unique axial trace-free mode $\delta\mathcal Z_{\mathrm{oct,tf}}^{ab}=\zeta_{\delta Z}\varepsilon(n^an^b-h^{ab}/3)$ with $\zeta_{\delta Z}\approx-0.0006801526578$. | symmetry-closed root-ledger response |
+| [axial-response-adm-projection](axial-response-adm-projection.md) | Splits scalar Weyl-versus-dynamical matching from trace-free axial leakage and derives $\mathcal R_{\mathrm{ax},B}^{ij}=(\lambda_Z\zeta_{\delta Z}+\lambda_M\mu_{\mathrm{sea}})\varepsilon(n^in^j-h^{ij}/3)$. | observer-projection closure equation |
+| [axial-noether-sea-cancellation](axial-noether-sea-cancellation.md) | Solves the Noether sea tensor cancellation condition: scalar-only medium response leaks axially if $\lambda_Z\ne0$, while tensorial response closes iff $\mu_{\mathrm{sea}}=-(\lambda_Z/\lambda_M)\zeta_{\delta Z}$. | constitutive cancellation equation |
+| [axial-projection-coefficient-ratio](axial-projection-coefficient-ratio.md) | Shows that the current ADM/Cartan and medium-response material identifies only the scalar ratio $r_{ZM}=\lambda_Z/\lambda_M$; reduces cancellation to $m_{\mathrm{ax}}=-z_{\mathrm{ax}}$ and the branch-axis target $\delta\mathcal M_2(n)=0.000453435105208\,r_{ZM}\varepsilon$. | coefficient-ratio identifiability lemma |
+| [axial-medium-response-realization](axial-medium-response-realization.md) | Inserts the existing Noether sea tensor scaffold and pressure tensor split, deriving the direct target $2q_{\chi A}+m_Ss_A+\rho_A=0.000680152657812\,r_{ZM}$. | branch-axis tensor-response equation |
+| [axial-tensor-coefficient-extraction](axial-tensor-coefficient-extraction.md) | Defines the branch-exported coefficient $\mu_K=(3/(2\varepsilon))A_{ab}\Pi_{\mathrm{tf}}\delta\mathcal M_{\mathrm{sea}}^{ab}$ and proves axial closure iff $\mu_K=0.000680152657812\,r_{ZM}$. | medium-response extraction theorem target |
+| [specific-branch-medium-response-row](specific-branch-medium-response-row.md) | Classifies the current rigid octahedral row as `medium-row-not-emitted`; under the explicit source-only diagnostic $\mu_K=0$, so $\mathcal R_{\mathrm{ax,source}}^{ij}=\lambda_Z\zeta_{\delta Z}\varepsilon A^{ij}$ and isotropic observer geometry is rejected unless $\lambda_Z=0$. | source-only axial decision theorem |
+| [retained-branch-medium-response-candidate](retained-branch-medium-response-candidate.md) | Proves that an isotropic linear trace-free Noether sea response sourced by the octahedral exposure must lie on the same axial tensor line, reducing metric cancellation to $\Pi_{\mathrm{tf}}\delta\mathcal M_{\mathrm{sea}}^{ab}=\kappa_Z\delta\mathcal Z_{\mathrm{oct,tf}}^{ab}$ with closure iff $\kappa_Z=-r_{ZM}$. | retained susceptibility candidate |
+| [retained-medium-action-ledger-row](retained-medium-action-ledger-row.md) | Computes the completed-square trace-free storage block $\mathcal F_{\mathrm{sea,tf}}^\square=(\alpha_M/2)\langle M+r_{ZM}Z,M+r_{ZM}Z\rangle_h$, derives the conjugate rows $\Pi_M=\alpha_M(M+r_{ZM}Z)$ and $\Pi_Z=r_{ZM}\Pi_M$, and proves its local curl contribution vanishes on retained $(M,Z)$ variables. | candidate action-exact medium block |
+| [retained-medium-response-object-emission](retained-medium-response-object-emission.md) | Emits the conditional response object $\mathcal M_{\mathrm{resp}}^\square=-\alpha_Mr_{ZM}D_YZ_B^*(M_B+r_{ZM}Z_B)$, reducing admissibility to the support and boundedness of the branch exposure derivative $D_YZ_B$. | conditional response-object formula |
+| [octahedral-exposure-derivative-adjoint](octahedral-exposure-derivative-adjoint.md) | States the full simple-root derivative formula for $D_YZ_B$, closes the isotropic octahedral column $D_\varepsilon Z_{\mathrm{oct}}^{ab}=\zeta_{\delta Z}A^{ab}$, and derives its adjoint $D_\varepsilon Z_{\mathrm{oct}}^*(U)=\zeta_{\delta Z}A_{ab}U^{ab}$. | single-mode derivative-adjoint closure |
+| [octahedral-affine-exposure-matrix](octahedral-affine-exposure-matrix.md) | Extends the isotropic column to the fixed-ledger affine operator $D_HZ_{\mathrm{oct}}:\operatorname{End}(\mathbb R^3)\to\mathrm{Sym}_0^2(h)$, derives its adjoint, decomposes trace/shear/rotation columns, and adds an executable diagnostic that reproduces $\zeta_{\delta Z}$. | affine exposure-probe matrix closure |
+| [octahedral-full-coordinate-exposure-matrix](octahedral-full-coordinate-exposure-matrix.md) | Emits the same-ledger affine branch-coordinate derivative $D_H^{\mathrm{coord}}Z_{\mathrm{oct}}$, including delayed endpoint, tangent, curvature, and $J_\rho$ variation; validates all nine columns by central finite differences while preserving the rigid-row `not_retained` verdict. | full coordinate derivative closure for rejected rigid chart |
+| [octahedral-affine-force-mean-derivative](octahedral-affine-force-mean-derivative.md) | Emits the six-by-nine affine force-mean derivative $B_{iA}$ for the frozen rigid octahedral speed-ODE row and proves $-M(0)\in\operatorname{Range}(B)$, with the trace column alone giving $\alpha_{\mathrm{trace}}\approx3.24679501458$ and residual $\approx9.4\times10^{-11}$. | candidate affine zero-mean range obstruction removed; not retained |
+| [octahedral-trace-affine-zero-mean-obstruction](octahedral-trace-affine-zero-mean-obstruction.md) | Proves that the finite trace-scaled antipodal partner mean $m_{\mathrm{partner}}(s)$ stays positive for every $s>0$, while correcting the claim level: partner positivity does not decide the total trace row because cross-binary roots also move. | partner-row positivity certificate; total trace row open |
+| [octahedral-diagonal-affine-zero-mean-solver](octahedral-diagonal-affine-zero-mean-solver.md) | Corrects the finite positive diagonal affine result: the $37/240$ uniform trace cancellation at $s_1=s_2=s_3\approx1.694464950788$ has $\|M(s)\|_\infty\approx3.48\times10^{-10}$, but fixed-candidate reruns give $\|M(s)\|_\infty\approx0.851344912333$ at $73/480$ and $\approx1.040328440834$ at $149/960$; any speed-window primitive row is diagnostic only. | resolution-unstable near-fold cancellation; not retained |
+| [octahedral-bounded-speed-successor-closure-row](octahedral-bounded-speed-successor-closure-row.md) | Restates the average-speed lemma as a conditional clock-window diagnostic: if a branch declares $\nu_-\le\nu_i\le\nu_+$ and $\int_0^H\nu_i\,du=L_i$, then $\nu_-\le L_i/H\le\nu_+$. The earlier $[0.5,1.5]$ row is retained only as a declared-window failure, not as a theory constraint. | conditional declared-window diagnostic; not retained |
+| [octahedral-period-rescaled-trace-scan](octahedral-period-rescaled-trace-scan.md) | Removes the imposed speed-window assumption and scans $Y_i(u)=s\,p_i(u/h)$ with positive $v=s/h$. On fixed simple-root rows, $\mathcal M_i^\nu(s,h)=(1/h)C_i(v)$; sampled rows through $v=1.7$ stay positive with minimum $\approx0.789308084676$, and the first sampled one-root ledger failure appears at $v=1.75$. | sampled simple-root positivity plus root-ledger boundary; not retained |
+| [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-c1-twenty-seventh-order-tail-bound-certificate](octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-c1-twenty-seventh-order-tail-bound-certificate.md) | Uses the certified finite $\operatorname{Shift}_{31}$ $W_\varepsilon$ tube and the root tangent $\Xi_\varepsilon=-y\,\partial_yR_{\varepsilon,31}/J_\varepsilon$ to prove that the broad positive-y C1 interval evaluator cannot close the twenty-seventh-order $G,D$ tail budget; it localizes the failure to cancellation loss before the $y^{29}$ division. | rigorous C1 obstruction; coefficient-preserving Taylor quotient model required |
+| [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-twenty-seventh-order-lower-coefficient-cancellation-certificate](octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-twenty-seventh-order-lower-coefficient-cancellation-certificate.md) | Certifies that the lower numerator coefficients through $y^{28}$ of $P-L-y^2A_{G,26}$ and $D_{\mathrm{pair}}-L-y^2A_{D,26}$ contain zero before any $y^{29}$ division, and preserves the lower identity $N_{D,k}=(1-k)N_{G,k}$ through $k=28$. | coefficient-preserving lower-cancellation closure; h27 and h28 coefficient successors now certified; twenty-ninth-order successor tail bound required |
+| [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-twenty-seventh-order-post-u-successor-coefficient-certificate](octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-twenty-seventh-order-post-u-successor-coefficient-certificate.md) | Solves $h_{27,\varepsilon}$ from the $\operatorname{Shift}_{31}$ coefficient equation and certifies the induced $Q_{G,27},Q_{D,27}$ coefficient row plus $Q_{D,27}+28Q_{G,27}\ni0$, moving the zero-touching quotient burden from $T^{(27)}$ to the $T^{(28)}$ successor tail. | coefficient row closure for the $y^{29}$ quotient constant term; h28 successor now certified; twenty-ninth-order successor tail bound required |
+| [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-twenty-eighth-order-post-u-successor-coefficient-certificate](octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-twenty-eighth-order-post-u-successor-coefficient-certificate.md) | Solves $h_{28,\varepsilon}$ from the $\operatorname{Shift}_{32}$ coefficient equation and certifies the induced $Q_{G,28},Q_{D,28}$ coefficient row plus $Q_{D,28}+29Q_{G,28}\ni0$, moving the zero-touching quotient burden from $T^{(28)}$ to the $T^{(29)}$ successor tail. | coefficient row closure for the twenty-eighth-order quotient-tail constant term; twenty-ninth-order successor tail bound required |
+| [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-twenty-ninth-order-post-u-successor-coefficient-certificate](octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-twenty-ninth-order-post-u-successor-coefficient-certificate.md) | Solves $h_{29,\varepsilon}$ from the $\operatorname{Shift}_{33}$ coefficient equation and certifies the induced $Q_{G,29},Q_{D,29}$ coefficient row plus $Q_{D,29}+30Q_{G,29}\ni0$, moving the zero-touching quotient burden from $T^{(29)}$ to the $T^{(30)}$ successor tail. | coefficient row closure for the twenty-ninth-order quotient-tail constant term; h30 through h38 successors now certified; thirty-ninth-order successor tail bound required |
+| [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-thirtieth-order-post-u-successor-coefficient-certificate](octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-thirtieth-order-post-u-successor-coefficient-certificate.md) | Solves $h_{30,\varepsilon}$ from the $\operatorname{Shift}_{34}$ coefficient equation and certifies the induced $Q_{G,30},Q_{D,30}$ coefficient row plus $Q_{D,30}+31Q_{G,30}\ni0$, moving the zero-touching quotient burden from $T^{(30)}$ to the $T^{(31)}$ successor tail. | coefficient row closure for the thirtieth-order quotient-tail constant term; h31 through h38 successors now certified; thirty-ninth-order successor tail bound required |
+| [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-thirty-first-order-post-u-successor-coefficient-certificate](octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-thirty-first-order-post-u-successor-coefficient-certificate.md) | Solves $h_{31,\varepsilon}$ from the $\operatorname{Shift}_{35}$ coefficient equation and certifies the induced $Q_{G,31},Q_{D,31}$ coefficient row plus $Q_{D,31}+32Q_{G,31}\ni0$, moving the zero-touching quotient burden from $T^{(31)}$ to the $T^{(32)}$ successor tail. | coefficient row closure for the thirty-first-order quotient-tail constant term; h32 through h38 successors now certified; thirty-ninth-order successor tail bound required |
+| [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-thirty-second-order-post-u-successor-coefficient-certificate](octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-thirty-second-order-post-u-successor-coefficient-certificate.md) | Solves $h_{32,\varepsilon}$ from the $\operatorname{Shift}_{36}$ coefficient equation and certifies the induced $Q_{G,32},Q_{D,32}$ coefficient row plus $Q_{D,32}+33Q_{G,32}\ni0$, moving the zero-touching quotient burden from $T^{(32)}$ to the $T^{(33)}$ successor tail. | coefficient row closure for the thirty-second-order quotient-tail constant term; h33 through h38 successors now certified; thirty-ninth-order successor tail bound required |
+| [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-thirty-third-order-post-u-successor-coefficient-certificate](octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-thirty-third-order-post-u-successor-coefficient-certificate.md) | Solves $h_{33,\varepsilon}$ from the $\operatorname{Shift}_{37}$ coefficient equation and certifies the induced $Q_{G,33},Q_{D,33}$ coefficient row plus $Q_{D,33}+34Q_{G,33}\ni0$, moving the zero-touching quotient burden from $T^{(33)}$ to the $T^{(34)}$ successor tail. | coefficient row closure for the thirty-third-order quotient-tail constant term; h34 through h38 successors now certified; thirty-ninth-order successor tail bound required |
+| [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-thirty-fourth-order-post-u-successor-coefficient-certificate](octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-thirty-fourth-order-post-u-successor-coefficient-certificate.md) | Solves $h_{34,\varepsilon}$ from the $\operatorname{Shift}_{38}$ coefficient equation and certifies the induced $Q_{G,34},Q_{D,34}$ coefficient row plus $Q_{D,34}+35Q_{G,34}\ni0$, moving the zero-touching quotient burden from $T^{(34)}$ to the $T^{(35)}$ successor tail. | coefficient row closure for the thirty-fourth-order quotient-tail constant term; h35 through h38 successors now certified; thirty-ninth-order successor tail bound required |
+| [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-thirty-fifth-order-post-u-successor-coefficient-certificate](octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-thirty-fifth-order-post-u-successor-coefficient-certificate.md) | Solves $h_{35,\varepsilon}$ from the $\operatorname{Shift}_{39}$ coefficient equation and certifies the induced $Q_{G,35},Q_{D,35}$ coefficient row plus $Q_{D,35}+36Q_{G,35}\ni0$, moving the zero-touching quotient burden from $T^{(35)}$ to the $T^{(36)}$ successor tail. | coefficient row closure for the thirty-fifth-order quotient-tail constant term; h36 through h38 successors now certified; thirty-ninth-order successor tail bound required |
+| [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-thirty-sixth-order-post-u-successor-coefficient-certificate](octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-thirty-sixth-order-post-u-successor-coefficient-certificate.md) | Solves $h_{36,\varepsilon}$ from the $\operatorname{Shift}_{40}$ coefficient equation and certifies the induced $Q_{G,36},Q_{D,36}$ coefficient row plus $Q_{D,36}+37Q_{G,36}\ni0$, moving the zero-touching quotient burden from $T^{(36)}$ to the $T^{(37)}$ successor tail. | coefficient row closure for the thirty-sixth-order quotient-tail constant term; h37 and h38 successors now certified; thirty-ninth-order successor tail bound required |
+| [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-thirty-seventh-order-post-u-successor-coefficient-certificate](octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-thirty-seventh-order-post-u-successor-coefficient-certificate.md) | Solves $h_{37,\varepsilon}$ from the $\operatorname{Shift}_{41}$ coefficient equation and certifies the induced $Q_{G,37},Q_{D,37}$ coefficient row plus $Q_{D,37}+38Q_{G,37}\ni0$, moving the zero-touching quotient burden from $T^{(37)}$ to the $T^{(38)}$ successor tail. | coefficient row closure for the thirty-seventh-order quotient-tail constant term; h38 successor now certified; thirty-ninth-order successor tail bound required |
+| [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-thirty-eighth-order-post-u-successor-coefficient-certificate](octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-thirty-eighth-order-post-u-successor-coefficient-certificate.md) | Solves $h_{38,\varepsilon}$ from the $\operatorname{Shift}_{42}$ coefficient equation and certifies the induced $Q_{G,38},Q_{D,38}$ coefficient row plus $Q_{D,38}+39Q_{G,38}\ni0$, moving the zero-touching quotient burden from $T^{(38)}$ to the $T^{(39)}$ successor tail. | coefficient row closure for the thirty-eighth-order quotient-tail constant term; thirty-ninth-order successor tail bound required |
+| [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-successor-coefficient-recurrence-lemma](octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-successor-coefficient-recurrence-lemma.md) | Proves the formal successor-coefficient recurrence $\operatorname{Shift}_{n+4}R_{n,\varepsilon}=C_{n,\varepsilon}+\varepsilon\beta F_{\eta\eta}X_{n,\varepsilon}+O(y)$ for all $n\ge0$ in the fold-null chart, with $F_{\eta\eta}=(\partial_\delta-\partial_\phi)^2F|_{(\delta_f,\phi_f)}$, and proves the structural all-order identity $Q_{D,k}+(k+1)Q_{G,k}=0$. | formal recurrence and structural identity closed; h27 through h38 are directed-rounded witnesses; analytic convergence, chart slope certificate, root-tangent tail, and retention burdens open |
+| [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-root-tangent-cauchy-majorant-tail-lemma](octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-root-tangent-cauchy-majorant-tail-lemma.md) | Re-indexes the Cauchy-majorant route to the post-h38 numerator $N_G=P-L-y^2A_{G,38}$: one certified polydisc bound for $M_G$ and $\Xi_*$ bounds $T_G^{(39)}$ by $M_G/(\rho^{41}(1-Y/\rho))$, and the correlated $D$ tail closes by one displayed root-tangent budget inequality. It corrects the h39 root-tangent residual to $R_{\varepsilon,43}$, uses the interior $X$-Cauchy margin $\sigma_X$, proves that both h39 $M_G$ thresholds strictly increase with $s=\rho/Y$ for fixed $\Xi_*/\sigma_X$, and proves the $D$ threshold is always the active bottleneck. For $\rho=4Y$, the executable budget target is $M_G<2.49441326560\times10^{16}$ before the $\Xi_*/\sigma_X$ cost; the reducer can derive that slope ratio from primitive root-tangent certificate inputs $M_R$, $J_{\min}$, and $\sigma_X$, derive $J_{\min},\sigma_X$ from a Rouché graph lift using $E_R,\nu_J,L_J,r_X,\rho_X$, optimize $r_X$ by an unattained lower-boundary supremum, and optimize $\rho_X$ by a concave quadratic or capped linear scalar budget. | formal analytic, monotone D-bottleneck, Rouché graph lift, primitive $M_R$ ceiling, $r_X$ supremum, $\rho_X$ optimum, and executable budget reduction closed; shared $E_R,\nu_J,L_J,\rho_X,M_G,M_R$ h39 polydisc certificate open |
+| [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-h39-shared-domain-coefficient-series-engine](octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-h39-shared-domain-coefficient-series-engine.md) | Builds the h39 coefficient-series engine that inserts the successor variable $X$ as the h39 row, emits shifted $R_{\varepsilon,43}$, $\partial_XR_{\varepsilon,43}$, $\partial_X^2R_{\varepsilon,43}$, $y\,\partial_yR_{\varepsilon,43}$, $N_G$, and correlated $D$-identity coefficient rows from one declared branch/speed/expansion domain, proves the leading $R_{\varepsilon,43}$ coefficient is affine in $X$, proves the removable structural identity for $\partial_XR_{\varepsilon,43}$, proves the $K_\varepsilon$ factorization $\partial_X^2R_{\varepsilon,43}=y^{41}K_\varepsilon$ with $K_\varepsilon=2/\nu^2-\sin\delta_\varepsilon-\sin\phi_\varepsilon$, imports the inherited formal recurrence slope as the leading $\partial_XR_{\varepsilon,43}$ coefficient, defines the shared $y,X$ coefficient-prefix majorant/floor functionals needed to turn bivariate coefficient rows plus tails into $E_R,\nu_J,L_J,M_G,M_R$, adds the coordinate-seminorm $|\sin z|\le\sinh(|z|)$ continuous kernel majorant route for the $L_J$ input, and replays the finite-prefix primitive tuple through the scalar Rouché algebra. | coefficient provenance engine and 128-row h38-consumption wrapper emitted; full h38 sweep verifies centered $R_{\varepsilon,43}$ zero containment, shifted $D$ identity, $\texttt{min\_h39\_jacobian\_coefficient\_clearance}=0.792719244976$, $\texttt{min\_candidate\_nu\_J\_finite\_prefix}=0.7922834330724204$, $\texttt{max\_candidate\_M\_K\_finite\_prefix}=0.5917788690239781$, $\texttt{max\_candidate\_L\_J\_factored\_finite\_prefix}=5.917788690239787\times10^{-124}$, $\texttt{max\_candidate\_M\_K\_continuous\_majorant}=16.799203536978943$, $\texttt{max\_candidate\_L\_J\_reduced\_continuous\_majorant}=1.679920353697896\times10^{-122}$, and $\texttt{candidate\_finite\_prefix\_scalar\_replay\_ratio}=3.796256065292518\times10^{-115}$ with $\texttt{candidate\_finite\_prefix\_scalar\_replay\_closes=true}$; a deeper full shifted-order $20$ sweep lifts the internal series order to $63$ and still reports $\Lambda_{39}^{\mathrm R}\approx3.796300532408038\times10^{-115}$, while the raw unshifted Cauchy route gives unusably large $E_R,M_R\sim10^{119}$; the corrected $N_G/M_G$ path restores the $\rho^{41}$ scale and gives a candidate retained-prefix sensitivity of $K=266,345,424$ for $B_{N_G}^{\mathrm{out}}=10^{-20},1,10^{20}$; the denominator-clearance route now reduces $B_{N_G}^{\mathrm{out}}$ to finite-prefix plus Cauchy-tail branch ingredients for $K_\varepsilon(\rho)=\frac12(\cosh D_\varepsilon+\cosh\Phi_\varepsilon)$, $d_\varepsilon$, $j_\varepsilon$, a speed floor, $L_*$, and the certified lower $G$ polynomial, composes those into $\Lambda_{39}^{\mathrm{denC}}<1$, and inverts the ratio into an explicit $B_{N_G}^{\mathrm{out}}$ and branch-sum ceiling; this separates scalar feasibility from the real remaining blocker, namely directed-rounded shared-domain $E_R,\nu_J,M_G,M_R$ provenance, analytic tails, and retention |
+| [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-h39-hybrid-prefix-cauchy-order-diagnostic](octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-h39-hybrid-prefix-cauchy-order-diagnostic.md) | Defines the priority-only retained-prefix order diagnostic for the h39 shared-domain route: finite shifted coefficient prefixes are kept through order $K$, Cauchy estimates are attached only to the post-$K$ analytic tail, the unshifted $N_G/M_G$ input restores the $\rho^{41}$ scale from $N_G=y^{41}T_G^{(39)}$, and the resulting candidate primitive tuple is replayed through the existing h39 Rouché-primitive reducer. | diagnostic target only; current raw source-bound collar needs about $K=367$ for the function tail and $K=388$ for the $y\partial_y$ tail to compete with the finite-prefix candidate scales; corrected $N_G/M_G$ sensitivity gives $K=266,345,424$ for $B_{N_G}^{\mathrm{out}}=10^{-20},1,10^{20}$; $B_{N_G}^{\mathrm{out}}$ is now reduced to explicit finite-prefix plus Cauchy-tail branch ingredients, a composed $\Lambda_{39}^{\mathrm{denC}}<1$ primitive replay, and an inverted branch-budget ceiling rather than an unspecified source bound; no directed-rounded shared-domain primitive bounds, h39 continuous tail closure, full quotient enclosure, or retained branch status; not retained |
+| [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-h39-shared-domain-primitive-diagnostic](octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-h39-shared-domain-primitive-diagnostic.md) | Turns the seven-input Rouché-primitive theorem into an executable replay boundary: supplied $E_R,\nu_J,L_J,\rho_X,r_X,M_G,M_R$ values are passed through the h39 reducer, copied reducer fields are validated against fresh replay, and the decision distinguishes missing bounds, unverified shared-domain provenance, a conditional external replay pass, numeric failure, component-subset composition, and now upstream-source composition from raw same-domain witness producers. | h39 shared-domain primitive replay diagnostic, component-subset composition layer, and upstream-source composition layer emitted; all seven primitive components have subset witness routes; failures are now classified as missing source or subset, domain mismatch, value-coverage failure, failed strict scalar replay, fixed speed-band field, upstream denominator-floor obstruction, or missing kernel/graph witness; retained branch and full primitive vector remain open |
+| [octahedral-period-rescaled-fold-chart](octahedral-period-rescaled-fold-chart.md) | Derives the period-rescaled cross-binary fold equation $F_{\kappa,v}=\delta^2/v^2-2+\sin(2\tilde\theta-\delta)+\kappa\sin\delta=0$, proves $F_\delta=(2\delta/v^2)J$, and sharpens the sampled $v=1.75$ failure into a continuum $\kappa=+1$ saddle-node onset at $v_c\approx1.704939069887$. | analytic cross-binary fold onset; not retained |
+| [octahedral-fold-aware-multiroot-period-integral](octahedral-fold-aware-multiroot-period-integral.md) | Derives the $\phi=2\tilde\theta-\delta$ coarea chart for cross-binary folds, records exact cross-binary period cancellation by symmetry, reduces the fold-aware mean to the antipodal-partner all-root sum, and finds a sampled three-root partner zero bracket at $v_0\approx3.021564740248$. | sampled fold-aware multi-root period-integral diagnostic; not retained |
+| [octahedral-fold-aware-zero-bracket-certificate](octahedral-fold-aware-zero-bracket-certificate.md) | Rewrites the partner roots in the $x=\delta/2$ coordinate, proves the bracket $3.02156\le v\le3.02157$ stays on a regular three-root sheet, certifies a sign change of $P_{\mathrm{all}}(v)$ across the bracket, computes $dP_{\mathrm{all}}/dv\approx7.202077954503>0$ at the zero estimate, and identifies the clock-scale zero ray $s=v_0h$. | sign-certified simple fold-aware multi-root zero bracket plus projective zero ray; not retained |
+| [octahedral-fold-aware-dynamics-handoff](octahedral-fold-aware-dynamics-handoff.md) | Evaluates a regular all-root pointwise tangential witness at $h=1$, $s=v_0$, receiver $1+$, and $\theta=\pi/4$: the partner contribution cancels to numerical zero but the cross-binary contribution gives $T\cdot F\approx-0.168424847206$, rejecting fixed-speed pointwise tangential closure while preserving the bounded-speed primitive route. | fixed-speed tangent obstruction plus bounded-speed primitive handoff; not retained |
+| [octahedral-fold-aware-speed-primitive-existence](octahedral-fold-aware-speed-primitive-existence.md) | Converts the certified zero mean into the bounded-speed center-time scalar primitive: since $\nu_i\nu_i'=\Gamma_B^\nu T_i\cdot F_i^{\mathrm{fold}}$ with prime in arclength implies $d\nu_i/du=\Gamma_B^\nu T_i\cdot F_i^{\mathrm{fold}}$, the excursion $A_i(u)=\Gamma_B^\nu\int_0^uT_i\cdot F_i^{\mathrm{fold}}\,dq$ returns when the mean is zero, and any $\nu_{i,0}>-\min A_i$ yields a positive periodic speed factor $\nu_i(u)=\nu_{i,0}+A_i(u)$. | conditional center-time speed primitive existence; clock/length open; not retained |
+| [octahedral-fold-aware-clock-length-criterion](octahedral-fold-aware-clock-length-criterion.md) | Closes the scalar clock/length algebra for $\nu_i(u)=\nu_{i,0}+A_i(u)$: the unique offset is $\nu_{i,0}^{\mathrm{clk}}=L_i/H-\overline A$, the clock speed interval is $[L_i/H-\overline A+A_{\min},L_i/H-\overline A+A_{\max}]$, strict positivity is $L_i/H>\overline A-A_{\min}$, and any declared window obeys $\nu_-+\overline A-A_{\min}\le L_i/H\le\nu_++\overline A-A_{\max}$. | symbolic clock/length criterion; profile bounds required; not retained |
+| [octahedral-fold-aware-clock-length-profile-scan](octahedral-fold-aware-clock-length-profile-scan.md) | Applies the clock/length criterion to a sampled all-root profile at $h=1$, $s=v_0$: with $N=128$, $A_{\min}\approx-0.256138666925$, $\overline A\approx-0.126793374075$, and $A_{\max}\approx0.002551918775$, the unique clock offset is $\nu_0^{\mathrm{clk}}\approx3.148358114323$ and the sampled speed interval is approximately $[2.892219447398,3.150910033098]$. | sampled positive clock/length profile; interval certificate open; not retained |
+| [octahedral-fold-aware-clock-length-orbit-scan](octahedral-fold-aware-clock-length-orbit-scan.md) | Lifts the sampled clock/length profile to the six receiver orbit $\{1+,1-,2+,2-,3+,3-\}$ at $N=64$: every receiver row matches to emitted precision, the sampled orbit speed interval is $[2.858541947085,3.184587533410]$, and the weakest sampled positivity margin is $\approx2.858541947085$. | sampled positive receiver-orbit clock/length profile; interval certificate open; not retained |
+| [octahedral-fold-aware-clock-length-orbit-symmetry-reduction](octahedral-fold-aware-clock-length-orbit-symmetry-reduction.md) | Stages the signed-cyclic receiver-orbit reduction: under source relabeling and phase shift, the sampled scalar clock/length row for $1+$ transports to the six receiver orbit; a future interval proof can reduce six receiver rows to one representative row only after chart closure is proven. | sampled receiver-orbit equivariance reduction staged; interval chart proof open; not retained |
+| [octahedral-fold-aware-clock-length-chart-closure-proof](octahedral-fold-aware-clock-length-chart-closure-proof.md) | Proves the signed-cyclic scalar chart-closure identities for the receiver-orbit clock/length row: root equation, positive-root bijection, Jacobian, force sign, force-vector covariance, scalar forcing, primitive, and clock/length criteria transport from $1+$ to the six receiver orbit. | receiver-orbit chart closure certified; representative interval profile open; not retained |
+| [octahedral-fold-aware-representative-profile-decomposition](octahedral-fold-aware-representative-profile-decomposition.md) | Decomposes the representative $1+$ scalar forcing into the antipodal-partner row and the cross-binary row, proves $P_{\mathrm{all}}(v)=2\pi vS_{\mathrm{partner}}(v)$, uses the certified zero to show $f_{\mathrm{partner}}(u;v_*)=0$ for every $u$, and records the cross-binary quarter-shift symmetry $f_{\times}(u+H/4)=-f_{\times}(u)$. | representative partner pointwise null and cross-binary period mean certified; cross-binary coarea interval profile open; not retained |
+| [octahedral-fold-aware-cross-binary-quarter-profile-certificate](octahedral-fold-aware-cross-binary-quarter-profile-certificate.md) | Uses the quarter-shift identities to prove $A([0,H])=A([0,Q])\cup(C-A([0,Q]))$, $\overline A=C/2$, and the centered clock interval $\nu_{\min}^{\mathrm{clk}}=L/H-D_{\times}$, $\nu_{\max}^{\mathrm{clk}}=L/H+D_{\times}$, then emits a sampled positive quarter-profile check. | sampled cross-binary quarter-profile positive clock check; coarea interval profile open; not retained |
+| [octahedral-fold-aware-cross-binary-source-atlas](octahedral-fold-aware-cross-binary-source-atlas.md) | Maps the quarter-period cross-binary source topology: $\kappa=+1$ has two fold endpoints, $\kappa=-1$ has none at $v_*$, and source-pair transport reduces four labeled rows to two canonical $\kappa$ source classes. | cross-binary quarter source/fold atlas certified; coarea interval profile open; not retained |
+| [octahedral-fold-aware-cross-binary-source-atlas-quarter-cell-reduction](octahedral-fold-aware-cross-binary-source-atlas-quarter-cell-reduction.md) | Uses the source atlas to fix the source-atlas-aware formula $f_\times(u)=s_{+,+}(u)-s_{+,+}(u+Q)+s_{-,+}(u)-s_{-,+}(u+Q)$ and the unified quarter-cell topology $[6,4,6]$ across $0<\theta_{3-}<\theta_{2+}<H/4$, making $C_\times$, $m_Q$, and $M_Q$ the exact remaining interval targets. | formula and quarter-cell reduction certified; interval enclosures open; not retained |
+| [octahedral-fold-aware-cross-binary-primitive-critical-atlas](octahedral-fold-aware-cross-binary-primitive-critical-atlas.md) | Locates the sampled regular zeros of $A'(u)=f_\times(u)$ on the three quarter cells: one in $I_1$, one in $I_2$, none in $I_3$, classifies $\theta_{3-}$ as a fold-local minimum candidate, and reduces the sampled primitive-extrema search to six candidate locations. | sampled primitive-critical atlas certified; interval critical exhaustion and interval enclosures open; not retained |
+| [octahedral-fold-aware-cross-binary-critical-value-atlas](octahedral-fold-aware-cross-binary-critical-value-atlas.md) | Evaluates $A(u)=\int_0^u f_\times(q)dq$ at the six sampled primitive-extrema candidates with transformed quadrature, deriving $C_{\times,\mathrm{samp}}\approx-0.2680796825$, $m_{Q,\mathrm{samp}}\approx-0.2680796825$ at $Q$, and $M_{Q,\mathrm{samp}}\approx0.001648085483$ at $u_1$. | sampled critical-value atlas certified; interval quadrature and critical exhaustion open; not retained |
+| [octahedral-fold-aware-cross-binary-fold-square-limit-atlas](octahedral-fold-aware-cross-binary-fold-square-limit-atlas.md) | Derives the local fold normal form $F_\theta\eta+\frac12F_{\delta\delta}\xi^2=0$, identifies the folded sides $\theta_{3-}^{-}$ and $\theta_{2+}^{+}$, and computes the finite square-coordinate endpoint limits $-0.192715477558$ and $-0.325542989718$ for $2y f_\times(\theta_f\pm y^2)$. | sampled source-atlas-aware fold-square limit atlas certified; interval endpoint and quadrature enclosures open; not retained |
+| [octahedral-fold-aware-cross-binary-forcing-derivative-atlas](octahedral-fold-aware-cross-binary-forcing-derivative-atlas.md) | Derives the regular-cell implicit derivative $f'_\times(u)=s'_{+,+}(u)-s'_{+,+}(u+Q)+s'_{-,+}(u)-s'_{-,+}(u+Q)$ and samples `I1.z1` and `I2.z1` as nondegenerate negative-slope crossings with $f'_\times\approx-0.090309125625$ and $f'_\times\approx-4.176455139963$. | sampled forcing-derivative atlas certified; interval derivative enclosure and critical exhaustion open; not retained |
+| [octahedral-fold-aware-cross-binary-forcing-topology-atlas](octahedral-fold-aware-cross-binary-forcing-topology-atlas.md) | Recovers the six primitive candidate locations from sampled forcing topology: $I_1$ decreases through one zero, $I_2$ has one sampled crest at $u_c\approx1.099563891683$ before one zero, and $I_3$ increases while remaining negative. | sampled forcing-topology atlas certified; interval hidden-zero exclusion and critical exhaustion open; not retained |
+| [octahedral-fold-aware-cross-binary-forcing-sign-bracket-certificate](octahedral-fold-aware-cross-binary-forcing-sign-bracket-certificate.md) | Records explicit signed witness rows for the two regular forcing-zero brackets and the single derivative-turn bracket: $f_\times(a_1)>0>f_\times(b_1)$, $f_\times(a_2)>0>f_\times(b_2)$, $f'_\times(c_L)>0>f'_\times(c_R)$, and $u_c<u_2$. | sampled forcing sign-bracket certificate certified; hidden-zero exclusion and interval derivative enclosure open; not retained |
+| [octahedral-fold-aware-cross-binary-finite-candidate-reduction](octahedral-fold-aware-cross-binary-finite-candidate-reduction.md) | States the conditional finite-candidate theorem reducing primitive extrema to $\{0,u_1,\theta_{3-},u_2,\theta_{2+},Q\}$ once interval sign topology holds, and derives the equal-radius value budgets $0.0008240427415$ for $M_Q$, $0.074174443178$ for $m_Q$, and $0.0004836066205$ for full ordering. | sampled finite-candidate reduction certified; interval critical exhaustion and interval quadrature open; not retained |
+| [octahedral-fold-aware-cross-binary-forcing-sign-topology-margin-atlas](octahedral-fold-aware-cross-binary-forcing-sign-topology-margin-atlas.md) | Consolidates the signed forcing brackets, derivative-turn order, $I_3$ endpoint signs, and finite-candidate value gaps into explicit positive sampled margin budgets. The bottleneck sampled sign margin is $4.72358401387\times10^{-4}$ and the full candidate-order value budget is $4.836066205\times10^{-4}$. | sampled forcing sign-topology margin atlas certified; interval sign enclosures, interval quadrature, and retained branch status open; not retained |
+| [octahedral-fold-aware-cross-binary-forcing-interval-sign-enclosure-target-atlas](octahedral-fold-aware-cross-binary-forcing-interval-sign-enclosure-target-atlas.md) | Converts the sampled forcing sign-topology margin atlas into explicit interval sign-enclosure targets and splits the proof geometry into compact regular subcells plus square-coordinate fold collars. The fold-collar sign transport lemma uses $2y f_\times(\theta_f\pm y^2)\to L$ to derive the near-fold signs of $f_\times$ and $f'_\times$ without forcing a bounded $\theta$-derivative through the singular folds. | interval sign-enclosure targets staged; interval sign topology, interval quadrature, and retained branch status open; not retained |
+| [octahedral-fold-aware-cross-binary-fold-collar-sign-transport-certificate](octahedral-fold-aware-cross-binary-fold-collar-sign-transport-certificate.md) | Proves the conditional fold-collar sign-transport theorem with $G(y)=2y f_\times(\theta_f+\tau y^2)$ and $D(y)=\tau(yG_y-G)$, so $f_\times=G/(2y)$ and $f'_\times=D/(4y^3)$. It samples the two singular collars $\theta_{3-}^{-}$ and $\theta_{2+}^{+}$ with negative transformed forcing signs and the expected derivative-transport signs. | sampled fold-collar sign transport certified; interval fold-collar enclosure, interval sign topology, interval quadrature, and retained branch status open; not retained |
+| [octahedral-fold-aware-cross-binary-source-atlas-interval-implication](octahedral-fold-aware-cross-binary-source-atlas-interval-implication.md) | States the source-atlas interval implication theorem: on one shared source atlas, regular-subcell sign predicates, fold-collar $G,D$ predicates, theta-order rows, candidate-value quadrature, and three exposed bridge predicates imply interval critical exhaustion and the finite candidate set $\{0,u_1,\theta_{3-},u_2,\theta_{2+},Q\}$. | conditional interval implication theorem stated; three bridge predicate enclosures exposed; interval sign topology, interval quadrature, and retained branch status open; not retained |
+| [octahedral-fold-aware-cross-binary-bridge-predicate-certificate](octahedral-fold-aware-cross-binary-bridge-predicate-certificate.md) | Proves the regular bridge propagation lemma for $I_2$: endpoint signs plus derivative-sign control transport positivity or negativity across the entry-to-turn, turn-to-left-bracket, and post-zero exit bridges. It attaches sampled sign-bracket rows to the three exposed bridge predicates: `theta_3plus.regular-entry-positive`, `I2.turn-bridge-forcing-positive`, and `theta_2minus.regular-exit-negative`. | sampled bridge predicate certificate certified; interval bridge-predicate enclosures, interval sign topology, interval quadrature, and retained branch status open; not retained |
+| [octahedral-fold-aware-cross-binary-interval-bridge-predicate-reduction](octahedral-fold-aware-cross-binary-interval-bridge-predicate-reduction.md) | States the interval bridge-predicate reduction theorem: five endpoint forcing sign enclosures plus two imported $I_2$ derivative-sign enclosures imply the three bridge predicates consumed by the source-atlas interval implication theorem. It computes inherited target budgets and identifies `I2.turn-bridge-forcing-positive` as the weakest bridge row. | interval bridge-predicate reduction theorem stated; actual endpoint/derivative enclosures, interval sign topology, interval quadrature, and retained branch status open; not retained |
+| [octahedral-fold-aware-cross-binary-finite-interval-closure-reduction](octahedral-fold-aware-cross-binary-finite-interval-closure-reduction.md) | Composes the interval bridge-predicate reduction into the source-atlas interval implication theorem. The bridge predicates are no longer primitive assumptions: the remaining proof is a thirty-three-family finite row census with separate bridge endpoint rows, imported bridge derivative rows, fold-collar $G,D$ rows, theta-order rows, and the candidate-value budget. | finite interval closure reduction theorem stated; actual thirty-three row-family enclosures, interval sign topology, interval quadrature, and retained branch status open; not retained |
+| [octahedral-fold-aware-cross-binary-i1-forcing-bracket-interval-enclosure](octahedral-fold-aware-cross-binary-i1-forcing-bracket-interval-enclosure.md) | Certifies the current global bottleneck endpoint point signs for `I1.forcing-bracket` under the no-fixed-speed-window speed envelope. The machine-expanded forcing envelopes are sign-definite with maximum radius $\approx6.35\times10^{-7}$, far below the imported target radius $0.000236179200694$. | `I1.forcing-bracket` endpoint point signs certified by speed envelope; full directed-rounding interval arithmetic, `I1` derivative enclosure, zero isolation, interval critical exhaustion, quadrature, and retained branch status open; not retained |
+| [octahedral-fold-aware-cross-binary-i1-derivative-negative-speed-envelope-scan](octahedral-fold-aware-cross-binary-i1-derivative-negative-speed-envelope-scan.md) | Certifies a no-fixed-speed-window derivative scan for `I1.derivative-negative.full-cell` on the compact regular `I1` core. The default $48\times9$ speed-envelope grid preserves six source roots and has weakest sampled derivative envelope upper endpoint $\approx-0.0199795715084$. | `I1.derivative-negative.full-cell` speed-envelope scan certified; full directed-rounding interval derivative enclosure, `I1.f1` zero isolation, interval critical exhaustion, quadrature, and retained branch status open; not retained |
+| [octahedral-fold-aware-cross-binary-i1-zero-isolation-speed-envelope-scan](octahedral-fold-aware-cross-binary-i1-zero-isolation-speed-envelope-scan.md) | Composes the `I1.forcing-bracket` endpoint certificate with the `I1.derivative-negative.full-cell` speed-envelope scan into a sampled `I1.f1` simple-root branch. The sampled root envelope is $[0.129617801662,\;0.129631781031]$, with term root-count signature $(1,3,1,1)$ and derivative-at-root envelope $[-0.0903237258617,\;-0.0902959668558]$. | `I1.f1` zero-isolation speed-envelope scan certified at sampled branch level; full directed-rounding interval zero isolation, interval critical exhaustion, quadrature, and retained branch status open; not retained |
+| [octahedral-fold-aware-cross-binary-i1-bracket-derivative-mesh-barrier](octahedral-fold-aware-cross-binary-i1-bracket-derivative-mesh-barrier.md) | Strengthens the `I1.f1` bracket derivative row with a $16\times8$ local mesh barrier on $[0.124678831905,0.145456970556]\times[3.02156,3.02157]$. The worst stencil upper derivative barrier is $\approx-0.0603824889362$ while preserving six source roots and term signature $(1,3,1,1)$. | `I1.f1` bracket-local derivative mesh barrier certified; full-cell directed-rounding interval derivative enclosure, full interval zero isolation, interval critical exhaustion, quadrature, and retained branch status open; not retained |
+| [octahedral-fold-aware-cross-binary-i1-bracket-local-zero-isolation-mesh-composition](octahedral-fold-aware-cross-binary-i1-bracket-local-zero-isolation-mesh-composition.md) | Composes the `I1.forcing-bracket` endpoint signs, sampled `I1.f1` root branch, and $16\times8$ bracket derivative mesh barrier into a bracket-local sampled/stencil zero-isolation mechanism. The endpoint sign clearance is $\approx0.000471690862363$, the worst derivative upper barrier is $\approx-0.0603824889362$, and the sampled root stays at least $0.004938969757$ from $a_1$ and $0.015825189525$ from $b_1$. | `I1.f1` bracket-local zero-isolation mesh composition certified; full directed-rounding interval derivative enclosure, full interval zero isolation, interval critical exhaustion, quadrature, and retained branch status open; not retained |
+| [octahedral-fold-aware-cross-binary-i1-local-zero-isolation-burden-reduction](octahedral-fold-aware-cross-binary-i1-local-zero-isolation-burden-reduction.md) | Proves that full-cell derivative negativity is sufficient but not necessary for the local `I1.f1` zero theorem: endpoint signs plus derivative negativity on the `I1.f1` bracket suffice. The direct theorem-grade derivative domain shrinks from compact `I1`, length $\approx0.997350655243$, to the bracket length $\approx0.020778138651$, a $1/48$ domain. | `I1.f1` local zero-isolation burden reduction certified; bracket-local directed-rounding derivative-variation is now closed by the peak-budget successor; full interval zero isolation, interval critical exhaustion, quadrature, and retained branch status open; not retained |
+| [octahedral-fold-aware-cross-binary-i1-bracket-local-derivative-variation-certificate](octahedral-fold-aware-cross-binary-i1-bracket-local-derivative-variation-certificate.md) | Tests the predecessor `I1.f1` bracket derivative mesh allowance against a $5\times5$ mixed theta/speed stencil on all $128$ bracket mesh cells. The $3200$ derivative samples stay negative with observed maximum $\approx-0.060388174983$, maximum observed variation-to-allowance ratio $\approx0.997283174962$, minimum allowance slack $\approx3.78761869309\times10^{-6}$, and preserved source signature $(1,3,1,1)$. | `I1.f1` bracket-local derivative-variation stencil certificate certified; finite directed-rounding derivative-variation is now closed by the peak-budget successor; full interval zero isolation, interval critical exhaustion, quadrature, and retained branch status open; not retained |
+| [octahedral-fold-aware-cross-binary-i1-bracket-local-derivative-peak-budget-reduction](octahedral-fold-aware-cross-binary-i1-bracket-local-derivative-peak-budget-reduction.md) | Converts the remaining `I1.f1` bracket-local directed-rounding derivative-variation burden into $2048$ finite subcell peak inequalities. The $9\times9$ refined replay uses $10368$ derivative samples, finds no sampled interior excess over the parent stencil, leaves bottleneck overshoot ceiling $\approx3.78761869309\times10^{-6}$ at `I1.f1.bracket-derivative-mesh.0.7.peak-budget.0.0`, emits backend-ready rectangles/formulas/bilinear pure-curvature targets, shows sampled bilinear curvature remainder ratio $\approx0.0632306995182$ on the worst subcell, proves sampled-curvature inflation headroom with minimum admissible uniform factor $\approx15.8151025945$ and factor-$10$ margin $\approx1.39268513329\times10^{-6}$, emits the interval-jet target $\delta_x=-F_x/F_\delta$ and $\delta_{xx}=-(F_{xx}+2F_{x\delta}\delta_x+F_{\delta\delta}\delta_x^2)/F_\delta$ for every row, certifies a sampled analytic-jet witness that evaluates $\partial_{\theta\theta}g$ and $\partial_{\nu\nu}g$ on the protected sheets and keeps the sampled analytic bilinear remainder under each row budget, records a sampled estimator-envelope budget comparing analytic-jet and finite-difference curvature maxima with positive remaining headroom on every row, adds sampled fourth-jet transport and sampled fifth-jet curvature-gradient transport witnesses for the nearest-sample movement of those pure-curvature components, adds a theta-localized sampled Taylor upper-envelope witness that keeps every tile bound $U_T$ below $m_Q+\epsilon_Q^{\max}$, preserves sampled root tubes with minimum $|F_\delta|\approx0.686789509138$, minimum positive $\delta\approx1.28454542829$, and minimum adjacent-tube separation $\approx1.28117968261$, emits $12288$ protected root-tube targets plus $20480$ complement-slab targets with minimum tube padding radius $\approx0.108489314201$ and minimum complement width $\approx0.325467942606$, passes sampled finite root-tube sign-margin checks with endpoint/complement $|F|$ floor $\approx0.243939101042$, endpoint sign-product floor $\approx0.0781604324357$, and protected-tube $|F_\delta|$ floor $\approx0.530629746881$, certifies the same source-root partition with machine-padded analytic intervals and directed-rounded no-padding interval arithmetic, contracts all $12288$ emitted root sheets by fixed-sign $F_\delta$ monotone bisection, re-contracts them on $24576$ localized parameter tiles, and shows that the parameter-localized direct derivative interval hull remains too wide even after contraction. | `I1.f1` bracket-local directed-rounded Taylor derivative-variation closure certified; directed-rounded source-root isolation, monotone root-sheet contraction, directed-rounded vertex derivative anchors, interval root-sheet pure-curvature jets, and theta-localized Taylor upper envelopes close the finite peak-budget packet; consumed by the zero-isolation composition successor; interval critical exhaustion, quadrature, and retained branch status open; not retained |
+| [octahedral-fold-aware-cross-binary-i1-f1-full-interval-zero-isolation-composition](octahedral-fold-aware-cross-binary-i1-f1-full-interval-zero-isolation-composition.md) | Composes the imported `I1.f1` endpoint signs $f_\times(a_1)>0>f_\times(b_1)$ with the directed-rounded theta-localized Taylor derivative envelope from the peak-budget packet. On all $2048$ bracket subcells and $4096$ theta-localized tiles, the executable requires $U_T^\#<0$ for $\sup_T f_\times'$, then applies the mean-value theorem: endpoint sign change gives existence, and strict negativity of $f_\times'$ excludes a second bracket zero. | `I1.f1` bracket full zero-isolation composition certified; interval critical exhaustion, interval quadrature, global `I1` sign topology, and retained branch status open; not retained |
+| [octahedral-fold-aware-cross-binary-i1-f1-critical-exhaustion-integration](octahedral-fold-aware-cross-binary-i1-f1-critical-exhaustion-integration.md) | Integrates the certified `I1.f1` unique bracket zero into the primitive-critical map using $A_\times'=f_\times$. The theorem-grade candidate location interval is $[0.124678831905,0.145456970556]$, the sampled speed-envelope location interval is $[0.129617801662,0.129631781031]$, and the remaining `I1` regular-cell burden is reduced to the two complement sign exclusions $f_\times>0$ on $[0,a_1]$ and $f_\times<0$ on $[b_1,\theta_{3-}]$. | `I1.f1` critical-exhaustion integration reduction certified; `I1` complement sign enclosures, interval critical exhaustion, interval quadrature, and retained branch status open; not retained |
+| [octahedral-fold-aware-cross-binary-i1-complement-sign-exclusion-scan](octahedral-fold-aware-cross-binary-i1-complement-sign-exclusion-scan.md) | Splits the `I1` complement proof into a left compact positive scan, a right compact negative scan on $[b_1,\theta_{3-}-0.003^2]$, and imported $\theta_{3-}^{-}$ square-coordinate fold-collar sign transport. The sampled compact rows preserve six source roots and term signature $(1,3,1,1)$ across the certified positive speed-ratio enclosure. | sampled `I1` complement sign-exclusion scan certified; directed-rounded complement interval enclosures, explicit fold-collar radius, `I1` regular critical exhaustion, interval quadrature, and retained branch status open; not retained |
+| [octahedral-fold-aware-cross-binary-i1-compact-complement-directed-rounded-interval-enclosure](octahedral-fold-aware-cross-binary-i1-compact-complement-directed-rounded-interval-enclosure.md) | Certifies directed-rounded forcing signs on the interval-safe compact rows: $f_\times>0$ on $[0,a_1]$ and $f_\times<0$ on $[b_1,\theta_{3-}-0.115^2]$. The proof builds directed-rounded source-root tubes, excludes source-root complement slabs, contracts the root sheets, and encloses the zero-order $f_\times$ value on $66$ compact tiles. | compact `I1` complement directed-rounded interval enclosures certified; $\theta_{3-}^{-}$ explicit fold-collar interval radius, full `I1` complement signs, `I1` regular critical exhaustion, interval quadrature, and retained branch status open; not retained |
+| [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-normal-form](octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-normal-form.md) | Moves the $\theta_{3-}^{-}$ collar into the speed-dependent chart $\theta=\theta_{3-}(\nu)-y^2$ after the fixed-reference collar is shown to cross the moving fold. The sampled rows preserve the source-root signature and keep $L$, $G$, and $D$ negative on the diagnostic speed/collar grid. | sampled speed-dependent moving-fold normal form certified; directed-rounded remainder, full fold-collar interval radius, `I1` regular critical exhaustion, interval quadrature, and retained branch status open; not retained |
+| [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-limit-interval-certificate](octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-limit-interval-certificate.md) | Upgrades the moving-fold limit row to directed-rounded interval grade: the fold endpoint has $\delta_f(\nu)\in[3.29632,3.29639]$ with $E_\delta>0$, and $L(\nu)\in[-0.192777102773,-0.192653693867]$. | directed-rounded $\theta_{3-}$ fold-limit interval certified; $R_G,R_D$ remainder bounds, full fold-collar interval radius, `I1` regular critical exhaustion, interval quadrature, and retained branch status open; not retained |
+| [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-remainder-budget-scan](octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-remainder-budget-scan.md) | Decomposes the sampled $R_G=G-L$ and $R_D=D-L$ residuals into fold-pair and regular-root contributions against the certified negative-limit budget $-L_+=0.192653693867$. The worst sampled row is regular-root $R_G$ at $y=0.115$, not the coalescing fold pair, and the scaling split gives fold-pair $O(y^2)$ and regular-root $O(y)$/$O(y^3)$ targets. | sampled theta3minus remainder-budget feasibility and scaling split certified; directed-rounded fold-pair and regular-root remainders, full fold-collar interval radius, `I1` regular critical exhaustion, interval quadrature, and retained branch status open; not retained |
+| [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-scaled-stencil-certificate](octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-scaled-stencil-certificate.md) | Keeps the coalescing fold pair in $p=(\delta-\delta_f)/y$, emits bounded sampled $z_\pm$ rows, verifies nonzero scaled denominators $J_\pm=F_\delta/y$, and adds receiver-normal diagnostic factors. The old quadratic pair-remainder quotient evidence is invalidated. | receiver-normal zero-bracket restart required; root geometry diagnostic only; force/action quotient, `I1` regular critical exhaustion, interval quadrature, and retained branch status open; not retained |
+| [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-scaled-sampled-node-interval-certificate](octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-scaled-sampled-node-interval-certificate.md) | Keeps directed-rounded sampled-node $z_\pm$ brackets and $J_\pm=F_\delta/y$ signs as root geometry. The old pair $G,D$ quotient interval enclosures are invalidated as force/action evidence until the receiver-normal normal form is rederived. | receiver-normal zero-bracket restart required; sampled-node root geometry diagnostic only; continuous fold-pair remainder, regular-root remainder, `I1` regular critical exhaustion, interval quadrature, and retained branch status open; not retained |
+| [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-scaled-root-tube-cell-certificate](octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-scaled-root-tube-cell-certificate.md) | Extends the fold-pair $z_\pm,J_\pm$ result from finite nodes to a directed-rounded speed/y cell cover using the Taylor-cancelled $K_\varepsilon$ equation, then contracts the pair onto the $h_\varepsilon$ root graph using the Taylor-cancelled $H_\varepsilon$ equation. It certifies $1024$ speed/y cells, $2048$ branch cells, $4096$ endpoint $K_\varepsilon$ intervals with minimum endpoint clearance $0.0255177449896$, and $4096$ endpoint $H_\varepsilon$ intervals with minimum clearance $0.43543435566$. | directed-rounded theta3minus fold-pair scaled root-tube and h-root-graph cell cover certified; fold-pair $G,D$ remainder, regular-root remainder, full fold-collar interval radius, `I1` regular critical exhaustion, interval quadrature, and retained branch status open; not retained |
+| [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-h-graph-g-quotient-cell-certificate](octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-h-graph-g-quotient-cell-certificate.md) | Lifts the fold-pair $G,D$ quotients onto the certified $h_\varepsilon$ root graph, certifying $1008$ positive-y quotient cells, $2016$ branch $G_\varepsilon$ rows, and $2016$ branch $D_\varepsilon$ rows with minimum denominator positive clearance $25.1505521458$, minimum $|J_\varepsilon|$ clearance $0.762399320249$, and no raw $y^{-2}$ division on first-y cells. | directed-rounded theta3minus fold-pair h-graph positive-y $G,D$ quotient cell cover certified; first-y-cell $G,D$ jet, full fold-pair remainder, full fold-collar interval radius, `I1` regular critical exhaustion, interval quadrature, and retained branch status open; not retained |
+| [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-jet-witness](octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-jet-witness.md) | Certifies the sampled analytic first-y cancellation mechanism over the certified $h_\varepsilon$ root graph: $P(0)=L$, $P'(0)=0$, $D_{\mathrm{pair}}=P-yP'$, and $Q_D(0)=-Q_G(0)$ at the speed-cell endpoints, with sampled $Q_G(0)\in[0.0859299624971,0.0859809242715]$. | sampled theta3minus fold-pair first-y $G,D$ jet cancellation certified; directed-rounded first-y enclosure, full fold-pair remainder, full fold-collar interval radius, `I1` regular critical exhaustion, interval quadrature, and retained branch status open; not retained |
+| [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-coefficient-interval-certificate](octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-coefficient-interval-certificate.md) | Upgrades the first-y constant quotient coefficient from sampled evidence to directed-rounded speed-cell intervals. It certifies $Q_G(0)\in[0.0858514065706,0.0860595284316]$, $Q_D(0)\in[-0.0860595284316,-0.0858514065706]$, and exact coefficient-level $Q_D(0)+Q_G(0)=0$. | directed-rounded theta3minus fold-pair first-y $G,D$ constant-coefficient interval certified; linear through decic coefficient successors closed, eleventh-order tail bound still open; not retained |
+| [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-linear-jet-coefficient-interval-certificate](octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-linear-jet-coefficient-interval-certificate.md) | Extends the first-y quotient jet by one directed-rounded coefficient. It certifies $Q_{G,1}\in[-0.00335571700389,0.00335589239689]$, $Q_{D,1}\in[-0.00671178479378,0.00671143400778]$, linear losses below $0.0000120602383013$ on the first y cell, and remaining first-order tail budget above $47.771469778$. | directed-rounded theta3minus fold-pair first-y $G,D$ linear-jet coefficient interval certified; quadratic through decic coefficient successors closed, eleventh-order tail bound still open; not retained |
+| [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-quadratic-jet-coefficient-interval-certificate](octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-quadratic-jet-coefficient-interval-certificate.md) | Extends the first-y quotient jet by the quadratic coefficient. It certifies $Q_{G,2}\in[-0.972631657911,-0.764364731379]$, $Q_{D,2}\in[2.29309419414,2.91789497373]$, quadratic losses below $0.0000094211818915$ on the first y cell, and remaining cubic-tail budget above $14793986.9747$. | directed-rounded theta3minus fold-pair first-y $G,D$ quadratic-jet coefficient interval certified; cubic through decic coefficient successors closed, eleventh-order tail bound still open; not retained |
+| [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-cubic-jet-coefficient-interval-certificate](octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-cubic-jet-coefficient-interval-certificate.md) | Extends the first-y quotient jet by the cubic coefficient on $128$ directed-rounded speed cells. It certifies $Q_{G,3}\in[-2.33229280147,2.30497148098]$, $Q_{D,3}\in[-9.21988592393,9.32917120589]$, cubic losses below $5.41248445807\times10^{-8}$ on the first y cell, and remaining quartic-tail budget above $8240856646$. | directed-rounded theta3minus fold-pair first-y $G,D$ cubic-jet coefficient interval certified; quartic through decic coefficient successors closed, eleventh-order tail bound still open; not retained |
+| [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-quartic-jet-coefficient-interval-certificate](octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-quartic-jet-coefficient-interval-certificate.md) | Extends the first-y quotient jet by the quartic coefficient on $128$ directed-rounded speed cells using the fold-local slope $S_\varepsilon=\varepsilon\beta F_{\delta\delta}$. It certifies $Q_{G,4}\in[6.82399504229,6.84166645451]$, $Q_{D,4}\in[-34.2083322726,-34.1199752114]$, quartic losses below $3.56618088167\times10^{-10}$ on the first y cell, and remaining quintic-tail budget above $4586555917620$. | directed-rounded theta3minus fold-pair first-y $G,D$ quartic-jet coefficient interval certified; quintic through decic coefficient successors closed, eleventh-order tail bound still open; not retained |
+| [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-quintic-jet-coefficient-interval-certificate](octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-quintic-jet-coefficient-interval-certificate.md) | Extends the first-y quotient jet by the quintic coefficient on $128$ directed-rounded speed cells using the fold-local slope $S_\varepsilon=\varepsilon\beta F_{\delta\delta}$. It certifies $h_{5,\varepsilon}\in[96.4156422581,96.5713366207]$, $Q_{G,5}\in[-0.0390934301671,0.0390934301671]$, $Q_{D,5}\in[-0.234560581002,0.234560581002]$, quintic losses below $4.39384123779\times10^{-15}$ on the first y cell, and remaining sextic-tail budget above $2552518075900000$. | directed-rounded theta3minus fold-pair first-y $G,D$ quintic-jet coefficient interval certified; sextic through decic coefficient successors closed, eleventh-order tail bound still open; not retained |
+| [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-sextic-jet-coefficient-interval-certificate](octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-sextic-jet-coefficient-interval-certificate.md) | Extends the first-y quotient jet by the sextic coefficient on $128$ directed-rounded speed cells using the fold-local slope $S_\varepsilon=\varepsilon\beta F_{\delta\delta}$. It certifies $h_{6,\varepsilon}\in[-113.732732609,113.732732609]$, $Q_{G,6}\in[-50.0073387163,-49.5009883682]$, $Q_{D,6}\in[346.506918577,350.051371014]$, sextic losses below $1.17825415836\times10^{-14}$ on the first y cell, and remaining septic-tail budget above $1420531798760000000$. | directed-rounded theta3minus fold-pair first-y $G,D$ sextic-jet coefficient interval certified; septic through decic coefficient successors closed, eleventh-order tail bound still open; not retained |
+| [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-septic-jet-coefficient-interval-certificate](octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-septic-jet-coefficient-interval-certificate.md) | Extends the first-y quotient jet by the septic coefficient on $128$ directed-rounded speed cells using the fold-local slope $S_\varepsilon=\varepsilon\beta F_{\delta\delta}$. It certifies $h_{7,\varepsilon}\in[-457.447173269,-453.781098736]$, $Q_{G,7}\in[-1.39097067846,1.39097067846]$, $Q_{D,7}\in[-11.1277654277,11.1277654277]$, septic losses below $6.73027836067\times10^{-19}$ on the first y cell, and remaining eighth-order-tail budget above $790556827135000000000$. | directed-rounded theta3minus fold-pair first-y $G,D$ septic-jet coefficient interval certified; octic through decic coefficient successors closed, eleventh-order tail bound still open; not retained |
+| [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-octic-jet-coefficient-interval-certificate](octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-octic-jet-coefficient-interval-certificate.md) | Extends the first-y quotient jet by the octic coefficient on $128$ directed-rounded speed cells using the fold-local slope $S_\varepsilon=\varepsilon\beta F_{\delta\delta}$. It certifies $h_{8,\varepsilon}\in[-792.598844507,792.598844507]$, $Q_{G,8}\in[343.42104202,360.345310256]$, $Q_{D,8}\in[-3243.1077923,-3090.78937818]$, octic losses below $3.52455518365\times10^{-19}$ on the first y cell, and remaining ninth-order-tail budget above $4.39962060319\times10^{23}$. | directed-rounded theta3minus fold-pair first-y $G,D$ octic-jet coefficient interval certified; nonic and decic coefficient successors closed, eleventh-order tail bound still open; not retained |
+| [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-nonic-jet-coefficient-interval-certificate](octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-nonic-jet-coefficient-interval-certificate.md) | Extends the first-y quotient jet by the nonic coefficient on $128$ directed-rounded speed cells using the fold-local slope $S_\varepsilon=\varepsilon\beta F_{\delta\delta}$. It certifies $h_{9,\varepsilon}\in[2156.81713731,2275.44061462]$, $Q_{G,9}\in[-49.5197525295,49.5197525295]$, $Q_{D,9}\in[-495.197525295,495.197525295]$, nonic losses below $9.67028476214\times10^{-23}$ on the first y cell, and remaining tenth-order-tail budget above $2.4484845096\times10^{26}$. | directed-rounded theta3minus fold-pair first-y $G,D$ nonic-jet coefficient interval certified; decic coefficient successor closed, eleventh-order tail bound still open; not retained |
+| [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-decic-jet-coefficient-interval-certificate](octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-decic-jet-coefficient-interval-certificate.md) | Extends the first-y quotient jet by the decic coefficient on $128$ directed-rounded speed cells. It certifies $h_{10,\varepsilon}\in[-5716.60732578,5716.60732578]$, $Q_{G,10}\in[-2720.94809438,-2127.83770094]$, $Q_{D,10}\in[23406.2147103,29930.4290382]$, decic losses below $1.05024737803\times10^{-23}$ on the first y cell, and remaining eleventh-order-tail budget above $1.36263485752\times10^{29}$. | directed-rounded theta3minus fold-pair first-y $G,D$ decic-jet coefficient interval certified; eleventh-order tail bound, full fold-pair remainder, full fold-collar interval radius, `I1` regular critical exhaustion, interval quadrature, and retained branch status open; not retained |
+| [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-undecic-jet-coefficient-interval-certificate](octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-undecic-jet-coefficient-interval-certificate.md) | Extends the first-y quotient jet by the undecic coefficient on $128$ directed-rounded speed cells. It certifies $h_{11,\varepsilon}\in[-12767.1736761,-8617.99168626]$, $Q_{G,11}\in[-1763.21366944,1763.21366944]$, $Q_{D,11}\in[-21158.5640333,21158.5640333]$, undecic losses below $1.33408260108\times10^{-26}$ on the first y cell, and remaining twelfth-order-tail budget above $7.58335920705\times10^{31}$. | directed-rounded theta3minus fold-pair first-y $G,D$ undecic-jet coefficient interval certified; twelfth-order tail bound, full fold-pair remainder, full fold-collar interval radius, `I1` regular critical exhaustion, interval quadrature, and retained branch status open; not retained |
+| [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-duodecic-jet-coefficient-interval-certificate](octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-duodecic-jet-coefficient-interval-certificate.md) | Extends the first-y quotient jet by the duodecic coefficient on $128$ directed-rounded speed cells. It certifies $h_{12,\varepsilon}\in[-48768.3807229,48768.3807229]$, $Q_{G,12}\in[5815.42031867,26858.3199138]$, $Q_{D,12}\in[-349158.15888,-75600.4641427]$, duodecic losses below $3.95582063177\times10^{-28}$ on the first y cell, and remaining thirteenth-order-tail budget above $4.22030425436\times10^{34}$. | directed-rounded theta3minus fold-pair first-y $G,D$ duodecic-jet coefficient interval certified; thirteenth-order tail bound, full fold-pair remainder, full fold-collar interval radius, `I1` regular critical exhaustion, interval quadrature, and retained branch status open; not retained |
+| [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-tridecic-jet-coefficient-interval-certificate](octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-tridecic-jet-coefficient-interval-certificate.md) | Extends the first-y quotient jet by the tridecic coefficient on $128$ directed-rounded speed cells. It certifies $h_{13,\varepsilon}\in[-24598.7730613,122781.056197]$, $Q_{G,13}\in[-62783.9057489,62783.9057489]$, $Q_{D,13}\in[-878974.680485,878974.680485]$, tridecic losses below $1.78940492321\times10^{-30}$ on the first y cell, and remaining fourteenth-order-tail budget above $2.34869106329\times10^{37}$. | directed-rounded theta3minus fold-pair first-y $G,D$ tridecic-jet coefficient interval certified; fourteenth-order coefficient successor closed, fifteenth-order tail bound open, full fold-pair remainder, full fold-collar interval radius, `I1` regular critical exhaustion, interval quadrature, and retained branch status open; not retained |
+| [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-fourteenth-order-jet-coefficient-interval-certificate](octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-fourteenth-order-jet-coefficient-interval-certificate.md) | Extends the first-y quotient jet by the fourteenth-order coefficient on $128$ directed-rounded speed cells. It certifies $h_{14,\varepsilon}\in[-683742.026225,683742.026225]$, $Q_{G,14}\in[-481973.551349,267320.048282]$, $Q_{D,14}\in[-4009800.72423,7229603.27024]$, fourteenth-order losses below $2.64462801936\times10^{-32}$ on the first y cell, and remaining fifteenth-order-tail budget above $1.30709763522\times10^{40}$. | directed-rounded theta3minus fold-pair first-y $G,D$ fourteenth-order jet coefficient interval certified; fifteenth-order coefficient successor closed, sixteenth-order tail bound open, full fold-pair remainder, full fold-collar interval radius, `I1` regular critical exhaustion, interval quadrature, and retained branch status open; not retained |
+| [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-fifteenth-order-jet-coefficient-interval-certificate](octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-fifteenth-order-jet-coefficient-interval-certificate.md) | Extends the first-y quotient jet by the fifteenth-order coefficient on $128$ directed-rounded speed cells. It certifies $h_{15,\varepsilon}\in[-2822625.2165,2425285.71977]$, $Q_{G,15}\in[-2235611.16474,2235611.16474]$, $Q_{D,15}\in[-35769778.6359,35769778.6359]$, fifteenth-order losses below $2.35117117134\times10^{-34}$ on the first y cell, and remaining sixteenth-order-tail budget above $7.27428249169\times10^{42}$. | directed-rounded theta3minus fold-pair first-y $G,D$ fifteenth-order jet coefficient interval certified; sixteenth-, seventeenth-, and eighteenth-order coefficient successors closed, twentieth-order tail bound open; not retained |
+| [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-sixteenth-order-jet-coefficient-interval-certificate](octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-sixteenth-order-jet-coefficient-interval-certificate.md) | Extends the first-y quotient jet by the sixteenth-order coefficient on $128$ directed-rounded speed cells. It certifies $h_{16,\varepsilon}\in[-17271814.3662,17271814.3662]$, $Q_{G,16}\in[-12656271.9864,14024649.6318]$, $Q_{D,16}\in[-238419043.741,215156623.769]$, sixteenth-order losses below $2.81596208919\times10^{-36}$ on the first y cell, and remaining seventeenth-order-tail budget above $4.0482963432\times10^{45}$. | directed-rounded theta3minus fold-pair first-y $G,D$ sixteenth-order jet coefficient interval certified; seventeenth- and eighteenth-order coefficient successors closed, twentieth-order tail bound open; not retained |
+| [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-seventeenth-order-jet-coefficient-interval-certificate](octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-seventeenth-order-jet-coefficient-interval-certificate.md) | Extends the first-y quotient jet by the seventeenth-order coefficient on $128$ directed-rounded speed cells. It certifies $h_{17,\varepsilon}\in[-92883974.2428,93984211.6088]$, $Q_{G,17}\in[-79605963.3697,79605963.3697]$, $Q_{D,17}\in[-1432907340.66,1432907340.66]$, seventeenth-order losses below $3.04103792167\times10^{-38}$ on the first y cell, and remaining eighteenth-order-tail budget above $2.25296492143\times10^{48}$. | directed-rounded theta3minus fold-pair first-y $G,D$ seventeenth-order jet coefficient interval certified; eighteenth-order coefficient successor closed, twentieth-order tail bound open; not retained |
+| [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-eighteenth-order-jet-coefficient-interval-certificate](octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-eighteenth-order-jet-coefficient-interval-certificate.md) | Extends the first-y quotient jet by the eighteenth-order coefficient on $128$ directed-rounded speed cells. It certifies $h_{18,\varepsilon}\in[-568070538.824,568070538.824]$, $Q_{G,18}\in[-479224364.799,470834512.839]$, $Q_{D,18}\in[-8945855743.95,9105262931.18]$, eighteenth-order losses below $3.47227478054\times10^{-40}$ on the first y cell, and remaining nineteenth-order-tail budget above $1.25382395628\times10^{51}$. | directed-rounded theta3minus fold-pair first-y $G,D$ eighteenth-order jet coefficient interval certified; twentieth-order tail bound, full fold-pair remainder, full fold-collar interval radius, `I1` regular critical exhaustion, interval quadrature, and retained branch status open; not retained |
+| [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-nineteenth-order-jet-coefficient-interval-certificate](octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-nineteenth-order-jet-coefficient-interval-certificate.md) | Extends the first-y quotient jet by the nineteenth-order coefficient on $128$ directed-rounded speed cells. It certifies $Q_{G,19}\in[-2834624757.73,2834624757.73]$, $Q_{D,19}\in[-56692495154.6,56692495154.6]$, and remaining twentieth-order-tail budget above $6.9778028871\times10^{53}$. | directed-rounded theta3minus fold-pair first-y $G,D$ nineteenth-order jet coefficient interval certified; twentieth-order coefficient successor closed, twenty-first-order tail bound open; not retained |
+| [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-twentieth-order-jet-coefficient-interval-certificate](octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-twentieth-order-jet-coefficient-interval-certificate.md) | Extends the first-y quotient jet by the twentieth-order coefficient on $128$ directed-rounded speed cells. It certifies $Q_{G,20}\in[-16890597222.4,16939304773.1]$, $Q_{D,20}\in[-355725400235,354702541670]$, and remaining twenty-first-order-tail budget above $3.88329899804\times10^{56}$. | directed-rounded theta3minus fold-pair first-y $G,D$ twentieth-order jet coefficient interval certified; shifted-tail cancellation successor closed, finite twenty-first-order tail bound open; not retained |
+| [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-twenty-first-order-shifted-tail-cancellation-certificate](octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-twenty-first-order-shifted-tail-cancellation-certificate.md) | Certifies the zero-safe shifted-tail numerator cancellation after the twentieth-order jet: the lower coefficients of $P-L-y^2A_{G,20}$ and $D_{\mathrm{pair}}-L-y^2A_{D,20}$ through $y^{22}$ contain zero on all $128$ speed cells, and the correlated identity $T_D^{(21)}=-22T_G^{(21)}-y\partial_yT_G^{(21)}$ is recorded. | zero-safe theta3minus fold-pair first-y $G,D$ twenty-first-order shifted-tail cancellation certified; finite $E_\varepsilon$ root-tail tube, continuous tail bound, full fold-pair remainder, full fold-collar interval radius, `I1` regular critical exhaustion, interval quadrature, and retained branch status open; not retained |
+| [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-twenty-first-order-root-tail-seed-certificate](octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-twenty-first-order-root-tail-seed-certificate.md) | Certifies the root-tail seed $E_\varepsilon(0,\nu)=h_{21,\varepsilon}(\nu)$ and the induced twenty-first-order quotient coefficients on $128$ directed-rounded speed cells: $h_{21,\varepsilon}\in[-118506150229,118431723907]$, $Q_{G,21}\in[-100935984646,100935984646]$, $Q_{D,21}\in[-2220591662220,2220591662220]$, and remaining twenty-second-order-tail budget above $2.16114031195\times10^{59}$. | directed-rounded theta3minus fold-pair first-y $G,D$ twenty-first-order root-tail seed certified; finite $E_\varepsilon$ root-tail tube, continuous post-seed tail bound, full fold-pair remainder, full fold-collar interval radius, `I1` regular critical exhaustion, interval quadrature, and retained branch status open; not retained |
+| [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-finite-e-root-tail-tube-certificate](octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-finite-e-root-tail-tube-certificate.md) | Certifies the obstruction to closing the finite $E_\varepsilon$ root-tail tube by direct $H_\varepsilon$ endpoint signs. On $3840$ positive-y probe rows, direct $J$ and direct $\partial_EH$ signs remain certified, but every direct endpoint interval contains zero; the minimum direct $\partial_EH$ clearance is $9.06225663729\times10^{-84}$ and the direct endpoint-sign route would require more than $10^{80}$ additional $E$ padding. | directed-rounded theta3minus fold-pair first-y $G,D$ finite-$E$ root-tail tube obstruction certified; coefficient-shifted $\operatorname{Shift}_{25}$ successor now closes the finite $E_\varepsilon$ tube row, while continuous post-seed tail bound, full fold-pair remainder, full fold-collar interval radius, `I1` regular critical exhaustion, interval quadrature, and retained branch status remain open; not retained |
+| [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-twenty-second-order-post-seed-coefficient-certificate](octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-twenty-second-order-post-seed-coefficient-certificate.md) | Certifies the first post-seed coefficient and induced twenty-second-order quotient coefficients on $128$ directed-rounded speed cells: $h_{22,\varepsilon}\in[-707360216399,707360216399]$, $Q_{G,22}\in[-602441567891,602182148318]$, $Q_{D,22}\in[-13850189411300,13856156061500]$, and remaining twenty-third-order-tail budget above $1.20272156491\times10^{62}$. | directed-rounded theta3minus fold-pair first-y $G,D$ twenty-second-order post-seed coefficient certified; inherited as budget/provenance for the finite $\operatorname{Shift}_{25}$ row, not yet a continuous post-seed $G,D$ tail closure; continuous post-seed tail bound, full fold-pair remainder, full fold-collar interval radius, `I1` regular critical exhaustion, interval quadrature, and retained branch status open; not retained |
+| [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-finite-shift25-e-root-tail-tube-certificate](octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-finite-shift25-e-root-tail-tube-certificate.md) | Certifies the coefficient-shifted finite-y residual $R_{\varepsilon,25}=\operatorname{Shift}_{25}(F_\varepsilon)$ for the finite $E_\varepsilon$ root-tail tube. On $3840$ positive-y rows, the dropped coefficients $y^0$ through $y^{24}$ contain zero over the $E$ tube, endpoint signs are certified with minimum clearance $7.91947101792\times10^{15}$, $\partial_E R_{\varepsilon,25}=J$ signs have minimum clearance $0.791609030532$, and the shifted trigonometric remainder is at most $4.36991570523\times10^{-122}$. | directed-rounded theta3minus fold-pair first-y $G,D$ finite $\operatorname{Shift}_{25}$ $E_\varepsilon$ root-tail tube certified; continuous post-seed $G,D$ tail bound, full quotient enclosure, scaled remainder, `I1` regular critical exhaustion, interval quadrature, and retained branch status open; not retained |
+| [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-positive-gd-quotient-subcell-certificate](octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-positive-gd-quotient-subcell-certificate.md) | Splits the first-y cell into $16$ subcells and certifies the $15$ positive subcells by the existing directed-rounded $h_\varepsilon$ root contraction and correlated $L$ subtraction. It certifies $1920$ positive first-y $G,D$ quotient rows, leaves $128$ zero-touching rows open, and has minimum $J$ clearance $0.791609023251$, maximum $|Q_G|$ interval upper bound $8735.04896621$, and maximum $|Q_D|$ interval upper bound $107206381.722$. | directed-rounded theta3minus fold-pair first-y positive $G,D$ quotient subcells certified; zero-touching continuous post-seed $G,D$ tail, full first-y quotient enclosure, scaled remainder, `I1` regular critical exhaustion, interval quadrature, and retained branch status open; not retained |
+| [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-twenty-third-order-u-seed-coefficient-certificate](octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-twenty-third-order-u-seed-coefficient-certificate.md) | Certifies the $U$-coordinate seed and induced twenty-third-order quotient coefficients on $128$ directed-rounded speed cells: $h_{23,\varepsilon}\in[-4218031991090,4218902780690]$, $Q_{G,23}\in[-3594155902090,3594155902090]$, $Q_{D,23}\in[-86259741650100,86259741650100]$, and remaining twenty-fourth-order-tail budget above $6.69340696994\times10^{64}$. | directed-rounded theta3minus fold-pair first-y $G,D$ twenty-third-order $U$-seed coefficient certified; inherited as budget/provenance for the finite $U_\varepsilon$ tube and continuous $G,D$ tail target, not yet a tail closure; full quotient enclosure, scaled remainder, `I1` regular critical exhaustion, interval quadrature, and retained branch status open; not retained |
+| [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-finite-shift27-u-root-tail-tube-certificate](octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-finite-shift27-u-root-tail-tube-certificate.md) | Certifies the coefficient-shifted finite-y residual $R_{\varepsilon,27}=\operatorname{Shift}_{27}(F_\varepsilon)$ for the finite $U_\varepsilon$ root-tail tube. On $3840$ positive-y rows, the dropped coefficients $y^0$ through $y^{26}$ contain zero over the $U$ tube, endpoint signs are certified with minimum clearance $7.91945473751\times10^{15}$, $\partial_U R_{\varepsilon,27}=J$ signs have minimum clearance $0.791609030532$, and the induced $E_\varepsilon$ image stays inside the predecessor $E_\varepsilon$ tube. | directed-rounded theta3minus fold-pair first-y $G,D$ finite $\operatorname{Shift}_{27}$ $U_\varepsilon$ root-tail tube certified; continuous twenty-fourth-order $G,D$ tail bound, full quotient enclosure, scaled remainder, `I1` regular critical exhaustion, interval quadrature, and retained branch status open; not retained |
+| [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-twenty-fourth-order-post-u-coefficient-certificate](octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-twenty-fourth-order-post-u-coefficient-certificate.md) | Certifies the first coefficient beyond the $U$ seed and induced twenty-fourth-order quotient coefficients on $128$ directed-rounded speed cells: $h_{24,\varepsilon}\in[-25502690592000,25502690592000]$, $Q_{G,24}\in[-21722122111200,21723283979000]$, $Q_{D,24}\in[-543082099475000,543053052779000]$, $Q_{D,24}+25Q_{G,24}\ni0$, and remaining twenty-fifth-order-tail budget above $3.72502527045\times10^{67}$. | directed-rounded theta3minus fold-pair first-y $G,D$ twenty-fourth-order post-$U$ coefficient certified; inherited as budget/provenance for the continuous post-$U$ $G,D$ tail target, not yet a tail closure; full quotient enclosure, scaled remainder, `I1` regular critical exhaustion, interval quadrature, and retained branch status open; not retained |
+| [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-twenty-fifth-order-post-u-successor-coefficient-certificate](octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-twenty-fifth-order-post-u-successor-coefficient-certificate.md) | Certifies the next zero-touching seed coefficient and induced twenty-fifth-order quotient coefficients on $128$ directed-rounded speed cells: $h_{25,\varepsilon}\in[-152196183760000,152188011264000]$, $Q_{G,25}\in[-129647700798000,129647700798000]$, $Q_{D,25}\in[-3370840220760000,3370840220760000]$, $Q_{D,25}+26Q_{G,25}\ni0$, and remaining twenty-sixth-order-tail budget above $2.07305754145\times10^{70}$. | directed-rounded theta3minus fold-pair first-y $G,D$ twenty-fifth-order post-$U$ successor coefficient certified; finite $\operatorname{Shift}_{29}$ and $\operatorname{Shift}_{31}$ successor tubes are now certified, $h_{26}$ and $h_{27}$ are certified, and the current open successor is the continuous twenty-ninth-order $G,D$ tail bound, full quotient enclosure, scaled remainder, `I1` regular critical exhaustion, interval quadrature, and retained branch status; not retained |
+| [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-finite-shift29-successor-root-tail-tube-certificate](octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-finite-shift29-successor-root-tail-tube-certificate.md) | Certifies the coefficient-shifted finite-y residual $R_{\varepsilon,29}=\operatorname{Shift}_{29}(F_\varepsilon(y,h_{\varepsilon,\le24}+y^{25}Z,\nu))$ for the finite $Z_\varepsilon$ successor root-tail tube. On $3840$ positive-y rows, the dropped coefficients $y^0$ through $y^{28}$ contain zero over the $Z$ tube, endpoint signs are certified with minimum clearance $7.9188994295\times10^{15}$, $\partial_ZR_{\varepsilon,29}=J$ signs have minimum clearance $0.791609030534$, and the induced $U_\varepsilon$ image stays inside the predecessor tube. | directed-rounded theta3minus fold-pair first-y $G,D$ finite $\operatorname{Shift}_{29}$ $Z_\varepsilon$ successor root-tail tube certified; broad C1 twenty-sixth-order evaluator obstructed, finite $\operatorname{Shift}_{31}$ certified, $h_{26}$ and $h_{27}$ certified; current open successor is continuous twenty-ninth-order $G,D$ tail bound, full quotient enclosure, scaled remainder, `I1` regular critical exhaustion, interval quadrature, and retained branch status; not retained |
+| [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-c1-twenty-sixth-order-tail-bound-certificate](octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-c1-twenty-sixth-order-tail-bound-certificate.md) | Runs the valid root-tangent C1 attempt on the certified finite $\operatorname{Shift}_{29}$ $Z_\varepsilon$ tube. It includes $\Xi_\varepsilon=-y\,\partial_yR_{\varepsilon,29}/J_\varepsilon$, rejects the invalid constant-$Z$ derivative and direct unfactored $D$ quotient inverse, checks $1920$ positive first-y pair rows, and reports worst identity-bound excess $1.0598339923\times10^{124}$. | rigorous obstruction for this broad C1 evaluator; not a continuous tail closure, not a full quotient enclosure, and not retained |
+| [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-twenty-sixth-order-post-u-successor-coefficient-certificate](octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-twenty-sixth-order-post-u-successor-coefficient-certificate.md) | Certifies the next zero-touching seed coefficient and induced twenty-sixth-order quotient coefficients on $128$ directed-rounded speed cells: $h_{26,\varepsilon}\in[-908343826729000,908343826729000]$, $Q_{G,26}\in[-773778357003000,773775566334000]$, $Q_{D,26}\in[-20891940291000000,20892015639100000]$, $Q_{D,26}+27Q_{G,26}\ni0$, and remaining twenty-seventh-order-tail budget above $1.15370158828\times10^{73}$. | directed-rounded theta3minus fold-pair first-y $G,D$ twenty-sixth-order post-$U$ successor coefficient certified; finite $\operatorname{Shift}_{31}$ next-successor root-tail tube and $h_{27}$ coefficient row now certified; continuous twenty-ninth-order $G,D$ tail bound, full quotient enclosure, scaled remainder, `I1` regular critical exhaustion, interval quadrature, and retained branch status open; not retained |
+| [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-finite-shift31-next-successor-root-tail-tube-certificate](octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-finite-shift31-next-successor-root-tail-tube-certificate.md) | Certifies the coefficient-shifted finite-y residual $R_{\varepsilon,31}=\operatorname{Shift}_{31}(F_\varepsilon(y,h_{\varepsilon,\le26}+y^{27}W,\nu))$ for the finite $W_\varepsilon$ next-successor root-tail tube. On $3840$ positive-y rows, the dropped coefficients $y^0$ through $y^{30}$ contain zero over the $W$ tube, endpoint signs are certified with minimum clearance $7.87633458815\times10^{17}$, $\partial_WR_{\varepsilon,31}=J$ signs have minimum clearance $0.791609030534$, and the induced $Z_\varepsilon$ image stays inside the predecessor tube. | directed-rounded theta3minus fold-pair first-y $G,D$ finite $\operatorname{Shift}_{31}$ $W_\varepsilon$ next-successor root-tail tube certified; C1 twenty-seventh-order broad evaluator obstructed; lower numerator cancellation through $y^{28}$ now certified; continuous $y^{29}$ remainder bound, full quotient enclosure, scaled remainder, `I1` regular critical exhaustion, interval quadrature, and retained branch status open; not retained |
+| [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-c1-twenty-seventh-order-tail-bound-certificate](octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-c1-twenty-seventh-order-tail-bound-certificate.md) | Runs the valid root-tangent C1 attempt on the certified finite $\operatorname{Shift}_{31}$ $W_\varepsilon$ tube. It includes $\Xi_\varepsilon=-y\,\partial_yR_{\varepsilon,31}/J_\varepsilon$, rejects constant-$W$ differentiation and the direct unfactored $D$ quotient inverse, and reports worst identity-bound excess $4.03517714144\times10^{128}$ caused by broad positive-y cancellation loss before $y^{29}$ division. | rigorous obstruction for this broad C1 evaluator; lower coefficient cancellation is now certified separately; not a continuous tail closure, not a full quotient enclosure, and not retained |
+| [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-twenty-seventh-order-lower-coefficient-cancellation-certificate](octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-twenty-seventh-order-lower-coefficient-cancellation-certificate.md) | Certifies the coefficient-preserving lower numerator cancellations for $N_G=P-L-y^2A_{G,26}$ and $N_D=D_{\mathrm{pair}}-L-y^2A_{D,26}$ through $y^{28}$ on all $128$ speed cells before any $y^{29}$ division. It imports the $h_{26}$ coefficient artifact, verifies no missing coefficient data, and preserves the lower identity $N_{D,k}=(1-k)N_{G,k}$ through $k=28$. | coefficient-preserving theta3minus fold-pair first-y $G,D$ lower cancellation certified; h27 successor coefficient now certified; twenty-eighth-order tail closure, full quotient enclosure, scaled remainder, `I1` regular critical exhaustion, interval quadrature, and retained branch status open; not retained |
+| [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-twenty-seventh-order-post-u-successor-coefficient-certificate](octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-twenty-seventh-order-post-u-successor-coefficient-certificate.md) | Certifies the next coefficient row on the $W_\varepsilon$ chart: $h_{27,\varepsilon}\in[-5.42114282999\times10^{15},5.42121259771\times10^{15}]$, $Q_{G,27}\in[-4.61813833997\times10^{15},4.61813833997\times10^{15}]$, $Q_{D,27}\in[-1.29307873519\times10^{17},1.29307873519\times10^{17}]$, and $Q_{D,27}+28Q_{G,27}\ni0$ on all $128$ speed cells. | directed-rounded theta3minus fold-pair first-y $G,D$ twenty-seventh-order post-$U$ successor coefficient certified; the $y^{29}$ quotient constant term is now a coefficient row; h28 successor now certified; twenty-ninth-order successor tail bound, full quotient enclosure, scaled remainder, `I1` regular critical exhaustion, interval quadrature, and retained branch status open; not retained |
+| [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-twenty-eighth-order-post-u-successor-coefficient-certificate](octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-twenty-eighth-order-post-u-successor-coefficient-certificate.md) | Certifies the next coefficient row beyond the $W_\varepsilon$ chart: $h_{28,\varepsilon}\in[-3.23553241084\times10^{16},3.23553241084\times10^{16}]$, $Q_{G,28}\in[-2.75624779878\times10^{16},2.75624540089\times10^{16}]$, $Q_{D,28}\in[-7.99311166258\times10^{17},7.99311861646\times10^{17}]$, and $Q_{D,28}+29Q_{G,28}\ni0$ on all $128$ speed cells. | directed-rounded theta3minus fold-pair first-y $G,D$ twenty-eighth-order post-$U$ successor coefficient certified; the twenty-eighth-order quotient-tail constant term is now a coefficient row; twenty-ninth-order successor tail bound, full quotient enclosure, scaled remainder, `I1` regular critical exhaustion, interval quadrature, and retained branch status open; not retained |
+| [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-twenty-ninth-order-post-u-successor-coefficient-certificate](octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-twenty-ninth-order-post-u-successor-coefficient-certificate.md) | Certifies the next coefficient row beyond the $h_{28}$ packet: $h_{29,\varepsilon}\in[-1.93106192270\times10^{17},1.93105617963\times10^{17}]$, $Q_{G,29}\in[-1.64501288268\times10^{17},1.64501288268\times10^{17}]$, $Q_{D,29}\in[-4.93503864803\times10^{18},4.93503864803\times10^{18}]$, and $Q_{D,29}+30Q_{G,29}\ni0$ on all $128$ speed cells. | directed-rounded theta3minus fold-pair first-y $G,D$ twenty-ninth-order post-$U$ successor coefficient certified; the twenty-ninth-order quotient-tail constant term is now a coefficient row; h30 through h38 successors now certified; thirty-ninth-order successor tail bound, full quotient enclosure, scaled remainder, `I1` regular critical exhaustion, interval quadrature, and retained branch status open; not retained |
+| [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-thirtieth-order-post-u-successor-coefficient-certificate](octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-thirtieth-order-post-u-successor-coefficient-certificate.md) | Certifies the next coefficient row beyond the $h_{29}$ packet: $h_{30,\varepsilon}\in[-1.15251558957\times10^{18},1.15251558957\times10^{18}]$, $Q_{G,30}\in[-9.81794132784\times10^{17},9.81794749250\times10^{17}]$, $Q_{D,30}\in[-3.04356372268\times10^{19},3.04356181163\times10^{19}]$, and $Q_{D,30}+31Q_{G,30}\ni0$ on all $128$ speed cells. | directed-rounded theta3minus fold-pair first-y $G,D$ thirtieth-order post-$U$ successor coefficient certified; the thirtieth-order quotient-tail constant term is now a coefficient row; h31 through h38 successors now certified; thirty-ninth-order successor tail bound, full quotient enclosure, scaled remainder, `I1` regular critical exhaustion, interval quadrature, and retained branch status open; not retained |
+| [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-thirty-first-order-post-u-successor-coefficient-certificate](octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-thirty-first-order-post-u-successor-coefficient-certificate.md) | Certifies the next coefficient row beyond the $h_{30}$ packet: $h_{31,\varepsilon}\in[-6.87856199450\times10^{18},6.87856650661\times10^{18}]$, $Q_{G,31}\in[-5.85965356972\times10^{18},5.85965356972\times10^{18}]$, $Q_{D,31}\in[-1.87508914231\times10^{20},1.87508914231\times10^{20}]$, and $Q_{D,31}+32Q_{G,31}\ni0$ on all $128$ speed cells. | directed-rounded theta3minus fold-pair first-y $G,D$ thirty-first-order post-$U$ successor coefficient certified; the thirty-first-order quotient-tail constant term is now a coefficient row; h32 through h38 successors now certified; thirty-ninth-order successor tail bound, full quotient enclosure, scaled remainder, `I1` regular critical exhaustion, interval quadrature, and retained branch status open; not retained |
+| [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-thirty-second-order-post-u-successor-coefficient-certificate](octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-thirty-second-order-post-u-successor-coefficient-certificate.md) | Certifies the next coefficient row beyond the $h_{31}$ packet: $h_{32,\varepsilon}\in[-4.10533911463\times10^{19},4.10533911463\times10^{19}]$, $Q_{G,32}\in[-3.49722356695\times10^{19},3.49722268609\times10^{19}]$, $Q_{D,32}\in[-1.15408348641\times10^{21},1.15408377709\times10^{21}]$, and $Q_{D,32}+33Q_{G,32}\ni0$ on all $128$ speed cells. | directed-rounded theta3minus fold-pair first-y $G,D$ thirty-second-order post-$U$ successor coefficient certified; the thirty-second-order quotient-tail constant term is now a coefficient row; h33 through h38 successors now certified; thirty-ninth-order successor tail bound, full quotient enclosure, scaled remainder, `I1` regular critical exhaustion, interval quadrature, and retained branch status open; not retained |
+| [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-thirty-third-order-post-u-successor-coefficient-certificate](octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-thirty-third-order-post-u-successor-coefficient-certificate.md) | Certifies the next coefficient row beyond the $h_{32}$ packet: $h_{33,\varepsilon}\in[-2.45019316463\times10^{20},2.45019277793\times10^{20}]$, $Q_{G,33}\in[-2.08725160467\times10^{20},2.08725160467\times10^{20}]$, $Q_{D,33}\in[-7.09665545588\times10^{21},7.09665545588\times10^{21}]$, and $Q_{D,33}+34Q_{G,33}\ni0$ on all $128$ speed cells. | directed-rounded theta3minus fold-pair first-y $G,D$ thirty-third-order post-$U$ successor coefficient certified; the thirty-third-order quotient-tail constant term is now a coefficient row; h34 through h38 successors now certified; thirty-ninth-order successor tail bound, full quotient enclosure, scaled remainder, `I1` regular critical exhaustion, interval quadrature, and retained branch status open; not retained |
+| [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-thirty-fourth-order-post-u-successor-coefficient-certificate](octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-thirty-fourth-order-post-u-successor-coefficient-certificate.md) | Certifies the next coefficient row beyond the $h_{33}$ packet: $h_{34,\varepsilon}\in[-1.46235098930\times10^{21},1.46235098930\times10^{21}]$, $Q_{G,34}\in[-1.24573680421\times10^{21},1.24573692589\times10^{21}]$, $Q_{D,34}\in[-4.36007924061\times10^{22},4.36007881472\times10^{22}]$, and $Q_{D,34}+35Q_{G,34}\ni0$ on all $128$ speed cells. | directed-rounded theta3minus fold-pair first-y $G,D$ thirty-fourth-order post-$U$ successor coefficient certified; the thirty-fourth-order quotient-tail constant term is now a coefficient row; h35 through h38 successors now certified; thirty-ninth-order successor tail bound, full quotient enclosure, scaled remainder, `I1` regular critical exhaustion, interval quadrature, and retained branch status open; not retained |
+| [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-thirty-fifth-order-post-u-successor-coefficient-certificate](octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-thirty-fifth-order-post-u-successor-coefficient-certificate.md) | Certifies the next coefficient row beyond the $h_{34}$ packet: $h_{35,\varepsilon}\in[-8.72776427154\times10^{21},8.72776458435\times10^{21}]$, $Q_{G,35}\in[-7.43494723105\times10^{21},7.43494723105\times10^{21}]$, $Q_{D,35}\in[-2.67658100318\times10^{23},2.67658100318\times10^{23}]$, and $Q_{D,35}+36Q_{G,35}\ni0$ on all $128$ speed cells. | directed-rounded theta3minus fold-pair first-y $G,D$ thirty-fifth-order post-$U$ successor coefficient certified; the thirty-fifth-order quotient-tail constant term is now a coefficient row; h36 through h38 successors now certified; thirty-ninth-order successor tail bound, full quotient enclosure, scaled remainder, `I1` regular critical exhaustion, interval quadrature, and retained branch status open; not retained |
+| [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-thirty-sixth-order-post-u-successor-coefficient-certificate](octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-thirty-sixth-order-post-u-successor-coefficient-certificate.md) | Certifies the next coefficient row beyond the $h_{35}$ packet: $h_{36,\varepsilon}\in[-5.20900125767\times10^{22},5.20900125767\times10^{22}]$, $Q_{G,36}\in[-4.43740962363\times10^{22},4.43740947313\times10^{22}]$, $Q_{D,36}\in[-1.64184150506\times10^{24},1.64184156074\times10^{24}]$, and $Q_{D,36}+37Q_{G,36}\ni0$ on all $128$ speed cells. | directed-rounded theta3minus fold-pair first-y $G,D$ thirty-sixth-order post-$U$ successor coefficient certified; the thirty-sixth-order quotient-tail constant term is now a coefficient row; h37 and h38 successors now certified; thirty-ninth-order successor tail bound, full quotient enclosure, scaled remainder, `I1` regular critical exhaustion, interval quadrature, and retained branch status open; not retained |
+| [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-thirty-seventh-order-post-u-successor-coefficient-certificate](octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-thirty-seventh-order-post-u-successor-coefficient-certificate.md) | Certifies the next coefficient row beyond the $h_{36}$ packet: $h_{37,\varepsilon}\in[-3.10889437276\times10^{23},3.10889434346\times10^{23}]$, $Q_{G,37}\in[-2.64838543511\times10^{23},2.64838543511\times10^{23}]$, $Q_{D,37}\in[-1.00638646534\times10^{25},1.00638646534\times10^{25}]$, and $Q_{D,37}+38Q_{G,37}\ni0$ on all $128$ speed cells. | directed-rounded theta3minus fold-pair first-y $G,D$ thirty-seventh-order post-$U$ successor coefficient certified; the thirty-seventh-order quotient-tail constant term is now a coefficient row; h38 successor now certified; thirty-ninth-order successor tail bound, full quotient enclosure, scaled remainder, `I1` regular critical exhaustion, interval quadrature, and retained branch status open; not retained |
+| [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-thirty-eighth-order-post-u-successor-coefficient-certificate](octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-thirty-eighth-order-post-u-successor-coefficient-certificate.md) | Certifies the next coefficient row beyond the $h_{37}$ packet: $h_{38,\varepsilon}\in[-1.85548531397\times10^{24},1.85548531397\times10^{24}]$, $Q_{G,38}\in[-1.58063981796\times10^{24},1.58063984386\times10^{24}]$, $Q_{D,38}\in[-6.16449539105\times10^{25},6.16449529005\times10^{25}]$, and $Q_{D,38}+39Q_{G,38}\ni0$ on all $128$ speed cells. | directed-rounded theta3minus fold-pair first-y $G,D$ thirty-eighth-order post-$U$ successor coefficient certified; the thirty-eighth-order quotient-tail constant term is now a coefficient row; thirty-ninth-order successor tail bound, full quotient enclosure, scaled remainder, `I1` regular critical exhaustion, interval quadrature, and retained branch status open; not retained |
+| [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-successor-coefficient-recurrence-lemma](octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-successor-coefficient-recurrence-lemma.md) | Extracts the h27 through h38 pattern into a formal recurrence theorem, including the fold-null slope $S_{n,\varepsilon}=\varepsilon\beta F_{\eta\eta}$ with $F_{\eta\eta}=(\partial_\delta-\partial_\phi)^2F|_{(\delta_f,\phi_f)}$ and the structural $D_{\mathrm{pair}}=(1-y\partial_y)G_{\mathrm{pair}}$ coefficient identity. | formal recurrence and structural identity closed; analytic convergence, chart slope certificate, root-tangent tail, and retention burdens open |
+| [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-root-tangent-cauchy-majorant-tail-lemma](octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-root-tangent-cauchy-majorant-tail-lemma.md) | Gives the h39 Cauchy-majorant reduction on the post-h38 numerator $N_G=P-L-y^2A_{G,38}$: one certified polydisc bound for $M_G$ and $\Xi_*$ bounds $T_G^{(39)}$ and $\mathcal D_y^{(X_{39})}T_G^{(39)}$, then the $D$ identity supplies the h39 budget inequality. At $\rho=4Y$, the directed-rounded backend must beat $M_G<2.49441326560\times10^{16}$ before adding the root-tangent slope ratio $\Xi_*/\sigma_X$; the attached executable artifact certifies this budget formula, the radius-monotone $D$-bottleneck corollary, a candidate-$M_G$ active-inequality decision path, a derived-input path $\Xi_*/\sigma_X\le M_R/(J_{\min}\sigma_X)$, the primitive $M_R$ ceiling, the Rouché graph-lift radius window, the named seven-input Rouché-primitive closure ratio $\Lambda_{39}^{\mathrm R}$ from $E_R,\nu_J,L_J,r_X,\rho_X,M_G,M_R$, the unattained Rouché-window supremal $M_R$ ceiling that reduces the existential $r_X$ choice to $M_R<M_{R,\sup}$, the $\rho_X$ scalar optimum, and the cap-aware $y$-radius optimum: for fixed shared-domain constants, $C_D'(s)>0$ on $s>1$, so a finite certified $s=\rho/Y$ cap is optimized at the largest admissible cap while an uncapped scalar family is unbounded under fixed $M_G$. | formal analytic, monotone D-bottleneck, Rouché graph lift and radius window, primitive $M_R$ ceiling, seven-input $\Lambda_{39}^{\mathrm R}$ closure ratio, radius-supremum, $\rho_X$-optimum, and cap-aware $y$-radius optimum reductions, and executable reduction closed; directed-rounded shared $E_R,\nu_J,L_J,\rho_X,M_G,M_R$ h39 polydisc values plus strict $r_X$ slack open; not retained |
+| [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-h39-shared-domain-coefficient-series-engine](octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-h39-shared-domain-coefficient-series-engine.md) | Constructs the coefficient-only shared-domain engine for $R_{\varepsilon,43}$, $\partial_XR_{\varepsilon,43}$, $\partial_X^2R_{\varepsilon,43}$, $y\,\partial_yR_{\varepsilon,43}$, $N_G$, and the shifted $D$ identity from one declared h39 expansion, including the affine-in-$X$ leading $R_{\varepsilon,43}$ coefficient, the removable $\partial_XR_{\varepsilon,43}$ structural identity, the kernel factorization $\partial_X^2R_{\varepsilon,43}=y^{41}K_\varepsilon$, the coordinate-seminorm continuous majorant for $K_\varepsilon$, finite-prefix scalar feasibility replay, deeper shifted-prefix series-order lifting, and the raw Cauchy shifted-tail obstruction. | coefficient provenance engine emitted; finite-prefix $\nu_J$, $M_K$, and factored $L_J$ candidates reported; continuous kernel-majorant route gives $\texttt{max\_candidate\_M\_K\_continuous\_majorant}=16.799203536978943$ and $\texttt{max\_candidate\_L\_J\_reduced\_continuous\_majorant}=1.679920353697896\times10^{-122}$; finite-prefix scalar replay gives $\Lambda_{39}^{\mathrm R}\approx3.796256065292518\times10^{-115}$, and the full shifted-order $20$ sweep gives $\Lambda_{39}^{\mathrm R}\approx3.796300532408038\times10^{-115}$; raw unshifted Cauchy gives $E_R,M_R\sim10^{119}$ and is too wide; corrected $N_G/M_G$ scaling restores the $\rho^{41}$ factor and gives candidate retained-prefix sensitivity $K=266,345,424$ for $B_{N_G}^{\mathrm{out}}=10^{-20},1,10^{20}$; denominator-clearance helpers now make $B_{N_G}^{\mathrm{out}}$ an explicit branch-kernel, coordinate-floor, Jacobian-floor, speed-floor, $L_*$, and lower-polynomial calculation; the open backend is finite shifted prefix plus analytic tail on one shared domain with full continuous primitive bounds and retained branch status still open; not retained |
+| [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-h39-hybrid-prefix-cauchy-order-diagnostic](octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-h39-hybrid-prefix-cauchy-order-diagnostic.md) | Defines the retained-prefix order diagnostic for the h39 shared-domain route: finite shifted prefixes are kept through $K$, post-$K$ Cauchy tails are attached, the unshifted $N_G/M_G$ input restores the $\rho^{41}$ factor from $N_G=y^{41}T_G^{(39)}$, and the candidate primitive tuple can be replayed through the h39 Rouché-primitive reducer. | priority-only diagnostic emitted; raw source-bound tail order estimate gives about $K=367$ for the function tail and $K=388$ for the $y\partial_y$ tail to compete with finite-prefix candidates; corrected $N_G/M_G$ sensitivity gives $K=266,345,424$ for $B_{N_G}^{\mathrm{out}}=10^{-20},1,10^{20}$; $B_{N_G}^{\mathrm{out}}$ is now an explicit denominator-clearance calculation rather than an unspecified source bound; no directed-rounded shared-domain primitive bounds, h39 continuous tail closure, or retained branch status; not retained |
+| [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-h39-shared-domain-primitive-diagnostic](octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-h39-shared-domain-primitive-diagnostic.md) | Adds the shared-domain replay theorem boundary and diagnostic wrapper: a complete seven-value primitive tuple is replayed through the h39 reducer, but a passing scalar ratio is reported as a certificate only when the tuple is backed by directed-rounded provenance on one shared domain; the upstream-source composition artifact now rebuilds the coordinate-Cauchy, denominator-Cauchy, $L_J$, and graph-radii source wrappers, extracts their certified subsets, and then replays the component-subset composition. | h39 primitive diagnostic, primitive provenance certificate, component-subset composition, and upstream-source composition emitted; the h39 continuous-tail row can certify from raw same-domain upstream source handoffs plus strict scalar replay, while scaled remainder, `I1`, quadrature, retained branch, and full primitive-vector status remain open |
+| [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-continuous-post-seed-tail-bound-target](octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-continuous-post-seed-tail-bound-target.md) | Defines the zero-touching successor chain from the post-seed residual coordinate through the finite $\operatorname{Shift}_{29}$ and $\operatorname{Shift}_{31}$ tubes, records the valid C1 broad-evaluator obstructions, records lower numerator cancellation through $y^{28}$, and records coefficient solves through $h_{38}$. The current constructive tails are $T_G^{(39)}=\operatorname{Shift}_{41}(P-L-y^2A_{G,38})$ and $T_D^{(39)}=\operatorname{Shift}_{41}(D_{\mathrm{pair}}-L-y^2A_{D,38})$, with root-graph identity $T_D^{(39)}=-40T_G^{(39)}-\mathcal D_y^{(X_{39})}T_G^{(39)}$ and budgets $B_{G,39}=1.01837521179\times10^{106}$, $B_{D,39}=1.01830785559\times10^{106}$. | zero-touching continuous post-$U$ successor target updated through h38 coefficient certification; coefficient-preserving thirty-ninth-order successor tail bound, full first-y quotient enclosure, scaled remainder, `I1` regular critical exhaustion, interval quadrature, and retained branch status open; not retained |
+| [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-regular-root-stencil-certificate](octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-regular-root-stencil-certificate.md) | Tightens the nonfolded source-root side on an $8\times24$ speed/collar stencil, preserving the combined budget ratio $\approx0.0555524698758$ and emitting backend rows for regular tube isolation, fixed-sign $F_\delta$, complement slabs, $R_G^{\mathrm{reg}}/y$, and $R_D^{\mathrm{reg}}/y^3$. | sampled theta3minus regular-root stencil certified; directed-rounded regular-root and fold-pair remainders, full fold-collar interval radius, `I1` regular critical exhaustion, interval quadrature, and retained branch status open; not retained |
+| [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-regular-root-sampled-node-interval-certificate](octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-regular-root-sampled-node-interval-certificate.md) | Certifies directed-rounded sampled-node brackets for all $768$ regular roots, fixed-sign $F_\delta$ intervals, and direct regular-root $R_G^{\mathrm{reg}}/y$ and $R_D^{\mathrm{reg}}/y^3$ quotient intervals across the strict $8\times24$ stencil. | directed-rounded sampled-node theta3minus regular-root interval certified; continuous regular-root remainder, continuous fold-pair remainder, full fold-collar interval radius, `I1` regular critical exhaustion, interval quadrature, and retained branch status open; not retained |
+| [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-regular-root-cell-certificate](octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-regular-root-cell-certificate.md) | Extends the four named regular-sheet quotient rows to a directed-rounded speed/y cell cover on $1024$ cells, with $4096$ regular sheet cells, $8192$ endpoint intervals, minimum endpoint $F$ clearance $0.0000290544619118$, minimum $|F_\delta|$ clearance $0.581059952407$, $\max |R_G^{\mathrm{reg}}|/y\le0.0880368563612$, and $\max |R_D^{\mathrm{reg}}|/y^3\le0.602156573611$. | directed-rounded theta3minus regular-root cell cover certified; complement-slab successor closed, fold-pair $G,D$ quotient remainder, full fold-collar interval radius, `I1` regular critical exhaustion, interval quadrature, and retained branch status open; not retained |
+| [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-regular-root-complement-slab-certificate](octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-regular-root-complement-slab-certificate.md) | Certifies directed-rounded fixed signs for the full regular-root complement on the same $16\times64$ speed/y cover. It combines $9216$ ordinary raw-$F$ source-equation slabs outside the folded-source neighborhood with $3072$ Taylor-cancelled fold-$p$ slabs inside it, has no deferred fold-neighborhood slabs, and has minimum raw $F$ clearance $0.0000273284209642$ plus minimum scaled fold-$p$ $F/y^2$ clearance $0.000252834825122$. | directed-rounded theta3minus regular-root complement-slab exclusion certified; fold-pair $G,D$ quotient remainder, full fold-collar interval radius, `I1` regular critical exhaustion, interval quadrature, and retained branch status open; not retained |
+
+## Immediate Next Packet
+
+The specific rigid octahedral source-only row is now closed as a decision packet. The retained metric-cancellation route now has a candidate response theorem in [retained-branch-medium-response-candidate](retained-branch-medium-response-candidate.md): an isotropic linear trace-free medium response must have the form
+
+$$
+\Pi_{\mathrm{tf}}\delta\mathcal M_{\mathrm{sea}}^{ab}
+=
+\kappa_Z\delta\mathcal Z_{\mathrm{oct,tf}}^{ab},
+\qquad
+\kappa_Z=-r_{ZM}.
+$$
+
+The retained metric-cancellation route now has a derivative-adjoint closure for the isotropic axial octahedral probe in [octahedral-exposure-derivative-adjoint](octahedral-exposure-derivative-adjoint.md):
+
+$$
+D_\varepsilon Z_{\mathrm{oct}}^{ab}
+=
+\zeta_{\delta Z}A^{ab},
+\qquad
+D_\varepsilon Z_{\mathrm{oct}}^{*}(U)
+=
+\zeta_{\delta Z}A_{ab}U^{ab}.
+$$
+
+The fixed-ledger affine probe closure in [octahedral-affine-exposure-matrix](octahedral-affine-exposure-matrix.md) now extends that column to
+
+$$
+D_HZ_{\mathrm{oct}}
+:
+\operatorname{End}(\mathbb R^3)
+\longrightarrow
+\mathrm{Sym}_0^2(h),
+$$
+
+with an explicit adjoint, trace/shear/rotation decomposition, and a passing executable diagnostic in [octahedral-affine-exposure-probe.mjs](../../../../scripts/neutral-braid/octahedral-affine-exposure-probe.mjs). Together with the completed-square response block, this closes first-order axial observer cancellation for the single isotropic octahedral perturbation when $\lambda_M\ne0$ and $r_{ZM}=\lambda_Z/\lambda_M$, and it also closes the affine shear probe on the same certified root ledger.
+
+The same-ledger affine branch-coordinate derivative in [octahedral-full-coordinate-exposure-matrix](octahedral-full-coordinate-exposure-matrix.md) now closes
+
+$$
+D_H^{\mathrm{coord}}Z_{\mathrm{oct}},
+$$
+
+including delayed endpoint transport, tangent transport, curvature, and $J_\rho$ variation. Its executable diagnostic in [octahedral-coordinate-exposure-matrix.mjs](../../../../scripts/neutral-braid/octahedral-coordinate-exposure-matrix.mjs) validates all nine affine columns by central finite differences. This resolves the derivative ambiguity between fixed-ledger exposure probes and true branch-coordinate motion.
+
+The trace zero-mean route no longer uses the earlier $[0.5,1.5]$ diagnostic window as a theory constraint. [octahedral-bounded-speed-successor-closure-row](octahedral-bounded-speed-successor-closure-row.md) now records only a conditional declared-window lemma. [octahedral-period-rescaled-trace-scan](octahedral-period-rescaled-trace-scan.md) is the speed-unconstrained trace-period follow-on: in the ansatz $Y_i(u)=s\,p_i(u/h)$, the speed-ODE mean obeys $\mathcal M_i^\nu(s,h)=(1/h)C_i(s/h)$ on a fixed simple-root sheet. The sampled simple-root rows stay positive through $v=1.7$, and the first sampled one-root ledger failure appears at $v=1.75$. [octahedral-period-rescaled-fold-chart](octahedral-period-rescaled-fold-chart.md) sharpens that sampled boundary: the $\kappa=+1$ cross-binary row has a continuum saddle-node onset at $v_c\approx1.704939069887$. [octahedral-fold-aware-multiroot-period-integral](octahedral-fold-aware-multiroot-period-integral.md) then supplies the fold-aware successor diagnostic: cross-binary rows cancel by symmetry in the $\phi$ coarea chart, and the antipodal-partner all-root sum has a sampled zero bracket at $v_0\approx3.021564740248$. [octahedral-fold-aware-zero-bracket-certificate](octahedral-fold-aware-zero-bracket-certificate.md) upgrades that row to a sign-certified zero bracket on $3.02156\le v\le3.02157$. [octahedral-fold-aware-dynamics-handoff](octahedral-fold-aware-dynamics-handoff.md) then rejects fixed-speed pointwise tangential closure by a regular all-root witness and routes the candidate into the bounded-speed primitive row. [octahedral-fold-aware-speed-primitive-existence](octahedral-fold-aware-speed-primitive-existence.md) closes the scalar implication at the proper bounded-speed level: the zero mean gives a positive periodic center-time speed primitive after an initial-speed offset is chosen, provided the fold-aware forcing is integrable and the speed excursion is bounded on the selected coarea or branch chart. [octahedral-fold-aware-clock-length-criterion](octahedral-fold-aware-clock-length-criterion.md) then closes the clock/length algebra: the unique offset is $\nu_{i,0}^{\mathrm{clk}}=L_i/H-\overline A$, and strict positivity is exactly $L_i/H>\overline A-A_{\min}$.
+
+[octahedral-fold-aware-clock-length-profile-scan](octahedral-fold-aware-clock-length-profile-scan.md) applies that criterion to the sampled fold-aware profile and finds a positive sampled interval $2.892219447398\lesssim\nu^{\mathrm{clk}}\lesssim3.150910033098$. [octahedral-fold-aware-clock-length-orbit-scan](octahedral-fold-aware-clock-length-orbit-scan.md) lifts the sampled result to all six receiver labels and finds a matched positive orbit with weakest sampled margin $\approx2.858541947085$. [octahedral-fold-aware-clock-length-orbit-symmetry-reduction](octahedral-fold-aware-clock-length-orbit-symmetry-reduction.md) then stages the signed-cyclic reduction, [octahedral-fold-aware-clock-length-chart-closure-proof](octahedral-fold-aware-clock-length-chart-closure-proof.md) proves the scalar chart-closure identities that let one representative receiver interval row transport to the full receiver orbit, [octahedral-fold-aware-representative-profile-decomposition](octahedral-fold-aware-representative-profile-decomposition.md) proves the antipodal-partner row is pointwise null at the certified zero while adding the quarter-shift reduction $f_{\times}(u+H/4)=-f_{\times}(u)$, [octahedral-fold-aware-cross-binary-quarter-profile-certificate](octahedral-fold-aware-cross-binary-quarter-profile-certificate.md) proves the full-period primitive and clock rows are determined by one quarter-profile through $A([0,H])=A([0,Q])\cup(C-A([0,Q]))$, $\overline A=C/2$, and $\nu^{\mathrm{clk}}_{\min,\max}=L/H\mp D_{\times}$.
+
+[octahedral-fold-aware-cross-binary-source-atlas](octahedral-fold-aware-cross-binary-source-atlas.md) maps that quarter profile to two canonical $\kappa$ source classes with only the $\kappa=+1$ class folded, [octahedral-fold-aware-cross-binary-source-atlas-quarter-cell-reduction](octahedral-fold-aware-cross-binary-source-atlas-quarter-cell-reduction.md) fixes the source-atlas-aware formula for $f_\times$, $C_\times$, $m_Q$, and $M_Q$ on three regular quarter cells with root counts $[6,4,6]$, [octahedral-fold-aware-cross-binary-primitive-critical-atlas](octahedral-fold-aware-cross-binary-primitive-critical-atlas.md) reduces the sampled primitive-extrema search to two regular forcing zeros, two fold endpoint limits, and the two quarter endpoints, [octahedral-fold-aware-cross-binary-critical-value-atlas](octahedral-fold-aware-cross-binary-critical-value-atlas.md) evaluates those six candidates with transformed sampled quadrature, finding $C_{\times,\mathrm{samp}}\approx m_{Q,\mathrm{samp}}\approx-0.2680796825$ at $Q$ and $M_{Q,\mathrm{samp}}\approx0.001648085483$ at $u_1$, [octahedral-fold-aware-cross-binary-fold-square-limit-atlas](octahedral-fold-aware-cross-binary-fold-square-limit-atlas.md) derives the square-coordinate fold endpoint limits that make the folded-side transformed integrands finite, [octahedral-fold-aware-cross-binary-forcing-derivative-atlas](octahedral-fold-aware-cross-binary-forcing-derivative-atlas.md) derives the regular-cell implicit derivative formula and samples the two interior primitive-critical rows as nondegenerate negative-slope crossings, [octahedral-fold-aware-cross-binary-forcing-topology-atlas](octahedral-fold-aware-cross-binary-forcing-topology-atlas.md) recovers the sampled three-cell topology, [octahedral-fold-aware-cross-binary-forcing-sign-bracket-certificate](octahedral-fold-aware-cross-binary-forcing-sign-bracket-certificate.md) records explicit signed brackets and transversality witnesses, [octahedral-fold-aware-cross-binary-finite-candidate-reduction](octahedral-fold-aware-cross-binary-finite-candidate-reduction.md) converts the topology into a conditional finite-candidate theorem with value-margin budgets for $C_\times$, $m_Q$, and $M_Q$, [octahedral-fold-aware-cross-binary-forcing-sign-topology-margin-atlas](octahedral-fold-aware-cross-binary-forcing-sign-topology-margin-atlas.md) identifies the sampled sign/value bottleneck that interval enclosures must beat, [octahedral-fold-aware-cross-binary-forcing-interval-sign-enclosure-target-atlas](octahedral-fold-aware-cross-binary-forcing-interval-sign-enclosure-target-atlas.md) corrects the interval proof geometry by splitting the problem into regular $\theta$ subcells plus square-coordinate fold collars, [octahedral-fold-aware-cross-binary-fold-collar-sign-transport-certificate](octahedral-fold-aware-cross-binary-fold-collar-sign-transport-certificate.md) proves the local sign-transport theorem for the two singular collars, [octahedral-fold-aware-cross-binary-source-atlas-interval-implication](octahedral-fold-aware-cross-binary-source-atlas-interval-implication.md) states the full interval implication theorem, [octahedral-fold-aware-cross-binary-bridge-predicate-certificate](octahedral-fold-aware-cross-binary-bridge-predicate-certificate.md) proves the regular bridge propagation lemma and attaches sampled witness rows to the three exposed $I_2$ bridge predicates, [octahedral-fold-aware-cross-binary-interval-bridge-predicate-reduction](octahedral-fold-aware-cross-binary-interval-bridge-predicate-reduction.md) states the interval bridge-predicate reduction theorem with five endpoint forcing rows and two imported derivative-sign rows, [octahedral-fold-aware-cross-binary-finite-interval-closure-reduction](octahedral-fold-aware-cross-binary-finite-interval-closure-reduction.md) composes those bridge rows back into the source-atlas interval implication theorem, [octahedral-fold-aware-cross-binary-i1-forcing-bracket-interval-enclosure](octahedral-fold-aware-cross-binary-i1-forcing-bracket-interval-enclosure.md) certifies the current `I1.forcing-bracket` endpoint point signs under the no-fixed-speed-window speed envelope, [octahedral-fold-aware-cross-binary-i1-derivative-negative-speed-envelope-scan](octahedral-fold-aware-cross-binary-i1-derivative-negative-speed-envelope-scan.md) certifies a no-fixed-speed-window negative-derivative scan for `I1.derivative-negative.full-cell` on the compact regular `I1` core, [octahedral-fold-aware-cross-binary-i1-zero-isolation-speed-envelope-scan](octahedral-fold-aware-cross-binary-i1-zero-isolation-speed-envelope-scan.md) composes those rows into a sampled `I1.f1` simple-root branch, [octahedral-fold-aware-cross-binary-i1-bracket-derivative-mesh-barrier](octahedral-fold-aware-cross-binary-i1-bracket-derivative-mesh-barrier.md) adds a bracket-local derivative mesh barrier on that same branch, [octahedral-fold-aware-cross-binary-i1-bracket-local-zero-isolation-mesh-composition](octahedral-fold-aware-cross-binary-i1-bracket-local-zero-isolation-mesh-composition.md) composes endpoint signs, sampled branch location, and the bracket-local derivative barrier into a bracket-local zero-isolation mesh composition, [octahedral-fold-aware-cross-binary-i1-local-zero-isolation-burden-reduction](octahedral-fold-aware-cross-binary-i1-local-zero-isolation-burden-reduction.md) proves that the direct local zero-isolation derivative successor can be bracket-local rather than full-cell, [octahedral-fold-aware-cross-binary-i1-bracket-local-derivative-variation-certificate](octahedral-fold-aware-cross-binary-i1-bracket-local-derivative-variation-certificate.md) tests the predecessor derivative allowance against mixed theta/speed stencil variation on all bracket mesh cells, and [octahedral-fold-aware-cross-binary-i1-bracket-local-derivative-peak-budget-reduction](octahedral-fold-aware-cross-binary-i1-bracket-local-derivative-peak-budget-reduction.md) converts the remaining unsampled-peak burden into $2048$ finite subcell inequalities with a bilinear pure-curvature sufficient condition. The theorem uses $G(y)=2y f_\times(\theta_f+\tau y^2)$ and $D(y)=\tau(yG_y-G)$, giving $f_\times=G/(2y)$ and $f'_\times=D/(4y^3)$; sampled finite-collar rows certify the expected signs on $\theta_{3-}^{-}$ and $\theta_{2+}^{+}$. The implication packet exposes three bridge predicates needed before interval topology can truly imply critical exhaustion: positivity immediately after $\theta_{3-}$, positivity across the $I_2$ turn bridge, and negativity immediately before $\theta_{2+}$. The bridge-predicate packet closes those predicates at the sampled and monotone-transport level by proving that endpoint signs plus derivative-sign control transport positivity or negativity across the regular bridges; the interval bridge-predicate reduction then makes those proof obligations finite by assigning inherited endpoint and derivative radius budgets, with `I2.turn-bridge-forcing-positive` as the weakest bridge row. The finite closure reduction removes the bridge predicates as primitive assumptions, keeps all five bridge endpoint rows separate, imports the two derivative rows as existing regular-subcell obligations, and reduces the remaining representative interval proof to thirty-three finite row families with `I1.forcing-bracket` still the global radius bottleneck. The I1 forcing-bracket certificate gives sign-definite envelopes for the two bottleneck endpoints with maximum radius $\approx6.35\times10^{-7}$, far below the imported target radius $0.000236179200694$; the derivative scan preserves six roots across the same speed-ratio enclosure and has weakest sampled derivative envelope upper endpoint $\approx-0.0199795715084$; the zero-isolation scan tracks the sampled `I1.f1` root branch in $0.129617801662\le\theta\le0.129631781031$ with derivative-at-root envelope $[-0.0903237258617,-0.0902959668558]$; the bracket mesh barrier keeps the local stencil derivative upper barrier below $\approx-0.0603824889362$ on $[0.124678831905,0.145456970556]\times[3.02156,3.02157]$; the bracket-local zero-isolation mesh composition then turns endpoint signs plus that derivative barrier into existence and at-most-one-zero under the sampled/stencil contract, with root clearances $0.004938969757$ from $a_1$ and $0.015825189525$ from $b_1$; the burden reduction shrinks the direct theorem-grade local-zero derivative domain to the bracket, $1/48$ of the compact `I1` scan interval; the derivative-variation certificate checks $3200$ mixed-stencil samples with observed derivative maximum $\approx-0.060388174983$, variation-to-allowance ratio $\approx0.997283174962$, and minimum allowance slack $\approx3.78761869309\times10^{-6}$; the peak-budget reduction refines this into $2048$ finite subcell inequalities with $10368$ derivative samples, no sampled refined excess over parent vertices, bottleneck overshoot ceiling $\approx3.78761869309\times10^{-6}$, backend-ready rectangles, and a bilinear condition reducing each row to pure second-partial bounds; the sampled curvature probe then passes all $2048$ rows with worst bilinear remainder ratio $\approx0.0632306995182$; the sampled root-tube probe also passes all $2048$ rows with minimum $|F_\delta|\approx0.686789509138$, minimum positive $\delta\approx1.28454542829$, and minimum adjacent-tube separation $\approx1.28117968261$; the finite root-tube target emits $12288$ protected tube targets and $20480$ complement-slab targets with minimum tube padding radius $\approx0.108489314201$ and minimum complement width $\approx0.325467942606$; the sampled finite root-tube sign-margin certificate then checks $110592$ endpoint sign pairs, $331776$ protected-tube $F_\delta$ samples, and $1658880$ complement $F$ samples, with endpoint/complement $|F|$ floor $\approx0.243939101042$, endpoint sign-product floor $\approx0.0781604324357$, and protected-tube $|F_\delta|$ floor $\approx0.530629746881$. The peak-budget packet now certifies the source-root partition with directed-rounded interval arithmetic, contracts the root sheets, and closes the finite bracket-local derivative-variation row by directed-rounded theta-localized Taylor intervalization. The theta3minus fold-pair side now also has directed-rounded first-y constant-through-twentieth-order coefficient interval rows, ending with certified $Q_{G,20}\in[-16890597222.4,16939304773.1]$ and $Q_{D,20}\in[-355725400235,354702541670]$ twentieth-order coefficient hulls. The critical-exhaustion integration packet consumes the bracket proof and reduces the remaining `I1` regular-cell burden to two complement sign-exclusion rows, while interval critical exhaustion, interval quadrature, and retained branch status remain open. The remaining representative interval target is to replace the rest of the finite row families with outward-rounded point, regular-subcell, bridge, fold-collar finite root-tail tube plus post-seed tail, and quadrature enclosures on one shared source atlas. A retained successor therefore requires live retention rows for
+
+$$
+B\alpha=-\mathcal M^\nu(z_0).
+$$
+
+The same peak-budget packet now adds a machine-padded analytic source-root interval certificate and a directed-rounded no-padding source-root interval certificate on the emitted source-root partition: $12288$ endpoint sign-pair interval rows, $24576$ endpoint $F$ interval enclosures, $196608$ protected-tube $F_\delta$ interval rows, and $655360$ complement $F$ interval rows. Its machine-padded global floors are endpoint $|F^\#|\approx0.243939100042$, endpoint sign-product $\approx0.0780705608725$, protected-tube $|F_\delta^\#|\approx0.521855012428$, and complement $|F^\#|\approx0.23413485329$; the directed-rounded replay closes the same source-root partition without artificial padding. It also contracts all $12288$ emitted source-root sheets by fixed-sign $F_\delta$ monotone bisection, re-contracts them on $24576$ localized parameter tiles, and then executes the direct outward-rounded derivative formula over those localized contracted sheets, producing $393216$ source-derivative interval evaluations; all denominator signs remain controlled, but the parameter-localized direct hull is still too wide on every finite subcell. The closing route is the directed-rounded theta-localized Taylor intervalization: directed-rounded vertex derivative anchors and interval root-sheet pure-curvature jets prove $U_T^\#<m_Q+\epsilon_Q^{\max}$ on every emitted tile. The worst directed-rounded interval/Taylor ratio is $\approx0.0164397437213$, the minimum headroom is $\approx3.72535118309\times10^{-6}$, and the bottleneck is `I1.f1.bracket-derivative-mesh.0.7.peak-budget.3.1`. This closes the bracket-local derivative-variation row for the finite peak-budget packet while full `I1.f1` interval zero isolation, interval critical exhaustion, interval quadrature, and retained branch status remain open.
+
+Historical H39 and regular-root successor updates are preserved in [work-log.md](work-log.md#2026-07-02-immediate-next-packet-successor-update-chain). Compact live target: `theta_3minus.left-fold-collar-directed-rounded-normal-form-remainder-required`, narrowed to the continuous thirty-ninth-order fold-pair $G,D$ quotient-tail bound before full `I1` complement sign composition, `I1` regular critical-exhaustion composition, interval quadrature, global sign topology composition, and retained branch status.
+
+The affine force-mean derivative in [octahedral-affine-force-mean-derivative](octahedral-affine-force-mean-derivative.md) now closes the first-order range question for the frozen six-row speed-ODE mean. It defines
+
+$$
+B_{iA}
+=
+\frac{d}{d\epsilon}M_i(\epsilon;E_A)\bigg|_{\epsilon=0},
+$$
+
+and the emitted diagnostic proves
+
+$$
+-M(0)\in\operatorname{Range}(B).
+$$
+
+At the diagnostic resolution, the frozen mean and trace column are
+
+$$
+M(0)\approx1.157406692931\,\mathbf1_6,
+\qquad
+B_{\mathrm{trace}}\approx-0.356476675534\,\mathbf1_6,
+$$
+
+so the trace affine direction alone supplies
+
+$$
+\alpha_{\mathrm{trace}}\approx3.24679501458,
+\qquad
+\|B_{\mathrm{trace}}\alpha_{\mathrm{trace}}+M(0)\|_2\approx9.4\times10^{-11}.
+$$
+
+The partner subrow under trace scaling is now isolated by [octahedral-trace-affine-zero-mean-obstruction](octahedral-trace-affine-zero-mean-obstruction.md). Under uniform trace scaling $Y_s=sY$, the antipodal partner root solves
+
+$$
+2s\cos\frac{y_s}{2}-y_s=0,
+\qquad
+0<y_s<\pi,
+$$
+
+and the partner mean is
+
+$$
+m_{\mathrm{partner}}(s)
+=
+\frac{s^2\sin y_s}
+{y_s^3(1+s\sin(y_s/2))}
+>0
+\qquad
+(s>0).
+$$
+
+At the linear trace-predicted zero scale $s_{\mathrm{lin}}\approx4.24679501458$, the exact nonlinear partner period integral remains
+
+$$
+2\pi m_{\mathrm{partner}}(s_{\mathrm{lin}})
+\approx
+0.784035393542.
+$$
+
+That partner-row positivity does not decide the total trace-scaled force mean. The finite positive diagonal row is now classified by [octahedral-diagonal-affine-zero-mean-solver](octahedral-diagonal-affine-zero-mean-solver.md). In the positive diagonal affine family $A=\operatorname{diag}(s_1,s_2,s_3)$, the coarse $37/240$ solver finds a uniform trace-subfamily cancellation
+
+$$
+s_1=s_2=s_3
+\approx
+1.694464950788
+$$
+
+with
+
+$$
+\|M(s)\|_\infty
+\approx
+3.48\times10^{-10},
+\qquad
+\|M(s)\|_2
+\approx
+8.53\times10^{-10}.
+$$
+
+The sampled root ledger at the coarse candidate has no root failures and
+
+$$
+|J|_{\min}\approx0.028443650837.
+$$
+
+Fixed-candidate reruns reject that row as a certified finite trace zero:
+
+$$
+\|M(s)\|_{\infty}
+\approx
+0.851344912333
+\quad
+(73/480),
+\qquad
+\|M(s)\|_{\infty}
+\approx
+1.040328440834
+\quad
+(149/960).
+$$
+
+The physical unit-tangent speed primitive row was previously evaluated against the diagnostic window $[0.5,1.5]$. That window is not a theory constraint. At the coarse cancellation point, the conditional diagnostic values are
+
+$$
+A_{\max}-A_{\min}
+\approx
+1.041664058515,
+\qquad
+\Delta\nu_0
+\approx
+-0.041664058515,
+$$
+
+and the clock-length initial speed is
+
+$$
+\nu_{0,\mathrm{clock}}
+\approx
+2.175577762206.
+$$
+
+[octahedral-bounded-speed-successor-closure-row](octahedral-bounded-speed-successor-closure-row.md) now records the underlying average-speed lemma as conditional. Any branch that declares a speed window
+
+$$
+\nu_-\le \nu_i(u)\le \nu_+,
+\qquad
+\int_0^H\nu_i(u)\,du=L_i
+$$
+
+must satisfy
+
+$$
+\nu_-
+\le
+\frac{L_i}{H}
+\le
+\nu_+.
+$$
+
+For the uniform trace carrier at fixed period,
+
+$$
+\frac{L_i}{H}=s_*,
+$$
+
+so it fails the diagnostic window by
+
+$$
+s_*-\nu_+
+\approx
+0.194464950788.
+$$
+
+This is no longer treated as a trace-route rejection. The speed-unconstrained period follow-on [octahedral-period-rescaled-trace-scan](octahedral-period-rescaled-trace-scan.md) instead studies
+
+$$
+Y_i(u)=s\,p_i(u/h),
+\qquad
+v=\frac{s}{h},
+$$
+
+with no fixed speed window. On a fixed simple-root sheet,
+
+$$
+\boxed{
+\mathcal M_i^\nu(s,h)
+=
+\frac{1}{h}C_i(s/h).
+}
+$$
+
+The sampled simple-root rows remain positive through $v=1.7$:
+
+$$
+\boxed{
+\min_i\mathcal M_i^\nu
+\approx
+0.789308084676
+\qquad
+(v=1.7),
+}
+$$
+
+and the first sampled one-root ledger failure appears at $v=1.75$. The successor fold chart proves that this sampled failure is a grid witness of the $\kappa=+1$ cross-binary saddle-node onset
+
+$$
+v_c\approx1.704939069887.
+$$
+
+The fold-aware successor then reduces the symmetric cross-binary contribution to zero and finds the antipodal-partner all-root zero bracket
+
+$$
+\boxed{
+v_0\approx3.021564740248.
+}
+$$
+
+The sign-certificate successor proves that the bracket
+
+$$
+\boxed{
+3.02156\le v\le3.02157
+}
+$$
+
+stays on a regular three-root partner sheet, changes the sign of $P_{\mathrm{all}}(v)$, and has
+
+$$
+\frac{dP_{\mathrm{all}}}{dv}(v_0)
+\approx
+7.202077954503>0.
+$$
+
+Because the period-rescaled mean obeys $\mathcal M_i^\nu(s,h)=(1/h)C_i(s/h)$, this zero fixes the projective ray
+
+$$
+\boxed{
+s=v_0h,
+\qquad
+h>0,
+}
+$$
+
+not an absolute clock period.
+
+The dynamics handoff then evaluates a regular all-root pointwise witness at $h=1$, $s=v_0$, receiver $1+$, and $\theta=\pi/4$:
+
+$$
+\boxed{
+T_{1+}\cdot F_{\mathrm{tot}}^{\mathrm{fold}}(\pi/4)
+\approx
+-0.168424847206.
+}
+$$
+
+The partner all-root contribution cancels at the witness, while the cross-binary contribution does not. Therefore the trace route is not rejected by the removed diagnostic speed window, but it is also not a retained fixed-speed trace branch. It is narrowed to sampled simple-root positivity, an analytic root-fold boundary, a sign-certified simple fold-aware multi-root zero bracket, a fixed-speed pointwise obstruction, a conditional bounded-speed center-time primitive, an exact clock/length criterion, a sampled positive clock/length profile, a matched sampled receiver-orbit profile, a certified scalar receiver-orbit chart closure, a representative partner pointwise null row, a cross-binary quarter-shift period-mean row, a sampled cross-binary quarter-profile positive clock check, a cross-binary source/fold atlas, a source-atlas-aware quarter-cell formula reduction, a sampled primitive-critical atlas, a sampled critical-value atlas, a sampled fold-square limit atlas, a sampled forcing-derivative atlas, a sampled forcing-topology atlas, a sampled forcing sign-bracket certificate, a conditional finite-candidate reduction with explicit margin budgets, a forcing sign-topology margin atlas that identifies the current sampled interval-proof bottleneck, and an interval sign-enclosure target atlas that splits the proof into regular subcells plus square-coordinate fold collars. The compact current status is:
+
+$$
+\texttt{candidate-affine-zero-mean-range-obstruction-removed;}
+$$
+
+$$
+\texttt{sampled-finite-trace-affine-zero-mean-candidate-resolution-unstable;}
+$$
+
+$$
+\texttt{declared-speed-window-clock-diagnostic-failed;}
+$$
+
+$$
+\texttt{analytic-cross-binary-fold-onset-charted;}
+$$
+
+$$
+\texttt{sign-certified-fold-aware-multiroot-period-integral-zero-bracket;}
+$$
+
+$$
+\texttt{fixed-speed-pointwise-tangent-obstructed-bounded-speed-primitive-handoff;}
+$$
+
+$$
+\texttt{conditional-center-time-speed-primitive-existence-clock-length-open;}
+$$
+
+$$
+\texttt{fold-aware-clock-length-criterion-derived-clock-return-open;}
+$$
+
+$$
+\texttt{sampled-fold-aware-clock-length-positive-profile;}
+$$
+
+$$
+\texttt{sampled-fold-aware-clock-length-receiver-orbit-positive-profile;}
+$$
+
+$$
+\texttt{sampled-fold-aware-clock-length-receiver-orbit-equivariance-reduction-staged;}
+$$
+
+$$
+\texttt{fold-aware-clock-length-receiver-orbit-chart-closure-certified;}
+$$
+
+$$
+\texttt{fold-aware-representative-partner-null-decomposition-certified;}
+$$
+
+$$
+\texttt{sampled-cross-binary-quarter-profile-positive-clock-check;}
+$$
+
+$$
+\texttt{cross-binary-quarter-source-fold-atlas-certified;}
+$$
+
+$$
+\texttt{source-atlas-aware-cross-binary-quarter-profile-formula-quarter-cell-reduction-certified;}
+$$
+
+$$
+\texttt{sampled-source-atlas-aware-primitive-critical-atlas-certified;}
+$$
+
+$$
+\texttt{sampled-source-atlas-aware-critical-value-atlas-certified;}
+$$
+
+$$
+\texttt{sampled-source-atlas-aware-fold-square-limit-atlas-certified;}
+$$
+
+$$
+\texttt{sampled-source-atlas-aware-forcing-derivative-atlas-certified;}
+$$
+
+$$
+\texttt{sampled-source-atlas-aware-forcing-topology-atlas-certified;}
+$$
+
+$$
+\texttt{sampled-source-atlas-aware-forcing-sign-bracket-certificate-certified;}
+$$
+
+$$
+\texttt{sampled-source-atlas-aware-finite-candidate-reduction-certified;}
+$$
+
+$$
+\texttt{sampled-source-atlas-aware-forcing-sign-topology-margin-atlas-certified;}
+$$
+
+$$
+\texttt{source-atlas-aware-forcing-interval-sign-enclosure-target-atlas-staged;}
+$$
+
+$$
+\texttt{sampled-source-atlas-aware-fold-collar-sign-transport-certified;}
+$$
+
+$$
+\texttt{source-atlas-aware-interval-implication-theorem-stated;}
+$$
+
+$$
+\texttt{sampled-source-atlas-aware-bridge-predicate-certificate-certified;}
+$$
+
+$$
+\texttt{source-atlas-aware-interval-bridge-predicate-reduction-stated;}
+$$
+
+$$
+\texttt{source-atlas-aware-finite-interval-closure-reduction-stated;}
+$$
+
+$$
+\texttt{source-atlas-aware-i1-forcing-bracket-speed-envelope-certified;}
+$$
+
+$$
+\texttt{source-atlas-aware-i1-derivative-negative-speed-envelope-scan-certified;}
+$$
+
+$$
+\texttt{source-atlas-aware-i1-f1-zero-isolation-speed-envelope-scan-certified;}
+$$
+
+$$
+\texttt{source-atlas-aware-i1-f1-bracket-derivative-mesh-barrier-certified;}
+$$
+
+$$
+\texttt{source-atlas-aware-i1-f1-bracket-local-zero-isolation-mesh-composition-certified;}
+$$
+
+$$
+\texttt{source-atlas-aware-i1-f1-local-zero-isolation-burden-reduction-certified;}
+$$
+
+$$
+\texttt{source-atlas-aware-i1-f1-bracket-local-derivative-variation-stencil-certificate-certified;}
+$$
+
+$$
+\texttt{source-atlas-aware-i1-f1-bracket-local-directed-rounded-taylor-derivative-variation-certified;}
+$$
+
+$$
+\texttt{source-atlas-aware-i1-f1-full-interval-zero-isolation-composition-certified;}
+$$
+
+$$
+\texttt{source-atlas-aware-i1-f1-critical-exhaustion-integration-certified;}
+$$
+
+$$
+\texttt{sampled-source-atlas-aware-i1-complement-sign-exclusion-scan-certified;}
+$$
+
+$$
+\texttt{source-atlas-aware-i1-compact-complement-directed-rounded-interval-enclosures-certified;}
+$$
+
+$$
+\texttt{sampled-speed-dependent-theta3minus-fold-normal-form-certified;}
+$$
+
+$$
+\texttt{directed-rounded-theta3minus-fold-limit-interval-certified;}
+$$
+
+$$
+\texttt{sampled-theta3minus-remainder-budget-feasibility-certified;}
+$$
+
+$$
+\texttt{receiver-normal-zero-bracket-restart-required;}
+$$
+
+$$
+\texttt{sampled-theta3minus-regular-root-stencil-certified;}
+$$
+
+$$
+\texttt{receiver-normal-zero-bracket-restart-required;}
+$$
+
+$$
+\texttt{directed-rounded-theta3minus-fold-pair-scaled-root-tube-cell-cover-certified;}
+$$
+
+$$
+\texttt{directed-rounded-theta3minus-fold-pair-h-graph-positive-y-GD-quotient-cell-cover-certified;}
+$$
+
+$$
+\texttt{sampled-theta3minus-fold-pair-first-y-GD-jet-cancellation-witness-certified;}
+$$
+
+$$
+\texttt{directed-rounded-theta3minus-fold-pair-first-y-GD-constant-coefficient-interval-certified;}
+$$
+
+$$
+\texttt{directed-rounded-theta3minus-fold-pair-first-y-GD-linear-jet-coefficient-interval-certified;}
+$$
+
+$$
+\texttt{directed-rounded-theta3minus-fold-pair-first-y-GD-quadratic-jet-coefficient-interval-certified;}
+$$
+
+$$
+\texttt{directed-rounded-theta3minus-fold-pair-first-y-GD-cubic-jet-coefficient-interval-certified;}
+$$
+
+$$
+\texttt{directed-rounded-theta3minus-fold-pair-first-y-GD-quartic-jet-coefficient-interval-certified;}
+$$
+
+$$
+\texttt{directed-rounded-theta3minus-fold-pair-first-y-GD-quintic-jet-coefficient-interval-certified;}
+$$
+
+$$
+\texttt{directed-rounded-theta3minus-fold-pair-first-y-GD-sextic-jet-coefficient-interval-certified;}
+$$
+
+$$
+\texttt{directed-rounded-theta3minus-fold-pair-first-y-GD-septic-jet-coefficient-interval-certified;}
+$$
+
+$$
+\texttt{directed-rounded-theta3minus-fold-pair-first-y-GD-octic-jet-coefficient-interval-certified;}
+$$
+
+$$
+\texttt{directed-rounded-theta3minus-fold-pair-first-y-GD-nonic-jet-coefficient-interval-certified;}
+$$
+
+$$
+\texttt{directed-rounded-theta3minus-fold-pair-first-y-GD-decic-jet-coefficient-interval-certified;}
+$$
+
+$$
+\texttt{directed-rounded-theta3minus-fold-pair-first-y-GD-undecic-jet-coefficient-interval-certified;}
+$$
+
+$$
+\texttt{directed-rounded-theta3minus-fold-pair-first-y-GD-duodecic-jet-coefficient-interval-certified;}
+$$
+
+$$
+\texttt{directed-rounded-theta3minus-fold-pair-first-y-GD-tridecic-jet-coefficient-interval-certified;}
+$$
+
+$$
+\texttt{directed-rounded-theta3minus-fold-pair-first-y-GD-fourteenth-order-jet-coefficient-interval-certified;}
+$$
+
+$$
+\texttt{directed-rounded-theta3minus-fold-pair-first-y-GD-fifteenth-order-jet-coefficient-interval-certified;}
+$$
+
+$$
+\texttt{directed-rounded-theta3minus-fold-pair-first-y-GD-sixteenth-order-jet-coefficient-interval-certified;}
+$$
+
+$$
+\texttt{directed-rounded-theta3minus-fold-pair-first-y-GD-seventeenth-order-jet-coefficient-interval-certified;}
+$$
+
+$$
+\texttt{directed-rounded-theta3minus-fold-pair-first-y-GD-eighteenth-order-jet-coefficient-interval-certified;}
+$$
+
+$$
+\texttt{directed-rounded-theta3minus-fold-pair-first-y-GD-nineteenth-order-jet-coefficient-interval-certified;}
+$$
+
+$$
+\texttt{directed-rounded-theta3minus-fold-pair-first-y-GD-twentieth-order-jet-coefficient-interval-certified;}
+$$
+
+$$
+\texttt{zero-safe-theta3minus-fold-pair-first-y-GD-twenty-first-order-shifted-tail-cancellation-certified;}
+$$
+
+$$
+\texttt{directed-rounded-theta3minus-fold-pair-first-y-GD-twenty-first-order-root-tail-seed-certified;}
+$$
+
+$$
+\texttt{directed-rounded-theta3minus-fold-pair-first-y-GD-finite-E-root-tail-tube-obstruction-certified;}
+$$
+
+$$
+\texttt{directed-rounded-theta3minus-fold-pair-first-y-GD-twenty-second-order-post-seed-coefficient-certified;}
+$$
+
+$$
+\texttt{directed-rounded-theta3minus-fold-pair-first-y-GD-finite-shift25-E-root-tail-tube-certified;}
+$$
+
+$$
+\texttt{directed-rounded-theta3minus-fold-pair-first-y-positive-GD-quotient-subcells-certified;}
+$$
+
+$$
+\texttt{directed-rounded-theta3minus-fold-pair-first-y-GD-twenty-third-order-u-seed-coefficient-certified;}
+$$
+
+$$
+\texttt{directed-rounded-theta3minus-fold-pair-first-y-GD-finite-shift27-U-root-tail-tube-certified;}
+$$
+
+$$
+\texttt{directed-rounded-theta3minus-fold-pair-first-y-GD-twenty-fourth-order-post-U-coefficient-certified;}
+$$
+
+$$
+\texttt{directed-rounded-theta3minus-fold-pair-first-y-GD-twenty-fifth-order-post-U-successor-coefficient-certified;}
+$$
+
+$$
+\texttt{directed-rounded-theta3minus-fold-pair-first-y-GD-finite-shift29-successor-root-tail-tube-certified;}
+$$
+
+$$
+\texttt{rigorous-obstruction-theta3minus-fold-pair-first-y-GD-C1-twenty-sixth-order-tail-bound-open;}
+$$
+
+$$
+\texttt{directed-rounded-theta3minus-fold-pair-first-y-GD-twenty-sixth-order-post-U-successor-coefficient-certified;}
+$$
+
+$$
+\texttt{directed-rounded-theta3minus-fold-pair-first-y-GD-finite-shift31-next-successor-root-tail-tube-certified;}
+$$
+
+$$
+\texttt{rigorous-obstruction-theta3minus-fold-pair-first-y-GD-C1-twenty-seventh-order-tail-bound-open;}
+$$
+
+$$
+\texttt{directed-rounded-sampled-node-theta3minus-regular-root-interval-certified;}
+$$
+
+$$
+\texttt{directed-rounded-theta3minus-regular-root-cell-cover-certified;}
+$$
+
+$$
+\texttt{directed-rounded-theta3minus-regular-root-complement-slab-exclusion-certified;}
+$$
+
+$$
+\texttt{retention=not\_retained}.
+$$
+
+The current H39 closure sprint has converted the full-cover shifted
+$R_{\varepsilon,43}$ obstruction from a raw prefix-size problem into a
+certified affine-center replay problem. The evaluator now carries an
+`R43_affine_center_form_candidate` that preserves the center solve
+$X_c=-C_0/S_0$, zeroes only the certified leading affine coefficient, and
+keeps independent Schur products out of the finite-prefix bound. After the
+numeric-center replay correction, all $256$ live h38 branch rows certify that
+leading affine zero. The remaining geometry-bridge task is now sharper: the
+dominant finite-prefix row is shifted index $1$ at $y$-order $44$, so the
+evaluator can form an affine-center shifted source profile, leave it diagnostic
+without a shifted outer Cauchy pair, and attach a shift-power-zero tail only
+when that outer pair is supplied on the same domain. The second-$X$
+contribution is recorded separately as the $y^{41}K_\varepsilon$ remainder and
+is not included in $E_R,M_R$ until its own graph-centered data are certified.
+The next proof burden is therefore a directed-rounded same-domain
+affine-center shifted outer bound for the shifted-index-$1$ replay coefficient
+and its tail, plus the separate second-$X$ remainder, not another reducer
+interface or fixed speed-band assumption.
+The h-row sensitivity route is no longer only an interpretation: the evaluator
+now has an executable candidate-only h-row diagnostic that re-solves the center
+after selected midpoint families and top-h-row freezes. It leaves the live
+closure claims open, but it turns the next sprint into a precise predecessor
+h-row transport/subdivision proof problem instead of another blind prefix
+search.
+The latest transport diagnostic advances that proof problem again: the live
+producer image is better described by a quadratic h-row graph over the fold
+coordinate $\xi$ than by an affine graph plus large independent residual
+directions. The obstruction is therefore partly a bounding-coordinate artifact
+introduced when the H38 recurrence image is exported as an independent h-row
+box. H39 closure still needs directed-rounded producer-image enclosure, but the
+candidate target has narrowed from "cover many independent h intervals" to
+"certify a low-degree graph image plus a small residual."
+The latest H39 source-level diagnostic narrows the remaining live row further.
+For shifted index $1$ at $y$-order $44$, the signed source coefficient is
+affine-dominated in the normalized $h_{38}$ residual coordinate $u$. Replaying
+the fitted affine zero
+$u=-2.685640606399229\times10^{-8}$ gives pressure
+$2.1816241500000004\times10^{7}$ on the live comparison row, a
+$5.732628765586405\times10^{12}$ reduction from the sampled full
+$u$-domain maximum. Zero-centered interval replays expose the next exact
+blocker: the allowed $u$ half-width for the center-sample pressure scale is
+$2.6856241561571736\times10^{-8}$, but the current interval replay amplifies
+nonzero zero-centered targets by a stable factor of about $8.5068$. The next
+certificate route is therefore not another raw prefix search; it is a
+directed-rounded H38 producer-image certificate that preserves this signed
+affine $h_{38}$ relation, or a covariance-preserving H39 source replay that
+removes the $8.5068\times$ interval amplification before the shifted
+$R_{\varepsilon,43}$ bound is promoted. A follow-on replay divides the
+zero-centered half-widths by the observed amplification and brings the nonzero
+reference ladder to maximum over-target ratio $1.0000057252904435$. That is
+still candidate-only, but it shows the remaining gap is now a small directed
+slack/covariance proof rather than another large pressure wall. A bisection
+safety search now tightens this to an executable candidate divisor:
+$8.507854082824874$, only $1.0001255923907613$ times the observed maximum
+amplification. The existing center-eliminated affine-row replay does not solve
+the problem; it inflates to maximum over-target ratio
+$1.3394690276662064\times10^{24}$. The next proof target is therefore a
+same-domain signed-affine H38 producer-image certificate with this safety
+divisor, or a stronger covariance-preserving replay that avoids the divisor.
+The current H39/y44 product-segment replay has now ruled out a denominator
+partition escape hatch for the live $3.209141465121827\times$ obstruction. On
+the controlling `speed.4.first-y` product segment, the finite direct normal
+form and paired split-stream replay are already inside target by factors
+$1.539303896293056\times10^{-7}$ and
+$3.246194829834325\times10^{-7}$, respectively. The open H38-coordinate
+residual is sign-stable and center-dominated, with center-to-target ratio
+$3.2089269678139676$ and radius-to-target ratio
+$2.14497307859442\times10^{-4}$. Closing it by denominator partition alone
+would require product denominator lower bound $2.540989484562941$, but the
+segment can supply at most $0.9213641081237944$. The closure target has
+therefore moved from product-target tuning to a same-domain source-provider
+alignment proof that removes the source/direct-graph offset before the
+product-quotient Cauchy bound is applied.
+The source/direct-graph offset has now been checked against the finite direct
+quartic, not only the cubic graph. Adding the finite direct residual to the
+cubic graph changes the controlling `speed.4.first-y` segment only from
+$3.209141465121827$ to $3.209141346609569$ times target. The direct-quartic
+offset remains positive and center-dominated, with center-to-target ratio
+$3.2089268315926427$, radius-to-target ratio
+$2.1451501692603826\times10^{-4}$, and radius-to-center ratio
+$6.684945721232633\times10^{-5}$. This rules out the cubic-vs-quartic graph
+split as the source of the obstruction. The remaining proof object is the
+alignment of the H38-coordinate source provider itself with the finite direct
+quartic, or a replacement source coordinate that makes that alignment
+executable before product-quotient bounding.
+The full residual-vector source replay now rules out the most direct
+replacement-coordinate hypothesis. It fits all $39$ h-row residual midpoints
+over the five producer samples as quartic functions of the shared fold
+coordinate $\xi$, then replays
+$h_i(\xi)=q_i(\xi)+r_i(\xi)$ through the same H38 recurrence source. This does
+not compress the live offset: the full residual-vector source/direct-quartic
+ratio is $3.2093016611215166$ on the same controlling `speed.4.first-y`
+segment $1$, with center-to-target ratio $3.2087291668088085$ and
+radius-to-target ratio $5.724943127080209\times10^{-4}$ on that segment. The
+full-vector/H38-coordinate offset ratio is $1.0000499555783409$. Therefore the
+blocker is not caused by freezing non-H38 residual centers. The next route must
+explain a structural source/direct-quartic normal-form mismatch, including the
+source-term cancellation itself or the solve/divisor normalization, before
+absolute product-quotient bounds are applied. On the controlling segment, the
+full-vector source midpoint decomposes by target units as
+$13.647625870103923$ from $\delta^2/\nu^2$, $-40.20025094519486$ from
+$\sin\phi$, and $22.53423789439216$ from $\sin\delta$, so the exposed
+cancellation structure is now available for the next normal-form check.
+The source-pair normal-form check has now turned that exposed cancellation into
+an executable no-go for denominator repair. The signed pair
+$(\delta^2/\nu^2-2)+(\sin\phi+\sin\delta)$ reproduces the full source on the
+controlling `speed.4.first-y` segment $1$ to relative gap
+$2.678798682741313\times10^{-15}$ and reproduces the full source/direct-quartic
+offset to relative gap $3.3543225839288712\times10^{-15}$. That offset remains
+$3.2091413466095795\times$ target and is about
+$2.0848003791439798\times10^7$ times the finite direct normal-form size. The
+full residual-vector denominator check points the same way: the source/direct
+alignment multiplier is positive, about $0.5560152884612777$, while the live
+product-denominator interval is negative,
+$[-0.9213641081237944,-0.7917972804188858]$; applying the recurrence sign
+$-N_{38}/S_{37}$ still leaves the controlling segment open at
+$2.866392226825057\times$ target. The next closure route must therefore attack
+the signed source-pair numerator normal form directly.
+That numerator target is now localized one layer further. The H39/y44
+diagnostic emits a source-pair/direct-graph normal-form profile in product
+target units. On the controlling `speed.4.first-y` segment $1$, the signed
+source pair is about $-4.0184\times$ target while the direct graph is about
+$-7.2271\times$ target, so their center-dominated difference is the open
+$3.209141465\times$ obstruction. The finite direct normal-form correction is
+only about $1.539\times10^{-7}\times$ target, and replacing the direct graph by
+the direct quartic changes the offset only to $3.209141346\times$ target. The
+remaining H39/y44 blocker is therefore not a finite direct-residual, solve
+normalization, residual-vector freezing, or absolute-envelope artifact. It is
+the signed source-pair/direct-graph alignment itself, and the next proof object
+should decompose that graph mismatch by source component or introduce a
+source-coordinate identity that makes the opposed pair cancellation exact
+before product-quotient bounding.
+The latest producer-coordinate replay sharpens that target. On the same live
+five-row comparison stencil, the H38 producer residual-coordinate interval
+hull is still the full $[-1,1]$, but the producer midpoint hull is essentially
+a point, from $7.233482551797858\times10^{-17}$ to
+$7.233537092376838\times10^{-17}$. The obstruction is therefore not midpoint
+wander of the H38 producer image. It is the conversion of that producer image
+into a full independent interval hull, plus the conservative centering of the
+strict signed-affine safety envelope. For the $10^{13}$ reference target, the
+safety interval is
+$[-3.6254601757076974\times10^{-8},-1.7458210370907605\times10^{-8}]$,
+which does not contain the producer midpoint hull; the current full interval
+hull would need a factor $1.0640340259522507\times10^8$ shrink for that
+reference-only ladder entry. Across the ladder the largest interval-hull shrink
+factor is $3.1675131164171565\times10^8$, while the midpoint-hull shrink factor
+is effectively zero. This changes the next proof object: first prove a
+covariance-preserving producer replay centered on the actual H38 image, then
+apply the signed-affine cancellation, rather than trying to certify the raw
+$[-1,1]$ residual-coordinate hull directly.
+The covariance-centered replay now tests that proof object directly. Centering
+the H39 replay on the actual H38 producer midpoint hull makes all five
+reference pressure targets pass at the center hull; the strictest center ratio
+is $0.33588014199994104$ of target. The full $[-1,1]$ residual-coordinate hull
+still does not pass, but the replay now brackets the missing local width
+instead of treating the midpoint image as failed. For the $10^{13}$ reference
+entry the midpoint hull itself closes, while the first failing positive-width
+bracket has width $1.4901161193847656\times10^{-8}$. Across the reference
+ladder the largest producer-centered safety divisor is
+$11184810.666666666$, with maximum target-closing replay ratio
+$0.9999998765629196$. A non-default deeper search on the strict $10^{13}$
+target resolves a positive collar:
+$6.242316885618493\times10^{-9}$ in residual-coordinate half-width, with
+target replay ratio $0.9999976728150662$ and final bracket width
+$2.2737367544323206\times10^{-13}$. This is a major narrowing: the next proof
+is no longer "find where the producer midpoint goes"; it is "certify a small
+positive residual-coordinate collar around the already localized H38 producer
+image."
+The collar target is now explicit in the executable diagnostic. For the live
+$32$-stencil, shifted-index-$1$, $10^{13}$ reference row, the producer-centered
+collar has half-width $6.242316885618493\times10^{-9}$ and total residual-
+coordinate width $1.2484633771237532\times10^{-8}$. All five producer
+midpoints lie inside that collar, while zero of the five full producer
+intervals do. The current residual-coordinate interval hull would have to
+compress by $1.6019692981364492\times10^8$ to fit, which corresponds to a
+linear subcell-refinement forecast of $5,126,301,755$ subcells from the current
+$32$-stencil. This rules out brute linear retile refinement as the practical
+closure route for this obstruction. The next certificate should instead prove
+the H38 producer image as a covariance-preserving analytic enclosure around the
+midpoint hull, then feed that collar into the H39 replay. The claim remains
+candidate-only: the diagnostic does not certify the shifted $R_{\varepsilon,43}$
+bound or directed-rounded H38 producer image.
+The collar target has also been pushed one recurrence layer earlier, to the
+H38 numerator before the solve $h_{38}=-N_{38}/S_{37}$. On the same live
+$10^{13}$ reference row, the raw numerator interval still needs compression by
+$1.601969298134485\times10^8$, matching the residual-coordinate interval-hull
+obstruction. A first midpoint-only reading suggested large graph headroom, but
+the live strict-row replay of the explicit route corrects that interpretation:
+the controlling sample is `speed.28.first-y`, where the quadratic
+$N_{38}(\xi)$ midpoint residual is $3.8568408881375\times10^{10}$ against a
+conservative numerator collar target of only $25.069761713185112$. The
+residual therefore exceeds target by $1.5384433774290903\times10^9$, and the
+raw numerator interval compression is $3.666994442389419\times10^{21}$. The
+$S_{37}$ lower bound is not the source of this failure: the lower-to-midpoint
+slope ratio on the controlling row is $0.9999999888951927$, and the midpoint-
+slope target fails by the same factor. The current obstruction is a local
+$N_{38}$ graph/coordinate residual near `speed.28.first-y`, not a collapsed
+division by $S_{37}$.
+The executable route is named inside the diagnostic as
+`h38_y44_n38_collar_enclosure_route`. It records the quadratic
+$N_{38}(\xi)$ coefficients, the controlling sample, the conservative numerator
+width target, the residual-to-target ratio, the raw-interval compression, and
+the directed-rounded proof obligation in one candidate object. Its current
+diagnosis is `n38-quadratic-midpoint-residual-collar-route-open`, with
+`s37_dependency_status` equal to
+`midpoint-slope-collar-also-fails-n38-graph-residual`. The claim boundary
+still keeps the $N_{38}$ graph enclosure, the dependency-preserving
+$S_{37}$ division, the producer collar, shifted $R_{\varepsilon,43}$,
+directed-rounded shared-domain status, continuous primitive status, and
+retained branch all open. This moves the H39 target from "prove the visible
+quadratic graph" to a sharper local problem: find a normal form, local
+partition, higher-degree graph, or exact factorization that reduces
+$|N_{38}(\xi)-q(\xi)|$ on the `speed.28.first-y` producer window before the
+H39 collar replay is attempted.
+
+The latest H39/y44 source-covariance diagnostic changes the perspective again.
+On the same `speed.28.first-y` row, the affine-zero replay in the normalized
+$h_{38}$ residual coordinate occurs at
+$u=-2.6856315562445987\times10^{-8}$ and gives source replay pressure
+$3.901789350700001\times10^7$. The signed source coefficient midpoint is
+$3.70293115625\times10^{10}$, but the absolute midpoint mass of
+`delta_squared_speed`, `sin_phi`, and `sin_delta` is
+$4.584378986495\times10^{16}$, so the live cancellation ratio is only
+$8.077279751866864\times10^{-7}$. The source-term reconstruction gap is
+$8.384450786732948\times10^{-13}$, and the strongest pair cancellation is the
+`sin_phi`/`sin_delta` pair with cancellation fraction
+$0.8121258516345928$. This means the next proof should not only squeeze the
+independent $N_{38}$ residual box. It should also certify the source-level
+covariance of the three signed H39/y44 terms before applying absolute Cauchy
+or interval majorants.
+The new collar replay makes this route finite. Around the same affine zero,
+the point collar has signed source pressure
+$3.3134759851000004\times10^7$ against term-triangle pressure
+$4.584390873462528\times10^{13}$, so the term triangle is
+$1.3835594083305758\times10^6$ times wider than the signed source interval.
+For the $10^{13}$ reference pressure, signed source intervals close through
+half-width $5\times10^{-9}$ and fail only by a factor
+$1.0638992053901588$ at half-width $10^{-8}$; the independent term triangle
+does not close even at the point collar. This identifies the next H39/y44
+certificate as a directed-rounded source-level covariance collar on the
+actual H38 producer image, not a deeper independent prefix or term-triangle
+majorant.
+
+The producer-image comparison now separates two different issues. The
+zero-centered affine collar does not contain the actual H38 producer midpoint
+hull: on the live row, the H38 producer midpoint hull is
+$[7.233482551797858,7.233537092376838]\times10^{-17}$ in the same residual
+coordinate, while the affine-zero coordinate is
+$-2.6856315562445987\times10^{-8}$. Therefore the good zero-centered source
+collar is not itself a producer-image certificate. Replaying the signed
+source covariance around the producer midpoint hull changes the route: the
+producer-centered point pressure is $3.3588014199994106\times10^{12}$, and
+producer-centered collars stay below the $10^{13}$ reference target through
+half-width $5\times10^{-9}$ but fail at half-width $10^{-8}$ with pressure
+$1.3997760410677502\times10^{13}$. The live obstruction is now a concrete
+directed-rounded producer-centered residual-coordinate collar certificate,
+not the old independent full-box H39/h38 pressure artifact.
+
+The safety-search version of the same replay sharpens the target. Using the
+full-hull candidate as the search ceiling, the $10^{13}$ reference target
+closes at producer-centered residual-coordinate half-width
+$6.242338716983796\times10^{-9}$ with replay ratio
+$0.9999999954450799$ and bisection bracket width
+$2.9802322372008686\times10^{-16}$. The $10^8$ and $10^{10}$ targets fail
+already at the producer midpoint hull, with center ratios
+$33588.014199994104$ and $335.8801419999411$, respectively. The closing
+collar still covers only the producer midpoint hull, not the full current
+$[-1,1]$ producer interval hull; the recorded interval-hull compression factor
+is $1.6019636955604696\times10^8$. This is the next true certificate target:
+prove a directed-rounded producer-image enclosure inside that measured local
+collar, or replace the full interval hull by a covariance-preserving local
+producer-coordinate proof.
+
+The collar has now been pulled one recurrence layer earlier through the
+existing $N_{38}$ graph route. The all-reference stress route still fails on
+the deliberately lower $10^8$ and $10^{10}$ pressure targets, so it remains
+diagnostic rather than a closure route. The positive-collar subroute isolates
+the real $10^{13}$ source-covariance target: it has one positive target, the
+quadratic $N_{38}(\xi)$ midpoint graph fits the measured collar, and the route
+diagnosis is
+`n38-quadratic-midpoint-residual-has-directed-rounded-collar-headroom`. On the
+live controlling sample `speed.28.first-y`, the midpoint residual is
+$3.8568408881375\times10^{10}$ against conservative numerator target
+$5.73862423531554\times10^{14}$, giving residual ratio
+$6.720845850826876\times10^{-5}$ and headroom
+$1.4879079541408742\times10^4$. The next blocker is therefore no longer a
+generic producer-image search. It is a directed-rounded certificate for this
+positive source-covariance N38 graph residual and dependency-preserving
+$S_{37}$ division on the same producer window, followed by the signed H39
+source replay.
+
+The latest executable degree sweep strengthens that route. On the same live
+row and positive source-covariance target, linear, quadratic, and cubic
+$N_{38}(\xi)$ graphs all have midpoint residual headroom against the measured
+collar. The linear graph has residual ratio
+$6.098345638556299\times10^{-5}$ and headroom
+$1.6397889842084067\times10^4$; the quadratic graph has residual ratio
+$6.720845850826876\times10^{-5}$ and headroom
+$1.4879079541408742\times10^4$; the cubic graph is best, with residual ratio
+$2.233649281651077\times10^{-5}$ and headroom
+$4.4769785848421845\times10^4$. The diagnostic therefore emits a candidate
+Taylor certificate target for a cubic positive-collar $N_{38}$ graph on
+$\xi\in[1.3748880220784354,2]$. The conservative numerator residual target is
+$5.738624107848429\times10^{14}$, the observed controlling midpoint residual
+is $1.28180741855625\times10^{10}$, and the required fourth-derivative upper
+bound for the parent window is $1.4431375279595438\times10^{18}$ against an
+observed residual-implied scale $3.223463245842429\times10^{13}$. The
+same artifact now runs a local sampled fourth-difference check on the positive
+collar stencil. The nonuniform fourth-derivative estimate is
+$6.115956847843226\times10^{14}$, only
+$4.237958426935647\times10^{-4}$ of the required bound, so the sampled live
+curvature supports the cubic target with roughly $2.36\times10^3$ headroom. An
+inflation-budget replay makes the remaining derivative certificate quantitative:
+every requested sampled-$M_4$ inflation factor through $2000$ still closes the
+conservative numerator target, and the computed failure threshold is
+$2359.6267335804732$. At $2000\times$ sampled $M_4$, the cubic Taylor remainder
+upper is $4.864010079374462\times10^{14}$, or
+$0.8475916853871295$ of the conservative target. The remaining claim is still
+candidate-only: closure now requires a directed-rounded same-domain proof that
+the true cubic remainder derivative stays below this inflation budget, plus
+dependency-preserving $S_{37}$ division on this same producer window before the
+signed H39 source replay can be promoted.
+
+The same artifact now runs the raw directed interval residual check that was
+missing from the route. On the live positive target, the selected cubic
+$q_3(\xi)$ midpoint graph still has residual ratio
+$2.233665171037203\times10^{-5}$ and headroom
+$4.4769467374362546\times10^4$, but the outward-rounded raw interval residual
+$N_{38}([\xi]) - q_3([\xi])$ has maximum absolute-upper ratio
+$8.00987545753348\times10^7$ against the same conservative numerator target.
+The controlling row is `speed.27.first-y`; its raw numerator interval width
+alone is $1.6019750913581634\times10^8$ times the target, and the recorded
+midpoint-to-directed-interval dependency-loss factor is
+$2.156733711521737\times10^{13}$. This confirms that the huge interval
+pressure is a bounding-coordinate artifact at this layer, not evidence that
+the local cubic $N_{38}$ residual is large. The proof route should not spend
+another pass trying to close the raw interval hull; it should certify the
+same-domain $q_3$ residual derivative or an equivalent dependency-preserving
+normal form before applying absolute Cauchy bounds.
+
+The next sprint converts that diagnosis into a sharper executable certificate
+target. Instead of using only the center-Taylor parent-window factor
+$(\Delta\xi)^4/24$, the diagnostic now scans four-node cubic Lagrange
+interpolants on the same five live positive-collar samples. The best candidate
+uses nodes `speed.27.first-y`, `speed.28.first-y`, `speed.30.first-y`, and
+`speed.31.first-y`, omitting the central `speed.29.first-y` sample. Its
+Lagrange product envelope on $\xi\in[1.3748880220784354,2]$ has maximum
+$2.886464445233012\times10^{-3}$ at the left endpoint, giving required
+fourth-derivative upper bound $4.771442762167798\times10^{18}$. This is
+$3.306321547371893$ times the previous parent-window Taylor requirement. The
+sampled nonuniform fourth-derivative estimate
+$6.115956847843226\times10^{14}$ is only
+$1.2817835511589747\times10^{-4}$ of the Lagrange requirement, so the
+sampled-$M_4$ inflation margin rises to $7801.629214977919$. The omitted
+sample residual is $2.492408362115625\times10^{10}$, still only
+$4.343246822549331\times10^{-5}$ of the conservative numerator target. This
+does not certify $N_{38}-q_3$, but it changes the next proof obligation from
+"prove an $M_4$ bound below $1.4431\times10^{18}$" to the less brittle
+same-domain Lagrange bound $M_4\le4.7714\times10^{18}$, before the
+dependency-preserving $S_{37}$ division and signed H39 replay.
+
+The latest source-level residual decomposition shows why the Lagrange proof
+should be recentered on the point expression rather than the row-hull
+midpoint. On the selected omitted sample `speed.29.first-y`, the direct
+interval-midpoint residual is $-2.492408362115625\times10^{10}$, while the
+replayed point-expression residual is
+$-1.313289726678125\times10^{10}$. The separate interval-center drift
+residual is $-1.1791186313234375\times10^{10}$, and the split replays the
+direct residual with relative gap $1.650637416618146\times10^{-9}$. The
+point-expression and interval-drift ratios against the conservative numerator
+target are $2.28852593571814\times10^{-5}$ and
+$2.054720686727435\times10^{-5}$ respectively. Thus only
+$0.5269159637268442$ of the direct omitted residual is replayed by the source
+components, and $0.4730840362731557$ is interval-midpoint artifact. Within the
+point-source part, the obstruction is still the same sine-pair balance: the
+sine pair carries $0.9920894683344795$ of the absolute source residual mass,
+with `sin_delta` contributing $0.752464803608694$ and `sin_phi` opposing it.
+The next certificate should therefore prove the point-expression/source-term
+normal form for $N_{38}(\xi)-q_3(\xi)$ and either eliminate or separately
+bound the interval-center drift, instead of treating the row-hull midpoint as
+the geometric primitive.
+
+The follow-on sampled $M_4$ split confirms that the same decomposition holds
+at the fourth-difference level. The direct row-hull sampled nonuniform
+$M_4$ estimate is $6.115956847843226\times10^{14}$, with ratio
+$4.2379885742637813\times10^{-4}$ against the parent Taylor requirement. The
+point-expression residual contributes
+$3.2225952407871556\times10^{14}$, with ratio
+$2.233063795201403\times10^{-4}$, while interval-center drift contributes
+$2.8933616070560706\times10^{14}$, with ratio
+$2.004924779062378\times10^{-4}$. Their signed nonuniform split replays the
+direct fourth-difference estimate with zero reported relative gap. Even the
+triangle split of the two pieces has ratio
+$4.2379885742637813\times10^{-4}$, leaving a sampled headroom factor
+$2359.60994815499$ before the parent Taylor requirement fails. This keeps the
+route candidate-only, but it rules out a purely interval-drift M4 explanation:
+the remaining executable proof must certify the point-expression source
+normal form and the interval-center drift bound together, then feed that
+directed-rounded split through the existing positive-collar $N_{38}$ route.
+
+The split-M4 budget now turns that observation into an executable sufficient
+condition. It inflates the point-expression and interval-center drift
+sampled $M_4$ estimates separately, then adds them by triangle inequality
+before applying the parent-window Taylor remainder test. On the live selected
+row, all requested inflation factors $1,2,10,100,1000,2000$ still close under
+this split triangle budget. At factor $2000$, the split-triangle Taylor
+remainder is $0.8475977148527561$ of the conservative target; the maximum
+sampled split-triangle inflation factor before failure is
+$2359.60994815499$. The certificate route is therefore no longer merely "find
+the source of $M_4$ pressure." A sufficient next proof is: prove
+directed-rounded fourth-derivative bounds for the point-expression source
+normal form and interval-center drift whose combined inflation is below
+$2359.60994815499$, then replay the existing positive-collar $N_{38}$ route
+without promoting closure until that directed-rounded proof exists.
+
+The same split-triangle budget now also feeds the sharper four-node Lagrange
+target. For the selected Lagrange stencil, the required fourth-derivative
+bound is $4.771442762167798\times10^{18}$, and the split-triangle sampled
+$M_4$ ratio against that requirement is
+$1.2817835511589747\times10^{-4}$. The corresponding sampled headroom is
+$7801.629214977919$. This is the operative proof threshold for the next
+certificate packet: a directed-rounded split source/drift fourth-derivative
+certificate with combined inflation below $7801.629214977919$ would satisfy
+the Lagrange residual target before the $S_{37}$ dependency and H39 source
+replay obligations are addressed.
+
+The allocation diagnostic makes the split proof target linear rather than a
+single scalar. It records the Lagrange allocation inequality
+$\lambda_p M_{4,p}+\lambda_d M_{4,d}\le M_{4,\mathrm{Lag}}$, where
+$M_{4,p}$ is the point-expression source-term sampled estimate and
+$M_{4,d}$ is the interval-center drift sampled estimate. On the selected live
+stencil, $M_{4,p}$ carries $0.5269159546021968$ of the split triangle and
+$M_{4,d}$ carries $0.47308404539780324$. The equal-stream inflation factor is
+$7801.629214977919$; the axis intercepts are
+$14806.211781664266$ for the point-expression stream and
+$16491.000469943443$ for the drift stream. If the other stream remains at
+sampled scale, the point-expression stream may inflate by
+$14805.313945792595$, and the drift stream by $16489.88668062899$. This gives
+the next proof packet a concrete allocation region rather than a single
+shared safety factor.
+
+The allocation target is now emitted in absolute $M_4$ units as well as
+dimensionless factors. Equal-stream allocation allows
+$M_{4,p}\le2.5141493178573875\times10^{18}$ and
+$M_{4,d}\le2.2572934443104102\times10^{18}$, whose split sum matches the
+selected Lagrange requirement $4.771442762167798\times10^{18}$. The
+point-expression and drift axis ceilings are each
+$4.771442762167798\times10^{18}$. With the other stream fixed at sampled
+scale, the point-expression ceiling is
+$4.771153426007092\times10^{18}$ and the drift ceiling is
+$4.771120502643719\times10^{18}$. The next certificate step is therefore not
+to search for another scalar threshold, but to prove directed-rounded
+continuous point-expression and interval-center drift fourth-derivative upper
+bounds below one feasible pair in this allocation region.
+
+The live sampled ceiling comparison is inside the equal-stream rectangle. The
+point-expression stream, interval-center drift stream, and split triangle each
+use $1.2817835511589747\times10^{-4}$ of the equal-stream ceiling, giving
+sampled headroom $7801.629214977919$. Against the one-stream-fixed ceilings,
+the sampled point-expression ratio is $6.754331611348114\times10^{-5}$ and
+the sampled drift ratio is $6.06432305671767\times10^{-5}$. This localizes the
+blocker: the H39/y44 positive $N_{38}$ route is no longer blocked by sampled
+magnitude, but by replacing sampled finite-difference $M_4$ estimates with
+directed-rounded continuous fourth-derivative upper bounds for the two split
+streams on the same Lagrange window.
+
+A live sampled refinement ladder exposed and removed a selector artifact. The
+degree sweep still reports the best residual degree separately, but the
+Taylor/Lagrange route now selects a cubic degree row whenever cubic headroom
+exists. At source-stencil counts $32,64,128$ with scaled comparison indexes
+$27,54,108$, all rows are validator-clean, all use selected Taylor degree $3$,
+and all use the same local Lagrange node pattern `0|1|3|4`. The
+split-to-equal-ceiling ratios are
+$1.2817835511589747\times10^{-4}$, $2.2974267404209582\times10^{-5}$, and
+$4.671094237864675\times10^{-4}$ respectively. The corresponding sampled
+headroom factors are $7801.629214977919$, $43526.959202049235$, and
+$2140.8260015262204$. The sampled obstruction is therefore cleared on this
+ladder; the remaining blocker is the same-domain continuous directed-rounded
+fourth-derivative enclosure for the point-expression and interval-center drift
+streams.
+
+The cubic Taylor remainder route now records the exact proof obligation in
+executable form. On the live `speed.28.first-y` row, the selected degree is
+$3$, the required parent Taylor bound is
+$M_4\le1.443127262065751\times10^{18}$, and the sampled nonuniform estimate is
+$6.115956847843226\times10^{14}$, giving ratio
+$4.2379885742637813\times10^{-4}$ and headroom
+$2359.60994815499$. The selected Lagrange route is sharper, with required
+$M_4\le4.771442762167798\times10^{18}$ and sampled split-triangle ratio
+$1.2817835511589747\times10^{-4}$. The raw directed interval residual check
+does not close: its residual-to-target ratio is $80098754.5753348$, with
+midpoint-to-directed dependency loss $2.156733711521737\times10^{13}$. The
+route therefore requires a dependency-preserving proof of
+$\sup_\xi |d^4(N_{38}(\xi)-q_3(\xi))/d\xi^4|\le M_4$ on the same positive
+source-covariance window; since $q_3$ is cubic, this is equivalently a
+directed-rounded bound on $N_{38}^{(4)}$ or on the split source/drift fourth
+derivatives inside the allocation region.
+
+The executable route now also emits a same-domain derivative-provider target
+rather than leaving that obligation as prose. The target is explicitly
+non-certifying and records `provider_target_kind` as a directed-rounded
+continuous fourth-derivative bound. On the live row its selected Lagrange node
+pattern is `0|1|3|4`, with node cells `speed.27.first-y`,
+`speed.28.first-y`, `speed.30.first-y`, and `speed.31.first-y`; the omitted
+cell to control is `speed.29.first-y`. The same $\xi$ window is
+$[1.3748880220784354,2]$, with half-width $0.3125559889607823$. The split
+acceptance rectangle is now machine-readable:
+$\sup_\xi |F_{\text{point}}^{(4)}(\xi)|\le
+2.5141493178573875\times10^{18}$ and
+$\sup_\xi |F_{\text{drift}}^{(4)}(\xi)|\le
+2.2572934443104102\times10^{18}$, where
+$F_{\text{point}}(\xi)$ is the source-term midpoint sum minus $q_3(\xi)$ and
+$F_{\text{drift}}(\xi)$ is the interval-center drift. Raw independent interval
+hulls remain explicitly rejected; only a same-domain directed-rounded
+derivative provider can satisfy this target.
+
+The first provider-probe witness now checks the omitted Lagrange cell itself.
+For `speed.29.first-y`, the directed interval Lagrange product is separated
+from zero on the same cell, with absolute lower product
+$1.379151044211313\times10^{-4}$. The guarded point-expression fourth
+derivative witness is $2.2853880706227905\times10^{15}$, the guarded
+interval-center-drift witness is $2.051903398872862\times10^{15}$, and the
+split guarded witness is $4.3372914694956525\times10^{15}$. These use only
+$9.090104769793259\times10^{-4}$, $9.090104806908285\times10^{-4}$, and
+$9.090104787351786\times10^{-4}$ of their respective split ceilings. This does
+not certify the continuous derivative supremum, but it removes the omitted
+cell as the visible blocker; the remaining proof target is the same-domain
+continuous directed-rounded fourth-derivative bound between sampled nodes.
+
+The continuous-supremum blocker is now expressed as a removable quotient route.
+The selected stream residuals vanish at the four Lagrange nodes, so the next
+certificate should bound
+$F_{\text{stream}}(\xi)-p_{3,\text{stream}}(\xi)
+=\prod_i(\xi-\xi_i)Q_{\text{stream}}(\xi)/24$ by proving a directed-rounded
+bound on $Q_{\text{stream}}$, rather than dividing raw residual intervals by a
+product interval that crosses zero. The live diagnostic records one
+product-separated sample, `speed.29.first-y`, and four product-crossing selected
+node cells, `speed.27.first-y`, `speed.28.first-y`, `speed.30.first-y`, and
+`speed.31.first-y`. Those four rows are now correctly classified as removable
+node-limit obligations, not failures of the omitted-cell witness. This turns the
+next mathematical object into a removable-factor proof for the stream quotient
+on the same $\xi$ window.
+
+The latest executable witness checks the finite five-sample quotient itself.
+On the same selected nodes and omitted `speed.29.first-y` cell, the
+`quartic_quotient_consistency_witness` is inside the provider target. The
+signed quartic estimates are $-3.2225952407829644\times10^{14}$ for
+$F_{\text{point}}$, $-2.8933616070560706\times10^{14}$ for
+$F_{\text{drift}}$, and $-6.115956847839032\times10^{14}$ for the direct
+stream; the split-to-direct signed replay gap is
+$4.0876678207488184\times10^{-16}$. The omitted quotient and fourth
+divided-difference forms agree to relative gap at most
+$4.3377600832686915\times10^{-9}$, while the split absolute-M4 ratio against
+the provider ceiling is only $1.2817835511580962\times10^{-4}$. This remains
+priority-only and candidate-only, but it changes the blocker from sampled-node
+division pathology to a continuous directed-rounded bound for the same
+removable quotient.
+
+The quotient witness now also emits finite-data node-limit proxy rows for the
+four selected Lagrange nodes. Each `node_limit_proxy_rows` entry reports the
+same point-expression, interval-center drift, and diagnostic direct signed
+$M_4$ constants as the removable quotient limit proxy of the five-sample
+quartic normal form; no row divides by the zero Lagrange product at a node. The
+node-limit proxy status is inside the split-stream provider target, while the
+direct stream remains explicitly `diagnostic-only`. This narrows the remaining
+proof target from a generic node-crossing warning to directed-rounded
+repeated-node quotient limits for the point and drift streams on the same
+$\xi$ window.
+
+The node-limit target has now been tightened from proxy rows to an executable
+derivative-limit replay. For each selected node $\xi_i$, the live witness
+computes $24R'_{\text{stream}}(\xi_i)/P'(\xi_i)$ with
+$R_{\text{stream}}=F_{\text{stream}}-p_{3,\text{stream}}$ and
+$P(\xi)=\prod_j(\xi-\xi_j)$. On `speed.28.first-y`, all four derivative-limit
+rows are inside the split-stream provider target: the maximum split-stream
+relative replay gap is $6.3052830038510166\times10^{-12}$, and the maximum
+diagnostic direct-stream gap is $3.809093258764788\times10^{-12}$. This is
+still finite-data and priority-only, but the remaining continuous proof object
+is now exact: directed-rounded repeated-node derivative bounds for
+$R'_{\text{point}}/P'$ and $R'_{\text{drift}}/P'$ on the same $\xi$ window.
+
+The node-limit route now has a collar target rather than only point data. Around
+each selected node, the diagnostic chooses a same-domain $\xi$ collar bounded
+by the selected sample interval and nearest-node spacing, proves the polynomial
+range of $P'(\xi)$ stays separated from zero on that collar, and converts the
+split $M_4$ ceilings into residual-derivative targets by Cauchy's mean value
+theorem:
+$\sup |R'_{\text{stream}}| \le M_{4,\text{stream}}\inf |P'|/24$. On the live
+row, all four collars are inside sampled headroom; the minimum collar
+$\inf |P'|$ is $0.007691910678268243$, and the maximum split-stream sampled
+residual-derivative ratio is $3.9153923295599704\times10^{-4}$. This remains a
+candidate finite-data route until directed-rounded residual-derivative
+enclosures cover the same collars.
+
+The collar target has now been strengthened from node-sampled derivative
+headroom to a whole-collar finite-polynomial supremum. For each stream, the
+diagnostic forms the five-sample quartic interpolant $F_{4,\text{stream}}$ and
+the four-node cubic interpolant $p_{3,\text{stream}}$, then ranges
+$R'_{4,\text{stream}}=(F_{4,\text{stream}}-p_{3,\text{stream}})'$ across each
+selected-node collar. On the live row, all four collars stay inside finite
+polynomial split-stream headroom, with maximum split ratio
+$7.526334680718182\times10^{-4}$. The whole-collar finite-polynomial ratio is
+up to $1.9222427913281492$ times the node-sampled ratio, so this is a stricter
+test than the derivative point replay. It is still priority-only until
+directed-rounded true-stream derivative enclosures replace the interpolation
+model.
+
+The whole-collar finite-polynomial target now has an outward interval replay.
+The diagnostic evaluates the same residual derivative polynomial on 16
+same-domain collar subpartitions with outward interval Horner arithmetic. On
+the live row, all four selected-node collars remain inside split-stream
+headroom: the maximum directed finite-polynomial split ratio is
+$0.002339647678303848$, while the worst directed-to-exact finite-polynomial
+ratio is $8.720511848333576$. This reduces the numerical trust gap from
+sampled or exact binary polynomial ranges to subpartitioned interval enclosure
+of the finite interpolation model, but it is still not the directed-rounded
+true-stream certificate.
+
+The same replay now emits a true-stream slack budget. After subtracting the
+directed finite-polynomial residual-derivative enclosure from each collar's
+point-expression, interval-center drift, and split-stream derivative target,
+the live row keeps positive slack on every selected-node collar. The minimum
+slack-to-target ratio is $0.9976603523210646$, attained on
+`speed.31.first-y`. This means the future directed-rounded true-stream
+derivative enclosure can spend about $99.766\%$ of the current target before
+the collar headroom fails; the next proof burden is therefore the actual
+same-domain true-stream error envelope, not another search for numerical
+headroom.
+
+The slack budget is now emitted as an excess target against the directed
+finite-polynomial model. For each selected-node collar, the diagnostic records
+how much additional true-stream residual-derivative error can be charged after
+the directed finite-polynomial enclosure has already been paid. On the live
+row, all four collars have positive excess target status, and the smallest
+excess-to-directed finite-polynomial ratio is $426.41478086780194$ on
+`speed.31.first-y`. This does not certify the true stream; it turns the next
+certificate into a concrete same-domain inequality: the directed-rounded
+true-stream residual-derivative excess over the finite interpolation model
+must stay inside this collar-wise budget.
+
+The follow-on provider probe rules out two tempting shortcuts. If the
+directed finite-polynomial residual derivative is split into independent
+source-component interval hulls before replay, the limiting live-cover
+component cancellation fraction is $0.04668187334189089$ and the worst replay
+relative gap is $0.4537493235929499$; this is an open covariance problem, not
+a certificate. If raw same-cell value widths are divided by collar width as a
+derivative proxy, the worst proxy-to-excess-budget ratio is
+$2.042964124275476\times10^9$, so that route is rejected outright. The next
+provider must therefore preserve the signed source normal form on the same
+collar, including the point/drift split, before applying absolute bounds.
+
+The signed point/drift collar provider probe now tests that route directly in
+the finite-polynomial normal form. Instead of summing independent source-term
+hulls or dividing raw value widths by collar width, it adds the directed
+point-expression residual-derivative interval and the directed interval-center
+drift residual-derivative interval as a signed pair on each selected-node
+collar before taking an absolute value. On the focused H39/y44 fixture, all
+four collars stay inside split-stream derivative headroom with maximum
+signed-pair-to-target ratio $7.050251213504737\times10^{-6}$, minimum
+signed-pair cancellation fraction $0.5584485102554677$, and minimum remaining
+slack ratio $0.9999929497487865$. The direct re-collapse is still open: the
+maximum signed-pair-to-direct replay gap is $0.8958585907160469$, and the
+signed-pair absolute hull can be $9.602328095428067$ times the direct hull.
+Thus the geometry is not lacking headroom; the missing certificate is a
+directed-rounded provider that keeps point and drift dependency signed on the
+same collar before any direct-stream collapse is trusted.
+
+The paired-subcell signed provider is the next executable refinement of that
+same idea. It no longer adds a global point-expression hull to a global
+interval-center drift hull; it first adds point and drift on each matching
+collar subcell and only then takes the hull. On the same focused H39/y44
+fixture, the maximum paired-subcell signed-pair-to-target ratio falls to
+$1.2493112588664224\times10^{-6}$, the minimum cancellation fraction rises to
+$0.9213461827518983$, and the minimum slack ratio rises to
+$0.9999987506887411$. The direct replay gap also drops from the global-hull
+value $0.8958585907160469$ to $0.4845136658732542$, while the worst
+absolute-hull loss factor drops from $9.602328095428067$ to
+$1.7104681714917842$. This is a real geometric reduction, not closure: it
+shows that much of the obstruction is the bounding coordinate's unpaired
+subcell dependency, while the remaining blocker is a directed-rounded
+true-stream provider that preserves the same-subcell point/drift covariance.
+
+The direct-collapse locality trace now resolves what kind of dependency remains.
+It records every paired subcell before the final collar hull and compares that
+subcell's point-plus-drift interval against the direct interval on the same
+subcell. The limiting status is
+`positive-n38-paired-subcell-direct-collapse-local-interval-dependency-artifact-candidate`:
+the direct interval sits inside the paired interval on every subcell, while the
+paired interval does not sit inside the direct interval. The worst local replay
+gap is $0.6495457279983037$, the worst local-to-collar gap ratio is
+$1.575428979698578$, and the worst local direct loss factor is
+$2.853439132657084$. The finite-polynomial derivative coefficients replay the
+direct split to small absolute roundoff, with maximum absolute coefficient gap
+$0.25$. Thus the next proof object is not another global hull shrink; it is a
+same-variable normal form or directed-rounded evaluator that keeps the shared
+$\xi$ dependency when adding point and drift inside each subcell.
+
+The same-variable direct normal-form candidate now tests that proof object at
+the finite-polynomial level. It evaluates the direct point-plus-drift residual
+derivative as one shared-$\xi$ polynomial on the same directed subcells and
+keeps the result diagnostic-only. On the focused H39/y44 fixture this lowers
+the maximum ratio to the derivative target from the paired-subcell value
+$1.2493112588664224\times10^{-6}$ to
+$7.342231140809408\times10^{-7}$, with status
+`positive-n38-same-variable-direct-normal-form-candidate-inside-headroom`.
+This is the first executable evidence that the remaining H39/y44 obstruction
+is not structural size in the source term; it is the interval dependency lost
+when point and drift are bounded separately. The next certificate must make
+the same shared-$\xi$ direct replay directed-rounded on the producer image
+before promoting it beyond candidate status.
+
+The direct replay now exposes the true-stream excess margin explicitly. On the
+same four selected-node collars the candidate status is
+`positive-n38-same-variable-direct-normal-form-true-stream-excess-target-positive`,
+with minimum slack-to-target ratio $0.999999265776886$ and minimum
+excess-to-directed finite-polynomial ratio $1.3619828177551026\times10^6$.
+A shared-$\xi$ H38 producer-image replay was added to test whether those
+collars already cover the live producer support. It remains open, not because
+the matched rows lose headroom, but because the selected collars cover only
+the producer midpoints: the replay has five producer samples, four matched
+selected-node rows, zero full producer $\xi$ intervals contained in the
+matched collars, and one unmatched center row. The obstruction is therefore a
+producer-image coverage problem for the shared-$\xi$ coordinate, not a
+failure of the direct finite-polynomial normal form on the matched rows.
+
+The producer-interval direct replay now separates coverage from size. It
+evaluates the same finite-polynomial direct residual-derivative model on the
+actual H38 producer $\xi$ intervals and recomputes the Lagrange-product
+derivative guard on those same intervals. The diagnostic status is
+`positive-n38-producer-interval-direct-normal-form-diagnostic-denominator-guard-open`:
+rows `speed.1.first-y` and `speed.3.first-y` have separated product
+derivative and stay inside headroom, with maximum guarded ratio
+$5.425381767312044\times10^{-7}$, minimum product-derivative lower bound
+$0.7692446997498641$, minimum slack ratio $0.9999994574618234$, and minimum
+excess-to-directed ratio $1.843187263773447\times10^6$. Rows
+`speed.0.first-y`, `speed.2.first-y`, and `speed.4.first-y` are not size
+failures; their full producer intervals cross a zero of the Lagrange-product
+derivative. The next closure move is therefore a product-derivative-aware
+producer partition, or an equivalent local coordinate that avoids using a
+repeated-node quotient across those zero crossings.
+
+The hybrid quotient replay now resolves that finite-polynomial support problem
+at candidate level. It uses the repeated-node derivative quotient where
+$P'(\xi)$ is separated and switches to the product quotient on producer
+complements where $P(\xi)$ is separated. The live H38 producer image is covered
+by nine segments: five product-quotient segments and four derivative-quotient
+segments. All nine stay inside headroom, with maximum segment ratio
+$7.342231140809408\times10^{-7}$, minimum denominator lower bound
+$0.7692446997498641$, minimum slack ratio $0.999999265776886$, and minimum
+excess-to-directed ratio $1.3619828177551026\times10^6$. This does not certify
+the true stream or H39 shifted closure; it shows that the previous open rows
+were a quotient-coordinate denominator artifact at the finite-polynomial level.
+The next blocker is a directed-rounded true-stream residual and derivative
+enclosure on this same hybrid producer partition, followed by
+dependency-preserving $S_{37}$ division and signed H39 shifted-source replay.
+
+The hybrid partition now carries that next proof target as an executable
+excess-budget diagnostic. The provider target emits nine segment-wise
+obligations: five product-quotient complement segments require a
+same-variable direct residual enclosure, and four derivative-quotient segments
+require a same-variable direct residual-derivative enclosure. Every segment has
+positive finite-polynomial slack for a future true-stream enclosure, with the
+same maximum finite-model ratio $7.342231140809408\times10^{-7}$, minimum
+slack ratio $0.999999265776886$, and minimum excess-to-directed ratio
+$1.3619828177551026\times10^6$. The controlling segment is
+`speed.4.first-y`, the selected-node-collar derivative quotient on
+$\xi\in[1.3999104057263942,1.7998848073625069]$; it leaves absolute
+true-stream excess budget $1.921420936834246\times10^{14}$ after the
+directed finite-polynomial normal form is charged. This is still budget-only,
+not a directed-rounded true-stream certificate. Its value is that the
+remaining closure burden is now a finite list of same-domain residual and
+residual-derivative enclosure inequalities on the existing hybrid producer
+partition.
+
+The split-stream paired replay now tests the signed point-plus-drift streams
+on that same nine-segment hybrid partition. It evaluates the finite-polynomial
+point-expression residual and interval-center drift residual together on each
+subcell before hulling, using residual coefficients on product-quotient
+segments and residual-derivative coefficients on derivative-quotient segments.
+All nine segments stay inside their targets, with maximum paired-to-target
+ratio $1.318673422133216\times10^{-6}$, maximum split-triangle-to-target ratio
+$1.5966996776715186\times10^{-5}$, minimum paired slack ratio
+$0.9999986813265779$, and minimum paired cancellation fraction
+$0.8882334726988339$. The controlling paired segment moves to
+`speed.1.first-y`, the full-producer-interval derivative quotient on
+$\xi\in[-1.1997952130889011,-0.40010239345554943]$. This is still a
+candidate finite-polynomial replay, not a directed-rounded true-stream
+certificate, but it removes the main uncertainty that the signed covariance
+would fail once the hybrid support was honored.
+
+The same provider target now also carries a raw true-source replay on the
+hybrid partition. Each segment records producer provenance, maps its
+$\xi$-interval back to the live speed interval, and calls the H38 numerator
+source evaluator with the raw independent h-row intervals before subtracting
+the direct cubic graph. The term decomposition replays internally, with
+maximum term-sum-to-source relative gap $3.4219484145129325\times10^{-16}$,
+but the raw independent boxes open all five product-quotient residual-value
+segments: the maximum residual-value-to-target ratio is
+$3.8974824211297927\times10^9$, controlled by `speed.0.first-y` on
+$\xi\in[-1.3999104057263942,-1.1997952130889011]$. The four derivative
+quotient segments are intentionally value-only because they require a
+same-domain residual-derivative true-stream provider. This result localizes
+the remaining blocker: the hybrid partition is no longer the issue; the raw
+independent h-row source replay destroys producer-image dependency before the
+quotient certificate can be promoted.
+
+Two follow-on provider replays now locate the dependency loss more sharply. A
+polynomial h-row graph plus per-h interval residual hull preserves the shared
+$\xi$ graph but gives no useful compression: the maximum product-segment ratio
+is $3.8974853044963255\times10^9$, essentially the raw wall. Preserving the
+shared $\xi$ graph plus the normalized $h_{38}$ residual coordinate instead
+collapses the maximum ratio to $3.209141465121827$, with more than
+$1.214\times10^9$ compression relative to the raw and graph-plus-interval
+replays and minimum signed source cancellation $0.947379206732799$.
+Subdividing the H38 residual coordinate into $16$ subcells leaves that factor
+unchanged, so the remaining obstruction is not ordinary H38-coordinate
+subcell width. The next closure target is a provider that also preserves the
+non-H38 residual covariance, or a source-term identity that removes the
+remaining factor before absolute Cauchy bounds.
+
+The next H39/y44 replay rejects both of those first candidate explanations.
+Giving selected non-H38 residual rows the same normalized coordinate as
+$h_{38}$ does not close the product target; it worsens the best case to
+$4.697752230126054\times10^7$ on the `h35`-only candidate, while terminal,
+suffix, and all-non-$h_{38}$ shared-coordinate variants are still larger. The
+signed source-pair replay
+$(\delta^2/\nu^2-2)+(\sin\phi+\sin\delta)$ is exact enough to diagnose the
+source itself: its maximum source-to-full-source relative gap is only
+$2.678840781450165\times10^{-15}$, with minimum pair cancellation
+$0.8716471687569114$, yet its residual-to-product-target ratio is still
+$3.2091414651218377$. Repeating the replay with a cubic h-row graph leaves the
+factor essentially unchanged at $3.2092292609161452$. The current blocker is
+therefore not a missing terminal covariance or a higher graph degree. It is a
+same-domain residual inequality for the direct graph/product target on the
+hybrid product segment controlled by `speed.4.first-y`, segment $1$.
+That residual inequality has now been tightened to a direct-quartic alignment
+no-go for the current H38-coordinate provider. On the controlling segment, the
+source-to-direct-quartic offset ratio is $3.209141346609569$; its center
+already accounts for $3.2089268315926427$ of the target while the interval
+radius accounts for only $2.1451501692603826\times10^{-4}$. Therefore the
+failure is not the direct finite normal form, not the paired split-stream
+normal form, and not the cubic interpolation residual. The next viable route is
+a source-coordinate provider or source/direct-quartic normal form that removes
+the persistent H38-coordinate offset before the Cauchy quotient step.
+The full residual-vector provider no-go has now sharpened this again. Fitting
+all $39$ h-row residual midpoint streams as quartic functions of $\xi$ and
+replaying them as a coupled residual vector leaves all five product segments
+open. The controlling `speed.4.first-y` segment $1$ has full-vector
+source/direct-quartic ratio $3.2093016611215166$, center-to-target ratio
+$3.2087291668088085$, and radius-to-target ratio
+$5.724943127080209\times10^{-4}$; the full-vector/H38-coordinate offset ratio
+is only $1.0000499555783409$. This makes residual-vector freezing a no-go
+explanation. The remaining object is a structural source/direct-quartic
+alignment proof, most likely at the source-term cancellation or
+solve/divisor-normalization level. The executable packet now also exposes the
+full-vector source term intervals, with the controlling midpoint split
+$13.647625870103923-40.20025094519486+22.53423789439216$ in target units.
+
+The solve/divisor-normalization hypothesis is now an executable no-go. The
+diagnostic carries the inherited $h_{37}$ solve-slope interval through the
+producer samples and compares the live source numerator and the finite direct
+quartic in both numerator units and solved-$h_{38}$ units. On the controlling
+`speed.4.first-y` segment $1$, the numerator-space source/direct-quartic offset
+is $3.209141346609569\times$ target, while the solved-space offset is
+$3.209141917764117\times$ solved target. The solve-normalization invariance
+ratio stays within $[1.0000001779431105,1.0000001780158168]$ across the
+product segments, and the best crossed solved/numerator comparison is still
+$5.508576099660705\times$ target. Therefore the offset is not a hidden
+$h_{38}=-N_{38}/S_{37}$ convention mismatch. The next closure route should
+attack the numerator normal form itself: either a direct source-term
+cancellation identity or a source-coordinate map whose finite direct quartic is
+the same object as `evaluateH38RecurrenceNumeratorBeforeSolve`.
+
+The source-pair split now identifies that numerator normal form more precisely.
+The signed pair $(\delta^2/\nu^2-2)+(\sin\phi+\sin\delta)$ already reproduces
+the full source and the full source/direct-quartic offset on the controlling
+`speed.4.first-y` segment $1$ to relative gaps below
+$3.4\times10^{-15}$. The signed-pair/direct-quartic offset remains
+$3.2091413466095795\times$ target with radius-to-target ratio
+$2.1451501693680277\times10^{-4}$, and it is about
+$2.0848003791439798\times10^7$ times the finite direct normal-form size. A
+full residual-vector solve sanity check also rejects a simple denominator
+repair: the source/direct alignment multiplier is positive
+($0.5560152884612777$), whereas the product denominator is negative
+($[-0.9213641081237944,-0.7917972804188858]$), and the recurrence sign
+$-N_{38}/S_{37}$ still leaves the controlling direct-quartic offset at
+$2.866392226825057\times$ target. Thus the next proof object is a signed
+source-pair numerator identity, not deeper residual-vector fitting or a hidden
+solve convention.
+
+The quotient refinement ladder now shows why the provider must stay split by
+stream. On the live `[32,64]` ladder, both refinement rows are inside the
+provider target on the same local node pattern `0|1|3|4`. At $64$ source
+subcells, the direct stream has $F_{\text{direct}}^{(4)}=0$ because the point
+and drift streams cancel as
+$7.00073055386285\times10^{14}-7.00073055386285\times10^{14}$. The direct
+quotient diagnostic is therefore open, but the split-stream quotient is stable:
+maximum split-stream quotient-consistency gap
+$2.9663342060118986\times10^{-8}$, maximum split-to-direct replay gap
+$4.0876678207488184\times10^{-16}$, and maximum split ceiling ratio
+$1.2817835511580962\times10^{-4}$. The next certificate should preserve that
+point/drift split through the directed-rounded quotient or fourth-derivative
+bound, then replay the cancellation after the same-domain estimate.
+
+The component source graph now explains why that point/drift split matters. The
+H39/y44 diagnostic exports the Lagrange graph coefficients for the signed
+source components and for the interval-center drift. On the focused fixture,
+the signed source pair matches its own component graph within
+$7.493324528523494\times10^{-4}$ of target, and the component-plus-drift graph
+matches the direct graph within $2.974033630031388\times10^{-4}$ of target.
+The remaining open offset is therefore the interval-center drift stream, not
+source-pair variation or the finite direct residual. On the default live
+provider replay, the same component-plus-drift source provider closes all five
+product segments at candidate level; the worst h38-coordinate residual is
+$0.4213769304308513\times$ target, with worst source-pair/component graph gap
+$0.0034271425858984146\times$ target and worst
+component-plus-drift/direct-graph gap $0.06817219409516423\times$ target. This
+is still priority-only: the next true blocker is a directed-rounded
+component-plus-drift producer-image certificate, followed by
+dependency-preserving $S_{37}$ division and H39 shifted-source replay.
+
+The candidate $S_{37}$ division part of that route has now been tested. After
+dividing the component-plus-drift/direct-graph gap by the inherited
+$h_{37}$ solve-slope interval, the focused fixture has maximum solved gap
+$2.9740336300313895\times10^{-4}$ of solved target and the default live replay
+has maximum solved gap $0.06817219409516427$ of solved target. The
+solve-normalization invariance stays within
+$[1.0000000000000004,1.0000000000000007]$. This keeps all certification claims
+false, but it removes candidate-level $S_{37}$ division from the blocker list.
+The next true blocker is now the first-class directed-rounded
+component-plus-drift provider contract and its shifted $R_{\varepsilon,43}$
+replay boundary.
+
+The first-class provider boundary now exists at candidate level. The H39/y44
+h38-coordinate source replay emits
+`candidate_component_drift_source_provider_contract`, which records the
+component graph coefficients, interval-center drift coefficients, product
+segment counts, dependency trace, dependency witness, and explicit claim
+boundary for the component-plus-drift source route. On the focused fixture the
+contract is `positive-n38-component-drift-source-provider-contract-candidate-ready`:
+all five product segments are inside both the component-drift target and the
+candidate $S_{37}$-divided solved target, with worst ratios below $10^{-3}$.
+The mathematical perspective is now sharper: this is a source normal-form
+provider contract, not an H39 h-row provider. It deliberately reports
+`can_enter_shifted_replay=false`, no provider-backed cells or branches, and an
+open shifted-replay readiness status because shifted $R_{\varepsilon,43}$
+replay requires concrete dependency-preserving `hIntervals`. The next true
+blocker is to realize the same component-plus-drift normal form as a
+directed-rounded same-domain h-row or producer-image provider before the H39
+shifted replay can be attempted.
+
+The provider-boundary obstruction is now executable, not just verbal. The
+H39/y44 replay compares the component-plus-drift source graph against both the
+h38-coordinate source stream and the current full residual-vector h-row
+provider. On the focused fixture, all five product segments report
+`positive-n38-component-drift-hrow-realization-misses-interval-center-drift`;
+the controlling segment is `speed.4.first-y`, segment `1`, where the
+full residual-vector source misses the component-plus-drift source by
+$3.2095222369744145\times$ target. The component-plus-drift graph itself and
+candidate $S_{37}$ division are already below $10^{-3}$ of their targets, so
+the remaining obstruction is the interval-center drift stream not being
+realized as dependency-preserving h-row data. The next proof object is a
+directed-rounded h-interval realization/Jacobian lift or producer-image
+drift-coordinate provider that carries the interval-center drift source
+coordinate through the same-domain H38 producer image before H39 shifted
+replay.
+
+The first lift probe is now positive at candidate level. The H39/y44 replay
+adds a selected residual-coordinate point-Jacobian source replay and asks
+whether a single normalized h-row coordinate can move the live source to the
+component-plus-drift graph before shifted Cauchy bounds are applied. On the
+focused fixture, the best lift on every product segment is the
+`h36-source-coordinate-lift`; the required solved coordinates have magnitude
+below $10^{-8}$, and the worst solved source/component-drift gap is
+$6.895497413452774\times10^{-4}$ of target. The same probe also gives a finite
+collar target: every product segment remains inside target for a
+$10^{-9}$ normalized h36-coordinate collar around its solved lift coordinate,
+while the controlling segment opens at $2\times10^{-9}$. This is not a
+directed-rounded h-row provider and it does not enter shifted replay, but it
+is a true mathematical advance: the missing interval-center drift stream is
+reachable by a tiny producer-image coordinate direction with finite candidate
+width. The next proof object is now a directed-rounded same-domain enclosure
+of that h36-centered drift-coordinate lift, with provenance tying the
+coordinate to the H38 producer image and then to the H39 `hIntervals` provider
+boundary.
+
+The h36 lift now has a provider-boundary bridge object at candidate level.
+The replay materializes each product segment's largest inside h36 collar as a
+provider-shaped branch input with concrete `hIntervals`, nonempty dependency
+trace, dependency witness, and candidate-only h-row provider claim boundary.
+On the focused fixture all five product segments emit
+`candidate-component-drift-h36-coordinate-lift-collar-provider`; the selected
+collars have minimum half width $10^{-9}$, the largest collar source gap is
+$0.8871269825989422\times$ target, and the segment-local shifted-pressure
+probe reaches about $6.809004947674311\times10^{21}$. This is progress because
+the missing interval-center drift stream is no longer merely a scalar source
+normal form: it has an executable h-row interval payload. It is not closure
+because the payload is still segment-local and active-branch-only, so the
+contract keeps `dependency_preserving_h_row_provider_present=false`,
+`can_enter_shifted_replay=false`, and `h_row_provider_backed_replay=false`.
+The next true proof object is a directed-rounded two-branch H38 producer-image
+provider that exports these h36-centered collars through the actual H39
+provider boundary.
+
+The two-branch inlet check is now explicit. The diagnostic adds
+`candidate_component_drift_h36_provider_inlet_report`, which names the live
+provider hook `branchInputsFromH38Row -> buildH39SharedDomainCoefficientArtifact`
+and separates four states: active-branch segment payload, opposite-branch
+payload, row-level provider packaging, and directed-rounded producer-image
+coverage. A focused branch-pair readiness probe on `branches: ["-", "+"]`
+shows both branches emit all five segment-local h36 provider-shaped payloads;
+the worst branch-pair source gap is still
+$0.8871269825989422\times$ target and the smallest collar is $10^{-9}$. This
+rules out a simple branch-asymmetry failure. The obstruction is now sharper:
+the h36 lift is a branch-pair local mechanism, but H39 still needs a
+same-domain, directed-rounded row-level provider that merges the segment
+collars into two branch rows before shifted replay is allowed to consume them.
+The same inlet report now includes a naive single-row hull forecast over the
+segment-local h36/h38/solve-slope summaries. That forecast is deliberately
+not provider-backed; its purpose is to prevent the next sprint from collapsing
+the segment dependency into independent row boxes without first measuring the
+loss.
+The next packaging probe moves the obstruction one layer deeper: nested h36
+provider snapshots from the two branch runs can be aligned by product-segment
+key and assembled into synthetic two-branch segment rows. The existing
+predecessor h-row provider-boundary checker accepts all five matched segment
+rows as `dependency-preserving-provider-present`, so the remaining block is
+not provider metadata shape. The block is now specifically that these accepted
+objects are segment-local snapshots, not a directed-rounded row-level H38
+producer-image provider with full cell intervals and same-domain coverage for
+H39 coefficient replay.
+The cell-bearing packaging probe crosses the next executable boundary. Each
+nested h36 provider snapshot now carries the H38 cell intervals required by
+`cellFromCertificateRow`, and the branch-pair readiness diagnostic feeds the
+five matched synthetic segment rows through
+`buildH39SharedDomainCoefficientArtifact`. The replay is provider-backed on
+all five cells and all ten branch rows, with dependency state
+`dependency-preserving-provider-backed-replay`; the shifted-prefix pressure at
+outer radius $0.001$ is $3.7305089254880956\times10^{24}$. This is about an
+order-of-magnitude reduction from the old full-cover pressure, but it is not
+closure. The embedded row-pressure surface shows the remaining pressure is
+structural across the segment-local replay: the dominant unreduced entry is
+`speed.0.first-y:segment-1`, branch `-`, shifted index `0` at $y$-order $43$,
+with coefficient absolute upper $3.723699920558467\times10^{24}$; the
+center-eliminated form is worse because independent interval products lose the
+correlation among $C_k$, $S_k$, $C_0$, and $S_0$. The next true proof object is
+therefore not another provider metadata wrapper, but a symbolic or certified
+subdivision route that preserves the affine center-solve correlation before
+absolute Cauchy bounds are applied, then upgrades the segment-local synthetic
+rows to a directed-rounded row-level H38 producer-image provider.
+
+The affine-center replay now separates the obstruction from both provider
+metadata and naive independent interval algebra. On the same branch-pair
+segment replay, all ten branch rows emit the affine-center row-correlation
+probe and all ten leading affine-center forms are zero-certified. Preserving
+the center solve symbolically drops the segment pressure from
+$3.7305089254880956\times10^{24}$ to
+$6.809004947674311\times10^{21}$, a factor of about
+$547.8787215101512$. The independent center-eliminated interval expression
+rises instead to $6.861746423307076\times10^{45}$, so the Schur-style
+interval product is now rejected as a bounding-coordinate artifact rather than
+a proof route. The dominant surviving affine-center row is
+`speed.0.first-y:segment-2`, branch `-`, shifted index `1` at $y$-order $44$,
+and its largest term is `sin_delta`.
+
+The h-row sensitivity probe changes the next proof object. Collapsing all
+inputs to midpoints lowers the dominant affine-center row to
+$5.310268466598869\times10^{12}$, a factor of about
+$1.2822336555092587\times10^9$. Freezing only the inherited h-row intervals
+already lowers it to $5.310280365218674\times10^{12}$, while freezing the live
+cell or solve-slope intervals changes the pressure only by factors
+$1.000000215966408$ and $1.000000046193894$. The remaining pressure is
+therefore inherited h-row interval width, not a live cell-width or slope-width
+effect. The suffix scan is even sharper: freezing only the last successor row
+already gives a factor $1.1125169135697098\times10^9$, and the top twelve
+successor rows give $1.282223971704711\times10^9$. The next true certificate
+route is a directed-rounded h-row transport or suffix-transport enclosure for
+that `sin_delta`-dominated row, still candidate-only until it is lifted from
+segment-local synthetic rows to a row-level H38 producer-image provider.
+
+The successor suffix is now narrower. The same sensitivity path now reports a
+suffix-width compression table rather than only midpoint freezes. On the live
+dominant row, zero-width transport of h38 alone gives pressure
+$6.120360836426657\times10^{12}$, reduction
+$1.1125169135697098\times10^9$, and captures about $86.76417138044193\%$ of
+the full h-row midpoint gain. Zero-width transport of h36-through-h38 gives
+pressure $5.310416865556751\times10^{12}$, reduction
+$1.2821978236468346\times10^9$, and captures about
+$99.99742957395751\%$ of the full gain. The top twelve successor rows improve
+that only to $99.99946883695403\%$. Thus the next directed-rounded proof
+object should start with a three-row h36-through-h38 successor transport
+enclosure for the `sin_delta` row, with the h38-only one-row transport kept as
+the diagnostic lower-depth comparison.
+
+The terminal affine-zeta endpoint route is still useful, but it no longer
+looks like the full local answer by itself. On the focused post-zeta provider
+probe, adding h38 to the endpoint provider lowers the worst endpoint pressure
+by about $9.59691834474703\times$, and the diagnostic classifies the remaining
+source as `preserved-h38-row-dominates-after-terminal-zeta`. That is
+consistent with the h36-through-h38 result: endpoint transport can reduce the
+preserved h38 pressure, but the live H39/y44 obstruction still needs a
+directed-rounded successor-suffix transport certificate before any shifted
+$R_{\varepsilon,43}$ outer bound can be promoted.
+
+The endpoint-provider boundary itself now supports the same H38-included
+comparison. With `includeH38EndpointProvider=true`, the terminal affine-zeta
+provider replay sends both preserved-H38 endpoints and candidate
+H38-included endpoints through `buildH39SharedDomainCoefficientArtifact`. On
+the focused row-limited probe, the preserved-H38 endpoint replay has worst
+pressure $3.819087178670516\times10^{24}$; the H38-included endpoint replay
+has worst pressure $8.92454128278921\times10^{22}$, a
+$42.79309218990947\times$ reduction while all endpoint replays remain
+provider-backed. This is still an endpoint replay, not a continuous zeta
+certificate, but it proves the existing provider boundary can carry the
+candidate H38-included successor transport object.
+
+The endpoint-provider suffix scan now separates the smallest legitimate
+suffix probe, the term-transition suffix, and the deepest tested scalar-endpoint
+suffix before the affine zeta guard closes. The
+diagnostic accepts explicit successor suffix h-index sets and replays each
+scalar endpoint through `buildH39SharedDomainCoefficientArtifact` with the
+same shifted index, outer radius, series order, and row limit. The exact
+h36-through-h38 probe is validated separately: using
+`terminalHIndexes=[37,36]` and `includeH38EndpointProvider=true` yields
+exactly `h38_included_terminal_h_indexes=[36,37,38]`, with no h35 leakage.
+The wider row-limited endpoint sweep shows the first dominant-source transition
+one layer earlier than the previous h27 marker. The h31-through-h38 suffix has
+worst pressure $2.758931393108097\times10^{21}$, reduction
+$1429.2583270355638\times$, and remains shifted-$0$ `sin_phi` dominated.
+Adding h30 gives h30-through-h38 worst pressure
+$1.6124917378978755\times10^{21}$, reduction
+$2445.423796378741\times$, and moves the dominant endpoint pressure to
+shifted-$1$ `sin_delta`. The h27-through-h38 suffix then lowers the pressure to
+$9.394749241084401\times10^{20}$, reduction
+$4197.265478971341\times$. Extending the same endpoint replay to
+h20-through-h38 stays affine at $y^{44}$, because its first possible
+two-terminal residual product is at $y^{46}$, and reaches worst pressure
+$8.924217291257199\times10^{20}$, reduction
+$4418.567520966396\times$, near the exploratory full h0-through-h38 replay
+($4458.421575751787\times$). Each tested suffix from h30-through-h38 down to
+h20-through-h38 is affine in the shared residual coordinate at $y^{44}$; for
+h30-through-h38 the two-factor onset is $y^{66}$, while for h20-through-h38
+the onset is $y^{46}$. Scalar endpoint hulls are therefore still the correct
+candidate control shape through h20, but not a directed-rounded enclosure. The
+next lower suffix, h19-through-h38, is the exact endpoint-method boundary at
+this order: its first two-terminal residual product occurs at $y^{44}$, so
+scalar endpoint control is no longer justified by the affine zeta degree gap.
+Thus h36-through-h38 is the smallest valid provider-boundary guardrail,
+h30-through-h38 is the first observed source-shape transition, h27-through-h38
+is the practical near-plateau working suffix, and h20-through-h38 is the
+deepest tested affine-endpoint floor. The next proof object should carry a
+directed-rounded inherited-chain suffix covariance provider over this
+h30/h20 transition zone, with h27 as the intermediate plateau checkpoint,
+before any shifted $R_{\varepsilon,43}$ closure claim is promoted.
+This is now encoded as the candidate
+`buildH39SuccessorSuffixTransitionCertificateRouteCandidate`, which reuses the
+same provider-backed endpoint replay and keeps the route candidate-only until a
+coupled directed-rounded producer-image enclosure replaces scalar endpoint
+sampling.
+
+Historical requested-coefficient diagnostic updates are preserved in [work-log.md](work-log.md#2026-07-02-requested-coefficient-update-chain). Compact live target: a same-domain H38 producer residual image narrowed or correlated to roughly the $10^{-6}$ normalized scale before the H39 requested source is absolutized.
+
+The producer-image budget comparison now checks that target against the existing
+H38 residual-coordinate profile instead of leaving it as a prose estimate. On
+the focused H39/y44 fixture, the H38 producer midpoint hull is already centered
+inside the requested residual budget, but the interval hull remains the full
+normalized interval $[-1,1]$. Thus the remaining obstruction is not midpoint
+placement; it is the need to certify interval-hull narrowing or dependency
+correlation by about $6.57\times10^5$ before the H39 requested source can be
+bounded. This confirms that the next proof step is a directed-rounded
+producer-image/correlation certificate, not another independent residual box or
+finer raw $\zeta$ subdivision.
+
+The row-local producer-budget refinement sharpens that conclusion. The H39
+route now exports `producer_sample_budget_rows` for the same requested
+shifted-index-$1$, $y^{44}$ comparison, carrying each producer row's cell,
+speed interval, $\xi$ interval, residual-coordinate midpoint, residual-coordinate
+interval, and fit ratios against the requested half-width. On the focused
+fixture all five row midpoints fit the requested budget, while at least one row
+interval still fails. The obstruction is therefore not a global hull artifact
+created by distant row centers; it is the row-field interval width itself. The
+artifact also names the first interval-failing row and the worst interval-width
+row, so the next proof object can target a concrete producer cell rather than a
+global interval hull. That proof object must carry the H38 producer residual
+coordinate as a dependency-preserving row-local enclosure before H39 applies
+absolute Cauchy bounds.
+
+The row-local producer-collar replay tightens the numerical target again. The
+H39 route now replays the first interval-failing row and the worst interval-width
+row through explicit H38 residual-coordinate collars. The current full row
+intervals miss the midpoint pressure bound by about $5.06\times10^6$, and even
+the earlier requested source-only collar of half-width
+$1.52\times10^{-6}$ still misses the selected-row H39 replay by about $7.71$.
+Thus the actual row-local replay target is closer to
+$2\times10^{-7}$ in normalized residual coordinate, or a full-radius compression
+scale above $5\times10^6$. This does not certify the H38 producer image; it
+replaces the broad interval-dependency statement with a concrete failing-row
+collar replay and a sharper directed-rounded enclosure target.
+
+The row-local collar bisection turns the estimate into an executable target.
+At the selected row centers, the zero-width replay is already below the
+midpoint pressure bound, with worst ratio about $3.47\times10^{-3}$. The full
+requested collar still exceeds the bound by about $7.71$. Bisection on the same
+row-local replay finds a positive normalized half-width about
+$1.97\times10^{-7}$, with full-radius scale about $5.08\times10^6$ and
+bracket width below $10^{-15}$. This identifies the next certificate target
+more sharply: prove, with directed rounding on the same H38 producer domain,
+that the selected producer rows stay inside this row-local collar before H39
+applies absolute Cauchy bounds.
+
+The row-local producer-width contraction packet converts that collar into H38
+producer-image targets. The live route now emits
+`row_center_producer_width_contraction_target` for each selected row and projects
+the row-local bisection collar back to the H38 residual coordinate and the
+pre-division $S_{37}$ numerator. On the focused H39/y44 route, both selected row
+centers are inside the bisection collar, while the current producer intervals
+are not. The largest required normalized coordinate contraction is
+$5.077823006494715\times10^6$; the same H38 residual half-width contraction is
+$5.077823006494714\times10^6$; the $S_{37}$ numerator-width contraction target
+is $5.0778237283133995\times10^6$. Equivalently, the selected rows must reach
+H38 residual half-width at least as small as
+$7.308309016282101\times10^{16}$ and a pre-division numerator-width lower
+target about $1.158687441087688\times10^{17}$. A naive linear row-subcell
+forecast is about $25{,}389{,}116$ local subcells, so the next useful artifact is
+not brute refinement; it is a directed-rounded same-domain producer-image
+certificate that keeps the residual coordinate correlated through the $N_{38}$
+graph and $S_{37}$ division before H39 absolutizes the source. This remains
+candidate-only and does not certify the H38 producer image.
+
+The row-local $N_{38}/S_{37}$ collar diagnostic now tests the same target one
+step closer to a certificate. For each selected row, the route compares the
+quadratic $N_{38}$ graph residual against the row-local numerator-width target
+derived from the inherited $S_{37}$ solve slope. The midpoint graph residuals
+and graph widths already fit by large margins: the worst midpoint residual
+width is only $5.791796829783928\times10^{-11}$ of the row-local
+$S_{37}$ target, and the worst graph interval width is only
+$2.896826890907833\times10^{-11}$ of that target. The current interval
+residual, however, is still $5.077823006493376\times10^6$ times too wide. This
+separates the problem: the quadratic $N_{38}$ normal form is centered correctly,
+and $S_{37}$ is not the immediate source of the blowup; the remaining certificate
+must prove a directed-rounded same-domain $N_{38}$ graph remainder instead of
+passing through the raw row interval hull.
+
+The same row-local diagnostic now records the exact acceptance inequality for
+that next certificate:
+$w(\mathrm{graph})+2|r_{\mathrm{mid}}|+w(r_{\mathrm{sd}})\le
+w_{S_{37}}^{\mathrm{row}}$. On the live selected rows, the graph-plus-midpoint
+part is below $10^{-9}$ of the row-local $S_{37}$ numerator-width target, so
+the remaining same-domain $N_{38}$ graph-remainder width budget is still
+positive and above $10^{17}$. The raw interval residual is more than
+$5\times10^6$ times larger than this remaining budget. This tightens the target
+from a general "directed-rounded $N_{38}$ graph remainder" to a concrete
+same-domain remainder inequality measured before the $S_{37}$ division.
+
+The row-local route now also attaches that inequality to the true H38
+producer stream. For the cubic Taylor graph $q_3$, the fourth derivative of
+the fitted graph vanishes, so the proof obligation is equivalently a
+same-domain directed-rounded upper bound on the true $N_{38}^{(4)}$ emitted by
+`evaluateH38RecurrenceNumeratorBeforeSolve`, with the shared $\xi$ dependency
+kept intact. The executable diagnostic records raw true-stream and cubic-graph
+fourth-difference probes, but marks them non-certifying: if those sampled probes
+look favorable or unfavorable, they still do not replace the needed analytic
+directed-rounded differentiation of the recurrence stream before the
+$S_{37}$ division.
+
+The first analytic provider scaffold is now explicit. The certificate may
+commute coefficient extraction with the row coordinate derivative:
+$d^4[y^{42}]S(y,\xi)/d\xi^4=[y^{42}]d^4S(y,\xi)/d\xi^4$ on the same
+$\xi$ domain, where
+$S=\delta^2\nu^{-2}-2+\sin\phi+\sin\delta$ and $h_{38}$ is zeroed before the
+solve. Thus the missing directed-rounded inputs are no longer vague: they are
+the $\xi$ derivatives through order $4$ of $\nu^{-2}$, of the $\delta$
+coefficient stream, and of the $\phi$ coefficient stream, inserted into the
+Leibniz formula for $\delta^2\nu^{-2}$ and the fourth-order sine chain rule for
+$\sin\phi$ and $\sin\delta$. This remains candidate-only, but it turns the next
+certificate from "differentiate the evaluator somehow" into a concrete
+chain-rule coefficient-extraction provider. The executable route now includes a
+standalone scaffold candidate that accepts same-row source-term
+$d^4/d\xi^4$ intervals, preserves the signed sum of
+$\delta^2\nu^{-2}$, $\sin\phi$, and $\sin\delta$ through the provider boundary,
+and compares the resulting $N_{38}^{(4)}$ upper bound with the row-local $M_4$
+ceiling. It still marks the result non-certifying unless the supplied term
+intervals are themselves directed-rounded same-domain enclosures.
+
+The follow-on normal-form check now separates the finite-stencil number from
+the interpolation identity it represents. On the same five live producer nodes,
+the diagnostic forms a degree-four Lagrange interpolant for each source-term
+midpoint stream and takes the fourth derivative as $24$ times the quartic
+coefficient. The summed interpolant derivative fits the row-local $M_4$ ceiling
+by a factor below $5.49\times10^{-11}$, and the interpolant-vs-fourth-divided
+difference gap is below $8.45\times10^{-20}$ of that ceiling. This is still
+candidate-only, but it verifies that the source-term provider is not an
+implementation artifact of one finite-difference formula; the next proof object
+is the same source-term derivative provider with directed-rounded same-domain
+intervals replacing midpoint interpolants.
+
+The intervalized follow-up now tests whether the existing node coefficient
+intervals are already tight enough for that replacement. The diagnostic carries
+`numerator_term_intervals` forward from the H38 producer evaluation, applies
+the same five-node Lagrange fourth-derivative weights directly to those
+intervals, and feeds the resulting signed source-term intervals through the
+same H39 analytic scaffold and $S_{37}$ division replay. The result is
+candidate-only and deliberately open: the midpoint interpolant lies inside the
+intervalized derivative enclosure with zero gap, but the live maximum
+intervalized ratio is about $2.1184411320931636\times10^5$ against the
+row-local $M_4$ ceiling, with an interval-to-midpoint loss factor about
+$3.86\times10^{15}$. The dominant term-level ratios are approximately
+$3.26\times10^4$ for $\delta^2\nu^{-2}$, $7.62\times10^4$ for $\sin\phi$,
+and $1.03\times10^5$ for $\sin\delta$. This localizes the obstruction: the
+Lagrange normal form is not failing, and the midpoint source-term cancellation
+is present inside the interval hull; the remaining blocker is dependency loss
+in the node source-term intervals before a directed-rounded same-domain
+derivative certificate is applied.
+
+The next provider probe removes one more possible artifact. Instead of summing
+separate `numerator_term_intervals`, the H39/y44 diagnostic now applies the
+same five-node Lagrange fourth-derivative weights directly to the propagated
+total signed $N_{38}$ node intervals `numerator_interval`. This preserves
+intra-node source cancellation before any derivative weighting. The result is
+negative but clarifying: the total-$N_{38}$ intervalized provider is emitted
+and contains the midpoint derivative with zero gap, but the live maximum ratio
+is still about $2.118441132092869\times10^5$ against the row-local $M_4$
+ceiling. Each selected node's total $N_{38}$ interval is already about
+$5.88\times10^{23}$ wide, so the obstruction is present inside the H38
+producer node intervals themselves, not only in the termwise source split. The
+next certificate must therefore preserve dependency while forming the node
+$N_{38}$ interval or prove a sharper same-domain continuous derivative
+enclosure before Lagrange weights and absolute Cauchy bounds are applied.
+
+The node-width localizer now identifies where that total-$N_{38}$ interval
+width is born. For the live selected H39/y44 rows, pinning all h rows to their
+midpoints and leaving only the cell geometry interval active leaves only about
+$2.65\times10^{-15}$ of the full node width. Keeping the cell at its midpoint
+while restoring all h-row intervals recovers essentially all of the width
+($0.999999876$ of the full node width). The late terminal rows dominate that
+dependency: h35-h37 alone account for about $0.962988$ of the node width, while
+the nonterminal h0-h34 block accounts for only about $0.037012$. Among single
+terminal rows, h37 is the largest contributor at about $0.649856$ of the full
+width. This changes the immediate closure target: the obstruction is not
+ordinary cell-geometry uncertainty and not the Lagrange provider. It is a late
+h-row dependency-width problem in the H38 producer image, so the next proof
+route should preserve covariance through h35-h37, or derive a terminal h-row
+normal form that avoids exporting those rows as independent intervals before
+the $N_{38}$ derivative certificate.
+
+The terminal eta graph replay now bridges that localizer back onto the exact
+five-node symmetric cross-fold row-local window instead of only the older
+positive-$\xi$ stencil. On the live H39/y44 row-local window, the terminal
+h35-h37 block still supplies about $0.971399$ of the total active source width,
+while h0-h34 supplies only about $0.0286009$. Replaying the coupled quadratic
+terminal graph collapses the terminal contribution to about
+$2.03\times10^{-13}$ of its original width; graph plus nonterminal rows stays
+at about $0.0286009$ of the full width. The raw interval residual still
+recreates essentially the full terminal width. This makes the route sharper:
+the obstruction is not the symmetric cross-fold coordinate or the terminal
+polynomial graph itself, but the residual/export step that widens the coupled
+h35-h37 producer image before the shifted $R_{\varepsilon,43}$ bound is taken.
+The shared-domain replay summary now records the provider dependency kind,
+dependency witness kind, h38 solve-target policy, replay kind, and terminal
+h-index set, so scalar endpoint-zeta provider replays can be distinguished
+from independent h-row interval snapshots at the H39 boundary. This is still a
+candidate endpoint replay rather than a directed-rounded shared-zeta interval
+certificate, but it removes an ambiguity in the provider audit trail.
+The terminal graph remainder-budget diagnostic now carries the same symmetric
+cross-fold row-local window: the affine endpoint partitions remain under the
+$0.05$ share target on the exact five-node stencil while raw residual export
+still overbudgets. The provider replay also emits a
+`candidate-coupled-xi-zeta-terminal-residual-provider-summary` that records
+the comparison $\xi$ cover, shared endpoint-$\zeta$ partitions, exact
+terminal h-index set `[37,36,35]`, and requested shifted $\zeta$-slice coverage
+without promoting a shared-$\zeta$ interval certificate. This proves the
+current candidate route is already coupled at the diagnostic replay level; the
+remaining blocker is directed-rounded continuous $\xi,\zeta$ enclosure for the
+H38 producer image.
+
+The H39/y44 route now preserves the requested shifted residual-direction
+profile through that coupled provider summary and emits a checked
+`candidate-requested-y44-continuous-xi-zeta-producer-image-target`. The target
+contains the live five-row by two-residual-partition grid, carries the
+requested residual-radius budget for each cell, verifies shifted source
+reconstruction and requested shifted $\zeta$-slice coverage, and compares the
+H38 producer residual coordinate against that budget. The same packet adds a
+row-local intervalized Lagrange loss attribution: midpoint source-term and
+total-$N_{38}$ normal forms fit the row-local $M_4$ target, the intervalized
+midpoint gap is zero, and the remaining excess tracks terminal h35-h37 node
+width. The target now also carries a terminal h35-h37 covariance-preservation
+subtarget that records the selected rows where cell-only width is negligible
+and terminal h-row width dominates. This is still candidate-only, but it moves
+the blocker from "find the right coordinate" to a concrete directed-rounded
+producer-image task: preserve the terminal h-row covariance in the continuous
+$\xi,\zeta$ H38 producer image before taking absolute Cauchy bounds.
+
+The same target now carries a linear width-share budget and a provider-backed
+endpoint-partition witness. The width-share budget shows that terminal h35-h37
+dominance is real but terminal-only compression cannot close the selected rows
+if the nonterminal h0-h34 floor is held fixed: the nonterminal-plus-cell floor
+is already about $7.84\times10^3$ times the required closure share, while the
+cell-only floor is only about $5.62\times10^{-10}$ of the required share. By
+contrast, compressing the all-h-row producer image together would have a
+positive linear budget, requiring about $2.12\times10^5$ compression. The new
+`candidate-requested-y44-terminal-h35-h37-coupled-endpoint-partition-target`
+then proves the route can carry the exact `[37,36,35]` terminal endpoint
+provider, requested shifted $\zeta$-slice coverage, and source reconstruction
+through the H39 boundary without exporting an independent terminal box. This
+changes the next blocker again: closure cannot be won by h35-h37-only
+compression under a fixed nonterminal floor. The certificate must either
+preserve a broader all-h-row covariance through the H38 producer image or prove
+signed cancellation for the residual nonterminal floor before the absolute
+majorant is applied.
+
+The same replay now makes that conclusion quantitative as a two-block
+allocation simplex. With the cell floor removed, the selected rows need the
+nonterminal h0-h34 contribution compressed by more than about
+$7.84\times10^3$ before any positive terminal h35-h37 budget exists. Even if
+the nonterminal floor were eliminated, the terminal block would still require
+more than about $2.04\times10^5$ compression, and the balanced all-h-row
+compression target remains about $2.12\times10^5$. This is candidate-only, but
+it changes the closure route from "certify h35-h37 alone" to "certify an
+all-h-row covariance enclosure or prove signed h0-h34 cancellation before the
+absolute Cauchy majorant."
+
+The replay also now carries a
+`candidate-signed-nonterminal-h0-h34-floor-cancellation-target` on the same
+rows. This reuses the h0-h34 cell-midpoint localization intervals and the
+five-node degree-four Lagrange weights to separate the signed h0-h34 midpoint
+estimate from the intervalized h0-h34 floor. Its purpose is diagnostic rather
+than certifying: it tells the next sprint whether the nonterminal floor is a
+signed midpoint obstruction or an interval-floor artifact that must be removed
+by dependency-preserving all-h-row producer-image covariance.
+
+The live routed numbers now choose that fork. On the selected rows, the
+h0-h34 intervalized floor is about $7.84\times10^3$ times the row-local
+requirement, but the signed h0-h34 midpoint contribution is only about
+$6.69\times10^{-10}$ of the same requirement. The new
+`candidate-signed-nonterminal-h0-h34-identity-router` therefore routes the
+next proof object to a signed h0-h34 identity: if that midpoint cancellation is
+made directed-rounded, the nonterminal floor no longer consumes the two-block
+budget, and the remaining compression target is the terminal/all-h-row
+producer-image covariance.
+
+That identity target is now explicit. The replay adds
+`candidate-signed-nonterminal-h0-h34-midpoint-fourth-difference-identity-target`,
+which applies the same five-node degree-four Lagrange weights directly to the
+h0-h34 signed midpoint stream. It records the weighted node contributions, the
+signed sum, the positive and negative weighted masses, and the cancellation
+ratio before any interval absolute floor is charged. On the live rows this
+classifies as
+`signed-nonterminal-fourth-difference-cancels-before-interval-floor`: the
+signed-to-absolute midpoint ratio is about $1.70\times10^{-6}$, the
+cancellation gain is about $5.88\times10^5$, and the absolute midpoint mass is
+only about $3.93\times10^{-4}$ of the row-local requirement. The nonterminal
+obstruction is therefore not a large midpoint fourth difference. It is a
+directed-rounding and dependency-preservation problem: prove the same signed
+near-cancellation on the same domain, then feed the remaining terminal/all-h-row
+covariance target forward.
+
+The follow-on budget now measures that dependency loss directly. The
+`candidate-signed-nonterminal-h0-h34-dependency-loss-budget` compares the
+intervalized h0-h34 floor with both the signed midpoint fourth difference and
+the absolute midpoint mass. The live rows show that the absolute midpoint mass
+already has about $2.54\times10^3$ headroom against the row-local requirement,
+while the interval floor is about $2.0\times10^7$ times the absolute midpoint
+mass and about $1.17\times10^{13}$ times the signed midpoint. Thus the next
+certificate is not searching for more cancellation at the midpoint. It must
+preserve the existing five-node dependency through directed rounding. The same
+budget now subtracts the midpoint contribution from the intervalized
+fourth-difference interval and records the midpoint-centered residual burden;
+that residual, not the midpoint value, is what must be compressed into the
+remaining row-local budget before the h35-h37/all-h-row covariance target is
+charged.
+
+The next proof object is now executable as a provider specification instead of
+a vague enclosure request. The
+`candidate-signed-nonterminal-h0-h34-midpoint-dependency-preserving-provider-specification-target`
+converts the midpoint-centered residual budget into five coefficient-residual
+radius targets, one for each Lagrange node. It records the residual derivative
+budget left after charging the absolute midpoint mass, divides that budget
+across the five weighted nodes, and solves the local inequality
+$|w_i|\,\varepsilon_i \le B_i$ for the coefficient residual radius
+$\varepsilon_i$. It also records the dominant node for the required radius
+compression, so the next proof attempt can focus on the hardest local residual
+instead of re-running an undirected h0-h34 search. The live rows still require
+directed-rounded radius contraction; the current intervals do not satisfy the
+specification. This is the sharper closure route: construct a same-domain
+h0-h34 provider whose node residual radii meet those bounds, then replay the
+remaining terminal/all-h-row covariance before returning to shifted
+$R_{\varepsilon,43}$.
+
+The provider specification now has a current-shape comparison. The
+`candidate-signed-nonterminal-h0-h34-current-shape-radius-contraction-profile-target`
+compares the balanced per-node residual allocation with the minimax allocation
+that preserves the live five-node residual shape. If $B$ is the total residual
+derivative budget and $d_i$ is the current weighted residual magnitude at node
+$i$, the optimized allocation is $B_i=B\,d_i/\sum_j d_j$. Under that
+allocation every active node has the same required contraction,
+$\sum_i d_i/B$. This exposes whether the hardest balanced node is a real
+residual obstruction or an artifact of splitting the budget equally. On the
+live rows the current-shape profile sharpens the balanced radius target, so the
+next directed-rounded h0-h34 provider should try to contract the existing
+five-node residual shape uniformly around the midpoint stream rather than
+forcing an equal-budget node proof first.
+
+The profile now feeds an executable candidate certificate screen rather than a
+pure description of the next contraction. The
+`candidate-signed-nonterminal-h0-h34-current-shape-certificate-screen` keeps the
+same five-node weighted residual shares and tests explicit safety margins
+against the remaining residual derivative budget. At the boundary contraction
+factor the contracted current-shape residual exactly fits the h0-h34 budget; at
+the first strict margin, $1.01$ times that factor, the screen reports positive
+headroom while preserving the node-share sum. This still does not certify
+directed rounding or h0-h34 covariance, but it turns the next provider proof
+into a concrete contract: prove each midpoint-centered node residual contracts
+by at least the selected current-shape factor, then consume the resulting
+budget-fitting h0-h34 provider before replaying terminal/all-h-row covariance.
+
+The screened-provider gap has now collapsed to one scalar target. The
+`candidate-signed-nonterminal-h0-h34-uniform-provider-gap-target` compares the
+live node residual radii to the first strict screened radii and verifies that
+the weighted and coefficient residual gaps agree, node by node, with the same
+selected contraction factor. The node-share drift is negligible and the gap
+spread ratio is one, so the next h0-h34 proof does not need a separate
+node-specific allocation theorem. It needs a directed-rounded same-domain proof
+that the midpoint-centered current residual shape contracts by that single
+factor while preserving the five-node dependency.
+
+The follow-on
+`candidate-signed-nonterminal-h0-h34-single-contraction-provider-contract`
+turns that statement into an interval-inclusion contract. For each interpolation
+node, the screened zero-centered target interval is a strict subinterval of the
+live midpoint-centered weighted and coefficient residual intervals, and the
+current-to-screened radius ratio is the same scalar contraction factor. The
+remaining proof burden is now sharply stated: a directed-rounded same-domain
+h0-h34 residual evaluator must emit intervals contained in those screened
+targets before the terminal/all-h-row replay can consume the contracted
+nonterminal block.
+
+The provider-verifier boundary is now executable rather than prose-only. The
+`candidate-signed-nonterminal-h0-h34-directed-provider-verifier` consumes the
+single-contraction contract and checks the exact row shape that a future
+directed-rounded provider must supply: five h0-h34 rows on the same nodes,
+same active range, same midpoint-centered target radii, and directed-rounded
+weighted plus coefficient residual intervals contained in the screened targets.
+With no true provider rows supplied, the verifier runs only a screened-target
+fixture path; it deliberately leaves same-domain, h0-h34 covariance, shifted
+$R_{\varepsilon,43}$, and retained-branch claims false. This advances the
+blocker from "what provider should exist?" to "produce real directed-rounded
+h0-h34 rows that pass the already wired inclusion verifier."
+
+The verifier now also consumes the live provider-shaped residual rows as a
+fail-closed probe. The
+`candidate-signed-nonterminal-h0-h34-live-residual-provider-probe` copies the
+existing midpoint-centered weighted residual intervals and coefficient residual
+intervals into the provider-row shape and feeds them through the verifier. The
+probe reaches the same-domain and same-radius contract, but it is explicitly
+not directed-rounded evidence and its live intervals are wider than the
+screened targets. This is useful mathematically because the blocker is no
+longer a missing interface: it is a measured contraction/certification problem
+on already identified live residual intervals.
+
+The follow-on
+`candidate-signed-nonterminal-h0-h34-live-provider-contraction-defect` measures
+that problem directly at the verifier boundary. It compares the live weighted
+and coefficient residual intervals with the screened target intervals and
+records the required live-to-screened contraction for each node and residual
+view. The current live defect reduces to the same single uniform contraction
+factor already selected by the upstream contract; no node-specific or
+view-specific geometry mismatch appears at this stage. The remaining blocker is
+therefore sharper: produce a same-domain directed-rounded h0-h34 provider that
+realizes this single contraction factor and carries proof-grade source
+provenance, then let the existing verifier consume it.
+
+The contracted-provider candidate now executes that verifier-side split. The
+`candidate-signed-nonterminal-h0-h34-contracted-provider-candidate` feeds the
+five single-contraction h0-h34 target intervals back through the existing
+directed-provider verifier as supplied provider rows. Those rows match the same
+domain and same target radii and are contained in the screened targets; the
+verifier still rejects them because their source kind is candidate-only and
+does not certify directed-rounded shared-domain provenance. This is a real
+narrowing of the blocker: interval containment is no longer the candidate-level
+obstruction. The remaining h0-h34 proof burden is source certification for the
+same five contracted weighted and coefficient residual intervals.
+
+The scaled live-source diagnostic sharpens that burden by testing the actual
+arithmetic map instead of only supplying the screened targets. The
+`candidate-signed-nonterminal-h0-h34-scaled-live-source-provider-diagnostic`
+divides each live midpoint-centered h0-h34 residual interval by the measured
+single contraction factor and replays the scaled rows through the same verifier.
+The scaled intervals match the screened targets to tolerance, but strict
+containment misses by only a floating directed-rounding margin: the largest
+relative endpoint gap is about $2.03\times10^{-16}$. The next proof object is
+therefore not a new h0-h34 geometry search. It is a directed-rounded
+same-domain source map for the existing h0-h34-cell-midpoint evaluator stream,
+with enough outward-margin control to turn the scaled arithmetic replay into a
+real provider certificate.
+
+The source-map diagnostic now makes that localization executable. The
+`candidate-signed-nonterminal-h0-h34-source-map-diagnostic` ties each scaled
+provider row back to the h0-h34-cell-midpoint stream by checking the coefficient
+residual, Lagrange-weighted residual, live contract row, and uniform scaled row
+identities before the verifier sees the absolute intervals. On the live H39
+route these arithmetic identities close with maximum relative gap about
+$2.10\times10^{-16}$, while the scaled row to screened target gap remains about
+$2.03\times10^{-16}$. The diagnostic still leaves all directed-rounded,
+covariance, retained-branch, and shifted $R_{\varepsilon,43}$ claims false; it
+only proves that the remaining h0-h34 obstruction is the directed-rounded
+source operation and endpoint margin, not an unknown source row mismatch.
+
+The endpoint-margin diagnostic now quantifies that last numerical edge. The
+`candidate-signed-nonterminal-h0-h34-source-map-endpoint-margin-diagnostic`
+computes, for each source-map row, the smallest relative outward endpoint
+margin needed for the screened target interval to contain the scaled h0-h34
+source-map interval. On the live H39 route a single `Number.EPSILON` relative
+endpoint expansion contains every weighted and coefficient interval. This does
+not certify directed rounding; it narrows the next certificate to proving that
+the h0-h34-cell-midpoint source operation may carry that explicit one-epsilon
+outward endpoint margin on the same domain.
+
+The source-input provenance diagnostic identifies the exact live input path
+feeding that operation. The
+`candidate-signed-nonterminal-h0-h34-source-input-provenance-diagnostic`
+checks that each of the five source rows comes from the same-row
+`h0-h34-cell-midpoint` localization path: the cell is replaced by
+`pointCellAtMidpoint(cell)`, $h_0,\ldots,h_{34}$ remain interval-valued, and
+$h_{35},h_{36},h_{37},h_{38}$ are frozen to their row midpoints before
+`evaluateH38RecurrenceNumeratorBeforeSolve` supplies the $N_{38}$ coefficient
+interval. This does not certify the producer image as directed-rounded. It
+does remove the ambiguity about what source operation must be certified next:
+the remaining object is a same-row active-h0-h34 input certificate with h35-h38
+midpoint freezing, not an independent h-row box or an unknown provider mismatch.
+
+The same-row source-input replay diagnostic now checks that the stored h0-h34
+source intervals are reproducible from those original row inputs. The
+`candidate-signed-nonterminal-h0-h34-source-input-replay-diagnostic` rebuilds
+the `h0-h34-cell-midpoint` evaluator call from the row cell, branch, and
+h-row intervals, records that the supplied h38 midpoint-shaped input is zeroed
+by `evaluateH38RecurrenceNumeratorBeforeSolve`, and compares the replayed
+coefficient interval against the stored source row. On the live five-node
+route the replay closes with sub-$10^{-12}$ relative endpoint gap. This is a
+provenance/regression certificate, not a directed-rounded producer-image
+certificate; it proves the remaining blocker is source trust, not a stored-row
+bookkeeping mismatch.
+
+The source-operation replay layer separates the machine arithmetic from the
+source-provenance problem. The
+`candidate-signed-nonterminal-h0-h34-source-operation-replay` recomputes the
+coefficient-midpoint subtraction, Lagrange weighting, and single-factor scaling
+with the root-tube `nextDown`/`nextUp` outward interval primitives, then checks
+the result against the one-`Number.EPSILON` endpoint-expanded targets. On the
+live H39 rows the binary64 outward operation path closes with sub-$10^{-12}$
+relative replay gaps and every operation row fits the endpoint-margin target.
+The artifact keeps source-input, covariance, shifted $R_{\varepsilon,43}$,
+directed-rounded, and retained-branch claims false; it reduces the live blocker
+to proof-grade provenance for the five h0-h34 coefficient intervals and
+midpoint subtractions feeding the already-closed operation replay.
+
+The source-trust gap diagnostic now pins that handoff to the replay chain. The
+`candidate-signed-nonterminal-h0-h34-source-trust-gap-diagnostic` starts from
+the same-row source-input replay, carries it through the source-map and
+source-operation replay, and checks that the operation-path intervals fit the
+one-`Number.EPSILON` endpoint-expanded targets. On the live route, replay to
+the source-map and operation rows closes with sub-$10^{-12}$ relative gaps, and
+the only non-promoted ingredient is still directed-rounded H38 producer-image
+trust for the replayed `h0-h34-cell-midpoint` source intervals. The diagnostic
+also records the direct duplicate scaling separately because a different
+rounding order can be one outward step wider; the closure-relevant path remains
+the existing verified operation replay.
+
+The source-term producer-image trace pushes the same localization one level
+deeper. The
+`candidate-signed-nonterminal-h0-h34-source-term-producer-image-trace` keeps
+`delta_squared_speed`, `constant_minus_two`, `sin_phi`, and `sin_delta`
+separate on the five h0-h34-cell-midpoint source nodes, verifies that their
+interval sum reconstructs the replayed source at sub-$10^{-12}$ relative gap,
+and then reconstructs the midpoint-centered coefficient residual, Lagrange
+weighting, uniform scaling, and endpoint-margin replay path from those same
+terms. This shows that the open certificate is no longer a hidden summation or
+midpoint-subtraction issue. The remaining proof burden is the directed-rounded
+H38 producer-image trust for the four source-term intervals themselves, with
+the signed `sin_phi`/`sin_delta` cancellation preserved before absolute
+Cauchy bounds are charged.
+
+The zero-constant source-term reduction removes one of those four terms from
+the live trust burden. The
+`candidate-signed-nonterminal-h0-h34-source-term-zero-constant-reduction`
+checks the same five source-trace rows at source order $42$ and verifies that
+the `constant_minus_two` coefficient interval, midpoint, width, and
+midpoint-residual interval are exactly zero. The nonconstant sum
+`delta_squared_speed + sin_phi + sin_delta` still reconstructs the replayed
+source at sub-$10^{-12}$ relative gap and preserves the endpoint replay chain.
+This is not a directed-rounded source certificate, but it proves the next
+producer-image certificate only has to carry the three nonconstant source-term
+intervals through the same-domain H38 producer image.
+
+The same three-term boundary is now replayed at the aggregate H39 producer-image
+comparison level. The requested-y44 budget comparison extracts the live
+row-local `source_term_derivative_inputs_for_scaffold` arrays for
+finite-stencil midpoint jets, degree-four midpoint Lagrange interpolants, and
+intervalized Lagrange node enclosures, then feeds each family into the
+standalone analytic derivative scaffold and $S_{37}$ division replay. The
+finite-stencil and midpoint Lagrange scaffold replays close the row-local
+$M_4$ and $S_{37}$ budgets, while the intervalized node replay stays complete
+but exceeds the same budgets. This is still candidate-only, but it changes the
+blocker from "find the source-term scaffold" to "replace the intervalized node
+width artifact with a directed-rounded same-domain derivative enclosure for
+`delta_squared_speed`, `sin_phi`, and `sin_delta`."
+
+The signed nonconstant source-sum bridge now rules out one more possible
+escape route. Instead of applying Lagrange weights to the three source-term
+intervals separately, the H39/y44 diagnostic first sums the propagated node
+intervals for `delta_squared_speed`, `sin_phi`, and `sin_delta`, then applies
+the same five-node fourth-derivative weights to that signed nonconstant source
+sum. The result is emitted as
+`row_local_n38_nonconstant_source_sum_xi_intervalized_lagrange_provider_candidate`
+and replayed through
+`buildH39RequestedY44RowLocalN38SignedSourceSumDerivativeProviderCandidate`.
+On the live selected rows, the maximum ratio is still
+$2.118441132093164\times10^5$ against the row-local $M_4$ ceiling, the
+midpoint estimate remains inside the intervalized enclosure with zero gap, and
+the split-to-sum reduction factor is $0.9999999999999999$. Therefore the
+obstruction is not a bookkeeping artifact of keeping the three nonconstant
+source slots separate. The width is already present once the H38 producer
+image has exported independent node intervals; the next proof object must keep
+the source covariance through a directed-rounded same-domain continuous
+derivative enclosure, or through an equivalent producer-image normal form,
+before Lagrange/Cauchy absolutization.
+
+The signed-source derivative allocation target now makes that proof object
+quantitative instead of scalar. The producer-image comparison emits
+`producer_row_local_nonconstant_source_sum_derivative_allocation_target`,
+which subtracts the signed midpoint fourth derivative before measuring the
+remaining intervalized residual. On the focused H39/y44 fixture the signed
+midpoint itself is only $5.4831125713436076\times10^{-11}$ of the row-local
+$M_4$ ceiling, and all selected rows fit this midpoint budget. The hidden
+five-node Lagrange annihilator is large but controlled: the weighted midpoint
+absolute mass is only $2.1842511355438498\times10^{-4}$ of the same ceiling,
+while its cancellation gain is about $3.983597103147949\times10^6$. The live
+obstruction is therefore the residual width after the signed midpoint is
+removed: the current intervalized derivative residual still needs a
+$2.1184411322093202\times10^5$ same-domain contraction, with the current-shape
+and uniform coefficient allocations giving the same scale. The dominant row is
+`speed.0.first-y`. The next certificate is no longer "find a source
+cancellation"; it is a directed-rounded H38 producer-image source-covariance
+derivative provider that preserves the signed nonconstant stream through the
+same-domain residual allocation before the H39 shifted source takes absolute
+bounds.
+
+The source-map residual covariance target now moves that diagnosis one layer
+earlier. The producer-image comparison also emits
+`producer_row_local_nonconstant_source_sum_source_map_residual_covariance_target`,
+which reconstructs the post-midpoint residual from the five signed node
+residuals and from the three termwise residual streams. On the focused H39/y44
+fixture the reconstructed derivative residual matches the provider residual to
+sub-$10^{-12}$ relative gap, the node-triangle-to-derivative ratio is only
+$1.0000000008236036$, and the term-triangle-to-signed-node ratio is only
+$1.0000000047166826$. Thus neither the three-term split nor a hidden Lagrange
+node cancellation is the current artifact. The same
+$2.1184411322093202\times10^5$ contraction demand is already present as
+signed source-map node residual width. The dominant live contribution is node
+2 on `speed.0.first-y`, with `sin_delta` contributing
+$2.0953273068587252\times10^{24}$ in weighted residual absolute units. The
+next proof object should therefore bind the H38 producer-image source map
+itself, not merely reshuffle the downstream Lagrange or term-split accounting.
+
+The requested-y44 target is now linked back to the existing h0-h34 source-map
+trust anchor. Its trace-anchor summary matches the selected row-local provider
+rows to the same h0-h34 zero-constant source-term reduction: `constant_minus_two`
+has exact zero width at the source order, and the directed-rounded producer
+image trust burden is reduced to `delta_squared_speed`, `sin_phi`, and
+`sin_delta`. The bridge remains candidate-only, but it removes an ambiguity in
+the closure search: the live y44 residual-width target is not asking for a new
+four-term source identity. It asks for a directed-rounded same-domain H38
+producer-image source-map certificate for those three signed nonconstant terms
+on the selected requested-y44 rows.
+
+The requested-y44 source-map target now reduces the selected-row proof burden
+one step further. The shared-stream summary hashes the complete signed
+source-map residual data, excluding row labels and budgets, and finds that the
+two selected focused-fixture rows are the same H38 source residual stream. The
+only live difference is the row-local signed-midpoint budget; the tightest
+budget is on `speed.0.first-y`, and the budget spread across the shared stream
+is below $1.01$. Thus the next directed-rounded source-map certificate does not
+need two independent producer-image source proofs. It needs one same-domain
+certificate for the shared `delta_squared_speed + sin_phi + sin_delta` source
+stream, checked against the tightest selected requested-y44 row budget. The
+candidate still reports the required contraction scale
+$2.118441133954076\times10^5$ and keeps shifted
+$R_{\varepsilon,43}$, retained-branch, and directed-rounded claims open.
+
+The same shared-stream target now has an executable node-radius contract. The
+diagnostic converts the single stream and the `speed.0.first-y` tightest budget
+into five source-map residual radius targets, one for each Lagrange node, and
+also records the corresponding signed source and weighted residual target
+intervals. In the current-shape allocation the maximum contraction factor is
+the same shared-stream scale, about $2.118441133954076\times10^5$, because the
+five node shares sum back to the existing node-triangle budget. Balanced and
+uniform node allocations are retained only as comparison profiles. The
+dominant target remains node 2 with `sin_delta` as the largest termwise
+residual contribution. This is still priority-only and candidate-only, but it
+turns the next directed-rounded H38 producer-image task into a concrete
+five-node residual-inclusion certificate for one shared
+`delta_squared_speed + sin_phi + sin_delta` stream.
+
+The same five-node source-map target now has a provider-boundary verifier.
+The H39/y44 diagnostic emits an inclusion contract for five node residual
+target intervals and a candidate verifier that will accept only
+same-domain, same-radius H38 source-map provider rows preserving
+`delta_squared_speed`, `sin_phi`, and `sin_delta` signed together. On the
+focused fixture, the verifier fixture path passes, while the live source-map
+probe still exceeds the screened targets by about
+$2.118441133954076\times10^5$. The scaled contracted-provider comparison is
+not a certificate and remains open under strict interval inclusion. This
+sharpens the next blocker to one executable object: a directed-rounded
+same-domain H38 source-map residual provider for the five shared-stream
+nodes.
+
+The requested-y44 route now has an executable $N_{38}$ source-map envelope
+readiness bridge. The diagnostic
+`buildH39RequestedY44N38SourceMapEnvelopeReadinessCandidate` ties three
+surfaces together without promoting closure: the H39 source-map provenance
+bridge, the existing five-node `source_term_provider_probe` surface, and the
+expression-level $N_{38}$ terminal-graph remainder budget. On the symmetric
+cross-fold terminal graph fixture, the terminal route supplies the affine
+endpoint partition and the shared residual coordinate is affine through the
+y-order gap, while the provider probe already reaches the H39-shaped
+same-domain/same-radius verifier surface. The mismatch is now named directly:
+the terminal affine endpoint route is ready as a provider-construction route,
+but the independent terminal producer interval width is not a directed-rounded
+same-domain provider. The next proof object is therefore not another H39
+consumer wrapper; it is a directed-rounded same-domain terminal-affine endpoint
+provider for the expression-level $N_{38}$ source-map residual, followed by
+dependency-preserving $S_{37}$ transport into the five H39 provider rows.
+
+The next executable step now exists as a candidate terminal-affine endpoint
+provider budget surface. The diagnostic
+`buildH39RequestedY44TerminalAffineEndpointProviderCandidate` consumes the
+$N_{38}$ source-map envelope readiness bridge and the terminal graph remainder
+budget. It emits five terminal-affine provider rows and fifteen terminal
+$h$-budget rows for $h_{37}$, $h_{36}$, and $h_{35}$. The endpoint hulls and
+affine-zeta envelopes are under the requested source budget, the graph
+midpoint-linearity checks pass, and every terminal midpoint fit residual lies
+inside its allowed budget. The remaining failure is no longer a generic
+terminal graph issue: every raw terminal producer interval still exceeds the
+candidate terminal-affine budget. The provider candidate now converts the
+measured worst terminal-$h$ residual and half-width ratios into an integer
+same-domain local subcell partition. That partition uses the rational width
+scale $1/k$ on every terminal row, realizes the scale with the existing
+binary64 `nextDown`/`nextUp` interval primitive, verifies that all fifteen
+outward-scaled $h_{37},h_{36},h_{35}$ residual and producer half-width rows
+fit the recorded terminal-affine endpoint budget, and replays those rows
+through the existing $N_{38}$ source-map boundary. This shrinks the blocker:
+raw terminal width, integer domain cover, and the outward-rounded terminal
+endpoint primitive are no longer the executable objects to find. The remaining
+non-certifying step is dependency-preserving $S_{37}$ transport of that
+directed-rounded terminal $N_{38}$ source-map envelope into the five H39
+source-map provider rows.
+
+The $S_{37}$ transport replay is now executable at numerator-width level.
+`buildH39RequestedY44TerminalS37TransportReplayCandidate` consumes the
+terminal-affine endpoint provider candidate and the row-local $S_{37}$ collar
+replay. On the focused H39/y44 fixture, the terminal-affine partition is still
+too wide for the conservative row-local same-domain $S_{37}$ remainder budget:
+the worst pre-$S_{37}$ terminal row exceeds that budget by
+$2.3331929237700406\times 10^4$. The new packet records that measured factor,
+chooses the same-domain integer refinement $k=23332$, applies one more
+binary64 outward-scaled terminal subpartition, and verifies that all fifteen
+$h_{37},h_{36},h_{35}$ terminal numerator-width rows fit the row-local
+$S_{37}$ remainder budget while all five source-map boundary rows preserve the
+same domain and radius. This changes the live blocker again: terminal endpoint
+width and $S_{37}$ numerator-width realization now have executable candidate
+rows, while the actual dependency-preserving $S_{37}$ division witness remains
+open.
+
+The next quotient-width replay is also executable, but still not certifying.
+`buildH39RequestedY44TerminalS37DivisionTransportCandidate` consumes the
+terminal $S_{37}$ numerator-width replay and the same selected row-local
+collar replay. For every terminal $h_{37},h_{36},h_{35}$ numerator interval,
+it divides the outward-rounded numerator width, half-width, and absolute upper
+bound by each selected row's inherited solve-slope lower bound, then compares
+the induced $h_{38}$ residual width against that same row's $h_{38}$ target.
+All fifteen terminal rows fit all selected row-local quotient-width targets,
+and the five source-map boundary rows still preserve the same domain and
+radius. This removes the remaining raw width obstruction from the terminal
+path, but it does not prove dependency-preserving $S_{37}$ division: the open
+object is now the denominator-correlation witness that keeps the terminal
+$N_{38}$ numerator interval and same-domain solve-slope interval dependent
+inside a directed-rounded provider certificate.
+
+The denominator-correlation packet now tests that open object at the strongest
+non-certifying interval level available from the current rows.
+`buildH39RequestedY44TerminalS37DenominatorCorrelationCandidate` consumes the
+terminal $S_{37}$ quotient-width transport and forms the outward independent
+interval quotient $-N_{38}/S_{37}$ from each terminal numerator interval and
+each selected same-domain solve-slope interval. On the focused H39/y44
+provider-boundary replay, all fifteen terminal $h_{37},h_{36},h_{35}$ rows
+fit every selected row-local $h_{38}$ target even under this full interval
+quotient, and all five source-map boundary rows still preserve the same domain
+and radius. The blocker has therefore narrowed again: it is no longer
+numerical quotient width or denominator-variation surplus on the tested
+terminal partition. The remaining proof object is directed-rounded provenance
+for a dependency-preserving $S_{37}$ division provider that ties the numerator
+and denominator intervals to the same terminal construction without promoting
+full H39 closure, shifted $R_{\varepsilon,43}$ closure, or retained-branch
+status.
+
+The provenance ledger now removes the remaining ambiguity about row identity
+and quotient replay without certifying the division provider.
+`buildH39RequestedY44TerminalS37DivisionProvenanceLedgerCandidate` consumes the
+denominator-correlation packet and checks every terminal quotient row for
+terminal $h$-row identity, selected row-local budget identity, nonzero
+solve-slope sign, exact recomputation of the outward interval quotient, and
+source-map boundary continuity. The focused provider-boundary replay validates
+that all fifteen terminal quotient rows and all five boundary rows complete
+that ledger. The blocker is therefore no longer a missing same-domain row
+identity or a hidden quotient recomputation gap. The next proof object is the
+same-construction directed-rounded provider-identity witness proving that the
+terminal $N_{38}$ numerator interval and $S_{37}$ solve-slope interval are
+produced by one dependency-preserving construction.
+
+The same-construction witness attempt now makes the remaining provider-identity
+gap explicit. `buildH39RequestedY44TerminalS37ProviderIdentityWitnessAttemptCandidate`
+consumes the provenance ledger and verifies the available substrate fields:
+terminal $h$-row identity, selected row-local budget identity, same-domain and
+same-radius source-map boundary replay, nonzero $S_{37}$ denominator, and exact
+outward quotient recomputation. The focused provider-boundary replay validates
+those checks on all fifteen terminal quotient rows and all five boundary rows.
+It then fails closed on the five missing shared-construction fields:
+`shared_source_cell_id`, `shared_provider_provenance`,
+`shared_dependency_trace`, `shared_dependency_witness`, and
+`same_construction_dependency_preservation_statement`. The next proof object is
+therefore not another width or quotient replay; it is a provider identity
+handoff that propagates exactly those fields through the requested-y44 terminal
+$N_{38}/S_{37}$ construction.
+
+The provider identity handoff now materializes the available row-local side of
+that burden without certifying the terminal shared construction.
+`buildH39RequestedY44TerminalS37SharedIdentityFieldMaterializationAttemptCandidate`
+consumes the provider-identity witness attempt, the selected row-local collar
+replay, and the signed source-sum derivative provider. For each terminal
+quotient replay row it binds the row-local budget cell back to the source
+`cell_id`, speed interval, $\xi$ interval, source subcover row, signed-source
+dependency chain, same-domain dependency checks, and completed quotient-ledger
+substrate. The focused provider-boundary replay validates those handoff fields
+on all fifteen terminal quotient rows and all five boundary rows. It still
+fails closed on the terminal shared-construction fields: a shared source-cell
+binding for the numerator/denominator construction, provider provenance,
+dependency witness, and the same-construction dependency-preservation
+statement. The live blocker has therefore narrowed from missing row-local
+identity material to missing terminal same-construction identity binding.
+
+The terminal source-cell binding attempt now locates the next obstruction
+inside that identity binding. `buildH39RequestedY44TerminalS37SourceCellBindingFanoutCandidate`
+compares each terminal graph `cell_id` from the terminal-affine endpoint
+provider with the row-local $S_{37}$ budget cells materialized by the handoff.
+Six terminal $h$ rows have exactly one row-local replay row matching their
+terminal graph source cell, while the later terminal graph cells are absent from
+the selected row-local $S_{37}$ budget replay. Every terminal row still carries
+nonmatching row-local budget fanout. The packet therefore does not certify a
+same-construction source-cell binding. The next proof object must supply
+complete terminal source-cell denominator coverage and restrict the $S_{37}$
+denominator binding to the matching terminal source cell, or prove that the
+all-row fanout is one dependency-preserving construction.
+
+The coverage-lift readiness packet sharpens that blocker without certifying
+it. `buildH39RequestedY44TerminalS37SourceCellCoverageLiftReadinessCandidate`
+compares the five terminal graph source cells against both the selected
+row-local $S_{37}$ denominator replay and the upstream requested-y44 $\xi,\zeta$
+producer target. The upstream producer target sees all five terminal source
+cells, so the missing rows are not a terminal-graph visibility problem. The
+selected row-local $S_{37}$ denominator/provenance chain still carries only
+`speed.0.first-y` and `speed.1.first-y`; `speed.2.first-y`,
+`speed.3.first-y`, and `speed.4.first-y` remain upstream-visible but without
+row-local $S_{37}$ denominator target and provenance rows. The next proof object
+is therefore either a true five-cell row-local $S_{37}$ denominator/provenance
+lift or a dependency witness proving that the selected two-cell denominator
+fanout is one same construction.
+
+The five-node denominator-lift audit rules out one tempting shortcut.
+`buildH39RequestedY44TerminalS37FiveNodeDenominatorLiftAuditCandidate` replays
+the terminal source cells against the existing five-node source-map budget
+families: quotient source-radius budget, signed numerator source-budget fit,
+signed radius contraction budget, and signed radius provider acceptance target.
+All four five-node source-budget families are present for all five terminal
+source cells and reach the existing H38 source-map provider boundary, but none
+of those row families carries a row-local $S_{37}$ solve-slope interval,
+nonzero denominator check, denominator target row, or denominator provenance
+row. The blocker has therefore changed form: upstream source-map budget
+coverage is complete, while terminal $S_{37}$ denominator realization is still
+missing for `speed.2.first-y`, `speed.3.first-y`, and `speed.4.first-y`.
+
+The row-local collar selection-surface audit then localizes why the denominator
+realization is not available inside the current replay. `buildH39RequestedY44TerminalS37RowLocalCollarSelectionSurfaceAuditCandidate`
+compares the five terminal source cells against the de-duplicated
+`producer_row_local_collar_replay.row_replays` surface. That selected surface
+carries solve-slope, nonzero denominator, denominator-target, and provenance
+context for `speed.0.first-y` and `speed.1.first-y` only. The replay exposes no
+nonselected row-local $S_{37}$ denominator rows for `speed.2.first-y`,
+`speed.3.first-y`, or `speed.4.first-y`, while the five-node source-map budget
+already reaches all five terminal cells. The next true proof object is therefore
+a five-cell row-local $S_{37}$ denominator collar surface, or a same-construction
+fanout witness proving that the selected two-cell surface transports the
+remaining terminal cells without changing domain or radius.
+
+`buildH39RequestedY44TerminalS37FiveCellDenominatorReadinessSurfaceCandidate`
+now exposes the all-producer-sample row-local safety-search denominator-readiness
+surface for all five terminal source cells. The missing cells
+`speed.2.first-y`, `speed.3.first-y`, and `speed.4.first-y` now carry candidate
+solve-slope intervals, nonzero-denominator checks, denominator-target widths,
+and same-domain provenance context from the row-local replay, and each row
+reaches the existing source-map provider boundary. This changes the blocker:
+the selected provider-identity surface is still only the two selected rows, and
+there is still no dependency-preserving $S_{37}$ division provider or
+same-construction source-cell witness. The next true proof object is therefore
+the $S_{37}$ division/provider-identity witness, not another five-node source
+budget lift.
+
+`buildH39RequestedY44TerminalS37FiveCellDivisionDependencyWitnessAttemptCandidate`
+then consumes the five-cell readiness surface and the terminal $S_{37}$
+transport replay as a matched-cell quotient attempt. Each terminal source cell
+uses only its own row-local solve-slope interval and denominator target, so the
+fifteen terminal $h_{37}$, $h_{36}$, and $h_{35}$ numerator rows now have a
+one-to-one source-cell denominator-readiness match. Both the width-ratio replay
+and the independent interval quotient replay fit the matched $h_{38}$ targets
+and reach the existing source-map boundary. This is still not
+dependency-preserving $S_{37}$ division: the same-construction dependency
+witness and directed-rounded provider-identity certificate remain missing.
+
+`buildH39RequestedY44TerminalS37FiveCellSameConstructionDependencyFieldAuditCandidate`
+then audits the matched quotient substrate against the required
+same-construction identity fields. It materializes `shared_source_cell_id` for
+all fifteen terminal $h_{37}$, $h_{36}$, and $h_{35}$ rows because each
+terminal source cell is one-to-one matched to its row-local $S_{37}$
+denominator-readiness row. It also records separate numerator provenance and
+separate denominator provenance on the same source cell. It deliberately leaves
+shared provider provenance, shared dependency trace, shared dependency witness,
+and the same-construction dependency-preservation statement missing. The
+blocker is therefore narrower: produce a shared provenance, trace, witness, and
+preservation object that binds numerator and denominator as one
+directed-rounded dependency construction.
+
+`buildH39RequestedY44TerminalS37FiveCellSharedProvenanceComponentAuditCandidate`
+now assembles the safe part of that object without promoting it to a provider
+certificate. For every terminal $h$ row, it packages the matched terminal
+$N_{38}$ numerator interval, row-local $S_{37}$ solve-slope interval,
+independent quotient replay, same-domain boundary, same-radius boundary, and
+source-map directed-rounding provenance into a shared-source-cell provenance
+component. The component is available for all fifteen terminal rows and all
+five source-map boundary rows. It is still not `shared_provider_provenance`:
+the shared dependency trace, shared dependency witness, and same-construction
+dependency-preservation statement remain absent, so dependency-preserving
+$S_{37}$ division remains open.
+
+`buildH39RequestedY44TerminalS37FiveCellSharedDependencyTraceAuditCandidate`
+then promotes the ordered trace over that component without claiming a witness.
+For every terminal $h$ row, the trace records the shared source-cell binding,
+terminal $N_{38}$ numerator interval, row-local $S_{37}$ solve-slope interval,
+independent quotient replay, same-domain source-map boundary, same-radius
+source-map boundary, and directed-rounding provenance edge. The trace is
+available for all fifteen terminal rows and all five boundary rows. The blocker
+is now narrower again: a shared dependency witness and same-construction
+dependency-preservation statement must prove that this traced numerator and
+denominator construction survives $S_{37}$ division as one dependency-preserving
+provider.
+
+`buildH39RequestedY44TerminalS37FiveCellSharedDependencyWitnessAuditCandidate`
+then turns that trace into a witness without certifying division. For every
+terminal $h$ row, it verifies trace order, shared source-cell consistency,
+terminal $N_{38}$ numerator interval availability, row-local $S_{37}$
+solve-slope availability, exact recomputation of the independent quotient
+replay, quotient boundedness against the $h_{38}$ target, same-domain boundary
+continuity, same-radius boundary continuity, and source-map directed-rounding
+provenance continuity. The witness is available for all fifteen terminal rows
+and all five boundary rows. The remaining blocker is the same-construction
+dependency-preservation statement and full shared provider provenance object;
+until that statement is executable, dependency-preserving $S_{37}$ division
+remains open.
+
+`buildH39RequestedY44TerminalS37FiveCellSameConstructionPreservationStatementAuditCandidate`
+now makes that preservation statement executable without promoting it to full
+provider provenance. For every terminal $h$ row, it preserves the witnessed
+same source-cell binding, shared provider-provenance component context, ordered
+trace witness, exact independent quotient recomputation, quotient boundedness
+against the $h_{38}$ target, same-domain boundary, same-radius boundary, and
+source-map directed-rounding provenance. The statement is available for all
+fifteen terminal rows and all five boundary rows. The only remaining shared
+identity field is `shared_provider_provenance`; until that full object is
+assembled and checked, dependency-preserving $S_{37}$ division and provider
+identity certification remain open.
+
+`buildH39RequestedY44TerminalS37FiveCellSharedProviderProvenanceAuditCandidate`
+then assembles that full shared provider provenance object without certifying
+provider identity. For every terminal $h$ row, it binds the shared source-cell
+identity, shared provider-provenance component context, shared dependency
+trace, shared dependency witness, same-construction preservation statement,
+exact quotient recomputation, $h_{38}$ quotient bound, same-domain boundary,
+same-radius boundary, and source-map directed-rounding provenance into one
+candidate `shared_provider_provenance` object. All required shared identity
+fields are now materialized for all fifteen terminal rows and all five boundary
+rows. The next blocker is therefore the same-construction provider-identity
+witness; dependency-preserving $S_{37}$ division remains uncertified until that
+witness is executable.
+
+`buildH39RequestedY44TerminalS37FiveCellSameConstructionProviderIdentityWitnessAuditCandidate`
+now turns that full shared provider provenance object into an executable
+same-construction provider-identity witness without certifying $S_{37}$
+division. For every terminal $h$ row, it rechecks the shared source-cell
+identity, shared provider-provenance component context, shared dependency
+trace, shared dependency witness, same-construction preservation statement,
+exact independent quotient recomputation, $h_{38}$ quotient bound, same-domain
+boundary, same-radius boundary, and source-map directed-rounding provenance
+inside the witness surface. The witness is available for all fifteen terminal
+rows and all five boundary rows. The next blocker is the dependency-preserving
+$S_{37}$ division provider certificate over that witness; shifted
+$R_{\varepsilon,43}$ closure, retained branch, and directed-rounded
+shared-domain provider certification remain open.
+
+`buildH39RequestedY44TerminalS37FiveCellDependencyPreservingDivisionProviderCertificateCandidate`
+now joins the matched-cell $S_{37}$ division substrate to the
+same-construction provider-identity witness row by row. The certificate checks
+the same terminal node, same terminal $h$ row, same source cell, same
+row-local budget row, same terminal graph interval, exact independent quotient
+agreement, $h_{38}$ quotient target fit, same-domain boundary, same-radius
+boundary, directed-rounding provenance, and source-map boundary replay. The
+local `dependency_preserving_s37_division_provider_certified` flag is true for
+all fifteen terminal rows and all five boundary rows. The packet remains
+certificate-only: expression-level $N_{38}$ provider closure, terminal row
+provider enclosure, shifted $R_{\varepsilon,43}$ closure, retained branch, and
+directed-rounded shared-domain provider certification remain open.
+
+`buildH39RequestedY44TerminalRowProviderEnclosureWitnessCandidate` now joins
+the binary64 outward-rounded terminal producer partition rows to that local
+$S_{37}$ division provider certificate. The witness checks the same terminal
+node, same terminal $h$ row, same source cell, same terminal graph interval,
+terminal-affine budget containment, projected residual and half-width budget
+fit, arithmetic provenance, outward-rounding primitive availability,
+directed-rounding provenance inheritance, $S_{37}$ quotient fit, same-domain
+boundary, same-radius boundary, and source-map boundary replay. The local
+`terminal_row_provider_enclosure_certified` flag is true for all fifteen
+terminal rows and all five boundary rows. The packet remains witness-only:
+expression-level $N_{38}$ provider closure, terminal graph remainder closure,
+shifted $R_{\varepsilon,43}$ closure, retained branch, and directed-rounded
+shared-domain provider certification remain open.
+
+`buildH39RequestedY44DirectedRoundedSharedDomainProviderBoundaryReplayCandidate`
+now tests the actual same-domain provider boundary replay from the terminal-row
+enclosure witness into the existing $N_{38}$ source-map envelope readiness
+rows. The replay verifies the same five provider rows, same terminal source
+cells, verifier-boundary reachability, terminal-row enclosure boundary replay,
+terminal $h$-row enclosure availability, source-term provider same-domain and
+same-radius contracts, terminal-affine route readiness, terminal-row
+directed-rounding provenance, and provider midpoint containment in the
+terminal graph interval. The local boundary replay is verified for all five
+source-map rows. It does not certify the directed-rounded shared-domain
+provider: the executable blocker is now the source-term provider side, where
+directed-rounded source certification remains false and term-width realization
+remains open.
+
+`buildH39RequestedY44SourceTermRealizationProvenanceBridgeCandidate` now
+disambiguates that source-term side. It replays the shaped source-term provider
+through the centered homothetic contraction, scalar quotient, quotient-source
+radius budget, quotient-compatible signed-radius acceptance target, H38 source
+provenance bridge, $N_{38}$ readiness rows, and terminal boundary replay. All
+five nodes reduce the term-width realization burden to signed-radius source
+provenance. This does not certify the directed-rounded source provider; it
+changes the executable blocker to the directed-rounded same-domain
+expression-level $N_{38}$ source-map residual envelope before dependent
+$S_{37}$ transport.
+
+`buildH39RequestedY44ExpressionN38SourceMapResidualEnvelopeProvenanceAuditCandidate`
+now attacks that envelope directly. The audit verifies, on the same five-node
+stream, that the `delta_squared_speed + sin_phi + sin_delta` term residual
+intervals sum to the expression-level $N_{38}$ source-map residual and that
+their Lagrange-weighted sums replay the weighted residual rows. The
+quotient-compatible signed-radius target is a contained subinterval of those
+live residual intervals. The packet therefore fails closed at a sharper object:
+no current trace anchor, acceptance row, or bridge row certifies
+directed-rounded same-domain producer-image provenance for the three source
+terms.
+
+`buildH39RequestedY44SourceTermProducerImageProvenancePrimitiveAuditCandidate`
+now probes that three-term producer-image object directly. It verifies that the
+current H39 source-map residual target retains finite value intervals, midpoint
+data, and residual intervals for `delta_squared_speed`, `sin_phi`, and
+`sin_delta`; the three value intervals replay the signed source-term interval
+sum, the three residual intervals replay the expression-level $N_{38}$ residual
+identity, and the `constant_minus_two` term remains removed from the trust
+burden. The target now also retains focused H0-H34 source-term trace rows and
+zero-constant rows inside the source-map trace anchor. Directly identifying
+those retained H0-H34 rows with the expression-level H39 source-term rows fails:
+the retained value, residual, and zero-constant nonconstant intervals have
+large endpoint gaps against the H39 term rows. The next executable blocker is
+therefore not a direct retained-trace equality.
+
+`buildH39RequestedY44SourceTermTransportFitCandidate` now attacks that transport
+object. It computes termwise scalar and affine midpoint/interval fits from the
+retained H0-H34 source-term trace rows to the expression-level H39 source-term
+rows, but treats them only as a finite negative control: the affine interval
+transport does not close. The positive executable route is the existing
+centered homothetic source-term contraction bridge. Its normal-form,
+scalar-factorization, scalar-provider-target, quotient-envelope,
+quotient-source, source-radius, and signed-radius acceptance checks replay all
+five rows to signed-radius source provenance on the same domain and radius
+contract. This still does not certify a directed-rounded source provider. The
+next true object is the directed-rounded same-domain signed-radius
+source-provenance envelope for the expression-level $N_{38}$ source-map
+residual after centered homothetic source-term transport.
+
+`buildH39RequestedY44SignedRadiusSourceProvenanceEnvelopeCandidate` now builds
+that object as an executable envelope audit. It verifies that the
+quotient-compatible signed and weighted residual intervals match the centered
+homothetic transport bridge, sit inside the expression-level live residual
+intervals, replay the Lagrange radius weight, fit the numerator budget, and
+reach the same-domain/same-radius source-map verifier boundary. This is a real
+boundary advance, not a provider certificate. The remaining failure is now
+row-local and explicit: the acceptance rows, verifier rows, and transport
+bridge rows still lack the directed-rounded same-domain source-provenance
+certification fields. The next proof object is therefore the certificate that
+emits those signed-radius envelope rows as directed-rounded source provenance,
+not another interval-width contraction or terminal replay.
+
+`buildH39RequestedY44SignedRadiusSourceProvenanceCertificateAttemptCandidate`
+now attacks that certificate directly. It replays the accepted signed-radius
+envelope rows through the H38 source-provenance bridge and the existing
+directed-rounded shared-domain provider boundary replay. The candidate
+certificate intervals match the source-map boundary rows, still replay the
+Lagrange radius weight, and fit the verifier boundary. The attempt still fails
+closed: every row lacks the emitter fields tying the source-term producer-image
+primitive, terminal boundary replay, acceptance rows, verifier rows, transport
+rows, and H38 bridge rows into one directed-rounded same-domain
+source-provenance object. The next true blocker is that emitter, not another
+signed-radius interval contraction.
+
+`buildH39RequestedY44SignedRadiusSourceProvenanceEmitterIdentityAttemptCandidate`
+attacks the emitter identity itself. It compares the primitive expression-level
+$N_{38}$ source-term residual-sum interval against the accepted signed-radius
+certificate interval on each node. The primitive residual-sum interval contains
+the signed-radius certificate interval, and the centered homothetic transport
+bridge matches the signed-radius interval. A direct primitive-sum emitter
+identity fails, however: every signed-radius certificate interval is a proper
+subinterval of the primitive residual sum with a quantified endpoint and
+half-width contraction gap.
+
+`buildH39RequestedY44SignedRadiusSubintervalEmitterPrimitiveCandidate` now
+materializes that row-local subinterval primitive at candidate level. For each
+node it defines the centered affine contraction from the primitive residual-sum
+center to the signed-radius certificate center, with contraction scale equal to
+the signed-radius half-width divided by the primitive half-width. Existing
+binary64 outward interval primitives then map the primitive residual-sum
+interval to an outward image that contains the accepted signed-radius
+certificate interval while remaining strictly width-contracted on the same
+source cell and without increasing the radius boundary. This is still not a
+source-provenance certificate: the primitive keeps all source-input and shared
+domain certification claims false because the directed-rounded source-term
+producer-image provenance fields are still absent.
+
+`buildH39RequestedY44SourceTermProducerImageProvenanceFieldAttemptCandidate`
+now attacks those fields directly. For each of the five expression-level
+$N_{38}$ source-map nodes it distributes the signed-radius center shift across
+the three source-term residual intervals in proportion to term half-width and
+applies the same centered-affine contraction scale used by the subinterval
+primitive. The packet emits fifteen candidate term-field slots carrying
+directed-rounded source-term value intervals, residual intervals, same-domain
+field-domain metadata, radius values, and outward-rounding primitive metadata.
+Their residual sums contain the accepted signed-radius certificates and remain
+strictly width-contracted on the same source cells. The blocker has therefore
+shrunk from "fields absent" to a precise source-enclosure identity: every
+projected term image is a strict subinterval of the live expression source-term
+interval, so the field slots are not yet certified as same-domain
+producer-image enclosures.
+
+`buildH39RequestedY44SourceTermProducerImageEnclosureIdentityAttemptCandidate`
+now tests that identity directly against the strongest same-domain witnesses
+available in the packet. The candidate replays all fifteen projected term
+slots against the live expression source-term value and residual intervals,
+the retained H0-H34 trace intervals, and the zero-constant nonconstant term
+intervals. It also checks midpoint and residual-zero point witnesses. The
+result is fail-closed but sharper: the projected slots pass as allocated
+subintervals, yet every projected slot fails to enclose the available
+expression term envelope, and the retained trace checks remain negative
+controls. The artifact records the endpoint expansion and half-width expansion
+needed for enclosure. The next true blocker is therefore a directed-rounded
+same-domain narrower source-term image bound, or a dependency theorem proving
+the true producer image lies inside the projected strict subinterval slots.
+
+`buildH39RequestedY44SourceTermProducerImageProjectedSlotVariationBoundTargetCandidate`
+now converts that blocker into a per-term numeric target. For each projected
+source-term slot it measures the distance from the expression midpoint and the
+residual-zero witness to the projected slot endpoints, then records the minimum
+of those margins as the same-domain variation bound a future directed-rounded
+source-term image proof would have to satisfy. The executable replay found a
+sharper obstruction: not every projected slot contains the midpoint/residual-zero
+anchor, so some slots cannot yet receive a variation-bound argument at all.
+The blocker has therefore changed form before certification: the next object is
+a same-domain projected-slot midpoint/zero anchor identity, after which the
+remaining positive-margin slots can be tested against a directed-rounded
+same-domain source-term variation bound.
+
+`buildH39RequestedY44SourceTermProducerImageAnchorPreservingCenterAllocationAttemptCandidate`
+now discharges that anchor-allocation subproblem at candidate level. For each
+row it builds the three anchor-admissible center-shift intervals
+$[-c_i-\lambda h_i,-c_i+\lambda h_i]$ from the source-term residual center
+$c_i$, source half-width $h_i$, and signed-radius contraction scale $\lambda$,
+then checks whether the signed-radius total center shift lies in their
+Minkowski sum. The executable replay succeeds on all five rows and constructs
+term allocations whose contracted residual slots contain residual zero while
+their residual sum still contains the signed-radius certificate interval. This
+does not certify the source-term producer image, but it removes the midpoint/zero
+anchor defect as the immediate blocker. The next true object is again a
+directed-rounded same-domain source-term variation bound for the
+anchor-preserving allocated slots.
+
+`buildH39RequestedY44SourceTermProducerImageAnchorPreservingVariationBoundTargetCandidate`
+now computes that target surface for the anchor-preserving slots. For each
+allocated term slot it measures the endpoint margins from residual zero and
+the source-term midpoint, records the smaller margin as the maximum allowable
+same-domain source-term variation bound, and compares the available expression
+and retained-trace half-width witnesses against that margin. The executable
+replay succeeds on all fifteen terms: every anchor-preserving slot has a
+positive variation-bound target, but the current expression and retained-trace
+witnesses are still wider than those targets. The next blocker is therefore a
+directed-rounded same-domain source-term variation bound no larger than the
+recorded anchor-preserving margins, not another center-allocation repair.
+
+`buildH39RequestedY44TerminalHBudgetToSourceTermVariationReplayCandidate` now
+replays the directed-rounded terminal affine endpoint partition against those
+anchor-preserving source-term variation targets without choosing an
+$h_{37},h_{36},h_{35}$ to source-term identity. It joins the five terminal
+source-map boundary rows to the five source-term target rows, preserves the
+same-domain and same-radius flags, and exhausts all six bijections from
+$h_{37},h_{36},h_{35}$ to `delta_squared_speed`, `sin_phi`, and `sin_delta`.
+The executable screen quantifies all ninety assignment ratios and keeps every
+closure claim false. The result is still negative: no terminal-`h` assignment
+fits the recorded anchor-preserving variation targets. The blocker has therefore
+shrunk from an unlocalized producer-width failure to a concrete all-bijection
+terminal-`h` versus source-term variation-width miss. The next true object is a
+narrower directed-rounded same-domain source-term or terminal-`h` variation
+bound, potentially with a real terminal-`h` to source-term identity that changes
+the comparison; the present packet does not certify that identity.
+
+`buildH39RequestedY44TerminalHCoupledVariationCancellationScreenCandidate` now
+tests whether the previous miss is only an artifact of assigning independent
+terminal rows to individual source terms. It consumes the coupled
+`xi,zeta` terminal residual provider summary, requires the existing
+`terminal-shared-residual-affine-zeta-endpoint` dependency provenance, verifies
+that the coupled route does not export an independent $h_{35}$-$h_{37}$ box, and
+then compares the signed sums of the terminal $h_{37},h_{36},h_{35}$ residual
+and producer intervals with the aggregate anchor-preserving source-term
+residual-sum budget. The focused replay remains negative: neither the signed
+terminal residual sum nor the signed terminal producer sum fits the aggregate
+anchor-preserving residual-sum budget. This rules out a simple signed-sum
+cancellation rescue inside the current directed-rounded terminal partition. The
+next true object is a narrower directed-rounded same-domain coupled
+$h_{37},h_{36},h_{35}$ variation bound or a dependency-preserving producer-sum
+enclosure, not another independent all-bijection screen.
+
+`buildH39RequestedY44TerminalHCoupledProducerSumEnclosureTargetCandidate` now
+tests whether that producer-sum miss is width-only. It compares, row by row,
+the midpoint and half-width of the signed terminal producer-sum interval against
+the anchor-preserving source-term residual-sum interval. The measured result is
+not a positive refinement target: every center-preserving producer half-width
+scale collapses to zero, and the worst producer-sum center gap is about
+$2.197630829585465\times10^6$ times the anchor half-width. Thus partition
+refinement alone cannot close the current replay while preserving the measured
+producer-sum center. The next true blocker is a same-domain signed-sum center
+identity from the coupled terminal $h_{37},h_{36},h_{35}$ producer sum into the
+source-map residual budget, before half-width refinement can matter.
+
+`buildH39RequestedY44TerminalHCoupledProducerCenterIdentityDecompositionCandidate`
+now decomposes that center miss. It compares the signed terminal residual-sum
+center, the signed terminal producer-sum center, and the anchor-preserving
+source-term residual-sum center on the same five rows. The obstruction is
+mixed rather than a single clean residual-center failure: some terminal
+residual-sum centers already lie inside the anchor residual-sum budget and some
+do not. The worst residual-center gap is only about
+$1.2182069616588793$ anchor half-widths, while the worst producer-sum center
+gap is about $2.197630829585465\times10^6$ anchor half-widths and the worst
+producer-transform center drift is about
+$2.197630228046393\times10^6$ anchor half-widths. The next true blocker is
+therefore a mixed same-domain center identity: first control the dominant
+producer-transform center drift from terminal residual sum to terminal producer
+sum, while also closing the residual-sum center rows that still sit just
+outside the anchor budget.
+
+`buildH39RequestedY44TerminalHProducerTransformCenterDriftDecompositionCandidate`
+now decomposes the dominant producer-transform center drift across the
+terminal $h_{37},h_{36},h_{35}$ rows themselves. The three terminal row drifts
+replay the aggregate coupled producer-transform drift with worst relative
+sum gap about $9.665756625456157\times10^{-11}$, so the diagnostic is now
+measuring the actual row-level center-drift accounting rather than only the
+aggregate miss. The result is still not a directed-rounded provider
+certificate. The dominant row is $h_{37}$ on all five nodes, with worst
+terminal drift about $2.543863572411168\times10^6$ anchor half-widths, but it
+accounts for only about $0.8802005052099862$ of the terminal-$h$ absolute
+drift sum. Its signed contribution is about $1.1575588962408225$ times the
+aggregate drift magnitude and is partly cancelled by the opposite-sign
+$h_{35}$ and $h_{36}$ rows. The next true blocker has therefore sharpened
+again: prove a coupled terminal-$h$ producer-transform center identity, not a
+width-only refinement and not a single terminal-$h$ correction.
+
+`buildH39RequestedY44TerminalHProducerTransformCoupledCenterIdentityAttemptCandidate`
+now tests the first direct center-identity reduction. Because the terminal
+producer bound is the terminal graph interval plus a symmetric residual
+expansion, its center is the graph midpoint, so each row drift is
+$\operatorname{mid}(\text{graph})-\operatorname{mid}(\text{projected residual})$
+on the same terminal graph $\xi$ interval. The packet fits a single
+aggregate-preserving signed-share vector
+$(\alpha_{37},\alpha_{36},\alpha_{35})$ with
+$\alpha_{37}+\alpha_{36}+\alpha_{35}=1$:
+$\alpha_{37}=1.1575515258827325$,
+$\alpha_{36}=-0.004916267021898505$, and
+$\alpha_{35}=-0.1526352588608338$. This is a real reduction: it shrinks the
+previous worst center-drift scale by at least about
+$1.5705599132131122\times10^5$. It still does not fit the anchor budget: the
+worst fitted residual is
+about $16.1963259669024$ anchor half-widths. The next blocker is therefore no
+longer the full $2.5\times10^6$-scale terminal drift, but a same-domain
+rank-one signed-share residual identity, likely to be compared next against
+the terminal successor scalar identities $Q_{D,35}+36Q_{G,35}$,
+$Q_{D,36}+37Q_{G,36}$, and $Q_{D,37}+38Q_{G,37}$.
+
+`buildH39RequestedY44TerminalHSuccessorScalarChainResidualComparisonCandidate`
+now performs that comparison executablely inside the same focused
+provider-boundary replay. It projects the aggregate-preserving signed-share
+residual vector $(r_{37},r_{36},r_{35})$ onto the centered successor-scalar
+weight vector $(38,37,36)-37(1,1,1)=(1,0,-1)$, while auditing the residual
+sum against the same aggregate producer-transform center scale used by the
+signed-share packet. This is a stronger reduction: every orthogonal residual
+after projection is inside the anchor budget, with worst ratio
+$0.5573205782530721$ anchor half-widths and minimum compression
+$12.958915028610717$ relative to the rank-one signed-share residual. The
+packet still certifies no directed-rounded provider, terminal-$h$ identity,
+source-term producer image, or expression-level $N_{38}$ provider. The next
+true blocker is the same-domain directed-rounded terminal successor-scalar
+centered residual identity that would turn this measured projection into a
+source-map provider object.
+
+`buildH39RequestedY44TerminalSuccessorScalarProviderBoundaryIdentityAttemptCandidate`
+now performs that provider-boundary handoff check directly. It consumes the
+successor-scalar centered residual comparison and pairs each same-domain node
+with the existing terminal-affine endpoint source-map boundary replay rows.
+Executablely, the pre-projection signed-share residual still exceeds the
+provider budget, but the successor-scalar centered residual witness reaches
+the boundary: the worst after-projection ratio remains
+$0.5573205782530721$, leaving at least about $0.4426794217469279$ provider
+budget slack, and all source-map boundary rows are reached with terminal
+partition provenance ready. This is still not a provider certificate. The
+missing proof object has sharpened again: import or derive the executable
+$Q_D+(k+1)Q_G$ successor identities into an H39 same-domain terminal
+successor-scalar centered residual identity.
+
+`buildH39RequestedY44TerminalSuccessorCoefficientIdentityImportAttemptCandidate`
+now performs that import as a candidate-only proof packet. It consumes the
+successor-scalar provider-boundary handoff plus the directed-rounded
+H35/H36/H37 successor coefficient certificates, extracts the matching
+`speed.0.first-y` through `speed.4.first-y` rows, and records fifteen
+terminal identity witnesses for $h_{37}$, $h_{36}$, and $h_{35}$:
+$Q_{D,37}+38Q_{G,37}$, $Q_{D,36}+37Q_{G,36}$, and
+$Q_{D,35}+36Q_{G,35}$. Each imported identity interval contains zero and the
+weights match the same centered provider-boundary handoff
+$(1,0,-1)$. The packet deliberately does not certify the terminal successor
+scalar residual identity or the expression-level provider. The blocker has
+therefore changed form: the missing mathematical object is now the
+same-domain basis bridge from those predecessor successor coefficient
+identities to the H39 terminal successor-scalar centered residual vector.
+
+`buildH39RequestedY44TerminalSuccessorCoefficientBasisBridgeAttemptCandidate`
+now tests the most direct same-domain bridge. It weights the imported
+$Q_D+(k+1)Q_G$ identity intervals by the centered successor-scalar vector
+$(1,0,-1)$ and compares them with the measured H39 centered projection vector
+on the same five terminal cells. The measured centered projection lies inside
+the weighted identity intervals on all fifteen terminal rows, including the
+zero $h_{36}$ row. The attempt still fails to become a certificate because
+the two nonzero-weight identity intervals cross zero, so no directed-rounded
+nonzero normalizer or division is available. The next true blocker is now a
+same-domain nonzero successor-coefficient basis normalizer or derivative
+identity, not another provider-boundary wrapper.
+
+`buildH39RequestedY44TerminalSuccessorCoefficientNormalizerSourceAttemptCandidate`
+now narrows that blocker. It replays the same five terminal cells through the
+H35/H36/H37 successor coefficient certificate branch rows and records the
+target solve-slope interval, sign, and clearance fields for $h_{37}$,
+$h_{36}$, and $h_{35}$. All thirty branch-resolved solve-slope intervals are
+separated from zero, so the nonzero normalizer source exists at branch level.
+However, each two-branch collapsed solve-slope hull crosses zero, so a
+branch-agnostic scalar normalizer remains unavailable. The next true blocker
+is therefore sharper: derive a branch-resolved successor-coefficient
+normalizer composition identity carrying those branch solve slopes into the
+pair-summed centered coefficient basis. This remains candidate-only and does
+not certify the basis bridge, terminal successor scalar residual identity,
+expression-level provider, $S_{37}$ division, shifted $R_{\varepsilon,43}$
+closure, retained branch, or directed-rounded provider.
+
+`buildH39RequestedY44TerminalSuccessorCoefficientBranchResolvedNormalizerCompositionAttemptCandidate`
+now proves the branch-resolved coefficient-identity source that was implicit in
+the predecessor certificates. Each branch row emits the relevant
+`G_branch_coefficients_y0_to_yN` stream, and the certificate construction uses
+the same linear transform $D_m=(1-m)G_m$. For the terminal identities
+$m=h+2$, so the formal same-$G$ branch identity
+$D_m+(h+1)G_m=0$ holds on all thirty branch rows and the pair-summed formal
+identity refines the imported $Q_D+(h+1)Q_G$ intervals. This removes the
+branch-level coefficient-transform ambiguity. The packet still does not
+certify the H39 centered residual identity because the centered residual vector
+is emitted only as terminal-row aggregate data, not as branch-resolved residual
+components. The next true blocker is now a same-domain H39 centered-residual
+branch-split composition map that connects those branch components to the
+separated solve-slope normalizer sources and same-$G$ coefficient identities.
+
+`buildH39RequestedY44TerminalSuccessorCenteredResidualBranchSplitRankAttemptCandidate`
+now sharpens that blocker algebraically. It couples the measured H39 centered
+projected residual from the basis-bridge attempt to the branch-resolved
+normalizer composition rows and records the same-domain split equation
+$r_-+r_+=R$ for each terminal row. The current evidence supplies one
+aggregate equation for two branch residual components: across the five nodes
+and the $h_{37}$, $h_{36}$, and $h_{35}$ rows, the packet records thirty
+branch unknowns, fifteen aggregate equations, rank fifteen, and free dimension
+fifteen. The symmetric split $(R/2,R/2)$ is recorded only as a non-certifying
+placeholder because the branch-antisymmetric coordinate $t$ in
+$(R/2+t,R/2-t)$ remains unconstrained. The missing proof object is therefore
+no longer just a generic composition map; it is a same-domain
+branch-antisymmetric centered-residual coordinate or moment. This packet
+remains candidate-only and does not certify the centered residual branch split,
+branch-resolved normalizer composition, basis bridge, terminal successor scalar
+residual identity, expression-level provider, $S_{37}$ division, shifted
+$R_{\varepsilon,43}$ closure, retained branch, or directed-rounded provider.
+
+`buildH39RequestedY44TerminalSuccessorBranchAntisymmetricCommonNormalizerAttemptCandidate`
+now attacks that free coordinate directly instead of adding another provider
+wrapper. It tests the same-domain common-normalizer identity
+$r_b=\lambda s_b$ with $\lambda=R/(s_-+s_+)$ and
+$t=R(s_- - s_+)/(2(s_-+s_+))$, where $s_-$ and $s_+$ are the actual
+branch-resolved `solve_slope_interval` rows from the terminal normalizer
+composition packet. The artifact records the branch slope-sum and
+slope-difference intervals on all fifteen terminal rows, counts which
+$s_-+s_+$ denominators are separated from zero, and emits $\lambda$ and $t$
+candidate intervals only where the same-domain denominator division is
+available. If any denominator crosses zero, the blocker is the nonzero
+same-domain common-normalizer denominator or a different
+branch-antisymmetric moment; if all denominators are separated, the blocker
+advances to proving the common-normalizer branch-residual law itself. This
+packet remains candidate-only and does not certify the common-normalizer law,
+the centered residual branch split, branch-resolved residual components, the
+branch-resolved normalizer composition, the basis bridge, terminal successor
+scalar residual identity, expression-level provider, $S_{37}$ division,
+shifted $R_{\varepsilon,43}$ closure, retained branch, or directed-rounded
+provider.
+
+`buildH39RequestedY44TerminalSuccessorBranchAntisymmetricCommonNormalizerBoundaryReplayCandidate`
+now replays that common-normalizer attempt through the existing source-map
+boundary instead of adding another upstream wrapper. It consumes the
+branch-antisymmetric common-normalizer attempt, the terminal successor-scalar
+provider-boundary handoff, and the direct directed-rounded shared-domain
+provider-boundary replay. For each of the fifteen terminal rows it records the
+actual $s_-+s_+$ denominator classification, emits branch-residual candidate
+rows only where the common-normalizer division is available, and compares the
+candidate branch-residual sum with the aggregate centered residual and the
+already reached provider-boundary budget. The source-map boundary is reached
+on the same domain and radius, but the packet deliberately keeps the
+common-normalizer law, source-term width realization, expression-level
+$N_{38}$ provider, shifted $R_{\varepsilon,43}$ closure, retained branch, and
+directed-rounded provider certification open. The next true blocker is the
+same-domain proof of the common-normalizer branch-residual law when the
+denominator is available, or an alternate branch-antisymmetric moment if a
+denominator row remains unavailable.
+
+`buildH39RequestedY44TerminalSuccessorBranchResidualCommonNormalizerLawProbeCandidate`
+now tests that replay against the strongest same-domain source-covariance
+evidence already available in the H39 chain. It consumes the common-normalizer
+boundary replay, the centered-residual branch-split rank attempt, and the
+source-map residual covariance target, then compares each terminal-row
+common-normalizer $\lambda$ interval with the source-covariance homothetic
+quotient $\lambda$ interval. The packet also records denominator availability,
+candidate branch-residual aggregate reconstruction, the thirty branch
+residual unknowns, the fifteen aggregate equations, rank fifteen, and free
+dimension fifteen. This changes the blocker from a generic directed-rounded
+provider-boundary replay to a fail-closed common-normalizer branch-residual
+law probe: either prove the nonzero same-domain denominator, prove the
+common-normalizer $\lambda$ identity with the source-covariance quotient,
+supply the missing branch-resolved centered-residual source object, or tighten
+the candidate branch-residual sum. The current packet remains priority-only
+and candidate-only; it certifies no common-normalizer law, branch split,
+source-term width realization, expression-level $N_{38}$ provider,
+$S_{37}$ division, shifted $R_{\varepsilon,43}$ closure, retained branch, or
+directed-rounded provider.
+
+`buildH39RequestedY44TerminalSuccessorBranchResolvedCenteredResidualSourceObjectProjectionCandidate`
+now turns the missing source-object row into a direct projection attempt. It
+intersects each terminal common-normalizer $\lambda$ interval with the
+node-local source-covariance homothetic quotient $\lambda$ interval, then
+pushes that intersection through the branch solve-slope intervals $s_b$ to
+emit thirty source-covariance-constrained branch residual candidate rows. The
+packet records whether the projected branch rows exist, whether their
+two-branch sum still contains the aggregate centered residual, and whether
+the projection is no wider than the earlier common-normalizer branch-sum
+candidate. This is mathematical progress because the blocker is no longer
+only "find branch source rows"; it is now a concrete same-domain
+$\lambda_{\cap}s_b$ source-object projection with fail-closed exits at
+denominator separation, $\lambda$ intersection, projected sum containment, or
+the proof that the projected row is the actual branch-resolved centered
+residual. The packet remains priority-only and candidate-only; it certifies no
+branch-resolved centered-residual component, common-normalizer law, branch
+split, expression-level $N_{38}$ provider, $S_{37}$ division, shifted
+$R_{\varepsilon,43}$ closure, retained branch, or directed-rounded provider.
+
+`buildH39RequestedY44TerminalSuccessorBarycentricBranchResidualSourceObjectIdentityAttemptCandidate`
+now separates the algebraic identity from the actual source-object proof. On
+terminal rows where $s_-+s_+$ is separated from zero, it records the
+barycentric branch object $r_b=R s_b/(s_-+s_+)$ and the symbolic aggregate
+identity $r_-+r_+=R$. It then checks the interval replay against the measured
+aggregate residual, records whether the source-covariance quotient
+$\lambda$ contains the common-normalizer $\lambda$, and keeps the proof that
+the barycentric row is the actual branch-resolved centered residual open. This
+is the right split in proof burden: the aggregate-preserving algebra is now
+executable, while the next true blocker is either source-covariance
+$\lambda$ containment or a same-domain proof that the barycentric source
+object is the actual branch-resolved centered-residual source object. The
+packet remains priority-only and candidate-only; it certifies no
+branch-resolved centered-residual component, common-normalizer law, branch
+split, expression-level $N_{38}$ provider, $S_{37}$ division, shifted
+$R_{\varepsilon,43}$ closure, retained branch, or directed-rounded provider.
+
+`buildH39RequestedY44TerminalSuccessorBarycentricToSuccessorScalarHandoffAttemptCandidate`
+now tests the next same-domain handoff directly. It compares the barycentric
+aggregate residual $R$ against the terminal successor-scalar centered projected
+residual on each $h_{37},h_{36},h_{35}$ row, then carries the orthogonal
+successor-scalar remainder into the existing provider-boundary handoff. This
+separates two different facts that were previously easy to conflate: the
+barycentric object supplies the centered projection coordinate, while the
+provider-boundary witness is the orthogonal remainder after that projection.
+The executable replay validates all fifteen centered-projection matches and
+all fifteen provider-boundary remainder fits, while still recording denominator
+availability and source-covariance $\lambda$ containment separately. The
+remaining blocker is therefore not another boundary wrapper; it is the
+same-domain proof that the barycentric branch object is the actual
+branch-resolved centered-residual source object, unless source-covariance
+$\lambda$ containment or denominator availability is still open on a terminal
+row. The packet remains priority-only and candidate-only; it certifies no
+successor-scalar identity, branch-resolved centered-residual source object,
+expression-level $N_{38}$ provider, $S_{37}$ division, shifted
+$R_{\varepsilon,43}$ closure, retained branch, or directed-rounded provider.
+
+`buildH39RequestedY44TerminalRowProviderObjectReplayAttemptCandidate` now
+attacks the replay itself rather than adding another provider-boundary wrapper.
+It compares, on the same node, terminal $h$ row, branch, domain, and radius
+rows, the barycentric terminal-row witness intervals against the
+source-covariance constrained source-map provider-object intervals. The packet
+records branch equality, overlap, containment, endpoint gaps, and half-width
+ratios separately, then inherits the successor-scalar provider-boundary
+handoff and the projection-sum and $\lambda$ containment status. Executable
+validation reaches the replay surface, but all thirty terminal-witness branch
+intervals are unavailable, so branch overlap and containment are not yet the
+active blocker. The blocker has moved earlier: produce denominator-available
+same-domain terminal witness intervals before testing containment against the
+source-map provider object. The packet remains priority-only and
+candidate-only; it certifies no terminal-row provider object replay,
+branch-resolved centered-residual source object, expression-level $N_{38}$
+provider, $S_{37}$ division, shifted $R_{\varepsilon,43}$ closure, retained
+branch, or directed-rounded provider.
+
+`buildH39RequestedY44TerminalWitnessDenominatorRealizationAttemptCandidate`
+now flattens the same-domain common-normalizer denominator $s_-+s_+$ into the
+terminal-row provider-object replay boundary. It consumes the common-normalizer
+attempt, the branch-residual common-normalizer law probe, the barycentric
+source-object attempt, and the terminal-row provider-object replay. Executable
+validation records five node rows, fifteen terminal rows, and thirty
+branch-slope rows. The live result is exact: zero of fifteen terminal rows have
+denominator-available common-normalizer division, all fifteen denominator
+intervals contain zero, all fifteen zero-crossing rows carry the same-$g$
+formal cancellation witness, all fifteen terminal rows are blocked by the
+denominator/source-object boundary, all fifteen branch-resolved centered
+residual source objects remain missing, and zero of thirty terminal-witness
+branch intervals are available. This changes the blocker from producer-width
+refinement to a same-domain denominator-free terminal branch-residual
+source-object identity replacing $R s_b/(s_-+s_+)$. The packet remains
+priority-only and candidate-only; it certifies no terminal witness
+realization, terminal-row provider object replay, branch-resolved
+centered-residual source object, expression-level $N_{38}$ provider,
+$S_{37}$ division, shifted $R_{\varepsilon,43}$ closure, retained branch, or
+directed-rounded provider.
+
+`buildH39RequestedY44TerminalProportionalCommonNormalizerLawRefutationCandidate`
+now attacks the finite proportional common-normalizer law itself. It checks
+the only available contradiction route: if $r_b=\lambda s_b$ with finite
+$\lambda$, then $r_-+r_+=\lambda(s_-+s_+)$, so an exact identity
+$s_-+s_+=0$ plus a nonzero aggregate residual would refute that route. The
+executable packet records the useful half of this test: aggregate residual
+zero-exclusion status is explicit, all fifteen denominator intervals contain
+zero, all fifteen rows carry the same-$g$ formal branch identity witness, and
+all fifteen branch-resolved source objects remain missing. It also records the
+decisive missing precondition: the current packets do not prove an exact
+same-domain identity $s_-+s_+=0$; they expose zero-crossing denominator
+intervals. Consequently the finite proportional law is not refuted here. The
+next proof object remains a same-domain denominator-free
+branch-residual source-object identity preserving $r_-+r_+=R$ on the same
+five terminal graph cells and $h_{37},h_{36},h_{35}$ rows without dividing by
+$s_-+s_+$. The packet remains priority-only and candidate-only; it certifies
+no terminal witness realization, terminal-row provider object replay,
+branch-resolved centered-residual source object, expression-level $N_{38}$
+provider, $S_{37}$ division, shifted $R_{\varepsilon,43}$ closure, retained
+branch, or directed-rounded provider.
+
+`buildH39RequestedY44TerminalDenominatorFreeBranchResidualSourceObjectIdentityAttemptCandidate`
+turns that handoff into the denominator-free branch-residual source-object
+attempt. It replaces the unavailable quotient $R s_b/(s_-+s_+)$ by the
+rank-one branch family $r_-=R/2+t$, $r_+=R/2-t$, so
+$r_-+r_+=R$ is preserved without dividing by the zero-crossing common
+normalizer. Executable validation emits the canonical symmetric $t=0$
+candidate on all fifteen terminal rows and thirty branch rows, and every
+candidate branch-pair sums back to the aggregate residual on the same five
+terminal graph cells and $h_{37},h_{36},h_{35}$ rows. The current status is
+still an open attempt: the source identity determining $t$ is missing, so the
+symmetric candidate is not a certified branch-resolved centered-residual
+source object. The packet remains priority-only and candidate-only; it
+certifies no terminal witness realization, terminal-row provider object
+replay, branch-resolved centered-residual source object, expression-level
+$N_{38}$ provider, $S_{37}$ division, shifted $R_{\varepsilon,43}$ closure,
+retained branch, or directed-rounded provider.
+
+`buildH39RequestedY44TerminalSourceCovarianceLambdaTCoordinateProjectionAttemptCandidate`
+now attacks the free coordinate $t$ directly instead of adding another replay
+wrapper. It consumes the same-domain common-normalizer law probe,
+branch-antisymmetric common-normalizer rows, and denominator-free
+rank-one-family attempt. For every terminal row it uses the source-covariance
+quotient $\lambda_{\mathrm{source}}$ already present in the law-probe rows and
+forms branch candidates $r_b=\lambda_{\mathrm{source}}s_b$ without dividing by
+$s_-+s_+$. It then records the interval
+$t=(r_- - r_+)/2$, the branch-sum interval $r_-+r_+$, whether that sum contains
+the measured aggregate residual $R$, and whether the resulting $t$ interval
+contains the symmetric placeholder $t=0$. Executable validation emits five
+node rows, fifteen terminal rows, and thirty branch rows, with all
+source-covariance lambda-only branch candidates and all $t$ intervals
+available. This is still a diagnostic candidate, not a source-object proof:
+the packet keeps the branch-antisymmetric coordinate identity, denominator-free
+branch-residual source-object identity, branch-resolved centered-residual
+source object, expression-level $N_{38}$ provider, $S_{37}$ division, shifted
+$R_{\varepsilon,43}$ closure, retained branch, and directed-rounded provider
+open. The next proof object is a same-domain identity proving that the
+source-covariance lambda-only branch projection is the actual
+branch-resolved centered-residual source object, or else a corrected scale
+identity if the recorded branch-sum containment fails on a terminal row.
+
+`buildH39RequestedY44TerminalSourceCovarianceLambdaProviderObjectReplayAuditCandidate`
+turns that recorded lambda-only witness into an explicit same-domain replay
+audit against the source-map provider-object rows. It consumes the
+source-covariance lambda $t$-coordinate projection, the direct
+branch-resolved centered-residual source-object projection, and the existing
+terminal-row provider-object replay carrier. For each node, terminal $h$ row,
+and branch, it compares the lambda-only interval
+$r_b=\lambda_{\mathrm{source}}s_b$ with the source-map provider-object
+interval and records overlap, subset, endpoint-gap, and half-width-ratio data.
+For each terminal row it also records the residual interval
+$\lambda_{\mathrm{source}}(s_-+s_+)-R$, so the branch-sum obstruction is now
+an executable zero-containment audit rather than an implied count. Missing
+provider-object branch intervals are represented fail-closed as
+provider-object-open rows; they do not become certification failures or hidden
+assumptions. This packet remains priority-only and candidate-only: it
+certifies no source-covariance branch-sum identity, terminal source-covariance
+provider-object replay, terminal-row provider object, branch-resolved
+centered-residual source object, expression-level $N_{38}$ provider,
+$S_{37}$ division, shifted $R_{\varepsilon,43}$ closure, retained branch, or
+directed-rounded provider. If the residual zero-containment and provider
+branch fit both pass, the remaining blocker is the same-domain actual-source
+theorem proving that $r_b=\lambda_{\mathrm{source}}s_b$ is the actual
+branch-resolved centered-residual source object.
+
+`buildH39RequestedY44TerminalSourceCovarianceAdjointMomentumBalanceAttemptCandidate`
+turns the free branch-split coordinate into the explicit adjoint/Noether
+momentum-balance target
+$w_-r_-+w_+r_+=M$. Combined with the already recorded family
+$(r_-,r_+)=(R/2+t,R/2-t)$, a same-domain adjoint covector would determine
+$t$ by
+$t=(M-R(w_-+w_+)/2)/(w_- - w_+)$. The packet consumes the source-covariance
+lambda $t$-coordinate projection and the provider-object replay audit, emits
+five node rows, fifteen terminal rows, and thirty branch rows, and records the
+candidate unit antisymmetric test $r_- - r_+=0$ as the interval residual
+$r_- - r_+=2t$. This is not a Noether proof: no master-equation-derived
+terminal branch weights $w_-$, $w_+$ or right-hand side $M$ are present in the
+current executable surface, so the attempt records zero available weight-pair
+rows and keeps the adjoint momentum balance, branch-antisymmetric coordinate
+identity, actual source object, expression-level $N_{38}$ provider,
+$S_{37}$ division, shifted $R_{\varepsilon,43}$ closure, retained branch, and
+directed-rounded provider open. The next true blocker is therefore the
+same-domain master-equation adjoint branch-weight identity, not another
+terminal interval wrapper.
+
+`buildH39RequestedY44TerminalSourceCovarianceBranchExchangeSymmetryAttemptCandidate`
+tests the second structural lever: whether the terminal branch pair carries a
+same-domain $- \leftrightarrow +$ exchange fixed point. A branch-exchange
+fixed source object would satisfy $r_-=r_+$, equivalently $t=0$. The packet
+therefore consumes the source-covariance lambda $t$-coordinate projection,
+the provider-object replay audit, and the adjoint-momentum target rows, then
+records the solve-slope exchange residual $s_- - s_+$, the lambda witness
+exchange residual $r_- - r_+=2t$, and the provider-object exchange residual
+$P_- - P_+$ when both provider branch intervals are available. It emits five
+node rows, fifteen terminal rows, and thirty branch rows. This packet is
+candidate-only: it certifies no branch-exchange symmetry generator, no
+fixed-point $t=0$ law, no branch-antisymmetric coordinate identity, no actual
+source object, no expression-level $N_{38}$ provider, no $S_{37}$ division, no
+shifted $R_{\varepsilon,43}$ closure, no retained branch, and no
+directed-rounded provider. If the current intervals refute the fixed-point
+law, the next object is a corrected branch-exchange law or a nonzero
+antisymmetric source term; otherwise the next object is the same-domain
+branch-exchange symmetry generator.
+
+`buildH39RequestedY44TerminalSourceCovarianceScaleVirialIdentityAttemptCandidate`
+tests the third structural lever: whether the same lambda-shaped terminal
+source-covariance witness already supports a scale/virial law. It consumes the
+lambda $t$-coordinate projection, provider-object replay audit,
+adjoint-momentum target rows, and branch-exchange rows, then emits five node
+rows, fifteen terminal rows, and thirty branch rows. For each terminal row it
+records the aggregate scale residual
+$\lambda_{\mathrm{source}}(s_-+s_+)-R$, the antisymmetric scale residual
+$\lambda_{\mathrm{source}}(s_- - s_+)-2t$, the replay residuals against the
+already emitted lambda branch sum and branch difference, and the available
+solve-slope shape ratio when $s_-+s_+$ is separated from zero. This remains
+priority-only and candidate-only: zero containment of those residual intervals
+does not derive a virial theorem. The packet records no same-domain scale
+generator $D_{\mathrm{scale}}$, no homogeneity degree, and no determined
+scale/virial branch coordinate, so it certifies no scale/virial identity, no
+source-covariance lambda homogeneity, no actual source object, no
+expression-level $N_{38}$ provider, no $S_{37}$ division, no shifted
+$R_{\varepsilon,43}$ closure, no retained branch, and no directed-rounded
+provider. If the residual rows pass, the next true blocker is the same-domain
+source-covariance scale generator and homogeneity degree.
+
+`buildH39RequestedY44TerminalSourceCovarianceCrossBranchWronskianDiagnosticCandidate`
+executes the council-recommended cross-branch Wronskian diagnostic on the same
+terminal source-covariance rows. It evaluates
+$\Delta_{\mathrm{cross}}=r_-s_+-r_+s_-$ from both the lambda witness and the
+source-map provider-object branch intervals, replays
+$\Delta_{\mathrm{cross}}=R(s_+ - s_-)/2+t(s_-+s_+)$, and records the
+dependency-preserving target
+$t=(\Delta_{\mathrm{cross}}-R(s_+ - s_-)/2)/(s_-+s_+)$ when the denominator is
+separated. This is a diagnostic packet, not a certification packet: it proves
+no scalar-lambda source object, no tensor source object, no cross-Wronskian
+identity, no dependency-preserving normal form, no expression-level $N_{38}$
+provider, no $S_{37}$ division, no shifted $R_{\varepsilon,43}$ closure, no
+retained branch, and no directed-rounded provider. The next true blocker is to
+replay this same-domain normal form through the provider boundary, or replace
+the scalar-lambda witness with an explicitly non-scalar source-covariance
+object if the provider-object Wronskian excludes zero.
+
+`buildH39RequestedY44TerminalSourceCovarianceCrossWronskianNormalFormProducerCandidate`
+turns that diagnostic into the requested terminal normal-form producer packet.
+It consumes the terminal-affine endpoint provider budget and the cross-Wronskian
+diagnostic, records the $s_-+s_+$ denominator status on all fifteen terminal
+rows, reconstructs
+$r_-^{NF}=(Rs_-+W)/(s_-+s_+)$ and
+$r_+^{NF}=(Rs_+-W)/(s_-+s_+)$, and compares both reconstructed branch
+intervals against the terminal-affine endpoint budget before replaying the
+existing same-domain source-map boundary as a fail-closed witness. On the live
+rows this packet records zero denominator-separated rows, so the normal-form
+division is blocked before any provider-boundary certification can be claimed.
+It also records the critical provenance gap: the current executable surface
+still does not supply an expression-level shared evaluator for
+$W=r_-s_+-r_+s_-$. It therefore certifies no expression-level shared Wronskian,
+no cross-Wronskian normal-form producer, no scalar-lambda source object, no
+tensor source object, no expression-level $N_{38}$ provider, no $S_{37}$
+division, no shifted $R_{\varepsilon,43}$ closure, no retained branch, and no
+directed-rounded provider. The next true blocker is now same-domain separation
+of $s_-+s_+$, followed by a narrow expression-level shared $W$ evaluator and
+then either $W$-sensitivity refinement or an explicitly non-scalar
+source-covariance object if the narrowed Wronskian refuses the scalar-lambda
+path.
+
+`buildH39RequestedY44TerminalSourceCovarianceSolveSlopeSumDenominatorSeparationAuditCandidate`
+compares the same $s_-+s_+$ denominator used by the terminal successor
+common-normalizer attempt and by the cross-Wronskian normal-form producer on
+the same fifteen terminal rows. On the live rows the two denominator intervals
+match exactly and both routes keep zero in every terminal interval, so the
+normal-form block is not a Wronskian-route artifact. The packet certifies no
+denominator separation, no expression-level shared Wronskian, no scalar-lambda
+source object, no tensor source object, no expression-level $N_{38}$ provider,
+no $S_{37}$ division, no shifted $R_{\varepsilon,43}$ closure, no retained
+branch, and no directed-rounded provider. The next true blocker is a
+same-domain correlated signed lower-bound identity for $s_-+s_+$ or a
+denominator-free normal form; only after that should the narrowed
+expression-level shared $W=r_-s_+-r_+s_-$ interval be attacked.
+
+`buildH39RequestedY44TerminalSourceCovarianceWronskianSingularCompatibilityAuditCandidate`
+executes that denominator-free normal-form check without dividing by
+$s_-+s_+$. It records the singular-line compatibility identity
+$W+R(s_- - s_+)/2=(s_-+s_+)t$ and the product identities
+$(s_-+s_+)r_-=Rs_-+W$ and $(s_-+s_+)r_+=Rs_+-W$ on the same fifteen
+terminal rows. It then compares each branch numerator interval with
+$(s_-+s_+)$ times the terminal-affine provider interval, producing thirty
+branch product-space rows. The packet certifies no denominator separation, no
+denominator-free normal form, no expression-level shared Wronskian, no
+scalar-lambda source object, no tensor or non-scalar source-covariance object,
+no expression-level $N_{38}$ provider, no $S_{37}$ division, no shifted
+$R_{\varepsilon,43}$ closure, no retained branch, and no directed-rounded
+provider. If the product-space rows fit, the next true blocker is a
+same-domain correlated divisibility proof by $s_-+s_+$; if they do not fit,
+the next true blocker is a correlated numerator/denominator evaluator for the
+same denominator-free product identity, or a non-scalar source-covariance
+object if the Wronskian pressure remains structurally non-scalar.
+
+`buildH39RequestedY44TerminalSourceCovarianceWronskianProductOutcomeClassifierCandidate`
+consumes the singular compatibility audit and extracts the exact product-space
+outcome instead of choosing the next route by prose. For each of the thirty
+branch product rows it records the branch numerator interval, the
+$(s_-+s_+)$-times-provider interval, the containment result, the containment
+hull, and the lower/upper endpoint excess. The aggregate output reports
+compatible and open branch counts, compatible and open terminal-row counts,
+whether any singular numerator refutes the compatibility identity, whether
+the Wronskian excludes zero, and the worst endpoint excess. It certifies no
+product compatibility, no correlated divisibility by $s_-+s_+$, no correlated
+numerator/denominator evaluator, no denominator-free normal form, no
+scalar-lambda source object, no tensor or non-scalar source-covariance object,
+and no directed-rounded provider. Its only role is to force the next packet:
+prove correlated divisibility if all product rows are compatible, build a
+correlated numerator/denominator evaluator if the product rows remain open, or
+promote a non-scalar source-covariance object if the Wronskian pressure is
+structurally non-scalar.
+
+`buildH39RequestedY44TerminalSourceCovarianceWronskianRankTwoDecompositionCandidate`
+tests the sum-denominator-free branch-source decomposition
+$r=\lambda_{\parallel}s+\mu Js$, with
+$s=(s_-,s_+)$, $Js=(s_+,-s_-)$, and
+$Q=s_-^2+s_+^2$. It records the same-domain $Q$ interval, $Q$ separation and
+zero-crossing counts, the parallel moment
+$r_-s_-+r_+s_+$, the Wronskian component $\mu=W/Q$, and the reconstructed
+branch intervals for both the lambda-witness rows and the provider-object rows
+when available. This avoids division by the singular
+$s_-+s_+$ denominator, but it still uses the currently available Wronskian
+hulls rather than certifying an expression-level shared evaluator for
+$W=r_-s_+-r_+s_-$. The packet certifies no rank-two source-covariance object,
+no non-scalar source-covariance object, no scalar-lambda source object, no
+$Q$ denominator separation, no expression-level shared Wronskian, and no
+directed-rounded provider. If $Q$ is not separated, the next blocker is a
+same-domain solve-slope norm lower bound. If $Q$ is separated and $\mu$
+excludes zero, the scalar-lambda path should not receive another wrapper; the
+next object is a same-domain non-scalar source-covariance provider using
+$\lambda_{\parallel}$ and $\mu$.
+
+`buildH39RequestedY44TerminalSourceCovarianceWronskianRankTwoProviderReplayCandidate`
+now replays those rank-two reconstructed branch intervals against the
+terminal-affine endpoint provider budget. The replay consumes the existing
+terminal-affine provider rows and the rank-two decomposition rows, records
+whether the same-domain and same-radius source-map boundary is reachable for
+each source kind, and counts whether the provider-object and lambda-witness
+rank-two reconstructions fit the endpoint budget. This is a candidate replay,
+not a provider certificate: it certifies no rank-two source-covariance object,
+no non-scalar source-covariance object, no scalar-lambda source object, no
+expression-level shared Wronskian, no $Q$ denominator separation, no terminal
+row provider enclosure, and no directed-rounded shared-domain provider. If the
+provider-object reconstruction fits, the next proof object is a same-domain
+non-scalar source-covariance object using $\lambda_{\parallel}$ and $\mu$
+before the provider boundary can be certified. If it still exceeds the budget,
+the next hard object is Wronskian-sensitive narrowing rather than another
+scalar-lambda wrapper.
+
+`buildH39RequestedY44TerminalSourceCovarianceWronskianNonScalarSourceObjectForkCandidate`
+is the corresponding fork packet. It extracts the provider-object rank-two
+matrix
+$M=\begin{pmatrix}\lambda_{\parallel}&\mu\\-\mu&\lambda_{\parallel}\end{pmatrix}$
+from the replay rows and checks whether $r=M s$ is ready to become the next
+same-domain source-covariance certificate object. The packet also records the
+worst reconstructed-half-width-to-endpoint-budget ratio and the corresponding
+target scale for $\mu$ when the provider-object reconstruction still exceeds
+the terminal-affine budget. It therefore separates the two legitimate next
+moves: a non-scalar source-covariance certificate if the provider-object matrix
+rows already fit, or Wronskian-sensitive narrowing if they do not. It certifies
+no rank-two source-covariance object, no non-scalar source-covariance object,
+no scalar-lambda source object, no expression-level shared Wronskian, no
+terminal row provider enclosure, and no directed-rounded provider.
+
+`buildH39RequestedY44TerminalSourceCovarianceWronskianMatrixOrWRefinementCandidate`
+is the second-stage fork executor. It consumes the non-scalar source-object
+fork and emits one of two next proof obligations for each terminal row. If the
+provider-object matrix row is budget-ready, it records the same-domain matrix
+provider identity obligation for
+$M=\begin{pmatrix}\lambda_{\parallel}&\mu\\-\mu&\lambda_{\parallel}\end{pmatrix}$.
+If the provider-object row still exceeds the terminal-affine endpoint budget,
+it records a shared-Wronskian refinement target with
+`projected_W_subcell_count=ceil(1/required_width_scale)`. This turns the fork
+into an executable next target rather than another scalar-lambda wrapper. The
+packet certifies no matrix identity, no W refinement, no source-covariance
+object, no expression-level shared Wronskian, and no directed-rounded provider.
+
+`buildH39RequestedY44TerminalSourceCovarianceWronskianDirectNonScalarProviderReplayCandidate`
+now executes the non-scalar matrix replay directly. It consumes the rank-two
+decomposition for same-domain solve-slope intervals, the rank-two provider
+replay for same-radius source-map boundary provenance, the non-scalar fork for
+$\lambda_{\parallel}$ and $\mu$, and the matrix-or-W packet for the $Q$ and
+$W$ branch gate. It replays
+$r_-=\lambda_{\parallel}s_-+\mu s_+$ and
+$r_+=\lambda_{\parallel}s_+-\mu s_-$ against the provider-object residual
+rows, endpoint budget, and source-map boundary flags. The packet remains
+candidate-only: it certifies no matrix identity, no non-scalar
+source-covariance object, no scalar-lambda source object, no terminal row
+provider enclosure, and no directed-rounded provider. If the replay rows fit
+and the boundary is reachable, the next blocker is the same-domain
+provider-object matrix identity proof; otherwise the next blocker is the
+recorded shared-Wronskian-sensitive narrowing target.
+
+`buildH39RequestedY44TerminalSourceCovarianceWronskianDirectReplayEmittedBranchExecutorCandidate`
+now executes the branch emitted by that direct replay packet. It does not add a
+scalar-lambda layer. If the emitted branch is the matrix-provider identity
+obligation, it audits the same-domain residual
+`direct_matrix_image - provider_object_residual` branch-by-branch. If the
+emitted branch is Wronskian-sensitive narrowing, it subdivides the
+provider-object $\mu=W/Q$ interval by the recorded projected subcell target and
+replays the non-scalar matrix image on each subcell against the terminal-affine
+endpoint budget. The executor records whether that narrowed replay fits, still
+exceeds, or exceeds the packet execution cap. It remains candidate-only and
+certifies no matrix identity, no W refinement, no source-covariance object, no
+terminal row provider enclosure, and no directed-rounded provider. If the
+subcell replay still exceeds the endpoint budget, the next true blocker is a
+narrower expression-level shared Wronskian producer on the same terminal
+domain, not another scalar-lambda wrapper.
+
+`buildH39RequestedY44TerminalSourceCovarianceWronskianEmittedBranchMatrixIdentityOrWProducerCandidate`
+continues only on the emitted branch from the executor. On a matrix-identity
+branch it records the same-domain proof attempt by checking whether
+`direct_matrix_image - provider_object_residual` collapses branch-by-branch. On
+a Wronskian-refinement branch it now partitions the actual shared
+$W=r_-s_+-r_+s_-$ interval by the recorded W-sensitive subcell count, computes
+$\mu_{\mathrm{sub}}=W_{\mathrm{sub}}/Q$ on the same $Q=s_-^2+s_+^2$ interval,
+and replays
+$r_-=\lambda_{\parallel}s_-+\mu_{\mathrm{sub}}s_+$ and
+$r_+=\lambda_{\parallel}s_+-\mu_{\mathrm{sub}}s_-$ against the endpoint budget.
+This is the first packet in this fork that refines the W producer itself rather
+than the already-projected $\mu$ interval. It remains candidate-only and
+certifies no matrix identity, no shared W producer, no source-covariance object,
+no terminal row provider enclosure, and no directed-rounded provider.
+
+`buildH39RequestedY44TerminalSourceCovarianceWronskianWGateProvenanceAuditCandidate`
+now consumes the cross-branch W diagnostic, the direct non-scalar replay, the
+emitted-branch executor, and the emitted-branch matrix/W producer packet. The
+current emitted packet does not reach a true W-overwidth branch or a matrix
+identity branch: all fifteen terminal rows are still `w-gate-open`, and the
+explicit blocker is `same-domain-shared-wronskian-interval-needed`. The
+provenance audit traces this back one step further: the same-domain provider
+object branch residual intervals needed to form
+$W_{\mathrm{provider}}=P_-s_+-P_+s_-$ are not available on the terminal rows.
+Thus the next executable object is not another scalar-$\lambda$ wrapper, not a
+virial identity, and not W-sensitive partitioning yet; it is a direct
+same-domain expression-level provider-object W evaluator that supplies
+$P_-$ and $P_+$ into $W_{\mathrm{provider}}$ before $\mu=W_{\mathrm{provider}}/Q$
+is replayed through the rank-two source-covariance matrix. This packet remains
+candidate-only and certifies no W producer, matrix identity,
+source-covariance object, terminal row provider enclosure, or directed-rounded
+provider.
+
+`buildH39RequestedY44TerminalSourceCovarianceWronskianProviderObjectWExpressionEvaluatorCandidate`
+continues on that reported blocker without adding another scalar-$\lambda$
+wrapper. It attempts to evaluate
+$W_{\mathrm{provider}}=P_-s_+-P_+s_-$ directly from same-domain source-map
+provider-object branch residual intervals and then forms
+$\mu_{\mathrm{provider}}=W_{\mathrm{provider}}/Q$ only when $Q$ is separated
+from zero. The current live rows keep $Q$ separated on all fifteen terminal
+rows, but expose zero complete provider-object branch residual pairs:
+`provider_object_branch_residual_pair_available_terminal_row_count=0`,
+`provider_object_w_expression_evaluated_terminal_row_count=0`, and
+`provider_object_w_expression_missing_branch_pair_terminal_row_count=15`.
+The active blocker has therefore sharpened to
+`same-domain-expression-level-source-map-provider-object-branch-residual-extractor-needed`.
+This packet remains candidate-only and certifies no provider-object branch
+residual extractor, no provider-object W expression, no $\mu$ quotient, no
+matrix identity, no source-covariance object, no terminal row provider
+enclosure, and no directed-rounded provider.
+
+`buildH39RequestedY44TerminalSourceCovarianceProviderObjectBranchResidualExtractorCandidate`
+now implements that extractor audit directly against the same-domain
+terminal-row provider-object replay. It emits five node rows, fifteen terminal
+rows, and thirty branch rows naming the candidate branch residuals as $P_-$ and
+$P_+$. On the current live rows, both the source-map provider-object branch
+intervals and the terminal witness intervals are absent at this extractor
+surface:
+`provider_object_branch_residual_interval_available_branch_row_count=0`,
+`terminal_witness_interval_available_branch_row_count=0`,
+`provider_object_branch_residual_pair_available_terminal_row_count=0`, and
+`provider_object_branch_residual_pair_missing_terminal_row_count=15`. The W
+evaluator now consumes this extractor and reports
+`same-domain-source-map-provider-object-branch-intervals-needed`, so the next
+blocker is upstream of W partitioning or matrix replay: materialize same-domain
+source-map provider-object branch intervals on the terminal rows. This packet
+remains candidate-only and certifies no extractor, no provider-object W
+expression, no $\mu$ quotient, no matrix identity, no source-covariance object,
+no terminal row provider enclosure, and no directed-rounded provider.
+
+`buildH39RequestedY44TerminalRowProviderObjectReplayAttemptCandidate` now
+materializes the `P_b` slot only from explicit same-domain source-map
+provider-object branch intervals. It also records scalar source-covariance
+projection, barycentric terminal-witness, and common-normalizer law-probe rows
+as inspected candidate sources, but rejects them as actual provider-object
+branch intervals unless a branch-resolved source object is available on the
+same terminal row. The focused replay currently leaves
+`source_map_provider_branch_intervals_available_count=0` and
+`source_map_provider_object_branch_interval_admissible_available_count=0`, with
+`terminal-row-provider-object-replay-provider-object-open` as the replay
+classification. Thus the live blocker is not W partitioning, scalar lambda,
+virial work, or matrix replay; it is upstream materialization of finite actual
+provider-object branch intervals $P_-$ and $P_+$ on the terminal rows.
+
+`buildH39RequestedY44TerminalExpressionLevelSourceMapProviderObjectBranchProducerCandidate`
+now starts from that upstream side directly. It consumes the actual
+expression-level source-map provider probe, the directed-rounded provider
+boundary replay, and the terminal successor handoff. The live packet exposes
+finite aggregate source-map provider-object intervals on all fifteen terminal
+rows, but records
+`source_map_provider_object_branch_split_map_available_terminal_row_count=0`
+and
+`source_map_provider_object_branch_interval_available_branch_row_count=0`.
+The replay now inspects this upstream producer first, yet still leaves
+`P_-` and `P_+` unavailable because aggregate `P` does not determine a
+same-domain branch split. The next blocker is therefore a genuine
+expression-level provider-object branch split map, not another scalar-lambda
+wrapper, virial detour, W partition, or matrix replay.
+
+`buildH39RequestedY44TerminalExpressionLevelSourceMapProviderObjectBranchSplitMapUnderdeterminationCandidate`
+turns that missing split into an executable rank witness. On the same fifteen
+terminal rows it records the provider-object equation `P_-+P_+=P`, thirty
+branch unknowns, fifteen aggregate equations, rank fifteen, and free dimension
+fifteen. For each terminal row it emits both the symmetric split
+$(P/2,P/2)$ and a nonzero branch-antisymmetric split
+$(P/2+u_P,P/2-u_P)$ that have the same aggregate interval. Both witnesses are
+explicitly rejected as actual source-map provider-object branch rows. This
+proves that the live aggregate provider object cannot by itself determine
+`P_-` and `P_+`; the next object must be a same-domain provider-object
+branch-antisymmetric equation or an explicit expression-level branch split map.
+
+`buildH39RequestedY44TerminalExpressionLevelSourceMapProviderObjectBranchAntisymmetricEquationExtractorCandidate`
+now searches that exact missing equation. It inspects the fifteen same-domain
+terminal rows for an independent `A_P=P_- - P_+` provider-object branch moment,
+explicit provider-object branch row pairs, and branch-attributed source-term
+rows. The live expression-level surface exposes forty-five equation-source
+slots and forty-five source-term rows, but records zero available `A_P`
+equations, zero explicit provider-object branch rows, and zero
+branch-attributed source terms. Thus all fifteen branch-antisymmetric free
+dimensions remain open. The next blocker is not width refinement or scalar
+projection; it is deriving or exposing a same-domain provider-object branch
+moment `A_P` or explicit expression-level branch rows upstream.
+
+`buildH39RequestedY44TerminalExpressionLevelSourceTermToProviderObjectBranchProjectionMapAuditCandidate`
+now pushes that blocker one layer further upstream. It treats the retained
+source terms as a vector
+`(S_delta_squared_speed,S_sin_phi,S_sin_delta)` and records the known aggregate
+equation `P=sum_j S_j`. A provider-object branch realization would need a
+second independent source-term covector, `A_P=sum_j alpha_j S_j`, or explicit
+branch rows. The packet inspects forty-five terminal source-term projection
+slots, retained source-term trace rows, and term-cancellation decomposition
+rows. It finds zero branch-projection coefficients, so the source-term layer
+has rank one per terminal row while branch realization needs rank two. The
+live blocker is now the missing same-domain projection map `alpha_j` for
+`A_P`, not a scalar-lambda, virial, W, or matrix replay problem.
+
+`buildH39RequestedY44TerminalExpressionLevelSourceTermBranchProjectionAlphaDerivationAttemptCandidate`
+now tests whether that projection map is already derivable from the current
+same-domain source-term definition surfaces. It searches the source-term
+provider rows, retained source-term trace rows, term-cancellation decomposition
+rows, and the projection-map audit rows for a branch-parity generator
+`B(S_j)=epsilon_j*S_j`, branch involution eigenvalues, or explicit
+`alpha_j`/projection-weight fields. The packet inspects forty-five terminal
+source-term derivation slots and finds zero branch-parity generators and zero
+alpha coefficients. It treats residual sign and cancellation data as
+non-branch data, so those rows do not become an inferred provider-object branch
+map. The rank statement is unchanged but sharper: fifteen aggregate source
+equations are known, thirty branch-realization equations would be needed, and
+fifteen branch covectors remain missing. The next true blocker is deriving or
+exposing a same-domain branch-parity generator for
+`delta_squared_speed`, `sin_phi`, and `sin_delta`, or explicit terminal
+`alpha_j` coefficients for `A_P=sum_j alpha_j*S_j`.
+
+`buildH39RequestedY44TerminalExpressionLevelSourceTermFoldNullGeneratorCompatibilityAttemptCandidate`
+now tests the natural fold-null generator supplied by the recurrence stack.
+It records
+`D_eta=partial_delta-partial_phi` and the source-term images
+`D_eta(delta^2*nu^{-2})=2*delta_f*nu^{-2}`,
+`D_eta(sin(phi))=-cos(phi_f)`, and
+`D_eta(sin(delta))=cos(delta_f)`. Their aggregate is
+`F_delta-F_phi`, so the fold condition `F_delta-F_phi=0` gives a real
+same-domain aggregate annihilation identity. It does not diagonalize the
+source-term basis into branch-parity eigenvalues and it emits no `alpha_j`
+coefficients, so the rank statement remains fifteen aggregate equations
+known, thirty branch-realization equations needed, and fifteen branch
+covectors missing. The next true blocker is narrower: apply `D_eta` through
+the full terminal coefficient extractor for `h37`, `h36`, and `h35` to emit
+the antisymmetric branch moment `A_P` or explicit terminal `alpha_j`
+coefficients. This remains candidate-only and certifies no source-map
+provider-object branch rows, W producer, matrix identity, terminal row
+provider replay, or directed-rounded provider.
+
+`buildH39RequestedY44TerminalExpressionLevelSourceTermFoldNullCoefficientExtractorAttemptCandidate`
+now performs that terminal-order extractor pass against the existing
+successor certificate branch rows for `h37`, `h36`, and `h35`. For each of
+the five terminal source-covariance nodes it emits three terminal rows and
+six branch-coefficient rows, so all fifteen terminal rows have finite
+branch-antisymmetric coefficient candidates
+`A_G^{terminal}=G_{-,y(h+2)}-G_{+,y(h+2)}`, the `Q_G` coefficient slot that
+appears in `Q_D+(h+1)Q_G`. This is real executable progress: the missing
+object is no longer terminal branch `G` coefficient availability. The
+candidate still does not identify `A_G^{terminal}` with the source-map
+provider-object branch moment `A_P=P_- - P_+`. It records zero
+available coefficient-to-provider-object branch-moment bridges and keeps
+`terminal_branch_g_antisymmetric_coefficient_is_provider_object_A_P=false`.
+The next true blocker is therefore the same-domain bridge from terminal branch
+`G` coefficients to the provider-object branch moment `A_P`, or the explicit
+correction terms that explain why they differ. This remains candidate-only and
+certifies no provider-object branch rows, W producer, matrix identity, terminal
+row provider replay, expression-level N38 provider, or directed-rounded
+provider.
+
+`buildH39RequestedY44TerminalExpressionLevelSourceTermFoldNullCoefficientProviderMomentBridgeAuditCandidate`
+now executes that bridge audit directly. It tests the formal normal form
+`A_P=A_G^{terminal}+C_{G_to_P}` with
+`C_{G_to_P}=A_P-A_G^{terminal}` on the same fifteen terminal rows. The
+result is decisive but still non-closing: all fifteen rows have finite
+`A_G^{terminal}` intervals, zero rows expose the provider-object branch
+moment `A_P`, zero rows expose terminal source-term alpha maps, and zero rows
+can form a directed-rounded `C_{G_to_P}` correction interval. The terminal
+branch `G` moment therefore cannot be promoted into the actual source-map
+provider-object branch moment by assertion or scalar-lambda reuse. The next
+true blocker is to materialize `A_P=P_- - P_+` on the expression-level
+provider-object surface, or derive a same-domain transport correction
+`C_{G_to_P}` from terminal branch `G` coefficients into that provider object.
+This remains candidate-only and certifies no provider-object branch rows,
+W producer closure, matrix identity, terminal row provider replay,
+expression-level N38 provider, or directed-rounded provider.
+
+`buildH39RequestedY44TerminalExpressionLevelSourceMapProviderObjectPreSumBranchSourceAuditCandidate`
+now moves one layer upstream and inspects the actual source-term feed before
+aggregate `P` is formed. It records the construction
+`P=S_delta_squared_speed+S_sin_phi+S_sin_delta` on the same fifteen terminal
+rows. The audit emits forty-five pre-sum source-term feed rows and verifies
+that their interval sum reconstructs the aggregate provider-object interval,
+but zero rows carry a branch label, branch projection coefficient, or branch
+interval. Thus the provider object is currently born aggregate-only before
+the `P` sum, not merely losing branch data during downstream replay. The next
+true blocker is a same-domain branch-indexed source-term feed, terminal alpha
+map, or provider-object branch source upstream of the aggregate provider sum.
+This remains candidate-only and certifies no `P_-`/`P_+` rows, `A_P` equation,
+W producer closure, matrix identity, terminal row provider replay,
+expression-level N38 provider, or directed-rounded provider.
+
+`buildH39RequestedY44TerminalExpressionLevelSourceTermVariableOwnershipBranchFeedAttemptCandidate`
+tests the natural variable-owned alpha row exposed by that pre-sum structure.
+It emits finite same-domain candidates
+`P_delta=S_delta_squared_speed+S_sin_delta`,
+`P_phi=S_sin_phi`, and
+`A_var=P_delta-P_phi=S_delta_squared_speed-S_sin_phi+S_sin_delta` on all
+fifteen terminal rows, with forty-five signed source-term alpha rows. The
+candidate is compatible with the existing fold-null variable split
+`D_eta=partial_delta-partial_phi`, and it compares `A_var` to the finite
+terminal branch `G` moment on every row. This is executable mathematical
+progress because the candidate alpha covector now exists as an interval object,
+not only as prose. It is still not a provider-object certificate: zero terminal
+rows expose `A_P=P_- - P_+`, zero rows admit the candidate as the actual
+provider-object branch source, and zero rows certify the alpha candidate. The
+next true blocker is a same-domain proof that `A_var` is the actual
+provider-object branch moment `A_P`, or direct expression-level `P_-` and `P_+`
+rows before the provider-object sum. This remains candidate-only and certifies
+no provider-object branch rows, matrix identity, W closure, terminal row
+provider replay, expression-level N38 provider, or directed-rounded provider.
+
+`buildH39RequestedY44TerminalExpressionLevelSourceTermVariableOwnershipProviderBoundaryReplayCandidate`
+now replays the variable-owned pre-sum branch candidates through the existing
+terminal witness boundary in both branch-label orientations:
+`P_-=P_delta, P_+=P_phi` and `P_-=P_phi, P_+=P_delta`. The packet keeps the
+same fifteen terminal rows and emits thirty orientation terminal rows and sixty
+branch replay slots against `terminalRowProviderObjectReplayAttempt`. The live
+executable result records sixty finite variable-owned branch candidate
+intervals, zero terminal witness branch intervals, and zero actual `P_-`/`P_+`
+provider-object branch rows. Thus the packet does not yet reach overlap or
+containment: the immediate blocker is the same-domain terminal witness branch
+interval materialization needed before the variable-owned provider-boundary
+replay can test either orientation. If those witness intervals later
+materialize and an orientation reaches containment, the blocker becomes the
+identity proof that the variable-owned rows are the actual provider object
+branches. This remains candidate-only and certifies no `A_var=A_P`,
+provider-object branch identity, terminal row provider replay, expression-level
+N38 provider, or directed-rounded provider.
+
+`buildH39RequestedY44TerminalDenominatorFreeVariableOwnershipTCoordinateMaterializationAttemptCandidate`
+now attacks the denominator-free terminal witness materialization route
+directly. It combines the already emitted denominator-free branch family
+`(r_-,r_+)=(R/2+t,R/2-t)` with the variable-owned alpha candidate by setting
+`t_var=A_var/2`, hence
+`(r_-^{var},r_+^{var})=(R/2+A_var/2,R/2-A_var/2)`. On the same fifteen
+terminal rows it emits thirty finite branch candidates without using
+`s_-+s_+`; every candidate pair has a branch-sum interval containing the
+aggregate residual `R`, and every branch-difference interval contains
+`A_var=P_delta-P_phi`. This materially narrows the missing object: the blocker
+is no longer the existence of a denominator-free branch candidate, but the
+same-domain identity `2t=A_var` connecting the variable-owned source-term
+alpha row to the branch-antisymmetric centered residual coordinate. The packet
+does not admit the candidates as terminal witness branches and certifies no
+branch-resolved centered residual source object, terminal row provider replay,
+expression-level N38 provider, or directed-rounded provider.
+
+`buildH39RequestedY44TerminalVariableOwnershipAlphaProvenanceIdentityAuditCandidate`
+now separates the executable candidate identity from the missing provider
+identity. It verifies on the same fifteen terminal rows that the emitted
+candidate satisfies `2*t_var-A_var=0` by construction and compares `A_var` to
+the finite terminal branch-`G` moment already extracted from the fold-null
+coefficient path. The same rows still expose zero source-term alpha maps, zero
+branch-parity generators, zero fold-null diagonalizations of the source-term
+basis, and zero provider-object branch moments `A_P=P_- - P_+`. This moves the
+blocker from "can we form a non-scalar candidate?" to the sharper provenance
+question: derive the same-domain branch-parity generator or explicit
+provider-object branch moment that identifies `A_var` with the actual
+branch-antisymmetric source object. The packet certifies no `2t=A_var`, no
+`A_var=A_P`, no terminal row provider replay, no expression-level N38 provider,
+and no directed-rounded provider.
+
+`buildH39RequestedY44TerminalProviderObjectAPMaterializationObstructionAuditCandidate`
+now combines the actual provider-object materialization surfaces into one
+same-domain obstruction audit. On the same fifteen terminal rows it records the
+rank-one provider split `P_-+P_+=P` with one free `u_P`, verifies that no
+explicit provider-object antisymmetric equation or pre-sum branch-indexed feed
+is present, and keeps both finite candidate moments `A_var=P_delta-P_phi` and
+`A_G^{terminal}` nonadmissible as actual `A_P`. The executable result emits
+thirty available candidate-moment rows but zero admissible provider-object
+branch moments and zero terminal rows with `A_P` materialized. This sharpens
+the blocker to a same-domain provider-object branch-antisymmetric equation,
+explicit `P_-`/`P_+` rows, or branch-indexed source-term feed upstream of the
+aggregate provider sum. It certifies no `A_P`, no provider-object branch rows,
+no terminal row provider replay, no expression-level N38 provider, and no
+directed-rounded provider.
+
+`buildH39RequestedY44TerminalSourceTermBranchFeedExtractorCandidate` now
+pushes the obstruction one layer upstream without adding a scalar-lambda,
+virial, W, or matrix wrapper. The row-local signed-source provider now carries
+the selected active branch and exposes finite source-term node-feed rows for
+that selected branch on the same domain. The terminal provider-object surface
+still remains aggregate-only: it records zero partner-branch source streams,
+zero terminal `P_-`/`P_+` provider-object row pairs, and zero materialized
+`A_P=P_- - P_+` rows. The blocker is therefore no longer "find any source-term
+feed"; it is to evaluate or expose the same source-term feed for the opposite
+branch on the same terminal domains and lift both feeds into explicit
+provider-object branch rows before replaying `A_P`.
+
+`buildH39RequestedY44TerminalSourceTermOppositeBranchFeedLiftCandidate` now
+evaluates that opposite-branch expression feed through the same row-local H38
+source-term machinery. The executable packet records finite selected/opposite
+nonconstant source-sum feeds on the same selected collar rows and forms a
+candidate branch-pair feed interval plus its antisymmetric interval. It does
+not admit those feeds as terminal provider-object rows: the terminal source-map
+provider object still exposes only aggregate `P` rows, with zero `P_-`/`P_+`
+rows and zero `A_P=P_- - P_+` rows. The blocker has therefore moved from
+"materialize the partner expression feed" to a sharper identity obligation:
+derive the same-domain map identifying the row-local expression branch feeds
+with the terminal source-map provider-object branches `P_b`.
+
+`buildH39RequestedY44TerminalRowLocalFeedToProviderObjectPbIdentityAuditCandidate`
+extends that test from the selected collar rows to all five terminal source
+cells. It materializes candidate expression-feed `P_-`/`P_+` rows for the full
+fifteen-row terminal provider surface and compares each candidate
+`P_-+P_+` interval against the aggregate terminal provider object `P`. The
+candidate rows remain nonadmissible: the packet records zero actual terminal
+provider-object branch rows, zero certified branch-sum identities, and zero
+materialized `A_P`. The live mathematical obligation is now a same-domain
+pushforward identity proving that the all-terminal-source-cell expression
+branch feeds are the actual terminal source-map provider-object branches.
+
+`buildH39RequestedY44TerminalProviderObjectPbPushforwardOperatorAuditCandidate`
+now opens the identity itself. It compares all forty-five term-level rows
+between the aggregate `P` pre-sum source-term feeds and the selected/opposite
+expression branch feeds. The packet verifies that candidate branch term
+intervals exist, but the aggregate `P` term rows expose no branch-bearing
+operator, branch weights, or same-domain normalization map that would make
+interval overlap admissive. This turns the blocker into a direct pushforward
+operator problem: derive the same-domain operator and normalization identity
+from expression source-term feeds to aggregate provider-object `P`, or record
+that the current aggregate provider surface is structurally incapable of
+certifying `P_b`.
+
+`buildH39RequestedY44TerminalAggregatePProviderPreaggregationBranchBearingAuditCandidate`
+now inspects the upstream aggregate `P` provider-probe object itself before
+terminal replay. It audits the raw five-node
+`source_term_provider_probe_rows`, their `source_term_residual_rows`, and the
+matching provider precertificate term rows for branch labels, branch weights,
+branch intervals, projection maps, pushforward operators, and normalization
+fields. The current executable result is zero hits in all six field groups,
+while the pre-sum and pushforward packets still verify aggregate-only `P`
+feeds. The blocker is therefore upstream of terminal replay: the source-map
+provider construction must emit a same-domain branch-bearing `P_b` map,
+branch projection, or normalization identity before matrix replay can certify
+actual `P_-` and `P_+` provider-object rows.
+
+## Current Classification
+
+This folder is `priority-only`. It should not be linked from `content/markdown/aaa` until at least one theorem-target row is promoted into a reader-facing corpus file. It may link to corpus and priority files as needed for workstream coordination.

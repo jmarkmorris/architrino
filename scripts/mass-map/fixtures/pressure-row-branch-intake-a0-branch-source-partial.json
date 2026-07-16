@@ -1,15 +1,15 @@
 {
   "schema": "pressure_row_branch_intake_candidate/v0",
   "row_id": "a0-compact-fixture-branch-source-frontier-partial",
-  "source_ref": "reference/priorities/braid-mass-response-map/a0-reduced-branch-certificate.md",
+  "source_ref": "reference/priorities/braid-archive/braid-mass-response-map/a0-reduced-branch-certificate.md",
   "candidate_status": "branch_source_frontier_partial_fail_closed",
   "promotion_status": "priority-only",
   "diagnostic_only": true,
   "non_authorizing_reason": "Current A0 artifacts supply Tier 0 branch-label and root-ledger diagnostics plus blocked Tier 1 handoff evidence. They do not emit an accepted pressure-row history segment, quotient chart identity carried through a corrected branch row, positive Delta_k, eta-ladder persistence, exposure-source descent, or branch-emitted pressure response.",
   "diagnostic_sources": [
     "scripts/nested-shell-braid/fixtures/a0-tier0-branch-search-minimal.json#candidates[0]",
-    "reference/priorities/braid-mass-response-map/a0-reduced-branch-certificate.md#tier-1-diagnostic-state-adaptive-direct-root-horizon-ladder",
-    "reference/priorities/braid-mass-response-map/priorities.md#immediate-work-packet"
+    "reference/priorities/braid-archive/braid-mass-response-map/a0-reduced-branch-certificate.md#tier-1-diagnostic-state-adaptive-direct-root-horizon-ladder",
+    "reference/priorities/braid-archive/braid-mass-response-map/priorities.md#immediate-work-packet"
   ],
   "branch_source_frontier": {
     "source_status": "tier0_continuation_ready_not_accepted_history",

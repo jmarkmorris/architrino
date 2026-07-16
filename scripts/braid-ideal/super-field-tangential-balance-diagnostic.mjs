@@ -23,7 +23,7 @@ import { fileURLToPath } from "node:url";
 
 export const SCHEMA = "super_field_tangential_balance_diagnostic.v0";
 export const SPEC_PACKET_REF =
-  "reference/priorities/braid-ideal/fold-crossing-chart-spec.md";
+  "reference/priorities/braid-archive/braid-ideal/fold-crossing-chart-spec.md";
 
 export const FAIL_CLOSED = Object.freeze({
   retainedBranchClaim: false,

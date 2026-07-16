@@ -38,7 +38,7 @@ import { fileURLToPath } from "node:url";
 
 export const SCHEMA = "cross_hit_hinge_click_rate_diagnostic.v0";
 export const SPEC_PACKET_REF =
-  "reference/priorities/braid-ideal/fold-crossing-chart-spec.md";
+  "reference/priorities/braid-archive/braid-ideal/fold-crossing-chart-spec.md";
 
 export const FAIL_CLOSED = Object.freeze({
   retainedBranchClaim: false,

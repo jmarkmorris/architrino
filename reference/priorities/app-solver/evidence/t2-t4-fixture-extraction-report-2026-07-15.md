@@ -11,12 +11,12 @@ From `scripts/braid-ideal/**` I copied **configuration constants and conventions
 
 Owning markdown (definitions and recorded values):
 
-- `reference/priorities/braid-ideal/moving-phase-matched-stacked-rings-braid-spec.md`
-- `reference/priorities/braid-ideal/evidence/section-96-flutter-force-balance-retirement-2026-07-14.md`
-- `reference/priorities/braid-ideal/planar-assembled-free-particle-spec.md`
-- `reference/priorities/braid-ideal/evidence/section-99-stability-force-balance-retirement-2026-07-14.md`
-- `reference/priorities/braid-ideal/fold-crossing-chart-spec.md` (§§58–66 region, §§82–85 region, §§92–94)
-- `reference/priorities/braid-ideal/spindle-braid-native-confirmation-handoff.md` (0.2274/0.22736 cross-check context)
+- `reference/priorities/braid-archive/braid-ideal/moving-phase-matched-stacked-rings-braid-spec.md`
+- `reference/priorities/braid-archive/braid-ideal/evidence/section-96-flutter-force-balance-retirement-2026-07-14.md`
+- `reference/priorities/braid-archive/braid-ideal/planar-assembled-free-particle-spec.md`
+- `reference/priorities/braid-archive/braid-ideal/evidence/section-99-stability-force-balance-retirement-2026-07-14.md`
+- `reference/priorities/braid-archive/braid-ideal/fold-crossing-chart-spec.md` (§§58–66 region, §§82–85 region, §§92–94)
+- `reference/priorities/braid-archive/braid-ideal/spindle-braid-native-confirmation-handoff.md` (0.2274/0.22736 cross-check context)
 - `content/markdown/aaa/noether-braid/spindle-braid.md` (read-only; fixed-point section)
 - `content/markdown/aaa/dynamics/master-equation.md` (per-hit law, W^rec, conventions; located via search — the path is `dynamics/`, not `foundations/`)
 - `content/markdown/aaa/foundations/architrino.md` (ε = |e|/6 convention)
@@ -67,7 +67,7 @@ Code, constants-only (firewalled):
 - `scripts/braid-ideal/planar-assembled-free-particle-fixture.mjs` (fixture)
 - `scripts/braid-ideal/moving-phase-matched-stacked-rings-braid.mjs` + `moving-phase-matched-stacked-rings-fixture.mjs` (§96 cross-check)
 - `tests/braid-ideal-planar-assembled-free-particle.test.js` (constant tokens only)
-- `reference/priorities/braid-ideal/planar-assembled-free-particle-spec.md` (recorded tokens)
+- `reference/priorities/braid-archive/braid-ideal/planar-assembled-free-particle-spec.md` (recorded tokens)
 
 **What was copied:**
 

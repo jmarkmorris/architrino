@@ -4,7 +4,7 @@
 // Consumes a result.json produced by held-release-causal-wake-toy.mjs and
 // evaluates the certificate hypothesis ledger, envelope constant, margin,
 // and ordering witness, fail-closed. See the proof packet:
-// reference/priorities/braid-ideal/delayed-escape-certificate-lemma-proof-packet.md
+// reference/priorities/braid-archive/braid-ideal/delayed-escape-certificate-lemma-proof-packet.md
 
 import fs from "node:fs";
 
@@ -230,7 +230,7 @@ function evaluateCertificate(row, options) {
     createdAt: new Date().toISOString(),
     status: "priority_only_conditional_certificate_check",
     proofPacketRef:
-      "priority-proof-packet:reference/priorities/braid-ideal/delayed-escape-certificate-lemma-proof-packet.md",
+      "priority-proof-packet:reference/priorities/braid-archive/braid-ideal/delayed-escape-certificate-lemma-proof-packet.md",
     priorityOnly: true,
     retainedBranchClaim: false,
     acceptedSameLevelBranchClaim: false,

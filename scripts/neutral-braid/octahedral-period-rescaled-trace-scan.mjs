@@ -520,10 +520,10 @@ export function buildOctahedralPeriodRescaledTraceScan(options = {}) {
     packet_id: PACKET_ID,
     promotion_status: PROMOTION_STATUS,
     source_bounded_speed_packet:
-      "reference/priorities/braid-geometry-export-bridge/octahedral-bounded-speed-successor-closure-row.md",
+      "reference/priorities/braid-archive/braid-geometry-export-bridge/octahedral-bounded-speed-successor-closure-row.md",
     source_priority_packet:
-      "reference/priorities/braid-geometry-export-bridge/octahedral-diagonal-affine-zero-mean-solver.md",
-    priority_packet: "reference/priorities/braid-geometry-export-bridge/octahedral-period-rescaled-trace-scan.md",
+      "reference/priorities/braid-archive/braid-geometry-export-bridge/octahedral-diagonal-affine-zero-mean-solver.md",
+    priority_packet: "reference/priorities/braid-archive/braid-geometry-export-bridge/octahedral-period-rescaled-trace-scan.md",
     scan_parameters: {
       trace_scale: formatNumber(traceScale),
       phase_sample_count: phaseSamples,

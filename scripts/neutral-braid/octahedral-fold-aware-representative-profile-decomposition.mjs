@@ -223,13 +223,13 @@ export function buildOctahedralFoldAwareRepresentativeProfileDecomposition(optio
     packet_id: PACKET_ID,
     promotion_status: PROMOTION_STATUS,
     predecessor_packets: [
-      "reference/priorities/braid-geometry-export-bridge/octahedral-fold-aware-zero-bracket-certificate.md",
-      "reference/priorities/braid-geometry-export-bridge/octahedral-fold-aware-clock-length-chart-closure-proof.md",
+      "reference/priorities/braid-archive/braid-geometry-export-bridge/octahedral-fold-aware-zero-bracket-certificate.md",
+      "reference/priorities/braid-archive/braid-geometry-export-bridge/octahedral-fold-aware-clock-length-chart-closure-proof.md",
     ],
     priority_packet:
-      "reference/priorities/braid-geometry-export-bridge/octahedral-fold-aware-representative-profile-decomposition.md",
+      "reference/priorities/braid-archive/braid-geometry-export-bridge/octahedral-fold-aware-representative-profile-decomposition.md",
     successor_packet:
-      "reference/priorities/braid-geometry-export-bridge/octahedral-fold-aware-cross-binary-quarter-profile-certificate.md",
+      "reference/priorities/braid-archive/braid-geometry-export-bridge/octahedral-fold-aware-cross-binary-quarter-profile-certificate.md",
     source_zero_check: {
       schema: OCTAHEDRAL_FOLD_AWARE_ZERO_BRACKET_CERTIFICATE_SCHEMA,
       valid: zeroErrors.length === 0,

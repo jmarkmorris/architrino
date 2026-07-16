@@ -40,11 +40,11 @@ export function buildOctahedralFoldAwareSpeedPrimitiveExistence(options = {}) {
     promotion_status: PROMOTION_STATUS,
     predecessor_schema: OCTAHEDRAL_FOLD_AWARE_DYNAMICS_HANDOFF_SCHEMA,
     predecessor_packet:
-      "reference/priorities/braid-geometry-export-bridge/octahedral-fold-aware-dynamics-handoff.md",
+      "reference/priorities/braid-archive/braid-geometry-export-bridge/octahedral-fold-aware-dynamics-handoff.md",
     priority_packet:
-      "reference/priorities/braid-geometry-export-bridge/octahedral-fold-aware-speed-primitive-existence.md",
+      "reference/priorities/braid-archive/braid-geometry-export-bridge/octahedral-fold-aware-speed-primitive-existence.md",
     successor_packet:
-      "reference/priorities/braid-geometry-export-bridge/octahedral-fold-aware-clock-length-criterion.md",
+      "reference/priorities/braid-archive/braid-geometry-export-bridge/octahedral-fold-aware-clock-length-criterion.md",
     source_handoff_check: {
       schema: handoff.schema,
       valid: handoffErrors.length === 0,

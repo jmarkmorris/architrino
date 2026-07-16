@@ -33,7 +33,7 @@ This case is valuable because it demands robust invariants rather than delicate 
 
 | Source draft | Promotion target | Gate |
 | --- | --- | --- |
-| This file | mass-map/condensed-matter-medium-transport (legacy-braid ref: `braid-mass-response-map/condensed-matter-medium-transport.md`) | Use quantum Hall as a high-value material transport benchmark. |
+| This file | mass-map/condensed-matter-medium-transport (legacy-braid ref: `braid-archive/braid-mass-response-map/condensed-matter-medium-transport.md`) | Use quantum Hall as a high-value material transport benchmark. |
 | This file | [quantum-closure/transfer-operator-basin-measure](../quantum-closure/transfer-operator-basin-measure.md) | Treat plateau selection as robust basin/invariant structure. |
 | This file | [validation-gates](../validation-gates/priorities.md) | Add topological quantization as a hard recovery target if condensed-matter closure is claimed. |
 

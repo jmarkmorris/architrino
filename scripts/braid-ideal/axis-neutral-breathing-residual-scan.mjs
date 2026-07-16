@@ -1,6 +1,6 @@
 // Priority-only diagnostic scan for the u=0 two-frequency breathing ansatz
 // rho(t) = rho0 (1 + delta cos(Omega t + phi0)) on the axis-neutral channel
-// (see reference/priorities/braid-ideal/axis-neutral-rotating-wave-spectrum-packet.md,
+// (see reference/priorities/braid-archive/braid-ideal/axis-neutral-rotating-wave-spectrum-packet.md,
 // Breathing Hunt Result). Units: rho0=1, c_f=1, kappa=1, softening=0.
 // Scan coordinates: alpha=h/rho0 (drum aspect, height fixed under breathing),
 // beta=omega*rho0 (mean rim-speed fraction), delta (fractional breathing amplitude),

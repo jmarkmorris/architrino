@@ -22,16 +22,16 @@
         "scripts/braid-ideal/planar-assembled-free-particle-fixture.mjs:13"
       ],
       "primitive_charge_units": [
-        "reference/priorities/braid-ideal/planar-assembled-free-particle-spec.md:68",
-        "reference/priorities/braid-ideal/planar-assembled-free-particle-spec.md:71"
+        "reference/priorities/braid-archive/braid-ideal/planar-assembled-free-particle-spec.md:68",
+        "reference/priorities/braid-archive/braid-ideal/planar-assembled-free-particle-spec.md:71"
       ],
       "angle_units": [
         "scripts/braid-ideal/spindle-support-ratio-targeted-search.mjs:31",
         "scripts/braid-ideal/contra-rotating-pro-anti-pair-fixture.mjs:17"
       ],
       "length_units": [
-        "reference/priorities/braid-ideal/fold-crossing-chart-spec.md:1237",
-        "reference/priorities/braid-ideal/fold-crossing-chart-spec.md:1239"
+        "reference/priorities/braid-archive/braid-ideal/fold-crossing-chart-spec.md:1237",
+        "reference/priorities/braid-archive/braid-ideal/fold-crossing-chart-spec.md:1239"
       ]
     }
   },
@@ -57,8 +57,8 @@
                 "scripts/braid-ideal/spindle-braid-screw-drift-evaluator.mjs:64"
               ],
               "three_binary_inventory": [
-                "reference/priorities/braid-ideal/planar-assembled-free-particle-spec.md:17",
-                "reference/priorities/braid-ideal/planar-assembled-free-particle-spec.md:19"
+                "reference/priorities/braid-archive/braid-ideal/planar-assembled-free-particle-spec.md:17",
+                "reference/priorities/braid-archive/braid-ideal/planar-assembled-free-particle-spec.md:19"
               ]
             }
           },
@@ -79,8 +79,8 @@
                 "scripts/braid-ideal/planar-assembled-free-particle-fixture.mjs:36"
               ],
               "scope_note": [
-                "reference/priorities/braid-ideal/planar-assembled-free-particle-spec.md:13",
-                "reference/priorities/braid-ideal/planar-assembled-free-particle-spec.md:19"
+                "reference/priorities/braid-archive/braid-ideal/planar-assembled-free-particle-spec.md:13",
+                "reference/priorities/braid-archive/braid-ideal/planar-assembled-free-particle-spec.md:19"
               ]
             }
           },
@@ -105,8 +105,8 @@
                 "scripts/braid-ideal/planar-assembled-free-particle.mjs:187"
               ],
               "charge_conversion": [
-                "reference/priorities/braid-ideal/planar-assembled-free-particle-spec.md:68",
-                "reference/priorities/braid-ideal/planar-assembled-free-particle-spec.md:72"
+                "reference/priorities/braid-archive/braid-ideal/planar-assembled-free-particle-spec.md:68",
+                "reference/priorities/braid-archive/braid-ideal/planar-assembled-free-particle-spec.md:72"
               ]
             }
           },
@@ -131,13 +131,13 @@
         "section_14_causal_root_sum_owner_configuration": {
           "definition_verbatim": {
             "text": "This section raises the fidelity: it puts the cross-hit signed transfer on the same footing as the validated partner pump by solving the actual **causal root problem** — for each reception time $T$ it finds every emission time $T_{\\mathrm{em}}<T$ with $|\\mathbf X_i(T)-\\mathbf x_j(T_{\\mathrm{em}})|=c_f(T-T_{\\mathrm{em}})$ and sums the signed branch contribution over roots, with source velocity at emission and receiver velocity at reception.",
-            "source_ref": "reference/priorities/braid-ideal/fold-crossing-chart-spec.md:357-357"
+            "source_ref": "reference/priorities/braid-archive/braid-ideal/fold-crossing-chart-spec.md:357-357"
           },
           "configuration_identity": {
             "source_role": {
               "value": "nested neutral inner binary",
               "source_refs": [
-                "reference/priorities/braid-ideal/fold-crossing-chart-spec.md:359-359",
+                "reference/priorities/braid-archive/braid-ideal/fold-crossing-chart-spec.md:359-359",
                 "scripts/braid-ideal/cross-hit-causal-absorption.mjs:54-54"
               ]
             },
@@ -145,21 +145,21 @@
               "value": "middle receiver",
               "owner_script_local_name": "outer",
               "source_refs": [
-                "reference/priorities/braid-ideal/fold-crossing-chart-spec.md:357-359",
+                "reference/priorities/braid-archive/braid-ideal/fold-crossing-chart-spec.md:357-359",
                 "scripts/braid-ideal/cross-hit-causal-absorption.mjs:51-54"
               ]
             },
             "observable_scope": {
               "value": "cross-hit causal root-sum over the reception-time scanned window",
               "source_refs": [
-                "reference/priorities/braid-ideal/fold-crossing-chart-spec.md:357-357",
+                "reference/priorities/braid-archive/braid-ideal/fold-crossing-chart-spec.md:357-357",
                 "scripts/braid-ideal/cross-hit-causal-absorption.mjs:55-61"
               ]
             },
             "excluded_configuration": {
               "value": "equal-radius single-shell shell braid in its planar equal-frequency state",
               "exclusion_reason_recorded_by_spec": "zero cross-hit clicks; the evaluator models the nested two-frequency case",
-              "source_ref": "reference/priorities/braid-ideal/fold-crossing-chart-spec.md:359-359"
+              "source_ref": "reference/priorities/braid-archive/braid-ideal/fold-crossing-chart-spec.md:359-359"
             }
           },
           "literal_configuration_inputs": {
@@ -268,7 +268,7 @@
             },
             "published_reception_sample_count_convergence_ladder": {
               "values": [2000, 4000, 8000],
-              "source_ref": "reference/priorities/braid-ideal/fold-crossing-chart-spec.md:361-361"
+              "source_ref": "reference/priorities/braid-archive/braid-ideal/fold-crossing-chart-spec.md:361-361"
             },
             "source_history_window_padding": {
               "value": 0.3,
@@ -296,20 +296,20 @@
             "value_kind": "recorded_outputs_not_configuration_inputs",
             "neutral_binary_net_sequence": {
               "values": [0.214, 0.220, 0.224],
-              "source_ref": "reference/priorities/braid-ideal/fold-crossing-chart-spec.md:361-361"
+              "source_ref": "reference/priorities/braid-archive/braid-ideal/fold-crossing-chart-spec.md:361-361"
             },
             "reception_sample_count_sequence": {
               "values": [2000, 4000, 8000],
-              "source_ref": "reference/priorities/braid-ideal/fold-crossing-chart-spec.md:361-361"
+              "source_ref": "reference/priorities/braid-archive/braid-ideal/fold-crossing-chart-spec.md:361-361"
             },
             "stable_magnitude_sum": {
               "value": 7.42,
-              "source_ref": "reference/priorities/braid-ideal/fold-crossing-chart-spec.md:361-361"
+              "source_ref": "reference/priorities/braid-archive/braid-ideal/fold-crossing-chart-spec.md:361-361"
             },
             "neutral_cancellation_target_witness": {
               "value": "approximately 97 percent",
               "role": "target_witness_not_precomputed_reduction_formula",
-              "source_ref": "reference/priorities/braid-ideal/fold-crossing-chart-spec.md:363-363"
+              "source_ref": "reference/priorities/braid-archive/braid-ideal/fold-crossing-chart-spec.md:363-363"
             }
           }
         },
@@ -401,7 +401,7 @@
                 "scripts/braid-ideal/cross-hit-causal-absorption.mjs:80",
                 "scripts/braid-ideal/cross-hit-causal-absorption.mjs:82"
               ],
-              "published_additional_witnesses": ["reference/priorities/braid-ideal/fold-crossing-chart-spec.md:361"]
+              "published_additional_witnesses": ["reference/priorities/braid-archive/braid-ideal/fold-crossing-chart-spec.md:361"]
             }
           },
           "eom_request_constants": {
@@ -416,7 +416,7 @@
             "source_refs": {
               "signal_speed": ["scripts/braid-ideal/cross-hit-causal-absorption.mjs:30"],
               "receiver_time_sampling": ["scripts/braid-ideal/cross-hit-causal-absorption.mjs:55", "scripts/braid-ideal/cross-hit-causal-absorption.mjs:61"],
-              "history_model": ["reference/priorities/braid-ideal/fold-crossing-chart-spec.md:357", "reference/priorities/braid-ideal/fold-crossing-chart-spec.md:359"],
+              "history_model": ["reference/priorities/braid-archive/braid-ideal/fold-crossing-chart-spec.md:357", "reference/priorities/braid-archive/braid-ideal/fold-crossing-chart-spec.md:359"],
               "history_window": ["scripts/braid-ideal/cross-hit-causal-absorption.mjs:55"]
             }
           }
@@ -443,7 +443,7 @@
             "source_refs": {
               "field_speed_and_shared_numeric_inputs": ["scripts/braid-ideal/full-dof-stacked-tilted-braid-fixture.mjs:12", "scripts/braid-ideal/full-dof-stacked-tilted-braid-fixture.mjs:23"],
               "id_drift_rings_payload_sea_self_hits": ["scripts/braid-ideal/full-dof-stacked-tilted-braid-fixture.mjs:29", "scripts/braid-ideal/full-dof-stacked-tilted-braid-fixture.mjs:41"],
-              "control_fit_convention": ["reference/priorities/braid-ideal/full-dof-stacked-tilted-braid-spec.md:62"]
+              "control_fit_convention": ["reference/priorities/braid-archive/braid-ideal/full-dof-stacked-tilted-braid-spec.md:62"]
             }
           },
           "eom_request_constants": {
@@ -592,7 +592,7 @@
           "selected_configuration": {
             "axial_separation": 1.419842173795055,
             "relative_phase": 3.8435815410366416,
-            "source_refs": ["reference/priorities/braid-ideal/fold-crossing-chart-spec.md:2064", "reference/priorities/braid-ideal/fold-crossing-chart-spec.md:2070"]
+            "source_refs": ["reference/priorities/braid-archive/braid-ideal/fold-crossing-chart-spec.md:2064", "reference/priorities/braid-archive/braid-ideal/fold-crossing-chart-spec.md:2070"]
           },
           "pair_construction": {
             "geometry_family": "two_axially_stacked_coaxial_SELF_EQUILIBRATED_V5_copies",
@@ -794,9 +794,9 @@
       "claim_grade": "derived_from_fixture_inspection",
       "falsifier": "An owning Section 82 fixture or specification that explicitly defines the absolute phase-zero epoch would close this gap.",
       "source_refs": [
-        "reference/priorities/braid-ideal/spindle-braid-native-confirmation-handoff.md:7",
-        "reference/priorities/braid-ideal/spindle-braid-native-confirmation-handoff.md:15",
-        "reference/priorities/braid-ideal/fold-crossing-chart-spec.md:1772"
+        "reference/priorities/braid-archive/braid-ideal/spindle-braid-native-confirmation-handoff.md:7",
+        "reference/priorities/braid-archive/braid-ideal/spindle-braid-native-confirmation-handoff.md:15",
+        "reference/priorities/braid-archive/braid-ideal/fold-crossing-chart-spec.md:1772"
       ]
     },
     {
@@ -820,8 +820,8 @@
       "claim_grade": "derived_from_fixture_inspection",
       "falsifier": "An owning Section 93 fixture that explicitly names both the absolute phase-zero epoch and a literal refinement seed would close this gap.",
       "source_refs": [
-        "reference/priorities/braid-ideal/fold-crossing-chart-spec.md:2002",
-        "reference/priorities/braid-ideal/fold-crossing-chart-spec.md:2060",
+        "reference/priorities/braid-archive/braid-ideal/fold-crossing-chart-spec.md:2002",
+        "reference/priorities/braid-archive/braid-ideal/fold-crossing-chart-spec.md:2060",
         "scripts/braid-ideal/contra-rotating-pro-anti-cross-coupling.mjs:217"
       ]
     },

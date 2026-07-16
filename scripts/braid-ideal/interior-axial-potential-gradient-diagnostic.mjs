@@ -158,9 +158,9 @@ function runDiagnostic(options) {
     status: "priority_only_test_charge_diagnostic",
     owningQueueItem: "interior_field_ponderomotive_diagnostic",
     owningStructuralSlot:
-      "central_inventory_inside_hollow_support:reference/priorities/braid-retained-branch-closure/priorities.md",
+      "central_inventory_inside_hollow_support:reference/priorities/braid-archive/braid-retained-branch-closure/priorities.md",
     channelProofRef:
-      "priority-proof-packet:reference/priorities/braid-ideal/six-point-symmetry-invariant-lemma-proof-packet.md",
+      "priority-proof-packet:reference/priorities/braid-archive/braid-ideal/six-point-symmetry-invariant-lemma-proof-packet.md",
     terminology:
       "superposed delayed potential and gradient at a hypothetical static receiver; potential-superposition only, no field ontology",
     priorityOnly: true,

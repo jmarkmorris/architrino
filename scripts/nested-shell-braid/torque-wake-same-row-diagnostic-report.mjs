@@ -558,7 +558,7 @@ function retainedActiveRowBranchCertificateBridgeTarget(candidate, sampledRows) 
         NEAREST_PARTIAL_BRANCH_CHART_SOURCE_REF,
         "scripts/nested-shell-braid/fixtures/torque-wake-same-row-diagnostic-priority-target.json",
         "scripts/solver-audits/fixtures/branch-provider-current-candidates.json",
-        "reference/priorities/braid-nested-shell-causal-closure/structural-integrity-common-limit-theorem.md",
+        "reference/priorities/braid-archive/braid-nested-shell-causal-closure/structural-integrity-common-limit-theorem.md",
       ],
       nearest_partial_source_ref: NEAREST_PARTIAL_BRANCH_CHART_SOURCE_REF,
       nearest_partial_source_status: "routing_evidence_only",

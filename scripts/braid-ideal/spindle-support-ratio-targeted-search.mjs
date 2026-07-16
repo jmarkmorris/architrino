@@ -21,7 +21,7 @@ import {
 } from "./nonlinear-flutter-saturation-fixture.mjs";
 
 export const SCHEMA = "spindle_support_ratio_targeted_search.v0";
-export const SPEC_PACKET_REF = "reference/priorities/braid-ideal/fold-crossing-chart-spec.md";
+export const SPEC_PACKET_REF = "reference/priorities/braid-archive/braid-ideal/fold-crossing-chart-spec.md";
 export const FAIL_CLOSED = Object.freeze({
   retainedBranchClaim: false, acceptedSameLevelBranchClaim: false, retainedBranch: null,
   scoreMovement: "no_score_increase", acceptedSeedPathCertificate: false,
@@ -5197,7 +5197,7 @@ export function globalDrainDynamicalSea({
 // ===========================================================================
 // §87 (jh13): the SAME-RECORD WAKE ANGULAR-MOMENTUM WARD COMPLETION and the
 // BALANCED-CELL TRANSPORT DECIDER. Executes the deciding memo
-// (reference/priorities/braid-ideal/retained-sea-angular-momentum-ward-identity
+// (reference/priorities/braid-archive/braid-ideal/retained-sea-angular-momentum-ward-identity
 // -and-transport-kernel.md). The delayed pair law is non-reciprocal
 // (F_{a<-b}(T) != -F_{b<-a}(T)), so the directed pair torques leave a Ward defect
 // q_{AB,z} and a mechanical/assembly-only L_z ledger does NOT close (memo §2). The

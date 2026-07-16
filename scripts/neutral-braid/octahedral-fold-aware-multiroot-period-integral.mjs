@@ -363,11 +363,11 @@ export function buildOctahedralFoldAwareMultirootPeriodIntegral(options = {}) {
     schema: OCTAHEDRAL_FOLD_AWARE_MULTIROOT_PERIOD_INTEGRAL_SCHEMA,
     packet_id: PACKET_ID,
     promotion_status: PROMOTION_STATUS,
-    predecessor_packet: "reference/priorities/braid-geometry-export-bridge/octahedral-period-rescaled-fold-chart.md",
+    predecessor_packet: "reference/priorities/braid-archive/braid-geometry-export-bridge/octahedral-period-rescaled-fold-chart.md",
     priority_packet:
-      "reference/priorities/braid-geometry-export-bridge/octahedral-fold-aware-multiroot-period-integral.md",
+      "reference/priorities/braid-archive/braid-geometry-export-bridge/octahedral-fold-aware-multiroot-period-integral.md",
     successor_packet:
-      "reference/priorities/braid-geometry-export-bridge/octahedral-fold-aware-zero-bracket-certificate.md",
+      "reference/priorities/braid-archive/braid-geometry-export-bridge/octahedral-fold-aware-zero-bracket-certificate.md",
     scan_parameters: {
       speed_constraint: "none; speed ratios are positive diagnostic points, not an admissibility band",
       speed_ratios: speedRatios.map(formatNumber),

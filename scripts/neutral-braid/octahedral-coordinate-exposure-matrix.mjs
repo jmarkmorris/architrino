@@ -564,7 +564,7 @@ export function buildOctahedralCoordinateExposureMatrix(options = {}) {
     packet_id: PACKET_ID,
     promotion_status: PROMOTION_STATUS,
     source_root_ledger: "scripts/neutral-braid/octahedral-root-ledger.mjs",
-    priority_packet: "reference/priorities/braid-geometry-export-bridge/octahedral-full-coordinate-exposure-matrix.md",
+    priority_packet: "reference/priorities/braid-archive/braid-geometry-export-bridge/octahedral-full-coordinate-exposure-matrix.md",
     conventions: {
       seed: "rigid-octahedral-carrier",
       coordinate_chart: "nine-dimensional affine branch-coordinate variation delta Y_i = H Y_i",

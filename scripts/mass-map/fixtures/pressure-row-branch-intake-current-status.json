@@ -1,7 +1,7 @@
 {
   "schema": "pressure_row_branch_intake_candidate/v0",
   "row_id": "current-pressure-row-branch-intake-status-2026-06-28",
-  "source_ref": "reference/priorities/braid-mass-response-map/pressure-response-coefficient-closure.md",
+  "source_ref": "reference/priorities/braid-archive/braid-mass-response-map/pressure-response-coefficient-closure.md",
   "diagnostic_sources": [
     "A0 rest diagnostic",
     "toy Hessian pressure rows",

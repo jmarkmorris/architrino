@@ -240,7 +240,7 @@ const H39_SOURCE_MAP_PROVIDER_OBJECT_BRANCH_SPLIT_MAP_SEARCHED_CANDIDATE_SOURCES
     }),
     Object.freeze({
       candidate_file:
-        "reference/priorities/braid-geometry-export-bridge/h39-h38-source-covariance-closure-sprint-wrap-up.md",
+        "reference/priorities/braid-archive/braid-geometry-export-bridge/h39-h38-source-covariance-closure-sprint-wrap-up.md",
       candidate_ref: "H39/H38 source-covariance closure sprint wrap-up",
       candidate_surface: "priority packet summary",
       candidate_status: "priority-only-source-absence-report",
@@ -250,7 +250,7 @@ const H39_SOURCE_MAP_PROVIDER_OBJECT_BRANCH_SPLIT_MAP_SEARCHED_CANDIDATE_SOURCES
     }),
     Object.freeze({
       candidate_file:
-        "reference/priorities/braid-geometry-export-bridge/octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-h39-shared-domain-coefficient-series-engine.md",
+        "reference/priorities/braid-archive/braid-geometry-export-bridge/octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-h39-shared-domain-coefficient-series-engine.md",
       candidate_ref: "H39 shared-domain coefficient-series engine packet",
       candidate_surface: "priority packet producer audit summaries",
       candidate_status: "priority-only-candidate-producers",

@@ -8,39 +8,39 @@
     "owning_definition_quotes": [
       {
         "quote": "Test a moving, untilted alternative to the closed tilted-spindle branch. Each of three coaxial planar rings is an antipodal electrino–positrino binary. The middle ring lies on the field-speed rail, $omega R_M=c_f$. Consecutive rings are separated so that\n\n$$\n\\frac{z_{\\rm gap}}{d}=\\frac{u}{c_f}.\n$$",
-        "citation": "reference/priorities/braid-ideal/moving-phase-matched-stacked-rings-braid-spec.md § \"Closure target\""
+        "citation": "reference/priorities/braid-archive/braid-ideal/moving-phase-matched-stacked-rings-braid-spec.md § \"Closure target\""
       },
       {
         "quote": "For an adjacent source ring $a$ and trailing receiver ring $b$, the fixture sets\n\n$$\nd_{ab}=|R_b-R_a|,\n\\qquad\n\\Delta t_{ab}=\\frac{d_{ab}}{c_f},\n\\qquad\nz_{\\rm gap}=u\\Delta t_{ab},\n\\qquad\n\\phi_b=\\phi_a-\\omega\\Delta t_{ab}.\n$$\n\nAt the selected delayed root, the source emission point and receiver hit point therefore have the same azimuth. Their line of action is radial in the transverse plane, and its axial component is zero.",
-        "citation": "reference/priorities/braid-ideal/moving-phase-matched-stacked-rings-braid-spec.md § \"Constructed phase match\""
+        "citation": "reference/priorities/braid-archive/braid-ideal/moving-phase-matched-stacked-rings-braid-spec.md § \"Constructed phase match\""
       },
       {
         "quote": "The declared search covers all six axial orders, both radial phase-match spacing branches on each gap, two inner-radius ratios, two outer-radius ratios, and three drift speeds. The short branch uses $d_{ab}=|R_b-R_a|$ with equal delayed-ray azimuth; the long branch uses $d_{ab}=R_a+R_b$ with opposite delayed-ray azimuth. For every row, the production-root forces are cycle averaged. The single global coupling is the least-squares coefficient for the three required radial accelerations,\n\n$$\n\\kappa_\\star\n=\n\\frac{\\sum_i f_i^{\\rm raw}a_i^{\\rm req}}\n{\\sum_i(f_i^{\\rm raw})^2},\n\\qquad\na_i^{\\rm req}=-\\omega^2R_i.\n$$",
-        "citation": "reference/priorities/braid-ideal/moving-phase-matched-stacked-rings-braid-spec.md § \"Search and gates\""
+        "citation": "reference/priorities/braid-archive/braid-ideal/moving-phase-matched-stacked-rings-braid-spec.md § \"Search and gates\""
       },
       {
         "quote": "The dimensionless binding residual is\n\n$$\n\\epsilon_{\\rm bind}\n=\n\\frac{\\|\\kappa_\\star\\mathbf f^{\\rm raw}-\\mathbf a^{\\rm req}\\|_2}\n{\\|\\mathbf a^{\\rm req}\\|_2}.\n$$",
-        "citation": "reference/priorities/braid-ideal/moving-phase-matched-stacked-rings-braid-spec.md § \"Search and gates\""
+        "citation": "reference/priorities/braid-archive/braid-ideal/moving-phase-matched-stacked-rings-braid-spec.md § \"Search and gates\""
       },
       {
         "quote": "Binding requires $kappa_\\star>0$ and $epsilon_{\\rm bind}\\le 0.03$. Pump freedom requires $|\\tau_z|\\le 0.02$.",
-        "citation": "reference/priorities/braid-ideal/moving-phase-matched-stacked-rings-braid-spec.md § \"Search and gates\" (note: the source text literally reads \"$kappa_\\star$\" and \"$epsilon_{\\rm bind}$\" without backslashes)"
+        "citation": "reference/priorities/braid-archive/braid-ideal/moving-phase-matched-stacked-rings-braid-spec.md § \"Search and gates\" (note: the source text literally reads \"$kappa_\\star$\" and \"$epsilon_{\\rm bind}$\" without backslashes)"
       },
       {
         "quote": "The declared coarse search contains $288$ rows. Binding-only refinement selects the axial order $M\\to I\\to O$, the long spacing branch on both gaps, and\n\n$$\nu=0.48046875c_f,\n\\qquad\n(R_I,R_M,R_O)=(0.99511719,1.25,1.87402344).\n$$\n\nThe two gaps are\n\n$$\n(d_1,d_2)=(2.24511719,2.86914063),\n\\qquad\n(z_1,z_2)=(1.07870865,1.37853241).\n$$",
-        "citation": "reference/priorities/braid-ideal/moving-phase-matched-stacked-rings-braid-spec.md § \"Measured seed verdict\""
+        "citation": "reference/priorities/braid-archive/braid-ideal/moving-phase-matched-stacked-rings-braid-spec.md § \"Measured seed verdict\""
       },
       {
         "quote": "The complete root record does not close. At the best positive global coupling,\n\n$$\n\\kappa_\\star=4.52636941,\n\\qquad\n\\mathbf R=(0.06849450,-0.02235171,-0.02879827),\n$$\n\nso\n\n$$\n\\|\\mathbf R\\|_2=0.07759147,\n\\qquad\n\\epsilon_{\\rm bind}=0.04922985.\n$$",
-        "citation": "reference/priorities/braid-ideal/moving-phase-matched-stacked-rings-braid-spec.md § \"Measured seed verdict\""
+        "citation": "reference/priorities/braid-archive/braid-ideal/moving-phase-matched-stacked-rings-braid-spec.md § \"Measured seed verdict\""
       },
       {
         "quote": "The complete record is also not pump-free:\n\n$$\n\\tau_z=+13.37621958.\n$$",
-        "citation": "reference/priorities/braid-ideal/moving-phase-matched-stacked-rings-braid-spec.md § \"Measured seed verdict\""
+        "citation": "reference/priorities/braid-archive/braid-ideal/moving-phase-matched-stacked-rings-braid-spec.md § \"Measured seed verdict\""
       },
       {
         "quote": "**Measured:** the selected row reports\n\n$$\n\\epsilon_{\\rm bind}=0.0492298548241>0.03,\n$$\n\nwith residual vector\n\n$$\n\\mathbf R=(0.06849450,-0.02235171,-0.02879827)\n$$\n\nand pump $\\tau_z=+13.37621958$.",
-        "citation": "reference/priorities/braid-ideal/evidence/section-96-flutter-force-balance-retirement-2026-07-14.md § \"Evidence\""
+        "citation": "reference/priorities/braid-archive/braid-ideal/evidence/section-96-flutter-force-balance-retirement-2026-07-14.md § \"Evidence\""
       }
     ],
     "configuration_constants": {
@@ -105,7 +105,7 @@
       "residual_vector_R": { "token": "(0.06849450,-0.02235171,-0.02879827)", "citation": "spec § Measured seed verdict; identical in retirement evidence § Evidence" },
       "residual_norm_2": { "token": "0.07759147", "citation": "spec § Measured seed verdict" },
       "epsilon_bind_spec": { "token": "0.04922985", "citation": "spec § Measured seed verdict (and § Recovery adjudication: '$\\epsilon_{\\rm bind}=0.04922985>0.03$')" },
-      "epsilon_bind_evidence_full_precision": { "token": "0.0492298548241", "citation": "reference/priorities/braid-ideal/evidence/section-96-flutter-force-balance-retirement-2026-07-14.md § Evidence" },
+      "epsilon_bind_evidence_full_precision": { "token": "0.0492298548241", "citation": "reference/priorities/braid-archive/braid-ideal/evidence/section-96-flutter-force-balance-retirement-2026-07-14.md § Evidence" },
       "tau_z": { "token": "+13.37621958", "citation": "spec § Measured seed verdict" },
       "neighbor_radial_contributions": { "tokens": { "inner_outward": "+0.07628085", "middle": "-0.00721750", "outer": "-0.18659108" }, "citation": "spec § Measured seed verdict" },
       "phase_match_axial_residuals": { "tokens": ["4.62\\times10^{-13}", "6.71\\times10^{-14}"], "citation": "spec § Measured seed verdict" },
@@ -122,31 +122,31 @@
     "owning_definition_quotes": [
       {
         "quote": "This packet evaluates the free-particle candidate as one assembly from the start. No isolated-triple gate is present. The photon candidate is a neutral contra-rotating polarity-conjugate planar pair with no payload. The electron candidate is the same pair plus six explicit electrino worldlines in the axial pocket, with charge\n\n$$\nQ=6\\left(-\\frac{|e|}{6}\\right)=-1e.\n$$\n\nEvery selected row is tested with one common coupling $\\kappa_\\star$.",
-        "citation": "reference/priorities/braid-ideal/planar-assembled-free-particle-spec.md § \"Decision target\""
+        "citation": "reference/priorities/braid-archive/braid-ideal/planar-assembled-free-particle-spec.md § \"Decision target\""
       },
       {
         "quote": "The best photon replay has\n$\\epsilon_{\\rm bind}=0.9922225625$ and the electron rest target has\n$\\epsilon_{\\rm bind}=0.9999927135$, both far outside the declared $0.03$ gate.",
-        "citation": "reference/priorities/braid-ideal/planar-assembled-free-particle-spec.md § \"Recovery adjudication — 2026-07-14\""
+        "citation": "reference/priorities/braid-archive/braid-ideal/planar-assembled-free-particle-spec.md § \"Recovery adjudication — 2026-07-14\""
       },
       {
         "quote": "The best coarse photon row has $\\kappa_\\star=0.09446654050233466$, pump residual $3.71\\times10^{-16}$, and binding residual $0.9916649426542679$. Its sampling ladder is\n\n| Cycle samples | $\\kappa_\\star$ | $\\epsilon_{\\rm bind}$ | $|\\tau_z|$ |\n|---:|---:|---:|---:|\n| 3 | $0.1240934380$ | $0.9823877638$ | $3.65\\times10^{-16}$ |\n| 6 | $0.1240934380$ | $0.9823877638$ | $2.95\\times10^{-16}$ |\n| 12 | $0.0918066564$ | $0.9893250830$ | $1.71\\times10^{-16}$ |\n| 24 | $0.0669851117$ | $0.9922225625$ | $1.46\\times10^{-16}$ |\n\nThe null is not near the $0.03$ binding threshold and does not improve with the sampling ladder.",
-        "citation": "reference/priorities/braid-ideal/planar-assembled-free-particle-spec.md § \"Photon result\""
+        "citation": "reference/priorities/braid-archive/braid-ideal/planar-assembled-free-particle-spec.md § \"Photon result\""
       },
       {
         "quote": "The same selected photon geometry was continued through every declared speed\nrather than re-optimized at each speed. Every row has correct neutral charge\nand converged causal roots, but every row fails binding. At $u/c_f=0.9999$, the\nrow has $\\epsilon_{\\rm bind}=0.9999005117$.",
-        "citation": "reference/priorities/braid-ideal/planar-assembled-free-particle-spec.md § \"Photon result\""
+        "citation": "reference/priorities/braid-archive/braid-ideal/planar-assembled-free-particle-spec.md § \"Photon result\""
       },
       {
         "quote": "**Measured:** the best photon sampling ladder ends at\n$\\epsilon_{\\rm bind}=0.9922225625$. The electron rest target reports\n$\\epsilon_{\\rm bind}=0.9999927135$, and its replay stays within\n$3.1\\times10^{-7}$ of one. Both are far outside the declared $0.03$ gate.",
-        "citation": "reference/priorities/braid-ideal/evidence/section-99-stability-force-balance-retirement-2026-07-14.md § \"Evidence\""
+        "citation": "reference/priorities/braid-archive/braid-ideal/evidence/section-99-stability-force-balance-retirement-2026-07-14.md § \"Evidence\""
       },
       {
         "quote": "- **Non-canonical occupancy.** Roughly half the photon rows use occupancy\n  $(3,2,3)$ — 8 architrinos per braid, 16 per assembly — and the\n  ordinal-alternating polarity assignment gives each 3-site ring net charge\n  $\\pm1$ and each braid net $\\pm2$; the assembly is neutral only because the\n  anti braid flips signs.",
-        "citation": "reference/priorities/braid-ideal/planar-assembled-free-particle-spec.md § \"Model audit — 2026-07-15: SUPERSEDED FOR PHOTON CLAIMS (non-canonical object)\""
+        "citation": "reference/priorities/braid-archive/braid-ideal/planar-assembled-free-particle-spec.md § \"Model audit — 2026-07-15: SUPERSEDED FOR PHOTON CLAIMS (non-canonical object)\""
       },
       {
         "quote": "The pair schedule covered 12 photon and four electron pair configurations; occupancies $(2,2,2)$ and $(3,2,3)$; polarity-orientation patterns $(+,+,+)$ and $(+,-,+)$; relative phases $\\{\\pi,7\\pi/6,4\\pi/3,3\\pi/2\\}$; pocket widths $\\{1.1,1.45\\}$; two radius/frequency/stack schedules; proxy-sea off and on; and both pro–pocket–anti and anti–pocket–pro orderings. It did not exhaust the full Cartesian product.",
-        "citation": "reference/priorities/braid-ideal/planar-assembled-free-particle-spec.md § \"Exact coverage\""
+        "citation": "reference/priorities/braid-archive/braid-ideal/planar-assembled-free-particle-spec.md § \"Exact coverage\""
       }
     ],
     "configuration_constants": {
@@ -239,19 +239,19 @@
     "owning_definition_quotes": [
       {
         "quote": "The lowest coarse objective occurs for the scale-$0.8$ static column at $u/c_f=0.25$. It has the correct explicit charge and a small pump residual, but $\\epsilon_{\\rm bind}=0.9999997624$. The same rest-selected geometry and payload were continued through all four electron speeds.",
-        "citation": "reference/priorities/braid-ideal/planar-assembled-free-particle-spec.md § \"Electron result\""
+        "citation": "reference/priorities/braid-archive/braid-ideal/planar-assembled-free-particle-spec.md § \"Electron result\""
       },
       {
         "quote": "At rest the row has\n\n$$\n\\kappa_\\star=6.3558550\\times10^{-5},\n\\qquad\n\\epsilon_{\\rm bind}=0.9999927135,\n$$",
-        "citation": "reference/priorities/braid-ideal/planar-assembled-free-particle-spec.md § \"Electron result\""
+        "citation": "reference/priorities/braid-archive/braid-ideal/planar-assembled-free-particle-spec.md § \"Electron result\""
       },
       {
         "quote": "Every boosted row retains correct charge and pump\ncancellation but fails binding. The $3\\to6\\to12\\to24$ replay keeps\n$\\epsilon_{\\rm bind}$ within $3.1\\times10^{-7}$ of one and does not expose a\ncoarse-sampling null.",
-        "citation": "reference/priorities/braid-ideal/planar-assembled-free-particle-spec.md § \"Electron result\""
+        "citation": "reference/priorities/braid-archive/braid-ideal/planar-assembled-free-particle-spec.md § \"Electron result\""
       },
       {
         "quote": "The electron candidate is the same pair plus six explicit electrino worldlines in the axial pocket, with charge\n\n$$\nQ=6\\left(-\\frac{|e|}{6}\\right)=-1e.\n$$",
-        "citation": "reference/priorities/braid-ideal/planar-assembled-free-particle-spec.md § \"Decision target\""
+        "citation": "reference/priorities/braid-archive/braid-ideal/planar-assembled-free-particle-spec.md § \"Decision target\""
       }
     ],
     "configuration_constants": {
@@ -290,15 +290,15 @@
     "owning_definition_quotes": [
       {
         "quote": "**The canonical force is central; there is no separate magnetic force.** The per-hit law (master-equation.md §\"receiver-normal branch factor\") is $\\mathbf A=\\kappa\\sigma|q_iq_j|/r^2\\,W^{\\mathrm{rec}}\\,\\hat{\\mathbf r}$ with $W^{\\mathrm{rec}}=|D_T/D_s|$, $D_T=c_f-\\hat{\\mathbf r}\\cdot\\mathbf V_i$, $D_s=c_f-\\hat{\\mathbf r}\\cdot\\mathbf V_j(t_e)$, and the Lemma (Circular receiver-normal cancellation) gives $D_T=D_s\\Rightarrow W^{\\mathrm{rec}}=1$ on every nondegenerate rigid-circular root.",
-        "citation": "reference/priorities/braid-ideal/fold-crossing-chart-spec.md § \"82. The Corrected Radiation / Self-Torque Instrument (Audit Rebuild of §§78–81)...\" (opening of the canonical-force paragraph)"
+        "citation": "reference/priorities/braid-archive/braid-ideal/fold-crossing-chart-spec.md § \"82. The Corrected Radiation / Self-Torque Instrument (Audit Rebuild of §§78–81)...\" (opening of the canonical-force paragraph)"
       },
       {
         "quote": "**Result 3 — the honest net self-torque is $+0.424$, a HELD-SEED diagnostic; the self-hit is the coincidence only.** The whole-braid net secular z-torque, summed over all six sites from the delayed partner wake with the complete certifier (max residual $\\sim10^{-15}$, root count stable, no unstable hits) and period-averaged (transient-free), is $+0.424$ — $N_t$-converged and soft-robust, concentrated on the middle ($M=+0.4229$; $I,O\\approx0$). The self-hit is the **analytic coincidence only**: at $\\beta_M=1$ the self chart obeys $\\sin\\xi=\\xi/\\beta$, which has no positive-delay root for $\\beta\\le1$; a branch is born only for $\\beta=1+\\mu$ at $\\xi_0\\approx\\sqrt{6\\mu}$ — the certifier confirms this onset (measured $\\xi_0=0.344$ at $\\mu=0.02$ vs $\\sqrt{0.12}=0.346$; $0.538$ at $\\mu=0.05$ vs $0.548$), so the numerical self channel is **not** independently reconstructed at the caustic — only the coincidence stratum, labeled `analyticNoPositiveDelaySelfHitAtExactBetaOne`. The §81 \"$+0.142$\" is exactly $+0.424-0.667\\times0.4229$: the held-seed partner torque minus the §66 *maximum* brake applied algebraically. The $+0.424$ is the **internal partner torque on the held rigid seed**; the **external holding torque a prescribed rigid V5 worldline requires** is $-0.424$. Root COMPLETENESS (not just residual) is now tested and clean; the labels are held-seed diagnostics, not \"root-certified free-particle\" quantities. **Claim level: the held-seed torque is a robust measurement; the free-particle self-torque is unmeasured (needs a native force-free release).**",
-        "citation": "reference/priorities/braid-ideal/fold-crossing-chart-spec.md § 82, Result 3"
+        "citation": "reference/priorities/braid-archive/braid-ideal/fold-crossing-chart-spec.md § 82, Result 3"
       },
       {
         "quote": "**Single-braid regressions.** Removing either partner recovers the source runner exactly. In a common sign convention,\n\n$$\n\\dot L_{z,+}=+0.4240300292341333,\n\\qquad\n\\dot L_{z,-}=-0.4240300292341333,\n$$",
-        "citation": "reference/priorities/braid-ideal/fold-crossing-chart-spec.md § \"92. Contra-Rotating Pro/Anti Pair Native Self-Sinking Instrument (2026-07-12)\", Single-braid regressions"
+        "citation": "reference/priorities/braid-archive/braid-ideal/fold-crossing-chart-spec.md § \"92. Contra-Rotating Pro/Anti Pair Native Self-Sinking Instrument (2026-07-12)\", Single-braid regressions"
       }
     ],
     "configuration_constants": {
@@ -367,23 +367,23 @@
     "owning_definition_quotes": [
       {
         "quote": "**Result 2 — the joint fixed point with the tangential ledger exists: SELF-EQUILIBRATED CANDIDATE V5 (named, exported).** Alternating angle-descent (tau_I, tau_O -> 0) with radial re-equilibration converges in three passes: geometry $(q_I,q_O,\\alpha_I,\\alpha_M,\\alpha_O,\\theta_I,\\theta_O)=(0.55,\\,0.75,\\,-27.15°,\\,+16.24°,\\,64.5°,\\,-16.2°,\\,339.5°)$; radial residual $\\sim4\\times10^{-6}$ with basin $(-0.63,\\,-2.00,\\,-6.27)$; $\\tau_I=0.0006$, $\\tau_O=0.0004$; the middle's $+0.227$ rail pump is the escapement's, as always.",
-        "citation": "reference/priorities/braid-ideal/fold-crossing-chart-spec.md § 58, Result 2"
+        "citation": "reference/priorities/braid-archive/braid-ideal/fold-crossing-chart-spec.md § 58, Result 2"
       },
       {
         "quote": "Binding obligation 1 executed: the FULL Sections 57–59 stability gate re-derived IN-BUILD before release on the owner instruments, all checks passed — radial equilibrium residual $4\\times10^{-6}$ with rail-pinned basin $(-0.429,\\,-1.360,\\,-4.269)$ at the release gauge (displacement-eps witnessed; the certificate spectrum scaled by exactly $\\lambda^2$), $\\tau_I=0.00064$, $\\tau_O=0.00040$, rail pump $+0.2274$, tilt global null $3\\times10^{-15}$ with restoring quotient spectrum $(-0.123,\\,-0.762)$ ($N_t=8/16$ identical).",
-        "citation": "reference/priorities/braid-ideal/fold-crossing-chart-spec.md § 60 (in-build gate sentence)"
+        "citation": "reference/priorities/braid-archive/braid-ideal/fold-crossing-chart-spec.md § 60 (in-build gate sentence)"
       },
       {
         "quote": "Seed protocol identical to Row 7 and executed first: the full Sections 57–59 gate re-derived IN-BUILD and PASSED whole (radial residual $4\\times10^{-6}$, rail-pinned basin $(-0.429, -1.360, -4.269)$, $\\tau_I=0.00064$, $\\tau_O=0.00040$, tilt global null $2\\times10^{-15}$ with restoring quotient $(-0.123, -0.762)$), frozen gauge-invariant $\\kappa_{\\mathrm{eq}}=0.28623$ reproduced exactly, support $1.0000/0.9996/1.0000$ at the frozen coupling by self-adjustment, and the in-build rail pump $0.22736$ cross-checks the packet constant $0.2274$.",
-        "citation": "reference/priorities/braid-ideal/fold-crossing-chart-spec.md § 62 (Row 8 seed-protocol sentence; this is the sentence carrying 'the in-build rail pump $0.22736$ cross-checks the packet constant $0.2274$')"
+        "citation": "reference/priorities/braid-archive/braid-ideal/fold-crossing-chart-spec.md § 62 (Row 8 seed-protocol sentence; this is the sentence carrying 'the in-build rail pump $0.22736$ cross-checks the packet constant $0.2274$')"
       },
       {
         "quote": "**The release — every gate row holds; the pump rules.** At release the instant support rows read $1.007/1.009/1.001$ and $\\tau_{I/O}\\approx0$; then the middle's $+0.227$ rail pump — deliberately outside the quasi-static gate (\"the escapement's job\") — goes UN-ABSORBED at the declared pointwise booking: $\\beta_M$ climbs monotonically off the rail to $1.167$ ($t=1.0$) with ZERO rail re-crossings",
-        "citation": "reference/priorities/braid-ideal/fold-crossing-chart-spec.md § 60 (release paragraph, first sentences)"
+        "citation": "reference/priorities/braid-archive/braid-ideal/fold-crossing-chart-spec.md § 60 (release paragraph, first sentences)"
       },
       {
         "quote": "**Correction to the declared pencil, forced by the physics.** $\\lambda^2M+\\lambda G+K$ is not the honest linearization: the layers carry nonzero baseline axial torques (the middle's rail pump, $\\tau_M=+0.423$ in torque units; $\\tau_I,\\tau_O\\approx0$), and the spin transport $d(J\\hat{\\mathbf n})/dT$ contributes $\\dot J\\,\\hat{\\mathbf n}$ terms.",
-        "citation": "reference/priorities/braid-ideal/fold-crossing-chart-spec.md § 61 (pencil-correction paragraph; the '+0.423 in torque units' sentence)"
+        "citation": "reference/priorities/braid-archive/braid-ideal/fold-crossing-chart-spec.md § 61 (pencil-correction paragraph; the '+0.423 in torque units' sentence)"
       },
       {
         "quote": "The joint fixed point with the tangential ledger exists as a named self-equilibrated configuration: radial residuals at solver precision, inner and outer tangential rows at zero, a restoring seed-grade radial spectrum, the middle's $+0.227$ rail pump the one booking left open (the same-source brake, measured at converged regulators, supplies at most about two-thirds of it) — and **no environment at all** for the radial ledger: the sea remains the braid's angular-momentum bath and cap support, but this object does not need it for its radial ledger.",
@@ -433,15 +433,15 @@
     "owning_definition_quotes": [
       {
         "quote": "**Declared ansatz.** The primary geometry is an axially stacked coaxial pair on the shared axis $\\hat{\\mathbf z}$, with axial separation $\\Delta z=1$ in middle-radius units and relative phase $\\Delta\\phi=\\pi$. The comparison geometry is coincident-coaxial, $\\Delta z=0$, with the same relative phase. The pro copy has rotation sense $s=+1$; the anti copy has $s=-1$ and sitewise polarity conjugation. These are explicit pairing hypotheses, not derived bound geometries.",
-        "citation": "reference/priorities/braid-ideal/fold-crossing-chart-spec.md § 92, Declared ansatz"
+        "citation": "reference/priorities/braid-archive/braid-ideal/fold-crossing-chart-spec.md § 92, Declared ansatz"
       },
       {
         "quote": "**Measured geometry search.** The shared-record scan covers 96 cells: eight axial separations $\\Delta z\\in\\{0.5,0.75,1,1.25,1.5,2,2.5,3\\}$ and twelve relative phases over $[0,2\\pi)$. Each static cell books all 72 directed cross-braid relations over four cycle samples. The selected refined cell has 288 retained roots, maximum root residual $9.97\\times10^{-13}$, and minimum source-receiver distance $0.3288$, above the declared collision floor.",
-        "citation": "reference/priorities/braid-ideal/fold-crossing-chart-spec.md § 93, Measured geometry search"
+        "citation": "reference/priorities/braid-archive/braid-ideal/fold-crossing-chart-spec.md § 93, Measured geometry search"
       },
       {
         "quote": "The coarse grid shows that the cross torque can pass through the magnitude required to cancel the intrinsic pump, but no coarse cell simultaneously closes the pump and axial rows. A two-variable Newton continuation then solves the individual pro-braid pump row and the relative axial-force row together. It converges in two corrections to\n\n$$\n\\Delta z=1.419842173795055,\n\\qquad\n\\Delta\\phi=3.8435815410366416.\n$$\n\nAt that cell the cross torque transfers the intrinsic pump between the two braids rather than leaving it as ansatz bookkeeping:\n\n$$\n\\dot L_{z,+}^{\\mathrm{total}}=-1.27754\\times10^{-4},\n\\qquad\n\\dot L_{z,-}^{\\mathrm{total}}=+1.27754\\times10^{-4}.\n$$\n\nThe relative axial-force residual is $-5.42047\\times10^{-4}$ and the common axial force is $-3.64\\times10^{-16}$. Thus the cross-torque-completed pair genuinely closes the seed-grade axial pump and force ledgers at one non-colliding geometry. This is a pump/force equilibrium row, not yet a bound object.",
-        "citation": "reference/priorities/braid-ideal/fold-crossing-chart-spec.md § 93, Measured geometry search / Newton continuation result"
+        "citation": "reference/priorities/braid-archive/braid-ideal/fold-crossing-chart-spec.md § 93, Measured geometry search / Newton continuation result"
       }
     ],
     "configuration_constants": {
@@ -532,19 +532,19 @@
     "owning_definition_quotes": [
       {
         "quote": "Two corrections built the frame: (i) the quasi-static displacements must run at the RAIL-PINNED cadence — during contraction the middle stays on the field-speed rail (the natively confirmed attractor), so omega = c_f/(R_M cos aM) responds to R_M; under that pin wake forces scale 1/lambda^2 against needs at 1/lambda, support gains 1/lambda, and the size mode acquires a restoring feedback — the speed pin IS the size pin; (ii) kappa must be FROZEN once — the per-configuration kappa refit is a gauge that exactly absorbs the dilation gain (the mechanical content of the fitted-kappa sum rule), which is why the size mode looked unbalanced in every earlier frame (`railPinnedEquilibrium` on the owner script, absolute-displacement Newton with kapFixed; tests 16 passing).",
-        "citation": "reference/priorities/braid-ideal/fold-crossing-chart-spec.md § 58 (opening paragraph, the two corrections)"
+        "citation": "reference/priorities/braid-archive/braid-ideal/fold-crossing-chart-spec.md § 58 (opening paragraph, the two corrections)"
       },
       {
         "quote": "**Result 2 — the joint fixed point with the tangential ledger exists: SELF-EQUILIBRATED CANDIDATE V5 (named, exported).** Alternating angle-descent (tau_I, tau_O -> 0) with radial re-equilibration converges in three passes: geometry $(q_I,q_O,\\alpha_I,\\alpha_M,\\alpha_O,\\theta_I,\\theta_O)=(0.55,\\,0.75,\\,-27.15°,\\,+16.24°,\\,64.5°,\\,-16.2°,\\,339.5°)$; radial residual $\\sim4\\times10^{-6}$ with basin $(-0.63,\\,-2.00,\\,-6.27)$; $\\tau_I=0.0006$, $\\tau_O=0.0004$; the middle's $+0.227$ rail pump is the escapement's, as always.",
-        "citation": "reference/priorities/braid-ideal/fold-crossing-chart-spec.md § 58, Result 2"
+        "citation": "reference/priorities/braid-archive/braid-ideal/fold-crossing-chart-spec.md § 58, Result 2"
       },
       {
         "quote": "**Result 3 — the braid's absolute size is a derived constant.** At the fixed point $R_M^{\\mathrm{eq}} = \\lambda/\\kappa^{\\mathrm{frozen}} \\approx 3.49$ in units $\\kappa\\varepsilon^2/c_f^2$ — the same scale family as the declared $d_0=R_{\\mathrm{MCB}}$ floor, with the ratio a pure number (modulo the open MCB constant): the equilibrium sits well ABOVE the floor, so the arrest is kappa-scale self-support, not discreteness rescue.",
-        "citation": "reference/priorities/braid-ideal/fold-crossing-chart-spec.md § 58, Result 3"
+        "citation": "reference/priorities/braid-archive/braid-ideal/fold-crossing-chart-spec.md § 58, Result 3"
       },
       {
         "quote": "Binding obligation 2 (frozen kappa) produced a durable instrument row: the release coupling is the **gauge-invariant equilibrium value** $\\kappa_{\\mathrm{eq}}=\\kappa_{\\mathrm{fit}}/\\lambda = 1/R_M^{\\mathrm{eq}} = 0.28623$ — the certificate's $0.4615$ gauge and the in-build $0.2349$ fit lie on one gauge orbit with $R_M^{\\mathrm{eq}}=3.4937\\,\\kappa\\varepsilon^2/c_f^2$ from both (Section 58 Result 3, now doubly witnessed).",
-        "citation": "reference/priorities/braid-ideal/fold-crossing-chart-spec.md § 60 (gauge-invariant coupling sentence)"
+        "citation": "reference/priorities/braid-archive/braid-ideal/fold-crossing-chart-spec.md § 60 (gauge-invariant coupling sentence)"
       },
       {
         "quote": "The braid's absolute size becomes a derived constant — the equilibrium rail radius lands at $R_M^{\\mathrm{eq}}=3.4937$ in units of $\\kappa\\epsilon^2/c_f^2$, doubly witnessed through the gauge-invariant equilibrium coupling $\\kappa_{\\mathrm{eq}}=1/R_M^{\\mathrm{eq}}=0.28623$ (the fitted-gauge values lie on one gauge orbit) — the same scale family as the declared near-field floor of [Particle Masses](../assemblies/particle-masses.md), sitting well above that floor, so the scale is set by coupling-scale self-support rather than by a discreteness rescue — an anchor for the mass-map program.",
@@ -744,7 +744,7 @@
           "binding_residual": "0.9916649426542679",
           "pairIndex": "NOT RECORDED anywhere as a literal",
           "drift": "NOT RECORDED anywhere as a literal",
-          "citation": "reference/priorities/braid-ideal/planar-assembled-free-particle-spec.md § Photon result"
+          "citation": "reference/priorities/braid-archive/braid-ideal/planar-assembled-free-particle-spec.md § Photon result"
         },
         "photon_best_sampling_ladder": {
           "rows": [

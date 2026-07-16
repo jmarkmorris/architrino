@@ -1,12 +1,12 @@
 {
   "schema": "moving_retained_branch_certificate_accepted_branch_chart_source_scout_manifest/v0",
   "scout_id": "accepted-branch-chart-source-scout-2026-06-28",
-  "source_ref": "reference/priorities/braid-nested-shell-causal-closure/structural-integrity-common-limit-theorem.md",
+  "source_ref": "reference/priorities/braid-archive/braid-nested-shell-causal-closure/structural-integrity-common-limit-theorem.md",
   "candidates": [
     {
       "id": "structural-integrity-status-only-intake",
       "family": "structural_integrity_common_limit",
-      "source_ref": "reference/priorities/braid-nested-shell-causal-closure/structural-integrity-common-limit-theorem.md#current-status-only-intake",
+      "source_ref": "reference/priorities/braid-archive/braid-nested-shell-causal-closure/structural-integrity-common-limit-theorem.md#current-status-only-intake",
       "source_status": "status_shell_only",
       "branch_certificate_ref": null,
       "same_record_identity": {

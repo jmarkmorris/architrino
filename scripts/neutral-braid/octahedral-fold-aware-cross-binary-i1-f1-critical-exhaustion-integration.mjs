@@ -339,11 +339,11 @@ export function buildOctahedralFoldAwareCrossBinaryI1F1CriticalExhaustionIntegra
     packet_id: PACKET_ID,
     promotion_status: PROMOTION_STATUS,
     predecessor_packets: [
-      "reference/priorities/braid-geometry-export-bridge/octahedral-fold-aware-cross-binary-i1-f1-full-interval-zero-isolation-composition.md",
-      "reference/priorities/braid-geometry-export-bridge/octahedral-fold-aware-cross-binary-i1-zero-isolation-speed-envelope-scan.md",
+      "reference/priorities/braid-archive/braid-geometry-export-bridge/octahedral-fold-aware-cross-binary-i1-f1-full-interval-zero-isolation-composition.md",
+      "reference/priorities/braid-archive/braid-geometry-export-bridge/octahedral-fold-aware-cross-binary-i1-zero-isolation-speed-envelope-scan.md",
     ],
     priority_packet:
-      "reference/priorities/braid-geometry-export-bridge/octahedral-fold-aware-cross-binary-i1-f1-critical-exhaustion-integration.md",
+      "reference/priorities/braid-archive/braid-geometry-export-bridge/octahedral-fold-aware-cross-binary-i1-f1-critical-exhaustion-integration.md",
     zero_isolation_composition_check: {
       schema: zeroIsolationPacket.schema,
       valid: zeroIsolationErrors.length === 0,

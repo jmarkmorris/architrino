@@ -37,9 +37,9 @@
 // certificate. free_amplitude_parameter_count stays 0: chi'' is a reported threshold, never
 // a fitted amplitude scaling any row.
 //
-// See reference/priorities/braid-ideal/sh-0-sea-diagnostic-candidate-model.md
+// See reference/priorities/braid-archive/braid-ideal/sh-0-sea-diagnostic-candidate-model.md
 // (Dynamic Induced Polarization) and the Corollary S non-absorber decision in
-// reference/priorities/braid-ideal/delayed-escape-certificate-lemma-proof-packet.md.
+// reference/priorities/braid-archive/braid-ideal/delayed-escape-certificate-lemma-proof-packet.md.
 
 import { fileURLToPath } from "node:url";
 
