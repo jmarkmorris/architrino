@@ -5,12 +5,8 @@ import { test } from "node:test";
 import {
   BORG_APP_SURFACE_DESIGN_V1,
   BORG_DATASET_MANIFEST_V1,
-  validateBorgFixtureSnapshot,
-} from "../src/apps/borg/BorgFixtureData.js";
-import {
-  loadBorgFixtureTrajectory,
-  loadBorgFixtureTrajectoryFrames,
-} from "../src/apps/borg/BorgFixtureTrajectory.js";
+  validateBorgManifest,
+} from "../src/apps/borg/BorgAppManifest.js";
 import {
   createBorgFrameSetsFromRows,
   mergeBorgFrameRows,
@@ -20,24 +16,6 @@ import {
   BORG_EOM_RECORD_REPLAY_RUN_SOURCE,
   createBorgEomRecordReplayRunner,
 } from "../src/apps/borg/BorgEomRecordReplayRunner.js";
-
-const MASTER_EQUATION_SOLVER_MODE = "native-fixed-parameter-master-equation";
-const NEXT_MASTER_EQUATION_BURDEN = "migrate-borg-through-certified-eom-shadow-run";
-const ALLOWED_MASTER_EQUATION_PROBE_STATUS_CODES = new Set([
-  "ok",
-  "native_capability_missing",
-  "native_solver_pending",
-]);
-const ALLOWED_NATIVE_MASTER_EQUATION_STATUSES = new Set([
-  "native-fixed-parameter-master-equation",
-  "native-fixture-capability-missing",
-  "native-fixture-solver-pending",
-]);
-const ALLOWED_MASTER_EQUATION_FAILURE_CODES = new Set([
-  "none",
-  "native_master_equation_fixture_missing",
-  "native_master_equation_solver_pending",
-]);
 
 function inertialSegment(startTime, endTime, position, velocity) {
   return {
@@ -93,78 +71,37 @@ test("Borg path history is on and visible by default", () => {
   );
 });
 
-test("Borg stored compatibility fixture preserves the non-EOM quarantine", async () => {
-  // The bridge-era fixture writer was retired with the zombie-solver. The
-  // stored fixture module and trajectory asset are frozen compatibility data
-  // and must keep their quarantine labels verbatim.
-  const module = readFileSync(
-    new URL("../src/apps/borg/BorgFixtureData.js", import.meta.url),
-    "utf8",
-  );
-  const trajectory = await loadBorgFixtureTrajectory();
-
-  assert.doesNotMatch(module, /"canonicalEomEvidence": true/);
-  assert.doesNotMatch(module, /"eomEvidenceStatus": "native_master_equation_fixed_parameter_evidence"/);
-  assert.match(module, /"canonicalEomEvidence": false/);
-  assert.match(module, /"eomEvidenceStatus": "non_eom_compatibility_output"/);
-  assert.match(module, /"productionSolver": "central-solver-compatibility-output"/);
-  assert.match(module, /"eomMigrationStatus": "shadow-adapter-available-promotion-gated"/);
-  assert.equal(trajectory.canonicalEomEvidence, false);
-  assert.equal(trajectory.eomEvidenceStatus, "non_eom_compatibility_output");
-  assert.equal(trajectory.currentStateFrames.length, 24_016);
-});
-
-test("Borg fixture preserves central-solver output with explicit non-EOM provenance", () => {
-  validateBorgFixtureSnapshot({
+test("Borg app manifest is design-owned policy and passes validation", () => {
+  validateBorgManifest({
     manifest: BORG_DATASET_MANIFEST_V1,
     surfaceDesign: BORG_APP_SURFACE_DESIGN_V1,
   });
 
   const manifest = BORG_DATASET_MANIFEST_V1;
-  const source = manifest.sourceBridgeRun;
-
-  assert.equal(source.executionPath, "native_c_abi");
-  assert.equal(source.runKind, "masterEquation");
-  assert.equal(source.solverMode, MASTER_EQUATION_SOLVER_MODE);
-  assert.equal(source.motionLaw, "architrino-master-equation-v1");
-  assert.equal(source.fixedPhysicalParameterSetId, "borg-fixed-physical-parameters.v1");
-  assert.equal(source.fixedPhysicalParameterAuthority, "manifest-declared-fixed-parameter-contract");
-  assert.equal(source.visualTuningStatus, "not-visual-tuned");
-  assert.equal(source.visualBehaviorAuthority, "native-output-only");
-  assert.equal(source.pairAccelerationScale, undefined);
-  assert.equal(ALLOWED_NATIVE_MASTER_EQUATION_STATUSES.has(source.nativeMasterEquationStatus), true);
-  assert.equal(ALLOWED_MASTER_EQUATION_PROBE_STATUS_CODES.has(source.nativeMasterEquationProbeStatusCode), true);
+  assert.equal(manifest.schema, "borg-dataset-manifest.v1");
+  assert.equal(manifest.manifestId, BORG_APP_SURFACE_DESIGN_V1.sourceManifest.manifestId);
   assert.equal(
-    ALLOWED_MASTER_EQUATION_FAILURE_CODES.has(source.nativeMasterEquationProbeFirstFailureCode),
-    true,
+    manifest.population.architrinoCount,
+    manifest.initialConditions.electrinoCount + manifest.initialConditions.positrinoCount,
   );
-  assert.equal(source.masterEquationFallbackDecision, "native-master-equation-selected");
-  assert.equal(source.canonicalEomEvidence, false);
-  assert.equal(source.eomEvidenceStatus, "non_eom_compatibility_output");
-  assert.equal(source.nextSolverBurden, NEXT_MASTER_EQUATION_BURDEN);
-
-  const probe = manifest.nativeMasterEquationProbe;
-  assert.equal(probe.runKind, "masterEquation");
-  assert.equal(ALLOWED_MASTER_EQUATION_PROBE_STATUS_CODES.has(probe.statusCode), true);
-  assert.equal(["native_c_abi", "native_c_abi_missing", "native_c_abi_pending"].includes(probe.executionPath), true);
-  assert.equal(ALLOWED_MASTER_EQUATION_FAILURE_CODES.has(probe.firstFailureCode), true);
-  assert.equal(probe.requiredNativeExport, "architrino_solver_integrate_master_equation_motion_f64");
-  assert.equal(probe.fallbackDecision, "native-master-equation-selected");
-  assert.equal(probe.fallbackRunKind, null);
-  assert.equal(probe.valueAuthority, "authoritative-solver-output");
-  assert.equal(probe.canonicalEomEvidence, false);
-  assert.equal(probe.eomEvidenceStatus, "non_eom_compatibility_output");
+  assert.equal(manifest.initialConditions.initialLinePolicy, "seeded-random-interior-cube");
+  assert.equal(manifest.initialConditions.velocityPolicy, "seeded-random-small-3d");
+  assert.equal(manifest.initialConditions.positrinoCharge, 1);
+  assert.equal(manifest.initialConditions.electrinoCharge, -1);
 });
 
 test("Borg uses the canonical unit field speed", () => {
   assert.equal(BORG_DATASET_MANIFEST_V1.simulationEnvelope.fieldSpeed, 1);
-  assert.equal(BORG_DATASET_MANIFEST_V1.simulationEnvelope.historyDepth, 10);
-  assert.equal(BORG_DATASET_MANIFEST_V1.simulationEnvelope.wakeHorizon, 10);
+  assert.equal(
+    BORG_DATASET_MANIFEST_V1.simulationEnvelope.wakeHorizon,
+    BORG_DATASET_MANIFEST_V1.simulationEnvelope.fieldSpeed *
+      BORG_DATASET_MANIFEST_V1.simulationEnvelope.historyDepth,
+  );
 
   const noncanonicalManifest = structuredClone(BORG_DATASET_MANIFEST_V1);
   noncanonicalManifest.simulationEnvelope.fieldSpeed = 3;
   assert.throws(
-    () => validateBorgFixtureSnapshot({
+    () => validateBorgManifest({
       manifest: noncanonicalManifest,
       surfaceDesign: BORG_APP_SURFACE_DESIGN_V1,
     }),
@@ -172,54 +109,27 @@ test("Borg uses the canonical unit field speed", () => {
   );
 });
 
-test("Borg native master-equation frame data carries non-linear path evidence", async () => {
-  // The curvature evidence lives in the recorded trajectory asset, which the
-  // browser no longer parses on first paint. The rows are unchanged.
-  const trajectoryFrames = await loadBorgFixtureTrajectoryFrames();
-  const maxDeviation = maxNativeFrameDeviationFromPathLine(trajectoryFrames);
-  assert.ok(
-    maxDeviation > 1,
-    `native fixed-parameter master-equation paths must show solver-owned curvature; max deviation ${maxDeviation}`,
-  );
-});
+test("Borg ships no stored trajectory data; runs are computed from seeded initial conditions", () => {
+  // The stored pre-EOM trajectory and its seed rows were removed 2026-07-16
+  // (see reference/priorities/operations/pre-eom-evaluator-removal.md). The
+  // manifest carries only declared policy, never computed frames.
+  const manifest = BORG_DATASET_MANIFEST_V1;
+  assert.equal(manifest.currentStateFrames, undefined);
+  assert.equal(manifest.trajectoryRecord, undefined);
+  assert.equal(manifest.sourceBridgeRun, undefined);
+  assert.equal(manifest.nativeMasterEquationProbe, undefined);
 
-test("Borg fixture trajectory record matches the manifest that describes it", async () => {
-  const trajectory = await loadBorgFixtureTrajectory();
-  const record = BORG_DATASET_MANIFEST_V1.trajectoryRecord;
-
-  assert.equal(trajectory.schema, "borg-fixture-trajectory.v1");
-  assert.equal(trajectory.currentStateFrames.length, record.frameCount);
-  assert.equal(trajectory.currentStateFrames.length, BORG_DATASET_MANIFEST_V1.sourceBridgeRun.frameCount);
-  assert.equal(trajectory.trajectoryFrameIds.length, record.trajectoryFrameIdCount);
-  assert.equal(trajectory.historyEndTime, record.historyEndTime);
-
-  // The seed rows the browser does parse must be the frameIndex-0 slice of the
-  // record, not a separately maintained copy that could drift from it.
-  assert.deepEqual(
-    BORG_DATASET_MANIFEST_V1.currentStateFrames,
-    trajectory.currentStateFrames.filter((row) => Number(row.frameIndex) === 0),
-  );
-  assert.equal(BORG_DATASET_MANIFEST_V1.currentStateFrames.length, record.seedFrameCount);
-
-  // The record carries the same evidence grade as the run that produced it.
-  // Central-solver output is not canonical EOM evidence.
-  assert.equal(trajectory.canonicalEomEvidence, false);
-  assert.equal(record.canonicalEomEvidence, false);
-  assert.equal(trajectory.eomEvidenceStatus, "non_eom_compatibility_output");
-});
-
-test("Borg first paint does not parse the recorded trajectory", () => {
-  const fixtureSource = readFileSync(
-    new URL("../src/apps/borg/BorgFixtureData.js", import.meta.url),
+  const manifestSource = readFileSync(
+    new URL("../src/apps/borg/BorgAppManifest.js", import.meta.url),
     "utf8",
   );
-  // The whole point of the split: the module the browser blocks on must stay
-  // small. It previously carried 24k inline frame rows at ~11 MB.
+  // The module the browser blocks on must stay small: policy only, no rows.
   assert.ok(
-    fixtureSource.length < 512 * 1024,
-    `BorgFixtureData.js is ${fixtureSource.length} bytes; the trajectory belongs in its own asset`,
+    manifestSource.length < 64 * 1024,
+    `BorgAppManifest.js is ${manifestSource.length} bytes; it must carry policy, not data`,
   );
-  assert.equal(BORG_DATASET_MANIFEST_V1.currentStateAndFrameSources.trajectoryFrameIds, undefined);
+  assert.doesNotMatch(manifestSource, /"frameCount"/);
+  assert.doesNotMatch(manifestSource, /"currentStateFrames"/);
 });
 
 test("Borg record replay chunks carry recorded frames with record provenance", async () => {
@@ -323,7 +233,7 @@ test("Borg record replay applies measured target and chunk limits within the win
 test("Borg record replay fails closed on foreign or ungraded records", () => {
   assert.throws(
     () => createBorgEomRecordReplayRunner(
-      createBorgEomRecordFixture({ contractId: "solver-app-bridge/v1" }),
+      createBorgEomRecordFixture({ contractId: "foreign-contract/v1" }),
     ),
     /requires contractId eom_evolution_contract\/v0/,
   );
@@ -382,20 +292,21 @@ test("Borg path-history renderer uses native row segments, not visual smoothing 
   assert.match(runtimeSource, /createBorgSeededInitialConditionRows/);
   assert.equal(runtimeSource.includes("Live 3000 / 20"), false);
   assert.match(runtimeSource, /toggleRunDurationMode/);
-  assert.match(runtimeSource, /startDynamicNativeRunnerIfNeeded/);
+  assert.doesNotMatch(runtimeSource, /startDynamicNativeRunnerIfNeeded/);
+  assert.match(runtimeSource, /dom\.playButton\.disabled = frameSets\.length < 2/);
   assert.match(runtimeSource, /if \(autoStartEom\) \{\s*startDynamicNativeRunner\(\);\s*\}/);
   assert.match(runtimeSource, /applyLiveRunRetentionIfNeeded/);
   assert.match(runtimeSource, /compactedPathHistory/);
   assert.match(runtimeSource, /switchRunControlPreset/);
   assert.match(runtimeSource, /startNewDistributionRun/);
-  // The zombie-bridge path is retired: the only non-fixture sources are the
-  // live EOM shadow runner and recorded EOM dataset replay.
+  // The only frame sources are the live EOM shadow runner, recorded EOM
+  // dataset replay, and the accepted seed's endpoint rows. No stored
+  // pre-computed run ships with the app.
   assert.match(runtimeSource, /createBorgEomRecordReplayRunner/);
   assert.match(runtimeSource, /createBorgEomShadowRunner/);
   assert.doesNotMatch(runtimeSource, /BorgDynamicNativeRunner/);
-  assert.doesNotMatch(runtimeSource, /BorgSolverBridgeWorker/);
-  assert.doesNotMatch(runtimeSource, /SolverAppBridge/);
-  assert.doesNotMatch(runtimeSource, /central-solver-compatibility/);
+  assert.doesNotMatch(runtimeSource, /loadBorgFixtureTrajectoryFrames/);
+  assert.doesNotMatch(runtimeSource, /restoreFixtureRun/);
   assert.match(runtimeSource, /mergeBorgFrameRows/);
   assert.match(
     runtimeSource,
@@ -431,81 +342,28 @@ test("Borg path-history renderer uses native row segments, not visual smoothing 
   assert.match(runtimeSource, /Exact polynomial initial history \(C1 inertial\)/);
   assert.match(runtimeSource, /function startRunAndPlayback\(\)[\s\S]*firstChunk\.then[\s\S]*startPlayback\(\)/);
   assert.match(runtimeSource, /selected; press Start \/ restart to run/);
+  assert.match(
+    runtimeSource,
+    /nextFromSetIndex >= frameSets\.length - 1[\s\S]*newestFrameSet[\s\S]*applyFrameSet\(newestFrameSet[\s\S]*playbackFromSetIndex = newestSetIndex/,
+  );
   assert.doesNotMatch(htmlSource, /id="borg-run-source"/);
   assert.match(htmlSource, /id="borg-playback-speed"/);
 });
 
-test("Borg surface advertises certified EOM shadow migration as the next build burden", () => {
+test("Borg surface keeps EOM-native layer policy and fail-closed authority", () => {
   const surfaceDesign = BORG_APP_SURFACE_DESIGN_V1;
-  assert.equal(surfaceDesign.sourceManifest.solverMode, MASTER_EQUATION_SOLVER_MODE);
-  assert.equal(surfaceDesign.sourceManifest.visualTuningStatus, "not-visual-tuned");
-  assert.equal(surfaceDesign.sourceManifest.visualBehaviorAuthority, "native-output-only");
-  assert.equal(
-    ALLOWED_NATIVE_MASTER_EQUATION_STATUSES.has(surfaceDesign.sourceManifest.nativeMasterEquationStatus),
-    true,
-  );
-  assert.equal(
-    ALLOWED_MASTER_EQUATION_PROBE_STATUS_CODES.has(
-      surfaceDesign.sourceManifest.nativeMasterEquationProbe.statusCode,
-    ),
-    true,
-  );
-  assert.equal(
-    surfaceDesign.sourceManifest.nativeMasterEquationProbe.fallbackDecision,
-    "native-master-equation-selected",
-  );
-  assert.equal(surfaceDesign.sourceManifest.nextSolverBurden, NEXT_MASTER_EQUATION_BURDEN);
-  assert.equal(surfaceDesign.nextBuildBurden, NEXT_MASTER_EQUATION_BURDEN);
   assert.equal(surfaceDesign.authorityMap.centralVolumeAcceleration, "fail-closed-value");
+  assert.equal(surfaceDesign.noAuthorityPromotions, true);
 
   const pathHistoryLayer = surfaceDesign.layerStrip.find((layer) => layer.layer === "path-history");
   assert.equal(pathHistoryLayer.displayTransform, "adjacent-native-row-line-segments");
   assert.equal(pathHistoryLayer.smoothingPolicy, "none");
+
+  const wakeLayer = surfaceDesign.layerStrip.find((layer) => layer.layer === "wake-streams");
+  assert.equal(wakeLayer.state, "disabled");
+  assert.equal(wakeLayer.valueAuthority, "fail-closed-value");
 });
-
-function maxNativeFrameDeviationFromPathLine(frames) {
-  const byPathKey = new Map();
-  frames.forEach((frame) => {
-    const pathFrames = byPathKey.get(frame.pathKey) ?? [];
-    pathFrames.push(frame);
-    byPathKey.set(frame.pathKey, pathFrames);
-  });
-
-  let maxDeviation = 0;
-  byPathKey.forEach((pathFrames) => {
-    pathFrames.sort((left, right) => left.time - right.time);
-    const first = pathFrames[0];
-    const last = pathFrames.at(-1);
-    const duration = last.time - first.time;
-    if (duration <= 0) {
-      return;
-    }
-    const displacement = subtractVectors(last.position, first.position);
-    pathFrames.forEach((frame) => {
-      const progress = (frame.time - first.time) / duration;
-      const expected = {
-        x: first.position.x + displacement.x * progress,
-        y: first.position.y + displacement.y * progress,
-        z: first.position.z + displacement.z * progress,
-      };
-      maxDeviation = Math.max(maxDeviation, vectorDistance(frame.position, expected));
-    });
-  });
-  return maxDeviation;
-}
 
 function uniqueFrameIndexes(frames) {
   return [...new Set(frames.map((frame) => frame.frameIndex))];
-}
-
-function subtractVectors(left, right) {
-  return {
-    x: left.x - right.x,
-    y: left.y - right.y,
-    z: left.z - right.z,
-  };
-}
-
-function vectorDistance(left, right) {
-  return Math.hypot(left.x - right.x, left.y - right.y, left.z - right.z);
 }

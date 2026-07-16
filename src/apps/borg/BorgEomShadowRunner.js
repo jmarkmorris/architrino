@@ -1,7 +1,7 @@
 export const BORG_EOM_SHADOW_RUNNER_VERSION = "borg-eom-shadow-runner.v0";
 export const BORG_EOM_SHADOW_RUN_SOURCE = "computed-eom-shadow-chunks";
 export const BORG_EOM_COMPATIBILITY_HISTORY_PROVENANCE =
-  "central-solver-compatibility-history-non-eom";
+  "pre-eom-compatibility-history";
 export const BORG_EOM_ACCEPTED_INITIAL_HISTORY_EVOLUTION_CLAIM_LEVEL =
   "eom-evolution-conditioned-on-accepted-initial-history";
 
@@ -158,8 +158,8 @@ export function createBorgEomShadowRunConfig(manifest, options = {}) {
   );
   const startTime = finiteNumber(
     options.startTime,
-    // The history cut is the end of the recorded trajectory. The manifest
-    // carries only the seed rows now, so the record supplies this bound.
+    // The history cut is the end of the accepted initial history. When a
+    // replayed record is supplied it declares this bound itself.
     manifest.trajectoryRecord?.historyEndTime,
   );
   const chunkDuration = positiveNumber(options.chunkDuration, sampleInterval);
@@ -207,7 +207,10 @@ export function createBorgEomShadowRunConfig(manifest, options = {}) {
     historyDepth,
     geometricDelayBound,
     historySafetyMargin,
-    coupling: requiredNumericToken(options.coupling ?? "1", "coupling"),
+    coupling: requiredNumericToken(
+      options.coupling ?? manifest.modelControls?.coupling ?? "1",
+      "coupling",
+    ),
     initialStep: requiredPositiveToken(options.initialStep ?? String(sampleInterval), "initialStep"),
     minimumStep: requiredPositiveToken(
       options.minimumStep ?? String(sampleInterval / 16),

@@ -318,7 +318,7 @@ function randomAxisValue(axisBounds, rng) {
   const [min, max] = Array.isArray(axisBounds) ? axisBounds : [0, 1];
   const low = Number.isFinite(Number(min)) ? Number(min) : 0;
   const high = Number.isFinite(Number(max)) ? Number(max) : low + 1;
-  const span = Math.max(1, high - low);
+  const span = high > low ? high - low : 1;
   const inset = Math.min(span * POSITION_INSET_RATIO, span * 0.4);
   return low + inset + rng() * Math.max(0, span - inset * 2);
 }

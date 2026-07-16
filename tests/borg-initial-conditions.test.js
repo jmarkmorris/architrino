@@ -1,7 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 
-import { BORG_DATASET_MANIFEST_V1 } from "../src/apps/borg/BorgFixtureData.js";
+import { BORG_DATASET_MANIFEST_V1 } from "../src/apps/borg/BorgAppManifest.js";
 import {
   BORG_ACCEPTED_SEED_HISTORY_PROVENANCE,
   BORG_MAX_INITIAL_ARCHITRINO_COUNT,
@@ -139,12 +139,13 @@ test("Borg seeded initial-condition rows honor counts, polarity, and velocity li
   assert.equal(new Set(first.map((row) => row.pathKey)).size, 5);
   assert.equal(first.filter((row) => row.stateFlags === 1).length, 2);
   assert.equal(first.filter((row) => row.stateFlags === 2).length, 3);
+  const bounds = BORG_DATASET_MANIFEST_V1.simulationEnvelope.centralVolume.bounds;
   first.forEach((row) => {
     assert.ok(Math.max(...Object.values(row.velocity).map(Math.abs)) <= 0.02);
     assert.ok(Math.hypot(row.velocity.x, row.velocity.y, row.velocity.z) >= 0.01);
-    assert.ok(row.position.x >= 10 && row.position.x <= 90);
-    assert.ok(row.position.y >= 10 && row.position.y <= 90);
-    assert.ok(row.position.z >= 10 && row.position.z <= 90);
+    assert.ok(row.position.x >= bounds.x[0] && row.position.x <= bounds.x[1]);
+    assert.ok(row.position.y >= bounds.y[0] && row.position.y <= bounds.y[1]);
+    assert.ok(row.position.z >= bounds.z[0] && row.position.z <= bounds.z[1]);
   });
 });
 

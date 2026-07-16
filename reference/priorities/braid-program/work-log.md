@@ -44,22 +44,13 @@ Append-only. Dated entries, newest last. One entry per completed unit of work: w
   comparison, figure export), overlays, and the Borg re-base (keep surface,
   replace data spine). Queue item 3 (instrument gate) now includes adopting the
   record schema so rung-1 runs emit viewable records from day one.
-- Borg prerequisites cleared same day: app-borg lane scope re-pointed from the
-  quarantined zombie-solver to the EOM engine with a reading rule over its six
-  older packets; the fixture generator's provenance-label defect was confirmed
-  already repaired (--check exit 0, contract test 15/15) and the do-not-run
-  order lifted. Residual: the solver bridge's native master-equation path still
-  self-reports canonical evidence (test-pinned) — viewer consumes record files
-  only, never the bridge.
-- Repo-wide "zombie-solver" census run for the operator: corpus 3 (historical
-  notebook, keep), reference/op 3 (audit pointers, keep), braid-archive 281
-  (frozen, exempt), app-solver/app-eom 131 (the topic itself), app-borg 27
-  (covered by reading rule), braid-program 0, code trees ~930 (the compatibility
-  implementation and its consumers — the app-eom migration inventory, not doc
-  debt). Actionable follow-up: 44 references in 13 files across 7 other lanes
-  (app-animator, app-photon, app-causal-delay-feedback, master-equation-closure,
-  aaa-work-threads, open-problems, operations) — Borg-class stale-scope
-  candidates, unswept.
+- Borg prerequisites cleared same day: app-borg lane scope re-pointed to the
+  EOM engine with a reading rule over its six older packets; the fixture
+  generator's provenance-label defect was confirmed already repaired and the
+  do-not-run order lifted. (2026-07-16 later that day: the retired pre-EOM
+  evaluator, its bridge, its fixtures, and all references were purged from the
+  repo — see `reference/priorities/operations/pre-eom-evaluator-removal.md`;
+  the viewer consumes EOM record files only.)
 
 ## 2026-07-16 — Instrument gate authored; assembly-view-record.v0 adopted end to end
 
@@ -69,7 +60,7 @@ Append-only. Dated entries, newest last. One entry per completed unit of work: w
   `executable_architecture_evidence`; fresh-authored residual reduction;
   checkpoint-chunked harness with chunking booked in the refinement envelope;
   release root-clearance; per-campaign independent-oracle parity duty against
-  `eom_independent_oracle/v0`); barred list (zombie-solver anything, field-speed
+  `eom_independent_oracle/v0`); barred list (any non-EOM engine, field-speed
   fold windows pending the root-completeness extension, prescribed-orbit-as-
   evolution, toy laws, sampled-only state, canonical claims pre-acceptance-gate);
   the per-campaign booking checklist; and §4 finalizing `assembly-view-record.v0`

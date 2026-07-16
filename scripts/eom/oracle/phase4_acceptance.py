@@ -3,7 +3,7 @@
 This module is reference-only.  It adds certificates for root continuation,
 finite-width fold/caustic impulse integration, exact-decimal restart, coupled
 refinement ladders, and the versioned acceptance matrix.  It neither imports
-nor authorizes the current central solver or a future production EOM backend.
+nor authorizes any retired pre-EOM evaluator or a future production EOM backend.
 """
 
 from __future__ import annotations

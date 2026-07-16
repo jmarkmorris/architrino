@@ -572,6 +572,14 @@
         color: #ffb8ad;
       }
 
+      .borg-eom-action-help {
+        grid-column: 1 / -1;
+        margin: 0;
+        color: #91a587;
+        font-size: 10px;
+        line-height: 1.4;
+      }
+
       .borg-eom-progress {
         grid-column: 1 / -1;
         width: 100%;
@@ -766,22 +774,6 @@
               Finite duration (s)
               <input id="borg-eom-duration" type="number" min="0.01" step="0.01" value="60" inputmode="decimal" />
             </label>
-            <button id="borg-eom-stop-button" class="borg-eom-action is-stop" type="button">Stop</button>
-            <button id="borg-eom-restart-button" class="borg-eom-action" type="button">Start / restart</button>
-            <div class="borg-eom-stage-map" aria-label="EOM input and evolution stages">
-              <div class="borg-eom-stage">
-                <span>Initial history</span>
-                <strong>Exact inertial polynomial</strong>
-              </div>
-              <span class="borg-eom-stage-separator" aria-hidden="true">→</span>
-              <div class="borg-eom-stage">
-                <span>Forward evolution</span>
-                <strong>EOM chunks after T=0</strong>
-              </div>
-            </div>
-            <progress id="borg-eom-progress" class="borg-eom-progress" max="1" value="0" hidden></progress>
-            <output id="borg-eom-progress-label" class="borg-eom-progress-label">0 forward EOM chunks | stopped | Forever</output>
-            <output id="borg-eom-history-status" class="borg-eom-history-status">The exact polynomial initial history is certified input, not EOM output. Forward EOM evolution starts at T=0.</output>
             <div class="borg-eom-subheading">Initial conditions</div>
             <label class="borg-initial-control">
               Electrinos
@@ -799,8 +791,25 @@
               Minimum speed
               <input id="borg-velocity-min-speed" type="number" min="0" step="0.001" value="0.0144" inputmode="decimal" />
             </label>
+            <button id="borg-eom-stop-button" class="borg-eom-action is-stop" type="button">Stop</button>
+            <button id="borg-eom-restart-button" class="borg-eom-action" type="button">Start / restart</button>
             <button id="borg-apply-initial-condition" class="borg-initial-action" type="submit">Apply &amp; run</button>
             <output id="borg-initial-condition-feedback" class="borg-initial-feedback" data-tone="accepted">Manifest values active</output>
+            <p class="borg-eom-action-help">Start / restart uses the applied conditions. Apply &amp; run first accepts the edited conditions and builds a new exact polynomial history. Both start canvas playback; Stop halts computation and playback.</p>
+            <div class="borg-eom-stage-map" aria-label="EOM input and evolution stages">
+              <div class="borg-eom-stage">
+                <span>Initial history</span>
+                <strong>Exact inertial polynomial</strong>
+              </div>
+              <span class="borg-eom-stage-separator" aria-hidden="true">→</span>
+              <div class="borg-eom-stage">
+                <span>Forward evolution</span>
+                <strong>EOM chunks after T=0</strong>
+              </div>
+            </div>
+            <progress id="borg-eom-progress" class="borg-eom-progress" max="1" value="0" hidden></progress>
+            <output id="borg-eom-progress-label" class="borg-eom-progress-label">0 forward EOM chunks | stopped | Forever</output>
+            <output id="borg-eom-history-status" class="borg-eom-history-status">The exact polynomial initial history is certified input, not EOM output. Forward EOM evolution starts at T=0.</output>
           </form>
           <div id="borg-initial-condition-fields" class="borg-field-list"></div>
         </section>

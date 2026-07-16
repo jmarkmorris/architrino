@@ -20,7 +20,7 @@ Each entry names the instrument, its acceptance basis, and the evidence pointer.
 
 ## 2. Barred
 
-- **Any `src/solver` (zombie-solver) capability**, for computation or evidence, under any labeling. Its bridge's self-reported evidence fields (for example `canonicalEomEvidence`) are never consumed. Legacy fixtures derived from it may be displayed only under their existing quarantined non-EOM labels.
+- **Any non-EOM engine or retired-evaluator capability**, for computation or evidence, under any labeling. Self-reported evidence fields from any engine other than EOM (for example a `canonicalEomEvidence` flag asserted by the producer itself) are never consumed. No legacy pre-EOM output survives in the repo; if any resurfaces, it is barred outright.
 - **Campaign windows crossing field-speed folds** until the root-completeness certificate extension lands (live-state Waiting On item). The sub-field rung-1 campaign is unaffected.
 - **Prescribed-orbit evaluation presented as evolution.** Stage S instruments nominate; only Stage E books persistence.
 - **Toy interaction laws** (any parameterized stand-in for the master equation) in any campaign path, including display pipelines.

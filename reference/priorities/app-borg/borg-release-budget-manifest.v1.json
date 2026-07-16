@@ -11,7 +11,7 @@
   "nativeSolverContract": {
     "appId": "borg",
     "runKind": "masterEquation",
-    "motionAuthority": "central solver compatibility output",
+    "motionAuthority": "pre-EOM compatibility output",
     "releaseBudgetAuthority": "browser runtime measurement only"
   },
   "sampleMatrix": {

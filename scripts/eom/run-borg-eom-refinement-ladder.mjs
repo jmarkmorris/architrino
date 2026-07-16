@@ -4,7 +4,13 @@ import { performance } from "node:perf_hooks";
 
 import { createBorgNativeEomProcessClient } from "./BorgNativeEomProcessClient.mjs";
 import { createBorgEomShadowRunner } from "../../src/apps/borg/BorgEomShadowRunner.js";
-import { BORG_DATASET_MANIFEST_V1 } from "../../src/apps/borg/BorgFixtureData.js";
+import { BORG_DATASET_MANIFEST_V1 } from "../../src/apps/borg/BorgAppManifest.js";
+import {
+  calculateBorgInertialHistoryDepth,
+  createBorgAcceptedInertialSeedHistory,
+  createBorgInitialConditionConfig,
+  createBorgSeededInitialConditionRows,
+} from "../../src/apps/borg/BorgInitialConditions.js";
 
 const binaryPath = process.argv[2];
 if (!binaryPath) {
@@ -18,16 +24,27 @@ const pathCount = boundedPathCount(
   process.argv[3],
   manifest.population.architrinoCount,
 );
-const startTime = 300;
+// Borg policy: construct a certified artificial retained history for the
+// seeded initial condition and run the EOM forward from T=0.
+const startTime = 0;
 const duration = 0.01;
 const endTime = startTime + duration;
-const pathKeys = [...new Set(manifest.currentStateFrames.map((row) => Number(row.pathKey)))]
-  .sort((left, right) => left - right)
-  .slice(0, pathCount);
-const selected = new Set(pathKeys);
-const initialFrameRows = manifest.currentStateFrames.filter(
-  (row) => selected.has(Number(row.pathKey)),
-);
+const seededEndpointRows = createBorgSeededInitialConditionRows({
+  manifest,
+  seedIndex: 0,
+  config: createBorgInitialConditionConfig(manifest.initialConditions),
+});
+const endpointRows = seededEndpointRows.slice(0, pathCount);
+const historyDepth = calculateBorgInertialHistoryDepth(endpointRows, {
+  fieldSpeed: manifest.simulationEnvelope?.fieldSpeed ?? 1,
+  sampleInterval: duration,
+});
+const initialSeed = await createBorgAcceptedInertialSeedHistory(endpointRows, {
+  historyStartTime: startTime - historyDepth,
+  historyEndTime: startTime,
+  sampleInterval: duration,
+});
+const initialFrameRows = initialSeed.rows;
 const client = createBorgNativeEomProcessClient({ binaryPath, timeoutMs: 180000 });
 const cases = [
   { id: "h", step: "0.01", threadCount: 1 },
@@ -44,6 +61,7 @@ try {
       initialFrameRows,
       pathCount,
       startTime,
+      historyDepth,
       targetDuration: endTime,
       chunkDuration: duration,
       sampleInterval: duration,
@@ -132,7 +150,7 @@ process.stdout.write(`${JSON.stringify({
       : strictControlPassed
         ? []
         : ["the full-population strict ladder failed closed; inspect the case diagnostics"]),
-    "the imported retained history is central-solver compatibility output, not EOM-produced history",
+    "the initial retained history is an app-authored accepted inertial datum, not EOM-produced history",
     "the million-path, GPU, distributed-history, and full Borg performance gates remain open",
     "the native response remains executable architecture evidence rather than canonical evidence",
   ],

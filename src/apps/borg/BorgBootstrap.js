@@ -1,6 +1,6 @@
 import { mountBorgApp } from "./BorgAppRuntime.js";
 import { createBorgEomHttpClient } from "./BorgEomHttpClient.js";
-import { BORG_DATASET_MANIFEST_V1 } from "./BorgFixtureData.js";
+import { BORG_DATASET_MANIFEST_V1 } from "./BorgAppManifest.js";
 import {
   calculateBorgInertialHistoryDepth,
   createBorgAcceptedInertialSeedHistory,
@@ -57,12 +57,13 @@ export async function bootBorgApp({
     fieldSpeed: manifest.simulationEnvelope?.fieldSpeed ?? 1,
     sampleInterval,
   });
+  const runtimeManifest = createManifestWithHistoryDepth(manifest, historyDepth);
   const initialEomSeed = await createBorgAcceptedInertialSeedHistory(endpointRows, {
     historyStartTime: eomStartTime - historyDepth,
     historyEndTime: eomStartTime,
   });
   return mountApp({
-    manifest,
+    manifest: runtimeManifest,
     initialEomSeed,
     initialConditionConfig: activeInitialConditionConfig,
     // Ordinary Borg startup must stay interactive. The long retained-history
@@ -78,14 +79,27 @@ export async function bootBorgApp({
       chunkDuration: 0.01,
       sampleInterval,
       initialStep: "0.01",
-      minimumStep: "0.01",
+      minimumStep: "0.001",
       rootTolerance: "1e-3",
       accelerationTolerance: "1e-1",
       positionTolerance: "1e-2",
       velocityTolerance: "1e-2",
       correctionTolerance: "1e-1",
+      coupling: String(runtimeManifest.modelControls.coupling),
       threadCount: 4,
     },
+  });
+}
+
+function createManifestWithHistoryDepth(manifest, historyDepth) {
+  const fieldSpeed = manifest.simulationEnvelope?.fieldSpeed ?? 1;
+  return Object.freeze({
+    ...manifest,
+    simulationEnvelope: Object.freeze({
+      ...manifest.simulationEnvelope,
+      historyDepth,
+      wakeHorizon: fieldSpeed * historyDepth,
+    }),
   });
 }
 
