@@ -1,4 +1,0 @@
-id,phase_residual,layer_residual,inter_layer_residual,status
-fixture-B12-B13-a,0.002,0.001,0.001,pass
-fixture-B20-B21-b,0.003,0.002,0.001,pass
-fixture-B07-B08-control,0.004,0.002,0.002,pass

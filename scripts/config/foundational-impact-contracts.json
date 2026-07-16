@@ -44,9 +44,7 @@
       ],
       "consumers": {
         "proofPrograms": [
-          "topological causal-root ledger",
-          "closed-ledger source-record diagnostics",
-          "event wake-history pullback diagnostics"
+          "prescribed-path causal-root analysis"
         ],
         "simulations": [
           "T3 universe simulator",
@@ -76,8 +74,8 @@
         ],
         "proofPrograms": [
           {
-            "command": "node --test tests/topological-causal-root-ledger-checker.test.js tests/closed-ledger-source-record-contract-diagnostic.test.js tests/closed-ledger-pullback-diagnostic.test.js tests/event-wake-history-pullback-diagnostic.test.js",
-            "reason": "Recheck proof-program ledgers that depend on causal-root records."
+            "command": "node --test tests/prescribed-orbit-causal-roots.test.js",
+            "reason": "Recheck prescribed-path causal-root analysis surfaces."
           }
         ],
         "simulations": [
@@ -105,8 +103,6 @@
         "content/markdown/aaa/proof-programs/**",
         "reference/priorities/proof-programs/**",
         "scripts/check-receiver-normal-clean-slate.mjs",
-        "scripts/proof-programs/**",
-        "scripts/nested-shell-braid/**",
         "src/apps/photon/**",
         "src/apps/animator/display/**"
       ],
@@ -124,17 +120,6 @@
         { "type": "literal", "value": "receiver-normal" }
       ],
       "consumers": {
-        "proofPrograms": [
-          "breather proof",
-          "topological causal-root ledger",
-          "nested-shell branch-retention screens",
-          "theta3minus restart diagnostics"
-        ],
-        "simulations": [
-          "nested-shell action-increment packet",
-          "held-release path-history stream",
-          "field-speed self-hit scans"
-        ],
         "applications": [
           "PhotonFormulaRuntime"
         ],
@@ -153,25 +138,9 @@
             "reason": "Catch canonical proof/dynamics reference drift."
           }
         ],
-        "proofPrograms": [
-          {
-            "command": "node --test tests/topological-causal-root-ledger-checker.test.js",
-            "reason": "Recheck causal-ledger proof intake."
-          },
-          {
-            "command": "node --test tests/nested-shell-braid-action-increment-source-contract.test.js tests/action-boundary-pullback-diagnostic.test.js",
-            "reason": "Recheck nested-shell rows that distinguish force/action weight from diagnostics."
-          }
-        ],
-        "simulations": [
-          {
-            "command": "node --test tests/field-speed-action-self-hit-scan-source-binding-report.test.js",
-            "reason": "Recheck self-hit/action scans that consume branch-strength rows."
-          }
-        ],
         "applications": [
           {
-            "command": "node --test tests/photon-constituent-root-route-diagnostic.test.js",
+            "command": "node --test tests/photon-runtime.test.js",
             "reason": "Recheck app-facing receiver-normal field requirements."
           }
         ]
