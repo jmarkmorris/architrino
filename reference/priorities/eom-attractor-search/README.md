@@ -5,7 +5,7 @@ integrator: release many-architrino neutral populations from declared
 initial-condition families and let the master equation propose the bound
 objects, instead of screening prescribed rigid shapes for force balance.
 
-This workstream inverts the methodology of the braid-ideal screens after the
+This workstream inverts the methodology of the braid program screens after the
 2026-07-15 canonical-photon scoped negative closed the bare rigid-assembly
 hypothesis class (stacked and coplanar). It subsumes and extends the
 operator's Borg app releases (escapes plus transient couplings, including an

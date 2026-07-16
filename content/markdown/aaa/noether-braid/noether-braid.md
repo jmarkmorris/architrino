@@ -51,7 +51,6 @@ It does not carry the detailed family derivations, select a frequency family, as
 | Mechanism | [Noether Braid Configuration Space](noether-braid-configuration-space.md) | Cases where three retained angular-momentum rows may form a full internal 3D frame. |
 | Export | [Noether Braid Topological Charge](noether-braid-topological-charge.md) | Classification of retained branch charts. |
 | Bookkeeping | [Noether Braid Taxonomy](noether-braid-taxonomy.md) | Configuration axes and the compact Proof ID grammar. |
-| Bookkeeping | [Noether Braid Proof Map](noether-braid-proof-map.md) | Proof targets, proof statuses, and environment-qualified rounds. |
 
 A first reading should follow the table order: the base family definition, its realization-independent requirements, and the shared mathematics first, then the spindle braid, then the explored comparison families, with the bookkeeping chapters as the reference layer. Claim status and search progress are tracked by the research program, not in these chapters.
 

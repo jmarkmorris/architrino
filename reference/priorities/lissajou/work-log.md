@@ -6,4 +6,4 @@ This file is the chronological work log for the `lissajou` priority area. Use it
 
 ### 2026-07-06 - Lane Created
 
-Created at operator direction from the braid-ideal discussion: closed Lissajous figures correspond to rational frequency locks, which are the integer phase-closure winding counts in the reduced closure label; the lane owns the figure/closure correspondence, the external literature survey, and the future eigen-braid figure catalog. See [priorities.md](priorities.md).
+Created at operator direction from the braid program discussion: closed Lissajous figures correspond to rational frequency locks, which are the integer phase-closure winding counts in the reduced closure label; the lane owns the figure/closure correspondence, the external literature survey, and the future eigen-braid figure catalog. See [priorities.md](priorities.md).

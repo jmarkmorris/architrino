@@ -1,5 +1,7 @@
 # Recovery Track — Codex Dispatch Prompt
 
+Status: RETIRED historical handoff. Do not execute this prompt; current braid work starts from `reference/priorities/braid-program/README.md` and `priorities.md`.
+
 Copy the block below to start the Codex recovery-track thread. It runs in parallel with the [adjudication thread](jughead-adjudication-handoff-prompt.md).
 
 The **going-forward track is the [claims-triage ledger](../priorities/app-solver/claims-triage-ledger-2026-07-12.md)**. This prompt exists to give that ledger's worklist enough context to be executed correctly rather than quickly.
@@ -13,7 +15,6 @@ Closure goal: Recover the Architrino/AAA claims corpus from the solver disaster 
 1. `AGENTS.md` — especially **Evidence Independence** and its **Claim Grading** subsection. Both were written on 2026-07-14 in direct response to the failures recorded there. Grade every claim you make: derived / measured / inferred / guessed.
 2. `reference/priorities/app-solver/claims-triage-ledger-2026-07-12.md` — **the recovery plan.** Tiers, quarantine register, re-run object geometry (five classes), and the worklist. Everything below serves this file.
 3. `reference/priorities/app-solver/central-solver-independent-audit-2026-07-12.md` — why the quarantine exists.
-4. `legacy evidence retired` — why the ledger's *remedy* had to change.
 5. `reference/op/codex-goal-seeking-prompt-template.md` — the meta wrapper.
 
 ## The disaster
@@ -70,7 +71,6 @@ Two further consequences, both measured on the binary and both invisible from a 
 
 ## The worklist (from the ledger, as corrected)
 
-1. **§86 flutter** — redesigned as a multi-seed collapse campaign; see `legacy evidence retired` §"Superseding design". Gated on the antipodal-binary $t\gtrsim60$ extension currently running, which decides whether §86 is a collapse test or a reclassification. **Do not start §86 until that returns.**
 2. ~~**§97/§98**~~ — VOID, removed.
 3. **T3 temporal set** — §83 release, §90 saturation, §92/§93 locking, §94 settling, §60 expansion. All need the collapse method. §60 Row 7 and §83 are both Class A (bare tilted V5 at rest) and are the natural first attempts once §86's design is settled.
 4. **§99 assembly** — its force-balance non-bind already survives as T1; only the anchored-pencil row is at issue, and it must pass the force-balance precondition first.

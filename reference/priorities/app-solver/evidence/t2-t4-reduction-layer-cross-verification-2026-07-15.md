@@ -353,8 +353,7 @@ rows); not usable as identities.
 
 **Blind-authorship read set (Tier 2).** This evidence file (predeclaration);
 the fixture packet `t2-t4-fixture-data-2026-07-15.json`; owning specs
-`legacy source retired`
-and `legacy source retired`;
+retired, non-authorizing priority records
 the predecessor evidence file (style/protocol only);
 `scripts/eom-verification/t1_reduction_layer.py`; `scripts/eom/oracle/`
 module listing (no oracle file was imported by the Tier-2 reduction, which is

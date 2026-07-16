@@ -1651,6 +1651,7 @@ struct MpAttempt {
   std::size_t visited_cells = 0;
   std::size_t excluded_cells = 0;
   std::size_t difficult_cells = 0;
+  std::string diagnostic_detail;
   std::vector<MpRoot> roots;
 };
 
@@ -2064,6 +2065,7 @@ MpAttempt run_mpfr_attempt(const ExactPairRequest& request, unsigned bits_value)
         }
         attempt.complete = false;
         attempt.finite_width_root_cluster = same_retained_history;
+        attempt.diagnostic_detail = "endpoint_root_not_surrounded";
         ++attempt.difficult_cells;
         return;
       }
@@ -2078,6 +2080,7 @@ MpAttempt run_mpfr_attempt(const ExactPairRequest& request, unsigned bits_value)
         root_geometry.source_normal->contains_zero()) {
       attempt.complete = false;
       attempt.caustic_candidate = true;
+      attempt.diagnostic_detail = "endpoint_root_normal_contains_zero";
       ++attempt.difficult_cells;
       return;
     }
@@ -2098,6 +2101,9 @@ MpAttempt run_mpfr_attempt(const ExactPairRequest& request, unsigned bits_value)
     if (attempt.visited_cells > request.max_cells ||
         cell.depth > request.max_depth) {
       attempt.complete = false;
+      attempt.diagnostic_detail = attempt.visited_cells > request.max_cells
+          ? "root_cell_budget_exhausted"
+          : "root_depth_budget_exhausted";
       ++attempt.difficult_cells;
       return;
     }
@@ -2129,12 +2135,14 @@ MpAttempt run_mpfr_attempt(const ExactPairRequest& request, unsigned bits_value)
           cell.depth == request.max_depth) {
         attempt.complete = false;
         attempt.caustic_candidate = true;
+        attempt.diagnostic_detail = "source_normal_contains_zero_at_root_tolerance";
         ++attempt.difficult_cells;
         return;
       }
       const MpFloat middle = mp_midpoint(cell.lower, cell.upper);
       if (middle.compare(cell.lower) == 0 || middle.compare(cell.upper) == 0) {
         attempt.complete = false;
+        attempt.diagnostic_detail = "mpfr_midpoint_not_representable";
         ++attempt.difficult_cells;
         return;
       }
@@ -2199,6 +2207,7 @@ MpAttempt run_mpfr_attempt(const ExactPairRequest& request, unsigned bits_value)
         if (!surrounded.has_value()) {
           attempt.complete = false;
           attempt.finite_width_root_cluster = same_retained_history;
+          attempt.diagnostic_detail = "interior_root_not_surrounded";
           ++attempt.difficult_cells;
           return;
         }
@@ -2223,6 +2232,9 @@ MpAttempt run_mpfr_attempt(const ExactPairRequest& request, unsigned bits_value)
         !mp_width_within(lower, upper, tolerance)) {
       attempt.complete = false;
       attempt.finite_width_root_cluster = same_retained_history;
+      attempt.diagnostic_detail = refined_lower_sign == refined_upper_sign
+          ? "refined_root_bracket_has_equal_signs"
+          : "refined_root_bracket_exceeds_tolerance";
       ++attempt.difficult_cells;
       return;
     }
@@ -2234,6 +2246,7 @@ MpAttempt run_mpfr_attempt(const ExactPairRequest& request, unsigned bits_value)
         root_geometry.source_normal->contains_zero()) {
       attempt.complete = false;
       attempt.caustic_candidate = true;
+      attempt.diagnostic_detail = "refined_root_normal_contains_zero";
       ++attempt.difficult_cells;
       return;
     }
@@ -2248,6 +2261,7 @@ MpAttempt run_mpfr_attempt(const ExactPairRequest& request, unsigned bits_value)
   if (attempt.complete && !merge_mp_roots(attempt.roots)) {
     attempt.complete = false;
     attempt.caustic_candidate = true;
+    attempt.diagnostic_detail = "overlapping_root_brackets_not_mergeable";
     ++attempt.difficult_cells;
   }
   return attempt;
@@ -2283,6 +2297,7 @@ ExactPairCertificate double_certificate(
       .visited_cells = attempt.visited_cells,
       .excluded_cells = attempt.excluded_cells,
       .difficult_cells = attempt.difficult_cells,
+      .diagnostic_detail = "",
       .roots = {},
   };
   certificate.roots.reserve(attempt.roots.size());
@@ -2384,6 +2399,7 @@ ExactPairCertificate mpfr_certificate(
       .visited_cells = attempt.visited_cells,
       .excluded_cells = attempt.excluded_cells,
       .difficult_cells = attempt.difficult_cells,
+      .diagnostic_detail = attempt.diagnostic_detail,
       .roots = {},
   };
   if (!complete) {

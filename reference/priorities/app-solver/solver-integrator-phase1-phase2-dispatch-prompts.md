@@ -8,7 +8,7 @@ Two **independent** threads to launch in parallel. Full spec: [coupled-delayed-h
 
 Closure goal: Author, purely from the canonical dynamics documents and first principles, an independent regression oracle that a correct coupled delayed-history integrator passes and a subtly wrong one fails — so that a later integrator has a fixed, un-gameable target.
 
-Hard constraint — BLIND: do **not** read, import, or reference any integrator implementation (`src/solver/app/AbsoluteHistoryRootRuntime.mjs`, `src/solver/src/*`, the braid-ideal runners, or any Phase-3 work). Derive every expected value from `content/markdown/aaa/dynamics/master-equation.md`, `content/markdown/aaa/dynamics/binary-dynamics.md`, and closed-form/independent computation only. If you find yourself needing the integrator to know the answer, the case is not a valid oracle case.
+Hard constraint — BLIND: do **not** read, import, or reference any integrator implementation (`src/solver/app/AbsoluteHistoryRootRuntime.mjs`, `src/solver/src/*`, the legacy braid workstream runners, or any Phase-3 work). Derive every expected value from `content/markdown/aaa/dynamics/master-equation.md`, `content/markdown/aaa/dynamics/binary-dynamics.md`, and closed-form/independent computation only. If you find yourself needing the integrator to know the answer, the case is not a valid oracle case.
 
 Build these cases (load-bearing: O1, O3, O4, O5):
 - **O1 Inertial exactness.** One architrino, and mutually out-of-causal-contact architrinos, follow exact straight lines to machine precision.

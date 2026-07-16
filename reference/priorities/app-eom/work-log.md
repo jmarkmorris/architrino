@@ -9,7 +9,7 @@ This file holds dated decisions, implementation status, validation results, fail
 - Prohibited prescribed future paths, path constraints, guidance, snapping, analytic target orbits, and display curves from serving as EOM evolution.
 - Recorded the decision to leave the existing central solver and all current dependencies in place during the standalone EOM build.
 - Ranked the initial work around the evolution contract, canonical Master EOM binding, independent oracle, coupled retained-history integrator, timestep/event control, deterministic multithreading, precision/convergence, streaming/checkpointing, application surface, knowledge-tree quarantine, Borg shadow migration, and later consumer-by-consumer migration.
-- Recorded the initial quarantine disposition for Borg, Causal Delay Feedback, Animator, Photon, Ideal Braid, braid-ideal research instruments, T3, and unclassified consumers.
+- Recorded the initial quarantine disposition for Borg, Causal Delay Feedback, Animator, Photon, Ideal Braid, legacy braid workstream research instruments, T3, and unclassified consumers.
 - No solver source, app source, generated artifact, fixture, or current priority packet was changed.
 
 ## 2026-07-13 — Extreme-Performance And Multiscale Mandate Added
@@ -1148,24 +1148,36 @@ This file holds dated decisions, implementation status, validation results, fail
 
 - Added `scripts/eom/run-borg-post-burn-in-refinement-ladder.mjs` to build the
   accepted exact inertial $C^1$ seed, run the strict 16-path seed-cut control,
-  attempt the actual 1,000-chunk burn-in, and run the post-burn-in ladder only
-  when a seed-free EOM checkpoint exists.
-- Measured twice with the rebuilt native Borg binary, the strict seed-cut
+  checkpoint the complete 90-unit burn-in horizon, and run the post-burn-in
+  ladder only when a seed-free EOM checkpoint exists. The harness now supports
+  restart, durable evidence output, explicit precision and quadrature resource
+  ceilings, and pair-level root and acceleration failure diagnostics.
+- Measured with the final rebuilt native Borg binary, the strict seed-cut
   ladder completed at steps `0.01`, `0.005`, and `0.0025` with state and root
   tolerances `1e-8`. The worst state difference was
-  `5.684341886080802e-14`; the one-thread and four-thread `0.0025` histories
+  `1.1684403444789382e-13`; the one-thread and four-thread `0.0025` histories
   were byte-identical; and every case reported zero root failures. The former
   240-off-diagonal-pair `numeric_precision_limit_exhausted` failure was not
   observed on this seed input.
-- The 16-path burn-in accepted six atomic chunks through $T=0.06$, then failed
-  closed on $[0.06,0.07]$. The failed row recorded
-  `regulator_convergence_failed`, 256 exact traversed pairs, zero excluded
-  pairs, and zero causal-root failures; the outer halt was
-  `minimum_step_exhausted`. The same last-good-history digest and failure row
-  repeated in both runs.
-- No EOM-only $T=10$ retained-history checkpoint exists for this population,
-  so the requested strict post-burn-in ladder did not run. The former precision
-  failure is not reproduced at the seed cut, but its post-burn-in verdict is
-  still indeterminate. The first current blocker is regulator convergence, not
-  root precision. Evidence:
+- A checkpointed coarse burn-in certified through $T=36$, then isolated one
+  off-diagonal row at a time with `numeric_precision_limit_exhausted`. Each row
+  left one difficult cell after excluding all others. The internal reason was
+  `interior_root_not_surrounded`; a 512-to-1024-bit replay produced the same
+  pair sequence and cell counts, so arithmetic precision did not move the wall.
+- Raising the coarse burn-in root tolerance from `1e-3` to `1e-2` crossed that
+  wall and certified through $T=39.5$. Path `1013` then entered a self-caustic
+  route. The declared finite-width fallback ran but exhausted its quadrature
+  proof budget. Raising the budget from 200,000 cells at depth 32 to 1,000,000
+  cells at depth 40 reduced the largest cell from about `3e-6` to `1e-6` while
+  leaving the unresolved total interval near `0.2`; the route did not converge.
+  **Inferred:** the unchanged precision replay and nearly unchanged interval
+  under five times the cell budget identify retained-history enclosure width as
+  the active floor. A tighter accepted-history construction that certifies this
+  event would falsify that inference.
+- No EOM-only $T=90$ retained-history checkpoint exists for this population, so
+  the requested strict post-burn-in ladder did not run. The former 240-pair
+  failure is absent at the seed cut, a narrower precision failure does occur
+  during EOM evolution, and the exact post-burn-in verdict remains indeterminate
+  because the finite-width self-caustic fails closed first. The native process
+  tests pass 4/4 and the Borg contract tests pass 30/30. Evidence:
   [eom-borg-post-burn-in-refinement-ladder-apple-m3-2026-07-15.json](evidence/eom-borg-post-burn-in-refinement-ladder-apple-m3-2026-07-15.json).

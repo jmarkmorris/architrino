@@ -22,8 +22,7 @@ Walk up from the smallest object, certifying dynamical behavior at each rung bef
 2. Author [configuration-chart.md](configuration-chart.md) past skeleton grade (the search-space coordinate system, including motion classes beyond rigid rotation).
 3. Author the instrument gate (first campaign-independent spec in `campaigns/`): which engine capabilities are accepted for program use, and what each campaign must show before its results are booked.
 4. Campaign 1 spec and run: sub-field opposite-polarity binary evolution (N-ladder rung 1).
-5. Corpus reconciliation of the braid chapters per [corpus-reconciliation.md](corpus-reconciliation.md) — five gated steps; step 1 (surgical excisions) is dispatch-ready.
-6. Mining pass over legacy directories — insights and ideas only, staged in `mining/` under its rules.
+5. Mining pass over legacy directories — insights and ideas only, staged in `mining/` under its rules. (Corpus reconciliation of the braid chapters: **executed 2026-07-15**, see [corpus-reconciliation.md](corpus-reconciliation.md); only generated-artifact regeneration remains, owned by the Codex PR process.)
 
 ## Waiting On
 

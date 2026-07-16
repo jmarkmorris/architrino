@@ -3,9 +3,18 @@ import { spawn } from "node:child_process";
 export const BORG_NATIVE_EOM_PROCESS_CLIENT_VERSION =
   "borg-native-eom-process-client.v1";
 
-export function createBorgNativeEomProcessClient({ binaryPath, timeoutMs = 120000 } = {}) {
+export function createBorgNativeEomProcessClient({
+  binaryPath,
+  binaryArgs = [],
+  timeoutMs = 120000,
+} = {}) {
   if (typeof binaryPath !== "string" || binaryPath.length === 0) {
     throw new TypeError("Borg native EOM process client requires binaryPath.");
+  }
+  if (!Array.isArray(binaryArgs) || binaryArgs.some(
+    (argument) => typeof argument !== "string" || argument.length === 0,
+  )) {
+    throw new TypeError("Borg native EOM process client binaryArgs must be strings.");
   }
   let worker = null;
   let workerGeneration = 0;
@@ -48,7 +57,7 @@ export function createBorgNativeEomProcessClient({ binaryPath, timeoutMs = 12000
     const generation = ++workerGeneration;
     responseBuffer = "";
     errorBuffer = "";
-    worker = spawn(binaryPath, ["borg-shadow-server-v0"], {
+    worker = spawn(binaryPath, ["borg-shadow-server-v0", ...binaryArgs], {
       stdio: ["pipe", "pipe", "pipe"],
     });
     worker.stdout.setEncoding("utf8");

@@ -5,18 +5,14 @@
 
 ## Attestation
 
-From `scripts/braid-ideal/**` I copied **configuration constants and conventions only**: numeric literals (grids, sample counts, regulators, tolerances, gate thresholds, geometry exports, anchor constants), charge/polarity assignments, phase/ordering/sense/sign conventions, and unit conventions. **No root-finding, force-evaluation, integration, averaging-implementation, or acceptance logic was copied, paraphrased, or described** in the packet. Where a needed item exists only as runtime computation or algorithm structure, the packet carries an explicit `NOT_EXTRACTABLE_AS_CONSTANT` or `UNRESOLVED` entry with a file reference instead of a description. Every owning definition in the packet is quoted **verbatim from spec/evidence markdown** (never from code), each with file path + section citation. Every decimal token was copied exactly as written in its source (string form), never reformatted or recomputed. No git command was run; no braid-ideal script was executed; no existing file was modified.
+From `scripts/braid-ideal/**` I copied **configuration constants and conventions only**: numeric literals (grids, sample counts, regulators, tolerances, gate thresholds, geometry exports, anchor constants), charge/polarity assignments, phase/ordering/sense/sign conventions, and unit conventions. **No root-finding, force-evaluation, integration, averaging-implementation, or acceptance logic was copied, paraphrased, or described** in the packet. Where a needed item exists only as runtime computation or algorithm structure, the packet carries an explicit `NOT_EXTRACTABLE_AS_CONSTANT` or `UNRESOLVED` entry with a file reference instead of a description. Every owning definition in the packet is quoted **verbatim from spec/evidence markdown** (never from code), each with file path + section citation. Every decimal token was copied exactly as written in its source (string form), never reformatted or recomputed. No git command was run; no legacy braid workstream script was executed; no existing file was modified.
 
 ## Files read
 
 Owning markdown (definitions and recorded values):
 
-- `legacy source retired`
-- `legacy source retired`
-- `legacy source retired`
-- `legacy source retired`
-- `legacy source retired` (§§58–66 region, §§82–85 region, §§92–94)
-- `legacy source retired` (0.2274/0.22736 cross-check context)
+- Retired priority-document paths are intentionally omitted; this historical extraction report is non-authorizing.
+
 - `content/markdown/aaa/noether-braid/spindle-braid.md` (read-only; fixed-point section)
 - `content/markdown/aaa/dynamics/master-equation.md` (per-hit law, W^rec, conventions; located via search — the path is `dynamics/`, not `foundations/`)
 - `content/markdown/aaa/foundations/architrino.md` (ε = |e|/6 convention)
@@ -67,7 +63,6 @@ Code, constants-only (firewalled):
 - `scripts/braid-ideal/planar-assembled-free-particle-fixture.mjs` (fixture)
 - `scripts/braid-ideal/moving-phase-matched-stacked-rings-braid.mjs` + `moving-phase-matched-stacked-rings-fixture.mjs` (§96 cross-check)
 - `tests/braid-ideal-planar-assembled-free-particle.test.js` (constant tokens only)
-- `legacy source retired` (recorded tokens)
 
 **What was copied:**
 

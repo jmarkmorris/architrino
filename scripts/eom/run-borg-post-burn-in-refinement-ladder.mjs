@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 import { createHash } from "node:crypto";
-import { writeFile } from "node:fs/promises";
+import { readFile, rename, writeFile } from "node:fs/promises";
 import { performance } from "node:perf_hooks";
 
 import { createBorgNativeEomProcessClient } from "./BorgNativeEomProcessClient.mjs";
@@ -9,7 +9,9 @@ import {
   createBorgContinuousRetainedHistories,
   createBorgEomShadowRequest,
   createBorgEomShadowRunConfig,
-  createBorgEomShadowRunner,
+  BORG_EOM_BURN_IN_HISTORY_CLAIM_LEVEL,
+  BORG_EOM_BURN_IN_HISTORY_PROVENANCE,
+  trimBorgRetainedHistories,
 } from "../../src/apps/borg/BorgEomShadowRunner.js";
 import { BORG_DATASET_MANIFEST_V1 } from "../../src/apps/borg/BorgFixtureData.js";
 import {
@@ -21,7 +23,7 @@ import {
 const binaryPath = process.argv[2];
 if (!binaryPath) {
   throw new Error(
-    "usage: run-borg-post-burn-in-refinement-ladder.mjs <eom_borg_shadow_cli> [--history-depth=<time>] [--burn-in-chunk=<time>] [--burn-in-step=<time>] [--burn-in-minimum-step=<time>] [--output=<path>] [--seed-only]",
+    "usage: run-borg-post-burn-in-refinement-ladder.mjs <eom_borg_shadow_cli> [--history-depth=<time>] [--burn-in-chunk=<time>] [--burn-in-step=<time>] [--burn-in-minimum-step=<time>] [--burn-in-root-tolerance=<time>] [--maximum-mpfr-bits=<bits>] [--quadrature-max-depth=<count>] [--quadrature-max-cells=<count>] [--checkpoint=<path>] [--resume=<path>] [--output=<path>] [--seed-only]",
   );
 }
 
@@ -33,6 +35,8 @@ const historyDepth = optionalPositiveArgument(
 );
 const seedOnly = process.argv.includes("--seed-only");
 const outputPath = optionalStringArgument("--output=");
+const resumePath = optionalStringArgument("--resume=");
+const checkpointPath = optionalStringArgument("--checkpoint=") ?? resumePath;
 const burnInStart = 0;
 const burnInEnd = historyDepth;
 const atomicChunk = 0.01;
@@ -48,6 +52,13 @@ const burnInMinimumStep = optionalPositiveArgument(
   "--burn-in-minimum-step=",
   burnInInitialStep,
 );
+const burnInRootTolerance = optionalPositiveArgument(
+  "--burn-in-root-tolerance=",
+  1e-3,
+);
+const maximumMpfrBits = optionalPositiveArgument("--maximum-mpfr-bits=", 512);
+const quadratureMaxDepth = optionalPositiveArgument("--quadrature-max-depth=", 32);
+const quadratureMaxCells = optionalPositiveArgument("--quadrature-max-cells=", 200000);
 const strictCases = Object.freeze([
   Object.freeze({ id: "h", step: "0.01", threadCount: 1 }),
   Object.freeze({ id: "h_over_2", step: "0.005", threadCount: 1 }),
@@ -72,6 +83,11 @@ const seedHistories = createBorgContinuousRetainedHistories(seed.rows, manifest,
 });
 const client = createBorgNativeEomProcessClient({
   binaryPath,
+  binaryArgs: [
+    `--maximum-mpfr-bits=${maximumMpfrBits}`,
+    `--quadrature-max-depth=${quadratureMaxDepth}`,
+    `--quadrature-max-cells=${quadratureMaxCells}`,
+  ],
   timeoutMs: 600000,
 });
 
@@ -115,6 +131,11 @@ const evidence = {
     atomicChunk,
     transportChunkDuration: burnInChunkDuration,
     numericalControls: coarseBurnInControls(),
+    maximumMpfrBits,
+    quadratureMaxDepth,
+    quadratureMaxCells,
+    checkpointPath,
+    resumePath,
   },
   seedCutStrictControl: seedCutControl,
   burnIn: summarizeBurnIn(burnIn),
@@ -132,9 +153,7 @@ if (outputPath) {
 }
 
 async function runBurnIn() {
-  const runner = createBorgEomShadowRunner(manifest, {
-    eomClient: client,
-    initialFrameRows: seed.rows,
+  const config = createBorgEomShadowRunConfig(manifest, {
     pathCount,
     startTime: burnInStart,
     targetDuration: burnInEnd + burnInChunkDuration,
@@ -147,30 +166,99 @@ async function runBurnIn() {
   const startedAt = performance.now();
   let lastGoodHistories = seedHistories;
   let completedChunks = 0;
-  const acceptedChunkRows = [];
+  let nextStartTime = burnInStart;
+  let acceptedChunkRows = [];
+  let resumedFromCheckpoint = false;
   try {
-    while (!runner.burnInComplete) {
+    if (resumePath) {
+      const checkpoint = JSON.parse(await readFile(resumePath, "utf8"));
+      validateBurnInCheckpoint(checkpoint);
+      lastGoodHistories = Object.freeze(checkpoint.histories);
+      completedChunks = checkpoint.completedChunks;
+      nextStartTime = checkpoint.nextStartTime;
+      acceptedChunkRows = checkpoint.acceptedChunkRows;
+      resumedFromCheckpoint = true;
+      process.stderr.write(
+        `burn-in resume chunks=${completedChunks} time=${nextStartTime} path=${resumePath}\n`,
+      );
+    }
+    while (nextStartTime < burnInEnd) {
       const chunkStartedAt = performance.now();
-      const chunk = await runner.computeNextChunk();
-      completedChunks += 1;
-      lastGoodHistories = chunk.histories;
-      acceptedChunkRows.push({
-        chunkIndex: chunk.chunkIndex,
-        startTime: chunk.startTime,
-        endTime: chunk.endTime,
-        wallSeconds: (performance.now() - chunkStartedAt) / 1000,
-        rootFailureCount: countRootFailures(chunk.diagnostics),
+      const startTime = nextStartTime;
+      const endTime = Math.min(
+        burnInEnd,
+        roundTime(startTime + burnInChunkDuration),
+      );
+      const request = createBorgEomShadowRequest({
+        manifest,
+        config,
+        histories: lastGoodHistories,
+        chunkIndex: completedChunks,
+        startTime,
+        endTime,
       });
-      if (completedChunks % 5 === 0 || chunk.burnInComplete) {
+      const response = await client.evolveRetainedHistories(request);
+      if (response.status !== "completed") {
+        await writeBurnInCheckpoint({
+          histories: lastGoodHistories,
+          completedChunks,
+          nextStartTime,
+          acceptedChunkRows,
+        });
+        return failedBurnInResult({
+          response,
+          completedChunks,
+          nextStartTime,
+          lastGoodHistories,
+          acceptedChunkRows,
+          startedAt,
+          resumedFromCheckpoint,
+        });
+      }
+      completedChunks += 1;
+      nextStartTime = endTime;
+      lastGoodHistories = response.histories;
+      acceptedChunkRows.push({
+        chunkIndex: completedChunks - 1,
+        startTime,
+        endTime,
+        initialStep: config.initialStep,
+        minimumStep: config.minimumStep,
+        rootTolerance: config.rootTolerance,
+        transportChunkDuration: burnInChunkDuration,
+        wallSeconds: (performance.now() - chunkStartedAt) / 1000,
+        acceptedStepCount: response.acceptedStepCount,
+        rejectedStepCount: response.rejectedStepCount,
+        rootFailureCount: countRootFailures(response.diagnostics),
+      });
+      if (completedChunks % 5 === 0 || nextStartTime >= burnInEnd) {
+        await writeBurnInCheckpoint({
+          histories: lastGoodHistories,
+          completedChunks,
+          nextStartTime,
+          acceptedChunkRows,
+        });
         process.stderr.write(
-          `burn-in heartbeat chunks=${completedChunks} time=${chunk.endTime} wallSeconds=${((performance.now() - startedAt) / 1000).toFixed(3)}\n`,
+          `burn-in heartbeat chunks=${completedChunks} time=${endTime} wallSeconds=${((performance.now() - startedAt) / 1000).toFixed(3)}\n`,
         );
       }
     }
+    lastGoodHistories = markCompletedBurnInHistories(
+      trimBorgRetainedHistories(lastGoodHistories, {
+        coverageStart: roundTime(burnInEnd - historyDepth),
+      }),
+    );
+    await writeBurnInCheckpoint({
+      histories: lastGoodHistories,
+      completedChunks,
+      nextStartTime,
+      acceptedChunkRows,
+      completed: true,
+    });
     return Object.freeze({
       status: "completed",
       completedChunks,
-      acceptedEndTime: runner.nextStartTime,
+      acceptedEndTime: nextStartTime,
       wallSeconds: (performance.now() - startedAt) / 1000,
       histories: lastGoodHistories,
       historySha256: sha256(lastGoodHistories),
@@ -180,13 +268,15 @@ async function runBurnIn() {
       seedSegmentsRetained: lastGoodHistories.some((history) =>
         history.segments.some((segment) => Number(segment.startTime) < burnInStart),
       ),
+      resumedFromCheckpoint,
+      checkpointPath,
       acceptedChunkRows,
     });
   } catch (error) {
     return Object.freeze({
       status: "failed_closed",
       completedChunks,
-      acceptedEndTime: runner.nextStartTime,
+      acceptedEndTime: nextStartTime,
       wallSeconds: (performance.now() - startedAt) / 1000,
       lastGoodHistorySha256: sha256(lastGoodHistories),
       failureCode: error.code ?? "eom_shadow_run_failed",
@@ -196,10 +286,101 @@ async function runBurnIn() {
       failedChunkDiagnostics: summarizeDiagnostics(
         error.eomResponse?.diagnostics ?? [],
       ),
+      resumedFromCheckpoint,
+      checkpointPath,
       acceptedChunkRows,
       histories: lastGoodHistories,
     });
   }
+}
+
+function failedBurnInResult({
+  response,
+  completedChunks,
+  nextStartTime,
+  lastGoodHistories,
+  acceptedChunkRows,
+  startedAt,
+  resumedFromCheckpoint,
+}) {
+  return Object.freeze({
+    status: "failed_closed",
+    completedChunks,
+    acceptedEndTime: nextStartTime,
+    wallSeconds: (performance.now() - startedAt) / 1000,
+    lastGoodHistorySha256: sha256(lastGoodHistories),
+    failureCode: response.failureCode ?? response.haltCode ?? "eom_shadow_run_failed",
+    haltCode: response.haltCode ?? null,
+    acceptedStepCountInFailedChunk: response.acceptedStepCount ?? null,
+    rejectedStepCountInFailedChunk: response.rejectedStepCount ?? null,
+    failedChunkDiagnostics: summarizeDiagnostics(response.diagnostics ?? []),
+    resumedFromCheckpoint,
+    checkpointPath,
+    acceptedChunkRows,
+    histories: lastGoodHistories,
+  });
+}
+
+async function writeBurnInCheckpoint({
+  histories,
+  completedChunks,
+  nextStartTime,
+  acceptedChunkRows,
+  completed = false,
+}) {
+  if (!checkpointPath) {
+    return;
+  }
+  const checkpoint = {
+    schema: "eom_borg_post_burn_in_checkpoint/v0",
+    manifestId: manifest.manifestId,
+    pathCount,
+    historyDepth,
+    burnInStart,
+    burnInEnd,
+    seedHistorySha256: sha256(seedHistories),
+    completed,
+    completedChunks,
+    nextStartTime,
+    acceptedChunkRows,
+    histories,
+  };
+  const temporaryPath = `${checkpointPath}.tmp-${process.pid}`;
+  await writeFile(temporaryPath, `${JSON.stringify(checkpoint)}\n`, "utf8");
+  await rename(temporaryPath, checkpointPath);
+}
+
+function validateBurnInCheckpoint(checkpoint) {
+  const valid =
+    checkpoint?.schema === "eom_borg_post_burn_in_checkpoint/v0" &&
+    checkpoint.manifestId === manifest.manifestId &&
+    checkpoint.pathCount === pathCount &&
+    checkpoint.historyDepth === historyDepth &&
+    checkpoint.burnInStart === burnInStart &&
+    checkpoint.burnInEnd === burnInEnd &&
+    checkpoint.seedHistorySha256 === sha256(seedHistories) &&
+    Number.isFinite(checkpoint.nextStartTime) &&
+    checkpoint.nextStartTime >= burnInStart &&
+    checkpoint.nextStartTime <= burnInEnd &&
+    Array.isArray(checkpoint.histories) &&
+    checkpoint.histories.length === pathCount &&
+    checkpoint.histories.every(
+      (history) => Number(history.coverageEnd) === checkpoint.nextStartTime,
+    ) &&
+    Array.isArray(checkpoint.acceptedChunkRows);
+  if (!valid) {
+    throw new Error("Borg EOM burn-in checkpoint does not match this refinement request.");
+  }
+}
+
+function markCompletedBurnInHistories(histories) {
+  return Object.freeze(histories.map((history) => Object.freeze({
+    ...history,
+    sourceProvenance: BORG_EOM_BURN_IN_HISTORY_PROVENANCE,
+    sourceClaimLevel: BORG_EOM_BURN_IN_HISTORY_CLAIM_LEVEL,
+    sourceAcceptedInitialDatum: false,
+    sourceIsEomOutput: true,
+  })));
 }
 
 async function runStrictLadder(histories, startTime) {
@@ -288,7 +469,7 @@ function coarseBurnInControls() {
   return Object.freeze({
     initialStep: String(burnInInitialStep),
     minimumStep: String(burnInMinimumStep),
-    rootTolerance: "1e-3",
+    rootTolerance: String(burnInRootTolerance),
     accelerationTolerance: "1e-1",
     positionTolerance: "1e-2",
     velocityTolerance: "1e-2",
@@ -329,9 +510,9 @@ function adjudicate(seedControl, burnInResult, postBurnInResult) {
         .flatMap((diagnostic) => diagnostic.stepFailures)
         .at(-1)?.failureCode ?? burnInResult.failureCode,
       conclusion:
-        "The requested T=10 strict ladder cannot run because the 16-path EOM burn-in fails closed before it produces an EOM-only retained-history checkpoint.",
+        `The requested T=${burnInEnd} strict ladder cannot run because the 16-path EOM burn-in fails closed before it produces an EOM-only retained-history checkpoint.`,
       falsifier:
-        "A 16-path burn-in that reaches T=10 with no seed segment would create the checkpoint needed to rerun the requested strict ladder.",
+        `A 16-path burn-in that reaches T=${burnInEnd} with no seed segment would create the checkpoint needed to rerun the requested strict ladder.`,
     });
   }
   return Object.freeze({
@@ -371,6 +552,10 @@ function optionalStringArgument(prefix) {
   return value;
 }
 
+function roundTime(value) {
+  return Number(value.toPrecision(15));
+}
+
 function summarizeDiagnostics(diagnostics) {
   return diagnostics.map((diagnostic) => ({
     ...diagnostic,
@@ -392,6 +577,7 @@ function summarizeDiagnostics(diagnostics) {
         rootFailureCount: rootFailures.length,
         rootFailureCounts,
         rootFailureSample: rootFailures.slice(0, 8),
+        accelerationFailures: step.accelerationFailures ?? [],
         regulatorFailures: step.regulatorFailures ?? [],
       };
     }),

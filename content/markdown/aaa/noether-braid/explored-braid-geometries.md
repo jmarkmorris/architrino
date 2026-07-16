@@ -8,7 +8,7 @@ One neighboring chapter remains the active home of machinery first developed on 
 
 ## Symmetric Shell Braid
 
-The **symmetric shell braid** is the maximal-symmetry one-band member of the braid family, tested as the `SH-0` effort of the [Noether Braid Proof Map](noether-braid-proof-map.md). It was the program's featured realization because it carries the exact machinery of [Braid Mathematics](braid-mathematics.md) — the invariant channels and equivariant reductions, the drum geometry, the axial polarity dipole identity, the momentum screw, and the exact speed budget — and is therefore the most analytically tractable member of the family. This section owns the one-band family definition, the `SH-0` fixture identity, the isolated-release results, the `SH-0-sea` environment route, and the accessory-dressing application hypotheses.
+The **symmetric shell braid** is the maximal-symmetry one-band member of the braid family. It is the most analytically featured realization because it carries the exact machinery of [Braid Mathematics](braid-mathematics.md) — the invariant channels and equivariant reductions, the drum geometry, the axial polarity dipole identity, the momentum screw, and the exact speed budget — and is therefore the most analytically tractable member of the family. This section owns the one-band family definition, the maximal-symmetry fixture identity, the isolated-release analysis, the sea-embedding route, and the accessory-dressing application hypotheses.
 
 ### The One-Band Family
 
@@ -62,7 +62,7 @@ $$
 
 for recovery time $T_{\mathrm{rec}}$, dimensionless recovery contraction factor $0\leq\theta_{\mathrm{rec}}<1$, and driving residue $\varepsilon_{\mathrm{drive}}$. Near-antipodality is useful because it captures the shell branch's tendency to restore opposite-side balance without pretending that the two matched architrinos remain in lockstep under perturbation.
 
-### The Symmetric Member and the SH-0 Fixture
+### The Symmetric Member
 
 The symmetric shell braid is the maximal-symmetry member of this family: the face-opposite seed, three positrinos on the positive coordinate axes at common radius $R$, three electrinos at their antipodes, all on one common sphere. The exact machinery this seed carries — the invariant channels and equivariant reductions, the drum geometry, the axial polarity dipole identity, the momentum screw, and the exact speed budget — is core-agnostic mathematics shared across the braid family, and it lives in [Braid Mathematics](braid-mathematics.md). This chapter consumes that machinery for the one-band configuration at rest.
 

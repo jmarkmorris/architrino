@@ -38,7 +38,7 @@ Each entry records a different kind of structure. Mixing the entries creates a c
 
 ## Document Role
 
-This chapter is the decoder for Noether braid configuration language. It owns the shared axes, local evidence-level terms, and compact Proof ID grammar that tell a reader what kind of braid is being discussed and which assumptions are being held fixed. The detailed proof-run records belong in [Noether Braid Proof Map](noether-braid-proof-map.md).
+This chapter is the decoder for Noether braid configuration language. It owns the shared axes, local evidence-level terms, and compact Proof ID grammar that tell a reader what kind of braid is being discussed and which assumptions are being held fixed. Detailed proof-run records and work status belong to the research program's own tracking, not to the textbook.
 
 It does not prove branch retention by itself. A Proof ID names a branch-configuration effort. The proof-stack role still has to say what job the packet is doing, and the current disposition still has to say whether the result is open, blocked, rejected, retained, or certified before any success, rejection, fixture, chart, or downstream-consumer claim is made.
 
@@ -48,7 +48,6 @@ It does not prove branch retention by itself. A Proof ID names a branch-configur
 | [Neutral Braid](neutral-braid.md) | Defines the base six-body branch inventory and retained-branch certificate target. | Establishes the broad case before shell support, exact binary grouping, or nested ordering. |
 | [Symmetric Shell Braid](explored-braid-geometries.md#symmetric-shell-braid) | Defines the one-band radial-support family. | Adds shell support without promoting the branch to nested shell structure. |
 | [Nested Shell Braid](explored-braid-geometries.md#nested-shell-braid) | Defines the three-band nested support family and its branch-label scaffold. | Names the nested family without certifying dynamics or observer export by itself. |
-| [Noether Braid Proof Map](noether-braid-proof-map.md) | Tracks current Proof IDs, work status, detailed proof records, and environment-qualified rounds. | Records proof work without redefining the configuration taxonomy. |
 | [Noether Braid Configuration Space](noether-braid-configuration-space.md) | Searches the cases where three retained angular-momentum rows may form a full internal 3D frame. | Supplies search variables and frame rows without saying every Noether braid must have exact binaries. |
 | [Nested Shell Braid Dynamics](explored-braid-geometries.md#nested-shell-braid-dynamics) | Tests whether nested shell braid motion can actually stay closed and stable. | Tests coupled shell dynamics without turning downstream exports into base branch IDs. |
 | [Noether Braid Doubling-Frequency Resonance Lock](doubling-frequency-lock.md) | Studies the `NSH-421` candidate where the nested rows have a `4:2:1` frequency pattern. | Studies the `4:2:1` lock without making it the default Noether braid frequency. |
@@ -242,7 +241,7 @@ The [Noether Braid Topological Charge](noether-braid-topological-charge.md) prog
 
 ## Proof ID Decoder
 
-A Proof ID names a proof-run target. It combines a support base, a proof regime, and optional modifiers. It does not assert success. Detailed work status and per-ID proof records live in [Noether Braid Proof Map](noether-braid-proof-map.md).
+A Proof ID names a proof-run target. It combines a support base, a proof regime, and optional modifiers. It does not assert success. Detailed work status and per-ID proof records live with the research program's tracking, not in the textbook.
 
 The base and frame-modifier codes are:
 
@@ -284,7 +283,7 @@ The ID alone never supplies disposition. A candidate `SH-0-sea` embedded test, a
 
 ## Compact Proof Index
 
-This compact index shows the main proof-run targets without carrying the live proof ledger. Use [Noether Braid Proof Map](noether-braid-proof-map.md) for work status, evidence handles, and detailed per-ID records.
+This compact index shows the main proof-run targets without carrying the live proof ledger; work status, evidence handles, and detailed per-ID records live with the research program's tracking.
 
 | Proof ID | Decoded configuration | Main proof question |
 | --- | --- | --- |

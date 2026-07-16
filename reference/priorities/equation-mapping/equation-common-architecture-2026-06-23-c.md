@@ -263,7 +263,7 @@ R_{\mathrm{obs}}
 \right).
 $$
 
-This vector is a solver-routing object, not a new score gate. Its job is to prevent a frequency-ratio match from being mistaken for retained-branch closure.
+This vector is a solver-routing object, not a new score gate. Its job is to prevent a frequency-ratio match from being mistaken for braid program.
 
 ### Equations It Connects
 

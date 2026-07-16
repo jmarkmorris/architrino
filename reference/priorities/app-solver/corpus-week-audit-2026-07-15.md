@@ -51,4 +51,4 @@ The failures concentrate in the Jul 13–15 uncommitted edits and share one shap
 
 1. `reference/priorities` (190 recently-modified files) — not audited; the quarantine triage ledger already covers the claim tiering there, but the same half-propagation pattern (H1) may exist in lane trackers.
 2. GitHub diff audit — API probes of `github.com/jmarkmorris/architrino` and `github.com/architrino/architrino` returned empty (private or renamed); true authorship attribution needs the repo URL with access, or a Codex git audit.
-3. H1/H2 corrections need the owning lane (braid-ideal) to decide direction before editing: retire the pin's dependents, or scope the retirement to the same-source channel only if the conditional rail-residence pin survives.
+3. H1/H2 corrections need the owning lane (legacy braid workstream) to decide direction before editing: retire the pin's dependents, or scope the retirement to the same-source channel only if the conditional rail-residence pin survives.

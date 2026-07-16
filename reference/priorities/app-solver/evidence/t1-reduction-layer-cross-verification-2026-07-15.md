@@ -7,7 +7,7 @@ record, not the current §14 verdict.
 
 **Clean-room boundary.** This pass independently authors reductions over the
 EOM independent-oracle output contract. The reduction author and auditor did
-not inspect, import, or execute any legacy braid-ideal implementation and did
+not inspect, import, or execute any legacy braid implementation and did
 not follow the fixture packet's legacy `source_ref` links. A separate fixture
 extractor performed the sanctioned constants-only read and copied no reduction
 logic.
@@ -148,7 +148,7 @@ $T=0$. Tier 2, Tier 3, and Tier 4 were not started.
 ## Adjudication addendum — 2026-07-15 (operator-thread review)
 
 The §14 FAIL above is adjudicated as a **definition/configuration mismatch, not a numerical
-disagreement**. The recorded 0.97 is owned by `legacy source retired`
+disagreement**. The recorded 0.97 is owned by a retired, non-authorizing priority record
 §14 ("Cross-Hit Absorption on the Causal Root-Sum"): the cross-hit relay from a **nested neutral
 inner binary** onto the middle receiver, computed as a **period-integrated causal root-sum**
 (N_T = 2000→8000 ladder; converged net 0.214→0.224 vs magnitude sum 7.42; 1 − 0.224/7.42 = 0.970).
@@ -510,7 +510,7 @@ it could not change a root, contribution, tolerance, or disposition.
 `reference/entourage/archie/prompts/corpus-advancement-pass.md`;
 `reference/op/theory-orientation.md`; this evidence file; the Tier-1/R2 ledger section;
 `reference/priorities/app-solver/evidence/t1-fixture-data-2026-07-15.json`; owning spec §14 in
-`legacy source retired`; the clean files under
+a retired, non-authorizing priority record; the clean files under
 `scripts/eom-verification/`; `tests/test_eom_t1_reduction_layer.py`; imported oracle interfaces
 `scripts/eom/oracle/certified_acceleration.py`, `certified_history.py`, and
 `decimal_interval.py`; and the relevant EOM interval, retained-history, exact-pair, and certified-

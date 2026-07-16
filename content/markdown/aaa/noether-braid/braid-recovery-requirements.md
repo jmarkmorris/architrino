@@ -4,11 +4,11 @@ Before any particular braid geometry is featured, the theory owes the reader a c
 
 Stating the requirements realization-independently protects the proof order. A realization chapter may carry beautiful exact structure and still leave every row below open; a recovery chapter may state a sharp observer-level target that no current branch can yet consume. Keeping the contract in one place prevents both failure modes from hiding: every claim in the braid scene can be checked against this chapter's ladder, and every ladder row names the chapter where its detailed burden lives.
 
-Nothing in this chapter is a retained-branch result. Every row below is an obligation — a theorem target, closure target, or comparison target at its stated level — and the current proof dispositions belong to the [Noether Braid Proof Map](noether-braid-proof-map.md), not to this chapter.
+Nothing in this chapter is a retained-branch result. Every row below is an obligation — a theorem target, closure target, or comparison target at its stated level — and current proof dispositions belong to the research program's tracking, not to this chapter.
 
 ## Document Role
 
-This chapter owns the realization-independent statement of the braid proof burden: the retained-branch certificate row structure, the first-failure reporting discipline, the ordered proof-burden ladder, and the full recovery-target inventory consumed by the downstream theory. It deliberately owns no geometry and no evidence. The base-family definitions live in [Neutral Braid](neutral-braid.md), [Symmetric Shell Braid](explored-braid-geometries.md#symmetric-shell-braid), and [Nested Shell Braid](explored-braid-geometries.md#nested-shell-braid); the shared mathematical machinery lives in [Braid Mathematics](braid-mathematics.md); Proof IDs, dispositions, and environment-qualified rounds live in the [Noether Braid Proof Map](noether-braid-proof-map.md) with the grammar defined in [Noether Braid Taxonomy](noether-braid-taxonomy.md).
+This chapter owns the realization-independent statement of the braid proof burden: the retained-branch certificate row structure, the first-failure reporting discipline, the ordered proof-burden ladder, and the full recovery-target inventory consumed by the downstream theory. It deliberately owns no geometry and no evidence. The base-family definitions live in [Neutral Braid](neutral-braid.md), [Symmetric Shell Braid](explored-braid-geometries.md#symmetric-shell-braid), and [Nested Shell Braid](explored-braid-geometries.md#nested-shell-braid); the shared mathematical machinery lives in [Braid Mathematics](braid-mathematics.md); Proof dispositions and environment-qualified rounds live with the research program's tracking; the classification grammar is defined in [Noether Braid Taxonomy](noether-braid-taxonomy.md).
 
 A reader should use this chapter the way an engineer uses a requirements specification: to know what any proposed design must eventually satisfy, and to recognize when a reported success addresses one row while leaving the blocking rows untouched.
 
@@ -87,7 +87,7 @@ The ladder shape carries the scene's central reading rule. Rows through converge
 
 ## Proof-Burden Order
 
-The retention certificate is the first rung of a longer ladder. The burdens close in a fixed order, and a packet can supply evidence for one rung while leaving the next rung open. The [Noether Braid Proof Map](noether-braid-proof-map.md#proof-burden-order) tracks which Proof IDs currently exercise each rung; the realization-independent ladder is:
+The retention certificate is the first rung of a longer ladder. The burdens close in a fixed order, and a packet can supply evidence for one rung while leaving the next rung open. The research program's tracking records which efforts currently exercise each rung; the realization-independent ladder is:
 
 | Order | Burden | What must close on the same record |
 | --- | --- | --- |

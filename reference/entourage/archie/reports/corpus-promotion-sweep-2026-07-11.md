@@ -71,9 +71,6 @@ Claim-level shorthand: `O` = ontology already established in the corpus; `D` = d
 Every `reference/priorities/**/work-log.md` was included in the scan. Most contain only dated routing, validation, migration, or certificate status and therefore supply no independent promotion candidate. The theory-bearing exceptions are:
 
 - `app-solver/work-log.md`: simulation envelope, precision, storage, C++ contract, geometry centralization, and validation decisions — app/solver targets, not reader-facing theory.
-- `braid-angular-momentum-spin/work-log.md`: extensive fail-closed action, transport, wake-energy, and angular-momentum certificate history — owned by focused proof packets; no retained-branch claim is promotable from the log.
-- `braid-geometry-export-bridge/work-log.md`, `proof-programs/work-log.md`, and `braid-ideal/work-log.md`: long diagnostic/proof histories and exact blocker chains — target or negative-certificate material, not independent corpus prose.
-- `braid-mass-response-map/work-log.md` and `braid-taxonomy/work-log.md`: mass/interface and taxonomy status already routed to focused packets or corpus owners; no unmarked standalone promotion item.
 - `quantum-closure/work-log.md` and `standard-model-closure/work-log.md`: resolved duplicate/owner cleanup and deferred interface cleanup, not new theory.
 
 ## Running Disposition Ledger
@@ -87,7 +84,7 @@ Final dispositions are appended below in bounded batches. A source note is recon
 
 ## Batch 2 — Negative Result And Duplicate Reconciliation
 
-- `open-problems` plus unified `braid-ideal`: promoted the completed $J_z$-conserving versus closure-optimal trajectory comparison to `noether-braid/spindle-braid.md` and `philosophy-history/theory-bridges/angular-momentum-and-spin.md` at prescribed-family numerical grade. The result is negative: the trajectories diverge on the sampled spindle family, so $h$-constancy is not a corollary of closure optimality there. The coarse-grid caveat and larger-dressed-family escape remain explicit. Both source notes were replaced with dated pointers.
+- `open-problems` plus unified `legacy braid workstream`: promoted the completed $J_z$-conserving versus closure-optimal trajectory comparison to `noether-braid/spindle-braid.md` and `philosophy-history/theory-bridges/angular-momentum-and-spin.md` at prescribed-family numerical grade. The result is negative: the trajectories diverge on the sampled spindle family, so $h$-constancy is not a corollary of closure optimality there. The coarse-grid caveat and larger-dressed-family escape remain explicit. Both source notes were replaced with dated pointers.
 - `app-simulation`: reconciled the already-canonical simulation scope envelope and provenance utility to `validation/simulations/README.md`; retained $m_E$ and $R_{\mathrm{prov,value}}$ only as unpromoted diagnostics requiring operational demonstrations.
 - `source-mining`: reconciled the supernova progenitor-age/source-calibration lesson to `cosmology/dark-energy.md`; retained the shared-coefficient observational proof burden.
 - `master-equation-closure`: reconciled steady velocity-field non-radiation and the accelerated-sector recovery target to `reactions/radiation.md`; retained the accelerated/transition photon-assembly demonstration as the open half.
@@ -127,17 +124,6 @@ Final dispositions are appended below in bounded batches. A source note is recon
 
 | Lane | Items found | Final disposition |
 | --- | ---: | --- |
-| `braid-angular-momentum-spin` | merge pointer | reject here; unified source used. |
-| `braid-doubling-frequency-lock` | merge pointer | reject here; unified source used. |
-| `braid-geometry-export-bridge` | merge pointer | reject here; unified source used. |
-| `braid-mass-response-map` | merge pointer | reject here; unified source used. |
-| `braid-nested-shell-causal-closure` | merge pointer | reject here; unified source used. |
-| `braid-retained-branch-closure` | merge pointer | reject here; unified source used. |
-| `braid-retained-branch-closure/nested-shell-braid` | merge pointer | reject here; unified source used. |
-| `braid-retained-branch-closure/neutral-braid` | merge pointer | reject here; unified source used. |
-| `braid-retained-branch-closure/shell-braid` | merge pointer | reject here; unified source used. |
-| `braid-taxonomy` | merge pointer | reject here; unified source used. |
-| `braid-ideal` | 18 major families, many subitems | promoted prescribed-family $h$-constancy negative result; already promoted/skip for symmetry channel, drum, helicity, quietness, action clicks, fold geometry, recovery requirements, prepared subsets, and mass anchor; target for all fail-closed solver/proof rows and retained-branch mechanisms; discuss-first for weak-angle, dressed-object, sea-energy/vacuum-style, intrinsic-precession, and terminal-barrel syntheses. Promoted source items reconciled. |
 
 ### Theory, Closure, And Cross-Domain
 

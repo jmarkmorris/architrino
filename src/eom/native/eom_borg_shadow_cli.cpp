@@ -143,7 +143,10 @@ void print_segment(const eom::CubicHistorySegment& segment) {
             << json_escape(segment.velocity_error_token()) << "\"}";
 }
 
-void run() {
+void run(
+    unsigned maximum_mpfr_bits,
+    std::size_t quadrature_max_depth,
+    std::size_t quadrature_max_cells) {
   if (read_required_line("protocol magic") != "EOM_BORG_NATIVE_V0") {
     throw std::invalid_argument("unsupported Borg EOM native protocol");
   }
@@ -212,13 +215,13 @@ void run() {
       .correction_tolerance = run[12],
       .root_max_depth = 256,
       .root_max_cells = 500000,
-      .quadrature_max_depth = 32,
-      .quadrature_max_cells = 200000,
+      .quadrature_max_depth = quadrature_max_depth,
+      .quadrature_max_cells = quadrature_max_cells,
       .event_max_depth = 24,
       .event_max_cells = 200000,
       .regulator_refinement_levels = 3,
       .initial_mpfr_bits = 128,
-      .maximum_mpfr_bits = 512,
+      .maximum_mpfr_bits = maximum_mpfr_bits,
       .force_event_precision_escalation = false,
       .max_correction_iterations = 12,
       .max_step_attempts = 1000,
@@ -316,6 +319,19 @@ void run() {
                   << json_escape(certificate.failure_code)
                   << "\",\"memoryBoundaryContact\":"
                   << (certificate.memory_boundary_contact ? "true" : "false")
+                  << ",\"precisionEscalated\":"
+                  << (certificate.precision_escalated ? "true" : "false")
+                  << ",\"achievedPrecisionBits\":"
+                  << certificate.achieved_precision_bits
+                  << ",\"visitedCells\":" << certificate.visited_cells
+                  << ",\"excludedCells\":" << certificate.excluded_cells
+                  << ",\"difficultCells\":" << certificate.difficult_cells
+                  << ",\"diagnosticDetail\":\""
+                  << json_escape(certificate.diagnostic_detail) << '"'
+                  << ",\"mpfrAttemptCount\":"
+                  << certificate.mpfr_attempt_count
+                  << ",\"mpfrEscalationAttemptCount\":"
+                  << certificate.mpfr_escalation_attempt_count
                   << '}';
       }
     };
@@ -323,6 +339,43 @@ void run() {
       print_snapshot_failures(substep.start_snapshot);
       if (substep.endpoint_snapshot.has_value()) {
         print_snapshot_failures(*substep.endpoint_snapshot);
+      }
+    }
+    std::cout << "],\"accelerationFailures\":[";
+    bool first_acceleration_failure = true;
+    const auto print_acceleration_failures = [&](
+        const eom::NativeAccelerationSnapshotCertificate& snapshot) {
+      for (const auto& certificate :
+           snapshot.acceleration.pair_certificates) {
+        if (certificate.status != "uncertified" &&
+            certificate.failure_code.empty()) {
+          continue;
+        }
+        if (!first_acceleration_failure) {
+          std::cout << ',';
+        }
+        first_acceleration_failure = false;
+        std::cout << "{\"receiverPathId\":\""
+                  << json_escape(certificate.receiver_path_id)
+                  << "\",\"sourcePathId\":\""
+                  << json_escape(certificate.source_path_id)
+                  << "\",\"chart\":\"" << json_escape(certificate.chart)
+                  << "\",\"status\":\"" << json_escape(certificate.status)
+                  << "\",\"failureCode\":\""
+                  << json_escape(certificate.failure_code)
+                  << "\",\"quadratureVisitedCells\":"
+                  << certificate.quadrature_visited_cells
+                  << ",\"accelerationPrecisionEscalated\":"
+                  << (certificate.acceleration_precision_escalated
+                          ? "true" : "false")
+                  << ",\"achievedAccelerationPrecisionBits\":"
+                  << certificate.achieved_acceleration_precision_bits << '}';
+      }
+    };
+    for (const auto& substep : step.substeps) {
+      print_acceleration_failures(substep.start_snapshot);
+      if (substep.endpoint_snapshot.has_value()) {
+        print_acceleration_failures(*substep.endpoint_snapshot);
       }
     }
     std::cout << "],\"regulatorFailures\":[";
@@ -441,22 +494,63 @@ void run() {
 
 int main(int argc, char** argv) {
   try {
-    if (argc != 2) {
+    if (argc < 2) {
       std::cerr << "usage: eom_borg_shadow_cli "
-                   "borg-shadow-v0|borg-shadow-server-v0\n";
+                   "borg-shadow-v0|borg-shadow-server-v0 "
+                   "[--maximum-mpfr-bits=N] "
+                   "[--quadrature-max-depth=N] "
+                   "[--quadrature-max-cells=N]\n";
       return EXIT_FAILURE;
+    }
+    unsigned maximum_mpfr_bits = 512;
+    std::size_t quadrature_max_depth = 32;
+    std::size_t quadrature_max_cells = 200000;
+    for (int argument_index = 2; argument_index < argc; ++argument_index) {
+      const std::string option = argv[argument_index];
+      constexpr const char* precision_prefix = "--maximum-mpfr-bits=";
+      constexpr const char* depth_prefix = "--quadrature-max-depth=";
+      constexpr const char* cells_prefix = "--quadrature-max-cells=";
+      if (option.starts_with(precision_prefix)) {
+        const std::size_t parsed = parse_size(
+            option.substr(std::char_traits<char>::length(precision_prefix)),
+            "maximum MPFR bits");
+        if (parsed < 128U || parsed > std::numeric_limits<unsigned>::max()) {
+          throw std::invalid_argument(
+              "maximum MPFR bits lies outside supported envelope");
+        }
+        maximum_mpfr_bits = static_cast<unsigned>(parsed);
+      } else if (option.starts_with(depth_prefix)) {
+        quadrature_max_depth = parse_size(
+            option.substr(std::char_traits<char>::length(depth_prefix)),
+            "quadrature maximum depth");
+        if (quadrature_max_depth == 0U) {
+          throw std::invalid_argument("quadrature maximum depth must be positive");
+        }
+      } else if (option.starts_with(cells_prefix)) {
+        quadrature_max_cells = parse_size(
+            option.substr(std::char_traits<char>::length(cells_prefix)),
+            "quadrature maximum cells");
+        if (quadrature_max_cells == 0U) {
+          throw std::invalid_argument("quadrature maximum cells must be positive");
+        }
+      } else {
+        throw std::invalid_argument("unsupported Borg EOM native option");
+      }
     }
     const std::string mode = argv[1];
     if (mode == "borg-shadow-v0") {
-      run();
+      run(maximum_mpfr_bits, quadrature_max_depth, quadrature_max_cells);
     } else if (mode == "borg-shadow-server-v0") {
       while (std::cin.peek() != std::char_traits<char>::eof()) {
-        run();
+        run(maximum_mpfr_bits, quadrature_max_depth, quadrature_max_cells);
         std::cout.flush();
       }
     } else {
       std::cerr << "usage: eom_borg_shadow_cli "
-                   "borg-shadow-v0|borg-shadow-server-v0\n";
+                   "borg-shadow-v0|borg-shadow-server-v0 "
+                   "[--maximum-mpfr-bits=N] "
+                   "[--quadrature-max-depth=N] "
+                   "[--quadrature-max-cells=N]\n";
       return EXIT_FAILURE;
     }
     return EXIT_SUCCESS;
