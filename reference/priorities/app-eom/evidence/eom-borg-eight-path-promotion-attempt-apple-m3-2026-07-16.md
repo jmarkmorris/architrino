@@ -7,12 +7,13 @@
 - Seed-cut strict ladder: `PASS`
 - Seed-free $T=90$ checkpoint: `NOT PRODUCED`
 - Post-burn-in strict ladder: `NOT RUN`
-- Borg compatibility deletion: `PROHIBITED`
+- Borg compatibility retirement: `OPERATOR-AUTHORIZED; NOT PROMOTION EVIDENCE`
 
 The shared checkout acquired concurrent uncommitted deletions of the Borg
 compatibility query branch and runner files while this run was active. This
-campaign did not make or restore those changes. They are not authorized by the
-promotion result recorded here.
+campaign did not make or restore those changes. The operator authorized the
+retirement independently; it was not caused by, and is not evidence of, a
+promotion pass.
 
 ## Engine Diagnosis
 

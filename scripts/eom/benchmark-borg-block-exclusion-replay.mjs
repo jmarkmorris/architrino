@@ -114,6 +114,9 @@ for (let repetition = 0; repetition < repetitions; repetition += 1) {
 }
 
 const publicRuns = runs.map(({ historiesSerialized, rootAccountingSerialized, ...run }) => run);
+const referenceRootAccounting = JSON.parse(
+  runs.find((run) => run.mode === "baseline").rootAccountingSerialized,
+);
 const solverSpeedups = pairs.map((pair) => pair.solverWallSpeedup);
 const outerSpeedups = pairs.map((pair) => pair.outerWallSpeedup);
 const allEquivalent = pairs.every(
@@ -124,13 +127,16 @@ const allEquivalent = pairs.every(
     pair.statusEqual,
 );
 const blockRuns = publicRuns.filter((run) => run.mode === "block");
-const routeExercised = blockRuns.every(
+const traversalRouteExecuted = blockRuns.every(
   (run) => run.pairSelectionRoute === "certified_moving_history_traversal" &&
     run.traversalVisitedNodes > 1 &&
-    run.traversalExcludedPairs > 0 &&
     run.traversalUnresolvedPairs === 0 &&
     run.traversalCoverageDisjointComplete,
 );
+const effectiveBlockExclusion = blockRuns.every(
+  (run) => run.traversalExcludedPairs > 0,
+);
+const routeExercised = traversalRouteExecuted && effectiveBlockExclusion;
 const completeAccounting = publicRuns.every(
   (run) => run.rootCertificateCount === 64 &&
     run.rootAccountingCount === 64 &&
@@ -173,8 +179,11 @@ const evidence = {
   materialSpeedupThreshold,
   runs: publicRuns,
   matchedPairs: pairs,
+  referenceRootAccounting,
   summary: {
     allEquivalent,
+    traversalRouteExecuted,
+    effectiveBlockExclusion,
     routeExercised,
     completeAccounting,
     solverSpeedups,
@@ -237,6 +246,10 @@ async function runReplay(mode, repetition) {
       rootAccountingCount: rootAccounting.length,
       historiesSha256: sha256(historiesSerialized),
       rootAccountingSha256: sha256(rootAccountingSerialized),
+      historySegmentCounts: response.histories.map((history) => ({
+        pathId: history.pathId,
+        segmentCount: history.segments.length,
+      })),
       solverTotalWallSeconds: response.timing?.totalWallSeconds,
       solverTraversalWallSeconds: response.timing?.traversalWallSeconds,
       solverExactRootBatchWallSeconds: response.timing?.rootBatchWallSeconds,

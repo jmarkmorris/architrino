@@ -60,6 +60,7 @@ test("Borg boots the EOM runner by default with fixture and record replay as exp
   assert.equal(defaultTrajectoryLoads, 0);
   assert.equal(defaultMounts.length, 1);
   assert.equal(defaultMounts[0].fixtureTrajectoryFrames, undefined);
+  assert.equal(defaultMounts[0].autoStartEom, false);
   assert.equal(defaultMounts[0].initialEomSeed.rows.length, 8 * 2);
   assert.equal(defaultMounts[0].initialEomSeed.endpointRows.length, 8);
   assert.equal(defaultMounts[0].initialEomSeed.certificate.accepted, true);
@@ -88,6 +89,18 @@ test("Borg boots the EOM runner by default with fixture and record replay as exp
     defaultMounts[0].initialEomSeed.endpointRows.map((row) => row.pathKey),
     [1001, 1002, 1003, 1004, 1005, 1006, 1007, 1008],
   );
+
+  const explicitShadowMounts = [];
+  await bootBorgApp({
+    search: "?eom=shadow",
+    createEomClient: () => eomClient,
+    mountApp(options) {
+      explicitShadowMounts.push(options);
+      return "explicit-shadow-mounted";
+    },
+  });
+  assert.equal(explicitShadowMounts.length, 1);
+  assert.equal(explicitShadowMounts[0].autoStartEom, true);
 
   const fixtureMounts = [];
   const fixtureResult = await bootBorgApp({

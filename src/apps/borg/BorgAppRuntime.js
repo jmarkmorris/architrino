@@ -225,6 +225,7 @@ export function mountBorgApp(options = {}) {
   };
 
   const initialEomSeed = options.initialEomSeed ?? null;
+  const autoStartEom = options.autoStartEom !== false;
   // The accepted seed's endpoint is visible while burn-in runs. Its past rows
   // are solver input only and are never presented as a computed trajectory.
   let fixtureFrames = [...(
@@ -312,11 +313,17 @@ export function mountBorgApp(options = {}) {
     playbackSpeedPresetId: DEFAULT_PLAYBACK_SPEED_PRESET_ID,
     runControlPresetId: options.initialRunControlPresetId ?? DEFAULT_RUN_CONTROL_PRESET_ID,
     sourceMode: initialEomSeed ? "accepted-eom-seed-history" : "precomputed-fixture",
-    dynamicRunnerStatus: initialEomSeed ? "eom-shadow-running" : "precomputed-fixture",
+    dynamicRunnerStatus: initialEomSeed
+      ? autoStartEom ? "eom-shadow-running" : "eom-shadow-stopped"
+      : "precomputed-fixture",
     dynamicRunnerMessage: initialEomSeed
-      ? "accepted initial datum ready; EOM burn-in pending"
+      ? autoStartEom
+        ? "accepted initial datum ready; EOM burn-in pending"
+        : "accepted initial datum ready; EOM run not started"
       : "static native fixture loaded",
-    dynamicRunnerKind: initialEomSeed ? "eom-burn-in" : "fixture-replay",
+    dynamicRunnerKind: initialEomSeed
+      ? autoStartEom ? "eom-burn-in" : "eom-seed-idle"
+      : "fixture-replay",
     dynamicRunner: null,
     dynamicChunkPromise: null,
     dynamicChunksComputed: 0,
@@ -371,7 +378,9 @@ export function mountBorgApp(options = {}) {
   updateFrame(state.activeFrameIndex);
   setPlayButtonPresentation(false);
   resize();
-  startDynamicNativeRunner();
+  if (autoStartEom) {
+    startDynamicNativeRunner();
+  }
 
   return {
     manifest,

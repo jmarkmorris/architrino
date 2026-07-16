@@ -69,6 +69,9 @@ export async function bootBorgApp({
     manifest,
     initialEomSeed,
     initialConditionConfig: activeInitialConditionConfig,
+    // Ordinary Borg startup must stay interactive. The long retained-history
+    // evolution is an explicit diagnostic action, not page-load work.
+    autoStartEom: query.get("eom") === "shadow",
     eomShadowRunner: {
       eomClient: createEomClient(),
       startTime: eomStartTime,

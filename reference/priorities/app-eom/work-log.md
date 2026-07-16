@@ -1400,12 +1400,13 @@ This file holds dated decisions, implementation status, validation results, fail
 - No seed-free $T=90$ checkpoint exists. The strict post-burn-in ladder was
   therefore not run, promotion did not pass, and no Borg compatibility file was
   deleted by this campaign. During the run, a separate concurrent worktree
-  batch removed the compatibility query branch and runner files. Those
-  uncommitted deletions are not authorized by this promotion verdict and were
-  neither restored nor absorbed here, to avoid overwriting another active
-  agent's work. A continuation that reaches $T=90$ inside an explicit observed
-  resource envelope, followed by the unchanged post-burn-in ladder, would
-  falsify the current blocker.
+  batch removed the compatibility query branch and runner files under separate
+  operator authorization. That retirement was not caused by, and is not
+  evidence of, a promotion pass. The files were neither restored nor absorbed
+  by this campaign, to avoid overwriting another active agent's work. A
+  continuation that reaches $T=90$ inside an explicit observed resource
+  envelope, followed by the unchanged post-burn-in ladder, would falsify the
+  current blocker.
 - Evidence:
   [eom-borg-eight-path-promotion-attempt-apple-m3-2026-07-16.md](evidence/eom-borg-eight-path-promotion-attempt-apple-m3-2026-07-16.md).
 
@@ -1432,3 +1433,25 @@ This file holds dated decisions, implementation status, validation results, fail
   process suite passes 4/4. A repeated `insufficient_history_depth` inside the
   90-unit eight-path seed, incomplete pair accounting, or failure to cross the
   former `[0.06,0.07]` interval would falsify this repair.
+
+## 2026-07-16 — Borg eight-path block-exclusion matched replay
+
+- **Measured:** five alternating fixed-`0.01` matched replays from the saved
+  $T=34.4940625$ checkpoint produced byte-identical accepted histories and
+  byte-identical complete 64-row root accounting. Every run accepted one step,
+  rejected none, accounted for all 64 ordered pairs, and had zero unresolved
+  membership.
+- **Measured:** the certified traversal route executed and visited 127 nodes,
+  but excluded zero ordered pairs. Both modes therefore performed the same 576
+  root-pair certifications, 941,161 re-evaluated cells, and four MPFR pair
+  evaluations.
+- **Measured:** candidate/control internal EOM solver speedup was `0.9686x` by
+  the mean and `0.9665x` by the median, below the predeclared `1.10x` material
+  gate. The outer-process mean and median were `0.9904x` and `0.9881x`.
+- **Inferred decision:** the present block certificate does not accelerate this
+  dense eight-path checkpoint. The long burn-in remains paused; no accepted
+  result, master-equation rule, trajectory value, or promotion decision changed.
+- The long $T=90$ burn-in also remains paused while the operator reconsiders the
+  startup-history requirement.
+- Evidence and falsifier:
+  [eom-borg-eight-path-block-exclusion-ab-apple-m3-2026-07-16.md](evidence/eom-borg-eight-path-block-exclusion-ab-apple-m3-2026-07-16.md).
