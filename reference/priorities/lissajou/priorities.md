@@ -23,9 +23,9 @@ The lane is also an external-contact opportunity: Lissajous and spherical-Lissaj
 
 ## Related Priorities
 
-- braid-ideal (legacy-braid ref: `braid-archive/braid-ideal/priorities.md`)
-- braid-retained-branch-closure (legacy-braid ref: `braid-archive/braid-retained-branch-closure/priorities.md`)
-- braid-angular-momentum-spin (legacy-braid ref: `braid-archive/braid-angular-momentum-spin/priorities.md`)
+- braid-ideal
+- braid-retained-branch-closure
+- braid-angular-momentum-spin
 
 ## Related AAA Notes
 

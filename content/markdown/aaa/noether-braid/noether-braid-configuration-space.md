@@ -332,7 +332,9 @@ $$
 This is the layerwise specialization of the [signed causal-root complex](../dynamics/master-equation.md#signed-causal-root-complex): simple same-source roots are split by the sign of their causal-root Jacobian before the layer contributes to assembly topological charge.
 A branch with one super-field-speed layer can carry a different assembly topological charge structure from a branch with two or three such layers, because the self-hit ledgers and signed degrees are layer-dependent. This is another reason the search must preserve the full unordered speed tuple $s_1:s_2:s_3$ rather than collapsing immediately to a preferred hierarchy.
 
-One named family realizes this decoupling directly. The [**spindle braid**](spindle-braid.md) is the rigid uniaxial iso-frequency configuration: each binary a tilted antipodal pair, each layer's speed $s_a=\omega R_a\cos\alpha_a$, so the tilt angles decouple the speed tuple from the spherical nesting order and the farthest layer can be the slowest. The spindle braid is the search's current leading candidate on the unified prescribed-worldline closure metric, with the planar tri-binary and axial-dipole configurations as its own boundary members; its full definition, discrete-symmetry structure, and candidate status are stated in [Spindle Braid](spindle-braid.md).
+One named family realizes this decoupling directly. The [**spindle braid**](spindle-braid.md) is the rigid uniaxial iso-frequency configuration: each binary a tilted antipodal pair, each layer's speed $s_a=\omega R_a\cos\alpha_a$, so the tilt angles decouple the speed tuple from the spherical nesting order and the farthest layer can be the slowest. The spindle braid is a named candidate family with the planar tri-binary and axial-dipole configurations as its own boundary members; its full definition and discrete-symmetry structure are stated in [Spindle Braid](spindle-braid.md). No family ordering is asserted: candidate ranking awaits screening and evolution on the validated engine.
+
+A terminology boundary applies throughout this section: the field-speed value $s_a=c_f$ is a **coordinate locus** of the configuration space — the boundary where the same-source root inventory changes — and nothing here asserts that any dynamical mechanism holds a layer at that locus. Occupancy of the locus is a chart label, not an attractor claim.
 
 
 ## Stability In A Sea Of Like Assemblies
@@ -461,11 +463,11 @@ $$
 \quad\Longrightarrow\quad
 \|Q_A\|\to0
 $$
-while degeneration toward $D_{\mathrm{plane}}=0$ may produce large framing anisotropy even with nearly equal weights. Orthogonality suppresses the non-orthogonal-frame contribution; near-degenerate retained spectral weights, shielding, or averaging must separately suppress the weight-anisotropy contribution. If both parts are proved for a retained branch class, the same geometric row would suppress Lorentz period anisotropy, clock-orientation leakage, Hughes-Drever-type inertial anisotropy, and scalar-mass anisotropy. The measured spindle-family split between a second-order helicity-averaged orientation channel and a first-order helicity-selected spin channel is the nearest live comparison ([Spindle Braid](spindle-braid.md#motion-inertia-and-isotropy)); it does not prove the rank-three theorem target, because the spindle uses a shared-axis iso-frequency chart rather than this independent three-normal frame.
+while degeneration toward $D_{\mathrm{plane}}=0$ may produce large framing anisotropy even with nearly equal weights. Orthogonality suppresses the non-orthogonal-frame contribution; near-degenerate retained spectral weights, shielding, or averaging must separately suppress the weight-anisotropy contribution. If both parts are proved for a retained branch class, the same geometric row would suppress Lorentz period anisotropy, clock-orientation leakage, Hughes-Drever-type inertial anisotropy, and scalar-mass anisotropy. Both parts remain theorem targets; no measured family comparison currently bears on them.
 
 ## Relation To The Doubling-frequency Chapter
 
-[Noether Braid Doubling-Frequency Resonance Lock](explored-braid-geometries.md#noether-braid-doubling-frequency-resonance-lock) studies one restricted family inside this broader configuration space. It asks whether a nested `I:M:O` frequency triplet, especially the doubling-frequency `4:2:1` candidate, can close as an integer phase-bundle lock with a stable return map and controlled caustic behavior.
+[Noether Braid Doubling-Frequency Resonance Lock](doubling-frequency-lock.md) studies one restricted family inside this broader configuration space. It asks whether a nested `I:M:O` frequency triplet, especially the doubling-frequency `4:2:1` candidate, can close as an integer phase-bundle lock with a stable return map and controlled caustic behavior.
 
 The doubling-frequency chapter should therefore be read as a specialized search row:
 $$

@@ -661,11 +661,11 @@ Clock-coupling can be sensitive to weak locked-wake tails. A reaction corridor n
 
 ## Envelope Forms
 
-The envelope form is family data: the union of the swept constituent paths, together with any precession, sets the time-averaged boundary that neighbors and the Noether sea read. Two named forms are in use. The [spindle braid](spindle-braid.md) — the leading candidate family — sweeps a **fusiform envelope** at rest, elongated along its shared axis and widest in its working equatorial ring, as set by the rigid uniaxial co-rotation of its tilted antipodal binaries. The nested shell braid family sweeps the **oblate spheroidal envelope** described next. The semiaxis variables below apply to both forms, but the rest-shape sign of their ratio is family data: fusiform means $R_{\parallel}>R_{\perp}$, while oblate means $R_{\parallel}<R_{\perp}$. The moving Lorentz-projection target is a separate branch response and must not be inferred from either rest-shape sign.
+The envelope form is family data: the union of the swept constituent paths, together with any precession, sets the time-averaged boundary that neighbors and the Noether sea read. Two named forms are in use. The [spindle braid](spindle-braid.md) — a named candidate family — sweeps a **fusiform envelope** at rest, elongated along its shared axis and widest in its working equatorial ring, as set by the rigid uniaxial co-rotation of its tilted antipodal binaries. The nested shell braid family sweeps the **oblate spheroidal envelope** described next. The semiaxis variables below apply to both forms, but the rest-shape sign of their ratio is family data: fusiform means $R_{\parallel}>R_{\perp}$, while oblate means $R_{\parallel}<R_{\perp}$. The moving Lorentz-projection target is a separate branch response and must not be inferred from either rest-shape sign.
 
 ### Oblate Spheroidal Form (Nested Family)
 
-The nested shell braid structure is anisotropic. The three shell binaries orbit and precess, with their orbital planes tending toward mutual orthogonality in stable low-energy or weak-stress conditions. The time-averaged envelope is therefore not perfectly spherical.
+The nested shell braid structure is anisotropic. The three shell binaries orbit and precess; the working hypothesis for this family takes their orbital planes as mutually orthogonal in the reference configuration (a declared chart choice, not a derived settling outcome). The time-averaged envelope is therefore not perfectly spherical.
 
 The leading boundary of the exclusion envelope is set primarily by the **outer binary**:
 
@@ -760,7 +760,7 @@ The envelope is therefore the visible projection of the retained causal-root led
 
 ## Retuning Projection to Envelope Variables
 
-This section is the nested family's instantiation of the envelope projection, stated on its cadence-scale retuning map ([Explored Braid Geometries](explored-braid-geometries.md#cadence-scale-retuning-closure)); the corresponding projection for the spindle family is an open obligation of the leading-candidate track.
+This section is the nested family's instantiation of the envelope projection, stated on its cadence-scale retuning map ([Explored Braid Geometries](explored-braid-geometries.md#cadence-scale-retuning-hypothesis)); the corresponding projection for the spindle family is an open obligation of the leading-candidate track.
 
 The cadence-scale retuning map must project into $(\lambda,\xi)$ through the envelope geometry, not by assigning those variables independently. Let
 
@@ -846,7 +846,7 @@ For local assembly modeling, use this page as the geometric source for:
 - deformation of the family-leading envelope paths under local gradients,
 - and exclusion-volume changes relevant to packing, shielding, and collision channels.
 
-For nested-family dynamics modeling, use [Nested Shell Braid Dynamics](explored-braid-geometries.md#nested-shell-braid-dynamics), where the oblate causal envelope is treated as a delay-geometry input and a simulation target. For the spindle-family definition and measured moving states, use [Spindle Braid](spindle-braid.md); its moving-envelope projection remains open.
+For the nested-family definitions, use [Explored Braid Geometries](explored-braid-geometries.md), where the oblate causal envelope is treated as a delay-geometry input. For the spindle-family definition, use [Spindle Braid](spindle-braid.md); its moving-envelope projection remains open.
 
 For Noether sea modeling, use [Noether sea](../spacetime/noether-sea.md) and [Noether Sea Pro/Anti Coupling](../spacetime/noether-sea-pro-anti-coupling.md), where many Noether braids become a coupled medium rather than isolated assembly envelopes.
 

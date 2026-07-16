@@ -22,7 +22,7 @@ Use `brainstorming.md` for provisional ideas, insights, conceptual maps, and dra
 - Added the corrected prehistory seed family to the Section 86 native runner
   and recorded the exact object, endpoint-match evidence, first-step
   certificates, build freshness, and campaign boundary in
-  `reference/priorities/braid-archive/braid-ideal/evidence/section-86-v5-collapse-campaign-preflight-2026-07-14.md`.
+  `legacy source retired`.
 - The legacy $0.199$ row remains retired, while the replacement V5 collapse
   campaign remains open. No seed reached root-ledger clearance, so no T3 row
   lifted and no §90 conclusion changed.
@@ -46,7 +46,7 @@ Use `brainstorming.md` for provisional ideas, insights, conceptual maps, and dra
   preserved their T1 geometry, force-balance, pump, charge, and declared-coverage
   non-bind results.
 - Added focused retirement evidence under
-  `reference/priorities/braid-archive/braid-ideal/evidence/` and changed both diagnostic
+  `legacy source retired` and changed both diagnostic
   outputs so an implementation anchor can no longer be mistaken for target
   stability authority.
 - Promotion decision: `priority-only`. Both original packets explicitly earned

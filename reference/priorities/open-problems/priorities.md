@@ -66,11 +66,11 @@ If any item is missing, the chapter should be marked `direction-ready`, `appendi
 
 | Candidate section | Primary priority route | Primary corpus route | Promotion gate |
 | --- | --- | --- | --- |
-| Foundations and spacetime | [master-equation-closure](../master-equation-closure/priorities.md), braid-retained-branch-closure (legacy-braid ref: `braid-archive/braid-retained-branch-closure/priorities.md`), [cross-theory-mapping](../cross-theory-mapping/priorities.md) | Spacetime and dynamics corpus documents. | One effective metric and one path-history record recover known clock, ruler, null-path, and phase benchmarks. |
+| Foundations and spacetime | [master-equation-closure](../master-equation-closure/priorities.md), braid-retained-branch-closure, [cross-theory-mapping](../cross-theory-mapping/priorities.md) | Spacetime and dynamics corpus documents. | One effective metric and one path-history record recover known clock, ruler, null-path, and phase benchmarks. |
 | Strong-field gravity | [strong-field-closure](../strong-field-closure/priorities.md), [dark-sector](../dark-sector/priorities.md), [app-simulation](../app-simulation/priorities.md) | Black-hole, singularity, radiation, and nested shell braid documents. | Boundary conditions, entropy counts, event ledgers, and release channels are expressed without hidden singular sinks. |
 | Cosmology and large-scale structure | [cosmology-closure](../cosmology-closure/priorities.md), [dark-sector](../dark-sector/priorities.md), [cross-theory-mapping](../cross-theory-mapping/priorities.md) | Cosmology, CMB, BBN, structure, dark-sector, and redshift documents. | The same Noether sea variables support redshift, distance, growth, CMB, lensing, and structure records. |
-| Quantum and statistical emergence | [quantum-closure](../quantum-closure/priorities.md), braid-angular-momentum-spin (legacy-braid ref: `braid-archive/braid-angular-momentum-spin/priorities.md`), [cross-theory-mapping](../cross-theory-mapping/priorities.md) | Quantum, measurement, Bell, entropy, and radiation documents. | Basin measures, detector response, pair provenance, and path-history phase recover the benchmark probabilities without free collapse postulates. |
-| Standard Model and particle closure | [standard-model-closure](../standard-model-closure/priorities.md), braid-mass-response-map (legacy-braid ref: `braid-archive/braid-mass-response-map/priorities.md`), braid-angular-momentum-spin (legacy-braid ref: `braid-archive/braid-angular-momentum-spin/priorities.md`) | Assemblies, fermions, bosons, gauge, mass, nuclear, and validation documents. | Branch geometry, exposure maps, mixing integrals, confinement energetics, and event provenance produce testable particle records. |
+| Quantum and statistical emergence | [quantum-closure](../quantum-closure/priorities.md), braid-angular-momentum-spin, [cross-theory-mapping](../cross-theory-mapping/priorities.md) | Quantum, measurement, Bell, entropy, and radiation documents. | Basin measures, detector response, pair provenance, and path-history phase recover the benchmark probabilities without free collapse postulates. |
+| Standard Model and particle closure | [standard-model-closure](../standard-model-closure/priorities.md), braid-mass-response-map, braid-angular-momentum-spin | Assemblies, fermions, bosons, gauge, mass, nuclear, and validation documents. | Branch geometry, exposure maps, mixing integrals, confinement energetics, and event provenance produce testable particle records. |
 | Astrophysical engines | [high-energy-astrophysics](../high-energy-astrophysics/priorities.md), [strong-field-closure](../strong-field-closure/priorities.md), [cosmology-closure](../cosmology-closure/priorities.md), [standard-model-closure](../standard-model-closure/priorities.md) | Radiation, reactions, compact-object, nucleosynthesis, and structure documents. | High-energy events close energy, momentum, angular momentum, composition, remnant, and medium-update ledgers before being read as native geometry evidence. |
 
 ## Related Priorities
@@ -81,6 +81,6 @@ If any item is missing, the chapter should be marked `direction-ready`, `appendi
 - [strong-field-closure](../strong-field-closure/priorities.md)
 - [quantum-closure](../quantum-closure/priorities.md)
 - [standard-model-closure](../standard-model-closure/priorities.md)
-- braid-mass-response-map (legacy-braid ref: `braid-archive/braid-mass-response-map/priorities.md`)
-- braid-angular-momentum-spin (legacy-braid ref: `braid-archive/braid-angular-momentum-spin/priorities.md`)
+- braid-mass-response-map
+- braid-angular-momentum-spin
 - [app-simulation](../app-simulation/priorities.md)

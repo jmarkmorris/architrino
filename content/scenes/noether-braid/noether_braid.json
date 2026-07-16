@@ -54,8 +54,8 @@
         "scenePath": "content/scenes/noether-braid/noether_braid_taxonomy.json"
       },
       {
-        "nodeId": "noether_braid_proof_map",
-        "scenePath": "content/scenes/noether-braid/noether_braid_proof_map.json"
+        "nodeId": "doubling_frequency_lock",
+        "scenePath": "content/scenes/noether-braid/doubling_frequency_lock.json"
       }
     ]
   },
@@ -141,11 +141,11 @@
       "labelBadge": "doc"
     },
     {
-      "id": "noether_braid_proof_map",
-      "title": "Noether Braid Proof Map",
+      "id": "doubling_frequency_lock",
+      "title": "Doubling-Frequency Resonance Lock",
       "radius": 2.05,
       "color": "#5a5f7a",
-      "labelTitle": "Noether Braid Proof Map",
+      "labelTitle": "Doubling-Frequency Resonance Lock",
       "labelBadge": "doc"
     }
   ]

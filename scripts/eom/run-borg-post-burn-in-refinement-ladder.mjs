@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
 import { createHash } from "node:crypto";
+import { writeFile } from "node:fs/promises";
 import { performance } from "node:perf_hooks";
 
 import { createBorgNativeEomProcessClient } from "./BorgNativeEomProcessClient.mjs";
@@ -20,7 +21,7 @@ import {
 const binaryPath = process.argv[2];
 if (!binaryPath) {
   throw new Error(
-    "usage: run-borg-post-burn-in-refinement-ladder.mjs <eom_borg_shadow_cli> [--history-depth=<time>] [--burn-in-chunk=<time>] [--burn-in-step=<time>] [--burn-in-minimum-step=<time>] [--seed-only]",
+    "usage: run-borg-post-burn-in-refinement-ladder.mjs <eom_borg_shadow_cli> [--history-depth=<time>] [--burn-in-chunk=<time>] [--burn-in-step=<time>] [--burn-in-minimum-step=<time>] [--output=<path>] [--seed-only]",
   );
 }
 
@@ -31,6 +32,7 @@ const historyDepth = optionalPositiveArgument(
   manifest.simulationEnvelope.historyDepth,
 );
 const seedOnly = process.argv.includes("--seed-only");
+const outputPath = optionalStringArgument("--output=");
 const burnInStart = 0;
 const burnInEnd = historyDepth;
 const atomicChunk = 0.01;
@@ -121,7 +123,13 @@ const evidence = {
   totalWallSeconds: (performance.now() - runStartedAt) / 1000,
 };
 
-process.stdout.write(`${JSON.stringify(evidence, null, 2)}\n`);
+const serializedEvidence = `${JSON.stringify(evidence, null, 2)}\n`;
+if (outputPath) {
+  await writeFile(outputPath, serializedEvidence, "utf8");
+  process.stderr.write(`evidence written path=${outputPath}\n`);
+} else {
+  process.stdout.write(serializedEvidence);
+}
 
 async function runBurnIn() {
   const runner = createBorgEomShadowRunner(manifest, {
@@ -347,6 +355,18 @@ function optionalPositiveArgument(prefix, fallback) {
   const value = Number(argument.slice(prefix.length));
   if (!Number.isFinite(value) || value <= 0) {
     throw new RangeError(`${prefix.slice(0, -1)} must be a positive number.`);
+  }
+  return value;
+}
+
+function optionalStringArgument(prefix) {
+  const argument = process.argv.find((value) => value.startsWith(prefix));
+  if (argument == null) {
+    return null;
+  }
+  const value = argument.slice(prefix.length).trim();
+  if (!value) {
+    throw new RangeError(`${prefix.slice(0, -1)} must not be empty.`);
   }
   return value;
 }

@@ -7,7 +7,7 @@ Turn the architrino master equations, causal-action statistics, state-dependent 
 - Treat `dynamics/master-equation.md` and `dynamics/causal-action-functional.md` as the canonical analysis targets.
 - Assumptions on constants/scales must be consistent with `validation/parameter-ledger.md`.
 - Branch-analysis guidance should remain coupled to `noether-braid/explored-braid-geometries.md`, `validation/simulations/convergence-tests.md`, `validation/simulations/run-protocols.md`, and `validation/simulations/a0-branch-certificate-protocol.md`.
-- Open theorem burdens should track `reference/priorities/braid-archive/braid-nested-shell-causal-closure/nested-shell-braid-dependency-map.md` and the current $A_0$ branch-chart revision status before any closure claim is promoted.
+- Open theorem burdens should track `reference/priorities/braid-program/priorities.md` and the current $A_0$ branch-chart revision status before any closure claim is promoted.
 
 **Core responsibilities**:
 

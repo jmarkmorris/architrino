@@ -100,7 +100,7 @@ Use a full regeneration checkpoint when the operator/developer requests `regener
 Closure goal: Regenerate.
 ```
 
-A full regeneration checkpoint means running the write commands above, then the check pass below. Do not run the write commands after every small code or documentation edit. For priority-only math packets, such as [adjoint-cokernel-equations.md](../priorities/braid-archive/braid-retained-branch-closure/shell-braid/adjoint-cokernel-equations.md), stay in the targeted edit/check loop unless the packet is promoted into textbook-facing corpus material, changes scene/TOC inputs, or the operator/developer asks for a full regeneration checkpoint.
+A full regeneration checkpoint means running the write commands above, then the check pass below. Do not run the write commands after every small code or documentation edit. For priority-only mathematics packets, stay in the targeted edit/check loop unless the packet is promoted into textbook-facing corpus material, changes scene/TOC inputs, or the operator/developer asks for a full regeneration checkpoint.
 
 Outside this final branch/PR process, a generator `--check` drift report should be handed back with the exact `--write` command needed unless the operator/developer has explicitly requested regeneration or a fix-drift pass.
 

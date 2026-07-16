@@ -21,7 +21,7 @@
 
 This workstream is the discussion and staging bucket for topics above elementary Standard Model closure and below full biological explanation: nuclear binding, nuclear radiation, isotopes, atomic structure, electron orbitals, spectra, periodic-table behavior, condensed matter handoffs, molecules, biomolecules, enzymes, DNA/RNA, conformational switching, and information-bearing molecular geometry.
 
-The bucket does not replace [Standard Model Closure](../standard-model-closure/priorities.md), braid-mass-response-map (legacy-braid ref: `braid-archive/braid-mass-response-map/priorities.md`), [quantum-closure](../quantum-closure/priorities.md), [equation-mapping](../equation-mapping/equation.md), or [source-mining](../source-mining/priorities.md). It owns the repeated higher-assembly conversation layer and points hard derivation dependencies back to those parent workstreams.
+The bucket does not replace [Standard Model Closure](../standard-model-closure/priorities.md), braid-mass-response-map, [quantum-closure](../quantum-closure/priorities.md), [equation-mapping](../equation-mapping/equation.md), or [source-mining](../source-mining/priorities.md). It owns the repeated higher-assembly conversation layer and points hard derivation dependencies back to those parent workstreams.
 
 Use this bucket when the question is naturally about a physical assembly above the particle sector: a nucleus, isotope, atom, orbital family, bond, molecule, enzyme pocket, DNA/RNA structure, reaction pathway, or molecular record. Keep claims at priority-candidate level until the underlying branch, event-ledger, exposure, Noether sea response, or source-carrier rows are accepted.
 
@@ -30,7 +30,7 @@ Use this bucket when the question is naturally about a physical assembly above t
 - Nuclear binding, isotope stability, alpha/beta/gamma examples, and nuclear heat-channel accounting belong here as discussion and staging material.
 - QCD confinement, quark masses, weak-sector provenance, Higgs/scalar benchmarks, and detector-provenance records remain under [standard-model-closure](../standard-model-closure/priorities.md).
 - Generic radiation-source carrier evidence remains under [equation-mapping/EQ-29](../equation-mapping/eq-29-radiation-source-carrier-source-field-map.md). Nuclear radiation examples should route to `EQ-29` only when the photon source carrier, channel family, mechanism, and source branch rows become the active blocker.
-- Condensed-matter transport and pressure-response packets remain under braid-mass-response-map (legacy-braid ref: `braid-archive/braid-mass-response-map/priorities.md`) while their main job is mass, pressure, medium response, or transport-threshold extraction.
+- Condensed-matter transport and pressure-response packets remain under braid-mass-response-map while their main job is mass, pressure, medium response, or transport-threshold extraction.
 - Quantum measurement, basin measure, Born-rule, Bell, and spin-biology stress tests remain under [quantum-closure](../quantum-closure/priorities.md) unless the active question is an atomic, molecular, or biomolecular assembly mechanism.
 
 ## Adjacent Ownership Audit
@@ -41,7 +41,7 @@ Use this bucket when the question is naturally about a physical assembly above t
 | [Electron Orbitals](../dormant-deferred/electron-orbitals/priorities.md) | Keep in `dormant-deferred` for now; track through `atomic_orbital_import`. | It is still a merged note rather than a clean priority packet. The next move is triage into an atomic-structure/spectra bridge, not a blind directory move. |
 | [Xenon Isotope Spin-Biology Validation Watch](../quantum-closure/xenon-isotope-spin-biology.md) | Keep in `quantum-closure`. | Its active role is a blocked external validation watch for spin-sensitive biological response and measurement-response closure, not molecule-level mechanism yet. |
 | [Nuclear Atomic Image Intake](../source-mining/archive-analysis/nuclear-atomic-image-intake.md) | Keep in `source-mining/archive-analysis`. | It is an asset-provenance record for imported images, not a theory or closure packet. |
-| Orbital Quantization Recovery Packet (legacy-braid ref: `braid-archive/braid-angular-momentum-spin/orbital-quantization-recovery-packet.md`) | Keep in `braid-angular-momentum-spin`. | It proves observer-level orbital-label recovery as a contrast gate for spinor closure; atomic and molecular spin remain downstream consumers. |
+| Orbital Quantization Recovery Packet | Keep in `braid-angular-momentum-spin`. | It proves observer-level orbital-label recovery as a contrast gate for spinor closure; atomic and molecular spin remain downstream consumers. |
 
 ## Detailed Priority Files
 
@@ -67,8 +67,8 @@ Use this bucket when the question is naturally about a physical assembly above t
 ## Related Priorities
 
 - [standard-model-closure](../standard-model-closure/priorities.md)
-- braid-mass-response-map (legacy-braid ref: `braid-archive/braid-mass-response-map/priorities.md`)
-- residual-routing event ledger (legacy-braid ref: `braid-archive/braid-nested-shell-causal-closure/residual-routing-event-ledger.md`)
+- braid-mass-response-map
+- residual-routing event ledger
 - [equation-mapping/EQ-29](../equation-mapping/eq-29-radiation-source-carrier-source-field-map.md)
 - [quantum-closure](../quantum-closure/priorities.md)
 - [source-mining](../source-mining/priorities.md)

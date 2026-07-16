@@ -395,7 +395,7 @@ non-authorizing:
 | --- | --- |
 | `scripts/solver-audits/fixtures/branch-provider-current-candidates.json` / `h39-aggregate-p-provider-preaggregation-construction-attempt` | Target-only manifest row; no accepted split-map producer source. |
 | `scripts/neutral-braid/theta3minus-fold-pair-first-y-gd-h39-recurrence-refined-subcover-diagnostic.mjs` / branch producer, split-map underdetermination, $A_P$ extractor, $P_b$ pushforward audit, and aggregate-$P$ preaggregation branch-bearing audit | Candidate producers and audits report aggregate-only $P$, one free antisymmetric branch coordinate, zero $A_P$ terminal rows, no pushforward/normalization identity, and zero raw branch-bearing field hits. |
-| `reference/priorities/braid-archive/braid-geometry-export-bridge/h39-h38-source-covariance-closure-sprint-wrap-up.md` and `reference/priorities/braid-archive/braid-geometry-export-bridge/octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-h39-shared-domain-coefficient-series-engine.md` | Priority-only packet summaries; they preserve the same absence and do not authorize provider rows. |
+| `legacy source retired` and `legacy source retired` | Priority-only packet summaries; they preserve the same absence and do not authorize provider rows. |
 
 The boundary's first missing producer field remains
 `source_map_provider_object_branch_split_map_available_terminal_row_count`.

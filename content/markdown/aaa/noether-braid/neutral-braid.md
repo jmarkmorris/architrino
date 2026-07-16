@@ -17,7 +17,7 @@ $$
 
 Equivalently, the compact polarity inventory is $3\epsilon_+ + 3\epsilon_-$. This polarity-neutral ledger is imposed before any binary partition, shell ordering, or near-antipodal matching is assumed. Each positive-polarity architrino has three attractive channels to negative-polarity architrinos and two repulsive channels to the other positive-polarity architrinos. Each negative-polarity architrino has the polarity-reversed version of the same count: three attractive channels to positives and two repulsive channels to negatives. That $3+2$ channel count is part of the neutral braid bookkeeping even when no binary partition has been certified. On the face-opposite symmetry channel, the same count becomes the [drum-lacing geometry](braid-mathematics.md#drum-geometry): same-polarity repulsion spaces the two rings, opposite-polarity attraction laces them together, and rotation winds those ties into a braid.
 
-Every more specific braid family adds structure to this base case, and the current leading candidate realization — the [**spindle braid**](spindle-braid.md), the rigid uniaxial iso-frequency family — is a neutral braid in exactly this sense: three tilted antipodal binaries sharing one axis and one frequency, with the retained-branch certificate target of this chapter still the open burden.
+Every more specific braid family adds structure to this base case. One named example — the [**spindle braid**](spindle-braid.md), the rigid uniaxial iso-frequency family — is a neutral braid in exactly this sense: three tilted antipodal binaries sharing one axis and one frequency, with the retained-branch certificate target of this chapter still the open burden.
 
 We work in units with field speed $c_f=1$ unless stated otherwise.
 
@@ -124,14 +124,4 @@ $$
 
 Rows through convergence block branch retention. Case-reduction and observer-export rows classify downstream structure only after the required neutral rows close. Therefore a favorable Lorentz, photon, topology, mass-map, or shell-geometry diagnostic cannot rescue an open root, tail, dynamics, action, event, stability, or convergence row.
 
-Fixed-speed octahedral diagnostics have produced scoped negative results for the `NB-0` chart. The rigid zero-offset octahedral carrier places the six sites at octahedron vertices, with three positive-polarity sites on one triangular face and three negative-polarity sites on the opposite face, rotating rigidly at fixed speed with zero common phase offset. For that carrier, the all-pairs causal-root ledger is certified for all $30$ ordered distinct source pairs, with one positive-delay root per row, support-complete memory depth $h_{\mathrm{mem}}=2$ in the same $c_f=1$ units, and a positive Jacobian floor. This root-ledger result does not retain the branch.
-
-At the receiver node $((1,+),0)$, where the entries denote site label, polarity, and phase, the fixed-speed row has a certified nonzero dimensionless tangential residual. Here $\widetilde{\mathcal{R}}_{\mathrm{tan},(1,+)}(0)$ removes the common factor $\kappa\epsilon^2/R^2$ from the tangential force-balance residual, so zero is the fixed-speed force-closure target:
-
-$$
-\widetilde{\mathcal{R}}_{\mathrm{tan},(1,+)}(0)
-\in
-[0.19802220088,0.19802220091]
-$$
-
-This interval rejects the narrow fixed-speed branch chart. The diagnostic family also rejects several overreads: the ordinary same-source positive-delay rescue is absent under the rigid exact-$c_f$ circular convention, inventory attraction bias does not imply force closure, resolved positive-delay root rows do not imply force closure, and sampled phase or polarity-phase improvements do not imply retention. These are negative results for rigid fixed-speed octahedral hypotheses, not rejections of the broader neutral braid, shell braid, nested shell braid, bounded-speed, controlled self-hit, fold-layer, or medium-response programs.
+Reading discipline for future diagnostics on this chart, retained from earlier work at method level: a resolved causal-root ledger does not imply force closure; inventory attraction bias does not imply force closure; resolved positive-delay root rows do not imply force closure; and sampled phase or polarity-phase improvements do not imply retention. A negative result for one rigid carrier hypothesis is not a rejection of the broader neutral braid, shell braid, nested shell braid, bounded-speed, controlled self-hit, fold-layer, or medium-response programs. No measured residuals are carried in this chapter: the fixed-speed octahedral chart awaits screening on the validated engine, and results will be booked with instrument and grade when that campaign runs.

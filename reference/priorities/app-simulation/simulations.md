@@ -1119,8 +1119,8 @@ The promotion artifact `promotion_lemma_check.md` must list the exact priority-t
 ## Related Priorities
 
 - [master-equation-closure](../master-equation-closure/priorities.md)
-- mass-map (legacy-braid ref: `braid-archive/braid-mass-response-map/priorities.md`)
-- doubling-frequency-lock (legacy-braid ref: `braid-archive/braid-doubling-frequency-lock/priorities.md`)
+- mass-map
+- doubling-frequency-lock
 - [quantum-closure](../quantum-closure/priorities.md)
 - [strong-field-closure](../strong-field-closure/priorities.md)
 

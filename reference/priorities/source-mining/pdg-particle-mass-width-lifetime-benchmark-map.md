@@ -4,7 +4,7 @@ Status: mined-source packet; priority-only; no corpus promotion.
 
 Date mined: June 30, 2026.
 
-Scope: charged leptons, selected light hadrons, $W/Z/H$, top mass rows, quark mass scheme definitions, widths, lifetimes, and branching-ratio rows. This packet sharpens downstream benchmark rows for mass-map (legacy-braid ref: `braid-archive/braid-mass-response-map/priorities.md`), exposure, shielding, decay-clock, and detector-provenance recovery without using catalog values to choose native geometry.
+Scope: charged leptons, selected light hadrons, $W/Z/H$, top mass rows, quark mass scheme definitions, widths, lifetimes, and branching-ratio rows. This packet sharpens downstream benchmark rows for mass-map, exposure, shielding, decay-clock, and detector-provenance recovery without using catalog values to choose native geometry.
 
 ## Mining Result
 
@@ -95,7 +95,7 @@ This packet does not advance a retained geometry by itself. It supplies benchmar
 | Recovery target | Required retained carrier before acceptance |
 | --- | --- |
 | Charged-lepton mass map | Accepted charged-lepton branch family, shared scalar exposure quotient, shielding/exposure coefficients, reversible Noether sea response, and branch-derived mass-facing numerators. |
-| Charged-lepton Koide residual | All charged-lepton mass-map rows fixed first; observed charged-lepton masses enter only after the branch-derived residual is frozen. See Charged-Lepton Koide Residual (legacy-braid ref: `braid-archive/braid-mass-response-map/charged-lepton-koide-residual.md`) and [EQ-04A](../equation-mapping/eq-04a-koide-charged-lepton-mass-relation.md). |
+| Charged-lepton Koide residual | All charged-lepton mass-map rows fixed first; observed charged-lepton masses enter only after the branch-derived residual is frozen. See Charged-Lepton Koide Residual and [EQ-04A](../equation-mapping/eq-04a-koide-charged-lepton-mass-relation.md). |
 | Light-hadron masses | Retained hadron carrier, admitted constituent rows, binding/shielding record, and response convention. |
 | Width and lifetime rows | Same parent carrier, decay-channel rows, daughter rows, and finite-window clock convention. The current finite-window blocker remains [EQ-31](../equation-mapping/eq-14-30-31-finite-window-w-source-field-map.md). |
 | Branching-ratio rows | Same parent carrier, all declared channel windows, exposure convention, and detector/reconstruction provenance for collider products. |

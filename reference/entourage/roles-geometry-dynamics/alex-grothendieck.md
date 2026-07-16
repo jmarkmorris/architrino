@@ -5,8 +5,8 @@ Provide a **high-level structural language** (categories, functors, moduli space
 
 **Current theory alignment**:
 - Structural objects must map to canonical dynamics in `dynamics/master-equation.md`, `dynamics/causal-action-functional.md`, and `noether-braid/explored-braid-geometries.md`.
-- Retained objects should be branch records with declared causal-root ledgers, finite memory depth, Jacobian floors, inactive-root gaps, stability gaps, event ledgers, and observer-export rows; use `reference/priorities/braid-archive/braid-nested-shell-causal-closure/nested-shell-braid-dependency-map.md` as the active proof-burden map.
-- Mass-facing classification must route through `reference/priorities/braid-archive/braid-mass-response-map/priorities.md`: $E_{\text{internal}}(A)$, $\zeta(A)$, exposure quotients, and $\mathcal{M}_{\text{sea}}^{ab}$ are structured outputs, not fitted labels.
+- Retained objects should be branch records with declared causal-root ledgers, finite memory depth, Jacobian floors, inactive-root gaps, stability gaps, event ledgers, and observer-export rows; use `reference/priorities/braid-program/priorities.md` as the active proof-burden map.
+- Mass-facing classification must route through `reference/priorities/braid-program/priorities.md`: $E_{\text{internal}}(A)$, $\zeta(A)$, exposure quotients, and $\mathcal{M}_{\text{sea}}^{ab}$ are structured outputs, not fitted labels.
 - Photon and gauge classifications should respect the `assemblies/bosons/electroweak-bosons.md` gate split: kinematics/optics, polarization/spin, and vertices/transitions.
 
 **Core responsibilities**:

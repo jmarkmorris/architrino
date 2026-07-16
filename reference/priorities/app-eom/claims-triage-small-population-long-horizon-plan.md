@@ -53,7 +53,7 @@ dependency of this plan.
 ### Lane A — Returned Blocked: §97/§98 Sub-$c_f$ Sign Campaign
 
 The first campaign is recorded in the §97/§98 horizon-blocker evidence
-packet (legacy-braid ref: `braid-archive/braid-ideal/evidence/section-97-98-direct-evolution-horizon-blocker-2026-07-14.md`).
+packet.
 The exact zero-drift §97 finalist certifies at time zero and evolves only to
 $t=0.335$, or $4.83\%$ of the required $t\ge6.931754$, before identified
 ordered-pair rows report `numeric_precision_limit_exhausted`. Raising the MPFR

@@ -17,7 +17,7 @@ Instrument:
 `decimal`/`mpmath`/`dataclasses`/siblings — no `ctypes`, no native, no
 subprocess). Run: `python3 scripts/eom/section-97-ds-transversality-diagnostic.py`.
 Object: the exact §97 finalist as recorded in the
-horizon blocker packet (legacy-braid ref: `braid-archive/braid-ideal/evidence/section-97-98-direct-evolution-horizon-blocker-2026-07-14.md`),
+horizon blocker packet,
 $60$-digit interval arithmetic, circular Hermite prehistory over $[-8,0]$ at
 segment width $0.02$.
 
@@ -138,7 +138,7 @@ Measured $t=0$ accelerations against the circular need $a_{\rm req}=\rho\omega^2
 The delivered force misses the circular need by $50\%$ on ring I and $40\%$ on
 ring O. The object is not an equilibrium — independently confirming, on a
 60-digit oracle, both the T1 non-bind negative and the
-void disposition (legacy-braid ref: `braid-archive/braid-ideal/section-97-98-flutter-rerun-dispatch-packet.md`)
+void disposition
 of the §97/§98 flutter row. (The recorded $\epsilon_{\rm bind}=0.1185$ is a
 norm dominated by ring M, which is the ring nearest balance; the per-ring
 imbalance is considerably worse than that single figure suggests.)
