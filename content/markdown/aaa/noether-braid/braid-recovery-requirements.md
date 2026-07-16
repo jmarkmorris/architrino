@@ -35,7 +35,7 @@ $$
 \right)
 $$
 
-The inventory row fixes which six architrinos are present and their polarity balance. The curve and support rows fix the closed support geometry and its declared band structure — this is the only place where the family member enters, as the declared support descriptor. The root row demands the actual retained causal roots for all ordered distinct source pairs, thirty in the six-body case, with delays, Jacobian floors, receiver-normal branch strengths, and lines of action assembled from the true path histories rather than from a compressed force law. The tail, dynamics, action, and Noether rows demand that the delayed forces, the action bookkeeping, and the conserved-quantity ledger all balance on the same record. The event and stability rows demand that discrete branch events are logged and that the branch returns after perturbation, and the convergence row demands that the far-population wake sums the record depends on actually converge.
+The inventory row fixes which six architrinos are present and their polarity balance. The curve and support rows fix the closed support geometry and its declared band structure — this is the only place where the family member enters, as the declared support descriptor. The root row demands the actual retained causal roots for all ordered distinct source pairs, thirty in the six-body case, with delays, Jacobian floors, receiver-normal branch strengths, and lines of action assembled from the true path histories rather than from a compressed acceleration law. The tail, dynamics, action, and Noether rows demand that the delayed forces, the action bookkeeping, and the conserved-quantity ledger all balance on the same record. The event and stability rows demand that discrete branch events are logged and that the branch returns after perturbation, and the convergence row demands that the far-population wake sums the record depends on actually converge.
 
 Retention is the conjunction, never a partial credit:
 
@@ -96,7 +96,7 @@ The retention certificate is the first rung of a longer ladder. The burdens clos
 | 3 | Moving observer export | Transport, response-center, clock, ruler, energy/action, and preferred-frame-leakage rows for nonzero group velocity. |
 | 4 | Assembly consumer rows | The recovery-target inventory below, each target consuming the retained branch record rather than substituting for it. |
 
-Two consequences of this ordering deserve emphasis. First, isolation is a limiting seed chart, not the physical situation: a branch that fails in the Euclidean void and closes only with the embedded population-response row is still a physical success, because the universe supplies the medium. Second, consumer success never travels backward. A recovered spectrum, force law, or metric export classifies a retained branch; it does not retroactively prove retention, and it earns no claim-level promotion for the rungs beneath it.
+Two consequences of this ordering deserve emphasis. First, isolation is a limiting seed chart, not the physical situation: a branch that fails in the Euclidean void and closes only with the embedded population-response row is still a physical success, because the universe supplies the medium. Second, consumer success never travels backward. A recovered spectrum, acceleration law, or metric export classifies a retained branch; it does not retroactively prove retention, and it earns no claim-level promotion for the rungs beneath it.
 
 ## Recovery-Target Inventory
 
@@ -207,7 +207,7 @@ $$
 |\Pi_{\mathrm{all}}|=30
 $$
 
-Same-source rows $(i,i)$ are governed by the declared same-source policy and are deliberately excluded from $\Pi_{\mathrm{all}}$; the ordered distinct-pair count is therefore $6\times5=30$. The $3$ attractive and $2$ repulsive source-site counts for each receiver are inventory facts, not a compressed force law. The force row must still be assembled from the actual retained causal roots, delays, Jacobian floors, receiver-normal branch strengths, and line-of-action vectors for these ordered pairs. A shell braid or nested shell braid can reduce this ledger only after its reduction row proves how the compressed rows are inherited from the all-pairs ledger.
+Same-source rows $(i,i)$ are governed by the declared same-source policy and are deliberately excluded from $\Pi_{\mathrm{all}}$; the ordered distinct-pair count is therefore $6\times5=30$. The $3$ attractive and $2$ repulsive source-site counts for each receiver are inventory facts, not a compressed acceleration law. The force row must still be assembled from the actual retained causal roots, delays, Jacobian floors, receiver-normal branch strengths, and line-of-action vectors for these ordered pairs. A shell braid or nested shell braid can reduce this ledger only after its reduction row proves how the compressed rows are inherited from the all-pairs ledger.
 
 The certificate should report the first blocking row as
 

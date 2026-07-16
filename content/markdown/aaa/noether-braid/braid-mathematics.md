@@ -38,7 +38,7 @@ A note on what these symmetry operations are. No physical process relabels an el
 
 ### The Six-Point Symmetry Invariant Lemma
 
-The channel statement is a derivation about the delayed dynamics, proved for the partner-wake master-equation kernel class. For receiver $\ell$ at absolute time $T$, the retained force law under proof is
+The channel statement is a derivation about the delayed dynamics, proved for the partner-wake master-equation kernel class. For receiver $\ell$ at absolute time $T$, the retained acceleration law under proof is
 
 $$
 \mathbf A_\ell[\mathbf X]\!(T)

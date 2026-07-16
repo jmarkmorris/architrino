@@ -18,6 +18,8 @@ Choose terms by ontological level.
 
 The recurring editorial task is not merely lexical replacement. It is ontological bookkeeping. A good terminology choice tells the reader which level is being described, what sort of thing is being claimed to exist, and which parts of older language are being retained only as a translation aid. A bad terminology choice can make an effective summary sound ontological, or make an ontological claim sound like inherited Standard Model shorthand.
 
+A standing instance of this rule: the $\mathbb{A}\mathbb{A}\mathbb{A}$ primitive dynamical law is the **acceleration law** — architrinos carry no primitive mass, so `force law` never names the substrate law (see [Architrino](../foundations/architrino.md)). `Force law` remains correct at the observer/comparison layer and in historical prose: the effective Lorentz-force law as a recovery target, Newtonian and MOND-class comparison frameworks, and lists of emergent effective closures. Contrast sentences that deny substrate status should say "not a substrate-level law" rather than "not a substrate force law," which would imply the category exists.
+
 ## Canon Maintenance Rule
 
 Treat terminology maintenance as a theory-protective cleanup discipline, not as a search for literary variation.

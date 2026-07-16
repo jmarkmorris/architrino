@@ -1181,3 +1181,67 @@ This file holds dated decisions, implementation status, validation results, fail
   because the finite-width self-caustic fails closed first. The native process
   tests pass 4/4 and the Borg contract tests pass 30/30. Evidence:
   [eom-borg-post-burn-in-refinement-ladder-apple-m3-2026-07-15.json](evidence/eom-borg-post-burn-in-refinement-ladder-apple-m3-2026-07-15.json).
+
+## 2026-07-16 — Borg eight-path strict burn-in adjudication
+
+- The operator changed Borg's bounded migration target from 16 paths to the
+  deterministic eight-path prefix `1001`–`1008`. This preserves the selected
+  seed positions, velocities, and polarities and removes paths `1009`–`1016`
+  from the target; it does not alter any retained trajectory value or master-
+  equation rule. The selected population's maximum inertial-seed causal delay
+  is about `79.36964`, so the adjudication retained the 90-unit history horizon.
+- The eight-path strict seed-cut ladder passed at `h=0.01`, `h/2=0.005`, and
+  `h/4=0.0025`. The maximum state differences were about `5.04e-14` and
+  `6.30e-14`; the one-thread and four-thread `h/4` histories were byte
+  identical; and no root failure occurred.
+- A rebuilt native solver then ran a fresh burn-in with root, acceleration,
+  position, velocity, and correction tolerances all set to `1e-8`. It accepted
+  3,241 fixed `0.01` steps through $T=32.41$ in about 4,037 seconds. The next
+  step failed closed only for ordered pair `1003<-1004`: 5,134 of 5,135 root
+  cells were excluded, one interior cell was not surrounded, and MPFR
+  escalation exhausted at 512 bits.
+- The checkpoint/resume boundary exposed and fixed a decimal-time transport
+  defect: converting the native cut string `32.409999999999918` to a JavaScript
+  number produced `32.40999999999992`, so the native worker correctly rejected
+  the appended history as non-contiguous. Requests now preserve the exact
+  native coverage-end string. The fix changes no path polynomial or error
+  enclosure.
+- Repeated strict timestep halving crossed each former stopping time but
+  converged toward the same event. Minimum steps `0.0025`, `0.00125`,
+  `0.000625`, and `0.0003125` accepted through $T=32.465$,
+  $T=32.47875$, $T=32.479375$, and $T=32.4796875$, respectively. The final
+  rejected interval ends at $T=32.48$; pair `1003<-1004` again leaves one
+  difficult interior cell after 5,153 exclusions and exhausts 512-bit
+  escalation. **Inferred:** the halving sequence approaches an off-diagonal
+  delayed-root topology event, not an ordinary timestep error. An independent
+  complete-root certificate or unchanged strict continuation across this
+  interval would falsify that inference.
+- A separate diagnostic proved that a coarse accepted checkpoint at
+  $T=38.0703125$ cannot substitute for strict history: all four strict ladder
+  cases rejected their first step with 19 ordinary pair-root failures plus a
+  path-`1003` self-caustic route. The first missing accepted object is therefore
+  the complete interior delayed-root certificate for `1003<-1004` near
+  $T=32.48`. No strict seed-free $T=90$ checkpoint exists, so the post-burn-in
+  ladder remains correctly unrun and Borg migration remains blocked. Evidence:
+  [eom-borg-eight-path-post-burn-in-refinement-ladder-apple-m3-2026-07-16.json](evidence/eom-borg-eight-path-post-burn-in-refinement-ladder-apple-m3-2026-07-16.json).
+- The complete Borg JavaScript suite passes 63/63, including an exact native
+  checkpoint-time regression, and the native Borg process suite passes 4/4.
+
+## 2026-07-16 — MPFR multiplication attribution and exact-zero Horner fold
+
+- **Measured:** complete-run sampling attributes 87.30% of general
+  `mpfr_mul`-path samples to the position polynomial; the precision split is
+  about 20.54% at 128 bits, 31.42% at 256 bits, and 48.04% at 512 bits.
+  Square products are only 1.25% of the separate precision profile.
+- A temporary exact counter found zero operands in 5.4512% of position Horner
+  products. The retained branch copies the compiled coefficient for
+  `[0,0] * x + coefficient`, eliminating a derived 12,959,568 `mpfr_mul`
+  calls and the same number of `mpfr_add` calls in the five-step workload.
+- **Measured in three clean A-B pairs:** mean solver wall falls from
+  21.073364125 to 20.939648236 seconds (0.6345%), root-batch wall falls 1.1984%,
+  and root MPFR CPU falls 1.8834%. The whole-run gain is small and its
+  three-pair 95% interval crosses zero; the two internal reductions remain
+  separated from zero. All six trajectories are byte-identical, all work
+  counts match, 32 native tests pass, and 96/192/384-bit fallback checks remain
+  certified-complete. Evidence:
+  [section-86-mpfr-multiplication-attribution-and-zero-horner-fold-2026-07-16.md](evidence/section-86-mpfr-multiplication-attribution-and-zero-horner-fold-2026-07-16.md).

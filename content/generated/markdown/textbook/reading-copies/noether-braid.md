@@ -99,7 +99,7 @@ $$
 \right)
 $$
 
-The inventory row fixes which six architrinos are present and their polarity balance. The curve and support rows fix the closed support geometry and its declared band structure — this is the only place where the family member enters, as the declared support descriptor. The root row demands the actual retained causal roots for all ordered distinct source pairs, thirty in the six-body case, with delays, Jacobian floors, receiver-normal branch strengths, and lines of action assembled from the true path histories rather than from a compressed force law. The tail, dynamics, action, and Noether rows demand that the delayed forces, the action bookkeeping, and the conserved-quantity ledger all balance on the same record. The event and stability rows demand that discrete branch events are logged and that the branch returns after perturbation, and the convergence row demands that the far-population wake sums the record depends on actually converge.
+The inventory row fixes which six architrinos are present and their polarity balance. The curve and support rows fix the closed support geometry and its declared band structure — this is the only place where the family member enters, as the declared support descriptor. The root row demands the actual retained causal roots for all ordered distinct source pairs, thirty in the six-body case, with delays, Jacobian floors, receiver-normal branch strengths, and lines of action assembled from the true path histories rather than from a compressed acceleration law. The tail, dynamics, action, and Noether rows demand that the delayed forces, the action bookkeeping, and the conserved-quantity ledger all balance on the same record. The event and stability rows demand that discrete branch events are logged and that the branch returns after perturbation, and the convergence row demands that the far-population wake sums the record depends on actually converge.
 
 Retention is the conjunction, never a partial credit:
 
@@ -160,7 +160,7 @@ The retention certificate is the first rung of a longer ladder. The burdens clos
 | 3 | Moving observer export | Transport, response-center, clock, ruler, energy/action, and preferred-frame-leakage rows for nonzero group velocity. |
 | 4 | Assembly consumer rows | The recovery-target inventory below, each target consuming the retained branch record rather than substituting for it. |
 
-Two consequences of this ordering deserve emphasis. First, isolation is a limiting seed chart, not the physical situation: a branch that fails in the Euclidean void and closes only with the embedded population-response row is still a physical success, because the universe supplies the medium. Second, consumer success never travels backward. A recovered spectrum, force law, or metric export classifies a retained branch; it does not retroactively prove retention, and it earns no claim-level promotion for the rungs beneath it.
+Two consequences of this ordering deserve emphasis. First, isolation is a limiting seed chart, not the physical situation: a branch that fails in the Euclidean void and closes only with the embedded population-response row is still a physical success, because the universe supplies the medium. Second, consumer success never travels backward. A recovered spectrum, acceleration law, or metric export classifies a retained branch; it does not retroactively prove retention, and it earns no claim-level promotion for the rungs beneath it.
 
 ### Recovery-Target Inventory
 
@@ -271,7 +271,7 @@ $$
 |\Pi_{\mathrm{all}}|=30
 $$
 
-Same-source rows $(i,i)$ are governed by the declared same-source policy and are deliberately excluded from $\Pi_{\mathrm{all}}$; the ordered distinct-pair count is therefore $6\times5=30$. The $3$ attractive and $2$ repulsive source-site counts for each receiver are inventory facts, not a compressed force law. The force row must still be assembled from the actual retained causal roots, delays, Jacobian floors, receiver-normal branch strengths, and line-of-action vectors for these ordered pairs. A shell braid or nested shell braid can reduce this ledger only after its reduction row proves how the compressed rows are inherited from the all-pairs ledger.
+Same-source rows $(i,i)$ are governed by the declared same-source policy and are deliberately excluded from $\Pi_{\mathrm{all}}$; the ordered distinct-pair count is therefore $6\times5=30$. The $3$ attractive and $2$ repulsive source-site counts for each receiver are inventory facts, not a compressed acceleration law. The force row must still be assembled from the actual retained causal roots, delays, Jacobian floors, receiver-normal branch strengths, and line-of-action vectors for these ordered pairs. A shell braid or nested shell braid can reduce this ledger only after its reduction row proves how the compressed rows are inherited from the all-pairs ledger.
 
 The certificate should report the first blocking row as
 
@@ -315,7 +315,7 @@ This chapter uses four evidence-level terms in a controlled way:
 | --- | --- | --- |
 | branch | A candidate whole six-architrino Noether braid history over a declared finite memory window. The branch is the object whose inventory, paths, causal roots, wakes, energy/action rows, angular-momentum rows, phases, support data, response-center data, and Noether sea row are tested together. | A branch is not a single path, a single binary row, or a visual braid drawing. It is also not automatically stable or physical. |
 | retained | Evidential status for a branch, row, or chart whose required data close on the same record under the declared tolerance, event/domain convention, and stability conditions. | `Retained` does not mean assumed, preferred, or merely still under discussion. If the same-record ledgers are missing, the object remains a candidate. |
-| support | The geometric region, band, envelope, or comparison chart occupied by the branch data. Shell support, nested shell support, oblate spheroidal envelope support, and axial comparison support are different ways to describe where the six paths or their derived ledgers live. | Support is not a force law and not proof of retention. A support label says how the candidate is represented geometrically, not that the delayed dynamics preserve it. |
+| support | The geometric region, band, envelope, or comparison chart occupied by the branch data. Shell support, nested shell support, oblate spheroidal envelope support, and axial comparison support are different ways to describe where the six paths or their derived ledgers live. | Support is not an acceleration law and not proof of retention. A support label says how the candidate is represented geometrically, not that the delayed dynamics preserve it. |
 | record | The finite ledger attached to one branch over the declared memory window. It includes only data that can still affect the next delayed update or certificate: inventory, path history, causal-root rows, wake rows, energy/action rows, momentum and angular-momentum rows, phase and plane-orientation rows, support claims, response-center and group-velocity rows, and the local Noether sea row. | A record is not a narrative summary or a loose collection of diagnostics. A proof claim must say which rows close on the same record. |
 
 This chapter is the front door for classifying Noether braid configurations. It names the independent axes used to describe a candidate branch before any adjudication of retention. The taxonomy is therefore a configuration language, not a classification theorem.
@@ -439,7 +439,7 @@ The two final polarity-placement terms are:
 | axis-neutral | Each opposite axial pair contains one positive and one negative endpoint. | The schematic polarity row is `-+`, `-+`, `-+`, up to axis and endpoint relabeling. |
 | axis-polarized | One opposite axial pair contains two positives, one contains two negatives, and one remains mixed. | The schematic polarity row is `--`, `-+`, `++`, up to axis and endpoint relabeling. |
 
-These are polarity placements, not force laws. They classify a polarity placement on a chosen axial comparison chart. They do not decide whether the underlying paths are axial, circular, or retained by the delayed dynamics.
+These are polarity placements, not acceleration laws. They classify a polarity placement on a chosen axial comparison chart. They do not decide whether the underlying paths are axial, circular, or retained by the delayed dynamics.
 
 ### Angular-Momentum Handedness
 
@@ -1589,7 +1589,7 @@ A note on what these symmetry operations are. No physical process relabels an el
 
 #### The Six-Point Symmetry Invariant Lemma
 
-The channel statement is a derivation about the delayed dynamics, proved for the partner-wake master-equation kernel class. For receiver $\ell$ at absolute time $T$, the retained force law under proof is
+The channel statement is a derivation about the delayed dynamics, proved for the partner-wake master-equation kernel class. For receiver $\ell$ at absolute time $T$, the retained acceleration law under proof is
 
 $$
 \mathbf A_\ell[\mathbf X]\!(T)

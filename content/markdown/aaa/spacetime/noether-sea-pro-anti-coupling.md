@@ -59,7 +59,7 @@ The analogy is not identity:
 - no claim that baryonic protons/neutrons are being reused,
 - no claim that QCD binding equations directly apply.
 
-Instead, the model uses the helium-like picture as a design intuition for why a four-member pro/anti cluster may minimize net torque, suppress long-term precession drift, and provide a resilient seed unit for medium-level tiling. The count balance is the useful part; the nuclear analogy is not a claim about the force law.
+Instead, the model uses the helium-like picture as a design intuition for why a four-member pro/anti cluster may minimize net torque, suppress long-term precession drift, and provide a resilient seed unit for medium-level tiling. The count balance is the useful part; the nuclear analogy is not a claim about the acceleration law.
 
 ## Why This Matters for Effective Spacetime Phenomenology
 

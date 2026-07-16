@@ -195,7 +195,7 @@ When we work with the mollified effective potential $\Phi_\eta$, we can also wri
 $$\mathbf F_{o'}(T) = -\nabla_{\mathbf X_{o'}}U_{o'}(T) = -q_{o'} \nabla_{\mathbf X_{o'}} \Phi_\eta[\text{history}]\big(\mathbf X_{o'}(T),T\big),$$
 
 and this is equivalent to the Master Equation in the quasi-static, resolved-in-time limit after the same force normalization, such as $\mathbf F_{o'}=\mu_{\text{arch}}\mathbf A_{o'}$ or the appropriate $\mu_K\mathbf A_{o'}$, has been declared.
-The force-as-gradient identity is valid only when taking the gradient at fixed causal history; the fundamental force law remains the per-hit sum of the Master EOM.
+The force-as-gradient identity is valid only when taking the gradient at fixed causal history; the fundamental acceleration law remains the per-hit sum of the Master EOM.
 
 ### Macroscopic Cancellation and Localized Resonance
 
@@ -310,7 +310,7 @@ with $\varepsilon_E > 0$ a declared denominator floor. A retained $U_{\text{int}
 
 ### Conservation Status
 
-The conservation claim is a level-specific statement. For an isolated branch whose force law comes from a time-translation-invariant causal action,
+The conservation claim is a level-specific statement. For an isolated branch whose acceleration law comes from a time-translation-invariant causal action,
 
 $$
 \frac{d}{dT}E_{\text{total}}(T)=0,
@@ -1103,7 +1103,7 @@ This does **not** change dynamics; it sets a physically meaningful reference.
 
 ### Self-Hit Echo and Discrete Steps (Working Note)
 
-In this picture, the self-hit region is **not** assumed to change the local force law. The radial slope remains smooth:
+In this picture, the self-hit region is **not** assumed to change the local acceleration law. The radial slope remains smooth:
 
 $$\frac{dU}{dr} \text{ remains finite and continuous across the retained regularized branch chart.}$$
 

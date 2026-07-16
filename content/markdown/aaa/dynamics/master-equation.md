@@ -389,7 +389,7 @@ F_\ell(\phi,\theta_\ell(\phi))=0,
 $$
 and if every inactive complement remains separated by the declared positive gap. Under these conditions the implicit-function theorem gives $C^1$ dependence of $\theta_\ell$ on the retained history, so the branch acceleration, root-transport residual, receiver-normal branch-strength row, and wake-history Noether increments are functionals on one local history chart rather than pointwise rows that only happen to close at one evaluation time. This is the reconstruction-regularity content of the branch chart: the root reconstruction has an inverse bound controlled by the transversality floor, schematically $\|D\theta_\ell\|\lesssim (c_f\nu_J)^{-1}$ times the history-evaluation norm, until a fold or chart boundary is reached.
 
-This compatibility condition is a theorem-target requirement, not a new force law. It says that a promoted branch chart must define a locally replayable delayed functional system: nearby retained histories must keep the same root identities, positive source-normal Jacobian floor, bounded receiver-normal branch-strength row, inactive gaps, and finite memory depth until a declared fold, branch transition, or chart boundary is reached.
+This compatibility condition is a theorem-target requirement, not a new acceleration law. It says that a promoted branch chart must define a locally replayable delayed functional system: nearby retained histories must keep the same root identities, positive source-normal Jacobian floor, bounded receiver-normal branch-strength row, inactive gaps, and finite memory depth until a declared fold, branch transition, or chart boundary is reached.
 
 #### Local-To-Global Branch-Chart Gluing Target
 
@@ -3383,7 +3383,7 @@ $$
 U(T)=U_\ast-\int_{T_\ast}^{T}\sum_i \mu_{\text{arch}}\,\mathbf A_i(T')\cdot\mathbf V_i(T')\,dT'
 $$
 
-This work-integral form is a practical trajectory-level reconstruction when the same action-derived force law and boundary convention are used. It should not be treated as an independent off-shell Noether functional; outside the symmetry-preserving action model it is a diagnostic bookkeeping quantity rather than a proved conserved charge.
+This work-integral form is a practical trajectory-level reconstruction when the same action-derived acceleration law and boundary convention are used. It should not be treated as an independent off-shell Noether functional; outside the symmetry-preserving action model it is a diagnostic bookkeeping quantity rather than a proved conserved charge.
 
 In short-delay effective limits, $E_{\text{wake}}$ reduces to an approximate instantaneous pair form
 
@@ -3560,7 +3560,7 @@ $$
 \frac{\hat{\mathbf r}_{ij}}{c_f r_{ij}J_{ij}}
 \right]
 $$
-The first term is an endpoint or excluded-coincidence contribution; the second is the root-chart interior derivative that must be accounted for before the pure scalar kernel can be claimed to derive any branch-resolved force law. Therefore the action proof does not license dropping $\delta_\eta'(\tilde g_{ij})$ by fiat. It requires the symmetry-preserving regularization to make this interior derivative vanish, become a boundary/source-side contribution under the allowed variations, or be cancelled by an explicit counterterm. In the canonical Master EOM the branch-resolved target is $W_{ij}^{\mathrm{rec}}\hat{\mathbf r}_{ij}/r_{ij}^2$, so this residual must be rebuilt inside the receiver-normal proof rather than reused as closure evidence.
+The first term is an endpoint or excluded-coincidence contribution; the second is the root-chart interior derivative that must be accounted for before the pure scalar kernel can be claimed to derive any branch-resolved acceleration law. Therefore the action proof does not license dropping $\delta_\eta'(\tilde g_{ij})$ by fiat. It requires the symmetry-preserving regularization to make this interior derivative vanish, become a boundary/source-side contribution under the allowed variations, or be cancelled by an explicit counterterm. In the canonical Master EOM the branch-resolved target is $W_{ij}^{\mathrm{rec}}\hat{\mathbf r}_{ij}/r_{ij}^2$, so this residual must be rebuilt inside the receiver-normal proof rather than reused as closure evidence.
 
 The source-side variation narrows the issue further. Holding the receiver point fixed and varying the emission point gives
 $$
@@ -3640,7 +3640,7 @@ $$
 =
 \mathbf{0}
 $$
-or if the action is supplemented by an explicit regularized counterterm whose receiver Euler derivative cancels this residual interior vector. Such a counterterm must come from an invariant action-level mechanism, not from fitting the already accepted force law. Under the receiver-normal law this is not a completed derivation; it is a warning that the pure scalar $1/r$ Fokker-type action is only a partial variational scaffold until the $W_{ij}^{\mathrm{rec}}$ target is derived.
+or if the action is supplemented by an explicit regularized counterterm whose receiver Euler derivative cancels this residual interior vector. Such a counterterm must come from an invariant action-level mechanism, not from fitting the already accepted acceleration law. Under the receiver-normal law this is not a completed derivation; it is a warning that the pure scalar $1/r$ Fokker-type action is only a partial variational scaffold until the $W_{ij}^{\mathrm{rec}}$ target is derived.
 
 Equivalently, define the direct scale term
 $$
@@ -3700,7 +3700,7 @@ $$
 $$
 is a certificate that the pure scalar scaffold leaves a nonzero receiver-force residual on that branch. This falsifies the universal claim "the scalar $1/r$ action by itself is the exact action for the Master EOM." It does not falsify the receiver-normal Master EOM, the action-level Noether bookkeeping on closed charts, or the possibility of a later invariant counterterm derived from a richer regularized action. It does mean the action proof path must start from the receiver-normal branch target.
 
-**No-go scaffold (same-support local scalar counterterm).** The clean local scalar counterterm route is closed under the following restricted assumptions: the added term has the same causal-surface support as the $1/r$ kernel, uses only $\tilde g_{ij}$, $r_{ij}$, and $J_{ij}$ on the existing branch chart, introduces no new variables, adds no off-surface support, and is not fitted after the force law is already known. Suppressing the common coupling and sign factors, the allowed branch-pair form is
+**No-go scaffold (same-support local scalar counterterm).** The clean local scalar counterterm route is closed under the following restricted assumptions: the added term has the same causal-surface support as the $1/r$ kernel, uses only $\tilde g_{ij}$, $r_{ij}$, and $J_{ij}$ on the existing branch chart, introduces no new variables, adds no off-surface support, and is not fitted after the acceleration law is already known. Suppressing the common coupling and sign factors, the allowed branch-pair form is
 $$
 S_{\mathrm{ct},ij}^{(\eta)}
 =
@@ -4203,7 +4203,7 @@ which:
 - A **nonlocal variational scaffold** is available under the regularity and boundary assumptions stated above: a multi-time Lagrangian whose kernel enforces the causal isochron geometry and targets the Master EOM with its receiver-normal inverse-square law, becoming an exact action derivation only when the constraint residual vanishes or is explicitly cancelled.
 - The **total energy** for an isolated trajectory is history-aware; in suitable limits it reduces to a canonical $H_\text{eff} = \sum \mathbf{P}^2/2M + U_\text{eff}$ for effective assemblies, with no separate “field energy” ontology.
 
-All energy accounting remains localized to **architrinos and their assemblies** and is only updated at the instants when **causal wake surfaces intersect receivers** at $T = \text{now}$. The action-derived conserved charge is written as $K_{\mu}(T)+E_{\text{wake}}(T)$; a work-integral reconstruction $K_{\mu}(T)+U(T)$ is compatible only along realized trajectories after the same boundary convention and force law have been declared.
+All energy accounting remains localized to **architrinos and their assemblies** and is only updated at the instants when **causal wake surfaces intersect receivers** at $T = \text{now}$. The action-derived conserved charge is written as $K_{\mu}(T)+E_{\text{wake}}(T)$; a work-integral reconstruction $K_{\mu}(T)+U(T)$ is compatible only along realized trajectories after the same boundary convention and acceleration law have been declared.
 
 ---
 
@@ -4213,7 +4213,7 @@ All energy accounting remains localized to **architrinos and their assemblies** 
 
 The Master Equation is a state-dependent delay system: acceleration at time $T$ depends on the path-history segment over $[T-h,T]$. In this setting, conservation laws are not functions of the instantaneous state $(\mathbf X,\mathbf V)$ alone. Instead, they are **functionals on path history** that track "in-flight" wake contributions.
 
-The comparison to delay-equation theory should therefore be read literally but narrowly. A finite-propagation two-body law is not an ordinary present-state ODE: a valid update needs a retained history segment, the active causal-root ledger, and the same receiver/source branch rows used by the force law. In standard terminology, a reduced chart whose delayed dependencies reach only positions and velocities resembles a state-dependent delay differential equation, while a chart that retains delayed accelerations or highest-derivative constraints is closer to a neutral delay differential equation. That classification is only a mathematical comparison; the native burden remains the same-record causal-root, $D_s$, $D_T$, $W^{\mathrm{rec}}$, and wake-history ledger.
+The comparison to delay-equation theory should therefore be read literally but narrowly. A finite-propagation two-body law is not an ordinary present-state ODE: a valid update needs a retained history segment, the active causal-root ledger, and the same receiver/source branch rows used by the acceleration law. In standard terminology, a reduced chart whose delayed dependencies reach only positions and velocities resembles a state-dependent delay differential equation, while a chart that retains delayed accelerations or highest-derivative constraints is closer to a neutral delay differential equation. That classification is only a mathematical comparison; the native burden remains the same-record causal-root, $D_s$, $D_T$, $W^{\mathrm{rec}}$, and wake-history ledger.
 
 This section makes the symmetry group explicit and states the corresponding conserved functionals for isolated systems with $\eta > 0$.
 
@@ -4477,7 +4477,7 @@ $$
 \right\|dT
 \longrightarrow0
 $$
-Here $o_\ell$ denotes the receiver index of branch row $\ell$. This is the delayed-action analogue of ordinary holonomic constraint handling: one may solve constraints into generalized coordinates, or retain them with multipliers, but the multiplier ledger must not be hidden inside a claimed exact force law.
+Here $o_\ell$ denotes the receiver index of branch row $\ell$. This is the delayed-action analogue of ordinary holonomic constraint handling: one may solve constraints into generalized coordinates, or retain them with multipliers, but the multiplier ledger must not be hidden inside a claimed exact acceleration law.
 
 **Noether history-functional balance target.** Let $S_{\mathfrak{B}}^{(\eta)}$ be a symmetry-preserving regularized action on a retained branch chart, and let a one-parameter transformation have infinitesimal generator $\boldsymbol{\xi}_i(T)$ on each worldline. If the action changes only by endpoint terms,
 $$

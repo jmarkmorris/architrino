@@ -143,7 +143,7 @@ K\!\left(\mathbf X,T;\mathbf X_a(T_{\mathrm{em}}),T_{\mathrm{em}}\right)
 \left\{\|\mathbf X-\mathbf X_a(T_{\mathrm{em}})\|=c_f(T-T_{\mathrm{em}})\right\}
 $$
 
-The $dT_{\mathrm{em}}$ integral is schematic because the support condition selects causal roots of $F_a(\mathbf X,T;T_{\mathrm{em}})=\|\mathbf X-\mathbf X_a(T_{\mathrm{em}})\|-c_f(T-T_{\mathrm{em}})$ rather than an ordinary interval of source times. In the Master Equation this is implemented by a surface-delta or root-sum expression with the simple-root transversality floor $\lvert\partial_{T_{\mathrm{em}}}F_a\rvert \ge \kappa_{\mathrm{hit}} > 0$; if that floor fails, the contribution belongs to branch-chart or regularization analysis rather than to this ontology-level functional. The floor has a direct physical reading: on the wake support, $\partial_{T_{\mathrm{em}}}F_a = c_f-\hat{\mathbf r}\cdot\mathbf V_a(T_{\mathrm{em}})$, the source-normal denominator derived in [Absolute Timespace](../../../../markdown/aaa/foundations/absolute-timespace.md#causal-wake-geometry), so floor failure is the caustic condition in which the source closes on the receiver at the wake speed along the line of sight: the same zero that makes the Lienard-Wiechert delayed-potential denominator diverge in classical electrodynamics, and a generic occurrence for super-wake-speed sources. In this ontology-level wake functional the kernel's source dependence is written through the emission-time position $\mathbf X_a(T_{\mathrm{em}})$ only; source emission-velocity dependence enters through the root-sum Jacobian $1/\lvert\partial_{T_{\mathrm{em}}}F_a\rvert$, i.e. the inverse source-normal denominator, not through additional kernel arguments. The full transceiver force law separately carries the receiver-normal branch factor $W_{ij}^{\mathrm{rec}}$; both factors are owned by the [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md).
+The $dT_{\mathrm{em}}$ integral is schematic because the support condition selects causal roots of $F_a(\mathbf X,T;T_{\mathrm{em}})=\|\mathbf X-\mathbf X_a(T_{\mathrm{em}})\|-c_f(T-T_{\mathrm{em}})$ rather than an ordinary interval of source times. In the Master Equation this is implemented by a surface-delta or root-sum expression with the simple-root transversality floor $\lvert\partial_{T_{\mathrm{em}}}F_a\rvert \ge \kappa_{\mathrm{hit}} > 0$; if that floor fails, the contribution belongs to branch-chart or regularization analysis rather than to this ontology-level functional. The floor has a direct physical reading: on the wake support, $\partial_{T_{\mathrm{em}}}F_a = c_f-\hat{\mathbf r}\cdot\mathbf V_a(T_{\mathrm{em}})$, the source-normal denominator derived in [Absolute Timespace](../../../../markdown/aaa/foundations/absolute-timespace.md#causal-wake-geometry), so floor failure is the caustic condition in which the source closes on the receiver at the wake speed along the line of sight: the same zero that makes the Lienard-Wiechert delayed-potential denominator diverge in classical electrodynamics, and a generic occurrence for super-wake-speed sources. In this ontology-level wake functional the kernel's source dependence is written through the emission-time position $\mathbf X_a(T_{\mathrm{em}})$ only; source emission-velocity dependence enters through the root-sum Jacobian $1/\lvert\partial_{T_{\mathrm{em}}}F_a\rvert$, i.e. the inverse source-normal denominator, not through additional kernel arguments. The full transceiver acceleration law separately carries the receiver-normal branch factor $W_{ij}^{\mathrm{rec}}$; both factors are owned by the [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md).
 
 This formula is a level assignment, not a replacement for the Master Equation. It states the dependency: once source identity, polarity, and path history are fixed, no additional freely specifiable wake substance remains. Effective field language may summarize many wake contributions, but the substrate account remains source-provenanced causal-wake history.
 
@@ -3556,7 +3556,7 @@ F_\ell(\phi,\theta_\ell(\phi))=0,
 $$
 and if every inactive complement remains separated by the declared positive gap. Under these conditions the implicit-function theorem gives $C^1$ dependence of $\theta_\ell$ on the retained history, so the branch acceleration, root-transport residual, receiver-normal branch-strength row, and wake-history Noether increments are functionals on one local history chart rather than pointwise rows that only happen to close at one evaluation time. This is the reconstruction-regularity content of the branch chart: the root reconstruction has an inverse bound controlled by the transversality floor, schematically $\|D\theta_\ell\|\lesssim (c_f\nu_J)^{-1}$ times the history-evaluation norm, until a fold or chart boundary is reached.
 
-This compatibility condition is a theorem-target requirement, not a new force law. It says that a promoted branch chart must define a locally replayable delayed functional system: nearby retained histories must keep the same root identities, positive source-normal Jacobian floor, bounded receiver-normal branch-strength row, inactive gaps, and finite memory depth until a declared fold, branch transition, or chart boundary is reached.
+This compatibility condition is a theorem-target requirement, not a new acceleration law. It says that a promoted branch chart must define a locally replayable delayed functional system: nearby retained histories must keep the same root identities, positive source-normal Jacobian floor, bounded receiver-normal branch-strength row, inactive gaps, and finite memory depth until a declared fold, branch transition, or chart boundary is reached.
 
 ###### Local-To-Global Branch-Chart Gluing Target
 
@@ -6547,7 +6547,7 @@ $$
 U(T)=U_\ast-\int_{T_\ast}^{T}\sum_i \mu_{\text{arch}}\,\mathbf A_i(T')\cdot\mathbf V_i(T')\,dT'
 $$
 
-This work-integral form is a practical trajectory-level reconstruction when the same action-derived force law and boundary convention are used. It should not be treated as an independent off-shell Noether functional; outside the symmetry-preserving action model it is a diagnostic bookkeeping quantity rather than a proved conserved charge.
+This work-integral form is a practical trajectory-level reconstruction when the same action-derived acceleration law and boundary convention are used. It should not be treated as an independent off-shell Noether functional; outside the symmetry-preserving action model it is a diagnostic bookkeeping quantity rather than a proved conserved charge.
 
 In short-delay effective limits, $E_{\text{wake}}$ reduces to an approximate instantaneous pair form
 
@@ -6724,7 +6724,7 @@ $$
 \frac{\hat{\mathbf r}_{ij}}{c_f r_{ij}J_{ij}}
 \right]
 $$
-The first term is an endpoint or excluded-coincidence contribution; the second is the root-chart interior derivative that must be accounted for before the pure scalar kernel can be claimed to derive any branch-resolved force law. Therefore the action proof does not license dropping $\delta_\eta'(\tilde g_{ij})$ by fiat. It requires the symmetry-preserving regularization to make this interior derivative vanish, become a boundary/source-side contribution under the allowed variations, or be cancelled by an explicit counterterm. In the canonical Master EOM the branch-resolved target is $W_{ij}^{\mathrm{rec}}\hat{\mathbf r}_{ij}/r_{ij}^2$, so this residual must be rebuilt inside the receiver-normal proof rather than reused as closure evidence.
+The first term is an endpoint or excluded-coincidence contribution; the second is the root-chart interior derivative that must be accounted for before the pure scalar kernel can be claimed to derive any branch-resolved acceleration law. Therefore the action proof does not license dropping $\delta_\eta'(\tilde g_{ij})$ by fiat. It requires the symmetry-preserving regularization to make this interior derivative vanish, become a boundary/source-side contribution under the allowed variations, or be cancelled by an explicit counterterm. In the canonical Master EOM the branch-resolved target is $W_{ij}^{\mathrm{rec}}\hat{\mathbf r}_{ij}/r_{ij}^2$, so this residual must be rebuilt inside the receiver-normal proof rather than reused as closure evidence.
 
 The source-side variation narrows the issue further. Holding the receiver point fixed and varying the emission point gives
 $$
@@ -6804,7 +6804,7 @@ $$
 =
 \mathbf{0}
 $$
-or if the action is supplemented by an explicit regularized counterterm whose receiver Euler derivative cancels this residual interior vector. Such a counterterm must come from an invariant action-level mechanism, not from fitting the already accepted force law. Under the receiver-normal law this is not a completed derivation; it is a warning that the pure scalar $1/r$ Fokker-type action is only a partial variational scaffold until the $W_{ij}^{\mathrm{rec}}$ target is derived.
+or if the action is supplemented by an explicit regularized counterterm whose receiver Euler derivative cancels this residual interior vector. Such a counterterm must come from an invariant action-level mechanism, not from fitting the already accepted acceleration law. Under the receiver-normal law this is not a completed derivation; it is a warning that the pure scalar $1/r$ Fokker-type action is only a partial variational scaffold until the $W_{ij}^{\mathrm{rec}}$ target is derived.
 
 Equivalently, define the direct scale term
 $$
@@ -6864,7 +6864,7 @@ $$
 $$
 is a certificate that the pure scalar scaffold leaves a nonzero receiver-force residual on that branch. This falsifies the universal claim "the scalar $1/r$ action by itself is the exact action for the Master EOM." It does not falsify the receiver-normal Master EOM, the action-level Noether bookkeeping on closed charts, or the possibility of a later invariant counterterm derived from a richer regularized action. It does mean the action proof path must start from the receiver-normal branch target.
 
-**No-go scaffold (same-support local scalar counterterm).** The clean local scalar counterterm route is closed under the following restricted assumptions: the added term has the same causal-surface support as the $1/r$ kernel, uses only $\tilde g_{ij}$, $r_{ij}$, and $J_{ij}$ on the existing branch chart, introduces no new variables, adds no off-surface support, and is not fitted after the force law is already known. Suppressing the common coupling and sign factors, the allowed branch-pair form is
+**No-go scaffold (same-support local scalar counterterm).** The clean local scalar counterterm route is closed under the following restricted assumptions: the added term has the same causal-surface support as the $1/r$ kernel, uses only $\tilde g_{ij}$, $r_{ij}$, and $J_{ij}$ on the existing branch chart, introduces no new variables, adds no off-surface support, and is not fitted after the acceleration law is already known. Suppressing the common coupling and sign factors, the allowed branch-pair form is
 $$
 S_{\mathrm{ct},ij}^{(\eta)}
 =
@@ -7367,7 +7367,7 @@ which:
 - A **nonlocal variational scaffold** is available under the regularity and boundary assumptions stated above: a multi-time Lagrangian whose kernel enforces the causal isochron geometry and targets the Master EOM with its receiver-normal inverse-square law, becoming an exact action derivation only when the constraint residual vanishes or is explicitly cancelled.
 - The **total energy** for an isolated trajectory is history-aware; in suitable limits it reduces to a canonical $H_\text{eff} = \sum \mathbf{P}^2/2M + U_\text{eff}$ for effective assemblies, with no separate “field energy” ontology.
 
-All energy accounting remains localized to **architrinos and their assemblies** and is only updated at the instants when **causal wake surfaces intersect receivers** at $T = \text{now}$. The action-derived conserved charge is written as $K_{\mu}(T)+E_{\text{wake}}(T)$; a work-integral reconstruction $K_{\mu}(T)+U(T)$ is compatible only along realized trajectories after the same boundary convention and force law have been declared.
+All energy accounting remains localized to **architrinos and their assemblies** and is only updated at the instants when **causal wake surfaces intersect receivers** at $T = \text{now}$. The action-derived conserved charge is written as $K_{\mu}(T)+E_{\text{wake}}(T)$; a work-integral reconstruction $K_{\mu}(T)+U(T)$ is compatible only along realized trajectories after the same boundary convention and acceleration law have been declared.
 
 ---
 
@@ -7377,7 +7377,7 @@ All energy accounting remains localized to **architrinos and their assemblies** 
 
 The Master Equation is a state-dependent delay system: acceleration at time $T$ depends on the path-history segment over $[T-h,T]$. In this setting, conservation laws are not functions of the instantaneous state $(\mathbf X,\mathbf V)$ alone. Instead, they are **functionals on path history** that track "in-flight" wake contributions.
 
-The comparison to delay-equation theory should therefore be read literally but narrowly. A finite-propagation two-body law is not an ordinary present-state ODE: a valid update needs a retained history segment, the active causal-root ledger, and the same receiver/source branch rows used by the force law. In standard terminology, a reduced chart whose delayed dependencies reach only positions and velocities resembles a state-dependent delay differential equation, while a chart that retains delayed accelerations or highest-derivative constraints is closer to a neutral delay differential equation. That classification is only a mathematical comparison; the native burden remains the same-record causal-root, $D_s$, $D_T$, $W^{\mathrm{rec}}$, and wake-history ledger.
+The comparison to delay-equation theory should therefore be read literally but narrowly. A finite-propagation two-body law is not an ordinary present-state ODE: a valid update needs a retained history segment, the active causal-root ledger, and the same receiver/source branch rows used by the acceleration law. In standard terminology, a reduced chart whose delayed dependencies reach only positions and velocities resembles a state-dependent delay differential equation, while a chart that retains delayed accelerations or highest-derivative constraints is closer to a neutral delay differential equation. That classification is only a mathematical comparison; the native burden remains the same-record causal-root, $D_s$, $D_T$, $W^{\mathrm{rec}}$, and wake-history ledger.
 
 This section makes the symmetry group explicit and states the corresponding conserved functionals for isolated systems with $\eta > 0$.
 
@@ -7641,7 +7641,7 @@ $$
 \right\|dT
 \longrightarrow0
 $$
-Here $o_\ell$ denotes the receiver index of branch row $\ell$. This is the delayed-action analogue of ordinary holonomic constraint handling: one may solve constraints into generalized coordinates, or retain them with multipliers, but the multiplier ledger must not be hidden inside a claimed exact force law.
+Here $o_\ell$ denotes the receiver index of branch row $\ell$. This is the delayed-action analogue of ordinary holonomic constraint handling: one may solve constraints into generalized coordinates, or retain them with multipliers, but the multiplier ledger must not be hidden inside a claimed exact acceleration law.
 
 **Noether history-functional balance target.** Let $S_{\mathfrak{B}}^{(\eta)}$ be a symmetry-preserving regularized action on a retained branch chart, and let a one-parameter transformation have infinitesimal generator $\boldsymbol{\xi}_i(T)$ on each worldline. If the action changes only by endpoint terms,
 $$
@@ -7871,7 +7871,7 @@ When we work with the mollified effective potential $\Phi_\eta$, we can also wri
 $$\mathbf F_{o'}(T) = -\nabla_{\mathbf X_{o'}}U_{o'}(T) = -q_{o'} \nabla_{\mathbf X_{o'}} \Phi_\eta[\text{history}]\big(\mathbf X_{o'}(T),T\big),$$
 
 and this is equivalent to the Master Equation in the quasi-static, resolved-in-time limit after the same force normalization, such as $\mathbf F_{o'}=\mu_{\text{arch}}\mathbf A_{o'}$ or the appropriate $\mu_K\mathbf A_{o'}$, has been declared.
-The force-as-gradient identity is valid only when taking the gradient at fixed causal history; the fundamental force law remains the per-hit sum of the Master EOM.
+The force-as-gradient identity is valid only when taking the gradient at fixed causal history; the fundamental acceleration law remains the per-hit sum of the Master EOM.
 
 ##### Macroscopic Cancellation and Localized Resonance
 
@@ -7986,7 +7986,7 @@ with $\varepsilon_E > 0$ a declared denominator floor. A retained $U_{\text{int}
 
 ##### Conservation Status
 
-The conservation claim is a level-specific statement. For an isolated branch whose force law comes from a time-translation-invariant causal action,
+The conservation claim is a level-specific statement. For an isolated branch whose acceleration law comes from a time-translation-invariant causal action,
 
 $$
 \frac{d}{dT}E_{\text{total}}(T)=0,
@@ -8779,7 +8779,7 @@ This does **not** change dynamics; it sets a physically meaningful reference.
 
 ##### Self-Hit Echo and Discrete Steps (Working Note)
 
-In this picture, the self-hit region is **not** assumed to change the local force law. The radial slope remains smooth:
+In this picture, the self-hit region is **not** assumed to change the local acceleration law. The radial slope remains smooth:
 
 $$\frac{dU}{dr} \text{ remains finite and continuous across the retained regularized branch chart.}$$
 
@@ -9995,7 +9995,7 @@ A delay-energy construction is promotable only when the branch chart names:
 6. the crosswalk residual whenever more than one energy construction is invoked;
 7. the lower-bound condition needed for no-runaway arguments.
 
-The construction fails if conservation is recovered only by changing the energy definition per observable, if $E_{\text{wake}}^{(\eta)}$ has no lower bound on the admitted chart, if endpoint leakage is silently discarded, if the regulator is not the same regulator used by the force law, or if the branch chart loses its causal-root floors. In those cases $E_{\text{wake}}$ remains a diagnostic placeholder and cannot be used to close energy bookkeeping, stability, or no-runaway claims.
+The construction fails if conservation is recovered only by changing the energy definition per observable, if $E_{\text{wake}}^{(\eta)}$ has no lower bound on the admitted chart, if endpoint leakage is silently discarded, if the regulator is not the same regulator used by the acceleration law, or if the branch chart loses its causal-root floors. In those cases $E_{\text{wake}}$ remains a diagnostic placeholder and cannot be used to close energy bookkeeping, stability, or no-runaway claims.
 
 ##### Downstream Use
 
@@ -11545,7 +11545,7 @@ When $\mathbf{V}$ is parallel to $\mathbf{n}$, each architrino draws a constant-
 
 #### Spiral Momentum Budget Across the Hinge (Speculative)
 
-This subsection records a modeling hypothesis rather than a derived law. The desired closure would link the spiral path, the per-hit force law, and the angular-momentum budget across the full velocity range. Below the wake speed, the binary feels only partner hits, and the principal circular branch has positive tangential work. A contraction ansatz must therefore explain how radial tightening survives that anti-damping row through non-circular geometry, wake-flux export, recoil, or a later multi-root ledger. We introduce a per-cycle gain parameter $\Delta L_c$ only as a provisional bookkeeping variable for that unresolved branch-history calculation.
+This subsection records a modeling hypothesis rather than a derived law. The desired closure would link the spiral path, the per-hit acceleration law, and the angular-momentum budget across the full velocity range. Below the wake speed, the binary feels only partner hits, and the principal circular branch has positive tangential work. A contraction ansatz must therefore explain how radial tightening survives that anti-damping row through non-circular geometry, wake-flux export, recoil, or a later multi-root ledger. We introduce a per-cycle gain parameter $\Delta L_c$ only as a provisional bookkeeping variable for that unresolved branch-history calculation.
 
 **Branch-birth jump target:** a smooth doubling rule is too strong unless the active causal-root ledger stays unchanged. On a fixed signed branch chart $b(s)$, the per-cycle escaped angular-momentum entry should instead be written
 $$
@@ -12573,7 +12573,7 @@ The standard equilibrium test in central-force mechanics uses the Hessian of an 
 $$
 H_{ab}(q_\star)=\partial_a\partial_b V_{\mathrm{eff}}(q_\star)
 $$
-tests local stiffness in the non-symmetry directions. This is useful as comparison language, but it is not yet a stability proof for an architrino binary because the force law depends on path-history, the active signed causal-root ledger, the receiver-normal branch strength, and the branch Jacobian floors.
+tests local stiffness in the non-symmetry directions. This is useful as comparison language, but it is not yet a stability proof for an architrino binary because the acceleration law depends on path-history, the active signed causal-root ledger, the receiver-normal branch strength, and the branch Jacobian floors.
 
 The $\mathbb{A}\mathbb{A}\mathbb{A}$ branch-stability target is therefore a cycle-averaged stiffness matrix on a fixed branch chart. Let $b$ denote a fixed signed causal-root ledger and let $\mathbf{X}_b(T)$ be a candidate periodic history with period $P_b$. For reduced branch coordinates $y^a$ transverse to time shift, period reparameterization, Euclidean motions, and any phase-locked flat-connection moduli retained by an enclosing assembly chart, define the diagnostic stiffness target
 $$
@@ -12999,7 +12999,7 @@ $$
 =c_f[T-(T_{\mathrm{em}}-\Delta T)]
 $$
 Hence the same branch contributions appear with shifted times, and
-$\frac{d^2\mathbf Y_i}{dT^2}(T)=\frac{d^2\mathbf X_i}{dT^2}(T+\Delta T)$ satisfies the same force law.
+$\frac{d^2\mathbf Y_i}{dT^2}(T)=\frac{d^2\mathbf X_i}{dT^2}(T+\Delta T)$ satisfies the same acceleration law.
 
 For spatial isometries, set $\mathbf Y_i(T)=R\mathbf X_i(T)+\mathbf b$,
 $R\in O(3)$. Distances are preserved:
@@ -13364,7 +13364,7 @@ same record.
 
 This chapter asks whether the delayed Master EOM can be recovered from an action principle. In ordinary mechanics, a Lagrangian is useful because varying one scalar history functional gives the equations of motion. In $\mathbb{A}\mathbb{A}\mathbb{A}$ the target is harder: the functional must remember delayed causal roots, source identities, boundary terms, and receiver-normal branch strength.
 
-The restart rule is simple. Any variational scaffold in this chapter that does not produce receiver-normal branch strength is invalid as closure evidence. The current target is to vary a path-history functional whose branch-reduced force law carries $W^{\mathrm{rec}}=\lvert D_T/D_s\rvert$ on the same retained roots as the Master EOM. Source-normal denominators remain transversality diagnostics until paired with the receiver-normal numerator and checked by the stated residuals.
+The restart rule is simple. Any variational scaffold in this chapter that does not produce receiver-normal branch strength is invalid as closure evidence. The current target is to vary a path-history functional whose branch-reduced acceleration law carries $W^{\mathrm{rec}}=\lvert D_T/D_s\rvert$ on the same retained roots as the Master EOM. Source-normal denominators remain transversality diagnostics until paired with the receiver-normal numerator and checked by the stated residuals.
 
 Variational proof work therefore restarts from this canonical receiver-normal target. No prior action stationarity, energy balance, or Noether wake-history verdict is inherited unless the same derivation reproduces the receiver-normal branch law on the retained record.
 
@@ -13642,7 +13642,7 @@ $$
 \right]
 $$
 
-This receiver-side gradient is one ingredient in the full first variation, but it is not the complete Euler-Lagrange expression. In the double-time action, each varied worldline appears both as a receiver coordinate $\mathbf X_i(T)$ and as a source coordinate inside transposed kernels. The full branch-resolved variation is carried out in [master-equation](../../../../markdown/aaa/dynamics/master-equation.md#exact-nonlocal-lagrangian). The term proportional to $\phi_\eta'(\tilde g_{ij})$ is not an algebraic nuisance to discard: on a purely delayed branch it is the local signature of wake-emission recoil. If a chart proves that this term is boundary-only, the scale term below can derive the receiver-normal branch target without a recoil term; if not, the same variation points to a recoil-inclusive force law.
+This receiver-side gradient is one ingredient in the full first variation, but it is not the complete Euler-Lagrange expression. In the double-time action, each varied worldline appears both as a receiver coordinate $\mathbf X_i(T)$ and as a source coordinate inside transposed kernels. The full branch-resolved variation is carried out in [master-equation](../../../../markdown/aaa/dynamics/master-equation.md#exact-nonlocal-lagrangian). The term proportional to $\phi_\eta'(\tilde g_{ij})$ is not an algebraic nuisance to discard: on a purely delayed branch it is the local signature of wake-emission recoil. If a chart proves that this term is boundary-only, the scale term below can derive the receiver-normal branch target without a recoil term; if not, the same variation points to a recoil-inclusive acceleration law.
 
 On an effective spatial chart this split can be read as a Hodge-type decomposition of the kernel-gradient current. Schematically,
 
@@ -13658,7 +13658,7 @@ where $d\Phi_{ij}^{(\eta)}$ denotes the exact scalar-potential channel and $\del
 
 Plain language: the same delayed kernel current can separate into an exact scalar part and a curl-like recoil part. A scalar repair can handle only the exact part unless another declared action term carries the recoil channel.
 
-On charts where the constraint-variation residual is boundary-only, or is cancelled by an explicitly declared regularized action-level term, the branch-reduced target is the receiver-normal delayed force law
+On charts where the constraint-variation residual is boundary-only, or is cancelled by an explicitly declared regularized action-level term, the branch-reduced target is the receiver-normal delayed acceleration law
 $$
 \mu_{\text{arch}}\mathbf A_i(T)
 =
@@ -13795,7 +13795,7 @@ D_{\mathrm{char}}
 \qquad
 u=\tilde g+\frac{r}{c_f},
 $$
-one has $D_{\mathrm{char}}u=0$. The tail kernel is therefore the characteristic integral of the regularized hit density along $u=\mathrm{const}$. This is why it carries an endpoint convention: the repair is energy-conserving only when the endpoint boundary is characteristic to the same order as the retained chart. If the endpoint cuts across the characteristic foliation, the endpoint term is an interior Euler source and the repair has changed the force law rather than merely clearing a boundary.
+one has $D_{\mathrm{char}}u=0$. The tail kernel is therefore the characteristic integral of the regularized hit density along $u=\mathrm{const}$. This is why it carries an endpoint convention: the repair is energy-conserving only when the endpoint boundary is characteristic to the same order as the retained chart. If the endpoint cuts across the characteristic foliation, the endpoint term is an interior Euler source and the repair has changed the acceleration law rather than merely clearing a boundary.
 
 The normalized characteristic-tail kernel carries explicit energy, momentum, and angular-momentum wake-history increments in [master-equation](../../../../markdown/aaa/dynamics/master-equation.md#exact-nonlocal-lagrangian). An effective Lagrangian reduction may therefore choose that kernel only when it also carries the same boundary-increment convention and reports the corresponding variation and conservation residuals on its branch chart. Without those residuals, the reduced Lagrangian remains a scaffold for the Master EOM rather than an independent proof of the branch force.
 
@@ -14053,7 +14053,7 @@ E^{ij}-\frac{1}{3}(\nabla_{\mathbf X}\cdot\mathbf{u})h^{ij}
 \zeta_{\mathrm{cg}}(\nabla_{\mathbf X}\cdot\mathbf{u})h^{ij}
 +\Pi_{\mathrm{mem}}^{ij}
 $$
-where $E^{ij}=\frac{1}{2}(\partial_{X^i}u^j+\partial_{X^j}u^i)$ and $\mathring E^{ij}=E^{ij}-\frac{1}{3}(\nabla_{\mathbf X}\cdot\mathbf{u})h^{ij}$ is the deviatoric strain-rate tensor. This is a comparison form borrowed from continuum mechanics and kinetic theory. In $\mathbb{A}\mathbb{A}\mathbb{A}$ it becomes native only after $\eta_{\mathrm{cg}}$, $\zeta_{\mathrm{cg}}$, and $\Pi_{\mathrm{mem}}^{ij}$ are derived from the same delayed branch record that supplies the force law. The subscript in $\eta_{\mathrm{cg}}$ marks a coarse-grained viscosity-like coefficient and is distinct from the regulator $\eta$ in $\delta_\eta$.
+where $E^{ij}=\frac{1}{2}(\partial_{X^i}u^j+\partial_{X^j}u^i)$ and $\mathring E^{ij}=E^{ij}-\frac{1}{3}(\nabla_{\mathbf X}\cdot\mathbf{u})h^{ij}$ is the deviatoric strain-rate tensor. This is a comparison form borrowed from continuum mechanics and kinetic theory. In $\mathbb{A}\mathbb{A}\mathbb{A}$ it becomes native only after $\eta_{\mathrm{cg}}$, $\zeta_{\mathrm{cg}}$, and $\Pi_{\mathrm{mem}}^{ij}$ are derived from the same delayed branch record that supplies the acceleration law. The subscript in $\eta_{\mathrm{cg}}$ marks a coarse-grained viscosity-like coefficient and is distinct from the regulator $\eta$ in $\delta_\eta$.
 
 The constructive route is to read the transport coefficients as low-frequency moments of the delayed response kernel, not as independent material constants. If $\widetilde K_{\mathrm{shear}}(\omega)$ and $\widetilde K_{\mathrm{bulk}}(\omega)$ are the shear and bulk projections of the same branch-derived causal kernel, then the leading near-equilibrium coefficients have the schematic form
 
@@ -29878,7 +29878,7 @@ J_p(\phi;\theta_p)
 >0
 $$
 
-Finally, on this branch pattern the dual-mollified force law has one simple stored partner root and no exact same-side self roots on the initial history. Under the stated local Lipschitz hypothesis, standard local existence and continuous-dependence theory for functional differential equations yields a unique forward continuation on a short interval
+Finally, on this branch pattern the dual-mollified acceleration law has one simple stored partner root and no exact same-side self roots on the initial history. Under the stated local Lipschitz hypothesis, standard local existence and continuous-dependence theory for functional differential equations yields a unique forward continuation on a short interval
 $$
 [0,\tau_{\mathrm{loc}}]
 $$
@@ -38236,7 +38236,7 @@ $$
 =
 \mathbf{0}
 $$
-where $\mathbf{C}_{b,\mathrm{src}}^{(\eta)}$ is the source-side variation of the same two-time kernel and $\mathbf{C}_{b,\mathrm{bdry}}^{(\eta)}$ is the Noether boundary contribution assigned to the wake-history ledger. This is the precise local closure condition that would be needed for the pure scalar kernel to derive the terminal line-of-action force without an added term. If this cancellation fails, the action-derived terminal force law must include an additional regularized counterterm rather than using $w_b^{(\eta)}\hat{\mathbf{r}}_b$ alone.
+where $\mathbf{C}_{b,\mathrm{src}}^{(\eta)}$ is the source-side variation of the same two-time kernel and $\mathbf{C}_{b,\mathrm{bdry}}^{(\eta)}$ is the Noether boundary contribution assigned to the wake-history ledger. This is the precise local closure condition that would be needed for the pure scalar kernel to derive the terminal line-of-action force without an added term. If this cancellation fails, the action-derived terminal acceleration law must include an additional regularized counterterm rather than using $w_b^{(\eta)}\hat{\mathbf{r}}_b$ alone.
 
 The source-side calculation shows why this is a real condition rather than a notational cancellation. Holding the receiver history fixed and varying the emission point gives
 $$
@@ -38379,7 +38379,7 @@ $$
 =
 0
 $$
-The first factor would require $\rho_{b,\delta}=0$; with $k_jx_j=s_j/c_f\ne0$ and the tangent condition, that collapses the separation to $\rho_b=0$ and violates the positive-delay floor. The second factor gives $J_b=0$, which violates the Jacobian floor. Therefore per-branch stationarity is not the terminal inter-layer closure mechanism on this chart. The remaining action-level route is branch-summed residual closure over the signed admitted branch set, or a richer invariant action mechanism whose Euler derivative supplies the missing residual without fitting the force law.
+The first factor would require $\rho_{b,\delta}=0$; with $k_jx_j=s_j/c_f\ne0$ and the tangent condition, that collapses the separation to $\rho_b=0$ and violates the positive-delay floor. The second factor gives $J_b=0$, which violates the Jacobian floor. Therefore per-branch stationarity is not the terminal inter-layer closure mechanism on this chart. The remaining action-level route is branch-summed residual closure over the signed admitted branch set, or a richer invariant action mechanism whose Euler derivative supplies the missing residual without fitting the acceleration law.
 
 **Branch-summed residual closure.** The terminal action scaffold can still close without per-branch stationarity if the receiver-side interior residual cancels across the signed admitted branch set. Define the dimensionless branch residual vector
 $$
@@ -38667,7 +38667,7 @@ $$
 \right)
 $$
 
-The inventory row fixes which six architrinos are present and their polarity balance. The curve and support rows fix the closed support geometry and its declared band structure — this is the only place where the family member enters, as the declared support descriptor. The root row demands the actual retained causal roots for all ordered distinct source pairs, thirty in the six-body case, with delays, Jacobian floors, receiver-normal branch strengths, and lines of action assembled from the true path histories rather than from a compressed force law. The tail, dynamics, action, and Noether rows demand that the delayed forces, the action bookkeeping, and the conserved-quantity ledger all balance on the same record. The event and stability rows demand that discrete branch events are logged and that the branch returns after perturbation, and the convergence row demands that the far-population wake sums the record depends on actually converge.
+The inventory row fixes which six architrinos are present and their polarity balance. The curve and support rows fix the closed support geometry and its declared band structure — this is the only place where the family member enters, as the declared support descriptor. The root row demands the actual retained causal roots for all ordered distinct source pairs, thirty in the six-body case, with delays, Jacobian floors, receiver-normal branch strengths, and lines of action assembled from the true path histories rather than from a compressed acceleration law. The tail, dynamics, action, and Noether rows demand that the delayed forces, the action bookkeeping, and the conserved-quantity ledger all balance on the same record. The event and stability rows demand that discrete branch events are logged and that the branch returns after perturbation, and the convergence row demands that the far-population wake sums the record depends on actually converge.
 
 Retention is the conjunction, never a partial credit:
 
@@ -38728,7 +38728,7 @@ The retention certificate is the first rung of a longer ladder. The burdens clos
 | 3 | Moving observer export | Transport, response-center, clock, ruler, energy/action, and preferred-frame-leakage rows for nonzero group velocity. |
 | 4 | Assembly consumer rows | The recovery-target inventory below, each target consuming the retained branch record rather than substituting for it. |
 
-Two consequences of this ordering deserve emphasis. First, isolation is a limiting seed chart, not the physical situation: a branch that fails in the Euclidean void and closes only with the embedded population-response row is still a physical success, because the universe supplies the medium. Second, consumer success never travels backward. A recovered spectrum, force law, or metric export classifies a retained branch; it does not retroactively prove retention, and it earns no claim-level promotion for the rungs beneath it.
+Two consequences of this ordering deserve emphasis. First, isolation is a limiting seed chart, not the physical situation: a branch that fails in the Euclidean void and closes only with the embedded population-response row is still a physical success, because the universe supplies the medium. Second, consumer success never travels backward. A recovered spectrum, acceleration law, or metric export classifies a retained branch; it does not retroactively prove retention, and it earns no claim-level promotion for the rungs beneath it.
 
 #### Recovery-Target Inventory
 
@@ -38839,7 +38839,7 @@ $$
 |\Pi_{\mathrm{all}}|=30
 $$
 
-Same-source rows $(i,i)$ are governed by the declared same-source policy and are deliberately excluded from $\Pi_{\mathrm{all}}$; the ordered distinct-pair count is therefore $6\times5=30$. The $3$ attractive and $2$ repulsive source-site counts for each receiver are inventory facts, not a compressed force law. The force row must still be assembled from the actual retained causal roots, delays, Jacobian floors, receiver-normal branch strengths, and line-of-action vectors for these ordered pairs. A shell braid or nested shell braid can reduce this ledger only after its reduction row proves how the compressed rows are inherited from the all-pairs ledger.
+Same-source rows $(i,i)$ are governed by the declared same-source policy and are deliberately excluded from $\Pi_{\mathrm{all}}$; the ordered distinct-pair count is therefore $6\times5=30$. The $3$ attractive and $2$ repulsive source-site counts for each receiver are inventory facts, not a compressed acceleration law. The force row must still be assembled from the actual retained causal roots, delays, Jacobian floors, receiver-normal branch strengths, and line-of-action vectors for these ordered pairs. A shell braid or nested shell braid can reduce this ledger only after its reduction row proves how the compressed rows are inherited from the all-pairs ledger.
 
 The certificate should report the first blocking row as
 
@@ -38883,7 +38883,7 @@ This chapter uses four evidence-level terms in a controlled way:
 | --- | --- | --- |
 | branch | A candidate whole six-architrino Noether braid history over a declared finite memory window. The branch is the object whose inventory, paths, causal roots, wakes, energy/action rows, angular-momentum rows, phases, support data, response-center data, and Noether sea row are tested together. | A branch is not a single path, a single binary row, or a visual braid drawing. It is also not automatically stable or physical. |
 | retained | Evidential status for a branch, row, or chart whose required data close on the same record under the declared tolerance, event/domain convention, and stability conditions. | `Retained` does not mean assumed, preferred, or merely still under discussion. If the same-record ledgers are missing, the object remains a candidate. |
-| support | The geometric region, band, envelope, or comparison chart occupied by the branch data. Shell support, nested shell support, oblate spheroidal envelope support, and axial comparison support are different ways to describe where the six paths or their derived ledgers live. | Support is not a force law and not proof of retention. A support label says how the candidate is represented geometrically, not that the delayed dynamics preserve it. |
+| support | The geometric region, band, envelope, or comparison chart occupied by the branch data. Shell support, nested shell support, oblate spheroidal envelope support, and axial comparison support are different ways to describe where the six paths or their derived ledgers live. | Support is not an acceleration law and not proof of retention. A support label says how the candidate is represented geometrically, not that the delayed dynamics preserve it. |
 | record | The finite ledger attached to one branch over the declared memory window. It includes only data that can still affect the next delayed update or certificate: inventory, path history, causal-root rows, wake rows, energy/action rows, momentum and angular-momentum rows, phase and plane-orientation rows, support claims, response-center and group-velocity rows, and the local Noether sea row. | A record is not a narrative summary or a loose collection of diagnostics. A proof claim must say which rows close on the same record. |
 
 This chapter is the front door for classifying Noether braid configurations. It names the independent axes used to describe a candidate branch before any adjudication of retention. The taxonomy is therefore a configuration language, not a classification theorem.
@@ -39007,7 +39007,7 @@ The two final polarity-placement terms are:
 | axis-neutral | Each opposite axial pair contains one positive and one negative endpoint. | The schematic polarity row is `-+`, `-+`, `-+`, up to axis and endpoint relabeling. |
 | axis-polarized | One opposite axial pair contains two positives, one contains two negatives, and one remains mixed. | The schematic polarity row is `--`, `-+`, `++`, up to axis and endpoint relabeling. |
 
-These are polarity placements, not force laws. They classify a polarity placement on a chosen axial comparison chart. They do not decide whether the underlying paths are axial, circular, or retained by the delayed dynamics.
+These are polarity placements, not acceleration laws. They classify a polarity placement on a chosen axial comparison chart. They do not decide whether the underlying paths are axial, circular, or retained by the delayed dynamics.
 
 #### Angular-Momentum Handedness
 
@@ -40157,7 +40157,7 @@ A note on what these symmetry operations are. No physical process relabels an el
 
 ##### The Six-Point Symmetry Invariant Lemma
 
-The channel statement is a derivation about the delayed dynamics, proved for the partner-wake master-equation kernel class. For receiver $\ell$ at absolute time $T$, the retained force law under proof is
+The channel statement is a derivation about the delayed dynamics, proved for the partner-wake master-equation kernel class. For receiver $\ell$ at absolute time $T$, the retained acceleration law under proof is
 
 $$
 \mathbf A_\ell[\mathbf X]\!(T)
@@ -43420,7 +43420,7 @@ The analogy is not identity:
 - no claim that baryonic protons/neutrons are being reused,
 - no claim that QCD binding equations directly apply.
 
-Instead, the model uses the helium-like picture as a design intuition for why a four-member pro/anti cluster may minimize net torque, suppress long-term precession drift, and provide a resilient seed unit for medium-level tiling. The count balance is the useful part; the nuclear analogy is not a claim about the force law.
+Instead, the model uses the helium-like picture as a design intuition for why a four-member pro/anti cluster may minimize net torque, suppress long-term precession drift, and provide a resilient seed unit for medium-level tiling. The count balance is the useful part; the nuclear analogy is not a claim about the acceleration law.
 
 #### Why This Matters for Effective Spacetime Phenomenology
 
@@ -45575,7 +45575,7 @@ An orientation-independent material clock requires the coefficients of $\cos^2\t
 $$
 g(\beta_\star)=\sqrt{1-\beta_\star^2}
 $$
-in the zero-leakage homogeneous limit. This selects the Lorentz contraction law as the unique axial deformation that removes matter-sector orientation leakage for this closed-return benchmark. It is still not a stability theorem: the delayed force law must also show that the contracted branch is an attracting solution of the boosted delay dynamics.
+in the zero-leakage homogeneous limit. This selects the Lorentz contraction law as the unique axial deformation that removes matter-sector orientation leakage for this closed-return benchmark. It is still not a stability theorem: the delayed acceleration law must also show that the contracted branch is an attracting solution of the boosted delay dynamics.
 
 The same equations give a direct geometry dictionary for the oblate spheroidal envelope. In the no-extra-scale channel, take $R_{\perp}=R_0$ and $R_{\parallel}=R_0/\gamma_\star$. Then
 $$
@@ -45648,7 +45648,7 @@ q
 $$
 with admissibility requiring the same causal-root ledger to close the oblate spheroidal envelope geometry, clock period, and preferred-frame leakage bounds. Thus a continuous Lorentz formula would be recovered as the common envelope of discrete Noether braid return-cycle classes only after those branch-admissibility conditions close.
 
-Confirmation status: the ruler law has no confirmation from evolved dynamics at any drift speed. The kinematic content — that the drifting rigid family's shape ratio $\xi(u)/\xi(0)$ should approach $1/\gamma_f(u)$ — remains a closure target of the delayed force law, not a measured result, and confirming it requires evolving the drifting family directly under the master equation and measuring the envelope it actually settles to. Whether the contracted branch is an attracting solution of the boosted delay dynamics is the same open question stated above; it is not answered here.
+Confirmation status: the ruler law has no confirmation from evolved dynamics at any drift speed. The kinematic content — that the drifting rigid family's shape ratio $\xi(u)/\xi(0)$ should approach $1/\gamma_f(u)$ — remains a closure target of the delayed acceleration law, not a measured result, and confirming it requires evolving the drifting family directly under the master equation and measuring the envelope it actually settles to. Whether the contracted branch is an attracting solution of the boosted delay dynamics is the same open question stated above; it is not answered here.
 
 To keep this closure target testable, the branch should report a single Lorentz residual record rather than separate narrative successes. For a declared channel speed $c_\star$ and branch $q$, write
 $$
@@ -59082,7 +59082,7 @@ $$
 \frac{m_*}{n_{\mathrm{car}}e^2\tau}
 $$
 
-This baseline is observer-level bookkeeping. The effective magnetic-state map must still be derived from the photon/action ledger and material branch, and the Lorentz-force form must remain a recovery target rather than a primitive substrate force law.
+This baseline is observer-level bookkeeping. The effective magnetic-state map must still be derived from the photon/action ledger and material branch, and the Lorentz-force form must remain a recovery target rather than a primitive substrate law.
 
 The integer quantum Hall recovery target is stronger. In a two-dimensional gapped branch, the Hall conductivity must reduce to
 
@@ -59470,7 +59470,7 @@ Specify Noether sea state variables used by mapping, with arguments suppressed o
 $(\rho_{\text{NS}}(\mathbf X,T), n(\mathbf X,T), \chi_{\text{sea}}(\mathbf X,T), \mathcal{V}_{\mathrm{NS}}, \nabla \rho_{\text{NS}}, \Phi_{\text{eff}}, T_{\mathrm{sea}}^{\mathrm{th}}, J_{\mathrm{loc}})$.
 Here $\mathcal{V}_{\mathrm{NS}}$ is the effective Noether sea anisotropy/vorticity map used by the magnetic-like channel below, $T_{\mathrm{sea}}^{\mathrm{th}}$ is the local effective temperature characterizing internal mode excitation as in [Dark Energy](../../../../markdown/aaa/cosmology/dark-energy.md) — a temperature entry, not a time coordinate — and $J_{\mathrm{loc}}$ is the local causal-root/Jacobian data — including the same-record receiver-normal branch strength — entering the delayed-branch sums below. These variables are mapping handles, not replacement observables.
 
-Magnetic-like observer language belongs at this mapping layer. It is not a substrate force law and is not imported from rotating-frame coordinates. At substrate level each primitive hit remains line-of-action; the magnetic-like transverse channel is the part of the delayed-branch sum that survives after projection perpendicular to the assembly drift and after Noether sea anisotropy/vorticity dressing.
+Magnetic-like observer language belongs at this mapping layer. It is not a substrate-level law and is not imported from rotating-frame coordinates. At substrate level each primitive hit remains line-of-action; the magnetic-like transverse channel is the part of the delayed-branch sum that survives after projection perpendicular to the assembly drift and after Noether sea anisotropy/vorticity dressing.
 
 For an assembly $A$ with $\|\mathbf{V}_A\| > 0$, define
 $$
@@ -59803,7 +59803,7 @@ Every architrino emits its wake at all times. The causal-isochron record that ca
 
 The always-on wake is therefore the emission of the potential, and it should keep the name **wake**. The word `transmission` is reserved in this chapter for the material row where a photon passes through a medium (reflection, transmission, absorption); it must not be reused for the substrate wake, or the two meanings collide.
 
-A steady bound assembly makes the distinction sharp. A stable Noether braid emits its wake on every cycle, yet radiates nothing: the field falls off as a bound $1/r^2$ near-field rather than a radiative $1/r$ tail, so over a return cycle the far-field transport of energy, momentum, and angular momentum nets to zero. This is not a cancellation arranged among many charges — a single source cannot cancel its own field. It follows from the force law itself: the $\mathbb{A}\mathbb{A}\mathbb{A}$ master-equation integrand carries delayed line-of-action velocities with no separate acceleration term, so a source in steady motion has no $1/r$ radiative component to shed. The substrate reason stable matter does not radiate is thus the same reason a ground-state atom does not spiral in — a bound return map leaves no routed residual. Radiation reappears only when transport changes fast enough to leave a closure residual (the driven and accelerated sector), which is where the Larmor/Lienard and synchrotron recoveries below live.
+A steady bound assembly makes the distinction sharp. A stable Noether braid emits its wake on every cycle, yet radiates nothing: the field falls off as a bound $1/r^2$ near-field rather than a radiative $1/r$ tail, so over a return cycle the far-field transport of energy, momentum, and angular momentum nets to zero. This is not a cancellation arranged among many charges — a single source cannot cancel its own field. It follows from the acceleration law itself: the $\mathbb{A}\mathbb{A}\mathbb{A}$ master-equation integrand carries delayed line-of-action velocities with no separate acceleration term, so a source in steady motion has no $1/r$ radiative component to shed. The substrate reason stable matter does not radiate is thus the same reason a ground-state atom does not spiral in — a bound return map leaves no routed residual. Radiation reappears only when transport changes fast enough to leave a closure residual (the driven and accelerated sector), which is where the Larmor/Lienard and synchrotron recoveries below live.
 
 #### Radiation as the Cost of an Unprepared Path
 
@@ -59925,7 +59925,7 @@ $$
 
 where $\Gamma(T)$ is the assembly microstate and the other inputs are the causal-root, Jacobian, density, and delay data already used elsewhere in the corpus.
 
-The classical point-charge comparison sharpens this requirement. A singular charged source makes the near-field energy formally divergent, so the observed inertial mass cannot be identified with electromagnetic field energy alone without adding a compensating internal term. In $\mathbb{A}\mathbb{A}\mathbb{A}$ language, that pathology is a warning against treating radiation damping as a separate force law attached after the motion has been chosen. The event record must instead expose the finite balance
+The classical point-charge comparison sharpens this requirement. A singular charged source makes the near-field energy formally divergent, so the observed inertial mass cannot be identified with electromagnetic field energy alone without adding a compensating internal term. In $\mathbb{A}\mathbb{A}\mathbb{A}$ language, that pathology is a warning against treating radiation damping as a separate acceleration law attached after the motion has been chosen. The event record must instead expose the finite balance
 
 $$
 \mathcal{D}_{\mathrm{rad}}
@@ -85040,7 +85040,7 @@ chapters still own their local details.
 | Euclidean geometry and vector calculus | Spatial metric $h_{ij}$, norms, dot products, gradients, and spatial integration on $\Sigma_T$ | Native substrate commitment plus direct mathematical tool | Geometry is fundamental only as Euclidean void geometry; it does not license Newtonian force ontology or 4D spacetime ontology |
 | Absolute-time parameterization | Global time $T$, worldlines, causal emission times $T_{\mathrm{em}}$, and $\mathbb{U}_{\text{now}}\equiv S(T)$ | Native substrate commitment | Proper time, clock readout, and time dilation remain observer-level recovery targets |
 | Distributional causal surfaces | Delta functions, Heaviside support, mollification, branch integrals, and weak limits | Direct mathematical tool | The distribution is a formal representation of causal wake support, not a continuum field substance |
-| Jacobian and branch analysis | Causal-root weights, transversality floors, caustic handling, and multi-root bookkeeping | Direct mathematical tool | A root ledger records admissible delayed channels; it is not itself a force law or stability proof |
+| Jacobian and branch analysis | Causal-root weights, transversality floors, caustic handling, and multi-root bookkeeping | Direct mathematical tool | A root ledger records admissible delayed channels; it is not itself an acceleration law or stability proof |
 | Inverse-square surface dilution | Causal wake density over expanding surfaces | Native dynamics component | It supplies the microscopic kernel but still owes effective recovery of observer-level field laws |
 | Conservation language | Energy, momentum, angular momentum, charge/polarity inventory, and event ledgers | Benchmark record plus native bookkeeping target | Observer-level conservation laws must be traced to event records rather than inserted as standalone axioms |
 | Standard Model labels | Electric charge, color, weak isospin, hypercharge, chirality, generation, CKM/PMNS rows, and anomaly checks | Validated benchmark record | Labels may organize the assembly dictionary, but the gauge dynamics and couplings remain derivation targets |
@@ -92657,7 +92657,7 @@ then the bridge fails. The theory must not tune the ruler, clock, momentum, and 
 
 Return-Cycle Lorentz Quantization is a derivation and simulation target, not a completed theorem. The corpus has the closed-return axis-ratio derivation, the geometry projection, and the all-layer branch ledger scaffold. The next closure step is to solve an explicit translating branch family from the master delayed law, extract $\mathcal{L}_{\mathrm{root}}^{(q)}(v)$, and verify that the same branch gives the clock factor, ruler factor, and two-way leakage bound.
 
-That step has no confirmation from evolved dynamics. What the translating rigid family supplies is exact algebra rather than a measured trajectory: the speed budget and internal cadence relation $\omega(v)=\omega_0/\gamma_\star$ follow from the family's own kinematics, and the leg-difference simultaneity offset is exactly zero at rest and grows with drift in step with the $v\gamma_\star^2$ prediction. That the moving envelope's relative flattening actually tracks the ruler law $\xi(v)/\xi(0)\to1/\gamma_\star$ is a prediction of that algebra, and remains a target: it requires the family to be evolved under the delayed force law and its settled envelope measured. The open remainder is therefore confirmation at any drift speed, then across the full drift range, together with the joint clock-ruler-leakage solve on a retained branch. At larger drift the moving assembly's axis orientation must be held by its medium rather than by the isolated assembly, a burden carried by the Noether sea response; the small-drift regime is where the assembly's own structure suffices.
+That step has no confirmation from evolved dynamics. What the translating rigid family supplies is exact algebra rather than a measured trajectory: the speed budget and internal cadence relation $\omega(v)=\omega_0/\gamma_\star$ follow from the family's own kinematics, and the leg-difference simultaneity offset is exactly zero at rest and grows with drift in step with the $v\gamma_\star^2$ prediction. That the moving envelope's relative flattening actually tracks the ruler law $\xi(v)/\xi(0)\to1/\gamma_\star$ is a prediction of that algebra, and remains a target: it requires the family to be evolved under the delayed acceleration law and its settled envelope measured. The open remainder is therefore confirmation at any drift speed, then across the full drift range, together with the joint clock-ruler-leakage solve on a retained branch. At larger drift the moving assembly's axis orientation must be held by its medium rather than by the isolated assembly, a burden carried by the Noether sea response; the small-drift regime is where the assembly's own structure suffices.
 
 If that step succeeds, the result is more than a Lorentz derivation. It is a controlled bridge between special relativity, one-$h$ action increments, and Noether braid geometry.
 

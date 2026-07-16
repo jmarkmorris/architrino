@@ -1493,8 +1493,12 @@ MpInterval mp_polynomial(
   const MpInterval local_time = time - segment.start_time;
   MpInterval result = coefficients[3];
   for (int index = 2; index >= 0; --index) {
-    result = result * local_time +
-        coefficients[static_cast<std::size_t>(index)];
+    const auto coefficient_index = static_cast<std::size_t>(index);
+    if (result.is_exact_zero() || local_time.is_exact_zero()) {
+      result = coefficients[coefficient_index];
+    } else {
+      result = result * local_time + coefficients[coefficient_index];
+    }
   }
   return result;
 }

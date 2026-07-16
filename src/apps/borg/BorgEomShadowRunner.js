@@ -359,7 +359,7 @@ export function createBorgEomShadowRequest({
     throw new TypeError("Borg EOM request requires continuous retained histories.");
   }
   histories.forEach((history) => {
-    if (Number(history.coverageEnd) !== startTime) {
+    if (Number(history.coverageEnd) !== Number(startTime)) {
       throw new Error("Borg EOM histories must end at the requested evolution start.");
     }
   });

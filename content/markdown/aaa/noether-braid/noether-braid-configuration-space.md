@@ -22,7 +22,7 @@ This chapter uses four evidence-level terms in a controlled way:
 | --- | --- | --- |
 | branch | A candidate whole six-architrino Noether braid history over a declared finite memory window. The branch is the object whose inventory, paths, causal roots, wakes, energy/action rows, angular-momentum rows, phases, support data, response-center data, and Noether sea row are tested together. | A branch is not a single path, a single binary row, or a visual braid drawing. It is also not automatically stable or physical. |
 | retained | Evidential status for a branch, row, or chart whose required data close on the same record under the declared tolerance, event/domain convention, and stability conditions. | `Retained` does not mean assumed, preferred, or merely still under discussion. If the same-record ledgers are missing, the object remains a candidate. |
-| support | The geometric region, band, envelope, or comparison chart occupied by the branch data. Shell support, nested shell support, oblate spheroidal envelope support, and axial comparison support are different ways to describe where the six paths or their derived ledgers live. | Support is not a force law and not proof of retention. A support label says how the candidate is represented geometrically, not that the delayed dynamics preserve it. |
+| support | The geometric region, band, envelope, or comparison chart occupied by the branch data. Shell support, nested shell support, oblate spheroidal envelope support, and axial comparison support are different ways to describe where the six paths or their derived ledgers live. | Support is not an acceleration law and not proof of retention. A support label says how the candidate is represented geometrically, not that the delayed dynamics preserve it. |
 | record | The finite ledger attached to one branch over the declared memory window. It includes only data that can still affect the next delayed update or certificate: inventory, path history, causal-root rows, wake rows, energy/action rows, momentum and angular-momentum rows, phase and plane-orientation rows, support claims, response-center and group-velocity rows, and the local Noether sea row. | A record is not a narrative summary or a loose collection of diagnostics. A proof claim must say which rows close on the same record. |
 
 This chapter is the front door for classifying Noether braid configurations. It names the independent axes used to describe a candidate branch before any adjudication of retention. The taxonomy is therefore a configuration language, not a classification theorem.
@@ -148,7 +148,7 @@ The two final polarity-placement terms are:
 | axis-neutral | Each opposite axial pair contains one positive and one negative endpoint. | The schematic polarity row is `-+`, `-+`, `-+`, up to axis and endpoint relabeling. |
 | axis-polarized | One opposite axial pair contains two positives, one contains two negatives, and one remains mixed. | The schematic polarity row is `--`, `-+`, `++`, up to axis and endpoint relabeling. |
 
-These are polarity placements, not force laws. They classify a polarity placement on a chosen axial comparison chart. They do not decide whether the underlying paths are axial, circular, or retained by the delayed dynamics.
+These are polarity placements, not acceleration laws. They classify a polarity placement on a chosen axial comparison chart. They do not decide whether the underlying paths are axial, circular, or retained by the delayed dynamics.
 
 ## Angular-Momentum Handedness
 

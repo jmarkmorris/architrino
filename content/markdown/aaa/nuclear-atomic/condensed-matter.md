@@ -358,7 +358,7 @@ $$
 \frac{m_*}{n_{\mathrm{car}}e^2\tau}
 $$
 
-This baseline is observer-level bookkeeping. The effective magnetic-state map must still be derived from the photon/action ledger and material branch, and the Lorentz-force form must remain a recovery target rather than a primitive substrate force law.
+This baseline is observer-level bookkeeping. The effective magnetic-state map must still be derived from the photon/action ledger and material branch, and the Lorentz-force form must remain a recovery target rather than a primitive substrate law.
 
 The integer quantum Hall recovery target is stronger. In a two-dimensional gapped branch, the Hall conductivity must reduce to
 

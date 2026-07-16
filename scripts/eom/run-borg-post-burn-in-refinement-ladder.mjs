@@ -23,7 +23,7 @@ import {
 const binaryPath = process.argv[2];
 if (!binaryPath) {
   throw new Error(
-    "usage: run-borg-post-burn-in-refinement-ladder.mjs <eom_borg_shadow_cli> [--path-count=<count>] [--history-depth=<time>] [--burn-in-chunk=<time>] [--burn-in-step=<time>] [--burn-in-minimum-step=<time>] [--burn-in-root-tolerance=<time>] [--maximum-mpfr-bits=<bits>] [--quadrature-max-depth=<count>] [--quadrature-max-cells=<count>] [--checkpoint=<path>] [--resume=<path>] [--output=<path>] [--seed-only]",
+    "usage: run-borg-post-burn-in-refinement-ladder.mjs <eom_borg_shadow_cli> [--path-count=<count>] [--history-depth=<time>] [--burn-in-chunk=<time>] [--burn-in-step=<time>] [--burn-in-minimum-step=<time>] [--burn-in-root-tolerance=<time>] [--burn-in-acceleration-tolerance=<value>] [--burn-in-position-tolerance=<value>] [--burn-in-velocity-tolerance=<value>] [--burn-in-correction-tolerance=<value>] [--burn-in-thread-count=<count>] [--maximum-mpfr-bits=<bits>] [--quadrature-max-depth=<count>] [--quadrature-max-cells=<count>] [--checkpoint=<path>] [--resume=<path>] [--output=<path>] [--seed-only] [--ladder-from-resume]",
   );
 }
 
@@ -40,6 +40,7 @@ const historyDepth = optionalPositiveArgument(
   manifest.simulationEnvelope.historyDepth,
 );
 const seedOnly = process.argv.includes("--seed-only");
+const ladderFromResume = process.argv.includes("--ladder-from-resume");
 const outputPath = optionalStringArgument("--output=");
 const resumePath = optionalStringArgument("--resume=");
 const checkpointPath = optionalStringArgument("--checkpoint=") ?? resumePath;
@@ -61,6 +62,26 @@ const burnInMinimumStep = optionalPositiveArgument(
 const burnInRootTolerance = optionalPositiveArgument(
   "--burn-in-root-tolerance=",
   1e-3,
+);
+const burnInAccelerationTolerance = optionalPositiveArgument(
+  "--burn-in-acceleration-tolerance=",
+  1e-1,
+);
+const burnInPositionTolerance = optionalPositiveArgument(
+  "--burn-in-position-tolerance=",
+  1e-2,
+);
+const burnInVelocityTolerance = optionalPositiveArgument(
+  "--burn-in-velocity-tolerance=",
+  1e-2,
+);
+const burnInCorrectionTolerance = optionalPositiveArgument(
+  "--burn-in-correction-tolerance=",
+  1e-1,
+);
+const burnInThreadCount = optionalPositiveIntegerArgument(
+  "--burn-in-thread-count=",
+  4,
 );
 const maximumMpfrBits = optionalPositiveIntegerArgument("--maximum-mpfr-bits=", 512);
 const quadratureMaxDepth = optionalPositiveIntegerArgument("--quadrature-max-depth=", 32);
@@ -103,13 +124,31 @@ let seedCutControl;
 let burnIn;
 let postBurnInStrictLadder;
 try {
-  seedCutControl = await runStrictLadder(seedHistories, burnInStart);
-  burnIn = seedOnly
-    ? Object.freeze({ status: "not_run_seed_only" })
-    : await runBurnIn();
-  postBurnInStrictLadder = burnIn.status === "completed"
-    ? await runStrictLadder(burnIn.histories, burnInEnd)
-    : Object.freeze({
+  if (ladderFromResume) {
+    if (!resumePath) {
+      throw new Error("--ladder-from-resume requires --resume=<checkpoint>.");
+    }
+    const checkpoint = JSON.parse(await readFile(resumePath, "utf8"));
+    validateBurnInCheckpoint(checkpoint);
+    seedCutControl = Object.freeze({ status: "not_run_ladder_from_resume" });
+    burnIn = Object.freeze({
+      status: "checkpoint_ladder_only",
+      acceptedEndTime: checkpoint.nextStartTime,
+      completedChunks: checkpoint.completedChunks,
+      histories: Object.freeze(checkpoint.histories),
+    });
+    postBurnInStrictLadder = await runStrictLadder(
+      burnIn.histories,
+      checkpoint.nextStartTime,
+    );
+  } else {
+    seedCutControl = await runStrictLadder(seedHistories, burnInStart);
+    burnIn = seedOnly
+      ? Object.freeze({ status: "not_run_seed_only" })
+      : await runBurnIn();
+    postBurnInStrictLadder = burnIn.status === "completed"
+      ? await runStrictLadder(burnIn.histories, burnInEnd)
+      : Object.freeze({
         status: seedOnly
           ? "not_run_seed_only"
           : "not_run_no_eom_only_checkpoint",
@@ -117,6 +156,7 @@ try {
           ? "The diagnostic was explicitly limited to the seed-cut ladder."
           : `The ${pathCount}-path burn-in halted before the complete memory horizon, so no EOM-only retained history exists at T=${burnInEnd}.`,
       });
+  }
 } finally {
   await client.dispose();
 }
@@ -141,7 +181,7 @@ const evidence = {
     historyDepth,
     atomicChunk,
     transportChunkDuration: burnInChunkDuration,
-    numericalControls: coarseBurnInControls(),
+    numericalControls: burnInControls(),
     maximumMpfrBits,
     quadratureMaxDepth,
     quadratureMaxCells,
@@ -172,7 +212,7 @@ async function runBurnIn() {
     burnInDuration: historyDepth,
     chunkDuration: burnInChunkDuration,
     sampleInterval: atomicChunk,
-    ...coarseBurnInControls(),
+    ...burnInControls(),
   });
   const startedAt = performance.now();
   let lastGoodHistories = seedHistories;
@@ -205,7 +245,7 @@ async function runBurnIn() {
         config,
         histories: lastGoodHistories,
         chunkIndex: completedChunks,
-        startTime,
+        startTime: lastGoodHistories[0].coverageEnd,
         endTime,
       });
       const response = await client.evolveRetainedHistories(request);
@@ -324,6 +364,7 @@ async function runBurnIn() {
       wallSeconds: (performance.now() - startedAt) / 1000,
       lastGoodHistorySha256: sha256(lastGoodHistories),
       failureCode: error.code ?? "eom_shadow_run_failed",
+      failureMessage: error.message ?? String(error),
       haltCode: error.eomResponse?.haltCode ?? null,
       acceptedStepCountInFailedChunk: error.eomResponse?.acceptedStepCount ?? null,
       rejectedStepCountInFailedChunk: error.eomResponse?.rejectedStepCount ?? null,
@@ -452,7 +493,7 @@ async function runStrictLadder(histories, startTime) {
       config,
       histories,
       chunkIndex: 0,
-      startTime,
+      startTime: histories[0].coverageEnd,
       endTime: startTime + atomicChunk,
     });
     const startedAt = performance.now();
@@ -509,16 +550,16 @@ async function runStrictLadder(histories, startTime) {
   });
 }
 
-function coarseBurnInControls() {
+function burnInControls() {
   return Object.freeze({
     initialStep: String(burnInInitialStep),
     minimumStep: String(burnInMinimumStep),
     rootTolerance: String(burnInRootTolerance),
-    accelerationTolerance: "1e-1",
-    positionTolerance: "1e-2",
-    velocityTolerance: "1e-2",
-    correctionTolerance: "1e-1",
-    threadCount: 4,
+    accelerationTolerance: String(burnInAccelerationTolerance),
+    positionTolerance: String(burnInPositionTolerance),
+    velocityTolerance: String(burnInVelocityTolerance),
+    correctionTolerance: String(burnInCorrectionTolerance),
+    threadCount: burnInThreadCount,
   });
 }
 
@@ -528,6 +569,17 @@ function summarizeBurnIn(result) {
 }
 
 function adjudicate(seedControl, burnInResult, postBurnInResult) {
+  if (burnInResult.status === "checkpoint_ladder_only") {
+    return Object.freeze({
+      requestedPostBurnInQuestion: postBurnInResult.strictControlPassed
+        ? "checkpoint_ladder_passed"
+        : "checkpoint_ladder_failed",
+      checkpointTime: burnInResult.acceptedEndTime,
+      conclusion: postBurnInResult.strictControlPassed
+        ? "The strict ladder passes from the requested partial burn-in checkpoint."
+        : "The strict ladder fails from the requested partial burn-in checkpoint.",
+    });
+  }
   const oldFailureAtSeedCut = seedControl.cases.some((control) =>
     control.diagnostics.some((diagnostic) =>
       diagnostic.stepFailures.some((step) =>

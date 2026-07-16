@@ -5761,7 +5761,7 @@ J_p(\phi;\theta_p)
 >0
 $$
 
-Finally, on this branch pattern the dual-mollified force law has one simple stored partner root and no exact same-side self roots on the initial history. Under the stated local Lipschitz hypothesis, standard local existence and continuous-dependence theory for functional differential equations yields a unique forward continuation on a short interval
+Finally, on this branch pattern the dual-mollified acceleration law has one simple stored partner root and no exact same-side self roots on the initial history. Under the stated local Lipschitz hypothesis, standard local existence and continuous-dependence theory for functional differential equations yields a unique forward continuation on a short interval
 $$
 [0,\tau_{\mathrm{loc}}]
 $$

@@ -7,6 +7,7 @@ import {
   BORG_EOM_COMPATIBILITY_HISTORY_PROVENANCE,
   BORG_EOM_SHADOW_RUN_SOURCE,
   createBorgContinuousRetainedHistories,
+  createBorgEomShadowRequest,
   createBorgEomShadowRunConfig,
   createBorgEomShadowRunner,
   trimBorgRetainedHistories,
@@ -219,6 +220,31 @@ test("Borg EOM shadow runner sends retained histories and derives frames only fr
   assert.equal(chunk.frames.every((frame) => frame.runSource === BORG_EOM_SHADOW_RUN_SOURCE), true);
   assert.equal(chunk.frames.every((frame) => frame.valueAuthority === "eom-shadow-output"), true);
   assert.equal(chunk.histories.every((history) => history.coverageEnd === "10.2"), true);
+});
+
+test("Borg EOM requests preserve the native checkpoint's exact decimal cut time", () => {
+  const config = createBorgEomShadowRunConfig(BORG_DATASET_MANIFEST_V1, {
+    startTime: 32.40999999999992,
+    targetDuration: 32.42,
+  });
+  const histories = createBorgContinuousRetainedHistories(
+    trajectoryFrames,
+    BORG_DATASET_MANIFEST_V1,
+    { historyEndTime: 10 },
+  ).map((history) => ({
+    ...history,
+    coverageEnd: "32.409999999999918",
+  }));
+  const request = createBorgEomShadowRequest({
+    manifest: BORG_DATASET_MANIFEST_V1,
+    config,
+    histories,
+    chunkIndex: 0,
+    startTime: histories[0].coverageEnd,
+    endTime: 32.42,
+  });
+
+  assert.equal(request.absoluteTimeInterval.start, "32.409999999999918");
 });
 
 test("Borg EOM shadow runner supports a deterministic retained-history population subset", async () => {
