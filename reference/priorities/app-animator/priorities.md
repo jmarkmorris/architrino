@@ -12,10 +12,10 @@
 ## Workstream Metadata
 
 - Kind: `priority`
-- Rank: `17`
-- Value: `7.14`
+- Rank: `16`
+- Value: `6.43`
 - Cost: `4.3`
-- ROI: `1.66`
+- ROI: `1.49`
 - Status: `active`
 
 ## Purpose

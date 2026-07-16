@@ -18,8 +18,8 @@ test("Borg initial-condition controls start from the accepted manifest values", 
   assert.deepEqual(
     createBorgInitialConditionConfig(BORG_DATASET_MANIFEST_V1.initialConditions),
     {
-      electrinoCount: 8,
-      positrinoCount: 8,
+      electrinoCount: 3,
+      positrinoCount: 3,
       randomVelocityMaxComponentMagnitude: 0,
       randomVelocityMinSpeed: 0,
     },
@@ -160,7 +160,7 @@ test("Borg default seeded-random geometry certifies minimum separation and zero 
     minimumPairSeparation: 0.2,
   });
 
-  assert.equal(rows.length, 16);
+  assert.equal(rows.length, 6);
   assert.equal(rows[0].runSource, "seeded-random-minimum-separation-initial-state");
   assert.notDeepEqual(
     rows.map((row) => row.position),

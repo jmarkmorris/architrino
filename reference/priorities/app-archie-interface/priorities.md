@@ -3,6 +3,10 @@
 ## Workstream Metadata
 
 - Kind: `priority-app`
+- Rank: `30`
+- Value: `0.86`
+- Cost: `3.5`
+- ROI: `0.25`
 - Status: `investigate`
 - Claim level: `priority-only`
 - Parent priority: [Archie](../archie/priorities.md)

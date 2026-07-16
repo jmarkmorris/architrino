@@ -1,5 +1,14 @@
 # Information Relay Machines
 
+## Workstream Metadata
+
+- Kind: `priority-candidate`
+- Rank: `20`
+- Value: `2.25`
+- Cost: `3.2`
+- ROI: `0.70`
+- Status: `discussion-scoped`
+
 ## Current
 
 `Information Relay Machines` is the selected working name for the cross-domain idea that communication, industrial processes, technological workflows, and institutional procedures can be mapped as record-preserving transduction chains. The technical subtitle is `record-preserving transduction chains`.

@@ -557,12 +557,17 @@ DoubleAttempt run_double_attempt(const ExactPairRequest& request) {
             request.receiver->covers(reception_span) &&
             norm(request.receiver->velocity_hull(reception_span)).upper() <
                 field_speed.lower();
+        const bool source_prefix_tokens_match =
+            request.warm_source_equality_precomputed
+                ? prior_prefix_upper <=
+                      request.warm_source_prefix_token_stable_upper
+                : same_source_prefix_tokens(
+                      *request.source, prior_source, search_lower,
+                      prior_prefix_upper);
         if (prior_prefix_upper > search_lower &&
             prior_prefix_upper < search_upper &&
             receiver_stays_subfield &&
-            same_source_prefix_tokens(
-                *request.source, prior_source, search_lower,
-                prior_prefix_upper)) {
+            source_prefix_tokens_match) {
           incremental_search_lower = prior_prefix_upper;
           attempt.stable_negative_prefix_upper = prior_prefix_upper;
           attempt.stable_negative_prefix_certified = true;
@@ -615,10 +620,26 @@ DoubleAttempt run_double_attempt(const ExactPairRequest& request) {
          request.warm_start->certificate->root_free_cells) {
       const std::size_t index = prior_cell.source_segment_index;
       if (index >= request.source->segments().size() ||
-          index >= request.warm_start->source->segments().size() ||
-          !same_segment_tokens(
-              request.source->segments()[index],
-              request.warm_start->source->segments()[index])) {
+          index >= request.warm_start->source->segments().size()) {
+        continue;
+      }
+      const bool segment_tokens_match =
+          request.warm_source_equality_precomputed
+              ? index < request.warm_source_aligned_equal_segments
+              : same_segment_tokens(
+                    request.source->segments()[index],
+                    request.warm_start->source->segments()[index]);
+      if (!segment_tokens_match) {
+        continue;
+      }
+      if (prior_cell.numeric_values_valid) {
+        warm_cells_by_segment[index].push_back({
+            .lower = prior_cell.lower_value,
+            .upper = prior_cell.upper_value,
+            .residual = Interval(
+                prior_cell.residual_lower_value,
+                prior_cell.residual_upper_value),
+        });
         continue;
       }
       warm_cells_by_segment[index].push_back({
@@ -668,8 +689,13 @@ DoubleAttempt run_double_attempt(const ExactPairRequest& request) {
   }
   std::vector<bool> subfield_suffix(
       request.source->segments().size() + 1U, true);
+  // Suffix flags are only read at cell segment indices, which start at the
+  // first searched cell; segments before it never need a flag.
+  const std::size_t subfield_scan_lower =
+      cells.empty() ? 0U : cells.front().segment_index;
   if (same_retained_history) {
-    for (std::size_t index = request.source->segments().size(); index-- > 0U;) {
+    for (std::size_t index = request.source->segments().size();
+         index-- > subfield_scan_lower;) {
       const auto& segment = request.source->segments()[index];
       const double lower = segment.t_start();
       const double upper = std::min(segment.t_end(), reception_value);
@@ -2525,6 +2551,11 @@ ExactPairCertificate double_certificate(
             double_token(cell.receiver_normal.lower()),
         .receiver_normal_upper =
             double_token(cell.receiver_normal.upper()),
+        .lower_value = cell.lower,
+        .upper_value = cell.upper,
+        .residual_lower_value = cell.residual.lower(),
+        .residual_upper_value = cell.residual.upper(),
+        .numeric_values_valid = true,
     });
   }
   return certificate;
@@ -2804,6 +2835,39 @@ ExactPairWorkerPool& exact_pair_worker_pool() {
 }
 
 }  // namespace
+
+WarmSourceEqualityBounds compute_warm_source_equality_bounds(
+    const RetainedHistory& current,
+    const RetainedHistory& warm,
+    double search_lower) {
+  WarmSourceEqualityBounds bounds{
+      -std::numeric_limits<double>::infinity(), 0};
+  const std::size_t aligned_limit =
+      std::min(current.segments().size(), warm.segments().size());
+  while (bounds.aligned_equal_segments < aligned_limit &&
+         same_segment_tokens(
+             current.segments()[bounds.aligned_equal_segments],
+             warm.segments()[bounds.aligned_equal_segments])) {
+    ++bounds.aligned_equal_segments;
+  }
+  const Interval anchor = Interval::point(search_lower);
+  if (!current.covers(anchor) || !warm.covers(anchor)) {
+    return bounds;
+  }
+  std::size_t current_index = current.segment_index_at(search_lower);
+  std::size_t warm_index = warm.segment_index_at(search_lower);
+  while (current_index < current.segments().size() &&
+         warm_index < warm.segments().size() &&
+         same_segment_tokens(
+             current.segments()[current_index],
+             warm.segments()[warm_index])) {
+    bounds.prefix_token_stable_upper =
+        current.segments()[current_index].t_end();
+    ++current_index;
+    ++warm_index;
+  }
+  return bounds;
+}
 
 ExactPairCertificate certify_exact_pair(const ExactPairRequest& request) {
   validate_request(request);

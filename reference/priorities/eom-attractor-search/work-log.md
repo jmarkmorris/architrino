@@ -4,6 +4,13 @@ Chronological agent status, run narratives, handoffs, and failed paths for
 this workstream. Keep the live queue in [priorities.md](priorities.md) and
 conceptual material in [brainstorming.md](brainstorming.md).
 
+## 2026-07-16 — Ownership consolidated
+
+- This directory ceased to be an independently ranked workstream.
+- Braid Program owns the undirected ensemble campaign, persistence criterion, fate classification, and collapse adjudication.
+- EOM owns the reusable checkpointed harness, deterministic replay, campaign-driver behavior, performance attribution, and cost instrument.
+- Existing evidence, validation artifacts, host-control instructions, and chronological notes remain here as a focused instrument/evidence packet. No measured result or campaign fate changed.
+
 ## 2026-07-15 — Workstream opened
 
 - Bucket created by operator direction. Full context captured in

@@ -333,9 +333,9 @@ void run(
       .thread_count = 1,
   };
   request.thread_count = parse_size(run[13], "thread count");
-  // The traversal tree is an optional pair-selection optimization.  At Borg's
-  // default 16-path scale it excludes no pairs and costs more than exhaustive
-  // exact coverage, so use the direct certified batch for the small domain.
+  // The traversal tree is an optional pair-selection optimization.  At small
+  // Borg scales (16 paths and below) it excludes no pairs and costs more than
+  // exhaustive exact coverage, so use the direct certified batch there.
   request.use_certified_traversal =
       use_certified_traversal && parsed_paths.size() > 16U;
   request.traversal_exact_tile_pair_limit = traversal_exact_tile_pair_limit;

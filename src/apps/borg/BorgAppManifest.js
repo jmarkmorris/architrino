@@ -53,24 +53,24 @@ export const BORG_DATASET_MANIFEST_V1 = deepFreeze({
     "coupling": 0.005
   },
   "population": {
-    "centralArchitrinoCount": 8,
-    "architrinoCount": 16,
-    "bufferArchitrinoCount": 8,
+    "centralArchitrinoCount": 3,
+    "architrinoCount": 6,
+    "bufferArchitrinoCount": 3,
     "maximumArchitrinoCount": 512,
     "countDerivation": {
       "formulaId": "N_calc=ceil(N_C*(1+2*b_face/L_C)^3)",
-      "centralArchitrinoCount": 8,
+      "centralArchitrinoCount": 3,
       "centralVolumeSideLength": 0.8,
       "faceBufferMargin": 0.1,
-      "exactPreCeiling": 15.625,
-      "roundedValue": 16
+      "exactPreCeiling": 5.859375,
+      "roundedValue": 6
     }
   },
   "initialConditions": {
     "initialConditionFamily": "seeded-random",
-    "initialConditionSeed": "borg-sixteen-minimum-separation-random.v1",
-    "electrinoCount": 8,
-    "positrinoCount": 8,
+    "initialConditionSeed": "borg-six-minimum-separation-random.v1",
+    "electrinoCount": 3,
+    "positrinoCount": 3,
     "polarityAssignmentSource": "seeded-balanced",
     "polaritySignConvention": "positrino-positive-electrino-negative",
     "positrinoCharge": 1,

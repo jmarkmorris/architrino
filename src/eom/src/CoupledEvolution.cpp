@@ -7,6 +7,7 @@
 #include <chrono>
 #include <cmath>
 #include <cstddef>
+#include <cstdlib>
 #include <functional>
 #include <limits>
 #include <map>
@@ -2619,9 +2620,37 @@ NativeAccelerationSnapshotCertificate certify_native_acceleration_snapshot(
       }
     }
   } else {
+    // Warm-history token equality is a property of each source path, not of
+    // each ordered pair; certify it once per path here so the pair batch does
+    // not repeat an O(retained-window) token walk per pair per snapshot.
+    std::vector<WarmSourceEqualityBounds> warm_source_equality;
+    const bool warm_equality_available =
+        warm_snapshot != nullptr && warm_histories != nullptr;
+    if (warm_equality_available) {
+      warm_source_equality.reserve(histories.size());
+      for (const auto& source : histories) {
+        const auto warm_source = std::find_if(
+            warm_histories->begin(), warm_histories->end(),
+            [&](const auto& path) { return path.path_id == source.path_id; });
+        if (warm_source == warm_histories->end()) {
+          warm_source_equality.push_back(
+              {-std::numeric_limits<double>::infinity(), 0});
+          continue;
+        }
+        const std::string source_search_lower =
+            causal_prefix_exclusion.status == "certified_complete"
+            ? active_search_lower
+            : source.history.segments().front().t_start_token();
+        warm_source_equality.push_back(compute_warm_source_equality_bounds(
+            source.history, warm_source->history,
+            std::strtod(source_search_lower.c_str(), nullptr)));
+      }
+    }
     std::vector<ExactPairRequest> root_requests;
     root_requests.reserve(logical_pair_count);
+    std::size_t source_index = 0;
     for (const auto& receiver : histories) {
+      source_index = 0;
       for (const auto& source : histories) {
         root_requests.push_back({
             .row_id = receiver.path_id + "/" + source.path_id + "/" +
@@ -2643,10 +2672,18 @@ NativeAccelerationSnapshotCertificate certify_native_acceleration_snapshot(
             .force_precision_escalation = false,
             .defer_precision_escalation =
                 defer_root_precision_escalation,
-            .warm_start = warm_snapshot != nullptr && warm_histories != nullptr
+            .warm_start = warm_equality_available
                 ? &warm_starts[root_requests.size()]
                 : nullptr,
+            .warm_source_equality_precomputed = warm_equality_available,
+            .warm_source_prefix_token_stable_upper = warm_equality_available
+                ? warm_source_equality[source_index].prefix_token_stable_upper
+                : -std::numeric_limits<double>::infinity(),
+            .warm_source_aligned_equal_segments = warm_equality_available
+                ? warm_source_equality[source_index].aligned_equal_segments
+                : 0,
         });
+        ++source_index;
       }
     }
     const auto exact_root_timing_start = SteadyClock::now();

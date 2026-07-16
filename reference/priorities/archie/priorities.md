@@ -3,6 +3,10 @@
 ## Workstream Metadata
 
 - Kind: `priority-design`
+- Rank: `27`
+- Value: `1.00`
+- Cost: `3.5`
+- ROI: `0.29`
 - Status: `active`
 - Claim level: `priority-only`
 - Primary scene: [Archie scene](../../../content/scenes/archie/archie.json)

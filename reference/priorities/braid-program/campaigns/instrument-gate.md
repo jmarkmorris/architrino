@@ -43,7 +43,7 @@ Restating method.md's acceptance gates as the operational checklist, plus the em
 
 ## 4. Assembly View Record v0 (adopted schema)
 
-Finalizes the sketch in [assembly-viewer-requirements.md](assembly-viewer-requirements.md); this section is now the schema's source of truth. Records are plain JSON files; the viewer never talks to a live engine. The viewer-not-instrument rule governs all consumers: records are drawn, never re-evolved, and a display adapter may evaluate only the record's own declared interpolation.
+Finalizes the sketch in [assembly-viewer-requirements.md](../../app-borg/assembly-viewer-requirements.md); this section is now the schema's source of truth. Records are plain JSON files; the viewer never talks to a live engine. The viewer-not-instrument rule governs all consumers: records are drawn, never re-evolved, and a display adapter may evaluate only the record's own declared interpolation.
 
 Top-level fields:
 

@@ -2,6 +2,11 @@
 
 ## Workstream Metadata
 
+- Kind: `priority-operations`
+- Rank: `29`
+- Value: `0.84`
+- Cost: `3.3`
+- ROI: `0.25`
 - Status: `active`
 - Claim level: `operations-priority`
 - Scope: deployment discipline, service limits, release readiness, cost visibility, reliability, and webapp growth operations.

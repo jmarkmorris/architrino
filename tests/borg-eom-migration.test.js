@@ -35,8 +35,8 @@ const trajectoryFrames = createBorgPrescribedLinearHistoryRows(
     manifest: BORG_DATASET_MANIFEST_V1,
     seedIndex: 17,
     config: {
-      electrinoCount: 8,
-      positrinoCount: 8,
+      electrinoCount: 3,
+      positrinoCount: 3,
       randomVelocityMaxComponentMagnitude: 0.042,
       randomVelocityMinSpeed: 0.0144,
     },
@@ -72,8 +72,8 @@ test("Borg mounts EOM idle by default and reserves automatic compute for explici
     y: [0.1, 0.9],
     z: [0.1, 0.9],
   });
-  assert.equal(defaultMounts[0].initialEomSeed.rows.length, 16 * 2);
-  assert.equal(defaultMounts[0].initialEomSeed.endpointRows.length, 16);
+  assert.equal(defaultMounts[0].initialEomSeed.rows.length, 6 * 2);
+  assert.equal(defaultMounts[0].initialEomSeed.endpointRows.length, 6);
   assert.equal(defaultMounts[0].initialEomSeed.certificate.accepted, true);
   assert.equal(defaultMounts[0].initialEomSeed.certificate.eomOutput, false);
   assert.equal(defaultMounts[0].initialEomSeed.certificate.canonicalEomEvidence, false);
@@ -83,7 +83,7 @@ test("Borg mounts EOM idle by default and reserves automatic compute for explici
     0.2,
   );
   assert.equal(defaultMounts[0].eomShadowRunner.eomClient, eomClient);
-  assert.equal(defaultMounts[0].eomShadowRunner.pathCount, 16);
+  assert.equal(defaultMounts[0].eomShadowRunner.pathCount, 6);
   assert.equal(defaultMounts[0].eomShadowRunner.startTime, 0);
   assert.equal(
     defaultMounts[0].eomShadowRunner.historyDepth,
@@ -107,8 +107,8 @@ test("Borg mounts EOM idle by default and reserves automatic compute for explici
   assert.equal(defaultMounts[0].eomShadowRunner.targetDuration, 60);
   assert.equal(defaultMounts[0].eomShadowRunner.runDuration, 60);
   assert.deepEqual(defaultMounts[0].initialConditionConfig, {
-    electrinoCount: 8,
-    positrinoCount: 8,
+    electrinoCount: 3,
+    positrinoCount: 3,
     randomVelocityMaxComponentMagnitude: 0,
     randomVelocityMinSpeed: 0,
   });
@@ -119,10 +119,7 @@ test("Borg mounts EOM idle by default and reserves automatic compute for explici
   );
   assert.deepEqual(
     defaultMounts[0].initialEomSeed.endpointRows.map((row) => row.pathKey),
-    [
-      1001, 1002, 1003, 1004, 1005, 1006, 1007, 1008,
-      1009, 1010, 1011, 1012, 1013, 1014, 1015, 1016,
-    ],
+    [1001, 1002, 1003, 1004, 1005, 1006],
   );
 
   const explicitShadowMounts = [];
@@ -278,7 +275,7 @@ test("Borg EOM migration imports a complete continuous past, never a state-only 
     { historyEndTime: 10 },
   );
 
-  assert.equal(histories.length, 16);
+  assert.equal(histories.length, 6);
   for (const history of histories) {
     assert.equal(history.coverageStart, "0");
     assert.equal(history.coverageEnd, "10");
@@ -322,7 +319,7 @@ test("Borg EOM shadow runner sends retained histories and derives frames only fr
   assert.equal(request.contractId, "eom_evolution_contract/v0");
   assert.equal(request.claimLevel, "migration-shadow");
   assert.deepEqual(request.absoluteTimeInterval, { start: "10", end: "10.2" });
-  assert.equal(request.histories.length, 16);
+  assert.equal(request.histories.length, 6);
   assert.equal(request.histories[0].coverageEnd, "10");
   assert.equal(request.numericalControls.threadCount, 4);
   assert.equal(request.modelControls.selfPairs, "included-except-coincident-endpoint");
@@ -336,7 +333,7 @@ test("Borg EOM shadow runner sends retained histories and derives frames only fr
   assert.equal(chunk.statusCode, "ok");
   assert.equal(chunk.evidenceStatus, "executable_architecture_evidence");
   assert.equal(chunk.promotionEligible, false);
-  assert.equal(chunk.frames.length, 32);
+  assert.equal(chunk.frames.length, 12);
   assert.equal(chunk.frames.every((frame) => frame.runSource === BORG_EOM_SHADOW_RUN_SOURCE), true);
   assert.equal(chunk.frames.every((frame) => frame.valueAuthority === "eom-shadow-output"), true);
   assert.equal(chunk.histories.every((history) => history.coverageEnd === "10.2"), true);
@@ -587,8 +584,8 @@ test("Borg native process protocol carries the same continuous-history request",
   await runner.computeNextChunk();
   const protocol = encodeNativeRequest(requests[0]);
   assert.match(protocol, /^EOM_BORG_NATIVE_V0\nRUN\t/u);
-  assert.equal(protocol.match(/^PATH\t/gmu)?.length, 16);
-  assert.equal(protocol.match(/^SEG\t/gmu)?.length, 16);
+  assert.equal(protocol.match(/^PATH\t/gmu)?.length, 6);
+  assert.equal(protocol.match(/^SEG\t/gmu)?.length, 6);
   assert.match(protocol, /\nEND\n$/u);
   assert.equal(protocol.includes("initialStates"), false);
   assert.equal(protocol.includes("futurePaths"), false);

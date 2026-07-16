@@ -11,10 +11,10 @@
 ## Workstream Metadata
 
 - Kind: `priority-ui`
-- Rank: `unranked`
-- Value: `TBD`
-- Cost: `TBD`
-- ROI: `TBD`
+- Rank: `31`
+- Value: `0.76`
+- Cost: `3.5`
+- ROI: `0.22`
 - Status: `audit-and-standard`
 
 ## Current

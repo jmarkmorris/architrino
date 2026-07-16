@@ -184,3 +184,25 @@ Append-only. Dated entries, newest last. One entry per completed unit of work: w
   ledger, oracle parity window, collapse result, or canonical claim was run or
   booked. Production remains a separate change starting with a fresh build
   identity check.
+
+## 2026-07-16 — Assembly viewer ownership moved to the Borg app lane
+
+- Moved the requirements sketch to
+  `reference/priorities/app-borg/assembly-viewer-requirements.md`, where Borg
+  design, requirements, and build handoffs are owned. The Braid Program retains
+  the adopted `assembly-view-record.v0` schema, emitter acceptance, and per-run
+  booking duty in `campaigns/instrument-gate.md`.
+- The ownership move changes no campaign schema or evidence grade. Instrument
+  gate §4 now links to the Borg-owned requirements packet; prior dated log
+  entries retain their historical path text.
+
+## 2026-07-16 — Undirected ensemble campaign ownership consolidated
+
+- Braid Program is the sole scientific owner for the undirected ensemble
+  campaign: declared seed coordinates, persistence criterion, fate
+  classification, collapse adjudication, and promotion routing.
+- EOM owns the reusable checkpointed harness, campaign-driver behavior,
+  deterministic replay, convergence/provenance capability, and cost instrument.
+  The former `eom-attractor-search` directory remains a focused evidence index.
+- This consolidation changes no harness measurement, campaign criterion, or
+  booked physical fate.

@@ -3,10 +3,10 @@
 ## Workstream Metadata
 
 - Kind: `priority-app`
-- Rank: `25`
-- Value: `0.99`
-- Cost: `2.4`
-- ROI: `0.41`
+- Rank: `26`
+- Value: `0.79`
+- Cost: `2.5`
+- ROI: `0.32`
 - Status: `queued`
 
 ## Scope
@@ -26,7 +26,7 @@ Loose app concepts, design notes, and immediate build-candidate discussion live 
 ## Promoted App Packets
 
 1. [Causal Delay Feedback Depth](../app-causal-delay-feedback/priorities.md). Status: `promoted`.
-2. [Assembly Configuration Explorer](../app-assembly-explorer/priorities.md). Status: `promoted`.
+2. [Assembly Viewer](../app-borg/assembly-viewer-requirements.md). Status: `consolidated into app-borg`.
 3. [Equation Mapping App](../app-equation-mapping/priorities.md). Status: `promoted`.
 
 ## Brainstorming
@@ -36,6 +36,6 @@ Loose app concepts, design notes, and immediate build-candidate discussion live 
 ## Related Priorities
 
 - [app-causal-delay-feedback](../app-causal-delay-feedback/priorities.md)
-- [app-assembly-explorer](../app-assembly-explorer/priorities.md)
+- [app-borg](../app-borg/priorities.md)
 - [app-equation-mapping](../app-equation-mapping/priorities.md)
 - [app-animator](../app-animator/priorities.md)

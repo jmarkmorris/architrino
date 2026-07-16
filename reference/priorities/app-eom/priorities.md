@@ -44,6 +44,10 @@ The future segment must be determined by the Master EOM. EOM must not accept a p
 ## Workstream Metadata
 
 - Kind: `priority`
+- Rank: `1`
+- Value: `63.47`
+- Cost: `4.7`
+- ROI: `13.50`
 - Status: `active-native-coupled-history-and-borg-shadow-architecture`
 - Value: `highest`
 - Claim level: `priority-design`
@@ -69,7 +73,7 @@ The future segment must be determined by the Master EOM. EOM must not accept a p
 
 1. `eom_sole_engine` — Enforce EOM as the only solver target; prohibit any non-EOM engine; separate conditional path analysis from evolved paths; and reject producer-asserted evidence authority. Status: `complete`. Depends on: none.
 2. `coupled_retained_history_integrator` — Complete the production history-to-roots-to-acceleration-to-history kernel for bounded-population long runs: enumerate every admitted sharp root for every ordered pair including self, route certified near-multiple strata through the bound finite-width law, evaluate the Master EOM, and advance coupled histories atomically. Horizon and refinement acceptance remain open. Status: `active-production-kernel`. Depends on: completed native root, acceleration, and atomic-evolution layers.
-3. `persistent_long_run_checkpoint_and_campaign_driver` — Keep retained histories resident across accepted windows; provide checkpoint/resume, deterministic campaign manifests, convergence ladders, perturbation batches, progress, cancellation, and claim observables without resending complete histories for every chunk. Status: `active-foundation`; single-host checkpointing and a persistent worker exist, while history residency and campaign orchestration remain open. Depends on: `coupled_retained_history_integrator`.
+3. `persistent_long_run_checkpoint_and_campaign_driver` — Keep retained histories resident across accepted windows; provide checkpoint/resume, deterministic campaign manifests, convergence ladders, perturbation batches, progress, cancellation, claim observables, and reusable ensemble execution without resending complete histories for every chunk. Adopt the checkpointed attractor-search harness and measured cost instrument as EOM capabilities while leaving seed choice, persistence criteria, fate classification, and collapse adjudication with the consuming scientific program. Status: `active-foundation`; single-host checkpointing, a persistent worker, and the attractor-search harness exist, while history residency and general campaign orchestration remain open. Depends on: `coupled_retained_history_integrator`.
 4. `precision_convergence_and_failure_policy` — Propagate error budgets through interpolation, roots, branch evaluation, accumulation, integration, reductions, and output. Add split absolute time and retain MPFR escalation for difficult rows. Require the timestep, history-depth, sampling, regulator, perturbation, precision, and worker-count ladders used by each claim; fail closed when certification fails. Status: `active-regulator-event-foundation`. Depends on: `coupled_retained_history_integrator`.
 5. `deterministic_cpu_multithreading_and_simd` — Optimize the measured bounded-population long-horizon workload using bounded native threads, SIMD/vectorization, cache-aware layouts, deterministic reductions, cancellation, and single-thread replay. Status: `active-persistent-worker-cancellation-and-deterministic-replay`; SIMD proof and representative long-horizon measurements remain. Depends on: `coupled_retained_history_integrator`.
 6. `first_binary_and_claim_outcome_gates` — Apply the base EOM contract to binary and claim outcomes with complete histories, all partner and self-root families, event routes, adaptive long-horizon evolution, convergence, and perturbation stability. Status: `pending-claim-campaign`; source: [evolution-contract-v0.md](evolution-contract-v0.md). Depends on: items 2–5, but not the million-path scale profile.

@@ -3,10 +3,10 @@
 ## Workstream Metadata
 
 - Kind: `priority-candidate`
-- Rank: `unscored-candidate`
-- Value: `unscored`
-- Cost: `unscored`
-- ROI: `unscored`
+- Rank: `25`
+- Value: `1.16`
+- Cost: `3.2`
+- ROI: `0.36`
 - Status: `idea`
 
 ## Scope

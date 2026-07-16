@@ -1,6 +1,6 @@
 # Simulation Detailed Priority Packets
 
-This file preserves detailed simulation protocols, campaign objects, acceptance contracts, and executable diagnostics for [app-simulation](priorities.md). Loose idea and open-question material lives in [brainstorming.md](brainstorming.md).
+This file preserves detailed simulation protocols, campaign objects, acceptance contracts, and executable diagnostics during the ownership consolidation recorded in the [routing index](priorities.md). It is not an independent workstream or evidence authority. Each section advances only through the canonical owner named in that index. Loose idea and open-question material lives in [brainstorming.md](brainstorming.md).
 
 ## Hydrogen Native Extractor Boundary
 

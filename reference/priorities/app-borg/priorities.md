@@ -3,9 +3,14 @@
 ## Workstream Metadata
 
 - Kind: `priority`
+- Rank: `7`
+- Value: `16.38`
+- Cost: `4.3`
+- ROI: `3.81`
 - Status: `design-open`
 - Claim level: `priority-design`
 - Primary design packet: [requirements-and-design](requirements-and-design.md)
+- Assembly viewer requirements: [assembly-viewer-requirements](assembly-viewer-requirements.md)
 - Face boundary replay packet: [face-boundary-replay](face-boundary-replay.md)
 - Native bridge audit packet: [native-bridge-audit-and-first-screen](native-bridge-audit-and-first-screen.md)
 - Dataset manifest packet: [borg-dataset-manifest.v1](borg-dataset-manifest.v1.md)
@@ -18,6 +23,8 @@
 **Engine policy (2026-07-16).** Borg's only forward engine is the **EOM solver** (`src/eom`).  Borg constructs certified artificial retained history as part of each randomized initial condition, stays idle on ordinary startup, and publishes atomically accepted EOM extensions from $T=0$ after explicit Start. Runtime and provenance guards are pinned by `tests/borg-eom-runtime-contract.test.js`.
 
 This workstream defines the app-facing design lane for an interactive finite-window simulation surface. The app target is a cubic simulation window for an unbounded-universe approximation. The operator can choose scale, architrino initial conditions, path-history policy, wake-history policy, statistical face-boundary policy, and display diagnostics while the production simulation path is the EOM engine.
+
+The same Borg surface also owns assembly-view replay. Simulation workspace and assembly-view replay are distinct modes: the former may invoke the EOM solver after explicit Start, while the latter reads sealed `assembly-view-record.v0` files only and disables every run or mutation control.
 
 The workstream is not an implementation license for a new solver. Missing motion, causal-root, delayed-hit, path-history, wake-history, face-boundary, or simulation-window stepping capabilities must extend the EOM contracts, native implementation, bridge schema, and validation fixtures — never any non-EOM engine.
 
@@ -45,6 +52,8 @@ The workstream is not an implementation license for a new solver. Missing motion
 20. Use `borg-release-budget-manifest.v1` as the release-facing browser runtime budget cover sheet for measured run-preset ceilings. It binds the measured calibration sweep to UI fields and runtime limits, but does not upgrade solver, wake-history, face-boundary, benign-noise, or proof authority.
 21. Use `borg-live-run-retention-policy.v1` for forever-mode display retention: keep recent native frame rows for playback and current-state inspection, compact older path history into display-only sampled trail points, and keep EOM solver state and chunk requests unchanged.
 22. Use the canonical normalized field speed $c_f=1$ for Borg EOM runs. A non-unit value requires an explicit run-manifest unit transform; no run-local override is admissible.
+23. Keep assembly-view replay record-only and visibly distinct from the simulation workspace. A record produced by a Borg-triggered run is replayable only after the accepted emitter seals it and the replay path reloads the file.
+24. Preserve raw ids and source ordering in collection navigation. For tri-binary collections, optional $S_3$ grouping may use a source-carried permutation-canonical key to hide duplicate navigation rows, but it may not delete, relabel, or replace the underlying unquotiented records.
 
 ## Task Queue
 
@@ -71,10 +80,12 @@ The workstream is not an implementation license for a new solver. Missing motion
 21. `native_wake_history_and_boundary_residual_fixture` — Build `build-native-wake-history-and-boundary-residual-fixture`: extend the EOM contracts and native implementation so Borg emits retained wake/interaction rows, row-conservation counts, boundary-to-central residual rows, and any required acceleration-contribution diagnostics without app-local physics or visual tuning. Status: `pending`; source: [borg-dataset-manifest.v1](borg-dataset-manifest.v1.md), [native-bridge-audit-and-first-screen](native-bridge-audit-and-first-screen.md).
 22. `velocity_scale_sampling_research` — Compare velocity-scale-aware sampling techniques for face-boundary replay across many orders of magnitude using EOM-run rows: logarithmic velocity bins, stratified sampling, importance sampling, quantile sketches, adaptive time bins, deterministic or low-discrepancy resampling, and error-controlled moment matching. Status: `pending`; source: [face-boundary-replay](face-boundary-replay.md); depends on: `velocity_scale_sampling_protocol` and `native_wake_history_and_boundary_residual_fixture`. Until measured, affected boundary replay output remains `display-only` or `fail-closed`.
 23. `save_export_import_load_workflows` — Design saving, exporting, importing, and loading app datasets after the manifest contract, first-screen app surface, and EOM-run dataset coverage are stable. Status: `deferred`; depends on: `dataset_manifest_contract` and `app_surface_design`.
+24. `assembly_viewer_replay_mode` — Implement the record-only Borg capability defined by [assembly-viewer-requirements](assembly-viewer-requirements.md): visible run/replay mode separation, provenance banner, chart/evolved record labels, retained-history animation, co-rotating and strobe views, compatible-record comparison, source-carried overlays, and fail-closed collection navigation. Status: `pending`; depends on: adopted `assembly-view-record.v0` and `app_surface_design`.
+25. `assembly_explorer_surface_disposition` — After Borg replay has parity for raw-record navigation, source-order preservation, optional source-carried $S_3$ grouping, and source-carried search diagnostics, decide which standalone `assembly-explorer.html`, runtime, contract, scene, and test surfaces should be retired or redirected. Status: `pending`; no standalone implementation file is removed by the priority-lane consolidation.
 
 ## First Static Page Artifact
 
-The first static Borg page is [borg.html](../../../borg.html), implemented with [BorgAppManifest.js](../../../src/apps/borg/BorgAppManifest.js), [BorgAppRuntime.js](../../../src/apps/borg/BorgAppRuntime.js), and [main.js](../../../src/apps/borg/main.js). It consumes the design-owned `borg-app-surface-design.v1` browser snapshot and the source `borg-dataset-manifest.v1` policy object, renders the displayed central cube with Three.js, shows EOM-run current-state positions, supports frame scrubbing, path-history and velocity-vector layer toggles, and surfaces fail-closed diagnostics. All displayed motion comes from the EOM run path; no stored trajectory ships with the page.
+The first static Borg page is [borg.html](../../../borg.html), implemented with [BorgAppManifest.js](../../../src/apps/borg/BorgAppManifest.js), [BorgAppRuntime.js](../../../src/apps/borg/BorgAppRuntime.js), and [main.js](../../../src/apps/borg/main.js). It consumes the design-owned `borg-app-surface-design.v1` browser snapshot and the source `borg-dataset-manifest.v1` policy object, renders the displayed central cube with Three.js, shows EOM-run current-state positions, supports frame scrubbing, path-history and velocity-vector layer toggles, and surfaces fail-closed diagnostics. All simulation-workspace motion comes from the EOM run path; no stored trajectory ships with the page. The existing `borg.html?eomRecord=<url>` route is the first assembly-view replay entry point, but it does not yet satisfy the full requirements packet.
 
 ## Current Next Build Burden
 
