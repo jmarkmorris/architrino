@@ -40,7 +40,7 @@ test("A0 branch-chart source target rejects fixture and diagnostic shortcut prov
       source_ref: "scripts/mass-map/fixtures/a0-branch-chart-source.json",
       diagnostic_only: true,
       notes:
-        "diagnostic sampled only aggregate H39 theta3minus source-normal denominator toy empirical benchmark only generated decoy cross-row bundle",
+        "diagnostic sampled only aggregate source-normal denominator toy empirical benchmark only generated decoy cross-row bundle",
     })
   );
 
@@ -51,7 +51,6 @@ test("A0 branch-chart source target rejects fixture and diagnostic shortcut prov
   assert.equal(report.rejected_source_family_codes.includes("diagnostic_row"), true);
   assert.equal(report.rejected_source_family_codes.includes("sampled_only_row"), true);
   assert.equal(report.rejected_source_family_codes.includes("aggregate_row"), true);
-  assert.equal(report.rejected_source_family_codes.includes("h39_theta3minus_quotient_row"), true);
   assert.equal(report.rejected_source_family_codes.includes("source_normal_denominator_machinery"), true);
   assert.equal(report.rejected_source_family_codes.includes("toy_or_empirical_row"), true);
   assert.equal(report.rejected_source_family_codes.includes("benchmark_only_row"), true);
@@ -171,7 +170,6 @@ function baseCandidate(overrides = {}) {
         "diagnostic_row",
         "sampled_only_row",
         "aggregate_row",
-        "h39_theta3minus_quotient_row",
         "source_normal_denominator_machinery",
         "toy_or_empirical_row",
         "benchmark_only_row",

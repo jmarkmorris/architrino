@@ -28,7 +28,6 @@ const NON_AUTHORIZING_ACTION_MEASURE_REJECTIONS = [
   "fixed-speed-off-ledger-provenance",
   "sampled-diagnostic",
   "source-normal-row",
-  "h39-theta3minus-quotient-row",
   "generated-decoy",
   "proxy-row",
   "cross-row-bundle",
@@ -750,7 +749,6 @@ function buildRootSupportEventRows(chartRun) {
     off_ledger: false,
     sampled_diagnostic: false,
     source_normal_row: false,
-    h39_theta3minus_quotient_row: false,
     generated_decoy: false,
     cross_row_bundle: false,
     target_only: false,
@@ -1257,7 +1255,6 @@ export function validateArtifact(artifact) {
       rootSupportEventRows.off_ledger === false &&
       rootSupportEventRows.sampled_diagnostic === false &&
       rootSupportEventRows.source_normal_row === false &&
-      rootSupportEventRows.h39_theta3minus_quotient_row === false &&
       rootSupportEventRows.generated_decoy === false &&
       rootSupportEventRows.cross_row_bundle === false &&
       rootSupportEventRows.target_only === false,

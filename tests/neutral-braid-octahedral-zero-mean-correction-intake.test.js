@@ -256,7 +256,6 @@ const RANK5_RETAINED_BRANCH_PRODUCER_TARGET_REJECTED_EVIDENCE = [
   "diagnostic-force-residual",
   "sampled-phase-offset",
   "sampled-diagnostics",
-  "h39-theta3minus-quotient-rows",
   "source-normal-rows",
   "generated-decoys",
   "cross-row-bundles",

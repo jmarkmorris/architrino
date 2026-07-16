@@ -102,7 +102,7 @@ Rows with numeric `Rank` values are ROI-ranked by the scoring system above. The 
 |   23 | Candidate     | [`cross-theory-mapping`](../cross-theory-mapping/priorities.md)                        | Observational and experimental benchmark mapping candidates                                   |  7.5 |    1.35 |      -56 |     1.56 |   0.40 |      6 |    1.10 |  6.95 |    4 |         4 |    5 |     6 |  4.6 | 1.51 |
 |   24 | Workstream    | [`app-animator`](../app-animator/priorities.md)                                                    | Scene animator and visual reasoning surface                                                   |  7.0 |    1.20 |        0 |     1.00 |   0.85 |      4 |    0.90 |  6.43 |    5 |         4 |    4 |     4 |  4.3 | 1.50 |
 |   25 | Shared packet | `residual-routing-event-ledger` | Shared residual-to-channel routing and event-ledger theorem                                   |  9.5 |    1.70 |      -23 |     1.23 |   0.25 |      6 |    1.10 |  5.46 |    4 |         4 |    4 |     5 |  4.2 | 1.30 |
-|   26 | Workstream    | [`app-solver`](../app-solver/priorities.md)                                                          | Zombie-solver quarantine records, contracts, and app bridge migration                         |  7.0 |    1.45 |      -56 |     1.56 |   0.40 |      4 |    0.90 |  5.70 |    6 |         3 |    7 |     5 |  5.0 | 1.14 |
+|   26 | Workstream    | [`app-solver`](../app-solver/priorities.md)                                                          | Solver contract and app-bridge requirements                                                   |  7.0 |    1.45 |      -56 |     1.56 |   0.40 |      4 |    0.90 |  5.70 |    6 |         3 |    7 |     5 |  5.0 | 1.14 |
 |   27 | Workstream    | [`quantum-closure`](../quantum-closure/priorities.md)                                       | Deferred Born-rule / quantum closure with Bell hard tests                                     |  6.0 |    1.35 |      -56 |     1.56 |   0.40 |      9 |    1.40 |  7.08 |    6 |         8 |    7 |     8 |  7.3 | 0.97 |
 |   28 | App           | [`app-equation-mapping`](../app-equation-mapping/priorities.md)                        | Static equation annotation app for mapping review                                             |  5.0 |    1.20 |        0 |     1.00 |   0.35 |      5 |    1.00 |  2.10 |    3 |         2 |    3 |     3 |  2.6 | 0.81 |
 |   29 | Workstream    | [`validation-gates`](../validation-gates/priorities.md)                                    | Cross-sector acceptance intersections and no-go routing                                       |  8.5 |    1.65 |        0 |     1.00 |   0.25 |      3 |    0.80 |  2.80 |    4 |         4 |    6 |     5 |  4.6 | 0.61 |
@@ -191,7 +191,7 @@ unified table where a row is scored; unscored archive and deferred rows remain
 | Operator triage rank | Slug or packet | Location | Role | Current disposition |
 | ---: | --- | --- | --- | --- |
 | 5 | `equation-mapping` | [equation-mapping.md](../equation-mapping/priorities.md) | Internal priority material for bidirectional maps between established physics equations and $\mathbb{A}\mathbb{A}\mathbb{A}$ variables, blockers, source-backed evidence objects, and promotion routes. | Scored high because it can reveal accepted carrier identities; keep score-neutral until a named accepted evidence object exists and the checker advances for that reason. |
-| — | `braid-program` | [priorities.md](../braid-program/priorities.md) | Sole live braid-search lane after the fresh-start decision. | Use its current queue and method; do not infer priority or evidence from retired packet ranks. |
+| — | `braid-program` | [priorities.md](../braid-program/priorities.md) | Sole live braid-search lane. | Use its current queue and method. |
 | 14 | `app-assembly-explorer` | [braid-assembly-explorer.md](../app-assembly-explorer/priorities.md) | Dedicated inspection app for solver or script packets over the unordered Noether braid configuration space. | Active scaffold; keep it a packet viewer/comparison surface until solver adapters and retained-row predicates are supplied. |
 | 15 | `app-borg` | [borg-app.md](../app-borg/priorities.md) | App-facing design lane for the finite-window Borg simulation surface, EOM solver bridge gaps, face-boundary replay, manifests, and browser-runtime budget packets. | Scored as an app lane with solver-diagnostic leverage; do not treat display or boundary-replay scaffolds as solver authority. |
 | 16 | `app-photon` | [photon-app.md](../app-photon/priorities.md) | Deployed Photon and Polarization Visualization app ledger, controls, presets, diagnostics, and guide alignment. | Active app lane; do not promote photon closure, Malus-law recovery, or physical free-photon claims from the app alone. |
@@ -233,11 +233,6 @@ from these rows by itself.
   to the same source record, event ledger, retained record key, source artifact
   hash, and consumer row, then reconstructs $D_vW^{\mathrm{rec}}$ from $D_s$,
   $D_T$, $D_vD_s$, and $D_vD_T$.
-  audit now emits `h39-receiver-normal-retained-record-preimage-fixture/v0` as
-  an executable fail-closed matrix. It rejects absence rows, partial
-  $P_-/P_+$ rows, accepted-but-unbound provider rows, missing derivative rows,
-  and Taylor/fourth-jet diagnostics before retained branch-family derivative
-  consumption.
 - `proof-programs`: the breather lane now has
   `breather-receiver-normal-force-margin-restart/v0`, a priority-only theorem
   and fixture target for same-record $D_s$, $D_T$, $W^{\mathrm{rec}}$,
@@ -254,7 +249,7 @@ from these rows by itself.
   `finite_branch_evidence_missing`, with branch-provider intake blocked at
   `accepted_non_fixture_source_missing`.
 
-Pure changeover reading: retired H39/theta3minus rows, source-normal force
+Pure changeover reading: source-normal force
 residues, shell-braid residue rows, fixture-only rows, toy rows, and cross-row
 bundles remain diagnostics or negative controls. Accepted evidence must be
 provider-object branch rows plus retained causal-root binding and same-record

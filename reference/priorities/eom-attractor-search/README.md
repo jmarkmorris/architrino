@@ -15,4 +15,4 @@ compliant campaigns with a replay format the Borg app can visualize.
 Live capture: [brainstorming.md](brainstorming.md). Governing discipline:
 evidence-independence and claim-grading per AGENTS.md; T3 prehistory
 collapse protocol per the
-[claims-triage ledger](../app-solver/claims-triage-ledger-2026-07-12.md).
+claims-triage ledger.

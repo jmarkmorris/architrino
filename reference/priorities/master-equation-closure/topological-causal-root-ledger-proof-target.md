@@ -882,8 +882,8 @@ $\partial\mathcal{L}_{E\mathbf{p}\mathbf{J}}$ must name the same retained
 branch list, $D_s$, $D_T$, $W^{\mathrm{rec}}$, $D_vD_s$, $D_vD_T$, and
 reconstructed $D_vW^{\mathrm{rec}}$ rows used by the force/action packet. A
 declared event ledger without those rows remains
-`not_accepted_for_wake_history_closure`; a terminal aggregate, H39/theta3minus
-quotient row, source-normal-only denominator, or old shell-braid force residue
+`not_accepted_for_wake_history_closure`; a terminal aggregate,
+source-normal-only denominator, or old shell-braid force residue
 fails as `receiver-normal-first-derivative-row-missing`.
 
 The first same-record receiver-normal derivative contract is now explicit in

@@ -89,7 +89,6 @@ const REQUIRED_SAME_RECORD_BINDING_FIELDS = [
   "receiver_normal_derivative_bundle.branch_family_checksum.source_artifact_hash",
 ];
 const DISALLOWED_ACCEPTED_EVIDENCE_SOURCES = [
-  "H39/theta3minus quotient rows",
   "shell-braid residue rows",
   "old force-weight rows",
   "terminal aggregates",
@@ -104,7 +103,6 @@ const DISALLOWED_CERTIFICATE_EVIDENCE_SOURCES = [
   "wake-history-only target rows",
   "proxy/current branch charts",
   "fixture rows",
-  "H39/theta3minus quotient rows",
   "aggregates",
   "generated decoys",
   "cross-row bundles",

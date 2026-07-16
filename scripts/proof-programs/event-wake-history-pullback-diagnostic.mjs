@@ -109,7 +109,6 @@ const REQUIRED_RETAINED_BRANCH_SOURCE_FIELDS = [
   "retained_branch_source.source_artifact_hash",
 ];
 const DISALLOWED_ACCEPTED_EVIDENCE_SOURCES = [
-  "H39/theta3minus quotient rows",
   "shell-braid residue rows",
   "old force-weight rows",
   "terminal aggregates",
@@ -164,16 +163,11 @@ const DISALLOWED_CERTIFICATE_EVIDENCE_SOURCES = [
   "wake-history-only target rows",
   "proxy/current branch charts",
   "fixture rows",
-  "H39/theta3minus quotient rows",
   "aggregates",
   "generated decoys",
   "cross-row bundles",
   ...DISALLOWED_ACCEPTED_EVIDENCE_SOURCES.filter(
-    (entry) =>
-      ![
-        "H39/theta3minus quotient rows",
-        "cross-row bundles",
-      ].includes(entry)
+    (entry) => entry !== "cross-row bundles"
   ),
 ];
 const RECEIVER_NORMAL_BRANCH_STRENGTH_CERTIFICATE_FIELD_GROUPS = {
@@ -195,7 +189,6 @@ const RECEIVER_NORMAL_BRANCH_STRENGTH_CERTIFICATE_FIELD_GROUPS = {
     "negative_controls.reject_wake_history_only_target_rows",
     "negative_controls.reject_proxy_current_branch_charts",
     "negative_controls.reject_fixture_rows",
-    "negative_controls.reject_h39_theta3minus_quotient_rows",
     "negative_controls.reject_aggregates",
     "negative_controls.reject_generated_decoys",
     "negative_controls.reject_cross_row_bundles",

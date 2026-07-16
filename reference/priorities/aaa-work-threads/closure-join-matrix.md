@@ -112,15 +112,6 @@ failures, and none authorizes a separate closure claim.
 | pressure-dependent Noether sea response and exposure quotient theorem | Rank 4 retained pressure-row branch-intake object | One same-row `exposure_source_record` plus `pressure_response_record` carrying $E_{\text{internal}}(A)$, $\zeta(A)$, $M_0^{\mathrm{src}}(A)$, $\mathcal{N}_{\mathrm{tf},ab}(A)$, $\partial_PM_0^{\mathrm{src}}(A)$, $C_{\chi}^{\mathrm{iso}}$, $C_{\chi}^{\mathrm{aniso}}$, and $m_S$. | Consume inside rank 4 only; no separate pressure/exposure promotion. |
 | [source-mining](../source-mining/priorities.md) | Rank 3 `Sigma_hf_01` external schema intake | One external proof-grade derivation schema object bound to `Sigma_hf_01` and evaluated against the eight-field checklist. | Local source-data partial supplies 5 / 8 screen fields, the placeholder-rejection record proves local substitutes for the three missing proof-grade fields are rejected, the proof-object envelope packages the 5 / 8 local-lock target fail-closed, and the missing-fields derivation target names the three remaining predicates. The external provenance source audit now distinguishes three Sigma-relevant external-ref source leads and emits one `source_lead_to_schema_fail_closed_packet` for each lead; every packet maps all eight schema predicate fields and four same-record binding gaps while keeping `accepted_as_external_schema_candidate=false`, `schema_validation_intake_authorized=false`, and row consumption at zero. A proof-grade external schema object remains absent. |
 
-Receiver-normal addendum 2026-06-29: an H39 provider-object branch row still
-does not satisfy `receiver-normal-retained-branch-family-first-derivative/v0`
-unless it also passes through
-`h39-receiver-normal-retained-record-preimage-row/v0`. The preimage row binds
-the accepted provider-object branch row to a retained causal-root force/action
-record with $D_s$, $D_T$, fixed signs, $W^{\mathrm{rec}}$, $D_vD_s$, $D_vD_T$,
-reconstructed $D_vW^{\mathrm{rec}}$, geometry derivatives, and the retained
-branch-family checksum.
-
 ### Residual-Routing Contract
 
 Use this contract when a work item describes radiation, transport excitation, reaction channels, measurement records, strong-field release, or branch transition.

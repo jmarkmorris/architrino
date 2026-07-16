@@ -94,7 +94,6 @@
     "GPU difficult-row return and distributed retained-history ownership",
     "stable application ABI"
   ],
-  "existing_central_solver_changed": false,
   "production_block_traversal_started": false,
   "migration_authorized": false
 }

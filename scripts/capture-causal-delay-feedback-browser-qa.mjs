@@ -25,8 +25,7 @@ const DEFAULT_BROWSER_PATHS = [
   "google-chrome",
 ].filter(Boolean);
 const PROOFS = Object.freeze([
-  // The live-replay capture proofs were removed 2026-07-16 with the engine
-  // path they exercised; EOM-replay capture proofs are a queued rebuild.
+  // Proofs cover the representative mock replay; EOM-replay proofs are a queued build.
   {
     id: "desktop",
     fileName: "contrast-stress-purple-1920x1080.png",

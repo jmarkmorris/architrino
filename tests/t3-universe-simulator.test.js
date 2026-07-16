@@ -409,11 +409,8 @@ test("bulk-step client carries unresolved-root segment sidecar as fail-closed sh
             causticRouteStatus: "missing",
             proofObjectProvenanceStatus: "candidate_sidecar_shape_evidence",
             proofObjectProvenance: {
-              nativeProducer: "removed-native/T3BulkStep.cpp::step_t3_universe",
               nativeRow: "T3RetainedCausalRootReplayRowF64",
               sourceNativeRow: "T3UnresolvedRootSegmentRowF64",
-              bridgeReader:
-                "removed-native/bridge::readT3RetainedCausalRootReplayRowF64",
               provenanceStatus: "candidate_sidecar_shape_evidence",
             },
             rowStatus: "candidate_same_record_binding",
@@ -562,10 +559,6 @@ test("bulk-step client carries unresolved-root segment sidecar as fail-closed sh
     {
       rowPresent: true,
       nativeRow: "T3RetainedCausalRootReplayRowF64",
-      nativeStruct:
-        "removed-native/T3BulkStep.hpp::T3RetainedCausalRootReplayRowF64",
-      bridgeReader:
-        "removed-native/bridge::readT3RetainedCausalRootReplayRowF64",
       rowSchema: "t3-retained-causal-root-replay-native-row.v1",
       rowStatus: "candidate_same_record_binding",
       retainedSourceBindingStatus: "candidate_same_record_binding",
@@ -585,11 +578,8 @@ test("bulk-step client carries unresolved-root segment sidecar as fail-closed sh
       },
       proofObjectProvenanceStatus: "candidate_sidecar_shape_evidence",
       proofObjectProvenance: {
-        nativeProducer: "removed-native/T3BulkStep.cpp::step_t3_universe",
         nativeRow: "T3RetainedCausalRootReplayRowF64",
         sourceNativeRow: "T3UnresolvedRootSegmentRowF64",
-        bridgeReader:
-          "removed-native/bridge::readT3RetainedCausalRootReplayRowF64",
         provenanceStatus: "candidate_sidecar_shape_evidence",
       },
       sameRecordReplayId: 1001,
@@ -641,10 +631,6 @@ test("bulk-step client carries unresolved-root segment sidecar as fail-closed sh
   assert.equal(replaySource.replayAuthorization, false);
   assert.equal(replaySource.summary.retainedBranch, false);
   assert.equal(replaySource.summary.provesBranchAdmissibility, false);
-
-  // The removed-native descriptor strings in this file and the engine are
-  // historical provenance labels for recorded rows, not live wiring; no
-  // native producer exists for them.
 });
 
 test("solver run summary uses native bulk T3 route without per-particle fallback", async () => {
@@ -1167,9 +1153,6 @@ test("solver run summary uses native bulk T3 route without per-particle fallback
     schema: "t3-native-bridge-field-source-boundary.v1",
     sourceObjectSchema: "solver-t3-step-response.v1",
     nativeRow: "T3ParticleStepRowF64",
-    nativeStruct: "removed-native/T3BulkStep.hpp::T3ParticleStepRowF64",
-    nativeProducer: "removed-native/T3BulkStep.cpp::step_t3_universe",
-    bridgeReader: "removed-native/bridge::readT3ParticleStepRowF64",
     availableNativeBridgeFields: [
       "pathKey",
       "position",
@@ -1221,14 +1204,9 @@ test("oriented boundary exposes unresolved-root sidecar replay producer contract
     sourceObjectRowSchema: "t3-unresolved-root-segment-row.v1",
     sourceObjectRowStatus: "candidate_shape_evidence",
     nativeRow: "T3UnresolvedRootSegmentRowF64",
-    bridgeReader: "removed-native/bridge::readT3UnresolvedRootSegmentRowF64",
     companionNativeReplayRow: {
       rowPresent: true,
       nativeRow: "T3RetainedCausalRootReplayRowF64",
-      nativeStruct:
-        "removed-native/T3BulkStep.hpp::T3RetainedCausalRootReplayRowF64",
-      bridgeReader:
-        "removed-native/bridge::readT3RetainedCausalRootReplayRowF64",
       rowSchema: "t3-retained-causal-root-replay-native-row.v1",
       rowStatus: "candidate_same_record_binding",
       retainedSourceBindingStatus: "candidate_same_record_binding",
@@ -1248,11 +1226,8 @@ test("oriented boundary exposes unresolved-root sidecar replay producer contract
       },
       proofObjectProvenanceStatus: "candidate_sidecar_shape_evidence",
       proofObjectProvenance: {
-        nativeProducer: "removed-native/T3BulkStep.cpp::step_t3_universe",
         nativeRow: "T3RetainedCausalRootReplayRowF64",
         sourceNativeRow: "T3UnresolvedRootSegmentRowF64",
-        bridgeReader:
-          "removed-native/bridge::readT3RetainedCausalRootReplayRowF64",
         provenanceStatus: "candidate_sidecar_shape_evidence",
       },
       sameRecordReplayId: 1001,

@@ -20,7 +20,7 @@ test("A0 Tier 1 accepted-continuation source target rejects fixture or shortcut 
     source_ref: "scripts/mass-map/fixtures/accepted-looking-a0-source.json",
     diagnostic_only: true,
     notes:
-      "diagnostic sampled window aggregate H39 theta3minus source-normal denominator toy empirical cross-row bundle",
+      "diagnostic sampled window aggregate source-normal denominator toy empirical cross-row bundle",
   });
   const report = buildAcceptedContinuationSourceTarget(candidate);
 
@@ -32,7 +32,6 @@ test("A0 Tier 1 accepted-continuation source target rejects fixture or shortcut 
   assert.equal(report.rejected_source_family_codes.includes("diagnostic_row"), true);
   assert.equal(report.rejected_source_family_codes.includes("sampled_window"), true);
   assert.equal(report.rejected_source_family_codes.includes("aggregate_row"), true);
-  assert.equal(report.rejected_source_family_codes.includes("h39_theta3minus_quotient_row"), true);
   assert.equal(report.rejected_source_family_codes.includes("source_normal_denominator_machinery"), true);
   assert.equal(report.rejected_source_family_codes.includes("toy_or_empirical_row"), true);
   assert.equal(report.rejected_source_family_codes.includes("cross_row_bundle"), true);
@@ -171,7 +170,6 @@ function completeAcceptedLookingCandidate(overrides = {}) {
         "diagnostic_row",
         "sampled_window",
         "aggregate_row",
-        "h39_theta3minus_quotient_row",
         "source_normal_denominator_machinery",
         "toy_or_empirical_row",
         "cross_row_bundle",

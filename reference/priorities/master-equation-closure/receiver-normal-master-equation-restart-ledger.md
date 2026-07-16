@@ -118,24 +118,3 @@ same retained branch-family record it must bind $D_s$, $D_T$, fixed sign
 labels, $W^{\mathrm{rec}}$, $D_vD_s$, $D_vD_T$, reconstructed
 $D_vW^{\mathrm{rec}}$, geometry derivatives, the force-kernel derivative, and
 the exact retained branch-family checksum consumed downstream.
-
-H39/theta3minus audit status. The nearest H39 provider target names five
-shared source cells, 15 terminal rows, and 30 `P_-` / `P_+` branch rows, but
-the branch-provider audit reports zero accepted provider-object branch
-intervals, zero available provider-object branch antisymmetric equations, zero
-explicit provider-object branch rows, and no same-record receiver-normal
-derivative fields. Its receiver-normal derivative status is therefore
-`h39-receiver-normal-first-derivative-evidence-not-populated`. The proof/evidence
-obligation is first to emit
-`source_map_provider_object_branch_split_map_available_terminal_row_count` for
-all 15 terminal rows, then materialize the same-domain $A_P=P_- - P_+$
-provider-object branch row or explicit `P_-` / `P_+` rows with both interval
-payloads and the $P_b$ map, branch projection or alpha map,
-`pushforward_operator_ref`, and `normalization_identity_ref` before aggregate
-$P$ erases branch identity. Only after that can the accepted provider object be
-bound to the retained causal-root force/action record with the receiver-normal
-derivative bundle above.
-Primitive-vector replays, hybrid prefix-Cauchy diagnostics, coefficient-series
-source-map residual provider candidates, source-map residual envelopes,
-provider-fit diagnostics, and signed-radius targets remain negative controls for
-this restart ledger until they pass through the H39 retained-record preimage row.

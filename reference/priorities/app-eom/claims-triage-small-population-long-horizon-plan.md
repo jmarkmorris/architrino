@@ -4,7 +4,7 @@
 
 This packet defines the EOM capability needed now to adjudicate the quarantined
 T2 stability and T3 dynamical claims in the
-[claims-triage ledger](../app-solver/claims-triage-ledger-2026-07-12.md).
+claims-triage ledger.
 The ledger objects are pairs, triples, the six-worldline V5, and dressed or
 payload-bearing objects in the low tens of worldlines. The governing workload
 is therefore complete all-pair retained-history evolution over long physical

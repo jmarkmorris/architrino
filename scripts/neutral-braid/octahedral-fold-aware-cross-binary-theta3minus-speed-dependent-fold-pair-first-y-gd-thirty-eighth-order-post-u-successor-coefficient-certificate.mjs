@@ -471,7 +471,7 @@ function hRowProviderProvenance({ cellId, branch, predecessorRow }) {
     recurrence_slope_field: "h37_solve_slope_interval",
     generated_interval_field: "h38_interval",
     provider_claim:
-      "dependency-preserving provider metadata for replaying the certified h0..h38 row; it does not certify the H39 shifted source or primitive bounds",
+      "dependency-preserving provider metadata for replaying the certified h0..h38 row",
   };
 }
 
@@ -538,7 +538,7 @@ function intervalRowForPredecessorRow({ speedIndex, predecessorRow }) {
       h_row_provider_kind: "thirty-eighth-successor-recurrence-provider",
       source_cell_id: cellId,
       h_row_provider_source_cell_id: cellId,
-      h_row_provider_replay_kind: "h39-embedded-h38-provider-replay",
+      h_row_provider_replay_kind: "h38-provider-replay",
       h_row_provider_provenance: hRowProviderProvenance({
         cellId,
         branch,

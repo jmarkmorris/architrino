@@ -21,18 +21,17 @@ program must restart force margins, recapture/self-drive estimates, action
 rows, and any generated certificate before branch-chart authorization can be
 reconsidered.
 
-Dependency audit rule. Breather packets may not consume theta3minus, H39,
+Dependency audit rule. Breather packets may not consume
 first-y $G,D$, H-graph, coefficient, or successor quotient certificates as
 force/action evidence unless the consumed packet explicitly carries
 same-record $D_s$, $D_T$, and $W^{\mathrm{rec}}$ rows and marks its
-receiver-normal evidence status as accepted. Historical quotient certificates
+receiver-normal evidence status as accepted. Quotient certificates
 may be cited only as root-geometry diagnostics or dependency provenance. Any
 breather margin, recapture, self-drive, branch-chart, or Schauder packet that
 depends on those quotient rows stays restart-only until the dependency chain is
 rebuilt on receiver-normal branch strength.
 
-Receiver-normal successor target. The next theorem-grade breather packet is not
-another current-pool rescan of the historical certificates. It is a retained
+Receiver-normal successor target. The next theorem-grade breather packet is a retained
 branch-family force-margin row that binds the candidate cycle, null-coordinate
 preledger, active branch chart, finite-memory row, and event ledger to
 $$
@@ -52,8 +51,8 @@ on every retained force/action row $\rho$ consumed by recapture or self-drive.
 The fail-closed status is
 `receiver_normal_breather_force_margin_missing` until that row exists with the
 same branch-family checksum as the recapture margin, monodromy diagnostic, and
-Schauder envelope. If the packet instead consumes a theta3minus/H39 quotient
-certificate, source-normal denominator, old shell-braid force residue, or
+Schauder envelope. If the packet instead consumes a
+source-normal denominator, old shell-braid force residue, or
 finite-difference table after branch identity is erased, it remains
 restart-only even when its topology or preledger rows pass.
 

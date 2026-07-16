@@ -556,14 +556,9 @@ function createUnresolvedRootSegmentReplayProducerContract(input) {
     sourceObjectRowSchema: row?.schema ?? "t3-unresolved-root-segment-row.v1",
     sourceObjectRowStatus: row?.rowStatus ?? "candidate_shape_evidence",
     nativeRow: "T3UnresolvedRootSegmentRowF64",
-    bridgeReader: "removed-native/bridge::readT3UnresolvedRootSegmentRowF64",
     companionNativeReplayRow: {
       rowPresent: nativeReplayRow != null,
       nativeRow: "T3RetainedCausalRootReplayRowF64",
-      nativeStruct:
-        "removed-native/T3BulkStep.hpp::T3RetainedCausalRootReplayRowF64",
-      bridgeReader:
-        "removed-native/bridge::readT3RetainedCausalRootReplayRowF64",
       rowSchema: nativeReplayRow?.schema ?? null,
       rowStatus: nativeReplayRow?.rowStatus ?? null,
       retainedSourceBindingStatus: nativeReplayRow?.retainedSourceBindingStatus ?? null,

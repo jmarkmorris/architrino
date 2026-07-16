@@ -200,9 +200,6 @@ Current live v0 status remains `source_row_binding_open` until a non-fixture
 action-increment packet emits matching root-ledger and conservation-pullback
 hashes.
 
-Shared H39 provider boundary: removed 2026-07-16 with the legacy candidate
-intake. Re-derivation from EOM evidence is queued.
-
 Minimum non-fixture `accepted_transition_source` object:
 
 | Field | Required content | Fixture packet reading |
@@ -255,11 +252,6 @@ policy clean. The first executable closure move is a non-fixture action-incremen
 row with a retained branch certificate, matching active-root and
 conservation-pullback hashes, and a failing negative control for mismatched
 hashes.
-
-Candidate-intake scanner, torque/wake same-row diagnostic, and rank 2 / rank 6
-branch-source join. Removed 2026-07-16 — legacy candidate intake retired with
-2026-07-16. Re-derivation
-from EOM evidence is queued.
 
 The remaining promotion blockers are executable, not editorial: no current artifact has shown same-row active-root identity under refinement, a positive Jacobian floor through the approach-to-$c_f$ scan, bounded particle-plus-wake energy on the retained branch rows, delayed-Noether status above `diagnostic-only`, stable one-cluster $\Delta I_{\mathrm{ME}}$ behavior, and a failing negative control with content hashes.
 

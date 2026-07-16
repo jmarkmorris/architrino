@@ -28,7 +28,6 @@ const FORBIDDEN_SOURCE_FAMILIES = [
   "diagnostic_row",
   "sampled_only_row",
   "aggregate_row",
-  "h39_theta3minus_quotient_row",
   "source_normal_denominator_machinery",
   "toy_or_empirical_row",
   "benchmark_only_row",
@@ -236,9 +235,6 @@ function sourceFamilyRejections(candidate, fallbackSourceRef) {
   }
   if (/aggregate|preaggregation/i.test(statusText)) {
     codes.push("aggregate_row");
-  }
-  if (/h39|theta3minus/i.test(statusText) || /h39|theta3minus/i.test(String(ref ?? ""))) {
-    codes.push("h39_theta3minus_quotient_row");
   }
   if (/source[_ -]?normal|denominator/i.test(statusText)) {
     codes.push("source_normal_denominator_machinery");

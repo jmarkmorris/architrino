@@ -145,19 +145,12 @@ D_v\mathcal{K}_{\rho}^{(\eta,\epsilon_c)}
 $$
 with the same retained branch list $\mathfrak{R}_{W}^{\mathrm{ret}}$ consumed by
 the action, power, event, and Noether balance rows. A source-normal diagnostic
-alone, a terminal aggregate, a finite-difference table after branch identity is
-erased, or an H39/theta3minus source-map diagnostic fails with
+alone, a terminal aggregate, or a finite-difference table after branch identity
+is erased fails with
 `receiver-normal-first-derivative-row-missing` or
 `receiver-normal-derivative-record-mismatch` rather than authorizing
 wake-history closure. A row that carries a different retained branch list exits
-as `branch-family-consumer-checksum-mismatch`. An H39/theta3minus
-provider-object branch row may enter only through
-`h39-receiver-normal-retained-record-preimage-row/v0`, after it is bound to an
-accepted retained causal-root force/action record with the receiver-normal
-derivative bundle above. H39 primitive-vector replays, hybrid prefix-Cauchy
-diagnostics, coefficient-series source-map residual provider candidates,
-source-map residual envelopes, provider-fit diagnostics, and signed-radius
-targets remain negative controls until that preimage row exists.
+as `branch-family-consumer-checksum-mismatch`.
 
 ## First Executable Wake-History Consumer Contract
 
@@ -271,8 +264,5 @@ This keeps a complete four-row derivative row-logic replay distinct from an
 accepted retained wake-history proof-object provider.
 
 This is the first same-record wake-history derivative consumer contract. It is
-not an A1, VP-1, breather, circular, H39/theta3minus, eigen-braid, assembly, or
-Noether-closure pass, and it is not accepted retained evidence. H39/theta3minus
-quotient rows remain excluded unless a future regenerated provider-object
-preimage row is bound to an accepted retained causal-root force/action record
-carrying the same receiver-normal derivative bundle.
+not an A1, VP-1, breather, circular, eigen-braid, assembly, or
+Noether-closure pass, and it is not accepted retained evidence.

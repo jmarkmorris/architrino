@@ -1,6 +1,6 @@
 # EOM Work Log
 
-This file holds dated decisions, implementation status, validation results, failed paths, migration handoffs, and operator/developer communication for the EOM priority area. Keep the live queue in [priorities.md](priorities.md), provisional ideas in [brainstorming.md](brainstorming.md), the defining contract in [application-and-engine-contract.md](application-and-engine-contract.md), and migration sequencing in [migration-plan.md](migration-plan.md).
+This file holds dated decisions, implementation status, validation results, failed paths, migration handoffs, and operator/developer communication for the EOM priority area. Keep the live queue in [priorities.md](priorities.md), provisional ideas in [brainstorming.md](brainstorming.md), and the defining contract in [application-and-engine-contract.md](application-and-engine-contract.md).
 
 ## 2026-07-13 — Priority Area Created
 
@@ -477,9 +477,8 @@ This file holds dated decisions, implementation status, validation results, fail
   rename publication, directory `fsync`, tamper rejection, and restart. A
   checkpointed continuation reproduces the uninterrupted retained-history
   fingerprint exactly.
-- Corrected Borg's false EOM provenance without removing its compatibility
-  runtime. Its fixture and dynamic runner (both since removed) then stated
-  `canonicalEomEvidence=false` and
+- Corrected Borg's false EOM provenance: output without EOM provenance is
+  labeled `canonicalEomEvidence=false` and
   `eomEvidenceStatus=non_eom_compatibility_output`.
 - Added a separate Borg EOM shadow adapter. It imports a continuous cubic past
   through an absolute cut time, rejects state-only input, prohibits future
@@ -497,8 +496,8 @@ This file holds dated decisions, implementation status, validation results, fail
 - A 16-path interval `[300,300.01]` completed one accepted atomic step with
   zero rejections at root tolerance `1e-3`; it published all 16 histories and
   32 display rows in about 48.36 seconds. This is conditional executable
-  architecture evidence only: the input history came from the non-EOM
-  compatibility solver, the tolerance is coarse, no convergence ladder
+  architecture evidence only: the input history lacked EOM provenance, the
+  tolerance is coarse, no convergence ladder
   passed, and Borg promotion remained false.
 - Recorded the complete packet in
   `evidence/eom-native-traversal-checkpoint-borg-shadow-apple-m3-2026-07-13.json`. (Evidence withdrawn 2026-07-16: its retained-history baseline did not meet the current EOM provenance requirement; the refinement ladder now seeds app-authored certified inertial history, re-measurement queued.)
@@ -549,7 +548,7 @@ This file holds dated decisions, implementation status, validation results, fail
 - Recorded the packet in
   `evidence/eom-borg-ui-persistent-traversal-refinement-apple-m3-2026-07-13.json`. (Evidence withdrawn 2026-07-16: its retained-history baseline did not meet the current EOM provenance requirement; the refinement ladder now seeds app-authored certified inertial history, re-measurement queued.)
   Borg promotion remains blocked: the full-population precision route fails
-  closed, imported history is non-EOM compatibility output, and the
+  closed, imported history lacks EOM provenance, and the
   million-path, GPU, and distributed-history gates remain open.
 
 ## 2026-07-14 — Exact circular $v=c_f$ endpoint certificate and §86 fold handoff

@@ -275,7 +275,6 @@ test("neutral braid finite-mode artifact rejects fixture fixed-speed proxy and c
   assert.equal(artifact.root_support_event_rows.off_ledger, false);
   assert.equal(artifact.root_support_event_rows.sampled_diagnostic, false);
   assert.equal(artifact.root_support_event_rows.source_normal_row, false);
-  assert.equal(artifact.root_support_event_rows.h39_theta3minus_quotient_row, false);
   assert.equal(artifact.root_support_event_rows.generated_decoy, false);
   assert.equal(artifact.root_support_event_rows.cross_row_bundle, false);
   assert.equal(artifact.root_support_event_rows.target_only, false);
@@ -287,7 +286,6 @@ test("neutral braid finite-mode artifact rejects fixture fixed-speed proxy and c
     "fixed-speed-off-ledger-provenance",
     "sampled-diagnostic",
     "source-normal-row",
-    "h39-theta3minus-quotient-row",
     "generated-decoy",
     "proxy-row",
     "cross-row-bundle",

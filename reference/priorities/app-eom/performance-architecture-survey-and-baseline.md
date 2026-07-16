@@ -331,7 +331,8 @@ root tolerance `1e-8`. Its maximum endpoint state delta was about `2.84e-14`,
 and the one-thread and four-thread `0.0025` histories were byte identical.
 
 This control is not the Borg acceptance gate. It covers one of sixteen Borg
-histories and began from an imported non-EOM history (that import path and its evidence were withdrawn 2026-07-16). The
+histories, and its input history did not meet the current EOM provenance
+requirement (Evidence withdrawn 2026-07-16; re-measurement queued). The
 follow-up 16-history attempt failed closed for steps `0.01`, `0.005`, and
 `0.0025`: all 240 off-diagonal ordered pairs reached
 `numeric_precision_limit_exhausted` on every row. The four-thread `0.0025`
@@ -344,7 +345,7 @@ ownership, representative accepted-step throughput, accelerator difficult-row
 return, and distributed-history execution remain required. Evidence:
 `eom-borg-ui-persistent-traversal-refinement-apple-m3-2026-07-13.json`. (Evidence withdrawn 2026-07-16: its retained-history baseline did not meet the current EOM provenance requirement; the refinement ladder now seeds app-authored certified inertial history, re-measurement queued.)
 
-The 2026-07-15 control replaces that imported compatibility history with the
+The 2026-07-15 control uses the
 accepted exact inertial $C^1$ seed. On this input, the strict 16-path ladder
 completed at the same three steps with zero root failures, a maximum state
 difference of about `5.68e-14`, and byte-identical one-thread/four-thread

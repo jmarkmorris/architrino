@@ -75,6 +75,5 @@
     "distributed retained-history ownership",
     "stable application ABI"
   ],
-  "existing_central_solver_changed": false,
   "migration_authorized": false
 }

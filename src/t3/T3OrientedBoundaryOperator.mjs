@@ -433,9 +433,6 @@ function replayNativeBridgeSourceBoundary(chronologyRow, missingFields, producer
       schema: "t3-native-bridge-field-source-boundary.v1",
       sourceObjectSchema: "solver-t3-step-response.v1",
       nativeRow: "T3UnresolvedRootSegmentRowF64",
-      nativeStruct: "removed-native/T3BulkStep.hpp::T3UnresolvedRootSegmentRowF64",
-      nativeProducer: "removed-native/T3BulkStep.cpp::step_t3_universe",
-      bridgeReader: "removed-native/bridge::readT3UnresolvedRootSegmentRowF64",
       availableNativeBridgeFields: [
         "chronologyRowId",
         "sourcePathKey",
@@ -482,9 +479,6 @@ function replayNativeBridgeSourceBoundary(chronologyRow, missingFields, producer
     schema: "t3-native-bridge-field-source-boundary.v1",
     sourceObjectSchema: "solver-t3-step-response.v1",
     nativeRow: "T3ParticleStepRowF64",
-    nativeStruct: "removed-native/T3BulkStep.hpp::T3ParticleStepRowF64",
-    nativeProducer: "removed-native/T3BulkStep.cpp::step_t3_universe",
-    bridgeReader: "removed-native/bridge::readT3ParticleStepRowF64",
     availableNativeBridgeFields: [
       "pathKey",
       "position",

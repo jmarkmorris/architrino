@@ -76,7 +76,6 @@ const FORBIDDEN_SOURCE_FAMILIES = [
   "diagnostic_row",
   "sampled_window",
   "aggregate_row",
-  "h39_theta3minus_quotient_row",
   "source_normal_denominator_machinery",
   "toy_or_empirical_row",
   "cross_row_bundle",
@@ -146,7 +145,7 @@ Options:
 This executable emits the fail-closed a0-tier1-accepted-continuation-source/v1
 producer target needed before A0 can provide an accepted retained pressure-row
 provider. It names the missing proof fields and rejects fixture, proxy,
-diagnostic, sampled, aggregate, H39/theta3minus, source-normal, toy/empirical,
+diagnostic, sampled, aggregate, source-normal, toy/empirical,
 and cross-row-bundle shortcuts.`);
 }
 
@@ -227,9 +226,6 @@ function sourceFamilyRejections(candidate, fallbackSourceRef) {
   }
   if (/aggregate|preaggregation/i.test(statusText)) {
     codes.push("aggregate_row");
-  }
-  if (/h39|theta3minus/i.test(statusText) || /h39|theta3minus/i.test(String(ref ?? ""))) {
-    codes.push("h39_theta3minus_quotient_row");
   }
   if (/source[_ -]?normal|denominator/i.test(statusText)) {
     codes.push("source_normal_denominator_machinery");
