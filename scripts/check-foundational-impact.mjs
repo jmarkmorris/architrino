@@ -8,7 +8,7 @@ import { fileURLToPath } from "node:url";
 const ROOT_DIR = path.resolve(fileURLToPath(new URL("..", import.meta.url)));
 const DEFAULT_MANIFEST = "scripts/config/foundational-impact-contracts.json";
 const DEFAULT_BRANCH_BASE = "origin/main";
-const GIT_MAX_BUFFER_BYTES = 128 * 1024 * 1024;
+const GIT_MAX_BUFFER_BYTES = 512 * 1024 * 1024;
 const TEXT_EXTENSIONS = new Set([
   ".c",
   ".cc",

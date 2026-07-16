@@ -480,7 +480,7 @@ The v0 decision ladder is:
 
 | Decision step | Pass condition | Otherwise |
 | --- | --- | --- |
-| Native contract | Native EOM solver contract, model contract id, units, and central volume are present. | `fail-closed` with `native_solver_status_missing`, `manifest_schema_missing_required_field`, or `missing_central_volume`. |
+| EOM solver contract | EOM solver contract, model contract id, units, and central volume are present. | `fail-closed` with `native_solver_status_missing`, `manifest_schema_missing_required_field`, or `missing_central_volume`. |
 | Strict buffer | $b_{\mathrm{face}}(\mathcal C)\ge\max(c_fh,\ v_{\max}T_{\mathcal C})$. | Continue to measured boundary residuals. |
 | Observed input | Replay rows trace to observed face summaries, source bins, path rows, and the face influence model. | `display-only` if visual only; `fail-closed` if used for experimental diagnostics. |
 | Velocity sampling | Velocity sampling is measured inside budget for the declared velocity scale range. | `display-only` or `fail-closed` for replay-affected central diagnostics. |
@@ -556,7 +556,7 @@ A passing fixture authorizes only `reduced-model-boundary` value authority for t
 
 ## Implementation Handoff
 
-The first implementation handoff should ask the native EOM solver for:
+The first implementation handoff should ask the EOM solver for:
 
 1. outbound architrino face-crossing path rows;
 2. per-face time-bin path summaries with path stream ids, path segment ids, face positions, velocities, polarity inventory, and correlation diagnostics;

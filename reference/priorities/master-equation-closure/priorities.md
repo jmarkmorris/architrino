@@ -91,4 +91,3 @@ These packets may seed a receiver-normal rebuild only after their retained ident
 - [Strong-field closure](../strong-field-closure/priorities.md)
 - [Cosmology closure](../cosmology-closure/priorities.md)
 - [Equation mapping](../equation-mapping/priorities.md)
-

@@ -19,14 +19,14 @@ The manifest is priority-design material. It does not authorize a new solver, do
 
 ## EOM Solver Contract
 
-Every manifest must identify the native EOM solver contract used to produce the dataset. If a value is not native-backed, the manifest must say whether it is a bridge/schema gap, a missing native capability, an app-facing projection, or display-only visualization.
+Every manifest must identify the EOM solver contract used to produce the dataset. If a value is not EOM-solver-backed, the manifest must say whether it is a bridge/schema gap, a missing EOM solver capability, an app-facing projection, or display-only visualization.
 
 | Field | Required content |
 | --- | --- |
 | `schema` | Literal `borg-dataset-manifest.v1`. |
 | `manifestId` | Stable manifest id. |
 | `runId` | Stable run or replay dataset id. |
-| `modelContractId` | Native EOM solver model contract id. |
+| `modelContractId` | EOM solver model contract id. |
 | `nativeSolverStatus` | `native-backed-now`, `manifest-gap`, `bridge-schema-gap`, `native-capability-gap`, `display-only`, or `fail-closed`. |
 | `nativeSolverVersion` | EOM solver build, ABI, or commit identifier when available. |
 | `bridgeSchemaVersion` | Bridge schema version consumed by the app. |
@@ -298,7 +298,7 @@ The least-authoritative applicable status wins in this order: `fail-closed-value
 | `retained-local-evidence` | Same-record source and receiver path history exists, required causal roots are solved inside the error budget, and the row does not depend on statistical boundary replay. | Supports local simulation-window diagnostics only. |
 | `reduced-model-boundary` | Value comes from declared face statistics, replay source ids, sampling seed, replay policy, and error budget. | Supports boundary approximation only. |
 | `boundary-generated-value` | Inbound architrino or reconstructed wake history is generated from face-boundary statistics. | New identity or reconstructed history; not retained same-record evidence. |
-| `authoritative-solver-output` | Native EOM solver value inside declared error budget with manifest and model contract metadata. | Solver value for the declared run, not a proof-level claim by itself. |
+| `authoritative-solver-output` | EOM solver value inside declared error budget with manifest and model contract metadata. | Solver value for the declared run, not a proof-level claim by itself. |
 | `app-facing-projection` | Display transform, interpolation, binning, downsampling, or logarithmic view derived from a source value. | App-facing view only; source value must remain traceable. |
 | `display-only-visualization` | Visual aid that does not feed solver state, receiver acceleration, branch evidence, or validation rows. | Inspection only. |
 | `missing-error-budget` | Required error-budget metadata is absent. | Blocks authoritative use. |
@@ -318,7 +318,7 @@ Deployment budget is separate from EOM solver throughput. The manifest must fail
 | `gpuMemoryBudget` | GPU/WebGL/WebGPU memory for 4K UHD rendering, point buffers, line buffers, trails, wake visualization, and render targets. |
 | `browserStorageBudget` | IndexedDB, Cache Storage, local replay datasets, captures, and downloaded manifests retained by the browser. |
 | `actionsArtifactBudget` | CI/review artifacts, generated captures, benchmark output, and logs retained by GitHub Actions. |
-| `nativeSolverThroughput` | Steps, rows, candidates, and retained records per second under the native EOM solver. |
+| `nativeSolverThroughput` | Steps, rows, candidates, and retained records per second under the EOM solver. |
 | `deploymentBudgetStatus` | `passed`, `warning`, `missing-budget`, `exceeded-budget`, or `fail-closed`. |
 
 `borg-release-budget-manifest.v1` is the first concrete release-facing runtime budget cover sheet for the Borg app. It binds the measured preset calibration sweep to browser/runtime ceilings for chunk wall time, frame append rate, browser heap growth, WASM worker memory, run frame rows, target duration, and chunk duration. It is separate from EOM solver throughput and from the remaining unmeasured deployment budgets: bundle size, static assets, Pages bandwidth, GPU memory, browser storage, Actions artifacts, and EOM solver throughput remain separately reported fields.
@@ -431,7 +431,7 @@ The manifest must report the first applicable failure before displaying affected
 
 | Code | Meaning |
 | --- | --- |
-| `new_production_solver_required` | The implementation path requires a production solver outside the native EOM solver. |
+| `new_production_solver_required` | The implementation path requires a production solver outside the EOM solver. |
 | `native_solver_status_missing` | The manifest lacks model contract or EOM solver status. |
 | `manifest_schema_missing_required_field` | A required manifest field is missing. |
 | `physical_mass_input_present` | Architrino physical mass appears as an input or explanatory field. |

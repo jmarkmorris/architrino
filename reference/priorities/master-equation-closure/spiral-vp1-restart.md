@@ -71,4 +71,3 @@ Parameter sensitivity and next-candidate exclusion must be recomputed from these
 VP-1 currently has topology diagnostics but no canonical Master EOM drive verdict. Promotion requires one reproducible retained record that binds the topology evidence to the complete receiver-normal branch table and its radial/tangential consumer.
 
 The restart fails if an unlisted root appears, an active Jacobian floor or inactive gap closes, the finite-memory bound is exceeded, root transport changes branch identity, $D_T$ is missing or record-mismatched, aggregation changes the label list, or a scalar decision consumes a source-normal proxy rather than $W^{\mathrm{rec}}$.
-

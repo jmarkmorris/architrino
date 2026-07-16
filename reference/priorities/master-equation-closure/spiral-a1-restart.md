@@ -104,4 +104,3 @@ A variable-rate turn may be tested only after the same receiver-normal radial an
 A1 remains a retained topology restart target until the branch table above is populated on one reproducible retained record. No A1 pass, no-go, prescribed-history rejection, outward constant, action result, or user-facing benchmark claim may be inherited from a source-normal or sampled drive row.
 
 The restart fails if any retained topology row changes identity when $D_T$ is added, if $D_s$ loses its floor, if $D_T$ or $W^{\mathrm{rec}}$ is nonfinite or record-mismatched, if aggregation changes the retained label list, or if the result depends on a generated sidecar or sampled ladder that is no longer an active authority.
-

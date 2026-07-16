@@ -148,4 +148,3 @@ function scanFile(relativePath, patterns, label) {
 function toPosixPath(value) {
   return String(value).replace(/\\/g, "/");
 }
-
