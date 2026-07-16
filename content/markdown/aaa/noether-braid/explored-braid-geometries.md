@@ -1,6 +1,6 @@
 # Explored Braid Geometries
 
-This chapter defines two braid families of the Noether braid case structure: the **symmetric shell braid** (the one-band family and its maximal-symmetry member) and the **nested shell braid** (the three-band frequency-separated family). Together with the [spindle braid](spindle-braid.md), whose flat and full-tilt limits absorb the planar and axial configurations once treated as separate alternatives ([Spindle Braid](spindle-braid.md#boundary-members)), they form the candidate population of the braid search. No family ranking is asserted in this chapter: every family here is a live candidate on equal footing, and comparative screening and evolution on the validated engine are open obligations of the research program.
+This chapter defines two braid families of the Noether braid case structure: the **symmetric shell braid** (the one-band family and its maximal-symmetry member) and the **nested shell braid** (the three-band frequency-separated family). Together with the [spindle braid](spindle-braid.md), whose flat and full-tilt limits absorb the planar and axial configurations once treated as separate alternatives ([Spindle Braid](spindle-braid.md#boundary-members)), they form the candidate population of the braid search. No family ranking is asserted in this chapter: every family here is a live candidate on equal footing, and comparative adjudication among the families is an open obligation of the theory.
 
 The status discipline of the braid stack binds throughout — no family on this page is a retained branch, and the retained-branch certificate target of [Neutral Braid](neutral-braid.md) remains open for every realization named here.
 
@@ -81,7 +81,7 @@ The consequence sharpens the return-response question to a single named target. 
 
 The environmental route embeds the same one-band configuration at rest in a surrounding [Noether sea](../spacetime/noether-sea.md) of like assemblies. This does not name a new shell family; it is the rest configuration with like assemblies allowed to supply the environmental response needed for retention. In this reading, isolation is a limiting seed chart, and physical retention is local persistence inside an already populated medium.
 
-The route inherits the return-response question directly: it asks whether the delayed response of a like-assembly population changes the reduced-radius equation from escape to a second turning point, a stable support radius, or a bounded limit cycle. Closing it requires an explicit like-assembly population record, a declared boundary condition, and a sea-response row tied to the same target branch, under the same-record evidence discipline of [Braid Recovery Requirements](braid-recovery-requirements.md). Whether a static like-assembly environment can supply retention, and whether a dynamic, formation-history-driven sea response can do what a static one cannot, are open questions for the research program's campaigns; no environmental verdict is carried in this chapter.
+The route inherits the return-response question directly: it asks whether the delayed response of a like-assembly population changes the reduced-radius equation from escape to a second turning point, a stable support radius, or a bounded limit cycle. Closing it requires an explicit like-assembly population record, a declared boundary condition, and a sea-response row tied to the same target branch, under the same-record evidence discipline of [Braid Recovery Requirements](braid-recovery-requirements.md). Whether a static like-assembly environment can supply retention, and whether a dynamic, formation-history-driven sea response can do what a static one cannot, are open questions; no environmental verdict is carried in this chapter.
 
 ### Accessory Dressing and Apparent Energy
 
@@ -549,11 +549,11 @@ The collective motion, or **group velocity**, of a Noether braid assembly determ
 
 The nested family's mechanism program — how a three-band assembly could keep compatible branch
 records as one moving delayed system, with same-record closure across period, active-root ledger,
-deformation map, medium response, observer export, and event ledger — is a research-program
-obligation, tracked with the proof programs rather than in this chapter. The realization-independent
+deformation map, medium response, observer export, and event ledger — is an open
+obligation, not carried in this chapter. The realization-independent
 machinery lives with the shared mathematics in [Braid Mathematics](braid-mathematics.md#substrate-and-effective-levels),
 and the strong-field endpoint lives in [Terminal Alignment](../proof-programs/terminal-alignment.md).
-Results enter this chapter only when certified at corpus grade.
+Results enter this chapter only when established at their stated claim level.
 
 For the strong-field continuation, see [Black Holes](../spacetime/black-holes.md) and
 [Horizon Chirality](../spacetime/horizon-chirality.md).
