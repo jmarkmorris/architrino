@@ -2,8 +2,8 @@
 
 ## Status
 
-- Stage: `borg-shadow-executable-promotion-blocked`
-- Migration authority: `none-until-eom-validation`
+- Stage: `borg-eom-default-developer-test`
+- Migration authority: `operator-directed-default-with-fail-closed-evidence-boundary`
 - Endorsed solver: `EOM`
 - Existing central solver: `temporary-compatibility-only`
 - EOM implementation: native correctness nucleus, coupled certified traversal, checkpoint layer, persistent Borg worker, and controlled Borg shadow adapter executable
@@ -23,9 +23,29 @@ The current native `architrino_solver_integrate_master_equation_motion_f64` rout
 
 The Borg fixture and compatibility runner now record
 `canonicalEomEvidence=false` and `eomEvidenceStatus=non_eom_compatibility_output`.
-An opt-in Borg EOM shadow route imports continuous cubic history through an
-absolute cut time, rejects state-only input, invokes the native C++ coupled
-engine, and derives display frames only from atomically published extensions.
+Borg now defaults to the EOM shadow route. It constructs a certified exact
+inertial $C^1$ seed over the declared memory interval, invokes the native C++
+coupled engine, and withholds trajectory publication through one complete EOM
+burn-in horizon. At the horizon boundary the runner discards the seed and
+retains only the most recent EOM-produced history window. Subsequent display
+frames come only from atomically published EOM extensions. The seed certificate
+accepts the polynomial only as mathematical initial datum and records
+`eomOutput=false` and `canonicalEomEvidence=false`. The central-solver
+compatibility path remains available only as the explicit
+`?eom=compatibility` diagnostic route.
+The Master EOM is a delayed path-history equation, so its initial condition is
+a continuous past interval rather than one instantaneous position and
+velocity. The forward EOM cannot uniquely reconstruct that past from the cut
+state: different past paths can end at the same state while producing different
+delayed interactions. Borg must therefore receive an explicit retained-history
+input before the EOM can extend it forward.
+Applying a new Borg population constructs one exact inertial polynomial per
+selected path over the declared ten-unit memory interval. This is an accepted
+initial datum under the frozen EOM contract, not an evolved past and not
+canonical EOM evidence. The runner evolves it from $T=0$ through $T=10$ without
+publishing burn-in frames. At $T=10$, the complete retained interval $[0,10]$
+is EOM-produced; the seed interval $[-10,0]$ is removed. Thereafter the solver
+keeps only the moving EOM window $[T-10,T]$, not the whole trajectory.
 The first 16-path shadow step completed, but only at coarse tolerances and with
 `executable_architecture_evidence`; it is not eligible for promotion.
 The Borg shadow surface now supports a selected continuous-history subset of
@@ -46,7 +66,7 @@ history gates do not block Borg's 16-path migration.
 | Consumer | Initial disposition | Migration condition |
 | --- | --- | --- |
 | Existing central solver | Preserve only as temporary compatibility for current dependencies. Freeze its consumer and capability surface: no new work may adopt or extend it, and its current `canonical_eom_evidence` flag is not dynamical evidence. | Retire after every dependency has an explicit EOM replacement, retained non-evolution role, quarantine decision, or retirement decision. |
-| Borg | Preserve the current page and fixture for compatibility, but treat the existing motion result as non-EOM output pending provenance correction. Borg is the first intended EOM migration target. | EOM passes its independent gate, then an identical-input shadow run is reviewed and the fixture is regenerated from EOM. |
+| Borg | Default the developer-test page to the fail-closed EOM shadow runner. Use the accepted initial-datum-only seed followed by a complete EOM burn-in horizon, and retain the central solver only behind `?eom=compatibility`. | EOM passes the independent bounded-population precision and convergence gates; any regenerated fixture must come from accepted EOM output. |
 | Causal Delay Feedback | Quarantine prescribed-path replay from physical prediction. Do not carry path guidance or snapping into EOM. | Rebuild the display from EOM-produced paths or retain it only as a clearly separate path-analysis/visualization tool. |
 | Animator | Quarantine solver-derived-motion claims based on authored, linear, constant-acceleration, or constrained future paths. Preserve existing files to avoid dependency breakage. | Animator becomes a viewer of EOM-produced datasets; it must not author the future path consumed as physical evolution. |
 | Photon | Keep photon path analysis outside EOM until retained input history and the Master EOM naturally reproduce a photon path. A prescribed photon path remains an analysis input, not an evolved photon. | Migrate only after an EOM run produces and validates the relevant photon retained history without future path prescription. |

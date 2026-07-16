@@ -36,7 +36,7 @@ This case is not a fundamental physics recovery target at the same level as Lore
 | Source draft | Promotion target | Gate |
 | --- | --- | --- |
 | This file | [temperature](temperature.md) | Use Brownian motion to discipline temperature as a coarse-grained variable. |
-| This file | [mass-map/condensed-matter-medium-transport](../braid-mass-response-map/condensed-matter-medium-transport.md) | Separate reversible medium-dressed inertia from dissipative transport. |
+| This file | mass-map/condensed-matter-medium-transport (legacy-braid ref: `braid-mass-response-map/condensed-matter-medium-transport.md`) | Separate reversible medium-dressed inertia from dissipative transport. |
 | This file | [quantum-closure/transfer-operator-basin-measure](../quantum-closure/transfer-operator-basin-measure.md) | Use diffusion as a low-risk analogy for deterministic measures producing effective statistics. |
 
 ## Failure Modes

@@ -1066,3 +1066,80 @@ This file holds dated decisions, implementation status, validation results, fail
   `48d245cb35bf95a093621495a50a6b5aa790e0d4d1b0f283bc40388d6075b351`.
   Evidence:
   [section-86-mpfr-direct-precision-slots-2026-07-15.md](evidence/section-86-mpfr-direct-precision-slots-2026-07-15.md).
+
+## 2026-07-15 — Borg defaults to the EOM runner
+
+- The operator directed Borg to use EOM by default. Ordinary `/borg.html`
+  now loads the retained-history asset and mounts the fail-closed EOM shadow
+  runner; the old central-solver path is available only through
+  `?eom=compatibility` for diagnostics.
+- The local development server enables the same-origin native EOM endpoint by
+  default and constructs its process client lazily on the first request. An
+  explicit false `EOM_BORG_SHADOW` environment value disables the endpoint.
+- The default-route change does not promote the imported compatibility
+  history or the EOM result to canonical evidence. The remaining migration
+  burden is an accepted EOM initial-history construction plus the independent
+  bounded-population precision and convergence gates.
+- Measured by the in-app browser at the ordinary URL, the page reported
+  `Runner kind: eom-shadow`, `Run source: computed-eom-shadow-chunks`, and
+  completed its one requested 16-path chunk without console errors. The live
+  budget reported about `2.394e+3` ms for that chunk.
+- Borg's individual electrino and positrino controls now own the runtime
+  population; the redundant total-architrino input is removed. Applying a new
+  population constructs a complete two-row linear retained history for every
+  selected path, explicitly tagged as app-authored prescribed non-EOM input,
+  so the EOM runner no longer falls back to the 16-path fixture after a 1+1
+  request.
+- The EOM panel now defaults to actual `Forever` evolution and keeps `60`
+  seconds as the finite-mode duration. The EOM runner removes its target
+  endpoint in Forever mode and continues producing atomic `0.01` chunks until
+  the operator presses Stop. The run-mode, duration, progress, retained-history
+  source, population, and velocity controls now share one EOM Run panel.
+- The first live Apply-during-Forever check exposed an unhandled worker-stdin
+  `EPIPE` in the local development server. The native process client now routes
+  stdin errors through its generation guard, and queued HTTP requests acquire
+  the shared worker only when they begin instead of capturing a worker being
+  cancelled by the preceding request.
+- Measured in the in-app browser after restarting the persistent server, a 1+1
+  EOM run advanced past the old ten-chunk boundary to 16 chunks while still
+  reporting `running forever`; the Stop action settled at 19 published chunks,
+  retained the 1+1 population, and produced no browser log entries. The server
+  remained listening on port 5173 after the cancellation/restart sequence.
+
+## 2026-07-15 — Borg accepted seed and complete EOM burn-in horizon
+
+- Replaced Borg's default compatibility-fixture and app-authored prescribed
+  initial past with one exact inertial $C^1$ polynomial per selected path. Its
+  SHA-256 certificate accepts it only as EOM continuous initial datum and
+  records `eomOutput=false`, `canonicalEomEvidence=false`, no future path
+  prescription, and zero interpolation error for the inertial polynomial.
+- Added an explicit burn-in phase from $T=0$ through the declared ten-unit
+  memory horizon. Borg withholds all burn-in frames from the viewport. At
+  $T=10$, the runner drops every seed segment and marks the retained $[0,10]$
+  window as EOM-produced shadow history. Later requests keep the moving
+  $[T-10,T]$ EOM window; they do not keep the whole solver trajectory.
+- The first sampled-row seed attempt failed the native continuity checker with
+  `retained-history position is discontinuous`. Direct measurement showed a
+  1+1 request containing 2,000 seed segments occupied 541,357 bytes. Replacing
+  those samples with two exact inertial polynomials reduced the first request
+  to 423 bytes and the native process completed its first step with no rejected
+  steps. This is measured transport and execution evidence, not canonical EOM
+  evidence.
+- Added fail-closed exact-boundary trimming. A requested retained-window cut
+  that does not coincide with a published segment boundary is rejected instead
+  of reconstructing polynomial coefficients.
+- The complete Borg JavaScript suite passed 62/62 tests, the native Borg
+  process suite passed 4/4 tests, the fixture writer passed `--check`, and the
+  independent oracle reference-kernel and certified-evolution suites passed
+  6/6 and 10/10 tests. The new runner test verifies that the burn-in handoff
+  contains no seed segment and that the next request identifies its input as
+  EOM output while retaining non-canonical claim level.
+- Measured in the in-app browser, a 1+1 Forever run completed all 1,000 burn-in
+  chunks, changed its retained-history status to EOM output only, and then
+  published 81 live chunks before the operator Stop action. The viewport stayed
+  at the seed endpoint during burn-in and began the live path at $T=10$. No
+  compatibility trajectory was loaded by the default EOM bootstrap.
+- This closes Borg's seed-provenance and complete-burn-in implementation
+  burden. Borg promotion remains blocked by the independent 16-path precision
+  and convergence gate; the seed and the measured browser run are not canonical
+  dynamical evidence.

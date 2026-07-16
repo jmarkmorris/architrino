@@ -28,7 +28,7 @@ This file preserves ideas and insights that are working toward promotion to an e
   \quad
   \text{for } t-t_A < \frac{\|\mathbf{x}_B-\mathbf{x}_A\|}{c_f}.
   $$
-  If the construction requires distant setting dependence, superluminal causal-wake transfer, or treating information as ontology, reject it or leave it as a failed analogy. If it survives, route the quantum side through `pair_provenance_measure`, the black-hole / entropy side through [strong-field-closure](../strong-field-closure/priorities.md), and the compliance side through [mass-map medium-response probe](../braid-mass-response-map/a0-medium-response-tensor-probe.md).
+  If the construction requires distant setting dependence, superluminal causal-wake transfer, or treating information as ontology, reject it or leave it as a failed analogy. If it survives, route the quantum side through `pair_provenance_measure`, the black-hole / entropy side through [strong-field-closure](../strong-field-closure/priorities.md), and the compliance side through mass-map medium-response probe (legacy-braid ref: `braid-mass-response-map/a0-medium-response-tensor-probe.md`).
 
 ## Dynamo Team Insights Mining
 

@@ -3,21 +3,129 @@ import { test } from "node:test";
 
 import { BORG_DATASET_MANIFEST_V1 } from "../src/apps/borg/BorgFixtureData.js";
 import {
+  BORG_EOM_BURN_IN_HISTORY_PROVENANCE,
   BORG_EOM_COMPATIBILITY_HISTORY_PROVENANCE,
   BORG_EOM_SHADOW_RUN_SOURCE,
   createBorgContinuousRetainedHistories,
   createBorgEomShadowRunConfig,
   createBorgEomShadowRunner,
+  trimBorgRetainedHistories,
 } from "../src/apps/borg/BorgEomShadowRunner.js";
 import { encodeNativeRequest } from "../scripts/eom/BorgNativeEomProcessClient.mjs";
 import { createBorgEomHttpClient } from "../src/apps/borg/BorgEomHttpClient.js";
 import { loadBorgFixtureTrajectoryFrames } from "../src/apps/borg/BorgFixtureTrajectory.js";
+import {
+  BORG_ACCEPTED_SEED_HISTORY_CLAIM_LEVEL,
+  BORG_ACCEPTED_SEED_HISTORY_PROVENANCE,
+  BORG_PRESCRIBED_INITIAL_HISTORY_CLAIM_LEVEL,
+  BORG_PRESCRIBED_INITIAL_HISTORY_PROVENANCE,
+  createBorgAcceptedInertialSeedHistory,
+  createBorgPrescribedLinearHistoryRows,
+  createBorgSeededInitialConditionRows,
+} from "../src/apps/borg/BorgInitialConditions.js";
+import {
+  BORG_COMPATIBILITY_RUNTIME_MODE,
+  BORG_DEFAULT_RUNTIME_MODE,
+  bootBorgApp,
+  resolveBorgRuntimeMode,
+} from "../src/apps/borg/BorgBootstrap.js";
 
-// The manifest carries only the seed state; retained history comes from the
-// recorded trajectory asset, which is exactly what these tests exercise.
+// Compatibility-history tests still exercise the recorded trajectory asset.
+// Default Borg boot no longer loads that asset into the EOM path.
 const trajectoryFrames = await loadBorgFixtureTrajectoryFrames();
 
-test("Borg EOM migration uses canonical field speed for its history window", () => {
+test("Borg boots the EOM runner by default and preserves compatibility as an explicit diagnostic mode", async () => {
+  const eomClient = { async evolveRetainedHistories() {} };
+  const defaultMounts = [];
+  let defaultTrajectoryLoads = 0;
+  const defaultResult = await bootBorgApp({
+    search: "",
+    createEomClient: () => eomClient,
+    loadFixtureTrajectoryFrames: async () => {
+      defaultTrajectoryLoads += 1;
+      return trajectoryFrames;
+    },
+    mountApp(options) {
+      defaultMounts.push(options);
+      return "default-eom-mounted";
+    },
+  });
+
+  assert.equal(resolveBorgRuntimeMode(""), BORG_DEFAULT_RUNTIME_MODE);
+  assert.equal(defaultResult, "default-eom-mounted");
+  assert.equal(defaultTrajectoryLoads, 0);
+  assert.equal(defaultMounts.length, 1);
+  assert.equal(defaultMounts[0].fixtureTrajectoryFrames, undefined);
+  assert.equal(defaultMounts[0].initialEomSeed.rows.length, 16 * 2);
+  assert.equal(defaultMounts[0].initialEomSeed.endpointRows.length, 16);
+  assert.equal(defaultMounts[0].initialEomSeed.certificate.accepted, true);
+  assert.equal(defaultMounts[0].initialEomSeed.certificate.eomOutput, false);
+  assert.equal(defaultMounts[0].initialEomSeed.certificate.canonicalEomEvidence, false);
+  assert.equal(defaultMounts[0].eomShadowRunner.eomClient, eomClient);
+  assert.equal(defaultMounts[0].eomShadowRunner.pathCount, 16);
+  assert.equal(defaultMounts[0].eomShadowRunner.startTime, 0);
+  assert.equal(defaultMounts[0].eomShadowRunner.historyDepth, 10);
+  assert.equal(defaultMounts[0].eomShadowRunner.burnInDuration, 10);
+  assert.equal(defaultMounts[0].eomShadowRunner.targetDuration, 70);
+  assert.equal(defaultMounts[0].eomShadowRunner.runDuration, 60);
+
+  const compatibilityMounts = [];
+  let compatibilityTrajectoryLoads = 0;
+  const compatibilityResult = await bootBorgApp({
+    search: "?eom=compatibility",
+    loadFixtureTrajectoryFrames: async () => {
+      compatibilityTrajectoryLoads += 1;
+      return trajectoryFrames;
+    },
+    mountApp(options) {
+      compatibilityMounts.push(options);
+      return "compatibility-mounted";
+    },
+  });
+
+  assert.equal(
+    resolveBorgRuntimeMode("?eom=compatibility"),
+    BORG_COMPATIBILITY_RUNTIME_MODE,
+  );
+  assert.equal(compatibilityResult, "compatibility-mounted");
+  assert.equal(compatibilityTrajectoryLoads, 0);
+  assert.deepEqual(compatibilityMounts, [{}]);
+});
+
+test("Borg EOM accepts individual polarity counts through a continuous prescribed initial history", () => {
+  const endpointRows = createBorgSeededInitialConditionRows({
+    manifest: BORG_DATASET_MANIFEST_V1,
+    seedIndex: 3,
+    config: {
+      electrinoCount: 1,
+      positrinoCount: 1,
+      randomVelocityMaxComponentMagnitude: 0.02,
+      randomVelocityMinSpeed: 0.01,
+    },
+  });
+  const frameRows = createBorgPrescribedLinearHistoryRows(endpointRows, {
+    historyStartTime: 118,
+    historyEndTime: 300,
+  });
+  const histories = createBorgContinuousRetainedHistories(
+    frameRows,
+    BORG_DATASET_MANIFEST_V1,
+    {
+      historyStartTime: 118,
+      historyEndTime: 300,
+      expectedPathCount: 2,
+    },
+  );
+
+  assert.equal(histories.length, 2);
+  assert.equal(histories[0].coverageStart, "118");
+  assert.equal(histories[0].coverageEnd, "300");
+  assert.equal(histories[0].segments.length, 1);
+  assert.equal(histories[0].sourceProvenance, BORG_PRESCRIBED_INITIAL_HISTORY_PROVENANCE);
+  assert.equal(histories[0].sourceClaimLevel, BORG_PRESCRIBED_INITIAL_HISTORY_CLAIM_LEVEL);
+});
+
+test("Borg EOM migration uses canonical field speed and the declared memory depth", () => {
   const config = createBorgEomShadowRunConfig(BORG_DATASET_MANIFEST_V1, {
     startTime: 300,
     targetDuration: 300.2,
@@ -27,7 +135,9 @@ test("Borg EOM migration uses canonical field speed for its history window", () 
 
   assert.equal(config.fieldSpeed, 1);
   assert.equal(config.geometricDelayBound, expectedGeometricDelayBound);
-  assert.ok(config.historyDepth > expectedGeometricDelayBound);
+  assert.equal(config.historyDepth, 10);
+  assert.equal(config.burnInDuration, 10);
+  assert.equal(config.burnInEndTime, 310);
   assert.ok(Math.abs(config.historyStartTime - (300 - config.historyDepth)) < 1e-12);
 
   const fallbackConfig = createBorgEomShadowRunConfig({
@@ -101,6 +211,7 @@ test("Borg EOM shadow runner sends retained histories and derives frames only fr
   assert.equal("futurePaths" in request, false);
 
   assert.equal(chunk.source, BORG_EOM_SHADOW_RUN_SOURCE);
+  assert.equal(chunk.phase, "burn-in");
   assert.equal(chunk.statusCode, "ok");
   assert.equal(chunk.evidenceStatus, "executable_architecture_evidence");
   assert.equal(chunk.promotionEligible, false);
@@ -131,7 +242,7 @@ test("Borg EOM shadow runner supports a deterministic retained-history populatio
   assert.equal(chunk.frames.length, 8);
 });
 
-test("Borg EOM UI duration and atomic chunk cannot be overridden by measured limits", () => {
+test("Borg EOM preserves the finite UI duration, supports Forever, and keeps its atomic chunk", () => {
   const runner = createBorgEomShadowRunner(BORG_DATASET_MANIFEST_V1, {
     eomClient: { async evolveRetainedHistories() {} },
     initialFrameRows: trajectoryFrames,
@@ -143,9 +254,17 @@ test("Borg EOM UI duration and atomic chunk cannot be overridden by measured lim
   runner.setRunLimits({ targetDuration: 10.05, chunkDuration: 20 });
   assert.equal(runner.targetDuration, 10.1);
   assert.equal(runner.chunkDuration, 0.01);
+
+  runner.setRunLimits({
+    targetDuration: Number.POSITIVE_INFINITY,
+    chunkDuration: 20,
+  });
+  assert.equal(runner.targetDuration, Number.POSITIVE_INFINITY);
+  assert.equal(runner.chunkDuration, 0.01);
+  assert.equal(runner.canComputeNextChunk(), true);
 });
 
-test("Borg promotion remains fail-closed until both canonical evidence and the migration gate pass", async () => {
+test("Borg promotion remains fail-closed during burn-in even when the migration gate passes", async () => {
   const eomClient = {
     async evolveRetainedHistories(request) {
       return createFakeEomResponse(request, "canonical");
@@ -166,8 +285,73 @@ test("Borg promotion remains fail-closed until both canonical evidence and the m
   });
 
   const chunk = await runner.computeNextChunk();
-  assert.equal(chunk.promotionEligible, true);
+  assert.equal(chunk.promotionEligible, false);
   assert.equal(chunk.frames.every((frame) => frame.valueAuthority === "canonical-eom-output"), true);
+});
+
+test("Borg replaces the accepted seed with a complete EOM burn-in horizon", async () => {
+  const endpointRows = createBorgSeededInitialConditionRows({
+    manifest: BORG_DATASET_MANIFEST_V1,
+    seedIndex: 4,
+    config: {
+      electrinoCount: 1,
+      positrinoCount: 1,
+      randomVelocityMaxComponentMagnitude: 0.02,
+      randomVelocityMinSpeed: 0.01,
+    },
+  });
+  const seed = await createBorgAcceptedInertialSeedHistory(endpointRows, {
+    historyStartTime: -0.02,
+    historyEndTime: 0,
+    sampleInterval: 0.01,
+    digest: async () => "seed-digest",
+  });
+  const requests = [];
+  const runner = createBorgEomShadowRunner(BORG_DATASET_MANIFEST_V1, {
+    eomClient: {
+      async evolveRetainedHistories(request) {
+        requests.push(request);
+        return createFakeEomResponse(request, "executable_architecture_evidence");
+      },
+    },
+    initialFrameRows: seed.rows,
+    initialHistoryProvenance: BORG_ACCEPTED_SEED_HISTORY_PROVENANCE,
+    initialHistoryClaimLevel: BORG_ACCEPTED_SEED_HISTORY_CLAIM_LEVEL,
+    pathCount: 2,
+    startTime: 0,
+    historyDepth: 0.02,
+    burnInDuration: 0.02,
+    targetDuration: 0.03,
+    chunkDuration: 0.01,
+    sampleInterval: 0.01,
+  });
+
+  const first = await runner.computeNextChunk();
+  const second = await runner.computeNextChunk();
+  const live = await runner.computeNextChunk();
+
+  assert.equal(first.phase, "burn-in");
+  assert.equal(first.burnInComplete, false);
+  assert.equal(second.phase, "burn-in");
+  assert.equal(second.burnInComplete, true);
+  assert.equal(second.histories.every((history) => history.coverageStart === "0"), true);
+  assert.equal(second.histories.every((history) => history.sourceIsEomOutput === true), true);
+  assert.equal(second.histories.every((history) => history.sourceAcceptedInitialDatum === false), true);
+  assert.equal(second.histories.every((history) => history.sourceProvenance === BORG_EOM_BURN_IN_HISTORY_PROVENANCE), true);
+  assert.equal(second.histories.every((history) => history.segments.every((segment) => Number(segment.startTime) >= 0)), true);
+  assert.equal(live.phase, "live");
+  assert.equal(requests[0].provenance.importedHistoryIsAcceptedInitialDatum, true);
+  assert.equal(requests[2].provenance.importedHistoryIsEomOutput, true);
+});
+
+test("Borg refuses to approximate a retained-history trim between segment boundaries", () => {
+  assert.throws(
+    () => trimBorgRetainedHistories([{
+      pathId: "1001",
+      segments: [{ startTime: "0", endTime: "1", coefficients: [] }],
+    }], { coverageStart: 0.5 }),
+    /does not align with an exact segment boundary/,
+  );
 });
 
 test("Borg EOM shadow response rejects reordered or incomplete published histories", async () => {

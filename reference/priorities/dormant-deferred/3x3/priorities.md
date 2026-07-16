@@ -121,7 +121,7 @@ What it does **not** yet establish is that quark color can be read directly as `
 ## Related Priorities
 
 - [standard-model-closure](../../standard-model-closure/priorities.md)
-- [mass-map](../../braid-mass-response-map/priorities.md)
+- mass-map (legacy-braid ref: `braid-mass-response-map/priorities.md`)
 
 ## Related AAA Notes
 

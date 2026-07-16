@@ -243,6 +243,14 @@ test("Borg path-history renderer uses native row segments, not visual smoothing 
     new URL("../src/apps/borg/BorgAppRuntime.js", import.meta.url),
     "utf8",
   );
+  const nativeProcessClientSource = readFileSync(
+    new URL("../scripts/eom/BorgNativeEomProcessClient.mjs", import.meta.url),
+    "utf8",
+  );
+  const localDevServerSource = readFileSync(
+    new URL("../scripts/dev/start-local-dev.mjs", import.meta.url),
+    "utf8",
+  );
   const htmlSource = readFileSync(new URL("../borg.html", import.meta.url), "utf8");
   // Trail rendering moved to BorgPathTrails.js; the no-smoothing guard follows
   // the code it guards.
@@ -261,7 +269,12 @@ test("Borg path-history renderer uses native row segments, not visual smoothing 
   assert.doesNotMatch(runtimeSource, /PLAYBACK_MS_PER_NATIVE_STEP/);
   assert.match(runtimeSource, /RUN_CONTROL_PRESETS/);
   assert.match(runtimeSource, /live-forever/);
-  assert.match(runtimeSource, /live-20s/);
+  assert.match(runtimeSource, /live-60s/);
+  assert.match(nativeProcessClientSource, /worker\.stdin\.on\("error"/);
+  assert.match(
+    localDevServerSource,
+    /const execute = \(\) => \{\s*client = getEomBorgClient\(\);/,
+  );
   assert.match(runtimeSource, /borg-live-run-budget\.v1/);
   assert.match(runtimeSource, /BorgMeasuredRunPresets\.js/);
   assert.match(runtimeSource, /BorgLiveRunRetentionPolicy\.js/);
@@ -285,15 +298,23 @@ test("Borg path-history renderer uses native row segments, not visual smoothing 
   assert.match(runtimeSource, /mergeBorgFrameRows/);
   assert.match(
     runtimeSource,
-    /currentFrames = replaceFixture[\s\S]*applyLiveRunRetentionIfNeeded\(\);[\s\S]*frameSets = createBorgFrameSetsFromRows\(currentFrames\);/,
+    /currentFrames = replaceCurrentFrames[\s\S]*applyLiveRunRetentionIfNeeded\(\);[\s\S]*frameSets = createBorgFrameSetsFromRows\(currentFrames\);/,
   );
+  assert.match(runtimeSource, /chunk\.phase === "burn-in"/);
+  assert.match(runtimeSource, /createBorgAcceptedInertialSeedHistory/);
   assert.match(runtimeSource, /appendedFrameRows = Array\.isArray\(chunk\.frames\)/);
   assert.doesNotMatch(htmlSource, /M9\.8 6\.2a6\.8/);
   assert.match(htmlSource, /id="borg-start-frame-button"/);
   assert.match(htmlSource, /id="borg-new-distribution-button"/);
   assert.match(htmlSource, /id="borg-run-duration-button"/);
-  assert.match(htmlSource, /id="borg-eom-path-count"/);
-  assert.match(htmlSource, /id="borg-eom-duration"/);
+  assert.doesNotMatch(htmlSource, /id="borg-eom-path-count"/);
+  assert.match(htmlSource, /id="borg-eom-duration"[^>]*value="60"/);
+  assert.match(
+    htmlSource,
+    /id="borg-eom-controls"[\s\S]*id="borg-initial-condition-form"[\s\S]*id="borg-initial-condition-fields"/,
+  );
+  assert.doesNotMatch(htmlSource, /<section[^>]*aria-label="Initial condition fields"/);
+  assert.match(htmlSource, /id="borg-eom-history-status"/);
   assert.match(htmlSource, /id="borg-eom-stop-button"/);
   assert.match(htmlSource, /id="borg-eom-restart-button"/);
   assert.doesNotMatch(htmlSource, /id="borg-run-source"/);

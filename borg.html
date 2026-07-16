@@ -371,7 +371,7 @@
         min-width: 0;
         min-height: 0;
         display: grid;
-        grid-template-columns: 40px 40px 40px minmax(96px, 1fr) 128px 88px minmax(128px, auto);
+        grid-template-columns: 40px 40px 40px minmax(96px, 1fr) 88px minmax(128px, auto);
         gap: 10px;
         align-items: center;
         padding: 12px 14px;
@@ -475,25 +475,27 @@
         cursor: pointer;
       }
 
-      .borg-eom-controls {
+      .borg-eom-form {
         display: grid;
         grid-template-columns: repeat(2, minmax(0, 1fr));
         gap: 9px;
-      }
-
-      .borg-initial-form {
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 9px;
-        margin-bottom: 9px;
       }
 
       .borg-eom-controls[hidden] {
         display: none;
       }
 
-      .borg-eom-controls h2 {
+      .borg-eom-controls h2,
+      .borg-eom-subheading,
+      .borg-eom-history-status {
         grid-column: 1 / -1;
+      }
+
+      .borg-eom-subheading {
+        margin-top: 3px;
+        color: #f2f5ec;
+        font-size: 11px;
+        font-weight: 760;
       }
 
       .borg-eom-control,
@@ -518,6 +520,11 @@
         background: #171c16;
         color: #eaf6df;
         font: inherit;
+      }
+
+      .borg-eom-form .borg-run-duration-button {
+        width: 100%;
+        height: 34px;
       }
 
       .borg-eom-control input,
@@ -575,6 +582,16 @@
         color: #c8dbbd;
         font-size: 11px;
         line-height: 1.35;
+      }
+
+      .borg-eom-history-status {
+        color: #abc09f;
+        font-size: 10px;
+        line-height: 1.35;
+      }
+
+      #borg-initial-condition-fields {
+        margin-top: 9px;
       }
 
       .borg-playback-speed {
@@ -673,11 +690,6 @@
           grid-template-columns: 40px 40px 40px minmax(0, 1fr);
         }
 
-        .borg-run-duration-button {
-          grid-column: 1 / 3;
-          width: 100%;
-        }
-
         .borg-playback-speed {
           grid-column: 3 / 5;
           width: 100%;
@@ -705,30 +717,21 @@
           </div>
         </header>
 
-        <section id="borg-eom-controls" class="borg-section borg-eom-controls" aria-label="EOM run controls" hidden>
+        <section id="borg-eom-controls" class="borg-section borg-eom-controls" aria-label="EOM run and initial condition controls" hidden>
           <h2>EOM Run</h2>
-          <label class="borg-eom-control">
-            Architrinos
-            <input id="borg-eom-path-count" type="number" min="1" max="16" step="1" value="16" inputmode="numeric" />
-          </label>
-          <label class="borg-eom-control">
-            Duration
-            <input id="borg-eom-duration" type="number" min="0.01" step="0.01" value="0.01" inputmode="decimal" />
-          </label>
-          <button id="borg-eom-stop-button" class="borg-eom-action is-stop" type="button">Stop</button>
-          <button id="borg-eom-restart-button" class="borg-eom-action" type="button">Restart</button>
-          <progress id="borg-eom-progress" class="borg-eom-progress" max="1" value="0"></progress>
-          <output id="borg-eom-progress-label" class="borg-eom-progress-label">0 / 1 steps</output>
-        </section>
-
-        <section class="borg-section" aria-label="Simulation envelope fields">
-          <h2>Simulation Envelope</h2>
-          <div id="borg-envelope-fields" class="borg-field-list"></div>
-        </section>
-
-        <section class="borg-section" aria-label="Initial condition fields">
-          <h2>Initial Condition</h2>
-          <form id="borg-initial-condition-form" class="borg-initial-form" novalidate>
+          <form id="borg-initial-condition-form" class="borg-eom-form" novalidate>
+            <div class="borg-eom-subheading">Run controls</div>
+            <button id="borg-run-duration-button" class="borg-run-duration-button" type="button" aria-label="Run mode: Forever" title="Toggle run mode between Forever and 60 seconds">Forever</button>
+            <label class="borg-eom-control">
+              Finite duration (s)
+              <input id="borg-eom-duration" type="number" min="0.01" step="0.01" value="60" inputmode="decimal" />
+            </label>
+            <button id="borg-eom-stop-button" class="borg-eom-action is-stop" type="button">Stop</button>
+            <button id="borg-eom-restart-button" class="borg-eom-action" type="button">Restart</button>
+            <progress id="borg-eom-progress" class="borg-eom-progress" max="1"></progress>
+            <output id="borg-eom-progress-label" class="borg-eom-progress-label">0 chunks | starting forever</output>
+            <output id="borg-eom-history-status" class="borg-eom-history-status">Initial retained history: stored compatibility fixture (non-EOM). New EOM chunks extend it from T=300.</output>
+            <div class="borg-eom-subheading">Initial conditions</div>
             <label class="borg-initial-control">
               Electrinos
               <input id="borg-electrino-count" type="number" min="0" max="512" step="1" value="8" inputmode="numeric" />
@@ -749,6 +752,11 @@
             <output id="borg-initial-condition-feedback" class="borg-initial-feedback" data-tone="accepted">Manifest values active</output>
           </form>
           <div id="borg-initial-condition-fields" class="borg-field-list"></div>
+        </section>
+
+        <section class="borg-section" aria-label="Simulation envelope fields">
+          <h2>Simulation Envelope</h2>
+          <div id="borg-envelope-fields" class="borg-field-list"></div>
         </section>
 
         <details class="borg-provenance-drawer" aria-label="Source provenance">
@@ -835,7 +843,6 @@
           </svg>
         </button>
         <input id="borg-time-range" class="borg-range" type="range" min="0" max="2" step="1" value="2" aria-label="Keyframe" title="Buffered-frame scrubber; a Forever run has no finite completion percentage." />
-        <button id="borg-run-duration-button" class="borg-run-duration-button" type="button" aria-label="Run duration: Forever" title="Toggle run duration">Forever</button>
         <select id="borg-playback-speed" class="borg-playback-speed" aria-label="Playback speed"></select>
         <output id="borg-time-output" class="borg-time-output">solver t 2 | keyframe 2</output>
       </section>

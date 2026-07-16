@@ -1564,7 +1564,7 @@ $$
 
 The constituent-binary intuition belongs in $\delta\Omega_{\mathrm{bin}}$: it is the retained behavior of internal binary phase, lever-arm, wake/coupling, and exposure rows after the common near-photon phase has been factored out.
 
-The iso-frequency Noether braid candidate in [iso-frequency-energy-radius-candidate.md](../braid-angular-momentum-spin/iso-frequency-energy-radius-candidate.md) is therefore a good match only if it has the form
+The iso-frequency Noether braid candidate in iso-frequency-energy-radius-candidate.md (legacy-braid ref: `braid-angular-momentum-spin/iso-frequency-energy-radius-candidate.md`) is therefore a good match only if it has the form
 
 $$
 H_{3B}^{(\nu)}
@@ -3175,7 +3175,7 @@ Broaden the populated galaxy-response child into score-review observational tran
 
 ## Ranked Closure Priorities
 
-Cross-cutting solver priority: the stable three-binary configuration search should consume the equation map through [Equation-Map Bearing On Braid Configuration Search](../braid-retained-branch-closure/equation-map-bearing-on-braid-configuration-search.md). The active role-assigned frequency families are $(I,M,O)=(f+2,f,f-1)$, $(I,M,O)=(f+1,f,f-1)$, $(I,M,O)=(f,f,f)$, $(I,M,O)=(4f,2f,f)$, and $(I,M,O)=(nf,mf,f)$. These are search candidates, not conclusions; acceptance should depend on the retained root, geometry/energy, phase-operator, event-ledger, wake/recoil, stability, and observation residuals emitted from the same branch record.
+Cross-cutting solver priority: the stable three-binary configuration search should consume the equation map through Equation-Map Bearing On Braid Configuration Search (legacy-braid ref: `braid-retained-branch-closure/equation-map-bearing-on-braid-configuration-search.md`). The active role-assigned frequency families are $(I,M,O)=(f+2,f,f-1)$, $(I,M,O)=(f+1,f,f-1)$, $(I,M,O)=(f,f,f)$, $(I,M,O)=(4f,2f,f)$, and $(I,M,O)=(nf,mf,f)$. These are search candidates, not conclusions; acceptance should depend on the retained root, geometry/energy, phase-operator, event-ledger, wake/recoil, stability, and observation residuals emitted from the same branch record.
 
 Current executable reducer guardrail: `scripts/equation-mapping/check-emit-02-04-contract.mjs` consumes the solver report's `cases[].branchChartProjection.equationBearing` payload and maps it onto $\operatorname{Emit}_{02\text{-}04}^{\mathrm{bin}}(u_k)$. The 2026-06-23 iso-frequency smoke result is `blocked_not_evaluable` with 0 evaluable cases, 7 blocked cases, `retainedBranchClaim=false`, and `scoreDecision=no_score_increase`. This checker sharpens the `EQ-02` through `EQ-04` reducer burden but does not justify any `6/23 b` score change.
 

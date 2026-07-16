@@ -141,7 +141,7 @@ This benchmark should be promoted only with an image-vs-model separation:
 
 | Source draft | Promotion target | Gate |
 | --- | --- | --- |
-| This file | [mass-map](../braid-mass-response-map/priorities.md) | Route lensing mass through exposure and shielding rather than treating mass as primitive substance. |
+| This file | mass-map (legacy-braid ref: `braid-mass-response-map/priorities.md`) | Route lensing mass through exposure and shielding rather than treating mass as primitive substance. |
 | This file | [validation-gates](../validation-gates/priorities.md) | Add lensing to the shared gravity acceptance set. |
 | This file | [cosmology-closure](../cosmology-closure/priorities.md) | Use weak lensing as a growth and structure benchmark without importing Lambda-CDM ontology. |
 

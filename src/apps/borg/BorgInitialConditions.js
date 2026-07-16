@@ -1,4 +1,14 @@
 export const BORG_MAX_INITIAL_ARCHITRINO_COUNT = 512;
+export const BORG_PRESCRIBED_INITIAL_HISTORY_PROVENANCE =
+  "app-authored-linear-initial-history-non-eom";
+export const BORG_PRESCRIBED_INITIAL_HISTORY_CLAIM_LEVEL =
+  "conditional-prescribed-initial-history";
+export const BORG_ACCEPTED_SEED_HISTORY_PROVENANCE =
+  "analytic-inertial-c1-initial-datum/v1";
+export const BORG_ACCEPTED_SEED_HISTORY_CLAIM_LEVEL =
+  "accepted-initial-datum-only-not-eom-output";
+export const BORG_ACCEPTED_SEED_HISTORY_CERTIFICATE_VERSION =
+  "borg-eom-seed-history-certificate.v1";
 
 const POSITRINO_STATE_FLAG = 1;
 const ELECTRINO_STATE_FLAG = 2;
@@ -20,7 +30,10 @@ export function createBorgInitialConditionConfig(initialConditions = {}) {
   });
 }
 
-export function validateBorgInitialConditionConfig(candidate = {}) {
+export function validateBorgInitialConditionConfig(
+  candidate = {},
+  { maximumTotalCount = BORG_MAX_INITIAL_ARCHITRINO_COUNT } = {},
+) {
   const errors = [];
   const electrinoCount = strictNonNegativeInteger(candidate.electrinoCount);
   const positrinoCount = strictNonNegativeInteger(candidate.positrinoCount);
@@ -37,8 +50,8 @@ export function validateBorgInitialConditionConfig(candidate = {}) {
   if (electrinoCount != null && positrinoCount != null && totalCount < 1) {
     errors.push("At least one electrino or positrino is required.");
   }
-  if (totalCount > BORG_MAX_INITIAL_ARCHITRINO_COUNT) {
-    errors.push(`The combined population cannot exceed ${BORG_MAX_INITIAL_ARCHITRINO_COUNT}.`);
+  if (totalCount > maximumTotalCount) {
+    errors.push(`The combined population cannot exceed ${maximumTotalCount}.`);
   }
   if (maxComponent == null) {
     errors.push("Maximum velocity component must be zero or greater.");
@@ -106,6 +119,144 @@ export function createBorgSeededInitialConditionRows({ manifest, seedIndex = 0, 
   })));
 }
 
+export async function createBorgAcceptedInertialSeedHistory(
+  endpointRows,
+  { historyStartTime, historyEndTime, sampleInterval = 0.01, digest = sha256Hex } = {},
+) {
+  const startTime = Number(historyStartTime);
+  const endTime = Number(historyEndTime);
+  if (!Array.isArray(endpointRows) || endpointRows.length === 0) {
+    throw new TypeError("Borg accepted EOM seed requires endpoint rows.");
+  }
+  if (!Number.isFinite(startTime) || !Number.isFinite(endTime) || startTime >= endTime) {
+    throw new RangeError("Borg accepted EOM seed requires an increasing retained-history interval.");
+  }
+  const duration = endTime - startTime;
+  const interval = Number(sampleInterval);
+  const segmentCount = Math.round(duration / interval);
+  if (!(interval > 0) || Math.abs(segmentCount * interval - duration) > 1e-9) {
+    throw new RangeError("Borg accepted EOM seed interval must contain whole sample intervals.");
+  }
+  const rows = Object.freeze(endpointRows.flatMap((row) => {
+    const position = cloneVector(row.position);
+    const velocity = cloneVector(row.velocity);
+    const common = {
+      pathKey: row.pathKey,
+      errorBound: 0,
+      stateFlags: row.stateFlags ?? 0,
+      runSource: "accepted-inertial-eom-seed-history",
+      valueAuthority: "accepted-mathematical-initial-datum",
+      historySourceProvenance: BORG_ACCEPTED_SEED_HISTORY_PROVENANCE,
+      historySourceClaimLevel: BORG_ACCEPTED_SEED_HISTORY_CLAIM_LEVEL,
+      historySourceAcceptedInitialDatum: true,
+      historySourceIsEomOutput: false,
+    };
+    return [0, segmentCount].map((sampleIndex) => {
+      const time = sampleIndex === 0 ? startTime : endTime;
+      const offsetFromEnd = endTime - time;
+      return Object.freeze({
+        ...common,
+        historyInterpolation: "exact-inertial-polynomial/v1",
+        frameIndex: sampleIndex,
+        time,
+        position: Object.freeze({
+          x: position.x - velocity.x * offsetFromEnd,
+          y: position.y - velocity.y * offsetFromEnd,
+          z: position.z - velocity.z * offsetFromEnd,
+        }),
+        velocity: Object.freeze(velocity),
+      });
+    });
+  }));
+  const certificatePayload = {
+    schema: BORG_ACCEPTED_SEED_HISTORY_CERTIFICATE_VERSION,
+    construction: BORG_ACCEPTED_SEED_HISTORY_PROVENANCE,
+    historyStartTime: startTime,
+    historyEndTime: endTime,
+    sampleInterval: interval,
+    pathCount: endpointRows.length,
+    paths: endpointRows
+      .map((row) => ({
+        pathKey: Number(row.pathKey),
+        stateFlags: Number(row.stateFlags ?? 0),
+        position: cloneVector(row.position),
+        velocity: cloneVector(row.velocity),
+      }))
+      .sort((left, right) => left.pathKey - right.pathKey),
+  };
+  const contentSha256 = await digest(JSON.stringify(certificatePayload));
+  const certificate = Object.freeze({
+    ...certificatePayload,
+    contentSha256,
+    accepted: true,
+    acceptanceScope: "eom-continuous-initial-datum-only",
+    mathematicalClass: "C1-exact-inertial-polynomial",
+    interpolationErrorBound: 0,
+    futurePathPrescription: false,
+    eomOutput: false,
+    canonicalEomEvidence: false,
+    independentReference:
+      "eom_independent_oracle/v0:inertial-history-representation",
+  });
+  return Object.freeze({
+    rows,
+    endpointRows: Object.freeze(endpointRows.map((row) => Object.freeze({
+      ...row,
+      position: Object.freeze(cloneVector(row.position)),
+      velocity: Object.freeze(cloneVector(row.velocity)),
+    }))),
+    certificate,
+  });
+}
+
+export function createBorgPrescribedLinearHistoryRows(
+  endpointRows,
+  { historyStartTime, historyEndTime } = {},
+) {
+  const startTime = Number(historyStartTime);
+  const endTime = Number(historyEndTime);
+  if (!Array.isArray(endpointRows) || endpointRows.length === 0) {
+    throw new TypeError("Borg prescribed initial history requires endpoint rows.");
+  }
+  if (!Number.isFinite(startTime) || !Number.isFinite(endTime) || startTime >= endTime) {
+    throw new RangeError("Borg prescribed initial history requires an increasing time interval.");
+  }
+  const duration = endTime - startTime;
+  return Object.freeze(endpointRows.flatMap((row) => {
+    const position = cloneVector(row.position);
+    const velocity = cloneVector(row.velocity);
+    const common = {
+      pathKey: row.pathKey,
+      errorBound: row.errorBound ?? 0,
+      stateFlags: row.stateFlags ?? 0,
+      runSource: "prescribed-linear-eom-initial-history",
+      valueAuthority: "app-authored-prescribed-initial-history",
+      historySourceProvenance: BORG_PRESCRIBED_INITIAL_HISTORY_PROVENANCE,
+      historySourceClaimLevel: BORG_PRESCRIBED_INITIAL_HISTORY_CLAIM_LEVEL,
+    };
+    return [
+      Object.freeze({
+        ...common,
+        frameIndex: 0,
+        time: startTime,
+        position: Object.freeze({
+          x: position.x - velocity.x * duration,
+          y: position.y - velocity.y * duration,
+          z: position.z - velocity.z * duration,
+        }),
+        velocity: Object.freeze(velocity),
+      }),
+      Object.freeze({
+        ...common,
+        frameIndex: 1,
+        time: endTime,
+        position: Object.freeze(position),
+        velocity: Object.freeze(velocity),
+      }),
+    ];
+  }));
+}
+
 function createBalancedStateFlags(electrinoCount, positrinoCount) {
   let electrinosRemaining = electrinoCount;
   let positrinosRemaining = positrinoCount;
@@ -160,6 +311,26 @@ function createRandomVelocity(rng, maxComponentMagnitude, minSpeed) {
 
 function randomSignedMagnitude(rng, magnitude) {
   return (rng() * 2 - 1) * magnitude;
+}
+
+function cloneVector(vector = {}) {
+  return {
+    x: Number(vector.x) || 0,
+    y: Number(vector.y) || 0,
+    z: Number(vector.z) || 0,
+  };
+}
+
+async function sha256Hex(text) {
+  const subtle = globalThis.crypto?.subtle;
+  if (!subtle || typeof TextEncoder !== "function") {
+    throw new Error("Borg accepted EOM seed certification requires Web Crypto SHA-256.");
+  }
+  const bytes = new TextEncoder().encode(text);
+  const digest = await subtle.digest("SHA-256", bytes);
+  return [...new Uint8Array(digest)]
+    .map((byte) => byte.toString(16).padStart(2, "0"))
+    .join("");
 }
 
 function createSeededRandom(seedText) {
