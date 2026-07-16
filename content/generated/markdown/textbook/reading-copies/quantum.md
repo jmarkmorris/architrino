@@ -2329,7 +2329,7 @@ This chapter depends on:
 
 - [Braid Envelope Geometry](../../../../markdown/aaa/noether-braid/braid-envelope-geometry.md) for family-declared fusiform and oblate spheroidal exclusion envelopes and the packing-interface diagnostic,
 - [Noether Braid](../../../../markdown/aaa/noether-braid/noether-braid.md) for the braid taxonomy and nested shell braid scaffold,
-- [Nested Shell Braid Dynamics](../../../../markdown/aaa/noether-braid/explored-braid-geometries.md#nested-shell-braid-dynamics) for the delayed-dynamics regime map,
+- [Nested Shell Braid Dynamics](../../../../markdown/aaa/noether-braid/braid-families.md#nested-shell-braid-dynamics) for the delayed-dynamics regime map,
 - [Wavefunction Ontology](../../../../markdown/aaa/quantum/wavefunction-ontology.md) for the effective probability bookkeeping seen by physical observers,
 - and [Electroweak Bosons](../../../../markdown/aaa/assemblies/bosons/electroweak-bosons.md) for the photon-channel case where coherent planar-pair modes must recover Bose-Einstein occupation behavior.
 

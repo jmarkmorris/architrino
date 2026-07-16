@@ -30,15 +30,12 @@ precision, parity, performance, or migration gate.
 4. CPU threading and SIMD live in the C++ host. Accelerator kernels may use the
    native API required by each platform, but they return certified difficult
    rows to the host and must preserve one mathematical and certificate schema.
-5. The new engine lives under `src/eom`. The existing central solver remains in
-   place only as a temporary compatibility implementation for current
-   dependencies.
+5. The new engine lives under `src/eom`.
 6. No native C ABI or application bridge is frozen until the coupled integrator
    and streaming ownership boundaries determine the stable request, result,
    cancellation, checkpoint, and progress contracts.
 7. EOM is the endorsed solver and sole forward production target. New
-   solver-dependent work must use or extend EOM; it must not add consumers or
-   capabilities to the existing central solver.
+   solver-dependent work must use or extend EOM.
 
 ## Consequences
 
@@ -49,10 +46,6 @@ precision, parity, performance, or migration gate.
 - MPFR and GMP are host dependencies for certified difficult-row replay.
 - Metal, CUDA, HIP, SYCL, multi-GPU, and distributed execution remain measured
   backend decisions rather than host-language decisions.
-- The current central solver and the EOM engine coexist only because the
-  operator explicitly requires dependency preservation during migration. The
-  coexistence ends after consumer-by-consumer migration; it is not authority to
-  extend the old solver or route new work through it.
 
 ## Re-evaluation Triggers
 

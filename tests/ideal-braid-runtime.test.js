@@ -4,13 +4,13 @@ import assert from "node:assert/strict";
 import * as THREE from "../vendor/three/three.module.js";
 import {
   createIdealBraidCircularSelfHitSpanRunRequest,
-  solveCircularSelfHitSpanRowWithSolverBridge,
-  solveCircularSelfHitSpanRowsWithSolverBridge,
-  solveCircularSelfHitSpanWithSolverBridge,
-  getOrbitPathTintProfileWithSolverBridge,
+  solveCircularSelfHitSpanRowWithPrescribedPathAnalysis,
+  solveCircularSelfHitSpanRowsWithPrescribedPathAnalysis,
+  solveCircularSelfHitSpanWithPrescribedPathAnalysis,
+  getOrbitPathTintProfileWithPrescribedPathAnalysis,
 } from "../src/apps/ideal-braid/IdealBraidPathPotentialProfile.js";
 import {
-  computePotentialSamplesWithSolverBridge,
+  computePotentialSamplesWithPrescribedPathAnalysis,
   computeAssemblyMomentumContractionMatrix,
   computeLorentzAlignedOrbitBasis,
   computeLorentzState,
@@ -20,10 +20,9 @@ import {
   createIdealBraidModel,
   getOrbitPathTintProfile,
   navigateIdealBraidHome,
-  solveFlightTimeRowWithSolverBridge,
-  solveFlightTimeWithSolverBridge,
+  solveFlightTimeRowWithPrescribedPathAnalysis,
+  solveFlightTimeWithPrescribedPathAnalysis,
 } from "../src/apps/ideal-braid/IdealBraidRuntime.js";
-import { createSolverBridgeLoopbackWorker } from "./solver-worker-loopback.mjs";
 
 test("Ideal Braid model reuses three animator circular binaries", () => {
   const model = createIdealBraidModel({ THREE });
@@ -71,7 +70,7 @@ test("surface sample poles align with assembly momentum", () => {
   assert.ok(lastPole.distanceTo(assemblyMomentum.clone().multiplyScalar(-1)) < 1e-12);
 });
 
-test("full potential is the solver bridge six-emission superposition", async () => {
+test("full potential is the prescribed-path analysis six-emission superposition", async () => {
   const model = createIdealBraidModel({ THREE });
   const samplePoint = new THREE.Vector3(1.8, -0.4, 0.65);
   const observationTime = 1.35;
@@ -91,13 +90,13 @@ test("full potential is the solver bridge six-emission superposition", async () 
     architrino.q * (index + 1) * 0.25
   );
   const manualTotal = expectedPotentials.reduce((sum, potential) => sum + potential, 0);
-  const snapshot = await computePotentialSamplesWithSolverBridge(
+  const snapshot = await computePotentialSamplesWithPrescribedPathAnalysis(
     [samplePoint],
     model,
     observationTime,
     {
       runRequest,
-      async runSolverBridge(request) {
+      async runPrescribedPathAnalysis(request) {
         assert.equal(request.requestId, "ideal_potential_samples_request");
         assert.equal(request.config.geometryRequest.delayedPotentials.length, 6);
         return createPotentialSamplesRunHandle(request, expectedPotentials);
@@ -105,7 +104,7 @@ test("full potential is the solver bridge six-emission superposition", async () 
     }
   );
 
-  assert.equal(snapshot.solverEngineId, "architrino-solver-app-bridge");
+  assert.equal(snapshot.analysisId, "prescribed-path-analysis");
   assert.equal(snapshot.runId, "ideal_potential_samples_run");
   assert.ok(Math.abs(snapshot.samplePotentials[0] - manualTotal) < 1e-12);
   assert.equal(snapshot.contributionsBySample[0].length, 6);
@@ -169,14 +168,14 @@ test("assembly momentum contraction preserves the final shared orbit plane", () 
   assert.ok(contractedInPlane.distanceTo(inPlane) < 1e-10);
 });
 
-test("flight time bridge returns a positive emission delay", async () => {
+test("prescribed-path flight-time analysis returns a positive emission delay", async () => {
   const model = createIdealBraidModel({ THREE });
   const samplePoint = new THREE.Vector3(1.6, 0.3, -0.5);
   const expectedTau = 0.3125;
-  const tau = await solveFlightTimeWithSolverBridge(samplePoint, model.architrinos[0], 0.9, {
+  const tau = await solveFlightTimeWithPrescribedPathAnalysis(samplePoint, model.architrinos[0], 0.9, {
     fieldSpeed: 6,
     iterations: 5,
-    async runSolverBridge(request) {
+    async runPrescribedPathAnalysis(request) {
       return createFlightTimeRunHandle(request, expectedTau);
     },
   });
@@ -186,7 +185,7 @@ test("flight time bridge returns a positive emission delay", async () => {
   assert.equal(tau, expectedTau);
 });
 
-test("Ideal Braid flight time can be routed through the solver app bridge for a linear source", async () => {
+test("Ideal Braid flight time can be routed through the prescribed-path analysis for a linear source", async () => {
   const sourceStart = new THREE.Vector3(1, -0.5, 0.25);
   const sourceVelocity = new THREE.Vector3(0.2, 0.1, -0.05);
   const architrino = {
@@ -232,121 +231,24 @@ test("Ideal Braid flight time can be routed through the solver app bridge for a 
     z: -0.05,
   });
 
-  const row = await solveFlightTimeRowWithSolverBridge(samplePoint, architrino, observationTime, {
+  const row = await solveFlightTimeRowWithPrescribedPathAnalysis(samplePoint, architrino, observationTime, {
     runRequest,
-    async runSolverBridge(request) {
+    async runPrescribedPathAnalysis(request) {
       assert.equal(request.requestId, "ideal_flight_bridge_request");
       return createFlightTimeRunHandle(request, expectedTau);
     },
   });
 
-  assert.equal(row.solverEngineId, "architrino-solver-app-bridge");
+  assert.equal(row.analysisId, "prescribed-path-analysis");
   assert.equal(row.runId, "ideal_flight_bridge_run");
   assert.ok(Math.abs(row.tau - expectedTau) < 1e-12);
 
-  const tau = await solveFlightTimeWithSolverBridge(samplePoint, architrino, observationTime, {
-    async runSolverBridge(request) {
+  const tau = await solveFlightTimeWithPrescribedPathAnalysis(samplePoint, architrino, observationTime, {
+    async runPrescribedPathAnalysis(request) {
       return createFlightTimeRunHandle(request, expectedTau);
     },
   });
   assert.ok(Math.abs(tau - expectedTau) < 1e-12);
-});
-
-test("Ideal Braid flight time can create and dispose a solver bridge client", async () => {
-  const sourceStart = new THREE.Vector3(0.4, -0.2, 0.1);
-  const sourceVelocity = new THREE.Vector3(0.05, 0.1, -0.02);
-  const architrino = {
-    q: 1,
-    positionAt(timeSeconds) {
-      return sourceStart.clone().add(sourceVelocity.clone().multiplyScalar(timeSeconds));
-    },
-    velocityAt() {
-      return sourceVelocity.clone();
-    },
-  };
-  const samplePoint = new THREE.Vector3(1.3, 0.7, -0.2);
-  const observationTime = 1.5;
-  const expectedTau = 0.25;
-  let disposed = false;
-
-  const row = await solveFlightTimeRowWithSolverBridge(samplePoint, architrino, observationTime, {
-    requestId: "ideal_flight_factory_request",
-    runId: "ideal_flight_factory_run",
-    datasetId: "ideal_flight_factory_dataset",
-    disposeSolverBridgeClientAfterRun: true,
-    createSolverBridgeClient(factoryRequest, context) {
-      assert.equal(context.appId, "ideal-braid");
-      assert.equal(context.requiredMethod, "runSimulation");
-      assert.ok(context.requestedCapabilities.includes("sharedGeometry"));
-      assert.equal(factoryRequest.observationTime, observationTime);
-      return {
-        async runSimulation(runRequest) {
-          assert.equal(runRequest.requestId, "ideal_flight_factory_request");
-          return createFlightTimeRunHandle(runRequest, expectedTau);
-        },
-        async dispose() {
-          disposed = true;
-        },
-      };
-    },
-  });
-
-  assert.equal(row.runId, "ideal_flight_factory_run");
-  assert.equal(row.tau, expectedTau);
-  assert.equal(disposed, true);
-});
-
-test("Ideal Braid flight time can create and dispose a solver bridge worker client", async () => {
-  const sourceStart = new THREE.Vector3(0.2, 0.1, -0.3);
-  const sourceVelocity = new THREE.Vector3(0.04, -0.03, 0.02);
-  const architrino = {
-    q: 1,
-    positionAt(timeSeconds) {
-      return sourceStart.clone().add(sourceVelocity.clone().multiplyScalar(timeSeconds));
-    },
-    velocityAt() {
-      return sourceVelocity.clone();
-    },
-  };
-  const samplePoint = new THREE.Vector3(0.8, -0.6, 0.5);
-  const observationTime = 2.25;
-  const expectedTau = 0.375;
-  const worker = createSolverBridgeLoopbackWorker({
-    init(initRequest) {
-      assert.equal(initRequest.appId, "ideal-braid");
-      assert.ok(initRequest.requestedCapabilities.includes("sharedGeometry"));
-      return {
-        apiVersion: initRequest.apiVersion,
-        status: { code: "ok", severity: "ok", message: "solver initialized" },
-      };
-    },
-    runSimulation(runRequest) {
-      assert.equal(runRequest.requestId, "ideal_flight_worker_request");
-      assert.equal(runRequest.runKind, "sharedGeometry");
-      return createFlightTimeRunHandle(runRequest, expectedTau);
-    },
-  });
-
-  const row = await solveFlightTimeRowWithSolverBridge(samplePoint, architrino, observationTime, {
-    requestId: "ideal_flight_worker_request",
-    runId: "ideal_flight_worker_run",
-    datasetId: "ideal_flight_worker_dataset",
-    createSolverWorker(factoryRequest, context) {
-      assert.equal(context.appId, "ideal-braid");
-      assert.equal(context.requiredMethod, "runSimulation");
-      assert.ok(context.requestedCapabilities.includes("sharedGeometry"));
-      assert.equal(factoryRequest.observationTime, observationTime);
-      return worker;
-    },
-  });
-
-  assert.equal(row.runId, "ideal_flight_worker_run");
-  assert.equal(row.tau, expectedTau);
-  assert.deepEqual(
-    worker.messages.map((message) => message.method),
-    ["init", "runSimulation", "dispose"]
-  );
-  assert.equal(worker.terminated, true);
 });
 
 test("orbit path tint profiles distinguish inner middle and outer binaries", () => {
@@ -372,7 +274,7 @@ test("orbit path tint profiles distinguish inner middle and outer binaries", () 
   assert.ok(outer.wakeWidthScale > 2);
 });
 
-test("super-field profile expands the path-history span from solver circular self-hit geometry", async () => {
+test("super-field profile expands the path-history span from prescribed circular self-hit geometry", async () => {
   const model = createIdealBraidModel({ THREE });
   const innerBinary = model.binaries[0];
   const expectedSpan = 2.0534765827345125;
@@ -381,21 +283,21 @@ test("super-field profile expands the path-history span from solver circular sel
     ...innerBinary,
     solverSelfHitSpan: expectedSpan,
   });
-  const bridgeProfile = await getOrbitPathTintProfileWithSolverBridge(innerBinary, {
-    async runSolverBridge(request) {
+  const bridgeProfile = await getOrbitPathTintProfileWithPrescribedPathAnalysis(innerBinary, {
+    async runPrescribedPathAnalysis(request) {
       assert.equal(request.config.geometryRequest.circularSelfHitSpans.length, 1);
       return createSelfHitRunHandle(request, expectedSpan);
     },
   });
 
-  assert.equal(pendingProfile.solverProfileStatus, "pending-solver-row");
+  assert.equal(pendingProfile.analysisProfileStatus, "pending-analysis-row");
   assert.equal(pendingProfile.selfHitSpan, 0);
   assert.ok(Math.abs(cachedProfile.selfHitSpan - expectedSpan) < 1e-12);
   assert.ok(Math.abs(bridgeProfile.selfHitSpan - expectedSpan) < 1e-12);
-  assert.equal(bridgeProfile.solverEngineId, "architrino-solver-app-bridge");
+  assert.equal(bridgeProfile.analysisId, "prescribed-path-analysis");
 });
 
-test("Ideal Braid circular self-hit span can be routed through the solver app bridge", async () => {
+test("Ideal Braid circular self-hit span can be routed through the prescribed-path analysis", async () => {
   const runRequest = createIdealBraidCircularSelfHitSpanRunRequest(1.2, {
     requestId: "ideal_self_hit_bridge_request",
     runId: "ideal_self_hit_bridge_run",
@@ -409,36 +311,36 @@ test("Ideal Braid circular self-hit span can be routed through the solver app br
   assert.equal(runRequest.envelope.timeWindow.units, "cycles");
 
   const expectedSpan = 2.0534765827345125;
-  const row = await solveCircularSelfHitSpanRowWithSolverBridge(1.2, {
+  const row = await solveCircularSelfHitSpanRowWithPrescribedPathAnalysis(1.2, {
     runRequest,
-    async runSolverBridge(request) {
+    async runPrescribedPathAnalysis(request) {
       assert.equal(request.requestId, "ideal_self_hit_bridge_request");
       return createSelfHitRunHandle(request, expectedSpan);
     },
   });
 
-  assert.equal(row.solverEngineId, "architrino-solver-app-bridge");
+  assert.equal(row.analysisId, "prescribed-path-analysis");
   assert.equal(row.runId, "ideal_self_hit_bridge_run");
   assert.equal(row.resultKind, "root_solved");
   assert.equal(row.rootFound, true);
   assert.ok(Math.abs(row.span - expectedSpan) < 1e-12);
 
-  const span = await solveCircularSelfHitSpanWithSolverBridge(1.2, {
-    async runSolverBridge(request) {
+  const span = await solveCircularSelfHitSpanWithPrescribedPathAnalysis(1.2, {
+    async runPrescribedPathAnalysis(request) {
       return createSelfHitRunHandle(request, expectedSpan);
     },
   });
   assert.ok(Math.abs(span - expectedSpan) < 1e-12);
 });
 
-test("Ideal Braid circular self-hit spans can be batched through the solver app bridge", async () => {
+test("Ideal Braid circular self-hit spans can be batched through the prescribed-path analysis", async () => {
   const ratios = [1.2, 1.01, 0.8];
   const spans = [2.0534765827345125, 0, 0];
-  const rows = await solveCircularSelfHitSpanRowsWithSolverBridge(ratios, {
+  const rows = await solveCircularSelfHitSpanRowsWithPrescribedPathAnalysis(ratios, {
     requestId: "ideal_self_hit_batch_request",
     runId: "ideal_self_hit_batch_run",
     datasetId: "ideal_self_hit_batch_dataset",
-    async runSolverBridge(request) {
+    async runPrescribedPathAnalysis(request) {
       assert.equal(request.requestId, "ideal_self_hit_batch_request");
       assert.equal(request.config.geometryRequest.circularSelfHitSpans.length, 3);
       return createSelfHitRunHandle(request, spans);
@@ -451,36 +353,6 @@ test("Ideal Braid circular self-hit spans can be batched through the solver app 
   assert.equal(rows[1].rootFound, false);
   assert.equal(rows[2].rootFound, false);
   assert.ok(Math.abs(rows[0].span - spans[0]) < 1e-12);
-});
-
-test("Ideal Braid circular self-hit span can create and dispose a solver bridge client", async () => {
-  const expectedSpan = 2.5;
-  let disposed = false;
-  const row = await solveCircularSelfHitSpanRowWithSolverBridge(1.35, {
-    requestId: "ideal_self_hit_factory_request",
-    runId: "ideal_self_hit_factory_run",
-    datasetId: "ideal_self_hit_factory_dataset",
-    disposeSolverBridgeClientAfterRun: true,
-    createSolverBridgeClient(factoryRequest, context) {
-      assert.equal(context.appId, "ideal-braid");
-      assert.equal(context.requiredMethod, "runSimulation");
-      assert.ok(context.requestedCapabilities.includes("sharedGeometry"));
-      assert.equal(factoryRequest.fieldSpeedRatio, 1.35);
-      return {
-        async runSimulation(runRequest) {
-          assert.equal(runRequest.requestId, "ideal_self_hit_factory_request");
-          return createSelfHitRunHandle(runRequest, expectedSpan);
-        },
-        async dispose() {
-          disposed = true;
-        },
-      };
-    },
-  });
-
-  assert.equal(row.runId, "ideal_self_hit_factory_run");
-  assert.equal(row.span, expectedSpan);
-  assert.equal(disposed, true);
 });
 
 function createSelfHitRunHandle(runRequest, spanOrSpans) {

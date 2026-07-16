@@ -6,7 +6,7 @@
 - Status: `draft`
 - Parent: [Equation Mapping Internal Priority](priorities.md)
 - Source inventory: [Equation Mapping Detail](equation.md)
-- Source audit: [Equation Closure Pass 2026-06-25 B](equation-closure-pass-2026-06-25-b.md)
+- Source-audit basis: the consolidated high-energy survey separated the accretion-to-release carrier into `EQ-07B` while leaving it unscored and priority-only until a focused packet could name its carrier, ledger, and first blocker.
 - Parent packet: [EQ-07 Through EQ-10 And EQ-17 Through EQ-19 Effective Metric / Cosmology Packet](eq-07-10-17-19-effective-metric-cosmology-packet.md)
 - Source fixture: [eq07b-agn-accretion-release-carrier-source-attempt.v1.json](../../../scripts/equation-mapping/eq07b-agn-accretion-release-carrier-source-attempt.v1.json)
 - Assigned ID: `EQ-07B`

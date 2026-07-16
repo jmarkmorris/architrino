@@ -17,6 +17,6 @@ One coordinate system for every configuration the program screens or evolves, so
 
 ## Open questions for the authoring pass
 
-- Minimal parameterization that spans the shape axes without redundancy (cylindrical-radius-type combinations may be the natural coordinates for closure-type responses — to be established fresh, not assumed).
+- Minimal parameterization that spans the shape axes without redundancy, with the natural coordinates for residual-type responses established fresh from the master equation rather than assumed.
 - Whether prehistory class should be a chart axis (it scopes every evolution result) or a per-campaign declaration.
 - How the chart labels configurations embedded in a populated medium (Noether sea) versus isolation.

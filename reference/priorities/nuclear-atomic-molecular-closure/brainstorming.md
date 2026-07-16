@@ -90,7 +90,7 @@ Status. Priority-only discussion map. These are not claims that Noether sea resp
 | Enzyme active-site specificity. | Enzyme pockets are molecular geometry plus local Noether sea response conditions that select reaction paths. | Choose one enzyme mechanism and map active site, substrate, state transition, energy routing, and failure modes. |
 | DNA/RNA record stability and mutation. | Information-bearing molecular geometry is a retained record with bond integrity, path-history, radiation/chemical damage rows, and repair/rewrite channels. | Choose one DNA/RNA motif or damage event and state record integrity as molecular event-ledger closure. |
 | Chiral preference in biomolecules. | Chirality may reflect retained branch geometry, assembly path selection, or environmental history rather than a separate biological ontology. | Keep as speculation until one molecular path calculation shows a branch-geometry asymmetry or rejects it. |
-| Condensed-matter pressure and phase response near atoms. | Atomic packing may retune local Noether sea density, delay, effective speed, and assembly strain rows. | Route pressure and transport questions to `braid-mass-response-map` unless the active target is an isolated atom, molecule, or reaction event. |
+| Condensed-matter pressure and phase response near atoms. | Atomic packing may retune local Noether sea density, delay, effective speed, and assembly strain rows. | Route pressure and transport questions to `braid program` unless the active target is an isolated atom, molecule, or reaction event. |
 
 ## Worked Recovery Target: Iron-Group Binding Cusp
 

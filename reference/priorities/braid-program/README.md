@@ -33,6 +33,6 @@ The one-sentence hygiene rule: **results land in `evidence/`; every other docume
 
 ## Relationship to Other Lanes
 
-- `app-eom` and `app-solver` own the engine, the independent oracle, and the instrument cross-verification. This program consumes accepted engine capabilities only, and is blocked wherever a needed capability is not yet accepted — it never substitutes an unvalidated path.
+- `app-eom` owns the engine and the independent oracle. This program consumes accepted engine capabilities only, and is blocked wherever a needed capability is not yet accepted — it never substitutes an unvalidated path.
 - Corpus braid chapters (`content/markdown/aaa/noether-braid/`) are downstream: this program stages results; promotion follows the standard corpus rules, and legacy-era corpus claims are reconciled by their own lanes, not from here.
 - The legacy `braid-*` directories are read-only source material for `mining/` and are otherwise not consulted.

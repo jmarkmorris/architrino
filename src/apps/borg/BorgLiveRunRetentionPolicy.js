@@ -11,7 +11,7 @@ export const BORG_LIVE_RUN_RETENTION_POLICY_V1 = Object.freeze({
   retainedFrameAuthority: "authoritative-recent-native-frame-rows",
   compactedPathHistoryAuthority: "display-only-compacted-path-history",
   claimBoundary:
-    "Retention limits browser display memory only. It does not alter native solver state, native chunk requests, or authoritative recent frame rows.",
+    "Retention limits browser display memory only. It does not alter EOM solver state, EOM chunk requests, or authoritative recent frame rows.",
 });
 
 export function createBorgLiveRunRetentionSnapshot({

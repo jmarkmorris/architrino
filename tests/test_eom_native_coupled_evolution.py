@@ -402,7 +402,9 @@ class NativeCoupledEvolutionTests(unittest.TestCase):
             exhausted["input_fingerprints"],
             exhausted["published_fingerprints"],
         )
-        self.assertEqual(exhausted["failure_code"], "regulator_convergence_failed")
+        self.assertEqual(
+            exhausted["failure_code"], "event_impulse_cell_limit_exhausted"
+        )
 
     def test_native_fold_impulse_has_oracle_parity_and_fails_closed(self) -> None:
         receiver = oracle_history(
@@ -488,6 +490,14 @@ class NativeCoupledEvolutionTests(unittest.TestCase):
         self.assertEqual(failed["status"], "uncertified")
         self.assertEqual(failed["failure_code"], "regulator_convergence_failed")
         self.assertTrue(any(not row["converged"] for row in failed["series"]))
+
+    def test_borg_16_interval_reports_history_boundary_instead_of_regulator_failure(self) -> None:
+        step = self.packet["borg_16_history_boundary_event"]
+        self.assertEqual(step["status"], "rejected")
+        self.assertEqual(step["attempted_start"], "0.06")
+        self.assertEqual(step["attempted_end"], "0.07")
+        self.assertEqual(step["failure_code"], "insufficient_history_depth")
+        self.assertTrue(step["publication_atomic"])
 
     def test_adaptive_controller_halves_rejected_step_before_publication(self) -> None:
         adaptive = self.evolution("adaptive-halving")

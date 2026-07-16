@@ -469,12 +469,10 @@ If you're interested, there is another emerging development that matters for wor
 
 ## Related Priorities
 
-- [breather-proof](../proof-programs/breather-proof/priorities.md)
 - [master-equation-closure](../master-equation-closure/priorities.md)
 - [source-mining](../source-mining/priorities.md)
 
 ## Related AAA Notes
 
-- [master-equation-breather](../../../content/markdown/aaa/proof-programs/master-equation-breather.md)
 - [master-equation](../../../content/markdown/aaa/dynamics/master-equation.md)
 - [failure-criteria](../../../content/markdown/aaa/validation/failure-criteria.md)

@@ -19,16 +19,14 @@ The lane is also an external-contact opportunity: Lissajous and spherical-Lissaj
 
 1. `lissajou_phase_closure_map` - State the exact correspondence between closed Lissajous figures on the reduced channels (planar, spherical, and torus cases) and the integer phase-closure labels, including which braid variables play the two-frequency roles. Status: `next`. Depends on: none.
 2. `spherical_lissajou_survey` - Survey the spherical-Lissajous and two-frequency closed-curve literature for classification results, closure criteria, and datasets usable as comparison material for braid winding diagnostics. Status: `pending`. Depends on: `lissajou_phase_closure_map`.
-3. `eigen_braid_figure_catalog` - When the axis-neutral rotating-wave spectrum work produces admissible rows, classify each row's traced figure (helix, closed Lissajous class, quasi-periodic) and attach the figure class to the branch label. Status: `pending`. Depends on: `lissajou_phase_closure_map`. Notes: the 2026-07-07 breathing hunt in the braid-ideal lane produced no admissible rows (cycle-averaged tangential pump strictly positive across the scanned box), so the catalog remains empty; its classifier interface is implemented in the hunt script (rational-lock label $p/q$ on the frequency ratio $\Omega/\omega$ with bounded-$q$ continued-fraction detuning) and will attach to any future row.
+3. `eigen_braid_figure_catalog` - When the axis-neutral rotating-wave spectrum work produces admissible rows, classify each row's traced figure (helix, closed Lissajous class, quasi-periodic) and attach the figure class to the branch label. Status: `pending`. Depends on: `lissajou_phase_closure_map`. Notes: the 2026-07-07 breathing hunt in the braid program lane produced no admissible rows (cycle-averaged tangential pump strictly positive across the scanned box), so the catalog remains empty; its classifier interface is implemented in the hunt script (rational-lock label $p/q$ on the frequency ratio $\Omega/\omega$ with bounded-$q$ continued-fraction detuning) and will attach to any future row.
 
 ## Related Priorities
 
-- braid-ideal (legacy-braid ref: `braid-archive/braid-ideal/priorities.md`)
-- braid-retained-branch-closure (legacy-braid ref: `braid-archive/braid-retained-branch-closure/priorities.md`)
-- braid-angular-momentum-spin (legacy-braid ref: `braid-archive/braid-angular-momentum-spin/priorities.md`)
+- braid program
 
 ## Related AAA Notes
 
-- [shell-braid](../../../content/markdown/aaa/noether-braid/explored-braid-geometries.md)
-- [nested-shell-braid](../../../content/markdown/aaa/noether-braid/explored-braid-geometries.md)
-- [noether-braid-doubling-frequency-resonance-lock](../../../content/markdown/aaa/noether-braid/explored-braid-geometries.md#noether-braid-doubling-frequency-resonance-lock)
+- [shell-braid](../../../content/markdown/aaa/noether-braid/braid-families.md)
+- [nested-shell-braid](../../../content/markdown/aaa/noether-braid/braid-families.md)
+- [noether-braid-doubling-frequency-resonance-lock](../../../content/markdown/aaa/noether-braid/braid-families.md#noether-braid-doubling-frequency-resonance-lock)

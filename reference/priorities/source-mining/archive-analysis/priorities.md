@@ -36,5 +36,3 @@ No separate archive-analysis tasks are selected. New work should be queued from 
 | [life-origins-image-replacement.md](life-origins-image-replacement.md) | Life-origins image replacement packet. |
 | [nuclear-atomic-image-intake.md](nuclear-atomic-image-intake.md) | Nuclear-atomic image intake packet. |
 | [particle-physics-image-intake.md](particle-physics-image-intake.md) | Particle-physics image intake packet. |
-| [sigma-hf-01-external-schema-source-lead-audit-2026-06-28.md](sigma-hf-01-external-schema-source-lead-audit-2026-06-28.md) | Sigma_hf_01 external schema source-lead audit. |
-| [sigma-hf-01-sieber-engelborghs-mined-schema-packet-2026-06-28.md](sigma-hf-01-sieber-engelborghs-mined-schema-packet-2026-06-28.md) | Sigma_hf_01 mined schema packet. |

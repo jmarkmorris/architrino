@@ -15,113 +15,25 @@ Scoring system:
 
 | # | Item | Value | Cost | ROI |
 | ---: | --- | ---: | ---: | ---: |
-| 1 | Execute the frozen breather proof program | 10 | 4 | 2.50 |
-| 2 | Noether braid stability, shielding, parameter ledger, and first mass map | 10 | 4 | 2.50 |
-| 3 | Scene system, animator, PDG solver, applications, and later enhancements | 9 | 4 | 2.25 |
-| 4 | Tractable master-equation stack for Lorentz / GR bridge, quantum, and core closure | 10 | 5 | 2.00 |
-| 5 | Doubling-frequency resonance lock reduced-map program | 7 | 4 | 1.75 |
-| 6 | Remaining Standard Model assembly gaps, flavor mixing, and confinement | 8 | 5 | 1.60 |
-| 7 | Simulations, regularization, and shell numerics | 8 | 5 | 1.60 |
-| 8 | Remaining black-hole / strong-field quantitative closure | 4 | 5 | 0.80 |
-| 9 | Preserve strong-field / tri-binary hypotheses | 2 | 3 | 0.67 |
-| 10 | Source mining queue and legacy-material recovery | 3 | 5 | 0.60 |
-| 11 | Born-rule / quantum closure with hard tests | 4 | 8 | 0.50 |
-| 12 | Cosmology transfer-function closure | 2 | 9 | 0.22 |
-| 13 | Deferred product / outlook work | 1 | 6 | 0.17 |
+| 1 | Noether braid stability, shielding, parameter ledger, and first mass map | 10 | 4 | 2.50 |
+| 2 | Scene system, animator, PDG solver, applications, and later enhancements | 9 | 4 | 2.25 |
+| 3 | Tractable master-equation stack for Lorentz / GR bridge, quantum, and core closure | 10 | 5 | 2.00 |
+| 4 | Doubling-frequency resonance lock reduced-map program | 7 | 4 | 1.75 |
+| 5 | Remaining Standard Model assembly gaps, flavor mixing, and confinement | 8 | 5 | 1.60 |
+| 6 | Simulations, regularization, and shell numerics | 8 | 5 | 1.60 |
+| 7 | Remaining black-hole / strong-field quantitative closure | 4 | 5 | 0.80 |
+| 8 | Preserve strong-field / tri-binary hypotheses | 2 | 3 | 0.67 |
+| 9 | Source mining queue and legacy-material recovery | 3 | 5 | 0.60 |
+| 10 | Born-rule / quantum closure with hard tests | 4 | 8 | 0.50 |
+| 11 | Cosmology transfer-function closure | 2 | 9 | 0.22 |
+| 12 | Deferred product / outlook work | 1 | 6 | 0.17 |
 
 ## Overall Task List
 
-### 1. Execute the frozen breather proof program
-- Value `10`, Cost `4`, ROI `2.50`.
-- Treat collinear-breather.md as a frozen reference scaffold, not as the live place for new theorem discovery.
-- Treat master-equation-breather.md as a frozen proof-program blueprint rather than a live architecture notebook. The current task is now proof execution inside that already-built theorem DAG, not further scaffold expansion unless a real defect is found.
-- Current state:
-  - the 1D note now has a full theorem ladder from collapse-to-crossing through caustic transit, post-crossing recapture, outer-turn closure, seed-history nonvacuity, invariant-envelope synthesis, and the final Schauder capstone;
-  - the major global packaging defects were audited and made explicit: the convex tame-envelope step is now honestly marked as a target, the admissible parameter regime is now a coupled solvability target rather than a false decoupling argument, and the section anchoring now explicitly quotients out time-translation symmetry;
-  - the notation/domain hierarchy was cleaned so the raw section, the convex macro-envelope, and the closed convex tame envelope are no longer silently conflated;
-  - the bridge chapter now records the portable return-map / tame-envelope / Schauder architecture, the completed reduced-planar binary bridge, and the completed first unreduced-planar binary bridge;
-  - the reduced-planar bridge now runs end-to-end through section/gauge fixing, directional sorting, deep-past relocation, cone transversality, bounded caustic transit, vector recapture, tame-envelope closure, Schauder, and precise failure alternatives;
-  - the unreduced-planar binary bridge now runs end-to-end through gauge-fixed sectioning, finite active branch graph control, deep-past provenance or exclusion, multi-channel recapture, tame-envelope closure, Schauder, and precise closure-stage obstruction alternatives;
-  - the live bridge note has now completed that next boundary: the planar three-body bridge in master-equation-breather.md now carries a full theorem-program ladder through unreduced well-posedness, gauge selection, no-accumulation, bounded caustic transit, finite active delay hypergraph, cluster-valued ancestry and deep-past exclusion, multi-observable recapture, explicit convex-core construction, boundary trapping, invariant-envelope closure, and the final Schauder capstone;
-  - the planar three-body bridge now includes an explicit symmetric seed packet, a delayed seed-margin persistence lemma, a seed-centered realization of the convex tame core, an explicit principal-channel parameter corridor, and a sharpened caustic-transit package with exact fold-time cancellation and uniform fold ceilings;
-  - the ancestry package now reduces deep-past memory to a finite-state backward-search problem with explicit trapped-cycle exclusion via monotone source-time drift, so the deep-past contribution has been converted into one fixed arithmetic ceiling
-    $$
-    \overline{A}^{\mathrm{mb}}_{\mathrm{deep}};
-    $$
-  - the recapture package now consumes only fixed fold ceilings
-    $$
-    F^{\mathrm{mb}}_m
-    $$
-    and the fixed deep-past ceiling
-    $$
-    \overline{A}^{\mathrm{mb}}_{\mathrm{deep}},
-    $$
-    rather than qualitative “smallness” language;
-  - repeated review-and-repair cycles have now frozen the bridge architecturally: there are no remaining known structural gaps in the theorem program, and the next phase should be literal proof writing.
-- Resolved proof pivots to preserve from the frozen 1D scaffold:
-  - the inbound hinge caustic is integrated through as a bounded caustic-transit impulse rather than excluded as a pathology;
-  - the outer-turn geometry is organized around the sorting map
-    $$
-    z(t)=x(t)-c_f t,
-    $$
-    which forces explicit descent and exclusion inequalities on the apocenter window;
-  - deep-past outward self-roots on the apocenter window are forced back onto the pre-crossing inbound leg, where they become unique and automatically transversal;
-  - the affine seed history removes section-side vacuity by giving an explicit nonempty tame neighborhood;
-  - the fixed-point route now acts, conditionally, on a closed convex tame envelope
-    $$
-    \mathcal{K}_{x_\ast,\eta},
-    $$
-    rather than on a mismatched tame-subclass / macro-envelope pair.
-- Next-session prompt / active handoff:
-  - read master-equation-breather.md from the seed-side section through the no-accumulation, caustic-transit, ancestry, recapture, convex-core, and Schauder closure packages, treating the architecture as frozen;
-  - do not add new theorem layers or new replacement packages unless a real proof-breaking defect is discovered;
-  - begin formal proof execution inside the existing DAG, starting with the seed-side and early branch-regularity lemmas that feed everything else;
-  - first target:
-    - turn the delayed seed-margin persistence lemma into a clean formal proof, including:
-      - the explicit implicit-function argument for unique simple seed-side branches,
-      - the causal-delay estimate,
-      - the $\varepsilon_A$ neighborhood correction,
-      - the Jacobian perturbation estimate,
-      - and the projected-force perturbation bound for
-        $$
-        \Lambda^{\mathrm{mb}}_1
-        \qquad
-        \text{and}
-        \qquad
-        \Lambda^{\mathrm{mb}}_2;
-        $$
-  - second target:
-    - formalize the no-accumulation / simple-branch persistence proof chain into polished lemmas with explicit dependence on
-      $$
-      \gamma_{\mathrm{fold}},
-      \qquad
-      \nu^{\mathrm{mb}}_J,
-      \qquad
-      \chi_{\mathrm{fold}},
-      \qquad
-      \Delta\tau_{\mathrm{evt}};
-      $$
-  - third target:
-    - if time remains in the session, convert the sharpened Type II caustic-transit estimate into a more formal integral proof using the exact cancellation
-      $$
-      dt=\frac{|\partial_s g|}{|\partial_t g|}\,du
-      $$
-      and the explicit ceiling
-      $$
-      \mathfrak{F}^{\mathrm{mb}}_{m,\mathrm{II}}
-      \le
-      \frac{
-      2C_m^{\mathrm{proj}}\kappa\epsilon^2U^{\mathrm{mb}}_{\mathrm{tube}}
-      }{
-      \chi_{\mathrm{fold}}\bigl(d_{\min}^2+\epsilon_c^2\bigr)
-      };
-      $$
-  - preserve the theorem-program structure exactly as written; the next work is proof writing, not architectural redesign.
-
-### 2. Finish Noether braid stability, shielding, the parameter ledger, and the first mass map
+### 1. Finish Noether braid stability, shielding, the parameter ledger, and the first mass map
 - Value `10`, Cost `4`, ROI `2.50`.
 - For scorecard purposes, this is now the main Parameter Closure + Mass Formulas bucket.
-- If the goal is fastest total-score increase, pair this item with item `10` for Parameter Closure + Coverage first.
+- If the goal is fastest total-score increase, pair this item with item `9` for Parameter Closure + Coverage first.
 - Treat parameter-ledger.md as bookkeeping only. The real priority is to turn the open mass-side symbols it names into one reusable derived map.
 - First concrete deliverable: one derived tri-binary attractor family with radii, frequencies, binding scales, and a reproducible shielding-extraction protocol.
 - Second concrete deliverable: derive $\zeta(A)$ from the delayed kernel strongly enough to predict a baseline electron mass and at least one next-step hierarchy check such as $m_\mu / m_e$.
@@ -134,7 +46,7 @@ Scoring system:
 - Test the first map against electron / muon / tau or hadron constraints.
 - Keep the constants question attached to the mass map only if it sharpens that derivation; otherwise leave it as background, not as part of the active deliverable.
 
-### 3. Scene system, animator, PDG solver, and remaining animator objectives
+### 2. Scene system, animator, PDG solver, and remaining animator objectives
 - Value `9`, Cost `4`, ROI `2.25`.
 - The canonical references now live in animator.md, reaction.md, and pdg-solver.md. Treat those notes as the implementation-aware references for the current animator, reaction, and PDG-solver surfaces rather than repeating the full completed baseline here.
 - Current state, only what matters for the remainder:
@@ -224,7 +136,7 @@ Scoring system:
   - avoid reintroducing large persistent inspector-style editing;
   - do not make unrelated changes.
 
-### 4. Finish the tractable master-equation stack for Lorentz / GR bridge, quantum, and core closure
+### 3. Finish the tractable master-equation stack for Lorentz / GR bridge, quantum, and core closure
 - Value `10`, Cost `5`, ROI `2.00`.
 - Keep dynamics, math, geometry, and mapping centered on master-equation.md as the top theory priority.
 - This is now also the home of the Lorentz / metric / clock / ruler bridge to GR. Item `8` is no longer separate because it is a downstream closure branch of this same master-equation stack.
@@ -289,7 +201,7 @@ Scoring system:
   6. full attractor landscape for binaries and tri-binaries;
   7. quantum closure from the master equation.
 
-### 5. Advance the doubling-frequency resonance lock reduced-map program
+### 4. Advance the doubling-frequency resonance lock reduced-map program
 - Value `7`, Cost `4`, ROI `1.75`.
 - doubling-frequency-resonance-lock.md should now be treated as the live note for a **candidate** doubling-frequency lock, not as a proof that the full dynamics uniquely select `1:2:4`.
 - What is now solid enough to build on:
@@ -311,7 +223,7 @@ Scoring system:
   4. Study the Jacobian and eigenvalues near the suspected doubling-frequency fixed point as $\beta \to 1$.
   5. Only after that revisit $\eta \to 0^+$ and promote archive material that can be rederived from the reduced dynamics.
 
-### 6. Close the remaining Standard Model assembly gaps, flavor mixing, and confinement where the leverage is best
+### 5. Close the remaining Standard Model assembly gaps, flavor mixing, and confinement where the leverage is best
 - Value `8`, Cost `5`, ROI `1.60`.
 - The quark catalog, the basic $SU(3)\times SU(2)\times U(1)$ bookkeeping, and the current spinor / statistics framing are now in place. The remaining leverage is:
   - extend quarks.md from catalog closure to first-pass mass predictions for `u,d,c,s,t,b`,
@@ -326,7 +238,7 @@ Scoring system:
 - Work the chirality crisis explicitly: show whether spiral handedness can generate the weak `V-A` selection rule. If right-handed neutrinos couple to `W` with the same strength as left-handed ones, the model fails.
 - Derive $\alpha$ and the other coupling constants from geometry rather than treating them as arbitrary inputs.
 
-### 7. Lock the simulations, regularization, and shell numerics
+### 6. Lock the simulations, regularization, and shell numerics
 - Value `8`, Cost `5`, ROI `1.60`.
 - Implement tier-0 / tier-1 simulations per run-protocols.md and the `validation/simulations/action-energy/*` material.
 - Lock the maximum-curvature orbit, history resolution, and binary / tri-binary stability numerically.
@@ -335,7 +247,7 @@ Scoring system:
 - Tie Planck mapping back to the master equation and validate it numerically instead of leaving key identifications conjectural.
 - If a quick intuition tool is useful, make a simple model with sliders for escaping potential versus different frequencies so the $f_{\mathrm{MCB}}$ behavior is easier to see.
 
-### 8. Finish the remaining black-hole / strong-field quantitative closure
+### 7. Finish the remaining black-hole / strong-field quantitative closure
 - Value `4`, Cost `5`, ROI `0.80`.
 - The core chapter architecture is now in place:
   - black-holes.md,
@@ -347,7 +259,7 @@ Scoring system:
   - decide the release-channel selection between jets, diffuse outflow, and dark-sector escape,
   - and extract at least one discriminating observable that separates this story from GR-like strong-field behavior.
 
-### 9. Preserve the strong-field / tri-binary hypotheses
+### 8. Preserve the strong-field / tri-binary hypotheses
 - Value `2`, Cost `3`, ROI `0.67`.
 - Keep the following strong-field / tri-binary ideas alive while the quantitative closures tighten:
   - the tri-binary may open up inside the black hole, with quadrupole resonance appearing when a given core pops early or late;
@@ -365,12 +277,12 @@ Scoring system:
   - maybe the internal radius can enter self-hit first as the tri-binary rides the rail;
   - maybe Stacy's gravity / MOND intuition is somehow related to the inner binary crossing $c_f$, though that seems doubtful.
 
-### 10. Run the source mining queue and recover useful old material
+### 9. Run the source mining queue and recover useful old material
 - Value `3`, Cost `5`, ROI `0.60`.
 - This item is the ranked queue for source-mining work.
 - This is also now the home of the old material-recovery task. Item `13` is no longer separate.
 - For scorecard purposes, this is the main Coverage bucket.
-- If the goal is fastest total-score increase, pair this item with item `2` for Coverage + Parameter Closure first.
+- If the goal is fastest total-score increase, pair this item with item `1` for Coverage + Parameter Closure first.
 - Fast practical lift inside this queue: fill empty or thin chapters with formal minimums:
   - definitions,
   - governing equations,
@@ -409,7 +321,7 @@ Scoring system:
   12. `Reconstructing Physics and Cosmology`
   13. `Vision for the Future / Toward New Technologies`
 
-### 11. Close the Born-rule / quantum gap only after making it testable
+### 10. Close the Born-rule / quantum gap only after making it testable
 - Value `4`, Cost `8`, ROI `0.50`.
 - Populate the missing `quantum/*.md` with pilot-wave / self-hit mechanics, superposition, entanglement, measurement pathways, and explicit predictions.
 - Make the Born-rule target fully measure-theoretic rather than only interpretive:
@@ -421,7 +333,7 @@ Scoring system:
 - Keep Bell / CHSH / Tsirelson as a hard gate, not a side note.
 - Preserve the side question: is the missing neutrino chirality tied to converting a pro-Noether braid?
 
-### 12. Convert cosmology from narrative strength to equation-level closure
+### 11. Convert cosmology from narrative strength to equation-level closure
 - Value `2`, Cost `9`, ROI `0.22`.
 - Turn the current CMB / tri-binary cosmology story into a predictive transfer-function pipeline.
 - Build per-component observable interfaces for $\Lambda\mathrm{CDM}$ comparison:
@@ -433,7 +345,7 @@ Scoring system:
 - Goal: isolate dependencies so removing one foundation assumption does not collapse the whole stack, and expose exactly where $\mathbb{A}\mathbb{A}\mathbb{A}$ matches, replaces, or diverges from each component.
 - This is the path to direct CMB / $H_0$ / $S_8$ comparison rather than narrative analogy.
 
-### 13. Defer product / outlook work until the theory spine is stable
+### 12. Defer product / outlook work until the theory spine is stable
 - Value `1`, Cost `6`, ROI `0.17`.
 - Keep productization, big-picture outlook writing, and future-technology packaging behind the core theory and derivation work.
 - This includes:

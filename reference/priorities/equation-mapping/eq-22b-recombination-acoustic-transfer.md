@@ -6,7 +6,7 @@
 - Status: `draft`
 - Parent: [Equation Mapping Internal Priority](priorities.md)
 - Source inventory: [Equation Mapping Detail](equation.md)
-- Source audit: [Equation Closure Pass 2026-06-25 B](equation-closure-pass-2026-06-25-b.md)
+- Source-audit basis: the consolidated cosmology survey separated recombination and acoustic transfer into `EQ-22B`, assigned the initial score `2`, and kept the route score-neutral until one accepted carrier binds recombination, visibility, sound-horizon, damping, acoustic-transfer, provenance, and no-hidden-retune rows.
 - Parent packet: [EQ-21 Through EQ-23 And EQ-32 Shared Observation Residual Packet](eq-21-23-32-shared-observation-residual-packet.md)
 - Assigned ID: `EQ-22B`
 - Related corpus material: [CMB](../../../content/markdown/aaa/cosmology/CMB.md), [BBN Constraints](../../../content/markdown/aaa/cosmology/BBN-constraints.md), [Structure Formation](../../../content/markdown/aaa/cosmology/structure-formation.md)

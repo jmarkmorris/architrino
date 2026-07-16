@@ -13,9 +13,11 @@ export const PHOTON_SOURCE_HISTORY_PROVIDER_ID =
 export const PHOTON_SOURCE_HISTORY_BOUNDARY = Object.freeze({
   constrainedMotionOwner: "photon_app",
   sourceHistoryOwner: "photon_app",
-  causalRootOwner: "central_solver",
-  receiverNormalOwner: "central_solver",
-  fieldReconstructionOwner: "central_solver",
+  causalRootOwner: "prescribed_path_analysis",
+  receiverNormalOwner: "prescribed_path_analysis",
+  fieldReconstructionOwner: "prescribed_path_analysis",
+  evidenceGrade: "display-only-visualization",
+  nonEvidence: true,
   downstreamConsumer: "photon_field_polarization_diagnostics",
 });
 

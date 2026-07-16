@@ -1,61 +1,104 @@
 import { mountBorgApp } from "./BorgAppRuntime.js";
 import { createBorgEomHttpClient } from "./BorgEomHttpClient.js";
-import { BORG_DATASET_MANIFEST_V1 } from "./BorgFixtureData.js";
+import { BORG_DATASET_MANIFEST_V1 } from "./BorgAppManifest.js";
 import {
+  calculateBorgInertialHistoryDepth,
   createBorgAcceptedInertialSeedHistory,
   createBorgInitialConditionConfig,
   createBorgSeededInitialConditionRows,
 } from "./BorgInitialConditions.js";
 
 export const BORG_DEFAULT_RUNTIME_MODE = "eom-shadow";
-export const BORG_COMPATIBILITY_RUNTIME_MODE = "central-solver-compatibility";
+export const BORG_RECORD_REPLAY_RUNTIME_MODE = "eom-record-replay";
 
 export async function bootBorgApp({
   search = globalThis.location?.search ?? "",
   mountApp = mountBorgApp,
   createEomClient = createBorgEomHttpClient,
   manifest = BORG_DATASET_MANIFEST_V1,
+  fetchLike = globalThis.fetch,
 } = {}) {
   const query = new URLSearchParams(search);
-  if (resolveBorgRuntimeMode(query) === BORG_COMPATIBILITY_RUNTIME_MODE) {
-    return mountApp({});
+  const runtimeMode = resolveBorgRuntimeMode(query);
+  if (runtimeMode === BORG_RECORD_REPLAY_RUNTIME_MODE) {
+    const recordUrl = query.get("eomRecord");
+    const response = await fetchLike(recordUrl);
+    if (!response?.ok) {
+      throw new Error(
+        `Borg EOM record fetch failed (${response?.status ?? "no response"}): ${recordUrl}`,
+      );
+    }
+    const record = await response.json();
+    return mountApp({
+      manifest,
+      eomRecordReplay: { record },
+    });
   }
 
   const eomStartTime = 0;
   const eomDuration = queryPositiveNumber(query.get("eomDuration"), 60);
-  const historyDepth = Number(manifest.simulationEnvelope?.historyDepth ?? 10);
   const initialConditionConfig = createBorgInitialConditionConfig(manifest.initialConditions);
-  const endpointRows = createBorgSeededInitialConditionRows({
+  const fullPopulationEndpointRows = createBorgSeededInitialConditionRows({
     manifest,
     seedIndex: 0,
     config: initialConditionConfig,
   });
+  const endpointRows = fullPopulationEndpointRows;
+  const activeInitialConditionConfig = Object.freeze({
+    ...initialConditionConfig,
+    electrinoCount: endpointRows.filter((row) => row.stateFlags === 2).length,
+    positrinoCount: endpointRows.filter((row) => row.stateFlags === 1).length,
+  });
+  const sampleInterval = 0.01;
+  const historyDepth = calculateBorgInertialHistoryDepth(endpointRows, {
+    fieldSpeed: manifest.simulationEnvelope?.fieldSpeed ?? 1,
+    sampleInterval,
+    maximumSeparation: Math.sqrt(3) * manifest.simulationEnvelope.sideLength,
+  });
+  const runtimeManifest = createManifestWithHistoryDepth(manifest, historyDepth);
   const initialEomSeed = await createBorgAcceptedInertialSeedHistory(endpointRows, {
     historyStartTime: eomStartTime - historyDepth,
     historyEndTime: eomStartTime,
+    minimumPairSeparation: manifest.initialConditions.minimumPairSeparation,
   });
   return mountApp({
-    manifest,
+    manifest: runtimeManifest,
     initialEomSeed,
+    initialConditionConfig: activeInitialConditionConfig,
+    // Ordinary Borg startup must stay interactive. The long retained-history
+    // evolution is an explicit diagnostic action, not page-load work.
+    autoStartEom: query.get("eom") === "shadow",
     eomShadowRunner: {
       eomClient: createEomClient(),
       startTime: eomStartTime,
-      targetDuration: eomStartTime + historyDepth + eomDuration,
+      targetDuration: eomStartTime + eomDuration,
       runDuration: eomDuration,
-      burnInDuration: historyDepth,
       historyDepth,
-      pathCount: 16,
-      chunkDuration: 0.01,
-      sampleInterval: 0.01,
+      pathCount: endpointRows.length,
+      chunkDuration: 0.05,
+      sampleInterval,
       initialStep: "0.01",
-      minimumStep: "0.01",
+      minimumStep: "0.0001",
       rootTolerance: "1e-3",
       accelerationTolerance: "1e-1",
       positionTolerance: "1e-2",
       velocityTolerance: "1e-2",
       correctionTolerance: "1e-1",
+      coupling: String(runtimeManifest.modelControls.coupling),
       threadCount: 4,
     },
+  });
+}
+
+function createManifestWithHistoryDepth(manifest, historyDepth) {
+  const fieldSpeed = manifest.simulationEnvelope?.fieldSpeed ?? 1;
+  return Object.freeze({
+    ...manifest,
+    simulationEnvelope: Object.freeze({
+      ...manifest.simulationEnvelope,
+      historyDepth,
+      wakeHorizon: fieldSpeed * historyDepth,
+    }),
   });
 }
 
@@ -63,9 +106,10 @@ export function resolveBorgRuntimeMode(queryOrSearch = "") {
   const query = queryOrSearch instanceof URLSearchParams
     ? queryOrSearch
     : new URLSearchParams(queryOrSearch);
-  return query.get("eom") === "compatibility"
-    ? BORG_COMPATIBILITY_RUNTIME_MODE
-    : BORG_DEFAULT_RUNTIME_MODE;
+  if (query.get("eomRecord")) {
+    return BORG_RECORD_REPLAY_RUNTIME_MODE;
+  }
+  return BORG_DEFAULT_RUNTIME_MODE;
 }
 
 function queryPositiveNumber(value, fallback) {

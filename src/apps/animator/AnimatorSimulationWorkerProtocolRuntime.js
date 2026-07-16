@@ -2,7 +2,6 @@ export const ANIMATOR_SIMULATION_WORKER_REQUEST_TYPE = "animator.simulation.run"
 export const ANIMATOR_SIMULATION_WORKER_STARTED_TYPE = "animator.simulation.started";
 export const ANIMATOR_SIMULATION_WORKER_COMPLETE_TYPE = "animator.simulation.complete";
 export const ANIMATOR_SIMULATION_WORKER_ERROR_TYPE = "animator.simulation.error";
-export const ANIMATOR_SOLVER_BRIDGE_ENGINE_ID = "architrino-solver-app-bridge";
 
 let nextAnimatorSimulationWorkerRequestId = 1;
 

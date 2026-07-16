@@ -30,7 +30,7 @@ No score changes.
 | Primary AAA carrier | $\Pi_{13}\mathsf e_{\gamma e}^{0}$, the effective EM gate projection on the Compton/recoil event carrier. |
 | Smallest accepted evidence object | An accepted source-backed event carrier whose Gate A/B/C, effective charge/current continuity, stress/Poynting, gauge witness, energy/momentum/angular-momentum ledger, Noether sea row, medium/remnant support, and no-hidden-retune rows bind to `e_gamma_e_0`. |
 | Exact first blocker | `missing_accepted_photon_gate_A_input_output`. |
-| Existing scripts, fixtures, and packets found | The Compton/recoil runner and fixture listed above, plus [Equation Closure Pass 2026-06-23 AC](equation-closure-pass-2026-06-23-ac.md). |
+| Existing scripts, fixtures, and packets found | The Compton/recoil runner and fixture listed above. The consolidated executable-gate audit found that arithmetic projection checks can pass while the route remains score-neutral and blocked first at `missing_accepted_photon_gate_A_input_output`; accepted charge/current continuity is the first `EQ-13`-specific blocker after the native event closes. |
 | Candidate breakthrough angle | Solved Maxwell, Green-function, and eikonal families can become inverse tests for causal support, continuity, gauge residual, and Poynting balance after the event ledger exists. They must not bypass Gate A/B/C and recoil rows. |
 | Fail-closed negative control | An imported $\Box A_\mu=J_\mu$ row with no coarse-graining map remains `equation_map.imported_formula`. An accepted-looking row with the wrong `eventId` or non-durable source must fail before EM residuals count. |
 | Smaller-than-report next action | Build a candidate source row for `photon_gate_A_input_output` only, with event id, source path, incoming/outgoing packet ids, constants, and Gate A residual fields. |
@@ -41,7 +41,7 @@ No score changes.
 | Primary AAA carrier | $\mathsf e_{\gamma e}^{0}$, the weak homogeneous Compton/recoil event ledger. |
 | Smallest accepted evidence object | An accepted native `e_gamma_e_0` event bundle with seven native rows plus accepted medium and remnant support rows, including explicit zero `delta_E` and `delta_p` in the weak homogeneous case. |
 | Exact first blocker | `missing_accepted_photon_gate_A_input_output`. |
-| Existing scripts, fixtures, and packets found | The Compton/recoil runner and fixture listed above, plus [Equation Closure Pass 2026-06-23 I](equation-closure-pass-2026-06-23-i.md). |
+| Existing scripts, fixtures, and packets found | The Compton/recoil runner and fixture listed above. The consolidated native-event audit found no accepted row on $\mathsf e_{\gamma e}^{0}$: all seven native rows plus `medium` and `remnant` support must share one `eventId`, retained carrier, row provenance, and explicit weak-homogeneous deltas before the event can close. |
 | Candidate breakthrough angle | The inverse-energy Compton residual can discipline Gate A: the same $h$, $c_\gamma$, exposed electron mass, recoil convention, and `eventId` must survive across `EQ-26` and `EQ-28` before wavelength shift counts as native event evidence. |
 | Fail-closed negative control | `eq28.frequency_loss_without_recoil`: phenomenological photon frequency loss, pair creation without momentum-balancing environment, dropped material/recoil rows, or changed shared constants must fail. |
 | Smaller-than-report next action | Construct the minimal Gate A accepted-row candidate contract for `e_gamma_e_0`, not another full Compton report. |

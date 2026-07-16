@@ -433,7 +433,7 @@ class Phase4MatrixControls(unittest.TestCase):
             control_id=cases[0].control_id,
             status="passed",
             evidence_digest=cases[0].evidence_digest,
-            dependencies=("current_central_solver",),
+            dependencies=("non_eom_engine",),
         )
 
         certificate = certify_phase4_acceptance_matrix(cases)

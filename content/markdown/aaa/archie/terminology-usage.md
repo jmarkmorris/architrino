@@ -18,6 +18,8 @@ Choose terms by ontological level.
 
 The recurring editorial task is not merely lexical replacement. It is ontological bookkeeping. A good terminology choice tells the reader which level is being described, what sort of thing is being claimed to exist, and which parts of older language are being retained only as a translation aid. A bad terminology choice can make an effective summary sound ontological, or make an ontological claim sound like inherited Standard Model shorthand.
 
+A standing instance of this rule: the $\mathbb{A}\mathbb{A}\mathbb{A}$ primitive dynamical law is the **acceleration law** — architrinos carry no primitive mass, so `force law` never names the substrate law (see [Architrino](../foundations/architrino.md)). `Force law` remains correct at the observer/comparison layer and in historical prose: the effective Lorentz-force law as a recovery target, Newtonian and MOND-class comparison frameworks, and lists of emergent effective closures. Contrast sentences that deny substrate status should say "not a substrate-level law" rather than "not a substrate force law," which would imply the category exists.
+
 ## Canon Maintenance Rule
 
 Treat terminology maintenance as a theory-protective cleanup discipline, not as a search for literary variation.
@@ -236,7 +238,7 @@ Use `Noether braid` as the canonical reader-facing term for the neutral six-arch
 | a proposed branch or branch family before all certificate ledgers close | `candidate braid` | treating the branch as retained or certified before the same-ledger evidence closes | "The iso-frequency braid remains a candidate braid until its phase, support, energy, and stability ledgers close." |
 | a retained branch promoted through return-map, stability, alignment, and observer-export closure | `certified braid` | linear-operator status labels or using `retained branch` when Lorentz export and stability ledgers are still missing | "A certified braid must reproduce Lorentz clock and ruler deformation at observer export." |
 | the base six-body case before shell or binary reductions | `neutral braid` | `shell braid` or `nested shell braid` before support-band evidence is declared | "A neutral braid may have no certified binary partition." |
-| the rigid uniaxial iso-frequency leading-candidate family | `spindle braid` | using a comparison-family term when the leading candidate is meant | "The spindle braid's tilt angles decouple layer speeds from nesting radii." |
+| the rigid uniaxial iso-frequency candidate family | `spindle braid` | using a comparison-family term when the spindle family is meant | "The spindle braid's tilt angles decouple layer speeds from nesting radii." |
 | a one-band radial-support case (comparison family) | `shell braid` | `nested shell braid` when only one support band is in scope | "The shell braid carries a controlled radial support band." |
 | the three-band frequency-separated comparison family | `nested shell braid` | presenting the nested family as the default matter scaffold; use `Noether braid` for assembly-level claims and reserve `nested shell braid` for claims that depend on its three ordered bands or frequency separation | "The nested shell braid remains the named comparison population for the spindle route." |
 | a mathematically protected braid, link, or framing class | `protected braid class`, `linking class`, `framing class`, or the specific invariant | treating every Noether braid as already topologically protected | "A protected braid class is certified only after the assembly topological charge ledger closes." |

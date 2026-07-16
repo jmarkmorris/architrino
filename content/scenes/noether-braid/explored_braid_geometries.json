@@ -2,7 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "noether_braid__explored_braid_geometries",
-    "title": "Explored Braid Geometries",
+    "title": "Braid Families",
     "type": "Scene-Markdown-View",
     "units": "relative",
     "wrapLabels": true,
@@ -11,7 +11,7 @@
     },
     "source": {
       "type": "markdown",
-      "path": "content/markdown/aaa/noether-braid/explored-braid-geometries.md"
+      "path": "content/markdown/aaa/noether-braid/braid-families.md"
     },
     "view": {
       "columns": 1,

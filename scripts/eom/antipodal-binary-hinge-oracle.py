@@ -1,7 +1,8 @@
 """Independent 90-digit oracle for the antipodal-binary circular force law.
 
-Adjudication instrument for `reference/priorities/braid-archive/braid-ideal/evidence/
-antipodal-binary-spiral-law-adjudication-2026-07-14.md`.
+Adjudication instrument for the antipodal-binary spiral-law adjudication of
+2026-07-14 (record retained in the frozen legacy archive; recover via git
+history).
 
 Independence: this file imports `mpmath` and nothing else. It does not import
 `src/eom`, the `scripts/eom/oracle` package, or any artifact of the campaign's

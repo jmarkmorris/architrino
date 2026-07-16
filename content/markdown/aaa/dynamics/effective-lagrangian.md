@@ -2,7 +2,7 @@
 
 This chapter asks whether the delayed Master EOM can be recovered from an action principle. In ordinary mechanics, a Lagrangian is useful because varying one scalar history functional gives the equations of motion. In $\mathbb{A}\mathbb{A}\mathbb{A}$ the target is harder: the functional must remember delayed causal roots, source identities, boundary terms, and receiver-normal branch strength.
 
-The restart rule is simple. Any variational scaffold in this chapter that does not produce receiver-normal branch strength is invalid as closure evidence. The current target is to vary a path-history functional whose branch-reduced force law carries $W^{\mathrm{rec}}=\lvert D_T/D_s\rvert$ on the same retained roots as the Master EOM. Source-normal denominators remain transversality diagnostics until paired with the receiver-normal numerator and checked by the stated residuals.
+The restart rule is simple. Any variational scaffold in this chapter that does not produce receiver-normal branch strength is invalid as closure evidence. The current target is to vary a path-history functional whose branch-reduced acceleration law carries $W^{\mathrm{rec}}=\lvert D_T/D_s\rvert$ on the same retained roots as the Master EOM. Source-normal denominators remain transversality diagnostics until paired with the receiver-normal numerator and checked by the stated residuals.
 
 Variational proof work therefore restarts from this canonical receiver-normal target. No prior action stationarity, energy balance, or Noether wake-history verdict is inherited unless the same derivation reproduces the receiver-normal branch law on the retained record.
 
@@ -195,7 +195,7 @@ c_1[\theta^O,\theta^M,\theta^I]
 \in\mathbb{Z}^2
 $$
 
-when the relative phase connection closes on the branch. This is the topological content of integer resonance lock: the lock ratios $(m,n)$ in [Noether Braid Doubling-Frequency Resonance Lock](../noether-braid/explored-braid-geometries.md#noether-braid-doubling-frequency-resonance-lock) make the phase-entry data integral rather than irrationally drifting. The symbol $c_1$ is retained as the established phase-entry notation, but here it means return-map degree data, not a scalar curvature integral. The effective Hamiltonian chart is therefore globally promotable only on resonance-locked branches where the returned phase torus and causal-root ledger close together. Off-lock, the same $I_\alpha$ may exist on a local patch but acquires monodromy under return, so quantization and measure preservation become local fitting statements rather than global chart facts.
+when the relative phase connection closes on the branch. This is the topological content of integer resonance lock: the lock ratios $(m,n)$ in [Noether Braid Doubling-Frequency Resonance Lock](../noether-braid/doubling-frequency-lock.md) make the phase-entry data integral rather than irrationally drifting. The symbol $c_1$ is retained as the established phase-entry notation, but here it means return-map degree data, not a scalar curvature integral. The effective Hamiltonian chart is therefore globally promotable only on resonance-locked branches where the returned phase torus and causal-root ledger close together. Off-lock, the same $I_\alpha$ may exist on a local patch but acquires monodromy under return, so quantization and measure preservation become local fitting statements rather than global chart facts.
 
 More precisely, the action variables $I_\alpha$ are sections of a flat action bundle over the retained branch family. They are globally defined only when the return holonomy is trivial on the admitted observables; equivalently, the phase-return degree pair closes by integer multiples of $2\pi$ on the same causal-root ledger. A Bohr-Sommerfeld-like condition is therefore admissible only on this trivial-holonomy locus:
 
@@ -280,7 +280,7 @@ $$
 \right]
 $$
 
-This receiver-side gradient is one ingredient in the full first variation, but it is not the complete Euler-Lagrange expression. In the double-time action, each varied worldline appears both as a receiver coordinate $\mathbf X_i(T)$ and as a source coordinate inside transposed kernels. The full branch-resolved variation is carried out in [master-equation](./master-equation.md#exact-nonlocal-lagrangian). The term proportional to $\phi_\eta'(\tilde g_{ij})$ is not an algebraic nuisance to discard: on a purely delayed branch it is the local signature of wake-emission recoil. If a chart proves that this term is boundary-only, the scale term below can derive the receiver-normal branch target without a recoil term; if not, the same variation points to a recoil-inclusive force law.
+This receiver-side gradient is one ingredient in the full first variation, but it is not the complete Euler-Lagrange expression. In the double-time action, each varied worldline appears both as a receiver coordinate $\mathbf X_i(T)$ and as a source coordinate inside transposed kernels. The full branch-resolved variation is carried out in [master-equation](./master-equation.md#exact-nonlocal-lagrangian). The term proportional to $\phi_\eta'(\tilde g_{ij})$ is not an algebraic nuisance to discard: on a purely delayed branch it is the local signature of wake-emission recoil. If a chart proves that this term is boundary-only, the scale term below can derive the receiver-normal branch target without a recoil term; if not, the same variation points to a recoil-inclusive acceleration law.
 
 On an effective spatial chart this split can be read as a Hodge-type decomposition of the kernel-gradient current. Schematically,
 
@@ -296,7 +296,7 @@ where $d\Phi_{ij}^{(\eta)}$ denotes the exact scalar-potential channel and $\del
 
 Plain language: the same delayed kernel current can separate into an exact scalar part and a curl-like recoil part. A scalar repair can handle only the exact part unless another declared action term carries the recoil channel.
 
-On charts where the constraint-variation residual is boundary-only, or is cancelled by an explicitly declared regularized action-level term, the branch-reduced target is the receiver-normal delayed force law
+On charts where the constraint-variation residual is boundary-only, or is cancelled by an explicitly declared regularized action-level term, the branch-reduced target is the receiver-normal delayed acceleration law
 $$
 \mu_{\text{arch}}\mathbf A_i(T)
 =
@@ -433,7 +433,7 @@ D_{\mathrm{char}}
 \qquad
 u=\tilde g+\frac{r}{c_f},
 $$
-one has $D_{\mathrm{char}}u=0$. The tail kernel is therefore the characteristic integral of the regularized hit density along $u=\mathrm{const}$. This is why it carries an endpoint convention: the repair is energy-conserving only when the endpoint boundary is characteristic to the same order as the retained chart. If the endpoint cuts across the characteristic foliation, the endpoint term is an interior Euler source and the repair has changed the force law rather than merely clearing a boundary.
+one has $D_{\mathrm{char}}u=0$. The tail kernel is therefore the characteristic integral of the regularized hit density along $u=\mathrm{const}$. This is why it carries an endpoint convention: the repair is energy-conserving only when the endpoint boundary is characteristic to the same order as the retained chart. If the endpoint cuts across the characteristic foliation, the endpoint term is an interior Euler source and the repair has changed the acceleration law rather than merely clearing a boundary.
 
 The normalized characteristic-tail kernel carries explicit energy, momentum, and angular-momentum wake-history increments in [master-equation](./master-equation.md#exact-nonlocal-lagrangian). An effective Lagrangian reduction may therefore choose that kernel only when it also carries the same boundary-increment convention and reports the corresponding variation and conservation residuals on its branch chart. Without those residuals, the reduced Lagrangian remains a scaffold for the Master EOM rather than an independent proof of the branch force.
 
@@ -691,7 +691,7 @@ E^{ij}-\frac{1}{3}(\nabla_{\mathbf X}\cdot\mathbf{u})h^{ij}
 \zeta_{\mathrm{cg}}(\nabla_{\mathbf X}\cdot\mathbf{u})h^{ij}
 +\Pi_{\mathrm{mem}}^{ij}
 $$
-where $E^{ij}=\frac{1}{2}(\partial_{X^i}u^j+\partial_{X^j}u^i)$ and $\mathring E^{ij}=E^{ij}-\frac{1}{3}(\nabla_{\mathbf X}\cdot\mathbf{u})h^{ij}$ is the deviatoric strain-rate tensor. This is a comparison form borrowed from continuum mechanics and kinetic theory. In $\mathbb{A}\mathbb{A}\mathbb{A}$ it becomes native only after $\eta_{\mathrm{cg}}$, $\zeta_{\mathrm{cg}}$, and $\Pi_{\mathrm{mem}}^{ij}$ are derived from the same delayed branch record that supplies the force law. The subscript in $\eta_{\mathrm{cg}}$ marks a coarse-grained viscosity-like coefficient and is distinct from the regulator $\eta$ in $\delta_\eta$.
+where $E^{ij}=\frac{1}{2}(\partial_{X^i}u^j+\partial_{X^j}u^i)$ and $\mathring E^{ij}=E^{ij}-\frac{1}{3}(\nabla_{\mathbf X}\cdot\mathbf{u})h^{ij}$ is the deviatoric strain-rate tensor. This is a comparison form borrowed from continuum mechanics and kinetic theory. In $\mathbb{A}\mathbb{A}\mathbb{A}$ it becomes native only after $\eta_{\mathrm{cg}}$, $\zeta_{\mathrm{cg}}$, and $\Pi_{\mathrm{mem}}^{ij}$ are derived from the same delayed branch record that supplies the acceleration law. The subscript in $\eta_{\mathrm{cg}}$ marks a coarse-grained viscosity-like coefficient and is distinct from the regulator $\eta$ in $\delta_\eta$.
 
 The constructive route is to read the transport coefficients as low-frequency moments of the delayed response kernel, not as independent material constants. If $\widetilde K_{\mathrm{shear}}(\omega)$ and $\widetilde K_{\mathrm{bulk}}(\omega)$ are the shear and bulk projections of the same branch-derived causal kernel, then the leading near-equilibrium coefficients have the schematic form
 

@@ -681,7 +681,7 @@ function drawPhotonFieldPanelMessage(ctx, cssWidth, cssHeight, message) {
   ctx.font = PHOTON_FIELD_PANEL_TEXT_FONT;
   ctx.textAlign = "center";
   ctx.textBaseline = "middle";
-  ctx.fillText(String(message || "Loading solver data"), cssWidth / 2, cssHeight / 2);
+  ctx.fillText(String(message || "Loading prescribed-path analysis"), cssWidth / 2, cssHeight / 2);
   ctx.restore();
 }
 

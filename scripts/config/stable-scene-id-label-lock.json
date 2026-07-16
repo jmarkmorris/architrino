@@ -52,8 +52,7 @@
         "causal_action_functional": "Causal Action Functional",
         "effective_lagrangian": "Effective Lagrangian",
         "kinetic_and_potential_energy": "Energy",
-        "master_equation_of_motion": "Master Equation",
-        "proof_programs": "Proof Programs"
+        "master_equation_of_motion": "Master Equation"
       }
     },
     "content/scenes/noether-braid/noether_braid.json": {
@@ -61,12 +60,10 @@
       "sceneName": "Noether Braid",
       "objects": {
         "braid_envelope_geometry": "Braid Envelope Geometry",
-        "explored_braid_geometries": "Explored Braid Geometries",
-        "neutral_braid": "Neutral Braid",
+        "doubling_frequency_lock": "Doubling-Frequency Resonance Lock",
+        "explored_braid_geometries": "Braid Families",
         "noether_braid_configuration_space": "Noether Braid Configuration Space",
         "noether_braid_overview": "Noether Braid",
-        "noether_braid_proof_map": "Noether Braid Proof Map",
-        "noether_braid_taxonomy": "Noether Braid Taxonomy",
         "noether_braid_topological_charge": "Noether Braid Topological Charge",
         "spindle_braid": "Spindle Braid"
       }

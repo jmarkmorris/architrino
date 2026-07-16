@@ -8,8 +8,8 @@
       "markdownIndex": "content/markdown/markdown_index.json"
     },
     "counts": {
-      "entries": 183,
-      "sections": 1489
+      "entries": 175,
+      "sections": 1424
     }
   },
   "tocRoot": {
@@ -1725,601 +1725,6 @@
             "sceneType": "Scene-Markdown-View",
             "scenePath": "content/scenes/dynamics/effective_lagrangian.json",
             "markdownPath": "content/markdown/aaa/dynamics/effective-lagrangian.md"
-          },
-          {
-            "id": "proof_programs",
-            "title": "Proof Programs",
-            "kind": "scene-index",
-            "sceneType": "Scene-Index",
-            "scenePath": "content/scenes/proof-programs/proof_programs.json",
-            "children": [
-              {
-                "id": "proof_programs__master_equation_breather",
-                "title": "Master Equation Breather",
-                "kind": "markdown-view",
-                "sceneType": "Scene-Markdown-View",
-                "scenePath": "content/scenes/proof-programs/master_equation_breather.json",
-                "markdownPath": "content/markdown/aaa/proof-programs/master-equation-breather.md",
-                "sections": [
-                  {
-                    "kind": "markdown-section",
-                    "title": "Purpose",
-                    "markdownPath": "content/markdown/aaa/proof-programs/master-equation-breather.md",
-                    "markdownSection": "Purpose",
-                    "sectionKey": "purpose",
-                    "headingLevel": 2
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "Position in the Dynamics Stack",
-                    "markdownPath": "content/markdown/aaa/proof-programs/master-equation-breather.md",
-                    "markdownSection": "Position in the Dynamics Stack",
-                    "sectionKey": "position in the dynamics stack",
-                    "headingLevel": 2
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "Portable Return-Map Architecture",
-                    "markdownPath": "content/markdown/aaa/proof-programs/master-equation-breather.md",
-                    "markdownSection": "Portable Return-Map Architecture",
-                    "sectionKey": "portable return map architecture",
-                    "headingLevel": 2
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "What the 1D Reference Model Already Settled",
-                    "markdownPath": "content/markdown/aaa/proof-programs/master-equation-breather.md",
-                    "markdownSection": "What the 1D Reference Model Already Settled",
-                    "sectionKey": "what the 1d reference model already settled",
-                    "headingLevel": 2
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "Abstract Envelope Hierarchy",
-                    "markdownPath": "content/markdown/aaa/proof-programs/master-equation-breather.md",
-                    "markdownSection": "Abstract Envelope Hierarchy",
-                    "sectionKey": "abstract envelope hierarchy",
-                    "headingLevel": 2
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "1D-Only Mechanisms and Their Replacement Obligations",
-                    "markdownPath": "content/markdown/aaa/proof-programs/master-equation-breather.md",
-                    "markdownSection": "1D-Only Mechanisms and Their Replacement Obligations",
-                    "sectionKey": "1d only mechanisms and their replacement obligations",
-                    "headingLevel": 2
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "Master-Equation Theorem Spine",
-                    "markdownPath": "content/markdown/aaa/proof-programs/master-equation-breather.md",
-                    "markdownSection": "Master-Equation Theorem Spine",
-                    "sectionKey": "master equation theorem spine",
-                    "headingLevel": 2
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "Immediate Geometric Research Burdens",
-                    "markdownPath": "content/markdown/aaa/proof-programs/master-equation-breather.md",
-                    "markdownSection": "Immediate Geometric Research Burdens",
-                    "sectionKey": "immediate geometric research burdens",
-                    "headingLevel": 2
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "Recommended Next Regime",
-                    "markdownPath": "content/markdown/aaa/proof-programs/master-equation-breather.md",
-                    "markdownSection": "Recommended Next Regime",
-                    "sectionKey": "recommended next regime",
-                    "headingLevel": 2
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "First Planar Bridge Regime",
-                    "markdownPath": "content/markdown/aaa/proof-programs/master-equation-breather.md",
-                    "markdownSection": "First Planar Bridge Regime",
-                    "sectionKey": "first planar bridge regime",
-                    "headingLevel": 2
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "Raw Section and Envelope Hierarchy in the Planar Regime",
-                    "markdownPath": "content/markdown/aaa/proof-programs/master-equation-breather.md",
-                    "markdownSection": "Raw Section and Envelope Hierarchy in the Planar Regime",
-                    "sectionKey": "raw section and envelope hierarchy in the planar regime",
-                    "headingLevel": 2
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "Planar Replacement Obligations",
-                    "markdownPath": "content/markdown/aaa/proof-programs/master-equation-breather.md",
-                    "markdownSection": "Planar Replacement Obligations",
-                    "sectionKey": "planar replacement obligations",
-                    "headingLevel": 2
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "Synthesis of the Reduced Planar Bridge",
-                    "markdownPath": "content/markdown/aaa/proof-programs/master-equation-breather.md",
-                    "markdownSection": "Synthesis of the Reduced Planar Bridge",
-                    "sectionKey": "synthesis of the reduced planar bridge",
-                    "headingLevel": 2
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "Precise Failure Alternative for the Planar Bridge",
-                    "markdownPath": "content/markdown/aaa/proof-programs/master-equation-breather.md",
-                    "markdownSection": "Precise Failure Alternative for the Planar Bridge",
-                    "sectionKey": "precise failure alternative for the planar bridge",
-                    "headingLevel": 2
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "Beyond the Reduced Planar Bridge",
-                    "markdownPath": "content/markdown/aaa/proof-programs/master-equation-breather.md",
-                    "markdownSection": "Beyond the Reduced Planar Bridge",
-                    "sectionKey": "beyond the reduced planar bridge",
-                    "headingLevel": 2
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "Beyond the Unreduced Planar Binary",
-                    "markdownPath": "content/markdown/aaa/proof-programs/master-equation-breather.md",
-                    "markdownSection": "Beyond the Unreduced Planar Binary",
-                    "sectionKey": "beyond the unreduced planar binary",
-                    "headingLevel": 2
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "Capstone Statement",
-                    "markdownPath": "content/markdown/aaa/proof-programs/master-equation-breather.md",
-                    "markdownSection": "Capstone Statement",
-                    "sectionKey": "capstone statement",
-                    "headingLevel": 2
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "Related Chapters",
-                    "markdownPath": "content/markdown/aaa/proof-programs/master-equation-breather.md",
-                    "markdownSection": "Related Chapters",
-                    "sectionKey": "related chapters",
-                    "headingLevel": 2
-                  }
-                ]
-              },
-              {
-                "id": "proof_programs__collinear_breather",
-                "title": "Collinear Breather",
-                "kind": "markdown-view",
-                "sceneType": "Scene-Markdown-View",
-                "scenePath": "content/scenes/proof-programs/collinear_breather.json",
-                "markdownPath": "content/markdown/aaa/proof-programs/collinear-breather.md",
-                "sections": [
-                  {
-                    "kind": "markdown-section",
-                    "title": "Overview",
-                    "markdownPath": "content/markdown/aaa/proof-programs/collinear-breather.md",
-                    "markdownSection": "Overview",
-                    "sectionKey": "overview",
-                    "headingLevel": 2
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "Status Map",
-                    "markdownPath": "content/markdown/aaa/proof-programs/collinear-breather.md",
-                    "markdownSection": "Status Map",
-                    "sectionKey": "status map",
-                    "headingLevel": 2
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "Reading Map",
-                    "markdownPath": "content/markdown/aaa/proof-programs/collinear-breather.md",
-                    "markdownSection": "Reading Map",
-                    "sectionKey": "reading map",
-                    "headingLevel": 2
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "Proof-Program Dependency Map",
-                    "markdownPath": "content/markdown/aaa/proof-programs/collinear-breather.md",
-                    "markdownSection": "Proof-Program Dependency Map",
-                    "sectionKey": "proof program dependency map",
-                    "headingLevel": 2
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "Purpose",
-                    "markdownPath": "content/markdown/aaa/proof-programs/collinear-breather.md",
-                    "markdownSection": "Purpose",
-                    "sectionKey": "purpose",
-                    "headingLevel": 2
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "Exact 1D State Variables",
-                    "markdownPath": "content/markdown/aaa/proof-programs/collinear-breather.md",
-                    "markdownSection": "Exact 1D State Variables",
-                    "sectionKey": "exact 1d state variables",
-                    "headingLevel": 2
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "Partner-Only Hinge Radius",
-                    "markdownPath": "content/markdown/aaa/proof-programs/collinear-breather.md",
-                    "markdownSection": "Partner-Only Hinge Radius",
-                    "sectionKey": "partner only hinge radius",
-                    "headingLevel": 2
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "Held-Release Restart Target",
-                    "markdownPath": "content/markdown/aaa/proof-programs/collinear-breather.md",
-                    "markdownSection": "Held-Release Restart Target",
-                    "sectionKey": "held release restart target",
-                    "headingLevel": 2
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "Partner-Hit and Self-Hit Root Equations",
-                    "markdownPath": "content/markdown/aaa/proof-programs/collinear-breather.md",
-                    "markdownSection": "Partner-Hit and Self-Hit Root Equations",
-                    "sectionKey": "partner hit and self hit root equations",
-                    "headingLevel": 2
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "Regularized 1D Equation",
-                    "markdownPath": "content/markdown/aaa/proof-programs/collinear-breather.md",
-                    "markdownSection": "Regularized 1D Equation",
-                    "sectionKey": "regularized 1d equation",
-                    "headingLevel": 2
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "Inbound/Outbound Sign Structure",
-                    "markdownPath": "content/markdown/aaa/proof-programs/collinear-breather.md",
-                    "markdownSection": "Inbound/Outbound Sign Structure",
-                    "sectionKey": "inbound outbound sign structure",
-                    "headingLevel": 2
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "Necessary Recapture Condition",
-                    "markdownPath": "content/markdown/aaa/proof-programs/collinear-breather.md",
-                    "markdownSection": "Necessary Recapture Condition",
-                    "sectionKey": "necessary recapture condition",
-                    "headingLevel": 2
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "Regularized Return Map",
-                    "markdownPath": "content/markdown/aaa/proof-programs/collinear-breather.md",
-                    "markdownSection": "Regularized Return Map",
-                    "sectionKey": "regularized return map",
-                    "headingLevel": 2
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "Global Existence via Arzela-Ascoli",
-                    "markdownPath": "content/markdown/aaa/proof-programs/collinear-breather.md",
-                    "markdownSection": "Global Existence via Arzela-Ascoli",
-                    "sectionKey": "global existence via arzela ascoli",
-                    "headingLevel": 2
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "Capstone Statement",
-                    "markdownPath": "content/markdown/aaa/proof-programs/collinear-breather.md",
-                    "markdownSection": "Capstone Statement",
-                    "sectionKey": "capstone statement",
-                    "headingLevel": 2
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "Why This Reduced Problem Comes First",
-                    "markdownPath": "content/markdown/aaa/proof-programs/collinear-breather.md",
-                    "markdownSection": "Why This Reduced Problem Comes First",
-                    "sectionKey": "why this reduced problem comes first",
-                    "headingLevel": 2
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "What Counts as Success or Failure",
-                    "markdownPath": "content/markdown/aaa/proof-programs/collinear-breather.md",
-                    "markdownSection": "What Counts as Success or Failure",
-                    "sectionKey": "what counts as success or failure",
-                    "headingLevel": 2
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "Appendix: Why a Closed-Form Solution Is Unlikely",
-                    "markdownPath": "content/markdown/aaa/proof-programs/collinear-breather.md",
-                    "markdownSection": "Appendix: Why a Closed-Form Solution Is Unlikely",
-                    "sectionKey": "appendix why a closed form solution is unlikely",
-                    "headingLevel": 2
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "Related Chapters",
-                    "markdownPath": "content/markdown/aaa/proof-programs/collinear-breather.md",
-                    "markdownSection": "Related Chapters",
-                    "sectionKey": "related chapters",
-                    "headingLevel": 2
-                  }
-                ]
-              },
-              {
-                "id": "proof_programs__closed_form_collinear_breather_ansatz",
-                "title": "Closed-Form Collinear Breather Ansatz",
-                "kind": "markdown-view",
-                "sceneType": "Scene-Markdown-View",
-                "scenePath": "content/scenes/proof-programs/closed_form_collinear_breather_ansatz.json",
-                "markdownPath": "content/markdown/aaa/proof-programs/closed-form-collinear-breather-ansatz.md",
-                "sections": [
-                  {
-                    "kind": "markdown-section",
-                    "title": "Status",
-                    "markdownPath": "content/markdown/aaa/proof-programs/closed-form-collinear-breather-ansatz.md",
-                    "markdownSection": "Status",
-                    "sectionKey": "status",
-                    "headingLevel": 2
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "Variables and Speed Classes",
-                    "markdownPath": "content/markdown/aaa/proof-programs/closed-form-collinear-breather-ansatz.md",
-                    "markdownSection": "Variables and Speed Classes",
-                    "sectionKey": "variables and speed classes",
-                    "headingLevel": 2
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "Constant-Velocity Causal Algebra",
-                    "markdownPath": "content/markdown/aaa/proof-programs/closed-form-collinear-breather-ansatz.md",
-                    "markdownSection": "Constant-Velocity Causal Algebra",
-                    "sectionKey": "constant velocity causal algebra",
-                    "headingLevel": 2
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "Why the Causal-Root Events Matter",
-                    "markdownPath": "content/markdown/aaa/proof-programs/closed-form-collinear-breather-ansatz.md",
-                    "markdownSection": "Why the Causal-Root Events Matter",
-                    "sectionKey": "why the causal root events matter",
-                    "headingLevel": 2
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "Piecewise Chart Ansatz",
-                    "markdownPath": "content/markdown/aaa/proof-programs/closed-form-collinear-breather-ansatz.md",
-                    "markdownSection": "Piecewise Chart Ansatz",
-                    "sectionKey": "piecewise chart ansatz",
-                    "headingLevel": 2
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "Minimal Four-Arc Breather Skeleton",
-                    "markdownPath": "content/markdown/aaa/proof-programs/closed-form-collinear-breather-ansatz.md",
-                    "markdownSection": "Minimal Four-Arc Breather Skeleton",
-                    "sectionKey": "minimal four arc breather skeleton",
-                    "headingLevel": 2
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "Itinerary-Keyed Self-Image Enumeration",
-                    "markdownPath": "content/markdown/aaa/proof-programs/closed-form-collinear-breather-ansatz.md",
-                    "markdownSection": "Itinerary-Keyed Self-Image Enumeration",
-                    "sectionKey": "itinerary keyed self image enumeration",
-                    "headingLevel": 2
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "Caustic Matching Laws",
-                    "markdownPath": "content/markdown/aaa/proof-programs/closed-form-collinear-breather-ansatz.md",
-                    "markdownSection": "Caustic Matching Laws",
-                    "sectionKey": "caustic matching laws",
-                    "headingLevel": 2
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "Fold-Adapted Fractional Basis",
-                    "markdownPath": "content/markdown/aaa/proof-programs/closed-form-collinear-breather-ansatz.md",
-                    "markdownSection": "Fold-Adapted Fractional Basis",
-                    "sectionKey": "fold adapted fractional basis",
-                    "headingLevel": 2
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "What Would Count as a Successful Closed-Form Candidate",
-                    "markdownPath": "content/markdown/aaa/proof-programs/closed-form-collinear-breather-ansatz.md",
-                    "markdownSection": "What Would Count as a Successful Closed-Form Candidate",
-                    "sectionKey": "what would count as a successful closed form candidate",
-                    "headingLevel": 2
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "First Working Guess",
-                    "markdownPath": "content/markdown/aaa/proof-programs/closed-form-collinear-breather-ansatz.md",
-                    "markdownSection": "First Working Guess",
-                    "sectionKey": "first working guess",
-                    "headingLevel": 2
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "Immediate Derivation Tasks",
-                    "markdownPath": "content/markdown/aaa/proof-programs/closed-form-collinear-breather-ansatz.md",
-                    "markdownSection": "Immediate Derivation Tasks",
-                    "sectionKey": "immediate derivation tasks",
-                    "headingLevel": 2
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "Provisional Assessment",
-                    "markdownPath": "content/markdown/aaa/proof-programs/closed-form-collinear-breather-ansatz.md",
-                    "markdownSection": "Provisional Assessment",
-                    "sectionKey": "provisional assessment",
-                    "headingLevel": 2
-                  }
-                ]
-              },
-              {
-                "id": "proof_programs__planar_bridge_closure",
-                "title": "Planar Bridge Closure",
-                "kind": "markdown-view",
-                "sceneType": "Scene-Markdown-View",
-                "scenePath": "content/scenes/proof-programs/planar_bridge_closure.json",
-                "markdownPath": "content/markdown/aaa/proof-programs/planar-bridge-closure.md",
-                "sections": [
-                  {
-                    "kind": "markdown-section",
-                    "title": "Purpose",
-                    "markdownPath": "content/markdown/aaa/proof-programs/planar-bridge-closure.md",
-                    "markdownSection": "Purpose",
-                    "sectionKey": "purpose",
-                    "headingLevel": 2
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "Position in the Dynamics Stack",
-                    "markdownPath": "content/markdown/aaa/proof-programs/planar-bridge-closure.md",
-                    "markdownSection": "Position in the Dynamics Stack",
-                    "sectionKey": "position in the dynamics stack",
-                    "headingLevel": 2
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "Reduced Planar Bridge Regime",
-                    "markdownPath": "content/markdown/aaa/proof-programs/planar-bridge-closure.md",
-                    "markdownSection": "Reduced Planar Bridge Regime",
-                    "sectionKey": "reduced planar bridge regime",
-                    "headingLevel": 2
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "Rotational Gauge and Return Section",
-                    "markdownPath": "content/markdown/aaa/proof-programs/planar-bridge-closure.md",
-                    "markdownSection": "Rotational Gauge and Return Section",
-                    "sectionKey": "rotational gauge and return section",
-                    "headingLevel": 2
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "Local Cone Control and Branch Regularity",
-                    "markdownPath": "content/markdown/aaa/proof-programs/planar-bridge-closure.md",
-                    "markdownSection": "Local Cone Control and Branch Regularity",
-                    "sectionKey": "local cone control and branch regularity",
-                    "headingLevel": 2
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "Delay-Adapted Angle Control",
-                    "markdownPath": "content/markdown/aaa/proof-programs/planar-bridge-closure.md",
-                    "markdownSection": "Delay-Adapted Angle Control",
-                    "sectionKey": "delay adapted angle control",
-                    "headingLevel": 2
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "Bounded Caustic Transit",
-                    "markdownPath": "content/markdown/aaa/proof-programs/planar-bridge-closure.md",
-                    "markdownSection": "Bounded Caustic Transit",
-                    "sectionKey": "bounded caustic transit",
-                    "headingLevel": 2
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "Radial Turnaround Versus Centrifugal Leakage",
-                    "markdownPath": "content/markdown/aaa/proof-programs/planar-bridge-closure.md",
-                    "markdownSection": "Radial Turnaround Versus Centrifugal Leakage",
-                    "sectionKey": "radial turnaround versus centrifugal leakage",
-                    "headingLevel": 2
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "Tame-Envelope and Gauge Closure",
-                    "markdownPath": "content/markdown/aaa/proof-programs/planar-bridge-closure.md",
-                    "markdownSection": "Tame-Envelope and Gauge Closure",
-                    "sectionKey": "tame envelope and gauge closure",
-                    "headingLevel": 2
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "Failure Alternatives",
-                    "markdownPath": "content/markdown/aaa/proof-programs/planar-bridge-closure.md",
-                    "markdownSection": "Failure Alternatives",
-                    "sectionKey": "failure alternatives",
-                    "headingLevel": 2
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "Immediate Theorem Program",
-                    "markdownPath": "content/markdown/aaa/proof-programs/planar-bridge-closure.md",
-                    "markdownSection": "Immediate Theorem Program",
-                    "sectionKey": "immediate theorem program",
-                    "headingLevel": 2
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "Why This Is the Best Queued Planar Target",
-                    "markdownPath": "content/markdown/aaa/proof-programs/planar-bridge-closure.md",
-                    "markdownSection": "Why This Is the Best Queued Planar Target",
-                    "sectionKey": "why this is the best queued planar target",
-                    "headingLevel": 2
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "Interfaces to Other Chapters",
-                    "markdownPath": "content/markdown/aaa/proof-programs/planar-bridge-closure.md",
-                    "markdownSection": "Interfaces to Other Chapters",
-                    "sectionKey": "interfaces to other chapters",
-                    "headingLevel": 2
-                  }
-                ]
-              },
-              {
-                "id": "proof_programs__terminal_alignment",
-                "title": "Terminal Alignment",
-                "kind": "markdown-view",
-                "sceneType": "Scene-Markdown-View",
-                "scenePath": "content/scenes/proof-programs/terminal_alignment.json",
-                "markdownPath": "content/markdown/aaa/proof-programs/terminal-alignment.md",
-                "sections": [
-                  {
-                    "kind": "markdown-section",
-                    "title": "Braid Symmetry-Breaking Point",
-                    "markdownPath": "content/markdown/aaa/proof-programs/terminal-alignment.md",
-                    "markdownSection": "Braid Symmetry-Breaking Point",
-                    "sectionKey": "braid symmetry breaking point",
-                    "headingLevel": 2
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "Local Black-Hole Duality Target",
-                    "markdownPath": "content/markdown/aaa/proof-programs/terminal-alignment.md",
-                    "markdownSection": "Local Black-Hole Duality Target",
-                    "sectionKey": "local black hole duality target",
-                    "headingLevel": 2
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "Terminal Alignment Label-Count Target",
-                    "markdownPath": "content/markdown/aaa/proof-programs/terminal-alignment.md",
-                    "markdownSection": "Terminal Alignment Label-Count Target",
-                    "sectionKey": "terminal alignment label count target",
-                    "headingLevel": 2
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "Regime Map for Speed Statements (CFT / Horizon / AdS)",
-                    "markdownPath": "content/markdown/aaa/proof-programs/terminal-alignment.md",
-                    "markdownSection": "Regime Map for Speed Statements (CFT / Horizon / AdS)",
-                    "sectionKey": "regime map for speed statements cft horizon ads",
-                    "headingLevel": 2
-                  }
-                ]
-              }
-            ]
           }
         ]
       },
@@ -2360,24 +1765,6 @@
                 "markdownPath": "content/markdown/aaa/noether-braid/noether-braid.md",
                 "markdownSection": "Medium-Selection Burden",
                 "sectionKey": "medium selection burden",
-                "headingLevel": 2
-              }
-            ]
-          },
-          {
-            "id": "noether_braid__neutral_braid",
-            "title": "Neutral Braid",
-            "kind": "markdown-view",
-            "sceneType": "Scene-Markdown-View",
-            "scenePath": "content/scenes/noether-braid/neutral_braid.json",
-            "markdownPath": "content/markdown/aaa/noether-braid/neutral-braid.md",
-            "sections": [
-              {
-                "kind": "markdown-section",
-                "title": "Retained-Branch Certificate Target",
-                "markdownPath": "content/markdown/aaa/noether-braid/neutral-braid.md",
-                "markdownSection": "Retained-Branch Certificate Target",
-                "sectionKey": "retained branch certificate target",
                 "headingLevel": 2
               }
             ]
@@ -2444,6 +1831,242 @@
                 "markdownPath": "content/markdown/aaa/noether-braid/braid-recovery-requirements.md",
                 "markdownSection": "Reading Discipline",
                 "sectionKey": "reading discipline",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Base-Family Certificate Instantiation",
+                "markdownPath": "content/markdown/aaa/noether-braid/braid-recovery-requirements.md",
+                "markdownSection": "Base-Family Certificate Instantiation",
+                "sectionKey": "base family certificate instantiation",
+                "headingLevel": 2
+              }
+            ]
+          },
+          {
+            "id": "noether_braid__configuration_space",
+            "title": "Noether Braid Configuration Space",
+            "kind": "markdown-view",
+            "sceneType": "Scene-Markdown-View",
+            "scenePath": "content/scenes/noether-braid/noether_braid_configuration_space.json",
+            "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-configuration-space.md",
+            "sections": [
+              {
+                "kind": "markdown-section",
+                "title": "Document Role",
+                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-configuration-space.md",
+                "markdownSection": "Document Role",
+                "sectionKey": "document role",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Evidence-Level Terms",
+                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-configuration-space.md",
+                "markdownSection": "Evidence-Level Terms",
+                "sectionKey": "evidence level terms",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "A Named Candidate: The Spindle Braid",
+                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-configuration-space.md",
+                "markdownSection": "A Named Candidate: The Spindle Braid",
+                "sectionKey": "a named candidate the spindle braid",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Classification Axes",
+                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-configuration-space.md",
+                "markdownSection": "Classification Axes",
+                "sectionKey": "classification axes",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Base Inventory",
+                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-configuration-space.md",
+                "markdownSection": "Base Inventory",
+                "sectionKey": "base inventory",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Support Geometry",
+                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-configuration-space.md",
+                "markdownSection": "Support Geometry",
+                "sectionKey": "support geometry",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Angular-Momentum Frame",
+                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-configuration-space.md",
+                "markdownSection": "Angular-Momentum Frame",
+                "sectionKey": "angular momentum frame",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Polarity Placement",
+                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-configuration-space.md",
+                "markdownSection": "Polarity Placement",
+                "sectionKey": "polarity placement",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Angular-Momentum Handedness",
+                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-configuration-space.md",
+                "markdownSection": "Angular-Momentum Handedness",
+                "sectionKey": "angular momentum handedness",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Speed, Hinge, And Frequency Families",
+                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-configuration-space.md",
+                "markdownSection": "Speed, Hinge, And Frequency Families",
+                "sectionKey": "speed hinge and frequency families",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Scope Of The Hypothesis",
+                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-configuration-space.md",
+                "markdownSection": "Scope Of The Hypothesis",
+                "sectionKey": "scope of the hypothesis",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Why Three Retained Rows",
+                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-configuration-space.md",
+                "markdownSection": "Why Three Retained Rows",
+                "sectionKey": "why three retained rows",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "General Branch State",
+                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-configuration-space.md",
+                "markdownSection": "General Branch State",
+                "sectionKey": "general branch state",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Branch Group Velocity",
+                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-configuration-space.md",
+                "markdownSection": "Branch Group Velocity",
+                "sectionKey": "branch group velocity",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Candidate And Certified Braids",
+                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-configuration-space.md",
+                "markdownSection": "Candidate And Certified Braids",
+                "sectionKey": "candidate and certified braids",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Momentum And Principal-Direction Decomposition",
+                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-configuration-space.md",
+                "markdownSection": "Momentum And Principal-Direction Decomposition",
+                "sectionKey": "momentum and principal direction decomposition",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Unordered Layer Semantics",
+                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-configuration-space.md",
+                "markdownSection": "Unordered Layer Semantics",
+                "sectionKey": "unordered layer semantics",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Super-Field-Speed Carrier Rows",
+                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-configuration-space.md",
+                "markdownSection": "Super-Field-Speed Carrier Rows",
+                "sectionKey": "super field speed carrier rows",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Stability In A Sea Of Like Assemblies",
+                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-configuration-space.md",
+                "markdownSection": "Stability In A Sea Of Like Assemblies",
+                "sectionKey": "stability in a sea of like assemblies",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Toward A Periodic Table Of The Noether Braid",
+                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-configuration-space.md",
+                "markdownSection": "Toward A Periodic Table Of The Noether Braid",
+                "sectionKey": "toward a periodic table of the noether braid",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Accessory-Architrino Capture",
+                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-configuration-space.md",
+                "markdownSection": "Accessory-Architrino Capture",
+                "sectionKey": "accessory architrino capture",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Frame Orthogonality And Framing Anisotropy",
+                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-configuration-space.md",
+                "markdownSection": "Frame Orthogonality And Framing Anisotropy",
+                "sectionKey": "frame orthogonality and framing anisotropy",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Relation To The Doubling-frequency Chapter",
+                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-configuration-space.md",
+                "markdownSection": "Relation To The Doubling-frequency Chapter",
+                "sectionKey": "relation to the doubling frequency chapter",
+                "headingLevel": 2
+              }
+            ]
+          },
+          {
+            "id": "noether_braid__explored_braid_geometries",
+            "title": "Braid Families",
+            "kind": "markdown-view",
+            "sceneType": "Scene-Markdown-View",
+            "scenePath": "content/scenes/noether-braid/explored_braid_geometries.json",
+            "markdownPath": "content/markdown/aaa/noether-braid/braid-families.md",
+            "sections": [
+              {
+                "kind": "markdown-section",
+                "title": "The Neutral Braid: Base of the Family Ladder",
+                "markdownPath": "content/markdown/aaa/noether-braid/braid-families.md",
+                "markdownSection": "The Neutral Braid: Base of the Family Ladder",
+                "sectionKey": "the neutral braid base of the family ladder",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Symmetric Shell Braid",
+                "markdownPath": "content/markdown/aaa/noether-braid/braid-families.md",
+                "markdownSection": "Symmetric Shell Braid",
+                "sectionKey": "symmetric shell braid",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Nested Shell Braid",
+                "markdownPath": "content/markdown/aaa/noether-braid/braid-families.md",
+                "markdownSection": "Nested Shell Braid",
+                "sectionKey": "nested shell braid",
                 "headingLevel": 2
               }
             ]
@@ -2612,34 +2235,18 @@
               },
               {
                 "kind": "markdown-section",
-                "title": "Why Rigidity: The Harmonic-Matching Principle",
+                "title": "The Harmonic-Matching Hypothesis",
                 "markdownPath": "content/markdown/aaa/noether-braid/spindle-braid.md",
-                "markdownSection": "Why Rigidity: The Harmonic-Matching Principle",
-                "sectionKey": "why rigidity the harmonic matching principle",
+                "markdownSection": "The Harmonic-Matching Hypothesis",
+                "sectionKey": "the harmonic matching hypothesis",
                 "headingLevel": 2
               },
               {
                 "kind": "markdown-section",
-                "title": "How the Family Was Found",
+                "title": "Motion as Screw",
                 "markdownPath": "content/markdown/aaa/noether-braid/spindle-braid.md",
-                "markdownSection": "How the Family Was Found",
-                "sectionKey": "how the family was found",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "The Field-Speed Pin and the Escapement",
-                "markdownPath": "content/markdown/aaa/noether-braid/spindle-braid.md",
-                "markdownSection": "The Field-Speed Pin and the Escapement",
-                "sectionKey": "the field speed pin and the escapement",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Motion, Inertia, and Isotropy",
-                "markdownPath": "content/markdown/aaa/noether-braid/spindle-braid.md",
-                "markdownSection": "Motion, Inertia, and Isotropy",
-                "sectionKey": "motion inertia and isotropy",
+                "markdownSection": "Motion as Screw",
+                "sectionKey": "motion as screw",
                 "headingLevel": 2
               },
               {
@@ -2648,14 +2255,6 @@
                 "markdownPath": "content/markdown/aaa/noether-braid/spindle-braid.md",
                 "markdownSection": "Discrete-Symmetry Structure",
                 "sectionKey": "discrete symmetry structure",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "The Confinement Problem",
-                "markdownPath": "content/markdown/aaa/noether-braid/spindle-braid.md",
-                "markdownSection": "The Confinement Problem",
-                "sectionKey": "the confinement problem",
                 "headingLevel": 2
               },
               {
@@ -2669,35 +2268,147 @@
             ]
           },
           {
-            "id": "noether_braid__explored_braid_geometries",
-            "title": "Explored Braid Geometries",
+            "id": "noether_braid__doubling_frequency_lock",
+            "title": "Doubling-Frequency Resonance Lock",
             "kind": "markdown-view",
             "sceneType": "Scene-Markdown-View",
-            "scenePath": "content/scenes/noether-braid/explored_braid_geometries.json",
-            "markdownPath": "content/markdown/aaa/noether-braid/explored-braid-geometries.md",
+            "scenePath": "content/scenes/noether-braid/doubling_frequency_lock.json",
+            "markdownPath": "content/markdown/aaa/noether-braid/doubling-frequency-lock.md",
             "sections": [
               {
                 "kind": "markdown-section",
-                "title": "Symmetric Shell Braid",
-                "markdownPath": "content/markdown/aaa/noether-braid/explored-braid-geometries.md",
-                "markdownSection": "Symmetric Shell Braid",
-                "sectionKey": "symmetric shell braid",
+                "title": "Status and Assumptions",
+                "markdownPath": "content/markdown/aaa/noether-braid/doubling-frequency-lock.md",
+                "markdownSection": "Status and Assumptions",
+                "sectionKey": "status and assumptions",
                 "headingLevel": 2
               },
               {
                 "kind": "markdown-section",
-                "title": "Nested Shell Braid",
-                "markdownPath": "content/markdown/aaa/noether-braid/explored-braid-geometries.md",
-                "markdownSection": "Nested Shell Braid",
-                "sectionKey": "nested shell braid",
+                "title": "Exact Kinematic Identity",
+                "markdownPath": "content/markdown/aaa/noether-braid/doubling-frequency-lock.md",
+                "markdownSection": "Exact Kinematic Identity",
+                "sectionKey": "exact kinematic identity",
                 "headingLevel": 2
               },
               {
                 "kind": "markdown-section",
-                "title": "Noether Braid Doubling-Frequency Resonance Lock",
-                "markdownPath": "content/markdown/aaa/noether-braid/explored-braid-geometries.md",
-                "markdownSection": "Noether Braid Doubling-Frequency Resonance Lock",
-                "sectionKey": "noether braid doubling frequency resonance lock",
+                "title": "Assumption 1 (Middle Caustic-Grazing Closure)",
+                "markdownPath": "content/markdown/aaa/noether-braid/doubling-frequency-lock.md",
+                "markdownSection": "Assumption 1 (Middle Caustic-Grazing Closure)",
+                "sectionKey": "assumption 1 middle caustic grazing closure",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Assumption 2 (Exact Integer Phase Closure)",
+                "markdownPath": "content/markdown/aaa/noether-braid/doubling-frequency-lock.md",
+                "markdownSection": "Assumption 2 (Exact Integer Phase Closure)",
+                "sectionKey": "assumption 2 exact integer phase closure",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Assumption 3 (Fixed Relative Phase Lock)",
+                "markdownPath": "content/markdown/aaa/noether-braid/doubling-frequency-lock.md",
+                "markdownSection": "Assumption 3 (Fixed Relative Phase Lock)",
+                "sectionKey": "assumption 3 fixed relative phase lock",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Bundle Holonomy Reading",
+                "markdownPath": "content/markdown/aaa/noether-braid/doubling-frequency-lock.md",
+                "markdownSection": "Bundle Holonomy Reading",
+                "sectionKey": "bundle holonomy reading",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Assumption 4 (Bundle-Flatness and Cancellation Selection Principle)",
+                "markdownPath": "content/markdown/aaa/noether-braid/doubling-frequency-lock.md",
+                "markdownSection": "Assumption 4 (Bundle-Flatness and Cancellation Selection Principle)",
+                "sectionKey": "assumption 4 bundle flatness and cancellation selection principle",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Non-Assumptions",
+                "markdownPath": "content/markdown/aaa/noether-braid/doubling-frequency-lock.md",
+                "markdownSection": "Non-Assumptions",
+                "sectionKey": "non assumptions",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Immediate Consequences",
+                "markdownPath": "content/markdown/aaa/noether-braid/doubling-frequency-lock.md",
+                "markdownSection": "Immediate Consequences",
+                "sectionKey": "immediate consequences",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Proposition 1 (Exterior Integer Lock Formulas)",
+                "markdownPath": "content/markdown/aaa/noether-braid/doubling-frequency-lock.md",
+                "markdownSection": "Proposition 1 (Exterior Integer Lock Formulas)",
+                "sectionKey": "proposition 1 exterior integer lock formulas",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Could $1{:}2{:}4$ Be a Solution?",
+                "markdownPath": "content/markdown/aaa/noether-braid/doubling-frequency-lock.md",
+                "markdownSection": "Could $1{:}2{:}4$ Be a Solution?",
+                "sectionKey": "could 1 2 4 be a solution",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "What Exact Periodicity Gives, and What It Does Not",
+                "markdownPath": "content/markdown/aaa/noether-braid/doubling-frequency-lock.md",
+                "markdownSection": "What Exact Periodicity Gives, and What It Does Not",
+                "sectionKey": "what exact periodicity gives and what it does not",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Interpreting the Cancellation Principle",
+                "markdownPath": "content/markdown/aaa/noether-braid/doubling-frequency-lock.md",
+                "markdownSection": "Interpreting the Cancellation Principle",
+                "sectionKey": "interpreting the cancellation principle",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "RG-Style Truncation Test",
+                "markdownPath": "content/markdown/aaa/noether-braid/doubling-frequency-lock.md",
+                "markdownSection": "RG-Style Truncation Test",
+                "sectionKey": "rg style truncation test",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Reduced-Theorem Target",
+                "markdownPath": "content/markdown/aaa/noether-braid/doubling-frequency-lock.md",
+                "markdownSection": "Reduced-Theorem Target",
+                "sectionKey": "reduced theorem target",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Recurrence Diagnostic",
+                "markdownPath": "content/markdown/aaa/noether-braid/doubling-frequency-lock.md",
+                "markdownSection": "Recurrence Diagnostic",
+                "sectionKey": "recurrence diagnostic",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Ancillary Symmetry Check",
+                "markdownPath": "content/markdown/aaa/noether-braid/doubling-frequency-lock.md",
+                "markdownSection": "Ancillary Symmetry Check",
+                "sectionKey": "ancillary symmetry check",
                 "headingLevel": 2
               }
             ]
@@ -2793,128 +2504,6 @@
             ]
           },
           {
-            "id": "noether_braid__configuration_space",
-            "title": "Noether Braid Configuration Space",
-            "kind": "markdown-view",
-            "sceneType": "Scene-Markdown-View",
-            "scenePath": "content/scenes/noether-braid/noether_braid_configuration_space.json",
-            "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-configuration-space.md",
-            "sections": [
-              {
-                "kind": "markdown-section",
-                "title": "Document Role",
-                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-configuration-space.md",
-                "markdownSection": "Document Role",
-                "sectionKey": "document role",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Scope Of The Hypothesis",
-                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-configuration-space.md",
-                "markdownSection": "Scope Of The Hypothesis",
-                "sectionKey": "scope of the hypothesis",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Why Three Retained Rows",
-                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-configuration-space.md",
-                "markdownSection": "Why Three Retained Rows",
-                "sectionKey": "why three retained rows",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "General Branch State",
-                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-configuration-space.md",
-                "markdownSection": "General Branch State",
-                "sectionKey": "general branch state",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Branch Group Velocity",
-                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-configuration-space.md",
-                "markdownSection": "Branch Group Velocity",
-                "sectionKey": "branch group velocity",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Candidate And Certified Braids",
-                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-configuration-space.md",
-                "markdownSection": "Candidate And Certified Braids",
-                "sectionKey": "candidate and certified braids",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Momentum And Principal-Direction Decomposition",
-                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-configuration-space.md",
-                "markdownSection": "Momentum And Principal-Direction Decomposition",
-                "sectionKey": "momentum and principal direction decomposition",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Unordered Layer Semantics",
-                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-configuration-space.md",
-                "markdownSection": "Unordered Layer Semantics",
-                "sectionKey": "unordered layer semantics",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Super-Field-Speed Carrier Rows",
-                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-configuration-space.md",
-                "markdownSection": "Super-Field-Speed Carrier Rows",
-                "sectionKey": "super field speed carrier rows",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Stability In A Sea Of Like Assemblies",
-                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-configuration-space.md",
-                "markdownSection": "Stability In A Sea Of Like Assemblies",
-                "sectionKey": "stability in a sea of like assemblies",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Toward A Periodic Table Of The Noether Braid",
-                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-configuration-space.md",
-                "markdownSection": "Toward A Periodic Table Of The Noether Braid",
-                "sectionKey": "toward a periodic table of the noether braid",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Accessory-Architrino Capture",
-                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-configuration-space.md",
-                "markdownSection": "Accessory-Architrino Capture",
-                "sectionKey": "accessory architrino capture",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Frame Orthogonality And Framing Anisotropy",
-                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-configuration-space.md",
-                "markdownSection": "Frame Orthogonality And Framing Anisotropy",
-                "sectionKey": "frame orthogonality and framing anisotropy",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Relation To The Doubling-frequency Chapter",
-                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-configuration-space.md",
-                "markdownSection": "Relation To The Doubling-frequency Chapter",
-                "sectionKey": "relation to the doubling frequency chapter",
-                "headingLevel": 2
-              }
-            ]
-          },
-          {
             "id": "noether_braid__topological_charge",
             "title": "Noether Braid Topological Charge",
             "kind": "markdown-view",
@@ -2976,194 +2565,6 @@
                 "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-topological-charge.md",
                 "markdownSection": "Status",
                 "sectionKey": "status",
-                "headingLevel": 2
-              }
-            ]
-          },
-          {
-            "id": "noether_braid__taxonomy",
-            "title": "Noether Braid Taxonomy",
-            "kind": "markdown-view",
-            "sceneType": "Scene-Markdown-View",
-            "scenePath": "content/scenes/noether-braid/noether_braid_taxonomy.json",
-            "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-taxonomy.md",
-            "sections": [
-              {
-                "kind": "markdown-section",
-                "title": "Local Terms",
-                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-taxonomy.md",
-                "markdownSection": "Local Terms",
-                "sectionKey": "local terms",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Document Role",
-                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-taxonomy.md",
-                "markdownSection": "Document Role",
-                "sectionKey": "document role",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Proof Search Roadmap",
-                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-taxonomy.md",
-                "markdownSection": "Proof Search Roadmap",
-                "sectionKey": "proof search roadmap",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Leading Candidate: The Spindle Braid",
-                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-taxonomy.md",
-                "markdownSection": "Leading Candidate: The Spindle Braid",
-                "sectionKey": "leading candidate the spindle braid",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Taxonomy Axes",
-                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-taxonomy.md",
-                "markdownSection": "Taxonomy Axes",
-                "sectionKey": "taxonomy axes",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Base Inventory",
-                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-taxonomy.md",
-                "markdownSection": "Base Inventory",
-                "sectionKey": "base inventory",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Support Geometry",
-                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-taxonomy.md",
-                "markdownSection": "Support Geometry",
-                "sectionKey": "support geometry",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Angular-Momentum Frame",
-                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-taxonomy.md",
-                "markdownSection": "Angular-Momentum Frame",
-                "sectionKey": "angular momentum frame",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Polarity Placement",
-                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-taxonomy.md",
-                "markdownSection": "Polarity Placement",
-                "sectionKey": "polarity placement",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Angular-Momentum Handedness",
-                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-taxonomy.md",
-                "markdownSection": "Angular-Momentum Handedness",
-                "sectionKey": "angular momentum handedness",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Speed, Hinge, And Frequency Families",
-                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-taxonomy.md",
-                "markdownSection": "Speed, Hinge, And Frequency Families",
-                "sectionKey": "speed hinge and frequency families",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Proof Status And Environment",
-                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-taxonomy.md",
-                "markdownSection": "Proof Status And Environment",
-                "sectionKey": "proof status and environment",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Proof ID Decoder",
-                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-taxonomy.md",
-                "markdownSection": "Proof ID Decoder",
-                "sectionKey": "proof id decoder",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Compact Proof Index",
-                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-taxonomy.md",
-                "markdownSection": "Compact Proof Index",
-                "sectionKey": "compact proof index",
-                "headingLevel": 2
-              }
-            ]
-          },
-          {
-            "id": "noether_braid__proof_map",
-            "title": "Noether Braid Proof Map",
-            "kind": "markdown-view",
-            "sceneType": "Scene-Markdown-View",
-            "scenePath": "content/scenes/noether-braid/noether_braid_proof_map.json",
-            "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-proof-map.md",
-            "sections": [
-              {
-                "kind": "markdown-section",
-                "title": "Proof Burden Order",
-                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-proof-map.md",
-                "markdownSection": "Proof Burden Order",
-                "sectionKey": "proof burden order",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Evidence-Handle Cleanup Decisions",
-                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-proof-map.md",
-                "markdownSection": "Evidence-Handle Cleanup Decisions",
-                "sectionKey": "evidence handle cleanup decisions",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Current Work Index",
-                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-proof-map.md",
-                "markdownSection": "Current Work Index",
-                "sectionKey": "current work index",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Neutral Braid Proof IDs",
-                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-proof-map.md",
-                "markdownSection": "Neutral Braid Proof IDs",
-                "sectionKey": "neutral braid proof ids",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Shell Braid Proof IDs",
-                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-proof-map.md",
-                "markdownSection": "Shell Braid Proof IDs",
-                "sectionKey": "shell braid proof ids",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Nested Shell Braid Proof IDs",
-                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-proof-map.md",
-                "markdownSection": "Nested Shell Braid Proof IDs",
-                "sectionKey": "nested shell braid proof ids",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Planar Lower-Rank Proof IDs",
-                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-proof-map.md",
-                "markdownSection": "Planar Lower-Rank Proof IDs",
-                "sectionKey": "planar lower rank proof ids",
                 "headingLevel": 2
               }
             ]

@@ -1,4 +1,0 @@
-id,branch_from,branch_to,cluster_id,winding_from_I,winding_from_M,winding_from_O,winding_to_I,winding_to_M,winding_to_O,status,failure_code
-fixture-B12-B13-a,B_12,B_13,terminal-lock,1,2,4,1,2,6,accepted,
-fixture-B20-B21-b,B_20,B_21,terminal-lock,2,3,5,2,3,7,accepted,
-fixture-B07-B08-control,B_07,B_08,control-open-root,1,1,2,1,1,3,rejected,root-ledger-instability

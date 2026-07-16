@@ -72,7 +72,7 @@ Relevant files:
 
 - [Noether Braid](../noether-braid/noether-braid.md)
 - [Noether Braid Configuration Space](../noether-braid/noether-braid-configuration-space.md)
-- [Noether Braid Doubling-Frequency Resonance Lock](../noether-braid/explored-braid-geometries.md#noether-braid-doubling-frequency-resonance-lock)
+- [Noether Braid Doubling-Frequency Resonance Lock](../noether-braid/doubling-frequency-lock.md)
 - [Noether Braid Topological Charge](../noether-braid/noether-braid-topological-charge.md)
 
 The terminology shifted from `swarm` to `braid` because the older word suggested an unstructured collective. It described many objects in motion, but it did not carry the mathematical discipline now needed by the theory. The new word points directly at intertwined path histories, retained ordering, exchange, phase winding, and topological invariants. A Noether braid is not just a cloud of architrinos. It is a candidate six-body polarity-neutral retained branch, built from three electrinos and three positrinos, whose causal-root ledger, phase record, wake history, energy/action rows, and angular-momentum rows can be followed through delayed dynamics.
@@ -143,30 +143,13 @@ Relevant files:
 
 The standalone [Causal Delay Feedback](../../../../causal-delay-feedback.html) app became the project surface for making causal-delay feedback depth visible. Its core lesson is that the present interaction state is not determined only by where the two architrinos are at the displayed instant. It also depends on retained source history, causal-root status, delayed-hit rows, and the active or rejected contribution records that determine which path-history terms can reach the other architrino now.
 
-The app presents that lesson as a time-space canvas rather than as a formula panel. An electrino path and a positrino path are drawn as solid solver-owned trajectories. The dotted causal-wake arc series are not displayed as connections between fixed history markers. Each visible arc series is recomputed from the replay paths: it begins at the back-solved emission point on the emitting architrino path and ends at the reception point on the partner architrino path at the current replay time. The partial-arc view keeps the screen focused on the active emitter-to-receiver sector, while the full-circular-arc preset remains available for showing the complete emitted wake geometry.
+The app presents that lesson as a time-space canvas rather than as a formula panel. An electrino path and a positrino path are drawn as solid trajectories. The dotted causal-wake arc series are not displayed as connections between fixed history markers. Each visible arc series is recomputed from the replay paths: it begins at the back-solved emission point on the emitting architrino path and ends at the reception point on the partner architrino path at the current replay time. The partial-arc view keeps the screen focused on the active emitter-to-receiver sector, while the full-circular-arc preset remains available for showing the complete emitted wake geometry.
 
-The runtime moved the app beyond a hand-drawn demonstration. The standalone page defaults to the central solver bridge `pairInteraction` replay path when that bridge is available, with the representative mock replay preserved as an explicit `?replay=mock` review mode. The central path advances the electrino and positrino together from declared initial positions and velocities, publishes frame samples and path-history data, and leaves the canvas runtime to derive the two live wake series by back-solving emission points against the current reception points. Both central and mock paths preserve a solver-shaped dataset contract: frames, retained path-history samples, delayed-hit diagnostics, rejected or unresolved root diagnostics, and compact contribution summaries.
+The runtime moved the app beyond a hand-drawn demonstration. The standalone page presents a representative mock replay through the explicit `?replay=mock` review mode. The mock replay advances the electrino and positrino together from declared initial positions and velocities, publishes frame samples and path-history data, and leaves the canvas runtime to derive the two wake series by back-solving emission points against the current reception points. The mock replay preserves a replay-shaped dataset contract: frames, retained path-history samples, delayed-hit diagnostics, rejected or unresolved root diagnostics, and compact contribution summaries.
 
-The interface also settled into a cleaner teaching grammar. The canvas exposes preset selection, play and pause, reset, the `now` scrubber, canvas color, $c_f$ replay speed, architrino speed as $v/c_f$, weak-contribution cue mode, wake selection, and compact contribution readout. Fixed numbered retained path-history dots are no longer part of the default canvas grammar. Retained path-history samples and retained path constraints remain solver or input data, and scripted review paths can still submit retained start, interior, final-position, fixed-signal-speed, and initial-velocity constraints through the central replay contract.
+The interface also settled into a cleaner teaching grammar. The canvas exposes preset selection, play and pause, reset, the `now` scrubber, canvas color, $c_f$ replay speed, architrino speed as $v/c_f$, weak-contribution cue mode, wake selection, and compact contribution readout. Fixed numbered retained path-history dots are no longer part of the default canvas grammar. Retained path-history samples and retained path constraints remain replay input data, and scripted review paths can still submit retained start, interior, final-position, fixed-signal-speed, and initial-velocity constraints through the replay contract.
 
-The strongest current solver evidence is the boundary-replay path. Constrained central replays can surface as `solver boundary-seed replay` when finite-difference relaxation has seeded the retained path without a convergence claim, or as `solver boundary replay` when the discrete finite-difference retained-knot boundary relaxation converges under the requested residual tolerance. Those statuses carry retained-position evidence, initial-velocity evidence, retained-knot boundary-residual evidence, relaxation residual evidence, and the explicit physical-boundary status `physical_boundary_solver_pending`. The important boundary is therefore still visible: the app can show a converged discrete retained-knot boundary replay, but it does not claim the full physical pair-interaction/path-constraint boundary-value solver is complete.
-
-This milestone matters because it turns causal-delay language into an inspectable object without letting the picture outrun the solver evidence. A reader can see the emitting point, the reception point, the two live causal-wake series, the active cross-path contribution readout, and the distinction between visual replay, central bridge evidence, finite-difference boundary relaxation, and still-pending physical closure. For $\mathbb{A}\mathbb{A}\mathbb{A}$, that is useful pressure: the app has to keep teaching geometry, solver-shaped replay, and proof status separate instead of letting them collapse into a single animation.
-
-## 2026-06-20: Central Solver Workstream and Benchmark Gate
-
-Relevant files:
-
-- [Photon and Polarization Visualization App](../../../../photon.html)
-- [Ideal Noether Braid Lorentz Geometry App](../../../../ideal-braid.html)
-- [Animator](../../../../animator.html)
-- [Causal Delay Feedback](../../../../causal-delay-feedback.html)
-
-The central solver workstream became the shared engineering and validation target for architrino motion, causal roots, delayed hits, and path-history geometry. Instead of letting each app carry an isolated solver grammar, the work defines a common request and response contract: model identity, equation or force-law version, constants, branch policy, precision path, path-history streams, indexed readback, diagnostics, and app adapters.
-
-This milestone matters because it changes app computation from local demonstration logic into a migration path. Photon, Ideal Braid, Animator, and Causal Delay Feedback can ask the same solver bridge for causal-root, delayed-hit, geometry, dataset, and diagnostic outputs while their interfaces remain presentation surfaces. That separation is important: a visual surface can be solver-derived without pretending the solver has already closed every proof obligation behind the picture.
-
-The benchmark side also became more disciplined. The widened emission-shell v0 stress envelope preserved oracle equality under larger replay pressure and introduced a threshold check that is not merely wall-clock timing. The result is developer-test readiness, not default replacement. In notebook terms, the accomplishment is the discipline: centralize the geometry solver, measure the bridge under stress, and keep opt-in strategies opt-in until breadth and parity evidence justify promotion.
+This milestone matters because it turns causal-delay language into an inspectable object without letting the picture outrun the proof evidence. A reader can see the emitting point, the reception point, the two causal-wake series, the active cross-path contribution readout, and the distinction between visual replay and still-pending physical closure. For $\mathbb{A}\mathbb{A}\mathbb{A}$, that is useful pressure: the app has to keep teaching geometry, replay data, and proof status separate instead of letting them collapse into a single animation.
 
 ## 2026-06-20: Noether Braid Middle-Hinge Candidate Narrowing
 
@@ -174,7 +157,7 @@ Relevant files:
 
 - [Angular Momentum and Spin](../philosophy-history/theory-bridges/angular-momentum-and-spin.md)
 - [Energy](../dynamics/energy.md)
-- [Nested Shell Braid Dynamics](../noether-braid/explored-braid-geometries.md#nested-shell-braid-dynamics)
+- [Nested Shell Braid Dynamics](../noether-braid/braid-families.md#nested-shell-braid-dynamics)
 
 The angular-momentum and spin proof route gained a sharper reduced candidate target around the rank-three middle-hinge family. The work used canonical `(I,M,O)` frequency-triplet notation to compare the $(f+2,f,f-1)$ middle-hinge family against symmetric, doubling-frequency, and finite integer-lock controls. The point was not to accept a retained branch; it was to narrow the proof burden by making the candidate and its competitors machine-readable.
 
@@ -290,83 +273,9 @@ The deeper content problem was that many PDG reaction records are not complete c
 
 Only a small number of channels, especially neutron and muon beta-family reactions, were suitable as initial illustrative cases. The broad PDG completion project was therefore archived as a general solver effort. The reaction-diagram and animator surfaces remain useful as teaching and authoring tools, but their role is now narrower: they should present curated, provenance-aware examples rather than imply that raw PDG reaction tables can be automatically completed into full assembly histories.
 
-## 2026-03-17: Planar Three-Body Breather Bridge Frozen
-
-Today the live breather bridge note, [master-equation-breather.md](../proof-programs/master-equation-breather.md), crossed from theorem discovery into proof-program freeze. The chapter now carries a coherent planar three-body route from the exact delayed master equation to a Schauder fixed-point target. In concrete terms, the many-body ladder now runs through: unreduced local well-posedness, gauge selection, quantitative no-accumulation of delayed events, bounded many-body caustic transit, finite active delay hypergraph control, cluster-valued ancestry and deep-past exclusion, multi-channel recapture, explicit convex-core construction, boundary trapping, invariant-envelope closure, and the final Schauder capstone.
-
-The mathematical achievement is not just that these theorem packages now exist, but that the most dangerous analytic and topological threats were converted into explicit, load-bearing controls. The delayed branch geometry is now finite-state on one controlled cycle. Fold events cannot accumulate because the defect hierarchy produces a receiver-time event gap. Caustic passages no longer sit behind a symbolic fold ceiling: the fold-tube analysis now uses the exact change of variables
-$$
-dt=\frac{|\partial_s g|}{|\partial_t g|}\,du
-$$
-to cancel the apparent source-normal diagnostic
-$$
-|J|^{-1}
-$$
- singularity in the fold-coordinate measure. Deep-past memory is no longer an open combinatorial hazard: it is reduced to a finite ancestry complex, and the trapped-exchange loophole is closed by strict backward source-time drift along simple delayed branches. On the recapture side, the four principal escape channels now consume only fixed arithmetic ceilings
-$$
-F^{\mathrm{mb}}_m
-\qquad
-\text{and}
-\qquad
-\overline{A}^{\mathrm{mb}}_{\mathrm{deep}}
-$$
-so the late comparison laws are no longer hiding qualitative path-history terms inside informal “smallness” language.
-
-This milestone also removed the last major vacuity risks. The chapter now contains an explicit symmetric planar seed packet in Jacobi variables, a delayed seed-margin persistence bridge from Coulomb-like proxy geometry to the exact delayed branch sums, and a seed-centered realization of the explicit convex tame core. That means the closed convex fixed-point domain is no longer only an abstract target: it is anchored to one concrete physical three-body seed configuration with positive leading margins and explicit slack.
-
-For $\mathbb{A}\mathbb{A}\mathbb{A}$ theory development, this milestone matters because it upgrades the master equation from a law written mainly for pair interactions into a realistic candidate law for composite architrino assemblies. The whole theory depends on the claim that stable particles, nested shell braid branches, and Noether braid-scale structures can survive the full delayed path-history dynamics rather than only reduced caricatures. This new planar three-body bridge is the first place where that claim is written in a mathematically serious many-body form. Delay hypergraphs, ancestry complexes, bounded caustic transit, and multi-channel recapture are exactly the structures needed once several interacting delayed source families are present at once. In other words, this is the first proof-program layer that begins to look like the delayed geometry actually required for emergent composite assemblies, rather than just for one protected binary toy model.
-
-It also sharpens the status of the master-equation program itself. The central promise of $\mathbb{A}\mathbb{A}\mathbb{A}$ is that apparently singular or chaotic delayed effects, such as self-hit amplification, fold events, and long path-history memory, can still organize into stable physical assemblies with finite effective behavior. This chapter now shows, at the theorem-program level, how that could happen in the first genuine many-body setting: caustic spikes become finite impulses, deep-past memory becomes a finite ancestry count, and candidate scattering channels are forced into a finite recapture competition. That is directly relevant to the broader theory because the same mechanisms are supposed to underwrite the existence of higher assemblies, shielding, and eventually the dynamics of Noether braid-like objects. The next phase is therefore no longer to invent more scaffold, but to prove that these delayed many-body control mechanisms really hold inside the master equation.
-
-## 2026-03-16: 1D Collinear Breather Scaffold Reaches Fixed-Point Closure
-
-The 1D collinear breather note reached a major threshold today. The document now contains an end-to-end proof scaffold from the dual-mollified delayed equation of motion to a Schauder fixed-point existence target for a periodic breather. In practical terms, the note no longer stops at local kinematics or heuristic turnaround arguments. It now tracks the entire cycle: inbound collapse, origin crossing, post-crossing recapture, outer-turn return, tame-history reentry, invariant-envelope closure, and the final closed convex domain needed for the fixed-point route.
-
-The central technical gain was the conversion of the delayed geometry into explicit 1D comparison layers. The inward leg is now controlled by the collapse-to-crossing ladder and the pre-crossing caustic-transit analysis. The outward leg is controlled by the outer sorting map
-$$
-z(t)=x(t)-c_f t
-$$
-the deep-past suppression estimates, and the explicit trimmed-apocenter force margins. The note also now contains a seed-history construction
-$$
-\psi_{\mathrm{seed}}(\theta)=x_\ast-u_{\mathrm{seed}}\theta
-$$
-which closes the previous vacuity gap by showing that the section-side tame neighborhood is nonempty.
-
-An important part of this progress came from repeated AI-assisted audit-and-repair cycles. Several of the hardest structural problems were identified and then turned into clearer theorem targets: the self-root birth at the inbound hinge, the integrable caustic impulse, the distinction between the reflected section state and the literal inbound section return, the deep-past outer self-root suppression mechanism, the outbound-level exclusion via $z$-descent, and finally the topological correction that replaced a domain/codomain mismatch in the Schauder step with a closed convex tame envelope. The result is that [The collinear breather program](../proof-programs/collinear-breather.md) now reads as a coherent global blueprint rather than a loose collection of local lemmas.
-
-What remains is no longer broad theorem discovery. The scaffold should now be treated as stable and shifted into consolidation work: compress duplicated target-theorem language, unify notation across the local and global sections, and then decide which theorem layers should be promoted from proof-program statements into final theorem prose first.
-
-Key victories inside this milestone:
-
-- The collapse-to-crossing layer was separated cleanly from the delayed-root geometry, making the inbound Goldilocks crossing window an explicit theorem target.
-- The inbound hinge at $\dot x=-c_f$ was reframed correctly: the self-root caustic is not something to forbid, but something to integrate through with a bounded impulse.
-- The pre-crossing delayed geometry was organized around the sorting map
-  $$
-  w(t)=x(t)+c_f t
-  $$
-  which made hinge birth, self-root uniqueness, Jacobian recovery, and admissible-crossing preparation explicit.
-- The return half was topologically repaired by distinguishing the reflected section state from the literal inbound section return, which fixed the geometry of the Poincaré map.
-- The outer-turn problem was reduced to the outer sorting map
-  $$
-  z(t)=x(t)-c_f t
-  $$
-  together with explicit post-hinge descent, rather than being left as a vague delayed-force obstacle.
-- Deep-past outward self-roots on the apocenter window were forced back onto the pre-crossing inbound leg, where they become unique and automatically transversal with $J_s>1$.
-- The invariant-envelope synthesis was decoupled from circular bookkeeping by deriving the dynamical bounds first and only then choosing the larger topological slack constants.
-- The affine seed history
-  $$
-  \psi_{\mathrm{seed}}(\theta)=x_\ast-u_{\mathrm{seed}}\theta
-  $$
-  removed the vacuity risk by giving an explicit nonempty section-side tame neighborhood.
-- The final Schauder-domain mismatch was repaired by introducing a closed convex tame envelope
-  $$
-  \mathcal{K}_{x_\ast,\eta}
-  $$
-  so the fixed-point map now acts on a single matching domain.
-
 ## 2026-03-14: Doubling-Frequency Resonance Lock
 
-Today the doubling-frequency-lock note, [Noether Braid Doubling-Frequency Resonance Lock](../noether-braid/explored-braid-geometries.md#noether-braid-doubling-frequency-resonance-lock), was rewritten around an explicit assumption package. The live note now begins from the exact ring identity
+Today the doubling-frequency-lock note, [Noether Braid Doubling-Frequency Resonance Lock](../noether-braid/doubling-frequency-lock.md), was rewritten around an explicit assumption package. The live note now begins from the exact ring identity
 $$
 v_k=2\pi f_k r_k=\beta_k c_f
 $$

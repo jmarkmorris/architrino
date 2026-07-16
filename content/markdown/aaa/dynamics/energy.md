@@ -4,7 +4,7 @@ In $\mathbb{A}\mathbb{A}\mathbb{A}$, energy accounting begins with moving archit
 
 This chapter answers four linked questions. What kinetic bookkeeping is allowed for a single architrino? How does work occur when a receiver crosses delayed causal wakes? How do assemblies hide or expose internal energy? How can Noether sea coupling make energy, inertia, and effective geometry appear at larger scales?
 
-The chapter underwrites [Particle Masses](../assemblies/particle-masses.md), [Nested Shell Braid Dynamics](../noether-braid/explored-braid-geometries.md#nested-shell-braid-dynamics), [Noether Braid](../noether-braid/noether-braid.md), [Noether Sea Pro/Anti Coupling](../spacetime/noether-sea-pro-anti-coupling.md), [Emergent Metric](../spacetime/emergent-metric.md), and the constructive delay-energy standard in [Delay Dynamics Energy](../validation/simulations/action-energy/delay-dynamics-energy.md).
+The chapter underwrites [Particle Masses](../assemblies/particle-masses.md), [Nested Shell Braid Dynamics](../noether-braid/braid-families.md#nested-shell-braid-dynamics), [Noether Braid](../noether-braid/noether-braid.md), [Noether Sea Pro/Anti Coupling](../spacetime/noether-sea-pro-anti-coupling.md), [Emergent Metric](../spacetime/emergent-metric.md), and the constructive delay-energy standard in [Delay Dynamics Energy](../validation/simulations/action-energy/delay-dynamics-energy.md).
 
 All such dynamics unfold on a fixed ontological background: absolute time plus the Euclidean void. Forces and motion arise from **delayed causal hits from causal isochrons**, with line-of-action direction and receiver-normal branch strength, on this fixed background. We work in units with causal-wake propagation speed $c_f=1$.
 
@@ -176,7 +176,7 @@ $$
 \|\mathbf A_{o'\leftarrow j}\|\,V_r
 $$
 
-On the affine partner chart used in the [closed-form collinear breather ansatz](../proof-programs/closed-form-collinear-breather-ansatz.md), the source-normal denominator and receiver-normal numerator must both be tracked. The simple branch expression $J_p=1+(dX/dT)/c_f$ is only a source-normal topology expression unless the receiver-normal factor is also present on the same chart.
+On an affine partner chart, the source-normal denominator and receiver-normal numerator must both be tracked. The simple branch expression $J_p=1+(dX/dT)/c_f$ is only a source-normal topology expression unless the receiver-normal factor is also present on the same chart.
 
 Thus the potential to do work is broadly available wherever causal wakes pass, but work is realized only through an actual receiver trajectory. A quiet region is not a region with no causal activity; it is a region where the active wake contributions sum to negligible net acceleration and negligible net power for the assemblies present there.
 
@@ -195,7 +195,7 @@ When we work with the mollified effective potential $\Phi_\eta$, we can also wri
 $$\mathbf F_{o'}(T) = -\nabla_{\mathbf X_{o'}}U_{o'}(T) = -q_{o'} \nabla_{\mathbf X_{o'}} \Phi_\eta[\text{history}]\big(\mathbf X_{o'}(T),T\big),$$
 
 and this is equivalent to the Master Equation in the quasi-static, resolved-in-time limit after the same force normalization, such as $\mathbf F_{o'}=\mu_{\text{arch}}\mathbf A_{o'}$ or the appropriate $\mu_K\mathbf A_{o'}$, has been declared.
-The force-as-gradient identity is valid only when taking the gradient at fixed causal history; the fundamental force law remains the per-hit sum of the Master EOM.
+The force-as-gradient identity is valid only when taking the gradient at fixed causal history; the fundamental acceleration law remains the per-hit sum of the Master EOM.
 
 ### Macroscopic Cancellation and Localized Resonance
 
@@ -223,7 +223,7 @@ Mean-zero wake potential is therefore not zero total energy. A statistically neu
 
 For energy accounting, cancellation is applied only after source identity, polarity, emission time, active causal root, branch Jacobian, line-of-action geometry, and receiver radial power have been retained. A net-zero scalar potential channel is therefore a projection of a richer source-tagged ledger, not proof that no wake-history energy, internal branch energy, or coherent work opportunity remains available to a receiver whose branch resolves the contributing rows.
 
-Phase-locked bound states are the important exception. In a localized assembly, nearby constituents do not sample random phases; their active causal roots are correlated, and the $1/r^2$ distance factor lets the nearest coherent branches dominate over the far incoherent background. A [collinear breather](../proof-programs/collinear-breather.md), for example, is precisely a reduced setting in which two opposite-polarity architrinos can form a localized, non-canceling causal resonance. The breather ansatz isolates this effect: instead of averaging away, the partner-hit and self-hit branches stay phase organized enough to exchange kinetic and potential energy across a bounded cycle.
+Phase-locked bound states are the important exception. In a localized assembly, nearby constituents do not sample random phases; their active causal roots are correlated, and the $1/r^2$ distance factor lets the nearest coherent branches dominate over the far incoherent background. A collinear breather, for example, is precisely a reduced setting in which two opposite-polarity architrinos can form a localized, non-canceling causal resonance: instead of averaging away, the partner-hit and self-hit branches stay phase organized enough to exchange kinetic and potential energy across a bounded cycle.
 
 ---
 
@@ -310,7 +310,7 @@ with $\varepsilon_E > 0$ a declared denominator floor. A retained $U_{\text{int}
 
 ### Conservation Status
 
-The conservation claim is a level-specific statement. For an isolated branch whose force law comes from a time-translation-invariant causal action,
+The conservation claim is a level-specific statement. For an isolated branch whose acceleration law comes from a time-translation-invariant causal action,
 
 $$
 \frac{d}{dT}E_{\text{total}}(T)=0,
@@ -1103,13 +1103,13 @@ This does **not** change dynamics; it sets a physically meaningful reference.
 
 ### Self-Hit Echo and Discrete Steps (Working Note)
 
-In this picture, the self-hit region is **not** assumed to change the local force law. The radial slope remains smooth:
+In this picture, the self-hit region is **not** assumed to change the local acceleration law. The radial slope remains smooth:
 
 $$\frac{dU}{dr} \text{ remains finite and continuous across the retained regularized branch chart.}$$
 
 So the transition between the $v=c_f$ regime and the self-hit regime is a **regularized branch transition**, not a kink in the potential. The distinction shows up in **how action and energy bookkeeping are routed** between binaries, not in a new macroscopic slope.
 
-The discrete step is a causal-root ledger effect, not an assumption that energy itself is made of independent chunks. On a fixed branch chart, the active causal intersections have an integer multiplicity: a self-hit count $N$ and an analogous partner-hit or channel count $M$ in the root-ledger language developed in the [closed-form collinear breather ansatz](../proof-programs/closed-form-collinear-breather-ansatz.md). In the circular binary notation this same idea appears as the pair $(N_s,M_p)$ in [Super-Field-Speed Root Ledgers and Resonance Lock](binary-dynamics.md#super-field-speed-root-ledgers-and-resonance-lock). Within one ledger cell the underlying trajectory and $U(r)$ remain continuous. A visible $h$-like transaction occurs when a separator crossing changes the admissible integer ledger, for example by adding one grouped channel or, in the raw simple-root table, by a fold-pair jump satisfying $\Delta N\in 2\mathbb{Z}$ with $\Delta D=0$.
+The discrete step is a causal-root ledger effect, not an assumption that energy itself is made of independent chunks. On a fixed branch chart, the active causal intersections have an integer multiplicity: a self-hit count $N$ and an analogous partner-hit or channel count $M$. In the circular binary notation this same idea appears as the pair $(N_s,M_p)$ in [Super-Field-Speed Root Ledgers and Resonance Lock](binary-dynamics.md#super-field-speed-root-ledgers-and-resonance-lock). Within one ledger cell the underlying trajectory and $U(r)$ remain continuous. A visible $h$-like transaction occurs when a separator crossing changes the admissible integer ledger, for example by adding one grouped channel or, in the raw simple-root table, by a fold-pair jump satisfying $\Delta N\in 2\mathbb{Z}$ with $\Delta D=0$.
 
 The mechanical event behind such a ledger change can be a caustic-grazing impulse. When a regularized branch crosses a $J=0$ caustic, the pointwise branch expression may become large while the integrated velocity change remains finite, as in [Caustic Transit and Finite Impulse](master-equation.md#caustic-transit-and-finite-impulse):
 $$

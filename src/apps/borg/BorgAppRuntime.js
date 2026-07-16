@@ -3,14 +3,16 @@ import {
   BORG_APP_SURFACE_DESIGN_V1,
   BORG_DATASET_MANIFEST_V1,
   BORG_FAIL_CLOSED_ROWS,
-  validateBorgFixtureSnapshot,
-} from "./BorgFixtureData.js";
+  validateBorgManifest,
+} from "./BorgAppManifest.js";
 import {
-  BORG_DYNAMIC_NATIVE_RUN_SOURCE,
-  createBorgDynamicNativeRunner,
   createBorgFrameSetsFromRows,
   mergeBorgFrameRows,
-} from "./BorgDynamicNativeRunner.js";
+} from "./BorgFrameRows.js";
+import {
+  BORG_EOM_RECORD_REPLAY_RUN_SOURCE,
+  createBorgEomRecordReplayRunner,
+} from "./BorgEomRecordReplayRunner.js";
 import {
   BORG_EOM_SHADOW_RUN_SOURCE,
   createBorgEomShadowRunConfig,
@@ -28,9 +30,9 @@ import {
 } from "./BorgLiveRunRetentionPolicy.js";
 import { BORG_RELEASE_BUDGET_MANIFEST_V1 } from "./BorgReleaseBudgetManifest.js";
 import { createBorgPathTrails } from "./BorgPathTrails.js";
-import { loadBorgFixtureTrajectoryFrames } from "./BorgFixtureTrajectory.js";
 import {
   BORG_MAX_INITIAL_ARCHITRINO_COUNT,
+  calculateBorgInertialHistoryDepth,
   createBorgAcceptedInertialSeedHistory,
   createBorgInitialConditionConfig,
   createBorgSeededInitialConditionRows,
@@ -50,7 +52,7 @@ const ARCHITRINO_PICK_THRESHOLD = 0.22;
 const DEFAULT_PLAYBACK_SPEED_PRESET_ID = "normal";
 const DEFAULT_RUN_CONTROL_PRESET_ID = "live-forever";
 const FINITE_RUN_CONTROL_PRESET_ID = "live-60s";
-const DEFAULT_DISTRIBUTION_LABEL = "manifest initial distribution";
+const DEFAULT_DISTRIBUTION_LABEL = "manifest initial-condition policy";
 const PLAYBACK_SPEED_PRESETS = Object.freeze([
   Object.freeze({ id: "detail", label: "Detail", msPerNativeStep: 120 }),
   Object.freeze({ id: "normal", label: "Normal", msPerNativeStep: 1000 / 60 }),
@@ -114,18 +116,15 @@ const STATUS_TONE = Object.freeze({
   "exceeded-error-budget": "bad",
   "fail-closed-value": "bad",
   "native-backed-now": "good",
-  "computed-central-solver-compatibility-chunks": "warn",
-  "central-solver-compatibility-output": "warn",
+  "recorded-eom-dataset-chunks": "warn",
+  "recorded-eom-output": "warn",
+  "eom-record-replay-running": "warn",
   "computed-eom-shadow-chunks": "warn",
   "eom-shadow-running": "warn",
   "eom-shadow-output": "warn",
   "canonical-eom-output": "good",
   "live-native-running": "warn",
-  "precomputed-fixture": "warn",
-  // A fallback means no solver was reachable and the app is replaying a
-  // recording. That is a failure, not a caution: read as a warning it looks
-  // like a slow live run.
-  "fixture-fallback": "bad",
+  "eom-idle": "warn",
   "live-native-error": "bad",
   "completed-live-native-run": "good",
   "measured-live-run-budget": "good",
@@ -137,19 +136,18 @@ const STATUS_TONE = Object.freeze({
 });
 
 const STATUS_LABEL = Object.freeze({
-  "computed-central-solver-compatibility-chunks": "Live compute",
+  "recorded-eom-dataset-chunks": "EOM replay",
+  "eom-record-replay-running": "EOM replay",
   "live-native-running": "Live compute",
-  "computed-eom-shadow-chunks": "EOM compute",
-  "eom-shadow-running": "EOM compute",
-  "precomputed-fixture": "Fixture replay",
-  "fixture-fallback": "Fixture fallback",
+  "computed-eom-shadow-chunks": "Forward EOM",
+  "eom-shadow-running": "Forward EOM",
+  "eom-shadow-stopped": "Forward EOM idle",
+  "eom-idle": "Idle",
   "live-native-error": "Solver stopped",
-  "completed-live-native-run": "Live complete",
+  "completed-live-native-run": "Forward complete",
 });
 
 const SOLVER_FAILURE_BANNERS = Object.freeze({
-  "fixture-fallback":
-    "Not computing. No solver could be reached, so this is a replay of a saved recording.",
   "live-native-error":
     "Computing stopped. The solver failed part-way; everything after the last good frame is missing.",
 });
@@ -176,7 +174,7 @@ export function mountBorgApp(options = {}) {
   const windowLike = options.windowLike ?? globalThis.window;
   const manifest = options.manifest ?? BORG_DATASET_MANIFEST_V1;
   const surfaceDesign = options.surfaceDesign ?? BORG_APP_SURFACE_DESIGN_V1;
-  validateBorgFixtureSnapshot({ manifest, surfaceDesign });
+  validateBorgManifest({ manifest, surfaceDesign });
 
   const dom = {
     app: queryRequiredElement(documentLike, "#borg-app"),
@@ -188,6 +186,7 @@ export function mountBorgApp(options = {}) {
     initialConditionForm: queryRequiredElement(documentLike, "#borg-initial-condition-form"),
     electrinoCount: queryRequiredElement(documentLike, "#borg-electrino-count"),
     positrinoCount: queryRequiredElement(documentLike, "#borg-positrino-count"),
+    coupling: queryRequiredElement(documentLike, "#borg-coupling"),
     velocityMaxComponent: queryRequiredElement(documentLike, "#borg-velocity-max-component"),
     velocityMinSpeed: queryRequiredElement(documentLike, "#borg-velocity-min-speed"),
     initialConditionFeedback: queryRequiredElement(documentLike, "#borg-initial-condition-feedback"),
@@ -221,16 +220,11 @@ export function mountBorgApp(options = {}) {
   };
 
   const initialEomSeed = options.initialEomSeed ?? null;
-  // The accepted seed's endpoint is visible while burn-in runs. Its past rows
-  // are solver input only and are never presented as a computed trajectory.
-  let fixtureFrames = [...(
-    initialEomSeed?.endpointRows ??
-    options.fixtureTrajectoryFrames ??
-    manifest.currentStateFrames
-  )];
-  let fixtureTrajectoryLoaded = Boolean(options.fixtureTrajectoryFrames);
-  let fixtureTrajectoryPromise = null;
-  let currentFrames = [...fixtureFrames];
+  const autoStartEom = options.autoStartEom !== false;
+  // The accepted seed's endpoint is visible before the first EOM chunk. Its
+  // past rows are solver input only and are never presented as computed output.
+  const initialDisplayRows = Object.freeze([...(initialEomSeed?.endpointRows ?? [])]);
+  let currentFrames = [...initialDisplayRows];
   let frameSets = createBorgFrameSetsFromRows(currentFrames);
   const worldUnitsPerSolverUnit =
     TARGET_CENTRAL_WORLD_SIDE / Math.max(1, manifest.simulationEnvelope.centralVolumeSideLength);
@@ -307,18 +301,29 @@ export function mountBorgApp(options = {}) {
     playbackSegmentStartedAt: null,
     playbackSpeedPresetId: DEFAULT_PLAYBACK_SPEED_PRESET_ID,
     runControlPresetId: options.initialRunControlPresetId ?? DEFAULT_RUN_CONTROL_PRESET_ID,
-    sourceMode: initialEomSeed ? "accepted-eom-seed-history" : "precomputed-fixture",
-    dynamicRunnerStatus: initialEomSeed ? "eom-shadow-running" : "precomputed-fixture",
+    sourceMode: initialEomSeed ? "accepted-eom-seed-history" : "eom-idle",
+    dynamicRunnerStatus: initialEomSeed
+      ? autoStartEom ? "eom-shadow-running" : "eom-shadow-stopped"
+      : "eom-idle",
     dynamicRunnerMessage: initialEomSeed
-      ? "accepted initial datum ready; EOM burn-in pending"
-      : "static native fixture loaded",
-    dynamicRunnerKind: initialEomSeed ? "eom-burn-in" : "compatibility-fixture",
+      ? autoStartEom
+        ? "exact polynomial initial history ready; forward EOM evolution pending"
+        : "exact polynomial initial history ready; forward EOM evolution not started"
+      : "no initial history loaded; start a run to compute EOM evolution",
+    dynamicRunnerKind: initialEomSeed
+      ? autoStartEom ? "eom-shadow" : "eom-seed-idle"
+      : "eom-idle",
     dynamicRunner: null,
     dynamicChunkPromise: null,
     dynamicChunksComputed: 0,
-    eomBurnInChunksComputed: 0,
-    eomBurnInComplete: false,
     eomDisplayStarted: false,
+    eomHistoryDepth: positiveControlNumber(
+      options.eomShadowRunner?.historyDepth,
+      manifest.simulationEnvelope?.historyDepth ?? 10,
+    ),
+    eomEvolutionClaimLevel: initialEomSeed
+      ? "eom-evolution-conditioned-on-accepted-initial-history"
+      : "not-applicable",
     dynamicTargetDuration: null,
     dynamicChunkDuration: null,
     dynamicRunGeneration: 0,
@@ -326,12 +331,16 @@ export function mountBorgApp(options = {}) {
       options.eomShadowRunner?.pathCount,
       manifest.population?.architrinoCount ?? 1,
       1,
-      manifest.population?.architrinoCount ?? 1,
+      manifest.population?.maximumArchitrinoCount ?? BORG_MAX_INITIAL_ARCHITRINO_COUNT,
     ),
     eomRunDuration: positiveControlNumber(
       options.eomShadowRunner?.runDuration ??
         Number(options.eomShadowRunner?.targetDuration) - Number(options.eomShadowRunner?.startTime),
       60,
+    ),
+    eomCoupling: positiveControlNumber(
+      options.eomShadowRunner?.coupling,
+      manifest.modelControls?.coupling ?? 1,
     ),
     liveRunBudget: createEmptyLiveRunBudget(),
     compactedPathHistory: Object.freeze({}),
@@ -346,7 +355,9 @@ export function mountBorgApp(options = {}) {
     distributionLabel: initialEomSeed
       ? "accepted inertial EOM seed 0"
       : DEFAULT_DISTRIBUTION_LABEL,
-    initialConditionConfig: createBorgInitialConditionConfig(manifest.initialConditions),
+    initialConditionConfig: createBorgInitialConditionConfig(
+      options.initialConditionConfig ?? manifest.initialConditions,
+    ),
     initialConditionEditStatus: initialEomSeed
       ? "accepted-initial-datum-active"
       : "manifest-values-active",
@@ -365,7 +376,9 @@ export function mountBorgApp(options = {}) {
   updateFrame(state.activeFrameIndex);
   setPlayButtonPresentation(false);
   resize();
-  startDynamicNativeRunner();
+  if (autoStartEom) {
+    startDynamicNativeRunner();
+  }
 
   return {
     manifest,
@@ -553,46 +566,38 @@ export function mountBorgApp(options = {}) {
       ["Distribution", state.distributionLabel],
       ["Active electrinos", state.initialConditionConfig.electrinoCount],
       ["Active positrinos", state.initialConditionConfig.positrinoCount],
-      ["Velocity component max", state.initialConditionConfig.randomVelocityMaxComponentMagnitude],
-      ["Velocity minimum speed", state.initialConditionConfig.randomVelocityMinSpeed],
+      ["EOM coupling κ", state.eomCoupling],
+      ["Per-axis speed maximum", state.initialConditionConfig.randomVelocityMaxComponentMagnitude],
+      ["Total-speed minimum", state.initialConditionConfig.randomVelocityMinSpeed],
+      ["Required initial separation", manifest.initialConditions.minimumPairSeparation],
+      ["Measured initial separation", state.eomSeedCertificate?.geometryCertificate?.measuredMinimumSeparation ?? "not-certified"],
       ["Run budget", state.liveRunBudget.status],
-      ["Live status", state.dynamicRunnerStatus],
+      ["Forward EOM status", state.dynamicRunnerStatus],
       ["Runner kind", state.dynamicRunnerKind],
       ["EOM architrinos", options.eomShadowRunner ? state.eomPathCount : "not-applicable"],
+      ["EOM ordered pairs", options.eomShadowRunner ? state.eomPathCount ** 2 : "not-applicable"],
       ["EOM requested duration", options.eomShadowRunner ? state.eomRunDuration : "not-applicable"],
-      ["Live target", state.dynamicTargetDuration ?? "not-started"],
-      ["Live chunk", state.dynamicChunkDuration ?? "not-started"],
-      ["Live chunks", state.dynamicChunksComputed],
-      ["EOM burn-in chunks", options.eomShadowRunner ? state.eomBurnInChunksComputed : "not-applicable"],
-      ["EOM burn-in complete", options.eomShadowRunner ? state.eomBurnInComplete : "not-applicable"],
-      ["Seed certificate", state.eomSeedCertificate?.schema ?? "not-applicable"],
-      ["Seed acceptance", state.eomSeedCertificate?.acceptanceScope ?? "not-applicable"],
-      ["Seed canonical EOM evidence", state.eomSeedCertificate?.canonicalEomEvidence ?? "not-applicable"],
-      ["Seed SHA-256", state.eomSeedCertificate?.contentSha256 ?? "not-applicable"],
+      ["Forward EOM target", state.dynamicTargetDuration ?? "not-started"],
+      ["Forward EOM chunk duration", state.dynamicChunkDuration ?? "not-started"],
+      ["Forward EOM chunks", state.dynamicChunksComputed],
+      ["Polynomial-history depth", options.eomShadowRunner ? state.eomHistoryDepth : "not-applicable"],
+      ["Forward-evolution claim", options.eomShadowRunner ? state.eomEvolutionClaimLevel : "not-applicable"],
+      ["Initial-history certificate", state.eomSeedCertificate?.schema ?? "not-applicable"],
+      ["Initial-history acceptance", state.eomSeedCertificate?.acceptanceScope ?? "not-applicable"],
+      ["Initial history is EOM evidence", state.eomSeedCertificate?.canonicalEomEvidence ?? "not-applicable"],
+      ["Initial-history SHA-256", state.eomSeedCertificate?.contentSha256 ?? "not-applicable"],
       ["Retention", state.liveRunRetention.status],
       ["Retained frames", state.liveRunRetention.retainedFrameRows],
       ["Retained keyframes", state.liveRunRetention.retainedFrameSetCount],
       ["Compacted path points", state.liveRunRetention.compactedPathPointCount],
-      ["Live message", state.dynamicRunnerMessage],
+      ["Forward EOM message", state.dynamicRunnerMessage],
       ["Manifest", manifest.manifestId],
-      ["Model contract", manifest.modelContractId],
-      ["Bridge path", manifest.sourceBridgeRun.executionPath],
       ["Source claim", manifest.claimLevel],
       ["Frame rows", currentFrames.length],
       ["Native keyframes", frameSets.length],
       ["Sample interval", manifest.simulationEnvelope.sampleInterval],
       ["Playback source", state.sourceMode],
       ["Initial layout", manifest.initialConditions.initialLinePolicy],
-      ["Solver mode", manifest.sourceBridgeRun.solverMode],
-      ["Motion law", manifest.sourceBridgeRun.motionLaw],
-      ["Parameter set", manifest.sourceBridgeRun.fixedPhysicalParameterSetId],
-      ["Parameter authority", manifest.sourceBridgeRun.fixedPhysicalParameterAuthority],
-      ["Visual tuning", manifest.sourceBridgeRun.visualTuningStatus],
-      ["Visual authority", manifest.sourceBridgeRun.visualBehaviorAuthority],
-      ["Master equation", manifest.sourceBridgeRun.nativeMasterEquationStatus],
-      ["ME probe", manifest.nativeMasterEquationProbe?.statusCode],
-      ["ME fallback", manifest.nativeMasterEquationProbe?.fallbackDecision],
-      ["Path rows", manifest.sourceBridgeRun.pathRowCount],
     ]);
   }
 
@@ -600,34 +605,45 @@ export function mountBorgApp(options = {}) {
     const runtimePopulationCount = state.distributionFrameRows
       ? new Set(state.distributionFrameRows.map((row) => row.pathKey)).size
       : null;
+    const runtimeHistoryDepth = positiveControlNumber(
+      state.dynamicRunner?.config?.historyDepth ?? options.eomShadowRunner?.historyDepth,
+      manifest.simulationEnvelope.historyDepth,
+    );
+    const runtimeWakeHorizon = manifest.simulationEnvelope.fieldSpeed * runtimeHistoryDepth;
     renderFieldRows(dom.envelopeFields, [
       ["sideLength", manifest.simulationEnvelope.sideLength],
       ["centralVolumeSideLength", manifest.simulationEnvelope.centralVolumeSideLength],
       ["faceBufferMargin", manifest.simulationEnvelope.faceBufferMargin],
-      ["duration", manifest.simulationEnvelope.duration],
       ["sampleInterval", manifest.simulationEnvelope.sampleInterval],
-      ["historyDepth", manifest.simulationEnvelope.historyDepth],
+      ["historyDepth", runtimeHistoryDepth],
       ["fieldSpeed", manifest.simulationEnvelope.fieldSpeed],
-      ["wakeHorizon", manifest.simulationEnvelope.wakeHorizon],
-      ["centralVelocityBound", manifest.simulationEnvelope.centralVelocityBound],
-      ["centralObservationInterval", manifest.simulationEnvelope.centralObservationInterval],
+      ["coupling", state.eomCoupling],
+      ["wakeHorizon", runtimeWakeHorizon],
       ["centralArchitrinoCount", runtimePopulationCount ?? manifest.population.centralArchitrinoCount],
       ["architrinoCount", runtimePopulationCount ?? manifest.population.architrinoCount],
       ["bufferArchitrinoCount", runtimePopulationCount == null ? manifest.population.bufferArchitrinoCount : 0],
-      ["strictCentralBufferStatus", manifest.simulationEnvelope.strictCentralBufferStatus],
     ]);
   }
 
   function renderInitialConditionFields() {
     const config = state.initialConditionConfig;
+    const activeInitialRow = state.eomSeedEndpointRows?.[0] ?? state.distributionFrameRows?.[0];
+    const activeFamily = activeInitialRow?.runSource === "minimum-separation-lattice-initial-state"
+      ? "minimum-separation-lattice"
+      : activeInitialRow
+        ? "seeded-random-minimum-separation"
+        : manifest.initialConditions.initialConditionFamily;
     renderFieldRows(dom.initialConditionFields, [
-      ["family", state.distributionFrameRows ? "seeded-random-runtime" : manifest.initialConditions.initialConditionFamily],
+      ["family", activeFamily],
       ["seed", state.distributionFrameRows ? state.distributionLabel : manifest.initialConditions.initialConditionSeed ?? "null"],
       ["electrinoCount", config.electrinoCount],
       ["positrinoCount", config.positrinoCount],
+      ["coupling κ", state.eomCoupling],
       ["velocityPolicy", manifest.initialConditions.velocityPolicy],
-      ["maxVelocityComponent", config.randomVelocityMaxComponentMagnitude],
-      ["minimumSpeed", config.randomVelocityMinSpeed],
+      ["maxPerAxisSpeed", config.randomVelocityMaxComponentMagnitude],
+      ["minimumTotalSpeed", config.randomVelocityMinSpeed],
+      ["minimumPairSeparation", manifest.initialConditions.minimumPairSeparation],
+      ["measuredMinimumSeparation", state.eomSeedCertificate?.geometryCertificate?.measuredMinimumSeparation ?? "not-certified"],
       ["velocity rays", "off"],
       ["customEditStatus", state.initialConditionEditStatus],
     ]);
@@ -635,11 +651,6 @@ export function mountBorgApp(options = {}) {
 
   function renderDiagnosticFields() {
     renderFieldRows(dom.diagnosticsFields, [
-      ["R_boundary->central", manifest.boundaryToCentralResidual.status],
-      ["tolerance", manifest.boundaryToCentralResidual.tolerance],
-      ["decision", manifest.boundaryToCentralResidual.boundaryReplayDecisionStatus],
-      ["benignNoiseStatus", manifest.faceBoundary.benignNoiseStatus],
-      ["path bounds", manifest.faceBoundary.pathBoundsFaceCrossing.crossingStatus],
       ["proof claim", manifest.validation.proofClaimStatus],
     ]);
   }
@@ -712,7 +723,7 @@ export function mountBorgApp(options = {}) {
 
   function configureInitialConditionControls() {
     const maximumPopulation = options.eomShadowRunner
-      ? manifest.population?.architrinoCount ?? 1
+      ? manifest.population?.maximumArchitrinoCount ?? BORG_MAX_INITIAL_ARCHITRINO_COUNT
       : BORG_MAX_INITIAL_ARCHITRINO_COUNT;
     dom.electrinoCount.max = String(maximumPopulation);
     dom.positrinoCount.max = String(maximumPopulation);
@@ -724,11 +735,19 @@ export function mountBorgApp(options = {}) {
     const config = state.initialConditionConfig;
     dom.electrinoCount.value = String(config.electrinoCount);
     dom.positrinoCount.value = String(config.positrinoCount);
+    dom.coupling.value = String(state.eomCoupling);
     dom.velocityMaxComponent.value = String(config.randomVelocityMaxComponentMagnitude);
     dom.velocityMinSpeed.value = String(config.randomVelocityMinSpeed);
   }
 
   function readInitialConditionControls() {
+    const coupling = Number(dom.coupling.value);
+    if (!Number.isFinite(coupling) || coupling <= 0) {
+      state.initialConditionEditStatus = "rejected-runtime-edit";
+      setInitialConditionFeedback("κ coupling must be a number greater than zero.", "bad");
+      renderInitialConditionFields();
+      return null;
+    }
     const validation = validateBorgInitialConditionConfig(
       {
         electrinoCount: dom.electrinoCount.value,
@@ -738,7 +757,7 @@ export function mountBorgApp(options = {}) {
       },
       {
         maximumTotalCount: options.eomShadowRunner
-          ? manifest.population?.architrinoCount ?? 1
+          ? manifest.population?.maximumArchitrinoCount ?? BORG_MAX_INITIAL_ARCHITRINO_COUNT
           : BORG_MAX_INITIAL_ARCHITRINO_COUNT,
       },
     );
@@ -749,6 +768,7 @@ export function mountBorgApp(options = {}) {
       return null;
     }
     state.initialConditionConfig = validation.config;
+    state.eomCoupling = coupling;
     state.eomPathCount = validation.config.electrinoCount + validation.config.positrinoCount;
     state.initialConditionEditStatus = "accepted-runtime-edit";
     syncInitialConditionInputs();
@@ -788,15 +808,7 @@ export function mountBorgApp(options = {}) {
       options.eomShadowRunner.sampleInterval ?? 0.01,
     );
     const forever = isForeverRunPreset(getRunControlPreset(state.runControlPresetId));
-    const burnInDuration = positiveControlNumber(
-      state.dynamicRunner?.config?.burnInDuration ?? options.eomShadowRunner.burnInDuration,
-      options.eomShadowRunner.historyDepth ?? manifest.simulationEnvelope?.historyDepth ?? 10,
-    );
-    const burnInSteps = Math.max(1, Math.ceil(burnInDuration / chunkDuration));
-    const liveChunksComputed = Math.max(
-      0,
-      state.dynamicChunksComputed - state.eomBurnInChunksComputed,
-    );
+    const liveChunksComputed = state.dynamicChunksComputed;
     const requestedSteps = Math.max(1, Math.ceil(state.eomRunDuration / chunkDuration));
     const completedSteps = forever
       ? liveChunksComputed
@@ -807,15 +819,12 @@ export function mountBorgApp(options = {}) {
       "completed-live-native-run": "complete",
       "eom-shadow-stopped": "stopped",
       "live-native-error": "failed",
-      "fixture-fallback": "failed",
     })[state.dynamicRunnerStatus] ?? state.dynamicRunnerStatus;
     dom.eomDuration.disabled = forever;
-    if (!state.eomBurnInComplete) {
-      dom.eomProgress.max = String(burnInSteps);
-      dom.eomProgress.value = String(Math.min(burnInSteps, state.eomBurnInChunksComputed));
-    } else if (forever) {
-      dom.eomProgress.removeAttribute("value");
+    dom.eomProgress.hidden = forever;
+    if (forever) {
       dom.eomProgress.max = "1";
+      dom.eomProgress.value = "0";
     } else {
       dom.eomProgress.max = String(requestedSteps);
       dom.eomProgress.value = String(completedSteps);
@@ -823,18 +832,14 @@ export function mountBorgApp(options = {}) {
     const failureDetail = displayStatus === "failed"
       ? ` | ${state.dynamicRunnerMessage}`
       : "";
-    const progressLabel = !state.eomBurnInComplete
-      ? `${Math.min(burnInSteps, state.eomBurnInChunksComputed)} / ${burnInSteps} burn-in chunks | ${displayStatus}`
-      : forever
-        ? `${completedSteps} live chunks | ${displayStatus} forever`
-        : `${completedSteps} / ${requestedSteps} live chunks | ${displayStatus}`;
+    const progressLabel = forever
+      ? `${completedSteps} forward EOM chunks | ${displayStatus} | Forever`
+      : `${completedSteps} / ${requestedSteps} forward EOM chunks | ${displayStatus}`;
     dom.eomProgressLabel.value = `${progressLabel}${failureDetail}`;
-    const eomStartTime = options.eomShadowRunner?.startTime ??
-      manifest.trajectoryRecord?.historyEndTime ?? "the history cut";
-    const burnInEndTime = Number(eomStartTime) + burnInDuration;
-    dom.eomHistoryStatus.value = state.eomBurnInComplete
-      ? `Retained history is EOM output only over the complete ${burnInDuration}-unit horizon. The accepted seed has been discarded; live publication starts at T=${burnInEndTime}.`
-      : `Accepted C1 inertial seed covers T=${Number(eomStartTime) - burnInDuration} to ${eomStartTime}. It is initial datum only, not EOM output. EOM burn-in must reach T=${burnInEndTime} before live publication.`;
+    const eomStartTime = options.eomShadowRunner?.startTime ?? 0;
+    dom.eomHistoryStatus.value =
+      `Exact polynomial initial history (C1 inertial) covers T=${Number(eomStartTime) - state.eomHistoryDepth} to ${eomStartTime}. ` +
+      "It is certified input, not EOM output. Forward EOM evolution begins at T=0 and is computed in chunks conditioned on that history.";
     dom.eomHistoryStatus.textContent = dom.eomHistoryStatus.value;
     dom.eomStopButton.disabled = !state.dynamicRunner && !state.dynamicChunkPromise;
   }
@@ -871,6 +876,7 @@ export function mountBorgApp(options = {}) {
     dom.timelineRange.disabled = presentation.disabled;
     dom.timelineRange.dataset.mode = presentation.mode;
     dom.timelineRange.title = presentation.title;
+    dom.playButton.disabled = frameSets.length < 2;
   }
 
   function formatActiveTimelineLabel(time, frameIndex) {
@@ -1080,7 +1086,6 @@ export function mountBorgApp(options = {}) {
     if (state.playing || frameSets.length < 2) {
       return;
     }
-    startDynamicNativeRunnerIfNeeded();
     let currentSetIndex = getFrameSetIndex(state.activeFrameIndex);
     if (currentSetIndex >= frameSets.length - 1) {
       currentSetIndex = 0;
@@ -1174,6 +1179,20 @@ export function mountBorgApp(options = {}) {
       const nextFromSetIndex = state.playbackFromSetIndex + advancedStepCount;
       if (nextFromSetIndex >= frameSets.length - 1) {
         if (canExtendDynamicRun()) {
+          const newestSetIndex = frameSets.length - 1;
+          if (newestSetIndex > state.playbackFromSetIndex) {
+            const newestFrameSet = frameSets[newestSetIndex];
+            applyFrameSet(newestFrameSet, {
+              outputLabel: formatActiveTimelineLabel(
+                newestFrameSet.time,
+                newestFrameSet.frameIndex,
+              ),
+              rangeValue: newestFrameSet.frameIndex,
+            });
+            state.playbackFromSetIndex = newestSetIndex;
+            state.playbackToSetIndex = newestSetIndex + 1;
+            state.playbackSegmentStartedAt = null;
+          }
           ensureDynamicFramesAhead();
           queuePlaybackFrame();
           return;
@@ -1414,7 +1433,7 @@ export function mountBorgApp(options = {}) {
   }
 
   function getRunInitialFrameRows() {
-    const rows = state.distributionFrameRows ?? fixtureFrames;
+    const rows = state.distributionFrameRows ?? initialDisplayRows;
     return options.eomShadowRunner
       ? selectFrameRowsByPathCount(rows, state.eomPathCount)
       : rows;
@@ -1457,10 +1476,6 @@ export function mountBorgApp(options = {}) {
 
   function startDynamicNativeRunner() {
     const preset = getRunControlPreset(state.runControlPresetId);
-    if (preset.sourceMode === "fixture") {
-      restoreFixtureRun();
-      return;
-    }
     const eomRunnerOptions = createDefaultEomShadowRunnerOptions(
       options,
       preset,
@@ -1469,59 +1484,70 @@ export function mountBorgApp(options = {}) {
       {
         pathCount: state.eomPathCount,
         runDuration: state.eomRunDuration,
+        historyDepth: state.eomHistoryDepth,
+        coupling: state.eomCoupling,
       },
     );
-    const runnerOptions = eomRunnerOptions ?? createDefaultDynamicRunnerOptions(
-      windowLike,
+    const runnerOptions = eomRunnerOptions ?? createDefaultEomRecordReplayOptions(
       options,
       preset,
-      getRunInitialFrameRows(),
     );
     if (!runnerOptions) {
-      restoreFixtureRun();
-      state.dynamicRunnerStatus = "fixture-fallback";
-      state.dynamicRunnerMessage = "live native runner unavailable";
+      state.dynamicRunnerStatus = "live-native-error";
+      state.dynamicRunnerMessage = "no EOM data source available";
+      state.dynamicRunnerKind = "eom-idle";
       updateSourceStatusPresentation();
       renderSourceFields();
       renderDeploymentFields();
-      return;
+      return null;
     }
     const generation = state.dynamicRunGeneration;
     try {
       state.dynamicRunner = eomRunnerOptions
         ? createBorgEomShadowRunner(manifest, runnerOptions)
-        : createBorgDynamicNativeRunner(manifest, runnerOptions);
+        : createBorgEomRecordReplayRunner(runnerOptions.record, runnerOptions);
     } catch (error) {
       if (eomRunnerOptions) {
         currentFrames = [...getRunInitialDisplayRows()];
         frameSets = createBorgFrameSetsFromRows(currentFrames);
         state.sourceMode = "accepted-eom-seed-history";
-      } else {
-        restoreFixtureRun();
       }
-      state.dynamicRunnerStatus = eomRunnerOptions ? "live-native-error" : "fixture-fallback";
+      state.dynamicRunnerStatus = "live-native-error";
       state.dynamicRunnerMessage = error?.message ?? "live runner failed";
-      state.dynamicRunnerKind = eomRunnerOptions ? "eom-shadow-failed" : "compatibility-failed";
+      state.dynamicRunnerKind = eomRunnerOptions ? "eom-shadow-failed" : "eom-record-replay-failed";
       updateSourceStatusPresentation();
       renderSourceFields();
       renderDeploymentFields();
-      return;
+      return null;
     }
-    state.dynamicRunnerKind = eomRunnerOptions ? "eom-burn-in" : "central-solver-compatibility";
+    state.dynamicRunnerKind = eomRunnerOptions ? "eom-shadow" : "eom-record-replay";
     applyMeasuredPresetLimitsToDynamicRunner();
-    state.dynamicRunnerStatus = eomRunnerOptions ? "eom-shadow-running" : "live-native-running";
+    state.dynamicRunnerStatus = eomRunnerOptions ? "eom-shadow-running" : "eom-record-replay-running";
     state.dynamicRunnerMessage = eomRunnerOptions
-      ? "computing complete EOM burn-in horizon"
-      : "computing central-solver compatibility chunks";
+      ? "computing forward EOM evolution from the exact polynomial initial history"
+      : "replaying recorded EOM dataset";
     updateEomControlPresentation();
     updateSourceStatusPresentation();
     renderSourceFields();
     renderDeploymentFields();
-    ensureDynamicFramesAhead({ replaceFixture: true, generation });
+    return ensureDynamicFramesAhead({ replaceInitialRows: true, generation });
+  }
+
+  function startRunAndPlayback() {
+    const firstChunk = startDynamicNativeRunner();
+    if (!firstChunk) {
+      startPlayback();
+      return;
+    }
+    firstChunk.then((chunk) => {
+      if (chunk && state.dynamicRunner) {
+        startPlayback();
+      }
+    });
   }
 
   function ensureDynamicFramesAhead({
-    replaceFixture = false,
+    replaceInitialRows = false,
     generation = state.dynamicRunGeneration,
   } = {}) {
     if (!state.dynamicRunner || state.dynamicChunkPromise || !state.dynamicRunner.canComputeNextChunk()) {
@@ -1529,12 +1555,10 @@ export function mountBorgApp(options = {}) {
     }
     state.dynamicRunnerStatus = options.eomShadowRunner
       ? "eom-shadow-running"
-      : "live-native-running";
+      : "eom-record-replay-running";
     state.dynamicRunnerMessage = options.eomShadowRunner
-      ? state.eomBurnInComplete
-        ? "computing EOM live chunk"
-        : "computing EOM burn-in chunk"
-      : "computing native chunk";
+      ? "computing forward EOM chunk"
+      : "reading recorded EOM chunk";
     updateSourceStatusPresentation();
     renderSourceFields();
     const budgetBefore = readLiveRunBudgetSnapshot(windowLike);
@@ -1546,28 +1570,14 @@ export function mountBorgApp(options = {}) {
           return null;
         }
         state.dynamicChunksComputed += 1;
-        if (options.eomShadowRunner && chunk.phase === "burn-in") {
-          state.eomBurnInChunksComputed = chunk.burnInChunksCompleted;
-          state.eomBurnInComplete = chunk.burnInComplete;
-          state.dynamicRunnerKind = chunk.burnInComplete ? "eom-shadow" : "eom-burn-in";
-          state.dynamicRunnerStatus = "eom-shadow-running";
-          state.dynamicRunnerMessage = chunk.burnInComplete
-            ? `complete EOM burn-in retained through T=${chunk.endTime}; seed discarded`
-            : `burn-in chunk ${chunk.chunkIndex} ready through T=${chunk.endTime}`;
-          updateSourceStatusPresentation();
-          renderSourceFields();
-          renderDeploymentFields();
-          updateEomControlPresentation();
-          return chunk;
-        }
         const replaceDisplayedSeed = Boolean(
           options.eomShadowRunner && !state.eomDisplayStarted,
         );
-        const replaceCurrentFrames = replaceFixture || replaceDisplayedSeed;
+        const replaceCurrentFrames = replaceInitialRows || replaceDisplayedSeed;
         if (options.eomShadowRunner) {
           state.eomDisplayStarted = true;
-          state.eomBurnInComplete = true;
           state.dynamicRunnerKind = "eom-shadow";
+          state.eomEvolutionClaimLevel = chunk.evolutionClaimLevel;
         }
         state.sourceMode = chunk.source;
         state.dynamicRunnerStatus = state.dynamicRunner.canComputeNextChunk()
@@ -1589,7 +1599,7 @@ export function mountBorgApp(options = {}) {
           chunk,
           previousFrameRowCount,
           nextFrameRowCount: currentFrames.length,
-          replaceFixture: replaceCurrentFrames,
+          replaceInitialRows: replaceCurrentFrames,
           appendedFrameRows,
           presetId: state.runControlPresetId,
           memoryBudgetBytes: state.dynamicRunner?.config?.memoryBudgetBytes ?? null,
@@ -1602,9 +1612,10 @@ export function mountBorgApp(options = {}) {
         applyMeasuredPresetLimitsToDynamicRunner();
         syncRunDurationButton();
         if (replaceCurrentFrames || state.liveRunRetention?.compactedThisPass) {
-          // History changed underneath the trails: the fixture was swapped for
-          // live rows, or a retention pass moved older rows into compacted
-          // history. Otherwise the chunk is pure new history, so append it.
+          // History changed underneath the trails: the seed endpoint rows were
+          // swapped for live rows, or a retention pass moved older rows into
+          // compacted history. Otherwise the chunk is pure new history, so
+          // append it.
           rebuildPathTrails();
         } else {
           appendPathTrailRows(chunk.frames);
@@ -1626,14 +1637,14 @@ export function mountBorgApp(options = {}) {
           return null;
         }
         const hadLiveFrames =
-          state.sourceMode === BORG_DYNAMIC_NATIVE_RUN_SOURCE ||
+          state.sourceMode === BORG_EOM_RECORD_REPLAY_RUN_SOURCE ||
           state.sourceMode === BORG_EOM_SHADOW_RUN_SOURCE;
         const failedRunner = state.dynamicRunner;
         state.dynamicRunner = null;
         failedRunner?.dispose?.();
         state.dynamicRunnerStatus = options.eomShadowRunner
           ? "live-native-error"
-          : hadLiveFrames ? "live-native-error" : "fixture-fallback";
+          : "live-native-error";
         state.dynamicRunnerMessage = error?.message ?? "live native runner failed";
         if (!hadLiveFrames && options.eomShadowRunner) {
           state.sourceMode = "accepted-eom-seed-history";
@@ -1643,24 +1654,14 @@ export function mountBorgApp(options = {}) {
           rebuildParticleObjects();
           rebuildPathTrails({ recreateMaterials: true });
           setInitialConditionFeedback(
-            "EOM burn-in failed; accepted seed retained and no live trajectory was published",
+            "Forward EOM evolution failed; exact polynomial initial history retained and no rejected trajectory was published",
             "bad",
           );
           updateTimelineBounds();
           updateFrame(frameSets[0]?.frameIndex ?? 0);
         } else if (!hadLiveFrames) {
-          state.sourceMode = "precomputed-fixture";
-          state.distributionFrameRows = null;
-          state.distributionLabel = DEFAULT_DISTRIBUTION_LABEL;
-          state.initialConditionConfig = createBorgInitialConditionConfig(manifest.initialConditions);
-          state.initialConditionEditStatus = "fixture-fallback";
-          currentFrames = [...fixtureFrames];
-          frameSets = createBorgFrameSetsFromRows(currentFrames);
-          resetLiveRunRetentionState();
-          rebuildParticleObjects();
-          rebuildPathTrails({ recreateMaterials: true });
-          syncInitialConditionInputs();
-          setInitialConditionFeedback("Live run rejected; manifest fixture restored", "bad");
+          state.sourceMode = "eom-idle";
+          setInitialConditionFeedback("Recorded EOM replay failed; nothing was published", "bad");
           renderEnvelopeFields();
           renderInitialConditionFields();
           updateTimelineBounds();
@@ -1708,7 +1709,7 @@ export function mountBorgApp(options = {}) {
     stopPlayback();
     disposeDynamicRunner();
     resetDynamicRunState();
-    startDynamicNativeRunner();
+    startRunAndPlayback();
   }
 
   function canExtendDynamicRun() {
@@ -1761,9 +1762,9 @@ export function mountBorgApp(options = {}) {
 
   /**
    * Discard every trail and rewrite it from the current rows. Only for the
-   * cases where history genuinely changed underneath us: a fixture restore, a
-   * new distribution, or a retention pass that moved rows into compacted
-   * history. Ordinary chunk arrivals append instead.
+   * cases where history genuinely changed underneath us: a run reset, a new
+   * distribution, or a retention pass that moved rows into compacted history.
+   * Ordinary chunk arrivals append instead.
    */
   function rebuildPathTrails({ recreateMaterials = false } = {}) {
     if (recreateMaterials) {
@@ -1827,12 +1828,13 @@ export function mountBorgApp(options = {}) {
     state.runControlPresetId = preset.id;
     syncRunDurationButton();
     disposeDynamicRunner();
-    if (preset.sourceMode === "fixture") {
-      restoreFixtureRun();
-      return;
-    }
-    resetDynamicRunState();
-    startDynamicNativeRunner();
+    state.dynamicRunnerStatus = options.eomShadowRunner
+      ? "eom-shadow-stopped"
+      : "eom-idle";
+    state.dynamicRunnerMessage = `${formatRunDurationLabel(preset)} selected; press Start / restart to run`;
+    updateSourceStatusPresentation();
+    renderSourceFields();
+    updateEomControlPresentation();
   }
 
   function toggleRunDurationMode() {
@@ -1840,75 +1842,6 @@ export function mountBorgApp(options = {}) {
       ? FINITE_RUN_CONTROL_PRESET_ID
       : DEFAULT_RUN_CONTROL_PRESET_ID;
     switchRunControlPreset(nextPresetId);
-  }
-
-  function startDynamicNativeRunnerIfNeeded() {
-    const preset = getRunControlPreset(state.runControlPresetId);
-    if (preset.sourceMode === "fixture" || state.dynamicRunner) {
-      return;
-    }
-    startDynamicNativeRunner();
-  }
-
-  /**
-   * Fetch the recorded trajectory the first time a fixture replay needs it.
-   * Until it arrives the app shows the seed state, which is honest: that is
-   * all the history it has.
-   */
-  function ensureFixtureTrajectoryLoaded() {
-    if (fixtureTrajectoryLoaded || fixtureTrajectoryPromise) {
-      return fixtureTrajectoryPromise;
-    }
-    const load = options.loadFixtureTrajectoryFrames ?? loadBorgFixtureTrajectoryFrames;
-    fixtureTrajectoryPromise = Promise.resolve()
-      .then(() => load({ manifest }))
-      .then((frames) => {
-        fixtureTrajectoryLoaded = true;
-        fixtureFrames = [...frames];
-        if (state.sourceMode === "precomputed-fixture") {
-          restoreFixtureRun();
-        }
-        return frames;
-      })
-      .catch((error) => {
-        state.dynamicRunnerMessage = `recorded trajectory unavailable: ${error?.message ?? error}`;
-        updateSourceStatusPresentation();
-        renderSourceFields();
-        return null;
-      });
-    return fixtureTrajectoryPromise;
-  }
-
-  function restoreFixtureRun() {
-    disposeDynamicRunner();
-    state.distributionFrameRows = null;
-    state.distributionLabel = DEFAULT_DISTRIBUTION_LABEL;
-    state.initialConditionConfig = createBorgInitialConditionConfig(manifest.initialConditions);
-    state.initialConditionEditStatus = "fixture-fallback";
-    ensureFixtureTrajectoryLoaded();
-    currentFrames = [...fixtureFrames];
-    frameSets = createBorgFrameSetsFromRows(currentFrames);
-    resetLiveRunRetentionState();
-    rebuildParticleObjects();
-    rebuildPathTrails({ recreateMaterials: true });
-    state.sourceMode = "precomputed-fixture";
-    state.dynamicRunnerStatus = "precomputed-fixture";
-    state.dynamicRunnerMessage = "static native fixture loaded";
-    state.dynamicRunnerKind = "compatibility-fixture";
-    state.dynamicChunksComputed = 0;
-    state.dynamicTargetDuration = null;
-    state.dynamicChunkDuration = null;
-    state.liveRunBudget = createEmptyLiveRunBudget();
-    syncInitialConditionInputs();
-    setInitialConditionFeedback("Manifest fixture active", "accepted");
-    renderEnvelopeFields();
-    renderInitialConditionFields();
-    updateTimelineBounds();
-    updateFrame(frameSets[0]?.frameIndex ?? 0);
-    syncRunDurationButton();
-    updateSourceStatusPresentation();
-    renderSourceFields();
-    renderDeploymentFields();
   }
 
   function resetDynamicRunState() {
@@ -1921,17 +1854,19 @@ export function mountBorgApp(options = {}) {
       ? "accepted-eom-seed-history"
       : state.distributionFrameRows
         ? "seeded-random-live-initial-state"
-      : "precomputed-fixture";
+      : "eom-idle";
     state.dynamicRunnerStatus = options.eomShadowRunner
       ? "eom-shadow-running"
       : "live-native-running";
     state.dynamicRunnerMessage = options.eomShadowRunner
-      ? "accepted initial datum ready; EOM burn-in pending"
+      ? "exact polynomial initial history ready; forward EOM evolution pending"
       : "computing native chunks";
-    state.dynamicRunnerKind = options.eomShadowRunner ? "eom-shadow" : "central-solver-compatibility";
+    state.dynamicRunnerKind = options.eomShadowRunner
+      ? "eom-shadow"
+      : options.eomRecordReplay
+        ? "eom-record-replay"
+        : "eom-idle";
     state.dynamicChunksComputed = 0;
-    state.eomBurnInChunksComputed = 0;
-    state.eomBurnInComplete = false;
     state.eomDisplayStarted = false;
     state.dynamicTargetDuration = null;
     state.dynamicChunkDuration = null;
@@ -1960,19 +1895,27 @@ export function mountBorgApp(options = {}) {
       config,
     });
     if (options.eomShadowRunner) {
+      const historyDepth = calculateBorgInertialHistoryDepth(endpointRows, {
+        fieldSpeed: options.eomShadowRunner.fieldSpeed ?? manifest.simulationEnvelope?.fieldSpeed ?? 1,
+        sampleInterval: options.eomShadowRunner.sampleInterval ?? manifest.simulationEnvelope?.sampleInterval ?? 0.01,
+        maximumSeparation: Math.sqrt(3) * manifest.simulationEnvelope.sideLength,
+      });
       const eomConfig = createBorgEomShadowRunConfig(manifest, {
         ...options.eomShadowRunner,
         pathCount: state.eomPathCount,
+        historyDepth,
       });
       try {
         const seed = await createBorgAcceptedInertialSeedHistory(endpointRows, {
           historyStartTime: eomConfig.historyStartTime,
           historyEndTime: eomConfig.startTime,
           sampleInterval: eomConfig.sampleInterval,
+          minimumPairSeparation: manifest.initialConditions.minimumPairSeparation,
         });
         state.distributionFrameRows = seed.rows;
         state.eomSeedEndpointRows = seed.endpointRows;
         state.eomSeedCertificate = seed.certificate;
+        state.eomHistoryDepth = historyDepth;
       } catch (error) {
         setInitialConditionFeedback(
           `Initial datum rejected: ${error?.message ?? error}`,
@@ -1987,14 +1930,14 @@ export function mountBorgApp(options = {}) {
     }
     state.distributionLabel = `seeded distribution ${state.distributionSeedIndex}`;
     setInitialConditionFeedback(
-      `Accepted ${config.electrinoCount} electrinos + ${config.positrinoCount} positrinos`,
+      `Accepted κ=${state.eomCoupling}; ${config.electrinoCount} electrinos + ${config.positrinoCount} positrinos; ${state.eomPathCount ** 2} ordered EOM pairs`,
       "accepted",
     );
     state.runControlPresetId = getRunControlPreset(state.runControlPresetId).id;
     syncRunDurationButton();
     disposeDynamicRunner();
     resetDynamicRunState();
-    startDynamicNativeRunner();
+    startRunAndPlayback();
   }
 
   function disposeDynamicRunner() {
@@ -2086,48 +2029,24 @@ function runControlPresetById(presetId) {
   );
 }
 
-function createDefaultDynamicRunnerOptions(
-  windowLike,
+function createDefaultEomRecordReplayOptions(
   options = {},
   preset = runControlPresetById(),
-  initialFrameRows = null,
 ) {
-  if (options.enableDynamicNativeRunner === false || options.dynamicNativeRunner === false) {
+  if (options.eomRecordReplay === false || options.enableEomRecordReplay === false) {
     return null;
   }
   const configured =
-    options.dynamicNativeRunner && typeof options.dynamicNativeRunner === "object"
-      ? options.dynamicNativeRunner
-      : {};
-  const hasExplicitNativeClient =
-    configured.solverClient ||
-    configured.createSolverBridgeClient ||
-    configured.solverWorker ||
-    configured.createSolverWorker ||
-    configured.createWasmModule;
-  const hasWorker = typeof (configured.WorkerCtor ?? windowLike?.Worker) === "function";
-  if (!hasExplicitNativeClient && !hasWorker) {
+    options.eomRecordReplay && typeof options.eomRecordReplay === "object"
+      ? options.eomRecordReplay
+      : null;
+  if (!configured?.record) {
     return null;
   }
-  const workerOptions = hasWorker || configured.workerUrl || configured.WorkerCtor
-    ? {
-        workerUrl: configured.workerUrl ?? new URL("./BorgSolverBridgeWorker.js", import.meta.url).href,
-        workerOptions: {
-          type: "module",
-          ...(configured.workerOptions ?? {}),
-        },
-        disposeSolverWorkerAfterRun: false,
-        terminateSolverWorkerOnDispose: true,
-      }
-    : {};
   return {
     ...configured,
     targetDuration: configured.targetDuration ?? preset.effectiveTargetDuration ?? preset.targetDuration,
     chunkDuration: configured.chunkDuration ?? preset.effectiveChunkDuration ?? preset.chunkDuration,
-    initialFrameRows: configured.initialFrameRows ?? initialFrameRows ?? undefined,
-    scope: windowLike,
-    ...workerOptions,
-    requestTimeoutMs: configured.requestTimeoutMs ?? 120000,
   };
 }
 
@@ -2148,35 +2067,37 @@ function createDefaultEomShadowRunnerOptions(
   if (!configured?.eomClient) {
     return null;
   }
+  // Forward EOM evolution starts at T=0 unless the caller declares another
+  // history cut.
   const historyEndTime = finiteBudgetNumber(
-    configured.startTime ?? options.eomHistoryEndTime ??
-      manifest.trajectoryRecord?.historyEndTime,
+    configured.startTime ?? options.eomHistoryEndTime ?? 0,
   );
   const requestedTarget = configured.targetDuration ?? preset.effectiveTargetDuration ?? preset.targetDuration;
   const historyDepth = positiveControlNumber(
-    configured.historyDepth,
+    runtimeControls.historyDepth ?? configured.historyDepth,
     manifest.simulationEnvelope?.historyDepth ?? 10,
   );
-  const burnInDuration = positiveControlNumber(configured.burnInDuration, historyDepth);
   const targetDuration = Number.isFinite(Number(requestedTarget))
     ? Number(requestedTarget)
-    : historyEndTime + burnInDuration + (finiteBudgetNumber(configured.chunkDuration) ?? 20);
+    : historyEndTime + (finiteBudgetNumber(configured.chunkDuration) ?? 20);
   const runDuration = positiveControlNumber(
     runtimeControls.runDuration ?? configured.runDuration,
-    targetDuration - historyEndTime - burnInDuration,
+    targetDuration - historyEndTime,
   );
   return {
     ...configured,
     startTime: historyEndTime,
-    targetDuration: historyEndTime + burnInDuration + runDuration,
+    targetDuration: historyEndTime + runDuration,
     runDuration,
-    burnInDuration,
     historyDepth,
+    coupling: String(
+      runtimeControls.coupling ?? configured.coupling ?? manifest.modelControls?.coupling ?? 1,
+    ),
     pathCount: boundedInteger(
       runtimeControls.pathCount,
       configured.pathCount ?? manifest.population?.architrinoCount ?? 1,
       1,
-      manifest.population?.architrinoCount ?? 1,
+      manifest.population?.maximumArchitrinoCount ?? BORG_MAX_INITIAL_ARCHITRINO_COUNT,
     ),
     chunkDuration: configured.chunkDuration ?? preset.effectiveChunkDuration ?? preset.chunkDuration,
     initialFrameRows: configured.initialFrameRows ?? initialFrameRows ?? undefined,
@@ -2217,7 +2138,7 @@ function createLiveRunBudgetMeasurement({
   chunk,
   previousFrameRowCount,
   nextFrameRowCount,
-  replaceFixture,
+  replaceInitialRows,
   appendedFrameRows,
   presetId,
   memoryBudgetBytes,
@@ -2227,7 +2148,7 @@ function createLiveRunBudgetMeasurement({
   const computedFrameRows = Array.isArray(chunk?.frames) ? chunk.frames.length : 0;
   const measuredAppendedFrameRows =
     finiteBudgetNumber(appendedFrameRows) ??
-    (replaceFixture
+    (replaceInitialRows
       ? computedFrameRows
       : Math.max(0, (finiteBudgetNumber(nextFrameRowCount) ?? 0) - (finiteBudgetNumber(previousFrameRowCount) ?? 0)));
   const frameAppendRateRowsPerSecond =

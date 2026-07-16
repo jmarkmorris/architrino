@@ -1,8 +1,7 @@
 # EOM Attractor Search — Priorities
 
-Current: workstream opened 2026-07-15 after the canonical-photon scoped
-negative closed the bare rigid-assembly class; the final eom performance
-improvement has landed. Phase 0 workload characterization is COMPLETE
+Current: workstream opened 2026-07-15 by operator direction; the final eom
+performance improvement has landed. Phase 0 workload characterization is COMPLETE
 (2026-07-15): per-step wall $\propto N^{1.97}$, exact-pair root
 certification owns $50$–$57\%$ of the step, zero traversal-excluded pairs
 (dispersal sheds no pair cost), memory $\propto N^2$ per step plus
@@ -12,7 +11,7 @@ certification owns $50$–$57\%$ of the step, zero traversal-excluded pairs
 Objective: determine whether the coupled delayed-history dynamics of small
 neutral architrino populations produce persistent bound structures
 (attractors / limit cycles) without any rigid-shape or force-balance
-ansatz, under the T3 prehistory collapse protocol.
+ansatz, under the endpoint-matched prehistory collapse protocol.
 
 1. Phase 2 residuals — the harness core LANDED 2026-07-15
    ([attractor-ensemble-harness.cpp](../../../scripts/eom/attractor-ensemble-harness.cpp):

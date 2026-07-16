@@ -66,7 +66,7 @@ QED precision is a hard recovery constraint, not an ontology proof. Agreement am
 
 | Source draft | Promotion target | Gate |
 | --- | --- | --- |
-| This file | angular-momentum-spin (legacy-braid ref: `braid-archive/braid-angular-momentum-spin/priorities.md`) | Keep $g-2$ downstream of spin and magnetic-response closure. |
+| This file | angular-momentum-spin | Keep $g-2$ downstream of spin and magnetic-response closure. |
 | This file | [Radiation](../../../content/markdown/aaa/reactions/radiation.md) | Route radiative corrections through photon and event-ledger gates. |
 | This file | [validation-gates](../validation-gates/priorities.md) | Classify QED precision as a hard benchmark but not an early ontology source. |
 

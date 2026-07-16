@@ -452,7 +452,7 @@ An orientation-independent material clock requires the coefficients of $\cos^2\t
 $$
 g(\beta_\star)=\sqrt{1-\beta_\star^2}
 $$
-in the zero-leakage homogeneous limit. This selects the Lorentz contraction law as the unique axial deformation that removes matter-sector orientation leakage for this closed-return benchmark. It is still not a stability theorem: the delayed force law must also show that the contracted branch is an attracting solution of the boosted delay dynamics.
+in the zero-leakage homogeneous limit. This selects the Lorentz contraction law as the unique axial deformation that removes matter-sector orientation leakage for this closed-return benchmark. It is still not a stability theorem: the delayed acceleration law must also show that the contracted branch is an attracting solution of the boosted delay dynamics.
 
 The same equations give a direct geometry dictionary for the oblate spheroidal envelope. In the no-extra-scale channel, take $R_{\perp}=R_0$ and $R_{\parallel}=R_0/\gamma_\star$. Then
 $$
@@ -525,7 +525,7 @@ q
 $$
 with admissibility requiring the same causal-root ledger to close the oblate spheroidal envelope geometry, clock period, and preferred-frame leakage bounds. Thus a continuous Lorentz formula would be recovered as the common envelope of discrete Noether braid return-cycle classes only after those branch-admissibility conditions close.
 
-Confirmation status: the ruler law has no confirmation from evolved dynamics at any drift speed. The kinematic content — that the drifting rigid family's shape ratio $\xi(u)/\xi(0)$ should approach $1/\gamma_f(u)$ — remains a closure target of the delayed force law, not a measured result, and confirming it requires evolving the drifting family directly under the master equation and measuring the envelope it actually settles to. Whether the contracted branch is an attracting solution of the boosted delay dynamics is the same open question stated above; it is not answered here.
+Confirmation status: the ruler law has no confirmation from evolved dynamics at any drift speed. The kinematic content — that the drifting rigid family's shape ratio $\xi(u)/\xi(0)$ should approach $1/\gamma_f(u)$ — remains a closure target of the delayed acceleration law, not a measured result, and confirming it requires evolving the drifting family directly under the master equation and measuring the envelope it actually settles to. Whether the contracted branch is an attracting solution of the boosted delay dynamics is the same open question stated above; it is not answered here.
 
 To keep this closure target testable, the branch should report a single Lorentz residual record rather than separate narrative successes. For a declared channel speed $c_\star$ and branch $q$, write
 $$
@@ -1614,7 +1614,7 @@ Primary theory anchors:
 1. [dynamics/master-equation.md](../dynamics/master-equation.md)
 2. [dynamics/causal-action-functional.md](../dynamics/causal-action-functional.md)
 3. [dynamics/binary-dynamics.md](../dynamics/binary-dynamics.md)
-4. [Nested Shell Braid Dynamics](../noether-braid/explored-braid-geometries.md#nested-shell-braid-dynamics)
+4. [Nested Shell Braid Dynamics](../noether-braid/braid-families.md#nested-shell-braid-dynamics)
 5. `spacetime/*`
 6. [validation/constraint-ledger.md](../validation/constraint-ledger.md)
 7. [validation/no-go-theorems.md](../validation/no-go-theorems.md)

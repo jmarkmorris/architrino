@@ -37,6 +37,10 @@ A configuration is booked as a persistent object only when all of the following 
 4. Independent-oracle cross-check of the engine path used.
 5. A named falsifier: the observation that would overturn the booking, and where to look for it.
 
+## Burden Order
+
+The program's obligations close in a fixed order, and evidence for one rung never substitutes for the next (restated fresh from durable method salvaged out of the retired corpus proof map): first **rest retention** (does the object persist in isolation), then **sea embedding** (does it persist inside a populated medium), then **moving export** (what a moving retained object hands to observer-level physics), then **downstream consumers** (particle roles, metric recovery). Consumer success never travels backward: a favorable downstream diagnostic cannot rescue an open retention rung.
+
 ## Booking Rules
 
 Results land as write-once files in `evidence/`, named `YYYY-MM-DD-<campaign>-<short-descriptor>.md`, each carrying: configuration, instrument, grade, tolerances, result, falsifier, reproduction command. Campaign specs and the live state carry one-line graded pointers only. Negatives are recorded with their declared ranges in the campaign spec's coverage table, which is the program's map of searched territory.

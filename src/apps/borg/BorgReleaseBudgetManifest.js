@@ -14,7 +14,7 @@ export const BORG_RELEASE_BUDGET_MANIFEST_V1 = Object.freeze({
   nativeSolverContract: Object.freeze({
     appId: "borg",
     runKind: "masterEquation",
-    motionAuthority: "central solver compatibility output",
+    motionAuthority: "non-eom-display-only",
     releaseBudgetAuthority: "browser runtime measurement only",
   }),
   sampleMatrix: Object.freeze({
@@ -99,7 +99,7 @@ export function validateBorgReleaseBudgetManifest(
   }
   if (
     manifest?.nativeSolverContract?.motionAuthority !==
-    "central solver compatibility output"
+    "non-eom-display-only"
   ) {
     failures.push("nativeSolverContract.motionAuthority");
   }

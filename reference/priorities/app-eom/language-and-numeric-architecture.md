@@ -8,7 +8,6 @@
 - Accelerator stack: `not-selected`
 - Numeric library stack: `outward-binary64-fast-path; MPFR-4.2.2/GMP-6.3.0-directed-interval-escalation`
 - Numeric certification contract: `frozen-v0`; source: [precision-dynamic-range-and-certification-contract.md](precision-dynamic-range-and-certification-contract.md)
-- Existing central solver: `preserved-for-current-dependencies`
 
 ## Decision Principle
 
@@ -129,4 +128,4 @@ Implementation of the C++ production integrator is authorized. Its outputs
 remain architecture evidence until coupled evolution, precision, performance,
 checkpoint, and migration gates pass.
 
-The current central solver remains untouched throughout this gate. No prototype output may be represented as EOM production evolution or used to migrate a consumer.
+No prototype output may be represented as EOM production evolution or used to migrate a consumer.

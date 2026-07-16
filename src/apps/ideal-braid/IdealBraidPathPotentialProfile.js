@@ -1,7 +1,7 @@
-import { createIdealBraidSharedGeometryRunRequest } from "../../solver/app/SolverAppAdapters.mjs";
 import {
-  runSolverAppBridgeRequest,
-} from "../../solver/app/SolverAppBridgeClientResolver.mjs";
+  PRESCRIBED_PATH_ANALYSIS_ID,
+  runPrescribedPathAnalysisRequest,
+} from "../../prescribed-path-analysis/index.mjs";
 
 const QUARTER_TURN = Math.PI / 2;
 const NO_FORWARD_SPAN = 0;
@@ -11,7 +11,7 @@ const SELF_HIT_SCAN_SUBDIVISIONS = 72;
 const SELF_HIT_TOLERANCE = 1e-12;
 const SELF_HIT_MAX_ANGLE = Math.PI * 1.96;
 const DEFAULT_SOLVER_MEMORY_BUDGET_BYTES = 64 * 1024 * 1024;
-const IDEAL_BRAID_SOLVER_BRIDGE_ENGINE_ID = "architrino-solver-app-bridge";
+const IDEAL_BRAID_ANALYSIS_ID = PRESCRIBED_PATH_ANALYSIS_ID;
 const DEFAULT_PATH_SPEED_PRODUCTS = Object.freeze({
   inner: 0.5 * 0.42,
   middle: 0.7 * 0.26,
@@ -89,7 +89,9 @@ export function createIdealBraidCircularSelfHitSpansRunRequest(fieldSpeedRatios,
   );
   const ratioId = ratios.map((ratio) => ratio.toString().replaceAll(".", "_")).join("-");
   const runId = options.runId ?? `ideal-braid-self-hit-${ratioId}`;
-  return createIdealBraidSharedGeometryRunRequest({
+  return {
+    appId: "ideal-braid",
+    runKind: "sharedGeometry",
     requestId: options.requestId ?? `${runId}-request`,
     runId,
     datasetId: options.datasetId ?? `${runId}-dataset`,
@@ -103,15 +105,17 @@ export function createIdealBraidCircularSelfHitSpansRunRequest(fieldSpeedRatios,
       memoryBudgetBytes,
     }),
     errorBudget: options.errorBudget ?? createDefaultIdealBraidGeometryErrorBudget(tolerance),
-    geometryRequest: {
-      circularSelfHitSpans: ratios.map((ratio) => ({
-        fieldSpeedRatio: ratio,
-        fieldSpeedTolerance,
-        tolerance,
-        maxIterations,
-        scanSubdivisions,
-        maxAngle,
-      })),
+    config: {
+      geometryRequest: {
+        circularSelfHitSpans: ratios.map((ratio) => ({
+          fieldSpeedRatio: ratio,
+          fieldSpeedTolerance,
+          tolerance,
+          maxIterations,
+          scanSubdivisions,
+          maxAngle,
+        })),
+      },
     },
     output: options.output ?? {
       outputs: ["geometryBuffer", "diagnostics"],
@@ -119,57 +123,32 @@ export function createIdealBraidCircularSelfHitSpansRunRequest(fieldSpeedRatios,
       memoryBudgetBytes,
       deterministic: options.deterministic ?? true,
     },
-  });
+  };
 }
 
-export async function solveCircularSelfHitSpanWithSolverBridge(fieldSpeedRatio, options = {}) {
-  const row = await solveCircularSelfHitSpanRowWithSolverBridge(fieldSpeedRatio, options);
+export async function solveCircularSelfHitSpanWithPrescribedPathAnalysis(fieldSpeedRatio, options = {}) {
+  const row = await solveCircularSelfHitSpanRowWithPrescribedPathAnalysis(fieldSpeedRatio, options);
   return Number(row.span) || 0;
 }
 
-export async function solveCircularSelfHitSpanRowWithSolverBridge(fieldSpeedRatio, options = {}) {
-  const rows = await solveCircularSelfHitSpanRowsWithSolverBridge([fieldSpeedRatio], options);
+export async function solveCircularSelfHitSpanRowWithPrescribedPathAnalysis(fieldSpeedRatio, options = {}) {
+  const rows = await solveCircularSelfHitSpanRowsWithPrescribedPathAnalysis([fieldSpeedRatio], options);
   if (rows.length === 0) {
-    throw new Error("Ideal Braid solver bridge response did not include a circular self-hit span row.");
+    throw new Error("Ideal Braid prescribed-path analysis did not include a circular self-hit span row.");
   }
   return rows[0];
 }
 
-export async function solveCircularSelfHitSpanRowsWithSolverBridge(
+export async function solveCircularSelfHitSpanRowsWithPrescribedPathAnalysis(
   fieldSpeedRatios,
   options = {}
 ) {
   const runRequest =
     options.runRequest ??
     createIdealBraidCircularSelfHitSpansRunRequest(fieldSpeedRatios, options);
-  const runHandle = typeof options.runSolverBridge === "function"
-    ? await options.runSolverBridge(runRequest)
-    : await runIdealBraidSolverBridgeClient(options, fieldSpeedRatios, runRequest);
+  const run = options.runPrescribedPathAnalysis ?? runPrescribedPathAnalysisRequest;
+  const runHandle = await run(runRequest);
   return extractCircularSelfHitSpanRows(runHandle);
-}
-
-async function runIdealBraidSolverBridgeClient(options, fieldSpeedRatios, runRequest) {
-  return runSolverAppBridgeRequest({
-    appId: "ideal-braid",
-    request: runRequest,
-    options,
-    factoryRequest: {
-      fieldSpeedRatio: normalizeFieldSpeedRatios(fieldSpeedRatios)[0],
-      fieldSpeedRatios: normalizeFieldSpeedRatios(fieldSpeedRatios),
-    },
-    requestedCapabilities: ["sharedGeometry", "delayedHits"],
-    storagePolicy: {
-      target: options.streamTarget ?? "caller-buffer",
-      durable: options.streamTarget === "native-file",
-      maxBytes: options.memoryBudgetBytes ?? DEFAULT_SOLVER_MEMORY_BUDGET_BYTES,
-    },
-    threadingPolicy: {
-      mode: options.threadingMode ?? "single-thread",
-      deterministic: options.deterministic ?? true,
-    },
-    missingClientMessage:
-      "Ideal Braid solver bridge request requires a solver client, runSolverBridge option, client factory, worker, or solver WASM module factory.",
-  });
 }
 
 function extractCircularSelfHitSpanRows(runHandle = {}) {
@@ -177,10 +156,10 @@ function extractCircularSelfHitSpanRows(runHandle = {}) {
   const geometry = response.geometry ?? response;
   const rows = Array.isArray(geometry.circularSelfHitSpans) ? geometry.circularSelfHitSpans : [];
   if (rows.length === 0) {
-    throw new Error("Ideal Braid solver bridge response did not include a circular self-hit span row.");
+    throw new Error("Ideal Braid prescribed-path analysis did not include a circular self-hit span row.");
   }
   return rows.map((row) => ({
-    solverEngineId: IDEAL_BRAID_SOLVER_BRIDGE_ENGINE_ID,
+    analysisId: IDEAL_BRAID_ANALYSIS_ID,
     runId: response.runId ?? runHandle.runId ?? "",
     datasetId: response.datasetId ?? runHandle.datasetId ?? "",
     ...row,
@@ -299,7 +278,7 @@ function createSuperFieldProfile(fieldSpeedRatio, selfHitSpanInput = 0) {
     forwardWidthScale: 1,
     wakeWidthScale: lerpNumber(1.05, 1.26, superProgress),
     selfHitSpan,
-    solverProfileStatus: selfHitSpan > 0 ? "solver-row" : "pending-solver-row",
+    analysisProfileStatus: selfHitSpan > 0 ? "analysis-row" : "pending-analysis-row",
   };
 }
 
@@ -314,18 +293,18 @@ export function getOrbitPathTintProfile(binaryOrId, options = {}) {
   return createFieldSpeedProfile();
 }
 
-export async function getOrbitPathTintProfileWithSolverBridge(binaryOrId, options = {}) {
+export async function getOrbitPathTintProfileWithPrescribedPathAnalysis(binaryOrId, options = {}) {
   const fieldSpeedRatio = getBinaryFieldSpeedRatio(binaryOrId);
   if (fieldSpeedRatio <= 1 + FIELD_SPEED_TOLERANCE) {
     return getOrbitPathTintProfile(binaryOrId, options);
   }
-  const row = await solveCircularSelfHitSpanRowWithSolverBridge(fieldSpeedRatio, options);
+  const row = await solveCircularSelfHitSpanRowWithPrescribedPathAnalysis(fieldSpeedRatio, options);
   return {
     ...createSuperFieldProfile(fieldSpeedRatio, row.span),
-    solverEngineId: row.solverEngineId,
-    solverRunId: row.runId,
-    solverDatasetId: row.datasetId,
-    solverRow: row,
+    analysisId: row.analysisId,
+    analysisRunId: row.runId,
+    analysisDatasetId: row.datasetId,
+    analysisRow: row,
   };
 }
 

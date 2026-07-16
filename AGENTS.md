@@ -67,6 +67,7 @@ This document distinguishes three audience scopes:
 - When a project term has already been established in the local canon, codebase, UI, or accepted documentation, reuse that exact term consistently. Do not create alternate names just because they feel more intuitive, more general, or less repetitive.
 - If multiple nearby terms appear to overlap, resolve which one is the canonical project term before proceeding, and then use that term consistently.
 - If no project-specific term has been established yet, pause and ask the operator/developer before introducing new terminology.
+- Refer to the endorsed solver under `src/eom` as the `EOM solver` in operator/developer communication, end-user UI, and prose. Do not call it the `native solver` or `native EOM solver`. Preserve `native` only in established code identifiers, executable names, schema fields, provenance tokens, and literal compatibility interfaces where renaming would change a machine contract.
 - Prefer building-block explanations that make relationships between concepts, components, and steps explicit. Use diagrams, mappings, comparisons, or other visual structure when helpful.
 - Maintain operator/developer workflow feedback in [README-op.md](README-op.md), using one-line checklist items that start with `- [ ]` for open feedback or `- [x]` for op improved feedback.
 - When the agent notices a recurring operator-side friction point, add or reopen a concrete task in [README-op.md](README-op.md) instead of burying the feedback in a transient chat summary.
@@ -213,13 +214,13 @@ The corpus rule that a measured claim names its instrument and grade applies to 
 
 ### Solver Ownership
 
-- EOM under `src/eom` is the endorsed solver and the sole forward production target for architrino motion, causal roots, path histories, coupled evolution, and solver-owned geometry. EOM output acquires canonical authority only through its declared acceptance and migration gates.
-- The existing central solver under `src/solver` is a temporary compatibility implementation retained only so current dependencies continue to operate during migration. Do not add new consumers, new physical capabilities, new evidence claims, or new forward development to it. Maintenance is limited to compatibility preservation and narrowly necessary build, safety, or diagnostic corrections.
-- Route all new solver-dependent app, simulation, and research-instrument work toward EOM contracts and native interfaces. When EOM does not yet provide a required capability, keep the work blocked, quarantined, or explicitly non-authoritative; do not use the existing central solver as a substitute.
-- Migrate existing consumers individually. Do not silently redirect them, remove compatibility behavior before its dependency is migrated, or treat coexistence as permanent. Retire the old solver after the migration inventory confirms that no retained dependency requires it.
-- JavaScript-only solver code may exist only as explicitly named `reference`, `fallback`, `test`, fixture, or comparison code. It must not be presented as the production path, promoted to default runtime behavior, or used to bypass a missing native solver capability.
-- Architrino primitives do not have physical mass. If a solver or legacy T3 row contains a `mass` or mass-like field, treat it as a numerical integration weight, comparison-kernel parameter, or legacy/toy interaction coefficient only; do not describe it as architrino ontology, and do not use it as evidence for mass-map or assembly mass claims.
-- Keep solver boundaries modular: topology, native solver/ABI, bridge request/response, interaction law, path-history storage, wake-history/event rows, output datasets, and visualization remain separate responsibilities under the EOM architecture. Keep temporary compatibility boundaries isolated from new EOM work.
+- EOM under `src/eom` is the sole solver engine and the sole production target for architrino motion, causal roots, path histories, coupled evolution, and solver-owned geometry. EOM output acquires canonical authority only through its declared acceptance and migration gates.
+- EOM is the only engine permitted in this repo. Do not introduce, port in, restore from history, or resurrect any other engine or its outputs; treat anything claiming a different engine's provenance as non-evidence, quarantine it, and flag it to the operator.
+- Producer-asserted evidence flags (for example a self-reported `canonicalEomEvidence`) are never consumed; canonical authority comes only from EOM acceptance gates and independent oracles.
+- Route all solver-dependent app, simulation, and research-instrument work toward EOM contracts and native interfaces. When EOM does not yet provide a required capability, keep the work blocked, quarantined, or explicitly non-authoritative.
+- JavaScript-only solver code may exist only as explicitly named `reference`, `fallback`, `test`, fixture, or comparison code. It must not be presented as the production path, promoted to default runtime behavior, or used to bypass a missing EOM solver capability.
+- Architrino primitives do not have physical mass. If a reference, fixture, or comparison row contains a `mass` or mass-like field, treat it as a numerical integration weight or comparison-kernel parameter only; do not describe it as architrino ontology, and do not use it as evidence for mass-map or assembly mass claims.
+- Keep solver boundaries modular: topology, EOM solver/ABI, record schema (`eom_evolution_contract/v0`), interaction law, path-history storage, wake-history/event rows, output datasets, and visualization remain separate responsibilities under the EOM architecture.
 
 ### Debugging Discipline
 

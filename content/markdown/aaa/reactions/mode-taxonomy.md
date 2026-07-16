@@ -14,7 +14,7 @@ This taxonomy records which channel family a reaction uses; it does not derive t
 
 At assembly level, these terms refer to substrate dynamics in absolute time:
 
-- **Mode-lock event:** a discrete stability transition where a driven Noether braid/wake configuration settles into an allowed propagating or bound mode (the current leading candidate realization is the [spindle braid](../noether-braid/spindle-braid.md)).
+- **Mode-lock event:** a discrete stability transition where a driven Noether braid/wake configuration settles into an allowed propagating or bound mode (a named candidate realization is the [spindle braid](../noether-braid/spindle-braid.md)).
 - **Wake-strain threshold:** the local instability boundary in Noether sea-coupled transport; below threshold, energy disperses into medium excitations, above threshold, stable mode formation is allowed.
 - **Nucleation:** relocking/reorganization of existing substrate content (with provenance-preserving architrino bookkeeping), not creation ex nihilo.
 - **Planar-mode nucleation (photon channels):** lock-in to a stable coaxial contra-rotating polarity-conjugate planar-pair mode carrying Gate A energy-momentum data and Gate B transverse-ledger data.
@@ -68,7 +68,7 @@ Specify Noether sea state variables used by mapping, with arguments suppressed o
 $(\rho_{\text{NS}}(\mathbf X,T), n(\mathbf X,T), \chi_{\text{sea}}(\mathbf X,T), \mathcal{V}_{\mathrm{NS}}, \nabla \rho_{\text{NS}}, \Phi_{\text{eff}}, T_{\mathrm{sea}}^{\mathrm{th}}, J_{\mathrm{loc}})$.
 Here $\mathcal{V}_{\mathrm{NS}}$ is the effective Noether sea anisotropy/vorticity map used by the magnetic-like channel below, $T_{\mathrm{sea}}^{\mathrm{th}}$ is the local effective temperature characterizing internal mode excitation as in [Dark Energy](../cosmology/dark-energy.md) — a temperature entry, not a time coordinate — and $J_{\mathrm{loc}}$ is the local causal-root/Jacobian data — including the same-record receiver-normal branch strength — entering the delayed-branch sums below. These variables are mapping handles, not replacement observables.
 
-Magnetic-like observer language belongs at this mapping layer. It is not a substrate force law and is not imported from rotating-frame coordinates. At substrate level each primitive hit remains line-of-action; the magnetic-like transverse channel is the part of the delayed-branch sum that survives after projection perpendicular to the assembly drift and after Noether sea anisotropy/vorticity dressing.
+Magnetic-like observer language belongs at this mapping layer. It is not a substrate-level law and is not imported from rotating-frame coordinates. At substrate level each primitive hit remains line-of-action; the magnetic-like transverse channel is the part of the delayed-branch sum that survives after projection perpendicular to the assembly drift and after Noether sea anisotropy/vorticity dressing.
 
 For an assembly $A$ with $\|\mathbf{V}_A\| > 0$, define
 $$

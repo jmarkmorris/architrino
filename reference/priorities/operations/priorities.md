@@ -16,13 +16,13 @@ This workstream tracks operational discipline for the project as the public weba
 2. Browser runtime compute, browser heap, GPU memory, and browser storage must be measured separately from GitHub Pages transfer and GitHub Actions usage.
 3. Public/review output quality for visual apps targets 4K UHD, 3840 by 2160, while solver authority remains separate from display resolution.
 4. Deployment decisions should be evidence-bound: site size, bundle size, static transfer, monthly bandwidth estimate, build/deploy behavior, artifact retention, browser performance, and cost model must be measured before changing hosting strategy.
-5. Operational work should protect product quality without creating a second solver path or bypassing native central solver ownership.
+5. Operational work should protect product quality without creating a second solver path or bypassing EOM solver ownership.
 
 ## Priority Queue
 
 1. `github_pages_limits_research` — Research current GitHub Pages limits and enforcement behavior, including published-site size, repository size guidance, deployment timeout, bandwidth guidance, build-frequency guidance, rate limiting, custom-domain constraints, static-file caching behavior, and Actions interactions. Status: `pending`; sources to verify: official GitHub Pages documentation and GitHub Actions billing/usage documentation.
 2. `hosting_alternatives_survey` — Compare GitHub Pages with Cloudflare Pages, Netlify, Vercel, object storage plus CDN, and a future service-backed deployment. Capture static bandwidth, build minutes, artifact storage, CDN behavior, custom domains, cache control, logs/analytics, cost growth, and operational complexity. Status: `pending`; depends on: `github_pages_limits_research`.
-3. `deployment_budget_contract` — Define a repo-wide deployment budget schema for webapps: bundle size, static asset transfer, GitHub Pages bandwidth estimate, browser heap budget, GPU memory budget, browser storage budget, Actions artifact budget, generated-output size, and native solver throughput. Status: `pending`; first consumer: [Borg app](../app-borg/priorities.md).
+3. `deployment_budget_contract` — Define a repo-wide deployment budget schema for webapps: bundle size, static asset transfer, GitHub Pages bandwidth estimate, browser heap budget, GPU memory budget, browser storage budget, Actions artifact budget, generated-output size, and EOM solver throughput. Status: `pending`; first consumer: [Borg app](../app-borg/priorities.md).
 4. `webapp_release_gate` — Define a release checklist for public app changes: content validation, scene graph check, bundle/asset size report, 4K UHD visual QA, browser compatibility pass, accessibility smoke check, deployment preview link, and rollback note. Status: `pending`.
 5. `browser_performance_budget` — Establish first browser performance budgets for app launch time, interaction latency, frame rate under 4K UHD output, browser heap, GPU memory, and storage growth. Status: `pending`; coordinate with solver throughput benchmarks but do not merge the budgets.
 6. `static_asset_inventory` — Inventory generated JSON, scene assets, captures, fonts, WASM, images, and review artifacts that ship or may ship through the webapp. Track compressed and uncompressed size. Status: `pending`.
@@ -47,4 +47,4 @@ Research should start from the official GitHub Pages limits documentation. The f
 
 ## Immediate Next Burden
 
-Define `deployment-budget.v1` for one app surface and apply it first to the Borg app manifest work, separating static hosting budgets from browser runtime budgets and native solver throughput.
+Define `deployment-budget.v1` for one app surface and apply it first to the Borg app manifest work, separating static hosting budgets from browser runtime budgets and EOM solver throughput.

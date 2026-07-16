@@ -283,7 +283,7 @@ candidate constants:
    same retained active identities before the chart can be promoted as a full
    branch-history certificate.
 7. `radial_turn` and `tangential_drive`: the companion
-   [spiral-a1-drive-interval-target](spiral-a1-drive-interval-target.md) packet
+   [spiral-a1-restart](spiral-a1-restart.md) packet
    now requires same-box $D_s$, $D_T$, and $W^{\mathrm{rec}}$ rows before any
    force/action verdict can be promoted. This root-window packet is topology
    evidence only.

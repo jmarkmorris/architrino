@@ -772,7 +772,7 @@ The first executable scaffold keeps the clock proof burden visible. Its accepted
 
 ## Mechanisms for Time Dilation
 
-Two coupled mechanisms change the internal frequency of a Noether braid clock (the current leading candidate realization is the [spindle braid](../noether-braid/spindle-braid.md)):
+Two coupled mechanisms change the internal frequency of a Noether braid clock (a named candidate realization is the [spindle braid](../noether-braid/spindle-braid.md)):
 
 ### Kinematic Effect (Velocity Dependence)
 

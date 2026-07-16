@@ -966,7 +966,7 @@ $$
 \mathcal{Z}_{\mathrm{tf}}^{ab}(A)
 $$
 
-A candidate mechanism, at hypothesis level, says what sets the size of this exposure for dressed fermions: the geometry of the accessory dressing. Per the quietness ladder in [Symmetric Shell Braid](../../../../markdown/aaa/noether-braid/explored-braid-geometries.md#accessory-dressing-and-apparent-energy), the six-electrino octahedral dressing of the electron reveals no polarity-signed structure below hexadecapole order, the four-site and two-site quark dressings leak at octupole and quadrupole order respectively, and the undressed neutrino-like case exposes almost nothing at all. On this reading the exposed leakage $\mathcal{Z}_{\mathrm{tf}}^{ab}(A)$ and much of the shielding coefficient $\zeta(A)$ are controlled by the lowest nonvanishing moment of the accessory arrangement plus the strain the dressing induces in the core — a geometric ordering that tracks the observed pattern of light, resilient leptons, confinement-bound quarks, and nearly massless neutrinos. This remains a routing hypothesis for the mass map, not a computed extraction.
+A candidate mechanism, at hypothesis level, says what sets the size of this exposure for dressed fermions: the geometry of the accessory dressing. Per the quietness ladder in [Symmetric Shell Braid](../../../../markdown/aaa/noether-braid/braid-families.md#accessory-dressing-and-apparent-energy), the six-electrino octahedral dressing of the electron reveals no polarity-signed structure below hexadecapole order, the four-site and two-site quark dressings leak at octupole and quadrupole order respectively, and the undressed neutrino-like case exposes almost nothing at all. On this reading the exposed leakage $\mathcal{Z}_{\mathrm{tf}}^{ab}(A)$ and much of the shielding coefficient $\zeta(A)$ are controlled by the lowest nonvanishing moment of the accessory arrangement plus the strain the dressing induces in the core — a geometric ordering that tracks the observed pattern of light, resilient leptons, confinement-bound quarks, and nearly massless neutrinos. This remains a routing hypothesis for the mass map, not a computed extraction.
 
 For the scalar inertial readout, only the reversible symmetric part of the Noether sea response belongs in the mass trace. Define
 $$
@@ -1362,7 +1362,7 @@ It is crucial to clarify what is **fundamental** versus what is **emergent**:
 | Concept | Status in $\mathbb{A}\mathbb{A}\mathbb{A}$ |
 |:--------|:-------------------------------|
 | **Architrino Position/Velocity** | Fundamental (substrate level) |
-| **Architrino polarity bookkeeping unit ($\epsilon=|e|/6$)** | Fundamental at the polarity-bookkeeping layer; observer-level electric charge is assembly-level inventory |
+| **Architrino polarity magnitude $\epsilon$** | Fundamental at the polarity layer; observer-level electric charge is assembly-level inventory recovered as $|e|=6\epsilon$ |
 | **Noether sea state** | Emergent density, compliance, drift, and clock-response fields |
 | **Inertial Mass ($m$)** | **Emergent** (shielded internal energy + medium-dressed response) |
 | **Gravitational Mass** | **Emergent** (Noether sea gradient response) |
@@ -1391,23 +1391,15 @@ $$
 
 Every emergent inertial mass in this chapter is a pure number times this unit; the roadmap formula $M_0(A)c_{\mathrm{eff}}^2\sim\zeta(A)E_{\mathrm{internal}}(A)$ is the statement that the number is set by the shielded internal energy of the retained branch.
 
-The same constants fix an absolute size. The self-equilibrated spindle configuration has a native rail radius
-
-$$
-R_M^{\mathrm{eq}} = 3.4937\,\frac{\kappa\varepsilon^2}{c_f^2},
-\qquad
-\kappa_{\mathrm{eq}} = 1/R_M^{\mathrm{eq}} = 0.28623,
-$$
-
-a gauge-invariant number measured on the family and sitting well above the near-field floor, so the scale is set by coupling-scale self-support rather than by a discreteness rescue. This size anchor is the length half of the mass map: it fixes the scale at which a candidate braid sits. What it does not yet supply is the energy half — a retained free object from which $E_{\mathrm{internal}}$, and hence the pure number multiplying $M_0$, can be extracted. That extraction is gated on the same retained-object question the [Noether Braid](../../../../markdown/aaa/noether-braid/spindle-braid.md) confinement program leaves open, so the first-particle mass remains a target rather than a computed value.
+The same constants are expected to fix an absolute size: a self-supporting braid configuration, if one exists, would carry a native equilibrium radius of order $\kappa\varepsilon^2/c_f^2$ — the coupling-scale unit — and that radius would be the length half of the mass map, fixing the scale at which a candidate braid sits. No verified equilibrium radius is currently carried in this chapter: an earlier single-instrument value was retired with the failed search campaign, and the derivation awaits the validated engine. What the length half must still be joined by is the energy half — a retained free object from which $E_{\mathrm{internal}}$, and hence the pure number multiplying $M_0$, can be extracted. Both halves are gated on the same open retained-object question, so the first-particle mass remains a target rather than a computed value.
 
 #### The Action Ladder
 
 Claim level: interpretation and derivation target; assigning specific rungs to specific particles is the open mass-map work, not asserted here.
 
-Because the family is iso-frequency — one shared internal cadence — an added or removed quantum of action cannot land on one layer as a private frequency change. It re-settles the whole rigid structure by one integer rung: all three layer radii co-move and the three tilts re-settle together, so the middle layer stays on the field-speed rail and the internal force ledger stays balanced. The layers' shares are therefore not free; they are fixed by the same force balance that fixes the rest geometry, anchored by the rail relation $\omega=c_f/(R_M\cos\alpha_M)$.
+Because the family is iso-frequency — one shared internal cadence — an added or removed quantum of action cannot land on one layer as a private frequency change; it must re-tune the whole rigid structure together. The hypothesis of this section is that the re-tuning is quantized into integer rungs: all three layer radii co-move and the three tilts re-tune together under one shared constraint, so the layers' shares are fixed by the same closure conditions that fix the rest geometry. No settling dynamics and no speed-holding mechanism are asserted — an earlier proposed rail-pinning mechanism was retired when its own condition was measured false — and the rung structure is a derivation target for the validated engine.
 
-Read as a spectrum, this is the substrate origin of energy quantization. Each rung is a discrete allowed state; the spacing is one action quantum; a rung-to-rung transition is the emission or absorption of a quantum. The ladder carries the form $E=n\,h\,f$, tying the level index, the action quantum, and the internal cadence in one relation. Through the rail, a higher cadence forces a smaller envelope, so climbing the ladder makes the object smaller and its observed inertial response larger — the emergent-mass counterpart of the observed mass–Compton-length relation. One geometric family, climbable through a very large (near-Planck) number of integer rungs, thus spans a whole spectrum from the lightest retained states up to the Planck-scale top ($\xi\to0$, the [singularity-resolution](../../../../markdown/aaa/spacetime/singularity-resolution.md) limit). Which rung corresponds to which observed particle is the open extraction the mass map owns; the structure — an integer action ladder whose rungs are the allowed states — is the promotable statement.
+Read as a spectrum, this would be a substrate origin of energy quantization. Each rung is a discrete allowed state; the spacing is one action quantum; a rung-to-rung transition is the emission or absorption of a quantum. The ladder carries the form $E=n\,h\,f$, tying the level index, the action quantum, and the internal cadence in one relation. Through the cadence-radius coupling, a higher cadence forces a smaller envelope, so climbing the ladder makes the object smaller and its observed inertial response larger — the emergent-mass counterpart of the observed mass–Compton-length relation. One geometric family, climbable through a very large (near-Planck) number of integer rungs, thus spans a whole spectrum from the lightest retained states up to the Planck-scale top ($\xi\to0$, the [singularity-resolution](../../../../markdown/aaa/spacetime/singularity-resolution.md) limit). Which rung corresponds to which observed particle is the open extraction the mass map owns; the structure — an integer action ladder whose rungs are the allowed states — is the promotable statement.
 
 #### Mass-Channel Categories
 

@@ -250,7 +250,7 @@ A delay-energy construction is promotable only when the branch chart names:
 6. the crosswalk residual whenever more than one energy construction is invoked;
 7. the lower-bound condition needed for no-runaway arguments.
 
-The construction fails if conservation is recovered only by changing the energy definition per observable, if $E_{\text{wake}}^{(\eta)}$ has no lower bound on the admitted chart, if endpoint leakage is silently discarded, if the regulator is not the same regulator used by the force law, or if the branch chart loses its causal-root floors. In those cases $E_{\text{wake}}$ remains a diagnostic placeholder and cannot be used to close energy bookkeeping, stability, or no-runaway claims.
+The construction fails if conservation is recovered only by changing the energy definition per observable, if $E_{\text{wake}}^{(\eta)}$ has no lower bound on the admitted chart, if endpoint leakage is silently discarded, if the regulator is not the same regulator used by the acceleration law, or if the branch chart loses its causal-root floors. In those cases $E_{\text{wake}}$ remains a diagnostic placeholder and cannot be used to close energy bookkeeping, stability, or no-runaway claims.
 
 ## Downstream Use
 

@@ -35,7 +35,7 @@ The relevant $\mathbb{A}\mathbb{A}\mathbb{A}$ signal is a Noether sea delay map:
 | Source draft | Promotion target | Gate |
 | --- | --- | --- |
 | This file | [validation-gates](../validation-gates/priorities.md) | Add Shapiro delay as a gravity benchmark consuming the same $\mathcal{M}_{\mathrm{sea}}^{ab}$ as lensing and redshift. |
-| This file | mass-map/a0-medium-response-tensor-probe (legacy-braid ref: `braid-archive/braid-mass-response-map/a0-medium-response-tensor-probe.md`) | Use delay as a direct probe of the response tensor. |
+| This file | mass-map/a0-medium-response-tensor-probe | Use delay as a direct probe of the response tensor. |
 | This file | [master-equation-closure](../master-equation-closure/priorities.md) | Tie the effective delay to causal-wake propagation and assembly response. |
 
 ## Failure Modes

@@ -6,4 +6,11 @@ Use [brainstorming.md](brainstorming.md) for provisional ideas, insights, concep
 
 ## Log Entries
 
-- 2026-07-11: The operator accepted option (a) for `dressed_electron_global_drain_scope_decision`. The resulting [scope decision](dressed-electron-global-drain-scope-decision.md) fixes the minimum 12-architrino electron inventory, preserves the Section 88 on-axis and Section 89 Lagrange-docked pilots as seed-grade null controls, separates bare-scaffold conclusions from dressed retest obligations, and defines the retained-record output contract. Authority stops at a read-only central-solver contract audit and retained-run specification; no new payload geometry, solver change, native release, retention claim, or corpus promotion is authorized. `DF-02` was removed from the Operator Discussion Queue and the remaining rows were reranked.
+- 2026-07-16: Consolidated the lane around the first missing
+  `receiver_normal_branch_strength_certificate/v0` object. The live tracker was
+  reduced to queue, blocker, routing, and promotion state; the former long-form
+  tracker became `branch-closure-program.md`; 22 overlapping A1/VP-1 restart
+  shells were replaced by `spiral-a1-restart.md` and `spiral-vp1-restart.md`;
+  and the six packets with distinct topology, interval, finite-memory,
+  Jacobian, or root-transport evidence were retained. No branch verdict or
+  corpus promotion was added.

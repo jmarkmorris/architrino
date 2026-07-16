@@ -11,7 +11,7 @@ import {
   getPhotonPreset,
 } from "./PhotonPresetRuntime.js";
 import {
-  createPhotonConfigurationSearchResultsWithSolverBridge,
+  createPhotonConfigurationSearchResultsWithPrescribedPathAnalysis,
   parsePhotonSearchResultsJson,
   serializePhotonSearchResults,
 } from "./PhotonSearchRuntime.js";
@@ -19,7 +19,7 @@ import { createMarkdownRuntime } from "../../runtime/MarkdownRuntime.js";
 import { extractMarkdownSection } from "../../services/MarkdownPolicyService.js";
 import { createPhotonControlsRuntime } from "./PhotonControlsRuntime.js";
 import {
-  computePhotonFormulaSummaryWithSolverBridge,
+  computePhotonFormulaSummaryWithPrescribedPathAnalysis,
 } from "./PhotonFormulaRuntime.js";
 import { getPhotonDiagnosticRows, formatPhotonFixed } from "./PhotonDiagnosticsRuntime.js";
 import {
@@ -27,16 +27,7 @@ import {
   drawPhotonPolarizationInset,
   drawPhotonBraidStage,
 } from "./PhotonBraidVisualRuntime.js";
-import {
-  createSolverAppBridgeClient,
-} from "../../solver/app/SolverAppBridge.mjs";
-import {
-  createSolverAppBridgeInitRequest,
-} from "../../solver/app/SolverAppBridgeClientResolver.mjs";
-import {
-  createSolverAppWorkerClient,
-} from "../../solver/app/SolverAppWorkerBridge.mjs";
-import { createPhotonSolverBridgeOptions } from "./PhotonSolverBridgeOptions.js";
+import { PRESCRIBED_PATH_ANALYSIS_ID } from "../../prescribed-path-analysis/index.mjs";
 import {
   STANDALONE_APP_HOME_HREF,
   navigateStandaloneAppHome,
@@ -68,14 +59,12 @@ const PHOTON_DOCS = {
   },
 };
 
-const PHOTON_RUNTIME_SOLVER_ENGINE_ID = "architrino-solver-app-bridge";
-const PHOTON_RUNTIME_SOLVER_CAPABILITIES = Object.freeze(["causalRoots", "delayedHits"]);
+const PHOTON_RUNTIME_ANALYSIS_ID = PRESCRIBED_PATH_ANALYSIS_ID;
 const PHOTON_RUNTIME_SOLVER_MEMORY_BUDGET_BYTES = 64 * 1024 * 1024;
 const PHOTON_RUNTIME_SOLVER_MIN_INTERVAL_MS = 750;
 const PHOTON_RUNTIME_SOLVER_EDIT_DEBOUNCE_MS = 220;
 const PHOTON_RUNTIME_SOLVER_TIME_QUANTUM_SECONDS = 1 / 12;
 const PHOTON_RUNTIME_SOLVER_DISPLAY_PLOT_SAMPLE_COUNT = 360;
-const PHOTON_RUNTIME_SOLVER_WORKER_REQUEST_TIMEOUT_MS = 120000;
 const PHOTON_RUNTIME_SOLVER_SUMMARY_OPTIONS = Object.freeze({
   polarizationSampleCount: 6,
   minimumPolarizationSampleCount: 6,
@@ -365,14 +354,14 @@ function getPhotonRuntimeNowMs(windowLike) {
 
 function hasPhotonInlineSolverOption(options) {
   return typeof options?.solveCircularSourceRootsHitsLedger === "function" ||
-    typeof options?.runSolverBridge === "function";
+    typeof options?.runPrescribedPathAnalysis === "function";
 }
 
 function getPhotonRuntimeSolverStatusMessage(error = null) {
   if (error) {
-    return `Solver data unavailable: ${error?.message ?? "unknown error"}`;
+    return `Prescribed-path analysis unavailable: ${error?.message ?? "unknown error"}`;
   }
-  return "Loading solver data";
+  return "Loading prescribed-path analysis";
 }
 
 function evaluatePhotonRuntimeCenteredFit(component, phase) {
@@ -423,7 +412,7 @@ function createPhotonRuntimePlotFromPolarizationTrace(
   return {
     runDuration,
     currentTime,
-    solverEngineId: trace?.solverEngineId,
+    analysisId: trace?.analysisId,
     amplitudeScale,
     samples,
   };
@@ -466,7 +455,7 @@ export function createPhotonRuntime({
   documentLike = globalThis.document,
   windowLike = globalThis.window,
   homeHref = STANDALONE_APP_HOME_HREF,
-  solverBridgeOptions: solverBridgeOptionOverrides = {},
+  prescribedPathAnalysisOptions = {},
 } = {}) {
   const stageCanvas = queryPhotonElement(documentLike, "#photon-stage-canvas");
   const electricFieldCanvas = queryPhotonElement(documentLike, "#photon-electric-field-canvas");
@@ -508,9 +497,6 @@ export function createPhotonRuntime({
   let lastFrame = 0;
   let controlsRuntime = null;
   let animationFrame = 0;
-  let solverClientPromise = null;
-  let ownedSolverClient = null;
-  let ownedSolverWorker = null;
   let solverSnapshot = null;
   let solverSnapshotPromise = null;
   let solverLastRequestAtMs = 0;
@@ -520,10 +506,6 @@ export function createPhotonRuntime({
   let solverError = null;
   let solverGeneration = 0;
   let runtimeDestroyed = false;
-  const solverBridgeOptions = createPhotonSolverBridgeOptions(
-    windowLike ?? globalThis,
-    solverBridgeOptionOverrides
-  );
   const markdownRuntime = createPhotonMarkdownRuntime({
     windowLike,
     markdownPanel,
@@ -532,103 +514,8 @@ export function createPhotonRuntime({
     markdownLayoutToggle,
   });
 
-  function createPhotonRuntimeSolverInitRequest(options) {
-    return createSolverAppBridgeInitRequest({
-      appId: "photon",
-      requestedCapabilities: PHOTON_RUNTIME_SOLVER_CAPABILITIES,
-      options,
-      storagePolicy: {
-        target: options.streamTarget ?? "caller-buffer",
-        durable: options.streamTarget === "native-file",
-        maxBytes:
-          options.memoryBudgetBytes ??
-          PHOTON_RUNTIME_SOLVER_MEMORY_BUDGET_BYTES,
-      },
-      threadingPolicy: {
-        mode: options.threadingMode ?? "single-thread",
-        deterministic: options.deterministic ?? true,
-      },
-    });
-  }
-
-  function createPhotonRuntimeSolverWorkerClient() {
-    const workerUrl = solverBridgeOptions.workerUrl;
-    const scope = solverBridgeOptions.scope ?? windowLike ?? globalThis;
-    const WorkerCtor = solverBridgeOptions.WorkerCtor ?? scope?.Worker;
-    if (!workerUrl || typeof WorkerCtor !== "function") {
-      return null;
-    }
-    const worker = new WorkerCtor(workerUrl, {
-      type: "module",
-      name: "photon-solver-bridge",
-      ...(solverBridgeOptions.workerOptions ?? {}),
-    });
-    ownedSolverWorker = worker;
-    return createSolverAppWorkerClient(worker, {
-      requestIdPrefix: "photon-solver-worker",
-      requestTimeoutMs:
-        solverBridgeOptions.workerRequestTimeoutMs ??
-        PHOTON_RUNTIME_SOLVER_WORKER_REQUEST_TIMEOUT_MS,
-      terminateOnDispose: solverBridgeOptions.terminateSolverWorkerOnDispose ?? true,
-    });
-  }
-
-  async function getPhotonRuntimeSolverClient() {
-    if (solverBridgeOptions.solverClient) {
-      return solverBridgeOptions.solverClient;
-    }
-    if (!solverClientPromise) {
-      solverClientPromise = (async () => {
-        if (solverBridgeOptions.solverWorker) {
-          const providedWorkerClient = createSolverAppWorkerClient(
-            solverBridgeOptions.solverWorker,
-            {
-              requestIdPrefix: "photon-solver-worker",
-              requestTimeoutMs:
-                solverBridgeOptions.workerRequestTimeoutMs ??
-                PHOTON_RUNTIME_SOLVER_WORKER_REQUEST_TIMEOUT_MS,
-              terminateOnDispose: solverBridgeOptions.terminateSolverWorkerOnDispose === true,
-            }
-          );
-          await providedWorkerClient.init(
-            createPhotonRuntimeSolverInitRequest(solverBridgeOptions)
-          );
-          ownedSolverClient = providedWorkerClient;
-          return providedWorkerClient;
-        }
-        const workerClient = createPhotonRuntimeSolverWorkerClient();
-        if (workerClient) {
-          await workerClient.init(
-            createPhotonRuntimeSolverInitRequest(solverBridgeOptions)
-          );
-          ownedSolverClient = workerClient;
-          return workerClient;
-        }
-        const client = createSolverAppBridgeClient({
-          createWasmModule: solverBridgeOptions.createWasmModule,
-          locateFile: solverBridgeOptions.locateFile,
-        });
-        await client.init(
-          createPhotonRuntimeSolverInitRequest(solverBridgeOptions)
-        );
-        ownedSolverClient = client;
-        return client;
-      })();
-    }
-    return solverClientPromise;
-  }
-
   async function createPhotonRuntimeSolverOptions() {
-    if (hasPhotonInlineSolverOption(solverBridgeOptions)) {
-      return solverBridgeOptions;
-    }
-    return {
-      ...solverBridgeOptions,
-      solverClient: await getPhotonRuntimeSolverClient(),
-      streamTarget: solverBridgeOptions.streamTarget ?? "caller-buffer",
-      deterministic: solverBridgeOptions.deterministic ?? true,
-      threadingMode: solverBridgeOptions.threadingMode ?? "single-thread",
-    };
+    return prescribedPathAnalysisOptions;
   }
 
   function getCurrentSolverSnapshot() {
@@ -689,8 +576,8 @@ export function createPhotonRuntime({
       documentLike,
       diagnosticsElement,
       [
-        ["Solver engine", PHOTON_RUNTIME_SOLVER_ENGINE_ID, "info"],
-        ["Solver status", statusMessage, solverError ? "bad" : "info"],
+        ["Analysis library", PHOTON_RUNTIME_ANALYSIS_ID, "info"],
+        ["Analysis status", statusMessage, solverError ? "bad" : "info"],
       ],
       { windowLike }
     );
@@ -742,7 +629,7 @@ export function createPhotonRuntime({
     solverError = null;
     solverSnapshotPromise = (async () => {
       const solverOptions = await createPhotonRuntimeSolverOptions();
-      const summary = await computePhotonFormulaSummaryWithSolverBridge(
+      const summary = await computePhotonFormulaSummaryWithPrescribedPathAnalysis(
         stateForSolve,
         solveTime,
         {
@@ -898,7 +785,7 @@ export function createPhotonRuntime({
         resolve((async () => {
           try {
             const solverOptions = await createPhotonRuntimeSolverOptions();
-            searchResults = await createPhotonConfigurationSearchResultsWithSolverBridge(
+            searchResults = await createPhotonConfigurationSearchResultsWithPrescribedPathAnalysis(
               stateForSearch,
               {
                 ...solverOptions,
@@ -1202,16 +1089,6 @@ export function createPhotonRuntime({
     }
     clearSolverDebounceTimer();
     solverSnapshotPromise = null;
-    const clientToDispose = ownedSolverClient;
-    const workerToTerminate = ownedSolverWorker;
-    ownedSolverClient = null;
-    ownedSolverWorker = null;
-    solverClientPromise = null;
-    if (clientToDispose && typeof clientToDispose.dispose === "function") {
-      void clientToDispose.dispose();
-    } else if (workerToTerminate && typeof workerToTerminate.terminate === "function") {
-      workerToTerminate.terminate();
-    }
     documentLike.removeEventListener("keydown", handleKeydown);
     windowLike.removeEventListener("resize", draw);
     markdownRuntime.hideMarkdownPanel();

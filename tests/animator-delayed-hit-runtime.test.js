@@ -9,7 +9,7 @@ import {
 } from "../src/apps/animator/AnimatorDelayedHitRuntime.js";
 import {
   createAnimatorDelayedHitRowsFromStreamDescriptors,
-} from "../src/solver/app/AnimatorDelayedHitRows.mjs";
+} from "../src/apps/animator/display/AnimatorDelayedHitRows.mjs";
 
 test("animator delayed-hit runtime animates a connector from emission to receiver", () => {
   const hit = {

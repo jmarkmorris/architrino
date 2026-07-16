@@ -6,7 +6,7 @@ That delay makes the binary the first serious test of the Master Equation. Partn
 
 Read the chapter as a branch atlas, not as a single orbit story. The partner-only row shows why ordinary circular central-force intuition fails. The self-hit rows show where the system becomes path-history dependent. The maximum-curvature and spiral sections are candidate ways to control that delayed feedback, and each must close its own root, action, wake, and stability ledger before it can become an assembly building block.
 
-This chapter is the foundational precursor to [Nested Shell Braid Dynamics](../noether-braid/explored-braid-geometries.md#nested-shell-braid-dynamics), [Noether Braid Doubling-Frequency Resonance Lock](../noether-braid/explored-braid-geometries.md#noether-braid-doubling-frequency-resonance-lock), [Master Equation](master-equation.md), and the assembly-level [Noether Braid](../noether-braid/noether-braid.md). The primitive-entity ontology in [Architrino](../foundations/architrino.md) points here once the discussion becomes a behavioral regime or assembly-stability mechanism.
+This chapter is the foundational precursor to [Nested Shell Braid Dynamics](../noether-braid/braid-families.md#nested-shell-braid-dynamics), [Noether Braid Doubling-Frequency Resonance Lock](../noether-braid/doubling-frequency-lock.md), [Master Equation](master-equation.md), and the assembly-level [Noether Braid](../noether-braid/noether-braid.md). The primitive-entity ontology in [Architrino](../foundations/architrino.md) points here once the discussion becomes a behavioral regime or assembly-stability mechanism.
 
 ## The Spiral Orbiting Binary and the Contraction Phase
 
@@ -111,7 +111,7 @@ When $\mathbf{V}$ is parallel to $\mathbf{n}$, each architrino draws a constant-
 
 ## Spiral Momentum Budget Across the Hinge (Speculative)
 
-This subsection records a modeling hypothesis rather than a derived law. The desired closure would link the spiral path, the per-hit force law, and the angular-momentum budget across the full velocity range. Below the wake speed, the binary feels only partner hits, and the principal circular branch has positive tangential work. A contraction ansatz must therefore explain how radial tightening survives that anti-damping row through non-circular geometry, wake-flux export, recoil, or a later multi-root ledger. We introduce a per-cycle gain parameter $\Delta L_c$ only as a provisional bookkeeping variable for that unresolved branch-history calculation.
+This subsection records a modeling hypothesis rather than a derived law. The desired closure would link the spiral path, the per-hit acceleration law, and the angular-momentum budget across the full velocity range. Below the wake speed, the binary feels only partner hits, and the principal circular branch has positive tangential work. A contraction ansatz must therefore explain how radial tightening survives that anti-damping row through non-circular geometry, wake-flux export, recoil, or a later multi-root ledger. We introduce a per-cycle gain parameter $\Delta L_c$ only as a provisional bookkeeping variable for that unresolved branch-history calculation.
 
 **Branch-birth jump target:** a smooth doubling rule is too strong unless the active causal-root ledger stays unchanged. On a fixed signed branch chart $b(s)$, the per-cycle escaped angular-momentum entry should instead be written
 $$
@@ -1139,7 +1139,7 @@ The standard equilibrium test in central-force mechanics uses the Hessian of an 
 $$
 H_{ab}(q_\star)=\partial_a\partial_b V_{\mathrm{eff}}(q_\star)
 $$
-tests local stiffness in the non-symmetry directions. This is useful as comparison language, but it is not yet a stability proof for an architrino binary because the force law depends on path-history, the active signed causal-root ledger, the receiver-normal branch strength, and the branch Jacobian floors.
+tests local stiffness in the non-symmetry directions. This is useful as comparison language, but it is not yet a stability proof for an architrino binary because the acceleration law depends on path-history, the active signed causal-root ledger, the receiver-normal branch strength, and the branch Jacobian floors.
 
 The $\mathbb{A}\mathbb{A}\mathbb{A}$ branch-stability target is therefore a cycle-averaged stiffness matrix on a fixed branch chart. Let $b$ denote a fixed signed causal-root ledger and let $\mathbf{X}_b(T)$ be a candidate periodic history with period $P_b$. For reduced branch coordinates $y^a$ transverse to time shift, period reparameterization, Euclidean motions, and any phase-locked flat-connection moduli retained by an enclosing assembly chart, define the diagnostic stiffness target
 $$
@@ -1565,7 +1565,7 @@ $$
 =c_f[T-(T_{\mathrm{em}}-\Delta T)]
 $$
 Hence the same branch contributions appear with shifted times, and
-$\frac{d^2\mathbf Y_i}{dT^2}(T)=\frac{d^2\mathbf X_i}{dT^2}(T+\Delta T)$ satisfies the same force law.
+$\frac{d^2\mathbf Y_i}{dT^2}(T)=\frac{d^2\mathbf X_i}{dT^2}(T+\Delta T)$ satisfies the same acceleration law.
 
 For spatial isometries, set $\mathbf Y_i(T)=R\mathbf X_i(T)+\mathbf b$,
 $R\in O(3)$. Distances are preserved:

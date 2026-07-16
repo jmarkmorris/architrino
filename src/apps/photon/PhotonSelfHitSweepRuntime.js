@@ -7,7 +7,7 @@ import {
   normalizePhotonState,
 } from "./PhotonStateRuntime.js";
 import {
-  computePhotonSelfHitDiagnosticsWithSolverBridge,
+  computePhotonSelfHitDiagnosticsWithPrescribedPathAnalysis,
 } from "./PhotonFormulaRuntime.js";
 
 export const PHOTON_SELF_HIT_PHASE_LOCK_SWEEP_SCHEMA =
@@ -227,7 +227,7 @@ function compactSweepCase(caseResult) {
 async function evaluateSweepCase(sweepCase, config, options = {}) {
   const state = createSweepState(sweepCase);
   const observationTime = createObservationTime(state, sweepCase.observationProgress);
-  const diagnostics = await computePhotonSelfHitDiagnosticsWithSolverBridge(state, {
+  const diagnostics = await computePhotonSelfHitDiagnosticsWithPrescribedPathAnalysis(state, {
     skipSpanSelfHitDiagnostics: true,
     selfHitObservationTime: observationTime,
     helicalSelfHitHistoryCycles: config.helicalSelfHitHistoryCycles,

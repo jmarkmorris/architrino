@@ -1,4 +1,0 @@
-id,branch_from,branch_to,cluster_id,delta_I_ME,status,failure_code,phase_residual,energy_residual,root_residual,delta_N_self,floquet_from,floquet_to,floquet_continuation
-fixture-B12-B13-a,B_12,B_13,terminal-lock,1.000000,accepted,,0.002,0.003,0.001,2,0.12,0.10,0.09
-fixture-B20-B21-b,B_20,B_21,terminal-lock,1.010000,accepted,,0.003,0.002,0.001,2,0.11,0.095,0.085
-fixture-B07-B08-control,B_07,B_08,control-open-root,0.470000,rejected,root-ledger-instability,0.004,0.003,0.04,1,0.04,0.03,0.02

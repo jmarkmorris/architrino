@@ -1126,11 +1126,6 @@
       "path": "content/scenes/foundations/foundations.json"
     },
     {
-      "id": "noether_braid__neutral_braid",
-      "name": "Neutral Braid",
-      "path": "content/scenes/noether-braid/neutral_braid.json"
-    },
-    {
       "id": "noether_braid__configuration_space",
       "name": "Noether Braid Configuration Space",
       "path": "content/scenes/noether-braid/noether_braid_configuration_space.json"
@@ -1139,11 +1134,6 @@
       "id": "noether_braid__overview",
       "name": "Noether Braid",
       "path": "content/scenes/noether-braid/noether_braid_overview.json"
-    },
-    {
-      "id": "noether_braid__taxonomy",
-      "name": "Noether Braid Taxonomy",
-      "path": "content/scenes/noether-braid/noether_braid_taxonomy.json"
     },
     {
       "id": "noether_braid__topological_charge",
@@ -1384,31 +1374,6 @@
       "id": "philosophy_history__treasure_physics_overlooked_overview",
       "name": "The Treasure Physics Overlooked",
       "path": "content/scenes/philosophy_history/treasure_physics_overlooked/overview.json"
-    },
-    {
-      "id": "proof_programs__closed_form_collinear_breather_ansatz",
-      "name": "Closed-Form Collinear Breather Ansatz",
-      "path": "content/scenes/proof-programs/closed_form_collinear_breather_ansatz.json"
-    },
-    {
-      "id": "dynamics__collinear_breather",
-      "name": "Collinear Breather",
-      "path": "content/scenes/proof-programs/collinear_breather.json"
-    },
-    {
-      "id": "dynamics__master_equation_breather",
-      "name": "Master Equation Breather",
-      "path": "content/scenes/proof-programs/master_equation_breather.json"
-    },
-    {
-      "id": "dynamics__planar_bridge_closure",
-      "name": "Planar Bridge Closure",
-      "path": "content/scenes/proof-programs/planar_bridge_closure.json"
-    },
-    {
-      "id": "proof_programs",
-      "name": "Proof Programs",
-      "path": "content/scenes/proof-programs/proof_programs.json"
     },
     {
       "id": "quantum__algorithmic_resonance",
@@ -1876,11 +1841,6 @@
       "path": "content/scenes/archie/presentations.json"
     },
     {
-      "id": "noether_braid__proof_map",
-      "name": "Noether Braid Proof Map",
-      "path": "content/scenes/noether-braid/noether_braid_proof_map.json"
-    },
-    {
       "id": "fermions__muon_tau",
       "name": "Muon and Tau",
       "path": "content/scenes/assemblies/muon_tau.json"
@@ -1916,9 +1876,9 @@
       "path": "content/scenes/noether-braid/spindle_braid.json"
     },
     {
-      "id": "proof_programs__terminal_alignment",
-      "name": "Terminal Alignment",
-      "path": "content/scenes/proof-programs/terminal_alignment.json"
+      "id": "noether_braid__doubling_frequency_lock",
+      "name": "Doubling-Frequency Resonance Lock",
+      "path": "content/scenes/noether-braid/doubling_frequency_lock.json"
     }
   ]
 }

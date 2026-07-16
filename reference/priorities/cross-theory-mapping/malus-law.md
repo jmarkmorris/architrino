@@ -68,7 +68,7 @@ The proof owner is photon Gate B, not this cross-theory card. The current corpus
 
 | Source draft | Promotion target | Gate |
 | --- | --- | --- |
-| This file | angular-momentum-spin/photon-measurement-bell-gates (legacy-braid ref: `braid-archive/braid-angular-momentum-spin/photon-measurement-bell-gates.md`) | Keep Malus' law inside photon Gate B and derive the projector, capture measure, material measure, and detector-bias diagnostic there. |
+| This file | angular-momentum-spin/photon-measurement-bell-gates | Keep Malus' law inside photon Gate B and derive the projector, capture measure, material measure, and detector-bias diagnostic there. |
 | This file | [quantum-closure/transfer-operator-basin-measure](../quantum-closure/transfer-operator-basin-measure.md) | Treat the photon analyzer kernel as a derived basin pullback, not an assumed $\cos^2\theta$ detector law. |
 | This file | [assemblies/bosons/electroweak-bosons](../../../content/markdown/aaa/assemblies/bosons/electroweak-bosons.md#gate-b-theorem-scaffold-polarization-and-spin) | Use the benchmark as the simplest Gate B recovery target after Gate A supplies the admissible photon branch. |
 | This file | [validation-gates](../validation-gates/priorities.md) | Add local photon-analyzer recovery as a pre-Bell validation surface for squared-amplitude capture. |

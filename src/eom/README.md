@@ -1,9 +1,7 @@
-# EOM Native Engine
+# EOM Solver
 
 This directory is the C++20 host implementation for EOM, the endorsed solver
-and sole forward production target. It is separate from `src/solver`; the
-existing central solver remains available only as temporary compatibility for
-current dependencies during consumer-by-consumer migration.
+and sole forward production target. EOM is the only engine in the repo.
 
 The executable layer currently contains:
 
@@ -19,7 +17,8 @@ The executable layer currently contains:
 - a deterministic multithreaded exact-pair retained-history/root batch;
 - complete simple-root brackets with source-normal and receiver-normal
   enclosures, retained-history provenance fingerprints, segment identity,
-  memory-boundary status, and the canonical coincident self-endpoint rule;
+  memory-boundary status, an inward-rounded MPFR tolerance-edge probe, and the
+  canonical coincident self-endpoint rule;
 - a provenance-bound uniform-circular history factory whose strict chord
   certificate excludes the complete open self-search interval at
   $0<v\le c_f$, while arbitrary straight $v=c_f$ histories remain
@@ -90,11 +89,13 @@ materialized for the existing deterministic receiver reducer, so compressed
 million-path reduction remains open. The persistent worker still receives the
 full retained-history request at each atomic chunk. GPU, multi-GPU,
 distributed histories, split absolute time, multirate scheduling, and the
-production million-path run remain open. Borg shadow output remains
-noncanonical. The strict one-path Borg refinement control passes, but the
-16-history attempt fails closed because all 240 off-diagonal ordered pairs
-reach the current numeric precision ceiling. Full-population precision closure
-and the performance gates must pass before migration.
+production million-path run remain open. Borg uses a certified artificial
+retained history as part of its randomized initial condition and publishes
+accepted EOM extensions from $T=0$ with conditional provenance. The strict
+eight-path refinement control passes at `0.01`, `0.005`, and `0.0025`, with
+byte-identical one-thread/four-thread output at `0.0025`. That is the completed
+Borg consumer gate; the broader correctness and scale obligations above remain
+owned by EOM validation.
 
 Build and run the native fixture:
 

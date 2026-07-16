@@ -39,4 +39,3 @@ Loose app concepts, design notes, and immediate build-candidate discussion live 
 - [app-assembly-explorer](../app-assembly-explorer/priorities.md)
 - [app-equation-mapping](../app-equation-mapping/priorities.md)
 - [app-animator](../app-animator/priorities.md)
-- [app-solver](../app-solver/priorities.md)

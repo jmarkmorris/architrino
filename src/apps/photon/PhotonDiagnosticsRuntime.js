@@ -222,7 +222,7 @@ function formatPhaseLockClassSummary(diagnostics = {}) {
 
 function requirePhotonFormulaSummary(formulaSummary) {
   if (!formulaSummary || typeof formulaSummary !== "object") {
-    throw new Error("Photon diagnostics require a solver-backed formula summary.");
+    throw new Error("Photon diagnostics require a prescribed-path-analysis formula summary.");
   }
   return formulaSummary;
 }
@@ -252,7 +252,7 @@ export function computePhotonDiagnostics(state, timeSeconds, formulaSummary = nu
     averageAnalyzerFraction: formula.averageAnalyzerFraction,
     fitResidual: formula.fitResidual,
     sourceHistoryProviderId: formula.field.sourceHistoryProviderId ?? "",
-    solverFieldSchema: formula.field.solverFieldSchema ?? "",
+    analysisFieldSchema: formula.field.analysisFieldSchema ?? "",
     fieldReconstructionOwner: formula.field.fieldReconstructionOwner ?? "",
     receiverNormalOwner: formula.field.receiverNormalOwner ?? "",
     averageDelay: formula.field.averageDelay,
@@ -323,8 +323,10 @@ export function getPhotonDiagnosticRows(state, timeSeconds, formulaSummary = nul
     ],
     [
       "Field reconstruction",
-      diagnostics.fieldReconstructionOwner === "central_solver" ? "central solver" : "local",
-      diagnostics.fieldReconstructionOwner === "central_solver" ? "good" : "poor",
+      diagnostics.fieldReconstructionOwner === "prescribed_path_analysis"
+        ? "prescribed-path analysis"
+        : "local",
+      diagnostics.fieldReconstructionOwner === "prescribed_path_analysis" ? "info" : "poor",
     ],
     [
       "Max source v/c_f",
@@ -439,8 +441,8 @@ export function getPhotonDiagnosticRows(state, timeSeconds, formulaSummary = nul
       getHitPhaseSpreadQuality(diagnostics.leadingHitPhaseSpread),
     ],
   ];
-  if (formula?.solverEngineId) {
-    rows.unshift(["Solver engine", formula.solverEngineId, "info"]);
+  if (formula?.analysisId) {
+    rows.unshift(["Analysis library", formula.analysisId, "info"]);
   }
   return rows;
 }

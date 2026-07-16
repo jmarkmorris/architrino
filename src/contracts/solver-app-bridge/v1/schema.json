@@ -342,7 +342,6 @@
         "querySpaceTimeIndexF64",
         "sampleLinearMotionF64",
         "integrateConstantAccelerationMotionF64",
-        "stepT3UniverseF64",
         "createPathHistoryStreamF64",
         "planPathHistoryStorageLifecycleF64",
         "applyPathHistoryStorageLifecycleF64",
@@ -3330,12 +3329,6 @@
         "statusRowBytes",
         "admissionReportF64Bytes",
         "pairInteractionRequestF64Bytes",
-        "t3StepRequestF64Bytes",
-        "t3ParticleStateF64Bytes",
-        "t3ParticleStepRowF64Bytes",
-        "t3StepSummaryF64Bytes",
-        "t3UnresolvedRootSegmentRowF64Bytes",
-        "t3RetainedCausalRootReplayRowF64Bytes",
         "movingCircularSourceHistoryF64Bytes",
         "movingCircularSourceRootRequestF64Bytes",
         "movingCircularRootRowF64Bytes",
@@ -3393,12 +3386,6 @@
         "statusRowBytes": { "type": "integer", "minimum": 1 },
         "admissionReportF64Bytes": { "type": "integer", "minimum": 1 },
         "pairInteractionRequestF64Bytes": { "type": "integer", "minimum": 1 },
-        "t3StepRequestF64Bytes": { "type": "integer", "minimum": 1 },
-        "t3ParticleStateF64Bytes": { "type": "integer", "minimum": 1 },
-        "t3ParticleStepRowF64Bytes": { "type": "integer", "minimum": 1 },
-        "t3StepSummaryF64Bytes": { "type": "integer", "minimum": 1 },
-        "t3UnresolvedRootSegmentRowF64Bytes": { "type": "integer", "minimum": 1 },
-        "t3RetainedCausalRootReplayRowF64Bytes": { "type": "integer", "minimum": 1 },
         "movingCircularSourceHistoryF64Bytes": { "type": "integer", "minimum": 1 },
         "movingCircularSourceRootRequestF64Bytes": { "type": "integer", "minimum": 1 },
         "movingCircularRootRowF64Bytes": { "type": "integer", "minimum": 1 },
@@ -12587,7 +12574,7 @@
     },
     "solverAppId": {
       "type": "string",
-      "enum": ["animator", "photon", "ideal-braid", "causal-delay-feedback", "t3"]
+      "enum": ["animator", "photon", "ideal-braid", "causal-delay-feedback"]
     },
     "solverRunKind": {
       "type": "string",

@@ -25,7 +25,7 @@ The handoff is accepted as a contract only if it prevents three common failures:
 | [closure-intersection-ledger](../validation-gates/closure-intersection-ledger.md) | Gravity closure requires one Noether sea response map for clock, ruler, effective signal-speed, weak-field metric, PPN, and preferred-frame rows. |
 | [gravitational-redshift-clock-tests](../cross-theory-mapping/gravitational-redshift-clock-tests.md) | Precision clock comparisons use the dressed observer speed $c_0=c_{\text{eff}}(\infty)$ unless a primitive branch calculation proves a special identification with $c_f$. |
 | [shapiro-time-delay](../cross-theory-mapping/shapiro-time-delay.md), [gravitational-lensing](../cross-theory-mapping/gravitational-lensing.md), and [perihelion-precession](../cross-theory-mapping/perihelion-precession.md) | PPN rows must bind redshift, Shapiro delay, lensing, and orbital phase to one effective metric response. |
-| [absolute-time-defense](../../../content/markdown/aaa/foundations/absolute-time-defense.md) dynamics-stack pass | Clock validity is now tied to the eigen-braid return certificate, memory-boundary recurrence, clock/ruler rank floor, connected dressed moduli, and matter/sea framing-quadrupole projections. This sharpens the Lorentz export schema without reopening the upstream H39 or binary-frequency-search proof kernels. |
+| [absolute-time-defense](../../../content/markdown/aaa/foundations/absolute-time-defense.md) dynamics-stack pass | Clock validity is now tied to the eigen-braid return certificate, memory-boundary recurrence, clock/ruler rank floor, connected dressed moduli, and matter/sea framing-quadrupole projections. This sharpens the Lorentz export schema without reopening the upstream binary-frequency-search proof kernels. |
 
 ## Export Object
 
@@ -298,17 +298,6 @@ source_inputs:
 artifact_refs: []
 failure_code: residual.bridge_not_closed
 ```
-
-The current priority-only population diagnostic for the shared medium-response
-contract is
-`scripts/proof-programs/noether-sea-compatibility-handoff-diagnostic.mjs`.
-That script checks whether a handoff-like JSON object uses the same
-$\Theta_{\mathrm{sea}}(\mathfrak B)$ source record for `medium_response`,
-`event_ledger`, `speed_convention`, `G4_effective_metric_and_shift`, and
-coefficient families. It is not a residual export and does not pass `G4` or
-`G7`; it only routes malformed handoffs to
-`residual.retained_history_mismatch`, `residual.speed_conflation`, or
-`gravity.hidden_tuning`.
 
 ## Dependency Gates
 

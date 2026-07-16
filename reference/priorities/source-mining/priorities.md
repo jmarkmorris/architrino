@@ -35,7 +35,7 @@ Do not start broad particle-physics mining merely because a source family is lar
 
 - For scorecard purposes, this is the main Coverage bucket.
 - Under the validated-closure scorecard, Coverage+Interface Readiness has weight `2`, so this queue improves reader and corpus completeness without substituting for certified equations, coefficients, parameters, or benchmark validation.
-- If the goal is the fastest validated-closure score increase, pair this workstream with residual-routing-event-ledger (legacy-braid ref: `braid-archive/braid-nested-shell-causal-closure/residual-routing-event-ledger.md`), exposure-quotient-theorem (legacy-braid ref: `braid-archive/braid-mass-response-map/exposure-quotient-theorem.md`), and mass-map (legacy-braid ref: `braid-archive/braid-mass-response-map/priorities.md`) rather than treating prose coverage as the main lift.
+- If the goal is the fastest validated-closure score increase, pair this workstream with residual-routing-event-ledger, exposure-quotient-theorem, and mass-map rather than treating prose coverage as the main lift.
 - Rule of thumb to retain: a `+10` point gain in Coverage+Interface Readiness adds about `+0.2` to the weighted total; high-weight categories such as Empirical Precision+Benchmark Validation, Formula+Coefficient Recovery, Master EOM+Local Dynamics, Parameter+Scale Closure, and Potential+Action Closure move the total more.
 
 ## Process Guide

@@ -57,7 +57,7 @@ It does not own:
 - A first-pass autoscale behavior already exists in code, but the authored framing UI is still missing.
 - A canonical structure bridge exists, and a narrow live mutation path exists for `Split Group`, but animator-side structural editing is still incomplete.
 - Imported staging data already carries observer framing, preview identifiers, and export scene data through a dedicated scene-staging contract without importing external app runtimes.
-- Solver-derived simulation mode has moved under this workstream as [simulation-mode.md](simulation-mode.md), so Animator owns the authoring and playback surface while `solver/` owns the central solver contract.
+- Solver-derived simulation mode has moved under this workstream as [simulation-mode.md](simulation-mode.md), so Animator owns the authoring and playback surface while the EOM solver owns the forward solver contract.
 
 ## Task Queue
 

@@ -101,12 +101,25 @@ export function createBorgSeededInitialConditionRows({ manifest, seedIndex = 0, 
     accepted.electrinoCount,
     accepted.positrinoCount,
   );
+  const latticePositions = createDeclaredLatticePositions(
+    stateFlags.length,
+    manifest?.initialConditions,
+  );
+  const positions = latticePositions ?? createSeparatedRandomCentralPositions(
+      stateFlags.length,
+      bounds,
+      rng,
+      nonNegativeNumber(manifest?.initialConditions?.minimumPairSeparation, 0),
+    );
+  const initialStateRunSource = latticePositions
+    ? "minimum-separation-lattice-initial-state"
+    : "seeded-random-minimum-separation-initial-state";
 
   return Object.freeze(stateFlags.map((flags, index) => Object.freeze({
     pathKey: FIRST_PATH_KEY + index,
     frameIndex: 0,
     time: 0,
-    position: createRandomCentralPosition(bounds, rng),
+    position: positions[index],
     velocity: createRandomVelocity(
       rng,
       accepted.randomVelocityMaxComponentMagnitude,
@@ -114,14 +127,66 @@ export function createBorgSeededInitialConditionRows({ manifest, seedIndex = 0, 
     ),
     errorBound: 0,
     stateFlags: flags,
-    runSource: "seeded-random-live-initial-state",
+    runSource: initialStateRunSource,
     valueAuthority: "app-generated-native-run-initial-condition",
   })));
 }
 
+export function calculateBorgInertialHistoryDepth(
+  endpointRows,
+  {
+    fieldSpeed = 1,
+    sampleInterval = 0.01,
+    safetyMargin = sampleInterval,
+    maximumSeparation = 0,
+  } = {},
+) {
+  const speed = Number(fieldSpeed);
+  const interval = Number(sampleInterval);
+  const margin = Number(safetyMargin);
+  if (!Array.isArray(endpointRows) || endpointRows.length === 0) {
+    throw new TypeError("Borg inertial history coverage requires endpoint rows.");
+  }
+  if (!(speed > 0) || !(interval > 0) || !(margin >= 0)) {
+    throw new RangeError("Borg inertial history coverage requires positive field speed and sample interval.");
+  }
+  let delayUpperBound = 0;
+  let maximumSourceSpeed = 0;
+  endpointRows.forEach((receiver) => {
+    endpointRows.forEach((source) => {
+      const sourceSpeed = vectorMagnitude(source.velocity);
+      if (!(sourceSpeed < speed)) {
+        throw new RangeError(
+          `Borg inertial initial history requires sub-field source speed for path ${source.pathKey}.`,
+        );
+      }
+      maximumSourceSpeed = Math.max(maximumSourceSpeed, sourceSpeed);
+      const separation = vectorDistance(receiver.position, source.position);
+      delayUpperBound = Math.max(
+        delayUpperBound,
+        separation / (speed - sourceSpeed),
+      );
+    });
+  });
+  const separationBound = Number(maximumSeparation);
+  if (Number.isFinite(separationBound) && separationBound > 0) {
+    delayUpperBound = Math.max(
+      delayUpperBound,
+      separationBound / (speed - maximumSourceSpeed),
+    );
+  }
+  return Number((Math.ceil((delayUpperBound + margin) / interval) * interval).toFixed(12));
+}
+
 export async function createBorgAcceptedInertialSeedHistory(
   endpointRows,
-  { historyStartTime, historyEndTime, sampleInterval = 0.01, digest = sha256Hex } = {},
+  {
+    historyStartTime,
+    historyEndTime,
+    sampleInterval = 0.01,
+    minimumPairSeparation = 0,
+    digest = sha256Hex,
+  } = {},
 ) {
   const startTime = Number(historyStartTime);
   const endTime = Number(historyEndTime);
@@ -136,6 +201,14 @@ export async function createBorgAcceptedInertialSeedHistory(
   const segmentCount = Math.round(duration / interval);
   if (!(interval > 0) || Math.abs(segmentCount * interval - duration) > 1e-9) {
     throw new RangeError("Borg accepted EOM seed interval must contain whole sample intervals.");
+  }
+  const geometryCertificate = certifyBorgMinimumSeparation(endpointRows, {
+    minimumPairSeparation,
+  });
+  if (!geometryCertificate.accepted) {
+    throw new RangeError(
+      `Borg initial geometry minimum separation ${geometryCertificate.measuredMinimumSeparation} is below ${geometryCertificate.requiredMinimumSeparation}.`,
+    );
   }
   const rows = Object.freeze(endpointRows.flatMap((row) => {
     const position = cloneVector(row.position);
@@ -175,6 +248,7 @@ export async function createBorgAcceptedInertialSeedHistory(
     historyEndTime: endTime,
     sampleInterval: interval,
     pathCount: endpointRows.length,
+    geometryCertificate,
     paths: endpointRows
       .map((row) => ({
         pathKey: Number(row.pathKey),
@@ -206,6 +280,44 @@ export async function createBorgAcceptedInertialSeedHistory(
       velocity: Object.freeze(cloneVector(row.velocity)),
     }))),
     certificate,
+  });
+}
+
+export function certifyBorgMinimumSeparation(
+  endpointRows,
+  { minimumPairSeparation = 0, comparisonTolerance = 1e-12 } = {},
+) {
+  const required = nonNegativeNumber(minimumPairSeparation, 0);
+  const tolerance = nonNegativeNumber(comparisonTolerance, 1e-12);
+  let measured = Number.POSITIVE_INFINITY;
+  let closestPair = null;
+  for (let left = 0; left < endpointRows.length; left += 1) {
+    for (let right = left + 1; right < endpointRows.length; right += 1) {
+      const separation = vectorDistance(
+        endpointRows[left].position,
+        endpointRows[right].position,
+      );
+      if (separation < measured) {
+        measured = separation;
+        closestPair = Object.freeze([
+          endpointRows[left].pathKey,
+          endpointRows[right].pathKey,
+        ]);
+      }
+    }
+  }
+  if (!Number.isFinite(measured)) {
+    measured = Number.POSITIVE_INFINITY;
+  }
+  return Object.freeze({
+    schema: "borg-minimum-separation-certificate.v1",
+    claimLevel: "measured-endpoint-geometry",
+    instrument: "all-unordered-pair-euclidean-distance-at-T0",
+    requiredMinimumSeparation: required,
+    measuredMinimumSeparation: measured,
+    comparisonTolerance: tolerance,
+    closestPair,
+    accepted: measured + tolerance >= required,
   });
 }
 
@@ -282,11 +394,58 @@ function createRandomCentralPosition(bounds, rng) {
   };
 }
 
+function createSeparatedRandomCentralPositions(count, bounds, rng, minimumSeparation) {
+  const positions = [];
+  for (let index = 0; index < count; index += 1) {
+    let accepted = null;
+    for (let attempt = 0; attempt < 4096; attempt += 1) {
+      const candidate = createRandomCentralPosition(bounds, rng);
+      if (positions.every((position) => vectorDistance(position, candidate) >= minimumSeparation)) {
+        accepted = Object.freeze(candidate);
+        break;
+      }
+    }
+    if (!accepted) {
+      throw new RangeError(
+        `Borg could not place ${count} architrinos with minimum separation ${minimumSeparation}.`,
+      );
+    }
+    positions.push(accepted);
+  }
+  return Object.freeze(positions);
+}
+
+function createDeclaredLatticePositions(count, initialConditions = {}) {
+  if (initialConditions.initialLinePolicy !== "minimum-separation-lattice-4x2x2") {
+    return null;
+  }
+  const dimensions = initialConditions.latticeDimensions ?? {};
+  const expectedCount = Number(dimensions.x) * Number(dimensions.y) * Number(dimensions.z);
+  if (count !== expectedCount) {
+    return null;
+  }
+  const origin = initialConditions.latticeOrigin ?? {};
+  const spacing = initialConditions.latticeSpacing ?? {};
+  const positions = [];
+  for (let xIndex = 0; xIndex < dimensions.x; xIndex += 1) {
+    for (let yIndex = 0; yIndex < dimensions.y; yIndex += 1) {
+      for (let zIndex = 0; zIndex < dimensions.z; zIndex += 1) {
+        positions.push(Object.freeze({
+          x: Number(origin.x) + xIndex * Number(spacing.x),
+          y: Number(origin.y) + yIndex * Number(spacing.y),
+          z: Number(origin.z) + zIndex * Number(spacing.z),
+        }));
+      }
+    }
+  }
+  return Object.freeze(positions);
+}
+
 function randomAxisValue(axisBounds, rng) {
   const [min, max] = Array.isArray(axisBounds) ? axisBounds : [0, 1];
   const low = Number.isFinite(Number(min)) ? Number(min) : 0;
   const high = Number.isFinite(Number(max)) ? Number(max) : low + 1;
-  const span = Math.max(1, high - low);
+  const span = high > low ? high - low : 1;
   const inset = Math.min(span * POSITION_INSET_RATIO, span * 0.4);
   return low + inset + rng() * Math.max(0, span - inset * 2);
 }
@@ -351,6 +510,28 @@ function hashSeedText(seedText) {
     hash = Math.imul(hash, 16777619);
   });
   return hash >>> 0;
+}
+
+function vectorMagnitude(vector) {
+  const x = Number(vector?.x);
+  const y = Number(vector?.y);
+  const z = Number(vector?.z);
+  if (![x, y, z].every(Number.isFinite)) {
+    throw new TypeError("Borg inertial history coverage requires finite velocity components.");
+  }
+  return Math.hypot(x, y, z);
+}
+
+function vectorDistance(left, right) {
+  const values = [
+    Number(left?.x) - Number(right?.x),
+    Number(left?.y) - Number(right?.y),
+    Number(left?.z) - Number(right?.z),
+  ];
+  if (!values.every(Number.isFinite)) {
+    throw new TypeError("Borg inertial history coverage requires finite positions.");
+  }
+  return Math.hypot(...values);
 }
 
 function strictNonNegativeInteger(value) {

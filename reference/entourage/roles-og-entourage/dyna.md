@@ -20,7 +20,7 @@ Outputs stay **simulation-ready** and **constraint-ready**. Anchor formal equati
 - Treat `dynamics/master-equation.md` as canonical for the delayed, radial, receiver-normal per-hit law and causal wake geometry.
 - Use `dynamics/causal-action-functional.md` for variational/topological stability programs.
 - Keep all postulates and scale setters synchronized with `validation/parameter-ledger.md`.
-- Ensure continuum/emergent reductions remain consistent with `spacetime/*`, `quantum/*`, `validation/no-go-theorems.md`, and the active closure burdens in `reference/priorities/braid-archive/braid-nested-shell-causal-closure/nested-shell-braid-dependency-map.md`.
+- Ensure continuum/emergent reductions remain consistent with `spacetime/*`, `quantum/*`, `validation/no-go-theorems.md`, and the active closure burdens in `reference/priorities/braid-program/priorities.md`.
 
 ---
 

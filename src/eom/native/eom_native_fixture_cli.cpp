@@ -134,15 +134,45 @@ void print_traversal(
             << ",\"excluded_pairs\":" << certificate.excluded_pairs
             << ",\"exact_fallback_pairs\":"
             << certificate.exact_fallback_pairs
+            << ",\"enclosed_pairs\":" << certificate.enclosed_pairs
+            << ",\"unresolved_pairs\":" << certificate.unresolved_pairs
             << ",\"visited_nodes\":" << certificate.visited_nodes
             << ",\"coverage_disjoint_complete\":"
             << (certificate.coverage_disjoint_complete ? "true" : "false")
-            << ",\"node_statuses\":[";
+            << ",\"nodes\":[";
   for (std::size_t index = 0; index < certificate.nodes.size(); ++index) {
     if (index > 0) {
       std::cout << ',';
     }
-    std::cout << '"' << certificate.nodes[index].status << '"';
+    const auto& node = certificate.nodes[index];
+    std::cout << "{\"node_id\":\"" << node.node_id
+              << "\",\"status\":\"" << node.status
+              << "\",\"receiver_begin\":" << node.receiver_begin
+              << ",\"receiver_end\":" << node.receiver_end
+              << ",\"source_begin\":" << node.source_begin
+              << ",\"source_end\":" << node.source_end
+              << ",\"emission_lower\":" << node.emission_lower
+              << ",\"emission_upper\":" << node.emission_upper
+              << ",\"logical_ordered_pairs\":"
+              << node.logical_ordered_pairs
+              << ",\"residual_lower\":" << node.residual.lower()
+              << ",\"residual_upper\":" << node.residual.upper()
+              << '}';
+  }
+  std::cout << "],\"membership_tiles\":[";
+  for (std::size_t index = 0;
+       index < certificate.membership_tiles.size(); ++index) {
+    if (index > 0) {
+      std::cout << ',';
+    }
+    const auto& tile = certificate.membership_tiles[index];
+    std::cout << "{\"status\":\"" << tile.status
+              << "\",\"receiver_begin\":" << tile.receiver_begin
+              << ",\"receiver_end\":" << tile.receiver_end
+              << ",\"source_begin\":" << tile.source_begin
+              << ",\"source_end\":" << tile.source_end
+              << ",\"logical_ordered_pairs\":"
+              << tile.logical_ordered_pairs << '}';
   }
   std::cout << "]}";
 }
@@ -159,6 +189,8 @@ void print_traversal_exact_batch(
             << certificate.exact_pairs_requested
             << ",\"exact_pairs_completed\":"
             << certificate.exact_pairs_completed
+            << ",\"enclosed_pairs\":" << certificate.enclosed_pairs
+            << ",\"unresolved_pairs\":" << certificate.unresolved_pairs
             << ",\"coverage_disjoint_complete\":"
             << (certificate.coverage_disjoint_complete ? "true" : "false")
             << ",\"rows\":[";
@@ -247,6 +279,21 @@ std::vector<eom::ExactPairCertificate> pair_fixture() {
        segment("0", "1", {"0", "0", "0", "0"},
                {"0", "0", "0", "0"}, {"0", "0", "0", "0"},
                "1e-9", "0")});
+  const eom::RetainedHistory inward_probe_receiver(
+      "inward-probe-receiver",
+      {segment("-0.000000020", "0.000000002",
+               {"0.0000000075", "0", "0", "0"},
+               {"0", "0", "0", "0"}, {"0", "0", "0", "0"},
+               "0.0000000005", "0")});
+  const eom::RetainedHistory inward_probe_source(
+      "inward-probe-source",
+      {segment("-0.000000020", "-0.000000010",
+               {"0", "0", "0", "0"},
+               {"0", "0", "0", "0"}, {"0", "0", "0", "0"},
+               "0.0000000005", "0"),
+       segment("-0.000000010", "0.000000002", {"0", "0", "0", "0"},
+               {"0", "0", "0", "0"}, {"0", "0", "0", "0"},
+               "0.0000000005", "0")});
 
   std::vector<eom::ExactPairRequest> requests;
   auto add = [&](std::string row_id, const eom::RetainedHistory& target,
@@ -299,6 +346,9 @@ std::vector<eom::ExactPairCertificate> pair_fixture() {
       "-0.5", "0.5", "1e-5");
   add("uncertain_segment_join_root", uncertain_join_receiver,
       uncertain_join_source, "1", "-1", "0.5", "1e-5");
+  add("mpfr_inward_tolerance_probe", inward_probe_receiver,
+      inward_probe_source, "0.000000002", "-0.000000020",
+      "0.000000002", "1e-8", true);
   auto certificates = eom::certify_exact_pair_batch(requests, 4);
   const auto prior = eom::certify_exact_pair({
       .row_id = "warm_complement_prior",
@@ -363,18 +413,20 @@ void print_all() {
   const eom::CertifiedTraversalRequest traversal_request{
       .traversal_id = "mixed-moving-history",
       .receivers = {
-          {"receiver-a", &receiver_a}, {"receiver-b", &receiver_b}},
+          {"receiver-a", &receiver_a, true},
+          {"receiver-b", &receiver_b, true}},
       .sources = {
-          {"far-a", &far_source_a},
-          {"far-b", &far_source_b},
-          {"near-a", &near_source_a},
-          {"near-b", &near_source_b},
+          {"far-a", &far_source_a, true},
+          {"far-b", &far_source_b, true},
+          {"near-a", &near_source_a, true},
+          {"near-b", &near_source_b, true},
       },
       .reception = {"4", "4"},
       .emission = {"0", "2"},
       .field_speed = "1",
       .exact_tile_pair_limit = 4,
       .maximum_nodes = 32,
+      .maximum_emission_depth = 2,
   };
   const auto traversal =
       eom::certify_moving_history_traversal(traversal_request);
@@ -394,6 +446,10 @@ void print_all() {
   };
   const auto exact_batch =
       eom::certify_traversal_exact_pair_batch(exact_batch_request);
+  auto exact_batch_single_request = exact_batch_request;
+  exact_batch_single_request.thread_count = 1;
+  const auto exact_batch_single =
+      eom::certify_traversal_exact_pair_batch(exact_batch_single_request);
   auto resource_request = traversal_request;
   resource_request.traversal_id = "mixed-moving-history-resource-control";
   resource_request.maximum_nodes = 1;
@@ -403,6 +459,70 @@ void print_all() {
   exact_resource_request.maximum_exact_pairs = 2;
   const auto exact_resource_failure =
       eom::certify_traversal_exact_pair_batch(exact_resource_request);
+  const eom::RetainedHistory accelerating_receiver_a(
+      "accelerating-receiver-a",
+      {segment("0", "1", {"0", "0.02", "0.002", "0.0001"}),
+       segment("1", "2", {"0.0221", "0.0243", "-0.0015", "-0.00005"})});
+  const eom::RetainedHistory accelerating_receiver_b(
+      "accelerating-receiver-b",
+      {segment("0", "1", {"0.5", "0.03", "0.0022", "0.00012"}),
+       segment("1", "2", {"0.53232", "0.03476", "-0.00165", "-0.00006"})});
+  const eom::RetainedHistory accelerating_far_a(
+      "accelerating-far-a",
+      {segment("0", "1", {"20", "-0.01", "-0.001", "-0.00007"}),
+       segment("1", "2", {"19.98893", "-0.01221", "0.00075", "0.000035"})});
+  const eom::RetainedHistory accelerating_far_b(
+      "accelerating-far-b",
+      {segment("0", "1", {"22", "-0.006", "-0.00085", "-0.00008"}),
+       segment("1", "2", {"21.99307", "-0.00794", "0.0006375", "0.00004"})});
+  const eom::RetainedHistory accelerating_near_a(
+      "accelerating-near-a",
+      {segment("0", "1", {"0.75", "0.005", "0.001", "0.00005"}),
+       segment("1", "2", {"0.75605", "0.00715", "-0.00075", "-0.000025"})});
+  const eom::RetainedHistory accelerating_near_b(
+      "accelerating-near-b",
+      {segment("0", "1", {"1", "0.008", "0.00115", "0.00006"}),
+       segment("1", "2", {"1.00921", "0.01048", "-0.0008625", "-0.00003"})});
+  const eom::CertifiedTraversalRequest accelerating_traversal_request{
+      .traversal_id = "mixed-accelerating-history",
+      .receivers = {
+          {"receiver-a", &accelerating_receiver_a, true},
+          {"receiver-b", &accelerating_receiver_b, true}},
+      .sources = {
+          {"far-a", &accelerating_far_a, true},
+          {"far-b", &accelerating_far_b, true},
+          {"near-a", &accelerating_near_a, true},
+          {"near-b", &accelerating_near_b, true}},
+      .reception = {"2", "2"},
+      .emission = {"0", "2"},
+      .field_speed = "1",
+      .exact_tile_pair_limit = 4,
+      .maximum_nodes = 32,
+      .maximum_emission_depth = 2,
+  };
+  const auto accelerating_traversal =
+      eom::certify_moving_history_traversal(accelerating_traversal_request);
+  const eom::CertifiedTraversalExactBatchRequest accelerating_exact_request{
+      .traversal_request = &accelerating_traversal_request,
+      .traversal_certificate = &accelerating_traversal,
+      .reception_time = "2",
+      .search_lower = "0",
+      .search_upper = "2",
+      .root_tolerance = "1e-10",
+      .root_max_depth = 192,
+      .root_max_cells = 300000,
+      .initial_mpfr_bits = 128,
+      .maximum_mpfr_bits = 512,
+      .maximum_exact_pairs = 16,
+      .thread_count = 4,
+  };
+  const auto accelerating_exact =
+      eom::certify_traversal_exact_pair_batch(accelerating_exact_request);
+  auto accelerating_exact_single_request = accelerating_exact_request;
+  accelerating_exact_single_request.thread_count = 1;
+  const auto accelerating_exact_single =
+      eom::certify_traversal_exact_pair_batch(
+          accelerating_exact_single_request);
   bool discontinuity_rejected = false;
   try {
     const eom::RetainedHistory discontinuous(
@@ -431,11 +551,23 @@ void print_all() {
   } catch (const std::invalid_argument&) {
     inconsistent_circular_speed_rejected = true;
   }
+  bool unaccepted_history_rejected = false;
+  try {
+    auto unaccepted_request = traversal_request;
+    unaccepted_request.traversal_id = "unaccepted-history-control";
+    unaccepted_request.receivers[0].accepted_retained_history = false;
+    static_cast<void>(
+        eom::certify_moving_history_traversal(unaccepted_request));
+  } catch (const std::invalid_argument&) {
+    unaccepted_history_rejected = true;
+  }
   std::cout << "{\"schema\":\"eom_native_fixture_packet/v0\","
             << "\"discontinuous_history_rejected\":"
             << (discontinuity_rejected ? "true" : "false")
             << ",\"inconsistent_circular_speed_rejected\":"
             << (inconsistent_circular_speed_rejected ? "true" : "false")
+            << ",\"unaccepted_history_rejected\":"
+            << (unaccepted_history_rejected ? "true" : "false")
             << ",\"blocks\":[";
   print_block(eom::certify_moving_history_block(far));
   std::cout << ',';
@@ -444,10 +576,18 @@ void print_all() {
   print_traversal(traversal);
   std::cout << ",\"traversal_exact_batch\":";
   print_traversal_exact_batch(exact_batch);
+  std::cout << ",\"traversal_exact_batch_single_thread\":";
+  print_traversal_exact_batch(exact_batch_single);
   std::cout << ",\"traversal_resource_failure\":";
   print_traversal(traversal_resource_failure);
   std::cout << ",\"traversal_exact_resource_failure\":";
   print_traversal_exact_batch(exact_resource_failure);
+  std::cout << ",\"accelerating_traversal\":";
+  print_traversal(accelerating_traversal);
+  std::cout << ",\"accelerating_traversal_exact_batch\":";
+  print_traversal_exact_batch(accelerating_exact);
+  std::cout << ",\"accelerating_traversal_exact_batch_single_thread\":";
+  print_traversal_exact_batch(accelerating_exact_single);
   std::cout << ",\"pairs\":[";
   const auto pairs = pair_fixture();
   for (std::size_t index = 0; index < pairs.size(); ++index) {

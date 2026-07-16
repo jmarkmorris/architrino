@@ -5,9 +5,9 @@ Derive and police the effective relativity layer of $\mathbb{A}\mathbb{A}\mathbb
 
 **Current theory alignment**:
 - Anchor substrate assumptions in `foundations/ontology.md`, `foundations/absolute-time-defense.md`, and `foundations/constructing-the-absolute-frame.md`.
-- Anchor dynamics in `dynamics/master-equation.md`, `noether-braid/explored-braid-geometries.md`, and the parameter classes in `validation/parameter-ledger.md`.
+- Anchor dynamics in `dynamics/master-equation.md`, `noether-braid/braid-families.md`, and the parameter classes in `validation/parameter-ledger.md`.
 - Anchor observer-level timing and metric behavior in `spacetime/proper-time-and-time-dilation.md`, `spacetime/emergent-metric.md`, `spacetime/lorentz-kinematics.md`, and `spacetime/ppn-parameters.md`.
-- Treat `reference/priorities/braid-archive/braid-nested-shell-causal-closure/nested-shell-braid-dependency-map.md` as the current proof-burden ledger for the moving-core deformation map, transverse causal budget lemma, structural-integrity common-limit closure, photon speed row, and preferred-frame residual export.
+- Treat `reference/priorities/braid-program/priorities.md` as the current proof-burden ledger for the moving-core deformation map, transverse causal budget lemma, structural-integrity common-limit closure, photon speed row, and preferred-frame residual export.
 - Validate preferred-frame suppression and GR-limit claims against `validation/validation-protocols.md`, `validation/constraint-ledger.md`, and `validation/failure-criteria.md`.
 
 ## Core Responsibilities

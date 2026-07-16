@@ -6,7 +6,7 @@
 - Status: `priority-only`
 - Parent: [Equation Mapping Internal Priority](priorities.md)
 - Source inventory: [Equation Mapping Detail](equation.md)
-- Prior pass: [Equation Closure Pass 2026-06-23 B](equation-closure-pass-2026-06-23-b.md)
+- Origin: consolidated from the first score-neutral equation-packet pass; its score dispositions were priority-ledger decisions, not accepted retained evidence.
 - Claim level: second-pass common-architecture note for reusable equation components
 - Edit boundary: this file only
 
@@ -41,7 +41,7 @@ Packets inspected for this second pass:
 - [EQ-21 Through EQ-23 And EQ-32 Structure/CMB/BBN/RAR Packet](eq-21-23-32-structure-cmb-bbn-rar-packet.md)
 - [EQ-21 Through EQ-23 And EQ-32 Shared Observation Residual Packet](eq-21-23-32-shared-observation-residual-packet.md)
 - [EQ-26 Through EQ-31 Observation-First Precision Packet](eq-26-31-observation-first-precision-packet.md)
-- Equation-Map Bearing On Braid Configuration Search (legacy-braid ref: `braid-archive/braid-retained-branch-closure/equation-map-bearing-on-braid-configuration-search.md`)
+- Equation-Map Bearing On Braid Configuration Search
 
 The unpacketed inventory rows also matter architecturally:
 
@@ -263,7 +263,7 @@ R_{\mathrm{obs}}
 \right).
 $$
 
-This vector is a solver-routing object, not a new score gate. Its job is to prevent a frequency-ratio match from being mistaken for retained-branch closure.
+This vector is a solver-routing object, not a new score gate. Its job is to prevent a frequency-ratio match from being mistaken for braid program.
 
 ### Equations It Connects
 

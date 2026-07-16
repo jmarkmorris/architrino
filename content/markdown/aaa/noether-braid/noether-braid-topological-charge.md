@@ -42,7 +42,7 @@ In the terminology of [Noether Braid Configuration Space](noether-braid-configur
 
 This chapter is the downstream classifier for retained Noether braid branch charts. It owns $[\mathfrak B]_{\mathrm{top}}$, the signed-degree refinement, invariance conditions, allowed transitions, and simulation extraction order for the topological label.
 
-It does not certify branch retention by itself and does not create a base Proof ID. It consumes a same-record branch chart from the neutral, shell, nested shell, rank-three, or lower-rank proof effort; the label becomes physical only after the causal-root, phase-return, gluing, wake-boundary, and stability rows close on that same record.
+It does not certify branch retention by itself and does not create a base classification label. It consumes a same-record branch chart from the neutral, shell, nested shell, rank-three, or lower-rank proof effort; the label becomes physical only after the causal-root, phase-return, gluing, wake-boundary, and stability rows close on that same record.
 
 ## Source Of The Three Entries
 
@@ -145,7 +145,7 @@ c_1[\theta_O,\theta_M,\theta_I]
 \right)
 =(m,n)
 $$
-records this phase-return degree data. The `NSH-421` doubling-frequency candidate is the outer-normalized case $(m,n)=(2,4)$, equivalently canonical `I:M:O` frequency order $4:2:1$.
+records this phase-return degree data. The doubling-frequency `4:2:1` candidate is the outer-normalized case $(m,n)=(2,4)$, equivalently canonical `I:M:O` frequency order $4:2:1$.
 
 The symbol $c_1$ is retained as the established phase-entry notation, but it should not be read here as a literal first Chern class of principal circle bundles over the outer phase circle. Such bundles over $S^1_O$ are topologically trivial because $H^2(S^1_O;\mathbb{Z})=0$. The claim is the degree-pair claim
 $$
@@ -200,7 +200,7 @@ A useful refinement is a branch-preserving chirality label
 $$
 \chi_{\mathrm{fr}}\in\mathbb{Z}_2.
 $$
-The richer ordered-braid chirality label $\chi_c$ is introduced in [Nested Shell Braid](explored-braid-geometries.md#reduced-nested-shell-braid-closure-label). In this chapter, $\chi_{\mathrm{fr}}$ is the certified $\mathbb{Z}_2$ projection of that richer chirality data when the same branch chart supplies a deformation-stable handed marker, such as a framed self-linking sign or a certified maximal-curvature-binary circulation sign. It is not an independent competitor to $\chi_c$, and it is not part of the base triple until the projection is certified. It must be invariant under the same branch-preserving deformations that keep $(N_s,M_p,c_1)$ fixed, and it may flip only at an independent framing wall $\Sigma_{\mathrm{frame}}$ where the nonsingular framing floor fails. It is the natural place to record handedness, but it must not be substituted for the root and phase-return data. The two signs of the maximal-curvature-binary circulation are introduced in [Binary Dynamics](../dynamics/binary-dynamics.md#emergent-properties-and-measurement-standards).
+The richer ordered-braid chirality label $\chi_c$ is introduced in [Nested Shell Braid](braid-families.md#reduced-nested-shell-braid-closure-label). In this chapter, $\chi_{\mathrm{fr}}$ is the certified $\mathbb{Z}_2$ projection of that richer chirality data when the same branch chart supplies a deformation-stable handed marker, such as a framed self-linking sign or a certified maximal-curvature-binary circulation sign. It is not an independent competitor to $\chi_c$, and it is not part of the base triple until the projection is certified. It must be invariant under the same branch-preserving deformations that keep $(N_s,M_p,c_1)$ fixed, and it may flip only at an independent framing wall $\Sigma_{\mathrm{frame}}$ where the nonsingular framing floor fails. It is the natural place to record handedness, but it must not be substituted for the root and phase-return data. The two signs of the maximal-curvature-binary circulation are introduced in [Binary Dynamics](../dynamics/binary-dynamics.md#emergent-properties-and-measurement-standards).
 
 ## Invariance And Allowed Transitions
 
@@ -291,7 +291,7 @@ The established pieces are local:
 - The delay-map theorem pack in [Master Equation](../dynamics/master-equation.md#delay-map-theorem-pack-formalized) proves signed degree invariance on regular families and the generic opposite-sign fold-pair law.
 - The signed causal-root complex in [Master Equation](../dynamics/master-equation.md#signed-causal-root-complex) supplies the local chain-complex reading of active roots.
 - [Binary Dynamics](../dynamics/binary-dynamics.md#super-field-speed-root-ledgers-and-resonance-lock) supplies the self-hit and partner-hit ledger notation used by $(N_s,M_p)$.
-- [Noether Braid Doubling-Frequency Resonance Lock](explored-braid-geometries.md#assumption-2-exact-integer-phase-closure) supplies the `NSH-421` integer phase-closure data whose return-map degree pair is recorded as $c_1=(m,n)$; the iso-frequency spindle does not inherit that rank-three entry.
+- [Noether Braid Doubling-Frequency Resonance Lock](doubling-frequency-lock.md#assumption-2-exact-integer-phase-closure) supplies the `NSH-421` integer phase-closure data whose return-map degree pair is recorded as $c_1=(m,n)$; the iso-frequency spindle does not inherit that rank-three entry.
 - [Effective Lagrangian](../dynamics/effective-lagrangian.md#topological-constraints-and-assembly-stability) uses the same topological sector in the action and mass-gap theorem target.
 
 The open proof burden is global:

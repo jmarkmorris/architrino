@@ -1,0 +1,123 @@
+# Mined Leads — Medium and Conservation (2026-07-15)
+
+All items: grade **idea (unproven lead)**. Sources are inert plain-string citations into the frozen archive (sanctioned here only). Recommended dispositions stay within braid-program.
+
+## 1. The wake must own a local density and current
+
+**The idea.** With delayed pair interactions, the two directions of a transaction use different emission events, so directed exchanges generically fail to cancel instant-by-instant; an architrino-only conservation ledger can never close. The wake in flight must carry its own local storage density and current, and a global action-level argument fixes only totals — a *local* rule for where in-flight wake charge lives and how it couples is a genuinely missing piece of the ontology.
+**Why it matters.** Deepest open object in the framework; prerequisite for trustworthy conservation-based verdicts (binding, radiation, drag) at every N-ladder rung.
+**Confirm/kill.** Construct a wake localization-and-coupling rule and show it closes the pair defect identically on one resolved record; a proof that none exists is equally load-bearing.
+**Source:** `braid-archive/braid-ideal/retained-sea-angular-momentum-ward-identity-and-transport-kernel.md`, Sections 2–3.
+**Recommended disposition:** campaign objective — a dedicated derivation campaign spec (`campaigns/`), arguably before N-ladder rung 1 since even the binary's ledger needs it.
+
+## 2. A sink must end somewhere: relocation is not drainage
+
+**The idea.** Angular momentum (or any conserved charge) handed to the ambient medium is not gone — it is transferred, stored, carried through a boundary, or returned. Any medium-assist mechanism must exhibit a terminal counter-torque, reservoir, or closed return circulation; an expanding diffusion front that makes the inner region look steady is relocation, not a steady state.
+**Why it matters.** Cheap adversarial filter on every future medium-assist proposal.
+**Confirm/kill.** Standing test: demand the control-volume ledger with a named terminus for any proposed sink.
+**Source:** `braid-archive/braid-ideal/global-angular-momentum-drain-adversarial-feasibility-memo.md`, executive sections.
+**Recommended disposition:** method.md addition (one paragraph under a new "Medium-assist claims" rule).
+
+## 3. The minimal balanced-cell trichotomy
+
+**The idea.** A medium of oppositely-oriented driven constituents can average to zero source while each constituent's own ledger diverges — cancellation hiding two divergences. The honest test is the smallest periodic cell with two opposite-axis members, each local balance closing separately, classifying the cell as insulating, conducting, or intrinsically pumped (inadmissible as a background).
+**Why it matters.** The minimal well-posed "is this vacuum state self-consistent?" experiment, with a vocabulary for medium states.
+**Confirm/kill.** Solve one periodic two-sublattice cell with full bookkeeping on the validated engine; report the class.
+**Source:** `braid-archive/braid-ideal/retained-sea-angular-momentum-ward-identity-and-transport-kernel.md`, Section 8.
+**Recommended disposition:** campaign objective — natural companion to N-ladder rung 3 (pair of pairs).
+
+## 4. Transparent at first order, conducting at second
+
+**The idea.** A medium whose linear zero-frequency transport vanishes can still carry steady current rectified at second order from a periodic drive. Since every candidate assembly is internally periodic, all its medium couplings are periodic drives — linear transparency never closes a transport question.
+**Why it matters.** A standing loophole in any future linear-response negative; prevents premature closure of medium channels.
+**Confirm/kill.** Compute the second-order dc response of a balanced cell to a periodic localized drive; check regulator stability of sign.
+**Source:** same file, Section 5.4.
+**Recommended disposition:** method.md addition (rider on the medium-assist rule of item 2).
+
+## 5. The deciding medium computation: continuity partition → transport kernel → localized-source solve
+
+**The idea.** "Can the medium carry charge X away?" reduces to one structured, never-run calculation: derive the microscopic continuity partition for the interacting population; linearize about a balanced state and extract the long-wavelength low-frequency transport kernel, classifying its pole (diffusive, ballistic, pinned/gapped); then solve the steady localized-source boundary-value problem, requiring the energy ledger to close on the same record.
+**Why it matters.** A reusable template for every medium-response question (confinement pressure, drag, shedding); primarily a derivation target, so it survives every instrument quarantine.
+**Confirm/kill.** Run the three steps on one resolved periodic cell; the pole class is the verdict.
+**Source:** `braid-archive/braid-ideal/global-angular-momentum-drain-adversarial-feasibility-memo.md`, "The Deciding Calculation"; companion sections of the Ward-identity file.
+**Recommended disposition:** campaign objective — the constitutive-sea derivation campaign, the program's flagship non-ladder item.
+
+## 6. Non-radiating constituents can still conduct
+
+**The idea.** An isolated assembly's bound far field says nothing about the collective transport of a populated medium of such assemblies: bound, individually silent objects can pass conserved charge neighbor-to-neighbor as a material stress current, as a solid transmits shear without any atom radiating.
+**Why it matters.** Blocks an error class: closing a transport route on isolated-object evidence.
+**Confirm/kill.** Compute one populated-cell collective response where each constituent's far field is bound.
+**Source:** same memo, isolated-versus-collective section.
+**Recommended disposition:** method.md addition (scoping clause: isolated negatives never bind collective transport).
+
+## 7. Matter as an open system: a conserved-charge metabolism with the medium
+
+**The idea.** A stable assembly may persist by running a steady exchange loop with its medium — intake from the medium's near-field order, internal transport, export as outgoing wake that in turn drives the medium's order. Persistence as homeostasis rather than isolation; predicts environment-dependent stability.
+**Why it matters.** The mechanism-level form of the medium-first hypothesis; directly falsifiable flavor.
+**Confirm/kill.** In a coupled object+medium run, test whether the sustained state requires nonzero circulating exchange and whether cutting the coupling starts a dispersal clock.
+**Source:** `braid-archive/braid-ideal/brainstorming.md`, metabolism entry (~L3047) and local-versus-global drain distinction (~L3067).
+**Recommended disposition:** brainstorming entry (pairs with item 8; promote together).
+
+## 8. The assembly-plus-medium complex as one jointly solved object, judged by a four-gate flow budget
+
+**The idea.** Stop asking whether an isolated assembly balances locally; solve assembly and surrounding medium as a single self-consistent object, everything dynamical at once. Success is a global flow budget through named gates — injection, transport out of the injection region, medium uptake where it has authority, escape residual — with attribution by switching channels individually. A charge unbalanceable where injected may balance globally after transport.
+**Why it matters.** The archive's strongest reframing: the theory's bound state may be the complex, not the bare assembly; the gate budget is a portable success criterion for release campaigns.
+**Confirm/kill.** One joint fixed-point solve with the four-gate ledger; existence of a state with vanishing escape residual.
+**Source:** `braid-archive/braid-ideal/coupled-braid-sea-complex-fixed-point-instrument-spec.md`, framing sections.
+**Recommended disposition:** brainstorming entry now; graduates to a campaign spec when the ladder reaches embedded objects.
+
+## 9. Retention as an environment theorem; the isolated release is the negative control
+
+**The idea.** Possibly no assembly of this kind is retainable in isolation as a matter of theorem; bound behavior would be intrinsically environmental. Under this hypothesis the medium-embedded system is the first physical object to model, and isolated releases are reclassified as negative controls. Sharper sub-idea: the medium's return may be a delayed echo of the object's own emission — retention windows depending on neighbor spacing, motion, and relative phase, not a static pressure constant.
+**Why it matters.** Reorders search priorities; converts "medium pressure" from a fitted constant into a computable, falsifiable timing mechanism.
+**Confirm/kill.** Prove or refute a scoped no-return theorem for the isolated channel; separately, compute the delayed neighbor-sum response and test for phase-split retention windows.
+**Source:** `braid-archive/braid-ideal/noether-braid-retained-branch-strategy-memo-2026-07-06.md`, hypothesis cards; `braid-archive/braid-ideal/sh-0-sea-modeling-restart-condition.md`, verdict framing; `braid-archive/braid-ideal/brainstorming.md` ~L42–49.
+**Recommended disposition:** configuration-chart obligation (embedding state as a chart axis) plus brainstorming entry for the echo mechanism.
+
+## 10. Medium orientational state as the controlling variable
+
+**The idea.** Whether the medium helps or hinders may reduce to the orientational state of its constituents, raising four linked questions: is the needed order selected by static energetics at all, or must it be maintained dynamically, topologically, or by formation history; does the central object's own wake induce the needed polarization self-consistently; is a phase-lagged orientational response (which alone does sign-definite cyclic work) the medium's generic dissipative channel; and does discrete rotational symmetry of the central object reduce the whole coupling to the constituent's response at symmetry-selected harmonics?
+**Why it matters.** Supplies the constitutive-sea derivation its state-variable list and a sharp reduction to one susceptibility at named frequencies.
+**Confirm/kill.** Derive the constituent's orientational response function from native dynamics and evaluate at the symmetry-selected harmonics.
+**Source:** `braid-archive/braid-ideal/sh-0-sea-diagnostic-candidate-model.md`, orientational-order and induced-polarization framing sections.
+**Recommended disposition:** campaign objective — folds into the constitutive-sea campaign (item 5).
+
+## 11. Steady-state imbalance as far-field throughput; zero-net-flux as the scale anchor
+
+**The idea.** A persistent budget imbalance in a steady rotating assembly may be the outgoing flux it continuously radiates — a throughput current, not a defect needing a local brake; rigid or truncated models trap the current and misread it as instability. Corollary: demanding zero net far-field flux is a candidate principle for fixing the absolute scale that scale-invariant near-field analyses cannot fix.
+**Why it matters.** Redirects stability diagnostics toward a far-field flux ledger; offers a scale-setting principle for the mass map.
+**Confirm/kill.** Build a far-field flux post-processor on the validated engine; test continuity balance with the flux term and whether zero-net-flux selects a discrete scale.
+**Source:** `braid-archive/braid-ideal/brainstorming.md`, radiation-reframe entry (~L3069).
+**Recommended disposition:** brainstorming entry; instrument requirement noted for the campaign toolkit.
+
+## 12. Neutrality is not silence: internal relative motion radiates
+
+**The idea.** Opposite charges at the same delayed location cancel emission only if co-moving: the emission kernel carries source velocity, so internal relative motion leaves an uncancelled residual at exactly zero net charge. Neutral matter's radiation is carried entirely by internal velocity mismatch; a bound neutral goes dark only when internally rigid.
+**Why it matters.** Native mechanism for neutral emission/absorption; load-bearing for the photon sector and the flux ledger of item 11.
+**Confirm/kill.** Compare far-field output of co-moving versus internally counter-moving neutral pairs in the validated kernel; residual should scale with mismatch and vanish only in the rigid limit.
+**Source:** `braid-archive/braid-ideal/brainstorming.md`, co-located pair entry (~L3234–3251).
+**Recommended disposition:** brainstorming entry; candidate early analytic check (kernel-structure argument, cheap).
+
+## 13. Delay commensurability: spacing bands and a self-consistent scale fixed point
+
+**The idea.** Cycle-averaged delayed coupling between rotating neutral assemblies plausibly develops alternating confining/loosening bands in separation; the medium would self-organize toward mutually commensurate spacings (a phase-driven lattice-selection principle), the band spacing would encode internal cadence (a lattice constant invertible to the medium's clock), and supply-equals-demand between medium support and assembly deficit is a fixed-point equation that could fix absolute scale without tuning.
+**Why it matters.** Feeds sea embedding and scale-fixing at once; a structural prediction about vacuum organization.
+**Confirm/kill.** Derive the cycle-averaged delayed pair potential for two model assemblies with the validated kernel; check for bands; solve the self-consistency loop.
+**Source:** `braid-archive/braid-ideal/brainstorming.md`, spacing/fixed-point entries (~L3043–3049, 3079–3081) — all legacy numbers stripped.
+**Recommended disposition:** brainstorming entry.
+
+## 14. The vacuum as a superposition-shielded high-energy condensate; pair production as pair dissociation
+
+**The idea.** The medium may be a dense population of neutral assemblies whose enormous internal energy is hidden *because of* geometric cancellation (charge, then moments, then anti-aligned pairing) — huge stored energy with near-zero footprint, the shape of the vacuum-energy puzzle. The paired ground state makes pair creation read as dissociation of one vacuum pair (threshold as reorganization cost, nucleus as near-field scaffold, annihilation as the reverse), with positronium the nearest observable cousin.
+**Why it matters.** Concrete sea-object hypothesis tied to a benchmark reaction family; also connects to the pair-production sourcing premise of the canon orientation-antimatter correspondence hypothesis.
+**Confirm/kill.** Compute stored-energy-to-footprint ratios for candidate paired ground states; test whether any dissociation pathway reproduces qualitative threshold/scaffold bookkeeping.
+**Source:** `braid-archive/braid-ideal/brainstorming.md`, shielded-neutral and pair-production entries (~L3063–3073).
+**Recommended disposition:** brainstorming entry (relates to existing Entry 1 and the canon hypothesis; flag the connection when promoted).
+
+## 15. The constitutive middle layer: a branch-local response object
+
+**The idea.** Do not jump from the microscopic equation of motion to observer-level geometry; build a middle layer — the derivative of a settled assembly's state with respect to environment perturbations — and export observer geometry from that response object.
+**Why it matters.** Names the missing rung between master equation and emergent-metric work; scopes what the sea campaign must produce for the spacetime chapters.
+**Confirm/kill.** Constructive: define and compute the response object for one certified assembly.
+**Source:** `braid-archive/braid-geometry-export-bridge/priorities.md`, top framing.
+**Recommended disposition:** hold in mining until a certified assembly exists; then a campaign objective.

@@ -7,7 +7,7 @@ import { fileURLToPath } from "node:url";
 const SCRIPT_DIR = path.dirname(fileURLToPath(import.meta.url));
 const DEFAULT_INPUT_PATH = path.resolve(
   SCRIPT_DIR,
-  "../nested-shell-braid/fixtures/action-increment-source-contract-blocked.json"
+  "fixtures/action-increment-source-contract-blocked.json"
 );
 const LAYER_IDS = ["I", "M", "O"];
 const ACCEPTED_CERTIFICATE_STATUSES = new Set([
@@ -67,7 +67,7 @@ function printHelp() {
 
 Options:
   --input PATH       Read a candidate accepted-history or phase-certificate source JSON.
-                     Defaults to scripts/nested-shell-braid/fixtures/action-increment-source-contract-blocked.json
+                     Defaults to scripts/quantum/fixtures/action-increment-source-contract-blocked.json
   --print-contract  Print the required pair-phase-certificate intake contract.
   --out PATH         Write JSON output to a file instead of stdout.
   --pretty           Pretty-print JSON output.

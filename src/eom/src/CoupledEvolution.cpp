@@ -995,13 +995,16 @@ SubstepAttempt corrected_substep_impl(
           if (regulator.status != "certified_convergent" ||
               event.status != "certified_complete" ||
               !event.impulse.has_value()) {
+            const std::string failure = regulator.failure_code.empty()
+                ? "regulator_convergence_failed"
+                : regulator.failure_code;
             event_impulses.push_back(std::move(event));
             regulator_convergence_certificates.push_back(
                 std::move(regulator));
             auto failed = failed_substep_certificate(
                 start_time, end_time, std::move(start_snapshot),
                 std::move(endpoint_snapshot), iteration, correction_error,
-                "regulator_convergence_failed", candidate_histories,
+                failure, candidate_histories,
                 pinned_fold_onset_certificates);
             failed.event_impulses = std::move(event_impulses);
             failed.regulator_convergence_certificates =
@@ -2276,6 +2279,9 @@ NativeRegulatorConvergenceCertificate certify_native_regulator_convergence(
   };
   if (base_event.status != "certified_complete" ||
       !base_event.impulse.has_value()) {
+    certificate.failure_code = base_event.failure_code.empty()
+        ? "numeric_event_impulse_uncertified"
+        : base_event.failure_code;
     return certificate;
   }
   const double base_causal_width = exact_decimal_value(request.causal_width);
@@ -2446,7 +2452,7 @@ NativeAccelerationSnapshotCertificate certify_native_acceleration_snapshot(
     std::vector<MovingHistoryMember> members;
     members.reserve(histories.size());
     for (const auto& path : histories) {
-      members.push_back({path.path_id, &path.history});
+      members.push_back({path.path_id, &path.history, true});
     }
     CertifiedTraversalRequest traversal_request{
         .traversal_id = request.run_id + "/snapshot/" + reception_time,
@@ -3187,7 +3193,8 @@ CertificateCostSignal certificate_cost_signal(
 }
 
 NativeCoupledEvolutionCertificate evolve_native_coupled_histories(
-    const NativeCoupledEvolutionRequest& request) {
+    const NativeCoupledEvolutionRequest& request,
+    const NativeAccelerationSnapshotCertificate* reusable_initial_snapshot) {
   const auto timing_start = SteadyClock::now();
   validate_request(request);
   std::vector<NativePublishedPath> histories;
@@ -3229,6 +3236,9 @@ NativeCoupledEvolutionCertificate evolve_native_coupled_histories(
         : decimal_token(current_time + attempted_step);
     const NativeAccelerationSnapshotCertificate* reusable_start_snapshot =
         nullptr;
+    if (steps.empty() && reusable_initial_snapshot != nullptr) {
+      reusable_start_snapshot = reusable_initial_snapshot;
+    }
     for (auto found = steps.rbegin(); found != steps.rend(); ++found) {
       if (found->status == "accepted" &&
           numeric_equal(found->accepted_time, current_time_token) &&

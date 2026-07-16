@@ -39,7 +39,6 @@ The primary textbook corpus lives under `content/markdown/aaa`. The current top-
 - `interactions`
 - `nuclear-atomic`
 - `philosophy-history`
-- `proof-programs`
 - `quantum`
 - `reactions`
 - `spacetime`

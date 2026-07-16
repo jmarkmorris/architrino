@@ -81,6 +81,7 @@ struct ExactPairCertificate {
   std::size_t visited_cells;
   std::size_t excluded_cells;
   std::size_t difficult_cells;
+  std::string diagnostic_detail;
   std::vector<NativeRootBracket> roots;
   double binary64_cpu_seconds = 0.0;
   double mpfr_cpu_seconds = 0.0;
@@ -90,7 +91,26 @@ struct ExactPairCertificate {
   std::size_t warm_excluded_cells = 0;
   std::size_t reevaluated_cells = 0;
   double warm_residual_drift_upper = 0.0;
+  // A negative residual prefix remains root-free for later receiver times
+  // while the receiver speed is certified below the field speed.  Carrying
+  // this frontier avoids replaying every older root-free cell.
+  bool stable_negative_prefix_certified = false;
+  std::string stable_negative_prefix_upper;
+  std::size_t incremental_prefix_reuse_count = 0;
   std::vector<NativeRootFreeCell> root_free_cells;
+  bool has_difficult_cell = false;
+  std::size_t difficult_source_segment_index = 0;
+  std::string difficult_cell_lower;
+  std::string difficult_cell_upper;
+  std::string difficult_point;
+  std::string difficult_point_residual_lower;
+  std::string difficult_point_residual_upper;
+  std::string difficult_source_normal_lower;
+  std::string difficult_source_normal_upper;
+  std::string difficult_receiver_normal_lower;
+  std::string difficult_receiver_normal_upper;
+  int difficult_lower_sign = 0;
+  int difficult_upper_sign = 0;
 };
 
 [[nodiscard]] ExactPairCertificate certify_exact_pair(

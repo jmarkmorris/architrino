@@ -1,14 +1,7 @@
-import {
-  CENTRAL_SOLVER_APP_PLAYBACK_REPLAY_MODE,
-  CENTRAL_SOLVER_MOTION_REPLAY_MODE,
-  CENTRAL_SOLVER_PAIR_INTERACTION_REPLAY_MODE,
-  createCausalDelayFeedbackCentralBridgeAdapter,
-} from "./CausalDelayFeedbackCentralBridgeAdapter.js";
+import { createCausalDelayFeedbackEomReplayAdapter } from "./CausalDelayFeedbackEomReplayAdapter.js";
 import { createCausalDelayFeedbackRuntime } from "./CausalDelayFeedbackRuntime.js";
 import { createTemporaryMockReplayAdapter } from "./CausalDelayFeedbackReplayAdapter.js";
-import { createCausalDelayFeedbackSolverBridgeOptions } from "./CausalDelayFeedbackSolverBridgeOptions.js";
 
-const CENTRAL_REPLAY_QUERY_VALUES = new Set(["central", "bridge", "solver", "central_solver_bridge"]);
 const MOCK_REPLAY_QUERY_VALUES = new Set([
   "mock",
   "representative",
@@ -17,28 +10,6 @@ const MOCK_REPLAY_QUERY_VALUES = new Set([
   "temporary_mock_adapter",
   "off",
   "false",
-]);
-const MOTION_REPLAY_QUERY_VALUES = new Set([
-  "motion",
-  "motion-simulation",
-  "motionsimulation",
-  "motion_solver",
-  "solver_motion",
-]);
-const PAIR_INTERACTION_REPLAY_QUERY_VALUES = new Set([
-  "pair",
-  "pair-interaction",
-  "pairinteraction",
-  "pair_interaction",
-  "pair_solver",
-  "solver_pair",
-]);
-const APP_PLAYBACK_REPLAY_QUERY_VALUES = new Set([
-  "app",
-  "app-playback",
-  "appplayback",
-  "playback",
-  "bridge-playback",
 ]);
 
 function getInitialQueryValue(windowLike, key) {
@@ -55,25 +26,8 @@ function getInitialPositiveQueryNumber(windowLike, key) {
   return Number.isFinite(number) && number > 0 ? number : undefined;
 }
 
-function getInitialNonnegativeQueryNumber(windowLike, key) {
-  const value = getInitialQueryValue(windowLike, key);
-  if (value == null || value === "") {
-    return undefined;
-  }
-  const number = Number(value);
-  return Number.isFinite(number) && number >= 0 ? number : undefined;
-}
-
-function getInitialNonnegativeQueryInteger(windowLike, key) {
-  const number = getInitialNonnegativeQueryNumber(windowLike, key);
-  return Number.isFinite(number) ? Math.floor(number) : undefined;
-}
-
-export function shouldUseCentralBridgeReplay(windowLike = globalThis.window) {
-  if (shouldUseTemporaryMockReplay(windowLike)) {
-    return false;
-  }
-  return true;
+export function shouldUseEomReplay(windowLike = globalThis.window) {
+  return !shouldUseTemporaryMockReplay(windowLike);
 }
 
 function shouldUseTemporaryMockReplay(windowLike = globalThis.window) {
@@ -83,122 +37,59 @@ function shouldUseTemporaryMockReplay(windowLike = globalThis.window) {
   });
 }
 
-export function getCentralBridgeReplayMode(windowLike = globalThis.window, { defaultMode } = {}) {
-  const value =
-    getInitialQueryValue(windowLike, "solverReplay") ??
-    getInitialQueryValue(windowLike, "replayMode");
-  if (!value) {
-    return defaultMode;
+export function createCausalDelayFeedbackEomReplayOptions(windowLike = globalThis.window) {
+  const scopeOptions = windowLike?.ARCHITRINO_CAUSAL_DELAY_FEEDBACK_EOM_REPLAY;
+  if (scopeOptions && typeof scopeOptions === "object") {
+    return scopeOptions;
   }
-  const normalizedValue = value.toLowerCase();
-  if (PAIR_INTERACTION_REPLAY_QUERY_VALUES.has(normalizedValue)) {
-    return CENTRAL_SOLVER_PAIR_INTERACTION_REPLAY_MODE;
+  const recordUrl = getInitialQueryValue(windowLike, "eomRecord");
+  if (recordUrl) {
+    return {
+      async loadEomRecord() {
+        const fetchLike = windowLike?.fetch ?? globalThis.fetch;
+        const response = await fetchLike(recordUrl);
+        if (!response?.ok) {
+          throw new Error(`EOM record fetch failed (${response?.status ?? "no response"}): ${recordUrl}`);
+        }
+        return response.json();
+      },
+    };
   }
-  if (MOTION_REPLAY_QUERY_VALUES.has(normalizedValue)) {
-    return CENTRAL_SOLVER_MOTION_REPLAY_MODE;
-  }
-  if (APP_PLAYBACK_REPLAY_QUERY_VALUES.has(normalizedValue)) {
-    return CENTRAL_SOLVER_APP_PLAYBACK_REPLAY_MODE;
-  }
-  return defaultMode;
+  return {};
 }
 
 export function createCausalDelayFeedbackInitialReplayRequestOptions(windowLike = globalThis.window) {
   const requestOptions = {};
-  const motionAccelerationPolicy =
-    getInitialQueryValue(windowLike, "motionPolicy") ??
-    getInitialQueryValue(windowLike, "accelerationPolicy") ??
-    getInitialQueryValue(windowLike, "pairPolicy");
-  if (motionAccelerationPolicy) {
-    requestOptions.motionAccelerationPolicy = motionAccelerationPolicy;
-  }
-  const pairSegmentCount = getInitialPositiveQueryNumber(windowLike, "pairSegmentCount");
-  if (pairSegmentCount != null) {
-    requestOptions.pairSegmentCount = Math.max(1, Math.floor(pairSegmentCount));
-  }
-  const pairAccelerationScale = getInitialPositiveQueryNumber(windowLike, "pairAccelerationScale");
-  if (pairAccelerationScale != null) {
-    requestOptions.pairAccelerationScale = pairAccelerationScale;
-  }
-  const pairInteractionSignalSpeed =
-    getInitialPositiveQueryNumber(windowLike, "pairInteractionSignalSpeed") ??
-    getInitialPositiveQueryNumber(windowLike, "signalSpeed");
-  if (pairInteractionSignalSpeed != null) {
-    requestOptions.pairInteractionSignalSpeed = pairInteractionSignalSpeed;
-  }
-  const pairInteractionLaw =
-    getInitialQueryValue(windowLike, "pairInteractionLaw") ??
-    getInitialQueryValue(windowLike, "interactionLaw");
-  if (pairInteractionLaw) {
-    requestOptions.pairInteractionLaw = pairInteractionLaw;
-  }
   const frameCount =
     getInitialPositiveQueryNumber(windowLike, "frameCount") ??
     getInitialPositiveQueryNumber(windowLike, "solverFrameCount");
   if (frameCount != null) {
     requestOptions.frameCount = Math.max(2, Math.floor(frameCount));
   }
-  const pathConstraintBoundaryResidualTolerance =
-    getInitialNonnegativeQueryNumber(windowLike, "pathConstraintBoundaryResidualTolerance") ??
-    getInitialNonnegativeQueryNumber(windowLike, "boundaryResidualTolerance");
-  if (pathConstraintBoundaryResidualTolerance != null) {
-    requestOptions.pathConstraintBoundaryResidualTolerance = pathConstraintBoundaryResidualTolerance;
+  const historyDepth = getInitialPositiveQueryNumber(windowLike, "historyDepth");
+  if (historyDepth != null) {
+    requestOptions.historyDepth = Math.max(2, Math.floor(historyDepth));
   }
-  const pathConstraintPositionResidualTolerance =
-    getInitialNonnegativeQueryNumber(windowLike, "pathConstraintPositionResidualTolerance") ??
-    getInitialNonnegativeQueryNumber(windowLike, "positionResidualTolerance");
-  if (pathConstraintPositionResidualTolerance != null) {
-    requestOptions.pathConstraintPositionResidualTolerance = pathConstraintPositionResidualTolerance;
+  const spaceAxis = getInitialQueryValue(windowLike, "spaceAxis");
+  if (spaceAxis) {
+    requestOptions.spaceAxis = spaceAxis;
   }
-  const pathConstraintGuidanceAccelerationTolerance =
-    getInitialNonnegativeQueryNumber(windowLike, "pathConstraintGuidanceAccelerationTolerance") ??
-    getInitialNonnegativeQueryNumber(windowLike, "guidanceAccelerationTolerance");
-  if (pathConstraintGuidanceAccelerationTolerance != null) {
-    requestOptions.pathConstraintGuidanceAccelerationTolerance =
-      pathConstraintGuidanceAccelerationTolerance;
+  const positrinoWorldlineId = getInitialQueryValue(windowLike, "positrinoWorldline");
+  if (positrinoWorldlineId) {
+    requestOptions.positrinoWorldlineId = positrinoWorldlineId;
   }
-  const pathConstraintInitialVelocityResidualTolerance =
-    getInitialNonnegativeQueryNumber(windowLike, "pathConstraintInitialVelocityResidualTolerance") ??
-    getInitialNonnegativeQueryNumber(windowLike, "initialVelocityResidualTolerance");
-  if (pathConstraintInitialVelocityResidualTolerance != null) {
-    requestOptions.pathConstraintInitialVelocityResidualTolerance =
-      pathConstraintInitialVelocityResidualTolerance;
-  }
-  const pathConstraintBoundaryRelaxationIterationCount =
-    getInitialNonnegativeQueryInteger(windowLike, "pathConstraintBoundaryRelaxationIterationCount") ??
-    getInitialNonnegativeQueryInteger(windowLike, "boundaryRelaxationIterations");
-  if (pathConstraintBoundaryRelaxationIterationCount != null) {
-    requestOptions.pathConstraintBoundaryRelaxationIterationCount =
-      pathConstraintBoundaryRelaxationIterationCount;
-  }
-  const pathConstraintBoundaryRelaxationTolerance =
-    getInitialNonnegativeQueryNumber(windowLike, "pathConstraintBoundaryRelaxationTolerance") ??
-    getInitialNonnegativeQueryNumber(windowLike, "boundaryRelaxationTolerance");
-  if (pathConstraintBoundaryRelaxationTolerance != null) {
-    requestOptions.pathConstraintBoundaryRelaxationTolerance =
-      pathConstraintBoundaryRelaxationTolerance;
-  }
-  const pathConstraintBoundaryRelaxationStepTolerance =
-    getInitialNonnegativeQueryNumber(windowLike, "pathConstraintBoundaryRelaxationStepTolerance") ??
-    getInitialNonnegativeQueryNumber(windowLike, "boundaryRelaxationStepTolerance");
-  if (pathConstraintBoundaryRelaxationStepTolerance != null) {
-    requestOptions.pathConstraintBoundaryRelaxationStepTolerance =
-      pathConstraintBoundaryRelaxationStepTolerance;
+  const electrinoWorldlineId = getInitialQueryValue(windowLike, "electrinoWorldline");
+  if (electrinoWorldlineId) {
+    requestOptions.electrinoWorldlineId = electrinoWorldlineId;
   }
   return requestOptions;
 }
 
 export function createCausalDelayFeedbackRuntimeForPage(windowLike = globalThis.window) {
   const fallbackReplayAdapter = createTemporaryMockReplayAdapter();
-  const useCentralBridgeReplay = shouldUseCentralBridgeReplay(windowLike);
-  const solverReplayMode = getCentralBridgeReplayMode(windowLike, {
-    defaultMode: CENTRAL_SOLVER_PAIR_INTERACTION_REPLAY_MODE,
-  });
-  const replayAdapter = useCentralBridgeReplay
-    ? createCausalDelayFeedbackCentralBridgeAdapter(
-        createCausalDelayFeedbackSolverBridgeOptions(windowLike, {
-          solverReplayMode,
-        }),
+  const replayAdapter = shouldUseEomReplay(windowLike)
+    ? createCausalDelayFeedbackEomReplayAdapter(
+        createCausalDelayFeedbackEomReplayOptions(windowLike),
       )
     : fallbackReplayAdapter;
   return createCausalDelayFeedbackRuntime({

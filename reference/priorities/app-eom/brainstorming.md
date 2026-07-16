@@ -5,7 +5,6 @@ This file holds provisional feature ideas, performance directions, validation po
 ## Routing Rules
 
 - Keep the defining evolution contract in [application-and-engine-contract.md](application-and-engine-contract.md).
-- Keep quarantine and migration sequencing in [migration-plan.md](migration-plan.md).
 - Keep the active queue compact in [priorities.md](priorities.md).
 - Do not let performance, UI, storage, or visualization work outrank correct coupled Master EOM evolution and independent validation.
 

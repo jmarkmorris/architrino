@@ -33,7 +33,7 @@ The Sagnac case is valuable because $\mathbb{A}\mathbb{A}\mathbb{A}$ has absolut
 
 | Source draft | Promotion target | Gate |
 | --- | --- | --- |
-| This file | braid (legacy-braid ref: `braid-archive/braid-retained-branch-closure/priorities.md`) | Add rotation as a path-history observable outside the inertial Lorentz cancellation. |
+| This file | braid | Add rotation as a path-history observable outside the inertial Lorentz cancellation. |
 | This file | [master-equation-closure](../master-equation-closure/priorities.md) | Express loop timing through causal roots and moving receiver geometry. |
 | This file | [validation-gates](../validation-gates/priorities.md) | Prevent Sagnac recovery from becoming a false preferred-frame loophole. |
 

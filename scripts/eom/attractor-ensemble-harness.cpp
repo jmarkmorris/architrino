@@ -5,7 +5,7 @@
 //
 //   - declared deterministic seed families (exact counts, seed offsets, all
 //     tangential speeds strictly off the v = c_f pin);
-//   - endpoint-matched prehistory families for the T3 collapse discipline
+//   - endpoint-matched prehistory families for the collapse discipline
 //     (uniform-circular via the provenance-bound factory, and a straight
 //     constant-velocity family built as one exact linear segment);
 //   - a release-time root-clearance check (every ordered pair must certify
@@ -17,6 +17,8 @@
 //   - streamed observables: a cluster/escape census JSONL row per chunk
 //     and Borg-replayable frame rows (borg-fixture-trajectory.v1 shape)
 //     appended as JSONL, wrapped into a single replay JSON at completion;
+//   - exact assembly-view-record.v0 publication from the EOM checkpoint's
+//     retained histories; sampled replay rows never supply record state;
 //   - heartbeats on every accepted step and every chunk; atomic checkpoint
 //     files so a killed run resumes with --resume.
 //
@@ -37,6 +39,7 @@
 #include "architrino/eom/CoupledEvolution.hpp"
 #include "architrino/eom/History.hpp"
 
+#include <algorithm>
 #include <array>
 #include <chrono>
 #include <cmath>
@@ -61,8 +64,7 @@ constexpr double kPi = 3.141592653589793238462643383279502884;
 constexpr const char* kCharge = "0.1666666666666666666666666666666667";
 constexpr const char* kNegativeCharge =
     "-0.1666666666666666666666666666666667";
-// Declared workload coupling: the section-86 lineage native coupling
-// 36 * kappa_eq. A declared campaign choice, not a bind fit.
+// Declared workload coupling: 36 * kappa_eq. A declared choice, not a bind fit.
 constexpr double kNativeCoupling = 36.0 * 0.2862286103053385;
 
 std::string token(double value) {
@@ -155,8 +157,161 @@ struct Vector3 {
   double z = 0.0;
 };
 
+struct Campaign1Refinement {
+  std::string id;
+  double step;
+  double history_segment_step;
+  std::size_t root_max_depth;
+  std::size_t chunk_steps;
+};
+
+struct Campaign1Coordinate {
+  double separation;
+  double speed;
+  std::string angle_id;
+  std::string prehistory_id;
+  Campaign1Refinement refinement;
+};
+
+constexpr std::array<double, 3> kCampaign1Separations = {1.0, 2.0, 4.0};
+constexpr std::array<double, 3> kCampaign1Speeds = {0.25, 0.50, 0.75};
+constexpr std::array<const char*, 3> kCampaign1Angles = {"0", "pi4", "pi2"};
+constexpr std::array<const char*, 3> kCampaign1Prehistories = {
+    "P0-inertial", "P1-lateral", "P2-longitudinal"};
+constexpr std::array<Campaign1Refinement, 3> kCampaign1Refinements = {{
+    {"R0", 0.02, 0.10, 192, 5},
+    {"R1", 0.01, 0.05, 224, 10},
+    {"R2", 0.005, 0.025, 256, 20},
+}};
+constexpr double kCampaign1HistoryDepth = 20.0;
+
+double campaign1_angle_radians(const std::string& angle_id) {
+  if (angle_id == "0") return 0.0;
+  if (angle_id == "pi4") return kPi / 4.0;
+  if (angle_id == "pi2") return kPi / 2.0;
+  throw std::invalid_argument("binary-angle must be 0, pi4, or pi2");
+}
+
+const Campaign1Refinement& campaign1_refinement(const std::string& id) {
+  for (const auto& refinement : kCampaign1Refinements) {
+    if (refinement.id == id) return refinement;
+  }
+  throw std::invalid_argument("refinement must be R0, R1, or R2");
+}
+
+std::string campaign1_scalar_id(double value) {
+  std::ostringstream stream;
+  stream << std::setprecision(3) << std::defaultfloat << value;
+  return stream.str();
+}
+
+std::string campaign1_run_id(const Campaign1Coordinate& coordinate) {
+  return "rung1-d" + campaign1_scalar_id(coordinate.separation) + "-s" +
+      campaign1_scalar_id(coordinate.speed) + "-theta" +
+      coordinate.angle_id + "-" + coordinate.prehistory_id + "-" +
+      coordinate.refinement.id;
+}
+
+Vector3 campaign1_release_position(
+    const Campaign1Coordinate& coordinate, int polarity) {
+  return {static_cast<double>(polarity) * coordinate.separation / 2.0,
+          0.0, 0.0};
+}
+
+Vector3 campaign1_release_velocity(
+    const Campaign1Coordinate& coordinate, int polarity) {
+  const double angle = campaign1_angle_radians(coordinate.angle_id);
+  const Vector3 positive{
+      -coordinate.speed * std::cos(angle),
+      coordinate.speed * std::sin(angle), 0.0};
+  return {static_cast<double>(polarity) * positive.x,
+          static_cast<double>(polarity) * positive.y, 0.0};
+}
+
+// Campaign 1's prehistory is a declared input, not evolved output. Each
+// segment is the same analytic cubic rebased to local segment time. The small
+// explicit error tokens enclose decimal-token/rebase rounding; they do not
+// authorize any post-release path construction.
+eom::RetainedHistory campaign1_history(
+    const Campaign1Coordinate& coordinate, int polarity) {
+  const Vector3 x0 = campaign1_release_position(coordinate, polarity);
+  const Vector3 v0 = campaign1_release_velocity(coordinate, polarity);
+  Vector3 bump{};
+  const double signed_amplitude =
+      static_cast<double>(polarity) * 0.25 * coordinate.separation;
+  if (coordinate.prehistory_id == "P1-lateral") {
+    bump.z = signed_amplitude;
+  } else if (coordinate.prehistory_id == "P2-longitudinal") {
+    bump.x = signed_amplitude;
+  } else if (coordinate.prehistory_id != "P0-inertial") {
+    throw std::invalid_argument(
+        "prehistory must be P0-inertial, P1-lateral, or P2-longitudinal");
+  }
+
+  const double depth = kCampaign1HistoryDepth;
+  const double segment_step = coordinate.refinement.history_segment_step;
+  const std::size_t segment_count = static_cast<std::size_t>(
+      std::llround(depth / segment_step));
+  const auto global_coefficients = [depth](
+      double position, double velocity, double displacement) {
+    return std::array<double, 4>{
+        position, velocity, 3.0 * displacement / (depth * depth),
+        2.0 * displacement / (depth * depth * depth)};
+  };
+  const std::array<std::array<double, 4>, 3> global = {
+      global_coefficients(x0.x, v0.x, bump.x),
+      global_coefficients(x0.y, v0.y, bump.y),
+      global_coefficients(x0.z, v0.z, bump.z),
+  };
+
+  std::vector<eom::CubicHistorySegment> segments;
+  segments.reserve(segment_count);
+  for (std::size_t index = 0; index < segment_count; ++index) {
+    const double start = -depth + segment_step * static_cast<double>(index);
+    const double end = index + 1 == segment_count
+        ? 0.0
+        : -depth + segment_step * static_cast<double>(index + 1);
+    eom::CubicCoefficientTokens local{};
+    for (std::size_t axis = 0; axis < 3; ++axis) {
+      const auto& c = global[axis];
+      local[axis] = {
+          token(c[0] + start *
+              (c[1] + start * (c[2] + start * c[3]))),
+          token(c[1] + start * (2.0 * c[2] + start * 3.0 * c[3])),
+          token(c[2] + start * 3.0 * c[3]),
+          token(c[3]),
+      };
+    }
+    segments.emplace_back(
+        token(start), token(end), local, "1e-11", "1e-11");
+  }
+  const std::string path_id = polarity > 0 ? "positive" : "negative";
+  return eom::RetainedHistory(
+      path_id + "-" + coordinate.prehistory_id + "-prehistory",
+      std::move(segments));
+}
+
+std::vector<SeedRow> campaign1_rows(const Campaign1Coordinate& coordinate) {
+  return {
+      {"positive", kCharge, coordinate.separation / 2.0, 0.0, 0.0,
+       coordinate.speed, 0},
+      {"negative", kNegativeCharge, coordinate.separation / 2.0, 0.0, kPi,
+       coordinate.speed, 0},
+  };
+}
+
+std::vector<eom::NativeCoupledPathInput> campaign1_paths(
+    const Campaign1Coordinate& coordinate) {
+  std::vector<eom::NativeCoupledPathInput> paths;
+  paths.push_back({
+      "positive", kCharge, campaign1_history(coordinate, +1)});
+  paths.push_back({
+      "negative", kNegativeCharge, campaign1_history(coordinate, -1)});
+  return paths;
+}
+
 // Release-time endpoint state shared by both prehistory families
-// (endpoint-matched within binary64 — the T3 requirement is materially
+// (endpoint-matched within binary64 — the requirement is materially
 // different prehistories arriving at the same release state).
 Vector3 endpoint_position(const SeedRow& row) {
   return {row.radius * std::cos(row.phase),
@@ -293,9 +448,15 @@ constexpr std::array<double, 12> kSpeedBinEdges = {
     0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 0.95, 0.99};
 
 struct Options {
+  std::string seed_family = "phase0-shell-v1";
   std::size_t population = 6;
   std::size_t seed_offset = 0;
   std::string prehistory = "circular";
+  double binary_separation = 1.0;
+  double binary_speed = 0.25;
+  std::string binary_angle = "0";
+  std::string refinement = "R0";
+  std::string campaign1_grid_manifest;
   double end_time = 0.2;
   double step = 0.01;
   double minimum_step = 0.0025;
@@ -310,6 +471,11 @@ struct Options {
   std::string out_dir = "attractor-ensemble-out";
   std::string run_id;
   std::string root_tolerance = "1e-5";
+  std::size_t root_max_depth = 192;
+  std::string engine_build_id = "unspecified";
+  std::string generating_spec = "unspecified";
+  std::string record_date = "unspecified";
+  double delay_horizon = 8.0;
   bool resume = false;
 };
 
@@ -338,7 +504,7 @@ eom::NativeCoupledEvolutionRequest build_request(
   request.position_tolerance = token(2e-6);
   request.velocity_tolerance = token(2e-6);
   request.correction_tolerance = "2e-7";
-  request.root_max_depth = 192;
+  request.root_max_depth = options.root_max_depth;
   request.root_max_cells = 500000;
   request.quadrature_max_depth = 32;
   request.quadrature_max_cells = 300000;
@@ -357,7 +523,8 @@ eom::NativeCoupledEvolutionRequest build_request(
 
 void write_frame_row(
     std::ostream& output, std::size_t path_key, std::size_t frame_index,
-    const std::string& time_token, const SampledState& state) {
+    const std::string& time_token, const SampledState& state,
+    int state_flags) {
   // The time token is a plain decimal literal, emitted as a JSON number to
   // match the Borg trajectory row shape.
   output << "{\"pathKey\":" << path_key
@@ -370,7 +537,270 @@ void write_frame_row(
          << ",\"y\":" << state.velocity.y
          << ",\"z\":" << state.velocity.z
          << "},\"errorBound\":" << state.error_bound
-         << ",\"stateFlags\":1}";
+         << ",\"stateFlags\":" << state_flags << '}';
+}
+
+int state_flags_for_charge(const std::string& charge) {
+  return charge.starts_with('-') ? 2 : 1;
+}
+
+void write_segment(
+    std::ostream& output, const eom::CubicHistorySegment& segment) {
+  output << "{\"startTime\":";
+  write_json_string(output, segment.t_start_token());
+  output << ",\"endTime\":";
+  write_json_string(output, segment.t_end_token());
+  output << ",\"coefficients\":[";
+  const auto& coefficients = segment.coefficient_tokens();
+  for (std::size_t axis = 0; axis < coefficients.size(); ++axis) {
+    if (axis > 0) output << ',';
+    output << '[';
+    for (std::size_t coefficient = 0;
+         coefficient < coefficients[axis].size(); ++coefficient) {
+      if (coefficient > 0) output << ',';
+      write_json_string(output, coefficients[axis][coefficient]);
+    }
+    output << ']';
+  }
+  output << "],\"positionError\":";
+  write_json_string(output, segment.position_error_token());
+  output << ",\"velocityError\":";
+  write_json_string(output, segment.velocity_error_token());
+  output << '}';
+}
+
+void write_interval_vector(
+    std::ostream& output, const eom::IntervalVector& values) {
+  output << '[';
+  for (std::size_t axis = 0; axis < values.size(); ++axis) {
+    if (axis > 0) output << ',';
+    output << "{\"lower\":" << values[axis].lower()
+           << ",\"upper\":" << values[axis].upper() << '}';
+  }
+  output << ']';
+}
+
+void write_campaign1_probe(
+    std::ostream& output, const eom::RetainedHistory& history,
+    const std::string& time_token) {
+  const eom::Interval time = eom::Interval::point(
+      eom::Interval::decimal_token(time_token).midpoint());
+  output << "{\"time\":";
+  write_json_string(output, time_token);
+  output << ",\"position\":";
+  write_interval_vector(output, history.position_hull(time));
+  output << ",\"velocity\":";
+  write_interval_vector(output, history.velocity_hull(time));
+  output << '}';
+}
+
+// Construction-only exercise for the declared 27 x 3 x 3 workload. This mode
+// instantiates and validates every retained-history segment, then exits before
+// root search, acceleration evaluation, or coupled evolution.
+void write_campaign1_grid_manifest(const std::filesystem::path& path) {
+  if (path.has_parent_path()) {
+    std::filesystem::create_directories(path.parent_path());
+  }
+  const auto temporary_path = path.string() + ".tmp";
+  std::ofstream output(temporary_path, std::ios::trunc);
+  if (!output) {
+    throw std::runtime_error(
+        "failed to open Campaign 1 workload manifest temporary file");
+  }
+  output << std::setprecision(17)
+         << "{\"schema\":\"campaign1_binary_workload_construction/v0\""
+         << ",\"generatingSpec\":\"reference/priorities/braid-program/"
+            "campaigns/campaign-1-subfield-binary.md\""
+         << ",\"purpose\":\"declared-initial-condition-construction-only\""
+         << ",\"evolutionInvoked\":false"
+         << ",\"physicsResultBooked\":false"
+         << ",\"configurationCount\":27"
+         << ",\"prehistoryCount\":3"
+         << ",\"refinementCount\":3"
+         << ",\"workloadCount\":243"
+         << ",\"workloads\":[";
+  bool first_workload = true;
+  for (const double separation : kCampaign1Separations) {
+    for (const double speed_value : kCampaign1Speeds) {
+      for (const char* angle_id : kCampaign1Angles) {
+        for (const char* prehistory_id : kCampaign1Prehistories) {
+          for (const auto& refinement : kCampaign1Refinements) {
+            const Campaign1Coordinate coordinate{
+                separation, speed_value, angle_id, prehistory_id, refinement};
+            const auto paths = campaign1_paths(coordinate);
+            if (!first_workload) output << ',';
+            first_workload = false;
+            output << "{\"runId\":";
+            write_json_string(output, campaign1_run_id(coordinate));
+            output << ",\"separation\":" << coordinate.separation
+                   << ",\"speed\":" << coordinate.speed
+                   << ",\"angleId\":";
+            write_json_string(output, coordinate.angle_id);
+            output << ",\"angleRadians\":"
+                   << campaign1_angle_radians(coordinate.angle_id)
+                   << ",\"prehistoryId\":";
+            write_json_string(output, coordinate.prehistory_id);
+            output << ",\"refinement\":{\"id\":";
+            write_json_string(output, coordinate.refinement.id);
+            output << ",\"maximumStep\":" << coordinate.refinement.step
+                   << ",\"maximumPrehistorySegment\":"
+                   << coordinate.refinement.history_segment_step
+                   << ",\"rootDepth\":"
+                   << coordinate.refinement.root_max_depth
+                   << ",\"stepsPerChunk\":"
+                   << coordinate.refinement.chunk_steps
+                   << ",\"chunkDuration\":"
+                   << coordinate.refinement.step *
+                          static_cast<double>(coordinate.refinement.chunk_steps)
+                   << "},\"paths\":[";
+            for (std::size_t path_index = 0; path_index < paths.size();
+                 ++path_index) {
+              if (path_index > 0) output << ',';
+              const auto& path_row = paths[path_index];
+              const auto& segments = path_row.history.segments();
+              double maximum_duration = 0.0;
+              for (const auto& segment : segments) {
+                maximum_duration = std::max(
+                    maximum_duration,
+                    std::stod(segment.t_end_token()) -
+                        std::stod(segment.t_start_token()));
+              }
+              output << "{\"id\":";
+              write_json_string(output, path_row.path_id);
+              output << ",\"charge\":";
+              write_json_string(output, path_row.charge);
+              output << ",\"historyFingerprint\":";
+              write_json_string(
+                  output, path_row.history.provenance_fingerprint());
+              output << ",\"coverageStart\":";
+              write_json_string(output, segments.front().t_start_token());
+              output << ",\"coverageEnd\":";
+              write_json_string(output, segments.back().t_end_token());
+              output << ",\"segmentCount\":" << segments.size()
+                     << ",\"maximumSegmentDuration\":" << maximum_duration
+                     << ",\"probes\":[";
+              constexpr std::array<const char*, 5> kProbeTimes = {
+                  "-20", "-15", "-10", "-5", "0"};
+              for (std::size_t probe_index = 0;
+                   probe_index < kProbeTimes.size(); ++probe_index) {
+                if (probe_index > 0) output << ',';
+                write_campaign1_probe(
+                    output, path_row.history, kProbeTimes[probe_index]);
+              }
+              output << "]}";
+            }
+            output << "]}";
+          }
+        }
+      }
+    }
+  }
+  output << "]}\n";
+  output.flush();
+  if (!output) {
+    throw std::runtime_error("failed to write Campaign 1 workload manifest");
+  }
+  output.close();
+  std::filesystem::rename(temporary_path, path);
+}
+
+template <typename PathRow>
+void write_assembly_view_record_atomic(
+    const std::filesystem::path& path, const Options& options,
+    const std::vector<PathRow>& published_paths,
+    const std::vector<std::string>& declared_path_ids,
+    const std::vector<std::size_t>& declared_segment_counts,
+    const std::string& model_fingerprint,
+    const std::string& accepted_end, const std::string& run_status) {
+  if (published_paths.empty() ||
+      published_paths.size() != declared_path_ids.size() ||
+      published_paths.size() != declared_segment_counts.size()) {
+    throw std::invalid_argument(
+        "assembly-view record requires one declared id and segment count per path");
+  }
+  const auto temporary_path = path.string() + ".tmp";
+  {
+    std::ofstream output(temporary_path, std::ios::trunc);
+    if (!output) {
+      throw std::runtime_error(
+          "failed to open assembly-view record temporary file");
+    }
+    output << std::setprecision(17)
+           << "{\"schema\":\"assembly-view-record.v0\",\"provenance\":{"
+           << "\"engineId\":\"eom-solver\",\"engineVersion\":";
+    write_json_string(output, options.engine_build_id);
+    output << ",\"runId\":";
+    write_json_string(output, options.run_id);
+    output << ",\"claimGrade\":";
+    write_json_string(
+        output, accepted_end == "0" ? "chart-hypothesis" : "evolved-record");
+    output << ",\"evidenceStatus\":";
+    write_json_string(
+        output, accepted_end == "0" ? "declared-initial-condition"
+                                     : "executable_architecture_evidence");
+    output << ",\"generatingSpec\":";
+    write_json_string(output, options.generating_spec);
+    output << ",\"date\":";
+    write_json_string(output, options.record_date);
+    output << ",\"recordAuthority\":\"eom-native-coupled-evolution\""
+           << ",\"modelFingerprint\":";
+    write_json_string(output, model_fingerprint);
+    output << ",\"runStatus\":";
+    write_json_string(output, run_status);
+    output << "},\"window\":{\"start\":0,\"end\":";
+    write_json_string(output, accepted_end);
+    output << ",\"delayHorizon\":" << options.delay_horizon
+           << ",\"sampleInterval\":"
+           << options.step * static_cast<double>(options.sample_every)
+           << "},\"worldlines\":[";
+    for (std::size_t path_index = 0; path_index < published_paths.size();
+         ++path_index) {
+      if (path_index > 0) output << ',';
+      const auto& published = published_paths[path_index];
+      const auto& segments = published.history.segments();
+      const std::size_t declared_count = declared_segment_counts[path_index];
+      if (published.path_id != declared_path_ids[path_index]) {
+        throw std::runtime_error(
+            "published history order differs from the declared path order");
+      }
+      if (segments.size() < declared_count) {
+        throw std::runtime_error(
+            "published history lost declared prehistory segments");
+      }
+      output << "{\"id\":";
+      write_json_string(output, published.path_id);
+      output << ",\"pathKey\":" << (path_index + 1)
+             << ",\"polarity\":"
+             << (state_flags_for_charge(published.charge) == 1 ? 1 : -1)
+             << ",\"charge\":";
+      write_json_string(output, published.charge);
+      output << ",\"stateFlags\":"
+             << state_flags_for_charge(published.charge)
+             << ",\"coverageStart\":";
+      write_json_string(output, segments.front().t_start_token());
+      output << ",\"coverageEnd\":";
+      write_json_string(output, segments.back().t_end_token());
+      output << ",\"interpolation\":\"certified-piecewise-cubic-v0\""
+             << ",\"historyFingerprint\":";
+      write_json_string(output, published.history.provenance_fingerprint());
+      output << ",\"declaredPrehistorySegmentCount\":" << declared_count
+             << ",\"evolvedSegmentCount\":"
+             << (segments.size() - declared_count)
+             << ",\"segments\":[";
+      for (std::size_t segment_index = 0; segment_index < segments.size();
+           ++segment_index) {
+        if (segment_index > 0) output << ',';
+        write_segment(output, segments[segment_index]);
+      }
+      output << "]}";
+    }
+    output << "],\"binaries\":[],\"ansatz\":[],\"events\":[]}\n";
+    output.flush();
+    if (!output) {
+      throw std::runtime_error("failed to write assembly-view record");
+    }
+  }
+  std::filesystem::rename(temporary_path, path);
 }
 
 struct CensusAccumulator {
@@ -536,7 +966,9 @@ void write_manifest(
          << "{\"schema\":\"eom_attractor_ensemble_run_manifest/v0\""
          << ",\"runId\":";
   write_json_string(output, options.run_id);
-  output << ",\"seedFamily\":\"phase0-shell-v1\""
+  output << ",\"seedFamily\":";
+  write_json_string(output, options.seed_family);
+  output
          << ",\"population\":" << options.population
          << ",\"seedOffset\":" << options.seed_offset
          << ",\"prehistoryFamily\":";
@@ -551,12 +983,20 @@ void write_manifest(
          << ",\"escapeRadius\":" << options.escape_radius
          << ",\"pinSpeed\":" << options.pin_speed
          << ",\"threadCount\":" << options.thread_count
+         << ",\"delayHorizon\":" << options.delay_horizon
+         << ",\"rootMaxDepth\":" << options.root_max_depth
          << ",\"rootTolerance\":";
   write_json_string(output, options.root_tolerance);
   output << ",\"coupling\":";
   write_json_string(output, token(kNativeCoupling));
   output << ",\"modelFingerprint\":";
   write_json_string(output, model_fingerprint);
+  output << ",\"engineBuildId\":";
+  write_json_string(output, options.engine_build_id);
+  output << ",\"generatingSpec\":";
+  write_json_string(output, options.generating_spec);
+  output << ",\"recordDate\":";
+  write_json_string(output, options.record_date);
   output << ",\"releaseRootClearance\":";
   write_json_string(output, root_clearance_status);
   output << ",\"chunksCompleted\":" << chunks_completed
@@ -566,6 +1006,19 @@ void write_manifest(
          << ",\"cumulativeWallSeconds\":" << cumulative_wall_seconds
          << ",\"status\":";
   write_json_string(output, status);
+  if (options.seed_family == "campaign1-subfield-binary-v1") {
+    output << ",\"campaign1Coordinate\":{\"separation\":"
+           << options.binary_separation << ",\"speed\":"
+           << options.binary_speed << ",\"angleId\":";
+    write_json_string(output, options.binary_angle);
+    output << ",\"angleRadians\":"
+           << campaign1_angle_radians(options.binary_angle)
+           << ",\"prehistoryId\":";
+    write_json_string(output, options.prehistory);
+    output << ",\"refinement\":";
+    write_json_string(output, options.refinement);
+    output << '}';
+  }
   output << ",\"evidence\":{\"eomEvidenceStatus\":"
             "\"executable_architecture_evidence\""
          << ",\"canonicalEomEvidence\":false}"
@@ -577,11 +1030,26 @@ void write_manifest(
     write_json_string(output, row.path_id);
     output << ",\"charge\":";
     write_json_string(output, row.charge);
-    output << ",\"radius\":" << row.radius
-           << ",\"height\":" << row.height
-           << ",\"phase\":" << row.phase
-           << ",\"speed\":" << row.speed
-           << ",\"sense\":" << row.sense << '}';
+    if (options.seed_family == "campaign1-subfield-binary-v1") {
+      const Campaign1Coordinate coordinate{
+          options.binary_separation, options.binary_speed,
+          options.binary_angle, options.prehistory,
+          campaign1_refinement(options.refinement)};
+      const int polarity = row.charge == kCharge ? +1 : -1;
+      const auto position = campaign1_release_position(coordinate, polarity);
+      const auto velocity = campaign1_release_velocity(coordinate, polarity);
+      output << ",\"releasePosition\":[" << position.x << ',' << position.y
+             << ',' << position.z << "]"
+             << ",\"releaseVelocity\":[" << velocity.x << ',' << velocity.y
+             << ',' << velocity.z << "]"
+             << ",\"speed\":" << row.speed << '}';
+    } else {
+      output << ",\"radius\":" << row.radius
+             << ",\"height\":" << row.height
+             << ",\"phase\":" << row.phase
+             << ",\"speed\":" << row.speed
+             << ",\"sense\":" << row.sense << '}';
+    }
   }
   output << "]}\n";
 }
@@ -607,7 +1075,7 @@ void write_replay_wrapper(
          << ",\"claimLevel\":\"developer-test\""
          << ",\"canonicalEomEvidence\":false"
          << ",\"eomEvidenceStatus\":\"executable_architecture_evidence\""
-         << ",\"eomEvidenceReason\":\"Native EOM coupled evolution output; "
+         << ",\"eomEvidenceReason\":\"EOM solver coupled evolution output; "
             "Borg shadow output remains noncanonical pending the migration "
             "gates.\""
          << ",\"frameCount\":" << frame_count
@@ -649,12 +1117,25 @@ void write_replay_wrapper(
 int main(int argc, char** argv) {
   try {
     Options options;
+    options.seed_family = option_string(
+        argc, argv, "seed-family", options.seed_family);
     options.population = static_cast<std::size_t>(
         option_double(argc, argv, "population", 6.0));
     options.seed_offset = static_cast<std::size_t>(
         option_double(argc, argv, "seed-offset", 0.0));
     options.prehistory =
         option_string(argc, argv, "prehistory", options.prehistory);
+    options.binary_separation = option_double(
+        argc, argv, "binary-separation", options.binary_separation);
+    options.binary_speed = option_double(
+        argc, argv, "binary-speed", options.binary_speed);
+    options.binary_angle = option_string(
+        argc, argv, "binary-angle", options.binary_angle);
+    options.refinement = option_string(
+        argc, argv, "refinement", options.refinement);
+    options.campaign1_grid_manifest = option_string(
+        argc, argv, "campaign1-grid-manifest",
+        options.campaign1_grid_manifest);
     options.end_time = option_double(argc, argv, "end-time", options.end_time);
     options.step = option_double(argc, argv, "step", options.step);
     options.minimum_step =
@@ -678,17 +1159,71 @@ int main(int argc, char** argv) {
     options.out_dir = option_string(argc, argv, "out-dir", options.out_dir);
     options.root_tolerance = option_string(
         argc, argv, "root-tolerance", options.root_tolerance);
+    options.engine_build_id = option_string(
+        argc, argv, "engine-build-id", options.engine_build_id);
+    options.generating_spec = option_string(
+        argc, argv, "generating-spec", options.generating_spec);
+    options.record_date = option_string(
+        argc, argv, "record-date", options.record_date);
+    options.delay_horizon = option_double(
+        argc, argv, "delay-horizon", options.history_depth);
     options.resume = has_flag(argc, argv, "resume");
+    if (!options.campaign1_grid_manifest.empty()) {
+      write_campaign1_grid_manifest(options.campaign1_grid_manifest);
+      std::cout << "campaign1_workload_construction status=completed"
+                << " configurations=27 prehistories=3 refinements=3"
+                << " workloads=243 evolution_invoked=false"
+                << " manifest=" << options.campaign1_grid_manifest << '\n';
+      return 0;
+    }
+    if (options.seed_family == "campaign1-subfield-binary-v1") {
+      const auto& refinement = campaign1_refinement(options.refinement);
+      options.population = 2;
+      options.history_depth = kCampaign1HistoryDepth;
+      options.delay_horizon = kCampaign1HistoryDepth;
+      options.step = refinement.step;
+      options.minimum_step = refinement.step / 4.0;
+      options.history_segment_step = refinement.history_segment_step;
+      options.root_max_depth = refinement.root_max_depth;
+      options.chunk_steps = refinement.chunk_steps;
+    } else if (options.seed_family != "phase0-shell-v1") {
+      throw std::invalid_argument(
+          "seed-family must be phase0-shell-v1 or "
+          "campaign1-subfield-binary-v1");
+    }
     options.run_id = option_string(
         argc, argv, "run-id",
-        "attractor-ensemble-n" + std::to_string(options.population) +
-            "-s" + std::to_string(options.seed_offset) + "-" +
-            options.prehistory);
+        options.seed_family == "campaign1-subfield-binary-v1"
+            ? campaign1_run_id({
+                  options.binary_separation, options.binary_speed,
+                  options.binary_angle, options.prehistory,
+                  campaign1_refinement(options.refinement)})
+            : "attractor-ensemble-n" + std::to_string(options.population) +
+                  "-s" + std::to_string(options.seed_offset) + "-" +
+                  options.prehistory);
     if (options.population % 2 != 0) {
       throw std::invalid_argument("population must be even (neutral mix)");
     }
-    if (options.prehistory != "circular" && options.prehistory != "straight") {
+    if (options.seed_family == "phase0-shell-v1" &&
+        options.prehistory != "circular" && options.prehistory != "straight") {
       throw std::invalid_argument("prehistory must be circular or straight");
+    }
+    if (options.seed_family == "campaign1-subfield-binary-v1") {
+      campaign1_angle_radians(options.binary_angle);
+      if (options.prehistory != "P0-inertial" &&
+          options.prehistory != "P1-lateral" &&
+          options.prehistory != "P2-longitudinal") {
+        throw std::invalid_argument(
+            "prehistory must be P0-inertial, P1-lateral, or P2-longitudinal");
+      }
+      const auto contains = [](const auto& values, double target) {
+        return std::find(values.begin(), values.end(), target) != values.end();
+      };
+      if (!contains(kCampaign1Separations, options.binary_separation) ||
+          !contains(kCampaign1Speeds, options.binary_speed)) {
+        throw std::invalid_argument(
+            "Campaign 1 separation and speed must be declared grid values");
+      }
     }
     if (options.chunk_steps == 0 || options.sample_every == 0) {
       throw std::invalid_argument("chunk-steps and sample-every must be >= 1");
@@ -701,22 +1236,39 @@ int main(int argc, char** argv) {
     const auto frames_path = out_dir / "frames.jsonl";
     const auto replay_path = out_dir / "replay.borg-trajectory.json";
     const auto checkpoint_path = out_dir / "checkpoint.bin";
+    const auto assembly_record_path = out_dir / "assembly-view-record.json";
 
-    const auto rows = seed_rows(options.population, options.seed_offset);
-    std::vector<eom::NativeCoupledPathInput> paths;
-    paths.reserve(rows.size());
+    const std::optional<Campaign1Coordinate> campaign1_coordinate =
+        options.seed_family == "campaign1-subfield-binary-v1"
+        ? std::optional<Campaign1Coordinate>({
+              options.binary_separation, options.binary_speed,
+              options.binary_angle, options.prehistory,
+              campaign1_refinement(options.refinement)})
+        : std::nullopt;
+    const auto rows = campaign1_coordinate.has_value()
+        ? campaign1_rows(*campaign1_coordinate)
+        : seed_rows(options.population, options.seed_offset);
+    std::vector<eom::NativeCoupledPathInput> paths =
+        campaign1_coordinate.has_value()
+        ? campaign1_paths(*campaign1_coordinate)
+        : std::vector<eom::NativeCoupledPathInput>{};
     double maximum_seed_speed = 0.0;
+    if (!campaign1_coordinate.has_value()) {
+      paths.reserve(rows.size());
+      for (const auto& row : rows) {
+        paths.push_back({
+            row.path_id,
+            row.charge,
+            options.prehistory == "circular"
+                ? circular_history(
+                      row, options.history_depth, options.history_segment_step)
+                : straight_history(row, options.history_depth)});
+      }
+    }
     for (const auto& row : rows) {
       maximum_seed_speed = std::max(maximum_seed_speed, row.speed);
-      paths.push_back({
-          row.path_id,
-          row.charge,
-          options.prehistory == "circular"
-              ? circular_history(
-                    row, options.history_depth, options.history_segment_step)
-              : straight_history(row, options.history_depth)});
     }
-    std::cerr << "seed family=phase0-shell-v1 population="
+    std::cerr << "seed family=" << options.seed_family << " population="
               << options.population << " offset=" << options.seed_offset
               << " prehistory=" << options.prehistory
               << " maximum_seed_speed=" << maximum_seed_speed
@@ -725,6 +1277,14 @@ int main(int argc, char** argv) {
     const auto request_template = build_request(options, paths);
     const std::string model_fingerprint =
         eom::native_evolution_model_fingerprint(request_template);
+    std::vector<std::size_t> declared_segment_counts;
+    std::vector<std::string> declared_path_ids;
+    declared_segment_counts.reserve(paths.size());
+    declared_path_ids.reserve(paths.size());
+    for (const auto& path : paths) {
+      declared_path_ids.push_back(path.path_id);
+      declared_segment_counts.push_back(path.history.segments().size());
+    }
 
     // Resume state.
     std::optional<eom::NativeEvolutionCheckpoint> checkpoint;
@@ -785,6 +1345,10 @@ int main(int argc, char** argv) {
                 << root_clearance_status
                 << " unresolved=" << unresolved << '\n';
       if (root_clearance_status != "certified_complete") {
+        write_assembly_view_record_atomic(
+            assembly_record_path, options, paths, declared_path_ids,
+            declared_segment_counts, model_fingerprint, "0",
+            "blocked_release_root_clearance");
         write_manifest(
             manifest_path, options, rows, model_fingerprint,
             root_clearance_status, 0, "0", 0, 0.0,
@@ -794,7 +1358,9 @@ int main(int argc, char** argv) {
       // Initial frame row (frameIndex 0 at the release time).
       for (std::size_t index = 0; index < initial.size(); ++index) {
         const auto state = sample_state(initial[index].history, "0");
-        write_frame_row(frames, index + 1, 0, "0", state);
+        write_frame_row(
+            frames, index + 1, 0, "0", state,
+            state_flags_for_charge(paths[index].charge));
         frames << '\n';
         ++frame_count;
       }
@@ -882,7 +1448,7 @@ int main(int argc, char** argv) {
         for (std::size_t index = 0; index < states.size(); ++index) {
           write_frame_row(
               frames, index + 1, frame_index, step_row.accepted_time,
-              states[index]);
+              states[index], state_flags_for_charge(rows[index].charge));
           frames << '\n';
           ++frame_count;
         }
@@ -907,6 +1473,11 @@ int main(int argc, char** argv) {
       accepted_end = chunk.accepted_end_time;
       ++chunks_completed;
 
+      write_assembly_view_record_atomic(
+          assembly_record_path, options, checkpoint->paths,
+          declared_path_ids, declared_segment_counts, model_fingerprint,
+          accepted_end, "running");
+
       std::cerr << "chunk_complete index=" << (chunks_completed - 1)
                 << " accepted_end=" << accepted_end
                 << " chunk_wall=" << chunk.timing.total_wall_seconds
@@ -929,6 +1500,16 @@ int main(int argc, char** argv) {
     write_replay_wrapper(
         frames_path, replay_path, options, frame_count, keyframe_count,
         accepted_end);
+    if (checkpoint.has_value()) {
+      write_assembly_view_record_atomic(
+          assembly_record_path, options, checkpoint->paths,
+          declared_path_ids, declared_segment_counts, model_fingerprint,
+          accepted_end, final_status);
+    } else {
+      write_assembly_view_record_atomic(
+          assembly_record_path, options, paths, declared_path_ids,
+          declared_segment_counts, model_fingerprint, "0", final_status);
+    }
     write_manifest(
         manifest_path, options, rows, model_fingerprint,
         root_clearance_status, chunks_completed, accepted_end, frame_count,

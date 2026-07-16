@@ -9,7 +9,7 @@ b_\ast=\frac{7}{2},
 I_\ast=\left[-\frac{\pi}{6},\frac{\pi}{6}\right].
 $$
 This packet consumes [spiral-a1-root-window-certificate](spiral-a1-root-window-certificate.md),
-[spiral-a1-drive-interval-target](spiral-a1-drive-interval-target.md), and the VP-1
+[spiral-a1-restart](spiral-a1-restart.md), and the VP-1
 template [spiral-vp1-root-transport-interval-proof](spiral-vp1-root-transport-interval-proof.md).
 It supplies no canonical force/action evidence.
 

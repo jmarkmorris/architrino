@@ -99,9 +99,8 @@ src/apps/navigator/StandaloneAppLaunchRuntime.js
 ```
 
 App runtime code is under `src/apps/`. EOM under `src/eom/` is the endorsed
-solver and sole forward production target. The existing central solver under
-`src/solver/` remains temporarily available only for current dependencies while
-they migrate; new app and simulation work must not adopt or extend it.
+solver and sole forward production target. New app and simulation work
+routes through its contracts and recorded datasets.
 
 ## Content Model
 
@@ -192,7 +191,6 @@ VIRTUAL_ENV="${AAA_VENV:-../.venv}" "${AAA_VENV:-../.venv}/bin/python" <script>
 - `*.html` at the repo root: standalone browser app entrypoints.
 - `src/apps/architrino/`: scene navigator runtime.
 - `src/apps/`: standalone application runtimes and app-specific modules.
-- `src/solver/`: central native/bridge solver implementation and fixtures.
 - `src/services/`, `src/runtime/`, `src/domain/`: shared runtime, service, and
   domain helpers.
 - `content/markdown/aaa/`: authored corpus markdown.

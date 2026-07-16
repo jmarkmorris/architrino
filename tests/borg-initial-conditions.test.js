@@ -1,7 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 
-import { BORG_DATASET_MANIFEST_V1 } from "../src/apps/borg/BorgFixtureData.js";
+import { BORG_DATASET_MANIFEST_V1 } from "../src/apps/borg/BorgAppManifest.js";
 import {
   BORG_ACCEPTED_SEED_HISTORY_PROVENANCE,
   BORG_MAX_INITIAL_ARCHITRINO_COUNT,
@@ -10,6 +10,7 @@ import {
   createBorgInitialConditionConfig,
   createBorgPrescribedLinearHistoryRows,
   createBorgSeededInitialConditionRows,
+  certifyBorgMinimumSeparation,
   validateBorgInitialConditionConfig,
 } from "../src/apps/borg/BorgInitialConditions.js";
 
@@ -19,8 +20,8 @@ test("Borg initial-condition controls start from the accepted manifest values", 
     {
       electrinoCount: 8,
       positrinoCount: 8,
-      randomVelocityMaxComponentMagnitude: 0.042,
-      randomVelocityMinSpeed: 0.0144,
+      randomVelocityMaxComponentMagnitude: 0,
+      randomVelocityMinSpeed: 0,
     },
   );
 });
@@ -139,13 +140,40 @@ test("Borg seeded initial-condition rows honor counts, polarity, and velocity li
   assert.equal(new Set(first.map((row) => row.pathKey)).size, 5);
   assert.equal(first.filter((row) => row.stateFlags === 1).length, 2);
   assert.equal(first.filter((row) => row.stateFlags === 2).length, 3);
+  const bounds = BORG_DATASET_MANIFEST_V1.simulationEnvelope.centralVolume.bounds;
   first.forEach((row) => {
     assert.ok(Math.max(...Object.values(row.velocity).map(Math.abs)) <= 0.02);
     assert.ok(Math.hypot(row.velocity.x, row.velocity.y, row.velocity.z) >= 0.01);
-    assert.ok(row.position.x >= 10 && row.position.x <= 90);
-    assert.ok(row.position.y >= 10 && row.position.y <= 90);
-    assert.ok(row.position.z >= 10 && row.position.z <= 90);
+    assert.ok(row.position.x >= bounds.x[0] && row.position.x <= bounds.x[1]);
+    assert.ok(row.position.y >= bounds.y[0] && row.position.y <= bounds.y[1]);
+    assert.ok(row.position.z >= bounds.z[0] && row.position.z <= bounds.z[1]);
   });
+});
+
+test("Borg default seeded-random geometry certifies minimum separation and zero initial velocity", () => {
+  const rows = createBorgSeededInitialConditionRows({
+    manifest: BORG_DATASET_MANIFEST_V1,
+    seedIndex: 0,
+    config: createBorgInitialConditionConfig(BORG_DATASET_MANIFEST_V1.initialConditions),
+  });
+  const certificate = certifyBorgMinimumSeparation(rows, {
+    minimumPairSeparation: 0.2,
+  });
+
+  assert.equal(rows.length, 16);
+  assert.equal(rows[0].runSource, "seeded-random-minimum-separation-initial-state");
+  assert.notDeepEqual(
+    rows.map((row) => row.position),
+    [...rows].sort((left, right) =>
+      left.position.x - right.position.x ||
+      left.position.y - right.position.y ||
+      left.position.z - right.position.z
+    ).map((row) => row.position),
+  );
+  assert.equal(rows.every((row) => Object.values(row.velocity).every((value) => value === 0)), true);
+  assert.equal(certificate.accepted, true);
+  assert.equal(certificate.requiredMinimumSeparation, 0.2);
+  assert.ok(certificate.measuredMinimumSeparation >= 0.2);
 });
 
 test("Borg initial-condition controls support an explicit zero-velocity population", () => {

@@ -1,4 +1,0 @@
-id,energy_residual,wake_energy_delta,coupling_energy_delta,status
-fixture-B12-B13-a,0.003,0.004,-0.001,pass
-fixture-B20-B21-b,0.002,0.003,-0.001,pass
-fixture-B07-B08-control,0.003,0.002,-0.001,pass

@@ -30,6 +30,19 @@ eom::RetainedHistory history(
               x, {"0", "0", "0", "0"}, {"0", "0", "0", "0"}})});
 }
 
+eom::RetainedHistory history(
+    const std::string& id,
+    const std::string& start,
+    const std::string& end,
+    const std::array<std::string, 4>& x) {
+  return eom::RetainedHistory(
+      id,
+      {eom::CubicHistorySegment(
+          start, end,
+          eom::CubicCoefficientTokens{
+              x, {"0", "0", "0", "0"}, {"0", "0", "0", "0"}})});
+}
+
 eom::NativeCoupledEvolutionRequest request(
     const std::string& run_id,
     std::vector<eom::NativeCoupledPathInput> paths,
@@ -245,6 +258,8 @@ void print_atomic(const eom::NativeAtomicStepCertificate& certificate) {
   std::cout << "{\"schema\":\"" << certificate.schema
             << "\",\"status\":\"" << certificate.status
             << "\",\"failure_code\":\"" << certificate.failure_code
+            << "\",\"attempted_start\":\"" << certificate.attempted_start
+            << "\",\"attempted_end\":\"" << certificate.attempted_end
             << "\",\"accepted_time\":\"" << certificate.accepted_time
             << "\",\"publication_atomic\":"
             << (certificate.publication_atomic ? "true" : "false")
@@ -727,6 +742,36 @@ void print_all() {
       eom::certify_native_atomic_coupled_step(
           finite_event_resource_request, event_histories, 0, "2.7", "2.8");
 
+  const auto borg_history_boundary_event_request = request(
+      "borg-16-history-boundary-event-0.06-0.07",
+      {{"1004", "1",
+        history(
+            "borg-16-history-boundary-receiver", "-10", "0.06",
+            {"0", "0", "0", "0"})},
+       {"1013", "1",
+        history(
+            "borg-16-history-boundary-source", "-10", "0.06",
+            {"10.065", "0", "0", "0"})}},
+      "0.06", "0.07", "0.01", "0.01", "1", "1", "1e-7", "1e-30");
+  auto borg_history_boundary_event_finite_request =
+      borg_history_boundary_event_request;
+  borg_history_boundary_event_finite_request.chart_policy =
+      "sharp_with_finite_width_fallback";
+  borg_history_boundary_event_finite_request.causal_width = "0.2";
+  borg_history_boundary_event_finite_request.core_scale = "0.2";
+  borg_history_boundary_event_finite_request.event_impulse_tolerance = "1e-7";
+  borg_history_boundary_event_finite_request.regulator_convergence_tolerance =
+      "1e-3";
+  borg_history_boundary_event_finite_request.regulator_refinement_levels = 3;
+  std::vector<eom::NativePublishedPath> borg_history_boundary_histories;
+  for (const auto& path : borg_history_boundary_event_finite_request.paths) {
+    borg_history_boundary_histories.push_back({path.path_id, path.history});
+  }
+  const auto borg_history_boundary_event_step =
+      eom::certify_native_atomic_coupled_step(
+          borg_history_boundary_event_finite_request,
+          borg_history_boundary_histories, 0, "0.06", "0.07");
+
   const eom::NativePublishedPath event_receiver{
       "receiver", history("event-control-receiver", "3.01", {"0", "0", "0", "0"})};
   const eom::NativePublishedPath event_source{
@@ -993,6 +1038,8 @@ void print_all() {
   print_atomic(finite_event_single_thread_step);
   std::cout << ",\"event_atomic_resource_failure\":";
   print_atomic(finite_event_resource_step);
+  std::cout << ",\"borg_16_history_boundary_event\":";
+  print_atomic(borg_history_boundary_event_step);
   std::cout << ",\"pinned_fold_temporal_onset\":";
   print_pinned_fold_temporal_onset(pinned_temporal_onset);
   std::cout << ",\"pinned_fold_temporal_onset_disabled\":";

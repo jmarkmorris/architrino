@@ -3,7 +3,7 @@
 This module is reference-only.  It adds certificates for root continuation,
 finite-width fold/caustic impulse integration, exact-decimal restart, coupled
 refinement ladders, and the versioned acceptance matrix.  It neither imports
-nor authorizes the current central solver or a future production EOM backend.
+nor authorizes any non-EOM engine or a future production EOM backend.
 """
 
 from __future__ import annotations
@@ -1417,7 +1417,7 @@ PHASE4_REQUIRED_CONTROLS = (
 )
 
 _FORBIDDEN_DEPENDENCIES = {
-    "current_central_solver",
+    "non_eom_engine",
     "production_eom",
     "prescribed_future_path",
 }

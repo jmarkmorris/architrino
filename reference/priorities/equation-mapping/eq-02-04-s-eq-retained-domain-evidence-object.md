@@ -8,7 +8,7 @@
 - Source inventory: [Equation Mapping Detail](equation.md)
 - Score ladder: [Equation Score-5 Closure Ladder](equation-score-5-closure-ladder.md)
 - Common architecture: [Equation Common Architecture 2026-06-23 C](equation-common-architecture-2026-06-23-c.md)
-- Prior merge: [Equation Closure Pass 2026-06-25 A](equation-closure-pass-2026-06-25-a.md)
+- Merge basis: the consolidated row-classification pass identified `S_eq` as the shared retained-domain carrier for `EQ-02` through `EQ-04`; that classification was score-neutral and supplied no accepted retained evidence.
 - Claim level: smallest accepted retained-domain evidence object for `EQ-02` through `EQ-04`
 - Promotion status: priority-only
 

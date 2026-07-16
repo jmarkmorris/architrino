@@ -184,7 +184,6 @@ def run_survey(*, quick: bool, include_native: bool, include_metal: bool) -> dic
         "local_baseline": "complete",
         "production_language_decision": "not_ready",
         "production_block_exclusion": "not_started",
-        "existing_central_solver": "unchanged",
         "next_evidence": [
             "general moving-history certified block-bound prototype",
             "native exact-pair root/interpolation batch with oracle parity",

@@ -200,24 +200,6 @@ Current live v0 status remains `source_row_binding_open` until a non-fixture
 action-increment packet emits matching root-ledger and conservation-pullback
 hashes.
 
-Shared H39 provider boundary, 2026-06-28. The
-[branch-provider evidence report](../app-solver/branch-provider-evidence-report.md)
-maps the H39 aggregate-$P$ construction attempt to this rank as
-`target_only_not_accepted_source`. Its
-`branch_provider_candidate_source_contract_readout/v0` verifies the five-cell
-boundary replay and now records a non-authorizing source-provenance refinement:
-the signed-radius subinterval primitive, projected source-term producer-image
-fields, and lambda terminal witness branch intervals are present, but
-source-map provider-object branch intervals remain unavailable. The shared
-report still returns
-`provider_verdict=same_domain_branch_provider_missing` and
-`first_failure=accepted_non_fixture_source_missing`. The remaining H39
-blockers are `source_term_provider_directed_source_certification_open` and
-`source_term_provider_term_width_realization_open`; rank 2 also still requires
-`conservation_pullback_hash` on the same accepted transition source. Therefore
-this readout is not an `accepted_transition_source` and does not authorize
-`candidate_h_recovery`.
-
 Minimum non-fixture `accepted_transition_source` object:
 
 | Field | Required content | Fixture packet reading |
@@ -270,104 +252,6 @@ policy clean. The first executable closure move is a non-fixture action-incremen
 row with a retained branch certificate, matching active-root and
 conservation-pullback hashes, and a failing negative control for mismatched
 hashes.
-
-Candidate-intake scanner status, 2026-06-28:
-`scripts/nested-shell-braid/field-speed-action-self-hit-scan-source-binding-candidate-intake-report.mjs`
-emits `field_speed_action_self_hit_scan_source_candidate_intake_report/v0`.
-It enumerates four current candidate paths and six rank-2 candidate rows: the
-fixture action-increment packet, the rank-2 transition-source attempt, the
-blocked source-contract fixture, and the three branch-provider manifest rows
-that feed rank 2 (`field-speed-action-increment-fixture-source`,
-`tri-binary-torque-wake-same-row-diagnostic`, and
-`h39-aggregate-p-provider-preaggregation-construction-attempt`). The report
-finds zero accepted transition-source candidates, returns
-`report_status=source_row_binding_open`,
-`first_candidate_failure_code=fixture_shape_only_packet_not_source`, and keeps
-`first_required_source_field=transition_source_ref`. The source-contract attempt
-fails as `accepted_transition_source_absent_in_current_repo_pool`; the
-branch-provider rows fail as `accepted_non_fixture_source_missing` because they
-are fixture, proxy-diagnostic, or target-only surfaces rather than non-fixture
-same-record action-increment sources. This scanner is priority-only candidate
-intake: it does not run `field_speed_action_self_hit_scan/v0`, does not accept
-synthetic or proxy rows, and keeps `candidate_h_recovery_vote=not_authorized`.
-It now embeds
-`field_speed_action_self_hit_scan_nearest_candidate_provenance_readiness_audit/v0`;
-the audit also finds no non-fixture `accepted_transition_source`, selects
-`torque_wake_same_row_diagnostic_family` /
-`tri-binary-torque-wake-same-row-diagnostic` as the strongest current partial,
-records present same-row `active_root_ledger_hash`,
-`conservation_pullback_hash`, and `negative_control_ref`, and names
-`branch_certificate_ref` as the first missing required field. The smallest next
-evidence object is one retained active-row `branch_certificate_ref` for
-`torque_wake_same_row_diagnostic:index-ratio:f2`, preserving the sampled active
-row ids before emitting the non-fixture `accepted_transition_source_ref`; this
-audit is not acceptance and does not authorize `candidate_h_recovery`.
-Its embedded `field_speed_action_self_hit_scan_source_family_delta_scout/v0`
-adds a delta report over six current source families: action-increment packet,
-action-increment source contracts, rank-2 branch-provider rows, torque/wake
-same-row diagnostic, moving-retained-branch certificate candidates, and the
-rank 2 / rank 6 branch-source join checker. The scout also finds zero accepted
-transition-source families and keeps the overall first failure at
-`source_row_binding_open`. The closest partial family is the torque/wake
-diagnostic: it carries `action_increment_row_ref`,
-`active_root_ledger_hash`, `conservation_pullback_hash`, and
-`negative_control_ref`, but fails at `branch_certificate_ref_missing` and
-still lacks `retained_branch` plus an accepted non-fixture
-`action_increment_row_id`. The exact next rank-2 source object is therefore a
-branch-emitted non-fixture action-increment transition row owned by a retained
-`branch_certificate_ref`, with same-row `root_ledger_hash`,
-`conservation_pullback_hash`, and `negative_control_ref`.
-
-Related torque/wake diagnostic status, 2026-06-28:
-`scripts/nested-shell-braid/torque-wake-same-row-diagnostic-report.mjs` emits
-and validates `torque_wake_same_row_diagnostic_report/v0` for the angular
-momentum same-row payload. The current fixture records sampled same-row
-force/partition/torque/wake ids on `selected_case_id=index-ratio:f2`, but it
-returns `first_failure=branch_certificate_ref_missing`, keeps
-`same_record_source_binding=false`, and records the retained-row upgrade as
-missing. Its embedded
-`torque_wake_branch_certificate_ref_source_availability_audit/v0` is the
-retained active-row readiness audit for the rank 2 / rank 6 route: source-report
-identity and sampled same-row binding pass, but
-`retained_active_row_branch_certificate_ref_found=false` and the first retained
-active-row failure is `branch_certificate_ref_missing`. The smallest next
-evidence object is one retained active-row `branch_certificate_ref` for
-`torque_wake_same_row_diagnostic:index-ratio:f2` with
-`same_retained_active_row_ids` equal to the sampled active rows,
-`retained_branch=true`, accepted branch-chart and moving-certificate refs,
-same-record branch-chart identity fields, active-root ledger hash,
-conservation-pullback hash, and negative control. The audit emits this as a
-machine-readable `next_retained_active_row_evidence_object`: the required
-`same_retained_active_row_ids` are exactly the three sampled active rows, the
-same-record branch-chart fields are enumerated, and references with
-`priority-only:`, `fixture:`, `proxy:`, `candidate:`, or `synthetic:` status are
-explicitly rejected. It is useful dependency-routing evidence only; it is not an
-`accepted_transition_source` and cannot authorize `candidate_h_recovery`.
-
-Coordinator note, 2026-06-28. Name the next executable target
-`torque_wake_retained_active_row_branch_certificate_evidence_object/v0` for
-`torque_wake_same_row_diagnostic:index-ratio:f2`. It must preserve the three
-sampled active rows as `same_retained_active_row_ids`, bind them to a retained
-non-proxy `branch_certificate_ref`, and keep the active-root ledger,
-conservation-pullback, accepted branch-chart, moving-certificate, and negative
-control refs on the same record before `field_speed_action_self_hit_scan/v0`
-can interpret near-$c_f$ behavior.
-
-Rank 2 / rank 6 branch-source join status, 2026-06-28:
-`scripts/nested-shell-braid/rank2-rank6-branch-source-join-report.mjs` compares
-the current rank 2 source-binding report, rank 6 moving-certificate candidate,
-and torque/wake same-row diagnostic. The fixture set passes only the torque/wake
-same-row id check; it returns `first_failure=source_row_binding_open` because no
-non-fixture accepted transition source is present. Its
-`same_record_provider_intake` now names the needed same-record fields:
-non-fixture `accepted_transition_source`, accepted branch chart,
-`moving_retained_branch_certificate/v0`, common branch certificate, active-root
-ledger identity, conservation-pullback hash, and a common negative-control
-reference. It also records bounded-speed live ledger, Photon Gate A, Lorentz
-rows, and observer export as missing or not authorized, and its negative-control
-guard rejects cross-report or synthetic mismatches. The report keeps
-`candidate_h_recovery`, `moving_retained_branch_certificate`, bounded-speed live
-ledger, Photon Gate A, Lorentz rows, and observer export unauthorized.
 
 The remaining promotion blockers are executable, not editorial: no current artifact has shown same-row active-root identity under refinement, a positive Jacobian floor through the approach-to-$c_f$ scan, bounded particle-plus-wake energy on the retained branch rows, delayed-Noether status above `diagnostic-only`, stable one-cluster $\Delta I_{\mathrm{ME}}$ behavior, and a failing negative control with content hashes.
 
@@ -1108,7 +992,6 @@ The promotion artifact `promotion_lemma_check.md` must list the exact priority-t
 
 ## Main Work
 
-- Use the collinear-breather finite certificate as the smallest solver benchmark for candidate-cycle input, root enumeration, $\eta > 0$ continuation, monodromy, returned-history residuals, and topology reporting, with every failed row assigned one element of $\mathcal{F}$ and the exact failed inequality.
 - Implement tier-0 and tier-1 simulations by instantiating $\mathcal{C}_{\mathrm{sim}}$ and satisfying the tier acceptance criteria above before any result is used in [run-protocols](../../../content/markdown/aaa/validation/simulations/run-protocols.md) or the `validation/simulations/action-energy/*` material.
 - Lock the maximum-curvature orbit, history resolution, and binary / nested shell braid stability numerically only when the branch-root ledger is stable under $\Delta t$, $\Delta h$, and $\eta$ refinement.
 - Publish convergence plots and $\mathbb{U}_{\text{now}}$ provenance logs only as promotion artifacts paired with `convergence_table.csv`, `u_now_provenance.*`, `failure_report.md`, and `promotion_lemma_check.md`.
@@ -1119,8 +1002,8 @@ The promotion artifact `promotion_lemma_check.md` must list the exact priority-t
 ## Related Priorities
 
 - [master-equation-closure](../master-equation-closure/priorities.md)
-- mass-map (legacy-braid ref: `braid-archive/braid-mass-response-map/priorities.md`)
-- doubling-frequency-lock (legacy-braid ref: `braid-archive/braid-doubling-frequency-lock/priorities.md`)
+- mass-map
+- doubling-frequency-lock
 - [quantum-closure](../quantum-closure/priorities.md)
 - [strong-field-closure](../strong-field-closure/priorities.md)
 

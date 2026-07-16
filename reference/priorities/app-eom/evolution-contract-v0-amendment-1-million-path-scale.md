@@ -19,8 +19,8 @@ domain, precision contract, or evidence rules of the base contract.
 This is an optional long-term conformance profile. It gates only a request,
 result, release, or public capability claim that declares million-path support.
 It does not gate canonical base-contract evolution for bounded populations,
-claims-triage adjudication, the first binary outcome, Borg migration, or another
-consumer whose declared envelope is smaller.
+the first binary outcome, Borg migration, or another consumer whose declared
+envelope is smaller.
 
 ## Scale Requirement
 
@@ -246,7 +246,7 @@ cutoff, or a GPU throughput kernel does not satisfy this profile.
 
 ## Compatibility Boundary
 
-This amendment does not modify or redirect the existing central solver. It
+This amendment introduces no engine other than EOM. It
 does not grant authority to a prototype, prescribed-path app, approximate
 N-body method, or display surface. It raises the scale requirement that the new
 EOM architecture must satisfy before million-path capability may be claimed.

@@ -4,9 +4,9 @@
 Develop the **Assembly Atlas** as a certification language for branch preservation, causal-root topology, separator surgery, coaxial contra-rotating polarity-conjugate planar-pair reduction, and stable/metastable architrino assemblies in the fixed Euclidean void.
 
 **Current theory alignment**:
-- Topological classification should track the canonical nested shell braid framing in `noether-braid/noether-braid.md`, `noether-braid/braid-envelope-geometry.md`, and `noether-braid/explored-braid-geometries.md`.
+- Topological classification should track the canonical nested shell braid framing in `noether-braid/noether-braid.md`, `noether-braid/braid-envelope-geometry.md`, and `noether-braid/braid-families.md`.
 - Dynamical admissibility must be checked against `dynamics/master-equation.md` and `dynamics/causal-action-functional.md`.
-- Certification targets should track `reference/priorities/braid-archive/braid-nested-shell-causal-closure/nested-shell-braid-dependency-map.md`, especially the topological certification row, photon gates, separator events, and shared branch-certificate population.
+- Certification targets should track `reference/priorities/braid-program/priorities.md`, especially the topological certification row, photon gates, separator events, and shared branch-certificate population.
 - Stability claims should be wired to `validation/constraint-ledger.md`, `validation/failure-criteria.md`, and the finite certificate protocols.
 
 **Core responsibilities**:

@@ -60,6 +60,5 @@
     "checkpoint and streamed output integration",
     "stable application ABI"
   ],
-  "existing_central_solver_changed": false,
   "migration_authorized": false
 }
