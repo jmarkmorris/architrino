@@ -6,7 +6,7 @@
 - Status: `draft`
 - Parent: [Equation Mapping Internal Priority](priorities.md)
 - Source inventory: [Equation Mapping Detail](equation.md)
-- Source audit: [Equation Closure Pass 2026-06-25 B](equation-closure-pass-2026-06-25-b.md)
+- Source-audit basis: the consolidated high-energy survey separated stellar explosive nucleosynthesis into `EQ-23A` while leaving it unscored and priority-only until one explosive source window binds shock, heating, yield, photon, remnant, event-ledger, provenance, and no-hidden-retune rows.
 - Parent packet: [EQ-21 Through EQ-23 And EQ-32 Shared Observation Residual Packet](eq-21-23-32-shared-observation-residual-packet.md)
 - Source fixture: [eq23a-explosive-source-window-identity-attempt.v1.json](../../../scripts/equation-mapping/eq23a-explosive-source-window-identity-attempt.v1.json)
 - Assigned ID: `EQ-23A`

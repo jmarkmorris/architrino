@@ -10,11 +10,13 @@ Use `brainstorming.md` for provisional ideas, insights, conceptual maps, and dra
 
 The tracker previously embedded the full closure-pass chronology and a broad related-material index. That status history is now routed here while [priorities.md](priorities.md) keeps the compact current queue, blockers, promotion routing, failure modes, and grouped support links.
 
-#### Chronological Closure-Pass History
+#### Consolidated June Closure-Pass History
 
-- [Equation Closure Pass 2026-06-23 B](equation-closure-pass-2026-06-23-b.md) through [Equation Closure Pass 2026-06-23 AN](equation-closure-pass-2026-06-23-an.md) staged the score-neutral reducer/checker frontier, source-field maps, finite-window carrier checks, photon and observation carriers, and first-blocker reporting. These passes changed no scores because accepted retained evidence or accepted shared carriers remained missing.
-- [Equation Closure Pass 2026-06-24 A](equation-closure-pass-2026-06-24-a.md) through [Equation Closure Pass 2026-06-24 AA](equation-closure-pass-2026-06-24-aa.md) hardened the `EQ-02` through `EQ-04` retained-domain, coframe extraction, source evidence, gamma-free basis, refinement, connection, and holonomy-transport guardrails. These passes changed no scores because they isolated fail-closed evidence requirements without landing accepted source-backed support.
-- [Equation Closure Pass 2026-06-25 A](equation-closure-pass-2026-06-25-a.md) and [Equation Closure Pass 2026-06-25 B](equation-closure-pass-2026-06-25-b.md) classified the inventory into closure lanes and created the high-energy/cosmology suffix-packet route. They changed no scores and promoted no reader-facing canon.
+- The June 23 passes staged the score-neutral reducer/checker frontier, source-field maps, finite-window carrier checks, photon and observation carriers, and first-blocker reporting. They changed no scores because accepted retained evidence or accepted shared carriers remained missing.
+- The June 24 passes hardened the `EQ-02` through `EQ-04` retained-domain, coframe extraction, source-evidence, gamma-free basis, refinement, connection, and holonomy-transport guardrails. They isolated fail-closed requirements without landing accepted source-backed support or changing scores.
+- The June 25 passes classified the inventory into closure lanes and created the high-energy/cosmology suffix-packet route. They changed no scores and promoted no reader-facing canon.
+
+The source-audit conclusions that remain live are now self-contained in their owning focused packets: the `S_eq` retained-domain merge basis; the native Compton/recoil and effective-EM Gate A boundaries; the Noether sea density-compression retained-evidence negative; the source-backed `theta_W`, $\Theta_\gamma$, and `radiation_source_carrier` requirements; and the `EQ-07A`, `EQ-07B`, `EQ-11A`, `EQ-22B`, `EQ-23A`, and `EQ-28A` suffix-packet dispositions. The individual June checkpoint files were removed after those statements were consolidated here and into the owning packets; detailed chronology remains available in git history.
 
 The current next action remains unchanged: land a source-backed positive-width `S_eq` retained-domain fixture whose first row is `raw_labeled_rows_preserved_on_retained_history`; after that support and row identity exist, define the minimum source-backed transport comparison behind $W_{\mathrm{hol}}$.
 

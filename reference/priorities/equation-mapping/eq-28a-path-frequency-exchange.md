@@ -6,7 +6,7 @@
 - Status: `draft`
 - Parent: [Equation Mapping Internal Priority](priorities.md)
 - Source inventory: [Equation Mapping Detail](equation.md)
-- Source audit: [Equation Closure Pass 2026-06-25 B](equation-closure-pass-2026-06-25-b.md)
+- Source-audit basis: the consolidated high-energy survey separated signed path-frequency exchange into `EQ-28A`, assigned the initial score `2`, and required one accepted path-history carrier that closes photon, medium, recoil, remnant, thermal, provenance, and no-hidden-retune rows without treating frequency change as unexplained loss.
 - Parent packet: [EQ-26 Through EQ-31 Observation-First Precision Packet](eq-26-31-observation-first-precision-packet.md)
 - Source map: [EQ-28A Theta-Nu-Ex Source-Field Map](eq-28a-theta-nu-ex-source-field-map.md)
 - Assigned ID: `EQ-28A`

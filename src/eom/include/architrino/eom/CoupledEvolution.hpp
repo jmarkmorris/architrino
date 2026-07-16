@@ -463,6 +463,8 @@ certify_native_regulator_convergence(
     bool defer_endpoint_root_precision_escalation = false);
 
 [[nodiscard]] NativeCoupledEvolutionCertificate evolve_native_coupled_histories(
-    const NativeCoupledEvolutionRequest& request);
+    const NativeCoupledEvolutionRequest& request,
+    const NativeAccelerationSnapshotCertificate*
+        reusable_initial_snapshot = nullptr);
 
 }  // namespace architrino::eom

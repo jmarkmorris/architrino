@@ -116,6 +116,9 @@ struct DoubleAttempt {
   std::size_t difficult_cells = 0;
   std::size_t warm_excluded_cells = 0;
   double warm_residual_drift_upper = 0.0;
+  bool stable_negative_prefix_certified = false;
+  double stable_negative_prefix_upper = 0.0;
+  std::size_t incremental_prefix_reuse_count = 0;
   std::vector<DoubleRoot> roots;
   std::vector<DoubleRootFreeCell> root_free_cells;
 };
@@ -128,6 +131,33 @@ bool same_segment_tokens(
       left.coefficient_tokens() == right.coefficient_tokens() &&
       left.position_error_token() == right.position_error_token() &&
       left.velocity_error_token() == right.velocity_error_token();
+}
+
+bool same_source_prefix_tokens(
+    const RetainedHistory& current,
+    const RetainedHistory& prior,
+    double lower,
+    double upper) {
+  if (!(lower < upper) || !current.covers(Interval(lower, upper)) ||
+      !prior.covers(Interval(lower, upper))) {
+    return false;
+  }
+  std::size_t current_index = current.segment_index_at(lower);
+  std::size_t prior_index = prior.segment_index_at(lower);
+  while (true) {
+    const auto& current_segment = current.segments()[current_index];
+    const auto& prior_segment = prior.segments()[prior_index];
+    if (!same_segment_tokens(current_segment, prior_segment)) {
+      return false;
+    }
+    if (current_segment.t_end() >= upper) {
+      return true;
+    }
+    if (++current_index >= current.segments().size() ||
+        ++prior_index >= prior.segments().size()) {
+      return false;
+    }
+  }
 }
 
 bool same_history_endpoint(
@@ -467,8 +497,10 @@ DoubleAttempt run_double_attempt(const ExactPairRequest& request) {
       Interval::point(0.0).inflate(receiver_normal_abs_bound);
   const auto& receiver_segment = request.receiver->segments()[
       request.receiver->segment_index_at(reception_value)];
+  attempt.stable_negative_prefix_upper = search_lower;
 
   bool warm_start_eligible = false;
+  double incremental_search_lower = search_lower;
   if (request.warm_start != nullptr &&
       request.warm_start->certificate != nullptr &&
       request.warm_start->receiver != nullptr &&
@@ -513,6 +545,31 @@ DoubleAttempt run_double_attempt(const ExactPairRequest& request) {
             std::min(residual_drift_upper, identity_drift.upper());
       }
       attempt.warm_residual_drift_upper = residual_drift_upper;
+      if (reception_value >= prior_reception &&
+          prior.stable_negative_prefix_certified &&
+          !prior.stable_negative_prefix_upper.empty()) {
+        const double prior_prefix_upper = parse_double(
+            prior.stable_negative_prefix_upper,
+            "warm-start stable negative prefix upper");
+        const Interval reception_span(
+            prior_reception, reception_value);
+        const bool receiver_stays_subfield =
+            request.receiver->covers(reception_span) &&
+            norm(request.receiver->velocity_hull(reception_span)).upper() <
+                field_speed.lower();
+        if (prior_prefix_upper > search_lower &&
+            prior_prefix_upper < search_upper &&
+            receiver_stays_subfield &&
+            same_source_prefix_tokens(
+                *request.source, prior_source, search_lower,
+                prior_prefix_upper)) {
+          incremental_search_lower = prior_prefix_upper;
+          attempt.stable_negative_prefix_upper = prior_prefix_upper;
+          attempt.stable_negative_prefix_certified = true;
+          attempt.incremental_prefix_reuse_count = 1U;
+          ++attempt.excluded_cells;
+        }
+      }
     }
   }
 
@@ -530,7 +587,8 @@ DoubleAttempt run_double_attempt(const ExactPairRequest& request) {
   };
 
   std::vector<Cell> cells;
-  std::size_t first_segment = request.source->segment_index_at(search_lower);
+  std::size_t first_segment =
+      request.source->segment_index_at(incremental_search_lower);
   if (first_segment > 0U) {
     --first_segment;
   }
@@ -540,7 +598,7 @@ DoubleAttempt run_double_attempt(const ExactPairRequest& request) {
     if (segment.t_start() >= search_upper) {
       break;
     }
-    const double lower = std::max(search_lower, segment.t_start());
+    const double lower = std::max(incremental_search_lower, segment.t_start());
     const double upper = std::min(search_upper, segment.t_end());
     if (lower < upper) {
       cells.push_back({index, lower, upper, 0, nullptr});
@@ -931,10 +989,61 @@ DoubleAttempt run_double_attempt(const ExactPairRequest& request) {
   for (const auto& cell : cells) {
     classify(cell);
   }
+  if (attempt.complete) {
+    std::vector<const DoubleRootFreeCell*> ordered_cells;
+    ordered_cells.reserve(attempt.root_free_cells.size());
+    for (const auto& cell : attempt.root_free_cells) {
+      if (cell.residual.upper() < 0.0) {
+        ordered_cells.push_back(&cell);
+      }
+    }
+    std::sort(
+        ordered_cells.begin(), ordered_cells.end(),
+        [](const auto* left, const auto* right) {
+          if (left->lower != right->lower) {
+            return left->lower < right->lower;
+          }
+          return left->upper < right->upper;
+        });
+    double cursor = incremental_search_lower;
+    const double continuity_tolerance =
+        64.0 * std::numeric_limits<double>::epsilon() *
+        std::max({1.0, std::abs(search_lower), std::abs(search_upper)});
+    for (const auto* cell : ordered_cells) {
+      if (cell->upper <= cursor) {
+        continue;
+      }
+      if (cell->lower > cursor + continuity_tolerance) {
+        break;
+      }
+      cursor = std::max(cursor, cell->upper);
+    }
+    if (cursor > search_lower) {
+      attempt.stable_negative_prefix_certified = true;
+      attempt.stable_negative_prefix_upper = cursor;
+    }
+  }
   if (attempt.complete && !merge_double_roots(attempt.roots)) {
     attempt.complete = false;
     attempt.caustic_candidate = true;
     ++attempt.difficult_cells;
+  }
+  if (attempt.complete) {
+    const auto& prefix_segment = request.source->segments()[
+        request.source->segment_index_at(incremental_search_lower)];
+    const auto prefix_geometry = double_geometry(
+        receiver_state, prefix_segment, reception,
+        Interval::point(incremental_search_lower), field_speed);
+    if (prefix_geometry.residual.upper() < 0.0) {
+      double prefix_upper = search_upper;
+      for (const auto& root : attempt.roots) {
+        prefix_upper = std::min(prefix_upper, root.lower);
+      }
+      if (prefix_upper > search_lower) {
+        attempt.stable_negative_prefix_certified = true;
+        attempt.stable_negative_prefix_upper = prefix_upper;
+      }
+    }
   }
   return attempt;
 }
@@ -2398,6 +2507,12 @@ ExactPairCertificate double_certificate(
   certificate.reevaluated_cells = attempt.visited_cells;
   certificate.warm_residual_drift_upper =
       attempt.warm_residual_drift_upper;
+  certificate.stable_negative_prefix_certified =
+      attempt.stable_negative_prefix_certified;
+  certificate.stable_negative_prefix_upper = double_token(
+      attempt.stable_negative_prefix_upper);
+  certificate.incremental_prefix_reuse_count =
+      attempt.incremental_prefix_reuse_count;
   certificate.root_free_cells.reserve(attempt.root_free_cells.size());
   for (const auto& cell : attempt.root_free_cells) {
     certificate.root_free_cells.push_back({
@@ -2519,6 +2634,36 @@ ExactPairCertificate mpfr_certificate(
         .precision_route = "mpfr_directed_interval",
         .precision_bits = bits,
     });
+  }
+  const double search_lower =
+      parse_double(request.search_lower, "search lower bound");
+  const bool same_retained_history =
+      request.receiver->history_id() == request.source->history_id() &&
+      request.receiver->provenance_fingerprint() ==
+          request.source->provenance_fingerprint();
+  const Interval reception = Interval::decimal_token(request.reception_time);
+  const DoubleReceiverState receiver_state{
+      request.receiver->position_hull(reception),
+      request.receiver->velocity_hull(reception),
+      same_retained_history,
+      same_retained_history ? request.source : nullptr};
+  const auto& prefix_segment = request.source->segments()[
+      request.source->segment_index_at(search_lower)];
+  const auto prefix_geometry = double_geometry(
+      receiver_state, prefix_segment, reception,
+      Interval::point(search_lower),
+      Interval::decimal_token(request.field_speed));
+  if (prefix_geometry.residual.upper() < 0.0) {
+    double prefix_upper =
+        parse_double(request.search_upper, "search upper bound");
+    for (const auto& root : certificate.roots) {
+      prefix_upper = std::min(
+          prefix_upper, parse_double(root.lower, "MPFR root lower"));
+    }
+    if (prefix_upper > search_lower) {
+      certificate.stable_negative_prefix_certified = true;
+      certificate.stable_negative_prefix_upper = double_token(prefix_upper);
+    }
   }
   certificate.reevaluated_cells = attempt.visited_cells;
   return certificate;

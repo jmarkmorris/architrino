@@ -6,7 +6,7 @@
 - Status: `draft`
 - Parent: [Equation Mapping Internal Priority](priorities.md)
 - Source inventory: [Equation Mapping Detail](equation.md)
-- Source audit: [Equation Closure Pass 2026-06-25 B](equation-closure-pass-2026-06-25-b.md)
+- Source-audit basis: the consolidated high-energy survey separated gravitational-wave source recovery into `EQ-11A`, assigned the initial score `2`, and required one same-record source, detector, radiated-output, ringdown, provenance, and no-hidden-retune carrier before score review.
 - Parent packet: [EQ-11 Through EQ-20 Gravity And Dark-Energy Packet](eq-11-20-gravity-dark-energy-packet.md)
 - Assigned ID: `EQ-11A`
 - Related corpus material: [Gravitational Waves](../../../content/markdown/aaa/spacetime/gravitational-waves.md), [Emergent Metric](../../../content/markdown/aaa/spacetime/emergent-metric.md), [Noether Sea](../../../content/markdown/aaa/spacetime/noether-sea.md)

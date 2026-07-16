@@ -3193,7 +3193,8 @@ CertificateCostSignal certificate_cost_signal(
 }
 
 NativeCoupledEvolutionCertificate evolve_native_coupled_histories(
-    const NativeCoupledEvolutionRequest& request) {
+    const NativeCoupledEvolutionRequest& request,
+    const NativeAccelerationSnapshotCertificate* reusable_initial_snapshot) {
   const auto timing_start = SteadyClock::now();
   validate_request(request);
   std::vector<NativePublishedPath> histories;
@@ -3235,6 +3236,9 @@ NativeCoupledEvolutionCertificate evolve_native_coupled_histories(
         : decimal_token(current_time + attempted_step);
     const NativeAccelerationSnapshotCertificate* reusable_start_snapshot =
         nullptr;
+    if (steps.empty() && reusable_initial_snapshot != nullptr) {
+      reusable_start_snapshot = reusable_initial_snapshot;
+    }
     for (auto found = steps.rbegin(); found != steps.rend(); ++found) {
       if (found->status == "accepted" &&
           numeric_equal(found->accepted_time, current_time_token) &&

@@ -5,27 +5,6 @@
 - Claim grade: `measured`
 - Promotion: `PASS-UNDER-ACCEPTED-INITIAL-HISTORY-CONTRACT`
 - Accepted-initial-history strict ladder: `PASS`
-- Borg compatibility retirement: `OPERATOR-AUTHORIZED; NOT PROMOTION EVIDENCE`
-
-The shared checkout acquired concurrent uncommitted deletions of the Borg
-compatibility query branch and runner files while this run was active. This
-campaign did not make or restore those changes. The operator authorized the
-retirement independently; it was not caused by, and is not evidence of, a
-promotion pass.
-
-## Engine Diagnosis
-
-The retired 16-path failure at `[0.06,0.07]` was not regulator divergence.
-The base finite-width event certificate for `1004<-1013` returned
-`insufficient_history_depth` when a causal root entered through the oldest
-retained-history boundary. With no accepted event impulse, no regulator
-refinement series existed. The regulator wrapper masked that upstream failure
-as `regulator_convergence_failed`.
-
-The engine now propagates the base event failure code. A manufactured
-`[0.06,0.07]` boundary-entry regression rejects atomically with
-`insufficient_history_depth`; a separately retained completed regulator ladder
-still tests genuine `regulator_convergence_failed` behavior.
 
 ## Eight-Path Promotion Evidence
 

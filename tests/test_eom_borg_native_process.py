@@ -165,6 +165,93 @@ class NativeBorgProcessTests(unittest.TestCase):
         self.assertEqual(len(responses), 2)
         self.assertTrue(all(response["status"] == "completed" for response in responses))
 
+    def test_native_server_reuses_certified_chunk_boundary_snapshot(self) -> None:
+        def protocol(run_id: str, start: str, end: str, segments: list[dict]) -> str:
+            rows = [
+                "EOM_BORG_NATIVE_V0",
+                "\t".join(
+                    (
+                        "RUN", run_id, start, end, "0.1", "0.1",
+                        "1", "1", "1e-10", "1e-8", "1e-8", "1e-8",
+                        "1e-8", "2", "1",
+                    )
+                ),
+                f"PATH\tp\t1\t1\t{len(segments)}",
+            ]
+            for segment in segments:
+                rows.append("\t".join((
+                    "SEG", segment["startTime"], segment["endTime"],
+                    *(coefficient for axis in segment["coefficients"] for coefficient in axis),
+                    segment["positionError"], segment["velocityError"],
+                )))
+            rows.extend(("END", ""))
+            return "\n".join(rows)
+
+        initial_prefix = {
+            "startTime": "0",
+            "endTime": "1",
+            "coefficients": [["0", "0", "0", "0"]] * 3,
+            "positionError": "0",
+            "velocityError": "0",
+        }
+        initial_suffix = {
+            **initial_prefix,
+            "startTime": "1",
+            "endTime": "2",
+        }
+        worker = subprocess.Popen(
+            [str(self.binary), "borg-shadow-server-v0"],
+            stdin=subprocess.PIPE,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            cwd=ROOT,
+            text=True,
+        )
+        assert worker.stdin is not None
+        assert worker.stdout is not None
+        worker.stdin.write(protocol(
+            "incremental-0", "2", "2.1", [initial_prefix, initial_suffix]
+        ))
+        worker.stdin.flush()
+        first = json.loads(worker.stdout.readline())
+        continued_segments = [
+            initial_suffix,
+            *first["publishedExtensions"][0]["segments"],
+        ]
+        second_protocol = protocol(
+            "incremental-1", "2.1", "2.2", continued_segments
+        )
+        worker.stdin.write(second_protocol)
+        worker.stdin.flush()
+        second = json.loads(worker.stdout.readline())
+        worker.stdin.close()
+        worker.wait(timeout=10)
+        worker.stdout.close()
+        assert worker.stderr is not None
+        worker.stderr.close()
+
+        cold = subprocess.run(
+            [str(self.binary), "borg-shadow-v0"],
+            input=second_protocol,
+            check=True,
+            cwd=ROOT,
+            capture_output=True,
+            text=True,
+        )
+        cold_second = json.loads(cold.stdout)
+        self.assertFalse(first["incrementalChunkStartSnapshotReused"])
+        self.assertTrue(second["incrementalChunkStartSnapshotReused"])
+        self.assertTrue(second["incrementalChunkStartSnapshotRebased"])
+        self.assertFalse(cold_second["incrementalChunkStartSnapshotReused"])
+        self.assertEqual(second["acceptedEndTime"], cold_second["acceptedEndTime"])
+        self.assertEqual(
+            second["publishedExtensions"], cold_second["publishedExtensions"]
+        )
+        self.assertLess(
+            second["timing"]["rootReevaluatedCells"],
+            cold_second["timing"]["rootReevaluatedCells"],
+        )
+
 
 if __name__ == "__main__":
     unittest.main()

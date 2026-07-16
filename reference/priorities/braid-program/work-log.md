@@ -82,3 +82,28 @@ Append-only. Dated entries, newest last. One entry per completed unit of work: w
   worldlines carry retained segments as the authoritative state; sampled rows
   are display-only. The gate as a whole remains DRAFT pending ratification of
   the charter set.
+
+## 2026-07-16 — EOM path-provenance audit failed closed before Campaign 1
+
+- Completed the requested source sweep across `src/eom`, `scripts/eom`, the
+  shared history display adapter, `src/prescribed-path-analysis`, and the Python
+  oracle. Detailed classified inventory and reproduction commands landed in
+  [evidence/2026-07-16-eom-path-provenance-audit.md](evidence/2026-07-16-eom-path-provenance-audit.md).
+- Verdict **FAIL (derived)** on one booking-path defect: the interim Borg replay
+  converter fits cubic-Hermite segments between sampled endpoints, labels the
+  result `evolved-record`, and puts those constructed cubics in the schema field
+  defined as authoritative retained history. The EOM solver's own accepted
+  segment publication path passed the static trace; prescribed-path analysis
+  remained firewalled; the independent Python oracle consumed no production
+  shortcut for its coupled reference evolution; producer-asserted canonical
+  flags were not consumed.
+- Part 2 did not open. No Campaign 1 spec or run was started, so no fate,
+  residual, parity, or rung-2 claim was booked. Queue items 3-4 now carry the
+  path-provenance blocker. Fix target: stream exact EOM-published segments into
+  native assembly-view records; alternatively bar reconstructed records from
+  campaign booking with operator sign-off and provide another compliant record
+  path.
+- Focused validation measured green: assembly-view/prescribed-path/Borg runtime
+  suites 21/21; oracle Phase 4 suite 12/12; oracle reference-kernel suite 6/6;
+  `git diff --check`. These checks do not overturn the provenance defect because
+  the converter tests establish replay interpolation, not EOM segment origin.

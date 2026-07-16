@@ -6,7 +6,7 @@
 - Status: `priority-only`
 - Parent: [Equation Mapping Internal Priority](priorities.md)
 - Source inventory: [Equation Mapping Detail](equation.md)
-- Prior pass: [Equation Closure Pass 2026-06-23 B](equation-closure-pass-2026-06-23-b.md)
+- Origin: consolidated from the first score-neutral equation-packet pass; its score dispositions were priority-ledger decisions, not accepted retained evidence.
 - Claim level: second-pass common-architecture note for reusable equation components
 - Edit boundary: this file only
 

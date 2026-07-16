@@ -945,8 +945,9 @@ This file holds dated decisions, implementation status, validation results, fail
   16/16, native acceleration 12/12, native coupled evolution 17/17, native Borg
   process 4/4, Borg JavaScript 63/63, independent phase-4 acceptance 12/12,
   independent certified evolution 10/10, and independent certified
-  acceleration 16/16. Evidence:
-  [eom-borg-eight-path-1003-1004-simple-root-certificate-apple-m3-2026-07-16.json](evidence/eom-borg-eight-path-1003-1004-simple-root-certificate-apple-m3-2026-07-16.json).
+  acceleration 16/16. The focused run-specific certificate was retired after
+  the localized blocker closed; the independent control remains in the
+  regression suite and the detailed packet remains available in git history.
 
 ## 2026-07-16 — MPFR exact-zero Horner fold
 
@@ -1113,10 +1114,9 @@ This file holds dated decisions, implementation status, validation results, fail
   gate. The outer-process mean and median were `0.9904x` and `0.9881x`.
 - **Inferred decision:** the present block certificate does not accelerate this
   dense eight-path checkpoint. No accepted result, master-equation rule, or
-  trajectory value changed. The benchmark is retained as a performance
-  diagnostic and no longer controls Borg promotion.
-- Evidence and falsifier:
-  [eom-borg-eight-path-block-exclusion-ab-apple-m3-2026-07-16.md](evidence/eom-borg-eight-path-block-exclusion-ab-apple-m3-2026-07-16.md).
+  trajectory value changed. The measured conclusion remains a work-log
+  diagnostic and no longer controls Borg promotion; the standalone replay
+  packet remains available in git history.
 
 ## 2026-07-16 — Borg accepted-initial-history promotion
 
