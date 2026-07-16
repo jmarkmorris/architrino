@@ -16,7 +16,7 @@ Primary dependencies:
 Implementation surfaces:
 
 - [PhotonFormulaRuntime.js](../../../src/apps/photon/PhotonFormulaRuntime.js)
-- [PhotonSolverBridgeOptions.js](../../../src/apps/photon/PhotonSolverBridgeOptions.js)
+- PhotonSolverBridgeOptions.js (removed with the zombie-solver migration: `src/apps/photon/PhotonSolverBridgeOptions.js`)
 - [SolverAppAdapters.mjs](../../../src/solver/app/SolverAppAdapters.mjs)
 - [check-solver-baseline-sandbox.mjs](../../../scripts/check-solver-baseline-sandbox.mjs)
 - [photon-runtime.test.js](../../../tests/photon-runtime.test.js)

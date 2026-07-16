@@ -4,14 +4,14 @@ import assert from "node:assert/strict";
 import {
   ANIMATOR_DELAYED_HIT_STREAM_DESCRIPTOR_SCHEMA,
   createAnimatorDelayedHitRowsFromStreamDescriptors,
-} from "../src/solver/app/AnimatorDelayedHitRows.mjs";
+} from "../src/apps/animator/display/AnimatorDelayedHitRows.mjs";
 import {
   ANIMATOR_FIELD_SHELL_EMITTER_SOURCE_HISTORY_SCHEMA,
-} from "../src/solver/app/AnimatorFieldShellEventStream.mjs";
+} from "../src/apps/animator/display/AnimatorFieldShellEventStream.mjs";
 import {
   ANIMATOR_RECEIVER_PATH_DESCRIPTOR_PACKAGE_SCHEMA,
   createAnimatorReceiverPathDescriptorPackage,
-} from "../src/solver/app/AnimatorReceiverPathDescriptors.mjs";
+} from "../src/apps/animator/display/AnimatorReceiverPathDescriptors.mjs";
 
 function createStaticReceiverDocument() {
   return {

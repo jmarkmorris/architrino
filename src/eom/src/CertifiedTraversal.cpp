@@ -18,6 +18,8 @@ struct PendingNode {
   std::size_t receiver_end;
   std::size_t source_begin;
   std::size_t source_end;
+  Interval emission;
+  std::size_t emission_depth;
 };
 
 Interval token_bounds(const TimeIntervalTokens& tokens) {
@@ -61,6 +63,10 @@ void validate_members(
       throw std::invalid_argument(
           "traversal members require path identities and histories");
     }
+    if (!member.accepted_retained_history) {
+      throw std::invalid_argument(
+          "authoritative traversal requires accepted retained histories");
+    }
     if (!identities.insert(member.path_id).second) {
       throw std::invalid_argument(
           "traversal path identities must be unique within each membership");
@@ -103,6 +109,80 @@ Interval node_residual(
       field_speed * (reception - emission);
 }
 
+std::size_t checked_pair_tracking_bytes(std::uint64_t logical_pairs) {
+  const std::uint64_t bytes = logical_pairs / 8U +
+      (logical_pairs % 8U == 0U ? 0U : 1U);
+  if (bytes > static_cast<std::uint64_t>(
+                  std::numeric_limits<std::size_t>::max())) {
+    throw std::overflow_error("pair tracking size overflows size_t");
+  }
+  return static_cast<std::size_t>(bytes);
+}
+
+void mark_exact_pairs(
+    std::vector<bool>& exact_pairs,
+    std::size_t source_population,
+    const PendingNode& node) {
+  for (std::size_t receiver = node.receiver_begin;
+       receiver < node.receiver_end; ++receiver) {
+    const std::size_t row = receiver * source_population;
+    for (std::size_t source = node.source_begin;
+         source < node.source_end; ++source) {
+      exact_pairs[row + source] = true;
+    }
+  }
+}
+
+std::uint64_t build_membership_tiles(
+    const std::vector<bool>& exact_pairs,
+    std::size_t receiver_population,
+    std::size_t source_population,
+    bool traversal_complete,
+    std::vector<CertifiedMembershipTile>& memberships,
+    std::vector<CertifiedExactTile>& exact_tiles,
+    const std::string& traversal_id) {
+  std::uint64_t exact_count = 0;
+  std::size_t exact_tile_index = 0;
+  for (std::size_t receiver = 0; receiver < receiver_population; ++receiver) {
+    const std::size_t row = receiver * source_population;
+    std::size_t source = 0;
+    while (source < source_population) {
+      const bool exact = exact_pairs[row + source];
+      const std::string status = exact
+          ? "exact_tile"
+          : (traversal_complete ? "excluded" : "unresolved");
+      const std::size_t begin = source;
+      while (source < source_population &&
+             exact_pairs[row + source] == exact) {
+        ++source;
+      }
+      const std::uint64_t count =
+          static_cast<std::uint64_t>(source - begin);
+      memberships.push_back({
+          .status = status,
+          .receiver_begin = receiver,
+          .receiver_end = receiver + 1U,
+          .source_begin = begin,
+          .source_end = source,
+          .logical_ordered_pairs = count,
+      });
+      if (exact) {
+        checked_add(exact_count, count);
+        exact_tiles.push_back({
+            .tile_id = traversal_id + "/exact/" +
+                std::to_string(exact_tile_index++),
+            .receiver_begin = receiver,
+            .receiver_end = receiver + 1U,
+            .source_begin = begin,
+            .source_end = source,
+            .logical_ordered_pairs = count,
+        });
+      }
+    }
+  }
+  return exact_count;
+}
+
 bool exact_certificate_complete(const ExactPairCertificate& certificate) {
   return certificate.root_free_complement &&
       !certificate.memory_boundary_contact &&
@@ -138,31 +218,61 @@ CertifiedTraversalCertificate certify_moving_history_traversal(
 
   const std::uint64_t logical_pairs = checked_pair_count(
       request.receivers.size(), request.sources.size());
+  if (checked_pair_tracking_bytes(logical_pairs) >
+      request.maximum_pair_tracking_bytes) {
+    return CertifiedTraversalCertificate{
+        .schema = "eom_certified_recursive_causal_index/v0",
+        .traversal_id = request.traversal_id,
+        .status = "uncertified",
+        .failure_code = "resource_envelope_exceeded",
+        .logical_ordered_pairs = logical_pairs,
+        .excluded_pairs = 0,
+        .exact_fallback_pairs = 0,
+        .enclosed_pairs = 0,
+        .unresolved_pairs = logical_pairs,
+        .visited_nodes = 0,
+        .coverage_disjoint_complete = true,
+        .nodes = {},
+        .exact_tiles = {},
+        .membership_tiles = {{
+            .status = "unresolved",
+            .receiver_begin = 0,
+            .receiver_end = request.receivers.size(),
+            .source_begin = 0,
+            .source_end = request.sources.size(),
+            .logical_ordered_pairs = logical_pairs,
+        }},
+    };
+  }
   CertifiedTraversalCertificate result{
-      .schema = "eom_certified_moving_history_traversal/v0",
+      .schema = "eom_certified_recursive_causal_index/v0",
       .traversal_id = request.traversal_id,
       .status = "uncertified",
       .failure_code = "resource_envelope_exceeded",
       .logical_ordered_pairs = logical_pairs,
       .excluded_pairs = 0,
       .exact_fallback_pairs = 0,
+      .enclosed_pairs = 0,
+      .unresolved_pairs = logical_pairs,
       .visited_nodes = 0,
       .coverage_disjoint_complete = false,
       .nodes = {},
       .exact_tiles = {},
+      .membership_tiles = {},
   };
+  std::vector<bool> exact_pairs(
+      static_cast<std::size_t>(logical_pairs), false);
   std::vector<PendingNode> pending{{
       .node_id = "root",
       .receiver_begin = 0,
       .receiver_end = request.receivers.size(),
       .source_begin = 0,
       .source_end = request.sources.size(),
+      .emission = emission,
+      .emission_depth = 0,
   }};
-  std::size_t tile_index = 0;
+  bool resource_failed = false;
   while (!pending.empty()) {
-    if (result.visited_nodes >= request.maximum_nodes) {
-      return result;
-    }
     PendingNode node = std::move(pending.back());
     pending.pop_back();
     ++result.visited_nodes;
@@ -172,9 +282,8 @@ CertifiedTraversalCertificate certify_moving_history_traversal(
     const std::uint64_t pair_count =
         checked_pair_count(receiver_count, source_count);
     const Interval residual =
-        node_residual(request, node, reception, emission, field_speed);
+        node_residual(request, node, reception, node.emission, field_speed);
     if (residual.excludes_zero()) {
-      checked_add(result.excluded_pairs, pair_count);
       result.nodes.push_back({
           .node_id = node.node_id,
           .status = "excluded",
@@ -182,18 +291,23 @@ CertifiedTraversalCertificate certify_moving_history_traversal(
           .receiver_end = node.receiver_end,
           .source_begin = node.source_begin,
           .source_end = node.source_end,
+          .emission_lower = node.emission.lower(),
+          .emission_upper = node.emission.upper(),
           .logical_ordered_pairs = pair_count,
           .residual = residual,
       });
       continue;
     }
-    const bool make_exact =
+    const bool membership_leaf =
         pair_count <= request.exact_tile_pair_limit ||
         (receiver_count == 1U && source_count == 1U);
+    const bool can_split_emission = membership_leaf &&
+        node.emission_depth < request.maximum_emission_depth &&
+        node.emission.lower() < node.emission.upper();
+    const bool make_exact = membership_leaf && !can_split_emission;
     if (make_exact) {
-      checked_add(result.exact_fallback_pairs, pair_count);
-      const std::string tile_id =
-          request.traversal_id + "/exact/" + std::to_string(tile_index++);
+      mark_exact_pairs(
+          exact_pairs, request.sources.size(), node);
       result.nodes.push_back({
           .node_id = node.node_id,
           .status = "exact_tile",
@@ -201,21 +315,65 @@ CertifiedTraversalCertificate certify_moving_history_traversal(
           .receiver_end = node.receiver_end,
           .source_begin = node.source_begin,
           .source_end = node.source_end,
+          .emission_lower = node.emission.lower(),
+          .emission_upper = node.emission.upper(),
           .logical_ordered_pairs = pair_count,
           .residual = residual,
-      });
-      result.exact_tiles.push_back({
-          .tile_id = tile_id,
-          .receiver_begin = node.receiver_begin,
-          .receiver_end = node.receiver_end,
-          .source_begin = node.source_begin,
-          .source_end = node.source_end,
-          .logical_ordered_pairs = pair_count,
       });
       continue;
     }
 
-    if (source_count >= receiver_count && source_count > 1U) {
+    if (result.visited_nodes >= request.maximum_nodes) {
+      result.nodes.push_back({
+          .node_id = node.node_id,
+          .status = "unresolved",
+          .receiver_begin = node.receiver_begin,
+          .receiver_end = node.receiver_end,
+          .source_begin = node.source_begin,
+          .source_end = node.source_end,
+          .emission_lower = node.emission.lower(),
+          .emission_upper = node.emission.upper(),
+          .logical_ordered_pairs = pair_count,
+          .residual = residual,
+      });
+      resource_failed = true;
+      break;
+    }
+
+    result.nodes.push_back({
+        .node_id = node.node_id,
+        .status = "subdivide",
+        .receiver_begin = node.receiver_begin,
+        .receiver_end = node.receiver_end,
+        .source_begin = node.source_begin,
+        .source_end = node.source_end,
+        .emission_lower = node.emission.lower(),
+        .emission_upper = node.emission.upper(),
+        .logical_ordered_pairs = pair_count,
+        .residual = residual,
+    });
+
+    if (can_split_emission) {
+      const double midpoint = node.emission.midpoint();
+      pending.push_back({
+          .node_id = node.node_id + "/t1",
+          .receiver_begin = node.receiver_begin,
+          .receiver_end = node.receiver_end,
+          .source_begin = node.source_begin,
+          .source_end = node.source_end,
+          .emission = Interval(midpoint, node.emission.upper()),
+          .emission_depth = node.emission_depth + 1U,
+      });
+      pending.push_back({
+          .node_id = node.node_id + "/t0",
+          .receiver_begin = node.receiver_begin,
+          .receiver_end = node.receiver_end,
+          .source_begin = node.source_begin,
+          .source_end = node.source_end,
+          .emission = Interval(node.emission.lower(), midpoint),
+          .emission_depth = node.emission_depth + 1U,
+      });
+    } else if (source_count >= receiver_count && source_count > 1U) {
       const std::size_t midpoint =
           node.source_begin + source_count / 2U;
       pending.push_back({
@@ -224,6 +382,8 @@ CertifiedTraversalCertificate certify_moving_history_traversal(
           .receiver_end = node.receiver_end,
           .source_begin = midpoint,
           .source_end = node.source_end,
+          .emission = node.emission,
+          .emission_depth = node.emission_depth,
       });
       pending.push_back({
           .node_id = node.node_id + "/s0",
@@ -231,6 +391,8 @@ CertifiedTraversalCertificate certify_moving_history_traversal(
           .receiver_end = node.receiver_end,
           .source_begin = node.source_begin,
           .source_end = midpoint,
+          .emission = node.emission,
+          .emission_depth = node.emission_depth,
       });
     } else {
       const std::size_t midpoint =
@@ -241,6 +403,8 @@ CertifiedTraversalCertificate certify_moving_history_traversal(
           .receiver_end = node.receiver_end,
           .source_begin = node.source_begin,
           .source_end = node.source_end,
+          .emission = node.emission,
+          .emission_depth = node.emission_depth,
       });
       pending.push_back({
           .node_id = node.node_id + "/r0",
@@ -248,14 +412,47 @@ CertifiedTraversalCertificate certify_moving_history_traversal(
           .receiver_end = midpoint,
           .source_begin = node.source_begin,
           .source_end = node.source_end,
+          .emission = node.emission,
+          .emission_depth = node.emission_depth,
       });
     }
   }
-  const bool complete = result.excluded_pairs <= logical_pairs &&
-      result.exact_fallback_pairs == logical_pairs - result.excluded_pairs;
-  result.coverage_disjoint_complete = complete;
-  result.status = complete ? "certified_complete" : "uncertified";
-  result.failure_code = complete ? "" : "pair_coverage_incomplete";
+  result.exact_fallback_pairs = build_membership_tiles(
+      exact_pairs, request.receivers.size(), request.sources.size(),
+      !resource_failed, result.membership_tiles, result.exact_tiles,
+      request.traversal_id);
+  result.enclosed_pairs = 0;
+  const bool exact_resource_failed =
+      result.exact_fallback_pairs > request.maximum_exact_pairs;
+  if (exact_resource_failed) {
+    for (auto& membership : result.membership_tiles) {
+      if (membership.status == "exact_tile") {
+        membership.status = "unresolved";
+      }
+    }
+    result.unresolved_pairs = result.exact_fallback_pairs;
+    result.exact_fallback_pairs = 0;
+    result.exact_tiles.clear();
+    result.excluded_pairs = logical_pairs - result.unresolved_pairs;
+  } else if (resource_failed) {
+    result.excluded_pairs = 0;
+    result.unresolved_pairs = logical_pairs - result.exact_fallback_pairs;
+  } else {
+    result.excluded_pairs = logical_pairs - result.exact_fallback_pairs;
+    result.unresolved_pairs = 0;
+  }
+  const bool accounting_complete =
+      result.excluded_pairs + result.exact_fallback_pairs +
+          result.enclosed_pairs + result.unresolved_pairs == logical_pairs;
+  result.coverage_disjoint_complete = accounting_complete;
+  result.status = accounting_complete && result.unresolved_pairs == 0
+      ? "certified_complete"
+      : "uncertified";
+  result.failure_code = result.status == "certified_complete"
+      ? ""
+      : (resource_failed || exact_resource_failed
+             ? "resource_envelope_exceeded"
+                         : "pair_coverage_incomplete");
   return result;
 }
 
@@ -277,12 +474,20 @@ CertifiedTraversalExactBatchCertificate certify_traversal_exact_pair_batch(
       .excluded_pairs = certificate.excluded_pairs,
       .exact_pairs_requested = certificate.exact_fallback_pairs,
       .exact_pairs_completed = 0,
+      .enclosed_pairs = certificate.enclosed_pairs,
+      .unresolved_pairs = certificate.unresolved_pairs,
       .coverage_disjoint_complete = false,
       .exact_pair_certificates = {},
   };
   if (certificate.traversal_id != traversal.traversal_id ||
       certificate.status != "certified_complete" ||
-      !certificate.coverage_disjoint_complete) {
+      !certificate.coverage_disjoint_complete ||
+      certificate.unresolved_pairs != 0U) {
+    result.excluded_pairs = 0;
+    result.exact_pairs_requested = 0;
+    result.enclosed_pairs = 0;
+    result.unresolved_pairs = result.logical_ordered_pairs;
+    result.coverage_disjoint_complete = true;
     return result;
   }
   if (certificate.exact_fallback_pairs > request.maximum_exact_pairs ||
@@ -290,6 +495,10 @@ CertifiedTraversalExactBatchCertificate certify_traversal_exact_pair_batch(
           static_cast<std::uint64_t>(
               std::numeric_limits<std::size_t>::max())) {
     result.failure_code = "resource_envelope_exceeded";
+    result.unresolved_pairs = result.exact_pairs_requested;
+    result.coverage_disjoint_complete =
+        result.excluded_pairs + result.unresolved_pairs ==
+        result.logical_ordered_pairs;
     return result;
   }
   if (request.warm_starts != nullptr &&
@@ -297,6 +506,16 @@ CertifiedTraversalExactBatchCertificate certify_traversal_exact_pair_batch(
           traversal.receivers.size() * traversal.sources.size()) {
     throw std::invalid_argument(
         "traversal exact batch warm-start domain is incomplete");
+  }
+  const Interval traversal_emission = token_bounds(traversal.emission);
+  const Interval exact_search = token_bounds({
+      .lower = request.search_lower,
+      .upper = request.search_upper,
+  });
+  if (exact_search.lower() > traversal_emission.lower() ||
+      exact_search.upper() < traversal_emission.upper()) {
+    throw std::invalid_argument(
+        "exact fallback must cover the complete traversal emission interval");
   }
   std::vector<ExactPairRequest> exact_requests;
   exact_requests.reserve(
@@ -338,17 +557,22 @@ CertifiedTraversalExactBatchCertificate certify_traversal_exact_pair_batch(
       certify_exact_pair_batch(exact_requests, request.thread_count);
   for (const auto& exact : result.exact_pair_certificates) {
     if (!exact_certificate_complete(exact)) {
-      result.failure_code = exact.failure_code.empty()
-          ? "root_completeness_not_certified"
-          : exact.failure_code;
-      return result;
+      ++result.unresolved_pairs;
+      if (result.failure_code == "traversal_not_certified") {
+        result.failure_code = exact.failure_code.empty()
+            ? "root_completeness_not_certified"
+            : exact.failure_code;
+      }
+      continue;
     }
     ++result.exact_pairs_completed;
   }
   result.coverage_disjoint_complete =
-      result.excluded_pairs + result.exact_pairs_completed ==
+      result.excluded_pairs + result.exact_pairs_completed +
+          result.enclosed_pairs + result.unresolved_pairs ==
       result.logical_ordered_pairs;
-  result.status = result.coverage_disjoint_complete
+  result.status = result.coverage_disjoint_complete &&
+          result.unresolved_pairs == 0U
       ? "certified_complete"
       : "uncertified";
   result.failure_code = result.coverage_disjoint_complete

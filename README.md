@@ -99,7 +99,7 @@ src/apps/navigator/StandaloneAppLaunchRuntime.js
 ```
 
 App runtime code is under `src/apps/`. EOM under `src/eom/` is the endorsed
-solver and sole forward production target. The existing central solver under
+solver and sole forward production target. The existing zombie-solver under
 `src/solver/` remains temporarily available only for current dependencies while
 they migrate; new app and simulation work must not adopt or extend it.
 

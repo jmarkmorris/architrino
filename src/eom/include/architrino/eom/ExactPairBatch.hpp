@@ -92,6 +92,19 @@ struct ExactPairCertificate {
   std::size_t reevaluated_cells = 0;
   double warm_residual_drift_upper = 0.0;
   std::vector<NativeRootFreeCell> root_free_cells;
+  bool has_difficult_cell = false;
+  std::size_t difficult_source_segment_index = 0;
+  std::string difficult_cell_lower;
+  std::string difficult_cell_upper;
+  std::string difficult_point;
+  std::string difficult_point_residual_lower;
+  std::string difficult_point_residual_upper;
+  std::string difficult_source_normal_lower;
+  std::string difficult_source_normal_upper;
+  std::string difficult_receiver_normal_lower;
+  std::string difficult_receiver_normal_upper;
+  int difficult_lower_sign = 0;
+  int difficult_upper_sign = 0;
 };
 
 [[nodiscard]] ExactPairCertificate certify_exact_pair(

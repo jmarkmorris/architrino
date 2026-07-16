@@ -1,5 +1,7 @@
 # App Bridge Contract
 
+Historical naming: **zombie-solver (then called the central solver)**.
+
 Status: `closeout-complete`
 
 Kind: `contract-closeout`
@@ -24,7 +26,7 @@ Implementation surfaces:
 
 ## Purpose
 
-The app bridge is the single app-facing contract for central solver use. Apps submit structured JavaScript or TypeScript requests, receive normalized responses, and consume dense buffers or stream handles without knowing C++ object ownership, WebAssembly lifecycle details, native-file stream internals, or app-specific solver glue.
+The app bridge is the single app-facing contract for zombie-solver use. Apps submit structured JavaScript or TypeScript requests, receive normalized responses, and consume dense buffers or stream handles without knowing C++ object ownership, WebAssembly lifecycle details, native-file stream internals, or app-specific solver glue.
 
 The contract covers both the direct bridge client and the worker protocol. The worker protocol preserves the same method names and request/response shapes while moving execution off the app caller's immediate thread. Current app ids are `animator`, `photon`, `ideal-braid`, and `causal-delay-feedback`.
 

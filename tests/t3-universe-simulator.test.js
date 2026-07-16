@@ -14,7 +14,7 @@ import {
   T3_ORIENTED_BOUNDARY_PROTOTYPE_SCHEMA,
   createT3UniverseSimulator,
   restoreT3UniverseSimulatorFromCheckpoint,
-} from "../src/solver/t3/index.mjs";
+} from "../src/t3/index.mjs";
 
 test("T3 topology wraps positions and preserves nearest-image distances", () => {
   const topology = createT3Topology({ baseUnitLength: 2, scaleFactor: 5 });

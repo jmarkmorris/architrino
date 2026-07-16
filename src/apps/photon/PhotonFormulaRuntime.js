@@ -1,23 +1,17 @@
 import {
-  createPhotonCausalRootsRunRequest,
-  createSharedGeometryRunRequest,
-} from "../../solver/app/SolverAppAdapters.mjs";
-import {
-  computeMovingCircularObserverFieldF64,
-  solveMovingCircularAbsoluteHistoryRunF64,
-} from "../../solver/app/SolverAppBridge.mjs";
-import {
-  runSolverAppBridgeRequest,
-} from "../../solver/app/SolverAppBridgeClientResolver.mjs";
-import {
+  PRESCRIBED_PATH_ANALYSIS_ID,
+  computeMovingCircularObserverField,
   createMovingCircularSourceLinearizedRootRequests,
   createMovingCircularSameSourceRootRequest,
   createMovingCircularSourceRootRequest,
   evaluateLinearHistoryPoint,
   evaluateMovingCircularSourceHistory,
+  runPrescribedPathAnalysisRequest,
+  solveCircularSourceRootsAndHits,
+  solveMovingCircularAbsoluteHistoryRun,
   solveMovingCircularSameSourceCausalRoots,
   solveMovingCircularSourceCausalRoots,
-} from "../../solver/app/AbsoluteHistoryRootRuntime.mjs";
+} from "../../prescribed-path-analysis/index.mjs";
 import {
   PHOTON_LAYER_ORDER,
   getPhotonDirectionSign,
@@ -61,7 +55,7 @@ const DEFAULT_POLARIZATION_TRACE_SAMPLES = 144;
 const MINIMUM_POLARIZATION_TRACE_SAMPLES = 72;
 const DEFAULT_SOLVER_MEMORY_BUDGET_BYTES = 64 * 1024 * 1024;
 const DEFAULT_PHOTON_ROOT_TOLERANCE = 1e-12;
-const PHOTON_SOLVER_BRIDGE_ENGINE_ID = "architrino-solver-app-bridge";
+const PHOTON_ANALYSIS_ID = PRESCRIBED_PATH_ANALYSIS_ID;
 const POLARIZATION_LINEAR_S3_TOLERANCE = 0.12;
 const POLARIZATION_CIRCULAR_S3_MIN = 0.82;
 const POLARIZATION_CIRCULAR_TRANSVERSE_TOLERANCE = 0.35;
@@ -72,6 +66,29 @@ const PHOTON_CHARGE_SIGN = Object.freeze({
   positrino: 1,
   electrino: -1,
 });
+
+function createPhotonCausalRootsRunRequest(input = {}) {
+  return {
+    ...input,
+    appId: "photon",
+    runKind: "causalRoots",
+    config: {
+      appId: "photon",
+      rootRequest: input.rootRequest,
+    },
+  };
+}
+
+function createSharedGeometryRunRequest(input = {}) {
+  return {
+    ...input,
+    runKind: "sharedGeometry",
+    config: {
+      appId: input.appId,
+      geometryRequest: input.geometryRequest,
+    },
+  };
+}
 
 export function degreesToPhotonRadians(degrees) {
   return (Number(degrees) || 0) * Math.PI / 180;
@@ -225,8 +242,8 @@ export function createPhotonCausalRootsSolverRunRequest(rootRequest, options = {
   });
 }
 
-export async function solvePhotonCausalRootsWithSolverBridge(rootRequest, options = {}) {
-  const runHandle = await runPhotonCausalRootsWithSolverBridge(rootRequest, options);
+export async function solvePhotonCausalRootsWithPrescribedPathAnalysis(rootRequest, options = {}) {
+  const runHandle = await runPhotonCausalRootsWithPrescribedPathAnalysis(rootRequest, options);
   return Array.isArray(runHandle.response?.roots) ? runHandle.response.roots : [];
 }
 
@@ -301,7 +318,7 @@ export function createPhotonCircularSourceCausalRootRequest(
   return request;
 }
 
-export async function solvePhotonCircularSourceRootsHitsLedgerWithSolverBridge(
+export async function solvePhotonCircularSourceRootsHitsLedgerWithPrescribedPathAnalysis(
   state,
   sourceRef,
   observationTime,
@@ -311,20 +328,20 @@ export async function solvePhotonCircularSourceRootsHitsLedgerWithSolverBridge(
     createPhotonCircularSourceCausalRootRequest(state, sourceRef, observationTime, options);
   const response = typeof options.solveCircularSourceRootsHitsLedger === "function"
     ? await options.solveCircularSourceRootsHitsLedger(request)
-    : await runPhotonCircularSourceSolverBridgeClient(options, request);
+    : await runPhotonCircularSourcePrescribedPathAnalysis(options, request);
   return {
-    solverEngineId: PHOTON_SOLVER_BRIDGE_ENGINE_ID,
+    analysisId: PHOTON_ANALYSIS_ID,
     ...response,
   };
 }
 
-export async function solvePhotonCircularSourceCausalRootsWithSolverBridge(
+export async function solvePhotonCircularSourceCausalRootsWithPrescribedPathAnalysis(
   state,
   sourceRef,
   observationTime,
   options = {}
 ) {
-  const response = await solvePhotonCircularSourceRootsHitsLedgerWithSolverBridge(
+  const response = await solvePhotonCircularSourceRootsHitsLedgerWithPrescribedPathAnalysis(
     state,
     sourceRef,
     observationTime,
@@ -333,59 +350,24 @@ export async function solvePhotonCircularSourceCausalRootsWithSolverBridge(
   return Array.isArray(response?.roots) ? response.roots : [];
 }
 
-export async function runPhotonCausalRootsWithSolverBridge(rootRequest, options = {}) {
+export async function runPhotonCausalRootsWithPrescribedPathAnalysis(rootRequest, options = {}) {
   const runRequest =
     options.runRequest ?? createPhotonCausalRootsSolverRunRequest(rootRequest, options);
-  const runHandle = typeof options.runSolverBridge === "function"
-    ? await options.runSolverBridge(runRequest)
-    : await runPhotonSolverBridgeClient(options, rootRequest, runRequest);
+  const runHandle = await runPhotonPrescribedPathAnalysis(options, rootRequest, runRequest);
   return {
-    solverEngineId: PHOTON_SOLVER_BRIDGE_ENGINE_ID,
+    analysisId: PHOTON_ANALYSIS_ID,
     ...runHandle,
   };
 }
 
-async function runPhotonSolverBridgeClient(options, rootRequest, runRequest) {
-  return runSolverAppBridgeRequest({
-    appId: "photon",
-    request: runRequest,
-    options,
-    factoryRequest: rootRequest,
-    requestedCapabilities: ["causalRoots", "delayedHits"],
-    storagePolicy: {
-      target: options.streamTarget ?? "caller-buffer",
-      durable: options.streamTarget === "native-file",
-      maxBytes: options.memoryBudgetBytes ?? DEFAULT_SOLVER_MEMORY_BUDGET_BYTES,
-    },
-    threadingPolicy: {
-      mode: options.threadingMode ?? "single-thread",
-      deterministic: options.deterministic ?? true,
-    },
-    missingClientMessage:
-      "Photon solver bridge request requires a solver client, runSolverBridge option, client factory, worker, or solver WASM module factory.",
-  });
+async function runPhotonPrescribedPathAnalysis(options, rootRequest, runRequest) {
+  const run = options.runPrescribedPathAnalysis ?? runPrescribedPathAnalysisRequest;
+  return run(runRequest);
 }
 
-async function runPhotonCircularSourceSolverBridgeClient(options, request) {
-  return runSolverAppBridgeRequest({
-    appId: "photon",
-    methodName: "solveCircularSourceRootsHitsLedgerF64",
-    request,
-    options,
-    factoryRequest: request,
-    requestedCapabilities: ["causalRoots", "delayedHits"],
-    storagePolicy: {
-      target: options.streamTarget ?? "caller-buffer",
-      durable: options.streamTarget === "native-file",
-      maxBytes: options.memoryBudgetBytes ?? DEFAULT_SOLVER_MEMORY_BUDGET_BYTES,
-    },
-    threadingPolicy: {
-      mode: options.threadingMode ?? "single-thread",
-      deterministic: options.deterministic ?? true,
-    },
-    missingClientMessage:
-      "Photon circular-source solver bridge request requires a solver client, solveCircularSourceRootsHitsLedger option, client factory, worker, or solver WASM module factory.",
-  });
+async function runPhotonCircularSourcePrescribedPathAnalysis(options, request) {
+  const solve = options.solveCircularSourceRootsAndHits ?? solveCircularSourceRootsAndHits;
+  return solve(request);
 }
 
 function createDefaultPhotonCausalRootsModel() {
@@ -636,138 +618,31 @@ export function createPhotonCircularSelfHitSpansRunRequest(state, options = {}) 
   });
 }
 
-function hasPhotonSelfHitSolverBridgeOption(options = {}) {
-  return typeof options.runSolverBridge === "function" ||
-    (options.solverClient && typeof options.solverClient.runSimulation === "function") ||
-    typeof options.createSolverBridgeClient === "function" ||
-    options.solverWorker != null ||
-    typeof options.createWasmModule === "function" ||
-    options.allowNoWasmBridgeClient === true ||
-    options?.solverBridgeConfig?.allowNoWasmBridgeClient === true;
+async function runPhotonMovingCircularSourcePrescribedPathAnalysis(options, request) {
+  const solve = options.solveMovingCircularSourceCausalRoots ?? solveMovingCircularSourceCausalRoots;
+  return solve(request);
 }
 
-function hasPhotonMovingCircularSolverBridgeOption(options = {}, methodName) {
-  return (
-    typeof options[methodName] === "function" ||
-    (options.solverClient && typeof options.solverClient[methodName] === "function") ||
-    typeof options.createSolverBridgeClient === "function" ||
-    options.solverWorker != null ||
-    typeof options.createWasmModule === "function" ||
-    options.allowNoWasmBridgeClient === true ||
-    options?.solverBridgeConfig?.allowNoWasmBridgeClient === true
-  );
+async function runPhotonMovingCircularSameSourcePrescribedPathAnalysis(options, request) {
+  const solve = options.solveMovingCircularSameSourceCausalRoots ??
+    solveMovingCircularSameSourceCausalRoots;
+  return solve(request);
 }
 
-async function runPhotonMovingCircularSourceSolverBridgeClient(options, request) {
-  return runSolverAppBridgeRequest({
-    appId: "photon",
-    methodName: "solveMovingCircularSourceCausalRootsF64",
-    request,
-    options,
-    factoryRequest: request,
-    requestedCapabilities: ["causalRoots", "delayedHits"],
-    storagePolicy: {
-      target: options.streamTarget ?? "caller-buffer",
-      durable: options.streamTarget === "native-file",
-      maxBytes: options.memoryBudgetBytes ?? DEFAULT_SOLVER_MEMORY_BUDGET_BYTES,
-    },
-    threadingPolicy: {
-      mode: options.threadingMode ?? "single-thread",
-      deterministic: options.deterministic ?? true,
-    },
-    missingClientMessage:
-      "Photon moving-circular source solver bridge request requires a solver client, solveMovingCircularSourceCausalRootsF64 option, client factory, worker, or solver WASM module factory.",
-  });
+async function runPhotonMovingCircularObserverFieldPrescribedPathAnalysis(options, request) {
+  const compute = options.computeMovingCircularObserverField ?? computeMovingCircularObserverField;
+  return compute(request);
 }
 
-async function runPhotonMovingCircularSameSourceSolverBridgeClient(options, request) {
-  return runSolverAppBridgeRequest({
-    appId: "photon",
-    methodName: "solveMovingCircularSameSourceCausalRootsF64",
-    request,
-    options,
-    factoryRequest: request,
-    requestedCapabilities: ["causalRoots", "delayedHits"],
-    storagePolicy: {
-      target: options.streamTarget ?? "caller-buffer",
-      durable: options.streamTarget === "native-file",
-      maxBytes: options.memoryBudgetBytes ?? DEFAULT_SOLVER_MEMORY_BUDGET_BYTES,
-    },
-    threadingPolicy: {
-      mode: options.threadingMode ?? "single-thread",
-      deterministic: options.deterministic ?? true,
-    },
-    missingClientMessage:
-      "Photon moving-circular same-source solver bridge request requires a solver client, solveMovingCircularSameSourceCausalRootsF64 option, client factory, worker, or solver WASM module factory.",
-  });
+async function runPhotonMovingCircularAbsoluteHistoryRunPrescribedPathAnalysis(options, request) {
+  const solve = options.solveMovingCircularAbsoluteHistoryRun ??
+    solveMovingCircularAbsoluteHistoryRun;
+  return solve(request);
 }
 
-async function runPhotonMovingCircularObserverFieldSolverBridgeClient(options, request) {
-  return runSolverAppBridgeRequest({
-    appId: "photon",
-    methodName: "computeMovingCircularObserverFieldF64",
-    request,
-    options,
-    factoryRequest: request,
-    requestedCapabilities: ["causalRoots", "delayedHits"],
-    storagePolicy: {
-      target: options.streamTarget ?? "caller-buffer",
-      durable: options.streamTarget === "native-file",
-      maxBytes: options.memoryBudgetBytes ?? DEFAULT_SOLVER_MEMORY_BUDGET_BYTES,
-    },
-    threadingPolicy: {
-      mode: options.threadingMode ?? "single-thread",
-      deterministic: options.deterministic ?? true,
-    },
-    missingClientMessage:
-      "Photon moving-circular observer-field bridge request requires a solver client, computeMovingCircularObserverFieldF64 option, client factory, worker, or solver WASM module factory.",
-  });
-}
-
-async function runPhotonMovingCircularAbsoluteHistoryRunSolverBridgeClient(options, request) {
-  return runSolverAppBridgeRequest({
-    appId: "photon",
-    methodName: "solveMovingCircularAbsoluteHistoryRunF64",
-    request,
-    options,
-    factoryRequest: request,
-    requestedCapabilities: ["causalRoots", "delayedHits"],
-    storagePolicy: {
-      target: options.streamTarget ?? "caller-buffer",
-      durable: options.streamTarget === "native-file",
-      maxBytes: options.memoryBudgetBytes ?? DEFAULT_SOLVER_MEMORY_BUDGET_BYTES,
-    },
-    threadingPolicy: {
-      mode: options.threadingMode ?? "single-thread",
-      deterministic: options.deterministic ?? true,
-    },
-    missingClientMessage:
-      "Photon moving-circular absolute-history run request requires a solver client, solveMovingCircularAbsoluteHistoryRunF64 option, client factory, worker, or solver WASM module factory.",
-  });
-}
-
-async function runPhotonSelfHitSolverBridgeClient(options, descriptors, runRequest) {
-  return runSolverAppBridgeRequest({
-    appId: "photon",
-    request: runRequest,
-    options,
-    factoryRequest: {
-      fieldSpeedRatios: descriptors.map((descriptor) => descriptor.fieldSpeedRatio),
-      descriptors,
-    },
-    requestedCapabilities: ["sharedGeometry", "diagnostics"],
-    storagePolicy: {
-      target: options.streamTarget ?? "caller-buffer",
-      durable: options.streamTarget === "native-file",
-      maxBytes: options.memoryBudgetBytes ?? DEFAULT_SOLVER_MEMORY_BUDGET_BYTES,
-    },
-    threadingPolicy: {
-      mode: options.threadingMode ?? "single-thread",
-      deterministic: options.deterministic ?? true,
-    },
-    missingClientMessage:
-      "Photon self-hit diagnostics require a solver client, runSolverBridge option, client factory, worker, or solver WASM module factory.",
-  });
+async function runPhotonSelfHitPrescribedPathAnalysis(options, descriptors, runRequest) {
+  const run = options.runPrescribedPathAnalysis ?? runPrescribedPathAnalysisRequest;
+  return run(runRequest);
 }
 
 function extractPhotonCircularSelfHitRows(runHandle = {}, descriptors = []) {
@@ -777,7 +652,7 @@ function extractPhotonCircularSelfHitRows(runHandle = {}, descriptors = []) {
   return descriptors.map((descriptor, index) => {
     const row = rows.find((candidate) => candidate.itemIndex === index) ?? rows[index] ?? {};
     return {
-      solverEngineId: PHOTON_SOLVER_BRIDGE_ENGINE_ID,
+      analysisId: PHOTON_ANALYSIS_ID,
       runId: response.runId ?? runHandle.runId ?? "",
       datasetId: response.datasetId ?? runHandle.datasetId ?? "",
       ...descriptor,
@@ -790,7 +665,7 @@ function extractPhotonCircularSelfHitRows(runHandle = {}, descriptors = []) {
             ? "sub_field"
             : "field_speed"
       ),
-      resultKind: row.resultKind ?? "missing_solver_row",
+      resultKind: row.resultKind ?? "missing_analysis_row",
       span: Number(row.span) || 0,
       rootFound: row.rootFound === true,
       bracketLow: Number(row.bracketLow) || 0,
@@ -1107,7 +982,7 @@ function summarizePhotonSelfHitRows(rows = [], status = "ok", message = "", heli
     0
   );
   return {
-    solverEngineId: PHOTON_SOLVER_BRIDGE_ENGINE_ID,
+    analysisId: PHOTON_ANALYSIS_ID,
     status,
     message,
     rows: safeRows,
@@ -1175,7 +1050,7 @@ function createPhotonHelicalSelfHitRootRequest(state, sourceRef, measurement, hi
       sourceRef,
     }),
     sourceHistoryProvider: provider,
-    solverBoundary: PHOTON_SOURCE_HISTORY_BOUNDARY,
+    analysisBoundary: PHOTON_SOURCE_HISTORY_BOUNDARY,
   };
 }
 
@@ -1201,9 +1076,7 @@ async function createPhotonHelicalSelfHitRow(state, descriptor, chargeType, item
   const request = createPhotonHelicalSelfHitRootRequest(state, sourceRef, measurement, hitTime, options);
   const response = typeof options.solveMovingCircularSameSourceRoots === "function"
     ? await options.solveMovingCircularSameSourceRoots(request)
-    : hasPhotonMovingCircularSolverBridgeOption(options, "solveMovingCircularSameSourceCausalRootsF64")
-      ? await runPhotonMovingCircularSameSourceSolverBridgeClient(options, request)
-      : solveMovingCircularSameSourceCausalRoots(request);
+    : await runPhotonMovingCircularSameSourcePrescribedPathAnalysis(options, request);
   const roots = (Array.isArray(response?.roots) ? response.roots : [])
     .map((root) => ({
       ...root,
@@ -1219,14 +1092,14 @@ async function createPhotonHelicalSelfHitRow(state, descriptor, chargeType, item
     .sort((a, b) => a.delay - b.delay);
   const firstRoot = roots[0] ?? null;
   return {
-    solverEngineId: PHOTON_SOLVER_BRIDGE_ENGINE_ID,
+    analysisId: PHOTON_ANALYSIS_ID,
     itemIndex,
     sourceHistoryKind: "moving-circular-same-source",
     sourceHistoryProviderId:
       request.sourceHistoryProvider?.providerId ?? PHOTON_SOURCE_HISTORY_PROVIDER_ID,
     sourceHistoryProviderKind:
       request.sourceHistoryProvider?.providerKind ?? "constrained_architrino_motion",
-    solverBoundary: request.solverBoundary ?? PHOTON_SOURCE_HISTORY_BOUNDARY,
+    analysisBoundary: request.analysisBoundary ?? PHOTON_SOURCE_HISTORY_BOUNDARY,
     ...descriptor,
     chargeType,
     chargeSign: PHOTON_CHARGE_SIGN[chargeType] ?? 0,
@@ -1277,7 +1150,7 @@ function rowsIndexForPhotonSelfHit(descriptor, chargeIndex) {
   return braidOffset + layerOffset + chargeIndex;
 }
 
-export async function computePhotonSelfHitDiagnosticsWithSolverBridge(state, options = {}) {
+export async function computePhotonSelfHitDiagnosticsWithPrescribedPathAnalysis(state, options = {}) {
   const measurement = options.measurement ?? resolvePhotonMeasurementParameters(state);
   const descriptors = buildPhotonSelfHitLayerDescriptors(state, measurement);
   if (descriptors.length === 0) {
@@ -1286,7 +1159,7 @@ export async function computePhotonSelfHitDiagnosticsWithSolverBridge(state, opt
   const helicalRows = await createPhotonHelicalSelfHitRows(state, measurement, descriptors, options);
   if (options.skipSpanSelfHitDiagnostics === true) {
     const rows = descriptors.map((descriptor, index) => ({
-      solverEngineId: PHOTON_SOLVER_BRIDGE_ENGINE_ID,
+      analysisId: PHOTON_ANALYSIS_ID,
       ...descriptor,
       itemIndex: index,
       statusCode: 0,
@@ -1306,45 +1179,17 @@ export async function computePhotonSelfHitDiagnosticsWithSolverBridge(state, opt
       helicalRows
     );
   }
-  if (!hasPhotonSelfHitSolverBridgeOption(options)) {
-    const rows = descriptors.map((descriptor, index) => ({
-      solverEngineId: PHOTON_SOLVER_BRIDGE_ENGINE_ID,
-      ...descriptor,
-      itemIndex: index,
-      statusCode: -1,
-      regime: descriptor.fieldSpeedRatio > 1 + DEFAULT_SELF_HIT_FIELD_SPEED_TOLERANCE
-        ? "super_field"
-        : descriptor.fieldSpeedRatio < 1 - DEFAULT_SELF_HIT_FIELD_SPEED_TOLERANCE
-          ? "sub_field"
-          : "field_speed",
-      resultKind: "solver_unavailable",
-      span: 0,
-      rootFound: false,
-      bracketLow: 0,
-      bracketHigh: 0,
-      residual: 0,
-      iterations: 0,
-    }));
-    return summarizePhotonSelfHitRows(
-      rows,
-      "unavailable",
-      "Self-hit span rows need the shared-geometry solver bridge.",
-      helicalRows
-    );
-  }
   const runRequest = options.selfHitRunRequest ??
     createPhotonCircularSelfHitSpansRunRequest(state, {
       ...options,
       measurement,
       descriptors,
     });
-  const runHandle = typeof options.runSolverBridge === "function"
-    ? await options.runSolverBridge(runRequest)
-    : await runPhotonSelfHitSolverBridgeClient(options, descriptors, runRequest);
+  const runHandle = await runPhotonSelfHitPrescribedPathAnalysis(options, descriptors, runRequest);
   return summarizePhotonSelfHitRows(
     extractPhotonCircularSelfHitRows(runHandle, descriptors),
     "ok",
-    "Self-hit span rows computed from shared-geometry solver bridge.",
+    "Self-hit span rows computed by prescribed-path analysis.",
     helicalRows
   );
 }
@@ -1417,7 +1262,7 @@ export function createPhotonAbsoluteSourceSegmentCausalRootRequests(
   }).map((request) => ({
     ...request,
     sourceHistoryProvider: provider,
-    solverBoundary: PHOTON_SOURCE_HISTORY_BOUNDARY,
+    analysisBoundary: PHOTON_SOURCE_HISTORY_BOUNDARY,
   }));
 }
 
@@ -1464,7 +1309,7 @@ export function createPhotonAbsoluteMovingCircularCausalRootRequest(
       sourceRef,
     }),
     sourceHistoryProvider: provider,
-    solverBoundary: PHOTON_SOURCE_HISTORY_BOUNDARY,
+    analysisBoundary: PHOTON_SOURCE_HISTORY_BOUNDARY,
   };
 }
 
@@ -1479,14 +1324,14 @@ export function createPhotonAbsoluteHistoryRunRequest(
     : buildPhotonArchitrinoSourceRefs(state);
   return {
     sourceHistoryProviderId: PHOTON_SOURCE_HISTORY_PROVIDER_ID,
-    solverBoundary: PHOTON_SOURCE_HISTORY_BOUNDARY,
+    analysisBoundary: PHOTON_SOURCE_HISTORY_BOUNDARY,
     signalSpeed: measurement.emissionSpeedCf,
     observerFieldRequest: {
       signalSpeed: measurement.emissionSpeedCf,
       jacobianFloor: JACOBIAN_FLOOR,
       unstableGapThreshold: 0.05,
       sourceHistoryProviderId: PHOTON_SOURCE_HISTORY_PROVIDER_ID,
-      solverBoundary: PHOTON_SOURCE_HISTORY_BOUNDARY,
+      analysisBoundary: PHOTON_SOURCE_HISTORY_BOUNDARY,
     },
     sourceRootRequests: sourceRefs.map((sourceRef) => ({
       ...createPhotonAbsoluteMovingCircularCausalRootRequest(
@@ -1627,7 +1472,7 @@ function mapPhotonMovingCircularRootToDelayedRoot(state, sourceRef, measurement,
       request.sourceHistoryProvider?.providerId ?? PHOTON_SOURCE_HISTORY_PROVIDER_ID,
     sourceHistoryProviderKind:
       request.sourceHistoryProvider?.providerKind ?? "constrained_architrino_motion",
-    solverBoundary: request.solverBoundary ?? PHOTON_SOURCE_HISTORY_BOUNDARY,
+    analysisBoundary: request.analysisBoundary ?? PHOTON_SOURCE_HISTORY_BOUNDARY,
     phaseAtHit: createPhotonPhaseAtHitRecord(
       state,
       sourceRef,
@@ -1637,7 +1482,7 @@ function mapPhotonMovingCircularRootToDelayedRoot(state, sourceRef, measurement,
     solveIterations: Number.isFinite(Number(root.iterationCount))
       ? Number(root.iterationCount)
       : Number(root.solveIterations) || 0,
-    solverEngineId: PHOTON_SOLVER_BRIDGE_ENGINE_ID,
+    analysisId: PHOTON_ANALYSIS_ID,
   };
 }
 
@@ -1694,7 +1539,7 @@ function mapPhotonLinearSegmentRootToDelayedRoot(state, sourceRef, measurement, 
       request.sourceHistoryProvider?.providerId ?? PHOTON_SOURCE_HISTORY_PROVIDER_ID,
     sourceHistoryProviderKind:
       request.sourceHistoryProvider?.providerKind ?? "constrained_architrino_motion",
-    solverBoundary: request.solverBoundary ?? PHOTON_SOURCE_HISTORY_BOUNDARY,
+    analysisBoundary: request.analysisBoundary ?? PHOTON_SOURCE_HISTORY_BOUNDARY,
     phaseAtHit: createPhotonPhaseAtHitRecord(
       state,
       sourceRef,
@@ -1704,7 +1549,7 @@ function mapPhotonLinearSegmentRootToDelayedRoot(state, sourceRef, measurement, 
     solveIterations: Number.isFinite(Number(root.iterationCount))
       ? Number(root.iterationCount)
       : Number(root.solveIterations) || 0,
-    solverEngineId: PHOTON_SOLVER_BRIDGE_ENGINE_ID,
+    analysisId: PHOTON_ANALYSIS_ID,
   };
 }
 
@@ -1846,7 +1691,7 @@ function createPhotonObserverFieldBranchSumRequest(roots = [], measurement = {})
     jacobianFloor: JACOBIAN_FLOOR,
     unstableGapThreshold: 0.05,
     sourceHistoryProviderId: PHOTON_SOURCE_HISTORY_PROVIDER_ID,
-    solverBoundary: PHOTON_SOURCE_HISTORY_BOUNDARY,
+    analysisBoundary: PHOTON_SOURCE_HISTORY_BOUNDARY,
     branches: roots.map((root) => ({
       chargeSign: root.kinematics?.chargeSign ?? 0,
       direction: root.direction,
@@ -1865,7 +1710,7 @@ function createPhotonObserverFieldBranchSumRequest(roots = [], measurement = {})
       receiverNormalStatusCode: root.receiverNormalStatusCode,
       sourceHistoryKind: root.sourceHistoryKind,
       sourceHistoryProviderId: root.sourceHistoryProviderId ?? PHOTON_SOURCE_HISTORY_PROVIDER_ID,
-      solverBoundary: root.solverBoundary ?? PHOTON_SOURCE_HISTORY_BOUNDARY,
+      analysisBoundary: root.analysisBoundary ?? PHOTON_SOURCE_HISTORY_BOUNDARY,
     })),
   };
 }
@@ -1881,11 +1726,11 @@ function createPhotonAbsoluteObserverFieldContributionsFromSolverResponse(
     ...(solverContributions[index] ?? computePhotonDelayedContribution(root, measurement)),
   }));
   return {
-    sourceMode: "solver_bridge_absolute_history_receiver_normal_root_branch_sum",
+    sourceMode: "prescribed_path_absolute_history_receiver_normal_root_branch_sum",
     sourceHistoryProviderId: PHOTON_SOURCE_HISTORY_PROVIDER_ID,
     fieldReconstructionOwner: PHOTON_SOURCE_HISTORY_BOUNDARY.fieldReconstructionOwner,
     receiverNormalOwner: PHOTON_SOURCE_HISTORY_BOUNDARY.receiverNormalOwner,
-    solverFieldSchema: response.schema ?? "",
+    analysisFieldSchema: response.schema ?? "",
     contributions,
     electric: contributions.reduce(
       (sum, contribution) => addVector(sum, contribution.electric),
@@ -1906,7 +1751,7 @@ function createPhotonAbsoluteObserverFieldContributionsFromSolverResponse(
   };
 }
 
-async function computePhotonAbsoluteObserverFieldContributionsWithSolverBridge(
+async function computePhotonAbsoluteObserverFieldContributionsWithPrescribedPathAnalysis(
   roots,
   measurement,
   options = {}
@@ -1914,9 +1759,7 @@ async function computePhotonAbsoluteObserverFieldContributionsWithSolverBridge(
   const request = createPhotonObserverFieldBranchSumRequest(roots, measurement);
   const response = typeof options.computeMovingCircularObserverField === "function"
     ? await options.computeMovingCircularObserverField(request)
-    : hasPhotonMovingCircularSolverBridgeOption(options, "computeMovingCircularObserverFieldF64")
-      ? await runPhotonMovingCircularObserverFieldSolverBridgeClient(options, request)
-      : computeMovingCircularObserverFieldF64(request);
+    : await runPhotonMovingCircularObserverFieldPrescribedPathAnalysis(options, request);
   return createPhotonAbsoluteObserverFieldContributionsFromSolverResponse(
     roots,
     measurement,
@@ -1976,18 +1819,18 @@ function mapPhotonCircularSourceRootToDelayedRoot(state, sourceRef, measurement,
     solveIterations: Number.isFinite(Number(root.iterationCount))
       ? Number(root.iterationCount)
       : Number(root.solveIterations) || 0,
-    solverEngineId: PHOTON_SOLVER_BRIDGE_ENGINE_ID,
+    analysisId: PHOTON_ANALYSIS_ID,
   };
 }
 
-export async function solvePhotonCoMovingCausalRootsForSourceWithSolverBridge(
+export async function solvePhotonCoMovingCausalRootsForSourceWithPrescribedPathAnalysis(
   state,
   sourceRef,
   observationTime,
   options = {}
 ) {
   const measurement = options.measurement ?? resolvePhotonMeasurementParameters(state);
-  const response = await solvePhotonCircularSourceRootsHitsLedgerWithSolverBridge(
+  const response = await solvePhotonCircularSourceRootsHitsLedgerWithPrescribedPathAnalysis(
     state,
     sourceRef,
     observationTime,
@@ -2006,13 +1849,13 @@ export async function solvePhotonCoMovingCausalRootsForSourceWithSolverBridge(
     .sort((a, b) => a.delay - b.delay);
 }
 
-export async function solvePhotonAbsoluteCausalRootsForSourceWithSolverBridge(
+export async function solvePhotonAbsoluteCausalRootsForSourceWithPrescribedPathAnalysis(
   state,
   sourceRef,
   observationTime,
   options = {}
 ) {
-  const rootSet = await solvePhotonAbsoluteCausalRootSetForSourceWithSolverBridge(
+  const rootSet = await solvePhotonAbsoluteCausalRootSetForSourceWithPrescribedPathAnalysis(
     state,
     sourceRef,
     observationTime,
@@ -2021,7 +1864,7 @@ export async function solvePhotonAbsoluteCausalRootsForSourceWithSolverBridge(
   return rootSet.roots;
 }
 
-async function solvePhotonAbsoluteCausalRootSetForSourceWithSolverBridge(
+async function solvePhotonAbsoluteCausalRootSetForSourceWithPrescribedPathAnalysis(
   state,
   sourceRef,
   observationTime,
@@ -2039,9 +1882,7 @@ async function solvePhotonAbsoluteCausalRootSetForSourceWithSolverBridge(
   );
   const response = typeof options.solveMovingCircularSourceRoots === "function"
     ? await options.solveMovingCircularSourceRoots(request)
-    : hasPhotonMovingCircularSolverBridgeOption(options, "solveMovingCircularSourceCausalRootsF64")
-      ? await runPhotonMovingCircularSourceSolverBridgeClient(options, request)
-      : solveMovingCircularSourceCausalRoots(request);
+    : await runPhotonMovingCircularSourcePrescribedPathAnalysis(options, request);
   const roots = Array.isArray(response?.roots) ? response.roots : [];
   const mappedRoots = roots
     .map((root) => mapPhotonMovingCircularRootToDelayedRoot(
@@ -2064,7 +1905,7 @@ async function solvePhotonAbsoluteCausalRootSetForSourceWithSolverBridge(
   };
 }
 
-export async function solvePhotonCausalRootsForSourceWithSolverBridge(
+export async function solvePhotonCausalRootsForSourceWithPrescribedPathAnalysis(
   state,
   sourceRef,
   observationTime,
@@ -2072,7 +1913,7 @@ export async function solvePhotonCausalRootsForSourceWithSolverBridge(
 ) {
   const measurement = options.measurement ?? resolvePhotonMeasurementParameters(state);
   if (measurement.sourceHistoryMode === "absolute_history") {
-    return solvePhotonAbsoluteCausalRootsForSourceWithSolverBridge(
+    return solvePhotonAbsoluteCausalRootsForSourceWithPrescribedPathAnalysis(
       state,
       sourceRef,
       observationTime,
@@ -2082,7 +1923,7 @@ export async function solvePhotonCausalRootsForSourceWithSolverBridge(
       }
     );
   }
-  return solvePhotonCoMovingCausalRootsForSourceWithSolverBridge(
+  return solvePhotonCoMovingCausalRootsForSourceWithPrescribedPathAnalysis(
     state,
     sourceRef,
     observationTime,
@@ -2180,8 +2021,8 @@ function createPhotonDelayedEmissionFieldResult(fieldSum, rootSets, sourceRefs, 
 
   return {
     sourceMode: fieldSum.sourceMode,
-    solverFieldSchema: fieldSum.solverFieldSchema ?? "",
-    solverEngineId: PHOTON_SOLVER_BRIDGE_ENGINE_ID,
+    analysisFieldSchema: fieldSum.analysisFieldSchema ?? "",
+    analysisId: PHOTON_ANALYSIS_ID,
     sourceHistoryProviderId: fieldSum.sourceHistoryProviderId ?? "",
     fieldReconstructionOwner: fieldSum.fieldReconstructionOwner ?? "",
     receiverNormalOwner: fieldSum.receiverNormalOwner ?? "",
@@ -2223,9 +2064,7 @@ async function computePhotonAbsoluteDelayedEmissionFieldWithCentralSolverRun(
   });
   const response = typeof options.solveMovingCircularAbsoluteHistoryRun === "function"
     ? await options.solveMovingCircularAbsoluteHistoryRun(request)
-    : hasPhotonMovingCircularSolverBridgeOption(options, "solveMovingCircularAbsoluteHistoryRunF64")
-      ? await runPhotonMovingCircularAbsoluteHistoryRunSolverBridgeClient(options, request)
-      : solveMovingCircularAbsoluteHistoryRunF64(request);
+    : await runPhotonMovingCircularAbsoluteHistoryRunPrescribedPathAnalysis(options, request);
   const sourceRootResponses = Array.isArray(response?.sourceRootResponses)
     ? response.sourceRootResponses
     : [];
@@ -2244,9 +2083,9 @@ async function computePhotonAbsoluteDelayedEmissionFieldWithCentralSolverRun(
           fallbackSourceRef,
           measurement,
           {
-            rejectedReason: "missing_solver_response",
+            rejectedReason: "missing_analysis_response",
             status: {
-              code: "missing_solver_response",
+              code: "missing_analysis_response",
               severity: "warning",
             },
           },
@@ -2288,7 +2127,7 @@ async function computePhotonAbsoluteDelayedEmissionFieldWithCentralSolverRun(
   return createPhotonDelayedEmissionFieldResult(fieldSum, rootSets, sourceRefs, measurement);
 }
 
-export async function computePhotonDelayedEmissionFieldWithSolverBridge(
+export async function computePhotonDelayedEmissionFieldWithPrescribedPathAnalysis(
   state,
   observationTime,
   options = {}
@@ -2309,7 +2148,7 @@ export async function computePhotonDelayedEmissionFieldWithSolverBridge(
   }
   const solveRootSet = async (sourceRef) => {
     if (measurement.sourceHistoryMode === "absolute_history") {
-      return solvePhotonAbsoluteCausalRootSetForSourceWithSolverBridge(
+      return solvePhotonAbsoluteCausalRootSetForSourceWithPrescribedPathAnalysis(
         state,
         sourceRef,
         observationTime,
@@ -2321,7 +2160,7 @@ export async function computePhotonDelayedEmissionFieldWithSolverBridge(
     }
     return {
       sourceRef,
-      roots: await solvePhotonCoMovingCausalRootsForSourceWithSolverBridge(
+      roots: await solvePhotonCoMovingCausalRootsForSourceWithPrescribedPathAnalysis(
         state,
         sourceRef,
         observationTime,
@@ -2343,7 +2182,7 @@ export async function computePhotonDelayedEmissionFieldWithSolverBridge(
   }
   const roots = rootSets.flatMap((rootSet) => rootSet.roots);
   const fieldSum = measurement.sourceHistoryMode === "absolute_history"
-    ? await computePhotonAbsoluteObserverFieldContributionsWithSolverBridge(
+    ? await computePhotonAbsoluteObserverFieldContributionsWithPrescribedPathAnalysis(
         roots,
         measurement,
         options
@@ -2351,7 +2190,7 @@ export async function computePhotonDelayedEmissionFieldWithSolverBridge(
     : (() => {
         const contributions = roots.map((root) => computePhotonDelayedContribution(root, measurement));
         return {
-          sourceMode: "solver_bridge_circular_source_branch_sum",
+          sourceMode: "prescribed_path_circular_source_branch_sum",
           contributions,
           electric: contributions.reduce(
             (sum, contribution) => addVector(sum, contribution.electric),
@@ -2391,10 +2230,10 @@ export async function computePhotonDelayedEmissionFieldWithSolverBridge(
   return createPhotonDelayedEmissionFieldResult(fieldSum, rootSets, sourceRefs, measurement);
 }
 
-export async function computePhotonObserverFieldWithSolverBridge(state, timeSeconds, options = {}) {
+export async function computePhotonObserverFieldWithPrescribedPathAnalysis(state, timeSeconds, options = {}) {
   const referenceFrequency = getPhotonReferenceFrequency(state);
   const phase = TWO_PI * referenceFrequency * timeSeconds;
-  const delayedField = await computePhotonDelayedEmissionFieldWithSolverBridge(
+  const delayedField = await computePhotonDelayedEmissionFieldWithPrescribedPathAnalysis(
     state,
     timeSeconds,
     options
@@ -2414,8 +2253,8 @@ export async function computePhotonObserverFieldWithSolverBridge(state, timeSeco
     referenceFrequency,
     phase,
     sourceMode: delayedField.sourceMode,
-    solverFieldSchema: delayedField.solverFieldSchema ?? "",
-    solverEngineId: PHOTON_SOLVER_BRIDGE_ENGINE_ID,
+    analysisFieldSchema: delayedField.analysisFieldSchema ?? "",
+    analysisId: PHOTON_ANALYSIS_ID,
     sourceHistoryProviderId: delayedField.sourceHistoryProviderId ?? "",
     fieldReconstructionOwner: delayedField.fieldReconstructionOwner ?? "",
     receiverNormalOwner: delayedField.receiverNormalOwner ?? "",
@@ -2623,7 +2462,7 @@ export function fitPhotonPolarizationFromSamples(samples, analyzerAngleRadians =
   };
 }
 
-export async function buildPhotonDerivedPolarizationTraceWithSolverBridge(
+export async function buildPhotonDerivedPolarizationTraceWithPrescribedPathAnalysis(
   state,
   timeSeconds,
   sampleCount = DEFAULT_POLARIZATION_FIT_SAMPLES,
@@ -2646,7 +2485,7 @@ export async function buildPhotonDerivedPolarizationTraceWithSolverBridge(
       const progress = index / count;
       const phase = TWO_PI * progress;
       const t = fitCycleStart + progress * cycleDuration;
-      const field = await computePhotonObserverFieldWithSolverBridge(state, t, options);
+      const field = await computePhotonObserverFieldWithPrescribedPathAnalysis(state, t, options);
       return {
         t,
         progress,
@@ -2676,7 +2515,7 @@ export async function buildPhotonDerivedPolarizationTraceWithSolverBridge(
     });
   }
 
-  const currentField = await computePhotonObserverFieldWithSolverBridge(
+  const currentField = await computePhotonObserverFieldWithPrescribedPathAnalysis(
     state,
     currentTime,
     options
@@ -2704,8 +2543,8 @@ export async function buildPhotonDerivedPolarizationTraceWithSolverBridge(
 
   return {
     ...fit,
-    solverEngineId: PHOTON_SOLVER_BRIDGE_ENGINE_ID,
-    solverFieldSchema: currentField.solverFieldSchema ?? "",
+    analysisId: PHOTON_ANALYSIS_ID,
+    analysisFieldSchema: currentField.analysisFieldSchema ?? "",
     sourceHistoryProviderId: currentField.sourceHistoryProviderId ?? "",
     fieldReconstructionOwner: currentField.fieldReconstructionOwner ?? "",
     receiverNormalOwner: currentField.receiverNormalOwner ?? "",
@@ -2725,7 +2564,7 @@ export async function buildPhotonDerivedPolarizationTraceWithSolverBridge(
   };
 }
 
-export async function computePhotonAverageAnalyzerFractionWithSolverBridge(
+export async function computePhotonAverageAnalyzerFractionWithPrescribedPathAnalysis(
   state,
   sampleCount = DEFAULT_ANALYZER_AVERAGE_SAMPLES,
   options = {}
@@ -2739,28 +2578,28 @@ export async function computePhotonAverageAnalyzerFractionWithSolverBridge(
   const fractions = await Promise.all(
     Array.from({ length: count }, async (_, index) => {
       const t = (index / count) * runDuration;
-      const field = await computePhotonObserverFieldWithSolverBridge(state, t, options);
+      const field = await computePhotonObserverFieldWithPrescribedPathAnalysis(state, t, options);
       return field.analyzer.fraction;
     })
   );
   return fractions.reduce((sum, fraction) => sum + fraction, 0) / count;
 }
 
-export async function computePhotonFormulaSummaryWithSolverBridge(
+export async function computePhotonFormulaSummaryWithPrescribedPathAnalysis(
   state,
   timeSeconds,
   options = {}
 ) {
   const wrappedTime = wrapPhotonTime(state, timeSeconds);
-  const field = await computePhotonObserverFieldWithSolverBridge(state, wrappedTime, options);
-  const polarization = await buildPhotonDerivedPolarizationTraceWithSolverBridge(
+  const field = await computePhotonObserverFieldWithPrescribedPathAnalysis(state, wrappedTime, options);
+  const polarization = await buildPhotonDerivedPolarizationTraceWithPrescribedPathAnalysis(
     state,
     wrappedTime,
     options.polarizationSampleCount ?? DEFAULT_POLARIZATION_FIT_SAMPLES,
     options
   );
   const stokes = polarization.stokes;
-  const averageAnalyzerFraction = await computePhotonAverageAnalyzerFractionWithSolverBridge(
+  const averageAnalyzerFraction = await computePhotonAverageAnalyzerFractionWithPrescribedPathAnalysis(
     state,
     options.analyzerSampleCount ?? DEFAULT_ANALYZER_AVERAGE_SAMPLES,
     options
@@ -2769,7 +2608,7 @@ export async function computePhotonFormulaSummaryWithSolverBridge(
   const analyzerResidual = averageAnalyzerFraction - analyzerTarget;
   const selfHitDiagnostics = options.skipSelfHitDiagnostics === true
     ? summarizePhotonSelfHitRows([], "skipped", "Self-hit diagnostics skipped for this solve.")
-    : await computePhotonSelfHitDiagnosticsWithSolverBridge(
+    : await computePhotonSelfHitDiagnosticsWithPrescribedPathAnalysis(
       state,
       {
         ...options,
@@ -2779,7 +2618,7 @@ export async function computePhotonFormulaSummaryWithSolverBridge(
     );
   return {
     wrappedTime,
-    solverEngineId: PHOTON_SOLVER_BRIDGE_ENGINE_ID,
+    analysisId: PHOTON_ANALYSIS_ID,
     runDuration: getPhotonRunDuration(state),
     middleCycle: getPhotonMiddleCycleBounds(state),
     field,
@@ -2793,7 +2632,7 @@ export async function computePhotonFormulaSummaryWithSolverBridge(
   };
 }
 
-export async function buildPhotonPlotSamplesWithSolverBridge(
+export async function buildPhotonPlotSamplesWithPrescribedPathAnalysis(
   state,
   timeSeconds,
   sampleCount = 360,
@@ -2804,7 +2643,7 @@ export async function buildPhotonPlotSamplesWithSolverBridge(
   const fields = await Promise.all(
     Array.from({ length: sampleCount + 1 }, async (_, index) => {
       const t = (index / sampleCount) * runDuration;
-      const field = await computePhotonObserverFieldWithSolverBridge(state, t, options);
+      const field = await computePhotonObserverFieldWithPrescribedPathAnalysis(state, t, options);
       return { index, t, field };
     })
   );
@@ -2827,8 +2666,8 @@ export async function buildPhotonPlotSamplesWithSolverBridge(
     runDuration,
     currentTime,
     sourceMode: fields[0]?.field?.sourceMode ?? "",
-    solverFieldSchema: fields[0]?.field?.solverFieldSchema ?? "",
-    solverEngineId: PHOTON_SOLVER_BRIDGE_ENGINE_ID,
+    analysisFieldSchema: fields[0]?.field?.analysisFieldSchema ?? "",
+    analysisId: PHOTON_ANALYSIS_ID,
     sourceHistoryProviderId: fields[0]?.field?.sourceHistoryProviderId ?? "",
     fieldReconstructionOwner: fields[0]?.field?.fieldReconstructionOwner ?? "",
     receiverNormalOwner: fields[0]?.field?.receiverNormalOwner ?? "",

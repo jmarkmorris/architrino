@@ -1,5 +1,7 @@
 # Minimal Causal-Root Core
 
+Historical naming: **zombie-solver (then called the central solver)**.
+
 Status: `closed-first-core-smoke`
 
 Kind: `solver-core-closeout`
@@ -36,7 +38,7 @@ Implementation surfaces:
 
 ## Core Boundary
 
-The minimal core is the first central solver implementation slice that can solve
+The minimal core is the first zombie-solver implementation slice that can solve
 and package causal roots, delayed hits, motion/path-history rows, precision
 diagnostics, root-ledger diagnostics, assembly graph rows, app bridge runs,
 threading diagnostics, and benchmark cases through one shared C++/WebAssembly
@@ -98,7 +100,7 @@ Remaining work belongs to app migration and production breadth:
 
 ## Completion Judgment
 
-`minimal_causal_root_core` is complete as a first central solver core smoke
+`minimal_causal_root_core` is complete as a first zombie-solver core smoke
 baseline. The core has source histories, root solving, delayed-hit projection,
 branch diagnostics, precision diagnostics, simulation-envelope diagnostics,
 virtual-observer path-record output, temporal assembly graph output, stream

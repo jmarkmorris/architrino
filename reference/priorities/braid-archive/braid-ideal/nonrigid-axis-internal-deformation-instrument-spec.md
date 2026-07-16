@@ -5,8 +5,8 @@ extension of the seed-grade pencil machinery that admits the braid's **internal
 radial-deformation (breathing) coordinate as a dynamical degree of freedom
 coupled to the tilt/flutter sector** — the one channel the §68 verdict named as
 unreachable by every rigid-layer or frozen-radial pencil built so far. It
-extends the runner only ([spindle-support-ratio-targeted-search.mjs](../../../../scripts/braid-ideal/spindle-support-ratio-targeted-search.mjs)),
-consuming the screw-drift evaluator ([spindle-braid-screw-drift-evaluator.mjs](../../../../scripts/braid-ideal/spindle-braid-screw-drift-evaluator.mjs))
+extends the runner only (spindle-support-ratio-targeted-search.mjs (retired script: `scripts/braid-ideal/spindle-support-ratio-targeted-search.mjs`)),
+consuming the screw-drift evaluator (spindle-braid-screw-drift-evaluator.mjs (retired script: `scripts/braid-ideal/spindle-braid-screw-drift-evaluator.mjs`))
 read-only; the central solver `AbsoluteHistoryRootRuntime.mjs` is untouched. It
 is the shared closure instrument for **S1/S2** (the tangential rail-pump absorber
 / shape attractor; [fold-crossing-chart-spec.md §69](fold-crossing-chart-spec.md#69-the-super-field-inner-binary-feasibility-resolution),

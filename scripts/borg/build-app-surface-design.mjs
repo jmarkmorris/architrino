@@ -273,7 +273,7 @@ export function assertBorgAppSurfaceDesign(surfaceDesign, manifest) {
   assertEqual(surfaceDesign.schema, SURFACE_DESIGN_SCHEMA, "surface design schema");
   assertEqual(surfaceDesign.screenSpecId, SCREEN_SPEC_ID, "screen spec id");
   assertEqual(surfaceDesign.sourceManifest.manifestId, manifest.manifestId, "source manifest id");
-  assertEqual(surfaceDesign.sourceManifest.nativeSolverStatus, "native-backed-now", "native solver status");
+  assertEqual(surfaceDesign.sourceManifest.nativeSolverStatus, "native-backed-now", "EOM solver status");
   assertEqual(
     surfaceDesign.sourceManifest.fixtureProfileId,
     manifest.sourceBridgeRun.fixtureProfileId,

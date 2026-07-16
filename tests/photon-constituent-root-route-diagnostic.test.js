@@ -79,6 +79,11 @@ test("photon constituent route diagnostic validates a toy helical self-hit repla
   const replayRows = artifact.sample_rows.filter((sample) => sample.route_evidence);
   assert.equal(replayRows.length, 1);
   assert.equal(replayRows[0].route_kind, "self-hit");
+  assert.equal(replayRows[0].route_evidence.analysis_id, "prescribed-path-analysis");
+  assert.equal(replayRows[0].route_evidence.evidence_grade, "display-only-visualization");
+  assert.equal(replayRows[0].route_evidence.non_evidence, true);
+  assert.equal(replayRows[0].route_evidence.dynamical_evidence, false);
+  assert.equal(replayRows[0].route_evidence.retained_branch_evidence, false);
   assert.equal(replayRows[0].route_evidence.model, "helical_constituent_toy_replay");
   assert.equal(replayRows[0].route_evidence.endpoint_excluded, true);
   assert.equal(replayRows[0].route_evidence.root_tau > 0, true);

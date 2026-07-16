@@ -5,7 +5,7 @@
 - Stage: `priority-design`
 - Implementation: `not-started`
 - Authority: operator-selected EOM boundary
-- Existing central solver: preserved unchanged for current dependencies
+- Existing zombie-solver: preserved unchanged for current dependencies
 - Frozen normative requirements: [evolution-contract-v0.md](evolution-contract-v0.md)
 - Million-path amendment: [eom_evolution_contract/v0/amendment-1](evolution-contract-v0-amendment-1-million-path-scale.md)
 - Million-path architecture: [eom_million_path_execution/v0](million-path-certified-execution-architecture.md)

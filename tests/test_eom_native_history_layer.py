@@ -183,12 +183,24 @@ class NativeHistoryLayerTests(unittest.TestCase):
         self.assertEqual(traversal["logical_ordered_pairs"], 8)
         self.assertEqual(traversal["excluded_pairs"], 4)
         self.assertEqual(traversal["exact_fallback_pairs"], 4)
+        self.assertEqual(traversal["enclosed_pairs"], 0)
+        self.assertEqual(traversal["unresolved_pairs"], 0)
         self.assertEqual(
-            traversal["excluded_pairs"] + traversal["exact_fallback_pairs"],
+            traversal["excluded_pairs"]
+            + traversal["exact_fallback_pairs"]
+            + traversal["enclosed_pairs"]
+            + traversal["unresolved_pairs"],
+            traversal["logical_ordered_pairs"],
+        )
+        node_statuses = {node["status"] for node in traversal["nodes"]}
+        self.assertEqual(node_statuses, {"excluded", "subdivide", "exact_tile"})
+        self.assertEqual(
+            sum(tile["logical_ordered_pairs"] for tile in traversal["membership_tiles"]),
             traversal["logical_ordered_pairs"],
         )
         self.assertEqual(
-            sorted(traversal["node_statuses"]), ["exact_tile", "excluded"]
+            {tile["status"] for tile in traversal["membership_tiles"]},
+            {"excluded", "exact_tile"},
         )
 
         exact = self.packet["traversal_exact_batch"]
@@ -196,6 +208,7 @@ class NativeHistoryLayerTests(unittest.TestCase):
         self.assertTrue(exact["coverage_disjoint_complete"])
         self.assertEqual(exact["exact_pairs_requested"], 4)
         self.assertEqual(exact["exact_pairs_completed"], 4)
+        self.assertEqual(exact["unresolved_pairs"], 0)
         self.assertEqual(
             [row["row_id"] for row in exact["rows"]],
             [
@@ -206,10 +219,18 @@ class NativeHistoryLayerTests(unittest.TestCase):
             ],
         )
         self.assertTrue(all(row["status"] == "certified_complete" for row in exact["rows"]))
+        self.assertTrue(any(row["root_count"] > 0 for row in exact["rows"]))
+        single = self.packet["traversal_exact_batch_single_thread"]
+        self.assertEqual(single, exact)
 
         traversal_failure = self.packet["traversal_resource_failure"]
         self.assertEqual(traversal_failure["status"], "uncertified")
-        self.assertFalse(traversal_failure["coverage_disjoint_complete"])
+        self.assertTrue(traversal_failure["coverage_disjoint_complete"])
+        self.assertEqual(traversal_failure["unresolved_pairs"], 8)
+        self.assertEqual(
+            {tile["status"] for tile in traversal_failure["membership_tiles"]},
+            {"unresolved"},
+        )
         self.assertEqual(
             traversal_failure["failure_code"], "resource_envelope_exceeded"
         )
@@ -219,6 +240,69 @@ class NativeHistoryLayerTests(unittest.TestCase):
             exact_failure["failure_code"], "resource_envelope_exceeded"
         )
         self.assertEqual(exact_failure["exact_pairs_completed"], 0)
+        self.assertEqual(exact_failure["unresolved_pairs"], 4)
+        self.assertTrue(exact_failure["coverage_disjoint_complete"])
+
+    def test_excluded_recursive_cells_contain_no_independently_detected_root(self) -> None:
+        self.assertTrue(self.packet["unaccepted_history_rejected"])
+        receivers = (
+            history("receiver-a", ("0", "0.2", "0", "0")),
+            history("receiver-b", ("1", "0.1", "0", "0")),
+        )
+        sources = (
+            history("far-a", ("20", "0.3", "0", "0")),
+            history("far-b", ("22", "-0.2", "0", "0")),
+            history("near-a", ("2", "0.1", "0", "0")),
+            history("near-b", ("3", "-0.1", "0", "0")),
+        )
+        excluded_nodes = [
+            node
+            for node in self.packet["traversal"]["nodes"]
+            if node["status"] == "excluded"
+        ]
+        self.assertTrue(excluded_nodes)
+        for node in excluded_nodes:
+            lower = max(Decimal("0"), Decimal(str(node["emission_lower"])))
+            upper = Decimal(str(node["emission_upper"]))
+            for receiver_index in range(node["receiver_begin"], node["receiver_end"]):
+                for source_index in range(node["source_begin"], node["source_end"]):
+                    oracle = certify_causal_roots(
+                        receiver=receivers[receiver_index],
+                        source=sources[source_index],
+                        reception_time="4",
+                        field_speed="1",
+                        search_lower=str(lower),
+                        search_upper=str(upper),
+                        root_tolerance="1e-12",
+                        max_depth=128,
+                        max_cells=10000,
+                    )
+                    self.assertEqual(oracle.status, "certified_complete")
+                    self.assertEqual(oracle.roots, ())
+
+        exact_pairs = {
+            (receiver_index, source_index)
+            for tile in self.packet["traversal"]["membership_tiles"]
+            if tile["status"] == "exact_tile"
+            for receiver_index in range(tile["receiver_begin"], tile["receiver_end"])
+            for source_index in range(tile["source_begin"], tile["source_end"])
+        }
+        independently_active = False
+        for receiver_index, source_index in sorted(exact_pairs):
+            oracle = certify_causal_roots(
+                receiver=receivers[receiver_index],
+                source=sources[source_index],
+                reception_time="4",
+                field_speed="1",
+                search_lower="0",
+                search_upper="2",
+                root_tolerance="1e-12",
+                max_depth=128,
+                max_cells=10000,
+            )
+            self.assertEqual(oracle.status, "certified_complete")
+            independently_active = independently_active or bool(oracle.roots)
+        self.assertTrue(independently_active)
 
     def test_native_exact_pair_roots_have_oracle_parity(self) -> None:
         receiver = history("receiver-origin", ("0", "0", "0", "0"))
@@ -409,6 +493,81 @@ class NativeHistoryLayerTests(unittest.TestCase):
         self.assertLessEqual(lower, oracle.roots[0].upper)
         self.assertGreaterEqual(upper, oracle.roots[0].lower)
         self.assertEqual(root["source_normal_sign"], 1)
+
+    def test_mpfr_inward_probe_certifies_known_simple_root_at_tolerance_edge(
+        self,
+    ) -> None:
+        receiver = PiecewisePolynomialHistory.from_segments(
+            (
+                CubicHistorySegment.from_decimal_tokens(
+                    t_start="-0.000000020",
+                    t_end="0.000000002",
+                    coefficients=(
+                        ("0.0000000075", "0", "0", "0"),
+                        ("0", "0", "0", "0"),
+                        ("0", "0", "0", "0"),
+                    ),
+                    position_error="0.0000000005",
+                    precision=90,
+                ),
+            ),
+            history_id="inward-probe-receiver",
+        )
+        source = PiecewisePolynomialHistory.from_segments(
+            (
+                CubicHistorySegment.from_decimal_tokens(
+                    t_start="-0.000000020",
+                    t_end="-0.000000010",
+                    coefficients=(
+                        ("0", "0", "0", "0"),
+                        ("0", "0", "0", "0"),
+                        ("0", "0", "0", "0"),
+                    ),
+                    position_error="0.0000000005",
+                    precision=90,
+                ),
+                CubicHistorySegment.from_decimal_tokens(
+                    t_start="-0.000000010",
+                    t_end="0.000000002",
+                    coefficients=(
+                        ("0", "0", "0", "0"),
+                        ("0", "0", "0", "0"),
+                        ("0", "0", "0", "0"),
+                    ),
+                    position_error="0.0000000005",
+                    precision=90,
+                ),
+            ),
+            history_id="inward-probe-source",
+        )
+        oracle = certify_causal_roots(
+            receiver=receiver,
+            source=source,
+            reception_time="0.000000002",
+            field_speed="1",
+            search_lower="-0.000000020",
+            search_upper="0.000000002",
+            root_tolerance="1e-8",
+            max_depth=256,
+            max_cells=500000,
+        )
+        native = self.pair("mpfr_inward_tolerance_probe")
+
+        self.assertEqual(oracle.status, "certified_complete")
+        self.assertEqual(native["status"], oracle.status)
+        self.assertTrue(native["root_free_complement"])
+        self.assertTrue(native["precision_escalated"])
+        self.assertEqual(len(native["roots"]), 1)
+        native_root = native["roots"][0]
+        lower = Decimal(native_root["lower"])
+        upper = Decimal(native_root["upper"])
+        exact_center_root = Decimal("-0.0000000055")
+        self.assertLessEqual(lower, exact_center_root)
+        self.assertGreaterEqual(upper, exact_center_root)
+        self.assertLessEqual(upper - lower, Decimal("1e-8"))
+        self.assertLessEqual(lower, oracle.roots[0].upper)
+        self.assertGreaterEqual(upper, oracle.roots[0].lower)
+        self.assertEqual(native_root["source_normal_sign"], 1)
 
     def test_mpfr_self_search_does_not_apply_endpoint_proof_to_older_cell(
         self,

@@ -13,6 +13,7 @@ namespace architrino::eom {
 struct MovingHistoryMember {
   std::string path_id;
   const RetainedHistory* history;
+  bool accepted_retained_history = false;
 };
 
 struct CertifiedTraversalRequest {
@@ -24,6 +25,9 @@ struct CertifiedTraversalRequest {
   std::string field_speed;
   std::uint64_t exact_tile_pair_limit = 4096;
   std::size_t maximum_nodes = 1000000;
+  std::size_t maximum_emission_depth = 0;
+  std::size_t maximum_pair_tracking_bytes = 256U * 1024U * 1024U;
+  std::uint64_t maximum_exact_pairs = 10000000;
 };
 
 struct CertifiedTraversalNode {
@@ -33,12 +37,23 @@ struct CertifiedTraversalNode {
   std::size_t receiver_end;
   std::size_t source_begin;
   std::size_t source_end;
+  double emission_lower;
+  double emission_upper;
   std::uint64_t logical_ordered_pairs;
   Interval residual;
 };
 
 struct CertifiedExactTile {
   std::string tile_id;
+  std::size_t receiver_begin;
+  std::size_t receiver_end;
+  std::size_t source_begin;
+  std::size_t source_end;
+  std::uint64_t logical_ordered_pairs;
+};
+
+struct CertifiedMembershipTile {
+  std::string status;
   std::size_t receiver_begin;
   std::size_t receiver_end;
   std::size_t source_begin;
@@ -54,10 +69,13 @@ struct CertifiedTraversalCertificate {
   std::uint64_t logical_ordered_pairs;
   std::uint64_t excluded_pairs;
   std::uint64_t exact_fallback_pairs;
+  std::uint64_t enclosed_pairs;
+  std::uint64_t unresolved_pairs;
   std::size_t visited_nodes;
   bool coverage_disjoint_complete;
   std::vector<CertifiedTraversalNode> nodes;
   std::vector<CertifiedExactTile> exact_tiles;
+  std::vector<CertifiedMembershipTile> membership_tiles;
 };
 
 struct CertifiedTraversalExactBatchRequest {
@@ -86,6 +104,8 @@ struct CertifiedTraversalExactBatchCertificate {
   std::uint64_t excluded_pairs;
   std::uint64_t exact_pairs_requested;
   std::uint64_t exact_pairs_completed;
+  std::uint64_t enclosed_pairs;
+  std::uint64_t unresolved_pairs;
   bool coverage_disjoint_complete;
   std::vector<ExactPairCertificate> exact_pair_certificates;
 };

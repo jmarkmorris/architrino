@@ -8,7 +8,7 @@ The app is a design target until native-backed runs and retained same-record evi
 
 ## Non-Negotiable Boundaries
 
-1. The native central solver is the production solver for architrino motion, causal roots, delayed hits, path histories, wake history, simulation-window stepping, and solver-owned geometry.
+1. The native zombie-solver is the production solver for architrino motion, causal roots, delayed hits, path histories, wake history, simulation-window stepping, and solver-owned geometry.
 2. The app must not create a new production solver, parallel solver stack, app-local solver, or alternate default engine.
 3. JavaScript-only paths may exist only as explicitly named `reference`, `fallback`, `test`, fixture, or comparison code.
 4. Architrino primitives do not have physical mass. If the app exposes a numerical integration scalar, it must label it as `integrationWeight` / `integrationWeights`, not physical mass.
@@ -17,7 +17,7 @@ The app is a design target until native-backed runs and retained same-record evi
 
 ## Simulation Window Boundary Model
 
-The first app model is a finite cubic simulation window embedded in an unbounded-universe approximation. The native solver should calculate an outer cubic window, while the default viewport displays and interprets an interior central cube. The outer computed cube is where face-boundary rows live. The interior cube is the primary observation region.
+The first app model is a finite cubic simulation window embedded in an unbounded-universe approximation. The EOM solver should calculate an outer cubic window, while the default viewport displays and interprets an interior central cube. The outer computed cube is where face-boundary rows live. The interior cube is the primary observation region.
 
 The boundary rule is statistical: record the face statistics of outbound architrinos and wakes at the outer computed cube, characterize those statistics, and introduce statistically matched inbound architrinos and wake histories on those outer faces. This is an approximation policy for a local window inside an unbounded universe. It must be visibly distinct from exact retained path history or same-record wake evidence.
 
@@ -88,7 +88,7 @@ The app should expose scale as a declared simulation envelope, not as cosmetic z
 | `bufferArchitrinoCount` | `architrinoCount - centralArchitrinoCount` | Exterior computed population used to protect the central cube from face effects. |
 | `electrinoCount` / `positrinoCount` | Requested polarity inventory for the initial condition | Must map to explicit per-architrino polarity or composition rows; native numerical encodings are implementation details. |
 | `duration` | Simulated time span | Determines required path-history depth and storage. |
-| `timeStepPolicy` | Fixed, adaptive, or solver-selected stepping policy | Must be part of the native solver model contract. |
+| `timeStepPolicy` | Fixed, adaptive, or solver-selected stepping policy | Must be part of the EOM solver model contract. |
 | `historyDepth` | Active causal-history time window $h$ | Measured in time; must be enough to support requested wake/root queries or fail closed. |
 | `wakeHorizon` | Wake travel length $c_f h$ corresponding to `historyDepth` | Measured in length; determines whether wakes can reach the simulation-window faces inside the retained history. |
 | `wakeFloor` | Declared threshold below which wakes are not retained as resolved rows | Must route to background/noise rows rather than silent truncation. |
@@ -116,7 +116,7 @@ The app should support several initial-condition families while preserving expli
 | `explicit` | Per-architrino position, velocity, identity, and optional path segment input | Best first path for reproducible fixtures. |
 | `imported` | Manifest id, schema version, source hash, units, and scale normalization | Must preserve source provenance and schema version. |
 
-The current browser implementation exposes the first `seeded-random` launch-state controls directly in the Initial Condition panel: exact `electrinoCount`, exact `positrinoCount`, `randomVelocityMaxComponentMagnitude`, and `randomVelocityMinSpeed`. `Apply & run` validates a combined population from 1 through 512, rejects an unreachable minimum-speed request, creates a deterministic staged state inside the central cube, and starts a new live central-solver compatibility run. A rejected edit leaves the active run unchanged. These runtime-generated rows are app-generated initial conditions for compatibility testing; they are not canonical equation-of-motion evidence. Per-architrino position and velocity-vector editing remains outside this implemented control set.
+The current browser implementation exposes the first `seeded-random` launch-state controls directly in the Initial Condition panel: exact `electrinoCount`, exact `positrinoCount`, `randomVelocityMaxComponentMagnitude`, and `randomVelocityMinSpeed`. `Apply & run` validates a combined population from 1 through 512, rejects an unreachable minimum-speed request, creates a deterministic staged state inside the central cube, and starts a new live zombie-solver compatibility run. A rejected edit leaves the active run unchanged. These runtime-generated rows are app-generated initial conditions for compatibility testing; they are not canonical equation-of-motion evidence. Per-architrino position and velocity-vector editing remains outside this implemented control set.
 
 The first launch preset should be `random`: architrinos scattered randomly in the cube, with a 50/50 electrino/positrino mix and random velocities. The preset is an editable starting point, not evidence for a physical ensemble. With velocity rays off by default, the first design target may start at 256 architrinos in the displayed central cube. The app should still expose 32, 128, 256, and 512 as first central-count presets; 128 is the conservative fallback until native throughput is measured, 256 is the preferred first-screen central-count target, and 512 is a solver-throughput stress preset for the displayed central cube. Larger central counts are gated by measured native-solver and rendered-viewport performance.
 
@@ -191,7 +191,7 @@ Velocity initialization needs first-class controls rather than a single random-s
 | `explicit` | Set each architrino velocity vector directly. | Best path for reproducible fixtures. |
 | `drift-v` | Assign a shared velocity vector or grouped velocity vectors to selected architrino groups. | Initial-condition editing mode, not a branch group-velocity claim. |
 
-The launch-state editor should include a `custom` mode. In `custom` mode, the operator starts from any generated or explicit initial condition, then directly edits the staging state before running: click-drag an architrino to change its position, and click-drag the endpoint of its velocity ray to resize and reorient its initial velocity vector. These edits must update exact numeric fields and keep the run in a pending initial-condition state until the native solver accepts the run request.
+The launch-state editor should include a `custom` mode. In `custom` mode, the operator starts from any generated or explicit initial condition, then directly edits the staging state before running: click-drag an architrino to change its position, and click-drag the endpoint of its velocity ray to resize and reorient its initial velocity vector. These edits must update exact numeric fields and keep the run in a pending initial-condition state until the EOM solver accepts the run request.
 
 ## Path-History Retention
 
@@ -370,7 +370,7 @@ Parsimony means the first screen should expose only the controls and statuses ne
 Primary regions:
 
 1. 3D simulation-window viewport with faint cube edges, architrino positions, path trails, wake rows, face-boundary rows, and diagnostics.
-2. Left control rail for scale, initial conditions, native solver envelope, run controls, and seed/import controls.
+2. Left control rail for scale, initial conditions, EOM solver envelope, run controls, and seed/import controls.
 3. Bottom timeline for playback, scrubbing, checkpoint selection, and event selection.
 4. Right diagnostics rail for selected architrino state, path-history metadata, wake-history rows, acceleration decomposition, face-boundary summary, and failure rows.
 5. Export panel for run manifest, checkpoints, frame buffers, path-history streams, wake-history rows, boundary rows, and diagnostics.
@@ -381,7 +381,7 @@ Minimal does not mean hiding required state. The default view should keep advanc
 
 ### Launch State
 
-The app should launch into an initial-condition staging view at the start time, before the simulation is run. The default staging state is the editable `random` preset: architrinos scattered randomly in the cubic simulation window with a 50/50 electrino/positrino mix and random velocities. The visible scene is the simulation-window cube as a faint edge-only wireframe with editable architrino positions. Velocity rays are off by default and available through the layer toggle or selected-object editing. The operator can set the number and mix of electrinos and positrinos, choose a velocity policy, and adjust initial positions, velocities, and simulation-envelope fields before starting the native solver run; those edits are pending initial-condition changes, not path history.
+The app should launch into an initial-condition staging view at the start time, before the simulation is run. The default staging state is the editable `random` preset: architrinos scattered randomly in the cubic simulation window with a 50/50 electrino/positrino mix and random velocities. The visible scene is the simulation-window cube as a faint edge-only wireframe with editable architrino positions. Velocity rays are off by default and available through the layer toggle or selected-object editing. The operator can set the number and mix of electrinos and positrinos, choose a velocity policy, and adjust initial positions, velocities, and simulation-envelope fields before starting the EOM solver run; those edits are pending initial-condition changes, not path history.
 
 Velocity vectors should render economically as rays from each architrino, without arrowheads. The ray uses the architrino's stable display color, with red/blue reserved for runs that expose an explicit polarity or charge-sign display policy. The first logarithmic magnitude cue should be a lightweight floating exponent label shown on hover, selection, or endpoint drag; for a speed scale near $10^x$, the label displays `x`. The selected-object diagnostics must still show the exact velocity vector, speed, transform type, and value-authority status.
 
@@ -410,22 +410,22 @@ The default first-screen interaction target may be `interactive-adaptive`: keep 
 
 ### Deployment Budget
 
-The app must measure deployment cost separately from native solver throughput. GitHub Pages serves static files; browser runtime work such as solver playback, WebGL/WebGPU rendering, browser heap use, and browser storage pressure happens on the client device unless a future service backend is introduced.
+The app must measure deployment cost separately from EOM solver throughput. GitHub Pages serves static files; browser runtime work such as solver playback, WebGL/WebGPU rendering, browser heap use, and browser storage pressure happens on the client device unless a future service backend is introduced.
 
 The first deployment budget should report:
 
 | Budget | Meaning | Must not be confused with |
 | --- | --- | --- |
-| `bundleSizeBytes` | JavaScript, CSS, HTML, WASM, and app shell transfer size. | Native solver step throughput. |
+| `bundleSizeBytes` | JavaScript, CSS, HTML, WASM, and app shell transfer size. | EOM solver step throughput. |
 | `staticAssetTransferBytes` | Textures, generated JSON, scene data, captures, fonts, and other static payloads. | Browser heap after decompression or parsing. |
 | `githubPagesBandwidthEstimate` | Expected monthly transfer from Pages based on bundle/assets and visit count. | Client-side compute cost. |
 | `browserHeapBudget` | Expected browser heap for active state, manifests, path history, wake rows, buffers, and parsed assets. | GitHub Pages hosting cost. |
 | `gpuMemoryBudget` | Expected GPU/WebGL/WebGPU memory for 4K UHD rendering, point buffers, line buffers, trails, wake visualization, and render targets. | Solver numeric authority. |
 | `browserStorageBudget` | IndexedDB, Cache Storage, local replay datasets, captures, and downloaded manifests retained by the browser. | Git repository size or Pages published-site size. |
 | `actionsArtifactBudget` | CI/review artifacts, generated captures, benchmark output, and logs retained by GitHub Actions. | Pages bandwidth. |
-| `nativeSolverThroughput` | Steps, rows, candidates, and retained records per second under the native central solver. | Static hosting or browser rendering pressure. |
+| `nativeSolverThroughput` | Steps, rows, candidates, and retained records per second under the native zombie-solver. | Static hosting or browser rendering pressure. |
 
-The deployment budget must fail closed when the app cannot distinguish static transfer, browser runtime memory, GPU memory, browser storage, GitHub Actions artifacts, GitHub Pages bandwidth, and native solver throughput. A beautiful 4K UHD render does not imply the deployment footprint is acceptable, and a small bundle does not imply solver or browser memory is safe.
+The deployment budget must fail closed when the app cannot distinguish static transfer, browser runtime memory, GPU memory, browser storage, GitHub Actions artifacts, GitHub Pages bandwidth, and EOM solver throughput. A beautiful 4K UHD render does not imply the deployment footprint is acceptable, and a small bundle does not imply solver or browser memory is safe.
 
 ## First-Screen Control Layout
 
@@ -454,7 +454,7 @@ Interaction rules:
 
 1. Mouse wheel, trackpad pinch, viewport zoom buttons, and fit-view commands control `view zoom` only.
 2. Editing `sideLength`, `centralVolumeSideLength`, `faceBufferMargin`, `centralArchitrinoCount`, `scaleFactor`, `historyDepth`, `wakeHorizon`, `wakeFloor`, `boundaryMode`, or precision must occur only in the simulation-envelope panel.
-3. A changed simulation-envelope or boundary-policy field must enter a pending state until the native solver accepts, reruns, rejects, or fails closed.
+3. A changed simulation-envelope or boundary-policy field must enter a pending state until the EOM solver accepts, reruns, rejects, or fails closed.
 4. Layer toggles may reveal path history, wake streams, velocity rays, face-boundary status, and diagnostics without changing run data.
 5. Selected-object diagnostics must show both camera-independent solver values and any display transform used by the viewport.
 
@@ -479,7 +479,7 @@ The first logarithmic UI prototype should test four surfaces: scale, velocity ra
 
 | Surface | Prototype rule | Exact value requirement | Status requirement |
 | --- | --- | --- | --- |
-| Scale | Use a logarithmic slider or stepper for `sideLength`, `centralVolumeSideLength`, `faceBufferMargin`, `scaleFactor`, `historyDepth`, and `wakeHorizon` ranges that span many orders of magnitude. The slider label should show powers or order bands, while the adjacent numeric fields hold exact values. | Always show exact `sideLength`, `centralVolumeSideLength`, `faceBufferMargin`, `scaleFactor`, `historyDepth`, `wakeHorizon = c_f h`, and units. | Values that change the simulation envelope must be marked as pending until the native solver accepts or reruns the envelope. |
+| Scale | Use a logarithmic slider or stepper for `sideLength`, `centralVolumeSideLength`, `faceBufferMargin`, `scaleFactor`, `historyDepth`, and `wakeHorizon` ranges that span many orders of magnitude. The slider label should show powers or order bands, while the adjacent numeric fields hold exact values. | Always show exact `sideLength`, `centralVolumeSideLength`, `faceBufferMargin`, `scaleFactor`, `historyDepth`, `wakeHorizon = c_f h`, and units. | Values that change the simulation envelope must be marked as pending until the EOM solver accepts or reruns the envelope. |
 | Velocity rays | Use logarithmic ray length for viewport readability, with each ray using the architrino's stable color and no arrowhead. Use a floating exponent label as the first magnitude cue during hover, selection, or endpoint drag; for a speed scale near $10^x$, the label displays `x`. | On hover, selection, or endpoint drag, show raw velocity vector, speed magnitude, exponent label, ray scale rule, and whether the ray is linear or logarithmic. | Ray geometry is `app-facing-projection`; the raw velocity remains `authoritative-solver-output` only when its error budget is valid. |
 | Wake strength | Use logarithmic opacity, shell thickness, or legend bins for resolved wake rows and background/noise rows. Above-floor retained wake rows must remain visually distinguishable from boundary replay and background/noise. | Show raw wake strength or acceleration contribution, `wakeFloor`, threshold relation, row id, face-boundary status when relevant, and exact diagnostic status. | Resolved retained rows may display as solver-backed; statistical face replay and preview shells must remain reduced-model or display-only. |
 | Timeline navigation | Use a dual timeline: a linear local scrubber for frame-accurate playback near the current time and a logarithmic overview for long-run navigation across sparse or dense event regions. | Always show exact time, frame index, selected checkpoint id, playback speed, and whether the active timeline interaction is linear or logarithmic. | Log overview positions are navigation aids; frame reads remain authoritative only when backed by the run manifest and stream index. |
@@ -569,7 +569,7 @@ The app should use a small diagnostic status vocabulary for every displayed solv
 
 | Status | Meaning | UI obligation |
 | --- | --- | --- |
-| `authoritative-solver-output` | The value comes from the native central solver, is inside the declared error budget, and has the required run manifest, model contract, precision path, and value-authority metadata. | May be styled as authoritative; exact value, units, precision path, and error-budget state must be available. |
+| `authoritative-solver-output` | The value comes from the native zombie-solver, is inside the declared error budget, and has the required run manifest, model contract, precision path, and value-authority metadata. | May be styled as authoritative; exact value, units, precision path, and error-budget state must be available. |
 | `app-facing-projection` | The value is derived from authoritative solver output for rendering, downsampling, interpolation, binning, or logarithmic display. | Must identify the source authoritative value and the projection rule; must not be styled as raw solver output. |
 | `display-only-visualization` | The value or geometry is drawn only to help the operator inspect the run, such as preview wake shells, visual trails, camera overlays, or non-authoritative layer effects. | Must be visually distinct from solver authority; must not feed receiver acceleration, branch evidence, or validation rows. |
 | `missing-error-budget` | The value lacks the error-budget metadata required for its claimed use. | Must be shown as unavailable, warning, or fail-closed; must not be styled as authoritative. |
@@ -582,7 +582,7 @@ The status order is fail-closed by construction. If a value could match more tha
 
 Every run should produce a `borg-dataset-manifest.v1` manifest; see [borg-dataset-manifest.v1](borg-dataset-manifest.v1.md). The manifest records:
 
-1. model contract and native solver version;
+1. model contract and EOM solver version;
 2. simulation-window topology fields and scale envelope;
 3. initial-condition source and seed/import source id;
 4. path-history stream ids and spill policy;
@@ -616,4 +616,4 @@ The first app design pass should fail closed if any of these occur:
 
 ## Next Exact Proof/Build Burden
 
-The next exact burden is `build-native-wake-history-and-boundary-residual-fixture`. The artifact must extend the native central solver contract and bridge so Borg can add retained wake/interaction rows, row-conservation counts, boundary-to-central residual rows, and required acceleration-contribution diagnostics on top of the current fixed-parameter native master-equation frame/path fixture. Browser surface-budget and 4K render measurement remain required deployment-budget work, but they must not be treated as a substitute for native solver evidence or promote wake streams, face-boundary replay, benign-noise status, or central-volume acceleration beyond the manifest's value authority and error-budget status.
+The next exact burden is `build-native-wake-history-and-boundary-residual-fixture`. The artifact must extend the central EOM solver contract and bridge so Borg can add retained wake/interaction rows, row-conservation counts, boundary-to-central residual rows, and required acceleration-contribution diagnostics on top of the current fixed-parameter master-equation frame/path fixture. Browser surface-budget and 4K render measurement remain required deployment-budget work, but they must not be treated as a substitute for EOM solver evidence or promote wake streams, face-boundary replay, benign-noise status, or central-volume acceleration beyond the manifest's value authority and error-budget status.

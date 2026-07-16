@@ -1,5 +1,7 @@
 # GPU Acceleration Deferral
 
+Historical naming: **zombie-solver (then called the central solver)**.
+
 Status: `closed-design-capture`
 
 Kind: `solver-acceleration-policy`
@@ -21,7 +23,7 @@ Related learning harness:
 
 ## Decision
 
-GPU acceleration is deferred for the first central solver core, first app
+GPU acceleration is deferred for the first zombie-solver core, first app
 migration, and first production validation path. The first solver authority is
 the C++20 / Clang CPU runtime with deterministic single-thread fallback, bounded
 native threading, WebAssembly smoke coverage, and shared app bridge validation.

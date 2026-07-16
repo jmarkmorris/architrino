@@ -4,7 +4,7 @@ import {
   createMovingCircularSourceRootRequest,
   solveMovingCircularSameSourceCausalRoots,
   solveMovingCircularSourceCausalRoots,
-} from "./AbsoluteHistoryRootRuntime.mjs";
+} from "../../prescribed-path-analysis/PrescribedOrbitCausalRoots.mjs";
 import { classifySolverBaselineResponse } from "./SolverBaselineComparison.mjs";
 
 export const SOLVER_APP_BRIDGE_API_VERSION = "solver-app-bridge.v1";

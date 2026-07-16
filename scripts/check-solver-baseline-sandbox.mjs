@@ -7,14 +7,14 @@ import { pathToFileURL } from "node:url";
 
 import * as THREE from "../vendor/three/three.module.js";
 import {
-  solveFlightTimeRowWithSolverBridge,
+  solveFlightTimeRowWithPrescribedPathAnalysis,
 } from "../src/apps/ideal-braid/IdealBraidRuntime.js";
 import {
-  runPhotonCausalRootsWithSolverBridge,
-  solvePhotonCircularSourceRootsHitsLedgerWithSolverBridge,
+  runPhotonCausalRootsWithPrescribedPathAnalysis,
+  solvePhotonCircularSourceRootsHitsLedgerWithPrescribedPathAnalysis,
 } from "../src/apps/photon/PhotonFormulaRuntime.js";
 import {
-  solveCircularSelfHitSpanRowWithSolverBridge,
+  solveCircularSelfHitSpanRowWithPrescribedPathAnalysis,
 } from "../src/apps/ideal-braid/IdealBraidPathPotentialProfile.js";
 import {
   SOLVER_APP_BRIDGE_API_VERSION,
@@ -24,12 +24,12 @@ import {
   createAnimatorMotionSimulationRunRequest,
   createPathHistoryDynamicReplayValidationRequest,
   createPathHistoryRunRequest,
-  createPhotonPhaseDiagnosticsRunRequest,
 } from "../src/solver/app/SolverAppAdapters.mjs";
-import { runAnimatorSimulationWorkerRequestAsync } from "../src/apps/animator/AnimatorSimulationWorkerCoreRuntime.js";
-import { createAnimatorSimulationWorkerRunRequest } from "../src/apps/animator/AnimatorSimulationWorkerProtocolRuntime.js";
-import { hydrateAnimatorSimulationWorkerCompleteMessage } from "../src/apps/animator/AnimatorSimulationWorkerRuntime.js";
 import { classifySolverBaselineResponse } from "../src/solver/app/SolverBaselineComparison.mjs";
+import {
+  computePrescribedPathGeometry,
+  runPrescribedPathAnalysisRequest,
+} from "../src/prescribed-path-analysis/index.mjs";
 
 const rootDir = process.cwd();
 const wasmDir = path.join(rootDir, ".tmp", "solver-build", "wasm");
@@ -68,8 +68,6 @@ await client.init({
 
 const cases = [
   createCase("animator-causal-root-smoke", "animator"),
-  createCase("photon-causal-root-smoke", "photon"),
-  createCase("ideal-braid-causal-root-smoke", "ideal-braid"),
 ];
 
 const artifacts = [];
@@ -116,10 +114,9 @@ for (const testCase of cases) {
 }
 
 const photonFacadeCase = createPhotonCausalRootsFacadeCase();
-const photonFacadeRunHandle = await runPhotonCausalRootsWithSolverBridge(
+const photonFacadeRunHandle = await runPhotonCausalRootsWithPrescribedPathAnalysis(
   photonFacadeCase.request,
   {
-    solverClient: client,
     runId: `${photonFacadeCase.caseId}-run`,
   }
 );
@@ -146,7 +143,7 @@ const photonFacadeArtifact = {
   outputPolicy: "artifact-only",
   writesToAppSource: false,
   comparison: photonFacadeComparison,
-  runManifest: photonFacadeNormalizedResponse.manifest,
+  analysisId: "prescribed-path-analysis",
   response: photonFacadeNormalizedResponse,
 };
 const photonFacadeArtifactPath = path.join(outputDir, `${photonFacadeCase.caseId}.json`);
@@ -158,45 +155,16 @@ artifacts.push({
   artifactSha256: photonFacadeArtifactSha256,
   tolerancePolicy: createTolerancePolicy(photonFacadeCase),
   classification: photonFacadeComparison.classification,
-  manifestHash: photonFacadeNormalizedResponse.manifest.manifestHash,
-});
-
-const photonWasmClientCase = createPhotonCausalRootsWasmClientCase();
-const photonWasmClientRunHandle = await runPhotonCausalRootsWithSolverBridge(
-  photonWasmClientCase.request,
-  {
-    createWasmModule,
-    locateFile: locateWasmFile,
-    runId: `${photonWasmClientCase.caseId}-run`,
-  }
-);
-const photonWasmClientNormalizedResponse = stripRuntimeBuffers(photonWasmClientRunHandle.response);
-const photonWasmClientComparison = classifySolverBaselineResponse({
-  baseline: projectRootHitResponseForBaseline(photonWasmClientCase.baseline),
-  candidate: projectRootHitResponseForBaseline(photonWasmClientNormalizedResponse),
-  tolerance: photonWasmClientCase.tolerance,
-  refinementTolerance: photonWasmClientCase.refinementTolerance,
-});
-assert(
-  photonWasmClientComparison.classification === "baseline_within_tolerance",
-  `${photonWasmClientCase.caseId} baseline classification was ${photonWasmClientComparison.classification}`
-);
-recordSandboxArtifact({
-  testCase: photonWasmClientCase,
-  comparison: photonWasmClientComparison,
-  runManifest: photonWasmClientNormalizedResponse.manifest,
-  response: photonWasmClientNormalizedResponse,
-  manifestHash: photonWasmClientNormalizedResponse.manifest.manifestHash,
+  manifestHash: "prescribed-path-analysis",
 });
 
 const photonCircularFacadeCase = createPhotonCircularSourceFacadeCase();
-const photonCircularFacadeResponse = await solvePhotonCircularSourceRootsHitsLedgerWithSolverBridge(
+const photonCircularFacadeResponse = await solvePhotonCircularSourceRootsHitsLedgerWithPrescribedPathAnalysis(
   null,
   null,
   photonCircularFacadeCase.request.hitTime,
   {
     request: photonCircularFacadeCase.request,
-    solverClient: client,
   }
 );
 const photonCircularFacadeNormalizedResponse = stripRuntimeBuffers(photonCircularFacadeResponse);
@@ -238,167 +206,14 @@ artifacts.push({
   artifactSha256: photonCircularFacadeArtifactSha256,
   tolerancePolicy: createTolerancePolicy(photonCircularFacadeCase),
   classification: photonCircularFacadeComparison.classification,
-  manifestHash: "circular-source-direct-bridge",
-});
-
-const photonCircularWasmClientCase = createPhotonCircularSourceWasmClientCase();
-const photonCircularWasmClientResponse =
-  await solvePhotonCircularSourceRootsHitsLedgerWithSolverBridge(
-    null,
-    null,
-    photonCircularWasmClientCase.request.hitTime,
-    {
-      request: photonCircularWasmClientCase.request,
-      createWasmModule,
-      locateFile: locateWasmFile,
-    }
-  );
-const photonCircularWasmClientNormalizedResponse = stripRuntimeBuffers(
-  photonCircularWasmClientResponse
-);
-const photonCircularWasmClientComparison = classifySolverBaselineResponse({
-  baseline: projectCircularSourceRootsHitsLedgerForBaseline(
-    photonCircularWasmClientCase.baseline
-  ),
-  candidate: projectCircularSourceRootsHitsLedgerForBaseline(
-    photonCircularWasmClientNormalizedResponse
-  ),
-  tolerance: photonCircularWasmClientCase.tolerance,
-  refinementTolerance: photonCircularWasmClientCase.refinementTolerance,
-});
-assert(
-  photonCircularWasmClientComparison.classification === "baseline_within_tolerance",
-  `${photonCircularWasmClientCase.caseId} baseline classification was ${photonCircularWasmClientComparison.classification}`
-);
-recordSandboxArtifact({
-  testCase: photonCircularWasmClientCase,
-  comparison: photonCircularWasmClientComparison,
-  baseline: projectCircularSourceRootsHitsLedgerForBaseline(
-    photonCircularWasmClientCase.baseline
-  ),
-  response: projectCircularSourceRootsHitsLedgerForBaseline(
-    photonCircularWasmClientNormalizedResponse
-  ),
-  fullResponse: photonCircularWasmClientNormalizedResponse,
-  manifestHash: "circular-source-wasm-client-bridge",
-});
-
-const photonNormalizedCircularFacadeCase = createPhotonNormalizedCircularSourceFacadeCase();
-const photonNormalizedCircularFacadeResponse =
-  await client.solveCircularSourceRootsHitsLedgerNormalizedF64(photonNormalizedCircularFacadeCase.request);
-const photonNormalizedCircularFacadeNormalizedResponse = stripRuntimeBuffers(
-  photonNormalizedCircularFacadeResponse
-);
-const photonNormalizedCircularFacadeComparison = classifySolverBaselineResponse({
-  baseline: projectCircularSourceRootsHitsLedgerForBaseline(photonNormalizedCircularFacadeCase.baseline),
-  candidate: projectCircularSourceRootsHitsLedgerForBaseline(
-    photonNormalizedCircularFacadeNormalizedResponse
-  ),
-  tolerance: photonNormalizedCircularFacadeCase.tolerance,
-  refinementTolerance: photonNormalizedCircularFacadeCase.refinementTolerance,
-});
-assert(
-  photonNormalizedCircularFacadeComparison.classification === "baseline_within_tolerance",
-  `${photonNormalizedCircularFacadeCase.caseId} baseline classification was ${photonNormalizedCircularFacadeComparison.classification}`
-);
-const photonNormalizedCircularFacadeArtifact = {
-  schema: "solver-baseline-sandbox/v1",
-  caseId: photonNormalizedCircularFacadeCase.caseId,
-  appId: photonNormalizedCircularFacadeCase.appId,
-  seedPolicy: "fixed-no-randomness",
-  resourceCaps: photonNormalizedCircularFacadeCase.resourceCaps,
-  tolerancePolicy: createTolerancePolicy(photonNormalizedCircularFacadeCase),
-  provenance: createSandboxProvenance(photonNormalizedCircularFacadeCase),
-  workingDirectory: outputDir,
-  outputPolicy: "artifact-only",
-  writesToAppSource: false,
-  comparison: photonNormalizedCircularFacadeComparison,
-  baseline: projectCircularSourceRootsHitsLedgerForBaseline(photonNormalizedCircularFacadeCase.baseline),
-  response: projectCircularSourceRootsHitsLedgerForBaseline(
-    photonNormalizedCircularFacadeNormalizedResponse
-  ),
-  fullResponse: photonNormalizedCircularFacadeNormalizedResponse,
-};
-const photonNormalizedCircularFacadeArtifactPath = path.join(
-  outputDir,
-  `${photonNormalizedCircularFacadeCase.caseId}.json`
-);
-const photonNormalizedCircularFacadeArtifactSha256 = writeJsonArtifact(
-  photonNormalizedCircularFacadeArtifactPath,
-  photonNormalizedCircularFacadeArtifact
-);
-artifacts.push({
-  caseId: photonNormalizedCircularFacadeCase.caseId,
-  appId: photonNormalizedCircularFacadeCase.appId,
-  path: photonNormalizedCircularFacadeArtifactPath,
-  artifactSha256: photonNormalizedCircularFacadeArtifactSha256,
-  tolerancePolicy: createTolerancePolicy(photonNormalizedCircularFacadeCase),
-  classification: photonNormalizedCircularFacadeComparison.classification,
-  manifestHash: "circular-source-normalized-direct-bridge",
-});
-
-const photonNormalizedCircularRunCase = createPhotonNormalizedCircularSourceRunCase();
-const photonNormalizedCircularRunHandle = await client.runSimulation(
-  createNormalizedCircularSourceRunSimulationRequest(photonNormalizedCircularRunCase)
-);
-const photonNormalizedCircularRunNormalizedResponse = stripRuntimeBuffers(
-  photonNormalizedCircularRunHandle.response
-);
-const photonNormalizedCircularRunComparison = classifySolverBaselineResponse({
-  baseline: projectCircularSourceRootsHitsLedgerForBaseline(photonNormalizedCircularRunCase.baseline),
-  candidate: projectCircularSourceRootsHitsLedgerForBaseline(
-    photonNormalizedCircularRunNormalizedResponse
-  ),
-  tolerance: photonNormalizedCircularRunCase.tolerance,
-  refinementTolerance: photonNormalizedCircularRunCase.refinementTolerance,
-});
-assert(
-  photonNormalizedCircularRunComparison.classification === "baseline_within_tolerance",
-  `${photonNormalizedCircularRunCase.caseId} baseline classification was ${photonNormalizedCircularRunComparison.classification}`
-);
-const photonNormalizedCircularRunArtifact = {
-  schema: "solver-baseline-sandbox/v1",
-  caseId: photonNormalizedCircularRunCase.caseId,
-  appId: photonNormalizedCircularRunCase.appId,
-  seedPolicy: "fixed-no-randomness",
-  resourceCaps: photonNormalizedCircularRunCase.resourceCaps,
-  tolerancePolicy: createTolerancePolicy(photonNormalizedCircularRunCase),
-  provenance: createSandboxProvenance(photonNormalizedCircularRunCase),
-  workingDirectory: outputDir,
-  outputPolicy: "artifact-only",
-  writesToAppSource: false,
-  comparison: photonNormalizedCircularRunComparison,
-  baseline: projectCircularSourceRootsHitsLedgerForBaseline(photonNormalizedCircularRunCase.baseline),
-  runManifest: photonNormalizedCircularRunNormalizedResponse.manifest,
-  response: projectCircularSourceRootsHitsLedgerForBaseline(
-    photonNormalizedCircularRunNormalizedResponse
-  ),
-  fullResponse: photonNormalizedCircularRunNormalizedResponse,
-};
-const photonNormalizedCircularRunArtifactPath = path.join(
-  outputDir,
-  `${photonNormalizedCircularRunCase.caseId}.json`
-);
-const photonNormalizedCircularRunArtifactSha256 = writeJsonArtifact(
-  photonNormalizedCircularRunArtifactPath,
-  photonNormalizedCircularRunArtifact
-);
-artifacts.push({
-  caseId: photonNormalizedCircularRunCase.caseId,
-  appId: photonNormalizedCircularRunCase.appId,
-  path: photonNormalizedCircularRunArtifactPath,
-  artifactSha256: photonNormalizedCircularRunArtifactSha256,
-  tolerancePolicy: createTolerancePolicy(photonNormalizedCircularRunCase),
-  classification: photonNormalizedCircularRunComparison.classification,
-  manifestHash: photonNormalizedCircularRunNormalizedResponse.manifest.manifestHash,
+  manifestHash: "prescribed-path-analysis",
 });
 
 const idealBraidGeometryCase = createIdealBraidGeometryCase();
-const idealBraidGeometryCandidate = await client.computeSharedGeometryF64(
+const idealBraidGeometryCandidate = computePrescribedPathGeometry(
   idealBraidGeometryCase.geometryRequest
 );
-const idealBraidFacadeSelfHit = await solveCircularSelfHitSpanRowWithSolverBridge(1.2, {
-  solverClient: client,
+const idealBraidFacadeSelfHit = await solveCircularSelfHitSpanRowWithPrescribedPathAnalysis(1.2, {
   runId: `${idealBraidGeometryCase.caseId}-facade-run`,
 });
 const idealBraidBaselineSelfHitSpan =
@@ -454,59 +269,16 @@ artifacts.push({
   artifactSha256: idealBraidGeometryArtifactSha256,
   tolerancePolicy: createTolerancePolicy(idealBraidGeometryCase),
   classification: idealBraidGeometryComparison.classification,
-  manifestHash: "geometry-direct-bridge",
-});
-
-const idealBraidSelfHitWasmClientCase = createIdealBraidSelfHitWasmClientCase(
-  idealBraidGeometryCase
-);
-const idealBraidSelfHitWasmClientRow = await solveCircularSelfHitSpanRowWithSolverBridge(1.2, {
-  createWasmModule,
-  locateFile: locateWasmFile,
-  runId: `${idealBraidSelfHitWasmClientCase.caseId}-run`,
-});
-const idealBraidSelfHitWasmClientCandidate = {
-  geometry: {
-    circularSelfHitSpans: [
-      projectCircularSelfHitSpanRowForBaseline(idealBraidSelfHitWasmClientRow),
-    ],
-  },
-  status: {
-    code: "ok",
-    severity: "ok",
-    message: "shared geometry computed",
-    recoverable: true,
-  },
-};
-const idealBraidSelfHitWasmClientComparison = classifySolverBaselineResponse({
-  baseline: idealBraidSelfHitWasmClientCase.baseline,
-  candidate: idealBraidSelfHitWasmClientCandidate,
-  tolerance: idealBraidSelfHitWasmClientCase.tolerance,
-  refinementTolerance: idealBraidSelfHitWasmClientCase.refinementTolerance,
-});
-assert(
-  idealBraidSelfHitWasmClientComparison.classification === "baseline_within_tolerance",
-  `${idealBraidSelfHitWasmClientCase.caseId} baseline classification was ${idealBraidSelfHitWasmClientComparison.classification}`
-);
-recordSandboxArtifact({
-  testCase: idealBraidSelfHitWasmClientCase,
-  comparison: idealBraidSelfHitWasmClientComparison,
-  baseline: idealBraidSelfHitWasmClientCase.baseline,
-  response: idealBraidSelfHitWasmClientCandidate,
-  fullResponse: {
-    appFacadeSelfHit: idealBraidSelfHitWasmClientRow,
-  },
-  manifestHash: "ideal-braid-self-hit-wasm-client",
+  manifestHash: "prescribed-path-analysis",
 });
 
 const idealBraidFlightTimeCase = createIdealBraidFlightTimeCase();
-const idealBraidFlightTimeRow = await solveFlightTimeRowWithSolverBridge(
+const idealBraidFlightTimeRow = await solveFlightTimeRowWithPrescribedPathAnalysis(
   idealBraidFlightTimeCase.samplePoint,
   idealBraidFlightTimeCase.architrino,
   idealBraidFlightTimeCase.observationTime,
   {
     ...idealBraidFlightTimeCase.options,
-    solverClient: client,
     runId: `${idealBraidFlightTimeCase.caseId}-facade-run`,
   }
 );
@@ -563,64 +335,16 @@ artifacts.push({
   artifactSha256: idealBraidFlightTimeArtifactSha256,
   tolerancePolicy: createTolerancePolicy(idealBraidFlightTimeCase),
   classification: idealBraidFlightTimeComparison.classification,
-  manifestHash: "ideal-braid-flight-time-facade",
-});
-
-const idealBraidFlightTimeWasmClientCase = createIdealBraidFlightTimeWasmClientCase(
-  idealBraidFlightTimeCase
-);
-const idealBraidFlightTimeWasmClientRow = await solveFlightTimeRowWithSolverBridge(
-  idealBraidFlightTimeWasmClientCase.samplePoint,
-  idealBraidFlightTimeWasmClientCase.architrino,
-  idealBraidFlightTimeWasmClientCase.observationTime,
-  {
-    ...idealBraidFlightTimeWasmClientCase.options,
-    createWasmModule,
-    locateFile: locateWasmFile,
-    runId: `${idealBraidFlightTimeWasmClientCase.caseId}-run`,
-  }
-);
-const idealBraidFlightTimeWasmClientCandidate = {
-  geometry: {
-    delayedPotentials: [
-      projectDelayedPotentialRowForBaseline(idealBraidFlightTimeWasmClientRow),
-    ],
-  },
-  status: {
-    code: "ok",
-    severity: "ok",
-    message: "shared geometry computed",
-    recoverable: true,
-  },
-};
-const idealBraidFlightTimeWasmClientComparison = classifySolverBaselineResponse({
-  baseline: idealBraidFlightTimeWasmClientCase.baseline,
-  candidate: idealBraidFlightTimeWasmClientCandidate,
-  tolerance: idealBraidFlightTimeWasmClientCase.tolerance,
-  refinementTolerance: idealBraidFlightTimeWasmClientCase.refinementTolerance,
-});
-assert(
-  idealBraidFlightTimeWasmClientComparison.classification === "baseline_within_tolerance",
-  `${idealBraidFlightTimeWasmClientCase.caseId} baseline classification was ${idealBraidFlightTimeWasmClientComparison.classification}`
-);
-recordSandboxArtifact({
-  testCase: idealBraidFlightTimeWasmClientCase,
-  comparison: idealBraidFlightTimeWasmClientComparison,
-  baseline: idealBraidFlightTimeWasmClientCase.baseline,
-  response: idealBraidFlightTimeWasmClientCandidate,
-  fullResponse: {
-    appFacadeFlightTime: idealBraidFlightTimeWasmClientRow,
-  },
-  manifestHash: "ideal-braid-flight-time-wasm-client",
+  manifestHash: "prescribed-path-analysis",
 });
 
 const photonPhaseCase = createPhotonPhaseDiagnosticsCase();
-const photonPhaseRunHandle = await client.runSimulation(
+const photonPhaseRunHandle = await runPrescribedPathAnalysisRequest(
   createPhotonPhaseDiagnosticsRunSimulationRequest(photonPhaseCase)
 );
 const photonPhaseNormalizedResponse = stripRuntimeBuffers(photonPhaseRunHandle.response);
 const photonPhaseComparison = classifySolverBaselineResponse({
-  baseline: photonPhaseCase.baseline,
+  baseline: projectPhotonPhaseResponseForBaseline(photonPhaseCase.baseline),
   candidate: projectPhotonPhaseResponseForBaseline(photonPhaseNormalizedResponse),
   tolerance: photonPhaseCase.tolerance,
   refinementTolerance: photonPhaseCase.refinementTolerance,
@@ -642,7 +366,7 @@ const photonPhaseArtifact = {
   writesToAppSource: false,
   comparison: photonPhaseComparison,
   baseline: photonPhaseCase.baseline,
-  runManifest: photonPhaseNormalizedResponse.manifest,
+  analysisId: "prescribed-path-analysis",
   response: photonPhaseNormalizedResponse,
 };
 const photonPhaseArtifactPath = path.join(outputDir, `${photonPhaseCase.caseId}.json`);
@@ -654,7 +378,7 @@ artifacts.push({
   artifactSha256: photonPhaseArtifactSha256,
   tolerancePolicy: createTolerancePolicy(photonPhaseCase),
   classification: photonPhaseComparison.classification,
-  manifestHash: photonPhaseNormalizedResponse.manifest.manifestHash,
+  manifestHash: "prescribed-path-analysis",
 });
 
 const pathHistoryCase = createPathHistoryCase();
@@ -753,64 +477,6 @@ artifacts.push({
   manifestHash: animatorMotionNormalizedResponse.manifest.manifestHash,
 });
 
-const animatorWorkerBridgeCase = createAnimatorWorkerBridgeCase(animatorMotionCase);
-const animatorWorkerBridgeMessage = await runAnimatorSimulationWorkerRequestAsync(
-  createAnimatorWorkerBridgeRunRequest(animatorWorkerBridgeCase),
-  {
-    createWasmModule,
-    locateFile: locateWasmFile,
-  }
-);
-const animatorWorkerBridgeHydrated = hydrateAnimatorSimulationWorkerCompleteMessage(
-  animatorWorkerBridgeMessage
-);
-const animatorWorkerBridgeCandidate = projectAnimatorWorkerBridgeDatasetForBaseline(
-  animatorWorkerBridgeHydrated.dataset
-);
-const animatorWorkerBridgeComparison = classifySolverBaselineResponse({
-  baseline: animatorWorkerBridgeCase.baseline,
-  candidate: animatorWorkerBridgeCandidate,
-  tolerance: animatorWorkerBridgeCase.tolerance,
-  refinementTolerance: animatorWorkerBridgeCase.refinementTolerance,
-});
-assert(
-  animatorWorkerBridgeComparison.classification === "baseline_within_tolerance",
-  `${animatorWorkerBridgeCase.caseId} baseline classification was ${animatorWorkerBridgeComparison.classification}`
-);
-const animatorWorkerBridgeArtifact = {
-  schema: "solver-baseline-sandbox/v1",
-  caseId: animatorWorkerBridgeCase.caseId,
-  appId: animatorWorkerBridgeCase.appId,
-  seedPolicy: "fixed-no-randomness",
-  resourceCaps: animatorWorkerBridgeCase.resourceCaps,
-  tolerancePolicy: createTolerancePolicy(animatorWorkerBridgeCase),
-  provenance: createSandboxProvenance(animatorWorkerBridgeCase),
-  workingDirectory: outputDir,
-  outputPolicy: "artifact-only",
-  writesToAppSource: false,
-  comparison: animatorWorkerBridgeComparison,
-  baseline: animatorWorkerBridgeCase.baseline,
-  response: animatorWorkerBridgeCandidate,
-  fullResponse: {
-    dataset: animatorWorkerBridgeHydrated.dataset,
-    frameBufferSummary: animatorWorkerBridgeHydrated.frameBufferSummary,
-  },
-};
-const animatorWorkerBridgeArtifactPath = path.join(outputDir, `${animatorWorkerBridgeCase.caseId}.json`);
-const animatorWorkerBridgeArtifactSha256 = writeJsonArtifact(
-  animatorWorkerBridgeArtifactPath,
-  animatorWorkerBridgeArtifact
-);
-artifacts.push({
-  caseId: animatorWorkerBridgeCase.caseId,
-  appId: animatorWorkerBridgeCase.appId,
-  path: animatorWorkerBridgeArtifactPath,
-  artifactSha256: animatorWorkerBridgeArtifactSha256,
-  tolerancePolicy: createTolerancePolicy(animatorWorkerBridgeCase),
-  classification: animatorWorkerBridgeComparison.classification,
-  manifestHash: animatorWorkerBridgeHydrated.dataset.simulation.solver.runId,
-});
-
 const manifestPath = path.join(outputDir, "manifest.json");
 writeJsonArtifact(manifestPath, {
   schema: "solver-baseline-sandbox-manifest/v1",
@@ -896,13 +562,6 @@ function createPhotonCausalRootsFacadeCase() {
       network: "disabled",
       sourceWrites: "disabled",
     },
-  };
-}
-
-function createPhotonCausalRootsWasmClientCase() {
-  return {
-    ...createPhotonCausalRootsFacadeCase(),
-    caseId: "photon-causal-root-wasm-client-smoke",
   };
 }
 
@@ -996,49 +655,6 @@ function createPhotonCircularSourceFacadeCase() {
   };
 }
 
-function createPhotonCircularSourceWasmClientCase() {
-  const baseCase = createPhotonCircularSourceFacadeCase();
-  return {
-    ...baseCase,
-    caseId: "photon-circular-source-roots-hits-ledger-wasm-client-smoke",
-    request: {
-      ...baseCase.request,
-      streamId: "baseline-photon-circular-source-wasm-client",
-    },
-  };
-}
-
-function createPhotonNormalizedCircularSourceFacadeCase() {
-  const baseCase = createPhotonCircularSourceFacadeCase();
-  return {
-    ...baseCase,
-    caseId: "photon-normalized-circular-source-roots-hits-ledger-smoke",
-    request: {
-      coordinateOrigin: { x: 1e18, y: -2e18, z: 3e18 },
-      localRequest: {
-        ...baseCase.request,
-        streamId: "baseline-photon-normalized-circular-source",
-      },
-      restoreAbsolutePoints: true,
-    },
-  };
-}
-
-function createPhotonNormalizedCircularSourceRunCase() {
-  const baseCase = createPhotonNormalizedCircularSourceFacadeCase();
-  return {
-    ...baseCase,
-    caseId: "photon-normalized-circular-source-run-smoke",
-    request: {
-      ...baseCase.request,
-      localRequest: {
-        ...baseCase.request.localRequest,
-        streamId: "baseline-photon-normalized-circular-source-run",
-      },
-    },
-  };
-}
-
 function createIdealBraidGeometryCase() {
   const delayedPotentialBaseline = {
     tau: 1,
@@ -1117,31 +733,6 @@ function createIdealBraidGeometryCase() {
   };
 }
 
-function createIdealBraidSelfHitWasmClientCase(idealBraidGeometryCase) {
-  return {
-    caseId: "ideal-braid-self-hit-wasm-client-smoke",
-    appId: "ideal-braid",
-    tolerance: idealBraidGeometryCase.tolerance,
-    refinementTolerance: idealBraidGeometryCase.refinementTolerance,
-    resourceCaps: idealBraidGeometryCase.resourceCaps,
-    baseline: {
-      geometry: {
-        circularSelfHitSpans:
-          idealBraidGeometryCase.baseline.geometry.circularSelfHitSpans.map((row) => ({
-            itemIndex: row.itemIndex,
-            statusCode: row.statusCode,
-            fieldSpeedRatio: row.fieldSpeedRatio,
-            regime: row.regime,
-            resultKind: row.resultKind,
-            span: row.span,
-            rootFound: row.rootFound,
-          })),
-      },
-      status: idealBraidGeometryCase.baseline.status,
-    },
-  };
-}
-
 function createIdealBraidFlightTimeCase() {
   const sourceStart = new THREE.Vector3(1, -0.5, 0.25);
   const sourceVelocity = new THREE.Vector3(0.2, 0.1, -0.05);
@@ -1207,13 +798,6 @@ function createIdealBraidFlightTimeCase() {
         recoverable: true,
       },
     },
-  };
-}
-
-function createIdealBraidFlightTimeWasmClientCase(idealBraidFlightTimeCase) {
-  return {
-    ...idealBraidFlightTimeCase,
-    caseId: "ideal-braid-flight-time-wasm-client-smoke",
   };
 }
 
@@ -1439,32 +1023,6 @@ function createAnimatorMotionCase() {
   };
 }
 
-function createAnimatorWorkerBridgeCase(animatorMotionCase) {
-  return {
-    caseId: "animator-worker-solver-bridge-smoke",
-    appId: "animator",
-    tolerance: animatorMotionCase.tolerance,
-    refinementTolerance: animatorMotionCase.refinementTolerance,
-    resourceCaps: animatorMotionCase.resourceCaps,
-    motionRequest: animatorMotionCase.motionRequest,
-    baseline: {
-      frames: animatorMotionCase.baseline.frames.map((frame) => ({
-        frameIndex: frame.frameIndex,
-        time: frame.time,
-        position: vectorObjectToArray(frame.position),
-        velocity: vectorObjectToArray(frame.velocity),
-      })),
-      status: {
-        code: "ok",
-      },
-    },
-  };
-}
-
-function vectorObjectToArray(value = {}) {
-  return [Number(value.x) || 0, Number(value.y) || 0, Number(value.z) || 0];
-}
-
 function createMotionFrameBaseline(frameIndex, time, position) {
   return {
     pathKey: 1234,
@@ -1531,17 +1089,48 @@ function projectCircularSelfHitSpanRowForBaseline(row) {
 
 function projectRootHitResponseForBaseline(response) {
   return {
-    roots: response.roots,
-    hits: response.hits,
-    buffers: response.buffers
-      .filter((buffer) => buffer.layout === "root_ledger.v1" || buffer.layout === "delayed_hit_events.v1")
-      .map((buffer) => ({
-        layout: buffer.layout,
-        byteOffset: buffer.byteOffset,
-        byteLength: buffer.byteLength,
-        rowCount: buffer.rowCount,
-        numericType: buffer.numericType,
-      })),
+    roots: (response.roots ?? []).map((root) => ({
+      rootId: root.rootId,
+      statusCode: root.statusCode,
+      emissionTime: root.emissionTime,
+      hitTime: root.hitTime,
+      delay: root.delay,
+      distance: root.distance,
+      residual: root.residual,
+      jacobian: root.jacobian,
+      branchWeight: root.branchWeight,
+      sourcePoint: root.sourcePoint,
+      receiverPoint: root.receiverPoint,
+      sourceNormalSpeed: root.sourceNormalSpeed,
+      receiverNormalSpeed: root.receiverNormalSpeed,
+      sourceNormalDenominator: root.sourceNormalDenominator,
+      receiverNormalNumerator: root.receiverNormalNumerator,
+      receiverNormalCrossingFactor: root.receiverNormalCrossingFactor,
+      receiverNormalFactor: root.receiverNormalFactor,
+      unsignedReceiverNormalFactor: root.unsignedReceiverNormalFactor,
+      receiverNormalStatusCode: root.receiverNormalStatusCode,
+    })),
+    hits: (response.hits ?? []).map((hit) => ({
+      eventId: hit.eventId,
+      rootId: hit.rootId,
+      statusCode: hit.statusCode,
+      emissionTime: hit.emissionTime,
+      hitTime: hit.hitTime,
+      distance: hit.distance,
+      jacobian: hit.jacobian,
+      strength: hit.strength,
+      emissionPoint: hit.emissionPoint,
+      receiverPoint: hit.receiverPoint,
+      unitDirection: hit.unitDirection,
+      sourceNormalSpeed: hit.sourceNormalSpeed,
+      receiverNormalSpeed: hit.receiverNormalSpeed,
+      sourceNormalDenominator: hit.sourceNormalDenominator,
+      receiverNormalNumerator: hit.receiverNormalNumerator,
+      receiverNormalCrossingFactor: hit.receiverNormalCrossingFactor,
+      receiverNormalFactor: hit.receiverNormalFactor,
+      unsignedReceiverNormalFactor: hit.unsignedReceiverNormalFactor,
+      receiverNormalStatusCode: hit.receiverNormalStatusCode,
+    })),
     status: {
       code: response.status?.code,
     },
@@ -1576,15 +1165,6 @@ function projectCircularSourceRootsHitsLedgerForBaseline(response) {
         hitTime: row.hitTime,
         residual: row.residual,
       })),
-    buffers: response.buffers
-      .filter((buffer) =>
-        ["root_ledger.v1", "delayed_hit_events.v1", "root_ledger_detail.v1"].includes(buffer.layout)
-      )
-      .map((buffer) => ({
-        layout: buffer.layout,
-        byteLength: buffer.byteLength,
-        rowCount: buffer.rowCount,
-      })),
     status: {
       code: response.status?.code,
     },
@@ -1592,11 +1172,46 @@ function projectCircularSourceRootsHitsLedgerForBaseline(response) {
 }
 
 function projectPhotonPhaseResponseForBaseline(response) {
+  const summary = response.phaseSummary ?? {};
   return {
-    phaseRows: response.phaseRows,
-    phaseSummary: response.phaseSummary,
-    buffers: response.buffers,
-    status: response.status,
+    phaseRows: (response.phaseRows ?? []).map((row) => ({
+      rootId: row.rootId,
+      statusCode: row.statusCode,
+      sourceCycleIndex: row.sourceCycleIndex,
+      receiverCycleIndex: row.receiverCycleIndex,
+      emissionTime: row.emissionTime,
+      hitTime: row.hitTime,
+      sourcePhase: row.sourcePhase,
+      receiverPhase: row.receiverPhase,
+      phaseDelta: row.phaseDelta,
+      phaseSpread: row.phaseSpread,
+      rootKind: row.rootKind,
+      sourceLayerCode: row.sourceLayerCode,
+      receiverLayerCode: row.receiverLayerCode,
+      sourceRoleCode: row.sourceRoleCode,
+      receiverRoleCode: row.receiverRoleCode,
+      sourceChargeSign: row.sourceChargeSign,
+      receiverChargeSign: row.receiverChargeSign,
+      stateFlags: row.stateFlags,
+    })),
+    phaseSummary: {
+      schema: summary.schema,
+      rowCount: summary.rowCount,
+      rootIdRange: summary.rootIdRange,
+      statusCounts: summary.statusCounts,
+      sourceCycleIndexRange: summary.sourceCycleIndexRange,
+      receiverCycleIndexRange: summary.receiverCycleIndexRange,
+      emissionTimeRange: summary.emissionTimeRange,
+      hitTimeRange: summary.hitTimeRange,
+      sourcePhaseRange: summary.sourcePhaseRange,
+      receiverPhaseRange: summary.receiverPhaseRange,
+      phaseDeltaRange: summary.phaseDeltaRange,
+      phaseSpreadRange: summary.phaseSpreadRange,
+      meanPhaseDelta: summary.meanPhaseDelta,
+      meanPhaseSpread: summary.meanPhaseSpread,
+      maxPhaseSpread: summary.maxPhaseSpread,
+    },
+    status: { code: response.status?.code },
   };
 }
 
@@ -1645,23 +1260,6 @@ function projectAnimatorMotionResponseForBaseline(response, dynamicReplayValidat
     dynamicReplayValidation: projectDynamicReplayValidationForBaseline(dynamicReplayValidation),
     status: {
       code: response.status?.code,
-    },
-  };
-}
-
-function projectAnimatorWorkerBridgeDatasetForBaseline(dataset = {}) {
-  return {
-    frames: (dataset.frames ?? []).map((frame) => {
-      const particle = frame.particles?.[0] ?? {};
-      return {
-        frameIndex: frame.index,
-        time: frame.t,
-        position: particle.position ?? [],
-        velocity: particle.velocity ?? [],
-      };
-    }),
-    status: {
-      code: dataset.simulation?.halt?.code,
     },
   };
 }
@@ -1780,70 +1378,16 @@ function createRunSimulationRequest(testCase) {
   };
 }
 
-function createNormalizedCircularSourceRunSimulationRequest(testCase) {
-  const request = createRunSimulationRequest({
-    ...testCase,
-    request: testCase.request.localRequest,
-  });
-  return {
-    ...request,
-    config: {
-      appId: testCase.appId,
-      normalizedCircularSourceRootRequest: testCase.request,
-    },
-  };
-}
-
 function createPhotonPhaseDiagnosticsRunSimulationRequest(testCase) {
-  return createPhotonPhaseDiagnosticsRunRequest({
+  return {
     requestId: `${testCase.caseId}-request`,
     runId: `${testCase.caseId}-run`,
     datasetId: `${testCase.caseId}-dataset`,
-    claimLevel: "migration-parity",
-    precisionPath: "auto",
-    configVersion: "solver-baseline-sandbox.v1",
-    configHash: `${testCase.caseId}-config`,
-    model: {
-      modelId: "aaa.central-solver",
-      equationVersion: "motion-root-v1",
-      forceLawVersion: "causal-delay-v1",
-      constantsHash: "constants:test",
-      causalSpeedPolicy: "fixed-field-speed",
-      branchPolicy: "all-positive-roots",
-      unitConvention: "solver-si",
-      compatiblePrecisionPaths: ["scaled_f64_strict", "event_root_focused", "extended_precision"],
+    runKind: "phaseDiagnostics",
+    config: {
+      phaseRequest: testCase.phaseRequest,
     },
-    envelope: {
-      entityCount: 16,
-      assemblyCount: 1,
-      timeWindow: { start: 0, end: 10, stepHint: 0.01, units: "solver-time" },
-      timeResolutionHint: 0.01,
-      interactionPolicy: "neighbor-pruned",
-      expectedBranchComplexity: "low",
-      outputDetail: "playback",
-      memoryBudgetBytes: testCase.resourceCaps.maxBytes * 2,
-      storageBudgetBytes: testCase.resourceCaps.maxBytes * 4,
-      latencyTarget: "background",
-      simplificationPolicy: "none",
-    },
-    errorBudget: {
-      globalTolerance: 1e-12,
-      rootIsolationTolerance: 1e-13,
-      delayedHitTolerance: 1e-13,
-      integrationTolerance: 1e-12,
-      streamEncodingTolerance: 1e-12,
-      readbackTolerance: 1e-12,
-      projectionTolerance: 1e-9,
-      displayTolerance: 1e-6,
-    },
-    phaseRequest: testCase.phaseRequest,
-    output: {
-      outputs: ["phaseAtHit", "diagnostics", "validationArtifacts"],
-      streamTarget: "caller-buffer",
-      memoryBudgetBytes: testCase.resourceCaps.maxBytes,
-      deterministic: true,
-    },
-  });
+  };
 }
 
 function createPathHistoryRunSimulationRequest(testCase) {
@@ -1972,31 +1516,10 @@ function createAnimatorMotionRunSimulationRequest(testCase) {
   });
 }
 
-function createAnimatorWorkerBridgeRunRequest(testCase) {
-  return createAnimatorSimulationWorkerRunRequest(
-    {
-      solverBridge: {
-        enabled: true,
-        motionRequest: testCase.motionRequest,
-        streamTarget: "caller-buffer",
-        deterministic: true,
-        memoryBudgetBytes: testCase.resourceCaps.maxBytes,
-      },
-    },
-    {
-      requestId: `${testCase.caseId}-request`,
-      datasetOptions: {
-        id: `${testCase.caseId}-dataset`,
-        claimLevel: "migration-parity",
-      },
-    }
-  );
-}
-
 function stripRuntimeBuffers(response) {
   return {
     ...response,
-    buffers: response.buffers.map(({ buffer, ...descriptor }) => descriptor),
+    buffers: (response.buffers ?? []).map(({ buffer, ...descriptor }) => descriptor),
   };
 }
 

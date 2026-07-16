@@ -22,7 +22,7 @@ Claim-level shorthand: `O` = ontology already established in the corpus; `D` = d
 | `reference/priorities/app-ios/brainstorming.md` | No loose item. | N/A. |
 | `reference/priorities/app-photon/brainstorming.md` | No loose item. | N/A. |
 | `reference/priorities/app-simulation/brainstorming.md` | Planck/alignment framing; simulation scope envelope and threshold margin $m_E$; provenance-value heuristic; direct nucleon Monte Carlo object; wake-pattern return residual; self-hit bifurcation scan; N-body coarse-graining check; finite-memory experiment. | T/E; `validation/simulations/README.md`, `nuclear-atomic/nucleon-structure.md`, `dynamics/master-equation.md`, and simulation packets. |
-| `reference/priorities/app-solver/brainstorming.md` | Retained-history solver state, root-bifurcation diagnostics, and finite-memory pruning contract. | T; central-solver/app-solver contract only when a live proof packet consumes the rows; `dynamics/master-equation.md` as conceptual owner. |
+| `reference/priorities/app-solver/brainstorming.md` | Retained-history solver state, root-bifurcation diagnostics, and finite-memory pruning contract. | T; zombie-solver/app-solver contract only when a live proof packet consumes the rows; `dynamics/master-equation.md` as conceptual owner. |
 | `reference/priorities/app-ui-guidelines/brainstorming.md` | No loose item. | N/A. |
 | `reference/priorities/archie/brainstorming.md` | Empty idea section. | N/A. |
 | `reference/priorities/media-comics/brainstorming.md` | No loose item. | N/A. |
@@ -110,7 +110,7 @@ Final dispositions are appended below in bounded batches. A source note is recon
 | `app-ios` | 0 | reject. |
 | `app-photon` | 0 | reject. |
 | `app-simulation` | 8 families | already promoted for scope/provenance; target for $m_E$, provenance value, nucleon Monte Carlo, wake return, bifurcation, coarse-graining, and finite-memory experiments. Source reconciled. |
-| `app-solver` | 3 | target — live-consumer-gated solver contract ideas; central solver untouched. |
+| `app-solver` | 3 | target — live-consumer-gated solver contract ideas; zombie-solver untouched. |
 | `app-ui-guidelines` | 0 | reject. |
 | `archie` | 0 | reject. |
 | `media-comics` | 0 | reject. |

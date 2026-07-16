@@ -257,7 +257,7 @@ convergence, ledger reconstruction, and evidence negative controls also pass.
 
 ## Implementation Boundaries
 
-- The current central solver and all current dependencies remain unchanged.
+- The current zombie-solver and all current dependencies remain unchanged.
 - The independent Python oracle remains correctness-first and is not ported into
   the production batch engine.
 - The production language remains an evidence-gated decision.

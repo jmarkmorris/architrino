@@ -3,7 +3,7 @@
 
 The input is the exact-token TSV emitted by the native diagnostics callback.
 The load-bearing root certificates are produced by the pre-existing,
-separately authored Decimal oracle.  This script does not import native EOM
+separately authored Decimal oracle.  This script does not import the EOM solver
 code and does not modify the oracle.
 """
 

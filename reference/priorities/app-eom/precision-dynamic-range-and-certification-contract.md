@@ -8,7 +8,7 @@
 - Evolution authority: [evolution-contract-v0.md](evolution-contract-v0.md)
 - Production implementation: not selected
 - Production language and accelerator stack: not selected
-- Current central solver: no numeric authority for EOM
+- Current zombie-solver: no numeric authority for EOM
 
 ## Purpose
 

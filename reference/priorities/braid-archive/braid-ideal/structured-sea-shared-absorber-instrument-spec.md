@@ -6,7 +6,7 @@ sea that must simultaneously (1) supply the $\ge1/3$-pump ($\approx0.076$)
 tangential rail-pump deficit at the rail for **S1/S2** (the shape-attractor /
 tangential absorber) and (2) anchor the braid spin axis $\hat n\to\hat d$ with a
 *settled* dynamical torque for the **axis-anchor coherence**. It extends the
-runner only ([spindle-braid-native-retained-history-confirmation-run.mjs](../../../../scripts/braid-ideal/spindle-braid-native-retained-history-confirmation-run.mjs)),
+runner only (spindle-braid-native-retained-history-confirmation-run.mjs (retired script: `scripts/braid-ideal/spindle-braid-native-retained-history-confirmation-run.mjs`)),
 reusing the built `coDriftCage.reorient`/`orbit` dynamical-sea surfaces; the
 central solver `AbsoluteHistoryRootRuntime.mjs` is untouched.
 

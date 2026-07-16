@@ -1,8 +1,8 @@
-# EOM Native Engine
+# EOM Solver
 
 This directory is the C++20 host implementation for EOM, the endorsed solver
 and sole forward production target. It is separate from `src/solver`; the
-existing central solver remains available only as temporary compatibility for
+existing zombie-solver remains available only as temporary compatibility for
 current dependencies during consumer-by-consumer migration.
 
 The executable layer currently contains:
@@ -19,7 +19,8 @@ The executable layer currently contains:
 - a deterministic multithreaded exact-pair retained-history/root batch;
 - complete simple-root brackets with source-normal and receiver-normal
   enclosures, retained-history provenance fingerprints, segment identity,
-  memory-boundary status, and the canonical coincident self-endpoint rule;
+  memory-boundary status, an inward-rounded MPFR tolerance-edge probe, and the
+  canonical coincident self-endpoint rule;
 - a provenance-bound uniform-circular history factory whose strict chord
   certificate excludes the complete open self-search interval at
   $0<v\le c_f$, while arbitrary straight $v=c_f$ histories remain
@@ -92,9 +93,10 @@ full retained-history request at each atomic chunk. GPU, multi-GPU,
 distributed histories, split absolute time, multirate scheduling, and the
 production million-path run remain open. Borg shadow output remains
 noncanonical. The strict one-path Borg refinement control passes, but the
-16-history attempt fails closed because all 240 off-diagonal ordered pairs
-reach the current numeric precision ceiling. Full-population precision closure
-and the performance gates must pass before migration.
+eight-path strict seed control passes, and strict burn-in now continues beyond
+the former `1003<-1004` tolerance-edge root wall at $T=32.48$. A seed-free
+$T=90$ checkpoint, its post-burn-in convergence ladder, and the performance
+gates must still pass before migration.
 
 Build and run the native fixture:
 

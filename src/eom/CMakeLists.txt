@@ -32,6 +32,14 @@ add_executable(eom_native_fixture_cli native/eom_native_fixture_cli.cpp)
 target_link_libraries(eom_native_fixture_cli PRIVATE eom_native)
 target_compile_options(eom_native_fixture_cli PRIVATE -Wall -Wextra -Wpedantic)
 
+add_executable(eom_recursive_block_benchmark_cli
+  native/eom_recursive_block_benchmark_cli.cpp
+)
+target_link_libraries(eom_recursive_block_benchmark_cli PRIVATE eom_native)
+target_compile_options(eom_recursive_block_benchmark_cli
+  PRIVATE -Wall -Wextra -Wpedantic
+)
+
 add_executable(eom_native_acceleration_fixture_cli
   native/eom_native_acceleration_fixture_cli.cpp
 )

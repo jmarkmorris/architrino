@@ -59,9 +59,15 @@ const packageArtifacts = [
     packageTarget: "browser-app-runtime",
   },
   {
-    role: "absolute-history-root-runtime",
+    role: "prescribed-orbit-causal-roots-runtime",
     kind: "javascript-module",
-    path: "src/solver/app/AbsoluteHistoryRootRuntime.mjs",
+    path: "src/prescribed-path-analysis/PrescribedOrbitCausalRoots.mjs",
+    packageTarget: "browser-app-runtime",
+  },
+  {
+    role: "prescribed-path-analysis-public-runtime",
+    kind: "javascript-module",
+    path: "src/prescribed-path-analysis/index.mjs",
     packageTarget: "browser-app-runtime",
   },
   {

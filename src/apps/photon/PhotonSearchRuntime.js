@@ -16,7 +16,7 @@ import {
 } from "./PhotonPresetRuntime.js";
 import { computePhotonDiagnostics } from "./PhotonDiagnosticsRuntime.js";
 import {
-  computePhotonFormulaSummaryWithSolverBridge,
+  computePhotonFormulaSummaryWithPrescribedPathAnalysis,
 } from "./PhotonFormulaRuntime.js";
 
 const PHOTON_SEARCH_RESULT_LIMIT = 12;
@@ -364,9 +364,9 @@ function perturbPhotonSearchState(state) {
   return normalizePhotonState(perturbed);
 }
 
-async function evaluatePhotonSearchPerturbationWithSolverBridge(state, summary, options = {}) {
+async function evaluatePhotonSearchPerturbationWithPrescribedPathAnalysis(state, summary, options = {}) {
   const perturbed = perturbPhotonSearchState(state);
-  const nextSummary = await computePhotonFormulaSummaryWithSolverBridge(
+  const nextSummary = await computePhotonFormulaSummaryWithPrescribedPathAnalysis(
     perturbed,
     0,
     createPhotonSearchSolverOptions(options, PHOTON_SEARCH_PERTURB_OPTIONS, "perturb")
@@ -451,7 +451,7 @@ function computePhotonSearchComparisonDeltas(coMoving, absoluteHistory) {
 
 async function computePhotonSearchModeSummary(state, sourceHistoryMode, options = {}) {
   const modeState = createPhotonSearchModeState(state, sourceHistoryMode);
-  const summary = await computePhotonFormulaSummaryWithSolverBridge(
+  const summary = await computePhotonFormulaSummaryWithPrescribedPathAnalysis(
     modeState,
     0,
     createPhotonSearchSolverOptions(options, PHOTON_SEARCH_COMPARISON_OPTIONS, "comparison")
@@ -781,7 +781,7 @@ function buildPhotonSearchCandidateResult(
       unresolvedSourceCount: diagnostics.unresolvedSourceCount,
       unstableSourceCount: diagnostics.unstableSourceCount,
       sourceHistoryProviderId: diagnostics.sourceHistoryProviderId ?? "",
-      solverFieldSchema: diagnostics.solverFieldSchema ?? "",
+      analysisFieldSchema: diagnostics.analysisFieldSchema ?? "",
       fieldReconstructionOwner: diagnostics.fieldReconstructionOwner ?? "",
       receiverNormalOwner: diagnostics.receiverNormalOwner ?? "",
       delaySolveGapMax: diagnostics.delaySolveGapMax,
@@ -824,15 +824,15 @@ function buildPhotonSearchCandidateResult(
   };
 }
 
-async function evaluatePhotonSearchCandidateWithSolverBridge(candidate, index, options = {}) {
+async function evaluatePhotonSearchCandidateWithPrescribedPathAnalysis(candidate, index, options = {}) {
   const state = cloneNormalizedPhotonState(candidate.state);
-  const summary = await computePhotonFormulaSummaryWithSolverBridge(
+  const summary = await computePhotonFormulaSummaryWithPrescribedPathAnalysis(
     state,
     0,
     createPhotonSearchSolverOptions(options, PHOTON_SEARCH_SUMMARY_OPTIONS, "summary")
   );
   const diagnostics = computePhotonDiagnostics(state, 0, summary);
-  const perturbation = await evaluatePhotonSearchPerturbationWithSolverBridge(
+  const perturbation = await evaluatePhotonSearchPerturbationWithPrescribedPathAnalysis(
     state,
     summary,
     options
@@ -900,7 +900,7 @@ function selectDiversePhotonSearchResults(evaluatedResults, limit = PHOTON_SEARC
   }));
 }
 
-export async function createPhotonConfigurationSearchResultsWithSolverBridge(
+export async function createPhotonConfigurationSearchResultsWithPrescribedPathAnalysis(
   baseState,
   options = {}
 ) {
@@ -910,7 +910,7 @@ export async function createPhotonConfigurationSearchResultsWithSolverBridge(
   );
   const evaluated = await Promise.all(
     candidates.map((candidate, index) =>
-      evaluatePhotonSearchCandidateWithSolverBridge(candidate, index, options)
+      evaluatePhotonSearchCandidateWithPrescribedPathAnalysis(candidate, index, options)
     )
   );
   return selectDiversePhotonSearchResults(

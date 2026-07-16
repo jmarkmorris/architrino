@@ -26,6 +26,8 @@
         "content/markdown/aaa/foundations/absolute-time.md",
         "content/markdown/aaa/validation/simulations/action-energy/**",
         "src/solver/**",
+        "src/t3/**",
+        "src/apps/animator/display/**",
         "src/apps/causal-delay-feedback/**",
         "scripts/simulations/**"
       ],
@@ -81,7 +83,7 @@
         ],
         "simulations": [
           {
-            "command": "node --test tests/t3-universe-simulator.test.js tests/absolute-history-root-runtime.test.js tests/causal-delay-feedback-runtime.test.js",
+            "command": "node --test tests/t3-universe-simulator.test.js tests/prescribed-orbit-causal-roots.test.js tests/causal-delay-feedback-runtime.test.js",
             "reason": "Recheck delayed-root simulation and runtime surfaces."
           }
         ],
@@ -116,10 +118,10 @@
         "reference/priorities/braid-archive/braid-nested-shell-causal-closure/**",
         "scripts/check-receiver-normal-clean-slate.mjs",
         "scripts/proof-programs/**",
-        "scripts/braid-ideal/**",
         "scripts/nested-shell-braid/**",
         "src/apps/photon/**",
-        "src/solver/app/**"
+        "src/solver/app/**",
+        "src/apps/animator/display/**"
       ],
       "textTriggers": [
         { "type": "literal", "value": "W^{\\mathrm{rec}}" },
@@ -168,8 +170,8 @@
         ],
         "proofPrograms": [
           {
-            "command": "node --test tests/braid-ideal-central-solver-retained-source-adapter.test.js tests/braid-ideal-central-solver-retained-source-adapter-acceptance-certificate.test.js tests/braid-ideal-self-hit-held-release-solver-row.test.js tests/topological-causal-root-ledger-checker.test.js",
-            "reason": "Recheck same-record retained-source and causal-ledger proof intake."
+            "command": "node --test tests/topological-causal-root-ledger-checker.test.js",
+            "reason": "Recheck causal-ledger proof intake."
           },
           {
             "command": "node --test tests/torque-wake-same-row-diagnostic-report.test.js tests/nested-shell-braid-action-increment-source-contract.test.js tests/action-boundary-pullback-diagnostic.test.js",
@@ -202,6 +204,8 @@
         "content/markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-braid.md",
         "content/markdown/aaa/philosophy-history/theory-bridges/entanglement-nonlocality.md",
         "src/solver/**",
+        "src/t3/**",
+        "src/apps/animator/display/**",
         "src/apps/causal-delay-feedback/**"
       ],
       "textTriggers": [
@@ -249,7 +253,7 @@
         ],
         "simulations": [
           {
-            "command": "node --test tests/t3-universe-simulator.test.js tests/absolute-history-root-runtime.test.js tests/causal-delay-feedback-runtime.test.js",
+            "command": "node --test tests/t3-universe-simulator.test.js tests/prescribed-orbit-causal-roots.test.js tests/causal-delay-feedback-runtime.test.js",
             "reason": "Recheck simulation surfaces with absolute-time or delayed-hit assumptions."
           }
         ],
@@ -311,7 +315,7 @@
         ],
         "proofPrograms": [
           {
-            "command": "node --test tests/braid-ideal-matter-antimatter-chirality-retained-history-target.test.js tests/neutral-braid-octahedral-polarity-phase-retention-witness.test.js tests/neutral-braid-octahedral-affine-exposure-probe.test.js",
+            "command": "node --test tests/neutral-braid-octahedral-polarity-phase-retention-witness.test.js tests/neutral-braid-octahedral-affine-exposure-probe.test.js",
             "reason": "Recheck chirality, parity, and orientation-sensitive proof surfaces."
           }
         ],
@@ -484,10 +488,8 @@
         "content/markdown/aaa/assemblies/**",
         "reference/priorities/braid-archive/braid-nested-shell-causal-closure/**",
         "reference/priorities/proof-programs/**",
-        "scripts/braid-ideal/**",
         "scripts/neutral-braid/**",
-        "tests/neutral-braid-*",
-        "tests/braid-ideal-*"
+        "tests/neutral-braid-*"
       ],
       "textTriggers": [
         { "type": "literal", "value": "exchange" },
@@ -533,7 +535,7 @@
         ],
         "proofPrograms": [
           {
-            "command": "node --test tests/topological-causal-root-ledger-checker.test.js tests/braid-ideal-matter-antimatter-chirality-retained-history-target.test.js tests/neutral-braid-octahedral-root-ledger.test.js tests/neutral-braid-octahedral-root-force-closure-witness.test.js",
+            "command": "node --test tests/topological-causal-root-ledger-checker.test.js tests/neutral-braid-octahedral-root-ledger.test.js tests/neutral-braid-octahedral-root-force-closure-witness.test.js",
             "reason": "Recheck root-ledger and retained-history proof surfaces."
           }
         ],
@@ -776,6 +778,7 @@
       "rationale": "Production solver schema and bridge changes can invalidate simulations, apps, proof fixtures, and generated solver package manifests.",
       "pathTriggers": [
         "src/solver/**",
+        "src/t3/**",
         "src/apps/animator/**",
         "src/apps/photon/**",
         "src/apps/ideal-braid/**",
@@ -801,7 +804,7 @@
         ],
         "simulations": [
           "T3 simulator",
-          "Borg native solver",
+          "Borg EOM solver",
           "causal-delay feedback",
           "ideal braid solver bridge"
         ],
@@ -836,8 +839,8 @@
         ],
         "proofPrograms": [
           {
-            "command": "node --test tests/braid-ideal-central-solver-retained-history-row.test.js tests/braid-ideal-central-solver-retained-history-provider-object.test.js tests/solver-work-packet-transport-contract.test.js",
-            "reason": "Recheck proof fixtures that consume solver-backed retained-history rows."
+            "command": "node --test tests/solver-work-packet-transport-contract.test.js",
+            "reason": "Recheck proof fixtures that consume solver-backed transport rows."
           }
         ],
         "simulations": [
@@ -859,7 +862,7 @@
         "solver": [
           {
             "command": "node scripts/build-solver-smoke.mjs all",
-            "reason": "Rebuild and smoke-test the native solver package."
+            "reason": "Rebuild and smoke-test the compiled central solver package."
           }
         ]
       }

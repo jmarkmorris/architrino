@@ -6,7 +6,7 @@ Proof ID: `SH-0-sea` (self-hit fold-chart sub-target).
 
 Claim level: measurement and chart derivation. This packet does not claim accepted retained evidence, retained-branch closure, force/action closure, Noether sea response closure, stability, branch-chart output, click-mechanism closure, observer export, score movement, or corpus promotion. Every output fails closed at the central seed-path certificate and the central retained-history row.
 
-Executable artifact: [fold-crossing-click-impulse-diagnostic.mjs](../../../../scripts/braid-ideal/fold-crossing-click-impulse-diagnostic.mjs), with focused tests in [braid-ideal-fold-crossing-click-impulse-diagnostic.test.js](../../../../tests/braid-ideal-fold-crossing-click-impulse-diagnostic.test.js).
+Executable artifact: fold-crossing-click-impulse-diagnostic.mjs (retired script: `scripts/braid-ideal/fold-crossing-click-impulse-diagnostic.mjs`), with focused tests in braid-ideal-fold-crossing-click-impulse-diagnostic.test.js (retired script: `tests/braid-ideal-fold-crossing-click-impulse-diagnostic.test.js`).
 
 Accepted-evidence blocker preserved (unchanged):
 
@@ -83,7 +83,7 @@ The magnitude grows without bound as $d_{\mathrm{cut}}\to0$ (the coincidence-str
 
 ## Executable Diagnostic
 
-The diagnostic builds the incoming worldline of one receiver site through the hinge, either from the sea-screened self-hit rows via [held-release-causal-wake-toy.mjs](../../../../scripts/braid-ideal/held-release-causal-wake-toy.mjs) (`--drive-toy`) or from a hermetic canonical rotating-channel model with the same fold sign structure, and computes side by side the naive absolute-branch-weight impulse and the chart-defined signed impulse, plus a convergence witness (nstep at fixed cut), a regularization-invariance witness (softening / floor / min-delay), a coincidence-cut sensitivity witness, and a diagnostic-only $h_{\mathrm{act}}$ ledger row per row.
+The diagnostic builds the incoming worldline of one receiver site through the hinge, either from the sea-screened self-hit rows via held-release-causal-wake-toy.mjs (retired script: `scripts/braid-ideal/held-release-causal-wake-toy.mjs`) (`--drive-toy`) or from a hermetic canonical rotating-channel model with the same fold sign structure, and computes side by side the naive absolute-branch-weight impulse and the chart-defined signed impulse, plus a convergence witness (nstep at fixed cut), a regularization-invariance witness (softening / floor / min-delay), a coincidence-cut sensitivity witness, and a diagnostic-only $h_{\mathrm{act}}$ ledger row per row.
 
 Naive post-hinge ejection magnitude (final field-speed ratio, `--include-self-hits`, duration $3$), reproducing the recorded drift on `vt095`:
 
@@ -125,7 +125,7 @@ Until that contract exists, every output here stays fail-closed at the seed-path
 
 ## Central-Solver Path Measurement (2026-07-07)
 
-The follow-up producer boundary above was then driven directly against the production causal-root runtime rather than left as a named contract. Owner script [self-hit-brake-central-measurement.mjs](../../../../scripts/braid-ideal/self-hit-brake-central-measurement.mjs) with tests [braid-ideal-self-hit-brake-central-measurement.test.js](../../../../tests/braid-ideal-self-hit-brake-central-measurement.test.js) (6 passing) imports `solveMovingCircularSameSourceCausalRoots` from [AbsoluteHistoryRootRuntime.mjs](../../../../src/solver/app/AbsoluteHistoryRootRuntime.mjs) and reads what the production path can and cannot decide. No native runtime, ABI, bridge schema, or contract fixture was modified; the runtime is consumed read-only.
+The follow-up producer boundary above was then driven directly against the production causal-root runtime rather than left as a named contract. Owner script self-hit-brake-central-measurement.mjs (retired script: `scripts/braid-ideal/self-hit-brake-central-measurement.mjs`) with tests braid-ideal-self-hit-brake-central-measurement.test.js (retired script: `tests/braid-ideal-self-hit-brake-central-measurement.test.js`) (6 passing) imports `solveMovingCircularSameSourceCausalRoots` from AbsoluteHistoryRootRuntime.mjs (removed with the zombie-solver migration: `src/solver/app/AbsoluteHistoryRootRuntime.mjs`) and reads what the production path can and cannot decide. No native runtime, ABI, bridge schema, or contract fixture was modified; the runtime is consumed read-only.
 
 Production reproduction (exact). Driving the runtime on the recorded `vt095` crossing ($\rho=\sqrt{2/3}$, $\beta_c=1.00196$) returns the same-source root with chord radius $r_c=0.17662$, $D_s=D_T=0.0039177$, and the emitted signed branch orientation `receiverNormalFactor` $=+1.0000$ — reproducing the packet's rigid-rotation reconstruction to the digit and confirming the runtime already emits the signed $m=D_T/D_s$.
 

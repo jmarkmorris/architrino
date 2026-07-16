@@ -1401,7 +1401,7 @@ export function validateBorgFixtureSnapshot({
     failures.push("surface source manifest id mismatch");
   }
   if (manifest.nativeSolverStatus !== "native-backed-now") {
-    failures.push("native solver status is not native-backed-now");
+    failures.push("EOM solver status is not native-backed-now");
   }
   if (manifest.sourceBridgeRun.executionPath !== "native_c_abi") {
     failures.push("native execution path is not native_c_abi");

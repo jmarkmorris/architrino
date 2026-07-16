@@ -9,12 +9,12 @@ export function createBorgNativeEomProcessClient({
   timeoutMs = 120000,
 } = {}) {
   if (typeof binaryPath !== "string" || binaryPath.length === 0) {
-    throw new TypeError("Borg native EOM process client requires binaryPath.");
+    throw new TypeError("Borg EOM process client requires binaryPath.");
   }
   if (!Array.isArray(binaryArgs) || binaryArgs.some(
     (argument) => typeof argument !== "string" || argument.length === 0,
   )) {
-    throw new TypeError("Borg native EOM process client binaryArgs must be strings.");
+    throw new TypeError("Borg EOM process client binaryArgs must be strings.");
   }
   let worker = null;
   let workerGeneration = 0;
@@ -34,7 +34,7 @@ export function createBorgNativeEomProcessClient({
       const requestGeneration = cancellationGeneration;
       const execute = () => {
         if (requestGeneration !== cancellationGeneration) {
-          throw new Error("Native EOM worker request was cancelled before execution.");
+          throw new Error("EOM worker request was cancelled before execution.");
         }
         return executePersistentRequest(protocol);
       };
@@ -45,7 +45,7 @@ export function createBorgNativeEomProcessClient({
     },
     async dispose() {
       cancellationGeneration += 1;
-      terminateWorker(new Error("Native EOM worker was cancelled."));
+      terminateWorker(new Error("EOM worker was cancelled."));
     },
   });
   return client;
@@ -82,7 +82,7 @@ export function createBorgNativeEomProcessClient({
       const diagnostic = errorBuffer.trim() || "no diagnostic";
       failWorkerGeneration(
         generation,
-        new Error(`Native EOM worker exited (${signal ?? code}): ${diagnostic}`),
+        new Error(`EOM worker exited (${signal ?? code}): ${diagnostic}`),
       );
     });
   }
@@ -91,11 +91,11 @@ export function createBorgNativeEomProcessClient({
     ensureWorker();
     return new Promise((resolve, reject) => {
       if (activeRequest) {
-        reject(new Error("Native EOM worker already has an active request."));
+        reject(new Error("EOM worker already has an active request."));
         return;
       }
       const timeout = setTimeout(() => {
-        terminateWorker(new Error(`Native EOM process timed out after ${timeoutMs} ms.`));
+        terminateWorker(new Error(`EOM process timed out after ${timeoutMs} ms.`));
       }, timeoutMs);
       activeRequest = { resolve, reject, timeout };
       worker.stdin.write(protocol, (error) => {
@@ -124,7 +124,7 @@ export function createBorgNativeEomProcessClient({
       pending.resolve(JSON.parse(line));
     } catch (error) {
       terminateWorker(
-        new Error(`Native EOM process emitted invalid JSON: ${error.message}`),
+        new Error(`EOM process emitted invalid JSON: ${error.message}`),
       );
       pending.reject(error);
     }
@@ -164,7 +164,7 @@ export function createBorgNativeEomProcessClient({
 export function encodeNativeRequest(request) {
   if (request?.contractId !== "eom_evolution_contract/v0" ||
       !Array.isArray(request.histories) || request.histories.length === 0) {
-    throw new TypeError("Native EOM process request lacks the EOM contract or histories.");
+    throw new TypeError("EOM process request lacks the EOM contract or histories.");
   }
   const controls = request.numericalControls ?? {};
   const model = request.modelControls ?? {};
@@ -221,7 +221,7 @@ function tabRecord(fields) {
   return fields.map((field) => {
     const value = String(field);
     if (value.length === 0 || /[\t\r\n]/u.test(value)) {
-      throw new TypeError("Native EOM protocol fields must be nonempty single-line tokens.");
+      throw new TypeError("EOM protocol fields must be nonempty single-line tokens.");
     }
     return value;
   }).join("\t");
@@ -236,7 +236,7 @@ function mergePublishedExtensions(request, response) {
     const extension = response.publishedExtensions[index];
     if (String(extension.pathId) !== String(history.pathId) ||
         !Array.isArray(extension.segments)) {
-      throw new Error("Native EOM response reordered or omitted a path extension.");
+      throw new Error("EOM response reordered or omitted a path extension.");
     }
     return Object.freeze({
       ...history,

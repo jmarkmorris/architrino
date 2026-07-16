@@ -17,7 +17,7 @@ Implementation surfaces:
 
 - [IdealBraidRuntime.js](../../../src/apps/ideal-braid/IdealBraidRuntime.js)
 - [IdealBraidPathPotentialProfile.js](../../../src/apps/ideal-braid/IdealBraidPathPotentialProfile.js)
-- [IdealBraidSolverBridgeOptions.js](../../../src/apps/ideal-braid/IdealBraidSolverBridgeOptions.js)
+- IdealBraidSolverBridgeOptions.js (removed with the zombie-solver migration: `src/apps/ideal-braid/IdealBraidSolverBridgeOptions.js`)
 - [SolverAppAdapters.mjs](../../../src/solver/app/SolverAppAdapters.mjs)
 - [check-solver-baseline-sandbox.mjs](../../../scripts/check-solver-baseline-sandbox.mjs)
 - [ideal-braid-runtime.test.js](../../../tests/ideal-braid-runtime.test.js)

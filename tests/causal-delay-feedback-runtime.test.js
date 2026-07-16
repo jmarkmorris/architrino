@@ -4,13 +4,11 @@ import { test } from "node:test";
 
 import { createCausalDelayFeedbackRuntime } from "../src/apps/causal-delay-feedback/CausalDelayFeedbackRuntime.js";
 import {
-  CENTRAL_SOLVER_APP_PLAYBACK_REPLAY_MODE,
-  CENTRAL_SOLVER_REPLAY_ADAPTER,
-  CENTRAL_SOLVER_REPLAY_DATASET_SOURCE,
-  CENTRAL_SOLVER_MOTION_REPLAY_MODE,
-  CENTRAL_SOLVER_PAIR_INTERACTION_REPLAY_MODE,
-  normalizeCausalDelayFeedbackBridgeReplay,
-} from "../src/apps/causal-delay-feedback/CausalDelayFeedbackCentralBridgeAdapter.js";
+  EOM_REPLAY_ADAPTER,
+  EOM_REPLAY_DATASET_SOURCE,
+  createCausalDelayFeedbackEomReplayAdapter,
+  normalizeCausalDelayFeedbackEomReplay,
+} from "../src/apps/causal-delay-feedback/CausalDelayFeedbackEomReplayAdapter.js";
 import {
   CANVAS_COLORS,
   DIRECT_MANIPULATION_DRAFT_PREVIEW,
@@ -24,16 +22,11 @@ import {
   getAngleDegrees,
 } from "../src/apps/causal-delay-feedback/CausalDelayFeedbackReplayAdapter.js";
 import {
+  createCausalDelayFeedbackEomReplayOptions,
   createCausalDelayFeedbackInitialReplayRequestOptions,
   createCausalDelayFeedbackRuntimeForPage,
-  getCentralBridgeReplayMode,
-  shouldUseCentralBridgeReplay,
+  shouldUseEomReplay,
 } from "../src/apps/causal-delay-feedback/main.js";
-import {
-  createCausalDelayFeedbackDefaultSolverWasmBaseUrl,
-  createCausalDelayFeedbackDefaultSolverWasmLoaderUrl,
-  createCausalDelayFeedbackSolverBridgeOptions,
-} from "../src/apps/causal-delay-feedback/CausalDelayFeedbackSolverBridgeOptions.js";
 
 class FakeElement {
   constructor() {
@@ -230,6 +223,63 @@ function createRuntimeForReadout() {
 
 function readCausalDelayFeedbackHtml() {
   return readFileSync(new URL("../causal-delay-feedback.html", import.meta.url), "utf8");
+}
+
+function inertialSegment(startTime, endTime, position, velocity) {
+  return {
+    startTime: String(startTime),
+    endTime: String(endTime),
+    coefficients: [
+      [String(position[0]), String(velocity[0]), "0", "0"],
+      [String(position[1]), String(velocity[1]), "0", "0"],
+      [String(position[2]), String(velocity[2]), "0", "0"],
+    ],
+    positionError: "0",
+    velocityError: "0",
+  };
+}
+
+function createEomRecordFixture() {
+  return {
+    contractId: "eom_evolution_contract/v0",
+    runId: "cdf-runtime-eom-fixture",
+    claimLevel: "evolved-record",
+    evidenceStatus: "canonical",
+    absoluteTimeInterval: { start: "0", end: "2" },
+    provenance: { engineId: "eom-solver" },
+    histories: [
+      {
+        pathId: "10",
+        pathKey: 10,
+        charge: "1",
+        stateFlags: 1,
+        coverageStart: "0",
+        coverageEnd: "2",
+        segments: [inertialSegment(0, 2, [5, 2, 0], [0, 0.5, 0])],
+      },
+      {
+        pathId: "20",
+        pathKey: 20,
+        charge: "-1",
+        stateFlags: 2,
+        coverageStart: "0",
+        coverageEnd: "2",
+        segments: [inertialSegment(0, 2, [5, 0, 0], [0, 0.5, 0])],
+      },
+    ],
+  };
+}
+
+function createMockEomReplayDataset(presetId, overrides = {}) {
+  return {
+    ...createMockCausalDelayReplayDataset(presetId),
+    runId: `eom:${presetId}`,
+    datasetSource: EOM_REPLAY_DATASET_SOURCE,
+    solverIntegrationPath: EOM_REPLAY_ADAPTER,
+    engineId: "eom-solver",
+    claimGrade: "evolved-record",
+    ...overrides,
+  };
 }
 
 test("causal delay feedback readout summarizes selected path history point", () => {
@@ -649,21 +699,18 @@ test("causal delay feedback reset preset restores the loaded preset state", asyn
   assert.equal(runtime.dataset.draftPreview, undefined);
 });
 
-test("causal delay feedback reset preset reloads the current preset through the central adapter", async () => {
+test("causal delay feedback reset preset reloads the current preset through the eom replay adapter", async () => {
   const replayStatus = new FakeElement();
   const settingsPanel = new FakeElement();
   const settingsButton = new FakeElement();
   const loadedPresets = [];
   const adapter = {
-    id: CENTRAL_SOLVER_REPLAY_ADAPTER,
+    id: EOM_REPLAY_ADAPTER,
     async createReplayAsync({ presetId }) {
       loadedPresets.push(presetId);
-      return {
-        ...createMockCausalDelayReplayDataset(presetId),
-        runId: `central:${presetId}:${loadedPresets.length}`,
-        datasetSource: CENTRAL_SOLVER_REPLAY_DATASET_SOURCE,
-        solverIntegrationPath: CENTRAL_SOLVER_REPLAY_ADAPTER,
-      };
+      return createMockEomReplayDataset(presetId, {
+        runId: `eom:${presetId}:${loadedPresets.length}`,
+      });
     },
   };
   const runtime = createCausalDelayFeedbackRuntime({
@@ -679,18 +726,18 @@ test("causal delay feedback reset preset reloads the current preset through the 
   };
 
   await runtime.setPreset("full_circular_arcs");
-  const firstCentralRunId = runtime.dataset.runId;
+  const firstEomRunId = runtime.dataset.runId;
   runtime.applyRetainedPointDrag("electrino", 2, { x: 28, y: -16 });
 
   await runtime.resetPreset();
 
   assert.deepEqual(loadedPresets, ["full_circular_arcs", "full_circular_arcs"]);
   assert.equal(runtime.presetId, "full_circular_arcs");
-  assert.equal(runtime.dataset.datasetSource, CENTRAL_SOLVER_REPLAY_DATASET_SOURCE);
-  assert.equal(runtime.dataset.solverIntegrationPath, CENTRAL_SOLVER_REPLAY_ADAPTER);
-  assert.notEqual(runtime.dataset.runId, firstCentralRunId);
+  assert.equal(runtime.dataset.datasetSource, EOM_REPLAY_DATASET_SOURCE);
+  assert.equal(runtime.dataset.solverIntegrationPath, EOM_REPLAY_ADAPTER);
+  assert.notEqual(runtime.dataset.runId, firstEomRunId);
   assert.equal(runtime.dataset.draftPreview, undefined);
-  assert.equal(replayStatus.textContent, "solver bridge replay");
+  assert.equal(replayStatus.textContent, "EOM recorded replay");
 });
 
 test("causal delay feedback reduced motion preference starts paused but allows manual play", () => {
@@ -1076,101 +1123,37 @@ test("causal delay feedback aggregate summary omits retained-link invalid root r
   assert.equal(readoutText.some((text) => text.startsWith("why=inactive:")), false);
 });
 
-test("causal delay feedback aggregate summary surfaces compact pair solver diagnostics", () => {
+test("causal delay feedback aggregate summary omits solver constraint telemetry details", () => {
   const { runtime, readout } = createRuntimeForReadout();
-  runtime.dataset = {
-    ...createMockCausalDelayReplayDataset("partial_arcs"),
-    datasetSource: CENTRAL_SOLVER_REPLAY_DATASET_SOURCE,
-    solverIntegrationPath: CENTRAL_SOLVER_REPLAY_ADAPTER,
-    solverReplayMode: CENTRAL_SOLVER_PAIR_INTERACTION_REPLAY_MODE,
+  runtime.dataset = createMockEomReplayDataset("partial_arcs", {
+    // Stale solver-run constraint telemetry (from the retired bridge era) must
+    // no longer surface as readout diagnostics; the viewer draws recorded data
+    // only.
     maxPathConstraintResidual: 0.004,
     pathConstraintFrameRefinementSampleCount: 15,
     pathConstraintGuidanceSampleCount: 12,
     pathConstraintGuidanceMode: "retained_knot_boundary",
-    pathConstraintBoundaryMode: "law_aware_retained_knot_boundary",
-    pathConstraintBoundarySeedMode: "law_aware_retained_knot_boundary_seed",
-    pathConstraintBoundarySeedSampleCount: 18,
     pathConstraintBoundaryRelaxationMode: "finite_difference_frame_relaxation_v1",
     pathConstraintBoundaryRelaxationIterationCount: 8,
-    pathConstraintBoundaryRelaxationAppliedIterationCount: 3,
-    pathConstraintBoundaryRelaxationStopReason: "tolerance_reached",
-    pathConstraintBoundaryRelaxationTolerance: 0.006,
-    pathConstraintBoundaryRelaxationStepTolerance: 0.25,
     pathConstraintBoundaryRelaxationStatus: "converged",
-    pathConstraintBoundaryRelaxationResidualEvidenceStatus: "aggregate_non_worsening",
-    pathConstraintBoundaryRelaxationResidualMode: "causal_delay_pair_law",
-    pathConstraintBoundaryRelaxationResidualRatio: 0.25,
-    rmsPathConstraintBoundaryRelaxationResidualRatio: 0.125,
-    pathConstraintBoundaryRelaxationResidualSettlingRate: 0.6299605249474366,
-    rmsPathConstraintBoundaryRelaxationResidualSettlingRate: 0.5,
-    rmsPathConstraintBoundaryRelaxationResidualAfter: 0.003,
-    pathConstraintBoundaryRelaxationMaxStep: 7.25,
-    pathConstraintBoundaryRelaxationFinalStepFactor: 0.5,
-    pathConstraintBoundaryRelaxationCandidateVariantCount: 14,
-    pathConstraintBoundaryRelaxationLineSearchTrialCount: 112,
-    pathConstraintBoundaryRelaxationCandidateKindMask: 4194302,
     pathConstraintSolverStatus: "discrete_boundary_value_converged",
     pathConstraintSolverClaim: "finite_difference_pair_boundary_value_solve_converged",
-    pathConstraintPhysicalBoundarySolverStatus: "physical_boundary_value_converged",
-    pathConstraintPhysicalBoundarySolverClaim:
-      "discrete_pair_interaction_path_constraint_boundary_value_solve_converged",
     maxPathConstraintGuidanceAcceleration: 48.25,
-    pathConstraintBoundaryResidualSampleCount: 10,
-    pathConstraintBoundaryResidualStatus: "within_tolerance",
-    pathConstraintBoundaryResidualTolerance: 0.02,
-    maxPathConstraintBoundaryResidual: 0.018,
-    pathConstraintInitialVelocityResidualSampleCount: 2,
-    pathConstraintInitialVelocityResidualStatus: "within_tolerance",
-    pathConstraintInitialVelocityResidualTolerance: 0.004,
-    maxPathConstraintInitialVelocityResidual: 0.003,
-  };
+  });
 
   runtime.updateReadout(runtime.createContributionSummaryHit(0.5));
   const readoutText = readout.children.map((child) => child.textContent);
 
-  assert(readoutText.includes("refined=15"));
-  assert(readoutText.includes("guide=retained_knot_boundary"));
-  assert(readoutText.includes("bMode=law_aware_retained_knot_boundary"));
-  assert(readoutText.includes("seed=law_aware_retained_knot_boundary_seed"));
-  assert(readoutText.includes("seedRows=18"));
-  assert(readoutText.includes("relax=finite_difference_frame_relaxation_v1"));
-  assert(readoutText.includes("relaxIter=8"));
-  assert(readoutText.includes("relaxApplied=3"));
-  assert(readoutText.includes("relaxStop=tolerance_reached"));
-  assert(readoutText.includes("relaxTol=0.006"));
-  assert(readoutText.includes("relaxStepTol=0.25"));
-  assert(readoutText.includes("relaxRatio=0.25"));
-  assert(readoutText.includes("relaxRmsRatio=0.125"));
-  assert(readoutText.includes("relaxRate=0.63"));
-  assert(readoutText.includes("relaxRmsRate=0.5"));
-  assert(readoutText.includes("relaxRms=0.003"));
-  assert(readoutText.includes("relaxStep=7.25"));
-  assert(readoutText.includes("relaxFactor=0.5"));
-  assert(readoutText.includes("cand=14"));
-  assert(readoutText.includes("trials=112"));
-  assert(readoutText.includes("mask=0x3ffffe"));
-  assert(readoutText.includes("relaxStatus=converged"));
-  assert(readoutText.includes("relaxEvidence=aggregate_non_worsening"));
-  assert(readoutText.includes("relaxLaw=causal_delay_pair_law"));
-  assert(readoutText.includes("guideRows=12"));
-  assert(readoutText.includes("maxA=48.25"));
-  assert(readoutText.includes("constraint=discrete_boundary_value_converged"));
-  assert(readoutText.includes("claim=finite_difference_pair_boundary_value_solve_converged"));
-  assert(readoutText.includes("physical=physical_boundary_value_converged"));
-  assert(
-    readoutText.includes(
-      "physicalClaim=discrete_pair_interaction_path_constraint_boundary_value_solve_converged",
-    ),
-  );
-  assert(readoutText.includes("boundary=10"));
-  assert(readoutText.includes("maxB=0.018"));
-  assert(readoutText.includes("tolB=0.02"));
-  assert(readoutText.includes("bStatus=within_tolerance"));
-  assert(readoutText.includes("initVelRows=2"));
-  assert(readoutText.includes("initVelErr=0.003"));
-  assert(readoutText.includes("initVelTol=0.004"));
-  assert(readoutText.includes("initVelStatus=within_tolerance"));
-  assert(readoutText.includes("solverResid=0.004"));
+  assert.deepEqual(runtime.createContributionSummarySolverDetails(), []);
+  assert.equal(readout.children[0].textContent, "feedback sum");
+  assert.equal(readoutText.includes("refined=15"), false);
+  assert.equal(readoutText.includes("guide=retained_knot_boundary"), false);
+  assert.equal(readoutText.includes("guideRows=12"), false);
+  assert.equal(readoutText.includes("maxA=48.25"), false);
+  assert.equal(readoutText.includes("solverResid=0.004"), false);
+  assert.equal(readoutText.some((text) => text.startsWith("relax")), false);
+  assert.equal(readoutText.some((text) => text.startsWith("constraint=")), false);
+  assert.equal(readoutText.some((text) => text.startsWith("claim=")), false);
 });
 
 test("causal delay feedback canvas swatches match the iOS reader theme colors", () => {
@@ -1630,24 +1613,59 @@ test("causal delay feedback replay keeps initial conditions synced to path start
   assert.equal("virtualObserver" in runtime.replayRequestOptions, false);
 });
 
-test("causal delay feedback bridge normalization strips stale virtual observer payloads", () => {
-  const source = createMockCausalDelayReplayDataset("accepted_tight_bright");
-  const staleObserver = { kind: "virtualObserver", label: "Virtual Observer", role: "observer", x: 1600, y: 540 };
-  const normalized = normalizeCausalDelayFeedbackBridgeReplay({
-    response: {
-      ...source,
-      datasetId: "stale-virtual-observer-payload",
-      initialConditions: {
-        ...source.initialConditions,
-        virtualObserver: staleObserver,
-      },
-      virtualObserver: staleObserver,
-      geometry: {
-        virtualObserver: staleObserver,
-      },
-    },
+test("causal delay feedback eom normalization projects recorded worldlines onto the canvas", () => {
+  const normalized = normalizeCausalDelayFeedbackEomReplay(createEomRecordFixture(), {
+    presetId: "accepted_tight_bright",
   });
 
+  assert.equal(normalized.runId, "cdf-runtime-eom-fixture");
+  assert.equal(normalized.datasetSource, EOM_REPLAY_DATASET_SOURCE);
+  assert.equal(normalized.solverIntegrationPath, EOM_REPLAY_ADAPTER);
+  assert.equal(normalized.engineId, "eom-solver");
+  assert.equal(normalized.claimGrade, "evolved-record");
+  assert.equal(normalized.evidenceStatus, "canonical");
+  assert.equal(normalized.eomProvenance.runId, "cdf-runtime-eom-fixture");
+  assert.equal(normalized.eomProvenance.claimGrade, "evolved-record");
+  assert.deepEqual(normalized.eomWorldlineRoles, { positrino: "10", electrino: "20" });
+  assert.equal(normalized.preset.id, "accepted_tight_bright");
+  // Both worldlines only move along y, so the display projection picks y.
+  assert.equal(normalized.displayProjection.spaceAxis, "y");
+  assert.deepEqual(normalized.wakeLinks, []);
+
+  ["positrino", "electrino"].forEach((kind) => {
+    const points = normalized.paths[kind];
+    assert.equal(points.length, FRAME_COUNT);
+    assert.equal(points[0].t, 0);
+    assert.equal(points.at(-1).t, 1);
+    assertNear(points[0].x, PATH_TIME_START_X);
+    assertNear(points.at(-1).x, PATH_TIME_END_X);
+  });
+  // Inertial fixture: positrino sits 2 space units above electrino; over the
+  // run each moves +1 space unit, so canvas offsets stay in a 2:1 ratio.
+  const positrinoRise = normalized.paths.positrino[0].y - normalized.paths.positrino.at(-1).y;
+  const pairOffset = normalized.paths.electrino[0].y - normalized.paths.positrino[0].y;
+  assert(positrinoRise > 0);
+  assertNear(pairOffset, 2 * positrinoRise, 1e-6);
+  assertNear(
+    normalized.paths.electrino[0].y - normalized.paths.electrino.at(-1).y,
+    positrinoRise,
+    1e-6,
+  );
+
+  assert.equal(normalized.initialConditions.historyDepth, 6);
+  assert.equal(normalized.initialConditions.positrino.kind, "positrino");
+  assert.equal(normalized.initialConditions.positrino.polarity, "positive");
+  assert.equal(normalized.initialConditions.positrino.role, "source");
+  assert.equal(normalized.initialConditions.positrino.ax, 0);
+  assert.equal(normalized.initialConditions.positrino.ay, 0);
+  assert.equal(normalized.initialConditions.electrino.polarity, "negative");
+  assert.deepEqual(
+    normalized.history.positrino.map((point) => point.depth),
+    [1, 2, 3, 4, 5, 6],
+  );
+  assert.equal(normalized.frames.length, FRAME_COUNT);
+  assert.equal(normalized.frames[0].positrino, normalized.paths.positrino[0]);
+  assert.equal(normalized.frames[0].electrino, normalized.paths.electrino[0]);
   assert.equal("virtualObserver" in normalized, false);
   assert.equal("virtualObserver" in normalized.initialConditions, false);
 });
@@ -1877,17 +1895,12 @@ test("causal delay feedback path line drag can start over removed history point 
   assert.equal(runtime.dragState.kind, "positrino");
 });
 
-test("causal delay feedback runtime loads an async bridge replay over the mock fallback", async () => {
+test("causal delay feedback runtime loads an async eom replay over the mock fallback", async () => {
   const replayStatus = new FakeElement();
   const adapter = {
-    id: CENTRAL_SOLVER_REPLAY_ADAPTER,
+    id: EOM_REPLAY_ADAPTER,
     async createReplayAsync({ presetId }) {
-      return {
-        ...createMockCausalDelayReplayDataset(presetId),
-        runId: `central:${presetId}`,
-        datasetSource: CENTRAL_SOLVER_REPLAY_DATASET_SOURCE,
-        solverIntegrationPath: CENTRAL_SOLVER_REPLAY_ADAPTER,
-      };
+      return createMockEomReplayDataset(presetId);
     },
   };
   const runtime = createCausalDelayFeedbackRuntime({
@@ -1902,385 +1915,107 @@ test("causal delay feedback runtime loads an async bridge replay over the mock f
 
   await runtime.setPreset("full_circular_arcs");
 
-  assert.equal(runtime.dataset.runId, "central:full_circular_arcs");
-  assert.equal(runtime.dataset.datasetSource, CENTRAL_SOLVER_REPLAY_DATASET_SOURCE);
-  assert.equal(runtime.dataset.solverIntegrationPath, CENTRAL_SOLVER_REPLAY_ADAPTER);
+  assert.equal(runtime.dataset.runId, "eom:full_circular_arcs");
+  assert.equal(runtime.dataset.datasetSource, EOM_REPLAY_DATASET_SOURCE);
+  assert.equal(runtime.dataset.solverIntegrationPath, EOM_REPLAY_ADAPTER);
   assert.equal(runtime.replayLoadState, "ready");
   assert.equal(runtime.replayLoadError, null);
-  assert.equal(replayStatus.textContent, "solver bridge replay");
-  assert.equal(replayStatus.dataset.state, "bridge");
+  assert.equal(replayStatus.textContent, "EOM recorded replay");
+  assert.equal(replayStatus.dataset.state, "eom-replay");
+  assert.match(replayStatus.title, /engine=eom-solver/);
+  assert.match(replayStatus.title, /run=eom:full_circular_arcs/);
+  assert.match(replayStatus.title, /claim=evolved-record/);
+  assert.match(replayStatus.title, /computes no physics/);
 });
 
-test("causal delay feedback status distinguishes pair-interaction bridge replay", () => {
+test("causal delay feedback status reports eom replay with full recorded provenance", () => {
   const replayStatus = new FakeElement();
   const runtime = createCausalDelayFeedbackRuntime({
     document: new FakeDocument(),
     window: fakeWindow,
   });
-  runtime.dataset = {
-    ...createMockCausalDelayReplayDataset("partial_arcs"),
-    datasetSource: CENTRAL_SOLVER_REPLAY_DATASET_SOURCE,
-    solverIntegrationPath: CENTRAL_SOLVER_REPLAY_ADAPTER,
-    solverReplayMode: CENTRAL_SOLVER_PAIR_INTERACTION_REPLAY_MODE,
-    pairInteractionStepCount: 179,
-    interactionLaw: "display_pair_attraction_v1",
-    executionPath: "native_c_abi",
-    maxPathConstraintResidual: 0.00125,
-  };
-  runtime.dom = { replayStatus };
-
-  runtime.updateReplayStatus();
-
-  assert.equal(replayStatus.textContent, "solver pair replay");
-  assert.equal(replayStatus.dataset.state, "bridge");
-  assert.match(replayStatus.title, /mutual pair-interaction path run/);
-  assert.match(replayStatus.title, /steps=179/);
-  assert.match(replayStatus.title, /path=native_c_abi/);
-  assert.match(replayStatus.title, /residual=0\.001/);
-  assert.match(replayStatus.title, /display_pair_attraction_v1/);
-});
-
-test("causal delay feedback status distinguishes constraint-guided pair replay", () => {
-  const replayStatus = new FakeElement();
-  const runtime = createCausalDelayFeedbackRuntime({
-    document: new FakeDocument(),
-    window: fakeWindow,
+  runtime.dataset = createMockEomReplayDataset("partial_arcs", {
+    runId: "eom:partial_arcs:full",
+    evidenceStatus: "canonical",
+    eomProvenance: {
+      engineId: "eom-solver",
+      runId: "eom:partial_arcs:full",
+      claimGrade: "evolved-record",
+      evidenceStatus: "canonical",
+      contractId: "eom_evolution_contract/v0",
+    },
+    eomWorldlineRoles: { positrino: "10", electrino: "20" },
   });
-  runtime.dataset = {
-    ...createMockCausalDelayReplayDataset("partial_arcs"),
-    datasetSource: CENTRAL_SOLVER_REPLAY_DATASET_SOURCE,
-    solverIntegrationPath: CENTRAL_SOLVER_REPLAY_ADAPTER,
-    solverReplayMode: CENTRAL_SOLVER_PAIR_INTERACTION_REPLAY_MODE,
-    pairInteractionStepCount: 181,
-    pathConstraintFrameRefinementSampleCount: 15,
-    interactionLaw: "display_pair_attraction_v1",
-    executionPath: "native_c_abi",
-    maxPathConstraintResidual: 0.004,
-    pathConstraintPositionResidualSampleCount: 12,
-    pathConstraintPositionResidualStatus: "within_tolerance",
-    pathConstraintPositionResidualTolerance: 0.003,
-    maxPathConstraintPositionResidual: 0.002,
-    pathConstraintInitialVelocityResidualSampleCount: 2,
-    pathConstraintInitialVelocityResidualStatus: "within_tolerance",
-    pathConstraintInitialVelocityResidualTolerance: 0.004,
-    maxPathConstraintInitialVelocityResidual: 0.003,
-    pathConstraintBoundaryResidualSampleCount: 10,
-    pathConstraintBoundaryResidualStatus: "within_tolerance",
-    pathConstraintBoundaryResidualTolerance: 0.02,
-    maxPathConstraintBoundaryResidual: 0.018,
-    pathConstraintGuidanceSampleCount: 12,
-    pathConstraintGuidanceMode: "retained_knot_boundary",
-    pathConstraintBoundaryMode: "law_aware_retained_knot_boundary",
-    pathConstraintBoundarySeedMode: "law_aware_retained_knot_boundary_seed",
-    pathConstraintBoundarySeedSampleCount: 18,
-    pathConstraintBoundaryRelaxationMode: "finite_difference_frame_relaxation_v1",
-    pathConstraintBoundaryRelaxationIterationCount: 8,
-    pathConstraintBoundaryRelaxationAppliedIterationCount: 3,
-    pathConstraintBoundaryRelaxationStopReason: "tolerance_reached",
-    pathConstraintBoundaryRelaxationTolerance: 0.006,
-    pathConstraintBoundaryRelaxationStatus: "converged",
-    pathConstraintBoundaryRelaxationResidualEvidenceStatus: "aggregate_non_worsening",
-    pathConstraintBoundaryRelaxationResidualMode: "causal_delay_pair_law",
-    pathConstraintBoundaryRelaxationResidualRatio: 0.25,
-    rmsPathConstraintBoundaryRelaxationResidualRatio: 0.125,
-    pathConstraintBoundaryRelaxationResidualSettlingRate: 0.6299605249474366,
-    rmsPathConstraintBoundaryRelaxationResidualSettlingRate: 0.5,
-    rmsPathConstraintBoundaryRelaxationResidualAfter: 0.003,
-    pathConstraintBoundaryRelaxationMaxStep: 7.25,
-    pathConstraintBoundaryRelaxationFinalStepFactor: 0.5,
-    pathConstraintBoundaryRelaxationCandidateVariantCount: 14,
-    pathConstraintBoundaryRelaxationLineSearchTrialCount: 112,
-    pathConstraintBoundaryRelaxationCandidateKindMask: 4194302,
-    pathConstraintSolverStatus: "guided_constraint_path",
-    pathConstraintSolverClaim: "diagnostic_constraint_replay_not_boundary_value_solve",
-    maxPathConstraintGuidanceAcceleration: 48.25,
-    pathConstraintGuidanceAccelerationStatus: "within_tolerance",
-    pathConstraintGuidanceAccelerationTolerance: 50,
-  };
   runtime.dom = { replayStatus };
 
   runtime.updateReplayStatus();
 
-  assert.equal(replayStatus.textContent, "solver guided replay");
-  assert.equal(replayStatus.dataset.state, "bridge-guided");
-  assert.match(replayStatus.title, /refined=15/);
-  assert.match(replayStatus.title, /posRows=12/);
-  assert.match(replayStatus.title, /posErr=0\.002/);
-  assert.match(replayStatus.title, /posTol=0\.003/);
-  assert.match(replayStatus.title, /posStatus=within_tolerance/);
-  assert.match(replayStatus.title, /initVelRows=2/);
-  assert.match(replayStatus.title, /initVelErr=0\.003/);
-  assert.match(replayStatus.title, /initVelTol=0\.004/);
-  assert.match(replayStatus.title, /initVelStatus=within_tolerance/);
-  assert.match(replayStatus.title, /boundary=10/);
-  assert.match(replayStatus.title, /maxB=0\.018/);
-  assert.match(replayStatus.title, /tolB=0\.02/);
-  assert.match(replayStatus.title, /bStatus=within_tolerance/);
-  assert.match(replayStatus.title, /bMode=law_aware_retained_knot_boundary/);
-  assert.match(replayStatus.title, /seed=law_aware_retained_knot_boundary_seed/);
-  assert.match(replayStatus.title, /seedRows=18/);
-  assert.match(replayStatus.title, /relax=finite_difference_frame_relaxation_v1/);
-  assert.match(replayStatus.title, /relaxIter=8/);
-  assert.match(replayStatus.title, /relaxApplied=3/);
-  assert.match(replayStatus.title, /relaxStop=tolerance_reached/);
-  assert.match(replayStatus.title, /relaxTol=0\.006/);
-  assert.match(replayStatus.title, /relaxRatio=0\.25/);
-  assert.match(replayStatus.title, /relaxRmsRatio=0\.125/);
-  assert.match(replayStatus.title, /relaxRate=0\.63/);
-  assert.match(replayStatus.title, /relaxRmsRate=0\.5/);
-  assert.match(replayStatus.title, /relaxStep=7\.25/);
-  assert.match(replayStatus.title, /relaxFactor=0\.5/);
-  assert.match(replayStatus.title, /relaxEvidence=aggregate_non_worsening/);
-  assert.match(replayStatus.title, /relaxLaw=causal_delay_pair_law/);
-  assert.match(replayStatus.title, /cand=14/);
-  assert.match(replayStatus.title, /trials=112/);
-  assert.match(replayStatus.title, /mask=0x3ffffe/);
-  assert.match(replayStatus.title, /relaxStatus=converged/);
-  assert.match(replayStatus.title, /guidance=12/);
-  assert.match(replayStatus.title, /mode=retained_knot_boundary/);
-  assert.match(replayStatus.title, /maxA=48\.25/);
-  assert.match(replayStatus.title, /tolA=50/);
-  assert.match(replayStatus.title, /aStatus=within_tolerance/);
-  assert.match(replayStatus.title, /constraint=guided_constraint_path/);
-  assert.match(replayStatus.title, /claim=diagnostic_constraint_replay_not_boundary_value_solve/);
-  assert.match(replayStatus.title, /retained-knot boundary guidance/);
-  assert.match(replayStatus.title, /not yet the final physical boundary-value path solve/);
-});
-
-test("causal delay feedback status names skipped boundary relaxation", () => {
-  const replayStatus = new FakeElement();
-  const runtime = createCausalDelayFeedbackRuntime({
-    document: new FakeDocument(),
-    window: fakeWindow,
-  });
-  runtime.dataset = {
-    ...createMockCausalDelayReplayDataset("partial_arcs"),
-    datasetSource: CENTRAL_SOLVER_REPLAY_DATASET_SOURCE,
-    solverIntegrationPath: CENTRAL_SOLVER_REPLAY_ADAPTER,
-    solverReplayMode: CENTRAL_SOLVER_PAIR_INTERACTION_REPLAY_MODE,
-    pairInteractionStepCount: 181,
-    interactionLaw: "display_pair_attraction_v1",
-    executionPath: "native_c_abi",
-    pathConstraintGuidanceSampleCount: 12,
-    pathConstraintGuidanceMode: "retained_knot_boundary",
-    pathConstraintBoundaryRelaxationMode: "finite_difference_frame_relaxation_v1",
-    pathConstraintBoundaryRelaxationIterationCount: 0,
-    pathConstraintBoundaryRelaxationAppliedIterationCount: 0,
-    pathConstraintBoundaryRelaxationStopReason: "not_requested",
-    pathConstraintBoundaryRelaxationStatus: "not_requested",
-    pathConstraintSolverStatus: "guided_constraint_path",
-    pathConstraintSolverClaim: "diagnostic_constraint_replay_not_boundary_value_solve",
-  };
-  runtime.dom = { replayStatus };
-
-  runtime.updateReplayStatus();
-
-  assert.equal(replayStatus.textContent, "solver guided replay");
-  assert.equal(replayStatus.dataset.state, "bridge-guided");
-  assert.match(replayStatus.title, /relaxIter=0/);
-  assert.match(replayStatus.title, /relaxApplied=0/);
-  assert.match(replayStatus.title, /relaxStop=not_requested/);
-  assert.match(replayStatus.title, /relaxStatus=not_requested/);
-  assert.match(replayStatus.title, /not yet the final physical boundary-value path solve/);
-});
-
-test("causal delay feedback status distinguishes boundary-seeded diagnostic replay", () => {
-  const replayStatus = new FakeElement();
-  const runtime = createCausalDelayFeedbackRuntime({
-    document: new FakeDocument(),
-    window: fakeWindow,
-  });
-  runtime.dataset = {
-    ...createMockCausalDelayReplayDataset("partial_arcs"),
-    datasetSource: CENTRAL_SOLVER_REPLAY_DATASET_SOURCE,
-    solverIntegrationPath: CENTRAL_SOLVER_REPLAY_ADAPTER,
-    solverReplayMode: CENTRAL_SOLVER_PAIR_INTERACTION_REPLAY_MODE,
-    pairInteractionStepCount: 181,
-    interactionLaw: "display_pair_attraction_v1",
-    executionPath: "native_c_abi",
-    maxPathConstraintResidual: 0.004,
-    pathConstraintPositionResidualSampleCount: 12,
-    pathConstraintPositionResidualStatus: "within_tolerance",
-    maxPathConstraintPositionResidual: 0,
-    pathConstraintGuidanceSampleCount: 0,
-    pathConstraintBoundaryMode: "law_aware_retained_knot_boundary",
-    pathConstraintBoundarySeedMode: "law_aware_retained_knot_boundary_seed",
-    pathConstraintBoundarySeedSampleCount: 18,
-    pathConstraintBoundaryRelaxationMode: "finite_difference_frame_relaxation_v1",
-    pathConstraintBoundaryRelaxationIterationCount: 8,
-    pathConstraintBoundaryRelaxationAppliedIterationCount: 8,
-    pathConstraintBoundaryRelaxationStopReason: "iteration_budget_exhausted",
-    pathConstraintBoundaryRelaxationStatus: "accepted",
-    pathConstraintBoundaryRelaxationResidualEvidenceStatus: "aggregate_non_worsening",
-    pathConstraintBoundaryRelaxationResidualRatio: 0.01,
-    rmsPathConstraintBoundaryRelaxationResidualRatio: 0.02,
-    rmsPathConstraintBoundaryRelaxationResidualAfter: 0.0003,
-    pathConstraintSolverStatus: "boundary_seeded_constraint_path",
-    pathConstraintSolverClaim: "diagnostic_constraint_replay_not_boundary_value_solve",
-    pathConstraintPhysicalBoundarySolverStatus: "physical_boundary_solver_pending",
-    pathConstraintPhysicalBoundarySolverClaim: "retained_knot_guidance_not_physical_boundary_value_solve",
-    pathConstraintPhysicalBoundarySolverBlockingReason: "finite_difference_boundary_relaxation_not_converged",
-    maxPathConstraintGuidanceAcceleration: 0,
-  };
-  runtime.dom = { replayStatus };
-
-  runtime.updateReplayStatus();
-
-  assert.equal(replayStatus.textContent, "solver boundary-seed replay");
-  assert.equal(replayStatus.dataset.state, "bridge-boundary-seed");
-  assert.match(replayStatus.title, /seed=law_aware_retained_knot_boundary_seed/);
-  assert.match(replayStatus.title, /seedRows=18/);
-  assert.match(replayStatus.title, /relaxStatus=accepted/);
-  assert.match(replayStatus.title, /relaxEvidence=aggregate_non_worsening/);
-  assert.match(replayStatus.title, /constraint=boundary_seeded_constraint_path/);
-  assert.match(replayStatus.title, /physical=physical_boundary_solver_pending/);
-  assert.match(replayStatus.title, /physicalWhy=finite_difference_boundary_relaxation_not_converged/);
-  assert.match(replayStatus.title, /Retained path constraints were reseeded from the retained-knot boundary/);
-  assert.match(replayStatus.title, /not yet the final physical boundary-value path solve/);
-});
-
-test("causal delay feedback status distinguishes converged discrete boundary replay", () => {
-  const replayStatus = new FakeElement();
-  const runtime = createCausalDelayFeedbackRuntime({
-    document: new FakeDocument(),
-    window: fakeWindow,
-  });
-  runtime.dataset = {
-    ...createMockCausalDelayReplayDataset("partial_arcs"),
-    datasetSource: CENTRAL_SOLVER_REPLAY_DATASET_SOURCE,
-    solverIntegrationPath: CENTRAL_SOLVER_REPLAY_ADAPTER,
-    solverReplayMode: CENTRAL_SOLVER_PAIR_INTERACTION_REPLAY_MODE,
-    pairInteractionStepCount: 181,
-    interactionLaw: "display_pair_attraction_v1",
-    executionPath: "native_c_abi",
-    maxPathConstraintResidual: 0.004,
-    pathConstraintPositionResidualSampleCount: 12,
-    pathConstraintPositionResidualStatus: "within_tolerance",
-    pathConstraintPositionResidualTolerance: 0.003,
-    maxPathConstraintPositionResidual: 0.002,
-    pathConstraintBoundaryResidualSampleCount: 10,
-    pathConstraintBoundaryResidualStatus: "within_tolerance",
-    pathConstraintBoundaryResidualTolerance: 0.02,
-    maxPathConstraintBoundaryResidual: 0.018,
-    pathConstraintGuidanceSampleCount: 12,
-    pathConstraintGuidanceMode: "retained_knot_boundary",
-    pathConstraintBoundaryMode: "law_aware_retained_knot_boundary",
-    pathConstraintBoundarySeedMode: "law_aware_retained_knot_boundary_seed",
-    pathConstraintBoundarySeedSampleCount: 18,
-    pathConstraintBoundaryRelaxationMode: "finite_difference_frame_relaxation_v1",
-    pathConstraintBoundaryRelaxationIterationCount: 8,
-    pathConstraintBoundaryRelaxationAppliedIterationCount: 3,
-    pathConstraintBoundaryRelaxationStopReason: "tolerance_reached",
-    pathConstraintBoundaryRelaxationTolerance: 0.006,
-    pathConstraintBoundaryRelaxationStatus: "converged",
-    pathConstraintBoundaryRelaxationResidualEvidenceStatus: "aggregate_non_worsening",
-    pathConstraintBoundaryRelaxationResidualRatio: 0.25,
-    rmsPathConstraintBoundaryRelaxationResidualRatio: 0.125,
-    pathConstraintBoundaryRelaxationResidualSettlingRate: 0.6299605249474366,
-    rmsPathConstraintBoundaryRelaxationResidualSettlingRate: 0.5,
-    rmsPathConstraintBoundaryRelaxationResidualAfter: 0.003,
-    pathConstraintSolverStatus: "discrete_boundary_value_converged",
-    pathConstraintSolverClaim: "finite_difference_pair_boundary_value_solve_converged",
-    pathConstraintPhysicalBoundarySolverStatus: "physical_boundary_value_converged",
-    pathConstraintPhysicalBoundarySolverClaim:
-      "discrete_pair_interaction_path_constraint_boundary_value_solve_converged",
-    maxPathConstraintGuidanceAcceleration: 48.25,
-  };
-  runtime.dom = { replayStatus };
-
-  runtime.updateReplayStatus();
-
-  assert.equal(replayStatus.textContent, "solver boundary replay");
-  assert.equal(replayStatus.dataset.state, "bridge-boundary");
-  assert.match(replayStatus.title, /seed=law_aware_retained_knot_boundary_seed/);
-  assert.match(replayStatus.title, /seedRows=18/);
-  assert.match(replayStatus.title, /posRows=12/);
-  assert.match(replayStatus.title, /posErr=0\.002/);
-  assert.match(replayStatus.title, /posTol=0\.003/);
-  assert.match(replayStatus.title, /posStatus=within_tolerance/);
-  assert.match(replayStatus.title, /relaxStop=tolerance_reached/);
-  assert.match(replayStatus.title, /relaxRmsRatio=0\.125/);
-  assert.match(replayStatus.title, /relaxRate=0\.63/);
-  assert.match(replayStatus.title, /relaxRmsRate=0\.5/);
-  assert.match(replayStatus.title, /relaxStatus=converged/);
-  assert.match(replayStatus.title, /relaxEvidence=aggregate_non_worsening/);
-  assert.match(replayStatus.title, /constraint=discrete_boundary_value_converged/);
-  assert.match(replayStatus.title, /claim=finite_difference_pair_boundary_value_solve_converged/);
-  assert.match(replayStatus.title, /physical=physical_boundary_value_converged/);
-  assert.match(
-    replayStatus.title,
-    /physicalClaim=discrete_pair_interaction_path_constraint_boundary_value_solve_converged/,
-  );
-  assert.match(replayStatus.title, /bStatus=within_tolerance/);
-  assert.match(replayStatus.title, /converged against the discrete finite-difference pair equation/);
-  assert.match(replayStatus.title, /solver-owned discrete physical boundary-value solve/);
-  assert.match(
-    replayStatus.title,
-    /physical pair-interaction\/path-constraint boundary-value solver converged/,
-  );
-  assert.doesNotMatch(replayStatus.title, /not the full physical/);
-  assert.doesNotMatch(replayStatus.title, /still pending/);
-});
-
-test("causal delay feedback status flags unchecked boundary residual acceptance on boundary replay", () => {
-  const replayStatus = new FakeElement();
-  const runtime = createCausalDelayFeedbackRuntime({
-    document: new FakeDocument(),
-    window: fakeWindow,
-  });
-  runtime.dataset = {
-    ...createMockCausalDelayReplayDataset("partial_arcs"),
-    datasetSource: CENTRAL_SOLVER_REPLAY_DATASET_SOURCE,
-    solverIntegrationPath: CENTRAL_SOLVER_REPLAY_ADAPTER,
-    solverReplayMode: CENTRAL_SOLVER_PAIR_INTERACTION_REPLAY_MODE,
-    pathConstraintGuidanceSampleCount: 12,
-    pathConstraintGuidanceMode: "retained_knot_boundary",
-    pathConstraintBoundaryRelaxationMode: "finite_difference_frame_relaxation_v1",
-    pathConstraintBoundaryRelaxationIterationCount: 8,
-    pathConstraintBoundaryRelaxationStopReason: "tolerance_reached",
-    pathConstraintBoundaryRelaxationTolerance: 0.006,
-    pathConstraintBoundaryRelaxationStatus: "converged",
-    pathConstraintSolverStatus: "discrete_boundary_value_converged",
-    pathConstraintSolverClaim: "finite_difference_pair_boundary_value_solve_converged",
-  };
-  runtime.dom = { replayStatus };
-
-  runtime.updateReplayStatus();
-
-  assert.equal(replayStatus.textContent, "solver boundary replay");
-  assert.equal(replayStatus.dataset.state, "bridge-boundary");
-  assert.match(replayStatus.title, /posStatus=unchecked/);
-  assert.match(replayStatus.title, /bStatus=unchecked/);
-  assert.match(replayStatus.title, /Retained-position preservation evidence remains unchecked/);
-  assert.match(replayStatus.title, /Retained-knot boundary residual acceptance remains unchecked/);
-  assert.match(replayStatus.title, /not the full physical pair-interaction\/path-constraint boundary-value solver/);
-});
-
-test("causal delay feedback status distinguishes pair-initial seeded bridge replay", () => {
-  const replayStatus = new FakeElement();
-  const runtime = createCausalDelayFeedbackRuntime({
-    document: new FakeDocument(),
-    window: fakeWindow,
-  });
-  runtime.dataset = {
-    ...createMockCausalDelayReplayDataset("partial_arcs"),
-    datasetSource: CENTRAL_SOLVER_REPLAY_DATASET_SOURCE,
-    solverIntegrationPath: CENTRAL_SOLVER_REPLAY_ADAPTER,
-    motionAccelerationPolicy: "pair_initial_attraction_seed",
-    pairAccelerationScale: 0.18,
-  };
-  runtime.dom = { replayStatus };
-
-  runtime.updateReplayStatus();
-
-  assert.equal(replayStatus.textContent, "solver seed replay");
-  assert.equal(replayStatus.dataset.state, "bridge-seed");
-  assert.match(replayStatus.title, /pair_initial_attraction_seed/);
-  assert.match(replayStatus.title, /not the final full pair-interaction path solver/);
+  assert.equal(replayStatus.textContent, "EOM recorded replay");
+  assert.equal(replayStatus.dataset.state, "eom-replay");
+  assert.match(replayStatus.title, /engine=eom-solver/);
+  assert.match(replayStatus.title, /run=eom:partial_arcs:full/);
+  assert.match(replayStatus.title, /claim=evolved-record/);
+  assert.match(replayStatus.title, /evidence=canonical/);
+  assert.match(replayStatus.title, /worldlines=10\/20/);
+  assert.match(replayStatus.title, /draws recorded data only; it computes no physics/);
   assert.equal(replayStatus.attributes["aria-label"], replayStatus.title);
 });
 
-test("causal delay feedback status distinguishes segmented pair seeded bridge replay", () => {
+test("causal delay feedback status falls back to dataset-level eom provenance fields", () => {
+  const replayStatus = new FakeElement();
+  const runtime = createCausalDelayFeedbackRuntime({
+    document: new FakeDocument(),
+    window: fakeWindow,
+  });
+  runtime.dataset = createMockEomReplayDataset("partial_arcs", {
+    runId: "eom:partial_arcs:flat",
+  });
+  runtime.dom = { replayStatus };
+
+  runtime.updateReplayStatus();
+
+  assert.equal(replayStatus.textContent, "EOM recorded replay");
+  assert.equal(replayStatus.dataset.state, "eom-replay");
+  assert.match(replayStatus.title, /engine=eom-solver/);
+  assert.match(replayStatus.title, /run=eom:partial_arcs:flat/);
+  assert.match(replayStatus.title, /claim=evolved-record/);
+  assert.doesNotMatch(replayStatus.title, /evidence=/);
+  assert.doesNotMatch(replayStatus.title, /worldlines=/);
+  assert.match(replayStatus.title, /draws recorded data only; it computes no physics/);
+});
+
+test("causal delay feedback status ignores legacy solver telemetry on eom datasets", () => {
+  const replayStatus = new FakeElement();
+  const runtime = createCausalDelayFeedbackRuntime({
+    document: new FakeDocument(),
+    window: fakeWindow,
+  });
+  runtime.dataset = createMockEomReplayDataset("partial_arcs", {
+    runId: "eom:partial_arcs:legacy",
+    pairInteractionStepCount: 181,
+    interactionLaw: "display_pair_attraction_v1",
+    executionPath: "native_c_abi",
+    pathConstraintGuidanceSampleCount: 12,
+    pathConstraintGuidanceMode: "retained_knot_boundary",
+    pathConstraintBoundaryRelaxationMode: "finite_difference_frame_relaxation_v1",
+    pathConstraintBoundaryRelaxationStatus: "converged",
+    pathConstraintSolverStatus: "guided_constraint_path",
+    pathConstraintSolverClaim: "diagnostic_constraint_replay_not_boundary_value_solve",
+  });
+  runtime.dom = { replayStatus };
+
+  runtime.updateReplayStatus();
+
+  assert.equal(replayStatus.textContent, "EOM recorded replay");
+  assert.equal(replayStatus.dataset.state, "eom-replay");
+  assert.doesNotMatch(replayStatus.title, /steps=/);
+  assert.doesNotMatch(replayStatus.title, /relax/);
+  assert.doesNotMatch(replayStatus.title, /constraint=/);
+  assert.doesNotMatch(replayStatus.title, /pair-interaction/);
+  assert.match(replayStatus.title, /draws recorded data only; it computes no physics/);
+});
+
+test("causal delay feedback status reports plain recorded replay for non-eom recorded datasets", () => {
   const replayStatus = new FakeElement();
   const runtime = createCausalDelayFeedbackRuntime({
     document: new FakeDocument(),
@@ -2288,9 +2023,81 @@ test("causal delay feedback status distinguishes segmented pair seeded bridge re
   });
   runtime.dataset = {
     ...createMockCausalDelayReplayDataset("partial_arcs"),
-    datasetSource: CENTRAL_SOLVER_REPLAY_DATASET_SOURCE,
-    solverIntegrationPath: CENTRAL_SOLVER_REPLAY_ADAPTER,
-    motionAccelerationPolicy: "pair_segmented_attraction_seed",
+    solverIntegrationPath: "archived_replay_adapter",
+  };
+  runtime.dom = { replayStatus };
+
+  runtime.updateReplayStatus();
+
+  assert.equal(replayStatus.textContent, "recorded replay");
+  assert.equal(replayStatus.dataset.state, "recorded");
+  assert.equal(replayStatus.title, "Showing a recorded replay dataset.");
+  assert.equal(replayStatus.attributes["aria-label"], replayStatus.title);
+});
+
+test("causal delay feedback recorded replay status ignores legacy path-constraint telemetry", () => {
+  const replayStatus = new FakeElement();
+  const runtime = createCausalDelayFeedbackRuntime({
+    document: new FakeDocument(),
+    window: fakeWindow,
+  });
+  runtime.dataset = {
+    ...createMockCausalDelayReplayDataset("partial_arcs"),
+    solverIntegrationPath: "archived_replay_adapter",
+    solverReplayMode: "pair-interaction-path",
+    pairInteractionStepCount: 181,
+    interactionLaw: "display_pair_attraction_v1",
+    executionPath: "native_c_abi",
+    maxPathConstraintResidual: 0.004,
+    pathConstraintBoundarySeedSampleCount: 18,
+    pathConstraintBoundaryRelaxationStatus: "converged",
+    pathConstraintSolverStatus: "discrete_boundary_value_converged",
+    pathConstraintSolverClaim: "finite_difference_pair_boundary_value_solve_converged",
+    pathConstraintPhysicalBoundarySolverStatus: "physical_boundary_value_converged",
+  };
+  runtime.dom = { replayStatus };
+
+  runtime.updateReplayStatus();
+
+  assert.equal(replayStatus.textContent, "recorded replay");
+  assert.equal(replayStatus.dataset.state, "recorded");
+  assert.equal(replayStatus.title, "Showing a recorded replay dataset.");
+  assert.doesNotMatch(replayStatus.title, /constraint=|relax|seedRows=|physical=/);
+});
+
+test("causal delay feedback status fills missing eom provenance with viewer defaults", () => {
+  const replayStatus = new FakeElement();
+  const runtime = createCausalDelayFeedbackRuntime({
+    document: new FakeDocument(),
+    window: fakeWindow,
+  });
+  runtime.dataset = {
+    ...createMockCausalDelayReplayDataset("partial_arcs"),
+    datasetSource: EOM_REPLAY_DATASET_SOURCE,
+    solverIntegrationPath: EOM_REPLAY_ADAPTER,
+    runId: undefined,
+  };
+  runtime.dom = { replayStatus };
+
+  runtime.updateReplayStatus();
+
+  assert.equal(replayStatus.textContent, "EOM recorded replay");
+  assert.equal(replayStatus.dataset.state, "eom-replay");
+  assert.match(replayStatus.title, /engine=eom-solver/);
+  assert.match(replayStatus.title, /run= claim=/);
+  assert.match(replayStatus.title, /draws recorded data only; it computes no physics/);
+});
+
+test("causal delay feedback status treats legacy motion-policy datasets as plain recorded replay", () => {
+  const replayStatus = new FakeElement();
+  const runtime = createCausalDelayFeedbackRuntime({
+    document: new FakeDocument(),
+    window: fakeWindow,
+  });
+  runtime.dataset = {
+    ...createMockCausalDelayReplayDataset("partial_arcs"),
+    solverIntegrationPath: "archived_replay_adapter",
+    motionAccelerationPolicy: "pair_initial_attraction_seed",
     pairAccelerationScale: 0.18,
     pairSegmentCount: 12,
   };
@@ -2298,26 +2105,37 @@ test("causal delay feedback status distinguishes segmented pair seeded bridge re
 
   runtime.updateReplayStatus();
 
-  assert.equal(replayStatus.textContent, "solver seed replay");
-  assert.equal(replayStatus.dataset.state, "bridge-seed");
-  assert.match(replayStatus.title, /pair_segmented_attraction_seed/);
-  assert.match(replayStatus.title, /segments=12/);
-  assert.match(replayStatus.title, /segmented pair-interaction approximation/);
+  assert.equal(replayStatus.textContent, "recorded replay");
+  assert.equal(replayStatus.dataset.state, "recorded");
+  assert.doesNotMatch(replayStatus.title, /pair_initial_attraction_seed|segments=/);
+  assert.equal(replayStatus.attributes["aria-label"], replayStatus.title);
 });
 
-test("causal delay feedback contrast stress preset stays representative under central bridge", async () => {
+test("causal delay feedback eom replay adapter rejects draft-preview recompute requests", async () => {
+  const adapter = createCausalDelayFeedbackEomReplayAdapter({ record: createEomRecordFixture() });
+
+  assert.equal(adapter.id, EOM_REPLAY_ADAPTER);
+  await assert.rejects(
+    adapter.createReplayAsync({
+      presetId: "accepted_tight_bright",
+      requestOptions: { replayDataset: { draftPreview: { reason: "retained_point_drag_preview" } } },
+    }),
+    /recorded solver output; canvas edits cannot be recomputed/,
+  );
+
+  const dataset = await adapter.createReplayAsync({ presetId: "accepted_tight_bright" });
+  assert.equal(dataset.datasetSource, EOM_REPLAY_DATASET_SOURCE);
+  assert.equal(dataset.runId, "cdf-runtime-eom-fixture");
+});
+
+test("causal delay feedback contrast stress preset stays representative under eom replay", async () => {
   const replayStatus = new FakeElement();
-  let centralCalls = 0;
+  let eomCalls = 0;
   const adapter = {
-    id: CENTRAL_SOLVER_REPLAY_ADAPTER,
+    id: EOM_REPLAY_ADAPTER,
     async createReplayAsync({ presetId }) {
-      centralCalls += 1;
-      return {
-        ...createMockCausalDelayReplayDataset(presetId),
-        runId: `central:${presetId}`,
-        datasetSource: CENTRAL_SOLVER_REPLAY_DATASET_SOURCE,
-        solverIntegrationPath: CENTRAL_SOLVER_REPLAY_ADAPTER,
-      };
+      eomCalls += 1;
+      return createMockEomReplayDataset(presetId);
     },
   };
   const runtime = createCausalDelayFeedbackRuntime({
@@ -2333,7 +2151,7 @@ test("causal delay feedback contrast stress preset stays representative under ce
   await runtime.loadReplay();
   const statuses = runtime.dataset.wakeLinks.map((link) => runtime.getWakeStatus(link).status);
 
-  assert.equal(centralCalls, 0);
+  assert.equal(eomCalls, 0);
   assert.equal(runtime.dataset.preset.id, "contrast_stress");
   assert.equal(runtime.dataset.datasetSource, REPRESENTATIVE_MOCK_SOLVER_REPLAY);
   assert.equal(runtime.dataset.solverIntegrationPath, TEMPORARY_MOCK_ADAPTER);
@@ -2346,10 +2164,10 @@ test("causal delay feedback contrast stress preset stays representative under ce
   assert(statuses.includes("rejected"));
 });
 
-test("causal delay feedback runtime keeps the mock replay when bridge replay loading fails", async () => {
+test("causal delay feedback runtime keeps the mock replay when eom replay loading fails", async () => {
   const replayStatus = new FakeElement();
   const adapter = {
-    id: CENTRAL_SOLVER_REPLAY_ADAPTER,
+    id: EOM_REPLAY_ADAPTER,
     async createReplayAsync() {
       throw new Error("solver client missing");
     },
@@ -2376,7 +2194,7 @@ test("causal delay feedback rejected direct edit preserves the draft and reports
   const replayStatus = new FakeElement();
   const readout = new FakeElement();
   const adapter = {
-    id: CENTRAL_SOLVER_REPLAY_ADAPTER,
+    id: EOM_REPLAY_ADAPTER,
     async createReplayAsync() {
       throw new Error("edited position outside solver domain");
     },
@@ -2414,7 +2232,7 @@ test("causal delay feedback rejected direct edit preserves the draft and reports
 test("causal delay feedback runtime ignores stale async replay responses", async () => {
   const pending = [];
   const adapter = {
-    id: CENTRAL_SOLVER_REPLAY_ADAPTER,
+    id: EOM_REPLAY_ADAPTER,
     createReplayAsync({ presetId }) {
       return new Promise((resolve) => {
         pending.push({ presetId, resolve });
@@ -2431,43 +2249,45 @@ test("causal delay feedback runtime ignores stale async replay responses", async
   const firstLoad = runtime.loadReplay({ presetId: "accepted_tight_bright" });
   const secondLoad = runtime.loadReplay({ presetId: "full_circular_arcs" });
 
-  pending[1].resolve({
-    ...createMockCausalDelayReplayDataset("full_circular_arcs"),
-    runId: "newer-central-dataset",
-    datasetSource: CENTRAL_SOLVER_REPLAY_DATASET_SOURCE,
-    solverIntegrationPath: CENTRAL_SOLVER_REPLAY_ADAPTER,
-  });
+  pending[1].resolve(createMockEomReplayDataset("full_circular_arcs", { runId: "newer-eom-dataset" }));
   await secondLoad;
 
-  pending[0].resolve({
-    ...createMockCausalDelayReplayDataset("accepted_tight_bright"),
-    runId: "older-central-dataset",
-    datasetSource: CENTRAL_SOLVER_REPLAY_DATASET_SOURCE,
-    solverIntegrationPath: CENTRAL_SOLVER_REPLAY_ADAPTER,
-  });
+  pending[0].resolve(createMockEomReplayDataset("accepted_tight_bright", { runId: "older-eom-dataset" }));
   await firstLoad;
 
-  assert.equal(runtime.dataset.runId, "newer-central-dataset");
+  assert.equal(runtime.dataset.runId, "newer-eom-dataset");
   assert.equal(runtime.dataset.preset.id, "full_circular_arcs");
 });
 
-test("causal delay feedback page uses central replay by default with a mock escape hatch", () => {
-  assert.equal(shouldUseCentralBridgeReplay(fakeWindow), true);
+test("causal delay feedback page uses eom replay by default with a mock escape hatch", () => {
+  assert.equal(shouldUseEomReplay(fakeWindow), true);
   assert.equal(
-    shouldUseCentralBridgeReplay({
+    shouldUseEomReplay({
       location: { href: "http://localhost/causal-delay-feedback.html?replay=central" },
     }),
     true,
   );
   assert.equal(
-    shouldUseCentralBridgeReplay({
+    shouldUseEomReplay({
       location: { href: "http://localhost/causal-delay-feedback.html?solver=central" },
     }),
     true,
   );
   assert.equal(
-    shouldUseCentralBridgeReplay({
+    shouldUseEomReplay({
       location: { href: "http://localhost/causal-delay-feedback.html?replay=mock" },
+    }),
+    false,
+  );
+  assert.equal(
+    shouldUseEomReplay({
+      location: { href: "http://localhost/causal-delay-feedback.html?solver=off" },
+    }),
+    false,
+  );
+  assert.equal(
+    shouldUseEomReplay({
+      location: { href: "http://localhost/causal-delay-feedback.html?adapter=temporary_mock_adapter" },
     }),
     false,
   );
@@ -2477,168 +2297,131 @@ test("causal delay feedback page uses central replay by default with a mock esca
     location: { href: "http://localhost/causal-delay-feedback.html?replay=mock" },
   });
 
-  const centralRuntime = createCausalDelayFeedbackRuntimeForPage({
+  const eomRuntime = createCausalDelayFeedbackRuntimeForPage({
     location: { href: "http://localhost/causal-delay-feedback.html?adapter=bridge" },
   });
 
-  assert.equal(defaultRuntime.replayAdapter.id, CENTRAL_SOLVER_REPLAY_ADAPTER);
+  assert.equal(defaultRuntime.replayAdapter.id, EOM_REPLAY_ADAPTER);
   assert.equal(mockRuntime.replayAdapter.id, TEMPORARY_MOCK_ADAPTER);
-  assert.equal(centralRuntime.replayAdapter.id, CENTRAL_SOLVER_REPLAY_ADAPTER);
-  assert.equal(centralRuntime.dataset.datasetSource, "representative_mock_solver_replay");
+  assert.equal(eomRuntime.replayAdapter.id, EOM_REPLAY_ADAPTER);
+  assert.equal(eomRuntime.dataset.datasetSource, "representative_mock_solver_replay");
 });
 
-test("causal delay feedback page accepts central motion replay review URLs", () => {
+test("causal delay feedback page builds eom replay options from scope and record URLs", async () => {
+  const scopeOptions = { record: createEomRecordFixture() };
   assert.equal(
-    getCentralBridgeReplayMode(fakeWindow, { defaultMode: CENTRAL_SOLVER_PAIR_INTERACTION_REPLAY_MODE }),
-    CENTRAL_SOLVER_PAIR_INTERACTION_REPLAY_MODE,
-  );
-  assert.equal(
-    getCentralBridgeReplayMode({
-      location: {
-        href: "http://localhost/causal-delay-feedback.html?replay=central",
-      },
-    }, { defaultMode: CENTRAL_SOLVER_PAIR_INTERACTION_REPLAY_MODE }),
-    CENTRAL_SOLVER_PAIR_INTERACTION_REPLAY_MODE,
-  );
-  assert.equal(
-    getCentralBridgeReplayMode({
-      location: {
-        href: "http://localhost/causal-delay-feedback.html?replay=central&solverReplay=pair-interaction",
-      },
+    createCausalDelayFeedbackEomReplayOptions({
+      location: { href: "http://localhost/causal-delay-feedback.html" },
+      ARCHITRINO_CAUSAL_DELAY_FEEDBACK_EOM_REPLAY: scopeOptions,
     }),
-    CENTRAL_SOLVER_PAIR_INTERACTION_REPLAY_MODE,
+    scopeOptions,
   );
-  assert.equal(
-    getCentralBridgeReplayMode({
-      location: {
-        href: "http://localhost/causal-delay-feedback.html?replay=central&solverReplay=motion",
-      },
-    }),
-    CENTRAL_SOLVER_MOTION_REPLAY_MODE,
-  );
-  assert.equal(
-    getCentralBridgeReplayMode({
-      location: {
-        href: "http://localhost/causal-delay-feedback.html?replay=central&replayMode=motion-simulation",
-      },
-    }),
-    CENTRAL_SOLVER_MOTION_REPLAY_MODE,
-  );
-  assert.equal(
-    getCentralBridgeReplayMode(fakeWindow, { defaultMode: CENTRAL_SOLVER_MOTION_REPLAY_MODE }),
-    CENTRAL_SOLVER_MOTION_REPLAY_MODE,
-  );
-  assert.equal(
-    getCentralBridgeReplayMode({
-      location: {
-        href: "http://localhost/causal-delay-feedback.html?replay=central&solverReplay=app-playback",
-      },
-    }),
-    CENTRAL_SOLVER_APP_PLAYBACK_REPLAY_MODE,
-  );
+  assert.deepEqual(createCausalDelayFeedbackEomReplayOptions(fakeWindow), {});
+
+  const fetchCalls = [];
+  const fetchedOptions = createCausalDelayFeedbackEomReplayOptions({
+    location: {
+      href: "http://localhost/causal-delay-feedback.html?eomRecord=https://records.test/run.json",
+    },
+    async fetch(url) {
+      fetchCalls.push(url);
+      return {
+        ok: true,
+        async json() {
+          return { runId: "fetched-eom-record" };
+        },
+      };
+    },
+  });
+  assert.equal(typeof fetchedOptions.loadEomRecord, "function");
+  const fetchedRecord = await fetchedOptions.loadEomRecord({});
+  assert.deepEqual(fetchCalls, ["https://records.test/run.json"]);
+  assert.equal(fetchedRecord.runId, "fetched-eom-record");
+
+  const failingOptions = createCausalDelayFeedbackEomReplayOptions({
+    location: {
+      href: "http://localhost/causal-delay-feedback.html?eomRecord=https://records.test/missing.json",
+    },
+    async fetch() {
+      return { ok: false, status: 404 };
+    },
+  });
+  await assert.rejects(failingOptions.loadEomRecord({}), /EOM record fetch failed \(404\)/);
 });
 
-test("causal delay feedback page accepts central motion policy review URL options", () => {
+test("causal delay feedback page accepts eom replay review URL options", () => {
   const options = createCausalDelayFeedbackInitialReplayRequestOptions({
     location: {
       href:
-        "http://localhost/causal-delay-feedback.html?motionPolicy=pair_initial_attraction_seed" +
-        "&pairSegmentCount=5.8&pairAccelerationScale=0.22" +
-        "&pairInteractionSignalSpeed=1234.5" +
-        "&pairInteractionLaw=inverse_distance_pair_attraction_v1" +
-        "&solverFrameCount=18000.9" +
-        "&pathConstraintBoundaryResidualTolerance=0.015" +
-        "&pathConstraintPositionResidualTolerance=0.003" +
-        "&pathConstraintGuidanceAccelerationTolerance=0.45" +
-        "&pathConstraintInitialVelocityResidualTolerance=0.004" +
-        "&pathConstraintBoundaryRelaxationIterationCount=12.9" +
-        "&pathConstraintBoundaryRelaxationTolerance=0.006" +
-        "&pathConstraintBoundaryRelaxationStepTolerance=0.25",
+        "http://localhost/causal-delay-feedback.html?solverFrameCount=18000.9" +
+        "&historyDepth=9.7&spaceAxis=y&positrinoWorldline=10&electrinoWorldline=20",
     },
   });
-
-  assert.equal(options.motionAccelerationPolicy, "pair_initial_attraction_seed");
-  assert.equal(options.pairSegmentCount, 5);
-  assert.equal(options.pairAccelerationScale, 0.22);
-  assert.equal(options.pairInteractionSignalSpeed, 1234.5);
-  assert.equal(options.pairInteractionLaw, "inverse_distance_pair_attraction_v1");
-  assert.equal(options.frameCount, 18000);
-  assert.equal(options.pathConstraintBoundaryResidualTolerance, 0.015);
-  assert.equal(options.pathConstraintPositionResidualTolerance, 0.003);
-  assert.equal(options.pathConstraintGuidanceAccelerationTolerance, 0.45);
-  assert.equal(options.pathConstraintInitialVelocityResidualTolerance, 0.004);
-  assert.equal(options.pathConstraintBoundaryRelaxationIterationCount, 12);
-  assert.equal(options.pathConstraintBoundaryRelaxationTolerance, 0.006);
-  assert.equal(options.pathConstraintBoundaryRelaxationStepTolerance, 0.25);
-});
-
-test("causal delay feedback page leaves absent boundary tuning unset", () => {
-  const defaultOptions = createCausalDelayFeedbackInitialReplayRequestOptions({
-    location: { href: "http://localhost/causal-delay-feedback.html?replay=central" },
-  });
-  const explicitZeroOptions = createCausalDelayFeedbackInitialReplayRequestOptions({
+  const preferredFrameCountOptions = createCausalDelayFeedbackInitialReplayRequestOptions({
     location: {
-      href:
-        "http://localhost/causal-delay-feedback.html?replay=central&boundaryResidualTolerance=0" +
-        "&positionResidualTolerance=0&guidanceAccelerationTolerance=0&initialVelocityResidualTolerance=0" +
-        "&boundaryRelaxationIterations=0&boundaryRelaxationTolerance=0&boundaryRelaxationStepTolerance=0",
+      href: "http://localhost/causal-delay-feedback.html?frameCount=120.6&solverFrameCount=999",
     },
   });
 
-  assert.equal(defaultOptions.pathConstraintBoundaryResidualTolerance, undefined);
-  assert.equal(defaultOptions.pathConstraintPositionResidualTolerance, undefined);
-  assert.equal(defaultOptions.pathConstraintGuidanceAccelerationTolerance, undefined);
-  assert.equal(defaultOptions.pathConstraintInitialVelocityResidualTolerance, undefined);
-  assert.equal(defaultOptions.pathConstraintBoundaryRelaxationIterationCount, undefined);
-  assert.equal(defaultOptions.pathConstraintBoundaryRelaxationTolerance, undefined);
-  assert.equal(defaultOptions.pathConstraintBoundaryRelaxationStepTolerance, undefined);
-  assert.equal(explicitZeroOptions.pathConstraintBoundaryResidualTolerance, 0);
-  assert.equal(explicitZeroOptions.pathConstraintPositionResidualTolerance, 0);
-  assert.equal(explicitZeroOptions.pathConstraintGuidanceAccelerationTolerance, 0);
-  assert.equal(explicitZeroOptions.pathConstraintInitialVelocityResidualTolerance, 0);
-  assert.equal(explicitZeroOptions.pathConstraintBoundaryRelaxationIterationCount, 0);
-  assert.equal(explicitZeroOptions.pathConstraintBoundaryRelaxationTolerance, 0);
-  assert.equal(explicitZeroOptions.pathConstraintBoundaryRelaxationStepTolerance, 0);
+  assert.deepEqual(options, {
+    frameCount: 18000,
+    historyDepth: 9,
+    spaceAxis: "y",
+    positrinoWorldlineId: "10",
+    electrinoWorldlineId: "20",
+  });
+  assert.equal(preferredFrameCountOptions.frameCount, 120);
 });
 
-test("causal delay feedback solver bridge options resolve the default WASM loader path", () => {
-  const createWasmModule = () => ({});
-  const scope = {
-    location: { href: "http://localhost/causal-delay-feedback.html?replay=central" },
-    createArchitrinoSolverSmoke: createWasmModule,
-  };
+test("causal delay feedback page leaves absent replay request options unset", () => {
+  const defaultOptions = createCausalDelayFeedbackInitialReplayRequestOptions(fakeWindow);
+  const clampedOptions = createCausalDelayFeedbackInitialReplayRequestOptions({
+    location: {
+      href: "http://localhost/causal-delay-feedback.html?frameCount=1&historyDepth=1",
+    },
+  });
+  const invalidOptions = createCausalDelayFeedbackInitialReplayRequestOptions({
+    location: {
+      href: "http://localhost/causal-delay-feedback.html?frameCount=0&historyDepth=-3&spaceAxis=",
+    },
+  });
 
-  const options = createCausalDelayFeedbackSolverBridgeOptions(scope);
-
-  assert.equal(options.scope, scope);
-  assert.equal(options.createWasmModule, createWasmModule);
-  assert.equal(options.wasmBaseUrl, createCausalDelayFeedbackDefaultSolverWasmBaseUrl());
-  assert.equal(
-    options.locateFile("architrino_solver_wasm_smoke.wasm"),
-    `${new URL("architrino_solver_wasm_smoke.wasm", options.wasmBaseUrl).href}?v=causal-delay-feedback-solver-wasm-v1`,
-  );
-  assert.match(
-    createCausalDelayFeedbackDefaultSolverWasmLoaderUrl(),
-    /\/\.tmp\/solver-build\/wasm\/architrino_solver_wasm_smoke\.mjs$/,
-  );
+  assert.deepEqual(defaultOptions, {});
+  assert.equal(clampedOptions.frameCount, 2);
+  assert.equal(clampedOptions.historyDepth, 2);
+  assert.deepEqual(invalidOptions, {});
 });
 
-test("causal delay feedback page central replay uses configured bridge options from scope", async () => {
+test("causal delay feedback eom replay adapter requires a recorded dataset", async () => {
+  const emptyAdapter = createCausalDelayFeedbackEomReplayAdapter();
+
+  await assert.rejects(
+    emptyAdapter.createReplayAsync({ presetId: "accepted_tight_bright" }),
+    /requires a recorded eom_evolution_contract\/v0 dataset/,
+  );
+
+  const loaderContexts = [];
+  const loaderAdapter = createCausalDelayFeedbackEomReplayAdapter({
+    async loadEomRecord(context) {
+      loaderContexts.push(context);
+      return createEomRecordFixture();
+    },
+  });
+  const dataset = await loaderAdapter.createReplayAsync({ presetId: "accepted_tight_bright" });
+
+  assert.equal(loaderContexts.length, 1);
+  assert.equal(loaderContexts[0].presetId, "accepted_tight_bright");
+  assert.equal(dataset.datasetSource, EOM_REPLAY_DATASET_SOURCE);
+  assert.equal(dataset.solverIntegrationPath, EOM_REPLAY_ADAPTER);
+  assert.equal(dataset.runId, "cdf-runtime-eom-fixture");
+});
+
+test("causal delay feedback page eom replay uses configured record from scope", async () => {
   const replayStatus = new FakeElement();
-  let capturedRequest = null;
   const windowLike = {
-    location: { href: "http://localhost/causal-delay-feedback.html?replay=central&solverReplay=app-playback" },
-    ARCHITRINO_CAUSAL_DELAY_FEEDBACK_SOLVER_BRIDGE_OPTIONS: {
-      async runSolverBridge(request) {
-        capturedRequest = request;
-        return {
-          response: {
-            ...createMockCausalDelayReplayDataset(request.config.presetId),
-            runId: "configured-central-bridge-replay",
-            datasetId: "configured-central-bridge-dataset",
-          },
-        };
-      },
+    location: { href: "http://localhost/causal-delay-feedback.html" },
+    ARCHITRINO_CAUSAL_DELAY_FEEDBACK_EOM_REPLAY: {
+      record: createEomRecordFixture(),
     },
   };
   const runtime = createCausalDelayFeedbackRuntimeForPage(windowLike);
@@ -2646,14 +2429,19 @@ test("causal delay feedback page central replay uses configured bridge options f
 
   await runtime.loadReplay();
 
-  assert.equal(capturedRequest.appId, "causal-delay-feedback");
-  assert.equal(capturedRequest.runKind, "appPlayback");
-  assert.equal(runtime.dataset.runId, "configured-central-bridge-replay");
-  assert.equal(runtime.dataset.datasetId, "configured-central-bridge-dataset");
-  assert.equal(runtime.dataset.datasetSource, CENTRAL_SOLVER_REPLAY_DATASET_SOURCE);
+  assert.equal(runtime.replayAdapter.id, EOM_REPLAY_ADAPTER);
+  assert.equal(runtime.dataset.datasetSource, EOM_REPLAY_DATASET_SOURCE);
+  assert.equal(runtime.dataset.solverIntegrationPath, EOM_REPLAY_ADAPTER);
+  assert.equal(runtime.dataset.runId, "cdf-runtime-eom-fixture");
+  assert.equal(runtime.dataset.engineId, "eom-solver");
+  assert.equal(runtime.dataset.claimGrade, "evolved-record");
+  assert.deepEqual(runtime.dataset.eomWorldlineRoles, { positrino: "10", electrino: "20" });
+  assert.deepEqual(runtime.dataset.wakeLinks, []);
   assert.equal(runtime.replayLoadState, "ready");
-  assert.equal(replayStatus.textContent, "solver bridge replay");
-  assert.equal(replayStatus.dataset.state, "bridge");
+  assert.equal(replayStatus.textContent, "EOM recorded replay");
+  assert.equal(replayStatus.dataset.state, "eom-replay");
+  assert.match(replayStatus.title, /run=cdf-runtime-eom-fixture/);
+  assert.match(replayStatus.title, /evidence=canonical/);
 });
 
 test("causal delay feedback wake fronts and receiver markers synchronize for every retained link", () => {
@@ -3769,19 +3557,16 @@ test("causal delay feedback initial velocity drag updates setup and bends the pr
   assert.equal(replayStatus.textContent, "draft preview");
 });
 
-test("causal delay feedback point 1 release reruns central replay with edited setup", async () => {
+test("causal delay feedback point 1 release reruns eom replay with edited setup", async () => {
   const replayStatus = new FakeElement();
   let capturedRequestOptions = null;
   const adapter = {
-    id: CENTRAL_SOLVER_REPLAY_ADAPTER,
+    id: EOM_REPLAY_ADAPTER,
     async createReplayAsync({ presetId, requestOptions }) {
       capturedRequestOptions = requestOptions;
-      return {
-        ...createMockCausalDelayReplayDataset(presetId),
+      return createMockEomReplayDataset(presetId, {
         initialConditions: requestOptions.initialConditions,
-        datasetSource: CENTRAL_SOLVER_REPLAY_DATASET_SOURCE,
-        solverIntegrationPath: CENTRAL_SOLVER_REPLAY_ADAPTER,
-      };
+      });
     },
   };
   const runtime = createCausalDelayFeedbackRuntime({
@@ -3801,25 +3586,22 @@ test("causal delay feedback point 1 release reruns central replay with edited se
   assert.equal(capturedRequestOptions.replayDataset.draftPreview.reason, "retained_point_drag_preview");
   assert.equal(capturedRequestOptions.pathConstraintBoundaryRelaxationIterationCount, 256);
   assert.equal(capturedRequestOptions.pathConstraintBoundaryRelaxationTolerance, 1);
-  assert.equal(runtime.dataset.datasetSource, CENTRAL_SOLVER_REPLAY_DATASET_SOURCE);
-  assert.equal(replayStatus.textContent, "solver bridge replay");
+  assert.equal(runtime.dataset.datasetSource, EOM_REPLAY_DATASET_SOURCE);
+  assert.equal(replayStatus.textContent, "EOM recorded replay");
 });
 
-test("causal delay feedback final path point release submits central replay constraints", async () => {
+test("causal delay feedback final path point release submits replay constraints", async () => {
   const replayStatus = new FakeElement();
   let capturedRequestOptions = null;
   const adapter = {
-    id: CENTRAL_SOLVER_REPLAY_ADAPTER,
+    id: EOM_REPLAY_ADAPTER,
     async createReplayAsync({ presetId, requestOptions }) {
       capturedRequestOptions = requestOptions;
-      return {
-        ...createMockCausalDelayReplayDataset(presetId),
+      return createMockEomReplayDataset(presetId, {
         history: requestOptions.replayDataset.history,
         wakeLinks: requestOptions.replayDataset.wakeLinks,
         initialConditions: requestOptions.initialConditions,
-        datasetSource: CENTRAL_SOLVER_REPLAY_DATASET_SOURCE,
-        solverIntegrationPath: CENTRAL_SOLVER_REPLAY_ADAPTER,
-      };
+      });
     },
   };
   const runtime = createCausalDelayFeedbackRuntime({
@@ -3839,25 +3621,22 @@ test("causal delay feedback final path point release submits central replay cons
   assert.equal(capturedRequestOptions.replayDataset.history.electrino.at(-1).x, runtime.dataset.history.electrino.at(-1).x);
   assert.equal(capturedRequestOptions.pathConstraintBoundaryRelaxationIterationCount, 256);
   assert.equal(capturedRequestOptions.pathConstraintBoundaryRelaxationTolerance, 1);
-  assert.equal(runtime.dataset.datasetSource, CENTRAL_SOLVER_REPLAY_DATASET_SOURCE);
-  assert.equal(replayStatus.textContent, "solver bridge replay");
+  assert.equal(runtime.dataset.datasetSource, EOM_REPLAY_DATASET_SOURCE);
+  assert.equal(replayStatus.textContent, "EOM recorded replay");
 });
 
-test("causal delay feedback path line release submits central replay constraints", async () => {
+test("causal delay feedback path line release submits replay constraints", async () => {
   const replayStatus = new FakeElement();
   let capturedRequestOptions = null;
   const adapter = {
-    id: CENTRAL_SOLVER_REPLAY_ADAPTER,
+    id: EOM_REPLAY_ADAPTER,
     async createReplayAsync({ presetId, requestOptions }) {
       capturedRequestOptions = requestOptions;
-      return {
-        ...createMockCausalDelayReplayDataset(presetId),
+      return createMockEomReplayDataset(presetId, {
         history: requestOptions.replayDataset.history,
         wakeLinks: requestOptions.replayDataset.wakeLinks,
         initialConditions: requestOptions.initialConditions,
-        datasetSource: CENTRAL_SOLVER_REPLAY_DATASET_SOURCE,
-        solverIntegrationPath: CENTRAL_SOLVER_REPLAY_ADAPTER,
-      };
+      });
     },
   };
   const runtime = createCausalDelayFeedbackRuntime({
@@ -3876,14 +3655,14 @@ test("causal delay feedback path line release submits central replay constraints
   assert.equal(capturedRequestOptions.replayDataset.draftPreview.reason, "path_line_drag_preview");
   assert.equal(capturedRequestOptions.pathConstraintBoundaryRelaxationIterationCount, 256);
   assert.equal(capturedRequestOptions.pathConstraintBoundaryRelaxationTolerance, 1);
-  assert.equal(runtime.dataset.datasetSource, CENTRAL_SOLVER_REPLAY_DATASET_SOURCE);
-  assert.equal(replayStatus.textContent, "solver bridge replay");
+  assert.equal(runtime.dataset.datasetSource, EOM_REPLAY_DATASET_SOURCE);
+  assert.equal(replayStatus.textContent, "EOM recorded replay");
 });
 
 test("causal delay feedback path line release keeps the smooth released draft geometry", async () => {
   const replayStatus = new FakeElement();
   const adapter = {
-    id: CENTRAL_SOLVER_REPLAY_ADAPTER,
+    id: EOM_REPLAY_ADAPTER,
     async createReplayAsync({ presetId }) {
       const dataset = createMockCausalDelayReplayDataset(presetId);
       dataset.paths.positrino = dataset.paths.positrino.map((point, index) => ({
@@ -3896,8 +3675,8 @@ test("causal delay feedback path line release keeps the smooth released draft ge
       }));
       return {
         ...dataset,
-        datasetSource: CENTRAL_SOLVER_REPLAY_DATASET_SOURCE,
-        solverIntegrationPath: CENTRAL_SOLVER_REPLAY_ADAPTER,
+        datasetSource: EOM_REPLAY_DATASET_SOURCE,
+        solverIntegrationPath: EOM_REPLAY_ADAPTER,
       };
     },
   };
@@ -3916,21 +3695,21 @@ test("causal delay feedback path line release keeps the smooth released draft ge
   runtime.dragState = { type: "path-line", kind: "positrino", anchorT: anchor.t, didEdit: true };
   await runtime.finishDrag();
 
-  assert.equal(runtime.dataset.datasetSource, CENTRAL_SOLVER_REPLAY_DATASET_SOURCE);
+  assert.equal(runtime.dataset.datasetSource, EOM_REPLAY_DATASET_SOURCE);
   assert(runtime.dataset.solverAcceptedPaths);
   assert.notEqual(runtime.dataset.solverAcceptedPaths.positrino[anchorIndex].y, releasedAnchor.y);
   assertNear(runtime.dataset.paths.positrino[anchorIndex].x, releasedAnchor.x);
   assertNear(runtime.dataset.paths.positrino[anchorIndex].y, releasedAnchor.y);
   assertNear(runtime.dataset.frames[anchorIndex].positrino.x, releasedAnchor.x);
   assertNear(runtime.dataset.frames[anchorIndex].positrino.y, releasedAnchor.y);
-  assert.equal(replayStatus.textContent, "solver bridge replay");
+  assert.equal(replayStatus.textContent, "EOM recorded replay");
 });
 
 test("causal delay feedback retained path releases retry weak default boundary solves", async () => {
   const replayStatus = new FakeElement();
   const capturedCalls = [];
   const adapter = {
-    id: CENTRAL_SOLVER_REPLAY_ADAPTER,
+    id: EOM_REPLAY_ADAPTER,
     async createReplayAsync({ presetId, requestOptions }) {
       capturedCalls.push({
         iterationCount: requestOptions.pathConstraintBoundaryRelaxationIterationCount,
@@ -3938,14 +3717,10 @@ test("causal delay feedback retained path releases retry weak default boundary s
         reason: requestOptions.replayDataset.draftPreview.reason,
       });
       const isAdaptiveRetry = capturedCalls.length === 2;
-      return {
-        ...createMockCausalDelayReplayDataset(presetId),
+      return createMockEomReplayDataset(presetId, {
         history: requestOptions.replayDataset.history,
         wakeLinks: requestOptions.replayDataset.wakeLinks,
         initialConditions: requestOptions.initialConditions,
-        datasetSource: CENTRAL_SOLVER_REPLAY_DATASET_SOURCE,
-        solverIntegrationPath: CENTRAL_SOLVER_REPLAY_ADAPTER,
-        solverReplayMode: CENTRAL_SOLVER_PAIR_INTERACTION_REPLAY_MODE,
         pairInteractionStepCount: 181,
         pathConstraintGuidanceSampleCount: 6,
         pathConstraintGuidanceMode: "retained_knot_boundary",
@@ -3964,7 +3739,7 @@ test("causal delay feedback retained path releases retry weak default boundary s
           ? "finite_difference_pair_boundary_value_solve_converged"
           : "diagnostic_constraint_replay_not_boundary_value_solve",
         maxPathConstraintBoundaryRelaxationResidualAfter: isAdaptiveRetry ? 0.42 : 12.5,
-      };
+      });
     },
   };
   const runtime = createCausalDelayFeedbackRuntime({
@@ -3992,19 +3767,17 @@ test("causal delay feedback retained path releases retry weak default boundary s
   assert.equal(runtime.dataset.pathConstraintBoundaryRelaxationRetryIterationCount, 256);
   assert.equal(runtime.dataset.pathConstraintBoundaryRelaxationRetryTolerance, 1);
   assert.equal(runtime.dataset.maxPathConstraintBoundaryRelaxationResidualAfter, 0.42);
-  assert.equal(replayStatus.textContent, "solver boundary replay");
-  assert.match(replayStatus.title, /adaptiveRetry=64->256/);
-  assert.match(replayStatus.title, /firstTol=10/);
-  assert.match(replayStatus.title, /firstResidual=12\.5/);
-  assert(runtime.createContributionSummarySolverDetails().includes("relaxRetry=64->256"));
-  assert(runtime.createContributionSummarySolverDetails().includes("firstResidual=12.5"));
+  assert.equal(replayStatus.textContent, "EOM recorded replay");
+  assert.equal(replayStatus.dataset.state, "eom-replay");
+  assert.doesNotMatch(replayStatus.title, /adaptiveRetry=|firstTol=|firstResidual=/);
+  assert.deepEqual(runtime.createContributionSummarySolverDetails(), []);
 });
 
 test("causal delay feedback retained path releases keep first solve when adaptive retry worsens", async () => {
   const replayStatus = new FakeElement();
   const capturedCalls = [];
   const adapter = {
-    id: CENTRAL_SOLVER_REPLAY_ADAPTER,
+    id: EOM_REPLAY_ADAPTER,
     async createReplayAsync({ presetId, requestOptions }) {
       capturedCalls.push({
         iterationCount: requestOptions.pathConstraintBoundaryRelaxationIterationCount,
@@ -4012,14 +3785,10 @@ test("causal delay feedback retained path releases keep first solve when adaptiv
         reason: requestOptions.replayDataset.draftPreview.reason,
       });
       const isAdaptiveRetry = capturedCalls.length === 2;
-      return {
-        ...createMockCausalDelayReplayDataset(presetId),
+      return createMockEomReplayDataset(presetId, {
         history: requestOptions.replayDataset.history,
         wakeLinks: requestOptions.replayDataset.wakeLinks,
         initialConditions: requestOptions.initialConditions,
-        datasetSource: CENTRAL_SOLVER_REPLAY_DATASET_SOURCE,
-        solverIntegrationPath: CENTRAL_SOLVER_REPLAY_ADAPTER,
-        solverReplayMode: CENTRAL_SOLVER_PAIR_INTERACTION_REPLAY_MODE,
         pairInteractionStepCount: 181,
         pathConstraintGuidanceSampleCount: 6,
         pathConstraintGuidanceMode: "retained_knot_boundary",
@@ -4034,7 +3803,7 @@ test("causal delay feedback retained path releases keep first solve when adaptiv
         pathConstraintSolverStatus: "guided_constraint_path",
         pathConstraintSolverClaim: "diagnostic_constraint_replay_not_boundary_value_solve",
         maxPathConstraintBoundaryRelaxationResidualAfter: isAdaptiveRetry ? 30 : 8,
-      };
+      });
     },
   };
   const runtime = createCausalDelayFeedbackRuntime({
@@ -4065,29 +3834,24 @@ test("causal delay feedback retained path releases keep first solve when adaptiv
   assert.equal(runtime.dataset.maxPathConstraintBoundaryRelaxationResidualAfterRejectedRetry, 30);
   assert.equal(runtime.dataset.pathConstraintSolverStatusRejectedRetry, "guided_constraint_path");
   assert.equal(runtime.dataset.maxPathConstraintBoundaryRelaxationResidualAfter, 8);
-  assert.equal(replayStatus.textContent, "solver guided replay");
-  assert.match(replayStatus.title, /adaptiveRetryRejected=64->256/);
-  assert.match(replayStatus.title, /retryTol=1/);
-  assert.match(replayStatus.title, /retryResidual=30/);
-  assert(runtime.createContributionSummarySolverDetails().includes("relaxRetryRejected=64->256"));
-  assert(runtime.createContributionSummarySolverDetails().includes("retryResidual=30"));
+  assert.equal(replayStatus.textContent, "EOM recorded replay");
+  assert.equal(replayStatus.dataset.state, "eom-replay");
+  assert.doesNotMatch(replayStatus.title, /adaptiveRetryRejected=|retryTol=|retryResidual=/);
+  assert.deepEqual(runtime.createContributionSummarySolverDetails(), []);
 });
 
 test("causal delay feedback retained path releases preserve explicit boundary relaxation settings", async () => {
   let capturedRequestOptions = null;
   let callCount = 0;
   const adapter = {
-    id: CENTRAL_SOLVER_REPLAY_ADAPTER,
+    id: EOM_REPLAY_ADAPTER,
     async createReplayAsync({ presetId, requestOptions }) {
       callCount += 1;
       capturedRequestOptions = requestOptions;
-      return {
-        ...createMockCausalDelayReplayDataset(presetId),
+      return createMockEomReplayDataset(presetId, {
         history: requestOptions.replayDataset.history,
         wakeLinks: requestOptions.replayDataset.wakeLinks,
-        datasetSource: CENTRAL_SOLVER_REPLAY_DATASET_SOURCE,
-        solverIntegrationPath: CENTRAL_SOLVER_REPLAY_ADAPTER,
-      };
+      });
     },
   };
   const runtime = createCausalDelayFeedbackRuntime({
@@ -4112,19 +3876,16 @@ test("causal delay feedback retained path releases preserve explicit boundary re
   assert.equal(callCount, 1);
 });
 
-test("causal delay feedback retained depth survives central replay reruns", async () => {
+test("causal delay feedback retained depth survives eom replay reruns", async () => {
   const replayStatus = new FakeElement();
   let capturedRequestOptions = null;
   const adapter = {
-    id: CENTRAL_SOLVER_REPLAY_ADAPTER,
+    id: EOM_REPLAY_ADAPTER,
     async createReplayAsync({ presetId, requestOptions }) {
       capturedRequestOptions = requestOptions;
-      return {
-        ...createMockCausalDelayReplayDataset(presetId),
+      return createMockEomReplayDataset(presetId, {
         initialConditions: requestOptions.initialConditions,
-        datasetSource: CENTRAL_SOLVER_REPLAY_DATASET_SOURCE,
-        solverIntegrationPath: CENTRAL_SOLVER_REPLAY_ADAPTER,
-      };
+      });
     },
   };
   const runtime = createCausalDelayFeedbackRuntime({
@@ -4144,22 +3905,19 @@ test("causal delay feedback retained depth survives central replay reruns", asyn
   assert.equal(runtime.retainedDepthLimit, 2);
   assert.equal(runtime.getVisibleWakeLinks().length, 2);
   assert.equal(runtime.dataset.initialConditions.electrino.x, capturedRequestOptions.initialConditions.electrino.x);
-  assert.equal(runtime.dataset.datasetSource, CENTRAL_SOLVER_REPLAY_DATASET_SOURCE);
+  assert.equal(runtime.dataset.datasetSource, EOM_REPLAY_DATASET_SOURCE);
 });
 
-test("causal delay feedback initial velocity release reruns central replay with edited setup", async () => {
+test("causal delay feedback initial velocity release reruns eom replay with edited setup", async () => {
   const replayStatus = new FakeElement();
   let capturedRequestOptions = null;
   const adapter = {
-    id: CENTRAL_SOLVER_REPLAY_ADAPTER,
+    id: EOM_REPLAY_ADAPTER,
     async createReplayAsync({ presetId, requestOptions }) {
       capturedRequestOptions = requestOptions;
-      return {
-        ...createMockCausalDelayReplayDataset(presetId),
+      return createMockEomReplayDataset(presetId, {
         initialConditions: requestOptions.initialConditions,
-        datasetSource: CENTRAL_SOLVER_REPLAY_DATASET_SOURCE,
-        solverIntegrationPath: CENTRAL_SOLVER_REPLAY_ADAPTER,
-      };
+      });
     },
   };
   const runtime = createCausalDelayFeedbackRuntime({
@@ -4184,9 +3942,9 @@ test("causal delay feedback initial velocity release reruns central replay with 
   assert.equal(capturedRequestOptions.replayDataset.datasetSource, DIRECT_MANIPULATION_DRAFT_PREVIEW);
   assert.equal(capturedRequestOptions.pathConstraintBoundaryRelaxationIterationCount, undefined);
   assert.equal(capturedRequestOptions.pathConstraintBoundaryRelaxationTolerance, undefined);
-  assert.equal(runtime.dataset.datasetSource, CENTRAL_SOLVER_REPLAY_DATASET_SOURCE);
+  assert.equal(runtime.dataset.datasetSource, EOM_REPLAY_DATASET_SOURCE);
   assert.equal(runtime.replayLoadState, "ready");
-  assert.equal(replayStatus.textContent, "solver bridge replay");
+  assert.equal(replayStatus.textContent, "EOM recorded replay");
 });
 
 test("causal delay feedback no-op retained point drag does not mark a draft preview", () => {

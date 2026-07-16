@@ -328,7 +328,7 @@ The triadic $120^\circ$ phase profile gives exact phase-only cyclic cancellation
 
 ## Sampled Solver Row Population
 
-[tri-binary-offset-family-runner.mjs](../../../../scripts/angular-momentum/tri-binary-offset-family-runner.mjs) is the current CLI harness for the frequency-candidate solver and now emits `aaa-tri-binary-frequency-candidate-solver-report.v76`. The v76 report exposes raw search labels `B_1:B_2:B_3`, emits `I:M:O` only as a role-assigned chart projection after a retained role map is supplied, and retains outer-normalized forms only as translation metadata. The solver includes an `iso-frequency` policy and an iso-frequency phase-profile catalog for the common-frequency relation `(f_1,f_2,f_3)=(f,f,f)`. The sampled replay
+tri-binary-offset-family-runner.mjs (retired script: `scripts/angular-momentum/tri-binary-offset-family-runner.mjs`) is the current CLI harness for the frequency-candidate solver and now emits `aaa-tri-binary-frequency-candidate-solver-report.v76`. The v76 report exposes raw search labels `B_1:B_2:B_3`, emits `I:M:O` only as a role-assigned chart projection after a retained role map is supplied, and retains outer-normalized forms only as translation metadata. The solver includes an `iso-frequency` policy and an iso-frequency phase-profile catalog for the common-frequency relation `(f_1,f_2,f_3)=(f,f,f)`. The sampled replay
 
 ```sh
 node scripts/angular-momentum/tri-binary-offset-family-runner.mjs --policy all --f-min 2 --f-max 8 --output .tmp/angular-momentum-spin/frequency-candidate-current-report-v76.json

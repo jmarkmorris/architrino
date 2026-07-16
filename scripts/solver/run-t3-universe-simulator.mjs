@@ -2,18 +2,13 @@
 
 import fs from "node:fs";
 import path from "node:path";
-import { pathToFileURL } from "node:url";
 
-import {
-  createSolverAppBridgeClient,
-  SOLVER_APP_BRIDGE_API_VERSION,
-} from "../../src/solver/app/SolverAppBridge.mjs";
 import {
   createCollisionDetector,
   createSoftSphereRepulsionInteraction,
   createT3UniverseSimulator,
   writeT3ExperimentOutput,
-} from "../../src/solver/t3/index.mjs";
+} from "../../src/t3/index.mjs";
 
 const options = parseArgs(process.argv.slice(2));
 if (options.help) {
@@ -23,8 +18,7 @@ if (options.help) {
 const config = loadConfig(options);
 const interactions = createInteractions(options, config);
 const eventDetectors = createEventDetectors(options);
-const solverClient = await createSolverClient(options, config);
-const simulator = createT3UniverseSimulator({ config, interactions, eventDetectors, solverClient });
+const simulator = createT3UniverseSimulator({ config, interactions, eventDetectors });
 const runResult = await simulator.run({
   steps: options.steps ?? config.steps ?? 100,
   sampleEvery: options.sampleEvery ?? config.output?.sampleEvery ?? 1,
@@ -62,8 +56,6 @@ function parseArgs(rawArgs) {
     collisionRadius: null,
     sampleEvery: null,
     trajectory: true,
-    solverEngine: "solver",
-    wasmLoader: null,
   };
   for (let index = 0; index < rawArgs.length; index += 1) {
     const arg = rawArgs[index];
@@ -119,15 +111,6 @@ function parseArgs(rawArgs) {
       index += 1;
     } else if (arg === "--no-trajectory") {
       parsed.trajectory = false;
-    } else if (arg === "--solver-engine") {
-      parsed.solverEngine = requireNext(rawArgs, index, arg);
-      if (!["solver", "reference"].includes(parsed.solverEngine)) {
-        throw new TypeError("--solver-engine must be solver or reference");
-      }
-      index += 1;
-    } else if (arg === "--wasm-loader") {
-      parsed.wasmLoader = requireNext(rawArgs, index, arg);
-      index += 1;
     } else {
       console.error(`Unknown argument: ${arg}`);
       printUsage(2);
@@ -157,42 +140,13 @@ function loadConfig(options) {
       interactionRadius: options.interactionRadius,
     },
     solver: {
-      engine: options.solverEngine,
+      engine: "reference",
       timestep: options.timestep,
     },
     output: {
       sampleEvery: options.sampleEvery,
     },
   });
-}
-
-async function createSolverClient(options, config) {
-  const engine = config.solver?.engine ?? "solver";
-  if (engine !== "solver") {
-    return null;
-  }
-  if (!options.wasmLoader) {
-    throw new TypeError(
-      "solver engine requires --wasm-loader pointing at the existing solver WebAssembly loader; use --solver-engine reference for the local reference fallback"
-    );
-  }
-  const loaderUrl = pathToFileURL(path.resolve(options.wasmLoader)).href;
-  const loader = await import(loaderUrl);
-  const createWasmModule = loader.default ?? loader.createModule ?? loader.Module;
-  if (typeof createWasmModule !== "function") {
-    throw new TypeError(`WASM loader ${options.wasmLoader} does not export a module factory`);
-  }
-  const client = createSolverAppBridgeClient({
-    createWasmModule,
-    locateFile(fileName) {
-      return path.join(path.dirname(path.resolve(options.wasmLoader)), fileName);
-    },
-  });
-  await client.init({
-    appId: "animator",
-    apiVersion: SOLVER_APP_BRIDGE_API_VERSION,
-  });
-  return client;
 }
 
 function mergeConfig(base, override) {
@@ -296,8 +250,6 @@ Options:
   --interaction <preset>      none or soft-repulsion.
   --collision-radius <value>  Emit collision-radius events.
   --sample-every <count>      Trajectory sampling interval.
-  --solver-engine <engine>    solver or reference. Default: solver.
-  --wasm-loader <path>        Existing solver WebAssembly loader for --solver-engine solver.
   --no-trajectory             Skip trajectory JSONL output.
   --help                      Show this message.
 `);

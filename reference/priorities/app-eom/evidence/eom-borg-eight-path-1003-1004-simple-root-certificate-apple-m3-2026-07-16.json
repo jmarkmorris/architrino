@@ -1,0 +1,128 @@
+{
+  "schema": "eom_borg_off_diagonal_simple_root_certificate/v0",
+  "date": "2026-07-16",
+  "authority": "executable_adjudication_not_canonical_eom_evidence",
+  "question": "Does ordered pair 1003<-1004 undergo a delayed-root topology event near reception time T=32.48?",
+  "answer": "No. The difficult emission cell contains exactly one simple root with strictly positive source normal. The former failure was a tolerance-edge MPFR bracketing defect.",
+  "population": {
+    "pathCount": 8,
+    "pathIds": ["1001", "1002", "1003", "1004", "1005", "1006", "1007", "1008"],
+    "receiverPathId": "1003",
+    "sourcePathId": "1004",
+    "receptionTime": "32.479999999999869",
+    "fieldSpeed": "1",
+    "rootTolerance": "1e-8"
+  },
+  "topologyTheorem": {
+    "grade": "derived",
+    "statement": "For continuous g on [a,b], if g(a)<0<g(b) and g'(S)=D_s(S)>0 throughout [a,b], then g has exactly one root in [a,b], that root is simple, and no root topology change occurs in the cell.",
+    "rootLocationBound": "For midpoint m and the unique root S*, the mean-value theorem gives S*=m-g(m)/D_s(xi). Directed bounds on g(m) and D_s therefore give a containing interval for S*."
+  },
+  "measuredDifficultCell": {
+    "grade": "measured",
+    "sourceArtifactSha256": "05dc0e61dcdf778958b9f7abff4370124f4c4c616af9811b91306dacc703f3d9",
+    "sourceSegmentIndex": 5153,
+    "emissionCellLower": "25.690728816162586270983639851911716634927685689281096070857302038348279893398284912109375",
+    "emissionCellUpper": "25.6907288281339122782421580083504579780789169634789247120831845450084074400365352630615234375",
+    "emissionCellWidth": "1.19713260072585181564387413431512312741978286412258825066601275466382503509521484375e-8",
+    "midpoint": "25.69072882140004139915924154535366597255634937174264610139362563501208569505251944065093994140625",
+    "midpointResidualLower": "-3.4682161591311399462230760319273879134330247150622147571932416766467539505599062126399373543390624421385836113802587334752301280978267792453972317618060854884e-11",
+    "midpointResidualUpper": "2.1461710381675704210979818677433314796424521551437584094339211705507709998625783774845320383628469846584865035839567142605207028726935961349882415205957883185e-9",
+    "sourceNormalLower": "0.85491847840817601971372072483290114055096083360759724609756583257145002267665573994524222322804451438886905575866464278591648412595948039920454053184125213494",
+    "sourceNormalUpper": "0.85491849009748491280206281191186790671705439397675971686080493841974711161504511038070926017690601491093777287638725825725551577496478026034762488594369158514",
+    "receiverNormalLower": "1.345206602519909921182186917355342340199866007031574631362254292221239494670348280710501030013560851007549182019503437881688623504200941745268509193171340214",
+    "receiverNormalUpper": "1.3452066888079080512515038665261167160710580304190216195542826662894223969408976982917477548815518521715543236440496706934517749116856651819397582041495134375",
+    "lowerResidualSign": -1,
+    "upperResidualSign": 1,
+    "precisionBits": 512,
+    "memoryBoundaryContact": false
+  },
+  "derivedRootCertificate": {
+    "grade": "derived_from_directed_enclosures",
+    "emissionRootLower": "25.6907288188896604770347660367778020398967168017610706215601048458200872909170543254507330552836782949912165834130215090469838175855158784058445897230514661533701559845267877839668",
+    "emissionRootUpper": "25.6907288214406091988585628137991215737123954673453510618140016440892093787228620161909139430551989299024891146346086162330447577086965227319512170781433370498876414585968429400273",
+    "emissionRootWidth": "2.5509487218237967770213195338156786655842804402538967982691220878058076907401808877715206349112725312215871071860609401231806443261066273550918708965174854740700551560605e-9",
+    "withinDeclaredRootTolerance": true,
+    "sourceNormalStrictSign": 1,
+    "rootMultiplicity": 1,
+    "topologyChange": false,
+    "finiteWidthCausticRouteRequired": false
+  },
+  "implementationCorrection": {
+    "grade": "derived_and_tested",
+    "failureMechanism": "The last symmetric MPFR probe was nominally one tolerance wide, but outward endpoint rounding could make the represented width exceed the tolerance by a few ulps, so the only probe wide enough to obtain strict endpoint signs was skipped.",
+    "correction": "After the existing probes, choose exact representable endpoints inward from the half-tolerance radius. Accept only if the represented width is at most the declared tolerance and directed residual enclosures have strict opposite signs.",
+    "pairSpecificException": false,
+    "pathSpecificException": false,
+    "masterEquationChanged": false,
+    "trajectoryInputChanged": false,
+    "sourceFiles": {
+      "src/eom/src/ExactPairBatch.cpp": "0cd65f349a9b649126d7f4a8fedf54e6c903408b690a8e129c6bac45669dc797",
+      "src/eom/include/architrino/eom/ExactPairBatch.hpp": "814e82d46929748a9ad0ae08212ddd0ea35f96e332f5237c069e22b7d4c541c0",
+      "src/eom/native/eom_borg_shadow_cli.cpp": "e9cca2db0a30305017b2b2a2b8dc83600d107f5bd67708dd4682d4672607aa90",
+      "src/eom/native/eom_native_fixture_cli.cpp": "c4ef42ec334c5a15ac59a1596debd4ec125435be339036e091613d26d20cb8c4",
+      "tests/test_eom_native_history_layer.py": "094beed41b095cee54407b365755f9d8aaddabc73cfa81b7c974e149681e7400"
+    }
+  },
+  "independentAnalyticControl": {
+    "grade": "measured_against_closed_form_and_independent_oracle",
+    "closedFormResidual": "g(S)=S+5.5e-9",
+    "closedFormRoot": "-5.5e-9",
+    "closedFormSourceNormal": "1",
+    "historyPositionErrorPerPath": "5e-10",
+    "nativeFixtureRow": "mpfr_inward_tolerance_probe",
+    "nativeFixturePacketSha256": "85055c301e5bad96ef36933345d8acd0e2a5755447979f8b6832309ca378622c",
+    "independentOracle": "scripts/eom/oracle/certified_history.py at 90 decimal digits",
+    "nativeStatus": "certified_complete",
+    "oracleStatus": "certified_complete",
+    "rootFreeComplement": true,
+    "nativeRootContainsClosedFormRoot": true,
+    "nativeRootWidthAtMostTolerance": true,
+    "sourceNormalSign": 1
+  },
+  "liveStrictContinuation": {
+    "grade": "measured",
+    "binarySha256": "28796942b19bab61ae9cefce864c8eb8fa00d4d37dab3260547b8161b146f2fd",
+    "binaryBuiltAt": "2026-07-16T03:36:26-0400",
+    "inputCheckpointSha256": "59d2a1602b0bdf7e3106293bb0094746557962e2667f28efc1ceb91cab4667bb",
+    "crossingCheckpointSha256": "9673c6254886483b39bc00e72d87331c1e7017de745d5bb42072d9e85d049937",
+    "postEventCheckpointSha256": "109dbcc47facdafee0663873e8cf2098e671903ff855c620bb065916176e2c9b",
+    "crossingInterval": [32.47968749999987, 32.4799999999999],
+    "crossingStep": "0.0003125",
+    "strictTolerances": {
+      "root": "1e-8",
+      "acceleration": "1e-8",
+      "position": "1e-8",
+      "velocity": "1e-8",
+      "correction": "1e-8"
+    },
+    "crossingAcceptedSteps": 1,
+    "crossingRejectedSteps": 0,
+    "crossingRootFailures": 0,
+    "postEventAcceptedThrough": 32.4815624999999,
+    "postEventAdditionalAcceptedSteps": 5,
+    "postEventRejectedSteps": 0,
+    "postEventRootFailures": 0,
+    "allPreEventHistoryPrefixesByteIdentical": true,
+    "appendedSegmentsPerPathAtCrossing": 2
+  },
+  "validation": {
+    "independentRootOracle": "23 passed, 0 failed",
+    "nativeHistoryAndRootLayer": "16 passed, 0 failed",
+    "nativeAcceleration": "12 passed, 0 failed",
+    "nativeCoupledEvolution": "17 passed, 0 failed",
+    "nativeBorgProcess": "4 passed, 0 failed",
+    "borgJavaScript": "63 passed, 0 failed",
+    "oraclePhase4Acceptance": "12 passed, 0 failed",
+    "oracleCertifiedEvolution": "10 passed, 0 failed",
+    "oracleCertifiedAcceleration": "16 passed, 0 failed"
+  },
+  "adjudication": {
+    "grade": "derived_and_measured",
+    "formerClaim": "An off-diagonal delayed-root topology event blocks pair 1003<-1004 near T=32.48.",
+    "verdict": "refuted",
+    "currentClaim": "Pair 1003<-1004 has one certified simple delayed root in the difficult cell. A tolerance-edge MPFR probe gap caused the former fail-closed result.",
+    "borgEffect": "The strict eight-path burn-in now continues past T=32.48. This closes the localized root blocker but does not yet produce the seed-free T=90 checkpoint required for Borg migration.",
+    "falsifier": "A directed enclosure for the same accepted history showing D_s contains zero, same-cell endpoint signs are not opposite, or a complete independent scan finds a different root count would overturn this certificate."
+  }
+}

@@ -1,6 +1,6 @@
 # Sea-Braid Dimer Shielding Ground-State Packet
 
-Claim level: priority-only derivation packet / executable closure target, 2026-07-11. This packet promotes the far-field cancellation-depth law measured by [sea-braid-shielding-ratio-diagnostic.mjs](../../../../scripts/braid-ideal/sea-braid-shielding-ratio-diagnostic.mjs) into a **constraint on the sea-braid dimer ground state**, the open question named in the [braid-ideal brainstorming](brainstorming.md) Addendum 3 ("True ground state (paired-quadrupolar vs chained vs glassy) = the sea-braid dimer/small-cluster derivation"). It authorizes no retained branch, names no accepted evidence, and moves no score: `retainedBranchClaim=false`, `scoreMovement=no_score_increase`. Strict potential-superposition throughout; delays at field speed $c_f$ on the exact rotating worldlines.
+Claim level: priority-only derivation packet / executable closure target, 2026-07-11. This packet promotes the far-field cancellation-depth law measured by sea-braid-shielding-ratio-diagnostic.mjs (retired script: `scripts/braid-ideal/sea-braid-shielding-ratio-diagnostic.mjs`) into a **constraint on the sea-braid dimer ground state**, the open question named in the [braid-ideal brainstorming](brainstorming.md) Addendum 3 ("True ground state (paired-quadrupolar vs chained vs glassy) = the sea-braid dimer/small-cluster derivation"). It authorizes no retained branch, names no accepted evidence, and moves no score: `retainedBranchClaim=false`, `scoreMovement=no_score_increase`. Strict potential-superposition throughout; delays at field speed $c_f$ on the exact rotating worldlines.
 
 ## What was open
 
@@ -28,7 +28,7 @@ This is consistent with Addendum 3's measured dipole-reversed neighbor preferenc
 
 ## Steps 1–2 closed: the delay-selected equilibrium (2026-07-11)
 
-The cycle-averaged **causally delayed** inter-drum energy accumulator was built ([sea-braid-dimer-energy-diagnostic.mjs](../../../../scripts/braid-ideal/sea-braid-dimer-energy-diagnostic.mjs), tests [braid-ideal-sea-braid-dimer-energy-diagnostic.test.js](../../../../tests/braid-ideal-sea-braid-dimer-energy-diagnostic.test.js), 6 passing) on the shielding instrument's exact-worldline kernel — only the energy accumulator is new. It computes $U(s)=\big\langle\tfrac12[\sum_{i\in A}\sigma_i\,\Phi_B(\mathbf x_i,t)+\sum_{j\in B}\sigma_j\,\Phi_A(\mathbf x_j,t)]\big\rangle_t$ with $\Phi$ the superposed delayed potential at field speed $c_f$, and reports the static (instantaneous) energy alongside for contrast.
+The cycle-averaged **causally delayed** inter-drum energy accumulator was built (sea-braid-dimer-energy-diagnostic.mjs (retired script: `scripts/braid-ideal/sea-braid-dimer-energy-diagnostic.mjs`), tests braid-ideal-sea-braid-dimer-energy-diagnostic.test.js (retired script: `tests/braid-ideal-sea-braid-dimer-energy-diagnostic.test.js`), 6 passing) on the shielding instrument's exact-worldline kernel — only the energy accumulator is new. It computes $U(s)=\big\langle\tfrac12[\sum_{i\in A}\sigma_i\,\Phi_B(\mathbf x_i,t)+\sum_{j\in B}\sigma_j\,\Phi_A(\mathbf x_j,t)]\big\rangle_t$ with $\Phi$ the superposed delayed potential at field speed $c_f$, and reports the static (instantaneous) energy alongside for contrast.
 
 Result — the equilibrium is delay-selected, exactly as entry 33 warned:
 
@@ -60,7 +60,7 @@ with the **band-spacing invariant**
 
 $$\boxed{\,\Delta s_\ast\cdot\omega = \frac{2\pi c_f}{mR}=\frac{2\pi}{3}\frac{c_f}{R}\approx 2.094\,\frac{c_f}{R}\,}.$$
 
-This is the correct invariant: it is the shell-to-shell **spacing**, not the (envelope-selected, $\beta$-dependent) deepest band the three-point fit was tracking. The instrument ([sea-braid-dimer-energy-diagnostic.mjs](../../../../scripts/braid-ideal/sea-braid-dimer-energy-diagnostic.mjs), `bandLadder`) confirms it: the confining minima form a perfectly even ladder (spacing spread $\sim10^{-15}$), and after a depth cut that drops weak secondary ($m=6$-flavored) ripples, the fitted harmonic is $m=3$ and the ladder constant is $\beta$-independent, converging to $2\pi/3$:
+This is the correct invariant: it is the shell-to-shell **spacing**, not the (envelope-selected, $\beta$-dependent) deepest band the three-point fit was tracking. The instrument (sea-braid-dimer-energy-diagnostic.mjs (retired script: `scripts/braid-ideal/sea-braid-dimer-energy-diagnostic.mjs`), `bandLadder`) confirms it: the confining minima form a perfectly even ladder (spacing spread $\sim10^{-15}$), and after a depth cut that drops weak secondary ($m=6$-flavored) ripples, the fitted harmonic is $m=3$ and the ladder constant is $\beta$-independent, converging to $2\pi/3$:
 
 | $\beta$ | $\omega$ | primary bands | $\Delta s_\ast\cdot\omega$ | fitted $m$ |
 | --- | --- | --- | --- | --- |
@@ -85,5 +85,5 @@ Step 3: extend to the trimer / first-coordination-shell to decide paired-quadrup
 
 ## Provenance
 
-- Instrument: [sea-braid-shielding-ratio-diagnostic.mjs](../../../../scripts/braid-ideal/sea-braid-shielding-ratio-diagnostic.mjs) (`--pairing reversed|aligned|both`, `--offset-dir axial|lateral`), tests [braid-ideal-sea-braid-shielding-ratio-diagnostic.test.js](../../../../tests/braid-ideal-sea-braid-shielding-ratio-diagnostic.test.js) (7 passing). Central solver untouched; fail-closed.
+- Instrument: sea-braid-shielding-ratio-diagnostic.mjs (retired script: `scripts/braid-ideal/sea-braid-shielding-ratio-diagnostic.mjs`) (`--pairing reversed|aligned|both`, `--offset-dir axial|lateral`), tests braid-ideal-sea-braid-shielding-ratio-diagnostic.test.js (retired script: `tests/braid-ideal-sea-braid-shielding-ratio-diagnostic.test.js`) (7 passing). Central solver untouched; fail-closed.
 - Parent captures: [brainstorming.md](brainstorming.md) entry 36 (shielding ratio + DC/AC split), Addendum 3 (dipole-reversed neighbor preference, no-chains), Addendum 2 (solvation-shell reading), entry 33 (retardation selects the separation), entry 35 (the AC channel is the far-field radiation $\Phi_\infty$).

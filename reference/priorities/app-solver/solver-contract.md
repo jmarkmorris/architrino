@@ -1,5 +1,7 @@
 # Solver Contract
 
+Historical naming: **zombie-solver (then called the central solver)**.
+
 Status: `closed-contract-baseline`
 
 Kind: `solver-contract-closeout`
@@ -122,4 +124,4 @@ storage, root-ledger, phase-at-hit, failure-taxonomy, and provenance surfaces ar
 defined and checked together.
 
 Future scoped work remains implementation and migration breadth, not the absence
-of a central solver contract.
+of a zombie-solver contract.

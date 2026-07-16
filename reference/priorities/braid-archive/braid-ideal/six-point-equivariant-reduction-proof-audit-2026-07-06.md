@@ -7,7 +7,7 @@ Corpus disposition: defer with blocker. Promote only after the proof is reviewed
 
 ## Live Scaffold
 
-The current owner script is [six-point-symmetry-invariant-lemma-row.mjs](../../../../scripts/braid-ideal/six-point-symmetry-invariant-lemma-row.mjs). Its row is deterministic and fail-closed at:
+The current owner script is six-point-symmetry-invariant-lemma-row.mjs (retired script: `scripts/braid-ideal/six-point-symmetry-invariant-lemma-row.mjs`). Its row is deterministic and fail-closed at:
 
 - object: `same_record_force_law_equivariance_proof_for_six_point_symmetry_invariant_lemma`;
 - field: `six_point_symmetry_invariant_lemma_row.force_law_equivariance_proof_ref`.

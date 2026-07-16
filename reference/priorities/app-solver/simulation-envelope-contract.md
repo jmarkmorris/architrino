@@ -1,5 +1,7 @@
 # Simulation Envelope Contract
 
+Historical naming: **zombie-solver (then called the central solver)**.
+
 ## Status
 
 - Kind: `priority-detail`
@@ -9,7 +11,7 @@
 - Depends on: `model_contract`, `precision_dynamic_range_contract`
 - Promotion decision: `priority-only`
 
-This note defines the run-admission envelope for the central solver. It is a
+This note defines the run-admission envelope for the zombie-solver. It is a
 solver contract, not a reader-facing corpus claim. The main solver queue can
 mark `simulation_envelope_contract` closed once queue editing is allowed; this
 file carries the standalone contract substance.

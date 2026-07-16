@@ -1,5 +1,7 @@
 # Animator Adapter
 
+Historical naming: **zombie-solver (then called the central solver)**.
+
 Status: `closed-motion-dataset-adapter`
 
 Kind: `solver-app-adapter-closeout`
@@ -16,9 +18,9 @@ Primary dependencies:
 Implementation surfaces:
 
 - [AnimatorSimulationWorkerCoreRuntime.js](../../../src/apps/animator/AnimatorSimulationWorkerCoreRuntime.js)
-- [AnimatorSolverBridgeWorkerRuntime.js](../../../src/apps/animator/AnimatorSolverBridgeWorkerRuntime.js)
-- [AnimatorReceiverPathDescriptors.mjs](../../../src/solver/app/AnimatorReceiverPathDescriptors.mjs)
-- [AnimatorDelayedHitRows.mjs](../../../src/solver/app/AnimatorDelayedHitRows.mjs)
+- AnimatorSolverBridgeWorkerRuntime.js (removed with the zombie-solver migration: `src/apps/animator/AnimatorSolverBridgeWorkerRuntime.js`)
+- [AnimatorReceiverPathDescriptors.mjs](../../../src/apps/animator/display/AnimatorReceiverPathDescriptors.mjs)
+- [AnimatorDelayedHitRows.mjs](../../../src/apps/animator/display/AnimatorDelayedHitRows.mjs)
 - [AnimatorSimulationAuthoringRuntime.js](../../../src/apps/animator/AnimatorSimulationAuthoringRuntime.js)
 - [AnimatorSimulationWorker.js](../../../src/apps/animator/AnimatorSimulationWorker.js)
 - [SolverAppAdapters.mjs](../../../src/solver/app/SolverAppAdapters.mjs)
@@ -30,7 +32,7 @@ Implementation surfaces:
 ## Adapter Scope
 
 The Animator adapter task is scoped to routing Animator simulation worker runs
-through the central solver contract while preserving the existing dataset
+through the zombie-solver contract while preserving the existing dataset
 playback surface.
 
 This closeout covers motion simulation frames, path-history stream identity,
@@ -43,13 +45,13 @@ and event cadence. It does not claim that
 Animator delayed-hit shell/path intersections now route through solver-owned
 `animator-delayed-hit-stream-descriptors.v1` requests with `path_segment.v1`
 receiver descriptors from
-[AnimatorReceiverPathDescriptors.mjs](../../../src/solver/app/AnimatorReceiverPathDescriptors.mjs)
+[AnimatorReceiverPathDescriptors.mjs](../../../src/apps/animator/display/AnimatorReceiverPathDescriptors.mjs)
 and `delayed_hit_events.v1` row output. Field-shell
 emission cadence now routes through `animator-field-shell-event-stream-package.v1`
 with bridge-catalogued `field_shell_events.v1` row metadata and durable
 native-file stream storage before delayed-hit descriptors consume those emission
 events. Field-shell emitter source-history sampling is now built inside
-[AnimatorFieldShellEventStream.mjs](../../../src/solver/app/AnimatorFieldShellEventStream.mjs)
+[AnimatorFieldShellEventStream.mjs](../../../src/apps/animator/display/AnimatorFieldShellEventStream.mjs)
 from document/dataset state instead of being assembled as app-local emitter
 sample rows.
 
@@ -81,7 +83,7 @@ Current validation evidence:
   hydration, frame-buffer preservation, cancellation/error behavior, and solver
   metadata in the dataset.
 - [animator-simulation-authoring-runtime.test.js](../../../tests/animator-simulation-authoring-runtime.test.js)
-  verifies the authoring payload configures and keeps the central solver bridge
+  verifies the authoring payload configures and keeps the zombie-solver bridge
   enabled.
 - [animator-delayed-hit-runtime.test.js](../../../tests/animator-delayed-hit-runtime.test.js)
   verifies the solver-owned Animator delayed-hit row helper against the legacy
@@ -111,9 +113,9 @@ Remaining Animator work is outside this adapter closeout:
 
 ## Completion Judgment
 
-`animator_adapter` is complete for central solver motion simulation runs and
+`animator_adapter` is complete for zombie-solver motion simulation runs and
 dataset playback preservation. Animator simulation worker requests route through
-the central solver bridge, receiver path descriptors for delayed-hit
+the zombie-solver bridge, receiver path descriptors for delayed-hit
 visualization are solver-owned, the resulting solver frames hydrate into the
 existing dataset and frame-buffer surfaces, and the baseline/migration parity
 harness covers the required Animator bridge cases.

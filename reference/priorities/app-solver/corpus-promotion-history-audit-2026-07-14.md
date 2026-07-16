@@ -1,4 +1,6 @@
-# Corpus-Promotion History Audit — Hollow Central-Solver Provenance
+# Corpus-Promotion History Audit — Hollow zombie-solver Provenance
+
+Historical naming: **zombie-solver (then called the central solver)**.
 
 **Date:** 2026-07-14
 **Mode:** history audit; priority-only; no `content/markdown/aaa` edits

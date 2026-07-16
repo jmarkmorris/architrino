@@ -79,7 +79,7 @@ $$
 This map is a closure target unless the local document has already derived the
 needed row. It must not be smuggled in by reusing the same letters on both
 sides. In programs and app data, the same rule applies to field names and
-labels: native solver state, display coordinates, and effective observer
+labels: EOM solver state, display coordinates, and effective observer
 coordinates must not share one undifferentiated symbol when a calculation or
 claim depends on the distinction.
 

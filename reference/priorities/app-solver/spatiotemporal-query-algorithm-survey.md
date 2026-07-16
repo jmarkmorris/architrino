@@ -1,5 +1,7 @@
 # Spatiotemporal Query Algorithm Survey
 
+Historical naming: **zombie-solver (then called the central solver)**.
+
 Status: `closed-prototype-benchmark-survey`
 
 Kind: `solver-acceleration-survey`
@@ -14,7 +16,7 @@ Primary dependencies:
 
 ## Purpose
 
-This survey chooses the first broad-phase query direction for future central-solver acceleration. The target is not a new authority layer. The authoritative record remains the path-history chunk store plus the model, precision, and error-budget metadata. Query indices are acceleration metadata that propose candidate source, receiver, path, time, and shell ranges before the narrow-phase root and geometry solvers classify them.
+This survey chooses the first broad-phase query direction for future zombie-solver acceleration. The target is not a new authority layer. The authoritative record remains the path-history chunk store plus the model, precision, and error-budget metadata. Query indices are acceleration metadata that propose candidate source, receiver, path, time, and shell ranges before the narrow-phase root and geometry solvers classify them.
 
 The solver needs query support for:
 
@@ -54,7 +56,7 @@ The first acceptance rule is strict: a benchmarked broad phase may over-generate
 | k-d tree | Point-sample range queries, nearest-neighbor diagnostics, low-dimensional spatial snapshots. | Adaptive to nonuniform point clouds and useful for sample inspection. | Less natural for swept segments, time intervals, dense dynamic updates, and shell annulus queries; harder to make chunk/packet deterministic. | Useful diagnostic or offline sample index, not first broad-phase backbone. |
 | R-tree | Cold archival spacetime boxes, disk-backed chunk search, mixed spatial and temporal range queries. | Natural for rectangles or boxes, supports 3-D and 4-D range queries, fits deep archival indices. | More complex to implement and verify; overlapping boxes can degenerate in dense moving histories; less SIMD and packet friendly than cell slabs. | Strong later deep-index candidate for warm/cold path-history stores, especially after chunk finalization. |
 | Sweep-and-prune | Hot active-window path-vs-path overlap, coherent adjacent frames, axis projections. | Very cheap when bounds move coherently; good incremental update path; easy to run per time slab. | Weak for high-speed crossing, shell annuli, large jumps, and noncoherent cold replay; axis-only rejection can over-generate heavily. | Good active-window supplement for path-vs-path and near-collision candidate scans. |
-| Emission-shell-specific index | Path-vs-emission-shell, causal-root candidate search, same-source self-hit scans, speed-regime transition neighborhoods. | Encodes the actual query geometry: source emission time, source-center bound, shell radius interval, receiver path bounds, causal-speed policy, and field-speed threshold metadata. | Specialized; requires conservative shell-radius and center padding; cannot replace general path-vs-path or archival search. | Recommended first prototype because causal roots and delayed hits are the central solver bottleneck and the existing fixture already names emission-shell broad-phase queries. |
+| Emission-shell-specific index | Path-vs-emission-shell, causal-root candidate search, same-source self-hit scans, speed-regime transition neighborhoods. | Encodes the actual query geometry: source emission time, source-center bound, shell radius interval, receiver path bounds, causal-speed policy, and field-speed threshold metadata. | Specialized; requires conservative shell-radius and center padding; cannot replace general path-vs-path or archival search. | Recommended first prototype because causal roots and delayed hits are the zombie-solver bottleneck and the existing fixture already names emission-shell broad-phase queries. |
 
 ## Block Layout Comparison
 

@@ -1,6 +1,6 @@
 # Spindle Braid Native Confirmation Handoff
 
-Promotion status: `executed-candidate-rejected-2026-07-09`. This packet was the candidate-row handoff for `native_retained_history_promotion` (queue item 4). The run was executed on the tabled candidate and the operator REJECTED the retained-branch certificate in the run thread, first blocker `shape_loss_radial_under_support`; the run record is [fold-crossing-chart-spec.md Section 30](fold-crossing-chart-spec.md#30-spindle-braid-native-retained-history-confirmation-run-certificate-rejected-the-rest-state-disperses-the-pin-is-a-speed-attractor-2026-07-09) (owner script [spindle-braid-native-retained-history-confirmation-run.mjs](../../../../scripts/braid-ideal/spindle-braid-native-retained-history-confirmation-run.mjs)). The gate stays fail-closed (`retainedBranchClaim=false`, `scoreMovement=no_score_increase`) awaiting the next named candidate row. Durable findings: the field-speed pin natively confirmed as a speed attractor; native cap fall-in. The packet below is retained as the executed scope contract.
+Promotion status: `executed-candidate-rejected-2026-07-09`. This packet was the candidate-row handoff for `native_retained_history_promotion` (queue item 4). The run was executed on the tabled candidate and the operator REJECTED the retained-branch certificate in the run thread, first blocker `shape_loss_radial_under_support`; the run record is [fold-crossing-chart-spec.md Section 30](fold-crossing-chart-spec.md#30-spindle-braid-native-retained-history-confirmation-run-certificate-rejected-the-rest-state-disperses-the-pin-is-a-speed-attractor-2026-07-09) (owner script spindle-braid-native-retained-history-confirmation-run.mjs (retired script: `scripts/braid-ideal/spindle-braid-native-retained-history-confirmation-run.mjs`)). The gate stays fail-closed (`retainedBranchClaim=false`, `scoreMovement=no_score_increase`) awaiting the next named candidate row. Durable findings: the field-speed pin natively confirmed as a speed attractor; native cap fall-in. The packet below is retained as the executed scope contract.
 
 ## 1. The Named Candidate Row
 
@@ -42,7 +42,7 @@ Run from a fresh thread with the codex goal-seeking wrapper; keep this packet as
 
 Row status: `executed-candidate-rejected-2026-07-09` — run on the native machinery at both declared bookings and REJECTED by the operator in the run thread, first blocker `shape_loss_inner_tangential_brake_spiral`; run record [spec Section 40](fold-crossing-chart-spec.md#40-candidate-row-2-native-run-certificate-rejected--the-support-fix-cures-the-cap-fall-in-but-the-inner-tangential-brake-sets-the-dispersal-clock-allocation-runs-away-dynamically-2026-07-09). All four named release diagnostics were delivered: the dispersal clock refutes linear support-deficit scaling (tube loss t≈0.80 vs Row 1's 0.83 despite 24%→6%); the cap fall-in is cured; allocation moves and the movement is the failure mode; no inward middle slip (speed-attractor pin, third native confirmation). The gate stays fail-closed. The row below is retained as the executed scope record.
 
-Named after the Section 36 support-first search (owner script [spindle-support-ratio-targeted-search.mjs](../../../../scripts/braid-ideal/spindle-support-ratio-targeted-search.mjs), tests 4 passing). Same release protocol, machinery, regulators, and acceptance discipline as the executed Candidate Row 1 (Section 30 run record), with the SUPPORT ROWS added to the certificate (per-layer radial support ratios at the frozen seed-fitted kappa*, reported at seed and along the release).
+Named after the Section 36 support-first search (owner script spindle-support-ratio-targeted-search.mjs (retired script: `scripts/braid-ideal/spindle-support-ratio-targeted-search.mjs`), tests 4 passing). Same release protocol, machinery, regulators, and acceptance discipline as the executed Candidate Row 1 (Section 30 run record), with the SUPPORT ROWS added to the certificate (per-layer radial support ratios at the frozen seed-fitted kappa*, reported at seed and along the release).
 
 Exact parameters (spindle family, R_M = 1, pinned cadence c_trans = 1, all six sites antipodal pairs):
 
@@ -122,7 +122,7 @@ Row status: `executed-candidate-rejected-2026-07-09` — run on the native machi
 
 Status when tabled: TABLED (operator decision (a), 2026-07-09, braid-ideal evaluator thread). Same-thread acceptance rule applies in the run thread. Motivated by the Sections 47-52 arc (cite by title): the sea response family is closed (orientation, breathing, near-field — the sea is the angular-momentum bath and cap support, not the radial scaffold), the inner tangential brake is eliminated IN GEOMETRY (Section 51), and the self-consistent cap-credit fixed-point search produced a VERIFIED closing cell (Section 52) — the first candidate in the program whose every seed ledger is inside the corridor simultaneously.
 
-Braid seed — SELF-CONSISTENT STATIC-SEA CANDIDATE V3 (exported `SELF_CONSISTENT_V3`, [spindle-support-ratio-targeted-search.mjs](../../../../scripts/braid-ideal/spindle-support-ratio-targeted-search.mjs), tests 11 passing):
+Braid seed — SELF-CONSISTENT STATIC-SEA CANDIDATE V3 (exported `SELF_CONSISTENT_V3`, spindle-support-ratio-targeted-search.mjs (retired script: `scripts/braid-ideal/spindle-support-ratio-targeted-search.mjs`), tests 11 passing):
 - (qI, qO, alphaI, alphaM, alphaO, thetaI, thetaO) = (0.4935, 1.036, -3.65°, -29.04°, 67.5°, -12.2°, 333.5°), middle on the rail (transverse middle speed = c_f), cadence omega = 1/cos(29.04°) ≈ 1.144 (the tilted-rail constraint; all layers sub-field: speeds ≈ 0.56 / 1.00 / 0.45).
 - Bare seed rows: support 1.0035/1.0008/0.677 at the frozen bare-channel kappa*; tau_I = -0.003, tau_O = -0.009 (the Section 51 brake elimination — no sea tangential feed required); closure 0.2058.
 
@@ -157,7 +157,7 @@ Status when tabled: TABLED (operator decision (a), 2026-07-09, braid-ideal evalu
 
 CLAIM BOUNDARY (declared up front): a survival certifies the braid INSIDE A HELD CAGE — not a self-supporting braid+cage complex. The complex-level closure (bulk-boundary anchor or co-orbital cage) is a separate named burden with its first number (polar members carry −0.641 of the corridor force scale, inward, as the cap credit's Newton-pair; equatorial +0.09-0.15; torques ~0).
 
-Braid seed — OCTAHEDRAL-CAGE CANDIDATE V4 (exported `OCTAHEDRAL_CAGE_V4`, [spindle-support-ratio-targeted-search.mjs](../../../../scripts/braid-ideal/spindle-support-ratio-targeted-search.mjs), tests 14 passing):
+Braid seed — OCTAHEDRAL-CAGE CANDIDATE V4 (exported `OCTAHEDRAL_CAGE_V4`, spindle-support-ratio-targeted-search.mjs (retired script: `scripts/braid-ideal/spindle-support-ratio-targeted-search.mjs`), tests 14 passing):
 - (qI, qO, alphaI, alphaM, alphaO, thetaI, thetaO) = (0.4935, 1.106, +2.85°, -30.16°, 67.5°, -4.2°, 333.5°), middle on the rail; cadence omega = 1/cos(30.16°) ≈ 1.156 (all layers sub-field: speeds ≈ 0.57 / 1.00 / 0.49).
 - Bare seed rows: support 0.9993/1.0061/0.5759 at frozen bare-channel kappa*; tau_I = -0.0035, tau_O = -0.0057; closure 0.2474.
 
@@ -186,7 +186,7 @@ Row status: `executed-candidate-rejected-2026-07-10` — run on the native machi
 
 Status when tabled: TABLED (operator decision (a), 2026-07-09, braid-ideal evaluator thread). Same-thread acceptance rule applies in the run thread. Motivated by Sections 57-59 (cite by title): the stability gate was built after Rows 5-6 died on basin-less force balances, and V5 is the FIRST candidate to pass it whole — no known seed defect. NO ENVIRONMENT: bare braid.
 
-Braid seed — SELF-EQUILIBRATED CANDIDATE V5 (exported `SELF_EQUILIBRATED_V5`, [spindle-support-ratio-targeted-search.mjs](../../../../scripts/braid-ideal/spindle-support-ratio-targeted-search.mjs), tests 17 passing):
+Braid seed — SELF-EQUILIBRATED CANDIDATE V5 (exported `SELF_EQUILIBRATED_V5`, spindle-support-ratio-targeted-search.mjs (retired script: `scripts/braid-ideal/spindle-support-ratio-targeted-search.mjs`), tests 17 passing):
 - (qI, qO, alphaI, alphaM, alphaO, thetaI, thetaO) = (0.55, 0.75, -27.15°, +16.24°, 64.5°, -16.2°, 339.5°), middle on the rail; cadence omega = 1/cos(16.24°) ≈ 1.0415 (speeds ≈ 0.51 / 1.00 / 0.34, all sub-field).
 - GATE CERTIFICATE (seed block, all at frozen bare-channel kappa* ≈ 0.4615): radial equilibrium residual ~1e-6 with rail-pinned restoring spectrum (-0.63/-2.00/-6.27) — support = 1 all layers BY SELF-ADJUSTMENT, no imposed corridor; tangential tau_I = 0.0006, tau_O = 0.0004 (middle's +0.227 rail pump = the escapement's); tilt block: global null exact, relative-tilt quotient eigenvalues -0.1247/-0.7485 (restoring); derived size R_M(eq) ≈ 3.49 kappa*eps^2/c_f^2.
 

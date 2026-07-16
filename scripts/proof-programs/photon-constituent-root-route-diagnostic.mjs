@@ -282,6 +282,11 @@ function helicalSelfHitRootReplay(sample, omega = 1) {
 
   const rootTau = 0.5 * (left + right);
   return {
+    analysis_id: "prescribed-path-analysis",
+    evidence_grade: "display-only-visualization",
+    non_evidence: true,
+    dynamical_evidence: false,
+    retained_branch_evidence: false,
     model: "helical_constituent_toy_replay",
     route_kind: "self-hit",
     route_status: "self_hit_replay_diagnostic",

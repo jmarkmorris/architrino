@@ -1,5 +1,7 @@
 # Work-Packet Transport Contract
 
+Historical naming: **zombie-solver (then called the central solver)**.
+
 Status: `closeout-complete`
 
 Kind: `contract-closeout`
@@ -45,7 +47,7 @@ Every dispatched packet header must carry these fields:
 | `mergeKey` | Required non-empty deterministic merge key. |
 | `headerChecksum` | Optional on input, required on prepared headers; 16 lowercase hexadecimal characters. |
 
-The header is canonical when serialized in the exact field order above, excluding `headerChecksum`. The live bridge and native solver both hash that canonical header with FNV-1a 64-bit hexadecimal form. The current checksum is a compact replay and drift guard, not a cryptographic trust boundary.
+The header is canonical when serialized in the exact field order above, excluding `headerChecksum`. The live bridge and compiled zombie-solver both hash that canonical header with FNV-1a 64-bit hexadecimal form. The current checksum is a compact replay and drift guard, not a cryptographic trust boundary.
 
 ## Binary Payload References
 
@@ -137,7 +139,7 @@ Portability requirements:
 
 ## Future GPU Compatibility
 
-GPU execution is not part of the first central solver core, but the packet contract is shaped so future GPU kernels can use the same work units.
+GPU execution is not part of the first zombie-solver core, but the packet contract is shaped so future GPU kernels can use the same work units.
 
 GPU compatibility requirements:
 
@@ -181,4 +183,4 @@ This preserves one transport format while allowing later WebGPU, Metal, CUDA-lik
 
 `work_packet_transport_contract` is complete as a contract artifact and closed in [priorities.md](priorities.md).
 
-The live solver has packet headers, binary payload references, checksums, output layout declarations, range ownership, deterministic merge keys, worker/thread/process/service portability rules, future GPU compatibility constraints, packetized emission-shell broad-phase candidate scans, and packet-scoped exact-root refinement. The remaining work is implementation breadth: more packetized solver operations can adopt the same contract as the central solver grows, but they do not require a second transport format.
+The live solver has packet headers, binary payload references, checksums, output layout declarations, range ownership, deterministic merge keys, worker/thread/process/service portability rules, future GPU compatibility constraints, packetized emission-shell broad-phase candidate scans, and packet-scoped exact-root refinement. The remaining work is implementation breadth: more packetized solver operations can adopt the same contract as the zombie-solver grows, but they do not require a second transport format.

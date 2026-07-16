@@ -1,5 +1,7 @@
 # Analytic And Invariant Validation
 
+Historical naming: **zombie-solver (then called the central solver)**.
+
 Status: `closed-validation-plan`
 
 Kind: `solver-validation-plan`
@@ -16,7 +18,7 @@ Primary dependencies:
 
 ## Purpose
 
-The central solver cannot be accepted by baseline comparison alone. App baselines
+The zombie-solver cannot be accepted by baseline comparison alone. App baselines
 are useful regression checks, but they can preserve an old approximation, an app
 boundary, or a display convention. This plan defines solver-owned analytic and
 invariant validation: manufactured causal-root cases, closed-form geometry
@@ -188,7 +190,7 @@ this section as its validation definition.
 
 Bounded drift checks are valid only when the model contract declares the
 quantity being checked as an invariant or supplies an analytic bound. The
-central solver should not invent conservation laws for a model that has not
+zombie-solver should not invent conservation laws for a model that has not
 declared them.
 
 | Fixture id | Valid when | Bound |

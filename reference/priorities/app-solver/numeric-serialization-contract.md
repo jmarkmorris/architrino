@@ -1,5 +1,7 @@
 # Numeric Serialization Contract
 
+Historical naming: **zombie-solver (then called the central solver)**.
+
 Status: `closed-design-capture`
 
 Kind: `solver-contract`
@@ -17,7 +19,7 @@ Implementation surfaces:
 
 ## Purpose
 
-This contract defines the canonical byte and export representation for every declared central-solver numeric type. It is the storage and transport companion to the precision-path contract: precision paths choose the numeric method, while this note defines how the selected numeric values are encoded, compared, exported, and validated.
+This contract defines the canonical byte and export representation for every declared zombie-solver numeric type. It is the storage and transport companion to the precision-path contract: precision paths choose the numeric method, while this note defines how the selected numeric values are encoded, compared, exported, and validated.
 
 The declared numeric types are:
 

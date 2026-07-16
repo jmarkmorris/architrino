@@ -10,7 +10,7 @@
 - Optional long-term scale amendment: [`eom_evolution_contract/v0/amendment-1`](evolution-contract-v0-amendment-1-million-path-scale.md); required only when a request or result claims the million-path profile
 - Initial-data type: continuous retained history functions only
 - Change control: revisions require an explicit contract amendment or successor version
-- Existing central solver: preserved for dependency compatibility and ineligible for this contract
+- Existing zombie-solver: preserved for dependency compatibility and ineligible for this contract
 
 ## Defining Invariant
 

@@ -216,14 +216,14 @@ import {
 } from "../animator/AnimatorDelayedHitRuntime.js";
 import {
   createAnimatorDelayedHitRowsFromStreamDescriptors,
-} from "../../solver/app/AnimatorDelayedHitRows.mjs";
+} from "../animator/display/AnimatorDelayedHitRows.mjs";
 import {
   createAnimatorFieldShellCadenceTimes,
   createAnimatorFieldShellEventStreamPackage,
-} from "../../solver/app/AnimatorFieldShellEventStream.mjs";
+} from "../animator/display/AnimatorFieldShellEventStream.mjs";
 import {
   createAnimatorReceiverPathDescriptorPackage,
-} from "../../solver/app/AnimatorReceiverPathDescriptors.mjs";
+} from "../animator/display/AnimatorReceiverPathDescriptors.mjs";
 import {
   createAnimatorFadeableTrailSamples,
   createAnimatorTimedTrailSamples,

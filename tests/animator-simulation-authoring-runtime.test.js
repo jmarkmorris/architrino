@@ -8,7 +8,7 @@ import {
   createAnimatorSimulationAuthoringDraft,
   summarizeAnimatorSimulationAuthoringDataset,
 } from "../src/apps/animator/AnimatorSimulationAuthoringRuntime.js";
-import { ANIMATOR_SOLVER_BRIDGE_ENGINE_ID } from "../src/apps/animator/AnimatorSimulationWorkerProtocolRuntime.js";
+import { ANIMATOR_SOLVER_BRIDGE_ENGINE_ID } from "../src/apps/animator/AnimatorSimulationAuthoringRuntime.js";
 
 const BASE_DOCUMENT = Object.freeze({
   scene: {

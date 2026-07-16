@@ -607,7 +607,7 @@ void write_replay_wrapper(
          << ",\"claimLevel\":\"developer-test\""
          << ",\"canonicalEomEvidence\":false"
          << ",\"eomEvidenceStatus\":\"executable_architecture_evidence\""
-         << ",\"eomEvidenceReason\":\"Native EOM coupled evolution output; "
+         << ",\"eomEvidenceReason\":\"EOM solver coupled evolution output; "
             "Borg shadow output remains noncanonical pending the migration "
             "gates.\""
          << ",\"frameCount\":" << frame_count

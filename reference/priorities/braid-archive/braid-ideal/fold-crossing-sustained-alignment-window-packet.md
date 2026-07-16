@@ -6,7 +6,7 @@ Proof ID: `SH-0-sea` (self-hit fold-chart sub-target of `self_hit_held_release_s
 
 Claim level: diagnostic derivation. Not accepted evidence; no retained branch; no force/action, Noether-sea, stability, or click-mechanism closure. Every output fails closed at the central seed-path certificate and the central retained-history row. Zero free amplitude.
 
-Executable artifact: [fold-crossing-sustained-alignment-window-diagnostic.mjs](../../../../scripts/braid-ideal/fold-crossing-sustained-alignment-window-diagnostic.mjs), tests [braid-ideal-fold-crossing-sustained-alignment-window-diagnostic.test.js](../../../../tests/braid-ideal-fold-crossing-sustained-alignment-window-diagnostic.test.js) (5 passing).
+Executable artifact: fold-crossing-sustained-alignment-window-diagnostic.mjs (retired script: `scripts/braid-ideal/fold-crossing-sustained-alignment-window-diagnostic.mjs`), tests braid-ideal-fold-crossing-sustained-alignment-window-diagnostic.test.js (retired script: `tests/braid-ideal-fold-crossing-sustained-alignment-window-diagnostic.test.js`) (5 passing).
 
 Accepted-evidence blocker preserved (unchanged): object `held_release_seed_path_rows_acceptance_certificate.v0`; field `held_release_seed_path_rows.acceptance_certificate_ref`; downstream producer boundary `central_solver_retained_history_row`.
 

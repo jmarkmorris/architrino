@@ -291,7 +291,7 @@ Every face-boundary replay fixture must declare the simulation envelope before r
 | Field | Meaning | Units or value type |
 | --- | --- | --- |
 | `runId` | Source finite-window run identifier. | string |
-| `modelContractId` | Native solver model contract. | string |
+| `modelContractId` | EOM solver model contract. | string |
 | `sideLength` | Outer computed cube side length $L_{\mathrm{calc}}$. | length |
 | `fieldSpeed` | Causal propagation speed $c_f$. | length / time |
 | `historyDepth` | Active retained causal-history window $h$. | time |
@@ -406,7 +406,7 @@ The replay source cannot set `valueAuthority` to an authoritative retained-row s
 
 The first validation fixture is a three-stage comparison:
 
-1. `reference_window_run` — run the native solver on a larger or higher-retention finite window to provide reference face path statistics and retained local rows.
+1. `reference_window_run` — run the EOM solver on a larger or higher-retention finite window to provide reference face path statistics and retained local rows.
 2. `face_summary_extraction` — extract `borg-face-summary.v1` path rows from the reference run, using the declared `historyDepth`, `wakeHorizon`, path-index policy, and error budget.
 3. `self_similar_replay_run` — run the target finite window with inbound boundary path rows sampled from `borg-face-replay-source.v1`, while retaining all above-floor local wake rows explicitly and reconstructing boundary wake background from replayed paths.
 
@@ -480,7 +480,7 @@ The v0 decision ladder is:
 
 | Decision step | Pass condition | Otherwise |
 | --- | --- | --- |
-| Native contract | Native central solver contract, model contract id, units, and central volume are present. | `fail-closed` with `native_solver_status_missing`, `manifest_schema_missing_required_field`, or `missing_central_volume`. |
+| Native contract | Native zombie-solver contract, model contract id, units, and central volume are present. | `fail-closed` with `native_solver_status_missing`, `manifest_schema_missing_required_field`, or `missing_central_volume`. |
 | Strict buffer | $b_{\mathrm{face}}(\mathcal C)\ge\max(c_fh,\ v_{\max}T_{\mathcal C})$. | Continue to measured boundary residuals. |
 | Observed input | Replay rows trace to observed face summaries, source bins, path rows, and the face influence model. | `display-only` if visual only; `fail-closed` if used for experimental diagnostics. |
 | Velocity sampling | Velocity sampling is measured inside budget for the declared velocity scale range. | `display-only` or `fail-closed` for replay-affected central diagnostics. |
@@ -556,7 +556,7 @@ A passing fixture authorizes only `reduced-model-boundary` value authority for t
 
 ## Implementation Handoff
 
-The first implementation handoff should ask the native central solver bridge for:
+The first implementation handoff should ask the native zombie-solver bridge for:
 
 1. outbound architrino face-crossing path rows;
 2. per-face time-bin path summaries with path stream ids, path segment ids, face positions, velocities, polarity inventory, and correlation diagnostics;

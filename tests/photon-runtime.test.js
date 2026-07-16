@@ -45,30 +45,30 @@ import {
 } from "../src/apps/photon/PhotonControlsRuntime.js";
 import {
   buildPhotonArchitrinoSourceRefs,
-  buildPhotonDerivedPolarizationTraceWithSolverBridge,
-  buildPhotonPlotSamplesWithSolverBridge,
-  computePhotonDelayedEmissionFieldWithSolverBridge,
-  computePhotonFormulaSummaryWithSolverBridge,
-  computePhotonObserverFieldWithSolverBridge,
+  buildPhotonDerivedPolarizationTraceWithPrescribedPathAnalysis,
+  buildPhotonPlotSamplesWithPrescribedPathAnalysis,
+  computePhotonDelayedEmissionFieldWithPrescribedPathAnalysis,
+  computePhotonFormulaSummaryWithPrescribedPathAnalysis,
+  computePhotonObserverFieldWithPrescribedPathAnalysis,
   createPhotonAbsoluteMovingCircularCausalRootRequest,
   createPhotonAbsoluteSourceSegmentCausalRootRequests,
   createPhotonCircularSourceCausalRootRequest,
   createPhotonCircularSelfHitSpansRunRequest,
   createPhotonCausalRootsSolverRunRequest,
-  computePhotonSelfHitDiagnosticsWithSolverBridge,
+  computePhotonSelfHitDiagnosticsWithPrescribedPathAnalysis,
   fitPhotonPolarizationFromSamples,
   getPhotonArchitrinoKinematics,
-  solvePhotonAbsoluteCausalRootsForSourceWithSolverBridge,
-  solvePhotonCircularSourceCausalRootsWithSolverBridge,
-  solvePhotonCircularSourceRootsHitsLedgerWithSolverBridge,
-  solvePhotonCausalRootsWithSolverBridge,
+  solvePhotonAbsoluteCausalRootsForSourceWithPrescribedPathAnalysis,
+  solvePhotonCircularSourceCausalRootsWithPrescribedPathAnalysis,
+  solvePhotonCircularSourceRootsHitsLedgerWithPrescribedPathAnalysis,
+  solvePhotonCausalRootsWithPrescribedPathAnalysis,
 } from "../src/apps/photon/PhotonFormulaRuntime.js";
 import {
   computePhotonDiagnostics,
   getPhotonDiagnosticRows,
 } from "../src/apps/photon/PhotonDiagnosticsRuntime.js";
 import {
-  createPhotonConfigurationSearchResultsWithSolverBridge,
+  createPhotonConfigurationSearchResultsWithPrescribedPathAnalysis,
   parsePhotonSearchResultsJson,
   serializePhotonSearchResults,
 } from "../src/apps/photon/PhotonSearchRuntime.js";
@@ -82,24 +82,22 @@ import {
   PHOTON_SOURCE_HISTORY_PROVIDER_ID,
 } from "../src/apps/photon/PhotonSourceHistoryRuntime.js";
 import {
-  createPhotonDefaultSolverWasmBaseUrl,
-  createPhotonDefaultSolverWasmLoaderUrl,
-} from "../src/apps/photon/PhotonSolverBridgeOptions.js";
-import {
   advancePhotonModelTime,
   getPhotonRuntimeTimes,
   shouldHandlePhotonSpaceToggle,
 } from "../src/apps/photon/PhotonRuntime.js";
 import {
-  createSolverAppBridgeClient,
-} from "../src/solver/app/SolverAppBridge.mjs";
+  computeMovingCircularObserverField,
+  solveMovingCircularAbsoluteHistoryRun,
+  solveMovingCircularSameSourceCausalRoots,
+  solveMovingCircularSourceCausalRoots,
+} from "../src/prescribed-path-analysis/index.mjs";
 import {
   computePhotonStageLayout,
   getPhotonFieldPlotSampleCount,
   isPhotonPlotSampleInForwardGap,
   resolvePhotonPolarizationCurrentPoint,
 } from "../src/apps/photon/PhotonBraidVisualRuntime.js";
-import { createSolverBridgeLoopbackWorker } from "./solver-worker-loopback.mjs";
 
 function assertNear(actual, expected, epsilon = 1e-12) {
   assert.ok(Math.abs(actual - expected) < epsilon, `${actual} should be near ${expected}`);
@@ -204,7 +202,7 @@ function createPhotonCircularSourceBridgeStub() {
 
 function createPhotonLinearRootBridgeStub() {
   const calls = [];
-  const runSolverBridge = async (runRequest) => {
+  const runPrescribedPathAnalysis = async (runRequest) => {
     const request = runRequest.config.rootRequest;
     calls.push(request);
     const emissionTime = (request.source.startTime + request.source.endTime) / 2;
@@ -243,13 +241,13 @@ function createPhotonLinearRootBridgeStub() {
       },
     };
   };
-  return { calls, runSolverBridge };
+  return { calls, runPrescribedPathAnalysis };
 }
 
 function createPhotonMixedSearchBridgeStub() {
   const circularBridge = createPhotonCircularSourceBridgeStub();
   const runCalls = [];
-  const runSolverBridge = async (runRequest) => {
+  const runPrescribedPathAnalysis = async (runRequest) => {
     runCalls.push(runRequest);
     if (runRequest.runKind === "sharedGeometry") {
       return createPhotonSelfHitRunHandle(
@@ -300,7 +298,7 @@ function createPhotonMixedSearchBridgeStub() {
     circularCalls: circularBridge.calls,
     runCalls,
     solveCircularSourceRootsHitsLedger: circularBridge.solveCircularSourceRootsHitsLedger,
-    runSolverBridge,
+    runPrescribedPathAnalysis,
   };
 }
 
@@ -442,7 +440,7 @@ test("left braid angles advance counter-clockwise while right braid angles advan
   assert.ok(rightLater < rightStart);
 });
 
-test("Photon causal roots can be routed through the solver app bridge for linear segments", async () => {
+test("Photon causal roots can be routed through the prescribed-path analysis for linear segments", async () => {
   const rootRequest = {
     source: {
       startTime: 0,
@@ -475,9 +473,9 @@ test("Photon causal roots can be routed through the solver app bridge for linear
   assert.equal(runRequest.envelope.timeWindow.units, "seconds");
   assert.equal(runRequest.config.rootRequest.hitTime, 10);
 
-  const roots = await solvePhotonCausalRootsWithSolverBridge(rootRequest, {
+  const roots = await solvePhotonCausalRootsWithPrescribedPathAnalysis(rootRequest, {
     runRequest,
-    async runSolverBridge(request) {
+    async runPrescribedPathAnalysis(request) {
       assert.equal(request.requestId, "photon_bridge_request");
       return {
         requestId: request.requestId,
@@ -513,167 +511,7 @@ test("Photon causal roots can be routed through the solver app bridge for linear
   assert.equal(roots[0].residual, 0);
 });
 
-test("Photon causal roots can create and dispose a solver bridge client", async () => {
-  const rootRequest = {
-    source: {
-      startTime: 0,
-      endTime: 10,
-      positionAtStart: { x: 0, y: 0, z: 0 },
-      velocity: { x: 0, y: 0, z: 0 },
-    },
-    receiver: {
-      startTime: 0,
-      endTime: 10,
-      positionAtStart: { x: 3, y: 0, z: 0 },
-      velocity: { x: 0, y: 0, z: 0 },
-    },
-    hitTime: 3,
-    signalSpeed: 1,
-    rootTolerance: 1e-13,
-    maxIterations: 128,
-    scanSubdivisions: 64,
-    maxRoots: 4,
-    maxHits: 4,
-  };
-  let disposed = false;
-
-  const roots = await solvePhotonCausalRootsWithSolverBridge(rootRequest, {
-    requestId: "photon_factory_request",
-    runId: "photon_factory_run",
-    datasetId: "photon_factory_dataset",
-    disposeSolverBridgeClientAfterRun: true,
-    createSolverBridgeClient(factoryRequest, context) {
-      assert.equal(factoryRequest, rootRequest);
-      assert.equal(context.appId, "photon");
-      assert.equal(context.requiredMethod, "runSimulation");
-      assert.ok(context.requestedCapabilities.includes("causalRoots"));
-      return {
-        async runSimulation(runRequest) {
-          assert.equal(runRequest.requestId, "photon_factory_request");
-          return {
-            requestId: runRequest.requestId,
-            runId: runRequest.runId,
-            datasetId: runRequest.datasetId,
-            status: { code: "ok", severity: "ok", message: "causal roots solved" },
-            response: {
-              runId: runRequest.runId,
-              datasetId: runRequest.datasetId,
-              roots: [
-                {
-                  rootId: 0,
-                  statusCode: 0,
-                  emissionTime: 0,
-                  hitTime: 3,
-                  delay: 3,
-                  distance: 3,
-                  residual: 0,
-                  jacobian: 1,
-                  branchWeight: 1,
-                  sourcePoint: { x: 0, y: 0, z: 0 },
-                  receiverPoint: { x: 3, y: 0, z: 0 },
-                },
-              ],
-              status: { code: "ok", severity: "ok", message: "causal roots solved" },
-            },
-          };
-        },
-        async dispose() {
-          disposed = true;
-        },
-      };
-    },
-  });
-
-  assert.equal(roots.length, 1);
-  assert.equal(roots[0].delay, 3);
-  assert.equal(disposed, true);
-});
-
-test("Photon causal roots can create and dispose a solver bridge worker client", async () => {
-  const rootRequest = {
-    source: {
-      startTime: 0,
-      endTime: 10,
-      positionAtStart: { x: 0, y: 0, z: 0 },
-      velocity: { x: 0, y: 0, z: 0 },
-    },
-    receiver: {
-      startTime: 0,
-      endTime: 10,
-      positionAtStart: { x: 4, y: 0, z: 0 },
-      velocity: { x: 0, y: 0, z: 0 },
-    },
-    hitTime: 4,
-    signalSpeed: 1,
-    rootTolerance: 1e-13,
-    maxIterations: 128,
-    scanSubdivisions: 64,
-    maxRoots: 4,
-    maxHits: 4,
-  };
-  const worker = createSolverBridgeLoopbackWorker({
-    init(initRequest) {
-      assert.equal(initRequest.appId, "photon");
-      assert.ok(initRequest.requestedCapabilities.includes("causalRoots"));
-      return {
-        apiVersion: initRequest.apiVersion,
-        status: { code: "ok", severity: "ok", message: "solver initialized" },
-      };
-    },
-    runSimulation(runRequest) {
-      assert.equal(runRequest.requestId, "photon_worker_request");
-      return {
-        requestId: runRequest.requestId,
-        runId: runRequest.runId,
-        datasetId: runRequest.datasetId,
-        status: { code: "ok", severity: "ok", message: "causal roots solved" },
-        response: {
-          runId: runRequest.runId,
-          datasetId: runRequest.datasetId,
-          roots: [
-            {
-              rootId: 0,
-              statusCode: 0,
-              emissionTime: 0,
-              hitTime: 4,
-              delay: 4,
-              distance: 4,
-              residual: 0,
-              jacobian: 1,
-              branchWeight: 1,
-              sourcePoint: { x: 0, y: 0, z: 0 },
-              receiverPoint: { x: 4, y: 0, z: 0 },
-            },
-          ],
-          status: { code: "ok", severity: "ok", message: "causal roots solved" },
-        },
-      };
-    },
-  });
-
-  const roots = await solvePhotonCausalRootsWithSolverBridge(rootRequest, {
-    requestId: "photon_worker_request",
-    runId: "photon_worker_run",
-    datasetId: "photon_worker_dataset",
-    createSolverWorker(factoryRequest, context) {
-      assert.equal(factoryRequest, rootRequest);
-      assert.equal(context.appId, "photon");
-      assert.equal(context.requiredMethod, "runSimulation");
-      assert.ok(context.requestedCapabilities.includes("causalRoots"));
-      return worker;
-    },
-  });
-
-  assert.equal(roots.length, 1);
-  assert.equal(roots[0].delay, 4);
-  assert.deepEqual(
-    worker.messages.map((message) => message.method),
-    ["init", "runSimulation", "dispose"]
-  );
-  assert.equal(worker.terminated, true);
-});
-
-test("Photon circular-source solver request preserves source orbit geometry", () => {
+test("Photon circular-source analysis request preserves source orbit geometry", () => {
   const state = createDefaultPhotonState();
   state.measurement.signalSpeedCf = 0.72;
   state.measurement.emissionSpeedCf = 0.72;
@@ -738,8 +576,8 @@ test("Photon absolute-history segment requests move source and Virtual Observer 
   assert.equal(first.sourceHistory.approximationPolicy, "linearized-moving-circular-source-segments");
   assert.equal(first.sourceHistoryProvider.providerId, PHOTON_SOURCE_HISTORY_PROVIDER_ID);
   assert.equal(first.sourceHistoryProvider.boundary.sourceHistoryOwner, "photon_app");
-  assert.equal(first.sourceHistoryProvider.boundary.causalRootOwner, "central_solver");
-  assert.equal(first.solverBoundary.fieldReconstructionOwner, "central_solver");
+  assert.equal(first.sourceHistoryProvider.boundary.causalRootOwner, "prescribed_path_analysis");
+  assert.equal(first.analysisBoundary.fieldReconstructionOwner, "prescribed_path_analysis");
   assert.equal(first.sourceHistory.source.centerVelocity.x, 0.6);
   assert.deepEqual(first.sourceHistory.sourceRef, sourceRef);
   assertNear(first.source.positionAtStart.x, kinematics.position.x + 0.6 * first.source.startTime);
@@ -749,141 +587,27 @@ test("Photon absolute-history segment requests move source and Virtual Observer 
   );
 });
 
-test("Solver bridge exposes moving-circular absolute-history root methods without WASM", async () => {
-  const state = createDefaultPhotonState();
-  state.measurement.sourceHistoryMode = "absolute_history";
-  state.measurement.signalSpeedCf = 0.9;
-  state.measurement.emissionSpeedCf = 0.9;
-  state.pair.photonSpeedCf = 0.5;
-  const sourceRef = { braidId: "right", layerId: "O", chargeType: "positrino" };
-  const request = createPhotonAbsoluteMovingCircularCausalRootRequest(
-    state,
-    sourceRef,
-    0.5,
-    { maxDelay: 0.4, scanSubdivisions: 24 }
-  );
-  assert.equal(request.sourceHistoryProvider.providerId, PHOTON_SOURCE_HISTORY_PROVIDER_ID);
-  assert.equal(request.sourceHistoryProvider.providerKind, "constrained_architrino_motion");
-  assert.deepEqual(request.solverBoundary, PHOTON_SOURCE_HISTORY_BOUNDARY);
-  assert.ok(request.receiver.startTime <= request.hitTime);
-  assert.ok(request.receiver.endTime >= request.hitTime);
-  const client = createSolverAppBridgeClient();
-  await client.init(createPhotonTestSolverInitRequest());
-
-  const response = await client.solveMovingCircularSourceCausalRootsF64(request);
-  const sameSourceResponse = await client.solveMovingCircularSameSourceCausalRootsF64({
-    source: request.source,
-    hitTime: request.hitTime,
-    signalSpeed: request.signalSpeed,
-    sourceStartTime: request.sourceStartTime,
-    sourceEndTime: request.sourceEndTime,
-    scanSubdivisions: 24,
-    maxRoots: 8,
-    sourceRef,
-  });
-  const observerFieldResponse = await client.computeMovingCircularObserverFieldF64({
-    signalSpeed: 1,
-    jacobianFloor: 1e-4,
-    branches: [
-      {
-        chargeSign: 1,
-        direction: { x: 0, y: 1, z: 0 },
-        sourceVelocity: { x: 0, y: 0, z: 0 },
-        distance: 2,
-        residual: 0,
-        delay: 0.25,
-        branchWeight: 1,
-        sourceNormalSpeed: 0,
-        receiverNormalSpeed: 0,
-        sourceNormalDenominator: 1,
-        receiverNormalNumerator: 1,
-        receiverNormalCrossingFactor: 1,
-        receiverNormalFactor: 1,
-        unsignedReceiverNormalFactor: 1,
-        receiverNormalStatusCode: 0,
-      },
-    ],
-  });
-  const absoluteHistoryRunResponse = await client.solveMovingCircularAbsoluteHistoryRunF64({
-    sourceRootRequests: [
-      {
-        ...request,
-        branchChargeSign: 1,
-      },
-    ],
-    observerFieldRequest: {
-      signalSpeed: 1,
-      jacobianFloor: 1e-4,
-      sourceHistoryProviderId: PHOTON_SOURCE_HISTORY_PROVIDER_ID,
-      solverBoundary: PHOTON_SOURCE_HISTORY_BOUNDARY,
-    },
-  });
-
-  assert.equal(response.schema, "solver-moving-circular-source-causal-roots-f64.v1");
-  assert.equal(response.sourceHistoryKind, "moving-circular-source");
-  assert.ok(Array.isArray(response.roots));
-  assert.ok(response.status.code);
-  assert.equal(
-    sameSourceResponse.schema,
-    "solver-moving-circular-same-source-causal-roots-f64.v1"
-  );
-  assert.equal(sameSourceResponse.sourceHistoryKind, "moving-circular-same-source");
-  assert.ok(Array.isArray(sameSourceResponse.roots));
-  assert.ok(sameSourceResponse.status.code);
-  assert.equal(
-    observerFieldResponse.schema,
-    "solver-moving-circular-observer-field-f64.v1"
-  );
-  assertNear(observerFieldResponse.electric.y, 0.25);
-  assertNear(observerFieldResponse.comparisonB.z, 0.25);
-  assert.equal(observerFieldResponse.contributions[0].receiverNormalEvidenceStatus, "ok");
-  assert.equal(observerFieldResponse.contributions[0].branchWeight, 1);
-  assert.equal(
-    absoluteHistoryRunResponse.schema,
-    "solver-moving-circular-absolute-history-run-f64.v1"
-  );
-  assert.equal(absoluteHistoryRunResponse.sourceHistoryKind, "moving-circular-source");
-  assert.equal(absoluteHistoryRunResponse.sourceRootResponses.length, 1);
-  assert.equal(
-    absoluteHistoryRunResponse.observerField.schema,
-    "solver-moving-circular-observer-field-f64.v1"
-  );
-  await client.dispose();
-});
-
-test("Photon solver bridge default WASM path is deployable by GitHub Pages", () => {
-  assert.ok(
-    createPhotonDefaultSolverWasmLoaderUrl().endsWith(
-      "/src/solver/wasm/runtime/architrino_solver_wasm_smoke.mjs"
-    )
-  );
-  assert.ok(createPhotonDefaultSolverWasmBaseUrl().endsWith("/src/solver/wasm/runtime/"));
-});
-
-test("Photon absolute-history source roots route through the moving-circular solver bridge", async () => {
+test("Photon absolute-history source roots route through the moving-circular prescribed-path analysis", async () => {
   const state = createDefaultPhotonState();
   state.measurement.sourceHistoryMode = "absolute_history";
   state.measurement.signalSpeedCf = 0.9;
   state.measurement.emissionSpeedCf = 0.9;
   state.pair.photonSpeedCf = 0.5;
   const sourceRef = { braidId: "right", layerId: "O", chargeType: "electrino" };
-  const client = createSolverAppBridgeClient();
-  await client.init(createPhotonTestSolverInitRequest());
   let movingCalls = 0;
-  const originalSolve = client.solveMovingCircularSourceCausalRootsF64.bind(client);
-  client.solveMovingCircularSourceCausalRootsF64 = async (request) => {
+  const solveMovingCircularSourceRoots = async (request) => {
     movingCalls += 1;
     assert.equal(request.sourceHistoryProvider.providerId, PHOTON_SOURCE_HISTORY_PROVIDER_ID);
-    assert.equal(request.solverBoundary.causalRootOwner, "central_solver");
-    return originalSolve(request);
+    assert.equal(request.analysisBoundary.causalRootOwner, "prescribed_path_analysis");
+    return solveMovingCircularSourceCausalRoots(request);
   };
 
-  const roots = await solvePhotonAbsoluteCausalRootsForSourceWithSolverBridge(
+  const roots = await solvePhotonAbsoluteCausalRootsForSourceWithPrescribedPathAnalysis(
     state,
     sourceRef,
     0.5,
     {
-      solverClient: client,
+      solveMovingCircularSourceRoots,
       maxDelay: 0.4,
       scanSubdivisions: 24,
     }
@@ -891,14 +615,10 @@ test("Photon absolute-history source roots route through the moving-circular sol
 
   assert.equal(movingCalls, 1);
   assert.ok(Array.isArray(roots));
-  await client.dispose();
 });
 
-test("Solver bridge observer field fails closed without complete receiver-normal branch rows", async () => {
-  const client = createSolverAppBridgeClient();
-  await client.init(createPhotonTestSolverInitRequest());
-
-  const response = await client.computeMovingCircularObserverFieldF64({
+test("prescribed-path observer field fails closed without complete receiver-normal branch rows", async () => {
+  const response = computeMovingCircularObserverField({
     signalSpeed: 1,
     jacobianFloor: 1e-4,
     branches: [
@@ -920,71 +640,62 @@ test("Solver bridge observer field fails closed without complete receiver-normal
   assert.equal(response.contributions[0].branchWeight, 0);
   assert.equal(response.electric.y, 0);
   assert.equal(response.comparisonB.z, 0);
-  await client.dispose();
 });
 
-test("Photon absolute-history field routes through the central moving-circular run bridge", async () => {
+test("Photon absolute-history field routes through the moving-circular prescribed-path run", async () => {
   const state = createDefaultPhotonState();
   state.measurement.sourceHistoryMode = "absolute_history";
   state.measurement.signalSpeedCf = 0.9;
   state.measurement.emissionSpeedCf = 0.9;
   state.pair.photonSpeedCf = 0.5;
-  const client = createSolverAppBridgeClient();
-  await client.init(createPhotonTestSolverInitRequest());
   let absoluteHistoryRunCalls = 0;
-  const originalRun = client.solveMovingCircularAbsoluteHistoryRunF64.bind(client);
-  client.solveMovingCircularAbsoluteHistoryRunF64 = async (request) => {
+  const runAbsoluteHistory = async (request) => {
     absoluteHistoryRunCalls += 1;
     assert.equal(request.sourceHistoryProviderId, PHOTON_SOURCE_HISTORY_PROVIDER_ID);
-    assert.equal(request.solverBoundary.receiverNormalOwner, "central_solver");
-    assert.equal(request.solverBoundary.fieldReconstructionOwner, "central_solver");
+    assert.equal(request.analysisBoundary.receiverNormalOwner, "prescribed_path_analysis");
+    assert.equal(request.analysisBoundary.fieldReconstructionOwner, "prescribed_path_analysis");
     assert.equal(request.observerFieldRequest.sourceHistoryProviderId, PHOTON_SOURCE_HISTORY_PROVIDER_ID);
-    assert.equal(request.observerFieldRequest.solverBoundary.receiverNormalOwner, "central_solver");
+    assert.equal(request.observerFieldRequest.analysisBoundary.receiverNormalOwner, "prescribed_path_analysis");
     assert.ok(request.sourceRootRequests.length > 0);
     assert.ok(request.sourceRootRequests.every((sourceRequest) =>
       sourceRequest.sourceHistoryProvider?.providerId === PHOTON_SOURCE_HISTORY_PROVIDER_ID &&
-      sourceRequest.solverBoundary?.causalRootOwner === "central_solver" &&
+      sourceRequest.analysisBoundary?.causalRootOwner === "prescribed_path_analysis" &&
       Number.isFinite(sourceRequest.branchChargeSign)
     ));
-    return originalRun(request);
+    return solveMovingCircularAbsoluteHistoryRun(request);
   };
 
-  const field = await computePhotonDelayedEmissionFieldWithSolverBridge(state, 0.5, {
-    solverClient: client,
+  const field = await computePhotonDelayedEmissionFieldWithPrescribedPathAnalysis(state, 0.5, {
+    solveMovingCircularAbsoluteHistoryRun: runAbsoluteHistory,
     maxDelay: 0.4,
     scanSubdivisions: 24,
   });
 
   assert.equal(absoluteHistoryRunCalls, 1);
-  assert.equal(field.sourceMode, "solver_bridge_absolute_history_receiver_normal_root_branch_sum");
-  assert.equal(field.solverFieldSchema, "solver-moving-circular-observer-field-f64.v1");
+  assert.equal(field.sourceMode, "prescribed_path_absolute_history_receiver_normal_root_branch_sum");
+  assert.equal(field.analysisFieldSchema, "prescribed-path-analysis/moving-circular-observer-field.v1");
   assert.equal(field.sourceHistoryProviderId, PHOTON_SOURCE_HISTORY_PROVIDER_ID);
-  assert.equal(field.receiverNormalOwner, "central_solver");
-  assert.equal(field.fieldReconstructionOwner, "central_solver");
+  assert.equal(field.receiverNormalOwner, "prescribed_path_analysis");
+  assert.equal(field.fieldReconstructionOwner, "prescribed_path_analysis");
   assert.ok(Number.isFinite(field.electric.y));
-  await client.dispose();
 });
 
-test("Photon helical same-source roots route through the moving-circular solver bridge", async () => {
+test("Photon helical same-source roots route through the moving-circular prescribed-path analysis", async () => {
   const state = createDefaultPhotonState();
-  const client = createSolverAppBridgeClient();
-  await client.init(createPhotonTestSolverInitRequest());
   let sameSourceCalls = 0;
-  const originalSolve = client.solveMovingCircularSameSourceCausalRootsF64.bind(client);
-  client.solveMovingCircularSameSourceCausalRootsF64 = async (request) => {
+  const solveSameSourceRoots = async (request) => {
     sameSourceCalls += 1;
-    return originalSolve(request);
+    return solveMovingCircularSameSourceCausalRoots(request);
   };
 
-  const diagnostics = await computePhotonSelfHitDiagnosticsWithSolverBridge(state, {
-    solverClient: client,
+  const diagnostics = await computePhotonSelfHitDiagnosticsWithPrescribedPathAnalysis(state, {
+    solveMovingCircularSameSourceRoots: solveSameSourceRoots,
     skipSpanSelfHitDiagnostics: true,
   });
 
   assert.equal(sameSourceCalls, 12);
   assert.equal(diagnostics.helicalRowCount, 12);
   assert.equal(diagnostics.status, "span-skipped");
-  await client.dispose();
 });
 
 test("Photon self-hit span requests use absolute photon plus orbital speed ratios", () => {
@@ -1009,15 +720,15 @@ test("Photon self-hit span requests use absolute photon plus orbital speed ratio
   assert.equal(runRequest.envelope.interactionPolicy, "same-source-enabled");
 });
 
-test("Photon self-hit diagnostics route same-source rows through the solver bridge", async () => {
+test("Photon self-hit diagnostics route same-source rows through the prescribed-path analysis", async () => {
   const state = createDefaultPhotonState();
   state.pair.photonSpeedCf = 0;
   const spans = [2.05, 0, 0, 2.05, 0, 0];
-  const diagnostics = await computePhotonSelfHitDiagnosticsWithSolverBridge(state, {
+  const diagnostics = await computePhotonSelfHitDiagnosticsWithPrescribedPathAnalysis(state, {
     requestId: "photon_self_hit_request",
     runId: "photon_self_hit_run",
     datasetId: "photon_self_hit_dataset",
-    async runSolverBridge(runRequest) {
+    async runPrescribedPathAnalysis(runRequest) {
       assert.equal(runRequest.config.geometryRequest.circularSelfHitSpans.length, 6);
       return createPhotonSelfHitRunHandle(runRequest, spans);
     },
@@ -1033,15 +744,15 @@ test("Photon self-hit diagnostics route same-source rows through the solver brid
   assertNear(diagnostics.rows[0].span, spans[0]);
 });
 
-test("Photon self-hit diagnostics can fall back when only circular-source roots are injected", async () => {
+test("Photon self-hit diagnostics use prescribed span analysis when circular-source roots are injected", async () => {
   const state = createDefaultPhotonState();
-  const diagnostics = await computePhotonSelfHitDiagnosticsWithSolverBridge(state, {
+  const diagnostics = await computePhotonSelfHitDiagnosticsWithPrescribedPathAnalysis(state, {
     solveCircularSourceRootsHitsLedger: async () => ({ roots: [] }),
   });
 
-  assert.equal(diagnostics.status, "unavailable");
+  assert.equal(diagnostics.status, "ok");
   assert.equal(diagnostics.rowCount, 6);
-  assert.equal(diagnostics.rootFoundCount, 0);
+  assert.equal(diagnostics.rootFoundCount, 6);
   assert.ok(diagnostics.candidateCount >= 2);
   assert.equal(diagnostics.helicalRowCount, 12);
   assert.equal(diagnostics.helicalRootFoundCount, 12);
@@ -1095,17 +806,16 @@ test("Photon helical self-hit phase-lock sweep summarizes sampled cases", async 
   ));
 });
 
-test("Photon circular-source roots, hits, and ledger rows can be routed through the solver app bridge", async () => {
+test("Photon circular-source roots, hits, and ledger rows can be routed through the prescribed-path analysis", async () => {
   const state = createDefaultPhotonState();
   const sourceRef = { braidId: "left", layerId: "O", chargeType: "positrino" };
   const observationTime = 0.75;
-  const response = await solvePhotonCircularSourceRootsHitsLedgerWithSolverBridge(
+  const response = await solvePhotonCircularSourceRootsHitsLedgerWithPrescribedPathAnalysis(
     state,
     sourceRef,
     observationTime,
     {
-      solverClient: {
-        async solveCircularSourceRootsHitsLedgerF64(request) {
+      async solveCircularSourceRootsAndHits(request) {
           assert.equal(request.hitTime, observationTime);
           assert.equal(request.receiver.positionAtStart.x, state.measurement.virtualObserver.x);
           assert.equal(request.source.center.x < 0, true);
@@ -1162,17 +872,16 @@ test("Photon circular-source roots, hits, and ledger rows can be routed through 
             ],
             status: { code: "ok", severity: "ok", message: "circular-source causal roots solved" },
           };
-        },
       },
     }
   );
 
-  assert.equal(response.solverEngineId, "architrino-solver-app-bridge");
+  assert.equal(response.analysisId, "prescribed-path-analysis");
   assert.equal(response.schema, "solver-circular-source-roots-hits-ledger-f64.v1");
   assert.equal(response.hits.length, 1);
   assert.equal(response.rootLedgerDetails.length, 1);
   assert.equal(response.rootLedgerDetails[0].entryKind, 1);
-  const roots = await solvePhotonCircularSourceCausalRootsWithSolverBridge(
+  const roots = await solvePhotonCircularSourceCausalRootsWithPrescribedPathAnalysis(
     state,
     sourceRef,
     observationTime,
@@ -1188,21 +897,21 @@ test("Photon circular-source roots, hits, and ledger rows can be routed through 
   assert.equal(roots[0].residual, 0);
 });
 
-test("Photon delayed emission field can use absolute-history moving circular solver roots", async () => {
+test("Photon delayed emission field can use absolute-history moving-circular analysis roots", async () => {
   const state = createDefaultPhotonState();
   state.pair.photonSpeedCf = 0.5;
   state.measurement.signalSpeedCf = 0.9;
   state.measurement.emissionSpeedCf = 0.9;
-  const field = await computePhotonDelayedEmissionFieldWithSolverBridge(state, 0.75, {
+  const field = await computePhotonDelayedEmissionFieldWithPrescribedPathAnalysis(state, 0.75, {
     maxDelay: 0.25,
   });
 
-  assert.equal(field.solverEngineId, "architrino-solver-app-bridge");
-  assert.equal(field.sourceMode, "solver_bridge_absolute_history_receiver_normal_root_branch_sum");
-  assert.equal(field.solverFieldSchema, "solver-moving-circular-observer-field-f64.v1");
+  assert.equal(field.analysisId, "prescribed-path-analysis");
+  assert.equal(field.sourceMode, "prescribed_path_absolute_history_receiver_normal_root_branch_sum");
+  assert.equal(field.analysisFieldSchema, "prescribed-path-analysis/moving-circular-observer-field.v1");
   assert.equal(field.sourceHistoryProviderId, PHOTON_SOURCE_HISTORY_PROVIDER_ID);
-  assert.equal(field.receiverNormalOwner, "central_solver");
-  assert.equal(field.fieldReconstructionOwner, "central_solver");
+  assert.equal(field.receiverNormalOwner, "prescribed_path_analysis");
+  assert.equal(field.fieldReconstructionOwner, "prescribed_path_analysis");
   assert.equal(field.measurement.sourceHistoryMode, "absolute_history");
   assert.equal(field.sourceCount, buildPhotonArchitrinoSourceRefs(state).length);
   assert.ok(field.rootCount > 0);
@@ -1218,7 +927,7 @@ test("Photon delayed emission field can use absolute-history moving circular sol
   ));
   assert.ok(field.contributions.every((contribution) =>
     contribution.sourceHistoryProviderId === PHOTON_SOURCE_HISTORY_PROVIDER_ID &&
-    contribution.solverBoundary.receiverNormalOwner === "central_solver"
+    contribution.analysisBoundary.receiverNormalOwner === "prescribed_path_analysis"
   ));
   assert.ok(field.contributions.every((contribution) =>
     Number.isFinite(contribution.phaseAtHit?.sourcePhaseCycleIndex)
@@ -1226,76 +935,21 @@ test("Photon delayed emission field can use absolute-history moving circular sol
   assert.ok(Number.isFinite(field.electric.y));
 });
 
-test("Photon circular-source bridge can create and dispose a solver bridge client", async () => {
-  const state = createDefaultPhotonState();
-  const sourceRef = { braidId: "left", layerId: "O", chargeType: "positrino" };
-  const observationTime = 0.75;
-  let disposed = false;
-
-  const response = await solvePhotonCircularSourceRootsHitsLedgerWithSolverBridge(
-    state,
-    sourceRef,
-    observationTime,
-    {
-      disposeSolverBridgeClientAfterRun: true,
-      createSolverBridgeClient(factoryRequest, context) {
-        assert.equal(factoryRequest.hitTime, observationTime);
-        assert.equal(context.appId, "photon");
-        assert.equal(context.requiredMethod, "solveCircularSourceRootsHitsLedgerF64");
-        assert.ok(context.requestedCapabilities.includes("causalRoots"));
-        return {
-          async solveCircularSourceRootsHitsLedgerF64(request) {
-            assert.equal(request.hitTime, observationTime);
-            return {
-              schema: "solver-circular-source-roots-hits-ledger-f64.v1",
-              roots: [
-                {
-                  rootId: 0,
-                  statusCode: 0,
-                  emissionTime: 0.5,
-                  hitTime: observationTime,
-                  delay: 0.25,
-                  distance: 0.25,
-                  residual: 0,
-                  jacobian: 1,
-                  branchWeight: 1,
-                  sourcePoint: { x: -1, y: 0, z: 0 },
-                  receiverPoint: state.measurement.virtualObserver,
-                },
-              ],
-              hits: [],
-              rootLedgerDetails: [],
-              status: { code: "ok", severity: "ok", message: "circular-source causal roots solved" },
-            };
-          },
-          async dispose() {
-            disposed = true;
-          },
-        };
-      },
-    }
-  );
-
-  assert.equal(response.roots.length, 1);
-  assert.equal(response.roots[0].hitTime, observationTime);
-  assert.equal(disposed, true);
-});
-
-test("Photon delayed emission field can be assembled from central solver circular-source roots", async () => {
+test("Photon delayed emission field can be assembled from prescribed-path analysis circular-source roots", async () => {
   const state = createDefaultPhotonState();
   state.measurement.sourceHistoryMode = "co_moving";
   const bridge = createPhotonCircularSourceBridgeStub();
-  const field = await computePhotonDelayedEmissionFieldWithSolverBridge(state, 0.75, {
+  const field = await computePhotonDelayedEmissionFieldWithPrescribedPathAnalysis(state, 0.75, {
     solveCircularSourceRootsHitsLedger: bridge.solveCircularSourceRootsHitsLedger,
   });
 
-  assert.equal(field.solverEngineId, "architrino-solver-app-bridge");
-  assert.equal(field.sourceMode, "solver_bridge_circular_source_branch_sum");
+  assert.equal(field.analysisId, "prescribed-path-analysis");
+  assert.equal(field.sourceMode, "prescribed_path_circular_source_branch_sum");
   assert.equal(field.sourceCount, buildPhotonArchitrinoSourceRefs(state).length);
   assert.equal(field.rootCount, field.sourceCount);
   assert.equal(bridge.calls.length, field.sourceCount);
   assert.ok(field.contributions.every((contribution) =>
-    contribution.solverEngineId === "architrino-solver-app-bridge"
+    contribution.analysisId === "prescribed-path-analysis"
   ));
   assert.ok(field.contributions.every((contribution) =>
     contribution.sourceHistoryKind === "co_moving_circular_source"
@@ -1308,21 +962,21 @@ test("Photon delayed emission field can be assembled from central solver circula
   assert.ok(Number.isFinite(field.comparisonB.z));
 });
 
-test("Photon formula and plot APIs expose central solver bridge results", async () => {
+test("Photon formula and plot APIs expose central prescribed-path analysis results", async () => {
   const state = createDefaultPhotonState();
   const summaryBridge = createPhotonCircularSourceBridgeStub();
-  const summary = await computePhotonFormulaSummaryWithSolverBridge(state, 0.5, {
+  const summary = await computePhotonFormulaSummaryWithPrescribedPathAnalysis(state, 0.5, {
     solveCircularSourceRootsHitsLedger: summaryBridge.solveCircularSourceRootsHitsLedger,
     polarizationSampleCount: 24,
     analyzerSampleCount: 8,
   });
 
-  assert.equal(summary.solverEngineId, "architrino-solver-app-bridge");
-  assert.equal(summary.field.solverEngineId, "architrino-solver-app-bridge");
-  assert.equal(summary.field.sourceMode, "solver_bridge_absolute_history_receiver_normal_root_branch_sum");
-  assert.equal(summary.field.solverFieldSchema, "solver-moving-circular-observer-field-f64.v1");
+  assert.equal(summary.analysisId, "prescribed-path-analysis");
+  assert.equal(summary.field.analysisId, "prescribed-path-analysis");
+  assert.equal(summary.field.sourceMode, "prescribed_path_absolute_history_receiver_normal_root_branch_sum");
+  assert.equal(summary.field.analysisFieldSchema, "prescribed-path-analysis/moving-circular-observer-field.v1");
   assert.equal(summary.field.sourceHistoryProviderId, PHOTON_SOURCE_HISTORY_PROVIDER_ID);
-  assert.equal(summary.polarization.solverEngineId, "architrino-solver-app-bridge");
+  assert.equal(summary.polarization.analysisId, "prescribed-path-analysis");
   assert.equal(summary.polarization.sourceHistoryProviderId, PHOTON_SOURCE_HISTORY_PROVIDER_ID);
   assert.ok(Number.isFinite(summary.polarization.amplitudes.y));
   assert.ok(Number.isFinite(summary.averageAnalyzerFraction));
@@ -1331,21 +985,21 @@ test("Photon formula and plot APIs expose central solver bridge results", async 
   ));
 
   const observerBridge = createPhotonCircularSourceBridgeStub();
-  const observerField = await computePhotonObserverFieldWithSolverBridge(state, 0.5, {
+  const observerField = await computePhotonObserverFieldWithPrescribedPathAnalysis(state, 0.5, {
     solveCircularSourceRootsHitsLedger: observerBridge.solveCircularSourceRootsHitsLedger,
   });
-  assert.equal(observerField.solverEngineId, "architrino-solver-app-bridge");
-  assert.equal(observerField.sourceMode, "solver_bridge_absolute_history_receiver_normal_root_branch_sum");
-  assert.equal(observerField.solverFieldSchema, "solver-moving-circular-observer-field-f64.v1");
+  assert.equal(observerField.analysisId, "prescribed-path-analysis");
+  assert.equal(observerField.sourceMode, "prescribed_path_absolute_history_receiver_normal_root_branch_sum");
+  assert.equal(observerField.analysisFieldSchema, "prescribed-path-analysis/moving-circular-observer-field.v1");
   assert.ok(Number.isFinite(observerField.electric.magnitude));
 
   const plotBridge = createPhotonCircularSourceBridgeStub();
-  const plot = await buildPhotonPlotSamplesWithSolverBridge(state, 0.5, 4, {
+  const plot = await buildPhotonPlotSamplesWithPrescribedPathAnalysis(state, 0.5, 4, {
     solveCircularSourceRootsHitsLedger: plotBridge.solveCircularSourceRootsHitsLedger,
   });
-  assert.equal(plot.solverEngineId, "architrino-solver-app-bridge");
-  assert.equal(plot.sourceMode, "solver_bridge_absolute_history_receiver_normal_root_branch_sum");
-  assert.equal(plot.solverFieldSchema, "solver-moving-circular-observer-field-f64.v1");
+  assert.equal(plot.analysisId, "prescribed-path-analysis");
+  assert.equal(plot.sourceMode, "prescribed_path_absolute_history_receiver_normal_root_branch_sum");
+  assert.equal(plot.analysisFieldSchema, "prescribed-path-analysis/moving-circular-observer-field.v1");
   assert.equal(plot.sourceHistoryProviderId, PHOTON_SOURCE_HISTORY_PROVIDER_ID);
   assert.equal(plot.samples.length, 5);
   assert.ok(Number.isFinite(plot.amplitudeScale));
@@ -1641,10 +1295,10 @@ test("named photon presets expose the required candidate configurations", () => 
   assert.equal(radiusStress.pair.left.layers.O.radius, PHOTON_MAX_OUTER_RADIUS);
 });
 
-test("configuration search can score and compare settings through the solver path", async () => {
+test("configuration search can score and compare settings through the prescribed-path analysis", async () => {
   const state = createDefaultPhotonState();
   const bridge = createPhotonCircularSourceBridgeStub();
-  const results = await createPhotonConfigurationSearchResultsWithSolverBridge(state, {
+  const results = await createPhotonConfigurationSearchResultsWithPrescribedPathAnalysis(state, {
     solveCircularSourceRootsHitsLedger: bridge.solveCircularSourceRootsHitsLedger,
     limit: 2,
     maxCandidates: 2,
@@ -1662,7 +1316,7 @@ test("configuration search can score and compare settings through the solver pat
   assert.ok(bridge.calls.length > 0);
   assert.ok(results.every((result) =>
     result.diagnostics.sourceHistoryProviderId === PHOTON_SOURCE_HISTORY_PROVIDER_ID &&
-    result.diagnostics.fieldReconstructionOwner === "central_solver"
+    result.diagnostics.fieldReconstructionOwner === "prescribed_path_analysis"
   ));
   assert.ok(results.some((result) =>
     result.comparison.absoluteHistory.helicalPhaseFamilyCount > 0 ||
@@ -1681,7 +1335,7 @@ test("configuration search can score and compare settings through the solver pat
     assert.equal(result.comparison.status, "ok");
     assert.equal(
       result.comparison.absoluteHistory.sourceMode,
-      "solver_bridge_absolute_history_receiver_normal_root_branch_sum"
+      "prescribed_path_absolute_history_receiver_normal_root_branch_sum"
     );
     assert.ok(Number.isFinite(result.comparison.absoluteHistory.helicalPhaseFamilyCount));
     assert.ok(Number.isFinite(result.comparison.absoluteHistory.helicalStablePhaseFamilyCount));
@@ -1692,12 +1346,12 @@ test("configuration search can score and compare settings through the solver pat
   });
 });
 
-test("configuration search compares co-moving and absolute-history solver results when available", async () => {
+test("configuration search compares co-moving and absolute-history analysis results when available", async () => {
   const state = createDefaultPhotonState();
   const bridge = createPhotonMixedSearchBridgeStub();
-  const results = await createPhotonConfigurationSearchResultsWithSolverBridge(state, {
+  const results = await createPhotonConfigurationSearchResultsWithPrescribedPathAnalysis(state, {
     solveCircularSourceRootsHitsLedger: bridge.solveCircularSourceRootsHitsLedger,
-    runSolverBridge: bridge.runSolverBridge,
+    runPrescribedPathAnalysis: bridge.runPrescribedPathAnalysis,
     limit: 2,
     maxCandidates: 2,
     summaryOptions: {
@@ -1729,10 +1383,10 @@ test("configuration search compares co-moving and absolute-history solver result
   assert.ok(!bridge.runCalls.some((runRequest) => runRequest.runKind === "sharedGeometry"));
   results.forEach((result) => {
     assert.equal(result.comparison.status, "ok");
-    assert.equal(result.comparison.coMoving.sourceMode, "solver_bridge_circular_source_branch_sum");
+    assert.equal(result.comparison.coMoving.sourceMode, "prescribed_path_circular_source_branch_sum");
     assert.equal(
       result.comparison.absoluteHistory.sourceMode,
-      "solver_bridge_absolute_history_receiver_normal_root_branch_sum"
+      "prescribed_path_absolute_history_receiver_normal_root_branch_sum"
     );
     assert.ok(Number.isFinite(result.comparison.deltas.strengthDelta));
     assert.ok(Number.isFinite(result.comparison.deltas.rootCountDelta));
@@ -1743,20 +1397,20 @@ test("configuration search compares co-moving and absolute-history solver result
   assert.equal(imported[0].comparison.status, "ok");
 });
 
-test("bridge-backed photon diagnostics expose the active solver engine", async () => {
+test("Photon diagnostics expose the active prescribed-path analysis library", async () => {
   const state = createDefaultPhotonState();
   const bridge = createPhotonCircularSourceBridgeStub();
-  const summary = await computePhotonFormulaSummaryWithSolverBridge(state, 0, {
+  const summary = await computePhotonFormulaSummaryWithPrescribedPathAnalysis(state, 0, {
     solveCircularSourceRootsHitsLedger: bridge.solveCircularSourceRootsHitsLedger,
     polarizationSampleCount: 6,
     analyzerSampleCount: 3,
   });
   const rows = new Map(getPhotonDiagnosticRows(state, 0, summary));
 
-  assert.equal(rows.get("Solver engine"), "architrino-solver-app-bridge");
+  assert.equal(rows.get("Analysis library"), "prescribed-path-analysis");
   assert.equal(rows.get("Motion source"), "Photon constrained");
-  assert.equal(rows.get("Field reconstruction"), "central solver");
-  assert.equal(rows.get("Span self-hit roots"), "0 / 6");
+  assert.equal(rows.get("Field reconstruction"), "prescribed-path analysis");
+  assert.equal(rows.get("Span self-hit roots"), "6 / 6");
   assert.equal(rows.get("Span self-hit max v/c_sig"), "1.56");
   assert.equal(rows.get("Helical self-hit roots"), "12 / 12");
   assert.equal(rows.get("Helical self-hit max v/c_sig"), "1.56");
@@ -1779,7 +1433,7 @@ test("configuration search results export and import full settings", async () =>
   const state = createDefaultPhotonState();
   state.measurement.virtualObserver.y = 1.25;
   const bridge = createPhotonCircularSourceBridgeStub();
-  const results = await createPhotonConfigurationSearchResultsWithSolverBridge(state, {
+  const results = await createPhotonConfigurationSearchResultsWithPrescribedPathAnalysis(state, {
     solveCircularSourceRootsHitsLedger: bridge.solveCircularSourceRootsHitsLedger,
     limit: 3,
     maxCandidates: 3,
@@ -1840,17 +1494,17 @@ test("photon state normalization preserves configured values", () => {
   assert.deepEqual(normalized, normalizePhotonState(normalized));
 });
 
-test("formula summary reports a derived solver-bridge polarization fit", async () => {
+test("formula summary reports a derived prescribed-path-analysis polarization fit", async () => {
   const state = createDefaultPhotonState();
   state.polarization.analyzerAngleDeg = 60;
   const bridge = createPhotonCircularSourceBridgeStub();
-  const summary = await computePhotonFormulaSummaryWithSolverBridge(state, 0.5, {
+  const summary = await computePhotonFormulaSummaryWithPrescribedPathAnalysis(state, 0.5, {
     solveCircularSourceRootsHitsLedger: bridge.solveCircularSourceRootsHitsLedger,
     polarizationSampleCount: 6,
     analyzerSampleCount: 3,
   });
 
-  assert.equal(summary.solverEngineId, "architrino-solver-app-bridge");
+  assert.equal(summary.analysisId, "prescribed-path-analysis");
   assert.ok(["weak", "linear", "right_circular", "left_circular", "elliptical"].includes(
     summary.polarization.classification
   ));
@@ -1898,16 +1552,16 @@ test("polarization fitter classifies unequal quadrature amplitudes as elliptical
   assertNear(fit.fitResidual, 0, 1e-12);
 });
 
-test("derived solver-bridge polarization trace uses the fitted current field", async () => {
+test("derived prescribed-path-analysis polarization trace uses the fitted current field", async () => {
   const state = createDefaultPhotonState();
   state.polarization.analyzerAngleDeg = 17;
   const bridge = createPhotonCircularSourceBridgeStub();
-  const trace = await buildPhotonDerivedPolarizationTraceWithSolverBridge(state, 0.5, 6, {
+  const trace = await buildPhotonDerivedPolarizationTraceWithPrescribedPathAnalysis(state, 0.5, 6, {
     solveCircularSourceRootsHitsLedger: bridge.solveCircularSourceRootsHitsLedger,
     minimumPolarizationSampleCount: 6,
   });
 
-  assert.equal(trace.solverEngineId, "architrino-solver-app-bridge");
+  assert.equal(trace.analysisId, "prescribed-path-analysis");
   assert.equal(trace.rawSamples.length, 6);
   assert.ok(trace.traceSampleCount >= 72);
   assert.ok(trace.samples.length > trace.rawSamples.length * 10);
@@ -1918,10 +1572,10 @@ test("derived solver-bridge polarization trace uses the fitted current field", a
   assertNear(trace.current.ez, trace.fittedCurrent.ez, 1e-12);
 });
 
-test("derived solver-bridge polarization inset trace is centered on the oscillating component", async () => {
+test("derived prescribed-path-analysis polarization inset trace is centered on the oscillating component", async () => {
   const state = createDefaultPhotonState();
   const bridge = createPhotonCircularSourceBridgeStub();
-  const trace = await buildPhotonDerivedPolarizationTraceWithSolverBridge(state, 0, 6, {
+  const trace = await buildPhotonDerivedPolarizationTraceWithPrescribedPathAnalysis(state, 0, 6, {
     solveCircularSourceRootsHitsLedger: bridge.solveCircularSourceRootsHitsLedger,
     minimumPolarizationSampleCount: 6,
   });
@@ -1936,7 +1590,7 @@ test("derived solver-bridge polarization inset trace is centered on the oscillat
   assertNear(ezMidpoint, 0, 1e-9);
 });
 
-test("derived solver-bridge polarization ellipse fit stays stable while the current point advances", async () => {
+test("derived prescribed-path-analysis polarization ellipse fit stays stable while the current point advances", async () => {
   const state = createDefaultPhotonState();
   state.polarization.analyzerAngleDeg = 17;
   const bridge = createPhotonCircularSourceBridgeStub();
@@ -1944,8 +1598,8 @@ test("derived solver-bridge polarization ellipse fit stays stable while the curr
     solveCircularSourceRootsHitsLedger: bridge.solveCircularSourceRootsHitsLedger,
     minimumPolarizationSampleCount: 6,
   };
-  const first = await buildPhotonDerivedPolarizationTraceWithSolverBridge(state, 0.5, 6, options);
-  const second = await buildPhotonDerivedPolarizationTraceWithSolverBridge(state, 1.25, 6, options);
+  const first = await buildPhotonDerivedPolarizationTraceWithPrescribedPathAnalysis(state, 0.5, 6, options);
+  const second = await buildPhotonDerivedPolarizationTraceWithPrescribedPathAnalysis(state, 1.25, 6, options);
 
   assertNear(first.scale, second.scale, 1e-12);
   assertNear(first.amplitudes.y, second.amplitudes.y, 1e-12);
@@ -1955,10 +1609,10 @@ test("derived solver-bridge polarization ellipse fit stays stable while the curr
   assert.notEqual(first.currentProgress.toFixed(6), second.currentProgress.toFixed(6));
 });
 
-test("polarization inset current vector follows display time between solver snapshots", async () => {
+test("polarization inset current vector follows display time between analysis snapshots", async () => {
   const state = createDefaultPhotonState();
   const bridge = createPhotonCircularSourceBridgeStub();
-  const trace = await buildPhotonDerivedPolarizationTraceWithSolverBridge(state, 0.5, 6, {
+  const trace = await buildPhotonDerivedPolarizationTraceWithPrescribedPathAnalysis(state, 0.5, 6, {
     solveCircularSourceRootsHitsLedger: bridge.solveCircularSourceRootsHitsLedger,
     minimumPolarizationSampleCount: 6,
   });

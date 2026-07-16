@@ -1,5 +1,7 @@
 # Ready-to-Dispatch Thread Prompts — Solver Integrator Phases 1 & 2
 
+Historical naming: **zombie-solver (then called the central solver)**.
+
 Two **independent** threads to launch in parallel. Full spec: [coupled-delayed-history-integrator-dispatch-packet.md](coupled-delayed-history-integrator-dispatch-packet.md). Phase 3 (the coupled integrator) is gated on both returning; keep it a **different** thread from Phase 1 so the gate is not co-designed to pass. Do not address either thread by name.
 
 ---
@@ -24,14 +26,14 @@ Deliverable: a runnable oracle test suite with expected values and the independe
 
 ## THREAD B — Phase 2: Wire the real native kernel + add C++ self-hit + genuine history
 
-Closure goal: Make the real native solver kernel actually execute in the app/bridge path (not the smoke fallback), add same-source (self-hit) roots to the C++ kernel, and provide genuine retained-history sourcing — so Phase 3 can build the integrator on a real native foundation with honest provenance.
+Closure goal: Make the real C++ solver kernel actually execute in the app/bridge path (not the smoke fallback), add same-source (self-hit) roots to the C++ kernel, and provide genuine retained-history sourcing — so Phase 3 can build the integrator on a real compiled foundation with honest provenance.
 
 Tasks:
 - Add a **non-smoke** build target that compiles/exports the real solver kernel symbols, linking `architrino_solver_core` (current `src/solver/CMakeLists.txt` builds only smoke targets under `ARCHITRINO_SOLVER_BUILD_WASM`). Flip the app/bridge default off `architrino_solver_wasm_smoke.mjs` (`src/apps/photon/PhotonSolverBridgeOptions.js:1-2`) so `hasNativeMovingCircularSourceRootExport` succeeds (`src/solver/app/SolverAppBridge.mjs:9411-9415, 15413`) and the native path runs. Emit a provenance flag distinguishing native execution from `js_reference_facade`.
 - **Add same-source (self-hit) causal roots to the C++ kernel** (`src/solver/src/CausalRootSolver.cpp` currently has none — 0 matches for self-hit/same-source), matching the JS runtime's self-hit residual, including super-$c_f$ curved-history roots. Bit-compare native vs JS force evaluation on shared cases as a cross-implementation check (legitimate cross-validation, distinct from self-referential golden fixtures).
 - Wire `PathHistoryStreamWriter` (`src/solver/include/architrino/solver/PathHistoryStream.hpp`) as the source-history provider so emission-time source samples come from stored evolved trajectory, memory depth $h$ a first-class parameter.
 
-Constraints: extend the central solver; no parallel engine. Verify the wasm/native build in-tree (report exact build commands + outcomes); if the sandbox lacks the toolchain (emscripten/clang), say so and provide the build recipe + a CI-runnable target rather than claiming a pass. Report-only on physics conclusions — this is infrastructure. Discipline: KaTeX; "delayed"; architrino-level, no mass. End with thread state, files changed, validation commands + outcomes, and a `Closure goal:`.
+Constraints: extend the zombie-solver; no parallel engine. Verify the wasm/native build in-tree (report exact build commands + outcomes); if the sandbox lacks the toolchain (emscripten/clang), say so and provide the build recipe + a CI-runnable target rather than claiming a pass. Report-only on physics conclusions — this is infrastructure. Discipline: KaTeX; "delayed"; architrino-level, no mass. End with thread state, files changed, validation commands + outcomes, and a `Closure goal:`.
 
 ---
 

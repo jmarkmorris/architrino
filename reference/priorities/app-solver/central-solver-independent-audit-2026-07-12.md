@@ -1,4 +1,6 @@
-# Independent Central-Solver Audit (blind, evidence-first)
+# Independent Zombie-Solver Audit (blind, evidence-first)
+
+This record uses **zombie-solver (then called the central solver)** for the quarantined evaluator audited below.
 
 **Date:** 2026-07-12
 **Mode:** audit/report — report-only, no source edits, no generated-artifact writes
@@ -99,7 +101,7 @@ All verified by direct read/run by the auditor unless marked *(agent-located, st
 
 ## 9. Uncertainties / not verified
 - I did not read all 51 C++ files line-by-line; findings on `pairInteraction`, `T3`, and the test catalog beyond the three P0/P1 items I re-read rest on read-only agent citations that I structurally spot-checked, not full personal reads.
-- Whether individual braid run-scripts (e.g. the "native retained-history confirmation run," the §90 nonlinear-saturation run) add their **own** ad-hoc time-stepping on top of the evaluator was **not** audited; the central solver itself provides none, so any such integration is per-script and unvalidated. This is the key follow-up for judging the dynamical memory claims (§83 dispersal, §90 growth).
+- Whether individual braid run-scripts (e.g. the "native retained-history confirmation run," the §90 nonlinear-saturation run) add their **own** ad-hoc time-stepping on top of the evaluator was **not** audited; the zombie-solver itself provides none, so any such integration is per-script and unvalidated. This is the key follow-up for judging the dynamical memory claims (§83 dispersal, §90 growth).
 - The signed-branch-orientation impact on specific braid numbers needs a dedicated numeric check (not run here).
 - I could not compile/run the native C++ suite in this sandbox; native "smoke pass" claims rest on their source assertions, not a live run here.
 

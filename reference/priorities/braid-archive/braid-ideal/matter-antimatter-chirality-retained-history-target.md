@@ -124,7 +124,7 @@ The target fails closed under any of these outcomes:
 
 ## Output Packet
 
-The first producer artifact is [matter-antimatter-chirality-retained-history-target.mjs](../../../../scripts/braid-ideal/matter-antimatter-chirality-retained-history-target.mjs), checked by [braid-ideal-matter-antimatter-chirality-retained-history-target.test.js](../../../../tests/braid-ideal-matter-antimatter-chirality-retained-history-target.test.js). It emits the schema packet `braid_ideal_chirality_retained_history_target.v0`. This packet is a fail-closed central-solver retained-history row schema, not accepted chirality evidence.
+The first producer artifact is matter-antimatter-chirality-retained-history-target.mjs (retired script: `scripts/braid-ideal/matter-antimatter-chirality-retained-history-target.mjs`), checked by braid-ideal-matter-antimatter-chirality-retained-history-target.test.js (retired script: `tests/braid-ideal-matter-antimatter-chirality-retained-history-target.test.js`). It emits the schema packet `braid_ideal_chirality_retained_history_target.v0`. This packet is a fail-closed central-solver retained-history row schema, not accepted chirality evidence.
 
 Provider-backed population status. The producer now supports a candidate provider-backed mode:
 

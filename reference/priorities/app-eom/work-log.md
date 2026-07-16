@@ -7,7 +7,7 @@ This file holds dated decisions, implementation status, validation results, fail
 - Created `reference/priorities/app-eom/` for the operator-selected `EOM` Equation of Motion application.
 - Recorded the defining contract as retained past paths plus an absolute-time interval in, Master-EOM-evolved paths out.
 - Prohibited prescribed future paths, path constraints, guidance, snapping, analytic target orbits, and display curves from serving as EOM evolution.
-- Recorded the decision to leave the existing central solver and all current dependencies in place during the standalone EOM build.
+- Recorded the decision to leave the existing zombie-solver and all current dependencies in place during the standalone EOM build.
 - Ranked the initial work around the evolution contract, canonical Master EOM binding, independent oracle, coupled retained-history integrator, timestep/event control, deterministic multithreading, precision/convergence, streaming/checkpointing, application surface, knowledge-tree quarantine, Borg shadow migration, and later consumer-by-consumer migration.
 - Recorded the initial quarantine disposition for Borg, Causal Delay Feedback, Animator, Photon, Ideal Braid, legacy braid workstream research instruments, T3, and unclassified consumers.
 - No solver source, app source, generated artifact, fixture, or current priority packet was changed.
@@ -120,7 +120,7 @@ This file holds dated decisions, implementation status, validation results, fail
 - Designed deterministic receiver ownership, immutable content-addressed history chunks, causal residency and prefetch, heterogeneous regular and difficult queues, fixed reduction identities, atomic accepted-window publication, streamed output manifests, and reproducible distributed restart.
 - Added an honest dense-workload boundary: if certified exclusion and controlled aggregation cannot reduce a noncompressible workload inside the declared hardware envelope, preflight returns `resource_envelope_exceeded` before publishing candidate evolution.
 - Added the $N=10^4$, $10^5$, and $10^6$ benchmark ladder, million-path certified sparse evolution, exhaustive nested parity controls, heterogeneous parity, restart/output reconstruction, and dense fail-closed validation.
-- Preserved the existing central solver, current dependencies, independent oracle, Master Equation binding, and numeric certification contract unchanged.
+- Preserved the existing zombie-solver, current dependencies, independent oracle, Master Equation binding, and numeric certification contract unchanged.
 
 ## 2026-07-13 — Certified Acceleration Reconstruction Layer Completed
 
@@ -197,7 +197,7 @@ This file holds dated decisions, implementation status, validation results, fail
 ## 2026-07-13 — Independent Oracle Phase 4 Completed
 
 - Added `phase4_acceptance.py` as a reference-only layer; it imports neither
-  the current central solver nor a future production EOM implementation.
+  the current zombie-solver nor a future production EOM implementation.
 - Added certified reception-time root tubes. Persistent identities are issued
   only when every matched branch has a uniform nonzero source normal, strict
   residual signs on the tube walls, disjoint tubes, and a certified root-free
@@ -215,7 +215,7 @@ This file holds dated decisions, implementation status, validation results, fail
   levels and nonincreasing endpoint position and velocity deltas.
 - Added the versioned `eom_independent_oracle_phase4_acceptance/v0` matrix. It
   rejects missing or failed controls, empty evidence, non-reference authority,
-  and dependencies on the current central solver, a production EOM backend, or
+  and dependencies on the current zombie-solver, a production EOM backend, or
   prescribed future paths.
 - Added twelve Phase 4 controls covering persistent identities, root-event
   routing, tangent-event impulse, event resource exhaustion, restart identity,
@@ -233,7 +233,7 @@ This file holds dated decisions, implementation status, validation results, fail
 - Added the versioned reference-only
   `eom_performance_architecture_baseline/v0` driver, a C++20 native kernel
   probe, a Metal bulk-bound probe, and five unit controls. None imports or
-  changes the existing central solver, and none implements production EOM.
+  changes the existing zombie-solver, and none implements production EOM.
 - Recorded an Apple M3 evidence packet with an independent 90-digit
   decimal-interval oracle cost, NumPy binary64 kernels, C++ scalar and
   auto-vector candidates, deterministic fixed-tree reduction, one-to-eight CPU
@@ -478,7 +478,7 @@ This file holds dated decisions, implementation status, validation results, fail
   checkpointed continuation reproduces the uninterrupted retained-history
   fingerprint exactly.
 - Corrected Borg's false EOM provenance without removing its compatibility
-  runtime. Its fixture and dynamic central-solver runner now state
+  runtime. Its fixture and dynamic zombie-solver runner now state
   `canonicalEomEvidence=false` and
   `eomEvidenceStatus=non_eom_compatibility_output`.
 - Added a separate Borg EOM shadow adapter. It imports a continuous cubic past
@@ -572,7 +572,7 @@ This file holds dated decisions, implementation status, validation results, fail
   corrected candidate, but the final inflated-history snapshot loses root
   completeness, so atomic publication correctly retains the time-zero
   histories.
-- Native EOM regression result: 26 tests passed. The §86/§90 dynamical verdicts
+- EOM solver regression result: 26 tests passed. The §86/§90 dynamical verdicts
   remain quarantined; the next engine target is root-complete atomic
   recertification after the first certified fold event.
 
@@ -598,7 +598,7 @@ This file holds dated decisions, implementation status, validation results, fail
   uncertified root rows, two finite-width caustic routes, maximum 193,338 of
   300,000 quadrature cells, position error $1.36\times10^{-11}$, and velocity
   error $1.44\times10^{-6}$ against the $2\times10^{-6}$ budget.
-- Native EOM regression result: 27 tests passed. No §86/§90 verdict is claimed;
+- EOM solver regression result: 27 tests passed. No §86/§90 verdict is claimed;
   multi-cycle convergence and perturbation coverage remain open.
 - A four-step refined `imx` extension publishes through
   $3.7702986964\times10^{-5}$ with zero rejections. Its stride-1 diagnostic
@@ -620,7 +620,7 @@ This file holds dated decisions, implementation status, validation results, fail
 
 - Recorded the operator decision that EOM is the endorsed solver and sole
   forward production target.
-- Limited the existing central solver to temporary compatibility for current
+- Limited the existing zombie-solver to temporary compatibility for current
   dependencies. New consumers, physical capabilities, evidence claims, and
   forward solver work may not adopt or extend it.
 - Strengthened the EOM priority queue with explicit legacy-solver containment,
@@ -1071,9 +1071,9 @@ This file holds dated decisions, implementation status, validation results, fail
 
 - The operator directed Borg to use EOM by default. Ordinary `/borg.html`
   now loads the retained-history asset and mounts the fail-closed EOM shadow
-  runner; the old central-solver path is available only through
+  runner; the old zombie-solver path is available only through
   `?eom=compatibility` for diagnostics.
-- The local development server enables the same-origin native EOM endpoint by
+- The local development server enables the same-origin EOM solver endpoint by
   default and constructs its process client lazily on the first request. An
   explicit false `EOM_BORG_SHADOW` environment value disables the endpoint.
 - The default-route change does not promote the imported compatibility
@@ -1194,7 +1194,7 @@ This file holds dated decisions, implementation status, validation results, fail
   `h/4=0.0025`. The maximum state differences were about `5.04e-14` and
   `6.30e-14`; the one-thread and four-thread `h/4` histories were byte
   identical; and no root failure occurred.
-- A rebuilt native solver then ran a fresh burn-in with root, acceleration,
+- A rebuilt EOM solver then ran a fresh burn-in with root, acceleration,
   position, velocity, and correction tolerances all set to `1e-8`. It accepted
   3,241 fixed `0.01` steps through $T=32.41$ in about 4,037 seconds. The next
   step failed closed only for ordered pair `1003<-1004`: 5,134 of 5,135 root
@@ -1227,6 +1227,46 @@ This file holds dated decisions, implementation status, validation results, fail
 - The complete Borg JavaScript suite passes 63/63, including an exact native
   checkpoint-time regression, and the native Borg process suite passes 4/4.
 
+## 2026-07-16 — `1003<-1004` certified as a simple root, not a topology event
+
+- Added certificate-only difficult-cell diagnostics to the MPFR exact-pair
+  route. They record the emission cell, undecidable midpoint residual,
+  source-normal and receiver-normal enclosures, endpoint signs, and source
+  segment without changing root classification or acceleration.
+- The formerly blocking cell at reception time $T\approx32.48$ has opposite
+  residual endpoint signs and
+  $D_s\in[0.8549184784,0.8549184901]$. By strict monotonicity and the
+  intermediate-value theorem it contains exactly one simple root. Applying the
+  mean-value theorem to the directed midpoint residual and source-normal
+  enclosures narrows the emission root to a `2.551e-9` interval, inside the
+  declared `1e-8` tolerance. The earlier inference that this was an
+  off-diagonal fold or root-topology event is refuted.
+- The actual defect was in the last MPFR root-surrounding probe. Its intended
+  half-tolerance radius produced an outward-rounded pair of endpoints whose
+  represented width could exceed the tolerance by a few ulps, so the probe was
+  skipped. Added a final pair of exact representable points rounded inward from
+  the half-tolerance radius. It is accepted only when the represented width is
+  no greater than the tolerance and directed residual enclosures have strict
+  opposite signs. The route is general and contains no Borg path ID or event
+  time.
+- Added the closed-form independent control $g(S)=S+5.5\times10^{-9}$, whose
+  unique root is $S=-5.5\times10^{-9}$ and whose source normal is exactly one.
+  The native MPFR certificate and the separately authored 90-digit decimal
+  oracle both certify one root, the complete root-free complement, and no
+  memory-boundary contact.
+- Rebuilt the Borg EOM worker and resumed the unchanged strict checkpoint.
+  The step from $T=32.4796875$ through $T=32.48$ accepted with zero rejections
+  and zero root failures, followed by five more accepted strict steps through
+  $T=32.4815625$. Every pre-event segment on all eight paths is byte-identical;
+  the crossing checkpoint contains only two appended half-step segments per
+  path.
+- Validation passes: independent root oracle 23/23, native history/root layer
+  16/16, native acceleration 12/12, native coupled evolution 17/17, native Borg
+  process 4/4, Borg JavaScript 63/63, independent phase-4 acceptance 12/12,
+  independent certified evolution 10/10, and independent certified
+  acceleration 16/16. Evidence:
+  [eom-borg-eight-path-1003-1004-simple-root-certificate-apple-m3-2026-07-16.json](evidence/eom-borg-eight-path-1003-1004-simple-root-certificate-apple-m3-2026-07-16.json).
+
 ## 2026-07-16 — MPFR multiplication attribution and exact-zero Horner fold
 
 - **Measured:** complete-run sampling attributes 87.30% of general
@@ -1245,3 +1285,71 @@ This file holds dated decisions, implementation status, validation results, fail
   counts match, 32 native tests pass, and 96/192/384-bit fallback checks remain
   certified-complete. Evidence:
   [section-86-mpfr-multiplication-attribution-and-zero-horner-fold-2026-07-16.md](evidence/section-86-mpfr-multiplication-attribution-and-zero-horner-fold-2026-07-16.md).
+
+## 2026-07-16 — first deterministic recursive block-exclusion path
+
+- Extended the accepted moving-history certificate into a bounded recursive
+  receiver/source/emission index with explicit `excluded`, `subdivide`,
+  `exact_tile`, and `unresolved` routes. Relationship-level collapse accounts
+  for every ordered pair, including self-pairs; any surviving time cell
+  promotes the pair's complete emission interval to exact certification.
+- **Derived:** outward residual exclusion is sound because every covered
+  point residual is contained in the outward interval enclosure. Acceptance
+  requires complete disjoint accounting and zero unresolved membership.
+- **Measured:** independent root-oracle 23/23, moving-history/root 17/17,
+  recursive controls 3/3, acceleration 12/12, coupled evolution 17/17, and
+  native CTest 3/3 passed. No oracle root occurred in an excluded block, and
+  single-thread/four-thread exact-fallback records were byte-identical.
+- **Measured:** the complete sparse route, including exact fallback, reached
+  10,000 paths and 100,000,000 logical pairs in 49.444 seconds with 98.96%
+  exact-search reduction, zero unresolved pairs, and 1.264 GB peak resident
+  memory. Matched one-thread controls measured 2.064x speedup at 128 paths and
+  7.298x at 512. The dense ladder provided zero reduction and stopped at 2,048
+  paths with `resource_envelope_exceeded` before candidate execution.
+- Evidence and falsifiers:
+  [eom-recursive-block-exclusion-first-path-apple-m3-2026-07-16.md](evidence/eom-recursive-block-exclusion-first-path-apple-m3-2026-07-16.md).
+
+## 2026-07-16 — Small-population performance stop rule
+
+- **Measured basis:** successive certificate-equivalent MPFR rounds produced
+  large wall-time reductions from decimal caching, compiled segment constants,
+  sign-directed products, and worker-local storage. The next direct-slot round
+  reduced wall time 5.6726%; the final exact-zero Horner round measured 0.6345%,
+  with its three-pair whole-run confidence interval crossing zero. These are
+  successive-baseline measurements and are not multiplied into one speedup.
+- **Inferred engineering decision:** open-ended micro-optimization of the
+  current small-population certificate path has reached diminishing returns and
+  stops here. A new round requires a fresh phase-matched profile of the then-
+  current accepted workload, not reuse of an earlier hotspot.
+- The chosen reopening gate is a measured cost owner above 10% of total wall
+  time plus a code-path argument for a certificate-equivalent change plausibly
+  capable of removing at least 3% of total wall time. The 10% and 3% values are
+  operating thresholds, not measured constants. A material workload or
+  correctness change may also trigger remeasurement before applying the gate.
+- This stop rule does not bar correctness repairs, adaptive-step or other
+  algorithmic reductions in the number of certificate evaluations, or the
+  separately scoped large-population certified block-exclusion program. Each
+  still requires matched timing and unchanged independent acceptance evidence.
+- A fresh profile and matched A-B test that meet the reopening gate would
+  falsify the current diminishing-returns inference and supersede this stop.
+
+## 2026-07-16 — moving-population recursive block-exclusion ladder
+
+- Extended the staged benchmark to distinct accepted linear moving histories
+  while leaving the recursive certificate, complete relationship accounting,
+  full-interval exact fallback, and prohibited-approximation boundary
+  unchanged.
+- **Measured:** recursive controls passed 6/6, the moving-history/root suite and
+  independent decimal oracle passed 17/17, and native CTest passed 3/3. Every
+  excluded moving node was independently root-free, at least one exact-
+  fallback pair contained an active root, and permitted schedules preserved
+  membership and exact-row bytes.
+- **Measured:** the complete sparse path reached 10,000 moving histories and
+  100,000,000 logical pairs in 55.471 seconds with 98.96% exact-search
+  reduction, zero unresolved membership, and 1.172 GiB peak resident memory.
+  Matched one-thread speedups were 2.440x at 128 and 7.258x at 512 paths.
+- **Measured:** the dense moving control excluded no relationships and stopped
+  at 2,048 paths with `resource_envelope_exceeded`, accounting every projected
+  relationship as unresolved rather than publishing a candidate result.
+- Evidence and falsifiers:
+  [eom-recursive-block-exclusion-moving-population-apple-m3-2026-07-16.md](evidence/eom-recursive-block-exclusion-moving-population-apple-m3-2026-07-16.md).

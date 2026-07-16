@@ -32,3 +32,31 @@ Append-only. Dated entries, newest last. One entry per completed unit of work: w
   the fully specified, never-run wake conservation-and-transport program,
   which is instrument-independent by construction.
 - Operator disposition review scheduled next session; nothing promoted yet.
+
+## 2026-07-16 — Assembly viewer captured; Borg hazards cleared
+
+- Operator ratified the 3D assembly viewer. Requirements sketch landed at
+  `campaigns/assembly-viewer-requirements.md`: viewer-not-instrument rule
+  (display-only, provenance banner, claim-grade label), `assembly-view-record.v0`
+  schema sketch (worldlines over the delay window + binaries/ansatz/events
+  metadata), display modes (animated core with trail depth = delay horizon,
+  chart pose, co-rotating/screw frame, strobe, envelope, collapse-protocol
+  comparison, figure export), overlays, and the Borg re-base (keep surface,
+  replace data spine). Queue item 3 (instrument gate) now includes adopting the
+  record schema so rung-1 runs emit viewable records from day one.
+- Borg prerequisites cleared same day: app-borg lane scope re-pointed from the
+  quarantined zombie-solver to the EOM engine with a reading rule over its six
+  older packets; the fixture generator's provenance-label defect was confirmed
+  already repaired (--check exit 0, contract test 15/15) and the do-not-run
+  order lifted. Residual: the solver bridge's native master-equation path still
+  self-reports canonical evidence (test-pinned) — viewer consumes record files
+  only, never the bridge.
+- Repo-wide "zombie-solver" census run for the operator: corpus 3 (historical
+  notebook, keep), reference/op 3 (audit pointers, keep), braid-archive 281
+  (frozen, exempt), app-solver/app-eom 131 (the topic itself), app-borg 27
+  (covered by reading rule), braid-program 0, code trees ~930 (the compatibility
+  implementation and its consumers — the app-eom migration inventory, not doc
+  debt). Actionable follow-up: 44 references in 13 files across 7 other lanes
+  (app-animator, app-photon, app-causal-delay-feedback, master-equation-closure,
+  aaa-work-threads, open-problems, operations) — Borg-class stale-scope
+  candidates, unswept.

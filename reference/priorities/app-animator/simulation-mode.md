@@ -1,12 +1,12 @@
 # Animator Simulation Mode
 
-This detailed priority file records the current direction for connecting `src/apps/animator/` to the central solver. The target is an evolved animator that keeps its 3-D authoring and visualization surface while gaining a master-equation simulation mode.
+This detailed priority file records the current direction for connecting `src/apps/animator/` to the EOM solver. The target is an evolved animator that keeps its 3-D authoring and visualization surface while gaining a master-equation simulation mode.
 
 ## Direction
 
 Animator is the destination application. Its current 3-D scene, authoring, camera, timeline, path, save, and playback capabilities remain baseline requirements. The simulation work should extend animator rather than creating another standalone runtime.
 
-The central solver owns delayed causal-root solving, branch-resolved finite-history sums where the branch chart stays simple, Jacobian diagnostics, halt reasons, convergence checks, and batch output.
+The EOM solver owns delayed causal-root solving, branch-resolved finite-history sums where the branch chart stays simple, Jacobian diagnostics, halt reasons, convergence checks, and batch output.
 
 ## Core Requirements
 
@@ -27,10 +27,10 @@ The central solver owns delayed causal-root solving, branch-resolved finite-hist
 | 3-D rendering | `src/apps/animator/` | Three.js scene graph, camera controls, lines, meshes, sprites, labels, and timeline rendering. |
 | 2-D planar mode | Captured planar visual semantics; `src/apps/animator/` for UI integration | Add an animator view mode that constrains or projects solver data onto a planar surface while retaining animator playback, trails, and diagnostics. |
 | Authoring UI | `src/apps/animator/` | Extend the existing document workspace, path editor, timeline, library/save flow, and camera waypoint tools. |
-| Solver semantics | `src/solver/` | Use the central solver bridge, WebAssembly worker, typed buffers, streams, and manifests. |
-| Delayed causal roots | `src/solver/` | Use branch-root search, causal residual checks, Jacobian diagnostics, and fail-closed halt reporting from the central solver. |
+| Solver semantics | `src/eom/` | Use the EOM solver bridge, typed buffers, streams, and manifests. |
+| Delayed causal roots | `src/eom/` | Use branch-root search, causal residual checks, Jacobian diagnostics, and fail-closed halt reporting from the EOM solver. |
 | Field shells | Animator requirements | Render as Three.js shell geometry or shader-assisted shell rendering. |
-| Delayed hit visuals | Animator renderer and central solver data | Render solver-derived hits using connectors, emission points, shell intersections, and hit tables. |
+| Delayed hit visuals | Animator renderer and zombie-solver data | Render solver-derived hits using connectors, emission points, shell intersections, and hit tables. |
 | Path animation | `src/apps/animator/` | Keep authored spline/polyline paths and add solver-derived trails as a separate motion source. |
 | Offline playback | `src/solver/` plus `src/apps/animator/` | Produce cached simulation datasets for animator scrubbing, inspection, and video export. |
 | Performance path | `src/apps/animator/` plus extracted solver | Start with Web Workers and typed arrays; consider WASM, WebGPU, or shader kernels only after profiling identifies the bottleneck. |
@@ -74,7 +74,7 @@ Each implementation step should follow the same loop:
 2. **Complete: playback bridge**: add a dataset playback path in animator so sampled solver frames can drive particle positions, trails, timeline scrubbing, and diagnostics without touching authored-path behavior.
 3. **Complete: motion-source separation**: add explicit UI/state separation between solver-derived motion and authored motion, including visible provenance, mode labels, and independent source visibility controls.
 4. **Complete: 2-D planar mode**: add an animator view mode for planar simulations, preserving solver-derived diagnostics while allowing a flat 2-D view for cases where the simulation target is planar.
-5. **Complete: central solver bridge path**: route Animator simulation work through the central solver bridge interface.
+5. **Complete: zombie-solver bridge path**: route Animator simulation work through the zombie-solver bridge interface.
 6. **Complete: worker simulation runner**: add a Web Worker runner that can generate or stream simulation frames into animator using typed arrays or another profiled frame-buffer format.
 7. **Complete: field-shell rendering**: render solver-derived shell semantics in animator as 3-D spherical emission shells, including expanding shells, shell visibility controls, opacity controls, and white zero-field semantics where appropriate.
 8. **Complete: delayed-hit rendering**: render solver-derived delayed hits with emission points, receiver points, branch/Jacobian diagnostics, hit connectors, and hit-table data.
@@ -82,7 +82,7 @@ Each implementation step should follow the same loop:
 10. **Current: simulation authoring UI**: add scene setup, particle setup, solver parameters, run/cache controls, and diagnostic panels to the animator authoring surface.
     - **Review gate**: Marko needs to review the Simulation authoring panel before this step is marked complete.
 11. **Offline/cache workflow**: support long-running or high-precision simulations that bake datasets for animator playback, inspection, and export.
-12. **Complete: production solver cleanup**: keep Animator on central solver datasets.
+12. **Complete: production solver cleanup**: keep Animator on zombie-solver datasets.
 
 ## Non-Goals
 

@@ -28,8 +28,8 @@ The surface object emitted by [build-app-surface-design.mjs](../../../scripts/bo
 | `screenSpecId` | Stable first-screen spec id. |
 | `appId` | Literal `borg-app`. |
 | `claimLevel` | `developer-test-screen-spec` for the current artifact. |
-| `sourceManifest` | Manifest id, run id, model contract id, native solver status, native solver version, bridge schema version, fixture status, and source claim level. |
-| `nativeSolverBoundary` | Native central solver as the production solver, no new solver, bridge execution path, and authority state for current state, path history, wake history, and face-boundary rows. |
+| `sourceManifest` | Manifest id, run id, model contract id, EOM solver status, EOM solver version, bridge schema version, fixture status, and source claim level. |
+| `nativeSolverBoundary` | Native zombie-solver as the production solver, no new solver, bridge execution path, and authority state for current state, path history, wake history, and face-boundary rows. |
 | `firstViewport` | Workspace layout regions, required 4K UHD render size, visible layers, hidden layers, disabled layers, and authority promotion rule. |
 | `viewport` | Displayed central cube, outer computed cube diagnostic overlay, native architrino frame source, and display-only camera controls. |
 | `layerStrip` | First-screen layer states and source fields. |
@@ -92,7 +92,7 @@ The current `borg-first-screen-from-native-fixture` surface contract binds these
 
 These values are valid only as a developer-test screen contract. They do not establish proof evidence, production rendering performance, benign-noise authority, or central-volume acceleration authority.
 
-The browser surface also provides exact runtime controls for electrino count, positrino count, maximum random velocity-component magnitude, and minimum random speed. Applying them replaces the staged population, rebuilds particle and path objects, and starts a new live central-solver compatibility run. These controls do not change the fixture values in the table and do not promote the resulting trajectory to canonical equation-of-motion evidence.
+The browser surface also provides exact runtime controls for electrino count, positrino count, maximum random velocity-component magnitude, and minimum random speed. Applying them replaces the staged population, rebuilds particle and path objects, and starts a new live zombie-solver compatibility run. These controls do not change the fixture values in the table and do not promote the resulting trajectory to canonical equation-of-motion evidence.
 
 ## First-Screen Layer Contract
 
@@ -113,7 +113,7 @@ The `architrino-position` layer renders architrinos as small fixed-screen points
 
 The `path-history` layer renders adjacent native path rows as straight line segments with `smoothingPolicy = none`. Trail color and thickness are app-facing visualization only; the path authority still comes from the native path-history rows. The first static page must not spline, tube-smooth, or otherwise curve native rows beyond the solver-emitted frame sequence.
 
-The first static page uses the native fixture frame sets as keyframes and may interpolate between adjacent keyframes for smoother display playback. Interpolated playback frames are display-only visualization and must not be counted as additional native solver output, path-history evidence, wake rows, face-boundary evidence, or proof evidence.
+The first static page uses the native fixture frame sets as keyframes and may interpolate between adjacent keyframes for smoother display playback. Interpolated playback frames are display-only visualization and must not be counted as additional EOM solver output, path-history evidence, wake rows, face-boundary evidence, or proof evidence.
 
 ## Simulation-Envelope Rail Contract
 
@@ -160,10 +160,10 @@ The command fails if the screen spec stops binding the native fixture, loses the
 
 The first browser consumer is [borg.html](../../../borg.html). It uses [BorgFixtureData.js](../../../src/apps/borg/BorgFixtureData.js) as the browser-safe fixture snapshot, [BorgAppRuntime.js](../../../src/apps/borg/BorgAppRuntime.js) as the Three.js app runtime, and [main.js](../../../src/apps/borg/main.js) as the page entrypoint.
 
-The page renders the displayed central cube, native current-state positions, path-history trails when toggled on, velocity vectors when toggled on, the simulation-envelope rail, collapsed provenance drawer, timeline scrubber, render/deployment placeholders, value-authority rows, and fail-closed diagnostics. It remains a static developer-test page. It does not run the native solver in the browser, does not generate boundary input, and does not upgrade wake streams, face-boundary replay, benign-noise status, or central-volume acceleration beyond the source manifest.
+The page renders the displayed central cube, native current-state positions, path-history trails when toggled on, velocity vectors when toggled on, the simulation-envelope rail, collapsed provenance drawer, timeline scrubber, render/deployment placeholders, value-authority rows, and fail-closed diagnostics. It remains a static developer-test page. It does not run the EOM solver in the browser, does not generate boundary input, and does not upgrade wake streams, face-boundary replay, benign-noise status, or central-volume acceleration beyond the source manifest.
 
 The first screen must show the simulation before manifest details. Source manifest id, model contract id, bridge path, raw frame-row count, and raw path-row count belong in the collapsed provenance drawer unless the app is in a dedicated audit/debug view.
 
 ## Next Exact Build Burden
 
-Build `build-native-wake-history-and-boundary-residual-fixture`. The next artifact should extend the native central solver contract and bridge so Borg can add retained wake/interaction rows, row-conservation counts, boundary-to-central residual rows, and required acceleration-contribution diagnostics on top of the current fixed-parameter native master-equation frame/path fixture. Browser surface-budget measurement remains required later, but this surface design now advertises the missing wake-history and residual fixture as the next implementation handoff.
+Build `build-native-wake-history-and-boundary-residual-fixture`. The next artifact should extend the native zombie-solver contract and bridge so Borg can add retained wake/interaction rows, row-conservation counts, boundary-to-central residual rows, and required acceleration-contribution diagnostics on top of the current fixed-parameter native master-equation frame/path fixture. Browser surface-budget measurement remains required later, but this surface design now advertises the missing wake-history and residual fixture as the next implementation handoff.

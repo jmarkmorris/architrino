@@ -99,7 +99,7 @@ export function buildH39TerminalGraphRemainderBudgetReplayReport(options = {}) {
       "second executable H39 solver-impact fixture for the expression-level N38 terminal graph remainder budget surface",
     central_solver_backend_invoked: false,
     central_solver_backend_reason:
-      "The current central solver can carry root-ledger, interval, precision, and validation-replay metadata, but this H39 terminal graph budget remains a fixture adapter over the historical proof diagnostic rather than a native solver backend run.",
+      "The current central solver can carry root-ledger, interval, precision, and validation-replay metadata, but this H39 terminal graph budget remains a fixture adapter over the historical proof diagnostic rather than a compiled-solver backend run.",
     selected_replay_fixture: AUDIT_ID,
     case_count: cases.length,
     cases,

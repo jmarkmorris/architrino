@@ -1,5 +1,7 @@
 # Path-History Stream Contract
 
+Historical naming: **zombie-solver (then called the central solver)**.
+
 Status: `closed-schema-fixture-benchmark-baseline`
 
 Kind: `solver-storage-contract`
@@ -16,7 +18,7 @@ Primary dependencies:
 
 ## Purpose
 
-The central solver needs long path histories without turning every run into an unbounded in-memory array. This contract defines the storage and replay boundary for path-history output: logical per-path streams backed by a run-level chunked binary store, manifest, encoding dictionary, event store, binary index sidecar, summary record, checksums, and optional deep-index store.
+The zombie-solver needs long path histories without turning every run into an unbounded in-memory array. This contract defines the storage and replay boundary for path-history output: logical per-path streams backed by a run-level chunked binary store, manifest, encoding dictionary, event store, binary index sidecar, summary record, checksums, and optional deep-index store.
 
 The contract is storage and replay infrastructure for solver-owned path histories. It is not an app migration step. App adapters may consume the streams later, but this note does not change app migration order, app runtime ownership, or app source files.
 

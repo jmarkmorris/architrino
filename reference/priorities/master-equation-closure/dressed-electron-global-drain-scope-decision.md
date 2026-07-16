@@ -113,4 +113,4 @@ Failure at any gate rejects that realization; it does not reject the 12-architri
 
 ## Next Authorized Step
 
-Prepare a read-only central-solver contract audit and retained-run specification against this output contract. The audit may identify missing native fields and propose the smallest central-solver extension, but it may not implement that extension, run a native release, select a sense-split / counter-rotating ontology, or promote a dressed-electron claim without a separate operator decision.
+Prepare a read-only EOM solver contract audit and retained-run specification against this output contract. The audit may identify missing EOM fields and propose the smallest EOM solver extension, but it may not implement that extension, run an EOM release, select a sense-split / counter-rotating ontology, or promote a dressed-electron claim without a separate operator decision.

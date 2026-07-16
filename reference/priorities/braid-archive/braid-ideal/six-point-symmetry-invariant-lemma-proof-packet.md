@@ -4,7 +4,7 @@ Status: priority-only proof packet, 2026-07-06; operator-reviewed and accepted a
 Claim level: derivation-closure proof for the invariance and reduction obligations only. This packet does not claim a retained branch, accepted evidence, force/action closure, stability, transverse-manifold stability, observer export, score movement, or corpus promotion.
 Corpus disposition: operator review complete; theorem-target restatement is promotable in reader-facing form. The native central-solver kernel is audited equivariant under both lemma actions on all retained-history force-row paths, so the staged lemma may be applied to native records once the same-record binding chain exists. Any retained-history application still requires same-record receiver-normal branch-strength evidence, action/wake/event/support rows, and stability evidence.
 
-Owner scaffold: [six-point-symmetry-invariant-lemma-row.mjs](../../../../scripts/braid-ideal/six-point-symmetry-invariant-lemma-row.mjs), tests in [braid-ideal-six-point-symmetry-invariant-lemma-row.test.js](../../../../tests/braid-ideal-six-point-symmetry-invariant-lemma-row.test.js).
+Owner scaffold: six-point-symmetry-invariant-lemma-row.mjs (retired script: `scripts/braid-ideal/six-point-symmetry-invariant-lemma-row.mjs`), tests in braid-ideal-six-point-symmetry-invariant-lemma-row.test.js (retired script: `tests/braid-ideal-six-point-symmetry-invariant-lemma-row.test.js`).
 Companion audit: [Six-Point Equivariant Reduction Proof Audit](six-point-equivariant-reduction-proof-audit-2026-07-06.md).
 Executable witness spec: [Angular-Momentum Held-Release Sweep Spec](angular-momentum-held-release-sweep-spec.md).
 

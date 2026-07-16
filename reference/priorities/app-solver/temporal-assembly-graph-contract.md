@@ -1,5 +1,7 @@
 # Temporal Assembly Graph Contract
 
+Historical naming: **zombie-solver (then called the central solver)**.
+
 ## Status
 
 - Kind: `priority-detail`
@@ -20,7 +22,7 @@ duplicated into every path row.
 
 ## Purpose
 
-The central solver needs to represent assemblies, subassemblies, unstable
+The zombie-solver needs to represent assemblies, subassemblies, unstable
 membership, threshold crossings, and self-action events across time. A path row
 is the elementary architrino history record. An assembly graph record is the
 time-indexed context that says which assembly a path belongs to, what state that

@@ -1,6 +1,6 @@
 # Angular-Momentum Held-Release Sweep Spec
 
-Status: priority-only implementation and proofing spec, 2026-07-06; implementation checklist items 1-10 executed 2026-07-07 in [held-release-causal-wake-toy.mjs](../../../../scripts/braid-ideal/held-release-causal-wake-toy.mjs), with per-row results in the [Shell-Braid Run Matrix](sh-run-matrix.md) and the dated closeout in the [work log](work-log.md). Sweep outcome: all ten declared rows all-outward, no second turn, no bounded window, clean root coverage, $\operatorname{Fix}(G)$ drift $\le 5\times10^{-15}$; `moving-prehistory` released with exactly matched derivative (proofing question 2 answered: no discontinuity); no candidate row named.
+Status: priority-only implementation and proofing spec, 2026-07-06; implementation checklist items 1-10 executed 2026-07-07 in held-release-causal-wake-toy.mjs (retired script: `scripts/braid-ideal/held-release-causal-wake-toy.mjs`), with per-row results in the [Shell-Braid Run Matrix](sh-run-matrix.md) and the dated closeout in the [work log](work-log.md). Sweep outcome: all ten declared rows all-outward, no second turn, no bounded window, clean root coverage, $\operatorname{Fix}(G)$ drift $\le 5\times10^{-15}$; `moving-prehistory` released with exactly matched derivative (proofing question 2 answered: no discontinuity); no candidate row named.
 Source: operator-supplied response, corrected by operator terminology review.
 Claim level: diagnostic simulation target and derivation-closure target only. This packet does not claim a retained branch, accepted evidence, score movement, or corpus promotion.
 Corpus disposition: defer with blocker. Promote only after an accepted retained-history row, receiver-normal branch-strength evidence, action/wake/event/support rows, and stability evidence exist.
@@ -131,7 +131,7 @@ Every output remains fail-closed:
 
 ## Implementation Checklist
 
-1. Add `--surface-speed-fraction <number>` to [held-release-causal-wake-toy.mjs](../../../../scripts/braid-ideal/held-release-causal-wake-toy.mjs), using $f_v$ with actual speed $v_t=f_v c_f$.
+1. Add `--surface-speed-fraction <number>` to held-release-causal-wake-toy.mjs (retired script: `scripts/braid-ideal/held-release-causal-wake-toy.mjs`), using $f_v$ with actual speed $v_t=f_v c_f$.
 2. Add `--spin-axis <x,y,z>` with default `1,1,1`; normalize internally to $\hat{\mathbf n}$.
 3. Add `--prehistory-mode=stationary-held-release|kick-at-release|moving-prehistory`.
 4. Preserve the current default run exactly as `stationary-held-release` with $f_v=0$.

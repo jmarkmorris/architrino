@@ -12,106 +12,95 @@ import {
 import {
   runAnimatorSimulationWorkerRequestAsync,
 } from "../src/apps/animator/AnimatorSimulationWorkerCoreRuntime.js";
-import {
-  createAnimatorDefaultSolverWasmLoaderUrl,
-  createAnimatorSolverBridgeWorkerOptions,
-} from "../src/apps/animator/AnimatorSolverBridgeWorkerRuntime.js";
-import { resolveSolverAppBridgeWorker } from "../src/solver/app/SolverAppBridgeClientResolver.mjs";
 import { normalizeAnimatorSimulationDataset } from "../src/apps/animator/AnimatorSimulationDatasetRuntime.js";
-import { createSolverBridgeLoopbackWorker } from "./solver-worker-loopback.mjs";
+import {
+  EOM_EVOLUTION_CONTRACT_ID,
+} from "../src/apps/shared/EomHistoryDataset.mjs";
 
-const SMALL_RUN = Object.freeze({
-  steps: 8,
-  stride: 4,
-  particles: 2,
-  kappa: 0.002,
-  rootHaltPolicy: "none",
-});
-
-function createMockAnimatorSolverBridgeRunHandle(runRequest, options = {}) {
-  const motionRequest = runRequest.config?.motionRequest ?? {};
-  const segment = motionRequest.segment ?? {};
-  const frameCount = Math.max(1, Math.round(Number(options.frameCount) || 3));
-  const startTime = Number.isFinite(Number(motionRequest.startTime))
-    ? Number(motionRequest.startTime)
-    : Number(segment.startTime) || 0;
-  const endTime = Number.isFinite(Number(motionRequest.endTime))
-    ? Number(motionRequest.endTime)
-    : startTime;
-  const segmentStartTime = Number.isFinite(Number(segment.startTime))
-    ? Number(segment.startTime)
-    : startTime;
-  const frameStep = frameCount > 1 ? (endTime - startTime) / (frameCount - 1) : 0;
-  const pathKey = Number.isFinite(Number(options.pathKey))
-    ? Number(options.pathKey)
-    : Number(motionRequest.pathKey) || 1;
-  const startPosition = segment.positionAtStart ?? { x: 0, y: 0, z: 0 };
-  const velocity = segment.velocity ?? { x: 0, y: 0, z: 0 };
-  const frames = Array.from({ length: frameCount }, (_, index) => {
-    const time = startTime + frameStep * index;
-    const elapsed = time - segmentStartTime;
-    return {
-      pathKey,
-      frameIndex: index,
-      time,
-      position: {
-        x: (Number(startPosition.x) || 0) + (Number(velocity.x) || 0) * elapsed,
-        y: (Number(startPosition.y) || 0) + (Number(velocity.y) || 0) * elapsed,
-        z: (Number(startPosition.z) || 0) + (Number(velocity.z) || 0) * elapsed,
-      },
-      velocity: {
-        x: Number(velocity.x) || 0,
-        y: Number(velocity.y) || 0,
-        z: Number(velocity.z) || 0,
-      },
-      errorBound: Number(segment.errorBound) || 0,
-      stateFlags: Number(motionRequest.stateFlags) || 0,
-    };
-  });
+// Inertial worldlines carried as exact cubic segments, so every sampled
+// display value is checkable in closed form (position = x0 + v * t).
+function createEomRecordFixture(overrides = {}) {
   return {
-    requestId: runRequest.requestId,
-    runId: runRequest.runId,
-    datasetId: runRequest.datasetId,
-    acceptedPrecisionPath: options.precisionPath ?? "event_root_focused",
-    status: { code: "ok", severity: "ok", message: "simulation run completed" },
-    response: {
-      runId: runRequest.runId,
-      datasetId: runRequest.datasetId,
-      summary: {
-        precisionPath: options.precisionPath ?? "event_root_focused",
-        frameCount: frames.length,
-        pathCount: frames.length > 0 ? 1 : 0,
-        status: { code: "ok", severity: "ok", message: "motion simulation completed" },
+    contractId: EOM_EVOLUTION_CONTRACT_ID,
+    runId: "eom-display-fixture-run",
+    requestId: "eom-display-fixture-request",
+    claimLevel: "evolved-record",
+    evidenceStatus: "canonical",
+    absoluteTimeInterval: { start: "0", end: "2" },
+    provenance: { engineId: "eom-solver" },
+    histories: [
+      {
+        pathId: "1",
+        pathKey: 1,
+        charge: "1",
+        stateFlags: 1,
+        coverageStart: "0",
+        coverageEnd: "2",
+        interpolation: "exact-inertial-polynomial/v1",
+        segments: [
+          {
+            startTime: "0",
+            endTime: "1",
+            coefficients: [
+              ["1", "2", "0", "0"],
+              ["2", "0.5", "0", "0"],
+              ["3", "-1", "0", "0"],
+            ],
+            positionError: "0",
+            velocityError: "0",
+          },
+          {
+            startTime: "1",
+            endTime: "2",
+            coefficients: [
+              ["3", "2", "0", "0"],
+              ["2.5", "0.5", "0", "0"],
+              ["2", "-1", "0", "0"],
+            ],
+            positionError: "0",
+            velocityError: "0",
+          },
+        ],
       },
-      frames,
-      pathHistory: { streamId: `${runRequest.runId}:motion-path-history` },
-      diagnostics: [],
-      status: { code: "ok", severity: "ok", message: "motion simulation completed" },
+      {
+        pathId: "2",
+        pathKey: 2,
+        charge: "-1",
+        stateFlags: 2,
+        coverageStart: "0",
+        coverageEnd: "2",
+        interpolation: "exact-inertial-polynomial/v1",
+        segments: [
+          {
+            startTime: "0",
+            endTime: "2",
+            coefficients: [
+              ["0", "0.25", "0", "0"],
+              ["0", "0.5", "0", "0"],
+              ["0", "0", "0", "0"],
+            ],
+            positionError: "0",
+            velocityError: "0",
+          },
+        ],
+      },
+    ],
+    ...overrides,
+  };
+}
+
+test("animator simulation worker samples display frames from a recorded EOM dataset", async () => {
+  const request = createAnimatorSimulationWorkerRunRequest(
+    {
+      eomRecord: createEomRecordFixture(),
+      frameCount: 3,
     },
-  };
-}
-
-function createMockAnimatorSolverBridgeRunner(options = {}) {
-  return async function runSolverBridge(runRequest) {
-    options.assertRunRequest?.(runRequest);
-    return createMockAnimatorSolverBridgeRunHandle(runRequest, options);
-  };
-}
-
-test("animator simulation worker core returns a transferable frame buffer from the central solver", async () => {
-  const request = createAnimatorSimulationWorkerRunRequest(SMALL_RUN, {
-    requestId: "worker_core_test",
-    datasetOptions: { id: "worker_core_dataset" },
-  });
-  const message = await runAnimatorSimulationWorkerRequestAsync(request, {
-    runSolverBridge: createMockAnimatorSolverBridgeRunner({
-      assertRunRequest(runRequest) {
-        assert.equal(runRequest.runKind, "motionSimulation");
-        assert.equal(runRequest.appId, "animator");
-        assert.equal(runRequest.config.motionRequest.pathKey, 1);
-      },
-    }),
-  });
+    {
+      requestId: "worker_core_test",
+      datasetOptions: { id: "worker_core_dataset" },
+    }
+  );
+  const message = await runAnimatorSimulationWorkerRequestAsync(request);
 
   assert.equal(message.type, "animator.simulation.complete");
   assert.equal(message.requestId, "worker_core_test");
@@ -119,367 +108,97 @@ test("animator simulation worker core returns a transferable frame buffer from t
   assert.equal(message.dataset.frames.length, 0);
   assert.equal(message.dataset.delayedHits.length, 0);
   assert.equal(message.frameBuffer.frameCount, 3);
-  assert.equal(message.frameBuffer.particleCount, 1);
+  assert.equal(message.frameBuffer.particleCount, 2);
   assert.equal(message.frameBuffer.positions instanceof Float64Array, true);
   assert.equal(message.stats.completed, true);
-  assert.equal(message.stats.solverEngineId, "architrino-solver-app-bridge");
+  assert.equal(message.stats.engineId, "eom-solver");
+  assert.equal(message.stats.runId, "eom-display-fixture-run");
+  assert.equal(message.stats.claimGrade, "evolved-record");
 
   const hydrated = normalizeAnimatorSimulationDataset(
     hydrateAnimatorSimulationWorkerCompleteMessage(message).dataset
   );
   assert.equal(hydrated.frames.length, 3);
-  assert.deepEqual(hydrated.frames[0].particles[0].position, [0, 0, 0]);
-  assert.equal(hydrated.simulation.solver.engineId, "architrino-solver-app-bridge");
-});
-
-test("animator simulation worker core can route an opt-in run through the solver app bridge", async () => {
-  const request = createAnimatorSimulationWorkerRunRequest(
-    {
-      solverEngine: "solver-app-bridge",
-      solverBridge: {
-        motionRequest: {
-          pathKey: 77,
-          segment: {
-            startTime: 0,
-            endTime: 2,
-            positionAtStart: { x: 1, y: 2, z: 3 },
-            velocity: { x: 2, y: 0.5, z: -1 },
-            errorBound: 1e-12,
-          },
-          startTime: 0,
-          endTime: 2,
-          step: 1,
-          stateFlags: 5,
-        },
-      },
-    },
-    {
-      requestId: "solver_bridge_worker_test",
-      datasetOptions: { id: "solver_bridge_dataset" },
-    }
-  );
-
-  const message = await runAnimatorSimulationWorkerRequestAsync(request, {
-    async runSolverBridge(runRequest) {
-      assert.equal(runRequest.runKind, "motionSimulation");
-      assert.equal(runRequest.appId, "animator");
-      assert.equal(runRequest.config.motionRequest.pathKey, 77);
-      assert.equal(runRequest.config.streamId, `${runRequest.runId}:motion-path-history`);
-      return {
-        requestId: runRequest.requestId,
-        runId: runRequest.runId,
-        datasetId: runRequest.datasetId,
-        acceptedPrecisionPath: "scaled_f64_strict",
-        status: { code: "ok", severity: "ok", message: "simulation run completed" },
-        response: {
-          runId: runRequest.runId,
-          datasetId: runRequest.datasetId,
-          summary: {
-            precisionPath: "scaled_f64_strict",
-            frameCount: 3,
-            pathCount: 1,
-            status: { code: "ok", severity: "ok", message: "motion simulation completed" },
-          },
-          frames: [
-            {
-              pathKey: 77,
-              frameIndex: 0,
-              time: 0,
-              position: { x: 1, y: 2, z: 3 },
-              velocity: { x: 2, y: 0.5, z: -1 },
-              errorBound: 0,
-              stateFlags: 5,
-            },
-            {
-              pathKey: 77,
-              frameIndex: 1,
-              time: 1,
-              position: { x: 3, y: 2.5, z: 2 },
-              velocity: { x: 2, y: 0.5, z: -1 },
-              errorBound: 0,
-              stateFlags: 5,
-            },
-            {
-              pathKey: 77,
-              frameIndex: 2,
-              time: 2,
-              position: { x: 5, y: 3, z: 1 },
-              velocity: { x: 2, y: 0.5, z: -1 },
-              errorBound: 0,
-              stateFlags: 5,
-            },
-          ],
-          pathHistory: { streamId: `${runRequest.runId}:motion-path-history` },
-          diagnostics: [],
-          status: { code: "ok", severity: "ok", message: "motion simulation completed" },
-        },
-      };
-    },
-  });
-
-  assert.equal(message.type, "animator.simulation.complete");
-  assert.equal(message.requestId, "solver_bridge_worker_test");
-  assert.equal(message.frameBuffer.frameCount, 3);
-  assert.equal(message.frameBuffer.particleCount, 1);
-  assert.equal(message.frameBuffer.positions instanceof Float64Array, true);
-  assert.equal(message.stats.solverEngineId, "architrino-solver-app-bridge");
-  assert.equal(message.stats.completed, true);
-
-  const hydrated = normalizeAnimatorSimulationDataset(
-    hydrateAnimatorSimulationWorkerCompleteMessage(message).dataset
-  );
-  assert.equal(hydrated.id, "solver_bridge_dataset");
-  assert.equal(hydrated.simulation.solver.engineId, "architrino-solver-app-bridge");
+  assert.equal(hydrated.claimLevel, "evolved-record");
+  assert.equal(hydrated.simulation.solver.engineId, "eom-solver");
+  assert.equal(hydrated.simulation.solver.runId, "eom-display-fixture-run");
   assert.equal(hydrated.simulation.halt.status, "completed");
+  assert.deepEqual(hydrated.frames[0].particles[0].position, [1, 2, 3]);
   assert.deepEqual(hydrated.frames[2].particles[0].position, [5, 3, 1]);
+  assert.deepEqual(hydrated.frames[2].particles[1].position, [0.5, 1, 0]);
 });
 
-test("animator simulation worker core can own a solver bridge client for a run", async () => {
+test("animator simulation worker dataset carries record provenance", async () => {
   const request = createAnimatorSimulationWorkerRunRequest(
-    {
-      solverBridge: {
-        enabled: true,
-        motionRequest: {
-          pathKey: 91,
-          segment: {
-            startTime: 0,
-            endTime: 1,
-            positionAtStart: { x: -1, y: 0, z: 2 },
-            velocity: { x: 0.25, y: 0.5, z: 0 },
-            errorBound: 1e-12,
-          },
-          startTime: 0,
-          endTime: 1,
-          step: 1,
-          stateFlags: 7,
-        },
-      },
-    },
-    {
-      requestId: "solver_bridge_client_factory_test",
-      datasetOptions: { id: "solver_bridge_client_factory_dataset" },
-    }
+    { eomRecord: createEomRecordFixture(), frameCount: 2 },
+    { requestId: "provenance_test", datasetOptions: { id: "provenance_dataset" } }
   );
-  const lifecycle = { created: 0, disposed: 0 };
+  const message = await runAnimatorSimulationWorkerRequestAsync(request);
 
-  const message = await runAnimatorSimulationWorkerRequestAsync(request, {
-    disposeSolverBridgeClientAfterRun: true,
-    async createSolverBridgeClient(factoryRequest, context) {
-      lifecycle.created += 1;
-      assert.equal(factoryRequest.requestId, "solver_bridge_client_factory_test");
-      assert.equal(context.appId, "animator");
-      assert.equal(context.requiredMethod, "runSimulation");
-      assert.ok(context.requestedCapabilities.includes("motionSimulation"));
-      return {
-        async runSimulation(runRequest) {
-          assert.equal(runRequest.runKind, "motionSimulation");
-          assert.equal(runRequest.appId, "animator");
-          assert.equal(runRequest.config.motionRequest.pathKey, 91);
-          return {
-            requestId: runRequest.requestId,
-            runId: runRequest.runId,
-            datasetId: runRequest.datasetId,
-            acceptedPrecisionPath: "scaled_f64_strict",
-            status: { code: "ok", severity: "ok", message: "simulation run completed" },
-            response: {
-              runId: runRequest.runId,
-              datasetId: runRequest.datasetId,
-              summary: {
-                precisionPath: "scaled_f64_strict",
-                frameCount: 2,
-                pathCount: 1,
-                status: { code: "ok", severity: "ok", message: "motion simulation completed" },
-              },
-              frames: [
-                {
-                  pathKey: 91,
-                  frameIndex: 0,
-                  time: 0,
-                  position: { x: -1, y: 0, z: 2 },
-                  velocity: { x: 0.25, y: 0.5, z: 0 },
-                  errorBound: 0,
-                  stateFlags: 7,
-                },
-                {
-                  pathKey: 91,
-                  frameIndex: 1,
-                  time: 1,
-                  position: { x: -0.75, y: 0.5, z: 2 },
-                  velocity: { x: 0.25, y: 0.5, z: 0 },
-                  errorBound: 0,
-                  stateFlags: 7,
-                },
-              ],
-              pathHistory: { streamId: `${runRequest.runId}:motion-path-history` },
-              diagnostics: [],
-              status: { code: "ok", severity: "ok", message: "motion simulation completed" },
-            },
-          };
-        },
-        async dispose() {
-          lifecycle.disposed += 1;
-        },
-      };
-    },
-  });
-
-  assert.equal(lifecycle.created, 1);
-  assert.equal(lifecycle.disposed, 1);
-  assert.equal(message.type, "animator.simulation.complete");
-  assert.equal(message.stats.solverEngineId, "architrino-solver-app-bridge");
-  assert.equal(message.frameBuffer.frameCount, 2);
-  const hydrated = normalizeAnimatorSimulationDataset(
-    hydrateAnimatorSimulationWorkerCompleteMessage(message).dataset
-  );
-  assert.equal(hydrated.simulation.solver.engineId, "architrino-solver-app-bridge");
-  assert.deepEqual(hydrated.frames[1].particles[0].position, [-0.75, 0.5, 2]);
+  assert.equal(message.dataset.provenance.engineId, "eom-solver");
+  assert.equal(message.dataset.provenance.contractId, EOM_EVOLUTION_CONTRACT_ID);
+  assert.equal(message.dataset.provenance.runId, "eom-display-fixture-run");
+  assert.equal(message.dataset.provenance.claimGrade, "evolved-record");
+  assert.equal(message.dataset.provenance.evidenceStatus, "canonical");
+  assert.equal(message.dataset.claimLevel, "evolved-record");
+  assert.equal(message.dataset.particles[0].polarity, 1);
+  assert.equal(message.dataset.particles[1].polarity, -1);
+  assert.equal(message.dataset.particles[0].chargeType, "eom-worldline");
 });
 
-test("animator simulation worker core can own a solver bridge worker client for a run", async () => {
+test("animator simulation worker fails closed without a recorded EOM dataset", async () => {
   const request = createAnimatorSimulationWorkerRunRequest(
-    {
-      solverBridge: {
-        enabled: true,
-        motionRequest: {
-          pathKey: 92,
-          segment: {
-            startTime: 0,
-            endTime: 1,
-            positionAtStart: { x: 2, y: -1, z: 0 },
-            velocity: { x: -0.5, y: 0.25, z: 1 },
-            errorBound: 1e-12,
-          },
-          startTime: 0,
-          endTime: 1,
-          step: 1,
-          stateFlags: 11,
-        },
-      },
-    },
-    {
-      requestId: "solver_bridge_worker_client_test",
-      datasetOptions: { id: "solver_bridge_worker_client_dataset" },
-    }
+    { steps: 8, dt: 0.01 },
+    { requestId: "missing_record_test" }
   );
-  const worker = createSolverBridgeLoopbackWorker({
-    init(initRequest) {
-      assert.equal(initRequest.appId, "animator");
-      assert.ok(initRequest.requestedCapabilities.includes("motionSimulation"));
-      return {
-        apiVersion: initRequest.apiVersion,
-        status: { code: "ok", severity: "ok", message: "solver initialized" },
-      };
-    },
-    runSimulation(runRequest) {
-      assert.equal(runRequest.runKind, "motionSimulation");
-      assert.equal(runRequest.appId, "animator");
-      assert.equal(runRequest.config.motionRequest.pathKey, 92);
-      return {
-        requestId: runRequest.requestId,
-        runId: runRequest.runId,
-        datasetId: runRequest.datasetId,
-        acceptedPrecisionPath: "scaled_f64_strict",
-        status: { code: "ok", severity: "ok", message: "simulation run completed" },
-        response: {
-          runId: runRequest.runId,
-          datasetId: runRequest.datasetId,
-          summary: {
-            precisionPath: "scaled_f64_strict",
-            frameCount: 2,
-            pathCount: 1,
-            status: { code: "ok", severity: "ok", message: "motion simulation completed" },
-          },
-          frames: [
-            {
-              pathKey: 92,
-              frameIndex: 0,
-              time: 0,
-              position: { x: 2, y: -1, z: 0 },
-              velocity: { x: -0.5, y: 0.25, z: 1 },
-              errorBound: 0,
-              stateFlags: 11,
-            },
-            {
-              pathKey: 92,
-              frameIndex: 1,
-              time: 1,
-              position: { x: 1.5, y: -0.75, z: 1 },
-              velocity: { x: -0.5, y: 0.25, z: 1 },
-              errorBound: 0,
-              stateFlags: 11,
-            },
-          ],
-          pathHistory: { streamId: `${runRequest.runId}:motion-path-history` },
-          diagnostics: [],
-          status: { code: "ok", severity: "ok", message: "motion simulation completed" },
-        },
-      };
-    },
-  });
+  await assert.rejects(
+    runAnimatorSimulationWorkerRequestAsync(request),
+    /requires a recorded eom_evolution_contract\/v0 dataset/
+  );
+});
 
+test("animator simulation worker fails closed on a foreign contract id", async () => {
+  const request = createAnimatorSimulationWorkerRunRequest(
+    { eomRecord: createEomRecordFixture({ contractId: "solver-app-bridge/v1" }) },
+    { requestId: "foreign_contract_test" }
+  );
+  await assert.rejects(
+    runAnimatorSimulationWorkerRequestAsync(request),
+    /requires contractId eom_evolution_contract\/v0/
+  );
+});
+
+test("animator simulation worker fails closed on a record without a claim grade", async () => {
+  const record = createEomRecordFixture();
+  delete record.claimLevel;
+  const request = createAnimatorSimulationWorkerRunRequest(
+    { eomRecord: record },
+    { requestId: "missing_claim_grade_test" }
+  );
+  await assert.rejects(
+    runAnimatorSimulationWorkerRequestAsync(request),
+    /claim grade/
+  );
+});
+
+test("animator simulation worker can load the EOM record through an injected loader", async () => {
+  const request = createAnimatorSimulationWorkerRunRequest(
+    { frameCount: 2 },
+    { requestId: "record_loader_test", datasetOptions: { id: "record_loader_dataset" } }
+  );
+  let loaderCalls = 0;
   const message = await runAnimatorSimulationWorkerRequestAsync(request, {
-    createSolverWorker(factoryRequest, context) {
-      assert.equal(factoryRequest.requestId, "solver_bridge_worker_client_test");
-      assert.equal(context.appId, "animator");
-      assert.equal(context.requiredMethod, "runSimulation");
-      assert.ok(context.requestedCapabilities.includes("motionSimulation"));
-      return worker;
+    async loadEomRecord(workerRequest) {
+      loaderCalls += 1;
+      assert.equal(workerRequest.requestId, "record_loader_test");
+      return createEomRecordFixture();
     },
   });
 
+  assert.equal(loaderCalls, 1);
   assert.equal(message.type, "animator.simulation.complete");
-  assert.equal(message.stats.solverEngineId, "architrino-solver-app-bridge");
   assert.equal(message.frameBuffer.frameCount, 2);
-  const hydrated = normalizeAnimatorSimulationDataset(
-    hydrateAnimatorSimulationWorkerCompleteMessage(message).dataset
-  );
-  assert.equal(hydrated.simulation.solver.engineId, "architrino-solver-app-bridge");
-  assert.deepEqual(hydrated.frames[1].particles[0].position, [1.5, -0.75, 1]);
-  assert.deepEqual(
-    worker.messages.map((workerMessage) => workerMessage.method),
-    ["init", "runSimulation", "dispose"]
-  );
-  assert.equal(worker.terminated, true);
-});
-
-test("animator solver bridge worker options point to the packaged ES module loader", async () => {
-  const defaultLoaderUrl = createAnimatorDefaultSolverWasmLoaderUrl();
-  assert.ok(defaultLoaderUrl.endsWith("/.tmp/solver-build/wasm/architrino_solver_wasm_smoke.mjs"));
-
-  const loaderSource =
-    "export default async function createModule(options = {}) {" +
-    " return { located: options.locateFile('architrino_solver_wasm_smoke.wasm') };" +
-    " }";
-  const wasmLoaderUrl = `data:text/javascript;charset=utf-8,${encodeURIComponent(loaderSource)}`;
-  const options = createAnimatorSolverBridgeWorkerOptions(
-    {},
-    {
-      wasmLoaderUrl,
-      wasmBaseUrl: "https://architrino.local/solver/",
-    }
-  );
-  const module = await options.createWasmModule({ locateFile: options.locateFile });
-
-  assert.equal(
-    module.located,
-    "https://architrino.local/solver/architrino_solver_wasm_smoke.wasm"
-  );
-});
-
-test("solver bridge resolver ignores ambient Worker constructors without a worker URL", async () => {
-  class AmbientWorker {
-    postMessage() {}
-  }
-
-  const workerResolution = await resolveSolverAppBridgeWorker({
-    appId: "animator",
-    requiredMethod: "runSimulation",
-    options: {
-      scope: { Worker: AmbientWorker },
-    },
-  });
-
-  assert.equal(workerResolution, null);
+  assert.equal(message.stats.engineId, "eom-solver");
 });
 
 test("animator simulation worker client hydrates worker messages", async () => {
@@ -499,9 +218,7 @@ test("animator simulation worker client hydrates worker messages", async () => {
     postMessage(request) {
       queueMicrotask(async () => {
         try {
-          const response = await runAnimatorSimulationWorkerRequestAsync(request, {
-            runSolverBridge: createMockAnimatorSolverBridgeRunner(),
-          });
+          const response = await runAnimatorSimulationWorkerRequestAsync(request);
           this.listeners.get("message")?.({ data: response });
         } catch (error) {
           this.listeners.get("error")?.({ error, message: error?.message });
@@ -518,9 +235,10 @@ test("animator simulation worker client hydrates worker messages", async () => {
     WorkerCtor: FakeWorker,
     workerUrl: "fake-worker.js",
   });
-  const result = await client.run(SMALL_RUN, {
-    datasetOptions: { id: "client_dataset" },
-  });
+  const result = await client.run(
+    { eomRecord: createEomRecordFixture(), frameCount: 3 },
+    { datasetOptions: { id: "client_dataset" } }
+  );
 
   assert.equal(result.dataset.id, "client_dataset");
   assert.equal(result.dataset.frames.length, 3);
@@ -530,14 +248,12 @@ test("animator simulation worker client hydrates worker messages", async () => {
 });
 
 test("animator simulation worker dataset merges into an animator document", async () => {
-  const request = createAnimatorSimulationWorkerRunRequest(SMALL_RUN, {
-    requestId: "merge_test",
-    datasetOptions: { id: "merge_dataset" },
-  });
+  const request = createAnimatorSimulationWorkerRunRequest(
+    { eomRecord: createEomRecordFixture(), frameCount: 3 },
+    { requestId: "merge_test", datasetOptions: { id: "merge_dataset" } }
+  );
   const result = hydrateAnimatorSimulationWorkerCompleteMessage(
-    await runAnimatorSimulationWorkerRequestAsync(request, {
-      runSolverBridge: createMockAnimatorSolverBridgeRunner(),
-    })
+    await runAnimatorSimulationWorkerRequestAsync(request)
   );
   const documentData = mergeAnimatorSimulationDatasetIntoDocument(
     {
@@ -553,20 +269,19 @@ test("animator simulation worker dataset merges into an animator document", asyn
   );
 
   assert.equal(documentData.scene.mode, "planar-2d");
-  assert.equal(documentData.scene.time.end, 0.08);
+  assert.equal(documentData.scene.time.end, 2);
   assert.equal(documentData.metadata.simulationDataset.id, "merge_dataset");
   assert.equal(documentData.metadata.simulationWorker.lastRun.frameCount, 3);
+  assert.equal(documentData.metadata.simulationWorker.lastRun.engineId, "eom-solver");
 });
 
 test("animator simulation worker dataset can preserve authored scene timing", async () => {
-  const request = createAnimatorSimulationWorkerRunRequest(SMALL_RUN, {
-    requestId: "merge_preserve_time_test",
-    datasetOptions: { id: "merge_preserve_time_dataset" },
-  });
+  const request = createAnimatorSimulationWorkerRunRequest(
+    { eomRecord: createEomRecordFixture(), frameCount: 3 },
+    { requestId: "merge_preserve_time_test", datasetOptions: { id: "merge_preserve_time_dataset" } }
+  );
   const result = hydrateAnimatorSimulationWorkerCompleteMessage(
-    await runAnimatorSimulationWorkerRequestAsync(request, {
-      runSolverBridge: createMockAnimatorSolverBridgeRunner(),
-    })
+    await runAnimatorSimulationWorkerRequestAsync(request)
   );
   const documentData = mergeAnimatorSimulationDatasetIntoDocument(
     {

@@ -7,20 +7,16 @@ import {
 } from "../navigator/StandaloneAppHomeRuntime.js";
 import { createAnimatorDefaultCoreSpec } from "../animator/AnimatorDraftScaffoldRuntime.js";
 import { createAnimatorStructureGeometryRuntime } from "../animator/AnimatorStructureGeometryRuntime.js";
-import { createSolverAppBridgeClient } from "../../solver/app/SolverAppBridge.mjs";
-import { createIdealBraidSharedGeometryRunRequest } from "../../solver/app/SolverAppAdapters.mjs";
 import {
-  createSolverAppBridgeInitRequest,
-  runSolverAppBridgeRequest,
-} from "../../solver/app/SolverAppBridgeClientResolver.mjs";
-import { createSolverAppWorkerClient } from "../../solver/app/SolverAppWorkerBridge.mjs";
+  PRESCRIBED_PATH_ANALYSIS_ID,
+  runPrescribedPathAnalysisRequest,
+} from "../../prescribed-path-analysis/index.mjs";
 import {
   getFieldSpeedRegimeLabel,
   getOrbitPathBranchGain,
   getOrbitPathTintProfile as resolveOrbitPathTintProfile,
-  solveCircularSelfHitSpanRowsWithSolverBridge,
+  solveCircularSelfHitSpanRowsWithPrescribedPathAnalysis,
 } from "./IdealBraidPathPotentialProfile.js";
-import { createIdealBraidSolverBridgeOptions } from "./IdealBraidSolverBridgeOptions.js";
 
 const BINARY_META = [
   {
@@ -64,13 +60,8 @@ const FIELD_SPEED_REFERENCE_BINARY_INDEX = 1;
 const DEFAULT_SOLVER_MEMORY_BUDGET_BYTES = 64 * 1024 * 1024;
 const DEFAULT_FLIGHT_TIME_TOLERANCE = 1e-12;
 const DEFAULT_FLIGHT_TIME_SOURCE_HISTORY_DEPTH = 10;
-const IDEAL_BRAID_SOLVER_BRIDGE_ENGINE_ID = "architrino-solver-app-bridge";
-const IDEAL_BRAID_RUNTIME_SOLVER_CAPABILITIES = Object.freeze([
-  "sharedGeometry",
-  "delayedHits",
-]);
+const IDEAL_BRAID_ANALYSIS_ID = PRESCRIBED_PATH_ANALYSIS_ID;
 const IDEAL_BRAID_RUNTIME_SOLVER_MEMORY_BUDGET_BYTES = 64 * 1024 * 1024;
-const IDEAL_BRAID_RUNTIME_SOLVER_WORKER_REQUEST_TIMEOUT_MS = 30_000;
 const IDEAL_BRAID_SURFACE_SOLVER_TIME_QUANTUM_SECONDS = 1 / 8;
 const IDEAL_BRAID_SURFACE_SOLVER_MIN_INTERVAL_MS = 180;
 const IDEAL_BRAID_SURFACE_SOLVER_EDIT_DEBOUNCE_MS = 120;
@@ -466,7 +457,9 @@ export function createIdealBraidFlightTimeRunRequest(
     options
   );
   const runId = options.runId ?? `ideal-braid-flight-time-${formatSolverIdNumber(observationTime)}`;
-  return createIdealBraidSharedGeometryRunRequest({
+  return {
+    appId: "ideal-braid",
+    runKind: "sharedGeometry",
     requestId: options.requestId ?? `${runId}-request`,
     runId,
     datasetId: options.datasetId ?? `${runId}-dataset`,
@@ -481,11 +474,12 @@ export function createIdealBraidFlightTimeRunRequest(
       memoryBudgetBytes,
     }),
     errorBudget: options.errorBudget ?? createDefaultIdealBraidFlightTimeErrorBudget(tolerance),
-    geometryRequest: {
-      delayedPotentials: [
+    config: {
+      geometryRequest: {
+        delayedPotentials: [
         {
           source,
-          samplePoint: vectorToSolverBridge(samplePoint),
+          samplePoint: vectorToPrescribedPathAnalysis(samplePoint),
           observationTime: Number(observationTime) || 0,
           fieldSpeed,
           normalization: Number(options.normalization ?? 1) || 1,
@@ -494,7 +488,8 @@ export function createIdealBraidFlightTimeRunRequest(
           iterations,
           useCausalDenominator: options.useCausalDenominator === true,
         },
-      ],
+        ],
+      },
     },
     output: options.output ?? {
       outputs: ["geometryBuffer", "diagnostics"],
@@ -502,16 +497,16 @@ export function createIdealBraidFlightTimeRunRequest(
       memoryBudgetBytes,
       deterministic: options.deterministic ?? true,
     },
-  });
+  };
 }
 
-export async function solveFlightTimeWithSolverBridge(
+export async function solveFlightTimeWithPrescribedPathAnalysis(
   samplePoint,
   architrino,
   observationTime,
   options = {}
 ) {
-  const row = await solveFlightTimeRowWithSolverBridge(
+  const row = await solveFlightTimeRowWithPrescribedPathAnalysis(
     samplePoint,
     architrino,
     observationTime,
@@ -520,7 +515,7 @@ export async function solveFlightTimeWithSolverBridge(
   return Number(row.tau) || 0;
 }
 
-export async function solveFlightTimeRowWithSolverBridge(
+export async function solveFlightTimeRowWithPrescribedPathAnalysis(
   samplePoint,
   architrino,
   observationTime,
@@ -529,34 +524,13 @@ export async function solveFlightTimeRowWithSolverBridge(
   const runRequest =
     options.runRequest ??
     createIdealBraidFlightTimeRunRequest(samplePoint, architrino, observationTime, options);
-  const runHandle = typeof options.runSolverBridge === "function"
-    ? await options.runSolverBridge(runRequest)
-    : await runIdealBraidSolverBridgeClient(options, {
-        factoryRequest: { samplePoint, architrino, observationTime },
-        runRequest,
-      });
+  const runHandle = await runIdealBraidPrescribedPathAnalysis(options, runRequest);
   return extractIdealBraidFlightTimeRow(runHandle);
 }
 
-async function runIdealBraidSolverBridgeClient(options, { factoryRequest, runRequest }) {
-  return runSolverAppBridgeRequest({
-    appId: "ideal-braid",
-    request: runRequest,
-    options,
-    factoryRequest,
-    requestedCapabilities: ["sharedGeometry", "delayedHits"],
-    storagePolicy: {
-      target: options.streamTarget ?? "caller-buffer",
-      durable: options.streamTarget === "native-file",
-      maxBytes: options.memoryBudgetBytes ?? DEFAULT_SOLVER_MEMORY_BUDGET_BYTES,
-    },
-    threadingPolicy: {
-      mode: options.threadingMode ?? "single-thread",
-      deterministic: options.deterministic ?? true,
-    },
-    missingClientMessage:
-      "Ideal Braid solver bridge request requires a solver client, runSolverBridge option, client factory, worker, or solver WASM module factory.",
-  });
+async function runIdealBraidPrescribedPathAnalysis(options, runRequest) {
+  const run = options.runPrescribedPathAnalysis ?? runPrescribedPathAnalysisRequest;
+  return run(runRequest);
 }
 
 function extractIdealBraidFlightTimeRow(runHandle = {}) {
@@ -564,10 +538,10 @@ function extractIdealBraidFlightTimeRow(runHandle = {}) {
   const geometry = response.geometry ?? response;
   const rows = Array.isArray(geometry.delayedPotentials) ? geometry.delayedPotentials : [];
   if (rows.length === 0) {
-    throw new Error("Ideal Braid solver bridge response did not include a delayed-potential row.");
+    throw new Error("Ideal Braid prescribed-path analysis did not include a delayed-potential row.");
   }
   return {
-    solverEngineId: IDEAL_BRAID_SOLVER_BRIDGE_ENGINE_ID,
+    analysisId: IDEAL_BRAID_ANALYSIS_ID,
     runId: response.runId ?? runHandle.runId ?? "",
     datasetId: response.datasetId ?? runHandle.datasetId ?? "",
     ...rows[0],
@@ -598,7 +572,7 @@ export function createIdealBraidPotentialSamplesRunRequest(
   const delayedPotentials = points.flatMap((samplePoint) =>
     architrinos.map((architrino, sourceIndex) => ({
       source: cloneSolverSegment(sources[sourceIndex]),
-      samplePoint: vectorToSolverBridge(samplePoint),
+      samplePoint: vectorToPrescribedPathAnalysis(samplePoint),
       observationTime: Number(observationTime) || 0,
       fieldSpeed,
       normalization: Number(options.normalization ?? 1) || 1,
@@ -611,7 +585,9 @@ export function createIdealBraidPotentialSamplesRunRequest(
   const runId =
     options.runId ??
     `ideal-braid-potential-samples-${formatSolverIdNumber(observationTime)}-${points.length}x${architrinos.length}`;
-  return createIdealBraidSharedGeometryRunRequest({
+  return {
+    appId: "ideal-braid",
+    runKind: "sharedGeometry",
     requestId: options.requestId ?? `${runId}-request`,
     runId,
     datasetId: options.datasetId ?? `${runId}-dataset`,
@@ -632,8 +608,10 @@ export function createIdealBraidPotentialSamplesRunRequest(
         memoryBudgetBytes,
       }),
     errorBudget: options.errorBudget ?? createDefaultIdealBraidFlightTimeErrorBudget(tolerance),
-    geometryRequest: {
-      delayedPotentials,
+    config: {
+      geometryRequest: {
+        delayedPotentials,
+      },
     },
     output: options.output ?? {
       outputs: ["geometryBuffer", "diagnostics"],
@@ -641,10 +619,10 @@ export function createIdealBraidPotentialSamplesRunRequest(
       memoryBudgetBytes,
       deterministic: options.deterministic ?? true,
     },
-  });
+  };
 }
 
-export async function computePotentialSamplesWithSolverBridge(
+export async function computePotentialSamplesWithPrescribedPathAnalysis(
   samplePoints,
   model,
   observationTime,
@@ -655,17 +633,7 @@ export async function computePotentialSamplesWithSolverBridge(
   const runRequest =
     options.runRequest ??
     createIdealBraidPotentialSamplesRunRequest(points, { architrinos }, observationTime, options);
-  const runHandle =
-    typeof options.runSolverBridge === "function"
-      ? await options.runSolverBridge(runRequest)
-      : await runIdealBraidSolverBridgeClient(options, {
-          factoryRequest: {
-            sampleCount: points.length,
-            sourceCount: architrinos.length,
-            observationTime,
-          },
-          runRequest,
-        });
+  const runHandle = await runIdealBraidPrescribedPathAnalysis(options, runRequest);
   return extractIdealBraidPotentialSamplesSnapshot(runHandle, {
     sampleCount: points.length,
     sourceCount: architrinos.length,
@@ -701,7 +669,7 @@ function extractIdealBraidPotentialSamplesSnapshot(
   const min = samplePotentials.length > 0 ? Math.min(...samplePotentials) : 0;
   const max = samplePotentials.length > 0 ? Math.max(...samplePotentials) : 0;
   return {
-    solverEngineId: IDEAL_BRAID_SOLVER_BRIDGE_ENGINE_ID,
+    analysisId: IDEAL_BRAID_ANALYSIS_ID,
     runId: response.runId ?? runHandle.runId ?? "",
     datasetId: response.datasetId ?? runHandle.datasetId ?? "",
     samplePotentials,
@@ -730,11 +698,11 @@ function createIdealBraidFlightTimeSourceSegment(architrino, observationTime, op
     ? Number(options.sourceLinearizationTime)
     : endTime;
   const velocity = typeof architrino?.velocityAt === "function"
-    ? vectorToSolverBridge(architrino.velocityAt(linearizationTime))
-    : vectorToSolverBridge(architrino?.velocity);
+    ? vectorToPrescribedPathAnalysis(architrino.velocityAt(linearizationTime))
+    : vectorToPrescribedPathAnalysis(architrino?.velocity);
   const anchorPosition = typeof architrino?.positionAt === "function"
-    ? vectorToSolverBridge(architrino.positionAt(linearizationTime))
-    : vectorToSolverBridge(architrino?.position ?? architrino);
+    ? vectorToPrescribedPathAnalysis(architrino.positionAt(linearizationTime))
+    : vectorToPrescribedPathAnalysis(architrino?.position ?? architrino);
   const anchorOffset = linearizationTime - startTime;
   const positionAtStart = {
     x: anchorPosition.x - velocity.x * anchorOffset,
@@ -754,8 +722,8 @@ function cloneSolverSegment(segment = {}) {
   return {
     startTime: Number(segment.startTime) || 0,
     endTime: Number(segment.endTime) || 0,
-    positionAtStart: vectorToSolverBridge(segment.positionAtStart ?? segment.start),
-    velocity: vectorToSolverBridge(segment.velocity),
+    positionAtStart: vectorToPrescribedPathAnalysis(segment.positionAtStart ?? segment.start),
+    velocity: vectorToPrescribedPathAnalysis(segment.velocity),
     errorBound: normalizeNonnegativeSolverNumber(segment.errorBound, 0),
   };
 }
@@ -867,7 +835,7 @@ function normalizeSolverArchitrinos(model) {
   return architrinos;
 }
 
-function vectorToSolverBridge(value = {}) {
+function vectorToPrescribedPathAnalysis(value = {}) {
   return {
     x: Number(value?.x) || 0,
     y: Number(value?.y) || 0,
@@ -905,10 +873,6 @@ function getIdealBraidRuntimeNowMs(windowLike) {
     return windowLike.performance.now();
   }
   return Date.now();
-}
-
-function hasIdealBraidInlineSolverOption(options) {
-  return typeof options?.runSolverBridge === "function";
 }
 
 function createOrbitPathLine(Three, binary) {
@@ -1565,10 +1529,7 @@ export function mountIdealBraid(options = {}) {
   const windowLike = options.windowLike ?? globalThis.window;
   const Three = options.THREE ?? THREE;
   const homeHref = options.homeHref ?? IDEAL_BRAID_NAVIGATOR_HREF;
-  const solverBridgeOptions = createIdealBraidSolverBridgeOptions(
-    windowLike ?? globalThis,
-    options.solverBridgeOptions ?? {}
-  );
+  const prescribedPathAnalysisOptions = options.prescribedPathAnalysisOptions ?? {};
   const canvas = queryRequiredElement(documentLike, "#ideal-braid-canvas");
   const model = createIdealBraidModel({ THREE: Three });
   const renderer = new Three.WebGLRenderer({
@@ -1714,9 +1675,6 @@ export function mountIdealBraid(options = {}) {
     samplePotential: 0,
   };
   let runtimeDestroyed = false;
-  let solverClientPromise = null;
-  let ownedSolverClient = null;
-  let ownedSolverWorker = null;
   let surfaceSolverSnapshot = null;
   let surfaceSolverSnapshotPromise = null;
   let surfaceSolverLastRequestAtMs = 0;
@@ -1726,99 +1684,8 @@ export function mountIdealBraid(options = {}) {
   let solverGeneration = 0;
   let orbitProfileSolverPromise = null;
 
-  function createIdealBraidRuntimeSolverInitRequest(runtimeSolverOptions) {
-    return createSolverAppBridgeInitRequest({
-      appId: "ideal-braid",
-      requestedCapabilities: IDEAL_BRAID_RUNTIME_SOLVER_CAPABILITIES,
-      options: runtimeSolverOptions,
-      storagePolicy: {
-        target: runtimeSolverOptions.streamTarget ?? "caller-buffer",
-        durable: runtimeSolverOptions.streamTarget === "native-file",
-        maxBytes:
-          runtimeSolverOptions.memoryBudgetBytes ??
-          IDEAL_BRAID_RUNTIME_SOLVER_MEMORY_BUDGET_BYTES,
-      },
-      threadingPolicy: {
-        mode: runtimeSolverOptions.threadingMode ?? "single-thread",
-        deterministic: runtimeSolverOptions.deterministic ?? true,
-      },
-    });
-  }
-
-  function createIdealBraidRuntimeSolverWorkerClient() {
-    const workerUrl = solverBridgeOptions.workerUrl;
-    const scope = solverBridgeOptions.scope ?? windowLike ?? globalThis;
-    const WorkerCtor = solverBridgeOptions.WorkerCtor ?? scope?.Worker;
-    if (!workerUrl || typeof WorkerCtor !== "function") {
-      return null;
-    }
-    const worker = new WorkerCtor(workerUrl, {
-      type: "module",
-      name: "ideal-braid-solver-bridge",
-      ...(solverBridgeOptions.workerOptions ?? {}),
-    });
-    ownedSolverWorker = worker;
-    return createSolverAppWorkerClient(worker, {
-      requestIdPrefix: "ideal-braid-solver-worker",
-      requestTimeoutMs:
-        solverBridgeOptions.workerRequestTimeoutMs ??
-        IDEAL_BRAID_RUNTIME_SOLVER_WORKER_REQUEST_TIMEOUT_MS,
-      terminateOnDispose: solverBridgeOptions.terminateSolverWorkerOnDispose ?? true,
-    });
-  }
-
-  async function getIdealBraidRuntimeSolverClient() {
-    if (solverBridgeOptions.solverClient) {
-      return solverBridgeOptions.solverClient;
-    }
-    if (!solverClientPromise) {
-      solverClientPromise = (async () => {
-        if (solverBridgeOptions.solverWorker) {
-          const providedWorkerClient = createSolverAppWorkerClient(
-            solverBridgeOptions.solverWorker,
-            {
-              requestIdPrefix: "ideal-braid-solver-worker",
-              requestTimeoutMs:
-                solverBridgeOptions.workerRequestTimeoutMs ??
-                IDEAL_BRAID_RUNTIME_SOLVER_WORKER_REQUEST_TIMEOUT_MS,
-              terminateOnDispose: solverBridgeOptions.terminateSolverWorkerOnDispose === true,
-            }
-          );
-          await providedWorkerClient.init(
-            createIdealBraidRuntimeSolverInitRequest(solverBridgeOptions)
-          );
-          ownedSolverClient = providedWorkerClient;
-          return providedWorkerClient;
-        }
-        const workerClient = createIdealBraidRuntimeSolverWorkerClient();
-        if (workerClient) {
-          await workerClient.init(createIdealBraidRuntimeSolverInitRequest(solverBridgeOptions));
-          ownedSolverClient = workerClient;
-          return workerClient;
-        }
-        const client = createSolverAppBridgeClient({
-          createWasmModule: solverBridgeOptions.createWasmModule,
-          locateFile: solverBridgeOptions.locateFile,
-        });
-        await client.init(createIdealBraidRuntimeSolverInitRequest(solverBridgeOptions));
-        ownedSolverClient = client;
-        return client;
-      })();
-    }
-    return solverClientPromise;
-  }
-
-  async function createIdealBraidRuntimeSolverOptions() {
-    if (hasIdealBraidInlineSolverOption(solverBridgeOptions)) {
-      return solverBridgeOptions;
-    }
-    return {
-      ...solverBridgeOptions,
-      solverClient: await getIdealBraidRuntimeSolverClient(),
-      streamTarget: solverBridgeOptions.streamTarget ?? "caller-buffer",
-      deterministic: solverBridgeOptions.deterministic ?? true,
-      threadingMode: solverBridgeOptions.threadingMode ?? "single-thread",
-    };
+  async function createIdealBraidRuntimeAnalysisOptions() {
+    return prescribedPathAnalysisOptions;
   }
 
   function createSurfaceSolverStateKey() {
@@ -1910,13 +1777,13 @@ export function mountIdealBraid(options = {}) {
     surfaceSolverInteractiveUpdatePending = false;
     surfaceSolverError = null;
     surfaceSolverSnapshotPromise = (async () => {
-      const runtimeSolverOptions = await createIdealBraidRuntimeSolverOptions();
-      const snapshot = await computePotentialSamplesWithSolverBridge(
+      const runtimeAnalysisOptions = await createIdealBraidRuntimeAnalysisOptions();
+      const snapshot = await computePotentialSamplesWithPrescribedPathAnalysis(
         samplePoints,
         model,
         solveTime,
         {
-          ...runtimeSolverOptions,
+          ...runtimeAnalysisOptions,
           runRequest,
           fieldSpeed: 6,
           softening: 0.1,
@@ -1963,9 +1830,9 @@ export function mountIdealBraid(options = {}) {
     }
     const ratios = model.binaries.map((binary) => binary.fieldSpeedRatio);
     orbitProfileSolverPromise = (async () => {
-      const runtimeSolverOptions = await createIdealBraidRuntimeSolverOptions();
-      return solveCircularSelfHitSpanRowsWithSolverBridge(ratios, {
-        ...runtimeSolverOptions,
+      const runtimeAnalysisOptions = await createIdealBraidRuntimeAnalysisOptions();
+      return solveCircularSelfHitSpanRowsWithPrescribedPathAnalysis(ratios, {
+        ...runtimeAnalysisOptions,
         runId: "ideal-braid-orbit-profile-self-hit",
         memoryBudgetBytes: IDEAL_BRAID_RUNTIME_SOLVER_MEMORY_BUDGET_BYTES,
       });
@@ -2475,11 +2342,6 @@ export function mountIdealBraid(options = {}) {
     destroy() {
       runtimeDestroyed = true;
       resizeObserver.disconnect();
-      if (ownedSolverClient && typeof ownedSolverClient.dispose === "function") {
-        void ownedSolverClient.dispose();
-      } else if (ownedSolverWorker && typeof ownedSolverWorker.terminate === "function") {
-        ownedSolverWorker.terminate();
-      }
       renderer.dispose();
       markdownRuntime.hideMarkdownPanel();
     },

@@ -1,6 +1,8 @@
 # Solver Precision
 
-This note owns the central solver's precision and dynamic-range strategy. The main [priorities.md](priorities.md) file keeps the cross-cutting requirement and task pointer; this document carries the detailed numeric forensics and policy.
+Historical naming: **zombie-solver (then called the central solver)**.
+
+This note owns the zombie-solver's precision and dynamic-range strategy. The main [priorities.md](priorities.md) file keeps the cross-cutting requirement and task pointer; this document carries the detailed numeric forensics and policy.
 
 ## Core Problem
 
@@ -44,7 +46,7 @@ The forensics resolved that proposal into a narrower and stronger design:
 2. Standard floating point already has exponent-like scale range, but it does not protect local distinguishability, cancellation, root residuals, or vector geometry when operations mix scales.
 3. Other scientific fields use nondimensionalization, local frames, log-domain arithmetic, signed-log magnitude, adaptive precision, interval arithmetic, compensated summation, multirate integration, and validation replay.
 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ needs those techniques as a first-class solver contract because causal roots, field-speed thresholds, assembly-local state, path histories, and app replay all interact with scale at the same time.
-5. The resulting design goal is a scale-native solver: the fundamental $\mathbb{A}\mathbb{A}\mathbb{A}$ model remains the same across scale, while the implementation selects numeric charts and precision paths that preserve that model up to declared precision and tractability limits.
+5. The resulting design goal is a scale-consistent EOM solver: the fundamental $\mathbb{A}\mathbb{A}\mathbb{A}$ model remains the same across scale, while the implementation selects numeric charts and precision paths that preserve that model up to declared precision and tractability limits.
 
 The advancement is therefore not "use logarithms instead of floating point." The advancement is making numeric coordinate charts, chart authority, chart failure modes, and precision escalation explicit parts of the solver contract.
 

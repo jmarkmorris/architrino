@@ -1,9 +1,11 @@
 # Dispatch Packet — Coupled Delayed-History Integrator + Independent Dynamical Regression
 
+Historical naming: **zombie-solver (then called the central solver)**.
+
 **Date:** 2026-07-12
-**Status:** ready to dispatch (authored by jughead from the 2026-07-12 central-solver audit)
-**Depends on / supersedes framing in:** [central-solver-independent-audit-2026-07-12.md](central-solver-independent-audit-2026-07-12.md)
-**Discipline:** extend the central solver; do not create a parallel solver. Report-only until the operator reviews diffs.
+**Status:** ready to dispatch (authored by jughead from the 2026-07-12 zombie-solver audit)
+**Depends on / supersedes framing in:** [zombie-solver audit](central-solver-independent-audit-2026-07-12.md)
+**Discipline:** extend the zombie-solver; do not create a parallel solver. Report-only until the operator reviews diffs.
 
 ---
 
@@ -17,7 +19,7 @@ Standing scope boundary carried from the audit: **force-balance ($\epsilon_{\rm 
 
 ## Non-negotiable principles
 
-1. **One authoritative solver.** Extend the central solver (native `architrino_solver_core` + bridge). Do not add a parallel default engine. The instantaneous `masterEquation`/`pairInteraction` motion paths and T3 soft-sphere are **gated out of any canonical-evidence status** as part of this work (truth-in-labeling, audit P0-1/P1-4).
+1. **One authoritative solver.** Extend the zombie-solver (native `architrino_solver_core` + bridge). Do not add a parallel default engine. The instantaneous `masterEquation`/`pairInteraction` motion paths and T3 soft-sphere are **gated out of any canonical-evidence status** as part of this work (truth-in-labeling, audit P0-1/P1-4).
 2. **Genuine evolved history — never prescribed motion.** Source positions at emission times must be read from the **actual integrated trajectory** stored in retained history (reuse `PathHistoryStreamWriter`, `src/solver/include/architrino/solver/PathHistoryStream.hpp`), not from a closed-form circle. Prescribed-analytic sources are allowed only inside the regression oracle as *known-input* cases, never as the production motion representation.
 3. **Tolerances must control refinement.** Request tolerances must feed step control and root refinement and change the answer; they may not be dropped metadata (audit P2-1). Any tolerance the integrator accepts must be demonstrably consumed.
 4. **Carry the signed branch degree** into the force where the theory requires it (master-equation.md:609-611; binary-dynamics.md:452,468), not just the unsigned magnitude (audit P2-2).
@@ -62,7 +64,7 @@ Native release of any **dynamical/long-term** conclusion is unlocked only when: 
 
 ## Adjudication hooks (what jughead will check on return)
 
-Oracle authored blind (no integrator import; ideally a separate thread); convergence tables are real refinement, not a passthrough comparing code to itself; the native path genuinely runs (inspect provenance + confirm the non-smoke build exports the symbol); self-hit present in C++ and matching O5; O4 positive tangential work and non-hold departure reproduced (a held circle is an automatic fail, while radial direction is measured); tolerances demonstrably change results; instantaneous toys gated out. Central solver ownership respected; "delayed" not the disallowed variant; architrino-level, no mass.
+Oracle authored blind (no integrator import; ideally a separate thread); convergence tables are real refinement, not a passthrough comparing code to itself; the native path genuinely runs (inspect provenance + confirm the non-smoke build exports the symbol); self-hit present in C++ and matching O5; O4 positive tangential work and non-hold departure reproduced (a held circle is an automatic fail, while radial direction is measured); tolerances demonstrably change results; instantaneous toys gated out. zombie-solver ownership respected; "delayed" not the disallowed variant; architrino-level, no mass.
 
 ## Sequencing / parallelization
 
@@ -70,4 +72,4 @@ Phase 1 (oracle) and Phase 2 (native wiring + self-hit) are independent and shou
 
 ## Expected output
 
-A non-smoke native build target + bridge default flip; C++ self-hit; the retained-history-fed coupled DDE integrator on the central-solver path; the independent oracle suite (O1–O6) with convergence tables; provenance records; the capability classification; and status guards demoting the instantaneous motion paths. Report thread state, authority, files changed, validation commands + outcomes, and a `Closure goal:` for the next step.
+A non-smoke native build target + bridge default flip; C++ self-hit; the retained-history-fed coupled DDE integrator on the zombie-solver path; the independent oracle suite (O1–O6) with convergence tables; provenance records; the capability classification; and status guards demoting the instantaneous motion paths. Report thread state, authority, files changed, validation commands + outcomes, and a `Closure goal:` for the next step.

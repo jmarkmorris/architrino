@@ -14,7 +14,7 @@
 - Native acceleration layer: certified sharp rows and deterministic complete receiver reduction implemented
 - Native coupled evolution: sharp cubic correction, step doubling, and atomic in-memory publication implemented
 - Production distributed block-exclusion engine: not started
-- Existing central solver: unchanged
+- Existing zombie-solver: unchanged
 
 ## Outcome
 
@@ -332,7 +332,7 @@ root tolerance `1e-8`. Its maximum endpoint state delta was about `2.84e-14`,
 and the one-thread and four-thread `0.0025` histories were byte identical.
 
 This control is not the Borg acceptance gate. It covers one of sixteen Borg
-histories and begins from imported central-solver compatibility history. The
+histories and begins from imported zombie-solver compatibility history. The
 follow-up 16-history attempt failed closed for steps `0.01`, `0.005`, and
 `0.0025`: all 240 off-diagonal ordered pairs reached
 `numeric_precision_limit_exhausted` on every row. The four-thread `0.0025`

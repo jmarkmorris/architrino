@@ -1657,6 +1657,19 @@ struct MpAttempt {
   std::size_t difficult_cells = 0;
   std::string diagnostic_detail;
   std::vector<MpRoot> roots;
+  bool has_difficult_cell = false;
+  std::size_t difficult_source_segment_index = 0;
+  std::string difficult_cell_lower;
+  std::string difficult_cell_upper;
+  std::string difficult_point;
+  std::string difficult_point_residual_lower;
+  std::string difficult_point_residual_upper;
+  std::string difficult_source_normal_lower;
+  std::string difficult_source_normal_upper;
+  std::string difficult_receiver_normal_lower;
+  std::string difficult_receiver_normal_upper;
+  int difficult_lower_sign = 0;
+  int difficult_upper_sign = 0;
 };
 
 bool merge_mp_roots(std::vector<MpRoot>& roots) {
@@ -1789,6 +1802,42 @@ std::optional<std::pair<MpFloat, MpFloat>> surround_mp_root(
       return std::make_pair(lower, upper);
     }
     mpfr_mul_2ui(radius.raw(), radius.raw(), 1, MPFR_RNDU);
+  }
+
+  // The final power-of-two probe above is nominally one tolerance wide, but
+  // outward subtraction and addition can make its represented width exceed
+  // the acceptance tolerance by a few ulps.  Select exact representable
+  // points inward from the half-tolerance radius instead.  Opposite strict
+  // residual signs at these points still give an IVT bracket, while the
+  // already-certified one-sign source normal proves that it contains exactly
+  // one simple root.
+  const MpFloat two = MpFloat::unsigned_value(2, bits);
+  const MpFloat inward_radius =
+      mp_divide(tolerance, two, MPFR_RNDD);
+  MpFloat inward_lower =
+      mp_subtract(point, inward_radius, MPFR_RNDU);
+  MpFloat inward_upper =
+      mp_add(point, inward_radius, MPFR_RNDD);
+  if (inward_lower.compare(bracket_lower) < 0) {
+    inward_lower = bracket_lower;
+  }
+  if (inward_upper.compare(bracket_upper) > 0) {
+    inward_upper = bracket_upper;
+  }
+  if (inward_lower.compare(point) < 0 &&
+      inward_upper.compare(point) > 0 &&
+      mp_width_within(inward_lower, inward_upper, tolerance)) {
+    const int lower_sign =
+        mp_geometry(receiver, source_segment, reception,
+                    MpInterval::point(inward_lower), field_speed)
+            .residual.strict_sign();
+    const int upper_sign =
+        mp_geometry(receiver, source_segment, reception,
+                    MpInterval::point(inward_upper), field_speed)
+            .residual.strict_sign();
+    if (lower_sign != 0 && upper_sign != 0 && lower_sign != upper_sign) {
+      return std::make_pair(inward_lower, inward_upper);
+    }
   }
   return std::nullopt;
 }
@@ -2200,18 +2249,44 @@ MpAttempt run_mpfr_attempt(const ExactPairRequest& request, unsigned bits_value)
     while (!mp_width_within(lower, upper, tolerance) &&
            iterations < request.max_depth) {
       const MpFloat middle = mp_split(lower, upper);
-      int middle_sign =
-          mp_geometry(receiver_state, source_segment, reception,
-                      MpInterval::point(middle), field_speed)
-              .residual.strict_sign();
+      const auto middle_geometry = mp_geometry(
+          receiver_state, source_segment, reception,
+          MpInterval::point(middle), field_speed);
+      int middle_sign = middle_geometry.residual.strict_sign();
       if (middle_sign == 0) {
         const auto surrounded = surround_mp_root(
             receiver_state, source_segment, reception, field_speed, middle,
             lower, upper, tolerance, bits);
         if (!surrounded.has_value()) {
+          const auto bracket_geometry = mp_geometry(
+              receiver_state, source_segment, reception,
+              MpInterval::bounds(lower, upper), field_speed);
           attempt.complete = false;
           attempt.finite_width_root_cluster = same_retained_history;
           attempt.diagnostic_detail = "interior_root_not_surrounded";
+          attempt.has_difficult_cell = true;
+          attempt.difficult_source_segment_index = cell.segment_index;
+          attempt.difficult_cell_lower = lower.token(MPFR_RNDD);
+          attempt.difficult_cell_upper = upper.token(MPFR_RNDU);
+          attempt.difficult_point = middle.token(MPFR_RNDN);
+          attempt.difficult_point_residual_lower =
+              middle_geometry.residual.lower().token(MPFR_RNDD);
+          attempt.difficult_point_residual_upper =
+              middle_geometry.residual.upper().token(MPFR_RNDU);
+          if (bracket_geometry.source_normal.has_value()) {
+            attempt.difficult_source_normal_lower =
+                bracket_geometry.source_normal->lower().token(MPFR_RNDD);
+            attempt.difficult_source_normal_upper =
+                bracket_geometry.source_normal->upper().token(MPFR_RNDU);
+          }
+          if (bracket_geometry.receiver_normal.has_value()) {
+            attempt.difficult_receiver_normal_lower =
+                bracket_geometry.receiver_normal->lower().token(MPFR_RNDD);
+            attempt.difficult_receiver_normal_upper =
+                bracket_geometry.receiver_normal->upper().token(MPFR_RNDU);
+          }
+          attempt.difficult_lower_sign = refined_lower_sign;
+          attempt.difficult_upper_sign = refined_upper_sign;
           ++attempt.difficult_cells;
           return;
         }
@@ -2408,6 +2483,26 @@ ExactPairCertificate mpfr_certificate(
   };
   if (!complete) {
     certificate.reevaluated_cells = attempt.visited_cells;
+    certificate.has_difficult_cell = attempt.has_difficult_cell;
+    certificate.difficult_source_segment_index =
+        attempt.difficult_source_segment_index;
+    certificate.difficult_cell_lower = attempt.difficult_cell_lower;
+    certificate.difficult_cell_upper = attempt.difficult_cell_upper;
+    certificate.difficult_point = attempt.difficult_point;
+    certificate.difficult_point_residual_lower =
+        attempt.difficult_point_residual_lower;
+    certificate.difficult_point_residual_upper =
+        attempt.difficult_point_residual_upper;
+    certificate.difficult_source_normal_lower =
+        attempt.difficult_source_normal_lower;
+    certificate.difficult_source_normal_upper =
+        attempt.difficult_source_normal_upper;
+    certificate.difficult_receiver_normal_lower =
+        attempt.difficult_receiver_normal_lower;
+    certificate.difficult_receiver_normal_upper =
+        attempt.difficult_receiver_normal_upper;
+    certificate.difficult_lower_sign = attempt.difficult_lower_sign;
+    certificate.difficult_upper_sign = attempt.difficult_upper_sign;
     return certificate;
   }
   certificate.roots.reserve(attempt.roots.size());

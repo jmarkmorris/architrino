@@ -246,7 +246,7 @@ cutoff, or a GPU throughput kernel does not satisfy this profile.
 
 ## Compatibility Boundary
 
-This amendment does not modify or redirect the existing central solver. It
+This amendment does not modify or redirect the existing zombie-solver. It
 does not grant authority to a prototype, prescribed-path app, approximate
 N-body method, or display surface. It raises the scale requirement that the new
 EOM architecture must satisfy before million-path capability may be claimed.

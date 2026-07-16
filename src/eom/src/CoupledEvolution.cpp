@@ -2446,7 +2446,7 @@ NativeAccelerationSnapshotCertificate certify_native_acceleration_snapshot(
     std::vector<MovingHistoryMember> members;
     members.reserve(histories.size());
     for (const auto& path : histories) {
-      members.push_back({path.path_id, &path.history});
+      members.push_back({path.path_id, &path.history, true});
     }
     CertifiedTraversalRequest traversal_request{
         .traversal_id = request.run_id + "/snapshot/" + reception_time,

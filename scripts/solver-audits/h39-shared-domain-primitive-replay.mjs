@@ -101,7 +101,7 @@ export function buildH39SharedDomainPrimitiveReplayReport(options = {}) {
       "first executable H39 solver-impact fixture for the shared-domain primitive diagnostic surface",
     central_solver_backend_invoked: false,
     central_solver_backend_reason:
-      "The current central solver exposes app-facing root, hit, stream, precision, and validation-replay surfaces; this H39 primitive proof object still requires a fixture adapter before native solver replay.",
+      "The current central solver exposes app-facing root, hit, stream, precision, and validation-replay surfaces; this H39 primitive proof object still requires a fixture adapter before compiled-solver replay.",
     selected_first_fixture: "h39_shared_domain_primitive_replay",
     case_count: cases.length,
     cases,
@@ -219,7 +219,7 @@ function buildReplayCase(caseDefinition) {
       timing_note:
         "not measured as solver runtime; deterministic in-process fixture adapter build only",
       memory_note:
-        "no path-history stream or native solver buffers allocated; report JSON only",
+        "no path-history stream or compiled-solver buffers allocated; report JSON only",
       native_solver_backend_cost: "none",
     },
     impact_classification: impactClassification,

@@ -20,7 +20,7 @@ Walk up from the smallest object, certifying dynamical behavior at each rung bef
 
 1. Operator ratifies charter ([README.md](README.md)), this strategy, and [method.md](method.md).
 2. Author [configuration-chart.md](configuration-chart.md) past skeleton grade (the search-space coordinate system, including motion classes beyond rigid rotation).
-3. Author the instrument gate (first campaign-independent spec in `campaigns/`): which engine capabilities are accepted for program use, and what each campaign must show before its results are booked.
+3. Author the instrument gate (first campaign-independent spec in `campaigns/`): which engine capabilities are accepted for program use, what each campaign must show before its results are booked, and adoption of the `assembly-view-record.v0` schema from [campaigns/assembly-viewer-requirements.md](campaigns/assembly-viewer-requirements.md) so campaign runs emit viewable records from day one.
 4. Campaign 1 spec and run: sub-field opposite-polarity binary evolution (N-ladder rung 1).
 5. Operator disposition review of the first mining pass — 47 curated leads staged in `mining/` (2026-07-15, four themed files plus overview, each with a recommended disposition confined to this directory). (Corpus reconciliation of the braid chapters and generated-artifact regeneration: **executed 2026-07-15**, see [corpus-reconciliation.md](corpus-reconciliation.md).)
 

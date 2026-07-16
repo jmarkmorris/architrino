@@ -26,22 +26,7 @@ const recursiveTargets = [
   },
 ];
 
-const fileTargets = [
-  {
-    label: "tri-binary offset family runner",
-    relativePath: "scripts/angular-momentum/tri-binary-offset-family-runner.mjs",
-    patterns: [
-      ...createCanonicalSurfacePatterns(),
-      ...createIdentifierPatterns([
-        ["legacy", "Order"],
-        ["legacy", "Label"],
-        ["legacy", "Values"],
-        ["family", "Legacy", "Relation"],
-        ["legacy", "Relation"],
-      ]),
-    ],
-  },
-];
+const fileTargets = [];
 
 const findings = [];
 let filesScanned = 0;
@@ -108,13 +93,6 @@ function createCanonicalSurfacePatterns() {
   ];
 }
 
-function createIdentifierPatterns(partsList) {
-  return partsList.map((parts) => ({
-    label: "legacy runner identifier",
-    pattern: new RegExp(`\\b${escapeRegExp(parts.join(""))}\\b`, "g"),
-  }));
-}
-
 function collectFiles(relativeDir, extensions) {
   const absoluteDir = path.join(rootDir, relativeDir);
   if (!fs.existsSync(absoluteDir)) {
@@ -171,6 +149,3 @@ function toPosixPath(value) {
   return String(value).replace(/\\/g, "/");
 }
 
-function escapeRegExp(value) {
-  return String(value).replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-}

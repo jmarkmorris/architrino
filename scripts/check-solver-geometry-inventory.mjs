@@ -160,48 +160,6 @@ const migrationTargets = [
     ],
   },
   {
-    id: "animator-motion-dataset",
-    app: "Animator",
-    local: {
-      file: "src/apps/animator/AnimatorSimulationWorkerCoreRuntime.js",
-      symbols: [
-        "runAnimatorSimulationWorkerRequestAsync",
-        "runAnimatorSolverBridgeWorkerRequest",
-        "runSolverBridgeClient",
-        "createAnimatorDatasetFromSolverBridgeRun",
-      ],
-    },
-    central: [
-      {
-        file: "src/solver/app/SolverAppBridgeClientResolver.mjs",
-        symbols: ["runSolverAppBridgeRequest"],
-      },
-      {
-        file: "src/apps/animator/AnimatorSolverBridgeWorkerRuntime.js",
-        symbols: ["createAnimatorSolverBridgeWorkerOptions"],
-      },
-      {
-        file: "src/solver/app/SolverAppAdapters.mjs",
-        symbols: ["createAnimatorMotionSimulationRunRequest"],
-      },
-      {
-        file: "src/solver/app/SolverAppBridge.mjs",
-        symbols: ["motionSimulation", "sampleLinearMotionF64"],
-      },
-    ],
-    solverOwnership: [
-      "motion frame buffers",
-      "path-history stream output",
-      "dataset-level manifest and diagnostics",
-    ],
-    baselineCases: [
-      "animator-causal-root-smoke",
-      "animator-path-history-smoke",
-      "animator-motion-dynamic-replay-smoke",
-      "animator-worker-solver-bridge-smoke",
-    ],
-  },
-  {
     id: "animator-delayed-hit-rows",
     app: "Animator",
     local: {
@@ -212,7 +170,7 @@ const migrationTargets = [
     },
     central: [
       {
-        file: "src/solver/app/AnimatorDelayedHitRows.mjs",
+        file: "src/apps/animator/display/AnimatorDelayedHitRows.mjs",
         symbols: [
           "ANIMATOR_DELAYED_HIT_STREAM_DESCRIPTOR_SCHEMA",
           "ANIMATOR_RECEIVER_PATH_DESCRIPTOR_LAYOUT",
@@ -222,7 +180,7 @@ const migrationTargets = [
         ],
       },
       {
-        file: "src/solver/app/AnimatorReceiverPathDescriptors.mjs",
+        file: "src/apps/animator/display/AnimatorReceiverPathDescriptors.mjs",
         symbols: [
           "ANIMATOR_RECEIVER_PATH_DESCRIPTOR_PACKAGE_SCHEMA",
           "ANIMATOR_RECEIVER_PATH_DESCRIPTOR_LAYOUT",
@@ -265,7 +223,7 @@ const migrationTargets = [
     },
     central: [
       {
-        file: "src/solver/app/AnimatorFieldShellEventStream.mjs",
+        file: "src/apps/animator/display/AnimatorFieldShellEventStream.mjs",
         symbols: [
           "ANIMATOR_FIELD_SHELL_EVENT_STREAM_PACKAGE_SCHEMA",
           "ANIMATOR_FIELD_SHELL_CADENCE_DESCRIPTOR_SCHEMA",

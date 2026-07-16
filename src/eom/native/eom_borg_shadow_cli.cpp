@@ -331,8 +331,36 @@ void run(
                   << ",\"mpfrAttemptCount\":"
                   << certificate.mpfr_attempt_count
                   << ",\"mpfrEscalationAttemptCount\":"
-                  << certificate.mpfr_escalation_attempt_count
-                  << '}';
+                  << certificate.mpfr_escalation_attempt_count;
+        if (certificate.has_difficult_cell) {
+          std::cout << ",\"difficultSourceSegmentIndex\":"
+                    << certificate.difficult_source_segment_index
+                    << ",\"difficultCellLower\":\""
+                    << json_escape(certificate.difficult_cell_lower)
+                    << "\",\"difficultCellUpper\":\""
+                    << json_escape(certificate.difficult_cell_upper)
+                    << "\",\"difficultPoint\":\""
+                    << json_escape(certificate.difficult_point)
+                    << "\",\"difficultPointResidualLower\":\""
+                    << json_escape(
+                        certificate.difficult_point_residual_lower)
+                    << "\",\"difficultPointResidualUpper\":\""
+                    << json_escape(
+                        certificate.difficult_point_residual_upper)
+                    << "\",\"difficultSourceNormalLower\":\""
+                    << json_escape(certificate.difficult_source_normal_lower)
+                    << "\",\"difficultSourceNormalUpper\":\""
+                    << json_escape(certificate.difficult_source_normal_upper)
+                    << "\",\"difficultReceiverNormalLower\":\""
+                    << json_escape(certificate.difficult_receiver_normal_lower)
+                    << "\",\"difficultReceiverNormalUpper\":\""
+                    << json_escape(certificate.difficult_receiver_normal_upper)
+                    << "\",\"difficultLowerSign\":"
+                    << certificate.difficult_lower_sign
+                    << ",\"difficultUpperSign\":"
+                    << certificate.difficult_upper_sign;
+        }
+        std::cout << '}';
       }
     };
     for (const auto& substep : step.substeps) {

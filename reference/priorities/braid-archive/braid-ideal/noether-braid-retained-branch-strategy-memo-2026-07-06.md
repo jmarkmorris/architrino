@@ -10,9 +10,9 @@ Corpus disposition: defer with blocker. Promote only after a same-record retaine
 The memo's strategic route is useful, but the live implementation boundary is narrower than "surface-speed rows are missing."
 
 - [Shell-Braid Run Matrix](sh-run-matrix.md) already declares `SH-0` transverse surface-speed and prehistory rows such as `sh0-g0-vt080-kick-at-release` and `sh0-g0-vt080-moving-prehistory`.
-- [held-release-seed-path-rows.mjs](../../../../scripts/braid-ideal/held-release-seed-path-rows.mjs) already accepts run-handle, target-center group velocity, surface-speed fraction, and prehistory-mode metadata.
-- [sh-0-sea-diagnostic-candidate-model.mjs](../../../../scripts/braid-ideal/sh-0-sea-diagnostic-candidate-model.mjs) already passes the same metadata into embedded `SH-0-sea` candidate rows.
-- [held-release-causal-wake-toy.mjs](../../../../scripts/braid-ideal/held-release-causal-wake-toy.mjs) is still the missing physics runner: it accepts `--group-velocity` and `--include-self-hits`, but it does not integrate tangential surface speed, a spin axis, `kick-at-release`, or history-consistent `moving-prehistory`.
+- held-release-seed-path-rows.mjs (retired script: `scripts/braid-ideal/held-release-seed-path-rows.mjs`) already accepts run-handle, target-center group velocity, surface-speed fraction, and prehistory-mode metadata.
+- sh-0-sea-diagnostic-candidate-model.mjs (retired script: `scripts/braid-ideal/sh-0-sea-diagnostic-candidate-model.mjs`) already passes the same metadata into embedded `SH-0-sea` candidate rows.
+- held-release-causal-wake-toy.mjs (retired script: `scripts/braid-ideal/held-release-causal-wake-toy.mjs`) is still the missing physics runner: it accepts `--group-velocity` and `--include-self-hits`, but it does not integrate tangential surface speed, a spin axis, `kick-at-release`, or history-consistent `moving-prehistory`.
 
 Therefore the next useful object is not another metadata row or acceptance-certificate sweep. It is the actual transverse-surface-velocity held-release dynamics.
 

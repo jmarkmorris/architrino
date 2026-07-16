@@ -133,7 +133,7 @@ export function assertBorgFixtureManifest(manifest, native) {
   assertEqual(manifest.schema, "borg-dataset-manifest.v1", "manifest schema");
   assertEqual(manifest.manifestId, FIXTURE_IDS.manifestId, "manifest id");
   assertEqual(manifest.runId, FIXTURE_IDS.runId, "manifest run id");
-  assertEqual(manifest.nativeSolverStatus, "native-backed-now", "native solver status");
+  assertEqual(manifest.nativeSolverStatus, "native-backed-now", "EOM solver status");
   assertEqual(manifest.claimLevel, "developer-test", "claim level");
   assertEqual(manifest.sourceBridgeRun.executionPath, "native_c_abi", "native execution path");
   assertEqual(manifest.sourceBridgeRun.frameCount, native.run.response.summary.frameCount, "frame count");
@@ -320,7 +320,7 @@ export function assertBorgFixtureManifest(manifest, native) {
 async function runNativeDefaultMotionFixture() {
   if (!fs.existsSync(WASM_LOADER_PATH)) {
     throw new Error(
-      `Missing native solver WASM loader at ${path.relative(ROOT_DIR, WASM_LOADER_PATH)}. ` +
+      `Missing EOM solver WASM loader at ${path.relative(ROOT_DIR, WASM_LOADER_PATH)}. ` +
         "Build the local solver WASM target before running the Borg native fixture.",
     );
   }

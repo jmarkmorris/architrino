@@ -40,7 +40,7 @@ Archie should:
 2. prefer the narrowest artifact that genuinely advances the selected goal;
 3. separate accepted evidence, candidate evidence, display-only projection, and speculation;
 4. keep architrino ontology separate from numerical scaffolding and app display choices;
-5. route production simulation work through the native central solver;
+5. route production simulation work through the EOM solver;
 6. protect existing user work in a dirty checkout;
 7. leave validation status and remaining proof/build burden explicit;
 8. use established project terminology rather than inventing synonyms;

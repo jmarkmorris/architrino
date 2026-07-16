@@ -1,5 +1,7 @@
 # Solver GPU Feasibility Harness
 
+Historical naming: **zombie-solver (then called the central solver)**.
+
 Status: learning harness.
 
 The solver keeps production GPU acceleration deferred until the central CPU solver contract, precision behavior, and app-facing API are stable. A separate GPU feasibility harness is still useful now because it lets us learn the browser/WebGPU toolchain, measure regular parallel kernels on macOS hardware, and identify the kinds of solver work that could later justify an acceleration tier.
@@ -25,7 +27,7 @@ $$
 \left|\lVert r_i - s_i\rVert - R_i\right| < \epsilon.
 $$
 
-This is not the central solver algorithm. It is a regular, massively parallel shape of work that is close enough to the solver's source-receiver and emission-shell workload to teach useful lessons about GPU dispatch cost, readback cost, throughput, and CPU/GPU parity handling.
+This is not the zombie-solver algorithm. It is a regular, massively parallel shape of work that is close enough to the solver's source-receiver and emission-shell workload to teach useful lessons about GPU dispatch cost, readback cost, throughput, and CPU/GPU parity handling.
 
 ## Measurement Rules
 

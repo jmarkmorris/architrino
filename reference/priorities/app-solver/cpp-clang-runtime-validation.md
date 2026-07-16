@@ -1,5 +1,7 @@
 # C++/Clang Runtime Validation
 
+Historical naming: **zombie-solver (then called the central solver)**.
+
 Status: `closed-validation-capture`
 
 Kind: `runtime-validation-status`
@@ -39,7 +41,7 @@ migration parity, and benchmark-sanity gates are green on the live tree.
 
 ### Native CMake And Clang
 
-The native solver is configured under
+The compiled zombie-solver is configured under
 [src/solver/CMakeLists.txt](../../../src/solver/CMakeLists.txt):
 
 - project language: C++ only;

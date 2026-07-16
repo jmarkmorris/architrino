@@ -1,5 +1,7 @@
 # App Solver Brainstorming
 
+Historical naming: **zombie-solver (then called the central solver)**.
+
 This file preserves ideas and insights that are working toward promotion to an existing or new document or app.
 
 ## Routing Rules
@@ -12,6 +14,6 @@ This file preserves ideas and insights that are working toward promotion to an e
 
 ### Dynamo Team Insights Mining
 
-- Solver-side state model: the central solver should be able to represent the current state as a retained history object, active and inactive causal-root ledger, regulator state, and branch-strength rows rather than only instantaneous positions and velocities. Promote into [priorities.md](priorities.md) only if the existing bridge contract lacks fields needed by a live retained-history proof or simulation packet.
+- Solver-side state model: the zombie-solver should be able to represent the current state as a retained history object, active and inactive causal-root ledger, regulator state, and branch-strength rows rather than only instantaneous positions and velocities. Promote into [priorities.md](priorities.md) only if the existing bridge contract lacks fields needed by a live retained-history proof or simulation packet.
 - Root-bifurcation diagnostic idea: near self-hit thresholds, solver output should expose root creation, root merger, Jacobian-floor loss, and branch identity changes as first-class diagnostics. Keep priority-only until a current simulation or proof packet names the exact rows it needs.
 - Finite-memory pruning idea: when a stable assembly behaves as a finite-memory object, the solver should report the memory cutoff, omitted-tail bound, and failure code if the tail is still dynamically significant. This is a contract candidate, not a default runtime change.

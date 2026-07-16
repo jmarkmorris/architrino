@@ -1,5 +1,7 @@
 # Threading Execution Policy
 
+Historical naming: **zombie-solver (then called the central solver)**.
+
 Status: `closed-design-capture`
 
 Kind: `solver-execution-policy`
@@ -24,7 +26,7 @@ Implementation surfaces:
 
 ## Purpose
 
-This policy defines how the central solver chooses single-threaded execution,
+This policy defines how the zombie-solver chooses single-threaded execution,
 browser-worker execution, native thread-pool execution, WebAssembly-thread
 execution, and future GPU-ready work partitions. It is an execution contract
 for architrino motion, causal-root, delayed-hit, path-history, index, replay,

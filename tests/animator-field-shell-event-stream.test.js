@@ -5,7 +5,7 @@ import path from "node:path";
 
 import {
   createAnimatorDelayedHitRowsFromStreamDescriptors,
-} from "../src/solver/app/AnimatorDelayedHitRows.mjs";
+} from "../src/apps/animator/display/AnimatorDelayedHitRows.mjs";
 import {
   createSolverAppBridgeClient,
 } from "../src/solver/app/SolverAppBridge.mjs";
@@ -21,7 +21,7 @@ import {
   createAnimatorFieldShellEmitterSourceHistory,
   createAnimatorFieldShellEventNativeFileStoragePolicy,
   createAnimatorFieldShellEventStreamPackage,
-} from "../src/solver/app/AnimatorFieldShellEventStream.mjs";
+} from "../src/apps/animator/display/AnimatorFieldShellEventStream.mjs";
 
 test("animator field-shell cadence times are solver-owned", () => {
   assert.deepEqual(
