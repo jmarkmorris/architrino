@@ -10,8 +10,7 @@
 // This driver is a cost instrument only. It makes no physics claim; the
 // timing authority is the engine's internal steady-clock ledger, and the
 // pair-route counts are the engine's own traversal certificates. It never
-// modifies engine behavior. Pattern follows
-// section-97-98-direct-evolution.cpp.
+// modifies engine behavior.
 //
 // Build (Linux profiling sandbox example):
 //   c++ -std=c++20 -O3 -DNDEBUG -Isrc/eom/include \
@@ -43,8 +42,7 @@ constexpr double kPi = 3.141592653589793238462643383279502884;
 constexpr const char* kCharge = "0.1666666666666666666666666666666667";
 constexpr const char* kNegativeCharge =
     "-0.1666666666666666666666666666666667";
-// Declared workload coupling: the section-86 lineage native coupling
-// 36 * kappa_eq. A profiling choice, not a bind fit.
+// Declared workload coupling: 36 * kappa_eq. A profiling choice, not a bind fit.
 constexpr double kNativeCoupling = 36.0 * 0.2862286103053385;
 
 std::string token(double value) {

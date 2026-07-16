@@ -48,7 +48,6 @@ It does not carry the detailed family derivations, select a frequency family, as
 | Analysis | [Doubling-Frequency Resonance Lock](doubling-frequency-lock.md) | The `4:2:1` doubling-frequency candidate family and its lock analysis. |
 | Export | [Braid Envelope Geometry](braid-envelope-geometry.md) | The family-general envelope and observer-export interface: dynamic exclusion envelope, sea-interface diagnostic, canonical geometry variables, and the Lorentz projection. |
 | Export | [Noether Braid Topological Charge](noether-braid-topological-charge.md) | Classification of retained branch charts. |
-| Export | [Terminal Alignment](../proof-programs/terminal-alignment.md) | The strong-field endpoint proof program: braid symmetry-breaking point, local black-hole duality target, and horizon-interface label counting. |
 
 A first reading should follow the table order: what a retained braid must satisfy, then the configuration space of possibilities, then the named families as regions of that space, then the shared mathematics and the spindle braid as the worked candidate, with the export chapters as the interface layer. Search progress is not tracked in these chapters.
 

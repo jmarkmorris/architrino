@@ -9,11 +9,11 @@
       "elementLegendSource": "content/graph/runtime_routes.json"
     },
     "counts": {
-      "nodes": 597,
-      "edges": 1363,
-      "scenes": 382,
+      "nodes": 586,
+      "edges": 1352,
+      "scenes": 376,
       "markdownIndexes": 0,
-      "markdownDocs": 198,
+      "markdownDocs": 193,
       "runtimeEdges": 476,
       "periodicGridRoutes": 119,
       "elementLegendTargets": 3
@@ -1799,36 +1799,6 @@
       "nodeType": "scene"
     },
     {
-      "id": "proof_programs__closed_form_collinear_breather_ansatz",
-      "name": "Closed-Form Collinear Breather Ansatz",
-      "path": "content/scenes/proof-programs/closed_form_collinear_breather_ansatz.json",
-      "nodeType": "scene"
-    },
-    {
-      "id": "dynamics__collinear_breather",
-      "name": "Collinear Breather",
-      "path": "content/scenes/proof-programs/collinear_breather.json",
-      "nodeType": "scene"
-    },
-    {
-      "id": "dynamics__master_equation_breather",
-      "name": "Master Equation Breather",
-      "path": "content/scenes/proof-programs/master_equation_breather.json",
-      "nodeType": "scene"
-    },
-    {
-      "id": "dynamics__planar_bridge_closure",
-      "name": "Planar Bridge Closure",
-      "path": "content/scenes/proof-programs/planar_bridge_closure.json",
-      "nodeType": "scene"
-    },
-    {
-      "id": "proof_programs",
-      "name": "Proof Programs",
-      "path": "content/scenes/proof-programs/proof_programs.json",
-      "nodeType": "scene"
-    },
-    {
       "id": "quantum__algorithmic_resonance",
       "name": "Algorithmic Resonance",
       "path": "content/scenes/quantum/algorithmic_resonance.json",
@@ -2426,12 +2396,6 @@
       "id": "noether_braid__spindle_braid",
       "name": "Spindle Braid",
       "path": "content/scenes/noether-braid/spindle_braid.json",
-      "nodeType": "scene"
-    },
-    {
-      "id": "proof_programs__terminal_alignment",
-      "name": "Terminal Alignment",
-      "path": "content/scenes/proof-programs/terminal_alignment.json",
       "nodeType": "scene"
     },
     {
@@ -3194,36 +3158,6 @@
       "id": "content/markdown/aaa/philosophy-history/treasure-physics-overlooked.md",
       "name": "The Treasure Physics Overlooked",
       "path": "content/markdown/aaa/philosophy-history/treasure-physics-overlooked.md",
-      "nodeType": "markdown_doc"
-    },
-    {
-      "id": "content/markdown/aaa/proof-programs/closed-form-collinear-breather-ansatz.md",
-      "name": "Closed-Form Collinear Breather Ansatz",
-      "path": "content/markdown/aaa/proof-programs/closed-form-collinear-breather-ansatz.md",
-      "nodeType": "markdown_doc"
-    },
-    {
-      "id": "content/markdown/aaa/proof-programs/collinear-breather.md",
-      "name": "Collinear Breather",
-      "path": "content/markdown/aaa/proof-programs/collinear-breather.md",
-      "nodeType": "markdown_doc"
-    },
-    {
-      "id": "content/markdown/aaa/proof-programs/master-equation-breather.md",
-      "name": "Master-Equation Breather Program",
-      "path": "content/markdown/aaa/proof-programs/master-equation-breather.md",
-      "nodeType": "markdown_doc"
-    },
-    {
-      "id": "content/markdown/aaa/proof-programs/planar-bridge-closure.md",
-      "name": "Planar Bridge Closure",
-      "path": "content/markdown/aaa/proof-programs/planar-bridge-closure.md",
-      "nodeType": "markdown_doc"
-    },
-    {
-      "id": "content/markdown/aaa/proof-programs/terminal-alignment.md",
-      "name": "Terminal Alignment",
-      "path": "content/markdown/aaa/proof-programs/terminal-alignment.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -6187,60 +6121,6 @@
       "implicit": false
     },
     {
-      "nodeId": "scene:content/scenes/proof-programs/closed_form_collinear_breather_ansatz.json",
-      "nodeType": "scene",
-      "id": "proof_programs__closed_form_collinear_breather_ansatz",
-      "name": "Closed-Form Collinear Breather Ansatz",
-      "path": "content/scenes/proof-programs/closed_form_collinear_breather_ansatz.json",
-      "searchTarget": "content/scenes/proof-programs/closed_form_collinear_breather_ansatz.json",
-      "implicit": false
-    },
-    {
-      "nodeId": "scene:content/scenes/proof-programs/collinear_breather.json",
-      "nodeType": "scene",
-      "id": "dynamics__collinear_breather",
-      "name": "Collinear Breather",
-      "path": "content/scenes/proof-programs/collinear_breather.json",
-      "searchTarget": "content/scenes/proof-programs/collinear_breather.json",
-      "implicit": false
-    },
-    {
-      "nodeId": "scene:content/scenes/proof-programs/master_equation_breather.json",
-      "nodeType": "scene",
-      "id": "dynamics__master_equation_breather",
-      "name": "Master Equation Breather",
-      "path": "content/scenes/proof-programs/master_equation_breather.json",
-      "searchTarget": "content/scenes/proof-programs/master_equation_breather.json",
-      "implicit": false
-    },
-    {
-      "nodeId": "scene:content/scenes/proof-programs/planar_bridge_closure.json",
-      "nodeType": "scene",
-      "id": "dynamics__planar_bridge_closure",
-      "name": "Planar Bridge Closure",
-      "path": "content/scenes/proof-programs/planar_bridge_closure.json",
-      "searchTarget": "content/scenes/proof-programs/planar_bridge_closure.json",
-      "implicit": false
-    },
-    {
-      "nodeId": "scene:content/scenes/proof-programs/proof_programs.json",
-      "nodeType": "scene",
-      "id": "proof_programs",
-      "name": "Proof Programs",
-      "path": "content/scenes/proof-programs/proof_programs.json",
-      "searchTarget": "content/scenes/proof-programs/proof_programs.json",
-      "implicit": false
-    },
-    {
-      "nodeId": "scene:content/scenes/proof-programs/terminal_alignment.json",
-      "nodeType": "scene",
-      "id": "proof_programs__terminal_alignment",
-      "name": "Terminal Alignment",
-      "path": "content/scenes/proof-programs/terminal_alignment.json",
-      "searchTarget": "content/scenes/proof-programs/terminal_alignment.json",
-      "implicit": false
-    },
-    {
       "nodeId": "scene:content/scenes/quantum/algorithmic_resonance.json",
       "nodeType": "scene",
       "id": "quantum__algorithmic_resonance",
@@ -8203,51 +8083,6 @@
       "implicit": false
     },
     {
-      "nodeId": "markdown_doc:content/markdown/aaa/proof-programs/closed-form-collinear-breather-ansatz.md",
-      "nodeType": "markdown_doc",
-      "id": "content/markdown/aaa/proof-programs/closed-form-collinear-breather-ansatz.md",
-      "name": "Closed-Form Collinear Breather Ansatz",
-      "path": "content/markdown/aaa/proof-programs/closed-form-collinear-breather-ansatz.md",
-      "searchTarget": "content/markdown/aaa/proof-programs/closed-form-collinear-breather-ansatz.md",
-      "implicit": false
-    },
-    {
-      "nodeId": "markdown_doc:content/markdown/aaa/proof-programs/collinear-breather.md",
-      "nodeType": "markdown_doc",
-      "id": "content/markdown/aaa/proof-programs/collinear-breather.md",
-      "name": "Collinear Breather",
-      "path": "content/markdown/aaa/proof-programs/collinear-breather.md",
-      "searchTarget": "content/markdown/aaa/proof-programs/collinear-breather.md",
-      "implicit": false
-    },
-    {
-      "nodeId": "markdown_doc:content/markdown/aaa/proof-programs/master-equation-breather.md",
-      "nodeType": "markdown_doc",
-      "id": "content/markdown/aaa/proof-programs/master-equation-breather.md",
-      "name": "Master-Equation Breather Program",
-      "path": "content/markdown/aaa/proof-programs/master-equation-breather.md",
-      "searchTarget": "content/markdown/aaa/proof-programs/master-equation-breather.md",
-      "implicit": false
-    },
-    {
-      "nodeId": "markdown_doc:content/markdown/aaa/proof-programs/planar-bridge-closure.md",
-      "nodeType": "markdown_doc",
-      "id": "content/markdown/aaa/proof-programs/planar-bridge-closure.md",
-      "name": "Planar Bridge Closure",
-      "path": "content/markdown/aaa/proof-programs/planar-bridge-closure.md",
-      "searchTarget": "content/markdown/aaa/proof-programs/planar-bridge-closure.md",
-      "implicit": false
-    },
-    {
-      "nodeId": "markdown_doc:content/markdown/aaa/proof-programs/terminal-alignment.md",
-      "nodeType": "markdown_doc",
-      "id": "content/markdown/aaa/proof-programs/terminal-alignment.md",
-      "name": "Terminal Alignment",
-      "path": "content/markdown/aaa/proof-programs/terminal-alignment.md",
-      "searchTarget": "content/markdown/aaa/proof-programs/terminal-alignment.md",
-      "implicit": false
-    },
-    {
       "nodeId": "markdown_doc:content/markdown/aaa/quantum/algorithmic-resonance.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/quantum/algorithmic-resonance.md",
@@ -9893,13 +9728,6 @@
       "edgeType": "subscene",
       "source": "content/scenes/dynamics/dynamics.json",
       "field": "scene.children[0]"
-    },
-    {
-      "from": "scene:content/scenes/dynamics/dynamics.json",
-      "to": "scene:content/scenes/proof-programs/proof_programs.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/dynamics/dynamics.json",
-      "field": "scene.children[7]"
     },
     {
       "from": "scene:content/scenes/dynamics/dynamics.json",
@@ -12891,41 +12719,6 @@
       "field": "scene.children[0]"
     },
     {
-      "from": "scene:content/scenes/proof-programs/proof_programs.json",
-      "to": "scene:content/scenes/proof-programs/closed_form_collinear_breather_ansatz.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/proof-programs/proof_programs.json",
-      "field": "scene.children[2]"
-    },
-    {
-      "from": "scene:content/scenes/proof-programs/proof_programs.json",
-      "to": "scene:content/scenes/proof-programs/collinear_breather.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/proof-programs/proof_programs.json",
-      "field": "scene.children[1]"
-    },
-    {
-      "from": "scene:content/scenes/proof-programs/proof_programs.json",
-      "to": "scene:content/scenes/proof-programs/master_equation_breather.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/proof-programs/proof_programs.json",
-      "field": "scene.children[0]"
-    },
-    {
-      "from": "scene:content/scenes/proof-programs/proof_programs.json",
-      "to": "scene:content/scenes/proof-programs/planar_bridge_closure.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/proof-programs/proof_programs.json",
-      "field": "scene.children[3]"
-    },
-    {
-      "from": "scene:content/scenes/proof-programs/proof_programs.json",
-      "to": "scene:content/scenes/proof-programs/terminal_alignment.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/proof-programs/proof_programs.json",
-      "field": "scene.children[4]"
-    },
-    {
       "from": "scene:content/scenes/quantum/quantum.json",
       "to": "scene:content/scenes/quantum/algorithmic_resonance.json",
       "edgeType": "subscene",
@@ -14568,41 +14361,6 @@
       "to": "markdown_doc:content/markdown/aaa/philosophy-history/treasure-physics-overlooked.md",
       "edgeType": "markdown_doc",
       "source": "content/scenes/philosophy_history/treasure_physics_overlooked/overview.json",
-      "field": "scene.source.path"
-    },
-    {
-      "from": "scene:content/scenes/proof-programs/closed_form_collinear_breather_ansatz.json",
-      "to": "markdown_doc:content/markdown/aaa/proof-programs/closed-form-collinear-breather-ansatz.md",
-      "edgeType": "markdown_doc",
-      "source": "content/scenes/proof-programs/closed_form_collinear_breather_ansatz.json",
-      "field": "scene.source.path"
-    },
-    {
-      "from": "scene:content/scenes/proof-programs/collinear_breather.json",
-      "to": "markdown_doc:content/markdown/aaa/proof-programs/collinear-breather.md",
-      "edgeType": "markdown_doc",
-      "source": "content/scenes/proof-programs/collinear_breather.json",
-      "field": "scene.source.path"
-    },
-    {
-      "from": "scene:content/scenes/proof-programs/master_equation_breather.json",
-      "to": "markdown_doc:content/markdown/aaa/proof-programs/master-equation-breather.md",
-      "edgeType": "markdown_doc",
-      "source": "content/scenes/proof-programs/master_equation_breather.json",
-      "field": "scene.source.path"
-    },
-    {
-      "from": "scene:content/scenes/proof-programs/planar_bridge_closure.json",
-      "to": "markdown_doc:content/markdown/aaa/proof-programs/planar-bridge-closure.md",
-      "edgeType": "markdown_doc",
-      "source": "content/scenes/proof-programs/planar_bridge_closure.json",
-      "field": "scene.source.path"
-    },
-    {
-      "from": "scene:content/scenes/proof-programs/terminal_alignment.json",
-      "to": "markdown_doc:content/markdown/aaa/proof-programs/terminal-alignment.md",
-      "edgeType": "markdown_doc",
-      "source": "content/scenes/proof-programs/terminal_alignment.json",
       "field": "scene.source.path"
     },
     {

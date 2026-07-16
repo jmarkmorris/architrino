@@ -71,7 +71,7 @@ A source hash change means this target should be regenerated and then skimmed fo
 
 | Source | Lines | SHA-256 |
 | --- | ---: | --- |
-| [AGENTS.md](../../AGENTS.md) | 260 | `664f06bafbdeac96` |
+| [AGENTS.md](../../AGENTS.md) | 260 | `32d73181e1171729` |
 | [README.md](../../README.md) | 228 | `2b8b8908f8f5e7eb` |
 | [.githooks/pre-commit](../../.githooks/pre-commit) | 26 | `15ba33ec6351c320` |
 | [.githooks/pre-push](../../.githooks/pre-push) | 8 | `a7c833e57b9fced6` |
@@ -82,7 +82,7 @@ A source hash change means this target should be regenerated and then skimmed fo
 | [reference/op/theory-orientation.md](theory-orientation.md) | 44 | `716614f3310f4697` |
 | [reference/op/source-mining-best-practice.md](source-mining-best-practice.md) | 495 | `a0613465356e98a5` |
 | [reference/op/codex-pr-branch.md](codex-pr-branch.md) | 669 | `ad9b5e1852cc5be6` |
-| [reference/priorities/README.md](../priorities/README.md) | 42 | `d5716324f0e54b71` |
+| [reference/priorities/README.md](../priorities/README.md) | 41 | `72accf4096b60e0c` |
 | [reference/entourage/archie/prompts/README.md](../entourage/archie/prompts/README.md) | 42 | `6261a43d434131e8` |
 | [reference/entourage/archie/prompts/corpus-advancement-pass.md](../entourage/archie/prompts/corpus-advancement-pass.md) | 637 | `bbbc5d6fe1df6081` |
 | [reference/entourage/archie/prompts/corpus-reviewer.md](../entourage/archie/prompts/corpus-reviewer.md) | 110 | `84c14fd56a711ba2` |

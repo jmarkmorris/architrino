@@ -52,8 +52,7 @@
         "causal_action_functional": "Causal Action Functional",
         "effective_lagrangian": "Effective Lagrangian",
         "kinetic_and_potential_energy": "Energy",
-        "master_equation_of_motion": "Master Equation",
-        "proof_programs": "Proof Programs"
+        "master_equation_of_motion": "Master Equation"
       }
     },
     "content/scenes/noether-braid/noether_braid.json": {

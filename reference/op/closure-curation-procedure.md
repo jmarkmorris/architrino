@@ -52,7 +52,7 @@ Rebuild generated artifacts (scene graph, reading-copy markdown, PDFs, orientati
 
 ## Target canonical architecture — the volume split
 
-The current single textbook (`content/markdown/aaa`, top-level: foundations, dynamics, spacetime, cosmology, noether-braid, assemblies, quantum, nuclear-atomic, reactions, philosophy-history, proof-programs, validation) is proposed to partition, at major closure, into volumes. This is a **proposed** structure to ratify with the operator before execution, not an imposed reorg:
+The current single textbook (`content/markdown/aaa`, top-level: foundations, dynamics, spacetime, cosmology, noether-braid, assemblies, quantum, nuclear-atomic, reactions, philosophy-history, validation) is proposed to partition, at major closure, into volumes. This is a **proposed** structure to ratify with the operator before execution, not an imposed reorg:
 
 - **Volume I — Substrate and Dynamics.** The ontology (architrinos, void, absolute time), the wake, the master equation, path history, conservation/information. (from `foundations`, `dynamics`)
 - **Volume II — Spacetime and Gravitation.** Lorentz recovery, the effective metric, the GR bridge, cosmology, black holes. (from `spacetime`, `cosmology`)

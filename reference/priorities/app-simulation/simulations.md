@@ -992,7 +992,6 @@ The promotion artifact `promotion_lemma_check.md` must list the exact priority-t
 
 ## Main Work
 
-- Use the collinear-breather finite certificate as the smallest solver benchmark for candidate-cycle input, root enumeration, $\eta > 0$ continuation, monodromy, returned-history residuals, and topology reporting, with every failed row assigned one element of $\mathcal{F}$ and the exact failed inequality.
 - Implement tier-0 and tier-1 simulations by instantiating $\mathcal{C}_{\mathrm{sim}}$ and satisfying the tier acceptance criteria above before any result is used in [run-protocols](../../../content/markdown/aaa/validation/simulations/run-protocols.md) or the `validation/simulations/action-energy/*` material.
 - Lock the maximum-curvature orbit, history resolution, and binary / nested shell braid stability numerically only when the branch-root ledger is stable under $\Delta t$, $\Delta h$, and $\eta$ refinement.
 - Publish convergence plots and $\mathbb{U}_{\text{now}}$ provenance logs only as promotion artifacts paired with `convergence_table.csv`, `u_now_provenance.*`, `failure_report.md`, and `promotion_lemma_check.md`.

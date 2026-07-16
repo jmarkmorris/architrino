@@ -61,8 +61,7 @@ constexpr double kPi = 3.141592653589793238462643383279502884;
 constexpr const char* kCharge = "0.1666666666666666666666666666666667";
 constexpr const char* kNegativeCharge =
     "-0.1666666666666666666666666666666667";
-// Declared workload coupling: the section-86 lineage native coupling
-// 36 * kappa_eq. A declared campaign choice, not a bind fit.
+// Declared workload coupling: 36 * kappa_eq. A declared choice, not a bind fit.
 constexpr double kNativeCoupling = 36.0 * 0.2862286103053385;
 
 std::string token(double value) {

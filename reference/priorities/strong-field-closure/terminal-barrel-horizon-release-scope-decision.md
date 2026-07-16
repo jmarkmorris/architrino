@@ -42,7 +42,7 @@ $$
 
 This is the **conditional barrel lemma**: all three layers occupy one cylindrical radius. It does not force equal spherical radii, equal heights, equal tilts, or equal phase offsets; those variables can remain distinct through $R_a\cos\alpha_a=c_f/\omega$.
 
-The lemma is kinematic. It does not prove that the barrel is dynamically realized, stable, retained, entropy-carrying, or horizon-forming. The existing [terminal-alignment enumerator](terminal-alignment-enumerator.md) is a negative control: its reduced concentric circular, bounded phase-offset, and shifted-center families populate root inventories but do not close the action-complete terminal transfer. A theorem-grade physical barrel therefore still requires same-record force, action, wake, angular-momentum, stability, and boundary rows.
+The lemma is kinematic. It does not prove that the barrel is dynamically realized, stable, retained, entropy-carrying, or horizon-forming. A theorem-grade physical barrel still requires same-record force, action, wake, angular-momentum, stability, and boundary rows.
 
 The barrel is also not a proof of a Planck-frequency ceiling. The primitive statement is about the field-speed rail $c_f$ inside the declared spindle family.
 

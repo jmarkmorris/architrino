@@ -299,17 +299,6 @@ artifact_refs: []
 failure_code: residual.bridge_not_closed
 ```
 
-The current priority-only population diagnostic for the shared medium-response
-contract is
-`scripts/proof-programs/noether-sea-compatibility-handoff-diagnostic.mjs`.
-That script checks whether a handoff-like JSON object uses the same
-$\Theta_{\mathrm{sea}}(\mathfrak B)$ source record for `medium_response`,
-`event_ledger`, `speed_convention`, `G4_effective_metric_and_shift`, and
-coefficient families. It is not a residual export and does not pass `G4` or
-`G7`; it only routes malformed handoffs to
-`residual.retained_history_mismatch`, `residual.speed_conflation`, or
-`gravity.hidden_tuning`.
-
 ## Dependency Gates
 
 | Gate id | Requirement | Rows unlocked |

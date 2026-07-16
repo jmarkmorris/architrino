@@ -474,6 +474,5 @@ If you're interested, there is another emerging development that matters for wor
 
 ## Related AAA Notes
 
-- [master-equation-breather](../../../content/markdown/aaa/proof-programs/master-equation-breather.md)
 - [master-equation](../../../content/markdown/aaa/dynamics/master-equation.md)
 - [failure-criteria](../../../content/markdown/aaa/validation/failure-criteria.md)

@@ -360,7 +360,6 @@ TOPICS = [
             "content/markdown/aaa/spacetime",
             "content/markdown/aaa/dynamics",
             "reference/priorities/cross-theory-mapping",
-            "reference/priorities/proof-programs",
         ],
         "claim_bucket": "ontology",
         "priority": 9,

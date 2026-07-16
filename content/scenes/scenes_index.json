@@ -1376,31 +1376,6 @@
       "path": "content/scenes/philosophy_history/treasure_physics_overlooked/overview.json"
     },
     {
-      "id": "proof_programs__closed_form_collinear_breather_ansatz",
-      "name": "Closed-Form Collinear Breather Ansatz",
-      "path": "content/scenes/proof-programs/closed_form_collinear_breather_ansatz.json"
-    },
-    {
-      "id": "dynamics__collinear_breather",
-      "name": "Collinear Breather",
-      "path": "content/scenes/proof-programs/collinear_breather.json"
-    },
-    {
-      "id": "dynamics__master_equation_breather",
-      "name": "Master Equation Breather",
-      "path": "content/scenes/proof-programs/master_equation_breather.json"
-    },
-    {
-      "id": "dynamics__planar_bridge_closure",
-      "name": "Planar Bridge Closure",
-      "path": "content/scenes/proof-programs/planar_bridge_closure.json"
-    },
-    {
-      "id": "proof_programs",
-      "name": "Proof Programs",
-      "path": "content/scenes/proof-programs/proof_programs.json"
-    },
-    {
       "id": "quantum__algorithmic_resonance",
       "name": "Algorithmic Resonance",
       "path": "content/scenes/quantum/algorithmic_resonance.json"
@@ -1899,11 +1874,6 @@
       "id": "noether_braid__spindle_braid",
       "name": "Spindle Braid",
       "path": "content/scenes/noether-braid/spindle_braid.json"
-    },
-    {
-      "id": "proof_programs__terminal_alignment",
-      "name": "Terminal Alignment",
-      "path": "content/scenes/proof-programs/terminal_alignment.json"
     },
     {
       "id": "noether_braid__doubling_frequency_lock",

@@ -372,19 +372,6 @@ The artifact fails with:
 | `source-normal-diagnostic-consumed-as-branch-strength` | A row consumes the source-normal transversality diagnostic as receiver-normal branch strength. |
 | `branch-family-consumer-checksum-mismatch` | A force, action, power, wake-history, Lipschitz, or scalar row consumes a different retained branch list from the derivative artifact. |
 
-Wake-history consumer status 2026-06-29. The first executable consumer of this
-derivative target now lives in
-`scripts/proof-programs/event-wake-history-pullback-diagnostic.mjs`. Its
-`energy_wake` fixture is priority-only row-logic evidence: it accepts one
-wake-history row only when the row's accepted proof object carries
-`receiver-normal-retained-branch-family-first-derivative/v0` on the same
-retained source record, event ledger, retained record key, source artifact hash,
-and consumer row, and when reconstructed $D_vW^{\mathrm{rec}}$ agrees with
-$D_s$, $D_T$, $D_vD_s$, and $D_vD_T$. This does not certify wake-history
-closure or promote any domain branch family; it only emits the first concrete
-same-record derivative consumer and the corresponding fail-closed record
-mismatch and reconstruction controls.
-
 ## Fail-Closed Controls
 
 The certificate must reject:

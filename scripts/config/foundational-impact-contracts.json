@@ -98,7 +98,6 @@
       "pathTriggers": [
         "content/markdown/aaa/dynamics/master-equation.md",
         "content/markdown/aaa/foundations/architrino.md",
-        "content/markdown/aaa/proof-programs/**",
         "scripts/check-receiver-normal-clean-slate.mjs",
         "src/apps/photon/**",
         "src/apps/animator/display/**"
