@@ -26,7 +26,7 @@ own per-phase stopwatch was read out. Three facts size the campaign:
 ## Instrument
 
 - Driver: [attractor-phase0-release-profile.cpp](../../../../scripts/eom/attractor-phase0-release-profile.cpp)
-  (new; section-97-98-direct-evolution.cpp pattern). It is a **cost
+  (new). It is a **cost
   instrument only**: it seeds a declared family, calls
   `evolve_native_coupled_histories` once, and serializes the engine's own
   `NativeEvolutionTiming` ledger, per-step snapshot timings, traversal
@@ -45,7 +45,7 @@ own per-phase stopwatch was read out. Three facts size the campaign:
   family, exactly reproducible, no random generator); tangential speeds
   $0.35$–$0.65\,c_f$ — **strictly off the $v = c_f$ pin**, so no pinned-fold
   cost enters this profile.
-- Engine policy: the §86/§97 normal request (sharp chart, root tolerance
+- Engine policy: the engine normal request (sharp chart, root tolerance
   $10^{-5}$, acceleration/quadrature $5\times10^{-3}$, position/velocity
   $2\times10^{-6}$, correction $2\times10^{-7}$), fixed step $0.01$,
   coupling $36\,\kappa_{\rm eq}$ (a declared profiling workload choice, not

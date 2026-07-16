@@ -23,13 +23,6 @@ certificate packet: branch identity, same-record $D_s$, $D_T$,
 $W^{\mathrm{rec}}$, sign/fold status, retained/rejected branch status, and a
 negative control that fails if receiver-normal branch strength is replaced.
 
-Breather specialization. The breather consumer of this packet is
-[Breather Receiver-Normal Force-Margin Restart Target](../proof-programs/breather-proof/certificate/breather_receiver_normal_force_margin_restart_target.md).
-It adds no new branch pass. It states the breather recapture/self-drive margin
-equation and keeps the packet fail-closed until the consumed margin rows bind
-same-record $D_s$, $D_T$, $W^{\mathrm{rec}}$, $D_vD_s$, $D_vD_T$, and
-$D_vW^{\mathrm{rec}}$ to the same retained branch-family checksum.
-
 ## Branch Row
 
 For source $j$, receiver $i$, retained branch label $\alpha$, and causal root

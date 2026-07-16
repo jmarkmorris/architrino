@@ -5,7 +5,7 @@
 //
 //   - declared deterministic seed families (exact counts, seed offsets, all
 //     tangential speeds strictly off the v = c_f pin);
-//   - endpoint-matched prehistory families for the T3 collapse discipline
+//   - endpoint-matched prehistory families for the collapse discipline
 //     (uniform-circular via the provenance-bound factory, and a straight
 //     constant-velocity family built as one exact linear segment);
 //   - a release-time root-clearance check (every ordered pair must certify
@@ -156,7 +156,7 @@ struct Vector3 {
 };
 
 // Release-time endpoint state shared by both prehistory families
-// (endpoint-matched within binary64 — the T3 requirement is materially
+// (endpoint-matched within binary64 — the requirement is materially
 // different prehistories arriving at the same release state).
 Vector3 endpoint_position(const SeedRow& row) {
   return {row.radius * std::cos(row.phase),

@@ -26,7 +26,6 @@
         "content/markdown/aaa/foundations/absolute-time.md",
         "content/markdown/aaa/validation/simulations/action-energy/**",
         "src/eom/**",
-        "src/t3/**",
         "src/apps/animator/display/**",
         "src/apps/causal-delay-feedback/**",
         "scripts/simulations/**"
@@ -47,7 +46,6 @@
           "prescribed-path causal-root analysis"
         ],
         "simulations": [
-          "T3 universe simulator",
           "action-energy delayed dynamics",
           "causal-delay feedback runtime"
         ],
@@ -80,7 +78,7 @@
         ],
         "simulations": [
           {
-            "command": "node --test tests/t3-universe-simulator.test.js tests/prescribed-orbit-causal-roots.test.js tests/causal-delay-feedback-runtime.test.js",
+            "command": "node --test tests/prescribed-orbit-causal-roots.test.js tests/causal-delay-feedback-runtime.test.js",
             "reason": "Recheck delayed-root simulation and runtime surfaces."
           }
         ],
@@ -101,7 +99,6 @@
         "content/markdown/aaa/dynamics/master-equation.md",
         "content/markdown/aaa/foundations/architrino.md",
         "content/markdown/aaa/proof-programs/**",
-        "reference/priorities/proof-programs/**",
         "scripts/check-receiver-normal-clean-slate.mjs",
         "src/apps/photon/**",
         "src/apps/animator/display/**"
@@ -158,7 +155,6 @@
         "content/markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-braid.md",
         "content/markdown/aaa/philosophy-history/theory-bridges/entanglement-nonlocality.md",
         "src/eom/**",
-        "src/t3/**",
         "src/apps/animator/display/**",
         "src/apps/causal-delay-feedback/**"
       ],
@@ -175,11 +171,9 @@
       ],
       "consumers": {
         "proofPrograms": [
-          "field-speed action self-hit source binding",
           "special-relativity recovery proof route"
         ],
         "simulations": [
-          "T3 universe simulator",
           "causal-delay feedback"
         ],
         "applications": [
@@ -198,15 +192,9 @@
             "reason": "Catch corpus reference drift after time/wake postulate changes."
           }
         ],
-        "proofPrograms": [
-          {
-            "command": "node --test tests/field-speed-action-self-hit-scan-source-binding-report.test.js",
-            "reason": "Recheck proof-program packets that consume field-speed causal windows."
-          }
-        ],
         "simulations": [
           {
-            "command": "node --test tests/t3-universe-simulator.test.js tests/prescribed-orbit-causal-roots.test.js tests/causal-delay-feedback-runtime.test.js",
+            "command": "node --test tests/prescribed-orbit-causal-roots.test.js tests/causal-delay-feedback-runtime.test.js",
             "reason": "Recheck simulation surfaces with absolute-time or delayed-hit assumptions."
           }
         ],
@@ -244,11 +232,7 @@
       ],
       "consumers": {
         "proofPrograms": [
-          "matter-antimatter chirality retained-history target",
-          "neutral-braid polarity and phase retention witnesses"
-        ],
-        "simulations": [
-          "geometry and affine exposure probes"
+          "matter-antimatter chirality retained-history target"
         ],
         "applications": [
           "ideal braid visual surfaces"
@@ -264,16 +248,10 @@
             "reason": "Catch references after foundation geometry edits."
           }
         ],
-        "proofPrograms": [
+        "applications": [
           {
-            "command": "node --test tests/neutral-braid-octahedral-polarity-phase-retention-witness.test.js tests/neutral-braid-octahedral-affine-exposure-probe.test.js",
-            "reason": "Recheck chirality, parity, and orientation-sensitive proof surfaces."
-          }
-        ],
-        "simulations": [
-          {
-            "command": "node --test tests/neutral-braid-octahedral-affine-force-mean-derivative.test.js tests/neutral-braid-octahedral-force-residual.test.js",
-            "reason": "Recheck geometry-sensitive force and affine-response probes."
+            "command": "node --test tests/ideal-braid-runtime.test.js",
+            "reason": "Recheck orientation-sensitive braid display surfaces."
           }
         ]
       }
@@ -309,7 +287,6 @@
           "weak-channel source target check"
         ],
         "simulations": [
-          "neutral-braid force residual",
           "assembly configuration explorer"
         ],
         "applications": [
@@ -334,13 +311,13 @@
         ],
         "proofPrograms": [
           {
-            "command": "node --test tests/neutral-braid-octahedral-polarity-phase-retention-witness.test.js tests/weak-channel-source-target-check.test.js tests/neutral-braid-octahedral-force-residual.test.js",
-            "reason": "Recheck sign-sensitive proof and force residual surfaces."
+            "command": "node --test tests/weak-channel-source-target-check.test.js",
+            "reason": "Recheck sign-sensitive proof surfaces."
           }
         ],
         "simulations": [
           {
-            "command": "node --test tests/assembly-configuration-explorer-runtime.test.js tests/neutral-braid-octahedral-inventory-closure-witness.test.js",
+            "command": "node --test tests/assembly-configuration-explorer-runtime.test.js",
             "reason": "Recheck inventory and assembly surfaces after polarity convention changes."
           }
         ],
@@ -430,10 +407,7 @@
       "pathTriggers": [
         "content/markdown/aaa/foundations/ontology.md",
         "content/markdown/aaa/quantum/fermi-dirac-and-bose-einstein-statistics.md",
-        "content/markdown/aaa/assemblies/**",
-        "reference/priorities/proof-programs/**",
-        "scripts/neutral-braid/**",
-        "tests/neutral-braid-*"
+        "content/markdown/aaa/assemblies/**"
       ],
       "textTriggers": [
         { "type": "literal", "value": "exchange" },
@@ -448,13 +422,10 @@
       ],
       "consumers": {
         "proofPrograms": [
-          "neutral-braid octahedral proof family",
-          "topological causal-root ledger",
           "matter-antimatter chirality retained-history target"
         ],
         "simulations": [
-          "ideal braid runtime",
-          "nested-shell action-increment packet"
+          "ideal braid runtime"
         ],
         "applications": [
           "Ideal Braid app",
@@ -477,16 +448,10 @@
             "reason": "Catch corpus reference drift after braid/statistics edits."
           }
         ],
-        "proofPrograms": [
-          {
-            "command": "node --test tests/topological-causal-root-ledger-checker.test.js tests/neutral-braid-octahedral-root-ledger.test.js tests/neutral-braid-octahedral-root-force-closure-witness.test.js",
-            "reason": "Recheck root-ledger and retained-history proof surfaces."
-          }
-        ],
         "simulations": [
           {
-            "command": "node --test tests/ideal-braid-runtime.test.js tests/nested-shell-braid-action-increment-source-contract.test.js",
-            "reason": "Recheck braid runtime and nested-shell action-increment surfaces."
+            "command": "node --test tests/ideal-braid-runtime.test.js",
+            "reason": "Recheck braid runtime surfaces."
           }
         ],
         "applications": [
@@ -501,21 +466,18 @@
       "id": "mass-action.energy-ledger",
       "title": "Mass, action, and internal energy ledgers",
       "severity": "P1",
-      "rationale": "Energy/action/mass ledger changes affect the mass-map program, A0 continuation, branch certificates, action-energy simulations, and validation ledgers.",
+      "rationale": "Energy/action/mass ledger changes affect particle-mass accounting, action-energy simulations, and validation ledgers.",
       "pathTriggers": [
         "content/markdown/aaa/dynamics/energy.md",
         "content/markdown/aaa/dynamics/causal-action-functional.md",
         "content/markdown/aaa/assemblies/particle-masses.md",
         "content/markdown/aaa/foundations/ontology.md",
         "content/markdown/aaa/validation/parameter-ledger.md",
-        "content/markdown/aaa/validation/simulations/action-energy/**",
-        "scripts/mass-map/**",
-        "tests/a0-*"
+        "content/markdown/aaa/validation/simulations/action-energy/**"
       ],
       "textTriggers": [
         { "type": "literal", "value": "E_{\\mathrm{internal}}" },
         { "type": "literal", "value": "mass map" },
-        { "type": "literal", "value": "mass-map" },
         { "type": "literal", "value": "causal action" },
         { "type": "literal", "value": "action-energy" },
         { "type": "literal", "value": "action increment" },
@@ -525,14 +487,8 @@
         { "type": "literal", "value": "assembly inertia" }
       ],
       "consumers": {
-        "proofPrograms": [
-          "A0 root transport",
-          "mass-response map",
-          "branch-coordinate checker"
-        ],
         "simulations": [
-          "action-energy simulation family",
-          "nested-shell action-increment packet"
+          "action-energy simulation family"
         ],
         "applications": [
           "assembly explorer",
@@ -548,18 +504,6 @@
           {
             "command": "node scripts/validate-content.mjs --check --strict",
             "reason": "Catch corpus drift after mass/action/energy ledger edits."
-          }
-        ],
-        "proofPrograms": [
-          {
-            "command": "node --test tests/a0-root-transport-refinement-certificate.test.js tests/a0-root-transport-phase-origin-variant.test.js tests/a0-root-ledger-refinement-stability-certificate.test.js tests/a0-carrier-frame-branch-coordinate-checker.test.js tests/a0-mode-band-source-eligibility.test.js",
-            "reason": "Recheck A0 and mass-response proof surfaces."
-          }
-        ],
-        "simulations": [
-          {
-            "command": "node --test tests/nested-shell-braid-action-increment-source-contract.test.js tests/action-boundary-pullback-diagnostic.test.js",
-            "reason": "Recheck action-increment and boundary-pullback simulations."
           }
         ],
         "applications": [
@@ -600,7 +544,6 @@
       ],
       "consumers": {
         "proofPrograms": [
-          "Noether sea compatibility handoff",
           "density compression provider intake",
           "effective metric residual"
         ],
@@ -627,7 +570,7 @@
         ],
         "proofPrograms": [
           {
-            "command": "node --test tests/noether-sea-compatibility-handoff-diagnostic.test.js tests/noether-sea-density-compression-provider-intake.test.js tests/noether-sea-density-compression-output-projection.test.js tests/noether-sea-response-source-target-check.test.js tests/effective-metric-weak-field-residual.test.js",
+            "command": "node --test tests/noether-sea-density-compression-provider-intake.test.js tests/noether-sea-density-compression-output-projection.test.js tests/noether-sea-response-source-target-check.test.js tests/effective-metric-weak-field-residual.test.js",
             "reason": "Recheck Noether sea and effective metric proof/intake surfaces."
           }
         ],
@@ -655,8 +598,6 @@
         "content/markdown/aaa/spacetime/emergent-metric.md",
         "content/markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-braid.md",
         "src/apps/photon/**",
-        "scripts/photon-helical-self-hit-phase-lock-sweep.mjs",
-        "scripts/proof-programs/photon-constituent-root-route-diagnostic.mjs",
         "tests/photon-*"
       ],
       "textTriggers": [
@@ -670,12 +611,8 @@
         { "type": "literal", "value": "phase lock" }
       ],
       "consumers": {
-        "proofPrograms": [
-          "photon constituent root-route diagnostic",
-          "photon self-hit phase-lock sweep"
-        ],
         "simulations": [
-          "photon helical self-hit phase-lock sweep"
+          "photon self-hit sweep runtime"
         ],
         "applications": [
           "Photon app"
@@ -691,16 +628,10 @@
             "reason": "Catch quantum/spacetime content drift after photon edits."
           }
         ],
-        "proofPrograms": [
-          {
-            "command": "node --test tests/photon-constituent-root-route-diagnostic.test.js",
-            "reason": "Recheck photon route diagnostics."
-          }
-        ],
         "simulations": [
           {
-            "command": "node scripts/photon-helical-self-hit-phase-lock-sweep.mjs",
-            "reason": "Recheck photon self-hit phase-lock sweep."
+            "command": "node --test tests/photon-runtime.test.js",
+            "reason": "Recheck photon self-hit sweep runtime surfaces."
           }
         ],
         "applications": [
@@ -718,7 +649,6 @@
       "rationale": "EOM engine, eom_evolution_contract/v0 record schema, and shared display-adapter changes can invalidate simulations, apps, proof fixtures, and recorded evidence replay.",
       "pathTriggers": [
         "src/eom/**",
-        "src/t3/**",
         "src/apps/shared/**",
         "src/apps/animator/**",
         "src/apps/photon/**",
@@ -737,11 +667,9 @@
       ],
       "consumers": {
         "proofPrograms": [
-          "recorded EOM evidence replay",
-          "topological causal-root ledger"
+          "recorded EOM evidence replay"
         ],
         "simulations": [
-          "T3 simulator",
           "Borg EOM record replay",
           "causal-delay feedback EOM replay"
         ],
@@ -760,7 +688,7 @@
       "reevaluation": {
         "simulations": [
           {
-            "command": "node --test tests/t3-universe-simulator.test.js tests/borg-eom-runtime-contract.test.js tests/ideal-braid-runtime.test.js tests/causal-delay-feedback-eom-replay-adapter.test.js",
+            "command": "node --test tests/borg-eom-runtime-contract.test.js tests/ideal-braid-runtime.test.js tests/causal-delay-feedback-eom-replay-adapter.test.js",
             "reason": "Recheck recorded-dataset simulation and replay paths."
           }
         ],

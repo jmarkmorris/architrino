@@ -6,9 +6,7 @@ conceptual material in [brainstorming.md](brainstorming.md).
 
 ## 2026-07-15 — Workstream opened
 
-- Bucket created from the operator session that executed the
-  canonical-photon search (scoped negative, stacked + coplanar) and the
-  E-B wake-pattern probe. Full context captured in
+- Bucket created by operator direction. Full context captured in
   [brainstorming.md](brainstorming.md).
 - Operator inputs: Borg app (eom-backed) releases show early escapes plus
   transient couplings, including an observed 2:2 assembly (anecdotal grade,
@@ -21,10 +19,10 @@ conceptual material in [brainstorming.md](brainstorming.md).
 ## 2026-07-15 — Phase 0 workload characterization complete
 
 - New driver `scripts/eom/attractor-phase0-release-profile.cpp`
-  (section-97-98 pattern; cost instrument only) released the declared
+  (cost instrument only) released the declared
   `phase0-shell-v1` neutral family (deterministic low-discrepancy seeds,
   factory-certified circular prehistories, speeds $0.35$–$0.65\,c_f$, off
-  the pin) at $N \in \{6,12,24,48\}$, step $0.01$, §86 normal policy,
+  the pin) at $N \in \{6,12,24,48\}$, step $0.01$, the engine normal policy,
   heartbeats on every accepted step.
 - Rebuilt native first: last `src/eom` source change 2026-07-15 20:43:48
   UTC, build green 22:06:30 UTC. Three-suite acceptance gate green against
@@ -60,7 +58,7 @@ conceptual material in [brainstorming.md](brainstorming.md).
 - Declared seeds: `phase0-shell-v1` with `--seed-offset` selecting distinct
   ensemble members (exact counts = (population, offset) pairs recorded in
   `run-manifest.json`); speeds stay $0.35$–$0.65\,c_f$, off the pin.
-- T3 prehistory families, endpoint-matched within binary64:
+- Prehistory families endpoint-matched within binary64:
   `--prehistory=circular` (provenance-bound factory) and
   `--prehistory=straight` (single exact linear segment, zero error terms —
   one segment has no interior joins, so the exact-rational continuity

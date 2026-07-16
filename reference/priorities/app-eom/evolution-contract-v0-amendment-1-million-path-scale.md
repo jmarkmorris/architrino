@@ -19,8 +19,8 @@ domain, precision contract, or evidence rules of the base contract.
 This is an optional long-term conformance profile. It gates only a request,
 result, release, or public capability claim that declares million-path support.
 It does not gate canonical base-contract evolution for bounded populations,
-claims-triage adjudication, the first binary outcome, Borg migration, or another
-consumer whose declared envelope is smaller.
+the first binary outcome, Borg migration, or another consumer whose declared
+envelope is smaller.
 
 ## Scale Requirement
 

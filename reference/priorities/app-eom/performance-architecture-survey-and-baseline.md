@@ -355,7 +355,7 @@ failure at `[0.06,0.07]`; the engine now preserves its upstream failure code.
 This remains solver diagnostic evidence, while Borg promotion uses the
 accepted-initial-history refinement and thread-determinism gate.
 
-## Exact-V5 Pinned-Fold Benchmark
+## Pinned-Fold Analytic Route
 
 The analytic pinned-fold route certifies the same Gaussian finite-width
 master-equation integral; it does not replace the fold by a sharp root or an
@@ -373,19 +373,12 @@ $$
 $$
 
 A synthetic exact fold at $(T,\tau_c)=(0.0024,-0.04)$ is enclosed component by
-component by an independent 90-digit quadrature. It requires 563 analytic
-cells versus 21,337 on the unchanged legacy route, a $37.9\times$ reduction.
-On the exact-V5 first fold-crossing step, the maximum pair cost falls from
-193,338 to 1,928 cells, a $100.3\times$ reduction. The full atomic step falls
-from 35.72 s to 28.50 s, only a $1.25\times$ wall-time improvement because
-exact-root work and coupled correction now dominate.
+component by an independent 90-digit quadrature.
 
-The analytic integral alone did not remove the §86 feasibility wall. The
-legacy full-step/two-half-step estimator sampled the sharp-chart acceleration
-at the exact onset while every positive reception time used the finite-width
-fold chart. Its velocity error therefore scaled as first order under step
-halving, with observed orders $0.991$, $0.996$, and $0.998$. Evidence:
-[eom-analytic-pinned-fold-apple-m3-2026-07-14.json](evidence/eom-analytic-pinned-fold-apple-m3-2026-07-14.json).
+The earlier full-step/two-half-step estimator sampled the sharp-chart
+acceleration at the exact onset while every positive reception time used the
+finite-width fold chart, so its velocity error scaled as first order under
+step halving.
 
 The pinned-fold-aware temporal step removes that measure-zero endpoint from
 the positive-duration acceleration integral. Eligibility is provenance-bound
@@ -395,21 +388,6 @@ enabled analytic fold route. It applies an implicit right-endpoint
 acceleration only to eligible paths; arbitrary histories and all later steps
 retain the normal cubic corrector. The master equation, root topology, atomic
 publication, and tolerances are unchanged.
-
-Across $\Delta t=10^{-3}$ through $6.25\times10^{-5}$, the corrected velocity
-error approaches second order with observed orders $1.29$, $1.63$, $1.79$,
-and $1.89$; position error approaches third order. The exact V5 onset accepts
-$5\times10^{-4}$, $26.5\times$ the former accepted step. After onset the
-controller accepts $10^{-3}$ with velocity error $2.71\times10^{-7}$ and zero
-uncertified roots. The dominant collapse was therefore an estimator artifact,
-not genuine stiffness at the former $1.89\times10^{-5}$ scale.
-
-The §86 ladder is still not practical. The measured post-onset cost is about
-43.7 s per accepted step, dominated by exact-root and coupled-correction
-snapshots. Holding the demonstrated $10^{-3}$ step gives about 6,032 steps or
-3.05 days per braid cycle, before the convergence and perturbation ladders.
-Evidence:
-[eom-pinned-fold-temporal-step-apple-m3-2026-07-14.json](evidence/eom-pinned-fold-temporal-step-apple-m3-2026-07-14.json).
 
 ## Architecture Survey Disposition
 

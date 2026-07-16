@@ -8,7 +8,6 @@ Current priority staging should favor core geometrical theory closure: master-eq
 
 For top-six workstream sessions, begin from the current minimum evidence-object table in [aaa-work-threads/closure-join-matrix.md](aaa-work-threads/closure-join-matrix.md#top-six-minimum-evidence-objects-2026-06-28), then use the owning packet for the actual pass/fail fields.
 
-Use `proof-programs/` for active mathematical proof-program priorities that share the same theorem-target / certificate / promotion workflow.
 
 Use `operations/` for repo-wide deployment, hosting, release, cost, reliability, browser performance, and user-growth operations that are not specific to one app or solver proof lane.
 

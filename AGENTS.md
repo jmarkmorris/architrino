@@ -219,7 +219,7 @@ The corpus rule that a measured claim names its instrument and grade applies to 
 - Producer-asserted evidence flags (for example a self-reported `canonicalEomEvidence`) are never consumed; canonical authority comes only from EOM acceptance gates and independent oracles.
 - Route all solver-dependent app, simulation, and research-instrument work toward EOM contracts and native interfaces. When EOM does not yet provide a required capability, keep the work blocked, quarantined, or explicitly non-authoritative.
 - JavaScript-only solver code may exist only as explicitly named `reference`, `fallback`, `test`, fixture, or comparison code. It must not be presented as the production path, promoted to default runtime behavior, or used to bypass a missing EOM solver capability.
-- Architrino primitives do not have physical mass. If a solver or legacy T3 row contains a `mass` or mass-like field, treat it as a numerical integration weight, comparison-kernel parameter, or legacy/toy interaction coefficient only; do not describe it as architrino ontology, and do not use it as evidence for mass-map or assembly mass claims.
+- Architrino primitives do not have physical mass. If a reference, fixture, or comparison row contains a `mass` or mass-like field, treat it as a numerical integration weight or comparison-kernel parameter only; do not describe it as architrino ontology, and do not use it as evidence for mass-map or assembly mass claims.
 - Keep solver boundaries modular: topology, EOM solver/ABI, record schema (`eom_evolution_contract/v0`), interaction law, path-history storage, wake-history/event rows, output datasets, and visualization remain separate responsibilities under the EOM architecture.
 
 ### Debugging Discipline

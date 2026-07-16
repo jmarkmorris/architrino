@@ -9,7 +9,7 @@ This file holds dated decisions, implementation status, validation results, fail
 - Prohibited prescribed future paths, path constraints, guidance, snapping, analytic target orbits, and display curves from serving as EOM evolution.
 - Recorded the decision to build EOM standalone, without coupling to any other code in the repo.
 - Ranked the initial work around the evolution contract, canonical Master EOM binding, independent oracle, coupled retained-history integrator, timestep/event control, deterministic multithreading, precision/convergence, streaming/checkpointing, application surface, knowledge-tree quarantine, Borg shadow migration, and later consumer-by-consumer migration.
-- Recorded the initial quarantine disposition for Borg, Causal Delay Feedback, Animator, Photon, Ideal Braid, legacy braid workstream research instruments, T3, and unclassified consumers.
+- Recorded the initial quarantine disposition for Borg, Causal Delay Feedback, Animator, Photon, and unclassified consumers.
 - No solver source, app source, generated artifact, fixture, or current priority packet was changed.
 
 ## 2026-07-13 — Extreme-Performance And Multiscale Mandate Added
@@ -551,7 +551,7 @@ This file holds dated decisions, implementation status, validation results, fail
   closed, imported history lacks EOM provenance, and the
   million-path, GPU, and distributed-history gates remain open.
 
-## 2026-07-14 — Exact circular $v=c_f$ endpoint certificate and §86 fold handoff
+## 2026-07-14 — Exact circular $v=c_f$ endpoint certificate
 
 - Added a central `RetainedHistory::uniform_circular` factory. The exact
   tangential-speed token is its kinematic datum; the supplied radius is a
@@ -565,17 +565,9 @@ This file holds dated decisions, implementation status, validation results, fail
   rail remains `caustic_route_required`. A factory-produced curved $v=c_f$
   rail certifies zero roots under forced MPFR escalation, and inconsistent
   circle speed/radius/frequency input is rejected.
-- The exact §86 six-worldline start now certifies all 36 root and acceleration
-  rows. Its first unconstrained candidate step develops a middle self-fold in
-  the real circular prehistory. The finite-width/regulator route reaches a
-  corrected candidate, but the final inflated-history snapshot loses root
-  completeness, so atomic publication correctly retains the time-zero
-  histories.
-- EOM solver regression result: 26 tests passed. The §86/§90 dynamical verdicts
-  remain quarantined; the next engine target is root-complete atomic
-  recertification after the first certified fold event.
+- EOM solver regression result: 26 tests passed.
 
-## 2026-07-14 — Global finite-width allocation closes §86 first-fold publication
+## 2026-07-14 — Global finite-width allocation and atomic recertification
 
 - Replaced the finite-width integrator's uniform per-cell error-density rule
   with a global interval budget. Active cell integrals are summed in
@@ -592,43 +584,13 @@ This file holds dated decisions, implementation status, validation results, fail
   inflated-history interval. The previous midpoint-to-midpoint comparison
   rejected valid containment because a $5\times10^{-3}$ quadrature enclosure
   was compared against a $2\times10^{-7}$ correction tolerance.
-- The exact §86 first fold-crossing step now publishes all six histories
-  atomically at the normal tolerances. Its accepted snapshot has zero
-  uncertified root rows, two finite-width caustic routes, maximum 193,338 of
-  300,000 quadrature cells, position error $1.36\times10^{-11}$, and velocity
-  error $1.44\times10^{-6}$ against the $2\times10^{-6}$ budget.
-- EOM solver regression result: 27 tests passed. No §86/§90 verdict is claimed;
-  multi-cycle convergence and perturbation coverage remain open.
-- A four-step refined `imx` extension publishes through
-  $3.7702986964\times10^{-5}$ with zero rejections. Its stride-1 diagnostic
-  log slope is $0.60113$; coarser strides lack enough samples, so the
-  $6.25\times10^{-6}$-cycle row is not a dynamical verdict.
+- EOM solver regression result: 27 tests passed.
 - Added opt-in accepted-step growth recovery, capped by an explicit maximum
   step, and reused already-certified accepted endpoint snapshots as the next
   atomic step's start snapshot. A static evolution regression verifies the
   $0.01,0.01,0.02,0.02,0.02$ recovery sequence within decimal-token rounding,
   zero rejections, and three reused start snapshots on each continuing step.
   The focused native coupled-evolution suite passes 11 tests.
-- These controller improvements do not remove the exact-V5 pinned-fold
-  feasibility wall. The multi-cycle §86 ladder is stopped; the next engine
-  target is a cheap certified local treatment of the self-fold onset, or a
-  certificate that the pin-level step collapse is conservative rather than
-  physically required.
-
-## 2026-07-14 — EOM endorsed; legacy solver frozen to temporary compatibility
-
-- Recorded the operator decision that EOM is the endorsed solver and sole
-  forward production target.
-- Limited all non-EOM code to temporary compatibility for current
-  dependencies. New consumers, physical capabilities, evidence claims, and
-  forward solver work may not adopt or extend it.
-- Strengthened the EOM priority queue with explicit legacy-solver containment,
-  consumer-by-consumer EOM migration, and final retirement after the production
-  dependency inventory reaches zero.
-- Aligned root contributor policy, repository orientation, the C++ host
-  architectural decision, the EOM tracker, and the migration plan while
-  preserving all current runtime dependencies until their individual migration
-  decisions are complete.
 
 ## 2026-07-14 — Million-path gate moved to the long-term scale queue
 
@@ -636,21 +598,15 @@ This file holds dated decisions, implementation status, validation results, fail
   from the optional `eom_evolution_contract/v0/amendment-1` million-path
   conformance profile.
 - Removed million-path, GPU, multi-GPU, and distributed-history completion as
-  dependencies of the claims-triage campaign, first binary outcome, and Borg's
-  bounded 16-path migration. Each remains required before claiming the
+  dependencies of the first binary outcome and Borg's bounded 16-path
+  migration. Each remains required before claiming the
   corresponding large-scale or heterogeneous capability.
-- Added the claims-triage small-population long-horizon plan. Concurrent
-  §97/§98 evidence then refined its immediate targets to complete-root
-  continuation across evolving §97 precision walls and a provenance-bound
-  drifting-circular prehistory for §98. A cheap certified exact-$v=c_f$
-  pinned-fold treatment remains the parallel §86 target.
 - Prioritized persistent in-process retained histories, checkpoint/resume,
   deterministic convergence campaigns, claim observables, split absolute time,
-  and measured CPU optimization for the actual low-tens-worldline ledger workload.
-- Claim level remains `priority-design`; no quarantined T2 or T3 claim was
-  promoted by this scheduling correction.
+  and measured CPU optimization for the actual low-tens-worldline workload.
+- Claim level remains `priority-design`.
 
-## 2026-07-14 — Analytic pinned-fold certificate lands; §86 wall remains temporal
+## 2026-07-14 — Analytic pinned-fold certificate lands
 
 - Added a provenance-gated analytic finite-width route for factory-certified
   circular self-prefixes at exactly $v=c_f$. A second-order Taylor residual
@@ -662,15 +618,6 @@ This file holds dated decisions, implementation status, validation results, fail
   through the factory, rejecting any segment mismatch before restoring the
   analytic certificate.
 - Independent 90-digit quadrature is enclosed on a constructed exact fold.
-  The synthetic route falls from 21,337 to 563 cells; the exact-V5 first-fold
-  pair falls from 193,338 to 1,928 cells. The exact-V5 atomic-step wall time
-  improves from 35.72 s to 28.50 s.
-- The feasibility wall remains. Steps $10^{-3}$ and
-  $1.25\times10^{-4}$ fail the unchanged velocity budget, and a tenfold
-  tighter quadrature tolerance does not move the latter error. Exact-root and
-  temporal-correction work now dominate. No §86/§90 verdict or score movement
-  is claimed. Evidence:
-  `evidence/eom-analytic-pinned-fold-apple-m3-2026-07-14.json`.
 
 ## 2026-07-14 — Pinned-fold temporal onset removes first-order step artifact
 
@@ -688,65 +635,29 @@ This file holds dated decisions, implementation status, validation results, fail
   disabled control emits no onset certificate; arbitrary histories retain the
   ordinary cubic corrector. The model fingerprint binds the temporal-route
   flag.
-- The legacy exact-V5 velocity error has observed refinement orders $0.991$,
-  $0.996$, and $0.998$. The corrected ladder approaches second order with
-  $1.29$, $1.63$, $1.79$, and $1.89$; position error approaches third order.
-  Error reduction grows from $24.1\times$ at $10^{-3}$ to $79.9\times$ at
-  $1.25\times10^{-4}$.
-- The exact-V5 onset accepts $5\times10^{-4}$ at velocity error
-  $1.2746\times10^{-6}$, $26.5\times$ the former step. A four-step adaptive
-  probe then accepts through $t=0.0025$ with zero rejections and recovers to
-  $10^{-3}$ at velocity error $2.71095\times10^{-7}$; only the first substep
-  carries the two middle-path onset certificates.
-- The temporal collapse was dominantly an estimator artifact, but the §86
-  ladder remains cost-blocked. Post-onset steps average about 43.7 s, dominated
-  by exact-root and coupled-correction snapshots. The demonstrated
-  $10^{-3}$ step projects to about 6,032 steps and 3.05 days per cycle before
-  convergence and perturbation multipliers. §86 and §90 remain quarantined.
-  Evidence:
-  `evidence/eom-pinned-fold-temporal-step-apple-m3-2026-07-14.json`.
 
 ## 2026-07-14 — Evolved-history root path advances through cubic and self-root-cluster controls
 
 - Added a demand-driven two-segment enclosure for uncertain roots at continuous
-  retained-history joins. The actual §97 replay crossed the `0.61` emission
-  join, and the optimized two-step replay cost fell from about `80.8` to
-  `4.05` seconds without changing the root tolerance.
+  retained-history joins.
 - Extended exact evolved-history parity to reconstruct the identical accepted
-  retained histories in the 90-digit oracle. Its first independent divergence
-  was `I+<-I+` at `t=1.6275`: native had declared zero roots while the oracle
-  retained 89 source-normal cells.
+ retained histories in the 90-digit oracle.
 - Removed the unsound application of a local self-endpoint speed argument to
   older cells. The replacement whole-interval arc-length proof requires every
   intervening segment to be strictly sub-field; a forced-MPFR mixed-speed
   regression prevents recurrence. The old divergent oracle row is now
   complete with zero roots and zero unresolved cells.
 - Added enclosed self-endpoint exclusion under a strict source-normal sign and
-  an explicit near-multiple self-root-cluster finite-width route. The repaired
-  checkpoint advanced from `1.6291314697265535` to `1.63` with 19 accepted
-  steps, zero rejections, and certified acceleration. Native/oracle parity was
-  complete for all 720 ordered-pair rows in the 20 emitted snapshots.
+  an explicit near-multiple self-root-cluster finite-width route.
 - Added the cubic endpoint-tangency regression using
   `rho=0.96009867914`, `omega=1.0415596039524766`, and `c_f=1`. The 90-digit
   oracle resolves departure roots near `0.0047035` and `0.0470287`; native
   classifies the zero-to-one change as
   `coincident_endpoint_root_continuation`, not an interior fold.
-- The Section 86 runner now reports `step_wall_seconds`,
-  `maximum_quadrature_cells`, and `middle_self_root_classification` together.
-  The portable cell metric is the maximum over every acceleration snapshot in
-  the accepted atomic step, including the full correction, both half-step
-  corrections, their endpoints, and final accepted-step recertification. The
-  earlier final-snapshot-only row reported `32.4315` seconds and 1,928 cells,
-  with endpoint continuation; that row is preliminary and superseded for cost
-  reporting. A clean all-stage timing repeat remains required after the
-  competing long §97 process finishes.
 - The three native suites pass 11 history-layer, 11 acceleration, and 14
-  coupled-evolution tests; the 90-digit root suite passes 23 tests. The §97
-  baseline continuation from `t=1.63` to `t=6.93` is active. Step and
-  prehistory-segment refinement remain required. No §97/§98 flutter verdict,
-  sign, slope, or growth rate is reinstated.
+  coupled-evolution tests; the 90-digit root suite passes 23 tests.
 
-## 2026-07-14 — §86 cubic-tangency corrections preserve correctness but not cost
+## 2026-07-14 — Cross-segment chord correlation and stable exact-circle residual
 
 - Extended same-worldline chord correlation across continuous retained-history
   segment joins in native double, native MPFR, finite-width acceleration, and
@@ -754,48 +665,10 @@ This file holds dated decisions, implementation status, validation results, fail
   polynomial increments with integrated velocity-error bounds rather than
   hulling two independent published positions.
 - Added a cancellation-stable exact-circle residual using the enclosed series
-  for `sin(u)-u`, plus route counters and four independently switchable §86
-  ablations. A direct regression protects the cross-segment correlation
-  mechanism independently of the V5 fixture.
-- All four atomic one-step V5 rows accepted and classified the middle self pair
-  as `coincident_endpoint_root_continuation`. Independent, correlated-only,
-  stable-only, and combined rows each reached 1,928 maximum quadrature cells.
-  Correlation was active in 1,582 cells; the exact-circle stable residual was
-  active in zero cells at the evolved-history cost maximum.
-- Concurrent-load step times were 623.540, 603.705, 543.591, and 601.144
-  seconds. They are not clean benchmarks because the §97 horizon process was
-  active. The portable result is unchanged cost: correct classification and
-  both numerical corrections still take the same finite-width route.
-- The proposed localization and delay-factored residual follow-up is retired.
-  The unchanged 1,928-cell count is a determinism check, not a cost proxy. No
-  §86 feasibility, horizon, flutter, migration, or score claim advances from
-  this negative result.
+  for `sin(u)-u`, plus route counters. A direct regression protects the
+  cross-segment correlation mechanism.
 
-## 2026-07-14 — §86 clean step attribution assigns cost to MPFR roots
-
-- Suspended the competing §97 horizon process, ran the §86 fixture with one
-  native worker and a 10 ms sampling profiler, then resumed §97. The fixed
-  `0.0005` step accepted on its first attempt in `632.318909` seconds with zero
-  rejected steps or substeps.
-- Exact-pair root certification used `627.804960` seconds (`99.2861%` of wall),
-  including `626.152585` MPFR CPU seconds (`99.0248%`). Finite-width execution
-  used `4.500060` seconds (`0.7117%`). Retained-history reconstruction,
-  traversal, copy, and hash used `0.008046` seconds (`0.00127%`).
-- The corrector ran nine iterations across three accepted substeps (`4,3,2`).
-  Its `581.400232` inclusive seconds contain `581.395545` seconds of snapshot
-  certification; exclusive corrector control used `0.000175` seconds. There
-  was no rejected-then-retried work.
-- Fifty-two additional MPFR precision attempts used `445.736570` seconds
-  (`70.4924%`), nested inside the root total. The profiler attributed 14,132 of
-  52,510 active-worker top-of-stack samples (`26.9130%`) to allocation/free
-  activity, also nested inside MPFR roots. Acceleration-stage precision
-  escalation had zero attempts.
-- The middle self pair remained
-  `coincident_endpoint_root_continuation`; maximum quadrature cells remained
-  1,928. Cells are retained as a determinism check only. Evidence:
-  [section-86-step-cost-attribution-2026-07-14.json](evidence/section-86-step-cost-attribution-2026-07-14.json).
-
-## 2026-07-14 — Token-dominance gate removes the §86 MPFR wall
+## 2026-07-14 — Token-dominance gate for retained-error-dominated roots
 
 - Added an explicit retained-error-token dominance test before precision
   escalation. Token-dominated simple roots now use the tolerance-scale
@@ -803,30 +676,9 @@ This file holds dated decisions, implementation status, validation results, fail
 - Preserved the unchanged `1e-5` root tolerance, `1e-24` source-normal floor,
   and fail-closed policy. Root uniqueness still requires a sign-definite
   source-normal hull across the accepted bracket.
-- The same serialized fixed `0.0005` step fell from `632.318909` to `7.153516`
-  seconds (`88.39x`). MPFR fell to zero pair certifications, zero attempts, and
-  zero CPU seconds. The accepted step retained 14 snapshots, corrector
-  iterations `4,3,2`, 1,928 cells, and
-  `coincident_endpoint_root_continuation`.
-- The evolved-history native/oracle replay passed 72 ordered-pair rows. The
-  four suites passed 23 root-oracle, 12 native-history, 12 native-acceleration,
-  and 14 native-coupled-evolution tests. Fourteen unaffected fixture pair
-  certificates were bit-identical before and after.
-- The root repair had already enlarged the accepted step from `9.4e-6` to
-  `5e-4` (`53.19x`), reducing a braid cycle from about 640,000 steps to 12,065.
-  At the previously projected approximately 6 seconds per step, the full
-  six-rung ladder is 26 days rather than 7.3 years. Evidence:
-  [section-86-token-dominance-root-gate-2026-07-14.json](evidence/section-86-token-dominance-root-gate-2026-07-14.json).
 
 ## 2026-07-14 — Warm-complement carry and certified delay window
 
-- Verified the supplied exact-pin calculation. At `D=0.042`,
-  `D_s=+2.3919909609593226e-4`, but
-  `g(D)=-3.348840740262371e-6`; the point is not a root. The live difficult
-  cell likewise has two strictly negative point residual signs. A strict
-  derivative hull proves uniqueness, not IVT existence, so the proposed
-  simple-root reroute would weaken the root certificate and move the accepted
-  finite-width self contribution.
 - Rejected bracket-only corrector reuse because it does not re-certify the
   root-free complement on the new candidate history. A sound reuse path needs
   either a complete exclusion partition or a global topology-preserving
@@ -837,86 +689,24 @@ This file holds dated decisions, implementation status, validation results, fail
   receiver-normal time bound plus certified candidate correction. Marginal
   cells return to the unchanged fail-closed classifier.
 - Tightened the certified history window from a global position box to the
-  per-history-segment radial triangle bound. The accepted §86 snapshot proves
-  a `2.00966` maximum delay and excludes `5.9908` of the eight retained time
-  units before root classification.
-- The same-window diagnostic reduces root-cell re-evaluations from `207234`
-  to `168320` (`18.78%`), while snapshots and ordered-pair searches remain
-  `14` and `504`. The fair one-worker step improves from the accepted
-  `7.153516` seconds to `6.388428` seconds (`1.1197615x`), so this is the
-  second consecutive round below the corrected `1.5x` threshold rather than a
-  physics-launch condition.
-- Added an unforced arithmetic-limited MPFR fixture. It certifies two roots at
-  128 bits through `mpfr_directed_interval`, while the §86 production row
-  remains at zero MPFR pairs and attempts. Evidence:
-  [section-86-fold-routing-warm-start-soundness-audit-2026-07-14.md](evidence/section-86-fold-routing-warm-start-soundness-audit-2026-07-14.md).
-- The accepted trajectory CSV is byte-identical, corrector iterations remain
-  `4,3,2`, rejections remain zero, the middle self classification remains
-  `coincident_endpoint_root_continuation`, and the independent evolved-history
-  replay remains 72/72 with no divergence. Machine-readable evidence:
-  [section-86-warm-complement-delay-window-2026-07-14.json](evidence/section-86-warm-complement-delay-window-2026-07-14.json).
-- The prematurely launched physics process was alive at approximately 195%
-  CPU and was interrupted to serialize the optimization work. No replacement
-  physics run was launched.
+  per-history-segment radial triangle bound.
+- Added an unforced arithmetic-limited MPFR fixture. It certifies two roots
+  at 128 bits through `mpfr_directed_interval`.
 
-## 2026-07-14 — Parallel scaling diagnosis, deterministic cell sharding, and physics relaunch
+## 2026-07-14 — Deterministic cell sharding for dominant finite-width self pairs
 
-- Profiled the post-token-gate eight-worker path before changing execution.
-  Allocator leaves were only tens of samples, while condition-variable waits
-  were 32,236 samples and the main thread waited in acceleration joins. The
-  root worker CPU sum was only `1.85x` root wall time. Warm exclusion had made
-  most of the 36 logical pairs cheap; two self pairs dominated both the root
-  and finite-width phases. The live bottleneck was ordered-pair work
-  imbalance, not allocator contention.
 - Kept adaptive parent selection, cell IDs, insertion order, and the fixed
   interval reduction tree serially identical. For each selected split, the
   independent left/right centered and monotone enclosures now use four
   workers per finite-width self pair, consuming all eight requested workers
   across the two dominant pairs without changing a certificate operation.
-- The five-step eight-worker mean fell from the accepted `3.163710` to
-  `2.285774` seconds per step (`1.38410x`). Current one-worker timing was
-  `6.187034` seconds, so eight-worker efficiency rose from `25.24%` to
-  `33.83%`. The finite-width phase improved `1.63192x`; the root phase stayed
-  flat and remains the measured imbalance. Because the total round remained
-  below `1.5x`, this is the third consecutive failed round and the corrected
-  stopping rule is now active.
-- Physics stayed fixed: step `0.0005`, 14 first-step snapshots, 504 first-step
-  root searches, corrector iterations `4,3,2`, zero rejections,
-  `coincident_endpoint_root_continuation`, and zero production MPFR pairs or
-  attempts. One-worker, old eight-worker, and new eight-worker trajectory CSVs
-  are byte-identical with SHA-256
-  `41692e362af72a2d12097cfbdcbde99e2a9c2a92612c8c0381a27fc0c69d316a`.
-  Independent evolved-history parity passed 72/72 rows with no divergence;
-  12 root-oracle, 14 native-history, 12 native-acceleration, 14 native-coupled
-  tests, and all three CMake fixtures passed.
-- Added a diagnostics-only post-publication callback and the §86 runner now
-  flushes `step`, `t`, and elapsed wall seconds initially and every 100
-  accepted steps. Rebuilt the physics binary at `19:31:31-0400`, 193 seconds
-  newer than the latest `src/eom` change at `19:28:18-0400`.
-- Relaunched the serialized one-cycle control-plus-perturbed run as PID 89129.
-  It wrote the initial control heartbeat immediately and was alive at `199.2%`
-  CPU. Live log: `.tmp/section86-physics-one-cycle-imx.log`; final trajectory:
-  `.tmp/section86-physics-one-cycle-imx.csv`. Evidence:
-  [section-86-parallel-scaling-heartbeat-2026-07-14.json](evidence/section-86-parallel-scaling-heartbeat-2026-07-14.json).
+- Added a diagnostics-only post-publication callback.
 
-## 2026-07-14 — Adaptive step-permission measurement
+## 2026-07-14 — Adaptive step-permission diagnostics
 
 - Added a diagnostics-only accepted-step limit and endpoint-state output. The
   acceptance rule, tolerances, fold-aware method, and controller rule were not
   changed.
-- The 20-step adaptive run accepted every attempt and grew
-  `0.0005 -> 0.001 -> 0.002`, then stayed at `0.002`. Every plateau velocity
-  estimate was below the `2e-6` acceptance tolerance but above the `2.5e-7`
-  growth threshold, so the plateau follows the declared controller rule.
-- The run took `4707.580491333` seconds (`235.379` seconds per accepted step
-  overall; `109.924` seconds over the last ten plateau steps). Accepted-step
-  cost was strongly nonuniform, so step-count reduction alone does not predict
-  cycle time.
-- Cold-start fixed steps `0.001`, `0.002`, and `0.005` each rejected on their
-  first attempt through the middle-path velocity budget. No coarse fixed row
-  published a trajectory, so no `0.0005` trajectory comparison exists.
-- Evidence:
-  [section-86-adaptive-step-permission-2026-07-14.md](evidence/section-86-adaptive-step-permission-2026-07-14.md).
 
 ## 2026-07-14 — Continuous controller and synchronized multirate publication
 
@@ -926,20 +716,8 @@ This file holds dated decisions, implementation status, validation results, fail
   error bounds select coarse paths, enlarge their published remainder to
   enclose the fine path, recertify the mixed histories, and retain one common
   receiver time and atomic publication.
-- The four-step continuous run reached `t=0.0036611301578` in
-  `405.305441583` seconds with zero rejections. The legacy controller needed
-  `598.08552` seconds to reach only `t=0.0035`, establishing an early-horizon
-  gain of at least `1.47564x` without a cycle-time extrapolation.
-- Two multirate samples took `383.861501917` and `470.764073375` seconds.
-  Their variance crosses the continuous-only result, so no multirate wall-
-  time gain is established. All 108 interval components at the first three
-  shared endpoints overlap, and the feature remains opt-in.
-- Three paired warm-locality samples averaged `9.243083305` seconds with
-  carry and `9.465927084` without it (`1.02411x`). Re-evaluated root cells
-  fell `19.16%`; cell reduction again exceeded wall-time reduction.
 - Final validation passed 16 coupled-evolution tests, 14 history/root-layer
-  tests, the EOM CMake build, and scoped whitespace checks. Evidence:
-  [section-86-continuous-controller-multirate-performance-2026-07-14.md](evidence/section-86-continuous-controller-multirate-performance-2026-07-14.md).
+  tests, the EOM CMake build, and scoped whitespace checks.
 
 ## 2026-07-14 — Certificate-cost feedback
 
@@ -948,42 +726,12 @@ This file holds dated decisions, implementation status, validation results, fail
   one `0.5` landing adjustment, suppresses immediate regrowth, and persists a
   four-step cooldown through checkpoint schema v3. Acceptance tolerances are
   unchanged.
-- Live probes rejected repeated subdivision because it formed a Zeno approach
-  to a persistent precision boundary near `t=0.00343`. A `1.25` landing-growth
-  probe was also rejected after exceeding `10:34`, at least `1.56x` slower than
-  the continuous-only baseline. Neither prototype remains in the policy.
-- At the continuous-only endpoint `t=0.0036611301578`, the retained policy took
-  `350.498944625` seconds versus `405.305441583`: measured `1.156367x` speedup
-  and `13.5223%` less wall time. It used five accepted steps and one advisory
-  rejection, retaining three of the four steps saved against pinned `0.0005`.
-- Endpoint midpoint deltas were at most `1.63735e-10` in position and
-  `1.95358e-7` in velocity; every position and velocity interval overlapped.
-  Final validation passed 17 coupled-evolution tests, 15 history/root-layer
-  tests, the EOM CMake build, and scoped whitespace checks. Evidence:
-  [section-86-certificate-cost-feedback-2026-07-14.md](evidence/section-86-certificate-cost-feedback-2026-07-14.md).
+- Final validation passed 17 coupled-evolution tests, 15 history/root-layer
+  tests, the EOM CMake build, and scoped whitespace checks.
 
-## 2026-07-15 — Middle self-pair MPFR decimal cache
+## 2026-07-15 — MPFR decimal-token cache
 
-- Replicated certificate feedback against a contemporaneous continuous-only
-  control on the same pre-cache binary: `299.337702083` versus
-  `318.615554583` seconds, a measured `1.064402x` speedup and `6.0505%` wall
-  reduction. This confirmed the direction but not the prior one-sample
-  `13.5223%` magnitude.
-- A live sample placed repeated `mpfr_strtofr` conversion inside
-  `mp_polynomial`/`mp_geometry` on the two active middle self-pair workers.
-  Added a thread-local, attempt-local directed-rounding cache for immutable
-  MPFR decimal tokens. It resets at every precision level and changes no
-  interval arithmetic, certificate rule, or controller decision.
-- Two matched optimized runs took `171.606387417` and `177.428446334` seconds,
-  averaging `174.517416876`. Against the paired feedback baseline this is a
-  measured `1.715231x` speedup and `41.6988%` wall reduction. The final MPFR
-  step fell from `290.256` to a `164.1975`-second mean.
-- Pre-cache and both optimized trajectory CSVs were byte-identical with SHA-256
-  `48d245cb35bf95a093621495a50a6b5aa790e0d4d1b0f283bc40388d6075b351`.
-  MPFR attempts, root cells, accepted/rejected steps, and corrector iterations
-  were unchanged. Evidence:
-  [section-86-mpfr-decimal-cache-performance-2026-07-15.md](evidence/section-86-mpfr-decimal-cache-performance-2026-07-15.md).
-
+- Added a thread-local
 ## 2026-07-15 — MPFR compiled segment constants
 
 - Compiled every retained-history segment once per exact-pair precision
@@ -991,39 +739,15 @@ This file holds dated decisions, implementation status, validation results, fail
   polynomials, and both error radii. Geometry and correlated self-displacement
   now reference these immutable intervals. Replaced interval-multiplication
   candidate vectors with fixed arrays while preserving order and rounding.
-- Two matched runs took `74.158367708` and `73.169065167` seconds, averaging
-  `73.663716438`. This is a measured `2.369110x` speedup and `57.7900%` wall
-  reduction versus the prior decimal-cache mean. The final MPFR step fell from
-  `164.1975` to a `64.78275`-second mean.
-- The complete retained stack is `4.325271x` faster than the paired
-  continuous-only control (`318.615554583` seconds) and `4.063570x` faster than
-  the paired pre-cache certificate-feedback baseline (`299.337702083`).
-- Prior-cache and both compiled-segment trajectory CSVs were byte-identical
-  with SHA-256
-  `48d245cb35bf95a093621495a50a6b5aa790e0d4d1b0f283bc40388d6075b351`.
-  MPFR attempts, root cells, controller decisions, and corrector iterations
-  were unchanged. Evidence:
-  [section-86-mpfr-compiled-segment-performance-2026-07-15.md](evidence/section-86-mpfr-compiled-segment-performance-2026-07-15.md).
 
 ## 2026-07-15 — MPFR sign-directed interval products
 
-- A five-second exact-pair sample placed `mpfr_mul` first among active leaves.
-  Generic interval products paid eight directed MPFR multiplications even when
+- Generic interval productsdirected MPFR multiplications even when
   endpoint signs selected only one lower and one upper corner.
 - Replaced exhaustive corner evaluation with sign-directed extremal corners.
   Ordinary products now use two MPFR multiplications, mixed-by-mixed products
   use four, and nonzero squares use two. The retained operations use the same
   corner operands and directed rounding as the exhaustive enclosure.
-- An A-B-A bracket run beside the same unrelated PID 25817 load measured
-  baseline and optimized means of `67.931424396` and `40.245635104` seconds:
-  `1.687920x` faster and `40.7555%` less wall time. Root MPFR CPU fell from
-  `113.114911125` to `58.251022191` seconds (`1.941853x`).
-- Pre/post five-second samples reduced `mpfr_mul` active leaves from 1,115 to
-  526. Allocation/free is now ahead of multiplication in the active profile.
-- All five comparison trajectories were byte-identical with SHA-256
-  `48d245cb35bf95a093621495a50a6b5aa790e0d4d1b0f283bc40388d6075b351`;
-  work counts and controller decisions were unchanged. Evidence:
-  [section-86-mpfr-sign-directed-products-2026-07-15.md](evidence/section-86-mpfr-sign-directed-products-2026-07-15.md).
 
 ## 2026-07-15 — MPFR worker-local storage pool
 
@@ -1031,20 +755,6 @@ This file holds dated decisions, implementation status, validation results, fail
   Short-lived `MpFloat` values now lease initialized MPFR buffers and return
   them to an intrusive free list; 128-, 256-, and 512-bit buffers cannot mix.
   Arithmetic operations, operands, and directed rounding are unchanged.
-- Two uncontested unsampled baselines averaged `39.716161209` seconds; two
-  pooled runs averaged `21.507466459`: a measured `1.846622x` speedup and
-  `45.8471%` wall reduction. The final MPFR-heavy interval improved
-  `2.385423x`, and summed MPFR CPU improved `2.684336x`.
-- Normalized `sample` leaves for `_xzm_free` fell `97.9462%`. Tiny allocation,
-  `mpfr_init2`, and `mpfr_free_func` each fell below the five-sample reporting
-  threshold, implying reductions greater than `99.1522%`, `95.9886%`, and
-  `95.4630%` against their baseline rates.
-- All six profiled and clean pre/post trajectories were byte-identical with
-  SHA-256
-  `48d245cb35bf95a093621495a50a6b5aa790e0d4d1b0f283bc40388d6075b351`;
-  work counts, controller decisions, and corrector iterations were unchanged.
-  Evidence:
-  [section-86-mpfr-worker-local-storage-pool-2026-07-15.md](evidence/section-86-mpfr-worker-local-storage-pool-2026-07-15.md).
 
 ## 2026-07-15 — MPFR direct precision slots
 
@@ -1052,19 +762,8 @@ This file holds dated decisions, implementation status, validation results, fail
   direct 128-, 256-, and 512-bit free-list slots. Storage records its owning
   free list, making release direct; a stable fallback retains API-valid
   nonstandard precisions.
-- Two clean linear-lookup runs averaged `22.653049375` seconds and two direct-
-  slot runs averaged `21.368022521`: a measured `1.060138x` speedup and
-  `5.6726%` wall reduction, from `4.530609875` to `4.273604504` seconds per
-  accepted step.
-- Complete-run phase-matched profiles reduced normalized `MpFloat`
-  constructor samples by `30.6310%`; normalized `mpfr_mul` samples changed by
-  only `+0.8033%`, isolating constructor lookup rather than arithmetic work.
 - The merged build passed 32 EOM tests plus forced 96-, 192-, and 384-bit
-  fallback checks. All A/B, profile, and merged trajectories were byte-
-  identical with SHA-256
-  `48d245cb35bf95a093621495a50a6b5aa790e0d4d1b0f283bc40388d6075b351`.
-  Evidence:
-  [section-86-mpfr-direct-precision-slots-2026-07-15.md](evidence/section-86-mpfr-direct-precision-slots-2026-07-15.md).
+  fallback checks.
 
 ## 2026-07-15 — Borg defaults to the EOM runner
 
@@ -1249,24 +948,12 @@ This file holds dated decisions, implementation status, validation results, fail
   acceleration 16/16. Evidence:
   [eom-borg-eight-path-1003-1004-simple-root-certificate-apple-m3-2026-07-16.json](evidence/eom-borg-eight-path-1003-1004-simple-root-certificate-apple-m3-2026-07-16.json).
 
-## 2026-07-16 — MPFR multiplication attribution and exact-zero Horner fold
+## 2026-07-16 — MPFR exact-zero Horner fold
 
-- **Measured:** complete-run sampling attributes 87.30% of general
-  `mpfr_mul`-path samples to the position polynomial; the precision split is
-  about 20.54% at 128 bits, 31.42% at 256 bits, and 48.04% at 512 bits.
-  Square products are only 1.25% of the separate precision profile.
-- A temporary exact counter found zero operands in 5.4512% of position Horner
-  products. The retained branch copies the compiled coefficient for
-  `[0,0] * x + coefficient`, eliminating a derived 12,959,568 `mpfr_mul`
-  calls and the same number of `mpfr_add` calls in the five-step workload.
-- **Measured in three clean A-B pairs:** mean solver wall falls from
-  21.073364125 to 20.939648236 seconds (0.6345%), root-batch wall falls 1.1984%,
-  and root MPFR CPU falls 1.8834%. The whole-run gain is small and its
-  three-pair 95% interval crosses zero; the two internal reductions remain
-  separated from zero. All six trajectories are byte-identical, all work
-  counts match, 32 native tests pass, and 96/192/384-bit fallback checks remain
-  certified-complete. Evidence:
-  [section-86-mpfr-multiplication-attribution-and-zero-horner-fold-2026-07-16.md](evidence/section-86-mpfr-multiplication-attribution-and-zero-horner-fold-2026-07-16.md).
+- The position Horner evaluation retains an exact-zero branch that copies the
+  compiled coefficient for `[0,0] * x + coefficient` instead of multiplying.
+  All trajectories are byte-identical, all work counts match, 32 native tests
+  pass, and 96/192/384-bit fallback checks remain certified-complete.
 
 ## 2026-07-16 — first deterministic recursive block-exclusion path
 
@@ -1393,8 +1080,8 @@ This file holds dated decisions, implementation status, validation results, fail
   chunks. The rejected `[0.06,0.07]` request reported
   `minimum_step_exhausted`, whose underlying atomic-step failure was
   `insufficient_history_depth` for ordered pair `1004<-1013`. The active app
-  had launched the retired 16-path population with only the legacy 10-unit
-  fixture horizon.
+  had launched the retired 16-path population with only the 10-unit
+  compatibility fixture horizon.
 - Aligned the live bootstrap with the current bounded migration target: the
   deterministic path prefix `1001`-`1008`, computed causal coverage for the
   accepted initial history, and the corresponding 4+4 polarity counts.

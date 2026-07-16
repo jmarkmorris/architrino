@@ -469,7 +469,6 @@ If you're interested, there is another emerging development that matters for wor
 
 ## Related Priorities
 
-- [breather-proof](../proof-programs/breather-proof/priorities.md)
 - [master-equation-closure](../master-equation-closure/priorities.md)
 - [source-mining](../source-mining/priorities.md)
 
