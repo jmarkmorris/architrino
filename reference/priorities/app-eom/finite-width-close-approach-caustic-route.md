@@ -95,6 +95,13 @@ A speed magnitude equal to $c_f$ cannot satisfy `FWC-ENTRY-02` by itself.
 Receiver-normal silence $D_T=0$ also does not enter the route unless the
 source-normal predicate independently passes.
 
+If repeated step reduction reaches `minimum_step` while the ordered-pair root
+certificate remains incomplete, the engine has not earned either sharp-chart
+continuation or finite-width entry. It halts as
+`caustic_entry_uncertified`, names `FWC-ENTRY-02/stratum`, records the nested
+root failure and achieved precision, and records the regulator level as
+`not-evaluated`. This is an adjudicated entry failure, not a caustic claim.
+
 Claim grade: `derived-design`. Falsifier: a route entry whose same-record root
 certificate has neither a zero-containing $D_s$ enclosure, the certified
 opposite-sign interior topology change, nor a separation enclosure intersecting
