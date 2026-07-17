@@ -476,6 +476,32 @@ moves the sharp and finite-width centers into overlap under the same
 regulator law, or a step-height ladder shows the gap-to-remainder ratio tending
 to one rather than remaining large.
 
+### Ratified matching disposition
+
+On 2026-07-17 the operator adopted
+[Master EOM Binding v0 Amendment 1](../master-eom-binding-v0-amendment-1-common-domain-matching.md):
+common-domain authority is regulator-limit matching with a certified
+$R^{\mathrm{reg}}$, not exact sharp/finite-width identity at fixed positive
+$\eta$ and $\epsilon_c$. The measured raw gaps above remain valid instrument
+outputs, but raw disjointness is no longer the complete `FWC-STATE-01`
+obligation. The complete test must add the certified regulator-matching row to
+the existing numerical remainder and keep their sum inside the unchanged
+event budget.
+
+No transit is promoted by this decision. The current EOM solver does not emit
+the new row, so its halt remains fail-closed and adjudicated until a separate
+implementation with independent evidence contains the measured gaps. For the
+recorded side cells, that implementation must certify at least
+$R^{\mathrm{reg}}_{I,0}\ge3.51437\times10^{-11}$ for `1004 <- 1006` and
+$R^{\mathrm{reg}}_{I,0}\ge1.7013\times10^{-10}$ for `1004 <- 1002`, while the
+complete rows remain below the unchanged $10^{-7}$ impulse budget.
+
+Claim grade: `operator-decision` for the matching contract, `measured` for the
+raw gaps, and `inferred quantitative prediction` for the required minimum
+radii. Falsifier: an independently implemented certified remainder excludes
+either raw gap, the matched intervals remain disjoint, or the complete row
+exceeds the unchanged event budget.
+
 ## Step-Height Configuration Decision
 
 Option (b) is selected: Borg keeps `chunkDuration=0.05` and declares the true
@@ -568,3 +594,17 @@ passage claim is authorized. Any research-tolerance discriminator,
 `FWC-STATE-01` reconstruction/common-domain work, or pinned pair coverage
 across subdivision belongs to the follow-up FWC thread and does not reopen the
 accepted demo-track halt without new evidence satisfying its falsifier.
+
+## Amendment 1 Follow-Up — 2026-07-17
+
+The research-tolerance `h_max=0.0025` continuation is superseded by
+[the independently checked Amendment 1 implementation evidence](eom-fwc-regulator-matching-remainder-seed-0-2026-07-17.md).
+That run reproduces the recorded raw component-0 gap exactly, contains it with
+the new regulator-matching row, and atomically publishes the first certified
+finite-width child through `T=0.3428125`. The default demo-tolerance
+`FWC-REG-02` disposition above is unchanged; it is a different track and still
+fails before this matching row has publication authority.
+
+Claim grade: `measured follow-up`. Falsifier: the linked evidence does not
+reproduce the raw gap, exceeds the unchanged budget, or lacks a complete
+accepted entry/regulator/state/exit certificate.

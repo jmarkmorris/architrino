@@ -73,7 +73,7 @@ const endpointRows = createBorgSeededInitialConditionRows({
 const historyDepth = calculateBorgInertialHistoryDepth(endpointRows, {
   fieldSpeed: manifest.simulationEnvelope.fieldSpeed,
   sampleInterval,
-  maximumSeparation: Math.sqrt(3) * manifest.simulationEnvelope.sideLength,
+  maximumSeparation: 2 * manifest.simulationEnvelope.outerRadius,
 });
 const initialSeed = await createBorgAcceptedInertialSeedHistory(endpointRows, {
   historyStartTime: -historyDepth,
@@ -343,7 +343,7 @@ function summarizeChunks(chunks) {
     finiteWidthStateCertificates: summarizeStateCertificates
       ? chunk.finiteWidthStateCertificates.map((certificate) => {
           const failedCommonDomain = certificate.commonDomains.find(
-            (common) => common.status !== "certified_overlap",
+            (common) => common.status !== "certified_regulator_match",
           );
           return {
             stepStatus: certificate.stepStatus,

@@ -84,9 +84,6 @@ void accumulate_substep_snapshot_timing(
       snapshot.timing.acceleration_precision_escalation_attempt_count;
 }
 
-bool vectors_overlap(
-    const IntervalVector& left, const IntervalVector& right);
-
 const NativePairAccelerationCertificate& snapshot_pair(
     const NativeAccelerationSnapshotCertificate& snapshot,
     const std::string& receiver,
@@ -1080,8 +1077,10 @@ JetVector jet_subtract_vector(
 
 struct CommonRootTube {
   Interval emission;
+  Interval separation;
   IntervalVector acceleration_hull;
   JetVector nominal_acceleration;
+  JetVector emission_coordinate_sharp_acceleration;
   double source_normal_absolute_lower;
   double separation_lower;
 };
@@ -1183,7 +1182,9 @@ std::optional<CommonRootTube> certify_common_root_tube(
       dot(nominal_direction, source_state->velocity);
   const Interval nominal_dr = field_speed -
       dot(nominal_direction, receiver_state->velocity);
-  if (nominal_ds.contains_zero()) return std::nullopt;
+  if (nominal_ds.contains_zero() || nominal_dr.contains_zero()) {
+    return std::nullopt;
+  }
   const Interval s1 = nominal_dr / nominal_ds;
   const IntervalVector d1 = subtract(
       receiver_state->velocity,
@@ -1199,8 +1200,8 @@ std::optional<CommonRootTube> certify_common_root_tube(
   const Interval s2 =
       (Interval::point(0.0) - base_r2) / nominal_ds;
 
-  const Jet2 zero_jet{Interval::point(0.0), Interval::point(0.0),
-                      Interval::point(0.0)};
+  const Interval zero = Interval::point(0.0);
+  const Jet2 zero_jet{zero, zero, zero};
   JetVector receiver_position_jet{zero_jet, zero_jet, zero_jet};
   JetVector source_position_jet{zero_jet, zero_jet, zero_jet};
   JetVector receiver_velocity_jet{zero_jet, zero_jet, zero_jet};
@@ -1241,10 +1242,63 @@ std::optional<CommonRootTube> certify_common_root_tube(
       strength_jet);
   const JetVector nominal_acceleration = jet_scale(
       jet_divide(scale_jet, radial_cubed), d_jet);
+
+  // Amendment 1 requires the second derivative of the sharp branch
+  // integrand in the residual coordinate u=g(T,S), not in reception time.
+  // Build the sharp quotient as an S-jet first, then apply
+  //   d2/du2 = d2/dS2 / Ds^2 - (d/dS)(dDs/dS) / Ds^3.
+  // Every value below is evaluated on the certified common root tube.
+  JetVector receiver_position_s_jet{zero_jet, zero_jet, zero_jet};
+  JetVector source_position_s_jet{zero_jet, zero_jet, zero_jet};
+  JetVector receiver_velocity_s_jet{zero_jet, zero_jet, zero_jet};
+  JetVector source_velocity_s_jet{zero_jet, zero_jet, zero_jet};
+  for (std::size_t axis = 0; axis < 3U; ++axis) {
+    receiver_position_s_jet[axis] = {
+        receiver_state->position[axis], zero, zero};
+    source_position_s_jet[axis] = {
+        source_state->position[axis], source_state->velocity[axis],
+        source_state->acceleration[axis]};
+    receiver_velocity_s_jet[axis] = {
+        receiver_state->velocity[axis], zero, zero};
+    source_velocity_s_jet[axis] = {
+        source_state->velocity[axis], source_state->acceleration[axis],
+        source_state->jerk[axis]};
+  }
+  const JetVector d_s_jet = jet_subtract_vector(
+      receiver_position_s_jet, source_position_s_jet);
+  const Jet2 r_s_jet = jet_sqrt(jet_dot(d_s_jet, d_s_jet));
+  const JetVector n_s_jet = jet_scale(jet_inverse(r_s_jet), d_s_jet);
+  const Jet2 ds_s_jet = jet_subtract(
+      c_jet, jet_dot(n_s_jet, source_velocity_s_jet));
+  const Jet2 dr_s_jet = jet_subtract(
+      c_jet, jet_dot(n_s_jet, receiver_velocity_s_jet));
+  if (ds_s_jet.value.contains_zero() || dr_s_jet.value.contains_zero()) {
+    return std::nullopt;
+  }
+  const Jet2 s_strength_jet = jet_absolute(
+      jet_divide(dr_s_jet, ds_s_jet));
+  const Jet2 s_radial_cubed = jet_multiply(
+      jet_multiply(r_s_jet, r_s_jet), r_s_jet);
+  const Jet2 s_scale_jet = jet_multiply(
+      Jet2{signed_scale, zero, zero}, s_strength_jet);
+  const JetVector sharp_s_jet = jet_scale(
+      jet_divide(s_scale_jet, s_radial_cubed), d_s_jet);
+  JetVector sharp_u_jet{zero_jet, zero_jet, zero_jet};
+  const Interval ds_square = interval_square(ds_s_jet.value);
+  const Interval ds_cube = ds_square * ds_s_jet.value;
+  for (std::size_t axis = 0; axis < 3U; ++axis) {
+    sharp_u_jet[axis] = {
+        sharp_s_jet[axis].value,
+        sharp_s_jet[axis].first / ds_s_jet.value,
+        sharp_s_jet[axis].second / ds_square -
+            sharp_s_jet[axis].first * ds_s_jet.first / ds_cube};
+  }
   return CommonRootTube{
       .emission = emission,
+      .separation = separation,
       .acceleration_hull = acceleration_hull,
       .nominal_acceleration = nominal_acceleration,
+      .emission_coordinate_sharp_acceleration = sharp_u_jet,
       .source_normal_absolute_lower =
           interval_absolute(source_normal).lower(),
       .separation_lower = separation.lower(),
@@ -1411,10 +1465,32 @@ certify_common_domain_interval(
   IntervalVector moment_remainder{zero, zero, zero};
   IntervalVector track_impulse_remainder{zero, zero, zero};
   IntervalVector track_moment_remainder{zero, zero, zero};
+  IntervalVector emission_second_derivative_bound{zero, zero, zero};
+  IntervalVector regulator_leading_acceleration{zero, zero, zero};
   IntervalVector sharp_impulse{zero, zero, zero};
   IntervalVector sharp_local_moment{zero, zero, zero};
   const double width = common_reception.width();
   const double offset = std::max(0.0, event_end - common_reception.upper());
+  const Interval eta = Interval::decimal_token(request.causal_width);
+  const Interval epsilon = Interval::decimal_token(request.core_scale);
+  for (const auto& tube : tubes) {
+    for (std::size_t axis = 0; axis < 3U; ++axis) {
+      const Interval d2u =
+          tube.emission_coordinate_sharp_acceleration[axis].second;
+      emission_second_derivative_bound[axis] =
+          emission_second_derivative_bound[axis] +
+          Interval(0.0, interval_absolute(d2u).upper());
+      const Interval core_leading =
+          Interval::point(-1.5) * interval_square(epsilon) /
+          interval_square(tube.separation) *
+          tube.emission_coordinate_sharp_acceleration[axis].value;
+      const Interval gaussian_leading =
+          Interval::point(0.5) * interval_square(eta) * d2u;
+      regulator_leading_acceleration[axis] =
+          regulator_leading_acceleration[axis] + core_leading +
+          gaussian_leading;
+    }
+  }
   for (std::size_t axis = 0; axis < 3U; ++axis) {
     const double l2 = interval_absolute(
         nominal_acceleration[axis].second).upper();
@@ -1442,6 +1518,14 @@ certify_common_domain_interval(
   IntervalVector sharp_moment = add(
       sharp_local_moment,
       scale(Interval::point(offset), sharp_impulse));
+  const IntervalVector regulator_leading_impulse = scale(
+      Interval::point(width), regulator_leading_acceleration);
+  const IntervalVector regulator_leading_local_moment = scale(
+      Interval::point(0.5 * width * width),
+      regulator_leading_acceleration);
+  const IntervalVector regulator_leading_moment = add(
+      regulator_leading_local_moment,
+      scale(Interval::point(offset), regulator_leading_impulse));
 
   auto finite = certify_native_fold_caustic_impulse(
       request, receiver, source, path_charge(request, receiver.path_id),
@@ -1467,17 +1551,66 @@ certify_common_domain_interval(
   certificate.position_moment_shortcut_remainder = moment_remainder;
   certificate.track_impulse_remainder = track_impulse_remainder;
   certificate.track_position_moment_remainder = track_moment_remainder;
+  certificate.emission_second_derivative_bound =
+      emission_second_derivative_bound;
+  certificate.regulator_leading_impulse = regulator_leading_impulse;
+  certificate.regulator_leading_position_moment =
+      regulator_leading_moment;
 
-  const auto record_disjoint = [&](const IntervalVector& left,
-                                   const IntervalVector& right,
-                                   bool moment) {
+  const IntervalVector impulse_difference = subtract(
+      *finite.impulse, sharp_impulse);
+  const IntervalVector moment_difference = subtract(
+      finite_moment, sharp_moment);
+  const IntervalVector higher_impulse = subtract(
+      impulse_difference, regulator_leading_impulse);
+  const IntervalVector higher_moment = subtract(
+      moment_difference, regulator_leading_moment);
+  IntervalVector higher_impulse_remainder{zero, zero, zero};
+  IntervalVector higher_moment_remainder{zero, zero, zero};
+  IntervalVector regulator_impulse_remainder{zero, zero, zero};
+  IntervalVector regulator_moment_remainder{zero, zero, zero};
+  for (std::size_t axis = 0; axis < 3U; ++axis) {
+    const double higher_i = interval_absolute(higher_impulse[axis]).upper();
+    const double higher_m = interval_absolute(higher_moment[axis]).upper();
+    higher_impulse_remainder[axis] = symmetric_interval(higher_i);
+    higher_moment_remainder[axis] = symmetric_interval(higher_m);
+    regulator_impulse_remainder[axis] = symmetric_interval(
+        upward_nonnegative_sum(
+            interval_absolute(regulator_leading_impulse[axis]).upper(),
+            higher_i));
+    regulator_moment_remainder[axis] = symmetric_interval(
+        upward_nonnegative_sum(
+            interval_absolute(regulator_leading_moment[axis]).upper(),
+            higher_m));
+  }
+  certificate.regulator_higher_order_impulse_remainder =
+      higher_impulse_remainder;
+  certificate.regulator_higher_order_position_moment_remainder =
+      higher_moment_remainder;
+  certificate.regulator_impulse_remainder = regulator_impulse_remainder;
+  certificate.regulator_position_moment_remainder =
+      regulator_moment_remainder;
+
+  const auto interval_distance = [](const Interval& left,
+                                    const Interval& right) {
+    if (left.intersection(right).has_value()) return 0.0;
+    return left.upper() < right.lower()
+        ? right.lower() - left.upper()
+        : left.lower() - right.upper();
+  };
+  const double impulse_budget = tolerance_value(
+      request.event_impulse_tolerance, "event impulse tolerance");
+  const double moment_budget = tolerance_value(
+      request.event_position_moment_tolerance,
+      "event position-moment tolerance");
+  const auto certify_matching_row = [&](const IntervalVector& sharp,
+                                        const IntervalVector& regulated,
+                                        const IntervalVector& regulator,
+                                        bool moment) {
     for (std::size_t axis = 0; axis < 3U; ++axis) {
-      if (left[axis].intersection(right[axis]).has_value()) continue;
-      certificate.disjoint_component = axis;
-      certificate.disjoint_width = left[axis].upper() < right[axis].lower()
-          ? right[axis].lower() - left[axis].upper()
-          : left[axis].lower() - right[axis].upper();
-      certificate.applicable_remainder_budget = moment
+      const double raw_distance = interval_distance(
+          sharp[axis], regulated[axis]);
+      const double numeric = moment
           ? interval_absolute(moment_remainder[axis]).upper() +
                 interval_absolute(track_moment_remainder[axis]).upper() +
                 offset * (
@@ -1485,20 +1618,45 @@ certify_common_domain_interval(
                     interval_absolute(track_impulse_remainder[axis]).upper())
           : interval_absolute(impulse_remainder[axis]).upper() +
                 interval_absolute(track_impulse_remainder[axis]).upper();
-      return;
+      const double regulator_radius =
+          interval_absolute(regulator[axis]).upper();
+      const double total = upward_nonnegative_sum(numeric, regulator_radius);
+      const double post = std::max(0.0, raw_distance - total);
+      if (certificate.disjoint_component == 3U && raw_distance > 0.0) {
+        certificate.disjoint_component = axis;
+        certificate.disjoint_width = raw_distance;
+        certificate.applicable_remainder_budget = numeric;
+        certificate.applicable_regulator_remainder_budget =
+            regulator_radius;
+        certificate.applicable_total_remainder_budget = total;
+        certificate.post_accounting_distance = post;
+      }
+      if (total > (moment ? moment_budget : impulse_budget)) {
+        certificate.failure_code = moment
+            ? "common_domain_position_moment_remainder_budget_exceeded"
+            : "common_domain_impulse_remainder_budget_exceeded";
+        return false;
+      }
+      if (post > 0.0) {
+        certificate.failure_code = moment
+            ? "common_domain_position_moment_regulator_match_failed"
+            : "common_domain_impulse_regulator_match_failed";
+        return false;
+      }
     }
+    return true;
   };
-  if (!vectors_overlap(sharp_impulse, *finite.impulse)) {
-    record_disjoint(sharp_impulse, *finite.impulse, false);
-    certificate.failure_code = "common_domain_impulse_disjoint";
+  if (!certify_matching_row(
+          sharp_impulse, *finite.impulse,
+          regulator_impulse_remainder, false)) {
     return certificate;
   }
-  if (!vectors_overlap(sharp_moment, finite_moment)) {
-    record_disjoint(sharp_moment, finite_moment, true);
-    certificate.failure_code = "common_domain_position_moment_disjoint";
+  if (!certify_matching_row(
+          sharp_moment, finite_moment,
+          regulator_moment_remainder, true)) {
     return certificate;
   }
-  certificate.status = "certified_overlap";
+  certificate.status = "certified_regulator_match";
   certificate.failure_code.clear();
   return certificate;
 }
@@ -1529,7 +1687,7 @@ std::vector<NativeCommonDomainChartCertificate> certify_common_domains(
       auto certificate = certify_common_domain_interval(
           request, receiver, source, endpoint, common, end);
       if (certificate.has_value() &&
-          certificate->status == "certified_overlap") {
+          certificate->status == "certified_regulator_match") {
         result.push_back(std::move(*certificate));
         return;
       }
@@ -2214,7 +2372,7 @@ SubstepAttempt corrected_substep_impl(
           state.common_domain_chart_overlap_passed = std::any_of(
               state.common_domains.begin(), state.common_domains.end(),
               [](const auto& row) {
-                return row.status == "certified_overlap";
+                return row.status == "certified_regulator_match";
               });
           state.exit_passed = certify_finite_width_exit(
               request, event_histories, event_endpoint_snapshot,
@@ -3263,16 +3421,6 @@ std::optional<IntervalVector> monotone_event_rectangle_integral(
   return result;
 }
 
-bool vectors_overlap(
-    const IntervalVector& left, const IntervalVector& right) {
-  for (std::size_t axis = 0; axis < 3; ++axis) {
-    if (!left[axis].intersection(right[axis]).has_value()) {
-      return false;
-    }
-  }
-  return true;
-}
-
 const NativePairAccelerationCertificate& snapshot_pair(
     const NativeAccelerationSnapshotCertificate& snapshot,
     const std::string& receiver,
@@ -3309,6 +3457,33 @@ certify_native_pinned_fold_temporal_onset(
     const std::string& start_time) {
   return certified_pinned_fold_onset_certificates(
       request, histories, start_snapshot, start_time);
+}
+
+NativeCommonDomainChartCertificate certify_native_common_domain_chart(
+    const NativeCoupledEvolutionRequest& request,
+    const std::vector<NativePublishedPath>& histories,
+    const std::string& receiver_path_id,
+    const std::string& source_path_id,
+    const std::string& reception_lower,
+    const std::string& reception_upper,
+    const std::string& event_end) {
+  const auto endpoint_snapshot = certify_native_acceleration_snapshot(
+      request, histories, reception_upper);
+  const Interval common(
+      scalar_token(reception_lower), scalar_token(reception_upper));
+  auto certificate = certify_common_domain_interval(
+      request, path_history(histories, receiver_path_id),
+      path_history(histories, source_path_id), endpoint_snapshot,
+      common, scalar_token(event_end));
+  if (!certificate.has_value()) {
+    NativeCommonDomainChartCertificate failure;
+    failure.status = "uncertified";
+    failure.reception_lower = reception_lower;
+    failure.reception_upper = reception_upper;
+    failure.failure_code = "common_domain_not_certified";
+    return failure;
+  }
+  return std::move(*certificate);
 }
 
 static NativeFoldCausticImpulseCertificate

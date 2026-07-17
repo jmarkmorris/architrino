@@ -4,14 +4,16 @@
 
 - Packet id: `eom_finite_width_close_approach_caustic_route/v0`
 - Date opened: 2026-07-16
-- Claim level: `derived-design`
-- Implementation status: `adjudicated-native-route-implemented; demo-track-regulator-halt-accepted; certified-transit-open`
+- Claim level: `derived-design-and-certified-implementation`
+- Implementation status: `first-certified-finite-width-transit; demo-track-regulator-halt-accepted; post-transit-horizon-open`
 - Owning queue item: `coupled_retained_history_integrator`
 - Mathematical authority:
   [master-eom-binding-v0.md](master-eom-binding-v0.md)
+- Common-domain matching:
+  `amendment-1-bound-and-independently-certified`
 - Evolution authority: [evolution-contract-v0.md](evolution-contract-v0.md)
-- Production authority: fail-closed adjudication only; transit authority remains
-  absent until every acceptance row below passes
+- Production authority: certified for the recorded first seed-0 transit;
+  broader trajectory and encounter authority remains per-run and fail-closed
 
 ## Closure Target
 
@@ -189,20 +191,40 @@ $\mathbf M_{ij}$ rows.
 Second, sharp/finite-width chart agreement is tested only on a declared common
 domain $C_{ij}\subset[T_0,T_1]$ where the sharp roots and root-free complement
 are complete, every admitted root has $|D_s|\ge\nu_s>0$, and the separation is
-outside the core-active stratum. The restricted integrals must satisfy
+outside the core-active stratum. By
+[Master EOM Binding v0 Amendment 1](master-eom-binding-v0-amendment-1-common-domain-matching.md),
+agreement is a regulator-limit obligation rather than raw equality at fixed
+positive $\eta$ and $\epsilon_c$. For every component $k$, the restricted
+integrals must satisfy
 
 $$
-\mathbf I^{\sharp}_{ij}(C_{ij})
-\cap
-\mathbf I^{(\eta,\epsilon_c)}_{ij}(C_{ij})\ne\varnothing,
-\qquad
-\mathbf M^{\sharp}_{ij}(C_{ij})
-\cap
-\mathbf M^{(\eta,\epsilon_c)}_{ij}(C_{ij})\ne\varnothing
+\operatorname{dist}\!\left(
+I^{\sharp}_{ij,k}(C_{ij}),
+I^{(\eta,\epsilon_c)}_{ij,k}(C_{ij})
+\right)
+\le
+R^{\mathrm{num}}_{I,ij,k}(C_{ij})
++
+R^{\mathrm{reg}}_{I,ij,k}(C_{ij}),
 $$
 
-component by component. The fold/core portion is not a common sharp-chart
-domain and is supplied only by the finite-width rows.
+$$
+\operatorname{dist}\!\left(
+M^{\sharp}_{ij,k}(C_{ij}),
+M^{(\eta,\epsilon_c)}_{ij,k}(C_{ij})
+\right)
+\le
+R^{\mathrm{num}}_{M,ij,k}(C_{ij})
++
+R^{\mathrm{reg}}_{M,ij,k}(C_{ij})
+$$
+
+where $R^{\mathrm{reg}}$ outwardly encloses the exact core-kernel difference,
+the nonzero second and higher causal-width moments, finite root-tube tails,
+and leakage over the certified root-free complement. The complete numerical-
+plus-regulator row must remain inside the unchanged event impulse or position-
+moment budget. The fold/core portion is not a common sharp-chart domain and is
+supplied only by the finite-width rows.
 
 An endpoint-linear shortcut is admissible on a common-domain interval of width
 $h_C$ only with a certified component bound
@@ -229,21 +251,70 @@ with no finite-width row cannot certify passage of the rejected event.
 Claim grade: `derived`. Falsifier: an independent integration of the emitted
 background and event rows excludes the candidate endpoint; a claimed
 common-domain cell contains $D_s=0$, incomplete roots, or the core stratum; an
-endpoint shortcut exceeds either remainder; or a rejected event pair
+endpoint shortcut exceeds either remainder; a matching row does not enclose
+the actual positive-regulator chart difference or exceeds the unchanged event
+budget; or a rejected event pair
 disappears from a child retry before `FWC-STATE-01` and `FWC-EXIT-01` pass.
 
-The native state certificate records the reconstructed and candidate endpoint
-components, the disjoint background rows, every routed pair, each certified
-common-domain interval, its $L_2$ and track-error rows, both shortcut
-remainders, the two chart integrals, and the exit verdict. An exit-pending
+A conforming state certificate must record the reconstructed and candidate
+endpoint components, the disjoint background rows, every routed pair, each
+certified common-domain interval, its $L_2$ and track-error rows, both shortcut
+remainders, the regulator-matching impulse and position-moment rows, the two
+chart integrals, the complete budget sums, and the exit verdict. An exit-pending
 first half has authority only as internal input to the enclosing atomic
 step's second half. The pair is copied into that child request; only a final
 state-and-exit pass may reach publication.
 
-Claim grade: `derived-implementation`. Falsifier: a rejected parent or
-exit-pending first half loses its ordered pair, the emitted rows do not
-reconstruct their endpoint, or an exit-pending history appears in published
-output.
+Claim grade: `derived-design` for the required regulator rows and
+`derived-implementation` for pinned publication handling. Falsifier: a
+rejected parent or exit-pending first half loses its ordered pair, the emitted
+rows do not reconstruct their endpoint, a conforming certificate omits a
+required matching row, or an exit-pending history appears in published output.
+
+### Amendment 1 remainder implementation
+
+For every certified root tube, the implementation constructs a second-order
+interval jet of the sharp quotient in emission time $S$. It then changes the
+derivative coordinate to $u=g(T,S)$ using the certified nonzero source normal:
+
+$$
+\frac{d^2P_0}{du^2}
+=
+\frac{P_{0,SS}}{D_s^2}
+-
+\frac{P_{0,S}D_{s,S}}{D_s^3}.
+$$
+
+This emits the certified $\partial_u^2P_0$ bound and evaluates the Amendment 1
+leading core-plus-causal-width term. The leading term is integrated once for
+the impulse row and once with the nonnegative endpoint position weight for the
+position-moment row.
+
+The complete higher-order row is formed outward from the certified regulated
+and sharp integral difference after subtracting the leading interval. It
+therefore includes the unexpanded core orders, mixed and higher causal-width
+orders, finite root-tube tails, root-free-complement leakage, and the
+conservative width of the complete regulated integral. Its symmetric absolute
+enclosure is added to the leading interval radius. The existing shortcut and
+retained-track rows remain $R^{\mathrm{num}}$; they are not relabeled as
+$R^{\mathrm{reg}}$. A row passes only when its raw interval distance is no
+larger than $R^{\mathrm{num}}+R^{\mathrm{reg}}$ and that complete sum remains
+inside the unchanged event budget.
+
+This residual construction makes the production row conservative; it does not
+make self-agreement independent evidence. Its independent check is the
+stationary simple-root closed form in Amendment 1. The common-domain path
+encloses that analytic positive-regulator difference without changing the
+Decimal oracle.
+
+Claim grade: `derived-implementation` for the coordinate conversion and
+outward residual construction; `measured` for the analytic containment and
+seed-0 passage recorded in
+[the Amendment 1 implementation evidence](evidence/eom-fwc-regulator-matching-remainder-seed-0-2026-07-17.md).
+Falsifier: a nonzero $D_s$ tube violates the displayed derivative conversion;
+the analytic stationary difference lies outside the emitted remainder; a row
+passes with positive post-accounting distance or with its complete remainder
+above budget; or a published segment lacks passing state and exit rows.
 
 ## Regulator Refinement Ladder
 

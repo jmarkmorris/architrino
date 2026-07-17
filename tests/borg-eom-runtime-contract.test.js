@@ -86,12 +86,41 @@ test("Borg app manifest is design-owned policy and passes validation", () => {
   );
   assert.equal(
     manifest.initialConditions.initialLinePolicy,
-    "seeded-random-interior-cube",
+    "seeded-random-central-ball",
   );
   assert.equal(manifest.initialConditions.minimumPairSeparation, 0.2);
   assert.equal(manifest.initialConditions.velocityPolicy, "zero-initial-velocity");
   assert.equal(manifest.initialConditions.positrinoCharge, 1);
   assert.equal(manifest.initialConditions.electrinoCharge, -1);
+  assert.equal(manifest.simulationEnvelope.kind, "sphere");
+  assert.equal(manifest.simulationEnvelope.outerRadius, 0.625);
+  assert.equal(manifest.simulationEnvelope.centralBallRadius, 0.5);
+  assert.equal(manifest.simulationEnvelope.radialBufferMargin, 0.125);
+  assert.equal(manifest.simulationEnvelope.sideLength, undefined);
+  assert.equal(manifest.simulationEnvelope.centralVolume, undefined);
+  assert.equal(manifest.simulationEnvelope.faceBufferMargin, undefined);
+  assert.equal(manifest.population.countDerivation.exactPreCeiling, 5.859375);
+  assert.equal(manifest.population.countDerivation.roundedValue, 6);
+
+  const invalidRadiusManifest = structuredClone(manifest);
+  invalidRadiusManifest.simulationEnvelope.outerRadius = 0.5;
+  assert.throws(
+    () => validateBorgManifest({
+      manifest: invalidRadiusManifest,
+      surfaceDesign: BORG_APP_SURFACE_DESIGN_V1,
+    }),
+    /spherical radii are not ordered/,
+  );
+
+  const invalidPopulationManifest = structuredClone(manifest);
+  invalidPopulationManifest.population.countDerivation.roundedValue = 7;
+  assert.throws(
+    () => validateBorgManifest({
+      manifest: invalidPopulationManifest,
+      surfaceDesign: BORG_APP_SURFACE_DESIGN_V1,
+    }),
+    /population derivation fields are inconsistent/,
+  );
 });
 
 test("Borg uses the canonical unit field speed", () => {
@@ -273,6 +302,12 @@ test("Borg path-history renderer uses native row segments, not visual smoothing 
   assert.doesNotMatch(runtimeSource, /TubeGeometry/);
   assert.match(runtimeSource, /rebuildPathTrails/);
   assert.match(runtimeSource, /PLAYBACK_SPEED_PRESETS/);
+  assert.match(runtimeSource, /BOUNDARY_SHELL_LATITUDE_COUNT = 25/);
+  assert.match(runtimeSource, /BOUNDARY_SHELL_LONGITUDE_COUNT = 48/);
+  assert.match(runtimeSource, /new THREE\.Points\(/);
+  assert.doesNotMatch(runtimeSource, /new THREE\.LineLoop/);
+  assert.doesNotMatch(runtimeSource, /SphereGeometry/);
+  assert.doesNotMatch(runtimeSource, /BoxGeometry/);
   assert.doesNotMatch(runtimeSource, /PLAYBACK_MS_PER_NATIVE_STEP/);
   assert.match(runtimeSource, /RUN_CONTROL_PRESETS/);
   assert.match(runtimeSource, /live-forever/);
@@ -389,7 +424,7 @@ test("Borg path-history renderer uses native row segments, not visual smoothing 
 
 test("Borg surface keeps EOM-native layer policy and fail-closed authority", () => {
   const surfaceDesign = BORG_APP_SURFACE_DESIGN_V1;
-  assert.equal(surfaceDesign.authorityMap.centralVolumeAcceleration, "fail-closed-value");
+  assert.equal(surfaceDesign.authorityMap.centralBallAcceleration, "fail-closed-value");
   assert.equal(surfaceDesign.noAuthorityPromotions, true);
 
   const pathHistoryLayer = surfaceDesign.layerStrip.find((layer) => layer.layer === "path-history");
@@ -399,6 +434,9 @@ test("Borg surface keeps EOM-native layer policy and fail-closed authority", () 
   const wakeLayer = surfaceDesign.layerStrip.find((layer) => layer.layer === "wake-streams");
   assert.equal(wakeLayer.state, "disabled");
   assert.equal(wakeLayer.valueAuthority, "fail-closed-value");
+  const shellLayer = surfaceDesign.layerStrip.find((layer) => layer.layer === "boundary-shell-status");
+  assert.equal(shellLayer.state, "contextual-disabled");
+  assert.equal(shellLayer.valueAuthority, "fail-closed-value");
 });
 
 function uniqueFrameIndexes(frames) {

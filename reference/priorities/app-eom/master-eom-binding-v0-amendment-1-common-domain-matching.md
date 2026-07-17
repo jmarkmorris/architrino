@@ -1,37 +1,40 @@
-# Master EOM Binding v0 Common-Domain Matching Amendment Proposal
+# Master EOM Binding v0 Amendment 1 — Common-Domain Regulator-Limit Matching
 
 ## Status
 
-- Proposal id: `master_eom_binding/v0/common_domain_matching_proposal/1`
-- Date: 2026-07-16
-- Stage: `pending-operator-ratification`
-- Claim level: `derived-proposal`
-- Proposed target: [master-eom-binding-v0.md](master-eom-binding-v0.md)
+- Amendment id: `master_eom_binding/v0/amendment/1`
+- Derivation date: 2026-07-16
+- Ratification date: 2026-07-17
+- Stage: `ratified-binding-amendment`
+- Claim level: `derived-and-operator-ratified`
+- Amended binding: [master-eom-binding-v0.md](master-eom-binding-v0.md)
 - Owning packet:
   [finite-width-close-approach-caustic-route.md](finite-width-close-approach-caustic-route.md)
 - Owning queue item: `coupled_retained_history_integrator`
-- Engine authority: none
+- Engine authority:
+  [independently checked first-transit implementation](evidence/eom-fwc-regulator-matching-remainder-seed-0-2026-07-17.md)
 - Oracle authority: none
 - Budget change: none
-- Frozen binding edited: no
+- Frozen binding edited: yes
 
-This file is not an amendment to the frozen binding. It stages the mathematics
-and proposed binding text for an operator decision. Until ratified, the frozen
-equation and the current fail-closed `FWC-STATE-01` disposition remain in
-force.
+This file records the derivation and decision rationale for Amendment 1. The
+normative common-domain matching condition is incorporated into the frozen
+binding. The EOM solver now emits the independently checked regulator-matching
+rows and remains fail-closed whenever their complete unchanged-budget test
+does not certify.
 
 ## Finding In Plain Language
 
 The bound finite-width law has the correct sharp limit. It does not equal the
 sharp law at positive causal width and positive core scale, nor does the
-frozen binding claim that it does. The current common-domain state test omits
-the deterministic difference caused by those positive regulators and compares
-the two chart integrals using only numerical interpolation and retained-track
-remainders. The recorded disjoint interval is therefore consistent with the
-bound law and does not by itself identify an error in either certified
-integral.
+frozen binding claim that it does. The comparison corrected by this amendment
+omitted the deterministic difference caused by those positive regulators and
+compared the two chart integrals using only numerical interpolation and
+retained-track remainders. The recorded raw disjoint interval is therefore
+consistent with the bound law and does not by itself identify an error in
+either certified integral.
 
-The minimal proposed amendment leaves the acceleration law and every budget
+The ratified amendment leaves the acceleration law and every budget
 unchanged. It makes the common-domain matching remainder explicit and requires
 that remainder to fit inside the existing impulse and position-moment budgets.
 Literal raw overlap at positive regulator values is replaced by overlap after
@@ -475,7 +478,7 @@ $$
 
 after the existing complete numerical remainder
 $R^{\mathrm{num}}_{I,0}=6.29988\times10^{-16}$ has already been applied. The
-proposed amendment changes no law evaluation and therefore predicts that a
+ratified amendment changes no law evaluation and therefore predicts that a
 same-track rerun will retain this raw gap within the existing interval and
 track reproducibility. It also predicts
 
@@ -505,9 +508,9 @@ distance, the matched intervals remain disjoint, the total row exceeds the
 unchanged event budget, or the raw gap disappears without adding the regulator
 row.
 
-## Proposed Binding Amendment Text
+## Ratified Binding Amendment
 
-If ratified, add the following substance after the simple-root limit in
+The following substance is now bound after the simple-root limit in
 `master-eom-binding-v0` without changing either boxed acceleration equation:
 
 > On a certified common simple-root domain, the equality of the sharp and
@@ -526,16 +529,16 @@ If ratified, add the following substance after the simple-root limit in
 The finite-width law, core kernel, regulator values, error budgets, and sharp
 caustic prohibition are unchanged.
 
-Claim grade: `derived-proposal`. Falsifier: the operator ratifies positive-
-regulator identity as a defining law instead of a regulator-limit relation, or
-an independent theorem review finds that this text permits a rejected
-trajectory to pass without enclosing the actual chart difference.
+Claim grade: `derived-and-operator-ratified`. Falsifier: an independent theorem
+review finds that this text permits a rejected trajectory to pass without
+enclosing the actual chart difference, or the certified regulator remainder
+fails its analytic common-domain controls.
 
-## Alternate Law If Positive-Regulator Identity Is Intended
+## Rejected Alternative: Exact Positive-Regulator Identity
 
-If the operator instead intends exact equality wherever both charts are
-certified at positive regulator values, the frozen law requires a genuine
-matching-layer term. The minimal exact composite is
+Exact equality wherever both charts are certified at positive regulator
+values would require a genuine matching-layer term. The minimal exact
+composite is
 
 $$
 \mathbf A^{\mathrm{comp}}(T)
@@ -558,22 +561,22 @@ stratum. On the recorded first side cell it predicts zero raw chart distance,
 hence overlap within the existing $6.29988\times10^{-16}$ numerical remainder.
 
 This alternate changes the law at finite regulator values and makes a chart
-selector part of the binding. It is not recommended by this proposal because
-the frozen text claims common-limit convergence, which the current law already
-satisfies. A finite-order kernel-moment correction is not an exact substitute:
+selector part of the binding. The operator rejected it in favor of the
+regulator-limit relation, which the current law already satisfies. A finite-
+order kernel-moment correction is not an exact substitute:
 some higher positive-width moment remains and again scales linearly with a
 shrinking reception-cell width.
 
-Claim grade: `derived alternate proposal`. Falsifier: the composite differs
+Claim grade: `derived rejected alternative`. Falsifier: the composite differs
 from the sharp law where $\chi_C=1$, differs from the finite-width law where
 $\chi_C=0$, or a transition contribution cannot be bounded inside the
 unchanged event budget.
 
 ## Ratification And Promotion Disposition
 
-This proposal is `priority-only` and `defer with blocker`: operator
-ratification is required before editing the frozen binding, changing
-`FWC-STATE-01`, or implementing a regulator-matching certificate. No
-reader-facing corpus promotion is authorized by this packet. If ratified, the
-binding clarification should be applied first; route and engine work then form
-a separate implementation and independent-evidence batch.
+This amendment is promoted into the priority-owned binding and finite-width
+route. No reader-facing corpus promotion is required because neither boxed law
+changes. The separately recorded implementation certifies
+$R^{\mathrm{reg}}$, the unchanged budget sum, and the first atomic seed-0
+transit. Any common-domain row that does not satisfy those same obligations
+remains an adjudicated `FWC-STATE-01` halt.

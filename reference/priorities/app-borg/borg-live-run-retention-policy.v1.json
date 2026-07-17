@@ -22,7 +22,7 @@
       "durable paging to IndexedDB",
       "proof authority for compacted path history",
       "wake-history row retention",
-      "face-boundary replay rows"
+      "boundary-shell replay rows"
     ]
   },
   "uiFields": [

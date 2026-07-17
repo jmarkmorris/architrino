@@ -16,32 +16,16 @@ export const BORG_DATASET_MANIFEST_V1 = deepFreeze({
   "manifestId": "borg-eom-app-manifest",
   "claimLevel": "developer-test",
   "simulationEnvelope": {
-    "sideLength": 1,
-    "centralVolume": {
-      "kind": "cube",
-      "center": {
-        "x": 0.5,
-        "y": 0.5,
-        "z": 0.5
-      },
-      "bounds": {
-        "x": [
-          0.1,
-          0.9
-        ],
-        "y": [
-          0.1,
-          0.9
-        ],
-        "z": [
-          0.1,
-          0.9
-        ]
-      },
-      "coordinateChart": "outer-cube-cartesian"
+    "kind": "sphere",
+    "center": {
+      "x": 0.5,
+      "y": 0.5,
+      "z": 0.5
     },
-    "centralVolumeSideLength": 0.8,
-    "faceBufferMargin": 0.1,
+    "outerRadius": 0.625,
+    "centralBallRadius": 0.5,
+    "radialBufferMargin": 0.125,
+    "coordinateChart": "centered-cartesian",
     "scaleFactor": 1,
     "timeStepPolicy": "fixed",
     "sampleInterval": 0.01,
@@ -58,10 +42,10 @@ export const BORG_DATASET_MANIFEST_V1 = deepFreeze({
     "bufferArchitrinoCount": 3,
     "maximumArchitrinoCount": 512,
     "countDerivation": {
-      "formulaId": "N_calc=ceil(N_C*(1+2*b_face/L_C)^3)",
+      "formulaId": "N_calc=ceil(N_C*((r_central+b_radial)/r_central)^3)",
       "centralArchitrinoCount": 3,
-      "centralVolumeSideLength": 0.8,
-      "faceBufferMargin": 0.1,
+      "centralBallRadius": 0.5,
+      "radialBufferMargin": 0.125,
       "exactPreCeiling": 5.859375,
       "roundedValue": 6
     }
@@ -76,7 +60,7 @@ export const BORG_DATASET_MANIFEST_V1 = deepFreeze({
     "positrinoCharge": 1,
     "electrinoCharge": -1,
     "velocityPolicy": "zero-initial-velocity",
-    "initialLinePolicy": "seeded-random-interior-cube",
+    "initialLinePolicy": "seeded-random-central-ball",
     "velocitySeed": "zero-initial-velocity",
     "minimumPairSeparation": 0.2,
     "randomVelocityMaxComponentMagnitude": 0,
@@ -164,8 +148,7 @@ export const BORG_APP_SURFACE_DESIGN_V1 = deepFreeze({
     ],
     "defaultDisabledLayers": [
       "wake-streams",
-      "face-boundary-status",
-      "outbound-face-background"
+      "boundary-shell-status"
     ],
     "authorityPromotionRule": "least-authoritative-applicable-status-wins"
   },
@@ -174,10 +157,10 @@ export const BORG_APP_SURFACE_DESIGN_V1 = deepFreeze({
       "layer": "simulation-window",
       "state": "on-locked",
       "sourceFields": [
-        "simulationEnvelope.centralVolume",
-        "simulationEnvelope.centralVolumeSideLength",
-        "simulationEnvelope.sideLength",
-        "simulationEnvelope.faceBufferMargin"
+        "simulationEnvelope.center",
+        "simulationEnvelope.centralBallRadius",
+        "simulationEnvelope.outerRadius",
+        "simulationEnvelope.radialBufferMargin"
       ],
       "valueAuthority": "app-facing-projection"
     },
@@ -217,11 +200,11 @@ export const BORG_APP_SURFACE_DESIGN_V1 = deepFreeze({
       "firstFailureCode": "wake_history_gap_unclassified"
     },
     {
-      "layer": "face-boundary-status",
+      "layer": "boundary-shell-status",
       "state": "contextual-disabled",
       "sourceFields": [],
       "valueAuthority": "fail-closed-value",
-      "firstFailureCode": "missing_face_crossing_coverage"
+      "firstFailureCode": "missing_boundary_shell_crossing_coverage"
     },
     {
       "layer": "diagnostics",
@@ -230,33 +213,25 @@ export const BORG_APP_SURFACE_DESIGN_V1 = deepFreeze({
         "diagnostics.diagnosticStatusVocabulary"
       ],
       "valueAuthority": "fail-closed-value"
-    },
-    {
-      "layer": "outbound-face-background",
-      "state": "disabled",
-      "sourceFields": [],
-      "valueAuthority": "fail-closed-value",
-      "firstFailureCode": "face_influence_model_missing"
     }
   ],
   "authorityMap": {
     "eomRunFrameRows": "eom-shadow-output",
-    "centralCubeWireframe": "app-facing-projection",
-    "outerComputedCubeOverlay": "app-facing-projection",
+    "centralBallWireframe": "app-facing-projection",
+    "outerBoundaryShellWireframe": "app-facing-projection",
     "velocityRayGeometry": "app-facing-projection",
     "wakeStreams": "fail-closed-value",
-    "faceBoundaryStatus": "fail-closed-value",
-    "outboundFaceBackground": "fail-closed-value",
-    "centralVolumeAcceleration": "fail-closed-value",
+    "boundaryShellStatus": "fail-closed-value",
+    "centralBallAcceleration": "fail-closed-value",
     "deploymentBudgets": "missing-error-budget",
     "renderQuality": "not-measured"
   },
   "noAuthorityPromotions": true,
   "failClosedFirstFailureCodes": [
     "wake_history_gap_unclassified",
-    "missing_face_crossing_coverage",
-    "face_influence_model_missing",
-    "six_face_boundary_policy_missing",
+    "missing_boundary_shell_crossing_coverage",
+    "boundary_shell_influence_model_missing",
+    "boundary_shell_policy_missing",
     "velocity_sampling_protocol_missing",
     "required_residual_unmeasured"
   ],
@@ -272,28 +247,28 @@ export const BORG_FAIL_CLOSED_ROWS = deepFreeze([
     "affectedConsumers": [
       "wake-streams",
       "receiver-acceleration",
-      "central-volume-diagnostics"
+      "central-ball-diagnostics"
     ],
     "valueAuthority": "fail-closed-value"
   },
   {
-    "firstFailureCode": "missing_face_crossing_coverage",
+    "firstFailureCode": "missing_boundary_shell_crossing_coverage",
     "affectedConsumers": [
-      "face-boundary-status",
-      "face-summary-extraction"
+      "boundary-shell-status",
+      "boundary-shell-summary-extraction"
     ],
     "valueAuthority": "fail-closed-value"
   },
   {
-    "firstFailureCode": "face_influence_model_missing",
+    "firstFailureCode": "boundary_shell_influence_model_missing",
     "affectedConsumers": [
-      "face-replay-source",
-      "six-face-boundary-noise-policy"
+      "boundary-shell-replay-source",
+      "boundary-shell-noise-policy"
     ],
     "valueAuthority": "fail-closed-value"
   },
   {
-    "firstFailureCode": "six_face_boundary_policy_missing",
+    "firstFailureCode": "boundary_shell_policy_missing",
     "affectedConsumers": [
       "boundary-replay-decision",
       "benign-noise-status"
@@ -311,9 +286,9 @@ export const BORG_FAIL_CLOSED_ROWS = deepFreeze([
   {
     "firstFailureCode": "required_residual_unmeasured",
     "affectedConsumers": [
-      "central-volume-acceleration",
+      "central-ball-acceleration",
       "wake-background-diagnostics",
-      "face-boundary-replay"
+      "boundary-shell-replay"
     ],
     "valueAuthority": "fail-closed-value"
   }
@@ -345,6 +320,40 @@ export function validateBorgManifest({
   ) {
     failures.push("Borg wake horizon does not equal fieldSpeed times historyDepth");
   }
+  const envelope = manifest.simulationEnvelope;
+  const center = envelope.center ?? {};
+  if (envelope.kind !== "sphere") {
+    failures.push("Borg simulation envelope is not spherical");
+  }
+  if (![center.x, center.y, center.z].every(Number.isFinite)) {
+    failures.push("Borg simulation-envelope center is not finite");
+  }
+  if (!(envelope.centralBallRadius > 0) || !(envelope.outerRadius > envelope.centralBallRadius)) {
+    failures.push("Borg spherical radii are not ordered positive values");
+  }
+  if (
+    Math.abs(
+      envelope.outerRadius - envelope.centralBallRadius - envelope.radialBufferMargin,
+    ) > 1e-12
+  ) {
+    failures.push("Borg radial buffer does not span the central ball to the outer shell");
+  }
+  const countDerivation = manifest.population.countDerivation;
+  const exactDerivedPopulation = countDerivation.centralArchitrinoCount *
+    ((countDerivation.centralBallRadius + countDerivation.radialBufferMargin) /
+      countDerivation.centralBallRadius) ** 3;
+  const derivedPopulation = Math.ceil(exactDerivedPopulation);
+  if (
+    countDerivation.centralBallRadius !== envelope.centralBallRadius ||
+    countDerivation.radialBufferMargin !== envelope.radialBufferMargin ||
+    Math.abs(countDerivation.exactPreCeiling - exactDerivedPopulation) > 1e-12 ||
+    countDerivation.roundedValue !== derivedPopulation
+  ) {
+    failures.push("Borg spherical population derivation fields are inconsistent");
+  }
+  if (derivedPopulation !== manifest.population.architrinoCount) {
+    failures.push("Borg spherical population derivation does not match the declared population");
+  }
   if (
     manifest.population.architrinoCount !==
     manifest.initialConditions.electrinoCount + manifest.initialConditions.positrinoCount
@@ -354,8 +363,8 @@ export function validateBorgManifest({
   if (manifest.population.maximumArchitrinoCount < manifest.population.architrinoCount) {
     failures.push("maximum population is smaller than the default population");
   }
-  if (manifest.initialConditions.initialLinePolicy !== "seeded-random-interior-cube") {
-    failures.push("seeded-random interior-cube initial layout policy is missing");
+  if (manifest.initialConditions.initialLinePolicy !== "seeded-random-central-ball") {
+    failures.push("seeded-random central-ball initial layout policy is missing");
   }
   if (manifest.initialConditions.initialConditionSeed == null) {
     failures.push("seeded random initial condition seed is missing");
@@ -393,8 +402,8 @@ export function validateBorgManifest({
   if (!surfaceDesign.firstViewport.defaultDisabledLayers.includes("wake-streams")) {
     failures.push("wake-streams layer is not disabled");
   }
-  if (surfaceDesign.authorityMap.centralVolumeAcceleration !== "fail-closed-value") {
-    failures.push("central-volume acceleration is not fail-closed");
+  if (surfaceDesign.authorityMap.centralBallAcceleration !== "fail-closed-value") {
+    failures.push("central-ball acceleration is not fail-closed");
   }
   if (surfaceDesign.firstViewport.renderPixelSize !== "3840x2160") {
     failures.push("4K UHD render manifest is missing");

@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import math
 import subprocess
 import tempfile
 import unittest
@@ -501,12 +502,18 @@ class NativeCoupledEvolutionTests(unittest.TestCase):
             common
             for row in state_rows
             for common in row["common_domains"]
-            if common["status"] == "certified_overlap"
+            if common["status"] == "certified_regulator_match"
         ]
         self.assertTrue(passing_common_domains)
         self.assertTrue(
             all(
                 common["shortcut_remainders_emitted"]
+                for common in passing_common_domains
+            )
+        )
+        self.assertTrue(
+            all(
+                common["regulator_remainders_emitted"]
                 for common in passing_common_domains
             )
         )
@@ -520,6 +527,76 @@ class NativeCoupledEvolutionTests(unittest.TestCase):
         self.assertEqual(
             exhausted["failure_code"], "caustic_eta_convergence_failed"
         )
+
+    def test_regulator_matching_remainder_contains_stationary_closed_form(self) -> None:
+        control = self.packet["regulator_matching_analytic_control"]
+        self.assertEqual(control["reference"], "analytic_stationary_simple_root")
+        self.assertEqual(control["status"], "certified_regulator_match", control)
+
+        def phi(value: float) -> float:
+            return 0.5 * (1.0 + math.erf(value / math.sqrt(2.0)))
+
+        def phi_antiderivative(value: float) -> float:
+            density = math.exp(-0.5 * value * value) / math.sqrt(2.0 * math.pi)
+            return value * phi(value) + density
+
+        def z_phi_antiderivative(value: float) -> float:
+            density = math.exp(-0.5 * value * value) / math.sqrt(2.0 * math.pi)
+            return 0.5 * (
+                (value * value - 1.0) * phi(value) + value * density
+            )
+
+        radius = 0.5
+        eta = 0.05
+        core_scale = 0.1
+        coupling = 0.0001
+        lower = 0.0
+        upper = 0.001
+        history_start = -2.0
+        sharp_acceleration = -coupling / (radius * radius)
+        sharp_impulse = sharp_acceleration * (upper - lower)
+        upper_mass = phi(radius / eta)
+        z_lower = (radius - lower + history_start) / eta
+        z_upper = (radius - upper + history_start) / eta
+        omitted_mass_integral = eta * (
+            phi_antiderivative(z_lower) - phi_antiderivative(z_upper)
+        )
+        mass_integral = (upper - lower) * upper_mass - omitted_mass_integral
+        core_factor = (1.0 + (core_scale / radius) ** 2) ** -1.5
+        finite_impulse = core_factor * sharp_acceleration * mass_integral
+        exact_difference = Decimal(str(finite_impulse - sharp_impulse))
+        assert_contains(
+            self,
+            control["regulator_impulse_remainder"][0],
+            exact_difference,
+        )
+        sharp_moment = 0.5 * sharp_acceleration * (upper - lower) ** 2
+        residual_offset = radius + history_start
+        omitted_moment_mass = eta * (
+            (upper - residual_offset)
+            * (phi_antiderivative(z_lower) - phi_antiderivative(z_upper))
+            + eta
+            * (
+                z_phi_antiderivative(z_lower)
+                - z_phi_antiderivative(z_upper)
+            )
+        )
+        moment_mass = (
+            0.5 * (upper - lower) ** 2 * upper_mass
+            - omitted_moment_mass
+        )
+        finite_moment = core_factor * sharp_acceleration * moment_mass
+        exact_moment_difference = Decimal(str(finite_moment - sharp_moment))
+        assert_contains(
+            self,
+            control["regulator_position_moment_remainder"][0],
+            exact_moment_difference,
+        )
+        d2_lower, d2_upper = interval_bounds(
+            control["emission_second_derivative_bound"][0]
+        )
+        self.assertLessEqual(d2_lower, 0)
+        self.assertGreaterEqual(d2_upper, 0)
 
     def test_display_grade_warns_before_finite_width_adjudication(self) -> None:
         completed = subprocess.run(

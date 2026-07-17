@@ -1342,9 +1342,66 @@ This file holds dated decisions, implementation status, validation results, fail
   at least that large and is predicted to reduce the post-accounting disjoint
   distance to zero while the total remains inside the unchanged `1e-7` budget.
 - Staged
-  [master-eom-binding-v0-common-domain-matching-amendment-proposal.md](master-eom-binding-v0-common-domain-matching-amendment-proposal.md)
+  [master-eom-binding-v0-amendment-1-common-domain-matching.md](master-eom-binding-v0-amendment-1-common-domain-matching.md)
   as `pending-operator-ratification`. The frozen binding, finite-width route,
   EOM solver, and Decimal oracle were not edited.
 - Falsifier: a certified regulator-error evaluation excludes the measured gap,
   independent regulator refinement does not move the raw finite-width chart
   toward the sharp chart, or theorem review finds a missing leading term.
+
+## 2026-07-17 — Common-domain regulator-limit matching ratified
+
+- **Operator decision:** adopted regulator-limit common-domain matching with a
+  certified $R^{\mathrm{reg}}$ and rejected exact positive-regulator identity.
+- **Derived binding:** on a certified common simple-root domain, fixed positive
+  $\eta$ and $\epsilon_c$ need not make the sharp and finite-width chart
+  integrals equal. Their componentwise distance must be enclosed by the sum of
+  the numerical remainder and the regulator-matching remainder.
+- **Unchanged authority:** the two boxed acceleration laws, regulator values,
+  event budgets, and prohibition on using the sharp quotient when its source-
+  normal floor fails are unchanged.
+- **Fail-closed implementation boundary:** the current EOM solver does not yet
+  emit $R^{\mathrm{reg}}$. Its existing `FWC-STATE-01` halt remains
+  adjudicated until an independent implementation contains the actual chart
+  difference and keeps the complete remainder inside the unchanged budget.
+- Ratified
+  [Master EOM Binding v0 Amendment 1](master-eom-binding-v0-amendment-1-common-domain-matching.md),
+  amended [master-eom-binding-v0.md](master-eom-binding-v0.md), and propagated
+  the normative condition into the finite-width route.
+- Claim grade: `operator-decision` for the selected contract and `derived` for
+  the matching condition. Falsifier: an analytic common-domain control lies
+  outside the certified regulator remainder, or the complete numerical-plus-
+  regulator row exceeds an unchanged event budget.
+
+## 2026-07-17 — Amendment 1 regulator remainder and first certified transit
+
+- **Derived and implemented:** common simple-root tubes now emit the
+  emission-coordinate $\partial_u^2P_0$ bound, the Amendment 1 leading
+  core-plus-causal-width impulse and position-moment terms, complete outward
+  higher-order/tail/complement residuals, and the final
+  $R^{\mathrm{num}}+R^{\mathrm{reg}}$ budget rows. A zero-containing source
+  normal still prohibits the sharp quotient.
+- **Independent analytic control:** for a stationary simple root, the native
+  regulator row `[-2.5918113797e-8,2.5918113797e-8]` contains the exact
+  normal-CDF difference `2.2853586273e-8`. The Decimal oracle was unchanged.
+- **Measured prediction check:** the former minimum-height seed-0 cell
+  reproduces raw gap `3.51437e-11` and numerical remainder `6.29988e-16`; the
+  new regulator radius is `5.11160e-11`, so the post-accounting distance is
+  zero under the unchanged `1e-7` budget. Pair `1004 <- 1002` likewise has
+  `1.70130e-10` enclosed by `4.24835e-10`.
+- **Measured first transit:** the certified `h_max=0.0025` run atomically
+  publishes `[0.3425,0.3428125]` with entry, regulator, endpoint assembly,
+  common-domain matching, and exit rows all passing. The enclosing requested
+  chunk costs `5.09915 s`.
+- **Post-transit boundary:** the next subdivision reaches
+  `minimum_step_exhausted` through `numeric_step_budget_exceeded` at
+  `T=0.3428125`; no second encounter or dispersal is reached. This is a
+  non-FWC track-quality boundary, not a failed transit row.
+- **Validation:** 145 EOM Python tests and 67 Borg JavaScript tests pass. Two
+  deterministic fixture runs have identical SHA-256
+  `d38cb2c08d2f5ff297f5abf95556986468fba83566d9970970afd76575d464a0`.
+- Evidence:
+  [eom-fwc-regulator-matching-remainder-seed-0-2026-07-17.md](evidence/eom-fwc-regulator-matching-remainder-seed-0-2026-07-17.md).
+- Falsifier: the analytic value lies outside the emitted remainder, the raw
+  gap moves materially without a law change, a complete row exceeds budget,
+  the child is not published atomically, or any validation fails.

@@ -364,9 +364,20 @@ void print_atomic(const eom::NativeAtomicStepCertificate& certificate) {
                   << ",\"disjoint_width\":" << common.disjoint_width
                   << ",\"applicable_remainder_budget\":"
                   << common.applicable_remainder_budget
+                  << ",\"applicable_regulator_remainder_budget\":"
+                  << common.applicable_regulator_remainder_budget
+                  << ",\"applicable_total_remainder_budget\":"
+                  << common.applicable_total_remainder_budget
+                  << ",\"post_accounting_distance\":"
+                  << common.post_accounting_distance
                   << ",\"shortcut_remainders_emitted\":"
                   << (common.impulse_shortcut_remainder.has_value() &&
                               common.position_moment_shortcut_remainder
+                                  .has_value()
+                          ? "true" : "false")
+                  << ",\"regulator_remainders_emitted\":"
+                  << (common.regulator_impulse_remainder.has_value() &&
+                              common.regulator_position_moment_remainder
                                   .has_value()
                           ? "true" : "false")
                   << '}';
@@ -515,6 +526,71 @@ void print_regulator(
     std::cout << "]}";
   }
   std::cout << "]}";
+}
+
+void print_regulator_matching_control(
+    const eom::NativeCommonDomainChartCertificate& certificate) {
+  std::cout << "{\"reference\":\"analytic_stationary_simple_root\""
+            << ",\"status\":\"" << certificate.status
+            << "\",\"failure_code\":\"" << certificate.failure_code
+            << "\",\"reception_lower\":\""
+            << certificate.reception_lower
+            << "\",\"reception_upper\":\""
+            << certificate.reception_upper << "\",\"sharp_impulse\":";
+  if (certificate.sharp_impulse.has_value()) {
+    print_vector(*certificate.sharp_impulse);
+  } else {
+    std::cout << "null";
+  }
+  std::cout << ",\"finite_width_impulse\":";
+  if (certificate.finite_width_impulse.has_value()) {
+    print_vector(*certificate.finite_width_impulse);
+  } else {
+    std::cout << "null";
+  }
+  std::cout << ",\"emission_second_derivative_bound\":";
+  if (certificate.emission_second_derivative_bound.has_value()) {
+    print_vector(*certificate.emission_second_derivative_bound);
+  } else {
+    std::cout << "null";
+  }
+  std::cout << ",\"regulator_leading_impulse\":";
+  if (certificate.regulator_leading_impulse.has_value()) {
+    print_vector(*certificate.regulator_leading_impulse);
+  } else {
+    std::cout << "null";
+  }
+  std::cout << ",\"regulator_higher_order_impulse_remainder\":";
+  if (certificate.regulator_higher_order_impulse_remainder.has_value()) {
+    print_vector(*certificate.regulator_higher_order_impulse_remainder);
+  } else {
+    std::cout << "null";
+  }
+  std::cout << ",\"regulator_impulse_remainder\":";
+  if (certificate.regulator_impulse_remainder.has_value()) {
+    print_vector(*certificate.regulator_impulse_remainder);
+  } else {
+    std::cout << "null";
+  }
+  std::cout << ",\"sharp_position_moment\":";
+  if (certificate.sharp_position_moment.has_value()) {
+    print_vector(*certificate.sharp_position_moment);
+  } else {
+    std::cout << "null";
+  }
+  std::cout << ",\"finite_width_position_moment\":";
+  if (certificate.finite_width_position_moment.has_value()) {
+    print_vector(*certificate.finite_width_position_moment);
+  } else {
+    std::cout << "null";
+  }
+  std::cout << ",\"regulator_position_moment_remainder\":";
+  if (certificate.regulator_position_moment_remainder.has_value()) {
+    print_vector(*certificate.regulator_position_moment_remainder);
+  } else {
+    std::cout << "null";
+  }
+  std::cout << '}';
 }
 
 void print_pinned_fold_temporal_onset(
@@ -989,6 +1065,35 @@ void print_all() {
   const auto event_regulator = eom::certify_native_regulator_convergence(
       event_control_request, event_receiver, event_source, "1", "1",
       "2.99", "3.01");
+  auto regulator_matching_request = request(
+      "stationary-regulator-matching-control",
+      {{"receiver", "1",
+        history(
+            "stationary-matching-receiver", "-2", "0.001",
+            {"0", "0", "0", "0"})},
+       {"source", "1",
+        history(
+            "stationary-matching-source", "-2", "0.001",
+            {"0.5", "0", "0", "0"})}},
+      "0", "0.001", "0.001", "0.001", "1e-10", "1e-10", "1e-10",
+      "0.0001");
+  regulator_matching_request.causal_width = "0.05";
+  regulator_matching_request.core_scale = "0.1";
+  regulator_matching_request.event_impulse_tolerance = "1e-7";
+  regulator_matching_request.event_position_moment_tolerance = "1e-10";
+  regulator_matching_request.quadrature_tolerance = "1e-9";
+  regulator_matching_request.quadrature_max_depth = 32;
+  regulator_matching_request.quadrature_max_cells = 200000;
+  regulator_matching_request.event_max_depth = 32;
+  regulator_matching_request.event_max_cells = 200000;
+  std::vector<eom::NativePublishedPath> regulator_matching_histories;
+  for (const auto& path : regulator_matching_request.paths) {
+    regulator_matching_histories.push_back({path.path_id, path.history});
+  }
+  const auto regulator_matching_control =
+      eom::certify_native_common_domain_chart(
+          regulator_matching_request, regulator_matching_histories,
+          "receiver", "source", "0", "0.001", "0.001");
   auto event_mpfr_request = event_control_request;
   event_mpfr_request.force_event_precision_escalation = true;
   const auto event_mpfr = eom::certify_native_fold_caustic_impulse(
@@ -1254,6 +1359,8 @@ void print_all() {
   print_event(event_mpfr);
   std::cout << ",\"event_regulator\":";
   print_regulator(event_regulator);
+  std::cout << ",\"regulator_matching_analytic_control\":";
+  print_regulator_matching_control(regulator_matching_control);
   std::cout << ",\"event_nonconvergent\":";
   print_regulator(event_nonconvergent);
   std::cout << ",\"event_resource_failure\":";

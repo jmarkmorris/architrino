@@ -926,7 +926,13 @@ void run(
                     << common.disjoint_component
                     << ",\"disjointWidth\":" << common.disjoint_width
                     << ",\"applicableRemainderBudget\":"
-                    << common.applicable_remainder_budget;
+                    << common.applicable_remainder_budget
+                    << ",\"applicableRegulatorRemainderBudget\":"
+                    << common.applicable_regulator_remainder_budget
+                    << ",\"applicableTotalRemainderBudget\":"
+                    << common.applicable_total_remainder_budget
+                    << ",\"postAccountingDistance\":"
+                    << common.post_accounting_distance;
           const auto print_optional = [&](const char* label,
                                           const auto& value) {
             std::cout << ",\"" << label << "\":";
@@ -949,6 +955,21 @@ void run(
                          common.track_impulse_remainder);
           print_optional("trackPositionMomentRemainder",
                          common.track_position_moment_remainder);
+          print_optional("emissionSecondDerivativeBound",
+                         common.emission_second_derivative_bound);
+          print_optional("regulatorLeadingImpulse",
+                         common.regulator_leading_impulse);
+          print_optional("regulatorLeadingPositionMoment",
+                         common.regulator_leading_position_moment);
+          print_optional("regulatorHigherOrderImpulseRemainder",
+                         common.regulator_higher_order_impulse_remainder);
+          print_optional(
+              "regulatorHigherOrderPositionMomentRemainder",
+              common.regulator_higher_order_position_moment_remainder);
+          print_optional("regulatorImpulseRemainder",
+                         common.regulator_impulse_remainder);
+          print_optional("regulatorPositionMomentRemainder",
+                         common.regulator_position_moment_remainder);
           print_optional("sharpImpulse", common.sharp_impulse);
           print_optional("finiteWidthImpulse", common.finite_width_impulse);
           print_optional(

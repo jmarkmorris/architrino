@@ -67,9 +67,10 @@ test("Borg mounts EOM idle by default and reserves automatic compute for explici
   assert.equal(defaultResult, "default-eom-mounted");
   assert.equal(defaultMounts.length, 1);
   assert.equal(defaultMounts[0].autoStartEom, false);
-  assert.equal(defaultMounts[0].manifest.simulationEnvelope.sideLength, 1);
-  assert.equal(defaultMounts[0].manifest.simulationEnvelope.centralVolumeSideLength, 0.8);
-  assert.equal(defaultMounts[0].manifest.simulationEnvelope.faceBufferMargin, 0.1);
+  assert.equal(defaultMounts[0].manifest.simulationEnvelope.kind, "sphere");
+  assert.equal(defaultMounts[0].manifest.simulationEnvelope.outerRadius, 0.625);
+  assert.equal(defaultMounts[0].manifest.simulationEnvelope.centralBallRadius, 0.5);
+  assert.equal(defaultMounts[0].manifest.simulationEnvelope.radialBufferMargin, 0.125);
   assert.equal(defaultMounts[0].manifest.modelControls.coupling, 0.005);
   assert.equal(defaultMounts[0].eomShadowRunner.coupling, "0.005");
   assert.equal(defaultMounts[0].eomShadowRunner.chunkDuration, 0.05);
@@ -79,10 +80,10 @@ test("Borg mounts EOM idle by default and reserves automatic compute for explici
   assert.equal(defaultMounts[0].eomShadowRunner.useAdaptiveStepGrowth, true);
   assert.equal(defaultMounts[0].eomShadowRunner.runGrade, "display");
   assert.equal(defaultMounts[0].eomShadowRunner.farFieldEnclosureFraction, "0.25");
-  assert.deepEqual(defaultMounts[0].manifest.simulationEnvelope.centralVolume.bounds, {
-    x: [0.1, 0.9],
-    y: [0.1, 0.9],
-    z: [0.1, 0.9],
+  assert.deepEqual(defaultMounts[0].manifest.simulationEnvelope.center, {
+    x: 0.5,
+    y: 0.5,
+    z: 0.5,
   });
   assert.equal(defaultMounts[0].initialEomSeed.rows.length, 6 * 2);
   assert.equal(defaultMounts[0].initialEomSeed.endpointRows.length, 6);
@@ -100,7 +101,7 @@ test("Borg mounts EOM idle by default and reserves automatic compute for explici
   assert.equal(
     defaultMounts[0].eomShadowRunner.historyDepth,
     calculateBorgInertialHistoryDepth(defaultMounts[0].initialEomSeed.endpointRows, {
-      maximumSeparation: Math.sqrt(3),
+      maximumSeparation: 1.25,
     }),
   );
   assert.equal(
@@ -112,9 +113,11 @@ test("Borg mounts EOM idle by default and reserves automatic compute for explici
     defaultMounts[0].eomShadowRunner.historyDepth,
   );
   defaultMounts[0].initialEomSeed.endpointRows.forEach((row) => {
-    assert.ok(row.position.x >= 0.1 && row.position.x <= 0.9);
-    assert.ok(row.position.y >= 0.1 && row.position.y <= 0.9);
-    assert.ok(row.position.z >= 0.1 && row.position.z <= 0.9);
+    assert.ok(Math.hypot(
+      row.position.x - 0.5,
+      row.position.y - 0.5,
+      row.position.z - 0.5,
+    ) <= 0.5 + 1e-12);
   });
   assert.equal(defaultMounts[0].eomShadowRunner.targetDuration, 60);
   assert.equal(defaultMounts[0].eomShadowRunner.runDuration, 60);
@@ -256,7 +259,7 @@ test("Borg EOM migration uses canonical field speed and the declared memory dept
     targetDuration: 300.2,
     sampleInterval: 0.2,
   });
-  const expectedGeometricDelayBound = Math.sqrt(3);
+  const expectedGeometricDelayBound = 1.25;
 
   assert.equal(config.fieldSpeed, 1);
   assert.equal(config.geometricDelayBound, expectedGeometricDelayBound);
@@ -275,7 +278,7 @@ test("Borg EOM migration uses canonical field speed and the declared memory dept
   assert.equal(expandedPopulationConfig.pathCount, 32);
 
   const fallbackConfig = createBorgEomShadowRunConfig({
-    simulationEnvelope: { sideLength: 100, sampleInterval: 0.2 },
+    simulationEnvelope: { outerRadius: 50, sampleInterval: 0.2 },
     population: { architrinoCount: 1 },
     trajectoryRecord: { historyStartTime: 0, historyEndTime: 300 },
   }, {

@@ -82,7 +82,7 @@
     "chunkDurationDecision": "Do not exceed the measured 50 solver-time-unit chunk preset for this release budget. Larger chunks require another sweep before the ceiling moves above 50.",
     "workerMemoryDecision": "Use a 2 MB per-chunk worker-buffer ceiling. The largest measured chunk was 737400 bytes.",
     "appendRateDecision": "Require at least 20000 appended frame rows per second. The lowest measured rate was 24260 rows per second.",
-    "claimBoundary": "This manifest decides Borg browser/runtime budget ceilings only. It does not upgrade central-volume acceleration, wake history, face-boundary replay, benign-noise status, or proof claim authority."
+    "claimBoundary": "This manifest decides Borg browser/runtime budget ceilings only. It does not upgrade central-ball acceleration, wake history, boundary-shell replay, benign-noise status, or proof claim authority."
   },
   "uiFields": [
     "releaseBudgetManifest",

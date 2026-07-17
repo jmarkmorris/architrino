@@ -44,7 +44,7 @@ import {
   validateBorgInitialConditionConfig,
 } from "./BorgInitialConditions.js";
 
-const TARGET_CENTRAL_WORLD_SIDE = 4.96;
+const TARGET_CENTRAL_WORLD_DIAMETER = 4.96;
 const BORG_LIVE_RUN_BUDGET_VERSION = "borg-live-run-budget.v1";
 const CAMERA_MIN_DISTANCE = 4.8;
 const CAMERA_MAX_DISTANCE = 28;
@@ -54,6 +54,8 @@ const DEFAULT_ROTATION_X = -0.44;
 const DEFAULT_ROTATION_Y = 0.66;
 const ARCHITRINO_POINT_PIXEL_SIZE = 8;
 const ARCHITRINO_PICK_THRESHOLD = 0.22;
+const BOUNDARY_SHELL_LATITUDE_COUNT = 25;
+const BOUNDARY_SHELL_LONGITUDE_COUNT = 48;
 const DEFAULT_PLAYBACK_SPEED_PRESET_ID = "normal";
 const DEFAULT_RUN_CONTROL_PRESET_ID = "live-forever";
 const FINITE_RUN_CONTROL_PRESET_ID = "live-60s";
@@ -92,25 +94,23 @@ const PAUSE_ICON_PATH = "M8 5h3v14H8zM13 5h3v14h-3z";
 const HIDDEN_LAYER_BUTTONS = new Set(["simulation-window", "architrino-position"]);
 
 const LAYER_LABELS = Object.freeze({
-  "simulation-window": "Cube",
+  "simulation-window": "Sphere",
   "architrino-position": "Points",
   "path-history": "Path",
   "velocity-vectors": "Velocity",
   "wake-streams": "Wake",
-  "face-boundary-status": "Face",
+  "boundary-shell-status": "Shell",
   diagnostics: "Diag",
-  "outbound-face-background": "Face bg",
 });
 
 const LAYER_TITLES = Object.freeze({
-  "simulation-window": "Displayed central cube",
+  "simulation-window": "Spherical simulation envelope",
   "architrino-position": "Architrino positions from native frame rows",
   "path-history": "Path-history traces from native path rows",
   "velocity-vectors": "Velocity direction overlay",
   "wake-streams": "Wake streams are fail-closed until native rows exist",
-  "face-boundary-status": "Face-boundary status is fail-closed until native rows exist",
+  "boundary-shell-status": "Boundary-shell status is fail-closed until EOM rows exist",
   diagnostics: "Diagnostics are shown in the right rail",
-  "outbound-face-background": "Face background is fail-closed until the influence model exists",
 });
 
 const STATUS_TONE = Object.freeze({
@@ -236,7 +236,7 @@ export function mountBorgApp(options = {}) {
   let currentFrames = [...initialDisplayRows];
   let frameSets = createBorgFrameSetsFromRows(currentFrames);
   const worldUnitsPerSolverUnit =
-    TARGET_CENTRAL_WORLD_SIDE / Math.max(1, manifest.simulationEnvelope.centralVolumeSideLength);
+    TARGET_CENTRAL_WORLD_DIAMETER / (2 * manifest.simulationEnvelope.centralBallRadius);
   const scene = new THREE.Scene();
   const camera = new THREE.PerspectiveCamera(38, 1, 0.05, 100);
   const renderer = new THREE.WebGLRenderer({
@@ -249,12 +249,11 @@ export function mountBorgApp(options = {}) {
   renderer.setClearColor(0x12130f, 1);
 
   const rootGroup = new THREE.Group();
-  const cubeGroup = new THREE.Group();
-  const outerCubeGroup = new THREE.Group();
+  const boundaryShellGroup = new THREE.Group();
   const pathGroup = new THREE.Group();
   const velocityGroup = new THREE.Group();
   const pointGroup = new THREE.Group();
-  rootGroup.add(cubeGroup, outerCubeGroup, pathGroup, velocityGroup, pointGroup);
+  rootGroup.add(boundaryShellGroup, pathGroup, velocityGroup, pointGroup);
   scene.add(rootGroup);
 
   scene.add(new THREE.HemisphereLight(0xf1f7ea, 0x2f352b, 1.45));
@@ -420,21 +419,13 @@ export function mountBorgApp(options = {}) {
   };
 
   function buildScene() {
-    cubeGroup.add(
-      createCubeEdges({
-        sideLength: manifest.simulationEnvelope.centralVolumeSideLength,
-        color: 0x94d38a,
-        opacity: 0.46,
-      }),
-    );
-    outerCubeGroup.add(
-      createCubeEdges({
-        sideLength: manifest.simulationEnvelope.sideLength,
+    boundaryShellGroup.add(
+      createBoundaryShellPoints({
+        radius: manifest.simulationEnvelope.outerRadius,
         color: 0x5eb7b7,
-        opacity: 0.2,
+        opacity: 0.34,
       }),
     );
-    outerCubeGroup.visible = false;
 
     rebuildPathTrails();
 
@@ -506,16 +497,33 @@ export function mountBorgApp(options = {}) {
     velocityLines.clear();
   }
 
-  function createCubeEdges({ sideLength, color, opacity }) {
-    const worldSide = sideLength * worldUnitsPerSolverUnit;
-    const geometry = new THREE.BoxGeometry(worldSide, worldSide, worldSide);
-    const edges = new THREE.EdgesGeometry(geometry);
-    const material = new THREE.LineBasicMaterial({
+  function createBoundaryShellPoints({ radius, color, opacity }) {
+    const worldRadius = radius * worldUnitsPerSolverUnit;
+    const points = [];
+    for (let latIndex = 0; latIndex < BOUNDARY_SHELL_LATITUDE_COUNT; latIndex += 1) {
+      const theta = (latIndex / (BOUNDARY_SHELL_LATITUDE_COUNT - 1)) * Math.PI;
+      const y = Math.cos(theta) * worldRadius;
+      const ringRadius = Math.sin(theta) * worldRadius;
+      for (let lonIndex = 0; lonIndex < BOUNDARY_SHELL_LONGITUDE_COUNT; lonIndex += 1) {
+        const phi = (lonIndex / BOUNDARY_SHELL_LONGITUDE_COUNT) * Math.PI * 2;
+        points.push(new THREE.Vector3(
+          Math.cos(phi) * ringRadius,
+          y,
+          Math.sin(phi) * ringRadius,
+        ));
+      }
+    }
+    const material = new THREE.PointsMaterial({
       color,
+      size: 0.022,
       transparent: true,
       opacity,
+      depthWrite: false,
     });
-    return new THREE.LineSegments(edges, material);
+    return new THREE.Points(
+      new THREE.BufferGeometry().setFromPoints(points),
+      material,
+    );
   }
 
   function renderStaticPanels() {
@@ -658,9 +666,9 @@ export function mountBorgApp(options = {}) {
     );
     const runtimeWakeHorizon = manifest.simulationEnvelope.fieldSpeed * runtimeHistoryDepth;
     renderFieldRows(dom.envelopeFields, [
-      ["sideLength", manifest.simulationEnvelope.sideLength],
-      ["centralVolumeSideLength", manifest.simulationEnvelope.centralVolumeSideLength],
-      ["faceBufferMargin", manifest.simulationEnvelope.faceBufferMargin],
+      ["outerRadius", manifest.simulationEnvelope.outerRadius],
+      ["centralBallRadius", manifest.simulationEnvelope.centralBallRadius],
+      ["radialBufferMargin", manifest.simulationEnvelope.radialBufferMargin],
       ["sampleInterval", manifest.simulationEnvelope.sampleInterval],
       ["historyDepth", runtimeHistoryDepth],
       ["fieldSpeed", manifest.simulationEnvelope.fieldSpeed],
@@ -675,11 +683,9 @@ export function mountBorgApp(options = {}) {
   function renderInitialConditionFields() {
     const config = state.initialConditionConfig;
     const activeInitialRow = state.eomSeedEndpointRows?.[0] ?? state.distributionFrameRows?.[0];
-    const activeFamily = activeInitialRow?.runSource === "minimum-separation-lattice-initial-state"
-      ? "minimum-separation-lattice"
-      : activeInitialRow
-        ? "seeded-random-minimum-separation"
-        : manifest.initialConditions.initialConditionFamily;
+    const activeFamily = activeInitialRow
+      ? "seeded-random-minimum-separation"
+      : manifest.initialConditions.initialConditionFamily;
     renderFieldRows(dom.initialConditionFields, [
       ["family", activeFamily],
       ["seed", state.distributionFrameRows ? state.distributionLabel : manifest.initialConditions.initialConditionSeed ?? "null"],
@@ -997,7 +1003,7 @@ export function mountBorgApp(options = {}) {
   }
 
   function updateLayerVisibility() {
-    cubeGroup.visible = state.activeLayers.has("simulation-window");
+    boundaryShellGroup.visible = state.activeLayers.has("simulation-window");
     pointGroup.visible = state.activeLayers.has("architrino-position");
     pathGroup.visible = state.activeLayers.has("path-history");
     pathTrails.setVisible(pathGroup.visible);
@@ -1103,7 +1109,7 @@ export function mountBorgApp(options = {}) {
   function resetView() {
     rootGroup.rotation.set(DEFAULT_ROTATION_X, DEFAULT_ROTATION_Y, 0);
     state.cameraFitMargin = DEFAULT_CAMERA_FIT_MARGIN;
-    fitCameraToCentralCube(state.cameraFitMargin);
+    fitCameraToCentralBall(state.cameraFitMargin);
     render();
   }
 
@@ -1114,7 +1120,7 @@ export function mountBorgApp(options = {}) {
 
   function fitView() {
     state.cameraFitMargin = FIT_VIEW_MARGIN;
-    fitCameraToCentralCube(state.cameraFitMargin);
+    fitCameraToCentralBall(state.cameraFitMargin);
     render();
   }
 
@@ -1415,7 +1421,7 @@ export function mountBorgApp(options = {}) {
     camera.aspect = width / height;
     camera.updateProjectionMatrix();
     if (state.cameraFitMargin != null) {
-      fitCameraToCentralCube(state.cameraFitMargin);
+      fitCameraToCentralBall(state.cameraFitMargin);
     }
     render();
   }
@@ -1440,7 +1446,7 @@ export function mountBorgApp(options = {}) {
 
   /** Write solver coordinates into an existing {x,y,z} target; no allocation. */
   function writeSolverPositionToWorld(position, target) {
-    const center = manifest.simulationEnvelope.centralVolume.center;
+    const center = manifest.simulationEnvelope.center;
     target.x = (position.x - center.x) * worldUnitsPerSolverUnit;
     target.y = (position.y - center.y) * worldUnitsPerSolverUnit;
     target.z = (position.z - center.z) * worldUnitsPerSolverUnit;
@@ -1448,14 +1454,14 @@ export function mountBorgApp(options = {}) {
   }
 
 
-  function fitCameraToCentralCube(margin) {
-    const worldSide = manifest.simulationEnvelope.centralVolumeSideLength * worldUnitsPerSolverUnit;
-    const cubeRadius = (Math.sqrt(3) * worldSide) / 2;
+  function fitCameraToCentralBall(margin) {
+    const centralBallWorldRadius =
+      manifest.simulationEnvelope.centralBallRadius * worldUnitsPerSolverUnit;
     const verticalHalfFov = THREE.MathUtils.degToRad(camera.fov * 0.5);
     const horizontalHalfFov = Math.atan(Math.tan(verticalHalfFov) * Math.max(0.1, camera.aspect));
     const limitingHalfFov = Math.min(verticalHalfFov, horizontalHalfFov);
     state.cameraDistance = clamp(
-      (cubeRadius / Math.sin(limitingHalfFov)) * margin,
+      (centralBallWorldRadius / Math.sin(limitingHalfFov)) * margin,
       CAMERA_MIN_DISTANCE,
       CAMERA_MAX_DISTANCE,
     );
@@ -1961,7 +1967,7 @@ export function mountBorgApp(options = {}) {
       const historyDepth = calculateBorgInertialHistoryDepth(endpointRows, {
         fieldSpeed: options.eomShadowRunner.fieldSpeed ?? manifest.simulationEnvelope?.fieldSpeed ?? 1,
         sampleInterval: options.eomShadowRunner.sampleInterval ?? manifest.simulationEnvelope?.sampleInterval ?? 0.01,
-        maximumSeparation: Math.sqrt(3) * manifest.simulationEnvelope.sideLength,
+        maximumSeparation: 2 * manifest.simulationEnvelope.outerRadius,
       });
       const eomConfig = createBorgEomShadowRunConfig(manifest, {
         ...options.eomShadowRunner,

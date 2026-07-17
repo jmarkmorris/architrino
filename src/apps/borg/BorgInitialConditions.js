@@ -13,7 +13,6 @@ export const BORG_ACCEPTED_SEED_HISTORY_CERTIFICATE_VERSION =
 const POSITRINO_STATE_FLAG = 1;
 const ELECTRINO_STATE_FLAG = 2;
 const FIRST_PATH_KEY = 1001;
-const POSITION_INSET_RATIO = 0.08;
 
 export function createBorgInitialConditionConfig(initialConditions = {}) {
   return Object.freeze({
@@ -96,33 +95,24 @@ export function createBorgSeededInitialConditionRows({ manifest, seedIndex = 0, 
     accepted.randomVelocityMaxComponentMagnitude,
     accepted.randomVelocityMinSpeed,
   ].join(":"));
-  const bounds = manifest?.simulationEnvelope?.centralVolume?.bounds ?? {};
+  const envelopeCenter = manifest?.simulationEnvelope?.center ?? {};
+  const centralBallRadius = Number(manifest?.simulationEnvelope?.centralBallRadius);
+  if (![envelopeCenter.x, envelopeCenter.y, envelopeCenter.z].every(Number.isFinite) ||
+      !(centralBallRadius > 0)) {
+    throw new TypeError("Borg initial conditions require a finite spherical-envelope center and positive central-ball radius.");
+  }
   const stateFlags = createBalancedStateFlags(
     accepted.electrinoCount,
     accepted.positrinoCount,
   );
-  const latticePositions = createDeclaredLatticePositions(
-    stateFlags.length,
-    manifest?.initialConditions,
-  );
-  const denseGridPositions = latticePositions == null && stateFlags.length >= 32
-    ? createMinimumSeparationGridPositions(
-        stateFlags.length,
-        bounds,
-        nonNegativeNumber(manifest?.initialConditions?.minimumPairSeparation, 0),
-      )
-    : null;
-  const positions = latticePositions ?? denseGridPositions ?? createSeparatedRandomCentralPositions(
+  const positions = createSeparatedRandomCentralBallPositions(
       stateFlags.length,
-      bounds,
+      envelopeCenter,
+      centralBallRadius,
       rng,
       nonNegativeNumber(manifest?.initialConditions?.minimumPairSeparation, 0),
     );
-  const initialStateRunSource = latticePositions
-    ? "minimum-separation-lattice-initial-state"
-    : denseGridPositions
-      ? "minimum-separation-grid-initial-state"
-    : "seeded-random-minimum-separation-initial-state";
+  const initialStateRunSource = "seeded-random-minimum-separation-initial-state";
 
   return Object.freeze(stateFlags.map((flags, index) => Object.freeze({
     pathKey: FIRST_PATH_KEY + index,
@@ -395,20 +385,36 @@ function createBalancedStateFlags(electrinoCount, positrinoCount) {
   return flags;
 }
 
-function createRandomCentralPosition(bounds, rng) {
-  return {
-    x: randomAxisValue(bounds.x, rng),
-    y: randomAxisValue(bounds.y, rng),
-    z: randomAxisValue(bounds.z, rng),
-  };
+function createRandomCentralBallPosition(center, radius, rng) {
+  for (let attempt = 0; attempt < 256; attempt += 1) {
+    const offset = {
+      x: (rng() * 2 - 1) * radius,
+      y: (rng() * 2 - 1) * radius,
+      z: (rng() * 2 - 1) * radius,
+    };
+    if (Math.hypot(offset.x, offset.y, offset.z) <= radius) {
+      return {
+        x: Number(center.x) + offset.x,
+        y: Number(center.y) + offset.y,
+        z: Number(center.z) + offset.z,
+      };
+    }
+  }
+  throw new RangeError("Borg could not draw a position inside the central ball.");
 }
 
-function createSeparatedRandomCentralPositions(count, bounds, rng, minimumSeparation) {
+function createSeparatedRandomCentralBallPositions(
+  count,
+  center,
+  radius,
+  rng,
+  minimumSeparation,
+) {
   const positions = [];
   for (let index = 0; index < count; index += 1) {
     let accepted = null;
-    for (let attempt = 0; attempt < 4096; attempt += 1) {
-      const candidate = createRandomCentralPosition(bounds, rng);
+    for (let attempt = 0; attempt < 20000; attempt += 1) {
+      const candidate = createRandomCentralBallPosition(center, radius, rng);
       if (positions.every((position) => vectorDistance(position, candidate) >= minimumSeparation)) {
         accepted = Object.freeze(candidate);
         break;
@@ -422,73 +428,6 @@ function createSeparatedRandomCentralPositions(count, bounds, rng, minimumSepara
     positions.push(accepted);
   }
   return Object.freeze(positions);
-}
-
-function createMinimumSeparationGridPositions(count, bounds, minimumSeparation) {
-  const sideCount = Math.ceil(Math.cbrt(count));
-  const axes = ["x", "y", "z"].map((axis) => {
-    const [lower, upper] = bounds[axis].map(Number);
-    const extent = (sideCount - 1) * minimumSeparation;
-    if (!Number.isFinite(lower) || !Number.isFinite(upper) ||
-        extent > upper - lower + 1e-12) {
-      return null;
-    }
-    const origin = lower + ((upper - lower) - extent) / 2;
-    return Array.from(
-      { length: sideCount },
-      (_unused, index) => origin + index * minimumSeparation,
-    );
-  });
-  if (axes.some((axis) => axis == null)) {
-    return null;
-  }
-  const positions = [];
-  for (const x of axes[0]) {
-    for (const y of axes[1]) {
-      for (const z of axes[2]) {
-        positions.push(Object.freeze({ x, y, z }));
-        if (positions.length === count) {
-          return Object.freeze(positions);
-        }
-      }
-    }
-  }
-  return null;
-}
-
-function createDeclaredLatticePositions(count, initialConditions = {}) {
-  if (initialConditions.initialLinePolicy !== "minimum-separation-lattice-4x2x2") {
-    return null;
-  }
-  const dimensions = initialConditions.latticeDimensions ?? {};
-  const expectedCount = Number(dimensions.x) * Number(dimensions.y) * Number(dimensions.z);
-  if (count !== expectedCount) {
-    return null;
-  }
-  const origin = initialConditions.latticeOrigin ?? {};
-  const spacing = initialConditions.latticeSpacing ?? {};
-  const positions = [];
-  for (let xIndex = 0; xIndex < dimensions.x; xIndex += 1) {
-    for (let yIndex = 0; yIndex < dimensions.y; yIndex += 1) {
-      for (let zIndex = 0; zIndex < dimensions.z; zIndex += 1) {
-        positions.push(Object.freeze({
-          x: Number(origin.x) + xIndex * Number(spacing.x),
-          y: Number(origin.y) + yIndex * Number(spacing.y),
-          z: Number(origin.z) + zIndex * Number(spacing.z),
-        }));
-      }
-    }
-  }
-  return Object.freeze(positions);
-}
-
-function randomAxisValue(axisBounds, rng) {
-  const [min, max] = Array.isArray(axisBounds) ? axisBounds : [0, 1];
-  const low = Number.isFinite(Number(min)) ? Number(min) : 0;
-  const high = Number.isFinite(Number(max)) ? Number(max) : low + 1;
-  const span = high > low ? high - low : 1;
-  const inset = Math.min(span * POSITION_INSET_RATIO, span * 0.4);
-  return low + inset + rng() * Math.max(0, span - inset * 2);
 }
 
 function createRandomVelocity(rng, maxComponentMagnitude, minSpeed) {

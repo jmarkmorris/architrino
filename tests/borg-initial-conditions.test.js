@@ -140,13 +140,16 @@ test("Borg seeded initial-condition rows honor counts, polarity, and velocity li
   assert.equal(new Set(first.map((row) => row.pathKey)).size, 5);
   assert.equal(first.filter((row) => row.stateFlags === 1).length, 2);
   assert.equal(first.filter((row) => row.stateFlags === 2).length, 3);
-  const bounds = BORG_DATASET_MANIFEST_V1.simulationEnvelope.centralVolume.bounds;
+  const center = BORG_DATASET_MANIFEST_V1.simulationEnvelope.center;
+  const radius = BORG_DATASET_MANIFEST_V1.simulationEnvelope.centralBallRadius;
   first.forEach((row) => {
     assert.ok(Math.max(...Object.values(row.velocity).map(Math.abs)) <= 0.02);
     assert.ok(Math.hypot(row.velocity.x, row.velocity.y, row.velocity.z) >= 0.01);
-    assert.ok(row.position.x >= bounds.x[0] && row.position.x <= bounds.x[1]);
-    assert.ok(row.position.y >= bounds.y[0] && row.position.y <= bounds.y[1]);
-    assert.ok(row.position.z >= bounds.z[0] && row.position.z <= bounds.z[1]);
+    assert.ok(Math.hypot(
+      row.position.x - center.x,
+      row.position.y - center.y,
+      row.position.z - center.z,
+    ) <= radius + 1e-12);
   });
 });
 
@@ -176,6 +179,35 @@ test("Borg default seeded-random geometry certifies minimum separation and zero 
   assert.ok(certificate.measuredMinimumSeparation >= 0.2 - 1e-12);
 });
 
+test("Borg single-particle seeding has the uniform central-ball radial law", () => {
+  const radius = BORG_DATASET_MANIFEST_V1.simulationEnvelope.centralBallRadius;
+  const center = BORG_DATASET_MANIFEST_V1.simulationEnvelope.center;
+  let normalizedCubicRadiusSum = 0;
+  const sampleCount = 1000;
+  for (let seedIndex = 0; seedIndex < sampleCount; seedIndex += 1) {
+    const [row] = createBorgSeededInitialConditionRows({
+      manifest: BORG_DATASET_MANIFEST_V1,
+      seedIndex,
+      config: {
+        electrinoCount: 1,
+        positrinoCount: 0,
+        randomVelocityMaxComponentMagnitude: 0,
+        randomVelocityMinSpeed: 0,
+      },
+    });
+    const radialDistance = Math.hypot(
+      row.position.x - center.x,
+      row.position.y - center.y,
+      row.position.z - center.z,
+    );
+    assert.ok(radialDistance <= radius + 1e-12);
+    normalizedCubicRadiusSum += (radialDistance / radius) ** 3;
+  }
+  const normalizedCubicRadiusMean = normalizedCubicRadiusSum / sampleCount;
+  assert.ok(normalizedCubicRadiusMean > 0.47);
+  assert.ok(normalizedCubicRadiusMean < 0.53);
+});
+
 test("Borg initial-condition controls support an explicit zero-velocity population", () => {
   const rows = createBorgSeededInitialConditionRows({
     manifest: BORG_DATASET_MANIFEST_V1,
@@ -191,7 +223,7 @@ test("Borg initial-condition controls support an explicit zero-velocity populati
   assert.deepEqual(rows[0].velocity, { x: 0, y: 0, z: 0 });
 });
 
-test("Borg dense population controls use a deterministic minimum-separation grid", () => {
+test("Borg 64-path population uses central-ball random seeding with minimum separation", () => {
   const rows = createBorgSeededInitialConditionRows({
     manifest: BORG_DATASET_MANIFEST_V1,
     seedIndex: 0,
@@ -208,7 +240,12 @@ test("Borg dense population controls use a deterministic minimum-separation grid
 
   assert.equal(rows.length, 64);
   assert.equal(rows.every(
-    (row) => row.runSource === "minimum-separation-grid-initial-state"), true);
+    (row) => row.runSource === "seeded-random-minimum-separation-initial-state"), true);
   assert.equal(certificate.accepted, true);
   assert.ok(certificate.measuredMinimumSeparation >= 0.2 - 1e-12);
+  assert.equal(rows.every((row) => Math.hypot(
+    row.position.x - 0.5,
+    row.position.y - 0.5,
+    row.position.z - 0.5,
+  ) <= 0.5 + 1e-12), true);
 });

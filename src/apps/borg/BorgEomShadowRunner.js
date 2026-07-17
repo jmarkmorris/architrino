@@ -211,12 +211,12 @@ export function createBorgEomShadowRunConfig(manifest, options = {}) {
       `Borg EOM path count ${pathCount} exceeds the ${maximumPathCount} retained histories available.`,
     );
   }
-  const sideLength = positiveNumber(manifest.simulationEnvelope?.sideLength, 100);
+  const outerRadius = positiveNumber(manifest.simulationEnvelope?.outerRadius, 50);
   const fieldSpeed = positiveNumber(
     options.fieldSpeed,
     manifest.simulationEnvelope?.fieldSpeed ?? 1,
   );
-  const geometricDelayBound = (Math.sqrt(3) * sideLength) / fieldSpeed;
+  const geometricDelayBound = (2 * outerRadius) / fieldSpeed;
   const historySafetyMargin = positiveNumber(
     options.historySafetyMargin,
     Math.max(sampleInterval * 2, geometricDelayBound * 0.05),

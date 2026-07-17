@@ -344,7 +344,7 @@ struct NativeCausticWarning {
 };
 
 struct NativeCommonDomainChartCertificate {
-  std::string schema = "eom_native_fwc_common_domain_chart_certificate/v0";
+  std::string schema = "eom_native_fwc_common_domain_chart_certificate/v1";
   std::string status;
   std::string reception_lower;
   std::string reception_upper;
@@ -360,9 +360,20 @@ struct NativeCommonDomainChartCertificate {
   std::optional<IntervalVector> position_moment_shortcut_remainder;
   std::optional<IntervalVector> track_impulse_remainder;
   std::optional<IntervalVector> track_position_moment_remainder;
+  std::optional<IntervalVector> emission_second_derivative_bound;
+  std::optional<IntervalVector> regulator_leading_impulse;
+  std::optional<IntervalVector> regulator_leading_position_moment;
+  std::optional<IntervalVector> regulator_higher_order_impulse_remainder;
+  std::optional<IntervalVector>
+      regulator_higher_order_position_moment_remainder;
+  std::optional<IntervalVector> regulator_impulse_remainder;
+  std::optional<IntervalVector> regulator_position_moment_remainder;
   std::size_t disjoint_component = 3U;
   double disjoint_width = 0.0;
   double applicable_remainder_budget = 0.0;
+  double applicable_regulator_remainder_budget = 0.0;
+  double applicable_total_remainder_budget = 0.0;
+  double post_accounting_distance = 0.0;
   std::string failure_code;
 };
 
@@ -544,6 +555,16 @@ certify_native_fold_caustic_impulse(
     const std::string& source_charge,
     const std::string& reception_lower,
     const std::string& reception_upper);
+
+[[nodiscard]] NativeCommonDomainChartCertificate
+certify_native_common_domain_chart(
+    const NativeCoupledEvolutionRequest& request,
+    const std::vector<NativePublishedPath>& histories,
+    const std::string& receiver_path_id,
+    const std::string& source_path_id,
+    const std::string& reception_lower,
+    const std::string& reception_upper,
+    const std::string& event_end);
 
 [[nodiscard]] NativeRegulatorConvergenceCertificate
 certify_native_regulator_convergence(

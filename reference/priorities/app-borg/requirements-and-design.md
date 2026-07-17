@@ -2,7 +2,7 @@
 
 ## Purpose
 
-The app lets the operator build, run, inspect, and replay finite simulation windows that approximate an unbounded architrino universe with controlled scale and initial conditions. The first target is a bounded 3D window whose outbound face statistics can generate statistically matched inbound architrinos and wake history. Solver diagnostics must remain explicit about what is retained, replayed, display-only, or fail-closed.
+The app lets the operator build, run, inspect, and replay finite simulation windows that approximate an unbounded architrino universe with controlled scale and initial conditions. The first target is a bounded 3D window whose outbound shell statistics can generate statistically matched inbound architrinos and wake history. Solver diagnostics must remain explicit about what is retained, replayed, display-only, or fail-closed.
 
 The app is a design target until native-backed runs and retained same-record evidence exist.
 
@@ -17,42 +17,42 @@ The app is a design target until native-backed runs and retained same-record evi
 
 ## Simulation Window Boundary Model
 
-The first app model is a finite cubic simulation window embedded in an unbounded-universe approximation. The EOM solver should calculate an outer cubic window, while the default viewport displays and interprets an interior central cube. The outer computed cube is where face-boundary rows live. The interior cube is the primary observation region.
+The first app model is a finite spherical simulation envelope embedded in an unbounded-universe approximation. The outer boundary shell is where boundary-shell rows live, while the default viewport displays and interprets the interior central ball.
 
-The boundary rule is statistical: record the face statistics of outbound architrinos and wakes at the outer computed cube, characterize those statistics, and introduce statistically matched inbound architrinos and wake histories on those outer faces. This is an approximation policy for a local window inside an unbounded universe. It must be visibly distinct from exact retained path history or same-record wake evidence.
+The boundary rule is statistical: record the boundary-shell patch statistics of outbound architrinos and wakes at the outer spherical envelope, characterize those statistics, and introduce statistically matched inbound architrinos and wake histories on those outer boundary-shell patches. This is an approximation policy for a local window inside an unbounded universe. It must be visibly distinct from exact retained path history or same-record wake evidence.
 
-An exiting architrino contributes to an outbound face row. A later inbound architrino generated from face statistics is a boundary-generated architrino with reduced value authority unless the manifest explicitly binds it to retained external path history. Likewise, an inbound wake history generated from face statistics is background/replay input, not a retained wake row and not branch evidence.
+An exiting architrino contributes to an outbound shell row. A later inbound architrino generated from boundary-shell patch statistics is a boundary-generated architrino with reduced value authority unless the manifest explicitly binds it to retained external path history. Likewise, an inbound wake history generated from boundary-shell patch statistics is background/replay input, not a retained wake row and not branch evidence.
 
-The viewport should render the central cube as the operator-facing 3D cube of architrinos. The cube has no visible walls or filled faces; it is indicated only by a faint wireframe of the twelve cube edges. The app may expose the outer computed cube as a diagnostic overlay, but it should not be the default visual object. When an architrino crosses an outer computed face, it contributes to the face-boundary statistics. Statistically matched inbound architrinos may enter through any outer face according to the declared boundary policy, but the app must not depict that as the same identity returning through another face.
+The viewport renders one faint dotted sphere at the outer boundary shell. The central ball remains the declared seeding and measurement region but has no separate sphere, keeping the envelope legible as one boundary. When an architrino crosses the outer shell, it contributes to the boundary-shell statistics. A statistically matched inbound architrino is a new identity; the app must not depict it as the same identity returning at another shell location.
 
 ## Central Volume Observation Rule
 
-The primary measured region is a declared `centralVolume` inside the outer computed window. The app should be designed so the operator observes the central volume while face-boundary reconstruction remains a boundary condition, not the object being interpreted.
+The primary measured region is a declared `centralBall` inside the outer computed window. The app should be designed so the operator observes the central ball while boundary-shell reconstruction remains a boundary condition, not the object being interpreted.
 
 Boundary-generated inbound architrinos are new architrinos. They may carry reconstructed wake history sampled from statistically similar outbound wake rows, but that reconstructed wake history has `boundary-generated-value` authority unless the manifest binds retained external path history. This distinction is required even when the boundary replay is numerically useful.
 
-The simulation envelope must declare a buffer margin from the central volume to the outer computed cube faces:
+The simulation envelope must declare a buffer margin from the central ball to the outer spherical envelope boundary-shell patches:
 
 $$
-b_{\mathrm{face}}(\mathcal C)
+b_{\mathrm{shell}}(\mathcal C)
 =
 \min_{\mathbf x\in \mathcal C}
 \operatorname{dist}(\mathbf x,\partial\Omega_{\mathrm{calc}}),
 $$
 
-where $\mathcal C$ is the central volume and $\partial\Omega_{\mathrm{calc}}$ is the boundary of the outer computed cube.
+where $\mathcal C$ is the central ball and $\partial\Omega_{\mathrm{calc}}$ is the boundary of the outer spherical envelope.
 
-The strict central-volume buffer target is:
+The strict central-ball buffer target is:
 
 $$
-b_{\mathrm{face}}(\mathcal C)
+b_{\mathrm{shell}}(\mathcal C)
 \ge
 \max\left(c_f h,\ v_{\max}T_{\mathcal C}\right),
 $$
 
-where $c_f h$ is `wakeHorizon`, $v_{\max}$ is the declared or measured velocity bound for architrinos that could affect the central volume, and $T_{\mathcal C}$ is the central-volume observation interval. If the run cannot declare or measure $v_{\max}$, it cannot claim strict central-volume buffer status. It may still use statistical boundary replay, but central-volume values require the residual test below.
+where $c_f h$ is `wakeHorizon`, $v_{\max}$ is the declared or measured velocity bound for architrinos that could affect the central ball, and $T_{\mathcal C}$ is the central-ball observation interval. If the run cannot declare or measure $v_{\max}$, it cannot claim strict central-ball buffer status. It may still use statistical boundary replay, but central-ball values require the residual test below.
 
-Central-volume acceleration or wake-background values may be displayed as authoritative only when the face-boundary residual is inside the declared central-volume tolerance:
+Central-ball acceleration or wake-background values may be displayed as authoritative only when the boundary-shell residual is inside the declared central-ball tolerance:
 
 $$
 R_{\mathrm{boundary\to central}}
@@ -73,7 +73,7 @@ R_{\mathrm{boundary\to central}}
 \tau_{\mathcal C}.
 $$
 
-If no reference or bound is available, the central-volume result must carry `missing-error-budget` or `fail-closed-value`. If the residual exceeds $\tau_{\mathcal C}$, the run may still be useful for visual exploration, but it cannot claim that face-boundary activity is of no matter for the observed central volume.
+If no reference or bound is available, the central-ball result must carry `missing-error-budget` or `fail-closed-value`. If the residual exceeds $\tau_{\mathcal C}$, the run may still be useful for visual exploration, but it cannot claim that boundary-shell activity is of no matter for the observed central ball.
 
 ## Scale Controls
 
@@ -81,28 +81,28 @@ The app should expose scale as a declared simulation envelope, not as cosmetic z
 
 | Control | Meaning | Solver-facing obligation |
 | --- | --- | --- |
-| `sideLength` | Outer computed cube side length $L_{\mathrm{calc}}$ | Enters boundary crossing, face statistics, distance, and causal-root search inside the retained window. |
+| `outerRadius` | Outer spherical-envelope radius $r_{\mathrm{outer}}$ | Defines the boundary shell and the diameter used by the app's causal-history bound. |
 | `scaleFactor` | Operator-controlled scaling from model units to display or campaign units | Recorded in the run manifest; does not change ontology by itself. |
-| `centralArchitrinoCount` | Target number of primitive architrinos in the displayed central cube | Main population count for central-volume interpretation and first-screen readability. |
-| `architrinoCount` | Total number of primitive architrinos in the outer computed cube | Derived from `centralArchitrinoCount`, `centralVolumeSideLength`, and `faceBufferMargin`; drives solver cost, pair pressure, path streams, and wake-history pressure. |
-| `bufferArchitrinoCount` | `architrinoCount - centralArchitrinoCount` | Exterior computed population used to protect the central cube from face effects. |
+| `centralArchitrinoCount` | Target number of primitive architrinos in the displayed central ball | Main population count for central-ball interpretation and first-screen readability. |
+| `architrinoCount` | Total number of primitive architrinos in the outer spherical envelope | Derived from `centralArchitrinoCount`, `centralBallRadius`, and `radialBufferMargin`; drives solver cost, pair pressure, path streams, and wake-history pressure. |
+| `bufferArchitrinoCount` | `architrinoCount - centralArchitrinoCount` | Exterior computed population used to protect the central ball from boundary-shell patch effects. |
 | `electrinoCount` / `positrinoCount` | Requested polarity inventory for the initial condition | Must map to explicit per-architrino polarity or composition rows; native numerical encodings are implementation details. |
 | `duration` | Simulated time span | Determines required path-history depth and storage. |
 | `timeStepPolicy` | Fixed, adaptive, or solver-selected stepping policy | Must be part of the EOM solver model contract. |
 | `historyDepth` | Active causal-history time window $h$ | Measured in time; must be enough to support requested wake/root queries or fail closed. |
-| `wakeHorizon` | Wake travel length $c_f h$ corresponding to `historyDepth` | Measured in length; determines whether wakes can reach the simulation-window faces inside the retained history. |
+| `wakeHorizon` | Wake travel length $c_f h$ corresponding to `historyDepth` | Measured in length; determines whether wakes can reach the simulation-window boundary-shell patches inside the retained history. |
 | `wakeFloor` | Declared threshold below which wakes are not retained as resolved rows | Must route to background/noise rows rather than silent truncation. |
-| `boundaryMode` | Local window or statistical face boundary | Must determine whether outbound/inbound face rows are required in displayed rows. |
-| `centralVolume` | Declared interior observation region $\mathcal C$ | Main displayed region for interpretation; diagnostics outside it must not silently upgrade central-volume status. |
-| `centralVolumeSideLength` | Side length $L_{\mathcal C}$ of the displayed interior cube when $\mathcal C$ is cubic | Must be smaller than `sideLength` unless the run intentionally has no buffer. |
-| `faceBufferMargin` | Minimum distance $b_{\mathrm{face}}(\mathcal C)$ from the central volume to the outer computed faces | Must satisfy the strict central-volume buffer target or trigger boundary-to-central residual validation. |
-| `centralBoundaryTolerance` | Declared tolerance $\tau_{\mathcal C}$ for face-boundary influence on the central volume | Required before central-volume values can be presented as inside the declared boundary-influence budget. |
+| `boundaryMode` | Local window or statistical boundary shell | Must determine whether outbound/inbound boundary-shell patch rows are required in displayed rows. |
+| `centralBall` | Declared interior observation region $\mathcal C$ | Main displayed region for interpretation; diagnostics outside it must not silently upgrade central-ball status. |
+| `centralBallRadius` | Radius $r_{\mathrm{central}}$ of the displayed central ball | Must be smaller than `outerRadius` unless the run intentionally has no buffer. |
+| `radialBufferMargin` | Radial distance $b_{\mathrm{shell}}(\mathcal C)$ from the central ball to the outer boundary shell | Must satisfy the strict central-ball buffer target or trigger boundary-to-central residual validation. |
+| `centralBoundaryTolerance` | Declared tolerance $\tau_{\mathcal C}$ for boundary-shell influence on the central ball | Required before central-ball values can be presented as inside the declared boundary-influence budget. |
 
-The Borg simulation envelope uses the canonical normalized field speed $c_f=1$. Any different numeric value requires an explicit unit transform in the run manifest; an unexplained fixture-local override is invalid. The live app computes `historyDepth` from the full simulation-envelope diameter and active source-speed bound, then declares `wakeHorizon = c_f h`; for the default one-unit seeded geometry, both are `1.83`.
+The Borg simulation envelope uses the canonical normalized field speed $c_f=1$. Any different numeric value requires an explicit unit transform in the run manifest; an unexplained fixture-local override is invalid. The live app computes `historyDepth` from the full simulation-envelope diameter $2r_{\mathrm{outer}}$ and the active source-speed bound, then declares `wakeHorizon = c_f h`. With zero initial velocity, `outerRadius = 0.625`, and sample interval `0.01`, the initial history depth is `1.26`.
 
-`historyDepth` and `wakeHorizon` must not be collapsed into one UI field. `historyDepth` is the retained time window, while `wakeHorizon = c_f h` is the corresponding length scale. If `wakeHorizon` is small compared with `faceBufferMargin`, the central volume can be interpreted as local with respect to retained wakes, subject to the velocity-bound term above. If `wakeHorizon` is comparable to or larger than `faceBufferMargin`, face-boundary diagnostics, outbound face statistics, inbound replay policy, and wake-background status become relevant for central-volume interpretation.
+`historyDepth` and `wakeHorizon` must not be collapsed into one UI field. `historyDepth` is the retained time window, while `wakeHorizon = c_f h` is the corresponding length scale. If `wakeHorizon` is small compared with `radialBufferMargin`, the central ball can be interpreted as local with respect to retained wakes, subject to the velocity-bound term above. If `wakeHorizon` is comparable to or larger than `radialBufferMargin`, boundary-shell diagnostics, outbound shell statistics, inbound replay policy, and wake-background status become relevant for central-ball interpretation.
 
-The app may provide visual zoom independently, but visual zoom must not change `sideLength`, `centralVolumeSideLength`, causal speed, history depth, or solver precision unless the operator explicitly changes the simulation envelope.
+The app may provide visual zoom independently, but visual zoom must not change `outerRadius`, `centralBallRadius`, causal speed, history depth, or solver precision unless the operator explicitly changes the simulation envelope.
 
 ## Initial Conditions
 
@@ -116,75 +116,38 @@ The app should support several initial-condition families while preserving expli
 | `explicit` | Per-architrino position, velocity, identity, and optional path segment input | Best first path for reproducible fixtures. |
 | `imported` | Manifest id, schema version, source hash, units, and scale normalization | Must preserve source provenance and schema version. |
 
-The current browser implementation launches from a deterministic `seeded-random` geometry: sixteen irregularly placed architrinos, a 50/50 electrino/positrino mix, declared minimum pair separation `0.2`, and zero initial velocity. The accepted initial-history certificate records the measured all-pairs separation and its `1e-12` comparison tolerance. Consequently every displayed displacement in the default run is acceleration-driven. The seed makes the geometry reproducible without imposing a lattice.
-
-Measured developer-test, 2026-07-16: the default seed's all-pairs instrument measured a closest separation of `0.2057559101303399`, so the sixteen-path irregular geometry passes the declared `0.2` gate. `.tmp/eom-native-dev/eom_borg_shadow_cli` then evolved this geometry at coupling `0.005` through `T=1.5` (150 display keyframes) with no MPFR precision escalation. Chunks covering `T=1.35` through `T=1.50` took `0.875 s`, `0.889 s`, and `0.895 s`; this does not reproduce the former lattice's keyframe-140 precision cliff. Claim grade: measured executable behavior for this exact seed and binary, not a general bound over all seeds or times. Falsifier: the same declared seed and binary reports an MPFR pair before `T=1.5` or a native chunk above `2 s` in that interval.
-
-Measured limitation, 2026-07-16: an extended run first slowed at `T=1.75` through `T=1.80`, then entered MPFR escalation and failed closed at `T=1.859375` with `minimum_step_exhausted`. The random geometry therefore moves the reported slowdown boundary; it does not close the underlying late-run root-certification defect. Enabling the existing certificate-cost feedback controller was tested and rejected for Borg because it completed through `T=1.9` but still required `23.339 s` and `11.601 s` for the two precision-escalation chunks. Claim grade: measured developer stress test. Falsifier: a later build completes the same seed through `T=1.9` with no MPFR pairs and approximately flat ordinary chunk time.
+The current browser implementation launches from a deterministic `seeded-random` geometry: six architrinos seeded by rejection sampling uniformly in the central ball, a 3:3 electrino/positrino mix, declared minimum pair separation `0.2`, and zero initial velocity. The accepted initial-history certificate records the measured all-pairs separation and its `1e-12` comparison tolerance. Consequently every displayed displacement in the default run is acceleration-driven. The seed makes the geometry reproducible without imposing a lattice.
 
 The Initial Condition panel exposes exact `electrinoCount`, exact `positrinoCount`, the run coupling `κ`, `randomVelocityMaxComponentMagnitude`, and `randomVelocityMinSpeed`. The component maximum bounds each of `|v_x|`, `|v_y|`, and `|v_z|`; the minimum speed bounds the complete vector magnitude `sqrt(v_x^2+v_y^2+v_z^2)`. `Apply & run` uses deterministic seeded-random placement subject to the declared minimum-separation gate and passes the accepted positive coupling to every forward EOM chunk. It validates a combined population from 1 through 512, rejects an unreachable speed or placement request, constructs a certified exact polynomial initial history, and starts forward EOM evolution. A rejected edit leaves the active run unchanged. These rows are accepted input, not canonical equation-of-motion evidence. Per-architrino position and velocity-vector editing remains outside this implemented control set; high populations remain gated in practice by measured EOM throughput.
 
-### Population Count From Central Cube To Outer Cube
+### Population Count From Central Sphere To Outer Sphere
 
-The displayed architrino count and the solver architrino count are different once the solver calculates an outer computed cube. The app should let the operator choose the central cube count first, then derive the outer computed count from the central number density and the buffer margin.
-
-For a cubic central volume with side length $L_{\mathcal C}$ and central target count $N_{\mathcal C}$, define the central number density
-
-$$
-\rho_{\mathcal C}
-=
-\frac{N_{\mathcal C}}{L_{\mathcal C}^3}.
-$$
-
-If the outer computed cube has side length
-
-$$
-L_{\mathrm{calc}}
-=
-L_{\mathcal C}
-+
-2b_{\mathrm{face}}(\mathcal C),
-$$
-
-then the solver target count is
+The displayed architrino count and the total app population differ once the app declares a radial buffer. The app chooses the central-ball count first, then derives the total count by preserving the declared number density across the two spherical volumes:
 
 $$
 N_{\mathrm{calc}}
 =
 \left\lceil
-\rho_{\mathcal C}L_{\mathrm{calc}}^3
-\right\rceil
-=
-\left\lceil
 N_{\mathcal C}
 \left(
-1+\frac{2b_{\mathrm{face}}(\mathcal C)}{L_{\mathcal C}}
+\frac{r_{\mathrm{central}}+b_{\mathrm{radial}}}{r_{\mathrm{central}}}
 \right)^3
 \right\rceil.
 $$
 
-The central displayed count is not the total solver count. It is the expected count inside $\mathcal C$ after the exterior buffer is excluded from interpretation. For the first design target, $N_{\mathcal C}=256$ is the preferred displayed count and $N_{\mathrm{calc}}$ is derived from the chosen buffer.
-
-First useful buffer multipliers for $N_{\mathcal C}=256$ are:
-
-| Buffer ratio $b_{\mathrm{face}}(\mathcal C)/L_{\mathcal C}$ | Outer side multiplier | Solver target count $N_{\mathrm{calc}}$ |
-| --- | --- | --- |
-| $0.25$ | $1.5$ | $864$ |
-| $0.5$ | $2$ | $2048$ |
-| $1$ | $3$ | $6912$ |
-| $2$ | $5$ | $32000$ |
+For the current defaults, $N_{\mathcal C}=3$, $r_{\mathrm{central}}=0.5$, and $b_{\mathrm{radial}}=0.125$. The pre-ceiling value is $5.859375$, so the declared total remains six architrinos, split 3:3 by polarity.
 
 The app should display both counts:
 
 | Count | Meaning | Claim rule |
 | --- | --- | --- |
-| `centralArchitrinoCount` | Architrino count targeted inside the displayed central cube. | This is the visible count for central-volume interpretation. |
-| `architrinoCount` | Total architrino count requested for the outer computed cube. | This drives solver cost, path-history pressure, and wake-history pressure. |
+| `centralArchitrinoCount` | Architrino count targeted inside the displayed central ball. | This is the visible count for central-ball interpretation. |
+| `architrinoCount` | Total architrino count requested for the outer spherical envelope. | This drives solver cost, path-history pressure, and wake-history pressure. |
 | `bufferArchitrinoCount` | Difference `architrinoCount - centralArchitrinoCount`. | This is computed exterior population, not the primary observation set. |
 
-Central-cube counts are interpretable only after exterior face effects are excluded by the strict central-volume buffer target or by a passing $R_{\mathrm{boundary\to central}}$ residual. If neither condition is available, the central count may still be displayed as the staged interior population, but central-volume acceleration and wake-background claims must fail closed.
+Central-sphere counts are interpretable only after exterior boundary-shell patch effects are excluded by the strict central-ball buffer target or by a passing $R_{\mathrm{boundary\to central}}$ residual. If neither condition is available, the central count may still be displayed as the staged interior population, but central-ball acceleration and wake-background claims must fail closed.
 
-No initial-condition editor should ask the operator for architrino physical mass. The initial-condition editor must expose the requested electrino/positrino inventory directly. The operator should be able to set the central architrino count, see the derived outer computed count, and set the mix as exact counts, a ratio, or a percentage view, with the manifest preserving the resolved per-architrino polarity assignment across both the central cube and the buffer population.
+No initial-condition editor should ask the operator for architrino physical mass. The initial-condition editor must expose the requested electrino/positrino inventory directly. The operator should be able to set the central architrino count, see the derived outer computed count, and set the mix as exact counts, a ratio, or a percentage view, with the manifest preserving the resolved per-architrino polarity assignment across both the central ball and the buffer population.
 
 Velocity initialization needs first-class controls rather than a single random-speed knob:
 
@@ -203,7 +166,7 @@ Path history means the recorded source and receiver motion needed to replay wher
 
 | Record | Required fields |
 | --- | --- |
-| Current state | `architrinoId`, position, velocity, acceleration, face status, time, step index, status. |
+| Current state | `architrinoId`, position, velocity, acceleration, boundary-shell patch status, time, step index, status. |
 | Segment row | Path id, segment id, time bounds, endpoint states or segment coefficients, interpolation law, numeric precision, error budget. |
 | Active window | Hot in-memory path range used for ongoing root and wake solving. |
 | Spill manifest | Chunk ids, path id ranges, time ranges, byte offsets, checksums, units, scale normalization, schema version. |
@@ -217,16 +180,16 @@ Wake history means the retained causal influence rows generated by source path h
 
 | Record | Required fields |
 | --- | --- |
-| Resolved wake row | Wake row id, source architrino id, receiver architrino id, source path id, receiver path id, emission time, hit time, causal-root id, residual, branch row id when applicable, wake strength, face-boundary status, status. |
+| Resolved wake row | Wake row id, source architrino id, receiver architrino id, source path id, receiver path id, emission time, hit time, causal-root id, residual, branch row id when applicable, wake strength, boundary-shell status, status. |
 | Background/noise row | Threshold, aggregation interval, source population, receiver population or region, omitted resolved-row count, aggregate magnitude, claim-level downgrade. |
-| Boundary-generated row | Face id, time bin, source summary id, sampling seed, inbound source policy, inbound wake policy, value authority, error budget. |
-| Failure row | Missing path history, unresolved root, insufficient history depth, missing face summary, precision failure, branch-row mismatch, or simulation-envelope overflow. |
+| Boundary-generated row | Boundary-shell patch id, time bin, source summary id, sampling seed, inbound source policy, inbound wake policy, value authority, error budget. |
+| Failure row | Missing path history, unresolved root, insufficient history depth, missing boundary-shell patch summary, precision failure, branch-row mismatch, or simulation-envelope overflow. |
 
 Silent wake truncation is not allowed. If the requested scale makes individual wakes smaller than the declared `wakeFloor`, the run must record that boundary as a background/noise row with a claim-level downgrade.
 
 ### Borg Wake-History Row
 
-The first resolved wake-history row schema is `borg-wake-history-row.v1`. It is a retained row, not a visualization shell. A displayed wake stream, acceleration contribution, face-boundary label, or selected wake diagnostic must trace back to this row or to an explicit background/noise, boundary-generated, or failure row.
+The first resolved wake-history row schema is `borg-wake-history-row.v1`. It is a retained row, not a visualization shell. A displayed wake stream, acceleration contribution, boundary-shell label, or selected wake diagnostic must trace back to this row or to an explicit background/noise, boundary-generated, or failure row.
 
 | Field | Required content |
 | --- | --- |
@@ -242,11 +205,11 @@ The first resolved wake-history row schema is `borg-wake-history-row.v1`. It is 
 | `emissionTime` | Source time $t_0$. |
 | `hitTime` | Receiver time $t$. |
 | `fieldSpeed` | Causal field speed $c_f$ used by the row. |
-| `sideLength` | Simulation-window side length $L$ used by the row. |
-| `faceBoundaryLabel` | Face label and direction when the row depends on outbound or inbound boundary statistics; null for retained local rows. |
+| `outerRadius` | Simulation-window outer radius $L$ used by the row. |
+| `boundaryShellLabel` | Shell-patch label and direction when the row depends on outbound or inbound boundary statistics; null for retained local rows. |
 | `sourcePositionAtEmission` | Source position at $t_0$ in the active simulation-window chart. |
 | `receiverPositionAtHit` | Receiver position at $t$ in the active simulation-window chart. |
-| `boundarySourceSummaryId` | Face-statistics summary id when the source is boundary-generated; null for retained local source history. |
+| `boundarySourceSummaryId` | Boundary-shell patch-statistics summary id when the source is boundary-generated; null for retained local source history. |
 | `causalRootId` | Root-ledger or causal-root row id. |
 | `rootResidual` | Residual of the causal-root equation. |
 | `wakeStrength` | Solver-owned wake strength or acceleration contribution before display transforms. |
@@ -255,7 +218,7 @@ The first resolved wake-history row schema is `borg-wake-history-row.v1`. It is 
 | `evidenceStatus` | `retained-local-evidence`, `boundary-generated-value`, `display-only-visualization`, or `fail-closed-value`. |
 | `valueAuthority` | Diagnostic status for the row value, using the app value-authority vocabulary. |
 | `errorBudget` | Row-level root, wake-strength, boundary replay, and acceleration-contribution error bounds. |
-| `rowStatus` | Retained, background-ineligible, boundary-generated, insufficient history depth, exceeded error budget, missing face-boundary summary, or another first-failure status. |
+| `rowStatus` | Retained, background-ineligible, boundary-generated, insufficient history depth, exceeded error budget, missing boundary-shell summary, or another first-failure status. |
 
 ### Retained Local And Boundary-Generated Evidence Split
 
@@ -264,40 +227,40 @@ The app must separate retained local evidence from boundary-generated values.
 | Evidence status | Admission rule | Claim limit |
 | --- | --- | --- |
 | `retained-local-evidence` | Same-record source and receiver path history exists inside the active window; the causal root is solved inside the declared `errorBudget`; and the row does not depend on statistical boundary replay. | Supports local simulation-window diagnostics only. It does not prove the external unbounded universe state. |
-| `boundary-generated-value` | The value is generated from outbound/inbound face statistics with an explicit face label, summary id, sampling policy, seed, and error budget. | Supports reduced-model boundary input only. It cannot stand in for retained path history, retained wake evidence, branch evidence, or same-record causal-root proof. |
+| `boundary-generated-value` | The value is generated from outbound/inbound boundary-shell patch statistics with an explicit boundary-shell patch label, summary id, sampling policy, seed, and error budget. | Supports reduced-model boundary input only. It cannot stand in for retained path history, retained wake evidence, branch evidence, or same-record causal-root proof. |
 | `display-only-visualization` | The value is drawn only to preview boundary behavior and does not feed acceleration, wake rows, or diagnostics. | Helps inspect possible boundary behavior but has no solver authority. |
-| `fail-closed-value` | The run needs boundary interpretation but lacks a required face summary, retained path binding, causal-root row, error budget, replay validation, or row conservation proof. | Blocks authoritative acceleration, branch evidence, retained wake evidence, and unbounded-window claims for the affected receiver, region, or run. |
+| `fail-closed-value` | The run needs boundary interpretation but lacks a required boundary-shell patch summary, retained path binding, causal-root row, error budget, replay validation, or row conservation proof. | Blocks authoritative acceleration, branch evidence, retained wake evidence, and unbounded-window claims for the affected receiver, region, or run. |
 
 ## Simulation-Envelope Wake Row Rule
 
-Every run must declare a simulation envelope before wake-history or face-boundary output can be interpreted. The envelope is a run-manifest object with at least:
+Every run must declare a simulation envelope before wake-history or boundary-shell output can be interpreted. The envelope is a run-manifest object with at least:
 
 | Field | Meaning |
 | --- | --- |
-| `sideLength` | Outer computed cube side length $L_{\mathrm{calc}}$. |
+| `outerRadius` | Outer spherical envelope outer radius $L_{\mathrm{calc}}$. |
 | `historyDepth` | Active causal-history time window $h$. |
 | `wakeHorizon` | Wake travel length $c_f h$. |
 | `wakeFloor` | Declared per-row wake-strength or acceleration-contribution floor. |
 | `errorBudget` | Declared numeric error allowance for root solving, wake-strength evaluation, aggregation, and replay. |
-| `boundaryMode` | Local window or statistical face boundary. |
-| `centralVolume` | Interior observation region $\mathcal C$. |
-| `centralVolumeSideLength` | Displayed interior cube side length $L_{\mathcal C}$ when $\mathcal C$ is cubic. |
-| `faceBufferMargin` | Minimum distance $b_{\mathrm{face}}(\mathcal C)$ from $\mathcal C$ to the outer computed faces. |
-| `centralArchitrinoCount` | Target count $N_{\mathcal C}$ inside the displayed central cube. |
-| `architrinoCount` | Total target count $N_{\mathrm{calc}}$ inside the outer computed cube. |
+| `boundaryMode` | Local window or statistical boundary shell. |
+| `centralBall` | Interior observation region $\mathcal C$. |
+| `centralBallRadius` | Displayed central-ball radius $r_{\mathrm{central}}$. |
+| `radialBufferMargin` | Radial distance $b_{\mathrm{shell}}(\mathcal C)$ from $\mathcal C$ to the outer boundary shell. |
+| `centralArchitrinoCount` | Target count $N_{\mathcal C}$ inside the displayed central ball. |
+| `architrinoCount` | Total target count $N_{\mathrm{calc}}$ inside the outer spherical envelope. |
 | `bufferArchitrinoCount` | Computed exterior count $N_{\mathrm{calc}}-N_{\mathcal C}$. |
-| `centralVelocityBound` | Declared or measured $v_{\max}$ for architrinos that can affect the central volume during the observation interval. |
-| `centralObservationInterval` | Time interval $T_{\mathcal C}$ used by the strict central-volume buffer target. |
+| `centralVelocityBound` | Declared or measured $v_{\max}$ for architrinos that can affect the central ball during the observation interval. |
+| `centralObservationInterval` | Time interval $T_{\mathcal C}$ used by the strict central-ball buffer target. |
 | `centralBoundaryTolerance` | Declared $\tau_{\mathcal C}$ for $R_{\mathrm{boundary\to central}}$. |
-| `aggregationBins` | Time, face, source population, receiver population, and strength bins used for background/noise rows. |
+| `aggregationBins` | Time, boundary-shell patch, source population, receiver population, and strength bins used for background/noise rows. |
 
 The app may not display receiver acceleration as authoritative unless every candidate row inside the declared envelope is classified as exactly one of these records:
 
 | Class | Admission condition | Required record |
 | --- | --- | --- |
 | Resolved wake row | Same-record source and receiver path history exists; the causal root is solved inside `errorBudget`; and the wake contribution is at or above `wakeFloor`, or the selected diagnostic/branch depends on the individual row. | A retained wake row with source id, receiver id, source path id, receiver path id, emission time, hit time, causal-root id, residual, wake strength or acceleration contribution, value authority, and status. |
-| Aggregated wake-noise/background row | The individual row is below `wakeFloor`; it is not selected; no branch row, retained record, or selected-object diagnostic depends on that individual row; and the aggregate bin can be bounded inside `errorBudget`. | A background/noise row with threshold, bin definition, omitted-row count, aggregate magnitude, error bound, source population, receiver population or region, face summary when relevant, and claim-level downgrade. |
-| Boundary-generated row | The value comes from a declared face-boundary replay source with face id, source summary id, sampling seed, replay policy, and error budget. | A boundary-generated row with reduced value authority and a claim-level downgrade. |
+| Aggregated wake-noise/background row | The individual row is below `wakeFloor`; it is not selected; no branch row, retained record, or selected-object diagnostic depends on that individual row; and the aggregate bin can be bounded inside `errorBudget`. | A background/noise row with threshold, bin definition, omitted-row count, aggregate magnitude, error bound, source population, receiver population or region, boundary-shell patch summary when relevant, and claim-level downgrade. |
+| Boundary-generated row | The value comes from a declared boundary-shell replay source with boundary-shell patch id, source summary id, sampling seed, replay policy, and error budget. | A boundary-generated row with reduced value authority and a claim-level downgrade. |
 | Failure row | The run cannot prove resolved-row retention, admissible aggregation, or admissible boundary replay. | A fail-closed row with first-failure code, affected receiver or region, missing field or exceeded bound, and value-authority downgrade. |
 
 The classification is exclusive and exhaustive inside the declared envelope:
@@ -318,32 +281,32 @@ Forbidden silent truncation means:
 
 1. no candidate wake row inside the declared envelope may be dropped without increasing either a resolved-row count, an omitted-row count in a background/noise row, a boundary-generated count, or a failure-row count;
 2. a below-floor row may be aggregated only when the row is not selected and is not needed by any retained branch row, same-record binding, or selected-object diagnostic;
-3. a missing face-boundary summary in a boundary run is a failure row, not a background/noise row;
+3. a missing boundary-shell summary in a boundary run is a failure row, not a background/noise row;
 4. insufficient `historyDepth` is a failure row for affected receiver acceleration unless the manifest explicitly downgrades that acceleration to display-only or missing-error-budget;
-5. face-boundary replay may consume background/noise rows only after its validation row passes; it may not replace retained wake rows or repair missing same-record evidence.
+5. boundary-shell replay may consume background/noise rows only after its validation row passes; it may not replace retained wake rows or repair missing same-record evidence.
 
-## Face-Boundary Replay
+## Boundary-shell patch-Boundary Replay
 
-The app should support a candidate unbounded-window boundary experiment: characterize architrino and wake activity crossing the six faces of the simulation-window cube, then introduce statistically similar inbound architrinos and wake-background histories through the faces. This is an approximation policy for unresolved external influence, not a replacement for retained path-history rows, retained wake rows, or same-record evidence inside the active window.
+The app should support a candidate unbounded-window boundary experiment: characterize architrino and wake activity crossing the six boundary-shell patches of the simulation-window sphere, then introduce statistically similar inbound architrinos and wake-background histories through the boundary-shell patches. This is an approximation policy for unresolved external influence, not a replacement for retained path-history rows, retained wake rows, or same-record evidence inside the active window.
 
-The first schema and validation fixture for this experiment lives in [face-boundary-replay](face-boundary-replay.md). That packet defines `borg-face-summary.v1`, `borg-face-replay-source.v1`, face-summary extraction, statistical replay, and the $R_{\mathrm{face\ replay}}$ pass/fail threshold.
+The first schema and validation fixture for this experiment lives in [boundary-shell-replay](boundary-shell-replay.md). That packet defines `borg-boundary-shell-summary.v1`, `borg-boundary-shell-replay-source.v1`, boundary-shell patch-summary extraction, statistical replay, and the $R_{\mathrm{shell\ replay}}$ pass/fail threshold.
 
 Policy ladder:
 
 1. `retained-window` — preserve retained path-history and wake rows inside the active window; this is the only local path that can support same-record branch evidence.
-2. `face-statistics-replay` — introduce statistically similar inbound architrinos and reconstructed wake history for unresolved external influence; value authority is reduced-model boundary input.
-3. `display-only-preview` — show possible face noise visually without feeding receiver acceleration or diagnostics; value authority is display-only.
+2. `boundary-shell patch-statistics-replay` — introduce statistically similar inbound architrinos and reconstructed wake history for unresolved external influence; value authority is reduced-model boundary input.
+3. `display-only-preview` — show possible boundary-shell patch noise visually without feeding receiver acceleration or diagnostics; value authority is display-only.
 
 ## Boundary-Aware Wake Interpretation
 
-When the active causal-history horizon is small compared with $L$, most retained wakes are local to the active window. When the horizon reaches the face scale, wakes and architrinos can leave the window and external influence must be handled by retained external path history, statistically replayed face rows, or fail-closed diagnostics. The app must make this visible because boundary-generated rows are not the same diagnostic situation as retained local rows.
+When the active causal-history horizon is small compared with $L$, most retained wakes are local to the active window. When the horizon reaches the boundary-shell patch scale, wakes and architrinos can leave the window and external influence must be handled by retained external path history, statistically replayed boundary-shell patch rows, or fail-closed diagnostics. The app must make this visible because boundary-generated rows are not the same diagnostic situation as retained local rows.
 
 Required diagnostics:
 
-1. count outbound and inbound architrino face crossings by face and time bin;
-2. count resolved wake rows, background/noise rows, and boundary-generated wake rows by face and time bin;
+1. count outbound and inbound architrino boundary-shell patch crossings by boundary-shell patch and time bin;
+2. count resolved wake rows, background/noise rows, and boundary-generated wake rows by boundary-shell patch and time bin;
 3. show whether a selected receiver acceleration used retained local rows, boundary replay rows, background/noise rows, or a mixture;
-4. report first face-crossing time for the run envelope when available;
+4. report first boundary-shell patch-crossing time for the run envelope when available;
 5. mark rows whose interpretation depends on the statistical boundary policy.
 
 ## Acceleration View
@@ -369,23 +332,23 @@ The app may display this decomposition, but it must not promote it to proof evid
 
 The app should open on the working simulation surface, not a landing page. The visual design should be minimal, elegant, contemporary, and parsimonious by default: one quiet simulation workspace with restrained controls, clear hierarchy, and no decorative chrome that competes with the simulation state.
 
-Parsimony means the first screen should expose only the controls and statuses needed for the active run interpretation. Required solver state, value authority, error-budget status, wake-history gaps, face-boundary status, and fail-closed diagnostics must remain reachable without turning the default view into a dashboard of every possible row.
+Parsimony means the first screen should expose only the controls and statuses needed for the active run interpretation. Required solver state, value authority, error-budget status, wake-history gaps, boundary-shell status, and fail-closed diagnostics must remain reachable without turning the default view into a dashboard of every possible row.
 
 Primary regions:
 
-1. 3D simulation-window viewport with faint cube edges, architrino positions, path trails, wake rows, face-boundary rows, and diagnostics.
+1. 3D simulation-window viewport with faint sphere edges, architrino positions, path trails, wake rows, boundary-shell rows, and diagnostics.
 2. Left control rail for scale, initial conditions, EOM solver envelope, run controls, and seed/import controls.
 3. Bottom timeline for playback, scrubbing, checkpoint selection, and event selection.
-4. Right diagnostics rail for selected architrino state, path-history metadata, wake-history rows, acceleration decomposition, face-boundary summary, and failure rows.
+4. Right diagnostics rail for selected architrino state, path-history metadata, wake-history rows, acceleration decomposition, boundary-shell summary, and failure rows.
 5. Export panel for run manifest, checkpoints, frame buffers, path-history streams, wake-history rows, boundary rows, and diagnostics.
 
 The design should be dense and work-focused. Controls should favor exact numeric inputs, sliders for bounded values, toggles for binary flags, segmented controls for display modes, and icon buttons where the action is standard.
 
-Minimal does not mean hiding required state. The default view should keep advanced solver diagnostics collapsed or contextual, but the app must still expose path history, wake history, face-boundary rows, acceleration decomposition, background/noise rows, and failure rows whenever those records affect interpretation.
+Minimal does not mean hiding required state. The default view should keep advanced solver diagnostics collapsed or contextual, but the app must still expose path history, wake history, boundary-shell rows, acceleration decomposition, background/noise rows, and failure rows whenever those records affect interpretation.
 
 ### Launch State
 
-The app should launch into an initial-condition staging view at the start time, before the simulation is run. The default staging state is the editable `random` preset: architrinos scattered randomly in the cubic simulation window with a 50/50 electrino/positrino mix and random velocities. The visible scene is the simulation-window cube as a faint edge-only wireframe with editable architrino positions. Velocity rays are off by default and available through the layer toggle or selected-object editing. The operator can set the number and mix of electrinos and positrinos, choose a velocity policy, and adjust initial positions, velocities, and simulation-envelope fields before starting the EOM solver run; those edits are pending initial-condition changes, not path history.
+The app should launch into an initial-condition staging view at the start time, before the simulation is run. The default staging state is the editable `random` preset: architrinos scattered randomly in the spherical simulation envelope with a 50/50 electrino/positrino mix and random velocities. The visible scene is the simulation-window sphere as a faint edge-only wireframe with editable architrino positions. Velocity rays are off by default and available through the layer toggle or selected-object editing. The operator can set the number and mix of electrinos and positrinos, choose a velocity policy, and adjust initial positions, velocities, and simulation-envelope fields before starting the EOM solver run; those edits are pending initial-condition changes, not path history.
 
 Velocity vectors should render economically as rays from each architrino, without arrowheads. The ray uses the architrino's stable display color, with red/blue reserved for runs that expose an explicit polarity or charge-sign display policy. The first logarithmic magnitude cue should be a lightweight floating exponent label shown on hover, selection, or endpoint drag; for a speed scale near $10^x$, the label displays `x`. The selected-object diagnostics must still show the exact velocity vector, speed, transform type, and value-authority status.
 
@@ -393,7 +356,7 @@ In `custom` staging mode, direct manipulation is part of the initial-condition e
 
 ### Visualization Resolution
 
-Visualization resolution is display resolution, not solver resolution. Changing the canvas size, device pixel ratio, antialiasing, or render-scale policy must not change `sideLength`, `architrinoCount`, `historyDepth`, wake-row retention, central-volume diagnostics, or solver precision.
+Visualization resolution is display resolution, not solver resolution. Changing the canvas size, device pixel ratio, antialiasing, or render-scale policy must not change `outerRadius`, `architrinoCount`, `historyDepth`, wake-row retention, central-ball diagnostics, or solver precision.
 
 The required output standard is **4K UHD**: 3840 by 2160 pixels. Produced screenshots, captures, review output, and quality-mode app views must meet this resolution. DCI 4K is a different cinema format, 4096 by 2160; the app requirement is UHD 4K at 3840 by 2160.
 
@@ -433,14 +396,14 @@ The deployment budget must fail closed when the app cannot distinguish static tr
 
 ## First-Screen Control Layout
 
-The first screen should make camera navigation, viewport layers, and simulation-envelope scale controls physically and visually separate. The operator must not be able to confuse camera zoom with changing the simulation-window side length or solver scale.
+The first screen should make camera navigation, viewport layers, and simulation-envelope scale controls physically and visually separate. The operator must not be able to confuse camera zoom with changing the simulation-window outer radius or solver scale.
 
 | Region | Location | Contents | Boundary |
 | --- | --- | --- | --- |
-| Viewport camera cluster | Floating inside the 3D viewport, upper right or lower right. | Rotate/orbit, zoom, pan, reset view, fit window, focus selected. | Camera controls change only the rendered viewpoint. They must never edit `sideLength`, `scaleFactor`, `historyDepth`, `wakeHorizon`, `wakeFloor`, precision, or solver state. |
-| Layer toggle strip | Floating inside the 3D viewport, upper left or top center. | `path-history`, `wake-streams`, `velocity-vectors`, `face-boundary-status`, and `diagnostics` toggles. | Layer toggles change visibility only. They must not create, delete, or recompute solver rows. |
-| Simulation-envelope panel | Left control rail, outside the 3D viewport. | `sideLength`, `centralVolumeSideLength`, `faceBufferMargin`, `centralArchitrinoCount`, derived `architrinoCount`, `bufferArchitrinoCount`, `scaleFactor`, `historyDepth`, `wakeHorizon = c_f h`, `wakeFloor`, `boundaryMode`, electrino/positrino mix, velocity policy, `duration`, `timeStepPolicy`, and precision claim controls. | These controls change the requested run envelope or pending initial condition and must show pending, accepted, rejected, or fail-closed status. |
-| Exact-value readout | Near the simulation-envelope panel and selected-object diagnostics. | Exact `sideLength`, `centralVolumeSideLength`, `faceBufferMargin`, `centralArchitrinoCount`, `architrinoCount`, `bufferArchitrinoCount`, camera zoom ratio, `scaleFactor`, `historyDepth`, `wakeHorizon`, selected time, frame index, selected architrino velocity, selected wake strength, diagnostic status, and value-authority status. | Must keep camera zoom and physical simulation scale in separate labeled rows. |
+| Viewport camera cluster | Floating inside the 3D viewport, upper right or lower right. | Rotate/orbit, zoom, pan, reset view, fit window, focus selected. | Camera controls change only the rendered viewpoint. They must never edit `outerRadius`, `scaleFactor`, `historyDepth`, `wakeHorizon`, `wakeFloor`, precision, or solver state. |
+| Layer toggle strip | Floating inside the 3D viewport, upper left or top center. | `path-history`, `wake-streams`, `velocity-vectors`, `boundary-shell-status`, and `diagnostics` toggles. | Layer toggles change visibility only. They must not create, delete, or recompute solver rows. |
+| Simulation-envelope panel | Left control rail, outside the 3D viewport. | `outerRadius`, `centralBallRadius`, `radialBufferMargin`, `centralArchitrinoCount`, derived `architrinoCount`, `bufferArchitrinoCount`, `scaleFactor`, `historyDepth`, `wakeHorizon = c_f h`, `wakeFloor`, `boundaryMode`, electrino/positrino mix, velocity policy, `duration`, `timeStepPolicy`, and precision claim controls. | These controls change the requested run envelope or pending initial condition and must show pending, accepted, rejected, or fail-closed status. |
+| Exact-value readout | Near the simulation-envelope panel and selected-object diagnostics. | Exact `outerRadius`, `centralBallRadius`, `radialBufferMargin`, `centralArchitrinoCount`, `architrinoCount`, `bufferArchitrinoCount`, camera zoom ratio, `scaleFactor`, `historyDepth`, `wakeHorizon`, selected time, frame index, selected architrino velocity, selected wake strength, diagnostic status, and value-authority status. | Must keep camera zoom and physical simulation scale in separate labeled rows. |
 | Timeline rail | Bottom of the screen. | Linear local scrubber, logarithmic overview, current time, frame index, checkpoint id, and playback speed. | Timeline navigation changes playback/readback position only unless the operator explicitly changes the simulation envelope duration. |
 | Diagnostics rail | Right side, contextual and collapsible. | Selected architrino state, selected wake row, error budget, diagnostic status, value authority, first-failure codes, and acceleration decomposition. | Diagnostics may explain a value but must not silently upgrade claim level. |
 
@@ -449,7 +412,7 @@ Required separation labels:
 1. Camera controls must be labeled `View`.
 2. Simulation-envelope controls must be labeled `Simulation envelope`.
 3. Camera zoom must be displayed as `view zoom`.
-4. Physical/window scale must display outer computed `sideLength`, displayed `centralVolumeSideLength`, and `faceBufferMargin` separately.
+4. Physical/window scale must display outer computed `outerRadius`, displayed `centralBallRadius`, and `radialBufferMargin` separately.
 5. Model/display scaling must be displayed as `scaleFactor`.
 6. `historyDepth` must show time units.
 7. `wakeHorizon = c_f h` must show length units.
@@ -457,9 +420,9 @@ Required separation labels:
 Interaction rules:
 
 1. Mouse wheel, trackpad pinch, viewport zoom buttons, and fit-view commands control `view zoom` only.
-2. Editing `sideLength`, `centralVolumeSideLength`, `faceBufferMargin`, `centralArchitrinoCount`, `scaleFactor`, `historyDepth`, `wakeHorizon`, `wakeFloor`, `boundaryMode`, or precision must occur only in the simulation-envelope panel.
+2. Editing `outerRadius`, `centralBallRadius`, `radialBufferMargin`, `centralArchitrinoCount`, `scaleFactor`, `historyDepth`, `wakeHorizon`, `wakeFloor`, `boundaryMode`, or precision must occur only in the simulation-envelope panel.
 3. A changed simulation-envelope or boundary-policy field must enter a pending state until the EOM solver accepts, reruns, rejects, or fails closed.
-4. Layer toggles may reveal path history, wake streams, velocity rays, face-boundary status, and diagnostics without changing run data.
+4. Layer toggles may reveal path history, wake streams, velocity rays, boundary-shell status, and diagnostics without changing run data.
 5. Selected-object diagnostics must show both camera-independent solver values and any display transform used by the viewport.
 
 ## Logarithmic UI Exploration
@@ -468,7 +431,7 @@ The app should explore a logarithmic UI for quantities that naturally span many 
 
 | Surface | Logarithmic use | Required exactness |
 | --- | --- | --- |
-| Scale | Let the operator move across outer computed side length, displayed central-volume side length, buffer margin, density, and visual scale ranges without huge sliders. | Show exact `sideLength`, `centralVolumeSideLength`, `faceBufferMargin`, `scaleFactor`, and units beside the control. |
+| Scale | Let the operator move across outer radius, central-ball radius, buffer margin, density, and visual scale ranges without huge sliders. | Show exact `outerRadius`, `centralBallRadius`, `radialBufferMargin`, `scaleFactor`, and units beside the control. |
 | Velocity rays | Use logarithmic ray length so slow and fast architrinos remain visible together. | Show the selected architrino's raw velocity and the ray scaling rule. |
 | Wake strength | Use logarithmic opacity, shell thickness, or legend bins for resolved wake rows. | Show raw wake strength, threshold, and whether the row is resolved, boundary-generated, or background/noise. |
 | History depth | Use logarithmic controls for active path-history window and replay duration. | Show exact history depth, storage estimate, and any solver admission warning. |
@@ -483,45 +446,44 @@ The first logarithmic UI prototype should test four surfaces: scale, velocity ra
 
 | Surface | Prototype rule | Exact value requirement | Status requirement |
 | --- | --- | --- | --- |
-| Scale | Use a logarithmic slider or stepper for `sideLength`, `centralVolumeSideLength`, `faceBufferMargin`, `scaleFactor`, `historyDepth`, and `wakeHorizon` ranges that span many orders of magnitude. The slider label should show powers or order bands, while the adjacent numeric fields hold exact values. | Always show exact `sideLength`, `centralVolumeSideLength`, `faceBufferMargin`, `scaleFactor`, `historyDepth`, `wakeHorizon = c_f h`, and units. | Values that change the simulation envelope must be marked as pending until the EOM solver accepts or reruns the envelope. |
+| Scale | Use a logarithmic slider or stepper for `outerRadius`, `centralBallRadius`, `radialBufferMargin`, `scaleFactor`, `historyDepth`, and `wakeHorizon` ranges that span many orders of magnitude. The slider label should show powers or order bands, while the adjacent numeric fields hold exact values. | Always show exact `outerRadius`, `centralBallRadius`, `radialBufferMargin`, `scaleFactor`, `historyDepth`, `wakeHorizon = c_f h`, and units. | Values that change the simulation envelope must be marked as pending until the EOM solver accepts or reruns the envelope. |
 | Velocity rays | Use logarithmic ray length for viewport readability, with each ray using the architrino's stable color and no arrowhead. Use a floating exponent label as the first magnitude cue during hover, selection, or endpoint drag; for a speed scale near $10^x$, the label displays `x`. | On hover, selection, or endpoint drag, show raw velocity vector, speed magnitude, exponent label, ray scale rule, and whether the ray is linear or logarithmic. | Ray geometry is `app-facing-projection`; the raw velocity remains `authoritative-solver-output` only when its error budget is valid. |
-| Wake strength | Use logarithmic opacity, shell thickness, or legend bins for resolved wake rows and background/noise rows. Above-floor retained wake rows must remain visually distinguishable from boundary replay and background/noise. | Show raw wake strength or acceleration contribution, `wakeFloor`, threshold relation, row id, face-boundary status when relevant, and exact diagnostic status. | Resolved retained rows may display as solver-backed; statistical face replay and preview shells must remain reduced-model or display-only. |
+| Wake strength | Use logarithmic opacity, shell thickness, or legend bins for resolved wake rows and background/noise rows. Above-floor retained wake rows must remain visually distinguishable from boundary replay and background/noise. | Show raw wake strength or acceleration contribution, `wakeFloor`, threshold relation, row id, boundary-shell status when relevant, and exact diagnostic status. | Resolved retained rows may display as solver-backed; statistical boundary-shell patch replay and preview shells must remain reduced-model or display-only. |
 | Timeline navigation | Use a dual timeline: a linear local scrubber for frame-accurate playback near the current time and a logarithmic overview for long-run navigation across sparse or dense event regions. | Always show exact time, frame index, selected checkpoint id, playback speed, and whether the active timeline interaction is linear or logarithmic. | Log overview positions are navigation aids; frame reads remain authoritative only when backed by the run manifest and stream index. |
 
 ## Viewport Layers
 
-The 3D viewport should use optional layers that can be turned on or off without changing the solver run. Layers are display controls over solver-owned state, path-history streams, wake-history rows, face-boundary rows, and diagnostics.
+The 3D viewport should use optional layers that can be turned on or off without changing the solver run. Layers are display controls over solver-owned state, path-history streams, wake-history rows, boundary-shell rows, and diagnostics.
 
 | Layer | Default | Visual rule | Data dependency |
 | --- | --- | --- | --- |
-| `simulation-window` | On and locked | Render only the faint wireframe edges of the displayed central cube; do not render walls, panels, or filled faces. | `centralVolume`, `centralVolumeSideLength`, `sideLength`, `faceBufferMargin`, and camera projection. |
+| `simulation-window` | On and locked | Render only the faint wireframe edges of the displayed central ball; do not render walls, panels, or filled boundary-shell patches. | `centralBall`, `centralBallRadius`, `outerRadius`, `radialBufferMargin`, and camera projection. |
 | `architrino-position` | On | Render each architrino as a stable colored point or glyph. | Current solver state. |
 | `path-history` | Off | Render recent trails with fade or bounded segment count. | Path-history stream and replay index. |
-| `wake-streams` | Off | Render expanding causal spheres or shells from retained wake rows; boundary-generated rows must be visually downgraded. | Wake-history rows, emission time, hit time, causal speed, face-boundary status. |
+| `wake-streams` | Off | Render expanding causal spheres or shells from retained wake rows; boundary-generated rows must be visually downgraded. | Wake-history rows, emission time, hit time, causal speed, boundary-shell status. |
 | `velocity-vectors` | Off by default; toggleable in staging and playback | Render each architrino's current velocity as a ray using the same stable color as the architrino, with no arrowhead. Ray length should use logarithmic sizing so slow and fast paths remain legible together. | Current velocity, scale normalization, timestep policy. |
-| `face-boundary-status` | Contextual | Label outbound/inbound face rows without cluttering local-only views. | Face-boundary rows. |
+| `boundary-shell-status` | Contextual | Label outbound/inbound boundary-shell patch rows without cluttering local-only views. | Boundary-shell rows. |
 | `diagnostics` | Contextual | Surface halt status, failure rows, background/noise rows, boundary-generated rows, unresolved rows, and claim-level downgrades near the selected object or run summary. | Solver diagnostics and run manifest. |
 
 Velocity rays need a visual cue for magnitude beyond length alone, but persistent markings on every ray may be too busy. The first design should test a floating exponent label on the active ray only. Persistent ray markings are not part of the first app idea.
 
 ## First-Screen Layer Control Layout
 
-The first-screen layer controls should keep the workspace minimal by default while making richer path, wake, velocity, face-boundary, and diagnostic layers one click away. The layer strip belongs inside the 3D viewport, but it must remain visually lighter than the simulation state.
+The first-screen layer controls should keep the workspace minimal by default while making richer path, wake, velocity, boundary-shell, and diagnostic layers one click away. The layer strip belongs inside the 3D viewport, but it must remain visually lighter than the simulation state.
 
 | Layer | First-screen state | Control placement | Selected-object behavior |
 | --- | --- | --- | --- |
-| `simulation-window` | On and locked in the first prototype. | Shown as a small cube-boundary icon in the layer strip, with lock state visible; the viewport renders the central cube edges only by default, with no cube walls. | Selection reports `sideLength`, `centralVolumeSideLength`, `faceBufferMargin`, `view zoom`, `scaleFactor`, and boundary mode in the diagnostics rail. |
+| `simulation-window` | On and locked in the first prototype. | Shown as a small sphere-boundary icon in the layer strip, with lock state visible; the viewport renders the central ball edges only by default, with no sphere walls. | Selection reports `outerRadius`, `centralBallRadius`, `radialBufferMargin`, `view zoom`, `scaleFactor`, and boundary mode in the diagnostics rail. |
 | `architrino-position` | On. | First visible toggle in the layer strip; cannot be hidden while no other position-bearing layer is visible. | Selecting an architrino opens a compact viewport tag with id, diagnostic status, and speed; full state appears in the diagnostics rail. |
 | `path-history` | Off. | Toggle in the layer strip, with a small history-depth indicator. | Selecting a path segment shows segment time bounds and value authority in the compact tag; interpolation/error details remain in the diagnostics rail. |
-| `wake-streams` | Off. | Toggle in the layer strip, with a retained/background/boundary split in the layer menu. | Selecting a wake shell shows wake row id, source/receiver ids, face-boundary status, and authority; residual and threshold details remain in the diagnostics rail. |
+| `wake-streams` | Off. | Toggle in the layer strip, with a retained/background/boundary split in the layer menu. | Selecting a wake shell shows wake row id, source/receiver ids, boundary-shell status, and authority; residual and threshold details remain in the diagnostics rail. |
 | `velocity-vectors` | Off by default; toggleable in staging and playback. | Toggle in the layer strip, with a logarithmic-scale marker when enabled. | Selecting a ray shows raw speed, transform type, and ray scale rule; vector components remain in the diagnostics rail. |
-| `face-boundary-status` | Contextual and off for local-only runs. | Toggle is disabled or subdued when no outbound/inbound face rows exist. | Selecting a face-boundary label focuses the related wake/path row and shows whether it is retained local, boundary-generated, or display-only. |
+| `boundary-shell-status` | Contextual and off for local-only runs. | Toggle is disabled or subdued when no outbound/inbound boundary-shell patch rows exist. | Selecting a boundary-shell label focuses the related wake/path row and shows whether it is retained local, boundary-generated, or display-only. |
 | `diagnostics` | Contextual. | Toggle opens or pins diagnostics overlays; default state shows only selected-object tags and fail-closed alerts. | Selected-object diagnostics appear first as compact tags; detailed tables live in the right diagnostics rail. |
-| `outbound-face-background` | Off. | Nested under `wake-streams` or diagnostics until a run includes outbound face summaries. | Selecting a face summary shows summary id, face id, replay authority, and $R_{\mathrm{face\ replay}}$ status when available. |
 
-The default visible stack for launch is `simulation-window` and `architrino-position`. The default contextual stack is selected-object tags plus fail-closed alerts. Velocity rays, path history, wake streams, face-boundary status, outbound-face background, and full diagnostics start behind toggles so the first screen remains quiet.
+The default visible stack for launch is `simulation-window` and `architrino-position`. The default contextual stack is selected-object tags plus fail-closed alerts. Velocity rays, path history, wake streams, boundary-shell status, outbound-shell background, and full diagnostics start behind toggles so the first screen remains quiet.
 
-Boundary display is part of the `architrino-position` layer: an architrino crossing an outer computed face contributes to the face-boundary rows. Inbound architrinos generated by the boundary policy enter through outer computed faces as boundary-generated rows with reduced value authority unless retained external path history is present. The central cube remains the default visible region.
+Boundary display is part of the `architrino-position` layer: an architrino crossing the outer boundary shell contributes to the boundary-shell rows. Inbound architrinos generated by the boundary policy enter through the shell as boundary-generated rows with reduced value authority unless retained external path history is present. The central ball remains the primary visible region.
 
 Layer strip rules:
 
@@ -541,18 +503,18 @@ Selected-object diagnostics should not clutter the viewport:
 
 ## Viewport Navigation
 
-The 3D viewport must support rotation and zoom so the operator can inspect paths, wakes, face-boundary rows, and velocity vectors from arbitrary angles.
+The 3D viewport must support rotation and zoom so the operator can inspect paths, wakes, boundary-shell rows, and velocity vectors from arbitrary angles.
 
 | Control | Requirement | Boundary |
 | --- | --- | --- |
 | Rotate | Orbit the camera around the selected view center or selected architrino. | Rotation changes only the camera orientation, not solver state. |
-| Zoom | Move the camera closer or farther, with smooth wheel, trackpad, and button controls where practical. | Zoom changes only the view scale, not `sideLength`, `scaleFactor`, causal speed, or solver precision. |
-| Pan | Translate the camera target across the viewport. | Pan must not shift the simulation origin or face-boundary records. |
-| Reset view | Return to the canonical cube orientation and default zoom. | Reset is a display command, not a rerun. |
-| Fit window | Frame the displayed central cube and active visible layers. | Fit must respect the current layer toggles and not alter solver output. |
+| Zoom | Move the camera closer or farther, with smooth wheel, trackpad, and button controls where practical. | Zoom changes only the view scale, not `outerRadius`, `scaleFactor`, causal speed, or solver precision. |
+| Pan | Translate the camera target across the viewport. | Pan must not shift the simulation origin or boundary-shell records. |
+| Reset view | Return to the canonical sphere orientation and default zoom. | Reset is a display command, not a rerun. |
+| Fit window | Frame the displayed central ball and active visible layers. | Fit must respect the current layer toggles and not alter solver output. |
 | Focus selected | Center the camera on a selected architrino, wake row, path segment, or diagnostic row. | Focus should expose the selected object's source data and claim level. |
 
-The interface should make the difference between visual zoom and simulation scale explicit. Changing the outer computed side length, central-volume side length, buffer margin, scale factor, history depth, wake floor, or precision belongs in the simulation envelope controls, not the viewport camera.
+The interface should make the difference between visual zoom and simulation scale explicit. Changing the outer radius, central-ball radius, buffer margin, scale factor, history depth, wake floor, or precision belongs in the simulation-envelope controls, not the viewport camera.
 
 ## Error Budget and Value Authority
 
@@ -561,9 +523,9 @@ The app must make error budget visible enough that a visualization cannot be mis
 | Surface | Required fields | UI rule |
 | --- | --- | --- |
 | Run summary | Global error budget, selected precision path, tolerance policy, numeric chart, scale normalization, claim level, and halt status. | Always available in the run diagnostics summary. |
-| Stage summary | Motion integration, causal-root solving, wake-row construction, path-history interpolation, stream readback, face-boundary replay, and display projection error states where available. | Collapsed by default, expanded from diagnostics. |
+| Stage summary | Motion integration, causal-root solving, wake-row construction, path-history interpolation, stream readback, boundary-shell replay, and display projection error states where available. | Collapsed by default, expanded from diagnostics. |
 | Selected architrino | Current state authority, position/velocity/acceleration error state, path-history segment error, and relevant solver status. | Shown in selected-object diagnostics. |
-| Selected wake row | Causal-root residual, hit-time error state, wake-strength error state, face-boundary status, threshold relation, and row authority. | Shown when a wake stream, shell, or acceleration contribution is selected. |
+| Selected wake row | Causal-root residual, hit-time error state, wake-strength error state, boundary-shell status, threshold relation, and row authority. | Shown when a wake stream, shell, or acceleration contribution is selected. |
 | Logarithmic display | Raw value, transformed value, transform type, and whether the transform is authoritative or display-only. | Shown in hover, legend, or selected-object panel. |
 | Failure or downgrade | First-failure code, exceeded budget, unresolved field, and claim-level downgrade. | Must be visible without hunting through raw exports. |
 
@@ -590,7 +552,7 @@ Every run should produce a `borg-dataset-manifest.v1` manifest; see [borg-datase
 2. simulation-window topology fields and scale envelope;
 3. initial-condition source and seed/import source id;
 4. path-history stream ids and spill policy;
-5. wake-history row ids, face summary ids, replay source ids, and background/noise policy;
+5. wake-history row ids, boundary-shell patch summary ids, replay source ids, and background/noise policy;
 6. timestep, precision, tolerance, global error budget, stage-level error budgets, and halt diagnostics;
 7. diagnostic status and value-authority status for solver outputs, app-facing projections, display-only layers, missing error budgets, exceeded error budgets, and fail-closed values;
 8. frame-buffer or playback dataset handles;
@@ -605,19 +567,19 @@ The first app design pass should fail closed if any of these occur:
 1. an implementation path requires a new production solver;
 2. architrino physical mass is introduced as an input or explanatory field;
 3. boundary-generated architrinos are treated as retained identities without retained external path history;
-4. boundary-generated wake rows omit face-boundary source summaries;
+4. boundary-generated wake rows omit boundary-shell source summaries;
 5. subthreshold wakes are silently discarded instead of routed to background/noise rows;
 6. path-history depth is insufficient but receiver acceleration is still displayed as authoritative;
 7. JavaScript reference behavior is presented as production behavior;
 8. an error budget is missing or exceeded while affected values are still displayed as authoritative;
-9. face-boundary replay is used as branch evidence or as a substitute for retained wake rows;
-10. the app lacks a declared `centralVolume` but presents central-volume conclusions;
-11. the app collapses outer computed `sideLength`, displayed `centralVolumeSideLength`, and `faceBufferMargin` into one visual scale;
-12. the app treats `centralArchitrinoCount` as the total solver `architrinoCount` after a nonzero `faceBufferMargin` is declared;
-13. $b_{\mathrm{face}}(\mathcal C)<\max(c_fh,\ v_{\max}T_{\mathcal C})$ while central-volume values are still presented as satisfying the strict central-volume buffer target;
-14. $R_{\mathrm{boundary\to central}}>\tau_{\mathcal C}$ while central-volume values are still displayed as inside the declared boundary-influence budget;
+9. boundary-shell replay is used as branch evidence or as a substitute for retained wake rows;
+10. the app lacks a declared `centralBall` but presents central-ball conclusions;
+11. the app collapses outer computed `outerRadius`, displayed `centralBallRadius`, and `radialBufferMargin` into one visual scale;
+12. the app treats `centralArchitrinoCount` as the total solver `architrinoCount` after a nonzero `radialBufferMargin` is declared;
+13. $b_{\mathrm{shell}}(\mathcal C)<\max(c_fh,\ v_{\max}T_{\mathcal C})$ while central-ball values are still presented as satisfying the strict central-ball buffer target;
+14. $R_{\mathrm{boundary\to central}}>\tau_{\mathcal C}$ while central-ball values are still displayed as inside the declared boundary-influence budget;
 15. a candidate run is described as proof of AAA ontology without same-record retained evidence.
 
 ## Next Exact Proof/Build Burden
 
-The next exact burden is `build-native-wake-history-and-boundary-residual-fixture`. The artifact must extend the EOM solver contract and bridge so Borg can add retained wake/interaction rows, row-conservation counts, boundary-to-central residual rows, and required acceleration-contribution diagnostics on top of the current EOM-run frame/path products. Browser surface-budget and 4K render measurement remain required deployment-budget work, but they must not be treated as a substitute for EOM solver evidence or promote wake streams, face-boundary replay, benign-noise status, or central-volume acceleration beyond the manifest's value authority and error-budget status.
+The next exact burden is `build-native-wake-history-and-boundary-residual-fixture`. The artifact must extend the EOM solver contract and bridge so Borg can add retained wake/interaction rows, row-conservation counts, boundary-to-central residual rows, and required acceleration-contribution diagnostics on top of the current EOM-run frame/path products. Browser surface-budget and 4K render measurement remain required deployment-budget work, but they must not be treated as a substitute for EOM solver evidence or promote wake streams, boundary-shell replay, benign-noise status, or central-ball acceleration beyond the manifest's value authority and error-budget status.

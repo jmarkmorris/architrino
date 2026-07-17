@@ -53,7 +53,7 @@ export async function bootBorgApp({
   const historyDepth = calculateBorgInertialHistoryDepth(endpointRows, {
     fieldSpeed: manifest.simulationEnvelope?.fieldSpeed ?? 1,
     sampleInterval,
-    maximumSeparation: Math.sqrt(3) * manifest.simulationEnvelope.sideLength,
+    maximumSeparation: 2 * manifest.simulationEnvelope.outerRadius,
   });
   const runtimeManifest = createManifestWithHistoryDepth(manifest, historyDepth);
   const initialEomSeed = await createBorgAcceptedInertialSeedHistory(endpointRows, {
