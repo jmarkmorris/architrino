@@ -41,6 +41,7 @@ export function createBorgEomShadowRunner(manifest, options = {}) {
   let nextStartTime = config.startTime;
   let targetDuration = config.targetDuration;
   let chunkDuration = config.chunkDuration;
+  let controllerStepSize = config.initialStep;
   let chunkIndex = 0;
   const initialHistoryAccepted = histories.every(
     (history) => history.sourceAcceptedInitialDatum === true,
@@ -99,9 +100,11 @@ export function createBorgEomShadowRunner(manifest, options = {}) {
         chunkIndex,
         startTime,
         endTime,
+        initialStep: controllerStepSize,
       });
       const rawResponse = await client.evolveRetainedHistories(request);
       const response = normalizeEomResponse(rawResponse, request);
+      controllerStepSize = response.controllerStepSize;
       nextStartTime = endTime;
       histories = retainBorgHistoryWindow(response.histories, {
         minimumCoverageStart: roundTime(nextStartTime - config.historyDepth),
@@ -126,6 +129,7 @@ export function createBorgEomShadowRunner(manifest, options = {}) {
         startTime,
         endTime,
         sampleInterval: config.sampleInterval,
+        controllerStepSize,
         phase: "live",
         initialHistoryAccepted,
         evolutionClaimLevel: initialHistoryAccepted
@@ -197,6 +201,21 @@ export function createBorgEomShadowRunConfig(manifest, options = {}) {
   if (targetDuration <= startTime) {
     throw new RangeError("Borg EOM target duration must exceed its initial-history cut.");
   }
+  const initialStep = requiredPositiveToken(options.initialStep ?? "0.1", "initialStep");
+  const minimumStep = requiredPositiveToken(
+    options.minimumStep ?? String(sampleInterval / 16),
+    "minimumStep",
+  );
+  const maximumStep = requiredPositiveToken(
+    options.maximumStep ?? String(Math.max(Number(initialStep), chunkDuration)),
+    "maximumStep",
+  );
+  if (Number(minimumStep) > Number(initialStep) ||
+      Number(initialStep) > Number(maximumStep)) {
+    throw new RangeError(
+      "Borg EOM steps must satisfy minimumStep <= initialStep <= maximumStep.",
+    );
+  }
   return Object.freeze({
     schema: BORG_EOM_SHADOW_RUNNER_VERSION,
     runSource: BORG_EOM_SHADOW_RUN_SOURCE,
@@ -214,15 +233,21 @@ export function createBorgEomShadowRunConfig(manifest, options = {}) {
       options.coupling ?? manifest.modelControls?.coupling ?? "1",
       "coupling",
     ),
-    initialStep: requiredPositiveToken(options.initialStep ?? String(sampleInterval), "initialStep"),
-    minimumStep: requiredPositiveToken(
-      options.minimumStep ?? String(sampleInterval / 16),
-      "minimumStep",
+    initialStep,
+    minimumStep,
+    maximumStep,
+    useAdaptiveStepGrowth: requiredBoolean(
+      options.useAdaptiveStepGrowth ?? true,
+      "useAdaptiveStepGrowth",
     ),
     rootTolerance: requiredPositiveToken(options.rootTolerance ?? "1e-12", "rootTolerance"),
     accelerationTolerance: requiredPositiveToken(
       options.accelerationTolerance ?? "1e-8",
       "accelerationTolerance",
+    ),
+    farFieldEnclosureFraction: requiredFractionToken(
+      options.farFieldEnclosureFraction ?? "0.25",
+      "farFieldEnclosureFraction",
     ),
     positionTolerance: requiredPositiveToken(
       options.positionTolerance ?? "1e-10",
@@ -333,6 +358,7 @@ export function createBorgEomShadowRequest({
   chunkIndex,
   startTime,
   endTime,
+  initialStep = config.initialStep,
 }) {
   if (!Array.isArray(histories) || histories.length === 0) {
     throw new TypeError("Borg EOM request requires continuous retained histories.");
@@ -354,10 +380,13 @@ export function createBorgEomShadowRequest({
     histories,
     numericalControls: Object.freeze({
       integrationMode: "adaptive-coupled",
-      initialStep: config.initialStep,
+      initialStep,
       minimumStep: config.minimumStep,
+      maximumStep: config.maximumStep,
+      useAdaptiveStepGrowth: config.useAdaptiveStepGrowth,
       rootTolerance: config.rootTolerance,
       accelerationTolerance: config.accelerationTolerance,
+      farFieldEnclosureFraction: config.farFieldEnclosureFraction,
       positionTolerance: config.positionTolerance,
       velocityTolerance: config.velocityTolerance,
       correctionTolerance: config.correctionTolerance,
@@ -511,6 +540,10 @@ function normalizeEomResponse(rawResponse, request) {
   return Object.freeze({
     status: response.status,
     evidenceStatus: response.evidenceStatus ?? "failed",
+    controllerStepSize: String(Number(requiredPositiveToken(
+      response.controllerStepSize ?? request.numericalControls.initialStep,
+      "response controllerStepSize",
+    ))),
     histories: Object.freeze(histories),
     diagnostics: Array.isArray(response.diagnostics) ? response.diagnostics : [],
   });
@@ -655,4 +688,19 @@ function requiredPositiveToken(value, label) {
     throw new RangeError(`Borg EOM ${label} must be positive.`);
   }
   return token;
+}
+
+function requiredFractionToken(value, label) {
+  const token = requiredNumericToken(value, label);
+  if (!(Number(token) >= 0 && Number(token) < 1)) {
+    throw new RangeError(`Borg EOM ${label} must lie in [0, 1).`);
+  }
+  return token;
+}
+
+function requiredBoolean(value, label) {
+  if (typeof value !== "boolean") {
+    throw new TypeError(`Borg EOM ${label} must be Boolean.`);
+  }
+  return value;
 }

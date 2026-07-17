@@ -123,3 +123,36 @@ This file holds provisional feature ideas, performance directions, validation po
 - Promoting a GPU, multi-GPU, distributed, multirate, or reduced-model backend before it passes the independent correctness and convergence boundary.
 - UI polish that delays the mathematical operation, independent oracle, or convergence evidence.
 - Treating a path that looks stable as a certified branch without the required root, history, error, conservation, and stability records.
+
+## Far-Field Contribution Enclosure (operator brainstorm, 2026-07-16)
+
+Claim level: priority-design (operator-directed brainstorm; quantitative examples are
+back-of-envelope from the declared Borg budgets, not measured runs).
+
+Root-free block exclusion asks "can this pair interact at all?" and measured useless at
+Borg scale (nothing in a small box is root-free). The stronger, so-far-unbuilt axis is
+contribution enclosure — the reserved $P_{\mathrm{enclosed}}$ term in the block-exclusion
+pair accounting: certify that a pair's total acceleration contribution lies within a
+declared $\pm\varepsilon$ and charge it against the acceleration error budget instead of
+root-searching it.
+
+- Threshold derivation: the cutoff radius is a function of the declared budget, never a
+  constant. Per-hit magnitude is bounded by $\kappa |q_i q_j| / (r^2 \cdot D_{s,\min})$
+  with a certified far-pair lower bound on the source normal (for subluminal far sources
+  it grows like $r(1 - v_{\max})$). With Borg's $\kappa = 0.005$ and a 10% slice of the
+  demo acceleration tolerance the enclosure radius is a few box lengths; at research
+  tolerance ($10^{-8}$) it is $\mathcal{O}(10^3)$.
+- Memory payoff (the run-length lever): an enclosed pair needs no root search and hence
+  no retained history. This directly removes the dispersal death observed 2026-07-16 (a
+  3:3 run at t=6.0 with the population outside the box halted `minimum_step_exhausted`
+  via memory-boundary root rows once pair delays exceeded the fixed wake horizon).
+- Geometry primitive: keep per-axis interval boxes (free from interval Horner over the
+  cubic segments); the certified distance bracket $[r_{\min}, r_{\max}]$ — the "circle
+  test" — is one norm away from the box. A sphere-native pipeline saves nothing.
+- Dense-sea obligation: individual far hits are weak but shell counts grow like $r^2$;
+  sea-scale enclosures must bound membership groups collectively (the traversal tree is
+  the natural organizer). For 6-path Borg the per-pair form suffices.
+- Physical framing (operator): assemblies that persist in a wake-filled universe are, by
+  existence, insensitive to far-field detail; near-set accuracy is what matters. The
+  far-field enclosure makes that intuition a declared, certified error term rather than a
+  silent truncation.

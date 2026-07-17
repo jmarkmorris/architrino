@@ -156,6 +156,83 @@ class NativeCoupledEvolutionTests(unittest.TestCase):
             if row["failure_code"] == failure_code
         )
 
+    def test_far_field_enclosure_contains_independent_static_pair_law(self) -> None:
+        control = self.packet["far_field_analytic_control"]
+        self.assertEqual(control["reference"], "analytic_static_pair")
+        self.assertEqual(control["status"], "certified_complete", control)
+        self.assertEqual(
+            control["pair_selection_route"],
+            "certified_far_field_then_exact_pair_batch",
+        )
+        self.assertEqual(control["logical_pairs"], 4)
+        self.assertEqual(control["excluded_pairs"], 0)
+        self.assertEqual(control["exact_pairs"], 2)
+        self.assertEqual(control["enclosed_pairs"], 2)
+        self.assertEqual(control["unresolved_pairs"], 0)
+        self.assertEqual(
+            control["logical_pairs"],
+            control["excluded_pairs"]
+            + control["exact_pairs"]
+            + control["enclosed_pairs"]
+            + control["unresolved_pairs"],
+        )
+        self.assertEqual(control["root_pair_count"], 2)
+        assert_contains(self, control["separation"], Decimal("10"))
+
+        # Independent closed form for two static like-polarity paths:
+        # kappa=0.005, R=10, rhat=(-1,0,0), so A=(-5e-5,0,0).
+        analytic = (Decimal("-0.00005"), Decimal("0"), Decimal("0"))
+        for interval, value in zip(
+            control["enclosure_acceleration"], analytic, strict=True
+        ):
+            assert_contains(self, interval, value)
+        self.assertEqual(
+            control["enclosure_acceleration"],
+            control["pair_total_acceleration"],
+        )
+        self.assertLessEqual(
+            Decimal(str(control["enclosed_error_width_max_receiver"])),
+            Decimal("0.01"),
+        )
+
+    def test_far_field_enclosure_crosses_dispersal_memory_boundary_atomically(
+        self,
+    ) -> None:
+        disabled = self.packet["far_field_dispersal_disabled"]
+        self.assertEqual(disabled["status"], "rejected", disabled)
+        self.assertEqual(disabled["failure_code"], "insufficient_history_depth")
+        self.assertEqual(
+            disabled["input_fingerprints"], disabled["published_fingerprints"]
+        )
+
+        enabled = self.evolution("far-field-dispersed-3-3-boundary")
+        self.assertEqual(enabled["status"], "completed", enabled)
+        self.assertEqual(enabled["accepted_end_time"], "3")
+        self.assertEqual(enabled["accepted_step_count"], 30)
+        step = enabled["steps"][0]
+        self.assertEqual(step["status"], "accepted")
+        self.assertTrue(step["publication_atomic"])
+        self.assertEqual(step["accepted_ordered_pairs"], 36)
+        self.assertEqual(step["traversal_excluded_pairs"], 0)
+        self.assertEqual(step["traversal_exact_pairs"], 6)
+        self.assertEqual(step["traversal_enclosed_pairs"], 30)
+        self.assertEqual(step["traversal_unresolved_pairs"], 0)
+        self.assertEqual(
+            step["accepted_ordered_pairs"],
+            step["traversal_excluded_pairs"]
+            + step["traversal_exact_pairs"]
+            + step["traversal_enclosed_pairs"]
+            + step["traversal_unresolved_pairs"],
+        )
+        self.assertLessEqual(
+            Decimal(str(step["enclosed_error_width_max_receiver"])),
+            Decimal("0.025"),
+        )
+        final_step = enabled["steps"][-1]
+        self.assertEqual(final_step["traversal_enclosed_pairs"], 30)
+        self.assertEqual(final_step["traversal_exact_pairs"], 6)
+        self.assertEqual(final_step["traversal_unresolved_pairs"], 0)
+
     def test_checkpoint_roundtrip_is_atomic_tamper_evident_and_continuous(self) -> None:
         checkpoint = self.packet["checkpoint"]
         self.assertEqual(

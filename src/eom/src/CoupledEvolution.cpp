@@ -29,8 +29,6 @@ double elapsed_seconds(const SteadyClock::time_point& start) {
 }
 
 using SnapshotTotals = std::map<std::string, IntervalVector>;
-using TopologySignature =
-    std::vector<std::tuple<std::string, std::string, std::vector<int>>>;
 
 struct SubstepAttempt {
   NativeCorrectedSubstepCertificate certificate;
@@ -351,32 +349,29 @@ double continuous_step_scale(
   return std::clamp(proposed, minimum_scale, maximum_scale);
 }
 
-TopologySignature topology_signature(
-    const NativeAccelerationSnapshotCertificate& snapshot) {
-  TopologySignature signature;
-  signature.reserve(snapshot.root_certificates.size());
-  for (const auto& row : snapshot.root_certificates) {
-    std::vector<int> signs;
-    signs.reserve(row.certificate.roots.size());
-    for (const auto& root : row.certificate.roots) {
-      signs.push_back(root.source_normal_sign);
-    }
-    signature.emplace_back(
-        row.receiver_path_id, row.source_path_id, std::move(signs));
-  }
-  return signature;
-}
-
 std::vector<std::pair<std::string, std::string>> changed_topology_pairs(
     const NativeAccelerationSnapshotCertificate& start,
     const NativeAccelerationSnapshotCertificate& end) {
+  std::set<std::pair<std::string, std::string>> enclosed_pairs;
+  for (const auto* snapshot : {&start, &end}) {
+    for (const auto& row : snapshot->root_certificates) {
+      if (row.certificate.schema == "eom_native_enclosed_pair_marker/v0") {
+        enclosed_pairs.emplace(row.receiver_path_id, row.source_path_id);
+      }
+    }
+  }
   std::map<std::pair<std::string, std::string>, std::vector<int>> start_rows;
   for (const auto& row : start.root_certificates) {
+    const auto key =
+        std::make_pair(row.receiver_path_id, row.source_path_id);
+    if (enclosed_pairs.contains(key)) {
+      continue;
+    }
     std::vector<int> signs;
     for (const auto& root : row.certificate.roots) {
       signs.push_back(root.source_normal_sign);
     }
-    start_rows[{row.receiver_path_id, row.source_path_id}] = std::move(signs);
+    start_rows[key] = std::move(signs);
   }
   std::vector<std::pair<std::string, std::string>> changed;
   for (const auto& row : end.root_certificates) {
@@ -386,6 +381,9 @@ std::vector<std::pair<std::string, std::string>> changed_topology_pairs(
     }
     const auto key = std::make_pair(
         row.receiver_path_id, row.source_path_id);
+    if (enclosed_pairs.contains(key)) {
+      continue;
+    }
     const auto found = start_rows.find(key);
     if (found == start_rows.end() || found->second != signs) {
       changed.push_back(key);
@@ -1009,11 +1007,9 @@ SubstepAttempt corrected_substep_impl(
           regulator_convergence_certificates;
       std::vector<NativeEndpointRootContinuationCertificate>
           endpoint_root_continuations;
-      const bool topology_changed =
-          topology_signature(start_snapshot) !=
-          topology_signature(endpoint_snapshot);
       auto event_pairs = changed_topology_pairs(
           start_snapshot, endpoint_snapshot);
+      const bool topology_changed = !event_pairs.empty();
       const auto append_finite_width_pairs = [&](const auto& snapshot) {
         for (const auto& pair : finite_width_pairs(snapshot)) {
           if (std::find(event_pairs.begin(), event_pairs.end(), pair) ==
@@ -1237,6 +1233,12 @@ void validate_request(const NativeCoupledEvolutionRequest& request) {
   tolerance_value(request.root_tolerance, "root tolerance");
   tolerance_value(request.source_normal_floor, "source-normal floor");
   tolerance_value(request.acceleration_tolerance, "acceleration tolerance");
+  const double far_field_fraction =
+      exact_decimal_value(request.far_field_enclosure_fraction);
+  if (!(far_field_fraction >= 0.0 && far_field_fraction < 1.0)) {
+    throw std::invalid_argument(
+        "far-field enclosure fraction must lie in [0, 1)");
+  }
   if (request.chart_policy != "sharp" &&
       request.chart_policy != "finite_width" &&
       request.chart_policy != "sharp_with_finite_width_fallback") {
@@ -1500,6 +1502,181 @@ Interval causal_domain_area(
   return Interval::decimal_token(decimal_token(static_cast<double>(area)));
 }
 
+IntervalVector softened_kernel_enclosure(
+    const IntervalVector& displacement,
+    const Interval& core_scale) {
+  const Interval separation = norm(displacement);
+  const Interval radial_square =
+      interval_square(separation) + interval_square(core_scale);
+  const Interval radial_three_halves =
+      radial_square * interval_sqrt(radial_square);
+  const Interval radial_five_halves =
+      interval_square(radial_square) * interval_sqrt(radial_square);
+  const IntervalVector direct = divide(displacement, radial_three_halves);
+
+  IntervalVector midpoint{
+      Interval::point(displacement[0].midpoint()),
+      Interval::point(displacement[1].midpoint()),
+      Interval::point(displacement[2].midpoint())};
+  const Interval midpoint_separation = norm(midpoint);
+  const Interval midpoint_radial_square =
+      interval_square(midpoint_separation) + interval_square(core_scale);
+  const IntervalVector midpoint_kernel = divide(
+      midpoint,
+      midpoint_radial_square * interval_sqrt(midpoint_radial_square));
+  IntervalVector centered = midpoint_kernel;
+  for (std::size_t axis = 0; axis < 3U; ++axis) {
+    for (std::size_t derivative_axis = 0; derivative_axis < 3U;
+         ++derivative_axis) {
+      Interval jacobian =
+          Interval::point(axis == derivative_axis ? 1.0 : 0.0) /
+              radial_three_halves -
+          Interval::point(3.0) * displacement[axis] *
+              displacement[derivative_axis] / radial_five_halves;
+      centered[axis] = centered[axis] +
+          jacobian * (displacement[derivative_axis] -
+                      midpoint[derivative_axis]);
+    }
+    const auto intersection = direct[axis].intersection(centered[axis]);
+    if (!intersection.has_value()) {
+      throw std::runtime_error(
+          "event softened-kernel mean-value enclosures disagree");
+    }
+    centered[axis] = *intersection;
+  }
+  return centered;
+}
+
+IntervalVector unit_direction_enclosure(
+    const IntervalVector& displacement,
+    const Interval& separation) {
+  const IntervalVector direct = divide(displacement, separation);
+  if (separation.contains_zero()) return direct;
+
+  IntervalVector midpoint{
+      Interval::point(displacement[0].midpoint()),
+      Interval::point(displacement[1].midpoint()),
+      Interval::point(displacement[2].midpoint())};
+  const Interval midpoint_separation = norm(midpoint);
+  if (midpoint_separation.contains_zero()) return direct;
+  IntervalVector centered = divide(midpoint, midpoint_separation);
+  const Interval separation_cubed =
+      separation * separation * separation;
+  for (std::size_t axis = 0; axis < 3U; ++axis) {
+    for (std::size_t derivative_axis = 0; derivative_axis < 3U;
+         ++derivative_axis) {
+      const Interval jacobian =
+          Interval::point(axis == derivative_axis ? 1.0 : 0.0) /
+              separation -
+          displacement[axis] * displacement[derivative_axis] /
+              separation_cubed;
+      centered[axis] = centered[axis] +
+          jacobian * (displacement[derivative_axis] -
+                      midpoint[derivative_axis]);
+    }
+    const auto intersection = direct[axis].intersection(centered[axis]);
+    if (!intersection.has_value()) {
+      throw std::runtime_error(
+          "event unit-direction mean-value enclosures disagree");
+    }
+    centered[axis] = *intersection;
+  }
+  return centered;
+}
+
+IntervalVector event_prefactor_enclosure(
+    const IntervalVector& displacement,
+    const IntervalVector& receiver_velocity,
+    const Interval& field_speed,
+    const Interval& core_scale) {
+  const Interval separation = norm(displacement);
+  const IntervalVector direction =
+      unit_direction_enclosure(displacement, separation);
+  const IntervalVector kernel =
+      softened_kernel_enclosure(displacement, core_scale);
+  const Interval receiver_normal =
+      field_speed - dot(direction, receiver_velocity);
+  const Interval receiver_strength = interval_absolute(receiver_normal);
+  const IntervalVector direct = scale(receiver_strength, kernel);
+  if (separation.contains_zero() || receiver_normal.contains_zero()) {
+    return direct;
+  }
+  const double normal_sign = receiver_normal.lower() > 0.0 ? 1.0 : -1.0;
+
+  IntervalVector midpoint_displacement{
+      Interval::point(displacement[0].midpoint()),
+      Interval::point(displacement[1].midpoint()),
+      Interval::point(displacement[2].midpoint())};
+  IntervalVector midpoint_velocity{
+      Interval::point(receiver_velocity[0].midpoint()),
+      Interval::point(receiver_velocity[1].midpoint()),
+      Interval::point(receiver_velocity[2].midpoint())};
+  const Interval midpoint_separation = norm(midpoint_displacement);
+  if (midpoint_separation.contains_zero()) return direct;
+  const IntervalVector midpoint_direction =
+      divide(midpoint_displacement, midpoint_separation);
+  const IntervalVector midpoint_kernel =
+      softened_kernel_enclosure(midpoint_displacement, core_scale);
+  const Interval midpoint_strength = interval_absolute(
+      field_speed - dot(midpoint_direction, midpoint_velocity));
+  IntervalVector centered = scale(midpoint_strength, midpoint_kernel);
+
+  const Interval separation_cubed =
+      separation * separation * separation;
+  const Interval radial_square =
+      interval_square(separation) + interval_square(core_scale);
+  const Interval radial_three_halves =
+      radial_square * interval_sqrt(radial_square);
+  const Interval radial_five_halves =
+      interval_square(radial_square) * interval_sqrt(radial_square);
+  for (std::size_t derivative_axis = 0; derivative_axis < 3U;
+       ++derivative_axis) {
+    Interval strength_displacement_derivative = Interval::point(0.0);
+    for (std::size_t direction_axis = 0; direction_axis < 3U;
+         ++direction_axis) {
+      const Interval direction_jacobian =
+          Interval::point(
+              direction_axis == derivative_axis ? 1.0 : 0.0) /
+              separation -
+          displacement[direction_axis] * displacement[derivative_axis] /
+              separation_cubed;
+      strength_displacement_derivative =
+          strength_displacement_derivative -
+          Interval::point(normal_sign) * direction_jacobian *
+              receiver_velocity[direction_axis];
+    }
+    for (std::size_t axis = 0; axis < 3U; ++axis) {
+      const Interval kernel_jacobian =
+          Interval::point(axis == derivative_axis ? 1.0 : 0.0) /
+              radial_three_halves -
+          Interval::point(3.0) * displacement[axis] *
+              displacement[derivative_axis] / radial_five_halves;
+      const Interval prefactor_displacement_derivative =
+          strength_displacement_derivative * kernel[axis] +
+          receiver_strength * kernel_jacobian;
+      const Interval prefactor_velocity_derivative =
+          Interval::point(-normal_sign) * direction[derivative_axis] *
+          kernel[axis];
+      centered[axis] = centered[axis] +
+          prefactor_displacement_derivative *
+              (displacement[derivative_axis] -
+               midpoint_displacement[derivative_axis]) +
+          prefactor_velocity_derivative *
+              (receiver_velocity[derivative_axis] -
+               midpoint_velocity[derivative_axis]);
+    }
+  }
+  for (std::size_t axis = 0; axis < 3U; ++axis) {
+    const auto intersection = direct[axis].intersection(centered[axis]);
+    if (!intersection.has_value()) {
+      throw std::runtime_error(
+          "event prefactor mean-value enclosures disagree");
+    }
+    centered[axis] = *intersection;
+  }
+  return centered;
+}
+
 IntervalVector event_integrand(
     const NativeCoupledEvolutionRequest& request,
     const NativePublishedPath& receiver,
@@ -1517,19 +1694,19 @@ IntervalVector event_integrand(
       subtract(receiver_position, source_position);
   const Interval separation = norm(displacement);
   const Interval core_scale = Interval::decimal_token(request.core_scale);
-  const Interval radial_square =
-      interval_square(separation) + interval_square(core_scale);
-  const IntervalVector kernel = divide(
-      displacement, radial_square * interval_sqrt(radial_square));
   const Interval field_speed = Interval::decimal_token(request.field_speed);
-  Interval receiver_strength = Interval::point(0.0);
+  IntervalVector prefactor{
+      Interval::point(0.0), Interval::point(0.0),
+      Interval::point(0.0)};
   if (separation.contains_zero()) {
-    receiver_strength = Interval(
+    const Interval receiver_strength(
         0.0, (field_speed + norm(receiver_velocity)).upper());
+    prefactor = scale(
+        receiver_strength,
+        softened_kernel_enclosure(displacement, core_scale));
   } else {
-    receiver_strength = interval_absolute(
-        field_speed -
-        dot(divide(displacement, separation), receiver_velocity));
+    prefactor = event_prefactor_enclosure(
+        displacement, receiver_velocity, field_speed, core_scale);
   }
   const Interval residual =
       separation - field_speed * (reception - emission);
@@ -1545,8 +1722,8 @@ IntervalVector event_integrand(
   const Interval signed_scale =
       Interval::decimal_token(request.coupling) *
       Interval::decimal_token(receiver_charge) *
-      Interval::decimal_token(source_charge) * receiver_strength * mollifier;
-  return scale(signed_scale, kernel);
+      Interval::decimal_token(source_charge) * mollifier;
+  return scale(signed_scale, prefactor);
 }
 
 std::optional<IntervalVector> centered_event_rectangle_integral(
@@ -1570,7 +1747,8 @@ std::optional<IntervalVector> centered_event_rectangle_integral(
   const Interval separation = norm(displacement);
   if (separation.contains_zero()) return std::nullopt;
 
-  const IntervalVector direction = divide(displacement, separation);
+  const IntervalVector direction =
+      unit_direction_enclosure(displacement, separation);
   const Interval source_radial_speed = dot(direction, source_velocity);
   const Interval field_speed = Interval::decimal_token(request.field_speed);
   const Interval residual_derivative = field_speed - source_radial_speed;
@@ -1604,7 +1782,8 @@ std::optional<IntervalVector> centered_event_rectangle_integral(
       radial_square * interval_sqrt(radial_square);
   const Interval radial_five_halves =
       interval_square(radial_square) * interval_sqrt(radial_square);
-  const IntervalVector kernel = divide(displacement, radial_three_halves);
+  const IntervalVector kernel =
+      softened_kernel_enclosure(displacement, core_scale);
   const Interval displacement_dot_derivative =
       dot(displacement, displacement_derivative);
   const IntervalVector kernel_derivative = add(
@@ -1669,6 +1848,116 @@ Interval normal_cdf_interval(
       (Interval::point(1.0) + interval_erf(argument));
 }
 
+Interval normal_cdf_difference_enclosure(
+    const IntervalVector& receiver_position,
+    const IntervalVector& first_source_position,
+    const IntervalVector& second_source_position,
+    const Interval& reception,
+    double first_emission,
+    double second_emission,
+    const Interval& field_speed,
+    const Interval& causal_width,
+    const std::optional<IntervalVector>& correlated_source_delta) {
+  const IntervalVector first_displacement =
+      subtract(receiver_position, first_source_position);
+  const IntervalVector second_displacement =
+      subtract(receiver_position, second_source_position);
+  const Interval first_separation = norm(first_displacement);
+  const Interval second_separation = norm(second_displacement);
+  const Interval first_residual = first_separation -
+      field_speed * (reception - Interval::point(first_emission));
+  const Interval second_residual = second_separation -
+      field_speed * (reception - Interval::point(second_emission));
+  const Interval direct =
+      normal_cdf_interval(second_residual, causal_width) -
+      normal_cdf_interval(first_residual, causal_width);
+  if (first_separation.contains_zero() ||
+      second_separation.contains_zero()) {
+    return direct;
+  }
+
+  IntervalVector midpoint_receiver{
+      Interval::point(receiver_position[0].midpoint()),
+      Interval::point(receiver_position[1].midpoint()),
+      Interval::point(receiver_position[2].midpoint())};
+  IntervalVector midpoint_first_source{
+      Interval::point(first_source_position[0].midpoint()),
+      Interval::point(first_source_position[1].midpoint()),
+      Interval::point(first_source_position[2].midpoint())};
+  IntervalVector midpoint_second_source{
+      Interval::point(second_source_position[0].midpoint()),
+      Interval::point(second_source_position[1].midpoint()),
+      Interval::point(second_source_position[2].midpoint())};
+  IntervalVector midpoint_source_delta{
+      Interval::point(0.0), Interval::point(0.0), Interval::point(0.0)};
+  if (correlated_source_delta.has_value()) {
+    for (std::size_t axis = 0; axis < 3U; ++axis) {
+      midpoint_source_delta[axis] =
+          Interval::point((*correlated_source_delta)[axis].midpoint());
+      midpoint_second_source[axis] =
+          midpoint_first_source[axis] + midpoint_source_delta[axis];
+    }
+  }
+  const Interval midpoint_reception = Interval::point(reception.midpoint());
+  const Interval midpoint_first_residual =
+      norm(subtract(midpoint_receiver, midpoint_first_source)) -
+      field_speed *
+          (midpoint_reception - Interval::point(first_emission));
+  const Interval midpoint_second_residual =
+      norm(subtract(midpoint_receiver, midpoint_second_source)) -
+      field_speed *
+          (midpoint_reception - Interval::point(second_emission));
+  Interval centered =
+      normal_cdf_interval(midpoint_second_residual, causal_width) -
+      normal_cdf_interval(midpoint_first_residual, causal_width);
+
+  const auto normal_density = [&](const Interval& residual) {
+    const Interval exponent = Interval::point(0.0) -
+        interval_square(residual) /
+            (Interval::point(2.0) * interval_square(causal_width));
+    const Interval pi(3.1415926535897931, 3.1415926535897936);
+    return interval_exp(exponent) /
+        (interval_sqrt(Interval::point(2.0) * pi) * causal_width);
+  };
+  const Interval first_density = normal_density(first_residual);
+  const Interval second_density = normal_density(second_residual);
+  const IntervalVector first_direction =
+      unit_direction_enclosure(first_displacement, first_separation);
+  const IntervalVector second_direction =
+      unit_direction_enclosure(second_displacement, second_separation);
+  for (std::size_t axis = 0; axis < 3U; ++axis) {
+    const Interval receiver_derivative =
+        second_density * second_direction[axis] -
+        first_density * first_direction[axis];
+    centered = centered + receiver_derivative *
+        (receiver_position[axis] - midpoint_receiver[axis]);
+    if (correlated_source_delta.has_value()) {
+      centered = centered +
+          (first_density * first_direction[axis] -
+           second_density * second_direction[axis]) *
+              (first_source_position[axis] - midpoint_first_source[axis]);
+      centered = centered - second_density * second_direction[axis] *
+          ((*correlated_source_delta)[axis] -
+           midpoint_source_delta[axis]);
+    } else {
+      centered = centered + first_density * first_direction[axis] *
+          (first_source_position[axis] - midpoint_first_source[axis]);
+      centered = centered - second_density * second_direction[axis] *
+          (second_source_position[axis] - midpoint_second_source[axis]);
+    }
+  }
+  const Interval reception_derivative =
+      field_speed * (first_density - second_density);
+  centered = centered + reception_derivative *
+      (reception - midpoint_reception);
+  const auto intersection = direct.intersection(centered);
+  if (!intersection.has_value()) {
+    throw std::runtime_error(
+        "event Gaussian-CDF mean-value enclosures disagree");
+  }
+  return *intersection;
+}
+
 std::optional<IntervalVector> monotone_event_rectangle_integral(
     const NativeCoupledEvolutionRequest& request,
     const NativePublishedPath& receiver,
@@ -1689,31 +1978,40 @@ std::optional<IntervalVector> monotone_event_rectangle_integral(
       subtract(receiver_position, source_position);
   const Interval separation = norm(displacement);
   if (separation.contains_zero()) return std::nullopt;
-  const IntervalVector direction = divide(displacement, separation);
+  const IntervalVector direction =
+      unit_direction_enclosure(displacement, separation);
   const Interval field_speed = Interval::decimal_token(request.field_speed);
   const Interval residual_derivative =
       field_speed - dot(direction, source_velocity);
   if (residual_derivative.contains_zero()) return std::nullopt;
 
-  const auto endpoint_residual = [&](double time) {
-    const Interval emission_point = Interval::point(time);
-    return norm(subtract(
-               receiver_position,
-               source.history.position_hull(emission_point))) -
-        field_speed * (reception - emission_point);
-  };
-  Interval first_residual = endpoint_residual(emission.lower());
-  Interval second_residual = endpoint_residual(emission.upper());
+  double first_emission = emission.lower();
+  double second_emission = emission.upper();
+  IntervalVector first_source_position =
+      source.history.position_hull(Interval::point(first_emission));
+  IntervalVector second_source_position =
+      source.history.position_hull(Interval::point(second_emission));
   if (residual_derivative.upper() < 0.0) {
-    std::swap(first_residual, second_residual);
+    std::swap(first_emission, second_emission);
+    std::swap(first_source_position, second_source_position);
   }
   const Interval causal_width =
       Interval::decimal_token(request.causal_width);
-  const Interval first_cdf =
-      normal_cdf_interval(first_residual, causal_width);
-  const Interval second_cdf =
-      normal_cdf_interval(second_residual, causal_width);
-  const Interval raw_mass = second_cdf - first_cdf;
+  std::optional<IntervalVector> correlated_source_delta;
+  const double source_lower = std::min(first_emission, second_emission);
+  const double source_upper = std::max(first_emission, second_emission);
+  if (const auto ordered_delta =
+          source.history.same_segment_correlated_displacement(
+              Interval::point(source_upper), Interval::point(source_lower));
+      ordered_delta.has_value()) {
+    correlated_source_delta = second_emission >= first_emission
+        ? *ordered_delta
+        : scale(Interval::point(-1.0), *ordered_delta);
+  }
+  const Interval raw_mass = normal_cdf_difference_enclosure(
+      receiver_position, first_source_position, second_source_position,
+      reception, first_emission, second_emission,
+      field_speed, causal_width, correlated_source_delta);
   const Interval mass(
       std::max(0.0, raw_mass.lower()),
       std::max(0.0, raw_mass.upper()));
@@ -1723,8 +2021,8 @@ std::optional<IntervalVector> monotone_event_rectangle_integral(
   const Interval core_scale = Interval::decimal_token(request.core_scale);
   const Interval radial_square =
       interval_square(separation) + interval_square(core_scale);
-  const IntervalVector kernel = divide(
-      displacement, radial_square * interval_sqrt(radial_square));
+  const IntervalVector kernel =
+      softened_kernel_enclosure(displacement, core_scale);
   const Interval receiver_strength = interval_absolute(
       field_speed - dot(direction, receiver_velocity));
   const Interval signed_charge_scale =
@@ -1734,8 +2032,9 @@ std::optional<IntervalVector> monotone_event_rectangle_integral(
   IntervalVector result = scale(
       Interval::point(reception.width()),
       scale(
-          signed_charge_scale * receiver_strength * mollifier_integral,
-          kernel));
+          signed_charge_scale * mollifier_integral,
+          event_prefactor_enclosure(
+              displacement, receiver_velocity, field_speed, core_scale)));
 
   const IntervalVector displacement_derivative =
       scale(Interval::point(-1.0), source_velocity);
@@ -1780,18 +2079,11 @@ std::optional<IntervalVector> monotone_event_rectangle_integral(
       receiver_position, source.history.position_hull(midpoint_emission));
   const Interval midpoint_separation = norm(midpoint_displacement);
   if (!midpoint_separation.contains_zero()) {
-    const IntervalVector midpoint_direction =
-        divide(midpoint_displacement, midpoint_separation);
-    const Interval midpoint_radial_square =
-        interval_square(midpoint_separation) + interval_square(core_scale);
-    const IntervalVector midpoint_kernel = divide(
-        midpoint_displacement,
-        midpoint_radial_square * interval_sqrt(midpoint_radial_square));
-    const Interval midpoint_strength = interval_absolute(
-        field_speed - dot(midpoint_direction, receiver_velocity));
     IntervalVector centered = scale(
-        signed_charge_scale * midpoint_strength * mollifier_integral,
-        midpoint_kernel);
+        signed_charge_scale * mollifier_integral,
+        event_prefactor_enclosure(
+            midpoint_displacement, receiver_velocity,
+            field_speed, core_scale));
     const double remainder_scale =
         0.5 * emission.width() * mollifier_integral.upper();
     for (std::size_t axis = 0; axis < 3; ++axis) {
@@ -1883,7 +2175,7 @@ certify_binary64_fold_caustic_impulse(
       .impulse = std::nullopt,
       .position_moment = std::nullopt,
       .visited_cells = 0,
-      .precision_route = "binary64_outward_joint_quadrature",
+      .precision_route = "binary64_outward_mean_value_joint_quadrature",
       .precision_bits = 53,
       .failure_code = "numeric_event_impulse_uncertified",
   };
@@ -1899,6 +2191,22 @@ certify_binary64_fold_caustic_impulse(
       return certificate;
     }
     const Interval reception_all(reception_lower, reception_upper);
+    for (const auto& segment : receiver.history.segments()) {
+      if (segment.t_end() < reception_lower ||
+          segment.t_start() > reception_upper) {
+        continue;
+      }
+      certificate.receiver_position_error_upper = std::max(
+          certificate.receiver_position_error_upper, segment.position_error());
+      certificate.receiver_velocity_error_upper = std::max(
+          certificate.receiver_velocity_error_upper, segment.velocity_error());
+    }
+    for (const auto& segment : source.history.segments()) {
+      certificate.source_position_error_upper = std::max(
+          certificate.source_position_error_upper, segment.position_error());
+      certificate.source_velocity_error_upper = std::max(
+          certificate.source_velocity_error_upper, segment.velocity_error());
+    }
     const Interval emission_boundary = Interval::point(search_lower);
     const Interval boundary_residual =
         norm(subtract(
@@ -2066,7 +2374,8 @@ certify_binary64_fold_caustic_impulse(
         if (!cell_separation.contains_zero()) {
           receiver_strength_bound = interval_absolute(
               field_speed -
-              dot(divide(cell_displacement, cell_separation),
+              dot(unit_direction_enclosure(
+                      cell_displacement, cell_separation),
                   cell_receiver_velocity)).upper();
         }
         const double signed_scale_bound =
@@ -2225,7 +2534,13 @@ certify_binary64_fold_caustic_impulse(
         if (parent.depth >= request.event_max_depth) {
           throw std::runtime_error("event_impulse_depth_exhausted");
         }
-        if ((parent.t_upper - parent.t_lower) >=
+        // The monotone-residual enclosure analytically integrates the
+        // Gaussian along emission time. Spend the remaining mesh budget more
+        // densely on reception time, whose shared receiver state is otherwise
+        // re-enclosed in every active cell.
+        constexpr double kReceptionSubdivisionBias = 16.0;
+        if (kReceptionSubdivisionBias *
+                (parent.t_upper - parent.t_lower) >=
             (parent.s_upper - parent.s_lower)) {
           const double midpoint =
               parent.t_lower + (parent.t_upper - parent.t_lower) * 0.5;
@@ -2552,6 +2867,142 @@ NativeRegulatorConvergenceCertificate certify_native_regulator_convergence(
   return certificate;
 }
 
+NativeFarFieldEnclosureCertificate certify_far_field_enclosure(
+    const NativeCoupledEvolutionRequest& request,
+    const NativePublishedPath& receiver,
+    const NativePublishedPath& source,
+    const std::string& emission_lower,
+    const std::string& reception_time,
+    std::size_t source_count) {
+  NativeFarFieldEnclosureCertificate certificate{
+      .schema = "eom_native_far_field_enclosure_certificate/v0",
+      .row_id = receiver.path_id + "/" + source.path_id + "/" +
+          reception_time + "/far-field",
+      .receiver_path_id = receiver.path_id,
+      .source_path_id = source.path_id,
+      .receiver_history_id = receiver.history.history_id(),
+      .source_history_id = source.history.history_id(),
+      .receiver_history_fingerprint =
+          receiver.history.provenance_fingerprint(),
+      .source_history_fingerprint = source.history.provenance_fingerprint(),
+      .reception_time = reception_time,
+      .emission_lower = emission_lower,
+      .emission_upper = reception_time,
+      .status = "exact_fallback",
+      .failure_code = "far_field_enclosure_not_attempted",
+  };
+  try {
+    const Interval reception = Interval::decimal_token(reception_time);
+    const Interval lower = Interval::decimal_token(emission_lower);
+    const Interval emission(lower.lower(), reception.upper());
+    const IntervalVector receiver_position =
+        receiver.history.position_hull(reception);
+    const IntervalVector source_position = source.history.position_hull(emission);
+    const IntervalVector displacement =
+        subtract(receiver_position, source_position);
+    const Interval separation = norm(displacement);
+    certificate.displacement_hull = displacement;
+    certificate.separation = separation;
+    if (!(separation.lower() > 0.0)) {
+      certificate.failure_code = "FFE-GEO-01";
+      return certificate;
+    }
+
+    const Interval receiver_speed =
+        norm(receiver.history.velocity_hull(reception));
+    const Interval source_speed = norm(source.history.velocity_hull(emission));
+    const Interval field_speed = Interval::decimal_token(request.field_speed);
+    const Interval source_normal = field_speed - source_speed;
+    certificate.receiver_speed = receiver_speed;
+    certificate.source_speed = source_speed;
+    certificate.source_normal_lower_bound = source_normal;
+    if (!(source_normal.lower() > 0.0)) {
+      certificate.failure_code = "FFE-NORMAL-01";
+      return certificate;
+    }
+
+    const Interval coupling =
+        interval_absolute(Interval::decimal_token(request.coupling));
+    const Interval charge_product = interval_absolute(
+        Interval::decimal_token(path_charge(request, receiver.path_id)) *
+        Interval::decimal_token(path_charge(request, source.path_id)));
+    const Interval receiver_normal_bound = field_speed + receiver_speed;
+    const Interval denominator =
+        interval_square(separation) * source_normal;
+    const Interval raw_bound =
+        coupling * charge_product * receiver_normal_bound / denominator;
+    const Interval magnitude_bound(0.0, raw_bound.upper());
+    certificate.pair_magnitude_bound = magnitude_bound;
+    if (!std::isfinite(magnitude_bound.upper())) {
+      certificate.failure_code = "FFE-BOUND-01";
+      return certificate;
+    }
+
+    const Interval fraction =
+        Interval::decimal_token(request.far_field_enclosure_fraction);
+    const Interval acceleration_tolerance =
+        Interval::decimal_token(request.acceleration_tolerance);
+    const Interval pair_width_budget =
+        fraction * acceleration_tolerance /
+        Interval::point(static_cast<double>(source_count));
+    certificate.pair_width_budget = pair_width_budget;
+    const Interval cutoff = interval_sqrt(
+        Interval::point(2.0) * coupling * charge_product *
+        receiver_normal_bound /
+        (pair_width_budget * source_normal));
+    certificate.derived_cutoff_radius = cutoff;
+    if ((Interval::point(2.0) * magnitude_bound).upper() >
+        pair_width_budget.lower()) {
+      certificate.failure_code = "FFE-BUDGET-01";
+      return certificate;
+    }
+
+    const double radius = magnitude_bound.upper();
+    certificate.acceleration = IntervalVector{
+        Interval(-radius, radius), Interval(-radius, radius),
+        Interval(-radius, radius)};
+    certificate.status = "certified_enclosed";
+    certificate.failure_code.clear();
+    return certificate;
+  } catch (const std::exception&) {
+    certificate.failure_code = "FFE-BOUND-01";
+    return certificate;
+  }
+}
+
+ExactPairCertificate enclosed_pair_marker(
+    const NativeCoupledEvolutionRequest& request,
+    const NativePublishedPath& receiver,
+    const NativePublishedPath& source,
+    const NativeFarFieldEnclosureCertificate& enclosure) {
+  return {
+      .schema = "eom_native_enclosed_pair_marker/v0",
+      .row_id = enclosure.row_id,
+      .receiver_history_id = receiver.history.history_id(),
+      .source_history_id = source.history.history_id(),
+      .receiver_history_fingerprint =
+          receiver.history.provenance_fingerprint(),
+      .source_history_fingerprint = source.history.provenance_fingerprint(),
+      .reception_time = enclosure.reception_time,
+      .searched_lower = enclosure.emission_lower,
+      .searched_upper = enclosure.emission_upper,
+      .field_speed = request.field_speed,
+      .root_tolerance = request.root_tolerance,
+      .status = "certified_enclosed",
+      .failure_code = "",
+      .root_free_complement = false,
+      .memory_boundary_contact = false,
+      .coincident_endpoint_excluded = false,
+      .precision_escalated = false,
+      .achieved_precision_bits = 53,
+      .visited_cells = 0,
+      .excluded_cells = 0,
+      .difficult_cells = 0,
+      .diagnostic_detail = "root search bypassed by FFE-BUDGET-01",
+      .roots = {},
+  };
+}
+
 NativeAccelerationSnapshotCertificate certify_native_acceleration_snapshot(
     const NativeCoupledEvolutionRequest& request,
     const std::vector<NativePublishedPath>& histories,
@@ -2567,6 +3018,12 @@ NativeAccelerationSnapshotCertificate certify_native_acceleration_snapshot(
   std::optional<CertifiedTraversalCertificate> traversal_certificate;
   std::uint64_t traversal_excluded_pairs = 0;
   std::uint64_t traversal_exact_pairs = logical_pair_count;
+  std::uint64_t traversal_enclosed_pairs = 0;
+  std::uint64_t traversal_unresolved_pairs = 0;
+  double enclosed_error_width_total = 0.0;
+  double enclosed_error_width_max_receiver = 0.0;
+  std::vector<NativeFarFieldEnclosureCertificate>
+      far_field_enclosure_certificates;
   std::string pair_selection_route = "exhaustive_exact_pair_batch";
   std::string traversal_failure;
   std::vector<ExactPairWarmStart> warm_starts(logical_pair_count);
@@ -2587,6 +3044,8 @@ NativeAccelerationSnapshotCertificate certify_native_acceleration_snapshot(
             warm_histories->begin(), warm_histories->end(),
             [&](const auto& path) { return path.path_id == source.path_id; });
         if (prior_row != warm_snapshot->root_certificates.end() &&
+            prior_row->certificate.schema ==
+                "eom_native_exact_pair_certificate/v0" &&
             prior_receiver != warm_histories->end() &&
             prior_source != warm_histories->end()) {
           warm_starts[logical_index] = {
@@ -2618,7 +3077,97 @@ NativeAccelerationSnapshotCertificate certify_native_acceleration_snapshot(
       ? causal_prefix_exclusion.active_search_lower
       : common_start;
 
-  if (request.use_certified_traversal && common_history_start) {
+  const bool use_far_field_enclosure =
+      exact_decimal_value(request.far_field_enclosure_fraction) > 0.0 &&
+      common_history_start;
+  if (use_far_field_enclosure) {
+    pair_selection_route = "certified_far_field_then_exact_pair_batch";
+    far_field_enclosure_certificates.reserve(logical_pair_count);
+    std::vector<std::optional<ExactPairCertificate>> selected_certificates(
+        logical_pair_count);
+    std::vector<ExactPairRequest> root_requests;
+    std::vector<std::size_t> root_request_logical_indices;
+    root_requests.reserve(logical_pair_count);
+    root_request_logical_indices.reserve(logical_pair_count);
+    std::size_t logical_index = 0U;
+    std::size_t receiver_index = 0U;
+    std::vector<double> receiver_enclosed_widths(histories.size(), 0.0);
+    for (const auto& receiver : histories) {
+      for (const auto& source : histories) {
+        auto enclosure = certify_far_field_enclosure(
+            request, receiver, source, common_start, reception_time,
+            histories.size());
+        far_field_enclosure_certificates.push_back(std::move(enclosure));
+        const auto& stored_enclosure =
+            far_field_enclosure_certificates.back();
+        if (stored_enclosure.status == "certified_enclosed") {
+          selected_certificates[logical_index] = enclosed_pair_marker(
+              request, receiver, source, stored_enclosure);
+          ++traversal_enclosed_pairs;
+          const double width =
+              2.0 * stored_enclosure.pair_magnitude_bound->upper();
+          enclosed_error_width_total += width;
+          receiver_enclosed_widths[receiver_index] += width;
+        } else {
+          root_request_logical_indices.push_back(logical_index);
+          root_requests.push_back({
+              .row_id = receiver.path_id + "/" + source.path_id + "/" +
+                  reception_time,
+              .receiver = &receiver.history,
+              .source = &source.history,
+              .reception_time = reception_time,
+              .search_lower = active_search_lower,
+              .search_upper = reception_time,
+              .field_speed = request.field_speed,
+              .root_tolerance = request.root_tolerance,
+              .max_depth = request.root_max_depth,
+              .max_cells = request.root_max_cells,
+              .initial_mpfr_bits = request.initial_mpfr_bits,
+              .maximum_mpfr_bits = request.maximum_mpfr_bits,
+              .force_precision_escalation = false,
+              .defer_precision_escalation =
+                  defer_root_precision_escalation,
+              .warm_start = warm_snapshot != nullptr &&
+                      warm_histories != nullptr
+                  ? &warm_starts[logical_index]
+                  : nullptr,
+          });
+        }
+        ++logical_index;
+      }
+      ++receiver_index;
+    }
+    for (const double width : receiver_enclosed_widths) {
+      enclosed_error_width_max_receiver =
+          std::max(enclosed_error_width_max_receiver, width);
+    }
+    traversal_exact_pairs = root_requests.size();
+    const auto exact_root_timing_start = SteadyClock::now();
+    const auto exact_certificates =
+        certify_exact_pair_batch(root_requests, request.thread_count);
+    timing.exact_root_batch_wall_seconds +=
+        elapsed_seconds(exact_root_timing_start);
+    if (exact_certificates.size() != root_request_logical_indices.size()) {
+      traversal_failure = "far_field_exact_fallback_coverage_incomplete";
+    } else {
+      for (std::size_t exact_index = 0U;
+           exact_index < exact_certificates.size(); ++exact_index) {
+        selected_certificates[root_request_logical_indices[exact_index]] =
+            exact_certificates[exact_index];
+      }
+    }
+    root_certificates.reserve(logical_pair_count);
+    for (auto& certificate : selected_certificates) {
+      if (!certificate.has_value()) {
+        ++traversal_unresolved_pairs;
+        continue;
+      }
+      root_certificates.push_back(std::move(*certificate));
+    }
+    if (root_certificates.size() != logical_pair_count) {
+      traversal_failure = "far_field_pair_coverage_incomplete";
+    }
+  } else if (request.use_certified_traversal && common_history_start) {
     std::vector<MovingHistoryMember> members;
     members.reserve(histories.size());
     for (const auto& path : histories) {
@@ -2640,6 +3189,8 @@ NativeAccelerationSnapshotCertificate certify_native_acceleration_snapshot(
     timing.traversal_wall_seconds += elapsed_seconds(traversal_timing_start);
     traversal_excluded_pairs = traversal_certificate->excluded_pairs;
     traversal_exact_pairs = traversal_certificate->exact_fallback_pairs;
+    traversal_enclosed_pairs = traversal_certificate->enclosed_pairs;
+    traversal_unresolved_pairs = traversal_certificate->unresolved_pairs;
     pair_selection_route = "certified_moving_history_traversal";
 
     CertifiedTraversalExactBatchCertificate exact_batch{
@@ -2862,6 +3413,9 @@ NativeAccelerationSnapshotCertificate certify_native_acceleration_snapshot(
         elapsed_seconds(exact_root_timing_start);
   }
   for (const auto& root : root_certificates) {
+    if (root.schema == "eom_native_enclosed_pair_marker/v0") {
+      continue;
+    }
     ++timing.root_pair_count;
     timing.root_reevaluated_cells += root.reevaluated_cells;
     timing.root_warm_excluded_cells += root.warm_excluded_cells;
@@ -2905,11 +3459,17 @@ NativeAccelerationSnapshotCertificate certify_native_acceleration_snapshot(
           .receiver_history = &receiver.history,
           .source_history = &source.history,
           .root_certificate = &root,
+          .far_field_enclosure =
+              root.schema == "eom_native_enclosed_pair_marker/v0" &&
+                      index < far_field_enclosure_certificates.size()
+                  ? &far_field_enclosure_certificates[index]
+                  : nullptr,
           .receiver_charge = path_charge(request, receiver.path_id),
           .source_charge = path_charge(request, source.path_id),
           .coupling = request.coupling,
-          .chart =
-              request.chart_policy == "finite_width" ||
+          .chart = root.schema == "eom_native_enclosed_pair_marker/v0"
+              ? "far_field_enclosure"
+              : request.chart_policy == "finite_width" ||
                       (request.chart_policy ==
                            "sharp_with_finite_width_fallback" &&
                        (pair_is_adjudicated_finite_width(
@@ -3038,8 +3598,34 @@ NativeAccelerationSnapshotCertificate certify_native_acceleration_snapshot(
   accumulate_acceleration_detail(acceleration);
   timing.acceleration_wall_seconds +=
       elapsed_seconds(acceleration_timing_start);
+  const std::uint64_t acceleration_unresolved_pairs =
+      static_cast<std::uint64_t>(std::count_if(
+          acceleration.pair_certificates.begin(),
+          acceleration.pair_certificates.end(), [](const auto& pair) {
+            return pair.status == "uncertified" ||
+                !pair.total_acceleration.has_value();
+          }));
+  if (acceleration_unresolved_pairs > traversal_unresolved_pairs) {
+    const std::uint64_t newly_unresolved =
+        acceleration_unresolved_pairs - traversal_unresolved_pairs;
+    if (newly_unresolved <= traversal_exact_pairs) {
+      traversal_exact_pairs -= newly_unresolved;
+      traversal_unresolved_pairs = acceleration_unresolved_pairs;
+    }
+  }
+  const bool pair_ledger_complete =
+      traversal_excluded_pairs + traversal_exact_pairs +
+          traversal_enclosed_pairs + traversal_unresolved_pairs ==
+      logical_pair_count;
+  const double enclosed_width_budget =
+      exact_decimal_value(request.far_field_enclosure_fraction) *
+      exact_decimal_value(request.acceleration_tolerance);
   std::string failure_code;
-  if (root_precision_escalation_deferred) {
+  if (!pair_ledger_complete) {
+    failure_code = "FFE-LEDGER-01";
+  } else if (enclosed_error_width_max_receiver > enclosed_width_budget) {
+    failure_code = "FFE-SUM-01";
+  } else if (root_precision_escalation_deferred) {
     failure_code = "root_precision_escalation_deferred_for_cost_feedback";
   } else if (!traversal_failure.empty()) {
     failure_code = traversal_failure;
@@ -3052,14 +3638,22 @@ NativeAccelerationSnapshotCertificate certify_native_acceleration_snapshot(
   }
   timing.total_wall_seconds = elapsed_seconds(total_timing_start);
   return {
-      .schema = "eom_native_acceleration_snapshot_certificate/v0",
+      .schema = "eom_native_acceleration_snapshot_certificate/v1",
       .status = failure_code.empty() ? "certified_complete" : "uncertified",
       .reception_time = reception_time,
       .failure_code = failure_code,
       .pair_selection_route = pair_selection_route,
+      .logical_ordered_pairs = logical_pair_count,
       .traversal_excluded_pairs = traversal_excluded_pairs,
       .traversal_exact_pairs = traversal_exact_pairs,
+      .traversal_enclosed_pairs = traversal_enclosed_pairs,
+      .traversal_unresolved_pairs = traversal_unresolved_pairs,
+      .enclosed_error_width_total = enclosed_error_width_total,
+      .enclosed_error_width_max_receiver =
+          enclosed_error_width_max_receiver,
       .traversal_certificate = std::move(traversal_certificate),
+      .far_field_enclosure_certificates =
+          std::move(far_field_enclosure_certificates),
       .causal_prefix_exclusion = std::move(causal_prefix_exclusion),
       .root_certificates = std::move(root_rows),
       .acceleration = std::move(acceleration),
@@ -3586,9 +4180,15 @@ NativeCoupledEvolutionCertificate evolve_native_coupled_histories(
       }
     }
     if (next_step < minimum_step) {
-      halt_code = steps.back().failure_code.rfind("caustic_", 0U) == 0U
-          ? "caustic_transit_uncertified"
-          : "minimum_step_exhausted";
+      if (steps.back().failure_code.rfind("caustic_", 0U) == 0U) {
+        halt_code = "caustic_transit_uncertified";
+      } else if (
+          request.chart_policy == "sharp_with_finite_width_fallback" &&
+          steps.back().failure_code == "root_completeness_not_certified") {
+        halt_code = "caustic_entry_uncertified";
+      } else {
+        halt_code = "minimum_step_exhausted";
+      }
       break;
     }
     step_size = next_step;

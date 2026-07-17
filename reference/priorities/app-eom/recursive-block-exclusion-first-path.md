@@ -5,7 +5,7 @@
 - Packet id: `eom_recursive_block_exclusion_first_path/v0`
 - Date opened: 2026-07-16
 - Claim level: `priority-design`
-- Implementation status: `active`
+- Implementation status: `complete-for-declared-first-path-round`
 - Production authority: none
 - Governing contracts:
   [evolution-contract-v0-amendment-1-million-path-scale.md](evolution-contract-v0-amendment-1-million-path-scale.md)

@@ -45,7 +45,7 @@ class NativeBorgProcessTests(unittest.TestCase):
     def test_native_process_extends_continuous_history_and_returns_only_published_segments(self) -> None:
         protocol = "\n".join(
             (
-                "EOM_BORG_NATIVE_V0",
+                "EOM_BORG_NATIVE_V2",
                 "\t".join(
                     (
                         "RUN",
@@ -54,10 +54,13 @@ class NativeBorgProcessTests(unittest.TestCase):
                         "2.1",
                         "0.1",
                         "0.1",
+                        "0.1",
+                        "0",
                         "1",
                         "1",
                         "1e-10",
                         "1e-8",
+                        "0",
                         "1e-8",
                         "1e-8",
                         "1e-8",
@@ -86,32 +89,104 @@ class NativeBorgProcessTests(unittest.TestCase):
         self.assertEqual(response["acceptedEndTime"], "2.1")
         self.assertEqual(response["acceptedStepCount"], 1)
         self.assertEqual(response["rejectedStepCount"], 0)
+        self.assertAlmostEqual(float(response["controllerStepSize"]), 0.1)
         self.assertEqual(response["haltCode"], "")
         self.assertEqual(response["publishedExtensions"][0]["pathId"], "p")
         self.assertGreater(
             len(response["publishedExtensions"][0]["segments"]), 0
         )
 
-    def test_native_process_rejects_state_only_and_malformed_protocol_inputs(self) -> None:
+    def test_native_process_rejects_under_length_run_record(self) -> None:
+        under_length_run = "\t".join(
+            (
+                "RUN", "under-length", "2", "2.1", "0.1", "0.1",
+                "0.1", "0", "1", "1", "1e-10", "1e-8", "1e-8", "1e-8",
+                "1e-8", "2", "1",
+            )
+        )
         completed = subprocess.run(
             [str(self.binary), "borg-shadow-v0"],
-            input="EOM_BORG_NATIVE_V0\nRUN\tbad\n",
+            input=f"EOM_BORG_NATIVE_V2\n{under_length_run}\n",
             check=False,
             cwd=ROOT,
             capture_output=True,
             text=True,
         )
         self.assertNotEqual(completed.returncode, 0)
-        self.assertIn("invalid RUN record", completed.stderr)
+        self.assertIn(
+            "invalid RUN record: expected exactly 18 tab-separated fields",
+            completed.stderr,
+        )
+
+    def test_native_process_rejects_v1_protocol_magic(self) -> None:
+        completed = subprocess.run(
+            [str(self.binary), "borg-shadow-v0"],
+            input="EOM_BORG_NATIVE_V1\n",
+            check=False,
+            cwd=ROOT,
+            capture_output=True,
+            text=True,
+        )
+        self.assertNotEqual(completed.returncode, 0)
+        self.assertIn("unsupported Borg EOM native protocol", completed.stderr)
+
+    def test_protocol_enables_bounded_adaptive_step_recovery(self) -> None:
+        protocol = "\n".join(
+            (
+                "EOM_BORG_NATIVE_V2",
+                "\t".join(
+                    (
+                        "RUN",
+                        "native-process-adaptive-growth",
+                        "2",
+                        "2.4",
+                        "0.1",
+                        "0.05",
+                        "0.4",
+                        "1",
+                        "1",
+                        "1",
+                        "1e-10",
+                        "1e-8",
+                        "0",
+                        "1e-8",
+                        "1e-8",
+                        "1e-8",
+                        "1",
+                        "1",
+                    )
+                ),
+                "PATH\tp\t1\t1\t1",
+                "SEG\t0\t2\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0",
+                "END",
+                "",
+            )
+        )
+        completed = subprocess.run(
+            [str(self.binary), "borg-shadow-v0"],
+            input=protocol,
+            check=True,
+            cwd=ROOT,
+            capture_output=True,
+            text=True,
+        )
+        response = json.loads(completed.stdout)
+        self.assertEqual(response["status"], "completed")
+        # Two accepted h=0.1 steps satisfy the unchanged 1/8-budget gate, so
+        # the final accepted step grows to h=0.2. Ignoring either new field
+        # would require four fixed h=0.1 steps.
+        self.assertEqual(response["acceptedStepCount"], 3)
+        self.assertEqual(response["rejectedStepCount"], 0)
+        self.assertAlmostEqual(float(response["controllerStepSize"]), 0.2)
 
     def test_absolute_time_rounding_tail_snaps_to_requested_decimal_endpoint(self) -> None:
         protocol = "\n".join(
             (
-                "EOM_BORG_NATIVE_V0",
+                "EOM_BORG_NATIVE_V2",
                 "\t".join(
                     (
                         "RUN", "absolute-time-rounding-tail", "300.03", "300.04",
-                        "0.01", "0.01", "1", "1", "1e-10", "1e-8",
+                        "0.01", "0.01", "0.01", "0", "1", "1", "1e-10", "1e-8", "0",
                         "1e-8", "1e-8", "1e-8", "2", "1",
                     )
                 ),
@@ -138,11 +213,11 @@ class NativeBorgProcessTests(unittest.TestCase):
         def request(run_id: str) -> str:
             return "\n".join(
                 (
-                    "EOM_BORG_NATIVE_V0",
+                    "EOM_BORG_NATIVE_V2",
                     "\t".join(
                         (
                             "RUN", run_id, "2", "2.1", "0.1", "0.1",
-                            "1", "1", "1e-10", "1e-8", "1e-8", "1e-8",
+                            "0.1", "0", "1", "1", "1e-10", "1e-8", "0", "1e-8", "1e-8",
                             "1e-8", "2", "1",
                         )
                     ),
@@ -166,13 +241,19 @@ class NativeBorgProcessTests(unittest.TestCase):
         self.assertTrue(all(response["status"] == "completed" for response in responses))
 
     def test_native_server_reuses_certified_chunk_boundary_snapshot(self) -> None:
-        def protocol(run_id: str, start: str, end: str, segments: list[dict]) -> str:
+        def protocol(
+            run_id: str,
+            start: str,
+            end: str,
+            segments: list[dict],
+            step: str = "0.1",
+        ) -> str:
             rows = [
-                "EOM_BORG_NATIVE_V0",
+                "EOM_BORG_NATIVE_V2",
                 "\t".join(
                     (
-                        "RUN", run_id, start, end, "0.1", "0.1",
-                        "1", "1", "1e-10", "1e-8", "1e-8", "1e-8",
+                        "RUN", run_id, start, end, step, step,
+                        step, "0", "1", "1", "1e-10", "1e-8", "0", "1e-8", "1e-8",
                         "1e-8", "2", "1",
                     )
                 ),
@@ -219,7 +300,7 @@ class NativeBorgProcessTests(unittest.TestCase):
             *first["publishedExtensions"][0]["segments"],
         ]
         second_protocol = protocol(
-            "incremental-1", "2.1", "2.2", continued_segments
+            "incremental-1", "2.1", "2.2", continued_segments, "0.05"
         )
         worker.stdin.write(second_protocol)
         worker.stdin.flush()

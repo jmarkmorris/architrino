@@ -1,7 +1,7 @@
 import { spawn } from "node:child_process";
 
 export const BORG_NATIVE_EOM_PROCESS_CLIENT_VERSION =
-  "borg-native-eom-process-client.v1";
+  "borg-native-eom-process-client.v2";
 
 export function createBorgNativeEomProcessClient({
   binaryPath,
@@ -168,8 +168,16 @@ export function encodeNativeRequest(request) {
   }
   const controls = request.numericalControls ?? {};
   const model = request.modelControls ?? {};
+  if (controls.maximumStep == null ||
+      controls.farFieldEnclosureFraction == null ||
+      typeof controls.useAdaptiveStepGrowth !== "boolean") {
+    throw new TypeError(
+      "EOM process request must explicitly supply maximumStep, " +
+      "useAdaptiveStepGrowth, and farFieldEnclosureFraction.",
+    );
+  }
   const lines = [
-    "EOM_BORG_NATIVE_V0",
+    "EOM_BORG_NATIVE_V2",
     tabRecord([
       "RUN",
       request.runId,
@@ -177,10 +185,13 @@ export function encodeNativeRequest(request) {
       request.absoluteTimeInterval.end,
       controls.initialStep,
       controls.minimumStep,
+      controls.maximumStep,
+      controls.useAdaptiveStepGrowth ? "1" : "0",
       model.fieldSpeed,
       model.coupling,
       controls.rootTolerance,
       controls.accelerationTolerance,
+      controls.farFieldEnclosureFraction,
       controls.positionTolerance,
       controls.velocityTolerance,
       controls.correctionTolerance,

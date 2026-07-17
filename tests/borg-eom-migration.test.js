@@ -66,7 +66,11 @@ test("Borg mounts EOM idle by default and reserves automatic compute for explici
   assert.equal(defaultMounts[0].manifest.modelControls.coupling, 0.005);
   assert.equal(defaultMounts[0].eomShadowRunner.coupling, "0.005");
   assert.equal(defaultMounts[0].eomShadowRunner.chunkDuration, 0.05);
+  assert.equal(defaultMounts[0].eomShadowRunner.initialStep, "0.025");
   assert.equal(defaultMounts[0].eomShadowRunner.minimumStep, "0.0001");
+  assert.equal(defaultMounts[0].eomShadowRunner.maximumStep, "0.025");
+  assert.equal(defaultMounts[0].eomShadowRunner.useAdaptiveStepGrowth, true);
+  assert.equal(defaultMounts[0].eomShadowRunner.farFieldEnclosureFraction, "0.25");
   assert.deepEqual(defaultMounts[0].manifest.simulationEnvelope.centralVolume.bounds, {
     x: [0.1, 0.9],
     y: [0.1, 0.9],
@@ -249,6 +253,10 @@ test("Borg EOM migration uses canonical field speed and the declared memory dept
   assert.equal(config.fieldSpeed, 1);
   assert.equal(config.geometricDelayBound, expectedGeometricDelayBound);
   assert.equal(config.historyDepth, 10);
+  assert.equal(config.initialStep, "0.1");
+  assert.equal(config.maximumStep, "0.2");
+  assert.equal(config.useAdaptiveStepGrowth, true);
+  assert.equal(config.farFieldEnclosureFraction, "0.25");
   assert.ok(Math.abs(config.historyStartTime - (300 - config.historyDepth)) < 1e-12);
 
   const expandedPopulationConfig = createBorgEomShadowRunConfig(BORG_DATASET_MANIFEST_V1, {
@@ -322,6 +330,10 @@ test("Borg EOM shadow runner sends retained histories and derives frames only fr
   assert.equal(request.histories.length, 6);
   assert.equal(request.histories[0].coverageEnd, "10");
   assert.equal(request.numericalControls.threadCount, 4);
+  assert.equal(request.numericalControls.initialStep, "0.1");
+  assert.equal(request.numericalControls.maximumStep, "0.2");
+  assert.equal(request.numericalControls.useAdaptiveStepGrowth, true);
+  assert.equal(request.numericalControls.farFieldEnclosureFraction, "0.25");
   assert.equal(request.modelControls.selfPairs, "included-except-coincident-endpoint");
   assert.equal(request.modelControls.futurePathPolicy, "prohibited");
   assert.equal(request.modelControls.fieldSpeed, "1");
@@ -362,6 +374,36 @@ test("Borg EOM requests preserve the native checkpoint's exact decimal cut time"
   });
 
   assert.equal(request.absoluteTimeInterval.start, "32.409999999999918");
+});
+
+test("Borg EOM carries the controller height across atomic chunks", async () => {
+  const requests = [];
+  const runner = createBorgEomShadowRunner(BORG_DATASET_MANIFEST_V1, {
+    eomClient: {
+      async evolveRetainedHistories(request) {
+        requests.push(request);
+        return {
+          ...createFakeEomResponse(request, "executable_architecture_evidence"),
+          controllerStepSize: requests.length === 1 ? "0.025" : "0.05",
+        };
+      },
+    },
+    initialFrameRows: trajectoryFrames,
+    startTime: 10,
+    targetDuration: 10.4,
+    chunkDuration: 0.2,
+    sampleInterval: 0.2,
+  });
+
+  const first = await runner.computeNextChunk();
+  const second = await runner.computeNextChunk();
+
+  assert.equal(requests[0].numericalControls.initialStep, "0.1");
+  assert.equal(first.controllerStepSize, "0.025");
+  assert.equal(requests[1].numericalControls.initialStep, "0.025");
+  assert.equal(second.controllerStepSize, "0.05");
+  assert.equal(requests[1].numericalControls.maximumStep, "0.2");
+  assert.equal(requests[1].numericalControls.useAdaptiveStepGrowth, true);
 });
 
 test("Borg EOM shadow runner supports a deterministic retained-history population subset", async () => {
@@ -583,12 +625,57 @@ test("Borg native process protocol carries the same continuous-history request",
   });
   await runner.computeNextChunk();
   const protocol = encodeNativeRequest(requests[0]);
-  assert.match(protocol, /^EOM_BORG_NATIVE_V0\nRUN\t/u);
+  assert.match(protocol, /^EOM_BORG_NATIVE_V2\nRUN\t/u);
+  const runFields = protocol.split("\n")[1].split("\t");
+  assert.equal(runFields.length, 18);
+  assert.equal(runFields[4], "0.1");
+  assert.equal(runFields[6], "0.2");
+  assert.equal(runFields[7], "1");
+  assert.equal(runFields[12], "0.25");
   assert.equal(protocol.match(/^PATH\t/gmu)?.length, 6);
   assert.equal(protocol.match(/^SEG\t/gmu)?.length, 6);
   assert.match(protocol, /\nEND\n$/u);
   assert.equal(protocol.includes("initialStates"), false);
   assert.equal(protocol.includes("futurePaths"), false);
+
+  const fixedHeightRequest = {
+    ...requests[0],
+    numericalControls: {
+      ...requests[0].numericalControls,
+      maximumStep: requests[0].numericalControls.initialStep,
+      useAdaptiveStepGrowth: false,
+    },
+  };
+  const fixedRunFields = encodeNativeRequest(fixedHeightRequest)
+    .split("\n")[1]
+    .split("\t");
+  assert.equal(fixedRunFields.length, 18);
+  assert.equal(fixedRunFields[6], fixedRunFields[4]);
+  assert.equal(fixedRunFields[7], "0");
+
+  const incompleteRequest = {
+    ...requests[0],
+    numericalControls: { ...requests[0].numericalControls },
+  };
+  delete incompleteRequest.numericalControls.maximumStep;
+  assert.throws(
+    () => encodeNativeRequest(incompleteRequest),
+    /must explicitly supply maximumStep, useAdaptiveStepGrowth, and farFieldEnclosureFraction/,
+  );
+  incompleteRequest.numericalControls.maximumStep =
+    requests[0].numericalControls.maximumStep;
+  delete incompleteRequest.numericalControls.useAdaptiveStepGrowth;
+  assert.throws(
+    () => encodeNativeRequest(incompleteRequest),
+    /must explicitly supply maximumStep, useAdaptiveStepGrowth, and farFieldEnclosureFraction/,
+  );
+  incompleteRequest.numericalControls.useAdaptiveStepGrowth =
+    requests[0].numericalControls.useAdaptiveStepGrowth;
+  delete incompleteRequest.numericalControls.farFieldEnclosureFraction;
+  assert.throws(
+    () => encodeNativeRequest(incompleteRequest),
+    /must explicitly supply maximumStep, useAdaptiveStepGrowth, and farFieldEnclosureFraction/,
+  );
 });
 
 test("Borg browser EOM client posts the retained-history contract to the local native endpoint", async () => {

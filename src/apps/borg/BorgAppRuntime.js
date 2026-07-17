@@ -30,6 +30,7 @@ import {
 } from "./BorgLiveRunRetentionPolicy.js";
 import { BORG_RELEASE_BUDGET_MANIFEST_V1 } from "./BorgReleaseBudgetManifest.js";
 import { createBorgPathTrails } from "./BorgPathTrails.js";
+import { createBorgDiagnosticsPanelController } from "./BorgDiagnosticsPanel.js";
 import {
   BORG_MAX_INITIAL_ARCHITRINO_COUNT,
   calculateBorgInertialHistoryDepth,
@@ -178,6 +179,8 @@ export function mountBorgApp(options = {}) {
 
   const dom = {
     app: queryRequiredElement(documentLike, "#borg-app"),
+    diagnosticsPanel: queryRequiredElement(documentLike, "#borg-diagnostics-panel"),
+    diagnosticsToggle: queryRequiredElement(documentLike, "#borg-diagnostics-toggle"),
     solverBanner: documentLike.querySelector?.("#borg-solver-banner") ?? null,
     canvas: queryRequiredElement(documentLike, "#borg-canvas"),
     layerStrip: queryRequiredElement(documentLike, "#borg-layer-strip"),
@@ -364,6 +367,12 @@ export function mountBorgApp(options = {}) {
     resizeObserver: null,
   };
 
+  const diagnosticsPanelController = createBorgDiagnosticsPanelController({
+    panel: dom.diagnosticsPanel,
+    toggleButton: dom.diagnosticsToggle,
+    render: renderDiagnosticsPanel,
+  });
+
   buildScene();
   renderStaticPanels();
   renderLayerStrip();
@@ -385,6 +394,7 @@ export function mountBorgApp(options = {}) {
     surfaceDesign,
     setFrame: updateFrame,
     resetView,
+    diagnosticsPanel: diagnosticsPanelController,
     dispose,
   };
 
@@ -497,6 +507,9 @@ export function mountBorgApp(options = {}) {
     renderSourceFields();
     renderEnvelopeFields();
     renderInitialConditionFields();
+  }
+
+  function renderDiagnosticsPanel() {
     renderDiagnosticFields();
     renderFailClosedRows();
     renderFieldRows(
@@ -510,6 +523,10 @@ export function mountBorgApp(options = {}) {
       ["viewportCssSize", manifest.renderManifests[0]?.viewportCssSize ?? "not-measured"],
     ]);
     renderDeploymentFields();
+  }
+
+  function refreshDiagnosticsPanel() {
+    diagnosticsPanelController.renderIfOpen();
   }
 
   function renderDeploymentFields() {
@@ -1381,6 +1398,7 @@ export function mountBorgApp(options = {}) {
     state.resizeObserver?.disconnect?.();
     windowLike.removeEventListener("resize", resize);
     windowLike.removeEventListener("keydown", handleKeyDown);
+    diagnosticsPanelController.dispose();
     disposeDynamicRunner();
     disposePathTrails();
     disposeParticleObjects();
@@ -1498,7 +1516,7 @@ export function mountBorgApp(options = {}) {
       state.dynamicRunnerKind = "eom-idle";
       updateSourceStatusPresentation();
       renderSourceFields();
-      renderDeploymentFields();
+      refreshDiagnosticsPanel();
       return null;
     }
     const generation = state.dynamicRunGeneration;
@@ -1517,7 +1535,7 @@ export function mountBorgApp(options = {}) {
       state.dynamicRunnerKind = eomRunnerOptions ? "eom-shadow-failed" : "eom-record-replay-failed";
       updateSourceStatusPresentation();
       renderSourceFields();
-      renderDeploymentFields();
+      refreshDiagnosticsPanel();
       return null;
     }
     state.dynamicRunnerKind = eomRunnerOptions ? "eom-shadow" : "eom-record-replay";
@@ -1529,7 +1547,7 @@ export function mountBorgApp(options = {}) {
     updateEomControlPresentation();
     updateSourceStatusPresentation();
     renderSourceFields();
-    renderDeploymentFields();
+    refreshDiagnosticsPanel();
     return ensureDynamicFramesAhead({ replaceInitialRows: true, generation });
   }
 
@@ -1628,7 +1646,7 @@ export function mountBorgApp(options = {}) {
         }
         updateSourceStatusPresentation();
         renderSourceFields();
-        renderDeploymentFields();
+        refreshDiagnosticsPanel();
         updateEomControlPresentation();
         return chunk;
       })
@@ -1669,7 +1687,7 @@ export function mountBorgApp(options = {}) {
         }
         updateSourceStatusPresentation();
         renderSourceFields();
-        renderDeploymentFields();
+        refreshDiagnosticsPanel();
         updateEomControlPresentation();
         return null;
       })
@@ -1810,15 +1828,12 @@ export function mountBorgApp(options = {}) {
     if (!message) {
       banner.hidden = true;
       banner.textContent = "";
+      banner.removeAttribute("title");
       return;
     }
-    banner.textContent = "";
-    const headline = documentLike.createElement("div");
-    headline.textContent = message;
-    const detail = documentLike.createElement("div");
-    detail.className = "borg-solver-banner-detail";
-    detail.textContent = state.dynamicRunnerMessage ?? "";
-    banner.append(headline, detail);
+    const detail = state.dynamicRunnerMessage?.trim();
+    banner.textContent = detail ? `${message} — ${detail}` : message;
+    banner.title = banner.textContent;
     banner.hidden = false;
   }
 
@@ -1877,7 +1892,7 @@ export function mountBorgApp(options = {}) {
     updateFrame(frameSets[0]?.frameIndex ?? 0);
     updateSourceStatusPresentation();
     renderSourceFields();
-    renderDeploymentFields();
+    refreshDiagnosticsPanel();
     updateEomControlPresentation();
   }
 

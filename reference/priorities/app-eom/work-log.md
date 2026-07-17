@@ -1147,3 +1147,75 @@ This file holds dated decisions, implementation status, validation results, fail
   its certificate does not bind the selected population, strict refinement or
   thread determinism fails, or the app labels artificial input history as EOM
   output.
+
+## 2026-07-16 — Priority-queue reconciliation
+
+- Removed three completed items from the immediate priority queue per the
+  completed-task removal rule and renumbered the remainder:
+  `eom_sole_engine` (enforced repo-wide; restated as the standing
+  Non-Negotiable Boundary rules 1–2), `borg_shadow_run_and_first_migration`
+  (accepted-initial-history promotion recorded above with its evidence
+  packet), and `consumer_migration` (all consumers on EOM, conditional
+  analysis, or recorded-dataset playback).
+- Updated workstream metadata to `borg-accepted-initial-history-promotion-complete`
+  and marked the first-path recursive block-exclusion packet
+  `complete-for-declared-first-path-round` to match its two completed
+  follow-on ladder packets.
+
+## 2026-07-16 — Certified far-field contribution enclosure
+
+- **Derived:** a far subluminal source has at most one retained causal root,
+  and the frozen receiver-normal law is bounded by
+  $\kappa|q_iq_j|(c_f+v_i)/(r_{\min}^2(c_f-v_j))$. The cutoff is solved from a
+  declared acceleration-width slice; it is not a distance constant.
+- Implemented pre-root per-pair classification, symmetric acceleration rows,
+  fixed-tree accumulation, complete exact/enclosed/unresolved snapshot
+  accounting, and checkpoint binding. Failed enclosure rows fall back to the
+  existing exact route.
+- Bumped the Borg process contract forward to V2 with exactly 18 fields and an
+  explicit enclosure fraction. Borg declares `0.25`; missing or under-length
+  controls fail closed.
+- **Measured:** the independent static-pair closed form is contained by the
+  native interval. A 3:3 memory-boundary control rejects as
+  `insufficient_history_depth` when disabled and completes through $T=3$ when
+  enabled, with $36=0+6+30+0$ and maximum receiver enclosed width
+  `0.0065277777777779065 <= 0.025`.
+- **Measured:** disabled static and interacting outputs are byte-identical to
+  the pre-enclosure binary. EOM tests pass 139/139, Borg tests pass 63/63, and
+  all pre-commit mirrors pass.
+- **Measured:** the actual seed-0 run with the final Borg `0.25` enclosure
+  fraction remains blocked before dispersal at `FWC-REG-02`
+  ($T=1.3759765625$, 109.33-second terminal chunk), so its live
+  before/after-dispersal cost remains an explicit obligation rather than an
+  inferred success.
+
+## 2026-07-16 — Research-grade caustic track discriminator
+
+- **Measured:** with root, position, and velocity tolerances fixed at `1e-8`,
+  2,048-bit MPFR available, the event budgets unchanged at `1e-7`, and the
+  ceiling unchanged at 200,000 cells, seed-0 tracks with maximum steps `0.01`
+  and `0.005` halted first at `FWC-ENTRY-02` through `T=1.24965625` and
+  `T=1.2846875` respectively.
+- **Measured:** the `0.0025` track crossed both entry boundaries. Its routed
+  `[0.3425,0.345]` attempt certified the complete core ladder, including
+  $\epsilon_c=0.05$ in 5,440 cells with impulse width `9.69534e-8`, then
+  rejected atomically on `FWC-STATE-01` for pair `1004<-1006`.
+- **Measured:** after subdivision the run completed through `T=1.4`, but no
+  accepted child regulator certificate discharged the rejected event. A
+  continuation reached `T=1.4004` and halted on the ordinary
+  `numeric_step_budget_exceeded` floor, not an FWC row. No full finite-width
+  passage is claimed.
+- **Derived:** `FWC-STATE-01` now requires separate event-aware state
+  reconstruction and common-domain chart matching. Any endpoint-linear sharp
+  shortcut carries outward remainders $h_C^3L_2/12$ for impulse and
+  $h_C^4L_2/24$ for position moment; no raw full-window sharp trapezoid is
+  admitted across a fold. Routed pairs remain pinned across child windows
+  until state and exit pass or the event floor halts.
+- **Measured:** the profiling instrument now retains regulator certificates
+  from every attempted step, including certified regulator rows attached to a
+  later state-row rejection. The EOM solver and Decimal oracle were unchanged
+  by that instrumentation edit.
+- Falsifier: overturn this adjudication with a same-control accepted child row
+  that certifies the pinned pair's regulator, state reconstruction, common-
+  domain overlap, and sharp exit, or with a derivation that supplies a finite
+  full-window sharp remainder across the fold.

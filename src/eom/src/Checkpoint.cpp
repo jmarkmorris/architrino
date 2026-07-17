@@ -255,6 +255,7 @@ std::string model_fingerprint(
       request.root_tolerance,
       request.source_normal_floor,
       request.acceleration_tolerance,
+      request.far_field_enclosure_fraction,
       request.chart_policy,
       request.causal_width,
       request.core_scale,

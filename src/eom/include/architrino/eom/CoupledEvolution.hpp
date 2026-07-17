@@ -45,6 +45,9 @@ struct NativeCoupledEvolutionRequest {
   std::string root_tolerance = "1e-12";
   std::string source_normal_floor = "1e-30";
   std::string acceleration_tolerance = "1e-9";
+  // Fraction of the acceleration component-width tolerance reserved for
+  // certified per-pair far-field enclosures. Zero disables the route.
+  std::string far_field_enclosure_fraction = "0";
   std::string chart_policy = "sharp";
   std::string causal_width = "0.2";
   std::string core_scale = "0.2";
@@ -143,6 +146,10 @@ struct NativeFoldCausticImpulseCertificate {
   std::size_t centered_emission_cells = 0;
   std::size_t monotone_residual_cells = 0;
   std::size_t direct_joint_cells = 0;
+  double receiver_position_error_upper = 0.0;
+  double receiver_velocity_error_upper = 0.0;
+  double source_position_error_upper = 0.0;
+  double source_velocity_error_upper = 0.0;
   double last_maximum_component_width = 0.0;
   double last_maximum_position_moment_component_width = 0.0;
   double last_largest_cell_width = 0.0;
@@ -237,9 +244,16 @@ struct NativeAccelerationSnapshotCertificate {
   std::string reception_time;
   std::string failure_code;
   std::string pair_selection_route;
+  std::uint64_t logical_ordered_pairs;
   std::uint64_t traversal_excluded_pairs;
   std::uint64_t traversal_exact_pairs;
+  std::uint64_t traversal_enclosed_pairs;
+  std::uint64_t traversal_unresolved_pairs;
+  double enclosed_error_width_total;
+  double enclosed_error_width_max_receiver;
   std::optional<CertifiedTraversalCertificate> traversal_certificate;
+  std::vector<NativeFarFieldEnclosureCertificate>
+      far_field_enclosure_certificates;
   NativeCausalPrefixExclusionCertificate causal_prefix_exclusion;
   std::vector<NativeSnapshotRootRow> root_certificates;
   NativeAccelerationReconstructionCertificate acceleration;

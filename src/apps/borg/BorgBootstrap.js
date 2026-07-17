@@ -77,10 +77,19 @@ export async function bootBorgApp({
       pathCount: endpointRows.length,
       chunkDuration: 0.05,
       sampleInterval,
-      initialStep: "0.01",
+      // Operator-selected run-length preference (2026-07-16 three-seed
+      // ladder): the 0.025 ceiling survives encounters longer than 0.05
+      // (seed 1 completes t=2.0 at 0.025 but halts t=1.11 at 0.05) at
+      // ~3x the smooth-phase chunk cost. Encounter rejections may shrink
+      // to the unchanged floor; two consecutive accepted steps with
+      // 1/8-budget headroom allow recovery to the ceiling.
+      initialStep: "0.025",
       minimumStep: "0.0001",
+      maximumStep: "0.025",
+      useAdaptiveStepGrowth: true,
       rootTolerance: "1e-3",
       accelerationTolerance: "1e-1",
+      farFieldEnclosureFraction: "0.25",
       positionTolerance: "1e-2",
       velocityTolerance: "1e-2",
       correctionTolerance: "1e-1",

@@ -355,6 +355,24 @@ test("Borg path-history renderer uses native row segments, not visual smoothing 
   );
   assert.doesNotMatch(htmlSource, /id="borg-run-source"/);
   assert.match(htmlSource, /id="borg-playback-speed"/);
+  assert.match(
+    htmlSource,
+    /id="borg-diagnostics-toggle"[\s\S]*aria-label="Show diagnostics"[\s\S]*aria-pressed="false"/,
+  );
+  assert.match(
+    htmlSource,
+    /id="borg-diagnostics-panel"[\s\S]*aria-hidden="true"[\s\S]*inert/,
+  );
+  assert.match(runtimeSource, /refreshDiagnosticsPanel\(\)[\s\S]*diagnosticsPanelController\.renderIfOpen\(\)/);
+  assert.match(
+    htmlSource,
+    /class="borg-viewport-toolbar"[\s\S]*id="borg-layer-strip"[\s\S]*id="borg-solver-banner"[\s\S]*id="borg-reset-view-button"/,
+  );
+  assert.match(
+    htmlSource,
+    /#borg-solver-banner \{[\s\S]*height: 32px;[\s\S]*text-overflow: ellipsis;[\s\S]*white-space: nowrap;/,
+  );
+  assert.match(runtimeSource, /banner\.textContent = detail \? `\$\{message\} — \$\{detail\}` : message;/);
 });
 
 test("Borg surface keeps EOM-native layer policy and fail-closed authority", () => {

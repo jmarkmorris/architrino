@@ -34,6 +34,9 @@ struct IncrementalSnapshotCache {
 
 std::string caustic_contract_row(
     const eom::NativeAtomicStepCertificate& step) {
+  if (step.failure_code == "root_completeness_not_certified") {
+    return "FWC-ENTRY-02";
+  }
   if (step.failure_code == "caustic_eta_convergence_failed") {
     bool causal_width_failed = false;
     bool core_scale_failed = false;
@@ -193,6 +196,16 @@ int parse_int(const std::string& token, const char* label) {
   return value;
 }
 
+bool parse_bool(const std::string& token, const char* label) {
+  if (token == "1" || token == "true") {
+    return true;
+  }
+  if (token == "0" || token == "false") {
+    return false;
+  }
+  throw std::invalid_argument(std::string("invalid ") + label);
+}
+
 std::string json_escape(const std::string& value) {
   std::ostringstream stream;
   for (const unsigned char character : value) {
@@ -283,17 +296,19 @@ void run(
     unsigned maximum_mpfr_bits,
     std::size_t quadrature_max_depth,
     std::size_t quadrature_max_cells,
+    std::size_t event_max_cells,
     bool use_certified_traversal,
     std::uint64_t traversal_exact_tile_pair_limit,
     std::optional<IncrementalSnapshotCache>* incremental_cache = nullptr) {
-  if (read_required_line("protocol magic") != "EOM_BORG_NATIVE_V0") {
+  if (read_required_line("protocol magic") != "EOM_BORG_NATIVE_V2") {
     throw std::invalid_argument("unsupported Borg EOM native protocol");
   }
   const auto run = split_tabs(read_required_line("RUN record"));
-  if (run.size() != 15U || run[0] != "RUN") {
-    throw std::invalid_argument("invalid RUN record");
+  if (run.size() != 18U || run[0] != "RUN") {
+    throw std::invalid_argument(
+        "invalid RUN record: expected exactly 18 tab-separated fields");
   }
-  const std::size_t path_count = parse_size(run[14], "path count");
+  const std::size_t path_count = parse_size(run[17], "path count");
   if (path_count == 0U || path_count > 1000000U) {
     throw std::invalid_argument("path count lies outside native protocol envelope");
   }
@@ -337,28 +352,30 @@ void run(
       .end_time = run[3],
       .initial_step = run[4],
       .minimum_step = run[5],
-      .field_speed = run[6],
-      .coupling = run[7],
-      .root_tolerance = run[8],
+      .maximum_step = run[6],
+      .field_speed = run[8],
+      .coupling = run[9],
+      .root_tolerance = run[10],
       .source_normal_floor = "1e-30",
-      .acceleration_tolerance = run[9],
+      .acceleration_tolerance = run[11],
+      .far_field_enclosure_fraction = run[12],
       .chart_policy = "sharp_with_finite_width_fallback",
       .causal_width = "0.2",
       .core_scale = "0.2",
-      .quadrature_tolerance = run[9],
+      .quadrature_tolerance = run[11],
       .event_impulse_tolerance = "1e-7",
       .event_position_moment_tolerance = "1e-7",
       .regulator_refinement_ratio = "0.5",
       .regulator_convergence_tolerance = "1e-3",
-      .position_tolerance = run[10],
-      .velocity_tolerance = run[11],
-      .correction_tolerance = run[12],
+      .position_tolerance = run[13],
+      .velocity_tolerance = run[14],
+      .correction_tolerance = run[15],
       .root_max_depth = 256,
       .root_max_cells = 500000,
       .quadrature_max_depth = quadrature_max_depth,
       .quadrature_max_cells = quadrature_max_cells,
       .event_max_depth = 24,
-      .event_max_cells = 200000,
+      .event_max_cells = event_max_cells,
       .regulator_refinement_levels = 3,
       .initial_mpfr_bits = 128,
       .maximum_mpfr_bits = maximum_mpfr_bits,
@@ -367,8 +384,9 @@ void run(
       .max_step_attempts = 1000,
       .max_rejected_steps = 100,
       .thread_count = 1,
+      .use_adaptive_step_growth = parse_bool(run[7], "adaptive step growth"),
   };
-  request.thread_count = parse_size(run[13], "thread count");
+  request.thread_count = parse_size(run[16], "thread count");
   // The traversal tree is an optional pair-selection optimization.  At small
   // Borg scales (16 paths and below) it excludes no pairs and costs more than
   // exhaustive exact coverage, so use the direct certified batch there.
@@ -381,7 +399,11 @@ void run(
   }
 
   std::ostringstream model_key_stream;
-  for (std::size_t index = 4U; index <= 13U; ++index) {
+  // Step-controller state changes across adaptive chunks but does not change
+  // the certified acceleration snapshot at their shared boundary. Keep field,
+  // force, tolerance, and reduction controls in the cache key; exclude only
+  // initial/minimum/maximum step and the growth switch.
+  for (std::size_t index = 8U; index <= 16U; ++index) {
     model_key_stream << run[index] << '\n';
   }
   for (const auto& path : parsed_paths) {
@@ -455,6 +477,9 @@ void run(
             << json_escape(result.accepted_end_time)
             << "\",\"acceptedStepCount\":" << result.accepted_step_count
             << ",\"rejectedStepCount\":" << result.rejected_step_count
+            << ",\"controllerStepSize\":\""
+            << json_escape(result.controller_step_size)
+            << "\""
             << ",\"haltCode\":\"" << json_escape(result.halt_code)
             << "\",\"incrementalChunkStartSnapshotReused\":"
             << (reused_incremental_chunk_snapshot ? "true" : "false")
@@ -515,6 +540,10 @@ void run(
               << json_escape(step.failure_code)
               << "\",\"causticContractRow\":\""
               << caustic_contract_row(step)
+              << "\",\"causticRegulatorLevel\":\""
+              << (step.failure_code == "root_completeness_not_certified"
+                      ? "not-evaluated"
+                      : "see-regulator-series")
               << "\",\"correctionResidual\":";
     if (correction_error.has_value()) {
       std::cout << *correction_error;
@@ -537,20 +566,26 @@ void run(
               << (diagnostic_snapshot != nullptr
                       ? diagnostic_snapshot->traversal_exact_pairs
                       : 0U)
-              << ",\"traversalLogicalPairs\":"
-              << (diagnostic_snapshot != nullptr &&
-                          diagnostic_snapshot->traversal_certificate.has_value()
-                      ? diagnostic_snapshot->traversal_certificate
-                            ->logical_ordered_pairs
-                      : (diagnostic_snapshot != nullptr
-                             ? diagnostic_snapshot->root_certificates.size()
-                             : 0U))
-              << ",\"traversalUnresolvedPairs\":"
-              << (diagnostic_snapshot != nullptr &&
-                          diagnostic_snapshot->traversal_certificate.has_value()
-                      ? diagnostic_snapshot->traversal_certificate
-                            ->unresolved_pairs
+              << ",\"traversalEnclosedPairs\":"
+              << (diagnostic_snapshot != nullptr
+                      ? diagnostic_snapshot->traversal_enclosed_pairs
                       : 0U)
+              << ",\"traversalLogicalPairs\":"
+              << (diagnostic_snapshot != nullptr
+                      ? diagnostic_snapshot->logical_ordered_pairs
+                      : 0U)
+              << ",\"traversalUnresolvedPairs\":"
+              << (diagnostic_snapshot != nullptr
+                      ? diagnostic_snapshot->traversal_unresolved_pairs
+                      : 0U)
+              << ",\"enclosedErrorWidthTotal\":"
+              << (diagnostic_snapshot != nullptr
+                      ? diagnostic_snapshot->enclosed_error_width_total
+                      : 0.0)
+              << ",\"enclosedErrorWidthMaxReceiver\":"
+              << (diagnostic_snapshot != nullptr
+                      ? diagnostic_snapshot->enclosed_error_width_max_receiver
+                      : 0.0)
               << ",\"traversalVisitedNodes\":"
               << (diagnostic_snapshot != nullptr &&
                           diagnostic_snapshot->traversal_certificate.has_value()
@@ -632,8 +667,9 @@ void run(
         const eom::NativeAccelerationSnapshotCertificate& snapshot) {
       for (const auto& row : snapshot.root_certificates) {
         const auto& certificate = row.certificate;
-        if (certificate.status == "certified_complete" &&
-            !certificate.memory_boundary_contact) {
+        if ((certificate.status == "certified_complete" &&
+             !certificate.memory_boundary_contact) ||
+            certificate.status == "certified_enclosed") {
           continue;
         }
         if (!first_root_failure) {
@@ -825,6 +861,22 @@ void run(
               std::cout << "null";
             }
             std::cout << ",\"visitedCells\":" << event.visited_cells
+                      << ",\"gaussianTailCells\":"
+                      << event.gaussian_tail_cells
+                      << ",\"centeredEmissionCells\":"
+                      << event.centered_emission_cells
+                      << ",\"monotoneResidualCells\":"
+                      << event.monotone_residual_cells
+                      << ",\"directJointCells\":"
+                      << event.direct_joint_cells
+                      << ",\"receiverPositionErrorUpper\":"
+                      << event.receiver_position_error_upper
+                      << ",\"receiverVelocityErrorUpper\":"
+                      << event.receiver_velocity_error_upper
+                      << ",\"sourcePositionErrorUpper\":"
+                      << event.source_position_error_upper
+                      << ",\"sourceVelocityErrorUpper\":"
+                      << event.source_velocity_error_upper
                       << ",\"lastMaximumComponentWidth\":"
                       << event.last_maximum_component_width
                       << ",\"lastMaximumPositionMomentComponentWidth\":"
@@ -879,6 +931,7 @@ int main(int argc, char** argv) {
                    "[--maximum-mpfr-bits=N] "
                    "[--quadrature-max-depth=N] "
                    "[--quadrature-max-cells=N] "
+                   "[--event-max-cells=N] "
                    "[--disable-certified-traversal] "
                    "[--traversal-exact-tile-pair-limit=N]\n";
       return EXIT_FAILURE;
@@ -886,6 +939,7 @@ int main(int argc, char** argv) {
     unsigned maximum_mpfr_bits = 512;
     std::size_t quadrature_max_depth = 32;
     std::size_t quadrature_max_cells = 200000;
+    std::size_t event_max_cells = 200000;
     bool use_certified_traversal = true;
     std::uint64_t traversal_exact_tile_pair_limit = 64;
     for (int argument_index = 2; argument_index < argc; ++argument_index) {
@@ -893,6 +947,7 @@ int main(int argc, char** argv) {
       constexpr const char* precision_prefix = "--maximum-mpfr-bits=";
       constexpr const char* depth_prefix = "--quadrature-max-depth=";
       constexpr const char* cells_prefix = "--quadrature-max-cells=";
+      constexpr const char* event_cells_prefix = "--event-max-cells=";
       constexpr const char* traversal_tile_prefix =
           "--traversal-exact-tile-pair-limit=";
       if (option.starts_with(precision_prefix)) {
@@ -918,6 +973,13 @@ int main(int argc, char** argv) {
         if (quadrature_max_cells == 0U) {
           throw std::invalid_argument("quadrature maximum cells must be positive");
         }
+      } else if (option.starts_with(event_cells_prefix)) {
+        event_max_cells = parse_size(
+            option.substr(std::char_traits<char>::length(event_cells_prefix)),
+            "event maximum cells");
+        if (event_max_cells == 0U) {
+          throw std::invalid_argument("event maximum cells must be positive");
+        }
       } else if (option == "--disable-certified-traversal") {
         use_certified_traversal = false;
       } else if (option.starts_with(traversal_tile_prefix)) {
@@ -937,12 +999,14 @@ int main(int argc, char** argv) {
     if (mode == "borg-shadow-v0") {
       run(
           maximum_mpfr_bits, quadrature_max_depth, quadrature_max_cells,
+          event_max_cells,
           use_certified_traversal, traversal_exact_tile_pair_limit);
     } else if (mode == "borg-shadow-server-v0") {
       std::optional<IncrementalSnapshotCache> incremental_cache;
       while (std::cin.peek() != std::char_traits<char>::eof()) {
         run(
             maximum_mpfr_bits, quadrature_max_depth, quadrature_max_cells,
+            event_max_cells,
             use_certified_traversal, traversal_exact_tile_pair_limit,
             &incremental_cache);
         std::cout.flush();
@@ -953,6 +1017,7 @@ int main(int argc, char** argv) {
                    "[--maximum-mpfr-bits=N] "
                    "[--quadrature-max-depth=N] "
                    "[--quadrature-max-cells=N] "
+                   "[--event-max-cells=N] "
                    "[--disable-certified-traversal] "
                    "[--traversal-exact-tile-pair-limit=N]\n";
       return EXIT_FAILURE;

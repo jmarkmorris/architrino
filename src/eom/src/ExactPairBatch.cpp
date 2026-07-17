@@ -2064,6 +2064,77 @@ std::optional<MpRoot> surround_mp_segment_join_root(
                 *right_geometry.receiver_normal),
         {left_segment_index, right_segment_index}};
   }
+
+  // A decimal segment join is itself an outward MPFR interval unless its
+  // token is exactly binary-representable.  The last symmetric probe above
+  // can therefore be wider than the root tolerance even when its nominal
+  // radius is one half-tolerance.  Spend the tolerance left after enclosing
+  // the represented join, then round both probe endpoints inward.  Strict
+  // opposite residual signs and one strict source-normal sign retain the same
+  // IVT plus monotonicity certificate used by the ordinary join probes.
+  const MpFloat boundary_width =
+      mp_subtract(boundary_upper, boundary_lower, MPFR_RNDU);
+  if (boundary_width.compare(tolerance) < 0) {
+    const MpFloat remaining_width =
+        mp_subtract(tolerance, boundary_width, MPFR_RNDD);
+    const MpFloat two = MpFloat::unsigned_value(2, bits);
+    const MpFloat inward_radius =
+        mp_divide(remaining_width, two, MPFR_RNDD);
+    MpFloat lower =
+        mp_subtract(boundary_lower, inward_radius, MPFR_RNDU);
+    MpFloat upper =
+        mp_add(boundary_upper, inward_radius, MPFR_RNDD);
+    if (lower.compare(search_lower) < 0) {
+      lower = search_lower;
+    }
+    if (upper.compare(search_upper) > 0) {
+      upper = search_upper;
+    }
+    if (lower.compare(boundary_lower) < 0 &&
+        upper.compare(boundary_upper) > 0 &&
+        mp_width_within(lower, upper, tolerance)) {
+      const int lower_sign =
+          mp_geometry(
+              receiver, left_segment, reception, MpInterval::point(lower),
+              field_speed)
+              .residual.strict_sign();
+      const int upper_sign =
+          mp_geometry(
+              receiver, right_segment, reception, MpInterval::point(upper),
+              field_speed)
+              .residual.strict_sign();
+      if (lower_sign != 0 && upper_sign != 0 &&
+          lower_sign != upper_sign) {
+        const auto left_geometry = mp_geometry(
+            receiver, left_segment, reception,
+            MpInterval::bounds(lower, boundary_upper), field_speed);
+        const auto right_geometry = mp_geometry(
+            receiver, right_segment, reception,
+            MpInterval::bounds(boundary_lower, upper), field_speed);
+        if (left_geometry.source_normal.has_value() &&
+            right_geometry.source_normal.has_value() &&
+            left_geometry.receiver_normal.has_value() &&
+            right_geometry.receiver_normal.has_value()) {
+          const MpInterval source_normal = mp_hull(
+              *left_geometry.source_normal, *right_geometry.source_normal);
+          if (source_normal.strict_sign() != 0 &&
+              source_normal.strict_sign() ==
+                  left_geometry.source_normal->strict_sign() &&
+              source_normal.strict_sign() ==
+                  right_geometry.source_normal->strict_sign()) {
+            return MpRoot{
+                lower,
+                upper,
+                source_normal,
+                mp_hull(
+                    *left_geometry.receiver_normal,
+                    *right_geometry.receiver_normal),
+                {left_segment_index, right_segment_index}};
+          }
+        }
+      }
+    }
+  }
   return std::nullopt;
 }
 
@@ -2254,6 +2325,40 @@ MpAttempt run_mpfr_attempt(const ExactPairRequest& request, unsigned bits_value)
         attempt.complete = false;
         attempt.finite_width_root_cluster = same_retained_history;
         attempt.diagnostic_detail = "endpoint_root_not_surrounded";
+        attempt.has_difficult_cell = true;
+        attempt.difficult_source_segment_index = segment_index;
+        attempt.difficult_cell_lower = cell_lower.token(MPFR_RNDD);
+        attempt.difficult_cell_upper = cell_upper.token(MPFR_RNDU);
+        attempt.difficult_point = point.token(MPFR_RNDN);
+        attempt.difficult_point_residual_lower =
+            point_residual.lower().token(MPFR_RNDD);
+        attempt.difficult_point_residual_upper =
+            point_residual.upper().token(MPFR_RNDU);
+        const auto bracket_geometry = mp_geometry(
+            receiver_state, source_segment, reception,
+            MpInterval::bounds(cell_lower, cell_upper), field_speed);
+        if (bracket_geometry.source_normal.has_value()) {
+          attempt.difficult_source_normal_lower =
+              bracket_geometry.source_normal->lower().token(MPFR_RNDD);
+          attempt.difficult_source_normal_upper =
+              bracket_geometry.source_normal->upper().token(MPFR_RNDU);
+        }
+        if (bracket_geometry.receiver_normal.has_value()) {
+          attempt.difficult_receiver_normal_lower =
+              bracket_geometry.receiver_normal->lower().token(MPFR_RNDD);
+          attempt.difficult_receiver_normal_upper =
+              bracket_geometry.receiver_normal->upper().token(MPFR_RNDU);
+        }
+        attempt.difficult_lower_sign =
+            mp_geometry(
+                receiver_state, source_segment, reception,
+                MpInterval::point(cell_lower), field_speed)
+                .residual.strict_sign();
+        attempt.difficult_upper_sign =
+            mp_geometry(
+                receiver_state, source_segment, reception,
+                MpInterval::point(cell_upper), field_speed)
+                .residual.strict_sign();
         ++attempt.difficult_cells;
         return;
       }

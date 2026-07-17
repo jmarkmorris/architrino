@@ -8,23 +8,38 @@
   [../finite-width-close-approach-caustic-route.md](../finite-width-close-approach-caustic-route.md)
 - Outcome: `adjudicated-halt`
 - Transit claim: none
-- Publication: atomic through `1.3959374999999998`; the rejected candidate was
+- Core-refinement claim: `certified` at $\epsilon_c=0.05$ on the fixed
+  `h=0.005` retained-history track
+- Research-grade discriminator: the `h_max=0.0025` track certifies
+  $\epsilon_c=0.05$ in 5,440 cells, then rejects its routed event attempt on
+  `FWC-STATE-01`; no accepted finite-width passage is recorded
+- Default controller: `initial_step=0.05`, `minimum_step=0.0001`,
+  `maximum_step=0.05`, adaptive growth enabled
+- Publication: atomic through `1.3606468750000003`; the rejected candidate was
   not published
 - Evolution halt: `caustic_transit_uncertified`
+- Entry row: `FWC-ENTRY-02` certified for ordered pair `1006 <- 1003`
 - First failed contract row: `FWC-REG-02`
-- Nested failure: core-scale refinement level 2 exhausted the declared
-  finite-width event cell budget
+- Regulator level: `core_scale_refinement`, level 1, $\epsilon_c=0.1$
+- Nested failure: `event_impulse_cell_limit_exhausted` after 200,001 visited
+  cells
 
 The route eliminates the generic `minimum_step_exhausted` terminal label for
-this run. It does not certify passage through the encounter. Enforcing the
-existing finite-width dispatch on every consumed `caustic_route_required` pair
-exposes an earlier uncertified event for ordered pair `1006 <- 1003` around
-$T=1.39$; the prior engine continued through that event without a regulator
-certificate and failed later near $T=1.49$.
+the default run. It does not certify passage through the encounter. The coarse
+default trajectory now certifies the complete root scan and enters the
+finite-width route, whose core-scale level 1 then exhausts the declared cell
+budget. The engine therefore records the regulator row rather than publishing
+the rejected candidate.
 
-Falsifier: rerun the command below on the recorded source and obtain either
-`minimum_step_exhausted`, a published segment after the failed event, no
-`1006 <- 1003` regulator record, or a complete passing core-scale ladder.
+The original fixed `h=0.01` reproduction reached `1.3959374999999998` and
+halted on `FWC-REG-02`. Tighter mean-value enclosures expose a retained-history
+noise floor on that track. Recomputing seed 0 at fixed `h=0.005` reduces the
+history radii enough to certify the complete core ladder, but the first routed
+candidate then fails `FWC-STATE-01`; it is not published.
+
+Falsifier: rerun the default-controller command below on the recorded source
+and obtain `FWC-ENTRY-02`, any root failure for `1006 <- 1003`, publication
+past the rejected candidate, or a first failed row other than `FWC-REG-02`.
 
 ## Reproduction
 
@@ -35,47 +50,140 @@ cmake -S src/eom -B /tmp/architrino-eom-build -DCMAKE_BUILD_TYPE=Release
 cmake --build /tmp/architrino-eom-build --parallel 8
 ```
 
-Measured run:
+Default-controller adjudication:
 
 ```bash
 node scripts/eom/profile-borg-incremental-chunks.mjs \
-  /tmp/architrino-eom-build/eom_borg_shadow_cli 28
+  /tmp/architrino-eom-build/eom_borg_shadow_cli \
+  --chunks=28 --seed=0 --summary-only=true
+```
+
+Core-resource closure and transit seek:
+
+```bash
+node scripts/eom/profile-borg-incremental-chunks.mjs \
+  /tmp/architrino-eom-build/eom_borg_shadow_cli \
+  --chunks=40 --seed=0 --initial-step=0.005 \
+  --minimum-step=0.0001 --maximum-step=0.005 \
+  --adaptive-growth=false --event-max-cells=200000 --summary-only=true
 ```
 
 Build freshness:
 
 | Object | Timestamp |
 | --- | --- |
-| `src/eom/src/CoupledEvolution.cpp` | `2026-07-16 17:59:51 -0400` |
-| `/tmp/architrino-eom-build/eom_borg_shadow_cli` | `2026-07-16 18:07:55 -0400` |
+| `src/eom/src/ExactPairBatch.cpp` | `2026-07-16 19:27:27 -0400` |
+| `src/eom/src/CoupledEvolution.cpp` | `2026-07-16 19:06:32 -0400` |
+| `src/eom/native/eom_borg_shadow_cli.cpp` | `2026-07-16 19:16:20 -0400` |
+| `/tmp/architrino-eom-build/eom_borg_shadow_cli` | `2026-07-16 19:27:59 -0400` |
 
 The binary is newer than the last route-source change.
 
-## Live Outcome
+## Coherent Default Outcome
 
 | Field | Measured value |
 | --- | ---: |
 | Status | `halted` |
-| Accepted end time | `1.3959374999999998` |
-| Accepted atomic steps in the terminal chunk | 7 |
-| Rejected atomic steps in the terminal chunk | 8 |
-| Final attempted window | `[1.3959374999999998, 1.3960374999999998]` |
+| Accepted end time | `1.3606468750000003` |
+| Accepted atomic steps in the terminal chunk | 5 |
+| Rejected atomic steps in the terminal chunk | 10 |
+| Final attempted window | `[1.3606468750000003, 1.3607468750000002]` |
 | Final attempted step | `0.0001` |
-| Final correction residual | `1.62506e-5` |
-| Native terminal-chunk wall time | `36.961 s` |
-| Baseline chunk-28 wall time before route enforcement | `4.43897 s` |
-| Baseline generic terminal time before route enforcement | `1.4904687499999998` |
-| Baseline generic terminal-chunk wall time | `6.019 s` |
+| Root failures | none |
+| Accepted event status | `certified_complete` |
+| First failed row | `FWC-REG-02` |
+| Failed regulator level | core scale 1, $\epsilon_c=0.1$ |
+| Regulator failure | `event_impulse_cell_limit_exhausted` |
+| Final impulse width | `1.46846e-7` against `1e-7` |
+| Native terminal-chunk wall time | `63.4486 s` |
+| Ordinary steady early median | `0.00730254 s/chunk` |
+| Ordinary steady late median | `0.00729242 s/chunk` |
+| Warm chunk-start snapshot reuse | all warm chunks |
 
-Cost claim grade: `measured`. Route enforcement made the terminal chunk about
-$8.33\times$ the earlier chunk-28 wall time. This comparison measures current
-execution cost, not equal accepted physics coverage, because the enforced route
-halts at the earlier uncertified event.
+Cost claim grade: `measured`. These are wall times from the current default
+controller on one machine. They do not license an equal-trajectory speedup
+claim against the fine-start run because the accepted trajectories and halt
+times differ.
 
-Cost falsifier: repeat both binaries on the same machine and inputs and obtain a
-materially different wall-time ratio after separating ordinary machine load.
+Cost falsifier: repeat the same current-binary command under comparable machine
+load and obtain materially different terminal or steady-window times.
 
-## Causal-Width Ladder
+## Default FWC-ENTRY-02 Certificate
+
+The former difficult cell for ordered pair `1006 <- 1003` was source segment
+52 over $S\in[1.275,1.3]$, with the unresolved endpoint at the retained segment
+join $S=1.3$. At 512 bits its point residual enclosed
+`[-7.57282e-7, 3.15639e-4]`, while the full-cell source normal was strictly
+positive in `[0.764852, 0.821228]`. This is a simple-root enclosure problem,
+not a zero-source-normal fold.
+
+The failure came from spending a nominal half-tolerance radius around an
+outward interval representation of decimal join time `1.3`. The represented
+bracket could therefore exceed the declared root tolerance by a few units in
+the last place and was skipped. The corrected probe first subtracts the
+represented join width from the tolerance, splits the remainder between both
+sides, and rounds the endpoints inward. It still requires strict opposite
+causal-residual signs and one common strict source-normal sign across both
+segments.
+
+The independent reference is the unchanged 90-digit Decimal root certifier in
+`scripts/eom/oracle/certified_history.py`. On the analytic join case
+$g(S)=S-1.3$ with source-position radius `1.5e-10` and root tolerance `4e-10`,
+the Decimal oracle certified one root and the complete root-free complement.
+The pre-fix native route returned `uncertified`; the corrected MPFR route now
+overlaps the Decimal bracket, covers `1.3`, has width at most `4e-10`, and
+reports positive source-normal sign.
+
+The unchanged default Borg rerun reports no root failures, passes entry, and
+dispatches the finite-width regulator. Its causal-width ladder converges, but
+core-scale level 1 reaches 200,001 cells with impulse width `1.46846e-7`; the
+candidate remains unpublished. The coupled correction residual is
+`3.29893e-6`, inside the unchanged `0.1` budget.
+
+Claim grade: `derived` for the inward-bracket construction and `measured` for
+the synthetic and live certificates. Falsifier: either directed endpoint sign
+is non-strict or equal, the join source normal contains zero, the bracket
+exceeds its tolerance, the Decimal/native brackets do not overlap, or the live
+default again reports a root failure.
+
+## Adaptive Controller Certificate
+
+The `EOM_BORG_NATIVE_V2` protocol requires exactly 18 fields in its Borg `RUN`
+record, including `maximum_step`, `use_adaptive_step_growth`, and the explicit
+far-field enclosure fraction. A static
+retained-history protocol case evolves a `0.4` interval with
+`initial_step=0.1`, `maximum_step=0.4`, and adaptive growth enabled. It accepts
+three steps rather than four: two `0.1` steps establish the existing one-eighth
+budget headroom and the final step grows to `0.2`.
+
+The Borg runner also carries the returned controller height into the next
+atomic chunk. A two-chunk test returns `0.025` from the first request and
+certifies that the next request starts at `0.025` while retaining its larger
+`maximum_step`. Step-controller changes are excluded from the acceleration
+snapshot cache key, and the native reuse test changes the second request's
+step while retaining the certified chunk-boundary snapshot.
+
+Claim grade: `measured-test`. Falsifier: the static case needs four accepted
+steps, a second Borg chunk restarts at the nominal `0.1`, or changing only the
+controller step prevents certified start-snapshot reuse.
+
+The fixed-height form sets `maximum_step=initial_step` and disables growth. A
+before/after binary comparison found its deterministic response fields and
+published 454-byte segment payload bit-identical; wall-time counters were
+excluded because they are nondeterministic measurements.
+
+Claim grade: `measured`. Falsifier: the same fixed-height request changes any
+deterministic response token or published segment coefficient.
+
+The seed-0 default run does not show post-shrink recovery: its terminal accepted
+steps do not establish two consecutive one-eighth-headroom rows before root
+certification fails. Thus the supplied hypothesis that recovery alone removes
+the coarse-step survival trade is not established by this seed.
+
+Claim grade: `measured`. Falsifier: a rerun publishes a post-shrink step-height
+increase before the terminal decision or completes the requested interval.
+
+## Fine-Start Causal-Width Ladder
 
 The base core scale is held fixed at $\epsilon_c=0.2$.
 
@@ -93,7 +201,7 @@ The base core scale is held fixed at $\epsilon_c=0.2$.
 Claim grade: `measured`. Falsifier: any rerun level is uncertified or either
 maximum ladder delta exceeds `1e-3`.
 
-## Core-Scale Ladder And First Failure
+## Original Fine-Start Core-Scale Ladder And First Failure
 
 The base causal width is held fixed at $\eta=0.2$.
 
@@ -111,6 +219,214 @@ unpublished.
 
 Claim grade: `measured`. Falsifier: the same level-2 request certifies within
 200,000 cells and all core-ladder deltas fit the declared convergence budget.
+
+## Core-Scale Resource Closure
+
+The production binary64 route now intersects the natural interval extension
+with mean-value enclosures for the softened kernel, line-of-action direction,
+and their shared receiver-normal prefactor. Its monotone Gaussian CDF
+difference shares the receiver state and reuses same-segment source-error
+correlation. The best-first queue refines reception time at a `16:1` aspect
+target because emission time is already integrated analytically.
+
+The fixed `h=0.01` resource sweep shows that raising the ceiling alone is not a
+closure route:
+
+| Track and enclosure | Cell ceiling | Final $\epsilon_c=0.05$ impulse width | Terminal chunk wall | Verdict |
+| --- | ---: | ---: | ---: | --- |
+| `h=0.01`, prior natural enclosure | 50,000 | `2.77553e-7` | `9.27012 s` | exhausted |
+| `h=0.01`, mean-value, `16:1` | 50,000 | `1.95713e-7` | `27.5954 s` | exhausted |
+| `h=0.01`, mean-value, `16:1` | 200,000 | `1.82541e-7` | `95.2619 s` | exhausted |
+
+Claim grade: `measured`. Four times as many cells reduced the last width by
+only `6.73%`; the largest remaining cell was `2.8752e-12`. A further ceiling
+raise is therefore rejected as a resource policy because this track is
+approaching its retained-history uncertainty floor rather than the declared
+`1e-7` budget.
+
+Falsifier: a repeated ceiling sweep on the same retained histories shows
+ordinary convergence to `<=1e-7` at a bounded cell and wall cost.
+
+The fixed `h=0.005` track reduces the event receiver/source position-error
+radii to `1.85028e-6`/`1.90101e-6` and certifies the core ladder:
+
+| Level | $\epsilon_c$ | Impulse delta | Position-moment delta | Impulse width | Position-moment width | Cells | Status |
+| ---: | ---: | ---: | ---: | ---: | ---: | ---: | --- |
+| 0 | `0.2` | — | — | `1.84246e-8` | `2.16086e-10` | 568 | certified |
+| 1 | `0.1` | `9.60773e-6` | `1.17502e-9` | `9.71195e-8` | `1.17512e-9` | 568 | certified |
+| 2 | `0.05` | `2.91488e-5` | `2.19949e-9` | `9.98768e-8` | `3.23609e-10` | 101,377 | certified |
+
+- Maximum core-ladder impulse delta: `3.86594e-5`
+- Maximum core-ladder position-moment delta: `2.19949e-9`
+- Declared convergence tolerance: `1e-3`
+- Declared impulse and position-moment enclosure budgets: `1e-7` each
+- Core series verdict: `certified_convergent`
+- Terminal chunk containing the accepted level and later state-row retries:
+  `95.4591 s`
+
+Claim grade: `measured`. The $\epsilon_c=0.05$ level and both one-control
+ladders are certified without changing any declared tolerance or the 200,000
+cell ceiling. The recorded wall time is the containing terminal chunk, not an
+isolated per-level timer, so it is a conservative run-cost report.
+
+Falsifier: rerun the fixed `h=0.005` command and obtain an uncertified level,
+more than 200,000 cells, either width above `1e-7`, or a ladder delta above
+`1e-3`.
+
+## Seed-0 Atomic Transit Seek
+
+The refined run completes `[1.35,1.40]` in `0.655211 s`, then accepts two
+substeps through `1.400725`. The next routed candidate has complete causal- and
+core-width ladders but halts as `caustic_transit_uncertified` on
+`FWC-STATE-01` with `caustic_state_reconstruction_failed`. Its coupled
+correction residual is `5.35877e-5`, inside the unchanged `0.1` correction
+budget. The candidate is not published.
+
+The remaining obligation is overlap between the finite-width impulse and
+position moment and the sharp endpoint trapezoid reconstruction on their
+declared common domain. No second encounter is observable because the run
+halts at this first routed state-reconstruction row.
+
+Claim grade: `measured`. This is a certified regulator evaluation and an
+adjudicated atomic halt, not a certified caustic transit.
+
+Falsifier: the same run publishes the rejected candidate, reports a failed
+regulator row, or obtains sharp/event state overlap and continues beyond the
+event.
+
+## Research-Grade Refinement-Height Discriminating Control
+
+The seed-0 control held position, velocity, and causal-root tolerances at
+`1e-8`, the event impulse and position-moment budgets at `1e-7`, the event
+ceiling at 200,000 cells, and the MPFR ceiling at 2,048 bits. Adaptive growth
+was disabled, the far-field enclosure was disabled to isolate this route, and
+the maximum step followed the declared refinement heights.
+
+| Maximum step | Accepted through | First discriminating result | Terminal/encounter chunk | Native wall through result |
+| ---: | ---: | --- | ---: | ---: |
+| `0.01` | `1.24965625` | halt `FWC-ENTRY-02`, pair `1003<-1006`, residual width `4.32101e-9` | `16.4963 s` | `74.588726 s` |
+| `0.005` | `1.2846875` | halt `FWC-ENTRY-02`, pair `1003<-1006`, residual width `4.36731e-9` | `14.0907 s` | `43.316878 s` |
+| `0.0025` | `1.4` | routed attempt `[0.3425,0.345]`: `FWC-REG-02` passes and `FWC-STATE-01` fails for pair `1004<-1006`; later close-approach chunk completes | `2.35004 s` first routed chunk; `107.652 s` `[1.35,1.4]` | `210.146311 s` through `1.4` |
+
+The two coarser tracks fail before any regulator evaluation. The `0.0025`
+track crosses both boundaries and emits a complete causal-width and core-scale
+ladder for the routed attempt. Its core ladder is:
+
+| $\epsilon_c$ | Impulse width | Position-moment width | Cells | Status |
+| ---: | ---: | ---: | ---: | --- |
+| `0.2` | `9.70321e-8` | `1.59529e-8` | 3,712 | certified |
+| `0.1` | `9.57729e-8` | `1.70107e-8` | 5,106 | certified |
+| `0.05` | `9.69534e-8` | `1.74814e-8` | 5,440 | certified |
+
+The core series is `certified_convergent`; its final impulse delta is
+`3.07925e-6`, its maximum ladder impulse delta is `1.24917e-5`, and both are
+inside the unchanged `1e-3` convergence tolerance. Thus
+$\epsilon_c=0.05$ fits both unchanged `1e-7` enclosure budgets and the
+200,000-cell ceiling on this research track.
+
+Claim grade: `measured`. Falsifier: the recorded `0.0025` command yields an
+uncertified core level, more than 200,000 cells, either width above `1e-7`, or
+a ladder delta above `1e-3`.
+
+The same attempted event step is rejected as
+`caustic_state_reconstruction_failed`; the emitted contract row is
+`FWC-STATE-01`. Its retained-history error radii are approximately
+`1.18e-11` receiver position, `9.51e-9` receiver velocity, `1.22e-11` source
+position, and `9.53e-9` source velocity. The failure therefore persists on a
+track that supports the regulator, although it is a different pair and event
+window from the later fixed-`0.005` state-row failure. This rules out the
+branch in which both regulator and state rows close; it does not establish
+pair-identical failure geometry.
+
+Claim grade: `measured` for the row, pair, window, and radii; `derived` that
+the “both close” branch is false for this control. Falsifier: the same command
+emits an accepted `FWC-STATE-01` row for that routed attempt or no routed
+attempt at all.
+
+The controller rejects the routed step, halves the height, and completes the
+chunk. The retry does not retain an accepted regulator certificate for the
+pair, and the later `[1.35,1.4]` close-approach chunk emits no regulator row.
+Completion through `1.4` is therefore not a certified finite-width passage.
+A separate continuation reached `1.4004` and then halted
+`minimum_step_exhausted` on `numeric_step_budget_exceeded`, with no FWC row.
+
+Claim grade: `measured` for the retry records and later halt; `derived` from
+the route contract that a sharp retry cannot discharge a rejected event row.
+Falsifier: an accepted child step contains a passing regulator, state, and
+exit certificate for the pinned pair, or the later chunk contains an accepted
+finite-width certificate omitted by the profiler.
+
+The derived `FWC-STATE-01` obligation is now explicit in the route packet. It
+requires event-aware endpoint reconstruction from disjoint background plus
+event rows, chart comparison only on a certified sharp/finite-width common
+domain, certified $h_C^3L_2/12$ and $h_C^4L_2/24$ remainder rows for any
+endpoint-linear shortcut, and persistence of the routed pair across every
+subdivision until state and exit pass or the event floor halts. A raw
+full-window sharp trapezoid has no derived remainder across the fold and cannot
+by itself discharge the row.
+
+Claim grade: `derived`. Falsifier: a proof supplies a finite full-window sharp
+remainder across the fold, or independent reconstruction shows that the
+declared background/event rows fail to enclose an otherwise accepted endpoint.
+
+Commands used the common suffix:
+
+```text
+node scripts/eom/profile-borg-incremental-chunks.mjs \
+  .tmp/eom-native-dev/eom_borg_shadow_cli \
+  --chunks=40 --seed=0 --initial-step=H --minimum-step=0.0001 \
+  --maximum-step=H --adaptive-growth=false --root-tolerance=1e-8 \
+  --position-tolerance=1e-8 --velocity-tolerance=1e-8 \
+  --maximum-mpfr-bits=2048 --event-max-cells=200000 \
+  --far-field-enclosure-fraction=0 --summary-only=true
+```
+
+The certificate-capture rerun used `H=0.0025` and `--chunks=28`. The binary
+timestamp was `2026-07-16 20:30:27 -0400`, later than the final route-source
+timestamp `2026-07-16 20:30:18 -0400`. The Decimal oracle was not modified.
+
+## Step-Height Configuration Decision
+
+Option (b) is selected: Borg keeps `chunkDuration=0.05` and declares the true
+reachable ceiling `initial_step=maximum_step=0.05`. Adaptive regrowth remains
+enabled under the unchanged one-eighth-budget gate. The unreachable nominal
+`0.1` setting is removed.
+
+| Seed | Coherent adaptive `h_max=0.05` | Terminal/encounter chunk wall | Fixed `h_max=0.025` control | Terminal/encounter chunk wall |
+| ---: | --- | ---: | --- | ---: |
+| 0 | halt `FWC-REG-02` at `1.360646875` | `63.4486 s` | halt `FWC-REG-02` at `1.3759765625` | `109.95 s` |
+| 1 | halt `FWC-ENTRY-02` at `1.110171875` | `0.696714 s` | completed `2.0` | `[1.95,2.0]`: `10.7518 s` |
+| 2 | halt `FWC-REG-02` at `1.14306875` | `97.0299 s` | halt `FWC-REG-02` at `1.1548828125` | `86.1819 s` |
+
+Ordinary steady chunks were about `0.007 s` at `0.05`; representative fixed
+`0.025` steady chunks were about `0.020-0.028 s`. The coarser controller is
+therefore faster in smooth phases but does not preserve the finer trajectory's
+run length. Selecting `0.05` rather than raising the chunk to `0.1` is the
+conservative coherent choice within the two allowed configurations; it does
+not claim track equivalence to `0.025`.
+
+Claim grade: `measured` for the table and costs; `inferred` for selecting the
+smaller allowed ceiling after combining this table with the supplied measured
+`h=0.1` seed-2 earlier-halt result.
+
+The seed-0 adaptive row is the current post-entry-certificate measurement.
+Seed 1 and seed 2 retain the earlier controller-selection measurements and
+were not rerun for this root-row closure.
+
+Falsifier: a same-binary three-seed `chunkDuration=0.1`, `h_max=0.1` comparison
+matches or exceeds both the `0.05` run lengths and acceptable browser latency,
+or the implemented default emits an attempted step above `0.05`.
+
+The 0.05 simulated-time chunk preserves the prior UI update and halt
+granularity. Ordinary wall latency is measured above. Terminal certification
+still emits no browser-visible in-request heartbeat; the 86-110 second cases
+remain a known presentation gap. The finite 200,000-cell ceiling bounds work
+but does not provide an elapsed-time deadline.
+
+Claim grade: `derived` for the 0.05 simulated-time granularity and `measured`
+for observed wall latency. Falsifier: browser transport emits intermediate
+certification progress, or a request exceeds neither the cell ceiling nor a
+new declared elapsed-time budget while remaining silent.
 
 ## Independent Reference
 
@@ -138,16 +454,27 @@ whose interval does not overlap the corresponding Decimal oracle interval.
 
 | Validation | Result |
 | --- | --- |
-| `python -m unittest discover -s tests -p 'test_eom_*.py'` | 134 passed |
-| `node --test tests/borg-*.test.js` | 61 passed |
+| `python -m unittest discover -s tests -p 'test_eom_*.py'` | 139 passed in `144.290 s` |
+| `node --test tests/borg-*.test.js` | 63 passed |
+| `.githooks/pre-commit` | passed |
+| research profiler syntax and diff check | passed |
+| Borg protocol growth case | passed; `0.1, 0.1, 0.2` |
+| Fixed-height deterministic response parity | bit-identical |
+| Cross-chunk controller retention | passed |
+| Snapshot reuse across controller-step change | passed |
 | Native/Decimal event impulse and position-moment overlap | passed in binary64 and MPFR controls |
+| Native/Decimal non-binary segment-join root overlap | passed in MPFR control |
 | Event resource exhaustion | failed closed |
 | Atomic publication on route failure | passed; input histories retained |
 
 ## Disposition
 
 This evidence is `priority-only`. It authorizes the named fail-closed
-adjudication path, not a production transit claim. The next closure object is a
-core-scale level-2 certificate within the declared resource envelope or an
-independently justified replacement resource policy, followed by a rerun that
-tests both impulse and position-moment state overlap before sharp-chart exit.
+adjudication path, not a production transit claim. `FWC-ENTRY-02` is closed for
+the default seed-0 trajectory. Its `FWC-REG-02` halt remains a declared
+resource boundary on that track; the research track proves regulator closure
+for its own routed event but not for the default track's pair-identical
+geometry. The next route closure object is the derived `FWC-STATE-01`
+reconstruction/common-domain obligation together with pinned pair coverage
+across subdivision. No atomic transit or production passage claim is
+authorized.

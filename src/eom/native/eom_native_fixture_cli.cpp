@@ -279,6 +279,17 @@ std::vector<eom::ExactPairCertificate> pair_fixture() {
        segment("0", "1", {"0", "0", "0", "0"},
                {"0", "0", "0", "0"}, {"0", "0", "0", "0"},
                "1e-9", "0")});
+  const eom::RetainedHistory inward_join_probe_receiver(
+      "inward-join-probe-receiver",
+      {segment("1", "2.3", {"1", "0", "0", "0"})});
+  const eom::RetainedHistory inward_join_probe_source(
+      "inward-join-probe-source",
+      {segment("1", "1.3", {"0", "0", "0", "0"},
+               {"0", "0", "0", "0"}, {"0", "0", "0", "0"},
+               "0.00000000015", "0"),
+       segment("1.3", "2.3", {"0", "0", "0", "0"},
+               {"0", "0", "0", "0"}, {"0", "0", "0", "0"},
+               "0.00000000015", "0")});
   const eom::RetainedHistory inward_probe_receiver(
       "inward-probe-receiver",
       {segment("-0.000000020", "0.000000002",
@@ -346,6 +357,8 @@ std::vector<eom::ExactPairCertificate> pair_fixture() {
       "-0.5", "0.5", "1e-5");
   add("uncertain_segment_join_root", uncertain_join_receiver,
       uncertain_join_source, "1", "-1", "0.5", "1e-5");
+  add("mpfr_inward_join_tolerance_probe", inward_join_probe_receiver,
+      inward_join_probe_source, "2.3", "1", "2", "0.0000000004", true);
   add("mpfr_inward_tolerance_probe", inward_probe_receiver,
       inward_probe_source, "0.000000002", "-0.000000020",
       "0.000000002", "1e-8", true);
