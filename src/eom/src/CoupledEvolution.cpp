@@ -91,6 +91,19 @@ const NativePairAccelerationCertificate& snapshot_pair(
     const NativeAccelerationSnapshotCertificate& snapshot,
     const std::string& receiver,
     const std::string& source);
+const NativeSnapshotRootRow* snapshot_root_row(
+    const NativeAccelerationSnapshotCertificate& snapshot,
+    const std::string& receiver,
+    const std::string& source);
+
+std::array<Interval, 4> coefficient_intervals(
+    const std::array<std::string, 4>& tokens);
+Interval evaluate_cubic(
+    const std::array<Interval, 4>& coefficients,
+    const Interval& local_time);
+Interval evaluate_cubic_velocity(
+    const std::array<Interval, 4>& coefficients,
+    const Interval& local_time);
 
 const char* integration_method(
     const NativeCoupledEvolutionRequest& request) {
@@ -408,42 +421,6 @@ bool display_run_grade(const NativeCoupledEvolutionRequest& request) {
   return request.run_grade == "display";
 }
 
-std::string caustic_row_for_failure(
-    const std::string& failure_code,
-    const NativeRegulatorConvergenceCertificate* regulator = nullptr) {
-  if (failure_code == "root_completeness_not_certified") {
-    return "FWC-ENTRY-02";
-  }
-  if (failure_code == "caustic_eta_convergence_failed") {
-    bool causal_width_failed = false;
-    bool core_scale_failed = false;
-    if (regulator != nullptr) {
-      for (const auto& series : regulator->refinement_series) {
-        causal_width_failed = causal_width_failed ||
-            (series.control_id == "causal_width_refinement" &&
-             !series.converged);
-        core_scale_failed = core_scale_failed ||
-            (series.control_id == "core_scale_refinement" &&
-             !series.converged);
-      }
-    }
-    if (causal_width_failed && core_scale_failed) {
-      return "FWC-REG-01/FWC-REG-02";
-    }
-    return core_scale_failed ? "FWC-REG-02" : "FWC-REG-01";
-  }
-  if (failure_code == "caustic_state_reconstruction_failed") {
-    return "FWC-STATE-01";
-  }
-  if (failure_code == "caustic_correction_failed") {
-    return "FWC-STATE-02";
-  }
-  if (failure_code == "caustic_exit_not_certified") {
-    return "FWC-EXIT-01";
-  }
-  return "";
-}
-
 NativeCausticWarning make_caustic_warning(
     const std::string& receiver_path_id,
     const std::string& source_path_id,
@@ -538,6 +515,23 @@ bool pair_is_adjudicated_finite_width(
       request.adjudicated_finite_width_pairs.end();
 }
 
+bool display_entry_route_required(
+    const NativeCoupledEvolutionRequest& request,
+    const std::string& receiver,
+    const std::string& source,
+    const ExactPairCertificate& root) {
+  if (!display_run_grade(request) || root.memory_boundary_contact ||
+      root.status != "uncertified" ||
+      root.failure_code != "numeric_precision_limit_exhausted" ||
+      root.diagnostic_detail != "endpoint_root_not_surrounded") {
+    return false;
+  }
+  const Interval charge_product =
+      Interval::decimal_token(path_charge(request, receiver)) *
+      Interval::decimal_token(path_charge(request, source));
+  return charge_product.upper() < 0.0;
+}
+
 std::vector<std::pair<std::string, std::string>>
 certified_opposite_polarity_core_pairs(
     const NativeCoupledEvolutionRequest& request,
@@ -564,10 +558,23 @@ certified_opposite_polarity_core_pairs(
 }
 
 std::vector<std::pair<std::string, std::string>> finite_width_pairs(
+    const NativeCoupledEvolutionRequest& request,
     const NativeAccelerationSnapshotCertificate& snapshot) {
   std::vector<std::pair<std::string, std::string>> result;
-  for (const auto& pair : snapshot.acceleration.pair_certificates) {
-    if (pair.chart == "finite_width" && pair.status != "uncertified") {
+  for (std::size_t index = 0;
+       index < snapshot.acceleration.pair_certificates.size(); ++index) {
+    const auto& pair = snapshot.acceleration.pair_certificates[index];
+    const auto* root = index < snapshot.root_certificates.size()
+        ? &snapshot.root_certificates[index]
+        : nullptr;
+    if (pair.chart == "finite_width" && pair.status != "uncertified" &&
+        root != nullptr &&
+        root->receiver_path_id == pair.receiver_path_id &&
+        root->source_path_id == pair.source_path_id &&
+        (root->certificate.status == "caustic_route_required" ||
+         display_entry_route_required(
+             request, pair.receiver_path_id, pair.source_path_id,
+             root->certificate))) {
       result.emplace_back(pair.receiver_path_id, pair.source_path_id);
     }
   }
@@ -714,6 +721,825 @@ std::vector<NativePublishedPath> append_candidate_segments(
   if (timing != nullptr) {
     timing->history_copy_hash_wall_seconds += elapsed_seconds(timing_start);
   }
+  return result;
+}
+
+struct EventAwareCandidate {
+  std::vector<NativePublishedPath> histories;
+  std::map<std::string, IntervalVector> background_impulses;
+  std::map<std::string, IntervalVector> background_position_moments;
+  std::map<std::string, IntervalVector> endpoint_positions;
+  std::map<std::string, IntervalVector> endpoint_velocities;
+};
+
+EventAwareCandidate append_event_aware_candidate_segments(
+    const std::vector<NativePublishedPath>& histories,
+    const std::string& start_time,
+    const std::string& end_time,
+    const NativeAccelerationSnapshotCertificate& start_snapshot,
+    const NativeAccelerationSnapshotCertificate& end_snapshot,
+    const std::vector<std::pair<std::string, std::string>>& event_pairs,
+    const std::vector<NativeFoldCausticImpulseCertificate>& events,
+    NativeCorrectedSubstepTiming* timing) {
+  if (event_pairs.size() != events.size()) {
+    throw std::invalid_argument(
+        "event-aware reconstruction pair/event domain mismatch");
+  }
+  const auto timing_start = SteadyClock::now();
+  const double start = scalar_token(start_time);
+  const double end = scalar_token(end_time);
+  const double step = end - start;
+  if (!(step > 0.0)) {
+    throw std::invalid_argument(
+        "event-aware reconstruction requires a positive step");
+  }
+  const SnapshotTotals start_totals = snapshot_totals(start_snapshot);
+  const SnapshotTotals end_totals = snapshot_totals(end_snapshot);
+  const Interval zero = Interval::point(0.0);
+  const IntervalVector zero_vector{zero, zero, zero};
+  EventAwareCandidate result;
+  result.histories.reserve(histories.size());
+  for (const auto& path : histories) {
+    const Interval start_point = Interval::point(start);
+    const IntervalVector x0 = path.history.position_hull(start_point);
+    const IntervalVector v0 = path.history.velocity_hull(start_point);
+    IntervalVector background_start = start_totals.at(path.path_id);
+    IntervalVector background_end = end_totals.at(path.path_id);
+    IntervalVector event_impulse = zero_vector;
+    IntervalVector event_moment = zero_vector;
+    bool has_event = false;
+    for (std::size_t index = 0; index < event_pairs.size(); ++index) {
+      const auto& pair = event_pairs[index];
+      if (pair.first != path.path_id) continue;
+      const auto& event = events[index];
+      if (!event.impulse.has_value() ||
+          !event.position_moment.has_value()) {
+        throw std::invalid_argument(
+            "event-aware reconstruction requires certified event rows");
+      }
+      const auto& start_pair =
+          snapshot_pair(start_snapshot, pair.first, pair.second);
+      const auto& end_pair =
+          snapshot_pair(end_snapshot, pair.first, pair.second);
+      if (!start_pair.total_acceleration.has_value() ||
+          !end_pair.total_acceleration.has_value()) {
+        throw std::invalid_argument(
+            "event-aware reconstruction lacks endpoint pair acceleration");
+      }
+      background_start = subtract(
+          background_start, *start_pair.total_acceleration);
+      background_end = subtract(
+          background_end, *end_pair.total_acceleration);
+      event_impulse = add(event_impulse, *event.impulse);
+      event_moment = add(event_moment, *event.position_moment);
+      has_event = true;
+    }
+    if (!has_event) {
+      auto ordinary = append_candidate_segments(
+          {path}, start_time, end_time,
+          {{path.path_id, start_totals.at(path.path_id)}},
+          {{path.path_id, end_totals.at(path.path_id)}}, {}, nullptr);
+      result.histories.push_back(std::move(ordinary.front()));
+      continue;
+    }
+
+    const IntervalVector background_impulse = scale(
+        Interval::point(step * 0.5),
+        add(background_start, background_end));
+    const IntervalVector background_moment = scale(
+        Interval::point(step * step / 6.0),
+        add(scale(Interval::point(2.0), background_start), background_end));
+    const IntervalVector v1 = add(v0, add(background_impulse, event_impulse));
+    const IntervalVector x1 = add(
+        add(x0, scale(Interval::point(step), v0)),
+        add(background_moment, event_moment));
+    result.background_impulses.insert_or_assign(
+        path.path_id, background_impulse);
+    result.background_position_moments.insert_or_assign(
+        path.path_id, background_moment);
+    result.endpoint_positions.insert_or_assign(path.path_id, x1);
+    result.endpoint_velocities.insert_or_assign(path.path_id, v1);
+
+    CubicCoefficientTokens coefficients{};
+    for (std::size_t axis = 0; axis < 3U; ++axis) {
+      const double x0_mid = x0[axis].midpoint();
+      const double v0_mid = v0[axis].midpoint();
+      const double x1_mid = x1[axis].midpoint();
+      const double v1_mid = v1[axis].midpoint();
+      coefficients[axis] = {
+          decimal_token(x0_mid),
+          decimal_token(v0_mid),
+          decimal_token(
+              (3.0 * (x1_mid - x0_mid) -
+               step * (2.0 * v0_mid + v1_mid)) /
+              (step * step)),
+          decimal_token(
+              (2.0 * (x0_mid - x1_mid) +
+               step * (v0_mid + v1_mid)) /
+              (step * step * step)),
+      };
+    }
+    const double x0_radius = vector_radius(x0);
+    const double v0_radius = vector_radius(v0);
+    const double x1_radius = vector_radius(x1);
+    const double v1_radius = vector_radius(v1);
+    // These are uniform Hermite-basis bounds, not endpoint-only radii.  They
+    // enclose every convex position basis term and every differentiated basis
+    // term on 0 <= (T-T0)/h <= 1.
+    const double position_error = upward_nonnegative_sum(
+        upward_nonnegative_sum(x0_radius, x1_radius),
+        step * upward_nonnegative_sum(v0_radius, v1_radius));
+    const double velocity_error = upward_nonnegative_sum(
+        1.5 * (x0_radius + x1_radius) / step,
+        2.0 * (v0_radius + v1_radius));
+    result.histories.push_back({
+        path.path_id,
+        path.history.appended(CubicHistorySegment(
+            start_time, end_time, coefficients,
+            error_token(position_error), error_token(velocity_error))),
+    });
+  }
+  if (timing != nullptr) {
+    timing->history_copy_hash_wall_seconds += elapsed_seconds(timing_start);
+  }
+  return result;
+}
+
+const NativeSnapshotRootRow* snapshot_root_row(
+    const NativeAccelerationSnapshotCertificate& snapshot,
+    const std::string& receiver,
+    const std::string& source) {
+  const auto found = std::find_if(
+      snapshot.root_certificates.begin(), snapshot.root_certificates.end(),
+      [&](const auto& row) {
+        return row.receiver_path_id == receiver &&
+            row.source_path_id == source;
+      });
+  return found == snapshot.root_certificates.end() ? nullptr : &*found;
+}
+
+bool vector_contains(
+    const IntervalVector& enclosure, const IntervalVector& candidate) {
+  for (std::size_t axis = 0; axis < 3U; ++axis) {
+    if (!candidate[axis].subset_of(enclosure[axis])) return false;
+  }
+  return true;
+}
+
+IntervalVector midpoint_vector(const IntervalVector& value) {
+  return {Interval::point(value[0].midpoint()),
+          Interval::point(value[1].midpoint()),
+          Interval::point(value[2].midpoint())};
+}
+
+bool certify_finite_width_exit(
+    const NativeCoupledEvolutionRequest& request,
+    const std::vector<NativePublishedPath>& histories,
+    const NativeAccelerationSnapshotCertificate& endpoint,
+    const std::string& receiver,
+    const std::string& source) {
+  const auto* root_row = snapshot_root_row(endpoint, receiver, source);
+  if (root_row == nullptr) return false;
+  const auto& roots = root_row->certificate;
+  if (roots.status != "certified_complete" ||
+      !roots.root_free_complement || roots.memory_boundary_contact) {
+    return false;
+  }
+  const auto pair = certify_pair_acceleration({
+      .row_id = roots.row_id + "/fwc-exit-sharp",
+      .receiver_path_id = receiver,
+      .source_path_id = source,
+      .receiver_history = &path_history(histories, receiver).history,
+      .source_history = &path_history(histories, source).history,
+      .root_certificate = &roots,
+      .receiver_charge = path_charge(request, receiver),
+      .source_charge = path_charge(request, source),
+      .coupling = request.coupling,
+      .chart = "sharp",
+      .source_normal_floor = request.source_normal_floor,
+      .causal_width = request.causal_width,
+      .core_scale = request.core_scale,
+      .acceleration_tolerance = request.acceleration_tolerance,
+      .quadrature_tolerance = request.quadrature_tolerance,
+      .quadrature_max_depth = request.quadrature_max_depth,
+      .quadrature_max_cells = request.quadrature_max_cells,
+      .initial_mpfr_bits = request.initial_mpfr_bits,
+      .maximum_mpfr_bits = request.maximum_mpfr_bits,
+      .use_analytic_pinned_fold = request.use_analytic_pinned_fold,
+      .use_correlated_self_chord = request.use_correlated_self_chord,
+      .use_stable_circular_residual =
+          request.use_stable_circular_residual,
+  });
+  if (pair.status == "uncertified" || pair.chart != "sharp" ||
+      !pair.total_acceleration.has_value() ||
+      pair.rows.size() != roots.roots.size()) {
+    return false;
+  }
+  const Interval source_normal_floor =
+      Interval::decimal_token(request.source_normal_floor);
+  const Interval core_scale = Interval::decimal_token(request.core_scale);
+  for (const auto& row : pair.rows) {
+    if (!row.source_normal.has_value() ||
+        row.source_normal->contains_zero() ||
+        interval_absolute(*row.source_normal).lower() <
+            source_normal_floor.upper() ||
+        !row.separation.has_value() ||
+        row.separation->lower() <= core_scale.upper()) {
+      return false;
+    }
+  }
+  return true;
+}
+
+struct NominalHistoryState {
+  IntervalVector position;
+  IntervalVector velocity;
+  IntervalVector acceleration;
+  IntervalVector jerk;
+};
+
+std::optional<NominalHistoryState> nominal_history_state(
+    const RetainedHistory& history, const Interval& time) {
+  for (const auto& segment : history.segments()) {
+    if (time.lower() < segment.t_start_interval().lower() ||
+        time.upper() > segment.t_end_interval().upper()) {
+      continue;
+    }
+    const Interval local = time - segment.t_start_interval();
+    NominalHistoryState state{
+        .position = {Interval::point(0.0), Interval::point(0.0),
+                     Interval::point(0.0)},
+        .velocity = {Interval::point(0.0), Interval::point(0.0),
+                     Interval::point(0.0)},
+        .acceleration = {Interval::point(0.0), Interval::point(0.0),
+                         Interval::point(0.0)},
+        .jerk = {Interval::point(0.0), Interval::point(0.0),
+                 Interval::point(0.0)},
+    };
+    for (std::size_t axis = 0; axis < 3U; ++axis) {
+      const auto c = coefficient_intervals(
+          segment.coefficient_tokens()[axis]);
+      state.position[axis] = evaluate_cubic(c, local);
+      state.velocity[axis] = evaluate_cubic_velocity(c, local);
+      state.acceleration[axis] =
+          Interval::point(2.0) * c[2] +
+          Interval::point(6.0) * c[3] * local;
+      state.jerk[axis] = Interval::point(6.0) * c[3];
+    }
+    return state;
+  }
+  return std::nullopt;
+}
+
+struct Jet2 {
+  Interval value;
+  Interval first;
+  Interval second;
+};
+
+Jet2 jet_add(const Jet2& left, const Jet2& right) {
+  return {left.value + right.value, left.first + right.first,
+          left.second + right.second};
+}
+
+Jet2 jet_subtract(const Jet2& left, const Jet2& right) {
+  return {left.value - right.value, left.first - right.first,
+          left.second - right.second};
+}
+
+Jet2 jet_multiply(const Jet2& left, const Jet2& right) {
+  return {
+      left.value * right.value,
+      left.first * right.value + left.value * right.first,
+      left.second * right.value +
+          Interval::point(2.0) * left.first * right.first +
+          left.value * right.second,
+  };
+}
+
+Jet2 jet_inverse(const Jet2& value) {
+  const Interval square = interval_square(value.value);
+  const Interval cube = square * value.value;
+  return {
+      Interval::point(1.0) / value.value,
+      (Interval::point(0.0) - value.first) / square,
+      Interval::point(2.0) * interval_square(value.first) / cube -
+          value.second / square,
+  };
+}
+
+Jet2 jet_divide(const Jet2& numerator, const Jet2& denominator) {
+  return jet_multiply(numerator, jet_inverse(denominator));
+}
+
+Jet2 jet_sqrt(const Jet2& value) {
+  const Interval root = interval_sqrt(value.value);
+  return {
+      root,
+      value.first / (Interval::point(2.0) * root),
+      value.second / (Interval::point(2.0) * root) -
+          interval_square(value.first) /
+              (Interval::point(4.0) * root * root * root),
+  };
+}
+
+Jet2 jet_absolute(const Jet2& value) {
+  if (value.value.lower() > 0.0) return value;
+  if (value.value.upper() < 0.0) {
+    const Interval minus_one = Interval::point(-1.0);
+    return {minus_one * value.value, minus_one * value.first,
+            minus_one * value.second};
+  }
+  throw std::runtime_error(
+      "common-domain nominal branch orientation contains zero");
+}
+
+using JetVector = std::array<Jet2, 3>;
+
+Jet2 jet_dot(const JetVector& left, const JetVector& right) {
+  Jet2 result{Interval::point(0.0), Interval::point(0.0),
+              Interval::point(0.0)};
+  for (std::size_t axis = 0; axis < 3U; ++axis) {
+    result = jet_add(result, jet_multiply(left[axis], right[axis]));
+  }
+  return result;
+}
+
+JetVector jet_scale(const Jet2& factor, const JetVector& value) {
+  return {jet_multiply(factor, value[0]),
+          jet_multiply(factor, value[1]),
+          jet_multiply(factor, value[2])};
+}
+
+JetVector jet_subtract_vector(
+    const JetVector& left, const JetVector& right) {
+  return {jet_subtract(left[0], right[0]),
+          jet_subtract(left[1], right[1]),
+          jet_subtract(left[2], right[2])};
+}
+
+struct CommonRootTube {
+  Interval emission;
+  IntervalVector acceleration_hull;
+  JetVector nominal_acceleration;
+  double source_normal_absolute_lower;
+  double separation_lower;
+};
+
+std::optional<CommonRootTube> certify_common_root_tube(
+    const NativeCoupledEvolutionRequest& request,
+    const NativePublishedPath& receiver,
+    const NativePublishedPath& source,
+    const NativeRootBracket& endpoint_root,
+    const Interval& reception,
+    double common_width) {
+  const Interval field_speed = Interval::decimal_token(request.field_speed);
+  const Interval core_scale = Interval::decimal_token(request.core_scale);
+  const Interval normal_floor =
+      Interval::decimal_token(request.source_normal_floor);
+  const Interval root_bracket(
+      Interval::decimal_token(endpoint_root.lower).lower(),
+      Interval::decimal_token(endpoint_root.upper).upper());
+  const Interval endpoint_source_normal(
+      Interval::decimal_token(endpoint_root.source_normal_lower).lower(),
+      Interval::decimal_token(endpoint_root.source_normal_upper).upper());
+  const Interval endpoint_receiver_normal(
+      Interval::decimal_token(endpoint_root.receiver_normal_lower).lower(),
+      Interval::decimal_token(endpoint_root.receiver_normal_upper).upper());
+  if (endpoint_source_normal.contains_zero()) return std::nullopt;
+  double slope_bound = interval_absolute(
+      endpoint_receiver_normal / endpoint_source_normal).upper();
+  Interval emission = root_bracket;
+  IntervalVector displacement{Interval::point(0.0), Interval::point(0.0),
+                              Interval::point(0.0)};
+  Interval separation = Interval::point(0.0);
+  Interval source_normal = endpoint_source_normal;
+  Interval receiver_normal = endpoint_receiver_normal;
+  bool self_consistent = false;
+  for (std::size_t iteration = 0; iteration < 8U; ++iteration) {
+    const double padding = std::nextafter(
+        common_width * slope_bound + root_bracket.width(),
+        std::numeric_limits<double>::infinity());
+    const double lower = root_bracket.lower() - padding;
+    const double upper = root_bracket.upper() + padding;
+    if (!(lower < upper) || lower < source.history.t_start() ||
+        upper > source.history.t_end() || upper > reception.upper()) {
+      return std::nullopt;
+    }
+    emission = Interval(lower, upper);
+    displacement = subtract(
+        receiver.history.position_hull(reception),
+        source.history.position_hull(emission));
+    separation = norm(displacement);
+    if (separation.lower() <= core_scale.upper() ||
+        separation.contains_zero()) {
+      return std::nullopt;
+    }
+    const IntervalVector direction = divide(displacement, separation);
+    source_normal = field_speed - dot(
+        direction, source.history.velocity_hull(emission));
+    receiver_normal = field_speed - dot(
+        direction, receiver.history.velocity_hull(reception));
+    if (source_normal.contains_zero() ||
+        interval_absolute(source_normal).lower() < normal_floor.upper()) {
+      return std::nullopt;
+    }
+    const double updated = interval_absolute(
+        receiver_normal / source_normal).upper();
+    if (updated <= slope_bound) {
+      self_consistent = true;
+      break;
+    }
+    slope_bound = std::nextafter(
+        updated, std::numeric_limits<double>::infinity());
+  }
+  if (!self_consistent) return std::nullopt;
+
+  const Interval receiver_strength = interval_absolute(
+      receiver_normal / source_normal);
+  const Interval radial_denominator =
+      interval_square(separation) * separation;
+  const Interval signed_scale =
+      Interval::decimal_token(request.coupling) *
+      Interval::decimal_token(path_charge(request, receiver.path_id)) *
+      Interval::decimal_token(path_charge(request, source.path_id));
+  const IntervalVector acceleration_hull = scale(
+      signed_scale * receiver_strength,
+      divide(displacement, radial_denominator));
+
+  const auto receiver_state = nominal_history_state(
+      receiver.history, reception);
+  const auto source_state = nominal_history_state(source.history, emission);
+  if (!receiver_state.has_value() || !source_state.has_value()) {
+    return std::nullopt;
+  }
+  const IntervalVector nominal_displacement = subtract(
+      receiver_state->position, source_state->position);
+  const Interval nominal_separation = norm(nominal_displacement);
+  if (nominal_separation.contains_zero()) return std::nullopt;
+  const IntervalVector nominal_direction =
+      divide(nominal_displacement, nominal_separation);
+  const Interval nominal_ds = field_speed -
+      dot(nominal_direction, source_state->velocity);
+  const Interval nominal_dr = field_speed -
+      dot(nominal_direction, receiver_state->velocity);
+  if (nominal_ds.contains_zero()) return std::nullopt;
+  const Interval s1 = nominal_dr / nominal_ds;
+  const IntervalVector d1 = subtract(
+      receiver_state->velocity,
+      scale(s1, source_state->velocity));
+  const IntervalVector base_d2 = subtract(
+      receiver_state->acceleration,
+      scale(interval_square(s1), source_state->acceleration));
+  const Interval base_r2 =
+      (dot(d1, d1) + dot(nominal_displacement, base_d2)) /
+          nominal_separation -
+      interval_square(dot(nominal_displacement, d1)) /
+          (interval_square(nominal_separation) * nominal_separation);
+  const Interval s2 =
+      (Interval::point(0.0) - base_r2) / nominal_ds;
+
+  const Jet2 zero_jet{Interval::point(0.0), Interval::point(0.0),
+                      Interval::point(0.0)};
+  JetVector receiver_position_jet{zero_jet, zero_jet, zero_jet};
+  JetVector source_position_jet{zero_jet, zero_jet, zero_jet};
+  JetVector receiver_velocity_jet{zero_jet, zero_jet, zero_jet};
+  JetVector source_velocity_jet{zero_jet, zero_jet, zero_jet};
+  for (std::size_t axis = 0; axis < 3U; ++axis) {
+    receiver_position_jet[axis] = {
+        receiver_state->position[axis], receiver_state->velocity[axis],
+        receiver_state->acceleration[axis]};
+    source_position_jet[axis] = {
+        source_state->position[axis],
+        source_state->velocity[axis] * s1,
+        source_state->acceleration[axis] * interval_square(s1) +
+            source_state->velocity[axis] * s2};
+    receiver_velocity_jet[axis] = {
+        receiver_state->velocity[axis],
+        receiver_state->acceleration[axis], receiver_state->jerk[axis]};
+    source_velocity_jet[axis] = {
+        source_state->velocity[axis],
+        source_state->acceleration[axis] * s1,
+        source_state->jerk[axis] * interval_square(s1) +
+            source_state->acceleration[axis] * s2};
+  }
+  const JetVector d_jet = jet_subtract_vector(
+      receiver_position_jet, source_position_jet);
+  const Jet2 r_jet = jet_sqrt(jet_dot(d_jet, d_jet));
+  const JetVector n_jet = jet_scale(jet_inverse(r_jet), d_jet);
+  const Jet2 c_jet{field_speed, Interval::point(0.0),
+                   Interval::point(0.0)};
+  const Jet2 ds_jet = jet_subtract(
+      c_jet, jet_dot(n_jet, source_velocity_jet));
+  const Jet2 dr_jet = jet_subtract(
+      c_jet, jet_dot(n_jet, receiver_velocity_jet));
+  const Jet2 strength_jet = jet_absolute(jet_divide(dr_jet, ds_jet));
+  const Jet2 radial_cubed = jet_multiply(
+      jet_multiply(r_jet, r_jet), r_jet);
+  const Jet2 scale_jet = jet_multiply(
+      Jet2{signed_scale, Interval::point(0.0), Interval::point(0.0)},
+      strength_jet);
+  const JetVector nominal_acceleration = jet_scale(
+      jet_divide(scale_jet, radial_cubed), d_jet);
+  return CommonRootTube{
+      .emission = emission,
+      .acceleration_hull = acceleration_hull,
+      .nominal_acceleration = nominal_acceleration,
+      .source_normal_absolute_lower =
+          interval_absolute(source_normal).lower(),
+      .separation_lower = separation.lower(),
+  };
+}
+
+bool certify_common_root_free_complement(
+    const NativeCoupledEvolutionRequest& request,
+    const NativePublishedPath& receiver,
+    const NativePublishedPath& source,
+    const ExactPairCertificate& endpoint_roots,
+    const Interval& reception,
+    const std::vector<CommonRootTube>& tubes) {
+  const double search_lower =
+      Interval::decimal_token(endpoint_roots.searched_lower).lower();
+  const double search_upper = reception.upper();
+  std::set<double> boundaries{search_lower, search_upper};
+  for (const auto& segment : source.history.segments()) {
+    if (search_lower < segment.t_start() &&
+        segment.t_start() < search_upper) {
+      boundaries.insert(segment.t_start());
+    }
+    if (search_lower < segment.t_end() && segment.t_end() < search_upper) {
+      boundaries.insert(segment.t_end());
+    }
+  }
+  for (const auto& tube : tubes) {
+    boundaries.insert(std::max(search_lower, tube.emission.lower()));
+    boundaries.insert(std::min(search_upper, tube.emission.upper()));
+  }
+  struct Cell {
+    double lower;
+    double upper;
+    std::size_t depth;
+  };
+  std::vector<Cell> stack;
+  for (auto it = boundaries.begin(); std::next(it) != boundaries.end(); ++it) {
+    const double lower = *it;
+    const double upper = *std::next(it);
+    if (!(lower < upper)) continue;
+    const double midpoint = lower + 0.5 * (upper - lower);
+    const bool inside_tube = std::any_of(
+        tubes.begin(), tubes.end(), [&](const auto& tube) {
+          return tube.emission.lower() <= midpoint &&
+              midpoint <= tube.emission.upper();
+        });
+    if (!inside_tube) stack.push_back({lower, upper, 0U});
+  }
+  const Interval field_speed = Interval::decimal_token(request.field_speed);
+  const double resolution = tolerance_value(
+      request.root_tolerance, "root tolerance");
+  std::size_t visited = 0U;
+  while (!stack.empty()) {
+    const Cell cell = stack.back();
+    stack.pop_back();
+    if (++visited > request.root_max_cells) return false;
+    const Interval emission(cell.lower, cell.upper);
+    const Interval residual = norm(subtract(
+        receiver.history.position_hull(reception),
+        source.history.position_hull(emission))) -
+        field_speed * (reception - emission);
+    if (residual.excludes_zero()) continue;
+    if (cell.depth >= request.root_max_depth ||
+        cell.upper - cell.lower <= resolution) {
+      return false;
+    }
+    const double midpoint = cell.lower + 0.5 * (cell.upper - cell.lower);
+    if (!(cell.lower < midpoint && midpoint < cell.upper)) return false;
+    stack.push_back({midpoint, cell.upper, cell.depth + 1U});
+    stack.push_back({cell.lower, midpoint, cell.depth + 1U});
+  }
+  return true;
+}
+
+Interval symmetric_interval(double radius) {
+  const double outward = std::nextafter(
+      std::max(0.0, radius), std::numeric_limits<double>::infinity());
+  return Interval(-outward, outward);
+}
+
+std::optional<NativeCommonDomainChartCertificate>
+certify_common_domain_interval(
+    const NativeCoupledEvolutionRequest& request,
+    const NativePublishedPath& receiver,
+    const NativePublishedPath& source,
+    const NativeAccelerationSnapshotCertificate& endpoint_snapshot,
+    const Interval& common_reception,
+    double event_end) {
+  NativeCommonDomainChartCertificate certificate{
+      .status = "uncertified",
+      .reception_lower = decimal_token(common_reception.lower()),
+      .reception_upper = decimal_token(common_reception.upper()),
+      .failure_code = "common_domain_not_certified",
+  };
+  const auto* root_row = snapshot_root_row(
+      endpoint_snapshot, receiver.path_id, source.path_id);
+  if (root_row == nullptr ||
+      root_row->certificate.status != "certified_complete" ||
+      !root_row->certificate.root_free_complement ||
+      root_row->certificate.memory_boundary_contact) {
+    certificate.failure_code = "common_domain_endpoint_roots_uncertified";
+    return certificate;
+  }
+  const auto& roots = root_row->certificate;
+  std::vector<CommonRootTube> tubes;
+  tubes.reserve(roots.roots.size());
+  for (const auto& root : roots.roots) {
+    auto tube = certify_common_root_tube(
+        request, receiver, source, root, common_reception,
+        common_reception.width());
+    if (!tube.has_value()) {
+      certificate.failure_code = "common_domain_root_tube_uncertified";
+      return certificate;
+    }
+    tubes.push_back(std::move(*tube));
+  }
+  std::sort(tubes.begin(), tubes.end(), [](const auto& left,
+                                          const auto& right) {
+    return left.emission.lower() < right.emission.lower();
+  });
+  for (std::size_t index = 1; index < tubes.size(); ++index) {
+    if (tubes[index - 1U].emission.upper() >=
+        tubes[index].emission.lower()) {
+      certificate.failure_code = "common_domain_root_tubes_not_isolated";
+      return certificate;
+    }
+  }
+  if (!certify_common_root_free_complement(
+          request, receiver, source, roots, common_reception, tubes)) {
+    certificate.failure_code = "common_domain_complement_uncertified";
+    return certificate;
+  }
+  certificate.certified_root_count = tubes.size();
+  certificate.source_normal_absolute_lower = tubes.empty()
+      ? std::numeric_limits<double>::infinity()
+      : std::min_element(
+            tubes.begin(), tubes.end(), [](const auto& left,
+                                           const auto& right) {
+              return left.source_normal_absolute_lower <
+                  right.source_normal_absolute_lower;
+            })->source_normal_absolute_lower;
+  certificate.separation_lower = tubes.empty()
+      ? std::numeric_limits<double>::infinity()
+      : std::min_element(
+            tubes.begin(), tubes.end(), [](const auto& left,
+                                           const auto& right) {
+              return left.separation_lower < right.separation_lower;
+            })->separation_lower;
+
+  const Interval zero = Interval::point(0.0);
+  IntervalVector full_acceleration{zero, zero, zero};
+  JetVector nominal_acceleration{
+      Jet2{zero, zero, zero}, Jet2{zero, zero, zero},
+      Jet2{zero, zero, zero}};
+  for (const auto& tube : tubes) {
+    full_acceleration = add(full_acceleration, tube.acceleration_hull);
+    for (std::size_t axis = 0; axis < 3U; ++axis) {
+      nominal_acceleration[axis] = jet_add(
+          nominal_acceleration[axis], tube.nominal_acceleration[axis]);
+    }
+  }
+  IntervalVector second_derivative_bound{zero, zero, zero};
+  IntervalVector impulse_remainder{zero, zero, zero};
+  IntervalVector moment_remainder{zero, zero, zero};
+  IntervalVector track_impulse_remainder{zero, zero, zero};
+  IntervalVector track_moment_remainder{zero, zero, zero};
+  IntervalVector sharp_impulse{zero, zero, zero};
+  IntervalVector sharp_local_moment{zero, zero, zero};
+  const double width = common_reception.width();
+  const double offset = std::max(0.0, event_end - common_reception.upper());
+  for (std::size_t axis = 0; axis < 3U; ++axis) {
+    const double l2 = interval_absolute(
+        nominal_acceleration[axis].second).upper();
+    const double shortcut_i = width * width * width * l2 / 12.0;
+    const double shortcut_m =
+        width * width * width * width * l2 / 24.0;
+    const double track_bound = interval_absolute(
+        full_acceleration[axis] -
+        nominal_acceleration[axis].value).upper();
+    const double track_i = width * track_bound;
+    const double track_m = 0.5 * width * width * track_bound;
+    second_derivative_bound[axis] = Interval(0.0, l2);
+    impulse_remainder[axis] = symmetric_interval(shortcut_i);
+    moment_remainder[axis] = symmetric_interval(shortcut_m);
+    track_impulse_remainder[axis] = symmetric_interval(track_i);
+    track_moment_remainder[axis] = symmetric_interval(track_m);
+    sharp_impulse[axis] =
+        (Interval::point(width) * nominal_acceleration[axis].value)
+            .inflate(shortcut_i + track_i);
+    sharp_local_moment[axis] =
+        (Interval::point(0.5 * width * width) *
+         nominal_acceleration[axis].value)
+            .inflate(shortcut_m + track_m);
+  }
+  IntervalVector sharp_moment = add(
+      sharp_local_moment,
+      scale(Interval::point(offset), sharp_impulse));
+
+  auto finite = certify_native_fold_caustic_impulse(
+      request, receiver, source, path_charge(request, receiver.path_id),
+      path_charge(request, source.path_id), certificate.reception_lower,
+      certificate.reception_upper);
+  if (finite.status != "certified_complete" ||
+      !finite.impulse.has_value() || !finite.position_moment.has_value()) {
+    certificate.failure_code = finite.failure_code.empty()
+        ? "common_domain_finite_width_uncertified"
+        : finite.failure_code;
+    return certificate;
+  }
+  const IntervalVector finite_moment = add(
+      *finite.position_moment,
+      scale(Interval::point(offset), *finite.impulse));
+  certificate.sharp_impulse = sharp_impulse;
+  certificate.finite_width_impulse = *finite.impulse;
+  certificate.sharp_position_moment = sharp_moment;
+  certificate.finite_width_position_moment = finite_moment;
+  certificate.acceleration_second_derivative_bound =
+      second_derivative_bound;
+  certificate.impulse_shortcut_remainder = impulse_remainder;
+  certificate.position_moment_shortcut_remainder = moment_remainder;
+  certificate.track_impulse_remainder = track_impulse_remainder;
+  certificate.track_position_moment_remainder = track_moment_remainder;
+
+  const auto record_disjoint = [&](const IntervalVector& left,
+                                   const IntervalVector& right,
+                                   bool moment) {
+    for (std::size_t axis = 0; axis < 3U; ++axis) {
+      if (left[axis].intersection(right[axis]).has_value()) continue;
+      certificate.disjoint_component = axis;
+      certificate.disjoint_width = left[axis].upper() < right[axis].lower()
+          ? right[axis].lower() - left[axis].upper()
+          : left[axis].lower() - right[axis].upper();
+      certificate.applicable_remainder_budget = moment
+          ? interval_absolute(moment_remainder[axis]).upper() +
+                interval_absolute(track_moment_remainder[axis]).upper() +
+                offset * (
+                    interval_absolute(impulse_remainder[axis]).upper() +
+                    interval_absolute(track_impulse_remainder[axis]).upper())
+          : interval_absolute(impulse_remainder[axis]).upper() +
+                interval_absolute(track_impulse_remainder[axis]).upper();
+      return;
+    }
+  };
+  if (!vectors_overlap(sharp_impulse, *finite.impulse)) {
+    record_disjoint(sharp_impulse, *finite.impulse, false);
+    certificate.failure_code = "common_domain_impulse_disjoint";
+    return certificate;
+  }
+  if (!vectors_overlap(sharp_moment, finite_moment)) {
+    record_disjoint(sharp_moment, finite_moment, true);
+    certificate.failure_code = "common_domain_position_moment_disjoint";
+    return certificate;
+  }
+  certificate.status = "certified_overlap";
+  certificate.failure_code.clear();
+  return certificate;
+}
+
+std::vector<NativeCommonDomainChartCertificate> certify_common_domains(
+    const NativeCoupledEvolutionRequest& request,
+    const std::vector<NativePublishedPath>& histories,
+    const NativeAccelerationSnapshotCertificate& start_snapshot,
+    const NativeAccelerationSnapshotCertificate& endpoint_snapshot,
+    const std::string& receiver_id,
+    const std::string& source_id,
+    const std::string& start_time,
+    const std::string& end_time) {
+  const double start = scalar_token(start_time);
+  const double end = scalar_token(end_time);
+  const double step = end - start;
+  const auto& receiver = path_history(histories, receiver_id);
+  const auto& source = path_history(histories, source_id);
+  std::vector<NativeCommonDomainChartCertificate> result;
+  const auto try_side = [&](bool left) {
+    for (std::size_t refinement = 0; refinement < 12U; ++refinement) {
+      const double width = step / std::ldexp(8.0, refinement);
+      if (!(width > 0.0)) break;
+      const Interval common = left
+          ? Interval(start, std::min(end, start + width))
+          : Interval(std::max(start, end - width), end);
+      const auto& endpoint = left ? start_snapshot : endpoint_snapshot;
+      auto certificate = certify_common_domain_interval(
+          request, receiver, source, endpoint, common, end);
+      if (certificate.has_value() &&
+          certificate->status == "certified_overlap") {
+        result.push_back(std::move(*certificate));
+        return;
+      }
+      if (refinement == 11U && certificate.has_value()) {
+        result.push_back(std::move(*certificate));
+      }
+    }
+  };
+  try_side(true);
+  try_side(false);
   return result;
 }
 
@@ -1056,9 +1882,13 @@ SubstepAttempt corrected_substep_impl(
     accumulate_substep_snapshot_timing(*timing, start_snapshot);
   }
   if (start_snapshot.status != "certified_complete") {
-    const std::string failure = start_snapshot.failure_code.empty()
-        ? "root_completeness_not_certified"
-        : start_snapshot.failure_code;
+    const std::string failure =
+        !display_run_grade(request) &&
+                !request.adjudicated_finite_width_pairs.empty()
+        ? "caustic_entry_not_certified"
+        : (start_snapshot.failure_code.empty()
+            ? "root_completeness_not_certified"
+            : start_snapshot.failure_code);
     return {
         failed_substep_certificate(
             start_time, end_time, std::move(start_snapshot), std::nullopt, 0,
@@ -1083,9 +1913,13 @@ SubstepAttempt corrected_substep_impl(
       defer_endpoint_root_precision_escalation);
   accumulate_substep_snapshot_timing(*timing, predictor_snapshot);
   if (predictor_snapshot.status != "certified_complete") {
-    const std::string failure = predictor_snapshot.failure_code.empty()
-        ? "root_completeness_not_certified"
-        : predictor_snapshot.failure_code;
+    const std::string failure =
+        !display_run_grade(request) &&
+                !request.adjudicated_finite_width_pairs.empty()
+        ? "caustic_exit_not_certified"
+        : (predictor_snapshot.failure_code.empty()
+            ? "root_completeness_not_certified"
+            : predictor_snapshot.failure_code);
     if (request.failed_substep_candidate_callback) {
       request.failed_substep_candidate_callback(
           start_time, end_time, failure, 0U, predictor_histories);
@@ -1117,9 +1951,13 @@ SubstepAttempt corrected_substep_impl(
         defer_endpoint_root_precision_escalation);
     accumulate_substep_snapshot_timing(*timing, endpoint_snapshot);
     if (endpoint_snapshot.status != "certified_complete") {
-      const std::string failure = endpoint_snapshot.failure_code.empty()
-          ? "root_completeness_not_certified"
-          : endpoint_snapshot.failure_code;
+      const std::string failure =
+          !display_run_grade(request) &&
+                  !request.adjudicated_finite_width_pairs.empty()
+          ? "caustic_exit_not_certified"
+          : (endpoint_snapshot.failure_code.empty()
+              ? "root_completeness_not_certified"
+              : endpoint_snapshot.failure_code);
       if (request.failed_substep_candidate_callback) {
         request.failed_substep_candidate_callback(
             start_time, end_time, failure, iteration, candidate_histories);
@@ -1140,6 +1978,7 @@ SubstepAttempt corrected_substep_impl(
       std::vector<NativeFoldCausticImpulseCertificate> event_impulses;
       std::vector<NativeRegulatorConvergenceCertificate>
           regulator_convergence_certificates;
+      std::vector<std::pair<std::string, std::string>> routed_event_pairs;
       std::vector<NativeEndpointRootContinuationCertificate>
           endpoint_root_continuations;
       std::vector<NativeCausticWarning> entry_warnings;
@@ -1149,9 +1988,22 @@ SubstepAttempt corrected_substep_impl(
           request, endpoint_snapshot, start_time, end_time, entry_warnings);
       auto event_pairs = changed_topology_pairs(
           start_snapshot, endpoint_snapshot);
-      const bool topology_changed = !event_pairs.empty();
+      const auto topology_event_pairs = event_pairs;
+      if (!display_run_grade(request)) {
+        for (const auto& pair : request.adjudicated_finite_width_pairs) {
+          if (std::find(event_pairs.begin(), event_pairs.end(), pair) ==
+              event_pairs.end()) {
+            event_pairs.push_back(pair);
+          }
+        }
+      }
       const auto append_finite_width_pairs = [&](const auto& snapshot) {
-        for (const auto& pair : finite_width_pairs(snapshot)) {
+        for (const auto& pair : finite_width_pairs(request, snapshot)) {
+          if (pair.first == pair.second &&
+              !pair_is_adjudicated_finite_width(
+                  request, pair.first, pair.second)) {
+            continue;
+          }
           if (std::find(event_pairs.begin(), event_pairs.end(), pair) ==
               event_pairs.end()) {
             event_pairs.push_back(pair);
@@ -1171,8 +2023,11 @@ SubstepAttempt corrected_substep_impl(
               std::nullopt,
           };
         }
-        const double step = scalar_token(end_time) - scalar_token(start_time);
         for (const auto& [receiver_id, source_id] : event_pairs) {
+          const bool topology_changed = std::find(
+              topology_event_pairs.begin(), topology_event_pairs.end(),
+              std::make_pair(receiver_id, source_id)) !=
+              topology_event_pairs.end();
           if (topology_changed) {
             const auto endpoint_continuation =
                 certify_coincident_endpoint_root_continuation_impl(
@@ -1182,6 +2037,12 @@ SubstepAttempt corrected_substep_impl(
               endpoint_root_continuations.push_back(*endpoint_continuation);
               continue;
             }
+          }
+          if (display_run_grade(request)) {
+            merge_caustic_warning(entry_warnings, make_caustic_warning(
+                receiver_id, source_id, start_time, end_time,
+                "FWC-ENTRY-02", "caustic_route_required"));
+            continue;
           }
           auto regulator = certify_native_regulator_convergence(
               request,
@@ -1212,73 +2073,186 @@ SubstepAttempt corrected_substep_impl(
                 std::move(regulator_convergence_certificates);
             failed.endpoint_root_continuations =
                 std::move(endpoint_root_continuations);
-            if (display_run_grade(request) &&
-                failure != "insufficient_history_depth") {
-              failed.caustic_warnings = entry_warnings;
-              const auto& failed_regulator =
-                  failed.regulator_convergence_certificates.back();
-              failed.caustic_warnings.push_back(make_caustic_warning(
-                  receiver_id, source_id, start_time, end_time,
-                  caustic_row_for_failure(failure, &failed_regulator),
-                  failure));
-              failed.status = "accepted_candidate";
-              failed.failure_code.clear();
-              return {std::move(failed), std::move(candidate_histories)};
-            }
-            return {std::move(failed), std::nullopt};
-          }
-          const auto& start_pair =
-              snapshot_pair(start_snapshot, receiver_id, source_id);
-          const auto& end_pair =
-              snapshot_pair(endpoint_snapshot, receiver_id, source_id);
-          if (!start_pair.total_acceleration.has_value() ||
-              !end_pair.total_acceleration.has_value()) {
-            throw std::runtime_error(
-                "event pair lacks reconstructed endpoint acceleration");
-          }
-          const IntervalVector trapezoid = scale(
-              Interval::point(step * 0.5),
-              add(*start_pair.total_acceleration,
-                  *end_pair.total_acceleration));
-          const IntervalVector trapezoid_position_moment = scale(
-              Interval::point(step * step / 6.0),
-              add(
-                  scale(
-                      Interval::point(2.0),
-                      *start_pair.total_acceleration),
-                  *end_pair.total_acceleration));
-          if (!vectors_overlap(trapezoid, *event.impulse) ||
-              !vectors_overlap(
-                  trapezoid_position_moment,
-                  *event.position_moment)) {
-            event_impulses.push_back(std::move(event));
-            regulator_convergence_certificates.push_back(
-                std::move(regulator));
-            auto failed = failed_substep_certificate(
-                start_time, end_time, std::move(start_snapshot),
-                std::move(endpoint_snapshot), iteration, correction_error,
-                "caustic_state_reconstruction_failed", candidate_histories,
-                pinned_fold_onset_certificates);
-            failed.event_impulses = std::move(event_impulses);
-            failed.regulator_convergence_certificates =
-                std::move(regulator_convergence_certificates);
-            failed.endpoint_root_continuations =
-                std::move(endpoint_root_continuations);
-            if (display_run_grade(request)) {
-              failed.caustic_warnings = entry_warnings;
-              failed.caustic_warnings.push_back(make_caustic_warning(
-                  receiver_id, source_id, start_time, end_time,
-                  "FWC-STATE-01", "caustic_state_reconstruction_failed"));
-              failed.status = "accepted_candidate";
-              failed.failure_code.clear();
-              return {std::move(failed), std::move(candidate_histories)};
-            }
             return {std::move(failed), std::nullopt};
           }
           event_impulses.push_back(std::move(event));
           regulator_convergence_certificates.push_back(
               std::move(regulator));
+          routed_event_pairs.emplace_back(receiver_id, source_id);
         }
+      }
+      std::vector<NativeFiniteWidthStateCertificate> state_certificates;
+      if (!routed_event_pairs.empty()) {
+        auto event_histories = candidate_histories;
+        auto event_endpoint_snapshot = endpoint_snapshot;
+        EventAwareCandidate assembly;
+        bool state_settled = false;
+        for (std::size_t event_iteration = 0;
+             event_iteration < request.max_correction_iterations;
+             ++event_iteration) {
+          assembly = append_event_aware_candidate_segments(
+              histories, start_time, end_time, start_snapshot,
+              event_endpoint_snapshot, routed_event_pairs, event_impulses,
+              timing);
+          const Interval endpoint =
+              Interval::point(scalar_token(end_time));
+          state_settled = true;
+          for (const auto& [receiver_id, source_id] : routed_event_pairs) {
+            static_cast<void>(source_id);
+            const auto& candidate = path_history(
+                event_histories, receiver_id);
+            const IntervalVector candidate_position = midpoint_vector(
+                candidate.history.position_hull(endpoint));
+            const IntervalVector candidate_velocity = midpoint_vector(
+                candidate.history.velocity_hull(endpoint));
+            state_settled = state_settled && vector_contains(
+                assembly.endpoint_positions.at(receiver_id),
+                candidate_position) && vector_contains(
+                assembly.endpoint_velocities.at(receiver_id),
+                candidate_velocity);
+          }
+          if (state_settled) break;
+
+          event_histories = std::move(assembly.histories);
+          event_endpoint_snapshot = certify_native_acceleration_snapshot(
+              request, event_histories, end_time,
+              request.use_warm_root_exclusion ? &endpoint_snapshot : nullptr,
+              request.use_warm_root_exclusion ? &candidate_histories : nullptr,
+              defer_endpoint_root_precision_escalation);
+          accumulate_substep_snapshot_timing(
+              *timing, event_endpoint_snapshot);
+          if (event_endpoint_snapshot.status != "certified_complete") {
+            auto failed = failed_substep_certificate(
+                start_time, end_time, start_snapshot,
+                event_endpoint_snapshot, iteration + event_iteration + 1U,
+                correction_error, "caustic_state_reconstruction_failed",
+                event_histories, pinned_fold_onset_certificates);
+            failed.event_impulses = event_impulses;
+            failed.regulator_convergence_certificates =
+                regulator_convergence_certificates;
+            failed.endpoint_root_continuations = endpoint_root_continuations;
+            return {std::move(failed), std::nullopt};
+          }
+          std::vector<NativeFoldCausticImpulseCertificate> refined_events;
+          std::vector<NativeRegulatorConvergenceCertificate>
+              refined_regulators;
+          for (const auto& [receiver_id, source_id] : routed_event_pairs) {
+            auto regulator = certify_native_regulator_convergence(
+                request, path_history(event_histories, receiver_id),
+                path_history(event_histories, source_id),
+                path_charge(request, receiver_id),
+                path_charge(request, source_id), start_time, end_time);
+            if (regulator.status != "certified_convergent" ||
+                regulator.accepted_event_impulse.status !=
+                    "certified_complete" ||
+                !regulator.accepted_event_impulse.impulse.has_value() ||
+                !regulator.accepted_event_impulse.position_moment.has_value()) {
+              refined_events.push_back(regulator.accepted_event_impulse);
+              refined_regulators.push_back(std::move(regulator));
+              auto failed = failed_substep_certificate(
+                  start_time, end_time, start_snapshot,
+                  event_endpoint_snapshot,
+                  iteration + event_iteration + 1U, correction_error,
+                  "caustic_eta_convergence_failed", event_histories,
+                  pinned_fold_onset_certificates);
+              failed.event_impulses = std::move(refined_events);
+              failed.regulator_convergence_certificates =
+                  std::move(refined_regulators);
+              failed.endpoint_root_continuations =
+                  endpoint_root_continuations;
+              return {std::move(failed), std::nullopt};
+            }
+            refined_events.push_back(regulator.accepted_event_impulse);
+            refined_regulators.push_back(std::move(regulator));
+          }
+          event_impulses = std::move(refined_events);
+          regulator_convergence_certificates =
+              std::move(refined_regulators);
+        }
+        if (!state_settled) {
+          auto failed = failed_substep_certificate(
+              start_time, end_time, start_snapshot, event_endpoint_snapshot,
+              request.max_correction_iterations, correction_error,
+              "caustic_correction_failed", event_histories,
+              pinned_fold_onset_certificates);
+          failed.event_impulses = event_impulses;
+          failed.regulator_convergence_certificates =
+              regulator_convergence_certificates;
+          failed.endpoint_root_continuations = endpoint_root_continuations;
+          return {std::move(failed), std::nullopt};
+        }
+
+        const Interval endpoint = Interval::point(scalar_token(end_time));
+        for (const auto& [receiver_id, source_id] : routed_event_pairs) {
+          const auto& candidate = path_history(event_histories, receiver_id);
+          NativeFiniteWidthStateCertificate state{
+              .status = "uncertified",
+              .receiver_path_id = receiver_id,
+              .source_path_id = source_id,
+              .reception_lower = start_time,
+              .reception_upper = end_time,
+              .routed_pair_pinned = true,
+              .event_pair_excluded_from_background = true,
+              .background_impulse =
+                  assembly.background_impulses.at(receiver_id),
+              .background_position_moment =
+                  assembly.background_position_moments.at(receiver_id),
+              .reconstructed_endpoint_position =
+                  assembly.endpoint_positions.at(receiver_id),
+              .reconstructed_endpoint_velocity =
+                  assembly.endpoint_velocities.at(receiver_id),
+              .candidate_endpoint_position =
+                  midpoint_vector(candidate.history.position_hull(endpoint)),
+              .candidate_endpoint_velocity =
+                  midpoint_vector(candidate.history.velocity_hull(endpoint)),
+              .endpoint_reconstruction_passed = true,
+          };
+          state.common_domains = certify_common_domains(
+              request, event_histories, start_snapshot,
+              event_endpoint_snapshot, receiver_id, source_id,
+              start_time, end_time);
+          state.common_domain_chart_overlap_passed = std::any_of(
+              state.common_domains.begin(), state.common_domains.end(),
+              [](const auto& row) {
+                return row.status == "certified_overlap";
+              });
+          state.exit_passed = certify_finite_width_exit(
+              request, event_histories, event_endpoint_snapshot,
+              receiver_id, source_id);
+          if (!state.common_domain_chart_overlap_passed) {
+            state.failure_code = "caustic_state_reconstruction_failed";
+          } else if (!state.exit_passed) {
+            state.failure_code = "caustic_exit_not_certified";
+            if (request.allow_pending_finite_width_exit) {
+              state.status = "certified_state_exit_pending";
+            }
+          } else {
+            state.status = "certified_complete";
+          }
+          state_certificates.push_back(std::move(state));
+        }
+        const auto failed_state = std::find_if(
+            state_certificates.begin(), state_certificates.end(),
+            [&](const auto& state) {
+              return state.status != "certified_complete" &&
+                  !(request.allow_pending_finite_width_exit &&
+                    state.status == "certified_state_exit_pending");
+            });
+        if (failed_state != state_certificates.end()) {
+          const std::string failure = failed_state->failure_code;
+          auto failed = failed_substep_certificate(
+              start_time, end_time, start_snapshot, event_endpoint_snapshot,
+              iteration, correction_error, failure, event_histories,
+              pinned_fold_onset_certificates);
+          failed.event_impulses = event_impulses;
+          failed.regulator_convergence_certificates =
+              regulator_convergence_certificates;
+          failed.endpoint_root_continuations = endpoint_root_continuations;
+          failed.finite_width_state_certificates = state_certificates;
+          return {std::move(failed), std::nullopt};
+        }
+        candidate_histories = std::move(event_histories);
+        endpoint_snapshot = std::move(event_endpoint_snapshot);
       }
       NativeCorrectedSubstepCertificate certificate{
           .schema = "eom_native_corrected_substep_certificate/v0",
@@ -1296,6 +2270,8 @@ SubstepAttempt corrected_substep_impl(
           .endpoint_root_continuations =
               std::move(endpoint_root_continuations),
           .pinned_fold_onset_certificates = pinned_fold_onset_certificates,
+          .finite_width_state_certificates =
+              std::move(state_certificates),
           .candidate_history_fingerprints = fingerprints(candidate_histories),
           .caustic_warnings = std::move(entry_warnings),
       };
@@ -1307,11 +2283,13 @@ SubstepAttempt corrected_substep_impl(
       start_time, end_time, std::move(start_snapshot),
       std::move(last_snapshot), request.max_correction_iterations,
       correction_error,
-      request.adjudicated_finite_width_pairs.empty()
+      request.adjudicated_finite_width_pairs.empty() ||
+              display_run_grade(request)
           ? "coupled_correction_failed"
           : "caustic_correction_failed",
       last_histories, pinned_fold_onset_certificates);
-  if (!request.adjudicated_finite_width_pairs.empty()) {
+  if (!display_run_grade(request) &&
+      !request.adjudicated_finite_width_pairs.empty()) {
     for (const auto& [receiver_id, source_id] :
          request.adjudicated_finite_width_pairs) {
       auto regulator = certify_native_regulator_convergence(
@@ -1328,34 +2306,6 @@ SubstepAttempt corrected_substep_impl(
       failed.regulator_convergence_certificates.push_back(
           std::move(regulator));
     }
-  }
-  if (display_run_grade(request) &&
-      !request.adjudicated_finite_width_pairs.empty() &&
-      !caustic_row_for_failure(failed.failure_code).empty()) {
-    const std::string nested_failure = failed.failure_code;
-    for (std::size_t index = 0;
-         index < request.adjudicated_finite_width_pairs.size(); ++index) {
-      const auto& pair = request.adjudicated_finite_width_pairs[index];
-      const NativeRegulatorConvergenceCertificate* regulator =
-          index < failed.regulator_convergence_certificates.size()
-          ? &failed.regulator_convergence_certificates[index]
-          : nullptr;
-      failed.caustic_warnings.push_back(make_caustic_warning(
-          pair.first, pair.second, start_time, end_time,
-          caustic_row_for_failure(nested_failure, regulator),
-          nested_failure));
-    }
-    append_display_entry_warnings(
-        request, failed.start_snapshot, start_time, end_time,
-        failed.caustic_warnings);
-    if (failed.endpoint_snapshot.has_value()) {
-      append_display_entry_warnings(
-          request, *failed.endpoint_snapshot, start_time, end_time,
-          failed.caustic_warnings);
-    }
-    failed.status = "accepted_candidate";
-    failed.failure_code.clear();
-    return {std::move(failed), std::move(last_histories)};
   }
   return {std::move(failed), std::nullopt};
 }
@@ -3681,8 +4631,10 @@ NativeAccelerationSnapshotCertificate certify_native_acceleration_snapshot(
               : request.chart_policy == "finite_width" ||
                       (request.chart_policy ==
                            "sharp_with_finite_width_fallback" &&
-                       (pair_is_adjudicated_finite_width(
-                            request, receiver.path_id, source.path_id) ||
+                       ((pair_is_adjudicated_finite_width(
+                             request, receiver.path_id, source.path_id) &&
+                         (!display_run_grade(request) ||
+                          root.status != "certified_complete")) ||
                         (self_pair_on_or_above_rail &&
                          root.status == "certified_complete" &&
                          !root.memory_boundary_contact) ||
@@ -3691,7 +4643,10 @@ NativeAccelerationSnapshotCertificate certify_native_acceleration_snapshot(
                               "numeric_source_normal_sign_uncertified" ||
                           root.failure_code ==
                               "numeric_self_root_cluster_uncertified") &&
-                         !root.memory_boundary_contact)))
+                         !root.memory_boundary_contact) ||
+                        display_entry_route_required(
+                            request, receiver.path_id, source.path_id,
+                            root)))
                   ? "finite_width"
                   : "sharp",
           .source_normal_floor = request.source_normal_floor,
@@ -3907,8 +4862,10 @@ NativeAtomicStepCertificate certify_native_atomic_coupled_step_impl(
   const double midpoint_value =
       (scalar_token(start_time) + scalar_token(end_time)) * 0.5;
   const std::string midpoint = decimal_token(midpoint_value);
+  auto first_half_request = request;
+  first_half_request.allow_pending_finite_width_exit = true;
   auto first_half = corrected_substep(
-      request, histories, start_time, midpoint,
+      first_half_request, histories, start_time, midpoint,
       &full.certificate.start_snapshot,
       defer_endpoint_root_precision_escalation);
   timing->corrected_substeps_wall_seconds +=
@@ -3932,8 +4889,20 @@ NativeAtomicStepCertificate certify_native_atomic_coupled_step_impl(
     throw std::runtime_error(
         "accepted first-half substep lacks a reusable endpoint snapshot");
   }
+  auto second_half_request = request;
+  for (const auto& state :
+       first_half.certificate.finite_width_state_certificates) {
+    const auto pair = std::make_pair(
+        state.receiver_path_id, state.source_path_id);
+    if (std::find(
+            second_half_request.adjudicated_finite_width_pairs.begin(),
+            second_half_request.adjudicated_finite_width_pairs.end(), pair) ==
+        second_half_request.adjudicated_finite_width_pairs.end()) {
+      second_half_request.adjudicated_finite_width_pairs.push_back(pair);
+    }
+  }
   auto second_half = corrected_substep(
-      request, *first_half.histories, midpoint, end_time,
+      second_half_request, *first_half.histories, midpoint, end_time,
       &*first_half.certificate.endpoint_snapshot,
       defer_endpoint_root_precision_escalation);
   timing->corrected_substeps_wall_seconds +=
@@ -4364,6 +5333,45 @@ NativeCoupledEvolutionCertificate evolve_native_coupled_histories(
     const bool certificate_cost_deferred =
         step.failure_code ==
             "root_precision_escalation_deferred_for_cost_feedback";
+    for (const auto& substep : step.substeps) {
+      if (display_run_grade(request)) {
+        for (const auto& warning : substep.caustic_warnings) {
+          for (const auto& pair : {
+                   std::make_pair(
+                       warning.receiver_path_id, warning.source_path_id),
+                   std::make_pair(
+                       warning.source_path_id, warning.receiver_path_id)}) {
+            if (std::find(
+                    adjudicated_finite_width_pairs.begin(),
+                    adjudicated_finite_width_pairs.end(), pair) ==
+                adjudicated_finite_width_pairs.end()) {
+              adjudicated_finite_width_pairs.push_back(pair);
+            }
+          }
+        }
+      }
+      for (const auto& state : substep.finite_width_state_certificates) {
+        const auto pair = std::make_pair(
+            state.receiver_path_id, state.source_path_id);
+        if (std::find(
+                adjudicated_finite_width_pairs.begin(),
+                adjudicated_finite_width_pairs.end(), pair) ==
+            adjudicated_finite_width_pairs.end()) {
+          adjudicated_finite_width_pairs.push_back(pair);
+        }
+      }
+      for (const auto& regulator :
+           substep.regulator_convergence_certificates) {
+        const auto pair = std::make_pair(
+            regulator.receiver_path_id, regulator.source_path_id);
+        if (std::find(
+                adjudicated_finite_width_pairs.begin(),
+                adjudicated_finite_width_pairs.end(), pair) ==
+            adjudicated_finite_width_pairs.end()) {
+          adjudicated_finite_width_pairs.push_back(pair);
+        }
+      }
+    }
     step.certificate_cost_cooldown_remaining =
         certificate_cost_cooldown_remaining;
     steps.push_back(std::move(step));

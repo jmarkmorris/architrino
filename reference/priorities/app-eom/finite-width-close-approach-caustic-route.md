@@ -232,6 +232,19 @@ common-domain cell contains $D_s=0$, incomplete roots, or the core stratum; an
 endpoint shortcut exceeds either remainder; or a rejected event pair
 disappears from a child retry before `FWC-STATE-01` and `FWC-EXIT-01` pass.
 
+The native state certificate records the reconstructed and candidate endpoint
+components, the disjoint background rows, every routed pair, each certified
+common-domain interval, its $L_2$ and track-error rows, both shortcut
+remainders, the two chart integrals, and the exit verdict. An exit-pending
+first half has authority only as internal input to the enclosing atomic
+step's second half. The pair is copied into that child request; only a final
+state-and-exit pass may reach publication.
+
+Claim grade: `derived-implementation`. Falsifier: a rejected parent or
+exit-pending first half loses its ordered pair, the emitted rows do not
+reconstruct their endpoint, or an exit-pending history appears in published
+output.
+
 ## Regulator Refinement Ladder
 
 For the causal-surface ladder, hold $\epsilon_c$ and every non-regulator input
@@ -284,16 +297,16 @@ At `certified` grade, every `FWC-ENTRY-*`, `FWC-REG-*`, `FWC-STATE-*`, and
 the candidate and eventually produces the existing named adjudicated halt.
 This is the evidence-producing route.
 
-At `display` grade, a failed finite-width row is recorded as a caustic warning
-with the receiver/source identities, attempted reception interval, failed row
-identifier, and nested failure code. The sharp/corrector candidate that would
-otherwise have reached the finite-width gate may continue through the
-unchanged local-error and atomic-publication gates. A memory-boundary failure,
-ordinary correction failure, local-step error, resource ceiling, or any other
-non-caustic rejection remains fail-closed. A caustic-specific correction row
-may be demoted only when the same record identifies the routed pair and the
-candidate exists; an unclassified `coupled_correction_failed` row is never
-demoted.
+At `display` grade, the entry dispatch itself emits an `FWC-ENTRY-02` caustic
+warning with the receiver/source identities, attempted reception interval, and
+`caustic_route_required` failure code. The candidate then stays on the
+ordinary sharp/corrector path. Display grade does not run the regulator ladder,
+event-cell integration, finite-width state reconstruction, exit adjudication,
+or their MPFR escalation before continuing. The unchanged local-error and
+atomic-publication gates still decide whether that sharp candidate may be
+published. A memory-boundary failure, ordinary correction failure, local-step
+error, resource ceiling, or any other non-caustic rejection remains
+fail-closed; `coupled_correction_failed` is never demoted.
 
 The first accepted warning irreversibly changes the run claim marker to
 `uncertified-through-encounters`. Every subsequently published extension and
@@ -303,10 +316,12 @@ shown only as run provenance and does not add a warning label.
 
 The cumulative provenance also carries the warned encounter pair set. Because
 the acceleration ledger is ordered, warning either direction records both
-ordered directions of that same two-body encounter. Later atomic chunks may
-therefore keep that pair on the finite-width chart when its prior fold root
-lands on a retained segment join; an unrelated pair receives no such
-authority. The Borg process contract is the single forward protocol
+ordered directions of that same two-body encounter. Later atomic chunks use
+that pair identity only to bridge a non-complete entry root at a retained
+segment join; a complete root certificate immediately returns display grade to
+the sharp chart. The warned-pair ledger does not dispatch the finite-width
+adjudication again, and an unrelated pair receives no such authority. The Borg
+process contract is the single forward protocol
 `EOM_BORG_NATIVE_V4`, whose `RUN` record has exactly 22 fields and includes the
 pair-set token. Any other magic or field count is a protocol error.
 

@@ -46,6 +46,14 @@ const farFieldEnclosureFraction = fractionToken(
   "0.25",
 );
 const includeChunks = !booleanOption(options["summary-only"], false);
+const includeRegulatorCertificates = !booleanOption(
+  options["omit-regulators"],
+  false,
+);
+const summarizeStateCertificates = booleanOption(
+  options["state-summary"],
+  false,
+);
 const initialConditionConfig = createBorgInitialConditionConfig({
   ...manifest.initialConditions,
   electrinoCount: nonnegativeInteger(
@@ -98,6 +106,16 @@ const measuredClient = {
         ...certificate,
       })),
     );
+    const finiteWidthStateCertificates = (response.stepFailures ?? []).flatMap(
+      (step) =>
+        (step.finiteWidthStateCertificates ?? []).map((certificate) => ({
+          stepStatus: step.status,
+          attemptedStart: step.attemptedStart,
+          attemptedEnd: step.attemptedEnd,
+          causticContractRow: step.causticContractRow,
+          ...certificate,
+        })),
+    );
     nativeChunks.push({
       chunkIndex: nativeChunks.length,
       status: response.status,
@@ -144,6 +162,7 @@ const measuredClient = {
         (row) => row.roots?.some((root) => root.precisionBits > 53),
       ),
       regulatorCertificates,
+      finiteWidthStateCertificates,
       ...response.timing,
     });
     process.stderr.write(
@@ -200,6 +219,7 @@ try {
     } catch (error) {
       runFailure = {
         code: error.code ?? "eom_shadow_run_failed",
+        message: error.message,
         acceptedEndTime: Number(error.eomResponse?.acceptedEndTime),
       };
       break;
@@ -265,6 +285,7 @@ process.stdout.write(`${JSON.stringify({
   },
   status: runFailure == null ? "completed" : "halted",
   haltCode: runFailure?.code ?? null,
+  haltMessage: runFailure?.message ?? null,
   acceptedEndTime: runFailure?.acceptedEndTime ?? nativeChunks.at(-1)?.acceptedEndTime ?? 0,
   allWarmChunkStartsReused: warmChunks.every((chunk) => chunk.incrementalStartReused),
   coldFirstChunkSeconds: nativeChunks[0]?.totalWallSeconds ?? null,
@@ -316,7 +337,42 @@ function summarizeChunks(chunks) {
     frameCount: chunk.frameCount,
     precisionEscalatedRootCertificates:
       chunk.status === "halted" ? chunk.precisionEscalatedRootCertificates : [],
-    regulatorCertificates: chunk.regulatorCertificates,
+    regulatorCertificates: includeRegulatorCertificates
+      ? chunk.regulatorCertificates
+      : [],
+    finiteWidthStateCertificates: summarizeStateCertificates
+      ? chunk.finiteWidthStateCertificates.map((certificate) => {
+          const failedCommonDomain = certificate.commonDomains.find(
+            (common) => common.status !== "certified_overlap",
+          );
+          return {
+            stepStatus: certificate.stepStatus,
+            attemptedStart: certificate.attemptedStart,
+            attemptedEnd: certificate.attemptedEnd,
+            causticContractRow: certificate.causticContractRow,
+            receiverPathId: certificate.receiverPathId,
+            sourcePathId: certificate.sourcePathId,
+            status: certificate.status,
+            failureCode: certificate.failureCode,
+            endpointReconstructionPassed:
+              certificate.endpointReconstructionPassed,
+            commonDomainChartOverlapPassed:
+              certificate.commonDomainChartOverlapPassed,
+            exitPassed: certificate.exitPassed,
+            failedCommonDomain: failedCommonDomain == null
+              ? null
+              : {
+                  failureCode: failedCommonDomain.failureCode,
+                  receptionLower: failedCommonDomain.receptionLower,
+                  receptionUpper: failedCommonDomain.receptionUpper,
+                  disjointComponent: failedCommonDomain.disjointComponent,
+                  disjointWidth: failedCommonDomain.disjointWidth,
+                  applicableRemainderBudget:
+                    failedCommonDomain.applicableRemainderBudget,
+                },
+          };
+        })
+      : chunk.finiteWidthStateCertificates,
     terminalFailure: chunk.status === "halted" ? chunk.terminalFailure : null,
   }));
 }

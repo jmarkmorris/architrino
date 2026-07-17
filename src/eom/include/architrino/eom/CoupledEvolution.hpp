@@ -117,6 +117,10 @@ struct NativeCoupledEvolutionRequest {
   // the finite-width chart. Callers normally leave this empty.
   std::vector<std::pair<std::string, std::string>>
       adjudicated_finite_width_pairs;
+  // Internal atomic-step state.  A first half may carry a certified event
+  // state into the second half while keeping the ordered pair pinned; the
+  // enclosing atomic step still cannot publish until the final half exits.
+  bool allow_pending_finite_width_exit = false;
   bool use_certified_traversal = true;
   std::uint64_t traversal_exact_tile_pair_limit = 4096;
   std::size_t traversal_maximum_nodes = 1000000;
@@ -339,6 +343,51 @@ struct NativeCausticWarning {
   std::string failure_code;
 };
 
+struct NativeCommonDomainChartCertificate {
+  std::string schema = "eom_native_fwc_common_domain_chart_certificate/v0";
+  std::string status;
+  std::string reception_lower;
+  std::string reception_upper;
+  std::size_t certified_root_count = 0;
+  double source_normal_absolute_lower = 0.0;
+  double separation_lower = 0.0;
+  std::optional<IntervalVector> sharp_impulse;
+  std::optional<IntervalVector> finite_width_impulse;
+  std::optional<IntervalVector> sharp_position_moment;
+  std::optional<IntervalVector> finite_width_position_moment;
+  std::optional<IntervalVector> acceleration_second_derivative_bound;
+  std::optional<IntervalVector> impulse_shortcut_remainder;
+  std::optional<IntervalVector> position_moment_shortcut_remainder;
+  std::optional<IntervalVector> track_impulse_remainder;
+  std::optional<IntervalVector> track_position_moment_remainder;
+  std::size_t disjoint_component = 3U;
+  double disjoint_width = 0.0;
+  double applicable_remainder_budget = 0.0;
+  std::string failure_code;
+};
+
+struct NativeFiniteWidthStateCertificate {
+  std::string schema = "eom_native_fwc_state_certificate/v0";
+  std::string status;
+  std::string receiver_path_id;
+  std::string source_path_id;
+  std::string reception_lower;
+  std::string reception_upper;
+  bool routed_pair_pinned = false;
+  bool event_pair_excluded_from_background = false;
+  std::optional<IntervalVector> background_impulse;
+  std::optional<IntervalVector> background_position_moment;
+  std::optional<IntervalVector> reconstructed_endpoint_position;
+  std::optional<IntervalVector> reconstructed_endpoint_velocity;
+  std::optional<IntervalVector> candidate_endpoint_position;
+  std::optional<IntervalVector> candidate_endpoint_velocity;
+  bool endpoint_reconstruction_passed = false;
+  std::vector<NativeCommonDomainChartCertificate> common_domains;
+  bool common_domain_chart_overlap_passed = false;
+  bool exit_passed = false;
+  std::string failure_code;
+};
+
 struct NativeCorrectedSubstepCertificate {
   std::string schema;
   std::string status;
@@ -356,6 +405,8 @@ struct NativeCorrectedSubstepCertificate {
       endpoint_root_continuations;
   std::vector<NativePinnedFoldTemporalStepCertificate>
       pinned_fold_onset_certificates;
+  std::vector<NativeFiniteWidthStateCertificate>
+      finite_width_state_certificates;
   std::vector<NativeHistoryFingerprint> candidate_history_fingerprints;
   std::vector<NativeCausticWarning> caustic_warnings;
   NativeCorrectedSubstepTiming timing;

@@ -400,6 +400,82 @@ The certificate-capture rerun used `H=0.0025` and `--chunks=28`. The binary
 timestamp was `2026-07-16 20:30:27 -0400`, later than the final route-source
 timestamp `2026-07-16 20:30:18 -0400`. The Decimal oracle was not modified.
 
+## Pinned Common-Domain Reconstruction Adjudication
+
+The implementation replaces the full-window sharp trapezoid with disjoint
+background and event endpoint rows. For every routed receiver, the sharp
+ordered-pair endpoint rows are subtracted exactly once from the background;
+the certified event impulse and position moment are then added exactly once.
+The emitted state row records both reconstructed endpoint enclosures and the
+candidate endpoint component. A first half-step may carry
+`certified_state_exit_pending` only inside its enclosing atomic full/two-half
+comparison; the ordered pair is inserted into the second-half request and no
+history is published unless that final child passes exit.
+
+Claim grade: `derived-implementation`. Falsifier: pair accounting finds an
+event row in both the background and event sums, an event row in neither sum,
+or an atomic publication contains an exit-pending routed pair.
+
+On each declared common-domain side interval, the implementation certifies a
+complete root tube and root-free complement, a positive separation outside
+the core, and a nonzero source-normal lower bound. It evaluates the nominal
+sharp branch as a second-order interval jet, emits the componentwise
+$L_{2,k}$ bound, and adds the outward shortcut rows
+$h_C^3L_{2,k}/12$ and $h_C^4L_{2,k}/24$. Stored track enclosure is a separate
+uniform integral remainder; it is not hidden inside $L_2$. The finite-width
+integral is evaluated only over the same common interval, with its position
+moment shifted to the parent event endpoint before comparison.
+
+Claim grade: `derived-implementation`. Falsifier: a declared common interval
+contains an unisolated root, $D_s=0$, or core-active separation; recomputation
+of either shortcut coefficient exceeds its emitted remainder; or the emitted
+finite-width row integrates a reception interval outside the declared common
+domain.
+
+The rebuilt certified-grade control used the recorded research settings:
+`h_max=0.0025`, root/position/velocity tolerances `1e-8`, MPFR through 2,048
+bits, unchanged `1e-7` event budgets, 200,000 event cells, and no far-field
+enclosure. Source `CoupledEvolution.cpp` was timestamped
+`2026-07-16 22:29:15 -0400`; the executed Borg binary was rebuilt afterward.
+The independent Decimal oracle was unchanged.
+
+| Row | Measured result |
+| --- | --- |
+| `FWC-ENTRY-02` | pass for the routed parent beginning at `0.3425` |
+| `FWC-REG-01` | pass; the terminal child had maximum ladder impulse delta `2.83216e-8` and position-moment delta `1.52559e-10` for `1004 <- 1006` |
+| `FWC-REG-02` | pass; the parent retained the recorded $\epsilon_c=0.05$ level: 5,440 cells, impulse width `9.69534e-8`, position-moment width `1.74814e-8` |
+| `FWC-STATE-01` endpoint assembly | pass, component by component |
+| `FWC-STATE-01` common-domain chart overlap | fail on component 0 |
+| `FWC-EXIT-01` | pass on the terminal child |
+| Atomic result | halt `caustic_transit_uncertified`; accepted end `0.3425` |
+
+At the minimum-height child `[0.3425,0.3426]`, the first certified common
+side cell was `[0.3425,0.34250000610351566]`. For ordered pair
+`1004 <- 1006`, the sharp and finite-width impulse intervals were disjoint in
+component 0 by `3.51437e-11`; the applicable shortcut-plus-track remainder was
+`6.29988e-16`. The gap was about 55,800 times the complete emitted remainder.
+The same pinned child also exposed `1004 <- 1002`; its component-0 gap was
+`1.7013e-10` against `1.54408e-15`. Six rejected heights reached the declared
+`0.0001` floor. The terminal `[0.3,0.35]` chunk cost `6.39989 s`; ordinary
+preceding chunks rose from `0.171295 s` through `0.734047 s`.
+
+Claim grade: `measured`. Falsifier: the same rebuilt binary and command emits a
+different terminal row, either common-domain interval overlaps component by
+component, the endpoint/exit row fails instead, or the wall-time instrument
+does not reproduce within ordinary machine-load variation.
+
+On this fixed track, spending more cells or tightening the stored track
+envelope cannot cover the measured common-domain gap: the complete remainder
+is already more than four orders of magnitude smaller. The next mathematical
+rung is to reconcile which regulator-level finite-width law has common-domain
+matching authority; a smaller step alone scales both the gap and the
+integral remainder without changing their observed center ratio.
+
+Claim grade: `inferred`. Falsifier: a tighter independently recomputed track
+moves the sharp and finite-width centers into overlap under the same
+regulator law, or a step-height ladder shows the gap-to-remainder ratio tending
+to one rather than remaining large.
+
 ## Step-Height Configuration Decision
 
 Option (b) is selected: Borg keeps `chunkDuration=0.05` and declares the true

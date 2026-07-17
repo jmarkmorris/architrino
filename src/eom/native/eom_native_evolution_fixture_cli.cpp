@@ -328,6 +328,53 @@ void print_atomic(const eom::NativeAtomicStepCertificate& certificate) {
   std::cout << event_impulse_count
             << ",\"regulator_certificate_count\":"
             << regulator_certificate_count
+            << ",\"finite_width_state_certificates\":[";
+  bool first_state = true;
+  for (const auto& substep : certificate.substeps) {
+    for (const auto& state : substep.finite_width_state_certificates) {
+      if (!first_state) std::cout << ',';
+      first_state = false;
+      std::cout << "{\"status\":\"" << state.status
+                << "\",\"receiver_path_id\":\""
+                << state.receiver_path_id
+                << "\",\"source_path_id\":\""
+                << state.source_path_id
+                << "\",\"endpoint_reconstruction_passed\":"
+                << (state.endpoint_reconstruction_passed ? "true" : "false")
+                << ",\"common_domain_chart_overlap_passed\":"
+                << (state.common_domain_chart_overlap_passed
+                        ? "true" : "false")
+                << ",\"exit_passed\":"
+                << (state.exit_passed ? "true" : "false")
+                << ",\"failure_code\":\"" << state.failure_code
+                << "\",\"common_domains\":[";
+      for (std::size_t index = 0; index < state.common_domains.size();
+           ++index) {
+        if (index > 0U) std::cout << ',';
+        const auto& common = state.common_domains[index];
+        std::cout << "{\"status\":\"" << common.status
+                  << "\",\"failure_code\":\""
+                  << common.failure_code
+                  << "\",\"reception_lower\":\""
+                  << common.reception_lower
+                  << "\",\"reception_upper\":\""
+                  << common.reception_upper
+                  << "\",\"disjoint_component\":"
+                  << common.disjoint_component
+                  << ",\"disjoint_width\":" << common.disjoint_width
+                  << ",\"applicable_remainder_budget\":"
+                  << common.applicable_remainder_budget
+                  << ",\"shortcut_remainders_emitted\":"
+                  << (common.impulse_shortcut_remainder.has_value() &&
+                              common.position_moment_shortcut_remainder
+                                  .has_value()
+                          ? "true" : "false")
+                  << '}';
+      }
+      std::cout << "]}";
+    }
+  }
+  std::cout << ']'
             << ",\"local_errors\":[";
   for (std::size_t index = 0; index < certificate.local_errors.size(); ++index) {
     if (index > 0) {
@@ -1310,21 +1357,107 @@ void print_far_field_dispersal_timing() {
             << disabled.timing.total_wall_seconds << "}\n";
 }
 
+void print_display_fast_caustic_path() {
+  auto display_request = request(
+      "root-event-display-fast-path",
+      {{"receiver", "1",
+        history("display-event-receiver", "2.7", {"0", "0", "0", "0"})},
+       {"source", "1",
+        history("display-event-source", "2.7", {"5", "-4", "1", "0"})}},
+      "2.7", "2.8", "0.1", "0.1", "1", "1", "1e-7", "1e-30");
+  display_request.run_grade = "display";
+  display_request.chart_policy = "sharp_with_finite_width_fallback";
+  display_request.causal_width = "0.25";
+  display_request.core_scale = "0.2";
+  display_request.acceleration_tolerance = "5e-3";
+  display_request.quadrature_tolerance = "5e-3";
+  display_request.event_impulse_tolerance = "1e-20";
+  display_request.regulator_convergence_tolerance = "1e-20";
+  display_request.regulator_refinement_levels = 3;
+  display_request.quadrature_max_depth = 28;
+  display_request.quadrature_max_cells = 200000;
+  display_request.event_max_depth = 1;
+  display_request.event_max_cells = 1;
+  std::vector<eom::NativePublishedPath> histories;
+  for (const auto& path : display_request.paths) {
+    histories.push_back({path.path_id, path.history});
+  }
+  const auto step = eom::certify_native_atomic_coupled_step(
+      display_request, histories, 0, "2.7", "2.8");
+  auto correction_request = request(
+      "display-ordinary-correction-rejection",
+      {{"a", "1",
+        history("display-correction-a", "5", {"0", "0", "0", "0"})},
+       {"b", "-1",
+        history("display-correction-b", "5", {"2", "0", "0", "0"})}},
+      "5", "5.01", "0.01", "0.01", "1e-5", "1e-5", "1e-50", "1", 1);
+  correction_request.run_grade = "display";
+  correction_request.chart_policy = "sharp_with_finite_width_fallback";
+  correction_request.adjudicated_finite_width_pairs = {
+      {"a", "b"}, {"b", "a"}};
+  std::vector<eom::NativePublishedPath> correction_histories;
+  for (const auto& path : correction_request.paths) {
+    correction_histories.push_back({path.path_id, path.history});
+  }
+  const auto correction_step = eom::certify_native_atomic_coupled_step(
+      correction_request, correction_histories, 0, "5", "5.01");
+  std::size_t event_impulse_count = 0;
+  std::size_t regulator_certificate_count = 0;
+  for (const auto& substep : step.substeps) {
+    event_impulse_count += substep.event_impulses.size();
+    regulator_certificate_count +=
+        substep.regulator_convergence_certificates.size();
+  }
+  std::cout << "{\"status\":\"" << step.status
+            << "\",\"failure_code\":\"" << step.failure_code
+            << "\",\"publication_atomic\":"
+            << (step.publication_atomic ? "true" : "false")
+            << ",\"event_impulse_count\":" << event_impulse_count
+            << ",\"regulator_certificate_count\":"
+            << regulator_certificate_count
+            << ",\"ordinary_correction_status\":\""
+            << correction_step.status
+            << "\",\"ordinary_correction_failure_code\":\""
+            << correction_step.failure_code << "\""
+            << ",\"warning_count\":" << step.caustic_warnings.size()
+            << ",\"warnings\":[";
+  for (std::size_t index = 0; index < step.caustic_warnings.size(); ++index) {
+    if (index > 0) std::cout << ',';
+    const auto& warning = step.caustic_warnings[index];
+    std::cout << "{\"receiver_path_id\":\""
+              << warning.receiver_path_id
+              << "\",\"source_path_id\":\""
+              << warning.source_path_id
+              << "\",\"reception_lower\":\""
+              << warning.reception_lower
+              << "\",\"reception_upper\":\""
+              << warning.reception_upper
+              << "\",\"failed_row_id\":\""
+              << warning.failed_row_id
+              << "\",\"failure_code\":\""
+              << warning.failure_code << "\"}";
+  }
+  std::cout << "]}\n";
+}
+
 }  // namespace
 
 int main(int argc, char** argv) {
   try {
     if (argc != 2 ||
         (std::string(argv[1]) != "all" &&
-         std::string(argv[1]) != "far-field-dispersal")) {
+         std::string(argv[1]) != "far-field-dispersal" &&
+         std::string(argv[1]) != "display-fast-caustic")) {
       std::cerr << "usage: eom_native_evolution_fixture_cli "
-                   "all|far-field-dispersal\n";
+                   "all|far-field-dispersal|display-fast-caustic\n";
       return EXIT_FAILURE;
     }
     if (std::string(argv[1]) == "all") {
       print_all();
-    } else {
+    } else if (std::string(argv[1]) == "far-field-dispersal") {
       print_far_field_dispersal_timing();
+    } else {
+      print_display_fast_caustic_path();
     }
     return EXIT_SUCCESS;
   } catch (const std::exception& error) {

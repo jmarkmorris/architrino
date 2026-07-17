@@ -270,6 +270,16 @@ std::string json_escape(const std::string& value) {
   return stream.str();
 }
 
+void print_interval_vector(const eom::IntervalVector& value) {
+  std::cout << '[';
+  for (std::size_t axis = 0; axis < 3U; ++axis) {
+    if (axis > 0U) std::cout << ',';
+    std::cout << "{\"lower\":" << value[axis].lower()
+              << ",\"upper\":" << value[axis].upper() << '}';
+  }
+  std::cout << ']';
+}
+
 std::string read_required_line(const char* label) {
   std::string line;
   if (!std::getline(std::cin, line)) {
@@ -857,6 +867,89 @@ void run(
       print_acceleration_failures(substep.start_snapshot);
       if (substep.endpoint_snapshot.has_value()) {
         print_acceleration_failures(*substep.endpoint_snapshot);
+      }
+    }
+    std::cout << "],\"finiteWidthStateCertificates\":[";
+    bool first_state_certificate = true;
+    for (const auto& substep : step.substeps) {
+      for (const auto& state : substep.finite_width_state_certificates) {
+        if (!first_state_certificate) std::cout << ',';
+        first_state_certificate = false;
+        std::cout << "{\"receiverPathId\":\""
+                  << json_escape(state.receiver_path_id)
+                  << "\",\"sourcePathId\":\""
+                  << json_escape(state.source_path_id)
+                  << "\",\"status\":\"" << json_escape(state.status)
+                  << "\",\"failureCode\":\""
+                  << json_escape(state.failure_code)
+                  << "\",\"routedPairPinned\":"
+                  << (state.routed_pair_pinned ? "true" : "false")
+                  << ",\"eventPairExcludedFromBackground\":"
+                  << (state.event_pair_excluded_from_background
+                          ? "true" : "false")
+                  << ",\"endpointReconstructionPassed\":"
+                  << (state.endpoint_reconstruction_passed
+                          ? "true" : "false")
+                  << ",\"commonDomainChartOverlapPassed\":"
+                  << (state.common_domain_chart_overlap_passed
+                          ? "true" : "false")
+                  << ",\"exitPassed\":"
+                  << (state.exit_passed ? "true" : "false")
+                  << ",\"commonDomains\":[";
+        for (std::size_t common_index = 0;
+             common_index < state.common_domains.size(); ++common_index) {
+          if (common_index > 0U) std::cout << ',';
+          const auto& common = state.common_domains[common_index];
+          std::cout << "{\"status\":\"" << json_escape(common.status)
+                    << "\",\"failureCode\":\""
+                    << json_escape(common.failure_code)
+                    << "\",\"receptionLower\":\""
+                    << json_escape(common.reception_lower)
+                    << "\",\"receptionUpper\":\""
+                    << json_escape(common.reception_upper)
+                    << "\",\"certifiedRootCount\":"
+                    << common.certified_root_count
+                    << ",\"sourceNormalAbsoluteLower\":"
+                    << common.source_normal_absolute_lower
+                    << ",\"separationLower\":"
+                    << common.separation_lower
+                    << ",\"disjointComponent\":"
+                    << common.disjoint_component
+                    << ",\"disjointWidth\":" << common.disjoint_width
+                    << ",\"applicableRemainderBudget\":"
+                    << common.applicable_remainder_budget;
+          const auto print_optional = [&](const char* label,
+                                          const auto& value) {
+            std::cout << ",\"" << label << "\":";
+            if (value.has_value()) {
+              print_interval_vector(*value);
+            } else {
+              std::cout << "null";
+            }
+          };
+          print_optional(
+              "accelerationSecondDerivativeBound",
+              common.acceleration_second_derivative_bound);
+          print_optional(
+              "impulseShortcutRemainder",
+              common.impulse_shortcut_remainder);
+          print_optional(
+              "positionMomentShortcutRemainder",
+              common.position_moment_shortcut_remainder);
+          print_optional("trackImpulseRemainder",
+                         common.track_impulse_remainder);
+          print_optional("trackPositionMomentRemainder",
+                         common.track_position_moment_remainder);
+          print_optional("sharpImpulse", common.sharp_impulse);
+          print_optional("finiteWidthImpulse", common.finite_width_impulse);
+          print_optional(
+              "sharpPositionMoment", common.sharp_position_moment);
+          print_optional(
+              "finiteWidthPositionMoment",
+              common.finite_width_position_moment);
+          std::cout << '}';
+        }
+        std::cout << "]}";
       }
     }
     std::cout << "],\"regulatorFailures\":[";

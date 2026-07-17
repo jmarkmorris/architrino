@@ -1264,3 +1264,63 @@ This file holds dated decisions, implementation status, validation results, fail
 - Falsifier: a certified deterministic token changes, an ordinary rejection is
   published in display grade, a post-warning frame lacks demotion, or the same
   measured controls fail before their recorded endpoints.
+
+## 2026-07-16 — Display-grade immediate caustic warning path
+
+- **Implemented:** display grade emits `FWC-ENTRY-02` at the caustic dispatch
+  and continues the ordinary corrected candidate without running regulator
+  ladders, event cells, state reconstruction, or exit adjudication. Complete
+  root rows return the warned pair to the sharp chart; the reciprocal pair set
+  remains in cumulative provenance and bridges non-complete retained-join
+  entry rows only.
+- **Measured:** the deterministic certified fixture artifact remained
+  byte-identical at SHA-256
+  `589b086b96ed3f441eaae30c8fcce177103e8d2c22b6c0fa862c1c53749deacc`.
+  The display fixture accepted with one entry warning, zero regulator rows,
+  and zero event impulses; its ordinary-correction negative still rejected.
+- **Measured cost:** seed 0 completed $[1.35,1.40]$ in `0.925956 s` and
+  $[1.40,1.45]$ in `5.19938 s`, versus the earlier `95.9311 s` and
+  `97.0854 s`. The demoted run continued to $T=2.0$; the next request failed
+  closed before returning a certificate on `history evaluation lies outside
+  segment`, so the requested $T=3$ continuation remains open outside the FWC
+  route.
+- **Measured 64-path control:** 384 frames and 0.05 simulated seconds were
+  produced in `1.206753167 s` outer wall time, or `0.0414335` simulated
+  seconds per wall second. Replacing the event detector's repeated root-row
+  identity search with the aligned certificate index removed the smooth-path
+  regression without changing certified tokens.
+- Evidence:
+  [eom-run-grade-display-seed-0-and-64-2026-07-16.md](evidence/eom-run-grade-display-seed-0-and-64-2026-07-16.md).
+- Falsifier: any certified fixture token changes, a display event emits a
+  regulator/event row, an ordinary correction is published, either encounter
+  chunk exceeds the declared two-times pre-FWC target on repeat without host
+  contention, or the retained-history boundary is shown to be an FWC halt.
+
+## 2026-07-16 — Pinned FWC state reconstruction
+
+- **Derived and implemented:** routed ordered pairs now remain pinned from a
+  rejected parent through every controller and atomic half-step child. A first
+  half may carry state-certified/exit-pending histories only into the second
+  half; it has no publication authority by itself.
+- **Derived and implemented:** FWC state rows use disjoint background plus
+  event endpoint assembly. Common-domain comparison certifies root tubes,
+  complement, source normal, and separation before emitting the
+  $h_C^3L_2/12$ impulse and $h_C^4L_2/24$ position-moment shortcut remainders.
+  The raw full-window sharp trapezoid path is removed.
+- **Measured:** the unchanged research-grade `h_max=0.0025` seed-0 control
+  halts atomically at `T=0.3425` on `FWC-STATE-01`. Entry, regulator, endpoint
+  assembly, and exit pass. On the minimum-height child, pair `1004<-1006` has
+  a component-0 common-domain gap `3.51437e-11` versus complete remainder
+  `6.29988e-16`; the terminal chunk costs `6.39989 s`.
+- **Inferred:** on this fixed track the remaining negative is a chart-center
+  obligation, not a missing track or shortcut enclosure. The next rung is the
+  regulator-level/common-domain matching law, unless a separately recomputed
+  tighter track moves the centers into overlap.
+- The Decimal oracle was not modified. The unchanged independent event
+  integral reference and the analytic interpolation-remainder derivation are
+  the named independent references.
+- Evidence:
+  [finite-width-close-approach-caustic-route-seed-0-2026-07-16.md](evidence/finite-width-close-approach-caustic-route-seed-0-2026-07-16.md).
+- Falsifier: a pinned pair disappears from a child, an exit-pending half is
+  published, recomputation exceeds either emitted remainder, or the same
+  control closes the componentwise common-domain gap.

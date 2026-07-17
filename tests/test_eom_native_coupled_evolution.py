@@ -484,6 +484,32 @@ class NativeCoupledEvolutionTests(unittest.TestCase):
         self.assertTrue(accepted["publication_atomic"])
         self.assertGreater(accepted["event_impulse_count"], 0)
         self.assertGreater(accepted["regulator_certificate_count"], 0)
+        state_rows = accepted["finite_width_state_certificates"]
+        self.assertEqual(
+            [row["status"] for row in state_rows],
+            [
+                "certified_complete",
+                "certified_state_exit_pending",
+                "certified_complete",
+            ],
+        )
+        self.assertTrue(state_rows[1]["endpoint_reconstruction_passed"])
+        self.assertTrue(state_rows[1]["common_domain_chart_overlap_passed"])
+        self.assertFalse(state_rows[1]["exit_passed"])
+        self.assertTrue(state_rows[2]["exit_passed"])
+        passing_common_domains = [
+            common
+            for row in state_rows
+            for common in row["common_domains"]
+            if common["status"] == "certified_overlap"
+        ]
+        self.assertTrue(passing_common_domains)
+        self.assertTrue(
+            all(
+                common["shortcut_remainders_emitted"]
+                for common in passing_common_domains
+            )
+        )
         exhausted = self.packet["event_atomic_resource_failure"]
         self.assertEqual(exhausted["status"], "rejected")
         self.assertTrue(exhausted["publication_atomic"])
@@ -493,6 +519,36 @@ class NativeCoupledEvolutionTests(unittest.TestCase):
         )
         self.assertEqual(
             exhausted["failure_code"], "caustic_eta_convergence_failed"
+        )
+
+    def test_display_grade_warns_before_finite_width_adjudication(self) -> None:
+        completed = subprocess.run(
+            [str(self.binary), "display-fast-caustic"],
+            check=True,
+            cwd=ROOT,
+            capture_output=True,
+            text=True,
+        )
+        display = json.loads(completed.stdout)
+        self.assertEqual(display["status"], "accepted")
+        self.assertEqual(display["failure_code"], "")
+        self.assertTrue(display["publication_atomic"])
+        self.assertEqual(display["event_impulse_count"], 0)
+        self.assertEqual(display["regulator_certificate_count"], 0)
+        self.assertEqual(display["ordinary_correction_status"], "rejected")
+        self.assertEqual(
+            display["ordinary_correction_failure_code"],
+            "coupled_correction_failed",
+        )
+        self.assertGreater(display["warning_count"], 0)
+        self.assertTrue(
+            all(
+                warning["failed_row_id"] == "FWC-ENTRY-02"
+                and warning["failure_code"] == "caustic_route_required"
+                and Decimal(warning["reception_lower"])
+                < Decimal(warning["reception_upper"])
+                for warning in display["warnings"]
+            )
         )
 
     def test_native_fold_impulse_has_oracle_parity_and_fails_closed(self) -> None:
