@@ -136,7 +136,10 @@ The snapshot also reports $E_{\mathrm{FF}}^{\max}=\max_iE_{\mathrm{FF},i}$
 and the sum over all enclosed ordered pairs for audit. The exact and enclosed
 intervals enter the same fixed pairwise reduction, so the enclosed uncertainty
 is present in the published receiver acceleration rather than recorded only as
-metadata.
+metadata. Every reported receiver and all-pair width sum is accumulated with
+directed upward rounding from the actual emitted symmetric interval width;
+`FFE-SUM-01` therefore compares a certified upper bound with the lower edge of
+the declared receiver slice.
 
 Solving the admission inequality shows that the cutoff is derived from the
 budget and current certified speed bounds:

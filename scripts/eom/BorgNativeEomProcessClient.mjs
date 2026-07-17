@@ -1,7 +1,7 @@
 import { spawn } from "node:child_process";
 
 export const BORG_NATIVE_EOM_PROCESS_CLIENT_VERSION =
-  "borg-native-eom-process-client.v2";
+  "borg-native-eom-process-client.v3";
 
 export function createBorgNativeEomProcessClient({
   binaryPath,
@@ -168,16 +168,26 @@ export function encodeNativeRequest(request) {
   }
   const controls = request.numericalControls ?? {};
   const model = request.modelControls ?? {};
+  const provenance = request.provenance ?? {};
   if (controls.maximumStep == null ||
       controls.farFieldEnclosureFraction == null ||
-      typeof controls.useAdaptiveStepGrowth !== "boolean") {
+      typeof controls.useAdaptiveStepGrowth !== "boolean" ||
+      !["certified", "display"].includes(controls.runGrade) ||
+      !Number.isInteger(provenance.causticWarningCount) ||
+      provenance.causticWarningCount < 0 ||
+      (provenance.causticWarningCount === 0) !==
+        (provenance.firstCausticWarningTime == null)) {
     throw new TypeError(
       "EOM process request must explicitly supply maximumStep, " +
-      "useAdaptiveStepGrowth, and farFieldEnclosureFraction.",
+      "useAdaptiveStepGrowth, farFieldEnclosureFraction, runGrade, and " +
+      "cumulative caustic warning provenance.",
     );
   }
+  if (controls.runGrade === "certified" && provenance.causticWarningCount !== 0) {
+    throw new TypeError("Certified EOM requests cannot carry display-grade warnings.");
+  }
   const lines = [
-    "EOM_BORG_NATIVE_V2",
+    "EOM_BORG_NATIVE_V3",
     tabRecord([
       "RUN",
       request.runId,
@@ -187,6 +197,9 @@ export function encodeNativeRequest(request) {
       controls.minimumStep,
       controls.maximumStep,
       controls.useAdaptiveStepGrowth ? "1" : "0",
+      controls.runGrade,
+      provenance.causticWarningCount,
+      provenance.firstCausticWarningTime ?? "none",
       model.fieldSpeed,
       model.coupling,
       controls.rootTolerance,
@@ -249,6 +262,11 @@ function mergePublishedExtensions(request, response) {
         !Array.isArray(extension.segments)) {
       throw new Error("EOM response reordered or omitted a path extension.");
     }
+    if (response.causticWarningCount > 0 && extension.segments.some(
+      (segment) => segment.claimGrade !== "uncertified-through-encounters",
+    )) {
+      throw new Error("Warned EOM response omitted its segment claim marker.");
+    }
     return Object.freeze({
       ...history,
       coverageEnd: response.acceptedEndTime,
@@ -264,6 +282,7 @@ function mergePublishedExtensions(request, response) {
         acceptedStepCount: response.acceptedStepCount,
         rejectedStepCount: response.rejectedStepCount,
         stepFailures: response.stepFailures ?? [],
+        causticWarnings: response.causticWarnings ?? [],
       }),
     ]),
   });

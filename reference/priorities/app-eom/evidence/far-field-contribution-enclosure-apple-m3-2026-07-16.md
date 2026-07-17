@@ -2,7 +2,8 @@
 
 Status: implemented and certified at the isolated pair and 3:3
 memory-boundary mechanism levels; the live seed-0 dispersal replay remains
-blocked before dispersal by the independent caustic obligation recorded below.
+blocked before dispersal by the accepted caustic regulator terminal state
+recorded below.
 
 Subject: `coupled_retained_history_integrator`
 
@@ -14,15 +15,19 @@ Frozen law:
 
 ## Build provenance
 
-The EOM solver was rebuilt after the far-field source changes. The measured
-seed-0 and final acceptance binary was
-`.tmp/eom-native-dev/eom_borg_shadow_cli`, rebuilt at
-2026-07-16 20:30:27 EDT, later than the final `CoupledEvolution.cpp` source
-change at 2026-07-16 20:30:18 EDT.
+The EOM solver was rebuilt after the far-field source changes. The final
+fixture and suite binary was `.tmp/eom-native-dev/eom_borg_shadow_cli`, rebuilt
+at 2026-07-16 21:07:32 EDT, later than the final `CoupledEvolution.cpp` source
+change at 2026-07-16 21:07:25 EDT. The live seed-0 measurement below used the
+20:30:27 EDT build identified by its command record; it was not rerun after the
+ledger-only upward-rounding correction because no far-field pair was admitted
+on that pre-caustic track.
 
-Claim grade: `measured`. Falsifier: the binary timestamp predates any source
-file that contributes to the measured run, or a clean rebuild changes the
-reported certificates.
+Claim grade: `measured` for both build records and `derived` that a code path
+with zero admitted enclosures cannot consume the corrected enclosure-ledger
+sum. Falsifier: either binary timestamp predates a source file used by its
+measurement, a clean rebuild changes the reported certificates, or the live
+record contains an admitted enclosure before its halt.
 
 ## Independent analytic reference
 
@@ -85,10 +90,12 @@ $$
 
 All 30 off-diagonal pairs were enclosed, all six self-pairs remained exact,
 and zero pairs were unresolved at the first and final steps. The maximum
-per-receiver enclosed width was `0.0065277777777779065`, inside the declared
-`0.025` receiver slice. The all-pair audit sum was
-`0.032491666666667252`; acceptance is governed by the per-receiver sum because
-each receiver acceleration is reduced separately.
+first-step per-receiver enclosed-width upper bound was
+`0.0065277777777779092`, inside the declared `0.025` receiver slice. The
+first-step all-pair audit upper bound was `0.032491666666667335`; acceptance is
+governed by the per-receiver sum because each receiver acceleration is reduced
+separately. These totals are directed-upward sums of the actual emitted
+interval widths, not round-to-nearest diagnostics.
 
 The run ended only because $T=3$ was the requested endpoint. It crossed 1.5
 times the two-unit retained-history depth without a root-driven lookback halt.
@@ -111,10 +118,10 @@ Five repetitions of the dedicated timing mode produced these medians:
 
 | Measurement | Median wall seconds |
 | --- | ---: |
-| enabled first accepted step | `0.00270137` |
-| enabled final accepted step | `0.00768583` |
-| enabled 30-step run through $T=3$ | `0.157982` |
-| disabled boundary rejection | `0.000479667` |
+| enabled first accepted step | `0.00265475` |
+| enabled final accepted step | `0.00775692` |
+| enabled 30-step run through $T=3$ | `0.155183` |
+| disabled boundary rejection | `0.000470833` |
 
 Command:
 
@@ -136,6 +143,12 @@ binary were given equivalent requests, with the current enclosure fraction
 set to zero. Both a one-path static step and a two-path interacting step
 completed at the same endpoint and emitted byte-identical
 `publishedExtensions` JSON.
+
+The comparison was repeated after the directed-upward ledger correction. The
+static response and the interacting response were byte-identical across every
+selected deterministic field: status, evidence status, accepted endpoint,
+accepted and rejected step counts, and published extension tokens. The
+interacting published-extension JSON contained 1,167 bytes on each side.
 
 Claim grade: `measured`. Falsifier: either comparison emits a differing
 history token, accepted endpoint, step count, or terminal status.
@@ -165,7 +178,7 @@ Claim grade: `measured` by protocol tests and repository search. Falsifier: a
 producer omits the field, a parser accepts 17 fields, V1 is accepted, or any
 second producer/parser path is found.
 
-## Live seed-0 result and remaining obligation
+## Live seed-0 result and accepted earlier terminal state
 
 The live 3:3 seed-0 command requested 140 chunks through $T=7$ with the Borg
 default `0.25` enclosure fraction. No pair was enclosed before the close
@@ -189,22 +202,40 @@ Claim grade: `measured`. Falsifier: rerunning that exact binary and controls
 reaches dispersal, encloses a pair before the caustic, or terminates on another
 row.
 
+The operator has retained this demo-track `FWC-REG-02` result as its accepted
+adjudicated state. The fourfold core-cell sweep improved its impulse width only
+`6.73%` under the unchanged retained histories, so this far-field work neither
+raises that resource ceiling nor changes the finite-width route. Further FWC
+discrimination belongs to its follow-up thread.
+
+Claim grade: `operator-decision`, with measured basis in the finite-width
+seed-0 evidence record. Falsifier: the same demo retained histories certify the
+failed level within the unchanged `1e-7` and 200,000-cell budgets at bounded
+cost.
+
 Therefore the current live default trajectory cannot yet measure the requested
 before/after-dispersal browser chunk cost or prove that its original $T\approx6$
 memory-boundary halt is removed. The isolated 3:3 control proves the exact
 memory-boundary mechanism and ledger route, but it is not a substitute for the
 blocked live trajectory claim.
 
-Claim grade: `derived` from the measured ordering of terminal events.
-Falsifier: a certified caustic transit makes the live trajectory reach the
-dispersed regime, at which point the real replay must replace this limitation.
+A scoped artifact search found no saved six-path checkpoint from the earlier
+$T\approx6$ run; the available Borg checkpoints belong to 8- or 16-path
+campaigns. A state-level replay therefore cannot be started after the accepted
+caustic terminal without inventing a trajectory.
+
+Claim grade: `derived` from the measured ordering of terminal events and
+`measured-repository-search` for checkpoint availability. Falsifier: a
+certified caustic transit makes the live trajectory reach the dispersed regime,
+or a six-path accepted checkpoint from that run is supplied; either would make
+a live replay possible and require replacement of this limitation.
 
 ## Validation
 
 | Check | Result |
 | --- | --- |
-| EOM Python discovery (`test_eom_*.py`) | `139/139` passed in `144.837 s` |
-| Borg JavaScript suite | `63/63` passed in `0.754 s` |
+| EOM Python discovery (`test_eom_*.py`) | `139/139` passed in `154.515 s` |
+| Borg JavaScript suite | `63/63` passed in `0.318 s` |
 | Borg V2 process suite | included in EOM total; `7/7` |
 | content validation | 0 errors, 0 warnings |
 | scene graph check | 0 errors, 0 warnings |

@@ -1179,7 +1179,11 @@ This file holds dated decisions, implementation status, validation results, fail
   native interval. A 3:3 memory-boundary control rejects as
   `insufficient_history_depth` when disabled and completes through $T=3$ when
   enabled, with $36=0+6+30+0$ and maximum receiver enclosed width
-  `0.0065277777777779065 <= 0.025`.
+  `0.0065277777777779092 <= 0.025`.
+- **Derived and measured-test:** the enclosed-width ledger sums the actual
+  emitted interval widths with directed upward rounding. `FFE-SUM-01` compares
+  that certified upper bound with the lower edge of the declared receiver
+  slice.
 - **Measured:** disabled static and interacting outputs are byte-identical to
   the pre-enclosure binary. EOM tests pass 139/139, Borg tests pass 63/63, and
   all pre-commit mirrors pass.
@@ -1219,3 +1223,21 @@ This file holds dated decisions, implementation status, validation results, fail
   that certifies the pinned pair's regulator, state reconstruction, common-
   domain overlap, and sharp exit, or with a derivation that supplies a finite
   full-window sharp remainder across the fold.
+
+## 2026-07-16 — Demo-track FWC regulator disposition
+
+- **Operator decision:** retain the default seed-0 demo track's atomic
+  `FWC-REG-02` halt as its accepted adjudicated state. This closes the prior
+  “certify $\epsilon_c=0.1$ or retain the halt” choice on the retain branch;
+  no FWC engine change is authorized by this decision.
+- **Measured basis:** on the same retained histories, raising the cell ceiling
+  from 50,000 to 200,000 reduced the final impulse width from `1.95713e-7` to
+  `1.82541e-7`, only `6.73%`, while the unchanged budget remained `1e-7`.
+- The research-tolerance control and all remaining finite-width obligations
+  are assigned to a follow-up FWC thread. The far-field enclosure packet may
+  rely on the named default halt as an earlier independent terminal event; it
+  may not claim a live dispersed replay until a certified trajectory reaches
+  that regime.
+- Falsifier: reopen the disposition if the same default retained histories
+  certify $\epsilon_c=0.1$ within the unchanged `1e-7` and 200,000-cell
+  budgets at bounded wall cost.

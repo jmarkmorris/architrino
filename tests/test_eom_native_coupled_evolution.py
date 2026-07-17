@@ -190,6 +190,18 @@ class NativeCoupledEvolutionTests(unittest.TestCase):
             control["enclosure_acceleration"],
             control["pair_total_acceleration"],
         )
+        emitted_width = (
+            Decimal(str(control["enclosure_acceleration"][0]["upper"]))
+            - Decimal(str(control["enclosure_acceleration"][0]["lower"]))
+        )
+        self.assertGreaterEqual(
+            Decimal(str(control["enclosed_error_width_max_receiver"])),
+            emitted_width,
+        )
+        self.assertGreaterEqual(
+            Decimal(str(control["enclosed_error_width_total"])),
+            emitted_width * 2,
+        )
         self.assertLessEqual(
             Decimal(str(control["enclosed_error_width_max_receiver"])),
             Decimal("0.01"),

@@ -28,6 +28,18 @@ double elapsed_seconds(const SteadyClock::time_point& start) {
   return std::chrono::duration<double>(SteadyClock::now() - start).count();
 }
 
+double upward_nonnegative_sum(double left, double right) {
+  if (!(left >= 0.0) || !(right >= 0.0) || !std::isfinite(left) ||
+      !std::isfinite(right)) {
+    return std::numeric_limits<double>::infinity();
+  }
+  const double sum = left + right;
+  if (!std::isfinite(sum)) {
+    return std::numeric_limits<double>::infinity();
+  }
+  return std::nextafter(sum, std::numeric_limits<double>::infinity());
+}
+
 using SnapshotTotals = std::map<std::string, IntervalVector>;
 
 struct SubstepAttempt {
@@ -390,6 +402,98 @@ std::vector<std::pair<std::string, std::string>> changed_topology_pairs(
     }
   }
   return changed;
+}
+
+bool display_run_grade(const NativeCoupledEvolutionRequest& request) {
+  return request.run_grade == "display";
+}
+
+std::string caustic_row_for_failure(
+    const std::string& failure_code,
+    const NativeRegulatorConvergenceCertificate* regulator = nullptr) {
+  if (failure_code == "root_completeness_not_certified") {
+    return "FWC-ENTRY-02";
+  }
+  if (failure_code == "caustic_eta_convergence_failed") {
+    bool causal_width_failed = false;
+    bool core_scale_failed = false;
+    if (regulator != nullptr) {
+      for (const auto& series : regulator->refinement_series) {
+        causal_width_failed = causal_width_failed ||
+            (series.control_id == "causal_width_refinement" &&
+             !series.converged);
+        core_scale_failed = core_scale_failed ||
+            (series.control_id == "core_scale_refinement" &&
+             !series.converged);
+      }
+    }
+    if (causal_width_failed && core_scale_failed) {
+      return "FWC-REG-01/FWC-REG-02";
+    }
+    return core_scale_failed ? "FWC-REG-02" : "FWC-REG-01";
+  }
+  if (failure_code == "caustic_state_reconstruction_failed") {
+    return "FWC-STATE-01";
+  }
+  if (failure_code == "caustic_correction_failed") {
+    return "FWC-STATE-02";
+  }
+  if (failure_code == "caustic_exit_not_certified") {
+    return "FWC-EXIT-01";
+  }
+  return "";
+}
+
+NativeCausticWarning make_caustic_warning(
+    const std::string& receiver_path_id,
+    const std::string& source_path_id,
+    const std::string& reception_lower,
+    const std::string& reception_upper,
+    const std::string& failed_row_id,
+    const std::string& failure_code) {
+  return {
+      .receiver_path_id = receiver_path_id,
+      .source_path_id = source_path_id,
+      .reception_lower = reception_lower,
+      .reception_upper = reception_upper,
+      .failed_row_id = failed_row_id,
+      .failure_code = failure_code,
+  };
+}
+
+void merge_caustic_warning(
+    std::vector<NativeCausticWarning>& warnings,
+    const NativeCausticWarning& warning) {
+  auto matching = std::find_if(
+      warnings.begin(), warnings.end(), [&](const auto& existing) {
+        return existing.receiver_path_id == warning.receiver_path_id &&
+            existing.source_path_id == warning.source_path_id &&
+            existing.failed_row_id == warning.failed_row_id &&
+            existing.failure_code == warning.failure_code;
+      });
+  if (matching == warnings.end()) {
+    warnings.push_back(warning);
+    return;
+  }
+  if (scalar_token(warning.reception_lower) <
+      scalar_token(matching->reception_lower)) {
+    matching->reception_lower = warning.reception_lower;
+  }
+  if (scalar_token(warning.reception_upper) >
+      scalar_token(matching->reception_upper)) {
+    matching->reception_upper = warning.reception_upper;
+  }
+}
+
+std::vector<NativeCausticWarning> collect_caustic_warnings(
+    const std::vector<NativeCorrectedSubstepCertificate>& substeps) {
+  std::vector<NativeCausticWarning> warnings;
+  for (const auto& substep : substeps) {
+    for (const auto& warning : substep.caustic_warnings) {
+      merge_caustic_warning(warnings, warning);
+    }
+  }
+  return warnings;
 }
 
 bool pair_is_adjudicated_finite_width(
@@ -1072,6 +1176,18 @@ SubstepAttempt corrected_substep_impl(
                 std::move(regulator_convergence_certificates);
             failed.endpoint_root_continuations =
                 std::move(endpoint_root_continuations);
+            if (display_run_grade(request) &&
+                failure != "insufficient_history_depth") {
+              const auto& failed_regulator =
+                  failed.regulator_convergence_certificates.back();
+              failed.caustic_warnings.push_back(make_caustic_warning(
+                  receiver_id, source_id, start_time, end_time,
+                  caustic_row_for_failure(failure, &failed_regulator),
+                  failure));
+              failed.status = "accepted_candidate";
+              failed.failure_code.clear();
+              return {std::move(failed), std::move(candidate_histories)};
+            }
             return {std::move(failed), std::nullopt};
           }
           const auto& start_pair =
@@ -1111,6 +1227,14 @@ SubstepAttempt corrected_substep_impl(
                 std::move(regulator_convergence_certificates);
             failed.endpoint_root_continuations =
                 std::move(endpoint_root_continuations);
+            if (display_run_grade(request)) {
+              failed.caustic_warnings.push_back(make_caustic_warning(
+                  receiver_id, source_id, start_time, end_time,
+                  "FWC-STATE-01", "caustic_state_reconstruction_failed"));
+              failed.status = "accepted_candidate";
+              failed.failure_code.clear();
+              return {std::move(failed), std::move(candidate_histories)};
+            }
             return {std::move(failed), std::nullopt};
           }
           event_impulses.push_back(std::move(event));
@@ -1165,6 +1289,26 @@ SubstepAttempt corrected_substep_impl(
       failed.regulator_convergence_certificates.push_back(
           std::move(regulator));
     }
+  }
+  if (display_run_grade(request) &&
+      !request.adjudicated_finite_width_pairs.empty() &&
+      !caustic_row_for_failure(failed.failure_code).empty()) {
+    const std::string nested_failure = failed.failure_code;
+    for (std::size_t index = 0;
+         index < request.adjudicated_finite_width_pairs.size(); ++index) {
+      const auto& pair = request.adjudicated_finite_width_pairs[index];
+      const NativeRegulatorConvergenceCertificate* regulator =
+          index < failed.regulator_convergence_certificates.size()
+          ? &failed.regulator_convergence_certificates[index]
+          : nullptr;
+      failed.caustic_warnings.push_back(make_caustic_warning(
+          pair.first, pair.second, start_time, end_time,
+          caustic_row_for_failure(nested_failure, regulator),
+          nested_failure));
+    }
+    failed.status = "accepted_candidate";
+    failed.failure_code.clear();
+    return {std::move(failed), std::move(last_histories)};
   }
   return {std::move(failed), std::nullopt};
 }
@@ -1233,6 +1377,20 @@ void validate_request(const NativeCoupledEvolutionRequest& request) {
   tolerance_value(request.root_tolerance, "root tolerance");
   tolerance_value(request.source_normal_floor, "source-normal floor");
   tolerance_value(request.acceleration_tolerance, "acceleration tolerance");
+  if (request.run_grade != "certified" && request.run_grade != "display") {
+    throw std::invalid_argument("unsupported coupled evolution run grade");
+  }
+  if ((request.initial_caustic_warning_count == 0U) !=
+          !request.initial_first_caustic_warning_time.has_value() ||
+      (request.run_grade == "certified" &&
+       request.initial_caustic_warning_count != 0U)) {
+    throw std::invalid_argument("invalid cumulative caustic warning state");
+  }
+  if (request.initial_first_caustic_warning_time.has_value() &&
+      scalar_token(*request.initial_first_caustic_warning_time) > start) {
+    throw std::invalid_argument(
+        "first caustic warning time lies after the evolution start");
+  }
   const double far_field_fraction =
       exact_decimal_value(request.far_field_enclosure_fraction);
   if (!(far_field_fraction >= 0.0 && far_field_fraction < 1.0)) {
@@ -2951,16 +3109,16 @@ NativeFarFieldEnclosureCertificate certify_far_field_enclosure(
         receiver_normal_bound /
         (pair_width_budget * source_normal));
     certificate.derived_cutoff_radius = cutoff;
-    if ((Interval::point(2.0) * magnitude_bound).upper() >
-        pair_width_budget.lower()) {
+    const double radius = magnitude_bound.upper();
+    const IntervalVector acceleration{
+        Interval(-radius, radius), Interval(-radius, radius),
+        Interval(-radius, radius)};
+    certificate.acceleration = acceleration;
+    if (acceleration.front().width() > pair_width_budget.lower()) {
       certificate.failure_code = "FFE-BUDGET-01";
       return certificate;
     }
 
-    const double radius = magnitude_bound.upper();
-    certificate.acceleration = IntervalVector{
-        Interval(-radius, radius), Interval(-radius, radius),
-        Interval(-radius, radius)};
     certificate.status = "certified_enclosed";
     certificate.failure_code.clear();
     return certificate;
@@ -3105,9 +3263,11 @@ NativeAccelerationSnapshotCertificate certify_native_acceleration_snapshot(
               request, receiver, source, stored_enclosure);
           ++traversal_enclosed_pairs;
           const double width =
-              2.0 * stored_enclosure.pair_magnitude_bound->upper();
-          enclosed_error_width_total += width;
-          receiver_enclosed_widths[receiver_index] += width;
+              stored_enclosure.acceleration->front().width();
+          enclosed_error_width_total = upward_nonnegative_sum(
+              enclosed_error_width_total, width);
+          receiver_enclosed_widths[receiver_index] = upward_nonnegative_sum(
+              receiver_enclosed_widths[receiver_index], width);
         } else {
           root_request_logical_indices.push_back(logical_index);
           root_requests.push_back({
@@ -3617,9 +3777,12 @@ NativeAccelerationSnapshotCertificate certify_native_acceleration_snapshot(
       traversal_excluded_pairs + traversal_exact_pairs +
           traversal_enclosed_pairs + traversal_unresolved_pairs ==
       logical_pair_count;
-  const double enclosed_width_budget =
-      exact_decimal_value(request.far_field_enclosure_fraction) *
-      exact_decimal_value(request.acceleration_tolerance);
+  const double far_field_fraction =
+      exact_decimal_value(request.far_field_enclosure_fraction);
+  const double enclosed_width_budget = far_field_fraction == 0.0
+      ? 0.0
+      : (Interval::decimal_token(request.far_field_enclosure_fraction) *
+         Interval::decimal_token(request.acceleration_tolerance)).lower();
   std::string failure_code;
   if (!pair_ledger_complete) {
     failure_code = "FFE-LEDGER-01";
@@ -3805,6 +3968,7 @@ NativeAtomicStepCertificate certify_native_atomic_coupled_step_impl(
   }
 
   const auto fingerprint_timing_start = SteadyClock::now();
+  auto caustic_warnings = collect_caustic_warnings(substeps);
   const auto input_fingerprints = fingerprints(histories);
   const auto candidate_fingerprints = fingerprints(accepted_histories);
   const auto published_fingerprints = fingerprints(accepted_histories);
@@ -3829,6 +3993,7 @@ NativeAtomicStepCertificate certify_native_atomic_coupled_step_impl(
           std::move(multirate_publication.synchronization_errors),
       .multirate_coarse_path_ids =
           std::move(multirate_publication.coarse_path_ids),
+      .caustic_warnings = std::move(caustic_warnings),
       .failure_code = "",
       .evidence_status = "executable_architecture_evidence",
       .integration_method = integration_method(request),
@@ -4015,6 +4180,9 @@ NativeCoupledEvolutionCertificate evolve_native_coupled_histories(
   std::size_t accepted_count = 0;
   std::size_t rejected_count = 0;
   std::string halt_code;
+  std::vector<NativeCausticWarning> caustic_warnings;
+  std::optional<std::string> first_caustic_warning_time =
+      request.initial_first_caustic_warning_time;
   std::string current_time_token = request.start_time;
   std::size_t consecutive_growth_headroom_steps = 0U;
   std::size_t certificate_cost_probe_adjustments = 0U;
@@ -4083,6 +4251,14 @@ NativeCoupledEvolutionCertificate evolve_native_coupled_histories(
           ? continuous_step_scale(request, step, true)
           : 1.0;
       histories = step.published_histories;
+      for (const auto& warning : step.caustic_warnings) {
+        caustic_warnings.push_back(warning);
+        if (!first_caustic_warning_time.has_value() ||
+            scalar_token(warning.reception_lower) <
+                scalar_token(*first_caustic_warning_time)) {
+          first_caustic_warning_time = warning.reception_lower;
+        }
+      }
       current_time_token = step.accepted_time;
       current_time = scalar_token(current_time_token);
       ++accepted_count;
@@ -4205,6 +4381,8 @@ NativeCoupledEvolutionCertificate evolve_native_coupled_histories(
       [](const auto& step) { return step.publication_atomic; });
   NativeEvolutionTiming timing = summarize_evolution_timing(steps);
   timing.total_wall_seconds = elapsed_seconds(timing_start);
+  const std::size_t caustic_warning_count =
+      request.initial_caustic_warning_count + caustic_warnings.size();
   return {
       .schema = "eom_native_coupled_evolution_certificate/v0",
       .status = completed ? "completed" : "halted",
@@ -4220,9 +4398,13 @@ NativeCoupledEvolutionCertificate evolve_native_coupled_histories(
       .controller_certificate_cost_cooldown_remaining =
           certificate_cost_cooldown_remaining,
       .halt_code = completed ? "" : halt_code,
-      .evidence_status = completed
-          ? "executable_architecture_evidence"
-          : "failed",
+      .evidence_status = caustic_warning_count > 0U
+          ? "uncertified-through-encounters"
+          : completed ? "executable_architecture_evidence" : "failed",
+      .run_grade = request.run_grade,
+      .caustic_warnings = std::move(caustic_warnings),
+      .caustic_warning_count = caustic_warning_count,
+      .first_caustic_warning_time = first_caustic_warning_time,
       .all_steps_atomic = all_atomic,
       .timing = timing,
   };

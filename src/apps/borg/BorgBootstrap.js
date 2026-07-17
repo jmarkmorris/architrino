@@ -87,6 +87,7 @@ export async function bootBorgApp({
       minimumStep: "0.0001",
       maximumStep: "0.025",
       useAdaptiveStepGrowth: true,
+      runGrade: "display",
       rootTolerance: "1e-3",
       accelerationTolerance: "1e-1",
       farFieldEnclosureFraction: "0.25",

@@ -267,7 +267,9 @@ eom::CubicHistorySegment parse_segment(const std::string& line) {
       fields[1], fields[2], std::move(coefficients), fields[15], fields[16]);
 }
 
-void print_segment(const eom::CubicHistorySegment& segment) {
+void print_segment(
+    const eom::CubicHistorySegment& segment,
+    const std::string& claim_grade) {
   std::cout << "{\"startTime\":\"" << json_escape(segment.t_start_token())
             << "\",\"endTime\":\"" << json_escape(segment.t_end_token())
             << "\",\"coefficients\":[";
@@ -289,7 +291,9 @@ void print_segment(const eom::CubicHistorySegment& segment) {
   std::cout << "],\"positionError\":\""
             << json_escape(segment.position_error_token())
             << "\",\"velocityError\":\""
-            << json_escape(segment.velocity_error_token()) << "\"}";
+            << json_escape(segment.velocity_error_token())
+            << "\",\"claimGrade\":\"" << json_escape(claim_grade)
+            << "\"}";
 }
 
 void run(
@@ -300,15 +304,15 @@ void run(
     bool use_certified_traversal,
     std::uint64_t traversal_exact_tile_pair_limit,
     std::optional<IncrementalSnapshotCache>* incremental_cache = nullptr) {
-  if (read_required_line("protocol magic") != "EOM_BORG_NATIVE_V2") {
+  if (read_required_line("protocol magic") != "EOM_BORG_NATIVE_V3") {
     throw std::invalid_argument("unsupported Borg EOM native protocol");
   }
   const auto run = split_tabs(read_required_line("RUN record"));
-  if (run.size() != 18U || run[0] != "RUN") {
+  if (run.size() != 21U || run[0] != "RUN") {
     throw std::invalid_argument(
-        "invalid RUN record: expected exactly 18 tab-separated fields");
+        "invalid RUN record: expected exactly 21 tab-separated fields");
   }
-  const std::size_t path_count = parse_size(run[17], "path count");
+  const std::size_t path_count = parse_size(run[20], "path count");
   if (path_count == 0U || path_count > 1000000U) {
     throw std::invalid_argument("path count lies outside native protocol envelope");
   }
@@ -353,23 +357,29 @@ void run(
       .initial_step = run[4],
       .minimum_step = run[5],
       .maximum_step = run[6],
-      .field_speed = run[8],
-      .coupling = run[9],
-      .root_tolerance = run[10],
+      .field_speed = run[11],
+      .coupling = run[12],
+      .root_tolerance = run[13],
       .source_normal_floor = "1e-30",
-      .acceleration_tolerance = run[11],
-      .far_field_enclosure_fraction = run[12],
+      .acceleration_tolerance = run[14],
+      .far_field_enclosure_fraction = run[15],
+      .run_grade = run[8],
+      .initial_caustic_warning_count =
+          parse_size(run[9], "prior caustic warning count"),
+      .initial_first_caustic_warning_time = run[10] == "none"
+          ? std::nullopt
+          : std::optional<std::string>{run[10]},
       .chart_policy = "sharp_with_finite_width_fallback",
       .causal_width = "0.2",
       .core_scale = "0.2",
-      .quadrature_tolerance = run[11],
+      .quadrature_tolerance = run[14],
       .event_impulse_tolerance = "1e-7",
       .event_position_moment_tolerance = "1e-7",
       .regulator_refinement_ratio = "0.5",
       .regulator_convergence_tolerance = "1e-3",
-      .position_tolerance = run[13],
-      .velocity_tolerance = run[14],
-      .correction_tolerance = run[15],
+      .position_tolerance = run[16],
+      .velocity_tolerance = run[17],
+      .correction_tolerance = run[18],
       .root_max_depth = 256,
       .root_max_cells = 500000,
       .quadrature_max_depth = quadrature_max_depth,
@@ -386,7 +396,7 @@ void run(
       .thread_count = 1,
       .use_adaptive_step_growth = parse_bool(run[7], "adaptive step growth"),
   };
-  request.thread_count = parse_size(run[16], "thread count");
+  request.thread_count = parse_size(run[19], "thread count");
   // The traversal tree is an optional pair-selection optimization.  At small
   // Borg scales (16 paths and below) it excludes no pairs and costs more than
   // exhaustive exact coverage, so use the direct certified batch there.
@@ -402,8 +412,9 @@ void run(
   // Step-controller state changes across adaptive chunks but does not change
   // the certified acceleration snapshot at their shared boundary. Keep field,
   // force, tolerance, and reduction controls in the cache key; exclude only
-  // initial/minimum/maximum step and the growth switch.
-  for (std::size_t index = 8U; index <= 16U; ++index) {
+  // initial/minimum/maximum step, the growth switch, run grade, and cumulative
+  // warning provenance.
+  for (std::size_t index = 11U; index <= 19U; ++index) {
     model_key_stream << run[index] << '\n';
   }
   for (const auto& path : parsed_paths) {
@@ -473,7 +484,41 @@ void run(
   std::cout << "{\"schema\":\"eom_borg_native_response/v0\",\"status\":\""
             << json_escape(result.status) << "\",\"evidenceStatus\":\""
             << json_escape(result.evidence_status)
-            << "\",\"acceptedEndTime\":\""
+            << "\",\"runGrade\":\"" << json_escape(result.run_grade)
+            << "\",\"claimGrade\":\""
+            << (result.caustic_warning_count > 0U
+                    ? "uncertified-through-encounters"
+                    : json_escape(result.evidence_status))
+            << "\",\"causticWarningCount\":"
+            << result.caustic_warning_count
+            << ",\"firstCausticWarningTime\":";
+  if (result.first_caustic_warning_time.has_value()) {
+    std::cout << '"' << json_escape(*result.first_caustic_warning_time) << '"';
+  } else {
+    std::cout << "null";
+  }
+  std::cout << ",\"causticWarnings\":[";
+  for (std::size_t warning_index = 0;
+       warning_index < result.caustic_warnings.size(); ++warning_index) {
+    if (warning_index > 0U) {
+      std::cout << ',';
+    }
+    const auto& warning = result.caustic_warnings[warning_index];
+    std::cout << "{\"receiverPathId\":\""
+              << json_escape(warning.receiver_path_id)
+              << "\",\"sourcePathId\":\""
+              << json_escape(warning.source_path_id)
+              << "\",\"receptionLower\":\""
+              << json_escape(warning.reception_lower)
+              << "\",\"receptionUpper\":\""
+              << json_escape(warning.reception_upper)
+              << "\",\"failedRowId\":\""
+              << json_escape(warning.failed_row_id)
+              << "\",\"failureCode\":\""
+              << json_escape(warning.failure_code) << "\"}";
+  }
+  std::cout << "]"
+            << ",\"acceptedEndTime\":\""
             << json_escape(result.accepted_end_time)
             << "\",\"acceptedStepCount\":" << result.accepted_step_count
             << ",\"rejectedStepCount\":" << result.rejected_step_count
@@ -914,7 +959,11 @@ void run(
       if (segment_index > input_count) {
         std::cout << ',';
       }
-      print_segment(published.history.segments()[segment_index]);
+      print_segment(
+          published.history.segments()[segment_index],
+          result.caustic_warning_count > 0U
+              ? "uncertified-through-encounters"
+              : result.evidence_status);
     }
     std::cout << "]}";
   }

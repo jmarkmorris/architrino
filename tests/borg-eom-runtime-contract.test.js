@@ -366,11 +366,23 @@ test("Borg path-history renderer uses native row segments, not visual smoothing 
   assert.match(runtimeSource, /refreshDiagnosticsPanel\(\)[\s\S]*diagnosticsPanelController\.renderIfOpen\(\)/);
   assert.match(
     htmlSource,
-    /class="borg-viewport-toolbar"[\s\S]*id="borg-layer-strip"[\s\S]*id="borg-solver-banner"[\s\S]*id="borg-reset-view-button"/,
+    /class="borg-viewport-toolbar"[\s\S]*id="borg-layer-strip"[\s\S]*class="borg-solver-banner-slot"[\s\S]*id="borg-solver-banner"[\s\S]*id="borg-reset-view-button"/,
   );
   assert.match(
     htmlSource,
     /#borg-solver-banner \{[\s\S]*height: 32px;[\s\S]*text-overflow: ellipsis;[\s\S]*white-space: nowrap;/,
+  );
+  assert.match(
+    htmlSource,
+    /\.borg-solver-banner-slot \{[\s\S]*min-width: 0;[\s\S]*height: 32px;/,
+  );
+  assert.match(
+    htmlSource,
+    /\.borg-camera-controls \{[\s\S]*grid-template-columns: repeat\(4, 32px\);[\s\S]*justify-self: end;/,
+  );
+  assert.match(
+    htmlSource,
+    /\.borg-camera-controls \.borg-icon-button \{[\s\S]*width: 32px;[\s\S]*min-width: 32px;[\s\S]*padding: 0;/,
   );
   assert.match(runtimeSource, /banner\.textContent = detail \? `\$\{message\} — \$\{detail\}` : message;/);
 });

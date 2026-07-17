@@ -325,8 +325,16 @@
 
       .borg-camera-controls {
         display: grid;
+        grid-template-columns: repeat(4, 32px);
         grid-auto-flow: column;
         gap: 7px;
+        justify-self: end;
+      }
+
+      .borg-camera-controls .borg-icon-button {
+        width: 32px;
+        min-width: 32px;
+        padding: 0;
       }
 
       .borg-icon-button svg {
@@ -547,7 +555,8 @@
       .borg-eom-control input,
       .borg-initial-control input,
       .borg-eom-action,
-      .borg-initial-action {
+      .borg-initial-action,
+      .borg-run-grade-toggle {
         min-width: 0;
         height: 34px;
         border: 1px solid rgba(139, 164, 126, 0.34);
@@ -587,8 +596,24 @@
       }
 
       .borg-initial-action,
-      .borg-initial-feedback {
+      .borg-initial-feedback,
+      .borg-run-grade-toggle {
         grid-column: 1 / -1;
+      }
+
+      .borg-run-grade-toggle {
+        cursor: pointer;
+        padding: 0 10px;
+        border-color: rgba(255, 191, 91, 0.52);
+        color: #ffdf93;
+        font-size: 10px;
+        font-weight: 760;
+        text-align: left;
+      }
+
+      .borg-run-grade-toggle[data-run-grade="certified"] {
+        border-color: rgba(94, 183, 183, 0.58);
+        color: #c2f2f1;
       }
 
       .borg-initial-action {
@@ -700,7 +725,13 @@
         font-weight: 760;
       }
 
+      .borg-solver-banner-slot {
+        min-width: 0;
+        height: 32px;
+      }
+
       #borg-solver-banner {
+        width: 100%;
         min-width: 0;
         height: 32px;
         overflow: hidden;
@@ -783,12 +814,16 @@
           bottom: 14px;
         }
 
-        #borg-solver-banner {
+        .borg-solver-banner-slot {
           position: absolute;
           left: 14px;
           right: 14px;
           top: 92px;
           z-index: 20;
+        }
+
+        #borg-solver-banner {
+          position: static;
         }
 
         .borg-timeline {
@@ -825,6 +860,7 @@
           <div class="borg-status-stack">
             <span id="borg-native-status" class="borg-status-chip">Forward EOM</span>
             <span id="borg-manifest-status" class="borg-status-chip">Developer test</span>
+            <span id="borg-run-grade-warning" class="borg-status-chip" hidden></span>
           </div>
         </header>
 
@@ -838,6 +874,7 @@
               <input id="borg-eom-duration" type="number" min="0.01" step="0.01" value="60" inputmode="decimal" />
             </label>
             <div class="borg-eom-subheading">Initial conditions</div>
+            <button id="borg-run-grade-toggle" class="borg-run-grade-toggle" type="button" aria-label="Continue through close encounters (display grade)" aria-pressed="false" data-run-grade="display" title="Continue through close encounters (display grade)">Continue through close encounters (display grade)</button>
             <label class="borg-initial-control">
               Electrinos
               <input id="borg-electrino-count" type="number" min="0" max="512" step="1" value="8" inputmode="numeric" />
@@ -896,7 +933,9 @@
         <canvas id="borg-canvas" tabindex="0" aria-label="Borg native frame viewport"></canvas>
         <div class="borg-viewport-toolbar">
           <nav id="borg-layer-strip" class="borg-layer-strip" aria-label="Viewport layers"></nav>
-          <div id="borg-solver-banner" role="status" hidden></div>
+          <div class="borg-solver-banner-slot">
+            <div id="borg-solver-banner" role="status" hidden></div>
+          </div>
           <div class="borg-camera-controls" aria-label="View controls">
             <button id="borg-reset-view-button" class="borg-icon-button" type="button" aria-label="Reset view" title="Reset view">
               <svg viewBox="0 0 24 24" aria-hidden="true">

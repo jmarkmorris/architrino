@@ -23,6 +23,8 @@
 - Regulator level: `core_scale_refinement`, level 1, $\epsilon_c=0.1$
 - Nested failure: `event_impulse_cell_limit_exhausted` after 200,001 visited
   cells
+- Operator disposition: retain this demo-track `FWC-REG-02` halt as the
+  accepted adjudicated state
 
 The route eliminates the generic `minimum_step_exhausted` terminal label for
 the default run. It does not certify passage through the encounter. The coarse
@@ -30,6 +32,19 @@ default trajectory now certifies the complete root scan and enters the
 finite-width route, whose core-scale level 1 then exhausts the declared cell
 budget. The engine therefore records the regulator row rather than publishing
 the rejected candidate.
+
+The prior closure choice “certify the default track's $\epsilon_c=0.1$ level
+or retain its adjudicated regulator halt” is closed on the retain branch. The
+unchanged-history resource sweep below obtained only a `6.73%` impulse-width
+reduction from a fourfold cell-ceiling increase, so more subdivision is not an
+accepted substitute for a track that supports the declared budget. The
+research-tolerance discriminator and all further finite-width obligations are
+assigned to a follow-up FWC thread.
+
+Claim grade: `measured` for the sweep and `operator-decision` for the
+disposition. Falsifier: the same default retained histories certify
+$\epsilon_c=0.1$ within both the unchanged `1e-7` impulse budget and the
+200,000-cell ceiling at bounded cost.
 
 The original fixed `h=0.01` reproduction reached `1.3959374999999998` and
 halted on `FWC-REG-02`. Tighter mean-value enclosures expose a retained-history
@@ -471,10 +486,9 @@ whose interval does not overlap the corresponding Decimal oracle interval.
 
 This evidence is `priority-only`. It authorizes the named fail-closed
 adjudication path, not a production transit claim. `FWC-ENTRY-02` is closed for
-the default seed-0 trajectory. Its `FWC-REG-02` halt remains a declared
-resource boundary on that track; the research track proves regulator closure
-for its own routed event but not for the default track's pair-identical
-geometry. The next route closure object is the derived `FWC-STATE-01`
-reconstruction/common-domain obligation together with pinned pair coverage
-across subdivision. No atomic transit or production passage claim is
-authorized.
+the default seed-0 trajectory. Its `FWC-REG-02` halt is the accepted
+adjudicated state of that demo-tolerance track. No atomic transit or production
+passage claim is authorized. Any research-tolerance discriminator,
+`FWC-STATE-01` reconstruction/common-domain work, or pinned pair coverage
+across subdivision belongs to the follow-up FWC thread and does not reopen the
+accepted demo-track halt without new evidence satisfying its falsifier.

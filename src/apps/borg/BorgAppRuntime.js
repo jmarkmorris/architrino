@@ -32,6 +32,10 @@ import { BORG_RELEASE_BUDGET_MANIFEST_V1 } from "./BorgReleaseBudgetManifest.js"
 import { createBorgPathTrails } from "./BorgPathTrails.js";
 import { createBorgDiagnosticsPanelController } from "./BorgDiagnosticsPanel.js";
 import {
+  BORG_DISPLAY_RUN_GRADE,
+  createBorgRunGradeControl,
+} from "./BorgRunGradeControl.js";
+import {
   BORG_MAX_INITIAL_ARCHITRINO_COUNT,
   calculateBorgInertialHistoryDepth,
   createBorgAcceptedInertialSeedHistory,
@@ -187,6 +191,7 @@ export function mountBorgApp(options = {}) {
     envelopeFields: queryRequiredElement(documentLike, "#borg-envelope-fields"),
     initialConditionFields: queryRequiredElement(documentLike, "#borg-initial-condition-fields"),
     initialConditionForm: queryRequiredElement(documentLike, "#borg-initial-condition-form"),
+    runGradeToggle: queryRequiredElement(documentLike, "#borg-run-grade-toggle"),
     electrinoCount: queryRequiredElement(documentLike, "#borg-electrino-count"),
     positrinoCount: queryRequiredElement(documentLike, "#borg-positrino-count"),
     coupling: queryRequiredElement(documentLike, "#borg-coupling"),
@@ -195,6 +200,7 @@ export function mountBorgApp(options = {}) {
     initialConditionFeedback: queryRequiredElement(documentLike, "#borg-initial-condition-feedback"),
     nativeStatus: queryRequiredElement(documentLike, "#borg-native-status"),
     manifestStatus: queryRequiredElement(documentLike, "#borg-manifest-status"),
+    runGradeWarning: queryRequiredElement(documentLike, "#borg-run-grade-warning"),
     sourceFields: queryRequiredElement(documentLike, "#borg-source-fields"),
     diagnosticsFields: queryRequiredElement(documentLike, "#borg-diagnostics-fields"),
     failClosedList: queryRequiredElement(documentLike, "#borg-fail-closed-list"),
@@ -345,6 +351,12 @@ export function mountBorgApp(options = {}) {
       options.eomShadowRunner?.coupling,
       manifest.modelControls?.coupling ?? 1,
     ),
+    selectedRunGrade:
+      options.eomShadowRunner?.runGrade ?? BORG_DISPLAY_RUN_GRADE,
+    activeRunGrade:
+      options.eomShadowRunner?.runGrade ?? BORG_DISPLAY_RUN_GRADE,
+    eomCausticWarningCount: 0,
+    eomFirstCausticWarningTime: null,
     liveRunBudget: createEmptyLiveRunBudget(),
     compactedPathHistory: Object.freeze({}),
     liveRunRetention: createBorgLiveRunRetentionSnapshot({ frameRows: currentFrames }),
@@ -371,6 +383,15 @@ export function mountBorgApp(options = {}) {
     panel: dom.diagnosticsPanel,
     toggleButton: dom.diagnosticsToggle,
     render: renderDiagnosticsPanel,
+  });
+  const runGradeController = createBorgRunGradeControl({
+    button: dom.runGradeToggle,
+    initialGrade: state.selectedRunGrade,
+    onChange(grade) {
+      state.selectedRunGrade = grade;
+      markInitialConditionControlsPending();
+      renderSourceFields();
+    },
   });
 
   buildScene();
@@ -514,7 +535,12 @@ export function mountBorgApp(options = {}) {
     renderFailClosedRows();
     renderFieldRows(
       dom.authorityFields,
-      Object.entries(surfaceDesign.authorityMap).map(([key, value]) => [key, value]),
+      [
+        ["frameAuthority", state.eomCausticWarningCount > 0
+          ? "uncertified-through-encounters"
+          : "eom-shadow-output"],
+        ...Object.entries(surfaceDesign.authorityMap).map(([key, value]) => [key, value]),
+      ],
     );
     renderFieldRows(dom.renderFields, [
       ["renderPixelSize", surfaceDesign.firstViewport.renderPixelSize],
@@ -576,6 +602,10 @@ export function mountBorgApp(options = {}) {
     renderFieldRows(dom.sourceFields, [
       ["Run source", state.sourceMode],
       ["Run mode", formatRunDurationLabel(activePreset)],
+      ["Run grade", state.activeRunGrade],
+      ["Next run grade", state.selectedRunGrade],
+      ["Uncertified encounters", state.eomCausticWarningCount],
+      ["First uncertified encounter", state.eomFirstCausticWarningTime ?? "none"],
       ["Finite duration", state.eomRunDuration],
       ["Preset basis", activePreset?.thresholdAuthority ?? "not-measured"],
       ["Preset target", formatRunTargetDuration(activePreset)],
@@ -656,6 +686,7 @@ export function mountBorgApp(options = {}) {
       ["electrinoCount", config.electrinoCount],
       ["positrinoCount", config.positrinoCount],
       ["coupling κ", state.eomCoupling],
+      ["runGrade", state.selectedRunGrade],
       ["velocityPolicy", manifest.initialConditions.velocityPolicy],
       ["maxPerAxisSpeed", config.randomVelocityMaxComponentMagnitude],
       ["minimumTotalSpeed", config.randomVelocityMinSpeed],
@@ -1399,6 +1430,7 @@ export function mountBorgApp(options = {}) {
     windowLike.removeEventListener("resize", resize);
     windowLike.removeEventListener("keydown", handleKeyDown);
     diagnosticsPanelController.dispose();
+    runGradeController.dispose();
     disposeDynamicRunner();
     disposePathTrails();
     disposeParticleObjects();
@@ -1504,6 +1536,7 @@ export function mountBorgApp(options = {}) {
         runDuration: state.eomRunDuration,
         historyDepth: state.eomHistoryDepth,
         coupling: state.eomCoupling,
+        runGrade: state.activeRunGrade,
       },
     );
     const runnerOptions = eomRunnerOptions ?? createDefaultEomRecordReplayOptions(
@@ -1596,6 +1629,9 @@ export function mountBorgApp(options = {}) {
           state.eomDisplayStarted = true;
           state.dynamicRunnerKind = "eom-shadow";
           state.eomEvolutionClaimLevel = chunk.evolutionClaimLevel;
+          state.activeRunGrade = chunk.runGrade;
+          state.eomCausticWarningCount = chunk.causticWarningCount;
+          state.eomFirstCausticWarningTime = chunk.firstCausticWarningTime;
         }
         state.sourceMode = chunk.source;
         state.dynamicRunnerStatus = state.dynamicRunner.canComputeNextChunk()
@@ -1811,6 +1847,15 @@ export function mountBorgApp(options = {}) {
       ? `${state.dynamicRunnerStatus}: ${state.dynamicRunnerMessage}`
       : state.dynamicRunnerStatus;
     setTone(dom.nativeStatus, state.dynamicRunnerStatus);
+    const warned = state.eomCausticWarningCount > 0;
+    dom.runGradeWarning.hidden = !warned;
+    dom.runGradeWarning.textContent = warned
+      ? `Display grade — ${state.eomCausticWarningCount} encounters uncertified`
+      : "";
+    dom.runGradeWarning.title = dom.runGradeWarning.textContent;
+    if (warned) {
+      setTone(dom.runGradeWarning, "partial-live-run-budget");
+    }
     updateSolverBanner();
   }
 
@@ -1882,6 +1927,9 @@ export function mountBorgApp(options = {}) {
         ? "eom-record-replay"
         : "eom-idle";
     state.dynamicChunksComputed = 0;
+    state.activeRunGrade = state.selectedRunGrade;
+    state.eomCausticWarningCount = 0;
+    state.eomFirstCausticWarningTime = null;
     state.eomDisplayStarted = false;
     state.dynamicTargetDuration = null;
     state.dynamicChunkDuration = null;
@@ -2108,6 +2156,7 @@ function createDefaultEomShadowRunnerOptions(
     coupling: String(
       runtimeControls.coupling ?? configured.coupling ?? manifest.modelControls?.coupling ?? 1,
     ),
+    runGrade: runtimeControls.runGrade ?? configured.runGrade ?? BORG_DISPLAY_RUN_GRADE,
     pathCount: boundedInteger(
       runtimeControls.pathCount,
       configured.pathCount ?? manifest.population?.architrinoCount ?? 1,

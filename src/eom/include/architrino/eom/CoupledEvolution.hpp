@@ -48,6 +48,13 @@ struct NativeCoupledEvolutionRequest {
   // Fraction of the acceleration component-width tolerance reserved for
   // certified per-pair far-field enclosures. Zero disables the route.
   std::string far_field_enclosure_fraction = "0";
+  // `certified` preserves every finite-width publication obligation.
+  // `display` may publish only candidates rejected solely by a named FWC row
+  // and permanently demotes the run after the first such publication.
+  std::string run_grade = "certified";
+  // Cumulative display-run warning state carried across atomic Borg chunks.
+  std::size_t initial_caustic_warning_count = 0;
+  std::optional<std::string> initial_first_caustic_warning_time;
   std::string chart_policy = "sharp";
   std::string causal_width = "0.2";
   std::string core_scale = "0.2";
@@ -320,6 +327,16 @@ struct NativePinnedFoldTemporalStepCertificate {
   std::string temporal_rule;
 };
 
+struct NativeCausticWarning {
+  std::string schema = "eom_native_caustic_warning/v0";
+  std::string receiver_path_id;
+  std::string source_path_id;
+  std::string reception_lower;
+  std::string reception_upper;
+  std::string failed_row_id;
+  std::string failure_code;
+};
+
 struct NativeCorrectedSubstepCertificate {
   std::string schema;
   std::string status;
@@ -338,6 +355,7 @@ struct NativeCorrectedSubstepCertificate {
   std::vector<NativePinnedFoldTemporalStepCertificate>
       pinned_fold_onset_certificates;
   std::vector<NativeHistoryFingerprint> candidate_history_fingerprints;
+  std::vector<NativeCausticWarning> caustic_warnings;
   NativeCorrectedSubstepTiming timing;
 };
 
@@ -387,6 +405,7 @@ struct NativeAtomicStepCertificate {
   std::vector<NativePathLocalError> local_errors;
   std::vector<NativePathLocalError> multirate_synchronization_errors;
   std::vector<std::string> multirate_coarse_path_ids;
+  std::vector<NativeCausticWarning> caustic_warnings;
   bool certificate_cost_probe = false;
   std::size_t certificate_cost_deferred_pair_count = 0;
   std::size_t certificate_cost_mpfr_attempt_count = 0;
@@ -445,6 +464,10 @@ struct NativeCoupledEvolutionCertificate {
   std::size_t controller_certificate_cost_cooldown_remaining = 0;
   std::string halt_code;
   std::string evidence_status;
+  std::string run_grade;
+  std::vector<NativeCausticWarning> caustic_warnings;
+  std::size_t caustic_warning_count = 0;
+  std::optional<std::string> first_caustic_warning_time;
   bool all_steps_atomic;
   NativeEvolutionTiming timing;
 };

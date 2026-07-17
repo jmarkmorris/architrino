@@ -271,6 +271,50 @@ finite-width result; it does not silently replace the model input.
 Claim grade: `derived-design`. Falsifier: any required level is uncertified, or
 the recomputed maximum ladder distance exceeds its recorded budget.
 
+## Run Grades
+
+Every coupled-evolution request declares exactly one run grade:
+`certified` or `display`. The grade is provenance, not a numerical tolerance.
+It changes only the disposition of a candidate whose ordinary coupled
+corrector, local-error comparison, and atomic-publication checks have passed
+and whose sole remaining rejection is a finite-width close-approach row.
+
+At `certified` grade, every `FWC-ENTRY-*`, `FWC-REG-*`, `FWC-STATE-*`, and
+`FWC-EXIT-*` obligation retains publication authority. A failed row rejects
+the candidate and eventually produces the existing named adjudicated halt.
+This is the evidence-producing route.
+
+At `display` grade, a failed finite-width row is recorded as a caustic warning
+with the receiver/source identities, attempted reception interval, failed row
+identifier, and nested failure code. The sharp/corrector candidate that would
+otherwise have reached the finite-width gate may continue through the
+unchanged local-error and atomic-publication gates. A memory-boundary failure,
+ordinary correction failure, local-step error, resource ceiling, or any other
+non-caustic rejection remains fail-closed. A caustic-specific correction row
+may be demoted only when the same record identifies the routed pair and the
+candidate exists; an unclassified `coupled_correction_failed` row is never
+demoted.
+
+The first accepted warning irreversibly changes the run claim marker to
+`uncertified-through-encounters`. Every subsequently published extension and
+derived frame inherits that marker. The response carries the cumulative
+warning count and first-warning time. Before the first warning, display mode is
+shown only as run provenance and does not add a warning label.
+
+Display-grade output is never canonical evidence. In particular, a producer-
+asserted `evidenceStatus`, promotion flag, or claim label is not consumed as an
+authority upgrade; acceptance infrastructure must derive authority from the
+certified-grade contract and its independent evidence gate. The display route
+therefore supports long-lived interactive trajectories without weakening or
+masquerading as the certified route.
+
+Claim grade: `operator-decision` for the two-grade product policy and
+`derived-design` for the gate separation. Falsifier: a certified request changes
+any deterministic trajectory token; a display request publishes after a
+non-caustic failure; a warned extension lacks the
+`uncertified-through-encounters` marker; or any acceptance path treats a
+display warning or producer-asserted evidence flag as canonical authority.
+
 ### Demo-track regulator disposition
 
 The accepted state of the Borg demo-tolerance seed-0 track is its atomic

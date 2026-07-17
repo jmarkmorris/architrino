@@ -1,9 +1,17 @@
+import {
+  BORG_CERTIFIED_RUN_GRADE,
+  BORG_DISPLAY_RUN_GRADE,
+} from "./BorgRunGradeControl.js";
+
 export const BORG_EOM_SHADOW_RUNNER_VERSION = "borg-eom-shadow-runner.v0";
 export const BORG_EOM_SHADOW_RUN_SOURCE = "computed-eom-shadow-chunks";
 export const BORG_EOM_COMPATIBILITY_HISTORY_PROVENANCE =
   "non-eom-history";
 export const BORG_EOM_ACCEPTED_INITIAL_HISTORY_EVOLUTION_CLAIM_LEVEL =
   "eom-evolution-conditioned-on-accepted-initial-history";
+export { BORG_DISPLAY_RUN_GRADE, BORG_CERTIFIED_RUN_GRADE };
+export const BORG_UNCERTIFIED_ENCOUNTER_CLAIM_LEVEL =
+  "uncertified-through-encounters";
 
 const POSITRINO_STATE_FLAG = 1;
 const ELECTRINO_STATE_FLAG = 2;
@@ -43,6 +51,8 @@ export function createBorgEomShadowRunner(manifest, options = {}) {
   let chunkDuration = config.chunkDuration;
   let controllerStepSize = config.initialStep;
   let chunkIndex = 0;
+  let causticWarningCount = 0;
+  let firstCausticWarningTime = null;
   const initialHistoryAccepted = histories.every(
     (history) => history.sourceAcceptedInitialDatum === true,
   );
@@ -86,7 +96,10 @@ export function createBorgEomShadowRunner(manifest, options = {}) {
         throw new Error("Borg EOM shadow runner has been disposed.");
       }
       if (nextStartTime >= targetDuration) {
-        return createCompleteChunk(config, chunkIndex, nextStartTime);
+        return createCompleteChunk(
+          config, chunkIndex, nextStartTime,
+          causticWarningCount, firstCausticWarningTime,
+        );
       }
       const startTime = nextStartTime;
       const endTime = Math.min(
@@ -101,10 +114,14 @@ export function createBorgEomShadowRunner(manifest, options = {}) {
         startTime,
         endTime,
         initialStep: controllerStepSize,
+        causticWarningCount,
+        firstCausticWarningTime,
       });
       const rawResponse = await client.evolveRetainedHistories(request);
       const response = normalizeEomResponse(rawResponse, request);
       controllerStepSize = response.controllerStepSize;
+      causticWarningCount = response.causticWarningCount;
+      firstCausticWarningTime = response.firstCausticWarningTime;
       nextStartTime = endTime;
       histories = retainBorgHistoryWindow(response.histories, {
         minimumCoverageStart: roundTime(nextStartTime - config.historyDepth),
@@ -116,6 +133,7 @@ export function createBorgEomShadowRunner(manifest, options = {}) {
         config.sampleInterval,
         chunkIndex,
         response.evidenceStatus,
+        response.claimGrade,
         initialHistoryAccepted,
       );
       chunkIndex += 1;
@@ -132,9 +150,17 @@ export function createBorgEomShadowRunner(manifest, options = {}) {
         controllerStepSize,
         phase: "live",
         initialHistoryAccepted,
-        evolutionClaimLevel: initialHistoryAccepted
-          ? BORG_EOM_ACCEPTED_INITIAL_HISTORY_EVOLUTION_CLAIM_LEVEL
-          : "eom-evolution-conditioned-on-unaccepted-history",
+        runGrade: config.runGrade,
+        causticWarningCount,
+        firstCausticWarningTime,
+        causticWarnings: Object.freeze(response.causticWarnings),
+        claimGrade: response.claimGrade,
+        evolutionClaimLevel: response.claimGrade ===
+            BORG_UNCERTIFIED_ENCOUNTER_CLAIM_LEVEL
+          ? BORG_UNCERTIFIED_ENCOUNTER_CLAIM_LEVEL
+          : initialHistoryAccepted
+            ? BORG_EOM_ACCEPTED_INITIAL_HISTORY_EVOLUTION_CLAIM_LEVEL
+            : "eom-evolution-conditioned-on-unaccepted-history",
         frames: Object.freeze(frames),
         histories,
         evidenceStatus: response.evidenceStatus,
@@ -249,6 +275,9 @@ export function createBorgEomShadowRunConfig(manifest, options = {}) {
       options.farFieldEnclosureFraction ?? "0.25",
       "farFieldEnclosureFraction",
     ),
+    runGrade: requiredRunGrade(
+      options.runGrade ?? BORG_DISPLAY_RUN_GRADE,
+    ),
     positionTolerance: requiredPositiveToken(
       options.positionTolerance ?? "1e-10",
       "positionTolerance",
@@ -359,6 +388,8 @@ export function createBorgEomShadowRequest({
   startTime,
   endTime,
   initialStep = config.initialStep,
+  causticWarningCount = 0,
+  firstCausticWarningTime = null,
 }) {
   if (!Array.isArray(histories) || histories.length === 0) {
     throw new TypeError("Borg EOM request requires continuous retained histories.");
@@ -384,6 +415,7 @@ export function createBorgEomShadowRequest({
       minimumStep: config.minimumStep,
       maximumStep: config.maximumStep,
       useAdaptiveStepGrowth: config.useAdaptiveStepGrowth,
+      runGrade: config.runGrade,
       rootTolerance: config.rootTolerance,
       accelerationTolerance: config.accelerationTolerance,
       farFieldEnclosureFraction: config.farFieldEnclosureFraction,
@@ -419,6 +451,9 @@ export function createBorgEomShadowRequest({
       retainedHistoryEnd: histories[0].coverageEnd,
       geometricDelayBound: config.geometricDelayBound,
       historySafetyMargin: config.historySafetyMargin,
+      runGrade: config.runGrade,
+      causticWarningCount,
+      firstCausticWarningTime,
     }),
   });
 }
@@ -471,6 +506,8 @@ export function retainBorgHistoryWindow(histories, { minimumCoverageStart } = {}
 export function isBorgEomPromotionEligible(response, acceptanceGate) {
   return Boolean(
     response?.status === "completed" &&
+      response?.runGrade === BORG_CERTIFIED_RUN_GRADE &&
+      response?.causticWarningCount === 0 &&
       response?.evidenceStatus === "canonical" &&
       acceptanceGate?.schema === "eom_acceptance_gate/v0" &&
       acceptanceGate?.status === "passed" &&
@@ -537,9 +574,33 @@ function normalizeEomResponse(rawResponse, request) {
       throw new Error("Borg EOM shadow response has incomplete or reordered histories.");
     }
   });
+  const runGrade = requiredRunGrade(response.runGrade);
+  const causticWarningCount = requiredNonnegativeInteger(
+    response.causticWarningCount,
+    "response causticWarningCount",
+  );
+  const firstCausticWarningTime = response.firstCausticWarningTime == null
+    ? null
+    : String(response.firstCausticWarningTime);
+  const priorWarningCount = request.provenance.causticWarningCount;
+  const claimGrade = String(response.claimGrade ?? response.evidenceStatus ?? "failed");
+  if (runGrade !== request.numericalControls.runGrade ||
+      causticWarningCount < priorWarningCount ||
+      (causticWarningCount === 0) !== (firstCausticWarningTime == null) ||
+      (causticWarningCount > 0 &&
+       claimGrade !== BORG_UNCERTIFIED_ENCOUNTER_CLAIM_LEVEL)) {
+    throw new Error("Borg EOM shadow response has inconsistent run-grade provenance.");
+  }
   return Object.freeze({
     status: response.status,
     evidenceStatus: response.evidenceStatus ?? "failed",
+    runGrade,
+    claimGrade,
+    causticWarningCount,
+    firstCausticWarningTime,
+    causticWarnings: Array.isArray(response.causticWarnings)
+      ? response.causticWarnings
+      : [],
     controllerStepSize: String(Number(requiredPositiveToken(
       response.controllerStepSize ?? request.numericalControls.initialStep,
       "response controllerStepSize",
@@ -556,6 +617,7 @@ function createFramesFromHistories(
   sampleInterval,
   chunkIndex,
   evidenceStatus,
+  claimGrade,
   initialHistoryAccepted,
 ) {
   const frames = [];
@@ -576,7 +638,9 @@ function createFramesFromHistories(
         stateFlags: history.stateFlags ?? 0,
         dynamicChunkIndex: chunkIndex,
         runSource: BORG_EOM_SHADOW_RUN_SOURCE,
-        valueAuthority: initialHistoryAccepted
+        valueAuthority: claimGrade === BORG_UNCERTIFIED_ENCOUNTER_CLAIM_LEVEL
+          ? BORG_UNCERTIFIED_ENCOUNTER_CLAIM_LEVEL
+          : initialHistoryAccepted
           ? evidenceStatus === "canonical"
             ? "canonical-eom-output-conditioned-on-accepted-initial-history"
             : "eom-shadow-output-conditioned-on-accepted-initial-history"
@@ -615,7 +679,13 @@ function evaluateHistory(history, time) {
   };
 }
 
-function createCompleteChunk(config, chunkIndex, time) {
+function createCompleteChunk(
+  config,
+  chunkIndex,
+  time,
+  causticWarningCount,
+  firstCausticWarningTime,
+) {
   return Object.freeze({
     schema: BORG_EOM_SHADOW_RUNNER_VERSION,
     source: BORG_EOM_SHADOW_RUN_SOURCE,
@@ -626,6 +696,13 @@ function createCompleteChunk(config, chunkIndex, time) {
     sampleInterval: config.sampleInterval,
     phase: "live",
     initialHistoryAccepted: false,
+    runGrade: config.runGrade,
+    causticWarningCount,
+    firstCausticWarningTime,
+    causticWarnings: Object.freeze([]),
+    claimGrade: causticWarningCount > 0
+      ? BORG_UNCERTIFIED_ENCOUNTER_CLAIM_LEVEL
+      : "not-applicable",
     evolutionClaimLevel: "not-applicable",
     frames: Object.freeze([]),
     histories: Object.freeze([]),
@@ -680,6 +757,21 @@ function requiredNumericToken(value, label) {
     throw new TypeError(`Borg EOM ${label} must be a finite numeric token.`);
   }
   return token;
+}
+
+function requiredRunGrade(value) {
+  if (value !== BORG_DISPLAY_RUN_GRADE && value !== BORG_CERTIFIED_RUN_GRADE) {
+    throw new TypeError("Borg EOM runGrade must be display or certified.");
+  }
+  return value;
+}
+
+function requiredNonnegativeInteger(value, label) {
+  const number = Number(value);
+  if (!Number.isInteger(number) || number < 0) {
+    throw new TypeError(`Borg EOM ${label} must be a nonnegative integer.`);
+  }
+  return number;
 }
 
 function requiredPositiveToken(value, label) {
