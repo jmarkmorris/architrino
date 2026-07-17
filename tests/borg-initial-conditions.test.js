@@ -9,6 +9,7 @@ import {
   createBorgAcceptedInertialSeedHistory,
   createBorgInitialConditionConfig,
   createBorgPrescribedLinearHistoryRows,
+  calculateBorgSeedingRadius,
   createBorgSeededInitialConditionRows,
   certifyBorgMinimumSeparation,
   validateBorgInitialConditionConfig,
@@ -233,8 +234,8 @@ test("Borg initial-condition controls support an explicit zero-velocity populati
   assert.deepEqual(rows[0].velocity, { x: 0, y: 0, z: 0 });
 });
 
-test("Borg dense population fails closed when the envelope cannot satisfy minimum separation", () => {
-  assert.throws(() => createBorgSeededInitialConditionRows({
+test("Borg seeds large populations by holding the declared density, not by failing closed", () => {
+  const rows = createBorgSeededInitialConditionRows({
     manifest: BORG_DATASET_MANIFEST_V1,
     seedIndex: 0,
     config: {
@@ -243,5 +244,30 @@ test("Borg dense population fails closed when the envelope cannot satisfy minimu
       randomVelocityMaxComponentMagnitude: 0,
       randomVelocityMinSpeed: 0,
     },
-  }), /could not place 64 architrinos with minimum separation 0\.2/);
+  });
+  assert.equal(rows.length, 64);
+
+  // The declared separation is honored inside a density-preserving envelope;
+  // a fixed envelope cannot place 64 at 0.2 separation at any seed.
+  const certificate = certifyBorgMinimumSeparation(rows, { minimumPairSeparation: 0.2 });
+  assert.equal(certificate.accepted, true);
+  assert.ok(certificate.measuredMinimumSeparation >= 0.2);
+
+  const seedingRadius = calculateBorgSeedingRadius(BORG_DATASET_MANIFEST_V1, 64);
+  const center = BORG_DATASET_MANIFEST_V1.simulationEnvelope.center;
+  assert.ok(seedingRadius > BORG_DATASET_MANIFEST_V1.simulationEnvelope.outerRadius);
+  rows.forEach((row) => {
+    const radius = Math.hypot(
+      row.position.x - center.x,
+      row.position.y - center.y,
+      row.position.z - center.z,
+    );
+    assert.ok(radius <= seedingRadius);
+  });
+
+  // The declared population still seeds inside the declared envelope exactly.
+  assert.equal(
+    calculateBorgSeedingRadius(BORG_DATASET_MANIFEST_V1, 6),
+    BORG_DATASET_MANIFEST_V1.simulationEnvelope.outerRadius,
+  );
 });

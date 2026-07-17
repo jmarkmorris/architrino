@@ -38,6 +38,7 @@ import {
 import {
   BORG_MAX_INITIAL_ARCHITRINO_COUNT,
   calculateBorgInertialHistoryDepth,
+  calculateBorgSeedingRadius,
   createBorgAcceptedInertialSeedHistory,
   createBorgInitialConditionConfig,
   createBorgSeededInitialConditionRows,
@@ -2011,7 +2012,7 @@ export function mountBorgApp(options = {}) {
       const historyDepth = calculateBorgInertialHistoryDepth(endpointRows, {
         fieldSpeed: options.eomShadowRunner.fieldSpeed ?? manifest.simulationEnvelope?.fieldSpeed ?? 1,
         sampleInterval: options.eomShadowRunner.sampleInterval ?? manifest.simulationEnvelope?.sampleInterval ?? 0.01,
-        maximumSeparation: 2 * manifest.simulationEnvelope.outerRadius,
+        maximumSeparation: 2 * calculateBorgSeedingRadius(manifest, endpointRows.length),
       });
       const eomConfig = createBorgEomShadowRunConfig(manifest, {
         ...options.eomShadowRunner,

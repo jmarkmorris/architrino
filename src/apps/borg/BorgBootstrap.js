@@ -3,6 +3,7 @@ import { createBorgEomHttpClient } from "./BorgEomHttpClient.js";
 import { BORG_DATASET_MANIFEST_V1 } from "./BorgAppManifest.js";
 import {
   calculateBorgInertialHistoryDepth,
+  calculateBorgSeedingRadius,
   createBorgAcceptedInertialSeedHistory,
   createBorgInitialConditionConfig,
   createBorgSeededInitialConditionRows,
@@ -54,10 +55,13 @@ export async function bootBorgApp({
     positrinoCount: endpointRows.filter((row) => row.stateFlags === 1).length,
   });
   const sampleInterval = 0.01;
+  // The seeding radius grows with population to hold the declared density, so
+  // the causal bound must use the radius the population was actually seeded
+  // in, not the manifest's declared-population radius.
   const historyDepth = calculateBorgInertialHistoryDepth(endpointRows, {
     fieldSpeed: manifest.simulationEnvelope?.fieldSpeed ?? 1,
     sampleInterval,
-    maximumSeparation: 2 * manifest.simulationEnvelope.outerRadius,
+    maximumSeparation: 2 * calculateBorgSeedingRadius(manifest, endpointRows.length),
   });
   const runtimeManifest = createManifestWithHistoryDepth(manifest, historyDepth);
   const initialEomSeed = await createBorgAcceptedInertialSeedHistory(endpointRows, {

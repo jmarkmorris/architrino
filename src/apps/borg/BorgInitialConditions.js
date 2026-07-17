@@ -108,7 +108,7 @@ export function createBorgSeededInitialConditionRows({ manifest, seedIndex = 0, 
   const positions = createSeparatedRandomSimulationEnvelopePositions(
       stateFlags.length,
       envelopeCenter,
-      outerRadius,
+      calculateBorgSeedingRadius(manifest, stateFlags.length),
       rng,
       nonNegativeNumber(manifest?.initialConditions?.minimumPairSeparation, 0),
     );
@@ -401,6 +401,32 @@ function createRandomSimulationEnvelopePosition(center, radius, rng) {
     }
   }
   throw new RangeError("Borg could not draw a position inside the spherical simulation envelope.");
+}
+
+/**
+ * Seeding radius that holds the manifest's declared number density as the
+ * population grows. The manifest declares its population inside its outer
+ * radius; N architrinos at that same density need a ball whose volume scales
+ * with N, so the radius scales with the cube root of the population ratio.
+ *
+ * Without this, larger populations are impossible rather than merely dense:
+ * a minimum separation of s reserves a ball of radius s/2 per architrino, and
+ * random sequential placement saturates near ~30% of the packing limit. The
+ * declared 0.2 separation cannot place 64 architrinos inside radius 0.5 at
+ * all (measured 2026-07-17: RangeError after 20000 attempts), which is a
+ * geometry failure, not a physics one.
+ */
+export function calculateBorgSeedingRadius(manifest, count) {
+  const outerRadius = Number(manifest?.simulationEnvelope?.outerRadius);
+  const declaredCount = Number(manifest?.population?.architrinoCount);
+  if (!(outerRadius > 0)) {
+    throw new TypeError("Borg seeding radius requires a positive envelope outer radius.");
+  }
+  if (!Number.isInteger(declaredCount) || declaredCount <= 0 ||
+      !Number.isInteger(count) || count <= 0 || count <= declaredCount) {
+    return outerRadius;
+  }
+  return outerRadius * Math.cbrt(count / declaredCount);
 }
 
 function createSeparatedRandomSimulationEnvelopePositions(
