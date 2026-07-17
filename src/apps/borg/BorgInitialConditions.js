@@ -96,19 +96,19 @@ export function createBorgSeededInitialConditionRows({ manifest, seedIndex = 0, 
     accepted.randomVelocityMinSpeed,
   ].join(":"));
   const envelopeCenter = manifest?.simulationEnvelope?.center ?? {};
-  const centralBallRadius = Number(manifest?.simulationEnvelope?.centralBallRadius);
+  const outerRadius = Number(manifest?.simulationEnvelope?.outerRadius);
   if (![envelopeCenter.x, envelopeCenter.y, envelopeCenter.z].every(Number.isFinite) ||
-      !(centralBallRadius > 0)) {
-    throw new TypeError("Borg initial conditions require a finite spherical-envelope center and positive central-ball radius.");
+      !(outerRadius > 0)) {
+    throw new TypeError("Borg initial conditions require a finite spherical-envelope center and positive outer radius.");
   }
   const stateFlags = createBalancedStateFlags(
     accepted.electrinoCount,
     accepted.positrinoCount,
   );
-  const positions = createSeparatedRandomCentralBallPositions(
+  const positions = createSeparatedRandomSimulationEnvelopePositions(
       stateFlags.length,
       envelopeCenter,
-      centralBallRadius,
+      outerRadius,
       rng,
       nonNegativeNumber(manifest?.initialConditions?.minimumPairSeparation, 0),
     );
@@ -385,7 +385,7 @@ function createBalancedStateFlags(electrinoCount, positrinoCount) {
   return flags;
 }
 
-function createRandomCentralBallPosition(center, radius, rng) {
+function createRandomSimulationEnvelopePosition(center, radius, rng) {
   for (let attempt = 0; attempt < 256; attempt += 1) {
     const offset = {
       x: (rng() * 2 - 1) * radius,
@@ -400,10 +400,10 @@ function createRandomCentralBallPosition(center, radius, rng) {
       };
     }
   }
-  throw new RangeError("Borg could not draw a position inside the central ball.");
+  throw new RangeError("Borg could not draw a position inside the spherical simulation envelope.");
 }
 
-function createSeparatedRandomCentralBallPositions(
+function createSeparatedRandomSimulationEnvelopePositions(
   count,
   center,
   radius,
@@ -414,7 +414,7 @@ function createSeparatedRandomCentralBallPositions(
   for (let index = 0; index < count; index += 1) {
     let accepted = null;
     for (let attempt = 0; attempt < 20000; attempt += 1) {
-      const candidate = createRandomCentralBallPosition(center, radius, rng);
+      const candidate = createRandomSimulationEnvelopePosition(center, radius, rng);
       if (positions.every((position) => vectorDistance(position, candidate) >= minimumSeparation)) {
         accepted = Object.freeze(candidate);
         break;

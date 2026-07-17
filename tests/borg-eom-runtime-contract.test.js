@@ -86,16 +86,16 @@ test("Borg app manifest is design-owned policy and passes validation", () => {
   );
   assert.equal(
     manifest.initialConditions.initialLinePolicy,
-    "seeded-random-central-ball",
+    "seeded-random-simulation-envelope",
   );
   assert.equal(manifest.initialConditions.minimumPairSeparation, 0.2);
-  assert.equal(manifest.initialConditions.velocityPolicy, "zero-initial-velocity");
+  assert.equal(manifest.initialConditions.velocityPolicy, "seeded-random-small-3d");
   assert.equal(manifest.initialConditions.positrinoCharge, 1);
   assert.equal(manifest.initialConditions.electrinoCharge, -1);
   assert.equal(manifest.simulationEnvelope.kind, "sphere");
-  assert.equal(manifest.simulationEnvelope.outerRadius, 0.625);
-  assert.equal(manifest.simulationEnvelope.centralBallRadius, 0.5);
-  assert.equal(manifest.simulationEnvelope.radialBufferMargin, 0.125);
+  assert.equal(manifest.simulationEnvelope.outerRadius, 0.5);
+  assert.equal(manifest.simulationEnvelope.centralBallRadius, 0.4);
+  assert.equal(manifest.simulationEnvelope.radialBufferMargin, 0.1);
   assert.equal(manifest.simulationEnvelope.sideLength, undefined);
   assert.equal(manifest.simulationEnvelope.centralVolume, undefined);
   assert.equal(manifest.simulationEnvelope.faceBufferMargin, undefined);
@@ -103,7 +103,7 @@ test("Borg app manifest is design-owned policy and passes validation", () => {
   assert.equal(manifest.population.countDerivation.roundedValue, 6);
 
   const invalidRadiusManifest = structuredClone(manifest);
-  invalidRadiusManifest.simulationEnvelope.outerRadius = 0.5;
+  invalidRadiusManifest.simulationEnvelope.outerRadius = 0.4;
   assert.throws(
     () => validateBorgManifest({
       manifest: invalidRadiusManifest,
@@ -304,8 +304,18 @@ test("Borg path-history renderer uses native row segments, not visual smoothing 
   assert.match(runtimeSource, /PLAYBACK_SPEED_PRESETS/);
   assert.match(runtimeSource, /BOUNDARY_SHELL_LATITUDE_COUNT = 25/);
   assert.match(runtimeSource, /BOUNDARY_SHELL_LONGITUDE_COUNT = 48/);
+  assert.match(runtimeSource, /ENVELOPE_GUIDE_COLOR = 0xcbd0c8/);
+  assert.match(runtimeSource, /ENVELOPE_GUIDE_OPACITY = 0\.88/);
   assert.match(runtimeSource, /new THREE\.Points\(/);
-  assert.doesNotMatch(runtimeSource, /new THREE\.LineLoop/);
+  assert.equal((runtimeSource.match(/boundaryShellGroup\.add\(\s*createBoundaryShellPoints\(\{/g) ?? []).length, 1);
+  assert.doesNotMatch(runtimeSource, /centralBallGroup/);
+  assert.match(runtimeSource, /\["xy", "xz", "yz"\]/);
+  assert.match(runtimeSource, /new THREE\.LineLoop/);
+  assert.match(runtimeSource, /createEnvelopeGreatCircles\(\{\s*radius: manifest\.simulationEnvelope\.outerRadius,\s*color: ENVELOPE_GUIDE_COLOR,\s*opacity: ENVELOPE_GUIDE_OPACITY/);
+  assert.match(runtimeSource, /function fitCameraToEnvelope\(margin\)/);
+  assert.match(runtimeSource, /manifest\.simulationEnvelope\.outerRadius \* worldUnitsPerSolverUnit/);
+  assert.match(runtimeSource, /DEFAULT_CAMERA_FIT_MARGIN = 1\.1/);
+  assert.match(htmlSource, /\.borg-status-chip\[hidden\]\s*\{\s*display: none;/);
   assert.doesNotMatch(runtimeSource, /SphereGeometry/);
   assert.doesNotMatch(runtimeSource, /BoxGeometry/);
   assert.doesNotMatch(runtimeSource, /PLAYBACK_MS_PER_NATIVE_STEP/);

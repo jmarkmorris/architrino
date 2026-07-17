@@ -22,9 +22,9 @@ export const BORG_DATASET_MANIFEST_V1 = deepFreeze({
       "y": 0.5,
       "z": 0.5
     },
-    "outerRadius": 0.625,
-    "centralBallRadius": 0.5,
-    "radialBufferMargin": 0.125,
+    "outerRadius": 0.5,
+    "centralBallRadius": 0.4,
+    "radialBufferMargin": 0.1,
     "coordinateChart": "centered-cartesian",
     "scaleFactor": 1,
     "timeStepPolicy": "fixed",
@@ -34,7 +34,7 @@ export const BORG_DATASET_MANIFEST_V1 = deepFreeze({
     "wakeHorizon": 10
   },
   "modelControls": {
-    "coupling": 0.005
+    "coupling": 0.05
   },
   "population": {
     "centralArchitrinoCount": 3,
@@ -44,8 +44,8 @@ export const BORG_DATASET_MANIFEST_V1 = deepFreeze({
     "countDerivation": {
       "formulaId": "N_calc=ceil(N_C*((r_central+b_radial)/r_central)^3)",
       "centralArchitrinoCount": 3,
-      "centralBallRadius": 0.5,
-      "radialBufferMargin": 0.125,
+      "centralBallRadius": 0.4,
+      "radialBufferMargin": 0.1,
       "exactPreCeiling": 5.859375,
       "roundedValue": 6
     }
@@ -59,11 +59,11 @@ export const BORG_DATASET_MANIFEST_V1 = deepFreeze({
     "polaritySignConvention": "positrino-positive-electrino-negative",
     "positrinoCharge": 1,
     "electrinoCharge": -1,
-    "velocityPolicy": "zero-initial-velocity",
-    "initialLinePolicy": "seeded-random-central-ball",
-    "velocitySeed": "zero-initial-velocity",
+    "velocityPolicy": "seeded-random-small-3d",
+    "initialLinePolicy": "seeded-random-simulation-envelope",
+    "velocitySeed": "borg-random-velocity.v1",
     "minimumPairSeparation": 0.2,
-    "randomVelocityMaxComponentMagnitude": 0,
+    "randomVelocityMaxComponentMagnitude": 0.01,
     "randomVelocityMinSpeed": 0,
     "customEditStatus": "accepted"
   },
@@ -363,14 +363,14 @@ export function validateBorgManifest({
   if (manifest.population.maximumArchitrinoCount < manifest.population.architrinoCount) {
     failures.push("maximum population is smaller than the default population");
   }
-  if (manifest.initialConditions.initialLinePolicy !== "seeded-random-central-ball") {
-    failures.push("seeded-random central-ball initial layout policy is missing");
+  if (manifest.initialConditions.initialLinePolicy !== "seeded-random-simulation-envelope") {
+    failures.push("seeded-random simulation-envelope initial layout policy is missing");
   }
   if (manifest.initialConditions.initialConditionSeed == null) {
     failures.push("seeded random initial condition seed is missing");
   }
-  if (manifest.initialConditions.velocityPolicy !== "zero-initial-velocity") {
-    failures.push("zero initial velocity policy is missing");
+  if (manifest.initialConditions.velocityPolicy !== "seeded-random-small-3d") {
+    failures.push("seeded-random velocity policy is missing");
   }
   if (manifest.initialConditions.velocitySeed == null) {
     failures.push("seeded random velocity seed is missing");
@@ -381,8 +381,8 @@ export function validateBorgManifest({
   if (manifest.initialConditions.positrinoCharge !== 1 || manifest.initialConditions.electrinoCharge !== -1) {
     failures.push("Borg polarity charge signs are not canonical");
   }
-  if (manifest.initialConditions.randomVelocityMaxComponentMagnitude !== 0) {
-    failures.push("default maximum velocity component is not zero");
+  if (manifest.initialConditions.randomVelocityMaxComponentMagnitude !== 0.01) {
+    failures.push("default maximum velocity component is not 0.01");
   }
   if (manifest.initialConditions.randomVelocityMinSpeed !== 0) {
     failures.push("default minimum speed is not zero");

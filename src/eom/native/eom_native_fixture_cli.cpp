@@ -322,6 +322,14 @@ std::vector<eom::ExactPairCertificate> pair_fixture() {
        segment("-0.000000010", "0.000000002", {"0", "0", "0", "0"},
                {"0", "0", "0", "0"}, {"0", "0", "0", "0"},
                "0.0000000005", "0")});
+  const eom::RetainedHistory asymmetric_monotone_receiver(
+      "asymmetric-monotone-receiver",
+      {segment("0", "1", {"0.49996941", "0", "0", "0"})});
+  const eom::RetainedHistory asymmetric_monotone_source(
+      "asymmetric-monotone-source",
+      {segment("0", "1", {"0", "0", "0", "0"},
+               {"0", "0", "0", "0"}, {"0", "0", "0", "0"},
+               "0.00028", "0")});
 
   std::vector<eom::ExactPairRequest> requests;
   auto add = [&](std::string row_id, const eom::RetainedHistory& target,
@@ -381,6 +389,8 @@ std::vector<eom::ExactPairCertificate> pair_fixture() {
   add("mpfr_inward_tolerance_probe", inward_probe_receiver,
       inward_probe_source, "0.000000002", "-0.000000020",
       "0.000000002", "1e-8", true);
+  add("mpfr_asymmetric_monotone_root", asymmetric_monotone_receiver,
+      asymmetric_monotone_source, "1", "0", "1", "0.001", true);
   auto certificates = eom::certify_exact_pair_batch(requests, 4);
   const auto prior = eom::certify_exact_pair({
       .row_id = "warm_complement_prior",

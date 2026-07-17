@@ -121,6 +121,45 @@ class NativeBorgProcessTests(unittest.TestCase):
             len(response["publishedExtensions"][0]["segments"]), 0
         )
 
+    def test_ordinary_root_failure_is_not_labeled_as_a_caustic_entry(self) -> None:
+        def protocol(grade: str) -> str:
+            return "\n".join((
+                "EOM_BORG_NATIVE_V4",
+                "\t".join((
+                    "RUN", f"ordinary-root-{grade}", "1", "1.01",
+                    "0.01", "0.01", "0.01", "0", grade, "0",
+                    "none", "none", "1", "1", "0.001", "1e-8",
+                    "0", "1e-8", "1e-8", "1e-8", "2", "2",
+                )),
+                "PATH\treceiver\t1\t1\t1",
+                "SEG\t0\t1\t0.5\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0",
+                "PATH\tsource\t1\t1\t1",
+                "SEG\t0\t1\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0.001\t0",
+                "END",
+                "",
+            ))
+
+        for grade in ("display", "certified"):
+            with self.subTest(grade=grade):
+                completed = subprocess.run(
+                    [str(self.binary), "borg-shadow-v0"],
+                    input=protocol(grade),
+                    check=True,
+                    cwd=ROOT,
+                    capture_output=True,
+                    text=True,
+                )
+                response = json.loads(completed.stdout)
+                self.assertEqual(response["status"], "halted")
+                self.assertEqual(
+                    response["haltCode"],
+                    "root_completeness_not_certified",
+                )
+                terminal = response["stepFailures"][-1]
+                self.assertEqual(terminal["failureCode"], "root_completeness_not_certified")
+                self.assertEqual(terminal["causticContractRow"], "")
+                self.assertEqual(terminal["causticRegulatorLevel"], "not-applicable")
+
     def test_native_process_rejects_under_length_run_record(self) -> None:
         under_length_run = "\t".join(
             (

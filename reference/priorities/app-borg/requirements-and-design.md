@@ -23,7 +23,7 @@ The boundary rule is statistical: record the boundary-shell patch statistics of 
 
 An exiting architrino contributes to an outbound shell row. A later inbound architrino generated from boundary-shell patch statistics is a boundary-generated architrino with reduced value authority unless the manifest explicitly binds it to retained external path history. Likewise, an inbound wake history generated from boundary-shell patch statistics is background/replay input, not a retained wake row and not branch evidence.
 
-The viewport renders one faint dotted sphere at the outer boundary shell. The central ball remains the declared seeding and measurement region but has no separate sphere, keeping the envelope legible as one boundary. When an architrino crosses the outer shell, it contributes to the boundary-shell statistics. A statistically matched inbound architrino is a new identity; the app must not depict it as the same identity returning at another shell location.
+The viewport renders one dotted sphere at the outer boundary shell. Initial positions are sampled uniformly throughout that same outer spherical volume. The central ball remains a declared measurement region but is neither the initial-population volume nor a second rendered sphere. When an architrino crosses the outer shell, it contributes to the boundary-shell statistics. A statistically matched inbound architrino is a new identity; the app must not depict it as the same identity returning at another shell location.
 
 ## Central Volume Observation Rule
 
@@ -98,7 +98,7 @@ The app should expose scale as a declared simulation envelope, not as cosmetic z
 | `radialBufferMargin` | Radial distance $b_{\mathrm{shell}}(\mathcal C)$ from the central ball to the outer boundary shell | Must satisfy the strict central-ball buffer target or trigger boundary-to-central residual validation. |
 | `centralBoundaryTolerance` | Declared tolerance $\tau_{\mathcal C}$ for boundary-shell influence on the central ball | Required before central-ball values can be presented as inside the declared boundary-influence budget. |
 
-The Borg simulation envelope uses the canonical normalized field speed $c_f=1$. Any different numeric value requires an explicit unit transform in the run manifest; an unexplained fixture-local override is invalid. The live app computes `historyDepth` from the full simulation-envelope diameter $2r_{\mathrm{outer}}$ and the active source-speed bound, then declares `wakeHorizon = c_f h`. With zero initial velocity, `outerRadius = 0.625`, and sample interval `0.01`, the initial history depth is `1.26`.
+The Borg simulation envelope uses the canonical normalized field speed $c_f=1$. Any different numeric value requires an explicit unit transform in the run manifest; an unexplained fixture-local override is invalid. The live app computes `historyDepth` from the full simulation-envelope diameter $2r_{\mathrm{outer}}$ and the active source-speed bound, then declares `wakeHorizon = c_f h`. With `outerRadius = 0.5`, per-axis initial-speed bound `0.01`, and sample interval `0.01`, the exact startup history depth is derived from that startup's randomized velocities rather than fixed in the manifest.
 
 `historyDepth` and `wakeHorizon` must not be collapsed into one UI field. `historyDepth` is the retained time window, while `wakeHorizon = c_f h` is the corresponding length scale. If `wakeHorizon` is small compared with `radialBufferMargin`, the central ball can be interpreted as local with respect to retained wakes, subject to the velocity-bound term above. If `wakeHorizon` is comparable to or larger than `radialBufferMargin`, boundary-shell diagnostics, outbound shell statistics, inbound replay policy, and wake-background status become relevant for central-ball interpretation.
 
@@ -116,7 +116,7 @@ The app should support several initial-condition families while preserving expli
 | `explicit` | Per-architrino position, velocity, identity, and optional path segment input | Best first path for reproducible fixtures. |
 | `imported` | Manifest id, schema version, source hash, units, and scale normalization | Must preserve source provenance and schema version. |
 
-The current browser implementation launches from a deterministic `seeded-random` geometry: six architrinos seeded by rejection sampling uniformly in the central ball, a 3:3 electrino/positrino mix, declared minimum pair separation `0.2`, and zero initial velocity. The accepted initial-history certificate records the measured all-pairs separation and its `1e-12` comparison tolerance. Consequently every displayed displacement in the default run is acceleration-driven. The seed makes the geometry reproducible without imposing a lattice.
+The current browser implementation launches from a fresh `seeded-random` geometry on every page startup: six architrinos are sampled by rejection uniformly in the full spherical simulation envelope, with a 3:3 electrino/positrino mix, declared minimum pair separation `0.2`, and independently sampled velocity components bounded by `0.01`. The rendered dotted sphere and the initial-population volume share `outerRadius = 0.5`; the startup seed is recorded so an explicit seed can reproduce the distribution without imposing a lattice. The accepted initial-history certificate records the measured all-pairs separation and its `1e-12` comparison tolerance.
 
 The Initial Condition panel exposes exact `electrinoCount`, exact `positrinoCount`, the run coupling `κ`, `randomVelocityMaxComponentMagnitude`, and `randomVelocityMinSpeed`. The component maximum bounds each of `|v_x|`, `|v_y|`, and `|v_z|`; the minimum speed bounds the complete vector magnitude `sqrt(v_x^2+v_y^2+v_z^2)`. `Apply & run` uses deterministic seeded-random placement subject to the declared minimum-separation gate and passes the accepted positive coupling to every forward EOM chunk. It validates a combined population from 1 through 512, rejects an unreachable speed or placement request, constructs a certified exact polynomial initial history, and starts forward EOM evolution. A rejected edit leaves the active run unchanged. These rows are accepted input, not canonical equation-of-motion evidence. Per-architrino position and velocity-vector editing remains outside this implemented control set; high populations remain gated in practice by measured EOM throughput.
 
@@ -135,7 +135,7 @@ N_{\mathcal C}
 \right\rceil.
 $$
 
-For the current defaults, $N_{\mathcal C}=3$, $r_{\mathrm{central}}=0.5$, and $b_{\mathrm{radial}}=0.125$. The pre-ceiling value is $5.859375$, so the declared total remains six architrinos, split 3:3 by polarity.
+For the current defaults, $N_{\mathcal C}=3$, $r_{\mathrm{central}}=0.4$, and $b_{\mathrm{radial}}=0.1$. The pre-ceiling value is $5.859375$, so the declared total remains six architrinos, split 3:3 by polarity.
 
 The app should display both counts:
 
@@ -336,7 +336,7 @@ Parsimony means the first screen should expose only the controls and statuses ne
 
 Primary regions:
 
-1. 3D simulation-window viewport with faint sphere edges, architrino positions, path trails, wake rows, boundary-shell rows, and diagnostics.
+1. 3D simulation-window viewport with one faint dotted outer sphere, architrino positions, path trails, wake rows, boundary-shell rows, and diagnostics.
 2. Left control rail for scale, initial conditions, EOM solver envelope, run controls, and seed/import controls.
 3. Bottom timeline for playback, scrubbing, checkpoint selection, and event selection.
 4. Right diagnostics rail for selected architrino state, path-history metadata, wake-history rows, acceleration decomposition, boundary-shell summary, and failure rows.
@@ -348,7 +348,7 @@ Minimal does not mean hiding required state. The default view should keep advanc
 
 ### Launch State
 
-The app should launch into an initial-condition staging view at the start time, before the simulation is run. The default staging state is the editable `random` preset: architrinos scattered randomly in the spherical simulation envelope with a 50/50 electrino/positrino mix and random velocities. The visible scene is the simulation-window sphere as a faint edge-only wireframe with editable architrino positions. Velocity rays are off by default and available through the layer toggle or selected-object editing. The operator can set the number and mix of electrinos and positrinos, choose a velocity policy, and adjust initial positions, velocities, and simulation-envelope fields before starting the EOM solver run; those edits are pending initial-condition changes, not path history.
+The app should launch into an initial-condition staging view at the start time, before the simulation is run. The default staging state is the editable `random` preset: architrinos scattered randomly in the spherical simulation envelope with a 50/50 electrino/positrino mix and random velocities. The visible scene shows the outer simulation-envelope boundary as one bright light-gray dotted sphere with three orthogonal light-gray great circles and editable architrino positions; the central ball is not drawn as a second sphere. Velocity rays are off by default and available through the layer toggle or selected-object editing. The operator can set the number and mix of electrinos and positrinos, choose a velocity policy, and adjust initial positions, velocities, and simulation-envelope fields before starting the EOM solver run; those edits are pending initial-condition changes, not path history.
 
 Velocity vectors should render economically as rays from each architrino, without arrowheads. The ray uses the architrino's stable display color, with red/blue reserved for runs that expose an explicit polarity or charge-sign display policy. The first logarithmic magnitude cue should be a lightweight floating exponent label shown on hover, selection, or endpoint drag; for a speed scale near $10^x$, the label displays `x`. The selected-object diagnostics must still show the exact velocity vector, speed, transform type, and value-authority status.
 
@@ -457,7 +457,7 @@ The 3D viewport should use optional layers that can be turned on or off without 
 
 | Layer | Default | Visual rule | Data dependency |
 | --- | --- | --- | --- |
-| `simulation-window` | On and locked | Render only the faint wireframe edges of the displayed central ball; do not render walls, panels, or filled boundary-shell patches. | `centralBall`, `centralBallRadius`, `outerRadius`, `radialBufferMargin`, and camera projection. |
+| `simulation-window` | On and locked | Render one bright light-gray dotted sphere at the outer boundary shell with three orthogonal light-gray great circles; do not render a second central-ball sphere, walls, panels, or filled boundary-shell patches. | `centralBall`, `centralBallRadius`, `outerRadius`, `radialBufferMargin`, and camera projection. |
 | `architrino-position` | On | Render each architrino as a stable colored point or glyph. | Current solver state. |
 | `path-history` | Off | Render recent trails with fade or bounded segment count. | Path-history stream and replay index. |
 | `wake-streams` | Off | Render expanding causal spheres or shells from retained wake rows; boundary-generated rows must be visually downgraded. | Wake-history rows, emission time, hit time, causal speed, boundary-shell status. |

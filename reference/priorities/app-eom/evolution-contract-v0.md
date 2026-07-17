@@ -167,7 +167,36 @@ Every root-search record must identify:
 - new, merged, split, disappeared, or unresolved roots;
 - certification status and precision path.
 
+For an interior simple-root bracket $[a,b]$, let $g(S)$ be the causal
+residual, let a probe $p\in[a,b]$ have certified enclosure $G_p$, and let the
+source-normal enclosure $D_s([a,b])$ exclude zero. Opposite strict residual
+signs at $a$ and $b$ certify existence, while the one-sign source normal
+certifies uniqueness. The mean-value theorem then gives the outward root
+enclosure
+
+$$
+I_*=[a,b]\cap\left(p-\frac{G_p}{D_s([a,b])}\right).
+$$
+
+The root row may accept $I_*$ when its outward width is within the unchanged
+root tolerance and the source-normal enclosure over $I_*$ still excludes
+zero. This asymmetric enclosure is required before declaring
+`interior_root_not_surrounded`; a symmetric probe about $p$ is not by itself a
+completeness test.
+
 If a possible root reaches the retained-history boundary or completeness cannot be certified, the candidate step fails with `insufficient_history_depth` or `unresolved_root_set`. The contribution is never silently omitted.
+
+An ordinary `root_completeness_not_certified` row carries no finite-width
+contract row and no regulator level. `FWC-ENTRY-02` is emitted only when the
+root certificate actually requires the caustic route; selecting the
+sharp-with-finite-width-fallback chart does not reclassify every unresolved
+root as a caustic.
+
+When step reduction reaches the declared minimum step, an underlying
+`coupled_correction_failed` row remains the terminal halt code. The controller
+does not replace that adjudicated cause with the generic
+`minimum_step_exhausted` label. This naming rule does not accept the rejected
+step or change the minimum step.
 
 ## Regularization And Caustics
 

@@ -2028,6 +2028,35 @@ std::optional<std::pair<MpFloat, MpFloat>> surround_mp_root(
   return std::nullopt;
 }
 
+std::optional<std::pair<MpFloat, MpFloat>>
+enclose_mp_monotone_root(
+    const MpFloat& point,
+    const MpInterval& point_residual,
+    const MpInterval& source_normal,
+    const MpFloat& bracket_lower,
+    const MpFloat& bracket_upper,
+    const MpFloat& tolerance) {
+  if (source_normal.contains_zero()) {
+    return std::nullopt;
+  }
+
+  // For a root u_* in this one-sign source-normal bracket, the mean-value
+  // theorem gives u_* = point - g(point) / g'(xi).  Directed interval
+  // division therefore encloses every root allowed by the retained-history
+  // errors without requiring symmetric strict-sign probes around point.
+  const MpInterval candidate =
+      MpInterval::point(point) - point_residual / source_normal;
+  const MpFloat lower = candidate.lower().compare(bracket_lower) >= 0
+      ? candidate.lower() : bracket_lower;
+  const MpFloat upper = candidate.upper().compare(bracket_upper) <= 0
+      ? candidate.upper() : bracket_upper;
+  if (lower.compare(upper) > 0 ||
+      !mp_width_within(lower, upper, tolerance)) {
+    return std::nullopt;
+  }
+  return std::make_pair(lower, upper);
+}
+
 std::optional<MpRoot> surround_mp_segment_join_root(
     const MpReceiverState& receiver,
     const MpCompiledSegment& left_segment,
@@ -2545,13 +2574,20 @@ MpAttempt run_mpfr_attempt(const ExactPairRequest& request, unsigned bits_value)
           MpInterval::point(middle), field_speed);
       int middle_sign = middle_geometry.residual.strict_sign();
       if (middle_sign == 0) {
-        const auto surrounded = surround_mp_root(
+        auto enclosed = surround_mp_root(
             receiver_state, source_segment, reception, field_speed, middle,
             lower, upper, tolerance, bits);
-        if (!surrounded.has_value()) {
-          const auto bracket_geometry = mp_geometry(
-              receiver_state, source_segment, reception,
-              MpInterval::bounds(lower, upper), field_speed);
+        const auto bracket_geometry = mp_geometry(
+            receiver_state, source_segment, reception,
+            MpInterval::bounds(lower, upper), field_speed);
+        if (!enclosed.has_value() &&
+            bracket_geometry.source_normal.has_value()) {
+          enclosed = enclose_mp_monotone_root(
+              middle, middle_geometry.residual,
+              *bracket_geometry.source_normal,
+              lower, upper, tolerance);
+        }
+        if (!enclosed.has_value()) {
           attempt.complete = false;
           attempt.finite_width_root_cluster = same_retained_history;
           attempt.diagnostic_detail = "interior_root_not_surrounded";
@@ -2581,13 +2617,8 @@ MpAttempt run_mpfr_attempt(const ExactPairRequest& request, unsigned bits_value)
           ++attempt.difficult_cells;
           return;
         }
-        lower = surrounded->first;
-        upper = surrounded->second;
-        refined_lower_sign = -1;
-        refined_upper_sign = 1;
-        if (lower_sign > upper_sign) {
-          std::swap(refined_lower_sign, refined_upper_sign);
-        }
+        lower = enclosed->first;
+        upper = enclosed->second;
         break;
       }
       if (middle_sign == refined_lower_sign) {

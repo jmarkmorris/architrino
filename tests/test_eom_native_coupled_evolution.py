@@ -617,6 +617,20 @@ class NativeCoupledEvolutionTests(unittest.TestCase):
             display["ordinary_correction_failure_code"],
             "coupled_correction_failed",
         )
+        self.assertEqual(display["ordinary_evolution_warning_count"], 0)
+        self.assertEqual(display["ordinary_evolution_warning_pair_count"], 0)
+        self.assertEqual(
+            display["ordinary_correction_halt_code"],
+            "coupled_correction_failed",
+        )
+        self.assertEqual(
+            display["ordinary_root_display_halt_code"],
+            "root_completeness_not_certified",
+        )
+        self.assertEqual(
+            display["ordinary_root_certified_halt_code"],
+            "root_completeness_not_certified",
+        )
         self.assertGreater(display["warning_count"], 0)
         self.assertTrue(
             all(

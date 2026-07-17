@@ -48,14 +48,17 @@ const TARGET_CENTRAL_WORLD_DIAMETER = 4.96;
 const BORG_LIVE_RUN_BUDGET_VERSION = "borg-live-run-budget.v1";
 const CAMERA_MIN_DISTANCE = 4.8;
 const CAMERA_MAX_DISTANCE = 28;
-const DEFAULT_CAMERA_FIT_MARGIN = 1.25;
-const FIT_VIEW_MARGIN = 1.14;
+const DEFAULT_CAMERA_FIT_MARGIN = 1.1;
+const FIT_VIEW_MARGIN = 1.02;
 const DEFAULT_ROTATION_X = -0.44;
 const DEFAULT_ROTATION_Y = 0.66;
 const ARCHITRINO_POINT_PIXEL_SIZE = 8;
 const ARCHITRINO_PICK_THRESHOLD = 0.22;
 const BOUNDARY_SHELL_LATITUDE_COUNT = 25;
 const BOUNDARY_SHELL_LONGITUDE_COUNT = 48;
+const ENVELOPE_GUIDE_COLOR = 0xcbd0c8;
+const ENVELOPE_GUIDE_OPACITY = 0.88;
+const ENVELOPE_GREAT_CIRCLE_POINT_COUNT = 96;
 const DEFAULT_PLAYBACK_SPEED_PRESET_ID = "normal";
 const DEFAULT_RUN_CONTROL_PRESET_ID = "live-forever";
 const FINITE_RUN_CONTROL_PRESET_ID = "live-60s";
@@ -229,6 +232,10 @@ export function mountBorgApp(options = {}) {
   };
 
   const initialEomSeed = options.initialEomSeed ?? null;
+  const initialDistributionSeedIndex = Number.isSafeInteger(options.initialDistributionSeedIndex) &&
+      options.initialDistributionSeedIndex >= 0
+    ? options.initialDistributionSeedIndex
+    : 0;
   const autoStartEom = options.autoStartEom !== false;
   // The accepted seed's endpoint is visible before the first EOM chunk. Its
   // past rows are solver input only and are never presented as computed output.
@@ -365,9 +372,9 @@ export function mountBorgApp(options = {}) {
     distributionFrameRows: initialEomSeed?.rows ?? null,
     eomSeedEndpointRows: initialEomSeed?.endpointRows ?? null,
     eomSeedCertificate: initialEomSeed?.certificate ?? null,
-    distributionSeedIndex: 0,
+    distributionSeedIndex: initialDistributionSeedIndex,
     distributionLabel: initialEomSeed
-      ? "accepted inertial EOM seed 0"
+      ? `accepted inertial EOM seed ${initialDistributionSeedIndex}`
       : DEFAULT_DISTRIBUTION_LABEL,
     initialConditionConfig: createBorgInitialConditionConfig(
       options.initialConditionConfig ?? manifest.initialConditions,
@@ -422,8 +429,13 @@ export function mountBorgApp(options = {}) {
     boundaryShellGroup.add(
       createBoundaryShellPoints({
         radius: manifest.simulationEnvelope.outerRadius,
-        color: 0x5eb7b7,
-        opacity: 0.34,
+        color: ENVELOPE_GUIDE_COLOR,
+        opacity: ENVELOPE_GUIDE_OPACITY,
+      }),
+      createEnvelopeGreatCircles({
+        radius: manifest.simulationEnvelope.outerRadius,
+        color: ENVELOPE_GUIDE_COLOR,
+        opacity: ENVELOPE_GUIDE_OPACITY,
       }),
     );
 
@@ -524,6 +536,38 @@ export function mountBorgApp(options = {}) {
       new THREE.BufferGeometry().setFromPoints(points),
       material,
     );
+  }
+
+  function createEnvelopeGreatCircles({ radius, color, opacity }) {
+    const group = new THREE.Group();
+    const worldRadius = radius * worldUnitsPerSolverUnit;
+    const material = new THREE.LineBasicMaterial({
+      color,
+      transparent: true,
+      opacity,
+    });
+    const circlePoints = (plane) => Array.from(
+      { length: ENVELOPE_GREAT_CIRCLE_POINT_COUNT },
+      (_unused, index) => {
+        const angle = (index / ENVELOPE_GREAT_CIRCLE_POINT_COUNT) * Math.PI * 2;
+        const first = Math.cos(angle) * worldRadius;
+        const second = Math.sin(angle) * worldRadius;
+        if (plane === "xy") {
+          return new THREE.Vector3(first, second, 0);
+        }
+        if (plane === "xz") {
+          return new THREE.Vector3(first, 0, second);
+        }
+        return new THREE.Vector3(0, first, second);
+      },
+    );
+    ["xy", "xz", "yz"].forEach((plane) => {
+      group.add(new THREE.LineLoop(
+        new THREE.BufferGeometry().setFromPoints(circlePoints(plane)),
+        material,
+      ));
+    });
+    return group;
   }
 
   function renderStaticPanels() {
@@ -1109,7 +1153,7 @@ export function mountBorgApp(options = {}) {
   function resetView() {
     rootGroup.rotation.set(DEFAULT_ROTATION_X, DEFAULT_ROTATION_Y, 0);
     state.cameraFitMargin = DEFAULT_CAMERA_FIT_MARGIN;
-    fitCameraToCentralBall(state.cameraFitMargin);
+    fitCameraToEnvelope(state.cameraFitMargin);
     render();
   }
 
@@ -1120,7 +1164,7 @@ export function mountBorgApp(options = {}) {
 
   function fitView() {
     state.cameraFitMargin = FIT_VIEW_MARGIN;
-    fitCameraToCentralBall(state.cameraFitMargin);
+    fitCameraToEnvelope(state.cameraFitMargin);
     render();
   }
 
@@ -1421,7 +1465,7 @@ export function mountBorgApp(options = {}) {
     camera.aspect = width / height;
     camera.updateProjectionMatrix();
     if (state.cameraFitMargin != null) {
-      fitCameraToCentralBall(state.cameraFitMargin);
+      fitCameraToEnvelope(state.cameraFitMargin);
     }
     render();
   }
@@ -1453,15 +1497,14 @@ export function mountBorgApp(options = {}) {
     return target;
   }
 
-
-  function fitCameraToCentralBall(margin) {
-    const centralBallWorldRadius =
-      manifest.simulationEnvelope.centralBallRadius * worldUnitsPerSolverUnit;
+  function fitCameraToEnvelope(margin) {
+    const envelopeWorldRadius =
+      manifest.simulationEnvelope.outerRadius * worldUnitsPerSolverUnit;
     const verticalHalfFov = THREE.MathUtils.degToRad(camera.fov * 0.5);
     const horizontalHalfFov = Math.atan(Math.tan(verticalHalfFov) * Math.max(0.1, camera.aspect));
     const limitingHalfFov = Math.min(verticalHalfFov, horizontalHalfFov);
     state.cameraDistance = clamp(
-      (centralBallWorldRadius / Math.sin(limitingHalfFov)) * margin,
+      (envelopeWorldRadius / Math.sin(limitingHalfFov)) * margin,
       CAMERA_MIN_DISTANCE,
       CAMERA_MAX_DISTANCE,
     );

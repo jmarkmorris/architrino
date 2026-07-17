@@ -17,6 +17,7 @@ export async function bootBorgApp({
   createEomClient = createBorgEomHttpClient,
   manifest = BORG_DATASET_MANIFEST_V1,
   fetchLike = globalThis.fetch,
+  startupSeedIndex = createBorgStartupSeedIndex(),
 } = {}) {
   const query = new URLSearchParams(search);
   const runtimeMode = resolveBorgRuntimeMode(query);
@@ -37,10 +38,13 @@ export async function bootBorgApp({
 
   const eomStartTime = 0;
   const eomDuration = queryPositiveNumber(query.get("eomDuration"), 60);
+  if (!Number.isSafeInteger(startupSeedIndex) || startupSeedIndex < 0) {
+    throw new TypeError("Borg startup seed index must be a nonnegative safe integer.");
+  }
   const initialConditionConfig = createBorgInitialConditionConfig(manifest.initialConditions);
   const fullPopulationEndpointRows = createBorgSeededInitialConditionRows({
     manifest,
-    seedIndex: 0,
+    seedIndex: startupSeedIndex,
     config: initialConditionConfig,
   });
   const endpointRows = fullPopulationEndpointRows;
@@ -64,6 +68,7 @@ export async function bootBorgApp({
   return mountApp({
     manifest: runtimeManifest,
     initialEomSeed,
+    initialDistributionSeedIndex: startupSeedIndex,
     initialConditionConfig: activeInitialConditionConfig,
     // Ordinary Borg startup must stay interactive. The long retained-history
     // evolution is an explicit diagnostic action, not page-load work.
@@ -98,6 +103,15 @@ export async function bootBorgApp({
       threadCount: 4,
     },
   });
+}
+
+export function createBorgStartupSeedIndex(cryptoLike = globalThis.crypto) {
+  if (cryptoLike && typeof cryptoLike.getRandomValues === "function") {
+    const values = new Uint32Array(1);
+    cryptoLike.getRandomValues(values);
+    return values[0];
+  }
+  return Math.floor(Math.random() * 0x100000000);
 }
 
 function createManifestWithHistoryDepth(manifest, historyDepth) {

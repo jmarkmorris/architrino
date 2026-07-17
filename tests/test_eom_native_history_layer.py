@@ -721,6 +721,27 @@ class NativeHistoryLayerTests(unittest.TestCase):
         self.assertGreaterEqual(upper, oracle.roots[0].lower)
         self.assertEqual(native_root["source_normal_sign"], 1)
 
+    def test_mpfr_monotone_enclosure_contains_asymmetric_analytic_root_set(
+        self,
+    ) -> None:
+        native = self.pair("mpfr_asymmetric_monotone_root")
+        self.assertEqual(native["status"], "certified_complete")
+        self.assertTrue(native["root_free_complement"])
+        self.assertTrue(native["precision_escalated"])
+        self.assertEqual(len(native["roots"]), 1)
+
+        root = native["roots"][0]
+        lower = Decimal(root["lower"])
+        upper = Decimal(root["upper"])
+        # Analytic control: g(S)=S-0.50003059 with source-position error
+        # +/-0.00028, so every admissible root lies in this exact interval.
+        analytic_lower = Decimal("0.49975059")
+        analytic_upper = Decimal("0.50031059")
+        self.assertLessEqual(lower, analytic_lower)
+        self.assertGreaterEqual(upper, analytic_upper)
+        self.assertLessEqual(upper - lower, Decimal("0.001"))
+        self.assertEqual(root["source_normal_sign"], 1)
+
     def test_mpfr_self_search_does_not_apply_endpoint_proof_to_older_cell(
         self,
     ) -> None:

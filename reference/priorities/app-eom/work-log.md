@@ -1405,3 +1405,54 @@ This file holds dated decisions, implementation status, validation results, fail
 - Falsifier: the analytic value lies outside the emitted remainder, the raw
   gap moves materially without a law change, a complete row exceeds budget,
   the child is not published atomically, or any validation fails.
+
+## 2026-07-17 — Ordinary-root classification and monotone interior enclosure
+
+- **Derived:** for opposite strict endpoint signs and a one-sign source-normal
+  enclosure, the mean-value theorem encloses the unique interior root by
+  $[a,b]\cap(p-G_p/D_s([a,b]))$. This asymmetric row replaces the failed
+  symmetric-probe-only decision without changing the `1e-3` Borg root
+  tolerance or any caustic budget.
+- **Independent analytic control:** the stationary control
+  $g(S)=S-0.50003059$ with source-position error $\pm0.00028$ has the exact
+  admissible root set $[0.49975059,0.50031059]$. The native MPFR enclosure
+  contains that complete interval, has width at most `0.001`, and certifies a
+  positive source normal. The Decimal oracle was not modified.
+- **Measured trajectory control:** before this change, the seed-0 display run
+  halted at `T=0.3516625` on `interior_root_not_surrounded`. The rebuilt binary
+  clears that row, warns through the encountered FWC entries, and reaches
+  `T=0.5624046875`. It then halts on the distinct
+  `endpoint_root_not_surrounded` boundary; the terminal chunk `[0.55,0.60]`
+  costs `4.70107 s`.
+- **Classification correction:** ordinary root-completeness failures now retain
+  `root_completeness_not_certified` in display and certified grades, carry an
+  empty `causticContractRow`, and report the regulator level as
+  `not-applicable`. A genuine root certificate with
+  `caustic_route_required` retains `FWC-ENTRY-02`; no rejected candidate is
+  published.
+- Claim grades: the enclosure and classification conditions are `derived`; the
+  analytic containment, trajectory extent, terminal row, and wall cost are
+  `measured` on 2026-07-17. Falsifiers: the analytic root set leaves the native
+  bracket, the bracket exceeds the unchanged tolerance, the former seed-0 row
+  again halts at `T=0.3516625`, an ordinary root failure carries an FWC row, or
+  any rejected candidate appears in published history.
+
+## 2026-07-17 — Coupled-correction terminal classification
+
+- **Measured diagnosis:** the current seed-0 3:3 display-grade control with
+  `h_max=0.025` and per-axis initial-speed maximum `0.03` reaches
+  `T=0.683203125`, then rejects down to `h=0.0001` because the coupled
+  correction does not converge. The terminal atomic row is
+  `coupled_correction_failed`; it has no root or finite-width failure row.
+- **Derived classification:** exhaustion of the controller height does not
+  erase the named atomic cause. A terminal `coupled_correction_failed` row now
+  remains the top-level halt code and carries no caustic contract or regulator
+  level. The candidate remains rejected and publication remains atomic.
+- **Measured requested-default control:** with only the initial-speed maximum
+  changed to `0.01`, the same seed and controller halt at `T=0.55390625` on
+  `coupled_correction_failed`; the terminal chunk costs `4.57775 s` and the
+  correction residual is `0.000206005`.
+- Falsifiers: the response again reports `minimum_step_exhausted` over a
+  terminal coupled-correction row, any rejected candidate is published, an FWC
+  row appears on the ordinary correction failure, or the stated seed-0 control
+  produces a different terminal certificate with the same binary and inputs.

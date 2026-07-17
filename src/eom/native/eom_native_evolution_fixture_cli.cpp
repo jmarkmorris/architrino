@@ -1508,6 +1508,40 @@ void print_display_fast_caustic_path() {
   }
   const auto correction_step = eom::certify_native_atomic_coupled_step(
       correction_request, correction_histories, 0, "5", "5.01");
+  const auto correction_evolution =
+      eom::evolve_native_coupled_histories(correction_request);
+  const eom::RetainedHistory unresolved_receiver(
+      "display-unresolved-receiver",
+      {eom::CubicHistorySegment(
+          "0", "1",
+          eom::CubicCoefficientTokens{
+              std::array<std::string, 4>{"0.5", "0", "0", "0"},
+              std::array<std::string, 4>{"0", "0", "0", "0"},
+              std::array<std::string, 4>{"0", "0", "0", "0"}})});
+  const eom::RetainedHistory unresolved_source(
+      "display-unresolved-source",
+      {eom::CubicHistorySegment(
+          "0", "1",
+          eom::CubicCoefficientTokens{
+              std::array<std::string, 4>{"0", "0", "0", "0"},
+              std::array<std::string, 4>{"0", "0", "0", "0"},
+              std::array<std::string, 4>{"0", "0", "0", "0"}},
+          "0.001", "0")});
+  auto ordinary_root_request = request(
+      "display-ordinary-root-rejection",
+      {{"root-receiver", "1", unresolved_receiver},
+       {"root-source", "1", unresolved_source}},
+      "1", "1.01", "0.01", "0.01");
+  ordinary_root_request.run_grade = "display";
+  ordinary_root_request.chart_policy =
+      "sharp_with_finite_width_fallback";
+  ordinary_root_request.root_tolerance = "0.001";
+  const auto ordinary_root_evolution =
+      eom::evolve_native_coupled_histories(ordinary_root_request);
+  ordinary_root_request.run_id = "certified-ordinary-root-rejection";
+  ordinary_root_request.run_grade = "certified";
+  const auto certified_ordinary_root_evolution =
+      eom::evolve_native_coupled_histories(ordinary_root_request);
   std::size_t event_impulse_count = 0;
   std::size_t regulator_certificate_count = 0;
   for (const auto& substep : step.substeps) {
@@ -1526,6 +1560,16 @@ void print_display_fast_caustic_path() {
             << correction_step.status
             << "\",\"ordinary_correction_failure_code\":\""
             << correction_step.failure_code << "\""
+            << ",\"ordinary_evolution_warning_count\":"
+            << correction_evolution.caustic_warning_count
+            << ",\"ordinary_evolution_warning_pair_count\":"
+            << correction_evolution.caustic_warning_pairs.size()
+            << ",\"ordinary_correction_halt_code\":\""
+            << correction_evolution.halt_code << "\""
+            << ",\"ordinary_root_display_halt_code\":\""
+            << ordinary_root_evolution.halt_code << "\""
+            << ",\"ordinary_root_certified_halt_code\":\""
+            << certified_ordinary_root_evolution.halt_code << "\""
             << ",\"warning_count\":" << step.caustic_warnings.size()
             << ",\"warnings\":[";
   for (std::size_t index = 0; index < step.caustic_warnings.size(); ++index) {

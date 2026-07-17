@@ -34,9 +34,28 @@ struct IncrementalSnapshotCache {
   std::vector<eom::NativePublishedPath> histories;
 };
 
+bool step_contains_caustic_entry_trigger(
+    const eom::NativeAtomicStepCertificate& step) {
+  const auto snapshot_contains_trigger = [](const auto& snapshot) {
+    return std::any_of(
+        snapshot.root_certificates.begin(),
+        snapshot.root_certificates.end(),
+        [](const auto& row) {
+          return row.certificate.status == "caustic_route_required";
+        });
+  };
+  return std::any_of(
+      step.substeps.begin(), step.substeps.end(), [&](const auto& substep) {
+        return snapshot_contains_trigger(substep.start_snapshot) ||
+            (substep.endpoint_snapshot.has_value() &&
+             snapshot_contains_trigger(*substep.endpoint_snapshot));
+      });
+}
+
 std::string caustic_contract_row(
     const eom::NativeAtomicStepCertificate& step) {
-  if (step.failure_code == "root_completeness_not_certified") {
+  if (step.failure_code == "root_completeness_not_certified" &&
+      step_contains_caustic_entry_trigger(step)) {
     return "FWC-ENTRY-02";
   }
   if (step.failure_code == "caustic_eta_convergence_failed") {
@@ -639,16 +658,20 @@ void run(
         step.accepted_snapshot.has_value()
         ? &*step.accepted_snapshot
         : (step.substeps.empty() ? nullptr : &step.substeps.front().start_snapshot);
+    const std::string caustic_row = caustic_contract_row(step);
     std::cout << "{\"status\":\""
               << json_escape(step.status)
               << "\",\"failureCode\":\""
               << json_escape(step.failure_code)
               << "\",\"causticContractRow\":\""
-              << caustic_contract_row(step)
+              << caustic_row
               << "\",\"causticRegulatorLevel\":\""
-              << (step.failure_code == "root_completeness_not_certified"
-                      ? "not-evaluated"
-                      : "see-regulator-series")
+              << (caustic_row.empty()
+                      ? "not-applicable"
+                      : (step.failure_code ==
+                                 "root_completeness_not_certified"
+                             ? "not-evaluated"
+                             : "see-regulator-series"))
               << "\",\"correctionResidual\":";
     if (correction_error.has_value()) {
       std::cout << *correction_error;

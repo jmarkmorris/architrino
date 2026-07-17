@@ -42,12 +42,14 @@ The current `borg-eom-first-screen` surface contract binds these checked values 
 | --- | --- |
 | `fieldSpeed` | `1`, the canonical normalized $c_f$ |
 | `wakeHorizon` | computed as $c_f h$ from the run's declared history depth |
-| `initialLinePolicy` | `seeded-random-central-ball` |
+| `initialLinePolicy` | `seeded-random-simulation-envelope` |
 | `polaritySignConvention` | `positrino-positive-electrino-negative`, with positrino charge `1` and electrino charge `-1` |
-| `velocityPolicy` | `zero-initial-velocity` |
-| `outerRadius` | `0.625` |
-| `centralBallRadius` | `0.5` |
-| `radialBufferMargin` | `0.125` |
+| `velocityPolicy` | `seeded-random-small-3d` |
+| `randomVelocityMaxComponentMagnitude` | `0.01` |
+| `coupling` | `0.05` |
+| `outerRadius` | `0.5` |
+| `centralBallRadius` | `0.4` |
+| `radialBufferMargin` | `0.1` |
 | `renderPixelSize` | `3840x2160` |
 | `centralArchitrinoCount` | `3` |
 | `architrinoCount` | `6` |
@@ -116,7 +118,7 @@ The design-owned surface object lives in `src/apps/borg/BorgAppManifest.js` and 
 
 The first browser consumer is [borg.html](../../../borg.html). It uses [BorgAppManifest.js](../../../src/apps/borg/BorgAppManifest.js) as the browser-safe design-owned policy object, [BorgAppRuntime.js](../../../src/apps/borg/BorgAppRuntime.js) as the Three.js app runtime, and [main.js](../../../src/apps/borg/main.js) as the page entrypoint.
 
-The page renders the displayed central ball, EOM-run current-state positions, path-history trails when toggled on, velocity vectors when toggled on, the simulation-envelope rail, collapsed provenance drawer, timeline scrubber, render/deployment placeholders, value-authority rows, and fail-closed diagnostics. It remains a static developer-test page. It does not run the EOM solver in the browser, does not generate boundary input, and does not upgrade wake streams, boundary-shell replay, benign-noise status, or central-ball acceleration beyond the source manifest.
+The page renders one dotted outer boundary shell, EOM-run current-state positions, path-history trails when toggled on, velocity vectors when toggled on, the simulation-envelope rail, collapsed provenance drawer, timeline scrubber, render/deployment placeholders, value-authority rows, and fail-closed diagnostics. The central ball remains a declared measurement region and is not rendered as a second sphere. It remains a static developer-test page. It does not run the EOM solver in the browser, does not generate boundary input, and does not upgrade wake streams, boundary-shell replay, benign-noise status, or central-ball acceleration beyond the source manifest.
 
 The first screen must show the simulation before manifest details. Source manifest id, model contract id, bridge path, raw frame-row count, and raw path-row count belong in the collapsed provenance drawer unless the app is in a dedicated audit/debug view.
 

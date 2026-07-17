@@ -47,7 +47,7 @@ The smallest first screen should be a quiet simulation workspace with one 3D sim
 
 | Surface | Default state | Data source | Status |
 | --- | --- | --- | --- |
-| Simulation-window spheres | Visible and locked as faint wireframes for the central ball and outer boundary shell. | `center`, `centralBallRadius`, `outerRadius`, `radialBufferMargin`; display projection. | `app-facing-projection`; adaptive render resolution must not alter solver state. |
+| Simulation-window sphere | Visible and locked as one faint dotted outer boundary shell. The central ball remains a declared region, not a second rendered sphere. | `center`, `centralBallRadius`, `outerRadius`, `radialBufferMargin`; display projection. | `app-facing-projection`; adaptive render resolution must not alter solver state. |
 | Architrino positions | Visible. | Current solver state or trajectory frame positions. | `authoritative-solver-output` only when native run manifest and error budget support it; otherwise `missing-error-budget`. |
 | Velocity rays | Off by default; available from the layer toggle or selected-object editing. | Current velocity vectors. | Ray geometry is `app-facing-projection`; raw velocity authority depends on manifest/error budget. |
 | Camera controls | Visible as `View`: rotate, zoom, pan, reset, fit window, focus selected. | View state only. | `display-only-visualization`. |

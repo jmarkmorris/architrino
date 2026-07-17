@@ -418,6 +418,24 @@ bool display_run_grade(const NativeCoupledEvolutionRequest& request) {
   return request.run_grade == "display";
 }
 
+bool step_contains_caustic_entry_trigger(
+    const NativeAtomicStepCertificate& step) {
+  const auto snapshot_contains_trigger = [](const auto& snapshot) {
+    return std::any_of(
+        snapshot.root_certificates.begin(),
+        snapshot.root_certificates.end(),
+        [](const auto& row) {
+          return row.certificate.status == "caustic_route_required";
+        });
+  };
+  return std::any_of(
+      step.substeps.begin(), step.substeps.end(), [&](const auto& substep) {
+        return snapshot_contains_trigger(substep.start_snapshot) ||
+            (substep.endpoint_snapshot.has_value() &&
+             snapshot_contains_trigger(*substep.endpoint_snapshot));
+      });
+}
+
 NativeCausticWarning make_caustic_warning(
     const std::string& receiver_path_id,
     const std::string& source_path_id,
@@ -5605,9 +5623,18 @@ NativeCoupledEvolutionCertificate evolve_native_coupled_histories(
       if (steps.back().failure_code.rfind("caustic_", 0U) == 0U) {
         halt_code = "caustic_transit_uncertified";
       } else if (
+          !display_run_grade(request) &&
           request.chart_policy == "sharp_with_finite_width_fallback" &&
-          steps.back().failure_code == "root_completeness_not_certified") {
+          steps.back().failure_code == "root_completeness_not_certified" &&
+          (!adjudicated_finite_width_pairs.empty() ||
+           step_contains_caustic_entry_trigger(steps.back()))) {
         halt_code = "caustic_entry_uncertified";
+      } else if (
+          steps.back().failure_code == "root_completeness_not_certified") {
+        halt_code = "root_completeness_not_certified";
+      } else if (
+          steps.back().failure_code == "coupled_correction_failed") {
+        halt_code = "coupled_correction_failed";
       } else {
         halt_code = "minimum_step_exhausted";
       }
@@ -5629,6 +5656,21 @@ NativeCoupledEvolutionCertificate evolve_native_coupled_histories(
   timing.total_wall_seconds = elapsed_seconds(timing_start);
   const std::size_t caustic_warning_count =
       request.initial_caustic_warning_count + caustic_warnings.size();
+  auto caustic_warning_pairs = request.initial_caustic_warning_pairs;
+  for (const auto& warning : caustic_warnings) {
+    for (const auto& pair : {
+             std::make_pair(
+                 warning.receiver_path_id, warning.source_path_id),
+             std::make_pair(
+                 warning.source_path_id, warning.receiver_path_id)}) {
+      if (std::find(
+              caustic_warning_pairs.begin(),
+              caustic_warning_pairs.end(), pair) ==
+          caustic_warning_pairs.end()) {
+        caustic_warning_pairs.push_back(pair);
+      }
+    }
+  }
   return {
       .schema = "eom_native_coupled_evolution_certificate/v0",
       .status = completed ? "completed" : "halted",
@@ -5651,7 +5693,7 @@ NativeCoupledEvolutionCertificate evolve_native_coupled_histories(
       .caustic_warnings = std::move(caustic_warnings),
       .caustic_warning_count = caustic_warning_count,
       .first_caustic_warning_time = first_caustic_warning_time,
-      .caustic_warning_pairs = adjudicated_finite_width_pairs,
+      .caustic_warning_pairs = std::move(caustic_warning_pairs),
       .all_steps_atomic = all_atomic,
       .timing = timing,
   };
