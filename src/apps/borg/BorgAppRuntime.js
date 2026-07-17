@@ -1850,7 +1850,7 @@ export function mountBorgApp(options = {}) {
     const warned = state.eomCausticWarningCount > 0;
     dom.runGradeWarning.hidden = !warned;
     dom.runGradeWarning.textContent = warned
-      ? `Display grade — ${state.eomCausticWarningCount} encounters uncertified`
+      ? `Display grade — ${state.eomCausticWarningCount} close-encounter warnings`
       : "";
     dom.runGradeWarning.title = dom.runGradeWarning.textContent;
     if (warned) {

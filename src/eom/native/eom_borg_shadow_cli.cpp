@@ -176,6 +176,33 @@ std::vector<std::string> split_tabs(const std::string& line) {
   }
 }
 
+std::vector<std::pair<std::string, std::string>> parse_warning_pairs(
+    const std::string& token) {
+  std::vector<std::pair<std::string, std::string>> pairs;
+  if (token == "none") {
+    return pairs;
+  }
+  std::size_t begin = 0U;
+  while (begin < token.size()) {
+    const std::size_t end = token.find(';', begin);
+    const std::string pair_token = token.substr(
+        begin, end == std::string::npos ? std::string::npos : end - begin);
+    const std::size_t comma = pair_token.find(',');
+    if (comma == std::string::npos || comma == 0U ||
+        comma + 1U >= pair_token.size() ||
+        pair_token.find(',', comma + 1U) != std::string::npos) {
+      throw std::invalid_argument("invalid caustic warning pair provenance");
+    }
+    pairs.emplace_back(
+        pair_token.substr(0U, comma), pair_token.substr(comma + 1U));
+    if (end == std::string::npos) {
+      break;
+    }
+    begin = end + 1U;
+  }
+  return pairs;
+}
+
 std::size_t parse_size(const std::string& token, const char* label) {
   std::size_t value = 0;
   const auto result = std::from_chars(
@@ -304,15 +331,15 @@ void run(
     bool use_certified_traversal,
     std::uint64_t traversal_exact_tile_pair_limit,
     std::optional<IncrementalSnapshotCache>* incremental_cache = nullptr) {
-  if (read_required_line("protocol magic") != "EOM_BORG_NATIVE_V3") {
+  if (read_required_line("protocol magic") != "EOM_BORG_NATIVE_V4") {
     throw std::invalid_argument("unsupported Borg EOM native protocol");
   }
   const auto run = split_tabs(read_required_line("RUN record"));
-  if (run.size() != 21U || run[0] != "RUN") {
+  if (run.size() != 22U || run[0] != "RUN") {
     throw std::invalid_argument(
-        "invalid RUN record: expected exactly 21 tab-separated fields");
+        "invalid RUN record: expected exactly 22 tab-separated fields");
   }
-  const std::size_t path_count = parse_size(run[20], "path count");
+  const std::size_t path_count = parse_size(run[21], "path count");
   if (path_count == 0U || path_count > 1000000U) {
     throw std::invalid_argument("path count lies outside native protocol envelope");
   }
@@ -357,29 +384,30 @@ void run(
       .initial_step = run[4],
       .minimum_step = run[5],
       .maximum_step = run[6],
-      .field_speed = run[11],
-      .coupling = run[12],
-      .root_tolerance = run[13],
+      .field_speed = run[12],
+      .coupling = run[13],
+      .root_tolerance = run[14],
       .source_normal_floor = "1e-30",
-      .acceleration_tolerance = run[14],
-      .far_field_enclosure_fraction = run[15],
+      .acceleration_tolerance = run[15],
+      .far_field_enclosure_fraction = run[16],
       .run_grade = run[8],
       .initial_caustic_warning_count =
           parse_size(run[9], "prior caustic warning count"),
       .initial_first_caustic_warning_time = run[10] == "none"
           ? std::nullopt
           : std::optional<std::string>{run[10]},
+      .initial_caustic_warning_pairs = parse_warning_pairs(run[11]),
       .chart_policy = "sharp_with_finite_width_fallback",
       .causal_width = "0.2",
       .core_scale = "0.2",
-      .quadrature_tolerance = run[14],
+      .quadrature_tolerance = run[15],
       .event_impulse_tolerance = "1e-7",
       .event_position_moment_tolerance = "1e-7",
       .regulator_refinement_ratio = "0.5",
       .regulator_convergence_tolerance = "1e-3",
-      .position_tolerance = run[16],
-      .velocity_tolerance = run[17],
-      .correction_tolerance = run[18],
+      .position_tolerance = run[17],
+      .velocity_tolerance = run[18],
+      .correction_tolerance = run[19],
       .root_max_depth = 256,
       .root_max_cells = 500000,
       .quadrature_max_depth = quadrature_max_depth,
@@ -396,7 +424,7 @@ void run(
       .thread_count = 1,
       .use_adaptive_step_growth = parse_bool(run[7], "adaptive step growth"),
   };
-  request.thread_count = parse_size(run[19], "thread count");
+  request.thread_count = parse_size(run[20], "thread count");
   // The traversal tree is an optional pair-selection optimization.  At small
   // Borg scales (16 paths and below) it excludes no pairs and costs more than
   // exhaustive exact coverage, so use the direct certified batch there.
@@ -414,7 +442,7 @@ void run(
   // force, tolerance, and reduction controls in the cache key; exclude only
   // initial/minimum/maximum step, the growth switch, run grade, and cumulative
   // warning provenance.
-  for (std::size_t index = 11U; index <= 19U; ++index) {
+  for (std::size_t index = 12U; index <= 20U; ++index) {
     model_key_stream << run[index] << '\n';
   }
   for (const auto& path : parsed_paths) {
@@ -516,6 +544,19 @@ void run(
               << json_escape(warning.failed_row_id)
               << "\",\"failureCode\":\""
               << json_escape(warning.failure_code) << "\"}";
+  }
+  std::cout << "]"
+            << ",\"causticWarningPairs\":[";
+  for (std::size_t pair_index = 0U;
+       pair_index < result.caustic_warning_pairs.size(); ++pair_index) {
+    if (pair_index > 0U) {
+      std::cout << ',';
+    }
+    std::cout << "[\""
+              << json_escape(result.caustic_warning_pairs[pair_index].first)
+              << "\",\""
+              << json_escape(result.caustic_warning_pairs[pair_index].second)
+              << "\"]";
   }
   std::cout << "]"
             << ",\"acceptedEndTime\":\""

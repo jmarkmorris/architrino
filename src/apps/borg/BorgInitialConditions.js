@@ -105,7 +105,14 @@ export function createBorgSeededInitialConditionRows({ manifest, seedIndex = 0, 
     stateFlags.length,
     manifest?.initialConditions,
   );
-  const positions = latticePositions ?? createSeparatedRandomCentralPositions(
+  const denseGridPositions = latticePositions == null && stateFlags.length >= 32
+    ? createMinimumSeparationGridPositions(
+        stateFlags.length,
+        bounds,
+        nonNegativeNumber(manifest?.initialConditions?.minimumPairSeparation, 0),
+      )
+    : null;
+  const positions = latticePositions ?? denseGridPositions ?? createSeparatedRandomCentralPositions(
       stateFlags.length,
       bounds,
       rng,
@@ -113,6 +120,8 @@ export function createBorgSeededInitialConditionRows({ manifest, seedIndex = 0, 
     );
   const initialStateRunSource = latticePositions
     ? "minimum-separation-lattice-initial-state"
+    : denseGridPositions
+      ? "minimum-separation-grid-initial-state"
     : "seeded-random-minimum-separation-initial-state";
 
   return Object.freeze(stateFlags.map((flags, index) => Object.freeze({
@@ -413,6 +422,38 @@ function createSeparatedRandomCentralPositions(count, bounds, rng, minimumSepara
     positions.push(accepted);
   }
   return Object.freeze(positions);
+}
+
+function createMinimumSeparationGridPositions(count, bounds, minimumSeparation) {
+  const sideCount = Math.ceil(Math.cbrt(count));
+  const axes = ["x", "y", "z"].map((axis) => {
+    const [lower, upper] = bounds[axis].map(Number);
+    const extent = (sideCount - 1) * minimumSeparation;
+    if (!Number.isFinite(lower) || !Number.isFinite(upper) ||
+        extent > upper - lower + 1e-12) {
+      return null;
+    }
+    const origin = lower + ((upper - lower) - extent) / 2;
+    return Array.from(
+      { length: sideCount },
+      (_unused, index) => origin + index * minimumSeparation,
+    );
+  });
+  if (axes.some((axis) => axis == null)) {
+    return null;
+  }
+  const positions = [];
+  for (const x of axes[0]) {
+    for (const y of axes[1]) {
+      for (const z of axes[2]) {
+        positions.push(Object.freeze({ x, y, z }));
+        if (positions.length === count) {
+          return Object.freeze(positions);
+        }
+      }
+    }
+  }
+  return null;
 }
 
 function createDeclaredLatticePositions(count, initialConditions = {}) {

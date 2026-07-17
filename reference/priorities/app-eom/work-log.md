@@ -1241,3 +1241,26 @@ This file holds dated decisions, implementation status, validation results, fail
 - Falsifier: reopen the disposition if the same default retained histories
   certify $\epsilon_c=0.1$ within the unchanged `1e-7` and 200,000-cell
   budgets at bounded wall cost.
+
+## 2026-07-16 — Borg display and certified run grades
+
+- **Operator decision:** Borg defaults to display grade. FWC entry, regulator,
+  state, and exit rows may become pair-scoped warnings; every other rejection
+  remains fail-closed. Certified grade retains the existing publication gate.
+- **Measured:** the final certified fixture artifact is byte-identical to the
+  frozen pre-change artifact. Seed-0 display grade crossed the first regulator
+  halt, carried both ordered directions of the warned encounter through the
+  following entry row, and completed the requested run through $T=1.45$ with
+  all post-warning segments marked `uncertified-through-encounters`.
+- **Measured cost:** the $[1.35,1.40]$ encounter chunk cost `95.9311 s`; the
+  $[1.40,1.45]$ continuation cost `97.0854 s`. A 64-path 32:32 display run
+  completed a 0.05-time chunk in `1.293216667 s` outer wall time and produced
+  384 playback frames, or `0.0386633` simulated seconds per wall second.
+- The single Borg process contract is `EOM_BORG_NATIVE_V4` with exactly 22
+  `RUN` fields. The cumulative provenance includes warning count, first time,
+  and the reciprocal ordered-pair set needed at later atomic chunk boundaries.
+- Evidence:
+  [eom-run-grade-display-seed-0-and-64-2026-07-16.md](evidence/eom-run-grade-display-seed-0-and-64-2026-07-16.md).
+- Falsifier: a certified deterministic token changes, an ordinary rejection is
+  published in display grade, a post-warning frame lacks demotion, or the same
+  measured controls fail before their recorded endpoints.

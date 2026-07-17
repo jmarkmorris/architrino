@@ -20,6 +20,7 @@ if (!binaryPath) {
     "usage: profile-borg-incremental-chunks.mjs <eom_borg_shadow_cli> " +
     "[--chunks=N] [--seed=N] [--chunk-duration=H] [--initial-step=H] " +
     "[--minimum-step=H] [--maximum-step=H] [--adaptive-growth=true|false] " +
+    "[--run-grade=display|certified] [--electrinos=N] [--positrinos=N] " +
     "[--root-tolerance=E] [--position-tolerance=E] " +
     "[--velocity-tolerance=E] [--maximum-mpfr-bits=N] " +
     "[--event-max-cells=N] [--far-field-enclosure-fraction=F]",
@@ -34,6 +35,7 @@ const initialStep = positiveToken(options["initial-step"], "0.05");
 const minimumStep = positiveToken(options["minimum-step"], "0.0001");
 const maximumStep = positiveToken(options["maximum-step"], "0.05");
 const useAdaptiveStepGrowth = booleanOption(options["adaptive-growth"], true);
+const runGrade = runGradeOption(options["run-grade"], "display");
 const eventMaxCells = positiveInteger(options["event-max-cells"], 200000);
 const maximumMpfrBits = positiveInteger(options["maximum-mpfr-bits"], 512);
 const rootTolerance = positiveToken(options["root-tolerance"], "1e-3");
@@ -44,10 +46,21 @@ const farFieldEnclosureFraction = fractionToken(
   "0.25",
 );
 const includeChunks = !booleanOption(options["summary-only"], false);
+const initialConditionConfig = createBorgInitialConditionConfig({
+  ...manifest.initialConditions,
+  electrinoCount: nonnegativeInteger(
+    options.electrinos,
+    manifest.initialConditions.electrinoCount,
+  ),
+  positrinoCount: nonnegativeInteger(
+    options.positrinos,
+    manifest.initialConditions.positrinoCount,
+  ),
+});
 const endpointRows = createBorgSeededInitialConditionRows({
   manifest,
   seedIndex,
-  config: createBorgInitialConditionConfig(manifest.initialConditions),
+  config: initialConditionConfig,
 });
 const historyDepth = calculateBorgInertialHistoryDepth(endpointRows, {
   fieldSpeed: manifest.simulationEnvelope.fieldSpeed,
@@ -93,6 +106,12 @@ const measuredClient = {
       acceptedStepCount: response.acceptedStepCount,
       rejectedStepCount: response.rejectedStepCount,
       controllerStepSize: Number(response.controllerStepSize),
+      runGrade: response.runGrade,
+      claimGrade: response.claimGrade,
+      causticWarningCount: response.causticWarningCount,
+      firstCausticWarningTime: response.firstCausticWarningTime,
+      causticWarnings: response.causticWarnings,
+      causticWarningPairs: response.causticWarningPairs,
       traversalEnclosedPairs: finalStepFailure?.traversalEnclosedPairs ?? 0,
       enclosedErrorWidthTotal: finalStepFailure?.enclosedErrorWidthTotal ?? 0,
       enclosedErrorWidthMaxReceiver:
@@ -131,6 +150,9 @@ const measuredClient = {
       `[borg-profile] chunk=${nativeChunks.length}/${chunkCount} ` +
       `t=${response.acceptedEndTime} native=${response.timing.totalWallSeconds}s ` +
       `reevaluated=${response.timing.rootReevaluatedCells}` +
+      (response.causticWarningCount > 0
+        ? ` warnings=${response.causticWarningCount} first=${response.firstCausticWarningTime}`
+        : "") +
       (regulatorCertificates.length > 0
         ? ` regulators=${regulatorCertificates.length}`
         : "") +
@@ -156,6 +178,7 @@ const runner = createBorgEomShadowRunner(manifest, {
   minimumStep,
   maximumStep,
   useAdaptiveStepGrowth,
+  runGrade,
   rootTolerance,
   accelerationTolerance: "1e-1",
   farFieldEnclosureFraction,
@@ -170,7 +193,10 @@ let runFailure = null;
 try {
   while (runner.canComputeNextChunk()) {
     try {
-      await runner.computeNextChunk();
+      const chunk = await runner.computeNextChunk();
+      if (nativeChunks.length > 0) {
+        nativeChunks.at(-1).frameCount = chunk.frames.length;
+      }
     } catch (error) {
       runFailure = {
         code: error.code ?? "eom_shadow_run_failed",
@@ -229,6 +255,7 @@ process.stdout.write(`${JSON.stringify({
     minimumStep,
     maximumStep,
     useAdaptiveStepGrowth,
+    runGrade,
     eventMaxCells,
     maximumMpfrBits,
     rootTolerance,
@@ -275,10 +302,18 @@ function summarizeChunks(chunks) {
     acceptedStepCount: chunk.acceptedStepCount,
     rejectedStepCount: chunk.rejectedStepCount,
     controllerStepSize: chunk.controllerStepSize,
+    runGrade: chunk.runGrade,
+    claimGrade: chunk.claimGrade,
+    causticWarningCount: chunk.causticWarningCount,
+    firstCausticWarningTime: chunk.firstCausticWarningTime,
+    causticWarnings: chunk.causticWarnings,
+    causticWarningPairs: chunk.causticWarningPairs,
     traversalEnclosedPairs: chunk.traversalEnclosedPairs,
     enclosedErrorWidthTotal: chunk.enclosedErrorWidthTotal,
     enclosedErrorWidthMaxReceiver: chunk.enclosedErrorWidthMaxReceiver,
     totalWallSeconds: chunk.totalWallSeconds,
+    outerWallSeconds: chunk.outerWallSeconds,
+    frameCount: chunk.frameCount,
     precisionEscalatedRootCertificates:
       chunk.status === "halted" ? chunk.precisionEscalatedRootCertificates : [],
     regulatorCertificates: chunk.regulatorCertificates,
@@ -324,6 +359,14 @@ function booleanOption(token, fallback) {
     return false;
   }
   throw new Error(`invalid boolean option: ${token}`);
+}
+
+function runGradeOption(token, fallback) {
+  const value = token ?? fallback;
+  if (value !== "display" && value !== "certified") {
+    throw new Error(`invalid run-grade option: ${token}`);
+  }
+  return value;
 }
 
 function parseOptions(tokens) {

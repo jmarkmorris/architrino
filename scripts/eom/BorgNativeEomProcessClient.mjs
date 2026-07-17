@@ -175,8 +175,11 @@ export function encodeNativeRequest(request) {
       !["certified", "display"].includes(controls.runGrade) ||
       !Number.isInteger(provenance.causticWarningCount) ||
       provenance.causticWarningCount < 0 ||
+      !Array.isArray(provenance.causticWarningPairs) ||
       (provenance.causticWarningCount === 0) !==
-        (provenance.firstCausticWarningTime == null)) {
+        (provenance.firstCausticWarningTime == null) ||
+      (provenance.causticWarningCount === 0) !==
+        (provenance.causticWarningPairs.length === 0)) {
     throw new TypeError(
       "EOM process request must explicitly supply maximumStep, " +
       "useAdaptiveStepGrowth, farFieldEnclosureFraction, runGrade, and " +
@@ -186,8 +189,18 @@ export function encodeNativeRequest(request) {
   if (controls.runGrade === "certified" && provenance.causticWarningCount !== 0) {
     throw new TypeError("Certified EOM requests cannot carry display-grade warnings.");
   }
+  const warningPairToken = provenance.causticWarningPairs.length === 0
+    ? "none"
+    : provenance.causticWarningPairs.map((pair) => {
+        if (!Array.isArray(pair) || pair.length !== 2 ||
+            pair.some((pathId) => typeof pathId !== "string" ||
+              pathId.length === 0 || /[,;\t\r\n]/u.test(pathId))) {
+          throw new TypeError("EOM caustic warning pairs require two protocol-safe path ids.");
+        }
+        return `${pair[0]},${pair[1]}`;
+      }).join(";");
   const lines = [
-    "EOM_BORG_NATIVE_V3",
+    "EOM_BORG_NATIVE_V4",
     tabRecord([
       "RUN",
       request.runId,
@@ -200,6 +213,7 @@ export function encodeNativeRequest(request) {
       controls.runGrade,
       provenance.causticWarningCount,
       provenance.firstCausticWarningTime ?? "none",
+      warningPairToken,
       model.fieldSpeed,
       model.coupling,
       controls.rootTolerance,

@@ -301,6 +301,15 @@ derived frame inherits that marker. The response carries the cumulative
 warning count and first-warning time. Before the first warning, display mode is
 shown only as run provenance and does not add a warning label.
 
+The cumulative provenance also carries the warned encounter pair set. Because
+the acceleration ledger is ordered, warning either direction records both
+ordered directions of that same two-body encounter. Later atomic chunks may
+therefore keep that pair on the finite-width chart when its prior fold root
+lands on a retained segment join; an unrelated pair receives no such
+authority. The Borg process contract is the single forward protocol
+`EOM_BORG_NATIVE_V4`, whose `RUN` record has exactly 22 fields and includes the
+pair-set token. Any other magic or field count is a protocol error.
+
 Display-grade output is never canonical evidence. In particular, a producer-
 asserted `evidenceStatus`, promotion flag, or claim label is not consumed as an
 authority upgrade; acceptance infrastructure must derive authority from the
@@ -314,6 +323,9 @@ any deterministic trajectory token; a display request publishes after a
 non-caustic failure; a warned extension lacks the
 `uncertified-through-encounters` marker; or any acceptance path treats a
 display warning or producer-asserted evidence flag as canonical authority.
+
+Measured implementation evidence is recorded in
+[evidence/eom-run-grade-display-seed-0-and-64-2026-07-16.md](evidence/eom-run-grade-display-seed-0-and-64-2026-07-16.md).
 
 ### Demo-track regulator disposition
 

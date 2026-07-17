@@ -55,6 +55,8 @@ struct NativeCoupledEvolutionRequest {
   // Cumulative display-run warning state carried across atomic Borg chunks.
   std::size_t initial_caustic_warning_count = 0;
   std::optional<std::string> initial_first_caustic_warning_time;
+  std::vector<std::pair<std::string, std::string>>
+      initial_caustic_warning_pairs;
   std::string chart_policy = "sharp";
   std::string causal_width = "0.2";
   std::string core_scale = "0.2";
@@ -468,6 +470,7 @@ struct NativeCoupledEvolutionCertificate {
   std::vector<NativeCausticWarning> caustic_warnings;
   std::size_t caustic_warning_count = 0;
   std::optional<std::string> first_caustic_warning_time;
+  std::vector<std::pair<std::string, std::string>> caustic_warning_pairs;
   bool all_steps_atomic;
   NativeEvolutionTiming timing;
 };

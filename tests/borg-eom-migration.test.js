@@ -70,6 +70,7 @@ test("Borg mounts EOM idle by default and reserves automatic compute for explici
   assert.equal(defaultMounts[0].eomShadowRunner.minimumStep, "0.0001");
   assert.equal(defaultMounts[0].eomShadowRunner.maximumStep, "0.025");
   assert.equal(defaultMounts[0].eomShadowRunner.useAdaptiveStepGrowth, true);
+  assert.equal(defaultMounts[0].eomShadowRunner.runGrade, "display");
   assert.equal(defaultMounts[0].eomShadowRunner.farFieldEnclosureFraction, "0.25");
   assert.deepEqual(defaultMounts[0].manifest.simulationEnvelope.centralVolume.bounds, {
     x: [0.1, 0.9],
@@ -333,7 +334,12 @@ test("Borg EOM shadow runner sends retained histories and derives frames only fr
   assert.equal(request.numericalControls.initialStep, "0.1");
   assert.equal(request.numericalControls.maximumStep, "0.2");
   assert.equal(request.numericalControls.useAdaptiveStepGrowth, true);
+  assert.equal(request.numericalControls.runGrade, "display");
   assert.equal(request.numericalControls.farFieldEnclosureFraction, "0.25");
+  assert.equal(request.provenance.runGrade, "display");
+  assert.equal(request.provenance.causticWarningCount, 0);
+  assert.deepEqual(request.provenance.causticWarningPairs, []);
+  assert.equal(request.provenance.firstCausticWarningTime, null);
   assert.equal(request.modelControls.selfPairs, "included-except-coincident-endpoint");
   assert.equal(request.modelControls.futurePathPolicy, "prohibited");
   assert.equal(request.modelControls.fieldSpeed, "1");
@@ -481,6 +487,7 @@ test("Borg promotion accepts canonical evolution from certified initial history"
     targetDuration: 0.2,
     chunkDuration: 0.2,
     sampleInterval: 0.2,
+    runGrade: "certified",
     acceptanceGate: {
       schema: "eom_acceptance_gate/v0",
       status: "passed",
@@ -625,13 +632,17 @@ test("Borg native process protocol carries the same continuous-history request",
   });
   await runner.computeNextChunk();
   const protocol = encodeNativeRequest(requests[0]);
-  assert.match(protocol, /^EOM_BORG_NATIVE_V2\nRUN\t/u);
+  assert.match(protocol, /^EOM_BORG_NATIVE_V4\nRUN\t/u);
   const runFields = protocol.split("\n")[1].split("\t");
-  assert.equal(runFields.length, 18);
+  assert.equal(runFields.length, 22);
   assert.equal(runFields[4], "0.1");
   assert.equal(runFields[6], "0.2");
   assert.equal(runFields[7], "1");
-  assert.equal(runFields[12], "0.25");
+  assert.equal(runFields[8], "display");
+  assert.equal(runFields[9], "0");
+  assert.equal(runFields[10], "none");
+  assert.equal(runFields[11], "none");
+  assert.equal(runFields[16], "0.25");
   assert.equal(protocol.match(/^PATH\t/gmu)?.length, 6);
   assert.equal(protocol.match(/^SEG\t/gmu)?.length, 6);
   assert.match(protocol, /\nEND\n$/u);
@@ -649,7 +660,7 @@ test("Borg native process protocol carries the same continuous-history request",
   const fixedRunFields = encodeNativeRequest(fixedHeightRequest)
     .split("\n")[1]
     .split("\t");
-  assert.equal(fixedRunFields.length, 18);
+  assert.equal(fixedRunFields.length, 22);
   assert.equal(fixedRunFields[6], fixedRunFields[4]);
   assert.equal(fixedRunFields[7], "0");
 
@@ -660,21 +671,79 @@ test("Borg native process protocol carries the same continuous-history request",
   delete incompleteRequest.numericalControls.maximumStep;
   assert.throws(
     () => encodeNativeRequest(incompleteRequest),
-    /must explicitly supply maximumStep, useAdaptiveStepGrowth, and farFieldEnclosureFraction/,
+    /must explicitly supply maximumStep, useAdaptiveStepGrowth, farFieldEnclosureFraction, runGrade/,
   );
   incompleteRequest.numericalControls.maximumStep =
     requests[0].numericalControls.maximumStep;
   delete incompleteRequest.numericalControls.useAdaptiveStepGrowth;
   assert.throws(
     () => encodeNativeRequest(incompleteRequest),
-    /must explicitly supply maximumStep, useAdaptiveStepGrowth, and farFieldEnclosureFraction/,
+    /must explicitly supply maximumStep, useAdaptiveStepGrowth, farFieldEnclosureFraction, runGrade/,
   );
   incompleteRequest.numericalControls.useAdaptiveStepGrowth =
     requests[0].numericalControls.useAdaptiveStepGrowth;
   delete incompleteRequest.numericalControls.farFieldEnclosureFraction;
   assert.throws(
     () => encodeNativeRequest(incompleteRequest),
-    /must explicitly supply maximumStep, useAdaptiveStepGrowth, and farFieldEnclosureFraction/,
+    /must explicitly supply maximumStep, useAdaptiveStepGrowth, farFieldEnclosureFraction, runGrade/,
+  );
+});
+
+test("Borg display grade carries encounter demotion across atomic chunks", async () => {
+  const requests = [];
+  const runner = createBorgEomShadowRunner(BORG_DATASET_MANIFEST_V1, {
+    eomClient: {
+      async evolveRetainedHistories(request) {
+        requests.push(request);
+        const response = createFakeEomResponse(
+          request,
+          requests.length === 1
+            ? "uncertified-through-encounters"
+            : "uncertified-through-encounters",
+        );
+        response.causticWarningCount = 1;
+        response.firstCausticWarningTime = "10.1";
+        response.claimGrade = "uncertified-through-encounters";
+        response.causticWarningPairs = [["1001", "1004"]];
+        response.causticWarnings = requests.length === 1
+          ? [{
+              receiverPathId: "1001",
+              sourcePathId: "1004",
+              receptionLower: "10",
+              receptionUpper: "10.2",
+              failedRowId: "FWC-REG-02",
+              failureCode: "caustic_eta_convergence_failed",
+            }]
+          : [];
+        return response;
+      },
+    },
+    initialFrameRows: trajectoryFrames,
+    startTime: 10,
+    targetDuration: 10.4,
+    chunkDuration: 0.2,
+    sampleInterval: 0.2,
+    runGrade: "display",
+  });
+
+  const warned = await runner.computeNextChunk();
+  const carried = await runner.computeNextChunk();
+  assert.equal(warned.causticWarningCount, 1);
+  assert.equal(warned.firstCausticWarningTime, "10.1");
+  assert.equal(warned.evolutionClaimLevel, "uncertified-through-encounters");
+  assert.equal(
+    warned.frames.every((frame) =>
+      frame.valueAuthority === "uncertified-through-encounters"),
+    true,
+  );
+  assert.equal(requests[1].provenance.causticWarningCount, 1);
+  assert.equal(requests[1].provenance.firstCausticWarningTime, "10.1");
+  assert.deepEqual(requests[1].provenance.causticWarningPairs, [["1001", "1004"]]);
+  assert.equal(carried.causticWarningCount, 1);
+  assert.equal(
+    carried.frames.every((frame) =>
+      frame.valueAuthority === "uncertified-through-encounters"),
+    true,
   );
 });
 
@@ -725,6 +794,12 @@ function createFakeEomResponse(request, evidenceStatus) {
   return {
     status: "completed",
     evidenceStatus,
+    runGrade: request.numericalControls.runGrade,
+    claimGrade: evidenceStatus,
+    causticWarningCount: request.provenance.causticWarningCount,
+    firstCausticWarningTime: request.provenance.firstCausticWarningTime,
+    causticWarningPairs: request.provenance.causticWarningPairs,
+    causticWarnings: [],
     histories: request.histories.map((history) => {
       const startTime = history.coverageEnd;
       const state = evaluateHistory(history, Number(startTime));

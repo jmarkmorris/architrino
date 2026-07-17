@@ -173,7 +173,7 @@ test("Borg default seeded-random geometry certifies minimum separation and zero 
   assert.equal(rows.every((row) => Object.values(row.velocity).every((value) => value === 0)), true);
   assert.equal(certificate.accepted, true);
   assert.equal(certificate.requiredMinimumSeparation, 0.2);
-  assert.ok(certificate.measuredMinimumSeparation >= 0.2);
+  assert.ok(certificate.measuredMinimumSeparation >= 0.2 - 1e-12);
 });
 
 test("Borg initial-condition controls support an explicit zero-velocity population", () => {
@@ -189,4 +189,26 @@ test("Borg initial-condition controls support an explicit zero-velocity populati
   });
 
   assert.deepEqual(rows[0].velocity, { x: 0, y: 0, z: 0 });
+});
+
+test("Borg dense population controls use a deterministic minimum-separation grid", () => {
+  const rows = createBorgSeededInitialConditionRows({
+    manifest: BORG_DATASET_MANIFEST_V1,
+    seedIndex: 0,
+    config: {
+      electrinoCount: 32,
+      positrinoCount: 32,
+      randomVelocityMaxComponentMagnitude: 0,
+      randomVelocityMinSpeed: 0,
+    },
+  });
+  const certificate = certifyBorgMinimumSeparation(rows, {
+    minimumPairSeparation: 0.2,
+  });
+
+  assert.equal(rows.length, 64);
+  assert.equal(rows.every(
+    (row) => row.runSource === "minimum-separation-grid-initial-state"), true);
+  assert.equal(certificate.accepted, true);
+  assert.ok(certificate.measuredMinimumSeparation >= 0.2 - 1e-12);
 });

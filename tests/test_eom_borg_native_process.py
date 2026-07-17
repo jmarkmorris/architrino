@@ -45,7 +45,7 @@ class NativeBorgProcessTests(unittest.TestCase):
     def test_native_process_extends_continuous_history_and_returns_only_published_segments(self) -> None:
         protocol = "\n".join(
             (
-                "EOM_BORG_NATIVE_V2",
+                "EOM_BORG_NATIVE_V4",
                 "\t".join(
                     (
                         "RUN",
@@ -56,6 +56,10 @@ class NativeBorgProcessTests(unittest.TestCase):
                         "0.1",
                         "0.1",
                         "0",
+                        "certified",
+                        "0",
+                        "none",
+                        "none",
                         "1",
                         "1",
                         "1e-10",
@@ -86,12 +90,22 @@ class NativeBorgProcessTests(unittest.TestCase):
         self.assertEqual(response["schema"], "eom_borg_native_response/v0")
         self.assertEqual(response["status"], "completed")
         self.assertEqual(response["evidenceStatus"], "executable_architecture_evidence")
+        self.assertEqual(response["runGrade"], "certified")
+        self.assertEqual(response["claimGrade"], "executable_architecture_evidence")
+        self.assertEqual(response["causticWarningCount"], 0)
+        self.assertIsNone(response["firstCausticWarningTime"])
+        self.assertEqual(response["causticWarningPairs"], [])
+        self.assertEqual(response["causticWarnings"], [])
         self.assertEqual(response["acceptedEndTime"], "2.1")
         self.assertEqual(response["acceptedStepCount"], 1)
         self.assertEqual(response["rejectedStepCount"], 0)
         self.assertAlmostEqual(float(response["controllerStepSize"]), 0.1)
         self.assertEqual(response["haltCode"], "")
         self.assertEqual(response["publishedExtensions"][0]["pathId"], "p")
+        self.assertTrue(all(
+            segment["claimGrade"] == "executable_architecture_evidence"
+            for segment in response["publishedExtensions"][0]["segments"]
+        ))
         self.assertGreater(
             len(response["publishedExtensions"][0]["segments"]), 0
         )
@@ -100,13 +114,13 @@ class NativeBorgProcessTests(unittest.TestCase):
         under_length_run = "\t".join(
             (
                 "RUN", "under-length", "2", "2.1", "0.1", "0.1",
-                "0.1", "0", "1", "1", "1e-10", "1e-8", "1e-8", "1e-8",
-                "1e-8", "2", "1",
+                "0.1", "0", "certified", "0", "none", "none", "1", "1", "1e-10",
+                "1e-8", "0", "1e-8", "1e-8", "1e-8", "2",
             )
         )
         completed = subprocess.run(
             [str(self.binary), "borg-shadow-v0"],
-            input=f"EOM_BORG_NATIVE_V2\n{under_length_run}\n",
+            input=f"EOM_BORG_NATIVE_V4\n{under_length_run}\n",
             check=False,
             cwd=ROOT,
             capture_output=True,
@@ -114,14 +128,14 @@ class NativeBorgProcessTests(unittest.TestCase):
         )
         self.assertNotEqual(completed.returncode, 0)
         self.assertIn(
-            "invalid RUN record: expected exactly 18 tab-separated fields",
+            "invalid RUN record: expected exactly 22 tab-separated fields",
             completed.stderr,
         )
 
-    def test_native_process_rejects_v1_protocol_magic(self) -> None:
+    def test_native_process_rejects_v3_protocol_magic(self) -> None:
         completed = subprocess.run(
             [str(self.binary), "borg-shadow-v0"],
-            input="EOM_BORG_NATIVE_V1\n",
+            input="EOM_BORG_NATIVE_V3\n",
             check=False,
             cwd=ROOT,
             capture_output=True,
@@ -133,7 +147,7 @@ class NativeBorgProcessTests(unittest.TestCase):
     def test_protocol_enables_bounded_adaptive_step_recovery(self) -> None:
         protocol = "\n".join(
             (
-                "EOM_BORG_NATIVE_V2",
+                "EOM_BORG_NATIVE_V4",
                 "\t".join(
                     (
                         "RUN",
@@ -144,6 +158,10 @@ class NativeBorgProcessTests(unittest.TestCase):
                         "0.05",
                         "0.4",
                         "1",
+                        "certified",
+                        "0",
+                        "none",
+                        "none",
                         "1",
                         "1",
                         "1e-10",
@@ -182,11 +200,11 @@ class NativeBorgProcessTests(unittest.TestCase):
     def test_absolute_time_rounding_tail_snaps_to_requested_decimal_endpoint(self) -> None:
         protocol = "\n".join(
             (
-                "EOM_BORG_NATIVE_V2",
+                "EOM_BORG_NATIVE_V4",
                 "\t".join(
                     (
                         "RUN", "absolute-time-rounding-tail", "300.03", "300.04",
-                        "0.01", "0.01", "0.01", "0", "1", "1", "1e-10", "1e-8", "0",
+                        "0.01", "0.01", "0.01", "0", "certified", "0", "none", "none", "1", "1", "1e-10", "1e-8", "0",
                         "1e-8", "1e-8", "1e-8", "2", "1",
                     )
                 ),
@@ -213,11 +231,11 @@ class NativeBorgProcessTests(unittest.TestCase):
         def request(run_id: str) -> str:
             return "\n".join(
                 (
-                    "EOM_BORG_NATIVE_V2",
+                    "EOM_BORG_NATIVE_V4",
                     "\t".join(
                         (
                             "RUN", run_id, "2", "2.1", "0.1", "0.1",
-                            "0.1", "0", "1", "1", "1e-10", "1e-8", "0", "1e-8", "1e-8",
+                            "0.1", "0", "certified", "0", "none", "none", "1", "1", "1e-10", "1e-8", "0", "1e-8", "1e-8",
                             "1e-8", "2", "1",
                         )
                     ),
@@ -249,11 +267,11 @@ class NativeBorgProcessTests(unittest.TestCase):
             step: str = "0.1",
         ) -> str:
             rows = [
-                "EOM_BORG_NATIVE_V2",
+                "EOM_BORG_NATIVE_V4",
                 "\t".join(
                     (
                         "RUN", run_id, start, end, step, step,
-                        step, "0", "1", "1", "1e-10", "1e-8", "0", "1e-8", "1e-8",
+                        step, "0", "certified", "0", "none", "none", "1", "1", "1e-10", "1e-8", "0", "1e-8", "1e-8",
                         "1e-8", "2", "1",
                     )
                 ),

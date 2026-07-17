@@ -53,6 +53,7 @@ export function createBorgEomShadowRunner(manifest, options = {}) {
   let chunkIndex = 0;
   let causticWarningCount = 0;
   let firstCausticWarningTime = null;
+  let causticWarningPairs = Object.freeze([]);
   const initialHistoryAccepted = histories.every(
     (history) => history.sourceAcceptedInitialDatum === true,
   );
@@ -99,6 +100,7 @@ export function createBorgEomShadowRunner(manifest, options = {}) {
         return createCompleteChunk(
           config, chunkIndex, nextStartTime,
           causticWarningCount, firstCausticWarningTime,
+          causticWarningPairs,
         );
       }
       const startTime = nextStartTime;
@@ -116,12 +118,14 @@ export function createBorgEomShadowRunner(manifest, options = {}) {
         initialStep: controllerStepSize,
         causticWarningCount,
         firstCausticWarningTime,
+        causticWarningPairs,
       });
       const rawResponse = await client.evolveRetainedHistories(request);
       const response = normalizeEomResponse(rawResponse, request);
       controllerStepSize = response.controllerStepSize;
       causticWarningCount = response.causticWarningCount;
       firstCausticWarningTime = response.firstCausticWarningTime;
+      causticWarningPairs = Object.freeze(response.causticWarningPairs);
       nextStartTime = endTime;
       histories = retainBorgHistoryWindow(response.histories, {
         minimumCoverageStart: roundTime(nextStartTime - config.historyDepth),
@@ -154,6 +158,7 @@ export function createBorgEomShadowRunner(manifest, options = {}) {
         causticWarningCount,
         firstCausticWarningTime,
         causticWarnings: Object.freeze(response.causticWarnings),
+        causticWarningPairs,
         claimGrade: response.claimGrade,
         evolutionClaimLevel: response.claimGrade ===
             BORG_UNCERTIFIED_ENCOUNTER_CLAIM_LEVEL
@@ -390,6 +395,7 @@ export function createBorgEomShadowRequest({
   initialStep = config.initialStep,
   causticWarningCount = 0,
   firstCausticWarningTime = null,
+  causticWarningPairs = [],
 }) {
   if (!Array.isArray(histories) || histories.length === 0) {
     throw new TypeError("Borg EOM request requires continuous retained histories.");
@@ -454,6 +460,8 @@ export function createBorgEomShadowRequest({
       runGrade: config.runGrade,
       causticWarningCount,
       firstCausticWarningTime,
+      causticWarningPairs: Object.freeze(causticWarningPairs.map((pair) =>
+        Object.freeze([...pair]))),
     }),
   });
 }
@@ -583,9 +591,11 @@ function normalizeEomResponse(rawResponse, request) {
     ? null
     : String(response.firstCausticWarningTime);
   const priorWarningCount = request.provenance.causticWarningCount;
+  const causticWarningPairs = requiredWarningPairs(response.causticWarningPairs);
   const claimGrade = String(response.claimGrade ?? response.evidenceStatus ?? "failed");
   if (runGrade !== request.numericalControls.runGrade ||
       causticWarningCount < priorWarningCount ||
+      (causticWarningCount === 0) !== (causticWarningPairs.length === 0) ||
       (causticWarningCount === 0) !== (firstCausticWarningTime == null) ||
       (causticWarningCount > 0 &&
        claimGrade !== BORG_UNCERTIFIED_ENCOUNTER_CLAIM_LEVEL)) {
@@ -598,6 +608,7 @@ function normalizeEomResponse(rawResponse, request) {
     claimGrade,
     causticWarningCount,
     firstCausticWarningTime,
+    causticWarningPairs,
     causticWarnings: Array.isArray(response.causticWarnings)
       ? response.causticWarnings
       : [],
@@ -685,6 +696,7 @@ function createCompleteChunk(
   time,
   causticWarningCount,
   firstCausticWarningTime,
+  causticWarningPairs = [],
 ) {
   return Object.freeze({
     schema: BORG_EOM_SHADOW_RUNNER_VERSION,
@@ -699,6 +711,7 @@ function createCompleteChunk(
     runGrade: config.runGrade,
     causticWarningCount,
     firstCausticWarningTime,
+    causticWarningPairs: Object.freeze(causticWarningPairs),
     causticWarnings: Object.freeze([]),
     claimGrade: causticWarningCount > 0
       ? BORG_UNCERTIFIED_ENCOUNTER_CLAIM_LEVEL
@@ -764,6 +777,15 @@ function requiredRunGrade(value) {
     throw new TypeError("Borg EOM runGrade must be display or certified.");
   }
   return value;
+}
+
+function requiredWarningPairs(value) {
+  if (!Array.isArray(value) || value.some((pair) =>
+    !Array.isArray(pair) || pair.length !== 2 ||
+    pair.some((pathId) => typeof pathId !== "string" || pathId.length === 0))) {
+    throw new TypeError("Borg EOM causticWarningPairs must contain path-id pairs.");
+  }
+  return value.map((pair) => Object.freeze([...pair]));
 }
 
 function requiredNonnegativeInteger(value, label) {
