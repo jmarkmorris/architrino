@@ -624,6 +624,35 @@ class NativeCoupledEvolutionTests(unittest.TestCase):
             "coupled_correction_failed",
         )
         self.assertEqual(
+            display["scaled_display_first_failure_code"],
+            "coupled_correction_failed",
+        )
+        self.assertEqual(
+            display["scaled_certified_first_failure_code"],
+            "coupled_correction_failed",
+        )
+        expected_scale = min(
+            0.5,
+            0.9 * math.sqrt(1e-7 / display["scaled_display_first_residual"]),
+        )
+        self.assertAlmostEqual(
+            display["scaled_display_retry_scale"],
+            expected_scale,
+            places=6,
+        )
+        self.assertLess(display["scaled_display_retry_scale"], 0.5)
+        self.assertAlmostEqual(
+            display["scaled_display_second_width"],
+            0.04 * expected_scale,
+            places=6,
+        )
+        self.assertEqual(display["scaled_certified_retry_scale"], 0)
+        self.assertAlmostEqual(
+            display["scaled_certified_second_width"], 0.02, places=12
+        )
+        self.assertTrue(display["scaled_display_publication_atomic"])
+        self.assertTrue(display["scaled_certified_publication_atomic"])
+        self.assertEqual(
             display["ordinary_root_display_halt_code"],
             "root_completeness_not_certified",
         )

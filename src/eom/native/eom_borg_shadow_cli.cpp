@@ -646,12 +646,14 @@ void run(
       std::cout << ',';
     }
     const auto& step = result.steps[step_index];
-    std::optional<double> correction_error;
-    for (auto substep = step.substeps.rbegin();
-         substep != step.substeps.rend(); ++substep) {
-      if (substep->correction_error.has_value()) {
-        correction_error = substep->correction_error;
-        break;
+    std::optional<double> correction_error = step.correction_residual;
+    if (!correction_error.has_value()) {
+      for (auto substep = step.substeps.rbegin();
+           substep != step.substeps.rend(); ++substep) {
+        if (substep->correction_error.has_value()) {
+          correction_error = substep->correction_error;
+          break;
+        }
       }
     }
     const eom::NativeAccelerationSnapshotCertificate* diagnostic_snapshot =
@@ -677,6 +679,10 @@ void run(
       std::cout << *correction_error;
     } else {
       std::cout << "null";
+    }
+    if (step.correction_retry_scale > 0.0) {
+      std::cout << ",\"correctionRetryScale\":"
+                << step.correction_retry_scale;
     }
     std::cout << ",\"attemptedStart\":\""
               << json_escape(step.attempted_start)

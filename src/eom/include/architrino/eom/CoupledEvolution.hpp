@@ -475,6 +475,8 @@ struct NativeAtomicStepCertificate {
   std::size_t certificate_cost_mpfr_attempt_count = 0;
   std::size_t certificate_cost_cooldown_remaining = 0;
   std::string failure_code;
+  std::optional<double> correction_residual;
+  double correction_retry_scale = 0.0;
   std::string evidence_status;
   std::string integration_method;
   std::string reduction_policy;

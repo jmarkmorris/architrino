@@ -47,6 +47,8 @@ The current `borg-eom-first-screen` surface contract binds these checked values 
 | `velocityPolicy` | `seeded-random-small-3d` |
 | `randomVelocityMaxComponentMagnitude` | `0.01` |
 | `coupling` | `0.05` |
+| `stepHeight` | `0.025`, the initial and adaptive maximum height |
+| `adaptiveMinimumStep` | `0.0001` |
 | `outerRadius` | `0.5` |
 | `centralBallRadius` | `0.4` |
 | `radialBufferMargin` | `0.1` |
@@ -57,7 +59,7 @@ The current `borg-eom-first-screen` surface contract binds these checked values 
 
 These values are valid only as a developer-test screen contract. They do not establish proof evidence, production rendering performance, benign-noise authority, or central-ball acceleration authority.
 
-The browser surface also provides exact runtime controls for electrino count, positrino count, maximum random velocity-component magnitude, and minimum random speed. Applying them replaces the staged population, rebuilds particle and path objects, and starts a new EOM run from a certified artificial retained history. These controls do not change the design values in the table and do not promote the resulting trajectory to canonical equation-of-motion evidence.
+The browser surface also provides exact runtime controls for electrino count, positrino count, coupling, nominal step height, adaptive minimum step, maximum random velocity-component magnitude, and minimum random speed. The nominal height is both the first attempted height and the ceiling to which adaptive growth may return; the minimum is the fail-closed floor. Applying the controls replaces the staged population, rebuilds particle and path objects, and starts a new EOM run from a certified artificial retained history. These controls do not change the design values in the table and do not promote the resulting trajectory to canonical equation-of-motion evidence.
 
 ## First-Screen Layer Contract
 

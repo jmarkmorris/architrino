@@ -371,6 +371,30 @@ double continuous_step_scale(
   return std::clamp(proposed, minimum_scale, maximum_scale);
 }
 
+double display_correction_retry_scale(
+    const NativeCoupledEvolutionRequest& request,
+    const NativeAtomicStepCertificate& step) {
+  constexpr double kOrdinaryRetryScale = 0.5;
+  if (request.run_grade != "display" ||
+      step.failure_code != "coupled_correction_failed" ||
+      !step.correction_residual.has_value()) {
+    return kOrdinaryRetryScale;
+  }
+  const double residual = *step.correction_residual;
+  const double tolerance = tolerance_value(
+      request.correction_tolerance, "correction tolerance");
+  if (!std::isfinite(residual) || !(residual > tolerance)) {
+    return kOrdinaryRetryScale;
+  }
+  const double safety = exact_decimal_value(
+      request.adaptive_step_safety_factor);
+  const double proposed = safety * std::sqrt(tolerance / residual);
+  if (!std::isfinite(proposed) || !(proposed > 0.0)) {
+    return kOrdinaryRetryScale;
+  }
+  return std::min(kOrdinaryRetryScale, proposed);
+}
+
 std::vector<std::pair<std::string, std::string>> changed_topology_pairs(
     const NativeAccelerationSnapshotCertificate& start,
     const NativeAccelerationSnapshotCertificate& end) {
@@ -2697,6 +2721,16 @@ NativeAtomicStepCertificate rejected_step(
         recertification_snapshot = std::nullopt) {
   const auto input_fingerprints = fingerprints(input_histories);
   const auto published_fingerprints = fingerprints(input_histories);
+  std::optional<double> correction_residual;
+  if (failure_code == "coupled_correction_failed") {
+    for (auto substep = substeps.rbegin(); substep != substeps.rend();
+         ++substep) {
+      if (substep->correction_error.has_value()) {
+        correction_residual = substep->correction_error;
+        break;
+      }
+    }
+  }
   return {
       .schema = "eom_native_atomic_coupled_step_certificate/v0",
       .status = "rejected",
@@ -2716,6 +2750,8 @@ NativeAtomicStepCertificate rejected_step(
       .recertification_snapshot = std::move(recertification_snapshot),
       .local_errors = std::move(local_errors),
       .failure_code = failure_code,
+      .correction_residual = correction_residual,
+      .correction_retry_scale = 0.0,
       .evidence_status = "failed",
       .integration_method = integration_method(request),
       .reduction_policy = kDeterministicReductionPolicy,
@@ -5172,10 +5208,14 @@ NativeAtomicStepCertificate certify_native_atomic_coupled_step_impl(
       snapshot_totals(accepted_snapshot));
   if (accepted_correction_error > tolerance_value(
           request.correction_tolerance, "correction tolerance")) {
-    return rejected_step(
+    auto rejection = rejected_step(
         request, histories, step_index, start_time, end_time,
         std::move(substeps), "coupled_correction_failed", accepted_histories,
         std::move(local_errors));
+    if (display_run_grade(request)) {
+      rejection.correction_residual = accepted_correction_error;
+    }
+    return rejection;
   }
 
   const auto fingerprint_timing_start = SteadyClock::now();
@@ -5206,6 +5246,8 @@ NativeAtomicStepCertificate certify_native_atomic_coupled_step_impl(
           std::move(multirate_publication.coarse_path_ids),
       .caustic_warnings = std::move(caustic_warnings),
       .failure_code = "",
+      .correction_residual = std::nullopt,
+      .correction_retry_scale = 0.0,
       .evidence_status = "executable_architecture_evidence",
       .integration_method = integration_method(request),
       .reduction_policy = kDeterministicReductionPolicy,
@@ -5567,6 +5609,12 @@ NativeCoupledEvolutionCertificate evolve_native_coupled_histories(
     }
     step.certificate_cost_cooldown_remaining =
         certificate_cost_cooldown_remaining;
+    const double correction_retry_scale =
+        display_correction_retry_scale(request, step);
+    if (display_run_grade(request) &&
+        step.failure_code == "coupled_correction_failed") {
+      step.correction_retry_scale = correction_retry_scale;
+    }
     steps.push_back(std::move(step));
     if (rejected_count > request.max_rejected_steps) {
       halt_code = "numeric_resource_limit_exhausted";
@@ -5580,12 +5628,18 @@ NativeCoupledEvolutionCertificate evolve_native_coupled_histories(
           minimum_step, maximum_step);
       continue;
     }
+    const bool display_scaled_correction =
+        display_run_grade(request) &&
+        steps.back().failure_code == "coupled_correction_failed";
     const double next_step = attempted_step *
-        (request.use_continuous_adaptive_step &&
-             steps.back().failure_code == "numeric_step_budget_exceeded" &&
-             !steps.back().local_errors.empty()
-         ? continuous_step_scale(request, steps.back(), false)
-         : 0.5);
+        (display_scaled_correction
+             ? correction_retry_scale
+             : (request.use_continuous_adaptive_step &&
+                        steps.back().failure_code ==
+                            "numeric_step_budget_exceeded" &&
+                        !steps.back().local_errors.empty()
+                    ? continuous_step_scale(request, steps.back(), false)
+                    : 0.5));
     if (next_step < minimum_step &&
         attempted_step > minimum_step +
             absolute_time_rounding_envelope(

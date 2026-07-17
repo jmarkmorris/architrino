@@ -58,7 +58,6 @@ const BOUNDARY_SHELL_LATITUDE_COUNT = 25;
 const BOUNDARY_SHELL_LONGITUDE_COUNT = 48;
 const ENVELOPE_GUIDE_COLOR = 0xcbd0c8;
 const ENVELOPE_GUIDE_OPACITY = 0.88;
-const ENVELOPE_GREAT_CIRCLE_POINT_COUNT = 96;
 const DEFAULT_PLAYBACK_SPEED_PRESET_ID = "normal";
 const DEFAULT_RUN_CONTROL_PRESET_ID = "live-forever";
 const FINITE_RUN_CONTROL_PRESET_ID = "live-60s";
@@ -442,11 +441,6 @@ export function mountBorgApp(options = {}) {
         color: ENVELOPE_GUIDE_COLOR,
         opacity: ENVELOPE_GUIDE_OPACITY,
       }),
-      createEnvelopeGreatCircles({
-        radius: manifest.simulationEnvelope.outerRadius,
-        color: ENVELOPE_GUIDE_COLOR,
-        opacity: ENVELOPE_GUIDE_OPACITY,
-      }),
     );
 
     rebuildPathTrails();
@@ -546,38 +540,6 @@ export function mountBorgApp(options = {}) {
       new THREE.BufferGeometry().setFromPoints(points),
       material,
     );
-  }
-
-  function createEnvelopeGreatCircles({ radius, color, opacity }) {
-    const group = new THREE.Group();
-    const worldRadius = radius * worldUnitsPerSolverUnit;
-    const material = new THREE.LineBasicMaterial({
-      color,
-      transparent: true,
-      opacity,
-    });
-    const circlePoints = (plane) => Array.from(
-      { length: ENVELOPE_GREAT_CIRCLE_POINT_COUNT },
-      (_unused, index) => {
-        const angle = (index / ENVELOPE_GREAT_CIRCLE_POINT_COUNT) * Math.PI * 2;
-        const first = Math.cos(angle) * worldRadius;
-        const second = Math.sin(angle) * worldRadius;
-        if (plane === "xy") {
-          return new THREE.Vector3(first, second, 0);
-        }
-        if (plane === "xz") {
-          return new THREE.Vector3(first, 0, second);
-        }
-        return new THREE.Vector3(0, first, second);
-      },
-    );
-    ["xy", "xz", "yz"].forEach((plane) => {
-      group.add(new THREE.LineLoop(
-        new THREE.BufferGeometry().setFromPoints(circlePoints(plane)),
-        material,
-      ));
-    });
-    return group;
   }
 
   function renderStaticPanels() {
@@ -2081,7 +2043,7 @@ export function mountBorgApp(options = {}) {
     }
     state.distributionLabel = `seeded distribution ${state.distributionSeedIndex}`;
     setInitialConditionFeedback(
-      `Accepted κ=${state.eomCoupling}; ${config.electrinoCount} electrinos + ${config.positrinoCount} positrinos; ${state.eomPathCount ** 2} ordered EOM pairs`,
+      `Accepted κ=${state.eomCoupling}; step ${state.eomStepHeight} to ${state.eomMinimumStep}; ${config.electrinoCount} electrinos + ${config.positrinoCount} positrinos; ${state.eomPathCount ** 2} ordered EOM pairs`,
       "accepted",
     );
     state.runControlPresetId = getRunControlPreset(state.runControlPresetId).id;
@@ -2201,7 +2163,7 @@ function createDefaultEomRecordReplayOptions(
   };
 }
 
-function createDefaultEomShadowRunnerOptions(
+export function createDefaultEomShadowRunnerOptions(
   options = {},
   preset = runControlPresetById(),
   initialFrameRows = null,

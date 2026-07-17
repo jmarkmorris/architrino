@@ -1456,3 +1456,44 @@ This file holds dated decisions, implementation status, validation results, fail
   terminal coupled-correction row, any rejected candidate is published, an FWC
   row appears on the ordinary correction failure, or the stated seed-0 control
   produces a different terminal certificate with the same binary and inputs.
+
+## 2026-07-17 — Display-grade residual-scaled correction retries
+
+- **Derived controller:** after a display-grade
+  `coupled_correction_failed` row with failed acceleration-consistency
+  residual $R_c>\tau_c$, the EOM solver now selects
+  $s_c=\min(1/2,0.9\sqrt{\tau_c/R_c})$. Missing or unusable residuals fall
+  back to one half. Certified grade remains exact halving, and no acceptance
+  or publication row changed.
+- **Measured deterministic control:** with $R_c=1.29131\times10^{-5}$ and
+  $\tau_c=10^{-7}$, display grade selected `0.0792003` and attempted
+  `0.00316801` after `0.04`; the otherwise identical certified control
+  attempted `0.02`. Both rejected candidates retained the input history
+  atomically.
+- **Measured seed-0 control:** with 3:3 paths, coupling `0.05`,
+  `h_initial=h_max=0.025`, and `h_min=0.0001`, the terminal chunk reached
+  `T=0.5528107343035016`, rejected 7 attempts, reevaluated 55,471 root cells,
+  and cost `4.64220 s`. Its correction rows carried residuals near `4.59` and
+  selected scales near `0.133`, reaching viable heights without intermediate
+  blind halvings.
+- **Measured negative speed result:** the preceding exact-halving control
+  rejected 9 attempts, reevaluated 52,290 root cells, and cost `4.57775 s`.
+  Fewer rejected attempts therefore did not reduce wall time on this encounter;
+  the measured cost changed by about `+1.4%`. Repeated root certification, not
+  the scalar height calculation, remains the next measured cost target.
+- **Diagnostic correction:** the prior `0.000206005` terminal
+  `correctionResidual` was the last inner-corrector value, not the later
+  accepted-history recertification value that caused rejection. The response
+  now reports that actual failed row and its selected retry scale.
+- **Certified-parity guard:** two runs of the deterministic `all` fixture retain
+  SHA-256 `d38cb2c08d2f5ff297f5abf95556986468fba83566d9970970afd76575d464a0`.
+  Certified correction retries remain exact halvings, and their serialized
+  response shape receives no display retry-scale field.
+- **Validation:** 147 EOM Python tests and 70 Borg JavaScript tests pass; the
+  repository pre-commit checks pass.
+- Claim grades: the controller and unchanged-gate statement are `derived`; the
+  fixture values, seed extent, cell counts, and costs are `measured` on the
+  rebuilt local binary. Falsifiers: certified grade does not halve exactly,
+  the emitted scale differs from the formula, a rejected candidate is
+  published, the named controls do not reproduce their attempt sequences, or
+  any validation fails.

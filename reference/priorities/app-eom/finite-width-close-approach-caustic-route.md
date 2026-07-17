@@ -379,6 +379,31 @@ published. A memory-boundary failure, ordinary correction failure, local-step
 error, resource ceiling, or any other non-caustic rejection remains
 fail-closed; `coupled_correction_failed` is never demoted.
 
+For a display-grade `coupled_correction_failed` rejection with finite failed
+acceleration-consistency residual $R_c>\tau_c$, the next attempted height uses
+
+$$
+s_c=\min\!\left(\frac12,\;\gamma\sqrt{\frac{\tau_c}{R_c}}\right),
+\qquad
+h_{\mathrm{next}}=\max(h_{\min},s_ch),
+$$
+
+where $\gamma$ is the declared adaptive safety factor. The square-root proposal
+uses the local $h^2$ response of endpoint position to an acceleration mismatch;
+the one-half cap guarantees at least the reduction made by the ordinary
+controller. A missing, nonfinite, nonpositive, or already-within-tolerance
+residual falls back to exact halving. Certified grade always retains exact
+halving for this failure. The selected scale is diagnostic only: the retry must
+pass every unchanged correction, local-error, root, and atomic-publication row
+before publication.
+
+Claim grade: `derived-design` for the unchanged gates and the $h^2$ retry
+estimate. Wall-time benefit is not implied by this rule; it is a measured
+property of a workload. Falsifier: certified grade selects any scale other
+than one half for this failure, display grade uses a residual other than the
+failed acceleration-consistency row, or a retry is published without passing
+the unchanged acceptance rows.
+
 The first accepted warning irreversibly changes the run claim marker to
 `uncertified-through-encounters`. Every subsequently published extension and
 derived frame inherits that marker. The response carries the cumulative

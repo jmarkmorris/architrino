@@ -11,6 +11,7 @@ import {
   createBorgFrameSetsFromRows,
   mergeBorgFrameRows,
 } from "../src/apps/borg/BorgFrameRows.js";
+import { createDefaultEomShadowRunnerOptions } from "../src/apps/borg/BorgAppRuntime.js";
 import {
   BORG_EOM_RECORD_REPLAY_RUNNER_VERSION,
   BORG_EOM_RECORD_REPLAY_RUN_SOURCE,
@@ -69,6 +70,33 @@ test("Borg path history is on and visible by default", () => {
     BORG_APP_SURFACE_DESIGN_V1.layerStrip.find((entry) => entry.layer === "path-history")?.state,
     "on",
   );
+});
+
+test("Borg applied step controls set the initial height, ceiling, and adaptive minimum", () => {
+  const eomClient = {};
+  const resolved = createDefaultEomShadowRunnerOptions(
+    {
+      eomShadowRunner: {
+        eomClient,
+        startTime: 0,
+        targetDuration: 1,
+        runDuration: 1,
+        chunkDuration: 0.05,
+        initialStep: "0.025",
+        minimumStep: "0.0001",
+        maximumStep: "0.025",
+      },
+    },
+    { effectiveTargetDuration: 1, effectiveChunkDuration: 0.05 },
+    null,
+    BORG_DATASET_MANIFEST_V1,
+    { stepHeight: 0.0125, minimumStep: 0.0002 },
+  );
+
+  assert.equal(resolved.eomClient, eomClient);
+  assert.equal(resolved.initialStep, "0.0125");
+  assert.equal(resolved.maximumStep, "0.0125");
+  assert.equal(resolved.minimumStep, "0.0002");
 });
 
 test("Borg app manifest is design-owned policy and passes validation", () => {
@@ -309,9 +337,9 @@ test("Borg path-history renderer uses native row segments, not visual smoothing 
   assert.match(runtimeSource, /new THREE\.Points\(/);
   assert.equal((runtimeSource.match(/boundaryShellGroup\.add\(\s*createBoundaryShellPoints\(\{/g) ?? []).length, 1);
   assert.doesNotMatch(runtimeSource, /centralBallGroup/);
-  assert.match(runtimeSource, /\["xy", "xz", "yz"\]/);
-  assert.match(runtimeSource, /new THREE\.LineLoop/);
-  assert.match(runtimeSource, /createEnvelopeGreatCircles\(\{\s*radius: manifest\.simulationEnvelope\.outerRadius,\s*color: ENVELOPE_GUIDE_COLOR,\s*opacity: ENVELOPE_GUIDE_OPACITY/);
+  assert.doesNotMatch(runtimeSource, /\["xy", "xz", "yz"\]/);
+  assert.doesNotMatch(runtimeSource, /new THREE\.LineLoop/);
+  assert.doesNotMatch(runtimeSource, /createEnvelopeGreatCircles/);
   assert.match(runtimeSource, /function fitCameraToEnvelope\(margin\)/);
   assert.match(runtimeSource, /manifest\.simulationEnvelope\.outerRadius \* worldUnitsPerSolverUnit/);
   assert.match(runtimeSource, /DEFAULT_CAMERA_FIT_MARGIN = 1\.1/);
@@ -369,6 +397,12 @@ test("Borg path-history renderer uses native row segments, not visual smoothing 
   assert.doesNotMatch(htmlSource, /id="borg-eom-path-count"/);
   assert.match(htmlSource, /id="borg-eom-duration"[^>]*value="60"/);
   assert.match(htmlSource, /id="borg-coupling"[^>]*value="0\.005"/);
+  assert.match(htmlSource, /id="borg-step-height"[^>]*value="0\.025"/);
+  assert.match(htmlSource, /id="borg-minimum-step"[^>]*value="0\.0001"/);
+  assert.match(
+    htmlSource,
+    /κ coupling[\s\S]*class="borg-step-control-group"[\s\S]*Step height[\s\S]*Adaptive minimum/,
+  );
   assert.match(htmlSource, /Max per-axis speed/);
   assert.match(htmlSource, /Minimum total speed/);
   assert.match(
@@ -390,6 +424,8 @@ test("Borg path-history renderer uses native row segments, not visual smoothing 
   );
   assert.match(runtimeSource, /dom\.eomProgress\.hidden = forever/);
   assert.match(runtimeSource, /runtimeControls\.coupling \?\? configured\.coupling/);
+  assert.match(runtimeSource, /runtimeControls\.stepHeight \?\? configured\.initialStep/);
+  assert.match(runtimeSource, /runtimeControls\.minimumStep \?\? configured\.minimumStep/);
   assert.match(runtimeSource, /forward EOM chunks/);
   assert.match(runtimeSource, /Exact polynomial initial history \(C1 inertial\)/);
   assert.match(runtimeSource, /function startRunAndPlayback\(\)[\s\S]*firstChunk\.then[\s\S]*startPlayback\(\)/);

@@ -1510,6 +1510,33 @@ void print_display_fast_caustic_path() {
       correction_request, correction_histories, 0, "5", "5.01");
   const auto correction_evolution =
       eom::evolve_native_coupled_histories(correction_request);
+  auto scaled_correction_request = request(
+      "display-scaled-correction-retry",
+      {{"scale-a", "1",
+        history("display-scaled-correction-a", "5", {"0", "0", "0", "0"})},
+       {"scale-b", "1",
+        history("display-scaled-correction-b", "5", {"2", "0", "0", "0"})}},
+      "5", "5.04", "0.04", "0.000001", "1", "1", "1e-7", "1", 1);
+  scaled_correction_request.run_grade = "display";
+  scaled_correction_request.max_step_attempts = 2;
+  const auto scaled_display_evolution =
+      eom::evolve_native_coupled_histories(scaled_correction_request);
+  scaled_correction_request.run_id = "certified-scaled-correction-control";
+  scaled_correction_request.run_grade = "certified";
+  const auto scaled_certified_evolution =
+      eom::evolve_native_coupled_histories(scaled_correction_request);
+  if (scaled_display_evolution.steps.size() < 2U ||
+      scaled_certified_evolution.steps.size() < 2U) {
+    throw std::runtime_error(
+        "scaled correction retry control did not produce two attempts");
+  }
+  const auto attempted_width = [](const eom::NativeAtomicStepCertificate& row) {
+    return std::stod(row.attempted_end) - std::stod(row.attempted_start);
+  };
+  const auto& display_first_retry = scaled_display_evolution.steps[0];
+  const auto& display_second_retry = scaled_display_evolution.steps[1];
+  const auto& certified_first_retry = scaled_certified_evolution.steps[0];
+  const auto& certified_second_retry = scaled_certified_evolution.steps[1];
   const eom::RetainedHistory unresolved_receiver(
       "display-unresolved-receiver",
       {eom::CubicHistorySegment(
@@ -1566,6 +1593,24 @@ void print_display_fast_caustic_path() {
             << correction_evolution.caustic_warning_pairs.size()
             << ",\"ordinary_correction_halt_code\":\""
             << correction_evolution.halt_code << "\""
+            << ",\"scaled_display_first_failure_code\":\""
+            << display_first_retry.failure_code << "\""
+            << ",\"scaled_display_first_residual\":"
+            << display_first_retry.correction_residual.value_or(-1.0)
+            << ",\"scaled_display_retry_scale\":"
+            << display_first_retry.correction_retry_scale
+            << ",\"scaled_display_second_width\":"
+            << attempted_width(display_second_retry)
+            << ",\"scaled_certified_first_failure_code\":\""
+            << certified_first_retry.failure_code << "\""
+            << ",\"scaled_certified_retry_scale\":"
+            << certified_first_retry.correction_retry_scale
+            << ",\"scaled_certified_second_width\":"
+            << attempted_width(certified_second_retry)
+            << ",\"scaled_display_publication_atomic\":"
+            << (display_first_retry.publication_atomic ? "true" : "false")
+            << ",\"scaled_certified_publication_atomic\":"
+            << (certified_first_retry.publication_atomic ? "true" : "false")
             << ",\"ordinary_root_display_halt_code\":\""
             << ordinary_root_evolution.halt_code << "\""
             << ",\"ordinary_root_certified_halt_code\":\""
