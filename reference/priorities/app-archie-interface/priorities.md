@@ -3,7 +3,7 @@
 ## Workstream Metadata
 
 - Kind: `priority-app`
-- Rank: `30`
+- Rank: `29`
 - Value: `0.86`
 - Cost: `3.5`
 - ROI: `0.25`
@@ -108,7 +108,16 @@ Every response should be represented by the [Answer Artifact Manifest](answer-ar
 24. `service_deployment_architecture` - Assign public site, browser client, service API, background jobs, source-index, provider gateway, token ledger, action broker, issue-mining, observability, staging, production, CI/CD, rollback, and smoke-test responsibilities. Status: `candidate`.
 25. `service_scaffolding_and_fixtures` - Define schema-only service module targets, fixture families, environment variable classes, CI gates, and implementation stages before runtime providers or public launch. Status: `candidate`.
 
-## Next Work
+## Ranked Next Objects
+
+Ordered by marginal ROI on 2026-07-17. Existing design documents reduce remaining burden but do not retain value credit.
+
+1. `answer_artifact_manifest_regression_fixture` — Turn the Answer Artifact Manifest and AI communication standard into one executable fixture covering source context, claim labels, answer body, speech/media synchronization, token receipt, privacy state, available actions, and issue-mining metadata. Status: `candidate`.
+2. `service_deployment_option_decision` — Fix the public-site, browser-client, hosted-service, job, and provider boundary. Status: `candidate`.
+3. `service_deployment_architecture` — Assign service responsibilities across source, provider, token, action, observability, staging, production, CI/CD, rollback, and smoke-test surfaces. Status: `candidate`.
+4. `service_scaffolding_and_fixtures` — Define schema-first service modules, fixture families, environment classes, and implementation stages. Status: `candidate`.
+
+## Deferred Work Rules
 
 1. Keep the Answer Artifact Manifest as the response envelope for source context, claim labels, answer body, generated media, speech sync, token receipt, privacy state, available actions, and issue-mining metadata.
 2. Use the [ai-communication-standards.md](ai-communication-standards.md) gate for any future service-boundary, speech, token, issue-mining, generated-media, privacy, service-status, action-confirmation, or saved-note work.

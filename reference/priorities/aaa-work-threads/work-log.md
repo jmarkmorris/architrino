@@ -6,6 +6,16 @@ Use `brainstorming.md` for provisional ideas, insights, conceptual maps, and dra
 
 ## Log Entries
 
+### 2026-07-17 — Marginal-object scoring and mandatory two-level sorting
+
+- Replaced whole-workstream scoring language with marginal scoring of one next unresolved object against its remaining value and remaining cost; completed infrastructure now reduces burden or satisfies prerequisites but does not retain value credit.
+- Required every scoring pass to sort unresolved objects within each owning priority bucket first, use that local rank-`1` object as the bucket's unified-table row, and then sort all bucket winners globally with contiguous ranks.
+- Rebound all 37 unified rows to named local rank-`1` objects. The top ten did not move; `app-eom` remains first on the still-open `coupled_retained_history_integrator` acceptance object, not on the already-built application surface.
+- Added `scripts/validate-priority-ranking.mjs` to recompute derived scores, enforce round-half-up arithmetic, verify global sort and tie breaks, require marginal-object descriptions, and check mirrored tracker metadata.
+- The first validator run caught a stale global tie-break and five stale rounded fields. `app-archie-interface` moved to rank 29 above `operations` at rank 30; pressure-response, Animator, Validation Gates, Media Comics, and Media Posts arithmetic was corrected.
+- Claim grade: the scores and order remain inferred attention allocation. They do not promote any proof, run, branch, coefficient, or closure-score row.
+- Promotion triage: `priority-only`; no authored AAA corpus promotion follows from the scoring-policy correction.
+
 ### 2026-07-16 — Duplicate campaign and simulation ownership consolidated
 
 - Removed `eom-attractor-search` and `app-simulation` as independently ranked owners. Braid Program now owns the undirected ensemble campaign; EOM owns the reusable harness, checkpoint, deterministic-replay, campaign-driver, convergence, provenance, and cost-instrument capabilities.

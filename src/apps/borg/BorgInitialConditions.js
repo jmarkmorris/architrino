@@ -80,7 +80,13 @@ export function validateBorgInitialConditionConfig(
   });
 }
 
-export function createBorgSeededInitialConditionRows({ manifest, seedIndex = 0, config }) {
+export function createBorgSeededInitialConditionRows({
+  manifest,
+  seedIndex = 0,
+  config,
+  seedingRadius,
+  minimumPairSeparation,
+}) {
   const validation = validateBorgInitialConditionConfig(config);
   if (!validation.ok) {
     throw new TypeError(validation.errors[0]);
@@ -108,9 +114,15 @@ export function createBorgSeededInitialConditionRows({ manifest, seedIndex = 0, 
   const positions = createSeparatedRandomSimulationEnvelopePositions(
       stateFlags.length,
       envelopeCenter,
-      calculateBorgSeedingRadius(manifest, stateFlags.length),
+      positiveOptionalNumber(
+        seedingRadius,
+        calculateBorgSeedingRadius(manifest, stateFlags.length),
+      ),
       rng,
-      nonNegativeNumber(manifest?.initialConditions?.minimumPairSeparation, 0),
+      nonNegativeNumber(
+        minimumPairSeparation,
+        nonNegativeNumber(manifest?.initialConditions?.minimumPairSeparation, 0),
+      ),
     );
   const initialStateRunSource = "seeded-random-minimum-separation-initial-state";
 
@@ -129,6 +141,17 @@ export function createBorgSeededInitialConditionRows({ manifest, seedIndex = 0, 
     runSource: initialStateRunSource,
     valueAuthority: "app-generated-native-run-initial-condition",
   })));
+}
+
+function positiveOptionalNumber(value, fallback) {
+  if (value == null) {
+    return fallback;
+  }
+  const number = Number(value);
+  if (!Number.isFinite(number) || number <= 0) {
+    throw new TypeError("Borg seeding radius must be a positive finite number.");
+  }
+  return number;
 }
 
 export function calculateBorgInertialHistoryDepth(

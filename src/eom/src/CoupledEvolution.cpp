@@ -536,28 +536,17 @@ void append_display_entry_warnings(
     return;
   }
   for (const auto& [receiver, source] : snapshot.display_regulated_pairs) {
+    if (pair_is_adjudicated_finite_width(request, receiver, source)) {
+      continue;
+    }
     merge_caustic_warning(warnings, make_caustic_warning(
         receiver, source, reception_lower, reception_upper,
         "DISPLAY-REGULATOR-01", "display_core_regulator_applied"));
   }
-  for (const auto& row : snapshot.root_certificates) {
-    if (row.certificate.status == "certified_complete" ||
-        row.certificate.schema == "eom_native_enclosed_pair_marker/v0" ||
-        row.certificate.memory_boundary_contact ||
-        !pair_is_adjudicated_finite_width(
-            request, row.receiver_path_id, row.source_path_id)) {
-      continue;
-    }
-    merge_caustic_warning(warnings, make_caustic_warning(
-        row.receiver_path_id, row.source_path_id,
-        reception_lower, reception_upper, "FWC-ENTRY-02",
-        row.certificate.failure_code.empty()
-            ? "root_completeness_not_certified"
-            : row.certificate.failure_code));
-  }
 }
 
 std::vector<NativePublishedPath> append_display_candidate_segments(
+    const NativeCoupledEvolutionRequest& request,
     const std::vector<NativePublishedPath>& histories,
     const std::string& start_time,
     const std::string& end_time,
@@ -585,6 +574,8 @@ std::vector<NativePublishedPath> append_display_candidate_segments(
       throw std::invalid_argument("candidate segment lacks path acceleration");
     }
     CubicCoefficientTokens coefficients{};
+    std::array<double, 3> endpoint_position{};
+    std::array<double, 3> endpoint_velocity{};
     for (std::size_t axis = 0U; axis < 3U; ++axis) {
       const double acceleration_start =
           start_found->second[axis].midpoint();
@@ -596,11 +587,69 @@ std::vector<NativePublishedPath> append_display_candidate_segments(
           decimal_token(
               (acceleration_end - acceleration_start) / (6.0 * step)),
       };
+      endpoint_position[axis] = position[axis] + velocity[axis] * step +
+          acceleration_start * step * step * 0.5 +
+          (acceleration_end - acceleration_start) * step * step / 6.0;
+      endpoint_velocity[axis] = velocity[axis] +
+          acceleration_start * step +
+          (acceleration_end - acceleration_start) * step * 0.5;
     }
+    if (request.use_display_sphere_velocity_reversal) {
+      const double reversal_radius = scalar_token(
+          request.display_sphere_velocity_reversal_radius);
+      if (!(reversal_radius > 0.0)) {
+        throw std::invalid_argument(
+            "display sphere velocity reversal requires a positive radius");
+      }
+      double squared_radius = 0.0;
+      double outward_velocity = 0.0;
+      for (std::size_t axis = 0U; axis < 3U; ++axis) {
+        const double offset = endpoint_position[axis] - scalar_token(
+            request.display_sphere_center[axis]);
+        squared_radius += offset * offset;
+        outward_velocity += offset * endpoint_velocity[axis];
+      }
+      if (squared_radius >= reversal_radius * reversal_radius &&
+          outward_velocity > 0.0) {
+        for (std::size_t axis = 0U; axis < 3U; ++axis) {
+          const double displacement = endpoint_position[axis] - position[axis];
+          const double reversed_endpoint_velocity = -endpoint_velocity[axis];
+          const double second =
+              3.0 * displacement / (step * step) -
+              (2.0 * velocity[axis] + reversed_endpoint_velocity) / step;
+          const double third =
+              -2.0 * displacement / (step * step * step) +
+              (velocity[axis] + reversed_endpoint_velocity) / (step * step);
+          coefficients[axis] = {
+              decimal_token(position[axis]),
+              decimal_token(velocity[axis]),
+              decimal_token(second),
+              decimal_token(third),
+          };
+          endpoint_velocity[axis] = reversed_endpoint_velocity;
+        }
+      }
+    }
+    double position_scale = 1.0;
+    double velocity_scale = 1.0;
+    for (std::size_t axis = 0U; axis < 3U; ++axis) {
+      position_scale = std::max(position_scale, std::abs(position[axis]));
+      velocity_scale = std::max(velocity_scale, std::abs(velocity[axis]));
+      velocity_scale = std::max(
+          velocity_scale, std::abs(endpoint_velocity[axis]));
+    }
+    const double position_storage_radius =
+        path.history.segments().back().position_error() +
+        64.0 * std::numeric_limits<double>::epsilon() * position_scale;
+    const double velocity_storage_radius =
+        path.history.segments().back().velocity_error() +
+        64.0 * std::numeric_limits<double>::epsilon() * velocity_scale;
     result.push_back({
         path.path_id,
         path.history.appended(CubicHistorySegment(
-            start_time, end_time, coefficients, "0", "0")),
+            start_time, end_time, coefficients,
+            error_token(position_storage_radius),
+            error_token(velocity_storage_radius))),
     });
   }
   if (timing != nullptr) {
@@ -618,23 +667,6 @@ bool pair_is_adjudicated_finite_width(
       request.adjudicated_finite_width_pairs.end(),
       std::make_pair(receiver, source)) !=
       request.adjudicated_finite_width_pairs.end();
-}
-
-bool display_entry_route_required(
-    const NativeCoupledEvolutionRequest& request,
-    const std::string& receiver,
-    const std::string& source,
-    const ExactPairCertificate& root) {
-  if (!display_run_grade(request) || root.memory_boundary_contact ||
-      root.status != "uncertified" ||
-      root.failure_code != "numeric_precision_limit_exhausted" ||
-      root.diagnostic_detail != "endpoint_root_not_surrounded") {
-    return false;
-  }
-  const Interval charge_product =
-      Interval::decimal_token(path_charge(request, receiver)) *
-      Interval::decimal_token(path_charge(request, source));
-  return charge_product.upper() < 0.0;
 }
 
 std::vector<std::pair<std::string, std::string>>
@@ -663,7 +695,6 @@ certified_opposite_polarity_core_pairs(
 }
 
 std::vector<std::pair<std::string, std::string>> finite_width_pairs(
-    const NativeCoupledEvolutionRequest& request,
     const NativeAccelerationSnapshotCertificate& snapshot) {
   std::vector<std::pair<std::string, std::string>> result;
   for (std::size_t index = 0;
@@ -676,10 +707,7 @@ std::vector<std::pair<std::string, std::string>> finite_width_pairs(
         root != nullptr &&
         root->receiver_path_id == pair.receiver_path_id &&
         root->source_path_id == pair.source_path_id &&
-        (root->certificate.status == "caustic_route_required" ||
-         display_entry_route_required(
-             request, pair.receiver_path_id, pair.source_path_id,
-             root->certificate))) {
+        root->certificate.status == "caustic_route_required") {
       result.emplace_back(pair.receiver_path_id, pair.source_path_id);
     }
   }
@@ -1839,6 +1867,34 @@ std::vector<NativePathLocalError> endpoint_local_errors(
   return result;
 }
 
+std::vector<NativePathLocalError> display_endpoint_local_errors(
+    const std::vector<NativePublishedPath>& full_histories,
+    const std::vector<NativePublishedPath>& fine_histories,
+    const std::string& end_time) {
+  const double time = scalar_token(end_time);
+  std::vector<NativePathLocalError> result;
+  result.reserve(full_histories.size());
+  for (const auto& full : full_histories) {
+    const auto& fine = path_history(fine_histories, full.path_id);
+    const auto full_position = full.history.nominal_position(time);
+    const auto full_velocity = full.history.nominal_velocity(time);
+    const auto fine_position = fine.history.nominal_position(time);
+    const auto fine_velocity = fine.history.nominal_velocity(time);
+    double position_error = 0.0;
+    double velocity_error = 0.0;
+    for (std::size_t axis = 0U; axis < 3U; ++axis) {
+      position_error = std::max(
+          position_error,
+          std::abs(full_position[axis] - fine_position[axis]));
+      velocity_error = std::max(
+          velocity_error,
+          std::abs(full_velocity[axis] - fine_velocity[axis]));
+    }
+    result.push_back({full.path_id, position_error, velocity_error});
+  }
+  return result;
+}
+
 std::vector<NativePublishedPath> inflate_fine_histories(
     const std::vector<NativePublishedPath>& input_histories,
     const std::vector<NativePublishedPath>& fine_histories,
@@ -2121,22 +2177,35 @@ SubstepAttempt corrected_substep_impl(
     bool defer_endpoint_root_precision_escalation) {
   NativeAccelerationSnapshotCertificate start_snapshot;
   if (reusable_start_snapshot != nullptr) {
-    if (reusable_start_snapshot->status != "certified_complete" ||
+    if (!snapshot_evaluation_succeeded(request, *reusable_start_snapshot) ||
         !numeric_equal(reusable_start_snapshot->reception_time, start_time) ||
-        reusable_start_snapshot->root_certificates.size() !=
-            histories.size() * histories.size()) {
+        (!display_run_grade(request) &&
+         reusable_start_snapshot->root_certificates.size() !=
+             histories.size() * histories.size()) ||
+        (display_run_grade(request) &&
+         reusable_start_snapshot->display_history_fingerprints.size() !=
+             histories.size())) {
       throw std::invalid_argument(
           "reusable start snapshot does not match the requested substep");
     }
-    for (const auto& row : reusable_start_snapshot->root_certificates) {
-      const auto& receiver = path_history(histories, row.receiver_path_id);
-      const auto& source = path_history(histories, row.source_path_id);
-      if (row.certificate.receiver_history_fingerprint !=
-              receiver.history.provenance_fingerprint() ||
-          row.certificate.source_history_fingerprint !=
-              source.history.provenance_fingerprint()) {
+    if (display_run_grade(request)) {
+      if (!same_fingerprints(
+              reusable_start_snapshot->display_history_fingerprints,
+              fingerprints(histories))) {
         throw std::invalid_argument(
-            "reusable start snapshot history fingerprints do not match");
+            "reusable display snapshot history fingerprints do not match");
+      }
+    } else {
+      for (const auto& row : reusable_start_snapshot->root_certificates) {
+        const auto& receiver = path_history(histories, row.receiver_path_id);
+        const auto& source = path_history(histories, row.source_path_id);
+        if (row.certificate.receiver_history_fingerprint !=
+                receiver.history.provenance_fingerprint() ||
+            row.certificate.source_history_fingerprint !=
+                source.history.provenance_fingerprint()) {
+          throw std::invalid_argument(
+              "reusable start snapshot history fingerprints do not match");
+        }
       }
     }
     start_snapshot = *reusable_start_snapshot;
@@ -2147,7 +2216,7 @@ SubstepAttempt corrected_substep_impl(
         request, histories, start_time);
     accumulate_substep_snapshot_timing(*timing, start_snapshot);
   }
-  if (start_snapshot.status != "certified_complete") {
+  if (!snapshot_evaluation_succeeded(request, start_snapshot)) {
     const std::string failure =
         !display_run_grade(request) &&
                 !request.adjudicated_finite_width_pairs.empty()
@@ -2170,15 +2239,20 @@ SubstepAttempt corrected_substep_impl(
     pinned_fold_onset_path_set.insert(certificate.path_id);
   }
   const SnapshotTotals start_totals = snapshot_totals(start_snapshot);
-  auto predictor_histories = append_candidate_segments(
-      histories, start_time, end_time, start_totals, start_totals, {}, timing);
+  auto predictor_histories = display_run_grade(request)
+      ? append_display_candidate_segments(
+            request, histories, start_time, end_time, start_totals, start_totals,
+            timing)
+      : append_candidate_segments(
+            histories, start_time, end_time, start_totals, start_totals, {},
+            timing);
   auto predictor_snapshot = certify_native_acceleration_snapshot(
       request, predictor_histories, end_time,
       request.use_warm_root_exclusion ? &start_snapshot : nullptr,
       request.use_warm_root_exclusion ? &histories : nullptr,
       defer_endpoint_root_precision_escalation);
   accumulate_substep_snapshot_timing(*timing, predictor_snapshot);
-  if (predictor_snapshot.status != "certified_complete") {
+  if (!snapshot_evaluation_succeeded(request, predictor_snapshot)) {
     const std::string failure =
         !display_run_grade(request) &&
                 !request.adjudicated_finite_width_pairs.empty()
@@ -2207,16 +2281,20 @@ SubstepAttempt corrected_substep_impl(
       request.correction_tolerance, "correction tolerance");
   for (std::size_t iteration = 1;
        iteration <= request.max_correction_iterations; ++iteration) {
-    auto candidate_histories = append_candidate_segments(
-        histories, start_time, end_time, start_totals, endpoint_guess,
-        pinned_fold_onset_path_set, timing);
+    auto candidate_histories = display_run_grade(request)
+        ? append_display_candidate_segments(
+              request, histories, start_time, end_time, start_totals, endpoint_guess,
+              timing)
+        : append_candidate_segments(
+              histories, start_time, end_time, start_totals, endpoint_guess,
+              pinned_fold_onset_path_set, timing);
     auto endpoint_snapshot = certify_native_acceleration_snapshot(
         request, candidate_histories, end_time,
         request.use_warm_root_exclusion ? &last_snapshot : nullptr,
         request.use_warm_root_exclusion ? &last_histories : nullptr,
         defer_endpoint_root_precision_escalation);
     accumulate_substep_snapshot_timing(*timing, endpoint_snapshot);
-    if (endpoint_snapshot.status != "certified_complete") {
+    if (!snapshot_evaluation_succeeded(request, endpoint_snapshot)) {
       const std::string failure =
           !display_run_grade(request) &&
                   !request.adjudicated_finite_width_pairs.empty()
@@ -2264,7 +2342,7 @@ SubstepAttempt corrected_substep_impl(
         }
       }
       const auto append_finite_width_pairs = [&](const auto& snapshot) {
-        for (const auto& pair : finite_width_pairs(request, snapshot)) {
+        for (const auto& pair : finite_width_pairs(snapshot)) {
           if (pair.first == pair.second &&
               !pair_is_adjudicated_finite_width(
                   request, pair.first, pair.second)) {
@@ -2387,7 +2465,8 @@ SubstepAttempt corrected_substep_impl(
               defer_endpoint_root_precision_escalation);
           accumulate_substep_snapshot_timing(
               *timing, event_endpoint_snapshot);
-          if (event_endpoint_snapshot.status != "certified_complete") {
+          if (!snapshot_evaluation_succeeded(
+                  request, event_endpoint_snapshot)) {
             auto failed = failed_substep_certificate(
                 start_time, end_time, start_snapshot,
                 event_endpoint_snapshot, iteration + event_iteration + 1U,
@@ -2638,6 +2717,9 @@ void validate_request(const NativeCoupledEvolutionRequest& request) {
   tolerance_value(request.field_speed, "field speed");
   tolerance_value(request.coupling, "coupling");
   tolerance_value(request.root_tolerance, "root tolerance");
+  tolerance_value(
+      request.display_root_relative_tolerance,
+      "display root relative tolerance");
   tolerance_value(request.source_normal_floor, "source-normal floor");
   tolerance_value(request.acceleration_tolerance, "acceleration tolerance");
   if (request.run_grade != "certified" && request.run_grade != "display") {
@@ -4455,6 +4537,95 @@ ExactPairCertificate enclosed_pair_marker(
   };
 }
 
+NativeAccelerationSnapshotCertificate evaluate_native_display_snapshot(
+    const NativeCoupledEvolutionRequest& request,
+    const std::vector<NativePublishedPath>& histories,
+    const std::string& reception_time) {
+  DisplayEvaluationRequest display_request{
+      .paths = {},
+      .reception_time = scalar_token(reception_time),
+      .field_speed = scalar_token(request.field_speed),
+      .coupling = scalar_token(request.coupling),
+      .root_relative_tolerance =
+          scalar_token(request.display_root_relative_tolerance),
+      .source_normal_floor = scalar_token(request.source_normal_floor),
+      .causal_width = scalar_token(request.causal_width),
+      .core_scale = scalar_token(request.core_scale),
+      .far_field_enclosure_fraction =
+          scalar_token(request.far_field_enclosure_fraction),
+      .acceleration_tolerance = scalar_token(request.acceleration_tolerance),
+      .thread_count = request.thread_count,
+  };
+  display_request.paths.reserve(histories.size());
+  for (const auto& history : histories) {
+    display_request.paths.push_back({
+        history.path_id,
+        scalar_token(path_charge(request, history.path_id)),
+        &history.history,
+    });
+  }
+  const DisplayEvaluationResult evaluated =
+      evaluate_display_acceleration(display_request);
+
+  NativeAccelerationReconstructionCertificate acceleration{
+      .schema = "eom_native_display_acceleration_reconstruction/v0",
+      .status = evaluated.status,
+      .failure_code = evaluated.failure_code,
+      .reduction_policy = "fixed_pair_order_binary64_sum/v0",
+      .logical_ordered_pairs = histories.size() * histories.size(),
+      .complete_ordered_pair_domain =
+          evaluated.status == "display_evaluated",
+      .reconstruction_matches = false,
+      .path_ids = path_ids(request),
+      .pair_certificates = {},
+      .receiver_totals = {},
+  };
+  acceleration.receiver_totals.reserve(
+      evaluated.receiver_accelerations.size());
+  for (const auto& receiver : evaluated.receiver_accelerations) {
+    acceleration.receiver_totals.push_back({
+        receiver.receiver_path_id,
+        {Interval::point(receiver.acceleration[0]),
+         Interval::point(receiver.acceleration[1]),
+         Interval::point(receiver.acceleration[2])},
+    });
+  }
+  NativeSnapshotTiming timing{
+      .exact_root_batch_wall_seconds = evaluated.root_wall_seconds,
+      .root_binary64_cpu_seconds = evaluated.root_wall_seconds,
+      .root_pair_count = evaluated.root_pair_count,
+      .acceleration_wall_seconds = evaluated.acceleration_wall_seconds,
+      .total_wall_seconds = evaluated.total_wall_seconds,
+  };
+  return {
+      .schema = "eom_native_display_acceleration_snapshot/v0",
+      .status = evaluated.status,
+      .reception_time = reception_time,
+      .failure_code = evaluated.failure_code,
+      .pair_selection_route =
+          "uncertified_binary64_root_and_master_equation/v0",
+      .logical_ordered_pairs = histories.size() * histories.size(),
+      .traversal_excluded_pairs = 0U,
+      .traversal_exact_pairs = histories.size() * histories.size() -
+          evaluated.far_field_pair_count,
+      .traversal_enclosed_pairs = evaluated.far_field_pair_count,
+      .traversal_unresolved_pairs =
+          evaluated.status == "display_evaluated" ? 0U : 1U,
+      .enclosed_error_width_total =
+          evaluated.far_field_error_width_total,
+      .enclosed_error_width_max_receiver =
+          evaluated.far_field_error_width_max_receiver,
+      .traversal_certificate = std::nullopt,
+      .far_field_enclosure_certificates = {},
+      .causal_prefix_exclusion = {},
+      .root_certificates = {},
+      .display_history_fingerprints = fingerprints(histories),
+      .display_regulated_pairs = evaluated.regulated_pairs,
+      .acceleration = std::move(acceleration),
+      .timing = timing,
+  };
+}
+
 NativeAccelerationSnapshotCertificate certify_native_acceleration_snapshot(
     const NativeCoupledEvolutionRequest& request,
     const std::vector<NativePublishedPath>& histories,
@@ -4462,6 +4633,13 @@ NativeAccelerationSnapshotCertificate certify_native_acceleration_snapshot(
     const NativeAccelerationSnapshotCertificate* warm_snapshot,
     const std::vector<NativePublishedPath>* warm_histories,
     bool defer_root_precision_escalation) {
+  if (display_run_grade(request)) {
+    static_cast<void>(warm_snapshot);
+    static_cast<void>(warm_histories);
+    static_cast<void>(defer_root_precision_escalation);
+    return evaluate_native_display_snapshot(
+        request, histories, reception_time);
+  }
   const auto total_timing_start = SteadyClock::now();
   NativeSnapshotTiming timing;
   const std::size_t logical_pair_count = histories.size() * histories.size();
@@ -4926,10 +5104,8 @@ NativeAccelerationSnapshotCertificate certify_native_acceleration_snapshot(
               : request.chart_policy == "finite_width" ||
                       (request.chart_policy ==
                            "sharp_with_finite_width_fallback" &&
-                       ((pair_is_adjudicated_finite_width(
-                             request, receiver.path_id, source.path_id) &&
-                         (!display_run_grade(request) ||
-                          root.status != "certified_complete")) ||
+                       (pair_is_adjudicated_finite_width(
+                            request, receiver.path_id, source.path_id) ||
                         (self_pair_on_or_above_rail &&
                          root.status == "certified_complete" &&
                          !root.memory_boundary_contact) ||
@@ -4938,10 +5114,7 @@ NativeAccelerationSnapshotCertificate certify_native_acceleration_snapshot(
                               "numeric_source_normal_sign_uncertified" ||
                           root.failure_code ==
                               "numeric_self_root_cluster_uncertified") &&
-                         !root.memory_boundary_contact) ||
-                        display_entry_route_required(
-                            request, receiver.path_id, source.path_id,
-                            root)))
+                         !root.memory_boundary_contact)))
                   ? "finite_width"
                   : "sharp",
           .source_normal_floor = request.source_normal_floor,
@@ -5154,6 +5327,53 @@ NativeAtomicStepCertificate certify_native_atomic_coupled_step_impl(
         std::move(substeps), failure);
   }
 
+  if (display_run_grade(request)) {
+    if (!full.certificate.endpoint_snapshot.has_value() ||
+        !snapshot_evaluation_succeeded(
+            request, *full.certificate.endpoint_snapshot)) {
+      throw std::runtime_error(
+          "accepted display candidate lacks its endpoint evaluation");
+    }
+    auto published_histories = std::move(*full.histories);
+    auto accepted_snapshot = *full.certificate.endpoint_snapshot;
+    std::vector<NativeCorrectedSubstepCertificate> substeps;
+    substeps.push_back(std::move(full.certificate));
+    auto display_warnings = collect_caustic_warnings(substeps);
+    const auto fingerprint_timing_start = SteadyClock::now();
+    const auto input_fingerprints = fingerprints(histories);
+    const auto candidate_fingerprints = fingerprints(published_histories);
+    const auto published_fingerprints = fingerprints(published_histories);
+    timing->history_copy_hash_wall_seconds +=
+        elapsed_seconds(fingerprint_timing_start);
+    return {
+        .schema = "eom_native_display_atomic_step/v0",
+        .status = "accepted",
+        .run_id = request.run_id,
+        .step_index = step_index,
+        .attempted_start = start_time,
+        .attempted_end = end_time,
+        .accepted_time = end_time,
+        .input_history_fingerprints = input_fingerprints,
+        .published_histories = std::move(published_histories),
+        .candidate_history_fingerprints = candidate_fingerprints,
+        .substeps = std::move(substeps),
+        .accepted_snapshot = std::move(accepted_snapshot),
+        .recertification_snapshot = std::nullopt,
+        .local_errors = {},
+        .multirate_synchronization_errors = {},
+        .multirate_coarse_path_ids = {},
+        .caustic_warnings = std::move(display_warnings),
+        .failure_code = "",
+        .correction_residual = std::nullopt,
+        .correction_retry_scale = 0.0,
+        .evidence_status = "display-only",
+        .integration_method = kNativeIntegrationMethod,
+        .reduction_policy = "fixed_pair_order_binary64_sum/v0",
+        .publication_atomic = same_fingerprints(
+            candidate_fingerprints, published_fingerprints),
+    };
+  }
+
   const double midpoint_value =
       (scalar_token(start_time) + scalar_token(end_time)) * 0.5;
   const std::string midpoint = decimal_token(midpoint_value);
@@ -5219,8 +5439,11 @@ NativeAtomicStepCertificate certify_native_atomic_coupled_step_impl(
         std::move(substeps), failure, first_half.histories);
   }
 
-  auto local_errors = endpoint_local_errors(
-      *full.histories, *second_half.histories, end_time);
+  auto local_errors = display_run_grade(request)
+      ? display_endpoint_local_errors(
+            *full.histories, *second_half.histories, end_time)
+      : endpoint_local_errors(
+            *full.histories, *second_half.histories, end_time);
   const double position_tolerance = tolerance_value(
       request.position_tolerance, "position tolerance");
   const double velocity_tolerance = tolerance_value(
@@ -5260,7 +5483,7 @@ NativeAtomicStepCertificate certify_native_atomic_coupled_step_impl(
       defer_endpoint_root_precision_escalation);
   timing->recertification_wall_seconds +=
       elapsed_seconds(recertification_timing_start);
-  if (accepted_snapshot.status != "certified_complete") {
+  if (!snapshot_evaluation_succeeded(request, accepted_snapshot)) {
     const std::string failure = accepted_snapshot.failure_code.empty()
         ? "root_completeness_not_certified"
         : accepted_snapshot.failure_code;
@@ -5314,7 +5537,9 @@ NativeAtomicStepCertificate certify_native_atomic_coupled_step_impl(
       .failure_code = "",
       .correction_residual = std::nullopt,
       .correction_retry_scale = 0.0,
-      .evidence_status = "executable_architecture_evidence",
+      .evidence_status = display_run_grade(request)
+          ? "display-only"
+          : "executable_architecture_evidence",
       .integration_method = integration_method(request),
       .reduction_policy = kDeterministicReductionPolicy,
       .publication_atomic = same_fingerprints(
@@ -5631,6 +5856,15 @@ NativeCoupledEvolutionCertificate evolve_native_coupled_histories(
     }
     consecutive_growth_headroom_steps = 0U;
     ++rejected_count;
+    if (display_run_grade(request) &&
+        (step.failure_code == "display_nonfinite_state" ||
+         step.failure_code == "display_root_solve_not_converged" ||
+         step.failure_code == "display_insufficient_history_depth" ||
+         step.failure_code == "display_invalid_evaluation_request")) {
+      halt_code = step.failure_code;
+      steps.push_back(std::move(step));
+      break;
+    }
     const bool certificate_cost_deferred =
         step.failure_code ==
             "root_precision_escalation_deferred_for_cost_feedback";
@@ -5806,9 +6040,9 @@ NativeCoupledEvolutionCertificate evolve_native_coupled_histories(
       .controller_certificate_cost_cooldown_remaining =
           certificate_cost_cooldown_remaining,
       .halt_code = completed ? "" : halt_code,
-      .evidence_status = caustic_warning_count > 0U
-          ? "uncertified-through-encounters"
-          : completed ? "executable_architecture_evidence" : "failed",
+      .evidence_status = display_run_grade(request)
+          ? (completed ? "display-only" : "failed")
+          : (completed ? "executable_architecture_evidence" : "failed"),
       .run_grade = request.run_grade,
       .caustic_warnings = std::move(caustic_warnings),
       .caustic_warning_count = caustic_warning_count,

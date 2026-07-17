@@ -1497,3 +1497,58 @@ This file holds dated decisions, implementation status, validation results, fail
   the emitted scale differs from the formula, a rejected candidate is
   published, the named controls do not reproduce their attempt sequences, or
   any validation fails.
+
+## 2026-07-17 — Separate binary64 display evaluator
+
+- **Derived implementation:** `run_grade=display` now dispatches before the
+  certified snapshot route into an ordered-pair binary64 evaluator. It solves
+  delayed roots with safeguarded Newton/bisection at relative tolerance
+  `1e-9`, evaluates the bound master equation at those roots, and supplies
+  point accelerations to the existing coupled cubic corrector. It constructs
+  no interval/MPFR root work, cell ledger, root certificate, FWC row,
+  regulator ladder, or full/two-half certification comparison. Certified grade
+  retains its prior route.
+- **Derived close-approach disposition:** core-active or near-source-normal-
+  pole pairs use the frozen finite-width regulated integrand with fixed-order
+  binary64 quadrature. A continuing step records only
+  `DISPLAY-REGULATOR-01/display_core_regulator_applied` with its reception
+  interval and ordered pair. `display_nonfinite_state`,
+  `display_root_solve_not_converged`, `display_insufficient_history_depth`, and
+  `display_invalid_evaluation_request` remain fatal. Borg retains display
+  history and extends a finite run's exact inertial datum by the requested run
+  duration rather than discarding a still-needed emission root.
+- **Derived provenance:** every display response, published segment, and Borg
+  frame is `display-only`; the UI label is `DISPLAY ONLY — uncontrolled error;
+  not evidence` from the first frame. Display output has no promotion path.
+- **Measured 64-path acceptance:** a 32:32 seed with the default `0.3` Borg
+  delivery chunk and unchanged `0.05` EOM-solver step completed through `T=3`
+  without a halt. EOM-solver compute was `1.0627483 s`, or `2.82287`
+  simulated seconds per wall second. End-to-end Borg throughput was `1.33374`
+  sim-s/wall-s, above the `1.0` target. The measured remainder was `1.18657 s`
+  in request encoding, process transfer, response parsing, and retained-history
+  merge. Inside the nested EOM-solver correction timer, root batches consumed
+  `0.354903 s` and history copy/hash consumed `0.537573 s`; these nested timers
+  must not be added to the correction total. A `0.05`-delivery diagnostic kept
+  EOM-solver throughput at `3.04973` but reduced end-to-end throughput to
+  `0.435228`, locating the loss in sixty protocol round trips rather than the
+  pair evaluator.
+- **Measured duration controls:** the 3:3 run completed through `T=10` at
+  `39.5597` EOM-solver sim-s/wall-s and `1.74979` end-to-end sim-s/wall-s. The
+  8:8 run completed through `T=10` at `13.4353` EOM-solver sim-s/wall-s and
+  `0.669256` end-to-end sim-s/wall-s. Neither run halted.
+- **Measured smooth control:** a six-path unit-envelope control had sampled
+  minimum pair separation `0.989811` against core separation `0.02` and zero
+  regulator warnings through `T=1`. The maximum display/certified position
+  difference at `T=1` was `7.45122e-12`, or the same fraction of the unit
+  envelope radius. This is a control measurement, not a display error bound.
+- **Certified parity:** the rebuilt deterministic `all` fixture retains
+  SHA-256 `d38cb2c08d2f5ff297f5abf95556986468fba83566d9970970afd76575d464a0`.
+- **Validation:** all 147 EOM Python tests, all 70 Borg JavaScript tests, all
+  three native CTest fixtures, and the repository pre-commit checks pass.
+- Claim grades: route separation and provenance enforcement are `derived`;
+  rates, timings, extent, separation, trajectory difference, and SHA are
+  `measured` on the rebuilt local binary. Falsifiers: the SHA changes; any
+  display segment lacks `display-only`; any display request constructs a root,
+  FWC, interval, MPFR, or cell certificate; a named fatal breakdown publishes;
+  the stated controls halt early; or rerunning the profile yields a different
+  rate outside ordinary host-load variation.

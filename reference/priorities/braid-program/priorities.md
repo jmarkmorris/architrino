@@ -15,11 +15,21 @@ Status: DRAFT, pending operator ratification (2026-07-15). One page, rewritten f
 
 Which architrino configurations persist as free assemblies under the master equation — and which observed particles do they map to?
 
+## Ranked Next Objects
+
+Ordered by marginal ROI on 2026-07-17. Charter ratification remains a required dependency, but it does not replace the scientific object whose completion carries the bucket's highest value.
+
+1. `binary_subfield_fate` — Execute Campaign 1 and book the opposite-polarity sub-field binary fate under the ratified instrument gate. Status: `ready-after-charter-ratification`.
+2. `braid_program_charter_ratification` — Ratify the program charter, N-ladder, and method while preserving the ratified instrument gate. Status: `discussion-scoped`.
+3. `configuration_chart_completion` — Advance the configuration chart past skeleton grade for later N-ladder campaigns. Status: `pending`.
+4. `collinear_breather_campaign` — Execute the sub-field collinear family, then the at/above-field-speed stage after the fold extension. Status: `partially-gated`.
+5. `undirected_ensemble_campaign` — Execute the first declared undirected ensemble with the persistence criterion fixed before scoring. Status: `pending`.
+
 ## Strategy (proposed for ratification): the N-ladder, evolution-first
 
 Walk up from the smallest object, certifying dynamical behavior at each rung before adding structure. This inverts the last effort, which explored elaborate shapes on prescribed motion before any object had a verified dynamical existence.
 
-1. **Two architrinos, below field speed.** Evolve the opposite-polarity pair under the master equation; collapse-test; characterize its fate (bound, unbound, conditional). The program's first certified dynamical object — everything else builds on knowing what a binary actually does.
+1. `binary_subfield_fate` — **Two architrinos, below field speed.** Evolve the opposite-polarity pair under the master equation; collapse-test; characterize its fate (bound, unbound, conditional). The program's first certified dynamical object — everything else builds on knowing what a binary actually does.
 2. **Two architrinos at and above field speed.** Self-hits active. The same fate question where the delayed self-interaction channel opens.
 3. **Four architrinos: a neutral pair of pairs.** First composite: do certified binaries interact toward binding or dispersal?
 4. **Six architrinos: braid candidates.** Screening over the configuration chart nominates candidates; evolution decides them.

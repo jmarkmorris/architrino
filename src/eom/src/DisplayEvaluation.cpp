@@ -6,8 +6,10 @@
 #include <chrono>
 #include <cmath>
 #include <cstddef>
+#include <condition_variable>
 #include <cstdlib>
 #include <exception>
+#include <functional>
 #include <limits>
 #include <mutex>
 #include <numbers>
@@ -23,6 +25,16 @@ namespace {
 
 using Clock = std::chrono::steady_clock;
 using Vector = std::array<double, 3>;
+
+struct NumericSegment {
+  double start = 0.0;
+  double end = 0.0;
+  std::array<std::array<double, 4>, 3> coefficients{};
+};
+
+struct NumericHistory {
+  std::vector<NumericSegment> segments;
+};
 
 constexpr std::array<double, 8> kGaussNodes{
     0.09501250983763744, 0.28160355077925891,
@@ -75,17 +87,17 @@ double norm(const Vector& value) {
 }
 
 Vector evaluate_segment(
-    const CubicHistorySegment& segment,
+    const NumericSegment& segment,
     double time,
     bool velocity) {
-  const double local = time - segment.t_start();
+  const double local = time - segment.start;
   Vector result{};
   for (std::size_t axis = 0U; axis < 3U; ++axis) {
-    const auto& row = segment.coefficient_tokens()[axis];
-    const double c0 = token_value(row[0]);
-    const double c1 = token_value(row[1]);
-    const double c2 = token_value(row[2]);
-    const double c3 = token_value(row[3]);
+    const auto& row = segment.coefficients[axis];
+    const double c0 = row[0];
+    const double c1 = row[1];
+    const double c2 = row[2];
+    const double c3 = row[3];
     result[axis] = velocity
         ? (3.0 * c3 * local + 2.0 * c2) * local + c1
         : ((c3 * local + c2) * local + c1) * local + c0;
@@ -97,11 +109,45 @@ Vector evaluate_segment(
 }
 
 Vector evaluate_history(
-    const RetainedHistory& history,
+    const NumericHistory& history,
     double time,
     bool velocity) {
-  return evaluate_segment(
-      history.segments()[history.segment_index_at(time)], time, velocity);
+  std::size_t lower = 0U;
+  std::size_t upper = history.segments.size();
+  while (lower < upper) {
+    const std::size_t middle = lower + (upper - lower) / 2U;
+    if (history.segments[middle].end <= time) {
+      lower = middle + 1U;
+    } else {
+      upper = middle;
+    }
+  }
+  if (lower == history.segments.size()) lower = history.segments.size() - 1U;
+  if (time < history.segments[lower].start ||
+      time > history.segments[lower].end) {
+    throw std::runtime_error("display_insufficient_history_depth");
+  }
+  return evaluate_segment(history.segments[lower], time, velocity);
+}
+
+NumericHistory numeric_history(const RetainedHistory& history) {
+  NumericHistory result;
+  result.segments.reserve(history.segments().size());
+  for (const auto& segment : history.segments()) {
+    NumericSegment numeric{
+        .start = segment.t_start(),
+        .end = segment.t_end(),
+        .coefficients = {},
+    };
+    for (std::size_t axis = 0U; axis < 3U; ++axis) {
+      for (std::size_t coefficient = 0U; coefficient < 4U; ++coefficient) {
+        numeric.coefficients[axis][coefficient] = token_value(
+            segment.coefficient_tokens()[axis][coefficient]);
+      }
+    }
+    result.segments.push_back(std::move(numeric));
+  }
+  return result;
 }
 
 struct SourceSummary {
@@ -119,13 +165,13 @@ struct SourceSummary {
 
 void include_position_extrema(
     SourceSummary& summary,
-    const CubicHistorySegment& segment,
+    const NumericSegment& segment,
     std::size_t axis) {
-  const auto& row = segment.coefficient_tokens()[axis];
-  const double c1 = token_value(row[1]);
-  const double c2 = token_value(row[2]);
-  const double c3 = token_value(row[3]);
-  const double duration = segment.t_end() - segment.t_start();
+  const auto& row = segment.coefficients[axis];
+  const double c1 = row[1];
+  const double c2 = row[2];
+  const double c3 = row[3];
+  const double duration = segment.end - segment.start;
   std::array<double, 4> candidates{0.0, duration, -1.0, -1.0};
   std::size_t count = 2U;
   if (c3 == 0.0) {
@@ -146,7 +192,7 @@ void include_position_extrema(
   }
   for (std::size_t index = 0U; index < count; ++index) {
     const Vector value = evaluate_segment(
-        segment, segment.t_start() + candidates[index], false);
+        segment, segment.start + candidates[index], false);
     summary.position_lower[axis] =
         std::min(summary.position_lower[axis], value[axis]);
     summary.position_upper[axis] =
@@ -155,19 +201,18 @@ void include_position_extrema(
 }
 
 SourceSummary summarize_source(
-    const RetainedHistory& history,
+    const NumericHistory& history,
     double field_speed) {
   SourceSummary summary;
-  for (const auto& segment : history.segments()) {
-    const double duration = segment.t_end() - segment.t_start();
+  for (const auto& segment : history.segments) {
+    const double duration = segment.end - segment.start;
     double speed_square_upper = 0.0;
     for (std::size_t axis = 0U; axis < 3U; ++axis) {
       include_position_extrema(summary, segment, axis);
-      const auto& row = segment.coefficient_tokens()[axis];
+      const auto& row = segment.coefficients[axis];
       const double component_upper =
-          std::abs(token_value(row[1])) +
-          2.0 * std::abs(token_value(row[2])) * duration +
-          3.0 * std::abs(token_value(row[3])) * duration * duration;
+          std::abs(row[1]) + 2.0 * std::abs(row[2]) * duration +
+          3.0 * std::abs(row[3]) * duration * duration;
       speed_square_upper += component_upper * component_upper;
     }
     summary.speed_upper =
@@ -188,12 +233,12 @@ struct RootSample {
 
 RootSample sample_root(
     const DisplayEvaluationRequest& request,
-    const DisplayEvaluationPath& source,
+    const NumericHistory& source_history,
     const Vector& receiver_position,
     double emission) {
   RootSample sample;
-  sample.source_position = evaluate_history(*source.history, emission, false);
-  sample.source_velocity = evaluate_history(*source.history, emission, true);
+  sample.source_position = evaluate_history(source_history, emission, false);
+  sample.source_velocity = evaluate_history(source_history, emission, true);
   sample.displacement = subtract(receiver_position, sample.source_position);
   sample.separation = norm(sample.displacement);
   if (!std::isfinite(sample.separation)) {
@@ -216,7 +261,7 @@ RootSample sample_root(
 
 std::optional<double> solve_bracket(
     const DisplayEvaluationRequest& request,
-    const DisplayEvaluationPath& source,
+    const NumericHistory& source_history,
     const Vector& receiver_position,
     double lower,
     double upper,
@@ -241,7 +286,7 @@ std::optional<double> solve_bracket(
   double point = 0.5 * (lower + upper);
   for (std::size_t iteration = 0U; iteration < 96U; ++iteration) {
     const RootSample sample = sample_root(
-        request, source, receiver_position, point);
+        request, source_history, receiver_position, point);
     if (std::abs(sample.residual) <= residual_tolerance ||
         upper - lower <= tolerance) {
       return point;
@@ -272,6 +317,7 @@ PairRoots find_roots(
     const DisplayEvaluationRequest& request,
     const DisplayEvaluationPath& receiver,
     const DisplayEvaluationPath& source,
+    const NumericHistory& source_history,
     const SourceSummary& source_summary,
     const Vector& receiver_position) {
   PairRoots result;
@@ -287,16 +333,18 @@ PairRoots find_roots(
     return result;
   }
   const double lower_residual = sample_root(
-      request, source, receiver_position, lower).residual;
+      request, source_history, receiver_position, lower).residual;
   const double upper_residual = sample_root(
-      request, source, receiver_position, upper).residual;
+      request, source_history, receiver_position, upper).residual;
   if (source_summary.sub_field_speed) {
     if (lower_residual > 0.0) {
+      // This is missing numerical input, not a certification obligation. Do
+      // not silently discard the delayed interaction even at display grade.
       result.failure_code = "display_insufficient_history_depth";
       return result;
     }
     const auto root = solve_bracket(
-        request, source, receiver_position, lower, upper,
+        request, source_history, receiver_position, lower, upper,
         lower_residual, upper_residual);
     if (!root.has_value()) {
       result.failure_code = "display_root_solve_not_converged";
@@ -308,9 +356,9 @@ PairRoots find_roots(
 
   double prior_time = lower;
   double prior_residual = lower_residual;
-  for (const auto& segment : source.history->segments()) {
-    const double segment_lower = std::max(lower, segment.t_start());
-    const double segment_upper = std::min(upper, segment.t_end());
+  for (const auto& segment : source_history.segments) {
+    const double segment_lower = std::max(lower, segment.start);
+    const double segment_upper = std::min(upper, segment.end);
     if (!(segment_lower < segment_upper)) continue;
     constexpr std::size_t kSamplesPerSegment = 4U;
     for (std::size_t sample_index = 1U;
@@ -320,11 +368,11 @@ PairRoots find_roots(
       const double time = segment_lower +
           fraction * (segment_upper - segment_lower);
       const double residual = sample_root(
-          request, source, receiver_position, time).residual;
+          request, source_history, receiver_position, time).residual;
       if ((prior_residual <= 0.0 && residual >= 0.0) ||
           (prior_residual >= 0.0 && residual <= 0.0)) {
         const auto root = solve_bracket(
-            request, source, receiver_position, prior_time, time,
+            request, source_history, receiver_position, prior_time, time,
             prior_residual, residual);
         if (!root.has_value()) {
           result.failure_code = "display_root_solve_not_converged";
@@ -392,11 +440,12 @@ Vector finite_width_integrand(
     const DisplayEvaluationRequest& request,
     const DisplayEvaluationPath& receiver,
     const DisplayEvaluationPath& source,
+    const NumericHistory& source_history,
     const Vector& receiver_position,
     const Vector& receiver_velocity,
     double emission) {
   const Vector source_position = evaluate_history(
-      *source.history, emission, false);
+      source_history, emission, false);
   const Vector displacement = subtract(receiver_position, source_position);
   const double separation = norm(displacement);
   const double radial_square = separation * separation +
@@ -430,6 +479,7 @@ Vector regulated_pair_acceleration(
     const DisplayEvaluationRequest& request,
     const DisplayEvaluationPath& receiver,
     const DisplayEvaluationPath& source,
+    const NumericHistory& source_history,
     const Vector& receiver_position,
     const Vector& receiver_velocity,
     const std::vector<double>& roots) {
@@ -450,7 +500,9 @@ Vector regulated_pair_acceleration(
   for (const double root : roots) {
     append_window(
         root,
-        sample_root(request, source, receiver_position, root).source_normal);
+        sample_root(
+            request, source_history, receiver_position, root)
+            .source_normal);
   }
   if (windows.empty()) {
     append_window(upper, request.field_speed);
@@ -475,7 +527,7 @@ Vector regulated_pair_acceleration(
         total = add(total, scale(
             radius * kGaussWeights[index],
             finite_width_integrand(
-                request, receiver, source, receiver_position,
+                request, receiver, source, source_history, receiver_position,
                 receiver_velocity, emission)));
       }
     }
@@ -492,30 +544,89 @@ struct PairWork {
   std::string failure_code;
 };
 
-template <class Function>
-void parallel_for(
-    std::size_t count,
-    std::size_t thread_count,
-    Function&& function) {
-  if (thread_count <= 1U || count < 2U) {
-    for (std::size_t index = 0U; index < count; ++index) function(index);
-    return;
+class DisplayParallelExecutor {
+ public:
+  explicit DisplayParallelExecutor(std::size_t thread_count) {
+    const std::size_t helper_count = thread_count > 1U
+        ? thread_count - 1U : 0U;
+    helpers_.reserve(helper_count);
+    for (std::size_t index = 0U; index < helper_count; ++index) {
+      helpers_.emplace_back([this]() { helper_loop(); });
+    }
   }
-  std::atomic<std::size_t> next{0U};
-  const std::size_t workers = std::min(thread_count, count);
-  std::vector<std::thread> threads;
-  threads.reserve(workers);
-  for (std::size_t worker = 0U; worker < workers; ++worker) {
-    threads.emplace_back([&]() {
-      while (true) {
-        const std::size_t index = next.fetch_add(1U);
-        if (index >= count) return;
-        function(index);
+
+  ~DisplayParallelExecutor() {
+    {
+      std::lock_guard<std::mutex> lock(mutex_);
+      stopping_ = true;
+      ++generation_;
+    }
+    ready_.notify_all();
+    for (auto& helper : helpers_) helper.join();
+  }
+
+  void run(
+      std::size_t count,
+      const std::function<void(std::size_t)>& function) {
+    if (helpers_.empty() || count < 2U) {
+      for (std::size_t index = 0U; index < count; ++index) function(index);
+      return;
+    }
+    {
+      std::lock_guard<std::mutex> lock(mutex_);
+      function_ = function;
+      count_ = count;
+      next_.store(0U);
+      completed_ = 0U;
+      ++generation_;
+    }
+    ready_.notify_all();
+    consume();
+    std::unique_lock<std::mutex> lock(mutex_);
+    complete_.wait(lock, [&]() { return completed_ == helpers_.size(); });
+    function_ = {};
+  }
+
+ private:
+  void consume() {
+    while (true) {
+      const std::size_t index = next_.fetch_add(1U);
+      if (index >= count_) return;
+      function_(index);
+    }
+  }
+
+  void helper_loop() {
+    std::size_t observed_generation = 0U;
+    while (true) {
+      {
+        std::unique_lock<std::mutex> lock(mutex_);
+        ready_.wait(lock, [&]() {
+          return stopping_ || generation_ != observed_generation;
+        });
+        if (stopping_) return;
+        observed_generation = generation_;
       }
-    });
+      consume();
+      {
+        std::lock_guard<std::mutex> lock(mutex_);
+        ++completed_;
+      }
+      complete_.notify_one();
+    }
   }
-  for (auto& thread : threads) thread.join();
-}
+
+  std::vector<std::thread> helpers_;
+  std::mutex mutex_;
+  std::condition_variable ready_;
+  std::condition_variable complete_;
+  std::function<void(std::size_t)> function_;
+  std::atomic<std::size_t> next_{0U};
+  std::size_t count_ = 0U;
+  std::size_t completed_ = 0U;
+  std::size_t generation_ = 0U;
+  bool stopping_ = false;
+};
 
 }  // namespace
 
@@ -536,6 +647,8 @@ DisplayEvaluationResult evaluate_display_acceleration(
     const std::size_t pair_count = path_count * path_count;
     std::vector<Vector> receiver_positions(path_count);
     std::vector<Vector> receiver_velocities(path_count);
+    std::vector<NumericHistory> numeric_histories;
+    numeric_histories.reserve(path_count);
     std::vector<SourceSummary> source_summaries;
     source_summaries.reserve(path_count);
     for (std::size_t index = 0U; index < path_count; ++index) {
@@ -543,17 +656,19 @@ DisplayEvaluationResult evaluate_display_acceleration(
       if (path.history == nullptr || !std::isfinite(path.charge)) {
         throw std::runtime_error("display_nonfinite_state");
       }
+      numeric_histories.push_back(numeric_history(*path.history));
       receiver_positions[index] = evaluate_history(
-          *path.history, request.reception_time, false);
+          numeric_histories.back(), request.reception_time, false);
       receiver_velocities[index] = evaluate_history(
-          *path.history, request.reception_time, true);
+          numeric_histories.back(), request.reception_time, true);
       source_summaries.push_back(summarize_source(
-          *path.history, request.field_speed));
+          numeric_histories.back(), request.field_speed));
     }
 
     std::vector<PairWork> pairs(pair_count);
+    DisplayParallelExecutor executor(request.thread_count);
     const auto root_start = Clock::now();
-    parallel_for(pair_count, request.thread_count, [&](std::size_t pair_index) {
+    executor.run(pair_count, [&](std::size_t pair_index) {
       const std::size_t receiver_index = pair_index / path_count;
       const std::size_t source_index = pair_index % path_count;
       auto& pair = pairs[pair_index];
@@ -570,7 +685,8 @@ DisplayEvaluationResult evaluate_display_acceleration(
         }
         pair.roots = find_roots(
             request, request.paths[receiver_index],
-            request.paths[source_index], source_summaries[source_index],
+            request.paths[source_index], numeric_histories[source_index],
+            source_summaries[source_index],
             receiver_positions[receiver_index]);
         pair.failure_code = pair.roots.failure_code;
       } catch (const std::runtime_error& error) {
@@ -590,7 +706,7 @@ DisplayEvaluationResult evaluate_display_acceleration(
     }
 
     const auto acceleration_start = Clock::now();
-    parallel_for(pair_count, request.thread_count, [&](std::size_t pair_index) {
+    executor.run(pair_count, [&](std::size_t pair_index) {
       const std::size_t receiver_index = pair_index / path_count;
       const std::size_t source_index = pair_index % path_count;
       auto& pair = pairs[pair_index];
@@ -603,7 +719,8 @@ DisplayEvaluationResult evaluate_display_acceleration(
         bool regulated = false;
         for (const double root : pair.roots.roots) {
           const RootSample sample = sample_root(
-              request, source, receiver_position, root);
+              request, numeric_histories[source_index],
+              receiver_position, root);
           const double caustic_floor = std::max(
               request.source_normal_floor,
               std::sqrt(std::numeric_limits<double>::epsilon()) *
@@ -617,20 +734,24 @@ DisplayEvaluationResult evaluate_display_acceleration(
         if (receiver.path_id != source.path_id) {
           const double endpoint_separation = norm(subtract(
               receiver_position,
-              evaluate_history(*source.history, request.reception_time, false)));
+              evaluate_history(
+                  numeric_histories[source_index], request.reception_time,
+                  false)));
           regulated = regulated || endpoint_separation <= request.core_scale;
         }
         pair.regulated = regulated;
         if (regulated) {
           pair.acceleration = regulated_pair_acceleration(
-              request, receiver, source, receiver_position,
+              request, receiver, source, numeric_histories[source_index],
+              receiver_position,
               receiver_velocity, pair.roots.roots);
           return;
         }
         Vector acceleration{};
         for (const double root : pair.roots.roots) {
           const RootSample sample = sample_root(
-              request, source, receiver_position, root);
+              request, numeric_histories[source_index],
+              receiver_position, root);
           if (!(sample.separation > 0.0) || sample.source_normal == 0.0) {
             throw std::runtime_error("display_nonfinite_state");
           }

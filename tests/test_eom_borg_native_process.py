@@ -121,6 +121,45 @@ class NativeBorgProcessTests(unittest.TestCase):
             len(response["publishedExtensions"][0]["segments"]), 0
         )
 
+    def test_display_reverses_outward_velocity_at_canvas_boundary_only(self) -> None:
+        def evolve(grade: str) -> dict[str, object]:
+            protocol = "\n".join((
+                "EOM_BORG_NATIVE_V4",
+                "\t".join((
+                    "RUN", f"sphere-reversal-{grade}", "1", "1.1",
+                    "0.1", "0.1", "0.1", "0", grade, "0", "none", "none",
+                    "1", "1", "1e-10", "1e-8", "0", "1e-8", "1e-8",
+                    "1e-8", "1", "1",
+                )),
+                "PATH\tp\t1\t1\t1",
+                # At T=1 the path is at x=0.93 and moving outward at +0.1.
+                "SEG\t0\t1\t0.83\t0.1\t0\t0\t0.5\t0\t0\t0\t0.5\t0\t0\t0\t0\t0",
+                "END",
+                "",
+            ))
+            completed = subprocess.run(
+                [str(self.binary), "borg-shadow-v0"],
+                input=protocol,
+                check=True,
+                cwd=ROOT,
+                capture_output=True,
+                text=True,
+            )
+            return json.loads(completed.stdout)
+
+        def endpoint_velocity(response: dict[str, object]) -> float:
+            segment = response["publishedExtensions"][0]["segments"][-1]
+            step = float(segment["endTime"]) - float(segment["startTime"])
+            coefficients = [float(value) for value in segment["coefficients"][0]]
+            return coefficients[1] + 2 * coefficients[2] * step + 3 * coefficients[3] * step * step
+
+        display = evolve("display")
+        certified = evolve("certified")
+        self.assertEqual(display["status"], "completed")
+        self.assertAlmostEqual(endpoint_velocity(display), -0.1, places=12)
+        self.assertEqual(certified["status"], "completed")
+        self.assertAlmostEqual(endpoint_velocity(certified), 0.1, places=12)
+
     def test_ordinary_root_failure_is_not_labeled_as_a_caustic_entry(self) -> None:
         def protocol(grade: str) -> str:
             return "\n".join((
@@ -150,15 +189,39 @@ class NativeBorgProcessTests(unittest.TestCase):
                     text=True,
                 )
                 response = json.loads(completed.stdout)
-                self.assertEqual(response["status"], "halted")
-                self.assertEqual(
-                    response["haltCode"],
-                    "root_completeness_not_certified",
-                )
-                terminal = response["stepFailures"][-1]
-                self.assertEqual(terminal["failureCode"], "root_completeness_not_certified")
-                self.assertEqual(terminal["causticContractRow"], "")
-                self.assertEqual(terminal["causticRegulatorLevel"], "not-applicable")
+                if grade == "display":
+                    self.assertEqual(response["status"], "completed")
+                    self.assertEqual(response["haltCode"], "")
+                    self.assertEqual(response["claimGrade"], "display-only")
+                    self.assertTrue(all(
+                        segment["runGrade"] == "display"
+                        and segment["evidenceStatus"] == "display-only"
+                        and segment["claimGrade"] == "display-only"
+                        for extension in response["publishedExtensions"]
+                        for segment in extension["segments"]
+                    ))
+                    self.assertTrue(all(
+                        step["rootCertificateCount"] == 0
+                        and step["rootAccounting"] == []
+                        and step["finiteWidthStateCertificates"] == []
+                        and step["regulatorFailures"] == []
+                        for step in response["stepFailures"]
+                    ))
+                else:
+                    self.assertEqual(response["status"], "halted")
+                    self.assertEqual(
+                        response["haltCode"],
+                        "root_completeness_not_certified",
+                    )
+                    terminal = response["stepFailures"][-1]
+                    self.assertEqual(
+                        terminal["failureCode"],
+                        "root_completeness_not_certified",
+                    )
+                    self.assertEqual(terminal["causticContractRow"], "")
+                    self.assertEqual(
+                        terminal["causticRegulatorLevel"], "not-applicable"
+                    )
 
     def test_native_process_rejects_under_length_run_record(self) -> None:
         under_length_run = "\t".join(
@@ -388,9 +451,7 @@ class NativeBorgProcessTests(unittest.TestCase):
         self.assertEqual(response["status"], "completed")
         self.assertEqual(response["runGrade"], "display")
         self.assertEqual(response["causticWarningCount"], 1)
-        self.assertEqual(
-            response["claimGrade"], "uncertified-through-encounters"
-        )
+        self.assertEqual(response["claimGrade"], "display-only")
         self.assertEqual(response["acceptedEndTime"], "1.01")
         self.assertEqual(completed.stderr, "")
 

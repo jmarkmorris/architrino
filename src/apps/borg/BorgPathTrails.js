@@ -1,8 +1,8 @@
 import * as THREE from "../../../vendor/three/three.module.js";
 
 const INITIAL_POINT_CAPACITY = 512;
-const RETAINED_TRAIL_OPACITY = 0.9;
-const COMPACTED_TRAIL_OPACITY = 0.42;
+const RETAINED_TRAIL_OPACITY = 1;
+const COMPACTED_TRAIL_OPACITY = 0.68;
 
 /**
  * Path-history trails for the Borg app.

@@ -327,6 +327,7 @@ eom::CubicHistorySegment parse_segment(const std::string& line) {
 
 void print_segment(
     const eom::CubicHistorySegment& segment,
+    const std::string& run_grade,
     const std::string& claim_grade) {
   std::cout << "{\"startTime\":\"" << json_escape(segment.t_start_token())
             << "\",\"endTime\":\"" << json_escape(segment.t_end_token())
@@ -350,6 +351,9 @@ void print_segment(
             << json_escape(segment.position_error_token())
             << "\",\"velocityError\":\""
             << json_escape(segment.velocity_error_token())
+            << "\",\"runGrade\":\"" << json_escape(run_grade)
+            << "\",\"evidenceStatus\":\""
+            << (run_grade == "display" ? "display-only" : claim_grade)
             << "\",\"claimGrade\":\"" << json_escape(claim_grade)
             << "\"}";
 }
@@ -429,6 +433,9 @@ void run(
       .acceleration_tolerance = run[15],
       .far_field_enclosure_fraction = run[16],
       .run_grade = run[8],
+      .use_display_sphere_velocity_reversal = run[8] == "display",
+      .display_sphere_center = {"0.5", "0.5", "0.5"},
+      .display_sphere_velocity_reversal_radius = "0.4375",
       .initial_caustic_warning_count =
           parse_size(run[9], "prior caustic warning count"),
       .initial_first_caustic_warning_time = run[10] == "none"
@@ -491,7 +498,8 @@ void run(
   std::optional<eom::NativeAccelerationSnapshotCertificate> rebased_snapshot;
   const eom::NativeAccelerationSnapshotCertificate* reusable_snapshot = nullptr;
   bool rebased_incremental_chunk_snapshot = false;
-  if (incremental_cache != nullptr && incremental_cache->has_value() &&
+  if (request.run_grade == "certified" &&
+      incremental_cache != nullptr && incremental_cache->has_value() &&
       (*incremental_cache)->model_key == model_key &&
       (*incremental_cache)->snapshot.status == "certified_complete" &&
       (*incremental_cache)->snapshot.reception_time == request.start_time) {
@@ -533,7 +541,7 @@ void run(
   }
   if (incremental_cache != nullptr) {
     incremental_cache->reset();
-    if (result.status == "completed") {
+    if (request.run_grade == "certified" && result.status == "completed") {
       for (auto step = result.steps.rbegin(); step != result.steps.rend();
            ++step) {
         if (step->status == "accepted" && step->accepted_snapshot.has_value()) {
@@ -552,8 +560,8 @@ void run(
             << json_escape(result.evidence_status)
             << "\",\"runGrade\":\"" << json_escape(result.run_grade)
             << "\",\"claimGrade\":\""
-            << (result.caustic_warning_count > 0U
-                    ? "uncertified-through-encounters"
+            << (result.run_grade == "display"
+                    ? "display-only"
                     : json_escape(result.evidence_status))
             << "\",\"causticWarningCount\":"
             << result.caustic_warning_count
@@ -1154,8 +1162,9 @@ void run(
       }
       print_segment(
           published.history.segments()[segment_index],
-          result.caustic_warning_count > 0U
-              ? "uncertified-through-encounters"
+          result.run_grade,
+          result.run_grade == "display"
+              ? "display-only"
               : result.evidence_status);
     }
     std::cout << "]}";

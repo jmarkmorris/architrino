@@ -92,7 +92,15 @@ Release-prep checklist:
 - Archive from Xcode with a signed Release build and upload through App Store Connect.
 - Smoke-test the TestFlight build on physical iPhone and iPad hardware before App Review submission.
 
-## First Prototype Target
+## Ranked Next Objects
+
+Ordered by marginal ROI on 2026-07-17. Implemented reader features remain prerequisites and regression surfaces, not remaining priority value.
+
+1. `first_release_device_qa_and_archive` — Refresh the canonical package, pass strict package validation, complete physical iPhone and iPad smoke tests, capture release screenshots, and produce the signed App Store archive packet. Status: `next`.
+2. `app_store_distribution_pricing_plan` — Reconfirm unlisted-distribution requirements and finalize price, agreements, tax, banking, and Small Business Program posture before submission. Status: `planned`.
+3. `app_review_and_unlisted_distribution` — Submit the accepted archive through App Review, request the unlisted link, and publish the approved direct install route. Status: `pending`.
+
+## Implemented Prototype Inventory
 
 Build the smallest useful iOS prototype as an in-repo, offline reader:
 

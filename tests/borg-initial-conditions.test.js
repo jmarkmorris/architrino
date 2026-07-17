@@ -14,6 +14,10 @@ import {
   certifyBorgMinimumSeparation,
   validateBorgInitialConditionConfig,
 } from "../src/apps/borg/BorgInitialConditions.js";
+import {
+  createBorgRunGradeDefaults,
+  createBorgRunGradePlacementPolicy,
+} from "../src/apps/borg/BorgRunGradeDefaults.js";
 
 test("Borg initial-condition controls start from the accepted manifest values", () => {
   assert.deepEqual(
@@ -25,6 +29,67 @@ test("Borg initial-condition controls start from the accepted manifest values", 
       randomVelocityMinSpeed: 0,
     },
   );
+});
+
+test("Borg display defaults are separate from unchanged certified defaults", () => {
+  assert.deepEqual(createBorgRunGradeDefaults(BORG_DATASET_MANIFEST_V1, "display"), {
+    coupling: 0.0005,
+    initialConditionConfig: {
+      electrinoCount: 32,
+      positrinoCount: 32,
+      randomVelocityMaxComponentMagnitude: 0.001,
+      randomVelocityMinSpeed: 0,
+    },
+  });
+  assert.deepEqual(createBorgRunGradeDefaults(BORG_DATASET_MANIFEST_V1, "certified"), {
+    coupling: 0.05,
+    initialConditionConfig: {
+      electrinoCount: 3,
+      positrinoCount: 3,
+      randomVelocityMaxComponentMagnitude: 0.01,
+      randomVelocityMinSpeed: 0,
+    },
+  });
+  assert.equal(BORG_DATASET_MANIFEST_V1.simulationEnvelope.outerRadius, 0.5);
+  assert.ok(
+    createBorgRunGradePlacementPolicy(
+      BORG_DATASET_MANIFEST_V1,
+      "certified",
+      64,
+    ).seedingRadius > 0.5,
+  );
+});
+
+test("Borg display seeding keeps all 64 default paths inside the smaller sphere", () => {
+  const defaults = createBorgRunGradeDefaults(BORG_DATASET_MANIFEST_V1, "display");
+  const placement = createBorgRunGradePlacementPolicy(
+    BORG_DATASET_MANIFEST_V1,
+    "display",
+    64,
+  );
+  const rows = createBorgSeededInitialConditionRows({
+    manifest: BORG_DATASET_MANIFEST_V1,
+    seedIndex: 7,
+    config: defaults.initialConditionConfig,
+    seedingRadius: placement.seedingRadius,
+    minimumPairSeparation: placement.minimumPairSeparation,
+  });
+  assert.equal(placement.seedingRadius, 0.35);
+  assert.equal(placement.velocityReversalRadius, 0.4375);
+  assert.equal(rows.length, 64);
+  assert.equal(
+    certifyBorgMinimumSeparation(rows, {
+      minimumPairSeparation: placement.minimumPairSeparation,
+    }).accepted,
+    true,
+  );
+  rows.forEach((row) => {
+    assert.ok(Math.hypot(
+      row.position.x - 0.5,
+      row.position.y - 0.5,
+      row.position.z - 0.5,
+    ) <= 0.35 + 1e-12);
+  });
 });
 
 test("Borg initial-condition controls reject impossible populations and velocity ranges", () => {

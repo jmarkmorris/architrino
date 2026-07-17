@@ -341,7 +341,10 @@ test("Borg path-history renderer uses native row segments, not visual smoothing 
   assert.doesNotMatch(runtimeSource, /new THREE\.LineLoop/);
   assert.doesNotMatch(runtimeSource, /createEnvelopeGreatCircles/);
   assert.match(runtimeSource, /function fitCameraToEnvelope\(margin\)/);
-  assert.match(runtimeSource, /manifest\.simulationEnvelope\.outerRadius \* worldUnitsPerSolverUnit/);
+  assert.match(
+    runtimeSource,
+    /borgRunGradeEnvelopeRadius\(manifest, state\.selectedRunGrade\) \*\s*worldUnitsPerSolverUnit/,
+  );
   assert.match(runtimeSource, /DEFAULT_CAMERA_FIT_MARGIN = 1\.1/);
   assert.match(htmlSource, /\.borg-status-chip\[hidden\]\s*\{\s*display: none;/);
   assert.doesNotMatch(runtimeSource, /SphereGeometry/);

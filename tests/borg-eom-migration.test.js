@@ -8,6 +8,7 @@ import { BORG_DATASET_MANIFEST_V1 } from "../src/apps/borg/BorgAppManifest.js";
 import {
   BORG_EOM_ACCEPTED_INITIAL_HISTORY_EVOLUTION_CLAIM_LEVEL,
   BORG_EOM_SHADOW_RUN_SOURCE,
+  BORG_DISPLAY_CLAIM_LEVEL,
   createBorgContinuousRetainedHistories,
   createBorgEomShadowRequest,
   createBorgEomShadowRunConfig,
@@ -37,6 +38,9 @@ import {
   createBorgStartupSeedIndex,
   resolveBorgRuntimeMode,
 } from "../src/apps/borg/BorgBootstrap.js";
+import {
+  createBorgRunGradePlacementPolicy,
+} from "../src/apps/borg/BorgRunGradeDefaults.js";
 
 const trajectoryFrames = createBorgPrescribedLinearHistoryRows(
   createBorgSeededInitialConditionRows({
@@ -74,11 +78,12 @@ test("Borg mounts EOM idle by default and reserves automatic compute for explici
   assert.equal(defaultMounts[0].manifest.simulationEnvelope.centralBallRadius, 0.4);
   assert.equal(defaultMounts[0].manifest.simulationEnvelope.radialBufferMargin, 0.1);
   assert.equal(defaultMounts[0].manifest.modelControls.coupling, 0.05);
-  assert.equal(defaultMounts[0].eomShadowRunner.coupling, "0.05");
-  assert.equal(defaultMounts[0].eomShadowRunner.chunkDuration, 0.05);
-  assert.equal(defaultMounts[0].eomShadowRunner.initialStep, "0.025");
+  assert.equal(defaultMounts[0].eomShadowRunner.coupling, "0.0005");
+  assert.equal(defaultMounts[0].eomShadowRunner.simulationOuterRadius, 0.35);
+  assert.equal(defaultMounts[0].eomShadowRunner.chunkDuration, 0.3);
+  assert.equal(defaultMounts[0].eomShadowRunner.initialStep, "0.05");
   assert.equal(defaultMounts[0].eomShadowRunner.minimumStep, "0.0001");
-  assert.equal(defaultMounts[0].eomShadowRunner.maximumStep, "0.025");
+  assert.equal(defaultMounts[0].eomShadowRunner.maximumStep, "0.05");
   assert.equal(defaultMounts[0].eomShadowRunner.useAdaptiveStepGrowth, true);
   assert.equal(defaultMounts[0].eomShadowRunner.runGrade, "display");
   assert.equal(defaultMounts[0].eomShadowRunner.farFieldEnclosureFraction, "0.25");
@@ -87,24 +92,29 @@ test("Borg mounts EOM idle by default and reserves automatic compute for explici
     y: 0.5,
     z: 0.5,
   });
-  assert.equal(defaultMounts[0].initialEomSeed.rows.length, 6 * 2);
-  assert.equal(defaultMounts[0].initialEomSeed.endpointRows.length, 6);
+  assert.equal(defaultMounts[0].initialEomSeed.rows.length, 64 * 2);
+  assert.equal(defaultMounts[0].initialEomSeed.endpointRows.length, 64);
   assert.equal(defaultMounts[0].initialEomSeed.certificate.accepted, true);
   assert.equal(defaultMounts[0].initialEomSeed.certificate.eomOutput, false);
   assert.equal(defaultMounts[0].initialEomSeed.certificate.canonicalEomEvidence, false);
   assert.equal(defaultMounts[0].initialEomSeed.certificate.geometryCertificate.accepted, true);
+  const displayPlacement = createBorgRunGradePlacementPolicy(
+    BORG_DATASET_MANIFEST_V1,
+    "display",
+    64,
+  );
   assert.equal(
     defaultMounts[0].initialEomSeed.certificate.geometryCertificate.requiredMinimumSeparation,
-    0.2,
+    displayPlacement.minimumPairSeparation,
   );
   assert.equal(defaultMounts[0].eomShadowRunner.eomClient, eomClient);
-  assert.equal(defaultMounts[0].eomShadowRunner.pathCount, 6);
+  assert.equal(defaultMounts[0].eomShadowRunner.pathCount, 64);
   assert.equal(defaultMounts[0].eomShadowRunner.startTime, 0);
   assert.equal(
     defaultMounts[0].eomShadowRunner.historyDepth,
     calculateBorgInertialHistoryDepth(defaultMounts[0].initialEomSeed.endpointRows, {
-      maximumSeparation: 1,
-    }),
+      maximumSeparation: 0.7,
+    }) + defaultMounts[0].eomShadowRunner.runDuration,
   );
   assert.equal(
     defaultMounts[0].manifest.simulationEnvelope.historyDepth,
@@ -119,25 +129,25 @@ test("Borg mounts EOM idle by default and reserves automatic compute for explici
       row.position.x - 0.5,
       row.position.y - 0.5,
       row.position.z - 0.5,
-    ) <= 0.5 + 1e-12);
+    ) <= 0.35 + 1e-12);
   });
   assert.equal(defaultMounts[0].eomShadowRunner.targetDuration, 60);
   assert.equal(defaultMounts[0].eomShadowRunner.runDuration, 60);
   assert.deepEqual(defaultMounts[0].initialConditionConfig, {
-    electrinoCount: 3,
-    positrinoCount: 3,
-    randomVelocityMaxComponentMagnitude: 0.01,
+    electrinoCount: 32,
+    positrinoCount: 32,
+    randomVelocityMaxComponentMagnitude: 0.001,
     randomVelocityMinSpeed: 0,
   });
   assert.equal(
     defaultMounts[0].initialEomSeed.endpointRows.every((row) =>
-      Object.values(row.velocity).every((value) => Math.abs(value) <= 0.01) &&
+      Object.values(row.velocity).every((value) => Math.abs(value) <= 0.001) &&
       Object.values(row.velocity).some((value) => value !== 0)),
     true,
   );
   assert.deepEqual(
     defaultMounts[0].initialEomSeed.endpointRows.map((row) => row.pathKey),
-    [1001, 1002, 1003, 1004, 1005, 1006],
+    Array.from({ length: 64 }, (unused, index) => 1001 + index),
   );
 
   const explicitShadowMounts = [];
@@ -390,11 +400,14 @@ test("Borg EOM shadow runner sends retained histories and derives frames only fr
   assert.equal(chunk.source, BORG_EOM_SHADOW_RUN_SOURCE);
   assert.equal(chunk.phase, "live");
   assert.equal(chunk.statusCode, "ok");
-  assert.equal(chunk.evidenceStatus, "executable_architecture_evidence");
+  assert.equal(chunk.evidenceStatus, BORG_DISPLAY_CLAIM_LEVEL);
   assert.equal(chunk.promotionEligible, false);
   assert.equal(chunk.frames.length, 12);
   assert.equal(chunk.frames.every((frame) => frame.runSource === BORG_EOM_SHADOW_RUN_SOURCE), true);
-  assert.equal(chunk.frames.every((frame) => frame.valueAuthority === "eom-shadow-output"), true);
+  assert.equal(
+    chunk.frames.every((frame) => frame.valueAuthority === BORG_DISPLAY_CLAIM_LEVEL),
+    true,
+  );
   assert.equal(chunk.histories.every((history) => history.coverageEnd === "10.2"), true);
 });
 
@@ -593,10 +606,12 @@ test("Borg publishes EOM evolution from accepted initial history at T=0", async 
   assert.equal(first.frames.length > 0, true);
   assert.equal(first.initialHistoryAccepted, true);
   assert.equal(second.phase, "live");
-  assert.equal(second.histories.every((history) => history.coverageStart === "0"), true);
+  assert.equal(second.histories.every((history) => history.coverageStart === "-0.02"), true);
   assert.equal(second.histories.every((history) => history.sourceAcceptedInitialDatum === true), true);
   assert.equal(second.histories.every((history) => history.sourceProvenance === BORG_ACCEPTED_SEED_HISTORY_PROVENANCE), true);
-  assert.equal(second.histories.every((history) => history.segments.every((segment) => Number(segment.startTime) >= 0)), true);
+  assert.equal(second.histories.every((history) =>
+    history.segments.some((segment) => Number(segment.startTime) < 0)
+  ), true);
   assert.equal(live.phase, "live");
   assert.equal(requests[0].provenance.importedHistoryIsAcceptedInitialDatum, true);
   assert.equal(requests[2].provenance.importedHistoryIsAcceptedInitialDatum, true);
@@ -758,7 +773,7 @@ test("Borg native client rejects protocol skew with a restart instruction", () =
   }
 });
 
-test("Borg display grade carries encounter demotion across atomic chunks", async () => {
+test("Borg display grade carries regulator warnings across atomic chunks", async () => {
   const requests = [];
   const runner = createBorgEomShadowRunner(BORG_DATASET_MANIFEST_V1, {
     eomClient: {
@@ -766,13 +781,11 @@ test("Borg display grade carries encounter demotion across atomic chunks", async
         requests.push(request);
         const response = createFakeEomResponse(
           request,
-          requests.length === 1
-            ? "uncertified-through-encounters"
-            : "uncertified-through-encounters",
+          BORG_DISPLAY_CLAIM_LEVEL,
         );
         response.causticWarningCount = 1;
         response.firstCausticWarningTime = "10.1";
-        response.claimGrade = "uncertified-through-encounters";
+        response.claimGrade = BORG_DISPLAY_CLAIM_LEVEL;
         response.causticWarningPairs = [["1001", "1004"]];
         response.causticWarnings = requests.length === 1
           ? [{
@@ -780,8 +793,8 @@ test("Borg display grade carries encounter demotion across atomic chunks", async
               sourcePathId: "1004",
               receptionLower: "10",
               receptionUpper: "10.2",
-              failedRowId: "FWC-REG-02",
-              failureCode: "caustic_eta_convergence_failed",
+              failedRowId: "DISPLAY-REGULATOR-01",
+              failureCode: "display_core_regulator_applied",
             }]
           : [];
         return response;
@@ -799,10 +812,10 @@ test("Borg display grade carries encounter demotion across atomic chunks", async
   const carried = await runner.computeNextChunk();
   assert.equal(warned.causticWarningCount, 1);
   assert.equal(warned.firstCausticWarningTime, "10.1");
-  assert.equal(warned.evolutionClaimLevel, "uncertified-through-encounters");
+  assert.equal(warned.evolutionClaimLevel, BORG_DISPLAY_CLAIM_LEVEL);
   assert.equal(
     warned.frames.every((frame) =>
-      frame.valueAuthority === "uncertified-through-encounters"),
+      frame.valueAuthority === BORG_DISPLAY_CLAIM_LEVEL),
     true,
   );
   assert.equal(requests[1].provenance.causticWarningCount, 1);
@@ -811,7 +824,7 @@ test("Borg display grade carries encounter demotion across atomic chunks", async
   assert.equal(carried.causticWarningCount, 1);
   assert.equal(
     carried.frames.every((frame) =>
-      frame.valueAuthority === "uncertified-through-encounters"),
+      frame.valueAuthority === BORG_DISPLAY_CLAIM_LEVEL),
     true,
   );
 });
@@ -860,11 +873,14 @@ test("disposing the Borg browser EOM client aborts an active native request", as
 
 function createFakeEomResponse(request, evidenceStatus) {
   const endTime = request.absoluteTimeInterval.end;
+  const responseEvidenceStatus = request.numericalControls.runGrade === "display"
+    ? BORG_DISPLAY_CLAIM_LEVEL
+    : evidenceStatus;
   return {
     status: "completed",
-    evidenceStatus,
+    evidenceStatus: responseEvidenceStatus,
     runGrade: request.numericalControls.runGrade,
-    claimGrade: evidenceStatus,
+    claimGrade: responseEvidenceStatus,
     causticWarningCount: request.provenance.causticWarningCount,
     firstCausticWarningTime: request.provenance.firstCausticWarningTime,
     causticWarningPairs: request.provenance.causticWarningPairs,
@@ -889,6 +905,9 @@ function createFakeEomResponse(request, evidenceStatus) {
             ]),
             positionError: String(duration * 1e-14),
             velocityError: String(duration * 1e-14),
+            runGrade: request.numericalControls.runGrade,
+            evidenceStatus: responseEvidenceStatus,
+            claimGrade: responseEvidenceStatus,
           },
         ],
       };

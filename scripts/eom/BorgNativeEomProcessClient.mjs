@@ -306,10 +306,12 @@ function mergePublishedExtensions(request, response) {
         !Array.isArray(extension.segments)) {
       throw new Error("EOM response reordered or omitted a path extension.");
     }
-    if (response.causticWarningCount > 0 && extension.segments.some(
-      (segment) => segment.claimGrade !== "uncertified-through-encounters",
+    if (response.runGrade === "display" && extension.segments.some(
+      (segment) => segment.runGrade !== "display" ||
+        segment.claimGrade !== "display-only" ||
+        segment.evidenceStatus !== "display-only",
     )) {
-      throw new Error("Warned EOM response omitted its segment claim marker.");
+      throw new Error("Display EOM response omitted its segment-grade marker.");
     }
     return Object.freeze({
       ...history,

@@ -9,7 +9,16 @@
 - ROI: `1.59`
 - Status: `active-discussion`
 
-## Task Queue
+## Ranked Next Objects
+
+Ordered by marginal ROI on 2026-07-17. Ownership maintenance is not scored above a concrete recovery object.
+
+1. `iron_group_binding_cusp_recovery` — Supply the accepted nucleon branch-interface ledgers needed to test the Fe/Ni binding-per-nucleon maximum without per-element tuning. Status: `source-binding-gated`.
+2. `nuclear_radiation_worked_examples` — Close native rate, daughter de-excitation, material heat-deposition, and provenance rows for the first worked packets. Status: `active`.
+3. `nuclear_binding_packet_ownership` — Preserve the benchmark ladder and confinement dependency while the evidence objects advance. Status: `active`.
+4. `atomic_orbital_import` — Reframe the deferred orbital note as an atomic-structure and spectra bridge. Status: `queued`.
+
+## Detailed Task Inventory
 
 1. `nuclear_binding_packet_ownership` — Keep the nuclear benchmark ladder and first $V_{NN}$ row discoverable here while preserving its dependency on Standard Model confinement energetics. Status: `active`. Depends on: `confinement_energetics`.
 2. `iron_group_binding_cusp_recovery` — Test whether the same reduced nuclear assembly rows can produce a finite binding-per-nucleon maximum in the Fe/Ni neighborhood without per-element tuning. Status: `source-binding-gated`; toy sweep passes row-shape controls but promotion is blocked at `missing_accepted_nucleon_branch_interface_ledgers`. Depends on: `nuclear_binding_packet_ownership`.

@@ -6,7 +6,7 @@
 - Rank: `35`
 - Value: `0.15`
 - Cost: `2.3`
-- ROI: `0.06`
+- ROI: `0.07`
 - Status: `idea-bucket`
 
 ## Current
@@ -21,7 +21,7 @@ Preserve comic-format ideas without letting exploratory media work outrank curre
 
 ## Task Queue
 
-No active media-comics tasks are selected.
+1. `comic_production_brief_selection` — Select one comic concept only when it has a concrete production target, claim level, acceptance condition, and owner. Status: `queued`.
 
 ## Promotion Rules
 

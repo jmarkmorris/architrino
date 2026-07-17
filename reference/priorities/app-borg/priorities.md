@@ -55,7 +55,17 @@ The workstream is not an implementation license for a new solver. Missing motion
 23. Keep assembly-view replay record-only and visibly distinct from the simulation workspace. A record produced by a Borg-triggered run is replayable only after the accepted emitter seals it and the replay path reloads the file.
 24. Preserve raw ids and source ordering in collection navigation. For tri-binary collections, optional $S_3$ grouping may use a source-carried permutation-canonical key to hide duplicate navigation rows, but it may not delete, relabel, or replace the underlying unquotiented records.
 
-## Task Queue
+## Ranked Next Objects
+
+Ordered by marginal ROI on 2026-07-17. Completed design and contract foundations remain in the detailed inventory below but do not retain priority value.
+
+1. `native_wake_history_and_boundary_residual_fixture` — Emit retained wake/interaction rows, row-conservation counts, boundary-to-central residuals, and required acceleration-contribution diagnostics from EOM. Status: `pending`.
+2. `assembly_viewer_replay_mode` — Implement record-only replay with provenance, compatible-record comparison, and fail-closed navigation. Status: `pending`.
+3. `velocity_scale_sampling_research` — Produce measured boundary-shell replay sampling evidence across the declared velocity range. Status: `pending`.
+4. `assembly_explorer_surface_disposition` — Decide standalone-surface retirement only after Borg replay reaches parity. Status: `pending`.
+5. `save_export_import_load_workflows` — Design dataset persistence after EOM-run coverage stabilizes. Status: `deferred`.
+
+## Detailed Task Inventory
 
 1. `requirements_design_packet` — Maintain the first requirements and design packet for the Borg app, including scale controls, initial conditions, EOM solver boundary, path-history retention, wake-history retention, boundary-shell replay, diagnostics, and claim-level limits. Status: `complete`; source: [requirements-and-design](requirements-and-design.md).
 2. `native_solver_capability_gap` — Compare the requirements packet against the current EOM solver bridge and list missing capabilities as EOM contract extensions, not app-local solver work. Status: `complete`; source: [native-bridge-audit-and-first-screen](native-bridge-audit-and-first-screen.md). Current boundary: native stepping, initial conditions, current state, checkpoints, trajectory frames, bounded trails, and the bridge-level path-history stream contract exist; Borg manifest binding, retained wake rows, statistical boundary-shell rows, path-derived boundary-shell patch influence rows, boundary shell noise policy rows, velocity sampling rows, residual decision rows, diagnostic status manifests, and 3-D first-screen app behavior remain gaps.

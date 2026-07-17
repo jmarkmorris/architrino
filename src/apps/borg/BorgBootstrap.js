@@ -3,11 +3,14 @@ import { createBorgEomHttpClient } from "./BorgEomHttpClient.js";
 import { BORG_DATASET_MANIFEST_V1 } from "./BorgAppManifest.js";
 import {
   calculateBorgInertialHistoryDepth,
-  calculateBorgSeedingRadius,
   createBorgAcceptedInertialSeedHistory,
-  createBorgInitialConditionConfig,
   createBorgSeededInitialConditionRows,
 } from "./BorgInitialConditions.js";
+import {
+  createBorgRunGradeDefaults,
+  createBorgRunGradePlacementPolicy,
+} from "./BorgRunGradeDefaults.js";
+import { BORG_DISPLAY_RUN_GRADE } from "./BorgRunGradeControl.js";
 
 export const BORG_DEFAULT_RUNTIME_MODE = "eom-shadow";
 export const BORG_RECORD_REPLAY_RUNTIME_MODE = "eom-record-replay";
@@ -42,11 +45,22 @@ export async function bootBorgApp({
   if (!Number.isSafeInteger(startupSeedIndex) || startupSeedIndex < 0) {
     throw new TypeError("Borg startup seed index must be a nonnegative safe integer.");
   }
-  const initialConditionConfig = createBorgInitialConditionConfig(manifest.initialConditions);
+  const displayDefaults = createBorgRunGradeDefaults(
+    manifest,
+    BORG_DISPLAY_RUN_GRADE,
+  );
+  const initialConditionConfig = displayDefaults.initialConditionConfig;
+  const displayPlacement = createBorgRunGradePlacementPolicy(
+    manifest,
+    BORG_DISPLAY_RUN_GRADE,
+    initialConditionConfig.electrinoCount + initialConditionConfig.positrinoCount,
+  );
   const fullPopulationEndpointRows = createBorgSeededInitialConditionRows({
     manifest,
     seedIndex: startupSeedIndex,
     config: initialConditionConfig,
+    seedingRadius: displayPlacement.seedingRadius,
+    minimumPairSeparation: displayPlacement.minimumPairSeparation,
   });
   const endpointRows = fullPopulationEndpointRows;
   const activeInitialConditionConfig = Object.freeze({
@@ -55,19 +69,20 @@ export async function bootBorgApp({
     positrinoCount: endpointRows.filter((row) => row.stateFlags === 1).length,
   });
   const sampleInterval = 0.01;
-  // The seeding radius grows with population to hold the declared density, so
-  // the causal bound must use the radius the population was actually seeded
-  // in, not the manifest's declared-population radius.
-  const historyDepth = calculateBorgInertialHistoryDepth(endpointRows, {
+  const causalHistoryDepth = calculateBorgInertialHistoryDepth(endpointRows, {
     fieldSpeed: manifest.simulationEnvelope?.fieldSpeed ?? 1,
     sampleInterval,
-    maximumSeparation: 2 * calculateBorgSeedingRadius(manifest, endpointRows.length),
+    maximumSeparation: 2 * displayPlacement.seedingRadius,
   });
+  // Display retains its full numerical history. Extend the exact inertial
+  // datum across the requested finite run so a delayed root cannot be lost
+  // merely because its emission time precedes the ordinary rolling window.
+  const historyDepth = Number((causalHistoryDepth + eomDuration).toFixed(12));
   const runtimeManifest = createManifestWithHistoryDepth(manifest, historyDepth);
   const initialEomSeed = await createBorgAcceptedInertialSeedHistory(endpointRows, {
     historyStartTime: eomStartTime - historyDepth,
     historyEndTime: eomStartTime,
-    minimumPairSeparation: manifest.initialConditions.minimumPairSeparation,
+    minimumPairSeparation: displayPlacement.minimumPairSeparation,
   });
   return mountApp({
     manifest: runtimeManifest,
@@ -84,26 +99,27 @@ export async function bootBorgApp({
       runDuration: eomDuration,
       historyDepth,
       pathCount: endpointRows.length,
-      chunkDuration: 0.05,
+      // Batch six 0.05 display steps per process round trip. This keeps the
+      // EOM solver's numerical step unchanged while avoiding protocol cost on
+      // every rendered sample interval.
+      chunkDuration: 0.3,
       sampleInterval,
-      // Operator-selected run-length preference (2026-07-16 three-seed
-      // ladder): the 0.025 ceiling survives encounters longer than 0.05
-      // (seed 1 completes t=2.0 at 0.025 but halts t=1.11 at 0.05) at
-      // ~3x the smooth-phase chunk cost. Encounter rejections may shrink
-      // to the unchanged floor; two consecutive accepted steps with
-      // 1/8-budget headroom allow recovery to the ceiling.
-      initialStep: "0.025",
+      // Display accepts uncontrolled trajectory error and handles the core
+      // with the fixed binary64 regulator, so the former certification-driven
+      // 0.025 ceiling no longer controls this route.
+      initialStep: "0.05",
       minimumStep: "0.0001",
-      maximumStep: "0.025",
+      maximumStep: "0.05",
       useAdaptiveStepGrowth: true,
       runGrade: "display",
+      simulationOuterRadius: displayPlacement.seedingRadius,
       rootTolerance: "1e-3",
       accelerationTolerance: "1e-1",
       farFieldEnclosureFraction: "0.25",
       positionTolerance: "1e-2",
       velocityTolerance: "1e-2",
       correctionTolerance: "1e-1",
-      coupling: String(runtimeManifest.modelControls.coupling),
+      coupling: String(displayDefaults.coupling),
       threadCount: 4,
     },
   });

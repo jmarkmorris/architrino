@@ -9,7 +9,16 @@
 - ROI: `0.55`
 - Status: `drafting`
 
-## Task Queue
+## Ranked Next Objects
+
+Ordered by marginal ROI on 2026-07-17. Maintaining the deployed paper shell does not outrank auditing the claims it contains.
+
+1. `claim_level_audit` — Classify every chapter as `architecture-ready`, `direction-ready`, `appendix-watch`, or `exclude-for-now`. Status: `next`.
+2. `test_contracts` — Attach at least one recovery target, observable, simulation variable, source family, or falsifier to each retained architecture-ready chapter. Status: `next`.
+3. `corpus_route_map` — Map retained chapters to current corpus and priority destinations before promotion. Status: `pending`.
+4. `paper_skeleton` — Maintain the deployed draft after the higher-value claim controls are current. Status: `active`.
+
+## Detailed Task Inventory
 
 1. `paper_skeleton` - Maintain the deployed draft [solving-the-crisis.md](../../../content/markdown/aaa/philosophy-history/solving-the-crisis.md) as a readable technical paper draft grouped by major open-problem domains. Status: `active`. Depends on: none.
 2. `claim_level_audit` - For every chapter, classify the candidate as `architecture-ready`, `direction-ready`, `appendix-watch`, or `exclude-for-now`. Status: `next`. Depends on: `paper_skeleton`.

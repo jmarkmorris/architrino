@@ -9,6 +9,7 @@
 #include <filesystem>
 #include <iomanip>
 #include <iostream>
+#include <limits>
 #include <stdexcept>
 #include <string>
 #include <vector>
@@ -42,6 +43,21 @@ eom::RetainedHistory history(
           start, end,
           eom::CubicCoefficientTokens{
               x, {"0", "0", "0", "0"}, {"0", "0", "0", "0"}})});
+}
+
+eom::RetainedHistory static_history_3d(
+    const std::string& id,
+    const std::string& start,
+    const std::string& end,
+    const std::array<std::string, 3>& position) {
+  return eom::RetainedHistory(
+      id,
+      {eom::CubicHistorySegment(
+          start, end,
+          eom::CubicCoefficientTokens{{
+              {position[0], "0", "0", "0"},
+              {position[1], "0", "0", "0"},
+              {position[2], "0", "0", "0"}}})});
 }
 
 eom::NativeCoupledEvolutionRequest request(
@@ -1636,6 +1652,113 @@ void print_display_fast_caustic_path() {
   std::cout << "]}\n";
 }
 
+void print_display_smooth_comparison() {
+  const std::array<std::array<std::string, 3>, 6> positions{{
+      {"0.7", "0", "0"},
+      {"-0.7", "0", "0"},
+      {"0", "0.7", "0"},
+      {"0", "-0.7", "0"},
+      {"0", "0", "0.7"},
+      {"0", "0", "-0.7"},
+  }};
+  std::vector<eom::NativeCoupledPathInput> paths;
+  paths.reserve(positions.size());
+  for (std::size_t index = 0; index < positions.size(); ++index) {
+    const std::string path_id = "smooth-" + std::to_string(index);
+    paths.push_back({
+        path_id,
+        index % 2U == 0U ? "1" : "-1",
+        static_history_3d(
+            path_id + "-history", "-3", "0", positions[index]),
+    });
+  }
+
+  auto certified_request = request(
+      "display-smooth-certified", paths, "0", "1", "0.05", "0.05",
+      "1e-6", "1e-6", "1", "1e-4");
+  certified_request.chart_policy = "sharp_with_finite_width_fallback";
+  certified_request.core_scale = "0.02";
+  certified_request.causal_width = "0.02";
+  certified_request.far_field_enclosure_fraction = "0";
+  auto display_request = certified_request;
+  display_request.run_id = "display-smooth-display";
+  display_request.run_grade = "display";
+  display_request.display_root_relative_tolerance = "1e-9";
+
+  const auto certified =
+      eom::evolve_native_coupled_histories(certified_request);
+  const auto display = eom::evolve_native_coupled_histories(display_request);
+  if (certified.status != "completed" || display.status != "completed" ||
+      certified.histories.size() != display.histories.size()) {
+    throw std::runtime_error(
+        "smooth display comparison did not complete: certified=" +
+        certified.status + "/" + certified.halt_code + ", display=" +
+        display.status + "/" + display.halt_code +
+        (display.steps.empty()
+             ? ""
+             : ", last_step=" + display.steps.back().failure_code +
+                   ", end=" + display.steps.back().attempted_end +
+                   ", correction=" +
+                   std::to_string(
+                       display.steps.back().correction_residual.value_or(-1.0))));
+  }
+
+  double maximum_position_difference = 0.0;
+  double sampled_minimum_separation =
+      std::numeric_limits<double>::infinity();
+  for (std::size_t index = 0; index < certified.histories.size(); ++index) {
+    const auto certified_position =
+        certified.histories[index].history.nominal_position(1.0);
+    const auto display_position =
+        display.histories[index].history.nominal_position(1.0);
+    double squared_difference = 0.0;
+    for (std::size_t axis = 0; axis < 3U; ++axis) {
+      const double difference = display_position[axis] - certified_position[axis];
+      squared_difference += difference * difference;
+    }
+    maximum_position_difference = std::max(
+        maximum_position_difference, std::sqrt(squared_difference));
+  }
+  for (std::size_t sample = 0; sample <= 100U; ++sample) {
+    const double time = static_cast<double>(sample) / 100.0;
+    for (std::size_t left = 0; left < certified.histories.size(); ++left) {
+      const auto left_position =
+          certified.histories[left].history.nominal_position(time);
+      for (std::size_t right = left + 1U;
+           right < certified.histories.size(); ++right) {
+        const auto right_position =
+            certified.histories[right].history.nominal_position(time);
+        double squared_separation = 0.0;
+        for (std::size_t axis = 0; axis < 3U; ++axis) {
+          const double difference =
+              left_position[axis] - right_position[axis];
+          squared_separation += difference * difference;
+        }
+        sampled_minimum_separation = std::min(
+            sampled_minimum_separation, std::sqrt(squared_separation));
+      }
+    }
+  }
+
+  std::cout << std::setprecision(17)
+            << "{\"schema\":\"eom_display_smooth_comparison/v0\""
+            << ",\"claim_grade\":\"measured\""
+            << ",\"certified_status\":\"" << certified.status << "\""
+            << ",\"display_status\":\"" << display.status << "\""
+            << ",\"common_time\":1"
+            << ",\"envelope_radius\":1"
+            << ",\"core_separation\":0.02"
+            << ",\"sample_spacing\":0.01"
+            << ",\"sampled_minimum_separation\":"
+            << sampled_minimum_separation
+            << ",\"maximum_position_difference\":"
+            << maximum_position_difference
+            << ",\"difference_as_envelope_fraction\":"
+            << maximum_position_difference
+            << ",\"display_caustic_warning_count\":"
+            << display.caustic_warning_count << "}\n";
+}
+
 }  // namespace
 
 int main(int argc, char** argv) {
@@ -1643,17 +1766,21 @@ int main(int argc, char** argv) {
     if (argc != 2 ||
         (std::string(argv[1]) != "all" &&
          std::string(argv[1]) != "far-field-dispersal" &&
-         std::string(argv[1]) != "display-fast-caustic")) {
+         std::string(argv[1]) != "display-fast-caustic" &&
+         std::string(argv[1]) != "display-smooth-comparison")) {
       std::cerr << "usage: eom_native_evolution_fixture_cli "
-                   "all|far-field-dispersal|display-fast-caustic\n";
+                   "all|far-field-dispersal|display-fast-caustic|"
+                   "display-smooth-comparison\n";
       return EXIT_FAILURE;
     }
     if (std::string(argv[1]) == "all") {
       print_all();
     } else if (std::string(argv[1]) == "far-field-dispersal") {
       print_far_field_dispersal_timing();
-    } else {
+    } else if (std::string(argv[1]) == "display-fast-caustic") {
       print_display_fast_caustic_path();
+    } else {
+      print_display_smooth_comparison();
     }
     return EXIT_SUCCESS;
   } catch (const std::exception& error) {

@@ -10,8 +10,7 @@ export const BORG_EOM_COMPATIBILITY_HISTORY_PROVENANCE =
 export const BORG_EOM_ACCEPTED_INITIAL_HISTORY_EVOLUTION_CLAIM_LEVEL =
   "eom-evolution-conditioned-on-accepted-initial-history";
 export { BORG_DISPLAY_RUN_GRADE, BORG_CERTIFIED_RUN_GRADE };
-export const BORG_UNCERTIFIED_ENCOUNTER_CLAIM_LEVEL =
-  "uncertified-through-encounters";
+export const BORG_DISPLAY_CLAIM_LEVEL = "display-only";
 
 const POSITRINO_STATE_FLAG = 1;
 const ELECTRINO_STATE_FLAG = 2;
@@ -127,9 +126,11 @@ export function createBorgEomShadowRunner(manifest, options = {}) {
       firstCausticWarningTime = response.firstCausticWarningTime;
       causticWarningPairs = Object.freeze(response.causticWarningPairs);
       nextStartTime = endTime;
-      histories = retainBorgHistoryWindow(response.histories, {
-        minimumCoverageStart: roundTime(nextStartTime - config.historyDepth),
-      });
+      histories = config.runGrade === BORG_DISPLAY_RUN_GRADE
+        ? Object.freeze(response.histories)
+        : retainBorgHistoryWindow(response.histories, {
+            minimumCoverageStart: roundTime(nextStartTime - config.historyDepth),
+          });
       const frames = createFramesFromHistories(
         histories,
         startTime,
@@ -160,9 +161,8 @@ export function createBorgEomShadowRunner(manifest, options = {}) {
         causticWarnings: Object.freeze(response.causticWarnings),
         causticWarningPairs,
         claimGrade: response.claimGrade,
-        evolutionClaimLevel: response.claimGrade ===
-            BORG_UNCERTIFIED_ENCOUNTER_CLAIM_LEVEL
-          ? BORG_UNCERTIFIED_ENCOUNTER_CLAIM_LEVEL
+        evolutionClaimLevel: response.runGrade === BORG_DISPLAY_RUN_GRADE
+          ? BORG_DISPLAY_CLAIM_LEVEL
           : initialHistoryAccepted
             ? BORG_EOM_ACCEPTED_INITIAL_HISTORY_EVOLUTION_CLAIM_LEVEL
             : "eom-evolution-conditioned-on-unaccepted-history",
@@ -211,7 +211,10 @@ export function createBorgEomShadowRunConfig(manifest, options = {}) {
       `Borg EOM path count ${pathCount} exceeds the ${maximumPathCount} retained histories available.`,
     );
   }
-  const outerRadius = positiveNumber(manifest.simulationEnvelope?.outerRadius, 50);
+  const outerRadius = positiveNumber(
+    options.simulationOuterRadius,
+    manifest.simulationEnvelope?.outerRadius ?? 50,
+  );
   const fieldSpeed = positiveNumber(
     options.fieldSpeed,
     manifest.simulationEnvelope?.fieldSpeed ?? 1,
@@ -256,6 +259,7 @@ export function createBorgEomShadowRunConfig(manifest, options = {}) {
     pathCount,
     sampleInterval,
     fieldSpeed,
+    simulationOuterRadius: outerRadius,
     historyStartTime: roundTime(startTime - historyDepth),
     historyDepth,
     geometricDelayBound,
@@ -355,10 +359,7 @@ export function createBorgContinuousRetainedHistories(
           `Borg EOM path ${pathKey} lacks continuous retained history through ${cutTime}.`,
         );
       }
-      const segments = [];
-      for (let index = 0; index + 1 < uniqueRows.length; index += 1) {
-        segments.push(createHermiteHistorySegment(uniqueRows[index], uniqueRows[index + 1]));
-      }
+      const segments = createRetainedHistorySegments(uniqueRows);
       return Object.freeze({
         pathId: String(pathKey),
         pathKey,
@@ -561,6 +562,36 @@ function createHermiteHistorySegment(start, end) {
   });
 }
 
+function createRetainedHistorySegments(rows) {
+  const exactInertial = rows.every(
+    (row) => row.historyInterpolation === "exact-inertial-polynomial/v1",
+  );
+  if (exactInertial) {
+    const first = rows[0];
+    const firstTime = Number(first.time);
+    const axes = ["x", "y", "z"];
+    const singlePolynomial = rows.every((row) => {
+      const elapsed = Number(row.time) - firstTime;
+      return axes.every((axis) => {
+        const velocity = Number(first.velocity?.[axis]);
+        return Number(row.velocity?.[axis]) === velocity &&
+          Math.abs(
+            Number(row.position?.[axis]) -
+            (Number(first.position?.[axis]) + elapsed * velocity)
+          ) <= 1e-12 * Math.max(1, Math.abs(Number(row.position?.[axis])));
+      });
+    });
+    if (singlePolynomial) {
+      return [createHermiteHistorySegment(first, rows.at(-1))];
+    }
+  }
+  const segments = [];
+  for (let index = 0; index + 1 < rows.length; index += 1) {
+    segments.push(createHermiteHistorySegment(rows[index], rows[index + 1]));
+  }
+  return segments;
+}
+
 function normalizeEomResponse(rawResponse, request) {
   const response = rawResponse?.response ?? rawResponse;
   if (!response || response.status !== "completed") {
@@ -597,8 +628,11 @@ function normalizeEomResponse(rawResponse, request) {
       causticWarningCount < priorWarningCount ||
       (causticWarningCount === 0) !== (causticWarningPairs.length === 0) ||
       (causticWarningCount === 0) !== (firstCausticWarningTime == null) ||
-      (causticWarningCount > 0 &&
-       claimGrade !== BORG_UNCERTIFIED_ENCOUNTER_CLAIM_LEVEL)) {
+      (runGrade === BORG_DISPLAY_RUN_GRADE &&
+       (claimGrade !== BORG_DISPLAY_CLAIM_LEVEL ||
+        response.evidenceStatus !== "display-only")) ||
+      (runGrade === BORG_CERTIFIED_RUN_GRADE &&
+       causticWarningCount > 0)) {
     throw new Error("Borg EOM shadow response has inconsistent run-grade provenance.");
   }
   return Object.freeze({
@@ -649,8 +683,8 @@ function createFramesFromHistories(
         stateFlags: history.stateFlags ?? 0,
         dynamicChunkIndex: chunkIndex,
         runSource: BORG_EOM_SHADOW_RUN_SOURCE,
-        valueAuthority: claimGrade === BORG_UNCERTIFIED_ENCOUNTER_CLAIM_LEVEL
-          ? BORG_UNCERTIFIED_ENCOUNTER_CLAIM_LEVEL
+        valueAuthority: claimGrade === BORG_DISPLAY_CLAIM_LEVEL
+          ? BORG_DISPLAY_CLAIM_LEVEL
           : initialHistoryAccepted
           ? evidenceStatus === "canonical"
             ? "canonical-eom-output-conditioned-on-accepted-initial-history"
@@ -713,8 +747,8 @@ function createCompleteChunk(
     firstCausticWarningTime,
     causticWarningPairs: Object.freeze(causticWarningPairs),
     causticWarnings: Object.freeze([]),
-    claimGrade: causticWarningCount > 0
-      ? BORG_UNCERTIFIED_ENCOUNTER_CLAIM_LEVEL
+    claimGrade: config.runGrade === BORG_DISPLAY_RUN_GRADE
+      ? BORG_DISPLAY_CLAIM_LEVEL
       : "not-applicable",
     evolutionClaimLevel: "not-applicable",
     frames: Object.freeze([]),

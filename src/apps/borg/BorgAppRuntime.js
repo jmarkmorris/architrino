@@ -36,9 +36,13 @@ import {
   createBorgRunGradeControl,
 } from "./BorgRunGradeControl.js";
 import {
+  borgRunGradeEnvelopeRadius,
+  createBorgRunGradeDefaults,
+  createBorgRunGradePlacementPolicy,
+} from "./BorgRunGradeDefaults.js";
+import {
   BORG_MAX_INITIAL_ARCHITRINO_COUNT,
   calculateBorgInertialHistoryDepth,
-  calculateBorgSeedingRadius,
   createBorgAcceptedInertialSeedHistory,
   createBorgInitialConditionConfig,
   createBorgSeededInitialConditionRows,
@@ -405,7 +409,19 @@ export function mountBorgApp(options = {}) {
     initialGrade: state.selectedRunGrade,
     onChange(grade) {
       state.selectedRunGrade = grade;
+      const defaults = createBorgRunGradeDefaults(manifest, grade);
+      state.initialConditionConfig = createBorgInitialConditionConfig(
+        defaults.initialConditionConfig,
+      );
+      state.eomCoupling = defaults.coupling;
+      state.eomPathCount =
+        state.initialConditionConfig.electrinoCount +
+        state.initialConditionConfig.positrinoCount;
+      syncInitialConditionInputs();
+      rebuildBoundaryShell();
+      fitCameraToEnvelope(state.cameraFitMargin);
       markInitialConditionControlsPending();
+      renderEnvelopeFields();
       renderSourceFields();
     },
   });
@@ -436,17 +452,26 @@ export function mountBorgApp(options = {}) {
   };
 
   function buildScene() {
-    boundaryShellGroup.add(
-      createBoundaryShellPoints({
-        radius: manifest.simulationEnvelope.outerRadius,
-        color: ENVELOPE_GUIDE_COLOR,
-        opacity: ENVELOPE_GUIDE_OPACITY,
-      }),
-    );
+    rebuildBoundaryShell();
 
     rebuildPathTrails();
 
     rebuildParticleObjects();
+  }
+
+  function rebuildBoundaryShell() {
+    boundaryShellGroup.children.slice().forEach((object) => {
+      boundaryShellGroup.remove(object);
+      object.geometry?.dispose?.();
+      object.material?.dispose?.();
+    });
+    boundaryShellGroup.add(
+      createBoundaryShellPoints({
+        radius: borgRunGradeEnvelopeRadius(manifest, state.selectedRunGrade),
+        color: ENVELOPE_GUIDE_COLOR,
+        opacity: ENVELOPE_GUIDE_OPACITY,
+      }),
+    );
   }
 
   function rebuildParticleObjects() {
@@ -561,8 +586,8 @@ export function mountBorgApp(options = {}) {
     renderFieldRows(
       dom.authorityFields,
       [
-        ["frameAuthority", state.eomCausticWarningCount > 0
-          ? "uncertified-through-encounters"
+        ["frameAuthority", state.activeRunGrade === BORG_DISPLAY_RUN_GRADE
+          ? "display-only"
           : "eom-shadow-output"],
         ...Object.entries(surfaceDesign.authorityMap).map(([key, value]) => [key, value]),
       ],
@@ -624,6 +649,12 @@ export function mountBorgApp(options = {}) {
 
   function renderSourceFields() {
     const activePreset = getRunControlPreset(state.runControlPresetId);
+    const placement = createBorgRunGradePlacementPolicy(
+      manifest,
+      state.selectedRunGrade,
+      state.initialConditionConfig.electrinoCount +
+        state.initialConditionConfig.positrinoCount,
+    );
     renderFieldRows(dom.sourceFields, [
       ["Run source", state.sourceMode],
       ["Run mode", formatRunDurationLabel(activePreset)],
@@ -641,7 +672,7 @@ export function mountBorgApp(options = {}) {
       ["EOM coupling κ", state.eomCoupling],
       ["Per-axis speed maximum", state.initialConditionConfig.randomVelocityMaxComponentMagnitude],
       ["Total-speed minimum", state.initialConditionConfig.randomVelocityMinSpeed],
-      ["Required initial separation", manifest.initialConditions.minimumPairSeparation],
+      ["Required initial separation", placement.minimumPairSeparation],
       ["Measured initial separation", state.eomSeedCertificate?.geometryCertificate?.measuredMinimumSeparation ?? "not-certified"],
       ["Run budget", state.liveRunBudget.status],
       ["Forward EOM status", state.dynamicRunnerStatus],
@@ -683,7 +714,7 @@ export function mountBorgApp(options = {}) {
     );
     const runtimeWakeHorizon = manifest.simulationEnvelope.fieldSpeed * runtimeHistoryDepth;
     renderFieldRows(dom.envelopeFields, [
-      ["outerRadius", manifest.simulationEnvelope.outerRadius],
+      ["outerRadius", borgRunGradeEnvelopeRadius(manifest, state.selectedRunGrade)],
       ["centralBallRadius", manifest.simulationEnvelope.centralBallRadius],
       ["radialBufferMargin", manifest.simulationEnvelope.radialBufferMargin],
       ["sampleInterval", manifest.simulationEnvelope.sampleInterval],
@@ -699,6 +730,11 @@ export function mountBorgApp(options = {}) {
 
   function renderInitialConditionFields() {
     const config = state.initialConditionConfig;
+    const placement = createBorgRunGradePlacementPolicy(
+      manifest,
+      state.selectedRunGrade,
+      config.electrinoCount + config.positrinoCount,
+    );
     const activeInitialRow = state.eomSeedEndpointRows?.[0] ?? state.distributionFrameRows?.[0];
     const activeFamily = activeInitialRow
       ? "seeded-random-minimum-separation"
@@ -715,7 +751,7 @@ export function mountBorgApp(options = {}) {
       ["velocityPolicy", manifest.initialConditions.velocityPolicy],
       ["maxPerAxisSpeed", config.randomVelocityMaxComponentMagnitude],
       ["minimumTotalSpeed", config.randomVelocityMinSpeed],
-      ["minimumPairSeparation", manifest.initialConditions.minimumPairSeparation],
+      ["minimumPairSeparation", placement.minimumPairSeparation],
       ["measuredMinimumSeparation", state.eomSeedCertificate?.geometryCertificate?.measuredMinimumSeparation ?? "not-certified"],
       ["velocity rays", "off"],
       ["customEditStatus", state.initialConditionEditStatus],
@@ -1482,6 +1518,10 @@ export function mountBorgApp(options = {}) {
     diagnosticsPanelController.dispose();
     runGradeController.dispose();
     disposeDynamicRunner();
+    boundaryShellGroup.children.slice().forEach((object) => {
+      object.geometry?.dispose?.();
+      object.material?.dispose?.();
+    });
     disposePathTrails();
     disposeParticleObjects();
     architrinoPointTexture.dispose();
@@ -1499,7 +1539,8 @@ export function mountBorgApp(options = {}) {
 
   function fitCameraToEnvelope(margin) {
     const envelopeWorldRadius =
-      manifest.simulationEnvelope.outerRadius * worldUnitsPerSolverUnit;
+      borgRunGradeEnvelopeRadius(manifest, state.selectedRunGrade) *
+      worldUnitsPerSolverUnit;
     const verticalHalfFov = THREE.MathUtils.degToRad(camera.fov * 0.5);
     const horizontalHalfFov = Math.atan(Math.tan(verticalHalfFov) * Math.max(0.1, camera.aspect));
     const limitingHalfFov = Math.min(verticalHalfFov, horizontalHalfFov);
@@ -1588,6 +1629,10 @@ export function mountBorgApp(options = {}) {
         stepHeight: state.eomStepHeight,
         minimumStep: state.eomMinimumStep,
         runGrade: state.activeRunGrade,
+        simulationOuterRadius: borgRunGradeEnvelopeRadius(
+          manifest,
+          state.activeRunGrade,
+        ),
       },
     );
     const runnerOptions = eomRunnerOptions ?? createDefaultEomRecordReplayOptions(
@@ -1898,13 +1943,16 @@ export function mountBorgApp(options = {}) {
       ? `${state.dynamicRunnerStatus}: ${state.dynamicRunnerMessage}`
       : state.dynamicRunnerStatus;
     setTone(dom.nativeStatus, state.dynamicRunnerStatus);
+    const displayGrade = state.activeRunGrade === BORG_DISPLAY_RUN_GRADE;
     const warned = state.eomCausticWarningCount > 0;
-    dom.runGradeWarning.hidden = !warned;
-    dom.runGradeWarning.textContent = warned
-      ? `Display grade — ${state.eomCausticWarningCount} close-encounter warnings`
+    dom.runGradeWarning.hidden = !displayGrade;
+    dom.runGradeWarning.textContent = displayGrade
+      ? warned
+        ? `DISPLAY ONLY — uncontrolled error; ${state.eomCausticWarningCount} regulated-pair warnings`
+        : "DISPLAY ONLY — uncontrolled error; not evidence"
       : "";
     dom.runGradeWarning.title = dom.runGradeWarning.textContent;
-    if (warned) {
+    if (displayGrade) {
       setTone(dom.runGradeWarning, "partial-live-run-budget");
     }
     updateSolverBanner();
@@ -1979,6 +2027,7 @@ export function mountBorgApp(options = {}) {
         : "eom-idle";
     state.dynamicChunksComputed = 0;
     state.activeRunGrade = state.selectedRunGrade;
+    rebuildBoundaryShell();
     state.eomCausticWarningCount = 0;
     state.eomFirstCausticWarningTime = null;
     state.eomDisplayStarted = false;
@@ -2003,28 +2052,39 @@ export function mountBorgApp(options = {}) {
     }
     stopPlayback();
     state.distributionSeedIndex += 1;
+    const placement = createBorgRunGradePlacementPolicy(
+      manifest,
+      state.selectedRunGrade,
+      config.electrinoCount + config.positrinoCount,
+    );
     const endpointRows = createBorgSeededInitialConditionRows({
       manifest,
       seedIndex: state.distributionSeedIndex,
       config,
+      seedingRadius: placement.seedingRadius,
+      minimumPairSeparation: placement.minimumPairSeparation,
     });
     if (options.eomShadowRunner) {
-      const historyDepth = calculateBorgInertialHistoryDepth(endpointRows, {
+      const causalHistoryDepth = calculateBorgInertialHistoryDepth(endpointRows, {
         fieldSpeed: options.eomShadowRunner.fieldSpeed ?? manifest.simulationEnvelope?.fieldSpeed ?? 1,
         sampleInterval: options.eomShadowRunner.sampleInterval ?? manifest.simulationEnvelope?.sampleInterval ?? 0.01,
-        maximumSeparation: 2 * calculateBorgSeedingRadius(manifest, endpointRows.length),
+        maximumSeparation: 2 * placement.seedingRadius,
       });
+      const historyDepth = Number((causalHistoryDepth +
+        (Number.isFinite(state.eomRunDuration) ? state.eomRunDuration : 0)
+      ).toFixed(12));
       const eomConfig = createBorgEomShadowRunConfig(manifest, {
         ...options.eomShadowRunner,
         pathCount: state.eomPathCount,
         historyDepth,
+        simulationOuterRadius: placement.seedingRadius,
       });
       try {
         const seed = await createBorgAcceptedInertialSeedHistory(endpointRows, {
           historyStartTime: eomConfig.historyStartTime,
           historyEndTime: eomConfig.startTime,
           sampleInterval: eomConfig.sampleInterval,
-          minimumPairSeparation: manifest.initialConditions.minimumPairSeparation,
+          minimumPairSeparation: placement.minimumPairSeparation,
         });
         state.distributionFrameRows = seed.rows;
         state.eomSeedEndpointRows = seed.endpointRows;
@@ -2217,6 +2277,10 @@ export function createDefaultEomShadowRunnerOptions(
       runtimeControls.stepHeight ?? configured.maximumStep,
     ),
     runGrade: runtimeControls.runGrade ?? configured.runGrade ?? BORG_DISPLAY_RUN_GRADE,
+    simulationOuterRadius: positiveControlNumber(
+      runtimeControls.simulationOuterRadius ?? configured.simulationOuterRadius,
+      manifest.simulationEnvelope?.outerRadius ?? 1,
+    ),
     pathCount: boundedInteger(
       runtimeControls.pathCount,
       configured.pathCount ?? manifest.population?.architrinoCount ?? 1,

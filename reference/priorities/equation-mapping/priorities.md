@@ -69,7 +69,16 @@ The workstream should stay internal until a line item produces a mature mathemat
 - a simulation target with concrete variables;
 - a validation residual that serves an existing proof route or tested observable.
 
-## Task Queue
+## Ranked Next Objects
+
+Ordered by marginal ROI on 2026-07-17. The first object is the workstream's scored representative in the unified priority table.
+
+1. `lorentz_envelope_closure` — Land the source-backed positive-width `S_eq` retained-domain fixture and minimum source-backed transport comparison. Status: `next`.
+2. `effective_metric_constitutive_map` — Complete the remaining shared-constitutive-chain consumers without hidden retune. Status: `started`.
+3. `score_five_closure_ladder` — Keep every row's score-5 acceptance object explicit. Status: `draft`.
+4. `equation_inventory` — Maintain the scored equation inventory. Status: `draft`.
+
+## Detailed Task Inventory
 
 1. `equation_inventory` - Maintain the scored equation inventory in [equation.md](equation.md). Status: `draft`. Depends on: none.
 2. `score_five_closure_ladder` - Keep the score-5 acceptance object for every row explicit in [Equation Score-5 Closure Ladder](equation-score-5-closure-ladder.md). Status: `draft`. Depends on: `equation_inventory`.

@@ -6,6 +6,7 @@
 #include "architrino/eom/History.hpp"
 
 #include <cstddef>
+#include <array>
 #include <functional>
 #include <optional>
 #include <string>
@@ -52,10 +53,15 @@ struct NativeCoupledEvolutionRequest {
   // Fraction of the acceleration component-width tolerance reserved for
   // certified per-pair far-field enclosures. Zero disables the route.
   std::string far_field_enclosure_fraction = "0";
-  // `certified` preserves every finite-width publication obligation.
-  // `display` may publish only candidates rejected solely by a named FWC row
-  // and permanently demotes the run after the first such publication.
+  // `certified` preserves every proof and finite-width publication obligation.
+  // `display` selects the separate binary64 evaluator and is permanently
+  // non-evidence; it does not construct or consume certification artifacts.
   std::string run_grade = "certified";
+  // Borg display-only canvas retention.  Certified evolution never enables
+  // this presentation rule and therefore remains byte-for-byte unchanged.
+  bool use_display_sphere_velocity_reversal = false;
+  std::array<std::string, 3> display_sphere_center = {"0", "0", "0"};
+  std::string display_sphere_velocity_reversal_radius = "0";
   // Cumulative display-run warning state carried across atomic Borg chunks.
   std::size_t initial_caustic_warning_count = 0;
   std::optional<std::string> initial_first_caustic_warning_time;

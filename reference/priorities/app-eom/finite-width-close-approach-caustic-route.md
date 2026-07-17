@@ -358,26 +358,41 @@ the recomputed maximum ladder distance exceeds its recorded budget.
 ## Run Grades
 
 Every coupled-evolution request declares exactly one run grade:
-`certified` or `display`. The grade is provenance, not a numerical tolerance.
-It changes only the disposition of a candidate whose ordinary coupled
-corrector, local-error comparison, and atomic-publication checks have passed
-and whose sole remaining rejection is a finite-width close-approach row.
+`certified` or `display`. The grade selects an evaluation route and is also
+permanent provenance; it is not a numerical tolerance.
 
 At `certified` grade, every `FWC-ENTRY-*`, `FWC-REG-*`, `FWC-STATE-*`, and
 `FWC-EXIT-*` obligation retains publication authority. A failed row rejects
 the candidate and eventually produces the existing named adjudicated halt.
 This is the evidence-producing route.
 
-At `display` grade, the entry dispatch itself emits an `FWC-ENTRY-02` caustic
-warning with the receiver/source identities, attempted reception interval, and
-`caustic_route_required` failure code. The candidate then stays on the
-ordinary sharp/corrector path. Display grade does not run the regulator ladder,
-event-cell integration, finite-width state reconstruction, exit adjudication,
-or their MPFR escalation before continuing. The unchanged local-error and
-atomic-publication gates still decide whether that sharp candidate may be
-published. A memory-boundary failure, ordinary correction failure, local-step
-error, resource ceiling, or any other non-caustic rejection remains
-fail-closed; `coupled_correction_failed` is never demoted.
+Display grade evaluates the same bound master equation and the same retained
+delayed histories, but it solves emission roots and evaluates accelerations in
+ordinary binary64 arithmetic without certification. Its error is uncontrolled:
+no trajectory, root, quadrature, or truncation bound is claimed. That absence
+of a bound is exactly why display output cannot enter evidence, canon, or any
+promotion path.
+
+For each ordered pair, the display evaluator searches the retained emission
+domain with a binary64 bracket and safeguarded Newton/bisection solve at the
+declared relative tolerance, currently $10^{-9}$. It evaluates the frozen
+sharp master-equation binding at each numerical root and feeds the resulting
+point accelerations to the existing coupled cubic corrector. It constructs no
+interval enclosure, MPFR escalation, cell ledger, root certificate, FWC row,
+finite-width convergence ladder, snapshot certificate, or full-step/two-half-
+step certification comparison. The display snapshot-shaped object inside the
+implementation is a point-valued adapter for the existing integrator, not a
+certificate.
+
+When a display pair is core-active, or its binary64 source normal approaches
+the numerical pole, the evaluator uses the frozen finite-width regulated
+integrand directly with fixed-order binary64 quadrature. It performs no
+regulator refinement or convergence test. The step continues and emits only a
+`DISPLAY-REGULATOR-01/display_core_regulator_applied` warning carrying the
+reception interval and ordered pair. The cumulative warning count, first time,
+and pair set are diagnostics only. The display far-field route likewise remains
+a binary64 omission optimization under the display label and emits no
+enclosure certificate.
 
 For a display-grade `coupled_correction_failed` rejection with finite failed
 acceleration-consistency residual $R_c>\tau_c$, the next attempted height uses
@@ -401,39 +416,29 @@ Claim grade: `derived-design` for the unchanged gates and the $h^2$ retry
 estimate. Wall-time benefit is not implied by this rule; it is a measured
 property of a workload. Falsifier: certified grade selects any scale other
 than one half for this failure, display grade uses a residual other than the
-failed acceleration-consistency row, or a retry is published without passing
-the unchanged acceptance rows.
+failed acceleration-consistency row, or a rejected candidate is published.
 
-The first accepted warning irreversibly changes the run claim marker to
-`uncertified-through-encounters`. Every subsequently published extension and
-derived frame inherits that marker. The response carries the cumulative
-warning count and first-warning time. Before the first warning, display mode is
-shown only as run provenance and does not add a warning label.
+Every display response, published segment, and derived Borg frame carries
+`runGrade=display` and `claimGrade=evidenceStatus=display-only`; the Borg UI
+shows `DISPLAY ONLY — uncontrolled error; not evidence` from the first frame,
+not only after an encounter. Producer-asserted evidence flags cannot upgrade
+this grade. The process protocol remains `EOM_BORG_NATIVE_V4` with the existing
+22-field `RUN` record, so the route adds no protocol field.
 
-The cumulative provenance also carries the warned encounter pair set. Because
-the acceleration ledger is ordered, warning either direction records both
-ordered directions of that same two-body encounter. Later atomic chunks use
-that pair identity only to bridge a non-complete entry root at a retained
-segment join; a complete root certificate immediately returns display grade to
-the sharp chart. The warned-pair ledger does not dispatch the finite-width
-adjudication again, and an unrelated pair receives no such authority. The Borg
-process contract is the single forward protocol
-`EOM_BORG_NATIVE_V4`, whose `RUN` record has exactly 22 fields and includes the
-pair-set token. Any other magic or field count is a protocol error.
-
-Display-grade output is never canonical evidence. In particular, a producer-
-asserted `evidenceStatus`, promotion flag, or claim label is not consumed as an
-authority upgrade; acceptance infrastructure must derive authority from the
-certified-grade contract and its independent evidence gate. The display route
-therefore supports long-lived interactive trajectories without weakening or
-masquerading as the certified route.
+Display remains fail-closed for real numerical breakdowns. A non-finite input,
+acceleration, or published state halts as `display_nonfinite_state`; failure of
+a bracketed root iteration halts as `display_root_solve_not_converged`; missing
+retained history halts as `display_insufficient_history_depth`; and an invalid
+display request halts as `display_invalid_evaluation_request`. Borg retains the
+complete display history rather than trimming away delayed-root input. These
+are numerical-input or solver failures, not discarded certification duties.
 
 Claim grade: `operator-decision` for the two-grade product policy and
 `derived-design` for the gate separation. Falsifier: a certified request changes
-any deterministic trajectory token; a display request publishes after a
-non-caustic failure; a warned extension lacks the
-`uncertified-through-encounters` marker; or any acceptance path treats a
-display warning or producer-asserted evidence flag as canonical authority.
+any deterministic trajectory token; a display segment lacks `display-only`;
+any interval, MPFR, root-certificate, cell, FWC, or snapshot-certification row
+is constructed on the display path; a non-finite state or failed root solve is
+published; or any acceptance path treats display output as evidence.
 
 Measured implementation evidence is recorded in
 [evidence/eom-run-grade-display-seed-0-and-64-2026-07-16.md](evidence/eom-run-grade-display-seed-0-and-64-2026-07-16.md).

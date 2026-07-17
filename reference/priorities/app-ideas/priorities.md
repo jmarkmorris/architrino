@@ -23,6 +23,12 @@ Loose app concepts, design notes, and immediate build-candidate discussion live 
 - Keep apps candidate-level unless the underlying corpus already supplies a derivation.
 - Reuse existing visual grammar from Ideal Braid, Photon, Animator, and solver diagnostics where possible.
 
+## Ranked Next Objects
+
+Ordered by marginal ROI on 2026-07-17.
+
+1. `next_concept_selection` — Select one one-page concept from [brainstorming.md](brainstorming.md) and promote it only when the packet names the teaching mechanism, corpus authority, implementation boundary, acceptance condition, and owner. Status: `queued`.
+
 ## Promoted App Packets
 
 1. [Causal Delay Feedback Depth](../app-causal-delay-feedback/priorities.md). Status: `promoted`.

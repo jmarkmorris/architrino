@@ -79,6 +79,20 @@ test("path trail draws no future: rows ahead of the displayed frame are withheld
   assert.equal(drawnPointCount(onlyTrail(group)), 100, "at the last frame the whole path is history");
 });
 
+test("retained and compacted path trails use the brighter shared presentation", () => {
+  const retainedGroup = createGroupStub();
+  const retained = createTrails(retainedGroup);
+  retained.appendFrameRows(straightPathRows(2));
+  assert.equal(onlyTrail(retainedGroup).material.opacity, 1);
+
+  const compactedGroup = createGroupStub();
+  const compacted = createTrails(compactedGroup);
+  compacted.setCompactedPathHistory({
+    1001: straightPathRows(2),
+  });
+  assert.equal(onlyTrail(compactedGroup).material.opacity, 0.68);
+});
+
 test("path trail ends at the architrino, not past it", () => {
   const group = createGroupStub();
   const trails = createTrails(group);

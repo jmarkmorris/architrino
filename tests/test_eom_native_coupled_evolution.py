@@ -598,7 +598,7 @@ class NativeCoupledEvolutionTests(unittest.TestCase):
         self.assertLessEqual(d2_lower, 0)
         self.assertGreaterEqual(d2_upper, 0)
 
-    def test_display_grade_warns_before_finite_width_adjudication(self) -> None:
+    def test_display_grade_uses_uncertified_regulator_without_fwc_rows(self) -> None:
         completed = subprocess.run(
             [str(self.binary), "display-fast-caustic"],
             check=True,
@@ -654,7 +654,7 @@ class NativeCoupledEvolutionTests(unittest.TestCase):
         self.assertTrue(display["scaled_certified_publication_atomic"])
         self.assertEqual(
             display["ordinary_root_display_halt_code"],
-            "root_completeness_not_certified",
+            "",
         )
         self.assertEqual(
             display["ordinary_root_certified_halt_code"],
@@ -663,8 +663,8 @@ class NativeCoupledEvolutionTests(unittest.TestCase):
         self.assertGreater(display["warning_count"], 0)
         self.assertTrue(
             all(
-                warning["failed_row_id"] == "FWC-ENTRY-02"
-                and warning["failure_code"] == "caustic_route_required"
+                warning["failed_row_id"] == "DISPLAY-REGULATOR-01"
+                and warning["failure_code"] == "display_core_regulator_applied"
                 and Decimal(warning["reception_lower"])
                 < Decimal(warning["reception_upper"])
                 for warning in display["warnings"]

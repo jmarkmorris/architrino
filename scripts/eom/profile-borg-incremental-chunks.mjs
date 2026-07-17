@@ -46,6 +46,7 @@ const farFieldEnclosureFraction = fractionToken(
   "0.25",
 );
 const includeChunks = !booleanOption(options["summary-only"], false);
+const aggregateOnly = booleanOption(options["aggregate-only"], false);
 const includeRegulatorCertificates = !booleanOption(
   options["omit-regulators"],
   false,
@@ -70,11 +71,14 @@ const endpointRows = createBorgSeededInitialConditionRows({
   seedIndex,
   config: initialConditionConfig,
 });
-const historyDepth = calculateBorgInertialHistoryDepth(endpointRows, {
+const causalHistoryDepth = calculateBorgInertialHistoryDepth(endpointRows, {
   fieldSpeed: manifest.simulationEnvelope.fieldSpeed,
   sampleInterval,
   maximumSeparation: 2 * manifest.simulationEnvelope.outerRadius,
 });
+const historyDepth = Number(
+  (causalHistoryDepth + chunkCount * chunkDuration).toFixed(12),
+);
 const initialSeed = await createBorgAcceptedInertialSeedHistory(endpointRows, {
   historyStartTime: -historyDepth,
   historyEndTime: 0,
@@ -120,6 +124,7 @@ const measuredClient = {
       chunkIndex: nativeChunks.length,
       status: response.status,
       haltCode: response.haltCode,
+      diagnosticDetail: response.diagnosticDetail ?? null,
       acceptedEndTime: Number(response.acceptedEndTime),
       acceptedStepCount: response.acceptedStepCount,
       rejectedStepCount: response.rejectedStepCount,
@@ -264,6 +269,29 @@ const ordinarySteadyChunksApproximatelyFlat =
   steadyOrdinaryChunks.length >= 6 &&
   steadyLateToEarlyMedianRatio <= 1.25 &&
   Math.abs(steadyRelativeSlopePerChunk) <= 0.05;
+const completedSimulatedDuration = nativeChunks.length === 0
+  ? 0
+  : Math.max(0, nativeChunks.at(-1).acceptedEndTime - nativeChunks[0].startTime);
+const nativeTotalWallSeconds = nativeChunks.reduce(
+  (sum, chunk) => sum + chunk.totalWallSeconds,
+  0,
+);
+const outerTotalWallSeconds = nativeChunks.reduce(
+  (sum, chunk) => sum + chunk.outerWallSeconds,
+  0,
+);
+const rootBatchWallSeconds = nativeChunks.reduce(
+  (sum, chunk) => sum + chunk.rootBatchWallSeconds,
+  0,
+);
+const historyCopyHashWallSeconds = nativeChunks.reduce(
+  (sum, chunk) => sum + chunk.historyCopyHashWallSeconds,
+  0,
+);
+const correctionWallSeconds = nativeChunks.reduce(
+  (sum, chunk) => sum + chunk.correctionWallSeconds,
+  0,
+);
 
 process.stdout.write(`${JSON.stringify({
   schema: "borg_incremental_chunk_profile/v0",
@@ -290,6 +318,28 @@ process.stdout.write(`${JSON.stringify({
   haltCode: runFailure?.code ?? null,
   haltMessage: runFailure?.message ?? null,
   acceptedEndTime: runFailure?.acceptedEndTime ?? nativeChunks.at(-1)?.acceptedEndTime ?? 0,
+  completedSimulatedDuration,
+  nativeTotalWallSeconds,
+  nativeSimulatedSecondsPerWallSecond: nativeTotalWallSeconds > 0
+    ? completedSimulatedDuration / nativeTotalWallSeconds
+    : null,
+  outerTotalWallSeconds,
+  outerSimulatedSecondsPerWallSecond: outerTotalWallSeconds > 0
+    ? completedSimulatedDuration / outerTotalWallSeconds
+    : null,
+  timingTotals: {
+    rootBatchWallSeconds,
+    historyCopyHashWallSeconds,
+    correctionWallSeconds,
+    nativeUnattributedWallSeconds: Math.max(
+      0,
+      nativeTotalWallSeconds - correctionWallSeconds - historyCopyHashWallSeconds,
+    ),
+    processProtocolAndMergeWallSeconds: Math.max(
+      0,
+      outerTotalWallSeconds - nativeTotalWallSeconds,
+    ),
+  },
   allWarmChunkStartsReused: warmChunks.every((chunk) => chunk.incrementalStartReused),
   coldFirstChunkSeconds: nativeChunks[0]?.totalWallSeconds ?? null,
   warmMeanSeconds: mean,
@@ -313,7 +363,9 @@ process.stdout.write(`${JSON.stringify({
       rootMpfrPairCount: chunk.rootMpfrPairCount,
       totalWallSeconds: chunk.totalWallSeconds,
     })),
-  chunks: includeChunks ? nativeChunks : summarizeChunks(nativeChunks),
+  chunks: aggregateOnly
+    ? []
+    : includeChunks ? nativeChunks : summarizeChunks(nativeChunks),
 }, null, 2)}\n`);
 
 function summarizeChunks(chunks) {
@@ -321,6 +373,7 @@ function summarizeChunks(chunks) {
     chunkIndex: chunk.chunkIndex,
     status: chunk.status,
     haltCode: chunk.haltCode,
+    diagnosticDetail: chunk.diagnosticDetail,
     interval: [chunk.startTime, chunk.endTime],
     acceptedEndTime: chunk.acceptedEndTime,
     acceptedStepCount: chunk.acceptedStepCount,
@@ -330,8 +383,8 @@ function summarizeChunks(chunks) {
     claimGrade: chunk.claimGrade,
     causticWarningCount: chunk.causticWarningCount,
     firstCausticWarningTime: chunk.firstCausticWarningTime,
-    causticWarnings: chunk.causticWarnings,
-    causticWarningPairs: chunk.causticWarningPairs,
+    causticWarningRows: chunk.causticWarnings.length,
+    causticWarningPairCount: chunk.causticWarningPairs.length,
     traversalEnclosedPairs: chunk.traversalEnclosedPairs,
     enclosedErrorWidthTotal: chunk.enclosedErrorWidthTotal,
     enclosedErrorWidthMaxReceiver: chunk.enclosedErrorWidthMaxReceiver,

@@ -6,7 +6,7 @@
 - Rank: `36`
 - Value: `0.15`
 - Cost: `2.3`
-- ROI: `0.06`
+- ROI: `0.07`
 - Status: `idea-bucket`
 
 ## Current
@@ -21,7 +21,7 @@ Preserve post-format ideas without letting exploratory media work outrank curren
 
 ## Task Queue
 
-No active media-posts tasks are selected.
+1. `post_publication_brief_selection` — Select one post concept only when it has a concrete publication target, claim level, acceptance condition, and owner. Status: `queued`.
 
 ## Promotion Rules
 
