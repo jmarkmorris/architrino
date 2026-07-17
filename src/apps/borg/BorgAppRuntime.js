@@ -198,6 +198,8 @@ export function mountBorgApp(options = {}) {
     electrinoCount: queryRequiredElement(documentLike, "#borg-electrino-count"),
     positrinoCount: queryRequiredElement(documentLike, "#borg-positrino-count"),
     coupling: queryRequiredElement(documentLike, "#borg-coupling"),
+    stepHeight: queryRequiredElement(documentLike, "#borg-step-height"),
+    minimumStep: queryRequiredElement(documentLike, "#borg-minimum-step"),
     velocityMaxComponent: queryRequiredElement(documentLike, "#borg-velocity-max-component"),
     velocityMinSpeed: queryRequiredElement(documentLike, "#borg-velocity-min-speed"),
     initialConditionFeedback: queryRequiredElement(documentLike, "#borg-initial-condition-feedback"),
@@ -356,6 +358,14 @@ export function mountBorgApp(options = {}) {
     eomCoupling: positiveControlNumber(
       options.eomShadowRunner?.coupling,
       manifest.modelControls?.coupling ?? 1,
+    ),
+    eomStepHeight: positiveControlNumber(
+      options.eomShadowRunner?.maximumStep ?? options.eomShadowRunner?.initialStep,
+      0.025,
+    ),
+    eomMinimumStep: positiveControlNumber(
+      options.eomShadowRunner?.minimumStep,
+      0.0001,
     ),
     selectedRunGrade:
       options.eomShadowRunner?.runGrade ?? BORG_DISPLAY_RUN_GRADE,
@@ -736,6 +746,8 @@ export function mountBorgApp(options = {}) {
       ["electrinoCount", config.electrinoCount],
       ["positrinoCount", config.positrinoCount],
       ["coupling κ", state.eomCoupling],
+      ["stepHeight", state.eomStepHeight],
+      ["adaptiveMinimumStep", state.eomMinimumStep],
       ["runGrade", state.selectedRunGrade],
       ["velocityPolicy", manifest.initialConditions.velocityPolicy],
       ["maxPerAxisSpeed", config.randomVelocityMaxComponentMagnitude],
@@ -834,6 +846,8 @@ export function mountBorgApp(options = {}) {
     dom.electrinoCount.value = String(config.electrinoCount);
     dom.positrinoCount.value = String(config.positrinoCount);
     dom.coupling.value = String(state.eomCoupling);
+    dom.stepHeight.value = String(state.eomStepHeight);
+    dom.minimumStep.value = String(state.eomMinimumStep);
     dom.velocityMaxComponent.value = String(config.randomVelocityMaxComponentMagnitude);
     dom.velocityMinSpeed.value = String(config.randomVelocityMinSpeed);
   }
@@ -843,6 +857,27 @@ export function mountBorgApp(options = {}) {
     if (!Number.isFinite(coupling) || coupling <= 0) {
       state.initialConditionEditStatus = "rejected-runtime-edit";
       setInitialConditionFeedback("κ coupling must be a number greater than zero.", "bad");
+      renderInitialConditionFields();
+      return null;
+    }
+    const stepHeight = Number(dom.stepHeight.value);
+    const minimumStep = Number(dom.minimumStep.value);
+    const chunkDuration = positiveControlNumber(
+      options.eomShadowRunner?.chunkDuration,
+      options.eomShadowRunner?.sampleInterval ?? 0.01,
+    );
+    if (!Number.isFinite(minimumStep) || minimumStep <= 0) {
+      state.initialConditionEditStatus = "rejected-runtime-edit";
+      setInitialConditionFeedback("Adaptive minimum must be a number greater than zero.", "bad");
+      renderInitialConditionFields();
+      return null;
+    }
+    if (!Number.isFinite(stepHeight) || stepHeight < minimumStep || stepHeight > chunkDuration) {
+      state.initialConditionEditStatus = "rejected-runtime-edit";
+      setInitialConditionFeedback(
+        `Step height must be at least the adaptive minimum and no greater than the ${chunkDuration} chunk length.`,
+        "bad",
+      );
       renderInitialConditionFields();
       return null;
     }
@@ -867,6 +902,8 @@ export function mountBorgApp(options = {}) {
     }
     state.initialConditionConfig = validation.config;
     state.eomCoupling = coupling;
+    state.eomStepHeight = stepHeight;
+    state.eomMinimumStep = minimumStep;
     state.eomPathCount = validation.config.electrinoCount + validation.config.positrinoCount;
     state.initialConditionEditStatus = "accepted-runtime-edit";
     syncInitialConditionInputs();
@@ -1585,6 +1622,8 @@ export function mountBorgApp(options = {}) {
         runDuration: state.eomRunDuration,
         historyDepth: state.eomHistoryDepth,
         coupling: state.eomCoupling,
+        stepHeight: state.eomStepHeight,
+        minimumStep: state.eomMinimumStep,
         runGrade: state.activeRunGrade,
       },
     );
@@ -2204,6 +2243,15 @@ function createDefaultEomShadowRunnerOptions(
     historyDepth,
     coupling: String(
       runtimeControls.coupling ?? configured.coupling ?? manifest.modelControls?.coupling ?? 1,
+    ),
+    initialStep: String(
+      runtimeControls.stepHeight ?? configured.initialStep,
+    ),
+    minimumStep: String(
+      runtimeControls.minimumStep ?? configured.minimumStep,
+    ),
+    maximumStep: String(
+      runtimeControls.stepHeight ?? configured.maximumStep,
     ),
     runGrade: runtimeControls.runGrade ?? configured.runGrade ?? BORG_DISPLAY_RUN_GRADE,
     pathCount: boundedInteger(
