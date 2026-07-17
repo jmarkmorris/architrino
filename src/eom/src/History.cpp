@@ -336,7 +336,13 @@ CubicHistorySegment::CubicHistorySegment(
 void CubicHistorySegment::require_time(const Interval& time) const {
   if (time.lower() < t_start_interval_.lower() ||
       time.upper() > t_end_interval_.upper()) {
-    throw std::out_of_range("history evaluation lies outside segment");
+    std::ostringstream detail;
+    detail << std::setprecision(std::numeric_limits<double>::max_digits10)
+           << "history evaluation lies outside segment: requested=["
+           << time.lower() << ',' << time.upper() << "] segment=["
+           << t_start_interval_.lower() << ',' << t_end_interval_.upper()
+           << "] tokens=[" << t_start_token_ << ',' << t_end_token_ << ']';
+    throw std::out_of_range(detail.str());
   }
 }
 

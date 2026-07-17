@@ -89,6 +89,35 @@ DoubleGeometry double_geometry(
   };
 }
 
+DoubleGeometry double_history_geometry(
+    const DoubleReceiverState& receiver,
+    const RetainedHistory& source_history,
+    const Interval& reception,
+    const Interval& emission,
+    const Interval& field_speed) {
+  const auto source_velocity = source_history.velocity_hull(emission);
+  const auto correlated_displacement =
+      receiver.correlated_self_chord && receiver.correlated_history != nullptr
+      ? receiver.correlated_history->correlated_self_displacement(
+            reception, emission)
+      : std::nullopt;
+  const auto displacement = correlated_displacement.has_value()
+      ? *correlated_displacement
+      : subtract(receiver.position, source_history.position_hull(emission));
+  const Interval separation = norm(displacement);
+  const Interval delay = reception - emission;
+  const Interval residual = separation - field_speed * delay;
+  if (separation.contains_zero()) {
+    return {residual, std::nullopt, std::nullopt};
+  }
+  const auto direction = divide(displacement, separation);
+  return {
+      residual,
+      field_speed - dot(direction, source_velocity),
+      field_speed - dot(direction, receiver.velocity),
+  };
+}
+
 struct DoubleRoot {
   double lower;
   double upper;
@@ -376,8 +405,7 @@ std::optional<std::pair<double, double>> surround_double_root(
 
 std::optional<DoubleRoot> surround_double_segment_join_root(
     const DoubleReceiverState& receiver,
-    const CubicHistorySegment& left_segment,
-    const CubicHistorySegment& right_segment,
+    const RetainedHistory& source_history,
     std::size_t left_segment_index,
     std::size_t right_segment_index,
     const Interval& reception,
@@ -385,6 +413,8 @@ std::optional<DoubleRoot> surround_double_segment_join_root(
     double search_lower,
     double search_upper,
     double tolerance) {
+  const auto& left_segment =
+      source_history.segments()[left_segment_index];
   const double boundary = left_segment.t_end();
   if (boundary <= search_lower || boundary >= search_upper) {
     return std::nullopt;
@@ -405,45 +435,51 @@ std::optional<DoubleRoot> surround_double_segment_join_root(
       continue;
     }
     const int lower_sign =
-        double_geometry(receiver, left_segment, reception,
-                        Interval::point(lower), field_speed)
+        double_history_geometry(receiver, source_history, reception,
+                                Interval::point(lower), field_speed)
             .residual.strict_sign();
     const int upper_sign =
-        double_geometry(receiver, right_segment, reception,
-                        Interval::point(upper), field_speed)
+        double_history_geometry(receiver, source_history, reception,
+                                Interval::point(upper), field_speed)
             .residual.strict_sign();
     if (lower_sign == 0 || upper_sign == 0 || lower_sign == upper_sign) {
       radius *= 2.0;
       continue;
     }
 
-    const auto left_geometry = double_geometry(
-        receiver, left_segment, reception, Interval(lower, boundary),
-        field_speed);
-    const auto right_geometry = double_geometry(
-        receiver, right_segment, reception, Interval(boundary, upper),
-        field_speed);
-    if (!left_geometry.source_normal.has_value() ||
-        !right_geometry.source_normal.has_value() ||
-        !left_geometry.receiver_normal.has_value() ||
-        !right_geometry.receiver_normal.has_value()) {
+    const Interval root_interval(lower, upper);
+    const auto root_geometry = double_history_geometry(
+        receiver, source_history, reception, root_interval, field_speed);
+    if (!root_geometry.source_normal.has_value() ||
+        !root_geometry.receiver_normal.has_value()) {
       return std::nullopt;
     }
-    const Interval source_normal = left_geometry.source_normal->hull(
-        *right_geometry.source_normal);
-    if (source_normal.strict_sign() == 0 ||
-        source_normal.strict_sign() !=
-            left_geometry.source_normal->strict_sign() ||
-        source_normal.strict_sign() !=
-            right_geometry.source_normal->strict_sign()) {
+    const Interval source_normal = *root_geometry.source_normal;
+    if (source_normal.strict_sign() == 0) {
+      return std::nullopt;
+    }
+    std::vector<std::size_t> source_segment_indices;
+    for (std::size_t index = 0U;
+         index < source_history.segments().size(); ++index) {
+      const auto& segment = source_history.segments()[index];
+      const Interval segment_time(
+          segment.t_start_interval().lower(),
+          segment.t_end_interval().upper());
+      if (root_interval.intersection(segment_time).has_value()) {
+        source_segment_indices.push_back(index);
+      }
+    }
+    if (source_segment_indices.empty() ||
+        source_segment_indices.front() > left_segment_index ||
+        source_segment_indices.back() < right_segment_index) {
       return std::nullopt;
     }
     return DoubleRoot{
         lower,
         upper,
         source_normal,
-        left_geometry.receiver_normal->hull(*right_geometry.receiver_normal),
-        {left_segment_index, right_segment_index},
+        *root_geometry.receiver_normal,
+        std::move(source_segment_indices),
     };
   }
   return std::nullopt;
@@ -764,14 +800,13 @@ DoubleAttempt run_double_attempt(const ExactPairRequest& request) {
     if (point == source_segment.t_end() &&
         segment_index + 1U < request.source->segments().size()) {
       join_root = surround_double_segment_join_root(
-          receiver_state, source_segment,
-          request.source->segments()[segment_index + 1U], segment_index,
+          receiver_state, *request.source, segment_index,
           segment_index + 1U, reception, field_speed, search_lower,
           search_upper, tolerance);
     } else if (point == source_segment.t_start() && segment_index > 0U) {
       join_root = surround_double_segment_join_root(
-          receiver_state, request.source->segments()[segment_index - 1U],
-          source_segment, segment_index - 1U, segment_index, reception,
+          receiver_state, *request.source,
+          segment_index - 1U, segment_index, reception,
           field_speed, search_lower, search_upper, tolerance);
     }
     if (!join_root.has_value()) {
@@ -1013,7 +1048,15 @@ DoubleAttempt run_double_attempt(const ExactPairRequest& request) {
   };
 
   for (const auto& cell : cells) {
-    classify(cell);
+    try {
+      classify(cell);
+    } catch (const std::exception& error) {
+      throw std::runtime_error(
+          "binary64 root cell segment=" +
+          std::to_string(cell.segment_index) + " cell=[" +
+          double_token(cell.lower) + ',' + double_token(cell.upper) +
+          "] failed: " + error.what());
+    }
   }
   if (attempt.complete) {
     std::vector<const DoubleRootFreeCell*> ordered_cells;
@@ -1057,10 +1100,18 @@ DoubleAttempt run_double_attempt(const ExactPairRequest& request) {
   if (attempt.complete) {
     const auto& prefix_segment = request.source->segments()[
         request.source->segment_index_at(incremental_search_lower)];
-    const auto prefix_geometry = double_geometry(
-        receiver_state, prefix_segment, reception,
-        Interval::point(incremental_search_lower), field_speed);
-    if (prefix_geometry.residual.upper() < 0.0) {
+    std::optional<DoubleGeometry> prefix_geometry;
+    try {
+      prefix_geometry = double_geometry(
+          receiver_state, prefix_segment, reception,
+          Interval::point(incremental_search_lower), field_speed);
+    } catch (const std::exception& error) {
+      throw std::runtime_error(
+          "binary64 stable-prefix evaluation at " +
+          double_token(incremental_search_lower) + " failed: " +
+          error.what());
+    }
+    if (prefix_geometry->residual.upper() < 0.0) {
       double prefix_upper = search_upper;
       for (const auto& root : attempt.roots) {
         prefix_upper = std::min(prefix_upper, root.lower);
@@ -2902,7 +2953,15 @@ class ExactPairWorkerPool {
           if (index >= requests_->size()) {
             break;
           }
-          (*results_)[index] = certify_exact_pair((*requests_)[index]);
+          try {
+            (*results_)[index] = certify_exact_pair((*requests_)[index]);
+          } catch (const std::exception& error) {
+            const auto& request = (*requests_)[index];
+            throw std::runtime_error(
+                "exact-pair row " + request.row_id + " (" +
+                request.receiver->history_id() + " <- " +
+                request.source->history_id() + ") failed: " + error.what());
+          }
         }
       } catch (...) {
         local_failure = std::current_exception();

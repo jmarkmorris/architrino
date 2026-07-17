@@ -1,7 +1,8 @@
-import { spawn } from "node:child_process";
+import { spawn, spawnSync } from "node:child_process";
 
 export const BORG_NATIVE_EOM_PROCESS_CLIENT_VERSION =
   "borg-native-eom-process-client.v3";
+export const BORG_NATIVE_EOM_PROTOCOL_MAGIC = "EOM_BORG_NATIVE_V4";
 
 export function createBorgNativeEomProcessClient({
   binaryPath,
@@ -16,6 +17,16 @@ export function createBorgNativeEomProcessClient({
   )) {
     throw new TypeError("Borg EOM process client binaryArgs must be strings.");
   }
+  const binaryProtocolMagic = queryBorgNativeEomProtocolMagic(binaryPath);
+  if (binaryProtocolMagic !== BORG_NATIVE_EOM_PROTOCOL_MAGIC) {
+    throw new Error(
+      "Borg EOM protocol mismatch: " +
+      `dev server encoder=${BORG_NATIVE_EOM_PROTOCOL_MAGIC}; ` +
+      `binary parser=${binaryProtocolMagic}. ` +
+      "the dev server is running older code than the binary it just built — " +
+      "restart the dev server.",
+    );
+  }
   let worker = null;
   let workerGeneration = 0;
   let responseBuffer = "";
@@ -26,6 +37,7 @@ export function createBorgNativeEomProcessClient({
 
   const client = Object.freeze({
     schema: BORG_NATIVE_EOM_PROCESS_CLIENT_VERSION,
+    protocolMagic: binaryProtocolMagic,
     get workerPid() {
       return worker?.pid ?? null;
     },
@@ -200,7 +212,7 @@ export function encodeNativeRequest(request) {
         return `${pair[0]},${pair[1]}`;
       }).join(";");
   const lines = [
-    "EOM_BORG_NATIVE_V4",
+    BORG_NATIVE_EOM_PROTOCOL_MAGIC,
     tabRecord([
       "RUN",
       request.runId,
@@ -253,6 +265,24 @@ export function encodeNativeRequest(request) {
   });
   lines.push("END");
   return `${lines.join("\n")}\n`;
+}
+
+function queryBorgNativeEomProtocolMagic(binaryPath) {
+  const query = spawnSync(binaryPath, ["print-protocol-version"], {
+    encoding: "utf8",
+  });
+  if (query.error) {
+    throw new Error(
+      `Could not query Borg EOM binary protocol: ${query.error.message}`,
+    );
+  }
+  if (query.status !== 0) {
+    const diagnostic = String(query.stderr || query.stdout || "no diagnostic").trim();
+    throw new Error(
+      `Borg EOM binary protocol query failed (${query.signal ?? query.status}): ${diagnostic}`,
+    );
+  }
+  return String(query.stdout).trim();
 }
 
 function tabRecord(fields) {

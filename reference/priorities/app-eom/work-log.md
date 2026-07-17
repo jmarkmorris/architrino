@@ -1324,3 +1324,27 @@ This file holds dated decisions, implementation status, validation results, fail
 - Falsifier: a pinned pair disappears from a child, an exit-pending half is
   published, recomputation exceeds either emitted remainder, or the same
   control closes the componentwise common-domain gap.
+
+## 2026-07-16 — Positive-regulator common-domain matching proposal
+
+- **Derived:** on a certified simple-root tube, changing variables from
+  emission time to the causal residual gives a Gaussian moment expansion. The
+  bound finite-width law differs from the sharp law at leading order by a
+  core term proportional to $-3\epsilon_c^2/(2r^2)$ and a causal-width term
+  proportional to $\eta^2\partial_u^2\mathbf P_0/2$, plus higher-order, tail,
+  and root-free-complement terms.
+- **Derived:** the frozen law satisfies common-domain convergence as
+  $\eta,\epsilon_c\to0^+$ but does not imply literal equality at fixed positive
+  regulators. The current `FWC-STATE-01` comparison carries shortcut and track
+  remainders but no regulator-matching remainder.
+- **Inferred prediction:** the recorded `1004 <- 1006` raw component-0 gap
+  remains `3.51437e-11`; a valid regulator-matching enclosure must have radius
+  at least that large and is predicted to reduce the post-accounting disjoint
+  distance to zero while the total remains inside the unchanged `1e-7` budget.
+- Staged
+  [master-eom-binding-v0-common-domain-matching-amendment-proposal.md](master-eom-binding-v0-common-domain-matching-amendment-proposal.md)
+  as `pending-operator-ratification`. The frozen binding, finite-width route,
+  EOM solver, and Decimal oracle were not edited.
+- Falsifier: a certified regulator-error evaluation excludes the measured gap,
+  independent regulator refinement does not move the raw finite-width chart
+  toward the sharp chart, or theorem review finds a missing leading term.

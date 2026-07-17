@@ -1,4 +1,7 @@
 import assert from "node:assert/strict";
+import { chmodSync, mkdtempSync, rmSync, writeFileSync } from "node:fs";
+import { tmpdir } from "node:os";
+import { join } from "node:path";
 import { test } from "node:test";
 
 import { BORG_DATASET_MANIFEST_V1 } from "../src/apps/borg/BorgAppManifest.js";
@@ -11,7 +14,11 @@ import {
   createBorgEomShadowRunner,
   trimBorgRetainedHistories,
 } from "../src/apps/borg/BorgEomShadowRunner.js";
-import { encodeNativeRequest } from "../scripts/eom/BorgNativeEomProcessClient.mjs";
+import {
+  BORG_NATIVE_EOM_PROTOCOL_MAGIC,
+  createBorgNativeEomProcessClient,
+  encodeNativeRequest,
+} from "../scripts/eom/BorgNativeEomProcessClient.mjs";
 import { createBorgEomHttpClient } from "../src/apps/borg/BorgEomHttpClient.js";
 import {
   BORG_ACCEPTED_SEED_HISTORY_CLAIM_LEVEL,
@@ -632,6 +639,7 @@ test("Borg native process protocol carries the same continuous-history request",
   });
   await runner.computeNextChunk();
   const protocol = encodeNativeRequest(requests[0]);
+  assert.equal(protocol.split("\n")[0], BORG_NATIVE_EOM_PROTOCOL_MAGIC);
   assert.match(protocol, /^EOM_BORG_NATIVE_V4\nRUN\t/u);
   const runFields = protocol.split("\n")[1].split("\t");
   assert.equal(runFields.length, 22);
@@ -687,6 +695,33 @@ test("Borg native process protocol carries the same continuous-history request",
     () => encodeNativeRequest(incompleteRequest),
     /must explicitly supply maximumStep, useAdaptiveStepGrowth, farFieldEnclosureFraction, runGrade/,
   );
+});
+
+test("Borg native client rejects protocol skew with a restart instruction", () => {
+  const fixtureDirectory = mkdtempSync(join(tmpdir(), "borg-eom-protocol-skew-"));
+  const fixtureBinary = join(fixtureDirectory, "mismatched-eom-binary");
+  try {
+    writeFileSync(
+      fixtureBinary,
+      "#!/bin/sh\nprintf 'EOM_BORG_NATIVE_V999\\n'\n",
+      "utf8",
+    );
+    chmodSync(fixtureBinary, 0o755);
+    assert.throws(
+      () => createBorgNativeEomProcessClient({ binaryPath: fixtureBinary }),
+      (error) => {
+        assert.match(error.message, /dev server encoder=EOM_BORG_NATIVE_V4/u);
+        assert.match(error.message, /binary parser=EOM_BORG_NATIVE_V999/u);
+        assert.match(
+          error.message,
+          /the dev server is running older code than the binary it just built — restart the dev server\./u,
+        );
+        return true;
+      },
+    );
+  } finally {
+    rmSync(fixtureDirectory, { recursive: true, force: true });
+  }
 });
 
 test("Borg display grade carries encounter demotion across atomic chunks", async () => {

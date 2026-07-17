@@ -46,17 +46,23 @@ const pdgLiveArtifactRuntime = isEnabledEnvironmentFlag(process.env.PDG_LIVE_ART
     })
   : null;
 
-let eomBorgClient = null;
+let eomBorgClient = EOM_BORG_SHADOW_ENABLED ? createEomBorgClient() : null;
 let eomBorgQueue = Promise.resolve();
+
+function createEomBorgClient() {
+  const client = createBorgNativeEomProcessClient({
+    binaryPath: prepareEomBorgNativeBinary(),
+    timeoutMs: 180000,
+  });
+  process.stdout.write(`[eom] Borg EOM protocol agreed: ${client.protocolMagic}.\n`);
+  return client;
+}
 
 function getEomBorgClient() {
   if (!EOM_BORG_SHADOW_ENABLED) {
     return null;
   }
-  eomBorgClient ??= createBorgNativeEomProcessClient({
-    binaryPath: prepareEomBorgNativeBinary(),
-    timeoutMs: 180000,
-  });
+  eomBorgClient ??= createEomBorgClient();
   return eomBorgClient;
 }
 

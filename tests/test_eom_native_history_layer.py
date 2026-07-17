@@ -847,6 +847,20 @@ class NativeHistoryLayerTests(unittest.TestCase):
         self.assertEqual(root["source_segment_indices"], [0, 1])
         self.assertEqual(root["source_normal_sign"], 1)
 
+    def test_join_root_bracket_selects_every_short_segment_it_crosses(self) -> None:
+        row = self.pair("short_segment_join_root")
+        self.assertEqual(row["status"], "certified_complete")
+        self.assertFalse(row["precision_escalated"])
+        self.assertEqual(len(row["roots"]), 1)
+        root = row["roots"][0]
+        lower = Decimal(root["lower"])
+        upper = Decimal(root["upper"])
+        self.assertLessEqual(lower, Decimal("0"))
+        self.assertGreaterEqual(upper, Decimal("0"))
+        self.assertLessEqual(upper - lower, Decimal("0.001"))
+        self.assertGreater(len(root["source_segment_indices"]), 2)
+        self.assertEqual(root["source_normal_sign"], 1)
+
     def test_mpfr_join_root_uses_inward_representable_tolerance_probe(
         self,
     ) -> None:

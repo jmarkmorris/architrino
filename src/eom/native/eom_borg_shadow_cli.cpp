@@ -18,6 +18,8 @@ namespace eom = architrino::eom;
 
 namespace {
 
+constexpr const char* kBorgNativeProtocolMagic = "EOM_BORG_NATIVE_V4";
+
 struct ParsedPath {
   std::string path_id;
   std::string charge;
@@ -340,8 +342,12 @@ void run(
     std::size_t event_max_cells,
     bool use_certified_traversal,
     std::uint64_t traversal_exact_tile_pair_limit,
-    std::optional<IncrementalSnapshotCache>* incremental_cache = nullptr) {
-  if (read_required_line("protocol magic") != "EOM_BORG_NATIVE_V4") {
+    std::optional<IncrementalSnapshotCache>* incremental_cache = nullptr,
+    bool* request_boundary_consumed = nullptr) {
+  if (request_boundary_consumed != nullptr) {
+    *request_boundary_consumed = false;
+  }
+  if (read_required_line("protocol magic") != kBorgNativeProtocolMagic) {
     throw std::invalid_argument("unsupported Borg EOM native protocol");
   }
   const auto run = split_tabs(read_required_line("RUN record"));
@@ -385,6 +391,9 @@ void run(
   }
   if (read_required_line("END record") != "END") {
     throw std::invalid_argument("missing Borg EOM native END record");
+  }
+  if (request_boundary_consumed != nullptr) {
+    *request_boundary_consumed = true;
   }
   eom::NativeCoupledEvolutionRequest request{
       .run_id = run[1],
@@ -1104,13 +1113,39 @@ void run(
   std::cout << "]}\n";
 }
 
+void drain_failed_request_to_boundary() {
+  std::string line;
+  while (std::getline(std::cin, line)) {
+    if (!line.empty() && line.back() == '\r') {
+      line.pop_back();
+    }
+    if (line == "END") {
+      return;
+    }
+  }
+}
+
+void print_engine_exception_response(const std::exception& error) {
+  std::cout
+      << "{\"schema\":\"eom_borg_native_response/v0\","
+         "\"status\":\"halted\",\"evidenceStatus\":\"failed\","
+         "\"claimGrade\":\"failed\",\"haltCode\":\"engine_exception\","
+         "\"diagnosticDetail\":\""
+      << json_escape(error.what())
+      << "\",\"acceptedEndTime\":null,\"acceptedStepCount\":0,"
+         "\"rejectedStepCount\":0,\"stepFailures\":[],"
+         "\"publishedExtensions\":[],\"diagnostics\":[{"
+         "\"code\":\"engine_exception\",\"detail\":\""
+      << json_escape(error.what()) << "\"}]}\n";
+}
+
 }  // namespace
 
 int main(int argc, char** argv) {
   try {
     if (argc < 2) {
       std::cerr << "usage: eom_borg_shadow_cli "
-                   "borg-shadow-v0|borg-shadow-server-v0 "
+                   "print-protocol-version|borg-shadow-v0|borg-shadow-server-v0 "
                    "[--maximum-mpfr-bits=N] "
                    "[--quadrature-max-depth=N] "
                    "[--quadrature-max-cells=N] "
@@ -1179,7 +1214,9 @@ int main(int argc, char** argv) {
       }
     }
     const std::string mode = argv[1];
-    if (mode == "borg-shadow-v0") {
+    if (mode == "print-protocol-version") {
+      std::cout << kBorgNativeProtocolMagic << '\n';
+    } else if (mode == "borg-shadow-v0") {
       run(
           maximum_mpfr_bits, quadrature_max_depth, quadrature_max_cells,
           event_max_cells,
@@ -1187,16 +1224,25 @@ int main(int argc, char** argv) {
     } else if (mode == "borg-shadow-server-v0") {
       std::optional<IncrementalSnapshotCache> incremental_cache;
       while (std::cin.peek() != std::char_traits<char>::eof()) {
-        run(
-            maximum_mpfr_bits, quadrature_max_depth, quadrature_max_cells,
-            event_max_cells,
-            use_certified_traversal, traversal_exact_tile_pair_limit,
-            &incremental_cache);
+        bool request_boundary_consumed = false;
+        try {
+          run(
+              maximum_mpfr_bits, quadrature_max_depth, quadrature_max_cells,
+              event_max_cells,
+              use_certified_traversal, traversal_exact_tile_pair_limit,
+              &incremental_cache, &request_boundary_consumed);
+        } catch (const std::exception& error) {
+          incremental_cache.reset();
+          if (!request_boundary_consumed) {
+            drain_failed_request_to_boundary();
+          }
+          print_engine_exception_response(error);
+        }
         std::cout.flush();
       }
     } else {
       std::cerr << "usage: eom_borg_shadow_cli "
-                   "borg-shadow-v0|borg-shadow-server-v0 "
+                   "print-protocol-version|borg-shadow-v0|borg-shadow-server-v0 "
                    "[--maximum-mpfr-bits=N] "
                    "[--quadrature-max-depth=N] "
                    "[--quadrature-max-cells=N] "

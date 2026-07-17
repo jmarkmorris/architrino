@@ -42,6 +42,17 @@ class NativeBorgProcessTests(unittest.TestCase):
     def tearDownClass(cls) -> None:
         cls._temporary.cleanup()
 
+    def test_native_process_prints_parser_protocol_magic(self) -> None:
+        completed = subprocess.run(
+            [str(self.binary), "print-protocol-version"],
+            check=True,
+            cwd=ROOT,
+            capture_output=True,
+            text=True,
+        )
+        self.assertEqual(completed.stdout, "EOM_BORG_NATIVE_V4\n")
+        self.assertEqual(completed.stderr, "")
+
     def test_native_process_extends_continuous_history_and_returns_only_published_segments(self) -> None:
         protocol = "\n".join(
             (
@@ -257,6 +268,92 @@ class NativeBorgProcessTests(unittest.TestCase):
         responses = [json.loads(line) for line in completed.stdout.splitlines()]
         self.assertEqual(len(responses), 2)
         self.assertTrue(all(response["status"] == "completed" for response in responses))
+
+    def test_native_server_returns_structured_engine_exception_and_remains_usable(self) -> None:
+        def request(run_id: str, thread_count: str) -> str:
+            return "\n".join(
+                (
+                    "EOM_BORG_NATIVE_V4",
+                    "\t".join(
+                        (
+                            "RUN", run_id, "2", "2.1", "0.1", "0.1",
+                            "0.1", "0", "certified", "0", "none", "none",
+                            "1", "1", "1e-10", "1e-8", "0", "1e-8",
+                            "1e-8", "1e-8", thread_count, "1",
+                        )
+                    ),
+                    "PATH\tp\t1\t1\t1",
+                    "SEG\t0\t2\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0",
+                    "END",
+                    "",
+                )
+            )
+
+        completed = subprocess.run(
+            [str(self.binary), "borg-shadow-server-v0"],
+            input=request("throws", "0") + request("recovers", "1"),
+            check=True,
+            cwd=ROOT,
+            capture_output=True,
+            text=True,
+        )
+        responses = [json.loads(line) for line in completed.stdout.splitlines()]
+        self.assertEqual(len(responses), 2)
+        failed, recovered = responses
+        self.assertEqual(failed["status"], "halted")
+        self.assertEqual(failed["haltCode"], "engine_exception")
+        self.assertIn("resource limits must be positive", failed["diagnosticDetail"])
+        self.assertEqual(failed["publishedExtensions"], [])
+        self.assertEqual(failed["diagnostics"][0]["code"], "engine_exception")
+        self.assertEqual(recovered["status"], "completed")
+        self.assertEqual(recovered["acceptedEndTime"], "2.1")
+        self.assertEqual(completed.stderr, "")
+
+    def test_display_warning_suffix_with_short_join_segments_evolves_after_trim(self) -> None:
+        def segment(start: str, end: str, x: str, error: str = "0") -> str:
+            return "\t".join((
+                "SEG", start, end,
+                x, "0", "0", "0",
+                "0", "0", "0", "0",
+                "0", "0", "0", "0",
+                error, "0",
+            ))
+
+        rows = [
+            "EOM_BORG_NATIVE_V4",
+            "\t".join((
+                "RUN", "display-post-encounter-trim", "1", "1.01",
+                "0.01", "0.01", "0.01", "0", "display", "1", "0.5",
+                "receiver,source", "1", "0.005", "0.001", "0.1", "0",
+                "0.01", "0.01", "0.1", "2", "2",
+            )),
+            "PATH\treceiver\t1\t1\t1",
+            segment("-1", "1", "1"),
+            "PATH\tsource\t-1\t2\t4",
+            segment("-1", "-0.0001", "0", "0.0001"),
+            segment("-0.0001", "0", "0", "0.0001"),
+            segment("0", "0.0001", "0", "0.0001"),
+            segment("0.0001", "1", "0", "0.0001"),
+            "END",
+            "",
+        ]
+        completed = subprocess.run(
+            [str(self.binary), "borg-shadow-server-v0"],
+            input="\n".join(rows),
+            check=True,
+            cwd=ROOT,
+            capture_output=True,
+            text=True,
+        )
+        response = json.loads(completed.stdout)
+        self.assertEqual(response["status"], "completed")
+        self.assertEqual(response["runGrade"], "display")
+        self.assertEqual(response["causticWarningCount"], 1)
+        self.assertEqual(
+            response["claimGrade"], "uncertified-through-encounters"
+        )
+        self.assertEqual(response["acceptedEndTime"], "1.01")
+        self.assertEqual(completed.stderr, "")
 
     def test_native_server_reuses_certified_chunk_boundary_snapshot(self) -> None:
         def protocol(
