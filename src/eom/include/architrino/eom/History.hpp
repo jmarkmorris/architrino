@@ -99,6 +99,8 @@ class CubicHistorySegment {
   [[nodiscard]] IntervalVector velocity_interval(const Interval& time) const;
   [[nodiscard]] IntervalVector nominal_position_interval(
       const Interval& time) const;
+  [[nodiscard]] std::array<double, 3> nominal_position(double time) const;
+  [[nodiscard]] std::array<double, 3> nominal_velocity(double time) const;
   [[nodiscard]] IntervalVector correlated_displacement_interval(
       const Interval& reception,
       const Interval& emission) const;
@@ -209,6 +211,8 @@ class RetainedHistory {
   [[nodiscard]] std::size_t segment_index_at(double time) const;
   [[nodiscard]] IntervalVector position_hull(const Interval& time) const;
   [[nodiscard]] IntervalVector velocity_hull(const Interval& time) const;
+  [[nodiscard]] std::array<double, 3> nominal_position(double time) const;
+  [[nodiscard]] std::array<double, 3> nominal_velocity(double time) const;
   [[nodiscard]] std::optional<IntervalVector>
   same_segment_correlated_displacement(
       const Interval& reception,

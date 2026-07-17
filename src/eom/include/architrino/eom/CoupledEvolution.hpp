@@ -43,6 +43,10 @@ struct NativeCoupledEvolutionRequest {
   std::string field_speed;
   std::string coupling;
   std::string root_tolerance = "1e-12";
+  // Display-only binary64 root solve tolerance. This is intentionally
+  // independent of the certified root-enclosure tolerance and is not an
+  // evidence bound.
+  std::string display_root_relative_tolerance = "1e-9";
   std::string source_normal_floor = "1e-30";
   std::string acceleration_tolerance = "1e-9";
   // Fraction of the acceleration component-width tolerance reserved for
@@ -269,6 +273,10 @@ struct NativeAccelerationSnapshotCertificate {
       far_field_enclosure_certificates;
   NativeCausalPrefixExclusionCertificate causal_prefix_exclusion;
   std::vector<NativeSnapshotRootRow> root_certificates;
+  // Uncertified display bookkeeping only. These fields are empty on the
+  // certified route and never serve as root or snapshot certificates.
+  std::vector<NativeHistoryFingerprint> display_history_fingerprints;
+  std::vector<std::pair<std::string, std::string>> display_regulated_pairs;
   NativeAccelerationReconstructionCertificate acceleration;
   NativeSnapshotTiming timing;
 };

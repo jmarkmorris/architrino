@@ -18,6 +18,7 @@ add_library(eom_native STATIC
   src/ExactPairBatch.cpp
   src/CertifiedAcceleration.cpp
   src/MultiprecisionAcceleration.cpp
+  src/DisplayEvaluation.cpp
   src/CoupledEvolution.cpp
   src/Checkpoint.cpp
 )

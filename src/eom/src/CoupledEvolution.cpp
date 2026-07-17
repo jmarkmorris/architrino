@@ -1,4 +1,5 @@
 #include "architrino/eom/CoupledEvolution.hpp"
+#include "architrino/eom/DisplayEvaluation.hpp"
 #include "architrino/eom/MultiprecisionAcceleration.hpp"
 
 #include <algorithm>
@@ -442,6 +443,14 @@ bool display_run_grade(const NativeCoupledEvolutionRequest& request) {
   return request.run_grade == "display";
 }
 
+bool snapshot_evaluation_succeeded(
+    const NativeCoupledEvolutionRequest& request,
+    const NativeAccelerationSnapshotCertificate& snapshot) {
+  return display_run_grade(request)
+      ? snapshot.status == "display_evaluated"
+      : snapshot.status == "certified_complete";
+}
+
 bool step_contains_caustic_entry_trigger(
     const NativeAtomicStepCertificate& step) {
   const auto snapshot_contains_trigger = [](const auto& snapshot) {
@@ -526,6 +535,11 @@ void append_display_entry_warnings(
   if (!display_run_grade(request)) {
     return;
   }
+  for (const auto& [receiver, source] : snapshot.display_regulated_pairs) {
+    merge_caustic_warning(warnings, make_caustic_warning(
+        receiver, source, reception_lower, reception_upper,
+        "DISPLAY-REGULATOR-01", "display_core_regulator_applied"));
+  }
   for (const auto& row : snapshot.root_certificates) {
     if (row.certificate.status == "certified_complete" ||
         row.certificate.schema == "eom_native_enclosed_pair_marker/v0" ||
@@ -541,6 +555,58 @@ void append_display_entry_warnings(
             ? "root_completeness_not_certified"
             : row.certificate.failure_code));
   }
+}
+
+std::vector<NativePublishedPath> append_display_candidate_segments(
+    const std::vector<NativePublishedPath>& histories,
+    const std::string& start_time,
+    const std::string& end_time,
+    const SnapshotTotals& start_acceleration,
+    const SnapshotTotals& end_acceleration,
+    NativeCorrectedSubstepTiming* timing) {
+  const auto timing_start = SteadyClock::now();
+  const double start = scalar_token(start_time);
+  const double end = scalar_token(end_time);
+  const double step = end - start;
+  if (!(step > 0.0)) {
+    throw std::invalid_argument(
+        "candidate segment requires a positive step: start=" + start_time +
+        ", end=" + end_time);
+  }
+  std::vector<NativePublishedPath> result;
+  result.reserve(histories.size());
+  for (const auto& path : histories) {
+    const auto position = path.history.nominal_position(start);
+    const auto velocity = path.history.nominal_velocity(start);
+    const auto start_found = start_acceleration.find(path.path_id);
+    const auto end_found = end_acceleration.find(path.path_id);
+    if (start_found == start_acceleration.end() ||
+        end_found == end_acceleration.end()) {
+      throw std::invalid_argument("candidate segment lacks path acceleration");
+    }
+    CubicCoefficientTokens coefficients{};
+    for (std::size_t axis = 0U; axis < 3U; ++axis) {
+      const double acceleration_start =
+          start_found->second[axis].midpoint();
+      const double acceleration_end = end_found->second[axis].midpoint();
+      coefficients[axis] = {
+          decimal_token(position[axis]),
+          decimal_token(velocity[axis]),
+          decimal_token(acceleration_start * 0.5),
+          decimal_token(
+              (acceleration_end - acceleration_start) / (6.0 * step)),
+      };
+    }
+    result.push_back({
+        path.path_id,
+        path.history.appended(CubicHistorySegment(
+            start_time, end_time, coefficients, "0", "0")),
+    });
+  }
+  if (timing != nullptr) {
+    timing->history_copy_hash_wall_seconds += elapsed_seconds(timing_start);
+  }
+  return result;
 }
 
 bool pair_is_adjudicated_finite_width(

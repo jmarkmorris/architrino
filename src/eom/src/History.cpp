@@ -376,6 +376,41 @@ IntervalVector CubicHistorySegment::nominal_position_interval(
   };
 }
 
+std::array<double, 3> CubicHistorySegment::nominal_position(
+    double time) const {
+  if (time < t_start_ || time > t_end_) {
+    throw std::out_of_range("nominal history position lies outside segment");
+  }
+  const double local = time - t_start_;
+  std::array<double, 3> result{};
+  for (std::size_t axis = 0; axis < 3U; ++axis) {
+    const auto& row = coefficient_tokens_[axis];
+    result[axis] =
+        ((parse_decimal(row[3], "history coefficient") * local +
+          parse_decimal(row[2], "history coefficient")) * local +
+         parse_decimal(row[1], "history coefficient")) * local +
+        parse_decimal(row[0], "history coefficient");
+  }
+  return result;
+}
+
+std::array<double, 3> CubicHistorySegment::nominal_velocity(
+    double time) const {
+  if (time < t_start_ || time > t_end_) {
+    throw std::out_of_range("nominal history velocity lies outside segment");
+  }
+  const double local = time - t_start_;
+  std::array<double, 3> result{};
+  for (std::size_t axis = 0; axis < 3U; ++axis) {
+    const auto& row = coefficient_tokens_[axis];
+    result[axis] =
+        (3.0 * parse_decimal(row[3], "history coefficient") * local +
+         2.0 * parse_decimal(row[2], "history coefficient")) * local +
+        parse_decimal(row[1], "history coefficient");
+  }
+  return result;
+}
+
 IntervalVector CubicHistorySegment::correlated_displacement_interval(
     const Interval& reception,
     const Interval& emission) const {
@@ -850,6 +885,14 @@ IntervalVector RetainedHistory::position_hull(const Interval& time) const {
 
 IntervalVector RetainedHistory::velocity_hull(const Interval& time) const {
   return segment_hull(*this, time, true);
+}
+
+std::array<double, 3> RetainedHistory::nominal_position(double time) const {
+  return segments_[segment_index_at(time)].nominal_position(time);
+}
+
+std::array<double, 3> RetainedHistory::nominal_velocity(double time) const {
+  return segments_[segment_index_at(time)].nominal_velocity(time);
 }
 
 std::optional<IntervalVector>
