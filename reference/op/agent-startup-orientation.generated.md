@@ -82,7 +82,7 @@ A source hash change means this target should be regenerated and then skimmed fo
 | [reference/op/theory-orientation.md](theory-orientation.md) | 44 | `716614f3310f4697` |
 | [reference/op/source-mining-best-practice.md](source-mining-best-practice.md) | 495 | `a0613465356e98a5` |
 | [reference/op/codex-pr-branch.md](codex-pr-branch.md) | 669 | `ad9b5e1852cc5be6` |
-| [reference/priorities/README.md](../priorities/README.md) | 41 | `72accf4096b60e0c` |
+| [reference/priorities/README.md](../priorities/README.md) | 44 | `1fc23f4be2b4bc12` |
 | [reference/entourage/archie/prompts/README.md](../entourage/archie/prompts/README.md) | 42 | `8322492fa93db454` |
 | [reference/entourage/archie/prompts/corpus-advancement-pass.md](../entourage/archie/prompts/corpus-advancement-pass.md) | 637 | `bbbc5d6fe1df6081` |
 | [reference/entourage/archie/prompts/corpus-reviewer.md](../entourage/archie/prompts/corpus-reviewer.md) | 110 | `84c14fd56a711ba2` |
