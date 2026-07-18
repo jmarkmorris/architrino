@@ -1724,3 +1724,27 @@ This file holds dated decisions, implementation status, validation results, fail
   validation.
 - **Evidence:**
   [borg-certified-budget-v7-implementation-validation-apple-m3-2026-07-18.md](evidence/borg-certified-budget-v7-implementation-validation-apple-m3-2026-07-18.md).
+
+## 2026-07-18 — Research-parity root-width mechanism adjudication
+
+- **Measured first rows:** reproduced the four Research halts and the terminal
+  minimum-step attempts. Seeds 1 and 2 stop on interior roots whose residual
+  widths are `1.000337927225727e-3` and `1.000503017254976e-3` against the
+  `1e-3` root ceiling. Seeds 0 and 3 stop at source-segment joins even though
+  the point-residual widths are below the ceiling. Every row retains strict
+  normals near one and exhausts 512-bit MPFR, so arithmetic precision and a
+  source-normal pole are excluded.
+- **Derived mechanism:** candidate construction collapses the three
+  componentwise state radii to one maximum, stores one scalar error, and root
+  evaluation reinflates every axis by that scalar. Join validation preserves
+  overlapping endpoint boxes rather than one shared endpoint state. The first
+  interior-root blocker is therefore scalar isotropic width; the first
+  join-root blocker is missing cross-segment endpoint correlation.
+- **Adjudication:** representation improvement comes before budget change.
+  Retain corrected widths and every fail-closed row, implement a componentwise
+  and join-correlated diagnostic, then rerun the unchanged Research gate. A
+  new root allocation becomes eligible for derivation only if that ablation
+  leaves an irreducible width above `1e-3` and the induced acceleration still
+  fits the Research `1e-1` row.
+- **Evidence:**
+  [borg-research-parity-root-width-adjudication-apple-m3-2026-07-18.md](evidence/borg-research-parity-root-width-adjudication-apple-m3-2026-07-18.md).
