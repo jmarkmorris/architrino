@@ -19,7 +19,7 @@ namespace eom = architrino::eom;
 
 namespace {
 
-constexpr const char* kBorgNativeProtocolMagic = "EOM_BORG_NATIVE_V7";
+constexpr const char* kBorgNativeProtocolMagic = "EOM_BORG_NATIVE_V8";
 
 void print_json_number(double value) {
   if (std::isfinite(value)) {
@@ -106,8 +106,8 @@ bool same_segment_tokens(
   return left.t_start_token() == right.t_start_token() &&
       left.t_end_token() == right.t_end_token() &&
       left.coefficient_tokens() == right.coefficient_tokens() &&
-      left.position_error_token() == right.position_error_token() &&
-      left.velocity_error_token() == right.velocity_error_token();
+      left.position_error_tokens() == right.position_error_tokens() &&
+      left.velocity_error_tokens() == right.velocity_error_tokens();
 }
 
 bool is_exact_suffix(
@@ -293,7 +293,7 @@ std::string read_required_line(const char* label) {
 
 eom::CubicHistorySegment parse_segment(const std::string& line) {
   const auto fields = split_tabs(line);
-  if (fields.size() != 17U || fields[0] != "SEG") {
+  if (fields.size() != 21U || fields[0] != "SEG") {
     throw std::invalid_argument("invalid SEG record");
   }
   eom::CubicCoefficientTokens coefficients;
@@ -304,7 +304,9 @@ eom::CubicHistorySegment parse_segment(const std::string& line) {
     }
   }
   return eom::CubicHistorySegment(
-      fields[1], fields[2], std::move(coefficients), fields[15], fields[16]);
+      fields[1], fields[2], std::move(coefficients),
+      eom::HistoryErrorTokens{fields[15], fields[16], fields[17]},
+      eom::HistoryErrorTokens{fields[18], fields[19], fields[20]});
 }
 
 void print_segment(
@@ -327,6 +329,16 @@ void print_segment(
                 << '"';
     }
     std::cout << ']';
+  }
+  std::cout << "],\"positionErrors\":[";
+  for (std::size_t axis = 0U; axis < 3U; ++axis) {
+    if (axis > 0U) std::cout << ',';
+    std::cout << '"' << json_escape(segment.position_error_tokens()[axis]) << '"';
+  }
+  std::cout << "],\"velocityErrors\":[";
+  for (std::size_t axis = 0U; axis < 3U; ++axis) {
+    if (axis > 0U) std::cout << ',';
+    std::cout << '"' << json_escape(segment.velocity_error_tokens()[axis]) << '"';
   }
   std::cout << "],\"positionError\":\""
             << json_escape(segment.position_error_token())
@@ -593,6 +605,8 @@ void run(
             << json_escape(result.accepted_end_time)
             << "\",\"acceptedStepCount\":" << result.accepted_step_count
             << ",\"rejectedStepCount\":" << result.rejected_step_count
+            << ",\"allStepsAtomic\":"
+            << (result.all_steps_atomic ? "true" : "false")
             << ",\"controllerStepSize\":\""
             << json_escape(result.controller_step_size)
             << "\""

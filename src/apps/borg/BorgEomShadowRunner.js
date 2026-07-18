@@ -112,7 +112,8 @@ export function createBorgEomShadowRunner(manifest, options = {}) {
       const rawResponse = await client.evolveRetainedHistories(request);
       const response = normalizeEomResponse(rawResponse, request);
       controllerStepSize = response.controllerStepSize;
-      nextStartTime = endTime;
+      const publishedEndTime = response.acceptedEndTime;
+      nextStartTime = publishedEndTime;
       histories = retainBorgHistoryWindow(response.histories, {
         minimumCoverageStart: roundTime(nextStartTime - config.historyDepth),
       });
@@ -121,7 +122,7 @@ export function createBorgEomShadowRunner(manifest, options = {}) {
       const frames = createFramesFromHistories(
         histories,
         startTime,
-        endTime,
+        publishedEndTime,
         config.sampleInterval,
         chunkIndex,
         response.evidenceStatus,
@@ -129,15 +130,19 @@ export function createBorgEomShadowRunner(manifest, options = {}) {
         initialHistoryAccepted,
       );
       chunkIndex += 1;
+      if (response.terminalHalt) {
+        disposed = true;
+      }
       return Object.freeze({
         schema: BORG_EOM_SHADOW_RUNNER_VERSION,
         source: BORG_EOM_SHADOW_RUN_SOURCE,
-        statusCode: "ok",
+        statusCode: response.terminalHalt ? "halted-prefix" : "ok",
         chunkIndex: chunkIndex - 1,
         requestId: request.requestId,
         runId: request.runId,
         startTime,
-        endTime,
+        endTime: publishedEndTime,
+        terminalHalt: response.terminalHalt,
         sampleInterval: config.sampleInterval,
         controllerStepSize,
         phase: "live",
@@ -554,8 +559,12 @@ function createHermiteHistorySegment(start, end) {
     startTime: String(t0),
     endTime: String(t1),
     coefficients: Object.freeze(coefficients),
-    positionError: String(Math.max(Number(start.errorBound) || 0, Number(end.errorBound) || 0)),
-    velocityError: String(Math.max(Number(start.errorBound) || 0, Number(end.errorBound) || 0)),
+    positionErrors: Object.freeze(Array(3).fill(
+      String(Math.max(Number(start.errorBound) || 0, Number(end.errorBound) || 0)),
+    )),
+    velocityErrors: Object.freeze(Array(3).fill(
+      String(Math.max(Number(start.errorBound) || 0, Number(end.errorBound) || 0)),
+    )),
   });
 }
 
@@ -591,7 +600,17 @@ function createRetainedHistorySegments(rows) {
 
 function normalizeEomResponse(rawResponse, request) {
   const response = rawResponse?.response ?? rawResponse;
-  if (!response || response.status !== "completed") {
+  const acceptedEndTime = Number(response?.acceptedEndTime);
+  const requestStart = Number(request.absoluteTimeInterval.start);
+  const requestEnd = Number(request.absoluteTimeInterval.end);
+  const completed = response?.status === "completed" &&
+    response?.allStepsAtomic === true &&
+    Number.isFinite(acceptedEndTime) && acceptedEndTime === requestEnd;
+  const certifiedPrefix = response?.status === "halted" &&
+    response?.allStepsAtomic === true &&
+    Number.isFinite(acceptedEndTime) && acceptedEndTime > requestStart &&
+    acceptedEndTime < requestEnd;
+  if (!response || (!completed && !certifiedPrefix)) {
     const failure = response?.haltCode ?? response?.failureCode ?? "eom_shadow_run_failed";
     const error = new Error(`Borg EOM shadow run failed closed: ${failure}.`);
     error.code = failure;
@@ -605,7 +624,7 @@ function normalizeEomResponse(rawResponse, request) {
   const expectedIds = request.histories.map((history) => history.pathId);
   histories.forEach((history, index) => {
     if (String(history.pathId) !== expectedIds[index] ||
-        Number(history.coverageEnd) !== Number(request.absoluteTimeInterval.end) ||
+        Number(history.coverageEnd) !== (completed ? requestEnd : acceptedEndTime) ||
         !Array.isArray(history.segments) || history.segments.length === 0) {
       throw new Error("Borg EOM shadow response has incomplete or reordered histories.");
     }
@@ -656,6 +675,12 @@ function normalizeEomResponse(rawResponse, request) {
       response.controllerStepSize ?? request.numericalControls.initialStep,
       "response controllerStepSize",
     ))),
+    acceptedEndTime: completed ? requestEnd : acceptedEndTime,
+    terminalHalt: certifiedPrefix ? Object.freeze({
+      code: String(response.haltCode ?? "eom_shadow_run_failed"),
+      failedCandidateRejected: true,
+      acceptedPrefixEndTime: acceptedEndTime,
+    }) : null,
     histories: Object.freeze(histories),
     diagnostics: Array.isArray(response.diagnostics) ? response.diagnostics : [],
   });
@@ -724,8 +749,18 @@ function evaluateHistory(history, time) {
   return {
     position,
     velocity,
-    errorBound: Math.max(Number(segment.positionError) || 0, Number(segment.velocityError) || 0),
+    errorBound: Math.max(
+      ...requiredAxisErrorNumbers(segment.positionErrors, "positionErrors"),
+      ...requiredAxisErrorNumbers(segment.velocityErrors, "velocityErrors"),
+    ),
   };
+}
+
+function requiredAxisErrorNumbers(value, label) {
+  if (!Array.isArray(value) || value.length !== 3) {
+    throw new TypeError(`EOM retained segment ${label} must contain three axes.`);
+  }
+  return value.map((token) => Math.abs(Number(token)) || 0);
 }
 
 function createCompleteChunk(

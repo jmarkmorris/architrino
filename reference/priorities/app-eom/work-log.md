@@ -1748,3 +1748,37 @@ This file holds dated decisions, implementation status, validation results, fail
   fits the Research `1e-1` row.
 - **Evidence:**
   [borg-research-parity-root-width-adjudication-apple-m3-2026-07-18.md](evidence/borg-research-parity-root-width-adjudication-apple-m3-2026-07-18.md).
+
+## 2026-07-18 — V8 axis-radius, shared-endpoint, and halted-prefix ablation
+
+- **Derived implementation:** V8 carries three position and three velocity
+  radius tokens through retained histories, checkpoints, native process
+  records, and Borg. Join evaluation consumes the certified shared endpoint
+  intersection and the existing one-sign monotone-root enclosure. Scalar
+  maxima remain diagnostics only.
+- **Measured unchanged-budget result:** Research seeds 0–3 still halt before
+  `T=1.2`, at accepted prefixes `0.34931875`, `0.392578125`,
+  `0.3588890625`, and `0.3249046875`. All first failures are now interior
+  inertial-source roots with widths `1.0002997e-3` through
+  `1.0005637e-3`, just above the unchanged `1e-3` root row. This fires the
+  packet's representation-ablation falsifier and makes a new root-time budget
+  derivation eligible; no budget has been changed or ratified.
+- **Derived fail-closed UI behavior:** a halted native response is displayable
+  only when it declares atomic steps, contains a nonempty accepted prefix, and
+  supplies complete histories ending exactly at `acceptedEndTime`. Borg then
+  displays that prefix, marks the failed candidate rejected, disables further
+  continuation, and remains promotion-ineligible. A zero-length prefix still
+  throws the fail-closed error.
+- **Measured browser QA:** after refreshing the shared `5173` server onto the
+  final rebuilt V8 binary, Research displayed two forward chunks through
+  `T=0.38910468749999993`; Interactive displayed one through
+  `T=0.2444359375`. Both ended on
+  `root_completeness_not_certified` with the failed-candidate message instead
+  of the prior zero-chunk `engine_exception` surface.
+- **Validation:** native CTest `3/3`, Borg JavaScript `36/36`, V8 process
+  protocol `12/12`, native coupled evolution `24/24`, the exact seed-0–3
+  unchanged-budget sweep, and both live browser methods pass their stated
+  gates. The four-seed Research parity gate itself remains failed as recorded
+  above.
+- **Evidence:**
+  [borg-research-parity-root-width-adjudication-apple-m3-2026-07-18.md](evidence/borg-research-parity-root-width-adjudication-apple-m3-2026-07-18.md).

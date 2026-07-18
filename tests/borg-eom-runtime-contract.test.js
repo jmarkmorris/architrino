@@ -31,8 +31,8 @@ function inertialSegment(startTime, endTime, position, velocity) {
       [String(position[1]), String(velocity[1]), "0", "0"],
       [String(position[2]), String(velocity[2]), "0", "0"],
     ],
-    positionError: "0",
-    velocityError: "0",
+    positionErrors: ["0", "0", "0"],
+    velocityErrors: ["0", "0", "0"],
   };
 }
 

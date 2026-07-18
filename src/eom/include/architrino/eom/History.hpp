@@ -20,6 +20,8 @@ using CubicCoefficientValues =
     std::array<std::array<double, 4>, 3>;
 using CubicCoefficientIntervals =
     std::array<std::array<Interval, 4>, 3>;
+using HistoryErrorTokens = std::array<std::string, 3>;
+using HistoryErrorValues = std::array<double, 3>;
 
 struct UniformCircularHistoryRequest {
   std::string t_start;
@@ -65,6 +67,12 @@ class CubicHistorySegment {
       CubicCoefficientTokens coefficients,
       std::string position_error = "0",
       std::string velocity_error = "0");
+  CubicHistorySegment(
+      std::string t_start,
+      std::string t_end,
+      CubicCoefficientTokens coefficients,
+      HistoryErrorTokens position_errors,
+      HistoryErrorTokens velocity_errors);
 
   [[nodiscard]] double t_start() const noexcept { return t_start_; }
   [[nodiscard]] double t_end() const noexcept { return t_end_; }
@@ -103,6 +111,16 @@ class CubicHistorySegment {
   [[nodiscard]] double velocity_error() const noexcept {
     return velocity_error_;
   }
+  [[nodiscard]] const HistoryErrorTokens& position_error_tokens() const
+      noexcept { return position_error_tokens_; }
+  [[nodiscard]] const HistoryErrorTokens& velocity_error_tokens() const
+      noexcept { return velocity_error_tokens_; }
+  [[nodiscard]] const HistoryErrorValues& position_errors() const noexcept {
+    return position_errors_;
+  }
+  [[nodiscard]] const HistoryErrorValues& velocity_errors() const noexcept {
+    return velocity_errors_;
+  }
 
   [[nodiscard]] IntervalVector position_interval(const Interval& time) const;
   [[nodiscard]] IntervalVector velocity_interval(const Interval& time) const;
@@ -124,12 +142,17 @@ class CubicHistorySegment {
   std::string t_end_token_;
   CubicCoefficientTokens coefficient_tokens_;
   CubicCoefficientValues coefficient_values_;
+  HistoryErrorTokens position_error_tokens_;
+  HistoryErrorTokens velocity_error_tokens_;
+  HistoryErrorValues position_errors_{};
+  HistoryErrorValues velocity_errors_{};
+  // Derived maxima retained for aggregate diagnostics and tolerance checks.
   std::string position_error_token_;
   std::string velocity_error_token_;
   double t_start_;
   double t_end_;
-  double position_error_;
-  double velocity_error_;
+  double position_error_ = 0.0;
+  double velocity_error_ = 0.0;
   Interval t_start_interval_;
   Interval t_end_interval_;
   CubicCoefficientIntervals coefficient_intervals_;
@@ -224,6 +247,8 @@ class RetainedHistory {
   [[nodiscard]] bool covers(const Interval& time) const noexcept;
   [[nodiscard]] std::size_t segment_index_at(double time) const;
   [[nodiscard]] IntervalVector position_hull(const Interval& time) const;
+  [[nodiscard]] IntervalVector correlated_position_hull(
+      const Interval& time) const;
   [[nodiscard]] IntervalVector velocity_hull(const Interval& time) const;
   [[nodiscard]] std::array<double, 3> nominal_position(double time) const;
   [[nodiscard]] std::array<double, 3> nominal_velocity(double time) const;

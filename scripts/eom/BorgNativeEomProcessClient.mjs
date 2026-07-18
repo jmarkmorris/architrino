@@ -2,7 +2,7 @@ import { spawn, spawnSync } from "node:child_process";
 
 export const BORG_NATIVE_EOM_PROCESS_CLIENT_VERSION =
   "borg-native-eom-process-client.v7";
-export const BORG_NATIVE_EOM_PROTOCOL_MAGIC = "EOM_BORG_NATIVE_V7";
+export const BORG_NATIVE_EOM_PROTOCOL_MAGIC = "EOM_BORG_NATIVE_V8";
 
 export function createBorgNativeEomProcessClient({
   binaryPath,
@@ -317,13 +317,20 @@ export function encodeNativeRequest(request, { cachedHistories = null } = {}) {
         segment.startTime,
         segment.endTime,
         ...segment.coefficients.flat(),
-        segment.positionError,
-        segment.velocityError,
+        ...requiredAxisErrors(segment.positionErrors, "positionErrors"),
+        ...requiredAxisErrors(segment.velocityErrors, "velocityErrors"),
       ]));
     });
   });
   lines.push("END");
   return `${lines.join("\n")}\n`;
+}
+
+function requiredAxisErrors(value, label) {
+  if (!Array.isArray(value) || value.length !== 3) {
+    throw new TypeError(`EOM segment ${label} must contain three axis tokens.`);
+  }
+  return value.map((token) => String(token));
 }
 
 function assertCertifiedBudgetRequestMatchesAllocations(

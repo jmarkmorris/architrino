@@ -56,9 +56,13 @@ std::uint64_t estimate_coupled_working_set_bytes(
     for (const auto& segment : path.history.segments()) {
       token_bytes = saturating_add(
           token_bytes,
-          segment.t_start_token().size() + segment.t_end_token().size() +
-              segment.position_error_token().size() +
-              segment.velocity_error_token().size());
+          segment.t_start_token().size() + segment.t_end_token().size());
+      for (const auto& token : segment.position_error_tokens()) {
+        token_bytes = saturating_add(token_bytes, token.size());
+      }
+      for (const auto& token : segment.velocity_error_tokens()) {
+        token_bytes = saturating_add(token_bytes, token.size());
+      }
       for (const auto& axis : segment.coefficient_tokens()) {
         for (const auto& token : axis) {
           token_bytes = saturating_add(token_bytes, token.size());
@@ -364,12 +368,12 @@ std::array<double, 3> midpoints(const IntervalVector& vector) {
   return {vector[0].midpoint(), vector[1].midpoint(), vector[2].midpoint()};
 }
 
-double vector_radius(const IntervalVector& vector) {
-  double result = 0.0;
-  for (const auto& component : vector) {
-    result = std::max(result, component.width() * 0.5);
-  }
-  return result;
+std::array<double, 3> component_radii(const IntervalVector& vector) {
+  return {
+      vector[0].width() * 0.5,
+      vector[1].width() * 0.5,
+      vector[2].width() * 0.5,
+  };
 }
 
 SnapshotTotals snapshot_totals(
@@ -776,28 +780,33 @@ std::vector<NativePublishedPath> append_candidate_segments(
               (acceleration_end - acceleration_start) / (6.0 * step)),
       };
     }
-    const double position_radius = vector_radius(position_interval);
-    const double velocity_radius = vector_radius(velocity_interval);
-    const double acceleration_start_radius = vector_radius(
+    const auto position_radii = component_radii(position_interval);
+    const auto velocity_radii = component_radii(velocity_interval);
+    const auto acceleration_start_radii = component_radii(
         right_endpoint_acceleration_paths.contains(path.path_id)
             ? end_found->second
             : start_found->second);
-    const double acceleration_end_radius = vector_radius(end_found->second);
-    const double acceleration_radius = std::max(
-        acceleration_start_radius, acceleration_end_radius);
+    const auto acceleration_end_radii = component_radii(end_found->second);
     // The published cubic uses acceleration midpoints.  Its explicit error
     // radius must therefore carry the entire interval input through the
     // accepted step: integral_0^h a_err dt <= h r_a and
     // integral_0^h (h-t) a_err dt <= h^2 r_a / 2.  Retained position and
     // velocity radii propagate through the same map.
-    const double position_error = upward_nonnegative_sum(
-        upward_nonnegative_sum(position_radius, step * velocity_radius),
-        0.5 * step * step * acceleration_radius);
-    const double velocity_error = upward_nonnegative_sum(
-        velocity_radius, step * acceleration_radius);
+    HistoryErrorTokens position_error_tokens{};
+    HistoryErrorTokens velocity_error_tokens{};
+    for (std::size_t axis = 0U; axis < 3U; ++axis) {
+      const double acceleration_radius = std::max(
+          acceleration_start_radii[axis], acceleration_end_radii[axis]);
+      position_error_tokens[axis] = error_token(upward_nonnegative_sum(
+          upward_nonnegative_sum(
+              position_radii[axis], step * velocity_radii[axis]),
+          0.5 * step * step * acceleration_radius));
+      velocity_error_tokens[axis] = error_token(upward_nonnegative_sum(
+          velocity_radii[axis], step * acceleration_radius));
+    }
     CubicHistorySegment segment(
-        start_time, end_time, coefficients, error_token(position_error),
-        error_token(velocity_error));
+        start_time, end_time, coefficients, position_error_tokens,
+        velocity_error_tokens);
     result.push_back({
         path.path_id,
         path.history.appended(std::move(segment)),
@@ -924,24 +933,29 @@ EventAwareCandidate append_event_aware_candidate_segments(
               (step * step * step)),
       };
     }
-    const double x0_radius = vector_radius(x0);
-    const double v0_radius = vector_radius(v0);
-    const double x1_radius = vector_radius(x1);
-    const double v1_radius = vector_radius(v1);
+    const auto x0_radii = component_radii(x0);
+    const auto v0_radii = component_radii(v0);
+    const auto x1_radii = component_radii(x1);
+    const auto v1_radii = component_radii(v1);
     // These are uniform Hermite-basis bounds, not endpoint-only radii.  They
     // enclose every convex position basis term and every differentiated basis
     // term on 0 <= (T-T0)/h <= 1.
-    const double position_error = upward_nonnegative_sum(
-        upward_nonnegative_sum(x0_radius, x1_radius),
-        step * upward_nonnegative_sum(v0_radius, v1_radius));
-    const double velocity_error = upward_nonnegative_sum(
-        1.5 * (x0_radius + x1_radius) / step,
-        2.0 * (v0_radius + v1_radius));
+    HistoryErrorTokens position_error_tokens{};
+    HistoryErrorTokens velocity_error_tokens{};
+    for (std::size_t axis = 0U; axis < 3U; ++axis) {
+      position_error_tokens[axis] = error_token(upward_nonnegative_sum(
+          upward_nonnegative_sum(x0_radii[axis], x1_radii[axis]),
+          step * upward_nonnegative_sum(
+              v0_radii[axis], v1_radii[axis])));
+      velocity_error_tokens[axis] = error_token(upward_nonnegative_sum(
+          1.5 * (x0_radii[axis] + x1_radii[axis]) / step,
+          2.0 * (v0_radii[axis] + v1_radii[axis])));
+    }
     result.histories.push_back({
         path.path_id,
         path.history.appended(CubicHistorySegment(
             start_time, end_time, coefficients,
-            error_token(position_error), error_token(velocity_error))),
+            position_error_tokens, velocity_error_tokens)),
     });
   }
   if (timing != nullptr) {
@@ -1826,17 +1840,19 @@ std::vector<NativePathLocalError> endpoint_local_errors(
     const IntervalVector fine_velocity = fine.history.velocity_hull(time);
     double position_error = 0.0;
     double velocity_error = 0.0;
+    std::array<double, 3> position_errors{};
+    std::array<double, 3> velocity_errors{};
     for (std::size_t axis = 0; axis < 3; ++axis) {
-      position_error = std::max(
-          position_error,
-          std::abs(full_position[axis].midpoint() -
-                   fine_position[axis].midpoint()));
-      velocity_error = std::max(
-          velocity_error,
-          std::abs(full_velocity[axis].midpoint() -
-                   fine_velocity[axis].midpoint()));
+      position_errors[axis] = std::abs(
+          full_position[axis].midpoint() - fine_position[axis].midpoint());
+      velocity_errors[axis] = std::abs(
+          full_velocity[axis].midpoint() - fine_velocity[axis].midpoint());
+      position_error = std::max(position_error, position_errors[axis]);
+      velocity_error = std::max(velocity_error, velocity_errors[axis]);
     }
-    result.push_back({full.path_id, position_error, velocity_error});
+    result.push_back({
+        full.path_id, position_error, velocity_error,
+        position_errors, velocity_errors});
   }
   return result;
 }
@@ -1860,16 +1876,20 @@ std::vector<NativePublishedPath> inflate_fine_histories(
     for (std::size_t index = input.history.segments().size();
          index < fine.history.segments().size(); ++index) {
       const auto& segment = fine.history.segments()[index];
-      const double position_error =
-          scalar_token(segment.position_error_token()) +
-          error_found->position_error;
-      const double velocity_error =
-          scalar_token(segment.velocity_error_token()) +
-          error_found->velocity_error;
+      HistoryErrorTokens position_error_tokens{};
+      HistoryErrorTokens velocity_error_tokens{};
+      for (std::size_t axis = 0U; axis < 3U; ++axis) {
+        position_error_tokens[axis] = error_token(
+            scalar_token(segment.position_error_tokens()[axis]) +
+            error_found->position_errors[axis]);
+        velocity_error_tokens[axis] = error_token(
+            scalar_token(segment.velocity_error_tokens()[axis]) +
+            error_found->velocity_errors[axis]);
+      }
       inflated = inflated.appended(CubicHistorySegment(
           segment.t_start_token(), segment.t_end_token(),
-          segment.coefficient_tokens(), error_token(position_error),
-          error_token(velocity_error)));
+          segment.coefficient_tokens(), position_error_tokens,
+          velocity_error_tokens));
     }
     result.push_back({
         fine.path_id,
@@ -1958,8 +1978,10 @@ MultiratePublication synchronized_multirate_histories(
     const auto& coarse_segment = full.history.segments()[first_new];
     double dense_position_error = 0.0;
     double dense_velocity_error = 0.0;
-    double maximum_fine_position_error = 0.0;
-    double maximum_fine_velocity_error = 0.0;
+    std::array<double, 3> dense_position_errors{};
+    std::array<double, 3> dense_velocity_errors{};
+    std::array<double, 3> maximum_fine_position_errors{};
+    std::array<double, 3> maximum_fine_velocity_errors{};
     for (std::size_t half = 0; half < 2U; ++half) {
       const auto& fine_segment = fine.history.segments()[first_new + half];
       const Interval offset =
@@ -1983,36 +2005,49 @@ MultiratePublication synchronized_multirate_histories(
           difference[coefficient] =
               coarse_coefficients[coefficient] - fine_coefficients[coefficient];
         }
-        dense_position_error = std::max(
-            dense_position_error,
-            interval_absolute(
-                evaluate_cubic(difference, local_span)).upper());
-        dense_velocity_error = std::max(
-            dense_velocity_error,
+        dense_position_errors[axis] = std::max(
+            dense_position_errors[axis],
+            interval_absolute(evaluate_cubic(difference, local_span)).upper());
+        dense_velocity_errors[axis] = std::max(
+            dense_velocity_errors[axis],
             interval_absolute(
                 evaluate_cubic_velocity(difference, local_span)).upper());
       }
-      maximum_fine_position_error = std::max(
-          maximum_fine_position_error, fine_segment.position_error());
-      maximum_fine_velocity_error = std::max(
-          maximum_fine_velocity_error, fine_segment.velocity_error());
+      for (std::size_t axis = 0U; axis < 3U; ++axis) {
+        maximum_fine_position_errors[axis] = std::max(
+            maximum_fine_position_errors[axis],
+            fine_segment.position_errors()[axis]);
+        maximum_fine_velocity_errors[axis] = std::max(
+            maximum_fine_velocity_errors[axis],
+            fine_segment.velocity_errors()[axis]);
+        dense_position_error = std::max(
+            dense_position_error, dense_position_errors[axis]);
+        dense_velocity_error = std::max(
+            dense_velocity_error, dense_velocity_errors[axis]);
+      }
     }
     result.synchronization_errors.push_back({
-        input.path_id, dense_position_error, dense_velocity_error});
+        input.path_id, dense_position_error, dense_velocity_error,
+        dense_position_errors, dense_velocity_errors});
     if (dense_position_error > position_limit ||
         dense_velocity_error > velocity_limit) {
       continue;
+    }
+    HistoryErrorTokens coarse_position_error_tokens{};
+    HistoryErrorTokens coarse_velocity_error_tokens{};
+    for (std::size_t axis = 0U; axis < 3U; ++axis) {
+      coarse_position_error_tokens[axis] = error_token(std::max(
+          coarse_segment.position_errors()[axis],
+          maximum_fine_position_errors[axis] + dense_position_errors[axis]));
+      coarse_velocity_error_tokens[axis] = error_token(std::max(
+          coarse_segment.velocity_errors()[axis],
+          maximum_fine_velocity_errors[axis] + dense_velocity_errors[axis]));
     }
     RetainedHistory coarse_history = input.history.appended(
         CubicHistorySegment(
             coarse_segment.t_start_token(), coarse_segment.t_end_token(),
             coarse_segment.coefficient_tokens(),
-            error_token(std::max(
-                coarse_segment.position_error(),
-                maximum_fine_position_error + dense_position_error)),
-            error_token(std::max(
-                coarse_segment.velocity_error(),
-                maximum_fine_velocity_error + dense_velocity_error))));
+            coarse_position_error_tokens, coarse_velocity_error_tokens));
     result.histories[path_index] = {
         input.path_id, std::move(coarse_history)};
     result.coarse_path_ids.push_back(input.path_id);

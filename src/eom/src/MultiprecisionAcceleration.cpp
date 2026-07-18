@@ -354,28 +354,28 @@ std::pair<MpVector, MpVector> history_state(
         inflate_interval(
             polynomial(segment.coefficient_tokens()[0],
                        segment.t_start_token(), local),
-            segment.position_error_token()),
+            segment.position_error_tokens()[0]),
         inflate_interval(
             polynomial(segment.coefficient_tokens()[1],
                        segment.t_start_token(), local),
-            segment.position_error_token()),
+            segment.position_error_tokens()[1]),
         inflate_interval(
             polynomial(segment.coefficient_tokens()[2],
                        segment.t_start_token(), local),
-            segment.position_error_token())};
+            segment.position_error_tokens()[2])};
     MpVector local_velocity{
         inflate_interval(
             derivative(segment.coefficient_tokens()[0],
                        segment.t_start_token(), local),
-            segment.velocity_error_token()),
+            segment.velocity_error_tokens()[0]),
         inflate_interval(
             derivative(segment.coefficient_tokens()[1],
                        segment.t_start_token(), local),
-            segment.velocity_error_token()),
+            segment.velocity_error_tokens()[1]),
         inflate_interval(
             derivative(segment.coefficient_tokens()[2],
                        segment.t_start_token(), local),
-            segment.velocity_error_token())};
+            segment.velocity_error_tokens()[2])};
     if (!position.has_value()) {
       position = std::move(local_position);
       velocity = std::move(local_velocity);

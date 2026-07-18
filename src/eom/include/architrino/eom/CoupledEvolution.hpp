@@ -455,6 +455,8 @@ struct NativePathLocalError {
   std::string path_id;
   double position_error;
   double velocity_error;
+  std::array<double, 3> position_errors{};
+  std::array<double, 3> velocity_errors{};
 };
 
 [[nodiscard]] std::optional<NativeEndpointRootContinuationCertificate>

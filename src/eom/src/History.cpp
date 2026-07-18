@@ -43,8 +43,12 @@ void fingerprint_segment(
       fingerprint_token(state, coefficient);
     }
   }
-  fingerprint_token(state, segment.position_error_token());
-  fingerprint_token(state, segment.velocity_error_token());
+  for (const auto& token : segment.position_error_tokens()) {
+    fingerprint_token(state, token);
+  }
+  for (const auto& token : segment.velocity_error_tokens()) {
+    fingerprint_token(state, token);
+  }
 }
 
 std::uint64_t initial_history_fingerprint_state() {
@@ -150,15 +154,15 @@ void validate_segment_join(
   }
   const ExactRational prior_local_time =
       prior_end - exact_decimal(prior.t_start_token());
-  const ExactRational prior_position_error =
-      exact_decimal(prior.position_error_token());
-  const ExactRational next_position_error =
-      exact_decimal(next.position_error_token());
-  const ExactRational prior_velocity_error =
-      exact_decimal(prior.velocity_error_token());
-  const ExactRational next_velocity_error =
-      exact_decimal(next.velocity_error_token());
   for (std::size_t axis = 0; axis < 3; ++axis) {
+    const ExactRational prior_position_error =
+        exact_decimal(prior.position_error_tokens()[axis]);
+    const ExactRational next_position_error =
+        exact_decimal(next.position_error_tokens()[axis]);
+    const ExactRational prior_velocity_error =
+        exact_decimal(prior.velocity_error_tokens()[axis]);
+    const ExactRational next_velocity_error =
+        exact_decimal(next.velocity_error_tokens()[axis]);
     const ExactRational prior_position =
         exact_polynomial(prior.coefficient_tokens()[axis], prior_local_time);
     const ExactRational next_position =
@@ -299,6 +303,43 @@ IntervalVector complete_segment_position_hull(
   return segment.position_interval(time);
 }
 
+IntervalVector intersect_vectors(
+    const IntervalVector& left,
+    const IntervalVector& right) {
+  IntervalVector result{
+      Interval::point(0.0), Interval::point(0.0), Interval::point(0.0)};
+  for (std::size_t axis = 0U; axis < 3U; ++axis) {
+    const auto overlap = left[axis].intersection(right[axis]);
+    if (!overlap.has_value()) {
+      throw std::invalid_argument(
+          "certified retained-history enclosures do not intersect");
+    }
+    result[axis] = *overlap;
+  }
+  return result;
+}
+
+IntervalVector correlated_segment_position_from_join(
+    const CubicHistorySegment& segment,
+    const IntervalVector& shared_position,
+    double join_time,
+    const Interval& time) {
+  const IntervalVector ordinary = segment.position_interval(time);
+  const IntervalVector nominal_delta = subtract(
+      segment.nominal_position_interval(time),
+      segment.nominal_position_interval(Interval::point(join_time)));
+  const double distance = std::max(
+      std::abs(time.lower() - join_time),
+      std::abs(time.upper() - join_time));
+  IntervalVector propagated{
+      Interval::point(0.0), Interval::point(0.0), Interval::point(0.0)};
+  for (std::size_t axis = 0U; axis < 3U; ++axis) {
+    propagated[axis] = (shared_position[axis] + nominal_delta[axis]).inflate(
+        segment.velocity_errors()[axis] * distance);
+  }
+  return intersect_vectors(ordinary, propagated);
+}
+
 }  // namespace
 
 CubicHistorySegment::CubicHistorySegment(
@@ -307,15 +348,24 @@ CubicHistorySegment::CubicHistorySegment(
     CubicCoefficientTokens coefficients,
     std::string position_error,
     std::string velocity_error)
+    : CubicHistorySegment(
+          std::move(t_start), std::move(t_end), std::move(coefficients),
+          HistoryErrorTokens{position_error, position_error, position_error},
+          HistoryErrorTokens{velocity_error, velocity_error, velocity_error}) {}
+
+CubicHistorySegment::CubicHistorySegment(
+    std::string t_start,
+    std::string t_end,
+    CubicCoefficientTokens coefficients,
+    HistoryErrorTokens position_errors,
+    HistoryErrorTokens velocity_errors)
     : t_start_token_(std::move(t_start)),
       t_end_token_(std::move(t_end)),
       coefficient_tokens_(std::move(coefficients)),
-      position_error_token_(std::move(position_error)),
-      velocity_error_token_(std::move(velocity_error)),
+      position_error_tokens_(std::move(position_errors)),
+      velocity_error_tokens_(std::move(velocity_errors)),
       t_start_(parse_decimal(t_start_token_, "history start time")),
       t_end_(parse_decimal(t_end_token_, "history end time")),
-      position_error_(parse_decimal(position_error_token_, "position error")),
-      velocity_error_(parse_decimal(velocity_error_token_, "velocity error")),
       t_start_interval_(Interval::decimal_token(t_start_token_)),
       t_end_interval_(Interval::decimal_token(t_end_token_)),
       coefficient_intervals_(
@@ -323,9 +373,19 @@ CubicHistorySegment::CubicHistorySegment(
   if (t_start_ >= t_end_) {
     throw std::invalid_argument("history segment requires t_start < t_end");
   }
-  if (position_error_ < 0.0 || velocity_error_ < 0.0) {
-    throw std::invalid_argument("history errors must be nonnegative");
+  for (std::size_t axis = 0U; axis < 3U; ++axis) {
+    position_errors_[axis] = parse_decimal(
+        position_error_tokens_[axis], "position error");
+    velocity_errors_[axis] = parse_decimal(
+        velocity_error_tokens_[axis], "velocity error");
+    if (position_errors_[axis] < 0.0 || velocity_errors_[axis] < 0.0) {
+      throw std::invalid_argument("history errors must be nonnegative");
+    }
+    position_error_ = std::max(position_error_, position_errors_[axis]);
+    velocity_error_ = std::max(velocity_error_, velocity_errors_[axis]);
   }
+  position_error_token_ = decimal_token(position_error_);
+  velocity_error_token_ = decimal_token(velocity_error_);
   double speed_square_upper = 0.0;
   const double duration = t_end_ - t_start_;
   for (std::size_t axis = 0U; axis < coefficient_tokens_.size(); ++axis) {
@@ -371,9 +431,9 @@ Interval CubicHistorySegment::polynomial_interval(
 IntervalVector CubicHistorySegment::position_interval(
     const Interval& time) const {
   return {
-      polynomial_interval(coefficient_intervals_[0], time).inflate(position_error_),
-      polynomial_interval(coefficient_intervals_[1], time).inflate(position_error_),
-      polynomial_interval(coefficient_intervals_[2], time).inflate(position_error_),
+      polynomial_interval(coefficient_intervals_[0], time).inflate(position_errors_[0]),
+      polynomial_interval(coefficient_intervals_[1], time).inflate(position_errors_[1]),
+      polynomial_interval(coefficient_intervals_[2], time).inflate(position_errors_[2]),
   };
 }
 
@@ -435,12 +495,13 @@ IntervalVector CubicHistorySegment::correlated_displacement_interval(
   //   |e(T)-e(S)| <= min(2 eps_x, eps_v |T-S|).
   // This preserves the same-segment correlation while remaining a rigorous
   // enclosure under the segment's published position and velocity bounds.
-  const double correlated_error = std::min(
-      2.0 * position_error_, velocity_error_ * maximum_delay);
   return {
-      nominal[0].inflate(correlated_error),
-      nominal[1].inflate(correlated_error),
-      nominal[2].inflate(correlated_error),
+      nominal[0].inflate(std::min(
+          2.0 * position_errors_[0], velocity_errors_[0] * maximum_delay)),
+      nominal[1].inflate(std::min(
+          2.0 * position_errors_[1], velocity_errors_[1] * maximum_delay)),
+      nominal[2].inflate(std::min(
+          2.0 * position_errors_[2], velocity_errors_[2] * maximum_delay)),
   };
 }
 
@@ -456,7 +517,7 @@ IntervalVector CubicHistorySegment::velocity_interval(
     derivative = derivative * local_time +
                  Interval::point(2.0) * coefficient_intervals_[axis][2];
     derivative = derivative * local_time + coefficient_intervals_[axis][1];
-    result[axis] = derivative.inflate(velocity_error_);
+    result[axis] = derivative.inflate(velocity_errors_[axis]);
   }
   return result;
 }
@@ -746,8 +807,8 @@ RetainedHistory RetainedHistory::restore_uniform_circular(
     return left.t_start_token() == right.t_start_token() &&
         left.t_end_token() == right.t_end_token() &&
         left.coefficient_tokens() == right.coefficient_tokens() &&
-        left.position_error_token() == right.position_error_token() &&
-        left.velocity_error_token() == right.velocity_error_token();
+        left.position_error_tokens() == right.position_error_tokens() &&
+        left.velocity_error_tokens() == right.velocity_error_tokens();
   };
   for (std::size_t index = 0; index < restored.segments().size(); ++index) {
     if (!same_segment(restored.segments()[index], segments[index])) {
@@ -892,6 +953,49 @@ IntervalVector RetainedHistory::position_hull(const Interval& time) const {
     return *full_position_hull_;
   }
   return segment_hull(*this, time, false);
+}
+
+IntervalVector RetainedHistory::correlated_position_hull(
+    const Interval& time) const {
+  if (!covers(time)) {
+    throw std::out_of_range("history interval lies outside retained coverage");
+  }
+  if (segments_.size() == 1U) {
+    return position_hull(time);
+  }
+  std::optional<IntervalVector> result;
+  for (std::size_t index = 0U; index < segments_.size(); ++index) {
+    const auto& segment = segments_[index];
+    const double lower = std::max(time.lower(), segment.t_start());
+    const double upper = std::min(time.upper(), segment.t_end());
+    if (lower > upper) {
+      continue;
+    }
+    const Interval local_time(lower, upper);
+    IntervalVector local = segment.position_interval(local_time);
+    const auto apply_join = [&](std::size_t left_index) {
+      const auto& left = segments_[left_index];
+      const auto& right = segments_[left_index + 1U];
+      const double join_time = left.t_end();
+      const Interval point = Interval::point(join_time);
+      const IntervalVector shared = intersect_vectors(
+          left.position_interval(point), right.position_interval(point));
+      local = intersect_vectors(
+          local, correlated_segment_position_from_join(
+                     segment, shared, join_time, local_time));
+    };
+    if (index > 0U) {
+      apply_join(index - 1U);
+    }
+    if (index + 1U < segments_.size()) {
+      apply_join(index);
+    }
+    result = result.has_value() ? hull(*result, local) : local;
+  }
+  if (!result.has_value()) {
+    throw std::out_of_range("history interval is not covered");
+  }
+  return *result;
 }
 
 IntervalVector RetainedHistory::velocity_hull(const Interval& time) const {

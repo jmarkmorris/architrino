@@ -8,7 +8,7 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[1]
-PROTOCOL_MAGIC = "EOM_BORG_NATIVE_V7"
+PROTOCOL_MAGIC = "EOM_BORG_NATIVE_V8"
 
 
 def run_record(
@@ -98,7 +98,7 @@ class NativeBorgProcessTests(unittest.TestCase):
                 PROTOCOL_MAGIC,
                 run_record("native-process-static", "2", "2.1"),
                 "PATH\tp\t1\t1\t0\t1",
-                "SEG\t0\t2\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0",
+                "SEG\t0\t2\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0",
                 "END",
                 "",
             )
@@ -151,9 +151,9 @@ class NativeBorgProcessTests(unittest.TestCase):
                 path_count="2",
             ),
             "PATH\treceiver\t1\t1\t0\t1",
-            "SEG\t0\t1\t0.5\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0",
+            "SEG\t0\t1\t0.5\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0",
             "PATH\tsource\t1\t1\t0\t1",
-            "SEG\t0\t1\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0.001\t0",
+            "SEG\t0\t1\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0.001\t0.001\t0.001\t0\t0\t0",
             "END",
             "",
         ))
@@ -181,7 +181,7 @@ class NativeBorgProcessTests(unittest.TestCase):
                 thread_count="1", memory_budget="1",
             ),
             "PATH\tp\t1\t1\t0\t1",
-            "SEG\t0\t2\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0",
+            "SEG\t0\t2\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0",
             "END", "",
         ))
         completed = subprocess.run(
@@ -243,7 +243,7 @@ class NativeBorgProcessTests(unittest.TestCase):
                     adaptive_growth="1", thread_count="1",
                 ),
                 "PATH\tp\t1\t1\t0\t1",
-                "SEG\t0\t2\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0",
+                "SEG\t0\t2\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0",
                 "END",
                 "",
             )
@@ -275,7 +275,7 @@ class NativeBorgProcessTests(unittest.TestCase):
                     maximum_step="0.01",
                 ),
                 "PATH\tp\t1\t1\t0\t1",
-                "SEG\t0\t300.03\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0",
+                "SEG\t0\t300.03\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0",
                 "END",
                 "",
             )
@@ -300,7 +300,7 @@ class NativeBorgProcessTests(unittest.TestCase):
                     PROTOCOL_MAGIC,
                     run_record(run_id, "2", "2.1"),
                     "PATH\tp\t1\t1\t0\t1",
-                    "SEG\t0\t2\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0",
+                    "SEG\t0\t2\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0",
                     "END",
                     "",
                 )
@@ -330,7 +330,7 @@ class NativeBorgProcessTests(unittest.TestCase):
                 correction_tolerance="0.1",
             ),
             "PATH\tp\t1\t1\t0\t1",
-            "SEG\t-1\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0",
+            "SEG\t-1\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0",
             "END", "",
         ))
         worker = subprocess.Popen(
@@ -384,7 +384,7 @@ class NativeBorgProcessTests(unittest.TestCase):
                     PROTOCOL_MAGIC,
                     run_record(run_id, "2", "2.1", thread_count=thread_count),
                     "PATH\tp\t1\t1\t0\t1",
-                    "SEG\t0\t2\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0",
+                    "SEG\t0\t2\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0",
                     "END",
                     "",
                 )
@@ -430,7 +430,7 @@ class NativeBorgProcessTests(unittest.TestCase):
                 rows.append("\t".join((
                     "SEG", segment["startTime"], segment["endTime"],
                     *(coefficient for axis in segment["coefficients"] for coefficient in axis),
-                    segment["positionError"], segment["velocityError"],
+                    *segment["positionErrors"], *segment["velocityErrors"],
                 )))
             rows.extend(("END", ""))
             return "\n".join(rows)
@@ -439,8 +439,8 @@ class NativeBorgProcessTests(unittest.TestCase):
             "startTime": "0",
             "endTime": "1",
             "coefficients": [["0", "0", "0", "0"]] * 3,
-            "positionError": "0",
-            "velocityError": "0",
+            "positionErrors": ["0", "0", "0"],
+            "velocityErrors": ["0", "0", "0"],
         }
         initial_suffix = {
             **initial_prefix,

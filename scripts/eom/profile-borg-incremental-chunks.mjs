@@ -176,6 +176,8 @@ const measuredClient = {
         pathId: history.pathId,
         positionError: Number(segment?.positionError ?? 0),
         velocityError: Number(segment?.velocityError ?? 0),
+        positionErrors: (segment?.positionErrors ?? []).map(Number),
+        velocityErrors: (segment?.velocityErrors ?? []).map(Number),
       };
     });
     nativeChunks.push({
@@ -285,6 +287,14 @@ try {
       endpointFrames = chunk.frames.filter(
         (frame) => Number(frame.time) === Number(chunk.endTime),
       );
+      if (chunk.terminalHalt) {
+        runFailure = {
+          code: chunk.terminalHalt.code,
+          message: `failed candidate rejected after certified prefix through T=${chunk.endTime}`,
+          acceptedEndTime: Number(chunk.endTime),
+        };
+        break;
+      }
     } catch (error) {
       runFailure = {
         code: error.code ?? "eom_shadow_run_failed",

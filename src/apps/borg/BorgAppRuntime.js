@@ -1999,10 +1999,14 @@ export function mountBorgApp(options = {}) {
           state.eomRetainedHistoryPolicy = chunk.retainedHistoryPolicy;
         }
         state.sourceMode = chunk.source;
-        state.dynamicRunnerStatus = state.dynamicRunner.canComputeNextChunk()
-          ? chunk.source
-          : "completed-live-native-run";
-        state.dynamicRunnerMessage = `chunk ${chunk.chunkIndex} ready`;
+        state.dynamicRunnerStatus = chunk.terminalHalt
+          ? "halted-live-native-run"
+          : state.dynamicRunner.canComputeNextChunk()
+            ? chunk.source
+            : "completed-live-native-run";
+        state.dynamicRunnerMessage = chunk.terminalHalt
+          ? `certified prefix through T=${chunk.endTime}; failed candidate rejected (${chunk.terminalHalt.code})`
+          : `chunk ${chunk.chunkIndex} ready`;
         if (replaceCurrentFrames) {
           currentFrames = [...chunk.frames];
           frameSets = createBorgFrameSetsFromRows(currentFrames);

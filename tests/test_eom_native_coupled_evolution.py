@@ -265,7 +265,7 @@ class NativeCoupledEvolutionTests(unittest.TestCase):
     def test_checkpoint_roundtrip_is_atomic_tamper_evident_and_continuous(self) -> None:
         checkpoint = self.packet["checkpoint"]
         self.assertEqual(
-            checkpoint["schema"], "eom_native_evolution_checkpoint/v3"
+            checkpoint["schema"], "eom_native_evolution_checkpoint/v4"
         )
         self.assertGreater(checkpoint["byte_length"], 0)
         self.assertEqual(

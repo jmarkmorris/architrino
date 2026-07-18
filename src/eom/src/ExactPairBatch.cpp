@@ -103,7 +103,9 @@ DoubleGeometry double_history_geometry(
       : std::nullopt;
   const auto displacement = correlated_displacement.has_value()
       ? *correlated_displacement
-      : subtract(receiver.position, source_history.position_hull(emission));
+      : subtract(
+            receiver.position,
+            source_history.correlated_position_hull(emission));
   const Interval separation = norm(displacement);
   const Interval delay = reception - emission;
   const Interval residual = separation - field_speed * delay;
@@ -158,8 +160,8 @@ bool same_segment_tokens(
   return left.t_start_token() == right.t_start_token() &&
       left.t_end_token() == right.t_end_token() &&
       left.coefficient_tokens() == right.coefficient_tokens() &&
-      left.position_error_token() == right.position_error_token() &&
-      left.velocity_error_token() == right.velocity_error_token();
+      left.position_error_tokens() == right.position_error_tokens() &&
+      left.velocity_error_tokens() == right.velocity_error_tokens();
 }
 
 bool same_source_prefix_tokens(
@@ -288,21 +290,33 @@ double correlated_self_token_radius(
   const auto reception_index = history.segment_index_at(reception);
   if (emission_index == reception_index) {
     const auto& segment = history.segments()[emission_index];
-    return std::sqrt(3.0) * std::min(
-        2.0 * segment.position_error(),
-        segment.velocity_error() * std::max(0.0, reception - emission));
+    double square = 0.0;
+    for (std::size_t axis = 0U; axis < 3U; ++axis) {
+      const double radius = std::min(
+          2.0 * segment.position_errors()[axis],
+          segment.velocity_errors()[axis] *
+              std::max(0.0, reception - emission));
+      square += radius * radius;
+    }
+    return std::sqrt(square);
   }
 
-  double component_radius = 0.0;
+  std::array<double, 3> component_radii{};
   for (std::size_t index = emission_index; index <= reception_index; ++index) {
     const auto& segment = history.segments()[index];
     const double lower = std::max(emission, segment.t_start());
     const double upper = std::min(reception, segment.t_end());
     if (lower < upper) {
-      component_radius += segment.velocity_error() * (upper - lower);
+      for (std::size_t axis = 0U; axis < 3U; ++axis) {
+        component_radii[axis] +=
+            segment.velocity_errors()[axis] * (upper - lower);
+      }
     }
   }
-  return std::sqrt(3.0) * component_radius;
+  return std::sqrt(
+      component_radii[0] * component_radii[0] +
+      component_radii[1] * component_radii[1] +
+      component_radii[2] * component_radii[2]);
 }
 
 bool double_point_residual_is_token_dominated(
@@ -316,9 +330,16 @@ bool double_point_residual_is_token_dominated(
     bool correlated_self_chord) {
   const double token_radius = correlated_self_chord
       ? correlated_self_token_radius(*request.source, reception, emission)
-      : std::sqrt(3.0) *
-            (receiver_segment.position_error() +
-             source_segment.position_error());
+      : [&] {
+          double square = 0.0;
+          for (std::size_t axis = 0U; axis < 3U; ++axis) {
+            const double radius =
+                receiver_segment.position_errors()[axis] +
+                source_segment.position_errors()[axis];
+            square += radius * radius;
+          }
+          return std::sqrt(square);
+        }();
   const double arithmetic_scale = std::max({
       1.0,
       std::abs(reception),
@@ -523,7 +544,7 @@ DoubleAttempt run_double_attempt(const ExactPairRequest& request) {
       request.receiver->provenance_fingerprint() ==
           request.source->provenance_fingerprint();
   const DoubleReceiverState receiver_state{
-      request.receiver->position_hull(reception),
+      request.receiver->correlated_position_hull(reception),
       request.receiver->velocity_hull(reception),
       same_retained_history,
       same_retained_history ? request.source : nullptr};
@@ -1603,8 +1624,8 @@ struct MpCompiledSegment {
   MpInterval end_time;
   std::array<std::array<MpInterval, 4>, 3> position_coefficients;
   std::array<std::array<MpInterval, 3>, 3> velocity_coefficients;
-  MpInterval position_error;
-  MpInterval velocity_error;
+  std::array<MpInterval, 3> position_errors;
+  std::array<MpInterval, 3> velocity_errors;
 };
 
 std::array<MpInterval, 4> mp_compile_position_axis(
@@ -1651,10 +1672,14 @@ MpCompiledSegment mp_compile_segment(
       .end_time = MpInterval::decimal(segment.t_end_token(), bits),
       .position_coefficients = std::move(position_coefficients),
       .velocity_coefficients = std::move(velocity_coefficients),
-      .position_error =
-          MpInterval::decimal(segment.position_error_token(), bits),
-      .velocity_error =
-          MpInterval::decimal(segment.velocity_error_token(), bits),
+      .position_errors = {
+          MpInterval::decimal(segment.position_error_tokens()[0], bits),
+          MpInterval::decimal(segment.position_error_tokens()[1], bits),
+          MpInterval::decimal(segment.position_error_tokens()[2], bits)},
+      .velocity_errors = {
+          MpInterval::decimal(segment.velocity_error_tokens()[0], bits),
+          MpInterval::decimal(segment.velocity_error_tokens()[1], bits),
+          MpInterval::decimal(segment.velocity_error_tokens()[2], bits)},
   };
 }
 
@@ -1705,9 +1730,9 @@ MpVector mp_position(
     const MpCompiledSegment& segment,
     const MpInterval& time) {
   return {
-      mp_polynomial(segment, 0, time).inflate(segment.position_error),
-      mp_polynomial(segment, 1, time).inflate(segment.position_error),
-      mp_polynomial(segment, 2, time).inflate(segment.position_error),
+      mp_polynomial(segment, 0, time).inflate(segment.position_errors[0]),
+      mp_polynomial(segment, 1, time).inflate(segment.position_errors[1]),
+      mp_polynomial(segment, 2, time).inflate(segment.position_errors[2]),
   };
 }
 
@@ -1715,9 +1740,9 @@ MpVector mp_velocity(
     const MpCompiledSegment& segment,
     const MpInterval& time) {
   return {
-      mp_velocity_polynomial(segment, 0, time).inflate(segment.velocity_error),
-      mp_velocity_polynomial(segment, 1, time).inflate(segment.velocity_error),
-      mp_velocity_polynomial(segment, 2, time).inflate(segment.velocity_error),
+      mp_velocity_polynomial(segment, 0, time).inflate(segment.velocity_errors[0]),
+      mp_velocity_polynomial(segment, 1, time).inflate(segment.velocity_errors[1]),
+      mp_velocity_polynomial(segment, 2, time).inflate(segment.velocity_errors[2]),
   };
 }
 
@@ -1780,9 +1805,9 @@ std::optional<MpVector> mp_correlated_self_displacement(
       return std::nullopt;
     }
     const MpInterval duration = local_upper - local_lower;
-    const MpFloat radius =
-        (segment.velocity_error * duration).upper();
     for (std::size_t axis = 0; axis < result.size(); ++axis) {
+      const MpFloat radius =
+          (segment.velocity_errors[axis] * duration).upper();
       MpInterval contribution =
           mp_polynomial(segment, axis, local_upper) -
           mp_polynomial(segment, axis, local_lower);
@@ -1811,6 +1836,120 @@ MpGeometry mp_geometry(
       ? *correlated_displacement
       : mp_subtract_vector(
             receiver.position, mp_position(source_segment, emission));
+  const MpInterval separation = mp_norm(displacement);
+  const MpInterval residual = separation - field_speed * (reception - emission);
+  if (separation.contains_zero()) {
+    return {residual, std::nullopt, std::nullopt};
+  }
+  const auto direction = mp_divide_vector(displacement, separation);
+  return {
+      residual,
+      field_speed - mp_dot(direction, source_velocity),
+      field_speed - mp_dot(direction, receiver.velocity),
+  };
+}
+
+std::optional<MpInterval> mp_intersection(
+    const MpInterval& left,
+    const MpInterval& right) {
+  const MpFloat lower = left.lower().compare(right.lower()) >= 0
+      ? left.lower() : right.lower();
+  const MpFloat upper = left.upper().compare(right.upper()) <= 0
+      ? left.upper() : right.upper();
+  if (lower.compare(upper) > 0) {
+    return std::nullopt;
+  }
+  return MpInterval(lower, upper);
+}
+
+std::optional<MpVector> mp_shared_join_position(
+    const MpCompiledSegment& left,
+    const MpCompiledSegment& right) {
+  const MpVector left_position = mp_position(left, left.end_time);
+  const MpVector right_position = mp_position(right, right.start_time);
+  MpVector shared = left_position;
+  for (std::size_t axis = 0U; axis < 3U; ++axis) {
+    const auto overlap = mp_intersection(
+        left_position[axis], right_position[axis]);
+    if (!overlap.has_value()) {
+      return std::nullopt;
+    }
+    shared[axis] = *overlap;
+  }
+  return shared;
+}
+
+MpVector mp_position_from_shared_join(
+    const MpCompiledSegment& segment,
+    const MpVector& shared,
+    const MpInterval& join_time,
+    const MpInterval& time) {
+  MpVector result = mp_position(segment, time);
+  const MpInterval distance = time.lower().compare(join_time.lower()) >= 0
+      ? time - join_time
+      : join_time - time;
+  const MpInterval nominal_join_time = join_time;
+  for (std::size_t axis = 0U; axis < 3U; ++axis) {
+    const MpInterval nominal_delta =
+        mp_polynomial(segment, axis, time) -
+        mp_polynomial(segment, axis, nominal_join_time);
+    const MpInterval raw_radius = segment.velocity_errors[axis] * distance;
+    const MpFloat zero = MpFloat::unsigned_value(0, time.bits());
+    const MpFloat radius_upper = raw_radius.upper().compare_zero() > 0
+        ? raw_radius.upper() : zero;
+    const MpInterval radius = MpInterval::bounds(zero, radius_upper);
+    const MpInterval propagated =
+        (shared[axis] + nominal_delta).inflate(radius);
+    const auto overlap = mp_intersection(result[axis], propagated);
+    if (overlap.has_value()) {
+      result[axis] = *overlap;
+    }
+  }
+  return result;
+}
+
+MpVector mp_correlated_history_position(
+    const std::vector<MpCompiledSegment>& history,
+    std::size_t segment_index,
+    const MpInterval& time) {
+  MpVector result = mp_position(history[segment_index], time);
+  const auto apply_join = [&](std::size_t left_index) {
+    const auto shared = mp_shared_join_position(
+        history[left_index], history[left_index + 1U]);
+    if (!shared.has_value()) {
+      return;
+    }
+    const bool current_is_left = segment_index == left_index;
+    const auto& segment = history[segment_index];
+    const MpInterval& join_time = current_is_left
+        ? segment.end_time : segment.start_time;
+    const MpVector correlated = mp_position_from_shared_join(
+        segment, *shared, join_time, time);
+    for (std::size_t axis = 0U; axis < 3U; ++axis) {
+      const auto overlap = mp_intersection(result[axis], correlated[axis]);
+      if (overlap.has_value()) {
+        result[axis] = *overlap;
+      }
+    }
+  };
+  if (segment_index > 0U) {
+    apply_join(segment_index - 1U);
+  }
+  if (segment_index + 1U < history.size()) {
+    apply_join(segment_index);
+  }
+  return result;
+}
+
+MpGeometry mp_geometry_with_source_position(
+    const MpReceiverState& receiver,
+    const MpCompiledSegment& source_segment,
+    const MpVector& source_position,
+    const MpInterval& reception,
+    const MpInterval& emission,
+    const MpInterval& field_speed) {
+  const auto source_velocity = mp_velocity(source_segment, emission);
+  const auto displacement = mp_subtract_vector(receiver.position, source_position);
   const MpInterval separation = mp_norm(displacement);
   const MpInterval residual = separation - field_speed * (reception - emission);
   if (separation.contains_zero()) {
@@ -2075,6 +2214,11 @@ std::optional<MpRoot> surround_mp_segment_join_root(
       boundary_lower.compare(search_upper) >= 0) {
     return std::nullopt;
   }
+  const auto shared_position =
+      mp_shared_join_position(left_segment, right_segment);
+  if (!shared_position.has_value()) {
+    return std::nullopt;
+  }
   if (boundary_lower.compare(boundary_upper) == 0) {
     const MpInterval boundary = MpInterval::point(boundary_lower);
     const auto left_residual = mp_geometry(
@@ -2104,25 +2248,67 @@ std::optional<MpRoot> surround_mp_segment_join_root(
       continue;
     }
 
-    const int lower_sign =
-        mp_geometry(receiver, left_segment, reception, MpInterval::point(lower),
-                    field_speed)
-            .residual.strict_sign();
-    const int upper_sign =
-        mp_geometry(receiver, right_segment, reception,
-                    MpInterval::point(upper), field_speed)
-            .residual.strict_sign();
+    const MpInterval left_interval =
+        MpInterval::bounds(lower, boundary_upper);
+    const MpInterval right_interval =
+        MpInterval::bounds(boundary_lower, upper);
+    const auto left_geometry = mp_geometry_with_source_position(
+        receiver, left_segment,
+        mp_position_from_shared_join(
+            left_segment, *shared_position, left_segment.end_time,
+            left_interval),
+        reception, left_interval, field_speed);
+    const auto right_geometry = mp_geometry_with_source_position(
+        receiver, right_segment,
+        mp_position_from_shared_join(
+            right_segment, *shared_position, right_segment.start_time,
+            right_interval),
+        reception, right_interval, field_speed);
+    if (left_geometry.source_normal.has_value() &&
+        right_geometry.source_normal.has_value() &&
+        left_geometry.receiver_normal.has_value() &&
+        right_geometry.receiver_normal.has_value()) {
+      const MpInterval source_normal = mp_hull(
+          *left_geometry.source_normal, *right_geometry.source_normal);
+      const MpInterval receiver_normal = mp_hull(
+          *left_geometry.receiver_normal, *right_geometry.receiver_normal);
+      const MpInterval boundary = MpInterval::point(boundary_lower);
+      const auto boundary_geometry = mp_geometry_with_source_position(
+          receiver, left_segment, *shared_position,
+          reception, boundary, field_speed);
+      if (!source_normal.contains_zero() &&
+          boundary_geometry.residual.contains_zero()) {
+        const auto enclosed = enclose_mp_monotone_root(
+            boundary_lower, boundary_geometry.residual, source_normal,
+            lower, upper, tolerance);
+        if (enclosed.has_value()) {
+          return MpRoot{
+              enclosed->first, enclosed->second, source_normal,
+              receiver_normal,
+              {left_segment_index, right_segment_index}};
+        }
+      }
+    }
+
+    const MpInterval lower_point = MpInterval::point(lower);
+    const MpInterval upper_point = MpInterval::point(upper);
+    const int lower_sign = mp_geometry_with_source_position(
+        receiver, left_segment,
+        mp_position_from_shared_join(
+            left_segment, *shared_position, left_segment.end_time,
+            lower_point),
+        reception, lower_point, field_speed).residual.strict_sign();
+    const int upper_sign = mp_geometry_with_source_position(
+        receiver, right_segment,
+        mp_position_from_shared_join(
+            right_segment, *shared_position, right_segment.start_time,
+            upper_point),
+        reception, upper_point, field_speed).residual.strict_sign();
     if (lower_sign == 0 || upper_sign == 0 || lower_sign == upper_sign) {
       mpfr_mul_2ui(radius.raw(), radius.raw(), 1, MPFR_RNDU);
       continue;
     }
 
-    const auto left_geometry = mp_geometry(
-        receiver, left_segment, reception,
-        MpInterval::bounds(lower, boundary_upper), field_speed);
-    const auto right_geometry = mp_geometry(
-        receiver, right_segment, reception,
-        MpInterval::bounds(boundary_lower, upper), field_speed);
     if (!left_geometry.source_normal.has_value() ||
         !right_geometry.source_normal.has_value() ||
         !left_geometry.receiver_normal.has_value() ||
@@ -2286,8 +2472,11 @@ MpAttempt run_mpfr_attempt(const ExactPairRequest& request, unsigned bits_value)
   }
   const auto& receiver_segment = mp_segment_at(
       *receiver_history, mp_midpoint(reception.lower(), reception.upper()));
+  const std::size_t receiver_segment_index = static_cast<std::size_t>(
+      &receiver_segment - receiver_history->data());
   const MpReceiverState receiver_state{
-      mp_position(receiver_segment, reception),
+      mp_correlated_history_position(
+          *receiver_history, receiver_segment_index, reception),
       mp_velocity(receiver_segment, reception),
       same_retained_history,
       same_retained_history ? receiver_history : nullptr};

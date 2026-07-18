@@ -693,6 +693,73 @@ test("Borg EOM fail-closed responses preserve native diagnostics", async () => {
   });
 });
 
+test("Borg displays an atomic certified prefix while rejecting the halted candidate", async () => {
+  const runner = createBorgEomShadowRunner(BORG_DATASET_MANIFEST_V1, {
+    eomClient: {
+      async evolveRetainedHistories(request) {
+        const response = createFakeEomResponse(
+          request, "failed", { endTime: "10.1" },
+        );
+        return {
+          ...response,
+          status: "halted",
+          haltCode: "root_completeness_not_certified",
+          allStepsAtomic: true,
+          acceptedEndTime: "10.1",
+        };
+      },
+    },
+    initialFrameRows: trajectoryFrames,
+    startTime: 10,
+    targetDuration: 10.2,
+    chunkDuration: 0.2,
+    sampleInterval: 0.05,
+  });
+  const chunk = await runner.computeNextChunk();
+  assert.equal(chunk.statusCode, "halted-prefix");
+  assert.equal(chunk.endTime, 10.1);
+  assert.equal(chunk.terminalHalt.failedCandidateRejected, true);
+  assert.equal(chunk.terminalHalt.code, "root_completeness_not_certified");
+  assert.equal(chunk.promotionEligible, false);
+  assert.equal(chunk.frames.at(-1).time, 10.1);
+  assert.equal(runner.canComputeNextChunk(), false);
+});
+
+test("Borg refuses to display a halted response without a nonempty atomic prefix", async () => {
+  const makeRunner = ({ acceptedEndTime, allStepsAtomic }) =>
+    createBorgEomShadowRunner(BORG_DATASET_MANIFEST_V1, {
+      eomClient: {
+        async evolveRetainedHistories(request) {
+          const response = createFakeEomResponse(
+            request, "failed", { endTime: acceptedEndTime },
+          );
+          return {
+            ...response,
+            status: "halted",
+            haltCode: "root_completeness_not_certified",
+            allStepsAtomic,
+            acceptedEndTime,
+          };
+        },
+      },
+      initialFrameRows: trajectoryFrames,
+      startTime: 10,
+      targetDuration: 10.2,
+      chunkDuration: 0.2,
+    });
+
+  await assert.rejects(
+    makeRunner({ acceptedEndTime: "10.1", allStepsAtomic: false })
+      .computeNextChunk(),
+    /failed closed: root_completeness_not_certified/u,
+  );
+  await assert.rejects(
+    makeRunner({ acceptedEndTime: "10", allStepsAtomic: true })
+      .computeNextChunk(),
+    /failed closed: root_completeness_not_certified/u,
+  );
+});
+
 test("Borg native process protocol carries the same continuous-history request", async () => {
   const requests = [];
   const runner = createBorgEomShadowRunner(BORG_DATASET_MANIFEST_V1, {
@@ -710,7 +777,7 @@ test("Borg native process protocol carries the same continuous-history request",
   await runner.computeNextChunk();
   const protocol = encodeNativeRequest(requests[0]);
   assert.equal(protocol.split("\n")[0], BORG_NATIVE_EOM_PROTOCOL_MAGIC);
-  assert.match(protocol, /^EOM_BORG_NATIVE_V7\nRUN\t/u);
+  assert.match(protocol, /^EOM_BORG_NATIVE_V8\nRUN\t/u);
   const runFields = protocol.split("\n")[1].split("\t");
   assert.equal(runFields.length, 54);
   assert.equal(runFields[4], "0.05");
@@ -804,7 +871,7 @@ test("Borg native client rejects protocol skew with a restart instruction", () =
     assert.throws(
       () => createBorgNativeEomProcessClient({ binaryPath: fixtureBinary }),
       (error) => {
-        assert.match(error.message, /dev server encoder=EOM_BORG_NATIVE_V7/u);
+        assert.match(error.message, /dev server encoder=EOM_BORG_NATIVE_V8/u);
         assert.match(error.message, /binary parser=EOM_BORG_NATIVE_V999/u);
         assert.match(
           error.message,
@@ -823,7 +890,7 @@ test("Borg native client clears its history prefix after a halted request", asyn
   const fixtureBinary = join(fixtureDirectory, "cache-reset-eom-binary.mjs");
   const fixtureSource = `#!/usr/bin/env node
 if (process.argv[2] === "print-protocol-version") {
-  process.stdout.write("EOM_BORG_NATIVE_V7\\n");
+  process.stdout.write("EOM_BORG_NATIVE_V8\\n");
   process.exit(0);
 }
 let buffer = "";
@@ -846,7 +913,7 @@ process.stdin.on("data", (chunk) => {
       const segments = halted ? [] : [{
         startTime: run[2], endTime: run[3],
         coefficients: [["0","0","0","0"],["0","0","0","0"],["0","0","0","0"]],
-        positionError: "0", velocityError: "0",
+        positionErrors: ["0", "0", "0"], velocityErrors: ["0", "0", "0"],
       }];
       return { pathId, stateFlags: 0, segments };
     });
@@ -954,10 +1021,12 @@ test("disposing the Borg browser EOM client aborts an active native request", as
   await assert.rejects(pending, /cancelled/u);
 });
 
-function createFakeEomResponse(request, evidenceStatus) {
-  const endTime = request.absoluteTimeInterval.end;
+function createFakeEomResponse(request, evidenceStatus, options = {}) {
+  const endTime = options.endTime ?? request.absoluteTimeInterval.end;
   return {
     status: "completed",
+    acceptedEndTime: endTime,
+    allStepsAtomic: true,
     evidenceStatus,
     claimGrade: evidenceStatus,
     coreScale: request.modelControls.coreScale,
@@ -989,8 +1058,8 @@ function createFakeEomResponse(request, evidenceStatus) {
               "0",
               "0",
             ]),
-            positionError: String(duration * 1e-14),
-            velocityError: String(duration * 1e-14),
+            positionErrors: Array(3).fill(String(duration * 1e-14)),
+            velocityErrors: Array(3).fill(String(duration * 1e-14)),
             evidenceStatus,
             claimGrade: evidenceStatus,
           },
