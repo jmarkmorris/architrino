@@ -57,6 +57,10 @@
         "scenePath": "content/scenes/archie/equation_mapping.json"
       },
       {
+        "nodeId": "greek_letter_match",
+        "scenePath": "content/scenes/archie/greek_letter_match.json"
+      },
+      {
         "nodeId": "animator",
         "scenePath": "content/scenes/archie/animator.json"
       },
@@ -140,6 +144,15 @@
       "radius": 2.2,
       "color": "#146c74",
       "labelTitle": "Equation Mapping",
+      "labelBadge": ""
+    },
+    {
+      "id": "greek_letter_match",
+      "title": "It's Greek to Me!",
+      "radius": 2.2,
+      "color": "#0f3a8a",
+      "labelTitle": "It's Greek to Me!",
+      "labelSubtitle": "Alpha to Omega",
       "labelBadge": ""
     },
     {
