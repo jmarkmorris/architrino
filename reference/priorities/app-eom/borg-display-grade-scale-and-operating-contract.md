@@ -137,6 +137,34 @@ The transform never changes retained history or EOM input.
 Claim grade: `derived-design`. Falsifier: a frame before the transform start
 uses the replacement offset.
 
+## Live playback pacing
+
+The live producer is demand-driven. Playback maintains a hysteretic lead of
+one to two wall seconds at the active display rate, with at least one to two
+complete chunks retained. It requests another chunk only after the lead falls
+through the low watermark and stops refilling at the high watermark. Paused
+playback retains its existing lead and does not compute unbounded future
+display frames.
+
+Each completed chunk supplies a measured production rate in simulation seconds
+per wall second. The active display rate is the lesser of the selected rate,
+`1.0` real time, and 80% of the smoothed production rate. A slower measurement
+is adopted promptly; recovery is gradual. The timeline reports the active rate
+on every displayed frame set, so `0.20× realtime` means one simulation second
+is displayed over five wall seconds.
+
+Chunk ingestion appends the new frame rows and frame sets, replacing only the
+shared boundary frame. A complete frame-set rebuild is reserved for initial
+replacement and retention compaction. Browser delay debt is limited to two
+visual frame sets and then discarded; playback does not jump across a long
+buffer to catch up with time spent processing a chunk.
+
+Claim grade: `derived-design`. Falsifier: paused playback continues requesting
+chunks, live lead grows beyond its high watermark by more than one in-flight
+chunk, the displayed rate exceeds `1.0×`, ordinary chunk ingestion rebuilds all
+retained frame sets, or a browser stall advances more than two visual frame
+sets at once.
+
 ## Certified pair-selection cascade
 
 Certified snapshots apply pair selection in this order: certified traversal

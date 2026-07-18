@@ -8,6 +8,10 @@ import {
   validateBorgManifest,
 } from "../src/apps/borg/BorgAppManifest.js";
 import {
+  appendBorgFrameRows,
+  appendBorgFrameRowsInPlace,
+  appendBorgFrameSets,
+  appendBorgFrameSetsInPlace,
   createBorgFrameSetsFromRows,
   mergeBorgFrameRows,
 } from "../src/apps/borg/BorgFrameRows.js";
@@ -217,6 +221,25 @@ test("Borg record replay chunks carry recorded frames with record provenance", a
 
   const mergedFrames = mergeBorgFrameRows(firstChunk.frames, secondChunk.frames);
   const frameSets = createBorgFrameSetsFromRows(mergedFrames);
+  const appendedFrames = appendBorgFrameRows(firstChunk.frames, secondChunk.frames);
+  const appendedFrameSets = appendBorgFrameSets(
+    createBorgFrameSetsFromRows(firstChunk.frames),
+    secondChunk.frames,
+  );
+  assert.deepEqual(appendedFrames, mergedFrames);
+  assert.deepEqual(appendedFrameSets, frameSets);
+  const appendedFramesInPlace = [...firstChunk.frames];
+  const appendedFrameSetsInPlace = createBorgFrameSetsFromRows(firstChunk.frames);
+  assert.equal(
+    appendBorgFrameRowsInPlace(appendedFramesInPlace, secondChunk.frames),
+    appendedFramesInPlace,
+  );
+  assert.equal(
+    appendBorgFrameSetsInPlace(appendedFrameSetsInPlace, secondChunk.frames),
+    appendedFrameSetsInPlace,
+  );
+  assert.deepEqual(appendedFramesInPlace, mergedFrames);
+  assert.deepEqual(appendedFrameSetsInPlace, frameSets);
   assert.deepEqual(frameSets.map((frameSet) => frameSet.frameIndex), [0, 1, 2, 3]);
   assert.equal(frameSets.at(-1).frames.length, 2);
   assert.equal(runner.canComputeNextChunk(), false);
@@ -384,11 +407,16 @@ test("Borg path-history renderer uses native row segments, not visual smoothing 
   assert.doesNotMatch(runtimeSource, /BorgDynamicNativeRunner/);
   assert.doesNotMatch(runtimeSource, /loadBorgFixtureTrajectoryFrames/);
   assert.doesNotMatch(runtimeSource, /restoreFixtureRun/);
-  assert.match(runtimeSource, /mergeBorgFrameRows/);
+  assert.match(runtimeSource, /appendBorgFrameRowsInPlace/);
+  assert.match(runtimeSource, /appendBorgFrameSetsInPlace/);
   assert.match(
     runtimeSource,
-    /currentFrames = replaceCurrentFrames[\s\S]*applyLiveRunRetentionIfNeeded\(\);[\s\S]*frameSets = createBorgFrameSetsFromRows\(currentFrames\);/,
+    /appendBorgFrameRowsInPlace\(currentFrames, chunk\.frames\);[\s\S]*appendBorgFrameSetsInPlace\(frameSets, chunk\.frames\);/,
   );
+  assert.doesNotMatch(runtimeSource, /setTimeout\(\s*\(\) => ensureDynamicFramesAhead/);
+  assert.match(runtimeSource, /getBorgPlaybackRefillDecision/);
+  assert.match(runtimeSource, /Playback rate/);
+  assert.match(runtimeSource, /× realtime/);
   assert.match(runtimeSource, /createBorgAcceptedInertialSeedHistory/);
   assert.match(runtimeSource, /appendedFrameRows = Array\.isArray\(chunk\.frames\)/);
   assert.doesNotMatch(htmlSource, /M9\.8 6\.2a6\.8/);

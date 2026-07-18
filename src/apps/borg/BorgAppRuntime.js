@@ -6,8 +6,9 @@ import {
   validateBorgManifest,
 } from "./BorgAppManifest.js";
 import {
+  appendBorgFrameRowsInPlace,
+  appendBorgFrameSetsInPlace,
   createBorgFrameSetsFromRows,
-  mergeBorgFrameRows,
 } from "./BorgFrameRows.js";
 import {
   BORG_EOM_RECORD_REPLAY_RUN_SOURCE,
@@ -25,11 +26,21 @@ import {
 } from "./BorgMeasuredRunPresets.js";
 import {
   BORG_LIVE_RUN_RETENTION_POLICY_V1,
+  createBorgLiveRunRetentionAppendSnapshot,
   createBorgLiveRunRetentionSnapshot,
   applyBorgLiveRunRetention,
 } from "./BorgLiveRunRetentionPolicy.js";
 import { BORG_RELEASE_BUDGET_MANIFEST_V1 } from "./BorgReleaseBudgetManifest.js";
 import { createBorgPathTrails } from "./BorgPathTrails.js";
+import {
+  BORG_MAX_VISUAL_CATCH_UP_FRAME_SETS,
+  formatBorgRealtimeRate,
+  getBorgAdaptivePlaybackRate,
+  getBorgPlaybackLeadWindow,
+  getBorgPlaybackMsPerFrameSet,
+  getBorgPlaybackRefillDecision,
+  updateBorgMeasuredProductionRate,
+} from "./BorgLivePlaybackController.js";
 import {
   applyBorgDisplayReplacementTransform,
   borgNdcPositionIsOutsideScreen,
@@ -82,9 +93,9 @@ const DEFAULT_RUN_CONTROL_PRESET_ID = "live-forever";
 const FINITE_RUN_CONTROL_PRESET_ID = "live-60s";
 const DEFAULT_DISTRIBUTION_LABEL = "manifest initial-condition policy";
 const PLAYBACK_SPEED_PRESETS = Object.freeze([
-  Object.freeze({ id: "detail", label: "Detail", msPerNativeStep: 120 }),
-  Object.freeze({ id: "normal", label: "Normal", msPerNativeStep: 1000 / 60 }),
-  Object.freeze({ id: "fast", label: "Fast", msPerNativeStep: 1000 / 150 }),
+  Object.freeze({ id: "detail", label: "Detail", maximumRealtimeRate: 1 / 12 }),
+  Object.freeze({ id: "normal", label: "Normal", maximumRealtimeRate: 0.6 }),
+  Object.freeze({ id: "fast", label: "Realtime", maximumRealtimeRate: 1 }),
 ]);
 const RUN_CONTROL_PRESETS = Object.freeze([
   Object.freeze({
@@ -346,6 +357,11 @@ export function mountBorgApp(options = {}) {
     playbackToSetIndex: 0,
     playbackSegmentStartedAt: null,
     playbackSpeedPresetId: DEFAULT_PLAYBACK_SPEED_PRESET_ID,
+    playbackMeasuredProductionRate: null,
+    playbackAdaptiveRate: PLAYBACK_SPEED_PRESETS.find(
+      (preset) => preset.id === DEFAULT_PLAYBACK_SPEED_PRESET_ID,
+    ).maximumRealtimeRate,
+    playbackBufferRefilling: true,
     runControlPresetId: options.initialRunControlPresetId ?? DEFAULT_RUN_CONTROL_PRESET_ID,
     sourceMode: initialEomSeed ? "accepted-eom-seed-history" : "eom-idle",
     dynamicRunnerStatus: initialEomSeed
@@ -758,6 +774,10 @@ export function mountBorgApp(options = {}) {
       ["Run mode", formatRunDurationLabel(activePreset)],
       ["Run grade", state.activeRunGrade],
       ["Next run grade", state.selectedRunGrade],
+      ["Playback rate", `${formatBorgRealtimeRate(state.playbackAdaptiveRate)}× realtime`],
+      ["Measured production rate", state.playbackMeasuredProductionRate == null
+        ? "not-measured"
+        : `${formatBorgRealtimeRate(state.playbackMeasuredProductionRate)}× realtime`],
       ["Uncertified encounters", state.eomCausticWarningCount],
       ["First uncertified encounter", state.eomFirstCausticWarningTime ?? "none"],
       ["Display replacements", state.displayReplacementCount],
@@ -1153,11 +1173,13 @@ export function mountBorgApp(options = {}) {
 
   function formatActiveTimelineLabel(time, frameIndex) {
     const label = formatTimelineLabel(time, frameIndex);
+    const rate = `${formatBorgRealtimeRate(state.playbackAdaptiveRate)}× realtime`;
     if (!isForeverRunPreset(getRunControlPreset(state.runControlPresetId))) {
-      return label;
+      return `${label} | ${rate}`;
     }
     const bufferedThrough = frameSets.at(-1)?.frameIndex ?? frameIndex;
-    return `${label} | buffer ${bufferedThrough}`;
+    const leadFrameSets = Math.max(0, bufferedThrough - frameIndex);
+    return `${label} | ${rate} | lead ${leadFrameSets}`;
   }
 
   function bindEvents() {
@@ -1180,8 +1202,10 @@ export function mountBorgApp(options = {}) {
     dom.eomRestartButton.addEventListener("click", restartEomRun);
     dom.playbackSpeed.addEventListener("change", () => {
       state.playbackSpeedPresetId = playbackSpeedPresetById(dom.playbackSpeed.value).id;
+      updateAdaptivePlaybackRate();
       if (state.playing) {
         state.playbackSegmentStartedAt = getPlaybackNow();
+        maybeQueueDynamicFramesAhead();
       }
     });
     dom.resetButton.addEventListener("click", resetView);
@@ -1450,9 +1474,10 @@ export function mountBorgApp(options = {}) {
       updateFrame(frameSets[0].frameIndex);
     }
     state.playing = true;
+    state.playbackBufferRefilling = true;
     setPlayButtonPresentation(true);
     updateTimelineBounds();
-    ensureDynamicFramesAhead();
+    maybeQueueDynamicFramesAhead();
     startPlaybackSegment(currentSetIndex);
   }
 
@@ -1572,7 +1597,10 @@ export function mountBorgApp(options = {}) {
         stopPlayback();
         return;
       }
-      const remainder = rawProgress - advancedStepCount;
+      // Browser work can delay animation frames. Drop delay debt beyond one
+      // interpolation interval so a completed chunk never makes the visible
+      // track jump forward to catch up with wall time.
+      const remainder = clamp(rawProgress - advancedStepCount, 0, 1);
       state.playbackFromSetIndex = nextFromSetIndex;
       state.playbackToSetIndex = nextFromSetIndex + 1;
       state.playbackSegmentStartedAt = now - remainder * msPerNativeStep;
@@ -1797,7 +1825,20 @@ export function mountBorgApp(options = {}) {
   }
 
   function getPlaybackMsPerNativeStep() {
-    return playbackSpeedPresetById(state.playbackSpeedPresetId).msPerNativeStep;
+    return getBorgPlaybackMsPerFrameSet({
+      playbackRate: state.playbackAdaptiveRate,
+      sampleInterval: options.eomShadowRunner?.sampleInterval ??
+        manifest.simulationEnvelope.sampleInterval,
+    });
+  }
+
+  function updateAdaptivePlaybackRate() {
+    state.playbackAdaptiveRate = getBorgAdaptivePlaybackRate({
+      requestedRate: playbackSpeedPresetById(
+        state.playbackSpeedPresetId,
+      ).maximumRealtimeRate,
+      measuredProductionRate: state.playbackMeasuredProductionRate,
+    });
   }
 
   function getPathKeys() {
@@ -1972,18 +2013,24 @@ export function mountBorgApp(options = {}) {
           ? chunk.source
           : "completed-live-native-run";
         state.dynamicRunnerMessage = `chunk ${chunk.chunkIndex} ready`;
-        currentFrames = replaceCurrentFrames
-          ? [...chunk.frames]
-          : mergeBorgFrameRows(currentFrames, chunk.frames);
+        if (replaceCurrentFrames) {
+          currentFrames = [...chunk.frames];
+          frameSets = createBorgFrameSetsFromRows(currentFrames);
+        } else {
+          appendBorgFrameRowsInPlace(currentFrames, chunk.frames);
+          appendBorgFrameSetsInPlace(frameSets, chunk.frames);
+        }
         if (replaceCurrentFrames) {
           polarityEscapeLedger.reset();
         }
         appendPolarityEscapeRows(chunk.frames);
         state.polarityDiagnosticFrameIndex = null;
         const appendedFrameRows = Array.isArray(chunk.frames) ? chunk.frames.length : 0;
-        applyLiveRunRetentionIfNeeded();
-        frameSets = createBorgFrameSetsFromRows(currentFrames);
-        if (replaceCurrentFrames || state.liveRunRetention?.compactedThisPass) {
+        const compactedFrameSets = applyLiveRunRetentionIfNeeded();
+        if (compactedFrameSets) {
+          frameSets = createBorgFrameSetsFromRows(currentFrames);
+        }
+        if (replaceCurrentFrames || compactedFrameSets) {
           reanchorPlaybackAfterFrameSetRebuild();
         }
         state.liveRunBudget = createLiveRunBudgetMeasurement({
@@ -1997,6 +2044,12 @@ export function mountBorgApp(options = {}) {
           presetId: state.runControlPresetId,
           memoryBudgetBytes: state.dynamicRunner?.config?.memoryBudgetBytes ?? null,
         });
+        state.playbackMeasuredProductionRate = updateBorgMeasuredProductionRate({
+          previousRate: state.playbackMeasuredProductionRate,
+          chunkDuration: state.liveRunBudget.chunkDuration,
+          chunkWallTimeMs: state.liveRunBudget.lastChunkWallTimeMs,
+        });
+        updateAdaptivePlaybackRate();
         state.measuredRunPresetCalibration = updateMeasuredRunPresetCalibration(
           state.measuredRunPresetCalibration,
           state.liveRunBudget,
@@ -2071,11 +2124,8 @@ export function mountBorgApp(options = {}) {
         if (generation === state.dynamicRunGeneration) {
           state.dynamicChunkPromise = null;
           updateEomControlPresentation();
-          if (options.eomShadowRunner && state.dynamicRunner?.canComputeNextChunk()) {
-            windowLike.setTimeout(
-              () => ensureDynamicFramesAhead({ generation }),
-              0,
-            );
+          if (state.playing && state.dynamicRunner?.canComputeNextChunk()) {
+            maybeQueueDynamicFramesAhead();
           }
         }
       });
@@ -2118,7 +2168,18 @@ export function mountBorgApp(options = {}) {
       return;
     }
     const remainingFrameSets = frameSets.length - 1 - state.playbackToSetIndex;
-    if (remainingFrameSets <= 12) {
+    const leadWindow = getBorgPlaybackLeadWindow({
+      playbackRate: state.playbackAdaptiveRate,
+      sampleInterval: state.dynamicRunner.config.sampleInterval,
+      chunkDuration: state.dynamicRunner.chunkDuration,
+    });
+    const decision = getBorgPlaybackRefillDecision({
+      remainingFrameSetCount: remainingFrameSets,
+      wasRefilling: state.playbackBufferRefilling,
+      ...leadWindow,
+    });
+    state.playbackBufferRefilling = decision.refilling;
+    if (decision.shouldRequestChunk) {
       ensureDynamicFramesAhead();
     }
   }
@@ -2136,8 +2197,23 @@ export function mountBorgApp(options = {}) {
   function applyLiveRunRetentionIfNeeded() {
     if (!isForeverRunPreset(getRunControlPreset(state.runControlPresetId))) {
       state.compactedPathHistory = Object.freeze({});
-      state.liveRunRetention = createBorgLiveRunRetentionSnapshot({ frameRows: currentFrames });
-      return;
+      state.liveRunRetention = createBorgLiveRunRetentionAppendSnapshot({
+        previousSnapshot: state.liveRunRetention,
+        retainedFrameRowCount: currentFrames.length,
+        retainedFrameSetCount: frameSets.length,
+      });
+      return false;
+    }
+    if (
+      frameSets.length <=
+      BORG_LIVE_RUN_RETENTION_POLICY_V1.compactionTriggerFrameSetLimit
+    ) {
+      state.liveRunRetention = createBorgLiveRunRetentionAppendSnapshot({
+        previousSnapshot: state.liveRunRetention,
+        retainedFrameRowCount: currentFrames.length,
+        retainedFrameSetCount: frameSets.length,
+      });
+      return false;
     }
     const result = applyBorgLiveRunRetention({
       frameRows: currentFrames,
@@ -2147,6 +2223,7 @@ export function mountBorgApp(options = {}) {
     currentFrames = [...result.frameRows];
     state.compactedPathHistory = result.compactedPathHistory;
     state.liveRunRetention = result.summary;
+    return true;
   }
 
   function resetLiveRunRetentionState() {
@@ -2333,6 +2410,9 @@ export function mountBorgApp(options = {}) {
         ? "eom-record-replay"
         : "eom-idle";
     state.dynamicChunksComputed = 0;
+    state.playbackMeasuredProductionRate = null;
+    updateAdaptivePlaybackRate();
+    state.playbackBufferRefilling = true;
     state.activeRunGrade = state.selectedRunGrade;
     resetPolarityDiagnosticsHistory();
     rebuildBoundaryShell();
@@ -2922,5 +3002,9 @@ export function getBorgBufferedPlaybackAdvance({
     0,
     Number(frameSetCount) - 1 - Number(fromSetIndex),
   );
-  return Math.min(requestedAdvance, availableAdvance);
+  return Math.min(
+    requestedAdvance,
+    availableAdvance,
+    BORG_MAX_VISUAL_CATCH_UP_FRAME_SETS,
+  );
 }

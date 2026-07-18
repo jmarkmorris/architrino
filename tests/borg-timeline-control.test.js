@@ -7,7 +7,7 @@ import {
   getBorgTimelineRangePresentation,
 } from "../src/apps/borg/BorgAppRuntime.js";
 
-test("Borg playback does not skip a newly received chunk after waiting", () => {
+test("Borg playback drops long stall debt instead of jumping through the buffer", () => {
   assert.equal(getBorgBufferedPlaybackAdvance({
     rawProgress: 400,
     fromSetIndex: 30,
@@ -17,7 +17,7 @@ test("Borg playback does not skip a newly received chunk after waiting", () => {
     rawProgress: 400,
     fromSetIndex: 30,
     frameSetCount: 61,
-  }), 30);
+  }), 2);
 });
 
 test("Borg Forever playback pins the live-follow indicator when the buffer extends", () => {

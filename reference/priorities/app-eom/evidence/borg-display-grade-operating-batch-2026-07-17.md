@@ -91,6 +91,29 @@ compares unequal.
 Claim grade: `measured`. Falsifier: rerunning a named command returns nonzero
 or the test count changes without an explained suite change.
 
+## Live playback pacing control
+
+The local development server at `127.0.0.1:5173` was loaded with the randomized
+64-path defaults. While paused, startup computed one `0.3` chunk and then held
+at 30 buffered keyframes for the 1.8-second observation. After playback began,
+the active rate remained `0.60× realtime`; observed lead examples were 120
+keyframes at active keyframe 210 and buffered-through keyframe 330. The producer
+therefore stopped at the declared two-wall-second high watermark instead of
+running hundreds of keyframes ahead while paused.
+
+A 512-path display control selected 256 electrinos and 256 positrinos. Playback
+automatically reported `0.20× realtime` and advanced continuously through the
+available 120 keyframes. The fifth request failed closed before publication as
+`memory_budget_exhausted`; four chunks through solver time `1.2` remained the
+last accepted output. This validates slow-motion pacing but also confirms that
+the separate 64 MiB retained-history budget, rather than playback throughput,
+is the immediate long-run ceiling at 512 paths.
+
+Claim grade: `measured`. Falsifier: a fresh browser run computes additional
+chunks while paused, exceeds the high-water lead by more than one in-flight
+chunk, displays a rate above `1.0×`, fails to reduce the 512-path rate, or
+publishes the memory-rejected fifth chunk.
+
 ## Reproduction commands
 
 ```text
