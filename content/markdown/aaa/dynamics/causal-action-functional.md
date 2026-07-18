@@ -33,9 +33,9 @@ $$
 
 Plain language: a retained hit must say both how the source laid down the wake and how the receiver crossed that same wake. The ratio above is the receiver-normal strength attached to that one retained root.
 
-A branch record that contains only $D_s$ is incomplete for current force/action
+A branch record that contains only $D_s$ is incomplete for current acceleration/action
 use. $D_s$ remains the source-normal transversality denominator for root
-existence, caustic routing, and inactive-gap diagnostics. Force, action, power,
+existence, caustic routing, and inactive-gap diagnostics. Acceleration, action, power,
 wake-history charge, mass-response, and conservation rows require $D_T$ on the
 same retained record.
 
@@ -76,10 +76,10 @@ direction. Its use is limited:
 1. compare candidate branch classes,
 2. define transition-cost and barrier targets,
 3. supply scalar rows for later mass or medium-response tests,
-4. hand candidates back to the Master EOM for vector force and conservation
+4. hand candidates back to the Master EOM for vector acceleration and conservation
 checks.
 
-The exact vector force/action consumer must use
+The exact vector acceleration/action consumer must use
 $$
 \frac{W_{ij}^{\mathrm{rec}}}{r_{ij}^2}
 \hat{\mathbf r}_{ij}
@@ -102,7 +102,7 @@ $T_{\mathrm{em}}$ reaches receiver $i$ exactly at absolute time $T$.
 
 On a simple retained root, $D_s\ne0$ supplies the local inverse-function
 condition. A retained record is the branch-local data packet that binds the
-root, source identity, receiver identity, regulator state, and force/action
+root, source identity, receiver identity, regulator state, and acceleration/action
 rows to one history chart. A retained box is an interval or chart neighborhood
 that encloses those rows together; outward-rounded intervals have endpoints
 rounded away from the computed value so the true row remains enclosed. The
@@ -149,7 +149,7 @@ the canonical framed-topology rows such as
 $Lk=\operatorname{Wr}+\operatorname{Tw}$ in
 [Constructing the Absolute Frame](../foundations/constructing-the-absolute-frame.md#parity-convention-and-dynamical-chirality)
 and [Architrino](../foundations/architrino.md#provenance-and-persistence). It
-does not supply force strength. Any use of $Wr_c$ in spin, chirality,
+does not supply acceleration strength. Any use of $Wr_c$ in spin, chirality,
 confinement, or horizon-interface arguments must also state the branch record
 on which $D_s$, $D_T$, and $W^{\mathrm{rec}}$ are available.
 

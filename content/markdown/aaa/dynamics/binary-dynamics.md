@@ -28,7 +28,7 @@ $$
 $$
 The Electrino's emissions govern the Positrino's symmetric response through the corresponding partner equation.
 
-In the strictly sub-field-speed regime (no self-interaction, $\|\mathbf V\|\le c_f$), a stable, circular orbit is impossible. Because the attractive force on each architrino points to the *past* position of its partner, it is not a true central force. The principal circular branch proves a sharper direction diagnostic: the partner line of action has a forward tangential projection, so the partner-only near-circular ledger is anti-damped rather than a contraction proof. This diagnostic is not a receiver-normal force-balance certificate. A logarithmic inward spiral can still be used as a separate non-circular ansatz or capture target, but its radial tightening must be certified by solving that branch chart with same-record receiver-normal branch strength; it is not implied by the principal circular sign.
+In the strictly sub-field-speed regime (no self-interaction, $\|\mathbf V\|\le c_f$), a stable, circular orbit is impossible. Because the attractive acceleration on each architrino points to the *past* position of its partner, it is not a true central acceleration. The principal circular branch proves a sharper direction diagnostic: the partner line of action has a forward tangential projection, so the partner-only near-circular ledger is anti-damped rather than a contraction proof. This diagnostic is not a receiver-normal force-balance certificate. A logarithmic inward spiral can still be used as a separate non-circular ansatz or capture target, but its radial tightening must be certified by solving that branch chart with same-record receiver-normal branch strength; it is not implied by the principal circular sign.
 
 The receiver-normal reduction makes the direction test exact. The signed pitch $p=-\dot r/(r\omega)$ is positive while the binary spirals inward and negative while it spirals outward. The [closed spiral-direction flow](master-equation.md#closed-spiral-direction-flow) computes how that sign changes from the radial and azimuthal wake contributions.
 
@@ -72,14 +72,14 @@ T_p
 \frac{\sin(\delta_p/2)}{\cos^2(\delta_p/2)}
 \quad (0<\delta_p<\pi)
 $$
-where $\delta_p$ is the partner delay angle. This is a canonical force row only for the non-translating symmetric circular benchmark; deformed, translating, or non-circular histories must recompute the same-record $D_s$, $D_T$, and $W^{\mathrm{rec}}$ before any force-balance conclusion is promoted.
+where $\delta_p$ is the partner delay angle. This is a canonical acceleration row only for the non-translating symmetric circular benchmark; deformed, translating, or non-circular histories must recompute the same-record $D_s$, $D_T$, and $W^{\mathrm{rec}}$ before any force-balance conclusion is promoted.
 
--  The circular geometry gives a positive tangential force row for the partner-only ledger.
+-  The circular geometry gives a positive tangential acceleration row for the partner-only ledger.
 -  The radial component points inward, but inward radial pull plus positive tangential work does not by itself prove a tightening spiral.
 
-With perfectly symmetric initial conditions, the paths of the electrino and positrino are distinct but mirror-related. If the branch begins as a radial fall or enters a non-circular capture basin, it may still contract, but that is a separate branch-history statement. Emission cadence and intrinsic per-wavefront amplitude remain constant, while the **received** force is velocity-dependent because the causal-delay Jacobian compresses or dilates the causal flux along each active branch. For action or wake-history rates accumulated along a moving receiver path, the same root also carries the receiver-normal factor $dT_{\ell,\mathrm{em}}/dT=(c_f-\hat{\mathbf r}\cdot\mathbf V_i(T))/(c_f-\hat{\mathbf r}\cdot\mathbf V_j(T_{\ell,\mathrm{em}}))$. The evolution is therefore driven by delay geometry, branch bunching, receiver-path sampling, and, once active, self-interaction.
+With perfectly symmetric initial conditions, the paths of the electrino and positrino are distinct but mirror-related. If the branch begins as a radial fall or enters a non-circular capture basin, it may still contract, but that is a separate branch-history statement. Emission cadence and intrinsic per-wavefront amplitude remain constant, while the **received** acceleration is velocity-dependent because the causal-delay Jacobian compresses or dilates the causal flux along each active branch. For action or wake-history rates accumulated along a moving receiver path, the same root also carries the receiver-normal factor $dT_{\ell,\mathrm{em}}/dT=(c_f-\hat{\mathbf r}\cdot\mathbf V_i(T))/(c_f-\hat{\mathbf r}\cdot\mathbf V_j(T_{\ell,\mathrm{em}}))$. The evolution is therefore driven by delay geometry, branch bunching, receiver-path sampling, and, once active, self-interaction.
 
-Initially, and as long as the speeds of both architrinos are less than or equal to the wake propagation speed $c_f$, they are only influenced by their partner's attractive wake. The total acceleration is simply the attractive force:
+Initially, and as long as the speeds of both architrinos are less than or equal to the wake propagation speed $c_f$, they are only influenced by their partner's attractive wake. The total acceleration is simply the attractive acceleration contribution:
 $$
 \mathbf A_{1, \text{total}}(T) = \mathbf A_{1,2}(T) \quad \text{and} \quad \mathbf A_{2, \text{total}}(T) = \mathbf A_{2,1}(T)
 $$
@@ -89,9 +89,9 @@ During this partner-only phase, the retained circular row has an inward radial c
 
 The ideal binary spiral used in this opening analysis is not the same geometry as the later maximum-curvature circular benchmark. It is a **symmetric logarithmic-spiral ansatz**: the electrino and positrino follow two distinct planar curves related by the binary symmetry. At equal absolute time they remain opposite about the midpoint in the ideal center frame, but each architrino's path is the mirror-conjugate of the other's path rather than the same curve traced by both architrinos.
 
-This matters because the ideal spiral is a **transient, scale-similar contraction ansatz**, not a consequence of the principal circular calculation. Within a fixed velocity regime and fixed active-root ledger, the model assumes that the local force geometry repeats after a scale change and phase advance: radii shrink by a common factor, speeds rise according to the same delayed-geometry rule, and the partner/self branch structure is symmetric between the two architrinos. When the trajectory crosses a threshold such as $\|\mathbf V\|=c_f$ or a higher root-birth boundary, that scale-similar description must be re-matched on a new branch chart.
+This matters because the ideal spiral is a **transient, scale-similar contraction ansatz**, not a consequence of the principal circular calculation. Within a fixed velocity regime and fixed active-root ledger, the model assumes that the local acceleration geometry repeats after a scale change and phase advance: radii shrink by a common factor, speeds rise according to the same delayed-geometry rule, and the partner/self branch structure is symmetric between the two architrinos. When the trajectory crosses a threshold such as $\|\mathbf V\|=c_f$ or a higher root-birth boundary, that scale-similar description must be re-matched on a new branch chart.
 
-By contrast, the maximum-curvature binary section studies a **uniform circular benchmark**: fixed $R$, fixed $s$, and a single circular path geometry used to compute closed-form delay angles, branch Jacobians, and per-hit force components. That circular model is useful as a limiting or diagnostic case, and it gives the anti-damping obstruction that any non-circular contraction story must beat. The detailed non-circular benchmark for the symmetric logarithmic spiral belongs in [Master Equation](master-equation.md#symmetric-delayed-spiral-advanced-non-circular-benchmark); this chapter uses it only as the conceptual two-body entry point.
+By contrast, the maximum-curvature binary section studies a **uniform circular benchmark**: fixed $R$, fixed $s$, and a single circular path geometry used to compute closed-form delay angles, branch Jacobians, and per-hit acceleration components. That circular model is useful as a limiting or diagnostic case, and it gives the anti-damping obstruction that any non-circular contraction story must beat. The detailed non-circular benchmark for the symmetric logarithmic spiral belongs in [Master Equation](master-equation.md#symmetric-delayed-spiral-advanced-non-circular-benchmark); this chapter uses it only as the conceptual two-body entry point.
 
 ### Translating Binary Trace
 
@@ -137,11 +137,11 @@ R(T)\,A_{\mathrm{self},0,\eta}^{\mathrm{tan}}(T)\,dT
 $$
 when that limit exists under the same finite-caustic transit convention used for the velocity impulse. If the impulse limit is regulator-dependent, the branch-birth jump remains a diagnostic row rather than a promoted angular-momentum ledger entry.
 
-This section treats an exponential-in-angle spiral (logarithmic spiral) as a **modeling assumption** rather than a derived law. It sets the bookkeeping target: a path-history force sum whose signed branch-birth increments and boundary wake fluxes yield the spiral contraction. Near $s=1^+$ the principal self row inherits the source-normal caustic onset displayed below, but the canonical non-translating circular force row uses $W^{\mathrm{rec}}=1$. After finite-window averaging, its branch-entry impulse must therefore be computed from the receiver-normal force scaling rather than from the sharper source-normal root-density wall.
+This section treats an exponential-in-angle spiral (logarithmic spiral) as a **modeling assumption** rather than a derived law. It sets the bookkeeping target: a path-history acceleration sum whose signed branch-birth increments and boundary wake fluxes yield the spiral contraction. Near $s=1^+$ the principal self row inherits the source-normal caustic onset displayed below, but the canonical non-translating circular acceleration row uses $W^{\mathrm{rec}}=1$. After finite-window averaging, its branch-entry impulse must therefore be computed from the receiver-normal acceleration scaling rather than from the sharper source-normal root-density wall.
 
 ## Spiral Binary Symmetry-Breaking Point ($\|\mathbf V\| = c_f$)
 
-The binary system's evolution is organized around the **field-speed symmetry point** $\|\mathbf V\|=c_f$. This is a **hinge** where the causal structure changes: below $c_f$ only partner-delay forces exist, while above $c_f$ self-hit roots appear. The hinge is not a hard barrier; it is the birth of the principal self branch. In the symmetric circular geometry the self-delay equation is
+The binary system's evolution is organized around the **field-speed symmetry point** $\|\mathbf V\|=c_f$. This is a **hinge** where the causal structure changes: below $c_f$ only partner-delay acceleration contributions exist, while above $c_f$ self-hit roots appear. The hinge is not a hard barrier; it is the birth of the principal self branch. In the symmetric circular geometry the self-delay equation is
 $$
 \delta_s = 2s\sin(\delta_s/2), \qquad s=\frac{\|\mathbf V\|}{c_f}
 $$
@@ -161,13 +161,13 @@ $$
 \qquad
 \frac{1}{\sin^2(\delta_s/2)\,|J_s|}\sim \mu^{-2}
 $$
-This is the first major consequence of the source-normal Jacobian: the hinge is not merely a change in root count but a genuine **caustic onset** for root density and action counting. On the non-translating symmetric circular chart, however, the equal-projection lemma gives $D_T=D_s$ and $W^{\mathrm{rec}}=1$. The canonical self-hit force components scale instead as
+This is the first major consequence of the source-normal Jacobian: the hinge is not merely a change in root count but a genuine **caustic onset** for root density and action counting. On the non-translating symmetric circular chart, however, the equal-projection lemma gives $D_T=D_s$ and $W^{\mathrm{rec}}=1$. The canonical self-hit acceleration components scale instead as
 $$
 \frac{1}{\sin(\delta_s/2)}\sim \mu^{-1/2},
 \qquad
 \frac{1}{\sin^2(\delta_s/2)}\sim \mu^{-1}.
 $$
-The principal self branch still turns on sharply, but the force statement is an inverse-distance hinge rather than an additional $1/|J_s|$ amplification. Any candidate maximum-curvature balance must therefore keep the source-normal caustic ledger separate from the receiver-normal force ledger before appealing to higher-winding smoothing.
+The principal self branch still turns on sharply, but the acceleration statement is an inverse-distance hinge rather than an additional $1/|J_s|$ amplification. Any candidate maximum-curvature balance must therefore keep the source-normal caustic ledger separate from the receiver-normal acceleration ledger before appealing to higher-winding smoothing.
 
 ## Self-Hit: Definition and Diagnostics
 
@@ -183,7 +183,7 @@ and the architrino is the source of the causal wake surface emitted at $T_{\math
 
 **Dynamical role:**
 - On any interval with strict sub-field-speed motion, self-hit is absent by the triangle-inequality root test, unless older path-history emissions from a prior super-field-speed interval remain active.
-- As velocities exceed $c_f$ on curved histories, emission isochrons can catch up with the emitter's future positions, generating candidate nonlocal feedback and effective restoring or destabilizing forces depending on configuration.
+- As velocities exceed $c_f$ on curved histories, emission isochrons can catch up with the emitter's future positions, generating candidate nonlocal feedback and effective restoring or destabilizing accelerations depending on configuration.
 - In generic trajectories, once an architrino has exceeded $c_f$ and emitted wakes in that regime, it can later slow below $c_f$ and still experience self-hits from those earlier emissions (see **Status** at top for the non-Markovian/path-history caveat).
 - For binary and Noether braid assemblies, repeated self-hit events are the proposed mechanism that can prevent collapse, lock in stable radii and frequencies, and create new limit cycles and attractors.
 
@@ -200,18 +200,18 @@ In the circular benchmark, the principal self-hit branch ($m=0$) becomes availab
 ## Maximum-Curvature Binary — Circular
 
 Receiver-normal restart notice. The circular MCB branch topology, root labels,
-and source-normal Jacobian formulas remain useful geometry. Force components,
+and source-normal Jacobian formulas remain useful geometry. Acceleration components,
 stability criteria, action rows, and any branch-weighted verdicts in this
 section must be redriven with $W^{\mathrm{rec}}=\lvert D_T/D_s\rvert$ before
 they can serve as canonical Master EOM evidence.
 
-Once self-hit turns on, the natural question is whether the dynamics converge to a limiting curvature. We call the candidate limit the **maximum-curvature binary (MCB)**. This section collects the full two-body, self-hit analysis for that candidate, including delay geometry, force components, and stability criteria. It is the canonical reference for MCB attractor status.
+Once self-hit turns on, the natural question is whether the dynamics converge to a limiting curvature. We call the candidate limit the **maximum-curvature binary (MCB)**. This section collects the full two-body, self-hit analysis for that candidate, including delay geometry, acceleration components, and stability criteria. It is the canonical reference for MCB attractor status.
 
 MCB stability claims rely on the well-posedness of the regularized SD-NDDE. In this chapter we treat $\eta > 0$ as fixed; any $\eta \to 0$ statement is outside the claims established here unless a weak-limit argument is explicitly supplied. The formal state-space framework appears in **State Space and Well-Posedness of the Two-Body Delay System**.
 
 **Goal**: Characterize the circular, constant-speed, constant-radius configuration of two opposite-polarity architrinos and investigate where curvature $1/R$ is maximized. We work in units with field speed $c_f = 1$ and use the canonical delayed per-hit law with radial line of action and receiver-normal branch strength.
 
-**Plain language**: We seek the tightest (smallest-$R$) steady circle an opposite-polarity pair can trace when the only forces come from delayed line-of-action interactions with the partner (partner hits, possibly multiple at higher speed) and from each architrino's own past emissions (self-hits, accepted by same-source roots; in the circular branch these require the super-field-speed side). In the canonical receiver-normal law, each retained hit must carry both the source-normal denominator and the receiver-normal factor.
+**Plain language**: We seek the tightest (smallest-$R$) steady circle an opposite-polarity pair can trace when the only acceleration contributions come from delayed line-of-action interactions with the partner (partner hits, possibly multiple at higher speed) and from each architrino's own past emissions (self-hits, accepted by same-source roots; in the circular branch these require the super-field-speed side). In the canonical receiver-normal law, each retained hit must carry both the source-normal denominator and the receiver-normal factor.
 
 ### Foundational Context (Ontological Clarification)
 
@@ -431,7 +431,7 @@ $\sigma$ has been restored.
 
 **Integer-indexed older roots (winding numbers)**:
 
-Let $\tilde{\delta}_s \in (0, \pi]$ and $\tilde{\delta}_p \in (0, \pi]$ denote the **minimal (principal) angular separations** that determine the chord lengths and force directions.
+Let $\tilde{\delta}_s \in (0, \pi]$ and $\tilde{\delta}_p \in (0, \pi]$ denote the **minimal (principal) angular separations** that determine the chord lengths and acceleration directions.
 
 In the same-sheet convention used for the first circular no-go, the full families of causal delays are:
 
@@ -446,7 +446,7 @@ In the same-sheet convention used for the first circular no-go, the full familie
  $$
 
 **Geometric interpretation**:
-- The minimal separations $\tilde{\delta}_s$, $\tilde{\delta}_p$ determine the **same-sheet principal geometry** (chord lengths, force directions).
+- The minimal separations $\tilde{\delta}_s$, $\tilde{\delta}_p$ determine the **same-sheet principal geometry** (chord lengths, acceleration directions).
 - The winding index $m$ affects **timing/ordering** of multiple hits inside that same-sheet convention.
 
 **Signed-sheet completion:** A full circular root certificate must also track whether the full delay angle is represented as $2\pi m+\alpha$ or $2\pi m-\alpha$ for a minimal chord angle $\alpha\in(0,\pi]$. The same-sheet convention is the quotient that forgets the orientation of the delay direction; the signed sheet $\sigma\in\{+1,-1\}$ lifts the circular root to the orientation double cover of the retained delay strip. Opposite signed sheets can reverse the tangential projection of a self-hit line of action. The sign-invariant statements below are therefore certified only on the same-sheet principal branch chart unless the signed sheet has been explicitly included in the root ledger.
@@ -477,7 +477,7 @@ For $s\geq\pi/2$, closure is still not automatic. The negative sheet must surviv
 
 ---
 
-### Per-Hit Directions and Force Components
+### Per-Hit Directions and Acceleration Components
 
 #### Local Coordinate Frame at Receiver
 
@@ -554,7 +554,7 @@ J_p = 1+\frac{\delta_p}{2}\tan(\delta_p/2)
 $$
 These formulas make the source-normal transversality asymmetry between the two branch types explicit:
 
-- The partner branch always satisfies $J_p > 1$, so the source-normal root-density diagnostic is diluted relative to a static inverse-square surrogate. The canonical non-translating circular force row is not diluted because the receiver-normal numerator cancels the same denominator.
+- The partner branch always satisfies $J_p > 1$, so the source-normal root-density diagnostic is diluted relative to a static inverse-square surrogate. The canonical non-translating circular acceleration row is not diluted because the receiver-normal numerator cancels the same denominator.
 - The self branch can satisfy $J_s \to 0^+$, producing the causal bunching that sharpens self-hit into a null-separatrix wall for root density, action counting, and finite-$\eta$ branch certification.
 
 ---
@@ -623,7 +623,7 @@ $$
 T^{\mathrm{src}}(s < 1) = \frac{\kappa \epsilon^2 s^2}{R^2} \frac{\sin(\delta_p / 2)}{\delta_p^2\,|J_p|}
 $$
 
-Because $J_p = 1+s\sin(\delta_p/2) > 1$, the source-normal delay geometry weakens this diagnostic relative to a stripped inverse-square surrogate. In the canonical non-translating circular force row, the receiver-normal numerator cancels the same denominator, so the retained partner row is the stripped positive tangential coefficient. That still excludes a particle-only constant-speed circular orbit, while finite-window wake and recoil balances remain necessary for any retained branch.
+Because $J_p = 1+s\sin(\delta_p/2) > 1$, the source-normal delay geometry weakens this diagnostic relative to a stripped inverse-square surrogate. In the canonical non-translating circular acceleration row, the receiver-normal numerator cancels the same denominator, so the retained partner row is the stripped positive tangential coefficient. That still excludes a particle-only constant-speed circular orbit, while finite-window wake and recoil balances remain necessary for any retained branch.
 
 ---
 
@@ -680,7 +680,7 @@ For uniform circular motion at fixed radius $R$ and constant speed $s$:
 #### Tangential Drive and Wake Escapement
 
 **Theorem (Same-sheet no-go for constant-speed circular orbit in the bare two-body kernel).**
-In the symmetric, non-translating circular binary with canonical delayed radial forces only, and with active roots restricted to the same-sheet principal branch chart defined above, the net tangential acceleration is strictly positive whenever at least one causal root contributes.
+In the symmetric, non-translating circular binary with canonical delayed radial acceleration contributions only, and with active roots restricted to the same-sheet principal branch chart defined above, the net tangential acceleration is strictly positive whenever at least one causal root contributes.
 
 $$
 T_{\mathrm{net}}
@@ -756,7 +756,7 @@ where $h$ is the declared action unit used by the branch packet and the second e
 **Mechanism summary (self-hit balance):** once $s>1$, each self-hit contributes a **repulsive acceleration away from its own past emission point**. In the symmetric circular geometry that repulsion has a **radial outward component** (opposing further contraction) and a **positive tangential component** (continuing to speed up the architrino). As the radius shrinks, both partner attraction and self-hit repulsion scale like $1/R^2$. On the non-translating symmetric circular chart, the receiver-normal factor cancels the source-normal denominator, so the force balance depends on chord geometry, signed-root content, finite-window wake/recoil rows, and the birth of additional self-hit roots at higher $s$. Maximum curvature would require the **outward self-hit radial component** to balance the inward partner pull without the still-positive tangential drive destroying constant-speed closure.
 
 The non-translating symmetric circular radial target is therefore the stripped
-receiver-normal force row:
+receiver-normal acceleration row:
 
 $$
 A_{\text{rad}} = \frac{\kappa \epsilon^2}{4R^2} \left( \frac{1}{\cos(\delta_p / 2)} - \frac{1}{\sin(\delta_s / 2)} \right).
@@ -766,7 +766,7 @@ For translating, deformed, or non-circular branches, this target must be
 restored to the same-root form with
 $W_{\bullet}^{\mathrm{rec}}=\lvert D_{T,\bullet}/D_{s,\bullet}\rvert$.
 
-**Increasing curvature** ($1/R$ larger, so $R$ smaller) requires **stronger inward radial force**. This occurs when:
+**Increasing curvature** ($1/R$ larger, so $R$ smaller) requires **stronger inward radial acceleration**. This occurs when:
 
 1. **$\delta_p$ increases** -> $\cos(\delta_p / 2)$ decreases -> partner term $1/\cos(\delta_p / 2)$ **increases** (stronger inward pull).
 2. **$\delta_s$ increases** -> $\sin(\delta_s / 2)$ increases -> the geometric part of the self term decreases, while the full outward response still depends on the same-root receiver-normal branch strength $W_s^{\mathrm{rec}}$.
@@ -775,8 +775,8 @@ Two distinct balance mechanisms are now mathematically visible:
 
 1. **Near-threshold inverse-distance hinge plus source-normal caustic.**
    On the principal self branch, $D_s$ loses its floor as $s\downarrow 1^+$,
-   but the circular force row cancels that denominator against the
-   receiver-normal numerator. The remaining force sharpening is the
+   but the circular acceleration row cancels that denominator against the
+   receiver-normal numerator. The remaining acceleration sharpening is the
    inverse-distance self chord, while the $D_s$ wall remains a caustic in root
    density, action counting, and finite-$\eta$ certification.
 
@@ -935,7 +935,7 @@ with
 $$
 J_p=1+s\sin\xi_p
 $$
-as the source-normal transversality diagnostic. The canonical circular force
+as the source-normal transversality diagnostic. The canonical circular acceleration
 coefficients are
 $$
 P_{\mathrm{rad}}(\xi_p,s)=\frac{1}{\cos\xi_p},
@@ -1073,7 +1073,7 @@ s
 $$
 varies, these counts change only at branch birth/death thresholds where a causal delay equation develops a tangency.
 
-A candidate stable super-field-speed bound state therefore cannot be described by a single smooth force curve alone. It must satisfy a finite root-ledger balance:
+A candidate stable super-field-speed bound state therefore cannot be described by a single smooth acceleration curve alone. It must satisfy a finite root-ledger balance:
 $$
 \sum_{m\in\mathcal{M}_p(s)}
 A_{p,m}^{\mathrm{rad}}(R,s)
@@ -1401,7 +1401,7 @@ Below, $\mathcal{H}$ denotes the declared history chart for the packet being tes
 
 ### The Regularized Interaction Functional
 
-We formalize the force term derived in the master equation.
+We formalize the acceleration term derived in the master equation.
 
 #### Definition 2 (Causal Constraint Functional)
 For a target architrino $i$ at time $T$ and source $j$, the delay $\Delta_{ij}(T)$ is implicitly defined by the causal-isochron condition. Let $\phi \in \mathcal{H}$ be the history. A **causal root** is a value $\Delta > 0$ satisfying:
@@ -1523,7 +1523,7 @@ The solution ceases to exist at finite time $T^*$ if:
 
 ### Introduction
 
-Standard conservation laws (energy, momentum, angular momentum) rely on the application of Noether's theorem to local Lagrangian densities. In this delayed setting, the force at absolute time $T$ depends on the phase-space trajectory over the interval $[T-h,T]$.
+Standard conservation laws (energy, momentum, angular momentum) rely on the application of Noether's theorem to local Lagrangian densities. In this delayed setting, the acceleration at absolute time $T$ depends on the phase-space trajectory over the interval $[T-h,T]$.
 
 For an action-derived, symmetry-preserving delayed model, symmetries of the substrate (Euclidean void + absolute time) imply conservation laws, but the conserved quantities are no longer simple functions of the instantaneous state $(\mathbf X, \mathbf V)$. Instead, they are **functionals on the history space** $\mathcal{H}$. For a working regularized kernel not yet derived from an action, the same expressions function as validation diagnostics rather than established Noether charges.
 
@@ -1577,7 +1577,7 @@ $$
 so causal-root times are unchanged. Unit directions transform covariantly:
 $\hat{\mathbf{r}}_{ij}^Y=R\hat{\mathbf{r}}_{ij}^X$. The dot products defining
 $D_s$, $D_T$, and $W^{\mathrm{rec}}$ are preserved by the same spatial
-isometry. Therefore each force term transforms as
+isometry. Therefore each acceleration term transforms as
 $\mathbf A_{ij}^Y=R\mathbf A_{ij}^X$, and
 $$
 \frac{d^2\mathbf Y_i}{dT^2}(T)=R\frac{d^2\mathbf X_i}{dT^2}(T)
@@ -1610,7 +1610,7 @@ $$
 is conserved. For working regularized models, this same expression is a validation diagnostic unless the chosen regularization preserves the translation symmetry of the underlying action.
 
 **Explicit Form (Weak Coupling Limit):**
-For $\eta \to 0$, the wake momentum can be approximated by integrating the force impulse over the delay time:
+For $\eta \to 0$, the wake momentum can be approximated by integrating the acceleration impulse over the delay time:
 $$
 \mathbf{P}_{\text{wake}} \approx \sum_{i \neq j} \int_{T - \Delta_{ij}(T)}^{T} \mathbf F_{ij}^{\text{emit}}(T') \, dT'
 $$
@@ -1659,12 +1659,12 @@ K(T) = \mathcal{E}_{\text{tot}} - \mathcal{W}(T)
 $$
 For $K(T)$ to diverge, $\mathcal{W}(T)$ must decrease without bound.
 1. **Partner attraction:** $q_1 q_2 < 0$. The potential is negative (attractive). As $r \to 0$, $V \to -\infty$. Collapse leads to infinite kinetic energy in the standard Kepler singularity pattern; in this architecture, self-hit is the proposed counter-channel.
-2. **Self-hit repulsion:** $q_1 q_1 > 0$. The force is **repulsive**. The potential contribution is **positive**.
+2. **Self-hit repulsion:** $q_1 q_1 > 0$. The acceleration is **repulsive**. The potential contribution is **positive**.
   *  Work done by self-hit: If an architrino is pushed "from behind" by its own wake, it gains $K$.
   *  However, this energy must come from the $\mathcal{W}$ term.
   *  Since self-hit potential is repulsive (positive energy hill), converting it to kinetic energy lowers the total potential.
   *  **Crucial bound:** The deferred work encoded in a self-wake is finite when the emitted causal-wake budget is finite. An architrino cannot extract infinite energy from its own past unless the history functional has already assigned an infinite budget to that causal wake.
 
-**Conclusion:** A self-acceleration runaway, where an architrino accelerates itself indefinitely using self-forces, is excluded only on branches satisfying the action-derived conservation and lower-bound hypotheses. In other working models, the same statement is a validation target: the system can oscillate or settle, but an apparent explosion to $\|\mathbf V\|=\infty$ must be traced either to singular collapse, transversality loss, or a broken conservation diagnostic.
+**Conclusion:** A self-acceleration runaway, where an architrino accelerates itself indefinitely using self-acceleration contributions, is excluded only on branches satisfying the action-derived conservation and lower-bound hypotheses. In other working models, the same statement is a validation target: the system can oscillate or settle, but an apparent explosion to $\|\mathbf V\|=\infty$ must be traced either to singular collapse, transversality loss, or a broken conservation diagnostic.
 
 ---

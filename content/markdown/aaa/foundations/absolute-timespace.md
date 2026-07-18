@@ -141,7 +141,7 @@ The terms proportional to $2\boldsymbol{\Omega}\times\mathbf V'$, $\boldsymbol{\
 
 The provenance no-go is strict. A transverse velocity-dependent term produced only by a rotating or accelerating coordinate chart carries no source identity, emission time, causal-root label, or wake-energy ledger entry. It therefore cannot source a physical wake-mediated interaction or an emergent magnetic channel. A genuine transverse interaction must be traced to causal-wake provenance in the Master Equation or to an explicitly derived observer-level reduction of such provenance, not to inertial-coordinate algebra alone.
 
-Equivalently, let $\mathcal{P}[\mathcal{T}]$ denote the provenance payload of a candidate force term $\mathcal{T}$: source identity, emission time, causal-root label, and energy or wake-history row when those data exist. Pure inertial-coordinate terms satisfy
+Equivalently, let $\mathcal{P}[\mathcal{T}]$ denote the provenance payload of a candidate acceleration term $\mathcal{T}$: source identity, emission time, causal-root label, and energy or wake-history row when those data exist. Pure inertial-coordinate terms satisfy
 $$
 \mathcal{P}[\mathcal{T}_{\mathrm{inertial}}]=\varnothing
 $$
@@ -220,7 +220,7 @@ $$
 K=\frac{1}{2}m\|\mathbf V\|^2
 $$
 
-Forces cause accelerations in the Euclidean void. Time supplies the universal evolution parameter; it does not supply curvature, force, or clock dilation by itself.
+Causal-root hits produce accelerations in the Euclidean void. Time supplies the universal evolution parameter; it does not supply curvature, acceleration, or clock dilation by itself.
 
 The same distinction applies to momentum and inertia: the kinematic variables live on the substrate, while the coefficients that make them measurable are effective assembly responses.
 
@@ -418,7 +418,7 @@ causal-root Jacobian from the rate at which a moving receiver path samples the
 same emitted causal wake sequence. A stationary receiver in the Euclidean-void
 rest frame sets the numerator to $c_f$; radial receiver motion changes the
 receiver-normal action or wake-history rate and must be recorded when a proof
-uses accumulated action rather than only an event-local force row.
+uses accumulated action rather than only an event-local acceleration row.
 
 The status of $\kappa_{\mathrm{hit}}$ is fixed in [Absolute Time](absolute-time.md#causality-and-finite-propagation-speed): it is a declared branch-chart or certificate lower bound, not a universal coupling constant, coordinate parameter, or regularization width.
 

@@ -141,6 +141,53 @@ class NativeBorgProcessTests(unittest.TestCase):
             len(response["publishedExtensions"][0]["segments"]), 0
         )
 
+    def test_shadow_affine_diagnostic_is_bit_identical_and_sidecar_only(self) -> None:
+        protocol = "\n".join((
+            PROTOCOL_MAGIC,
+            run_record("shadow-affine-identity", "2", "2.1"),
+            "PATH\tp\t1\t1\t0\t1",
+            "SEG\t0\t2\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0",
+            "END", "",
+        ))
+        disabled = subprocess.run(
+            [str(self.binary), "borg-shadow-v0"],
+            input=protocol, check=True, cwd=ROOT,
+            capture_output=True, text=True,
+        )
+        with tempfile.TemporaryDirectory(prefix="eom-shadow-affine-") as folder:
+            sidecar = Path(folder) / "diagnostic.ndjson"
+            enabled = subprocess.run(
+                [
+                    str(self.binary), "borg-shadow-v0",
+                    f"--shadow-affine-diagnostic={sidecar}",
+                ],
+                input=protocol, check=True, cwd=ROOT,
+                capture_output=True, text=True,
+            )
+            enabled_response = json.loads(enabled.stdout)
+            disabled_response = json.loads(disabled.stdout)
+            bit_identity_fields = (
+                "status", "evidenceStatus", "claimGrade", "acceptedEndTime",
+                "acceptedStepCount", "rejectedStepCount", "allStepsAtomic",
+                "controllerStepSize", "haltCode", "budgetProvenance",
+                "stepFailures", "publishedExtensions",
+            )
+            enabled_identity = {
+                field: enabled_response[field] for field in bit_identity_fields
+            }
+            disabled_identity = {
+                field: disabled_response[field] for field in bit_identity_fields
+            }
+            self.assertEqual(
+                json.dumps(enabled_identity, sort_keys=True, separators=(",", ":")),
+                json.dumps(disabled_identity, sort_keys=True, separators=(",", ":")),
+            )
+            self.assertTrue(sidecar.is_file())
+            records = [json.loads(line) for line in sidecar.read_text().splitlines()]
+            self.assertEqual(records[0]["record"], "observer_start")
+            self.assertTrue(any(row["record"] == "step" for row in records))
+            self.assertEqual(records[-1]["record"], "run_end")
+
     def test_ordinary_root_failure_is_not_labeled_as_a_caustic_entry(self) -> None:
         protocol = "\n".join((
             PROTOCOL_MAGIC,

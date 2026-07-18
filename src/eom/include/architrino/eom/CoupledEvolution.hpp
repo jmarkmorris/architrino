@@ -152,6 +152,10 @@ struct NativeCoupledEvolutionRequest {
   // Diagnostics only: stop after this many atomically accepted steps.
   // Zero preserves the ordinary requested-end-time behavior.
   std::size_t diagnostic_maximum_accepted_steps = 0;
+  // Diagnostics only: retain a rejected candidate in its in-memory step
+  // certificate for post-halt observers.  It remains unpublished and is not
+  // serialized by the Borg protocol.
+  bool retain_diagnostic_candidate_histories = false;
   // Diagnostics only: invoked after an accepted step is atomically published.
   std::function<void(std::size_t, const std::string&)>
       accepted_step_callback;
@@ -501,6 +505,8 @@ struct NativeAtomicStepCertificate {
   std::string accepted_time;
   std::vector<NativeHistoryFingerprint> input_history_fingerprints;
   std::vector<NativePublishedPath> published_histories;
+  std::optional<std::vector<NativePublishedPath>>
+      diagnostic_candidate_histories;
   std::vector<NativeHistoryFingerprint> candidate_history_fingerprints;
   std::vector<NativeCorrectedSubstepCertificate> substeps;
   std::optional<NativeAccelerationSnapshotCertificate> accepted_snapshot;

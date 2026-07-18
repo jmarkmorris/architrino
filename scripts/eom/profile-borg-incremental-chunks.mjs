@@ -29,7 +29,8 @@ if (!binaryPath) {
     "[--chunks=N] [--seed=N] [--chunk-duration=H] " +
     "[--electrinos=N] [--positrinos=N] " +
     "[--coupling=K] [--max-per-axis-speed=V] [--history-depth=H] " +
-    "[--certified-budget-id=ID]",
+    "[--certified-budget-id=ID] [--shadow-affine-output=PATH] " +
+    "[--shadow-affine-symbol-cap=N]",
   );
 }
 
@@ -78,6 +79,11 @@ const includeHistoryErrorSeries = booleanOption(
   false,
 );
 const includeRootDetails = booleanOption(options["root-details"], true);
+const shadowAffineOutput = options["shadow-affine-output"] ?? null;
+const shadowAffineSymbolCap = positiveInteger(
+  options["shadow-affine-symbol-cap"],
+  256,
+);
 const initialConditionConfig = createBorgInitialConditionConfig({
   ...manifest.initialConditions,
   electrinoCount: nonnegativeInteger(
@@ -124,6 +130,12 @@ const processClient = createBorgNativeEomProcessClient({
   binaryArgs: [
     `--event-max-cells=${eventMaxCells}`,
     `--maximum-mpfr-bits=${maximumMpfrBits}`,
+    ...(shadowAffineOutput == null
+      ? []
+      : [
+          `--shadow-affine-diagnostic=${shadowAffineOutput}`,
+          `--shadow-affine-symbol-cap=${shadowAffineSymbolCap}`,
+        ]),
   ],
   timeoutMs: 600000,
 });
@@ -328,6 +340,15 @@ const runner = createBorgEomShadowRunner(manifest, {
 
 let runFailure = null;
 let endpointFrames = [];
+const profileWallStart = performance.now();
+const heartbeat = setInterval(() => {
+  const last = nativeChunks.at(-1);
+  process.stderr.write(
+    `[borg-profile] heartbeat wall=${((performance.now() - profileWallStart) / 1000).toFixed(1)}s ` +
+    `chunks=${nativeChunks.length}/${chunkCount} ` +
+    `t=${last?.acceptedEndTime ?? 0}\n`,
+  );
+}, 10_000);
 try {
   while (runner.canComputeNextChunk()) {
     try {
@@ -356,6 +377,7 @@ try {
     }
   }
 } finally {
+  clearInterval(heartbeat);
   await runner.dispose();
 }
 

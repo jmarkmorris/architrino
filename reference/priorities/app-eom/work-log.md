@@ -1831,3 +1831,29 @@ This file holds dated decisions, implementation status, validation results, fail
   single-history or publication-count change is not the next remedy.
 - **Evidence:**
   [borg-retained-history-reconditioning-adjudication-apple-m3-2026-07-18.md](evidence/borg-retained-history-reconditioning-adjudication-apple-m3-2026-07-18.md).
+
+## 2026-07-18 — Non-authoritative shadow affine dependency diagnostic
+
+- **Derived implementation:** added a flag-gated binary64 shadow observer that
+  carries shared signed symbols through all six paths, delayed-root and
+  acceleration sensitivities, and frozen cubic history rows. It allocates
+  fresh local-error, acceleration-width, and root-time symbols, caps the live
+  set at 256 with logged hull condensation, writes only a separate NDJSON
+  sidecar, and cannot feed a certified decision.
+- **Measured isolation:** the standard process test shows bit-identical
+  canonical published and terminal fields with the flag off versus on. No
+  preset, allocation hash, certified gate, or publication token changed.
+- **Measured falsification:** Research seed 0's shadow radius is
+  `5.6122612883862972e-4`, giving a required two-sided width of
+  `1.1224522576772594e-3`, above the fixed `1.042e-3` decision ceiling. The
+  proposed architecture is therefore `FALSIFIED`, not the next remedy.
+- **Measured mechanism and cost:** only `1.60%` of the aggregate position
+  contribution and `9.53%` of velocity are fresh local error; retained-state
+  feedback dominates. The observer's Research seed-0 outer-wall overhead is
+  `216.97%`, also missing the requested low-single-digit target.
+- **Next closure object:** derive a root-time budget theorem mapping admitted
+  state and source-normal bounds to the unchanged root-time ceiling before
+  attempting another joint-state representation. No tolerance change is
+  proposed.
+- **Evidence:**
+  [borg-shadow-affine-dependency-diagnostic-apple-m3-2026-07-18.md](evidence/borg-shadow-affine-dependency-diagnostic-apple-m3-2026-07-18.md).

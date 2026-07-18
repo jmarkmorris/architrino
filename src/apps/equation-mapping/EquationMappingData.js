@@ -387,7 +387,7 @@ const equationMapSeedDocuments = [
         "polarity-coupling",
         "Sign and coupling",
         "polarity",
-        "A force law needs two things before distance matters: which way the effect points, and how strongly it couples. In $\\mathbb{A}\\mathbb{A}\\mathbb{A}$, this term stores the ordered source-receiver sign and coupling for the active root.",
+        "An acceleration law needs two things before distance matters: which way the effect points, and how strongly it couples. In $\\mathbb{A}\\mathbb{A}\\mathbb{A}$, this term stores the ordered source-receiver sign and coupling for the active root.",
         "\\kappa\\sigma_{q_oq_{o'}}",
         { x: 35, y: 8, width: 30, line: "above" }
       ),

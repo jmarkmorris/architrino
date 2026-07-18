@@ -31,7 +31,7 @@ Core symbols:
 
 - Polarity-unit magnitude ($\epsilon>0$):
   - $\epsilon$ is the fundamental polarity scale of an architrino (Electrino $q=-\epsilon$, Positrino $q=+\epsilon$). In this framework $\epsilon$ is often identified with $|e|/6$, making observer-level quark electric charges integer multiples of $\epsilon$.
-  - Per-wavefront amplitude and emission cadence are constant at the source. The received force magnitude is additionally modulated by the receiver-normal branch strength $W^{\mathrm{rec}}=\lvert D_T/D_s\rvert$, where $D_s$ records source-normal root transversality and $D_T$ records receiver-normal crossing.
+  - Per-wavefront amplitude and emission cadence are constant at the source. The received acceleration magnitude is additionally modulated by the receiver-normal branch strength $W^{\mathrm{rec}}=\lvert D_T/D_s\rvert$, where $D_s$ records source-normal root transversality and $D_T$ records receiver-normal crossing.
 
 - Sign of interaction ($\sigma_{q q'}$):
   - $\sigma_{q q'}=\mathrm{sign}(q\,q')$ selects attraction vs repulsion while keeping the acceleration strictly collinear with $\hat{\mathbf{r}}$. Like-on-like ($\sigma$=+1) points along +$\hat{\mathbf{r}}$ (repulsion); unlike ($\sigma$=-1) points along -$\hat{\mathbf{r}}$ (attraction).

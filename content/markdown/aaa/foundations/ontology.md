@@ -242,7 +242,7 @@ The canonical parameter accounting lives in [Parameter Ledger](../validation/par
 The ontology-level distinction is a level assignment, not a numerical claim:
 
 - substrate commitments belong to [Absolute Time](./absolute-time.md), [Euclidean Void](./euclidean-void.md), [Absolute Timespace](./absolute-timespace.md), and [Architrino](./architrino.md);
-- force-law parameters and regulators belong to [Master Equation](../dynamics/master-equation.md) and the validation ledger;
+- acceleration-law parameters and regulators belong to [Master Equation](../dynamics/master-equation.md) and the validation ledger;
 - assembly radii, shielding factors, metric coefficients, and observer-level constants are closure targets, not primitive ontology.
 
 For current open parameter status, see [Parameter Ledger](../validation/parameter-ledger.md) and [Known Tensions](../validation/known-tensions.md).

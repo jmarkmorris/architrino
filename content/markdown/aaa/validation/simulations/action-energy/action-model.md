@@ -220,7 +220,7 @@ Implementation checklist
 - Self-interaction: appears when the worldline outruns recent wake surfaces ($\|\mathbf V\|>v$ for some emissions); self-hits are repulsive (like-on-like).
 
 Relation to Methods 1 and 2
-- This is a transport/continuity model, not the scalar wave equation. The $1/r^2$ factor is a surface-density normalization (Gauss-like on the spherically expanding causal wake surfaces); it is compatible with conserving total emission per wake surface. In Method 2 the $\!1/(4\pi r)$ factor appears for a wave amplitude; taking gradients connects these scalings when mapping to forces.
+- This is a transport/continuity model, not the scalar wave equation. The $1/r^2$ factor is a surface-density normalization (Gauss-like on the spherically expanding causal wake surfaces); it is compatible with conserving total emission per wake surface. In Method 2 the $\!1/(4\pi r)$ factor appears for a wave amplitude; taking gradients connects these scalings when mapping to accelerations.
 - The Doppler-type Jacobian $1-\mathbf{n}\!\cdot\!\mathbf V_s/c_f$ from Method 2 is the source-normal branch-transversality factor. Geometric constants are absorbed into $\kappa$ by convention, but the canonical per-hit strength uses the receiver-normal branch factor $W^{\mathrm{rec}}=\lvert D_T/D_s\rvert$; no additional source-speed amplitude factor is introduced.
 - Numerically, this method targets particle dynamics directly (per-hit ODEs) rather than evolving a full field (Method 1) or evaluating fields at sparse probes (Method 2).
 
@@ -258,7 +258,7 @@ Short worked example — stationary emitter, continuous source (consistent acros
 - Setup: emitter at origin $\mathbf X_s=0$ with $q(T)\equiv q_0$ (constant).
 - Method 1: solving the wave PDE with $S(\mathbf X,T)=q_0\,\delta(\mathbf X)$ reproduces the same spherical profile $\phi(r,T)=q_0/(4\pi r)$ on the outgoing wavefront.
 - Method 2: the path-history formula gives $\displaystyle \phi(r,T)=\frac{q_0}{4\pi r}$ with the path-history time $T_{\mathrm{em}}=T-r/c_f$.
-- Method 3: the path-history condition selects the single causal time $T_{\mathrm{em}}=T-r/c_f$; the per-hit EOM yields one radial push along $\hat{\mathbf{r}}$ with $1/r^2$ scaling, consistent with taking spatial gradients of the $1/r$ potential to connect amplitude to force.
+- Method 3: the path-history condition selects the single causal time $T_{\mathrm{em}}=T-r/c_f$; the per-hit EOM yields one radial push along $\hat{\mathbf{r}}$ with $1/r^2$ scaling, consistent with taking spatial gradients of the $1/r$ potential to connect amplitude to acceleration.
 
 Practical implementation notes (concise)
 - PDE: smear $\delta(\mathbf X-\mathbf X_s)$ to grid scale; enforce CFL ($c_f\,\Delta T/\Delta X$ within the scheme’s bound).
@@ -276,8 +276,8 @@ Practical implementation notes (concise)
 
 Axiomatic fidelity (delayed-only, line-of-action, constant source emission)
 - Method 1: Partially aligned. The PDE yields $1/(4\pi r)$ wave amplitudes; mapping to $1/r^2$ per-hit accelerations requires gradients and conventions. Radial-only action is not built-in.
-- Method 2: Causality and superposition are exact; amplitudes are $1/(4\pi r)$ with a source-normal Jacobian $\left|1-\mathbf{n}\cdot\mathbf V_s/c_f\right|^{-1}$ when evaluating the path-history time delta. The canonical law keeps the corresponding source-normal denominator as root-transversality data, while received force magnitude uses $W^{\mathrm{rec}}=\lvert D_T/D_s\rvert$ and overall geometric normalizations are absorbed into $\kappa$ when comparing accelerations.
-- Method 3: Exact match. Delayed-only, line-of-action per-hit with constant source emission is native, and the receiver-normal branch strength appears explicitly in the received force magnitude. Geometric normalizations are conventionally absorbed into $\kappa$.
+- Method 2: Causality and superposition are exact; amplitudes are $1/(4\pi r)$ with a source-normal Jacobian $\left|1-\mathbf{n}\cdot\mathbf V_s/c_f\right|^{-1}$ when evaluating the path-history time delta. The canonical law keeps the corresponding source-normal denominator as root-transversality data, while received acceleration magnitude uses $W^{\mathrm{rec}}=\lvert D_T/D_s\rvert$ and overall geometric normalizations are absorbed into $\kappa$ when comparing accelerations.
+- Method 3: Exact match. Delayed-only, line-of-action per-hit with constant source emission is native, and the receiver-normal branch strength appears explicitly in the received acceleration magnitude. Geometric normalizations are conventionally absorbed into $\kappa$.
 
 Causal root structure, self-interaction, multiplicity
 - Method 1: Self-hits and multiple roots are implicit in the evolving field; they are not directly enumerated as discrete events.
@@ -286,7 +286,7 @@ Causal root structure, self-interaction, multiplicity
 
 Energetics and work
 - Method 1: Continuum energy bookkeeping is natural ($\phi$, $\partial_T\phi$, $\nabla_{\mathbf X}\phi$). Mapping to radial per-hit work needs careful averaging and alignment with the EOM.
-- Method 2: Exact potentials in free space; gradients give forces; care is needed near $\left|1-\mathbf{n}\cdot\mathbf V_s/c_f\right|\to0$ geometries.
+- Method 2: Exact potentials in free space; gradients give acceleration contributions; care is needed near $\left|1-\mathbf{n}\cdot\mathbf V_s/c_f\right|\to0$ geometries.
 - Method 3: Energetics are validated via $\eta$-mollified potentials $\Phi_\eta$ and work–energy on resolved windows; impulses are recovered as $\eta$→0 in the weak sense.
 
 Numerical stability and well-posedness
@@ -387,7 +387,7 @@ Legend: [+] passes, [~] depends (energy/frequency/geometry), [x] mostly blocked/
 | L3: Atomic electron distribution (bound electrons) | [~] photoelectric/Compton; X/$\gamma$ penetrate better | [+] | [x] Coulomb-coupled; captured/scattered | [+] |
 | L2: Nuclear layer (nucleons; femtoscopic scale) | [~] $\gamma$ can interact; strong attenuation in bulk | [+] weak interaction; mostly pass | [x] excluded as free traversers | [+] |
 | L1: Nested shell braid shielding (nested shell binaries; shielded) | [x] far-field cancels; no corridor capture | [~] tiny axial coupling only | [x] self/partner couplings dominate; no transit | [+] by hypothesis: minimal coupling |
-| L0: Axial corridors / flux-tube loci (coherent geometry) | [+] guided along corridor | [~] weak corridor coupling; alignment matters | [x] no cross-product forces; not a transit channel | [~] minimal, geometry-dependent |
+| L0: Axial corridors / flux-tube loci (coherent geometry) | [+] guided along corridor | [~] weak corridor coupling; alignment matters | [x] no cross-product acceleration terms; not a transit channel | [~] minimal, geometry-dependent |
 
 
 Notes (interpretation):

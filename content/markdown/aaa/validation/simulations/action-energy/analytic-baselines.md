@@ -111,7 +111,7 @@ Methodological priority:
   \sum_{T_{\mathrm{em}}\in\mathcal C_{ij,b}^{(\eta)}(T)}
   V_{i\leftarrow j,T_{\mathrm{em}}}^{(\eta)}(T)
   $$
-  on the same active causal-root ledger used by the force residual and energy crosswalk. Thus a small branch-virial residual is meaningful only after source identity, polarity, emission time, Jacobian, receiver-normal branch strength, and receiver radial power have survived the row aggregation.
+  on the same active causal-root ledger used by the acceleration residual and energy crosswalk. Thus a small branch-virial residual is meaningful only after source identity, polarity, emission time, Jacobian, receiver-normal branch strength, and receiver radial power have survived the row aggregation.
   When the branch is differentiable after mollification and the same signed causal-root ledger is retained, direct differentiation gives the finite-window identity
   $$
   \left\langle

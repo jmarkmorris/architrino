@@ -2,7 +2,7 @@
 
 This chapter isolates the energy problem created by causal-delay dynamics. It is foundations-adjacent because it states what kind of energy object the substrate law is allowed to use before later chapters invoke conservation, no-runaway arguments, event ledgers, or Noether sea exchange.
 
-The core warning is simple: time-translation invariance of a state-dependent delay equation does not by itself supply the familiar local Noether energy of finite-dimensional mechanics. In $\mathbb{A}\mathbb{A}\mathbb{A}$, any term written as $E_{\text{wake}}$ must be constructed from the same causal-history law, regularization, branch chart, and boundary convention that generate the force row. Otherwise it is a diagnostic label, not a conserved charge.
+The core warning is simple: time-translation invariance of a state-dependent delay equation does not by itself supply the familiar local Noether energy of finite-dimensional mechanics. In $\mathbb{A}\mathbb{A}\mathbb{A}$, any term written as $E_{\text{wake}}$ must be constructed from the same causal-history law, regularization, branch chart, and boundary convention that generate the acceleration row. Otherwise it is a diagnostic label, not a conserved charge.
 
 ## Energy Construction Problem
 
@@ -46,7 +46,7 @@ There are three admissible ways to define the wake-energy term. A calculation ma
 
 ### Action-Boundary Route
 
-If a symmetry-preserving nonlocal action supplies the force row, then the energy term is the time-boundary charge induced by absolute-time translation. With causal-delay interaction kernel $\mathcal{K}_{ij}^{E}(T_1,T_{\mathrm{em}})$ chosen by the same action as the force residual,
+If a symmetry-preserving nonlocal action supplies the acceleration row, then the energy term is the time-boundary charge induced by absolute-time translation. With causal-delay interaction kernel $\mathcal{K}_{ij}^{E}(T_1,T_{\mathrm{em}})$ chosen by the same action as the acceleration residual,
 $$
 E_{\text{wake},\mathfrak{B}}^{(\eta)}(T)
 =
@@ -178,11 +178,11 @@ $$
 \varepsilon
 }
 $$
-where $\Phi_{\partial\Omega,E}^{(\eta)}(W)=\int_W\int_{\partial\Omega}\mathbf{J}_E^{(\eta)}\cdot\hat{\mathbf{n}}\,dA\,dT$ is the declared boundary energy flux. The chart promotes only if $\Delta_{\mathrm{E,cross}}^{(\eta)}\to0$ under the same refinement limit used for the force residual.
+where $\Phi_{\partial\Omega,E}^{(\eta)}(W)=\int_W\int_{\partial\Omega}\mathbf{J}_E^{(\eta)}\cdot\hat{\mathbf{n}}\,dA\,dT$ is the declared boundary energy flux. The chart promotes only if $\Delta_{\mathrm{E,cross}}^{(\eta)}\to0$ under the same refinement limit used for the acceleration residual.
 
 ## Conservation Residual
 
-Let $\mathbf{R}_i^{(\eta)}$ be the Euler or force residual of the declared action-derived model, and let $\mathcal{B}_E^{(\eta)}$ collect endpoint leakage, period cuts, excluded self-coincidence boundaries, and omitted branch rows. The finite-window conservation residual is
+Let $\mathbf{R}_i^{(\eta)}$ be the Euler or acceleration residual of the declared action-derived model, and let $\mathcal{B}_E^{(\eta)}$ collect endpoint leakage, period cuts, excluded self-coincidence boundaries, and omitted branch rows. The finite-window conservation residual is
 $$
 \mathcal{R}_{E}^{(\eta)}(W;\mathfrak{B})
 =

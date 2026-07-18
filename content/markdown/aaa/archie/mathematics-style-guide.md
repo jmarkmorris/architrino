@@ -209,7 +209,7 @@ $$
 with $\Delta_j$ determined implicitly by $\|\mathbf X(T)-\mathbf X_j(T-\Delta_j)\| = v\,\Delta_j$, and per-hit contributions summed over all roots. In the $\eta\to 0$ limit interpret in the weak sense.
 
 Notes:
-- Emission cadence and per-wavefront amplitude are constant at the source; the received force magnitude is modulated by the receiver-normal branch factor $W^{\mathrm{rec}}=\lvert D_T/D_s\rvert$.
+- Emission cadence and per-wavefront amplitude are constant at the source; the received acceleration magnitude is modulated by the receiver-normal branch factor $W^{\mathrm{rec}}=\lvert D_T/D_s\rvert$.
 - No cross products, no right-hand-rule magnetism; every per-hit action is along $\hat{\mathbf{r}}$.
 
 Plain language: For each past emission that can reach the receiver now, push along the line back to where it came from, with inverse-square falloff multiplied by how the source laid down the wake and how the receiver crosses it, then add all pushes.
@@ -236,8 +236,8 @@ Plain language: a hit changes only the along-the-line piece of your velocity rig
     $$
     U_{\text{pot}} = q'\,\Phi_\eta
     $$
-- Force relation:
-  - Holds pointwise for $\Phi_\eta$; as $\eta \to 0$, interpret in the weak sense over resolved intervals:
+- Potential-gradient bookkeeping relation:
+  - Holds pointwise for $\Phi_\eta$; the force symbol is optional assembly-level bookkeeping, and as $\eta \to 0$, interpret it in the weak sense over resolved intervals:
     $$
     \mathbf{F} = -\nabla U_{\text{pot}}
     $$
@@ -246,7 +246,7 @@ Plain language: a hit changes only the along-the-line piece of your velocity rig
   \Delta E_k \;=\; \int \mathbf{F}\cdot d\mathbf X \;=\; -\,\Delta U_{\text{pot}}
   $$
 
-Plain language: With slightly thick causal wake surfaces, the usual “force is minus gradient of potential” works; in the razor-thin limit it works after integrating over small time windows.
+Plain language: With slightly thick causal wake surfaces, the optional force-bookkeeping variable is minus the potential gradient; the primitive substrate statement remains the per-hit acceleration law, and the razor-thin limit is interpreted after integrating over small time windows.
 
 ---
 

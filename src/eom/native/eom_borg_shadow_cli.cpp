@@ -1,4 +1,5 @@
 #include "architrino/eom/CoupledEvolution.hpp"
+#include "architrino/eom/ShadowAffineDiagnostic.hpp"
 
 #include <algorithm>
 #include <array>
@@ -356,6 +357,7 @@ void run(
     std::size_t event_max_cells,
     bool use_certified_traversal,
     std::uint64_t traversal_exact_tile_pair_limit,
+    eom::ShadowAffineDiagnostic* shadow_affine_diagnostic = nullptr,
     std::optional<IncrementalSnapshotCache>* incremental_cache = nullptr,
     bool* request_boundary_consumed = nullptr) {
   if (request_boundary_consumed != nullptr) {
@@ -505,6 +507,25 @@ void run(
   };
   request.thread_count = parse_size(run[17], "thread count");
   request.use_quarter_step_publication = true;
+  request.retain_diagnostic_candidate_histories =
+      shadow_affine_diagnostic != nullptr;
+  if (shadow_affine_diagnostic != nullptr) {
+    shadow_affine_diagnostic->begin_evolution(request.run_id);
+    request.failed_substep_candidate_callback =
+        [shadow_affine_diagnostic](
+            const std::string& start_time,
+            const std::string& end_time,
+            const std::string& failure_code,
+            std::size_t iteration,
+            const std::vector<eom::NativePublishedPath>& histories) {
+          try {
+            shadow_affine_diagnostic->capture_failed_candidate(
+                start_time, end_time, failure_code, iteration, histories);
+          } catch (...) {
+            // Diagnostics are fail-open and cannot alter the certified path.
+          }
+        };
+  }
   if (request.maximum_mpfr_bits > maximum_mpfr_bits ||
       request.quadrature_max_depth > quadrature_max_depth ||
       request.quadrature_max_cells > quadrature_max_cells ||
@@ -580,6 +601,23 @@ void run(
     incremental_cache->reset();
     rebased_incremental_chunk_snapshot = false;
     result = eom::evolve_native_coupled_histories(request);
+  }
+  if (shadow_affine_diagnostic != nullptr) {
+    std::vector<eom::NativePublishedPath> diagnostic_inputs;
+    diagnostic_inputs.reserve(parsed_paths.size());
+    for (const auto& path : parsed_paths) {
+      diagnostic_inputs.push_back({path.path_id, path.history});
+    }
+    try {
+      shadow_affine_diagnostic->consume_evolution(
+          request, diagnostic_inputs, result);
+    } catch (const std::exception& error) {
+      // The observer is non-authoritative.  A diagnostic failure must not
+      // change any certified gate, publication, controller choice, or stdout
+      // protocol token.
+      std::cerr << "shadow affine diagnostic failed open: " << error.what()
+                << '\n';
+    }
   }
   if (incremental_cache != nullptr) {
     incremental_cache->reset();
@@ -1318,7 +1356,9 @@ int main(int argc, char** argv) {
                    "[--quadrature-max-cells=N] "
                    "[--event-max-cells=N] "
                    "[--disable-certified-traversal] "
-                   "[--traversal-exact-tile-pair-limit=N]\n";
+                   "[--traversal-exact-tile-pair-limit=N] "
+                   "[--shadow-affine-diagnostic=PATH] "
+                   "[--shadow-affine-symbol-cap=N]\n";
       return EXIT_FAILURE;
     }
     unsigned maximum_mpfr_bits = 512;
@@ -1327,6 +1367,8 @@ int main(int argc, char** argv) {
     std::size_t event_max_cells = 200000;
     bool use_certified_traversal = true;
     std::uint64_t traversal_exact_tile_pair_limit = 64;
+    std::string shadow_affine_output_path;
+    std::size_t shadow_affine_symbol_cap = 256U;
     for (int argument_index = 2; argument_index < argc; ++argument_index) {
       const std::string option = argv[argument_index];
       constexpr const char* precision_prefix = "--maximum-mpfr-bits=";
@@ -1335,6 +1377,10 @@ int main(int argc, char** argv) {
       constexpr const char* event_cells_prefix = "--event-max-cells=";
       constexpr const char* traversal_tile_prefix =
           "--traversal-exact-tile-pair-limit=";
+      constexpr const char* shadow_affine_prefix =
+          "--shadow-affine-diagnostic=";
+      constexpr const char* shadow_affine_cap_prefix =
+          "--shadow-affine-symbol-cap=";
       if (option.starts_with(precision_prefix)) {
         const std::size_t parsed = parse_size(
             option.substr(std::char_traits<char>::length(precision_prefix)),
@@ -1376,10 +1422,35 @@ int main(int argc, char** argv) {
           throw std::invalid_argument(
               "traversal exact tile pair limit must be positive");
         }
+      } else if (option.starts_with(shadow_affine_prefix)) {
+        shadow_affine_output_path = option.substr(
+            std::char_traits<char>::length(shadow_affine_prefix));
+        if (shadow_affine_output_path.empty()) {
+          throw std::invalid_argument(
+              "shadow affine diagnostic path must be nonempty");
+        }
+      } else if (option.starts_with(shadow_affine_cap_prefix)) {
+        shadow_affine_symbol_cap = parse_size(
+            option.substr(std::char_traits<char>::length(
+                shadow_affine_cap_prefix)),
+            "shadow affine symbol cap");
+        if (shadow_affine_symbol_cap < 32U) {
+          throw std::invalid_argument(
+              "shadow affine symbol cap must be at least 32");
+        }
       } else {
         throw std::invalid_argument("unsupported Borg EOM native option");
       }
     }
+    std::optional<eom::ShadowAffineDiagnostic> shadow_affine_diagnostic;
+    if (!shadow_affine_output_path.empty()) {
+      shadow_affine_diagnostic.emplace(eom::ShadowAffineDiagnosticOptions{
+          .output_path = shadow_affine_output_path,
+          .symbol_cap = shadow_affine_symbol_cap,
+      });
+    }
+    auto* shadow_affine = shadow_affine_diagnostic.has_value()
+        ? &*shadow_affine_diagnostic : nullptr;
     const std::string mode = argv[1];
     if (mode == "print-protocol-version") {
       std::cout << kBorgNativeProtocolMagic << '\n';
@@ -1387,7 +1458,8 @@ int main(int argc, char** argv) {
       run(
           maximum_mpfr_bits, quadrature_max_depth, quadrature_max_cells,
           event_max_cells,
-          use_certified_traversal, traversal_exact_tile_pair_limit);
+          use_certified_traversal, traversal_exact_tile_pair_limit,
+          shadow_affine);
     } else if (mode == "borg-shadow-server-v0") {
       std::optional<IncrementalSnapshotCache> incremental_cache;
       while (std::cin.peek() != std::char_traits<char>::eof()) {
@@ -1397,6 +1469,7 @@ int main(int argc, char** argv) {
               maximum_mpfr_bits, quadrature_max_depth, quadrature_max_cells,
               event_max_cells,
               use_certified_traversal, traversal_exact_tile_pair_limit,
+              shadow_affine,
               &incremental_cache, &request_boundary_consumed);
         } catch (const std::exception& error) {
           incremental_cache.reset();
@@ -1415,7 +1488,9 @@ int main(int argc, char** argv) {
                    "[--quadrature-max-cells=N] "
                    "[--event-max-cells=N] "
                    "[--disable-certified-traversal] "
-                   "[--traversal-exact-tile-pair-limit=N]\n";
+                   "[--traversal-exact-tile-pair-limit=N] "
+                   "[--shadow-affine-diagnostic=PATH] "
+                   "[--shadow-affine-symbol-cap=N]\n";
       return EXIT_FAILURE;
     }
     return EXIT_SUCCESS;

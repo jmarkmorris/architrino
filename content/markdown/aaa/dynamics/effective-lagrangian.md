@@ -292,7 +292,7 @@ d\Phi_{ij}^{(\eta)}
 \delta_{\mathrm H}\mathcal A_{ij}^{(\eta)}
 $$
 
-where $d\Phi_{ij}^{(\eta)}$ denotes the exact scalar-potential channel and $\delta_{\mathrm H}\mathcal A_{ij}^{(\eta)}$ denotes the co-exact recoil-current channel in the effective chart. The notation is schematic, not a new substrate ontology. Its use is to make the no-go sharp: a scale-only scalar counterterm can repair the exact part, but it cannot cancel a co-exact recoil current without changing the branch force or adding a richer action-level term.
+where $d\Phi_{ij}^{(\eta)}$ denotes the exact scalar-potential channel and $\delta_{\mathrm H}\mathcal A_{ij}^{(\eta)}$ denotes the co-exact recoil-current channel in the effective chart. The notation is schematic, not a new substrate ontology. Its use is to make the no-go sharp: a scale-only scalar counterterm can repair the exact part, but it cannot cancel a co-exact recoil current without changing the branch acceleration or adding a richer action-level term.
 
 Plain language: the same delayed kernel current can separate into an exact scalar part and a curl-like recoil part. A scalar repair can handle only the exact part unless another declared action term carries the recoil channel.
 
@@ -336,7 +336,7 @@ $$
 \frac{\hat{\mathbf{r}}_{ij}(T;T_{\mathrm{em}})}{r_{ij}(T;T_{\mathrm{em}})^2}\,
 \phi_\eta\!\big(\tilde g_{ij}(T,T_{\mathrm{em}})\big)
 $$
-with the understanding that the displayed finite-$\eta$ integral is a branch-selector surrogate. Its weak limit must be redriven so that the retained branch law carries the receiver-normal factor $W^{\mathrm{rec}}$. The derivative term in $\nabla_{\mathbf X_i}\mathcal{K}_{ij}$ is absorbed only after the full delayed variation is assembled and the branch reduction is performed. In a recoil-inclusive reading, this sentence is replaced by a stronger requirement: the derivative term is retained as $\mathbf{C}_{ij}^{(\eta)}$ and tested as part of the force and conservation ledger rather than being forced to zero.
+with the understanding that the displayed finite-$\eta$ integral is a branch-selector surrogate. Its weak limit must be redriven so that the retained branch law carries the receiver-normal factor $W^{\mathrm{rec}}$. The derivative term in $\nabla_{\mathbf X_i}\mathcal{K}_{ij}$ is absorbed only after the full delayed variation is assembled and the branch reduction is performed. In a recoil-inclusive reading, this sentence is replaced by a stronger requirement: the derivative term is retained as $\mathbf{C}_{ij}^{(\eta)}$ and tested as part of the acceleration and conservation ledger rather than being forced to zero.
 
 A derivation, reduction, or simulation that claims action-derived dynamics must therefore report the variation residual
 $$
@@ -435,7 +435,7 @@ u=\tilde g+\frac{r}{c_f},
 $$
 one has $D_{\mathrm{char}}u=0$. The tail kernel is therefore the characteristic integral of the regularized hit density along $u=\mathrm{const}$. This is why it carries an endpoint convention: the repair is energy-conserving only when the endpoint boundary is characteristic to the same order as the retained chart. If the endpoint cuts across the characteristic foliation, the endpoint term is an interior Euler source and the repair has changed the acceleration law rather than merely clearing a boundary.
 
-The normalized characteristic-tail kernel carries explicit energy, momentum, and angular-momentum wake-history increments in [master-equation](./master-equation.md#exact-nonlocal-lagrangian). An effective Lagrangian reduction may therefore choose that kernel only when it also carries the same boundary-increment convention and reports the corresponding variation and conservation residuals on its branch chart. Without those residuals, the reduced Lagrangian remains a scaffold for the Master EOM rather than an independent proof of the branch force.
+The normalized characteristic-tail kernel carries explicit energy, momentum, and angular-momentum wake-history increments in [master-equation](./master-equation.md#exact-nonlocal-lagrangian). An effective Lagrangian reduction may therefore choose that kernel only when it also carries the same boundary-increment convention and reports the corresponding variation and conservation residuals on its branch chart. Without those residuals, the reduced Lagrangian remains a scaffold for the Master EOM rather than an independent proof of the branch acceleration.
 
 ### Symmetries and History-Aware Conservation Laws
 
@@ -526,7 +526,7 @@ For compatible trajectory reconstruction one may use the work-integral form
 $$
 U(T)=U_\ast-\int_{T_\ast}^{T}\sum_i \mu_{\text{arch}}\,\mathbf A_i(T')\cdot\mathbf V_i(T')\,dT'
 $$
-when it is derived from the same action-level force and boundary convention. Otherwise $U(T)$ is a diagnostic history functional, not an independently proved Noether charge.
+when it is derived from the same action-level acceleration law and boundary convention. Otherwise $U(T)$ is a diagnostic history functional, not an independently proved Noether charge.
 
 The corresponding finite-window energy residual is
 $$
@@ -558,7 +558,7 @@ K_{\mu,\mathfrak{B}}+E_{\mathrm{wake,eff},\mathfrak{B}}^{(\eta)},
 \qquad
 \mathbf{J}_{\mathrm{mech},\mathfrak{B}}+\mathbf{J}_{\mathrm{wake,eff},\mathfrak{B}}^{(\eta)}
 $$
-defined on the same retained branch rows that enter the force residual. The energy residual above is theorem-level only after this chart declares the action-level $\tilde g$, endpoint convention, branch floors, and endpoint or period-cut leakage terms. The work-integral reconstruction $U(T)$ remains a trajectory diagnostic unless it is derived from that same normalized kernel and boundary convention.
+defined on the same retained branch rows that enter the acceleration residual. The energy residual above is theorem-level only after this chart declares the action-level $\tilde g$, endpoint convention, branch floors, and endpoint or period-cut leakage terms. The work-integral reconstruction $U(T)$ remains a trajectory diagnostic unless it is derived from that same normalized kernel and boundary convention.
 
 **Generalized Momentum:**
 Spatial translation invariance guarantees the conservation of total momentum, $\mathbf{P}_{\text{tot}} = \mathbf{P}_{\text{mech}}(T) + \mathbf{P}_{\text{wake}}(T)$, where the mechanical momentum of the architrinos is balanced by the momentum flux propagating within the causal wake surfaces. Boundedness of the history-aware energy is therefore the natural diagnostic against runaway behavior, not a separate postulate.
@@ -632,7 +632,7 @@ $$
 \frac{\mathbf{j}_q(\mathbf X',T')}{\rho_q(\mathbf X',T')}
 \qquad (\rho_q\neq 0)
 $$
-This Eulerian double-space functional is a continuum inheritance target for the discrete delayed causal $1/r$ action kernel. It contains no additional source-normal denominator: the delayed density $\rho_q(\mathbf X',T')$ already carries the source-side compression or dilation produced by the Lagrangian-to-Eulerian coarse-graining. For a point source, the familiar source-velocity factor appears when the particle delta is collapsed through its emission-time root; it is not an extra denominator to multiply into the Eulerian density kernel. The correction still required by the canonical Master EOM is receiver-normal: differentiating a corrected delayed action with respect to receiver coordinates must reproduce the receiver-normal inverse-square force density plus velocity-dependent correction terms. Any quasi-static reduction must be obtained by substituting the fixed receiver and source velocities into $W^{\mathrm{rec}}$, not by dropping the receiver-normal numerator.
+This Eulerian double-space functional is a continuum inheritance target for the discrete delayed causal $1/r$ action kernel. It contains no additional source-normal denominator: the delayed density $\rho_q(\mathbf X',T')$ already carries the source-side compression or dilation produced by the Lagrangian-to-Eulerian coarse-graining. For a point source, the familiar source-velocity factor appears when the particle delta is collapsed through its emission-time root; it is not an extra denominator to multiply into the Eulerian density kernel. The correction still required by the canonical Master EOM is receiver-normal: differentiating a corrected delayed action with respect to receiver coordinates must reproduce the receiver-normal inverse-square acceleration density plus velocity-dependent correction terms. Any quasi-static reduction must be obtained by substituting the fixed receiver and source velocities into $W^{\mathrm{rec}}$, not by dropping the receiver-normal numerator.
 
 The receiver-normal correction is also one continuum location of the per-hit third-law defect. The branch chart must distinguish source-side density transport from receiver-side crossing strength, so the receiver/source exchange is not represented by a symmetric mechanical stress alone. Translation invariance still protects total momentum when the wake momentum is included, but the mechanical current must split as
 
@@ -653,7 +653,7 @@ $$
 \right)
 $$
 
-where $\Pi_{q,J}^{[ij]}$ is the antisymmetric branch-correction contribution generated when source-side density transport and receiver-normal crossing strength are derived on the same branch chart. The antisymmetric part is not a new force; it is the continuum expression of wake momentum that the particle-only mechanical ledger has omitted. This identifies three restart diagnostics for the same effective channel: the discrete recoil term $\mathbf{C}_{ij}^{(\eta)}$, the vector transport potential $\mathbf{A}_{\mathrm{wake}}$, and the antisymmetric stress contribution $\Pi_{q,J}^{[ij]}$. A continuum simulation can test magnetic-like emergence only after these reconstructions are rebuilt on the same branch window with the receiver-normal numerator included.
+where $\Pi_{q,J}^{[ij]}$ is the antisymmetric branch-correction contribution generated when source-side density transport and receiver-normal crossing strength are derived on the same branch chart. The antisymmetric part is not a new acceleration term; it is the continuum expression of wake momentum that the particle-only mechanical ledger has omitted. This identifies three restart diagnostics for the same effective channel: the discrete recoil term $\mathbf{C}_{ij}^{(\eta)}$, the vector transport potential $\mathbf{A}_{\mathrm{wake}}$, and the antisymmetric stress contribution $\Pi_{q,J}^{[ij]}$. A continuum simulation can test magnetic-like emergence only after these reconstructions are rebuilt on the same branch window with the receiver-normal numerator included.
 
 The continuum variables are admitted only through balance laws inherited from resolved histories. A coarse polarity density and current must satisfy
 $$
@@ -715,7 +715,7 @@ $$
 }
 $$
 
-and $\Pi_{\mathrm{mem}}^{ij}$ carries the finite-frequency remainder. This makes the viscosity-like channel an odd-frequency readout of the delayed force kernel. The ratio between $\eta_{\mathrm{cg}}$, $\zeta_{\mathrm{cg}}$, and the force-law coupling $\kappa$ is therefore a kernel-shape consequence on a certified branch, not an additional parameter family.
+and $\Pi_{\mathrm{mem}}^{ij}$ carries the finite-frequency remainder. This makes the viscosity-like channel an odd-frequency readout of the delayed acceleration kernel. The ratio between $\eta_{\mathrm{cg}}$, $\zeta_{\mathrm{cg}}$, and the acceleration-law coupling $\kappa$ is therefore a kernel-shape consequence on a certified branch, not an additional parameter family.
 
 This is the continuum version of the delayed oscillator expansion. A branch-derived response kernel has one Taylor structure:
 
@@ -843,7 +843,7 @@ $$
 \,d\vartheta
 $$
 
-where $h$ is the retained memory depth and $\mathcal K_{\mathrm{symp}}$ is built from the same branch causal kernel that supplies the force. The residual $\epsilon_{\omega}$ is small only when this memory term is replayable: after one return, the retained history segment $[-h,0]$ must map to a congruent segment with the same branch rows and boundary convention. This is why phase-locked branches are the natural Hamiltonian domain. They replay the history window that carries $\omega_{\mathrm{mem}}$, while off-lock branches leak symplectic content through the memory boundary and can look dissipative after projection.
+where $h$ is the retained memory depth and $\mathcal K_{\mathrm{symp}}$ is built from the same branch causal kernel that supplies the acceleration. The residual $\epsilon_{\omega}$ is small only when this memory term is replayable: after one return, the retained history segment $[-h,0]$ must map to a congruent segment with the same branch rows and boundary convention. This is why phase-locked branches are the natural Hamiltonian domain. They replay the history window that carries $\omega_{\mathrm{mem}}$, while off-lock branches leak symplectic content through the memory boundary and can look dissipative after projection.
 
 Equivalently, $\omega_{\mathrm{mem}}$ is the symplectic flux through the boundary of the retained memory interval. A Hamiltonian-promotable branch must make that boundary periodic under the return map:
 

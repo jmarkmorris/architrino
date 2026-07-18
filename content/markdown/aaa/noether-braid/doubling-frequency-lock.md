@@ -47,7 +47,7 @@ Everything before Assumption 2 is topology-free kinematics. Everything after Ass
 
 ## Assumption 1 (Middle Caustic-Grazing Closure)
 
-In the reduced exterior and horizon-transition branch studied here, the middle binary is not pinned exactly on an infinite-force surface. It is modeled as a caustic-grazing carrier whose cycle-averaged hinge value is the field speed:
+In the reduced exterior and horizon-transition branch studied here, the middle binary is not pinned exactly on an infinite-acceleration surface. It is modeled as a caustic-grazing carrier whose cycle-averaged hinge value is the field speed:
 $$
 v_M^{\mathrm{car}}=c_f,
 \qquad
@@ -70,7 +70,7 @@ $$
 \qquad
 \left\|\Delta\mathbf{V}_{M,j}\right\|<\infty
 $$
-rather than an infinite-force constraint. These impulse events are candidate mechanical origins for the discrete causal-root ledger steps used in the [energy bookkeeping](../dynamics/energy.md#self-hit-echo-and-discrete-steps-working-note).
+rather than an infinite-acceleration constraint. These impulse events are candidate mechanical origins for the discrete causal-root ledger steps used in the [energy bookkeeping](../dynamics/energy.md#self-hit-echo-and-discrete-steps-working-note).
 
 This is the main regime assumption of the doubling-frequency-lock analysis. The speed $c_f$ is the propagation speed of causal isochrons in the reduced dynamics, not an observer-level claim about an effective metric.
 It is not a claim that every Noether braid regime has the middle binary exactly at $c_f$; ordinary weak-stress operation may keep the middle layer only near the hinge scale, while the caustic-grazing carrier belongs to the reduced exterior/horizon-transition branch.
@@ -205,7 +205,7 @@ e^{ia(q_k\omega_O T+\phi_k)}
 $$
 The coefficients $A_{k,a}$ are not free fit parameters. They must be extracted from the same finite-$\eta$ receiver-normal branch-strength, branch-transversality, and causal-wake ledger used to test the candidate lock.
 They therefore belong to the dynamics of the causal-wake branch chart, even when the resulting signal is later summarized as an effective potential.
-For the caustic-grazing middle carrier this extraction is not an ordinary smooth Fourier coefficient. A middle harmonic must carry the caustic transversality weight of the window while keeping receiver-normal force/action strength on the same retained record, schematically
+For the caustic-grazing middle carrier this extraction is not an ordinary smooth Fourier coefficient. A middle harmonic must carry the caustic transversality weight of the window while keeping receiver-normal acceleration/action strength on the same retained record, schematically
 
 $$
 A_{M,a}
@@ -426,7 +426,7 @@ $$
 C_{\eta}\,a^{-p_{\mathrm{fold}}}
 $$
 
-with $p_{\mathrm{fold}}$ fixed by the caustic normal form and the regulator. Here $S_L$ is the impulse-accumulated velocity-row signal obtained after integrating the regularized middle-caustic impulse through the retained branch record; it is not the unintegrated force or potential row. In a local fold coordinate $x=\theta_M-\theta_{M,j}^{\ast}$, a generic Whitney $A_2$ fold gives a velocity-row cusp $B_0+B_1|x|^{1/2}+O(x)$, whose Fourier coefficients scale as $a^{-3/2}$. The corresponding unintegrated force-row singularity would scale as $|x|^{-1/2}$ and would not supply the $L_{\mathrm{eff}}^{-2}$ tail budget used below. Thus the velocity-row normal form gives the pre-cutoff exponent
+with $p_{\mathrm{fold}}$ fixed by the caustic normal form and the regulator. Here $S_L$ is the impulse-accumulated velocity-row signal obtained after integrating the regularized middle-caustic impulse through the retained branch record; it is not the unintegrated acceleration or potential row. In a local fold coordinate $x=\theta_M-\theta_{M,j}^{\ast}$, a generic Whitney $A_2$ fold gives a velocity-row cusp $B_0+B_1|x|^{1/2}+O(x)$, whose Fourier coefficients scale as $a^{-3/2}$. The corresponding unintegrated acceleration-row singularity would scale as $|x|^{-1/2}$ and would not supply the $L_{\mathrm{eff}}^{-2}$ tail budget used below. Thus the velocity-row normal form gives the pre-cutoff exponent
 $$
 p_{\mathrm{fold}}=\frac{3}{2}.
 $$

@@ -2371,6 +2371,11 @@ SubstepAttempt corrected_substep_impl(
                 std::move(regulator_convergence_certificates);
             failed.endpoint_root_continuations =
                 std::move(endpoint_root_continuations);
+            if (request.failed_substep_candidate_callback) {
+              request.failed_substep_candidate_callback(
+                  start_time, end_time, failure, iteration,
+                  candidate_histories);
+            }
             return {std::move(failed), std::nullopt};
           }
           event_impulses.push_back(std::move(event));
@@ -2464,6 +2469,13 @@ SubstepAttempt corrected_substep_impl(
                   std::move(refined_regulators);
               failed.endpoint_root_continuations =
                   endpoint_root_continuations;
+              if (request.failed_substep_candidate_callback) {
+                request.failed_substep_candidate_callback(
+                    start_time, end_time,
+                    "caustic_eta_convergence_failed",
+                    iteration + event_iteration + 1U,
+                    event_histories);
+              }
               return {std::move(failed), std::nullopt};
             }
             refined_events.push_back(regulator.accepted_event_impulse);
@@ -2976,6 +2988,11 @@ NativeAtomicStepCertificate rejected_step(
       .accepted_time = start_time,
       .input_history_fingerprints = input_fingerprints,
       .published_histories = input_histories,
+      .diagnostic_candidate_histories =
+          request.retain_diagnostic_candidate_histories &&
+                  candidate_histories.has_value()
+              ? candidate_histories
+              : std::nullopt,
       .candidate_history_fingerprints =
           candidate_histories.has_value()
               ? fingerprints(*candidate_histories)
@@ -5640,6 +5657,7 @@ NativeAtomicStepCertificate certify_native_atomic_coupled_step_impl(
       .accepted_time = end_time,
       .input_history_fingerprints = input_fingerprints,
       .published_histories = std::move(accepted_histories),
+      .diagnostic_candidate_histories = std::nullopt,
       .candidate_history_fingerprints = candidate_fingerprints,
       .substeps = std::move(substeps),
       .accepted_snapshot = std::move(accepted_snapshot),

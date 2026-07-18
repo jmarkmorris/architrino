@@ -299,7 +299,7 @@ Any preferred-frame effect, anisotropy, or effective Lorentz behavior must there
 
 Here the important separation is between a straight path in the container and a curved path caused by dynamics. A geodesic of the Euclidean void is a straight spatial path in the fixed metric. It is not an observer-level spacetime geodesic.
 
-In the absence of forces, motion in the Euclidean void follows straight-line, constant-velocity paths:
+In the absence of causal-root hits, motion in the Euclidean void follows straight-line, constant-velocity paths:
 $$
 \mathbf X(T)=\mathbf X_0+\mathbf V_0 T
 $$
@@ -312,7 +312,7 @@ Only physical interactions can bend a trajectory. A curved path in the void is n
 
 Thus deviations from straight-line motion arise from causal wakes, self-interaction, assembly structure, and medium response. They do not arise from spatial curvature.
 
-Substrate force terms must also carry provenance. A deviation from straight motion is admissible only when it is sourced by a causal-wake contribution, a self-hit row, an assembly interaction, or Noether sea response. A transverse or velocity-dependent term with no wake or medium provenance is either a coordinate artifact of a non-inertial chart or not a substrate force in the ontology.
+Substrate acceleration terms must also carry provenance. A deviation from straight motion is admissible only when it is sourced by a causal-wake contribution, a self-hit row, an assembly interaction, or Noether sea response. A transverse or velocity-dependent term with no wake or medium provenance is either a coordinate artifact of a non-inertial chart or not a substrate acceleration in the ontology.
 
 ## Forbidden Transformations
 
