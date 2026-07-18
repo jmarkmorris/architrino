@@ -250,6 +250,8 @@ class RetainedHistory {
   [[nodiscard]] IntervalVector correlated_position_hull(
       const Interval& time) const;
   [[nodiscard]] IntervalVector velocity_hull(const Interval& time) const;
+  [[nodiscard]] IntervalVector correlated_velocity_hull(
+      const Interval& time) const;
   [[nodiscard]] std::array<double, 3> nominal_position(double time) const;
   [[nodiscard]] std::array<double, 3> nominal_velocity(double time) const;
   [[nodiscard]] std::optional<IntervalVector>

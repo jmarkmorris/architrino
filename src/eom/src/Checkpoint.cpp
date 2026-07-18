@@ -266,6 +266,7 @@ std::string model_fingerprint(
       request.source_normal_floor,
       request.acceleration_tolerance,
       request.far_field_enclosure_fraction,
+      request.use_far_field_enclosure_in_evolution ? "1" : "0",
       request.chart_policy,
       request.causal_width,
       request.core_scale,
@@ -295,6 +296,7 @@ std::string model_fingerprint(
       request.adaptive_step_minimum_scale,
       request.adaptive_step_maximum_scale,
       request.use_synchronized_multirate_publication ? "1" : "0",
+      request.use_quarter_step_publication ? "1" : "0",
       request.multirate_synchronization_fraction,
       request.use_certificate_cost_feedback ? "1" : "0",
       std::to_string(

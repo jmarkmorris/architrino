@@ -50,6 +50,10 @@ struct NativeCoupledEvolutionRequest {
   // Fraction of the acceleration component-width tolerance reserved for
   // certified per-pair far-field enclosures. Zero disables the route.
   std::string far_field_enclosure_fraction = "0";
+  // Analysis snapshots may consume a certified far-field enclosure directly.
+  // Evolution can instead require exact pair fallback so that an optional
+  // pruning width is not integrated into every later retained state.
+  bool use_far_field_enclosure_in_evolution = true;
   std::string chart_policy = "sharp";
   std::string causal_width = "0.2";
   std::string core_scale = "0.2";
@@ -110,6 +114,11 @@ struct NativeCoupledEvolutionRequest {
   // publishes atomically at the same accepted receiver time.
   bool use_synchronized_multirate_publication = false;
   std::string multirate_synchronization_fraction = "0.125";
+  // Validate each atomic step with the existing two-half solution, then
+  // publish a four-quarter solution inflated by the separately measured
+  // two-half-versus-four-quarter local difference. The outer controller and
+  // every acceptance budget remain unchanged.
+  bool use_quarter_step_publication = false;
   // Probe endpoint root searches in binary64 before paying MPFR. One bounded
   // shorter landing is attempted first; the unchanged error controller
   // retains acceptance authority. Any adjusted acceptance starts a recovery

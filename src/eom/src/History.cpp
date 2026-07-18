@@ -1002,6 +1002,22 @@ IntervalVector RetainedHistory::velocity_hull(const Interval& time) const {
   return segment_hull(*this, time, true);
 }
 
+IntervalVector RetainedHistory::correlated_velocity_hull(
+    const Interval& time) const {
+  IntervalVector result = velocity_hull(time);
+  if (time.lower() != time.upper()) {
+    return result;
+  }
+  const double point_value = time.lower();
+  for (const auto& segment : segments_) {
+    if (point_value < segment.t_start() || point_value > segment.t_end()) {
+      continue;
+    }
+    result = intersect_vectors(result, segment.velocity_interval(time));
+  }
+  return result;
+}
+
 std::array<double, 3> RetainedHistory::nominal_position(double time) const {
   return segments_[segment_index_at(time)].nominal_position(time);
 }

@@ -73,6 +73,11 @@ const summarizeStateCertificates = booleanOption(
   options["state-summary"],
   false,
 );
+const includeHistoryErrorSeries = booleanOption(
+  options["history-error-series"],
+  false,
+);
+const includeRootDetails = booleanOption(options["root-details"], true);
 const initialConditionConfig = createBorgInitialConditionConfig({
   ...manifest.initialConditions,
   electrinoCount: nonnegativeInteger(
@@ -126,7 +131,23 @@ const nativeChunks = [];
 const measuredClient = {
   async evolveRetainedHistories(request) {
     const wallStart = performance.now();
-    const response = await processClient.evolveRetainedHistories(request);
+    const pendingChunk = nativeChunks.length + 1;
+    const heartbeat = setInterval(() => {
+      const wallSeconds = (performance.now() - wallStart) / 1000;
+      process.stderr.write(
+        `[borg-profile] heartbeat chunk=${pendingChunk} ` +
+        `acceptedThrough=${request.absoluteTimeInterval?.start ?? "unknown"} ` +
+        `requestedThrough=${request.absoluteTimeInterval?.end ?? "unknown"} ` +
+        `wallSeconds=${wallSeconds.toFixed(1)}\n`,
+      );
+    }, 10000);
+    heartbeat.unref?.();
+    let response;
+    try {
+      response = await processClient.evolveRetainedHistories(request);
+    } finally {
+      clearInterval(heartbeat);
+    }
     const finalRootAccounting = response.stepFailures?.at(-1)?.rootAccounting ?? [];
     const finalStepFailure = response.stepFailures?.at(-1) ?? null;
     const regulatorCertificates = (response.stepFailures ?? []).flatMap((step) =>
@@ -180,6 +201,17 @@ const measuredClient = {
         velocityErrors: (segment?.velocityErrors ?? []).map(Number),
       };
     });
+    const historyErrorSeries = includeHistoryErrorSeries
+      ? (response.histories ?? []).flatMap((history) =>
+          (history.segments ?? []).map((segment, segmentIndex) => ({
+            pathId: history.pathId,
+            segmentIndex,
+            startTime: Number(segment.startTime),
+            endTime: Number(segment.endTime),
+            positionErrors: (segment.positionErrors ?? []).map(Number),
+            velocityErrors: (segment.velocityErrors ?? []).map(Number),
+          })))
+      : [];
     nativeChunks.push({
       chunkIndex: nativeChunks.length,
       status: response.status,
@@ -196,6 +228,8 @@ const measuredClient = {
       enclosedErrorWidthTotal: finalStepFailure?.enclosedErrorWidthTotal ?? 0,
       enclosedErrorWidthMaxReceiver:
         finalStepFailure?.enclosedErrorWidthMaxReceiver ?? 0,
+      accelerationWidthMaxReceiver:
+        finalStepFailure?.accelerationWidthMaxReceiver ?? 0,
       startTime: Number(request.absoluteTimeInterval.start),
       endTime: Number(request.absoluteTimeInterval.end),
       outerWallSeconds: (performance.now() - wallStart) / 1000,
@@ -213,6 +247,22 @@ const measuredClient = {
         attemptedEnd: Number(step.attemptedEnd),
         correctionResidual: step.correctionResidual,
         correctionRetryScale: step.correctionRetryScale,
+        accelerationWidthMaxReceiver:
+          Number(step.accelerationWidthMaxReceiver ?? 0),
+        rootWidths: !includeRootDetails ? [] : (step.rootAccounting ?? []).flatMap((row) =>
+          (row.roots ?? []).map((root) =>
+            Number(root.upper) - Number(root.lower))),
+        rootDetails: !includeRootDetails ? [] : (step.rootAccounting ?? []).flatMap((row) =>
+          (row.roots ?? []).map((root) => ({
+            receiverPathId: row.receiverPathId,
+            sourcePathId: row.sourcePathId,
+            lower: Number(root.lower),
+            upper: Number(root.upper),
+            width: Number(root.upper) - Number(root.lower),
+            precisionRoute: root.precisionRoute,
+            precisionBits: root.precisionBits,
+            sourceSegmentIndices: root.sourceSegmentIndices,
+          }))),
       })),
       terminalFailure: finalStepFailure == null ? null : {
         failureCode: finalStepFailure.failureCode,
@@ -231,6 +281,7 @@ const measuredClient = {
       regulatorLevelEvaluationCount,
       finiteWidthStateCertificates,
       endpointSegmentErrors,
+      historyErrorSeries,
       ...response.timing,
     });
     process.stderr.write(
@@ -560,6 +611,7 @@ function summarizeChunks(chunks) {
     traversalEnclosedPairs: chunk.traversalEnclosedPairs,
     enclosedErrorWidthTotal: chunk.enclosedErrorWidthTotal,
     enclosedErrorWidthMaxReceiver: chunk.enclosedErrorWidthMaxReceiver,
+    accelerationWidthMaxReceiver: chunk.accelerationWidthMaxReceiver,
     regulatorEventVisitedCells: chunk.regulatorEventVisitedCells,
     regulatorLevelEvaluationCount: chunk.regulatorLevelEvaluationCount,
     totalWallSeconds: chunk.totalWallSeconds,

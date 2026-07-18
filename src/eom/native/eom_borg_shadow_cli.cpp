@@ -450,6 +450,7 @@ void run(
       .source_normal_floor = run[25],
       .acceleration_tolerance = run[12],
       .far_field_enclosure_fraction = run[13],
+      .use_far_field_enclosure_in_evolution = false,
       .chart_policy = run[48],
       .causal_width = run[26],
       .core_scale = run[10],
@@ -503,6 +504,7 @@ void run(
       .use_adaptive_step_growth = parse_bool(run[7], "adaptive step growth"),
   };
   request.thread_count = parse_size(run[17], "thread count");
+  request.use_quarter_step_publication = true;
   if (request.maximum_mpfr_bits > maximum_mpfr_bits ||
       request.quadrature_max_depth > quadrature_max_depth ||
       request.quadrature_max_cells > quadrature_max_cells ||
@@ -708,6 +710,18 @@ void run(
         step.accepted_snapshot.has_value()
         ? &*step.accepted_snapshot
         : (step.substeps.empty() ? nullptr : &step.substeps.front().start_snapshot);
+    double acceleration_width_max_receiver = 0.0;
+    if (diagnostic_snapshot != nullptr) {
+      for (const auto& receiver :
+           diagnostic_snapshot->acceleration.receiver_totals) {
+        double receiver_width = 0.0;
+        for (const auto& component : receiver.acceleration) {
+          receiver_width = std::max(receiver_width, component.width());
+        }
+        acceleration_width_max_receiver = std::max(
+            acceleration_width_max_receiver, receiver_width);
+      }
+    }
     const std::string caustic_row = caustic_contract_row(step);
     std::cout << "{\"status\":\""
               << json_escape(step.status)
@@ -767,7 +781,9 @@ void run(
               << ",\"enclosedErrorWidthMaxReceiver\":"
               << (diagnostic_snapshot != nullptr
                       ? diagnostic_snapshot->enclosed_error_width_max_receiver
-                      : 0.0);
+                      : 0.0)
+              << ",\"accelerationWidthMaxReceiver\":"
+              << acceleration_width_max_receiver;
     std::cout << ",\"traversalVisitedNodes\":"
               << (diagnostic_snapshot != nullptr &&
                           diagnostic_snapshot->traversal_certificate.has_value()

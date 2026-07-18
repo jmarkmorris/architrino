@@ -755,8 +755,10 @@ std::vector<NativePublishedPath> append_candidate_segments(
   result.reserve(histories.size());
   for (const auto& path : histories) {
     const Interval time = Interval::point(start);
-    const IntervalVector position_interval = path.history.position_hull(time);
-    const IntervalVector velocity_interval = path.history.velocity_hull(time);
+    const IntervalVector position_interval =
+        path.history.correlated_position_hull(time);
+    const IntervalVector velocity_interval =
+        path.history.correlated_velocity_hull(time);
     const auto position = midpoints(position_interval);
     const auto velocity = midpoints(velocity_interval);
     const auto start_found = start_acceleration.find(path.path_id);
@@ -855,8 +857,10 @@ EventAwareCandidate append_event_aware_candidate_segments(
   result.histories.reserve(histories.size());
   for (const auto& path : histories) {
     const Interval start_point = Interval::point(start);
-    const IntervalVector x0 = path.history.position_hull(start_point);
-    const IntervalVector v0 = path.history.velocity_hull(start_point);
+    const IntervalVector x0 =
+        path.history.correlated_position_hull(start_point);
+    const IntervalVector v0 =
+        path.history.correlated_velocity_hull(start_point);
     IntervalVector background_start = start_totals.at(path.path_id);
     IntervalVector background_end = end_totals.at(path.path_id);
     IntervalVector event_impulse = zero_vector;
@@ -4707,6 +4711,7 @@ NativeAccelerationSnapshotCertificate certify_native_acceleration_snapshot(
       : common_start;
 
   const bool use_far_field_enclosure =
+      request.use_far_field_enclosure_in_evolution &&
       exact_decimal_value(request.far_field_enclosure_fraction) > 0.0 &&
       common_history_start;
   if (use_far_field_enclosure &&
@@ -5461,21 +5466,103 @@ NativeAtomicStepCertificate certify_native_atomic_coupled_step_impl(
       second_half.certificate.timing.history_copy_hash_wall_seconds;
   timing->reused_start_snapshot_count +=
       second_half.certificate.timing.reused_start_snapshot_count;
-  std::vector<NativeCorrectedSubstepCertificate> substeps;
-  substeps.push_back(std::move(full.certificate));
-  substeps.push_back(std::move(first_half.certificate));
-  substeps.push_back(std::move(second_half.certificate));
   if (!second_half.histories.has_value()) {
-    const std::string failure = substeps.back().failure_code.empty()
+    const std::string failure = second_half.certificate.failure_code.empty()
         ? "coupled_correction_failed"
-        : substeps.back().failure_code;
+        : second_half.certificate.failure_code;
+    std::vector<NativeCorrectedSubstepCertificate> substeps;
+    substeps.push_back(std::move(full.certificate));
+    substeps.push_back(std::move(first_half.certificate));
+    substeps.push_back(std::move(second_half.certificate));
     return rejected_step(
         request, histories, step_index, start_time, end_time,
         std::move(substeps), failure, first_half.histories);
   }
 
+  std::vector<SubstepAttempt> quarter_attempts;
+  quarter_attempts.reserve(4U);
+  if (request.use_quarter_step_publication) {
+    const double start_value = scalar_token(start_time);
+    const double end_value = scalar_token(end_time);
+    const double span = end_value - start_value;
+    const std::array<std::string, 5> quarter_times{
+        start_time,
+        decimal_token(start_value + 0.25 * span),
+        midpoint,
+        decimal_token(start_value + 0.75 * span),
+        end_time};
+    const std::vector<NativePublishedPath>* quarter_input = &histories;
+    const NativeAccelerationSnapshotCertificate* quarter_start_snapshot =
+        &full.certificate.start_snapshot;
+    for (std::size_t quarter = 0U; quarter < 4U; ++quarter) {
+      auto quarter_request = request;
+      quarter_request.allow_pending_finite_width_exit = quarter < 3U;
+      if (!quarter_attempts.empty()) {
+        for (const auto& state : quarter_attempts.back()
+                                     .certificate
+                                     .finite_width_state_certificates) {
+          insert_sorted_pair(
+              quarter_request.adjudicated_finite_width_pairs,
+              std::make_pair(state.receiver_path_id, state.source_path_id));
+        }
+      }
+      auto attempt = corrected_substep(
+          quarter_request, *quarter_input, quarter_times[quarter],
+          quarter_times[quarter + 1U], quarter_start_snapshot,
+          defer_endpoint_root_precision_escalation);
+      timing->corrected_substeps_wall_seconds +=
+          attempt.certificate.timing.total_wall_seconds;
+      timing->history_copy_hash_wall_seconds +=
+          attempt.certificate.timing.history_copy_hash_wall_seconds;
+      timing->reused_start_snapshot_count +=
+          attempt.certificate.timing.reused_start_snapshot_count;
+      const bool succeeded = attempt.histories.has_value();
+      quarter_attempts.push_back(std::move(attempt));
+      if (!succeeded) {
+        const std::string failure =
+            quarter_attempts.back().certificate.failure_code.empty()
+            ? "coupled_correction_failed"
+            : quarter_attempts.back().certificate.failure_code;
+        const std::optional<std::vector<NativePublishedPath>> candidate =
+            quarter_attempts.size() > 1U
+            ? quarter_attempts[quarter_attempts.size() - 2U].histories
+            : full.histories;
+        std::vector<NativeCorrectedSubstepCertificate> substeps;
+        substeps.push_back(std::move(full.certificate));
+        substeps.push_back(std::move(first_half.certificate));
+        substeps.push_back(std::move(second_half.certificate));
+        for (auto& quarter_attempt : quarter_attempts) {
+          substeps.push_back(std::move(quarter_attempt.certificate));
+        }
+        return rejected_step(
+            request, histories, step_index, start_time, end_time,
+            std::move(substeps), failure, candidate);
+      }
+      if (!quarter_attempts.back().certificate.endpoint_snapshot.has_value()) {
+        throw std::runtime_error(
+            "accepted quarter substep lacks a reusable endpoint snapshot");
+      }
+      quarter_input = &*quarter_attempts.back().histories;
+      quarter_start_snapshot =
+          &*quarter_attempts.back().certificate.endpoint_snapshot;
+    }
+  }
+
+  const auto& coarse_histories = request.use_quarter_step_publication
+      ? *second_half.histories
+      : *full.histories;
+  const auto& fine_histories = request.use_quarter_step_publication
+      ? *quarter_attempts.back().histories
+      : *second_half.histories;
   auto local_errors = endpoint_local_errors(
-      *full.histories, *second_half.histories, end_time);
+      coarse_histories, fine_histories, end_time);
+  std::vector<NativeCorrectedSubstepCertificate> substeps;
+  substeps.push_back(std::move(full.certificate));
+  substeps.push_back(std::move(first_half.certificate));
+  substeps.push_back(std::move(second_half.certificate));
+  for (auto& quarter_attempt : quarter_attempts) {
+    substeps.push_back(std::move(quarter_attempt.certificate));
+  }
   const double position_tolerance = tolerance_value(
       request.position_tolerance, "position tolerance");
   const double velocity_tolerance = tolerance_value(
@@ -5488,7 +5575,7 @@ NativeAtomicStepCertificate certify_native_atomic_coupled_step_impl(
     return rejected_step(
         request, histories, step_index, start_time, end_time,
         std::move(substeps), "numeric_step_budget_exceeded",
-        second_half.histories, std::move(local_errors));
+        fine_histories, std::move(local_errors));
   }
 
   const auto inflation_timing_start = SteadyClock::now();
@@ -5499,7 +5586,7 @@ NativeAtomicStepCertificate certify_native_atomic_coupled_step_impl(
              local_errors),
          multirate_publication.histories)
       : inflate_fine_histories(
-            histories, *second_half.histories, local_errors);
+            histories, fine_histories, local_errors);
   timing->history_copy_hash_wall_seconds +=
       elapsed_seconds(inflation_timing_start);
   if (!substeps.back().endpoint_snapshot.has_value()) {
@@ -5511,7 +5598,7 @@ NativeAtomicStepCertificate certify_native_atomic_coupled_step_impl(
       request.use_warm_root_exclusion
           ? &*substeps.back().endpoint_snapshot
           : nullptr,
-      request.use_warm_root_exclusion ? &*second_half.histories : nullptr,
+      request.use_warm_root_exclusion ? &fine_histories : nullptr,
       defer_endpoint_root_precision_escalation);
   timing->recertification_wall_seconds +=
       elapsed_seconds(recertification_timing_start);

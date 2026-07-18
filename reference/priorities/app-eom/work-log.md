@@ -1782,3 +1782,28 @@ This file holds dated decisions, implementation status, validation results, fail
   above.
 - **Evidence:**
   [borg-research-parity-root-width-adjudication-apple-m3-2026-07-18.md](evidence/borg-research-parity-root-width-adjudication-apple-m3-2026-07-18.md).
+
+## 2026-07-18 — Fixed-budget Borg endurance adjudication
+
+- **Measured first accumulated-width mechanism:** six-path Borg evolution was
+  consuming optional far-field enclosures for 18 of 36 ordered pairs. Their
+  first-chunk width, including `0.0111853` at the widest receiver, entered the
+  state-radius recurrence despite the exact-pair fallback being affordable.
+- **Derived correction:** Borg now uses exact fallback for every ordered pair,
+  shared position and velocity endpoint hulls, sharp-root contraction confined
+  to acceleration reconstruction, and recertified four-quarter publication.
+  The preset hashes and all root, acceleration, local-error, and atomic-
+  publication gates are unchanged.
+- **Measured fixed-budget result:** Research and Interactive seeds 0–3 all pass
+  `T=1.2`, but terminal halts still occur after `4.13` to `45.47` wall seconds,
+  at accepted solver times `4.952794255188131` to `11.475`. Seven rows stop on
+  root completeness; Research seed 2 stops on an uncertified caustic transit.
+  The literal ten-minute gate fails.
+- **Measured live UI methods:** Research completed `T=1.2` through `Start /
+  restart`; Interactive completed `T=1.2` through `Apply & run`; both showed
+  four of four native chunks and the browser console contained zero errors.
+- **Adjudication:** do not ratchet a root tolerance. The next closure target is
+  a certified richer joint-state/cross-path correlation or separately
+  validated reconditioned integrator under the same fixed allocations.
+- **Evidence:**
+  [borg-fixed-budget-ten-minute-endurance-adjudication-apple-m3-2026-07-18.md](evidence/borg-fixed-budget-ten-minute-endurance-adjudication-apple-m3-2026-07-18.md).

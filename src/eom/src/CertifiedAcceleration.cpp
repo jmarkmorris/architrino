@@ -188,7 +188,8 @@ NativeAccelerationRow reconstruct_row(
   const auto& root_certificate = *request.root_certificate;
   const Interval reception =
       Interval::decimal_token(root_certificate.reception_time);
-  const Interval emission = token_bounds(root.lower, root.upper);
+  const Interval certified_emission = token_bounds(root.lower, root.upper);
+  Interval emission = certified_emission;
   if (!request.receiver_history->covers(reception) ||
       !request.source_history->covers(emission)) {
     throw AccelerationCertificationError(
@@ -200,18 +201,42 @@ NativeAccelerationRow reconstruct_row(
   for (const std::size_t index : root.source_segment_indices) {
     if (index >= request.source_history->segments().size() ||
         !root_overlaps_segment(
-            emission, request.source_history->segments()[index])) {
+            certified_emission, request.source_history->segments()[index])) {
       throw AccelerationCertificationError(
           "root source segment identity does not cover the root enclosure");
     }
   }
 
+  const Interval field_speed =
+      Interval::decimal_token(root_certificate.field_speed);
+  const Interval certified_source_normal = token_bounds(
+      root.source_normal_lower, root.source_normal_upper);
+  bool emission_contracted = false;
+  if (!certified_source_normal.contains_zero()) {
+    const Interval midpoint = Interval::point(certified_emission.midpoint());
+    const IntervalVector contraction_receiver =
+        request.receiver_history->correlated_position_hull(reception);
+    const IntervalVector contraction_source =
+        request.source_history->correlated_position_hull(midpoint);
+    const Interval contraction_residual =
+        norm(subtract(contraction_receiver, contraction_source)) -
+        field_speed * (reception - midpoint);
+    const Interval candidate =
+        midpoint - contraction_residual / certified_source_normal;
+    const auto intersection = certified_emission.intersection(candidate);
+    if (intersection.has_value() &&
+        intersection->width() < certified_emission.width()) {
+      emission = *intersection;
+      emission_contracted = true;
+    }
+  }
+
   const IntervalVector receiver_position =
-      request.receiver_history->position_hull(reception);
+      request.receiver_history->correlated_position_hull(reception);
   const IntervalVector receiver_velocity =
       request.receiver_history->velocity_hull(reception);
   const IntervalVector source_position =
-      request.source_history->position_hull(emission);
+      request.source_history->correlated_position_hull(emission);
   const IntervalVector source_velocity =
       request.source_history->velocity_hull(emission);
   const IntervalVector displacement =
@@ -222,12 +247,8 @@ NativeAccelerationRow reconstruct_row(
         "sharp acceleration separation enclosure contains zero");
   }
   const IntervalVector direction = divide(displacement, separation);
-  const Interval field_speed =
-      Interval::decimal_token(root_certificate.field_speed);
   const Interval evaluated_source_normal =
       field_speed - dot(direction, source_velocity);
-  const Interval certified_source_normal = token_bounds(
-      root.source_normal_lower, root.source_normal_upper);
   const auto source_normal_intersection =
       evaluated_source_normal.intersection(certified_source_normal);
   if (!source_normal_intersection.has_value()) {
@@ -290,7 +311,9 @@ NativeAccelerationRow reconstruct_row(
       .acceptance_status = "consumed_certified_sharp_root",
       .root_precision_route = root.precision_route,
       .root_precision_bits = root.precision_bits,
-      .acceleration_precision_route = "binary64_outward",
+      .acceleration_precision_route = emission_contracted
+          ? "binary64_outward_monotone_root_contraction"
+          : "binary64_outward",
       .acceleration_precision_bits = 53,
       .acceleration = acceleration,
   };
