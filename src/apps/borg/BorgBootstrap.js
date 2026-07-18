@@ -7,11 +7,10 @@ import {
   createBorgSeededInitialConditionRows,
 } from "./BorgInitialConditions.js";
 import {
-  BORG_DISPLAY_DEFAULTS_V1,
-  createBorgRunGradeDefaults,
-  createBorgRunGradePlacementPolicy,
-} from "./BorgRunGradeDefaults.js";
-import { BORG_DISPLAY_RUN_GRADE } from "./BorgRunGradeControl.js";
+  BORG_INTERACTIVE_DEFAULTS_V1,
+  createBorgInteractiveDefaults,
+  createBorgPlacementPolicy,
+} from "./BorgInteractiveDefaults.js";
 
 export const BORG_DEFAULT_RUNTIME_MODE = "eom-shadow";
 export const BORG_RECORD_REPLAY_RUNTIME_MODE = "eom-record-replay";
@@ -46,14 +45,10 @@ export async function bootBorgApp({
   if (!Number.isSafeInteger(startupSeedIndex) || startupSeedIndex < 0) {
     throw new TypeError("Borg startup seed index must be a nonnegative safe integer.");
   }
-  const displayDefaults = createBorgRunGradeDefaults(
+  const interactiveDefaults = createBorgInteractiveDefaults(manifest);
+  const initialConditionConfig = interactiveDefaults.initialConditionConfig;
+  const displayPlacement = createBorgPlacementPolicy(
     manifest,
-    BORG_DISPLAY_RUN_GRADE,
-  );
-  const initialConditionConfig = displayDefaults.initialConditionConfig;
-  const displayPlacement = createBorgRunGradePlacementPolicy(
-    manifest,
-    BORG_DISPLAY_RUN_GRADE,
     initialConditionConfig.electrinoCount + initialConditionConfig.positrinoCount,
   );
   const fullPopulationEndpointRows = createBorgSeededInitialConditionRows({
@@ -101,7 +96,7 @@ export async function bootBorgApp({
       targetDuration: eomStartTime + eomDuration,
       runDuration: eomDuration,
       historyDepth: seedHistoryDepth,
-      coreScale: BORG_DISPLAY_DEFAULTS_V1.coreScale,
+      coreScale: BORG_INTERACTIVE_DEFAULTS_V1.coreScale,
       pathCount: endpointRows.length,
       // Batch six 0.05 display steps per process round trip. This keeps the
       // EOM solver's numerical step unchanged while avoiding protocol cost on
@@ -120,12 +115,12 @@ export async function bootBorgApp({
       rootTolerance: "1e-3",
       accelerationTolerance: "1e-1",
       farFieldEnclosureFraction: String(
-        BORG_DISPLAY_DEFAULTS_V1.farFieldEnclosureFraction,
+        BORG_INTERACTIVE_DEFAULTS_V1.farFieldEnclosureFraction,
       ),
       positionTolerance: "1e-2",
       velocityTolerance: "1e-2",
       correctionTolerance: "1e-1",
-      coupling: String(displayDefaults.coupling),
+      coupling: String(interactiveDefaults.coupling),
       threadCount: 4,
     },
   });

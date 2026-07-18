@@ -41,8 +41,12 @@ export function createBorgDisplayReplacementTransform({
   };
 }
 
-export function applyBorgDisplayReplacementTransform(position, transform) {
-  if (!transform) {
+export function applyBorgDisplayReplacementTransform(
+  position,
+  transform,
+  time = Number.POSITIVE_INFINITY,
+) {
+  if (!transform || Number(time) < Number(transform.startTime)) {
     return position;
   }
   return Object.freeze({

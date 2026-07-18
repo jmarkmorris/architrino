@@ -35,10 +35,17 @@ struct DisplayReceiverAcceleration {
   std::array<double, 3> acceleration{};
 };
 
+struct DisplayPairRootCount {
+  std::string receiver_path_id;
+  std::string source_path_id;
+  std::size_t root_count = 0U;
+};
+
 struct DisplayEvaluationResult {
   std::string status;
   std::string failure_code;
   std::vector<DisplayReceiverAcceleration> receiver_accelerations;
+  std::vector<DisplayPairRootCount> pair_root_counts;
   std::vector<std::pair<std::string, std::string>> regulated_pairs;
   std::size_t root_pair_count = 0U;
   std::size_t root_count = 0U;

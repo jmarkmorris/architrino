@@ -928,6 +928,13 @@ void print_all() {
   for (const auto& path : far_field_control_request.paths) {
     far_field_control_histories.push_back({path.path_id, path.history});
   }
+  auto far_field_traversal_request = far_field_control_request;
+  far_field_traversal_request.run_id = "far-field-traversal-cascade";
+  far_field_traversal_request.traversal_exact_tile_pair_limit = 1;
+  const auto far_field_traversal_control =
+      eom::certify_native_acceleration_snapshot(
+          far_field_traversal_request, far_field_control_histories, "0");
+  far_field_control_request.use_certified_traversal = false;
   const auto far_field_control = eom::certify_native_acceleration_snapshot(
       far_field_control_request, far_field_control_histories, "0");
 
@@ -1347,6 +1354,8 @@ void print_all() {
   print_evolution(binary_single_thread_result);
   std::cout << ",\"far_field_analytic_control\":";
   print_far_field_control(far_field_control);
+  std::cout << ",\"far_field_traversal_cascade\":";
+  print_far_field_control(far_field_traversal_control);
   std::cout << ",\"far_field_dispersal_disabled\":";
   print_atomic(dispersed_boundary_disabled);
   std::cout << ",\"rejections\":[";

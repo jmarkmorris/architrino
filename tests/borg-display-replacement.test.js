@@ -33,6 +33,15 @@ test("Borg display replacement starts inside the sphere and preserves later disp
   assert.ok(Math.abs(advanced.z - 0.8) < 1e-12);
   assert.equal(transform.generation, 4);
   assert.equal(transform.startTime, 2.5);
+  const earlier = { x: 9.8, y: -2.9, z: 1.7 };
+  assert.equal(
+    applyBorgDisplayReplacementTransform(earlier, transform, 2.49),
+    earlier,
+  );
+  assert.notEqual(
+    applyBorgDisplayReplacementTransform(earlier, transform, 2.5),
+    earlier,
+  );
 });
 
 test("Borg screen test rejects every side and depth plane", () => {

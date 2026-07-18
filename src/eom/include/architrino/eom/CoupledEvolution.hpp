@@ -2,11 +2,14 @@
 
 #include "architrino/eom/CertifiedAcceleration.hpp"
 #include "architrino/eom/CertifiedTraversal.hpp"
+#include "architrino/eom/DisplayEvaluation.hpp"
 #include "architrino/eom/ExactPairBatch.hpp"
 #include "architrino/eom/History.hpp"
 
 #include <cstddef>
+#include <cstdint>
 #include <functional>
+#include <limits>
 #include <optional>
 #include <string>
 #include <utility>
@@ -86,6 +89,8 @@ struct NativeCoupledEvolutionRequest {
   std::size_t max_step_attempts = 10000;
   std::size_t max_rejected_steps = 1000;
   std::size_t thread_count = 1;
+  std::uint64_t memory_budget_bytes =
+      std::numeric_limits<std::uint64_t>::max();
   bool use_adaptive_step_growth = false;
   // Replace the legacy two-hit power-of-two growth rule with a bounded
   // error-scaled controller. Acceptance tolerances are unchanged.
@@ -276,6 +281,7 @@ struct NativeAccelerationSnapshotCertificate {
   // Uncertified display bookkeeping only. These fields are empty on the
   // certified route and never serve as root or snapshot certificates.
   std::vector<NativeHistoryFingerprint> display_history_fingerprints;
+  std::vector<DisplayPairRootCount> display_pair_root_counts;
   std::vector<std::pair<std::string, std::string>> display_regulated_pairs;
   double display_emission_to_current_source_ratio_max = 0.0;
   double display_emission_to_current_source_ratio_mean = 0.0;
@@ -546,6 +552,8 @@ struct NativeCoupledEvolutionCertificate {
   std::size_t caustic_warning_count = 0;
   std::optional<std::string> first_caustic_warning_time;
   std::vector<std::pair<std::string, std::string>> caustic_warning_pairs;
+  std::uint64_t memory_budget_bytes = 0;
+  std::uint64_t memory_estimate_bytes = 0;
   bool all_steps_atomic;
   NativeEvolutionTiming timing;
 };

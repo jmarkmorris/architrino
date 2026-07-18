@@ -11,6 +11,9 @@ import {
   createBorgInitialConditionConfig,
   createBorgSeededInitialConditionRows,
 } from "../../src/apps/borg/BorgInitialConditions.js";
+import {
+  createBorgPlacementPolicy,
+} from "../../src/apps/borg/BorgInteractiveDefaults.js";
 
 const binaryPath = process.argv[2];
 const options = parseOptions(process.argv.slice(3));
@@ -21,6 +24,8 @@ if (!binaryPath) {
     "[--chunks=N] [--seed=N] [--chunk-duration=H] [--initial-step=H] " +
     "[--minimum-step=H] [--maximum-step=H] [--adaptive-growth=true|false] " +
     "[--run-grade=display|certified] [--electrinos=N] [--positrinos=N] " +
+    "[--coupling=K] [--max-per-axis-speed=V] [--core-scale=R] " +
+    "[--memory-budget-bytes=N] " +
     "[--root-tolerance=E] [--position-tolerance=E] " +
     "[--velocity-tolerance=E] [--maximum-mpfr-bits=N] " +
     "[--event-max-cells=N] [--far-field-enclosure-fraction=F]",
@@ -45,6 +50,15 @@ const farFieldEnclosureFraction = fractionToken(
   options["far-field-enclosure-fraction"],
   "0.25",
 );
+const coupling = String(positiveNumber(
+  options.coupling,
+  manifest.modelControls.coupling,
+));
+const coreScale = positiveNumber(options["core-scale"], 0.2);
+const memoryBudgetBytes = positiveInteger(
+  options["memory-budget-bytes"],
+  64 * 1024 * 1024,
+);
 const includeChunks = !booleanOption(options["summary-only"], false);
 const aggregateOnly = booleanOption(options["aggregate-only"], false);
 const includeRegulatorCertificates = !booleanOption(
@@ -65,11 +79,21 @@ const initialConditionConfig = createBorgInitialConditionConfig({
     options.positrinos,
     manifest.initialConditions.positrinoCount,
   ),
+  randomVelocityMaxComponentMagnitude: positiveNumber(
+    options["max-per-axis-speed"],
+    manifest.initialConditions.randomVelocityMaxComponentMagnitude,
+  ),
 });
+const placement = createBorgPlacementPolicy(
+  manifest,
+  initialConditionConfig.electrinoCount + initialConditionConfig.positrinoCount,
+);
 const endpointRows = createBorgSeededInitialConditionRows({
   manifest,
   seedIndex,
   config: initialConditionConfig,
+  seedingRadius: placement.seedingRadius,
+  minimumPairSeparation: placement.minimumPairSeparation,
 });
 const causalHistoryDepth = calculateBorgInertialHistoryDepth(endpointRows, {
   fieldSpeed: manifest.simulationEnvelope.fieldSpeed,
@@ -83,7 +107,7 @@ const initialSeed = await createBorgAcceptedInertialSeedHistory(endpointRows, {
   historyStartTime: -historyDepth,
   historyEndTime: 0,
   sampleInterval,
-  minimumPairSeparation: manifest.initialConditions.minimumPairSeparation,
+  minimumPairSeparation: placement.minimumPairSeparation,
 });
 
 const processClient = createBorgNativeEomProcessClient({
@@ -135,6 +159,8 @@ const measuredClient = {
       firstCausticWarningTime: response.firstCausticWarningTime,
       causticWarnings: response.causticWarnings,
       causticWarningPairs: response.causticWarningPairs,
+      memoryBudgetBytes: response.memoryBudgetBytes,
+      memoryEstimateBytes: response.memoryEstimateBytes,
       traversalEnclosedPairs: finalStepFailure?.traversalEnclosedPairs ?? 0,
       enclosedErrorWidthTotal: finalStepFailure?.enclosedErrorWidthTotal ?? 0,
       enclosedErrorWidthMaxReceiver:
@@ -212,11 +238,14 @@ const runner = createBorgEomShadowRunner(manifest, {
   positionTolerance,
   velocityTolerance,
   correctionTolerance: "1e-1",
-  coupling: String(manifest.modelControls.coupling),
+  coupling,
+  coreScale,
+  memoryBudgetBytes,
   threadCount: 4,
 });
 
 let runFailure = null;
+let endpointFrames = [];
 try {
   while (runner.canComputeNextChunk()) {
     try {
@@ -224,6 +253,9 @@ try {
       if (nativeChunks.length > 0) {
         nativeChunks.at(-1).frameCount = chunk.frames.length;
       }
+      endpointFrames = chunk.frames.filter(
+        (frame) => Number(frame.time) === Number(chunk.endTime),
+      );
     } catch (error) {
       runFailure = {
         code: error.code ?? "eom_shadow_run_failed",
@@ -297,7 +329,11 @@ process.stdout.write(`${JSON.stringify({
   schema: "borg_incremental_chunk_profile/v0",
   claimLevel: "measured_current_binary",
   pathCount: endpointRows.length,
-  coupling: manifest.modelControls.coupling,
+  coupling: Number(coupling),
+  coreScale,
+  memoryBudgetBytes,
+  initialConditionConfig,
+  placement,
   historyDepth,
   chunkDuration,
   chunkCount,
@@ -355,6 +391,15 @@ process.stdout.write(`${JSON.stringify({
   ordinarySteadyLateToEarlyMedianRatio: steadyLateToEarlyMedianRatio,
   ordinarySteadyRelativeSlopePerChunk: steadyRelativeSlopePerChunk,
   ordinarySteadyChunksApproximatelyFlat,
+  maximumMemoryEstimateBytes: Math.max(
+    0,
+    ...nativeChunks.map((chunk) => chunk.memoryEstimateBytes ?? 0),
+  ),
+  endpointFrames: endpointFrames.map((frame) => ({
+    pathKey: frame.pathKey,
+    time: frame.time,
+    position: frame.position,
+  })),
   precisionEscalationChunks: warmChunks
     .filter((chunk) => chunk.rootMpfrPairCount > 0)
     .map((chunk) => ({
@@ -385,6 +430,8 @@ function summarizeChunks(chunks) {
     firstCausticWarningTime: chunk.firstCausticWarningTime,
     causticWarningRows: chunk.causticWarnings.length,
     causticWarningPairCount: chunk.causticWarningPairs.length,
+    memoryBudgetBytes: chunk.memoryBudgetBytes,
+    memoryEstimateBytes: chunk.memoryEstimateBytes,
     traversalEnclosedPairs: chunk.traversalEnclosedPairs,
     enclosedErrorWidthTotal: chunk.enclosedErrorWidthTotal,
     enclosedErrorWidthMaxReceiver: chunk.enclosedErrorWidthMaxReceiver,

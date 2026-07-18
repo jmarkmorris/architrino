@@ -182,7 +182,7 @@ export function createBorgEomShadowRunner(manifest, options = {}) {
           isBorgEomPromotionEligible(response, options.acceptanceGate),
         diagnostics: Object.freeze(response.diagnostics),
         bufferCount: 0,
-        bufferByteLength: 0,
+        bufferByteLength: response.memoryEstimateBytes,
       });
     },
     async dispose() {
@@ -645,8 +645,18 @@ function normalizeEomResponse(rawResponse, request) {
   const priorWarningCount = request.provenance.causticWarningCount;
   const causticWarningPairs = requiredWarningPairs(response.causticWarningPairs);
   const claimGrade = String(response.claimGrade ?? response.evidenceStatus ?? "failed");
+  const memoryBudgetBytes = requiredPositiveInteger(
+    response.memoryBudgetBytes ?? request.resourceEnvelope.memoryBudgetBytes,
+    "response memoryBudgetBytes",
+  );
+  const memoryEstimateBytes = requiredNonnegativeInteger(
+    response.memoryEstimateBytes ?? 0,
+    "response memoryEstimateBytes",
+  );
   if (runGrade !== request.numericalControls.runGrade ||
       coreScale !== Number(request.modelControls.coreScale) ||
+      memoryBudgetBytes !== Number(request.resourceEnvelope.memoryBudgetBytes) ||
+      memoryEstimateBytes > memoryBudgetBytes ||
       causticWarningCount < priorWarningCount ||
       (causticWarningCount === 0) !== (causticWarningPairs.length === 0) ||
       (causticWarningCount === 0) !== (firstCausticWarningTime == null) ||
@@ -662,6 +672,8 @@ function normalizeEomResponse(rawResponse, request) {
     evidenceStatus: response.evidenceStatus ?? "failed",
     runGrade,
     coreScale,
+    memoryBudgetBytes,
+    memoryEstimateBytes,
     claimGrade,
     causticWarningCount,
     firstCausticWarningTime,
@@ -850,6 +862,14 @@ function requiredNonnegativeInteger(value, label) {
   const number = Number(value);
   if (!Number.isInteger(number) || number < 0) {
     throw new TypeError(`Borg EOM ${label} must be a nonnegative integer.`);
+  }
+  return number;
+}
+
+function requiredPositiveInteger(value, label) {
+  const number = Number(value);
+  if (!Number.isInteger(number) || number <= 0) {
+    throw new TypeError(`Borg EOM ${label} must be a positive integer.`);
   }
   return number;
 }

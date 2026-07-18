@@ -420,14 +420,19 @@ failed acceleration-consistency row, or a rejected candidate is published.
 
 Every display response, published segment, and derived Borg frame carries
 `runGrade=display` and `claimGrade=evidenceStatus=display-only`; the Borg UI
-shows `DISPLAY ONLY — uncontrolled error; not evidence` from the first frame,
-not only after an encounter. Producer-asserted evidence flags cannot upgrade
-this grade. The process protocol remains `EOM_BORG_NATIVE_V4` with the existing
-22-field `RUN` record, so the route adds no protocol field.
+shows `DISPLAY ONLY — 5% step-height target; not evidence` from the first
+frame, not only after an encounter. The `5%` value is the declared preset
+$h$-versus-$h/2$ track-agreement control, not a global exact-solution bound.
+Producer-asserted evidence flags cannot upgrade this grade. The process
+protocol is `EOM_BORG_NATIVE_V5`; its exact 24-field
+`RUN` record carries the real core scale and memory budget, and its exact
+six-field `PATH` record carries a checked cached-prefix count plus the appended
+retained-history suffix.
 
 Display remains fail-closed for real numerical breakdowns. A non-finite input,
 acceleration, or published state halts as `display_nonfinite_state`; failure of
 a bracketed root iteration halts as `display_root_solve_not_converged`; missing
+root isolation halts as `display_root_isolation_unresolved`; missing
 retained history halts as `display_insufficient_history_depth`; and an invalid
 display request halts as `display_invalid_evaluation_request`. Borg retains the
 complete display history rather than trimming away delayed-root input. These

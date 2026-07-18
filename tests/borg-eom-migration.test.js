@@ -39,8 +39,8 @@ import {
   resolveBorgRuntimeMode,
 } from "../src/apps/borg/BorgBootstrap.js";
 import {
-  createBorgRunGradePlacementPolicy,
-} from "../src/apps/borg/BorgRunGradeDefaults.js";
+  createBorgPlacementPolicy,
+} from "../src/apps/borg/BorgInteractiveDefaults.js";
 
 const trajectoryFrames = createBorgPrescribedLinearHistoryRows(
   createBorgSeededInitialConditionRows({
@@ -99,9 +99,8 @@ test("Borg mounts EOM idle by default and reserves automatic compute for explici
   assert.equal(defaultMounts[0].initialEomSeed.certificate.eomOutput, false);
   assert.equal(defaultMounts[0].initialEomSeed.certificate.canonicalEomEvidence, false);
   assert.equal(defaultMounts[0].initialEomSeed.certificate.geometryCertificate.accepted, true);
-  const displayPlacement = createBorgRunGradePlacementPolicy(
+  const displayPlacement = createBorgPlacementPolicy(
     BORG_DATASET_MANIFEST_V1,
-    "display",
     64,
   );
   assert.equal(
@@ -709,9 +708,9 @@ test("Borg native process protocol carries the same continuous-history request",
   await runner.computeNextChunk();
   const protocol = encodeNativeRequest(requests[0]);
   assert.equal(protocol.split("\n")[0], BORG_NATIVE_EOM_PROTOCOL_MAGIC);
-  assert.match(protocol, /^EOM_BORG_NATIVE_V4\nRUN\t/u);
+  assert.match(protocol, /^EOM_BORG_NATIVE_V5\nRUN\t/u);
   const runFields = protocol.split("\n")[1].split("\t");
-  assert.equal(runFields.length, 22);
+  assert.equal(runFields.length, 24);
   assert.equal(runFields[4], "0.1");
   assert.equal(runFields[6], "0.2");
   assert.equal(runFields[7], "1");
@@ -719,12 +718,38 @@ test("Borg native process protocol carries the same continuous-history request",
   assert.equal(runFields[9], "0");
   assert.equal(runFields[10], "none");
   assert.equal(runFields[11], "none");
-  assert.equal(runFields[16], "0");
+  assert.equal(runFields[14], "0.2");
+  assert.equal(runFields[17], "0");
+  assert.equal(runFields[22], String(64 * 1024 * 1024));
   assert.equal(protocol.match(/^PATH\t/gmu)?.length, 6);
   assert.equal(protocol.match(/^SEG\t/gmu)?.length, 6);
   assert.match(protocol, /\nEND\n$/u);
   assert.equal(protocol.includes("initialStates"), false);
   assert.equal(protocol.includes("futurePaths"), false);
+
+  const deltaProtocol = encodeNativeRequest(requests[0], {
+    cachedHistories: requests[0].histories,
+  });
+  const deltaPathRows = deltaProtocol.split("\n")
+    .filter((line) => line.startsWith("PATH\t"))
+    .map((line) => line.split("\t"));
+  assert.equal(deltaPathRows.length, 6);
+  assert.equal(deltaPathRows.every((fields) => fields.length === 6), true);
+  assert.equal(deltaPathRows.every((fields) => fields[4] === "1"), true);
+  assert.equal(deltaPathRows.every((fields) => fields[5] === "0"), true);
+  assert.equal(deltaProtocol.match(/^SEG\t/gmu), null);
+
+  const alternateCoreRequest = {
+    ...requests[0],
+    modelControls: {
+      ...requests[0].modelControls,
+      coreScale: "0.125",
+    },
+  };
+  assert.equal(
+    encodeNativeRequest(alternateCoreRequest).split("\n")[1].split("\t")[14],
+    "0.125",
+  );
 
   const fixedHeightRequest = {
     ...requests[0],
@@ -737,7 +762,7 @@ test("Borg native process protocol carries the same continuous-history request",
   const fixedRunFields = encodeNativeRequest(fixedHeightRequest)
     .split("\n")[1]
     .split("\t");
-  assert.equal(fixedRunFields.length, 22);
+  assert.equal(fixedRunFields.length, 24);
   assert.equal(fixedRunFields[6], fixedRunFields[4]);
   assert.equal(fixedRunFields[7], "0");
 
@@ -748,21 +773,21 @@ test("Borg native process protocol carries the same continuous-history request",
   delete incompleteRequest.numericalControls.maximumStep;
   assert.throws(
     () => encodeNativeRequest(incompleteRequest),
-    /must explicitly supply maximumStep, useAdaptiveStepGrowth, farFieldEnclosureFraction, runGrade/,
+    /must explicitly supply maximumStep, useAdaptiveStepGrowth, farFieldEnclosureFraction, coreScale, memoryBudgetBytes, runGrade/,
   );
   incompleteRequest.numericalControls.maximumStep =
     requests[0].numericalControls.maximumStep;
   delete incompleteRequest.numericalControls.useAdaptiveStepGrowth;
   assert.throws(
     () => encodeNativeRequest(incompleteRequest),
-    /must explicitly supply maximumStep, useAdaptiveStepGrowth, farFieldEnclosureFraction, runGrade/,
+    /must explicitly supply maximumStep, useAdaptiveStepGrowth, farFieldEnclosureFraction, coreScale, memoryBudgetBytes, runGrade/,
   );
   incompleteRequest.numericalControls.useAdaptiveStepGrowth =
     requests[0].numericalControls.useAdaptiveStepGrowth;
   delete incompleteRequest.numericalControls.farFieldEnclosureFraction;
   assert.throws(
     () => encodeNativeRequest(incompleteRequest),
-    /must explicitly supply maximumStep, useAdaptiveStepGrowth, farFieldEnclosureFraction, runGrade/,
+    /must explicitly supply maximumStep, useAdaptiveStepGrowth, farFieldEnclosureFraction, coreScale, memoryBudgetBytes, runGrade/,
   );
 });
 
@@ -779,7 +804,7 @@ test("Borg native client rejects protocol skew with a restart instruction", () =
     assert.throws(
       () => createBorgNativeEomProcessClient({ binaryPath: fixtureBinary }),
       (error) => {
-        assert.match(error.message, /dev server encoder=EOM_BORG_NATIVE_V4/u);
+        assert.match(error.message, /dev server encoder=EOM_BORG_NATIVE_V5/u);
         assert.match(error.message, /binary parser=EOM_BORG_NATIVE_V999/u);
         assert.match(
           error.message,
@@ -788,6 +813,97 @@ test("Borg native client rejects protocol skew with a restart instruction", () =
         return true;
       },
     );
+  } finally {
+    rmSync(fixtureDirectory, { recursive: true, force: true });
+  }
+});
+
+test("Borg native client clears its history prefix after a halted request", async () => {
+  const fixtureDirectory = mkdtempSync(join(tmpdir(), "borg-eom-cache-reset-"));
+  const fixtureBinary = join(fixtureDirectory, "cache-reset-eom-binary.mjs");
+  const fixtureSource = `#!/usr/bin/env node
+if (process.argv[2] === "print-protocol-version") {
+  process.stdout.write("EOM_BORG_NATIVE_V5\\n");
+  process.exit(0);
+}
+let buffer = "";
+let requestCount = 0;
+process.stdin.setEncoding("utf8");
+process.stdin.on("data", (chunk) => {
+  buffer += chunk;
+  while (buffer.includes("\\nEND\\n")) {
+    const boundary = buffer.indexOf("\\nEND\\n") + 5;
+    const request = buffer.slice(0, boundary);
+    buffer = buffer.slice(boundary);
+    requestCount += 1;
+    const lines = request.trim().split("\\n");
+    const run = lines.find((line) => line.startsWith("RUN\\t")).split("\\t");
+    const paths = lines.filter((line) => line.startsWith("PATH\\t"));
+    const prefixes = paths.map((line) => Number(line.split("\\t")[4]));
+    const halted = requestCount === 2;
+    const extensions = paths.map((line) => {
+      const pathId = line.split("\\t")[1];
+      const segments = halted ? [] : [{
+        startTime: run[2], endTime: run[3],
+        coefficients: [["0","0","0","0"],["0","0","0","0"],["0","0","0","0"]],
+        positionError: "0", velocityError: "0",
+      }];
+      return { pathId, stateFlags: 0, segments };
+    });
+    process.stdout.write(JSON.stringify({
+      schema: "eom_borg_native_response/v0",
+      status: halted ? "halted" : "completed",
+      haltCode: halted ? "memory_budget_exhausted" : "",
+      acceptedEndTime: halted ? run[2] : run[3],
+      acceptedStepCount: halted ? 0 : 1,
+      rejectedStepCount: 0,
+      observedMaximumCachedPrefix: Math.max(...prefixes),
+      publishedExtensions: extensions,
+    }) + "\\n");
+  }
+});
+`;
+  try {
+    writeFileSync(fixtureBinary, fixtureSource, "utf8");
+    chmodSync(fixtureBinary, 0o755);
+    const config = createBorgEomShadowRunConfig(BORG_DATASET_MANIFEST_V1, {
+      startTime: 10,
+      targetDuration: 10.1,
+      chunkDuration: 0.1,
+      runGrade: "certified",
+    });
+    const initialHistories = createBorgContinuousRetainedHistories(
+      trajectoryFrames,
+      BORG_DATASET_MANIFEST_V1,
+      { historyEndTime: 10 },
+    );
+    const firstRequest = createBorgEomShadowRequest({
+      manifest: BORG_DATASET_MANIFEST_V1,
+      config,
+      histories: initialHistories,
+      chunkIndex: 0,
+      startTime: 10,
+      endTime: 10.1,
+    });
+    const client = createBorgNativeEomProcessClient({
+      binaryPath: fixtureBinary,
+    });
+    const first = await client.evolveRetainedHistories(firstRequest);
+    const secondRequest = createBorgEomShadowRequest({
+      manifest: BORG_DATASET_MANIFEST_V1,
+      config,
+      histories: first.histories,
+      chunkIndex: 1,
+      startTime: 10.1,
+      endTime: 10.2,
+    });
+    const halted = await client.evolveRetainedHistories(secondRequest);
+    const recovered = await client.evolveRetainedHistories(secondRequest);
+    assert.equal(halted.status, "halted");
+    assert.ok(halted.observedMaximumCachedPrefix > 0);
+    assert.equal(recovered.status, "completed");
+    assert.equal(recovered.observedMaximumCachedPrefix, 0);
+    await client.dispose();
   } finally {
     rmSync(fixtureDirectory, { recursive: true, force: true });
   }

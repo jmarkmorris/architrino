@@ -38,6 +38,9 @@ import {
 } from "./BorgDisplayReplacement.js";
 import { createBorgDiagnosticsPanelController } from "./BorgDiagnosticsPanel.js";
 import {
+  BORG_DISPLAY_TRACK_POSITION_LIMIT,
+} from "./BorgDisplayGradeContract.js";
+import {
   calculateBorgPolarityDiagnostics,
   createBorgEscapeLedger,
 } from "./BorgPolarityDiagnostics.js";
@@ -46,11 +49,10 @@ import {
   createBorgRunGradeControl,
 } from "./BorgRunGradeControl.js";
 import {
-  BORG_DISPLAY_DEFAULTS_V1,
-  borgRunGradeEnvelopeRadius,
-  createBorgRunGradeDefaults,
-  createBorgRunGradePlacementPolicy,
-} from "./BorgRunGradeDefaults.js";
+  BORG_INTERACTIVE_DEFAULTS_V1,
+  borgEnvelopeRadius,
+  createBorgPlacementPolicy,
+} from "./BorgInteractiveDefaults.js";
 import {
   BORG_MAX_INITIAL_ARCHITRINO_COUNT,
   calculateBorgInertialHistoryDepth,
@@ -367,7 +369,7 @@ export function mountBorgApp(options = {}) {
     ),
     eomCoreScale: positiveControlNumber(
       options.eomShadowRunner?.coreScale,
-      BORG_DISPLAY_DEFAULTS_V1.coreScale,
+      BORG_INTERACTIVE_DEFAULTS_V1.coreScale,
     ),
     eomRetainedHistoryStart: initialEomSeed?.certificate?.historyStartTime ?? null,
     eomRetainedHistoryEnd: initialEomSeed?.certificate?.historyEndTime ?? null,
@@ -448,19 +450,7 @@ export function mountBorgApp(options = {}) {
     initialGrade: state.selectedRunGrade,
     onChange(grade) {
       state.selectedRunGrade = grade;
-      const defaults = createBorgRunGradeDefaults(manifest, grade);
-      state.initialConditionConfig = createBorgInitialConditionConfig(
-        defaults.initialConditionConfig,
-      );
-      state.eomCoupling = defaults.coupling;
-      state.eomPathCount =
-        state.initialConditionConfig.electrinoCount +
-        state.initialConditionConfig.positrinoCount;
-      syncInitialConditionInputs();
-      rebuildBoundaryShell();
-      fitCameraToEnvelope(state.cameraFitMargin);
       markInitialConditionControlsPending();
-      renderEnvelopeFields();
       renderSourceFields();
     },
   });
@@ -507,7 +497,7 @@ export function mountBorgApp(options = {}) {
     });
     boundaryShellGroup.add(
       createBoundaryShellPoints({
-        radius: borgRunGradeEnvelopeRadius(manifest, state.selectedRunGrade),
+        radius: borgEnvelopeRadius(manifest),
         color: ENVELOPE_GUIDE_COLOR,
         opacity: ENVELOPE_GUIDE_OPACITY,
       }),
@@ -656,7 +646,7 @@ export function mountBorgApp(options = {}) {
   function appendPolarityEscapeRows(frameRows) {
     polarityEscapeLedger.appendFrameRows(frameRows, {
       center: manifest.simulationEnvelope.center,
-      radius: borgRunGradeEnvelopeRadius(manifest, state.activeRunGrade),
+      radius: borgEnvelopeRadius(manifest),
     });
   }
 
@@ -672,10 +662,7 @@ export function mountBorgApp(options = {}) {
     if (state.polarityDiagnosticFrameIndex === rawFrameSet.frameIndex) {
       return;
     }
-    const sphereRadius = borgRunGradeEnvelopeRadius(
-      manifest,
-      state.activeRunGrade,
-    );
+    const sphereRadius = borgEnvelopeRadius(manifest);
     state.polarityDiagnostics = calculateBorgPolarityDiagnostics({
       frames: rawFrameSet.frames,
       center: manifest.simulationEnvelope.center,
@@ -761,9 +748,8 @@ export function mountBorgApp(options = {}) {
 
   function renderSourceFields() {
     const activePreset = getRunControlPreset(state.runControlPresetId);
-    const placement = createBorgRunGradePlacementPolicy(
+    const placement = createBorgPlacementPolicy(
       manifest,
-      state.selectedRunGrade,
       state.initialConditionConfig.electrinoCount +
         state.initialConditionConfig.positrinoCount,
     );
@@ -832,7 +818,7 @@ export function mountBorgApp(options = {}) {
     );
     const runtimeWakeHorizon = manifest.simulationEnvelope.fieldSpeed * runtimeHistoryDepth;
     renderFieldRows(dom.envelopeFields, [
-      ["outerRadius", borgRunGradeEnvelopeRadius(manifest, state.selectedRunGrade)],
+      ["outerRadius", borgEnvelopeRadius(manifest)],
       ["sampleInterval", manifest.simulationEnvelope.sampleInterval],
       ["seedHistoryDepth", runtimeHistoryDepth],
       ["fieldSpeed", manifest.simulationEnvelope.fieldSpeed],
@@ -844,9 +830,8 @@ export function mountBorgApp(options = {}) {
 
   function renderInitialConditionFields() {
     const config = state.initialConditionConfig;
-    const placement = createBorgRunGradePlacementPolicy(
+    const placement = createBorgPlacementPolicy(
       manifest,
-      state.selectedRunGrade,
       config.electrinoCount + config.positrinoCount,
     );
     const activeInitialRow = state.eomSeedEndpointRows?.[0] ?? state.distributionFrameRows?.[0];
@@ -1326,7 +1311,11 @@ export function mountBorgApp(options = {}) {
     }
     return {
       ...frame,
-      position: applyBorgDisplayReplacementTransform(frame.position, transform),
+      position: applyBorgDisplayReplacementTransform(
+        frame.position,
+        transform,
+        frame.time,
+      ),
     };
   }
 
@@ -1369,7 +1358,7 @@ export function mountBorgApp(options = {}) {
 
   function createVisibleRandomDisplayPosition() {
     const center = manifest.simulationEnvelope.center;
-    const radius = borgRunGradeEnvelopeRadius(manifest, state.activeRunGrade);
+    const radius = borgEnvelopeRadius(manifest);
     for (let attempt = 0; attempt < 64; attempt += 1) {
       const candidate = createRandomBorgDisplayPosition({
         center,
@@ -1784,7 +1773,7 @@ export function mountBorgApp(options = {}) {
 
   function fitCameraToEnvelope(margin) {
     const envelopeWorldRadius =
-      borgRunGradeEnvelopeRadius(manifest, state.selectedRunGrade) *
+      borgEnvelopeRadius(manifest) *
       worldUnitsPerSolverUnit;
     const verticalHalfFov = THREE.MathUtils.degToRad(camera.fov * 0.5);
     const horizontalHalfFov = Math.atan(Math.tan(verticalHalfFov) * Math.max(0.1, camera.aspect));
@@ -1875,10 +1864,7 @@ export function mountBorgApp(options = {}) {
         stepHeight: state.eomStepHeight,
         minimumStep: state.eomMinimumStep,
         runGrade: state.activeRunGrade,
-        simulationOuterRadius: borgRunGradeEnvelopeRadius(
-          manifest,
-          state.activeRunGrade,
-        ),
+        simulationOuterRadius: borgEnvelopeRadius(manifest),
       },
     );
     const runnerOptions = eomRunnerOptions ?? createDefaultEomRecordReplayOptions(
@@ -2217,7 +2203,11 @@ export function mountBorgApp(options = {}) {
       }
       return [{
         ...row,
-        position: applyBorgDisplayReplacementTransform(row.position, transform),
+        position: applyBorgDisplayReplacementTransform(
+          row.position,
+          transform,
+          row.time,
+        ),
       }];
     });
   }
@@ -2256,11 +2246,14 @@ export function mountBorgApp(options = {}) {
     setTone(dom.nativeStatus, state.dynamicRunnerStatus);
     const displayGrade = state.activeRunGrade === BORG_DISPLAY_RUN_GRADE;
     const warned = state.eomCausticWarningCount > 0;
+    const displayTrackPercent = Math.round(
+      BORG_DISPLAY_TRACK_POSITION_LIMIT * 100,
+    );
     dom.runGradeWarning.hidden = !displayGrade;
     dom.runGradeWarning.textContent = displayGrade
       ? warned
-        ? `DISPLAY ONLY — uncontrolled error; ${state.eomCausticWarningCount} regulated-pair warnings`
-        : "DISPLAY ONLY — uncontrolled error; not evidence"
+        ? `DISPLAY ONLY — ${displayTrackPercent}% step-height target; ${state.eomCausticWarningCount} regulated-pair warnings; not evidence`
+        : `DISPLAY ONLY — ${displayTrackPercent}% step-height target; not evidence`
       : "";
     dom.runGradeWarning.title = dom.runGradeWarning.textContent;
     if (displayGrade) {
@@ -2376,9 +2369,8 @@ export function mountBorgApp(options = {}) {
     }
     stopPlayback();
     state.distributionSeedIndex += 1;
-    const placement = createBorgRunGradePlacementPolicy(
+    const placement = createBorgPlacementPolicy(
       manifest,
-      state.selectedRunGrade,
       config.electrinoCount + config.positrinoCount,
     );
     const endpointRows = createBorgSeededInitialConditionRows({
@@ -2589,12 +2581,12 @@ export function createDefaultEomShadowRunnerOptions(
     historyDepth,
     coreScale: positiveControlNumber(
       runtimeControls.coreScale ?? configured.coreScale,
-      BORG_DISPLAY_DEFAULTS_V1.coreScale,
+      BORG_INTERACTIVE_DEFAULTS_V1.coreScale,
     ),
     farFieldEnclosureFraction:
       (runtimeControls.runGrade ?? configured.runGrade ?? BORG_DISPLAY_RUN_GRADE) ===
         BORG_DISPLAY_RUN_GRADE
-        ? String(BORG_DISPLAY_DEFAULTS_V1.farFieldEnclosureFraction)
+        ? String(BORG_INTERACTIVE_DEFAULTS_V1.farFieldEnclosureFraction)
         : configured.farFieldEnclosureFraction,
     coupling: String(
       runtimeControls.coupling ?? configured.coupling ?? manifest.modelControls?.coupling ?? 1,

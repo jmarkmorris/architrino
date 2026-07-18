@@ -26,16 +26,6 @@ namespace {
 using Clock = std::chrono::steady_clock;
 using Vector = std::array<double, 3>;
 
-struct NumericSegment {
-  double start = 0.0;
-  double end = 0.0;
-  std::array<std::array<double, 4>, 3> coefficients{};
-};
-
-struct NumericHistory {
-  std::vector<NumericSegment> segments;
-};
-
 constexpr std::array<double, 8> kGaussNodes{
     0.09501250983763744, 0.28160355077925891,
     0.45801677765722739, 0.61787624440264375,
@@ -49,15 +39,6 @@ constexpr std::array<double, 8> kGaussWeights{
 
 double seconds_since(const Clock::time_point& start) {
   return std::chrono::duration<double>(Clock::now() - start).count();
-}
-
-double token_value(const std::string& token) {
-  char* end = nullptr;
-  const double value = std::strtod(token.c_str(), &end);
-  if (end == token.c_str() || *end != '\0' || !std::isfinite(value)) {
-    throw std::runtime_error("display_nonfinite_state");
-  }
-  return value;
 }
 
 bool finite_vector(const Vector& value) {
@@ -86,66 +67,20 @@ double norm(const Vector& value) {
   return std::hypot(value[0], value[1], value[2]);
 }
 
-Vector evaluate_segment(
-    const NumericSegment& segment,
+Vector evaluate_history(
+    const RetainedHistory& history,
     double time,
     bool velocity) {
-  const double local = time - segment.start;
   Vector result{};
-  for (std::size_t axis = 0U; axis < 3U; ++axis) {
-    const auto& row = segment.coefficients[axis];
-    const double c0 = row[0];
-    const double c1 = row[1];
-    const double c2 = row[2];
-    const double c3 = row[3];
-    result[axis] = velocity
-        ? (3.0 * c3 * local + 2.0 * c2) * local + c1
-        : ((c3 * local + c2) * local + c1) * local + c0;
+  try {
+    result = velocity
+        ? history.nominal_velocity(time)
+        : history.nominal_position(time);
+  } catch (const std::out_of_range&) {
+    throw std::runtime_error("display_insufficient_history_depth");
   }
   if (!finite_vector(result)) {
     throw std::runtime_error("display_nonfinite_state");
-  }
-  return result;
-}
-
-Vector evaluate_history(
-    const NumericHistory& history,
-    double time,
-    bool velocity) {
-  std::size_t lower = 0U;
-  std::size_t upper = history.segments.size();
-  while (lower < upper) {
-    const std::size_t middle = lower + (upper - lower) / 2U;
-    if (history.segments[middle].end <= time) {
-      lower = middle + 1U;
-    } else {
-      upper = middle;
-    }
-  }
-  if (lower == history.segments.size()) lower = history.segments.size() - 1U;
-  if (time < history.segments[lower].start ||
-      time > history.segments[lower].end) {
-    throw std::runtime_error("display_insufficient_history_depth");
-  }
-  return evaluate_segment(history.segments[lower], time, velocity);
-}
-
-NumericHistory numeric_history(const RetainedHistory& history) {
-  NumericHistory result;
-  result.segments.reserve(history.segments().size());
-  for (const auto& segment : history.segments()) {
-    NumericSegment numeric{
-        .start = segment.t_start(),
-        .end = segment.t_end(),
-        .coefficients = {},
-    };
-    for (std::size_t axis = 0U; axis < 3U; ++axis) {
-      for (std::size_t coefficient = 0U; coefficient < 4U; ++coefficient) {
-        numeric.coefficients[axis][coefficient] = token_value(
-            segment.coefficient_tokens()[axis][coefficient]);
-      }
-    }
-    result.segments.push_back(std::move(numeric));
   }
   return result;
 }
@@ -156,22 +91,12 @@ struct SourceSummary {
 };
 
 SourceSummary summarize_source(
-    const NumericHistory& history,
+    const RetainedHistory& history,
     double field_speed) {
-  SourceSummary summary;
-  for (const auto& segment : history.segments) {
-    const double duration = segment.end - segment.start;
-    double speed_square_upper = 0.0;
-    for (std::size_t axis = 0U; axis < 3U; ++axis) {
-      const auto& row = segment.coefficients[axis];
-      const double component_upper =
-          std::abs(row[1]) + 2.0 * std::abs(row[2]) * duration +
-          3.0 * std::abs(row[3]) * duration * duration;
-      speed_square_upper += component_upper * component_upper;
-    }
-    summary.speed_upper =
-        std::max(summary.speed_upper, std::sqrt(speed_square_upper));
-  }
+  SourceSummary summary{
+      .speed_upper = history.nominal_speed_upper_bound(),
+      .sub_field_speed = false,
+  };
   summary.sub_field_speed = summary.speed_upper < field_speed;
   return summary;
 }
@@ -187,7 +112,7 @@ struct RootSample {
 
 RootSample sample_root(
     const DisplayEvaluationRequest& request,
-    const NumericHistory& source_history,
+    const RetainedHistory& source_history,
     const Vector& receiver_position,
     double emission) {
   RootSample sample;
@@ -215,7 +140,7 @@ RootSample sample_root(
 
 std::optional<double> solve_bracket(
     const DisplayEvaluationRequest& request,
-    const NumericHistory& source_history,
+    const RetainedHistory& source_history,
     const Vector& receiver_position,
     double lower,
     double upper,
@@ -262,16 +187,96 @@ std::optional<double> solve_bracket(
   return std::nullopt;
 }
 
+std::optional<double> solve_stationary_bracket(
+    const DisplayEvaluationRequest& request,
+    const RetainedHistory& source_history,
+    const Vector& receiver_position,
+    double lower,
+    double upper,
+    double lower_normal,
+    double upper_normal) {
+  if (lower_normal == 0.0) return lower;
+  if (upper_normal == 0.0) return upper;
+  if ((lower_normal < 0.0) == (upper_normal < 0.0)) {
+    return std::nullopt;
+  }
+  const double time_scale = std::max({
+      1.0, std::abs(request.reception_time), std::abs(lower),
+      std::abs(upper)});
+  const double tolerance = request.root_relative_tolerance * time_scale;
+  for (std::size_t iteration = 0U; iteration < 96U; ++iteration) {
+    const double midpoint = 0.5 * (lower + upper);
+    const double midpoint_normal = sample_root(
+        request, source_history, receiver_position, midpoint).source_normal;
+    if (upper - lower <= tolerance) return midpoint;
+    if ((lower_normal < 0.0) == (midpoint_normal < 0.0)) {
+      lower = midpoint;
+      lower_normal = midpoint_normal;
+    } else {
+      upper = midpoint;
+      upper_normal = midpoint_normal;
+    }
+  }
+  return std::nullopt;
+}
+
 struct PairRoots {
   std::vector<double> roots;
   std::string failure_code;
 };
 
+double acceleration_upper_bound(
+    const CubicHistorySegment& segment,
+    double lower,
+    double upper) {
+  const double lower_local = lower - segment.t_start();
+  const double upper_local = upper - segment.t_start();
+  Vector component_bounds{};
+  for (std::size_t axis = 0U; axis < 3U; ++axis) {
+    const auto& coefficient = segment.coefficient_values()[axis];
+    const double lower_acceleration =
+        2.0 * coefficient[2] + 6.0 * coefficient[3] * lower_local;
+    const double upper_acceleration =
+        2.0 * coefficient[2] + 6.0 * coefficient[3] * upper_local;
+    component_bounds[axis] = std::max(
+        std::abs(lower_acceleration), std::abs(upper_acceleration));
+  }
+  return norm(component_bounds);
+}
+
+double residual_variation_upper_bound(
+    const RootSample& midpoint_sample,
+    const CubicHistorySegment& segment,
+    double lower,
+    double upper,
+    double global_lipschitz) {
+  const double half_width = 0.5 * (upper - lower);
+  const double acceleration_bound =
+      acceleration_upper_bound(segment, lower, upper);
+  const double midpoint_speed = norm(midpoint_sample.source_velocity);
+  const double speed_bound =
+      midpoint_speed + acceleration_bound * half_width;
+  const double separation_lower =
+      midpoint_sample.separation - speed_bound * half_width;
+  if (!(separation_lower > 0.0) || !std::isfinite(separation_lower)) {
+    return global_lipschitz * half_width;
+  }
+  const double source_normal_derivative_bound =
+      acceleration_bound + speed_bound * speed_bound / separation_lower;
+  const double local_bound =
+      std::abs(midpoint_sample.source_normal) * half_width +
+      0.5 * source_normal_derivative_bound * half_width * half_width;
+  const double rounded_bound = std::nextafter(
+      local_bound * (1.0 + 64.0 * std::numeric_limits<double>::epsilon()),
+      std::numeric_limits<double>::infinity());
+  return std::min(global_lipschitz * half_width, rounded_bound);
+}
+
 PairRoots find_roots(
     const DisplayEvaluationRequest& request,
     const DisplayEvaluationPath& receiver,
     const DisplayEvaluationPath& source,
-    const NumericHistory& source_history,
+    const RetainedHistory& source_history,
     const SourceSummary& source_summary,
     const Vector& receiver_position) {
   PairRoots result;
@@ -308,39 +313,185 @@ PairRoots find_roots(
     return result;
   }
 
-  double prior_time = lower;
-  double prior_residual = lower_residual;
-  for (const auto& segment : source_history.segments) {
-    const double segment_lower = std::max(lower, segment.start);
-    const double segment_upper = std::min(upper, segment.end);
+  for (const auto& segment : source_history.segments()) {
+    const double segment_lower = std::max(lower, segment.t_start());
+    const double segment_upper = std::min(upper, segment.t_end());
     if (!(segment_lower < segment_upper)) continue;
-    constexpr std::size_t kSamplesPerSegment = 4U;
-    for (std::size_t sample_index = 1U;
-         sample_index <= kSamplesPerSegment; ++sample_index) {
-      const double fraction = static_cast<double>(sample_index) /
-          static_cast<double>(kSamplesPerSegment);
-      const double time = segment_lower +
-          fraction * (segment_upper - segment_lower);
-      const double residual = sample_root(
-          request, source_history, receiver_position, time).residual;
-      if ((prior_residual <= 0.0 && residual >= 0.0) ||
-          (prior_residual >= 0.0 && residual <= 0.0)) {
+    struct Cell {
+      double lower;
+      double upper;
+      double lower_residual;
+      double upper_residual;
+      std::size_t depth;
+    };
+    std::vector<Cell> pending{{
+        segment_lower, segment_upper,
+        sample_root(request, source_history, receiver_position, segment_lower)
+            .residual,
+        sample_root(request, source_history, receiver_position, segment_upper)
+            .residual,
+        0U}};
+    constexpr std::size_t kMaximumCellsPerSegment = 4096U;
+    constexpr std::size_t kMaximumDepth = 48U;
+    std::size_t visited_cells = 0U;
+    const double time_scale = std::max({
+        1.0, std::abs(request.reception_time), std::abs(segment_lower),
+        std::abs(segment_upper)});
+    const double time_tolerance =
+        request.root_relative_tolerance * time_scale;
+    const double residual_tolerance = request.root_relative_tolerance *
+        std::max(1.0, request.field_speed * time_scale);
+    const double residual_lipschitz =
+        request.field_speed + source_summary.speed_upper;
+    while (!pending.empty()) {
+      const Cell cell = pending.back();
+      pending.pop_back();
+      if (++visited_cells > kMaximumCellsPerSegment) {
+        result.failure_code = "display_root_isolation_unresolved";
+        return result;
+      }
+      const bool sign_change =
+          (cell.lower_residual <= 0.0 && cell.upper_residual >= 0.0) ||
+          (cell.lower_residual >= 0.0 && cell.upper_residual <= 0.0);
+      if (sign_change) {
         const auto root = solve_bracket(
-            request, source_history, receiver_position, prior_time, time,
-            prior_residual, residual);
+            request, source_history, receiver_position,
+            cell.lower, cell.upper,
+            cell.lower_residual, cell.upper_residual);
         if (!root.has_value()) {
           result.failure_code = "display_root_solve_not_converged";
           return result;
         }
+        if (receiver.path_id == source.path_id &&
+            upper - *root <= 8.0 * time_tolerance) {
+          // The master-equation pair domain excludes the coincident
+          // zero-delay self endpoint. Keep delayed self roots, including
+          // every root more than the declared display root resolution away.
+          continue;
+        }
         const double dedup = request.root_relative_tolerance *
             std::max(1.0, std::abs(*root));
-        if (result.roots.empty() ||
-            std::abs(result.roots.back() - *root) > 8.0 * dedup) {
-          result.roots.push_back(*root);
+        const auto insertion = std::lower_bound(
+            result.roots.begin(), result.roots.end(), *root);
+        const bool duplicate =
+            (insertion != result.roots.end() &&
+             std::abs(*insertion - *root) <= 8.0 * dedup) ||
+            (insertion != result.roots.begin() &&
+             std::abs(*std::prev(insertion) - *root) <= 8.0 * dedup);
+        if (!duplicate) result.roots.insert(insertion, *root);
+        continue;
+      }
+      const RootSample lower_sample = sample_root(
+          request, source_history, receiver_position, cell.lower);
+      const RootSample upper_sample = sample_root(
+          request, source_history, receiver_position, cell.upper);
+      const bool stationary_sign_change =
+          (lower_sample.source_normal <= 0.0 &&
+           upper_sample.source_normal >= 0.0) ||
+          (lower_sample.source_normal >= 0.0 &&
+           upper_sample.source_normal <= 0.0);
+      if (stationary_sign_change) {
+        const auto stationary = solve_stationary_bracket(
+            request, source_history, receiver_position,
+            cell.lower, cell.upper,
+            lower_sample.source_normal, upper_sample.source_normal);
+        if (stationary.has_value()) {
+          const RootSample stationary_sample = sample_root(
+              request, source_history, receiver_position, *stationary);
+          if (std::abs(stationary_sample.residual) <= residual_tolerance) {
+            const double dedup_guard = 8.0 * time_tolerance;
+            const auto insertion = std::lower_bound(
+                result.roots.begin(), result.roots.end(), *stationary);
+            const bool duplicate =
+                (insertion != result.roots.end() &&
+                 std::abs(*insertion - *stationary) <= dedup_guard) ||
+                (insertion != result.roots.begin() &&
+                 std::abs(*std::prev(insertion) - *stationary) <= dedup_guard);
+            if (!duplicate) result.roots.insert(insertion, *stationary);
+            // A multiple root creates a residual-tolerance plateau much
+            // wider than the time tolerance. Once its stationary contact is
+            // located, grow a symmetric exclusion neighborhood until both
+            // sides leave that plateau. Any additional contact inside it is
+            // indistinguishable at the declared display root resolution.
+            double left_guard = dedup_guard;
+            double right_guard = dedup_guard;
+            for (std::size_t expansion = 0U; expansion < 64U; ++expansion) {
+              bool expanded = false;
+              const double left_probe = *stationary - left_guard;
+              if (left_probe > cell.lower && std::abs(sample_root(
+                      request, source_history, receiver_position, left_probe)
+                      .residual) <= residual_tolerance) {
+                left_guard *= 2.0;
+                expanded = true;
+              }
+              const double right_probe = *stationary + right_guard;
+              if (right_probe < cell.upper && std::abs(sample_root(
+                      request, source_history, receiver_position, right_probe)
+                      .residual) <= residual_tolerance) {
+                right_guard *= 2.0;
+                expanded = true;
+              }
+              if (!expanded) break;
+            }
+            const double left_upper = *stationary - left_guard;
+            const double right_lower = *stationary + right_guard;
+            if (right_lower < cell.upper) {
+              pending.push_back({
+                  right_lower, cell.upper,
+                  sample_root(
+                      request, source_history, receiver_position, right_lower)
+                      .residual,
+                  cell.upper_residual, cell.depth + 1U});
+            }
+            if (cell.lower < left_upper) {
+              pending.push_back({
+                  cell.lower, left_upper, cell.lower_residual,
+                  sample_root(
+                      request, source_history, receiver_position, left_upper)
+                      .residual,
+                  cell.depth + 1U});
+            }
+            continue;
+          }
         }
       }
-      prior_time = time;
-      prior_residual = residual;
+      const double midpoint = 0.5 * (cell.lower + cell.upper);
+      const RootSample midpoint_sample = sample_root(
+          request, source_history, receiver_position, midpoint);
+      const double midpoint_residual = midpoint_sample.residual;
+      const double half_width = 0.5 * (cell.upper - cell.lower);
+      const double residual_variation = residual_variation_upper_bound(
+          midpoint_sample, segment, cell.lower, cell.upper,
+          residual_lipschitz);
+      if (std::abs(midpoint_residual) >
+          residual_variation + residual_tolerance) {
+        continue;
+      }
+      if (std::abs(midpoint_residual) <= residual_tolerance &&
+          half_width <= time_tolerance) {
+        if (receiver.path_id == source.path_id && cell.upper == upper) {
+          // A no-sign-change contact in the last resolution cell is the
+          // excluded coincident endpoint, not a delayed self interaction.
+          continue;
+        }
+        const auto insertion = std::lower_bound(
+            result.roots.begin(), result.roots.end(), midpoint);
+        result.roots.insert(insertion, midpoint);
+        continue;
+      }
+      if (cell.depth >= kMaximumDepth || half_width <= time_tolerance) {
+        if (receiver.path_id == source.path_id && cell.upper == upper) {
+          continue;
+        }
+        result.failure_code = "display_root_isolation_unresolved";
+        return result;
+      }
+      pending.push_back({
+          midpoint, cell.upper, midpoint_residual, cell.upper_residual,
+          cell.depth + 1U});
+      pending.push_back({
+          cell.lower, midpoint, cell.lower_residual, midpoint_residual,
+          cell.depth + 1U});
     }
   }
   return result;
@@ -350,7 +501,7 @@ Vector finite_width_integrand(
     const DisplayEvaluationRequest& request,
     const DisplayEvaluationPath& receiver,
     const DisplayEvaluationPath& source,
-    const NumericHistory& source_history,
+    const RetainedHistory& source_history,
     const Vector& receiver_position,
     const Vector& receiver_velocity,
     double emission) {
@@ -389,7 +540,7 @@ Vector regulated_pair_acceleration(
     const DisplayEvaluationRequest& request,
     const DisplayEvaluationPath& receiver,
     const DisplayEvaluationPath& source,
-    const NumericHistory& source_history,
+    const RetainedHistory& source_history,
     const Vector& receiver_position,
     const Vector& receiver_velocity,
     const std::vector<double>& roots) {
@@ -558,8 +709,6 @@ DisplayEvaluationResult evaluate_display_acceleration(
     const std::size_t pair_count = path_count * path_count;
     std::vector<Vector> receiver_positions(path_count);
     std::vector<Vector> receiver_velocities(path_count);
-    std::vector<NumericHistory> numeric_histories;
-    numeric_histories.reserve(path_count);
     std::vector<SourceSummary> source_summaries;
     source_summaries.reserve(path_count);
     for (std::size_t index = 0U; index < path_count; ++index) {
@@ -567,13 +716,12 @@ DisplayEvaluationResult evaluate_display_acceleration(
       if (path.history == nullptr || !std::isfinite(path.charge)) {
         throw std::runtime_error("display_nonfinite_state");
       }
-      numeric_histories.push_back(numeric_history(*path.history));
       receiver_positions[index] = evaluate_history(
-          numeric_histories.back(), request.reception_time, false);
+          *path.history, request.reception_time, false);
       receiver_velocities[index] = evaluate_history(
-          numeric_histories.back(), request.reception_time, true);
+          *path.history, request.reception_time, true);
       source_summaries.push_back(summarize_source(
-          numeric_histories.back(), request.field_speed));
+          *path.history, request.field_speed));
     }
 
     std::vector<PairWork> pairs(pair_count);
@@ -586,7 +734,7 @@ DisplayEvaluationResult evaluate_display_acceleration(
       try {
         pair.roots = find_roots(
             request, request.paths[receiver_index],
-            request.paths[source_index], numeric_histories[source_index],
+            request.paths[source_index], *request.paths[source_index].history,
             source_summaries[source_index],
             receiver_positions[receiver_index]);
         pair.failure_code = pair.roots.failure_code;
@@ -620,7 +768,7 @@ DisplayEvaluationResult evaluate_display_acceleration(
         bool regulated = false;
         for (const double root : pair.roots.roots) {
           const RootSample sample = sample_root(
-              request, numeric_histories[source_index],
+              request, *request.paths[source_index].history,
               receiver_position, root);
           if (sample.separation > 0.0) {
             const double ratio = norm(subtract(
@@ -648,14 +796,14 @@ DisplayEvaluationResult evaluate_display_acceleration(
           const double endpoint_separation = norm(subtract(
               receiver_position,
               evaluate_history(
-                  numeric_histories[source_index], request.reception_time,
+                  *request.paths[source_index].history, request.reception_time,
                   false)));
           regulated = regulated || endpoint_separation <= request.core_scale;
         }
         pair.regulated = regulated;
         if (regulated) {
           pair.acceleration = regulated_pair_acceleration(
-              request, receiver, source, numeric_histories[source_index],
+              request, receiver, source, *request.paths[source_index].history,
               receiver_position,
               receiver_velocity, pair.roots.roots);
           return;
@@ -663,7 +811,7 @@ DisplayEvaluationResult evaluate_display_acceleration(
         Vector acceleration{};
         for (const double root : pair.roots.roots) {
           const RootSample sample = sample_root(
-              request, numeric_histories[source_index],
+              request, *request.paths[source_index].history,
               receiver_position, root);
           if (!(sample.separation > 0.0) || sample.source_normal == 0.0) {
             throw std::runtime_error("display_nonfinite_state");
@@ -691,6 +839,7 @@ DisplayEvaluationResult evaluate_display_acceleration(
     result.acceleration_wall_seconds = seconds_since(acceleration_start);
 
     result.receiver_accelerations.reserve(path_count);
+    result.pair_root_counts.reserve(pair_count);
     for (std::size_t receiver_index = 0U;
          receiver_index < path_count; ++receiver_index) {
       Vector total{};
@@ -704,6 +853,10 @@ DisplayEvaluationResult evaluate_display_acceleration(
         }
         ++result.root_pair_count;
         result.root_count += pair.roots.roots.size();
+        result.pair_root_counts.push_back({
+            request.paths[receiver_index].path_id,
+            request.paths[source_index].path_id,
+            pair.roots.roots.size()});
         total = add(total, pair.acceleration);
         result.emission_to_current_source_ratio_max = std::max(
             result.emission_to_current_source_ratio_max,

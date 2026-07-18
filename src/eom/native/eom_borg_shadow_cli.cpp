@@ -18,7 +18,7 @@ namespace eom = architrino::eom;
 
 namespace {
 
-constexpr const char* kBorgNativeProtocolMagic = "EOM_BORG_NATIVE_V4";
+constexpr const char* kBorgNativeProtocolMagic = "EOM_BORG_NATIVE_V5";
 
 struct ParsedPath {
   std::string path_id;
@@ -221,6 +221,8 @@ std::vector<std::pair<std::string, std::string>> parse_warning_pairs(
     }
     begin = end + 1U;
   }
+  std::sort(pairs.begin(), pairs.end());
+  pairs.erase(std::unique(pairs.begin(), pairs.end()), pairs.end());
   return pairs;
 }
 
@@ -374,11 +376,11 @@ void run(
     throw std::invalid_argument("unsupported Borg EOM native protocol");
   }
   const auto run = split_tabs(read_required_line("RUN record"));
-  if (run.size() != 22U || run[0] != "RUN") {
+  if (run.size() != 24U || run[0] != "RUN") {
     throw std::invalid_argument(
-        "invalid RUN record: expected exactly 22 tab-separated fields");
+        "invalid RUN record: expected exactly 24 tab-separated fields");
   }
-  const std::size_t path_count = parse_size(run[21], "path count");
+  const std::size_t path_count = parse_size(run[23], "path count");
   if (path_count == 0U || path_count > 1000000U) {
     throw std::invalid_argument("path count lies outside native protocol envelope");
   }
@@ -386,30 +388,57 @@ void run(
   parsed_paths.reserve(path_count);
   for (std::size_t path_index = 0; path_index < path_count; ++path_index) {
     const auto path = split_tabs(read_required_line("PATH record"));
-    if (path.size() != 5U || path[0] != "PATH" ||
+    if (path.size() != 6U || path[0] != "PATH" ||
         path[1].find_first_of("\t\r\n") != std::string::npos) {
       throw std::invalid_argument("invalid PATH record");
     }
-    const std::size_t segment_count = parse_size(path[4], "segment count");
-    if (segment_count == 0U || segment_count > 10000000U) {
-      throw std::invalid_argument("segment count lies outside native protocol envelope");
+    const std::size_t cached_prefix_count =
+        parse_size(path[4], "cached prefix segment count");
+    const std::size_t appended_segment_count =
+        parse_size(path[5], "appended segment count");
+    if (cached_prefix_count > 10000000U ||
+        appended_segment_count > 10000000U - cached_prefix_count ||
+        cached_prefix_count + appended_segment_count == 0U) {
+      throw std::invalid_argument(
+          "segment counts lie outside native protocol envelope");
     }
     std::vector<eom::CubicHistorySegment> segments;
-    segments.reserve(segment_count);
-    for (std::size_t segment_index = 0; segment_index < segment_count;
+    segments.reserve(appended_segment_count);
+    for (std::size_t segment_index = 0;
+         segment_index < appended_segment_count;
          ++segment_index) {
       segments.push_back(parse_segment(read_required_line("SEG record")));
     }
     std::string path_id = path[1];
     std::string charge = path[2];
     const int state_flags = parse_int(path[3], "state flags");
+    eom::RetainedHistory history = [&]() {
+      if (cached_prefix_count == 0U) {
+        return eom::RetainedHistory(
+            "borg-eom-shadow/" + path_id, std::move(segments));
+      }
+      if (incremental_cache == nullptr || !incremental_cache->has_value()) {
+        throw std::invalid_argument(
+            "PATH cached prefix requires a live worker history cache");
+      }
+      const auto* prior = cached_history(**incremental_cache, path_id);
+      if (prior == nullptr ||
+          prior->segments().size() != cached_prefix_count) {
+        throw std::invalid_argument(
+            "PATH cached prefix count does not match worker history");
+      }
+      eom::RetainedHistory restored = *prior;
+      for (auto& segment : segments) {
+        restored = restored.appended(std::move(segment));
+      }
+      return restored;
+    }();
     parsed_paths.push_back({
         .path_id = path_id,
         .charge = charge,
         .state_flags = state_flags,
-        .input_segment_count = segment_count,
-        .history = eom::RetainedHistory(
-            "borg-eom-shadow/" + path_id, std::move(segments)),
+        .input_segment_count = cached_prefix_count + appended_segment_count,
+        .history = std::move(history),
     });
   }
   if (read_required_line("END record") != "END") {
@@ -428,10 +457,10 @@ void run(
       .maximum_step = run[6],
       .field_speed = run[12],
       .coupling = run[13],
-      .root_tolerance = run[14],
+      .root_tolerance = run[15],
       .source_normal_floor = "1e-30",
-      .acceleration_tolerance = run[15],
-      .far_field_enclosure_fraction = run[16],
+      .acceleration_tolerance = run[16],
+      .far_field_enclosure_fraction = run[17],
       .run_grade = run[8],
       .initial_caustic_warning_count =
           parse_size(run[9], "prior caustic warning count"),
@@ -441,15 +470,15 @@ void run(
       .initial_caustic_warning_pairs = parse_warning_pairs(run[11]),
       .chart_policy = "sharp_with_finite_width_fallback",
       .causal_width = "0.2",
-      .core_scale = "0.2",
-      .quadrature_tolerance = run[15],
+      .core_scale = run[14],
+      .quadrature_tolerance = run[16],
       .event_impulse_tolerance = "1e-7",
       .event_position_moment_tolerance = "1e-7",
       .regulator_refinement_ratio = "0.5",
       .regulator_convergence_tolerance = "1e-3",
-      .position_tolerance = run[17],
-      .velocity_tolerance = run[18],
-      .correction_tolerance = run[19],
+      .position_tolerance = run[18],
+      .velocity_tolerance = run[19],
+      .correction_tolerance = run[20],
       .root_max_depth = 256,
       .root_max_cells = 500000,
       .quadrature_max_depth = quadrature_max_depth,
@@ -464,9 +493,10 @@ void run(
       .max_step_attempts = 1000,
       .max_rejected_steps = 100,
       .thread_count = 1,
+      .memory_budget_bytes = parse_size(run[22], "memory budget bytes"),
       .use_adaptive_step_growth = parse_bool(run[7], "adaptive step growth"),
   };
-  request.thread_count = parse_size(run[20], "thread count");
+  request.thread_count = parse_size(run[21], "thread count");
   // The traversal tree is an optional pair-selection optimization.  At small
   // Borg scales (16 paths and below) it excludes no pairs and costs more than
   // exhaustive exact coverage, so use the direct certified batch there.
@@ -484,7 +514,7 @@ void run(
   // force, tolerance, and reduction controls in the cache key; exclude only
   // initial/minimum/maximum step, the growth switch, run grade, and cumulative
   // warning provenance.
-  for (std::size_t index = 12U; index <= 20U; ++index) {
+  for (std::size_t index = 12U; index <= 21U; ++index) {
     model_key_stream << run[index] << '\n';
   }
   for (const auto& path : parsed_paths) {
@@ -495,26 +525,41 @@ void run(
   std::optional<eom::NativeAccelerationSnapshotCertificate> rebased_snapshot;
   const eom::NativeAccelerationSnapshotCertificate* reusable_snapshot = nullptr;
   bool rebased_incremental_chunk_snapshot = false;
-  if (request.run_grade == "certified" &&
-      incremental_cache != nullptr && incremental_cache->has_value() &&
+  if (incremental_cache != nullptr && incremental_cache->has_value() &&
       (*incremental_cache)->model_key == model_key &&
-      (*incremental_cache)->snapshot.status == "certified_complete" &&
+      ((request.run_grade == "certified" &&
+        (*incremental_cache)->snapshot.status == "certified_complete") ||
+       (request.run_grade == "display" &&
+        (*incremental_cache)->snapshot.status == "display_evaluated")) &&
       (*incremental_cache)->snapshot.reception_time == request.start_time) {
     reusable_snapshot = &(*incremental_cache)->snapshot;
-    const bool exact_fingerprints = std::all_of(
-        reusable_snapshot->root_certificates.begin(),
-        reusable_snapshot->root_certificates.end(), [&](const auto& row) {
-          const auto* receiver = parsed_path(parsed_paths, row.receiver_path_id);
-          const auto* source = parsed_path(parsed_paths, row.source_path_id);
-          return receiver != nullptr && source != nullptr &&
-              row.certificate.receiver_history_fingerprint ==
-                  receiver->history.provenance_fingerprint() &&
-              row.certificate.source_history_fingerprint ==
-                  source->history.provenance_fingerprint();
-        });
+    const bool exact_fingerprints = request.run_grade == "display"
+        ? std::all_of(
+              reusable_snapshot->display_history_fingerprints.begin(),
+              reusable_snapshot->display_history_fingerprints.end(),
+              [&](const auto& fingerprint) {
+                const auto* path = parsed_path(parsed_paths, fingerprint.path_id);
+                return path != nullptr && fingerprint.fingerprint ==
+                    path->history.provenance_fingerprint();
+              })
+        : std::all_of(
+              reusable_snapshot->root_certificates.begin(),
+              reusable_snapshot->root_certificates.end(), [&](const auto& row) {
+                const auto* receiver = parsed_path(
+                    parsed_paths, row.receiver_path_id);
+                const auto* source = parsed_path(
+                    parsed_paths, row.source_path_id);
+                return receiver != nullptr && source != nullptr &&
+                    row.certificate.receiver_history_fingerprint ==
+                        receiver->history.provenance_fingerprint() &&
+                    row.certificate.source_history_fingerprint ==
+                        source->history.provenance_fingerprint();
+              });
     if (!exact_fingerprints) {
-      rebased_snapshot = rebase_trimmed_snapshot(
-          **incremental_cache, parsed_paths);
+      if (request.run_grade == "certified") {
+        rebased_snapshot = rebase_trimmed_snapshot(
+            **incremental_cache, parsed_paths);
+      }
       reusable_snapshot = rebased_snapshot.has_value()
           ? &*rebased_snapshot
           : nullptr;
@@ -538,7 +583,7 @@ void run(
   }
   if (incremental_cache != nullptr) {
     incremental_cache->reset();
-    if (request.run_grade == "certified" && result.status == "completed") {
+    if (result.status == "completed") {
       for (auto step = result.steps.rbegin(); step != result.steps.rend();
            ++step) {
         if (step->status == "accepted" && step->accepted_snapshot.has_value()) {
@@ -613,7 +658,9 @@ void run(
             << json_escape(result.controller_step_size)
             << "\""
             << ",\"haltCode\":\"" << json_escape(result.halt_code)
-            << "\",\"incrementalChunkStartSnapshotReused\":"
+            << "\",\"memoryBudgetBytes\":" << result.memory_budget_bytes
+            << ",\"memoryEstimateBytes\":" << result.memory_estimate_bytes
+            << ",\"incrementalChunkStartSnapshotReused\":"
             << (reused_incremental_chunk_snapshot ? "true" : "false")
             << ",\"incrementalChunkStartSnapshotRebased\":"
             << (rebased_incremental_chunk_snapshot ? "true" : "false")

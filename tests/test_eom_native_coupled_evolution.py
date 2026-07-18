@@ -208,6 +208,22 @@ class NativeCoupledEvolutionTests(unittest.TestCase):
             Decimal("0.01"),
         )
 
+    def test_certified_traversal_feeds_far_field_then_exact_fallback(self) -> None:
+        control = self.packet["far_field_traversal_cascade"]
+        self.assertEqual(control["status"], "certified_complete", control)
+        self.assertEqual(
+            control["pair_selection_route"],
+            "certified_traversal_then_far_field_then_exact_pair_batch",
+        )
+        self.assertGreater(control["enclosed_pairs"], 0)
+        self.assertEqual(
+            control["logical_pairs"],
+            control["excluded_pairs"]
+            + control["enclosed_pairs"]
+            + control["exact_pairs"]
+            + control["unresolved_pairs"],
+        )
+
     def test_far_field_enclosure_crosses_dispersal_memory_boundary_atomically(
         self,
     ) -> None:
@@ -663,8 +679,17 @@ class NativeCoupledEvolutionTests(unittest.TestCase):
         self.assertGreater(display["warning_count"], 0)
         self.assertTrue(
             all(
-                warning["failed_row_id"] == "DISPLAY-REGULATOR-01"
-                and warning["failure_code"] == "display_core_regulator_applied"
+                (
+                    (
+                        warning["failed_row_id"] == "DISPLAY-REGULATOR-01"
+                        and warning["failure_code"]
+                        == "display_core_regulator_applied"
+                    )
+                    or (
+                        warning["failed_row_id"] == "FWC-ENTRY-02"
+                        and warning["failure_code"] == "caustic_route_required"
+                    )
+                )
                 and Decimal(warning["reception_lower"])
                 < Decimal(warning["reception_upper"])
                 for warning in display["warnings"]

@@ -25,6 +25,65 @@ namespace {
 
 using SteadyClock = std::chrono::steady_clock;
 
+std::uint64_t saturating_add(std::uint64_t left, std::uint64_t right) {
+  if (right > std::numeric_limits<std::uint64_t>::max() - left) {
+    return std::numeric_limits<std::uint64_t>::max();
+  }
+  return left + right;
+}
+
+std::uint64_t saturating_multiply(
+    std::uint64_t left, std::uint64_t right) {
+  if (left != 0U &&
+      right > std::numeric_limits<std::uint64_t>::max() / left) {
+    return std::numeric_limits<std::uint64_t>::max();
+  }
+  return left * right;
+}
+
+std::uint64_t estimate_coupled_working_set_bytes(
+    const NativeCoupledEvolutionRequest& request) {
+  // This estimate deliberately includes both retained token storage and the
+  // largest dense pair workspace used by the selected grade. It is an
+  // admission bound, not a process-resident-set measurement.
+  std::uint64_t bytes = 64U * 1024U;
+  std::uint64_t segment_count = 0U;
+  std::uint64_t token_bytes = 0U;
+  for (const auto& path : request.paths) {
+    segment_count = saturating_add(
+        segment_count, path.history.segments().size());
+    token_bytes = saturating_add(
+        token_bytes, path.path_id.size() + path.charge.size() + 128U);
+    for (const auto& segment : path.history.segments()) {
+      token_bytes = saturating_add(
+          token_bytes,
+          segment.t_start_token().size() + segment.t_end_token().size() +
+              segment.position_error_token().size() +
+              segment.velocity_error_token().size());
+      for (const auto& axis : segment.coefficient_tokens()) {
+        for (const auto& token : axis) {
+          token_bytes = saturating_add(token_bytes, token.size());
+        }
+      }
+    }
+  }
+  bytes = saturating_add(bytes, token_bytes);
+  bytes = saturating_add(
+      bytes, saturating_multiply(
+                 segment_count,
+                 static_cast<std::uint64_t>(sizeof(CubicHistorySegment)) +
+                     256U));
+  const std::uint64_t path_count = request.paths.size();
+  bytes = saturating_add(bytes, saturating_multiply(path_count, 2048U));
+  const std::uint64_t pair_count = saturating_multiply(
+      path_count, path_count);
+  const std::uint64_t pair_workspace =
+      request.run_grade == "display" ? 192U : 1024U;
+  bytes = saturating_add(
+      bytes, saturating_multiply(pair_count, pair_workspace));
+  return bytes;
+}
+
 double elapsed_seconds(const SteadyClock::time_point& start) {
   return std::chrono::duration<double>(SteadyClock::now() - start).count();
 }
@@ -399,6 +458,30 @@ double display_correction_retry_scale(
 std::vector<std::pair<std::string, std::string>> changed_topology_pairs(
     const NativeAccelerationSnapshotCertificate& start,
     const NativeAccelerationSnapshotCertificate& end) {
+  if (!start.display_pair_root_counts.empty() ||
+      !end.display_pair_root_counts.empty()) {
+    if (start.display_pair_root_counts.size() !=
+        end.display_pair_root_counts.size()) {
+      throw std::invalid_argument(
+          "display pair-root ledgers have different domains");
+    }
+    std::vector<std::pair<std::string, std::string>> changed;
+    for (std::size_t index = 0U;
+         index < start.display_pair_root_counts.size(); ++index) {
+      const auto& first = start.display_pair_root_counts[index];
+      const auto& second = end.display_pair_root_counts[index];
+      if (first.receiver_path_id != second.receiver_path_id ||
+          first.source_path_id != second.source_path_id) {
+        throw std::invalid_argument(
+            "display pair-root ledgers have different ordering");
+      }
+      if (first.root_count != second.root_count) {
+        changed.emplace_back(
+            first.receiver_path_id, first.source_path_id);
+      }
+    }
+    return changed;
+  }
   std::set<std::pair<std::string, std::string>> enclosed_pairs;
   for (const auto* snapshot : {&start, &end}) {
     for (const auto& row : snapshot->root_certificates) {
@@ -488,34 +571,37 @@ NativeCausticWarning make_caustic_warning(
 
 void merge_caustic_warning(
     std::vector<NativeCausticWarning>& warnings,
+    std::map<std::tuple<std::string, std::string, std::string, std::string>,
+             std::size_t>& warning_index,
     const NativeCausticWarning& warning) {
-  auto matching = std::find_if(
-      warnings.begin(), warnings.end(), [&](const auto& existing) {
-        return existing.receiver_path_id == warning.receiver_path_id &&
-            existing.source_path_id == warning.source_path_id &&
-            existing.failed_row_id == warning.failed_row_id &&
-            existing.failure_code == warning.failure_code;
-      });
-  if (matching == warnings.end()) {
+  const auto key = std::make_tuple(
+      warning.receiver_path_id, warning.source_path_id,
+      warning.failed_row_id, warning.failure_code);
+  const auto found = warning_index.find(key);
+  if (found == warning_index.end()) {
+    warning_index.emplace(key, warnings.size());
     warnings.push_back(warning);
     return;
   }
+  auto& matching = warnings[found->second];
   if (scalar_token(warning.reception_lower) <
-      scalar_token(matching->reception_lower)) {
-    matching->reception_lower = warning.reception_lower;
+      scalar_token(matching.reception_lower)) {
+    matching.reception_lower = warning.reception_lower;
   }
   if (scalar_token(warning.reception_upper) >
-      scalar_token(matching->reception_upper)) {
-    matching->reception_upper = warning.reception_upper;
+      scalar_token(matching.reception_upper)) {
+    matching.reception_upper = warning.reception_upper;
   }
 }
 
 std::vector<NativeCausticWarning> collect_caustic_warnings(
     const std::vector<NativeCorrectedSubstepCertificate>& substeps) {
   std::vector<NativeCausticWarning> warnings;
+  std::map<std::tuple<std::string, std::string, std::string, std::string>,
+           std::size_t> warning_index;
   for (const auto& substep : substeps) {
     for (const auto& warning : substep.caustic_warnings) {
-      merge_caustic_warning(warnings, warning);
+      merge_caustic_warning(warnings, warning_index, warning);
     }
   }
   return warnings;
@@ -531,7 +617,9 @@ void append_display_entry_warnings(
     const NativeAccelerationSnapshotCertificate& snapshot,
     const std::string& reception_lower,
     const std::string& reception_upper,
-    std::vector<NativeCausticWarning>& warnings) {
+    std::vector<NativeCausticWarning>& warnings,
+    std::map<std::tuple<std::string, std::string, std::string, std::string>,
+             std::size_t>& warning_index) {
   if (!display_run_grade(request)) {
     return;
   }
@@ -539,7 +627,7 @@ void append_display_entry_warnings(
     if (pair_is_adjudicated_finite_width(request, receiver, source)) {
       continue;
     }
-    merge_caustic_warning(warnings, make_caustic_warning(
+    merge_caustic_warning(warnings, warning_index, make_caustic_warning(
         receiver, source, reception_lower, reception_upper,
         "DISPLAY-REGULATOR-01", "display_core_regulator_applied"));
   }
@@ -615,11 +703,19 @@ bool pair_is_adjudicated_finite_width(
     const NativeCoupledEvolutionRequest& request,
     const std::string& receiver,
     const std::string& source) {
-  return std::find(
+  return std::binary_search(
       request.adjudicated_finite_width_pairs.begin(),
       request.adjudicated_finite_width_pairs.end(),
-      std::make_pair(receiver, source)) !=
-      request.adjudicated_finite_width_pairs.end();
+      std::make_pair(receiver, source));
+}
+
+void insert_sorted_pair(
+    std::vector<std::pair<std::string, std::string>>& pairs,
+    std::pair<std::string, std::string> pair) {
+  const auto insertion = std::lower_bound(pairs.begin(), pairs.end(), pair);
+  if (insertion == pairs.end() || *insertion != pair) {
+    pairs.insert(insertion, std::move(pair));
+  }
 }
 
 std::vector<std::pair<std::string, std::string>>
@@ -2279,17 +2375,26 @@ SubstepAttempt corrected_substep_impl(
       std::vector<NativeEndpointRootContinuationCertificate>
           endpoint_root_continuations;
       std::vector<NativeCausticWarning> entry_warnings;
+      std::map<
+          std::tuple<std::string, std::string, std::string, std::string>,
+          std::size_t> entry_warning_index;
       append_display_entry_warnings(
-          request, start_snapshot, start_time, end_time, entry_warnings);
+          request, start_snapshot, start_time, end_time, entry_warnings,
+          entry_warning_index);
       append_display_entry_warnings(
-          request, endpoint_snapshot, start_time, end_time, entry_warnings);
+          request, endpoint_snapshot, start_time, end_time, entry_warnings,
+          entry_warning_index);
       auto event_pairs = changed_topology_pairs(
           start_snapshot, endpoint_snapshot);
       const auto topology_event_pairs = event_pairs;
+      std::set<std::pair<std::string, std::string>> event_pair_index(
+          event_pairs.begin(), event_pairs.end());
+      const std::set<std::pair<std::string, std::string>>
+          topology_event_pair_index(
+              topology_event_pairs.begin(), topology_event_pairs.end());
       if (!display_run_grade(request)) {
         for (const auto& pair : request.adjudicated_finite_width_pairs) {
-          if (std::find(event_pairs.begin(), event_pairs.end(), pair) ==
-              event_pairs.end()) {
+          if (event_pair_index.insert(pair).second) {
             event_pairs.push_back(pair);
           }
         }
@@ -2301,8 +2406,7 @@ SubstepAttempt corrected_substep_impl(
                   request, pair.first, pair.second)) {
             continue;
           }
-          if (std::find(event_pairs.begin(), event_pairs.end(), pair) ==
-              event_pairs.end()) {
+          if (event_pair_index.insert(pair).second) {
             event_pairs.push_back(pair);
           }
         }
@@ -2321,10 +2425,8 @@ SubstepAttempt corrected_substep_impl(
           };
         }
         for (const auto& [receiver_id, source_id] : event_pairs) {
-          const bool topology_changed = std::find(
-              topology_event_pairs.begin(), topology_event_pairs.end(),
-              std::make_pair(receiver_id, source_id)) !=
-              topology_event_pairs.end();
+          const bool topology_changed = topology_event_pair_index.contains(
+              std::make_pair(receiver_id, source_id));
           if (topology_changed) {
             const auto endpoint_continuation =
                 certify_coincident_endpoint_root_continuation_impl(
@@ -2336,7 +2438,8 @@ SubstepAttempt corrected_substep_impl(
             }
           }
           if (display_run_grade(request)) {
-            merge_caustic_warning(entry_warnings, make_caustic_warning(
+            merge_caustic_warning(
+                entry_warnings, entry_warning_index, make_caustic_warning(
                 receiver_id, source_id, start_time, end_time,
                 "FWC-ENTRY-02", "caustic_route_required"));
             continue;
@@ -2631,6 +2734,9 @@ void validate_request(const NativeCoupledEvolutionRequest& request) {
     throw std::invalid_argument(
         "coupled evolution requires a run identity and paths");
   }
+  if (request.memory_budget_bytes == 0U) {
+    throw std::invalid_argument("coupled evolution memory budget must be positive");
+  }
   std::set<std::string> ids;
   std::set<std::string> history_ids;
   for (const auto& path : request.paths) {
@@ -2685,6 +2791,23 @@ void validate_request(const NativeCoupledEvolutionRequest& request) {
       (request.run_grade == "certified" &&
        request.initial_caustic_warning_count != 0U)) {
     throw std::invalid_argument("invalid cumulative caustic warning state");
+  }
+  if (!std::is_sorted(
+          request.initial_caustic_warning_pairs.begin(),
+          request.initial_caustic_warning_pairs.end()) ||
+      std::adjacent_find(
+          request.initial_caustic_warning_pairs.begin(),
+          request.initial_caustic_warning_pairs.end()) !=
+          request.initial_caustic_warning_pairs.end() ||
+      !std::is_sorted(
+          request.adjudicated_finite_width_pairs.begin(),
+          request.adjudicated_finite_width_pairs.end()) ||
+      std::adjacent_find(
+          request.adjudicated_finite_width_pairs.begin(),
+          request.adjudicated_finite_width_pairs.end()) !=
+          request.adjudicated_finite_width_pairs.end()) {
+    throw std::invalid_argument(
+        "coupled evolution pair ledgers must be sorted and unique");
   }
   if (request.initial_first_caustic_warning_time.has_value() &&
       scalar_token(*request.initial_first_caustic_warning_time) > start) {
@@ -4572,6 +4695,7 @@ NativeAccelerationSnapshotCertificate evaluate_native_display_snapshot(
       .causal_prefix_exclusion = {},
       .root_certificates = {},
       .display_history_fingerprints = fingerprints(histories),
+      .display_pair_root_counts = evaluated.pair_root_counts,
       .display_regulated_pairs = evaluated.regulated_pairs,
       .display_emission_to_current_source_ratio_max =
           evaluated.emission_to_current_source_ratio_max,
@@ -4619,31 +4743,33 @@ NativeAccelerationSnapshotCertificate certify_native_acceleration_snapshot(
   std::string pair_selection_route = "exhaustive_exact_pair_batch";
   std::string traversal_failure;
   std::vector<ExactPairWarmStart> warm_starts(logical_pair_count);
+  std::map<std::string, const NativePublishedPath*> warm_history_by_id;
+  std::map<std::pair<std::string, std::string>,
+           const NativeSnapshotRootRow*> warm_root_by_pair;
   if (warm_snapshot != nullptr && warm_histories != nullptr) {
+    for (const auto& path : *warm_histories) {
+      warm_history_by_id.emplace(path.path_id, &path);
+    }
+    for (const auto& row : warm_snapshot->root_certificates) {
+      warm_root_by_pair.emplace(
+          std::make_pair(row.receiver_path_id, row.source_path_id), &row);
+    }
     std::size_t logical_index = 0;
     for (const auto& receiver : histories) {
       for (const auto& source : histories) {
-        const auto prior_row = std::find_if(
-            warm_snapshot->root_certificates.begin(),
-            warm_snapshot->root_certificates.end(), [&](const auto& row) {
-              return row.receiver_path_id == receiver.path_id &&
-                  row.source_path_id == source.path_id;
-            });
-        const auto prior_receiver = std::find_if(
-            warm_histories->begin(), warm_histories->end(),
-            [&](const auto& path) { return path.path_id == receiver.path_id; });
-        const auto prior_source = std::find_if(
-            warm_histories->begin(), warm_histories->end(),
-            [&](const auto& path) { return path.path_id == source.path_id; });
-        if (prior_row != warm_snapshot->root_certificates.end() &&
-            prior_row->certificate.schema ==
+        const auto prior_row = warm_root_by_pair.find(
+            std::make_pair(receiver.path_id, source.path_id));
+        const auto prior_receiver = warm_history_by_id.find(receiver.path_id);
+        const auto prior_source = warm_history_by_id.find(source.path_id);
+        if (prior_row != warm_root_by_pair.end() &&
+            prior_row->second->certificate.schema ==
                 "eom_native_exact_pair_certificate/v0" &&
-            prior_receiver != warm_histories->end() &&
-            prior_source != warm_histories->end()) {
+            prior_receiver != warm_history_by_id.end() &&
+            prior_source != warm_history_by_id.end()) {
           warm_starts[logical_index] = {
-              .certificate = &prior_row->certificate,
-              .receiver = &prior_receiver->history,
-              .source = &prior_source->history,
+              .certificate = &prior_row->second->certificate,
+              .receiver = &prior_receiver->second->history,
+              .source = &prior_source->second->history,
           };
         }
         ++logical_index;
@@ -4672,7 +4798,8 @@ NativeAccelerationSnapshotCertificate certify_native_acceleration_snapshot(
   const bool use_far_field_enclosure =
       exact_decimal_value(request.far_field_enclosure_fraction) > 0.0 &&
       common_history_start;
-  if (use_far_field_enclosure) {
+  if (use_far_field_enclosure &&
+      !(request.use_certified_traversal && common_history_start)) {
     pair_selection_route = "certified_far_field_then_exact_pair_batch";
     far_field_enclosure_certificates.reserve(logical_pair_count);
     std::vector<std::optional<ExactPairCertificate>> selected_certificates(
@@ -4785,7 +4912,9 @@ NativeAccelerationSnapshotCertificate certify_native_acceleration_snapshot(
     traversal_exact_pairs = traversal_certificate->exact_fallback_pairs;
     traversal_enclosed_pairs = traversal_certificate->enclosed_pairs;
     traversal_unresolved_pairs = traversal_certificate->unresolved_pairs;
-    pair_selection_route = "certified_moving_history_traversal";
+    pair_selection_route = use_far_field_enclosure
+        ? "certified_traversal_then_far_field_then_exact_pair_batch"
+        : "certified_moving_history_traversal";
 
     CertifiedTraversalExactBatchCertificate exact_batch{
         .schema = "eom_certified_traversal_exact_pair_batch/v0",
@@ -4799,7 +4928,8 @@ NativeAccelerationSnapshotCertificate certify_native_acceleration_snapshot(
         .coverage_disjoint_complete = false,
         .exact_pair_certificates = {},
     };
-    if (traversal_certificate->status == "certified_complete") {
+    if (traversal_certificate->status == "certified_complete" &&
+        !use_far_field_enclosure) {
       const auto exact_root_timing_start = SteadyClock::now();
       exact_batch = certify_traversal_exact_pair_batch({
           .traversal_request = &traversal_request,
@@ -4826,18 +4956,101 @@ NativeAccelerationSnapshotCertificate certify_native_acceleration_snapshot(
 
     std::map<std::pair<std::size_t, std::size_t>, ExactPairCertificate>
         certificates_by_index;
-    std::size_t exact_index = 0;
-    for (const auto& tile : traversal_certificate->exact_tiles) {
-      for (std::size_t receiver_index = tile.receiver_begin;
-           receiver_index < tile.receiver_end; ++receiver_index) {
-        for (std::size_t source_index = tile.source_begin;
-             source_index < tile.source_end; ++source_index) {
-          if (exact_index < exact_batch.exact_pair_certificates.size()) {
-            certificates_by_index.emplace(
-                std::make_pair(receiver_index, source_index),
-                exact_batch.exact_pair_certificates[exact_index]);
+    if (use_far_field_enclosure &&
+        traversal_certificate->status == "certified_complete") {
+      far_field_enclosure_certificates.resize(logical_pair_count);
+      std::vector<ExactPairRequest> root_requests;
+      std::vector<std::pair<std::size_t, std::size_t>> root_coordinates;
+      std::vector<double> receiver_enclosed_widths(histories.size(), 0.0);
+      for (const auto& tile : traversal_certificate->exact_tiles) {
+        for (std::size_t receiver_index = tile.receiver_begin;
+             receiver_index < tile.receiver_end; ++receiver_index) {
+          for (std::size_t source_index = tile.source_begin;
+               source_index < tile.source_end; ++source_index) {
+            const std::size_t logical_index =
+                receiver_index * histories.size() + source_index;
+            const auto& receiver = histories[receiver_index];
+            const auto& source = histories[source_index];
+            auto enclosure = certify_far_field_enclosure(
+                request, receiver, source, common_start, reception_time,
+                histories.size());
+            far_field_enclosure_certificates[logical_index] =
+                std::move(enclosure);
+            const auto& stored =
+                far_field_enclosure_certificates[logical_index];
+            if (stored.status == "certified_enclosed") {
+              certificates_by_index.emplace(
+                  std::make_pair(receiver_index, source_index),
+                  enclosed_pair_marker(request, receiver, source, stored));
+              ++traversal_enclosed_pairs;
+              const double width = stored.acceleration->front().width();
+              enclosed_error_width_total = upward_nonnegative_sum(
+                  enclosed_error_width_total, width);
+              receiver_enclosed_widths[receiver_index] =
+                  upward_nonnegative_sum(
+                      receiver_enclosed_widths[receiver_index], width);
+              continue;
+            }
+            root_coordinates.emplace_back(receiver_index, source_index);
+            root_requests.push_back({
+                .row_id = receiver.path_id + "/" + source.path_id + "/" +
+                    reception_time,
+                .receiver = &receiver.history,
+                .source = &source.history,
+                .reception_time = reception_time,
+                .search_lower = active_search_lower,
+                .search_upper = reception_time,
+                .field_speed = request.field_speed,
+                .root_tolerance = request.root_tolerance,
+                .max_depth = request.root_max_depth,
+                .max_cells = request.root_max_cells,
+                .initial_mpfr_bits = request.initial_mpfr_bits,
+                .maximum_mpfr_bits = request.maximum_mpfr_bits,
+                .force_precision_escalation = false,
+                .defer_precision_escalation =
+                    defer_root_precision_escalation,
+                .warm_start = warm_snapshot != nullptr &&
+                        warm_histories != nullptr
+                    ? &warm_starts[logical_index]
+                    : nullptr,
+            });
           }
-          ++exact_index;
+        }
+      }
+      for (const double width : receiver_enclosed_widths) {
+        enclosed_error_width_max_receiver = std::max(
+            enclosed_error_width_max_receiver, width);
+      }
+      traversal_exact_pairs = root_requests.size();
+      const auto exact_root_timing_start = SteadyClock::now();
+      const auto exact_certificates = certify_exact_pair_batch(
+          root_requests, request.thread_count);
+      timing.exact_root_batch_wall_seconds +=
+          elapsed_seconds(exact_root_timing_start);
+      if (exact_certificates.size() != root_coordinates.size()) {
+        traversal_failure =
+            "traversal_far_field_exact_fallback_coverage_incomplete";
+      } else {
+        for (std::size_t exact_index = 0U;
+             exact_index < exact_certificates.size(); ++exact_index) {
+          certificates_by_index.emplace(
+              root_coordinates[exact_index], exact_certificates[exact_index]);
+        }
+      }
+    } else {
+      std::size_t exact_index = 0;
+      for (const auto& tile : traversal_certificate->exact_tiles) {
+        for (std::size_t receiver_index = tile.receiver_begin;
+             receiver_index < tile.receiver_end; ++receiver_index) {
+          for (std::size_t source_index = tile.source_begin;
+               source_index < tile.source_end; ++source_index) {
+            if (exact_index < exact_batch.exact_pair_certificates.size()) {
+              certificates_by_index.emplace(
+                  std::make_pair(receiver_index, source_index),
+                  exact_batch.exact_pair_certificates[exact_index]);
+            }
+            ++exact_index;
+          }
         }
       }
     }
@@ -4886,9 +5099,11 @@ NativeAccelerationSnapshotCertificate certify_native_acceleration_snapshot(
     }
     if (traversal_certificate->status != "certified_complete" ||
         certificates_by_index.size() != logical_pair_count) {
-      traversal_failure = traversal_certificate->failure_code.empty()
-          ? exact_batch.failure_code
-          : traversal_certificate->failure_code;
+      if (traversal_failure.empty()) {
+        traversal_failure = traversal_certificate->failure_code.empty()
+            ? exact_batch.failure_code
+            : traversal_certificate->failure_code;
+      }
       if (traversal_failure.empty()) {
         traversal_failure = "pair_coverage_incomplete";
       }
@@ -4943,10 +5158,8 @@ NativeAccelerationSnapshotCertificate certify_native_acceleration_snapshot(
     if (warm_equality_available) {
       warm_source_equality.reserve(histories.size());
       for (const auto& source : histories) {
-        const auto warm_source = std::find_if(
-            warm_histories->begin(), warm_histories->end(),
-            [&](const auto& path) { return path.path_id == source.path_id; });
-        if (warm_source == warm_histories->end()) {
+        const auto warm_source = warm_history_by_id.find(source.path_id);
+        if (warm_source == warm_history_by_id.end()) {
           warm_source_equality.push_back(
               {-std::numeric_limits<double>::infinity(), 0});
           continue;
@@ -4956,7 +5169,7 @@ NativeAccelerationSnapshotCertificate certify_native_acceleration_snapshot(
             ? active_search_lower
             : source.history.segments().front().t_start_token();
         warm_source_equality.push_back(compute_warm_source_equality_bounds(
-            source.history, warm_source->history,
+            source.history, warm_source->second->history,
             std::strtod(source_search_lower.c_str(), nullptr)));
       }
     }
@@ -5371,12 +5584,8 @@ NativeAtomicStepCertificate certify_native_atomic_coupled_step_impl(
        first_half.certificate.finite_width_state_certificates) {
     const auto pair = std::make_pair(
         state.receiver_path_id, state.source_path_id);
-    if (std::find(
-            second_half_request.adjudicated_finite_width_pairs.begin(),
-            second_half_request.adjudicated_finite_width_pairs.end(), pair) ==
-        second_half_request.adjudicated_finite_width_pairs.end()) {
-      second_half_request.adjudicated_finite_width_pairs.push_back(pair);
-    }
+    insert_sorted_pair(
+        second_half_request.adjudicated_finite_width_pairs, pair);
   }
   auto second_half = corrected_substep(
       second_half_request, *first_half.histories, midpoint, end_time,
@@ -5675,6 +5884,37 @@ NativeCoupledEvolutionCertificate evolve_native_coupled_histories(
   for (const auto& path : request.paths) {
     histories.push_back({path.path_id, path.history});
   }
+  const std::uint64_t memory_estimate_bytes =
+      estimate_coupled_working_set_bytes(request);
+  if (memory_estimate_bytes > request.memory_budget_bytes) {
+    NativeEvolutionTiming memory_timing;
+    memory_timing.total_wall_seconds = elapsed_seconds(timing_start);
+    return {
+        .schema = "eom_native_coupled_evolution_certificate/v0",
+        .status = "halted",
+        .run_id = request.run_id,
+        .start_time = request.start_time,
+        .requested_end_time = request.end_time,
+        .accepted_end_time = request.start_time,
+        .histories = std::move(histories),
+        .steps = {},
+        .accepted_step_count = 0U,
+        .rejected_step_count = 0U,
+        .controller_step_size = request.initial_step,
+        .halt_code = "memory_budget_exhausted",
+        .evidence_status = "failed",
+        .run_grade = request.run_grade,
+        .caustic_warnings = {},
+        .caustic_warning_count = request.initial_caustic_warning_count,
+        .first_caustic_warning_time =
+            request.initial_first_caustic_warning_time,
+        .caustic_warning_pairs = request.initial_caustic_warning_pairs,
+        .memory_budget_bytes = request.memory_budget_bytes,
+        .memory_estimate_bytes = memory_estimate_bytes,
+        .all_steps_atomic = true,
+        .timing = memory_timing,
+    };
+  }
   double current_time = scalar_token(request.start_time);
   const double requested_end = scalar_token(request.end_time);
   double step_size = scalar_token(request.initial_step);
@@ -5692,8 +5932,10 @@ NativeCoupledEvolutionCertificate evolve_native_coupled_histories(
   std::string current_time_token = request.start_time;
   std::size_t consecutive_growth_headroom_steps = 0U;
   std::size_t certificate_cost_probe_adjustments = 0U;
-  std::vector<std::pair<std::string, std::string>>
-      adjudicated_finite_width_pairs = request.initial_caustic_warning_pairs;
+  std::set<std::pair<std::string, std::string>>
+      adjudicated_finite_width_pairs(
+          request.initial_caustic_warning_pairs.begin(),
+          request.initial_caustic_warning_pairs.end());
   std::size_t certificate_cost_cooldown_remaining =
       request.certificate_cost_initial_cooldown_steps;
 
@@ -5734,8 +5976,9 @@ NativeCoupledEvolutionCertificate evolve_native_coupled_histories(
             absolute_time_rounding_envelope(
                 current_time, current_time + attempted_step);
     auto step_request = request;
-    step_request.adjudicated_finite_width_pairs =
-        adjudicated_finite_width_pairs;
+    step_request.adjudicated_finite_width_pairs.assign(
+        adjudicated_finite_width_pairs.begin(),
+        adjudicated_finite_width_pairs.end());
     auto step = certify_native_atomic_coupled_step(
         step_request, histories, steps.size(), current_time_token, attempted_end,
         reusable_start_snapshot, certificate_cost_probe);
@@ -5771,12 +6014,7 @@ NativeCoupledEvolutionCertificate evolve_native_coupled_histories(
                      warning.receiver_path_id, warning.source_path_id),
                  std::make_pair(
                      warning.source_path_id, warning.receiver_path_id)}) {
-          if (std::find(
-                  adjudicated_finite_width_pairs.begin(),
-                  adjudicated_finite_width_pairs.end(), pair) ==
-              adjudicated_finite_width_pairs.end()) {
-            adjudicated_finite_width_pairs.push_back(pair);
-          }
+          adjudicated_finite_width_pairs.insert(pair);
         }
       }
       current_time_token = step.accepted_time;
@@ -5821,6 +6059,7 @@ NativeCoupledEvolutionCertificate evolve_native_coupled_histories(
     if (display_run_grade(request) &&
         (step.failure_code == "display_nonfinite_state" ||
          step.failure_code == "display_root_solve_not_converged" ||
+         step.failure_code == "display_root_isolation_unresolved" ||
          step.failure_code == "display_insufficient_history_depth" ||
          step.failure_code == "display_invalid_evaluation_request")) {
       halt_code = step.failure_code;
@@ -5838,35 +6077,20 @@ NativeCoupledEvolutionCertificate evolve_native_coupled_histories(
                        warning.receiver_path_id, warning.source_path_id),
                    std::make_pair(
                        warning.source_path_id, warning.receiver_path_id)}) {
-            if (std::find(
-                    adjudicated_finite_width_pairs.begin(),
-                    adjudicated_finite_width_pairs.end(), pair) ==
-                adjudicated_finite_width_pairs.end()) {
-              adjudicated_finite_width_pairs.push_back(pair);
-            }
+            adjudicated_finite_width_pairs.insert(pair);
           }
         }
       }
       for (const auto& state : substep.finite_width_state_certificates) {
         const auto pair = std::make_pair(
             state.receiver_path_id, state.source_path_id);
-        if (std::find(
-                adjudicated_finite_width_pairs.begin(),
-                adjudicated_finite_width_pairs.end(), pair) ==
-            adjudicated_finite_width_pairs.end()) {
-          adjudicated_finite_width_pairs.push_back(pair);
-        }
+        adjudicated_finite_width_pairs.insert(pair);
       }
       for (const auto& regulator :
            substep.regulator_convergence_certificates) {
         const auto pair = std::make_pair(
             regulator.receiver_path_id, regulator.source_path_id);
-        if (std::find(
-                adjudicated_finite_width_pairs.begin(),
-                adjudicated_finite_width_pairs.end(), pair) ==
-            adjudicated_finite_width_pairs.end()) {
-          adjudicated_finite_width_pairs.push_back(pair);
-        }
+        adjudicated_finite_width_pairs.insert(pair);
       }
     }
     step.certificate_cost_cooldown_remaining =
@@ -5926,9 +6150,10 @@ NativeCoupledEvolutionCertificate evolve_native_coupled_histories(
         }
       }
       if (diagnostic_snapshot != nullptr) {
-        adjudicated_finite_width_pairs =
-            certified_opposite_polarity_core_pairs(
-                request, *diagnostic_snapshot);
+        const auto diagnostic_pairs = certified_opposite_polarity_core_pairs(
+            request, *diagnostic_snapshot);
+        adjudicated_finite_width_pairs.insert(
+            diagnostic_pairs.begin(), diagnostic_pairs.end());
       }
       if (!adjudicated_finite_width_pairs.empty()) {
         step_size = attempted_step;
@@ -5972,21 +6197,20 @@ NativeCoupledEvolutionCertificate evolve_native_coupled_histories(
   timing.total_wall_seconds = elapsed_seconds(timing_start);
   const std::size_t caustic_warning_count =
       request.initial_caustic_warning_count + caustic_warnings.size();
-  auto caustic_warning_pairs = request.initial_caustic_warning_pairs;
+  std::set<std::pair<std::string, std::string>> caustic_warning_pair_index(
+      request.initial_caustic_warning_pairs.begin(),
+      request.initial_caustic_warning_pairs.end());
   for (const auto& warning : caustic_warnings) {
     for (const auto& pair : {
              std::make_pair(
                  warning.receiver_path_id, warning.source_path_id),
              std::make_pair(
                  warning.source_path_id, warning.receiver_path_id)}) {
-      if (std::find(
-              caustic_warning_pairs.begin(),
-              caustic_warning_pairs.end(), pair) ==
-          caustic_warning_pairs.end()) {
-        caustic_warning_pairs.push_back(pair);
-      }
+      caustic_warning_pair_index.insert(pair);
     }
   }
+  std::vector<std::pair<std::string, std::string>> caustic_warning_pairs(
+      caustic_warning_pair_index.begin(), caustic_warning_pair_index.end());
   return {
       .schema = "eom_native_coupled_evolution_certificate/v0",
       .status = completed ? "completed" : "halted",
@@ -6010,6 +6234,8 @@ NativeCoupledEvolutionCertificate evolve_native_coupled_histories(
       .caustic_warning_count = caustic_warning_count,
       .first_caustic_warning_time = first_caustic_warning_time,
       .caustic_warning_pairs = std::move(caustic_warning_pairs),
+      .memory_budget_bytes = request.memory_budget_bytes,
+      .memory_estimate_bytes = memory_estimate_bytes,
       .all_steps_atomic = all_atomic,
       .timing = timing,
   };

@@ -326,11 +326,21 @@ CubicHistorySegment::CubicHistorySegment(
   if (position_error_ < 0.0 || velocity_error_ < 0.0) {
     throw std::invalid_argument("history errors must be nonnegative");
   }
-  for (const auto& row : coefficient_tokens_) {
-    for (const auto& token : row) {
-      static_cast<void>(parse_decimal(token, "history coefficient"));
+  double speed_square_upper = 0.0;
+  const double duration = t_end_ - t_start_;
+  for (std::size_t axis = 0U; axis < coefficient_tokens_.size(); ++axis) {
+    for (std::size_t coefficient = 0U;
+         coefficient < coefficient_tokens_[axis].size(); ++coefficient) {
+      coefficient_values_[axis][coefficient] = parse_decimal(
+          coefficient_tokens_[axis][coefficient], "history coefficient");
     }
+    const auto& row = coefficient_values_[axis];
+    const double component_upper = std::abs(row[1]) +
+        2.0 * std::abs(row[2]) * duration +
+        3.0 * std::abs(row[3]) * duration * duration;
+    speed_square_upper += component_upper * component_upper;
   }
+  nominal_speed_upper_bound_ = std::sqrt(speed_square_upper);
 }
 
 void CubicHistorySegment::require_time(const Interval& time) const {
@@ -384,12 +394,9 @@ std::array<double, 3> CubicHistorySegment::nominal_position(
   const double local = time - t_start_;
   std::array<double, 3> result{};
   for (std::size_t axis = 0; axis < 3U; ++axis) {
-    const auto& row = coefficient_tokens_[axis];
+    const auto& row = coefficient_values_[axis];
     result[axis] =
-        ((parse_decimal(row[3], "history coefficient") * local +
-          parse_decimal(row[2], "history coefficient")) * local +
-         parse_decimal(row[1], "history coefficient")) * local +
-        parse_decimal(row[0], "history coefficient");
+        ((row[3] * local + row[2]) * local + row[1]) * local + row[0];
   }
   return result;
 }
@@ -402,11 +409,9 @@ std::array<double, 3> CubicHistorySegment::nominal_velocity(
   const double local = time - t_start_;
   std::array<double, 3> result{};
   for (std::size_t axis = 0; axis < 3U; ++axis) {
-    const auto& row = coefficient_tokens_[axis];
+    const auto& row = coefficient_values_[axis];
     result[axis] =
-        (3.0 * parse_decimal(row[3], "history coefficient") * local +
-         2.0 * parse_decimal(row[2], "history coefficient")) * local +
-        parse_decimal(row[1], "history coefficient");
+        (3.0 * row[3] * local + 2.0 * row[2]) * local + row[1];
   }
   return result;
 }
@@ -575,6 +580,8 @@ RetainedHistory::RetainedHistory(
     full_position_hull_ = full_position_hull_.has_value()
         ? hull(*full_position_hull_, position)
         : position;
+    nominal_speed_upper_bound_ = std::max(
+        nominal_speed_upper_bound_, segment.nominal_speed_upper_bound());
   }
   provenance_fingerprint_ = history_fingerprint(fingerprint_state_);
 }
@@ -760,6 +767,7 @@ RetainedHistory::RetainedHistory(
     HistorySegmentSequence segments,
     std::uint64_t fingerprint_state,
     IntervalVector full_position_hull,
+    double nominal_speed_upper_bound,
     std::optional<UniformCircularEndpointCertificate>
         uniform_circular_endpoint_certificate)
     : history_id_(std::move(history_id)),
@@ -767,6 +775,7 @@ RetainedHistory::RetainedHistory(
       fingerprint_state_(fingerprint_state),
       provenance_fingerprint_(history_fingerprint(fingerprint_state_)),
       full_position_hull_(std::move(full_position_hull)),
+      nominal_speed_upper_bound_(nominal_speed_upper_bound),
       uniform_circular_endpoint_certificate_(
           std::move(uniform_circular_endpoint_certificate)) {}
 
@@ -775,9 +784,11 @@ RetainedHistory RetainedHistory::appended(CubicHistorySegment segment) const {
   std::uint64_t fingerprint_state = fingerprint_state_;
   fingerprint_segment(fingerprint_state, segment);
   const IntervalVector position = complete_segment_position_hull(segment);
+  const double speed_upper = std::max(
+      nominal_speed_upper_bound_, segment.nominal_speed_upper_bound());
   return RetainedHistory(
       history_id_, segments_.appended(std::move(segment)), fingerprint_state,
-      hull(*full_position_hull_, position),
+      hull(*full_position_hull_, position), speed_upper,
       uniform_circular_endpoint_certificate_);
 }
 

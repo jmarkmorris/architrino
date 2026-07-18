@@ -15,9 +15,9 @@ import {
   validateBorgInitialConditionConfig,
 } from "../src/apps/borg/BorgInitialConditions.js";
 import {
-  createBorgRunGradeDefaults,
-  createBorgRunGradePlacementPolicy,
-} from "../src/apps/borg/BorgRunGradeDefaults.js";
+  createBorgInteractiveDefaults,
+  createBorgPlacementPolicy,
+} from "../src/apps/borg/BorgInteractiveDefaults.js";
 
 test("Borg initial-condition controls start from the accepted manifest values", () => {
   assert.deepEqual(
@@ -31,8 +31,8 @@ test("Borg initial-condition controls start from the accepted manifest values", 
   );
 });
 
-test("Borg display defaults are separate from unchanged certified defaults", () => {
-  assert.deepEqual(createBorgRunGradeDefaults(BORG_DATASET_MANIFEST_V1, "display"), {
+test("Borg interactive physical defaults are independent of run grade", () => {
+  assert.deepEqual(createBorgInteractiveDefaults(BORG_DATASET_MANIFEST_V1), {
     coupling: 0.0005,
     initialConditionConfig: {
       electrinoCount: 32,
@@ -41,32 +41,15 @@ test("Borg display defaults are separate from unchanged certified defaults", () 
       randomVelocityMinSpeed: 0,
     },
   });
-  assert.deepEqual(createBorgRunGradeDefaults(BORG_DATASET_MANIFEST_V1, "certified"), {
-    coupling: 0.05,
-    initialConditionConfig: {
-      electrinoCount: 3,
-      positrinoCount: 3,
-      randomVelocityMaxComponentMagnitude: 0.01,
-      randomVelocityMinSpeed: 0,
-    },
-  });
   assert.equal(BORG_DATASET_MANIFEST_V1.simulationEnvelope.outerRadius, 0.5);
   assert.ok(
-    createBorgRunGradePlacementPolicy(
-      BORG_DATASET_MANIFEST_V1,
-      "certified",
-      64,
-    ).seedingRadius > 0.5,
+    createBorgPlacementPolicy(BORG_DATASET_MANIFEST_V1, 64).seedingRadius <= 0.5,
   );
 });
 
 test("Borg display seeding keeps all 64 default paths inside the outer sphere", () => {
-  const defaults = createBorgRunGradeDefaults(BORG_DATASET_MANIFEST_V1, "display");
-  const placement = createBorgRunGradePlacementPolicy(
-    BORG_DATASET_MANIFEST_V1,
-    "display",
-    64,
-  );
+  const defaults = createBorgInteractiveDefaults(BORG_DATASET_MANIFEST_V1);
+  const placement = createBorgPlacementPolicy(BORG_DATASET_MANIFEST_V1, 64);
   const rows = createBorgSeededInitialConditionRows({
     manifest: BORG_DATASET_MANIFEST_V1,
     seedIndex: 7,

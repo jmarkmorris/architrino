@@ -333,7 +333,7 @@ test("Borg path-history renderer uses native row segments, not visual smoothing 
   assert.match(runtimeSource, /function fitCameraToEnvelope\(margin\)/);
   assert.match(
     runtimeSource,
-    /borgRunGradeEnvelopeRadius\(manifest, state\.selectedRunGrade\) \*\s*worldUnitsPerSolverUnit/,
+    /borgEnvelopeRadius\(manifest\) \*\s*worldUnitsPerSolverUnit/,
   );
   assert.match(runtimeSource, /DEFAULT_CAMERA_FIT_MARGIN = 1\.43/);
   assert.match(runtimeSource, /HIGHLIGHTED_PATH_HISTORY_DURATION = 5/);

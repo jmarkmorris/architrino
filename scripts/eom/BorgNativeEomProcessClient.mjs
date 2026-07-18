@@ -1,8 +1,8 @@
 import { spawn, spawnSync } from "node:child_process";
 
 export const BORG_NATIVE_EOM_PROCESS_CLIENT_VERSION =
-  "borg-native-eom-process-client.v3";
-export const BORG_NATIVE_EOM_PROTOCOL_MAGIC = "EOM_BORG_NATIVE_V4";
+  "borg-native-eom-process-client.v5";
+export const BORG_NATIVE_EOM_PROTOCOL_MAGIC = "EOM_BORG_NATIVE_V5";
 
 export function createBorgNativeEomProcessClient({
   binaryPath,
@@ -34,6 +34,8 @@ export function createBorgNativeEomProcessClient({
   let activeRequest = null;
   let requestQueue = Promise.resolve();
   let cancellationGeneration = 0;
+  let wireHistoryCache = null;
+  let wireHistoryCacheGeneration = 0;
 
   const client = Object.freeze({
     schema: BORG_NATIVE_EOM_PROCESS_CLIENT_VERSION,
@@ -42,18 +44,28 @@ export function createBorgNativeEomProcessClient({
       return worker?.pid ?? null;
     },
     async evolveRetainedHistories(request) {
-      const protocol = encodeNativeRequest(request);
       const requestGeneration = cancellationGeneration;
       const execute = () => {
         if (requestGeneration !== cancellationGeneration) {
           throw new Error("EOM worker request was cancelled before execution.");
         }
-        return executePersistentRequest(protocol);
+        return executePersistentRequest(request);
       };
       const responsePromise = requestQueue.then(execute, execute);
       requestQueue = responsePromise.catch(() => undefined);
       const response = await responsePromise;
-      return mergePublishedExtensions(request, response);
+      const merged = mergePublishedExtensions(request, response);
+      if (merged?.status === "completed" && Array.isArray(merged.histories)) {
+        wireHistoryCache = merged.histories;
+        wireHistoryCacheGeneration = workerGeneration;
+      } else {
+        // The server discards its incremental snapshot/history cache after a
+        // halted request. Mirror that state so a later request cannot send a
+        // suffix against a prefix the worker no longer owns.
+        wireHistoryCache = null;
+        wireHistoryCacheGeneration = 0;
+      }
+      return merged;
     },
     async dispose() {
       cancellationGeneration += 1;
@@ -67,6 +79,8 @@ export function createBorgNativeEomProcessClient({
       return;
     }
     const generation = ++workerGeneration;
+    wireHistoryCache = null;
+    wireHistoryCacheGeneration = 0;
     responseBuffer = "";
     errorBuffer = "";
     worker = spawn(binaryPath, ["borg-shadow-server-v0", ...binaryArgs], {
@@ -99,8 +113,13 @@ export function createBorgNativeEomProcessClient({
     });
   }
 
-  function executePersistentRequest(protocol) {
+  function executePersistentRequest(request) {
     ensureWorker();
+    const protocol = encodeNativeRequest(request, {
+      cachedHistories: wireHistoryCacheGeneration === workerGeneration
+        ? wireHistoryCache
+        : null,
+    });
     return new Promise((resolve, reject) => {
       if (activeRequest) {
         reject(new Error("EOM worker already has an active request."));
@@ -149,6 +168,8 @@ export function createBorgNativeEomProcessClient({
     const pending = activeRequest;
     activeRequest = null;
     worker = null;
+    wireHistoryCache = null;
+    wireHistoryCacheGeneration = 0;
     if (pending) {
       clearTimeout(pending.timeout);
       pending.reject(error);
@@ -160,6 +181,8 @@ export function createBorgNativeEomProcessClient({
     activeRequest = null;
     const current = worker;
     worker = null;
+    wireHistoryCache = null;
+    wireHistoryCacheGeneration = 0;
     ++workerGeneration;
     responseBuffer = "";
     errorBuffer = "";
@@ -173,7 +196,7 @@ export function createBorgNativeEomProcessClient({
   }
 }
 
-export function encodeNativeRequest(request) {
+export function encodeNativeRequest(request, { cachedHistories = null } = {}) {
   if (request?.contractId !== "eom_evolution_contract/v0" ||
       !Array.isArray(request.histories) || request.histories.length === 0) {
     throw new TypeError("EOM process request lacks the EOM contract or histories.");
@@ -183,6 +206,8 @@ export function encodeNativeRequest(request) {
   const provenance = request.provenance ?? {};
   if (controls.maximumStep == null ||
       controls.farFieldEnclosureFraction == null ||
+      model.coreScale == null ||
+      request.resourceEnvelope?.memoryBudgetBytes == null ||
       typeof controls.useAdaptiveStepGrowth !== "boolean" ||
       !["certified", "display"].includes(controls.runGrade) ||
       !Number.isInteger(provenance.causticWarningCount) ||
@@ -194,8 +219,8 @@ export function encodeNativeRequest(request) {
         (provenance.causticWarningPairs.length === 0)) {
     throw new TypeError(
       "EOM process request must explicitly supply maximumStep, " +
-      "useAdaptiveStepGrowth, farFieldEnclosureFraction, runGrade, and " +
-      "cumulative caustic warning provenance.",
+      "useAdaptiveStepGrowth, farFieldEnclosureFraction, coreScale, " +
+      "memoryBudgetBytes, runGrade, and cumulative caustic warning provenance.",
     );
   }
   if (controls.runGrade === "certified" && provenance.causticWarningCount !== 0) {
@@ -228,6 +253,7 @@ export function encodeNativeRequest(request) {
       warningPairToken,
       model.fieldSpeed,
       model.coupling,
+      model.coreScale,
       controls.rootTolerance,
       controls.accelerationTolerance,
       controls.farFieldEnclosureFraction,
@@ -235,21 +261,34 @@ export function encodeNativeRequest(request) {
       controls.velocityTolerance,
       controls.correctionTolerance,
       controls.threadCount,
+      request.resourceEnvelope.memoryBudgetBytes,
       request.histories.length,
     ]),
   ];
+  const cachedByPath = new Map(
+    Array.isArray(cachedHistories)
+      ? cachedHistories.map((history) => [String(history.pathId), history])
+      : [],
+  );
   request.histories.forEach((history) => {
     if (!Array.isArray(history.segments) || history.segments.length === 0) {
       throw new TypeError(`EOM path ${history.pathId} lacks retained segments.`);
     }
+    const cached = cachedByPath.get(String(history.pathId));
+    let cachedPrefixCount = 0;
+    if (cached && historiesShareExactPrefix(cached, history)) {
+      cachedPrefixCount = cached.segments.length;
+    }
+    const appendedSegments = history.segments.slice(cachedPrefixCount);
     lines.push(tabRecord([
       "PATH",
       history.pathId,
       history.charge,
       history.stateFlags ?? 0,
-      history.segments.length,
+      cachedPrefixCount,
+      appendedSegments.length,
     ]));
-    history.segments.forEach((segment) => {
+    appendedSegments.forEach((segment) => {
       if (!Array.isArray(segment.coefficients) || segment.coefficients.length !== 3) {
         throw new TypeError(`EOM path ${history.pathId} has invalid cubic coefficients.`);
       }
@@ -265,6 +304,17 @@ export function encodeNativeRequest(request) {
   });
   lines.push("END");
   return `${lines.join("\n")}\n`;
+}
+
+function historiesShareExactPrefix(cached, current) {
+  if (!Array.isArray(cached?.segments) ||
+      cached.segments.length > current.segments.length ||
+      String(cached.pathId) !== String(current.pathId) ||
+      String(cached.charge) !== String(current.charge)) {
+    return false;
+  }
+  return cached.segments.every((segment, index) =>
+    JSON.stringify(segment) === JSON.stringify(current.segments[index]));
 }
 
 function queryBorgNativeEomProtocolMagic(binaryPath) {
