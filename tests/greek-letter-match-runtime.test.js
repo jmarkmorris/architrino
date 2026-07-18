@@ -5,12 +5,14 @@ import { readFileSync } from "node:fs";
 import {
   FEEDBACK_INTERVALS,
   GREEK_LETTERS,
+  GreekLetterMatchRuntime,
   SPHERE_COLOR_PROGRESSION,
   advanceGreekMatch,
   answerGreekMatch,
   createGreekMatchSession,
   createRoundOrder,
   getCurrentLetterIndex,
+  getGreekGlyphOpticalYOffset,
   getGreekMatchArrowCoordinates,
   getOpticallyCenteredGlyphPosition,
   getRoundPercent,
@@ -123,6 +125,25 @@ test("locked feedback accepts only one answer", () => {
   assert.equal(answered.correct, 1);
 });
 
+test("each feedback setting schedules exactly its advertised pause", () => {
+  for (const [setting, expectedDelay] of Object.entries(FEEDBACK_INTERVALS)) {
+    const scheduledDelays = [];
+    const runtime = Object.create(GreekLetterMatchRuntime.prototype);
+    runtime.gameMode = "game";
+    runtime.session = createGreekMatchSession(() => 0);
+    runtime.feedbackInterval = setting;
+    runtime.render = () => {};
+    runtime.setTimeout = (_callback, delay) => {
+      scheduledDelays.push(delay);
+      return 1;
+    };
+
+    runtime.chooseLetter(getCurrentLetterIndex(runtime.session));
+
+    assert.deepEqual(scheduledDelays, [expectedDelay]);
+  }
+});
+
 test("teaching mode reverses the existing answer arrow toward the center", () => {
   const answerArrow = getGreekMatchArrowCoordinates(0, false);
   const teachingArrow = getGreekMatchArrowCoordinates(0, true);
@@ -147,15 +168,28 @@ test("visible glyph bounds are centered independently inside their SVG cells", (
   );
 });
 
+test("Georgia descender glyphs receive a proportional upward optical correction", () => {
+  for (const glyph of ["γ", "φ", "χ", "ψ"]) {
+    assert.equal(getGreekGlyphOpticalYOffset(glyph, 82), -15.58);
+    assert.equal(getGreekGlyphOpticalYOffset(glyph, 62), -11.78);
+  }
+  assert.equal(getGreekGlyphOpticalYOffset("Γ", 82), 0);
+  assert.equal(getGreekGlyphOpticalYOffset("α", 82), 0);
+  assert.equal(getGreekGlyphOpticalYOffset("γ", 0), 0);
+});
+
 test("feedback choices use buttons only and avoid dropdown, slider, and sound controls", () => {
   assert.deepEqual(FEEDBACK_INTERVALS, { standard: 2000, study: 3000, extended: 4000 });
   const html = readRepoFile("greek-letter-match.html");
   const runtime = readRepoFile("src/apps/greek-letter-match/GreekLetterMatchRuntime.js");
+  const css = readRepoFile("src/apps/greek-letter-match/greek-letter-match.css");
   assert.doesNotMatch(html, /<select|<audio|type=["']range/iu);
   assert.doesNotMatch(runtime, /createElement\([^\n]*["']select["']|createElement\([^\n]*["']audio["']|type\s*=\s*["']range["']/u);
   assert.match(runtime, /input\.type = "radio"/u);
   assert.match(runtime, /"Next round"/u);
   assert.match(runtime, /"Teach me"/u);
+  assert.match(runtime, /"Incorrect"/u);
+  assert.doesNotMatch(runtime, /Try the highlighted answer/u);
   assert.match(runtime, /greek-match-teach-name/u);
   assert.match(runtime, /greek-match-teach-symbols/u);
   assert.match(runtime, /getBBox/u);
@@ -165,7 +199,11 @@ test("feedback choices use buttons only and avoid dropdown, slider, and sound co
   assert.match(runtime, /greek-match-progress-track/u);
   assert.match(runtime, /greek-match-choice-label/u);
   assert.match(
-    readRepoFile("src/apps/greek-letter-match/greek-letter-match.css"),
+    css,
     /greek-match-choice\[data-representation="symbol"\] \.greek-match-choice-label/u
+  );
+  assert.match(
+    css,
+    /\.greek-match-choice-symbol text \{[^}]*font-family: Georgia, "Times New Roman", serif;/u
   );
 });

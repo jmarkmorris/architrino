@@ -197,6 +197,21 @@ export function getOpticallyCenteredGlyphPosition(bounds) {
   };
 }
 
+const LOWERCASE_DESCENDER_OPTICAL_SHIFT_EM = -0.19;
+const LOWERCASE_DESCENDER_GLYPHS = new Set(["γ", "φ", "χ", "ψ"]);
+
+export function getGreekGlyphOpticalYOffset(glyph, fontSize) {
+  const normalizedFontSize = Number(fontSize);
+  if (
+    !LOWERCASE_DESCENDER_GLYPHS.has(String(glyph ?? "")) ||
+    !Number.isFinite(normalizedFontSize) ||
+    normalizedFontSize <= 0
+  ) {
+    return 0;
+  }
+  return normalizedFontSize * LOWERCASE_DESCENDER_OPTICAL_SHIFT_EM;
+}
+
 function createElement(documentLike, tagName, className = "", textContent = "") {
   const element = documentLike.createElement(tagName);
   if (className) {
@@ -233,8 +248,15 @@ function centerSvgGlyph(textElement) {
   }
   try {
     const position = getOpticallyCenteredGlyphPosition(textElement.getBBox());
+    const computedFontSize = Number.parseFloat(
+      textElement.ownerDocument?.defaultView?.getComputedStyle?.(textElement)?.fontSize
+    );
+    const opticalYOffset = getGreekGlyphOpticalYOffset(
+      textElement.textContent,
+      computedFontSize
+    );
     textElement.setAttribute("x", String(position.x));
-    textElement.setAttribute("y", String(position.y));
+    textElement.setAttribute("y", String(position.y + opticalYOffset));
   } catch {
     // Keep the safe centered fallback when a renderer cannot measure SVG text.
   }
@@ -777,7 +799,7 @@ export class GreekLetterMatchRuntime {
       this.centerKicker.textContent = lastResult
         ? lastResult.isCorrect
           ? "Correct"
-          : "Try the highlighted answer"
+          : "Incorrect"
         : this.session.roundComplete
           ? "Round complete"
           : "Match";

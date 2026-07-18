@@ -1,0 +1,786 @@
+{
+  "schema": "parallel_stream_pilot_instrument/v0",
+  "status": "frozen-before-scientific-output",
+  "claimGrade": "pilot-only",
+  "scientificVerdictAuthorized": false,
+  "scaleCommitmentAuthorized": false,
+  "p5aSpecSha256": "b38c56ba67644db39f357173a8d27d6e1a80027819502d070fb2d996cf06ee1e",
+  "modelBindingSha256": "5f68960947dd62b309fce7d24889cb8655b24755d01fb08e902a31bb9bddbbce",
+  "precisionContractSha256": "4f05cb74d3506a485ba40c126625e83167bae68e4a5cbe216069d0a6595daac1",
+  "evolutionContractSha256": "3a30c9b2448d735f771480be7c42e40d1eabe1610a5dd5dbd8041bc75525cd6a",
+  "executableSha256": "c1d592a341771961fc0bf60cf3ed5406c4b4df3a8ebb21a5962bdd9ded854a9d",
+  "extraction": {
+    "q11": "0.25*(Q_pp-Q_pm-Q_mp+Q_mm)",
+    "receiverB": "-rho*cf^2*Q11/(2*kappa*mu*abs(JA*JB))",
+    "receiverA": "+rho*cf^2*Q11/(2*kappa*mu*abs(JA*JB))",
+    "muArch": 1,
+    "primaryPassContainer": [
+      -0.05,
+      0.05
+    ],
+    "primaryMaximumWidth": 0.1
+  },
+  "p5aHalfWidthAllocations": {
+    "nativeNumerical": 0.015,
+    "finiteLength": 0.015,
+    "lattice": 0.01,
+    "evolutionGeometry": 0.005,
+    "currentAndNormalization": 0.003,
+    "workerAndRestartReplay": 0.002
+  },
+  "pilotGeometryClassification": "coarsest profiling geometry; not continuum-qualified; one spacing and one collar in the primary matrix",
+  "base": {
+    "rho": 1,
+    "a": 0.5,
+    "ell": 2,
+    "g": 2,
+    "historyDepth": 12,
+    "u": 0.02,
+    "q": 1,
+    "fieldSpeed": 1,
+    "coupling": 1,
+    "t0": 0,
+    "t1": 0.001,
+    "t2Short": 0.0015,
+    "t2": 0.002,
+    "step": 0.001,
+    "workers": 4
+  },
+  "cases": [
+    {
+      "id": "primary-p0-pp",
+      "sA": 1,
+      "sB": 1,
+      "rho": 1,
+      "a": 0.5,
+      "ell": 2,
+      "g": 2,
+      "historyDepth": 12,
+      "u": 0.02,
+      "q": 1,
+      "fieldSpeed": 1,
+      "coupling": 1,
+      "t0": 0,
+      "t1": 0.001,
+      "t2Short": 0.0015,
+      "t2": 0.002,
+      "step": 0.001,
+      "workers": 4,
+      "purpose": "primary-current-parity",
+      "phase": 0,
+      "pathCount": 64,
+      "logicalOrderedPairsPerSnapshot": 4096,
+      "chunks": [
+        [
+          0,
+          0.001
+        ],
+        [
+          0.001,
+          0.002
+        ]
+      ],
+      "chart": "sharp",
+      "prehistory": "straight-endpoint-matched",
+      "budgetKey": "4:0.001"
+    },
+    {
+      "id": "primary-p0-pm",
+      "sA": 1,
+      "sB": -1,
+      "rho": 1,
+      "a": 0.5,
+      "ell": 2,
+      "g": 2,
+      "historyDepth": 12,
+      "u": 0.02,
+      "q": 1,
+      "fieldSpeed": 1,
+      "coupling": 1,
+      "t0": 0,
+      "t1": 0.001,
+      "t2Short": 0.0015,
+      "t2": 0.002,
+      "step": 0.001,
+      "workers": 4,
+      "purpose": "primary-current-parity",
+      "phase": 0,
+      "pathCount": 64,
+      "logicalOrderedPairsPerSnapshot": 4096,
+      "chunks": [
+        [
+          0,
+          0.001
+        ],
+        [
+          0.001,
+          0.002
+        ]
+      ],
+      "chart": "sharp",
+      "prehistory": "straight-endpoint-matched",
+      "budgetKey": "4:0.001"
+    },
+    {
+      "id": "primary-p0-mp",
+      "sA": -1,
+      "sB": 1,
+      "rho": 1,
+      "a": 0.5,
+      "ell": 2,
+      "g": 2,
+      "historyDepth": 12,
+      "u": 0.02,
+      "q": 1,
+      "fieldSpeed": 1,
+      "coupling": 1,
+      "t0": 0,
+      "t1": 0.001,
+      "t2Short": 0.0015,
+      "t2": 0.002,
+      "step": 0.001,
+      "workers": 4,
+      "purpose": "primary-current-parity",
+      "phase": 0,
+      "pathCount": 64,
+      "logicalOrderedPairsPerSnapshot": 4096,
+      "chunks": [
+        [
+          0,
+          0.001
+        ],
+        [
+          0.001,
+          0.002
+        ]
+      ],
+      "chart": "sharp",
+      "prehistory": "straight-endpoint-matched",
+      "budgetKey": "4:0.001"
+    },
+    {
+      "id": "primary-p0-mm",
+      "sA": -1,
+      "sB": -1,
+      "rho": 1,
+      "a": 0.5,
+      "ell": 2,
+      "g": 2,
+      "historyDepth": 12,
+      "u": 0.02,
+      "q": 1,
+      "fieldSpeed": 1,
+      "coupling": 1,
+      "t0": 0,
+      "t1": 0.001,
+      "t2Short": 0.0015,
+      "t2": 0.002,
+      "step": 0.001,
+      "workers": 4,
+      "purpose": "primary-current-parity",
+      "phase": 0,
+      "pathCount": 64,
+      "logicalOrderedPairsPerSnapshot": 4096,
+      "chunks": [
+        [
+          0,
+          0.001
+        ],
+        [
+          0.001,
+          0.002
+        ]
+      ],
+      "chart": "sharp",
+      "prehistory": "straight-endpoint-matched",
+      "budgetKey": "4:0.001"
+    },
+    {
+      "id": "primary-p1-pp",
+      "sA": 1,
+      "sB": 1,
+      "rho": 1,
+      "a": 0.5,
+      "ell": 2,
+      "g": 2,
+      "historyDepth": 12,
+      "u": 0.02,
+      "q": 1,
+      "fieldSpeed": 1,
+      "coupling": 1,
+      "t0": 0,
+      "t1": 0.001,
+      "t2Short": 0.0015,
+      "t2": 0.002,
+      "step": 0.001,
+      "workers": 4,
+      "purpose": "primary-current-parity",
+      "phase": 1,
+      "pathCount": 64,
+      "logicalOrderedPairsPerSnapshot": 4096,
+      "chunks": [
+        [
+          0,
+          0.001
+        ],
+        [
+          0.001,
+          0.002
+        ]
+      ],
+      "chart": "sharp",
+      "prehistory": "straight-endpoint-matched",
+      "budgetKey": "4:0.001"
+    },
+    {
+      "id": "primary-p1-pm",
+      "sA": 1,
+      "sB": -1,
+      "rho": 1,
+      "a": 0.5,
+      "ell": 2,
+      "g": 2,
+      "historyDepth": 12,
+      "u": 0.02,
+      "q": 1,
+      "fieldSpeed": 1,
+      "coupling": 1,
+      "t0": 0,
+      "t1": 0.001,
+      "t2Short": 0.0015,
+      "t2": 0.002,
+      "step": 0.001,
+      "workers": 4,
+      "purpose": "primary-current-parity",
+      "phase": 1,
+      "pathCount": 64,
+      "logicalOrderedPairsPerSnapshot": 4096,
+      "chunks": [
+        [
+          0,
+          0.001
+        ],
+        [
+          0.001,
+          0.002
+        ]
+      ],
+      "chart": "sharp",
+      "prehistory": "straight-endpoint-matched",
+      "budgetKey": "4:0.001"
+    },
+    {
+      "id": "primary-p1-mp",
+      "sA": -1,
+      "sB": 1,
+      "rho": 1,
+      "a": 0.5,
+      "ell": 2,
+      "g": 2,
+      "historyDepth": 12,
+      "u": 0.02,
+      "q": 1,
+      "fieldSpeed": 1,
+      "coupling": 1,
+      "t0": 0,
+      "t1": 0.001,
+      "t2Short": 0.0015,
+      "t2": 0.002,
+      "step": 0.001,
+      "workers": 4,
+      "purpose": "primary-current-parity",
+      "phase": 1,
+      "pathCount": 64,
+      "logicalOrderedPairsPerSnapshot": 4096,
+      "chunks": [
+        [
+          0,
+          0.001
+        ],
+        [
+          0.001,
+          0.002
+        ]
+      ],
+      "chart": "sharp",
+      "prehistory": "straight-endpoint-matched",
+      "budgetKey": "4:0.001"
+    },
+    {
+      "id": "primary-p1-mm",
+      "sA": -1,
+      "sB": -1,
+      "rho": 1,
+      "a": 0.5,
+      "ell": 2,
+      "g": 2,
+      "historyDepth": 12,
+      "u": 0.02,
+      "q": 1,
+      "fieldSpeed": 1,
+      "coupling": 1,
+      "t0": 0,
+      "t1": 0.001,
+      "t2Short": 0.0015,
+      "t2": 0.002,
+      "step": 0.001,
+      "workers": 4,
+      "purpose": "primary-current-parity",
+      "phase": 1,
+      "pathCount": 64,
+      "logicalOrderedPairsPerSnapshot": 4096,
+      "chunks": [
+        [
+          0,
+          0.001
+        ],
+        [
+          0.001,
+          0.002
+        ]
+      ],
+      "chart": "sharp",
+      "prehistory": "straight-endpoint-matched",
+      "budgetKey": "4:0.001"
+    },
+    {
+      "id": "profile-worker1-p0-pp",
+      "sA": 1,
+      "sB": 1,
+      "rho": 1,
+      "a": 0.5,
+      "ell": 2,
+      "g": 2,
+      "historyDepth": 12,
+      "u": 0.02,
+      "q": 1,
+      "fieldSpeed": 1,
+      "coupling": 1,
+      "t0": 0,
+      "t1": 0.001,
+      "t2Short": 0.0015,
+      "t2": 0.002,
+      "step": 0.001,
+      "workers": 1,
+      "purpose": "worker-replay",
+      "phase": 0,
+      "pathCount": 64,
+      "logicalOrderedPairsPerSnapshot": 4096,
+      "chunks": [
+        [
+          0,
+          0.001
+        ],
+        [
+          0.001,
+          0.002
+        ]
+      ],
+      "chart": "sharp",
+      "prehistory": "straight-endpoint-matched",
+      "budgetKey": "1:0.001"
+    },
+    {
+      "id": "profile-spacing-p0-pp",
+      "sA": 1,
+      "sB": 1,
+      "rho": 1,
+      "a": 0.25,
+      "ell": 2,
+      "g": 2,
+      "historyDepth": 12,
+      "u": 0.02,
+      "q": 1,
+      "fieldSpeed": 1,
+      "coupling": 1,
+      "t0": 0,
+      "t1": 0.001,
+      "t2Short": 0.0015,
+      "t2": 0.002,
+      "step": 0.001,
+      "workers": 4,
+      "purpose": "spacing-replica",
+      "phase": 0,
+      "pathCount": 128,
+      "logicalOrderedPairsPerSnapshot": 16384,
+      "chunks": [
+        [
+          0,
+          0.001
+        ],
+        [
+          0.001,
+          0.002
+        ]
+      ],
+      "chart": "sharp",
+      "prehistory": "straight-endpoint-matched",
+      "budgetKey": "4:0.001"
+    },
+    {
+      "id": "profile-collar-p0-pp",
+      "sA": 1,
+      "sB": 1,
+      "rho": 1,
+      "a": 0.5,
+      "ell": 2,
+      "g": 4,
+      "historyDepth": 16,
+      "u": 0.02,
+      "q": 1,
+      "fieldSpeed": 1,
+      "coupling": 1,
+      "t0": 0,
+      "t1": 0.001,
+      "t2Short": 0.0015,
+      "t2": 0.002,
+      "step": 0.001,
+      "workers": 4,
+      "purpose": "collar-replica",
+      "phase": 0,
+      "pathCount": 96,
+      "logicalOrderedPairsPerSnapshot": 9216,
+      "chunks": [
+        [
+          0,
+          0.001
+        ],
+        [
+          0.001,
+          0.002
+        ]
+      ],
+      "chart": "sharp",
+      "prehistory": "straight-endpoint-matched",
+      "budgetKey": "4:0.001"
+    },
+    {
+      "id": "profile-speed-p0-pp",
+      "sA": 1,
+      "sB": 1,
+      "rho": 1,
+      "a": 0.5,
+      "ell": 2,
+      "g": 2,
+      "historyDepth": 12,
+      "u": 0.01,
+      "q": 1,
+      "fieldSpeed": 1,
+      "coupling": 1,
+      "t0": 0,
+      "t1": 0.001,
+      "t2Short": 0.0015,
+      "t2": 0.002,
+      "step": 0.001,
+      "workers": 4,
+      "purpose": "speed-replica",
+      "phase": 0,
+      "pathCount": 64,
+      "logicalOrderedPairsPerSnapshot": 4096,
+      "chunks": [
+        [
+          0,
+          0.001
+        ],
+        [
+          0.001,
+          0.002
+        ]
+      ],
+      "chart": "sharp",
+      "prehistory": "straight-endpoint-matched",
+      "budgetKey": "4:0.001"
+    },
+    {
+      "id": "profile-separation-p0-pp",
+      "sA": 1,
+      "sB": 1,
+      "rho": 2,
+      "a": 1,
+      "ell": 4,
+      "g": 4,
+      "historyDepth": 24,
+      "u": 0.02,
+      "q": 1,
+      "fieldSpeed": 1,
+      "coupling": 1,
+      "t0": 0,
+      "t1": 0.002,
+      "t2Short": 0.003,
+      "t2": 0.004,
+      "step": 0.002,
+      "workers": 4,
+      "purpose": "separation-replica",
+      "phase": 0,
+      "pathCount": 64,
+      "logicalOrderedPairsPerSnapshot": 4096,
+      "chunks": [
+        [
+          0,
+          0.002
+        ],
+        [
+          0.002,
+          0.004
+        ]
+      ],
+      "chart": "sharp",
+      "prehistory": "straight-endpoint-matched",
+      "budgetKey": "4:0.002"
+    }
+  ],
+  "budgets": {
+    "4:0.001": {
+      "schema": "parallel_stream_pilot_certified_budget/v0",
+      "presetId": "p5a-pilot-sharp-w4-h0p001",
+      "label": "P5A pilot sharp-chart certified budget",
+      "allocationHash": "b8f7cec5b46a76063f900600dc86d18f3d02bf947e792e277825687b9afc699c",
+      "allocationCanonicalJson": "{\"controller\":{\"adaptiveGrowth\":false,\"initialStep\":\"0.001\",\"maximumStep\":\"0.001\",\"minimumStep\":\"0.001\"},\"finiteWidth\":{\"causalWidth\":\"0.2\",\"coreScale\":\"0.2\",\"finiteWidthStateNumericalFractions\":{\"endpointLinearShortcut\":\"0.05\",\"interpolation\":\"0.04\",\"retainedHistory\":\"0.04\",\"rounding\":\"0.02\"},\"independentOverlap\":\"0\",\"matchingImpulseLimit\":\"2e-8\",\"matchingPositionMomentLimit\":\"2e-8\",\"quadratureImpulseLimit\":\"3.5e-8\",\"quadraturePositionMomentLimit\":\"3.5e-8\",\"receiverAllocationRule\":\"equal-routed-pair-weight/v1\",\"receiverImpulseTotal\":\"1e-7\",\"receiverPositionMomentTotal\":\"1e-7\",\"regulatorConvergenceLimit\":\"1.5e-8\",\"regulatorLevels\":3,\"regulatorRefinementRatio\":\"0.5\",\"rowFractions\":{\"amendment1RegulatorMatching\":\"0.20\",\"causalWidthRegulator\":\"0.15\",\"coreRegulator\":\"0.15\",\"finiteWidthStateNumerical\":\"0.15\",\"quadrature\":\"0.35\"},\"stateNumericalImpulseLimit\":\"1.5e-8\",\"stateNumericalPositionMomentLimit\":\"1.5e-8\"},\"ordinary\":{\"accelerationEnclosure\":\"1e-7\",\"acceptedStepPosition\":\"1e-8\",\"acceptedStepVelocity\":\"1e-8\",\"chartPolicy\":\"sharp\",\"correctionAccelerationResidual\":\"1e-6\",\"farFieldEnclosureFraction\":\"0\",\"quadratureTolerance\":\"1e-7\",\"rootTimeEnclosure\":\"1e-8\",\"sourceNormalFloor\":\"1e-12\"},\"precision\":{\"bulk\":\"binary64-outward\",\"deterministicReduction\":\"fixed-pairwise\",\"difficultRowInitialBits\":128,\"difficultRowMaximumBits\":512,\"forceEventPrecisionEscalation\":false,\"roundingMode\":\"outward\"},\"presetId\":\"p5a-pilot-sharp-w4-h0p001\",\"resources\":{\"correctionIterations\":12,\"eventMaximumCells\":200000,\"eventMaximumDepth\":24,\"maximumRejectedSteps\":100,\"maximumStepAttempts\":1000,\"quadratureMaximumCells\":200000,\"quadratureMaximumDepth\":32,\"requestMemoryBytes\":536870912,\"rootMaximumCells\":500000,\"rootMaximumDepth\":256,\"workerThreads\":4},\"schema\":\"parallel_stream_pilot_certified_budget/v0\",\"topLevel\":{\"positionIncrement\":\"2e-8\",\"velocityIncrement\":\"2e-8\"}}",
+      "allocations": {
+        "schema": "parallel_stream_pilot_certified_budget/v0",
+        "presetId": "p5a-pilot-sharp-w4-h0p001",
+        "topLevel": {
+          "positionIncrement": "2e-8",
+          "velocityIncrement": "2e-8"
+        },
+        "controller": {
+          "initialStep": "0.001",
+          "minimumStep": "0.001",
+          "maximumStep": "0.001",
+          "adaptiveGrowth": false
+        },
+        "ordinary": {
+          "rootTimeEnclosure": "1e-8",
+          "farFieldEnclosureFraction": "0",
+          "correctionAccelerationResidual": "1e-6",
+          "acceptedStepPosition": "1e-8",
+          "acceptedStepVelocity": "1e-8",
+          "sourceNormalFloor": "1e-12",
+          "chartPolicy": "sharp",
+          "accelerationEnclosure": "1e-7",
+          "quadratureTolerance": "1e-7"
+        },
+        "finiteWidth": {
+          "independentOverlap": "0",
+          "causalWidth": "0.2",
+          "coreScale": "0.2",
+          "receiverAllocationRule": "equal-routed-pair-weight/v1",
+          "regulatorRefinementRatio": "0.5",
+          "regulatorLevels": 3,
+          "rowFractions": {
+            "quadrature": "0.35",
+            "causalWidthRegulator": "0.15",
+            "coreRegulator": "0.15",
+            "finiteWidthStateNumerical": "0.15",
+            "amendment1RegulatorMatching": "0.20"
+          },
+          "finiteWidthStateNumericalFractions": {
+            "retainedHistory": "0.04",
+            "interpolation": "0.04",
+            "rounding": "0.02",
+            "endpointLinearShortcut": "0.05"
+          },
+          "receiverImpulseTotal": "1e-7",
+          "receiverPositionMomentTotal": "1e-7",
+          "quadratureImpulseLimit": "3.5e-8",
+          "quadraturePositionMomentLimit": "3.5e-8",
+          "regulatorConvergenceLimit": "1.5e-8",
+          "stateNumericalImpulseLimit": "1.5e-8",
+          "stateNumericalPositionMomentLimit": "1.5e-8",
+          "matchingImpulseLimit": "2e-8",
+          "matchingPositionMomentLimit": "2e-8"
+        },
+        "precision": {
+          "bulk": "binary64-outward",
+          "difficultRowInitialBits": 128,
+          "difficultRowMaximumBits": 512,
+          "forceEventPrecisionEscalation": false,
+          "roundingMode": "outward",
+          "deterministicReduction": "fixed-pairwise"
+        },
+        "resources": {
+          "rootMaximumDepth": 256,
+          "rootMaximumCells": 500000,
+          "quadratureMaximumDepth": 32,
+          "quadratureMaximumCells": 200000,
+          "eventMaximumDepth": 24,
+          "eventMaximumCells": 200000,
+          "correctionIterations": 12,
+          "maximumStepAttempts": 1000,
+          "maximumRejectedSteps": 100,
+          "workerThreads": 4,
+          "requestMemoryBytes": 536870912
+        }
+      }
+    },
+    "1:0.001": {
+      "schema": "parallel_stream_pilot_certified_budget/v0",
+      "presetId": "p5a-pilot-sharp-w1-h0p001",
+      "label": "P5A pilot sharp-chart certified budget",
+      "allocationHash": "cb17be29488a67c45b0973fb5b5119e8e53abcbc81848aa14d25b70bd34b640f",
+      "allocationCanonicalJson": "{\"controller\":{\"adaptiveGrowth\":false,\"initialStep\":\"0.001\",\"maximumStep\":\"0.001\",\"minimumStep\":\"0.001\"},\"finiteWidth\":{\"causalWidth\":\"0.2\",\"coreScale\":\"0.2\",\"finiteWidthStateNumericalFractions\":{\"endpointLinearShortcut\":\"0.05\",\"interpolation\":\"0.04\",\"retainedHistory\":\"0.04\",\"rounding\":\"0.02\"},\"independentOverlap\":\"0\",\"matchingImpulseLimit\":\"2e-8\",\"matchingPositionMomentLimit\":\"2e-8\",\"quadratureImpulseLimit\":\"3.5e-8\",\"quadraturePositionMomentLimit\":\"3.5e-8\",\"receiverAllocationRule\":\"equal-routed-pair-weight/v1\",\"receiverImpulseTotal\":\"1e-7\",\"receiverPositionMomentTotal\":\"1e-7\",\"regulatorConvergenceLimit\":\"1.5e-8\",\"regulatorLevels\":3,\"regulatorRefinementRatio\":\"0.5\",\"rowFractions\":{\"amendment1RegulatorMatching\":\"0.20\",\"causalWidthRegulator\":\"0.15\",\"coreRegulator\":\"0.15\",\"finiteWidthStateNumerical\":\"0.15\",\"quadrature\":\"0.35\"},\"stateNumericalImpulseLimit\":\"1.5e-8\",\"stateNumericalPositionMomentLimit\":\"1.5e-8\"},\"ordinary\":{\"accelerationEnclosure\":\"1e-7\",\"acceptedStepPosition\":\"1e-8\",\"acceptedStepVelocity\":\"1e-8\",\"chartPolicy\":\"sharp\",\"correctionAccelerationResidual\":\"1e-6\",\"farFieldEnclosureFraction\":\"0\",\"quadratureTolerance\":\"1e-7\",\"rootTimeEnclosure\":\"1e-8\",\"sourceNormalFloor\":\"1e-12\"},\"precision\":{\"bulk\":\"binary64-outward\",\"deterministicReduction\":\"fixed-pairwise\",\"difficultRowInitialBits\":128,\"difficultRowMaximumBits\":512,\"forceEventPrecisionEscalation\":false,\"roundingMode\":\"outward\"},\"presetId\":\"p5a-pilot-sharp-w1-h0p001\",\"resources\":{\"correctionIterations\":12,\"eventMaximumCells\":200000,\"eventMaximumDepth\":24,\"maximumRejectedSteps\":100,\"maximumStepAttempts\":1000,\"quadratureMaximumCells\":200000,\"quadratureMaximumDepth\":32,\"requestMemoryBytes\":536870912,\"rootMaximumCells\":500000,\"rootMaximumDepth\":256,\"workerThreads\":1},\"schema\":\"parallel_stream_pilot_certified_budget/v0\",\"topLevel\":{\"positionIncrement\":\"2e-8\",\"velocityIncrement\":\"2e-8\"}}",
+      "allocations": {
+        "schema": "parallel_stream_pilot_certified_budget/v0",
+        "presetId": "p5a-pilot-sharp-w1-h0p001",
+        "topLevel": {
+          "positionIncrement": "2e-8",
+          "velocityIncrement": "2e-8"
+        },
+        "controller": {
+          "initialStep": "0.001",
+          "minimumStep": "0.001",
+          "maximumStep": "0.001",
+          "adaptiveGrowth": false
+        },
+        "ordinary": {
+          "rootTimeEnclosure": "1e-8",
+          "farFieldEnclosureFraction": "0",
+          "correctionAccelerationResidual": "1e-6",
+          "acceptedStepPosition": "1e-8",
+          "acceptedStepVelocity": "1e-8",
+          "sourceNormalFloor": "1e-12",
+          "chartPolicy": "sharp",
+          "accelerationEnclosure": "1e-7",
+          "quadratureTolerance": "1e-7"
+        },
+        "finiteWidth": {
+          "independentOverlap": "0",
+          "causalWidth": "0.2",
+          "coreScale": "0.2",
+          "receiverAllocationRule": "equal-routed-pair-weight/v1",
+          "regulatorRefinementRatio": "0.5",
+          "regulatorLevels": 3,
+          "rowFractions": {
+            "quadrature": "0.35",
+            "causalWidthRegulator": "0.15",
+            "coreRegulator": "0.15",
+            "finiteWidthStateNumerical": "0.15",
+            "amendment1RegulatorMatching": "0.20"
+          },
+          "finiteWidthStateNumericalFractions": {
+            "retainedHistory": "0.04",
+            "interpolation": "0.04",
+            "rounding": "0.02",
+            "endpointLinearShortcut": "0.05"
+          },
+          "receiverImpulseTotal": "1e-7",
+          "receiverPositionMomentTotal": "1e-7",
+          "quadratureImpulseLimit": "3.5e-8",
+          "quadraturePositionMomentLimit": "3.5e-8",
+          "regulatorConvergenceLimit": "1.5e-8",
+          "stateNumericalImpulseLimit": "1.5e-8",
+          "stateNumericalPositionMomentLimit": "1.5e-8",
+          "matchingImpulseLimit": "2e-8",
+          "matchingPositionMomentLimit": "2e-8"
+        },
+        "precision": {
+          "bulk": "binary64-outward",
+          "difficultRowInitialBits": 128,
+          "difficultRowMaximumBits": 512,
+          "forceEventPrecisionEscalation": false,
+          "roundingMode": "outward",
+          "deterministicReduction": "fixed-pairwise"
+        },
+        "resources": {
+          "rootMaximumDepth": 256,
+          "rootMaximumCells": 500000,
+          "quadratureMaximumDepth": 32,
+          "quadratureMaximumCells": 200000,
+          "eventMaximumDepth": 24,
+          "eventMaximumCells": 200000,
+          "correctionIterations": 12,
+          "maximumStepAttempts": 1000,
+          "maximumRejectedSteps": 100,
+          "workerThreads": 1,
+          "requestMemoryBytes": 536870912
+        }
+      }
+    },
+    "4:0.002": {
+      "schema": "parallel_stream_pilot_certified_budget/v0",
+      "presetId": "p5a-pilot-sharp-w4-h0p002",
+      "label": "P5A pilot sharp-chart certified budget",
+      "allocationHash": "565f1f499f73c5a63656ca2d8b38c54213b689fa6981bb7a0d0063547ca0a288",
+      "allocationCanonicalJson": "{\"controller\":{\"adaptiveGrowth\":false,\"initialStep\":\"0.002\",\"maximumStep\":\"0.002\",\"minimumStep\":\"0.002\"},\"finiteWidth\":{\"causalWidth\":\"0.2\",\"coreScale\":\"0.2\",\"finiteWidthStateNumericalFractions\":{\"endpointLinearShortcut\":\"0.05\",\"interpolation\":\"0.04\",\"retainedHistory\":\"0.04\",\"rounding\":\"0.02\"},\"independentOverlap\":\"0\",\"matchingImpulseLimit\":\"2e-8\",\"matchingPositionMomentLimit\":\"2e-8\",\"quadratureImpulseLimit\":\"3.5e-8\",\"quadraturePositionMomentLimit\":\"3.5e-8\",\"receiverAllocationRule\":\"equal-routed-pair-weight/v1\",\"receiverImpulseTotal\":\"1e-7\",\"receiverPositionMomentTotal\":\"1e-7\",\"regulatorConvergenceLimit\":\"1.5e-8\",\"regulatorLevels\":3,\"regulatorRefinementRatio\":\"0.5\",\"rowFractions\":{\"amendment1RegulatorMatching\":\"0.20\",\"causalWidthRegulator\":\"0.15\",\"coreRegulator\":\"0.15\",\"finiteWidthStateNumerical\":\"0.15\",\"quadrature\":\"0.35\"},\"stateNumericalImpulseLimit\":\"1.5e-8\",\"stateNumericalPositionMomentLimit\":\"1.5e-8\"},\"ordinary\":{\"accelerationEnclosure\":\"1e-7\",\"acceptedStepPosition\":\"1e-8\",\"acceptedStepVelocity\":\"1e-8\",\"chartPolicy\":\"sharp\",\"correctionAccelerationResidual\":\"1e-6\",\"farFieldEnclosureFraction\":\"0\",\"quadratureTolerance\":\"1e-7\",\"rootTimeEnclosure\":\"1e-8\",\"sourceNormalFloor\":\"1e-12\"},\"precision\":{\"bulk\":\"binary64-outward\",\"deterministicReduction\":\"fixed-pairwise\",\"difficultRowInitialBits\":128,\"difficultRowMaximumBits\":512,\"forceEventPrecisionEscalation\":false,\"roundingMode\":\"outward\"},\"presetId\":\"p5a-pilot-sharp-w4-h0p002\",\"resources\":{\"correctionIterations\":12,\"eventMaximumCells\":200000,\"eventMaximumDepth\":24,\"maximumRejectedSteps\":100,\"maximumStepAttempts\":1000,\"quadratureMaximumCells\":200000,\"quadratureMaximumDepth\":32,\"requestMemoryBytes\":536870912,\"rootMaximumCells\":500000,\"rootMaximumDepth\":256,\"workerThreads\":4},\"schema\":\"parallel_stream_pilot_certified_budget/v0\",\"topLevel\":{\"positionIncrement\":\"2e-8\",\"velocityIncrement\":\"2e-8\"}}",
+      "allocations": {
+        "schema": "parallel_stream_pilot_certified_budget/v0",
+        "presetId": "p5a-pilot-sharp-w4-h0p002",
+        "topLevel": {
+          "positionIncrement": "2e-8",
+          "velocityIncrement": "2e-8"
+        },
+        "controller": {
+          "initialStep": "0.002",
+          "minimumStep": "0.002",
+          "maximumStep": "0.002",
+          "adaptiveGrowth": false
+        },
+        "ordinary": {
+          "rootTimeEnclosure": "1e-8",
+          "farFieldEnclosureFraction": "0",
+          "correctionAccelerationResidual": "1e-6",
+          "acceptedStepPosition": "1e-8",
+          "acceptedStepVelocity": "1e-8",
+          "sourceNormalFloor": "1e-12",
+          "chartPolicy": "sharp",
+          "accelerationEnclosure": "1e-7",
+          "quadratureTolerance": "1e-7"
+        },
+        "finiteWidth": {
+          "independentOverlap": "0",
+          "causalWidth": "0.2",
+          "coreScale": "0.2",
+          "receiverAllocationRule": "equal-routed-pair-weight/v1",
+          "regulatorRefinementRatio": "0.5",
+          "regulatorLevels": 3,
+          "rowFractions": {
+            "quadrature": "0.35",
+            "causalWidthRegulator": "0.15",
+            "coreRegulator": "0.15",
+            "finiteWidthStateNumerical": "0.15",
+            "amendment1RegulatorMatching": "0.20"
+          },
+          "finiteWidthStateNumericalFractions": {
+            "retainedHistory": "0.04",
+            "interpolation": "0.04",
+            "rounding": "0.02",
+            "endpointLinearShortcut": "0.05"
+          },
+          "receiverImpulseTotal": "1e-7",
+          "receiverPositionMomentTotal": "1e-7",
+          "quadratureImpulseLimit": "3.5e-8",
+          "quadraturePositionMomentLimit": "3.5e-8",
+          "regulatorConvergenceLimit": "1.5e-8",
+          "stateNumericalImpulseLimit": "1.5e-8",
+          "stateNumericalPositionMomentLimit": "1.5e-8",
+          "matchingImpulseLimit": "2e-8",
+          "matchingPositionMomentLimit": "2e-8"
+        },
+        "precision": {
+          "bulk": "binary64-outward",
+          "difficultRowInitialBits": 128,
+          "difficultRowMaximumBits": 512,
+          "forceEventPrecisionEscalation": false,
+          "roundingMode": "outward",
+          "deterministicReduction": "fixed-pairwise"
+        },
+        "resources": {
+          "rootMaximumDepth": 256,
+          "rootMaximumCells": 500000,
+          "quadratureMaximumDepth": 32,
+          "quadratureMaximumCells": 200000,
+          "eventMaximumDepth": 24,
+          "eventMaximumCells": 200000,
+          "correctionIterations": 12,
+          "maximumStepAttempts": 1000,
+          "maximumRejectedSteps": 100,
+          "workerThreads": 4,
+          "requestMemoryBytes": 536870912
+        }
+      }
+    }
+  },
+  "failClosedPolicy": "record-as-is; no retry; continue only with independent predeclared cases",
+  "heartbeatSeconds": 10,
+  "restartUsed": false
+}

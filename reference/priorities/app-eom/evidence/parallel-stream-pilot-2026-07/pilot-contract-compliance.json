@@ -1,0 +1,115 @@
+{
+  "allCasesCompleted": false,
+  "allAtomic": false,
+  "allCanonical": false,
+  "allOrderedPairsComplete": true,
+  "allHistoryCovered": false,
+  "allRootRowsComplete": false,
+  "sharpOnly": true,
+  "failClosedOutcomes": [
+    {
+      "caseId": "primary-p0-pp",
+      "chunk": {
+        "start": "0",
+        "end": "0.001"
+      },
+      "haltCode": "engine_exception"
+    },
+    {
+      "caseId": "primary-p0-pm",
+      "chunk": {
+        "start": "0",
+        "end": "0.001"
+      },
+      "haltCode": "engine_exception"
+    },
+    {
+      "caseId": "primary-p0-mp",
+      "chunk": {
+        "start": "0",
+        "end": "0.001"
+      },
+      "haltCode": "engine_exception"
+    },
+    {
+      "caseId": "primary-p0-mm",
+      "chunk": {
+        "start": "0",
+        "end": "0.001"
+      },
+      "haltCode": "engine_exception"
+    },
+    {
+      "caseId": "primary-p1-pp",
+      "chunk": {
+        "start": "0",
+        "end": "0.001"
+      },
+      "haltCode": "engine_exception"
+    },
+    {
+      "caseId": "primary-p1-pm",
+      "chunk": {
+        "start": "0",
+        "end": "0.001"
+      },
+      "haltCode": "engine_exception"
+    },
+    {
+      "caseId": "primary-p1-mp",
+      "chunk": {
+        "start": "0",
+        "end": "0.001"
+      },
+      "haltCode": "engine_exception"
+    },
+    {
+      "caseId": "primary-p1-mm",
+      "chunk": {
+        "start": "0",
+        "end": "0.001"
+      },
+      "haltCode": "engine_exception"
+    },
+    {
+      "caseId": "profile-worker1-p0-pp",
+      "chunk": {
+        "start": "0",
+        "end": "0.001"
+      },
+      "haltCode": "engine_exception"
+    },
+    {
+      "caseId": "profile-spacing-p0-pp",
+      "chunk": {
+        "start": "0",
+        "end": "0.001"
+      },
+      "haltCode": "engine_exception"
+    },
+    {
+      "caseId": "profile-collar-p0-pp",
+      "chunk": {
+        "start": "0",
+        "end": "0.001"
+      },
+      "haltCode": "engine_exception"
+    },
+    {
+      "caseId": "profile-speed-p0-pp",
+      "chunk": {
+        "start": "0",
+        "end": "0.001"
+      },
+      "haltCode": "engine_exception"
+    },
+    {
+      "caseId": "profile-separation-p0-pp",
+      "chunk": {
+        "start": "0",
+        "end": "0.002"
+      },
+      "haltCode": "engine_exception"
+    }
+  ]
+}

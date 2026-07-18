@@ -366,6 +366,22 @@ Recommended waves by decision value, if capacity is limited:
 
 Integration after completion: operator reviews the nine analysis files; promotion of any conclusion into canon or into other priorities areas is a separate, operator-approved step (deliberately outside these threads' write scope).
 
+## P9 Adjudication and Campaign Status (2026-07-18)
+
+P9 (`analysis-speculative-variant-ledger.md`) endorsed as a containment ledger: all three variants stated as precise replaced-postulate equations (unit-mean cadence measure verified), evidence discipline exemplary (no knob sweeps; solver self-replay is not a nonlinear oracle; ledger closure required at $\eta_\star$, not in the limit; discrete cadence owes a dynamical phase state for broken time-translation symmetry), promotion conditions all external. Cross-links: derived cadence = natural native home of $h$; physical $\eta_\star$ would make P12's impulse a physical prediction.
+
+## P14 Adjudication (2026-07-18)
+
+P14 (`analysis-static-source-receiver-row.md`) endorsed with one scope gap. **Derived and accepted: observer-level absorption of the $-h\mathbf N$ row is impossible** — parity/order obstruction (row odd and first order; Lorentz clock/ruler/inertia absorbers even and second order; Doppler is signal-channel, not trajectory; no universal chart can use per-source directions). **Gap: the thread ran the pre-amendment prompt and never evaluated the P8 "hidden by speed separation" route.** Corrected verdict is a disjunction: absorption excluded, therefore either the receiver weight is falsified ($q_c\sim1$) or speed separation hides the row ($q_c\ll1$) — the weight postulate and the speed-ratio hypothesis are now formally coupled; precision moving-charge electrostatics bounds $q_c$ regardless.
+
+Modification analysis accepted (spot-checked): minimal P2-consistent repair is $W_{\mathrm{acc}}^{(0)}=c_f/|D_s|$ (unit receiver factor, forced source-collapse retained; $D_T$ survives only in root transport). Under it: P1's $C_B=0$ survives exactly; complete unit weight $W=1$ separately rejected (new forbidden receiver-independent current row, integral verified); P2 family collapses to the S0/G0 axis; **P3's acceleration arbitration retires to a transport-ledger question; P6A's governor is removed** (no $D_T$ null); the sharp law becomes singular at the coincident endpoint ($c_f/D_s\to\infty$), transferring the crossing entirely to finite-width impulse (re-scopes P12). Adjudicator escalations: (1) **P11's cargo falsification is partly conditional on the $-h$ row — Path A may reopen** under the modified base once the Darwin match is re-expanded; (2) speculative but flagged: canon's $-h$ row anti-damps attractive radial motion ($dE_T/dT>0$), sign-consonant with the braid program's universal pump/dispersal negatives — if the retention lemma selects unit receiver weight, one binding-case probe under the modified law becomes high-stakes. **P16 adopted: the source-normal retention lemma** (decide $c_f/|D_s|$ vs $1$ from one frozen pre-collapse action/wake-flux measure; state $D_s\to0$ behavior and the P1 coefficient), gating any P11 re-expansion.
+
+## P12 Adjudication (2026-07-18)
+
+P12 (`analysis-coincident-endpoint-impulse-lemma.md`) endorsed; root geometry, core-dominated collapse integral, and $\ell_\eta$ scaling independently checked. Results: **sign survives, magnitude does not.** The P3/P6A sign fork (signed brakes, unsigned reinforces) is regulator-proof at every finite $(\eta,\epsilon_c)$; but the newborn impulse scales as $K/(c_f^2\max(\sqrt{\eta/\alpha},\epsilon_c/c_f))$ — joint-sharp-limit divergent and path-dependent, hence **fail-closed under the canonical transition-observable rule; the governor is not promotable on the sharp law.** High-gain one-pass verdict: signed overshoots (ejected sub-field side), unsigned ejected super-field side; settling/chatter require the self-consistent initial-layer problem (P12's named follow-on, adopted). Adjudicator convergence note: the governor's fate now sits at a three-way junction — P14/P16 weight repair (removes the mechanism; newborn row becomes a forward-only amplifying kick), P9's physical $\eta_\star$ (would make the gain a finite physical number — first concrete consumer for that speculative entry), or self-consistent feedback taming. 
+
+**Campaign scoreboard (all analysis threads adjudicated):** P1 exact null (no per-hit magnetism); P2 forced-vs-chosen + family; P3 sign-fork arbitration spec; P4 action residual nonzero; P5A stream instrument spec (execution-ready); P6A governor mechanism signed-only + pin provenance barred; P7A cargo family conditionally viable; P10 residual = derived recoil (PASS); P11 cargo family falsified + $-h\mathbf N$ obstruction; P8 speed-ratio ledger + $q_c$-suppression cross-link; P9 speculative containment. **Open dispatches:** P12 (endpoint impulse), P13 (split independence), P14 (static-source row — now the single highest-leverage open analysis), P15 (stream pilot, execution-tier, operator-gated). **Live theory forks:** signed-vs-unsigned convention (P3/P6A/P12); clean-canon vs recoil-inclusive law (P10/P13); receiver-weight fate (P14, coupled to speed-ratio via P8); magnetism = Path B (sea/assembly) only.
+
 ## P1 Adjudication (2026-07-18)
 
 P1 (`analysis-darwin-order-branch-expansion.md`) returned a **derived, exact negative**: the canonical law's current coefficient on a neutral drifting infinite line is $C_B=0$ against the Darwin benchmark $1$. Mechanism: the delta-collapse denominator supplies exactly one power of $1/D_s$, and the common-slice source-label transport supplies exactly one power of $D_s/c_f$; they cancel, erasing all source-drift information from the bulk sum. Independently spot-checked (root quadratic, label transport $d\xi/dy=D_s/c_f$, exact cancellation) and endorsed. Scope: falsifies the central sampling rule *as a standalone origin* of Darwin-order magnetism; assembly-level channels remain open and now carry the full recovery burden.
@@ -765,8 +781,15 @@ modification that removes the row (candidate: unit weight W=1 with D_T
 retained only in root transport) and re-derive its consequences for P1's C_B,
 P2's family table, P3's stratum, and P6A's governor (which requires a
 D_T-dependent along-track term - state whether the governor survives).
-(4) Verdict: absorbable / falsifies-the-weight / undecidable-with-named-gap.
-(5) Name the smallest follow-on. Claim-grade everything; no runs.
+(4) Include the P8 cross-link (packet P8 adjudication): the row is first order
+in v/c_f, so under the speed-separation hypothesis q_c = c_eff/c_f << 1 its
+lab-observable size is suppressed by q_c without any observer-level absorber -
+a third candidate verdict, "hidden by speed separation," which couples the
+receiver-weight postulate to the speed-ratio hypothesis and makes precision
+moving-charge electrostatics an upper bound on q_c. Evaluate this route
+alongside absorption. (5) Verdict: absorbable / falsifies-the-weight /
+hidden-by-speed-separation / undecidable-with-named-gap. (6) Name the smallest
+follow-on. Claim-grade everything; no runs.
 
 Write restriction (strict): create exactly one new file,
 reference/priorities/app-eom/analysis-static-source-receiver-row.md.
@@ -783,6 +806,63 @@ and follow-on, all claim-graded.
 
 P5A (`analysis-parallel-stream-simulation-spec.md`) endorsed as an execution-ready instrument spec. Key design strengths: four-run current-parity projection (isolates the doubly-current-odd response; cancels current-even contamination **including P11's $-h\mathbf N$ row**), predeclared $C_B$ interval $[-0.05,0.05]$ with frozen error-budget allocation, bound-not-assumed finite-length handling (tail integral verified), contract-compliant straight prehistory, explicit evidence independence from P1's analytic route, and a drift-before-physics diagnosis ladder. Staleness note: the cargo "survival target 1" signature row predates P11's falsification of the cargo family; the variant-replay machinery stands as a general instrument for any future frozen law. Execution is operator-gated: pilot profile → scale selection → scientific matrix.
 
+### P15 — Parallel-Stream Pilot Execution (execution-tier; operator-authorized)
+
+```
+Closure goal: Execute the P5A parallel-stream instrument as a PILOT ONLY:
+rebuild the EOM solver, run the small representative profiling matrix defined
+in analysis-parallel-stream-simulation-spec.md, produce the cost attribution
+and feasibility verdict for the declared C_B interval width, and stop before
+any scale commitment.
+
+Context: P5A is the frozen instrument specification - consume it as written;
+do not modify tolerances, error-budget allocations, extraction equations, or
+pass criteria after any scientific output is visible (predeclared-instrument
+rule). The scientific target is verification of P1's derived null C_B = 0 on
+neutral drifting streams (dispatch packet P1/P5A adjudications). The pilot's
+only deliverables are: certified small-matrix runs, the profile attribution
+across P5A's qualitative cost drivers, and a feasibility verdict - can the
+full matrix plausibly reach interval width <= 0.10 within the operator's
+resource envelope. Scale selection is a separate operator decision.
+
+Execution discipline (AGENTS.md): rebuild before running and state the binary
+build time against the last source change; long jobs must emit a heartbeat
+(step index, simulation time, wall seconds) on a fixed cadence; do not report
+DONE with an unwatched job running - wait or detach observably with PID,
+heartbeat, and output path; fail-closed outcomes are recorded, not retried
+into submission.
+
+Task: (1) Rebuild; record build provenance and executable/input hashes.
+(2) Construct the pilot matrix per P5A: smallest geometry ladder levels, both
+phase realizations, the four current-parity runs, straight endpoint-matched
+prehistory, sharp chart only. (3) Run with full certificate emission; verify
+contract compliance rows (atomic publication, complete ordered pairs,
+history coverage, no fail-closed outcomes; any fail-closed result is reported
+as-is). (4) Compute the pilot C_B interval via P5A's extraction and error
+rows - labeled PILOT, not scientific verdict. (5) Profile attribution across
+P5A's driver list; identify dominant drivers with measured numbers only.
+(6) Feasibility verdict for the full matrix; if infeasible, name the binding
+constraint (do not weaken the width).
+
+Write restriction: create one new evidence directory,
+reference/priorities/app-eom/evidence/parallel-stream-pilot-2026-07/, for run
+records, profiles, and hashes, plus exactly one new summary file,
+reference/priorities/app-eom/analysis-parallel-stream-pilot-report.md.
+Modify no canon, no code (build only, no source edits), no shared ledgers,
+no other priorities areas. No git commands.
+
+Expected output: the pilot report with build provenance, contract-compliance
+summary, PILOT C_B interval, measured cost attribution, dominant drivers, and
+the feasibility verdict, all claim-graded; evidence directory with the
+supporting records.
+```
+
 ### P8 / P9 — unchanged
 
 Dispatch as originally written in this packet when capacity allows. Note for P8: P1's null raises its stakes — with per-hit magnetism excluded, the assembly/sea channel carries the full recovery burden, which is exactly the channel P8's $c_f\gg c_{\mathrm{eff}}$ analysis constrains.
+
+## P8 Adjudication (2026-07-18)
+
+P8 (`analysis-cf-ceff-ratio-implications.md`) endorsed; Planck-chain algebra verified ($q_P=[hG/(8\pi^3R_{\mathrm{align}}^2c_f^3)]^{1/3}$, $C_G=8\pi^3q_c^3$). Key results: drift-carried EM deficient by $q_c$ (field-like) and $q_c^2$ (two-velocity), sharpened by P1 to "missing channel mandatory under either speed hypothesis"; the Lorentz divergence at $v\to c_{\mathrm{eff}}\ll c_f$ is necessarily an assembly effect with a **common-mode** closure requirement (clock-only divergence is not Lorentz recovery); the hypothesis conflicts with the live weak-homogeneous $c_{\mathrm{eff}}\to c_f$ canon statement and must be decided by one homogeneous sea dispersion + clock/ruler record, cross-checked against the Planck-chain ratio with predeclared residual; steepest cost is preferred-frame hiding (wakes outside the photon cone) against tight experimental bounds. Disposition defer-with-blocker accepted.
+
+**Cross-link (adjudicator, inferred): P11's $-h\mathbf N$ row is first order in $v/c_f$, hence suppressed by $q_c$ under speed separation** — a third P14 verdict route ("hidden by speed separation"), coupling the receiver-weight postulate to the speed-ratio hypothesis; precision moving-charge electrostatics becomes an upper bound on $q_c$; conversely $q_c=1$ leaves the row a naked first-order conflict. P14 prompt amended accordingly.

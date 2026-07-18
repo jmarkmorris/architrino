@@ -1,0 +1,43 @@
+{
+  "schema": "parallel_stream_pilot_feasibility_bound/v0",
+  "claimGrade": "derived geometry bound plus inferred current-architecture memory projection",
+  "formula": "epsilon_tail=4*c_f^2*((c_f+u/2)/(c_f-u/2))*(1-Y/sqrt(Y^2+rho^2))/u^2",
+  "finiteLengthHalfWidthAllocation": 0.015,
+  "rows": [
+    {
+      "speed": 0.02,
+      "spacing": 0.5,
+      "requiredRepresentedHalfExtent": 583.1522872007996,
+      "minimumCellsPerStream": 2333,
+      "minimumTotalPaths": 9332,
+      "minimumLogicalPairsPerSnapshot": 87086224,
+      "projectedMinimalDensePairBytesAt64BytesPerRow": 5573518336
+    },
+    {
+      "speed": 0.01,
+      "spacing": 0.5,
+      "requiredRepresentedHalfExtent": 1160.4882241288599,
+      "minimumCellsPerStream": 4642,
+      "minimumTotalPaths": 18568,
+      "minimumLogicalPairsPerSnapshot": 344770624,
+      "projectedMinimalDensePairBytesAt64BytesPerRow": 22065319936
+    },
+    {
+      "speed": 0.01,
+      "spacing": 0.25,
+      "requiredRepresentedHalfExtent": 1160.4882241288599,
+      "minimumCellsPerStream": 9284,
+      "minimumTotalPaths": 37136,
+      "minimumLogicalPairsPerSnapshot": 1379082496,
+      "projectedMinimalDensePairBytesAt64BytesPerRow": 88261279744
+    }
+  ],
+  "referenceResourceEnvelope": {
+    "wallSeconds": 3600,
+    "memoryBytes": 20755466117,
+    "memoryDisplay": "19.33 GB",
+    "source": "performance-architecture-survey-and-baseline.md"
+  },
+  "fineSpacingLowSpeedProjectedPairMemoryToEnvelopeRatio": 4.252628703364021,
+  "scopeNote": "The path-count rows follow from the frozen absolute tail bound. The 64-byte pair-row memory projection is an existing current-architecture planning assumption, not a measured P5A run cost. Histories, roots, integration, certificates, and output are additional."
+}
