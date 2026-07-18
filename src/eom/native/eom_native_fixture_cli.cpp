@@ -330,6 +330,23 @@ std::vector<eom::ExactPairCertificate> pair_fixture() {
       {segment("0", "1", {"0", "0", "0", "0"},
                {"0", "0", "0", "0"}, {"0", "0", "0", "0"},
                "0.00028", "0")});
+  const eom::RetainedHistory reconditioned_chain_receiver(
+      "reconditioned-chain-receiver",
+      {segment("-1", "1", {"1", "0", "0", "0"})});
+  const eom::RetainedHistory reconditioned_chain_source(
+      "reconditioned-chain-source",
+      {segment("-1", "-0.5", {"0", "0", "0", "0"},
+               {"0", "0", "0", "0"}, {"0", "0", "0", "0"},
+               "1e-9", "0"),
+       segment("-0.5", "0", {"0", "0", "0", "0"},
+               {"0", "0", "0", "0"}, {"0", "0", "0", "0"},
+               "1e-3", "0"),
+       segment("0", "0.5", {"0", "0", "0", "0"},
+               {"0", "0", "0", "0"}, {"0", "0", "0", "0"},
+               "1e-3", "0"),
+       segment("0.5", "1", {"0", "0", "0", "0"},
+               {"0", "0", "0", "0"}, {"0", "0", "0", "0"},
+               "1e-3", "0")});
 
   std::vector<eom::ExactPairRequest> requests;
   auto add = [&](std::string row_id, const eom::RetainedHistory& target,
@@ -391,6 +408,8 @@ std::vector<eom::ExactPairCertificate> pair_fixture() {
       "0.000000002", "1e-8", true);
   add("mpfr_asymmetric_monotone_root", asymmetric_monotone_receiver,
       asymmetric_monotone_source, "1", "0", "1", "0.001", true);
+  add("mpfr_reconditioned_join_chain", reconditioned_chain_receiver,
+      reconditioned_chain_source, "1", "-1", "0.5", "1e-5", true);
   auto certificates = eom::certify_exact_pair_batch(requests, 4);
   const auto prior = eom::certify_exact_pair({
       .row_id = "warm_complement_prior",

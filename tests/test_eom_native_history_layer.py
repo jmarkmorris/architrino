@@ -946,6 +946,22 @@ class NativeHistoryLayerTests(unittest.TestCase):
         self.assertEqual(root["source_segment_indices"], [0, 1])
         self.assertEqual(root["source_normal_sign"], 1)
 
+    def test_mpfr_reconditions_continuous_join_chain_from_derivative_bound(
+        self,
+    ) -> None:
+        row = self.pair("mpfr_reconditioned_join_chain")
+        self.assertEqual(row["status"], "certified_complete")
+        self.assertTrue(row["root_free_complement"])
+        self.assertTrue(row["precision_escalated"])
+        self.assertEqual(len(row["roots"]), 1)
+        root = row["roots"][0]
+        lower = Decimal(root["lower"])
+        upper = Decimal(root["upper"])
+        self.assertLessEqual(lower, Decimal("0"))
+        self.assertGreaterEqual(upper, Decimal("0"))
+        self.assertLessEqual(upper - lower, Decimal("1e-5"))
+        self.assertEqual(root["source_normal_sign"], 1)
+
     def test_self_pair_endpoint_rule_handles_subfield_and_rail_histories(self) -> None:
         self.assertTrue(self.packet["inconsistent_circular_speed_rejected"])
         subfield = self.pair("self_subfield")

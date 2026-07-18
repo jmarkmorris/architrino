@@ -1626,6 +1626,8 @@ struct MpCompiledSegment {
   std::array<std::array<MpInterval, 3>, 3> velocity_coefficients;
   std::array<MpInterval, 3> position_errors;
   std::array<MpInterval, 3> velocity_errors;
+  std::optional<MpVector> shared_start_position;
+  std::optional<MpVector> shared_end_position;
 };
 
 std::array<MpInterval, 4> mp_compile_position_axis(
@@ -1680,6 +1682,8 @@ MpCompiledSegment mp_compile_segment(
           MpInterval::decimal(segment.velocity_error_tokens()[0], bits),
           MpInterval::decimal(segment.velocity_error_tokens()[1], bits),
           MpInterval::decimal(segment.velocity_error_tokens()[2], bits)},
+      .shared_start_position = std::nullopt,
+      .shared_end_position = std::nullopt,
   };
 }
 
@@ -1726,7 +1730,7 @@ MpInterval mp_velocity_polynomial(
   return result;
 }
 
-MpVector mp_position(
+MpVector mp_uncorrelated_position(
     const MpCompiledSegment& segment,
     const MpInterval& time) {
   return {
@@ -1734,6 +1738,55 @@ MpVector mp_position(
       mp_polynomial(segment, 1, time).inflate(segment.position_errors[1]),
       mp_polynomial(segment, 2, time).inflate(segment.position_errors[2]),
   };
+}
+
+std::optional<MpInterval> mp_intersection(
+    const MpInterval& left,
+    const MpInterval& right);
+
+MpVector mp_position_from_attached_join(
+    const MpCompiledSegment& segment,
+    const MpVector& shared,
+    const MpInterval& join_time,
+    const MpInterval& time,
+    MpVector current) {
+  const MpInterval distance = time.lower().compare(join_time.lower()) >= 0
+      ? time - join_time
+      : join_time - time;
+  for (std::size_t axis = 0U; axis < current.size(); ++axis) {
+    const MpInterval nominal_delta =
+        mp_polynomial(segment, axis, time) -
+        mp_polynomial(segment, axis, join_time);
+    const MpInterval raw_radius = segment.velocity_errors[axis] * distance;
+    const MpFloat zero = MpFloat::unsigned_value(0, time.bits());
+    const MpFloat radius_upper = raw_radius.upper().compare_zero() > 0
+        ? raw_radius.upper() : zero;
+    const MpInterval radius = MpInterval::bounds(zero, radius_upper);
+    const MpInterval propagated =
+        (shared[axis] + nominal_delta).inflate(radius);
+    const auto overlap = mp_intersection(current[axis], propagated);
+    if (overlap.has_value()) {
+      current[axis] = *overlap;
+    }
+  }
+  return current;
+}
+
+MpVector mp_position(
+    const MpCompiledSegment& segment,
+    const MpInterval& time) {
+  MpVector result = mp_uncorrelated_position(segment, time);
+  if (segment.shared_start_position.has_value()) {
+    result = mp_position_from_attached_join(
+        segment, *segment.shared_start_position, segment.start_time,
+        time, std::move(result));
+  }
+  if (segment.shared_end_position.has_value()) {
+    result = mp_position_from_attached_join(
+        segment, *segment.shared_end_position, segment.end_time,
+        time, std::move(result));
+  }
+  return result;
 }
 
 MpVector mp_velocity(
@@ -1865,8 +1918,10 @@ std::optional<MpInterval> mp_intersection(
 std::optional<MpVector> mp_shared_join_position(
     const MpCompiledSegment& left,
     const MpCompiledSegment& right) {
-  const MpVector left_position = mp_position(left, left.end_time);
-  const MpVector right_position = mp_position(right, right.start_time);
+  const MpVector left_position =
+      mp_uncorrelated_position(left, left.end_time);
+  const MpVector right_position =
+      mp_uncorrelated_position(right, right.start_time);
   MpVector shared = left_position;
   for (std::size_t axis = 0U; axis < 3U; ++axis) {
     const auto overlap = mp_intersection(
@@ -1884,7 +1939,7 @@ MpVector mp_position_from_shared_join(
     const MpVector& shared,
     const MpInterval& join_time,
     const MpInterval& time) {
-  MpVector result = mp_position(segment, time);
+  MpVector result = mp_uncorrelated_position(segment, time);
   const MpInterval distance = time.lower().compare(join_time.lower()) >= 0
       ? time - join_time
       : join_time - time;
@@ -1906,6 +1961,107 @@ MpVector mp_position_from_shared_join(
     }
   }
   return result;
+}
+
+void mp_attach_shared_join_positions(
+    std::vector<MpCompiledSegment>& history) {
+  if (history.size() < 2U) {
+    return;
+  }
+  for (std::size_t index = 0U; index + 1U < history.size(); ++index) {
+    const auto shared = mp_shared_join_position(
+        history[index], history[index + 1U]);
+    if (!shared.has_value()) {
+      continue;
+    }
+    history[index].shared_end_position = *shared;
+    history[index + 1U].shared_start_position = *shared;
+  }
+
+  const auto propagate_endpoint = [](
+      const MpCompiledSegment& segment,
+      const MpVector& anchor,
+      bool from_start) {
+    const MpInterval& anchor_time =
+        from_start ? segment.start_time : segment.end_time;
+    const MpInterval& target_time =
+        from_start ? segment.end_time : segment.start_time;
+    const MpInterval duration = from_start
+        ? target_time - anchor_time
+        : anchor_time - target_time;
+    const MpInterval two = MpInterval::decimal("2", duration.bits());
+    const MpFloat zero = MpFloat::unsigned_value(0, duration.bits());
+    MpVector propagated = anchor;
+    for (std::size_t axis = 0U; axis < propagated.size(); ++axis) {
+      const MpInterval nominal_delta =
+          mp_polynomial(segment, axis, target_time) -
+          mp_polynomial(segment, axis, anchor_time);
+      const MpInterval velocity_radius =
+          segment.velocity_errors[axis] * duration;
+      const MpInterval position_radius =
+          two * segment.position_errors[axis];
+      const MpFloat radius_upper =
+          velocity_radius.upper().compare(position_radius.upper()) <= 0
+          ? velocity_radius.upper() : position_radius.upper();
+      const MpInterval radius = MpInterval::bounds(zero, radius_upper);
+      propagated[axis] =
+          (anchor[axis] + nominal_delta).inflate(radius);
+    }
+    return propagated;
+  };
+
+  const auto contract = [](
+      std::optional<MpVector>& target,
+      const MpVector& enclosure) {
+    if (!target.has_value()) {
+      target = enclosure;
+      return;
+    }
+    for (std::size_t axis = 0U; axis < target->size(); ++axis) {
+      const auto overlap = mp_intersection((*target)[axis], enclosure[axis]);
+      if (overlap.has_value()) {
+        (*target)[axis] = *overlap;
+      }
+    }
+  };
+
+  // A segment error is one differentiable remainder, not two independent
+  // endpoint boxes.  If |e| <= eps_x and |e'| <= eps_v, then the error change
+  // across the segment is bounded by min(2 eps_x, eps_v h).  Forward/backward
+  // constraint propagation retains that same theorem across every certified
+  // shared join without altering any segment's ordinary fallback enclosure.
+  for (std::size_t pass = 0U; pass < 3U; ++pass) {
+    for (std::size_t index = 0U; index < history.size(); ++index) {
+      const MpVector anchor = history[index].shared_start_position.has_value()
+          ? *history[index].shared_start_position
+          : mp_uncorrelated_position(
+                history[index], history[index].start_time);
+      const MpVector propagated = propagate_endpoint(
+          history[index], anchor, true);
+      if (index + 1U < history.size()) {
+        contract(history[index].shared_end_position, propagated);
+        if (history[index].shared_end_position.has_value()) {
+          history[index + 1U].shared_start_position =
+              history[index].shared_end_position;
+        }
+      }
+    }
+    for (std::size_t index = history.size(); index-- > 0U;) {
+      const MpVector anchor = history[index].shared_end_position.has_value()
+          ? *history[index].shared_end_position
+          : mp_uncorrelated_position(
+                history[index], history[index].end_time);
+      const MpVector propagated = propagate_endpoint(
+          history[index], anchor, false);
+      if (index > 0U) {
+        contract(history[index].shared_start_position, propagated);
+        if (history[index].shared_start_position.has_value()) {
+          history[index - 1U].shared_end_position =
+              history[index].shared_start_position;
+        }
+      }
+    }
+  }
 }
 
 MpVector mp_correlated_history_position(
@@ -2462,12 +2618,14 @@ MpAttempt run_mpfr_attempt(const ExactPairRequest& request, unsigned bits_value)
       request.receiver->history_id() == request.source->history_id() &&
       request.receiver->provenance_fingerprint() ==
           request.source->provenance_fingerprint();
-  const auto source_history = mp_compile_history(*request.source, bits);
+  auto source_history = mp_compile_history(*request.source, bits);
+  mp_attach_shared_join_positions(source_history);
   std::optional<std::vector<MpCompiledSegment>> receiver_history_storage;
   const std::vector<MpCompiledSegment>* receiver_history = &source_history;
   if (request.receiver != request.source) {
     receiver_history_storage.emplace(
         mp_compile_history(*request.receiver, bits));
+    mp_attach_shared_join_positions(*receiver_history_storage);
     receiver_history = &*receiver_history_storage;
   }
   const auto& receiver_segment = mp_segment_at(

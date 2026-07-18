@@ -1807,3 +1807,27 @@ This file holds dated decisions, implementation status, validation results, fail
   validated reconditioned integrator under the same fixed allocations.
 - **Evidence:**
   [borg-fixed-budget-ten-minute-endurance-adjudication-apple-m3-2026-07-18.md](evidence/borg-fixed-budget-ten-minute-endurance-adjudication-apple-m3-2026-07-18.md).
+
+## 2026-07-18 — Retained-history reconditioning and joint-state blocker
+
+- **Derived implementation:** the MPFR root path now propagates one
+  differentiable position remainder through all certified shared joins using
+  `min(2 eps_x, eps_v h)`, intersected with every ordinary segment box. A
+  forced-MPFR analytic fixture with zero derivative error checks the theorem
+  independently of the implementation.
+- **Measured fixed-budget result:** Research seed 0's difficult residual narrows
+  from approximately `[-1.913e-5, 1.070277e-3]` to
+  `[-1.325821449012088e-6, 1.052465045871579e-3]`, but the implied monotone root
+  image remains about `1%` over the unchanged `1e-3` ceiling. The complete
+  post-change seed 0–3 matrix still has seven root-completeness halts and one
+  Research finite-width regulator halt; all eight stop before 45 native wall
+  seconds, so the 600-second gate remains failed.
+- **Measured ablations:** eight-way publication, two-half publication,
+  synchronized multirate publication, embedded enclosure intersection, and an
+  unpreconditioned receiver-affine interval solve all fail earlier, remain
+  neutral, or widen the state. All experimental implementations were removed.
+- **Adjudication:** the first missing object is now cross-path joint-state
+  retention or a theorem-backed preconditioned interval corrector. Another
+  single-history or publication-count change is not the next remedy.
+- **Evidence:**
+  [borg-retained-history-reconditioning-adjudication-apple-m3-2026-07-18.md](evidence/borg-retained-history-reconditioning-adjudication-apple-m3-2026-07-18.md).
