@@ -355,46 +355,16 @@ finite-width result; it does not silently replace the model input.
 Claim grade: `derived-design`. Falsifier: any required level is uncertified, or
 the recomputed maximum ladder distance exceeds its recorded budget.
 
-## Run Grades
+## Certified publication authority
 
-Every coupled-evolution request declares exactly one run grade:
-`certified` or `display`. The grade selects an evaluation route and is also
-permanent provenance; it is not a numerical tolerance.
+Every coupled-evolution request uses the certified route. Every
+`FWC-ENTRY-*`, `FWC-REG-*`, `FWC-STATE-*`, and `FWC-EXIT-*` obligation retains
+publication authority. A failed row rejects the candidate and eventually
+produces the named adjudicated halt. Numerical tolerances may be selected for
+the workload, but they do not select a second evaluation route or bypass a
+certificate row.
 
-At `certified` grade, every `FWC-ENTRY-*`, `FWC-REG-*`, `FWC-STATE-*`, and
-`FWC-EXIT-*` obligation retains publication authority. A failed row rejects
-the candidate and eventually produces the existing named adjudicated halt.
-This is the evidence-producing route.
-
-Display grade evaluates the same bound master equation and the same retained
-delayed histories, but it solves emission roots and evaluates accelerations in
-ordinary binary64 arithmetic without certification. Its error is uncontrolled:
-no trajectory, root, quadrature, or truncation bound is claimed. That absence
-of a bound is exactly why display output cannot enter evidence, canon, or any
-promotion path.
-
-For each ordered pair, the display evaluator searches the retained emission
-domain with a binary64 bracket and safeguarded Newton/bisection solve at the
-declared relative tolerance, currently $10^{-9}$. It evaluates the frozen
-sharp master-equation binding at each numerical root and feeds the resulting
-point accelerations to the existing coupled cubic corrector. It constructs no
-interval enclosure, MPFR escalation, cell ledger, root certificate, FWC row,
-finite-width convergence ladder, snapshot certificate, or full-step/two-half-
-step certification comparison. The display snapshot-shaped object inside the
-implementation is a point-valued adapter for the existing integrator, not a
-certificate.
-
-When a display pair is core-active, or its binary64 source normal approaches
-the numerical pole, the evaluator uses the frozen finite-width regulated
-integrand directly with fixed-order binary64 quadrature. It performs no
-regulator refinement or convergence test. The step continues and emits only a
-`DISPLAY-REGULATOR-01/display_core_regulator_applied` warning carrying the
-reception interval and ordered pair. The cumulative warning count, first time,
-and pair set are diagnostics only. The display far-field route likewise remains
-a binary64 omission optimization under the display label and emits no
-enclosure certificate.
-
-For a display-grade `coupled_correction_failed` rejection with finite failed
+For a `coupled_correction_failed` rejection with finite failed
 acceleration-consistency residual $R_c>\tau_c$, the next attempted height uses
 
 $$
@@ -407,46 +377,26 @@ where $\gamma$ is the declared adaptive safety factor. The square-root proposal
 uses the local $h^2$ response of endpoint position to an acceleration mismatch;
 the one-half cap guarantees at least the reduction made by the ordinary
 controller. A missing, nonfinite, nonpositive, or already-within-tolerance
-residual falls back to exact halving. Certified grade always retains exact
-halving for this failure. The selected scale is diagnostic only: the retry must
-pass every unchanged correction, local-error, root, and atomic-publication row
-before publication.
+residual falls back to exact halving. The selected scale is diagnostic only:
+the retry must pass every unchanged correction, local-error, root, and
+atomic-publication row before publication.
 
 Claim grade: `derived-design` for the unchanged gates and the $h^2$ retry
 estimate. Wall-time benefit is not implied by this rule; it is a measured
-property of a workload. Falsifier: certified grade selects any scale other
-than one half for this failure, display grade uses a residual other than the
-failed acceleration-consistency row, or a rejected candidate is published.
+property of a workload. Falsifier: the controller uses a residual other than
+the failed acceleration-consistency row, any acceptance gate changes, or a
+rejected candidate is published.
 
-Every display response, published segment, and derived Borg frame carries
-`runGrade=display` and `claimGrade=evidenceStatus=display-only`; the Borg UI
-shows `DISPLAY ONLY — 5% step-height target; not evidence` from the first
-frame, not only after an encounter. The `5%` value is the declared preset
-$h$-versus-$h/2$ track-agreement control, not a global exact-solution bound.
-Producer-asserted evidence flags cannot upgrade this grade. The process
-protocol is `EOM_BORG_NATIVE_V5`; its exact 24-field
-`RUN` record carries the real core scale and memory budget, and its exact
-six-field `PATH` record carries a checked cached-prefix count plus the appended
-retained-history suffix.
+The process protocol is `EOM_BORG_NATIVE_V6`. Its exact 20-field `RUN` record
+carries the step controls, model controls, certified tolerances, thread count,
+memory budget, and path count. Its exact six-field `PATH` record carries a
+checked cached-prefix count plus the appended retained-history suffix. There
+is no run-grade field, warning-continuation ledger, or alternate parser.
 
-Display remains fail-closed for real numerical breakdowns. A non-finite input,
-acceleration, or published state halts as `display_nonfinite_state`; failure of
-a bracketed root iteration halts as `display_root_solve_not_converged`; missing
-root isolation halts as `display_root_isolation_unresolved`; missing
-retained history halts as `display_insufficient_history_depth`; and an invalid
-display request halts as `display_invalid_evaluation_request`. Borg retains the
-complete display history rather than trimming away delayed-root input. These
-are numerical-input or solver failures, not discarded certification duties.
-
-Claim grade: `operator-decision` for the two-grade product policy and
-`derived-design` for the gate separation. Falsifier: a certified request changes
-any deterministic trajectory token; a display segment lacks `display-only`;
-any interval, MPFR, root-certificate, cell, FWC, or snapshot-certification row
-is constructed on the display path; a non-finite state or failed root solve is
-published; or any acceptance path treats display output as evidence.
-
-Measured implementation evidence is recorded in
-[evidence/eom-run-grade-display-seed-0-and-64-2026-07-16.md](evidence/eom-run-grade-display-seed-0-and-64-2026-07-16.md).
+Claim grade: `operator-decision` for certified-only publication and
+`derived-design` for the protocol and retry rules. Falsifier: an uncertified
+candidate is published, a request can select another numerical route, or a
+different protocol field count is accepted.
 
 ### Demo-track regulator disposition
 

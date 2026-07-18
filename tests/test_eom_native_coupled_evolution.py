@@ -614,87 +614,25 @@ class NativeCoupledEvolutionTests(unittest.TestCase):
         self.assertLessEqual(d2_lower, 0)
         self.assertGreaterEqual(d2_upper, 0)
 
-    def test_display_grade_uses_uncertified_regulator_without_fwc_rows(self) -> None:
+    def test_certified_correction_retry_scales_from_the_failed_residual(self) -> None:
         completed = subprocess.run(
-            [str(self.binary), "display-fast-caustic"],
+            [str(self.binary), "certified-correction-retry"],
             check=True,
             cwd=ROOT,
             capture_output=True,
             text=True,
         )
-        display = json.loads(completed.stdout)
-        self.assertEqual(display["status"], "accepted")
-        self.assertEqual(display["failure_code"], "")
-        self.assertTrue(display["publication_atomic"])
-        self.assertEqual(display["event_impulse_count"], 0)
-        self.assertEqual(display["regulator_certificate_count"], 0)
-        self.assertEqual(display["ordinary_correction_status"], "rejected")
-        self.assertEqual(
-            display["ordinary_correction_failure_code"],
-            "coupled_correction_failed",
-        )
-        self.assertEqual(display["ordinary_evolution_warning_count"], 0)
-        self.assertEqual(display["ordinary_evolution_warning_pair_count"], 0)
-        self.assertEqual(
-            display["ordinary_correction_halt_code"],
-            "coupled_correction_failed",
-        )
-        self.assertEqual(
-            display["scaled_display_first_failure_code"],
-            "coupled_correction_failed",
-        )
-        self.assertEqual(
-            display["scaled_certified_first_failure_code"],
-            "coupled_correction_failed",
-        )
+        control = json.loads(completed.stdout)
+        self.assertEqual(control["schema"], "eom_certified_correction_retry/v0")
+        self.assertEqual(control["first_failure_code"], "coupled_correction_failed")
         expected_scale = min(
             0.5,
-            0.9 * math.sqrt(1e-7 / display["scaled_display_first_residual"]),
+            0.9 * math.sqrt(1e-7 / control["first_residual"]),
         )
-        self.assertAlmostEqual(
-            display["scaled_display_retry_scale"],
-            expected_scale,
-            places=6,
-        )
-        self.assertLess(display["scaled_display_retry_scale"], 0.5)
-        self.assertAlmostEqual(
-            display["scaled_display_second_width"],
-            0.04 * expected_scale,
-            places=6,
-        )
-        self.assertEqual(display["scaled_certified_retry_scale"], 0)
-        self.assertAlmostEqual(
-            display["scaled_certified_second_width"], 0.02, places=12
-        )
-        self.assertTrue(display["scaled_display_publication_atomic"])
-        self.assertTrue(display["scaled_certified_publication_atomic"])
-        self.assertEqual(
-            display["ordinary_root_display_halt_code"],
-            "",
-        )
-        self.assertEqual(
-            display["ordinary_root_certified_halt_code"],
-            "root_completeness_not_certified",
-        )
-        self.assertGreater(display["warning_count"], 0)
-        self.assertTrue(
-            all(
-                (
-                    (
-                        warning["failed_row_id"] == "DISPLAY-REGULATOR-01"
-                        and warning["failure_code"]
-                        == "display_core_regulator_applied"
-                    )
-                    or (
-                        warning["failed_row_id"] == "FWC-ENTRY-02"
-                        and warning["failure_code"] == "caustic_route_required"
-                    )
-                )
-                and Decimal(warning["reception_lower"])
-                < Decimal(warning["reception_upper"])
-                for warning in display["warnings"]
-            )
-        )
+        self.assertAlmostEqual(control["retry_scale"], expected_scale, places=6)
+        self.assertLess(control["retry_scale"], 0.5)
+        self.assertAlmostEqual(control["second_width"], 0.04 * expected_scale, places=6)
+        self.assertTrue(control["publication_atomic"])
 
     def test_native_fold_impulse_has_oracle_parity_and_fails_closed(self) -> None:
         receiver = oracle_history(

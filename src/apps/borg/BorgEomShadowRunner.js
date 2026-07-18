@@ -1,16 +1,9 @@
-import {
-  BORG_CERTIFIED_RUN_GRADE,
-  BORG_DISPLAY_RUN_GRADE,
-} from "./BorgRunGradeControl.js";
-
 export const BORG_EOM_SHADOW_RUNNER_VERSION = "borg-eom-shadow-runner.v0";
 export const BORG_EOM_SHADOW_RUN_SOURCE = "computed-eom-shadow-chunks";
 export const BORG_EOM_COMPATIBILITY_HISTORY_PROVENANCE =
   "non-eom-history";
 export const BORG_EOM_ACCEPTED_INITIAL_HISTORY_EVOLUTION_CLAIM_LEVEL =
   "eom-evolution-conditioned-on-accepted-initial-history";
-export { BORG_DISPLAY_RUN_GRADE, BORG_CERTIFIED_RUN_GRADE };
-export const BORG_DISPLAY_CLAIM_LEVEL = "display-only";
 
 const POSITRINO_STATE_FLAG = 1;
 const ELECTRINO_STATE_FLAG = 2;
@@ -50,9 +43,6 @@ export function createBorgEomShadowRunner(manifest, options = {}) {
   let chunkDuration = config.chunkDuration;
   let controllerStepSize = config.initialStep;
   let chunkIndex = 0;
-  let causticWarningCount = 0;
-  let firstCausticWarningTime = null;
-  let causticWarningPairs = Object.freeze([]);
   const initialHistoryAccepted = histories.every(
     (history) => history.sourceAcceptedInitialDatum === true,
   );
@@ -98,8 +88,6 @@ export function createBorgEomShadowRunner(manifest, options = {}) {
       if (nextStartTime >= targetDuration) {
         return createCompleteChunk(
           config, chunkIndex, nextStartTime,
-          causticWarningCount, firstCausticWarningTime,
-          causticWarningPairs,
         );
       }
       const startTime = nextStartTime;
@@ -115,22 +103,14 @@ export function createBorgEomShadowRunner(manifest, options = {}) {
         startTime,
         endTime,
         initialStep: controllerStepSize,
-        causticWarningCount,
-        firstCausticWarningTime,
-        causticWarningPairs,
       });
       const rawResponse = await client.evolveRetainedHistories(request);
       const response = normalizeEomResponse(rawResponse, request);
       controllerStepSize = response.controllerStepSize;
-      causticWarningCount = response.causticWarningCount;
-      firstCausticWarningTime = response.firstCausticWarningTime;
-      causticWarningPairs = Object.freeze(response.causticWarningPairs);
       nextStartTime = endTime;
-      histories = config.runGrade === BORG_DISPLAY_RUN_GRADE
-        ? Object.freeze(response.histories)
-        : retainBorgHistoryWindow(response.histories, {
-            minimumCoverageStart: roundTime(nextStartTime - config.historyDepth),
-          });
+      histories = retainBorgHistoryWindow(response.histories, {
+        minimumCoverageStart: roundTime(nextStartTime - config.historyDepth),
+      });
       const retainedHistoryStart = Number(histories[0].coverageStart);
       const retainedHistoryEnd = Number(histories[0].coverageEnd);
       const frames = createFramesFromHistories(
@@ -157,21 +137,12 @@ export function createBorgEomShadowRunner(manifest, options = {}) {
         controllerStepSize,
         phase: "live",
         initialHistoryAccepted,
-        runGrade: config.runGrade,
         coreScale: response.coreScale,
         retainedHistoryStart,
         retainedHistoryEnd,
-        retainedHistoryPolicy: config.runGrade === BORG_DISPLAY_RUN_GRADE
-          ? "full-evolved-display-history"
-          : "rolling-certified-history-window",
-        causticWarningCount,
-        firstCausticWarningTime,
-        causticWarnings: Object.freeze(response.causticWarnings),
-        causticWarningPairs,
+        retainedHistoryPolicy: "rolling-certified-history-window",
         claimGrade: response.claimGrade,
-        evolutionClaimLevel: response.runGrade === BORG_DISPLAY_RUN_GRADE
-          ? BORG_DISPLAY_CLAIM_LEVEL
-          : initialHistoryAccepted
+        evolutionClaimLevel: initialHistoryAccepted
             ? BORG_EOM_ACCEPTED_INITIAL_HISTORY_EVOLUTION_CLAIM_LEVEL
             : "eom-evolution-conditioned-on-unaccepted-history",
         frames: Object.freeze(frames),
@@ -195,9 +166,6 @@ export function createBorgEomShadowRunner(manifest, options = {}) {
 }
 
 export function createBorgEomShadowRunConfig(manifest, options = {}) {
-  const runGrade = requiredRunGrade(
-    options.runGrade ?? BORG_DISPLAY_RUN_GRADE,
-  );
   const sampleInterval = positiveNumber(
     options.sampleInterval,
     manifest.simulationEnvelope?.sampleInterval ?? 0.2,
@@ -240,7 +208,7 @@ export function createBorgEomShadowRunConfig(manifest, options = {}) {
     manifest.simulationEnvelope?.historyDepth ?? 10,
   );
   const coreScale = positiveNumber(options.coreScale, 0.2);
-  const requestedFarFieldEnclosureFraction = requiredFractionToken(
+  const farFieldEnclosureFraction = requiredFractionToken(
     options.farFieldEnclosureFraction ?? "0.25",
     "farFieldEnclosureFraction",
   );
@@ -297,12 +265,7 @@ export function createBorgEomShadowRunConfig(manifest, options = {}) {
       options.accelerationTolerance ?? "1e-8",
       "accelerationTolerance",
     ),
-    // Display evaluates every ordered pair. Keep the protocol field for the
-    // certified route, whose behavior and token remain unchanged.
-    farFieldEnclosureFraction: runGrade === BORG_DISPLAY_RUN_GRADE
-      ? "0"
-      : requestedFarFieldEnclosureFraction,
-    runGrade,
+    farFieldEnclosureFraction,
     positionTolerance: requiredPositiveToken(
       options.positionTolerance ?? "1e-10",
       "positionTolerance",
@@ -410,9 +373,6 @@ export function createBorgEomShadowRequest({
   startTime,
   endTime,
   initialStep = config.initialStep,
-  causticWarningCount = 0,
-  firstCausticWarningTime = null,
-  causticWarningPairs = [],
 }) {
   if (!Array.isArray(histories) || histories.length === 0) {
     throw new TypeError("Borg EOM request requires continuous retained histories.");
@@ -438,7 +398,6 @@ export function createBorgEomShadowRequest({
       minimumStep: config.minimumStep,
       maximumStep: config.maximumStep,
       useAdaptiveStepGrowth: config.useAdaptiveStepGrowth,
-      runGrade: config.runGrade,
       rootTolerance: config.rootTolerance,
       accelerationTolerance: config.accelerationTolerance,
       farFieldEnclosureFraction: config.farFieldEnclosureFraction,
@@ -475,11 +434,6 @@ export function createBorgEomShadowRequest({
       retainedHistoryEnd: histories[0].coverageEnd,
       geometricDelayBound: config.geometricDelayBound,
       historySafetyMargin: config.historySafetyMargin,
-      runGrade: config.runGrade,
-      causticWarningCount,
-      firstCausticWarningTime,
-      causticWarningPairs: Object.freeze(causticWarningPairs.map((pair) =>
-        Object.freeze([...pair]))),
     }),
   });
 }
@@ -532,8 +486,6 @@ export function retainBorgHistoryWindow(histories, { minimumCoverageStart } = {}
 export function isBorgEomPromotionEligible(response, acceptanceGate) {
   return Boolean(
     response?.status === "completed" &&
-      response?.runGrade === BORG_CERTIFIED_RUN_GRADE &&
-      response?.causticWarningCount === 0 &&
       response?.evidenceStatus === "canonical" &&
       acceptanceGate?.schema === "eom_acceptance_gate/v0" &&
       acceptanceGate?.status === "passed" &&
@@ -630,20 +582,10 @@ function normalizeEomResponse(rawResponse, request) {
       throw new Error("Borg EOM shadow response has incomplete or reordered histories.");
     }
   });
-  const runGrade = requiredRunGrade(response.runGrade);
   const coreScale = Number(requiredPositiveToken(
     response.coreScale ?? request.modelControls.coreScale,
     "response coreScale",
   ));
-  const causticWarningCount = requiredNonnegativeInteger(
-    response.causticWarningCount,
-    "response causticWarningCount",
-  );
-  const firstCausticWarningTime = response.firstCausticWarningTime == null
-    ? null
-    : String(response.firstCausticWarningTime);
-  const priorWarningCount = request.provenance.causticWarningCount;
-  const causticWarningPairs = requiredWarningPairs(response.causticWarningPairs);
   const claimGrade = String(response.claimGrade ?? response.evidenceStatus ?? "failed");
   const memoryBudgetBytes = requiredPositiveInteger(
     response.memoryBudgetBytes ?? request.resourceEnvelope.memoryBudgetBytes,
@@ -653,34 +595,19 @@ function normalizeEomResponse(rawResponse, request) {
     response.memoryEstimateBytes ?? 0,
     "response memoryEstimateBytes",
   );
-  if (runGrade !== request.numericalControls.runGrade ||
-      coreScale !== Number(request.modelControls.coreScale) ||
+  if (coreScale !== Number(request.modelControls.coreScale) ||
       memoryBudgetBytes !== Number(request.resourceEnvelope.memoryBudgetBytes) ||
       memoryEstimateBytes > memoryBudgetBytes ||
-      causticWarningCount < priorWarningCount ||
-      (causticWarningCount === 0) !== (causticWarningPairs.length === 0) ||
-      (causticWarningCount === 0) !== (firstCausticWarningTime == null) ||
-      (runGrade === BORG_DISPLAY_RUN_GRADE &&
-       (claimGrade !== BORG_DISPLAY_CLAIM_LEVEL ||
-        response.evidenceStatus !== "display-only")) ||
-      (runGrade === BORG_CERTIFIED_RUN_GRADE &&
-       causticWarningCount > 0)) {
-    throw new Error("Borg EOM shadow response has inconsistent run-grade provenance.");
+      claimGrade !== String(response.evidenceStatus ?? "failed")) {
+    throw new Error("Borg EOM shadow response has inconsistent certified provenance.");
   }
   return Object.freeze({
     status: response.status,
     evidenceStatus: response.evidenceStatus ?? "failed",
-    runGrade,
     coreScale,
     memoryBudgetBytes,
     memoryEstimateBytes,
     claimGrade,
-    causticWarningCount,
-    firstCausticWarningTime,
-    causticWarningPairs,
-    causticWarnings: Array.isArray(response.causticWarnings)
-      ? response.causticWarnings
-      : [],
     controllerStepSize: String(Number(requiredPositiveToken(
       response.controllerStepSize ?? request.numericalControls.initialStep,
       "response controllerStepSize",
@@ -718,9 +645,7 @@ function createFramesFromHistories(
         stateFlags: history.stateFlags ?? 0,
         dynamicChunkIndex: chunkIndex,
         runSource: BORG_EOM_SHADOW_RUN_SOURCE,
-        valueAuthority: claimGrade === BORG_DISPLAY_CLAIM_LEVEL
-          ? BORG_DISPLAY_CLAIM_LEVEL
-          : initialHistoryAccepted
+        valueAuthority: initialHistoryAccepted
           ? evidenceStatus === "canonical"
             ? "canonical-eom-output-conditioned-on-accepted-initial-history"
             : "eom-shadow-output-conditioned-on-accepted-initial-history"
@@ -763,9 +688,6 @@ function createCompleteChunk(
   config,
   chunkIndex,
   time,
-  causticWarningCount,
-  firstCausticWarningTime,
-  causticWarningPairs = [],
 ) {
   return Object.freeze({
     schema: BORG_EOM_SHADOW_RUNNER_VERSION,
@@ -777,15 +699,8 @@ function createCompleteChunk(
     sampleInterval: config.sampleInterval,
     phase: "live",
     initialHistoryAccepted: false,
-    runGrade: config.runGrade,
     coreScale: config.coreScale,
-    causticWarningCount,
-    firstCausticWarningTime,
-    causticWarningPairs: Object.freeze(causticWarningPairs),
-    causticWarnings: Object.freeze([]),
-    claimGrade: config.runGrade === BORG_DISPLAY_RUN_GRADE
-      ? BORG_DISPLAY_CLAIM_LEVEL
-      : "not-applicable",
+    claimGrade: "not-applicable",
     evolutionClaimLevel: "not-applicable",
     frames: Object.freeze([]),
     histories: Object.freeze([]),
@@ -840,22 +755,6 @@ function requiredNumericToken(value, label) {
     throw new TypeError(`Borg EOM ${label} must be a finite numeric token.`);
   }
   return token;
-}
-
-function requiredRunGrade(value) {
-  if (value !== BORG_DISPLAY_RUN_GRADE && value !== BORG_CERTIFIED_RUN_GRADE) {
-    throw new TypeError("Borg EOM runGrade must be display or certified.");
-  }
-  return value;
-}
-
-function requiredWarningPairs(value) {
-  if (!Array.isArray(value) || value.some((pair) =>
-    !Array.isArray(pair) || pair.length !== 2 ||
-    pair.some((pathId) => typeof pathId !== "string" || pathId.length === 0))) {
-    throw new TypeError("Borg EOM causticWarningPairs must contain path-id pairs.");
-  }
-  return value.map((pair) => Object.freeze([...pair]));
 }
 
 function requiredNonnegativeInteger(value, label) {

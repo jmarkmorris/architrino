@@ -361,12 +361,8 @@ test("Borg path-history renderer uses native row segments, not visual smoothing 
   assert.match(runtimeSource, /DEFAULT_CAMERA_FIT_MARGIN = 1\.43/);
   assert.match(runtimeSource, /HIGHLIGHTED_PATH_HISTORY_DURATION = 5/);
   assert.doesNotMatch(runtimeSource, /centralBallRadius|radialBufferMargin/);
-  assert.match(runtimeSource, /BorgDisplayReplacement\.js/);
-  assert.match(
-    runtimeSource,
-    /state\.activeRunGrade !== BORG_DISPLAY_RUN_GRADE[\s\S]*borgNdcPositionIsOutsideScreen/,
-  );
-  assert.match(runtimeSource, /pathTrails\.resetPath\(displayFrame\.pathKey\)/);
+  assert.doesNotMatch(runtimeSource, /BORG_DISPLAY_RUN_GRADE/);
+  assert.doesNotMatch(runtimeSource, /borgNdcPositionIsOutsideScreen/);
   assert.match(htmlSource, /\.borg-status-chip\[hidden\]\s*\{\s*display: none;/);
   assert.doesNotMatch(runtimeSource, /SphereGeometry/);
   assert.doesNotMatch(runtimeSource, /BoxGeometry/);
@@ -460,9 +456,14 @@ test("Borg path-history renderer uses native row segments, not visual smoothing 
   assert.match(runtimeSource, /Causal seed-history depth/);
   assert.match(runtimeSource, /EOM retained-history start/);
   assert.match(runtimeSource, /close-pair threshold εc/);
-  assert.match(runtimeSource, /emission\/current-source ratio definition/);
-  assert.match(runtimeSource, /all ordered pairs evaluated/);
-  assert.match(runtimeSource, /function startRunAndPlayback\(\)[\s\S]*firstChunk\.then[\s\S]*startPlayback\(\)/);
+  assert.match(
+    runtimeSource,
+    /function startRunAndPlayback\(\)[\s\S]*beginPlaybackPrefill\(firstChunk, generation\)/,
+  );
+  assert.match(
+    runtimeSource,
+    /function prefillPlaybackBuffer[\s\S]*BORG_PLAYBACK_PREFILL_MAX_WALL_MS[\s\S]*startPlayback\(\{ prefillComplete: true \}\)/,
+  );
   assert.match(runtimeSource, /selected; press Start \/ restart to run/);
   assert.match(
     runtimeSource,

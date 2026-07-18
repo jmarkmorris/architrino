@@ -98,19 +98,15 @@ export async function bootBorgApp({
       historyDepth: seedHistoryDepth,
       coreScale: BORG_INTERACTIVE_DEFAULTS_V1.coreScale,
       pathCount: endpointRows.length,
-      // Batch six 0.05 display steps per process round trip. This keeps the
+      // Batch six 0.05 certified steps per process round trip. This keeps the
       // EOM solver's numerical step unchanged while avoiding protocol cost on
       // every rendered sample interval.
       chunkDuration: 0.3,
       sampleInterval,
-      // Display accepts uncontrolled trajectory error and handles the core
-      // with the fixed binary64 regulator, so the former certification-driven
-      // 0.025 ceiling no longer controls this route.
       initialStep: "0.05",
       minimumStep: "0.0001",
       maximumStep: "0.05",
       useAdaptiveStepGrowth: true,
-      runGrade: "display",
       simulationOuterRadius: displayPlacement.seedingRadius,
       rootTolerance: "1e-3",
       accelerationTolerance: "1e-1",

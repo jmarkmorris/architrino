@@ -31,7 +31,7 @@ test("Borg initial-condition controls start from the accepted manifest values", 
   );
 });
 
-test("Borg interactive physical defaults are independent of run grade", () => {
+test("Borg interactive physical defaults feed the certified runner", () => {
   assert.deepEqual(createBorgInteractiveDefaults(BORG_DATASET_MANIFEST_V1), {
     coupling: 0.0005,
     initialConditionConfig: {

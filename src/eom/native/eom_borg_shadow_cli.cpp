@@ -18,7 +18,7 @@ namespace eom = architrino::eom;
 
 namespace {
 
-constexpr const char* kBorgNativeProtocolMagic = "EOM_BORG_NATIVE_V5";
+constexpr const char* kBorgNativeProtocolMagic = "EOM_BORG_NATIVE_V6";
 
 struct ParsedPath {
   std::string path_id;
@@ -197,35 +197,6 @@ std::vector<std::string> split_tabs(const std::string& line) {
   }
 }
 
-std::vector<std::pair<std::string, std::string>> parse_warning_pairs(
-    const std::string& token) {
-  std::vector<std::pair<std::string, std::string>> pairs;
-  if (token == "none") {
-    return pairs;
-  }
-  std::size_t begin = 0U;
-  while (begin < token.size()) {
-    const std::size_t end = token.find(';', begin);
-    const std::string pair_token = token.substr(
-        begin, end == std::string::npos ? std::string::npos : end - begin);
-    const std::size_t comma = pair_token.find(',');
-    if (comma == std::string::npos || comma == 0U ||
-        comma + 1U >= pair_token.size() ||
-        pair_token.find(',', comma + 1U) != std::string::npos) {
-      throw std::invalid_argument("invalid caustic warning pair provenance");
-    }
-    pairs.emplace_back(
-        pair_token.substr(0U, comma), pair_token.substr(comma + 1U));
-    if (end == std::string::npos) {
-      break;
-    }
-    begin = end + 1U;
-  }
-  std::sort(pairs.begin(), pairs.end());
-  pairs.erase(std::unique(pairs.begin(), pairs.end()), pairs.end());
-  return pairs;
-}
-
 std::size_t parse_size(const std::string& token, const char* label) {
   std::size_t value = 0;
   const auto result = std::from_chars(
@@ -329,7 +300,6 @@ eom::CubicHistorySegment parse_segment(const std::string& line) {
 
 void print_segment(
     const eom::CubicHistorySegment& segment,
-    const std::string& run_grade,
     const std::string& claim_grade) {
   std::cout << "{\"startTime\":\"" << json_escape(segment.t_start_token())
             << "\",\"endTime\":\"" << json_escape(segment.t_end_token())
@@ -353,9 +323,7 @@ void print_segment(
             << json_escape(segment.position_error_token())
             << "\",\"velocityError\":\""
             << json_escape(segment.velocity_error_token())
-            << "\",\"runGrade\":\"" << json_escape(run_grade)
-            << "\",\"evidenceStatus\":\""
-            << (run_grade == "display" ? "display-only" : claim_grade)
+            << "\",\"evidenceStatus\":\"" << json_escape(claim_grade)
             << "\",\"claimGrade\":\"" << json_escape(claim_grade)
             << "\"}";
 }
@@ -376,11 +344,11 @@ void run(
     throw std::invalid_argument("unsupported Borg EOM native protocol");
   }
   const auto run = split_tabs(read_required_line("RUN record"));
-  if (run.size() != 24U || run[0] != "RUN") {
+  if (run.size() != 20U || run[0] != "RUN") {
     throw std::invalid_argument(
-        "invalid RUN record: expected exactly 24 tab-separated fields");
+        "invalid RUN record: expected exactly 20 tab-separated fields");
   }
-  const std::size_t path_count = parse_size(run[23], "path count");
+  const std::size_t path_count = parse_size(run[19], "path count");
   if (path_count == 0U || path_count > 1000000U) {
     throw std::invalid_argument("path count lies outside native protocol envelope");
   }
@@ -455,30 +423,23 @@ void run(
       .initial_step = run[4],
       .minimum_step = run[5],
       .maximum_step = run[6],
-      .field_speed = run[12],
-      .coupling = run[13],
-      .root_tolerance = run[15],
+      .field_speed = run[8],
+      .coupling = run[9],
+      .root_tolerance = run[11],
       .source_normal_floor = "1e-30",
-      .acceleration_tolerance = run[16],
-      .far_field_enclosure_fraction = run[17],
-      .run_grade = run[8],
-      .initial_caustic_warning_count =
-          parse_size(run[9], "prior caustic warning count"),
-      .initial_first_caustic_warning_time = run[10] == "none"
-          ? std::nullopt
-          : std::optional<std::string>{run[10]},
-      .initial_caustic_warning_pairs = parse_warning_pairs(run[11]),
+      .acceleration_tolerance = run[12],
+      .far_field_enclosure_fraction = run[13],
       .chart_policy = "sharp_with_finite_width_fallback",
       .causal_width = "0.2",
-      .core_scale = run[14],
-      .quadrature_tolerance = run[16],
+      .core_scale = run[10],
+      .quadrature_tolerance = run[12],
       .event_impulse_tolerance = "1e-7",
       .event_position_moment_tolerance = "1e-7",
       .regulator_refinement_ratio = "0.5",
       .regulator_convergence_tolerance = "1e-3",
-      .position_tolerance = run[18],
-      .velocity_tolerance = run[19],
-      .correction_tolerance = run[20],
+      .position_tolerance = run[14],
+      .velocity_tolerance = run[15],
+      .correction_tolerance = run[16],
       .root_max_depth = 256,
       .root_max_cells = 500000,
       .quadrature_max_depth = quadrature_max_depth,
@@ -493,10 +454,10 @@ void run(
       .max_step_attempts = 1000,
       .max_rejected_steps = 100,
       .thread_count = 1,
-      .memory_budget_bytes = parse_size(run[22], "memory budget bytes"),
+      .memory_budget_bytes = parse_size(run[18], "memory budget bytes"),
       .use_adaptive_step_growth = parse_bool(run[7], "adaptive step growth"),
   };
-  request.thread_count = parse_size(run[21], "thread count");
+  request.thread_count = parse_size(run[17], "thread count");
   // The traversal tree is an optional pair-selection optimization.  At small
   // Borg scales (16 paths and below) it excludes no pairs and costs more than
   // exhaustive exact coverage, so use the direct certified batch there.
@@ -512,9 +473,8 @@ void run(
   // Step-controller state changes across adaptive chunks but does not change
   // the certified acceleration snapshot at their shared boundary. Keep field,
   // force, tolerance, and reduction controls in the cache key; exclude only
-  // initial/minimum/maximum step, the growth switch, run grade, and cumulative
-  // warning provenance.
-  for (std::size_t index = 12U; index <= 21U; ++index) {
+  // initial/minimum/maximum step and the growth switch.
+  for (std::size_t index = 8U; index <= 17U; ++index) {
     model_key_stream << run[index] << '\n';
   }
   for (const auto& path : parsed_paths) {
@@ -527,39 +487,25 @@ void run(
   bool rebased_incremental_chunk_snapshot = false;
   if (incremental_cache != nullptr && incremental_cache->has_value() &&
       (*incremental_cache)->model_key == model_key &&
-      ((request.run_grade == "certified" &&
-        (*incremental_cache)->snapshot.status == "certified_complete") ||
-       (request.run_grade == "display" &&
-        (*incremental_cache)->snapshot.status == "display_evaluated")) &&
+      (*incremental_cache)->snapshot.status == "certified_complete" &&
       (*incremental_cache)->snapshot.reception_time == request.start_time) {
     reusable_snapshot = &(*incremental_cache)->snapshot;
-    const bool exact_fingerprints = request.run_grade == "display"
-        ? std::all_of(
-              reusable_snapshot->display_history_fingerprints.begin(),
-              reusable_snapshot->display_history_fingerprints.end(),
-              [&](const auto& fingerprint) {
-                const auto* path = parsed_path(parsed_paths, fingerprint.path_id);
-                return path != nullptr && fingerprint.fingerprint ==
-                    path->history.provenance_fingerprint();
-              })
-        : std::all_of(
-              reusable_snapshot->root_certificates.begin(),
-              reusable_snapshot->root_certificates.end(), [&](const auto& row) {
-                const auto* receiver = parsed_path(
-                    parsed_paths, row.receiver_path_id);
-                const auto* source = parsed_path(
-                    parsed_paths, row.source_path_id);
-                return receiver != nullptr && source != nullptr &&
-                    row.certificate.receiver_history_fingerprint ==
-                        receiver->history.provenance_fingerprint() &&
-                    row.certificate.source_history_fingerprint ==
-                        source->history.provenance_fingerprint();
-              });
+    const bool exact_fingerprints = std::all_of(
+        reusable_snapshot->root_certificates.begin(),
+        reusable_snapshot->root_certificates.end(), [&](const auto& row) {
+          const auto* receiver = parsed_path(
+              parsed_paths, row.receiver_path_id);
+          const auto* source = parsed_path(
+              parsed_paths, row.source_path_id);
+          return receiver != nullptr && source != nullptr &&
+              row.certificate.receiver_history_fingerprint ==
+                  receiver->history.provenance_fingerprint() &&
+              row.certificate.source_history_fingerprint ==
+                  source->history.provenance_fingerprint();
+        });
     if (!exact_fingerprints) {
-      if (request.run_grade == "certified") {
-        rebased_snapshot = rebase_trimmed_snapshot(
-            **incremental_cache, parsed_paths);
-      }
+      rebased_snapshot = rebase_trimmed_snapshot(
+          **incremental_cache, parsed_paths);
       reusable_snapshot = rebased_snapshot.has_value()
           ? &*rebased_snapshot
           : nullptr;
@@ -600,56 +546,9 @@ void run(
   std::cout << "{\"schema\":\"eom_borg_native_response/v0\",\"status\":\""
             << json_escape(result.status) << "\",\"evidenceStatus\":\""
             << json_escape(result.evidence_status)
-            << "\",\"runGrade\":\"" << json_escape(result.run_grade);
-  if (result.run_grade == "display") {
-    std::cout << "\",\"coreScale\":\"" << json_escape(request.core_scale);
-  }
-  std::cout << "\",\"claimGrade\":\""
-            << (result.run_grade == "display"
-                    ? "display-only"
-                    : json_escape(result.evidence_status))
-            << "\",\"causticWarningCount\":"
-            << result.caustic_warning_count
-            << ",\"firstCausticWarningTime\":";
-  if (result.first_caustic_warning_time.has_value()) {
-    std::cout << '"' << json_escape(*result.first_caustic_warning_time) << '"';
-  } else {
-    std::cout << "null";
-  }
-  std::cout << ",\"causticWarnings\":[";
-  for (std::size_t warning_index = 0;
-       warning_index < result.caustic_warnings.size(); ++warning_index) {
-    if (warning_index > 0U) {
-      std::cout << ',';
-    }
-    const auto& warning = result.caustic_warnings[warning_index];
-    std::cout << "{\"receiverPathId\":\""
-              << json_escape(warning.receiver_path_id)
-              << "\",\"sourcePathId\":\""
-              << json_escape(warning.source_path_id)
-              << "\",\"receptionLower\":\""
-              << json_escape(warning.reception_lower)
-              << "\",\"receptionUpper\":\""
-              << json_escape(warning.reception_upper)
-              << "\",\"failedRowId\":\""
-              << json_escape(warning.failed_row_id)
-              << "\",\"failureCode\":\""
-              << json_escape(warning.failure_code) << "\"}";
-  }
-  std::cout << "]"
-            << ",\"causticWarningPairs\":[";
-  for (std::size_t pair_index = 0U;
-       pair_index < result.caustic_warning_pairs.size(); ++pair_index) {
-    if (pair_index > 0U) {
-      std::cout << ',';
-    }
-    std::cout << "[\""
-              << json_escape(result.caustic_warning_pairs[pair_index].first)
-              << "\",\""
-              << json_escape(result.caustic_warning_pairs[pair_index].second)
-              << "\"]";
-  }
-  std::cout << "]"
+            << "\",\"coreScale\":\"" << json_escape(request.core_scale)
+            << "\",\"claimGrade\":\""
+            << json_escape(result.evidence_status) << "\""
             << ",\"acceptedEndTime\":\""
             << json_escape(result.accepted_end_time)
             << "\",\"acceptedStepCount\":" << result.accepted_step_count
@@ -775,23 +674,6 @@ void run(
               << (diagnostic_snapshot != nullptr
                       ? diagnostic_snapshot->enclosed_error_width_max_receiver
                       : 0.0);
-    if (result.run_grade == "display") {
-      std::cout << ",\"emissionToCurrentSourceRatioMax\":"
-                << (diagnostic_snapshot != nullptr
-                        ? diagnostic_snapshot
-                              ->display_emission_to_current_source_ratio_max
-                        : 0.0)
-                << ",\"emissionToCurrentSourceRatioMean\":"
-                << (diagnostic_snapshot != nullptr
-                        ? diagnostic_snapshot
-                              ->display_emission_to_current_source_ratio_mean
-                        : 0.0)
-                << ",\"emissionToCurrentSourceRatioSampleCount\":"
-                << (diagnostic_snapshot != nullptr
-                        ? diagnostic_snapshot
-                              ->display_emission_to_current_source_ratio_sample_count
-                        : 0U);
-    }
     std::cout << ",\"traversalVisitedNodes\":"
               << (diagnostic_snapshot != nullptr &&
                           diagnostic_snapshot->traversal_certificate.has_value()
@@ -1226,10 +1108,7 @@ void run(
       }
       print_segment(
           published.history.segments()[segment_index],
-          result.run_grade,
-          result.run_grade == "display"
-              ? "display-only"
-              : result.evidence_status);
+          result.evidence_status);
     }
     std::cout << "]}";
   }

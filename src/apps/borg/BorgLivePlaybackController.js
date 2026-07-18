@@ -6,6 +6,8 @@ export const BORG_PLAYBACK_PRODUCTION_SAFETY_FACTOR = 0.8;
 export const BORG_PLAYBACK_LOW_LEAD_SECONDS = 1;
 export const BORG_PLAYBACK_HIGH_LEAD_SECONDS = 2;
 export const BORG_MAX_VISUAL_CATCH_UP_FRAME_SETS = 2;
+export const BORG_PLAYBACK_PREFILL_MAX_WALL_MS = 30000;
+export const BORG_PLAYBACK_PREFILL_RETENTION_FRACTION = 0.8;
 
 export function updateBorgMeasuredProductionRate({
   previousRate = null,
@@ -44,6 +46,74 @@ export function getBorgAdaptivePlaybackRate({
         BORG_MAX_REALTIME_PLAYBACK_RATE,
         production * BORG_PLAYBACK_PRODUCTION_SAFETY_FACTOR,
       );
+}
+
+export function getBorgInFlightProtectedPlaybackRate({
+  adaptiveRate,
+  remainingFrameSetCount,
+  sampleInterval,
+  chunkInFlight = false,
+  chunkElapsedMs = 0,
+  previousChunkWallTimeMs = null,
+} = {}) {
+  const baseRate = Math.min(
+    BORG_MAX_REALTIME_PLAYBACK_RATE,
+    positiveNumber(adaptiveRate, BORG_MAX_REALTIME_PLAYBACK_RATE),
+  );
+  if (!chunkInFlight) {
+    return baseRate;
+  }
+  const remaining = Math.max(
+    0,
+    Number(remainingFrameSetCount) || 0,
+  );
+  if (remaining === 0) {
+    return baseRate;
+  }
+  const interval = positiveNumber(sampleInterval, 0.01);
+  const elapsedSeconds = Math.max(0, Number(chunkElapsedMs) || 0) / 1000;
+  const previousSeconds = Math.max(
+    0,
+    Number(previousChunkWallTimeMs) || 0,
+  ) / 1000;
+  // Once the previous chunk's wall time has passed, grow the protection
+  // horizon with the still-running request. The resulting rate is
+  // proportional to remaining lead, so playback approaches the buffer edge
+  // instead of consuming the final interval and freezing there.
+  const protectionHorizonSeconds = Math.max(
+    1,
+    previousSeconds,
+    elapsedSeconds + 1,
+  );
+  const leadLimitedRate =
+    (remaining * interval) / protectionHorizonSeconds;
+  return Math.min(baseRate, positiveNumber(leadLimitedRate, baseRate));
+}
+
+export function getBorgPlaybackPrefillTargetFrameSetCount({
+  playbackRate,
+  sampleInterval,
+  maximumRetainedFrameSetCount,
+  maximumWallMs = BORG_PLAYBACK_PREFILL_MAX_WALL_MS,
+} = {}) {
+  const rate = Math.min(
+    BORG_MAX_REALTIME_PLAYBACK_RATE,
+    positiveNumber(playbackRate, BORG_MAX_REALTIME_PLAYBACK_RATE),
+  );
+  const interval = positiveNumber(sampleInterval, 0.01);
+  const retained = Math.max(
+    1,
+    Math.floor(Number(maximumRetainedFrameSetCount) || 1),
+  );
+  const retentionSafeTarget = Math.max(
+    1,
+    Math.floor(retained * BORG_PLAYBACK_PREFILL_RETENTION_FRACTION),
+  );
+  const wallTimeTarget = Math.max(
+    1,
+    Math.ceil((Math.max(0, Number(maximumWallMs) || 0) / 1000) * rate / interval),
+  );
+  return Math.min(retentionSafeTarget, wallTimeTarget);
 }
 
 export function getBorgPlaybackLeadWindow({

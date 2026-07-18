@@ -1,8 +1,8 @@
 import { spawn, spawnSync } from "node:child_process";
 
 export const BORG_NATIVE_EOM_PROCESS_CLIENT_VERSION =
-  "borg-native-eom-process-client.v5";
-export const BORG_NATIVE_EOM_PROTOCOL_MAGIC = "EOM_BORG_NATIVE_V5";
+  "borg-native-eom-process-client.v6";
+export const BORG_NATIVE_EOM_PROTOCOL_MAGIC = "EOM_BORG_NATIVE_V6";
 
 export function createBorgNativeEomProcessClient({
   binaryPath,
@@ -203,39 +203,17 @@ export function encodeNativeRequest(request, { cachedHistories = null } = {}) {
   }
   const controls = request.numericalControls ?? {};
   const model = request.modelControls ?? {};
-  const provenance = request.provenance ?? {};
   if (controls.maximumStep == null ||
       controls.farFieldEnclosureFraction == null ||
       model.coreScale == null ||
       request.resourceEnvelope?.memoryBudgetBytes == null ||
-      typeof controls.useAdaptiveStepGrowth !== "boolean" ||
-      !["certified", "display"].includes(controls.runGrade) ||
-      !Number.isInteger(provenance.causticWarningCount) ||
-      provenance.causticWarningCount < 0 ||
-      !Array.isArray(provenance.causticWarningPairs) ||
-      (provenance.causticWarningCount === 0) !==
-        (provenance.firstCausticWarningTime == null) ||
-      (provenance.causticWarningCount === 0) !==
-        (provenance.causticWarningPairs.length === 0)) {
+      typeof controls.useAdaptiveStepGrowth !== "boolean") {
     throw new TypeError(
       "EOM process request must explicitly supply maximumStep, " +
       "useAdaptiveStepGrowth, farFieldEnclosureFraction, coreScale, " +
-      "memoryBudgetBytes, runGrade, and cumulative caustic warning provenance.",
+      "and memoryBudgetBytes.",
     );
   }
-  if (controls.runGrade === "certified" && provenance.causticWarningCount !== 0) {
-    throw new TypeError("Certified EOM requests cannot carry display-grade warnings.");
-  }
-  const warningPairToken = provenance.causticWarningPairs.length === 0
-    ? "none"
-    : provenance.causticWarningPairs.map((pair) => {
-        if (!Array.isArray(pair) || pair.length !== 2 ||
-            pair.some((pathId) => typeof pathId !== "string" ||
-              pathId.length === 0 || /[,;\t\r\n]/u.test(pathId))) {
-          throw new TypeError("EOM caustic warning pairs require two protocol-safe path ids.");
-        }
-        return `${pair[0]},${pair[1]}`;
-      }).join(";");
   const lines = [
     BORG_NATIVE_EOM_PROTOCOL_MAGIC,
     tabRecord([
@@ -247,10 +225,6 @@ export function encodeNativeRequest(request, { cachedHistories = null } = {}) {
       controls.minimumStep,
       controls.maximumStep,
       controls.useAdaptiveStepGrowth ? "1" : "0",
-      controls.runGrade,
-      provenance.causticWarningCount,
-      provenance.firstCausticWarningTime ?? "none",
-      warningPairToken,
       model.fieldSpeed,
       model.coupling,
       model.coreScale,
@@ -356,13 +330,6 @@ function mergePublishedExtensions(request, response) {
         !Array.isArray(extension.segments)) {
       throw new Error("EOM response reordered or omitted a path extension.");
     }
-    if (response.runGrade === "display" && extension.segments.some(
-      (segment) => segment.runGrade !== "display" ||
-        segment.claimGrade !== "display-only" ||
-        segment.evidenceStatus !== "display-only",
-    )) {
-      throw new Error("Display EOM response omitted its segment-grade marker.");
-    }
     return Object.freeze({
       ...history,
       coverageEnd: response.acceptedEndTime,
@@ -378,7 +345,6 @@ function mergePublishedExtensions(request, response) {
         acceptedStepCount: response.acceptedStepCount,
         rejectedStepCount: response.rejectedStepCount,
         stepFailures: response.stepFailures ?? [],
-        causticWarnings: response.causticWarnings ?? [],
       }),
     ]),
   });

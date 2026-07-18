@@ -1552,3 +1552,35 @@ This file holds dated decisions, implementation status, validation results, fail
   FWC, interval, MPFR, or cell certificate; a named fatal breakdown publishes;
   the stated controls halt early; or rerunning the profile yields a different
   rate outside ordinary host-load variation.
+
+## 2026-07-17 — Certified-only Borg evolution
+
+- **Operator decision:** Borg has one numerical evolution route: certified
+  retained-history evolution. The binary64 display evaluator, warning-based
+  caustic continuation, run-grade control, alternate provenance, and UI toggle
+  are removed. Playback buffering, measured slow-motion playback, live-history
+  retention, and diagnostics remain app presentation machinery and do not
+  alter EOM-solver acceptance.
+- **Derived controller:** the residual-scaled correction retry
+  $s_c=\min(1/2,0.9\sqrt{\tau_c/R_c})$ now applies to certified
+  `coupled_correction_failed` retries. Every correction, local-error, root,
+  finite-width, and atomic-publication row remains authoritative. Missing or
+  unusable residuals fall back to exact halving.
+- **Forward-only protocol:** `EOM_BORG_NATIVE_V6` has one exact 20-field `RUN`
+  record and one exact six-field `PATH` record. No run-grade field, warning
+  continuation ledger, alternate parser, or multi-version path remains.
+- **Measured certified parity control:** the same smooth one-path request was
+  run through a clean `HEAD` build of the V5 certified route and the rebuilt V6
+  route. After removing only the deleted run-grade metadata and nondeterministic
+  wall timers, every numerical token, certificate row, published cubic, error
+  radius, accepted-step count, and controller-height token was bit-identical.
+- **Measured validation:** all 149 EOM Python tests and all 85 Borg JavaScript
+  tests pass on the rebuilt local targets. The complete C++ target set builds,
+  and the content, scene-graph, receiver-normal, frequency-triplet, polarity,
+  and animator pre-commit validators pass.
+- Claim grades: the single-route architecture, unchanged acceptance authority,
+  and protocol field count are `derived` from the implementation; the build and
+  validation results are `measured` on the local checkout. Falsifiers: any
+  request selects a second numerical route, a rejected candidate is published,
+  a non-20-field `RUN` record is accepted, the retry scale differs from the
+  stated formula for its certified control, or a named validation fails.

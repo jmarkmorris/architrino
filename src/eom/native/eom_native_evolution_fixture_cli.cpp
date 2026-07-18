@@ -45,21 +45,6 @@ eom::RetainedHistory history(
               x, {"0", "0", "0", "0"}, {"0", "0", "0", "0"}})});
 }
 
-eom::RetainedHistory static_history_3d(
-    const std::string& id,
-    const std::string& start,
-    const std::string& end,
-    const std::array<std::string, 3>& position) {
-  return eom::RetainedHistory(
-      id,
-      {eom::CubicHistorySegment(
-          start, end,
-          eom::CubicCoefficientTokens{{
-              {position[0], "0", "0", "0"},
-              {position[1], "0", "0", "0"},
-              {position[2], "0", "0", "0"}}})});
-}
-
 eom::NativeCoupledEvolutionRequest request(
     const std::string& run_id,
     std::vector<eom::NativeCoupledPathInput> paths,
@@ -1489,283 +1474,34 @@ void print_far_field_dispersal_timing() {
             << disabled.timing.total_wall_seconds << "}\n";
 }
 
-void print_display_fast_caustic_path() {
-  auto display_request = request(
-      "root-event-display-fast-path",
-      {{"receiver", "1",
-        history("display-event-receiver", "2.7", {"0", "0", "0", "0"})},
-       {"source", "1",
-        history("display-event-source", "2.7", {"5", "-4", "1", "0"})}},
-      "2.7", "2.8", "0.1", "0.1", "1", "1", "1e-7", "1e-30");
-  display_request.run_grade = "display";
-  display_request.chart_policy = "sharp_with_finite_width_fallback";
-  display_request.causal_width = "0.25";
-  display_request.core_scale = "0.2";
-  display_request.acceleration_tolerance = "5e-3";
-  display_request.quadrature_tolerance = "5e-3";
-  display_request.event_impulse_tolerance = "1e-20";
-  display_request.regulator_convergence_tolerance = "1e-20";
-  display_request.regulator_refinement_levels = 3;
-  display_request.quadrature_max_depth = 28;
-  display_request.quadrature_max_cells = 200000;
-  display_request.event_max_depth = 1;
-  display_request.event_max_cells = 1;
-  std::vector<eom::NativePublishedPath> histories;
-  for (const auto& path : display_request.paths) {
-    histories.push_back({path.path_id, path.history});
-  }
-  const auto step = eom::certify_native_atomic_coupled_step(
-      display_request, histories, 0, "2.7", "2.8");
-  auto correction_request = request(
-      "display-ordinary-correction-rejection",
-      {{"a", "1",
-        history("display-correction-a", "5", {"0", "0", "0", "0"})},
-       {"b", "-1",
-        history("display-correction-b", "5", {"2", "0", "0", "0"})}},
-      "5", "5.01", "0.01", "0.01", "1e-5", "1e-5", "1e-50", "1", 1);
-  correction_request.run_grade = "display";
-  correction_request.chart_policy = "sharp_with_finite_width_fallback";
-  correction_request.adjudicated_finite_width_pairs = {
-      {"a", "b"}, {"b", "a"}};
-  std::vector<eom::NativePublishedPath> correction_histories;
-  for (const auto& path : correction_request.paths) {
-    correction_histories.push_back({path.path_id, path.history});
-  }
-  const auto correction_step = eom::certify_native_atomic_coupled_step(
-      correction_request, correction_histories, 0, "5", "5.01");
-  const auto correction_evolution =
-      eom::evolve_native_coupled_histories(correction_request);
-  auto scaled_correction_request = request(
-      "display-scaled-correction-retry",
+void print_certified_correction_retry() {
+  auto retry_request = request(
+      "certified-residual-scaled-correction-retry",
       {{"scale-a", "1",
-        history("display-scaled-correction-a", "5", {"0", "0", "0", "0"})},
+        history("certified-scaled-correction-a", "5", {"0", "0", "0", "0"})},
        {"scale-b", "1",
-        history("display-scaled-correction-b", "5", {"2", "0", "0", "0"})}},
+        history("certified-scaled-correction-b", "5", {"2", "0", "0", "0"})}},
       "5", "5.04", "0.04", "0.000001", "1", "1", "1e-7", "1", 1);
-  scaled_correction_request.run_grade = "display";
-  scaled_correction_request.max_step_attempts = 2;
-  const auto scaled_display_evolution =
-      eom::evolve_native_coupled_histories(scaled_correction_request);
-  scaled_correction_request.run_id = "certified-scaled-correction-control";
-  scaled_correction_request.run_grade = "certified";
-  const auto scaled_certified_evolution =
-      eom::evolve_native_coupled_histories(scaled_correction_request);
-  if (scaled_display_evolution.steps.size() < 2U ||
-      scaled_certified_evolution.steps.size() < 2U) {
+  retry_request.max_step_attempts = 2;
+  const auto evolution = eom::evolve_native_coupled_histories(retry_request);
+  if (evolution.steps.size() < 2U) {
     throw std::runtime_error(
-        "scaled correction retry control did not produce two attempts");
+        "certified correction retry control did not produce two attempts");
   }
   const auto attempted_width = [](const eom::NativeAtomicStepCertificate& row) {
     return std::stod(row.attempted_end) - std::stod(row.attempted_start);
   };
-  const auto& display_first_retry = scaled_display_evolution.steps[0];
-  const auto& display_second_retry = scaled_display_evolution.steps[1];
-  const auto& certified_first_retry = scaled_certified_evolution.steps[0];
-  const auto& certified_second_retry = scaled_certified_evolution.steps[1];
-  const eom::RetainedHistory unresolved_receiver(
-      "display-unresolved-receiver",
-      {eom::CubicHistorySegment(
-          "0", "1",
-          eom::CubicCoefficientTokens{
-              std::array<std::string, 4>{"0.5", "0", "0", "0"},
-              std::array<std::string, 4>{"0", "0", "0", "0"},
-              std::array<std::string, 4>{"0", "0", "0", "0"}})});
-  const eom::RetainedHistory unresolved_source(
-      "display-unresolved-source",
-      {eom::CubicHistorySegment(
-          "0", "1",
-          eom::CubicCoefficientTokens{
-              std::array<std::string, 4>{"0", "0", "0", "0"},
-              std::array<std::string, 4>{"0", "0", "0", "0"},
-              std::array<std::string, 4>{"0", "0", "0", "0"}},
-          "0.001", "0")});
-  auto ordinary_root_request = request(
-      "display-ordinary-root-rejection",
-      {{"root-receiver", "1", unresolved_receiver},
-       {"root-source", "1", unresolved_source}},
-      "1", "1.01", "0.01", "0.01");
-  ordinary_root_request.run_grade = "display";
-  ordinary_root_request.chart_policy =
-      "sharp_with_finite_width_fallback";
-  ordinary_root_request.root_tolerance = "0.001";
-  const auto ordinary_root_evolution =
-      eom::evolve_native_coupled_histories(ordinary_root_request);
-  ordinary_root_request.run_id = "certified-ordinary-root-rejection";
-  ordinary_root_request.run_grade = "certified";
-  const auto certified_ordinary_root_evolution =
-      eom::evolve_native_coupled_histories(ordinary_root_request);
-  std::size_t event_impulse_count = 0;
-  std::size_t regulator_certificate_count = 0;
-  for (const auto& substep : step.substeps) {
-    event_impulse_count += substep.event_impulses.size();
-    regulator_certificate_count +=
-        substep.regulator_convergence_certificates.size();
-  }
-  std::cout << "{\"status\":\"" << step.status
-            << "\",\"failure_code\":\"" << step.failure_code
-            << "\",\"publication_atomic\":"
-            << (step.publication_atomic ? "true" : "false")
-            << ",\"event_impulse_count\":" << event_impulse_count
-            << ",\"regulator_certificate_count\":"
-            << regulator_certificate_count
-            << ",\"ordinary_correction_status\":\""
-            << correction_step.status
-            << "\",\"ordinary_correction_failure_code\":\""
-            << correction_step.failure_code << "\""
-            << ",\"ordinary_evolution_warning_count\":"
-            << correction_evolution.caustic_warning_count
-            << ",\"ordinary_evolution_warning_pair_count\":"
-            << correction_evolution.caustic_warning_pairs.size()
-            << ",\"ordinary_correction_halt_code\":\""
-            << correction_evolution.halt_code << "\""
-            << ",\"scaled_display_first_failure_code\":\""
-            << display_first_retry.failure_code << "\""
-            << ",\"scaled_display_first_residual\":"
-            << display_first_retry.correction_residual.value_or(-1.0)
-            << ",\"scaled_display_retry_scale\":"
-            << display_first_retry.correction_retry_scale
-            << ",\"scaled_display_second_width\":"
-            << attempted_width(display_second_retry)
-            << ",\"scaled_certified_first_failure_code\":\""
-            << certified_first_retry.failure_code << "\""
-            << ",\"scaled_certified_retry_scale\":"
-            << certified_first_retry.correction_retry_scale
-            << ",\"scaled_certified_second_width\":"
-            << attempted_width(certified_second_retry)
-            << ",\"scaled_display_publication_atomic\":"
-            << (display_first_retry.publication_atomic ? "true" : "false")
-            << ",\"scaled_certified_publication_atomic\":"
-            << (certified_first_retry.publication_atomic ? "true" : "false")
-            << ",\"ordinary_root_display_halt_code\":\""
-            << ordinary_root_evolution.halt_code << "\""
-            << ",\"ordinary_root_certified_halt_code\":\""
-            << certified_ordinary_root_evolution.halt_code << "\""
-            << ",\"warning_count\":" << step.caustic_warnings.size()
-            << ",\"warnings\":[";
-  for (std::size_t index = 0; index < step.caustic_warnings.size(); ++index) {
-    if (index > 0) std::cout << ',';
-    const auto& warning = step.caustic_warnings[index];
-    std::cout << "{\"receiver_path_id\":\""
-              << warning.receiver_path_id
-              << "\",\"source_path_id\":\""
-              << warning.source_path_id
-              << "\",\"reception_lower\":\""
-              << warning.reception_lower
-              << "\",\"reception_upper\":\""
-              << warning.reception_upper
-              << "\",\"failed_row_id\":\""
-              << warning.failed_row_id
-              << "\",\"failure_code\":\""
-              << warning.failure_code << "\"}";
-  }
-  std::cout << "]}\n";
-}
-
-void print_display_smooth_comparison() {
-  const std::array<std::array<std::string, 3>, 6> positions{{
-      {"0.7", "0", "0"},
-      {"-0.7", "0", "0"},
-      {"0", "0.7", "0"},
-      {"0", "-0.7", "0"},
-      {"0", "0", "0.7"},
-      {"0", "0", "-0.7"},
-  }};
-  std::vector<eom::NativeCoupledPathInput> paths;
-  paths.reserve(positions.size());
-  for (std::size_t index = 0; index < positions.size(); ++index) {
-    const std::string path_id = "smooth-" + std::to_string(index);
-    paths.push_back({
-        path_id,
-        index % 2U == 0U ? "1" : "-1",
-        static_history_3d(
-            path_id + "-history", "-3", "0", positions[index]),
-    });
-  }
-
-  auto certified_request = request(
-      "display-smooth-certified", paths, "0", "1", "0.05", "0.05",
-      "1e-6", "1e-6", "1", "1e-4");
-  certified_request.chart_policy = "sharp_with_finite_width_fallback";
-  certified_request.core_scale = "0.02";
-  certified_request.causal_width = "0.02";
-  certified_request.far_field_enclosure_fraction = "0";
-  auto display_request = certified_request;
-  display_request.run_id = "display-smooth-display";
-  display_request.run_grade = "display";
-  display_request.display_root_relative_tolerance = "1e-9";
-
-  const auto certified =
-      eom::evolve_native_coupled_histories(certified_request);
-  const auto display = eom::evolve_native_coupled_histories(display_request);
-  if (certified.status != "completed" || display.status != "completed" ||
-      certified.histories.size() != display.histories.size()) {
-    throw std::runtime_error(
-        "smooth display comparison did not complete: certified=" +
-        certified.status + "/" + certified.halt_code + ", display=" +
-        display.status + "/" + display.halt_code +
-        (display.steps.empty()
-             ? ""
-             : ", last_step=" + display.steps.back().failure_code +
-                   ", end=" + display.steps.back().attempted_end +
-                   ", correction=" +
-                   std::to_string(
-                       display.steps.back().correction_residual.value_or(-1.0))));
-  }
-
-  double maximum_position_difference = 0.0;
-  double sampled_minimum_separation =
-      std::numeric_limits<double>::infinity();
-  for (std::size_t index = 0; index < certified.histories.size(); ++index) {
-    const auto certified_position =
-        certified.histories[index].history.nominal_position(1.0);
-    const auto display_position =
-        display.histories[index].history.nominal_position(1.0);
-    double squared_difference = 0.0;
-    for (std::size_t axis = 0; axis < 3U; ++axis) {
-      const double difference = display_position[axis] - certified_position[axis];
-      squared_difference += difference * difference;
-    }
-    maximum_position_difference = std::max(
-        maximum_position_difference, std::sqrt(squared_difference));
-  }
-  for (std::size_t sample = 0; sample <= 100U; ++sample) {
-    const double time = static_cast<double>(sample) / 100.0;
-    for (std::size_t left = 0; left < certified.histories.size(); ++left) {
-      const auto left_position =
-          certified.histories[left].history.nominal_position(time);
-      for (std::size_t right = left + 1U;
-           right < certified.histories.size(); ++right) {
-        const auto right_position =
-            certified.histories[right].history.nominal_position(time);
-        double squared_separation = 0.0;
-        for (std::size_t axis = 0; axis < 3U; ++axis) {
-          const double difference =
-              left_position[axis] - right_position[axis];
-          squared_separation += difference * difference;
-        }
-        sampled_minimum_separation = std::min(
-            sampled_minimum_separation, std::sqrt(squared_separation));
-      }
-    }
-  }
-
+  const auto& first = evolution.steps[0];
+  const auto& second = evolution.steps[1];
   std::cout << std::setprecision(17)
-            << "{\"schema\":\"eom_display_smooth_comparison/v0\""
-            << ",\"claim_grade\":\"measured\""
-            << ",\"certified_status\":\"" << certified.status << "\""
-            << ",\"display_status\":\"" << display.status << "\""
-            << ",\"common_time\":1"
-            << ",\"envelope_radius\":1"
-            << ",\"core_separation\":0.02"
-            << ",\"sample_spacing\":0.01"
-            << ",\"sampled_minimum_separation\":"
-            << sampled_minimum_separation
-            << ",\"maximum_position_difference\":"
-            << maximum_position_difference
-            << ",\"difference_as_envelope_fraction\":"
-            << maximum_position_difference
-            << ",\"display_caustic_warning_count\":"
-            << display.caustic_warning_count << "}\n";
+            << "{\"schema\":\"eom_certified_correction_retry/v0\""
+            << ",\"first_failure_code\":\"" << first.failure_code << "\""
+            << ",\"first_residual\":"
+            << first.correction_residual.value_or(-1.0)
+            << ",\"retry_scale\":" << first.correction_retry_scale
+            << ",\"second_width\":" << attempted_width(second)
+            << ",\"publication_atomic\":"
+            << (first.publication_atomic ? "true" : "false") << "}\n";
 }
 
 }  // namespace
@@ -1775,21 +1511,17 @@ int main(int argc, char** argv) {
     if (argc != 2 ||
         (std::string(argv[1]) != "all" &&
          std::string(argv[1]) != "far-field-dispersal" &&
-         std::string(argv[1]) != "display-fast-caustic" &&
-         std::string(argv[1]) != "display-smooth-comparison")) {
+         std::string(argv[1]) != "certified-correction-retry")) {
       std::cerr << "usage: eom_native_evolution_fixture_cli "
-                   "all|far-field-dispersal|display-fast-caustic|"
-                   "display-smooth-comparison\n";
+                   "all|far-field-dispersal|certified-correction-retry\n";
       return EXIT_FAILURE;
     }
     if (std::string(argv[1]) == "all") {
       print_all();
     } else if (std::string(argv[1]) == "far-field-dispersal") {
       print_far_field_dispersal_timing();
-    } else if (std::string(argv[1]) == "display-fast-caustic") {
-      print_display_fast_caustic_path();
     } else {
-      print_display_smooth_comparison();
+      print_certified_correction_retry();
     }
     return EXIT_SUCCESS;
   } catch (const std::exception& error) {

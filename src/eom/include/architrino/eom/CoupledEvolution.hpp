@@ -2,7 +2,6 @@
 
 #include "architrino/eom/CertifiedAcceleration.hpp"
 #include "architrino/eom/CertifiedTraversal.hpp"
-#include "architrino/eom/DisplayEvaluation.hpp"
 #include "architrino/eom/ExactPairBatch.hpp"
 #include "architrino/eom/History.hpp"
 
@@ -46,24 +45,11 @@ struct NativeCoupledEvolutionRequest {
   std::string field_speed;
   std::string coupling;
   std::string root_tolerance = "1e-12";
-  // Display-only binary64 root solve tolerance. This is intentionally
-  // independent of the certified root-enclosure tolerance and is not an
-  // evidence bound.
-  std::string display_root_relative_tolerance = "1e-9";
   std::string source_normal_floor = "1e-30";
   std::string acceleration_tolerance = "1e-9";
   // Fraction of the acceleration component-width tolerance reserved for
   // certified per-pair far-field enclosures. Zero disables the route.
   std::string far_field_enclosure_fraction = "0";
-  // `certified` preserves every proof and finite-width publication obligation.
-  // `display` selects the separate binary64 evaluator and is permanently
-  // non-evidence; it does not construct or consume certification artifacts.
-  std::string run_grade = "certified";
-  // Cumulative display-run warning state carried across atomic Borg chunks.
-  std::size_t initial_caustic_warning_count = 0;
-  std::optional<std::string> initial_first_caustic_warning_time;
-  std::vector<std::pair<std::string, std::string>>
-      initial_caustic_warning_pairs;
   std::string chart_policy = "sharp";
   std::string causal_width = "0.2";
   std::string core_scale = "0.2";
@@ -278,14 +264,6 @@ struct NativeAccelerationSnapshotCertificate {
       far_field_enclosure_certificates;
   NativeCausalPrefixExclusionCertificate causal_prefix_exclusion;
   std::vector<NativeSnapshotRootRow> root_certificates;
-  // Uncertified display bookkeeping only. These fields are empty on the
-  // certified route and never serve as root or snapshot certificates.
-  std::vector<NativeHistoryFingerprint> display_history_fingerprints;
-  std::vector<DisplayPairRootCount> display_pair_root_counts;
-  std::vector<std::pair<std::string, std::string>> display_regulated_pairs;
-  double display_emission_to_current_source_ratio_max = 0.0;
-  double display_emission_to_current_source_ratio_mean = 0.0;
-  std::size_t display_emission_to_current_source_ratio_sample_count = 0U;
   NativeAccelerationReconstructionCertificate acceleration;
   NativeSnapshotTiming timing;
 };
@@ -348,16 +326,6 @@ struct NativePinnedFoldTemporalStepCertificate {
   bool coincident_endpoint_excluded;
   std::string start_acceleration_chart;
   std::string temporal_rule;
-};
-
-struct NativeCausticWarning {
-  std::string schema = "eom_native_caustic_warning/v0";
-  std::string receiver_path_id;
-  std::string source_path_id;
-  std::string reception_lower;
-  std::string reception_upper;
-  std::string failed_row_id;
-  std::string failure_code;
 };
 
 struct NativeCommonDomainChartCertificate {
@@ -436,7 +404,6 @@ struct NativeCorrectedSubstepCertificate {
   std::vector<NativeFiniteWidthStateCertificate>
       finite_width_state_certificates;
   std::vector<NativeHistoryFingerprint> candidate_history_fingerprints;
-  std::vector<NativeCausticWarning> caustic_warnings;
   NativeCorrectedSubstepTiming timing;
 };
 
@@ -486,7 +453,6 @@ struct NativeAtomicStepCertificate {
   std::vector<NativePathLocalError> local_errors;
   std::vector<NativePathLocalError> multirate_synchronization_errors;
   std::vector<std::string> multirate_coarse_path_ids;
-  std::vector<NativeCausticWarning> caustic_warnings;
   bool certificate_cost_probe = false;
   std::size_t certificate_cost_deferred_pair_count = 0;
   std::size_t certificate_cost_mpfr_attempt_count = 0;
@@ -547,11 +513,6 @@ struct NativeCoupledEvolutionCertificate {
   std::size_t controller_certificate_cost_cooldown_remaining = 0;
   std::string halt_code;
   std::string evidence_status;
-  std::string run_grade;
-  std::vector<NativeCausticWarning> caustic_warnings;
-  std::size_t caustic_warning_count = 0;
-  std::optional<std::string> first_caustic_warning_time;
-  std::vector<std::pair<std::string, std::string>> caustic_warning_pairs;
   std::uint64_t memory_budget_bytes = 0;
   std::uint64_t memory_estimate_bytes = 0;
   bool all_steps_atomic;

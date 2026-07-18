@@ -559,8 +559,7 @@
       .borg-eom-control input,
       .borg-initial-control input,
       .borg-eom-action,
-      .borg-initial-action,
-      .borg-run-grade-toggle {
+      .borg-initial-action {
         min-width: 0;
         height: 34px;
         border: 1px solid rgba(139, 164, 126, 0.34);
@@ -613,24 +612,8 @@
       }
 
       .borg-initial-action,
-      .borg-initial-feedback,
-      .borg-run-grade-toggle {
+      .borg-initial-feedback {
         grid-column: 1 / -1;
-      }
-
-      .borg-run-grade-toggle {
-        cursor: pointer;
-        padding: 0 10px;
-        border-color: rgba(255, 191, 91, 0.52);
-        color: #ffdf93;
-        font-size: 10px;
-        font-weight: 760;
-        text-align: left;
-      }
-
-      .borg-run-grade-toggle[data-run-grade="certified"] {
-        border-color: rgba(94, 183, 183, 0.58);
-        color: #c2f2f1;
       }
 
       .borg-initial-action {
@@ -877,7 +860,6 @@
           <div class="borg-status-stack">
             <span id="borg-native-status" class="borg-status-chip">Forward EOM</span>
             <span id="borg-manifest-status" class="borg-status-chip">Developer test</span>
-            <span id="borg-run-grade-warning" class="borg-status-chip" hidden></span>
           </div>
         </header>
 
@@ -891,7 +873,6 @@
               <input id="borg-eom-duration" type="number" min="0.01" step="0.01" value="60" inputmode="decimal" />
             </label>
             <div class="borg-eom-subheading">Initial conditions</div>
-            <button id="borg-run-grade-toggle" class="borg-run-grade-toggle" type="button" aria-label="Continue through close encounters (display grade)" aria-pressed="false" data-run-grade="display" title="Continue through close encounters (display grade)">Continue through close encounters (display grade)</button>
             <label class="borg-initial-control">
               Electrinos
               <input id="borg-electrino-count" type="number" min="0" max="512" step="1" value="8" inputmode="numeric" />
