@@ -3,13 +3,22 @@
 ## Workstream Metadata
 
 - Kind: `deferred-priority`
-- Rank: `23`
-- Value: `5.05`
+- Rank: `18`
+- Value: `7.08`
 - Cost: `7.3`
-- ROI: `0.69`
+- ROI: `0.97`
 - Status: `deferred`
 
-## Task Queue
+## Ranked Next Objects
+
+Ordered by marginal ROI on 2026-07-17. The separately ranked transfer-operator/basin-measure packet is not double-counted as this bucket's winner.
+
+1. `detector_response_kernel_acceptance` — Accept spin and photon analyzer kernels only as derived objects on an accepted basin measure with event-ledger closure. Status: `deferred`.
+2. `foundation_up_prerequisites` — Supply the named angular-momentum, spinor, polarity-domain-wall, Stern-Gerlach, and Photon Gate B proof packets or failure diagnostics. Status: `blocked`.
+3. `invariant_measure` — Identify the invariant measure and attempt squared-amplitude recovery within the separately ranked shared theorem packet. Status: `deferred`.
+4. `transfer_operator` — Construct the transfer operator within the separately ranked shared theorem packet. Status: `deferred`.
+
+## Detailed Task Inventory
 
 1. `transfer_operator` — Construct the transfer-operator closure for metastable assemblies. Status: `deferred`. Depends on: none.
 2. `invariant_measure` — Identify the invariant measure and recover squared-amplitude weights. Status: `deferred`. Depends on: `transfer_operator`.

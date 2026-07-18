@@ -9,21 +9,69 @@ import {
   createBorgAcceptedInertialSeedHistory,
   createBorgInitialConditionConfig,
   createBorgPrescribedLinearHistoryRows,
+  calculateBorgSeedingRadius,
   createBorgSeededInitialConditionRows,
   certifyBorgMinimumSeparation,
   validateBorgInitialConditionConfig,
 } from "../src/apps/borg/BorgInitialConditions.js";
+import {
+  createBorgInteractiveDefaults,
+  createBorgPlacementPolicy,
+} from "../src/apps/borg/BorgInteractiveDefaults.js";
 
 test("Borg initial-condition controls start from the accepted manifest values", () => {
   assert.deepEqual(
     createBorgInitialConditionConfig(BORG_DATASET_MANIFEST_V1.initialConditions),
     {
-      electrinoCount: 8,
-      positrinoCount: 8,
+      electrinoCount: 3,
+      positrinoCount: 3,
       randomVelocityMaxComponentMagnitude: 0,
       randomVelocityMinSpeed: 0,
     },
   );
+});
+
+test("Borg interactive physical defaults feed the certified runner", () => {
+  assert.deepEqual(createBorgInteractiveDefaults(BORG_DATASET_MANIFEST_V1), {
+    coupling: 0.0005,
+    initialConditionConfig: {
+      electrinoCount: 3,
+      positrinoCount: 3,
+      randomVelocityMaxComponentMagnitude: 0,
+      randomVelocityMinSpeed: 0,
+    },
+  });
+  assert.equal(BORG_DATASET_MANIFEST_V1.simulationEnvelope.outerRadius, 0.5);
+  assert.ok(
+    createBorgPlacementPolicy(BORG_DATASET_MANIFEST_V1, 6).seedingRadius <= 0.5,
+  );
+});
+
+test("Borg display seeding keeps all 6 default paths inside the outer sphere", () => {
+  const defaults = createBorgInteractiveDefaults(BORG_DATASET_MANIFEST_V1);
+  const placement = createBorgPlacementPolicy(BORG_DATASET_MANIFEST_V1, 6);
+  const rows = createBorgSeededInitialConditionRows({
+    manifest: BORG_DATASET_MANIFEST_V1,
+    seedIndex: 7,
+    config: defaults.initialConditionConfig,
+    seedingRadius: placement.seedingRadius,
+    minimumPairSeparation: placement.minimumPairSeparation,
+  });
+  assert.equal(placement.seedingRadius, 0.5);
+  assert.equal(rows.length, 6);
+  assert.equal(
+    certifyBorgMinimumSeparation(rows, {
+      minimumPairSeparation: placement.minimumPairSeparation,
+    }).accepted,
+    true,
+  );
+  rows.forEach((row) => {
+    assert.ok(Math.hypot(
+      row.position.x - 0.5,
+      row.position.y - 0.5,
+      row.position.z - 0.5,
+    ) <= 0.5 + 1e-12);
+  });
 });
 
 test("Borg initial-condition controls reject impossible populations and velocity ranges", () => {
@@ -140,17 +188,20 @@ test("Borg seeded initial-condition rows honor counts, polarity, and velocity li
   assert.equal(new Set(first.map((row) => row.pathKey)).size, 5);
   assert.equal(first.filter((row) => row.stateFlags === 1).length, 2);
   assert.equal(first.filter((row) => row.stateFlags === 2).length, 3);
-  const bounds = BORG_DATASET_MANIFEST_V1.simulationEnvelope.centralVolume.bounds;
+  const center = BORG_DATASET_MANIFEST_V1.simulationEnvelope.center;
+  const radius = BORG_DATASET_MANIFEST_V1.simulationEnvelope.outerRadius;
   first.forEach((row) => {
     assert.ok(Math.max(...Object.values(row.velocity).map(Math.abs)) <= 0.02);
     assert.ok(Math.hypot(row.velocity.x, row.velocity.y, row.velocity.z) >= 0.01);
-    assert.ok(row.position.x >= bounds.x[0] && row.position.x <= bounds.x[1]);
-    assert.ok(row.position.y >= bounds.y[0] && row.position.y <= bounds.y[1]);
-    assert.ok(row.position.z >= bounds.z[0] && row.position.z <= bounds.z[1]);
+    assert.ok(Math.hypot(
+      row.position.x - center.x,
+      row.position.y - center.y,
+      row.position.z - center.z,
+    ) <= radius + 1e-12);
   });
 });
 
-test("Borg default seeded-random geometry certifies minimum separation and zero initial velocity", () => {
+test("Borg default seeded-random geometry certifies separation and zero initial velocity", () => {
   const rows = createBorgSeededInitialConditionRows({
     manifest: BORG_DATASET_MANIFEST_V1,
     seedIndex: 0,
@@ -160,7 +211,7 @@ test("Borg default seeded-random geometry certifies minimum separation and zero 
     minimumPairSeparation: 0.2,
   });
 
-  assert.equal(rows.length, 16);
+  assert.equal(rows.length, 6);
   assert.equal(rows[0].runSource, "seeded-random-minimum-separation-initial-state");
   assert.notDeepEqual(
     rows.map((row) => row.position),
@@ -170,10 +221,40 @@ test("Borg default seeded-random geometry certifies minimum separation and zero 
       left.position.z - right.position.z
     ).map((row) => row.position),
   );
-  assert.equal(rows.every((row) => Object.values(row.velocity).every((value) => value === 0)), true);
+  assert.equal(rows.every((row) =>
+    Object.values(row.velocity).every((value) => value === 0)), true);
   assert.equal(certificate.accepted, true);
   assert.equal(certificate.requiredMinimumSeparation, 0.2);
-  assert.ok(certificate.measuredMinimumSeparation >= 0.2);
+  assert.ok(certificate.measuredMinimumSeparation >= 0.2 - 1e-12);
+});
+
+test("Borg single-particle seeding has the uniform simulation-envelope radial law", () => {
+  const radius = BORG_DATASET_MANIFEST_V1.simulationEnvelope.outerRadius;
+  const center = BORG_DATASET_MANIFEST_V1.simulationEnvelope.center;
+  let normalizedCubicRadiusSum = 0;
+  const sampleCount = 1000;
+  for (let seedIndex = 0; seedIndex < sampleCount; seedIndex += 1) {
+    const [row] = createBorgSeededInitialConditionRows({
+      manifest: BORG_DATASET_MANIFEST_V1,
+      seedIndex,
+      config: {
+        electrinoCount: 1,
+        positrinoCount: 0,
+        randomVelocityMaxComponentMagnitude: 0,
+        randomVelocityMinSpeed: 0,
+      },
+    });
+    const radialDistance = Math.hypot(
+      row.position.x - center.x,
+      row.position.y - center.y,
+      row.position.z - center.z,
+    );
+    assert.ok(radialDistance <= radius + 1e-12);
+    normalizedCubicRadiusSum += (radialDistance / radius) ** 3;
+  }
+  const normalizedCubicRadiusMean = normalizedCubicRadiusSum / sampleCount;
+  assert.ok(normalizedCubicRadiusMean > 0.47);
+  assert.ok(normalizedCubicRadiusMean < 0.53);
 });
 
 test("Borg initial-condition controls support an explicit zero-velocity population", () => {
@@ -189,4 +270,42 @@ test("Borg initial-condition controls support an explicit zero-velocity populati
   });
 
   assert.deepEqual(rows[0].velocity, { x: 0, y: 0, z: 0 });
+});
+
+test("Borg seeds large populations by holding the declared density, not by failing closed", () => {
+  const rows = createBorgSeededInitialConditionRows({
+    manifest: BORG_DATASET_MANIFEST_V1,
+    seedIndex: 0,
+    config: {
+      electrinoCount: 32,
+      positrinoCount: 32,
+      randomVelocityMaxComponentMagnitude: 0,
+      randomVelocityMinSpeed: 0,
+    },
+  });
+  assert.equal(rows.length, 64);
+
+  // The declared separation is honored inside a density-preserving envelope;
+  // a fixed envelope cannot place 64 at 0.2 separation at any seed.
+  const certificate = certifyBorgMinimumSeparation(rows, { minimumPairSeparation: 0.2 });
+  assert.equal(certificate.accepted, true);
+  assert.ok(certificate.measuredMinimumSeparation >= 0.2);
+
+  const seedingRadius = calculateBorgSeedingRadius(BORG_DATASET_MANIFEST_V1, 64);
+  const center = BORG_DATASET_MANIFEST_V1.simulationEnvelope.center;
+  assert.ok(seedingRadius > BORG_DATASET_MANIFEST_V1.simulationEnvelope.outerRadius);
+  rows.forEach((row) => {
+    const radius = Math.hypot(
+      row.position.x - center.x,
+      row.position.y - center.y,
+      row.position.z - center.z,
+    );
+    assert.ok(radius <= seedingRadius);
+  });
+
+  // The declared population still seeds inside the declared envelope exactly.
+  assert.equal(
+    calculateBorgSeedingRadius(BORG_DATASET_MANIFEST_V1, 6),
+    BORG_DATASET_MANIFEST_V1.simulationEnvelope.outerRadius,
+  );
 });

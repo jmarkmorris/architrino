@@ -63,7 +63,7 @@ export const BORG_RELEASE_BUDGET_MANIFEST_V1 = Object.freeze({
     chunkDurationDecision:
       "Do not exceed the measured 50 solver-time-unit chunk preset for this release budget.",
     claimBoundary:
-      "This manifest decides Borg browser/runtime budget ceilings only. It does not upgrade central-volume acceleration, wake history, face-boundary replay, benign-noise status, or proof claim authority.",
+      "This manifest decides Borg browser/runtime budget ceilings only. It does not upgrade central-ball acceleration, wake history, boundary-shell replay, benign-noise status, or proof claim authority.",
   }),
 });
 

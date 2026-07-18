@@ -6,6 +6,14 @@ Use `brainstorming.md` for provisional ideas, insights, conceptual maps, and dra
 
 ## Log Entries
 
+### 2026-07-16 — Independent workstream retired
+
+- `app-simulation` was removed from the numeric ranking because it had no separate application runtime and its queue duplicated solver, campaign, proof, and downstream scientific ownership.
+- Generic convergence, provenance, checkpoint, and reusable campaign execution route to EOM.
+- $A_0$, finite-$\eta$, receiver-normal, source-row, and action acceptance route to Master-Equation Closure; field-speed campaign execution routes to Braid Program.
+- Hydrogen record extraction routes to Nuclear, Atomic, and Molecular Closure; the public gravitational-wave packet routes to Strong-Field Closure and Equation Mapping.
+- `simulations.md`, brainstorming, and this work log remain as preserved detail. They are not independent evidence authority.
+
 ### 2026-07-02 May 22 2026 Promotion Note
 
 Migrated from `simulations.md` so the detailed simulation packet keeps current protocol material separate from promotion history.

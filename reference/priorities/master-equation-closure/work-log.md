@@ -14,3 +14,10 @@ Use [brainstorming.md](brainstorming.md) for provisional ideas, insights, concep
   and the six packets with distinct topology, interval, finite-memory,
   Jacobian, or root-transport evidence were retained. No branch verdict or
   corpus promotion was added.
+
+- 2026-07-16: Re-homed the pressure-dependent Noether sea constitutive response
+  as a focused shared packet in this lane. The packet now states one same-record
+  pressure-to-density/delay/cadence/strain/medium-response map, its
+  receiver-normal intake, first executable finite-difference packet, consumer
+  routing, and falsifiers. Status remains `defer-with-blocker`; no coefficient
+  or corpus claim was promoted.

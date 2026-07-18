@@ -19,7 +19,7 @@
 namespace architrino::eom {
 namespace {
 
-constexpr char kCheckpointMagic[] = "EOMCPV2\n";
+constexpr char kCheckpointMagic[] = "EOMCPV3\n";
 constexpr std::size_t kMaximumTokenBytes = 16U * 1024U * 1024U;
 constexpr std::uint64_t kMaximumPathCount = UINT64_C(10000000);
 constexpr std::uint64_t kMaximumSegmentCount = UINT64_C(1000000000);
@@ -151,8 +151,12 @@ void append_history(
         append_string(bytes, coefficient);
       }
     }
-    append_string(bytes, segment.position_error_token());
-    append_string(bytes, segment.velocity_error_token());
+    for (const auto& token : segment.position_error_tokens()) {
+      append_string(bytes, token);
+    }
+    for (const auto& token : segment.velocity_error_tokens()) {
+      append_string(bytes, token);
+    }
   }
 }
 
@@ -199,11 +203,17 @@ NativeCheckpointPath take_history(
         coefficient = take_string(bytes, cursor, payload_end);
       }
     }
-    std::string position_error = take_string(bytes, cursor, payload_end);
-    std::string velocity_error = take_string(bytes, cursor, payload_end);
+    HistoryErrorTokens position_errors{};
+    HistoryErrorTokens velocity_errors{};
+    for (auto& token : position_errors) {
+      token = take_string(bytes, cursor, payload_end);
+    }
+    for (auto& token : velocity_errors) {
+      token = take_string(bytes, cursor, payload_end);
+    }
     segments.emplace_back(
         std::move(t_start), std::move(t_end), std::move(coefficients),
-        std::move(position_error), std::move(velocity_error));
+        std::move(position_errors), std::move(velocity_errors));
   }
   RetainedHistory history = circular_request.has_value()
       ? RetainedHistory::restore_uniform_circular(
@@ -218,7 +228,7 @@ NativeCheckpointPath take_history(
 
 void require_checkpoint_consistency(
     const NativeEvolutionCheckpoint& checkpoint) {
-  if (checkpoint.schema != "eom_native_evolution_checkpoint/v3" ||
+  if (checkpoint.schema != "eom_native_evolution_checkpoint/v4" ||
       checkpoint.run_id.empty() || checkpoint.paths.empty()) {
     throw std::invalid_argument("checkpoint identity or path domain is invalid");
   }
@@ -255,6 +265,8 @@ std::string model_fingerprint(
       request.root_tolerance,
       request.source_normal_floor,
       request.acceleration_tolerance,
+      request.far_field_enclosure_fraction,
+      request.use_far_field_enclosure_in_evolution ? "1" : "0",
       request.chart_policy,
       request.causal_width,
       request.core_scale,
@@ -284,6 +296,7 @@ std::string model_fingerprint(
       request.adaptive_step_minimum_scale,
       request.adaptive_step_maximum_scale,
       request.use_synchronized_multirate_publication ? "1" : "0",
+      request.use_quarter_step_publication ? "1" : "0",
       request.multirate_synchronization_fraction,
       request.use_certificate_cost_feedback ? "1" : "0",
       std::to_string(
@@ -345,7 +358,7 @@ NativeEvolutionCheckpoint create_native_evolution_checkpoint(
         "checkpoint source is not an atomic result for the request");
   }
   NativeEvolutionCheckpoint checkpoint{
-      .schema = "eom_native_evolution_checkpoint/v3",
+      .schema = "eom_native_evolution_checkpoint/v4",
       .run_id = certificate.run_id,
       .accepted_time = certificate.accepted_end_time,
       .controller_step_size = certificate.controller_step_size,

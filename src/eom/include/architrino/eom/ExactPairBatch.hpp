@@ -3,6 +3,7 @@
 #include "architrino/eom/History.hpp"
 
 #include <cstddef>
+#include <limits>
 #include <string>
 #include <vector>
 
@@ -34,6 +35,15 @@ struct ExactPairRequest {
   // controller can adjust the receiver-time interval first.
   bool defer_precision_escalation = false;
   const ExactPairWarmStart* warm_start = nullptr;
+  // Once-per-snapshot warm-history equality bounds for this request's source
+  // path, computed by the snapshot certifier so each pair avoids an O(window)
+  // per-pair token walk.  When warm_source_equality_precomputed is false the
+  // pair falls back to the exact token walk; the precomputed bounds are
+  // exactly the values that walk would establish.
+  bool warm_source_equality_precomputed = false;
+  double warm_source_prefix_token_stable_upper =
+      -std::numeric_limits<double>::infinity();
+  std::size_t warm_source_aligned_equal_segments = 0;
 };
 
 struct NativeRootFreeCell {
@@ -44,6 +54,15 @@ struct NativeRootFreeCell {
   std::string residual_upper;
   std::string receiver_normal_lower;
   std::string receiver_normal_upper;
+  // Binary64 mirrors of the tokens above (tokens are max_digits10 and
+  // round-trip exactly).  They exist so warm-start replay does not re-parse
+  // every retained cell on every snapshot; numeric_values_valid guards
+  // cells built by older producers.
+  double lower_value = 0.0;
+  double upper_value = 0.0;
+  double residual_lower_value = 0.0;
+  double residual_upper_value = 0.0;
+  bool numeric_values_valid = false;
 };
 
 struct NativeRootBracket {
@@ -112,6 +131,23 @@ struct ExactPairCertificate {
   int difficult_lower_sign = 0;
   int difficult_upper_sign = 0;
 };
+
+// Maximal warm-history token-equality bounds for one source path, computed
+// once per snapshot and shared by every pair that reads this source.  The
+// bounds are exactly what the per-pair token walks would establish:
+// prefix_token_stable_upper is the largest time T such that the segments
+// covering [search_lower, T] carry identical tokens in both histories, and
+// aligned_equal_segments is the length of the leading run of index-aligned
+// token-equal segments.
+struct WarmSourceEqualityBounds {
+  double prefix_token_stable_upper;
+  std::size_t aligned_equal_segments;
+};
+
+[[nodiscard]] WarmSourceEqualityBounds compute_warm_source_equality_bounds(
+    const RetainedHistory& current,
+    const RetainedHistory& warm,
+    double search_lower);
 
 [[nodiscard]] ExactPairCertificate certify_exact_pair(
     const ExactPairRequest& request);

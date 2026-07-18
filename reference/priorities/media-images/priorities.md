@@ -3,8 +3,8 @@
 ## Workstream Metadata
 
 - Kind: `media`
-- Rank: `41`
-- Value: `2.5`
+- Rank: `34`
+- Value: `0.18`
 - Cost: `2.3`
 - ROI: `0.08`
 - Status: `idea-bucket`
@@ -21,7 +21,7 @@ Preserve image-format ideas without letting exploratory media work outrank curre
 
 ## Task Queue
 
-No active media-images tasks are selected.
+1. `image_production_brief_selection` — Select one image concept only when it has a concrete production target, claim level, acceptance condition, and owner. Status: `queued`.
 
 ## Promotion Rules
 

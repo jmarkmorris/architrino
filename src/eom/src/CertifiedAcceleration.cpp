@@ -188,7 +188,8 @@ NativeAccelerationRow reconstruct_row(
   const auto& root_certificate = *request.root_certificate;
   const Interval reception =
       Interval::decimal_token(root_certificate.reception_time);
-  const Interval emission = token_bounds(root.lower, root.upper);
+  const Interval certified_emission = token_bounds(root.lower, root.upper);
+  Interval emission = certified_emission;
   if (!request.receiver_history->covers(reception) ||
       !request.source_history->covers(emission)) {
     throw AccelerationCertificationError(
@@ -200,18 +201,42 @@ NativeAccelerationRow reconstruct_row(
   for (const std::size_t index : root.source_segment_indices) {
     if (index >= request.source_history->segments().size() ||
         !root_overlaps_segment(
-            emission, request.source_history->segments()[index])) {
+            certified_emission, request.source_history->segments()[index])) {
       throw AccelerationCertificationError(
           "root source segment identity does not cover the root enclosure");
     }
   }
 
+  const Interval field_speed =
+      Interval::decimal_token(root_certificate.field_speed);
+  const Interval certified_source_normal = token_bounds(
+      root.source_normal_lower, root.source_normal_upper);
+  bool emission_contracted = false;
+  if (!certified_source_normal.contains_zero()) {
+    const Interval midpoint = Interval::point(certified_emission.midpoint());
+    const IntervalVector contraction_receiver =
+        request.receiver_history->correlated_position_hull(reception);
+    const IntervalVector contraction_source =
+        request.source_history->correlated_position_hull(midpoint);
+    const Interval contraction_residual =
+        norm(subtract(contraction_receiver, contraction_source)) -
+        field_speed * (reception - midpoint);
+    const Interval candidate =
+        midpoint - contraction_residual / certified_source_normal;
+    const auto intersection = certified_emission.intersection(candidate);
+    if (intersection.has_value() &&
+        intersection->width() < certified_emission.width()) {
+      emission = *intersection;
+      emission_contracted = true;
+    }
+  }
+
   const IntervalVector receiver_position =
-      request.receiver_history->position_hull(reception);
+      request.receiver_history->correlated_position_hull(reception);
   const IntervalVector receiver_velocity =
       request.receiver_history->velocity_hull(reception);
   const IntervalVector source_position =
-      request.source_history->position_hull(emission);
+      request.source_history->correlated_position_hull(emission);
   const IntervalVector source_velocity =
       request.source_history->velocity_hull(emission);
   const IntervalVector displacement =
@@ -222,12 +247,8 @@ NativeAccelerationRow reconstruct_row(
         "sharp acceleration separation enclosure contains zero");
   }
   const IntervalVector direction = divide(displacement, separation);
-  const Interval field_speed =
-      Interval::decimal_token(root_certificate.field_speed);
   const Interval evaluated_source_normal =
       field_speed - dot(direction, source_velocity);
-  const Interval certified_source_normal = token_bounds(
-      root.source_normal_lower, root.source_normal_upper);
   const auto source_normal_intersection =
       evaluated_source_normal.intersection(certified_source_normal);
   if (!source_normal_intersection.has_value()) {
@@ -290,7 +311,9 @@ NativeAccelerationRow reconstruct_row(
       .acceptance_status = "consumed_certified_sharp_root",
       .root_precision_route = root.precision_route,
       .root_precision_bits = root.precision_bits,
-      .acceleration_precision_route = "binary64_outward",
+      .acceleration_precision_route = emission_contracted
+          ? "binary64_outward_monotone_root_contraction"
+          : "binary64_outward",
       .acceleration_precision_bits = 53,
       .acceleration = acceleration,
   };
@@ -1247,9 +1270,16 @@ void validate_pair_request(const NativePairAccelerationRequest& request) {
     throw std::invalid_argument(
         "pair acceleration request requires row, path, history, and root identities");
   }
-  if (request.chart != "sharp" && request.chart != "finite_width") {
+  if (request.chart != "sharp" && request.chart != "finite_width" &&
+      request.chart != "far_field_enclosure") {
     throw std::invalid_argument(
-        "pair acceleration chart must be sharp or finite_width");
+        "pair acceleration chart must be sharp, finite_width, or "
+        "far_field_enclosure");
+  }
+  if (request.chart == "far_field_enclosure" &&
+      request.far_field_enclosure == nullptr) {
+    throw std::invalid_argument(
+        "far-field acceleration requires an enclosure certificate");
   }
   if (request.initial_mpfr_bits < 64U ||
       request.maximum_mpfr_bits < request.initial_mpfr_bits) {
@@ -1322,7 +1352,11 @@ NativePairAccelerationCertificate certify_pair_acceleration(
   double precision_escalation_wall_seconds = 0.0;
   std::size_t precision_escalation_attempt_count = 0U;
   try {
-    if (root_certificate.schema != "eom_native_exact_pair_certificate/v0") {
+    const bool far_field_chart = request.chart == "far_field_enclosure";
+    if ((!far_field_chart &&
+         root_certificate.schema != "eom_native_exact_pair_certificate/v0") ||
+        (far_field_chart &&
+         root_certificate.schema != "eom_native_enclosed_pair_marker/v0")) {
       throw AccelerationCertificationError("unsupported root certificate schema");
     }
     if (root_certificate.receiver_history_id !=
@@ -1372,7 +1406,67 @@ NativePairAccelerationCertificate certify_pair_acceleration(
 
     std::vector<NativeAccelerationRow> rows;
     std::vector<IntervalVector> contributions;
-    if (request.chart == "sharp") {
+    if (request.chart == "far_field_enclosure") {
+      const auto& enclosure = *request.far_field_enclosure;
+      if (enclosure.schema != "eom_native_far_field_enclosure_certificate/v0" ||
+          enclosure.status != "certified_enclosed" ||
+          !enclosure.acceleration.has_value() ||
+          !enclosure.pair_width_budget.has_value() ||
+          enclosure.receiver_path_id != request.receiver_path_id ||
+          enclosure.source_path_id != request.source_path_id ||
+          enclosure.receiver_history_id !=
+              request.receiver_history->history_id() ||
+          enclosure.source_history_id != request.source_history->history_id() ||
+          enclosure.receiver_history_fingerprint !=
+              request.receiver_history->provenance_fingerprint() ||
+          enclosure.source_history_fingerprint !=
+              request.source_history->provenance_fingerprint()) {
+        throw AccelerationCertificationError(
+            "far-field enclosure identity or provenance mismatch");
+      }
+      if (!same_interval(
+              Interval::decimal_token(enclosure.reception_time), reception) ||
+          !same_interval(
+              Interval::decimal_token(enclosure.emission_upper), reception)) {
+        throw AccelerationCertificationError(
+            "far-field enclosure does not cover the reception time");
+      }
+      for (const auto& component : *enclosure.acceleration) {
+        if (component.width() > enclosure.pair_width_budget->lower()) {
+          throw AccelerationCertificationError(
+              "far-field enclosure exceeds its pair budget slice");
+        }
+      }
+      NativeAccelerationRow row{
+          .row_id = request.row_id + "/far-field-enclosure",
+          .receiver_path_id = request.receiver_path_id,
+          .source_path_id = request.source_path_id,
+          .row_index = 0,
+          .chart = "far_field_enclosure",
+          .reception_time = root_certificate.reception_time,
+          .emission_lower = enclosure.emission_lower,
+          .emission_upper = enclosure.emission_upper,
+          .source_segment_indices = {},
+          .separation = enclosure.separation,
+          .source_normal = enclosure.source_normal_lower_bound,
+          .receiver_normal = std::nullopt,
+          .branch_orientation = std::nullopt,
+          .receiver_strength = std::nullopt,
+          .polarity = charge_polarity(receiver_charge, source_charge),
+          .charge_product_magnitude =
+              interval_absolute(receiver_charge * source_charge),
+          .coupling = coupling,
+          .accumulation_group = request.receiver_path_id,
+          .acceptance_status = "consumed_certified_far_field_enclosure",
+          .root_precision_route = "root_search_bypassed_by_enclosure",
+          .root_precision_bits = 53,
+          .acceleration_precision_route = "binary64_outward_far_field_bound",
+          .acceleration_precision_bits = 53,
+          .acceleration = *enclosure.acceleration,
+      };
+      contributions.push_back(row.acceleration);
+      rows.push_back(std::move(row));
+    } else if (request.chart == "sharp") {
       if (root_certificate.status != "certified_complete" ||
           !root_certificate.root_free_complement ||
           root_certificate.memory_boundary_contact) {

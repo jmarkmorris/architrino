@@ -13,7 +13,6 @@ export const BORG_ACCEPTED_SEED_HISTORY_CERTIFICATE_VERSION =
 const POSITRINO_STATE_FLAG = 1;
 const ELECTRINO_STATE_FLAG = 2;
 const FIRST_PATH_KEY = 1001;
-const POSITION_INSET_RATIO = 0.08;
 
 export function createBorgInitialConditionConfig(initialConditions = {}) {
   return Object.freeze({
@@ -81,7 +80,13 @@ export function validateBorgInitialConditionConfig(
   });
 }
 
-export function createBorgSeededInitialConditionRows({ manifest, seedIndex = 0, config }) {
+export function createBorgSeededInitialConditionRows({
+  manifest,
+  seedIndex = 0,
+  config,
+  seedingRadius,
+  minimumPairSeparation,
+}) {
   const validation = validateBorgInitialConditionConfig(config);
   if (!validation.ok) {
     throw new TypeError(validation.errors[0]);
@@ -96,24 +101,30 @@ export function createBorgSeededInitialConditionRows({ manifest, seedIndex = 0, 
     accepted.randomVelocityMaxComponentMagnitude,
     accepted.randomVelocityMinSpeed,
   ].join(":"));
-  const bounds = manifest?.simulationEnvelope?.centralVolume?.bounds ?? {};
+  const envelopeCenter = manifest?.simulationEnvelope?.center ?? {};
+  const outerRadius = Number(manifest?.simulationEnvelope?.outerRadius);
+  if (![envelopeCenter.x, envelopeCenter.y, envelopeCenter.z].every(Number.isFinite) ||
+      !(outerRadius > 0)) {
+    throw new TypeError("Borg initial conditions require a finite spherical-envelope center and positive outer radius.");
+  }
   const stateFlags = createBalancedStateFlags(
     accepted.electrinoCount,
     accepted.positrinoCount,
   );
-  const latticePositions = createDeclaredLatticePositions(
-    stateFlags.length,
-    manifest?.initialConditions,
-  );
-  const positions = latticePositions ?? createSeparatedRandomCentralPositions(
+  const positions = createSeparatedRandomSimulationEnvelopePositions(
       stateFlags.length,
-      bounds,
+      envelopeCenter,
+      positiveOptionalNumber(
+        seedingRadius,
+        calculateBorgSeedingRadius(manifest, stateFlags.length),
+      ),
       rng,
-      nonNegativeNumber(manifest?.initialConditions?.minimumPairSeparation, 0),
+      nonNegativeNumber(
+        minimumPairSeparation,
+        nonNegativeNumber(manifest?.initialConditions?.minimumPairSeparation, 0),
+      ),
     );
-  const initialStateRunSource = latticePositions
-    ? "minimum-separation-lattice-initial-state"
-    : "seeded-random-minimum-separation-initial-state";
+  const initialStateRunSource = "seeded-random-minimum-separation-initial-state";
 
   return Object.freeze(stateFlags.map((flags, index) => Object.freeze({
     pathKey: FIRST_PATH_KEY + index,
@@ -130,6 +141,17 @@ export function createBorgSeededInitialConditionRows({ manifest, seedIndex = 0, 
     runSource: initialStateRunSource,
     valueAuthority: "app-generated-native-run-initial-condition",
   })));
+}
+
+function positiveOptionalNumber(value, fallback) {
+  if (value == null) {
+    return fallback;
+  }
+  const number = Number(value);
+  if (!Number.isFinite(number) || number <= 0) {
+    throw new TypeError("Borg seeding radius must be a positive finite number.");
+  }
+  return number;
 }
 
 export function calculateBorgInertialHistoryDepth(
@@ -386,20 +408,62 @@ function createBalancedStateFlags(electrinoCount, positrinoCount) {
   return flags;
 }
 
-function createRandomCentralPosition(bounds, rng) {
-  return {
-    x: randomAxisValue(bounds.x, rng),
-    y: randomAxisValue(bounds.y, rng),
-    z: randomAxisValue(bounds.z, rng),
-  };
+function createRandomSimulationEnvelopePosition(center, radius, rng) {
+  for (let attempt = 0; attempt < 256; attempt += 1) {
+    const offset = {
+      x: (rng() * 2 - 1) * radius,
+      y: (rng() * 2 - 1) * radius,
+      z: (rng() * 2 - 1) * radius,
+    };
+    if (Math.hypot(offset.x, offset.y, offset.z) <= radius) {
+      return {
+        x: Number(center.x) + offset.x,
+        y: Number(center.y) + offset.y,
+        z: Number(center.z) + offset.z,
+      };
+    }
+  }
+  throw new RangeError("Borg could not draw a position inside the spherical simulation envelope.");
 }
 
-function createSeparatedRandomCentralPositions(count, bounds, rng, minimumSeparation) {
+/**
+ * Seeding radius that holds the manifest's declared number density as the
+ * population grows. The manifest declares its population inside its outer
+ * radius; N architrinos at that same density need a ball whose volume scales
+ * with N, so the radius scales with the cube root of the population ratio.
+ *
+ * Without this, larger populations are impossible rather than merely dense:
+ * a minimum separation of s reserves a ball of radius s/2 per architrino, and
+ * random sequential placement saturates near ~30% of the packing limit. The
+ * declared 0.2 separation cannot place 64 architrinos inside radius 0.5 at
+ * all (measured 2026-07-17: RangeError after 20000 attempts), which is a
+ * geometry failure, not a physics one.
+ */
+export function calculateBorgSeedingRadius(manifest, count) {
+  const outerRadius = Number(manifest?.simulationEnvelope?.outerRadius);
+  const declaredCount = Number(manifest?.population?.architrinoCount);
+  if (!(outerRadius > 0)) {
+    throw new TypeError("Borg seeding radius requires a positive envelope outer radius.");
+  }
+  if (!Number.isInteger(declaredCount) || declaredCount <= 0 ||
+      !Number.isInteger(count) || count <= 0 || count <= declaredCount) {
+    return outerRadius;
+  }
+  return outerRadius * Math.cbrt(count / declaredCount);
+}
+
+function createSeparatedRandomSimulationEnvelopePositions(
+  count,
+  center,
+  radius,
+  rng,
+  minimumSeparation,
+) {
   const positions = [];
   for (let index = 0; index < count; index += 1) {
     let accepted = null;
-    for (let attempt = 0; attempt < 4096; attempt += 1) {
-      const candidate = createRandomCentralPosition(bounds, rng);
+    for (let attempt = 0; attempt < 20000; attempt += 1) {
+      const candidate = createRandomSimulationEnvelopePosition(center, radius, rng);
       if (positions.every((position) => vectorDistance(position, candidate) >= minimumSeparation)) {
         accepted = Object.freeze(candidate);
         break;
@@ -413,41 +477,6 @@ function createSeparatedRandomCentralPositions(count, bounds, rng, minimumSepara
     positions.push(accepted);
   }
   return Object.freeze(positions);
-}
-
-function createDeclaredLatticePositions(count, initialConditions = {}) {
-  if (initialConditions.initialLinePolicy !== "minimum-separation-lattice-4x2x2") {
-    return null;
-  }
-  const dimensions = initialConditions.latticeDimensions ?? {};
-  const expectedCount = Number(dimensions.x) * Number(dimensions.y) * Number(dimensions.z);
-  if (count !== expectedCount) {
-    return null;
-  }
-  const origin = initialConditions.latticeOrigin ?? {};
-  const spacing = initialConditions.latticeSpacing ?? {};
-  const positions = [];
-  for (let xIndex = 0; xIndex < dimensions.x; xIndex += 1) {
-    for (let yIndex = 0; yIndex < dimensions.y; yIndex += 1) {
-      for (let zIndex = 0; zIndex < dimensions.z; zIndex += 1) {
-        positions.push(Object.freeze({
-          x: Number(origin.x) + xIndex * Number(spacing.x),
-          y: Number(origin.y) + yIndex * Number(spacing.y),
-          z: Number(origin.z) + zIndex * Number(spacing.z),
-        }));
-      }
-    }
-  }
-  return Object.freeze(positions);
-}
-
-function randomAxisValue(axisBounds, rng) {
-  const [min, max] = Array.isArray(axisBounds) ? axisBounds : [0, 1];
-  const low = Number.isFinite(Number(min)) ? Number(min) : 0;
-  const high = Number.isFinite(Number(max)) ? Number(max) : low + 1;
-  const span = high > low ? high - low : 1;
-  const inset = Math.min(span * POSITION_INSET_RATIO, span * 0.4);
-  return low + inset + rng() * Math.max(0, span - inset * 2);
 }
 
 function createRandomVelocity(rng, maxComponentMagnitude, minSpeed) {

@@ -1,4 +1,8 @@
 import assert from "node:assert/strict";
+import { createHash } from "node:crypto";
+import { chmodSync, mkdtempSync, rmSync, writeFileSync } from "node:fs";
+import { tmpdir } from "node:os";
+import { join } from "node:path";
 import { test } from "node:test";
 
 import { BORG_DATASET_MANIFEST_V1 } from "../src/apps/borg/BorgAppManifest.js";
@@ -11,7 +15,11 @@ import {
   createBorgEomShadowRunner,
   trimBorgRetainedHistories,
 } from "../src/apps/borg/BorgEomShadowRunner.js";
-import { encodeNativeRequest } from "../scripts/eom/BorgNativeEomProcessClient.mjs";
+import {
+  BORG_NATIVE_EOM_PROTOCOL_MAGIC,
+  createBorgNativeEomProcessClient,
+  encodeNativeRequest,
+} from "../scripts/eom/BorgNativeEomProcessClient.mjs";
 import { createBorgEomHttpClient } from "../src/apps/borg/BorgEomHttpClient.js";
 import {
   BORG_ACCEPTED_SEED_HISTORY_CLAIM_LEVEL,
@@ -27,16 +35,23 @@ import {
   BORG_DEFAULT_RUNTIME_MODE,
   BORG_RECORD_REPLAY_RUNTIME_MODE,
   bootBorgApp,
+  createBorgStartupSeedIndex,
   resolveBorgRuntimeMode,
 } from "../src/apps/borg/BorgBootstrap.js";
+import {
+  createBorgPlacementPolicy,
+} from "../src/apps/borg/BorgInteractiveDefaults.js";
+import {
+  BORG_CERTIFIED_BUDGET_PRESETS,
+} from "../src/apps/borg/BorgCertifiedBudgets.js";
 
 const trajectoryFrames = createBorgPrescribedLinearHistoryRows(
   createBorgSeededInitialConditionRows({
     manifest: BORG_DATASET_MANIFEST_V1,
     seedIndex: 17,
     config: {
-      electrinoCount: 8,
-      positrinoCount: 8,
+      electrinoCount: 3,
+      positrinoCount: 3,
       randomVelocityMaxComponentMagnitude: 0.042,
       randomVelocityMinSpeed: 0.0144,
     },
@@ -49,6 +64,7 @@ test("Borg mounts EOM idle by default and reserves automatic compute for explici
   const defaultMounts = [];
   const defaultResult = await bootBorgApp({
     search: "",
+    startupSeedIndex: 101,
     createEomClient: () => eomClient,
     mountApp(options) {
       defaultMounts.push(options);
@@ -60,37 +76,49 @@ test("Borg mounts EOM idle by default and reserves automatic compute for explici
   assert.equal(defaultResult, "default-eom-mounted");
   assert.equal(defaultMounts.length, 1);
   assert.equal(defaultMounts[0].autoStartEom, false);
-  assert.equal(defaultMounts[0].manifest.simulationEnvelope.sideLength, 1);
-  assert.equal(defaultMounts[0].manifest.simulationEnvelope.centralVolumeSideLength, 0.8);
-  assert.equal(defaultMounts[0].manifest.simulationEnvelope.faceBufferMargin, 0.1);
-  assert.equal(defaultMounts[0].manifest.modelControls.coupling, 0.005);
-  assert.equal(defaultMounts[0].eomShadowRunner.coupling, "0.005");
-  assert.equal(defaultMounts[0].eomShadowRunner.chunkDuration, 0.05);
+  assert.equal(defaultMounts[0].manifest.simulationEnvelope.kind, "sphere");
+  assert.equal(defaultMounts[0].manifest.simulationEnvelope.outerRadius, 0.5);
+  assert.equal(defaultMounts[0].manifest.simulationEnvelope.centralBallRadius, undefined);
+  assert.equal(defaultMounts[0].manifest.simulationEnvelope.radialBufferMargin, undefined);
+  assert.equal(defaultMounts[0].manifest.modelControls.coupling, 0.05);
+  assert.equal(defaultMounts[0].eomShadowRunner.coupling, "0.0005");
+  assert.equal(defaultMounts[0].eomShadowRunner.simulationOuterRadius, 0.5);
+  assert.equal(defaultMounts[0].eomShadowRunner.chunkDuration, 0.3);
+  assert.equal(defaultMounts[0].eomShadowRunner.initialStep, "0.05");
   assert.equal(defaultMounts[0].eomShadowRunner.minimumStep, "0.0001");
-  assert.deepEqual(defaultMounts[0].manifest.simulationEnvelope.centralVolume.bounds, {
-    x: [0.1, 0.9],
-    y: [0.1, 0.9],
-    z: [0.1, 0.9],
+  assert.equal(defaultMounts[0].eomShadowRunner.maximumStep, "0.05");
+  assert.equal(defaultMounts[0].eomShadowRunner.useAdaptiveStepGrowth, true);
+  assert.equal(defaultMounts[0].eomShadowRunner.certifiedBudgetId, "research-certified-v1");
+  assert.deepEqual(defaultMounts[0].manifest.simulationEnvelope.center, {
+    x: 0.5,
+    y: 0.5,
+    z: 0.5,
   });
-  assert.equal(defaultMounts[0].initialEomSeed.rows.length, 16 * 2);
-  assert.equal(defaultMounts[0].initialEomSeed.endpointRows.length, 16);
+  assert.equal(defaultMounts[0].initialEomSeed.rows.length, 6 * 2);
+  assert.equal(defaultMounts[0].initialEomSeed.endpointRows.length, 6);
   assert.equal(defaultMounts[0].initialEomSeed.certificate.accepted, true);
   assert.equal(defaultMounts[0].initialEomSeed.certificate.eomOutput, false);
   assert.equal(defaultMounts[0].initialEomSeed.certificate.canonicalEomEvidence, false);
   assert.equal(defaultMounts[0].initialEomSeed.certificate.geometryCertificate.accepted, true);
+  const displayPlacement = createBorgPlacementPolicy(
+    BORG_DATASET_MANIFEST_V1,
+    6,
+  );
   assert.equal(
     defaultMounts[0].initialEomSeed.certificate.geometryCertificate.requiredMinimumSeparation,
-    0.2,
+    displayPlacement.minimumPairSeparation,
   );
   assert.equal(defaultMounts[0].eomShadowRunner.eomClient, eomClient);
-  assert.equal(defaultMounts[0].eomShadowRunner.pathCount, 16);
+  assert.equal(defaultMounts[0].eomShadowRunner.pathCount, 6);
   assert.equal(defaultMounts[0].eomShadowRunner.startTime, 0);
   assert.equal(
     defaultMounts[0].eomShadowRunner.historyDepth,
     calculateBorgInertialHistoryDepth(defaultMounts[0].initialEomSeed.endpointRows, {
-      maximumSeparation: Math.sqrt(3),
+      maximumSeparation: 1,
     }),
   );
+  assert.ok(defaultMounts[0].eomShadowRunner.historyDepth > 1);
+  assert.ok(defaultMounts[0].eomShadowRunner.historyDepth < 1.1);
   assert.equal(
     defaultMounts[0].manifest.simulationEnvelope.historyDepth,
     defaultMounts[0].eomShadowRunner.historyDepth,
@@ -100,34 +128,34 @@ test("Borg mounts EOM idle by default and reserves automatic compute for explici
     defaultMounts[0].eomShadowRunner.historyDepth,
   );
   defaultMounts[0].initialEomSeed.endpointRows.forEach((row) => {
-    assert.ok(row.position.x >= 0.1 && row.position.x <= 0.9);
-    assert.ok(row.position.y >= 0.1 && row.position.y <= 0.9);
-    assert.ok(row.position.z >= 0.1 && row.position.z <= 0.9);
+    assert.ok(Math.hypot(
+      row.position.x - 0.5,
+      row.position.y - 0.5,
+      row.position.z - 0.5,
+    ) <= 0.5 + 1e-12);
   });
   assert.equal(defaultMounts[0].eomShadowRunner.targetDuration, 60);
   assert.equal(defaultMounts[0].eomShadowRunner.runDuration, 60);
   assert.deepEqual(defaultMounts[0].initialConditionConfig, {
-    electrinoCount: 8,
-    positrinoCount: 8,
+    electrinoCount: 3,
+    positrinoCount: 3,
     randomVelocityMaxComponentMagnitude: 0,
     randomVelocityMinSpeed: 0,
   });
   assert.equal(
     defaultMounts[0].initialEomSeed.endpointRows.every((row) =>
-      row.velocity.x === 0 && row.velocity.y === 0 && row.velocity.z === 0),
+      Object.values(row.velocity).every((value) => value === 0)),
     true,
   );
   assert.deepEqual(
     defaultMounts[0].initialEomSeed.endpointRows.map((row) => row.pathKey),
-    [
-      1001, 1002, 1003, 1004, 1005, 1006, 1007, 1008,
-      1009, 1010, 1011, 1012, 1013, 1014, 1015, 1016,
-    ],
+    Array.from({ length: 6 }, (unused, index) => 1001 + index),
   );
 
   const explicitShadowMounts = [];
   await bootBorgApp({
     search: "?eom=shadow",
+    startupSeedIndex: 101,
     createEomClient: () => eomClient,
     mountApp(options) {
       explicitShadowMounts.push(options);
@@ -177,6 +205,33 @@ test("Borg mounts EOM idle by default and reserves automatic compute for explici
       },
     }),
     /Borg EOM record fetch failed \(404\)/,
+  );
+});
+
+test("Borg startup seed is randomized but remains injectable for deterministic controls", async () => {
+  const generated = createBorgStartupSeedIndex({
+    getRandomValues(values) {
+      values[0] = 0xdecafbad;
+      return values;
+    },
+  });
+  assert.equal(generated, 0xdecafbad);
+
+  const mounts = [];
+  for (const startupSeedIndex of [101, 202]) {
+    await bootBorgApp({
+      startupSeedIndex,
+      createEomClient: () => ({ async evolveRetainedHistories() {} }),
+      mountApp(options) {
+        mounts.push(options);
+        return options;
+      },
+    });
+  }
+  assert.deepEqual(mounts.map((mount) => mount.initialDistributionSeedIndex), [101, 202]);
+  assert.notDeepEqual(
+    mounts[0].initialEomSeed.endpointRows.map((row) => row.position),
+    mounts[1].initialEomSeed.endpointRows.map((row) => row.position),
   );
 });
 
@@ -247,12 +302,25 @@ test("Borg EOM migration uses canonical field speed and the declared memory dept
     targetDuration: 300.2,
     sampleInterval: 0.2,
   });
-  const expectedGeometricDelayBound = Math.sqrt(3);
+  const expectedGeometricDelayBound = 1;
 
   assert.equal(config.fieldSpeed, 1);
   assert.equal(config.geometricDelayBound, expectedGeometricDelayBound);
   assert.equal(config.historyDepth, 10);
+  assert.equal(config.initialStep, "0.05");
+  assert.equal(config.maximumStep, "0.05");
+  assert.equal(config.useAdaptiveStepGrowth, true);
+  assert.equal(config.farFieldEnclosureFraction, "0.25");
+  assert.equal(config.coreScale, 0.2);
   assert.ok(Math.abs(config.historyStartTime - (300 - config.historyDepth)) < 1e-12);
+  assert.throws(
+    () => createBorgEomShadowRunConfig(BORG_DATASET_MANIFEST_V1, {
+      startTime: 0,
+      targetDuration: 0.2,
+      maximumStep: "0.025",
+    }),
+    /maximumStep is fixed by the selected certified budget/,
+  );
 
   const expandedPopulationConfig = createBorgEomShadowRunConfig(BORG_DATASET_MANIFEST_V1, {
     startTime: 0,
@@ -262,13 +330,24 @@ test("Borg EOM migration uses canonical field speed and the declared memory dept
   assert.equal(expandedPopulationConfig.pathCount, 32);
 
   const fallbackConfig = createBorgEomShadowRunConfig({
-    simulationEnvelope: { sideLength: 100, sampleInterval: 0.2 },
+    simulationEnvelope: { outerRadius: 50, sampleInterval: 0.2 },
     population: { architrinoCount: 1 },
     trajectoryRecord: { historyStartTime: 0, historyEndTime: 300 },
   }, {
     targetDuration: 300.2,
   });
   assert.equal(fallbackConfig.fieldSpeed, 1);
+});
+
+test("Borg certified-budget hashes identify the complete canonical allocations", () => {
+  for (const preset of BORG_CERTIFIED_BUDGET_PRESETS) {
+    assert.equal(
+      createHash("sha256")
+        .update(preset.allocationCanonicalJson)
+        .digest("hex"),
+      preset.allocationHash,
+    );
+  }
 });
 
 test("Borg EOM migration imports a complete continuous past, never a state-only start", () => {
@@ -278,7 +357,7 @@ test("Borg EOM migration imports a complete continuous past, never a state-only 
     { historyEndTime: 10 },
   );
 
-  assert.equal(histories.length, 16);
+  assert.equal(histories.length, 6);
   for (const history of histories) {
     assert.equal(history.coverageStart, "0");
     assert.equal(history.coverageEnd, "10");
@@ -322,23 +401,35 @@ test("Borg EOM shadow runner sends retained histories and derives frames only fr
   assert.equal(request.contractId, "eom_evolution_contract/v0");
   assert.equal(request.claimLevel, "migration-shadow");
   assert.deepEqual(request.absoluteTimeInterval, { start: "10", end: "10.2" });
-  assert.equal(request.histories.length, 16);
+  assert.equal(request.histories.length, 6);
   assert.equal(request.histories[0].coverageEnd, "10");
   assert.equal(request.numericalControls.threadCount, 4);
+  assert.equal(request.numericalControls.initialStep, "0.05");
+  assert.equal(request.numericalControls.maximumStep, "0.05");
+  assert.equal(request.numericalControls.useAdaptiveStepGrowth, true);
+  assert.equal(request.numericalControls.farFieldEnclosureFraction, "0.25");
   assert.equal(request.modelControls.selfPairs, "included-except-coincident-endpoint");
   assert.equal(request.modelControls.futurePathPolicy, "prohibited");
   assert.equal(request.modelControls.fieldSpeed, "1");
+  assert.equal(request.modelControls.coreScale, "0.2");
   assert.equal("initialStates" in request, false);
   assert.equal("futurePaths" in request, false);
 
   assert.equal(chunk.source, BORG_EOM_SHADOW_RUN_SOURCE);
+  assert.equal(chunk.coreScale, 0.2);
+  assert.equal(chunk.retainedHistoryStart, 0);
+  assert.equal(chunk.retainedHistoryEnd, 10.2);
+  assert.equal(chunk.retainedHistoryPolicy, "rolling-certified-history-window");
   assert.equal(chunk.phase, "live");
   assert.equal(chunk.statusCode, "ok");
   assert.equal(chunk.evidenceStatus, "executable_architecture_evidence");
   assert.equal(chunk.promotionEligible, false);
-  assert.equal(chunk.frames.length, 32);
+  assert.equal(chunk.frames.length, 12);
   assert.equal(chunk.frames.every((frame) => frame.runSource === BORG_EOM_SHADOW_RUN_SOURCE), true);
-  assert.equal(chunk.frames.every((frame) => frame.valueAuthority === "eom-shadow-output"), true);
+  assert.equal(
+    chunk.frames.every((frame) => frame.valueAuthority === "eom-shadow-output"),
+    true,
+  );
   assert.equal(chunk.histories.every((history) => history.coverageEnd === "10.2"), true);
 });
 
@@ -365,6 +456,36 @@ test("Borg EOM requests preserve the native checkpoint's exact decimal cut time"
   });
 
   assert.equal(request.absoluteTimeInterval.start, "32.409999999999918");
+});
+
+test("Borg EOM carries the controller height across atomic chunks", async () => {
+  const requests = [];
+  const runner = createBorgEomShadowRunner(BORG_DATASET_MANIFEST_V1, {
+    eomClient: {
+      async evolveRetainedHistories(request) {
+        requests.push(request);
+        return {
+          ...createFakeEomResponse(request, "executable_architecture_evidence"),
+          controllerStepSize: requests.length === 1 ? "0.025" : "0.05",
+        };
+      },
+    },
+    initialFrameRows: trajectoryFrames,
+    startTime: 10,
+    targetDuration: 10.4,
+    chunkDuration: 0.2,
+    sampleInterval: 0.2,
+  });
+
+  const first = await runner.computeNextChunk();
+  const second = await runner.computeNextChunk();
+
+  assert.equal(requests[0].numericalControls.initialStep, "0.05");
+  assert.equal(first.controllerStepSize, "0.025");
+  assert.equal(requests[1].numericalControls.initialStep, "0.025");
+  assert.equal(second.controllerStepSize, "0.05");
+  assert.equal(requests[1].numericalControls.maximumStep, "0.05");
+  assert.equal(requests[1].numericalControls.useAdaptiveStepGrowth, true);
 });
 
 test("Borg EOM shadow runner supports a deterministic retained-history population subset", async () => {
@@ -509,7 +630,9 @@ test("Borg publishes EOM evolution from accepted initial history at T=0", async 
   assert.equal(second.histories.every((history) => history.coverageStart === "0"), true);
   assert.equal(second.histories.every((history) => history.sourceAcceptedInitialDatum === true), true);
   assert.equal(second.histories.every((history) => history.sourceProvenance === BORG_ACCEPTED_SEED_HISTORY_PROVENANCE), true);
-  assert.equal(second.histories.every((history) => history.segments.every((segment) => Number(segment.startTime) >= 0)), true);
+  assert.equal(second.histories.every((history) =>
+    history.segments.every((segment) => Number(segment.startTime) >= 0)
+  ), true);
   assert.equal(live.phase, "live");
   assert.equal(requests[0].provenance.importedHistoryIsAcceptedInitialDatum, true);
   assert.equal(requests[2].provenance.importedHistoryIsAcceptedInitialDatum, true);
@@ -570,6 +693,73 @@ test("Borg EOM fail-closed responses preserve native diagnostics", async () => {
   });
 });
 
+test("Borg displays an atomic certified prefix while rejecting the halted candidate", async () => {
+  const runner = createBorgEomShadowRunner(BORG_DATASET_MANIFEST_V1, {
+    eomClient: {
+      async evolveRetainedHistories(request) {
+        const response = createFakeEomResponse(
+          request, "failed", { endTime: "10.1" },
+        );
+        return {
+          ...response,
+          status: "halted",
+          haltCode: "root_completeness_not_certified",
+          allStepsAtomic: true,
+          acceptedEndTime: "10.1",
+        };
+      },
+    },
+    initialFrameRows: trajectoryFrames,
+    startTime: 10,
+    targetDuration: 10.2,
+    chunkDuration: 0.2,
+    sampleInterval: 0.05,
+  });
+  const chunk = await runner.computeNextChunk();
+  assert.equal(chunk.statusCode, "halted-prefix");
+  assert.equal(chunk.endTime, 10.1);
+  assert.equal(chunk.terminalHalt.failedCandidateRejected, true);
+  assert.equal(chunk.terminalHalt.code, "root_completeness_not_certified");
+  assert.equal(chunk.promotionEligible, false);
+  assert.equal(chunk.frames.at(-1).time, 10.1);
+  assert.equal(runner.canComputeNextChunk(), false);
+});
+
+test("Borg refuses to display a halted response without a nonempty atomic prefix", async () => {
+  const makeRunner = ({ acceptedEndTime, allStepsAtomic }) =>
+    createBorgEomShadowRunner(BORG_DATASET_MANIFEST_V1, {
+      eomClient: {
+        async evolveRetainedHistories(request) {
+          const response = createFakeEomResponse(
+            request, "failed", { endTime: acceptedEndTime },
+          );
+          return {
+            ...response,
+            status: "halted",
+            haltCode: "root_completeness_not_certified",
+            allStepsAtomic,
+            acceptedEndTime,
+          };
+        },
+      },
+      initialFrameRows: trajectoryFrames,
+      startTime: 10,
+      targetDuration: 10.2,
+      chunkDuration: 0.2,
+    });
+
+  await assert.rejects(
+    makeRunner({ acceptedEndTime: "10.1", allStepsAtomic: false })
+      .computeNextChunk(),
+    /failed closed: root_completeness_not_certified/u,
+  );
+  await assert.rejects(
+    makeRunner({ acceptedEndTime: "10", allStepsAtomic: true })
+      .computeNextChunk(),
+    /failed closed: root_completeness_not_certified/u,
+  );
+});
+
 test("Borg native process protocol carries the same continuous-history request", async () => {
   const requests = [];
   const runner = createBorgEomShadowRunner(BORG_DATASET_MANIFEST_V1, {
@@ -586,12 +776,207 @@ test("Borg native process protocol carries the same continuous-history request",
   });
   await runner.computeNextChunk();
   const protocol = encodeNativeRequest(requests[0]);
-  assert.match(protocol, /^EOM_BORG_NATIVE_V0\nRUN\t/u);
-  assert.equal(protocol.match(/^PATH\t/gmu)?.length, 16);
-  assert.equal(protocol.match(/^SEG\t/gmu)?.length, 16);
+  assert.equal(protocol.split("\n")[0], BORG_NATIVE_EOM_PROTOCOL_MAGIC);
+  assert.match(protocol, /^EOM_BORG_NATIVE_V8\nRUN\t/u);
+  const runFields = protocol.split("\n")[1].split("\t");
+  assert.equal(runFields.length, 54);
+  assert.equal(runFields[4], "0.05");
+  assert.equal(runFields[6], "0.05");
+  assert.equal(runFields[7], "1");
+  assert.equal(runFields[10], "0.2");
+  assert.equal(runFields[13], "0.25");
+  assert.equal(runFields[18], String(64 * 1024 * 1024));
+  assert.equal(runFields[19], "borg_certified_budget/v1");
+  assert.equal(runFields[20], "research-certified-v1");
+  assert.equal(runFields[21], requests[0].certifiedBudget.allocationHash);
+  assert.equal(runFields[22], requests[0].certifiedBudget.allocationCanonicalJson);
+  assert.equal(protocol.match(/^PATH\t/gmu)?.length, 6);
+  assert.equal(protocol.match(/^SEG\t/gmu)?.length, 6);
   assert.match(protocol, /\nEND\n$/u);
   assert.equal(protocol.includes("initialStates"), false);
   assert.equal(protocol.includes("futurePaths"), false);
+
+  const deltaProtocol = encodeNativeRequest(requests[0], {
+    cachedHistories: requests[0].histories,
+  });
+  const deltaPathRows = deltaProtocol.split("\n")
+    .filter((line) => line.startsWith("PATH\t"))
+    .map((line) => line.split("\t"));
+  assert.equal(deltaPathRows.length, 6);
+  assert.equal(deltaPathRows.every((fields) => fields.length === 6), true);
+  assert.equal(deltaPathRows.every((fields) => fields[4] === "1"), true);
+  assert.equal(deltaPathRows.every((fields) => fields[5] === "0"), true);
+  assert.equal(deltaProtocol.match(/^SEG\t/gmu), null);
+
+  const alternateCoreRequest = {
+    ...requests[0],
+    modelControls: {
+      ...requests[0].modelControls,
+      coreScale: "0.125",
+    },
+  };
+  assert.throws(
+    () => encodeNativeRequest(alternateCoreRequest),
+    /coreScale does not match its certified budget allocation/,
+  );
+
+  const fixedHeightRequest = {
+    ...requests[0],
+    numericalControls: {
+      ...requests[0].numericalControls,
+      maximumStep: requests[0].numericalControls.initialStep,
+      useAdaptiveStepGrowth: false,
+    },
+  };
+  assert.throws(
+    () => encodeNativeRequest(fixedHeightRequest),
+    /adaptiveGrowth does not match its certified budget allocation/,
+  );
+
+  const incompleteRequest = {
+    ...requests[0],
+    numericalControls: { ...requests[0].numericalControls },
+  };
+  delete incompleteRequest.numericalControls.maximumStep;
+  assert.throws(
+    () => encodeNativeRequest(incompleteRequest),
+    /must explicitly supply maximumStep, useAdaptiveStepGrowth, farFieldEnclosureFraction, coreScale, certifiedBudget, and memoryBudgetBytes/,
+  );
+  incompleteRequest.numericalControls.maximumStep =
+    requests[0].numericalControls.maximumStep;
+  delete incompleteRequest.numericalControls.useAdaptiveStepGrowth;
+  assert.throws(
+    () => encodeNativeRequest(incompleteRequest),
+    /must explicitly supply maximumStep, useAdaptiveStepGrowth, farFieldEnclosureFraction, coreScale, certifiedBudget, and memoryBudgetBytes/,
+  );
+  incompleteRequest.numericalControls.useAdaptiveStepGrowth =
+    requests[0].numericalControls.useAdaptiveStepGrowth;
+  delete incompleteRequest.numericalControls.farFieldEnclosureFraction;
+  assert.throws(
+    () => encodeNativeRequest(incompleteRequest),
+    /must explicitly supply maximumStep, useAdaptiveStepGrowth, farFieldEnclosureFraction, coreScale, certifiedBudget, and memoryBudgetBytes/,
+  );
+});
+
+test("Borg native client rejects protocol skew with a restart instruction", () => {
+  const fixtureDirectory = mkdtempSync(join(tmpdir(), "borg-eom-protocol-skew-"));
+  const fixtureBinary = join(fixtureDirectory, "mismatched-eom-binary");
+  try {
+    writeFileSync(
+      fixtureBinary,
+      "#!/bin/sh\nprintf 'EOM_BORG_NATIVE_V999\\n'\n",
+      "utf8",
+    );
+    chmodSync(fixtureBinary, 0o755);
+    assert.throws(
+      () => createBorgNativeEomProcessClient({ binaryPath: fixtureBinary }),
+      (error) => {
+        assert.match(error.message, /dev server encoder=EOM_BORG_NATIVE_V8/u);
+        assert.match(error.message, /binary parser=EOM_BORG_NATIVE_V999/u);
+        assert.match(
+          error.message,
+          /the dev server is running older code than the binary it just built — restart the dev server\./u,
+        );
+        return true;
+      },
+    );
+  } finally {
+    rmSync(fixtureDirectory, { recursive: true, force: true });
+  }
+});
+
+test("Borg native client clears its history prefix after a halted request", async () => {
+  const fixtureDirectory = mkdtempSync(join(tmpdir(), "borg-eom-cache-reset-"));
+  const fixtureBinary = join(fixtureDirectory, "cache-reset-eom-binary.mjs");
+  const fixtureSource = `#!/usr/bin/env node
+if (process.argv[2] === "print-protocol-version") {
+  process.stdout.write("EOM_BORG_NATIVE_V8\\n");
+  process.exit(0);
+}
+let buffer = "";
+let requestCount = 0;
+process.stdin.setEncoding("utf8");
+process.stdin.on("data", (chunk) => {
+  buffer += chunk;
+  while (buffer.includes("\\nEND\\n")) {
+    const boundary = buffer.indexOf("\\nEND\\n") + 5;
+    const request = buffer.slice(0, boundary);
+    buffer = buffer.slice(boundary);
+    requestCount += 1;
+    const lines = request.trim().split("\\n");
+    const run = lines.find((line) => line.startsWith("RUN\\t")).split("\\t");
+    const paths = lines.filter((line) => line.startsWith("PATH\\t"));
+    const prefixes = paths.map((line) => Number(line.split("\\t")[4]));
+    const halted = requestCount === 2;
+    const extensions = paths.map((line) => {
+      const pathId = line.split("\\t")[1];
+      const segments = halted ? [] : [{
+        startTime: run[2], endTime: run[3],
+        coefficients: [["0","0","0","0"],["0","0","0","0"],["0","0","0","0"]],
+        positionErrors: ["0", "0", "0"], velocityErrors: ["0", "0", "0"],
+      }];
+      return { pathId, stateFlags: 0, segments };
+    });
+    process.stdout.write(JSON.stringify({
+      schema: "eom_borg_native_response/v0",
+      status: halted ? "halted" : "completed",
+      haltCode: halted ? "memory_budget_exhausted" : "",
+      acceptedEndTime: halted ? run[2] : run[3],
+      acceptedStepCount: halted ? 0 : 1,
+      rejectedStepCount: 0,
+      budgetProvenance: {
+        schema: run[19], presetId: run[20], allocationHash: run[21],
+        allocationCanonicalJson: run[22], allocations: JSON.parse(run[22]),
+      },
+      observedMaximumCachedPrefix: Math.max(...prefixes),
+      publishedExtensions: extensions,
+    }) + "\\n");
+  }
+});
+`;
+  try {
+    writeFileSync(fixtureBinary, fixtureSource, "utf8");
+    chmodSync(fixtureBinary, 0o755);
+    const config = createBorgEomShadowRunConfig(BORG_DATASET_MANIFEST_V1, {
+      startTime: 10,
+      targetDuration: 10.1,
+      chunkDuration: 0.1,
+    });
+    const initialHistories = createBorgContinuousRetainedHistories(
+      trajectoryFrames,
+      BORG_DATASET_MANIFEST_V1,
+      { historyEndTime: 10 },
+    );
+    const firstRequest = createBorgEomShadowRequest({
+      manifest: BORG_DATASET_MANIFEST_V1,
+      config,
+      histories: initialHistories,
+      chunkIndex: 0,
+      startTime: 10,
+      endTime: 10.1,
+    });
+    const client = createBorgNativeEomProcessClient({
+      binaryPath: fixtureBinary,
+    });
+    const first = await client.evolveRetainedHistories(firstRequest);
+    const secondRequest = createBorgEomShadowRequest({
+      manifest: BORG_DATASET_MANIFEST_V1,
+      config,
+      histories: first.histories,
+      chunkIndex: 1,
+      startTime: 10.1,
+      endTime: 10.2,
+    });
+    const halted = await client.evolveRetainedHistories(secondRequest);
+    const recovered = await client.evolveRetainedHistories(secondRequest);
+    assert.equal(halted.status, "halted");
+    assert.ok(halted.observedMaximumCachedPrefix > 0);
+    assert.equal(recovered.status, "completed");
+    assert.equal(recovered.observedMaximumCachedPrefix, 0);
+    await client.dispose();
+  } finally {
+    rmSync(fixtureDirectory, { recursive: true, force: true });
+  }
 });
 
 test("Borg browser EOM client posts the retained-history contract to the local native endpoint", async () => {
@@ -636,11 +1021,25 @@ test("disposing the Borg browser EOM client aborts an active native request", as
   await assert.rejects(pending, /cancelled/u);
 });
 
-function createFakeEomResponse(request, evidenceStatus) {
-  const endTime = request.absoluteTimeInterval.end;
+function createFakeEomResponse(request, evidenceStatus, options = {}) {
+  const endTime = options.endTime ?? request.absoluteTimeInterval.end;
   return {
     status: "completed",
+    acceptedEndTime: endTime,
+    allStepsAtomic: true,
     evidenceStatus,
+    claimGrade: evidenceStatus,
+    coreScale: request.modelControls.coreScale,
+    memoryBudgetBytes: request.resourceEnvelope.memoryBudgetBytes,
+    memoryEstimateBytes: 1,
+    budgetProvenance: {
+      schema: request.certifiedBudget.schema,
+      presetId: request.certifiedBudget.presetId,
+      allocationHash: request.certifiedBudget.allocationHash,
+      allocationCanonicalJson: request.certifiedBudget.allocationCanonicalJson,
+      allocations: request.certifiedBudget.allocations,
+    },
+    controllerStepSize: request.numericalControls.initialStep,
     histories: request.histories.map((history) => {
       const startTime = history.coverageEnd;
       const state = evaluateHistory(history, Number(startTime));
@@ -659,8 +1058,10 @@ function createFakeEomResponse(request, evidenceStatus) {
               "0",
               "0",
             ]),
-            positionError: String(duration * 1e-14),
-            velocityError: String(duration * 1e-14),
+            positionErrors: Array(3).fill(String(duration * 1e-14)),
+            velocityErrors: Array(3).fill(String(duration * 1e-14)),
+            evidenceStatus,
+            claimGrade: evidenceStatus,
           },
         ],
       };

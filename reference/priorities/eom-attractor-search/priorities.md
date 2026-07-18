@@ -1,41 +1,23 @@
-# EOM Attractor Search — Priorities
+# EOM Attractor Search — Instrument And Evidence Packet
 
-Current: workstream opened 2026-07-15 by operator direction; the final eom
-performance improvement has landed. Phase 0 workload characterization is COMPLETE
-(2026-07-15): per-step wall $\propto N^{1.97}$, exact-pair root
-certification owns $50$–$57\%$ of the step, zero traversal-excluded pairs
-(dispersal sheds no pair cost), memory $\propto N^2$ per step plus
-~0.5 GB/step certificate retention at $N=24$ — see
-[evidence/phase0-workload-profile-2026-07-15.md](evidence/phase0-workload-profile-2026-07-15.md).
+Status: `consolidated`; this directory is not an independently ranked workstream.
 
-Objective: determine whether the coupled delayed-history dynamics of small
-neutral architrino populations produce persistent bound structures
-(attractors / limit cycles) without any rigid-shape or force-balance
-ansatz, under the endpoint-matched prehistory collapse protocol.
+## Ownership
 
-1. Phase 2 residuals — the harness core LANDED 2026-07-15
-   ([attractor-ensemble-harness.cpp](../../../scripts/eom/attractor-ensemble-harness.cpp):
-   checkpoint-chunked with streamed census + frames, byte-identical
-   rerun/resume, release root-clearance gate, endpoint-matched
-   circular|straight prehistory families, Borg-shaped replay output;
-   validation artifacts in
-   [evidence/phase2-harness-validation-2026-07-15/](evidence/phase2-harness-validation-2026-07-15/README.md)).
-   Remaining: (a) operator runs the $N=12$ host control (exact commands in
-   the [work-log](work-log.md)) to convert sandbox-to-host timing transfer
-   from inferred to measured; (b) load one `replay.borg-trajectory.json`
-   in the Borg app to confirm visualization (schema-shaped, app import
-   not yet exercised); (c) cross-chunking bit-identity is blocked on the
-   engine's open split-absolute-time item — chunked vs one-shot agree to
-   $\le 7\times10^{-18}$ (measured), identical within any one chunking.
-2. Phase 3 — first declared campaign: exact-count seed grids; persistence
-   criterion fixed before scoring; targeted 2:2-neighborhood sub-campaign
-   first ($N \in \{4,6,8\}$ is minutes per period — the cheap statistical
-   power); size $N = 24$–$48$ ensembles in tens of seeds; escaper-culling
-   only with certified back-reaction bound and operator ratification
-   (Phase 0 measured zero traversal-excluded pairs — culling is the only
-   lever on the $N^2$ tail).
-3. Phase 4 — collapse-protocol adjudication of any persistent cluster;
-   promotion routing to the claims queue.
+- [Braid Program](../braid-program/priorities.md) owns the undirected ensemble campaign, declared seed families, persistence criterion, fate classification, collapse adjudication, and any physical promotion.
+- [EOM](../app-eom/priorities.md) owns reusable checkpoint/resume, deterministic replay, campaign-driver behavior, performance attribution, and the cost instrument.
+- This directory preserves the focused harness specification, measured workload evidence, validation artifacts, host-control handoff, and chronological work log.
 
-Support: [brainstorming.md](brainstorming.md) (diagnosis, plan rationale,
-observables, constraints, open questions), [work-log.md](work-log.md).
+## Current Evidence
+
+- Phase 0 workload characterization is complete: per-step wall scales as $N^{1.97}$ on the measured ladder; exact-pair root certification owns $50$–$57\%$ of a step; zero traversal-excluded pairs were measured; and certificate retention produced the first memory ceiling. See [phase0-workload-profile-2026-07-15](evidence/phase0-workload-profile-2026-07-15.md).
+- The checkpoint-chunked ensemble harness emits streamed census and frame rows, deterministic resume, endpoint-matched circular and straight prehistories, release root-clearance status, and Borg-shaped replay. See [phase2-harness-validation-2026-07-15](evidence/phase2-harness-validation-2026-07-15/README.md).
+- These are measured instrument results. They do not book a persistent assembly, braid, or attractor.
+
+## Routed Open Work
+
+1. EOM: measure the $N=12$ host-control transfer factor and close split-absolute-time cross-chunk identity.
+2. Borg: confirm the record-only display route for one emitted replay or sealed `assembly-view-record.v0` file.
+3. Braid Program: execute the first declared undirected ensemble campaign with the persistence criterion fixed before scoring and route every candidate through the collapse protocol.
+
+Support: [README](README.md), [brainstorming](brainstorming.md), [work log](work-log.md), and [host-control and replay handoff](host-control-and-replay-dispatch-prompt.md).

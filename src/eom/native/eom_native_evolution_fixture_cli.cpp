@@ -2,12 +2,14 @@
 #include "architrino/eom/CoupledEvolution.hpp"
 #include "architrino/eom/History.hpp"
 
+#include <algorithm>
 #include <array>
 #include <cmath>
 #include <cstdlib>
 #include <filesystem>
 #include <iomanip>
 #include <iostream>
+#include <limits>
 #include <stdexcept>
 #include <string>
 #include <vector>
@@ -153,6 +155,23 @@ void print_steps(const std::vector<eom::NativeAtomicStepCertificate>& steps) {
               << (step.accepted_snapshot.has_value()
                       ? step.accepted_snapshot->traversal_exact_pairs
                       : 0U)
+              << ",\"traversal_enclosed_pairs\":"
+              << (step.accepted_snapshot.has_value()
+                      ? step.accepted_snapshot->traversal_enclosed_pairs
+                      : 0U)
+              << ",\"traversal_unresolved_pairs\":"
+              << (step.accepted_snapshot.has_value()
+                      ? step.accepted_snapshot->traversal_unresolved_pairs
+                      : 0U)
+              << ",\"enclosed_error_width_total\":"
+              << (step.accepted_snapshot.has_value()
+                      ? step.accepted_snapshot->enclosed_error_width_total
+                      : 0.0)
+              << ",\"enclosed_error_width_max_receiver\":"
+              << (step.accepted_snapshot.has_value()
+                      ? step.accepted_snapshot
+                            ->enclosed_error_width_max_receiver
+                      : 0.0)
               << ",\"history_window_status\":\""
               << (step.accepted_snapshot.has_value()
                       ? step.accepted_snapshot->causal_prefix_exclusion.status
@@ -310,6 +329,90 @@ void print_atomic(const eom::NativeAtomicStepCertificate& certificate) {
   std::cout << event_impulse_count
             << ",\"regulator_certificate_count\":"
             << regulator_certificate_count
+            << ",\"finite_width_state_certificates\":[";
+  bool first_state = true;
+  for (const auto& substep : certificate.substeps) {
+    for (const auto& state : substep.finite_width_state_certificates) {
+      if (!first_state) std::cout << ',';
+      first_state = false;
+      std::cout << "{\"status\":\"" << state.status
+                << "\",\"receiver_path_id\":\""
+                << state.receiver_path_id
+                << "\",\"source_path_id\":\""
+                << state.source_path_id
+                << "\",\"receiver_routed_pair_count\":"
+                << state.receiver_routed_pair_count
+                << ",\"receiver_pair_allocation_weight\":"
+                << state.receiver_pair_allocation_weight
+                << ",\"receiver_event_impulse_total\":\""
+                << state.receiver_event_impulse_total
+                << "\",\"receiver_event_position_moment_total\":\""
+                << state.receiver_event_position_moment_total
+                << "\",\"event_impulse_row_budget\":\""
+                << state.event_impulse_row_budget
+                << "\",\"event_position_moment_row_budget\":\""
+                << state.event_position_moment_row_budget
+                << "\",\"resolved_impulse_slices\":[\""
+                << state.quadrature_impulse_row_budget << "\",\""
+                << state.causal_regulator_impulse_row_budget << "\",\""
+                << state.core_regulator_impulse_row_budget << "\",\""
+                << state.state_numerical_impulse_row_budget << "\",\""
+                << state.matching_impulse_row_budget << "\"]"
+                << ",\"resolved_position_moment_slices\":[\""
+                << state.quadrature_position_moment_row_budget << "\",\""
+                << state.causal_regulator_position_moment_row_budget
+                << "\",\""
+                << state.core_regulator_position_moment_row_budget << "\",\""
+                << state.state_numerical_position_moment_row_budget
+                << "\",\""
+                << state.matching_position_moment_row_budget << "\"]"
+                << ",\"endpoint_reconstruction_passed\":"
+                << (state.endpoint_reconstruction_passed ? "true" : "false")
+                << ",\"common_domain_chart_overlap_passed\":"
+                << (state.common_domain_chart_overlap_passed
+                        ? "true" : "false")
+                << ",\"exit_passed\":"
+                << (state.exit_passed ? "true" : "false")
+                << ",\"failure_code\":\"" << state.failure_code
+                << "\",\"common_domains\":[";
+      for (std::size_t index = 0; index < state.common_domains.size();
+           ++index) {
+        if (index > 0U) std::cout << ',';
+        const auto& common = state.common_domains[index];
+        std::cout << "{\"status\":\"" << common.status
+                  << "\",\"failure_code\":\""
+                  << common.failure_code
+                  << "\",\"reception_lower\":\""
+                  << common.reception_lower
+                  << "\",\"reception_upper\":\""
+                  << common.reception_upper
+                  << "\",\"disjoint_component\":"
+                  << common.disjoint_component
+                  << ",\"disjoint_width\":" << common.disjoint_width
+                  << ",\"applicable_remainder_budget\":"
+                  << common.applicable_remainder_budget
+                  << ",\"applicable_regulator_remainder_budget\":"
+                  << common.applicable_regulator_remainder_budget
+                  << ",\"applicable_total_remainder_budget\":"
+                  << common.applicable_total_remainder_budget
+                  << ",\"post_accounting_distance\":"
+                  << common.post_accounting_distance
+                  << ",\"shortcut_remainders_emitted\":"
+                  << (common.impulse_shortcut_remainder.has_value() &&
+                              common.position_moment_shortcut_remainder
+                                  .has_value()
+                          ? "true" : "false")
+                  << ",\"regulator_remainders_emitted\":"
+                  << (common.regulator_impulse_remainder.has_value() &&
+                              common.regulator_position_moment_remainder
+                                  .has_value()
+                          ? "true" : "false")
+                  << '}';
+      }
+      std::cout << "]}";
+    }
+  }
+  std::cout << ']'
             << ",\"local_errors\":[";
   for (std::size_t index = 0; index < certificate.local_errors.size(); ++index) {
     if (index > 0) {
@@ -369,6 +472,12 @@ void print_event(
   } else {
     std::cout << "null";
   }
+  std::cout << ",\"position_moment\":";
+  if (certificate.position_moment.has_value()) {
+    print_vector(*certificate.position_moment);
+  } else {
+    std::cout << "null";
+  }
   std::cout << '}';
 }
 
@@ -400,6 +509,18 @@ void print_regulator(
     } else {
       std::cout << "null";
     }
+    std::cout << ",\"final_position_moment_delta\":";
+    if (series.final_position_moment_delta.has_value()) {
+      std::cout << *series.final_position_moment_delta;
+    } else {
+      std::cout << "null";
+    }
+    std::cout << ",\"maximum_ladder_position_moment_delta\":";
+    if (series.maximum_ladder_position_moment_delta.has_value()) {
+      std::cout << *series.maximum_ladder_position_moment_delta;
+    } else {
+      std::cout << "null";
+    }
     std::cout << ",\"levels\":[";
     for (std::size_t level_index = 0; level_index < series.levels.size();
          ++level_index) {
@@ -421,11 +542,82 @@ void print_regulator(
       } else {
         std::cout << "null";
       }
+      std::cout << ",\"maximum_position_moment_delta_from_previous\":";
+      if (level.maximum_position_moment_delta_from_previous.has_value()) {
+        std::cout << *level.maximum_position_moment_delta_from_previous;
+      } else {
+        std::cout << "null";
+      }
       std::cout << '}';
     }
     std::cout << "]}";
   }
   std::cout << "]}";
+}
+
+void print_regulator_matching_control(
+    const eom::NativeCommonDomainChartCertificate& certificate) {
+  std::cout << "{\"reference\":\"analytic_stationary_simple_root\""
+            << ",\"status\":\"" << certificate.status
+            << "\",\"failure_code\":\"" << certificate.failure_code
+            << "\",\"reception_lower\":\""
+            << certificate.reception_lower
+            << "\",\"reception_upper\":\""
+            << certificate.reception_upper << "\",\"sharp_impulse\":";
+  if (certificate.sharp_impulse.has_value()) {
+    print_vector(*certificate.sharp_impulse);
+  } else {
+    std::cout << "null";
+  }
+  std::cout << ",\"finite_width_impulse\":";
+  if (certificate.finite_width_impulse.has_value()) {
+    print_vector(*certificate.finite_width_impulse);
+  } else {
+    std::cout << "null";
+  }
+  std::cout << ",\"emission_second_derivative_bound\":";
+  if (certificate.emission_second_derivative_bound.has_value()) {
+    print_vector(*certificate.emission_second_derivative_bound);
+  } else {
+    std::cout << "null";
+  }
+  std::cout << ",\"regulator_leading_impulse\":";
+  if (certificate.regulator_leading_impulse.has_value()) {
+    print_vector(*certificate.regulator_leading_impulse);
+  } else {
+    std::cout << "null";
+  }
+  std::cout << ",\"regulator_higher_order_impulse_remainder\":";
+  if (certificate.regulator_higher_order_impulse_remainder.has_value()) {
+    print_vector(*certificate.regulator_higher_order_impulse_remainder);
+  } else {
+    std::cout << "null";
+  }
+  std::cout << ",\"regulator_impulse_remainder\":";
+  if (certificate.regulator_impulse_remainder.has_value()) {
+    print_vector(*certificate.regulator_impulse_remainder);
+  } else {
+    std::cout << "null";
+  }
+  std::cout << ",\"sharp_position_moment\":";
+  if (certificate.sharp_position_moment.has_value()) {
+    print_vector(*certificate.sharp_position_moment);
+  } else {
+    std::cout << "null";
+  }
+  std::cout << ",\"finite_width_position_moment\":";
+  if (certificate.finite_width_position_moment.has_value()) {
+    print_vector(*certificate.finite_width_position_moment);
+  } else {
+    std::cout << "null";
+  }
+  std::cout << ",\"regulator_position_moment_remainder\":";
+  if (certificate.regulator_position_moment_remainder.has_value()) {
+    print_vector(*certificate.regulator_position_moment_remainder);
+  } else {
+    std::cout << "null";
+  }
+  std::cout << '}';
 }
 
 void print_pinned_fold_temporal_onset(
@@ -461,6 +653,83 @@ void print_pinned_fold_temporal_onset(
               << "\"}";
   }
   std::cout << ']';
+}
+
+void print_far_field_control(
+    const eom::NativeAccelerationSnapshotCertificate& snapshot) {
+  const auto enclosure = std::find_if(
+      snapshot.far_field_enclosure_certificates.begin(),
+      snapshot.far_field_enclosure_certificates.end(),
+      [](const auto& row) {
+        return row.receiver_path_id == "a" && row.source_path_id == "b";
+      });
+  const auto pair = std::find_if(
+      snapshot.acceleration.pair_certificates.begin(),
+      snapshot.acceleration.pair_certificates.end(),
+      [](const auto& row) {
+        return row.receiver_path_id == "a" && row.source_path_id == "b";
+      });
+  if (enclosure == snapshot.far_field_enclosure_certificates.end() ||
+      pair == snapshot.acceleration.pair_certificates.end() ||
+      !enclosure->separation.has_value() ||
+      !enclosure->pair_magnitude_bound.has_value() ||
+      !enclosure->pair_width_budget.has_value() ||
+      !enclosure->derived_cutoff_radius.has_value() ||
+      !enclosure->acceleration.has_value() ||
+      !pair->total_acceleration.has_value()) {
+    throw std::runtime_error("far-field analytic control is incomplete");
+  }
+  std::cout << "{\"reference\":\"analytic_static_pair\""
+            << ",\"status\":\"" << snapshot.status
+            << "\",\"pair_selection_route\":\""
+            << snapshot.pair_selection_route
+            << "\",\"logical_pairs\":" << snapshot.logical_ordered_pairs
+            << ",\"excluded_pairs\":" << snapshot.traversal_excluded_pairs
+            << ",\"exact_pairs\":" << snapshot.traversal_exact_pairs
+            << ",\"enclosed_pairs\":" << snapshot.traversal_enclosed_pairs
+            << ",\"unresolved_pairs\":"
+            << snapshot.traversal_unresolved_pairs
+            << ",\"root_pair_count\":" << snapshot.timing.root_pair_count
+            << ",\"enclosed_error_width_total\":"
+            << snapshot.enclosed_error_width_total
+            << ",\"enclosed_error_width_max_receiver\":"
+            << snapshot.enclosed_error_width_max_receiver
+            << ",\"enclosure_status\":\"" << enclosure->status
+            << "\",\"separation\":";
+  print_interval(*enclosure->separation);
+  std::cout << ",\"pair_magnitude_bound\":";
+  print_interval(*enclosure->pair_magnitude_bound);
+  std::cout << ",\"pair_width_budget\":";
+  print_interval(*enclosure->pair_width_budget);
+  std::cout << ",\"derived_cutoff_radius\":";
+  print_interval(*enclosure->derived_cutoff_radius);
+  std::cout << ",\"enclosure_acceleration\":";
+  print_vector(*enclosure->acceleration);
+  std::cout << ",\"pair_total_acceleration\":";
+  print_vector(*pair->total_acceleration);
+  std::cout << '}';
+}
+
+eom::NativeCoupledEvolutionRequest make_dispersed_boundary_request(
+    const std::string& run_id,
+    const std::string& enclosure_fraction) {
+  std::vector<eom::NativeCoupledPathInput> paths;
+  for (std::size_t index = 0; index < 6U; ++index) {
+    const std::string path_id = "dispersed-" + std::to_string(index);
+    paths.push_back({
+        path_id,
+        index < 3U ? "1" : "-1",
+        history(
+            path_id + "-history", "-2", "0",
+            {std::to_string(index * 2U), "0", "0", "0"}),
+    });
+  }
+  auto result = request(
+      run_id, std::move(paths), "0", "3", "0.1", "0.1",
+      "1e-8", "1e-8", "1e-8", "0.005");
+  result.acceleration_tolerance = "0.1";
+  result.far_field_enclosure_fraction = enclosure_fraction;
+  return result;
 }
 
 void print_all() {
@@ -657,6 +926,44 @@ void print_all() {
   const auto traversal_exclusion_result =
       eom::evolve_native_coupled_histories(traversal_exclusion_request);
 
+  auto far_field_control_request = request(
+      "far-field-analytic-control",
+      {{"a", "1",
+        history("far-field-a", "-20", "0", {"0", "0", "0", "0"})},
+       {"b", "1",
+        history("far-field-b", "-20", "0", {"10", "0", "0", "0"})}},
+      "0", "0.1", "0.1", "0.1", "1e-8", "1e-8", "1e-8", "0.005");
+  far_field_control_request.acceleration_tolerance = "0.1";
+  far_field_control_request.far_field_enclosure_fraction = "0.1";
+  std::vector<eom::NativePublishedPath> far_field_control_histories;
+  for (const auto& path : far_field_control_request.paths) {
+    far_field_control_histories.push_back({path.path_id, path.history});
+  }
+  auto far_field_traversal_request = far_field_control_request;
+  far_field_traversal_request.run_id = "far-field-traversal-cascade";
+  far_field_traversal_request.traversal_exact_tile_pair_limit = 1;
+  const auto far_field_traversal_control =
+      eom::certify_native_acceleration_snapshot(
+          far_field_traversal_request, far_field_control_histories, "0");
+  far_field_control_request.use_certified_traversal = false;
+  const auto far_field_control = eom::certify_native_acceleration_snapshot(
+      far_field_control_request, far_field_control_histories, "0");
+
+  auto dispersed_boundary_request = make_dispersed_boundary_request(
+      "far-field-dispersed-3-3-boundary", "0.25");
+  const auto dispersed_boundary_result =
+      eom::evolve_native_coupled_histories(dispersed_boundary_request);
+  auto dispersed_boundary_disabled_request = make_dispersed_boundary_request(
+      "far-field-dispersed-3-3-boundary-disabled", "0");
+  std::vector<eom::NativePublishedPath> dispersed_boundary_histories;
+  for (const auto& path : dispersed_boundary_disabled_request.paths) {
+    dispersed_boundary_histories.push_back({path.path_id, path.history});
+  }
+  const auto dispersed_boundary_disabled =
+      eom::certify_native_atomic_coupled_step(
+          dispersed_boundary_disabled_request, dispersed_boundary_histories,
+          0, "0", "0.1");
+
   const auto adaptive_request = request(
       "adaptive-halving",
       {{"a", "1", history("adaptive-a", "5", {"0", "0", "0", "0"})},
@@ -781,6 +1088,7 @@ void print_all() {
   event_control_request.causal_width = "0.25";
   event_control_request.core_scale = "0.2";
   event_control_request.event_impulse_tolerance = "0.08";
+  event_control_request.event_position_moment_tolerance = "0.0016";
   event_control_request.regulator_convergence_tolerance = "0.08";
   event_control_request.regulator_refinement_levels = 3;
   event_control_request.event_max_depth = 24;
@@ -788,9 +1096,63 @@ void print_all() {
   const auto event_control = eom::certify_native_fold_caustic_impulse(
       event_control_request, event_receiver, event_source, "1", "1",
       "2.99", "3.01");
+  auto research_budget_event_request = event_control_request;
+  research_budget_event_request.coupling = "1e-6";
+  research_budget_event_request.event_impulse_tolerance = "3.5e-8";
+  research_budget_event_request.event_position_moment_tolerance = "3.5e-8";
+  const auto research_budget_event_control =
+      eom::certify_native_fold_caustic_impulse(
+          research_budget_event_request, event_receiver, event_source,
+          "1", "1", "2.99", "3.01");
+  auto interactive_budget_event_request = research_budget_event_request;
+  interactive_budget_event_request.event_impulse_tolerance = "3.5e-7";
+  interactive_budget_event_request.event_position_moment_tolerance =
+      "3.5e-7";
+  const auto interactive_budget_event_control =
+      eom::certify_native_fold_caustic_impulse(
+          interactive_budget_event_request, event_receiver, event_source,
+          "1", "1", "2.99", "3.01");
+  auto under_budget_event_request = research_budget_event_request;
+  under_budget_event_request.event_impulse_tolerance = "1e-12";
+  under_budget_event_request.event_position_moment_tolerance = "1e-12";
+  under_budget_event_request.event_max_depth = 4;
+  under_budget_event_request.event_max_cells = 4;
+  const auto under_budget_event_control =
+      eom::certify_native_fold_caustic_impulse(
+          under_budget_event_request, event_receiver, event_source,
+          "1", "1", "2.99", "3.01");
   const auto event_regulator = eom::certify_native_regulator_convergence(
       event_control_request, event_receiver, event_source, "1", "1",
       "2.99", "3.01");
+  auto regulator_matching_request = request(
+      "stationary-regulator-matching-control",
+      {{"receiver", "1",
+        history(
+            "stationary-matching-receiver", "-2", "0.001",
+            {"0", "0", "0", "0"})},
+       {"source", "1",
+        history(
+            "stationary-matching-source", "-2", "0.001",
+            {"0.5", "0", "0", "0"})}},
+      "0", "0.001", "0.001", "0.001", "1e-10", "1e-10", "1e-10",
+      "0.0001");
+  regulator_matching_request.causal_width = "0.05";
+  regulator_matching_request.core_scale = "0.1";
+  regulator_matching_request.event_impulse_tolerance = "1e-7";
+  regulator_matching_request.event_position_moment_tolerance = "1e-10";
+  regulator_matching_request.quadrature_tolerance = "1e-9";
+  regulator_matching_request.quadrature_max_depth = 32;
+  regulator_matching_request.quadrature_max_cells = 200000;
+  regulator_matching_request.event_max_depth = 32;
+  regulator_matching_request.event_max_cells = 200000;
+  std::vector<eom::NativePublishedPath> regulator_matching_histories;
+  for (const auto& path : regulator_matching_request.paths) {
+    regulator_matching_histories.push_back({path.path_id, path.history});
+  }
+  const auto regulator_matching_control =
+      eom::certify_native_common_domain_chart(
+          regulator_matching_request, regulator_matching_histories,
+          "receiver", "source", "0", "0.001", "0.001");
   auto event_mpfr_request = event_control_request;
   event_mpfr_request.force_event_precision_escalation = true;
   const auto event_mpfr = eom::certify_native_fold_caustic_impulse(
@@ -1021,9 +1383,17 @@ void print_all() {
   std::cout << ',';
   print_evolution(traversal_exclusion_result);
   std::cout << ',';
+  print_evolution(dispersed_boundary_result);
+  std::cout << ',';
   print_evolution(binary_window_disabled_result);
   std::cout << "],\"binary_single_thread\":";
   print_evolution(binary_single_thread_result);
+  std::cout << ",\"far_field_analytic_control\":";
+  print_far_field_control(far_field_control);
+  std::cout << ",\"far_field_traversal_cascade\":";
+  print_far_field_control(far_field_traversal_control);
+  std::cout << ",\"far_field_dispersal_disabled\":";
+  print_atomic(dispersed_boundary_disabled);
   std::cout << ",\"rejections\":[";
   print_atomic(rejected_step);
   std::cout << ',';
@@ -1046,10 +1416,18 @@ void print_all() {
   print_pinned_fold_temporal_onset(pinned_temporal_disabled_onset);
   std::cout << ",\"event_control\":";
   print_event(event_control);
+  std::cout << ",\"research_budget_event_control\":";
+  print_event(research_budget_event_control);
+  std::cout << ",\"interactive_budget_event_control\":";
+  print_event(interactive_budget_event_control);
+  std::cout << ",\"under_budget_event_control\":";
+  print_event(under_budget_event_control);
   std::cout << ",\"event_mpfr\":";
   print_event(event_mpfr);
   std::cout << ",\"event_regulator\":";
   print_regulator(event_regulator);
+  std::cout << ",\"regulator_matching_analytic_control\":";
+  print_regulator_matching_control(regulator_matching_control);
   std::cout << ",\"event_nonconvergent\":";
   print_regulator(event_nonconvergent);
   std::cout << ",\"event_resource_failure\":";
@@ -1120,15 +1498,88 @@ void print_all() {
   std::cout << "}\n";
 }
 
+void print_far_field_dispersal_timing() {
+  const auto enabled_request = make_dispersed_boundary_request(
+      "far-field-dispersed-3-3-boundary-timing", "0.25");
+  const auto enabled = eom::evolve_native_coupled_histories(enabled_request);
+  const auto disabled_request = make_dispersed_boundary_request(
+      "far-field-dispersed-3-3-boundary-disabled-timing", "0");
+  std::vector<eom::NativePublishedPath> histories;
+  for (const auto& path : disabled_request.paths) {
+    histories.push_back({path.path_id, path.history});
+  }
+  const auto disabled = eom::certify_native_atomic_coupled_step(
+      disabled_request, histories, 0, "0", "0.1");
+  const auto& step = enabled.steps.front();
+  const auto& final_step = enabled.steps.back();
+  std::cout << "{\"schema\":\"eom_far_field_dispersal_timing/v0\""
+            << ",\"enabled_status\":\"" << enabled.status
+            << "\",\"enabled_step_wall_seconds\":"
+            << step.timing.total_wall_seconds
+            << ",\"enabled_final_step_wall_seconds\":"
+            << final_step.timing.total_wall_seconds
+            << ",\"enabled_total_wall_seconds\":"
+            << enabled.timing.total_wall_seconds
+            << ",\"enabled_enclosed_pairs\":"
+            << step.accepted_snapshot->traversal_enclosed_pairs
+            << ",\"enabled_exact_pairs\":"
+            << step.accepted_snapshot->traversal_exact_pairs
+            << ",\"disabled_status\":\"" << disabled.status
+            << "\",\"disabled_failure_code\":\""
+            << disabled.failure_code
+            << "\",\"disabled_step_wall_seconds\":"
+            << disabled.timing.total_wall_seconds << "}\n";
+}
+
+void print_certified_correction_retry() {
+  auto retry_request = request(
+      "certified-residual-scaled-correction-retry",
+      {{"scale-a", "1",
+        history("certified-scaled-correction-a", "5", {"0", "0", "0", "0"})},
+       {"scale-b", "1",
+        history("certified-scaled-correction-b", "5", {"2", "0", "0", "0"})}},
+      "5", "5.04", "0.04", "0.000001", "1", "1", "1e-7", "1", 1);
+  retry_request.max_step_attempts = 2;
+  const auto evolution = eom::evolve_native_coupled_histories(retry_request);
+  if (evolution.steps.size() < 2U) {
+    throw std::runtime_error(
+        "certified correction retry control did not produce two attempts");
+  }
+  const auto attempted_width = [](const eom::NativeAtomicStepCertificate& row) {
+    return std::stod(row.attempted_end) - std::stod(row.attempted_start);
+  };
+  const auto& first = evolution.steps[0];
+  const auto& second = evolution.steps[1];
+  std::cout << std::setprecision(17)
+            << "{\"schema\":\"eom_certified_correction_retry/v0\""
+            << ",\"first_failure_code\":\"" << first.failure_code << "\""
+            << ",\"first_residual\":"
+            << first.correction_residual.value_or(-1.0)
+            << ",\"retry_scale\":" << first.correction_retry_scale
+            << ",\"second_width\":" << attempted_width(second)
+            << ",\"publication_atomic\":"
+            << (first.publication_atomic ? "true" : "false") << "}\n";
+}
+
 }  // namespace
 
 int main(int argc, char** argv) {
   try {
-    if (argc != 2 || std::string(argv[1]) != "all") {
-      std::cerr << "usage: eom_native_evolution_fixture_cli all\n";
+    if (argc != 2 ||
+        (std::string(argv[1]) != "all" &&
+         std::string(argv[1]) != "far-field-dispersal" &&
+         std::string(argv[1]) != "certified-correction-retry")) {
+      std::cerr << "usage: eom_native_evolution_fixture_cli "
+                   "all|far-field-dispersal|certified-correction-retry\n";
       return EXIT_FAILURE;
     }
-    print_all();
+    if (std::string(argv[1]) == "all") {
+      print_all();
+    } else if (std::string(argv[1]) == "far-field-dispersal") {
+      print_far_field_dispersal_timing();
+    } else {
+      print_certified_correction_retry();
+    }
     return EXIT_SUCCESS;
   } catch (const std::exception& error) {
     std::cerr << "eom native evolution fixture failed: " << error.what() << '\n';

@@ -67,6 +67,8 @@ try {
       sampleInterval: duration,
       initialStep: control.step,
       minimumStep: control.step,
+      maximumStep: control.step,
+      useAdaptiveStepGrowth: false,
       rootTolerance: "1e-8",
       accelerationTolerance: "1e-8",
       positionTolerance: "1e-8",

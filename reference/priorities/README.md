@@ -6,7 +6,7 @@ Use it for live workstream priority lists and for supporting guidance on priorit
 
 Current priority staging should favor core geometrical theory closure: master-equation work, potential/action proof programs, certified branch geometry, simulations that discipline the equations, $A_0$ continuation, mass-map derivation, nested shell braid causal closure, Lorentz/effective-metric recovery, photon closure, and Noether sea constitutive response. Stage broad prose, app, presentation, or coordination items here only when they directly serve that theory stack or the operator/developer explicitly selects them.
 
-For top-six workstream sessions, begin from the current minimum evidence-object table in [aaa-work-threads/closure-join-matrix.md](aaa-work-threads/closure-join-matrix.md#top-six-minimum-evidence-objects-2026-06-28), then use the owning packet for the actual pass/fail fields.
+For top-six workstream sessions, begin from the current minimum evidence-object table in [aaa-work-threads/closure-join-matrix.md](aaa-work-threads/closure-join-matrix.md#top-six-minimum-evidence-objects-2026-07-16), then use the owning packet for the actual pass/fail fields.
 
 
 Use `operations/` for repo-wide deployment, hosting, release, cost, reliability, browser performance, and user-growth operations that are not specific to one app or solver proof lane.
@@ -25,6 +25,9 @@ The current preferred style for live priority docs is:
 - every immediate priority workstream directory should carry a `work-log.md`, even when it only contains the standard purpose note;
 - let the priority/tracking document reference `brainstorming.md`, `work-log.md`, and focused support files instead of embedding explanation-first material, long status logs, or detailed proof packets in the active queue, routing, ranking, blocker, or promotion sections;
 - keep detailed proof packets, certificates, app specs, and requirement notes in focused sibling files when their structure deserves more than a dated log entry;
+- score each live queue item as its own next unresolved object against remaining value and remaining cost, then sort the bucket so local item `1` has the highest current marginal ROI;
+- use the bucket's local item `1` as its scored row in `aaa-work-threads/priorities.md`, then sort those bucket winners globally so global rank `1` has the highest current marginal ROI;
+- after any score change, rerank and renumber both the affected bucket and the unified table; validate the unified arithmetic, sort order, and mirrored tracker metadata with `node scripts/validate-priority-ranking.mjs`;
 - rerank based on real code state, not stale historical intent;
 - if a task is done, remove it and renumber the list.
 - keep history only when it supports active triage, auditability, or a current proof/certificate decision; otherwise rely on GitHub and git history.

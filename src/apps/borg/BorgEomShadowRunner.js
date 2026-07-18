@@ -1,3 +1,9 @@
+import {
+  BORG_DEFAULT_CERTIFIED_BUDGET_ID,
+  canonicalStringify,
+  getBorgCertifiedBudgetPreset,
+} from "./BorgCertifiedBudgets.js";
+
 export const BORG_EOM_SHADOW_RUNNER_VERSION = "borg-eom-shadow-runner.v0";
 export const BORG_EOM_SHADOW_RUN_SOURCE = "computed-eom-shadow-chunks";
 export const BORG_EOM_COMPATIBILITY_HISTORY_PROVENANCE =
@@ -7,7 +13,6 @@ export const BORG_EOM_ACCEPTED_INITIAL_HISTORY_EVOLUTION_CLAIM_LEVEL =
 
 const POSITRINO_STATE_FLAG = 1;
 const ELECTRINO_STATE_FLAG = 2;
-const DEFAULT_MEMORY_BUDGET_BYTES = 64 * 1024 * 1024;
 
 export function createBorgEomShadowRunner(manifest, options = {}) {
   if (!manifest || typeof manifest !== "object") {
@@ -41,6 +46,7 @@ export function createBorgEomShadowRunner(manifest, options = {}) {
   let nextStartTime = config.startTime;
   let targetDuration = config.targetDuration;
   let chunkDuration = config.chunkDuration;
+  let controllerStepSize = config.initialStep;
   let chunkIndex = 0;
   const initialHistoryAccepted = histories.every(
     (history) => history.sourceAcceptedInitialDatum === true,
@@ -85,7 +91,9 @@ export function createBorgEomShadowRunner(manifest, options = {}) {
         throw new Error("Borg EOM shadow runner has been disposed.");
       }
       if (nextStartTime >= targetDuration) {
-        return createCompleteChunk(config, chunkIndex, nextStartTime);
+        return createCompleteChunk(
+          config, chunkIndex, nextStartTime,
+        );
       }
       const startTime = nextStartTime;
       const endTime = Math.min(
@@ -99,38 +107,55 @@ export function createBorgEomShadowRunner(manifest, options = {}) {
         chunkIndex,
         startTime,
         endTime,
+        initialStep: controllerStepSize,
       });
       const rawResponse = await client.evolveRetainedHistories(request);
       const response = normalizeEomResponse(rawResponse, request);
-      nextStartTime = endTime;
+      controllerStepSize = response.controllerStepSize;
+      const publishedEndTime = response.acceptedEndTime;
+      nextStartTime = publishedEndTime;
       histories = retainBorgHistoryWindow(response.histories, {
         minimumCoverageStart: roundTime(nextStartTime - config.historyDepth),
       });
+      const retainedHistoryStart = Number(histories[0].coverageStart);
+      const retainedHistoryEnd = Number(histories[0].coverageEnd);
       const frames = createFramesFromHistories(
         histories,
         startTime,
-        endTime,
+        publishedEndTime,
         config.sampleInterval,
         chunkIndex,
         response.evidenceStatus,
+        response.claimGrade,
         initialHistoryAccepted,
       );
       chunkIndex += 1;
+      if (response.terminalHalt) {
+        disposed = true;
+      }
       return Object.freeze({
         schema: BORG_EOM_SHADOW_RUNNER_VERSION,
         source: BORG_EOM_SHADOW_RUN_SOURCE,
-        statusCode: "ok",
+        statusCode: response.terminalHalt ? "halted-prefix" : "ok",
         chunkIndex: chunkIndex - 1,
         requestId: request.requestId,
         runId: request.runId,
         startTime,
-        endTime,
+        endTime: publishedEndTime,
+        terminalHalt: response.terminalHalt,
         sampleInterval: config.sampleInterval,
+        controllerStepSize,
         phase: "live",
         initialHistoryAccepted,
+        coreScale: response.coreScale,
+        budgetProvenance: response.budgetProvenance,
+        retainedHistoryStart,
+        retainedHistoryEnd,
+        retainedHistoryPolicy: "rolling-certified-history-window",
+        claimGrade: response.claimGrade,
         evolutionClaimLevel: initialHistoryAccepted
-          ? BORG_EOM_ACCEPTED_INITIAL_HISTORY_EVOLUTION_CLAIM_LEVEL
-          : "eom-evolution-conditioned-on-unaccepted-history",
+            ? BORG_EOM_ACCEPTED_INITIAL_HISTORY_EVOLUTION_CLAIM_LEVEL
+            : "eom-evolution-conditioned-on-unaccepted-history",
         frames: Object.freeze(frames),
         histories,
         evidenceStatus: response.evidenceStatus,
@@ -139,7 +164,7 @@ export function createBorgEomShadowRunner(manifest, options = {}) {
           isBorgEomPromotionEligible(response, options.acceptanceGate),
         diagnostics: Object.freeze(response.diagnostics),
         bufferCount: 0,
-        bufferByteLength: 0,
+        bufferByteLength: response.memoryEstimateBytes,
       });
     },
     async dispose() {
@@ -152,6 +177,10 @@ export function createBorgEomShadowRunner(manifest, options = {}) {
 }
 
 export function createBorgEomShadowRunConfig(manifest, options = {}) {
+  const certifiedBudget = getBorgCertifiedBudgetPreset(
+    options.certifiedBudgetId ?? BORG_DEFAULT_CERTIFIED_BUDGET_ID,
+  );
+  const budget = certifiedBudget.allocations;
   const sampleInterval = positiveNumber(
     options.sampleInterval,
     manifest.simulationEnvelope?.sampleInterval ?? 0.2,
@@ -176,12 +205,15 @@ export function createBorgEomShadowRunConfig(manifest, options = {}) {
       `Borg EOM path count ${pathCount} exceeds the ${maximumPathCount} retained histories available.`,
     );
   }
-  const sideLength = positiveNumber(manifest.simulationEnvelope?.sideLength, 100);
+  const outerRadius = positiveNumber(
+    options.simulationOuterRadius,
+    manifest.simulationEnvelope?.outerRadius ?? 50,
+  );
   const fieldSpeed = positiveNumber(
     options.fieldSpeed,
     manifest.simulationEnvelope?.fieldSpeed ?? 1,
   );
-  const geometricDelayBound = (Math.sqrt(3) * sideLength) / fieldSpeed;
+  const geometricDelayBound = (2 * outerRadius) / fieldSpeed;
   const historySafetyMargin = positiveNumber(
     options.historySafetyMargin,
     Math.max(sampleInterval * 2, geometricDelayBound * 0.05),
@@ -190,12 +222,52 @@ export function createBorgEomShadowRunConfig(manifest, options = {}) {
     options.historyDepth,
     manifest.simulationEnvelope?.historyDepth ?? 10,
   );
+  const coreScale = Number(budget.finiteWidth.coreScale);
+  const farFieldEnclosureFraction = budget.ordinary.farFieldEnclosureFraction;
   const targetDuration = finiteNumber(
     options.targetDuration,
     roundTime(startTime + chunkDuration),
   );
   if (targetDuration <= startTime) {
     throw new RangeError("Borg EOM target duration must exceed its initial-history cut.");
+  }
+  assertAtomicPresetValue(
+    options.initialStep,
+    budget.controller.initialStep,
+    "initialStep",
+  );
+  assertAtomicPresetValue(
+    options.minimumStep,
+    budget.controller.minimumStep,
+    "minimumStep",
+  );
+  assertAtomicPresetValue(
+    options.maximumStep,
+    budget.controller.maximumStep,
+    "maximumStep",
+  );
+  assertAtomicPresetValue(
+    options.useAdaptiveStepGrowth,
+    budget.controller.adaptiveGrowth,
+    "useAdaptiveStepGrowth",
+  );
+  const initialStep = requiredPositiveToken(
+    budget.controller.initialStep,
+    "initialStep",
+  );
+  const minimumStep = requiredPositiveToken(
+    budget.controller.minimumStep,
+    "minimumStep",
+  );
+  const maximumStep = requiredPositiveToken(
+    budget.controller.maximumStep,
+    "maximumStep",
+  );
+  if (Number(minimumStep) > Number(initialStep) ||
+      Number(initialStep) > Number(maximumStep)) {
+    throw new RangeError(
+      "Borg EOM steps must satisfy minimumStep <= initialStep <= maximumStep.",
+    );
   }
   return Object.freeze({
     schema: BORG_EOM_SHADOW_RUNNER_VERSION,
@@ -206,38 +278,32 @@ export function createBorgEomShadowRunConfig(manifest, options = {}) {
     pathCount,
     sampleInterval,
     fieldSpeed,
+    simulationOuterRadius: outerRadius,
     historyStartTime: roundTime(startTime - historyDepth),
     historyDepth,
+    coreScale,
     geometricDelayBound,
     historySafetyMargin,
     coupling: requiredNumericToken(
       options.coupling ?? manifest.modelControls?.coupling ?? "1",
       "coupling",
     ),
-    initialStep: requiredPositiveToken(options.initialStep ?? String(sampleInterval), "initialStep"),
-    minimumStep: requiredPositiveToken(
-      options.minimumStep ?? String(sampleInterval / 16),
-      "minimumStep",
+    initialStep,
+    minimumStep,
+    maximumStep,
+    useAdaptiveStepGrowth: requiredBoolean(
+      budget.controller.adaptiveGrowth,
+      "useAdaptiveStepGrowth",
     ),
-    rootTolerance: requiredPositiveToken(options.rootTolerance ?? "1e-12", "rootTolerance"),
-    accelerationTolerance: requiredPositiveToken(
-      options.accelerationTolerance ?? "1e-8",
-      "accelerationTolerance",
-    ),
-    positionTolerance: requiredPositiveToken(
-      options.positionTolerance ?? "1e-10",
-      "positionTolerance",
-    ),
-    velocityTolerance: requiredPositiveToken(
-      options.velocityTolerance ?? "1e-10",
-      "velocityTolerance",
-    ),
-    correctionTolerance: requiredPositiveToken(
-      options.correctionTolerance ?? "1e-8",
-      "correctionTolerance",
-    ),
-    threadCount: positiveInteger(options.threadCount, 1),
-    memoryBudgetBytes: positiveInteger(options.memoryBudgetBytes, DEFAULT_MEMORY_BUDGET_BYTES),
+    rootTolerance: budget.ordinary.rootTimeEnclosure,
+    accelerationTolerance: budget.ordinary.accelerationEnclosure,
+    farFieldEnclosureFraction,
+    positionTolerance: budget.ordinary.acceptedStepPosition,
+    velocityTolerance: budget.ordinary.acceptedStepVelocity,
+    correctionTolerance: budget.ordinary.correctionAccelerationResidual,
+    threadCount: budget.resources.workerThreads,
+    memoryBudgetBytes: budget.resources.requestMemoryBytes,
+    certifiedBudget,
     modelBindingId: options.modelBindingId ?? "master_eom_binding/v0",
   });
 }
@@ -296,10 +362,7 @@ export function createBorgContinuousRetainedHistories(
           `Borg EOM path ${pathKey} lacks continuous retained history through ${cutTime}.`,
         );
       }
-      const segments = [];
-      for (let index = 0; index + 1 < uniqueRows.length; index += 1) {
-        segments.push(createHermiteHistorySegment(uniqueRows[index], uniqueRows[index + 1]));
-      }
+      const segments = createRetainedHistorySegments(uniqueRows);
       return Object.freeze({
         pathId: String(pathKey),
         pathKey,
@@ -333,6 +396,7 @@ export function createBorgEomShadowRequest({
   chunkIndex,
   startTime,
   endTime,
+  initialStep = config.initialStep,
 }) {
   if (!Array.isArray(histories) || histories.length === 0) {
     throw new TypeError("Borg EOM request requires continuous retained histories.");
@@ -354,19 +418,32 @@ export function createBorgEomShadowRequest({
     histories,
     numericalControls: Object.freeze({
       integrationMode: "adaptive-coupled",
-      initialStep: config.initialStep,
+      initialStep,
       minimumStep: config.minimumStep,
+      maximumStep: config.maximumStep,
+      useAdaptiveStepGrowth: config.useAdaptiveStepGrowth,
       rootTolerance: config.rootTolerance,
       accelerationTolerance: config.accelerationTolerance,
+      farFieldEnclosureFraction: config.farFieldEnclosureFraction,
       positionTolerance: config.positionTolerance,
       velocityTolerance: config.velocityTolerance,
       correctionTolerance: config.correctionTolerance,
       deterministicReduction: true,
       threadCount: config.threadCount,
     }),
+    certifiedBudget: Object.freeze({
+      schema: config.certifiedBudget.allocations.schema,
+      presetId: config.certifiedBudget.id,
+      label: config.certifiedBudget.label,
+      allocationHash: config.certifiedBudget.allocationHash,
+      allocationCanonicalJson:
+        config.certifiedBudget.allocationCanonicalJson,
+      allocations: config.certifiedBudget.allocations,
+    }),
     modelControls: Object.freeze({
       fieldSpeed: String(config.fieldSpeed),
       coupling: config.coupling,
+      coreScale: String(config.coreScale),
       selfPairs: "included-except-coincident-endpoint",
       futurePathPolicy: "prohibited",
     }),
@@ -482,14 +559,58 @@ function createHermiteHistorySegment(start, end) {
     startTime: String(t0),
     endTime: String(t1),
     coefficients: Object.freeze(coefficients),
-    positionError: String(Math.max(Number(start.errorBound) || 0, Number(end.errorBound) || 0)),
-    velocityError: String(Math.max(Number(start.errorBound) || 0, Number(end.errorBound) || 0)),
+    positionErrors: Object.freeze(Array(3).fill(
+      String(Math.max(Number(start.errorBound) || 0, Number(end.errorBound) || 0)),
+    )),
+    velocityErrors: Object.freeze(Array(3).fill(
+      String(Math.max(Number(start.errorBound) || 0, Number(end.errorBound) || 0)),
+    )),
   });
+}
+
+function createRetainedHistorySegments(rows) {
+  const exactInertial = rows.every(
+    (row) => row.historyInterpolation === "exact-inertial-polynomial/v1",
+  );
+  if (exactInertial) {
+    const first = rows[0];
+    const firstTime = Number(first.time);
+    const axes = ["x", "y", "z"];
+    const singlePolynomial = rows.every((row) => {
+      const elapsed = Number(row.time) - firstTime;
+      return axes.every((axis) => {
+        const velocity = Number(first.velocity?.[axis]);
+        return Number(row.velocity?.[axis]) === velocity &&
+          Math.abs(
+            Number(row.position?.[axis]) -
+            (Number(first.position?.[axis]) + elapsed * velocity)
+          ) <= 1e-12 * Math.max(1, Math.abs(Number(row.position?.[axis])));
+      });
+    });
+    if (singlePolynomial) {
+      return [createHermiteHistorySegment(first, rows.at(-1))];
+    }
+  }
+  const segments = [];
+  for (let index = 0; index + 1 < rows.length; index += 1) {
+    segments.push(createHermiteHistorySegment(rows[index], rows[index + 1]));
+  }
+  return segments;
 }
 
 function normalizeEomResponse(rawResponse, request) {
   const response = rawResponse?.response ?? rawResponse;
-  if (!response || response.status !== "completed") {
+  const acceptedEndTime = Number(response?.acceptedEndTime);
+  const requestStart = Number(request.absoluteTimeInterval.start);
+  const requestEnd = Number(request.absoluteTimeInterval.end);
+  const completed = response?.status === "completed" &&
+    response?.allStepsAtomic === true &&
+    Number.isFinite(acceptedEndTime) && acceptedEndTime === requestEnd;
+  const certifiedPrefix = response?.status === "halted" &&
+    response?.allStepsAtomic === true &&
+    Number.isFinite(acceptedEndTime) && acceptedEndTime > requestStart &&
+    acceptedEndTime < requestEnd;
+  if (!response || (!completed && !certifiedPrefix)) {
     const failure = response?.haltCode ?? response?.failureCode ?? "eom_shadow_run_failed";
     const error = new Error(`Borg EOM shadow run failed closed: ${failure}.`);
     error.code = failure;
@@ -503,14 +624,63 @@ function normalizeEomResponse(rawResponse, request) {
   const expectedIds = request.histories.map((history) => history.pathId);
   histories.forEach((history, index) => {
     if (String(history.pathId) !== expectedIds[index] ||
-        Number(history.coverageEnd) !== Number(request.absoluteTimeInterval.end) ||
+        Number(history.coverageEnd) !== (completed ? requestEnd : acceptedEndTime) ||
         !Array.isArray(history.segments) || history.segments.length === 0) {
       throw new Error("Borg EOM shadow response has incomplete or reordered histories.");
     }
   });
+  const coreScale = Number(requiredPositiveToken(
+    response.coreScale ?? request.modelControls.coreScale,
+    "response coreScale",
+  ));
+  const claimGrade = String(response.claimGrade ?? response.evidenceStatus ?? "failed");
+  const memoryBudgetBytes = requiredPositiveInteger(
+    response.memoryBudgetBytes ?? request.resourceEnvelope.memoryBudgetBytes,
+    "response memoryBudgetBytes",
+  );
+  const memoryEstimateBytes = requiredNonnegativeInteger(
+    response.memoryEstimateBytes ?? 0,
+    "response memoryEstimateBytes",
+  );
+  const budgetProvenance = response.budgetProvenance;
+  const requestedBudget = request.certifiedBudget;
+  if (coreScale !== Number(request.modelControls.coreScale) ||
+      memoryBudgetBytes !== Number(request.resourceEnvelope.memoryBudgetBytes) ||
+      memoryEstimateBytes > memoryBudgetBytes ||
+      claimGrade !== String(response.evidenceStatus ?? "failed") ||
+      budgetProvenance?.schema !== requestedBudget.schema ||
+      budgetProvenance?.presetId !== requestedBudget.presetId ||
+      budgetProvenance?.allocationHash !== requestedBudget.allocationHash ||
+      budgetProvenance?.allocationCanonicalJson !==
+        requestedBudget.allocationCanonicalJson ||
+      canonicalStringify(budgetProvenance?.allocations) !==
+        requestedBudget.allocationCanonicalJson) {
+    throw new Error("Borg EOM shadow response has inconsistent certified provenance.");
+  }
   return Object.freeze({
     status: response.status,
     evidenceStatus: response.evidenceStatus ?? "failed",
+    coreScale,
+    memoryBudgetBytes,
+    memoryEstimateBytes,
+    claimGrade,
+    budgetProvenance: Object.freeze({
+      schema: budgetProvenance.schema,
+      presetId: budgetProvenance.presetId,
+      allocationHash: budgetProvenance.allocationHash,
+      allocationCanonicalJson: budgetProvenance.allocationCanonicalJson,
+      allocations: budgetProvenance.allocations,
+    }),
+    controllerStepSize: String(Number(requiredPositiveToken(
+      response.controllerStepSize ?? request.numericalControls.initialStep,
+      "response controllerStepSize",
+    ))),
+    acceptedEndTime: completed ? requestEnd : acceptedEndTime,
+    terminalHalt: certifiedPrefix ? Object.freeze({
+      code: String(response.haltCode ?? "eom_shadow_run_failed"),
+      failedCandidateRejected: true,
+      acceptedPrefixEndTime: acceptedEndTime,
+    }) : null,
     histories: Object.freeze(histories),
     diagnostics: Array.isArray(response.diagnostics) ? response.diagnostics : [],
   });
@@ -523,6 +693,7 @@ function createFramesFromHistories(
   sampleInterval,
   chunkIndex,
   evidenceStatus,
+  claimGrade,
   initialHistoryAccepted,
 ) {
   const frames = [];
@@ -578,11 +749,25 @@ function evaluateHistory(history, time) {
   return {
     position,
     velocity,
-    errorBound: Math.max(Number(segment.positionError) || 0, Number(segment.velocityError) || 0),
+    errorBound: Math.max(
+      ...requiredAxisErrorNumbers(segment.positionErrors, "positionErrors"),
+      ...requiredAxisErrorNumbers(segment.velocityErrors, "velocityErrors"),
+    ),
   };
 }
 
-function createCompleteChunk(config, chunkIndex, time) {
+function requiredAxisErrorNumbers(value, label) {
+  if (!Array.isArray(value) || value.length !== 3) {
+    throw new TypeError(`EOM retained segment ${label} must contain three axes.`);
+  }
+  return value.map((token) => Math.abs(Number(token)) || 0);
+}
+
+function createCompleteChunk(
+  config,
+  chunkIndex,
+  time,
+) {
   return Object.freeze({
     schema: BORG_EOM_SHADOW_RUNNER_VERSION,
     source: BORG_EOM_SHADOW_RUN_SOURCE,
@@ -593,6 +778,16 @@ function createCompleteChunk(config, chunkIndex, time) {
     sampleInterval: config.sampleInterval,
     phase: "live",
     initialHistoryAccepted: false,
+    coreScale: config.coreScale,
+    budgetProvenance: Object.freeze({
+      schema: config.certifiedBudget.allocations.schema,
+      presetId: config.certifiedBudget.id,
+      allocationHash: config.certifiedBudget.allocationHash,
+      allocationCanonicalJson:
+        config.certifiedBudget.allocationCanonicalJson,
+      allocations: config.certifiedBudget.allocations,
+    }),
+    claimGrade: "not-applicable",
     evolutionClaimLevel: "not-applicable",
     frames: Object.freeze([]),
     histories: Object.freeze([]),
@@ -649,10 +844,58 @@ function requiredNumericToken(value, label) {
   return token;
 }
 
+function requiredNonnegativeInteger(value, label) {
+  const number = Number(value);
+  if (!Number.isInteger(number) || number < 0) {
+    throw new TypeError(`Borg EOM ${label} must be a nonnegative integer.`);
+  }
+  return number;
+}
+
+function requiredPositiveInteger(value, label) {
+  const number = Number(value);
+  if (!Number.isInteger(number) || number <= 0) {
+    throw new TypeError(`Borg EOM ${label} must be a positive integer.`);
+  }
+  return number;
+}
+
 function requiredPositiveToken(value, label) {
   const token = requiredNumericToken(value, label);
   if (!(Number(token) > 0)) {
     throw new RangeError(`Borg EOM ${label} must be positive.`);
   }
   return token;
+}
+
+function requiredFractionToken(value, label) {
+  const token = requiredNumericToken(value, label);
+  if (!(Number(token) >= 0 && Number(token) < 1)) {
+    throw new RangeError(`Borg EOM ${label} must lie in [0, 1).`);
+  }
+  return token;
+}
+
+function requiredBoolean(value, label) {
+  if (typeof value !== "boolean") {
+    throw new TypeError(`Borg EOM ${label} must be Boolean.`);
+  }
+  return value;
+}
+
+function assertAtomicPresetValue(actual, expected, label) {
+  if (actual == null) return;
+  if (typeof expected === "boolean") {
+    if (requiredBoolean(actual, label) !== expected) {
+      throw new RangeError(
+        `Borg ${label} is fixed by the selected certified budget.`,
+      );
+    }
+    return;
+  }
+  if (Number(actual) !== Number(expected)) {
+    throw new RangeError(
+      `Borg ${label} is fixed by the selected certified budget.`,
+    );
+  }
 }

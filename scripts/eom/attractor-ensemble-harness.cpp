@@ -562,6 +562,16 @@ void write_segment(
     }
     output << ']';
   }
+  output << "],\"positionErrors\":[";
+  for (std::size_t axis = 0; axis < 3; ++axis) {
+    if (axis > 0) output << ',';
+    write_json_string(output, segment.position_error_tokens()[axis]);
+  }
+  output << "],\"velocityErrors\":[";
+  for (std::size_t axis = 0; axis < 3; ++axis) {
+    if (axis > 0) output << ',';
+    write_json_string(output, segment.velocity_error_tokens()[axis]);
+  }
   output << "],\"positionError\":";
   write_json_string(output, segment.position_error_token());
   output << ",\"velocityError\":";

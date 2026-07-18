@@ -721,6 +721,27 @@ class NativeHistoryLayerTests(unittest.TestCase):
         self.assertGreaterEqual(upper, oracle.roots[0].lower)
         self.assertEqual(native_root["source_normal_sign"], 1)
 
+    def test_mpfr_monotone_enclosure_contains_asymmetric_analytic_root_set(
+        self,
+    ) -> None:
+        native = self.pair("mpfr_asymmetric_monotone_root")
+        self.assertEqual(native["status"], "certified_complete")
+        self.assertTrue(native["root_free_complement"])
+        self.assertTrue(native["precision_escalated"])
+        self.assertEqual(len(native["roots"]), 1)
+
+        root = native["roots"][0]
+        lower = Decimal(root["lower"])
+        upper = Decimal(root["upper"])
+        # Analytic control: g(S)=S-0.50003059 with source-position error
+        # +/-0.00028, so every admissible root lies in this exact interval.
+        analytic_lower = Decimal("0.49975059")
+        analytic_upper = Decimal("0.50031059")
+        self.assertLessEqual(lower, analytic_lower)
+        self.assertGreaterEqual(upper, analytic_upper)
+        self.assertLessEqual(upper - lower, Decimal("0.001"))
+        self.assertEqual(root["source_normal_sign"], 1)
+
     def test_mpfr_self_search_does_not_apply_endpoint_proof_to_older_cell(
         self,
     ) -> None:
@@ -845,6 +866,100 @@ class NativeHistoryLayerTests(unittest.TestCase):
         self.assertGreaterEqual(upper, Decimal("0"))
         self.assertLessEqual(upper - lower, Decimal("1e-5"))
         self.assertEqual(root["source_segment_indices"], [0, 1])
+        self.assertEqual(root["source_normal_sign"], 1)
+
+    def test_join_root_bracket_selects_every_short_segment_it_crosses(self) -> None:
+        row = self.pair("short_segment_join_root")
+        self.assertEqual(row["status"], "certified_complete")
+        self.assertFalse(row["precision_escalated"])
+        self.assertEqual(len(row["roots"]), 1)
+        root = row["roots"][0]
+        lower = Decimal(root["lower"])
+        upper = Decimal(root["upper"])
+        self.assertLessEqual(lower, Decimal("0"))
+        self.assertGreaterEqual(upper, Decimal("0"))
+        self.assertLessEqual(upper - lower, Decimal("0.001"))
+        self.assertGreater(len(root["source_segment_indices"]), 2)
+        self.assertEqual(root["source_normal_sign"], 1)
+
+    def test_mpfr_join_root_uses_inward_representable_tolerance_probe(
+        self,
+    ) -> None:
+        receiver = PiecewisePolynomialHistory.from_segments(
+            (
+                CubicHistorySegment.from_decimal_tokens(
+                    t_start="1",
+                    t_end="2.3",
+                    coefficients=(
+                        ("1", "0", "0", "0"),
+                        ("0", "0", "0", "0"),
+                        ("0", "0", "0", "0"),
+                    ),
+                    precision=90,
+                ),
+            ),
+            history_id="inward-join-probe-receiver",
+        )
+        source = PiecewisePolynomialHistory.from_segments(
+            tuple(
+                CubicHistorySegment.from_decimal_tokens(
+                    t_start=start,
+                    t_end=end,
+                    coefficients=(
+                        ("0", "0", "0", "0"),
+                        ("0", "0", "0", "0"),
+                        ("0", "0", "0", "0"),
+                    ),
+                    position_error="0.00000000015",
+                    precision=90,
+                )
+                for start, end in (("1", "1.3"), ("1.3", "2.3"))
+            ),
+            history_id="inward-join-probe-source",
+        )
+        oracle = certify_causal_roots(
+            receiver=receiver,
+            source=source,
+            reception_time="2.3",
+            field_speed="1",
+            search_lower="1",
+            search_upper="2",
+            root_tolerance="0.0000000004",
+            max_depth=256,
+            max_cells=500000,
+        )
+        native = self.pair("mpfr_inward_join_tolerance_probe")
+
+        self.assertEqual(oracle.status, "certified_complete")
+        self.assertEqual(native["status"], oracle.status)
+        self.assertTrue(native["root_free_complement"])
+        self.assertTrue(native["precision_escalated"])
+        self.assertEqual(len(native["roots"]), 1)
+        root = native["roots"][0]
+        lower = Decimal(root["lower"])
+        upper = Decimal(root["upper"])
+        self.assertLessEqual(lower, Decimal("1.3"))
+        self.assertGreaterEqual(upper, Decimal("1.3"))
+        self.assertLessEqual(upper - lower, Decimal("0.0000000004"))
+        self.assertLessEqual(lower, oracle.roots[0].upper)
+        self.assertGreaterEqual(upper, oracle.roots[0].lower)
+        self.assertEqual(root["source_segment_indices"], [0, 1])
+        self.assertEqual(root["source_normal_sign"], 1)
+
+    def test_mpfr_reconditions_continuous_join_chain_from_derivative_bound(
+        self,
+    ) -> None:
+        row = self.pair("mpfr_reconditioned_join_chain")
+        self.assertEqual(row["status"], "certified_complete")
+        self.assertTrue(row["root_free_complement"])
+        self.assertTrue(row["precision_escalated"])
+        self.assertEqual(len(row["roots"]), 1)
+        root = row["roots"][0]
+        lower = Decimal(root["lower"])
+        upper = Decimal(root["upper"])
+        self.assertLessEqual(lower, Decimal("0"))
+        self.assertGreaterEqual(upper, Decimal("0"))
+        self.assertLessEqual(upper - lower, Decimal("1e-5"))
         self.assertEqual(root["source_normal_sign"], 1)
 
     def test_self_pair_endpoint_rule_handles_subfield_and_rail_histories(self) -> None:

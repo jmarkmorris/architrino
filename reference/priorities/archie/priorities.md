@@ -3,6 +3,10 @@
 ## Workstream Metadata
 
 - Kind: `priority-design`
+- Rank: `27`
+- Value: `1.00`
+- Cost: `3.5`
+- ROI: `0.29`
 - Status: `active`
 - Claim level: `priority-only`
 - Primary scene: [Archie scene](../../../content/scenes/archie/archie.json)
@@ -50,7 +54,17 @@ The main risk is scope drift. If Archie becomes an AI persona, it must not sound
 5. `claim_level_explainer` - Explain whether a topic is established corpus prose, derivation target, simulation target, priority-only work, or open blocker. Status: `investigate`.
 6. `app_helper` - Help users understand app controls and diagnostics for deployed apps without making proof-level claims from diagnostic visuals. Status: `investigate`.
 
-## Task Queue
+## Ranked Next Objects
+
+Ordered by marginal ROI on 2026-07-17. The external `theory_closure_first` dependency is not scored as Archie-owned implementation value.
+
+1. `platform_architecture_packet` — Fix the future service deployment route and responsibility boundary. Status: `draft`.
+2. `source_authority_boundary` — Convert source classes into the deployed-service allowlist. Status: `deferred`.
+3. `service_scaffolding_and_fixtures` — Define schema-first service contracts, fixture families, environment classes, CI gates, and rollback evidence. Status: `draft`.
+4. `privacy_security_cost_boundary` — Define data movement, providers, rate limits, retention, abuse controls, cost limits, and failure behavior. Status: `deferred`.
+5. `validation_and_qa` — Define source, answer, privacy, multimodal, deployment, and rollback acceptance. Status: `deferred`.
+
+## Detailed Task Inventory
 
 1. `theory_closure_first` - Return near-term effort to the strongest core theory-closure targets so future Archie answers have stable substance to explain. Status: `active`.
 2. `service_platform_priority` - Maintain the long-term Archie service plan in [service-platform.md](service-platform.md), including deployment, backend/serverless boundary, source authority, privacy, logging, cost, and operations. Status: `long-term`. Depends on: `assistant-mode-contract.md`.

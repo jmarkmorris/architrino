@@ -3,19 +3,29 @@
 ## Workstream Metadata
 
 - Kind: `priority-candidate`
-- Rank: `unscored-discussion`
-- Value: `unscored`
-- Cost: `unscored`
-- ROI: `unscored`
+- Rank: `14`
+- Value: `9.24`
+- Cost: `5.8`
+- ROI: `1.59`
 - Status: `active-discussion`
 
-## Task Queue
+## Ranked Next Objects
+
+Ordered by marginal ROI on 2026-07-17. Ownership maintenance is not scored above a concrete recovery object.
+
+1. `iron_group_binding_cusp_recovery` — Supply the accepted nucleon branch-interface ledgers needed to test the Fe/Ni binding-per-nucleon maximum without per-element tuning. Status: `source-binding-gated`.
+2. `nuclear_radiation_worked_examples` — Close native rate, daughter de-excitation, material heat-deposition, and provenance rows for the first worked packets. Status: `active`.
+3. `nuclear_binding_packet_ownership` — Preserve the benchmark ladder and confinement dependency while the evidence objects advance. Status: `active`.
+4. `atomic_orbital_import` — Reframe the deferred orbital note as an atomic-structure and spectra bridge. Status: `queued`.
+
+## Detailed Task Inventory
 
 1. `nuclear_binding_packet_ownership` — Keep the nuclear benchmark ladder and first $V_{NN}$ row discoverable here while preserving its dependency on Standard Model confinement energetics. Status: `active`. Depends on: `confinement_energetics`.
 2. `iron_group_binding_cusp_recovery` — Test whether the same reduced nuclear assembly rows can produce a finite binding-per-nucleon maximum in the Fe/Ni neighborhood without per-element tuning. Status: `source-binding-gated`; toy sweep passes row-shape controls but promotion is blocked at `missing_accepted_nucleon_branch_interface_ledgers`. Depends on: `nuclear_binding_packet_ownership`.
 3. `nuclear_radiation_worked_examples` — Track alpha, beta, gamma, radioisotope, and heat-channel worked examples as nuclear reaction provenance before routing photon-source details to `EQ-29`. Status: `active`; first Pu-238 packet exists, with promotion blocked until native alpha-rate, daughter de-excitation, and material heat-deposition rows are derived or source-bound. Depends on: `nuclear_binding_packet_ownership`.
 4. `atomic_orbital_import` — Triage the deferred electron-orbitals note into a cleaner atomic-structure and spectra bridge. Status: `queued`. Depends on: none.
 5. `molecular_bonding_bridge` — Define the first molecular bonding and geometry targets from atomic ledger, electron-envelope, Noether sea response, and reaction-provenance rows. Status: `queued`. Depends on: `atomic_orbital_import`.
+6. `hydrogen_gamma_n_record_extraction` — Replace scaffolded hydrogen $\Gamma_N$ spectral inputs only with same-ledger native hydrogen spectral-channel records across at least two admissible resolutions and two isolated transitions. Status: `pending`. Depends on: accepted hydrogen branch/interface rows and the shared Noether sea constitutive response.
 
 ## Scope
 
@@ -30,7 +40,7 @@ Use this bucket when the question is naturally about a physical assembly above t
 - Nuclear binding, isotope stability, alpha/beta/gamma examples, and nuclear heat-channel accounting belong here as discussion and staging material.
 - QCD confinement, quark masses, weak-sector provenance, Higgs/scalar benchmarks, and detector-provenance records remain under [standard-model-closure](../standard-model-closure/priorities.md).
 - Generic radiation-source carrier evidence remains under [equation-mapping/EQ-29](../equation-mapping/eq-29-radiation-source-carrier-source-field-map.md). Nuclear radiation examples should route to `EQ-29` only when the photon source carrier, channel family, mechanism, and source branch rows become the active blocker.
-- Condensed-matter transport and pressure-response packets remain under braid program while their main job is mass, pressure, medium response, or transport-threshold extraction.
+- Condensed-matter transport remains with its scientific owner, while the shared pressure-dependent Noether sea constitutive response is owned by [Master-Equation Closure](../master-equation-closure/pressure-dependent-noether-sea-constitutive-response.md). This lane consumes accepted response rows for atomic and material targets rather than deriving a private constitutive law.
 - Quantum measurement, basin measure, Born-rule, Bell, and spin-biology stress tests remain under [quantum-closure](../quantum-closure/priorities.md) unless the active question is an atomic, molecular, or biomolecular assembly mechanism.
 
 ## Adjacent Ownership Audit

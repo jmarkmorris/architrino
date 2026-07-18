@@ -1147,3 +1147,687 @@ This file holds dated decisions, implementation status, validation results, fail
   its certificate does not bind the selected population, strict refinement or
   thread determinism fails, or the app labels artificial input history as EOM
   output.
+
+## 2026-07-16 — Priority-queue reconciliation
+
+- Removed three completed items from the immediate priority queue per the
+  completed-task removal rule and renumbered the remainder:
+  `eom_sole_engine` (enforced repo-wide; restated as the standing
+  Non-Negotiable Boundary rules 1–2), `borg_shadow_run_and_first_migration`
+  (accepted-initial-history promotion recorded above with its evidence
+  packet), and `consumer_migration` (all consumers on EOM, conditional
+  analysis, or recorded-dataset playback).
+- Updated workstream metadata to `borg-accepted-initial-history-promotion-complete`
+  and marked the first-path recursive block-exclusion packet
+  `complete-for-declared-first-path-round` to match its two completed
+  follow-on ladder packets.
+
+## 2026-07-16 — Certified far-field contribution enclosure
+
+- **Derived:** a far subluminal source has at most one retained causal root,
+  and the frozen receiver-normal law is bounded by
+  $\kappa|q_iq_j|(c_f+v_i)/(r_{\min}^2(c_f-v_j))$. The cutoff is solved from a
+  declared acceleration-width slice; it is not a distance constant.
+- Implemented pre-root per-pair classification, symmetric acceleration rows,
+  fixed-tree accumulation, complete exact/enclosed/unresolved snapshot
+  accounting, and checkpoint binding. Failed enclosure rows fall back to the
+  existing exact route.
+- Bumped the Borg process contract forward to V2 with exactly 18 fields and an
+  explicit enclosure fraction. Borg declares `0.25`; missing or under-length
+  controls fail closed.
+- **Measured:** the independent static-pair closed form is contained by the
+  native interval. A 3:3 memory-boundary control rejects as
+  `insufficient_history_depth` when disabled and completes through $T=3$ when
+  enabled, with $36=0+6+30+0$ and maximum receiver enclosed width
+  `0.0065277777777779092 <= 0.025`.
+- **Derived and measured-test:** the enclosed-width ledger sums the actual
+  emitted interval widths with directed upward rounding. `FFE-SUM-01` compares
+  that certified upper bound with the lower edge of the declared receiver
+  slice.
+- **Measured:** disabled static and interacting outputs are byte-identical to
+  the pre-enclosure binary. EOM tests pass 139/139, Borg tests pass 63/63, and
+  all pre-commit mirrors pass.
+- **Measured:** the actual seed-0 run with the final Borg `0.25` enclosure
+  fraction remains blocked before dispersal at `FWC-REG-02`
+  ($T=1.3759765625$, 109.33-second terminal chunk), so its live
+  before/after-dispersal cost remains an explicit obligation rather than an
+  inferred success.
+
+## 2026-07-16 — Research-grade caustic track discriminator
+
+- **Measured:** with root, position, and velocity tolerances fixed at `1e-8`,
+  2,048-bit MPFR available, the event budgets unchanged at `1e-7`, and the
+  ceiling unchanged at 200,000 cells, seed-0 tracks with maximum steps `0.01`
+  and `0.005` halted first at `FWC-ENTRY-02` through `T=1.24965625` and
+  `T=1.2846875` respectively.
+- **Measured:** the `0.0025` track crossed both entry boundaries. Its routed
+  `[0.3425,0.345]` attempt certified the complete core ladder, including
+  $\epsilon_c=0.05$ in 5,440 cells with impulse width `9.69534e-8`, then
+  rejected atomically on `FWC-STATE-01` for pair `1004<-1006`.
+- **Measured:** after subdivision the run completed through `T=1.4`, but no
+  accepted child regulator certificate discharged the rejected event. A
+  continuation reached `T=1.4004` and halted on the ordinary
+  `numeric_step_budget_exceeded` floor, not an FWC row. No full finite-width
+  passage is claimed.
+- **Derived:** `FWC-STATE-01` now requires separate event-aware state
+  reconstruction and common-domain chart matching. Any endpoint-linear sharp
+  shortcut carries outward remainders $h_C^3L_2/12$ for impulse and
+  $h_C^4L_2/24$ for position moment; no raw full-window sharp trapezoid is
+  admitted across a fold. Routed pairs remain pinned across child windows
+  until state and exit pass or the event floor halts.
+- **Measured:** the profiling instrument now retains regulator certificates
+  from every attempted step, including certified regulator rows attached to a
+  later state-row rejection. The EOM solver and Decimal oracle were unchanged
+  by that instrumentation edit.
+- Falsifier: overturn this adjudication with a same-control accepted child row
+  that certifies the pinned pair's regulator, state reconstruction, common-
+  domain overlap, and sharp exit, or with a derivation that supplies a finite
+  full-window sharp remainder across the fold.
+
+## 2026-07-16 — Demo-track FWC regulator disposition
+
+- **Operator decision:** retain the default seed-0 demo track's atomic
+  `FWC-REG-02` halt as its accepted adjudicated state. This closes the prior
+  “certify $\epsilon_c=0.1$ or retain the halt” choice on the retain branch;
+  no FWC engine change is authorized by this decision.
+- **Measured basis:** on the same retained histories, raising the cell ceiling
+  from 50,000 to 200,000 reduced the final impulse width from `1.95713e-7` to
+  `1.82541e-7`, only `6.73%`, while the unchanged budget remained `1e-7`.
+- The research-tolerance control and all remaining finite-width obligations
+  are assigned to a follow-up FWC thread. The far-field enclosure packet may
+  rely on the named default halt as an earlier independent terminal event; it
+  may not claim a live dispersed replay until a certified trajectory reaches
+  that regime.
+- Falsifier: reopen the disposition if the same default retained histories
+  certify $\epsilon_c=0.1$ within the unchanged `1e-7` and 200,000-cell
+  budgets at bounded wall cost.
+
+## 2026-07-16 — Borg display and certified run grades
+
+- **Operator decision:** Borg defaults to display grade. FWC entry, regulator,
+  state, and exit rows may become pair-scoped warnings; every other rejection
+  remains fail-closed. Certified grade retains the existing publication gate.
+- **Measured:** the final certified fixture artifact is byte-identical to the
+  frozen pre-change artifact. Seed-0 display grade crossed the first regulator
+  halt, carried both ordered directions of the warned encounter through the
+  following entry row, and completed the requested run through $T=1.45$ with
+  all post-warning segments marked `uncertified-through-encounters`.
+- **Measured cost:** the $[1.35,1.40]$ encounter chunk cost `95.9311 s`; the
+  $[1.40,1.45]$ continuation cost `97.0854 s`. A 64-path 32:32 display run
+  completed a 0.05-time chunk in `1.293216667 s` outer wall time and produced
+  384 playback frames, or `0.0386633` simulated seconds per wall second.
+- The single Borg process contract is `EOM_BORG_NATIVE_V4` with exactly 22
+  `RUN` fields. The cumulative provenance includes warning count, first time,
+  and the reciprocal ordered-pair set needed at later atomic chunk boundaries.
+- Evidence:
+  [eom-run-grade-display-seed-0-and-64-2026-07-16.md](evidence/eom-run-grade-display-seed-0-and-64-2026-07-16.md).
+- Falsifier: a certified deterministic token changes, an ordinary rejection is
+  published in display grade, a post-warning frame lacks demotion, or the same
+  measured controls fail before their recorded endpoints.
+
+## 2026-07-16 — Display-grade immediate caustic warning path
+
+- **Implemented:** display grade emits `FWC-ENTRY-02` at the caustic dispatch
+  and continues the ordinary corrected candidate without running regulator
+  ladders, event cells, state reconstruction, or exit adjudication. Complete
+  root rows return the warned pair to the sharp chart; the reciprocal pair set
+  remains in cumulative provenance and bridges non-complete retained-join
+  entry rows only.
+- **Measured:** the deterministic certified fixture artifact remained
+  byte-identical at SHA-256
+  `589b086b96ed3f441eaae30c8fcce177103e8d2c22b6c0fa862c1c53749deacc`.
+  The display fixture accepted with one entry warning, zero regulator rows,
+  and zero event impulses; its ordinary-correction negative still rejected.
+- **Measured cost:** seed 0 completed $[1.35,1.40]$ in `0.925956 s` and
+  $[1.40,1.45]$ in `5.19938 s`, versus the earlier `95.9311 s` and
+  `97.0854 s`. The demoted run continued to $T=2.0$; the next request failed
+  closed before returning a certificate on `history evaluation lies outside
+  segment`, so the requested $T=3$ continuation remains open outside the FWC
+  route.
+- **Measured 64-path control:** 384 frames and 0.05 simulated seconds were
+  produced in `1.206753167 s` outer wall time, or `0.0414335` simulated
+  seconds per wall second. Replacing the event detector's repeated root-row
+  identity search with the aligned certificate index removed the smooth-path
+  regression without changing certified tokens.
+- Evidence:
+  [eom-run-grade-display-seed-0-and-64-2026-07-16.md](evidence/eom-run-grade-display-seed-0-and-64-2026-07-16.md).
+- Falsifier: any certified fixture token changes, a display event emits a
+  regulator/event row, an ordinary correction is published, either encounter
+  chunk exceeds the declared two-times pre-FWC target on repeat without host
+  contention, or the retained-history boundary is shown to be an FWC halt.
+
+## 2026-07-16 — Pinned FWC state reconstruction
+
+- **Derived and implemented:** routed ordered pairs now remain pinned from a
+  rejected parent through every controller and atomic half-step child. A first
+  half may carry state-certified/exit-pending histories only into the second
+  half; it has no publication authority by itself.
+- **Derived and implemented:** FWC state rows use disjoint background plus
+  event endpoint assembly. Common-domain comparison certifies root tubes,
+  complement, source normal, and separation before emitting the
+  $h_C^3L_2/12$ impulse and $h_C^4L_2/24$ position-moment shortcut remainders.
+  The raw full-window sharp trapezoid path is removed.
+- **Measured:** the unchanged research-grade `h_max=0.0025` seed-0 control
+  halts atomically at `T=0.3425` on `FWC-STATE-01`. Entry, regulator, endpoint
+  assembly, and exit pass. On the minimum-height child, pair `1004<-1006` has
+  a component-0 common-domain gap `3.51437e-11` versus complete remainder
+  `6.29988e-16`; the terminal chunk costs `6.39989 s`.
+- **Inferred:** on this fixed track the remaining negative is a chart-center
+  obligation, not a missing track or shortcut enclosure. The next rung is the
+  regulator-level/common-domain matching law, unless a separately recomputed
+  tighter track moves the centers into overlap.
+- The Decimal oracle was not modified. The unchanged independent event
+  integral reference and the analytic interpolation-remainder derivation are
+  the named independent references.
+- Evidence:
+  [finite-width-close-approach-caustic-route-seed-0-2026-07-16.md](evidence/finite-width-close-approach-caustic-route-seed-0-2026-07-16.md).
+- Falsifier: a pinned pair disappears from a child, an exit-pending half is
+  published, recomputation exceeds either emitted remainder, or the same
+  control closes the componentwise common-domain gap.
+
+## 2026-07-16 — Positive-regulator common-domain matching proposal
+
+- **Derived:** on a certified simple-root tube, changing variables from
+  emission time to the causal residual gives a Gaussian moment expansion. The
+  bound finite-width law differs from the sharp law at leading order by a
+  core term proportional to $-3\epsilon_c^2/(2r^2)$ and a causal-width term
+  proportional to $\eta^2\partial_u^2\mathbf P_0/2$, plus higher-order, tail,
+  and root-free-complement terms.
+- **Derived:** the frozen law satisfies common-domain convergence as
+  $\eta,\epsilon_c\to0^+$ but does not imply literal equality at fixed positive
+  regulators. The current `FWC-STATE-01` comparison carries shortcut and track
+  remainders but no regulator-matching remainder.
+- **Inferred prediction:** the recorded `1004 <- 1006` raw component-0 gap
+  remains `3.51437e-11`; a valid regulator-matching enclosure must have radius
+  at least that large and is predicted to reduce the post-accounting disjoint
+  distance to zero while the total remains inside the unchanged `1e-7` budget.
+- Staged
+  [master-eom-binding-v0-amendment-1-common-domain-matching.md](master-eom-binding-v0-amendment-1-common-domain-matching.md)
+  as `pending-operator-ratification`. The frozen binding, finite-width route,
+  EOM solver, and Decimal oracle were not edited.
+- Falsifier: a certified regulator-error evaluation excludes the measured gap,
+  independent regulator refinement does not move the raw finite-width chart
+  toward the sharp chart, or theorem review finds a missing leading term.
+
+## 2026-07-17 — Common-domain regulator-limit matching ratified
+
+- **Operator decision:** adopted regulator-limit common-domain matching with a
+  certified $R^{\mathrm{reg}}$ and rejected exact positive-regulator identity.
+- **Derived binding:** on a certified common simple-root domain, fixed positive
+  $\eta$ and $\epsilon_c$ need not make the sharp and finite-width chart
+  integrals equal. Their componentwise distance must be enclosed by the sum of
+  the numerical remainder and the regulator-matching remainder.
+- **Unchanged authority:** the two boxed acceleration laws, regulator values,
+  event budgets, and prohibition on using the sharp quotient when its source-
+  normal floor fails are unchanged.
+- **Fail-closed implementation boundary:** the current EOM solver does not yet
+  emit $R^{\mathrm{reg}}$. Its existing `FWC-STATE-01` halt remains
+  adjudicated until an independent implementation contains the actual chart
+  difference and keeps the complete remainder inside the unchanged budget.
+- Ratified
+  [Master EOM Binding v0 Amendment 1](master-eom-binding-v0-amendment-1-common-domain-matching.md),
+  amended [master-eom-binding-v0.md](master-eom-binding-v0.md), and propagated
+  the normative condition into the finite-width route.
+- Claim grade: `operator-decision` for the selected contract and `derived` for
+  the matching condition. Falsifier: an analytic common-domain control lies
+  outside the certified regulator remainder, or the complete numerical-plus-
+  regulator row exceeds an unchanged event budget.
+
+## 2026-07-17 — Amendment 1 regulator remainder and first certified transit
+
+- **Derived and implemented:** common simple-root tubes now emit the
+  emission-coordinate $\partial_u^2P_0$ bound, the Amendment 1 leading
+  core-plus-causal-width impulse and position-moment terms, complete outward
+  higher-order/tail/complement residuals, and the final
+  $R^{\mathrm{num}}+R^{\mathrm{reg}}$ budget rows. A zero-containing source
+  normal still prohibits the sharp quotient.
+- **Independent analytic control:** for a stationary simple root, the native
+  regulator row `[-2.5918113797e-8,2.5918113797e-8]` contains the exact
+  normal-CDF difference `2.2853586273e-8`. The Decimal oracle was unchanged.
+- **Measured prediction check:** the former minimum-height seed-0 cell
+  reproduces raw gap `3.51437e-11` and numerical remainder `6.29988e-16`; the
+  new regulator radius is `5.11160e-11`, so the post-accounting distance is
+  zero under the unchanged `1e-7` budget. Pair `1004 <- 1002` likewise has
+  `1.70130e-10` enclosed by `4.24835e-10`.
+- **Measured first transit:** the certified `h_max=0.0025` run atomically
+  publishes `[0.3425,0.3428125]` with entry, regulator, endpoint assembly,
+  common-domain matching, and exit rows all passing. The enclosing requested
+  chunk costs `5.09915 s`.
+- **Post-transit boundary:** the next subdivision reaches
+  `minimum_step_exhausted` through `numeric_step_budget_exceeded` at
+  `T=0.3428125`; no second encounter or dispersal is reached. This is a
+  non-FWC track-quality boundary, not a failed transit row.
+- **Validation:** 145 EOM Python tests and 67 Borg JavaScript tests pass. Two
+  deterministic fixture runs have identical SHA-256
+  `d38cb2c08d2f5ff297f5abf95556986468fba83566d9970970afd76575d464a0`.
+- Evidence:
+  [eom-fwc-regulator-matching-remainder-seed-0-2026-07-17.md](evidence/eom-fwc-regulator-matching-remainder-seed-0-2026-07-17.md).
+- Falsifier: the analytic value lies outside the emitted remainder, the raw
+  gap moves materially without a law change, a complete row exceeds budget,
+  the child is not published atomically, or any validation fails.
+
+## 2026-07-17 — Ordinary-root classification and monotone interior enclosure
+
+- **Derived:** for opposite strict endpoint signs and a one-sign source-normal
+  enclosure, the mean-value theorem encloses the unique interior root by
+  $[a,b]\cap(p-G_p/D_s([a,b]))$. This asymmetric row replaces the failed
+  symmetric-probe-only decision without changing the `1e-3` Borg root
+  tolerance or any caustic budget.
+- **Independent analytic control:** the stationary control
+  $g(S)=S-0.50003059$ with source-position error $\pm0.00028$ has the exact
+  admissible root set $[0.49975059,0.50031059]$. The native MPFR enclosure
+  contains that complete interval, has width at most `0.001`, and certifies a
+  positive source normal. The Decimal oracle was not modified.
+- **Measured trajectory control:** before this change, the seed-0 display run
+  halted at `T=0.3516625` on `interior_root_not_surrounded`. The rebuilt binary
+  clears that row, warns through the encountered FWC entries, and reaches
+  `T=0.5624046875`. It then halts on the distinct
+  `endpoint_root_not_surrounded` boundary; the terminal chunk `[0.55,0.60]`
+  costs `4.70107 s`.
+- **Classification correction:** ordinary root-completeness failures now retain
+  `root_completeness_not_certified` in display and certified grades, carry an
+  empty `causticContractRow`, and report the regulator level as
+  `not-applicable`. A genuine root certificate with
+  `caustic_route_required` retains `FWC-ENTRY-02`; no rejected candidate is
+  published.
+- Claim grades: the enclosure and classification conditions are `derived`; the
+  analytic containment, trajectory extent, terminal row, and wall cost are
+  `measured` on 2026-07-17. Falsifiers: the analytic root set leaves the native
+  bracket, the bracket exceeds the unchanged tolerance, the former seed-0 row
+  again halts at `T=0.3516625`, an ordinary root failure carries an FWC row, or
+  any rejected candidate appears in published history.
+
+## 2026-07-17 — Coupled-correction terminal classification
+
+- **Measured diagnosis:** the current seed-0 3:3 display-grade control with
+  `h_max=0.025` and per-axis initial-speed maximum `0.03` reaches
+  `T=0.683203125`, then rejects down to `h=0.0001` because the coupled
+  correction does not converge. The terminal atomic row is
+  `coupled_correction_failed`; it has no root or finite-width failure row.
+- **Derived classification:** exhaustion of the controller height does not
+  erase the named atomic cause. A terminal `coupled_correction_failed` row now
+  remains the top-level halt code and carries no caustic contract or regulator
+  level. The candidate remains rejected and publication remains atomic.
+- **Measured requested-default control:** with only the initial-speed maximum
+  changed to `0.01`, the same seed and controller halt at `T=0.55390625` on
+  `coupled_correction_failed`; the terminal chunk costs `4.57775 s` and the
+  correction residual is `0.000206005`.
+- Falsifiers: the response again reports `minimum_step_exhausted` over a
+  terminal coupled-correction row, any rejected candidate is published, an FWC
+  row appears on the ordinary correction failure, or the stated seed-0 control
+  produces a different terminal certificate with the same binary and inputs.
+
+## 2026-07-17 — Display-grade residual-scaled correction retries
+
+- **Derived controller:** after a display-grade
+  `coupled_correction_failed` row with failed acceleration-consistency
+  residual $R_c>\tau_c$, the EOM solver now selects
+  $s_c=\min(1/2,0.9\sqrt{\tau_c/R_c})$. Missing or unusable residuals fall
+  back to one half. Certified grade remains exact halving, and no acceptance
+  or publication row changed.
+- **Measured deterministic control:** with $R_c=1.29131\times10^{-5}$ and
+  $\tau_c=10^{-7}$, display grade selected `0.0792003` and attempted
+  `0.00316801` after `0.04`; the otherwise identical certified control
+  attempted `0.02`. Both rejected candidates retained the input history
+  atomically.
+- **Measured seed-0 control:** with 3:3 paths, coupling `0.05`,
+  `h_initial=h_max=0.025`, and `h_min=0.0001`, the terminal chunk reached
+  `T=0.5528107343035016`, rejected 7 attempts, reevaluated 55,471 root cells,
+  and cost `4.64220 s`. Its correction rows carried residuals near `4.59` and
+  selected scales near `0.133`, reaching viable heights without intermediate
+  blind halvings.
+- **Measured negative speed result:** the preceding exact-halving control
+  rejected 9 attempts, reevaluated 52,290 root cells, and cost `4.57775 s`.
+  Fewer rejected attempts therefore did not reduce wall time on this encounter;
+  the measured cost changed by about `+1.4%`. Repeated root certification, not
+  the scalar height calculation, remains the next measured cost target.
+- **Diagnostic correction:** the prior `0.000206005` terminal
+  `correctionResidual` was the last inner-corrector value, not the later
+  accepted-history recertification value that caused rejection. The response
+  now reports that actual failed row and its selected retry scale.
+- **Certified-parity guard:** two runs of the deterministic `all` fixture retain
+  SHA-256 `d38cb2c08d2f5ff297f5abf95556986468fba83566d9970970afd76575d464a0`.
+  Certified correction retries remain exact halvings, and their serialized
+  response shape receives no display retry-scale field.
+- **Validation:** 147 EOM Python tests and 70 Borg JavaScript tests pass; the
+  repository pre-commit checks pass.
+- Claim grades: the controller and unchanged-gate statement are `derived`; the
+  fixture values, seed extent, cell counts, and costs are `measured` on the
+  rebuilt local binary. Falsifiers: certified grade does not halve exactly,
+  the emitted scale differs from the formula, a rejected candidate is
+  published, the named controls do not reproduce their attempt sequences, or
+  any validation fails.
+
+## 2026-07-17 — Separate binary64 display evaluator
+
+- **Derived implementation:** `run_grade=display` now dispatches before the
+  certified snapshot route into an ordered-pair binary64 evaluator. It solves
+  delayed roots with safeguarded Newton/bisection at relative tolerance
+  `1e-9`, evaluates the bound master equation at those roots, and supplies
+  point accelerations to the existing coupled cubic corrector. It constructs
+  no interval/MPFR root work, cell ledger, root certificate, FWC row,
+  regulator ladder, or full/two-half certification comparison. Certified grade
+  retains its prior route.
+- **Derived close-approach disposition:** core-active or near-source-normal-
+  pole pairs use the frozen finite-width regulated integrand with fixed-order
+  binary64 quadrature. A continuing step records only
+  `DISPLAY-REGULATOR-01/display_core_regulator_applied` with its reception
+  interval and ordered pair. `display_nonfinite_state`,
+  `display_root_solve_not_converged`, `display_insufficient_history_depth`, and
+  `display_invalid_evaluation_request` remain fatal. Borg retains display
+  history and extends a finite run's exact inertial datum by the requested run
+  duration rather than discarding a still-needed emission root.
+- **Derived provenance:** every display response, published segment, and Borg
+  frame is `display-only`; the UI label is `DISPLAY ONLY — uncontrolled error;
+  not evidence` from the first frame. Display output has no promotion path.
+- **Measured 64-path acceptance:** a 32:32 seed with the default `0.3` Borg
+  delivery chunk and unchanged `0.05` EOM-solver step completed through `T=3`
+  without a halt. EOM-solver compute was `1.0627483 s`, or `2.82287`
+  simulated seconds per wall second. End-to-end Borg throughput was `1.33374`
+  sim-s/wall-s, above the `1.0` target. The measured remainder was `1.18657 s`
+  in request encoding, process transfer, response parsing, and retained-history
+  merge. Inside the nested EOM-solver correction timer, root batches consumed
+  `0.354903 s` and history copy/hash consumed `0.537573 s`; these nested timers
+  must not be added to the correction total. A `0.05`-delivery diagnostic kept
+  EOM-solver throughput at `3.04973` but reduced end-to-end throughput to
+  `0.435228`, locating the loss in sixty protocol round trips rather than the
+  pair evaluator.
+- **Measured duration controls:** the 3:3 run completed through `T=10` at
+  `39.5597` EOM-solver sim-s/wall-s and `1.74979` end-to-end sim-s/wall-s. The
+  8:8 run completed through `T=10` at `13.4353` EOM-solver sim-s/wall-s and
+  `0.669256` end-to-end sim-s/wall-s. Neither run halted.
+- **Measured smooth control:** a six-path unit-envelope control had sampled
+  minimum pair separation `0.989811` against core separation `0.02` and zero
+  regulator warnings through `T=1`. The maximum display/certified position
+  difference at `T=1` was `7.45122e-12`, or the same fraction of the unit
+  envelope radius. This is a control measurement, not a display error bound.
+- **Certified parity:** the rebuilt deterministic `all` fixture retains
+  SHA-256 `d38cb2c08d2f5ff297f5abf95556986468fba83566d9970970afd76575d464a0`.
+- **Validation:** all 147 EOM Python tests, all 70 Borg JavaScript tests, all
+  three native CTest fixtures, and the repository pre-commit checks pass.
+- Claim grades: route separation and provenance enforcement are `derived`;
+  rates, timings, extent, separation, trajectory difference, and SHA are
+  `measured` on the rebuilt local binary. Falsifiers: the SHA changes; any
+  display segment lacks `display-only`; any display request constructs a root,
+  FWC, interval, MPFR, or cell certificate; a named fatal breakdown publishes;
+  the stated controls halt early; or rerunning the profile yields a different
+  rate outside ordinary host-load variation.
+
+## 2026-07-17 — Certified-only Borg evolution
+
+- **Operator decision:** Borg has one numerical evolution route: certified
+  retained-history evolution. The binary64 display evaluator, warning-based
+  caustic continuation, run-grade control, alternate provenance, and UI toggle
+  are removed. Playback buffering, measured slow-motion playback, live-history
+  retention, and diagnostics remain app presentation machinery and do not
+  alter EOM-solver acceptance.
+- **Derived controller:** the residual-scaled correction retry
+  $s_c=\min(1/2,0.9\sqrt{\tau_c/R_c})$ now applies to certified
+  `coupled_correction_failed` retries. Every correction, local-error, root,
+  finite-width, and atomic-publication row remains authoritative. Missing or
+  unusable residuals fall back to exact halving.
+- **Forward-only protocol:** `EOM_BORG_NATIVE_V6` has one exact 20-field `RUN`
+  record and one exact six-field `PATH` record. No run-grade field, warning
+  continuation ledger, alternate parser, or multi-version path remains.
+- **Measured certified parity control:** the same smooth one-path request was
+  run through a clean `HEAD` build of the V5 certified route and the rebuilt V6
+  route. After removing only the deleted run-grade metadata and nondeterministic
+  wall timers, every numerical token, certificate row, published cubic, error
+  radius, accepted-step count, and controller-height token was bit-identical.
+- **Measured validation:** all 149 EOM Python tests and all 85 Borg JavaScript
+  tests pass on the rebuilt local targets. The complete C++ target set builds,
+  and the content, scene-graph, receiver-normal, frequency-triplet, polarity,
+  and animator pre-commit validators pass.
+- Claim grades: the single-route architecture, unchanged acceptance authority,
+  and protocol field count are `derived` from the implementation; the build and
+  validation results are `measured` on the local checkout. Falsifiers: any
+  request selects a second numerical route, a rejected candidate is published,
+  a non-20-field `RUN` record is accepted, the retry scale differs from the
+  stated formula for its certified control, or a named validation fails.
+
+## 2026-07-18 — Restore certified far-field enclosure after display removal
+
+- **Configuration correction:** Borg again declares
+  `farFieldEnclosureFraction=0.25`, as required by the certified far-field
+  packet. The zero value belonged to display mode's evaluate-every-pair route
+  and incorrectly survived its removal, disabling the certified enclosure for
+  live Borg runs.
+- **Measured paired control:** the rebuilt seed-0 3:3 run used coupling
+  `0.0005`, maximum per-axis speed `0.001`, $h=0.05$, a `1.1` retained-history
+  horizon, and 83 chunks of width `0.3`. With the enclosure fraction `0.25`, it
+  completed all 83 chunks through $T=24.9$ in `4.47337` native wall seconds and
+  `5.56772` outer wall seconds. The identical control with the enclosure
+  disabled halted at $T=17.400490625$ with `minimum_step_exhausted`.
+- **Measured mechanism control:** the independent dispersed 3:3 fixture with
+  `0.25` completed with 30 enclosed off-diagonal pairs and six exact self
+  pairs; the disabled control rejected as `insufficient_history_depth`.
+- **Protocol hardening:** nonfinite diagnostic-only floating values now encode
+  as JSON `null`. During the disabled paired control, the pre-fix response
+  emitted bare `inf` and could not be parsed; after rebuilding, the same run
+  returned its structured named halt without publishing the rejected step.
+- **Profiler control:** `profile-borg-incremental-chunks.mjs` accepts an
+  explicit `--history-depth` so a bounded Borg wake horizon can be tested
+  without the profiler silently preloading the complete requested duration.
+- Claim grades: the default mismatch and protocol encoding are `measured` by
+  current-code inspection; the paired outcomes, timings, and ledger are
+  `measured` on the rebuilt local binary. Falsifiers: Borg emits a fraction
+  other than `0.25`, the enabled seed-0 control halts before $T=24.9$, the
+  disabled control reaches that endpoint, a nonfinite diagnostic produces
+  invalid JSON, or an enclosed-pair ledger fails its exact accounting row.
+
+## 2026-07-18 — Coherent certified-budget ledger and Amendment 2 proposal
+
+- **Derived:** reduced the numerical contract to two published per-step
+  increments, position and velocity. Root time is charged through the complete
+  acceleration enclosure; acceleration and correction residuals are integrated
+  with $h$ and $h^2/2$; finite-width impulse feeds velocity directly and
+  position moment feeds position directly.
+- **Derived:** common-domain overlap requires no independent tolerance. Its
+  numerical and Amendment 1 regulator-matching remainders spend the same
+  receiver-total impulse or position-moment row budget. A separate overlap
+  number would double-spend those remainders.
+- **Derived proposal:** staged `Interactive certified budget` and `Research
+  certified budget` as complete proposed records, including regulator values,
+  precision floors, convergence slices, rounding/reduction policy, and
+  resource ceilings. The completed sensitivity pass sets Research to the
+  current live Borg allocation. Interactive changes only receiver acceleration
+  from `0.1` to `0.3` and proposes `1e-6` receiver event totals through the
+  displayed state-budget inequalities; it remains blocked by state-radius
+  propagation and ratification.
+- **Ratification gate:** staged Amendment 2 as pending. The frozen binding,
+  native `1e-7` event values, `EOM_BORG_NATIVE_V6`, Borg defaults, and UI are
+  unchanged until explicit operator ratification.
+- Claim grade: `derived` for the dimensional mapping and no-independent-overlap
+  result; `derived-proposal` for the two records and amendment language.
+  Falsifiers: an error source cannot be charged through the stated map; a
+  receiver can spend more than the sum of its routed-pair allocations; either
+  preset exceeds its displayed $B_x$ or $B_v$ bound; or current source changes
+  a gated value before ratification.
+- **Measured negative control:** the stricter header-default combination
+  (`1e-12` root, `1e-9` acceleration, and `1e-8` state/correction controls)
+  spent `343.813 s` on one requested `0.05` interval and halted at
+  `T=0.007593126992950852` on `FWC-STATE-01`. The finite-width execution union
+  consumed `343.395 s`; acceleration precision escalation consumed `332.466`
+  worker-seconds. This corrected the initial assumption that the header
+  defaults were the recorded Research control.
+
+## 2026-07-18 — Certified-budget ledger, sensitivity matrix, and ratification gate
+
+- **Derived proposal:** staged one dimensional ledger with top-level position
+  and velocity increments, receiver-total event budgets, explicit remainder
+  slices, no independent common-domain overlap allowance, and resource ceilings
+  separated from mathematical error. Staged Amendment 2 without editing the
+  frozen binding or changing the native `1e-7` event budgets.
+- **Measured OAT result:** across seeds 0–3 at six paths and `T=1.2`, only the
+  receiver acceleration change `0.1 -> 0.3` changed the executed mechanism and
+  wall rate. Mean rate rose from `7.60` to `10.66` simulated seconds per wall
+  second; position, velocity, correction, and root `3x` rows stayed near host
+  scatter. Falsifier: a repeat sweep assigns the gain to another OAT row or
+  shows no correlated far-field/root-work change.
+- **Measured inconsistency:** the acceleration candidate's seed-0 endpoint
+  differs from the Research reference by `0.004784` position and `0.008027`
+  velocity while its emitted radii are much smaller. The current published
+  segment therefore does not carry the full acceleration-derived state
+  allowance. Interactive authority is blocked until complete state-radius
+  propagation and an independent containment control pass. Falsifier: a direct
+  reconstruction shows those contributions already present in the emitted
+  radii.
+- **Measured hot spots:** the finite-width halt spent `34.6358 s` of `34.8246 s`
+  in the event regulator ladder; the strict-state seed-3 negative spent
+  `78.0756 s` of `78.6071 s` there. The ordinary 32/64-path controls remained
+  dominated by the nested correction and exact-root path, and the acceleration
+  speed ratio fell from `1.60x` at six paths to `1.01x` at 64. Falsifier: repeat
+  phase timers move the wall cost to a different phase outside host-load
+  variation.
+- **Pending decision:** ratify or reject Amendment 2. No preset registry,
+  protocol revision, Borg default, UI, run-selected event budget, or binding
+  edit has been implemented.
+- **Evidence:**
+  [borg-certified-budget-sensitivity-apple-m3-2026-07-18.md](evidence/borg-certified-budget-sensitivity-apple-m3-2026-07-18.md).
+
+## 2026-07-18 — Amendment 2 ratification and V7 implementation acceptance blocker
+
+- **Operator decision:** ratified Amendment 2 and both complete preset records.
+  The binding now permits versioned run-selected certified budgets without
+  weakening any finite-width, rounding, root, or atomic-publication gate.
+- **Derived implementation:** added one canonical two-preset registry, stable
+  complete-allocation hashes, a two-choice UI selector, atomic preset
+  controller ownership, exact V7/54 request encoding and parsing, complete
+  request/response provenance, receiver-total equal routed-pair event
+  allocation, zero independent overlap allowance, and charged regulator and
+  matching slices. V6 has no compatibility parser.
+- **Derived state correction:** published position radius now carries inherited
+  position plus $h$ times inherited velocity width and $h^2/2$ times the
+  acceleration width; velocity carries inherited velocity plus $h$ times the
+  acceleration width. This removes the pre-ratification omitted-width defect.
+- **Measured independent controls:** both selectable finite-width event budgets
+  contain the unchanged Decimal-oracle value; a deliberate `1e-12`
+  under-budget request rejects. The oracle implementation was not modified.
+- **Measured parity failure:** the corrected widths change the retained-history
+  root track. Research seeds 0–3 halt on `root_completeness_not_certified` at
+  `0.3485375`, `0.3924828125`, `0.3588890625`, and `0.3186546875`, rather than
+  reproducing the historical `T=1.2` control. Amendment 2 implementation
+  acceptance therefore remains blocked. Falsifier: the exact V7 sweep reaches
+  the old endpoints while retaining the corrected widths and every gate.
+- **Measured Interactive survival:** Interactive reaches `0.3994140625`,
+  `0.708203125`, `1.2` completed, and `0.29140625` on seeds 0–3. It improves
+  survival on three seeds and worsens it on seed 3. At common seed-0 `T=0.3`,
+  Research and Interactive intervals overlap, while the separate visible-track
+  diagnostic fails on a `0.00198138` maximum velocity difference.
+- **Validation:** native build and CTest `3/3`, Borg JavaScript `86/86`, EOM
+  Python and unchanged-oracle `150/150`, V7 protocol `12/12`, and native coupled
+  evolution `24/24` pass. The evidence record contains the exact commands and
+  phase shares.
+- **Fail-closed default disposition:** Research remains the Borg default because
+  the explicit acceptance rule forbids Interactive default authority before
+  Research parity passes. Both ratified records remain selectable for controlled
+  validation.
+- **Evidence:**
+  [borg-certified-budget-v7-implementation-validation-apple-m3-2026-07-18.md](evidence/borg-certified-budget-v7-implementation-validation-apple-m3-2026-07-18.md).
+
+## 2026-07-18 — Research-parity root-width mechanism adjudication
+
+- **Measured first rows:** reproduced the four Research halts and the terminal
+  minimum-step attempts. Seeds 1 and 2 stop on interior roots whose residual
+  widths are `1.000337927225727e-3` and `1.000503017254976e-3` against the
+  `1e-3` root ceiling. Seeds 0 and 3 stop at source-segment joins even though
+  the point-residual widths are below the ceiling. Every row retains strict
+  normals near one and exhausts 512-bit MPFR, so arithmetic precision and a
+  source-normal pole are excluded.
+- **Derived mechanism:** candidate construction collapses the three
+  componentwise state radii to one maximum, stores one scalar error, and root
+  evaluation reinflates every axis by that scalar. Join validation preserves
+  overlapping endpoint boxes rather than one shared endpoint state. The first
+  interior-root blocker is therefore scalar isotropic width; the first
+  join-root blocker is missing cross-segment endpoint correlation.
+- **Adjudication:** representation improvement comes before budget change.
+  Retain corrected widths and every fail-closed row, implement a componentwise
+  and join-correlated diagnostic, then rerun the unchanged Research gate. A
+  new root allocation becomes eligible for derivation only if that ablation
+  leaves an irreducible width above `1e-3` and the induced acceleration still
+  fits the Research `1e-1` row.
+- **Evidence:**
+  [borg-research-parity-root-width-adjudication-apple-m3-2026-07-18.md](evidence/borg-research-parity-root-width-adjudication-apple-m3-2026-07-18.md).
+
+## 2026-07-18 — V8 axis-radius, shared-endpoint, and halted-prefix ablation
+
+- **Derived implementation:** V8 carries three position and three velocity
+  radius tokens through retained histories, checkpoints, native process
+  records, and Borg. Join evaluation consumes the certified shared endpoint
+  intersection and the existing one-sign monotone-root enclosure. Scalar
+  maxima remain diagnostics only.
+- **Measured unchanged-budget result:** Research seeds 0–3 still halt before
+  `T=1.2`, at accepted prefixes `0.34931875`, `0.392578125`,
+  `0.3588890625`, and `0.3249046875`. All first failures are now interior
+  inertial-source roots with widths `1.0002997e-3` through
+  `1.0005637e-3`, just above the unchanged `1e-3` root row. This fires the
+  packet's representation-ablation falsifier and makes a new root-time budget
+  derivation eligible; no budget has been changed or ratified.
+- **Derived fail-closed UI behavior:** a halted native response is displayable
+  only when it declares atomic steps, contains a nonempty accepted prefix, and
+  supplies complete histories ending exactly at `acceptedEndTime`. Borg then
+  displays that prefix, marks the failed candidate rejected, disables further
+  continuation, and remains promotion-ineligible. A zero-length prefix still
+  throws the fail-closed error.
+- **Measured browser QA:** after refreshing the shared `5173` server onto the
+  final rebuilt V8 binary, Research displayed two forward chunks through
+  `T=0.38910468749999993`; Interactive displayed one through
+  `T=0.2444359375`. Both ended on
+  `root_completeness_not_certified` with the failed-candidate message instead
+  of the prior zero-chunk `engine_exception` surface.
+- **Validation:** native CTest `3/3`, Borg JavaScript `36/36`, V8 process
+  protocol `12/12`, native coupled evolution `24/24`, the exact seed-0–3
+  unchanged-budget sweep, and both live browser methods pass their stated
+  gates. The four-seed Research parity gate itself remains failed as recorded
+  above.
+- **Evidence:**
+  [borg-research-parity-root-width-adjudication-apple-m3-2026-07-18.md](evidence/borg-research-parity-root-width-adjudication-apple-m3-2026-07-18.md).
+
+## 2026-07-18 — Fixed-budget Borg endurance adjudication
+
+- **Measured first accumulated-width mechanism:** six-path Borg evolution was
+  consuming optional far-field enclosures for 18 of 36 ordered pairs. Their
+  first-chunk width, including `0.0111853` at the widest receiver, entered the
+  state-radius recurrence despite the exact-pair fallback being affordable.
+- **Derived correction:** Borg now uses exact fallback for every ordered pair,
+  shared position and velocity endpoint hulls, sharp-root contraction confined
+  to acceleration reconstruction, and recertified four-quarter publication.
+  The preset hashes and all root, acceleration, local-error, and atomic-
+  publication gates are unchanged.
+- **Measured fixed-budget result:** Research and Interactive seeds 0–3 all pass
+  `T=1.2`, but terminal halts still occur after `4.13` to `45.47` wall seconds,
+  at accepted solver times `4.952794255188131` to `11.475`. Seven rows stop on
+  root completeness; Research seed 2 stops on an uncertified caustic transit.
+  The literal ten-minute gate fails.
+- **Measured live UI methods:** Research completed `T=1.2` through `Start /
+  restart`; Interactive completed `T=1.2` through `Apply & run`; both showed
+  four of four native chunks and the browser console contained zero errors.
+- **Adjudication:** do not ratchet a root tolerance. The next closure target is
+  a certified richer joint-state/cross-path correlation or separately
+  validated reconditioned integrator under the same fixed allocations.
+- **Evidence:**
+  [borg-fixed-budget-ten-minute-endurance-adjudication-apple-m3-2026-07-18.md](evidence/borg-fixed-budget-ten-minute-endurance-adjudication-apple-m3-2026-07-18.md).
+
+## 2026-07-18 — Retained-history reconditioning and joint-state blocker
+
+- **Derived implementation:** the MPFR root path now propagates one
+  differentiable position remainder through all certified shared joins using
+  `min(2 eps_x, eps_v h)`, intersected with every ordinary segment box. A
+  forced-MPFR analytic fixture with zero derivative error checks the theorem
+  independently of the implementation.
+- **Measured fixed-budget result:** Research seed 0's difficult residual narrows
+  from approximately `[-1.913e-5, 1.070277e-3]` to
+  `[-1.325821449012088e-6, 1.052465045871579e-3]`, but the implied monotone root
+  image remains about `1%` over the unchanged `1e-3` ceiling. The complete
+  post-change seed 0–3 matrix still has seven root-completeness halts and one
+  Research finite-width regulator halt; all eight stop before 45 native wall
+  seconds, so the 600-second gate remains failed.
+- **Measured ablations:** eight-way publication, two-half publication,
+  synchronized multirate publication, embedded enclosure intersection, and an
+  unpreconditioned receiver-affine interval solve all fail earlier, remain
+  neutral, or widen the state. All experimental implementations were removed.
+- **Adjudication:** the first missing object is now cross-path joint-state
+  retention or a theorem-backed preconditioned interval corrector. Another
+  single-history or publication-count change is not the next remedy.
+- **Evidence:**
+  [borg-retained-history-reconditioning-adjudication-apple-m3-2026-07-18.md](evidence/borg-retained-history-reconditioning-adjudication-apple-m3-2026-07-18.md).

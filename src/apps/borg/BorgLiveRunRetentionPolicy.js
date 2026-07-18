@@ -36,6 +36,29 @@ export function createBorgLiveRunRetentionSnapshot({
   });
 }
 
+export function createBorgLiveRunRetentionAppendSnapshot({
+  previousSnapshot,
+  retainedFrameRowCount,
+  retainedFrameSetCount,
+} = {}) {
+  const previous = previousSnapshot ?? createBorgLiveRunRetentionSnapshot();
+  return Object.freeze({
+    ...previous,
+    status: previous.status === "compacted-path-history"
+      ? previous.status
+      : "retaining-recent-native-frame-rows",
+    retainedFrameRows: nonnegativeInteger(
+      retainedFrameRowCount,
+      previous.retainedFrameRows,
+    ),
+    retainedFrameSetCount: nonnegativeInteger(
+      retainedFrameSetCount,
+      previous.retainedFrameSetCount,
+    ),
+    compactedThisPass: false,
+  });
+}
+
 export function applyBorgLiveRunRetention({
   frameRows = [],
   compactedPathHistory = {},
@@ -243,6 +266,11 @@ function compareCompactedPoints(left, right) {
 function positiveInteger(value, fallback) {
   const number = Math.floor(Number(value));
   return Number.isFinite(number) && number > 0 ? number : fallback;
+}
+
+function nonnegativeInteger(value, fallback) {
+  const number = Number(value);
+  return Number.isInteger(number) && number >= 0 ? number : fallback;
 }
 
 function finiteNumber(value, fallback) {

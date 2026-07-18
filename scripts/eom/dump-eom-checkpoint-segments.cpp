@@ -45,6 +45,16 @@ void write_segment(const eom::CubicHistorySegment& segment) {
     }
     std::cout << ']';
   }
+  std::cout << "],\"positionErrors\":[";
+  for (std::size_t axis = 0; axis < 3; ++axis) {
+    if (axis > 0) std::cout << ',';
+    write_json_string(segment.position_error_tokens()[axis]);
+  }
+  std::cout << "],\"velocityErrors\":[";
+  for (std::size_t axis = 0; axis < 3; ++axis) {
+    if (axis > 0) std::cout << ',';
+    write_json_string(segment.velocity_error_tokens()[axis]);
+  }
   std::cout << "],\"positionError\":";
   write_json_string(segment.position_error_token());
   std::cout << ",\"velocityError\":";

@@ -1,8 +1,8 @@
 import * as THREE from "../../../vendor/three/three.module.js";
 
 const INITIAL_POINT_CAPACITY = 512;
-const RETAINED_TRAIL_OPACITY = 0.9;
-const COMPACTED_TRAIL_OPACITY = 0.42;
+const RETAINED_TRAIL_OPACITY = 1;
+const COMPACTED_TRAIL_OPACITY = 0.68;
 
 /**
  * Path-history trails for the Borg app.
@@ -27,9 +27,11 @@ class BorgPathTrail {
     this.capacity = Math.max(2, capacity);
     this.pointCount = 0;
     this.drawnPointCount = -1;
+    this.drawnFirstPoint = -1;
     this.dirty = false;
     this.points = new Float32Array(this.capacity * 3);
     this.frameIndices = new Int32Array(this.capacity);
+    this.times = new Float64Array(this.capacity);
     this.geometry = new THREE.BufferGeometry();
     this.setSegmentPositions(new Float32Array((this.capacity - 1) * 6));
     this.geometry.setDrawRange(0, 0);
@@ -61,17 +63,20 @@ class BorgPathTrail {
     nextPoints.set(this.points);
     const nextFrameIndices = new Int32Array(nextCapacity);
     nextFrameIndices.set(this.frameIndices);
+    const nextTimes = new Float64Array(nextCapacity);
+    nextTimes.set(this.times);
     const nextSegmentPositions = new Float32Array((nextCapacity - 1) * 6);
     nextSegmentPositions.set(this.segmentPositions);
     this.capacity = nextCapacity;
     this.points = nextPoints;
     this.frameIndices = nextFrameIndices;
+    this.times = nextTimes;
     this.setSegmentPositions(nextSegmentPositions);
     this.drawnPointCount = -1;
     this.dirty = true;
   }
 
-  appendPoint(x, y, z, frameIndex) {
+  appendPoint(x, y, z, frameIndex, time) {
     // Rows arrive in frame order. A row at or behind the last appended point
     // is a duplicate from an overlapping chunk, not new history.
     if (this.pointCount > 0 && frameIndex <= this.frameIndices[this.pointCount - 1]) {
@@ -86,6 +91,7 @@ class BorgPathTrail {
     this.points[pointOffset + 1] = y;
     this.points[pointOffset + 2] = z;
     this.frameIndices[pointIndex] = frameIndex;
+    this.times[pointIndex] = time;
     if (pointIndex > 0) {
       const previousOffset = (pointIndex - 1) * 3;
       const segmentOffset = (pointIndex - 1) * 6;
@@ -121,6 +127,7 @@ class BorgPathTrail {
   clear() {
     this.pointCount = 0;
     this.drawnPointCount = -1;
+    this.drawnFirstPoint = -1;
     this.geometry.setDrawRange(0, 0);
   }
 
@@ -139,15 +146,38 @@ class BorgPathTrail {
     return low;
   }
 
-  setThroughFrameIndex(frameIndex) {
+  firstPointAtOrAfter(time, high) {
+    let low = 0;
+    while (low < high) {
+      const middle = (low + high) >>> 1;
+      if (this.times[middle] < time) {
+        low = middle + 1;
+      } else {
+        high = middle;
+      }
+    }
+    return low;
+  }
+
+  setVisibleWindow(frameIndex, throughTime, duration) {
     const visiblePointCount = Number.isFinite(frameIndex)
       ? this.countPointsThrough(frameIndex)
       : this.pointCount;
-    if (visiblePointCount === this.drawnPointCount) {
+    const firstPoint = Number.isFinite(throughTime) && Number.isFinite(duration)
+      ? this.firstPointAtOrAfter(throughTime - duration, visiblePointCount)
+      : 0;
+    if (
+      visiblePointCount === this.drawnPointCount &&
+      firstPoint === this.drawnFirstPoint
+    ) {
       return;
     }
     this.drawnPointCount = visiblePointCount;
-    this.geometry.setDrawRange(0, Math.max(0, visiblePointCount - 1) * 2);
+    this.drawnFirstPoint = firstPoint;
+    this.geometry.setDrawRange(
+      firstPoint * 2,
+      Math.max(0, visiblePointCount - firstPoint - 1) * 2,
+    );
   }
 
   dispose() {
@@ -166,6 +196,8 @@ export function createBorgPathTrails({
   const compactedTrails = new Map();
   let visible = false;
   let throughFrameIndex = Number.POSITIVE_INFINITY;
+  let throughTime = Number.POSITIVE_INFINITY;
+  let visibleDuration = Number.POSITIVE_INFINITY;
   let compactedSource = null;
   const scratch = { x: 0, y: 0, z: 0 };
 
@@ -173,7 +205,9 @@ export function createBorgPathTrails({
     reset,
     appendFrameRows,
     setCompactedPathHistory,
+    resetPath,
     setThroughFrameIndex,
+    setVisibleWindow,
     setVisible,
     dispose,
     get retainedTrailCount() {
@@ -217,7 +251,13 @@ export function createBorgPathTrails({
         order: renderOrder,
       });
       toWorld(row.position, scratch);
-      trail.appendPoint(scratch.x, scratch.y, scratch.z, Number(row.frameIndex));
+      trail.appendPoint(
+        scratch.x,
+        scratch.y,
+        scratch.z,
+        Number(row.frameIndex),
+        Number(row.time),
+      );
     });
     retainedTrails.forEach((trail) => trail.flush());
     applyThroughFrameIndex();
@@ -228,6 +268,11 @@ export function createBorgPathTrails({
     compactedSource = null;
     setCompactedPathHistory(compactedPathHistory);
     appendFrameRows(frameRows);
+  }
+
+  function resetPath(pathKey) {
+    retainedTrails.get(Number(pathKey))?.clear();
+    compactedTrails.get(Number(pathKey))?.clear();
   }
 
   function setCompactedPathHistory(compactedPathHistory) {
@@ -251,7 +296,13 @@ export function createBorgPathTrails({
           return;
         }
         toWorld(point.position, scratch);
-        trail.appendPoint(scratch.x, scratch.y, scratch.z, Number(point.frameIndex));
+        trail.appendPoint(
+          scratch.x,
+          scratch.y,
+          scratch.z,
+          Number(point.frameIndex),
+          Number(point.time),
+        );
       });
     });
     compactedTrails.forEach((trail) => trail.flush());
@@ -260,12 +311,33 @@ export function createBorgPathTrails({
 
   function setThroughFrameIndex(frameIndex) {
     throughFrameIndex = frameIndex;
+    throughTime = Number.POSITIVE_INFINITY;
+    visibleDuration = Number.POSITIVE_INFINITY;
+    applyThroughFrameIndex();
+  }
+
+  function setVisibleWindow({
+    throughFrameIndex: nextFrameIndex,
+    throughTime: nextTime,
+    duration,
+  }) {
+    throughFrameIndex = Number(nextFrameIndex);
+    throughTime = Number(nextTime);
+    visibleDuration = Number(duration);
     applyThroughFrameIndex();
   }
 
   function applyThroughFrameIndex() {
-    retainedTrails.forEach((trail) => trail.setThroughFrameIndex(throughFrameIndex));
-    compactedTrails.forEach((trail) => trail.setThroughFrameIndex(throughFrameIndex));
+    retainedTrails.forEach((trail) => trail.setVisibleWindow(
+      throughFrameIndex,
+      throughTime,
+      visibleDuration,
+    ));
+    compactedTrails.forEach((trail) => trail.setVisibleWindow(
+      throughFrameIndex,
+      throughTime,
+      visibleDuration,
+    ));
   }
 
   function setVisible(nextVisible) {

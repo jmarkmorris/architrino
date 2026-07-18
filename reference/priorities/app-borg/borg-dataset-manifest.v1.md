@@ -7,13 +7,13 @@
 - Claim level: `priority-design`
 - Schema id: `borg-dataset-manifest.v1`
 - Primary requirements: [requirements-and-design](requirements-and-design.md)
-- Face boundary source packet: [face-boundary-replay](face-boundary-replay.md)
+- Boundary shell source packet: [boundary-shell-replay](boundary-shell-replay.md)
 - Native bridge source packet: [native-bridge-audit-and-first-screen](native-bridge-audit-and-first-screen.md)
 - First screen consumer: [borg-app-surface-design.v1](borg-app-surface-design.v1.md)
 
 ## Purpose
 
-`borg-dataset-manifest.v1` is the app-facing cover sheet for one Borg run or replay dataset. It records the EOM solver contract, simulation envelope, displayed central volume, boundary policy, path-history streams, wake-history rows, face-boundary replay rows, error budget, diagnostic authority, deployment budget, and 4K UHD render output metadata needed by the first app screen.
+`borg-dataset-manifest.v1` is the app-facing cover sheet for one Borg run or replay dataset. It records the EOM solver contract, simulation envelope, displayed central ball, boundary policy, path-history streams, wake-history rows, boundary-shell replay rows, error budget, diagnostic authority, deployment budget, and 4K UHD render output metadata needed by the first app screen.
 
 The manifest is priority-design material. It does not authorize a new solver, does not make boundary replay same-record evidence, and does not include save, export, import, or load workflow design.
 
@@ -37,30 +37,31 @@ Required native-solver rule: the manifest may report gaps, projections, or displ
 
 ## Simulation Envelope
 
-The manifest must separate the outer computed cube from the displayed central cube.
+The manifest must separate the outer spherical envelope from the displayed central ball.
 
 | Field | Required content |
 | --- | --- |
-| `sideLength` | Outer computed cube side length $L_{\mathrm{calc}}$. |
-| `centralVolume` | Displayed interior observation region $\mathcal C$, including shape, center, bounds, and coordinate chart. |
-| `centralVolumeSideLength` | Displayed central cube side length $L_{\mathcal C}$ when $\mathcal C$ is cubic. |
-| `faceBufferMargin` | Minimum distance $b_{\mathrm{face}}(\mathcal C)$ from the displayed central volume to the outer computed cube faces. |
+| `kind` | Literal `sphere`. |
+| `center` | Finite Cartesian center of both concentric spheres. |
+| `outerRadius` | Outer spherical-envelope radius $r_{\mathrm{outer}}$. |
+| `centralBallRadius` | Displayed central-ball radius $r_{\mathrm{central}}$. |
+| `radialBufferMargin` | $r_{\mathrm{outer}}-r_{\mathrm{central}}>0$. |
 | `scaleFactor` | Model/display or campaign scale normalization. |
-| `boundaryMode` | `local-window`, `statistical-face-boundary`, or `display-only-preview`. |
+| `boundaryMode` | `local-window`, `statistical-boundary-shell`, or `display-only-preview`. |
 | `timeStepPolicy` | Fixed, adaptive, or EOM solver selected stepping policy. |
 | `duration` | Requested simulated time span. |
 | `wakeFloor` | Declared floor below which eligible wake rows route to background/noise rows. |
-| `aggregationBins` | Time, face, source population, receiver population, and strength bins for background/noise rows. |
+| `aggregationBins` | Time, boundary-shell patch, source population, receiver population, and strength bins for background/noise rows. |
 
-Strict central-volume buffer status requires:
+Strict central-ball buffer status requires:
 
 $$
-b_{\mathrm{face}}(\mathcal C)
+b_{\mathrm{shell}}(\mathcal C)
 \ge
 \max(c_fh,\ v_{\max}T_{\mathcal C}).
 $$
 
-If the strict buffer target is not satisfied, central-volume interpretation requires a passing `R_boundary->central` residual or must fail closed.
+If the strict buffer target is not satisfied, central-ball interpretation requires a passing `R_boundary->central` residual or must fail closed.
 
 ## History And Central-Volume Timing
 
@@ -71,9 +72,9 @@ If the strict buffer target is not satisfied, central-volume interpretation requ
 | `historyDepth` | Active retained causal-history time window $h$. |
 | `fieldSpeed` | Causal field speed $c_f$ used by path and wake rows. |
 | `wakeHorizon` | Computed value $c_f h$. |
-| `centralVelocityBound` | Declared or measured $v_{\max}$ for architrinos that can affect the central volume. |
-| `centralObservationInterval` | Time interval $T_{\mathcal C}$ used by the strict central-volume buffer target. |
-| `centralBoundaryTolerance` | Declared tolerance $\tau_{\mathcal C}$ for central-volume boundary influence. |
+| `centralVelocityBound` | Declared or measured $v_{\max}$ for architrinos that can affect the central ball. |
+| `centralObservationInterval` | Time interval $T_{\mathcal C}$ used by the strict central-ball buffer target. |
+| `centralBoundaryTolerance` | Declared tolerance $\tau_{\mathcal C}$ for central-ball boundary influence. |
 | `strictCentralBufferStatus` | `passed`, `failed`, `not-measured`, or `not-applicable`. |
 
 ## Population Counts
@@ -82,8 +83,8 @@ The operator-facing count is the displayed central count. The solver-facing coun
 
 | Field | Required content |
 | --- | --- |
-| `centralArchitrinoCount` | Target count $N_{\mathcal C}$ in the displayed central cube. Default design target: `256`; conservative fallback: `128`; stress preset: `512`. |
-| `architrinoCount` | Derived total target count $N_{\mathrm{calc}}$ for the outer computed cube. |
+| `centralArchitrinoCount` | Target count $N_{\mathcal C}$ in the displayed central ball. Default design target: `256`; conservative fallback: `128`; stress preset: `512`. |
+| `architrinoCount` | Derived total target count $N_{\mathrm{calc}}$ for the outer spherical envelope. |
 | `bufferArchitrinoCount` | `architrinoCount - centralArchitrinoCount`. |
 | `countDerivation` | Formula id, input values, rounded value, and exact pre-ceiling value. |
 | `centralNumberDensity` | $\rho_{\mathcal C}=N_{\mathcal C}/L_{\mathcal C}^3$. |
@@ -96,12 +97,12 @@ N_{\mathrm{calc}}
 \left\lceil
 N_{\mathcal C}
 \left(
-1+\frac{2b_{\mathrm{face}}(\mathcal C)}{L_{\mathcal C}}
+1+\frac{2b_{\mathrm{shell}}(\mathcal C)}{L_{\mathcal C}}
 \right)^3
 \right\rceil.
 $$
 
-`centralArchitrinoCount` must not be treated as total solver `architrinoCount` when `faceBufferMargin` is nonzero.
+`centralArchitrinoCount` must not be treated as total solver `architrinoCount` when `radialBufferMargin` is nonzero.
 
 ## Initial Conditions
 
@@ -131,7 +132,7 @@ Velocity rays are off by default in the first app screen. Ray display is an app-
 
 | Field | Required content |
 | --- | --- |
-| `currentStateFrameIds` | Frame ids for current positions, velocities, accelerations, face status, time, and step index. |
+| `currentStateFrameIds` | Frame ids for current positions, velocities, accelerations, boundary-shell patch status, time, and step index. |
 | `checkpointIds` | Checkpoints available for replay or inspection. |
 | `frameBufferIds` | Render or playback frame-buffer handles. |
 | `trajectoryFrameIds` | Sampled trajectory frame ids when durable path streams are not yet available. |
@@ -169,9 +170,9 @@ The manifest must account for every candidate wake row inside the declared envel
 | --- | --- |
 | `resolvedWakeRowIds` | Retained above-floor wake rows with same-record source and receiver path history. |
 | `backgroundNoiseRowIds` | Aggregated below-floor wake rows with omitted-row counts and error bounds. |
-| `boundaryGeneratedWakeRowIds` | Wake rows generated from declared face-boundary replay source ids. |
+| `boundaryGeneratedWakeRowIds` | Wake rows generated from declared boundary-shell replay source ids. |
 | `failureWakeRowIds` | Fail-closed wake rows. |
-| `wakeHistoryGapRows` | Explicit gap rows for missing native row output, missing causal roots, insufficient history depth, missing error budget, or missing face summary. |
+| `wakeHistoryGapRows` | Explicit gap rows for missing native row output, missing causal roots, insufficient history depth, missing error budget, or missing boundary-shell patch summary. |
 | `rowConservationCounts` | Candidate, resolved, aggregated, boundary-generated, and failure counts. |
 | `rowConservationStatus` | `passed`, `failed`, `not-measured`, or `fail-closed`. |
 
@@ -196,54 +197,54 @@ Minimum row-conservation count object:
 | `candidateWakeRowCount` | All candidate rows inside the declared envelope. |
 | `resolvedWakeRowCount` | Rows retained explicitly. |
 | `aggregatedWakeRowCount` | Rows represented in background/noise rows. |
-| `boundaryGeneratedWakeRowCount` | Rows generated from face-boundary replay. |
+| `boundaryGeneratedWakeRowCount` | Rows generated from boundary-shell replay. |
 | `failureWakeRowCount` | Rows that failed closed. |
 | `conservationResidual` | Difference between candidate count and the classified sum. |
 | `firstFailureCode` | `row_conservation_failed` or null. |
 
-## Face-Boundary Summary And Replay
+## Boundary-Shell Summary And Replay
 
-Face-boundary replay is reduced-model boundary input. Boundary-generated inbound architrinos are new identities with reconstructed wake history, not retained same-record identity.
+Boundary-shell replay is reduced-model boundary input. Boundary-generated inbound architrinos are new identities with reconstructed wake history, not retained same-record identity.
 
 | Field | Required content |
 | --- | --- |
-| `outboundArchitrinoFaceEventStreamIds` | Streams or row sets for outbound architrino crossings by face and time bin. |
-| `outboundWakeFaceEventStreamIds` | Streams or row sets for outbound wake crossings by face and time bin. |
-| `faceSummarySetIds` | Sets of `borg-face-summary.v1` rows. |
-| `faceSummaryIds` | Individual face summary row ids consumed by this manifest. |
-| `faceReplaySourceIds` | `borg-face-replay-source.v1` ids consumed by this manifest. |
-| `sixFaceBoundaryNoisePolicyIds` | `borg-six-face-boundary-noise-policy.v1` ids consumed by this manifest. |
-| `faceCoverageStatus` | `six-face-complete`, `missing-face`, `missing-time-bin`, or `fail-closed`. |
-| `faceSourceMixtureIds` | Source-face and time-bin mixture rows used to generate inbound path seeds. |
-| `faceSourceMixtureStatus` | `measured`, `unmeasured`, `display-only`, or `fail-closed`. |
-| `timeMapPolicyIds` | Time-map policy ids mapping target replay bins to observed source face bins. |
-| `timeMapSourceStatus` | `observed-face-input`, `observed-bin-resample`, `display-only-synthetic-preview`, `untraceable-source`, or `fail-closed-synthetic-input`. |
-| `faceInputTraceabilityRowIds` | Rows linking replayed inbound samples to source face summaries, source time bins, path segments or path streams, and face influence model ids. |
-| `faceInfluenceModelIds` | `borg-face-influence-model.v1` ids derived from native path streams, path indices, kernels, and face distribution models. |
-| `faceInfluenceModelAuthority` | `path-derived-model`, `display-only`, `missing-model`, or `fail-closed`. |
-| `faceInfluenceModelMappingStatus` | `same-face-only`, `mapped-face-ready`, `any-face-ready`, `display-only`, or `fail-closed`. |
-| `faceProjectionCacheIds` | Optional per-point face projection caches used only for rendering or debugging. |
-| `faceProjectionCacheStatus` | `absent`, `display-cache-only`, or `not-authoritative`. |
+| `outboundArchitrinoShellEventStreamIds` | Streams or row sets for outbound architrino crossings by shell patch and time bin. |
+| `outboundWakeShellEventStreamIds` | Streams or row sets for outbound wake crossings by shell patch and time bin. |
+| `shellSummarySetIds` | Sets of `borg-boundary-shell-summary.v1` rows. |
+| `shellSummaryIds` | Individual boundary-shell patch summary row ids consumed by this manifest. |
+| `shellReplaySourceIds` | `borg-boundary-shell-replay-source.v1` ids consumed by this manifest. |
+| `boundaryShellNoisePolicyIds` | `borg-boundary-shell-noise-policy.v1` ids consumed by this manifest. |
+| `shellCoverageStatus` | `boundary-shell-complete`, `missing-boundary-shell patch`, `missing-time-bin`, or `fail-closed`. |
+| `shellSourceMixtureIds` | Source-boundary-shell patch and time-bin mixture rows used to generate inbound path seeds. |
+| `shellSourceMixtureStatus` | `measured`, `unmeasured`, `display-only`, or `fail-closed`. |
+| `timeMapPolicyIds` | Time-map policy ids mapping target replay bins to observed source boundary-shell patch bins. |
+| `timeMapSourceStatus` | `observed-boundary-shell patch-input`, `observed-bin-resample`, `display-only-synthetic-preview`, `untraceable-source`, or `fail-closed-synthetic-input`. |
+| `shellInputTraceabilityRowIds` | Rows linking replayed inbound samples to source shell-patch summaries, source time bins, path segments or path streams, and shell influence-model ids. |
+| `shellInfluenceModelIds` | `borg-boundary-shell-influence-model.v1` ids derived from native path streams, path indices, kernels, and boundary-shell patch distribution models. |
+| `shellInfluenceModelAuthority` | `path-derived-model`, `display-only`, `missing-model`, or `fail-closed`. |
+| `shellInfluenceModelMappingStatus` | `same-boundary-shell patch-only`, `mapped-boundary-shell patch-ready`, `any-boundary-shell patch-ready`, `display-only`, or `fail-closed`. |
+| `shellProjectionCacheIds` | Optional per-point boundary-shell patch projection caches used only for rendering or debugging. |
+| `shellProjectionCacheStatus` | `absent`, `display-cache-only`, or `not-authoritative`. |
 | `velocityScaleRange` | Declared minimum and maximum sampled velocity magnitudes, units, and normalization chart. |
 | `velocitySamplingProtocolIds` | `borg-velocity-sampling-protocol.v1` ids used to measure candidate sampling policies. |
 | `velocitySamplingResultIds` | `borg-velocity-sampling-result.v1` ids for scored candidate policies. |
-| `velocitySamplingPolicyIds` | Sampling policy ids for velocity-scale-aware face replay. |
+| `velocitySamplingPolicyIds` | Sampling policy ids for velocity-scale-aware boundary-shell patch replay. |
 | `velocitySamplingSelectedPolicyId` | Candidate sampling policy selected for the replay source, or null while research remains open. |
 | `velocitySamplingResearchStatus` | `research-open`, `candidate-policy`, `measured-within-budget`, `precision-insufficient`, or `fail-closed`. |
 | `velocitySamplingHoldoutStatus` | `passed`, `failed`, `not-measured`, or `fail-closed`. |
-| `velocitySamplingResidualSummary` | Velocity distribution residual, tail mass residual, correlation residual, seed variance residual, face replay residual, and central residual contribution. |
-| `velocitySamplingErrorBudgetIds` | Error-budget rows for velocity sampling and its contribution to face replay and central-volume residuals. |
+| `velocitySamplingResidualSummary` | Velocity distribution residual, tail mass residual, correlation residual, seed variance residual, boundary-shell patch replay residual, and central residual contribution. |
+| `velocitySamplingErrorBudgetIds` | Error-budget rows for velocity sampling and its contribution to boundary-shell patch replay and central-ball residuals. |
 | `inboundReplayRowIds` | Boundary-generated inbound architrino and wake-history rows. |
-| `faceReplayValidationResultIds` | Validation result ids containing $R_{\mathrm{face\ replay}}$ and `R_boundary->central`. |
+| `shellReplayValidationResultIds` | Validation result ids containing $R_{\mathrm{shell\ replay}}$ and `R_boundary->central`. |
 | `benignNoiseStatus` | `measured-reduced-pass`, `display-only-insufficient-evidence`, `fail-closed-residual`, `fail-closed-contamination`, or `fail-closed-missing-contract`. |
 | `retainedLocalEvidenceStatus` | Status for same-record local path and wake evidence. |
 | `boundaryGeneratedEvidenceStatus` | Status for boundary-generated architrinos and reconstructed wake history. |
 
-Face-boundary replay may not replace retained local wake rows, repair missing same-record path history, or serve as branch evidence. The first time-map policy may use only observed face-input samples or resampled observed bins with traceability to recorded path-derived face data. Invented synthetic boundary input may be shown only as display-only visualization and must not influence receiver acceleration, wake-background diagnostics, central-volume residuals, or experimental output. Velocity-scale-aware sampling is research-open until the manifest reports a measured policy, declared velocity scale range, and replay error budget. Face influence values are authoritative only through native path streams and `borg-face-influence-model.v1`; per-point face projection caches are display/debug artifacts and must not become source evidence. A six-face boundary replay becomes `benign noise` only when the manifest reports `benignNoiseStatus = measured-reduced-pass`.
+Boundary-shell replay may not replace retained local wake rows, repair missing same-record path history, or serve as branch evidence. The first time-map policy may use only observed boundary-shell patch-input samples or resampled observed bins with traceability to recorded path-derived boundary-shell patch data. Invented synthetic boundary input may be shown only as display-only visualization and must not influence receiver acceleration, wake-background diagnostics, central-ball residuals, or experimental output. Velocity-scale-aware sampling is research-open until the manifest reports a measured policy, declared velocity scale range, and replay error budget. Boundary-shell patch influence values are authoritative only through native path streams and `borg-boundary-shell-influence-model.v1`; per-point boundary-shell patch projection caches are display/debug artifacts and must not become source evidence. A boundary shell replay becomes `benign noise` only when the manifest reports `benignNoiseStatus = measured-reduced-pass`.
 
 ## Boundary-To-Central Residual
 
-Central-volume values outside strict buffer status require a residual decision:
+Central-ball values outside strict buffer status require a residual decision:
 
 | Field | Required content |
 | --- | --- |
@@ -260,21 +261,21 @@ Central-volume values outside strict buffer status require a residual decision:
 | `strictBufferStatus` | `strict-buffer-pass`, `strict-buffer-failed`, or `not-evaluated`. |
 | `boundaryReplayDecisionStatus` | `strict-buffer-pass`, `measured-reduced-pass`, `display-only-insufficient-evidence`, `fail-closed-residual`, `fail-closed-contamination`, or `fail-closed-missing-contract`. |
 | `tauSelf` | Declared $\tau_{\mathrm{self}}$; v0 default is $5\times10^{-2}$. |
-| `tauFace` | Declared $\tau_{\mathrm{face}}$; v0 default is $10^{-2}$. |
+| `tauShell` | Declared $\tau_{\mathrm{shell}}$; v0 default is $10^{-2}$. |
 | `tauCentral` | Declared $\tau_{\mathcal C}$; v0 default is $10^{-3}$. |
 | `epsilon0` | Normalization floor used in residual denominators. |
 | `decisionNormId` | Norm and comparison-window definition used for residual decisions. |
 | `displayOnlyReason` | Reason code when the replay can be rendered but cannot receive value authority. |
-| `failClosedAffectedValueIds` | Central-volume, acceleration, wake-background, or diagnostic value ids forced closed by the decision. |
+| `failClosedAffectedValueIds` | Central-ball, acceleration, wake-background, or diagnostic value ids forced closed by the decision. |
 
-If this residual is required and does not pass, central-volume acceleration and wake-background values must use `fail-closed-value` or `missing-error-budget`.
+If this residual is required and does not pass, central-ball acceleration and wake-background values must use `fail-closed-value` or `missing-error-budget`.
 
 ## Error Budget And Diagnostic Status
 
 | Field | Required content |
 | --- | --- |
 | `globalErrorBudgetId` | Run-level error-budget declaration. |
-| `stageErrorBudgetIds` | Motion integration, causal-root solving, wake-row construction, path-history interpolation, stream readback, face-boundary replay, and display projection budgets. |
+| `stageErrorBudgetIds` | Motion integration, causal-root solving, wake-row construction, path-history interpolation, stream readback, boundary-shell replay, and display projection budgets. |
 | `precisionPathId` | Native precision path and numeric chart. |
 | `tolerancePolicyId` | Tolerance policy for root, wake, replay, aggregation, and central residual tests. |
 | `haltDiagnostics` | Halt state, first-failure code, affected field, exceeded bound, and claim-level downgrade. |
@@ -296,8 +297,8 @@ The least-authoritative applicable status wins in this order: `fail-closed-value
 | State | Admission rule | Claim limit |
 | --- | --- | --- |
 | `retained-local-evidence` | Same-record source and receiver path history exists, required causal roots are solved inside the error budget, and the row does not depend on statistical boundary replay. | Supports local simulation-window diagnostics only. |
-| `reduced-model-boundary` | Value comes from declared face statistics, replay source ids, sampling seed, replay policy, and error budget. | Supports boundary approximation only. |
-| `boundary-generated-value` | Inbound architrino or reconstructed wake history is generated from face-boundary statistics. | New identity or reconstructed history; not retained same-record evidence. |
+| `reduced-model-boundary` | Value comes from declared boundary-shell patch statistics, replay source ids, sampling seed, replay policy, and error budget. | Supports boundary approximation only. |
+| `boundary-generated-value` | Inbound architrino or reconstructed wake history is generated from boundary-shell statistics. | New identity or reconstructed history; not retained same-record evidence. |
 | `authoritative-solver-output` | EOM solver value inside declared error budget with manifest and model contract metadata. | Solver value for the declared run, not a proof-level claim by itself. |
 | `app-facing-projection` | Display transform, interpolation, binning, downsampling, or logarithmic view derived from a source value. | App-facing view only; source value must remain traceable. |
 | `display-only-visualization` | Visual aid that does not feed solver state, receiver acceleration, branch evidence, or validation rows. | Inspection only. |
@@ -351,10 +352,10 @@ runId: string
 modelContractId: string
 nativeSolverStatus: native-backed-now | manifest-gap | bridge-schema-gap | native-capability-gap | display-only | fail-closed
 simulationEnvelope:
-  sideLength: length
-  centralVolume: region
-  centralVolumeSideLength: length
-  faceBufferMargin: length
+  outerRadius: length
+  centralBall: region
+  centralBallRadius: length
+  radialBufferMargin: length
   historyDepth: time
   fieldSpeed: length_per_time
   wakeHorizon: length
@@ -388,17 +389,17 @@ wakeHistory:
   failureWakeRowIds: []
   wakeHistoryGapRows: []
   rowConservationCounts: object
-faceBoundary:
-  faceSummaryIds: []
-  sixFaceBoundaryNoisePolicyIds: []
-  faceInfluenceModelIds: []
-  faceReplaySourceIds: []
-  faceSourceMixtureIds: []
+boundaryShell:
+  shellSummaryIds: []
+  boundaryShellNoisePolicyIds: []
+  shellInfluenceModelIds: []
+  shellReplaySourceIds: []
+  shellSourceMixtureIds: []
   benignNoiseStatus: display-only-insufficient-evidence | measured-reduced-pass | fail-closed-residual | fail-closed-contamination | fail-closed-missing-contract
   velocitySamplingProtocolIds: []
   velocitySamplingResultIds: []
   inboundReplayRowIds: []
-  faceReplayValidationResultIds: []
+  shellReplayValidationResultIds: []
 boundaryToCentralResidual:
   residualLabel: R_boundary->central
   residualValue: number_or_null
@@ -436,7 +437,7 @@ The manifest must report the first applicable failure before displaying affected
 | `manifest_schema_missing_required_field` | A required manifest field is missing. |
 | `physical_mass_input_present` | Architrino physical mass appears as an input or explanatory field. |
 | `boundary_identity_retained_without_external_path_history` | Boundary-generated inbound architrinos are treated as retained identities without retained external path history. |
-| `missing_boundary_source_summary` | Boundary-generated rows lack face-boundary source summary ids. |
+| `missing_boundary_source_summary` | Boundary-generated rows lack boundary-shell source summary ids. |
 | `silent_wake_truncation` | Candidate wake rows are dropped without resolved, aggregated, boundary-generated, or failure accounting. |
 | `row_conservation_failed` | Wake row conservation counts do not balance. |
 | `path_history_gap_unclassified` | Required path-history gap is not represented by an explicit gap row. |
@@ -446,33 +447,33 @@ The manifest must report the first applicable failure before displaying affected
 | `javascript_reference_presented_as_production` | JavaScript-only reference behavior is presented as production behavior. |
 | `missing_error_budget` | Required error-budget metadata is absent. |
 | `error_budget_exceeded` | A declared stage or global budget is exceeded. |
-| `face_replay_residual_exceeded` | $R_{\mathrm{face\ replay}}>\tau_{\mathrm{face}}$. |
+| `shell_replay_residual_exceeded` | $R_{\mathrm{shell\ replay}}>\tau_{\mathrm{shell}}$. |
 | `central_boundary_residual_exceeded` | $R_{\mathrm{boundary\to central}}>\tau_{\mathcal C}$. |
-| `missing_face_crossing_coverage` | Reference rows lack complete face-crossing coverage. |
+| `missing_boundary_shell_crossing_coverage` | Reference rows lack complete boundary-shell crossing coverage. |
 | `above_floor_row_replayed` | A local wake above `wakeFloor` was replaced by statistical replay. |
 | `branch_evidence_contaminated` | A retained branch row used replayed boundary input as same-record evidence. |
 | `correlation_unmodeled` | Detected correlation structure is above budget but not represented in the replay policy. |
-| `face_replay_used_as_branch_evidence` | Face-boundary replay is used as branch evidence or a retained wake substitute. |
+| `shell_replay_used_as_branch_evidence` | Boundary-shell replay is used as branch evidence or a retained wake substitute. |
 | `residual_tolerance_policy_missing` | Required tolerance, comparison norm, or $\varepsilon_0$ residual floor is missing. |
-| `required_residual_unmeasured` | A required residual is missing while a central-volume or replay diagnostic asks for value authority. |
-| `time_map_source_untraceable` | A replayed inbound sample cannot be traced to observed face summary bins, path rows, or the face influence model. |
-| `synthetic_boundary_input_used_experimentally` | An invented synthetic boundary input affects receiver acceleration, wake-background diagnostics, central-volume residuals, or experimental output. |
-| `face_influence_model_missing` | Replay needs a path-derived face influence model but no `borg-face-influence-model.v1` row is available. |
-| `face_projection_used_as_authority` | A per-point face projection cache is used as source evidence instead of path history and a path-derived model. |
-| `face_influence_model_mapping_failed` | The path-derived face influence model cannot be mapped to the target face inside the declared budget. |
-| `six_face_boundary_policy_missing` | Replay-affected diagnostics are requested without a `borg-six-face-boundary-noise-policy.v1` row. |
-| `six_face_coverage_incomplete` | The source summary set lacks complete six-face coverage for the declared source window. |
-| `face_source_mixture_unmeasured` | Source-face mixture weights are used without measured residuals and traceability. |
+| `required_residual_unmeasured` | A required residual is missing while a central-ball or replay diagnostic asks for value authority. |
+| `time_map_source_untraceable` | A replayed inbound sample cannot be traced to observed boundary-shell patch summary bins, path rows, or the boundary-shell patch influence model. |
+| `synthetic_boundary_input_used_experimentally` | An invented synthetic boundary input affects receiver acceleration, wake-background diagnostics, central-ball residuals, or experimental output. |
+| `boundary_shell_influence_model_missing` | Replay needs a path-derived shell influence model but no `borg-boundary-shell-influence-model.v1` row is available. |
+| `shell_projection_used_as_authority` | A per-point boundary-shell patch projection cache is used as source evidence instead of path history and a path-derived model. |
+| `shell_influence_model_mapping_failed` | The path-derived boundary-shell patch influence model cannot be mapped to the target boundary-shell patch inside the declared budget. |
+| `boundary_shell_policy_missing` | Replay-affected diagnostics are requested without a `borg-boundary-shell-noise-policy.v1` row. |
+| `boundary_shell_coverage_incomplete` | The source summary set lacks complete boundary-shell coverage for the declared source window. |
+| `shell_source_mixture_unmeasured` | Source-boundary-shell patch mixture weights are used without measured residuals and traceability. |
 | `velocity_sampling_protocol_missing` | Replay-affected diagnostics are requested without a `borg-velocity-sampling-protocol.v1` row. |
 | `velocity_sampling_research_open` | Velocity-scale-aware sampling has not been measured, so affected values cannot receive experimental authority. |
 | `velocity_sampling_precision_insufficient` | The selected sampling policy cannot represent the declared velocity scale range inside the replay error budget. |
 | `velocity_sampling_holdout_failed` | The selected sampling policy passes calibration but fails withheld source bins. |
 | `velocity_sampling_tail_residual_exceeded` | Rare high-speed or wake-sensitive tail mass is outside the declared budget. |
 | `velocity_sampling_seed_variance_exceeded` | Deterministic seed-set replay variation is outside the declared budget. |
-| `missing_central_volume` | The run lacks a declared `centralVolume` while presenting central-volume conclusions. |
-| `scale_fields_collapsed` | Outer `sideLength`, displayed `centralVolumeSideLength`, and `faceBufferMargin` are collapsed into one visual scale. |
+| `missing_central_volume` | The run lacks a declared `centralBall` while presenting central-ball conclusions. |
+| `scale_fields_collapsed` | Outer `outerRadius`, displayed `centralBallRadius`, and `radialBufferMargin` are collapsed into one visual scale. |
 | `central_count_treated_as_total_count` | `centralArchitrinoCount` is treated as total `architrinoCount` after a nonzero buffer is declared. |
-| `central_volume_buffer_target_failed` | Strict buffer status is claimed when $b_{\mathrm{face}}(\mathcal C)<\max(c_fh,\ v_{\max}T_{\mathcal C})$. |
+| `central_volume_buffer_target_failed` | Strict buffer status is claimed when $b_{\mathrm{shell}}(\mathcal C)<\max(c_fh,\ v_{\max}T_{\mathcal C})$. |
 | `deployment_budget_undifferentiated` | Static transfer, browser runtime budgets, Actions artifacts, Pages bandwidth, and EOM solver throughput are not separated. |
 | `render_manifest_not_4k_uhd` | Review or quality output lacks a 3840 by 2160 render manifest. |
 | `proof_claim_without_same_record_evidence` | A candidate run is described as proof without same-record retained evidence. |
@@ -483,19 +484,19 @@ This manifest contract is `priority-design`. It does not upgrade app output beyo
 
 ## Design-Owned Policy Object
 
-The design-owned pieces live in `src/apps/borg/BorgAppManifest.js`: the simulation envelope, the population sizing rule, the seeded initial-condition policy (`initialLinePolicy = seeded-random-interior-cube`, `polaritySignConvention = positrino-positive-electrino-negative`, `velocityPolicy = seeded-random-small-3d`), canonical normalized `fieldSpeed = 1`, and the fail-closed gap-row vocabulary for retained wake rows, face-boundary summaries, `borg-face-influence-model.v1`, `borg-six-face-boundary-noise-policy.v1`, velocity sampling, and `R_boundary->central`.
+The design-owned pieces live in `src/apps/borg/BorgAppManifest.js`: the spherical simulation envelope, the population sizing rule, the seeded initial-condition policy (`initialLinePolicy = seeded-random-simulation-envelope`, `polaritySignConvention = positrino-positive-electrino-negative`, `velocityPolicy = seeded-random-small-3d`, `randomVelocityMaxComponentMagnitude = 0.01`), canonical normalized `fieldSpeed = 1`, and the fail-closed gap-row vocabulary for retained wake rows, boundary-shell summaries, `borg-boundary-shell-influence-model.v1`, `borg-boundary-shell-noise-policy.v1`, velocity sampling, and `R_boundary->central`.
 
 ## First App Surface Design Artifact
 
 `borg-app-surface-design.v1` is a design-owned constant in `src/apps/borg/BorgAppManifest.js`.
 
-The surface design binds the displayed central cube, optional outer computed cube overlay, EOM-run current-state frames, path-history availability, simulation-envelope rail, initial-condition summary, layer strip, bottom timeline, diagnostics rail, deployment budget placeholders, and 4K UHD render manifest. It keeps `simulation-window`, `architrino-position`, `path-history`, and `diagnostics` visible by default, keeps `velocity-vectors` off by default, and disables `wake-streams`, `face-boundary-status`, and `outbound-face-background` until their required native-backed rows exist. The app-facing visual convention renders architrinos as small fixed-screen points, with `electrino` rows pure blue and `positrino` rows pure red. The path-history visual rule is `displayTransform = adjacent-native-row-line-segments` and `smoothingPolicy = none`, so the page cannot imply curved interaction dynamics beyond the EOM rows it renders.
+The surface design binds the displayed central ball, one dotted outer boundary shell, EOM-run current-state frames, path-history availability, simulation-envelope rail, initial-condition summary, layer strip, bottom timeline, diagnostics rail, deployment budget placeholders, and 4K UHD render manifest. The central ball remains a declared measurement region and is not rendered as a second sphere. It keeps `simulation-window`, `architrino-position`, `path-history`, and `diagnostics` visible by default, keeps `velocity-vectors` off by default, and disables `wake-streams` and `boundary-shell-status` until their required EOM rows exist. The app-facing visual convention renders architrinos as small fixed-screen points, with `electrino` rows pure blue and `positrino` rows pure red. The path-history visual rule is `displayTransform = adjacent-native-row-line-segments` and `smoothingPolicy = none`, so the page cannot imply curved interaction dynamics beyond the EOM rows it renders.
 
-The surface design intentionally preserves fail-closed authority for wake history, face-boundary replay, benign-noise status, and central-volume acceleration. Its valid claim is `developer-test-screen-spec`, not production UI readiness and not proof evidence.
+The surface design intentionally preserves fail-closed authority for wake history, boundary-shell replay, benign-noise status, and central-ball acceleration. Its valid claim is `developer-test-screen-spec`, not production UI readiness and not proof evidence.
 
 ## First Static Page Artifact
 
-[borg.html](../../../borg.html) is the first static page consumer for the dataset manifest and surface design. It uses [BorgAppManifest.js](../../../src/apps/borg/BorgAppManifest.js) as the browser-safe design-owned policy object and [BorgAppRuntime.js](../../../src/apps/borg/BorgAppRuntime.js) to render the central cube, EOM-run current-state positions, frame scrubber, layer controls, render/deployment placeholders, and fail-closed diagnostics.
+[borg.html](../../../borg.html) is the first static page consumer for the dataset manifest and surface design. It uses [BorgAppManifest.js](../../../src/apps/borg/BorgAppManifest.js) as the browser-safe design-owned policy object and [BorgAppRuntime.js](../../../src/apps/borg/BorgAppRuntime.js) to render the central ball, EOM-run current-state positions, frame scrubber, layer controls, render/deployment placeholders, and fail-closed diagnostics.
 
 The page is static and developer-test scoped. All displayed motion comes from the EOM run path; the page does not run a browser solver and does not grant authority to replay-affected values.
 

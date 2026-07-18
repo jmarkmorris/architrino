@@ -10,10 +10,10 @@
 ## Workstream Metadata
 
 - Kind: `priority-app`
-- Rank: `unranked`
-- Value: `TBD`
-- Cost: `TBD`
-- ROI: `TBD`
+- Rank: `19`
+- Value: `2.10`
+- Cost: `2.7`
+- ROI: `0.78`
 - Status: `v1-editor`
 
 ## Current

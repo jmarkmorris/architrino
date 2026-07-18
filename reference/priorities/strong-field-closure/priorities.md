@@ -3,10 +3,10 @@
 ## Workstream Metadata
 
 - Kind: `priority`
-- Rank: `18`
-- Value: `9.55`
+- Rank: `11`
+- Value: `11.46`
 - Cost: `6.2`
-- ROI: `1.54`
+- ROI: `1.85`
 - Status: `queued`
 
 ## Task Queue
@@ -26,6 +26,7 @@
 13. `horizon_interface_alignment_boundary_target` — Test the terminal-alignment residual on the same carrier as embedded boundary conditions, conserved-ledger deposition, entropy, release, and observer-recovery rows, while keeping the horizon distinct from the photon sphere or light ring unless a declared branch derives coincidence. Status: `priority-only boundary theorem target` (2026-07-11). Depends on: `embedded_boundary_conditions`, `horizon_entropy_packet`, `observer_predictions`.
 14. `frequency_421_hypothesis_watch` — Preserve `4:2:1` only as a hypothesis until an accepted reduced map, retained branch, or closed Planck-alignment calculation independently derives it and gives it a discriminating invariant consequence. Status: `watchlist` (2026-07-11). Depends on: `hypothesis_bank_review`; no implementation authorized.
 15. `dark_sector_photon_like_release_watch` — Preserve dark-sector photon-like release as a release-channel hypothesis gated on a same-event conserved ledger, transport / conversion law, radiation Gate C, and an observable that distinguishes it from ordinary visible and mechanical channels. Status: `watchlist` (2026-07-11). Depends on: `release_channel_selection`, `high_energy_source_sink_taxonomy`, `discriminating_observable`.
+16. `gw_public_waveform_packet` — Build the source-side and effective-metric portion of a versioned public gravitational-wave benchmark packet; route GWOSC/LVK detector comparison and equation residuals through Equation Mapping. Status: `pending`. Depends on: `observer_predictions`, `release_channel_selection`, and a shared event ledger.
 
 ## Scope
 

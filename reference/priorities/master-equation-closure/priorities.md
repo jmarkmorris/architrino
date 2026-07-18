@@ -3,10 +3,10 @@
 ## Workstream Metadata
 
 - Kind: `priority`
-- Rank: `1`
-- Value: `63.47`
+- Rank: `3`
+- Value: `53.84`
 - Cost: `6.0`
-- ROI: `10.58`
+- ROI: `8.97`
 - Status: `active`
 
 ## Task Queue
@@ -18,8 +18,11 @@
 5. `emission_flux_jacobian_conservation` — Derive the simple-root emission-flux and receiver-time pullback using the same retained record, including $ds_\ell/dt=D_T/D_s$. Status: `priority-only`. Depends on: receiver-normal retained branch.
 6. `binary_perturbation_projection_classifier` — Classify finite binary perturbations by radial response, tangential response, cadence/radius retuning, and branch transition on one accepted retained branch. Status: `priority-only`. Depends on: `certified_eigen_braid`.
 7. `topological_causal_root_ledger_proof_target` — Refine the EOM-independent torus ledger theorem, boundary operator, and large-box limit without treating topology as force/action evidence. Status: `priority-only-theorem-target`. Depends on: none for the topology layer; downstream use depends on an accepted branch consumer.
-8. `lorentz_gr_bridge` — Extract moving-assembly contraction and clock rows, then derive the shared Noether sea constitutive response and weak-field metric export. Status: `pending`. Depends on: `certified_eigen_braid`.
+8. `lorentz_gr_bridge` — Extract moving-assembly contraction and clock rows, populate the shared [pressure-dependent Noether sea constitutive response](pressure-dependent-noether-sea-constitutive-response.md), and derive the weak-field metric export. Status: `pending`. Depends on: `certified_eigen_braid`.
 9. `lorentz_test_residual_handoff` — Export RMS, PPN, and SME-style residual rows from one shared branch, clock, ruler, signal, and medium-response record. Status: `pending`. Depends on: `lorentz_gr_bridge`.
+10. `tier0_tier1_runs` — Own the $A_0$ Tier 0/Tier 1 branch-chart basis, fail-closed result interpretation, and accepted-physics boundary while consuming EOM-evolved records and generic EOM convergence/provenance rows. Status: `active-routing-consolidated`. Depends on: `receiver_normal_branch_strength_certificate` for any physical promotion.
+11. `field_speed_action_self_hit_scan` — Own source-row binding, receiver-normal, action, particle-plus-wake energy, delayed-Noether, and branch-certificate acceptance for the Braid Program's declared approach-to-$c_f$ campaign. Status: `source_row_binding_open`. Depends on: `receiver_normal_branch_strength_certificate`, `eta_positive_package`, and an accepted transition source.
+12. `eta_positive_package` — Consolidate the formal finite-$\eta$ existence, uniqueness, continuation, and no-runaway package as a mathematical proof obligation. Status: `pending`. Depends on: `tier0_tier1_runs`.
 
 ## Scope
 
@@ -53,6 +56,7 @@ Acceptance falsifiers are immediate: missing or record-mismatched $D_T$; substit
 | [VP-1 receiver-normal restart](spiral-vp1-restart.md) | Consolidated VP-1 topology inputs, interval routing, force/action rows, and promotion rule. | `priority-only`; no VP-1 drive verdict. |
 | [Topological causal-root ledger](topological-causal-root-ledger-proof-target.md) | EOM-independent theorem route for retained winding/root boundary accounting. | `priority-only`; not branch evidence. |
 | [Lorentz/GR bridge](lorentz-gr-bridge-handoff.md) | Moving-assembly and Noether sea response dependency contract. | `defer with blocker`: certified branch required. |
+| [Pressure-dependent Noether sea constitutive response](pressure-dependent-noether-sea-constitutive-response.md) | Shared same-record pressure, density, delay, cadence, strain, and medium-response derivation target. | `defer with blocker`: accepted EOM-evolved receiver-normal branch required. |
 | [Lorentz residual export](lorentz-test-residual-handoff.md) | RMS, PPN, and SME-style downstream residual contract. | `defer with blocker`: Lorentz/GR bridge required. |
 | [Brainstorming](brainstorming.md) | Provisional mechanisms and proof ideas. | `priority-only`; promote only after derivation. |
 | [Work log](work-log.md) | Dated status, failed paths, and handoffs. | Operational history only. |

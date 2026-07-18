@@ -501,6 +501,7 @@ class EventImpulseRequest:
     causal_width: Decimal
     core_scale: Decimal
     impulse_tolerance: Decimal
+    position_moment_tolerance: Decimal
     max_depth: int
     max_cells: int
 
@@ -522,9 +523,19 @@ class EventImpulseRequest:
         causal_width: object,
         core_scale: object,
         impulse_tolerance: object,
+        position_moment_tolerance: object | None = None,
         max_depth: int = 24,
         max_cells: int = 200000,
     ) -> "EventImpulseRequest":
+        reception_lower_decimal = exact_decimal(reception_lower)
+        reception_upper_decimal = exact_decimal(reception_upper)
+        impulse_tolerance_decimal = exact_decimal(impulse_tolerance)
+        position_moment_tolerance_decimal = (
+            exact_decimal(position_moment_tolerance)
+            if position_moment_tolerance is not None
+            else impulse_tolerance_decimal
+            * (reception_upper_decimal - reception_lower_decimal)
+        )
         request = cls(
             receiver_path_id=receiver_path_id,
             source_path_id=source_path_id,
@@ -532,14 +543,15 @@ class EventImpulseRequest:
             source_history=source_history,
             receiver_charge=exact_decimal(receiver_charge),
             source_charge=exact_decimal(source_charge),
-            reception_lower=exact_decimal(reception_lower),
-            reception_upper=exact_decimal(reception_upper),
+            reception_lower=reception_lower_decimal,
+            reception_upper=reception_upper_decimal,
             search_lower=exact_decimal(search_lower),
             field_speed=exact_decimal(field_speed),
             coupling=exact_decimal(coupling),
             causal_width=exact_decimal(causal_width),
             core_scale=exact_decimal(core_scale),
-            impulse_tolerance=exact_decimal(impulse_tolerance),
+            impulse_tolerance=impulse_tolerance_decimal,
+            position_moment_tolerance=position_moment_tolerance_decimal,
             max_depth=max_depth,
             max_cells=max_cells,
         )
@@ -571,6 +583,7 @@ class EventImpulseRequest:
             self.causal_width,
             self.core_scale,
             self.impulse_tolerance,
+            self.position_moment_tolerance,
         ) <= 0:
             raise ValueError("event impulse numeric parameters must be positive")
         if self.max_depth < 1 or self.max_cells < 1:
@@ -587,13 +600,14 @@ class EventImpulseCertificate:
     causal_width: Decimal
     core_scale: Decimal
     impulse: IntervalVector | None
+    position_moment: IntervalVector | None
     visited_cells: int
     failure_code: str | None
     input_digest: str
 
     def to_record(self) -> dict[str, object]:
         return {
-            "schema": "eom_fold_caustic_impulse_certificate/v0",
+            "schema": "eom_fold_caustic_impulse_certificate/v1",
             "status": self.status,
             "receiver_path_id": self.receiver_path_id,
             "source_path_id": self.source_path_id,
@@ -607,6 +621,11 @@ class EventImpulseCertificate:
             },
             "impulse": (
                 _vector_record(self.impulse) if self.impulse is not None else None
+            ),
+            "position_moment": (
+                _vector_record(self.position_moment)
+                if self.position_moment is not None
+                else None
             ),
             "visited_cells": self.visited_cells,
             "failure_code": self.failure_code,
@@ -724,6 +743,7 @@ def certify_fold_caustic_impulse(
             str(request.causal_width),
             str(request.core_scale),
             str(request.impulse_tolerance),
+            str(request.position_moment_tolerance),
             str(request.max_depth),
             str(request.max_cells),
         )
@@ -749,6 +769,7 @@ def certify_fold_caustic_impulse(
             request.causal_width,
             request.core_scale,
             None,
+            None,
             0,
             "insufficient_history_depth",
             digest,
@@ -769,7 +790,7 @@ def certify_fold_caustic_impulse(
         emission_lower: Decimal,
         emission_upper: Decimal,
         depth: int,
-    ) -> IntervalVector:
+    ) -> tuple[IntervalVector, IntervalVector]:
         nonlocal visited_cells
         visited_cells += 1
         if visited_cells > request.max_cells:
@@ -782,21 +803,44 @@ def certify_fold_caustic_impulse(
             request.precision,
         )
         if area.is_exact_zero:
-            return _zero_vector(request.precision)
+            return (
+                _zero_vector(request.precision),
+                _zero_vector(request.precision),
+            )
         reception = DecimalInterval.bounds(
             reception_lower, reception_upper, request.precision
         )
         emission = DecimalInterval.bounds(
             emission_lower, emission_upper, request.precision
         )
-        integral = _vector_scale(area, _event_integrand(request, reception, emission))
+        integrand = _event_integrand(request, reception, emission)
+        impulse_integral = _vector_scale(area, integrand)
+        position_weight = DecimalInterval.bounds(
+            request.reception_upper - reception_upper,
+            request.reception_upper - reception_lower,
+            request.precision,
+        )
+        position_moment_integral = _vector_scale(
+            area, _vector_scale(position_weight, integrand)
+        )
         with localcontext() as context:
             context.prec = request.precision
-            local_budget = +(
+            impulse_local_budget = +(
                 request.impulse_tolerance * area.upper / total_area.lower
             )
-        if all(component.width <= local_budget for component in integral):
-            return integral
+            position_moment_local_budget = +(
+                request.position_moment_tolerance
+                * area.upper
+                / total_area.lower
+            )
+        if all(
+            component.width <= impulse_local_budget
+            for component in impulse_integral
+        ) and all(
+            component.width <= position_moment_local_budget
+            for component in position_moment_integral
+        ):
+            return impulse_integral, position_moment_integral
         if depth >= request.max_depth:
             raise RuntimeError("event_impulse_depth_exhausted")
         reception_span = reception_upper - reception_lower
@@ -805,43 +849,48 @@ def certify_fold_caustic_impulse(
             with localcontext() as context:
                 context.prec = request.precision
                 midpoint = +((reception_lower + reception_upper) / Decimal(2))
-            return _vector_add(
-                integrate(
-                    reception_lower,
-                    midpoint,
-                    emission_lower,
-                    emission_upper,
-                    depth + 1,
-                ),
-                integrate(
-                    midpoint,
-                    reception_upper,
-                    emission_lower,
-                    emission_upper,
-                    depth + 1,
-                ),
+            left_impulse, left_position_moment = integrate(
+                reception_lower,
+                midpoint,
+                emission_lower,
+                emission_upper,
+                depth + 1,
+            )
+            right_impulse, right_position_moment = integrate(
+                midpoint,
+                reception_upper,
+                emission_lower,
+                emission_upper,
+                depth + 1,
+            )
+            return (
+                _vector_add(left_impulse, right_impulse),
+                _vector_add(left_position_moment, right_position_moment),
             )
         with localcontext() as context:
             context.prec = request.precision
             midpoint = +((emission_lower + emission_upper) / Decimal(2))
-        return _vector_add(
-            integrate(
-                reception_lower,
-                reception_upper,
-                emission_lower,
-                midpoint,
-                depth + 1,
-            ),
-            integrate(
-                reception_lower,
-                reception_upper,
-                midpoint,
-                emission_upper,
-                depth + 1,
-            ),
+        left_impulse, left_position_moment = integrate(
+            reception_lower,
+            reception_upper,
+            emission_lower,
+            midpoint,
+            depth + 1,
+        )
+        right_impulse, right_position_moment = integrate(
+            reception_lower,
+            reception_upper,
+            midpoint,
+            emission_upper,
+            depth + 1,
+        )
+        return (
+            _vector_add(left_impulse, right_impulse),
+            _vector_add(left_position_moment, right_position_moment),
         )
 
-    total = _zero_vector(request.precision)
+    total_impulse = _zero_vector(request.precision)
+    total_position_moment = _zero_vector(request.precision)
     reception_points = _history_breakpoints(
         request.receiver_history,
         request.reception_lower,
@@ -859,15 +908,16 @@ def certify_fold_caustic_impulse(
             for emission_lower, emission_upper in zip(
                 emission_points, emission_points[1:]
             ):
-                total = _vector_add(
-                    total,
-                    integrate(
-                        reception_lower,
-                        reception_upper,
-                        emission_lower,
-                        emission_upper,
-                        0,
-                    ),
+                cell_impulse, cell_position_moment = integrate(
+                    reception_lower,
+                    reception_upper,
+                    emission_lower,
+                    emission_upper,
+                    0,
+                )
+                total_impulse = _vector_add(total_impulse, cell_impulse)
+                total_position_moment = _vector_add(
+                    total_position_moment, cell_position_moment
                 )
     except RuntimeError as error:
         return EventImpulseCertificate(
@@ -879,11 +929,15 @@ def certify_fold_caustic_impulse(
             request.causal_width,
             request.core_scale,
             None,
+            None,
             visited_cells,
             str(error),
             digest,
         )
-    if any(component.width > request.impulse_tolerance for component in total):
+    if any(
+        component.width > request.impulse_tolerance
+        for component in total_impulse
+    ):
         return EventImpulseCertificate(
             "uncertified",
             request.receiver_path_id,
@@ -893,8 +947,27 @@ def certify_fold_caustic_impulse(
             request.causal_width,
             request.core_scale,
             None,
+            None,
             visited_cells,
             "event_impulse_enclosure_exceeds_tolerance",
+            digest,
+        )
+    if any(
+        component.width > request.position_moment_tolerance
+        for component in total_position_moment
+    ):
+        return EventImpulseCertificate(
+            "uncertified",
+            request.receiver_path_id,
+            request.source_path_id,
+            request.reception_lower,
+            request.reception_upper,
+            request.causal_width,
+            request.core_scale,
+            None,
+            None,
+            visited_cells,
+            "event_position_moment_enclosure_exceeds_tolerance",
             digest,
         )
     return EventImpulseCertificate(
@@ -905,7 +978,8 @@ def certify_fold_caustic_impulse(
         request.reception_upper,
         request.causal_width,
         request.core_scale,
-        total,
+        total_impulse,
+        total_position_moment,
         visited_cells,
         None,
         digest,

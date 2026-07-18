@@ -4,6 +4,7 @@ import { test } from "node:test";
 import {
   BORG_LIVE_RUN_RETENTION_POLICY_VERSION,
   applyBorgLiveRunRetention,
+  createBorgLiveRunRetentionAppendSnapshot,
   createBorgLiveRunRetentionSnapshot,
 } from "../src/apps/borg/BorgLiveRunRetentionPolicy.js";
 
@@ -13,6 +14,21 @@ const TEST_POLICY = Object.freeze({
   compactionTriggerFrameSetLimit: 6,
   compactionSampleStride: 2,
   compactedPointsPerPathLimit: 5,
+});
+
+test("Borg live run retention updates ordinary append counts without rescanning rows", () => {
+  const previous = createBorgLiveRunRetentionSnapshot({
+    frameRows: createFrameRows({ frameSetCount: 3, pathCount: 2 }),
+  });
+  const appended = createBorgLiveRunRetentionAppendSnapshot({
+    previousSnapshot: previous,
+    retainedFrameRowCount: 10,
+    retainedFrameSetCount: 5,
+  });
+
+  assert.equal(appended.retainedFrameRows, 10);
+  assert.equal(appended.retainedFrameSetCount, 5);
+  assert.equal(appended.compactedThisPass, false);
 });
 
 test("Borg live run retention leaves short runs as retained native frame rows", () => {

@@ -213,13 +213,18 @@ class FoldCausticImpulseControls(unittest.TestCase):
 
         self.assertEqual(certificate.status, "certified_complete", certificate.failure_code)
         self.assertIsNotNone(certificate.impulse)
+        self.assertIsNotNone(certificate.position_moment)
         self.assertGreater(certificate.visited_cells, 1)
         self.assertLessEqual(
             certificate.impulse[0].width, impulse_request.impulse_tolerance
         )
+        self.assertLessEqual(
+            certificate.position_moment[0].width,
+            impulse_request.position_moment_tolerance,
+        )
         self.assertEqual(
             certificate.to_record()["schema"],
-            "eom_fold_caustic_impulse_certificate/v0",
+            "eom_fold_caustic_impulse_certificate/v1",
         )
 
     def test_event_impulse_resource_exhaustion_fails_closed(self) -> None:
@@ -251,6 +256,7 @@ class FoldCausticImpulseControls(unittest.TestCase):
         certificate = certify_fold_caustic_impulse(impulse_request)
 
         self.assertEqual(certificate.status, "uncertified")
+        self.assertIsNone(certificate.position_moment)
         self.assertIn("exhausted", certificate.failure_code)
 
 

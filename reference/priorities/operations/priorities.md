@@ -2,6 +2,11 @@
 
 ## Workstream Metadata
 
+- Kind: `priority-operations`
+- Rank: `30`
+- Value: `0.84`
+- Cost: `3.3`
+- ROI: `0.25`
 - Status: `active`
 - Claim level: `operations-priority`
 - Scope: deployment discipline, service limits, release readiness, cost visibility, reliability, and webapp growth operations.
@@ -18,7 +23,24 @@ This workstream tracks operational discipline for the project as the public weba
 4. Deployment decisions should be evidence-bound: site size, bundle size, static transfer, monthly bandwidth estimate, build/deploy behavior, artifact retention, browser performance, and cost model must be measured before changing hosting strategy.
 5. Operational work should protect product quality without creating a second solver path or bypassing EOM solver ownership.
 
-## Priority Queue
+## Ranked Next Objects
+
+Ordered by marginal ROI on 2026-07-17. The first object is the bucket winner represented in the unified table.
+
+1. `deployment_budget_contract` — Define `deployment-budget.v1` and apply it first to Borg while keeping hosting, browser-runtime, and EOM-throughput budgets separate. Status: `pending`.
+2. `github_pages_limits_research` — Verify current GitHub Pages and Actions limits from official sources. Status: `pending`.
+3. `webapp_release_gate` — Define the public-app release checklist and rollback evidence. Status: `pending`.
+4. `browser_performance_budget` — Establish launch, interaction, frame-rate, heap, GPU-memory, and storage budgets. Status: `pending`.
+5. `hosting_alternatives_survey` — Compare static and service-backed hosting only after the current limits are measured. Status: `pending`.
+6. `static_asset_inventory` — Measure shipped and candidate public assets. Status: `pending`.
+7. `github_actions_artifact_policy` — Define CI artifact retention and size policy. Status: `pending`.
+8. `observability_and_analytics_policy` — Decide acceptable telemetry, consent, and retention. Status: `pending`.
+9. `incident_and_rollback_runbook` — Define response to broken, stale, slow, or over-budget deployments. Status: `pending`.
+10. `domain_dns_and_certificate_inventory` — Record route, DNS, certificate, redirect, and canonical-URL ownership. Status: `pending`.
+11. `dependency_and_security_review` — Define dependency, supply-chain, CSP, and third-party-script policy. Status: `pending`.
+12. `support_feedback_loop` — Define privacy-safe reproducible user feedback intake. Status: `pending`.
+
+## Detailed Task Inventory
 
 1. `github_pages_limits_research` — Research current GitHub Pages limits and enforcement behavior, including published-site size, repository size guidance, deployment timeout, bandwidth guidance, build-frequency guidance, rate limiting, custom-domain constraints, static-file caching behavior, and Actions interactions. Status: `pending`; sources to verify: official GitHub Pages documentation and GitHub Actions billing/usage documentation.
 2. `hosting_alternatives_survey` — Compare GitHub Pages with Cloudflare Pages, Netlify, Vercel, object storage plus CDN, and a future service-backed deployment. Capture static bandwidth, build minutes, artifact storage, CDN behavior, custom domains, cache control, logs/analytics, cost growth, and operational complexity. Status: `pending`; depends on: `github_pages_limits_research`.

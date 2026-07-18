@@ -3,10 +3,10 @@
 ## Workstream Metadata
 
 - Kind: `priority`
-- Rank: `unranked`
-- Value: `candidate-high`
-- Cost: `candidate`
-- ROI: `candidate`
+- Rank: `6`
+- Value: `20.43`
+- Cost: `5.2`
+- ROI: `3.93`
 - Status: `draft`
 
 ## Current
@@ -69,7 +69,16 @@ The workstream should stay internal until a line item produces a mature mathemat
 - a simulation target with concrete variables;
 - a validation residual that serves an existing proof route or tested observable.
 
-## Task Queue
+## Ranked Next Objects
+
+Ordered by marginal ROI on 2026-07-17. The first object is the workstream's scored representative in the unified priority table.
+
+1. `lorentz_envelope_closure` — Land the source-backed positive-width `S_eq` retained-domain fixture and minimum source-backed transport comparison. Status: `next`.
+2. `effective_metric_constitutive_map` — Complete the remaining shared-constitutive-chain consumers without hidden retune. Status: `started`.
+3. `score_five_closure_ladder` — Keep every row's score-5 acceptance object explicit. Status: `draft`.
+4. `equation_inventory` — Maintain the scored equation inventory. Status: `draft`.
+
+## Detailed Task Inventory
 
 1. `equation_inventory` - Maintain the scored equation inventory in [equation.md](equation.md). Status: `draft`. Depends on: none.
 2. `score_five_closure_ladder` - Keep the score-5 acceptance object for every row explicit in [Equation Score-5 Closure Ladder](equation-score-5-closure-ladder.md). Status: `draft`. Depends on: `equation_inventory`.
@@ -81,7 +90,7 @@ The workstream should stay internal until a line item produces a mature mathemat
 8. `tri_binary_equation_bearing_search` - Feed mature equation residuals into the stable Noether braid frequency-family search via Equation-Map Bearing On Braid Configuration Search, including $(I,M,O)=(f+2,f,f-1)$, $(I,M,O)=(f+1,f,f-1)$, $(I,M,O)=(f,f,f)$, $(I,M,O)=(4f,2f,f)$, and $(I,M,O)=(nf,mf,f)$. Status: `next`. Depends on: `score_five_closure_ladder` and the angular-momentum `tri_binary_partition_rule`.
 9. `koide_charged_lepton_mass_residual` - Treat `EQ-04A` as a no-retune residual on the charged-lepton generation-by-shielding mass map. Status: `started`; the score-neutral residual checker now rejects priority prose, authored AAA prose, generated paths, attempts, toys, probes, mocks, negative controls, and temporary paths as accepted evidence while preserving the inherited `missing_accepted_raw_labeled_rows_preserved_on_retained_history` blocker. Depends on: `lorentz_envelope_closure` and `score_five_closure_ladder`.
 10. `solved_wave_inverse_clue_audit` - Mine solved wave-equation families for inverse clues and acceptance tests, especially Green functions, dispersion $\omega(k)$, eikonal limits, normal modes, scattering phase shifts, continuity currents, and packet spreading. Status: `queued`. Depends on: `quantum_photon_statistical_maps` and `score_five_closure_ladder`.
-11. `high_energy_process_suffix_packets` - Advance the existing `EQ-07A`, `EQ-07B`, `EQ-11A`, `EQ-22B`, `EQ-23A`, and `EQ-28A` focused packets from their named first blockers; add optional `EQ-28B` only when a concrete high-energy propagation consumer exists. Status: `started`. Depends on: `score_five_closure_ladder`, `effective_metric_constitutive_map`, and `quantum_photon_statistical_maps`.
+11. `high_energy_process_suffix_packets` - Advance the existing `EQ-07A`, `EQ-07B`, `EQ-11A`, `EQ-22B`, `EQ-23A`, and `EQ-28A` focused packets from their named first blockers; `EQ-11A` owns the versioned GWOSC/LVK detector comparison and equation-residual side of `gw_public_waveform_packet` after Strong-Field Closure supplies the source/effective-metric carrier. Add optional `EQ-28B` only when a concrete high-energy propagation consumer exists. Status: `started`. Depends on: `score_five_closure_ladder`, `effective_metric_constitutive_map`, and `quantum_photon_statistical_maps`.
 12. `high_energy_astrophysics_equation_survey` - Consume the [High-Energy Astrophysics equation examination capture](../high-energy-astrophysics/priorities.md#equation-examination-capture): [EQ-07C Black-Hole Horizon-Interface Noether Braid Map](eq-07c-black-hole-horizon-interface-noether-braid-map.md) now owns black-hole-proper horizon/interior equations through separate terminal-alignment, light-ring/null-orbit, and planar-photon recovery rows, while neutron-star support, compact-object mergers, jet/release rows, collapse-formation math, and CMB energy-by-scale constraints route through existing same-record carrier packets before adding any new rows. Status: `started`. Depends on: `high_energy_process_suffix_packets`, `effective_metric_constitutive_map`, `redshift_friedmann_transfer_map`, and `quantum_photon_statistical_maps`.
 
 ## Promotion Map

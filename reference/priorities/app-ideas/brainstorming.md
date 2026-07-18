@@ -19,11 +19,11 @@ The idea bank favors app concepts that make the theory's native mechanisms visib
 - The dedicated app packet owns the description, visualization, controls, diagnostics, and first-build requirements.
 - Summary: one main canvas shows a moving source, Virtual Observer, retained causal-delay paths, arriving pulses, and a contribution stack so users can see how active path-history changes the present Virtual Observer readout.
 
-### 2. [Assembly Configuration Explorer](../app-assembly-explorer/priorities.md)
+### 2. [Assembly Viewer](../app-borg/assembly-viewer-requirements.md)
 
-- Status: `promoted`.
-- The dedicated app packet owns the unquotiented three-binary dataset contract, comparison diagnostics, and solver-output adapter boundary.
-- Summary: inspect candidate rows from the unordered Noether braid configuration space, preserve $S_3$-equivalent repeats, compare speed regimes and energy differentials, and prepare stable-sector and accessory-capture views without replacing solver authority.
+- Status: `consolidated into app-borg`.
+- The Borg requirements packet owns 3D chart-pose and evolved-record replay, while the Braid Program instrument gate owns `assembly-view-record.v0` acceptance.
+- Summary: inspect sealed assembly records without recomputing physics; preserve raw source order and `unquotiented-labeled` tri-binary rows, optionally group source-declared $S_3$ equivalents for navigation, and display stable-sector or accessory-capture diagnostics only when the source carries them with provenance.
 
 ### 3. [Equation Mapping App](../app-equation-mapping/priorities.md)
 

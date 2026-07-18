@@ -8,9 +8,14 @@ import {
   validateBorgManifest,
 } from "../src/apps/borg/BorgAppManifest.js";
 import {
+  appendBorgFrameRows,
+  appendBorgFrameRowsInPlace,
+  appendBorgFrameSets,
+  appendBorgFrameSetsInPlace,
   createBorgFrameSetsFromRows,
   mergeBorgFrameRows,
 } from "../src/apps/borg/BorgFrameRows.js";
+import { createDefaultEomShadowRunnerOptions } from "../src/apps/borg/BorgAppRuntime.js";
 import {
   BORG_EOM_RECORD_REPLAY_RUNNER_VERSION,
   BORG_EOM_RECORD_REPLAY_RUN_SOURCE,
@@ -26,8 +31,8 @@ function inertialSegment(startTime, endTime, position, velocity) {
       [String(position[1]), String(velocity[1]), "0", "0"],
       [String(position[2]), String(velocity[2]), "0", "0"],
     ],
-    positionError: "0",
-    velocityError: "0",
+    positionErrors: ["0", "0", "0"],
+    velocityErrors: ["0", "0", "0"],
   };
 }
 
@@ -71,6 +76,34 @@ test("Borg path history is on and visible by default", () => {
   );
 });
 
+test("Borg selected certified budget atomically owns its step controller", () => {
+  const eomClient = {};
+  const resolved = createDefaultEomShadowRunnerOptions(
+    {
+      eomShadowRunner: {
+        eomClient,
+        startTime: 0,
+        targetDuration: 1,
+        runDuration: 1,
+        chunkDuration: 0.05,
+        initialStep: "0.025",
+        minimumStep: "0.0001",
+        maximumStep: "0.025",
+      },
+    },
+    { effectiveTargetDuration: 1, effectiveChunkDuration: 0.05 },
+    null,
+    BORG_DATASET_MANIFEST_V1,
+    { stepHeight: 0.0125, minimumStep: 0.0002 },
+  );
+
+  assert.equal(resolved.eomClient, eomClient);
+  assert.equal(resolved.initialStep, "0.05");
+  assert.equal(resolved.maximumStep, "0.05");
+  assert.equal(resolved.minimumStep, "0.0001");
+  assert.equal(resolved.useAdaptiveStepGrowth, true);
+});
+
 test("Borg app manifest is design-owned policy and passes validation", () => {
   validateBorgManifest({
     manifest: BORG_DATASET_MANIFEST_V1,
@@ -86,12 +119,31 @@ test("Borg app manifest is design-owned policy and passes validation", () => {
   );
   assert.equal(
     manifest.initialConditions.initialLinePolicy,
-    "seeded-random-interior-cube",
+    "seeded-random-simulation-envelope",
   );
   assert.equal(manifest.initialConditions.minimumPairSeparation, 0.2);
-  assert.equal(manifest.initialConditions.velocityPolicy, "zero-initial-velocity");
+  assert.equal(manifest.initialConditions.velocityPolicy, "seeded-random-small-3d");
   assert.equal(manifest.initialConditions.positrinoCharge, 1);
   assert.equal(manifest.initialConditions.electrinoCharge, -1);
+  assert.equal(manifest.simulationEnvelope.kind, "sphere");
+  assert.equal(manifest.simulationEnvelope.outerRadius, 0.5);
+  assert.equal(manifest.simulationEnvelope.centralBallRadius, undefined);
+  assert.equal(manifest.simulationEnvelope.radialBufferMargin, undefined);
+  assert.equal(manifest.simulationEnvelope.sideLength, undefined);
+  assert.equal(manifest.simulationEnvelope.centralVolume, undefined);
+  assert.equal(manifest.simulationEnvelope.faceBufferMargin, undefined);
+  assert.equal(manifest.population.countDerivation, undefined);
+
+  const invalidRadiusManifest = structuredClone(manifest);
+  invalidRadiusManifest.simulationEnvelope.outerRadius = 0;
+  assert.throws(
+    () => validateBorgManifest({
+      manifest: invalidRadiusManifest,
+      surfaceDesign: BORG_APP_SURFACE_DESIGN_V1,
+    }),
+    /outer radius is not positive/,
+  );
+
 });
 
 test("Borg uses the canonical unit field speed", () => {
@@ -170,6 +222,25 @@ test("Borg record replay chunks carry recorded frames with record provenance", a
 
   const mergedFrames = mergeBorgFrameRows(firstChunk.frames, secondChunk.frames);
   const frameSets = createBorgFrameSetsFromRows(mergedFrames);
+  const appendedFrames = appendBorgFrameRows(firstChunk.frames, secondChunk.frames);
+  const appendedFrameSets = appendBorgFrameSets(
+    createBorgFrameSetsFromRows(firstChunk.frames),
+    secondChunk.frames,
+  );
+  assert.deepEqual(appendedFrames, mergedFrames);
+  assert.deepEqual(appendedFrameSets, frameSets);
+  const appendedFramesInPlace = [...firstChunk.frames];
+  const appendedFrameSetsInPlace = createBorgFrameSetsFromRows(firstChunk.frames);
+  assert.equal(
+    appendBorgFrameRowsInPlace(appendedFramesInPlace, secondChunk.frames),
+    appendedFramesInPlace,
+  );
+  assert.equal(
+    appendBorgFrameSetsInPlace(appendedFrameSetsInPlace, secondChunk.frames),
+    appendedFrameSetsInPlace,
+  );
+  assert.deepEqual(appendedFramesInPlace, mergedFrames);
+  assert.deepEqual(appendedFrameSetsInPlace, frameSets);
   assert.deepEqual(frameSets.map((frameSet) => frameSet.frameIndex), [0, 1, 2, 3]);
   assert.equal(frameSets.at(-1).frames.length, 2);
   assert.equal(runner.canComputeNextChunk(), false);
@@ -273,6 +344,29 @@ test("Borg path-history renderer uses native row segments, not visual smoothing 
   assert.doesNotMatch(runtimeSource, /TubeGeometry/);
   assert.match(runtimeSource, /rebuildPathTrails/);
   assert.match(runtimeSource, /PLAYBACK_SPEED_PRESETS/);
+  assert.match(runtimeSource, /BOUNDARY_SHELL_LATITUDE_COUNT = 25/);
+  assert.match(runtimeSource, /BOUNDARY_SHELL_LONGITUDE_COUNT = 48/);
+  assert.match(runtimeSource, /ENVELOPE_GUIDE_COLOR = 0xcbd0c8/);
+  assert.match(runtimeSource, /ENVELOPE_GUIDE_OPACITY = 0\.88/);
+  assert.match(runtimeSource, /new THREE\.Points\(/);
+  assert.equal((runtimeSource.match(/boundaryShellGroup\.add\(\s*createBoundaryShellPoints\(\{/g) ?? []).length, 1);
+  assert.doesNotMatch(runtimeSource, /centralBallGroup/);
+  assert.doesNotMatch(runtimeSource, /\["xy", "xz", "yz"\]/);
+  assert.doesNotMatch(runtimeSource, /new THREE\.LineLoop/);
+  assert.doesNotMatch(runtimeSource, /createEnvelopeGreatCircles/);
+  assert.match(runtimeSource, /function fitCameraToEnvelope\(margin\)/);
+  assert.match(
+    runtimeSource,
+    /borgEnvelopeRadius\(manifest\) \*\s*worldUnitsPerSolverUnit/,
+  );
+  assert.match(runtimeSource, /DEFAULT_CAMERA_FIT_MARGIN = 1\.43/);
+  assert.match(runtimeSource, /HIGHLIGHTED_PATH_HISTORY_DURATION = 20/);
+  assert.doesNotMatch(runtimeSource, /centralBallRadius|radialBufferMargin/);
+  assert.doesNotMatch(runtimeSource, /BORG_DISPLAY_RUN_GRADE/);
+  assert.doesNotMatch(runtimeSource, /borgNdcPositionIsOutsideScreen/);
+  assert.match(htmlSource, /\.borg-status-chip\[hidden\]\s*\{\s*display: none;/);
+  assert.doesNotMatch(runtimeSource, /SphereGeometry/);
+  assert.doesNotMatch(runtimeSource, /BoxGeometry/);
   assert.doesNotMatch(runtimeSource, /PLAYBACK_MS_PER_NATIVE_STEP/);
   assert.match(runtimeSource, /RUN_CONTROL_PRESETS/);
   assert.match(runtimeSource, /live-forever/);
@@ -310,11 +404,16 @@ test("Borg path-history renderer uses native row segments, not visual smoothing 
   assert.doesNotMatch(runtimeSource, /BorgDynamicNativeRunner/);
   assert.doesNotMatch(runtimeSource, /loadBorgFixtureTrajectoryFrames/);
   assert.doesNotMatch(runtimeSource, /restoreFixtureRun/);
-  assert.match(runtimeSource, /mergeBorgFrameRows/);
+  assert.match(runtimeSource, /appendBorgFrameRowsInPlace/);
+  assert.match(runtimeSource, /appendBorgFrameSetsInPlace/);
   assert.match(
     runtimeSource,
-    /currentFrames = replaceCurrentFrames[\s\S]*applyLiveRunRetentionIfNeeded\(\);[\s\S]*frameSets = createBorgFrameSetsFromRows\(currentFrames\);/,
+    /appendBorgFrameRowsInPlace\(currentFrames, chunk\.frames\);[\s\S]*appendBorgFrameSetsInPlace\(frameSets, chunk\.frames\);/,
   );
+  assert.doesNotMatch(runtimeSource, /setTimeout\(\s*\(\) => ensureDynamicFramesAhead/);
+  assert.match(runtimeSource, /getBorgPlaybackRefillDecision/);
+  assert.match(runtimeSource, /Playback rate/);
+  assert.match(runtimeSource, /× realtime/);
   assert.match(runtimeSource, /createBorgAcceptedInertialSeedHistory/);
   assert.match(runtimeSource, /appendedFrameRows = Array\.isArray\(chunk\.frames\)/);
   assert.doesNotMatch(htmlSource, /M9\.8 6\.2a6\.8/);
@@ -324,6 +423,12 @@ test("Borg path-history renderer uses native row segments, not visual smoothing 
   assert.doesNotMatch(htmlSource, /id="borg-eom-path-count"/);
   assert.match(htmlSource, /id="borg-eom-duration"[^>]*value="60"/);
   assert.match(htmlSource, /id="borg-coupling"[^>]*value="0\.005"/);
+  assert.match(htmlSource, /id="borg-step-height"[^>]*value="0\.025"/);
+  assert.match(htmlSource, /id="borg-minimum-step"[^>]*value="0\.0001"/);
+  assert.match(
+    htmlSource,
+    /κ coupling[\s\S]*class="borg-step-control-group"[\s\S]*Step height[\s\S]*Adaptive minimum/,
+  );
   assert.match(htmlSource, /Max per-axis speed/);
   assert.match(htmlSource, /Minimum total speed/);
   assert.match(
@@ -345,9 +450,22 @@ test("Borg path-history renderer uses native row segments, not visual smoothing 
   );
   assert.match(runtimeSource, /dom\.eomProgress\.hidden = forever/);
   assert.match(runtimeSource, /runtimeControls\.coupling \?\? configured\.coupling/);
+  assert.match(runtimeSource, /initialStep: certifiedBudget\.allocations\.controller\.initialStep/);
+  assert.match(runtimeSource, /minimumStep: certifiedBudget\.allocations\.controller\.minimumStep/);
+  assert.match(runtimeSource, /maximumStep: certifiedBudget\.allocations\.controller\.maximumStep/);
   assert.match(runtimeSource, /forward EOM chunks/);
-  assert.match(runtimeSource, /Exact polynomial initial history \(C1 inertial\)/);
-  assert.match(runtimeSource, /function startRunAndPlayback\(\)[\s\S]*firstChunk\.then[\s\S]*startPlayback\(\)/);
+  assert.match(runtimeSource, /Exact polynomial causal seed history \(C1 inertial\)/);
+  assert.match(runtimeSource, /Causal seed-history depth/);
+  assert.match(runtimeSource, /EOM retained-history start/);
+  assert.match(runtimeSource, /close-pair threshold εc/);
+  assert.match(
+    runtimeSource,
+    /function startRunAndPlayback\(\)[\s\S]*beginPlaybackPrefill\(firstChunk, generation\)/,
+  );
+  assert.match(
+    runtimeSource,
+    /function prefillPlaybackBuffer[\s\S]*BORG_PLAYBACK_PREFILL_MAX_WALL_MS[\s\S]*startPlayback\(\{ prefillComplete: true \}\)/,
+  );
   assert.match(runtimeSource, /selected; press Start \/ restart to run/);
   assert.match(
     runtimeSource,
@@ -355,11 +473,46 @@ test("Borg path-history renderer uses native row segments, not visual smoothing 
   );
   assert.doesNotMatch(htmlSource, /id="borg-run-source"/);
   assert.match(htmlSource, /id="borg-playback-speed"/);
+  assert.match(
+    htmlSource,
+    /id="borg-diagnostics-toggle"[\s\S]*aria-label="Show diagnostics"[\s\S]*aria-pressed="false"/,
+  );
+  assert.match(
+    htmlSource,
+    /id="borg-diagnostics-panel"[\s\S]*aria-hidden="true"[\s\S]*inert/,
+  );
+  assert.match(runtimeSource, /refreshDiagnosticsPanel\(\)[\s\S]*diagnosticsPanelController\.renderIfOpen\(\)/);
+  assert.match(runtimeSource, /calculateBorgPolarityDiagnostics/);
+  assert.match(runtimeSource, /electrinos outside sphere now/);
+  assert.match(runtimeSource, /positrinos escaped by time/);
+  assert.match(runtimeSource, /all same-polarity close fraction/);
+  assert.match(runtimeSource, /opposite-polarity close fraction/);
+  assert.match(
+    htmlSource,
+    /class="borg-viewport-toolbar"[\s\S]*id="borg-layer-strip"[\s\S]*class="borg-solver-banner-slot"[\s\S]*id="borg-solver-banner"[\s\S]*id="borg-reset-view-button"/,
+  );
+  assert.match(
+    htmlSource,
+    /#borg-solver-banner \{[\s\S]*height: 32px;[\s\S]*text-overflow: ellipsis;[\s\S]*white-space: nowrap;/,
+  );
+  assert.match(
+    htmlSource,
+    /\.borg-solver-banner-slot \{[\s\S]*min-width: 0;[\s\S]*height: 32px;/,
+  );
+  assert.match(
+    htmlSource,
+    /\.borg-camera-controls \{[\s\S]*grid-template-columns: repeat\(4, 32px\);[\s\S]*justify-self: end;/,
+  );
+  assert.match(
+    htmlSource,
+    /\.borg-camera-controls \.borg-icon-button \{[\s\S]*width: 32px;[\s\S]*min-width: 32px;[\s\S]*padding: 0;/,
+  );
+  assert.match(runtimeSource, /banner\.textContent = detail \? `\$\{message\} — \$\{detail\}` : message;/);
 });
 
 test("Borg surface keeps EOM-native layer policy and fail-closed authority", () => {
   const surfaceDesign = BORG_APP_SURFACE_DESIGN_V1;
-  assert.equal(surfaceDesign.authorityMap.centralVolumeAcceleration, "fail-closed-value");
+  assert.equal(surfaceDesign.authorityMap.centralBallAcceleration, undefined);
   assert.equal(surfaceDesign.noAuthorityPromotions, true);
 
   const pathHistoryLayer = surfaceDesign.layerStrip.find((layer) => layer.layer === "path-history");
@@ -369,6 +522,9 @@ test("Borg surface keeps EOM-native layer policy and fail-closed authority", () 
   const wakeLayer = surfaceDesign.layerStrip.find((layer) => layer.layer === "wake-streams");
   assert.equal(wakeLayer.state, "disabled");
   assert.equal(wakeLayer.valueAuthority, "fail-closed-value");
+  const shellLayer = surfaceDesign.layerStrip.find((layer) => layer.layer === "boundary-shell-status");
+  assert.equal(shellLayer.state, "contextual-disabled");
+  assert.equal(shellLayer.valueAuthority, "fail-closed-value");
 });
 
 function uniqueFrameIndexes(frames) {

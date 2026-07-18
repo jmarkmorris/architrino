@@ -36,6 +36,83 @@ export function mergeBorgFrameRows(existingFrames = [], incomingFrames = []) {
   });
 }
 
+export function appendBorgFrameRows(existingFrames = [], incomingFrames = []) {
+  if (incomingFrames.length === 0) {
+    return [...existingFrames];
+  }
+  const firstIncomingFrameIndex = Math.min(
+    ...incomingFrames.map((frame) => Number(frame.frameIndex) || 0),
+  );
+  const prefix = existingFrames.filter(
+    (frame) => (Number(frame.frameIndex) || 0) < firstIncomingFrameIndex,
+  );
+  const overlap = existingFrames.filter(
+    (frame) => (Number(frame.frameIndex) || 0) >= firstIncomingFrameIndex,
+  );
+  return [...prefix, ...mergeBorgFrameRows(overlap, incomingFrames)];
+}
+
+export function appendBorgFrameRowsInPlace(existingFrames = [], incomingFrames = []) {
+  if (incomingFrames.length === 0) {
+    return existingFrames;
+  }
+  const firstIncomingFrameIndex = Math.min(
+    ...incomingFrames.map((frame) => Number(frame.frameIndex) || 0),
+  );
+  let overlapStart = existingFrames.length;
+  while (
+    overlapStart > 0 &&
+    (Number(existingFrames[overlapStart - 1].frameIndex) || 0) >= firstIncomingFrameIndex
+  ) {
+    overlapStart -= 1;
+  }
+  const overlap = existingFrames.splice(overlapStart);
+  existingFrames.push(...mergeBorgFrameRows(overlap, incomingFrames));
+  return existingFrames;
+}
+
+export function appendBorgFrameSets(existingFrameSets = [], incomingFrames = []) {
+  if (incomingFrames.length === 0) {
+    return [...existingFrameSets];
+  }
+  const firstIncomingFrameIndex = Math.min(
+    ...incomingFrames.map((frame) => Number(frame.frameIndex) || 0),
+  );
+  const prefix = existingFrameSets.filter(
+    (frameSet) => Number(frameSet.frameIndex) < firstIncomingFrameIndex,
+  );
+  const overlapRows = existingFrameSets
+    .filter((frameSet) => Number(frameSet.frameIndex) >= firstIncomingFrameIndex)
+    .flatMap((frameSet) => frameSet.frames);
+  const appendedRows = mergeBorgFrameRows(overlapRows, incomingFrames);
+  return [...prefix, ...createBorgFrameSetsFromRows(appendedRows)];
+}
+
+export function appendBorgFrameSetsInPlace(existingFrameSets = [], incomingFrames = []) {
+  if (incomingFrames.length === 0) {
+    return existingFrameSets;
+  }
+  const firstIncomingFrameIndex = Math.min(
+    ...incomingFrames.map((frame) => Number(frame.frameIndex) || 0),
+  );
+  let overlapStart = existingFrameSets.length;
+  while (
+    overlapStart > 0 &&
+    Number(existingFrameSets[overlapStart - 1].frameIndex) >= firstIncomingFrameIndex
+  ) {
+    overlapStart -= 1;
+  }
+  const overlapRows = existingFrameSets
+    .splice(overlapStart)
+    .flatMap((frameSet) => frameSet.frames);
+  existingFrameSets.push(
+    ...createBorgFrameSetsFromRows(
+      mergeBorgFrameRows(overlapRows, incomingFrames),
+    ),
+  );
+  return existingFrameSets;
+}
+
 function frameRowKey(frame = {}) {
   return `${frame.frameIndex}:${frame.pathKey}`;
 }

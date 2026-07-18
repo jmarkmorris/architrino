@@ -13,6 +13,31 @@ namespace architrino::eom {
 inline constexpr const char* kDeterministicReductionPolicy =
     "fixed_pairwise_interval_tree_v0";
 
+struct NativeFarFieldEnclosureCertificate {
+  std::string schema;
+  std::string row_id;
+  std::string receiver_path_id;
+  std::string source_path_id;
+  std::string receiver_history_id;
+  std::string source_history_id;
+  std::string receiver_history_fingerprint;
+  std::string source_history_fingerprint;
+  std::string reception_time;
+  std::string emission_lower;
+  std::string emission_upper;
+  std::string status;
+  std::string failure_code;
+  std::optional<IntervalVector> displacement_hull;
+  std::optional<Interval> separation;
+  std::optional<Interval> receiver_speed;
+  std::optional<Interval> source_speed;
+  std::optional<Interval> source_normal_lower_bound;
+  std::optional<Interval> pair_magnitude_bound;
+  std::optional<Interval> pair_width_budget;
+  std::optional<Interval> derived_cutoff_radius;
+  std::optional<IntervalVector> acceleration;
+};
+
 struct NativePairAccelerationRequest {
   std::string row_id;
   std::string receiver_path_id;
@@ -20,6 +45,7 @@ struct NativePairAccelerationRequest {
   const RetainedHistory* receiver_history;
   const RetainedHistory* source_history;
   const ExactPairCertificate* root_certificate;
+  const NativeFarFieldEnclosureCertificate* far_field_enclosure = nullptr;
   std::string receiver_charge;
   std::string source_charge;
   std::string coupling;

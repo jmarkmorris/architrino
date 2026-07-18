@@ -279,6 +279,34 @@ std::vector<eom::ExactPairCertificate> pair_fixture() {
        segment("0", "1", {"0", "0", "0", "0"},
                {"0", "0", "0", "0"}, {"0", "0", "0", "0"},
                "1e-9", "0")});
+  const eom::RetainedHistory short_join_receiver(
+      "short-join-receiver",
+      {segment("-1", "1", {"1", "0", "0", "0"})});
+  const eom::RetainedHistory short_join_source(
+      "short-join-source",
+      {segment("-1", "-0.0001", {"0", "0", "0", "0"},
+               {"0", "0", "0", "0"}, {"0", "0", "0", "0"},
+               "0.0001", "0"),
+       segment("-0.0001", "0", {"0", "0", "0", "0"},
+               {"0", "0", "0", "0"}, {"0", "0", "0", "0"},
+               "0.0001", "0"),
+       segment("0", "0.0001", {"0", "0", "0", "0"},
+               {"0", "0", "0", "0"}, {"0", "0", "0", "0"},
+               "0.0001", "0"),
+       segment("0.0001", "1", {"0", "0", "0", "0"},
+               {"0", "0", "0", "0"}, {"0", "0", "0", "0"},
+               "0.0001", "0")});
+  const eom::RetainedHistory inward_join_probe_receiver(
+      "inward-join-probe-receiver",
+      {segment("1", "2.3", {"1", "0", "0", "0"})});
+  const eom::RetainedHistory inward_join_probe_source(
+      "inward-join-probe-source",
+      {segment("1", "1.3", {"0", "0", "0", "0"},
+               {"0", "0", "0", "0"}, {"0", "0", "0", "0"},
+               "0.00000000015", "0"),
+       segment("1.3", "2.3", {"0", "0", "0", "0"},
+               {"0", "0", "0", "0"}, {"0", "0", "0", "0"},
+               "0.00000000015", "0")});
   const eom::RetainedHistory inward_probe_receiver(
       "inward-probe-receiver",
       {segment("-0.000000020", "0.000000002",
@@ -294,6 +322,31 @@ std::vector<eom::ExactPairCertificate> pair_fixture() {
        segment("-0.000000010", "0.000000002", {"0", "0", "0", "0"},
                {"0", "0", "0", "0"}, {"0", "0", "0", "0"},
                "0.0000000005", "0")});
+  const eom::RetainedHistory asymmetric_monotone_receiver(
+      "asymmetric-monotone-receiver",
+      {segment("0", "1", {"0.49996941", "0", "0", "0"})});
+  const eom::RetainedHistory asymmetric_monotone_source(
+      "asymmetric-monotone-source",
+      {segment("0", "1", {"0", "0", "0", "0"},
+               {"0", "0", "0", "0"}, {"0", "0", "0", "0"},
+               "0.00028", "0")});
+  const eom::RetainedHistory reconditioned_chain_receiver(
+      "reconditioned-chain-receiver",
+      {segment("-1", "1", {"1", "0", "0", "0"})});
+  const eom::RetainedHistory reconditioned_chain_source(
+      "reconditioned-chain-source",
+      {segment("-1", "-0.5", {"0", "0", "0", "0"},
+               {"0", "0", "0", "0"}, {"0", "0", "0", "0"},
+               "1e-9", "0"),
+       segment("-0.5", "0", {"0", "0", "0", "0"},
+               {"0", "0", "0", "0"}, {"0", "0", "0", "0"},
+               "1e-3", "0"),
+       segment("0", "0.5", {"0", "0", "0", "0"},
+               {"0", "0", "0", "0"}, {"0", "0", "0", "0"},
+               "1e-3", "0"),
+       segment("0.5", "1", {"0", "0", "0", "0"},
+               {"0", "0", "0", "0"}, {"0", "0", "0", "0"},
+               "1e-3", "0")});
 
   std::vector<eom::ExactPairRequest> requests;
   auto add = [&](std::string row_id, const eom::RetainedHistory& target,
@@ -346,9 +399,17 @@ std::vector<eom::ExactPairCertificate> pair_fixture() {
       "-0.5", "0.5", "1e-5");
   add("uncertain_segment_join_root", uncertain_join_receiver,
       uncertain_join_source, "1", "-1", "0.5", "1e-5");
+  add("short_segment_join_root", short_join_receiver,
+      short_join_source, "1", "-1", "0.5", "0.001");
+  add("mpfr_inward_join_tolerance_probe", inward_join_probe_receiver,
+      inward_join_probe_source, "2.3", "1", "2", "0.0000000004", true);
   add("mpfr_inward_tolerance_probe", inward_probe_receiver,
       inward_probe_source, "0.000000002", "-0.000000020",
       "0.000000002", "1e-8", true);
+  add("mpfr_asymmetric_monotone_root", asymmetric_monotone_receiver,
+      asymmetric_monotone_source, "1", "0", "1", "0.001", true);
+  add("mpfr_reconditioned_join_chain", reconditioned_chain_receiver,
+      reconditioned_chain_source, "1", "-1", "0.5", "1e-5", true);
   auto certificates = eom::certify_exact_pair_batch(requests, 4);
   const auto prior = eom::certify_exact_pair({
       .row_id = "warm_complement_prior",

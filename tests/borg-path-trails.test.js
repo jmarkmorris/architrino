@@ -79,6 +79,39 @@ test("path trail draws no future: rows ahead of the displayed frame are withheld
   assert.equal(drawnPointCount(onlyTrail(group)), 100, "at the last frame the whole path is history");
 });
 
+test("path trail highlights only the requested five-second history window", () => {
+  const group = createGroupStub();
+  const trails = createTrails(group);
+  trails.appendFrameRows(straightPathRows(60));
+  trails.setVisibleWindow({
+    throughFrameIndex: 50,
+    throughTime: 10,
+    duration: 5,
+  });
+
+  const trail = onlyTrail(group);
+  const positions = trail.geometry.getAttribute("position").array;
+  assert.equal(trail.geometry.drawRange.start, 50, "drawing starts at point 25 / t=5");
+  assert.equal(drawnPointCount(trail), 26, "the visible trail covers t=5 through t=10");
+  assert.equal(positions[trail.geometry.drawRange.start * 3], 25);
+  const lastVertex = trail.geometry.drawRange.start + trail.geometry.drawRange.count - 1;
+  assert.equal(positions[lastVertex * 3], 50);
+});
+
+test("retained and compacted path trails use the brighter shared presentation", () => {
+  const retainedGroup = createGroupStub();
+  const retained = createTrails(retainedGroup);
+  retained.appendFrameRows(straightPathRows(2));
+  assert.equal(onlyTrail(retainedGroup).material.opacity, 1);
+
+  const compactedGroup = createGroupStub();
+  const compacted = createTrails(compactedGroup);
+  compacted.setCompactedPathHistory({
+    1001: straightPathRows(2),
+  });
+  assert.equal(onlyTrail(compactedGroup).material.opacity, 0.68);
+});
+
 test("path trail ends at the architrino, not past it", () => {
   const group = createGroupStub();
   const trails = createTrails(group);
@@ -207,6 +240,28 @@ test("reset clears history and reapplies the current time bound", () => {
   // survive into the new run's trail.
   trails.reset({ frameRows: straightPathRows(4), compactedPathHistory: {} });
   assert.equal(drawnPointCount(onlyTrail(group)), 4);
+});
+
+test("resetPath retires one visual trail without disturbing the other paths", () => {
+  const group = createGroupStub();
+  const trails = createTrails(group);
+  trails.appendFrameRows([
+    ...straightPathRows(8, 1001),
+    ...straightPathRows(8, 1002),
+  ]);
+  trails.setThroughFrameIndex(7);
+
+  trails.resetPath(1001);
+  assert.equal(drawnPointCount(group.children[0]), 0);
+  assert.equal(drawnPointCount(group.children[1]), 8);
+
+  trails.appendFrameRows(straightPathRows(3, 1001).map((row) => ({
+    ...row,
+    frameIndex: row.frameIndex + 8,
+    time: row.time + 1.6,
+  })));
+  trails.setThroughFrameIndex(10);
+  assert.equal(drawnPointCount(group.children[0]), 3);
 });
 
 /**

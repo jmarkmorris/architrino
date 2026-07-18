@@ -3,10 +3,17 @@
 ## Status
 
 - Binding id: `master_eom_binding/v0`
-- Stage: `frozen-mathematical-contract`
+- Stage: `frozen-mathematical-contract-amended`
 - Sharp simple-root law: `bound`
 - Finite-width causal-surface law: `bound`
 - Core regulator: `bound`
+- Common-domain matching: `regulator-limit-with-certified-remainder`
+- Amendment 1:
+  [common-domain regulator-limit matching](master-eom-binding-v0-amendment-1-common-domain-matching.md)
+- Amendment 2:
+  [run-selected certified budgets](master-eom-binding-v0-amendment-2-run-selected-certified-budgets.md)
+- Certified budget ledger:
+  [ratified Interactive and Research records](certified-error-budget-ledger.md)
 - Production authority: `none-until-binding-and-oracle-pass`
 - Evolution contract: [evolution-contract-v0.md](evolution-contract-v0.md)
 - Canonical source: [Master Equation](../../../content/markdown/aaa/dynamics/master-equation.md)
@@ -22,7 +29,10 @@ The binding has two execution charts:
 1. the sharp branch-resolved law on certified simple causal roots;
 2. a finite-width causal-surface law for regulated computation, folds, caustic transit, and core proximity.
 
-Both charts must converge to the same receiver-normal simple-root acceleration on their common domain. Backend scheduling and numeric representation may differ; the bound mathematics may not.
+Both charts must converge to the same receiver-normal simple-root acceleration
+on their common domain. This is a regulator-limit statement, not literal
+equality at fixed positive regulator values. Backend scheduling and numeric
+representation may differ; the bound mathematics may not.
 
 ## State Space And Initial Data
 
@@ -241,6 +251,89 @@ $$
 
 which is exactly the sharp receiver-normal branch law.
 
+### Common-Domain Regulator-Limit Matching
+
+Fix a compact reception interval $C=[T_a,T_b]$ on which retained histories
+cover the complete causal domain, all sharp roots are isolated and complete,
+every admitted root satisfies $|D_s|\ge\nu_s>0$, the root-free complement has
+a certified residual gap, and $r\ge r_{\min}>0$. On this common simple-root
+domain, the finite-width chart converges to the sharp chart as
+$\eta\to0^+$ and $\epsilon_c\to0^+$. It is not bound to equal the sharp chart
+at fixed positive $\eta$ and $\epsilon_c$.
+
+Define the componentwise common-domain impulse and position moment by
+
+$$
+I^{\sharp}_k(C)=\int_C A^{\sharp}_k(T)\,dT,
+\qquad
+I^{(\eta,\epsilon_c)}_k(C)
+=\int_C A^{(\eta,\epsilon_c)}_k(T)\,dT,
+$$
+
+$$
+M^{\sharp}_k(C)=\int_C(T_b-T)A^{\sharp}_k(T)\,dT,
+\qquad
+M^{(\eta,\epsilon_c)}_k(C)
+=\int_C(T_b-T)A^{(\eta,\epsilon_c)}_k(T)\,dT.
+$$
+
+For each vector component $k$, a positive-regulator comparison must certify
+an outward pointwise enclosure
+
+$$
+E_{\mathrm{reg},k}(T)
+\ge
+\left|
+A^{(\eta,\epsilon_c)}_k(T)-A^{\sharp}_k(T)
+\right|.
+$$
+
+This enclosure includes the exact core-kernel difference, the nonzero second
+and higher moments of $\delta_\eta$, finite root-tube tails, and finite-width
+leakage over the certified root-free complement. Its impulse and position-
+moment rows are
+
+$$
+R^{\mathrm{reg}}_{I,k}(C)
+=
+\int_C E_{\mathrm{reg},k}(T)\,dT,
+$$
+
+$$
+R^{\mathrm{reg}}_{M,k}(C)
+=
+\int_C(T_b-T)E_{\mathrm{reg},k}(T)\,dT.
+$$
+
+Let $R^{\mathrm{num}}_{I,k}$ and $R^{\mathrm{num}}_{M,k}$ contain the
+certified quadrature, retained-history, interpolation, and shortcut
+remainders. Componentwise common-domain matching requires
+
+$$
+\operatorname{dist}\!\left(
+I^{\sharp}_k(C),I^{(\eta,\epsilon_c)}_k(C)
+\right)
+\le
+R^{\mathrm{num}}_{I,k}(C)
++
+R^{\mathrm{reg}}_{I,k}(C),
+$$
+
+$$
+\operatorname{dist}\!\left(
+M^{\sharp}_k(C),M^{(\eta,\epsilon_c)}_k(C)
+\right)
+\le
+R^{\mathrm{num}}_{M,k}(C)
++
+R^{\mathrm{reg}}_{M,k}(C).
+$$
+
+The complete numerical-plus-regulator remainder must fit inside the unchanged
+declared impulse or position-moment budget. Failure to certify the enclosure
+or its budget sum is fail-closed. No regulator-matching remainder authorizes
+the sharp quotient where the source-normal floor fails.
+
 For $\mathbf r=\mathbf 0$, the complete vector product
 $\mathbf K_{\epsilon_c}(\mathbf r)|D_T|$ is defined by its zero continuous
 extension. The scalar $D_T$, which contains $\widehat{\mathbf r}$, is not
@@ -297,7 +390,8 @@ This binding is frozen because:
 
 1. the receiver-normal factor is present in both the sharp and finite-width equations;
 2. the core kernel is explicit and defined at coordinate coincidence;
-3. the simple-root limit of the finite-width equation is derived in the binding;
+3. the simple-root regulator limit and the positive-regulator common-domain
+   matching remainder are derived and bound;
 4. $\eta$, $\epsilon_c$, $h$, $c_f$, $\kappa$, and $q_i$ are versioned run inputs or bound constants with no hidden substitutions;
 5. self-pairs and all active roots are included;
 6. separator and memory-boundary routes match the canonical taxonomy;
@@ -313,6 +407,8 @@ mathematical contract.
 
 This packet's mathematical correction is `promote now`: the receiver-normal
 finite-width law and coordinate-coincidence-safe core kernel have been promoted
-into the canonical Master Equation. The binding remains a priority-owned
-version and provenance record. It grants no production authority before the
-precision contract and independent oracle pass.
+into the canonical Master Equation. Amendment 1 binds regulator-limit matching
+with a certified positive-regulator remainder; it changes neither boxed
+acceleration equation nor any error budget. The binding remains a priority-
+owned version and provenance record. It grants no production authority before
+the precision contract and independent oracle pass.

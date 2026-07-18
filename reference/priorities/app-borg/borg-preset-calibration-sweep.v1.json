@@ -243,7 +243,7 @@
     "chunkDurationDecision": "Do not exceed the measured 50 solver-time unit chunk preset for release. Larger chunks require a later sweep before the ceiling can move above 50.",
     "workerMemoryDecision": "Use a 2 MB per-chunk worker-buffer ceiling. The largest measured chunk was 737400 bytes, so the release ceiling preserves margin without pretending unmeasured larger chunks are safe.",
     "appendRateDecision": "Require at least 20000 appended frame rows per second. The lowest measured rate was 24260 rows per second.",
-    "claimBoundary": "This sweep decides Borg browser/runtime budget ceilings only. It does not upgrade central-volume acceleration, wake history, face-boundary replay, benign-noise status, or proof claim authority."
+    "claimBoundary": "This sweep decides Borg browser/runtime budget ceilings only. It does not upgrade central-ball acceleration, wake history, boundary-shell replay, benign-noise status, or proof claim authority."
   },
   "nextBuildBurden": "borg-release-budget-manifest-v1"
 }

@@ -3,13 +3,22 @@
 ## Workstream Metadata
 
 - Kind: `priority-candidate`
-- Rank: `unranked`
-- Value: `unscored`
-- Cost: `unscored`
-- ROI: `unscored`
+- Rank: `13`
+- Value: `8.04`
+- Cost: `5.0`
+- ROI: `1.61`
 - Status: `routing`
 
-## Task Queue
+## Ranked Next Objects
+
+Ordered by marginal ROI on 2026-07-17. Dependency burden is included in the ranking rather than used to hide the highest-value object.
+
+1. `source_window_carrier_map` — Bind one retained event class to its source-window carrier, event-ledger rows, observer benchmarks, first fail-closed blocker, and owning closure lane. Status: `pending`.
+2. `equation_family_survey` — Assign the retained standard benchmark families to same-record carrier targets. Status: `started`.
+3. `event_scale_taxonomy` — Complete the operator-facing event-class map needed by the carrier selection. Status: `next`.
+4. `geometry_handoff_map` — Route retained event-scale clues to their existing owner lanes without promoting observations as native geometry. Status: `pending`.
+
+## Detailed Task Inventory
 
 1. `event_scale_taxonomy` - Build the operator-facing event-class map for neutron stars, compact-star collapse, black holes, AGN and quasar jets, supernovae, kilonovae, mergers, gamma-ray bursts, high-energy neutrinos, cosmic rays, and catastrophic or diffuse release candidates. Status: `next`. Depends on: none.
 2. `equation_family_survey` - Examine the standard equation families for black holes proper, neutron-star support, black-hole / neutron-star / mixed compact-object mergers, jet and wind release, black-hole formation by collapse, and CMB energy distribution by scale, then assign each family to one same-record carrier target. Status: `started`; black-hole-proper is now split into [EQ-07C](../equation-mapping/eq-07c-black-hole-horizon-interface-noether-braid-map.md). Depends on: `event_scale_taxonomy`.
