@@ -84,29 +84,29 @@ test("Borg mounts EOM idle by default and reserves automatic compute for explici
   assert.equal(defaultMounts[0].eomShadowRunner.minimumStep, "0.0001");
   assert.equal(defaultMounts[0].eomShadowRunner.maximumStep, "0.05");
   assert.equal(defaultMounts[0].eomShadowRunner.useAdaptiveStepGrowth, true);
-  assert.equal(defaultMounts[0].eomShadowRunner.farFieldEnclosureFraction, "0");
+  assert.equal(defaultMounts[0].eomShadowRunner.farFieldEnclosureFraction, "0.25");
   assert.equal(defaultMounts[0].eomShadowRunner.coreScale, 0.2);
   assert.deepEqual(defaultMounts[0].manifest.simulationEnvelope.center, {
     x: 0.5,
     y: 0.5,
     z: 0.5,
   });
-  assert.equal(defaultMounts[0].initialEomSeed.rows.length, 64 * 2);
-  assert.equal(defaultMounts[0].initialEomSeed.endpointRows.length, 64);
+  assert.equal(defaultMounts[0].initialEomSeed.rows.length, 6 * 2);
+  assert.equal(defaultMounts[0].initialEomSeed.endpointRows.length, 6);
   assert.equal(defaultMounts[0].initialEomSeed.certificate.accepted, true);
   assert.equal(defaultMounts[0].initialEomSeed.certificate.eomOutput, false);
   assert.equal(defaultMounts[0].initialEomSeed.certificate.canonicalEomEvidence, false);
   assert.equal(defaultMounts[0].initialEomSeed.certificate.geometryCertificate.accepted, true);
   const displayPlacement = createBorgPlacementPolicy(
     BORG_DATASET_MANIFEST_V1,
-    64,
+    6,
   );
   assert.equal(
     defaultMounts[0].initialEomSeed.certificate.geometryCertificate.requiredMinimumSeparation,
     displayPlacement.minimumPairSeparation,
   );
   assert.equal(defaultMounts[0].eomShadowRunner.eomClient, eomClient);
-  assert.equal(defaultMounts[0].eomShadowRunner.pathCount, 64);
+  assert.equal(defaultMounts[0].eomShadowRunner.pathCount, 6);
   assert.equal(defaultMounts[0].eomShadowRunner.startTime, 0);
   assert.equal(
     defaultMounts[0].eomShadowRunner.historyDepth,
@@ -134,20 +134,19 @@ test("Borg mounts EOM idle by default and reserves automatic compute for explici
   assert.equal(defaultMounts[0].eomShadowRunner.targetDuration, 60);
   assert.equal(defaultMounts[0].eomShadowRunner.runDuration, 60);
   assert.deepEqual(defaultMounts[0].initialConditionConfig, {
-    electrinoCount: 32,
-    positrinoCount: 32,
-    randomVelocityMaxComponentMagnitude: 0.001,
+    electrinoCount: 3,
+    positrinoCount: 3,
+    randomVelocityMaxComponentMagnitude: 0,
     randomVelocityMinSpeed: 0,
   });
   assert.equal(
     defaultMounts[0].initialEomSeed.endpointRows.every((row) =>
-      Object.values(row.velocity).every((value) => Math.abs(value) <= 0.001) &&
-      Object.values(row.velocity).some((value) => value !== 0)),
+      Object.values(row.velocity).every((value) => value === 0)),
     true,
   );
   assert.deepEqual(
     defaultMounts[0].initialEomSeed.endpointRows.map((row) => row.pathKey),
-    Array.from({ length: 64 }, (unused, index) => 1001 + index),
+    Array.from({ length: 6 }, (unused, index) => 1001 + index),
   );
 
   const explicitShadowMounts = [];

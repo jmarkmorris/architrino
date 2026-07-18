@@ -25,7 +25,7 @@ test("Borg initial-condition controls start from the accepted manifest values", 
     {
       electrinoCount: 3,
       positrinoCount: 3,
-      randomVelocityMaxComponentMagnitude: 0.01,
+      randomVelocityMaxComponentMagnitude: 0,
       randomVelocityMinSpeed: 0,
     },
   );
@@ -35,21 +35,21 @@ test("Borg interactive physical defaults feed the certified runner", () => {
   assert.deepEqual(createBorgInteractiveDefaults(BORG_DATASET_MANIFEST_V1), {
     coupling: 0.0005,
     initialConditionConfig: {
-      electrinoCount: 32,
-      positrinoCount: 32,
-      randomVelocityMaxComponentMagnitude: 0.001,
+      electrinoCount: 3,
+      positrinoCount: 3,
+      randomVelocityMaxComponentMagnitude: 0,
       randomVelocityMinSpeed: 0,
     },
   });
   assert.equal(BORG_DATASET_MANIFEST_V1.simulationEnvelope.outerRadius, 0.5);
   assert.ok(
-    createBorgPlacementPolicy(BORG_DATASET_MANIFEST_V1, 64).seedingRadius <= 0.5,
+    createBorgPlacementPolicy(BORG_DATASET_MANIFEST_V1, 6).seedingRadius <= 0.5,
   );
 });
 
-test("Borg display seeding keeps all 64 default paths inside the outer sphere", () => {
+test("Borg display seeding keeps all 6 default paths inside the outer sphere", () => {
   const defaults = createBorgInteractiveDefaults(BORG_DATASET_MANIFEST_V1);
-  const placement = createBorgPlacementPolicy(BORG_DATASET_MANIFEST_V1, 64);
+  const placement = createBorgPlacementPolicy(BORG_DATASET_MANIFEST_V1, 6);
   const rows = createBorgSeededInitialConditionRows({
     manifest: BORG_DATASET_MANIFEST_V1,
     seedIndex: 7,
@@ -58,7 +58,7 @@ test("Borg display seeding keeps all 64 default paths inside the outer sphere", 
     minimumPairSeparation: placement.minimumPairSeparation,
   });
   assert.equal(placement.seedingRadius, 0.5);
-  assert.equal(rows.length, 64);
+  assert.equal(rows.length, 6);
   assert.equal(
     certifyBorgMinimumSeparation(rows, {
       minimumPairSeparation: placement.minimumPairSeparation,
@@ -201,7 +201,7 @@ test("Borg seeded initial-condition rows honor counts, polarity, and velocity li
   });
 });
 
-test("Borg default seeded-random geometry certifies separation and bounded random velocity", () => {
+test("Borg default seeded-random geometry certifies separation and zero initial velocity", () => {
   const rows = createBorgSeededInitialConditionRows({
     manifest: BORG_DATASET_MANIFEST_V1,
     seedIndex: 0,
@@ -222,9 +222,7 @@ test("Borg default seeded-random geometry certifies separation and bounded rando
     ).map((row) => row.position),
   );
   assert.equal(rows.every((row) =>
-    Object.values(row.velocity).every((value) => Math.abs(value) <= 0.01)), true);
-  assert.equal(rows.some((row) =>
-    Object.values(row.velocity).some((value) => value !== 0)), true);
+    Object.values(row.velocity).every((value) => value === 0)), true);
   assert.equal(certificate.accepted, true);
   assert.equal(certificate.requiredMinimumSeparation, 0.2);
   assert.ok(certificate.measuredMinimumSeparation >= 0.2 - 1e-12);

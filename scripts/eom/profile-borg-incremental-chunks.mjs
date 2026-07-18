@@ -25,7 +25,7 @@ if (!binaryPath) {
     "[--minimum-step=H] [--maximum-step=H] [--adaptive-growth=true|false] " +
     "[--electrinos=N] [--positrinos=N] " +
     "[--coupling=K] [--max-per-axis-speed=V] [--core-scale=R] " +
-    "[--memory-budget-bytes=N] " +
+    "[--memory-budget-bytes=N] [--history-depth=H] " +
     "[--root-tolerance=E] [--position-tolerance=E] " +
     "[--velocity-tolerance=E] [--maximum-mpfr-bits=N] " +
     "[--event-max-cells=N] [--far-field-enclosure-fraction=F]",
@@ -99,9 +99,9 @@ const causalHistoryDepth = calculateBorgInertialHistoryDepth(endpointRows, {
   sampleInterval,
   maximumSeparation: 2 * manifest.simulationEnvelope.outerRadius,
 });
-const historyDepth = Number(
-  (causalHistoryDepth + chunkCount * chunkDuration).toFixed(12),
-);
+const historyDepth = options["history-depth"] == null
+  ? Number((causalHistoryDepth + chunkCount * chunkDuration).toFixed(12))
+  : positiveNumber(options["history-depth"], causalHistoryDepth);
 const initialSeed = await createBorgAcceptedInertialSeedHistory(endpointRows, {
   historyStartTime: -historyDepth,
   historyEndTime: 0,

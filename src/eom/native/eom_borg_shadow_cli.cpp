@@ -3,6 +3,7 @@
 #include <algorithm>
 #include <array>
 #include <charconv>
+#include <cmath>
 #include <cstdlib>
 #include <iomanip>
 #include <iostream>
@@ -19,6 +20,14 @@ namespace eom = architrino::eom;
 namespace {
 
 constexpr const char* kBorgNativeProtocolMagic = "EOM_BORG_NATIVE_V6";
+
+void print_json_number(double value) {
+  if (std::isfinite(value)) {
+    std::cout << value;
+  } else {
+    std::cout << "null";
+  }
+}
 
 struct ParsedPath {
   std::string path_id;
@@ -630,7 +639,7 @@ void run(
                              : "see-regulator-series"))
               << "\",\"correctionResidual\":";
     if (correction_error.has_value()) {
-      std::cout << *correction_error;
+      print_json_number(*correction_error);
     } else {
       std::cout << "null";
     }
@@ -901,21 +910,22 @@ void run(
                     << json_escape(common.reception_upper)
                     << "\",\"certifiedRootCount\":"
                     << common.certified_root_count
-                    << ",\"sourceNormalAbsoluteLower\":"
-                    << common.source_normal_absolute_lower
-                    << ",\"separationLower\":"
-                    << common.separation_lower
-                    << ",\"disjointComponent\":"
-                    << common.disjoint_component
-                    << ",\"disjointWidth\":" << common.disjoint_width
-                    << ",\"applicableRemainderBudget\":"
-                    << common.applicable_remainder_budget
-                    << ",\"applicableRegulatorRemainderBudget\":"
-                    << common.applicable_regulator_remainder_budget
-                    << ",\"applicableTotalRemainderBudget\":"
-                    << common.applicable_total_remainder_budget
-                    << ",\"postAccountingDistance\":"
-                    << common.post_accounting_distance;
+                    << ",\"sourceNormalAbsoluteLower\":";
+          print_json_number(common.source_normal_absolute_lower);
+          std::cout << ",\"separationLower\":";
+          print_json_number(common.separation_lower);
+          std::cout << ",\"disjointComponent\":";
+          print_json_number(common.disjoint_component);
+          std::cout << ",\"disjointWidth\":";
+          print_json_number(common.disjoint_width);
+          std::cout << ",\"applicableRemainderBudget\":";
+          print_json_number(common.applicable_remainder_budget);
+          std::cout << ",\"applicableRegulatorRemainderBudget\":";
+          print_json_number(common.applicable_regulator_remainder_budget);
+          std::cout << ",\"applicableTotalRemainderBudget\":";
+          print_json_number(common.applicable_total_remainder_budget);
+          std::cout << ",\"postAccountingDistance\":";
+          print_json_number(common.post_accounting_distance);
           const auto print_optional = [&](const char* label,
                                           const auto& value) {
             std::cout << ",\"" << label << "\":";
@@ -1001,25 +1011,25 @@ void run(
                     << (series.converged ? "true" : "false")
                     << ",\"finalImpulseDelta\":";
           if (series.final_impulse_delta.has_value()) {
-            std::cout << *series.final_impulse_delta;
+            print_json_number(*series.final_impulse_delta);
           } else {
             std::cout << "null";
           }
           std::cout << ",\"maximumLadderImpulseDelta\":";
           if (series.maximum_ladder_impulse_delta.has_value()) {
-            std::cout << *series.maximum_ladder_impulse_delta;
+            print_json_number(*series.maximum_ladder_impulse_delta);
           } else {
             std::cout << "null";
           }
           std::cout << ",\"finalPositionMomentDelta\":";
           if (series.final_position_moment_delta.has_value()) {
-            std::cout << *series.final_position_moment_delta;
+            print_json_number(*series.final_position_moment_delta);
           } else {
             std::cout << "null";
           }
           std::cout << ",\"maximumLadderPositionMomentDelta\":";
           if (series.maximum_ladder_position_moment_delta.has_value()) {
-            std::cout << *series.maximum_ladder_position_moment_delta;
+            print_json_number(*series.maximum_ladder_position_moment_delta);
           } else {
             std::cout << "null";
           }

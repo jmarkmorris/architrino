@@ -1,10 +1,10 @@
 export const BORG_INTERACTIVE_DEFAULTS_V1 = Object.freeze({
   coupling: 0.0005,
   coreScale: 0.2,
-  farFieldEnclosureFraction: 0,
-  electrinoCount: 32,
-  positrinoCount: 32,
-  randomVelocityMaxComponentMagnitude: 0.001,
+  farFieldEnclosureFraction: 0.25,
+  electrinoCount: 3,
+  positrinoCount: 3,
+  randomVelocityMaxComponentMagnitude: 0,
   randomVelocityMinSpeed: 0,
 });
 

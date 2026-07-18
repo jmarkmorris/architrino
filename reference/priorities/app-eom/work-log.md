@@ -1584,3 +1584,33 @@ This file holds dated decisions, implementation status, validation results, fail
   request selects a second numerical route, a rejected candidate is published,
   a non-20-field `RUN` record is accepted, the retry scale differs from the
   stated formula for its certified control, or a named validation fails.
+
+## 2026-07-18 — Restore certified far-field enclosure after display removal
+
+- **Configuration correction:** Borg again declares
+  `farFieldEnclosureFraction=0.25`, as required by the certified far-field
+  packet. The zero value belonged to display mode's evaluate-every-pair route
+  and incorrectly survived its removal, disabling the certified enclosure for
+  live Borg runs.
+- **Measured paired control:** the rebuilt seed-0 3:3 run used coupling
+  `0.0005`, maximum per-axis speed `0.001`, $h=0.05$, a `1.1` retained-history
+  horizon, and 83 chunks of width `0.3`. With the enclosure fraction `0.25`, it
+  completed all 83 chunks through $T=24.9$ in `4.47337` native wall seconds and
+  `5.56772` outer wall seconds. The identical control with the enclosure
+  disabled halted at $T=17.400490625$ with `minimum_step_exhausted`.
+- **Measured mechanism control:** the independent dispersed 3:3 fixture with
+  `0.25` completed with 30 enclosed off-diagonal pairs and six exact self
+  pairs; the disabled control rejected as `insufficient_history_depth`.
+- **Protocol hardening:** nonfinite diagnostic-only floating values now encode
+  as JSON `null`. During the disabled paired control, the pre-fix response
+  emitted bare `inf` and could not be parsed; after rebuilding, the same run
+  returned its structured named halt without publishing the rejected step.
+- **Profiler control:** `profile-borg-incremental-chunks.mjs` accepts an
+  explicit `--history-depth` so a bounded Borg wake horizon can be tested
+  without the profiler silently preloading the complete requested duration.
+- Claim grades: the default mismatch and protocol encoding are `measured` by
+  current-code inspection; the paired outcomes, timings, and ledger are
+  `measured` on the rebuilt local binary. Falsifiers: Borg emits a fraction
+  other than `0.25`, the enabled seed-0 control halts before $T=24.9$, the
+  disabled control reaches that endpoint, a nonfinite diagnostic produces
+  invalid JSON, or an enclosed-pair ledger fails its exact accounting row.

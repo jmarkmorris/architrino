@@ -51,7 +51,7 @@ export const BORG_DATASET_MANIFEST_V1 = deepFreeze({
     "initialLinePolicy": "seeded-random-simulation-envelope",
     "velocitySeed": "borg-random-velocity.v1",
     "minimumPairSeparation": 0.2,
-    "randomVelocityMaxComponentMagnitude": 0.01,
+    "randomVelocityMaxComponentMagnitude": 0,
     "randomVelocityMinSpeed": 0,
     "customEditStatus": "accepted"
   },
@@ -331,8 +331,8 @@ export function validateBorgManifest({
   if (manifest.initialConditions.positrinoCharge !== 1 || manifest.initialConditions.electrinoCharge !== -1) {
     failures.push("Borg polarity charge signs are not canonical");
   }
-  if (manifest.initialConditions.randomVelocityMaxComponentMagnitude !== 0.01) {
-    failures.push("default maximum velocity component is not 0.01");
+  if (manifest.initialConditions.randomVelocityMaxComponentMagnitude !== 0) {
+    failures.push("default maximum velocity component is not zero");
   }
   if (manifest.initialConditions.randomVelocityMinSpeed !== 0) {
     failures.push("default minimum speed is not zero");
