@@ -19,7 +19,7 @@ namespace eom = architrino::eom;
 
 namespace {
 
-constexpr const char* kBorgNativeProtocolMagic = "EOM_BORG_NATIVE_V6";
+constexpr const char* kBorgNativeProtocolMagic = "EOM_BORG_NATIVE_V7";
 
 void print_json_number(double value) {
   if (std::isfinite(value)) {
@@ -353,11 +353,11 @@ void run(
     throw std::invalid_argument("unsupported Borg EOM native protocol");
   }
   const auto run = split_tabs(read_required_line("RUN record"));
-  if (run.size() != 20U || run[0] != "RUN") {
+  if (run.size() != 54U || run[0] != "RUN") {
     throw std::invalid_argument(
-        "invalid RUN record: expected exactly 20 tab-separated fields");
+        "invalid RUN record: expected exactly 54 tab-separated fields");
   }
-  const std::size_t path_count = parse_size(run[19], "path count");
+  const std::size_t path_count = parse_size(run[53], "path count");
   if (path_count == 0U || path_count > 1000000U) {
     throw std::invalid_argument("path count lies outside native protocol envelope");
   }
@@ -435,38 +435,69 @@ void run(
       .field_speed = run[8],
       .coupling = run[9],
       .root_tolerance = run[11],
-      .source_normal_floor = "1e-30",
+      .source_normal_floor = run[25],
       .acceleration_tolerance = run[12],
       .far_field_enclosure_fraction = run[13],
-      .chart_policy = "sharp_with_finite_width_fallback",
-      .causal_width = "0.2",
+      .chart_policy = run[48],
+      .causal_width = run[26],
       .core_scale = run[10],
-      .quadrature_tolerance = run[12],
-      .event_impulse_tolerance = "1e-7",
-      .event_position_moment_tolerance = "1e-7",
-      .regulator_refinement_ratio = "0.5",
-      .regulator_convergence_tolerance = "1e-3",
+      .quadrature_tolerance = run[52],
+      .event_impulse_tolerance = run[27],
+      .event_position_moment_tolerance = run[28],
+      .regulator_refinement_ratio = run[35],
+      .regulator_convergence_tolerance = run[27],
       .position_tolerance = run[14],
       .velocity_tolerance = run[15],
       .correction_tolerance = run[16],
-      .root_max_depth = 256,
-      .root_max_cells = 500000,
-      .quadrature_max_depth = quadrature_max_depth,
-      .quadrature_max_cells = quadrature_max_cells,
-      .event_max_depth = 24,
-      .event_max_cells = event_max_cells,
-      .regulator_refinement_levels = 3,
-      .initial_mpfr_bits = 128,
-      .maximum_mpfr_bits = maximum_mpfr_bits,
+      .certified_budget_schema = run[19],
+      .certified_budget_preset_id = run[20],
+      .certified_budget_allocation_hash = run[21],
+      .certified_budget_allocation_json = run[22],
+      .position_increment_budget = run[23],
+      .velocity_increment_budget = run[24],
+      .event_impulse_budget = run[27],
+      .event_position_moment_budget = run[28],
+      .independent_overlap_budget = run[29],
+      .event_quadrature_fraction = run[30],
+      .event_causal_regulator_fraction = run[31],
+      .event_core_regulator_fraction = run[32],
+      .event_state_numerical_fraction = run[33],
+      .event_matching_fraction = run[34],
+      .deterministic_reduction_policy = run[49],
+      .rounding_mode = run[50],
+      .receiver_event_allocation_rule = run[51],
+      .root_max_depth = parse_size(run[39], "root maximum depth"),
+      .root_max_cells = parse_size(run[40], "root maximum cells"),
+      .quadrature_max_depth = parse_size(
+          run[41], "quadrature maximum depth"),
+      .quadrature_max_cells = parse_size(
+          run[42], "quadrature maximum cells"),
+      .event_max_depth = parse_size(run[43], "event maximum depth"),
+      .event_max_cells = parse_size(run[44], "event maximum cells"),
+      .regulator_refinement_levels = parse_size(
+          run[36], "regulator refinement levels"),
+      .initial_mpfr_bits = static_cast<unsigned>(
+          parse_size(run[37], "initial MPFR bits")),
+      .maximum_mpfr_bits = static_cast<unsigned>(
+          parse_size(run[38], "maximum MPFR bits")),
       .force_event_precision_escalation = false,
-      .max_correction_iterations = 12,
-      .max_step_attempts = 1000,
-      .max_rejected_steps = 100,
+      .max_correction_iterations = parse_size(
+          run[45], "maximum correction iterations"),
+      .max_step_attempts = parse_size(run[46], "maximum step attempts"),
+      .max_rejected_steps = parse_size(
+          run[47], "maximum rejected steps"),
       .thread_count = 1,
       .memory_budget_bytes = parse_size(run[18], "memory budget bytes"),
       .use_adaptive_step_growth = parse_bool(run[7], "adaptive step growth"),
   };
   request.thread_count = parse_size(run[17], "thread count");
+  if (request.maximum_mpfr_bits > maximum_mpfr_bits ||
+      request.quadrature_max_depth > quadrature_max_depth ||
+      request.quadrature_max_cells > quadrature_max_cells ||
+      request.event_max_cells > event_max_cells) {
+    throw std::invalid_argument(
+        "certified budget exceeds the EOM process resource envelope");
+  }
   // The traversal tree is an optional pair-selection optimization.  At small
   // Borg scales (16 paths and below) it excludes no pairs and costs more than
   // exhaustive exact coverage, so use the direct certified batch there.
@@ -483,7 +514,7 @@ void run(
   // the certified acceleration snapshot at their shared boundary. Keep field,
   // force, tolerance, and reduction controls in the cache key; exclude only
   // initial/minimum/maximum step and the growth switch.
-  for (std::size_t index = 8U; index <= 17U; ++index) {
+  for (std::size_t index = 8U; index <= 52U; ++index) {
     model_key_stream << run[index] << '\n';
   }
   for (const auto& path : parsed_paths) {
@@ -568,12 +599,26 @@ void run(
             << ",\"haltCode\":\"" << json_escape(result.halt_code)
             << "\",\"memoryBudgetBytes\":" << result.memory_budget_bytes
             << ",\"memoryEstimateBytes\":" << result.memory_estimate_bytes
+            << ",\"budgetProvenance\":{\"schema\":\""
+            << json_escape(request.certified_budget_schema)
+            << "\",\"presetId\":\""
+            << json_escape(request.certified_budget_preset_id)
+            << "\",\"allocationHash\":\""
+            << json_escape(request.certified_budget_allocation_hash)
+            << "\",\"allocationCanonicalJson\":\""
+            << json_escape(request.certified_budget_allocation_json)
+            << "\",\"allocations\":"
+            << request.certified_budget_allocation_json << "}"
             << ",\"incrementalChunkStartSnapshotReused\":"
             << (reused_incremental_chunk_snapshot ? "true" : "false")
             << ",\"incrementalChunkStartSnapshotRebased\":"
             << (rebased_incremental_chunk_snapshot ? "true" : "false")
             << ",\"timing\":{"
-            << "\"historyWindowWallSeconds\":"
+            << "\"snapshotTotalWallSeconds\":"
+            << result.timing.snapshot_total_wall_seconds
+            << ",\"snapshotCount\":"
+            << result.timing.snapshot_count
+            << ",\"historyWindowWallSeconds\":"
             << result.timing.history_window_wall_seconds
             << ",\"traversalWallSeconds\":"
             << result.timing.traversal_wall_seconds
@@ -591,6 +636,30 @@ void run(
             << result.timing.root_mpfr_cpu_seconds
             << ",\"rootMpfrPairCount\":"
             << result.timing.root_mpfr_pair_count
+            << ",\"rootMpfrAttemptCount\":"
+            << result.timing.root_mpfr_attempt_count
+            << ",\"rootMpfrEscalationCpuSeconds\":"
+            << result.timing.root_mpfr_escalation_cpu_seconds
+            << ",\"rootMpfrEscalationAttemptCount\":"
+            << result.timing.root_mpfr_escalation_attempt_count
+            << ",\"accelerationWallSeconds\":"
+            << result.timing.acceleration_wall_seconds
+            << ",\"finiteWidthExecutionUnionWallSeconds\":"
+            << result.timing.finite_width_execution_union_wall_seconds
+            << ",\"sharpExecutionUnionWallSeconds\":"
+            << result.timing.sharp_execution_union_wall_seconds
+            << ",\"finiteWidthSharpOverlapWallSeconds\":"
+            << result.timing.finite_width_sharp_overlap_wall_seconds
+            << ",\"accelerationWorkerIdleOrchestrationWallSeconds\":"
+            << result.timing.acceleration_worker_idle_orchestration_wall_seconds
+            << ",\"accelerationPrecisionEscalationWorkerSeconds\":"
+            << result.timing.acceleration_precision_escalation_worker_seconds
+            << ",\"accelerationPrecisionEscalationAttemptCount\":"
+            << result.timing.acceleration_precision_escalation_attempt_count
+            << ",\"regulatorLadderWallSeconds\":"
+            << result.timing.regulator_ladder_wall_seconds
+            << ",\"commonDomainWallSeconds\":"
+            << result.timing.common_domain_wall_seconds
             << ",\"historyCopyHashWallSeconds\":"
             << result.timing.history_copy_hash_wall_seconds
             << ",\"correctionWallSeconds\":"
@@ -599,6 +668,8 @@ void run(
             << result.timing.reused_start_snapshot_count
             << ",\"recertificationWallSeconds\":"
             << result.timing.recertification_wall_seconds
+            << ",\"rejectionWallSeconds\":"
+            << result.timing.rejection_wall_seconds
             << ",\"totalWallSeconds\":"
             << result.timing.total_wall_seconds
             << "}"
@@ -883,7 +954,44 @@ void run(
                   << "\",\"status\":\"" << json_escape(state.status)
                   << "\",\"failureCode\":\""
                   << json_escape(state.failure_code)
-                  << "\",\"routedPairPinned\":"
+                  << "\",\"resolvedEventAllocation\":{"
+                  << "\"receiverRoutedPairCount\":"
+                  << state.receiver_routed_pair_count
+                  << ",\"pairWeight\":";
+        print_json_number(state.receiver_pair_allocation_weight);
+        std::cout << ",\"receiverImpulseTotal\":\""
+                  << json_escape(state.receiver_event_impulse_total)
+                  << "\",\"receiverPositionMomentTotal\":\""
+                  << json_escape(state.receiver_event_position_moment_total)
+                  << "\",\"impulseRowBudget\":\""
+                  << json_escape(state.event_impulse_row_budget)
+                  << "\",\"positionMomentRowBudget\":\""
+                  << json_escape(state.event_position_moment_row_budget)
+                  << "\",\"quadratureImpulse\":\""
+                  << json_escape(state.quadrature_impulse_row_budget)
+                  << "\",\"quadraturePositionMoment\":\""
+                  << json_escape(state.quadrature_position_moment_row_budget)
+                  << "\",\"causalRegulatorImpulse\":\""
+                  << json_escape(state.causal_regulator_impulse_row_budget)
+                  << "\",\"causalRegulatorPositionMoment\":\""
+                  << json_escape(
+                         state.causal_regulator_position_moment_row_budget)
+                  << "\",\"coreRegulatorImpulse\":\""
+                  << json_escape(state.core_regulator_impulse_row_budget)
+                  << "\",\"coreRegulatorPositionMoment\":\""
+                  << json_escape(
+                         state.core_regulator_position_moment_row_budget)
+                  << "\",\"stateNumericalImpulse\":\""
+                  << json_escape(state.state_numerical_impulse_row_budget)
+                  << "\",\"stateNumericalPositionMoment\":\""
+                  << json_escape(
+                         state.state_numerical_position_moment_row_budget)
+                  << "\",\"matchingImpulse\":\""
+                  << json_escape(state.matching_impulse_row_budget)
+                  << "\",\"matchingPositionMoment\":\""
+                  << json_escape(state.matching_position_moment_row_budget)
+                  << "\"}"
+                  << ",\"routedPairPinned\":"
                   << (state.routed_pair_pinned ? "true" : "false")
                   << ",\"eventPairExcludedFromBackground\":"
                   << (state.event_pair_excluded_from_background
@@ -992,7 +1100,24 @@ void run(
                   << json_escape(regulator.status)
                   << "\",\"failureCode\":\""
                   << json_escape(regulator.failure_code)
-                  << "\",\"acceptedEventStatus\":\""
+                  << "\",\"resolvedEventAllocation\":{"
+                  << "\"receiverRoutedPairCount\":"
+                  << regulator.receiver_routed_pair_count
+                  << ",\"pairWeight\":\""
+                  << json_escape(regulator.receiver_pair_allocation_weight)
+                  << "\",\"impulseRowBudget\":\""
+                  << json_escape(regulator.event_impulse_row_budget)
+                  << "\",\"positionMomentRowBudget\":\""
+                  << json_escape(regulator.event_position_moment_row_budget)
+                  << "\",\"quadratureImpulse\":\""
+                  << json_escape(regulator.quadrature_impulse_row_budget)
+                  << "\",\"quadraturePositionMoment\":\""
+                  << json_escape(
+                         regulator.quadrature_position_moment_row_budget)
+                  << "\",\"regulatorConvergenceLimit\":\""
+                  << json_escape(regulator.convergence_tolerance)
+                  << "\"}"
+                  << ",\"acceptedEventStatus\":\""
                   << json_escape(regulator.accepted_event_impulse.status)
                   << "\",\"acceptedEventFailureCode\":\""
                   << json_escape(

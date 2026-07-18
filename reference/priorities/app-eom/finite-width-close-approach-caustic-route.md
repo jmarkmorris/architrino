@@ -387,9 +387,10 @@ property of a workload. Falsifier: the controller uses a residual other than
 the failed acceleration-consistency row, any acceptance gate changes, or a
 rejected candidate is published.
 
-The process protocol is `EOM_BORG_NATIVE_V6`. Its exact 20-field `RUN` record
-carries the step controls, model controls, certified tolerances, thread count,
-memory budget, and path count. Its exact six-field `PATH` record carries a
+The process protocol is `EOM_BORG_NATIVE_V7`. Its exact 54-field `RUN` record
+carries the step controls, model controls, complete certified-budget identity
+and allocations, resource ceilings, thread count, memory budget, and path
+count. Its exact six-field `PATH` record carries a
 checked cached-prefix count plus the appended retained-history suffix. There
 is no run-grade field, warning-continuation ledger, or alternate parser.
 

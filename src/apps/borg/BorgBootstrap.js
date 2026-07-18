@@ -2,12 +2,15 @@ import { mountBorgApp } from "./BorgAppRuntime.js";
 import { createBorgEomHttpClient } from "./BorgEomHttpClient.js";
 import { BORG_DATASET_MANIFEST_V1 } from "./BorgAppManifest.js";
 import {
+  BORG_DEFAULT_CERTIFIED_BUDGET_ID,
+  getBorgCertifiedBudgetPreset,
+} from "./BorgCertifiedBudgets.js";
+import {
   calculateBorgInertialHistoryDepth,
   createBorgAcceptedInertialSeedHistory,
   createBorgSeededInitialConditionRows,
 } from "./BorgInitialConditions.js";
 import {
-  BORG_INTERACTIVE_DEFAULTS_V1,
   createBorgInteractiveDefaults,
   createBorgPlacementPolicy,
 } from "./BorgInteractiveDefaults.js";
@@ -46,6 +49,9 @@ export async function bootBorgApp({
     throw new TypeError("Borg startup seed index must be a nonnegative safe integer.");
   }
   const interactiveDefaults = createBorgInteractiveDefaults(manifest);
+  const certifiedBudget = getBorgCertifiedBudgetPreset(
+    query.get("certifiedBudget") ?? BORG_DEFAULT_CERTIFIED_BUDGET_ID,
+  );
   const initialConditionConfig = interactiveDefaults.initialConditionConfig;
   const displayPlacement = createBorgPlacementPolicy(
     manifest,
@@ -96,28 +102,19 @@ export async function bootBorgApp({
       targetDuration: eomStartTime + eomDuration,
       runDuration: eomDuration,
       historyDepth: seedHistoryDepth,
-      coreScale: BORG_INTERACTIVE_DEFAULTS_V1.coreScale,
+      certifiedBudgetId: certifiedBudget.id,
       pathCount: endpointRows.length,
       // Batch six 0.05 certified steps per process round trip. This keeps the
       // EOM solver's numerical step unchanged while avoiding protocol cost on
       // every rendered sample interval.
       chunkDuration: 0.3,
       sampleInterval,
-      initialStep: "0.05",
-      minimumStep: "0.0001",
-      maximumStep: "0.05",
+      initialStep: certifiedBudget.allocations.controller.initialStep,
+      minimumStep: certifiedBudget.allocations.controller.minimumStep,
+      maximumStep: certifiedBudget.allocations.controller.maximumStep,
       useAdaptiveStepGrowth: true,
       simulationOuterRadius: displayPlacement.seedingRadius,
-      rootTolerance: "1e-3",
-      accelerationTolerance: "1e-1",
-      farFieldEnclosureFraction: String(
-        BORG_INTERACTIVE_DEFAULTS_V1.farFieldEnclosureFraction,
-      ),
-      positionTolerance: "1e-2",
-      velocityTolerance: "1e-2",
-      correctionTolerance: "1e-1",
       coupling: String(interactiveDefaults.coupling),
-      threadCount: 4,
     },
   });
 }

@@ -340,7 +340,33 @@ void print_atomic(const eom::NativeAtomicStepCertificate& certificate) {
                 << state.receiver_path_id
                 << "\",\"source_path_id\":\""
                 << state.source_path_id
-                << "\",\"endpoint_reconstruction_passed\":"
+                << "\",\"receiver_routed_pair_count\":"
+                << state.receiver_routed_pair_count
+                << ",\"receiver_pair_allocation_weight\":"
+                << state.receiver_pair_allocation_weight
+                << ",\"receiver_event_impulse_total\":\""
+                << state.receiver_event_impulse_total
+                << "\",\"receiver_event_position_moment_total\":\""
+                << state.receiver_event_position_moment_total
+                << "\",\"event_impulse_row_budget\":\""
+                << state.event_impulse_row_budget
+                << "\",\"event_position_moment_row_budget\":\""
+                << state.event_position_moment_row_budget
+                << "\",\"resolved_impulse_slices\":[\""
+                << state.quadrature_impulse_row_budget << "\",\""
+                << state.causal_regulator_impulse_row_budget << "\",\""
+                << state.core_regulator_impulse_row_budget << "\",\""
+                << state.state_numerical_impulse_row_budget << "\",\""
+                << state.matching_impulse_row_budget << "\"]"
+                << ",\"resolved_position_moment_slices\":[\""
+                << state.quadrature_position_moment_row_budget << "\",\""
+                << state.causal_regulator_position_moment_row_budget
+                << "\",\""
+                << state.core_regulator_position_moment_row_budget << "\",\""
+                << state.state_numerical_position_moment_row_budget
+                << "\",\""
+                << state.matching_position_moment_row_budget << "\"]"
+                << ",\"endpoint_reconstruction_passed\":"
                 << (state.endpoint_reconstruction_passed ? "true" : "false")
                 << ",\"common_domain_chart_overlap_passed\":"
                 << (state.common_domain_chart_overlap_passed
@@ -1070,6 +1096,31 @@ void print_all() {
   const auto event_control = eom::certify_native_fold_caustic_impulse(
       event_control_request, event_receiver, event_source, "1", "1",
       "2.99", "3.01");
+  auto research_budget_event_request = event_control_request;
+  research_budget_event_request.coupling = "1e-6";
+  research_budget_event_request.event_impulse_tolerance = "3.5e-8";
+  research_budget_event_request.event_position_moment_tolerance = "3.5e-8";
+  const auto research_budget_event_control =
+      eom::certify_native_fold_caustic_impulse(
+          research_budget_event_request, event_receiver, event_source,
+          "1", "1", "2.99", "3.01");
+  auto interactive_budget_event_request = research_budget_event_request;
+  interactive_budget_event_request.event_impulse_tolerance = "3.5e-7";
+  interactive_budget_event_request.event_position_moment_tolerance =
+      "3.5e-7";
+  const auto interactive_budget_event_control =
+      eom::certify_native_fold_caustic_impulse(
+          interactive_budget_event_request, event_receiver, event_source,
+          "1", "1", "2.99", "3.01");
+  auto under_budget_event_request = research_budget_event_request;
+  under_budget_event_request.event_impulse_tolerance = "1e-12";
+  under_budget_event_request.event_position_moment_tolerance = "1e-12";
+  under_budget_event_request.event_max_depth = 4;
+  under_budget_event_request.event_max_cells = 4;
+  const auto under_budget_event_control =
+      eom::certify_native_fold_caustic_impulse(
+          under_budget_event_request, event_receiver, event_source,
+          "1", "1", "2.99", "3.01");
   const auto event_regulator = eom::certify_native_regulator_convergence(
       event_control_request, event_receiver, event_source, "1", "1",
       "2.99", "3.01");
@@ -1365,6 +1416,12 @@ void print_all() {
   print_pinned_fold_temporal_onset(pinned_temporal_disabled_onset);
   std::cout << ",\"event_control\":";
   print_event(event_control);
+  std::cout << ",\"research_budget_event_control\":";
+  print_event(research_budget_event_control);
+  std::cout << ",\"interactive_budget_event_control\":";
+  print_event(interactive_budget_event_control);
+  std::cout << ",\"under_budget_event_control\":";
+  print_event(under_budget_event_control);
   std::cout << ",\"event_mpfr\":";
   print_event(event_mpfr);
   std::cout << ",\"event_regulator\":";

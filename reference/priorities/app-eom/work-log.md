@@ -1614,3 +1614,113 @@ This file holds dated decisions, implementation status, validation results, fail
   other than `0.25`, the enabled seed-0 control halts before $T=24.9$, the
   disabled control reaches that endpoint, a nonfinite diagnostic produces
   invalid JSON, or an enclosed-pair ledger fails its exact accounting row.
+
+## 2026-07-18 — Coherent certified-budget ledger and Amendment 2 proposal
+
+- **Derived:** reduced the numerical contract to two published per-step
+  increments, position and velocity. Root time is charged through the complete
+  acceleration enclosure; acceleration and correction residuals are integrated
+  with $h$ and $h^2/2$; finite-width impulse feeds velocity directly and
+  position moment feeds position directly.
+- **Derived:** common-domain overlap requires no independent tolerance. Its
+  numerical and Amendment 1 regulator-matching remainders spend the same
+  receiver-total impulse or position-moment row budget. A separate overlap
+  number would double-spend those remainders.
+- **Derived proposal:** staged `Interactive certified budget` and `Research
+  certified budget` as complete proposed records, including regulator values,
+  precision floors, convergence slices, rounding/reduction policy, and
+  resource ceilings. The completed sensitivity pass sets Research to the
+  current live Borg allocation. Interactive changes only receiver acceleration
+  from `0.1` to `0.3` and proposes `1e-6` receiver event totals through the
+  displayed state-budget inequalities; it remains blocked by state-radius
+  propagation and ratification.
+- **Ratification gate:** staged Amendment 2 as pending. The frozen binding,
+  native `1e-7` event values, `EOM_BORG_NATIVE_V6`, Borg defaults, and UI are
+  unchanged until explicit operator ratification.
+- Claim grade: `derived` for the dimensional mapping and no-independent-overlap
+  result; `derived-proposal` for the two records and amendment language.
+  Falsifiers: an error source cannot be charged through the stated map; a
+  receiver can spend more than the sum of its routed-pair allocations; either
+  preset exceeds its displayed $B_x$ or $B_v$ bound; or current source changes
+  a gated value before ratification.
+- **Measured negative control:** the stricter header-default combination
+  (`1e-12` root, `1e-9` acceleration, and `1e-8` state/correction controls)
+  spent `343.813 s` on one requested `0.05` interval and halted at
+  `T=0.007593126992950852` on `FWC-STATE-01`. The finite-width execution union
+  consumed `343.395 s`; acceleration precision escalation consumed `332.466`
+  worker-seconds. This corrected the initial assumption that the header
+  defaults were the recorded Research control.
+
+## 2026-07-18 — Certified-budget ledger, sensitivity matrix, and ratification gate
+
+- **Derived proposal:** staged one dimensional ledger with top-level position
+  and velocity increments, receiver-total event budgets, explicit remainder
+  slices, no independent common-domain overlap allowance, and resource ceilings
+  separated from mathematical error. Staged Amendment 2 without editing the
+  frozen binding or changing the native `1e-7` event budgets.
+- **Measured OAT result:** across seeds 0–3 at six paths and `T=1.2`, only the
+  receiver acceleration change `0.1 -> 0.3` changed the executed mechanism and
+  wall rate. Mean rate rose from `7.60` to `10.66` simulated seconds per wall
+  second; position, velocity, correction, and root `3x` rows stayed near host
+  scatter. Falsifier: a repeat sweep assigns the gain to another OAT row or
+  shows no correlated far-field/root-work change.
+- **Measured inconsistency:** the acceleration candidate's seed-0 endpoint
+  differs from the Research reference by `0.004784` position and `0.008027`
+  velocity while its emitted radii are much smaller. The current published
+  segment therefore does not carry the full acceleration-derived state
+  allowance. Interactive authority is blocked until complete state-radius
+  propagation and an independent containment control pass. Falsifier: a direct
+  reconstruction shows those contributions already present in the emitted
+  radii.
+- **Measured hot spots:** the finite-width halt spent `34.6358 s` of `34.8246 s`
+  in the event regulator ladder; the strict-state seed-3 negative spent
+  `78.0756 s` of `78.6071 s` there. The ordinary 32/64-path controls remained
+  dominated by the nested correction and exact-root path, and the acceleration
+  speed ratio fell from `1.60x` at six paths to `1.01x` at 64. Falsifier: repeat
+  phase timers move the wall cost to a different phase outside host-load
+  variation.
+- **Pending decision:** ratify or reject Amendment 2. No preset registry,
+  protocol revision, Borg default, UI, run-selected event budget, or binding
+  edit has been implemented.
+- **Evidence:**
+  [borg-certified-budget-sensitivity-apple-m3-2026-07-18.md](evidence/borg-certified-budget-sensitivity-apple-m3-2026-07-18.md).
+
+## 2026-07-18 — Amendment 2 ratification and V7 implementation acceptance blocker
+
+- **Operator decision:** ratified Amendment 2 and both complete preset records.
+  The binding now permits versioned run-selected certified budgets without
+  weakening any finite-width, rounding, root, or atomic-publication gate.
+- **Derived implementation:** added one canonical two-preset registry, stable
+  complete-allocation hashes, a two-choice UI selector, atomic preset
+  controller ownership, exact V7/54 request encoding and parsing, complete
+  request/response provenance, receiver-total equal routed-pair event
+  allocation, zero independent overlap allowance, and charged regulator and
+  matching slices. V6 has no compatibility parser.
+- **Derived state correction:** published position radius now carries inherited
+  position plus $h$ times inherited velocity width and $h^2/2$ times the
+  acceleration width; velocity carries inherited velocity plus $h$ times the
+  acceleration width. This removes the pre-ratification omitted-width defect.
+- **Measured independent controls:** both selectable finite-width event budgets
+  contain the unchanged Decimal-oracle value; a deliberate `1e-12`
+  under-budget request rejects. The oracle implementation was not modified.
+- **Measured parity failure:** the corrected widths change the retained-history
+  root track. Research seeds 0–3 halt on `root_completeness_not_certified` at
+  `0.3485375`, `0.3924828125`, `0.3588890625`, and `0.3186546875`, rather than
+  reproducing the historical `T=1.2` control. Amendment 2 implementation
+  acceptance therefore remains blocked. Falsifier: the exact V7 sweep reaches
+  the old endpoints while retaining the corrected widths and every gate.
+- **Measured Interactive survival:** Interactive reaches `0.3994140625`,
+  `0.708203125`, `1.2` completed, and `0.29140625` on seeds 0–3. It improves
+  survival on three seeds and worsens it on seed 3. At common seed-0 `T=0.3`,
+  Research and Interactive intervals overlap, while the separate visible-track
+  diagnostic fails on a `0.00198138` maximum velocity difference.
+- **Validation:** native build and CTest `3/3`, Borg JavaScript `86/86`, EOM
+  Python and unchanged-oracle `150/150`, V7 protocol `12/12`, and native coupled
+  evolution `24/24` pass. The evidence record contains the exact commands and
+  phase shares.
+- **Fail-closed default disposition:** Research remains the Borg default because
+  the explicit acceptance rule forbids Interactive default authority before
+  Research parity passes. Both ratified records remain selectable for controlled
+  validation.
+- **Evidence:**
+  [borg-certified-budget-v7-implementation-validation-apple-m3-2026-07-18.md](evidence/borg-certified-budget-v7-implementation-validation-apple-m3-2026-07-18.md).

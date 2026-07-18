@@ -1,8 +1,8 @@
 import { spawn, spawnSync } from "node:child_process";
 
 export const BORG_NATIVE_EOM_PROCESS_CLIENT_VERSION =
-  "borg-native-eom-process-client.v6";
-export const BORG_NATIVE_EOM_PROTOCOL_MAGIC = "EOM_BORG_NATIVE_V6";
+  "borg-native-eom-process-client.v7";
+export const BORG_NATIVE_EOM_PROTOCOL_MAGIC = "EOM_BORG_NATIVE_V7";
 
 export function createBorgNativeEomProcessClient({
   binaryPath,
@@ -203,17 +203,29 @@ export function encodeNativeRequest(request, { cachedHistories = null } = {}) {
   }
   const controls = request.numericalControls ?? {};
   const model = request.modelControls ?? {};
+  const certifiedBudget = request.certifiedBudget;
+  const allocations = certifiedBudget?.allocations;
   if (controls.maximumStep == null ||
       controls.farFieldEnclosureFraction == null ||
       model.coreScale == null ||
+      allocations?.schema == null ||
+      certifiedBudget?.presetId == null ||
+      certifiedBudget?.allocationHash == null ||
+      certifiedBudget?.allocationCanonicalJson == null ||
       request.resourceEnvelope?.memoryBudgetBytes == null ||
       typeof controls.useAdaptiveStepGrowth !== "boolean") {
     throw new TypeError(
       "EOM process request must explicitly supply maximumStep, " +
       "useAdaptiveStepGrowth, farFieldEnclosureFraction, coreScale, " +
-      "and memoryBudgetBytes.",
+      "certifiedBudget, and memoryBudgetBytes.",
     );
   }
+  assertCertifiedBudgetRequestMatchesAllocations(
+    request,
+    controls,
+    model,
+    allocations,
+  );
   const lines = [
     BORG_NATIVE_EOM_PROTOCOL_MAGIC,
     tabRecord([
@@ -236,6 +248,40 @@ export function encodeNativeRequest(request, { cachedHistories = null } = {}) {
       controls.correctionTolerance,
       controls.threadCount,
       request.resourceEnvelope.memoryBudgetBytes,
+      allocations.schema,
+      certifiedBudget.presetId,
+      certifiedBudget.allocationHash,
+      certifiedBudget.allocationCanonicalJson,
+      allocations.topLevel.positionIncrement,
+      allocations.topLevel.velocityIncrement,
+      allocations.ordinary.sourceNormalFloor,
+      allocations.finiteWidth.causalWidth,
+      allocations.finiteWidth.receiverImpulseTotal,
+      allocations.finiteWidth.receiverPositionMomentTotal,
+      allocations.finiteWidth.independentOverlap,
+      allocations.finiteWidth.rowFractions.quadrature,
+      allocations.finiteWidth.rowFractions.causalWidthRegulator,
+      allocations.finiteWidth.rowFractions.coreRegulator,
+      allocations.finiteWidth.rowFractions.finiteWidthStateNumerical,
+      allocations.finiteWidth.rowFractions.amendment1RegulatorMatching,
+      allocations.finiteWidth.regulatorRefinementRatio,
+      allocations.finiteWidth.regulatorLevels,
+      allocations.precision.difficultRowInitialBits,
+      allocations.precision.difficultRowMaximumBits,
+      allocations.resources.rootMaximumDepth,
+      allocations.resources.rootMaximumCells,
+      allocations.resources.quadratureMaximumDepth,
+      allocations.resources.quadratureMaximumCells,
+      allocations.resources.eventMaximumDepth,
+      allocations.resources.eventMaximumCells,
+      allocations.resources.correctionIterations,
+      allocations.resources.maximumStepAttempts,
+      allocations.resources.maximumRejectedSteps,
+      allocations.ordinary.chartPolicy,
+      allocations.precision.deterministicReduction,
+      allocations.precision.roundingMode,
+      allocations.finiteWidth.receiverAllocationRule,
+      allocations.ordinary.quadratureTolerance,
       request.histories.length,
     ]),
   ];
@@ -278,6 +324,38 @@ export function encodeNativeRequest(request, { cachedHistories = null } = {}) {
   });
   lines.push("END");
   return `${lines.join("\n")}\n`;
+}
+
+function assertCertifiedBudgetRequestMatchesAllocations(
+  request,
+  controls,
+  model,
+  allocations,
+) {
+  const expected = [
+    [controls.minimumStep, allocations.controller.minimumStep, "minimumStep"],
+    [controls.maximumStep, allocations.controller.maximumStep, "maximumStep"],
+    [controls.useAdaptiveStepGrowth, allocations.controller.adaptiveGrowth, "adaptiveGrowth"],
+    [controls.rootTolerance, allocations.ordinary.rootTimeEnclosure, "rootTolerance"],
+    [controls.accelerationTolerance, allocations.ordinary.accelerationEnclosure, "accelerationTolerance"],
+    [controls.farFieldEnclosureFraction, allocations.ordinary.farFieldEnclosureFraction, "farFieldEnclosureFraction"],
+    [controls.positionTolerance, allocations.ordinary.acceptedStepPosition, "positionTolerance"],
+    [controls.velocityTolerance, allocations.ordinary.acceptedStepVelocity, "velocityTolerance"],
+    [controls.correctionTolerance, allocations.ordinary.correctionAccelerationResidual, "correctionTolerance"],
+    [controls.threadCount, allocations.resources.workerThreads, "threadCount"],
+    [model.coreScale, allocations.finiteWidth.coreScale, "coreScale"],
+    [request.resourceEnvelope.memoryBudgetBytes, allocations.resources.requestMemoryBytes, "memoryBudgetBytes"],
+  ];
+  for (const [actual, allocation, label] of expected) {
+    const matches = typeof allocation === "boolean"
+      ? actual === allocation
+      : Number(actual) === Number(allocation);
+    if (!matches) {
+      throw new RangeError(
+        `EOM process request ${label} does not match its certified budget allocation.`,
+      );
+    }
+  }
 }
 
 function historiesShareExactPrefix(cached, current) {

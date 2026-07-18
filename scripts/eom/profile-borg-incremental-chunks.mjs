@@ -4,6 +4,10 @@ import { performance } from "node:perf_hooks";
 
 import { createBorgNativeEomProcessClient } from "./BorgNativeEomProcessClient.mjs";
 import { createBorgEomShadowRunner } from "../../src/apps/borg/BorgEomShadowRunner.js";
+import {
+  BORG_DEFAULT_CERTIFIED_BUDGET_ID,
+  getBorgCertifiedBudgetPreset,
+} from "../../src/apps/borg/BorgCertifiedBudgets.js";
 import { BORG_DATASET_MANIFEST_V1 } from "../../src/apps/borg/BorgAppManifest.js";
 import {
   calculateBorgInertialHistoryDepth,
@@ -12,6 +16,7 @@ import {
   createBorgSeededInitialConditionRows,
 } from "../../src/apps/borg/BorgInitialConditions.js";
 import {
+  BORG_INTERACTIVE_DEFAULTS_V1,
   createBorgPlacementPolicy,
 } from "../../src/apps/borg/BorgInteractiveDefaults.js";
 
@@ -21,43 +26,43 @@ const chunkCount = positiveInteger(options.chunks, 20);
 if (!binaryPath) {
   throw new Error(
     "usage: profile-borg-incremental-chunks.mjs <eom_borg_shadow_cli> " +
-    "[--chunks=N] [--seed=N] [--chunk-duration=H] [--initial-step=H] " +
-    "[--minimum-step=H] [--maximum-step=H] [--adaptive-growth=true|false] " +
+    "[--chunks=N] [--seed=N] [--chunk-duration=H] " +
     "[--electrinos=N] [--positrinos=N] " +
-    "[--coupling=K] [--max-per-axis-speed=V] [--core-scale=R] " +
-    "[--memory-budget-bytes=N] [--history-depth=H] " +
-    "[--root-tolerance=E] [--position-tolerance=E] " +
-    "[--velocity-tolerance=E] [--maximum-mpfr-bits=N] " +
-    "[--event-max-cells=N] [--far-field-enclosure-fraction=F]",
+    "[--coupling=K] [--max-per-axis-speed=V] [--history-depth=H] " +
+    "[--certified-budget-id=ID]",
   );
 }
 
 const manifest = BORG_DATASET_MANIFEST_V1;
-const chunkDuration = positiveNumber(options["chunk-duration"], 0.05);
+const chunkDuration = positiveNumber(options["chunk-duration"], 0.3);
 const sampleInterval = 0.01;
 const seedIndex = nonnegativeInteger(options.seed, 0);
-const initialStep = positiveToken(options["initial-step"], "0.05");
-const minimumStep = positiveToken(options["minimum-step"], "0.0001");
-const maximumStep = positiveToken(options["maximum-step"], "0.05");
-const useAdaptiveStepGrowth = booleanOption(options["adaptive-growth"], true);
-const eventMaxCells = positiveInteger(options["event-max-cells"], 200000);
-const maximumMpfrBits = positiveInteger(options["maximum-mpfr-bits"], 512);
-const rootTolerance = positiveToken(options["root-tolerance"], "1e-3");
-const positionTolerance = positiveToken(options["position-tolerance"], "1e-2");
-const velocityTolerance = positiveToken(options["velocity-tolerance"], "1e-2");
-const farFieldEnclosureFraction = fractionToken(
-  options["far-field-enclosure-fraction"],
-  "0.25",
+const certifiedBudget = getBorgCertifiedBudgetPreset(
+  options["certified-budget-id"] ?? BORG_DEFAULT_CERTIFIED_BUDGET_ID,
 );
+const budgetAllocations = certifiedBudget.allocations;
+const initialStep = budgetAllocations.controller.initialStep;
+const minimumStep = budgetAllocations.controller.minimumStep;
+const maximumStep = budgetAllocations.controller.maximumStep;
+const useAdaptiveStepGrowth = budgetAllocations.controller.adaptiveGrowth;
+const eventMaxCells = budgetAllocations.resources.eventMaximumCells;
+const maximumMpfrBits = budgetAllocations.precision.difficultRowMaximumBits;
+const rootTolerance = budgetAllocations.ordinary.rootTimeEnclosure;
+const accelerationTolerance = budgetAllocations.ordinary.accelerationEnclosure;
+const positionTolerance = budgetAllocations.ordinary.acceptedStepPosition;
+const velocityTolerance = budgetAllocations.ordinary.acceptedStepVelocity;
+const correctionTolerance =
+  budgetAllocations.ordinary.correctionAccelerationResidual;
+const farFieldEnclosureFraction =
+  budgetAllocations.ordinary.farFieldEnclosureFraction;
 const coupling = String(positiveNumber(
   options.coupling,
-  manifest.modelControls.coupling,
+  BORG_INTERACTIVE_DEFAULTS_V1.coupling,
 ));
-const coreScale = positiveNumber(options["core-scale"], 0.2);
-const memoryBudgetBytes = positiveInteger(
-  options["memory-budget-bytes"],
-  64 * 1024 * 1024,
-);
+const coreScale = Number(budgetAllocations.finiteWidth.coreScale);
+const memoryBudgetBytes = budgetAllocations.resources.requestMemoryBytes;
+const budgetId = certifiedBudget.id;
+const budgetAllocationHash = certifiedBudget.allocationHash;
 const includeChunks = !booleanOption(options["summary-only"], false);
 const aggregateOnly = booleanOption(options["aggregate-only"], false);
 const includeRegulatorCertificates = !booleanOption(
@@ -133,6 +138,28 @@ const measuredClient = {
         ...certificate,
       })),
     );
+    const regulatorEventVisitedCells = regulatorCertificates.reduce(
+      (certificateTotal, certificate) => certificateTotal +
+        (certificate.series ?? []).reduce(
+          (seriesTotal, series) => seriesTotal +
+            (series.levels ?? []).reduce(
+              (levelTotal, level) =>
+                levelTotal + Number(level.visitedCells ?? 0),
+              0,
+            ),
+          0,
+        ),
+      0,
+    );
+    const regulatorLevelEvaluationCount = regulatorCertificates.reduce(
+      (certificateTotal, certificate) => certificateTotal +
+        (certificate.series ?? []).reduce(
+          (seriesTotal, series) => seriesTotal +
+            (series.levels?.length ?? 0),
+          0,
+        ),
+      0,
+    );
     const finiteWidthStateCertificates = (response.stepFailures ?? []).flatMap(
       (step) =>
         (step.finiteWidthStateCertificates ?? []).map((certificate) => ({
@@ -143,6 +170,14 @@ const measuredClient = {
           ...certificate,
         })),
     );
+    const endpointSegmentErrors = (response.histories ?? []).map((history) => {
+      const segment = history.segments?.at(-1);
+      return {
+        pathId: history.pathId,
+        positionError: Number(segment?.positionError ?? 0),
+        velocityError: Number(segment?.velocityError ?? 0),
+      };
+    });
     nativeChunks.push({
       chunkIndex: nativeChunks.length,
       status: response.status,
@@ -190,7 +225,10 @@ const measuredClient = {
         (row) => row.roots?.some((root) => root.precisionBits > 53),
       ),
       regulatorCertificates,
+      regulatorEventVisitedCells,
+      regulatorLevelEvaluationCount,
       finiteWidthStateCertificates,
+      endpointSegmentErrors,
       ...response.timing,
     });
     process.stderr.write(
@@ -208,6 +246,7 @@ const measuredClient = {
 };
 const runner = createBorgEomShadowRunner(manifest, {
   eomClient: measuredClient,
+  certifiedBudgetId: certifiedBudget.id,
   initialFrameRows: initialSeed.rows,
   initialHistoryProvenance: initialSeed.provenance,
   initialHistoryClaimLevel: initialSeed.claimLevel,
@@ -223,11 +262,11 @@ const runner = createBorgEomShadowRunner(manifest, {
   maximumStep,
   useAdaptiveStepGrowth,
   rootTolerance,
-  accelerationTolerance: "1e-1",
+  accelerationTolerance,
   farFieldEnclosureFraction,
   positionTolerance,
   velocityTolerance,
-  correctionTolerance: "1e-1",
+  correctionTolerance,
   coupling,
   coreScale,
   memoryBudgetBytes,
@@ -314,14 +353,79 @@ const correctionWallSeconds = nativeChunks.reduce(
   (sum, chunk) => sum + chunk.correctionWallSeconds,
   0,
 );
+const timingFieldTotals = Object.fromEntries(
+  [
+    "snapshotTotalWallSeconds",
+    "snapshotCount",
+    "historyWindowWallSeconds",
+    "traversalWallSeconds",
+    "rootBatchWallSeconds",
+    "rootBinary64CpuSeconds",
+    "rootPairCount",
+    "rootReevaluatedCells",
+    "rootWarmExcludedCells",
+    "rootMpfrCpuSeconds",
+    "rootMpfrPairCount",
+    "rootMpfrAttemptCount",
+    "rootMpfrEscalationCpuSeconds",
+    "rootMpfrEscalationAttemptCount",
+    "accelerationWallSeconds",
+    "finiteWidthExecutionUnionWallSeconds",
+    "sharpExecutionUnionWallSeconds",
+    "finiteWidthSharpOverlapWallSeconds",
+    "accelerationWorkerIdleOrchestrationWallSeconds",
+    "accelerationPrecisionEscalationWorkerSeconds",
+    "accelerationPrecisionEscalationAttemptCount",
+    "regulatorLadderWallSeconds",
+    "commonDomainWallSeconds",
+    "historyCopyHashWallSeconds",
+    "correctionWallSeconds",
+    "reusedStartSnapshotCount",
+    "recertificationWallSeconds",
+    "rejectionWallSeconds",
+  ].map((field) => [
+    field,
+    nativeChunks.reduce((sum, chunk) => sum + Number(chunk[field] ?? 0), 0),
+  ]),
+);
+const nativeChunkWallTimes = nativeChunks.map((chunk) => chunk.totalWallSeconds);
+const outerChunkWallTimes = nativeChunks.map((chunk) => chunk.outerWallSeconds);
+const acceptedStepTotal = nativeChunks.reduce(
+  (sum, chunk) => sum + Number(chunk.acceptedStepCount ?? 0),
+  0,
+);
+const rejectedStepTotal = nativeChunks.reduce(
+  (sum, chunk) => sum + Number(chunk.rejectedStepCount ?? 0),
+  0,
+);
+const regulatorEventVisitedCellsTotal = nativeChunks.reduce(
+  (sum, chunk) => sum + chunk.regulatorEventVisitedCells,
+  0,
+);
+const regulatorLevelEvaluationCountTotal = nativeChunks.reduce(
+  (sum, chunk) => sum + chunk.regulatorLevelEvaluationCount,
+  0,
+);
+const attemptedHeights = nativeChunks.flatMap((chunk) =>
+  chunk.attemptedSteps.map((step) =>
+    Math.max(0, step.attemptedEnd - step.attemptedStart),
+  ),
+);
 
 process.stdout.write(`${JSON.stringify({
-  schema: "borg_incremental_chunk_profile/v0",
+  schema: "borg_incremental_chunk_profile/v1",
   claimLevel: "measured_current_binary",
   pathCount: endpointRows.length,
   coupling: Number(coupling),
   coreScale,
   memoryBudgetBytes,
+  budgetProvenance: {
+    budgetId,
+    completeAllocations: budgetAllocations,
+    allocationHashAlgorithm: "sha256/canonical-json-v0",
+    allocationHash: budgetAllocationHash,
+    closeEncounterBudgetSelection: "ratified-run-selected",
+  },
   initialConditionConfig,
   placement,
   historyDepth,
@@ -335,8 +439,10 @@ process.stdout.write(`${JSON.stringify({
     eventMaxCells,
     maximumMpfrBits,
     rootTolerance,
+    accelerationTolerance,
     positionTolerance,
     velocityTolerance,
+    correctionTolerance,
     farFieldEnclosureFraction,
   },
   status: runFailure == null ? "completed" : "halted",
@@ -353,18 +459,41 @@ process.stdout.write(`${JSON.stringify({
     ? completedSimulatedDuration / outerTotalWallSeconds
     : null,
   timingTotals: {
+    ...timingFieldTotals,
     rootBatchWallSeconds,
     historyCopyHashWallSeconds,
     correctionWallSeconds,
-    nativeUnattributedWallSeconds: Math.max(
-      0,
-      nativeTotalWallSeconds - correctionWallSeconds - historyCopyHashWallSeconds,
-    ),
+    nestedTimingWarning:
+      "correction, snapshot, root, acceleration, history-copy, recertification, " +
+      "regulator, common-domain, and rejection fields overlap and must not be " +
+      "summed as disjoint wall time",
     processProtocolAndMergeWallSeconds: Math.max(
       0,
       outerTotalWallSeconds - nativeTotalWallSeconds,
     ),
   },
+  chunkWallTime: {
+    nativeMedianSeconds: median(nativeChunkWallTimes),
+    nativeP95Seconds: percentile(nativeChunkWallTimes, 0.95),
+    nativeMaximumSeconds: maximum(nativeChunkWallTimes),
+    outerMedianSeconds: median(outerChunkWallTimes),
+    outerP95Seconds: percentile(outerChunkWallTimes, 0.95),
+    outerMaximumSeconds: maximum(outerChunkWallTimes),
+  },
+  steps: {
+    accepted: acceptedStepTotal,
+    rejected: rejectedStepTotal,
+    regulatorEventVisitedCells: regulatorEventVisitedCellsTotal,
+    regulatorLevelEvaluations: regulatorLevelEvaluationCountTotal,
+    attemptedHeightDistribution: histogram(attemptedHeights),
+    correctionRetryCount: nativeChunks.reduce(
+      (sum, chunk) => sum + chunk.attemptedSteps.filter(
+        (step) => step.failureCode === "coupled_correction_failed",
+      ).length,
+      0,
+    ),
+  },
+  wallTimeShares: wallTimeShares(timingFieldTotals, nativeTotalWallSeconds),
   allWarmChunkStartsReused: warmChunks.every((chunk) => chunk.incrementalStartReused),
   coldFirstChunkSeconds: nativeChunks[0]?.totalWallSeconds ?? null,
   warmMeanSeconds: mean,
@@ -388,6 +517,8 @@ process.stdout.write(`${JSON.stringify({
     pathKey: frame.pathKey,
     time: frame.time,
     position: frame.position,
+    velocity: frame.velocity,
+    errorBound: frame.errorBound,
   })),
   precisionEscalationChunks: warmChunks
     .filter((chunk) => chunk.rootMpfrPairCount > 0)
@@ -419,9 +550,20 @@ function summarizeChunks(chunks) {
     traversalEnclosedPairs: chunk.traversalEnclosedPairs,
     enclosedErrorWidthTotal: chunk.enclosedErrorWidthTotal,
     enclosedErrorWidthMaxReceiver: chunk.enclosedErrorWidthMaxReceiver,
+    regulatorEventVisitedCells: chunk.regulatorEventVisitedCells,
+    regulatorLevelEvaluationCount: chunk.regulatorLevelEvaluationCount,
     totalWallSeconds: chunk.totalWallSeconds,
     outerWallSeconds: chunk.outerWallSeconds,
     frameCount: chunk.frameCount,
+    maximumEndpointPositionError: Math.max(
+      0,
+      ...chunk.endpointSegmentErrors.map((row) => row.positionError),
+    ),
+    maximumEndpointVelocityError: Math.max(
+      0,
+      ...chunk.endpointSegmentErrors.map((row) => row.velocityError),
+    ),
+    endpointSegmentErrors: chunk.endpointSegmentErrors,
     precisionEscalatedRootCertificates:
       chunk.status === "halted" ? chunk.precisionEscalatedRootCertificates : [],
     regulatorCertificates: includeRegulatorCertificates
@@ -479,18 +621,6 @@ function positiveNumber(token, fallback) {
   return Number.isFinite(value) && value > 0 ? value : fallback;
 }
 
-function positiveToken(token, fallback) {
-  return positiveNumber(token, Number(fallback)).toString();
-}
-
-function fractionToken(token, fallback) {
-  const value = Number(token ?? fallback);
-  if (!Number.isFinite(value) || value < 0 || value >= 1) {
-    throw new Error(`invalid fraction option: ${token}`);
-  }
-  return String(value);
-}
-
 function booleanOption(token, fallback) {
   if (token == null) {
     return fallback;
@@ -520,6 +650,61 @@ function average(values) {
   return values.length > 0
     ? values.reduce((sum, value) => sum + value, 0) / values.length
     : 0;
+}
+
+function maximum(values) {
+  return values.length > 0 ? Math.max(...values) : null;
+}
+
+function percentile(values, fraction) {
+  if (values.length === 0) {
+    return null;
+  }
+  const sorted = [...values].sort((left, right) => left - right);
+  const index = Math.max(
+    0,
+    Math.min(sorted.length - 1, Math.ceil(fraction * sorted.length) - 1),
+  );
+  return sorted[index];
+}
+
+function histogram(values) {
+  const counts = new Map();
+  values.forEach((value) => {
+    const token = value.toPrecision(12);
+    counts.set(token, (counts.get(token) ?? 0) + 1);
+  });
+  return Object.fromEntries(
+    [...counts.entries()].sort((left, right) => Number(left[0]) - Number(right[0])),
+  );
+}
+
+function wallTimeShares(totals, denominator) {
+  const wallFields = [
+    "historyWindowWallSeconds",
+    "traversalWallSeconds",
+    "rootBatchWallSeconds",
+    "accelerationWallSeconds",
+    "finiteWidthExecutionUnionWallSeconds",
+    "sharpExecutionUnionWallSeconds",
+    "finiteWidthSharpOverlapWallSeconds",
+    "accelerationWorkerIdleOrchestrationWallSeconds",
+    "regulatorLadderWallSeconds",
+    "commonDomainWallSeconds",
+    "historyCopyHashWallSeconds",
+    "correctionWallSeconds",
+    "recertificationWallSeconds",
+    "rejectionWallSeconds",
+  ];
+  return {
+    denominator: "nativeTotalWallSeconds",
+    additive: false,
+    reason: "reported phase timers include nested and overlapping wall-time unions",
+    shares: Object.fromEntries(wallFields.map((field) => [
+      field,
+      denominator > 0 ? Number(totals[field] ?? 0) / denominator : null,
+    ])),
+  };
 }
 
 function median(values) {

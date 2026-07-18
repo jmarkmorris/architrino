@@ -1,3 +1,9 @@
+import {
+  BORG_DEFAULT_CERTIFIED_BUDGET_ID,
+  canonicalStringify,
+  getBorgCertifiedBudgetPreset,
+} from "./BorgCertifiedBudgets.js";
+
 export const BORG_EOM_SHADOW_RUNNER_VERSION = "borg-eom-shadow-runner.v0";
 export const BORG_EOM_SHADOW_RUN_SOURCE = "computed-eom-shadow-chunks";
 export const BORG_EOM_COMPATIBILITY_HISTORY_PROVENANCE =
@@ -7,7 +13,6 @@ export const BORG_EOM_ACCEPTED_INITIAL_HISTORY_EVOLUTION_CLAIM_LEVEL =
 
 const POSITRINO_STATE_FLAG = 1;
 const ELECTRINO_STATE_FLAG = 2;
-const DEFAULT_MEMORY_BUDGET_BYTES = 64 * 1024 * 1024;
 
 export function createBorgEomShadowRunner(manifest, options = {}) {
   if (!manifest || typeof manifest !== "object") {
@@ -138,6 +143,7 @@ export function createBorgEomShadowRunner(manifest, options = {}) {
         phase: "live",
         initialHistoryAccepted,
         coreScale: response.coreScale,
+        budgetProvenance: response.budgetProvenance,
         retainedHistoryStart,
         retainedHistoryEnd,
         retainedHistoryPolicy: "rolling-certified-history-window",
@@ -166,6 +172,10 @@ export function createBorgEomShadowRunner(manifest, options = {}) {
 }
 
 export function createBorgEomShadowRunConfig(manifest, options = {}) {
+  const certifiedBudget = getBorgCertifiedBudgetPreset(
+    options.certifiedBudgetId ?? BORG_DEFAULT_CERTIFIED_BUDGET_ID,
+  );
+  const budget = certifiedBudget.allocations;
   const sampleInterval = positiveNumber(
     options.sampleInterval,
     manifest.simulationEnvelope?.sampleInterval ?? 0.2,
@@ -207,11 +217,8 @@ export function createBorgEomShadowRunConfig(manifest, options = {}) {
     options.historyDepth,
     manifest.simulationEnvelope?.historyDepth ?? 10,
   );
-  const coreScale = positiveNumber(options.coreScale, 0.2);
-  const farFieldEnclosureFraction = requiredFractionToken(
-    options.farFieldEnclosureFraction ?? "0.25",
-    "farFieldEnclosureFraction",
-  );
+  const coreScale = Number(budget.finiteWidth.coreScale);
+  const farFieldEnclosureFraction = budget.ordinary.farFieldEnclosureFraction;
   const targetDuration = finiteNumber(
     options.targetDuration,
     roundTime(startTime + chunkDuration),
@@ -219,13 +226,36 @@ export function createBorgEomShadowRunConfig(manifest, options = {}) {
   if (targetDuration <= startTime) {
     throw new RangeError("Borg EOM target duration must exceed its initial-history cut.");
   }
-  const initialStep = requiredPositiveToken(options.initialStep ?? "0.1", "initialStep");
+  assertAtomicPresetValue(
+    options.initialStep,
+    budget.controller.initialStep,
+    "initialStep",
+  );
+  assertAtomicPresetValue(
+    options.minimumStep,
+    budget.controller.minimumStep,
+    "minimumStep",
+  );
+  assertAtomicPresetValue(
+    options.maximumStep,
+    budget.controller.maximumStep,
+    "maximumStep",
+  );
+  assertAtomicPresetValue(
+    options.useAdaptiveStepGrowth,
+    budget.controller.adaptiveGrowth,
+    "useAdaptiveStepGrowth",
+  );
+  const initialStep = requiredPositiveToken(
+    budget.controller.initialStep,
+    "initialStep",
+  );
   const minimumStep = requiredPositiveToken(
-    options.minimumStep ?? String(sampleInterval / 16),
+    budget.controller.minimumStep,
     "minimumStep",
   );
   const maximumStep = requiredPositiveToken(
-    options.maximumStep ?? String(Math.max(Number(initialStep), chunkDuration)),
+    budget.controller.maximumStep,
     "maximumStep",
   );
   if (Number(minimumStep) > Number(initialStep) ||
@@ -257,29 +287,18 @@ export function createBorgEomShadowRunConfig(manifest, options = {}) {
     minimumStep,
     maximumStep,
     useAdaptiveStepGrowth: requiredBoolean(
-      options.useAdaptiveStepGrowth ?? true,
+      budget.controller.adaptiveGrowth,
       "useAdaptiveStepGrowth",
     ),
-    rootTolerance: requiredPositiveToken(options.rootTolerance ?? "1e-12", "rootTolerance"),
-    accelerationTolerance: requiredPositiveToken(
-      options.accelerationTolerance ?? "1e-8",
-      "accelerationTolerance",
-    ),
+    rootTolerance: budget.ordinary.rootTimeEnclosure,
+    accelerationTolerance: budget.ordinary.accelerationEnclosure,
     farFieldEnclosureFraction,
-    positionTolerance: requiredPositiveToken(
-      options.positionTolerance ?? "1e-10",
-      "positionTolerance",
-    ),
-    velocityTolerance: requiredPositiveToken(
-      options.velocityTolerance ?? "1e-10",
-      "velocityTolerance",
-    ),
-    correctionTolerance: requiredPositiveToken(
-      options.correctionTolerance ?? "1e-8",
-      "correctionTolerance",
-    ),
-    threadCount: positiveInteger(options.threadCount, 1),
-    memoryBudgetBytes: positiveInteger(options.memoryBudgetBytes, DEFAULT_MEMORY_BUDGET_BYTES),
+    positionTolerance: budget.ordinary.acceptedStepPosition,
+    velocityTolerance: budget.ordinary.acceptedStepVelocity,
+    correctionTolerance: budget.ordinary.correctionAccelerationResidual,
+    threadCount: budget.resources.workerThreads,
+    memoryBudgetBytes: budget.resources.requestMemoryBytes,
+    certifiedBudget,
     modelBindingId: options.modelBindingId ?? "master_eom_binding/v0",
   });
 }
@@ -406,6 +425,15 @@ export function createBorgEomShadowRequest({
       correctionTolerance: config.correctionTolerance,
       deterministicReduction: true,
       threadCount: config.threadCount,
+    }),
+    certifiedBudget: Object.freeze({
+      schema: config.certifiedBudget.allocations.schema,
+      presetId: config.certifiedBudget.id,
+      label: config.certifiedBudget.label,
+      allocationHash: config.certifiedBudget.allocationHash,
+      allocationCanonicalJson:
+        config.certifiedBudget.allocationCanonicalJson,
+      allocations: config.certifiedBudget.allocations,
     }),
     modelControls: Object.freeze({
       fieldSpeed: String(config.fieldSpeed),
@@ -595,10 +623,19 @@ function normalizeEomResponse(rawResponse, request) {
     response.memoryEstimateBytes ?? 0,
     "response memoryEstimateBytes",
   );
+  const budgetProvenance = response.budgetProvenance;
+  const requestedBudget = request.certifiedBudget;
   if (coreScale !== Number(request.modelControls.coreScale) ||
       memoryBudgetBytes !== Number(request.resourceEnvelope.memoryBudgetBytes) ||
       memoryEstimateBytes > memoryBudgetBytes ||
-      claimGrade !== String(response.evidenceStatus ?? "failed")) {
+      claimGrade !== String(response.evidenceStatus ?? "failed") ||
+      budgetProvenance?.schema !== requestedBudget.schema ||
+      budgetProvenance?.presetId !== requestedBudget.presetId ||
+      budgetProvenance?.allocationHash !== requestedBudget.allocationHash ||
+      budgetProvenance?.allocationCanonicalJson !==
+        requestedBudget.allocationCanonicalJson ||
+      canonicalStringify(budgetProvenance?.allocations) !==
+        requestedBudget.allocationCanonicalJson) {
     throw new Error("Borg EOM shadow response has inconsistent certified provenance.");
   }
   return Object.freeze({
@@ -608,6 +645,13 @@ function normalizeEomResponse(rawResponse, request) {
     memoryBudgetBytes,
     memoryEstimateBytes,
     claimGrade,
+    budgetProvenance: Object.freeze({
+      schema: budgetProvenance.schema,
+      presetId: budgetProvenance.presetId,
+      allocationHash: budgetProvenance.allocationHash,
+      allocationCanonicalJson: budgetProvenance.allocationCanonicalJson,
+      allocations: budgetProvenance.allocations,
+    }),
     controllerStepSize: String(Number(requiredPositiveToken(
       response.controllerStepSize ?? request.numericalControls.initialStep,
       "response controllerStepSize",
@@ -700,6 +744,14 @@ function createCompleteChunk(
     phase: "live",
     initialHistoryAccepted: false,
     coreScale: config.coreScale,
+    budgetProvenance: Object.freeze({
+      schema: config.certifiedBudget.allocations.schema,
+      presetId: config.certifiedBudget.id,
+      allocationHash: config.certifiedBudget.allocationHash,
+      allocationCanonicalJson:
+        config.certifiedBudget.allocationCanonicalJson,
+      allocations: config.certifiedBudget.allocations,
+    }),
     claimGrade: "not-applicable",
     evolutionClaimLevel: "not-applicable",
     frames: Object.freeze([]),
@@ -794,4 +846,21 @@ function requiredBoolean(value, label) {
     throw new TypeError(`Borg EOM ${label} must be Boolean.`);
   }
   return value;
+}
+
+function assertAtomicPresetValue(actual, expected, label) {
+  if (actual == null) return;
+  if (typeof expected === "boolean") {
+    if (requiredBoolean(actual, label) !== expected) {
+      throw new RangeError(
+        `Borg ${label} is fixed by the selected certified budget.`,
+      );
+    }
+    return;
+  }
+  if (Number(actual) !== Number(expected)) {
+    throw new RangeError(
+      `Borg ${label} is fixed by the selected certified budget.`,
+    );
+  }
 }

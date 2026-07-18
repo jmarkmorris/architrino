@@ -219,6 +219,22 @@ std::string shortest_decimal_token(double value) {
   return std::string(buffer.data(), result.ptr);
 }
 
+double downward_nonnegative_product(double left, double right) {
+  const double product = left * right;
+  if (!(product > 0.0)) {
+    return product;
+  }
+  return std::nextafter(product, 0.0);
+}
+
+double downward_nonnegative_quotient(double numerator, std::size_t divisor) {
+  const double quotient = numerator / static_cast<double>(divisor);
+  if (divisor == 1U || !(quotient > 0.0)) {
+    return quotient;
+  }
+  return std::nextafter(quotient, 0.0);
+}
+
 std::string error_token(double value) {
   if (value == 0.0) {
     return "0";
@@ -262,6 +278,51 @@ const std::string& path_charge(
     throw std::invalid_argument("coupled charge path identity is missing");
   }
   return found->charge;
+}
+
+NativeCoupledEvolutionRequest receiver_pair_budget_request(
+    const NativeCoupledEvolutionRequest& request,
+    const std::vector<std::pair<std::string, std::string>>& pairs,
+    const std::string& receiver_id) {
+  if (request.certified_budget_schema.empty()) {
+    return request;
+  }
+  const std::size_t receiver_pair_count = static_cast<std::size_t>(
+      std::count_if(pairs.begin(), pairs.end(), [&](const auto& pair) {
+        return pair.first == receiver_id;
+      }));
+  if (receiver_pair_count == 0U) {
+    throw std::invalid_argument(
+        "receiver event allocation requires at least one routed pair");
+  }
+  auto pair_request = request;
+  const double impulse_total = downward_nonnegative_quotient(
+      tolerance_value(request.event_impulse_budget, "event impulse budget"),
+      receiver_pair_count);
+  const double moment_total = downward_nonnegative_quotient(
+      tolerance_value(
+          request.event_position_moment_budget,
+          "event position-moment budget"),
+      receiver_pair_count);
+  const double quadrature_fraction = exact_decimal_value(
+      request.event_quadrature_fraction);
+  const double regulator_fraction = std::min(
+      exact_decimal_value(request.event_causal_regulator_fraction),
+      exact_decimal_value(request.event_core_regulator_fraction));
+  pair_request.event_impulse_budget = shortest_decimal_token(impulse_total);
+  pair_request.event_position_moment_budget =
+      shortest_decimal_token(moment_total);
+  pair_request.resolved_receiver_event_pair_count = receiver_pair_count;
+  pair_request.resolved_receiver_event_pair_weight = shortest_decimal_token(
+      1.0 / static_cast<double>(receiver_pair_count));
+  pair_request.event_impulse_tolerance = shortest_decimal_token(
+      downward_nonnegative_product(impulse_total, quadrature_fraction));
+  pair_request.event_position_moment_tolerance = shortest_decimal_token(
+      downward_nonnegative_product(moment_total, quadrature_fraction));
+  pair_request.regulator_convergence_tolerance = shortest_decimal_token(
+      downward_nonnegative_product(
+          std::min(impulse_total, moment_total), regulator_fraction));
+  return pair_request;
 }
 
 std::vector<std::string> path_ids(
@@ -715,8 +776,25 @@ std::vector<NativePublishedPath> append_candidate_segments(
               (acceleration_end - acceleration_start) / (6.0 * step)),
       };
     }
-    const double position_error = vector_radius(position_interval);
-    const double velocity_error = vector_radius(velocity_interval);
+    const double position_radius = vector_radius(position_interval);
+    const double velocity_radius = vector_radius(velocity_interval);
+    const double acceleration_start_radius = vector_radius(
+        right_endpoint_acceleration_paths.contains(path.path_id)
+            ? end_found->second
+            : start_found->second);
+    const double acceleration_end_radius = vector_radius(end_found->second);
+    const double acceleration_radius = std::max(
+        acceleration_start_radius, acceleration_end_radius);
+    // The published cubic uses acceleration midpoints.  Its explicit error
+    // radius must therefore carry the entire interval input through the
+    // accepted step: integral_0^h a_err dt <= h r_a and
+    // integral_0^h (h-t) a_err dt <= h^2 r_a / 2.  Retained position and
+    // velocity radii propagate through the same map.
+    const double position_error = upward_nonnegative_sum(
+        upward_nonnegative_sum(position_radius, step * velocity_radius),
+        0.5 * step * step * acceleration_radius);
+    const double velocity_error = upward_nonnegative_sum(
+        velocity_radius, step * acceleration_radius);
     CubicHistorySegment segment(
         start_time, end_time, coefficients, error_token(position_error),
         error_token(velocity_error));
@@ -1609,10 +1687,15 @@ certify_common_domain_interval(
         : left.lower() - right.upper();
   };
   const double impulse_budget = tolerance_value(
-      request.event_impulse_tolerance, "event impulse tolerance");
+      request.event_impulse_budget, "event impulse budget");
   const double moment_budget = tolerance_value(
-      request.event_position_moment_tolerance,
-      "event position-moment tolerance");
+      request.event_position_moment_budget,
+      "event position-moment budget");
+  const double state_fraction = exact_decimal_value(
+      request.event_state_numerical_fraction);
+  const double matching_fraction = exact_decimal_value(
+      request.event_matching_fraction);
+  const bool allocated_budget = !request.certified_budget_schema.empty();
   const auto certify_matching_row = [&](const IntervalVector& sharp,
                                         const IntervalVector& regulated,
                                         const IntervalVector& regulator,
@@ -1641,7 +1724,24 @@ certify_common_domain_interval(
         certificate.applicable_total_remainder_budget = total;
         certificate.post_accounting_distance = post;
       }
-      if (total > (moment ? moment_budget : impulse_budget)) {
+      const double row_budget = moment ? moment_budget : impulse_budget;
+      if (allocated_budget && numeric > row_budget * state_fraction) {
+        certificate.failure_code = moment
+            ? "common_domain_position_moment_state_budget_exceeded"
+            : "common_domain_impulse_state_budget_exceeded";
+        return false;
+      }
+      if (allocated_budget &&
+          regulator_radius > row_budget * matching_fraction) {
+        certificate.failure_code = moment
+            ? "common_domain_position_moment_regulator_budget_exceeded"
+            : "common_domain_impulse_regulator_budget_exceeded";
+        return false;
+      }
+      const double total_limit = allocated_budget
+          ? row_budget * (state_fraction + matching_fraction)
+          : row_budget;
+      if (total > total_limit) {
         certificate.failure_code = moment
             ? "common_domain_position_moment_remainder_budget_exceeded"
             : "common_domain_impulse_remainder_budget_exceeded";
@@ -2198,13 +2298,18 @@ SubstepAttempt corrected_substep_impl(
               continue;
             }
           }
+          const auto pair_request = receiver_pair_budget_request(
+              request, event_pairs, receiver_id);
+          const auto regulator_timing_start = SteadyClock::now();
           auto regulator = certify_native_regulator_convergence(
-              request,
+              pair_request,
               path_history(candidate_histories, receiver_id),
               path_history(candidate_histories, source_id),
               path_charge(request, receiver_id),
               path_charge(request, source_id),
               start_time, end_time);
+          timing->regulator_ladder_wall_seconds +=
+              elapsed_seconds(regulator_timing_start);
           auto event = regulator.accepted_event_impulse;
           if (regulator.status != "certified_convergent" ||
               event.status != "certified_complete" ||
@@ -2292,11 +2397,16 @@ SubstepAttempt corrected_substep_impl(
           std::vector<NativeRegulatorConvergenceCertificate>
               refined_regulators;
           for (const auto& [receiver_id, source_id] : routed_event_pairs) {
+            const auto pair_request = receiver_pair_budget_request(
+                request, routed_event_pairs, receiver_id);
+            const auto regulator_timing_start = SteadyClock::now();
             auto regulator = certify_native_regulator_convergence(
-                request, path_history(event_histories, receiver_id),
+                pair_request, path_history(event_histories, receiver_id),
                 path_history(event_histories, source_id),
                 path_charge(request, receiver_id),
                 path_charge(request, source_id), start_time, end_time);
+            timing->regulator_ladder_wall_seconds +=
+                elapsed_seconds(regulator_timing_start);
             if (regulator.status != "certified_convergent" ||
                 regulator.accepted_event_impulse.status !=
                     "certified_complete" ||
@@ -2340,12 +2450,63 @@ SubstepAttempt corrected_substep_impl(
         const Interval endpoint = Interval::point(scalar_token(end_time));
         for (const auto& [receiver_id, source_id] : routed_event_pairs) {
           const auto& candidate = path_history(event_histories, receiver_id);
+          const auto pair_request = receiver_pair_budget_request(
+              request, routed_event_pairs, receiver_id);
+          const auto receiver_pair_count = static_cast<std::size_t>(
+              std::count_if(
+                  routed_event_pairs.begin(), routed_event_pairs.end(),
+                  [&](const auto& pair) {
+                    return pair.first == receiver_id;
+                  }));
+          const double impulse_row_budget = tolerance_value(
+              pair_request.event_impulse_budget,
+              "event impulse row budget");
+          const double moment_row_budget = tolerance_value(
+              pair_request.event_position_moment_budget,
+              "event position-moment row budget");
+          const auto row_token = [&](double total,
+                                     const std::string& fraction) {
+            return shortest_decimal_token(
+                downward_nonnegative_product(
+                    total, exact_decimal_value(fraction)));
+          };
           NativeFiniteWidthStateCertificate state{
               .status = "uncertified",
               .receiver_path_id = receiver_id,
               .source_path_id = source_id,
               .reception_lower = start_time,
               .reception_upper = end_time,
+              .receiver_routed_pair_count = receiver_pair_count,
+              .receiver_pair_allocation_weight =
+                  1.0 / static_cast<double>(receiver_pair_count),
+              .receiver_event_impulse_total = request.event_impulse_budget,
+              .receiver_event_position_moment_total =
+                  request.event_position_moment_budget,
+              .event_impulse_row_budget = pair_request.event_impulse_budget,
+              .event_position_moment_row_budget =
+                  pair_request.event_position_moment_budget,
+              .quadrature_impulse_row_budget = row_token(
+                  impulse_row_budget, request.event_quadrature_fraction),
+              .quadrature_position_moment_row_budget = row_token(
+                  moment_row_budget, request.event_quadrature_fraction),
+              .causal_regulator_impulse_row_budget = row_token(
+                  impulse_row_budget,
+                  request.event_causal_regulator_fraction),
+              .causal_regulator_position_moment_row_budget = row_token(
+                  moment_row_budget,
+                  request.event_causal_regulator_fraction),
+              .core_regulator_impulse_row_budget = row_token(
+                  impulse_row_budget, request.event_core_regulator_fraction),
+              .core_regulator_position_moment_row_budget = row_token(
+                  moment_row_budget, request.event_core_regulator_fraction),
+              .state_numerical_impulse_row_budget = row_token(
+                  impulse_row_budget, request.event_state_numerical_fraction),
+              .state_numerical_position_moment_row_budget = row_token(
+                  moment_row_budget, request.event_state_numerical_fraction),
+              .matching_impulse_row_budget = row_token(
+                  impulse_row_budget, request.event_matching_fraction),
+              .matching_position_moment_row_budget = row_token(
+                  moment_row_budget, request.event_matching_fraction),
               .routed_pair_pinned = true,
               .event_pair_excluded_from_background = true,
               .background_impulse =
@@ -2362,10 +2523,13 @@ SubstepAttempt corrected_substep_impl(
                   midpoint_vector(candidate.history.velocity_hull(endpoint)),
               .endpoint_reconstruction_passed = true,
           };
+          const auto common_domain_timing_start = SteadyClock::now();
           state.common_domains = certify_common_domains(
-              request, event_histories, start_snapshot,
+              pair_request, event_histories, start_snapshot,
               event_endpoint_snapshot, receiver_id, source_id,
               start_time, end_time);
+          timing->common_domain_wall_seconds +=
+              elapsed_seconds(common_domain_timing_start);
           state.common_domain_chart_overlap_passed = std::any_of(
               state.common_domains.begin(), state.common_domains.end(),
               [](const auto& row) {
@@ -2444,13 +2608,18 @@ SubstepAttempt corrected_substep_impl(
   if (!request.adjudicated_finite_width_pairs.empty()) {
     for (const auto& [receiver_id, source_id] :
          request.adjudicated_finite_width_pairs) {
+      const auto pair_request = receiver_pair_budget_request(
+          request, request.adjudicated_finite_width_pairs, receiver_id);
+      const auto regulator_timing_start = SteadyClock::now();
       auto regulator = certify_native_regulator_convergence(
-          request,
+          pair_request,
           path_history(last_histories, receiver_id),
           path_history(last_histories, source_id),
           path_charge(request, receiver_id),
           path_charge(request, source_id),
           start_time, end_time);
+      timing->regulator_ladder_wall_seconds +=
+          elapsed_seconds(regulator_timing_start);
       failed.event_impulses.push_back(regulator.accepted_event_impulse);
       if (regulator.status != "certified_convergent") {
         failed.failure_code = "caustic_eta_convergence_failed";
@@ -2523,6 +2692,84 @@ void validate_request(const NativeCoupledEvolutionRequest& request) {
       !(maximum_step > 0.0) || minimum_step > initial_step ||
       initial_step > maximum_step) {
     throw std::invalid_argument("invalid coupled evolution time or step domain");
+  }
+  const bool has_certified_budget =
+      !request.certified_budget_schema.empty() ||
+      !request.certified_budget_preset_id.empty() ||
+      !request.certified_budget_allocation_hash.empty() ||
+      !request.certified_budget_allocation_json.empty();
+  if (has_certified_budget) {
+    if (request.certified_budget_schema != "borg_certified_budget/v1" ||
+        request.certified_budget_preset_id.empty() ||
+        request.certified_budget_allocation_hash.size() != 64U ||
+        request.certified_budget_allocation_json.size() < 2U ||
+        request.certified_budget_allocation_json.front() != '{' ||
+        request.certified_budget_allocation_json.back() != '}' ||
+        request.certified_budget_allocation_json.find_first_of("\t\r\n") !=
+            std::string::npos) {
+      throw std::invalid_argument(
+          "certified budget provenance is incomplete or malformed");
+    }
+    const auto hexadecimal = [](char value) {
+      return (value >= '0' && value <= '9') ||
+          (value >= 'a' && value <= 'f');
+    };
+    if (!std::all_of(
+            request.certified_budget_allocation_hash.begin(),
+            request.certified_budget_allocation_hash.end(), hexadecimal)) {
+      throw std::invalid_argument(
+          "certified budget allocation hash must be lowercase SHA-256");
+    }
+    const double quadrature = exact_decimal_value(
+        request.event_quadrature_fraction);
+    const double causal_regulator = exact_decimal_value(
+        request.event_causal_regulator_fraction);
+    const double core_regulator = exact_decimal_value(
+        request.event_core_regulator_fraction);
+    const double state_numerical = exact_decimal_value(
+        request.event_state_numerical_fraction);
+    const double matching = exact_decimal_value(
+        request.event_matching_fraction);
+    const double fraction_sum = quadrature + causal_regulator +
+        core_regulator + state_numerical + matching;
+    if (quadrature <= 0.0 || causal_regulator <= 0.0 ||
+        core_regulator <= 0.0 || state_numerical <= 0.0 ||
+        matching <= 0.0 || std::abs(fraction_sum - 1.0) > 1e-12 ||
+        exact_decimal_value(request.independent_overlap_budget) != 0.0 ||
+        request.deterministic_reduction_policy != "fixed-pairwise" ||
+        request.rounding_mode != "outward" ||
+        request.receiver_event_allocation_rule !=
+            "equal-routed-pair-weight/v1") {
+      throw std::invalid_argument(
+          "certified event budget allocation does not close");
+    }
+    const double acceleration = tolerance_value(
+        request.acceleration_tolerance, "acceleration tolerance");
+    const double correction = tolerance_value(
+        request.correction_tolerance, "correction tolerance");
+    const double ordinary_position = tolerance_value(
+        request.position_tolerance, "position tolerance");
+    const double ordinary_velocity = tolerance_value(
+        request.velocity_tolerance, "velocity tolerance");
+    const double event_impulse = tolerance_value(
+        request.event_impulse_budget, "event impulse budget");
+    const double event_moment = tolerance_value(
+        request.event_position_moment_budget,
+        "event position-moment budget");
+    const double position_bound = ordinary_position +
+        0.5 * maximum_step * maximum_step * (acceleration + correction) +
+        event_moment;
+    const double velocity_bound = ordinary_velocity +
+        maximum_step * (acceleration + correction) + event_impulse;
+    if (!(position_bound < tolerance_value(
+              request.position_increment_budget,
+              "position increment budget")) ||
+        !(velocity_bound < tolerance_value(
+              request.velocity_increment_budget,
+              "velocity increment budget"))) {
+      throw std::invalid_argument(
+          "certified state increment allocation exceeds its top-level bound");
+    }
   }
   tolerance_value(request.field_speed, "field speed");
   tolerance_value(request.coupling, "coupling");
@@ -4069,6 +4316,16 @@ NativeRegulatorConvergenceCertificate certify_native_regulator_convergence(
       .required_levels = request.regulator_refinement_levels,
       .refinement_ratio = request.regulator_refinement_ratio,
       .convergence_tolerance = request.regulator_convergence_tolerance,
+      .receiver_routed_pair_count =
+          request.resolved_receiver_event_pair_count,
+      .receiver_pair_allocation_weight =
+          request.resolved_receiver_event_pair_weight,
+      .event_impulse_row_budget = request.event_impulse_budget,
+      .event_position_moment_row_budget =
+          request.event_position_moment_budget,
+      .quadrature_impulse_row_budget = request.event_impulse_tolerance,
+      .quadrature_position_moment_row_budget =
+          request.event_position_moment_tolerance,
       .accepted_event_impulse = base_event,
       .refinement_series = {},
       .failure_code = "regulator_convergence_failed",
@@ -5372,6 +5629,9 @@ void accumulate_corrected_substep_timing(
       substep.acceleration_precision_escalation_worker_seconds;
   total.acceleration_precision_escalation_attempt_count +=
       substep.acceleration_precision_escalation_attempt_count;
+  total.regulator_ladder_wall_seconds +=
+      substep.regulator_ladder_wall_seconds;
+  total.common_domain_wall_seconds += substep.common_domain_wall_seconds;
 }
 
 NativeEvolutionTiming summarize_evolution_timing(

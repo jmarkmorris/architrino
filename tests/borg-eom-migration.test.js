@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import { createHash } from "node:crypto";
 import { chmodSync, mkdtempSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
@@ -40,6 +41,9 @@ import {
 import {
   createBorgPlacementPolicy,
 } from "../src/apps/borg/BorgInteractiveDefaults.js";
+import {
+  BORG_CERTIFIED_BUDGET_PRESETS,
+} from "../src/apps/borg/BorgCertifiedBudgets.js";
 
 const trajectoryFrames = createBorgPrescribedLinearHistoryRows(
   createBorgSeededInitialConditionRows({
@@ -84,8 +88,7 @@ test("Borg mounts EOM idle by default and reserves automatic compute for explici
   assert.equal(defaultMounts[0].eomShadowRunner.minimumStep, "0.0001");
   assert.equal(defaultMounts[0].eomShadowRunner.maximumStep, "0.05");
   assert.equal(defaultMounts[0].eomShadowRunner.useAdaptiveStepGrowth, true);
-  assert.equal(defaultMounts[0].eomShadowRunner.farFieldEnclosureFraction, "0.25");
-  assert.equal(defaultMounts[0].eomShadowRunner.coreScale, 0.2);
+  assert.equal(defaultMounts[0].eomShadowRunner.certifiedBudgetId, "research-certified-v1");
   assert.deepEqual(defaultMounts[0].manifest.simulationEnvelope.center, {
     x: 0.5,
     y: 0.5,
@@ -304,12 +307,20 @@ test("Borg EOM migration uses canonical field speed and the declared memory dept
   assert.equal(config.fieldSpeed, 1);
   assert.equal(config.geometricDelayBound, expectedGeometricDelayBound);
   assert.equal(config.historyDepth, 10);
-  assert.equal(config.initialStep, "0.1");
-  assert.equal(config.maximumStep, "0.2");
+  assert.equal(config.initialStep, "0.05");
+  assert.equal(config.maximumStep, "0.05");
   assert.equal(config.useAdaptiveStepGrowth, true);
   assert.equal(config.farFieldEnclosureFraction, "0.25");
   assert.equal(config.coreScale, 0.2);
   assert.ok(Math.abs(config.historyStartTime - (300 - config.historyDepth)) < 1e-12);
+  assert.throws(
+    () => createBorgEomShadowRunConfig(BORG_DATASET_MANIFEST_V1, {
+      startTime: 0,
+      targetDuration: 0.2,
+      maximumStep: "0.025",
+    }),
+    /maximumStep is fixed by the selected certified budget/,
+  );
 
   const expandedPopulationConfig = createBorgEomShadowRunConfig(BORG_DATASET_MANIFEST_V1, {
     startTime: 0,
@@ -326,6 +337,17 @@ test("Borg EOM migration uses canonical field speed and the declared memory dept
     targetDuration: 300.2,
   });
   assert.equal(fallbackConfig.fieldSpeed, 1);
+});
+
+test("Borg certified-budget hashes identify the complete canonical allocations", () => {
+  for (const preset of BORG_CERTIFIED_BUDGET_PRESETS) {
+    assert.equal(
+      createHash("sha256")
+        .update(preset.allocationCanonicalJson)
+        .digest("hex"),
+      preset.allocationHash,
+    );
+  }
 });
 
 test("Borg EOM migration imports a complete continuous past, never a state-only start", () => {
@@ -382,8 +404,8 @@ test("Borg EOM shadow runner sends retained histories and derives frames only fr
   assert.equal(request.histories.length, 6);
   assert.equal(request.histories[0].coverageEnd, "10");
   assert.equal(request.numericalControls.threadCount, 4);
-  assert.equal(request.numericalControls.initialStep, "0.1");
-  assert.equal(request.numericalControls.maximumStep, "0.2");
+  assert.equal(request.numericalControls.initialStep, "0.05");
+  assert.equal(request.numericalControls.maximumStep, "0.05");
   assert.equal(request.numericalControls.useAdaptiveStepGrowth, true);
   assert.equal(request.numericalControls.farFieldEnclosureFraction, "0.25");
   assert.equal(request.modelControls.selfPairs, "included-except-coincident-endpoint");
@@ -458,11 +480,11 @@ test("Borg EOM carries the controller height across atomic chunks", async () => 
   const first = await runner.computeNextChunk();
   const second = await runner.computeNextChunk();
 
-  assert.equal(requests[0].numericalControls.initialStep, "0.1");
+  assert.equal(requests[0].numericalControls.initialStep, "0.05");
   assert.equal(first.controllerStepSize, "0.025");
   assert.equal(requests[1].numericalControls.initialStep, "0.025");
   assert.equal(second.controllerStepSize, "0.05");
-  assert.equal(requests[1].numericalControls.maximumStep, "0.2");
+  assert.equal(requests[1].numericalControls.maximumStep, "0.05");
   assert.equal(requests[1].numericalControls.useAdaptiveStepGrowth, true);
 });
 
@@ -688,15 +710,19 @@ test("Borg native process protocol carries the same continuous-history request",
   await runner.computeNextChunk();
   const protocol = encodeNativeRequest(requests[0]);
   assert.equal(protocol.split("\n")[0], BORG_NATIVE_EOM_PROTOCOL_MAGIC);
-  assert.match(protocol, /^EOM_BORG_NATIVE_V6\nRUN\t/u);
+  assert.match(protocol, /^EOM_BORG_NATIVE_V7\nRUN\t/u);
   const runFields = protocol.split("\n")[1].split("\t");
-  assert.equal(runFields.length, 20);
-  assert.equal(runFields[4], "0.1");
-  assert.equal(runFields[6], "0.2");
+  assert.equal(runFields.length, 54);
+  assert.equal(runFields[4], "0.05");
+  assert.equal(runFields[6], "0.05");
   assert.equal(runFields[7], "1");
   assert.equal(runFields[10], "0.2");
   assert.equal(runFields[13], "0.25");
   assert.equal(runFields[18], String(64 * 1024 * 1024));
+  assert.equal(runFields[19], "borg_certified_budget/v1");
+  assert.equal(runFields[20], "research-certified-v1");
+  assert.equal(runFields[21], requests[0].certifiedBudget.allocationHash);
+  assert.equal(runFields[22], requests[0].certifiedBudget.allocationCanonicalJson);
   assert.equal(protocol.match(/^PATH\t/gmu)?.length, 6);
   assert.equal(protocol.match(/^SEG\t/gmu)?.length, 6);
   assert.match(protocol, /\nEND\n$/u);
@@ -722,9 +748,9 @@ test("Borg native process protocol carries the same continuous-history request",
       coreScale: "0.125",
     },
   };
-  assert.equal(
-    encodeNativeRequest(alternateCoreRequest).split("\n")[1].split("\t")[10],
-    "0.125",
+  assert.throws(
+    () => encodeNativeRequest(alternateCoreRequest),
+    /coreScale does not match its certified budget allocation/,
   );
 
   const fixedHeightRequest = {
@@ -735,12 +761,10 @@ test("Borg native process protocol carries the same continuous-history request",
       useAdaptiveStepGrowth: false,
     },
   };
-  const fixedRunFields = encodeNativeRequest(fixedHeightRequest)
-    .split("\n")[1]
-    .split("\t");
-  assert.equal(fixedRunFields.length, 20);
-  assert.equal(fixedRunFields[6], fixedRunFields[4]);
-  assert.equal(fixedRunFields[7], "0");
+  assert.throws(
+    () => encodeNativeRequest(fixedHeightRequest),
+    /adaptiveGrowth does not match its certified budget allocation/,
+  );
 
   const incompleteRequest = {
     ...requests[0],
@@ -749,21 +773,21 @@ test("Borg native process protocol carries the same continuous-history request",
   delete incompleteRequest.numericalControls.maximumStep;
   assert.throws(
     () => encodeNativeRequest(incompleteRequest),
-    /must explicitly supply maximumStep, useAdaptiveStepGrowth, farFieldEnclosureFraction, coreScale, and memoryBudgetBytes/,
+    /must explicitly supply maximumStep, useAdaptiveStepGrowth, farFieldEnclosureFraction, coreScale, certifiedBudget, and memoryBudgetBytes/,
   );
   incompleteRequest.numericalControls.maximumStep =
     requests[0].numericalControls.maximumStep;
   delete incompleteRequest.numericalControls.useAdaptiveStepGrowth;
   assert.throws(
     () => encodeNativeRequest(incompleteRequest),
-    /must explicitly supply maximumStep, useAdaptiveStepGrowth, farFieldEnclosureFraction, coreScale, and memoryBudgetBytes/,
+    /must explicitly supply maximumStep, useAdaptiveStepGrowth, farFieldEnclosureFraction, coreScale, certifiedBudget, and memoryBudgetBytes/,
   );
   incompleteRequest.numericalControls.useAdaptiveStepGrowth =
     requests[0].numericalControls.useAdaptiveStepGrowth;
   delete incompleteRequest.numericalControls.farFieldEnclosureFraction;
   assert.throws(
     () => encodeNativeRequest(incompleteRequest),
-    /must explicitly supply maximumStep, useAdaptiveStepGrowth, farFieldEnclosureFraction, coreScale, and memoryBudgetBytes/,
+    /must explicitly supply maximumStep, useAdaptiveStepGrowth, farFieldEnclosureFraction, coreScale, certifiedBudget, and memoryBudgetBytes/,
   );
 });
 
@@ -780,7 +804,7 @@ test("Borg native client rejects protocol skew with a restart instruction", () =
     assert.throws(
       () => createBorgNativeEomProcessClient({ binaryPath: fixtureBinary }),
       (error) => {
-        assert.match(error.message, /dev server encoder=EOM_BORG_NATIVE_V6/u);
+        assert.match(error.message, /dev server encoder=EOM_BORG_NATIVE_V7/u);
         assert.match(error.message, /binary parser=EOM_BORG_NATIVE_V999/u);
         assert.match(
           error.message,
@@ -799,7 +823,7 @@ test("Borg native client clears its history prefix after a halted request", asyn
   const fixtureBinary = join(fixtureDirectory, "cache-reset-eom-binary.mjs");
   const fixtureSource = `#!/usr/bin/env node
 if (process.argv[2] === "print-protocol-version") {
-  process.stdout.write("EOM_BORG_NATIVE_V6\\n");
+  process.stdout.write("EOM_BORG_NATIVE_V7\\n");
   process.exit(0);
 }
 let buffer = "";
@@ -833,6 +857,10 @@ process.stdin.on("data", (chunk) => {
       acceptedEndTime: halted ? run[2] : run[3],
       acceptedStepCount: halted ? 0 : 1,
       rejectedStepCount: 0,
+      budgetProvenance: {
+        schema: run[19], presetId: run[20], allocationHash: run[21],
+        allocationCanonicalJson: run[22], allocations: JSON.parse(run[22]),
+      },
       observedMaximumCachedPrefix: Math.max(...prefixes),
       publishedExtensions: extensions,
     }) + "\\n");
@@ -935,6 +963,13 @@ function createFakeEomResponse(request, evidenceStatus) {
     coreScale: request.modelControls.coreScale,
     memoryBudgetBytes: request.resourceEnvelope.memoryBudgetBytes,
     memoryEstimateBytes: 1,
+    budgetProvenance: {
+      schema: request.certifiedBudget.schema,
+      presetId: request.certifiedBudget.presetId,
+      allocationHash: request.certifiedBudget.allocationHash,
+      allocationCanonicalJson: request.certifiedBudget.allocationCanonicalJson,
+      allocations: request.certifiedBudget.allocations,
+    },
     controllerStepSize: request.numericalControls.initialStep,
     histories: request.histories.map((history) => {
       const startTime = history.coverageEnd;

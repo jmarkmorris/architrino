@@ -558,6 +558,7 @@
 
       .borg-eom-control input,
       .borg-initial-control input,
+      .borg-initial-control select,
       .borg-eom-action,
       .borg-initial-action {
         min-width: 0;
@@ -576,7 +577,8 @@
       }
 
       .borg-eom-control input,
-      .borg-initial-control input {
+      .borg-initial-control input,
+      .borg-initial-control select {
         box-sizing: border-box;
         width: 100%;
         padding: 0 8px;
@@ -873,6 +875,13 @@
               <input id="borg-eom-duration" type="number" min="0.01" step="0.01" value="60" inputmode="decimal" />
             </label>
             <div class="borg-eom-subheading">Initial conditions</div>
+            <label class="borg-initial-control is-wide">
+              Certified error budget
+              <select id="borg-certified-budget" title="One complete certified numerical contract; every published output retains its declared error intervals.">
+                <option value="interactive-certified-v1">Interactive certified budget</option>
+                <option value="research-certified-v1" selected>Research certified budget</option>
+              </select>
+            </label>
             <label class="borg-initial-control">
               Electrinos
               <input id="borg-electrino-count" type="number" min="0" max="512" step="1" value="3" inputmode="numeric" />

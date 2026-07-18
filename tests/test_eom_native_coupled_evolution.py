@@ -514,6 +514,29 @@ class NativeCoupledEvolutionTests(unittest.TestCase):
         self.assertTrue(state_rows[1]["common_domain_chart_overlap_passed"])
         self.assertFalse(state_rows[1]["exit_passed"])
         self.assertTrue(state_rows[2]["exit_passed"])
+        for row in state_rows:
+            pair_count = row["receiver_routed_pair_count"]
+            self.assertGreater(pair_count, 0)
+            self.assertAlmostEqual(
+                row["receiver_pair_allocation_weight"], 1 / pair_count
+            )
+            impulse_row = Decimal(row["event_impulse_row_budget"])
+            moment_row = Decimal(row["event_position_moment_row_budget"])
+            impulse_total = Decimal(row["receiver_event_impulse_total"])
+            moment_total = Decimal(row["receiver_event_position_moment_total"])
+            self.assertLessEqual(impulse_row * pair_count, impulse_total)
+            self.assertLessEqual(moment_row * pair_count, moment_total)
+            impulse_slice_sum = sum(
+                Decimal(value) for value in row["resolved_impulse_slices"]
+            )
+            moment_slice_sum = sum(
+                Decimal(value)
+                for value in row["resolved_position_moment_slices"]
+            )
+            self.assertLessEqual(impulse_slice_sum, impulse_row)
+            self.assertLessEqual(moment_slice_sum, moment_row)
+            self.assertLess(impulse_row - impulse_slice_sum, Decimal("1e-20"))
+            self.assertLess(moment_row - moment_slice_sum, Decimal("1e-20"))
         passing_common_domains = [
             common
             for row in state_rows
@@ -690,6 +713,55 @@ class NativeCoupledEvolutionTests(unittest.TestCase):
         self.assertEqual(exhausted["status"], "uncertified")
         self.assertIsNone(exhausted["impulse"])
         self.assertIn("cell_limit_exhausted", exhausted["failure_code"])
+
+    def test_selectable_event_budgets_contain_unchanged_oracle_and_reject_under_budget(self) -> None:
+        receiver = oracle_history(
+            "event-control-receiver", "3.01", ("0", "0", "0", "0")
+        )
+        source = oracle_history(
+            "event-control-source", "3.01", ("5.25", "-4", "1", "0")
+        )
+        for case_name, tolerance in (
+            ("research_budget_event_control", "3.5e-8"),
+            ("interactive_budget_event_control", "3.5e-7"),
+        ):
+            with self.subTest(case=case_name):
+                oracle = certify_fold_caustic_impulse(
+                    EventImpulseRequest.from_decimal_tokens(
+                        receiver_path_id="receiver",
+                        source_path_id="source",
+                        receiver_history=receiver,
+                        source_history=source,
+                        receiver_charge="1",
+                        source_charge="1",
+                        reception_lower="2.99",
+                        reception_upper="3.01",
+                        search_lower="0",
+                        field_speed="1",
+                        coupling="1e-6",
+                        causal_width="0.25",
+                        core_scale="0.2",
+                        impulse_tolerance=tolerance,
+                        position_moment_tolerance=tolerance,
+                        max_depth=24,
+                        max_cells=200000,
+                    )
+                )
+                native = self.packet[case_name]
+                self.assertEqual(native["status"], "certified_complete")
+                for native_component, oracle_component in zip(
+                    native["impulse"], oracle.impulse
+                ):
+                    assert_overlaps(self, native_component, oracle_component)
+                for native_component, oracle_component in zip(
+                    native["position_moment"], oracle.position_moment
+                ):
+                    assert_overlaps(self, native_component, oracle_component)
+
+        under_budget = self.packet["under_budget_event_control"]
+        self.assertEqual(under_budget["status"], "uncertified")
+        self.assertIsNone(under_budget["impulse"])
+        self.assertIn("exhausted", under_budget["failure_code"])
 
     def test_regulator_refinement_is_independent_and_fails_closed(self) -> None:
         certificate = self.packet["event_regulator"]

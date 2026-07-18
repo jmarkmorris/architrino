@@ -10,6 +10,10 @@
 - Common-domain matching: `regulator-limit-with-certified-remainder`
 - Amendment 1:
   [common-domain regulator-limit matching](master-eom-binding-v0-amendment-1-common-domain-matching.md)
+- Amendment 2:
+  [run-selected certified budgets](master-eom-binding-v0-amendment-2-run-selected-certified-budgets.md)
+- Certified budget ledger:
+  [ratified Interactive and Research records](certified-error-budget-ledger.md)
 - Production authority: `none-until-binding-and-oracle-pass`
 - Evolution contract: [evolution-contract-v0.md](evolution-contract-v0.md)
 - Canonical source: [Master Equation](../../../content/markdown/aaa/dynamics/master-equation.md)

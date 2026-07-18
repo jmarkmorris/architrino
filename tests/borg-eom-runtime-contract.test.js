@@ -76,7 +76,7 @@ test("Borg path history is on and visible by default", () => {
   );
 });
 
-test("Borg applied step controls set the initial height, ceiling, and adaptive minimum", () => {
+test("Borg selected certified budget atomically owns its step controller", () => {
   const eomClient = {};
   const resolved = createDefaultEomShadowRunnerOptions(
     {
@@ -98,9 +98,10 @@ test("Borg applied step controls set the initial height, ceiling, and adaptive m
   );
 
   assert.equal(resolved.eomClient, eomClient);
-  assert.equal(resolved.initialStep, "0.0125");
-  assert.equal(resolved.maximumStep, "0.0125");
-  assert.equal(resolved.minimumStep, "0.0002");
+  assert.equal(resolved.initialStep, "0.05");
+  assert.equal(resolved.maximumStep, "0.05");
+  assert.equal(resolved.minimumStep, "0.0001");
+  assert.equal(resolved.useAdaptiveStepGrowth, true);
 });
 
 test("Borg app manifest is design-owned policy and passes validation", () => {
@@ -449,8 +450,9 @@ test("Borg path-history renderer uses native row segments, not visual smoothing 
   );
   assert.match(runtimeSource, /dom\.eomProgress\.hidden = forever/);
   assert.match(runtimeSource, /runtimeControls\.coupling \?\? configured\.coupling/);
-  assert.match(runtimeSource, /runtimeControls\.stepHeight \?\? configured\.initialStep/);
-  assert.match(runtimeSource, /runtimeControls\.minimumStep \?\? configured\.minimumStep/);
+  assert.match(runtimeSource, /initialStep: certifiedBudget\.allocations\.controller\.initialStep/);
+  assert.match(runtimeSource, /minimumStep: certifiedBudget\.allocations\.controller\.minimumStep/);
+  assert.match(runtimeSource, /maximumStep: certifiedBudget\.allocations\.controller\.maximumStep/);
   assert.match(runtimeSource, /forward EOM chunks/);
   assert.match(runtimeSource, /Exact polynomial causal seed history \(C1 inertial\)/);
   assert.match(runtimeSource, /Causal seed-history depth/);

@@ -8,7 +8,7 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[1]
-PROTOCOL_MAGIC = "EOM_BORG_NATIVE_V6"
+PROTOCOL_MAGIC = "EOM_BORG_NATIVE_V7"
 
 
 def run_record(
@@ -38,7 +38,14 @@ def run_record(
         maximum_step, adaptive_growth, field_speed, coupling, core_scale,
         root_tolerance, acceleration_tolerance, far_field_fraction,
         position_tolerance, velocity_tolerance, correction_tolerance,
-        thread_count, memory_budget, path_count,
+        thread_count, memory_budget,
+        "borg_certified_budget/v1", "test-certified-budget-v1", "0" * 64,
+        "{}", "1", "1", "1e-30", "0.2", "1e-7", "1e-7", "0",
+        "0.35", "0.15", "0.15", "0.15", "0.20", "0.5", "3",
+        "128", "512", "256", "500000", "32", "200000", "24",
+        "200000", "12", "1000", "100", "sharp_with_finite_width_fallback",
+        "fixed-pairwise", "outward", "equal-routed-pair-weight/v1",
+        acceleration_tolerance, path_count,
     ))
 
 
@@ -110,6 +117,10 @@ class NativeBorgProcessTests(unittest.TestCase):
         self.assertEqual(response["evidenceStatus"], "executable_architecture_evidence")
         self.assertEqual(response["coreScale"], "0.2")
         self.assertEqual(response["claimGrade"], "executable_architecture_evidence")
+        self.assertEqual(
+            response["budgetProvenance"]["presetId"],
+            "test-certified-budget-v1",
+        )
         self.assertEqual(response["acceptedEndTime"], "2.1")
         self.assertEqual(response["acceptedStepCount"], 1)
         self.assertEqual(response["rejectedStepCount"], 0)
@@ -206,7 +217,7 @@ class NativeBorgProcessTests(unittest.TestCase):
         )
         self.assertNotEqual(completed.returncode, 0)
         self.assertIn(
-            "invalid RUN record: expected exactly 20 tab-separated fields",
+            "invalid RUN record: expected exactly 54 tab-separated fields",
             completed.stderr,
         )
 

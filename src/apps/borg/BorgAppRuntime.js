@@ -20,6 +20,11 @@ import {
   createBorgEomShadowRunner,
 } from "./BorgEomShadowRunner.js";
 import {
+  BORG_CERTIFIED_BUDGET_PRESETS,
+  BORG_DEFAULT_CERTIFIED_BUDGET_ID,
+  getBorgCertifiedBudgetPreset,
+} from "./BorgCertifiedBudgets.js";
+import {
   createMeasuredRunPresetCalibration,
   resolveMeasuredRunControlPreset,
   updateMeasuredRunPresetCalibration,
@@ -50,7 +55,6 @@ import {
   createBorgEscapeLedger,
 } from "./BorgPolarityDiagnostics.js";
 import {
-  BORG_INTERACTIVE_DEFAULTS_V1,
   borgEnvelopeRadius,
   createBorgPlacementPolicy,
 } from "./BorgInteractiveDefaults.js";
@@ -216,6 +220,7 @@ export function mountBorgApp(options = {}) {
     electrinoCount: queryRequiredElement(documentLike, "#borg-electrino-count"),
     positrinoCount: queryRequiredElement(documentLike, "#borg-positrino-count"),
     coupling: queryRequiredElement(documentLike, "#borg-coupling"),
+    certifiedBudget: queryRequiredElement(documentLike, "#borg-certified-budget"),
     stepHeight: queryRequiredElement(documentLike, "#borg-step-height"),
     minimumStep: queryRequiredElement(documentLike, "#borg-minimum-step"),
     velocityMaxComponent: queryRequiredElement(documentLike, "#borg-velocity-max-component"),
@@ -365,8 +370,11 @@ export function mountBorgApp(options = {}) {
       manifest.simulationEnvelope?.historyDepth ?? 10,
     ),
     eomCoreScale: positiveControlNumber(
-      options.eomShadowRunner?.coreScale,
-      BORG_INTERACTIVE_DEFAULTS_V1.coreScale,
+      getBorgCertifiedBudgetPreset(
+        options.eomShadowRunner?.certifiedBudgetId ??
+          BORG_DEFAULT_CERTIFIED_BUDGET_ID,
+      ).allocations.finiteWidth.coreScale,
+      0.2,
     ),
     eomRetainedHistoryStart: initialEomSeed?.certificate?.historyStartTime ?? null,
     eomRetainedHistoryEnd: initialEomSeed?.certificate?.historyEndTime ?? null,
@@ -394,6 +402,10 @@ export function mountBorgApp(options = {}) {
       options.eomShadowRunner?.coupling,
       manifest.modelControls?.coupling ?? 1,
     ),
+    eomCertifiedBudgetId: getBorgCertifiedBudgetPreset(
+      options.eomShadowRunner?.certifiedBudgetId ??
+        BORG_DEFAULT_CERTIFIED_BUDGET_ID,
+    ).id,
     eomStepHeight: positiveControlNumber(
       options.eomShadowRunner?.maximumStep ?? options.eomShadowRunner?.initialStep,
       0.025,
@@ -775,6 +787,9 @@ export function mountBorgApp(options = {}) {
 
   function renderInitialConditionFields() {
     const config = state.initialConditionConfig;
+    const certifiedBudget = getBorgCertifiedBudgetPreset(
+      state.eomCertifiedBudgetId,
+    );
     const placement = createBorgPlacementPolicy(
       manifest,
       config.electrinoCount + config.positrinoCount,
@@ -789,6 +804,8 @@ export function mountBorgApp(options = {}) {
       ["electrinoCount", config.electrinoCount],
       ["positrinoCount", config.positrinoCount],
       ["coupling κ", state.eomCoupling],
+      ["certifiedBudget", certifiedBudget.label],
+      ["budgetAllocationHash", certifiedBudget.allocationHash],
       ["stepHeight", state.eomStepHeight],
       ["adaptiveMinimumStep", state.eomMinimumStep],
       ["velocityPolicy", manifest.initialConditions.velocityPolicy],
@@ -910,6 +927,15 @@ export function mountBorgApp(options = {}) {
       : BORG_MAX_INITIAL_ARCHITRINO_COUNT;
     dom.electrinoCount.max = String(maximumPopulation);
     dom.positrinoCount.max = String(maximumPopulation);
+    dom.certifiedBudget.textContent = "";
+    BORG_CERTIFIED_BUDGET_PRESETS.forEach((preset) => {
+      const option = documentLike.createElement("option");
+      option.value = preset.id;
+      option.textContent = preset.label;
+      dom.certifiedBudget.append(option);
+    });
+    dom.stepHeight.disabled = true;
+    dom.minimumStep.disabled = true;
     syncInitialConditionInputs();
     setInitialConditionFeedback("Manifest values active", "accepted");
   }
@@ -919,6 +945,7 @@ export function mountBorgApp(options = {}) {
     dom.electrinoCount.value = String(config.electrinoCount);
     dom.positrinoCount.value = String(config.positrinoCount);
     dom.coupling.value = String(state.eomCoupling);
+    dom.certifiedBudget.value = state.eomCertifiedBudgetId;
     dom.stepHeight.value = String(state.eomStepHeight);
     dom.minimumStep.value = String(state.eomMinimumStep);
     dom.velocityMaxComponent.value = String(config.randomVelocityMaxComponentMagnitude);
@@ -926,6 +953,9 @@ export function mountBorgApp(options = {}) {
   }
 
   function readInitialConditionControls() {
+    const certifiedBudget = getBorgCertifiedBudgetPreset(
+      dom.certifiedBudget.value,
+    );
     const coupling = Number(dom.coupling.value);
     if (!Number.isFinite(coupling) || coupling <= 0) {
       state.initialConditionEditStatus = "rejected-runtime-edit";
@@ -933,8 +963,12 @@ export function mountBorgApp(options = {}) {
       renderInitialConditionFields();
       return null;
     }
-    const stepHeight = Number(dom.stepHeight.value);
-    const minimumStep = Number(dom.minimumStep.value);
+    const stepHeight = Number(
+      certifiedBudget.allocations.controller.maximumStep,
+    );
+    const minimumStep = Number(
+      certifiedBudget.allocations.controller.minimumStep,
+    );
     const chunkDuration = positiveControlNumber(
       options.eomShadowRunner?.chunkDuration,
       options.eomShadowRunner?.sampleInterval ?? 0.01,
@@ -975,6 +1009,10 @@ export function mountBorgApp(options = {}) {
     }
     state.initialConditionConfig = validation.config;
     state.eomCoupling = coupling;
+    state.eomCertifiedBudgetId = certifiedBudget.id;
+    state.eomCoreScale = Number(
+      certifiedBudget.allocations.finiteWidth.coreScale,
+    );
     state.eomStepHeight = stepHeight;
     state.eomMinimumStep = minimumStep;
     state.eomPathCount = validation.config.electrinoCount + validation.config.positrinoCount;
@@ -1113,6 +1151,11 @@ export function mountBorgApp(options = {}) {
       startNewDistributionRun();
     });
     dom.initialConditionForm.addEventListener("input", markInitialConditionControlsPending);
+    dom.certifiedBudget.addEventListener("change", () => {
+      const preset = getBorgCertifiedBudgetPreset(dom.certifiedBudget.value);
+      dom.stepHeight.value = preset.allocations.controller.maximumStep;
+      dom.minimumStep.value = preset.allocations.controller.minimumStep;
+    });
     dom.runDurationButton.addEventListener("click", toggleRunDurationMode);
     dom.eomStopButton.addEventListener("click", stopEomRun);
     dom.eomRestartButton.addEventListener("click", restartEomRun);
@@ -1783,6 +1826,7 @@ export function mountBorgApp(options = {}) {
         runDuration: state.eomRunDuration,
         historyDepth: state.eomSeedHistoryDepth,
         coreScale: state.eomCoreScale,
+        certifiedBudgetId: state.eomCertifiedBudgetId,
         coupling: state.eomCoupling,
         stepHeight: state.eomStepHeight,
         minimumStep: state.eomMinimumStep,
@@ -2372,7 +2416,7 @@ export function mountBorgApp(options = {}) {
     }
     state.distributionLabel = `seeded distribution ${state.distributionSeedIndex}`;
     setInitialConditionFeedback(
-      `Accepted κ=${state.eomCoupling}; step ${state.eomStepHeight} to ${state.eomMinimumStep}; ${config.electrinoCount} electrinos + ${config.positrinoCount} positrinos; ${state.eomPathCount ** 2} ordered EOM pairs`,
+      `Accepted ${getBorgCertifiedBudgetPreset(state.eomCertifiedBudgetId).label}; κ=${state.eomCoupling}; step ${state.eomStepHeight} to ${state.eomMinimumStep}; ${config.electrinoCount} electrinos + ${config.positrinoCount} positrinos; ${state.eomPathCount ** 2} ordered EOM pairs`,
       "accepted",
     );
     state.runControlPresetId = getRunControlPreset(state.runControlPresetId).id;
@@ -2528,31 +2572,28 @@ export function createDefaultEomShadowRunnerOptions(
     runtimeControls.runDuration ?? configured.runDuration,
     targetDuration - historyEndTime,
   );
+  const certifiedBudget = getBorgCertifiedBudgetPreset(
+    runtimeControls.certifiedBudgetId ??
+      configured.certifiedBudgetId ??
+      BORG_DEFAULT_CERTIFIED_BUDGET_ID,
+  );
   return {
     ...configured,
+    certifiedBudgetId: certifiedBudget.id,
     startTime: historyEndTime,
     targetDuration: historyEndTime + runDuration,
     runDuration,
     historyDepth,
-    coreScale: positiveControlNumber(
-      runtimeControls.coreScale ?? configured.coreScale,
-      BORG_INTERACTIVE_DEFAULTS_V1.coreScale,
-    ),
+    coreScale: Number(certifiedBudget.allocations.finiteWidth.coreScale),
     farFieldEnclosureFraction:
-      configured.farFieldEnclosureFraction ??
-      String(BORG_INTERACTIVE_DEFAULTS_V1.farFieldEnclosureFraction),
+      certifiedBudget.allocations.ordinary.farFieldEnclosureFraction,
     coupling: String(
       runtimeControls.coupling ?? configured.coupling ?? manifest.modelControls?.coupling ?? 1,
     ),
-    initialStep: String(
-      runtimeControls.stepHeight ?? configured.initialStep,
-    ),
-    minimumStep: String(
-      runtimeControls.minimumStep ?? configured.minimumStep,
-    ),
-    maximumStep: String(
-      runtimeControls.stepHeight ?? configured.maximumStep,
-    ),
+    initialStep: certifiedBudget.allocations.controller.initialStep,
+    minimumStep: certifiedBudget.allocations.controller.minimumStep,
+    maximumStep: certifiedBudget.allocations.controller.maximumStep,
+    useAdaptiveStepGrowth: certifiedBudget.allocations.controller.adaptiveGrowth,
     simulationOuterRadius: positiveControlNumber(
       runtimeControls.simulationOuterRadius ?? configured.simulationOuterRadius,
       manifest.simulationEnvelope?.outerRadius ?? 1,

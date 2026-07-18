@@ -61,6 +61,26 @@ struct NativeCoupledEvolutionRequest {
   std::string position_tolerance = "1e-8";
   std::string velocity_tolerance = "1e-8";
   std::string correction_tolerance = "1e-8";
+  std::string certified_budget_schema;
+  std::string certified_budget_preset_id;
+  std::string certified_budget_allocation_hash;
+  std::string certified_budget_allocation_json;
+  std::string position_increment_budget;
+  std::string velocity_increment_budget;
+  std::string event_impulse_budget = "1e-7";
+  std::string event_position_moment_budget = "1e-7";
+  std::string independent_overlap_budget = "0";
+  std::string event_quadrature_fraction = "0.35";
+  std::string event_causal_regulator_fraction = "0.15";
+  std::string event_core_regulator_fraction = "0.15";
+  std::string event_state_numerical_fraction = "0.15";
+  std::string event_matching_fraction = "0.20";
+  std::string deterministic_reduction_policy = "fixed-pairwise";
+  std::string rounding_mode = "outward";
+  std::string receiver_event_allocation_rule =
+      "equal-routed-pair-weight/v1";
+  std::size_t resolved_receiver_event_pair_count = 1;
+  std::string resolved_receiver_event_pair_weight = "1";
   std::size_t root_max_depth = 256;
   std::size_t root_max_cells = 500000;
   std::size_t quadrature_max_depth = 32;
@@ -193,6 +213,12 @@ struct NativeRegulatorConvergenceCertificate {
   std::size_t required_levels;
   std::string refinement_ratio;
   std::string convergence_tolerance;
+  std::size_t receiver_routed_pair_count = 1;
+  std::string receiver_pair_allocation_weight = "1";
+  std::string event_impulse_row_budget;
+  std::string event_position_moment_row_budget;
+  std::string quadrature_impulse_row_budget;
+  std::string quadrature_position_moment_row_budget;
   NativeFoldCausticImpulseCertificate accepted_event_impulse;
   std::vector<NativeRegulatorRefinementSeries> refinement_series;
   std::string failure_code;
@@ -292,6 +318,8 @@ struct NativeCorrectedSubstepTiming {
   double acceleration_worker_idle_orchestration_wall_seconds = 0.0;
   double acceleration_precision_escalation_worker_seconds = 0.0;
   std::size_t acceleration_precision_escalation_attempt_count = 0;
+  double regulator_ladder_wall_seconds = 0.0;
+  double common_domain_wall_seconds = 0.0;
   double total_wall_seconds = 0.0;
 };
 
@@ -369,6 +397,22 @@ struct NativeFiniteWidthStateCertificate {
   std::string source_path_id;
   std::string reception_lower;
   std::string reception_upper;
+  std::size_t receiver_routed_pair_count = 0;
+  double receiver_pair_allocation_weight = 0.0;
+  std::string receiver_event_impulse_total;
+  std::string receiver_event_position_moment_total;
+  std::string event_impulse_row_budget;
+  std::string event_position_moment_row_budget;
+  std::string quadrature_impulse_row_budget;
+  std::string quadrature_position_moment_row_budget;
+  std::string causal_regulator_impulse_row_budget;
+  std::string causal_regulator_position_moment_row_budget;
+  std::string core_regulator_impulse_row_budget;
+  std::string core_regulator_position_moment_row_budget;
+  std::string state_numerical_impulse_row_budget;
+  std::string state_numerical_position_moment_row_budget;
+  std::string matching_impulse_row_budget;
+  std::string matching_position_moment_row_budget;
   bool routed_pair_pinned = false;
   bool event_pair_excluded_from_background = false;
   std::optional<IntervalVector> background_impulse;
@@ -489,6 +533,8 @@ struct NativeEvolutionTiming {
   double acceleration_worker_idle_orchestration_wall_seconds = 0.0;
   double acceleration_precision_escalation_worker_seconds = 0.0;
   std::size_t acceleration_precision_escalation_attempt_count = 0;
+  double regulator_ladder_wall_seconds = 0.0;
+  double common_domain_wall_seconds = 0.0;
   double history_copy_hash_wall_seconds = 0.0;
   // Correction wall time includes its nested snapshot and history phases.
   double correction_wall_seconds = 0.0;
