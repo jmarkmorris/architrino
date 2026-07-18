@@ -152,53 +152,8 @@ NumericHistory numeric_history(const RetainedHistory& history) {
 
 struct SourceSummary {
   double speed_upper = 0.0;
-  Vector position_lower{
-      std::numeric_limits<double>::infinity(),
-      std::numeric_limits<double>::infinity(),
-      std::numeric_limits<double>::infinity()};
-  Vector position_upper{
-      -std::numeric_limits<double>::infinity(),
-      -std::numeric_limits<double>::infinity(),
-      -std::numeric_limits<double>::infinity()};
   bool sub_field_speed = false;
 };
-
-void include_position_extrema(
-    SourceSummary& summary,
-    const NumericSegment& segment,
-    std::size_t axis) {
-  const auto& row = segment.coefficients[axis];
-  const double c1 = row[1];
-  const double c2 = row[2];
-  const double c3 = row[3];
-  const double duration = segment.end - segment.start;
-  std::array<double, 4> candidates{0.0, duration, -1.0, -1.0};
-  std::size_t count = 2U;
-  if (c3 == 0.0) {
-    if (c2 != 0.0) {
-      const double root = -c1 / (2.0 * c2);
-      if (root > 0.0 && root < duration) candidates[count++] = root;
-    }
-  } else {
-    const double discriminant = 4.0 * c2 * c2 - 12.0 * c3 * c1;
-    if (discriminant >= 0.0) {
-      const double root_term = std::sqrt(discriminant);
-      for (const double root : {
-               (-2.0 * c2 - root_term) / (6.0 * c3),
-               (-2.0 * c2 + root_term) / (6.0 * c3)}) {
-        if (root > 0.0 && root < duration) candidates[count++] = root;
-      }
-    }
-  }
-  for (std::size_t index = 0U; index < count; ++index) {
-    const Vector value = evaluate_segment(
-        segment, segment.start + candidates[index], false);
-    summary.position_lower[axis] =
-        std::min(summary.position_lower[axis], value[axis]);
-    summary.position_upper[axis] =
-        std::max(summary.position_upper[axis], value[axis]);
-  }
-}
 
 SourceSummary summarize_source(
     const NumericHistory& history,
@@ -208,7 +163,6 @@ SourceSummary summarize_source(
     const double duration = segment.end - segment.start;
     double speed_square_upper = 0.0;
     for (std::size_t axis = 0U; axis < 3U; ++axis) {
-      include_position_extrema(summary, segment, axis);
       const auto& row = segment.coefficients[axis];
       const double component_upper =
           std::abs(row[1]) + 2.0 * std::abs(row[2]) * duration +
@@ -392,50 +346,6 @@ PairRoots find_roots(
   return result;
 }
 
-double distance_to_box(
-    const Vector& point,
-    const Vector& lower,
-    const Vector& upper) {
-  Vector delta{};
-  for (std::size_t axis = 0U; axis < 3U; ++axis) {
-    if (point[axis] < lower[axis]) {
-      delta[axis] = lower[axis] - point[axis];
-    } else if (point[axis] > upper[axis]) {
-      delta[axis] = point[axis] - upper[axis];
-    }
-  }
-  return norm(delta);
-}
-
-std::optional<double> display_far_field_bound(
-    const DisplayEvaluationRequest& request,
-    const DisplayEvaluationPath& receiver,
-    const DisplayEvaluationPath& source,
-    const SourceSummary& source_summary,
-    const Vector& receiver_position,
-    const Vector& receiver_velocity) {
-  if (!(request.far_field_enclosure_fraction > 0.0)) return std::nullopt;
-  const double separation = distance_to_box(
-      receiver_position, source_summary.position_lower,
-      source_summary.position_upper);
-  const double source_normal =
-      request.field_speed - source_summary.speed_upper;
-  if (!(separation > 0.0) || !(source_normal > 0.0)) {
-    return std::nullopt;
-  }
-  const double receiver_normal = request.field_speed + norm(receiver_velocity);
-  const double magnitude = std::abs(
-      request.coupling * receiver.charge * source.charge) * receiver_normal /
-      (separation * separation * source_normal);
-  const double pair_budget = request.far_field_enclosure_fraction *
-      request.acceleration_tolerance /
-      static_cast<double>(request.paths.size());
-  if (!std::isfinite(magnitude) || 2.0 * magnitude > pair_budget) {
-    return std::nullopt;
-  }
-  return magnitude;
-}
-
 Vector finite_width_integrand(
     const DisplayEvaluationRequest& request,
     const DisplayEvaluationPath& receiver,
@@ -539,8 +449,9 @@ struct PairWork {
   PairRoots roots;
   Vector acceleration{};
   bool regulated = false;
-  bool far_field = false;
-  double far_field_width = 0.0;
+  double emission_to_current_source_ratio_max = 0.0;
+  double emission_to_current_source_ratio_sum = 0.0;
+  std::size_t emission_to_current_source_ratio_sample_count = 0U;
   std::string failure_code;
 };
 
@@ -673,16 +584,6 @@ DisplayEvaluationResult evaluate_display_acceleration(
       const std::size_t source_index = pair_index % path_count;
       auto& pair = pairs[pair_index];
       try {
-        const auto bound = display_far_field_bound(
-            request, request.paths[receiver_index],
-            request.paths[source_index], source_summaries[source_index],
-            receiver_positions[receiver_index],
-            receiver_velocities[receiver_index]);
-        if (bound.has_value()) {
-          pair.far_field = true;
-          pair.far_field_width = 2.0 * *bound;
-          return;
-        }
         pair.roots = find_roots(
             request, request.paths[receiver_index],
             request.paths[source_index], numeric_histories[source_index],
@@ -710,17 +611,29 @@ DisplayEvaluationResult evaluate_display_acceleration(
       const std::size_t receiver_index = pair_index / path_count;
       const std::size_t source_index = pair_index % path_count;
       auto& pair = pairs[pair_index];
-      if (pair.far_field) return;
       try {
         const auto& receiver = request.paths[receiver_index];
         const auto& source = request.paths[source_index];
         const Vector& receiver_position = receiver_positions[receiver_index];
         const Vector& receiver_velocity = receiver_velocities[receiver_index];
+        const Vector& current_source_position = receiver_positions[source_index];
         bool regulated = false;
         for (const double root : pair.roots.roots) {
           const RootSample sample = sample_root(
               request, numeric_histories[source_index],
               receiver_position, root);
+          if (sample.separation > 0.0) {
+            const double ratio = norm(subtract(
+                current_source_position, sample.source_position)) /
+                sample.separation;
+            if (!std::isfinite(ratio)) {
+              throw std::runtime_error("display_nonfinite_state");
+            }
+            pair.emission_to_current_source_ratio_max = std::max(
+                pair.emission_to_current_source_ratio_max, ratio);
+            pair.emission_to_current_source_ratio_sum += ratio;
+            ++pair.emission_to_current_source_ratio_sample_count;
+          }
           const double caustic_floor = std::max(
               request.source_normal_floor,
               std::sqrt(std::numeric_limits<double>::epsilon()) *
@@ -778,7 +691,6 @@ DisplayEvaluationResult evaluate_display_acceleration(
     result.acceleration_wall_seconds = seconds_since(acceleration_start);
 
     result.receiver_accelerations.reserve(path_count);
-    std::vector<double> receiver_far_field_width(path_count, 0.0);
     for (std::size_t receiver_index = 0U;
          receiver_index < path_count; ++receiver_index) {
       Vector total{};
@@ -792,13 +704,14 @@ DisplayEvaluationResult evaluate_display_acceleration(
         }
         ++result.root_pair_count;
         result.root_count += pair.roots.roots.size();
-        if (pair.far_field) {
-          ++result.far_field_pair_count;
-          result.far_field_error_width_total += pair.far_field_width;
-          receiver_far_field_width[receiver_index] += pair.far_field_width;
-        } else {
-          total = add(total, pair.acceleration);
-        }
+        total = add(total, pair.acceleration);
+        result.emission_to_current_source_ratio_max = std::max(
+            result.emission_to_current_source_ratio_max,
+            pair.emission_to_current_source_ratio_max);
+        result.emission_to_current_source_ratio_sum +=
+            pair.emission_to_current_source_ratio_sum;
+        result.emission_to_current_source_ratio_sample_count +=
+            pair.emission_to_current_source_ratio_sample_count;
         if (pair.regulated) {
           result.regulated_pairs.emplace_back(
               request.paths[receiver_index].path_id,
@@ -812,10 +725,6 @@ DisplayEvaluationResult evaluate_display_acceleration(
       }
       result.receiver_accelerations.push_back({
           request.paths[receiver_index].path_id, total});
-    }
-    for (const double width : receiver_far_field_width) {
-      result.far_field_error_width_max_receiver = std::max(
-          result.far_field_error_width_max_receiver, width);
     }
     result.status = "display_evaluated";
     result.failure_code.clear();

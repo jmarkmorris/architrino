@@ -6,12 +6,13 @@ import {
 export const BORG_DISPLAY_DEFAULTS_V1 = Object.freeze({
   runGrade: BORG_DISPLAY_RUN_GRADE,
   coupling: 0.0005,
+  coreScale: 0.2,
+  farFieldEnclosureFraction: 0,
   electrinoCount: 32,
   positrinoCount: 32,
   randomVelocityMaxComponentMagnitude: 0.001,
   randomVelocityMinSpeed: 0,
-  simulationEnvelopeRadiusScale: 0.7,
-  velocityReversalRadiusScale: 1.25,
+  simulationEnvelopeRadiusScale: 1,
 });
 
 export function createBorgRunGradeDefaults(manifest, runGrade) {
@@ -66,7 +67,6 @@ export function createBorgRunGradePlacementPolicy(
       seedingRadius:
         productionRadius * Math.max(1, Math.cbrt(population / declaredPopulation)),
       minimumPairSeparation: productionMinimumSeparation,
-      velocityReversalRadius: null,
     });
   }
   if (runGrade !== BORG_DISPLAY_RUN_GRADE) {
@@ -75,9 +75,8 @@ export function createBorgRunGradePlacementPolicy(
 
   const declaredPopulation = Number(manifest.population.architrinoCount);
   const radiusScale = BORG_DISPLAY_DEFAULTS_V1.simulationEnvelopeRadiusScale;
-  // The production separation cannot fit 64 paths inside the smaller display
-  // sphere. Scale it by the same packing ratio used by the production seeder,
-  // then scale the whole display geometry to 70 percent.
+  // The production separation cannot fit 64 paths inside the fixed display
+  // sphere. Scale it by the same packing ratio used by the production seeder.
   const populationScale = Math.min(
     1,
     Math.cbrt(declaredPopulation / population),
@@ -87,8 +86,6 @@ export function createBorgRunGradePlacementPolicy(
     seedingRadius,
     minimumPairSeparation:
       productionMinimumSeparation * radiusScale * populationScale,
-    velocityReversalRadius:
-      seedingRadius * BORG_DISPLAY_DEFAULTS_V1.velocityReversalRadiusScale,
   });
 }
 

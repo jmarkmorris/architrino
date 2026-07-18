@@ -45,6 +45,9 @@ struct DisplayEvaluationResult {
   std::size_t far_field_pair_count = 0U;
   double far_field_error_width_total = 0.0;
   double far_field_error_width_max_receiver = 0.0;
+  double emission_to_current_source_ratio_max = 0.0;
+  double emission_to_current_source_ratio_sum = 0.0;
+  std::size_t emission_to_current_source_ratio_sample_count = 0U;
   double root_wall_seconds = 0.0;
   double acceleration_wall_seconds = 0.0;
   double total_wall_seconds = 0.0;

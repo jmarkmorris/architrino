@@ -131,6 +131,8 @@ export function createBorgEomShadowRunner(manifest, options = {}) {
         : retainBorgHistoryWindow(response.histories, {
             minimumCoverageStart: roundTime(nextStartTime - config.historyDepth),
           });
+      const retainedHistoryStart = Number(histories[0].coverageStart);
+      const retainedHistoryEnd = Number(histories[0].coverageEnd);
       const frames = createFramesFromHistories(
         histories,
         startTime,
@@ -156,6 +158,12 @@ export function createBorgEomShadowRunner(manifest, options = {}) {
         phase: "live",
         initialHistoryAccepted,
         runGrade: config.runGrade,
+        coreScale: response.coreScale,
+        retainedHistoryStart,
+        retainedHistoryEnd,
+        retainedHistoryPolicy: config.runGrade === BORG_DISPLAY_RUN_GRADE
+          ? "full-evolved-display-history"
+          : "rolling-certified-history-window",
         causticWarningCount,
         firstCausticWarningTime,
         causticWarnings: Object.freeze(response.causticWarnings),
@@ -187,6 +195,9 @@ export function createBorgEomShadowRunner(manifest, options = {}) {
 }
 
 export function createBorgEomShadowRunConfig(manifest, options = {}) {
+  const runGrade = requiredRunGrade(
+    options.runGrade ?? BORG_DISPLAY_RUN_GRADE,
+  );
   const sampleInterval = positiveNumber(
     options.sampleInterval,
     manifest.simulationEnvelope?.sampleInterval ?? 0.2,
@@ -228,6 +239,11 @@ export function createBorgEomShadowRunConfig(manifest, options = {}) {
     options.historyDepth,
     manifest.simulationEnvelope?.historyDepth ?? 10,
   );
+  const coreScale = positiveNumber(options.coreScale, 0.2);
+  const requestedFarFieldEnclosureFraction = requiredFractionToken(
+    options.farFieldEnclosureFraction ?? "0.25",
+    "farFieldEnclosureFraction",
+  );
   const targetDuration = finiteNumber(
     options.targetDuration,
     roundTime(startTime + chunkDuration),
@@ -262,6 +278,7 @@ export function createBorgEomShadowRunConfig(manifest, options = {}) {
     simulationOuterRadius: outerRadius,
     historyStartTime: roundTime(startTime - historyDepth),
     historyDepth,
+    coreScale,
     geometricDelayBound,
     historySafetyMargin,
     coupling: requiredNumericToken(
@@ -280,13 +297,12 @@ export function createBorgEomShadowRunConfig(manifest, options = {}) {
       options.accelerationTolerance ?? "1e-8",
       "accelerationTolerance",
     ),
-    farFieldEnclosureFraction: requiredFractionToken(
-      options.farFieldEnclosureFraction ?? "0.25",
-      "farFieldEnclosureFraction",
-    ),
-    runGrade: requiredRunGrade(
-      options.runGrade ?? BORG_DISPLAY_RUN_GRADE,
-    ),
+    // Display evaluates every ordered pair. Keep the protocol field for the
+    // certified route, whose behavior and token remain unchanged.
+    farFieldEnclosureFraction: runGrade === BORG_DISPLAY_RUN_GRADE
+      ? "0"
+      : requestedFarFieldEnclosureFraction,
+    runGrade,
     positionTolerance: requiredPositiveToken(
       options.positionTolerance ?? "1e-10",
       "positionTolerance",
@@ -435,6 +451,7 @@ export function createBorgEomShadowRequest({
     modelControls: Object.freeze({
       fieldSpeed: String(config.fieldSpeed),
       coupling: config.coupling,
+      coreScale: String(config.coreScale),
       selfPairs: "included-except-coincident-endpoint",
       futurePathPolicy: "prohibited",
     }),
@@ -614,6 +631,10 @@ function normalizeEomResponse(rawResponse, request) {
     }
   });
   const runGrade = requiredRunGrade(response.runGrade);
+  const coreScale = Number(requiredPositiveToken(
+    response.coreScale ?? request.modelControls.coreScale,
+    "response coreScale",
+  ));
   const causticWarningCount = requiredNonnegativeInteger(
     response.causticWarningCount,
     "response causticWarningCount",
@@ -625,6 +646,7 @@ function normalizeEomResponse(rawResponse, request) {
   const causticWarningPairs = requiredWarningPairs(response.causticWarningPairs);
   const claimGrade = String(response.claimGrade ?? response.evidenceStatus ?? "failed");
   if (runGrade !== request.numericalControls.runGrade ||
+      coreScale !== Number(request.modelControls.coreScale) ||
       causticWarningCount < priorWarningCount ||
       (causticWarningCount === 0) !== (causticWarningPairs.length === 0) ||
       (causticWarningCount === 0) !== (firstCausticWarningTime == null) ||
@@ -639,6 +661,7 @@ function normalizeEomResponse(rawResponse, request) {
     status: response.status,
     evidenceStatus: response.evidenceStatus ?? "failed",
     runGrade,
+    coreScale,
     claimGrade,
     causticWarningCount,
     firstCausticWarningTime,
@@ -743,6 +766,7 @@ function createCompleteChunk(
     phase: "live",
     initialHistoryAccepted: false,
     runGrade: config.runGrade,
+    coreScale: config.coreScale,
     causticWarningCount,
     firstCausticWarningTime,
     causticWarningPairs: Object.freeze(causticWarningPairs),

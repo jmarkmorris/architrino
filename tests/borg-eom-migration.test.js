@@ -75,18 +75,19 @@ test("Borg mounts EOM idle by default and reserves automatic compute for explici
   assert.equal(defaultMounts[0].autoStartEom, false);
   assert.equal(defaultMounts[0].manifest.simulationEnvelope.kind, "sphere");
   assert.equal(defaultMounts[0].manifest.simulationEnvelope.outerRadius, 0.5);
-  assert.equal(defaultMounts[0].manifest.simulationEnvelope.centralBallRadius, 0.4);
-  assert.equal(defaultMounts[0].manifest.simulationEnvelope.radialBufferMargin, 0.1);
+  assert.equal(defaultMounts[0].manifest.simulationEnvelope.centralBallRadius, undefined);
+  assert.equal(defaultMounts[0].manifest.simulationEnvelope.radialBufferMargin, undefined);
   assert.equal(defaultMounts[0].manifest.modelControls.coupling, 0.05);
   assert.equal(defaultMounts[0].eomShadowRunner.coupling, "0.0005");
-  assert.equal(defaultMounts[0].eomShadowRunner.simulationOuterRadius, 0.35);
+  assert.equal(defaultMounts[0].eomShadowRunner.simulationOuterRadius, 0.5);
   assert.equal(defaultMounts[0].eomShadowRunner.chunkDuration, 0.3);
   assert.equal(defaultMounts[0].eomShadowRunner.initialStep, "0.05");
   assert.equal(defaultMounts[0].eomShadowRunner.minimumStep, "0.0001");
   assert.equal(defaultMounts[0].eomShadowRunner.maximumStep, "0.05");
   assert.equal(defaultMounts[0].eomShadowRunner.useAdaptiveStepGrowth, true);
   assert.equal(defaultMounts[0].eomShadowRunner.runGrade, "display");
-  assert.equal(defaultMounts[0].eomShadowRunner.farFieldEnclosureFraction, "0.25");
+  assert.equal(defaultMounts[0].eomShadowRunner.farFieldEnclosureFraction, "0");
+  assert.equal(defaultMounts[0].eomShadowRunner.coreScale, 0.2);
   assert.deepEqual(defaultMounts[0].manifest.simulationEnvelope.center, {
     x: 0.5,
     y: 0.5,
@@ -113,9 +114,11 @@ test("Borg mounts EOM idle by default and reserves automatic compute for explici
   assert.equal(
     defaultMounts[0].eomShadowRunner.historyDepth,
     calculateBorgInertialHistoryDepth(defaultMounts[0].initialEomSeed.endpointRows, {
-      maximumSeparation: 0.7,
-    }) + defaultMounts[0].eomShadowRunner.runDuration,
+      maximumSeparation: 1,
+    }),
   );
+  assert.ok(defaultMounts[0].eomShadowRunner.historyDepth > 1);
+  assert.ok(defaultMounts[0].eomShadowRunner.historyDepth < 1.1);
   assert.equal(
     defaultMounts[0].manifest.simulationEnvelope.historyDepth,
     defaultMounts[0].eomShadowRunner.historyDepth,
@@ -129,7 +132,7 @@ test("Borg mounts EOM idle by default and reserves automatic compute for explici
       row.position.x - 0.5,
       row.position.y - 0.5,
       row.position.z - 0.5,
-    ) <= 0.35 + 1e-12);
+    ) <= 0.5 + 1e-12);
   });
   assert.equal(defaultMounts[0].eomShadowRunner.targetDuration, 60);
   assert.equal(defaultMounts[0].eomShadowRunner.runDuration, 60);
@@ -308,8 +311,20 @@ test("Borg EOM migration uses canonical field speed and the declared memory dept
   assert.equal(config.initialStep, "0.1");
   assert.equal(config.maximumStep, "0.2");
   assert.equal(config.useAdaptiveStepGrowth, true);
-  assert.equal(config.farFieldEnclosureFraction, "0.25");
+  assert.equal(config.farFieldEnclosureFraction, "0");
+  assert.equal(config.coreScale, 0.2);
   assert.ok(Math.abs(config.historyStartTime - (300 - config.historyDepth)) < 1e-12);
+
+  const certifiedConfig = createBorgEomShadowRunConfig(
+    BORG_DATASET_MANIFEST_V1,
+    {
+      startTime: 300,
+      targetDuration: 300.2,
+      sampleInterval: 0.2,
+      runGrade: "certified",
+    },
+  );
+  assert.equal(certifiedConfig.farFieldEnclosureFraction, "0.25");
 
   const expandedPopulationConfig = createBorgEomShadowRunConfig(BORG_DATASET_MANIFEST_V1, {
     startTime: 0,
@@ -386,7 +401,7 @@ test("Borg EOM shadow runner sends retained histories and derives frames only fr
   assert.equal(request.numericalControls.maximumStep, "0.2");
   assert.equal(request.numericalControls.useAdaptiveStepGrowth, true);
   assert.equal(request.numericalControls.runGrade, "display");
-  assert.equal(request.numericalControls.farFieldEnclosureFraction, "0.25");
+  assert.equal(request.numericalControls.farFieldEnclosureFraction, "0");
   assert.equal(request.provenance.runGrade, "display");
   assert.equal(request.provenance.causticWarningCount, 0);
   assert.deepEqual(request.provenance.causticWarningPairs, []);
@@ -394,10 +409,15 @@ test("Borg EOM shadow runner sends retained histories and derives frames only fr
   assert.equal(request.modelControls.selfPairs, "included-except-coincident-endpoint");
   assert.equal(request.modelControls.futurePathPolicy, "prohibited");
   assert.equal(request.modelControls.fieldSpeed, "1");
+  assert.equal(request.modelControls.coreScale, "0.2");
   assert.equal("initialStates" in request, false);
   assert.equal("futurePaths" in request, false);
 
   assert.equal(chunk.source, BORG_EOM_SHADOW_RUN_SOURCE);
+  assert.equal(chunk.coreScale, 0.2);
+  assert.equal(chunk.retainedHistoryStart, 0);
+  assert.equal(chunk.retainedHistoryEnd, 10.2);
+  assert.equal(chunk.retainedHistoryPolicy, "full-evolved-display-history");
   assert.equal(chunk.phase, "live");
   assert.equal(chunk.statusCode, "ok");
   assert.equal(chunk.evidenceStatus, BORG_DISPLAY_CLAIM_LEVEL);
@@ -699,7 +719,7 @@ test("Borg native process protocol carries the same continuous-history request",
   assert.equal(runFields[9], "0");
   assert.equal(runFields[10], "none");
   assert.equal(runFields[11], "none");
-  assert.equal(runFields[16], "0.25");
+  assert.equal(runFields[16], "0");
   assert.equal(protocol.match(/^PATH\t/gmu)?.length, 6);
   assert.equal(protocol.match(/^SEG\t/gmu)?.length, 6);
   assert.match(protocol, /\nEND\n$/u);

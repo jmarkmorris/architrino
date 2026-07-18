@@ -60,7 +60,7 @@ test("Borg display defaults are separate from unchanged certified defaults", () 
   );
 });
 
-test("Borg display seeding keeps all 64 default paths inside the smaller sphere", () => {
+test("Borg display seeding keeps all 64 default paths inside the outer sphere", () => {
   const defaults = createBorgRunGradeDefaults(BORG_DATASET_MANIFEST_V1, "display");
   const placement = createBorgRunGradePlacementPolicy(
     BORG_DATASET_MANIFEST_V1,
@@ -74,8 +74,7 @@ test("Borg display seeding keeps all 64 default paths inside the smaller sphere"
     seedingRadius: placement.seedingRadius,
     minimumPairSeparation: placement.minimumPairSeparation,
   });
-  assert.equal(placement.seedingRadius, 0.35);
-  assert.equal(placement.velocityReversalRadius, 0.4375);
+  assert.equal(placement.seedingRadius, 0.5);
   assert.equal(rows.length, 64);
   assert.equal(
     certifyBorgMinimumSeparation(rows, {
@@ -88,7 +87,7 @@ test("Borg display seeding keeps all 64 default paths inside the smaller sphere"
       row.position.x - 0.5,
       row.position.y - 0.5,
       row.position.z - 0.5,
-    ) <= 0.35 + 1e-12);
+    ) <= 0.5 + 1e-12);
   });
 });
 
@@ -250,10 +249,8 @@ test("Borg default seeded-random geometry certifies separation and bounded rando
 
 test("Borg single-particle seeding has the uniform simulation-envelope radial law", () => {
   const radius = BORG_DATASET_MANIFEST_V1.simulationEnvelope.outerRadius;
-  const centralRadius = BORG_DATASET_MANIFEST_V1.simulationEnvelope.centralBallRadius;
   const center = BORG_DATASET_MANIFEST_V1.simulationEnvelope.center;
   let normalizedCubicRadiusSum = 0;
-  let outsideCentralBallCount = 0;
   const sampleCount = 1000;
   for (let seedIndex = 0; seedIndex < sampleCount; seedIndex += 1) {
     const [row] = createBorgSeededInitialConditionRows({
@@ -272,16 +269,11 @@ test("Borg single-particle seeding has the uniform simulation-envelope radial la
       row.position.z - center.z,
     );
     assert.ok(radialDistance <= radius + 1e-12);
-    if (radialDistance > centralRadius) {
-      outsideCentralBallCount += 1;
-    }
     normalizedCubicRadiusSum += (radialDistance / radius) ** 3;
   }
   const normalizedCubicRadiusMean = normalizedCubicRadiusSum / sampleCount;
   assert.ok(normalizedCubicRadiusMean > 0.47);
   assert.ok(normalizedCubicRadiusMean < 0.53);
-  assert.ok(outsideCentralBallCount > 400);
-  assert.ok(outsideCentralBallCount < 600);
 });
 
 test("Borg initial-condition controls support an explicit zero-velocity population", () => {

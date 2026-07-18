@@ -433,9 +433,6 @@ void run(
       .acceleration_tolerance = run[15],
       .far_field_enclosure_fraction = run[16],
       .run_grade = run[8],
-      .use_display_sphere_velocity_reversal = run[8] == "display",
-      .display_sphere_center = {"0.5", "0.5", "0.5"},
-      .display_sphere_velocity_reversal_radius = "0.4375",
       .initial_caustic_warning_count =
           parse_size(run[9], "prior caustic warning count"),
       .initial_first_caustic_warning_time = run[10] == "none"
@@ -558,8 +555,11 @@ void run(
   std::cout << "{\"schema\":\"eom_borg_native_response/v0\",\"status\":\""
             << json_escape(result.status) << "\",\"evidenceStatus\":\""
             << json_escape(result.evidence_status)
-            << "\",\"runGrade\":\"" << json_escape(result.run_grade)
-            << "\",\"claimGrade\":\""
+            << "\",\"runGrade\":\"" << json_escape(result.run_grade);
+  if (result.run_grade == "display") {
+    std::cout << "\",\"coreScale\":\"" << json_escape(request.core_scale);
+  }
+  std::cout << "\",\"claimGrade\":\""
             << (result.run_grade == "display"
                     ? "display-only"
                     : json_escape(result.evidence_status))
@@ -727,8 +727,25 @@ void run(
               << ",\"enclosedErrorWidthMaxReceiver\":"
               << (diagnostic_snapshot != nullptr
                       ? diagnostic_snapshot->enclosed_error_width_max_receiver
-                      : 0.0)
-              << ",\"traversalVisitedNodes\":"
+                      : 0.0);
+    if (result.run_grade == "display") {
+      std::cout << ",\"emissionToCurrentSourceRatioMax\":"
+                << (diagnostic_snapshot != nullptr
+                        ? diagnostic_snapshot
+                              ->display_emission_to_current_source_ratio_max
+                        : 0.0)
+                << ",\"emissionToCurrentSourceRatioMean\":"
+                << (diagnostic_snapshot != nullptr
+                        ? diagnostic_snapshot
+                              ->display_emission_to_current_source_ratio_mean
+                        : 0.0)
+                << ",\"emissionToCurrentSourceRatioSampleCount\":"
+                << (diagnostic_snapshot != nullptr
+                        ? diagnostic_snapshot
+                              ->display_emission_to_current_source_ratio_sample_count
+                        : 0U);
+    }
+    std::cout << ",\"traversalVisitedNodes\":"
               << (diagnostic_snapshot != nullptr &&
                           diagnostic_snapshot->traversal_certificate.has_value()
                       ? diagnostic_snapshot->traversal_certificate->visited_nodes

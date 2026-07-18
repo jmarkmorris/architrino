@@ -546,7 +546,6 @@ void append_display_entry_warnings(
 }
 
 std::vector<NativePublishedPath> append_display_candidate_segments(
-    const NativeCoupledEvolutionRequest& request,
     const std::vector<NativePublishedPath>& histories,
     const std::string& start_time,
     const std::string& end_time,
@@ -574,8 +573,6 @@ std::vector<NativePublishedPath> append_display_candidate_segments(
       throw std::invalid_argument("candidate segment lacks path acceleration");
     }
     CubicCoefficientTokens coefficients{};
-    std::array<double, 3> endpoint_position{};
-    std::array<double, 3> endpoint_velocity{};
     for (std::size_t axis = 0U; axis < 3U; ++axis) {
       const double acceleration_start =
           start_found->second[axis].midpoint();
@@ -587,56 +584,12 @@ std::vector<NativePublishedPath> append_display_candidate_segments(
           decimal_token(
               (acceleration_end - acceleration_start) / (6.0 * step)),
       };
-      endpoint_position[axis] = position[axis] + velocity[axis] * step +
-          acceleration_start * step * step * 0.5 +
-          (acceleration_end - acceleration_start) * step * step / 6.0;
-      endpoint_velocity[axis] = velocity[axis] +
-          acceleration_start * step +
-          (acceleration_end - acceleration_start) * step * 0.5;
-    }
-    if (request.use_display_sphere_velocity_reversal) {
-      const double reversal_radius = scalar_token(
-          request.display_sphere_velocity_reversal_radius);
-      if (!(reversal_radius > 0.0)) {
-        throw std::invalid_argument(
-            "display sphere velocity reversal requires a positive radius");
-      }
-      double squared_radius = 0.0;
-      double outward_velocity = 0.0;
-      for (std::size_t axis = 0U; axis < 3U; ++axis) {
-        const double offset = endpoint_position[axis] - scalar_token(
-            request.display_sphere_center[axis]);
-        squared_radius += offset * offset;
-        outward_velocity += offset * endpoint_velocity[axis];
-      }
-      if (squared_radius >= reversal_radius * reversal_radius &&
-          outward_velocity > 0.0) {
-        for (std::size_t axis = 0U; axis < 3U; ++axis) {
-          const double displacement = endpoint_position[axis] - position[axis];
-          const double reversed_endpoint_velocity = -endpoint_velocity[axis];
-          const double second =
-              3.0 * displacement / (step * step) -
-              (2.0 * velocity[axis] + reversed_endpoint_velocity) / step;
-          const double third =
-              -2.0 * displacement / (step * step * step) +
-              (velocity[axis] + reversed_endpoint_velocity) / (step * step);
-          coefficients[axis] = {
-              decimal_token(position[axis]),
-              decimal_token(velocity[axis]),
-              decimal_token(second),
-              decimal_token(third),
-          };
-          endpoint_velocity[axis] = reversed_endpoint_velocity;
-        }
-      }
     }
     double position_scale = 1.0;
     double velocity_scale = 1.0;
     for (std::size_t axis = 0U; axis < 3U; ++axis) {
       position_scale = std::max(position_scale, std::abs(position[axis]));
       velocity_scale = std::max(velocity_scale, std::abs(velocity[axis]));
-      velocity_scale = std::max(
-          velocity_scale, std::abs(endpoint_velocity[axis]));
     }
     const double position_storage_radius =
         path.history.segments().back().position_error() +
@@ -2241,7 +2194,7 @@ SubstepAttempt corrected_substep_impl(
   const SnapshotTotals start_totals = snapshot_totals(start_snapshot);
   auto predictor_histories = display_run_grade(request)
       ? append_display_candidate_segments(
-            request, histories, start_time, end_time, start_totals, start_totals,
+            histories, start_time, end_time, start_totals, start_totals,
             timing)
       : append_candidate_segments(
             histories, start_time, end_time, start_totals, start_totals, {},
@@ -2283,7 +2236,7 @@ SubstepAttempt corrected_substep_impl(
        iteration <= request.max_correction_iterations; ++iteration) {
     auto candidate_histories = display_run_grade(request)
         ? append_display_candidate_segments(
-              request, histories, start_time, end_time, start_totals, endpoint_guess,
+              histories, start_time, end_time, start_totals, endpoint_guess,
               timing)
         : append_candidate_segments(
               histories, start_time, end_time, start_totals, endpoint_guess,
@@ -4606,9 +4559,8 @@ NativeAccelerationSnapshotCertificate evaluate_native_display_snapshot(
           "uncertified_binary64_root_and_master_equation/v0",
       .logical_ordered_pairs = histories.size() * histories.size(),
       .traversal_excluded_pairs = 0U,
-      .traversal_exact_pairs = histories.size() * histories.size() -
-          evaluated.far_field_pair_count,
-      .traversal_enclosed_pairs = evaluated.far_field_pair_count,
+      .traversal_exact_pairs = histories.size() * histories.size(),
+      .traversal_enclosed_pairs = 0U,
       .traversal_unresolved_pairs =
           evaluated.status == "display_evaluated" ? 0U : 1U,
       .enclosed_error_width_total =
@@ -4621,6 +4573,16 @@ NativeAccelerationSnapshotCertificate evaluate_native_display_snapshot(
       .root_certificates = {},
       .display_history_fingerprints = fingerprints(histories),
       .display_regulated_pairs = evaluated.regulated_pairs,
+      .display_emission_to_current_source_ratio_max =
+          evaluated.emission_to_current_source_ratio_max,
+      .display_emission_to_current_source_ratio_mean =
+          evaluated.emission_to_current_source_ratio_sample_count == 0U
+          ? 0.0
+          : evaluated.emission_to_current_source_ratio_sum /
+              static_cast<double>(
+                  evaluated.emission_to_current_source_ratio_sample_count),
+      .display_emission_to_current_source_ratio_sample_count =
+          evaluated.emission_to_current_source_ratio_sample_count,
       .acceleration = std::move(acceleration),
       .timing = timing,
   };

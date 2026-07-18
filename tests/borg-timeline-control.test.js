@@ -2,9 +2,23 @@ import test from "node:test";
 import assert from "node:assert/strict";
 
 import {
+  getBorgBufferedPlaybackAdvance,
   getBorgPlaybackReanchor,
   getBorgTimelineRangePresentation,
 } from "../src/apps/borg/BorgAppRuntime.js";
+
+test("Borg playback does not skip a newly received chunk after waiting", () => {
+  assert.equal(getBorgBufferedPlaybackAdvance({
+    rawProgress: 400,
+    fromSetIndex: 30,
+    frameSetCount: 31,
+  }), 0);
+  assert.equal(getBorgBufferedPlaybackAdvance({
+    rawProgress: 400,
+    fromSetIndex: 30,
+    frameSetCount: 61,
+  }), 30);
+});
 
 test("Borg Forever playback pins the live-follow indicator when the buffer extends", () => {
   const beforeExtension = getBorgTimelineRangePresentation({

@@ -102,6 +102,7 @@ class NativeBorgProcessTests(unittest.TestCase):
         self.assertEqual(response["status"], "completed")
         self.assertEqual(response["evidenceStatus"], "executable_architecture_evidence")
         self.assertEqual(response["runGrade"], "certified")
+        self.assertNotIn("coreScale", response)
         self.assertEqual(response["claimGrade"], "executable_architecture_evidence")
         self.assertEqual(response["causticWarningCount"], 0)
         self.assertIsNone(response["firstCausticWarningTime"])
@@ -112,6 +113,12 @@ class NativeBorgProcessTests(unittest.TestCase):
         self.assertEqual(response["rejectedStepCount"], 0)
         self.assertAlmostEqual(float(response["controllerStepSize"]), 0.1)
         self.assertEqual(response["haltCode"], "")
+        self.assertTrue(all(
+            "emissionToCurrentSourceRatioMax" not in row
+            and "emissionToCurrentSourceRatioMean" not in row
+            and "emissionToCurrentSourceRatioSampleCount" not in row
+            for row in response["stepFailures"]
+        ))
         self.assertEqual(response["publishedExtensions"][0]["pathId"], "p")
         self.assertTrue(all(
             segment["claimGrade"] == "executable_architecture_evidence"
@@ -120,45 +127,6 @@ class NativeBorgProcessTests(unittest.TestCase):
         self.assertGreater(
             len(response["publishedExtensions"][0]["segments"]), 0
         )
-
-    def test_display_reverses_outward_velocity_at_canvas_boundary_only(self) -> None:
-        def evolve(grade: str) -> dict[str, object]:
-            protocol = "\n".join((
-                "EOM_BORG_NATIVE_V4",
-                "\t".join((
-                    "RUN", f"sphere-reversal-{grade}", "1", "1.1",
-                    "0.1", "0.1", "0.1", "0", grade, "0", "none", "none",
-                    "1", "1", "1e-10", "1e-8", "0", "1e-8", "1e-8",
-                    "1e-8", "1", "1",
-                )),
-                "PATH\tp\t1\t1\t1",
-                # At T=1 the path is at x=0.93 and moving outward at +0.1.
-                "SEG\t0\t1\t0.83\t0.1\t0\t0\t0.5\t0\t0\t0\t0.5\t0\t0\t0\t0\t0",
-                "END",
-                "",
-            ))
-            completed = subprocess.run(
-                [str(self.binary), "borg-shadow-v0"],
-                input=protocol,
-                check=True,
-                cwd=ROOT,
-                capture_output=True,
-                text=True,
-            )
-            return json.loads(completed.stdout)
-
-        def endpoint_velocity(response: dict[str, object]) -> float:
-            segment = response["publishedExtensions"][0]["segments"][-1]
-            step = float(segment["endTime"]) - float(segment["startTime"])
-            coefficients = [float(value) for value in segment["coefficients"][0]]
-            return coefficients[1] + 2 * coefficients[2] * step + 3 * coefficients[3] * step * step
-
-        display = evolve("display")
-        certified = evolve("certified")
-        self.assertEqual(display["status"], "completed")
-        self.assertAlmostEqual(endpoint_velocity(display), -0.1, places=12)
-        self.assertEqual(certified["status"], "completed")
-        self.assertAlmostEqual(endpoint_velocity(certified), 0.1, places=12)
 
     def test_ordinary_root_failure_is_not_labeled_as_a_caustic_entry(self) -> None:
         def protocol(grade: str) -> str:
@@ -222,6 +190,54 @@ class NativeBorgProcessTests(unittest.TestCase):
                     self.assertEqual(
                         terminal["causticRegulatorLevel"], "not-applicable"
                     )
+
+    def test_display_evaluates_pairs_beyond_the_removed_far_field_cutoff(self) -> None:
+        protocol = "\n".join((
+            "EOM_BORG_NATIVE_V4",
+            "\t".join((
+                "RUN", "display-all-pairs", "0", "0.01",
+                "0.01", "0.01", "0.01", "0", "display", "0",
+                "none", "none", "1", "0.0005", "0.001", "0.1",
+                "0.25", "0.01", "0.01", "0.1", "2", "2",
+            )),
+            "PATH\tp1\t1\t1\t1",
+            "SEG\t-1\t0\t0.25\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0",
+            "PATH\tp2\t1\t1\t1",
+            "SEG\t-1\t0\t0.75\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0",
+            "END",
+            "",
+        ))
+        completed = subprocess.run(
+            [str(self.binary), "borg-shadow-v0"],
+            input=protocol,
+            check=True,
+            cwd=ROOT,
+            capture_output=True,
+            text=True,
+        )
+        response = json.loads(completed.stdout)
+        self.assertEqual(response["status"], "completed")
+        self.assertEqual(response["coreScale"], "0.2")
+        self.assertGreater(len(response["stepFailures"]), 0)
+        for row in response["stepFailures"]:
+            self.assertEqual(row["traversalLogicalPairs"], 4)
+            self.assertEqual(row["traversalExactPairs"], 4)
+            self.assertEqual(row["traversalEnclosedPairs"], 0)
+            self.assertGreater(
+                row["emissionToCurrentSourceRatioSampleCount"], 0
+            )
+            self.assertGreaterEqual(
+                row["emissionToCurrentSourceRatioMax"], 0
+            )
+            self.assertGreaterEqual(
+                row["emissionToCurrentSourceRatioMean"], 0
+            )
+        second_coefficients = [
+            float(extension["segments"][-1]["coefficients"][0][2])
+            for extension in response["publishedExtensions"]
+        ]
+        self.assertLess(second_coefficients[0], 0)
+        self.assertGreater(second_coefficients[1], 0)
 
     def test_native_process_rejects_under_length_run_record(self) -> None:
         under_length_run = "\t".join(

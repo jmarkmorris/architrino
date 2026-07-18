@@ -7,6 +7,7 @@ import {
   createBorgSeededInitialConditionRows,
 } from "./BorgInitialConditions.js";
 import {
+  BORG_DISPLAY_DEFAULTS_V1,
   createBorgRunGradeDefaults,
   createBorgRunGradePlacementPolicy,
 } from "./BorgRunGradeDefaults.js";
@@ -74,13 +75,15 @@ export async function bootBorgApp({
     sampleInterval,
     maximumSeparation: 2 * displayPlacement.seedingRadius,
   });
-  // Display retains its full numerical history. Extend the exact inertial
-  // datum across the requested finite run so a delayed root cannot be lost
-  // merely because its emission time precedes the ordinary rolling window.
-  const historyDepth = Number((causalHistoryDepth + eomDuration).toFixed(12));
-  const runtimeManifest = createManifestWithHistoryDepth(manifest, historyDepth);
+  // Only the causal past is prescribed. Forward EOM segments are appended
+  // after T=0 and form the separately evolving retained history.
+  const seedHistoryDepth = causalHistoryDepth;
+  const runtimeManifest = createManifestWithHistoryDepth(
+    manifest,
+    seedHistoryDepth,
+  );
   const initialEomSeed = await createBorgAcceptedInertialSeedHistory(endpointRows, {
-    historyStartTime: eomStartTime - historyDepth,
+    historyStartTime: eomStartTime - seedHistoryDepth,
     historyEndTime: eomStartTime,
     minimumPairSeparation: displayPlacement.minimumPairSeparation,
   });
@@ -97,7 +100,8 @@ export async function bootBorgApp({
       startTime: eomStartTime,
       targetDuration: eomStartTime + eomDuration,
       runDuration: eomDuration,
-      historyDepth,
+      historyDepth: seedHistoryDepth,
+      coreScale: BORG_DISPLAY_DEFAULTS_V1.coreScale,
       pathCount: endpointRows.length,
       // Batch six 0.05 display steps per process round trip. This keeps the
       // EOM solver's numerical step unchanged while avoiding protocol cost on
@@ -115,7 +119,9 @@ export async function bootBorgApp({
       simulationOuterRadius: displayPlacement.seedingRadius,
       rootTolerance: "1e-3",
       accelerationTolerance: "1e-1",
-      farFieldEnclosureFraction: "0.25",
+      farFieldEnclosureFraction: String(
+        BORG_DISPLAY_DEFAULTS_V1.farFieldEnclosureFraction,
+      ),
       positionTolerance: "1e-2",
       velocityTolerance: "1e-2",
       correctionTolerance: "1e-1",

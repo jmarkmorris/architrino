@@ -122,33 +122,23 @@ test("Borg app manifest is design-owned policy and passes validation", () => {
   assert.equal(manifest.initialConditions.electrinoCharge, -1);
   assert.equal(manifest.simulationEnvelope.kind, "sphere");
   assert.equal(manifest.simulationEnvelope.outerRadius, 0.5);
-  assert.equal(manifest.simulationEnvelope.centralBallRadius, 0.4);
-  assert.equal(manifest.simulationEnvelope.radialBufferMargin, 0.1);
+  assert.equal(manifest.simulationEnvelope.centralBallRadius, undefined);
+  assert.equal(manifest.simulationEnvelope.radialBufferMargin, undefined);
   assert.equal(manifest.simulationEnvelope.sideLength, undefined);
   assert.equal(manifest.simulationEnvelope.centralVolume, undefined);
   assert.equal(manifest.simulationEnvelope.faceBufferMargin, undefined);
-  assert.equal(manifest.population.countDerivation.exactPreCeiling, 5.859375);
-  assert.equal(manifest.population.countDerivation.roundedValue, 6);
+  assert.equal(manifest.population.countDerivation, undefined);
 
   const invalidRadiusManifest = structuredClone(manifest);
-  invalidRadiusManifest.simulationEnvelope.outerRadius = 0.4;
+  invalidRadiusManifest.simulationEnvelope.outerRadius = 0;
   assert.throws(
     () => validateBorgManifest({
       manifest: invalidRadiusManifest,
       surfaceDesign: BORG_APP_SURFACE_DESIGN_V1,
     }),
-    /spherical radii are not ordered/,
+    /outer radius is not positive/,
   );
 
-  const invalidPopulationManifest = structuredClone(manifest);
-  invalidPopulationManifest.population.countDerivation.roundedValue = 7;
-  assert.throws(
-    () => validateBorgManifest({
-      manifest: invalidPopulationManifest,
-      surfaceDesign: BORG_APP_SURFACE_DESIGN_V1,
-    }),
-    /population derivation fields are inconsistent/,
-  );
 });
 
 test("Borg uses the canonical unit field speed", () => {
@@ -345,7 +335,15 @@ test("Borg path-history renderer uses native row segments, not visual smoothing 
     runtimeSource,
     /borgRunGradeEnvelopeRadius\(manifest, state\.selectedRunGrade\) \*\s*worldUnitsPerSolverUnit/,
   );
-  assert.match(runtimeSource, /DEFAULT_CAMERA_FIT_MARGIN = 1\.1/);
+  assert.match(runtimeSource, /DEFAULT_CAMERA_FIT_MARGIN = 1\.43/);
+  assert.match(runtimeSource, /HIGHLIGHTED_PATH_HISTORY_DURATION = 5/);
+  assert.doesNotMatch(runtimeSource, /centralBallRadius|radialBufferMargin/);
+  assert.match(runtimeSource, /BorgDisplayReplacement\.js/);
+  assert.match(
+    runtimeSource,
+    /state\.activeRunGrade !== BORG_DISPLAY_RUN_GRADE[\s\S]*borgNdcPositionIsOutsideScreen/,
+  );
+  assert.match(runtimeSource, /pathTrails\.resetPath\(displayFrame\.pathKey\)/);
   assert.match(htmlSource, /\.borg-status-chip\[hidden\]\s*\{\s*display: none;/);
   assert.doesNotMatch(runtimeSource, /SphereGeometry/);
   assert.doesNotMatch(runtimeSource, /BoxGeometry/);
@@ -430,7 +428,12 @@ test("Borg path-history renderer uses native row segments, not visual smoothing 
   assert.match(runtimeSource, /runtimeControls\.stepHeight \?\? configured\.initialStep/);
   assert.match(runtimeSource, /runtimeControls\.minimumStep \?\? configured\.minimumStep/);
   assert.match(runtimeSource, /forward EOM chunks/);
-  assert.match(runtimeSource, /Exact polynomial initial history \(C1 inertial\)/);
+  assert.match(runtimeSource, /Exact polynomial causal seed history \(C1 inertial\)/);
+  assert.match(runtimeSource, /Causal seed-history depth/);
+  assert.match(runtimeSource, /EOM retained-history start/);
+  assert.match(runtimeSource, /close-pair threshold εc/);
+  assert.match(runtimeSource, /emission\/current-source ratio definition/);
+  assert.match(runtimeSource, /all ordered pairs evaluated/);
   assert.match(runtimeSource, /function startRunAndPlayback\(\)[\s\S]*firstChunk\.then[\s\S]*startPlayback\(\)/);
   assert.match(runtimeSource, /selected; press Start \/ restart to run/);
   assert.match(
@@ -448,6 +451,11 @@ test("Borg path-history renderer uses native row segments, not visual smoothing 
     /id="borg-diagnostics-panel"[\s\S]*aria-hidden="true"[\s\S]*inert/,
   );
   assert.match(runtimeSource, /refreshDiagnosticsPanel\(\)[\s\S]*diagnosticsPanelController\.renderIfOpen\(\)/);
+  assert.match(runtimeSource, /calculateBorgPolarityDiagnostics/);
+  assert.match(runtimeSource, /electrinos outside sphere now/);
+  assert.match(runtimeSource, /positrinos escaped by time/);
+  assert.match(runtimeSource, /all same-polarity close fraction/);
+  assert.match(runtimeSource, /opposite-polarity close fraction/);
   assert.match(
     htmlSource,
     /class="borg-viewport-toolbar"[\s\S]*id="borg-layer-strip"[\s\S]*class="borg-solver-banner-slot"[\s\S]*id="borg-solver-banner"[\s\S]*id="borg-reset-view-button"/,
@@ -473,7 +481,7 @@ test("Borg path-history renderer uses native row segments, not visual smoothing 
 
 test("Borg surface keeps EOM-native layer policy and fail-closed authority", () => {
   const surfaceDesign = BORG_APP_SURFACE_DESIGN_V1;
-  assert.equal(surfaceDesign.authorityMap.centralBallAcceleration, "fail-closed-value");
+  assert.equal(surfaceDesign.authorityMap.centralBallAcceleration, undefined);
   assert.equal(surfaceDesign.noAuthorityPromotions, true);
 
   const pathHistoryLayer = surfaceDesign.layerStrip.find((layer) => layer.layer === "path-history");
