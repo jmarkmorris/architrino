@@ -360,7 +360,7 @@ const equationMapSeedDocuments = [
       anchor("acceleration", "acceleration response", "per-hit acceleration active root"),
       anchor("polarity", "transmitter polarity", "kappa sigma transmitter receiver polarity"),
       anchor("inverseSquare", "wake dilution", "inverse-square causal wake dilution"),
-      anchor("branchStrength", "acceleration factor", "receiver-weighted transmitter-side receiver-side factor"),
+      anchor("branchStrength", "acceleration factor", "transmitter-side acceleration factor"),
       anchor("direction", "line of action", "line-of-action causal-root direction"),
     ],
     formulaParts: [
@@ -395,16 +395,16 @@ const equationMapSeedDocuments = [
         "wake-dilution",
         "Wake dilution",
         "inverseSquare",
-        "This is the distance part. The same influence spreads over a larger sphere as r grows, so the strength falls like 1/r². In $\\mathbb{A}\\mathbb{A}\\mathbb{A}$, that spreading is the finite-speed wake from the source.",
+        "This is the distance part. The same influence spreads over a larger sphere as r grows, so the strength falls like 1/r². In $\\mathbb{A}\\mathbb{A}\\mathbb{A}$, that spreading is the finite-speed wake from the transmitter.",
         "r^{-2}",
         { x: 65, y: 22, width: 30, line: "above" }
       ),
       overlay(
-        "receiver-weighted",
+        "transmitter-side",
         "Acceleration factor",
         "branchStrength",
-        "The current acceleration weight combines transmitter-side wake spacing with receiver-side wake crossing. The signed ratio remains separately available as the root-playback derivative.",
-        "W^{\\mathrm{acc}}=\\left|D_r/D_t\\right|",
+        "The acceleration weight is fixed by transmitter-side wake spacing. Receiver-side wake crossing remains separately available as the signed root-playback derivative.",
+        "W^{\\mathrm{acc}}=c_f/\\left|D_t\\right|",
         { x: 6, y: 68, width: 34, line: "below" }
       ),
       overlay(
@@ -473,7 +473,7 @@ const equationMapSeedDocuments = [
         "per-hit-contribution",
         "Per-hit contribution",
         "perHitLaw",
-        "Each term inside the sums is the per-hit law from the previous screen: polarity and coupling, wake dilution, the current receiver-weighted acceleration factor, and the line of action.",
+        "Each term inside the sums is the per-hit law from the previous screen: polarity and coupling, wake dilution, the transmitter-side acceleration factor, and the line of action.",
         "\\kappa\\sigma_{tr}\\frac{|q_tq_r|}{r^2}W_{r\\leftarrow t}^{\\mathrm{acc}}\\hat{\\mathbf r}_t",
         { x: 33, y: 68, width: 34, line: "below" }
       ),

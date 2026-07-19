@@ -8,7 +8,7 @@ We work throughout in units with primitive wake speed $c_f=1$; per-hit accelerat
 
 ---
 
-## Delayed Emission and Receiver-Weighted Hits
+## Delayed Emission and Transmitter-Side Acceleration
 
 - What we assume:
 - Sources emit potential on expanding causal isochrons with surface density $\propto 1/r^2$, represented distributionally by $\delta(r-\tau)$ with $\tau = t - t_0$.

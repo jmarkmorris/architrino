@@ -1,12 +1,12 @@
 # Causal Action Functional
 
-This chapter explains how action-like scalar summaries are allowed to enter receiver-weighted delayed dynamics. The [Master Equation](master-equation.md#the-master-equation-canonical-form) remains the vector law. The causal action functional is a branch statistic used to compare retained histories, estimate barriers, and feed stability or mass-response tests without replacing the line-of-action acceleration.
+This chapter explains how action-like scalar summaries are allowed to enter delayed dynamics with transmitter-side acceleration weight. The [Master Equation](master-equation.md#the-master-equation-canonical-form) remains the vector law. The causal action functional is a branch statistic used to compare retained histories, estimate barriers, and feed stability or mass-response tests without replacing the line-of-action acceleration.
 
-The central warning is simple: a scalar action row is valid only on the same retained branch record that supplies the causal roots, transmitter-side factor, receiver-side factor, and transmitter-side acceleration weight. Otherwise the statistic has lost the causal information that made the branch physical.
+The central warning is simple: a scalar action value is valid only on the same retained branch record that supplies the causal roots, transmitter-side factor, receiver-side factor, and transmitter-side acceleration weight. Otherwise the statistic has lost the causal information that made the branch physical.
 
 ## Problem Statement and Goal
 
-This chapter gives the action-functional side of the canonical receiver-weighted Master EOM. Its
+This chapter gives the action-functional side of the canonical transmitter-side Master EOM. Its
 job is not to preserve a separate scalar law. Its job is to define which
 retained branch records may be used for action, stability, mass-response, and
 transition-cost calculations after the branch has been rebuilt with
@@ -51,7 +51,7 @@ $$
 
 This statistic is sign-blind and coupling-normalized: it suppresses
 $\kappa$, $|q_iq_j|$, and the polarity sign
-$\sigma_{ij}=\mathrm{sign}(q_iq_j)$. Attractive and repulsive rows therefore
+$\sigma_{ij}=\mathrm{sign}(q_iq_j)$. Attractive and repulsive records therefore
 add by received magnitude rather than canceling by direction. After the
 native-time average, $\bar{\mathcal A}_{\mathrm{rec}}$ has inverse-area units;
 it is action-like only in the sense that it accumulates receiver-side
@@ -69,7 +69,7 @@ direction. Its use is limited:
 
 1. compare candidate branch classes,
 2. define transition-cost and barrier targets,
-3. supply scalar rows for later mass or medium-response tests,
+3. supply scalar records for later mass or medium-response tests,
 4. hand candidates back to the Master EOM for vector acceleration and conservation
 checks.
 
@@ -114,7 +114,7 @@ branch label persists as long as the same retained record keeps:
 
 Branch labels may change only at declared boundaries: a root enters or leaves
 the memory window, an inactive gap closes, $D_t$ reaches a caustic boundary, a
-collision regulator is invoked, or the retained rows no longer occupy the same
+collision regulator is invoked, or the retained records no longer occupy the same
 box.
 
 ## Causal Writhe and Topological Use
@@ -136,10 +136,10 @@ $\chi_{\mathrm{causal}}(\alpha,\beta)$ equals $1$ only when the two strands form
 an admissible crossing or linkage event on the same retained record, and equals
 $0$ otherwise. The sign $\operatorname{sgn}(\alpha,\beta)$ is the orientation
 sign of the ordered strand pair relative to the declared branch framing; it is
-not defined at a fold, framing slip, or unresolved collision row.
+not defined at a fold, framing slip, or unresolved collision record.
 
 $Wr_c$ is therefore a causal-locus crossing statistic, not a replacement for
-the canonical framed-topology rows such as
+the canonical framed-topology records such as
 $Lk=\operatorname{Wr}+\operatorname{Tw}$ in
 [Constructing the Absolute Frame](../foundations/constructing-the-absolute-frame.md#parity-convention-and-dynamical-chirality)
 and [Architrino](../foundations/architrino.md#provenance-and-persistence). It
@@ -183,7 +183,7 @@ balance, action closure, or stability. The detailed circular derivations are in
 
 A current circular benchmark must emit:
 
-| Evidence row | Required content |
+| Evidence record | Required content |
 | --- | --- |
 | retained roots | partner/self labels and windows |
 | $D_t$ | nonzero denominator floor or declared caustic route |
@@ -193,7 +193,7 @@ A current circular benchmark must emit:
 | scalar statistic | $\bar{\mathcal A}_{\mathrm{rec}}$ on the same record |
 | negative control | fail-closed result when $D_r$ is absent or mismatched |
 
-Until those rows exist, circular material is not evidence for action closure.
+Until those records exist, circular material is not evidence for action closure.
 
 ## Branch Barrier and Transition Cost
 
@@ -218,7 +218,7 @@ $$
 
 This is a transition-cost target, not a proof of stability. A promoted barrier
 must state the retained branch path, the root identity across the path, the
-regulator state, and the same-record transmitter-side acceleration-weight rows. If a
+regulator state, and the same-record transmitter-side acceleration-weight records. If a
 later certificate uses an integral barrier instead, the promoted record must
 also declare the path measure, for example arclength in a stated metric on
 chart space.
@@ -227,23 +227,23 @@ chart space.
 
 A branch certificate that consumes this chapter must report:
 
-| Certificate row | Required content |
+| Certificate entry | Required content |
 | --- | --- |
 | branch identity | retained roots, inactive gaps, finite memory |
 | transmitter-side acceleration weight | $D_t$, $D_r$, and $W^{\mathrm{acc}}$ enclosed on the same retained box |
-| scalar stationarity | first-variation or discrete comparison row for $\bar{\mathcal A}_{\mathrm{rec}}$ |
+| scalar stationarity | first-variation or discrete comparison record for $\bar{\mathcal A}_{\mathrm{rec}}$ |
 | vector consistency | Master EOM residual on the same retained record |
-| Noether pullback | energy, momentum, and angular-momentum wake-history rows from the same action or realized-trajectory record; see [Energy](energy.md#energy-conservation-and-exchange) and [Delay Dynamics Energy](../validation/simulations/action-energy/delay-dynamics-energy.md#accepted-construction-routes) |
-| negative controls | rejection of missing, mismatched, or receiver-side-incomplete rows |
+| Noether pullback | energy, momentum, and angular-momentum wake-history records from the same action or realized-trajectory record; see [Energy](energy.md#energy-conservation-and-exchange) and [Delay Dynamics Energy](../validation/simulations/action-energy/delay-dynamics-energy.md#accepted-construction-routes) |
+| negative controls | rejection of missing, mismatched, or incomplete records |
 
-The branch certificate is not promoted if any of those rows are supplied by
+The branch certificate is not promoted if any of those entries are supplied by
 different root boxes, different regulator states, or different history records.
 
 ## Summary and Status
 
 The current action-functional program is a receiver-side rebuild target. It keeps
 causal-root topology, branch labels, caustic routing, and scalar comparison
-targets, but action evidence requires complete receiver-weighted branch records.
+targets, but action evidence requires complete transmitter-side branch records.
 The next useful mathematical artifact is one retained branch packet
 that binds root topology, $D_t$, $D_r$, $W^{\mathrm{acc}}$, vector residuals,
 scalar statistic, Noether pullback, and fail-closed negative controls on the

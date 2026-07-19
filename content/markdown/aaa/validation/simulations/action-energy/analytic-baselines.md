@@ -5,8 +5,8 @@ Purpose:
 - Record exact analytical solutions only where they exist; otherwise, state solvability status without approximations.
 
 Models:
-- Fixed center (test particle, source stationary):
-  - The causal root is explicit, but the canonical receiver-weighted acceleration is $\ddot r=-K W^{\mathrm{acc}}/r^2$ with $K=\kappa |q q'|>0$ and $W^{\mathrm{acc}}=\lvert 1-\dot r\rvert$ in field-speed units on the outward radial sign convention. The classical closed-form inverse-square fall is not a receiver-side moving-receiver baseline.
+- Fixed center (one receiver, one stationary transmitter):
+  - The causal root is explicit and $D_t=c_f$, so $W^{\mathrm{acc}}=1$ independently of receiver velocity. The canonical radial equation is $\ddot r=-K/r^2$ with $K=\kappa |q q'|>0$. This is an exact fixed-transmitter baseline for the corrected delayed law.
 - Two-body mutual interaction (opposite or equal charges):
   - Coupled DDEs with causal roots $T_t$ defined by $|X_i(T)-X_j(T_t)|=T-T_t$ ($v=1$); accelerations superpose as $\pm \kappa \epsilon^2 W^{\mathrm{acc}}/r^2$ along the line of action.
   - No exact closed-form solutions are presently known for the coupled DDEs in general.

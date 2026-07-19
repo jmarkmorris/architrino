@@ -315,7 +315,7 @@ The conceptual gain is that the note now separates three different burdens clean
 
 This mattered for the larger program because the nested shell braid has to satisfy several closure burdens at once: frequency hierarchy, horizon behavior, radiation suppression, and eventually an effective stress-tensor story for higher assemblies. The revised note now reads as a live research surface with explicit assumptions and explicit non-assumptions.
 
-## 2026-03-12: Receiver-Weighted Master Equation Canon
+## Master Equation Canon
 
 Relevant files:
 
@@ -342,21 +342,21 @@ D_{t,ij}=c_f-\mathbf{v}_j(t_0)\cdot\hat{\mathbf{r}}_{ij}(t;t_0),
 \qquad
 D_{r,ij}=c_f-\mathbf{v}_i(t)\cdot\hat{\mathbf{r}}_{ij}(t;t_0).
 $$
-Source strength itself does not change with speed. The source emits according to the same constant-cadence rule. The velocity dependence enters because both transceiver paths set the local wake crossing geometry: the transmitter-side factor records how the emitted wake surfaces bunch or dilate, while the receiver-side factor records how the receiver cuts those surfaces.
+The transmitter emits according to the same constant-cadence rule. Transmitter motion changes how the emitted wake surfaces bunch or dilate through $D_t$. Receiver motion changes the signed playback of successive emission times through $D_r/D_t$, but it does not change the acceleration strength of a surface that has already arrived.
 
-Receiver velocity appears in the received branch magnitude through $D_{r,ij}$ and in the work rate $\mathbf{F}\cdot\mathbf{v}$. Magnetic-like behavior remains an emergent closure target built from delayed geometry, transmitter-side acceleration weight, superposed radial hits, and assembly/Noether sea response; it is not inserted as a primitive cross-product force.
+Receiver velocity appears in signed root playback through $D_{r,ij}/D_{t,ij}$ and affects later reception geometry. Magnetic-like behavior remains an emergent closure target built from delayed geometry, transmitter-side acceleration weight, superposed radial hits, and assembly/Noether sea response; it is not inserted as a primitive cross-product acceleration.
 
 The canon separates theorem-backed statements from closure targets. Current documents should not state, without local hypotheses, that the master equation is already the exact Euler-Lagrange variation of a completed non-local action or that global energy-momentum conservation is fully restored in every regime. The canonical stance is narrower: the regularized action-functional program supplies a variational lens, the per-hit law supplies the acceleration-first dynamics, and energy bookkeeping must state the assumptions under which work-energy, Noether-style, or action-based conclusions are being claimed.
 
 Corpus requirements:
 
-- remove bare $1/r^2$ and transmitter-side-only per-hit laws where transmitter-side acceleration weight belongs,
+- include the transmitter-side acceleration weight wherever the canonical per-hit law is stated,
 - avoid splitting the theory into a permanent "reduced model" and a separate "candidate action" unless the local document is explicitly discussing an approximation,
 - replace over-broad conservation claims with assumption-scoped theorem language,
 - keep constant emission cadence distinct from received causal-flux modulation,
-- and include receiver-velocity effects through the receiver-side factor before promoting force, action, or finite-certificate rows.
+- and retain receiver velocity only in root playback, future geometry, and derived energy-rate accounts where it is actually used.
 
-The master equation is a genuinely delayed branch law rather than a static inverse-square law with delayed labels attached. The closure burdens are sharp: self-hit walls, magnetic-like behavior, Lorentz behavior, and action/energy structure all need to be derived from the receiver-side delayed geometry rather than asserted through imported field-theory vocabulary.
+The master equation is a genuinely delayed branch law rather than a static inverse-square law with delayed labels attached. The closure burdens are sharp: self-hit walls, magnetic-like behavior, Lorentz behavior, and action/energy structure all need to be derived from delayed geometry rather than asserted through imported field-theory vocabulary.
 
 ## 2026-03-11 Closure Scorecard
 

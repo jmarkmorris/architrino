@@ -150,7 +150,7 @@ test("animator delayed-hit runtime consumes solver-owned path-history hit rows",
   assert.equal(hits[0].metadata.descriptorSchema, "animator-delayed-hit-stream-descriptors.v1");
   assert.equal(hits[0].metadata.receiverStreamId, "fixture-path-history-stream");
   assert.equal(hits[0].metadata.receiverRowLayout, "path_segment.v1");
-  assert.equal(hits[0].metadata.solverBranchWeight, 1);
+  assert.equal(hits[0].metadata.solverAccelerationWeight, 1);
   assert.equal(hits[0].status, "path-history");
 });
 
