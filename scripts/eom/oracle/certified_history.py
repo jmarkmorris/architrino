@@ -532,7 +532,7 @@ def _transmitter_factor_interval(
     elif correlated_self:
         if reception_time is None:
             raise ValueError(
-                "correlated source normal requires a reception time"
+                "correlated transmitter normal requires a reception time"
             )
         displacement = transmitter_segment.correlated_displacement_interval(
             DecimalInterval.point(
@@ -645,7 +645,7 @@ def _merge_root_brackets(
 def certify_causal_roots(
     *,
     receiver: PiecewisePolynomialHistory,
-    source: PiecewisePolynomialHistory,
+    transmitter: PiecewisePolynomialHistory,
     reception_time: object,
     field_speed: object,
     search_lower: object,
@@ -656,8 +656,8 @@ def certify_causal_roots(
 ) -> RootCompletenessCertificate:
     """Certify every simple causal root or return an unresolved certificate."""
 
-    if receiver.precision != source.precision:
-        raise ValueError("receiver and source history precision must match")
+    if receiver.precision != transmitter.precision:
+        raise ValueError("receiver and transmitter history precision must match")
     precision = receiver.precision
     reception = exact_decimal(reception_time)
     c_f = exact_decimal(field_speed)
@@ -676,8 +676,8 @@ def certify_causal_roots(
     receiver_point = DecimalInterval.point(reception, precision)
     receiver_position, _ = receiver.state_interval(receiver_point)
     same_retained_history = (
-        receiver.history_id == source.history_id
-        and receiver.digest() == source.digest()
+        receiver.history_id == transmitter.history_id
+        and receiver.digest() == transmitter.digest()
     )
 
     def residual_for(
@@ -685,7 +685,7 @@ def certify_causal_roots(
         emission: DecimalInterval,
     ) -> DecimalInterval:
         correlated_displacement = (
-            source.correlated_self_displacement(receiver_point, emission)
+            transmitter.correlated_self_displacement(receiver_point, emission)
             if same_retained_history
             else None
         )
@@ -703,7 +703,7 @@ def certify_causal_roots(
         emission: DecimalInterval,
     ) -> DecimalInterval | None:
         correlated_displacement = (
-            source.correlated_self_displacement(receiver_point, emission)
+            transmitter.correlated_self_displacement(receiver_point, emission)
             if same_retained_history
             else None
         )
@@ -715,16 +715,16 @@ def certify_causal_roots(
             reception_time=reception,
             correlated_displacement=correlated_displacement,
         )
-    initial_cells = source.covered_cells(lower_bound, upper_bound)
+    initial_cells = transmitter.covered_cells(lower_bound, upper_bound)
     roots: list[RootBracket] = []
     excluded: list[CellRecord] = []
     unresolved: list[CellRecord] = []
     visited_cells = 0
     coincident_endpoint_excluded = False
-    subfield_suffix = [True] * (len(source.segments) + 1)
+    subfield_suffix = [True] * (len(transmitter.segments) + 1)
     if same_retained_history:
-        for index in range(len(source.segments) - 1, -1, -1):
-            segment = source.segments[index]
+        for index in range(len(transmitter.segments) - 1, -1, -1):
+            segment = transmitter.segments[index]
             segment_upper = min(segment.t_end, reception)
             segment_subfield = True
             if segment.t_start < segment_upper:
@@ -887,15 +887,15 @@ def certify_causal_roots(
         right_index: int
         left_segment: CubicHistorySegment
         right_segment: CubicHistorySegment
-        if point == segment.t_end and segment_index + 1 < len(source.segments):
+        if point == segment.t_end and segment_index + 1 < len(transmitter.segments):
             left_index = segment_index
             right_index = segment_index + 1
             left_segment = segment
-            right_segment = source.segments[right_index]
+            right_segment = transmitter.segments[right_index]
         elif point == segment.t_start and segment_index > 0:
             left_index = segment_index - 1
             right_index = segment_index
-            left_segment = source.segments[left_index]
+            left_segment = transmitter.segments[left_index]
             right_segment = segment
         else:
             return False
@@ -1245,7 +1245,7 @@ def certify_causal_roots(
         status = "certified_complete"
 
     receiver_digest = receiver.digest()
-    transmitter_digest = source.digest()
+    transmitter_digest = transmitter.digest()
     digest_payload = "\n".join(
         (
             receiver_digest,
@@ -1278,7 +1278,7 @@ def certify_causal_roots(
         max_cells=max_cells,
         input_digest=sha256(digest_payload.encode("utf-8")).hexdigest(),
         receiver_history_id=receiver.history_id,
-        transmitter_history_id=source.history_id,
+        transmitter_history_id=transmitter.history_id,
         receiver_history_digest=receiver_digest,
         transmitter_history_digest=transmitter_digest,
         visited_cells=visited_cells,

@@ -173,20 +173,20 @@ export function calculateBorgInertialHistoryDepth(
     throw new RangeError("Borg inertial history coverage requires positive field speed and sample interval.");
   }
   let delayUpperBound = 0;
-  let maximumSourceSpeed = 0;
+  let maximumTransmitterSpeed = 0;
   endpointRows.forEach((receiver) => {
-    endpointRows.forEach((source) => {
-      const sourceSpeed = vectorMagnitude(source.velocity);
-      if (!(sourceSpeed < speed)) {
+    endpointRows.forEach((transmitter) => {
+      const transmitterSpeed = vectorMagnitude(transmitter.velocity);
+      if (!(transmitterSpeed < speed)) {
         throw new RangeError(
-          `Borg inertial initial history requires sub-field source speed for path ${source.pathKey}.`,
+          `Borg inertial initial history requires sub-field transmitter speed for path ${transmitter.pathKey}.`,
         );
       }
-      maximumSourceSpeed = Math.max(maximumSourceSpeed, sourceSpeed);
-      const separation = vectorDistance(receiver.position, source.position);
+      maximumTransmitterSpeed = Math.max(maximumTransmitterSpeed, transmitterSpeed);
+      const separation = vectorDistance(receiver.position, transmitter.position);
       delayUpperBound = Math.max(
         delayUpperBound,
-        separation / (speed - sourceSpeed),
+        separation / (speed - transmitterSpeed),
       );
     });
   });
@@ -194,7 +194,7 @@ export function calculateBorgInertialHistoryDepth(
   if (Number.isFinite(separationBound) && separationBound > 0) {
     delayUpperBound = Math.max(
       delayUpperBound,
-      separationBound / (speed - maximumSourceSpeed),
+      separationBound / (speed - maximumTransmitterSpeed),
     );
   }
   return Number((Math.ceil((delayUpperBound + margin) / interval) * interval).toFixed(12));

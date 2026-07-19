@@ -83,13 +83,14 @@ The certified acceleration layer lives in
 [scripts/eom/oracle/certified_acceleration.py](../../../scripts/eom/oracle/certified_acceleration.py).
 For `eom_independent_oracle/v0` it provides:
 
-- sharp-chart acceleration rows only from a `certified_complete` root ledger
+- sharp-chart acceleration records only from a `certified_complete` root ledger
   whose retained search reaches the receiver time;
 - independent re-evaluation and intersection of each transmitter-side-factor enclosure,
   with a positive declared transversality floor;
-- receiver-side-factor strength $|D_T/D_s|$, signed charge product, and the frozen
-  unregularized inverse-square vector law without a velocity clamp;
-- a finite-width pair row obtained by adaptive interval quadrature over the
+- transmitter-side acceleration weight $c_f/|D_t|$, signed charge product, and the frozen
+  unregularized inverse-square vector law without a velocity clamp, with $D_r/D_t$
+  retained separately as signed root playback;
+- a finite-width pair record obtained by adaptive interval quadrature over the
   complete declared retained interval using the frozen Gaussian causal
   mollifier and smooth radial core kernel;
 - the complete-vector zero extension at coordinate coincidence, bounded by
@@ -102,7 +103,7 @@ For `eom_independent_oracle/v0` it provides:
   with structural rejection of missing, duplicate, or extraneous pairs;
 - batch consistency checks for precision, coupling, field speed, receiver
   times, path-history digests, and charges;
-- receiver totals reconstructed solely by summing the emitted certified rows;
+- receiver totals reconstructed solely by summing the emitted certified records;
 - durable `eom_pair_acceleration_certificate/v0` and
   `eom_acceleration_reconstruction_certificate/v0` records with exact-decimal
   bounds, numeric policy, and input-sensitive provenance digests.

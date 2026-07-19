@@ -300,7 +300,7 @@ class NativeHistoryLayerTests(unittest.TestCase):
                 for transmitter_index in range(node["transmitter_begin"], node["transmitter_end"]):
                     oracle = certify_causal_roots(
                         receiver=receivers[receiver_index],
-                        source=sources[transmitter_index],
+                        transmitter=sources[transmitter_index],
                         reception_time="4",
                         field_speed="1",
                         search_lower=str(lower),
@@ -323,7 +323,7 @@ class NativeHistoryLayerTests(unittest.TestCase):
         for receiver_index, transmitter_index in sorted(exact_pairs):
             oracle = certify_causal_roots(
                 receiver=receivers[receiver_index],
-                source=sources[transmitter_index],
+                transmitter=sources[transmitter_index],
                 reception_time="4",
                 field_speed="1",
                 search_lower="0",
@@ -420,7 +420,7 @@ class NativeHistoryLayerTests(unittest.TestCase):
                 for transmitter_index in range(node["transmitter_begin"], node["transmitter_end"]):
                     oracle = certify_causal_roots(
                         receiver=receivers[receiver_index],
-                        source=sources[transmitter_index],
+                        transmitter=sources[transmitter_index],
                         reception_time="2",
                         field_speed="1",
                         search_lower=str(lower),
@@ -443,7 +443,7 @@ class NativeHistoryLayerTests(unittest.TestCase):
         for receiver_index, transmitter_index in sorted(exact_pairs):
             oracle = certify_causal_roots(
                 receiver=receivers[receiver_index],
-                source=sources[transmitter_index],
+                transmitter=sources[transmitter_index],
                 reception_time="2",
                 field_speed="1",
                 search_lower="0",
@@ -513,7 +513,7 @@ class NativeHistoryLayerTests(unittest.TestCase):
             with self.subTest(row_id=row_id):
                 oracle = certify_causal_roots(
                     receiver=target,
-                    source=source,
+                    transmitter=source,
                     reception_time=reception,
                     field_speed="1",
                     search_lower=lower,
@@ -621,7 +621,7 @@ class NativeHistoryLayerTests(unittest.TestCase):
         )
         oracle = certify_causal_roots(
             receiver=receiver,
-            source=source,
+            transmitter=source,
             reception_time="0.5",
             field_speed="1",
             search_lower="-0.5",
@@ -694,7 +694,7 @@ class NativeHistoryLayerTests(unittest.TestCase):
         )
         oracle = certify_causal_roots(
             receiver=receiver,
-            source=source,
+            transmitter=source,
             reception_time="0.000000002",
             field_speed="1",
             search_lower="-0.000000020",
@@ -777,7 +777,7 @@ class NativeHistoryLayerTests(unittest.TestCase):
         )
         oracle = certify_causal_roots(
             receiver=retained,
-            source=retained,
+            transmitter=retained,
             reception_time="2",
             field_speed="1",
             search_lower="0",
@@ -844,7 +844,7 @@ class NativeHistoryLayerTests(unittest.TestCase):
         )
         oracle = certify_causal_roots(
             receiver=receiver,
-            source=source,
+            transmitter=source,
             reception_time="1",
             field_speed="1",
             search_lower="-1",
@@ -919,7 +919,7 @@ class NativeHistoryLayerTests(unittest.TestCase):
         )
         oracle = certify_causal_roots(
             receiver=receiver,
-            source=source,
+            transmitter=source,
             reception_time="2.3",
             field_speed="1",
             search_lower="1",

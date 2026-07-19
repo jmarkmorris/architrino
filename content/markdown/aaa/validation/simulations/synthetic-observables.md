@@ -17,14 +17,14 @@ A $\mathbb{U}_{\text{now}}$ is defined by:
   - Local potential $\Phi(\mathbf X_k,T)$
   - Local gradient $\nabla_{\mathbf X}\Phi(\mathbf X_k,T)$ (force proxy)
   - Optional local Noether sea state variables (e.g., $\rho_{\text{NS}}$, alignment/orientation metrics)
-  - Causal wake surface provenance/event tags: for each received contribution at $(\mathbf X_k,T_r)$, record `emitter_id` together with $T_t$, satisfying $\| \mathbf X_k - \mathbf X_{\text{emitter}}(T_t)\| = c_f (T_r - T_t)$
+  - Causal wake surface provenance/event tags: for each received contribution at $(\mathbf X_k,T_r)$, record `transmitter_id` together with $T_t$, satisfying $\| \mathbf X_k - \mathbf X_{\text{transmitter}}(T_t)\| = c_f (T_r - T_t)$
   - Photon packet provenance when a radiation channel is declared: transmitter event, path segment, before/after frequency, recoil or medium-energy exchange, remnant row, and signed exchange residual
   - Optional finite-window operator diagnostics for declared reconstructed channels $\mathbf{Y}_\eta$, including Gauss, Stokes, and wake-surface normalization residuals
 
 ### Minimal synthetic products
 - Time series: $\Phi(T)$, $\nabla_{\mathbf X}\Phi(T)$ at fixed points ("stationary detectors")
 - Snapshot field maps: $\Phi(\mathbf X,T_\ast)$, $\nabla_{\mathbf X}\Phi(\mathbf X,T_\ast)$ over grids at fixed $T_\ast$
-- Provenance tables: `receiver_id`, $T_r$, `emitter_id`, $T_t$, `contribution_strength`
+- Provenance tables: `receiver_id`, $T_r$, `transmitter_id`, $T_t$, `contribution_strength`
 - Propagation diagnostics: arrival-time distributions, dispersion tests, effective $c_{\text{eff}}$ estimates
 - Coarse kinetic moments when a continuum reduction is claimed: density, current, momentum-current tensor, energy-flux vector, and memory-current residuals derived from the same event-root records
 - Stochastic summaries when a noise model is claimed: drift vector, diffusion tensor, first two distribution moments, and direct ensemble comparison against event-root histories
@@ -245,4 +245,4 @@ until thresholds are met.
 
 * **Virtual Sensor:** Implementation of the $\mathbb{U}_{\text{now}}$ universe-state perspective. Samples potential/gradient at fixed coordinates.
 * **Post-Processing:** Convert Virtual Sensor data (Ground Truth) into Physical Observer data (what a moving clock measures).
-* **Provenance:** Track emitter ID and emission time for every potential contribution at a grid point.
+* **Provenance:** Track transmitter identity and emission time for every potential contribution at a grid point.

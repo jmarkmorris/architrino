@@ -438,11 +438,11 @@ def _verify_root_provenance(request: PairAccelerationRequest) -> None:
     if certificate.receiver_history_id != request.receiver_history.history_id:
         raise AccelerationCertificationError("receiver history identity mismatch")
     if certificate.transmitter_history_id != request.transmitter_history.history_id:
-        raise AccelerationCertificationError("source history identity mismatch")
+        raise AccelerationCertificationError("transmitter history identity mismatch")
     if certificate.receiver_history_digest != request.receiver_history.digest():
         raise AccelerationCertificationError("receiver history digest mismatch")
     if certificate.transmitter_history_digest != request.transmitter_history.digest():
-        raise AccelerationCertificationError("source history digest mismatch")
+        raise AccelerationCertificationError("transmitter history digest mismatch")
     if certificate.searched_upper != certificate.reception_time:
         raise AccelerationCertificationError(
             "acceleration requires root coverage through reception time"
@@ -450,7 +450,7 @@ def _verify_root_provenance(request: PairAccelerationRequest) -> None:
     if certificate.reception_time > request.receiver_history.t_end:
         raise AccelerationCertificationError("receiver history lacks reception state")
     if certificate.searched_lower < request.transmitter_history.t_start:
-        raise AccelerationCertificationError("source history lacks search boundary")
+        raise AccelerationCertificationError("transmitter history lacks search boundary")
 
 
 def _signed_charge_scale(request: PairAccelerationRequest) -> DecimalInterval:

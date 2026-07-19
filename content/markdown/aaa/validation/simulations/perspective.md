@@ -11,8 +11,8 @@ We work throughout in units with primitive wake speed $c_f=1$; per-hit accelerat
 ## Delayed Emission and Transmitter-Side Acceleration
 
 - What we assume:
-- Sources emit potential on expanding causal isochrons with surface density $\propto 1/r^2$, represented distributionally by $\delta(r-\tau)$ with $\tau = t - t_0$.
-  - Each causal hit is directed along $\hat{\mathbf{r}}$ from the source history point to the receiver, with received magnitude weighted by $W^{\mathrm{acc}}=c_f/\lvert D_t\rvert$.
+- Transmitters emit potential on expanding causal isochrons with surface density $\propto 1/r^2$, represented distributionally by $\delta(r-\tau)$ with $\tau = t - t_0$.
+  - Each causal hit is directed along $\hat{\mathbf{r}}$ from the transmitter's emission point to the receiver, with received magnitude weighted by $W^{\mathrm{acc}}=c_f/\lvert D_t\rvert$.
 
 - Why it matters:
   - Gauss-like behavior follows immediately ($1/r^2$ on causal wake fronts).
@@ -26,7 +26,7 @@ We work throughout in units with primitive wake speed $c_f=1$; per-hit accelerat
 ## Constant per-wavefront emission 
 
 - What we assume:
-  - Emission cadence and per-wavefront amplitude are constant at the source.
+  - Emission cadence and per-wavefront amplitude are constant at the transmitter.
 
 - Why it matters:
   - Simplifies calibration and emphasizes that stability and scale selection arise from delay and self-interaction. Transmitter motion supplies the transmitter-side factor, receiver motion supplies the receiver-side factor and also enters instantaneous power via $\mathbf{F}\cdot\mathbf{v}$ through the radial component $v_r$.
@@ -148,7 +148,7 @@ Plain language summary: radial hits, time delay, constant per-wavefront amplitud
 
 Premise: single-hit information is sparse. At an instant, a receiver learns only (i) the net magnitude of the push and (ii) an unoriented line of action through its current position. The $\mathbb{U}_{\text{now}}$ universe-state perspective can include the full transmitter-tagged emission ledger as complete-state bookkeeping, but a local receiver or Physical Observer cannot infer that hidden ledger from a single hit.
 
-- Emission ledger (microstate): the set of tuples $(T_t,\mathbf X_j(T_t),\mathbf V_j(T_t),q_j)$ over all sources $j$ that causally affect the receiver.
+- Emission ledger (microstate): the set of tuples $(T_t,\mathbf X_j(T_t),\mathbf V_j(T_t),q_j)$ over all transmitters $j$ that causally affect the receiver.
 - Observational map: ledgers map to histories of hits $\{A(t_k),L(t_k)\}$ across one or more receivers and over time.
 - Observational equivalence: two ledgers are equivalent if they induce indistinguishable hit histories at the chosen resolution (including mollifier width $\eta$, temporal sampling, and receiver geometry).
 
@@ -160,7 +160,7 @@ Premise: single-hit information is sparse. At an instant, a receiver learns only
   - Use: these fields are the natural inputs/targets for grid-based PDE runs and for validating event-driven simulations in aggregate.
 
 Observability axioms:
-- A1 Single-hit observables are magnitude $A$ and an unoriented line $L$; orientation along $L$, transmitter identity, distance $r$, and emitter speed $\|\mathbf{v}_{\mathrm{em}}\|$ are not individually observable at an instant.
+- A1 Single-hit observables are magnitude $A$ and an unoriented line $L$; orientation along $L$, transmitter identity, distance $r$, and transmitter speed $\|\mathbf{V}_t\|$ are not individually observable at an instant.
 - A2 All practical observables are functionals of hit histories across time and receivers; unique micro inversion is generically impossible.
 - A3 An effective “state” is a probability measure over observationally equivalent ledger classes, updated as new hits arrive.
 
@@ -175,20 +175,20 @@ Plain language: a receiver never sees the full ledger of who emitted what; it se
 
 Absolute time and Euclidean frames remove coordinate ambiguity (synchronization and alignment) but not physical ambiguity:
 - Sign/side ambiguity: attraction from +$\epsilon$ on one side vs repulsion from −$\epsilon$ on the opposite side along the same line remain indistinguishable at an instant.
-- Baseline distance scaling plus receiver-side modulation: $A \propto W^{\mathrm{acc}}/r^2$; source speed affects causal-root timing through $D_t$, while receiver motion enters received per-hit strength through $D_r$.
-- Collinear superposition: several sources along the same unoriented line can sum to the same instantaneous A and L.
-- Self-hit aliasing: self-intersections can mimic external sources along L.
-- Surrogate location recast: any instantaneous hit may be recast to a stationary surrogate source placed somewhere along L with an adjusted emission time; useful for inference and visualization, but it does not resolve the sign/side ambiguity or fix distance without temporal data.
+- Baseline distance scaling and branch geometry: $A\propto W^{\mathrm{acc}}/r^2$; transmitter motion sets $D_t$ and the arriving acceleration weight, while receiver motion enters root playback through $D_r/D_t$ and changes future geometry.
+- Collinear superposition: several transmitters along the same unoriented line can sum to the same instantaneous $A$ and $L$.
+- Self-hit aliasing: self-intersections can mimic external transmitters along $L$.
+- Surrogate location recast: any instantaneous hit may be recast to a stationary surrogate transmitter placed somewhere along $L$ with an adjusted emission time; useful for inference and visualization, but it does not resolve the sign/side ambiguity or fix distance without temporal data.
 
 Consequence: embedded observers and synthetic detector records must reason statistically over ledger classes. The $\mathbb{U}_{\text{now}}$ universe-state perspective can compare those classes against the complete ledger, but the observer-accessible data remain many-to-one; “quantum-like” observability is not a contradiction but a necessity.
 
 ---
 
-## Single-source multi-hit nuance vs universal superposition
+## Single-transmitter multi-hit nuance vs universal superposition
 
-Even for a single source, the receiver cannot be sure that a given shove did not come from multiple distinct emission times $t_0 \in \mathcal{C}_{o'j}(t)$ on that same source. When $\|\mathbf{v}_j\| > 1$ or the source trajectory curves, several roots of $r = v(t - t_0)$ can occur and arrive in close succession along the same unoriented line of action, contributing separate per-hit pushes that are locally indistinguishable as to origin.
+Even for a single transmitter, the receiver cannot be sure that a given acceleration did not come from multiple distinct emission times $t_0\in\mathcal{C}_{o'j}(t)$ on that same transmitter. When $\|\mathbf{v}_j\|>1$ or the transmitter trajectory curves, several roots of $r=v(t-t_0)$ can occur and arrive in close succession along the same unoriented line of action, contributing separate per-hit accelerations that are locally indistinguishable as to origin.
 
-However, this is not the dominant practical difficulty. The governing issue is global superposition: at any instant the net field is the linear sum of contributions from all architrinos in the universe whose causal isochrons intersect the receiver “now.” While inverse-square surface dilution and transmitter-side acceleration weight usually make nearby sources dominate, the mapping from the universal emission ledger to observed hit histories remains vastly many-to-one. Consequently, inference must be temporal, statistical, and multi-view, not a frame-perfect instantaneous inversion.
+However, this is not the dominant practical difficulty. The governing issue is global superposition: at any instant the net acceleration is the linear sum of contributions from all architrinos in the universe whose causal isochrons intersect the receiver now. While inverse-square surface dilution and transmitter-side acceleration weight usually make nearby transmitters dominate, the mapping from the universal emission ledger to observed hit histories remains vastly many-to-one. Consequently, inference must be temporal, statistical, and multi-view, not a frame-perfect instantaneous inversion.
 
 ---
 
@@ -205,7 +205,7 @@ Plain language: a present intervention changes which pushes will be recorded lat
 ## Interference and amplitude-squared from planar-mode overlap
 
 Linear superposition at the isochron level plus coherent geometry yields interference-like patterns in aggregates:
-- Photon planar-mode ledgers from multiple sources add linearly at the effective-amplitude level; a detector that integrates over a small time window and area effectively accumulates a complex amplitude $A_{\mathrm{mode}}$ from coherent sub-bundles.
+- Photon planar-mode ledgers from multiple transmitters add linearly at the effective-amplitude level; a detector that integrates over a small time window and area effectively accumulates a complex amplitude $A_{\mathrm{mode}}$ from coherent sub-bundles.
 - Intensity emerges as an overlap norm proportional to $|A_{\mathrm{mode}}|^2$ under time/ensemble averaging of phase-like structure encoded by path histories.
 - Polarization example (already used): Malus’s law arises as a geometric projection of a planar mode's transverse ledger onto an analyzer axis, giving $\cos^2\theta$ transmission without right-hand-rule magnetism.
 
@@ -217,10 +217,10 @@ Plain language: aligned planar-mode records add, misaligned ones cancel, and the
 
 Instantaneous inversion is ill-posed; reconstruction is temporal, multi-view, and prior-guided:
 - Multi-receiver geometry: use separated receivers to triangulate unoriented lines at the same t; intersecting rays yield two-sided candidate loci.
-- Time-series constraints: track L(t) and timing-derived r(t) proxies; curvature and rotation of L constrain source paths.
+- Time-series constraints: track $L(t)$ and timing-derived $r(t)$ proxies; curvature and rotation of $L$ constrain transmitter paths.
 - Active probing: vary receiver motion/filters to sample different roots and break degeneracies.
 - Priors: charge inventories, speed bounds, assembly templates (e.g., binaries, planar-mode statistics) shrink the hypothesis space.
-- Estimation: run Bayesian filters or particle sets over ledger classes; update with each hit; report identifiability and uncertainty, not single-point “sources.”
+- Estimation: run Bayesian filters or particle sets over ledger classes; update with each hit; report identifiability and uncertainty, not single-point transmitters.
 
 ---
 
@@ -241,7 +241,7 @@ Instantaneous inversion is ill-posed; reconstruction is temporal, multi-view, an
 ## Falsifiable edges and tests (observability-focused)
 
 - Context order test: demonstrate order-dependent transmission with sequential analyzers on coherent planar modes; quantify the asymmetry F∘G vs G∘F.
-- Planar-mode interference robustness: map how partial decoherence (deliberate jitter in source paths) suppresses the overlap term; compare to predicted $|A|^2$ decay with coherence length.
+- Planar-mode interference robustness: map how partial decoherence (deliberate jitter in transmitter paths) suppresses the overlap term; compare to predicted $|A|^2$ decay with coherence length.
 - Multi-receiver triangulation under ambiguity: show that two-sided localization from unoriented lines plus time series reduces, but does not eliminate, sign/side and distance–speed degeneracies—matching Step 9 limits.
 - Bell-type correlation target (open): assess whether planar-mode phase models with absolute time can reproduce observed $\cos(2\theta)$ correlations across separated analyzers without hidden cross-product forces; treat Tsirelson-like bounds as a stringent benchmark.
 

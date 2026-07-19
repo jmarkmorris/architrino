@@ -183,7 +183,7 @@ and the architrino is the transmitter of the causal wake surface emitted at $T_t
 
 **Dynamical role:**
 - On any interval with strict sub-field-speed motion, self-hit is absent by the triangle-inequality root test, unless older path-history emissions from a prior super-field-speed interval remain active.
-- As velocities exceed $c_f$ on curved histories, emission isochrons can catch up with the emitter's future positions, generating candidate nonlocal feedback and effective restoring or destabilizing accelerations depending on configuration.
+- As velocities exceed $c_f$ on curved histories, emission isochrons can catch up with the transmitter's future positions, generating candidate nonlocal feedback and effective restoring or destabilizing accelerations depending on configuration.
 - In generic trajectories, once an architrino has exceeded $c_f$ and emitted wakes in that regime, it can later slow below $c_f$ and still experience self-hits from those earlier emissions (see **Status** at top for the non-Markovian/path-history caveat).
 - For binary and Noether braid assemblies, repeated self-hit events are the proposed mechanism that can prevent collapse, lock in stable radii and frequencies, and create new limit cycles and attractors.
 
@@ -534,7 +534,7 @@ $$
 
 #### Explicit Circular Jacobians
 
-For the symmetric circular geometry, the emitter velocities can be resolved exactly against the line-of-action directions:
+For the symmetric circular geometry, the transmitter velocities can be resolved exactly against the line-of-action directions:
 $$
 \mathbf V_{\text{self}}(T_t)\cdot \hat{u}_s = s\cos(\delta_s/2),
 \qquad
@@ -1439,12 +1439,11 @@ F_i(\phi) = \sum_{j} \kappa \sigma_{ij} |q_i q_j| \int_{-h}^0 \frac{\phi_i(0) - 
 $$
 **Crucial Property:** For $\eta > 0$ and smooth $\delta_\eta$, this integral operator maps $C^1$ histories to continuous accelerations.
 
-This finite-$\eta$ functional is a transmitter-side certification surrogate unless
-the kernel also carries the receiver-side factor. When its sharp-limit
-branch reduction is used as a canonical acceleration contribution, each retained root
-must be corrected by the same-root factor $D_{r,ij}/c_f$ in magnitude
-(equivalently by $W_{ij}^{\mathrm{acc}}=c_f/\lvert D_{t,ij}\rvert$ after
-the delta collapse supplies the transmitter-side factor).
+This finite-$\eta$ functional is a certification surrogate until its sharp-limit
+branch reduction reproduces the canonical transmitter-side acceleration weight.
+Each retained simple root must carry $W_{ij}^{\mathrm{acc}}=c_f/\lvert D_{t,ij}\rvert$.
+The same record also carries $D_{r,ij}/D_{t,ij}$ for signed root playback, but that
+ratio does not multiply the instantaneous acceleration.
 
 On $\mathcal{H}_*$ this same formula is interpreted through the finite-$\eta$ integral first. The admissibility claim is weaker: the packet must show bounded velocity and finite total impulse across the grazing chart before it can pass to the $\eta\to0$ limit.
 

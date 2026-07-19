@@ -98,7 +98,7 @@ def oracle_baseline(iterations: int) -> dict[str, Any]:
     def certify() -> Any:
         return certify_causal_roots(
             receiver=receiver,
-            source=source,
+            transmitter=source,
             reception_time="5",
             field_speed="1",
             search_lower="0",

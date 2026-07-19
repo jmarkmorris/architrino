@@ -233,7 +233,7 @@ test("equation mapping search includes subject, formula text, anchors, and overl
   const documents = createSeedEquationMapDocuments();
   assert.equal(filterEquationMapDocuments(documents, "AAA native").length >= 1, true);
   assert.equal(filterEquationMapDocuments(documents, "Lorentz factor").length >= 1, true);
-  assert.equal(filterEquationMapDocuments(documents, "receiver-weighted").length >= 1, true);
+  assert.equal(filterEquationMapDocuments(documents, "transmitter-side").length >= 1, true);
   assert.equal(filterEquationMapDocuments(documents, "redshift factor").length >= 1, true);
   assert.equal(filterEquationMapDocuments(documents, "not-present").length, 0);
 });
@@ -1436,14 +1436,14 @@ test("equation mapping editor updates anchor labels and formula TeX", () => {
   );
   const nextDocument = normalizeEquationMapDocument(
     updateEquationAnchor(document, "branchStrength", {
-      label: "receiver-weighted acceleration factor",
+      label: "transmitter-side acceleration factor",
       tex: "W^{\\mathrm{acc}}",
       searchText: "retained branch ledger",
     })
   );
   const sourceAnchor = nextDocument.anchors.find((anchor) => anchor.id === "branchStrength");
 
-  assert.equal(sourceAnchor.label, "receiver-weighted acceleration factor");
+  assert.equal(sourceAnchor.label, "transmitter-side acceleration factor");
   assert.equal(sourceAnchor.searchText, "retained branch ledger");
   assert.equal(getFormulaPartTeXForAnchor(nextDocument, "branchStrength"), "W^{\\mathrm{acc}}");
   assert.equal(nextDocument.formulaTeX.includes("W^{\\mathrm{acc}}"), true);

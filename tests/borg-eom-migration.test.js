@@ -268,7 +268,7 @@ test("Borg EOM accepts individual polarity counts through a continuous prescribe
   assert.equal(histories[0].sourceClaimLevel, BORG_PRESCRIBED_INITIAL_HISTORY_CLAIM_LEVEL);
 });
 
-test("Borg computes artificial-history depth from causal separation and source speed", () => {
+test("Borg computes artificial-history depth from causal separation and transmitter speed", () => {
   const rows = [
     {
       pathKey: 1,
@@ -292,7 +292,7 @@ test("Borg computes artificial-history depth from causal separation and source s
       position: { x: 0, y: 0, z: 0 },
       velocity: { x: 1, y: 0, z: 0 },
     }]),
-    /requires sub-field source speed/,
+    /requires sub-field transmitter speed/,
   );
 });
 

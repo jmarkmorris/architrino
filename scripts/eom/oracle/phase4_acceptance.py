@@ -572,9 +572,9 @@ class EventImpulseRequest:
         if self.reception_lower < self.receiver_history.t_start or self.reception_upper > self.receiver_history.t_end:
             raise ValueError("event impulse reception window is outside receiver history")
         if self.search_lower < self.transmitter_history.t_start or self.search_lower >= self.reception_lower:
-            raise ValueError("event impulse requires retained source history before the event")
+            raise ValueError("event impulse requires retained transmitter history before the event")
         if self.reception_upper > self.transmitter_history.t_end:
-            raise ValueError("event impulse source history must cover the reception window")
+            raise ValueError("event impulse transmitter history must cover the reception window")
         if self.receiver_charge == 0 or self.transmitter_charge == 0:
             raise ValueError("event impulse charges must be nonzero")
         if min(

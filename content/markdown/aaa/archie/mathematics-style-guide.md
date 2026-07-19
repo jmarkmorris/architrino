@@ -134,7 +134,8 @@ Plain language: Objects move as dots in 3D through successive instants; speeds a
   $$
 - Conventions:
   - $H(0)=0$ (no instantaneous self-kick).
-  - No $r=0$ causal roots beyond $\Delta_{o'j}=0$: because $r = v(T - T_t)$, $r=0$ implies $\Delta_{o'j}=0$; that coincident-time case is excluded by $H(0)=0$. Under mollification, the symmetric limit as $r\to 0$ yields zero net push.
+  - No $r=0$ causal roots exist beyond $\Delta_{r\leftarrow t}=0$: because $r=v(T_r-T_t)$, $r=0$ implies $T_r=T_t$; that coincident-time case is excluded by $H(0)=0$.
+  - This exclusion does not supply a continuation through a coincident same-transmitter root birth. Such a singular event remains fail closed until one finite transition rule certifies its root ledger and conserved accounts.
 
 Plain language: A push now only happens if a past causal wake surface has had exactly enough time to reach the receiver.
 
@@ -263,10 +264,10 @@ Plain language: With slightly thick causal wake surfaces, the optional force-boo
 - In axial-inventory and weak-coupling-triad counts, write signed polarity units as $\epsilon_+$ and $\epsilon_-$, for example $5\epsilon_+ + 1\epsilon_-$. Do not use initial-letter polarity shorthand for these inventories.
 - $\kappa>0$ universal coupling.
 - $\eta>0$ mollifier width (regularization parameter).
-- Emission cadence and per-wavefront amplitude are constant. Receiver-side velocity enters the branch strength through $D_r$ and enters instantaneous power through $\,\mathbf{F}\cdot\mathbf V = \|\mathbf{F}\|\,V_r$.
+- Emission cadence and per-wavefront amplitude are constant. Receiver-side velocity enters signed root playback through $D_r/D_t$ and instantaneous power through the radial factor $\mathbf A\cdot\mathbf V=\|\mathbf A\|V_{r,\parallel}$; it does not multiply the instantaneous acceleration weight.
 - $r$, $\hat{\mathbf{r}}$ as above; $H$ is the Heaviside step function with $H(0)=0$.
 
-Plain language: Fix units so the field speed is one; use $\epsilon$ as the basic polarity unit; emission cadence and per-wavefront amplitude are constant; receiver motion changes received branch strength through $D_r$ and power through radial velocity.
+Plain language: Fix units so the field speed is one; use $\epsilon$ as the basic polarity unit; transmitter motion sets the arriving acceleration weight, while receiver motion changes root playback, future geometry, and instantaneous power.
 
 ---
 
@@ -287,7 +288,7 @@ Plain language: Fix units so the field speed is one; use $\epsilon$ as the basic
 - Notation for “now”: use $T_{\mathrm{now}}$ or a locally declared $T_\ast$ for a fixed native evaluation time; use $t_{\mathrm{eff,obs}}$ for effective observation time after an observer chart has been declared.
 - Canonical universe-now notation: use $\mathbb{U}_{\text{now}} \equiv S(T)$ for the complete ontic universe state; do not substitute alternate labels or glyph variants.
 - Emitters/receivers are individual architrinos; composite assemblies never emit or receive as wholes; their behavior emerges from constituent architrinos.
-- Use “surrogate location” to denote a stationary, hypothetical emitter placed on the receiver’s current unoriented line of action that reproduces the same instantaneous hit; use “surrogate-location recast” when referring to this rewriting.
+- Use “surrogate location” to denote a stationary, hypothetical transmitter placed on the receiver's current unoriented line of action that reproduces the same instantaneous hit; use “surrogate-location recast” when referring to this rewriting.
 - On first occurrence in a doc: “We work in units with field speed v=1 unless stated otherwise.”
 - KaTeX lint:
   - Use `$...$` inline math for short symbols or ratios in prose.

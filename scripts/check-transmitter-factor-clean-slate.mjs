@@ -59,6 +59,11 @@ function staleCanonPatterns() {
     /Source-Density Acceleration/gi,
     /W[^\n]{0,120}=\s*\\lvert\s*D_[^/\n]+\/D_[^\\\n]+\\rvert/g,
     /W[^\n]{0,160}=\s*\|D_[^/\n]+\/D_[^|\n]+\|/g,
+    /receiver(?:-side)? (?:velocity|motion|speed)[^\n.]{0,120}(?:branch strength|per-hit strength|hit strength)/gi,
+    /receiver-side (?:weighted|bunching|modulation) of delayed causal flux/gi,
+    /receiver-side factor makes the acceleration depend/gi,
+    /receiver-side factor over the floored transmitter-side factor/gi,
+    /same-root factor [^\n.]{0,40}D_\{r[^\n.]{0,80}in magnitude/gi,
   ];
 }
 

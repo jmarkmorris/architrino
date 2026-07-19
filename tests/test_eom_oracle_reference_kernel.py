@@ -40,7 +40,7 @@ class EomOracleReferenceKernelTests(unittest.TestCase):
         self.assertEqual(acceleration[1], 0)
         self.assertEqual(acceleration[2], 0)
 
-    def test_receiver_factor_rail_keeps_source_density_acceleration(self) -> None:
+    def test_receiver_factor_rail_keeps_transmitter_density_acceleration(self) -> None:
         rail_receiver = inertial_history((2, 0, 0), (1, 0, 0), epoch=5)
         transmitter_factor, receiver_factor, _, _ = normal_factors(
             rail_receiver, self.source, 5, 3, 1

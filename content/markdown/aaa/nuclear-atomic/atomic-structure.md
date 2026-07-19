@@ -296,7 +296,7 @@ K_\ell *
 \frac{
 \alpha_{j,X}(\mathbf X,T;T_t)
 \,
-W_{\mathbf Xj}^{\mathrm{rec},X}(T;T_t)
+W_{\mathbf Xj}^{\mathrm{acc},X}(T;T_t)
 }{
 r_{\mathbf Xj}^2
 },
@@ -304,7 +304,7 @@ r_{\mathbf Xj}^2
 f\in\{e,u_1,u_2,d\}
 $$
 
-The hydrogen channel decision is then not a free radius choice. It is the stability statement that the relevant exposure scan crosses the declared threshold while the same ambient branch-strength kernel uses $\zeta_{\mathrm{sea,H}}^{(\ell)}$ and the same-root receiver-side factor $W_{\mathbf Xj}^{\mathrm{rec},X}=\lvert D_{r,\mathbf Xj}^{(X)}/D_{t,\mathbf Xj}\rvert$. The channel probe state behind $D_{r,\mathbf Xj}^{(X)}$ is inherited from the interface diagnostic in [Braid Envelope Geometry](../noether-braid/braid-envelope-geometry.md#assembly-noether-sea-interface-diagnostic): void-stationary for clock and packing scans, the declared path velocity for penetration scans, and an explicitly declared probe velocity for moving corridor scans. Clock scans use the dimensionless phase/cadence/delay norm; corridor scans use orientation, provenance, and strong-sector ledger coherence; packing scans use exclusion magnitude and envelope-shape response; and penetration scans use signed path acceleration plus phase disruption before taking the scalar dominance norm. The same branch can therefore be weakly visible to clocks while still far below the packing or penetration thresholds.
+The hydrogen channel decision is then not a free radius choice. It is the stability statement that the relevant exposure scan crosses the declared threshold while the same ambient branch-strength kernel uses $\zeta_{\mathrm{sea,H}}^{(\ell)}$ and the same-root transmitter-side acceleration weight $W_{\mathbf Xj}^{\mathrm{acc},X}=c_f/\lvert D_{t,\mathbf Xj}\rvert$. The channel probe state behind $D_{r,\mathbf Xj}^{(X)}$ is inherited from the interface diagnostic in [Braid Envelope Geometry](../noether-braid/braid-envelope-geometry.md#assembly-noether-sea-interface-diagnostic) only for root playback and path-rate diagnostics: void-stationary for clock and packing scans, the declared path velocity for penetration scans, and an explicitly declared probe velocity for moving corridor scans. Clock scans use the dimensionless phase/cadence/delay norm; corridor scans use orientation, provenance, and strong-sector ledger coherence; packing scans use exclusion magnitude and envelope-shape response; and penetration scans use signed path acceleration plus phase disruption before taking the scalar dominance norm. The same branch can therefore be weakly visible to clocks while still far below the packing or penetration thresholds.
 
 Hydrogen-specific tolerance scales are fixed by the channel readout being protected. For a declared hydrogen channel readout $\mathcal O_{\mathrm H,X}^{(\ell)}$, the admissible tolerance pullback is
 

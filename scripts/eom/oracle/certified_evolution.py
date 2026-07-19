@@ -554,7 +554,7 @@ def certify_acceleration_snapshot(
             source = history_by_path[transmitter_id]
             root = certify_causal_roots(
                 receiver=receiver,
-                source=source,
+                transmitter=source,
                 reception_time=reception_time,
                 field_speed=request.field_speed,
                 search_lower=source.t_start,

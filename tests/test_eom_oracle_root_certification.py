@@ -71,7 +71,7 @@ class CertifiedRetainedHistoryRootTests(unittest.TestCase):
     ):
         return certify_causal_roots(
             receiver=self.receiver,
-            source=source,
+            transmitter=source,
             reception_time=reception,
             field_speed="1",
             search_lower=lower,
@@ -87,7 +87,7 @@ class CertifiedRetainedHistoryRootTests(unittest.TestCase):
         )
         certificate = certify_causal_roots(
             receiver=self.receiver,
-            source=stationary_source,
+            transmitter=stationary_source,
             reception_time="5",
             field_speed="1",
             search_lower="0",
@@ -125,7 +125,7 @@ class CertifiedRetainedHistoryRootTests(unittest.TestCase):
         )
         certificate = certify_causal_roots(
             receiver=receiver,
-            source=source,
+            transmitter=source,
             reception_time="1",
             field_speed="1",
             search_lower="-1",
@@ -298,7 +298,7 @@ class CertifiedRetainedHistoryRootTests(unittest.TestCase):
         )
         certificate = certify_causal_roots(
             receiver=self.receiver,
-            source=tangent_source,
+            transmitter=tangent_source,
             reception_time="3",
             field_speed="1",
             search_lower="0",
@@ -356,7 +356,7 @@ class CertifiedRetainedHistoryRootTests(unittest.TestCase):
         )
         certificate = certify_causal_roots(
             receiver=receiver,
-            source=source,
+            transmitter=source,
             reception_time="0.5",
             field_speed="1",
             search_lower="-0.5",
@@ -419,7 +419,7 @@ class CertifiedRetainedHistoryRootTests(unittest.TestCase):
         )
         slow = certify_causal_roots(
             receiver=self.receiver,
-            source=source,
+            transmitter=source,
             reception_time="5",
             field_speed="1",
             search_lower="0",
@@ -428,7 +428,7 @@ class CertifiedRetainedHistoryRootTests(unittest.TestCase):
         )
         fast = certify_causal_roots(
             receiver=self.receiver,
-            source=source,
+            transmitter=source,
             reception_time="5",
             field_speed="2",
             search_lower="0",
@@ -446,7 +446,7 @@ class CertifiedRetainedHistoryRootTests(unittest.TestCase):
         )
         certificate = certify_causal_roots(
             receiver=static_history,
-            source=static_history,
+            transmitter=static_history,
             reception_time="3",
             field_speed="1",
             search_lower="0",
@@ -471,7 +471,7 @@ class CertifiedRetainedHistoryRootTests(unittest.TestCase):
         )
         certificate = certify_causal_roots(
             receiver=fast_history,
-            source=fast_history,
+            transmitter=fast_history,
             reception_time="3",
             field_speed="1",
             search_lower="0",
@@ -502,7 +502,7 @@ class CertifiedRetainedHistoryRootTests(unittest.TestCase):
         )
         certificate = certify_causal_roots(
             receiver=enclosed_history,
-            source=enclosed_history,
+            transmitter=enclosed_history,
             reception_time="3",
             field_speed="1",
             search_lower="0",
@@ -520,7 +520,7 @@ class CertifiedRetainedHistoryRootTests(unittest.TestCase):
         )
         certificate = certify_causal_roots(
             receiver=rail_history,
-            source=rail_history,
+            transmitter=rail_history,
             reception_time="3",
             field_speed="1",
             search_lower="0",

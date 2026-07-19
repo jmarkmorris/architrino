@@ -265,7 +265,7 @@ If those quantities remain deterministic functions of transmitter history, the f
 
 The transmitter-side decision has two different standings, and they must not be merged into one verdict.
 
-The receiver-factor correction is ready for scoped promotion: uniform emission gives $c_f/|D_t|$, receiver playback $D_r/D_t$ does not justify multiplying base acceleration by $|D_r|/c_f$, the first-order static-transmitter discriminator agrees, and ordinary folds have a finite integrated acceleration. At a receiver turning point with $D_r=0$ and $D_t\ne0$, the root remains present and the transmitter-side acceleration remains finite.
+The receiver-factor correction is implemented and validated within its scoped promotion boundary: uniform emission gives $c_f/|D_t|$, receiver playback $D_r/D_t$ does not justify multiplying base acceleration by $|D_r|/c_f$, the first-order static-transmitter discriminator agrees, and ordinary folds have a finite integrated acceleration. At a receiver turning point with $D_r=0$ and $D_t\ne0$, the root remains present and the transmitter-side acceleration remains finite.
 
 The complete Master Equation is not globally closed. Two fundamental debts remain negative under the current primitive set:
 

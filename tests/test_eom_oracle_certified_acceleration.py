@@ -53,7 +53,7 @@ def roots(
 ):
     return certify_causal_roots(
         receiver=receiver,
-        source=source,
+        transmitter=source,
         reception_time=reception,
         field_speed="1",
         search_lower=lower,
@@ -161,7 +161,7 @@ class CertifiedAccelerationTests(unittest.TestCase):
             PRECISION,
         )
 
-    def test_receiver_on_field_speed_rail_keeps_source_density_acceleration(self) -> None:
+    def test_receiver_on_field_speed_rail_keeps_transmitter_density_acceleration(self) -> None:
         receiver = history(
             "rail-receiver",
             segment(t_start="0", t_end="5", x=("-3", "1", "0", "0")),

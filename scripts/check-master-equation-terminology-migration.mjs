@@ -42,7 +42,7 @@ const FORBIDDEN_PATTERNS = [
   {
     pattern: /\breceiver-normal\b/gi,
     label: "receiver-normal",
-    reason: "name the receiver-side role or receiver-weighted acceleration explicitly",
+    reason: "use receiver-side factor for D_r or signed root playback for D_r/D_t",
   },
   {
     pattern: /\bsource-normal\b/gi,
@@ -52,12 +52,18 @@ const FORBIDDEN_PATTERNS = [
   {
     pattern: /W\^\{\\mathrm\{rec\}\}/g,
     label: "W^{\\mathrm{rec}}",
-    reason: "use W^{\\mathrm{acc}} for the receiver-weighted acceleration factor",
+    reason: "use W^{\\mathrm{acc}} for the transmitter-side acceleration weight",
   },
   {
     pattern: /\bacceleration rows?\b/gi,
     label: "acceleration row",
     reason: "name the actual acceleration contribution or acceleration law",
+  },
+  {
+    pattern: /\bemitter_id\b/g,
+    label: "emitter_id",
+    reason: "use transmitter_id for causal-hit provenance",
+    includeFiles: [/^(content\/markdown\/aaa|reference\/archie|src\/apps|src\/prescribed-path-analysis)\//],
   },
   {
     pattern: /\b(?:receiver|reception) time \$T\$|\breceiver[^.\n]{0,40} at (?:absolute )?time \$T\$/g,

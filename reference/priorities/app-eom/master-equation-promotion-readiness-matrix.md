@@ -77,4 +77,4 @@ The global-closure work requires theory choices or new derivations. It cannot be
 
 ## Disposition
 
-Promotion classification: **scoped receiver-factor correction implemented pending final publication validation; defer global same-transmitter continuation, conservation closure, and complete observer-level recovery**.
+Promotion classification: **scoped receiver-factor correction implemented and validated; defer global same-transmitter continuation, conservation closure, and complete observer-level recovery**.

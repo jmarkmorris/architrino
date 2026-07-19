@@ -131,7 +131,7 @@ def compare_trace(
             transmitter_id = row["transmitter_path_id"]
             oracle = certify_causal_roots(
                 receiver=histories[receiver_id],
-                source=histories[transmitter_id],
+                transmitter=histories[transmitter_id],
                 reception_time=reception,
                 field_speed=packet["field_speed"],
                 search_lower=row["searched_lower"],

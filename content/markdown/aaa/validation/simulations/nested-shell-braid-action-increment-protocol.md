@@ -187,8 +187,8 @@ Only a packet that also has small $\delta_h$ may promote `candidate_h_recovery`.
 | `nonpositive-floquet-gap` | an endpoint branch or transition continuation has $\Delta_{\mathbf{k}}\le0$ |
 | `phase-closure-open` | layer or inter-layer closure residuals exceed tolerance |
 | `root-ledger-instability` | active roots change under refinement or the self-hit parity condition fails |
-| `jacobian-floor-loss` | accepted near-boundary rows lose the declared minimum Jacobian floor |
-| `receiver-side-branch-strength-loss` | accepted rows lose the declared transmitter-side acceleration-weight floor or leave its certified interval (receiver-side null $W^{\mathrm{acc}}\to0$ or uncontrolled caustic $W^{\mathrm{acc}}\to\infty$) under refinement |
+| `jacobian-floor-loss` | accepted near-boundary records lose the declared minimum Jacobian floor |
+| `transmitter-acceleration-weight-loss` | accepted records lose the declared transmitter-side acceleration-weight floor or leave its certified interval because $D_t$ is uncertified, approaches a pole, or changes sign under refinement |
 | `field-speed-root-instability` | the approach-to-$c_f$ scan changes active-root identity, separator status, or branch status under refinement |
 | `nonuniform-action-spacing` | stable-cycle action increments split across the field-speed approach scan with no derived branch-class reason |
 | `energy-ledger-open` | $\mathcal{R}_E$ exceeds tolerance or the wake/root energy channel is unaccounted |

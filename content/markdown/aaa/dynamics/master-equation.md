@@ -108,7 +108,7 @@ $$
 \frac{f(T_t)}
 {\left|\partial_{T_t}g_{r\leftarrow t}(T_r;T_t)\right|}
 $$
-provided the active roots are simple. This transmitter-time collapse supplies the root-selection denominator. The full reception-time acceleration contribution must also account for how the receiver path crosses the same emitted wake sequence. For a simple branch $T_t=T_{t,\ell}(T_r)$, define
+provided the active roots are simple. This transmitter-time collapse supplies the root-selection denominator. The retained branch record must also track how the receiver path crosses the same emitted wake sequence, because that controls root playback as reception time changes. For a simple branch $T_t=T_{t,\ell}(T_r)$, define
 $$
 D_t
 \equiv
@@ -1066,7 +1066,7 @@ $$
 
 (Strict inequality $T_t<T_r$; no $T_t = T_r$ allowed.)
 
-**Physical justification:** The causal wake surface at the instant of emission ($r = 0$, $\Delta = 0$) has not yet expanded; it cannot produce self-acceleration on the emitter "now." This endpoint exclusion does not certify a finite transition when a nontrivial same-transmitter root is born from that endpoint.
+**Physical justification:** The causal wake surface at the instant of emission ($r=0$, $\Delta=0$) has not yet expanded; it cannot produce self-acceleration on the transmitter at that same event. This endpoint exclusion does not certify a finite transition when a nontrivial same-transmitter root is born from that endpoint.
 
 **No accepted $r = 0$ sharp roots:**
 
@@ -1677,7 +1677,7 @@ if the resulting radial acceleration is the same.
 
 #### Rest-Frame Recast (Useful Inference Device)
 
-Any single hit can be **equivalently described** with a **stationary emitter** ($\|\mathbf V\| = 0$) placed somewhere along the same unoriented line of action, with the emitter's actual speed at emission accounted for by an adjusted emission time and, if desired, a surrogate location along that line.
+Any single hit can be **equivalently described** with a **stationary surrogate transmitter** ($\|\mathbf V\|=0$) placed somewhere along the same unoriented line of action, with the actual transmitter speed at emission accounted for by an adjusted emission time and, if desired, a surrogate location along that line.
 
 **Key property:** The same emission law is preserved in this recast; the velocity dependence is transferred into the adjusted emission geometry and the matched transmitter-side acceleration weight.
 
@@ -1685,7 +1685,7 @@ Any single hit can be **equivalently described** with a **stationary emitter** (
 
 #### Superposition Complicates Inference
 
-The ambiguity is compounded by **superposition**: The net potential at any instant is the sum of all intersecting expanding causal wake surfaces. A measured potential along a single radial can be the consequence of a **complex confluence of wakes** from many different emitters located along that line of action, arriving from both directions.
+The ambiguity is compounded by **superposition**: The net potential at any instant is the sum of all intersecting expanding causal wake surfaces. A measured potential along a single radial can be the consequence of a **complex confluence of wakes** from many different transmitters located along that line of action, arriving from both directions.
 
 **Consequence:** The receiver experiences a **deterministic acceleration** (given full microstate knowledge, as known to the $\mathbb{U}_{\text{now}}$ universe-state perspective), but has **incomplete local information** about the transmitter configuration.
 
@@ -2268,11 +2268,12 @@ The benchmark does not provide an elementary closed-form sum, but it gives the f
 - the canonical self-acceleration series can be studied away from circular root-map degeneracies,
 - and the asymptotic radial/tangential components can be redriven as functions of $v/c_f$.
 
-Near a circular transmitter-side degeneracy, this uniform chart does not by itself
-capture the geometric-wall acceleration limit: $D_r$ approaches zero with $D_t$, so
-$W_n^{\mathrm{acc}}$ stays equal to $1$ on the nondegenerate roots. The
-geometric-wall statement belongs to charts where $D_t\to0$ while $D_r$ remains
-bounded away from zero.
+Near a circular transmitter-side degeneracy, $D_r$ approaches zero with $D_t$, so
+the signed root-playback derivative stays equal to $1$ on the nondegenerate roots.
+The acceleration weight $W_n^{\mathrm{acc}}=c_f/|D_t|$ instead grows without bound
+as the simple-root chart approaches $D_t=0$. The pointwise simple-root formula does
+not continue through the birth event; only an accepted finite transition rule could
+replace it there.
 
 This is therefore a root-transversality and branch-birth statement, not a
 closure theorem. A circular self branch born on $D_t=0$ marks a chart boundary;
@@ -3106,7 +3107,7 @@ This regime is analytically tractable and important for:
 Several analytic checks provide footholds for the remaining closure targets. Root-existence, inactive-gap, and transmitter-side transversality records remain usable as topology inputs; radial/tangential force balance, action, power, and finite-window conservation records must be redriven with $W_{ij}^{\mathrm{acc}}$ before they can be promoted.
 
 1. **Partner-only circular orbit with causal delay ($v<c_f$)** has explicit radial and tangential components, including the positive tangential-drive obstruction for a bare constant-speed circle.
-2. **Uniform circular self-hit ($v>c_f$)** has principal-root onset asymptotics, signed higher-winding branch birth, branchwise radial/tangential projections, transmitter-side diagnostic large-$\beta$ estimates, and a receiver-side redrive target for promoted acceleration sums.
+2. **Uniform circular self-hit ($v>c_f$)** has principal-root onset asymptotics, signed higher-winding branch birth, branchwise radial/tangential projections, transmitter-side diagnostic large-$\beta$ estimates, and a transmitter-side acceleration redrive target for promoted sums.
 3. **Variable-pitch spiral retained-chart benchmarks** expose both branch-chart records and prescribed-history compatibility records. The fixed A1 constant-$\Omega$ history has active-root, inactive-gap, transmitter-side Jacobian-floor, finite-memory, and root-transport records, but its force-balance and outward-constant records require transmitter-side acceleration-weight intervals on the same boxes before they can act as closure evidence. A1 is therefore a restart target, not a replayable force-balance no-go, until the retained chart is redriven with $W_{ij}^{\mathrm{acc}}$.
 
 The remaining analytic targets are sharper:

@@ -13,7 +13,7 @@ Implement 1-architrino and 2-architrino setups with $\mathbb{U}_{\text{now}}$ se
 - Verify causal isochron propagation at $c_f$
 - Verify correct arrival ordering and phase behavior (per kernel)
 - Verify numerical stability of $t_{\text{emit}}$ inversion as $\Delta t \to \Delta t / 2$
-- Produce provenance tables showing correct `emitter_id` values and emission times
+- Produce provenance tables showing correct `transmitter_id` values and emission times
 
 ### Baseline diagnostics
 - Energy/momentum bookkeeping (as defined by the model) must be stable under refinement

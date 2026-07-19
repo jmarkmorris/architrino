@@ -31,13 +31,13 @@ Treat terminology maintenance as a theory-protective cleanup discipline, not as 
 - When a sentence still blurs levels, rewrite it so ontology, effective bookkeeping, and comparative language are explicitly separated.
 - Pay special attention to recurring confusion pairs such as `spacetime` versus `Euclidean void` / `absolute timespace`, and `shell` versus `layer`, because those often hide constitutive ambiguity rather than harmless style variation.
 
-## Ledger, Ledger Row, and Record Usage
+## Ledger, Ledger Entry, and Record Usage
 
 Use `ledger` for the $\mathbb{A}\mathbb{A}\mathbb{A}$ accounting structure that keeps related readouts, sources, carriers, and response terms tied together. A ledger is not just a data table; it is the named bookkeeping structure that lets the theory say which quantities belong to the same retained causal history or Noether sea response.
 
-Use `ledger row` only when the sentence needs a specific channel inside that shared accounting structure. Avoid bare `row` in reader-facing prose unless the word literally means a table row, formula row, or layout row. In explanatory app language, prefer `ledger` over `row` unless the channel distinction has already been established for the reader.
+Use `ledger entry` for a specific channel inside that shared accounting structure. Avoid `row` in reader-facing prose unless the word literally means a table row or layout row. In explanatory app language, name the entry, contribution, record, or channel directly.
 
-`Record` and `ledger` are a ratified level distinction, not synonyms. Use `record` (specifically `path-history record`, `the record`) for the ontic history itself at the substrate level: the worldlines, polarities, and identities that constitute the complete state, including the causal-wake structure those worldlines fix. Use `ledger` for the accounting kept against that record: the bookkeeping structure of rows (energy, momentum, angular momentum, polarity count, response terms) whose balances are computed from the record. The record is ontology; the ledger is bookkeeping about it. A wake carries no cargo precisely because the ledger rows are functionals of the record, not contents of it; the substrate-level development of this distinction is [Information and the Wake](../philosophy-history/information-and-the-wake.md).
+`Record` and `ledger` are a ratified level distinction, not synonyms. Use `record` (specifically `path-history record`, `the record`) for the ontic history itself at the substrate level: the worldlines, polarities, and identities that constitute the complete state, including the causal-wake structure those worldlines fix. Use `ledger` for the accounting kept against that record: the bookkeeping structure of entries for energy, momentum, angular momentum, polarity count, and response terms whose balances are computed from the record. The record is ontology; the ledger is bookkeeping about it. Ledger entries are functionals of the record, not automatically independent contents carried by a wake; the substrate-level development of this distinction is [Information and the Wake](../philosophy-history/information-and-the-wake.md).
 
 `Record` also remains correct for ordinary records: measurement records, historical records, stored files, log entries, or explicit record-forming events. Do not use `record` for the accounting structure itself; when the prose means a conserved or retained accounting structure, use `ledger`.
 
@@ -47,14 +47,14 @@ Sentence guidance:
 - Prefer: "The clock, ruler, and envelope readouts belong to one ledger" (accounting).
 - Prefer: "The density term belongs to the Noether sea continuity ledger."
 - Prefer: "The proof packet records the failed route in the work log."
-- Avoid by default: "The clock row closes the map" when the reader has not been taught ledger rows.
+- Avoid: "The clock row closes the map." Name the clock entry, coefficient, or test instead.
 - Avoid by default: "The retained record evolves" when the meaning is a retained ledger.
 
 Related ratified terms from the conservation and information program:
 
-- `geometric reach`: the set of receivers whose positions the isochrons of a given source history have had time to arrive at; contact in this sense is universal within the reach set and diluted with distance, never cut off.
+- `geometric reach`: the set of receivers whose positions the isochrons of a given transmitter history have had time to arrive at; contact in this sense is universal within the reach set and diluted with distance, never cut off.
 - `active roots`: the causal roots currently contributing legal hits with nonvanishing branch strength at a receiver event. A pair can be inside geometric reach yet have no active roots. Mechanism ownership stays with the Master Equation chapter.
-- The four-tier taxonomy of conserved quantities, `counting invariants`, `record invariant`, `symmetry rows`, and `conditional topological invariants`, is the canonical classification; see [Information and the Wake](../philosophy-history/information-and-the-wake.md) for the survey and the dynamics chapters for mechanisms.
+- The four-tier taxonomy of conserved quantities, `counting invariants`, `record invariant`, `symmetry ledger entries`, and `conditional topological invariants`, is the canonical classification; see [Information and the Wake](../philosophy-history/information-and-the-wake.md) for the survey and the dynamics chapters for mechanisms.
 
 ## Architrino Architecture, AAA, and Disallowed Variants
 
@@ -121,7 +121,7 @@ The important reframing here is that `charge` is not being denied; it is being r
 | the two products of a pair-production channel under the named hypothesis below | `pro-anti fermion pair` (hypothesis-attached shorthand) | polarity-conjugate and orientation-opposite — a $CP$-image pair under the [orientation-antimatter correspondence hypothesis](#orientation-antimatter-correspondence-hypothesis) |
 | the proposed photon carrier after planarization | `coaxial contra-rotating polarity-conjugate planar pair` | the planar limit no longer carries the three-dimensional pro/anti ordering, but the relation between $\mathfrak B$ and $C(\mathfrak B)$ remains defined |
 
-Do not call the $C$-image an `anti-braid`. That phrase collides with `anti-Noether braid orientation`, which is the orientation label. Do not infer matter/antimatter from pro/anti orientation alone, and do not attach opposite effective-charge rows to pro/anti orientation alone. The one sanctioned bridge between the two labels is the named hypothesis below, and prose that uses it must say so.
+Do not call the $C$-image an `anti-braid`. That phrase collides with `anti-Noether braid orientation`, which is the orientation label. Do not infer matter/antimatter from pro/anti orientation alone, and do not attach opposite effective-charge entries to pro/anti orientation alone. The one sanctioned bridge between the two labels is the named hypothesis below, and prose that uses it must say so.
 
 The two-label bookkeeping can be written explicitly. Let $o_{\mathrm{PA}}\in\{+1,-1\}$ denote the retained pro/anti orientation when that three-dimensional ordering exists, and let
 
@@ -143,13 +143,13 @@ $$
 
 Then $C$ leaves $o_{\mathrm{PA}}$ fixed and reverses $c_{\mathrm{pol}}$; $P$ reverses $o_{\mathrm{PA}}$ and leaves $c_{\mathrm{pol}}$ fixed; both reverse $\chi_{\mathrm{pol}}$; and $CP$ preserves $\chi_{\mathrm{pol}}$. This factorization is definition-level symmetry bookkeeping on a chart where both signs exist. It is not a retained-branch theorem, and it does not manufacture either sign when the underlying orientation or dipole is absent.
 
-At the planar limit, precession order ceases and $o_{\mathrm{PA}}$ is not assigned. Use the relational notation $\mathfrak B$ and $C(\mathfrak B)$ instead. Opposite circulation signs, effective-charge rows, and other photon-pair ledgers must be derived for those two member records; they must not be smuggled in by naming the pair `pro/anti`.
+At the planar limit, precession order ceases and $o_{\mathrm{PA}}$ is not assigned. Use the relational notation $\mathfrak B$ and $C(\mathfrak B)$ instead. Opposite circulation signs, effective-charge entries, and other photon-pair ledgers must be derived for those two member records; they must not be smuggled in by naming the pair `pro/anti`.
 
 ### Orientation-Antimatter Correspondence Hypothesis
 
 One named working hypothesis connects the two labels. The `orientation-antimatter correspondence hypothesis` holds that matter fermion branches carry the pro-Noether braid orientation, antimatter branches carry the anti-Noether braid orientation, and pair production draws its two products from complementary pro/anti oriented carriers in the Noether sea — the Noether Pair source architecture of [Spontaneous Assembly and Pair Production](#spontaneous-assembly-and-pair-production). Under this hypothesis the two products of pair production are polarity-conjugate **and** orientation-opposite: $CP$-images of one another rather than bare $C$-images.
 
-The two halves of that statement carry different grades. The polarity-conjugate half is the benchmarked half: the observer-level pair-production record — conjugate charge rows, equal masses, conserved lepton number — constrains exactly the $C$-image charged-sector ledgers. Standard physics carries no counterpart of $o_{\mathrm{PA}}$, so the orientation half is hypothesis, not recovery.
+The two halves of that statement carry different grades. The polarity-conjugate half is the benchmarked half: the observer-level pair-production record — conjugate charge entries, equal masses, conserved lepton number — constrains exactly the $C$-image charged-sector ledgers. Standard physics carries no counterpart of $o_{\mathrm{PA}}$, so the orientation half is hypothesis, not recovery.
 
 The hypothesis is discriminable. The $C$-image and $CP$-image relations differ in the handedness ledger — $C$ reverses $\chi_{\mathrm{pol}}$ while $CP$ preserves it — so the produced pair's relative polarity-weighted handedness, compared against weak-sector handedness benchmarks, is the discriminating observable. The discriminator lives on three-dimensional fermion products: $\chi_{\mathrm{pol}}$ degenerates in the planar limit, so photon-side records cannot decide it.
 
@@ -161,9 +161,37 @@ Two frequently used kinematic terms with canonical meanings (operator-ratified 2
 
 | When you mean... | Prefer | Notes | Example |
 | --- | --- | --- | --- |
-| the instantaneous position an architrino occupies in an assembly configuration | `site` | every architrino is a transceiver, so its site at time $t$ is simultaneously its emission point and its reception point; compounds inherit this (`six-site`, `single-site self-hit`, `polar site`) | "The spindle braid has six sites on five horizontal circles." |
-| the point a causal wake was born | `source site at emission time` | the delayed formalism evaluates the source site at the causal root's emission time, not at reception time | "The line of action runs from the source site at emission time to the receiver's current site." |
+| the instantaneous position an architrino occupies in an assembly configuration | `site` | every architrino is a transceiver, so its site can transmit and receive; compounds inherit this (`six-site`, `single-site self-hit`, `polar site`) | "The spindle braid has six sites on five horizontal circles." |
+| the point an arriving causal wake was born | `transmitter site at emission time $T_t$` | the delayed formalism evaluates the transmitter at the causal root's emission time, not at reception time | "The line of action runs from the transmitter site at $T_t$ to the receiver site at $T_r$." |
 | uniform, unaccelerated translation of an assembly (or of the medium) relative to the void frame | `drift`, `drift speed` $u$ | drift deliberately connotes non-acceleration — a drifting rotation is a rigid screw motion; accelerated translation should be named as such, never called drift | "At drift $u$ the pinned internal cadence is $\omega_0\sqrt{1-u^2/c_f^2}$." |
+
+## Transmitter and Receiver Event Usage
+
+Use `transmitter` for the architrino at the past emission event $T_t$ whose wake arrives at the event being evaluated. Use `receiver` for the architrino at the current reception event $T_r$ whose acceleration is being evaluated. The two labels name causal roles on one hit; a single architrino may occupy either role on different hits and occupies both roles on a self-hit.
+
+The separation vector always runs from emission to reception:
+
+$$
+\mathbf r_t=\mathbf X_r(T_r)-\mathbf X_t(T_t).
+$$
+
+The corresponding factors are
+
+$$
+D_t=c_f-\hat{\mathbf r}_t\cdot\mathbf V_t(T_t),
+\qquad
+D_r=c_f-\hat{\mathbf r}_t\cdot\mathbf V_r(T_r),
+$$
+
+with exact root playback
+
+$$
+\frac{dT_t}{dT_r}=\frac{D_r}{D_t}.
+$$
+
+Use `transmitter-side factor` for $D_t$ and `receiver-side factor` for $D_r$. Use `root-playback derivative` for the signed ratio $D_r/D_t$. In the canonical acceleration law, use `transmitter-side acceleration weight` for $W^{\mathrm{acc}}=c_f/|D_t|$. Never describe $D_r/D_t$ as an acceleration weight.
+
+Do not use the transmitter's position at $T_r$ as part of an arriving hit unless the sentence explicitly introduces a separate present-position diagnostic. Keep `source` where it has another established meaning, such as a document source, evidence source, software source, radiation source class, or generic source term in an equation.
 
 ## Field and Wake Usage
 

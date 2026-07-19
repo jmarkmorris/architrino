@@ -14,7 +14,7 @@ This project does not posit a static near field. Instead:
   - Each emission is a razor-thin causal isochron with surface density $q/(4\pi r^2)$, represented by $\rho(T,T_t)=(q/(4\pi r^2))\delta(r-c_f\Delta)H(\Delta)$. The support at fixed $T$ is a causal wake surface $S_r$, not a three-dimensional $1/r^2$ fill down to $r=0$. See [Background and Simple Action](background-and-simple-action.md).
 
 - $H(0)=0$ (no coincident self-kick):
-  - The instantaneous emission $(\Delta=0)$ contributes nothing to the force on the emitter; $r=0$ roots beyond $\Delta=0$ do not exist because $r=c_f(T-T_t)$. This removes the only event where a literal $r=0$ could enter. See [Causal Set and Delay Geometry](causal-set-and-delay-geometry.md).
+  - The instantaneous emission $(\Delta=0)$ contributes no acceleration to the transmitter; $r=0$ roots beyond $\Delta=0$ do not exist because $r=c_f(T_r-T_t)$. This removes the only event where a literal $r=0$ could enter. See [Causal Set and Delay Geometry](causal-set-and-delay-geometry.md).
 
 - $\eta$-mollification (finite, well-defined work over resolved windows):
   - Replace $\delta(r-c_f\Delta)$ by a narrow Gaussian $\delta_\eta$ with width $\eta>0$ when differentiability is required. Potentials $\Phi_\eta$ and forces $-\nabla(q'\Phi_\eta)$ are then regular functions; on any resolved interval the work-energy identity holds:
@@ -29,7 +29,7 @@ Net effect: within a declared admissible branch chart, the canonical ontology (m
 ## Practical guidance (numerics and analysis)
 
 - Choose $\eta$ small relative to local geometry (path curvature radius, inter-source spacing) for smooth ODE integration; verify $\Delta E_k=-\Delta U$ on resolved windows.
-- Calibrate $\kappa$ using stationary/slow benchmarks (Method 2) and use the event-driven law (Method 3) for many-body dynamics; no per-hit emitter-speed amplitude weighting is introduced.
+- Calibrate $\kappa$ using stationary or slow transmitter benchmarks (Method 2) and use the event-driven law (Method 3) for many-body dynamics; no per-hit transmitter-speed amplitude weighting is introduced.
 - Treat self-hits as ordinary finite r>0 events; ensure H(0)=0 in implementation to exclude coincident-time artifacts.
 
 ## Sign-resolved bookkeeping
