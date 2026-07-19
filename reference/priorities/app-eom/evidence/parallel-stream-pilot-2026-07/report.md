@@ -61,7 +61,7 @@ The frozen manifest SHA-256 is
 It declares eight primary rows — two phase realizations times four current
 parities — and five profiling-only replicas for worker count, spacing, collar,
 speed, and separation. The primary geometry has 64 paths and 4,096 logical
-ordered pairs per snapshot. The spacing and collar replicas have 128 paths / 
+ordered pairs per snapshot. The spacing and collar replicas have 128 paths /
 16,384 pairs and 96 paths / 9,216 pairs, respectively. Every input history is
 one straight endpoint-matched segment, every request asks for the sharp chart,
 and no restart is used.
