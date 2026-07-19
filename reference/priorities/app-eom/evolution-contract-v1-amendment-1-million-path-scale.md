@@ -1,9 +1,9 @@
-# EOM Evolution Contract v0 Amendment 1: Million-Path Scale
+# EOM Evolution Contract v1 Amendment 1: Million-Path Scale
 
 ## Status
 
-- Amendment id: `eom_evolution_contract/v0/amendment-1`
-- Applies to: `eom_evolution_contract/v0`
+- Amendment id: `eom_evolution_contract/v1/amendment-1`
+- Applies to: `eom_evolution_contract/v1`
 - Stage: `requirements-frozen`
 - Scheduling: `long-term-scale-goal`
 - Effective date: 2026-07-13
@@ -29,18 +29,18 @@ path identities, each supplied as a continuous retained history. A million
 stored samples or history segments distributed among fewer paths does not
 satisfy this population requirement.
 
-For $N_R$ receiver events and $N_S$ source paths in one execution window, the
+For $N_R$ receiver events and $N_T$ transmitter paths in one execution window, the
 logical ordered-relationship count is
 
 $$
-P_{\mathrm{logical}}=N_R N_S.
+P_{\mathrm{logical}}=N_R N_T.
 $$
 
 At a synchronized million-path event this becomes $10^{12}$ ordered
 relationships before root multiplicity and history search are counted. This
-amendment does not claim that an arbitrary dense, irregular $10^{12}$-row event
+amendment does not claim that an arbitrary dense, irregular $10^{12}$-record event
 is inexpensive. It requires a certified architecture that avoids materializing
-or evaluating all rows when block proofs or controlled aggregation can resolve
+or evaluating all records when block proofs or controlled aggregation can resolve
 them, and that fails before evolution when the declared hardware envelope
 cannot resolve a noncompressible workload.
 
@@ -67,12 +67,12 @@ $$
   or enclosed evaluation.
 
 The sets must be disjoint and their membership union must reproduce the full
-ordered receiver-source domain, including self-pairs. An accepted step requires
+ordered receiver-transmitter domain, including self-pairs. An accepted step requires
 $P_{\mathrm{unresolved}}=0$. A compact block record may cover many relationships;
 it must identify that membership by deterministic ranges, index nodes, or a
 content-addressed membership object that resolves back to every pair.
 
-Block traversal may produce several receiver-source-time-cell records for one
+Block traversal may produce several receiver-transmitter-time-cell records for one
 ordered relationship. Before the counts above are finalized, those cell records
 must collapse to exactly one relationship outcome over the complete searched
 retained interval. In the first implementation, if any cell for a pair survives
@@ -83,7 +83,7 @@ complete pair contribution or fall back to exact evaluation.
 
 ## Certified Block Exclusion
 
-For a receiver block $R$, source-history block $B$, and retained emission cell
+For a receiver block $R$, transmitter-history block $B$, and retained emission cell
 $I$, let
 
 $$
@@ -116,11 +116,11 @@ coincident endpoint is handled only through the canonical $H(0)$ convention.
 
 If $0\notin\mathcal G_{RB}(I)$, the complete block is certified root free on
 $I$. If zero remains inside, the block must be subdivided in receiver,
-source-history, or emission-time coordinates, or its members must proceed to
+transmitter-history, or emission-time coordinates, or its members must proceed to
 exact pair evaluation. A point estimate, spatial-distance cutoff, sampled
 residual, or average density cannot exclude the block.
 
-The authoritative exclusion record contains the receiver membership, source
+The authoritative exclusion record contains the receiver membership, transmitter
 membership, history-segment identities, emission interval, position and delay
 enclosures, residual enclosure, precision and rounding method, proof version,
 and input hashes. Accelerator-generated exclusions are authoritative only when
@@ -159,13 +159,13 @@ history chunks. Each chunk records:
 
 The engine may tier chunks across accelerator memory, host memory, local
 non-volatile storage, and distributed storage. Causal reach determines which
-source chunks must be resident, replicated, or fetched for a receiver-owner
+transmitter chunks must be resident, replicated, or fetched for a receiver-owner
 shard. A missing required chunk rejects the candidate step; it never becomes an
 inactive relationship.
 
 Accepted output is a new manifest referencing the immutable input chunks and
 the appended accepted chunks. The response may return a manifest and streamed
-dataset locations rather than embedding every evolved row inline. Display
+dataset locations rather than embedding every evolved record inline. Display
 decimation is a separate derivative and cannot replace the full continuation
 history.
 
@@ -178,7 +178,7 @@ The authoritative architecture must support:
 2. batched block-bound and residual work on promoted SIMD or accelerator paths;
 3. compaction of nonexcluded tiles into complete-pair root batches whose exact
    searches cover each promoted pair's full retained interval;
-4. return of ill-conditioned rows to stricter device, CPU extended-precision,
+4. return of ill-conditioned records to stricter device, CPU extended-precision,
    arbitrary-precision, interval, or exact-predicate services;
 5. a deterministic receiver-local reduction, or a fixed distributed merge tree
    with a certified enclosure;
@@ -188,7 +188,7 @@ The authoritative architecture must support:
    scheduler, and reduction identities.
 
 The independently authored oracle remains a correctness reference for analytic,
-adversarial, sampled production rows, and exhaustive smaller controls. It is not
+adversarial, sampled production records, and exhaustive smaller controls. It is not
 the million-path executor.
 
 ## Request And Response Additions
@@ -207,7 +207,7 @@ The response adds:
 
 - the input and output manifest identities;
 - exact logical, excluded, exact, enclosed, and unresolved relationship counts;
-- block-tree, subdivision, exact-fallback, difficult-row, and precision metrics;
+- block-tree, subdivision, exact-fallback, difficult-record, and precision metrics;
 - history residency, transfer, storage, checkpoint, and output metrics;
 - the resource projection and any difference between projected and observed
   work;
@@ -223,7 +223,7 @@ passes all of the following:
    shell.
 2. **Certified sparse evolution:** evolve at least $10^6$ paths on a workload
    whose inactive relationships are removed only through certified block
-   exclusions, with complete pair-coverage equality and no unresolved row.
+   exclusions, with complete pair-coverage equality and no unresolved record.
 3. **Exact-control parity:** match exhaustive exact pair evaluation on smaller
    nested controls under the same histories, model, precision, and timestep.
 4. **Adversarial refinement:** force selected blocks to survive coarse bounds,

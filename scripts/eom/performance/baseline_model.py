@@ -64,38 +64,38 @@ def stationary_block_counts(
     visited = excluded = exact = active = 0
     reach_upper = math.nextafter(field_speed * maximum_delay, math.inf)
     while stack:
-        receiver_begin, receiver_end, source_begin, source_end = stack.pop()
+        receiver_begin, receiver_end, transmitter_begin, transmitter_end = stack.pop()
         visited += 1
         receiver_count = receiver_end - receiver_begin
-        source_count = source_end - source_begin
+        transmitter_count = transmitter_end - transmitter_begin
         receiver_min = values[receiver_begin]
         receiver_max = values[receiver_end - 1]
-        source_min = values[source_begin]
-        source_max = values[source_end - 1]
+        transmitter_min = values[transmitter_begin]
+        transmitter_max = values[transmitter_end - 1]
         lower_distance = 0.0
-        if receiver_max < source_min:
-            lower_distance = math.nextafter(source_min - receiver_max, -math.inf)
-        elif source_max < receiver_min:
-            lower_distance = math.nextafter(receiver_min - source_max, -math.inf)
+        if receiver_max < transmitter_min:
+            lower_distance = math.nextafter(transmitter_min - receiver_max, -math.inf)
+        elif transmitter_max < receiver_min:
+            lower_distance = math.nextafter(receiver_min - transmitter_max, -math.inf)
         if lower_distance > reach_upper:
-            excluded += receiver_count * source_count
+            excluded += receiver_count * transmitter_count
             continue
-        if receiver_count <= leaf_size and source_count <= leaf_size:
-            exact += receiver_count * source_count
+        if receiver_count <= leaf_size and transmitter_count <= leaf_size:
+            exact += receiver_count * transmitter_count
             for receiver in range(receiver_begin, receiver_end):
-                for source in range(source_begin, source_end):
+                for source in range(transmitter_begin, transmitter_end):
                     distance = abs(values[receiver] - values[source])
                     if 0.0 < distance <= field_speed * maximum_delay:
                         active += 1
             continue
-        if receiver_count >= source_count and receiver_count > leaf_size:
+        if receiver_count >= transmitter_count and receiver_count > leaf_size:
             middle = receiver_begin + receiver_count // 2
-            stack.append((middle, receiver_end, source_begin, source_end))
-            stack.append((receiver_begin, middle, source_begin, source_end))
+            stack.append((middle, receiver_end, transmitter_begin, transmitter_end))
+            stack.append((receiver_begin, middle, transmitter_begin, transmitter_end))
         else:
-            middle = source_begin + source_count // 2
-            stack.append((receiver_begin, receiver_end, middle, source_end))
-            stack.append((receiver_begin, receiver_end, source_begin, middle))
+            middle = transmitter_begin + transmitter_count // 2
+            stack.append((receiver_begin, receiver_end, middle, transmitter_end))
+            stack.append((receiver_begin, receiver_end, transmitter_begin, middle))
     return BlockCounts(visited, excluded, exact, active)
 
 

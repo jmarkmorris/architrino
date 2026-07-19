@@ -15,6 +15,13 @@ const AUTHORITATIVE_CODE = [
   "scripts/eom/oracle/reference_kernel.py",
   "scripts/eom/oracle/phase4_acceptance.py",
 ];
+const LIVE_SURFACES = [
+  "src/prescribed-path-analysis/PrescribedOrbitCausalRoots.mjs",
+  "src/prescribed-path-analysis/PrescribedPathAnalysis.mjs",
+  "src/apps/animator/display/AnimatorDelayedHitRows.mjs",
+  "src/apps/photon/PhotonFormulaRuntime.js",
+  "src/contracts/solver-app-bridge/v2/schema.json",
+];
 
 const findings = [];
 
@@ -30,6 +37,7 @@ if (process.argv.includes("--self-test")) {
 
 scanCanon(path.join(ROOT_DIR, CANON_ROOT));
 scanAuthoritativeCode();
+scanLiveSurfaces();
 requireImplementationMarkers();
 
 if (findings.length > 0) {
@@ -47,9 +55,38 @@ function staleCanonPatterns() {
     /receiver-weighted acceleration factor/gi,
     /receiver-weighted acceleration-factor/gi,
     /receiver-weighted law/gi,
+    /receiver-weighted Master Equation/gi,
+    /Source-Density Acceleration/gi,
     /W[^\n]{0,120}=\s*\\lvert\s*D_[^/\n]+\/D_[^\\\n]+\\rvert/g,
     /W[^\n]{0,160}=\s*\|D_[^/\n]+\/D_[^|\n]+\|/g,
   ];
+}
+
+function scanLiveSurfaces() {
+  const forbidden = [
+    /branchWeight/g,
+    /receiverNormal/g,
+    /sourceNormal/g,
+    /receiver_strength/g,
+    /source_normal/g,
+  ];
+  for (const relative of LIVE_SURFACES) {
+    const absolute = path.join(ROOT_DIR, relative);
+    const text = fs.readFileSync(absolute, "utf8");
+    for (const pattern of forbidden) {
+      pattern.lastIndex = 0;
+      let match = pattern.exec(text);
+      while (match) {
+        addFinding(
+          absolute,
+          text,
+          match.index,
+          "legacy receiver-weighted field remains on a current app or contract surface",
+        );
+        match = pattern.exec(text);
+      }
+    }
+  }
 }
 
 function scanCanon(entryPath) {
@@ -123,6 +160,18 @@ function requireImplementationMarkers() {
     [
       "src/eom/src/CoupledEvolution.cpp",
       "coincident_same_transmitter_birth_uncertified",
+    ],
+    [
+      "src/prescribed-path-analysis/PrescribedPathAnalysis.mjs",
+      "signalSpeed / Math.abs(transmitterFactor)",
+    ],
+    [
+      "src/apps/animator/display/AnimatorDelayedHitRows.mjs",
+      "emission.fieldSpeed / Math.abs(transmitterFactor)",
+    ],
+    [
+      "src/apps/photon/PhotonFormulaRuntime.js",
+      "signalSpeed / Math.abs(transmitterFactor)",
     ],
   ];
   for (const [relative, marker] of required) {

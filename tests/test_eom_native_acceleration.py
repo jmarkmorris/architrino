@@ -59,21 +59,21 @@ def roots(
 
 def request(
     receiver_id: str,
-    source_id: str,
+    transmitter_id: str,
     receiver: PiecewisePolynomialHistory,
     source: PiecewisePolynomialHistory,
     receiver_charge: str,
-    source_charge: str,
+    transmitter_charge: str,
     reception: str,
 ) -> PairAccelerationRequest:
     return PairAccelerationRequest.from_decimal_tokens(
         receiver_path_id=receiver_id,
-        source_path_id=source_id,
+        transmitter_path_id=transmitter_id,
         receiver_history=receiver,
-        source_history=source,
+        transmitter_history=source,
         root_certificate=roots(receiver, source, reception),
         receiver_charge=receiver_charge,
-        source_charge=source_charge,
+        transmitter_charge=transmitter_charge,
         coupling="1",
         chart="sharp",
         transmitter_factor_floor="1e-30",
@@ -252,12 +252,12 @@ class NativeAccelerationTests(unittest.TestCase):
         oracle = certify_pair_acceleration(
             PairAccelerationRequest.from_decimal_tokens(
                 receiver_path_id="stationary-receiver",
-                source_path_id="stationary-source",
+                transmitter_path_id="stationary-source",
                 receiver_history=receiver,
-                source_history=source,
+                transmitter_history=source,
                 root_certificate=roots(receiver, source, "5"),
                 receiver_charge="1",
-                source_charge="-1",
+                transmitter_charge="-1",
                 coupling="1",
                 chart="finite_width",
                 transmitter_factor_floor="1e-30",
@@ -351,7 +351,7 @@ class NativeAccelerationTests(unittest.TestCase):
                     )
                 )
 
-            def source_position(emission):
+            def transmitter_position(emission):
                 if emission <= 0:
                     return (mp.cos(emission), mp.sin(emission), mp.mpf("0"))
                 return tuple(
@@ -366,7 +366,7 @@ class NativeAccelerationTests(unittest.TestCase):
             core = mp.mpf("0.2")
 
             def component(emission, axis):
-                source = source_position(emission)
+                source = transmitter_position(emission)
                 displacement = tuple(
                     fold_position[index] - source[index] for index in range(3)
                 )

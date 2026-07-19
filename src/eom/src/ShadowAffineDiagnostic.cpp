@@ -37,7 +37,7 @@ struct SymbolMeta {
   std::string id;
   std::string source;
   std::string path_id;
-  std::string source_path_id;
+  std::string transmitter_path_id;
   std::string axis;
   std::string time;
   double magnitude = 0.0;
@@ -162,7 +162,7 @@ const NativePublishedPath& path_history(
 std::string root_key(
     const NativePairAccelerationCertificate& pair,
     const NativeAccelerationRow& row) {
-  return pair.receiver_path_id + "|" + pair.source_path_id + "|" +
+  return pair.receiver_path_id + "|" + pair.transmitter_path_id + "|" +
       row.reception_time + "|" + std::to_string(row.row_index) + "|" +
       row.emission_lower + "|" + row.emission_upper;
 }
@@ -186,7 +186,7 @@ struct ShadowAffineDiagnostic::Impl {
       throw std::runtime_error("cannot open shadow affine diagnostic output");
     }
     output << "{\"record\":\"observer_start\",\"schema\":"
-              "\"eom_shadow_affine_diagnostic/v0\",\"authority\":"
+              "\"eom_shadow_affine_diagnostic/v1\",\"authority\":"
               "\"non_authoritative_binary64_round_to_nearest\","
               "\"symbolCap\":" << options.symbol_cap << "}\n";
     output.flush();
@@ -290,8 +290,8 @@ struct ShadowAffineDiagnostic::Impl {
       output << "{\"record\":\"symbol\",\"grade\":\"measured\","
                 "\"id\":\"" << item.id << "\",\"source\":\""
              << json_escape(item.source) << "\",\"pathId\":\""
-             << json_escape(item.path_id) << "\",\"sourcePathId\":\""
-             << json_escape(item.source_path_id) << "\",\"axis\":\""
+             << json_escape(item.path_id) << "\",\"transmitterPathId\":\""
+             << json_escape(item.transmitter_path_id) << "\",\"axis\":\""
              << json_escape(item.axis) << "\",\"time\":\""
              << json_escape(item.time) << "\",\"magnitude\":"
              << std::setprecision(17) << item.magnitude << "}\n";
@@ -378,7 +378,7 @@ struct ShadowAffineDiagnostic::Impl {
         metadata.push_back({
             .source = "consumed_root_time_enclosure_half_width",
             .path_id = pair.receiver_path_id,
-            .source_path_id = pair.source_path_id,
+            .transmitter_path_id = pair.transmitter_path_id,
             .axis = "root_time",
             .time = row.reception_time,
             .magnitude = width,
@@ -434,7 +434,7 @@ struct ShadowAffineDiagnostic::Impl {
     for (const auto& pair : snapshot.acceleration.pair_certificates) {
       if (pair.receiver_path_id != receiver_id) continue;
       const auto& receiver_history = path_history(histories, pair.receiver_path_id).history;
-      const auto& source_history = path_history(histories, pair.source_path_id).history;
+      const auto& transmitter_history = path_history(histories, pair.transmitter_path_id).history;
       const auto receiver_affine = evaluate(pair.receiver_path_id, reception);
       const auto xr = receiver_history.nominal_position(reception);
       for (const auto& row : pair.rows) {
@@ -442,10 +442,10 @@ struct ShadowAffineDiagnostic::Impl {
             !row.receiver_factor.has_value() ||
             !row.acceleration_weight.has_value()) continue;
         const double emission = 0.5 * (token(row.emission_lower) + token(row.emission_upper));
-        const auto source_affine = evaluate(pair.source_path_id, emission);
-        const auto xs = source_history.nominal_position(emission);
-        const auto vs = source_history.nominal_velocity(emission);
-        const auto source_acceleration = nominal_acceleration(source_history, emission);
+        const auto transmitter_affine = evaluate(pair.transmitter_path_id, emission);
+        const auto xs = transmitter_history.nominal_position(emission);
+        const auto vs = transmitter_history.nominal_velocity(emission);
+        const auto transmitter_acceleration = nominal_acceleration(transmitter_history, emission);
         const auto displacement = subtract3(xr, xs);
         const double separation = norm3(displacement);
         const double transmitter_factor = row.transmitter_factor->midpoint();
@@ -461,13 +461,13 @@ struct ShadowAffineDiagnostic::Impl {
           std::array<double, 3> dxr{}, dxs{}, dvs{};
           for (std::size_t axis = 0U; axis < 3U; ++axis) {
             dxr[axis] = receiver_affine.position[axis][symbol];
-            dxs[axis] = source_affine.position[axis][symbol];
-            dvs[axis] = source_affine.velocity[axis][symbol];
+            dxs[axis] = transmitter_affine.position[axis][symbol];
+            dvs[axis] = transmitter_affine.velocity[axis][symbol];
           }
           const double delta_emission =
               (dot3(direction, dxs) - dot3(direction, dxr)) / transmitter_factor;
           const auto dxs_total = add3(dxs, scale3(vs, delta_emission));
-          const auto dvs_total = add3(dvs, scale3(source_acceleration, delta_emission));
+          const auto dvs_total = add3(dvs, scale3(transmitter_acceleration, delta_emission));
           const auto delta_displacement = subtract3(dxr, dxs_total);
           const double radial_delta = dot3(direction, delta_displacement);
           const auto delta_direction = scale3(
@@ -498,7 +498,7 @@ struct ShadowAffineDiagnostic::Impl {
           const auto delta_direction = scale3(
               subtract3(delta_displacement, scale3(direction, radial_delta)),
               1.0 / separation);
-          const auto delta_source_velocity = scale3(source_acceleration, delta_emission);
+          const auto delta_source_velocity = scale3(transmitter_acceleration, delta_emission);
           const double delta_transmitter_factor =
               -(dot3(delta_direction, vs) + dot3(direction, delta_source_velocity));
           const double delta_strength =
@@ -828,11 +828,11 @@ struct ShadowAffineDiagnostic::Impl {
   std::optional<double> joint_residual_width(
       const std::vector<NativePublishedPath>& histories,
       const std::string& receiver_id,
-      const std::string& source_id,
+      const std::string& transmitter_id,
       double reception,
       double emission) const {
     const auto& receiver = path_history(histories, receiver_id).history;
-    const auto& source = path_history(histories, source_id).history;
+    const auto& source = path_history(histories, transmitter_id).history;
     const auto normalize_time = [](const RetainedHistory& history, double time)
         -> std::optional<double> {
       const double envelope = 128.0 * std::numeric_limits<double>::epsilon() *
@@ -855,14 +855,14 @@ struct ShadowAffineDiagnostic::Impl {
     if (!(separation > 0.0)) return std::nullopt;
     const auto direction = scale3(displacement, 1.0 / separation);
     const auto receiver_affine = evaluate(receiver_id, reception);
-    const auto source_affine = evaluate(source_id, emission);
+    const auto transmitter_affine = evaluate(transmitter_id, emission);
     Row projection = zero();
     for (std::size_t axis = 0U; axis < 3U; ++axis) {
       projection = add_row(
           projection,
           scale_row(
               subtract_row(
-                  receiver_affine.position[axis], source_affine.position[axis]),
+                  receiver_affine.position[axis], transmitter_affine.position[axis]),
               direction[axis]));
     }
     return 2.0 * row_radius(projection);
@@ -884,7 +884,7 @@ struct ShadowAffineDiagnostic::Impl {
             substep.start_snapshot.root_certificates.begin(),
             substep.start_snapshot.root_certificates.end(), [&](const auto& row) {
               return row.receiver_path_id == regulator.receiver_path_id &&
-                  row.source_path_id == regulator.source_path_id &&
+                  row.transmitter_path_id == regulator.transmitter_path_id &&
                   !row.certificate.roots.empty();
             });
         if (root != substep.start_snapshot.root_certificates.end()) {
@@ -892,16 +892,16 @@ struct ShadowAffineDiagnostic::Impl {
                             token(root->certificate.roots.front().upper));
         }
         const auto width = joint_residual_width(
-            histories, regulator.receiver_path_id, regulator.source_path_id,
+            histories, regulator.receiver_path_id, regulator.transmitter_path_id,
             reception, emission);
         if (!width.has_value()) continue;
         const double support = event.causal_width.empty()
             ? 0.0 : std::abs(token(event.causal_width));
         const double recorded_box_state_width = 2.0 * (
             event.receiver_position_error_upper +
-            event.source_position_error_upper +
+            event.transmitter_position_error_upper +
             support * (event.receiver_velocity_error_upper +
-                       event.source_velocity_error_upper));
+                       event.transmitter_velocity_error_upper));
         const double dependency_scale = recorded_box_state_width > 0.0
             ? std::min(1.0, *width / recorded_box_state_width) : 1.0;
         const double shadow_event_width =
@@ -911,8 +911,8 @@ struct ShadowAffineDiagnostic::Impl {
                << "\",\"phase\":\"" << phase
                << "\",\"receiverPathId\":\""
                << json_escape(regulator.receiver_path_id)
-               << "\",\"sourcePathId\":\""
-               << json_escape(regulator.source_path_id)
+               << "\",\"transmitterPathId\":\""
+               << json_escape(regulator.transmitter_path_id)
                << "\",\"receptionTime\":" << std::setprecision(17) << reception
                << ",\"emissionTime\":" << emission
                << ",\"shadowProjectedResidualWidthEstimate\":" << *width
@@ -962,25 +962,25 @@ struct ShadowAffineDiagnostic::Impl {
           const double reception = token(certificate.reception_time);
           const double emission = token(certificate.difficult_point);
           const auto width = joint_residual_width(
-              *terminal_histories, root.receiver_path_id, root.source_path_id,
+              *terminal_histories, root.receiver_path_id, root.transmitter_path_id,
               reception, emission);
           if (!width.has_value()) {
             const auto& receiver_history =
                 path_history(*terminal_histories, root.receiver_path_id).history;
-            const auto& source_history =
-                path_history(*terminal_histories, root.source_path_id).history;
+            const auto& transmitter_history =
+                path_history(*terminal_histories, root.transmitter_path_id).history;
             output << "{\"record\":\"joint_residual_unavailable\","
                       "\"runId\":\"" << json_escape(request.run_id)
                    << "\",\"receiverPathId\":\""
                    << json_escape(root.receiver_path_id)
-                   << "\",\"sourcePathId\":\""
-                   << json_escape(root.source_path_id)
+                   << "\",\"transmitterPathId\":\""
+                   << json_escape(root.transmitter_path_id)
                    << "\",\"receptionTime\":" << std::setprecision(17)
                    << reception << ",\"emissionTime\":" << emission
                    << ",\"receiverHistoryStart\":" << receiver_history.t_start()
                    << ",\"receiverHistoryEnd\":" << receiver_history.t_end()
-                   << ",\"sourceHistoryStart\":" << source_history.t_start()
-                   << ",\"sourceHistoryEnd\":" << source_history.t_end()
+                   << ",\"transmitterHistoryStart\":" << transmitter_history.t_start()
+                   << ",\"transmitterHistoryEnd\":" << transmitter_history.t_end()
                    << "}\n";
             continue;
           }
@@ -992,8 +992,8 @@ struct ShadowAffineDiagnostic::Impl {
                  << json_escape(request.certified_budget_preset_id)
                  << "\",\"receiverPathId\":\""
                  << json_escape(root.receiver_path_id)
-                 << "\",\"sourcePathId\":\""
-                 << json_escape(root.source_path_id)
+                 << "\",\"transmitterPathId\":\""
+                 << json_escape(root.transmitter_path_id)
                  << "\",\"receptionTime\":" << std::setprecision(17) << reception
                  << ",\"emissionTime\":" << emission
                  << ",\"shadowWidth\":" << *width
@@ -1018,7 +1018,7 @@ struct ShadowAffineDiagnostic::Impl {
               substep.start_snapshot.root_certificates.begin(),
               substep.start_snapshot.root_certificates.end(), [&](const auto& row) {
                 return row.receiver_path_id == regulator.receiver_path_id &&
-                    row.source_path_id == regulator.source_path_id &&
+                    row.transmitter_path_id == regulator.transmitter_path_id &&
                     !row.certificate.roots.empty();
               });
           if (root != substep.start_snapshot.root_certificates.end()) {
@@ -1027,15 +1027,15 @@ struct ShadowAffineDiagnostic::Impl {
           }
           const auto width = joint_residual_width(
               *terminal_histories, regulator.receiver_path_id,
-              regulator.source_path_id, reception, emission);
+              regulator.transmitter_path_id, reception, emission);
           if (!width.has_value()) continue;
           const double support = event.causal_width.empty()
               ? 0.0 : std::abs(token(event.causal_width));
           const double recorded_box_state_width = 2.0 * (
               event.receiver_position_error_upper +
-              event.source_position_error_upper +
+              event.transmitter_position_error_upper +
               support * (event.receiver_velocity_error_upper +
-                         event.source_velocity_error_upper));
+                         event.transmitter_velocity_error_upper));
           const double dependency_scale = recorded_box_state_width > 0.0
               ? std::min(1.0, *width / recorded_box_state_width) : 1.0;
           const double shadow_event_width =
@@ -1044,8 +1044,8 @@ struct ShadowAffineDiagnostic::Impl {
                     "\"runId\":\"" << json_escape(request.run_id)
                  << "\",\"receiverPathId\":\""
                  << json_escape(regulator.receiver_path_id)
-                 << "\",\"sourcePathId\":\""
-                 << json_escape(regulator.source_path_id)
+                 << "\",\"transmitterPathId\":\""
+                 << json_escape(regulator.transmitter_path_id)
                  << "\",\"receptionTime\":" << std::setprecision(17) << reception
                  << ",\"emissionTime\":" << emission
                  << ",\"shadowProjectedResidualWidthEstimate\":" << *width

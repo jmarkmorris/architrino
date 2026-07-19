@@ -40,7 +40,7 @@ population at resource preflight.
 ## Unchanged Correctness And Approximation Boundary
 
 - Build authoritative bounds only from histories explicitly marked accepted.
-- Account for every ordered receiver-source relationship, including self-pairs
+- Account for every ordered receiver-transmitter relationship, including self-pairs
   when receiver and source membership share an identity.
 - Preserve
   `logical = excluded + exact + enclosed + unresolved`, with `enclosed = 0`

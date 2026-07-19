@@ -68,8 +68,8 @@ void print_block(const eom::MovingHistoryBlockCertificate& certificate) {
             << ",\"residual_upper\":" << certificate.residual.upper()
             << ",\"receiver_history_ids\":";
   print_string_array(certificate.receiver_history_ids);
-  std::cout << ",\"source_history_ids\":";
-  print_string_array(certificate.source_history_ids);
+  std::cout << ",\"transmitter_history_ids\":";
+  print_string_array(certificate.transmitter_history_ids);
   std::cout << '}';
 }
 
@@ -115,8 +115,8 @@ void print_pair(const eom::ExactPairCertificate& certificate) {
               << "\",\"receiver_factor_upper\":\""
               << root.receiver_factor_upper
               << "\",\"transmitter_factor_sign\":" << root.transmitter_factor_sign
-              << ",\"source_segment_indices\":";
-    print_index_array(root.source_segment_indices);
+              << ",\"transmitter_segment_indices\":";
+    print_index_array(root.transmitter_segment_indices);
     std::cout << ",\"precision_route\":\"" << root.precision_route
               << "\",\"precision_bits\":" << root.precision_bits << '}';
   }
@@ -149,8 +149,8 @@ void print_traversal(
               << "\",\"status\":\"" << node.status
               << "\",\"receiver_begin\":" << node.receiver_begin
               << ",\"receiver_end\":" << node.receiver_end
-              << ",\"source_begin\":" << node.source_begin
-              << ",\"source_end\":" << node.source_end
+              << ",\"transmitter_begin\":" << node.transmitter_begin
+              << ",\"transmitter_end\":" << node.transmitter_end
               << ",\"emission_lower\":" << node.emission_lower
               << ",\"emission_upper\":" << node.emission_upper
               << ",\"logical_ordered_pairs\":"
@@ -169,8 +169,8 @@ void print_traversal(
     std::cout << "{\"status\":\"" << tile.status
               << "\",\"receiver_begin\":" << tile.receiver_begin
               << ",\"receiver_end\":" << tile.receiver_end
-              << ",\"source_begin\":" << tile.source_begin
-              << ",\"source_end\":" << tile.source_end
+              << ",\"transmitter_begin\":" << tile.transmitter_begin
+              << ",\"transmitter_end\":" << tile.transmitter_end
               << ",\"logical_ordered_pairs\":"
               << tile.logical_ordered_pairs << '}';
   }
@@ -622,7 +622,7 @@ void print_all() {
   } catch (const std::invalid_argument&) {
     unaccepted_history_rejected = true;
   }
-  std::cout << "{\"schema\":\"eom_native_fixture_packet/v0\","
+  std::cout << "{\"schema\":\"eom_native_fixture_packet/v1\","
             << "\"discontinuous_history_rejected\":"
             << (discontinuity_rejected ? "true" : "false")
             << ",\"inconsistent_circular_speed_rejected\":"

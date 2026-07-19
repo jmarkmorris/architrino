@@ -248,7 +248,7 @@ dimensions remain the ones declared above.
 | core scale $\epsilon_{c,0}$ | `0.2` | `0.2` |
 | regulator ratio $\rho$ | `0.5` | `0.5` |
 | regulator levels | `3` | `3` |
-| source-normal floor | `1e-30` | `1e-30` |
+| transmitter-side-factor floor | `1e-30` | `1e-30` |
 | bulk precision floor | certified outward binary64 | certified outward binary64 |
 | difficult-row initial precision | `128` bits | `128` bits |
 | difficult-row maximum precision | `512` bits | `512` bits |

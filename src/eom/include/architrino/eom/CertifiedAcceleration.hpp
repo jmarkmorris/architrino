@@ -17,11 +17,11 @@ struct NativeFarFieldEnclosureCertificate {
   std::string schema;
   std::string row_id;
   std::string receiver_path_id;
-  std::string source_path_id;
+  std::string transmitter_path_id;
   std::string receiver_history_id;
-  std::string source_history_id;
+  std::string transmitter_history_id;
   std::string receiver_history_fingerprint;
-  std::string source_history_fingerprint;
+  std::string transmitter_history_fingerprint;
   std::string reception_time;
   std::string emission_lower;
   std::string emission_upper;
@@ -30,7 +30,7 @@ struct NativeFarFieldEnclosureCertificate {
   std::optional<IntervalVector> displacement_hull;
   std::optional<Interval> separation;
   std::optional<Interval> receiver_speed;
-  std::optional<Interval> source_speed;
+  std::optional<Interval> transmitter_speed;
   std::optional<Interval> transmitter_factor_lower_bound;
   std::optional<Interval> pair_magnitude_bound;
   std::optional<Interval> pair_width_budget;
@@ -41,13 +41,13 @@ struct NativeFarFieldEnclosureCertificate {
 struct NativePairAccelerationRequest {
   std::string row_id;
   std::string receiver_path_id;
-  std::string source_path_id;
+  std::string transmitter_path_id;
   const RetainedHistory* receiver_history;
-  const RetainedHistory* source_history;
+  const RetainedHistory* transmitter_history;
   const ExactPairCertificate* root_certificate;
   const NativeFarFieldEnclosureCertificate* far_field_enclosure = nullptr;
   std::string receiver_charge;
-  std::string source_charge;
+  std::string transmitter_charge;
   std::string coupling;
   std::string chart = "sharp";
   std::string transmitter_factor_floor = "1e-30";
@@ -71,13 +71,13 @@ struct NativePairAccelerationRequest {
 struct NativeAccelerationRow {
   std::string row_id;
   std::string receiver_path_id;
-  std::string source_path_id;
+  std::string transmitter_path_id;
   std::size_t row_index;
   std::string chart;
   std::string reception_time;
   std::string emission_lower;
   std::string emission_upper;
-  std::vector<std::size_t> source_segment_indices;
+  std::vector<std::size_t> transmitter_segment_indices;
   std::optional<Interval> separation;
   std::optional<Interval> transmitter_factor;
   std::optional<Interval> receiver_factor;
@@ -99,7 +99,7 @@ struct NativePairAccelerationCertificate {
   std::string schema;
   std::string row_id;
   std::string receiver_path_id;
-  std::string source_path_id;
+  std::string transmitter_path_id;
   std::string chart;
   std::string status;
   std::string failure_code;

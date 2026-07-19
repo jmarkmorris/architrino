@@ -47,7 +47,7 @@ struct ExactPairRequest {
 };
 
 struct NativeRootFreeCell {
-  std::size_t source_segment_index;
+  std::size_t transmitter_segment_index;
   std::string lower;
   std::string upper;
   std::string residual_lower;
@@ -73,7 +73,7 @@ struct NativeRootBracket {
   std::string receiver_factor_lower;
   std::string receiver_factor_upper;
   int transmitter_factor_sign;
-  std::vector<std::size_t> source_segment_indices;
+  std::vector<std::size_t> transmitter_segment_indices;
   std::string precision_route;
   unsigned precision_bits;
 };
@@ -82,9 +82,9 @@ struct ExactPairCertificate {
   std::string schema;
   std::string row_id;
   std::string receiver_history_id;
-  std::string source_history_id;
+  std::string transmitter_history_id;
   std::string receiver_history_fingerprint;
-  std::string source_history_fingerprint;
+  std::string transmitter_history_fingerprint;
   std::string reception_time;
   std::string searched_lower;
   std::string searched_upper;

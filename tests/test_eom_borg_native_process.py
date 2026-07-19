@@ -112,7 +112,7 @@ class NativeBorgProcessTests(unittest.TestCase):
             text=True,
         )
         response = json.loads(completed.stdout)
-        self.assertEqual(response["schema"], "eom_borg_native_response/v0")
+        self.assertEqual(response["schema"], "eom_borg_native_response/v1")
         self.assertEqual(response["status"], "completed")
         self.assertEqual(response["evidenceStatus"], "executable_architecture_evidence")
         self.assertEqual(response["coreScale"], "0.2")

@@ -1,11 +1,11 @@
-# Source-Density Finite-Width Equation and Simple-Root Limit
+# Transmitter-Side Finite-Width Equation and Simple-Root Limit
 
 ## Status
 
 - Purpose: first mathematical promotion check for the proposed Master Equation
 - Scope: finite-width emission and ordinary simple roots only
 - Standing: priority analysis; not canon and not an EOM solver specification
-- Current binding: unchanged; this document does not amend the receiver-weighted binding
+- Current binding: incorporated into `master_eom_binding/v1`
 
 ## Result in plain language
 
@@ -267,7 +267,7 @@ This derivation does not settle:
 
 - whether uniform emission in transmitter time is the correct physical measure;
 - behavior as $D_t\to0$, where the simple-root change of variables fails;
-- coincident same-source root birth;
+- coincident same-transmitter root birth;
 - whether either width may be removed in those singular regimes;
 - energy, momentum, or angular-momentum balance;
 - a discriminating physical or recovery test against the receiver-weighted law.

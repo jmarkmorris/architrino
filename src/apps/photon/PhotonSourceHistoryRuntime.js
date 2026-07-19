@@ -89,7 +89,7 @@ export function createPhotonConstrainedSourceHistoryProvider(
   return {
     providerId: PHOTON_SOURCE_HISTORY_PROVIDER_ID,
     providerKind: "constrained_architrino_motion",
-    sourceHistoryKind: options.sourceHistoryKind ?? "moving-circular-source",
+    sourceHistoryKind: options.sourceHistoryKind ?? "moving-circular-transmitter",
     receiverHistoryKind: options.receiverHistoryKind ?? "moving-linear-virtual-observer",
     approximationPolicy: options.approximationPolicy ?? "exact-moving-circular-provider",
     boundary: PHOTON_SOURCE_HISTORY_BOUNDARY,

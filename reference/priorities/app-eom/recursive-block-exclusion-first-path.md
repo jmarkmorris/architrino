@@ -8,7 +8,7 @@
 - Implementation status: `complete-for-declared-first-path-round`
 - Production authority: none
 - Governing contracts:
-  [evolution-contract-v0-amendment-1-million-path-scale.md](evolution-contract-v0-amendment-1-million-path-scale.md)
+  [evolution-contract-v1-amendment-1-million-path-scale.md](evolution-contract-v1-amendment-1-million-path-scale.md)
   and
   [million-path-certified-execution-architecture.md](million-path-certified-execution-architecture.md)
 
@@ -45,7 +45,7 @@ enter the index.
 
 ## Complete Pair Accounting
 
-Every ordered receiver-source relationship is present, including self-pairs.
+Every ordered receiver-transmitter relationship is present, including self-pairs.
 The disjoint relationship ledger obeys
 
 $$

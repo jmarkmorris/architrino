@@ -65,7 +65,7 @@ const COMMON_ORDINARY = Object.freeze({
   correctionAccelerationResidual: "1e-1",
   acceptedStepPosition: "1e-2",
   acceptedStepVelocity: "1e-2",
-  sourceNormalFloor: "1e-30",
+  transmitterFactorFloor: "1e-30",
   chartPolicy: "sharp_with_finite_width_fallback",
 });
 

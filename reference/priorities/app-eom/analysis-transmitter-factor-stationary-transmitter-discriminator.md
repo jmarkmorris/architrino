@@ -4,7 +4,7 @@
 
 - Purpose: supply one independent discriminator between the transmitter-side and receiver-weighted acceleration factors
 - Native input: one stationary transmitter, one moving receiver, one positive-delay simple root
-- Independent anchor: the observer-level static-source electrodynamics comparison already derived in [Static-Source First-Order Receiver Analysis](analysis-static-source-receiver-row.md)
+- Independent anchor: the observer-level stationary-transmitter electrodynamics comparison already derived in [Stationary-Transmitter First-Order Receiver Analysis](archive/receiver-weighted-law/analysis-static-source-receiver-row.md)
 - Standing: priority analysis and downstream recovery test; not an architrino-level premise
 - Verdict: transmitter-side passes and receiver-weighted acceleration fails at first order in receiver radial velocity
 
@@ -12,7 +12,7 @@
 
 Hold the transmitter history, causal root, reception position, separation, polarity, and spatial kernel fixed. Change only the receiver's radial velocity at that same position.
 
-The proposed transmitter-side acceleration does not change. The receiver-weighted acceleration changes linearly. The independent static-source electrodynamics benchmark has no such first-order receiver-velocity term. This test therefore selects removal of the receiver multiplier at first order.
+The proposed transmitter-side acceleration does not change. The receiver-weighted acceleration changes linearly. The independent stationary-transmitter electrodynamics benchmark has no such first-order receiver-velocity term. This test therefore selects removal of the receiver multiplier at first order.
 
 Claim classification: **derived native comparison plus observer-level recovery target**. This result does not prove the complete architrino-to-electrodynamics recovery.
 
@@ -111,7 +111,7 @@ $$
 
 This observer-level result is used only as a recovery constraint. It is not inserted into the native derivation of the transmitter-side factor.
 
-Falsifier: an independently derived static-source observer comparison containing the same universal first-order radial-velocity term while retaining the established static electric, Doppler, clock, and ruler limits.
+Falsifier: an independently derived stationary-transmitter observer comparison containing the same universal first-order radial-velocity term while retaining the established static electric, Doppler, clock, and ruler limits.
 
 ## 4. Scope
 
@@ -120,7 +120,7 @@ This test decides the receiver-factor question at first order. It does not estab
 - the full second-order moving-transmitter and moving-receiver recovery;
 - magnetic-like behavior of assemblies or the Noether sea;
 - the causal recoil contribution required by the scalar action;
-- coincident same-source transition closure;
+- coincident same-transmitter transition closure;
 - conservation on general retained histories.
 
 The action-derived scale-plus-recoil equation independently restores the moving-transmitter present-position result at first order, as shown in [Accounting-Term First Variation on the Uniform-Drift Chart](analysis-accounting-term-drift-chart.md). Its second-order and causal-recoil obligations remain open.

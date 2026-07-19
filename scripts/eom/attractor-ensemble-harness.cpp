@@ -973,7 +973,7 @@ void write_manifest(
     const std::string& status) {
   std::ofstream output(path);
   output << std::setprecision(17)
-         << "{\"schema\":\"eom_attractor_ensemble_run_manifest/v0\""
+         << "{\"schema\":\"eom_attractor_ensemble_run_manifest/v1\""
          << ",\"runId\":";
   write_json_string(output, options.run_id);
   output << ",\"seedFamily\":";
@@ -1344,7 +1344,7 @@ int main(int argc, char** argv) {
         if (row.certificate.status != "certified_complete") {
           ++unresolved;
           std::cerr << "root " << row.receiver_path_id << "<-"
-                    << row.source_path_id
+                    << row.transmitter_path_id
                     << " status=" << row.certificate.status
                     << " failure=" << row.certificate.failure_code << '\n';
         }

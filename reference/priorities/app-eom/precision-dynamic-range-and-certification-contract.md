@@ -5,7 +5,7 @@
 - Contract id: eom_numeric_certification/v0
 - Stage: frozen-requirements
 - Mathematical authority: [master-eom-binding-v0.md](master-eom-binding-v0.md)
-- Evolution authority: [evolution-contract-v0.md](evolution-contract-v0.md)
+- Evolution authority: [evolution-contract-v1.md](evolution-contract-v1.md)
 - Production implementation: not selected
 - Production language and accelerator stack: not selected
 - Non-EOM output of any origin: no numeric authority for EOM
@@ -180,7 +180,7 @@ result.
 | History interpolation | Basis conditioning plus a remainder or enclosure for the requested derivative order. |
 | Simple causal root | $1/|D_s|$ together with the root bracket width and residual enclosure. |
 | Receiver-normal cancellation | $(c_f+|\widehat{\mathbf r}\cdot\mathbf V_i|)/|D_T|$ when $D_T\ne0$. |
-| Core proximity | $r/\epsilon_c$ and the enclosure of the complete zero-extended receiver-normal vector integrand. |
+| Core proximity | $r/\epsilon_c$ and the enclosure of the complete zero-extended receiver-side-factor vector integrand. |
 | Pair subtraction | Separation scale divided by the magnitude and uncertainty of the coordinates being differenced. |
 | Acceleration cancellation | $\sum_k\|\mathbf a_k\|/\|\sum_k\mathbf a_k\|$ with a declared zero-result route. |
 | Integrator step | Estimated or enclosed local error divided by the allocated step budget. |
@@ -235,7 +235,7 @@ Escalation is mandatory when any of the following occurs:
 
 If increasing precision shows that $D_s=0$ is a real event, the row leaves the
 sharp chart and enters the finite-width caustic route. If it shows that $D_T=0$
-with $D_s\ne0$, the branch remains present with zero receiver-normal strength.
+with $D_s\ne0$, the branch remains present with zero receiver-side-factor strength.
 Precision escalation must not erase either event.
 
 ## Root Certification
@@ -262,7 +262,7 @@ numeric_root_count_uncertified and rejects the coupled step.
 Every history segment records its interpolation basis, coefficient precision,
 time chart, continuity class, derivative availability, and error enclosure.
 Interpolation is permitted only inside accepted retained segments. Extrapolation
-cannot supply a causal root or force row.
+cannot supply a causal root or acceleration record.
 
 The interpolation enclosure includes:
 
@@ -360,8 +360,8 @@ At minimum, the numeric layer can reject with:
 - numeric_history_interpolation_uncertified;
 - numeric_root_count_uncertified;
 - numeric_root_identity_uncertified;
-- numeric_source_normal_sign_uncertified;
-- numeric_receiver_normal_null_uncertified;
+- numeric_transmitter_factor_sign_uncertified;
+- numeric_receiver_factor_null_uncertified;
 - numeric_core_integrand_uncertified;
 - numeric_accumulation_budget_exceeded;
 - numeric_step_budget_exceeded;

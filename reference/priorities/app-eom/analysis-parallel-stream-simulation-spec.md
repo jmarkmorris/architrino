@@ -503,7 +503,7 @@ counterexample and must state that prediction instead.
 | Source-vector cargo reducing to SR statics | nonzero; survival target $1$ | law-dependent, expected SR-like if cargo is source-only | $2$ if static reduction is exact | law-dependent, expected zero if cargo is source-only | source-driven nonzero | inferred until the variant equation fixes each coefficient |
 
 The P2 family cannot repair the stream-current null because its transverse
-terms carry receiver velocity and its source-normal power remains unchanged.
+terms carry receiver velocity and its transmitter-side-factor power remains unchanged.
 Only a source-velocity numerator or a separately derived change in source-
 normal power can change the current coefficient on this test.
 
@@ -587,7 +587,7 @@ The profile must attribute at least these qualitative drivers:
 
 - total path count from two streams, two polarities, endpoint collars, and
   phase/refinement replicas;
-- logical ordered receiver-source pairs and the fractions excluded, enclosed,
+- logical ordered receiver-transmitter pairs and the fractions excluded, enclosed,
   evaluated exactly, or unresolved by certified traversal;
 - retained-history depth, segment count, history-window construction, and
   history hashing/copying;

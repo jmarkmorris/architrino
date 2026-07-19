@@ -69,7 +69,7 @@ acceleration or history evolution.
 ## Correctness Controls
 
 The stationary control places retained paths on one spatial line, fixes
-$c_f=1$, and searches an emission-delay interval of $[0,1]$. A receiver-source
+$c_f=1$, and searches an emission-delay interval of $[0,1]$. A receiver-transmitter
 block is excluded only when an outward-rounded lower separation exceeds the
 outward-rounded maximum causal reach. Inconclusive blocks subdivide to an
 eight-by-eight leaf and every leaf member enters exact point classification.
@@ -83,7 +83,7 @@ Both controls have complete disjoint coverage: excluded plus exact fallback
 equals all $N^2$ ordered pairs, including all self-pairs. The active pair count
 inside exact fallback agrees with exhaustive enumeration. The control does not
 cover moving polynomial histories, history reconstruction error, multiple
-roots, folds, receiver-normal evaluation, or precision escalation; those are
+roots, folds, receiver-side-factor evaluation, or precision escalation; those are
 covered separately by the next bounded native packet rather than by this
 stationary population control.
 
@@ -134,7 +134,7 @@ a fingerprint of the exact segment tokens. Tangent, memory-boundary,
 provenance-mismatch, tampered-normal, and excessive-width controls fail without
 a total acceleration.
 
-Complete reconstruction requires exactly $N^2$ ordered receiver-source
+Complete reconstruction requires exactly $N^2$ ordered receiver-transmitter
 requests, including self-pairs. Pair work may run on bounded native threads,
 but results are placed in canonical receiver-major/source-minor order and
 reduced by `fixed_pairwise_interval_tree_v0`. A deliberately shuffled binary
@@ -176,7 +176,7 @@ half-steps. Endpoint position and velocity disagreement is operational: a row
 outside the declared tolerance rejects the entire coupled candidate. Accepted
 fine segments are inflated by the measured discrepancy, then root and
 acceleration certification is rerun on the exact history vector to be
-published. Root-count or source-normal-sign changes under the sharp-only policy
+published. Root-count or transmitter-side-factor-sign changes under the sharp-only policy
 return `root_event_requires_subdivision`. Under a finite-width policy, every
 changed ordered pair must carry a certified joint reception/emission impulse
 whose enclosure overlaps the candidate segment's endpoint-acceleration
@@ -206,7 +206,7 @@ recorded in
 
 The MPFR and regulator-convergence packet extends that same event equation,
 not a substitute model. Its difficult-row route recomputes history
-interpolation, the receiver-normal magnitude, causal residual, Gaussian
+interpolation, the receiver-side-factor magnitude, causal residual, Gaussian
 surface, core kernel, triangular-domain area, and deterministic quadrature in
 directed MPFR intervals. The acceptance layer independently refines causal
 width and core scale through three declared levels and fails unless the

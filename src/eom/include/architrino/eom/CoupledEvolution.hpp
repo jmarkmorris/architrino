@@ -175,7 +175,7 @@ struct NativeFoldCausticImpulseCertificate {
   std::string schema;
   std::string status;
   std::string receiver_path_id;
-  std::string source_path_id;
+  std::string transmitter_path_id;
   std::string reception_lower;
   std::string reception_upper;
   std::string causal_width;
@@ -189,8 +189,8 @@ struct NativeFoldCausticImpulseCertificate {
   std::size_t direct_joint_cells = 0;
   double receiver_position_error_upper = 0.0;
   double receiver_velocity_error_upper = 0.0;
-  double source_position_error_upper = 0.0;
-  double source_velocity_error_upper = 0.0;
+  double transmitter_position_error_upper = 0.0;
+  double transmitter_velocity_error_upper = 0.0;
   double last_maximum_component_width = 0.0;
   double last_maximum_position_moment_component_width = 0.0;
   double last_largest_cell_width = 0.0;
@@ -222,7 +222,7 @@ struct NativeRegulatorConvergenceCertificate {
   std::string schema;
   std::string status;
   std::string receiver_path_id;
-  std::string source_path_id;
+  std::string transmitter_path_id;
   std::size_t required_levels;
   std::string refinement_ratio;
   std::string convergence_tolerance;
@@ -244,7 +244,7 @@ struct NativeHistoryFingerprint {
 
 struct NativeSnapshotRootRow {
   std::string receiver_path_id;
-  std::string source_path_id;
+  std::string transmitter_path_id;
   ExactPairCertificate certificate;
 };
 
@@ -340,7 +340,7 @@ struct NativeEndpointRootContinuationCertificate {
   std::string schema;
   std::string status;
   std::string receiver_path_id;
-  std::string source_path_id;
+  std::string transmitter_path_id;
   std::size_t start_root_count;
   std::size_t end_root_count;
   int boundary_branch_sign;
@@ -404,10 +404,10 @@ struct NativeCommonDomainChartCertificate {
 };
 
 struct NativeFiniteWidthStateCertificate {
-  std::string schema = "eom_native_fwc_state_certificate/v0";
+  std::string schema = "eom_native_fwc_state_certificate/v1";
   std::string status;
   std::string receiver_path_id;
-  std::string source_path_id;
+  std::string transmitter_path_id;
   std::string reception_lower;
   std::string reception_upper;
   std::size_t receiver_routed_pair_count = 0;
@@ -477,7 +477,7 @@ certify_native_coincident_endpoint_root_continuation(
     const NativeAccelerationSnapshotCertificate& start,
     const NativeAccelerationSnapshotCertificate& end,
     const std::string& receiver_path_id,
-    const std::string& source_path_id);
+    const std::string& transmitter_path_id);
 
 [[nodiscard]] std::vector<NativePinnedFoldTemporalStepCertificate>
 certify_native_pinned_fold_temporal_onset(
@@ -597,7 +597,7 @@ certify_native_fold_caustic_impulse(
     const NativePublishedPath& receiver,
     const NativePublishedPath& source,
     const std::string& receiver_charge,
-    const std::string& source_charge,
+    const std::string& transmitter_charge,
     const std::string& reception_lower,
     const std::string& reception_upper);
 
@@ -606,7 +606,7 @@ certify_native_common_domain_chart(
     const NativeCoupledEvolutionRequest& request,
     const std::vector<NativePublishedPath>& histories,
     const std::string& receiver_path_id,
-    const std::string& source_path_id,
+    const std::string& transmitter_path_id,
     const std::string& reception_lower,
     const std::string& reception_upper,
     const std::string& event_end);
@@ -617,7 +617,7 @@ certify_native_regulator_convergence(
     const NativePublishedPath& receiver,
     const NativePublishedPath& source,
     const std::string& receiver_charge,
-    const std::string& source_charge,
+    const std::string& transmitter_charge,
     const std::string& reception_lower,
     const std::string& reception_upper);
 

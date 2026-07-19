@@ -182,7 +182,7 @@ NativeAccelerationRow reconstruct_row(
     const NativeRootBracket& root,
     std::size_t row_index,
     const Interval& receiver_charge,
-    const Interval& source_charge,
+    const Interval& transmitter_charge,
     const Interval& coupling,
     const Interval& transmitter_factor_floor) {
   const auto& root_certificate = *request.root_certificate;
@@ -191,17 +191,17 @@ NativeAccelerationRow reconstruct_row(
   const Interval certified_emission = token_bounds(root.lower, root.upper);
   Interval emission = certified_emission;
   if (!request.receiver_history->covers(reception) ||
-      !request.source_history->covers(emission)) {
+      !request.transmitter_history->covers(emission)) {
     throw AccelerationCertificationError(
         "acceleration evaluation lies outside retained-history coverage");
   }
-  if (root.source_segment_indices.empty()) {
+  if (root.transmitter_segment_indices.empty()) {
     throw AccelerationCertificationError("root lacks source segment identity");
   }
-  for (const std::size_t index : root.source_segment_indices) {
-    if (index >= request.source_history->segments().size() ||
+  for (const std::size_t index : root.transmitter_segment_indices) {
+    if (index >= request.transmitter_history->segments().size() ||
         !root_overlaps_segment(
-            certified_emission, request.source_history->segments()[index])) {
+            certified_emission, request.transmitter_history->segments()[index])) {
       throw AccelerationCertificationError(
           "root source segment identity does not cover the root enclosure");
     }
@@ -217,7 +217,7 @@ NativeAccelerationRow reconstruct_row(
     const IntervalVector contraction_receiver =
         request.receiver_history->correlated_position_hull(reception);
     const IntervalVector contraction_source =
-        request.source_history->correlated_position_hull(midpoint);
+        request.transmitter_history->correlated_position_hull(midpoint);
     const Interval contraction_residual =
         norm(subtract(contraction_receiver, contraction_source)) -
         field_speed * (reception - midpoint);
@@ -235,12 +235,12 @@ NativeAccelerationRow reconstruct_row(
       request.receiver_history->correlated_position_hull(reception);
   const IntervalVector receiver_velocity =
       request.receiver_history->velocity_hull(reception);
-  const IntervalVector source_position =
-      request.source_history->correlated_position_hull(emission);
-  const IntervalVector source_velocity =
-      request.source_history->velocity_hull(emission);
+  const IntervalVector transmitter_position =
+      request.transmitter_history->correlated_position_hull(emission);
+  const IntervalVector transmitter_velocity =
+      request.transmitter_history->velocity_hull(emission);
   const IntervalVector displacement =
-      subtract(receiver_position, source_position);
+      subtract(receiver_position, transmitter_position);
   const Interval separation = norm(displacement);
   if (separation.contains_zero()) {
     throw AccelerationCertificationError(
@@ -248,7 +248,7 @@ NativeAccelerationRow reconstruct_row(
   }
   const IntervalVector direction = divide(displacement, separation);
   const Interval evaluated_transmitter_factor =
-      field_speed - dot(direction, source_velocity);
+      field_speed - dot(direction, transmitter_velocity);
   const auto transmitter_factor_intersection =
       evaluated_transmitter_factor.intersection(certified_transmitter_factor);
   if (!transmitter_factor_intersection.has_value()) {
@@ -285,28 +285,28 @@ NativeAccelerationRow reconstruct_row(
   const IntervalVector inverse_square_direction =
       divide(displacement, radial_denominator);
   const Interval signed_scale =
-      coupling * receiver_charge * source_charge * acceleration_weight;
+      coupling * receiver_charge * transmitter_charge * acceleration_weight;
   const IntervalVector acceleration =
       scale(signed_scale, inverse_square_direction);
 
   return NativeAccelerationRow{
       .row_id = request.row_id + "/root/" + std::to_string(row_index),
       .receiver_path_id = request.receiver_path_id,
-      .source_path_id = request.source_path_id,
+      .transmitter_path_id = request.transmitter_path_id,
       .row_index = row_index,
       .chart = "sharp_root",
       .reception_time = root_certificate.reception_time,
       .emission_lower = root.lower,
       .emission_upper = root.upper,
-      .source_segment_indices = root.source_segment_indices,
+      .transmitter_segment_indices = root.transmitter_segment_indices,
       .separation = separation,
       .transmitter_factor = transmitter_factor,
       .receiver_factor = receiver_factor,
       .root_playback = root_playback,
       .acceleration_weight = acceleration_weight,
-      .polarity = charge_polarity(receiver_charge, source_charge),
+      .polarity = charge_polarity(receiver_charge, transmitter_charge),
       .charge_product_magnitude =
-          interval_absolute(receiver_charge * source_charge),
+          interval_absolute(receiver_charge * transmitter_charge),
       .coupling = coupling,
       .accumulation_group = request.receiver_path_id,
       .acceptance_status = "consumed_certified_sharp_root",
@@ -330,11 +330,11 @@ struct FiniteWidthIntegrand {
 bool analytic_pinned_fold_eligible(
     const NativePairAccelerationRequest& request) {
   if (!request.use_analytic_pinned_fold ||
-      request.receiver_path_id != request.source_path_id) {
+      request.receiver_path_id != request.transmitter_path_id) {
     return false;
   }
   const auto& circular =
-      request.source_history->uniform_circular_endpoint_certificate();
+      request.transmitter_history->uniform_circular_endpoint_certificate();
   return circular.has_value() &&
       same_interval(
           Interval::decimal_token(circular->tangential_speed),
@@ -343,11 +343,11 @@ bool analytic_pinned_fold_eligible(
 
 bool same_retained_history_pair(
     const NativePairAccelerationRequest& request) {
-  return request.receiver_path_id == request.source_path_id &&
+  return request.receiver_path_id == request.transmitter_path_id &&
       request.receiver_history->history_id() ==
-          request.source_history->history_id() &&
+          request.transmitter_history->history_id() &&
       request.receiver_history->provenance_fingerprint() ==
-          request.source_history->provenance_fingerprint();
+          request.transmitter_history->provenance_fingerprint();
 }
 
 Interval stable_sine_minus_argument(const Interval& argument) {
@@ -382,10 +382,10 @@ std::optional<Interval> stable_circular_self_residual(
     return std::nullopt;
   }
   const auto& circular =
-      *request.source_history->uniform_circular_endpoint_certificate();
+      *request.transmitter_history->uniform_circular_endpoint_certificate();
   if (!request.receiver_history->uniform_circular_analytic_state(reception)
            .has_value() ||
-      !request.source_history->uniform_circular_analytic_state(emission)
+      !request.transmitter_history->uniform_circular_analytic_state(emission)
            .has_value()) {
     return std::nullopt;
   }
@@ -412,24 +412,24 @@ IntervalVector finite_width_displacement(
     const Interval& reception,
     const Interval& emission,
     const IntervalVector& receiver_position,
-    const IntervalVector& source_position) {
+    const IntervalVector& transmitter_position) {
   if (!request.use_correlated_self_chord ||
       !same_retained_history_pair(request)) {
-    return subtract(receiver_position, source_position);
+    return subtract(receiver_position, transmitter_position);
   }
   const auto analytic_receiver =
       request.receiver_history->uniform_circular_analytic_state(reception);
   const auto analytic_source =
-      request.source_history->uniform_circular_analytic_state(emission);
+      request.transmitter_history->uniform_circular_analytic_state(emission);
   if (analytic_receiver.has_value() && analytic_source.has_value()) {
     return subtract(analytic_receiver->position, analytic_source->position);
   }
   const auto correlated =
-      request.source_history->correlated_self_displacement(
+      request.transmitter_history->correlated_self_displacement(
           reception, emission);
   return correlated.has_value()
       ? *correlated
-      : subtract(receiver_position, source_position);
+      : subtract(receiver_position, transmitter_position);
 }
 
 bool uses_correlated_self_chord(
@@ -442,11 +442,11 @@ bool uses_correlated_self_chord(
   }
   if (request.receiver_history->uniform_circular_analytic_state(reception)
           .has_value() &&
-      request.source_history->uniform_circular_analytic_state(emission)
+      request.transmitter_history->uniform_circular_analytic_state(emission)
           .has_value()) {
     return true;
   }
-  return request.source_history->correlated_self_displacement(
+  return request.transmitter_history->correlated_self_displacement(
       reception, emission).has_value();
 }
 
@@ -461,10 +461,10 @@ std::optional<Interval> analytic_circular_taylor_residual(
   }
   const double midpoint = emission.midpoint();
   const auto midpoint_state =
-      request.source_history->uniform_circular_analytic_state(
+      request.transmitter_history->uniform_circular_analytic_state(
           Interval::point(midpoint));
   const auto cell_state =
-      request.source_history->uniform_circular_analytic_state(emission);
+      request.transmitter_history->uniform_circular_analytic_state(emission);
   if (!midpoint_state.has_value() || !cell_state.has_value()) {
     return std::nullopt;
   }
@@ -517,7 +517,7 @@ FiniteWidthIntegrand finite_width_integrand(
     const NativePairAccelerationRequest& request,
     const Interval& emission,
     const Interval& receiver_charge,
-    const Interval& source_charge,
+    const Interval& transmitter_charge,
     const Interval& coupling,
     const Interval& causal_width,
     const Interval& core_scale) {
@@ -533,13 +533,13 @@ FiniteWidthIntegrand finite_width_integrand(
       ? analytic_receiver->position
       : request.receiver_history->position_hull(reception);
   const auto analytic_state = analytic_pinned_fold_eligible(request)
-      ? request.source_history->uniform_circular_analytic_state(emission)
+      ? request.transmitter_history->uniform_circular_analytic_state(emission)
       : std::nullopt;
-  const IntervalVector source_position = analytic_state.has_value()
+  const IntervalVector transmitter_position = analytic_state.has_value()
       ? analytic_state->position
-      : request.source_history->position_hull(emission);
+      : request.transmitter_history->position_hull(emission);
   const IntervalVector displacement = finite_width_displacement(
-      request, reception, emission, receiver_position, source_position);
+      request, reception, emission, receiver_position, transmitter_position);
   const Interval separation = norm(displacement);
   const Interval radial_square =
       interval_square(separation) + interval_square(core_scale);
@@ -577,7 +577,7 @@ FiniteWidthIntegrand finite_width_integrand(
   const Interval mollifier = interval_exp(exponent) / normalizer;
   return {
       .value = scale(
-          coupling * receiver_charge * source_charge * field_speed * mollifier,
+          coupling * receiver_charge * transmitter_charge * field_speed * mollifier,
           kernel),
       .used_analytic_fold = analytic_residual.has_value(),
       .used_correlated_self_chord = uses_correlated_self_chord(
@@ -597,12 +597,12 @@ std::optional<CenteredFiniteWidthIntegral> centered_finite_width_integral(
     const NativePairAccelerationRequest& request,
     const Interval& emission,
     const Interval& receiver_charge,
-    const Interval& source_charge,
+    const Interval& transmitter_charge,
     const Interval& coupling,
     const Interval& causal_width,
     const Interval& core_scale) {
-  const auto source_state = analytic_pinned_fold_eligible(request)
-      ? request.source_history->uniform_circular_analytic_state(emission)
+  const auto transmitter_state = analytic_pinned_fold_eligible(request)
+      ? request.transmitter_history->uniform_circular_analytic_state(emission)
       : std::nullopt;
   const double midpoint = emission.midpoint();
   const Interval midpoint_interval = Interval::point(midpoint);
@@ -617,14 +617,14 @@ std::optional<CenteredFiniteWidthIntegral> centered_finite_width_integral(
   const IntervalVector receiver_position = analytic_receiver.has_value()
       ? analytic_receiver->position
       : request.receiver_history->position_hull(reception);
-  const IntervalVector source_position = source_state.has_value()
-      ? source_state->position
-      : request.source_history->position_hull(emission);
-  const IntervalVector source_velocity = source_state.has_value()
-      ? source_state->velocity
-      : request.source_history->velocity_hull(emission);
+  const IntervalVector transmitter_position = transmitter_state.has_value()
+      ? transmitter_state->position
+      : request.transmitter_history->position_hull(emission);
+  const IntervalVector transmitter_velocity = transmitter_state.has_value()
+      ? transmitter_state->velocity
+      : request.transmitter_history->velocity_hull(emission);
   const IntervalVector displacement = finite_width_displacement(
-      request, reception, emission, receiver_position, source_position);
+      request, reception, emission, receiver_position, transmitter_position);
   const Interval separation = norm(displacement);
   if (separation.contains_zero()) {
     return std::nullopt;
@@ -632,15 +632,15 @@ std::optional<CenteredFiniteWidthIntegral> centered_finite_width_integral(
   const IntervalVector direction = divide(displacement, separation);
   const Interval field_speed =
       Interval::decimal_token(root_certificate.field_speed);
-  const Interval source_radial_speed =
-      dot(direction, source_velocity);
+  const Interval transmitter_radial_speed =
+      dot(direction, transmitter_velocity);
   const Interval residual_derivative =
-      field_speed - source_radial_speed;
+      field_speed - transmitter_radial_speed;
 
   const Interval zero = Interval::point(0.0);
   const Interval minus_one = Interval::point(-1.0);
   const IntervalVector displacement_derivative =
-      scale(minus_one, source_velocity);
+      scale(minus_one, transmitter_velocity);
   const Interval radial_square =
       interval_square(separation) + interval_square(core_scale);
   const Interval radial_three_halves =
@@ -688,7 +688,7 @@ std::optional<CenteredFiniteWidthIntegral> centered_finite_width_integral(
       (zero - residual * residual_derivative /
           interval_square(causal_width));
   const Interval signed_charge_scale =
-      coupling * receiver_charge * source_charge;
+      coupling * receiver_charge * transmitter_charge;
   const IntervalVector derivative = scale(
       signed_charge_scale * field_speed,
       add(
@@ -696,7 +696,7 @@ std::optional<CenteredFiniteWidthIntegral> centered_finite_width_integral(
           scale(mollifier_derivative, kernel)));
 
   const IntervalVector midpoint_value = finite_width_integrand(
-      request, midpoint_interval, receiver_charge, source_charge, coupling,
+      request, midpoint_interval, receiver_charge, transmitter_charge, coupling,
       causal_width, core_scale).value;
   const double width = emission.upper() - emission.lower();
   IntervalVector result = scale(Interval::point(width), midpoint_value);
@@ -738,7 +738,7 @@ monotone_finite_width_integral(
     const NativePairAccelerationRequest& request,
     const Interval& emission,
     const Interval& receiver_charge,
-    const Interval& source_charge,
+    const Interval& transmitter_charge,
     const Interval& coupling,
     const Interval& causal_width,
     const Interval& core_scale) {
@@ -754,33 +754,33 @@ monotone_finite_width_integral(
       ? analytic_receiver->position
       : request.receiver_history->position_hull(reception);
   const auto analytic_source = analytic_pinned_fold_eligible(request)
-      ? request.source_history->uniform_circular_analytic_state(emission)
+      ? request.transmitter_history->uniform_circular_analytic_state(emission)
       : std::nullopt;
-  const IntervalVector source_position = analytic_source.has_value()
+  const IntervalVector transmitter_position = analytic_source.has_value()
       ? analytic_source->position
-      : request.source_history->position_hull(emission);
-  const IntervalVector source_velocity = analytic_source.has_value()
+      : request.transmitter_history->position_hull(emission);
+  const IntervalVector transmitter_velocity = analytic_source.has_value()
       ? analytic_source->velocity
-      : request.source_history->velocity_hull(emission);
+      : request.transmitter_history->velocity_hull(emission);
   const IntervalVector displacement = finite_width_displacement(
-      request, reception, emission, receiver_position, source_position);
+      request, reception, emission, receiver_position, transmitter_position);
   const Interval separation = norm(displacement);
   if (separation.contains_zero()) return std::nullopt;
   const IntervalVector direction = divide(displacement, separation);
   const Interval field_speed =
       Interval::decimal_token(certificate.field_speed);
   const Interval transmitter_factor =
-      field_speed - dot(direction, source_velocity);
+      field_speed - dot(direction, transmitter_velocity);
   if (transmitter_factor.contains_zero()) return std::nullopt;
 
   const auto endpoint_residual = [&](double time) {
     const Interval point = Interval::point(time);
     const auto analytic_point = analytic_pinned_fold_eligible(request)
-        ? request.source_history->uniform_circular_analytic_state(point)
+        ? request.transmitter_history->uniform_circular_analytic_state(point)
         : std::nullopt;
     const IntervalVector point_position = analytic_point.has_value()
         ? analytic_point->position
-        : request.source_history->position_hull(point);
+        : request.transmitter_history->position_hull(point);
     const Interval direct =
         norm(finite_width_displacement(
             request, reception, point, receiver_position, point_position)) -
@@ -815,13 +815,13 @@ monotone_finite_width_integral(
       radial_square * interval_sqrt(radial_square);
   const IntervalVector kernel = divide(displacement, radial_three_halves);
   const Interval signed_charge_scale =
-      coupling * receiver_charge * source_charge;
+      coupling * receiver_charge * transmitter_charge;
   IntervalVector result = scale(
       signed_charge_scale * field_speed * mollifier_integral,
       kernel);
 
   const IntervalVector displacement_derivative =
-      scale(Interval::point(-1.0), source_velocity);
+      scale(Interval::point(-1.0), transmitter_velocity);
   const Interval radial_five_halves =
       interval_square(radial_square) * interval_sqrt(radial_square);
   const IntervalVector kernel_derivative = add(
@@ -838,12 +838,12 @@ monotone_finite_width_integral(
   const double midpoint = emission.midpoint();
   const Interval midpoint_emission = Interval::point(midpoint);
   const auto midpoint_analytic = analytic_pinned_fold_eligible(request)
-      ? request.source_history->uniform_circular_analytic_state(
+      ? request.transmitter_history->uniform_circular_analytic_state(
             midpoint_emission)
       : std::nullopt;
   const IntervalVector midpoint_source = midpoint_analytic.has_value()
       ? midpoint_analytic->position
-      : request.source_history->position_hull(midpoint_emission);
+      : request.transmitter_history->position_hull(midpoint_emission);
   const IntervalVector midpoint_displacement = finite_width_displacement(
       request, reception, midpoint_emission, receiver_position,
       midpoint_source);
@@ -911,10 +911,10 @@ void require_finite_width_boundary_clearance(
   const Interval lower_point = Interval::point(lower.midpoint());
   const IntervalVector receiver_position =
       request.receiver_history->position_hull(reception);
-  const IntervalVector source_boundary =
-      request.source_history->position_hull(lower_point);
+  const IntervalVector transmitter_boundary =
+      request.transmitter_history->position_hull(lower_point);
   const Interval boundary_residual =
-      norm(subtract(receiver_position, source_boundary)) -
+      norm(subtract(receiver_position, transmitter_boundary)) -
       Interval::decimal_token(certificate.field_speed) *
           (reception - lower_point);
   if (boundary_residual.contains_zero()) {
@@ -926,7 +926,7 @@ void require_finite_width_boundary_clearance(
 FiniteWidthAttempt reconstruct_finite_width(
     const NativePairAccelerationRequest& request,
     const Interval& receiver_charge,
-    const Interval& source_charge,
+    const Interval& transmitter_charge,
     const Interval& coupling,
     const Interval& causal_width,
     const Interval& core_scale,
@@ -998,7 +998,7 @@ FiniteWidthAttempt reconstruct_finite_width(
                   centered_integral->used_stable_circular_residual,
           }
         : finite_width_integrand(
-              request, cell, receiver_charge, source_charge, coupling,
+              request, cell, receiver_charge, transmitter_charge, coupling,
               causal_width, core_scale);
     if (integrand.used_analytic_fold) {
       ++attempt.analytic_fold_visited_cells;
@@ -1048,10 +1048,10 @@ FiniteWidthAttempt reconstruct_finite_width(
     require_cell_budget();
     const Interval cell(cell_lower, cell_upper);
     const auto centered_integral = centered_finite_width_integral(
-        request, cell, receiver_charge, source_charge, coupling,
+        request, cell, receiver_charge, transmitter_charge, coupling,
         causal_width, core_scale);
     const auto monotone_integral = monotone_finite_width_integral(
-        request, cell, receiver_charge, source_charge, coupling,
+        request, cell, receiver_charge, transmitter_charge, coupling,
         causal_width, core_scale);
     return assemble_cell(
         cell_lower, cell_upper, segment_group, depth, id,
@@ -1061,8 +1061,8 @@ FiniteWidthAttempt reconstruct_finite_width(
   std::multiset<Cell, CellOrder> cells;
   std::vector<IntervalVector> segment_group_enclosures;
   for (std::size_t index = 0;
-       index < request.source_history->segments().size(); ++index) {
-    const auto& segment = request.source_history->segments()[index];
+       index < request.transmitter_history->segments().size(); ++index) {
+    const auto& segment = request.transmitter_history->segments()[index];
     const double cell_lower = std::max(lower_value, segment.t_start());
     const double cell_upper = std::min(reception_value, segment.t_end());
     if (cell_lower < cell_upper) {
@@ -1166,11 +1166,11 @@ FiniteWidthAttempt reconstruct_finite_width(
         try {
           if (task_index % 2U == 0U) {
             centered_integrals[child_index] = centered_finite_width_integral(
-                request, child, receiver_charge, source_charge, coupling,
+                request, child, receiver_charge, transmitter_charge, coupling,
                 causal_width, core_scale);
           } else {
             monotone_integrals[child_index] = monotone_finite_width_integral(
-                request, child, receiver_charge, source_charge, coupling,
+                request, child, receiver_charge, transmitter_charge, coupling,
                 causal_width, core_scale);
           }
         } catch (...) {
@@ -1196,8 +1196,8 @@ FiniteWidthAttempt reconstruct_finite_width(
 
 void validate_pair_request(const NativePairAccelerationRequest& request) {
   if (request.row_id.empty() || request.receiver_path_id.empty() ||
-      request.source_path_id.empty() || request.receiver_history == nullptr ||
-      request.source_history == nullptr || request.root_certificate == nullptr) {
+      request.transmitter_path_id.empty() || request.receiver_history == nullptr ||
+      request.transmitter_history == nullptr || request.root_certificate == nullptr) {
     throw std::invalid_argument(
         "pair acceleration request requires row, path, history, and root identities");
   }
@@ -1239,7 +1239,7 @@ NativePairAccelerationCertificate uncertified_pair(
       .schema = "eom_native_pair_acceleration_certificate/v1",
       .row_id = request.row_id,
       .receiver_path_id = request.receiver_path_id,
-      .source_path_id = request.source_path_id,
+      .transmitter_path_id = request.transmitter_path_id,
       .chart = request.chart,
       .status = "uncertified",
       .failure_code = failure_code,
@@ -1285,21 +1285,21 @@ NativePairAccelerationCertificate certify_pair_acceleration(
   try {
     const bool far_field_chart = request.chart == "far_field_enclosure";
     if ((!far_field_chart &&
-         root_certificate.schema != "eom_native_exact_pair_certificate/v0") ||
+         root_certificate.schema != "eom_native_exact_pair_certificate/v1") ||
         (far_field_chart &&
-         root_certificate.schema != "eom_native_enclosed_pair_marker/v0")) {
+         root_certificate.schema != "eom_native_enclosed_pair_marker/v1")) {
       throw AccelerationCertificationError("unsupported root certificate schema");
     }
     if (root_certificate.receiver_history_id !=
             request.receiver_history->history_id() ||
-        root_certificate.source_history_id !=
-            request.source_history->history_id()) {
+        root_certificate.transmitter_history_id !=
+            request.transmitter_history->history_id()) {
       throw AccelerationCertificationError("root certificate history identity mismatch");
     }
     if (root_certificate.receiver_history_fingerprint !=
             request.receiver_history->provenance_fingerprint() ||
-        root_certificate.source_history_fingerprint !=
-            request.source_history->provenance_fingerprint()) {
+        root_certificate.transmitter_history_fingerprint !=
+            request.transmitter_history->provenance_fingerprint()) {
       throw AccelerationCertificationError(
           "root certificate retained-history provenance mismatch");
     }
@@ -1313,8 +1313,8 @@ NativePairAccelerationCertificate certify_pair_acceleration(
     }
     const Interval receiver_charge =
         Interval::decimal_token(request.receiver_charge);
-    const Interval source_charge =
-        Interval::decimal_token(request.source_charge);
+    const Interval transmitter_charge =
+        Interval::decimal_token(request.transmitter_charge);
     const Interval coupling = Interval::decimal_token(request.coupling);
     const Interval transmitter_factor_floor =
         Interval::decimal_token(request.transmitter_factor_floor);
@@ -1327,7 +1327,7 @@ NativePairAccelerationCertificate certify_pair_acceleration(
     const Interval quadrature_tolerance =
         Interval::decimal_token(request.quadrature_tolerance);
     require_nonzero_charge(receiver_charge, "receiver charge");
-    require_nonzero_charge(source_charge, "source charge");
+    require_nonzero_charge(transmitter_charge, "source charge");
     require_positive(coupling, "coupling");
     require_positive(transmitter_factor_floor, "transmitter-side factor floor");
     require_positive(causal_width, "causal width");
@@ -1339,19 +1339,19 @@ NativePairAccelerationCertificate certify_pair_acceleration(
     std::vector<IntervalVector> contributions;
     if (request.chart == "far_field_enclosure") {
       const auto& enclosure = *request.far_field_enclosure;
-      if (enclosure.schema != "eom_native_far_field_enclosure_certificate/v0" ||
+      if (enclosure.schema != "eom_native_far_field_enclosure_certificate/v1" ||
           enclosure.status != "certified_enclosed" ||
           !enclosure.acceleration.has_value() ||
           !enclosure.pair_width_budget.has_value() ||
           enclosure.receiver_path_id != request.receiver_path_id ||
-          enclosure.source_path_id != request.source_path_id ||
+          enclosure.transmitter_path_id != request.transmitter_path_id ||
           enclosure.receiver_history_id !=
               request.receiver_history->history_id() ||
-          enclosure.source_history_id != request.source_history->history_id() ||
+          enclosure.transmitter_history_id != request.transmitter_history->history_id() ||
           enclosure.receiver_history_fingerprint !=
               request.receiver_history->provenance_fingerprint() ||
-          enclosure.source_history_fingerprint !=
-              request.source_history->provenance_fingerprint()) {
+          enclosure.transmitter_history_fingerprint !=
+              request.transmitter_history->provenance_fingerprint()) {
         throw AccelerationCertificationError(
             "far-field enclosure identity or provenance mismatch");
       }
@@ -1371,21 +1371,21 @@ NativePairAccelerationCertificate certify_pair_acceleration(
       NativeAccelerationRow row{
           .row_id = request.row_id + "/far-field-enclosure",
           .receiver_path_id = request.receiver_path_id,
-          .source_path_id = request.source_path_id,
+          .transmitter_path_id = request.transmitter_path_id,
           .row_index = 0,
           .chart = "far_field_enclosure",
           .reception_time = root_certificate.reception_time,
           .emission_lower = enclosure.emission_lower,
           .emission_upper = enclosure.emission_upper,
-          .source_segment_indices = {},
+          .transmitter_segment_indices = {},
           .separation = enclosure.separation,
           .transmitter_factor = enclosure.transmitter_factor_lower_bound,
           .receiver_factor = std::nullopt,
           .root_playback = std::nullopt,
           .acceleration_weight = std::nullopt,
-          .polarity = charge_polarity(receiver_charge, source_charge),
+          .polarity = charge_polarity(receiver_charge, transmitter_charge),
           .charge_product_magnitude =
-              interval_absolute(receiver_charge * source_charge),
+              interval_absolute(receiver_charge * transmitter_charge),
           .coupling = coupling,
           .accumulation_group = request.receiver_path_id,
           .acceptance_status = "consumed_certified_far_field_enclosure",
@@ -1409,7 +1409,7 @@ NativePairAccelerationCertificate certify_pair_acceleration(
       for (std::size_t index = 0; index < root_certificate.roots.size(); ++index) {
         auto row = reconstruct_row(
             request, root_certificate.roots[index], index, receiver_charge,
-            source_charge, coupling, transmitter_factor_floor);
+            transmitter_charge, coupling, transmitter_factor_floor);
         contributions.push_back(row.acceleration);
         rows.push_back(std::move(row));
       }
@@ -1425,7 +1425,7 @@ NativePairAccelerationCertificate certify_pair_acceleration(
         const auto finite_width_timing_start = SteadyClock::now();
         try {
           const auto attempt = reconstruct_finite_width(
-              request, receiver_charge, source_charge, coupling, causal_width,
+              request, receiver_charge, transmitter_charge, coupling, causal_width,
               core_scale, quadrature_tolerance);
           finite_acceleration = attempt.acceleration;
           quadrature_visited_cells = attempt.visited_cells;
@@ -1483,34 +1483,34 @@ NativePairAccelerationCertificate certify_pair_acceleration(
                   : mpfr_failure);
         }
       }
-      std::vector<std::size_t> source_segment_indices;
+      std::vector<std::size_t> transmitter_segment_indices;
       for (std::size_t index = 0;
-           index < request.source_history->segments().size(); ++index) {
-        const auto& segment = request.source_history->segments()[index];
+           index < request.transmitter_history->segments().size(); ++index) {
+        const auto& segment = request.transmitter_history->segments()[index];
         if (segment.t_end() >
                 Interval::decimal_token(root_certificate.searched_lower).midpoint() &&
             segment.t_start() < reception.midpoint()) {
-          source_segment_indices.push_back(index);
+          transmitter_segment_indices.push_back(index);
         }
       }
       NativeAccelerationRow row{
           .row_id = request.row_id + "/finite-width",
           .receiver_path_id = request.receiver_path_id,
-          .source_path_id = request.source_path_id,
+          .transmitter_path_id = request.transmitter_path_id,
           .row_index = 0,
           .chart = "finite_width_pair",
           .reception_time = root_certificate.reception_time,
           .emission_lower = root_certificate.searched_lower,
           .emission_upper = root_certificate.reception_time,
-          .source_segment_indices = std::move(source_segment_indices),
+          .transmitter_segment_indices = std::move(transmitter_segment_indices),
           .separation = std::nullopt,
           .transmitter_factor = std::nullopt,
           .receiver_factor = std::nullopt,
           .root_playback = std::nullopt,
           .acceleration_weight = std::nullopt,
-          .polarity = charge_polarity(receiver_charge, source_charge),
+          .polarity = charge_polarity(receiver_charge, transmitter_charge),
           .charge_product_magnitude =
-              interval_absolute(receiver_charge * source_charge),
+              interval_absolute(receiver_charge * transmitter_charge),
           .coupling = coupling,
           .accumulation_group = request.receiver_path_id,
           .acceptance_status = "consumed_certified_finite_width_pair",
@@ -1549,7 +1549,7 @@ NativePairAccelerationCertificate certify_pair_acceleration(
         .schema = "eom_native_pair_acceleration_certificate/v1",
         .row_id = request.row_id,
         .receiver_path_id = request.receiver_path_id,
-        .source_path_id = request.source_path_id,
+        .transmitter_path_id = request.transmitter_path_id,
         .chart = request.chart,
         .status = rows.empty() ? "inactive" : "active",
         .failure_code = "",
@@ -1624,7 +1624,7 @@ NativeAccelerationReconstructionCertificate certify_acceleration_reconstruction(
     validate_pair_request(pair_requests[index]);
     const auto key = std::make_pair(
         pair_requests[index].receiver_path_id,
-        pair_requests[index].source_path_id);
+        pair_requests[index].transmitter_path_id);
     if (!request_indices.emplace(key, index).second) {
       throw std::invalid_argument("duplicate ordered-pair acceleration request");
     }
@@ -1691,8 +1691,8 @@ NativeAccelerationReconstructionCertificate certify_acceleration_reconstruction(
                  request.receiver_path_id, request.receiver_history,
                  request.receiver_charge},
              std::tuple<std::string, const RetainedHistory*, std::string>{
-                 request.source_path_id, request.source_history,
-                 request.source_charge}}) {
+                 request.transmitter_path_id, request.transmitter_history,
+                 request.transmitter_charge}}) {
       const auto prior_history = path_histories.find(path_id);
       if (prior_history != path_histories.end() &&
           prior_history->second != history) {
@@ -1819,18 +1819,18 @@ NativeAccelerationReconstructionCertificate certify_acceleration_reconstruction(
   if (all_certified) {
     for (std::size_t receiver_index = 0; receiver_index < path_ids.size();
          ++receiver_index) {
-      std::vector<IntervalVector> source_totals;
-      source_totals.reserve(path_ids.size());
-      for (std::size_t source_index = 0; source_index < path_ids.size();
-           ++source_index) {
+      std::vector<IntervalVector> transmitter_totals;
+      transmitter_totals.reserve(path_ids.size());
+      for (std::size_t transmitter_index = 0; transmitter_index < path_ids.size();
+           ++transmitter_index) {
         const std::size_t pair_index =
-            receiver_index * path_ids.size() + source_index;
-        source_totals.push_back(
+            receiver_index * path_ids.size() + transmitter_index;
+        transmitter_totals.push_back(
             *pair_certificates[pair_index].total_acceleration);
       }
-      const IntervalVector total = fixed_pairwise_sum(source_totals);
+      const IntervalVector total = fixed_pairwise_sum(transmitter_totals);
       reconstruction_matches = reconstruction_matches &&
-          same_vector(total, fixed_pairwise_sum(source_totals));
+          same_vector(total, fixed_pairwise_sum(transmitter_totals));
       receiver_totals.push_back({path_ids[receiver_index], total});
     }
   }

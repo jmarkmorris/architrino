@@ -192,11 +192,11 @@ class FoldCausticImpulseControls(unittest.TestCase):
         )
         impulse_request = EventImpulseRequest.from_decimal_tokens(
             receiver_path_id="receiver",
-            source_path_id="source",
+            transmitter_path_id="source",
             receiver_history=receiver,
-            source_history=source,
+            transmitter_history=source,
             receiver_charge="1",
-            source_charge="1",
+            transmitter_charge="1",
             reception_lower="2.99",
             reception_upper="3.01",
             search_lower="0",
@@ -236,11 +236,11 @@ class FoldCausticImpulseControls(unittest.TestCase):
         )
         impulse_request = EventImpulseRequest.from_decimal_tokens(
             receiver_path_id="receiver",
-            source_path_id="source",
+            transmitter_path_id="source",
             receiver_history=receiver,
-            source_history=source,
+            transmitter_history=source,
             receiver_charge="1",
-            source_charge="1",
+            transmitter_charge="1",
             reception_lower="2.99",
             reception_upper="3.01",
             search_lower="0",
@@ -429,7 +429,7 @@ class Phase4MatrixControls(unittest.TestCase):
         self.assertFalse(certificate.forbidden_dependencies)
         self.assertEqual(
             certificate.to_record()["schema"],
-            "eom_independent_oracle_phase4_acceptance/v0",
+            "eom_independent_oracle_phase4_acceptance/v1",
         )
         self.assertEqual(certificate.to_record()["production_authority"], "none")
 

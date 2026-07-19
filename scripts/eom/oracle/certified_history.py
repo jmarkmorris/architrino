@@ -427,9 +427,9 @@ class RootCompletenessCertificate:
     max_cells: int
     input_digest: str
     receiver_history_id: str
-    source_history_id: str
+    transmitter_history_id: str
     receiver_history_digest: str
-    source_history_digest: str
+    transmitter_history_digest: str
     visited_cells: int
 
     def to_record(self) -> dict[str, object]:
@@ -442,7 +442,7 @@ class RootCompletenessCertificate:
             }
 
         return {
-            "schema": "eom_root_completeness_certificate/v0",
+            "schema": "eom_root_completeness_certificate/v1",
             "status": self.status,
             "root_count": len(self.roots),
             "root_free_complement": self.root_free_complement,
@@ -479,16 +479,16 @@ class RootCompletenessCertificate:
             "provenance": {
                 "input_digest": self.input_digest,
                 "receiver_history_id": self.receiver_history_id,
-                "source_history_id": self.source_history_id,
+                "transmitter_history_id": self.transmitter_history_id,
                 "receiver_history_digest": self.receiver_history_digest,
-                "source_history_digest": self.source_history_digest,
+                "transmitter_history_digest": self.transmitter_history_digest,
             },
         }
 
 
 def _residual_interval(
     receiver_position: IntervalVector,
-    source_segment: CubicHistorySegment,
+    transmitter_segment: CubicHistorySegment,
     reception_time: Decimal,
     emission_interval: DecimalInterval,
     field_speed: Decimal,
@@ -500,13 +500,13 @@ def _residual_interval(
         reception_time, emission_interval.precision
     )
     displacement = correlated_displacement or (
-        source_segment.correlated_displacement_interval(
+        transmitter_segment.correlated_displacement_interval(
             reception, emission_interval
         )
         if correlated_self
         else _vector_subtract(
             receiver_position,
-            source_segment.position_interval(emission_interval),
+            transmitter_segment.position_interval(emission_interval),
         )
     )
     separation = interval_norm(displacement)
@@ -518,7 +518,7 @@ def _residual_interval(
 
 def _transmitter_factor_interval(
     receiver_position: IntervalVector,
-    source_segment: CubicHistorySegment,
+    transmitter_segment: CubicHistorySegment,
     emission_interval: DecimalInterval,
     field_speed: Decimal,
     *,
@@ -526,7 +526,7 @@ def _transmitter_factor_interval(
     correlated_self: bool = False,
     correlated_displacement: IntervalVector | None = None,
 ) -> DecimalInterval | None:
-    source_velocity = source_segment.velocity_interval(emission_interval)
+    transmitter_velocity = transmitter_segment.velocity_interval(emission_interval)
     if correlated_displacement is not None:
         displacement = correlated_displacement
     elif correlated_self:
@@ -534,7 +534,7 @@ def _transmitter_factor_interval(
             raise ValueError(
                 "correlated source normal requires a reception time"
             )
-        displacement = source_segment.correlated_displacement_interval(
+        displacement = transmitter_segment.correlated_displacement_interval(
             DecimalInterval.point(
                 reception_time, emission_interval.precision
             ),
@@ -543,7 +543,7 @@ def _transmitter_factor_interval(
     else:
         displacement = _vector_subtract(
             receiver_position,
-            source_segment.position_interval(emission_interval),
+            transmitter_segment.position_interval(emission_interval),
         )
     separation = interval_norm(displacement)
     if separation.contains_zero:
@@ -553,12 +553,12 @@ def _transmitter_factor_interval(
     )
     return DecimalInterval.point(
         field_speed, emission_interval.precision
-    ) - interval_dot(direction, source_velocity)
+    ) - interval_dot(direction, transmitter_velocity)
 
 
 def _coincident_endpoint_open_cell_reason(
     receiver_position: IntervalVector,
-    source_segment: CubicHistorySegment,
+    transmitter_segment: CubicHistorySegment,
     emission_interval: DecimalInterval,
     field_speed: Decimal,
     *,
@@ -571,7 +571,7 @@ def _coincident_endpoint_open_cell_reason(
             emission_interval.upper,
             emission_interval.precision,
         )
-        endpoint_position = source_segment.position_interval(endpoint)
+        endpoint_position = transmitter_segment.position_interval(endpoint)
         endpoint_displacement = _vector_subtract(
             receiver_position,
             endpoint_position,
@@ -579,11 +579,11 @@ def _coincident_endpoint_open_cell_reason(
         if not all(component.is_exact_zero for component in endpoint_displacement):
             return None
 
-    source_velocity = source_segment.velocity_interval(emission_interval)
-    speed = interval_norm(source_velocity)
+    transmitter_velocity = transmitter_segment.velocity_interval(emission_interval)
+    speed = interval_norm(transmitter_velocity)
     if speed.upper < field_speed:
         return "H0_endpoint_with_uniform_subfield_speed_bound"
-    for component in source_velocity:
+    for component in transmitter_velocity:
         if component.lower > field_speed or component.upper < -field_speed:
             return "H0_endpoint_with_uniform_superfield_component_bound"
     return None
@@ -1245,11 +1245,11 @@ def certify_causal_roots(
         status = "certified_complete"
 
     receiver_digest = receiver.digest()
-    source_digest = source.digest()
+    transmitter_digest = source.digest()
     digest_payload = "\n".join(
         (
             receiver_digest,
-            source_digest,
+            transmitter_digest,
             str(reception),
             str(c_f),
             str(lower_bound),
@@ -1278,8 +1278,8 @@ def certify_causal_roots(
         max_cells=max_cells,
         input_digest=sha256(digest_payload.encode("utf-8")).hexdigest(),
         receiver_history_id=receiver.history_id,
-        source_history_id=source.history_id,
+        transmitter_history_id=source.history_id,
         receiver_history_digest=receiver_digest,
-        source_history_digest=source_digest,
+        transmitter_history_digest=transmitter_digest,
         visited_cells=visited_cells,
     )

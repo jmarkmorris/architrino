@@ -83,7 +83,7 @@ Initially, and as long as the speeds of both architrinos are less than or equal 
 $$
 \mathbf A_{1, \text{total}}(T) = \mathbf A_{1,2}(T) \quad \text{and} \quad \mathbf A_{2, \text{total}}(T) = \mathbf A_{2,1}(T)
 $$
-During this partner-only phase, the retained circular contribution has an inward radial component and a forward tangential work term. That combination is anti-damping: it accelerates the orbiting motion and prevents a partner-only constant-speed circle. Any sub-field-speed contraction claim must come from a certified non-circular branch, a capture basin, or an explicit finite-window wake/recoil ledger.
+During this partner-only phase, the retained circular contribution has an inward radial component and a forward tangential work term. That combination is anti-damping: it accelerates the orbiting motion and prevents a partner-only constant-speed circle. Any sub-field-speed contraction claim must come from a certified non-circular branch, a capture basin, or an explicit finite-window wake-history account.
 
 ### Ideal Symmetric Spiral Ansatz
 
@@ -111,7 +111,7 @@ When $\mathbf{V}$ is parallel to $\mathbf{n}$, each architrino draws a constant-
 
 ## Spiral Momentum Budget Across the Hinge (Speculative)
 
-This subsection records a modeling hypothesis rather than a derived law. The desired closure would link the spiral path, the per-hit acceleration law, and the angular-momentum budget across the full velocity range. Below the wake speed, the binary feels only partner hits, and the principal circular branch has positive tangential work. A contraction ansatz must therefore explain how radial tightening survives that anti-damping record through non-circular geometry, wake-flux export, recoil, or a later multi-root ledger. We introduce a per-cycle gain parameter $\Delta L_c$ only as a provisional bookkeeping variable for that unresolved branch-history calculation.
+This subsection records a modeling hypothesis rather than a derived law. The desired closure would link the spiral path, the per-hit acceleration law, and the angular-momentum budget across the full velocity range. Below the wake speed, the binary feels only partner hits, and the principal circular branch has positive tangential work. A contraction ansatz must therefore explain how radial tightening survives that anti-damping record through non-circular geometry, wake-flux export, or a later multi-root ledger. We introduce a per-cycle gain parameter $\Delta L_c$ only as a provisional bookkeeping variable for that unresolved branch-history calculation.
 
 **Branch-birth jump target:** a smooth doubling rule is too strong unless the active causal-root ledger stays unchanged. On a fixed signed branch chart $b(s)$, the per-cycle escaped angular-momentum entry should instead be written
 $$
@@ -195,7 +195,7 @@ Once the circular branch admits same-transmitter roots, the architrinos interact
 $$
 \mathbf A_{1, \text{total}}(T) = \mathbf A_{1,2}(T) + \mathbf A_{1,1}(T)
 $$
-In the circular benchmark, the principal self-hit branch ($m=0$) becomes available only on the super-field-speed side; at higher speeds, additional self-hit and partner-hit roots can turn on (see **Root Multiplicity vs. Speed**). The new self-repulsive term, $\mathbf A_{1,1}(T)$, grows rapidly as the path curvature increases and changes the tangential ledger. On the same-sheet principal chart that tangential contribution is forward; in the full signed ledger, older sheets can contribute with the opposite tangential sign. This post-threshold phase is therefore a branch-certificate target, not a generic tightening law: any radial arrest or continued contraction must be decided by the signed multi-root ledger, wake-flux/recoil accounting, and stability certificate described below.
+In the circular benchmark, the principal self-hit branch ($m=0$) becomes available only on the super-field-speed side; at higher speeds, additional self-hit and partner-hit roots can turn on (see **Root Multiplicity vs. Speed**). The new self-repulsive term, $\mathbf A_{1,1}(T)$, grows rapidly as the path curvature increases and changes the tangential ledger. On the same-sheet principal chart that tangential contribution is forward; in the full signed ledger, older sheets can contribute with the opposite tangential sign. This post-threshold phase is therefore a branch-certificate target, not a generic tightening law: any radial arrest or continued contraction must be decided by the signed multi-root ledger, wake-history accounting, and stability certificate described below.
 
 ## Maximum-Curvature Binary — Circular
 
@@ -402,7 +402,7 @@ $$
 \sum_{T_t\in\mathcal{C}_{11}(T)}A_\theta^{(11)}(T;T_t)
 =0
 $$
-on the retained ledger, or an explicitly retained wake-flux/recoil channel in the finite-window energy ledger. Since circular self-hit roots require super-field-speed history on this branch, a self-hit-stabilized MCB candidate must live on the super-field-speed side of the circular ledger rather than on the principal partner branch alone.
+on the retained ledger, or an explicitly retained wake-flux channel in the finite-window energy ledger. Since circular self-hit roots require super-field-speed history on this branch, a self-hit-stabilized MCB candidate must live on the super-field-speed side of the circular ledger rather than on the principal partner branch alone.
 
 Additional partner roots are not speculative. In the full delay-angle representation, partner roots can occur only in positive-cosine windows
 $$
@@ -473,7 +473,7 @@ and appears at $s=\pi/2$ with $\alpha=\pi$. Equivalently, at the threshold a wak
 
 > No isolated, bare, constant-speed circular MCB branch can close for $s<\pi/2$, because the first negative same-transmitter sheet is absent and the same-sheet tangential cohomology class has no internal cancellation generator. In cochain language, the space available to the retained two-body ledger has no opposite-period self-record before the $\sigma=-1$ wall at $s=\pi/2$.
 
-For $s\geq\pi/2$, closure is still not automatic. The negative sheet must survive the finite-$\eta$ branch chart, satisfy the Jacobian and inactive-gap floors, and balance the remaining tangential class through signed-root cancellation, wake escapement, recoil, or multi-body exchange.
+For $s\geq\pi/2$, closure is still not automatic. The negative sheet must survive the finite-$\eta$ branch chart, satisfy the Jacobian and inactive-gap floors, and balance the remaining tangential class through signed-root cancellation, wake escapement, or multi-body exchange.
 
 ---
 
@@ -564,7 +564,7 @@ These formulas make the transmitter-side transversality asymmetry between the tw
 Define **inward radial** as positive (toward center) and **tangential** as positive in direction of motion.
 
 The projections in this subsection are transmitter-side circular diagnostics. They
-record branch orientation and root geometry, but they are not canonical Master EOM
+record root playback and root geometry, but they are not canonical Master EOM
 acceleration contributions until the same retained branches are recomputed with
 $D_t$, $D_r$, and $W^{\mathrm{acc}}=c_f/\lvert D_t\rvert$.
 
@@ -644,13 +644,11 @@ For uniform circular motion at fixed radius $R$ and constant speed $s$:
   +
   \left\langle
   \Phi_{\mathrm{wake},\partial W}
-  +
-  P_{\mathrm{recoil}}
   \right\rangle_W
   =
   0
   $$
-  Here $K_{\mu}$ is the chosen quadratic kinetic proxy, $\Phi_{\mathrm{wake},\partial W}$ is the causal-wake energy flux through the boundary of the local window, and $P_{\mathrm{recoil}}$ is any retained local wake-emission resistance term. The older shorthand $\langle T\rangle=0$ is valid only for a particle-only closed window with no boundary wake flux and no recoil term.
+  Here $K_{\mu}$ is the chosen quadratic kinetic proxy and $\Phi_{\mathrm{wake},\partial W}$ is the causal-wake energy flux through the boundary of the local window. The older shorthand $\langle T\rangle=0$ is valid only for a particle-only closed window with no boundary wake flux.
 
   On a declared branch chart $b$, this balance has an operational work record:
   $$
@@ -1272,19 +1270,17 @@ $$
 \left|
 \left\langle A^{\mathrm{tan}}_{\eta,b}
 +A^{\mathrm{tan}}_{\partial W}
-+A^{\mathrm{tan}}_{\mathrm{recoil}}
 \right\rangle_{P_b}
 \right|
 }{
 1+\left\langle
 |A^{\mathrm{tan}}_{\eta,b}|
 +|A^{\mathrm{tan}}_{\partial W}|
-+|A^{\mathrm{tan}}_{\mathrm{recoil}}|
 \right\rangle_{P_b}
 }.
 $$
 
-The two added tangential channels are not optional bookkeeping terms: they are the boundary and recoil entries required by the constructive wake-energy ledger. If they are absent, the packet must fail closed rather than hiding tangential work in an undefined reservoir.
+The boundary term is not optional bookkeeping: it is required by the constructive finite-window wake-energy account. If it is absent, the packet must fail closed rather than hiding tangential work in an undefined reservoir.
 
 The stability certificate is a secular Floquet margin in history space,
 

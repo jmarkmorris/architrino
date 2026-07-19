@@ -121,7 +121,7 @@ export function solveMovingCircularSourceCausalRoots(request = {}) {
   const response = solveMovingCircularSourceCausalRootsKernel(request);
   return labelRecord({
     ...response,
-    schema: "prescribed-path-analysis/moving-circular-source-causal-roots.v1",
+    schema: "prescribed-path-analysis/moving-circular-transmitter-causal-roots.v2",
     roots: labelRows(response.roots),
     status: labelRecord(response.status ?? createStatus()),
   });
@@ -131,7 +131,7 @@ export function solveMovingCircularSameSourceCausalRoots(request = {}) {
   const response = solveMovingCircularSameSourceCausalRootsKernel(request);
   return labelRecord({
     ...response,
-    schema: "prescribed-path-analysis/moving-circular-same-transmitter-causal-roots.v1",
+    schema: "prescribed-path-analysis/moving-circular-same-transmitter-causal-roots.v2",
     roots: labelRows(response.roots),
     status: labelRecord(response.status ?? createStatus()),
   });
@@ -237,7 +237,7 @@ export function solveLinearPrescribedPathCausalRoots(request = {}) {
       "transmitter history ends before the prescribed causal search window starts"
     );
     return labelRecord({
-      schema: "prescribed-path-analysis/linear-causal-roots.v1",
+      schema: "prescribed-path-analysis/linear-causal-roots.v2",
       request: labelRecord(request),
       roots,
       status,
@@ -302,7 +302,7 @@ export function solveLinearPrescribedPathCausalRoots(request = {}) {
     ? createStatus("ok", "ok", "prescribed linear causal roots solved")
     : createStatus("root_not_bracketed", "info", "no causal roots were found on the prescribed path");
   return labelRecord({
-    schema: "prescribed-path-analysis/linear-causal-roots.v1",
+    schema: "prescribed-path-analysis/linear-causal-roots.v2",
     request: labelRecord(request),
     roots,
     status,
@@ -361,7 +361,7 @@ export function solveCircularSourceRootsAndHits(request = {}) {
   }));
   return labelRecord({
     ...response,
-    schema: "prescribed-path-analysis/circular-source-roots-and-hits.v1",
+    schema: "prescribed-path-analysis/circular-transmitter-roots-and-hits.v2",
     hits,
     rootLedgerDetails,
   });
@@ -450,8 +450,8 @@ export function computeMovingCircularObserverField(request = {}) {
       )
     : createStatus("ok", "ok", "prescribed moving-circular observer field computed");
   return labelRecord({
-    schema: "prescribed-path-analysis/moving-circular-observer-field.v1",
-    sourceHistoryKind: "moving-circular-source",
+    schema: "prescribed-path-analysis/moving-circular-observer-field.v2",
+    sourceHistoryKind: "moving-circular-transmitter",
     branchCount: branches.length,
     contributionCount: contributions.length,
     contributions,
@@ -551,7 +551,7 @@ export function solveMovingCircularAbsoluteHistoryRun(request = {}) {
     "prescribed moving-circular roots and observer field computed"
   );
   return labelRecord({
-    schema: "prescribed-path-analysis/moving-circular-absolute-history-run.v1",
+    schema: "prescribed-path-analysis/moving-circular-absolute-history-run.v2",
     sourceHistoryProvider: request.sourceHistoryProvider ?? null,
     analysisBoundary: request.solverBoundary ?? request.analysisBoundary ?? null,
     sourceRootRequests: labelRows(sourceRootRequests),

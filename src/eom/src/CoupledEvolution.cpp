@@ -523,15 +523,15 @@ std::vector<std::pair<std::string, std::string>> changed_topology_pairs(
   std::set<std::pair<std::string, std::string>> enclosed_pairs;
   for (const auto* snapshot : {&start, &end}) {
     for (const auto& row : snapshot->root_certificates) {
-      if (row.certificate.schema == "eom_native_enclosed_pair_marker/v0") {
-        enclosed_pairs.emplace(row.receiver_path_id, row.source_path_id);
+      if (row.certificate.schema == "eom_native_enclosed_pair_marker/v1") {
+        enclosed_pairs.emplace(row.receiver_path_id, row.transmitter_path_id);
       }
     }
   }
   std::map<std::pair<std::string, std::string>, std::vector<int>> start_rows;
   for (const auto& row : start.root_certificates) {
     const auto key =
-        std::make_pair(row.receiver_path_id, row.source_path_id);
+        std::make_pair(row.receiver_path_id, row.transmitter_path_id);
     if (enclosed_pairs.contains(key)) {
       continue;
     }
@@ -548,7 +548,7 @@ std::vector<std::pair<std::string, std::string>> changed_topology_pairs(
       signs.push_back(root.transmitter_factor_sign);
     }
     const auto key = std::make_pair(
-        row.receiver_path_id, row.source_path_id);
+        row.receiver_path_id, row.transmitter_path_id);
     if (enclosed_pairs.contains(key)) {
       continue;
     }
@@ -617,7 +617,7 @@ certified_opposite_polarity_core_pairs(
   for (const auto& pair : snapshot.acceleration.pair_certificates) {
     const Interval charge_product =
         Interval::decimal_token(path_charge(request, pair.receiver_path_id)) *
-        Interval::decimal_token(path_charge(request, pair.source_path_id));
+        Interval::decimal_token(path_charge(request, pair.transmitter_path_id));
     if (!(charge_product.upper() < 0.0) || pair.status == "uncertified") {
       continue;
     }
@@ -627,7 +627,7 @@ certified_opposite_polarity_core_pairs(
               row.separation->lower() <= core_scale.upper();
         });
     if (intersects_core) {
-      result.emplace_back(pair.receiver_path_id, pair.source_path_id);
+      result.emplace_back(pair.receiver_path_id, pair.transmitter_path_id);
     }
   }
   return result;
@@ -645,9 +645,9 @@ std::vector<std::pair<std::string, std::string>> finite_width_pairs(
     if (pair.chart == "finite_width" && pair.status != "uncertified" &&
         root != nullptr &&
         root->receiver_path_id == pair.receiver_path_id &&
-        root->source_path_id == pair.source_path_id &&
+        root->transmitter_path_id == pair.transmitter_path_id &&
         root->certificate.status == "caustic_route_required") {
-      result.emplace_back(pair.receiver_path_id, pair.source_path_id);
+      result.emplace_back(pair.receiver_path_id, pair.transmitter_path_id);
     }
   }
   return result;
@@ -658,15 +658,15 @@ certify_coincident_endpoint_root_continuation_impl(
     const NativeAccelerationSnapshotCertificate& start,
     const NativeAccelerationSnapshotCertificate& end,
     const std::string& receiver_id,
-    const std::string& source_id) {
-  if (receiver_id != source_id) return std::nullopt;
+    const std::string& transmitter_id) {
+  if (receiver_id != transmitter_id) return std::nullopt;
   const auto find_row = [&](const auto& snapshot)
       -> const NativeSnapshotRootRow* {
     const auto found = std::find_if(
         snapshot.root_certificates.begin(),
         snapshot.root_certificates.end(), [&](const auto& row) {
           return row.receiver_path_id == receiver_id &&
-              row.source_path_id == source_id;
+              row.transmitter_path_id == transmitter_id;
         });
     return found == snapshot.root_certificates.end() ? nullptr : &*found;
   };
@@ -718,10 +718,10 @@ certify_coincident_endpoint_root_continuation_impl(
   // remaining boundary for this one-root self-pair change is the explicitly
   // excluded coincident endpoint.
   return NativeEndpointRootContinuationCertificate{
-      .schema = "eom_native_endpoint_root_continuation_certificate/v0",
+      .schema = "eom_native_endpoint_root_continuation_certificate/v1",
       .status = "certified_complete",
       .receiver_path_id = receiver_id,
-      .source_path_id = source_id,
+      .transmitter_path_id = transmitter_id,
       .start_root_count = start_signs.size(),
       .end_root_count = end_signs.size(),
       .boundary_branch_sign = boundary_sign,
@@ -976,7 +976,7 @@ const NativeSnapshotRootRow* snapshot_root_row(
       snapshot.root_certificates.begin(), snapshot.root_certificates.end(),
       [&](const auto& row) {
         return row.receiver_path_id == receiver &&
-            row.source_path_id == source;
+            row.transmitter_path_id == source;
       });
   return found == snapshot.root_certificates.end() ? nullptr : &*found;
 }
@@ -1011,12 +1011,12 @@ bool certify_finite_width_exit(
   const auto pair = certify_pair_acceleration({
       .row_id = roots.row_id + "/fwc-exit-sharp",
       .receiver_path_id = receiver,
-      .source_path_id = source,
+      .transmitter_path_id = source,
       .receiver_history = &path_history(histories, receiver).history,
-      .source_history = &path_history(histories, source).history,
+      .transmitter_history = &path_history(histories, source).history,
       .root_certificate = &roots,
       .receiver_charge = path_charge(request, receiver),
-      .source_charge = path_charge(request, source),
+      .transmitter_charge = path_charge(request, source),
       .coupling = request.coupling,
       .chart = "sharp",
       .transmitter_factor_floor = request.transmitter_factor_floor,
@@ -1274,18 +1274,18 @@ std::optional<CommonRootTube> certify_common_root_tube(
 
   const auto receiver_state = nominal_history_state(
       receiver.history, reception);
-  const auto source_state = nominal_history_state(source.history, emission);
-  if (!receiver_state.has_value() || !source_state.has_value()) {
+  const auto transmitter_state = nominal_history_state(source.history, emission);
+  if (!receiver_state.has_value() || !transmitter_state.has_value()) {
     return std::nullopt;
   }
   const IntervalVector nominal_displacement = subtract(
-      receiver_state->position, source_state->position);
+      receiver_state->position, transmitter_state->position);
   const Interval nominal_separation = norm(nominal_displacement);
   if (nominal_separation.contains_zero()) return std::nullopt;
   const IntervalVector nominal_direction =
       divide(nominal_displacement, nominal_separation);
   const Interval nominal_ds = field_speed -
-      dot(nominal_direction, source_state->velocity);
+      dot(nominal_direction, transmitter_state->velocity);
   const Interval nominal_dr = field_speed -
       dot(nominal_direction, receiver_state->velocity);
   if (nominal_ds.contains_zero()) {
@@ -1294,10 +1294,10 @@ std::optional<CommonRootTube> certify_common_root_tube(
   const Interval s1 = nominal_dr / nominal_ds;
   const IntervalVector d1 = subtract(
       receiver_state->velocity,
-      scale(s1, source_state->velocity));
+      scale(s1, transmitter_state->velocity));
   const IntervalVector base_d2 = subtract(
       receiver_state->acceleration,
-      scale(interval_square(s1), source_state->acceleration));
+      scale(interval_square(s1), transmitter_state->acceleration));
   const Interval base_r2 =
       (dot(d1, d1) + dot(nominal_displacement, base_d2)) /
           nominal_separation -
@@ -1309,31 +1309,31 @@ std::optional<CommonRootTube> certify_common_root_tube(
   const Interval zero = Interval::point(0.0);
   const Jet2 zero_jet{zero, zero, zero};
   JetVector receiver_position_jet{zero_jet, zero_jet, zero_jet};
-  JetVector source_position_jet{zero_jet, zero_jet, zero_jet};
-  JetVector source_velocity_jet{zero_jet, zero_jet, zero_jet};
+  JetVector transmitter_position_jet{zero_jet, zero_jet, zero_jet};
+  JetVector transmitter_velocity_jet{zero_jet, zero_jet, zero_jet};
   for (std::size_t axis = 0; axis < 3U; ++axis) {
     receiver_position_jet[axis] = {
         receiver_state->position[axis], receiver_state->velocity[axis],
         receiver_state->acceleration[axis]};
-    source_position_jet[axis] = {
-        source_state->position[axis],
-        source_state->velocity[axis] * s1,
-        source_state->acceleration[axis] * interval_square(s1) +
-            source_state->velocity[axis] * s2};
-    source_velocity_jet[axis] = {
-        source_state->velocity[axis],
-        source_state->acceleration[axis] * s1,
-        source_state->jerk[axis] * interval_square(s1) +
-            source_state->acceleration[axis] * s2};
+    transmitter_position_jet[axis] = {
+        transmitter_state->position[axis],
+        transmitter_state->velocity[axis] * s1,
+        transmitter_state->acceleration[axis] * interval_square(s1) +
+            transmitter_state->velocity[axis] * s2};
+    transmitter_velocity_jet[axis] = {
+        transmitter_state->velocity[axis],
+        transmitter_state->acceleration[axis] * s1,
+        transmitter_state->jerk[axis] * interval_square(s1) +
+            transmitter_state->acceleration[axis] * s2};
   }
   const JetVector d_jet = jet_subtract_vector(
-      receiver_position_jet, source_position_jet);
+      receiver_position_jet, transmitter_position_jet);
   const Jet2 r_jet = jet_sqrt(jet_dot(d_jet, d_jet));
   const JetVector n_jet = jet_scale(jet_inverse(r_jet), d_jet);
   const Jet2 c_jet{field_speed, Interval::point(0.0),
                    Interval::point(0.0)};
   const Jet2 ds_jet = jet_subtract(
-      c_jet, jet_dot(n_jet, source_velocity_jet));
+      c_jet, jet_dot(n_jet, transmitter_velocity_jet));
   const Jet2 strength_jet = jet_absolute(jet_divide(c_jet, ds_jet));
   const Jet2 radial_cubed = jet_multiply(
       jet_multiply(r_jet, r_jet), r_jet);
@@ -1349,24 +1349,24 @@ std::optional<CommonRootTube> certify_common_root_tube(
   //   d2/du2 = d2/dS2 / Ds^2 - (d/dS)(dDs/dS) / Ds^3.
   // Every value below is evaluated on the certified common root tube.
   JetVector receiver_position_s_jet{zero_jet, zero_jet, zero_jet};
-  JetVector source_position_s_jet{zero_jet, zero_jet, zero_jet};
-  JetVector source_velocity_s_jet{zero_jet, zero_jet, zero_jet};
+  JetVector transmitter_position_s_jet{zero_jet, zero_jet, zero_jet};
+  JetVector transmitter_velocity_s_jet{zero_jet, zero_jet, zero_jet};
   for (std::size_t axis = 0; axis < 3U; ++axis) {
     receiver_position_s_jet[axis] = {
         receiver_state->position[axis], zero, zero};
-    source_position_s_jet[axis] = {
-        source_state->position[axis], source_state->velocity[axis],
-        source_state->acceleration[axis]};
-    source_velocity_s_jet[axis] = {
-        source_state->velocity[axis], source_state->acceleration[axis],
-        source_state->jerk[axis]};
+    transmitter_position_s_jet[axis] = {
+        transmitter_state->position[axis], transmitter_state->velocity[axis],
+        transmitter_state->acceleration[axis]};
+    transmitter_velocity_s_jet[axis] = {
+        transmitter_state->velocity[axis], transmitter_state->acceleration[axis],
+        transmitter_state->jerk[axis]};
   }
   const JetVector d_s_jet = jet_subtract_vector(
-      receiver_position_s_jet, source_position_s_jet);
+      receiver_position_s_jet, transmitter_position_s_jet);
   const Jet2 r_s_jet = jet_sqrt(jet_dot(d_s_jet, d_s_jet));
   const JetVector n_s_jet = jet_scale(jet_inverse(r_s_jet), d_s_jet);
   const Jet2 ds_s_jet = jet_subtract(
-      c_jet, jet_dot(n_s_jet, source_velocity_s_jet));
+      c_jet, jet_dot(n_s_jet, transmitter_velocity_s_jet));
   if (ds_s_jet.value.contains_zero()) {
     return std::nullopt;
   }
@@ -1784,14 +1784,14 @@ std::vector<NativeCommonDomainChartCertificate> certify_common_domains(
     const NativeAccelerationSnapshotCertificate& start_snapshot,
     const NativeAccelerationSnapshotCertificate& endpoint_snapshot,
     const std::string& receiver_id,
-    const std::string& source_id,
+    const std::string& transmitter_id,
     const std::string& start_time,
     const std::string& end_time) {
   const double start = scalar_token(start_time);
   const double end = scalar_token(end_time);
   const double step = end - start;
   const auto& receiver = path_history(histories, receiver_id);
-  const auto& source = path_history(histories, source_id);
+  const auto& source = path_history(histories, transmitter_id);
   std::vector<NativeCommonDomainChartCertificate> result;
   const auto try_side = [&](bool left) {
     for (std::size_t refinement = 0; refinement < 12U; ++refinement) {
@@ -2060,7 +2060,7 @@ NativeCorrectedSubstepCertificate failed_substep_certificate(
     std::vector<NativePinnedFoldTemporalStepCertificate>
         pinned_fold_onset_certificates = {}) {
   return {
-      .schema = "eom_native_corrected_substep_certificate/v0",
+      .schema = "eom_native_corrected_substep_certificate/v1",
       .status = "rejected",
       .start_time = start_time,
       .end_time = end_time,
@@ -2106,7 +2106,7 @@ certified_pinned_fold_onset_certificates(
         start_snapshot.root_certificates.begin(),
         start_snapshot.root_certificates.end(), [&](const auto& row) {
           return row.receiver_path_id == path.path_id &&
-              row.source_path_id == path.path_id;
+              row.transmitter_path_id == path.path_id;
         });
     if (root == start_snapshot.root_certificates.end() ||
         root->certificate.status != "certified_complete" ||
@@ -2119,7 +2119,7 @@ certified_pinned_fold_onset_certificates(
       continue;
     }
     result.push_back({
-        .schema = "eom_native_pinned_fold_temporal_step_certificate/v0",
+        .schema = "eom_native_pinned_fold_temporal_step_certificate/v1",
         .status = "certified_complete",
         .path_id = path.path_id,
         .onset_time = start_time,
@@ -2160,10 +2160,10 @@ SubstepAttempt corrected_substep_impl(
     }
     for (const auto& row : reusable_start_snapshot->root_certificates) {
       const auto& receiver = path_history(histories, row.receiver_path_id);
-      const auto& source = path_history(histories, row.source_path_id);
+      const auto& source = path_history(histories, row.transmitter_path_id);
       if (row.certificate.receiver_history_fingerprint !=
               receiver.history.provenance_fingerprint() ||
-          row.certificate.source_history_fingerprint !=
+          row.certificate.transmitter_history_fingerprint !=
               source.history.provenance_fingerprint()) {
         throw std::invalid_argument(
             "reusable start snapshot history fingerprints do not match");
@@ -2313,14 +2313,14 @@ SubstepAttempt corrected_substep_impl(
               std::nullopt,
           };
         }
-        for (const auto& [receiver_id, source_id] : event_pairs) {
+        for (const auto& [receiver_id, transmitter_id] : event_pairs) {
           const bool topology_changed = topology_event_pair_index.contains(
-              std::make_pair(receiver_id, source_id));
+              std::make_pair(receiver_id, transmitter_id));
           if (topology_changed) {
             const auto endpoint_continuation =
                 certify_coincident_endpoint_root_continuation_impl(
                     start_snapshot, endpoint_snapshot,
-                    receiver_id, source_id);
+                    receiver_id, transmitter_id);
             if (endpoint_continuation.has_value()) {
               endpoint_root_continuations.push_back(*endpoint_continuation);
               auto failed = failed_substep_certificate(
@@ -2345,9 +2345,9 @@ SubstepAttempt corrected_substep_impl(
           auto regulator = certify_native_regulator_convergence(
               pair_request,
               path_history(candidate_histories, receiver_id),
-              path_history(candidate_histories, source_id),
+              path_history(candidate_histories, transmitter_id),
               path_charge(request, receiver_id),
-              path_charge(request, source_id),
+              path_charge(request, transmitter_id),
               start_time, end_time);
           timing->regulator_ladder_wall_seconds +=
               elapsed_seconds(regulator_timing_start);
@@ -2383,7 +2383,7 @@ SubstepAttempt corrected_substep_impl(
           event_impulses.push_back(std::move(event));
           regulator_convergence_certificates.push_back(
               std::move(regulator));
-          routed_event_pairs.emplace_back(receiver_id, source_id);
+          routed_event_pairs.emplace_back(receiver_id, transmitter_id);
         }
       }
       std::vector<NativeFiniteWidthStateCertificate> state_certificates;
@@ -2402,8 +2402,8 @@ SubstepAttempt corrected_substep_impl(
           const Interval endpoint =
               Interval::point(scalar_token(end_time));
           state_settled = true;
-          for (const auto& [receiver_id, source_id] : routed_event_pairs) {
-            static_cast<void>(source_id);
+          for (const auto& [receiver_id, transmitter_id] : routed_event_pairs) {
+            static_cast<void>(transmitter_id);
             const auto& candidate = path_history(
                 event_histories, receiver_id);
             const IntervalVector candidate_position = midpoint_vector(
@@ -2442,15 +2442,15 @@ SubstepAttempt corrected_substep_impl(
           std::vector<NativeFoldCausticImpulseCertificate> refined_events;
           std::vector<NativeRegulatorConvergenceCertificate>
               refined_regulators;
-          for (const auto& [receiver_id, source_id] : routed_event_pairs) {
+          for (const auto& [receiver_id, transmitter_id] : routed_event_pairs) {
             const auto pair_request = receiver_pair_budget_request(
                 request, routed_event_pairs, receiver_id);
             const auto regulator_timing_start = SteadyClock::now();
             auto regulator = certify_native_regulator_convergence(
                 pair_request, path_history(event_histories, receiver_id),
-                path_history(event_histories, source_id),
+                path_history(event_histories, transmitter_id),
                 path_charge(request, receiver_id),
-                path_charge(request, source_id), start_time, end_time);
+                path_charge(request, transmitter_id), start_time, end_time);
             timing->regulator_ladder_wall_seconds +=
                 elapsed_seconds(regulator_timing_start);
             if (regulator.status != "certified_convergent" ||
@@ -2501,7 +2501,7 @@ SubstepAttempt corrected_substep_impl(
         }
 
         const Interval endpoint = Interval::point(scalar_token(end_time));
-        for (const auto& [receiver_id, source_id] : routed_event_pairs) {
+        for (const auto& [receiver_id, transmitter_id] : routed_event_pairs) {
           const auto& candidate = path_history(event_histories, receiver_id);
           const auto pair_request = receiver_pair_budget_request(
               request, routed_event_pairs, receiver_id);
@@ -2526,7 +2526,7 @@ SubstepAttempt corrected_substep_impl(
           NativeFiniteWidthStateCertificate state{
               .status = "uncertified",
               .receiver_path_id = receiver_id,
-              .source_path_id = source_id,
+              .transmitter_path_id = transmitter_id,
               .reception_lower = start_time,
               .reception_upper = end_time,
               .receiver_routed_pair_count = receiver_pair_count,
@@ -2579,7 +2579,7 @@ SubstepAttempt corrected_substep_impl(
           const auto common_domain_timing_start = SteadyClock::now();
           state.common_domains = certify_common_domains(
               pair_request, event_histories, start_snapshot,
-              event_endpoint_snapshot, receiver_id, source_id,
+              event_endpoint_snapshot, receiver_id, transmitter_id,
               start_time, end_time);
           timing->common_domain_wall_seconds +=
               elapsed_seconds(common_domain_timing_start);
@@ -2590,7 +2590,7 @@ SubstepAttempt corrected_substep_impl(
               });
           state.exit_passed = certify_finite_width_exit(
               request, event_histories, event_endpoint_snapshot,
-              receiver_id, source_id);
+              receiver_id, transmitter_id);
           if (!state.common_domain_chart_overlap_passed) {
             state.failure_code = "caustic_state_reconstruction_failed";
           } else if (!state.exit_passed) {
@@ -2627,7 +2627,7 @@ SubstepAttempt corrected_substep_impl(
         endpoint_snapshot = std::move(event_endpoint_snapshot);
       }
       NativeCorrectedSubstepCertificate certificate{
-          .schema = "eom_native_corrected_substep_certificate/v0",
+          .schema = "eom_native_corrected_substep_certificate/v1",
           .status = "accepted_candidate",
           .start_time = start_time,
           .end_time = end_time,
@@ -2659,7 +2659,7 @@ SubstepAttempt corrected_substep_impl(
           : "caustic_correction_failed",
       last_histories, pinned_fold_onset_certificates);
   if (!request.adjudicated_finite_width_pairs.empty()) {
-    for (const auto& [receiver_id, source_id] :
+    for (const auto& [receiver_id, transmitter_id] :
          request.adjudicated_finite_width_pairs) {
       const auto pair_request = receiver_pair_budget_request(
           request, request.adjudicated_finite_width_pairs, receiver_id);
@@ -2667,9 +2667,9 @@ SubstepAttempt corrected_substep_impl(
       auto regulator = certify_native_regulator_convergence(
           pair_request,
           path_history(last_histories, receiver_id),
-          path_history(last_histories, source_id),
+          path_history(last_histories, transmitter_id),
           path_charge(request, receiver_id),
-          path_charge(request, source_id),
+          path_charge(request, transmitter_id),
           start_time, end_time);
       timing->regulator_ladder_wall_seconds +=
           elapsed_seconds(regulator_timing_start);
@@ -2981,7 +2981,7 @@ NativeAtomicStepCertificate rejected_step(
     }
   }
   return {
-      .schema = "eom_native_atomic_coupled_step_certificate/v0",
+      .schema = "eom_native_atomic_coupled_step_certificate/v1",
       .status = "rejected",
       .run_id = request.run_id,
       .step_index = step_index,
@@ -3021,7 +3021,7 @@ NativeCausalPrefixExclusionCertificate certify_causal_prefix_exclusion(
     const std::string& reception_time,
     bool common_history_start) {
   NativeCausalPrefixExclusionCertificate certificate{
-      .schema = "eom_native_causal_prefix_exclusion/v0",
+      .schema = "eom_native_causal_prefix_exclusion/v1",
       .status = "not_applied",
       .original_search_lower = common_start,
       .active_search_lower = common_start,
@@ -3035,7 +3035,7 @@ NativeCausalPrefixExclusionCertificate certify_causal_prefix_exclusion(
   const Interval reception = Interval::decimal_token(reception_time);
   const Interval field_speed = Interval::decimal_token(request.field_speed);
   double receiver_radius_upper = 0.0;
-  double source_radius_upper = 0.0;
+  double transmitter_radius_upper = 0.0;
   for (const auto& path : histories) {
     receiver_radius_upper = std::max(
         receiver_radius_upper,
@@ -3044,13 +3044,13 @@ NativeCausalPrefixExclusionCertificate certify_causal_prefix_exclusion(
       const Interval segment_time(
           segment.t_start_interval().lower(),
           segment.t_end_interval().upper());
-      source_radius_upper = std::max(
-          source_radius_upper,
+      transmitter_radius_upper = std::max(
+          transmitter_radius_upper,
           norm(segment.position_interval(segment_time)).upper());
     }
   }
   const Interval separation = Interval::point(receiver_radius_upper) +
-      Interval::point(source_radius_upper);
+      Interval::point(transmitter_radius_upper);
   certificate.separation_upper = separation.upper();
 
   const double start = scalar_token(common_start);
@@ -3221,14 +3221,14 @@ IntervalVector event_integrand(
     const NativePublishedPath& receiver,
     const NativePublishedPath& source,
     const std::string& receiver_charge,
-    const std::string& source_charge,
+    const std::string& transmitter_charge,
     const Interval& reception,
     const Interval& emission) {
   const IntervalVector receiver_position =
       receiver.history.position_hull(reception);
-  const IntervalVector source_position = source.history.position_hull(emission);
+  const IntervalVector transmitter_position = source.history.position_hull(emission);
   const IntervalVector displacement =
-      subtract(receiver_position, source_position);
+      subtract(receiver_position, transmitter_position);
   const Interval separation = norm(displacement);
   const Interval core_scale = Interval::decimal_token(request.core_scale);
   const Interval field_speed = Interval::decimal_token(request.field_speed);
@@ -3248,7 +3248,7 @@ IntervalVector event_integrand(
   const Interval signed_scale =
       Interval::decimal_token(request.coupling) *
       Interval::decimal_token(receiver_charge) *
-      Interval::decimal_token(source_charge) * mollifier;
+      Interval::decimal_token(transmitter_charge) * mollifier;
   return scale(signed_scale, prefactor);
 }
 
@@ -3257,27 +3257,27 @@ std::optional<IntervalVector> centered_event_rectangle_integral(
     const NativePublishedPath& receiver,
     const NativePublishedPath& source,
     const std::string& receiver_charge,
-    const std::string& source_charge,
+    const std::string& transmitter_charge,
     const Interval& reception,
     const Interval& emission) {
   const IntervalVector receiver_position =
       receiver.history.position_hull(reception);
-  const IntervalVector source_position =
+  const IntervalVector transmitter_position =
       source.history.position_hull(emission);
-  const IntervalVector source_velocity =
+  const IntervalVector transmitter_velocity =
       source.history.velocity_hull(emission);
   const IntervalVector displacement =
-      subtract(receiver_position, source_position);
+      subtract(receiver_position, transmitter_position);
   const Interval separation = norm(displacement);
   if (separation.contains_zero()) return std::nullopt;
 
   const IntervalVector direction =
       unit_direction_enclosure(displacement, separation);
-  const Interval source_radial_speed = dot(direction, source_velocity);
+  const Interval transmitter_radial_speed = dot(direction, transmitter_velocity);
   const Interval field_speed = Interval::decimal_token(request.field_speed);
-  const Interval residual_derivative = field_speed - source_radial_speed;
+  const Interval residual_derivative = field_speed - transmitter_radial_speed;
   const IntervalVector displacement_derivative =
-      scale(Interval::point(-1.0), source_velocity);
+      scale(Interval::point(-1.0), transmitter_velocity);
   const Interval core_scale = Interval::decimal_token(request.core_scale);
   const Interval radial_square =
       interval_square(separation) + interval_square(core_scale);
@@ -3315,7 +3315,7 @@ std::optional<IntervalVector> centered_event_rectangle_integral(
   const Interval signed_charge_scale =
       Interval::decimal_token(request.coupling) *
       Interval::decimal_token(receiver_charge) *
-      Interval::decimal_token(source_charge);
+      Interval::decimal_token(transmitter_charge);
   const IntervalVector derivative = scale(
       signed_charge_scale * field_speed,
       add(
@@ -3326,7 +3326,7 @@ std::optional<IntervalVector> centered_event_rectangle_integral(
   IntervalVector result = scale(
       Interval::point(emission.upper() - emission.lower()),
       event_integrand(
-          request, receiver, source, receiver_charge, source_charge,
+          request, receiver, source, receiver_charge, transmitter_charge,
           reception, Interval::point(midpoint)));
   const double emission_width = emission.upper() - emission.lower();
   const double remainder_scale =
@@ -3464,24 +3464,24 @@ std::optional<IntervalVector> monotone_event_rectangle_integral(
     const NativePublishedPath& receiver,
     const NativePublishedPath& source,
     const std::string& receiver_charge,
-    const std::string& source_charge,
+    const std::string& transmitter_charge,
     const Interval& reception,
     const Interval& emission) {
   const IntervalVector receiver_position =
       receiver.history.position_hull(reception);
-  const IntervalVector source_position =
+  const IntervalVector transmitter_position =
       source.history.position_hull(emission);
-  const IntervalVector source_velocity =
+  const IntervalVector transmitter_velocity =
       source.history.velocity_hull(emission);
   const IntervalVector displacement =
-      subtract(receiver_position, source_position);
+      subtract(receiver_position, transmitter_position);
   const Interval separation = norm(displacement);
   if (separation.contains_zero()) return std::nullopt;
   const IntervalVector direction =
       unit_direction_enclosure(displacement, separation);
   const Interval field_speed = Interval::decimal_token(request.field_speed);
   const Interval residual_derivative =
-      field_speed - dot(direction, source_velocity);
+      field_speed - dot(direction, transmitter_velocity);
   if (residual_derivative.contains_zero()) return std::nullopt;
 
   double first_emission = emission.lower();
@@ -3497,11 +3497,11 @@ std::optional<IntervalVector> monotone_event_rectangle_integral(
   const Interval causal_width =
       Interval::decimal_token(request.causal_width);
   std::optional<IntervalVector> correlated_source_delta;
-  const double source_lower = std::min(first_emission, second_emission);
-  const double source_upper = std::max(first_emission, second_emission);
+  const double transmitter_lower = std::min(first_emission, second_emission);
+  const double transmitter_upper = std::max(first_emission, second_emission);
   if (const auto ordered_delta =
           source.history.same_segment_correlated_displacement(
-              Interval::point(source_upper), Interval::point(source_lower));
+              Interval::point(transmitter_upper), Interval::point(transmitter_lower));
       ordered_delta.has_value()) {
     correlated_source_delta = second_emission >= first_emission
         ? *ordered_delta
@@ -3523,7 +3523,7 @@ std::optional<IntervalVector> monotone_event_rectangle_integral(
   const Interval signed_charge_scale =
       Interval::decimal_token(request.coupling) *
       Interval::decimal_token(receiver_charge) *
-      Interval::decimal_token(source_charge);
+      Interval::decimal_token(transmitter_charge);
   IntervalVector result = scale(
       Interval::point(reception.width()),
       scale(
@@ -3532,7 +3532,7 @@ std::optional<IntervalVector> monotone_event_rectangle_integral(
               displacement, field_speed, core_scale)));
 
   const IntervalVector displacement_derivative =
-      scale(Interval::point(-1.0), source_velocity);
+      scale(Interval::point(-1.0), transmitter_velocity);
   const Interval radial_five_halves =
       interval_square(radial_square) * interval_sqrt(radial_square);
   const IntervalVector kernel_derivative = add(
@@ -3587,7 +3587,7 @@ const NativePairAccelerationCertificate& snapshot_pair(
       snapshot.acceleration.pair_certificates.begin(),
       snapshot.acceleration.pair_certificates.end(), [&](const auto& pair) {
         return pair.receiver_path_id == receiver &&
-               pair.source_path_id == source;
+               pair.transmitter_path_id == source;
       });
   if (found == snapshot.acceleration.pair_certificates.end()) {
     throw std::invalid_argument("event pair is absent from acceleration snapshot");
@@ -3602,9 +3602,9 @@ certify_native_coincident_endpoint_root_continuation(
     const NativeAccelerationSnapshotCertificate& start,
     const NativeAccelerationSnapshotCertificate& end,
     const std::string& receiver_path_id,
-    const std::string& source_path_id) {
+    const std::string& transmitter_path_id) {
   return certify_coincident_endpoint_root_continuation_impl(
-      start, end, receiver_path_id, source_path_id);
+      start, end, receiver_path_id, transmitter_path_id);
 }
 
 std::vector<NativePinnedFoldTemporalStepCertificate>
@@ -3621,7 +3621,7 @@ NativeCommonDomainChartCertificate certify_native_common_domain_chart(
     const NativeCoupledEvolutionRequest& request,
     const std::vector<NativePublishedPath>& histories,
     const std::string& receiver_path_id,
-    const std::string& source_path_id,
+    const std::string& transmitter_path_id,
     const std::string& reception_lower,
     const std::string& reception_upper,
     const std::string& event_end) {
@@ -3631,7 +3631,7 @@ NativeCommonDomainChartCertificate certify_native_common_domain_chart(
       scalar_token(reception_lower), scalar_token(reception_upper));
   auto certificate = certify_common_domain_interval(
       request, path_history(histories, receiver_path_id),
-      path_history(histories, source_path_id), endpoint_snapshot,
+      path_history(histories, transmitter_path_id), endpoint_snapshot,
       common, scalar_token(event_end));
   if (!certificate.has_value()) {
     NativeCommonDomainChartCertificate failure;
@@ -3650,14 +3650,14 @@ certify_binary64_fold_caustic_impulse(
     const NativePublishedPath& receiver,
     const NativePublishedPath& source,
     const std::string& receiver_charge,
-    const std::string& source_charge,
+    const std::string& transmitter_charge,
     const std::string& reception_lower_token,
     const std::string& reception_upper_token) {
   NativeFoldCausticImpulseCertificate certificate{
       .schema = "eom_native_fold_caustic_impulse_certificate/v1",
       .status = "uncertified",
       .receiver_path_id = receiver.path_id,
-      .source_path_id = source.path_id,
+      .transmitter_path_id = source.path_id,
       .reception_lower = reception_lower_token,
       .reception_upper = reception_upper_token,
       .causal_width = request.causal_width,
@@ -3692,10 +3692,10 @@ certify_binary64_fold_caustic_impulse(
           certificate.receiver_velocity_error_upper, segment.velocity_error());
     }
     for (const auto& segment : source.history.segments()) {
-      certificate.source_position_error_upper = std::max(
-          certificate.source_position_error_upper, segment.position_error());
-      certificate.source_velocity_error_upper = std::max(
-          certificate.source_velocity_error_upper, segment.velocity_error());
+      certificate.transmitter_position_error_upper = std::max(
+          certificate.transmitter_position_error_upper, segment.position_error());
+      certificate.transmitter_velocity_error_upper = std::max(
+          certificate.transmitter_velocity_error_upper, segment.velocity_error());
     }
     const Interval emission_boundary = Interval::point(search_lower);
     const Interval boundary_residual =
@@ -3720,9 +3720,9 @@ certify_binary64_fold_caustic_impulse(
     const Interval core_scale = Interval::decimal_token(request.core_scale);
     const IntervalVector receiver_position =
         receiver.history.position_hull(reception_all);
-    const IntervalVector source_position = source.history.full_position_hull();
+    const IntervalVector transmitter_position = source.history.full_position_hull();
     const Interval separation =
-        norm(subtract(receiver_position, source_position));
+        norm(subtract(receiver_position, transmitter_position));
     const double eta = causal_width.upper();
     double residual_margin = 6.0 * eta;
     for (std::size_t attempt = 0; attempt < 12U; ++attempt) {
@@ -3752,7 +3752,7 @@ certify_binary64_fold_caustic_impulse(
       const double signed_scale_bound =
           interval_absolute(Interval::decimal_token(request.coupling)).upper() *
           interval_absolute(Interval::decimal_token(receiver_charge)).upper() *
-          interval_absolute(Interval::decimal_token(source_charge)).upper();
+          interval_absolute(Interval::decimal_token(transmitter_charge)).upper();
       const double prefix_area = causal_domain_area(
           reception_lower, reception_upper, search_lower, candidate).upper();
       const double candidate_tail_bound =
@@ -3829,12 +3829,12 @@ certify_binary64_fold_caustic_impulse(
           Interval::point(0.0)};
       const auto centered_rectangle = s_upper <= t_lower
           ? centered_event_rectangle_integral(
-                request, receiver, source, receiver_charge, source_charge,
+                request, receiver, source, receiver_charge, transmitter_charge,
                 reception_cell, emission_cell)
           : std::nullopt;
       const auto monotone_rectangle = s_upper <= t_lower
           ? monotone_event_rectangle_integral(
-                request, receiver, source, receiver_charge, source_charge,
+                request, receiver, source, receiver_charge, transmitter_charge,
                 reception_cell, emission_cell)
           : std::nullopt;
       if (residual_distance > 0.0) {
@@ -3861,7 +3861,7 @@ certify_binary64_fold_caustic_impulse(
             interval_absolute(
                 Interval::decimal_token(receiver_charge)).upper() *
             interval_absolute(
-                Interval::decimal_token(source_charge)).upper();
+                Interval::decimal_token(transmitter_charge)).upper();
         const double component_bound =
             area.upper() * signed_scale_bound * acceleration_weight_bound *
             mollifier_upper * kernel_component_bound;
@@ -3886,7 +3886,7 @@ certify_binary64_fold_caustic_impulse(
         integral = scale(
             area,
             event_integrand(
-                request, receiver, source, receiver_charge, source_charge,
+                request, receiver, source, receiver_charge, transmitter_charge,
                 reception_cell, emission_cell));
       }
       if (monotone_rectangle.has_value()) {
@@ -4100,7 +4100,7 @@ NativeFoldCausticImpulseCertificate certify_native_fold_caustic_impulse(
     const NativePublishedPath& receiver,
     const NativePublishedPath& source,
     const std::string& receiver_charge,
-    const std::string& source_charge,
+    const std::string& transmitter_charge,
     const std::string& reception_lower_token,
     const std::string& reception_upper_token) {
   tolerance_value(request.causal_width, "causal width");
@@ -4116,7 +4116,7 @@ NativeFoldCausticImpulseCertificate certify_native_fold_caustic_impulse(
   }
   NativeFoldCausticImpulseCertificate certificate =
       certify_binary64_fold_caustic_impulse(
-          request, receiver, source, receiver_charge, source_charge,
+          request, receiver, source, receiver_charge, transmitter_charge,
           reception_lower_token, reception_upper_token);
   if (certificate.status == "certified_complete" &&
       !request.force_event_precision_escalation) {
@@ -4137,9 +4137,9 @@ NativeFoldCausticImpulseCertificate certify_native_fold_caustic_impulse(
     const auto attempt = certify_mpfr_event_impulse(
         {
             .receiver_history = &receiver.history,
-            .source_history = &source.history,
+            .transmitter_history = &source.history,
             .receiver_charge = receiver_charge,
-            .source_charge = source_charge,
+            .transmitter_charge = transmitter_charge,
             .reception_lower = reception_lower_token,
             .reception_upper = reception_upper_token,
             .search_lower =
@@ -4187,7 +4187,7 @@ NativeRegulatorConvergenceCertificate certify_native_regulator_convergence(
     const NativePublishedPath& receiver,
     const NativePublishedPath& source,
     const std::string& receiver_charge,
-    const std::string& source_charge,
+    const std::string& transmitter_charge,
     const std::string& reception_lower,
     const std::string& reception_upper) {
   const double ratio = exact_decimal_value(request.regulator_refinement_ratio);
@@ -4201,13 +4201,13 @@ NativeRegulatorConvergenceCertificate certify_native_regulator_convergence(
         "at least three levels");
   }
   const auto base_event = certify_native_fold_caustic_impulse(
-      request, receiver, source, receiver_charge, source_charge,
+      request, receiver, source, receiver_charge, transmitter_charge,
       reception_lower, reception_upper);
   NativeRegulatorConvergenceCertificate certificate{
-      .schema = "eom_native_regulator_convergence_certificate/v0",
+      .schema = "eom_native_regulator_convergence_certificate/v1",
       .status = "uncertified",
       .receiver_path_id = receiver.path_id,
-      .source_path_id = source.path_id,
+      .transmitter_path_id = source.path_id,
       .required_levels = request.regulator_refinement_levels,
       .refinement_ratio = request.regulator_refinement_ratio,
       .convergence_tolerance = request.regulator_convergence_tolerance,
@@ -4284,7 +4284,7 @@ NativeRegulatorConvergenceCertificate certify_native_regulator_convergence(
             shortest_decimal_token(base_core_scale * scale);
       }
       auto event = certify_native_fold_caustic_impulse(
-          refined_request, receiver, source, receiver_charge, source_charge,
+          refined_request, receiver, source, receiver_charge, transmitter_charge,
           reception_lower, reception_upper);
       std::optional<double> delta;
       std::optional<double> position_moment_delta;
@@ -4360,18 +4360,18 @@ NativeFarFieldEnclosureCertificate certify_far_field_enclosure(
     const NativePublishedPath& source,
     const std::string& emission_lower,
     const std::string& reception_time,
-    std::size_t source_count) {
+    std::size_t transmitter_count) {
   NativeFarFieldEnclosureCertificate certificate{
-      .schema = "eom_native_far_field_enclosure_certificate/v0",
+      .schema = "eom_native_far_field_enclosure_certificate/v1",
       .row_id = receiver.path_id + "/" + source.path_id + "/" +
           reception_time + "/far-field",
       .receiver_path_id = receiver.path_id,
-      .source_path_id = source.path_id,
+      .transmitter_path_id = source.path_id,
       .receiver_history_id = receiver.history.history_id(),
-      .source_history_id = source.history.history_id(),
+      .transmitter_history_id = source.history.history_id(),
       .receiver_history_fingerprint =
           receiver.history.provenance_fingerprint(),
-      .source_history_fingerprint = source.history.provenance_fingerprint(),
+      .transmitter_history_fingerprint = source.history.provenance_fingerprint(),
       .reception_time = reception_time,
       .emission_lower = emission_lower,
       .emission_upper = reception_time,
@@ -4384,9 +4384,9 @@ NativeFarFieldEnclosureCertificate certify_far_field_enclosure(
     const Interval emission(lower.lower(), reception.upper());
     const IntervalVector receiver_position =
         receiver.history.position_hull(reception);
-    const IntervalVector source_position = source.history.position_hull(emission);
+    const IntervalVector transmitter_position = source.history.position_hull(emission);
     const IntervalVector displacement =
-        subtract(receiver_position, source_position);
+        subtract(receiver_position, transmitter_position);
     const Interval separation = norm(displacement);
     certificate.displacement_hull = displacement;
     certificate.separation = separation;
@@ -4397,11 +4397,11 @@ NativeFarFieldEnclosureCertificate certify_far_field_enclosure(
 
     const Interval receiver_speed =
         norm(receiver.history.velocity_hull(reception));
-    const Interval source_speed = norm(source.history.velocity_hull(emission));
+    const Interval transmitter_speed = norm(source.history.velocity_hull(emission));
     const Interval field_speed = Interval::decimal_token(request.field_speed);
-    const Interval transmitter_factor = field_speed - source_speed;
+    const Interval transmitter_factor = field_speed - transmitter_speed;
     certificate.receiver_speed = receiver_speed;
-    certificate.source_speed = source_speed;
+    certificate.transmitter_speed = transmitter_speed;
     certificate.transmitter_factor_lower_bound = transmitter_factor;
     if (!(transmitter_factor.lower() > 0.0)) {
       certificate.failure_code = "FFE-NORMAL-01";
@@ -4430,7 +4430,7 @@ NativeFarFieldEnclosureCertificate certify_far_field_enclosure(
         Interval::decimal_token(request.acceleration_tolerance);
     const Interval pair_width_budget =
         fraction * acceleration_tolerance /
-        Interval::point(static_cast<double>(source_count));
+        Interval::point(static_cast<double>(transmitter_count));
     certificate.pair_width_budget = pair_width_budget;
     const Interval cutoff = interval_sqrt(
         Interval::point(2.0) * coupling * charge_product *
@@ -4462,13 +4462,13 @@ ExactPairCertificate enclosed_pair_marker(
     const NativePublishedPath& source,
     const NativeFarFieldEnclosureCertificate& enclosure) {
   return {
-      .schema = "eom_native_enclosed_pair_marker/v0",
+      .schema = "eom_native_enclosed_pair_marker/v1",
       .row_id = enclosure.row_id,
       .receiver_history_id = receiver.history.history_id(),
-      .source_history_id = source.history.history_id(),
+      .transmitter_history_id = source.history.history_id(),
       .receiver_history_fingerprint =
           receiver.history.provenance_fingerprint(),
-      .source_history_fingerprint = source.history.provenance_fingerprint(),
+      .transmitter_history_fingerprint = source.history.provenance_fingerprint(),
       .reception_time = enclosure.reception_time,
       .searched_lower = enclosure.emission_lower,
       .searched_upper = enclosure.emission_upper,
@@ -4522,7 +4522,7 @@ NativeAccelerationSnapshotCertificate certify_native_acceleration_snapshot(
     }
     for (const auto& row : warm_snapshot->root_certificates) {
       warm_root_by_pair.emplace(
-          std::make_pair(row.receiver_path_id, row.source_path_id), &row);
+          std::make_pair(row.receiver_path_id, row.transmitter_path_id), &row);
     }
     std::size_t logical_index = 0;
     for (const auto& receiver : histories) {
@@ -4533,7 +4533,7 @@ NativeAccelerationSnapshotCertificate certify_native_acceleration_snapshot(
         const auto prior_source = warm_history_by_id.find(source.path_id);
         if (prior_row != warm_root_by_pair.end() &&
             prior_row->second->certificate.schema ==
-                "eom_native_exact_pair_certificate/v0" &&
+                "eom_native_exact_pair_certificate/v1" &&
             prior_receiver != warm_history_by_id.end() &&
             prior_source != warm_history_by_id.end()) {
           warm_starts[logical_index] = {
@@ -4688,7 +4688,7 @@ NativeAccelerationSnapshotCertificate certify_native_acceleration_snapshot(
         : "certified_moving_history_traversal";
 
     CertifiedTraversalExactBatchCertificate exact_batch{
-        .schema = "eom_certified_traversal_exact_pair_batch/v0",
+        .schema = "eom_certified_traversal_exact_pair_batch/v1",
         .traversal_id = traversal_request.traversal_id,
         .status = "uncertified",
         .failure_code = "traversal_not_certified",
@@ -4736,12 +4736,12 @@ NativeAccelerationSnapshotCertificate certify_native_acceleration_snapshot(
       for (const auto& tile : traversal_certificate->exact_tiles) {
         for (std::size_t receiver_index = tile.receiver_begin;
              receiver_index < tile.receiver_end; ++receiver_index) {
-          for (std::size_t source_index = tile.source_begin;
-               source_index < tile.source_end; ++source_index) {
+          for (std::size_t transmitter_index = tile.transmitter_begin;
+               transmitter_index < tile.transmitter_end; ++transmitter_index) {
             const std::size_t logical_index =
-                receiver_index * histories.size() + source_index;
+                receiver_index * histories.size() + transmitter_index;
             const auto& receiver = histories[receiver_index];
-            const auto& source = histories[source_index];
+            const auto& source = histories[transmitter_index];
             auto enclosure = certify_far_field_enclosure(
                 request, receiver, source, common_start, reception_time,
                 histories.size());
@@ -4751,7 +4751,7 @@ NativeAccelerationSnapshotCertificate certify_native_acceleration_snapshot(
                 far_field_enclosure_certificates[logical_index];
             if (stored.status == "certified_enclosed") {
               certificates_by_index.emplace(
-                  std::make_pair(receiver_index, source_index),
+                  std::make_pair(receiver_index, transmitter_index),
                   enclosed_pair_marker(request, receiver, source, stored));
               ++traversal_enclosed_pairs;
               const double width = stored.acceleration->front().width();
@@ -4762,7 +4762,7 @@ NativeAccelerationSnapshotCertificate certify_native_acceleration_snapshot(
                       receiver_enclosed_widths[receiver_index], width);
               continue;
             }
-            root_coordinates.emplace_back(receiver_index, source_index);
+            root_coordinates.emplace_back(receiver_index, transmitter_index);
             root_requests.push_back({
                 .row_id = receiver.path_id + "/" + source.path_id + "/" +
                     reception_time,
@@ -4813,11 +4813,11 @@ NativeAccelerationSnapshotCertificate certify_native_acceleration_snapshot(
       for (const auto& tile : traversal_certificate->exact_tiles) {
         for (std::size_t receiver_index = tile.receiver_begin;
              receiver_index < tile.receiver_end; ++receiver_index) {
-          for (std::size_t source_index = tile.source_begin;
-               source_index < tile.source_end; ++source_index) {
+          for (std::size_t transmitter_index = tile.transmitter_begin;
+               transmitter_index < tile.transmitter_end; ++transmitter_index) {
             if (exact_index < exact_batch.exact_pair_certificates.size()) {
               certificates_by_index.emplace(
-                  std::make_pair(receiver_index, source_index),
+                  std::make_pair(receiver_index, transmitter_index),
                   exact_batch.exact_pair_certificates[exact_index]);
             }
             ++exact_index;
@@ -4831,22 +4831,22 @@ NativeAccelerationSnapshotCertificate certify_native_acceleration_snapshot(
       }
       for (std::size_t receiver_index = node.receiver_begin;
            receiver_index < node.receiver_end; ++receiver_index) {
-        for (std::size_t source_index = node.source_begin;
-             source_index < node.source_end; ++source_index) {
+        for (std::size_t transmitter_index = node.transmitter_begin;
+             transmitter_index < node.transmitter_end; ++transmitter_index) {
           const auto& receiver = histories[receiver_index];
-          const auto& source = histories[source_index];
+          const auto& source = histories[transmitter_index];
           certificates_by_index.emplace(
-              std::make_pair(receiver_index, source_index),
+              std::make_pair(receiver_index, transmitter_index),
               ExactPairCertificate{
-                  .schema = "eom_native_exact_pair_certificate/v0",
+                  .schema = "eom_native_exact_pair_certificate/v1",
                   .row_id = traversal_request.traversal_id + "/excluded/" +
                       node.node_id + "/" + receiver.path_id + "/" +
                       source.path_id,
                   .receiver_history_id = receiver.history.history_id(),
-                  .source_history_id = source.history.history_id(),
+                  .transmitter_history_id = source.history.history_id(),
                   .receiver_history_fingerprint =
                       receiver.history.provenance_fingerprint(),
-                  .source_history_fingerprint =
+                  .transmitter_history_fingerprint =
                       source.history.provenance_fingerprint(),
                   .reception_time = reception_time,
                   .searched_lower = active_search_lower,
@@ -4881,24 +4881,24 @@ NativeAccelerationSnapshotCertificate certify_native_acceleration_snapshot(
     }
     for (std::size_t receiver_index = 0;
          receiver_index < histories.size(); ++receiver_index) {
-      for (std::size_t source_index = 0;
-           source_index < histories.size(); ++source_index) {
-        auto found = certificates_by_index.find({receiver_index, source_index});
+      for (std::size_t transmitter_index = 0;
+           transmitter_index < histories.size(); ++transmitter_index) {
+        auto found = certificates_by_index.find({receiver_index, transmitter_index});
         if (found != certificates_by_index.end()) {
           root_certificates.push_back(std::move(found->second));
           continue;
         }
         const auto& receiver = histories[receiver_index];
-        const auto& source = histories[source_index];
+        const auto& source = histories[transmitter_index];
         root_certificates.push_back({
-            .schema = "eom_native_exact_pair_certificate/v0",
+            .schema = "eom_native_exact_pair_certificate/v1",
             .row_id = traversal_request.traversal_id + "/unresolved/" +
                 receiver.path_id + "/" + source.path_id,
             .receiver_history_id = receiver.history.history_id(),
-            .source_history_id = source.history.history_id(),
+            .transmitter_history_id = source.history.history_id(),
             .receiver_history_fingerprint =
                 receiver.history.provenance_fingerprint(),
-            .source_history_fingerprint =
+            .transmitter_history_fingerprint =
                 source.history.provenance_fingerprint(),
             .reception_time = reception_time,
             .searched_lower = active_search_lower,
@@ -4935,20 +4935,20 @@ NativeAccelerationSnapshotCertificate certify_native_acceleration_snapshot(
               {-std::numeric_limits<double>::infinity(), 0});
           continue;
         }
-        const std::string source_search_lower =
+        const std::string transmitter_search_lower =
             causal_prefix_exclusion.status == "certified_complete"
             ? active_search_lower
             : source.history.segments().front().t_start_token();
         warm_source_equality.push_back(compute_warm_source_equality_bounds(
             source.history, warm_source->second->history,
-            std::strtod(source_search_lower.c_str(), nullptr)));
+            std::strtod(transmitter_search_lower.c_str(), nullptr)));
       }
     }
     std::vector<ExactPairRequest> root_requests;
     root_requests.reserve(logical_pair_count);
-    std::size_t source_index = 0;
+    std::size_t transmitter_index = 0;
     for (const auto& receiver : histories) {
-      source_index = 0;
+      transmitter_index = 0;
       for (const auto& source : histories) {
         root_requests.push_back({
             .row_id = receiver.path_id + "/" + source.path_id + "/" +
@@ -4975,13 +4975,13 @@ NativeAccelerationSnapshotCertificate certify_native_acceleration_snapshot(
                 : nullptr,
             .warm_source_equality_precomputed = warm_equality_available,
             .warm_source_prefix_token_stable_upper = warm_equality_available
-                ? warm_source_equality[source_index].prefix_token_stable_upper
+                ? warm_source_equality[transmitter_index].prefix_token_stable_upper
                 : -std::numeric_limits<double>::infinity(),
             .warm_source_aligned_equal_segments = warm_equality_available
-                ? warm_source_equality[source_index].aligned_equal_segments
+                ? warm_source_equality[transmitter_index].aligned_equal_segments
                 : 0,
         });
-        ++source_index;
+        ++transmitter_index;
       }
     }
     const auto exact_root_timing_start = SteadyClock::now();
@@ -4991,7 +4991,7 @@ NativeAccelerationSnapshotCertificate certify_native_acceleration_snapshot(
         elapsed_seconds(exact_root_timing_start);
   }
   for (const auto& root : root_certificates) {
-    if (root.schema == "eom_native_enclosed_pair_marker/v0") {
+    if (root.schema == "eom_native_enclosed_pair_marker/v1") {
       continue;
     }
     ++timing.root_pair_count;
@@ -5033,19 +5033,19 @@ NativeAccelerationSnapshotCertificate certify_native_acceleration_snapshot(
       pair_requests.push_back({
           .row_id = root.row_id,
           .receiver_path_id = receiver.path_id,
-          .source_path_id = source.path_id,
+          .transmitter_path_id = source.path_id,
           .receiver_history = &receiver.history,
-          .source_history = &source.history,
+          .transmitter_history = &source.history,
           .root_certificate = &root,
           .far_field_enclosure =
-              root.schema == "eom_native_enclosed_pair_marker/v0" &&
+              root.schema == "eom_native_enclosed_pair_marker/v1" &&
                       index < far_field_enclosure_certificates.size()
                   ? &far_field_enclosure_certificates[index]
                   : nullptr,
           .receiver_charge = path_charge(request, receiver.path_id),
-          .source_charge = path_charge(request, source.path_id),
+          .transmitter_charge = path_charge(request, source.path_id),
           .coupling = request.coupling,
-          .chart = root.schema == "eom_native_enclosed_pair_marker/v0"
+          .chart = root.schema == "eom_native_enclosed_pair_marker/v1"
               ? "far_field_enclosure"
               : request.chart_policy == "finite_width" ||
                       (request.chart_policy ==
@@ -5120,7 +5120,7 @@ NativeAccelerationSnapshotCertificate certify_native_acceleration_snapshot(
               .row_id = root_certificates[pair_index].row_id +
                   "/acceleration-refinement-" + std::to_string(level + 1U),
               .receiver = pair_requests[pair_index].receiver_history,
-              .source = pair_requests[pair_index].source_history,
+              .source = pair_requests[pair_index].transmitter_history,
               .reception_time = reception_time,
               .search_lower = root_certificates[pair_index].searched_lower,
               .search_upper = root_certificates[pair_index].searched_upper,
@@ -5307,7 +5307,7 @@ NativeAtomicStepCertificate certify_native_atomic_coupled_step_impl(
   for (const auto& state :
        first_half.certificate.finite_width_state_certificates) {
     const auto pair = std::make_pair(
-        state.receiver_path_id, state.source_path_id);
+        state.receiver_path_id, state.transmitter_path_id);
     insert_sorted_pair(
         second_half_request.adjudicated_finite_width_pairs, pair);
   }
@@ -5358,7 +5358,7 @@ NativeAtomicStepCertificate certify_native_atomic_coupled_step_impl(
                                      .finite_width_state_certificates) {
           insert_sorted_pair(
               quarter_request.adjudicated_finite_width_pairs,
-              std::make_pair(state.receiver_path_id, state.source_path_id));
+              std::make_pair(state.receiver_path_id, state.transmitter_path_id));
         }
       }
       auto attempt = corrected_substep(
@@ -5486,7 +5486,7 @@ NativeAtomicStepCertificate certify_native_atomic_coupled_step_impl(
   timing->history_copy_hash_wall_seconds +=
       elapsed_seconds(fingerprint_timing_start);
   return {
-      .schema = "eom_native_atomic_coupled_step_certificate/v0",
+      .schema = "eom_native_atomic_coupled_step_certificate/v1",
       .status = "accepted",
       .run_id = request.run_id,
       .step_index = step_index,
@@ -5691,7 +5691,7 @@ NativeCoupledEvolutionCertificate evolve_native_coupled_histories(
     NativeEvolutionTiming memory_timing;
     memory_timing.total_wall_seconds = elapsed_seconds(timing_start);
     return {
-        .schema = "eom_native_coupled_evolution_certificate/v0",
+        .schema = "eom_native_coupled_evolution_certificate/v1",
         .status = "halted",
         .run_id = request.run_id,
         .start_time = request.start_time,
@@ -5835,13 +5835,13 @@ NativeCoupledEvolutionCertificate evolve_native_coupled_histories(
     for (const auto& substep : step.substeps) {
       for (const auto& state : substep.finite_width_state_certificates) {
         const auto pair = std::make_pair(
-            state.receiver_path_id, state.source_path_id);
+            state.receiver_path_id, state.transmitter_path_id);
         adjudicated_finite_width_pairs.insert(pair);
       }
       for (const auto& regulator :
            substep.regulator_convergence_certificates) {
         const auto pair = std::make_pair(
-            regulator.receiver_path_id, regulator.source_path_id);
+            regulator.receiver_path_id, regulator.transmitter_path_id);
         adjudicated_finite_width_pairs.insert(pair);
       }
     }
@@ -5945,7 +5945,7 @@ NativeCoupledEvolutionCertificate evolve_native_coupled_histories(
   NativeEvolutionTiming timing = summarize_evolution_timing(steps);
   timing.total_wall_seconds = elapsed_seconds(timing_start);
   return {
-      .schema = "eom_native_coupled_evolution_certificate/v0",
+      .schema = "eom_native_coupled_evolution_certificate/v1",
       .status = completed ? "completed" : "halted",
       .run_id = request.run_id,
       .start_time = request.start_time,

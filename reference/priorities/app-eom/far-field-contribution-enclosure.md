@@ -94,10 +94,10 @@ $$
 $$
 
 If there is no root, the exact contribution is zero and is still contained.
-The factor $\nu_{s,ij}$ is the certified source-normal lower-bound factor. In
+The factor $\nu_{s,ij}$ is the certified transmitter-side-factor lower-bound factor. In
 the equivalent unnormalized residual derivative, its geometric lower bound is
 $r^-_{ij}\nu_{s,ij}\ge r^-_{ij}(c_f^- - v_j^+)$; this is the stated far,
-subluminal growth with distance. The receiver-normal numerator is retained
+subluminal growth with distance. The receiver-side-factor numerator is retained
 explicitly because dropping it would not enclose the frozen law.
 
 The theorem is falsified by any admitted history for which the independently

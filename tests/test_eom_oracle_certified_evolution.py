@@ -120,7 +120,7 @@ class CertifiedCoupledEvolutionTests(unittest.TestCase):
         self.assertEqual(velocity, (Decimal(0), Decimal(0), Decimal(0)))
         self.assertEqual(len(output.segments), 5)
         self.assertEqual(
-            result.to_record()["schema"], "eom_coupled_evolution_certificate/v0"
+            result.to_record()["schema"], "eom_coupled_evolution_certificate/v1"
         )
 
     def test_super_field_speed_inertial_self_history_is_not_clamped(self) -> None:

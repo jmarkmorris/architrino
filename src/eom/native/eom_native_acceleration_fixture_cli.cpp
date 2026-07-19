@@ -69,12 +69,12 @@ eom::ExactPairCertificate roots(
 eom::NativePairAccelerationRequest acceleration_request(
     const std::string& row_id,
     const std::string& receiver_path_id,
-    const std::string& source_path_id,
+    const std::string& transmitter_path_id,
     const eom::RetainedHistory& receiver,
     const eom::RetainedHistory& source,
     const eom::ExactPairCertificate& certificate,
     const std::string& receiver_charge,
-    const std::string& source_charge,
+    const std::string& transmitter_charge,
     const std::string& tolerance = "1e-9",
     const std::string& chart = "sharp",
     bool force_precision_escalation = false,
@@ -83,12 +83,12 @@ eom::NativePairAccelerationRequest acceleration_request(
   return {
       .row_id = row_id,
       .receiver_path_id = receiver_path_id,
-      .source_path_id = source_path_id,
+      .transmitter_path_id = transmitter_path_id,
       .receiver_history = &receiver,
-      .source_history = &source,
+      .transmitter_history = &source,
       .root_certificate = &certificate,
       .receiver_charge = receiver_charge,
-      .source_charge = source_charge,
+      .transmitter_charge = transmitter_charge,
       .coupling = "1",
       .chart = chart,
       .transmitter_factor_floor = "1e-30",
@@ -133,7 +133,7 @@ void print_pair(const eom::NativePairAccelerationCertificate& certificate) {
             << "\",\"row_id\":\"" << certificate.row_id
             << "\",\"receiver_path_id\":\""
             << certificate.receiver_path_id
-            << "\",\"source_path_id\":\"" << certificate.source_path_id
+            << "\",\"transmitter_path_id\":\"" << certificate.transmitter_path_id
             << "\",\"status\":\"" << certificate.status
             << "\",\"failure_code\":\"" << certificate.failure_code
             << "\",\"chart\":\"" << certificate.chart
@@ -215,7 +215,7 @@ void print_reconstruction(
     }
     const auto& pair = certificate.pair_certificates[index];
     std::cout << "[\"" << pair.receiver_path_id << "\",\""
-              << pair.source_path_id << "\"]";
+              << pair.transmitter_path_id << "\"]";
   }
   std::cout << "],\"receiver_totals\":[";
   for (std::size_t index = 0; index < certificate.receiver_totals.size();
@@ -319,14 +319,14 @@ void print_all(bool include_pinned_fold_legacy) {
   constexpr double fold_reception = 0.0024;
   constexpr double fold_emission = -0.04;
   constexpr double fold_delay = fold_reception - fold_emission;
-  const double source_cosine = std::cos(fold_emission);
-  const double source_sine = std::sin(fold_emission);
+  const double transmitter_cosine = std::cos(fold_emission);
+  const double transmitter_sine = std::sin(fold_emission);
   const std::array<double, 3> fold_position{
-      source_cosine + fold_delay * (-source_sine),
-      source_sine + fold_delay * source_cosine,
+      transmitter_cosine + fold_delay * (-transmitter_sine),
+      transmitter_sine + fold_delay * transmitter_cosine,
       0.0};
   const std::array<double, 3> endpoint_velocity{
-      -source_sine, source_cosine, 0.0};
+      -transmitter_sine, transmitter_cosine, 0.0};
   eom::CubicCoefficientTokens fold_coefficients{};
   const std::array<double, 3> start_position{1.0, 0.0, 0.0};
   const std::array<double, 3> start_velocity{0.0, 1.0, 0.0};
@@ -363,13 +363,13 @@ void print_all(bool include_pinned_fold_legacy) {
           "0", token(fold_reception), std::move(fold_coefficients),
           "1e-15", "1e-15"));
   const eom::ExactPairCertificate pinned_fold_roots{
-      .schema = "eom_native_exact_pair_certificate/v0",
+      .schema = "eom_native_exact_pair_certificate/v1",
       .row_id = "pinned-fold-roots",
       .receiver_history_id = pinned_fold_history.history_id(),
-      .source_history_id = pinned_fold_history.history_id(),
+      .transmitter_history_id = pinned_fold_history.history_id(),
       .receiver_history_fingerprint =
           pinned_fold_history.provenance_fingerprint(),
-      .source_history_fingerprint =
+      .transmitter_history_fingerprint =
           pinned_fold_history.provenance_fingerprint(),
       .reception_time = token(fold_reception),
       .searched_lower = "-1",
@@ -417,13 +417,13 @@ void print_all(bool include_pinned_fold_legacy) {
           .phase = "0",
       });
   const eom::ExactPairCertificate cubic_pin_roots{
-      .schema = "eom_native_exact_pair_certificate/v0",
+      .schema = "eom_native_exact_pair_certificate/v1",
       .row_id = "cubic-pin-roots",
       .receiver_history_id = cubic_pin_history.history_id(),
-      .source_history_id = cubic_pin_history.history_id(),
+      .transmitter_history_id = cubic_pin_history.history_id(),
       .receiver_history_fingerprint =
           cubic_pin_history.provenance_fingerprint(),
-      .source_history_fingerprint =
+      .transmitter_history_fingerprint =
           cubic_pin_history.provenance_fingerprint(),
       .reception_time = "0",
       .searched_lower = "-1",
@@ -482,7 +482,7 @@ void print_all(bool include_pinned_fold_legacy) {
       {"a", "b"}, matrix_requests, 1);
 
   std::cout << std::setprecision(17)
-            << "{\"schema\":\"eom_native_acceleration_fixture_packet/v0\","
+            << "{\"schema\":\"eom_native_acceleration_fixture_packet/v1\","
             << "\"reduction_policy\":\""
             << eom::kDeterministicReductionPolicy << "\",\"cases\":[";
   std::vector<const eom::NativePairAccelerationCertificate*> cases = {

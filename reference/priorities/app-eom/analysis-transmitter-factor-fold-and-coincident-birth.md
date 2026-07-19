@@ -1,19 +1,19 @@
-# Source-Density Fold and Coincident-Birth Analysis
+# Transmitter-Side Fold and Coincident-Birth Analysis
 
 ## Status
 
 - Purpose: promotion analysis for singular causal events under the proposed transmitter-side Master Equation
-- Scope: ordinary interior transmitter-side folds and coincident same-source root birth
+- Scope: ordinary interior transmitter-side folds and coincident same-transmitter root birth
 - Standing: priority analysis; not canon and not an EOM solver specification
-- Result: ordinary folds have a finite sharp impulse; coincident same-source birth does not
+- Result: ordinary folds have a finite sharp impulse; coincident same-transmitter birth does not
 
 ## Finding in plain language
 
-An ordinary fold and a coincident same-source birth must not share one treatment.
+An ordinary fold and a coincident same-transmitter birth must not share one treatment.
 
 At an ordinary fold, two causal roots merge while their separation from the receiver remains nonzero. The pointwise acceleration becomes infinite like $1/\sqrt{|T_r-T_0|}$, but that singularity has a finite time integral. The finite-width equation therefore has a regulator-independent sharp impulse across the fold.
 
-At coincident same-source birth, the root singularity and the inverse-square spatial singularity occur together. The proposed transmitter-side equation then has a nonintegrable sharp acceleration. Fixed positive wake width and core scale make the event finite, but the complete post-crossing endpoint layer diverges as the core scale is removed. Isolating only the newborn noncoincident root also gives a divergent, refinement-path-dependent sharp limit. This is a no-go result for the sharp equation with generic smooth same-source field-speed crossing.
+At coincident same-transmitter birth, the root singularity and the inverse-square spatial singularity occur together. The proposed transmitter-side equation then has a nonintegrable sharp acceleration. Fixed positive wake width and core scale make the event finite, but the complete post-crossing endpoint layer diverges as the core scale is removed. Isolating only the newborn noncoincident root also gives a divergent, refinement-path-dependent sharp limit. This is a no-go result for the sharp equation with generic smooth same-transmitter field-speed crossing.
 
 Claim classification: **derived on the local histories and nondegeneracy assumptions stated below**. The self-consistent outcome after the sharp-law failure remains unresolved.
 
@@ -174,9 +174,9 @@ $$
 
 The acceleration is infinite at the fold instant but locally integrable. Its position-update moment, obtained by multiplying by a bounded reception-time weight, is finite as well.
 
-## 3. Coincident same-source birth
+## 3. Coincident same-transmitter birth
 
-Let one smooth same-source history cross field speed at $T_0$. Put
+Let one smooth same-transmitter history cross field speed at $T_0$. Put
 
 $$
 t=T_r-T_0,
@@ -460,13 +460,13 @@ $$
 
 The displayed coefficient uses the limit in which the fixed physical reception-time and delay bounds become infinite after rescaling by $\ell_\eta$. That limit is not uniform on extreme paths where $\epsilon_c$ vanishes so much faster than $\eta$ that the finite reception-time boundary is reached before the complete core layer is sampled. On those paths the power of the divergence changes, but the divergence does not disappear. Section 3.5 gives a finite-window lower bound that covers every joint path.
 
-Thus the complete post-crossing cell is finite for fixed positive $\eta$ and $\epsilon_c$, but it has no finite joint sharp limit. The causal width resolves the root merger; it does not regularize the inverse-square same-source diagonal by itself. The newborn-only logarithm in the width-dominated regime is not the complete-cell answer because the endpoint layer supplies the stronger finite-window divergence.
+Thus the complete post-crossing cell is finite for fixed positive $\eta$ and $\epsilon_c$, but it has no finite joint sharp limit. The causal width resolves the root merger; it does not regularize the inverse-square same-transmitter diagonal by itself. The newborn-only logarithm in the width-dominated regime is not the complete-cell answer because the endpoint layer supplies the stronger finite-window divergence.
 
 Claim classification: **derived within the local frozen-history, dual-width equation on the stated matched-refinement limit**. A bounded complete-cell impulse on any joint path is excluded separately by the finite-window lower bound in Section 3.5.
 
 ### 3.4 Consequence for self-consistent evolution
 
-The calculation assumes a smooth crossing with finite $\alpha>0$. The resulting nonintegrable acceleration is incompatible with that assumed continuation under the sharp equation. This proves that a generic smooth crossing is not an admissible sharp-law solution of the base same-source equation.
+The calculation assumes a smooth crossing with finite $\alpha>0$. The resulting nonintegrable acceleration is incompatible with that assumed continuation under the sharp equation. This proves that a generic smooth crossing is not an admissible sharp-law solution of the base same-transmitter equation.
 
 It does not prove what replaces the crossing. A self-consistent positive-width history could turn, accelerate away, or enter another retained-history regime. Determining that outcome requires solving the same finite-width delayed equation, not replaying a prescribed crossing history.
 
@@ -529,7 +529,7 @@ The present ontology defines an architrino as a point transceiver. The positive 
 
 A fixed positive $\epsilon_c$ would make the transition finite, but accepting it as physical would require a new derived near-origin wake law and a fixed value from existing primitives. Dimensional availability of a candidate length would not be sufficient: it would not determine the kernel shape, its dimensionless coefficient, or why the point-transceiver law saturates in precisely that form. The current primitives also supply no positive minimum self-hit delay and no rule that permanently excludes a root born from the coincident endpoint.
 
-Claim classification: **derived no-go result for acceptance under the current point-transceiver and removable-core rules**. It does not prove that every possible extension fails. It is falsified by an Architrino-native derivation that fixes a positive near-origin scale and kernel, or by a different same-source rule whose complete transition has a finite regulator-independent impulse.
+Claim classification: **derived no-go result for acceptance under the current point-transceiver and removable-core rules**. It does not prove that every possible extension fails. It is falsified by an Architrino-native derivation that fixes a positive near-origin scale and kernel, or by a different same-transmitter rule whose complete transition has a finite regulator-independent impulse.
 
 ## 4. Promotion consequences
 
@@ -538,15 +538,15 @@ Claim classification: **derived no-go result for acceptance under the current po
 | Interior simple root | finite pointwise acceleration | mathematical reduction passes |
 | Ordinary interior fold with $r>0$ and $D_r\ne0$ | pointwise divergence but finite impulse | use the fold impulse, not point sampling |
 | Receiver turning point with $D_t\ne0$ | no acceleration singularity | preserve root transport through the turning point |
-| Coincident same-source birth | nonintegrable impulse | sharp equation fails without another rule |
+| Coincident same-transmitter birth | nonintegrable impulse | sharp equation fails without another rule |
 | Retained-history boundary crossing | boundary event, not an interior fold | require complete history or fail closed |
 
 The coincident event has only three currently visible resolution classes:
 
 1. retain positive physical wake width and positive core scale, with both values independently constrained;
-2. derive a different near-diagonal same-source rule or exclusion from architrino-native principles;
+2. derive a different near-diagonal same-transmitter rule or exclusion from architrino-native principles;
 3. derive a causal past-history contribution that cancels the complete transition at the same singular order.
 
-Selecting among those classes changes the dynamics and is not justified by the current primitives. The acceptance audit above closes the present route negatively: fixed mathematical regulators do not become a finite accepted transition merely by being kept nonzero. Until a near-origin rule is derived, the proposed sharp Master Equation cannot be promoted as a globally complete same-source law.
+Selecting among those classes changes the dynamics and is not justified by the current primitives. The acceptance audit above closes the present route negatively: fixed mathematical regulators do not become a finite accepted transition merely by being kept nonzero. Until a near-origin rule is derived, the proposed sharp Master Equation cannot be promoted as a globally complete same-transmitter law.
 
 Promotion classification: **ordinary fold promote now within the priority proposal; coincident birth defer with a fundamental blocker**.

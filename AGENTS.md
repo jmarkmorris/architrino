@@ -240,7 +240,7 @@ The corpus rule that a measured claim names its instrument and grade applies to 
 - `pre-commit` runs:
   - `node scripts/validate-content.mjs --check --strict`
   - `node scripts/build-scene-graph.mjs --check --strict`
-  - `node scripts/check-receiver-normal-clean-slate.mjs`
+  - `node scripts/check-transmitter-factor-clean-slate.mjs`
   - `node scripts/angular-momentum/check-frequency-triplet-notation-drift.mjs`
   - `node scripts/check-polarity-notation-drift.mjs`
   - `node scripts/check-animator-runtime-wiring.mjs`

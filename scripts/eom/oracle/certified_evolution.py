@@ -294,13 +294,13 @@ class AccelerationSnapshotCertificate:
 
     def to_record(self) -> dict[str, object]:
         return {
-            "schema": "eom_acceleration_snapshot_certificate/v0",
+            "schema": "eom_acceleration_snapshot_certificate/v1",
             "status": self.status,
             "reception_time": str(self.reception_time),
             "root_certificates": [
                 {
                     "receiver_path_id": receiver,
-                    "source_path_id": source,
+                    "transmitter_path_id": source,
                     "certificate": certificate.to_record(),
                 }
                 for receiver, source, certificate in self.root_certificates
@@ -325,7 +325,7 @@ class CorrectedSubstepCertificate:
 
     def to_record(self) -> dict[str, object]:
         return {
-            "schema": "eom_corrected_substep_certificate/v0",
+            "schema": "eom_corrected_substep_certificate/v1",
             "status": self.status,
             "start_time": str(self.start_time),
             "end_time": str(self.end_time),
@@ -392,7 +392,7 @@ class AtomicStepCertificate:
 
     def to_record(self) -> dict[str, object]:
         return {
-            "schema": "eom_atomic_coupled_step_certificate/v0",
+            "schema": "eom_atomic_coupled_step_certificate/v1",
             "status": self.status,
             "run_id": self.run_id,
             "step_index": self.step_index,
@@ -449,7 +449,7 @@ class CoupledEvolutionCertificate:
 
     def to_record(self) -> dict[str, object]:
         return {
-            "schema": "eom_coupled_evolution_certificate/v0",
+            "schema": "eom_coupled_evolution_certificate/v1",
             "status": self.status,
             "run_id": self.run_id,
             "start_time": str(self.start_time),
@@ -479,9 +479,9 @@ def _finite_width_fallback_allowed(
 ) -> bool:
     reasons = {cell.reason for cell in certificate.unresolved_cells}
     same_retained_history = (
-        certificate.receiver_history_id == certificate.source_history_id
+        certificate.receiver_history_id == certificate.transmitter_history_id
         and certificate.receiver_history_digest
-        == certificate.source_history_digest
+        == certificate.transmitter_history_digest
     )
     return (
         certificate.status == "uncertified"
@@ -550,8 +550,8 @@ def certify_acceleration_snapshot(
     pair_requests: list[PairAccelerationRequest] = []
     for receiver_id in request.path_ids:
         receiver = history_by_path[receiver_id]
-        for source_id in request.path_ids:
-            source = history_by_path[source_id]
+        for transmitter_id in request.path_ids:
+            source = history_by_path[transmitter_id]
             root = certify_causal_roots(
                 receiver=receiver,
                 source=source,
@@ -563,16 +563,16 @@ def certify_acceleration_snapshot(
                 max_depth=request.root_max_depth,
                 max_cells=request.root_max_cells,
             )
-            root_rows.append((receiver_id, source_id, root))
+            root_rows.append((receiver_id, transmitter_id, root))
             pair_requests.append(
                 PairAccelerationRequest.from_decimal_tokens(
                     receiver_path_id=receiver_id,
-                    source_path_id=source_id,
+                    transmitter_path_id=transmitter_id,
                     receiver_history=receiver,
-                    source_history=source,
+                    transmitter_history=source,
                     root_certificate=root,
                     receiver_charge=charge_by_path[receiver_id],
-                    source_charge=charge_by_path[source_id],
+                    transmitter_charge=charge_by_path[transmitter_id],
                     coupling=request.coupling,
                     chart=_choose_chart(request, root),
                     transmitter_factor_floor=request.transmitter_factor_floor,

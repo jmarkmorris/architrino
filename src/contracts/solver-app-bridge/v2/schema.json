@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://architrino.local/contracts/solver-app-bridge/v1/schema.json",
+  "$id": "https://architrino.local/contracts/solver-app-bridge/v2/schema.json",
   "title": "solver App Bridge Contract v1",
   "oneOf": [
     {
@@ -428,7 +428,7 @@
       "required": ["schema", "kind", "requestId", "request"],
       "properties": {
         "schema": {
-          "const": "solver-app-bridge/v1"
+          "const": "solver-app-bridge/v2"
         },
         "kind": {
           "const": "init-request"
@@ -448,7 +448,7 @@
       "required": ["schema", "kind", "requestId", "response"],
       "properties": {
         "schema": {
-          "const": "solver-app-bridge/v1"
+          "const": "solver-app-bridge/v2"
         },
         "kind": {
           "const": "init-response"
@@ -468,7 +468,7 @@
       "required": ["schema", "kind", "requestId"],
       "properties": {
         "schema": {
-          "const": "solver-app-bridge/v1"
+          "const": "solver-app-bridge/v2"
         },
         "kind": {
           "const": "capabilities-request"
@@ -485,7 +485,7 @@
       "required": ["schema", "kind", "requestId", "response"],
       "properties": {
         "schema": {
-          "const": "solver-app-bridge/v1"
+          "const": "solver-app-bridge/v2"
         },
         "kind": {
           "const": "capabilities-response"
@@ -505,7 +505,7 @@
       "required": ["schema", "kind", "requestId", "request"],
       "properties": {
         "schema": {
-          "const": "solver-app-bridge/v1"
+          "const": "solver-app-bridge/v2"
         },
         "kind": {
           "const": "threading-plan-request"
@@ -525,7 +525,7 @@
       "required": ["schema", "kind", "requestId", "response"],
       "properties": {
         "schema": {
-          "const": "solver-app-bridge/v1"
+          "const": "solver-app-bridge/v2"
         },
         "kind": {
           "const": "threading-plan-response"
@@ -545,7 +545,7 @@
       "required": ["schema", "kind", "requestId", "request"],
       "properties": {
         "schema": {
-          "const": "solver-app-bridge/v1"
+          "const": "solver-app-bridge/v2"
         },
         "kind": {
           "const": "admission-request"
@@ -565,7 +565,7 @@
       "required": ["schema", "kind", "requestId", "response"],
       "properties": {
         "schema": {
-          "const": "solver-app-bridge/v1"
+          "const": "solver-app-bridge/v2"
         },
         "kind": {
           "const": "admission-response"
@@ -585,7 +585,7 @@
       "required": ["schema", "kind", "requestId", "request"],
       "properties": {
         "schema": {
-          "const": "solver-app-bridge/v1"
+          "const": "solver-app-bridge/v2"
         },
         "kind": {
           "const": "causal-roots-f64-request"
@@ -605,7 +605,7 @@
       "required": ["schema", "kind", "requestId", "response"],
       "properties": {
         "schema": {
-          "const": "solver-app-bridge/v1"
+          "const": "solver-app-bridge/v2"
         },
         "kind": {
           "const": "causal-roots-f64-response"
@@ -625,7 +625,7 @@
       "required": ["schema", "kind", "requestId", "request"],
       "properties": {
         "schema": {
-          "const": "solver-app-bridge/v1"
+          "const": "solver-app-bridge/v2"
         },
         "kind": {
           "const": "causal-roots-normalized-f64-request"
@@ -645,7 +645,7 @@
       "required": ["schema", "kind", "requestId", "response"],
       "properties": {
         "schema": {
-          "const": "solver-app-bridge/v1"
+          "const": "solver-app-bridge/v2"
         },
         "kind": {
           "const": "causal-roots-normalized-f64-response"
@@ -665,7 +665,7 @@
       "required": ["schema", "kind", "requestId", "request"],
       "properties": {
         "schema": {
-          "const": "solver-app-bridge/v1"
+          "const": "solver-app-bridge/v2"
         },
         "kind": {
           "const": "circular-source-causal-roots-f64-request"
@@ -685,7 +685,7 @@
       "required": ["schema", "kind", "requestId", "response"],
       "properties": {
         "schema": {
-          "const": "solver-app-bridge/v1"
+          "const": "solver-app-bridge/v2"
         },
         "kind": {
           "const": "circular-source-causal-roots-f64-response"
@@ -705,7 +705,7 @@
       "required": ["schema", "kind", "requestId", "request"],
       "properties": {
         "schema": {
-          "const": "solver-app-bridge/v1"
+          "const": "solver-app-bridge/v2"
         },
         "kind": {
           "const": "circular-source-roots-hits-ledger-f64-request"
@@ -725,7 +725,7 @@
       "required": ["schema", "kind", "requestId", "response"],
       "properties": {
         "schema": {
-          "const": "solver-app-bridge/v1"
+          "const": "solver-app-bridge/v2"
         },
         "kind": {
           "const": "circular-source-roots-hits-ledger-f64-response"
@@ -745,7 +745,7 @@
       "required": ["schema", "kind", "requestId", "request"],
       "properties": {
         "schema": {
-          "const": "solver-app-bridge/v1"
+          "const": "solver-app-bridge/v2"
         },
         "kind": {
           "const": "circular-source-roots-hits-ledger-normalized-f64-request"
@@ -765,7 +765,7 @@
       "required": ["schema", "kind", "requestId", "response"],
       "properties": {
         "schema": {
-          "const": "solver-app-bridge/v1"
+          "const": "solver-app-bridge/v2"
         },
         "kind": {
           "const": "circular-source-roots-hits-ledger-normalized-f64-response"
@@ -785,7 +785,7 @@
       "required": ["schema", "kind", "requestId", "request"],
       "properties": {
         "schema": {
-          "const": "solver-app-bridge/v1"
+          "const": "solver-app-bridge/v2"
         },
         "kind": {
           "const": "root-ledger-detail-f64-request"
@@ -805,7 +805,7 @@
       "required": ["schema", "kind", "requestId", "response"],
       "properties": {
         "schema": {
-          "const": "solver-app-bridge/v1"
+          "const": "solver-app-bridge/v2"
         },
         "kind": {
           "const": "root-ledger-detail-f64-response"
@@ -825,7 +825,7 @@
       "required": ["schema", "kind", "requestId", "request"],
       "properties": {
         "schema": {
-          "const": "solver-app-bridge/v1"
+          "const": "solver-app-bridge/v2"
         },
         "kind": {
           "const": "precision-diagnostic-f64-request"
@@ -845,7 +845,7 @@
       "required": ["schema", "kind", "requestId", "response"],
       "properties": {
         "schema": {
-          "const": "solver-app-bridge/v1"
+          "const": "solver-app-bridge/v2"
         },
         "kind": {
           "const": "precision-diagnostic-f64-response"
@@ -865,7 +865,7 @@
       "required": ["schema", "kind", "requestId", "request"],
       "properties": {
         "schema": {
-          "const": "solver-app-bridge/v1"
+          "const": "solver-app-bridge/v2"
         },
         "kind": {
           "const": "causal-roots-precision-f64-request"
@@ -885,7 +885,7 @@
       "required": ["schema", "kind", "requestId", "response"],
       "properties": {
         "schema": {
-          "const": "solver-app-bridge/v1"
+          "const": "solver-app-bridge/v2"
         },
         "kind": {
           "const": "causal-roots-precision-f64-response"
@@ -905,7 +905,7 @@
       "required": ["schema", "kind", "requestId", "request"],
       "properties": {
         "schema": {
-          "const": "solver-app-bridge/v1"
+          "const": "solver-app-bridge/v2"
         },
         "kind": {
           "const": "roots-and-hits-precision-f64-request"
@@ -925,7 +925,7 @@
       "required": ["schema", "kind", "requestId", "response"],
       "properties": {
         "schema": {
-          "const": "solver-app-bridge/v1"
+          "const": "solver-app-bridge/v2"
         },
         "kind": {
           "const": "roots-and-hits-precision-f64-response"
@@ -945,7 +945,7 @@
       "required": ["schema", "kind", "requestId", "request"],
       "properties": {
         "schema": {
-          "const": "solver-app-bridge/v1"
+          "const": "solver-app-bridge/v2"
         },
         "kind": {
           "const": "error-budget-propagation-f64-request"
@@ -965,7 +965,7 @@
       "required": ["schema", "kind", "requestId", "response"],
       "properties": {
         "schema": {
-          "const": "solver-app-bridge/v1"
+          "const": "solver-app-bridge/v2"
         },
         "kind": {
           "const": "error-budget-propagation-f64-response"
@@ -985,7 +985,7 @@
       "required": ["schema", "kind", "requestId", "request"],
       "properties": {
         "schema": {
-          "const": "solver-app-bridge/v1"
+          "const": "solver-app-bridge/v2"
         },
         "kind": {
           "const": "root-hit-invariant-f64-request"
@@ -1005,7 +1005,7 @@
       "required": ["schema", "kind", "requestId", "response"],
       "properties": {
         "schema": {
-          "const": "solver-app-bridge/v1"
+          "const": "solver-app-bridge/v2"
         },
         "kind": {
           "const": "root-hit-invariant-f64-response"
@@ -1025,7 +1025,7 @@
       "required": ["schema", "kind", "requestId", "request"],
       "properties": {
         "schema": {
-          "const": "solver-app-bridge/v1"
+          "const": "solver-app-bridge/v2"
         },
         "kind": {
           "const": "root-ledger-transition-f64-request"
@@ -1045,7 +1045,7 @@
       "required": ["schema", "kind", "requestId", "response"],
       "properties": {
         "schema": {
-          "const": "solver-app-bridge/v1"
+          "const": "solver-app-bridge/v2"
         },
         "kind": {
           "const": "root-ledger-transition-f64-response"
@@ -1065,7 +1065,7 @@
       "required": ["schema", "kind", "requestId", "request"],
       "properties": {
         "schema": {
-          "const": "solver-app-bridge/v1"
+          "const": "solver-app-bridge/v2"
         },
         "kind": {
           "const": "causal-root-batch-f64-request"
@@ -1085,7 +1085,7 @@
       "required": ["schema", "kind", "requestId", "response"],
       "properties": {
         "schema": {
-          "const": "solver-app-bridge/v1"
+          "const": "solver-app-bridge/v2"
         },
         "kind": {
           "const": "causal-root-batch-f64-response"
@@ -1105,7 +1105,7 @@
       "required": ["schema", "kind", "requestId", "request"],
       "properties": {
         "schema": {
-          "const": "solver-app-bridge/v1"
+          "const": "solver-app-bridge/v2"
         },
         "kind": {
           "const": "linear-motion-sample-f64-request"
@@ -1125,7 +1125,7 @@
       "required": ["schema", "kind", "requestId", "response"],
       "properties": {
         "schema": {
-          "const": "solver-app-bridge/v1"
+          "const": "solver-app-bridge/v2"
         },
         "kind": {
           "const": "linear-motion-sample-f64-response"
@@ -1145,7 +1145,7 @@
       "required": ["schema", "kind", "requestId", "request"],
       "properties": {
         "schema": {
-          "const": "solver-app-bridge/v1"
+          "const": "solver-app-bridge/v2"
         },
         "kind": {
           "const": "motion-integration-f64-request"
@@ -1165,7 +1165,7 @@
       "required": ["schema", "kind", "requestId", "response"],
       "properties": {
         "schema": {
-          "const": "solver-app-bridge/v1"
+          "const": "solver-app-bridge/v2"
         },
         "kind": {
           "const": "motion-integration-f64-response"
@@ -1185,7 +1185,7 @@
       "required": ["schema", "kind", "requestId", "request"],
       "properties": {
         "schema": {
-          "const": "solver-app-bridge/v1"
+          "const": "solver-app-bridge/v2"
         },
         "kind": {
           "const": "phase-at-hit-f64-request"
@@ -1205,7 +1205,7 @@
       "required": ["schema", "kind", "requestId", "response"],
       "properties": {
         "schema": {
-          "const": "solver-app-bridge/v1"
+          "const": "solver-app-bridge/v2"
         },
         "kind": {
           "const": "phase-at-hit-f64-response"
@@ -1225,7 +1225,7 @@
       "required": ["schema", "kind", "requestId", "request"],
       "properties": {
         "schema": {
-          "const": "solver-app-bridge/v1"
+          "const": "solver-app-bridge/v2"
         },
         "kind": {
           "const": "phase-at-hit-summary-f64-request"
@@ -1245,7 +1245,7 @@
       "required": ["schema", "kind", "requestId", "response"],
       "properties": {
         "schema": {
-          "const": "solver-app-bridge/v1"
+          "const": "solver-app-bridge/v2"
         },
         "kind": {
           "const": "phase-at-hit-summary-f64-response"
@@ -1265,7 +1265,7 @@
       "required": ["schema", "kind", "requestId", "packet"],
       "properties": {
         "schema": {
-          "const": "solver-app-bridge/v1"
+          "const": "solver-app-bridge/v2"
         },
         "kind": {
           "const": "work-packet-header"
@@ -1285,7 +1285,7 @@
       "required": ["schema", "kind", "requestId", "response"],
       "properties": {
         "schema": {
-          "const": "solver-app-bridge/v1"
+          "const": "solver-app-bridge/v2"
         },
         "kind": {
           "const": "work-packet-header-response"
@@ -1305,7 +1305,7 @@
       "required": ["schema", "kind", "requestId", "request"],
       "properties": {
         "schema": {
-          "const": "solver-app-bridge/v1"
+          "const": "solver-app-bridge/v2"
         },
         "kind": {
           "const": "work-packet-result-order-request"
@@ -1325,7 +1325,7 @@
       "required": ["schema", "kind", "requestId", "response"],
       "properties": {
         "schema": {
-          "const": "solver-app-bridge/v1"
+          "const": "solver-app-bridge/v2"
         },
         "kind": {
           "const": "work-packet-result-order-response"
@@ -1345,7 +1345,7 @@
       "required": ["schema", "kind", "requestId", "request"],
       "properties": {
         "schema": {
-          "const": "solver-app-bridge/v1"
+          "const": "solver-app-bridge/v2"
         },
         "kind": {
           "const": "shared-geometry-f64-request"
@@ -1365,7 +1365,7 @@
       "required": ["schema", "kind", "requestId", "response"],
       "properties": {
         "schema": {
-          "const": "solver-app-bridge/v1"
+          "const": "solver-app-bridge/v2"
         },
         "kind": {
           "const": "shared-geometry-f64-response"
@@ -1385,7 +1385,7 @@
       "required": ["schema", "kind", "requestId", "request"],
       "properties": {
         "schema": {
-          "const": "solver-app-bridge/v1"
+          "const": "solver-app-bridge/v2"
         },
         "kind": {
           "const": "assembly-membership-events-f64-request"
@@ -1405,7 +1405,7 @@
       "required": ["schema", "kind", "requestId", "response"],
       "properties": {
         "schema": {
-          "const": "solver-app-bridge/v1"
+          "const": "solver-app-bridge/v2"
         },
         "kind": {
           "const": "assembly-membership-events-f64-response"
@@ -1425,7 +1425,7 @@
       "required": ["schema", "kind", "requestId", "request"],
       "properties": {
         "schema": {
-          "const": "solver-app-bridge/v1"
+          "const": "solver-app-bridge/v2"
         },
         "kind": {
           "const": "assembly-graph-dataset-f64-request"
@@ -1445,7 +1445,7 @@
       "required": ["schema", "kind", "requestId", "response"],
       "properties": {
         "schema": {
-          "const": "solver-app-bridge/v1"
+          "const": "solver-app-bridge/v2"
         },
         "kind": {
           "const": "assembly-graph-dataset-f64-response"
@@ -1465,7 +1465,7 @@
       "required": ["schema", "kind", "requestId", "request"],
       "properties": {
         "schema": {
-          "const": "solver-app-bridge/v1"
+          "const": "solver-app-bridge/v2"
         },
         "kind": {
           "const": "assembly-graph-store-f64-request"
@@ -1485,7 +1485,7 @@
       "required": ["schema", "kind", "requestId", "response"],
       "properties": {
         "schema": {
-          "const": "solver-app-bridge/v1"
+          "const": "solver-app-bridge/v2"
         },
         "kind": {
           "const": "assembly-graph-store-f64-response"
@@ -1505,7 +1505,7 @@
       "required": ["schema", "kind", "requestId", "request"],
       "properties": {
         "schema": {
-          "const": "solver-app-bridge/v1"
+          "const": "solver-app-bridge/v2"
         },
         "kind": {
           "const": "describe-assembly-graph-store-f64-request"
@@ -1525,7 +1525,7 @@
       "required": ["schema", "kind", "requestId", "response"],
       "properties": {
         "schema": {
-          "const": "solver-app-bridge/v1"
+          "const": "solver-app-bridge/v2"
         },
         "kind": {
           "const": "assembly-graph-store-description-f64-response"
@@ -1545,7 +1545,7 @@
       "required": ["schema", "kind", "requestId", "request"],
       "properties": {
         "schema": {
-          "const": "solver-app-bridge/v1"
+          "const": "solver-app-bridge/v2"
         },
         "kind": {
           "const": "assembly-graph-store-read-f64-request"
@@ -1565,7 +1565,7 @@
       "required": ["schema", "kind", "requestId", "response"],
       "properties": {
         "schema": {
-          "const": "solver-app-bridge/v1"
+          "const": "solver-app-bridge/v2"
         },
         "kind": {
           "const": "assembly-graph-store-read-f64-response"
@@ -1585,7 +1585,7 @@
       "required": ["schema", "kind", "requestId", "request"],
       "properties": {
         "schema": {
-          "const": "solver-app-bridge/v1"
+          "const": "solver-app-bridge/v2"
         },
         "kind": {
           "const": "build-spacetime-index-f64-request"
@@ -1605,7 +1605,7 @@
       "required": ["schema", "kind", "requestId", "request"],
       "properties": {
         "schema": {
-          "const": "solver-app-bridge/v1"
+          "const": "solver-app-bridge/v2"
         },
         "kind": {
           "const": "build-path-history-stream-spacetime-index-f64-request"
@@ -1625,7 +1625,7 @@
       "required": ["schema", "kind", "requestId", "request"],
       "properties": {
         "schema": {
-          "const": "solver-app-bridge/v1"
+          "const": "solver-app-bridge/v2"
         },
         "kind": {
           "const": "query-spacetime-index-f64-request"
@@ -1645,7 +1645,7 @@
       "required": ["schema", "kind", "requestId", "request"],
       "properties": {
         "schema": {
-          "const": "solver-app-bridge/v1"
+          "const": "solver-app-bridge/v2"
         },
         "kind": {
           "const": "run-simulation-request"
@@ -1665,7 +1665,7 @@
       "required": ["schema", "kind", "requestId", "response"],
       "properties": {
         "schema": {
-          "const": "solver-app-bridge/v1"
+          "const": "solver-app-bridge/v2"
         },
         "kind": {
           "const": "run-simulation-response"
@@ -1685,7 +1685,7 @@
       "required": ["schema", "kind", "requestId", "request"],
       "properties": {
         "schema": {
-          "const": "solver-app-bridge/v1"
+          "const": "solver-app-bridge/v2"
         },
         "kind": {
           "const": "describe-run-request"
@@ -1705,7 +1705,7 @@
       "required": ["schema", "kind", "requestId", "response"],
       "properties": {
         "schema": {
-          "const": "solver-app-bridge/v1"
+          "const": "solver-app-bridge/v2"
         },
         "kind": {
           "const": "describe-run-response"
@@ -1725,7 +1725,7 @@
       "required": ["schema", "kind", "requestId", "request"],
       "properties": {
         "schema": {
-          "const": "solver-app-bridge/v1"
+          "const": "solver-app-bridge/v2"
         },
         "kind": {
           "const": "cancel-run-request"
@@ -1745,7 +1745,7 @@
       "required": ["schema", "kind", "requestId", "response"],
       "properties": {
         "schema": {
-          "const": "solver-app-bridge/v1"
+          "const": "solver-app-bridge/v2"
         },
         "kind": {
           "const": "cancel-run-response"
@@ -1765,7 +1765,7 @@
       "required": ["schema", "kind", "requestId", "request"],
       "properties": {
         "schema": {
-          "const": "solver-app-bridge/v1"
+          "const": "solver-app-bridge/v2"
         },
         "kind": {
           "const": "close-run-request"
@@ -1785,7 +1785,7 @@
       "required": ["schema", "kind", "requestId", "response"],
       "properties": {
         "schema": {
-          "const": "solver-app-bridge/v1"
+          "const": "solver-app-bridge/v2"
         },
         "kind": {
           "const": "close-run-response"
@@ -1805,7 +1805,7 @@
       "required": ["schema", "kind", "requestId", "request"],
       "properties": {
         "schema": {
-          "const": "solver-app-bridge/v1"
+          "const": "solver-app-bridge/v2"
         },
         "kind": {
           "const": "path-history-stream-f64-request"
@@ -1825,7 +1825,7 @@
       "required": ["schema", "kind", "requestId", "response"],
       "properties": {
         "schema": {
-          "const": "solver-app-bridge/v1"
+          "const": "solver-app-bridge/v2"
         },
         "kind": {
           "const": "path-history-stream-f64-response"
@@ -1845,7 +1845,7 @@
       "required": ["schema", "kind", "requestId", "request"],
       "properties": {
         "schema": {
-          "const": "solver-app-bridge/v1"
+          "const": "solver-app-bridge/v2"
         },
         "kind": {
           "const": "describe-stream-request"
@@ -1865,7 +1865,7 @@
       "required": ["schema", "kind", "requestId", "response"],
       "properties": {
         "schema": {
-          "const": "solver-app-bridge/v1"
+          "const": "solver-app-bridge/v2"
         },
         "kind": {
           "const": "describe-stream-response"
@@ -1885,7 +1885,7 @@
       "required": ["schema", "kind", "requestId", "request"],
       "properties": {
         "schema": {
-          "const": "solver-app-bridge/v1"
+          "const": "solver-app-bridge/v2"
         },
         "kind": {
           "const": "path-history-dynamic-replay-validation-request"
@@ -1905,7 +1905,7 @@
       "required": ["schema", "kind", "requestId", "response"],
       "properties": {
         "schema": {
-          "const": "solver-app-bridge/v1"
+          "const": "solver-app-bridge/v2"
         },
         "kind": {
           "const": "path-history-dynamic-replay-validation-response"
@@ -1925,7 +1925,7 @@
       "required": ["schema", "kind", "requestId", "request"],
       "properties": {
         "schema": {
-          "const": "solver-app-bridge/v1"
+          "const": "solver-app-bridge/v2"
         },
         "kind": {
           "const": "open-stream-request"
@@ -1945,7 +1945,7 @@
       "required": ["schema", "kind", "requestId", "response"],
       "properties": {
         "schema": {
-          "const": "solver-app-bridge/v1"
+          "const": "solver-app-bridge/v2"
         },
         "kind": {
           "const": "open-stream-response"
@@ -1965,7 +1965,7 @@
       "required": ["schema", "kind", "requestId", "request"],
       "properties": {
         "schema": {
-          "const": "solver-app-bridge/v1"
+          "const": "solver-app-bridge/v2"
         },
         "kind": {
           "const": "read-stream-range-request"
@@ -1985,7 +1985,7 @@
       "required": ["schema", "kind", "requestId", "response"],
       "properties": {
         "schema": {
-          "const": "solver-app-bridge/v1"
+          "const": "solver-app-bridge/v2"
         },
         "kind": {
           "const": "read-stream-range-response"
@@ -2005,7 +2005,7 @@
       "required": ["schema", "kind", "requestId", "request"],
       "properties": {
         "schema": {
-          "const": "solver-app-bridge/v1"
+          "const": "solver-app-bridge/v2"
         },
         "kind": {
           "const": "path-history-storage-lifecycle-request"
@@ -2025,7 +2025,7 @@
       "required": ["schema", "kind", "requestId", "response"],
       "properties": {
         "schema": {
-          "const": "solver-app-bridge/v1"
+          "const": "solver-app-bridge/v2"
         },
         "kind": {
           "const": "path-history-storage-lifecycle-response"
@@ -2045,7 +2045,7 @@
       "required": ["schema", "kind", "requestId", "request"],
       "properties": {
         "schema": {
-          "const": "solver-app-bridge/v1"
+          "const": "solver-app-bridge/v2"
         },
         "kind": {
           "const": "path-history-storage-lifecycle-apply-request"
@@ -2065,7 +2065,7 @@
       "required": ["schema", "kind", "requestId", "response"],
       "properties": {
         "schema": {
-          "const": "solver-app-bridge/v1"
+          "const": "solver-app-bridge/v2"
         },
         "kind": {
           "const": "path-history-storage-lifecycle-apply-response"
@@ -2085,7 +2085,7 @@
       "required": ["schema", "kind", "requestId", "response"],
       "properties": {
         "schema": {
-          "const": "solver-app-bridge/v1"
+          "const": "solver-app-bridge/v2"
         },
         "kind": {
           "const": "spacetime-index-f64-response"
@@ -2105,7 +2105,7 @@
       "required": ["schema", "kind", "requestId", "request"],
       "properties": {
         "schema": {
-          "const": "solver-app-bridge/v1"
+          "const": "solver-app-bridge/v2"
         },
         "kind": {
           "const": "emission-shell-candidate-packet-merge-f64-request"
@@ -2125,7 +2125,7 @@
       "required": ["schema", "kind", "requestId", "request"],
       "properties": {
         "schema": {
-          "const": "solver-app-bridge/v1"
+          "const": "solver-app-bridge/v2"
         },
         "kind": {
           "const": "path-history-work-packet-plan-request"
@@ -2145,7 +2145,7 @@
       "required": ["schema", "kind", "requestId", "response"],
       "properties": {
         "schema": {
-          "const": "solver-app-bridge/v1"
+          "const": "solver-app-bridge/v2"
         },
         "kind": {
           "const": "path-history-work-packet-plan-response"
@@ -2165,7 +2165,7 @@
       "required": ["schema", "kind", "requestId", "request"],
       "properties": {
         "schema": {
-          "const": "solver-app-bridge/v1"
+          "const": "solver-app-bridge/v2"
         },
         "kind": {
           "const": "emission-shell-candidate-f64-request"
@@ -2185,7 +2185,7 @@
       "required": ["schema", "kind", "requestId", "response"],
       "properties": {
         "schema": {
-          "const": "solver-app-bridge/v1"
+          "const": "solver-app-bridge/v2"
         },
         "kind": {
           "const": "emission-shell-candidate-f64-response"
@@ -2205,7 +2205,7 @@
       "required": ["schema", "kind", "requestId", "request"],
       "properties": {
         "schema": {
-          "const": "solver-app-bridge/v1"
+          "const": "solver-app-bridge/v2"
         },
         "kind": {
           "const": "emission-shell-root-refinement-f64-request"
@@ -2225,7 +2225,7 @@
       "required": ["schema", "kind", "requestId", "response"],
       "properties": {
         "schema": {
-          "const": "solver-app-bridge/v1"
+          "const": "solver-app-bridge/v2"
         },
         "kind": {
           "const": "emission-shell-root-refinement-f64-response"
@@ -2245,7 +2245,7 @@
       "required": ["schema", "kind", "requestId", "request"],
       "properties": {
         "schema": {
-          "const": "solver-app-bridge/v1"
+          "const": "solver-app-bridge/v2"
         },
         "kind": {
           "const": "emission-shell-candidate-packet-f64-request"
@@ -2265,7 +2265,7 @@
       "required": ["schema", "kind", "requestId", "request"],
       "properties": {
         "schema": {
-          "const": "solver-app-bridge/v1"
+          "const": "solver-app-bridge/v2"
         },
         "kind": {
           "const": "emission-shell-candidate-packets-f64-request"
@@ -2285,7 +2285,7 @@
       "required": ["schema", "kind", "requestId", "response"],
       "properties": {
         "schema": {
-          "const": "solver-app-bridge/v1"
+          "const": "solver-app-bridge/v2"
         },
         "kind": {
           "const": "roots-and-hits-f64-response"

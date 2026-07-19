@@ -38,10 +38,10 @@ It implements directly from the frozen equations:
 
 - continuous inertial history functions;
 - causal residual evaluation;
-- source-normal and receiver-normal factors;
+- transmitter-side-factor and receiver-side-factor factors;
 - the sharp per-root acceleration;
 - the smooth radial core kernel;
-- the zero-extended finite-width receiver-normal integrand;
+- the zero-extended finite-width receiver-side-factor integrand;
 - arbitrary-precision refinement of one declared sign-changing simple-root
   bracket.
 
@@ -85,9 +85,9 @@ For `eom_independent_oracle/v0` it provides:
 
 - sharp-chart acceleration rows only from a `certified_complete` root ledger
   whose retained search reaches the receiver time;
-- independent re-evaluation and intersection of each source-normal enclosure,
+- independent re-evaluation and intersection of each transmitter-side-factor enclosure,
   with a positive declared transversality floor;
-- receiver-normal strength $|D_T/D_s|$, signed charge product, and the frozen
+- receiver-side-factor strength $|D_T/D_s|$, signed charge product, and the frozen
   unregularized inverse-square vector law without a velocity clamp;
 - a finite-width pair row obtained by adaptive interval quadrature over the
   complete declared retained interval using the frozen Gaussian causal
@@ -126,7 +126,7 @@ Its executable v0 nucleus provides:
 - operational correction, position, and velocity tolerances that reject the
   complete coupled candidate when exceeded;
 - exact step halving after rejection down to a declared minimum step;
-- root-count and source-normal-sign topology signatures that force subdivision
+- root-count and transmitter-side-factor-sign topology signatures that force subdivision
   when a branch event crosses an attempted substep;
 - propagation of the accepted step-doubling estimate into the appended dense
   history enclosure, followed by root and acceleration recertification on that
@@ -151,7 +151,7 @@ For `eom_independent_oracle/v0` it provides:
 - reception-time slab certificates that give persistent identities to simple
   causal-root branches only after disjoint root tubes, uniform nonzero $D_s$,
   boundary sign separation, and a root-free slab complement are certified;
-- explicit fold/caustic event routing when root count changes, source-normal
+- explicit fold/caustic event routing when root count changes, transmitter-side-factor
   sign changes, or a continuation tube loses transversality;
 - joint reception/emission exact-decimal interval quadrature of the
   finite-width law over the complete triangular causal domain, producing a
@@ -180,7 +180,7 @@ The equation-reference test file
 covers:
 
 1. the analytic stationary-source root and inverse-square acceleration;
-2. an exact-$c_f$ receiver-normal null with a present but silent branch;
+2. an exact-$c_f$ receiver-side-factor null with a present but silent branch;
 3. a super-$c_f$ receiver accepted without a speed clamp;
 4. the absence of a nontrivial same-path root for constant straight
    super-$c_f$ motion;
@@ -249,7 +249,7 @@ dependencies, and false canonical evidence rejection.
 - Completed for the certified piecewise-cubic v0 retained-history
   representation.
 - Sharp rows consume only certified simple roots and preserve all admitted
-  branches, including present-but-silent receiver-normal rows.
+  branches, including present-but-silent receiver-side-factor rows.
 - Finite-width rows use independent adaptive exact-decimal interval quadrature
   over the complete declared retained interval.
 - Every ordered pair, including self-pairs, is structurally required and its

@@ -161,7 +161,7 @@ function createPhotonCircularSourceBridgeStub() {
     }
     const delay = request.hitTime - emissionTime;
     return {
-      schema: "solver-circular-source-roots-hits-ledger-f64.v1",
+      schema: "solver-circular-transmitter-roots-hits-ledger-f64.v2",
       roots: [
         {
           rootId: 0,
@@ -194,7 +194,7 @@ function createPhotonCircularSourceBridgeStub() {
           accelerationWeight: 1,
         },
       ],
-      status: { code: "ok", severity: "ok", message: "circular-source causal roots solved" },
+      status: { code: "ok", severity: "ok", message: "circular-transmitter causal roots solved" },
     };
   };
   return { calls, solveCircularSourceRootsHitsLedger };
@@ -572,8 +572,8 @@ test("Photon absolute-history segment requests move transmitter and Virtual Obse
   assert.equal(first.signalSpeed, 0.85);
   assert.equal(first.receiver.velocity.x, 0.6);
   assert.equal(first.source.velocity.x, 0.6);
-  assert.equal(first.sourceHistory.kind, "moving-circular-source-linearized");
-  assert.equal(first.sourceHistory.approximationPolicy, "linearized-moving-circular-source-segments");
+  assert.equal(first.sourceHistory.kind, "moving-circular-transmitter-linearized");
+  assert.equal(first.sourceHistory.approximationPolicy, "linearized-moving-circular-transmitter-segments");
   assert.equal(first.sourceHistoryProvider.providerId, PHOTON_SOURCE_HISTORY_PROVIDER_ID);
   assert.equal(first.sourceHistoryProvider.boundary.sourceHistoryOwner, "photon_app");
   assert.equal(first.sourceHistoryProvider.boundary.causalRootOwner, "prescribed_path_analysis");
@@ -673,7 +673,7 @@ test("Photon absolute-history field routes through the moving-circular prescribe
 
   assert.equal(absoluteHistoryRunCalls, 1);
   assert.equal(field.sourceMode, "prescribed_path_absolute_history_transmitter_acceleration_sum");
-  assert.equal(field.analysisFieldSchema, "prescribed-path-analysis/moving-circular-observer-field.v1");
+  assert.equal(field.analysisFieldSchema, "prescribed-path-analysis/moving-circular-observer-field.v2");
   assert.equal(field.sourceHistoryProviderId, PHOTON_SOURCE_HISTORY_PROVIDER_ID);
   assert.equal(field.rootPlaybackOwner, "prescribed_path_analysis");
   assert.equal(field.fieldReconstructionOwner, "prescribed_path_analysis");
@@ -821,7 +821,7 @@ test("Photon circular-transmitter roots, hits, and ledger entries can be routed 
           assert.equal(request.source.center.x < 0, true);
           assert.ok(request.scanSubdivisions >= 48);
           return {
-            schema: "solver-circular-source-roots-hits-ledger-f64.v1",
+            schema: "solver-circular-transmitter-roots-hits-ledger-f64.v2",
             roots: [
               {
                 rootId: 0,
@@ -870,14 +870,14 @@ test("Photon circular-transmitter roots, hits, and ledger entries can be routed 
                 accelerationWeight: 1,
               },
             ],
-            status: { code: "ok", severity: "ok", message: "circular-source causal roots solved" },
+            status: { code: "ok", severity: "ok", message: "circular-transmitter causal roots solved" },
           };
       },
     }
   );
 
   assert.equal(response.analysisId, "prescribed-path-analysis");
-  assert.equal(response.schema, "solver-circular-source-roots-hits-ledger-f64.v1");
+  assert.equal(response.schema, "solver-circular-transmitter-roots-hits-ledger-f64.v2");
   assert.equal(response.hits.length, 1);
   assert.equal(response.rootLedgerDetails.length, 1);
   assert.equal(response.rootLedgerDetails[0].entryKind, 1);
@@ -908,7 +908,7 @@ test("Photon delayed emission field can use absolute-history moving-circular ana
 
   assert.equal(field.analysisId, "prescribed-path-analysis");
   assert.equal(field.sourceMode, "prescribed_path_absolute_history_transmitter_acceleration_sum");
-  assert.equal(field.analysisFieldSchema, "prescribed-path-analysis/moving-circular-observer-field.v1");
+  assert.equal(field.analysisFieldSchema, "prescribed-path-analysis/moving-circular-observer-field.v2");
   assert.equal(field.sourceHistoryProviderId, PHOTON_SOURCE_HISTORY_PROVIDER_ID);
   assert.equal(field.rootPlaybackOwner, "prescribed_path_analysis");
   assert.equal(field.fieldReconstructionOwner, "prescribed_path_analysis");
@@ -923,7 +923,7 @@ test("Photon delayed emission field can use absolute-history moving-circular ana
     contribution.kinematics.sourceHistoryMode === "absolute_history_moving_circular"
   ));
   assert.ok(field.contributions.every((contribution) =>
-    contribution.sourceHistoryKind === "moving-circular-source"
+    contribution.sourceHistoryKind === "moving-circular-transmitter"
   ));
   assert.ok(field.contributions.every((contribution) =>
     contribution.sourceHistoryProviderId === PHOTON_SOURCE_HISTORY_PROVIDER_ID &&
@@ -974,7 +974,7 @@ test("Photon formula and plot APIs expose central prescribed-path analysis resul
   assert.equal(summary.analysisId, "prescribed-path-analysis");
   assert.equal(summary.field.analysisId, "prescribed-path-analysis");
   assert.equal(summary.field.sourceMode, "prescribed_path_absolute_history_transmitter_acceleration_sum");
-  assert.equal(summary.field.analysisFieldSchema, "prescribed-path-analysis/moving-circular-observer-field.v1");
+  assert.equal(summary.field.analysisFieldSchema, "prescribed-path-analysis/moving-circular-observer-field.v2");
   assert.equal(summary.field.sourceHistoryProviderId, PHOTON_SOURCE_HISTORY_PROVIDER_ID);
   assert.equal(summary.polarization.analysisId, "prescribed-path-analysis");
   assert.equal(summary.polarization.sourceHistoryProviderId, PHOTON_SOURCE_HISTORY_PROVIDER_ID);
@@ -990,7 +990,7 @@ test("Photon formula and plot APIs expose central prescribed-path analysis resul
   });
   assert.equal(observerField.analysisId, "prescribed-path-analysis");
   assert.equal(observerField.sourceMode, "prescribed_path_absolute_history_transmitter_acceleration_sum");
-  assert.equal(observerField.analysisFieldSchema, "prescribed-path-analysis/moving-circular-observer-field.v1");
+  assert.equal(observerField.analysisFieldSchema, "prescribed-path-analysis/moving-circular-observer-field.v2");
   assert.ok(Number.isFinite(observerField.electric.magnitude));
 
   const plotBridge = createPhotonCircularSourceBridgeStub();
@@ -999,7 +999,7 @@ test("Photon formula and plot APIs expose central prescribed-path analysis resul
   });
   assert.equal(plot.analysisId, "prescribed-path-analysis");
   assert.equal(plot.sourceMode, "prescribed_path_absolute_history_transmitter_acceleration_sum");
-  assert.equal(plot.analysisFieldSchema, "prescribed-path-analysis/moving-circular-observer-field.v1");
+  assert.equal(plot.analysisFieldSchema, "prescribed-path-analysis/moving-circular-observer-field.v2");
   assert.equal(plot.sourceHistoryProviderId, PHOTON_SOURCE_HISTORY_PROVIDER_ID);
   assert.equal(plot.samples.length, 5);
   assert.ok(Number.isFinite(plot.amplitudeScale));

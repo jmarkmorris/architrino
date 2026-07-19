@@ -318,7 +318,7 @@ int main(int argc, char** argv) {
       throw std::runtime_error("cannot open output: " + output_path);
     }
     output << std::setprecision(17)
-           << "{\"schema\":\"eom_attractor_phase0_release_profile/v0\""
+           << "{\"schema\":\"eom_attractor_phase0_release_profile/v1\""
            << ",\"seed_family\":\"phase0-shell-v1\""
            << ",\"population\":" << population
            << ",\"thread_count\":" << thread_count

@@ -382,10 +382,10 @@ MpVector integrand(
       Interval::decimal_token(certificate.reception_time).midpoint();
   const auto receiver_state = history_state(
       *request.receiver_history, reception, reception_value, reception_value);
-  const auto source_state = history_state(
-      *request.source_history, emission, emission_lower, emission_upper);
+  const auto transmitter_state = history_state(
+      *request.transmitter_history, emission, emission_lower, emission_upper);
   const MpVector displacement =
-      subtract_vector(receiver_state.first, source_state.first);
+      subtract_vector(receiver_state.first, transmitter_state.first);
   const MpInterval separation = norm_vector(displacement);
   const MpInterval core = MpInterval::decimal(request.core_scale, bits);
   const MpInterval radial_square = square(separation) + square(core);
@@ -413,7 +413,7 @@ MpVector integrand(
   const MpInterval scale =
       MpInterval::decimal(request.coupling, bits) *
       MpInterval::decimal(request.receiver_charge, bits) *
-      MpInterval::decimal(request.source_charge, bits) * field_speed *
+      MpInterval::decimal(request.transmitter_charge, bits) * field_speed *
       mollifier;
   return scale_vector(scale, kernel);
 }
@@ -464,10 +464,10 @@ MpVector event_integrand(
     mpfr_prec_t bits) {
   const auto receiver_state = history_state(
       *request.receiver_history, reception, reception_lower, reception_upper);
-  const auto source_state = history_state(
-      *request.source_history, emission, emission_lower, emission_upper);
+  const auto transmitter_state = history_state(
+      *request.transmitter_history, emission, emission_lower, emission_upper);
   const MpVector displacement =
-      subtract_vector(receiver_state.first, source_state.first);
+      subtract_vector(receiver_state.first, transmitter_state.first);
   const MpInterval separation = norm_vector(displacement);
   const MpInterval core = MpInterval::decimal(request.core_scale, bits);
   const MpInterval radial_square = square(separation) + square(core);
@@ -495,7 +495,7 @@ MpVector event_integrand(
   const MpInterval scale =
       MpInterval::decimal(request.coupling, bits) *
       MpInterval::decimal(request.receiver_charge, bits) *
-      MpInterval::decimal(request.source_charge, bits) * field_speed *
+      MpInterval::decimal(request.transmitter_charge, bits) * field_speed *
       mollifier;
   return scale_vector(scale, kernel);
 }
@@ -575,7 +575,7 @@ MpfrAccelerationAttempt certify_mpfr_finite_width_acceleration(
     };
 
     std::vector<MpVector> totals;
-    for (const auto& segment : request.source_history->segments()) {
+    for (const auto& segment : request.transmitter_history->segments()) {
       const double lower = std::max(search_lower, segment.t_start());
       const double upper = std::min(reception, segment.t_end());
       if (lower < upper) {
@@ -632,7 +632,7 @@ MpfrEventImpulseAttempt certify_mpfr_event_impulse(
   };
   try {
     if (request.receiver_history == nullptr ||
-        request.source_history == nullptr) {
+        request.transmitter_history == nullptr) {
       throw std::invalid_argument("MPFR event integration requires histories");
     }
     const double reception_lower =
@@ -645,7 +645,7 @@ MpfrEventImpulseAttempt certify_mpfr_event_impulse(
         !(search_lower < reception_lower) ||
         !request.receiver_history->covers(
             Interval(reception_lower, reception_upper)) ||
-        !request.source_history->covers(
+        !request.transmitter_history->covers(
             Interval(search_lower, reception_upper))) {
       result.failure_code = "event_impulse_history_coverage_invalid";
       return result;
@@ -659,12 +659,12 @@ MpfrEventImpulseAttempt certify_mpfr_event_impulse(
     const auto receiver_boundary = history_state(
         *request.receiver_history, reception_all, reception_lower,
         reception_upper);
-    const auto source_boundary = history_state(
-        *request.source_history, emission_boundary, search_lower,
+    const auto transmitter_boundary = history_state(
+        *request.transmitter_history, emission_boundary, search_lower,
         search_lower);
     const MpInterval boundary_residual =
         norm_vector(subtract_vector(
-            receiver_boundary.first, source_boundary.first)) -
+            receiver_boundary.first, transmitter_boundary.first)) -
         MpInterval::decimal(request.field_speed, bits) *
             (reception_all - emission_boundary);
     if (boundary_residual.contains_zero()) {
@@ -792,7 +792,7 @@ MpfrEventImpulseAttempt certify_mpfr_event_impulse(
         reception_points.insert(segment.t_end());
       }
     }
-    for (const auto& segment : request.source_history->segments()) {
+    for (const auto& segment : request.transmitter_history->segments()) {
       if (search_lower < segment.t_start() &&
           segment.t_start() < reception_upper) {
         emission_points.insert(segment.t_start());

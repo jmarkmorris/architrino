@@ -1,17 +1,17 @@
-# Source-Density Causal Retained-History Functional
+# Transmitter-Side Causal Retained-History Functional
 
 ## Status
 
 - Purpose: test whether the proposed acceleration is computable from the current receiver state and retained past histories only
 - Scope: finite retained history; fixed positive wake width and core scale, plus sharp simple-root and ordinary-fold subdomains
 - Standing: priority analysis; not canon and not an EOM solver specification
-- Result: causal functional passes at fixed positive widths; global sharp evolution remains blocked at coincident same-source birth
+- Result: causal functional passes at fixed positive widths; global sharp evolution remains blocked at coincident same-transmitter birth
 
 ## Finding in plain language
 
 The proposed finite-width acceleration is a genuinely past-history equation. At reception time $T$, it needs the receiver's position at $T$ and transmitter positions from times earlier than $T$. It needs neither the transmitter's position at $T$ nor anyone's future path.
 
-With positive wake width and core scale, the acceleration changes continuously when the retained histories change slightly. That supplies the ordinary local existence and uniqueness property needed to advance the history one step at a time. The same statement holds for the sharp equation while all roots remain simple and separated from coordinate coincidence. It fails globally at coincident same-source birth because that sharp transition has no finite impulse.
+With positive wake width and core scale, the acceleration changes continuously when the retained histories change slightly. That supplies the ordinary local existence and uniqueness property needed to advance the history one step at a time. The same statement holds for the sharp equation while all roots remain simple and separated from coordinate coincidence. It fails globally at coincident same-transmitter birth because that sharp transition has no finite impulse.
 
 Claim classification: **derived mathematical result** under the regularity, finite-memory, and coverage assumptions stated below.
 
@@ -60,7 +60,7 @@ c_f
 }.
 $$
 
-For $s<0$, every transmitter value is in retained history. At $s=0$ the same-source displacement is zero; the endpoint has measure zero and the finite-core kernel has the continuous value $\mathbf K_{\epsilon_c}(\mathbf0)=\mathbf0$. No future value occurs.
+For $s<0$, every transmitter value is in retained history. At $s=0$ the same-transmitter displacement is zero; the endpoint has measure zero and the finite-core kernel has the continuous value $\mathbf K_{\epsilon_c}(\mathbf0)=\mathbf0$. No future value occurs.
 
 The receiver's current velocity may be carried in the full state needed to advance $\dot{\mathbf X}_i=\mathbf V_i$, but it does not enter the base acceleration functional.
 
@@ -139,7 +139,7 @@ The result does not authorize extrapolation through $D_t=0$, $r=0$, an unresolve
 
 ## 4. Ordinary-fold continuation
 
-At a nondegenerate interior fold with $r>0$ and $D_r\ne0$, pointwise sharp acceleration is unbounded but has the finite impulse derived in [Source-Density Fold and Coincident-Birth Analysis](analysis-transmitter-side-fold-and-coincident-birth.md). The fold impulse depends only on the causal rectangle covered by the current retained histories and the self-consistent candidate segment being advanced.
+At a nondegenerate interior fold with $r>0$ and $D_r\ne0$, pointwise sharp acceleration is unbounded but has the finite impulse derived in [Transmitter-Side Fold and Coincident-Birth Analysis](analysis-transmitter-factor-fold-and-coincident-birth.md). The fold impulse depends only on the causal rectangle covered by the current retained histories and the self-consistent candidate segment being advanced.
 
 This does not introduce future-path dependence. During evolution, the candidate segment is solved together with its acceleration and is accepted only if the resulting segment reproduces the same retained-history functional. A prescribed future transmitter path would be an invalid shortcut, not a requirement of the equation.
 
@@ -147,9 +147,9 @@ Claim classification: **derived causal structure; implementation acceptance rema
 
 ## 5. Global sharp obstruction
 
-At coincident same-source root birth, the sharp transmitter-side contribution has no finite velocity impulse. The sharp functional therefore fails to define a global continuation across a generic smooth field-speed crossing. This is a mathematical failure of the sharp same-source equation, not evidence of future dependence.
+At coincident same-transmitter root birth, the sharp transmitter-side contribution has no finite velocity impulse. The sharp functional therefore fails to define a global continuation across a generic smooth field-speed crossing. This is a mathematical failure of the sharp same-transmitter equation, not evidence of future dependence.
 
-Fixed positive $\eta$ and $\epsilon_c$ restore a locally regular causal functional. A globally promotable equation must either retain and physically determine those scales or derive a different near-diagonal rule before claiming sharp same-source evolution.
+Fixed positive $\eta$ and $\epsilon_c$ restore a locally regular causal functional. A globally promotable equation must either retain and physically determine those scales or derive a different near-diagonal rule before claiming sharp same-transmitter evolution.
 
 ## 6. Retained-history coverage obligation
 
@@ -164,6 +164,6 @@ Otherwise the update must stop for insufficient history. Absence of a detected r
 
 ## 7. Disposition
 
-The causal-history obligation passes for the positive-width equation and for sharp simple-root and ordinary-fold charts with complete retained support. It does not rescue the global sharp equation from coincident same-source birth.
+The causal-history obligation passes for the positive-width equation and for sharp simple-root and ordinary-fold charts with complete retained support. It does not rescue the global sharp equation from coincident same-transmitter birth.
 
 Promotion classification: **promote now within the priority proposal as a causal-functional theorem; defer global sharp-law promotion on the coincident-birth blocker**.

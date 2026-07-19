@@ -129,7 +129,7 @@ const strictControlPassed =
   persistentWorker;
 
 process.stdout.write(`${JSON.stringify({
-  schema: "eom_borg_refinement_ladder_evidence/v0",
+  schema: "eom_borg_refinement_ladder_evidence/v1",
   authority: pathCount === manifest.population.architrinoCount
     ? "strict_full_population_attempt"
     : "strict_population_subset_control_only",

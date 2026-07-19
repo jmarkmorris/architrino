@@ -61,9 +61,9 @@ MovingHistoryBlockCertificate certify_moving_history_block(
 
   const auto receiver_positions =
       history_group_position_hull(request.receivers, reception);
-  const auto source_positions =
+  const auto transmitter_positions =
       history_group_position_hull(request.sources, emission);
-  const auto displacement = subtract(receiver_positions, source_positions);
+  const auto displacement = subtract(receiver_positions, transmitter_positions);
   const Interval distance = norm(displacement);
   const Interval delay = reception - emission;
   const Interval residual = distance - field_speed * delay;
@@ -73,7 +73,7 @@ MovingHistoryBlockCertificate certify_moving_history_block(
   const bool excluded = residual.excludes_zero();
 
   MovingHistoryBlockCertificate certificate{
-      .schema = "eom_moving_history_block_certificate/v0",
+      .schema = "eom_moving_history_block_certificate/v1",
       .block_id = request.block_id,
       .status = excluded ? "excluded" : "exact_fallback",
       .precision_route = "binary64_outward",
@@ -84,15 +84,15 @@ MovingHistoryBlockCertificate certify_moving_history_block(
       .distance = distance,
       .delay = delay,
       .receiver_history_ids = {},
-      .source_history_ids = {},
+      .transmitter_history_ids = {},
   };
   certificate.receiver_history_ids.reserve(request.receivers.size());
   for (const auto* history : request.receivers) {
     certificate.receiver_history_ids.push_back(history->history_id());
   }
-  certificate.source_history_ids.reserve(request.sources.size());
+  certificate.transmitter_history_ids.reserve(request.sources.size());
   for (const auto* history : request.sources) {
-    certificate.source_history_ids.push_back(history->history_id());
+    certificate.transmitter_history_ids.push_back(history->history_id());
   }
   return certificate;
 }

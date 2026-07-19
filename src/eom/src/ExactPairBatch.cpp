@@ -61,11 +61,11 @@ struct DoubleReceiverState {
 
 DoubleGeometry double_geometry(
     const DoubleReceiverState& receiver,
-    const CubicHistorySegment& source_segment,
+    const CubicHistorySegment& transmitter_segment,
     const Interval& reception,
     const Interval& emission,
     const Interval& field_speed) {
-  const auto source_velocity = source_segment.velocity_interval(emission);
+  const auto transmitter_velocity = transmitter_segment.velocity_interval(emission);
   const auto correlated_displacement =
       receiver.correlated_self_chord && receiver.correlated_history != nullptr
       ? receiver.correlated_history->correlated_self_displacement(
@@ -74,7 +74,7 @@ DoubleGeometry double_geometry(
   const auto displacement = correlated_displacement.has_value()
       ? *correlated_displacement
       : subtract(
-            receiver.position, source_segment.position_interval(emission));
+            receiver.position, transmitter_segment.position_interval(emission));
   const Interval separation = norm(displacement);
   const Interval delay = reception - emission;
   const Interval residual = separation - field_speed * delay;
@@ -84,18 +84,18 @@ DoubleGeometry double_geometry(
   const auto direction = divide(displacement, separation);
   return {
       residual,
-      field_speed - dot(direction, source_velocity),
+      field_speed - dot(direction, transmitter_velocity),
       field_speed - dot(direction, receiver.velocity),
   };
 }
 
 DoubleGeometry double_history_geometry(
     const DoubleReceiverState& receiver,
-    const RetainedHistory& source_history,
+    const RetainedHistory& transmitter_history,
     const Interval& reception,
     const Interval& emission,
     const Interval& field_speed) {
-  const auto source_velocity = source_history.velocity_hull(emission);
+  const auto transmitter_velocity = transmitter_history.velocity_hull(emission);
   const auto correlated_displacement =
       receiver.correlated_self_chord && receiver.correlated_history != nullptr
       ? receiver.correlated_history->correlated_self_displacement(
@@ -105,7 +105,7 @@ DoubleGeometry double_history_geometry(
       ? *correlated_displacement
       : subtract(
             receiver.position,
-            source_history.correlated_position_hull(emission));
+            transmitter_history.correlated_position_hull(emission));
   const Interval separation = norm(displacement);
   const Interval delay = reception - emission;
   const Interval residual = separation - field_speed * delay;
@@ -115,7 +115,7 @@ DoubleGeometry double_history_geometry(
   const auto direction = divide(displacement, separation);
   return {
       residual,
-      field_speed - dot(direction, source_velocity),
+      field_speed - dot(direction, transmitter_velocity),
       field_speed - dot(direction, receiver.velocity),
   };
 }
@@ -125,11 +125,11 @@ struct DoubleRoot {
   double upper;
   Interval transmitter_factor;
   Interval receiver_factor;
-  std::vector<std::size_t> source_segment_indices;
+  std::vector<std::size_t> transmitter_segment_indices;
 };
 
 struct DoubleRootFreeCell {
-  std::size_t source_segment_index;
+  std::size_t transmitter_segment_index;
   double lower;
   double upper;
   Interval residual;
@@ -201,14 +201,14 @@ bool same_history_endpoint(
 
 bool endpoint_coordinate_coincidence(
     const RetainedHistory& receiver,
-    const CubicHistorySegment& source_segment,
+    const CubicHistorySegment& transmitter_segment,
     double reception,
     double emission) {
   const auto receiver_position =
       receiver.position_hull(Interval::point(reception));
-  const auto source_position =
-      source_segment.position_interval(Interval::point(emission));
-  const auto displacement = subtract(receiver_position, source_position);
+  const auto transmitter_position =
+      transmitter_segment.position_interval(Interval::point(emission));
+  const auto displacement = subtract(receiver_position, transmitter_position);
   return displacement[0].contains_zero() && displacement[1].contains_zero() &&
          displacement[2].contains_zero();
 }
@@ -268,15 +268,15 @@ bool merge_double_roots(std::vector<DoubleRoot>& roots) {
         merged.back().transmitter_factor.hull(root.transmitter_factor);
     merged.back().receiver_factor =
         merged.back().receiver_factor.hull(root.receiver_factor);
-    merged.back().source_segment_indices.insert(
-        merged.back().source_segment_indices.end(),
-        root.source_segment_indices.begin(), root.source_segment_indices.end());
-    std::sort(merged.back().source_segment_indices.begin(),
-              merged.back().source_segment_indices.end());
-    merged.back().source_segment_indices.erase(
-        std::unique(merged.back().source_segment_indices.begin(),
-                    merged.back().source_segment_indices.end()),
-        merged.back().source_segment_indices.end());
+    merged.back().transmitter_segment_indices.insert(
+        merged.back().transmitter_segment_indices.end(),
+        root.transmitter_segment_indices.begin(), root.transmitter_segment_indices.end());
+    std::sort(merged.back().transmitter_segment_indices.begin(),
+              merged.back().transmitter_segment_indices.end());
+    merged.back().transmitter_segment_indices.erase(
+        std::unique(merged.back().transmitter_segment_indices.begin(),
+                    merged.back().transmitter_segment_indices.end()),
+        merged.back().transmitter_segment_indices.end());
   }
   roots = std::move(merged);
   return true;
@@ -322,7 +322,7 @@ double correlated_self_token_radius(
 bool double_point_residual_is_token_dominated(
     const ExactPairRequest& request,
     const CubicHistorySegment& receiver_segment,
-    const CubicHistorySegment& source_segment,
+    const CubicHistorySegment& transmitter_segment,
     const DoubleGeometry& geometry,
     double reception,
     double emission,
@@ -335,7 +335,7 @@ bool double_point_residual_is_token_dominated(
           for (std::size_t axis = 0U; axis < 3U; ++axis) {
             const double radius =
                 receiver_segment.position_errors()[axis] +
-                source_segment.position_errors()[axis];
+                transmitter_segment.position_errors()[axis];
             square += radius * radius;
           }
           return std::sqrt(square);
@@ -360,20 +360,20 @@ bool double_point_residual_is_token_dominated(
 }
 
 bool double_transmitter_factor_is_token_dominated(
-    const CubicHistorySegment& source_segment,
+    const CubicHistorySegment& transmitter_segment,
     const Interval& transmitter_factor,
     double cell_width) {
   if (!transmitter_factor.contains_zero() ||
-      (source_segment.position_error() <= 0.0 &&
-       source_segment.velocity_error() <= 0.0)) {
+      (transmitter_segment.position_error() <= 0.0 &&
+       transmitter_segment.velocity_error() <= 0.0)) {
     return false;
   }
   const double coordinate_radius = std::sqrt(3.0);
   const double direction_scale = std::max(
       cell_width, 256.0 * std::numeric_limits<double>::epsilon());
   const double token_radius =
-      coordinate_radius * source_segment.velocity_error() +
-      4.0 * coordinate_radius * source_segment.position_error() /
+      coordinate_radius * transmitter_segment.velocity_error() +
+      4.0 * coordinate_radius * transmitter_segment.position_error() /
           direction_scale;
   const double arithmetic_width =
       256.0 * std::numeric_limits<double>::epsilon() *
@@ -389,7 +389,7 @@ bool double_transmitter_factor_is_token_dominated(
 
 std::optional<std::pair<double, double>> surround_double_root(
     const DoubleReceiverState& receiver,
-    const CubicHistorySegment& source_segment,
+    const CubicHistorySegment& transmitter_segment,
     const Interval& reception,
     const Interval& field_speed,
     double point,
@@ -408,11 +408,11 @@ std::optional<std::pair<double, double>> surround_double_root(
                        std::numeric_limits<double>::infinity()));
     if (lower < point && point < upper && upper - lower <= tolerance) {
       const int lower_sign =
-          double_geometry(receiver, source_segment, reception,
+          double_geometry(receiver, transmitter_segment, reception,
                           Interval::point(lower), field_speed)
               .residual.strict_sign();
       const int upper_sign =
-          double_geometry(receiver, source_segment, reception,
+          double_geometry(receiver, transmitter_segment, reception,
                           Interval::point(upper), field_speed)
               .residual.strict_sign();
       if (lower_sign != 0 && upper_sign != 0 && lower_sign != upper_sign) {
@@ -426,7 +426,7 @@ std::optional<std::pair<double, double>> surround_double_root(
 
 std::optional<DoubleRoot> surround_double_segment_join_root(
     const DoubleReceiverState& receiver,
-    const RetainedHistory& source_history,
+    const RetainedHistory& transmitter_history,
     std::size_t left_segment_index,
     std::size_t right_segment_index,
     const Interval& reception,
@@ -435,7 +435,7 @@ std::optional<DoubleRoot> surround_double_segment_join_root(
     double search_upper,
     double tolerance) {
   const auto& left_segment =
-      source_history.segments()[left_segment_index];
+      transmitter_history.segments()[left_segment_index];
   const double boundary = left_segment.t_end();
   if (boundary <= search_lower || boundary >= search_upper) {
     return std::nullopt;
@@ -456,11 +456,11 @@ std::optional<DoubleRoot> surround_double_segment_join_root(
       continue;
     }
     const int lower_sign =
-        double_history_geometry(receiver, source_history, reception,
+        double_history_geometry(receiver, transmitter_history, reception,
                                 Interval::point(lower), field_speed)
             .residual.strict_sign();
     const int upper_sign =
-        double_history_geometry(receiver, source_history, reception,
+        double_history_geometry(receiver, transmitter_history, reception,
                                 Interval::point(upper), field_speed)
             .residual.strict_sign();
     if (lower_sign == 0 || upper_sign == 0 || lower_sign == upper_sign) {
@@ -470,7 +470,7 @@ std::optional<DoubleRoot> surround_double_segment_join_root(
 
     const Interval root_interval(lower, upper);
     const auto root_geometry = double_history_geometry(
-        receiver, source_history, reception, root_interval, field_speed);
+        receiver, transmitter_history, reception, root_interval, field_speed);
     if (!root_geometry.transmitter_factor.has_value() ||
         !root_geometry.receiver_factor.has_value()) {
       return std::nullopt;
@@ -479,20 +479,20 @@ std::optional<DoubleRoot> surround_double_segment_join_root(
     if (transmitter_factor.strict_sign() == 0) {
       return std::nullopt;
     }
-    std::vector<std::size_t> source_segment_indices;
+    std::vector<std::size_t> transmitter_segment_indices;
     for (std::size_t index = 0U;
-         index < source_history.segments().size(); ++index) {
-      const auto& segment = source_history.segments()[index];
+         index < transmitter_history.segments().size(); ++index) {
+      const auto& segment = transmitter_history.segments()[index];
       const Interval segment_time(
           segment.t_start_interval().lower(),
           segment.t_end_interval().upper());
       if (root_interval.intersection(segment_time).has_value()) {
-        source_segment_indices.push_back(index);
+        transmitter_segment_indices.push_back(index);
       }
     }
-    if (source_segment_indices.empty() ||
-        source_segment_indices.front() > left_segment_index ||
-        source_segment_indices.back() < right_segment_index) {
+    if (transmitter_segment_indices.empty() ||
+        transmitter_segment_indices.front() > left_segment_index ||
+        transmitter_segment_indices.back() < right_segment_index) {
       return std::nullopt;
     }
     return DoubleRoot{
@@ -500,7 +500,7 @@ std::optional<DoubleRoot> surround_double_segment_join_root(
         upper,
         transmitter_factor,
         *root_geometry.receiver_factor,
-        std::move(source_segment_indices),
+        std::move(transmitter_segment_indices),
     };
   }
   return std::nullopt;
@@ -574,7 +574,7 @@ DoubleAttempt run_double_attempt(const ExactPairRequest& request) {
         prior.root_free_complement &&
         prior.field_speed == request.field_speed &&
         prior.receiver_history_id == prior_receiver.history_id() &&
-        prior.source_history_id == prior_source.history_id() &&
+        prior.transmitter_history_id == prior_source.history_id() &&
         prior_receiver.history_id() == request.receiver->history_id() &&
         prior_source.history_id() == request.source->history_id() &&
         prior_receiver.covers(prior_reception_interval);
@@ -614,7 +614,7 @@ DoubleAttempt run_double_attempt(const ExactPairRequest& request) {
             request.receiver->covers(reception_span) &&
             norm(request.receiver->velocity_hull(reception_span)).upper() <
                 field_speed.lower();
-        const bool source_prefix_tokens_match =
+        const bool transmitter_prefix_tokens_match =
             request.warm_source_equality_precomputed
                 ? prior_prefix_upper <=
                       request.warm_source_prefix_token_stable_upper
@@ -624,7 +624,7 @@ DoubleAttempt run_double_attempt(const ExactPairRequest& request) {
         if (prior_prefix_upper > search_lower &&
             prior_prefix_upper < search_upper &&
             receiver_stays_subfield &&
-            source_prefix_tokens_match) {
+            transmitter_prefix_tokens_match) {
           incremental_search_lower = prior_prefix_upper;
           attempt.stable_negative_prefix_upper = prior_prefix_upper;
           attempt.stable_negative_prefix_certified = true;
@@ -675,7 +675,7 @@ DoubleAttempt run_double_attempt(const ExactPairRequest& request) {
     warm_cells_by_segment.resize(request.source->segments().size());
     for (const auto& prior_cell :
          request.warm_start->certificate->root_free_cells) {
-      const std::size_t index = prior_cell.source_segment_index;
+      const std::size_t index = prior_cell.transmitter_segment_index;
       if (index >= request.source->segments().size() ||
           index >= request.warm_start->source->segments().size()) {
         continue;
@@ -779,25 +779,25 @@ DoubleAttempt run_double_attempt(const ExactPairRequest& request) {
   };
 
   auto add_token_dominated_endpoint_root = [&] (
-      const CubicHistorySegment& source_segment,
+      const CubicHistorySegment& transmitter_segment,
       std::size_t segment_index,
       double point,
       double cell_lower,
       double cell_upper,
       const DoubleGeometry& point_geometry) {
     if (!double_point_residual_is_token_dominated(
-            request, receiver_segment, source_segment, point_geometry,
+            request, receiver_segment, transmitter_segment, point_geometry,
             reception_value, point, field_speed_value,
             same_retained_history)) {
       return false;
     }
 
     if (const auto surrounded = surround_double_root(
-            receiver_state, source_segment, reception, field_speed, point,
+            receiver_state, transmitter_segment, reception, field_speed, point,
             cell_lower, cell_upper, tolerance);
         surrounded.has_value()) {
       const auto root_geometry = double_geometry(
-          receiver_state, source_segment, reception,
+          receiver_state, transmitter_segment, reception,
           Interval(surrounded->first, surrounded->second), field_speed);
       if (!root_geometry.transmitter_factor.has_value() ||
           !root_geometry.receiver_factor.has_value() ||
@@ -818,13 +818,13 @@ DoubleAttempt run_double_attempt(const ExactPairRequest& request) {
     }
 
     std::optional<DoubleRoot> join_root;
-    if (point == source_segment.t_end() &&
+    if (point == transmitter_segment.t_end() &&
         segment_index + 1U < request.source->segments().size()) {
       join_root = surround_double_segment_join_root(
           receiver_state, *request.source, segment_index,
           segment_index + 1U, reception, field_speed, search_lower,
           search_upper, tolerance);
-    } else if (point == source_segment.t_start() && segment_index > 0U) {
+    } else if (point == transmitter_segment.t_start() && segment_index > 0U) {
       join_root = surround_double_segment_join_root(
           receiver_state, *request.source,
           segment_index - 1U, segment_index, reception,
@@ -867,7 +867,7 @@ DoubleAttempt run_double_attempt(const ExactPairRequest& request) {
       ++attempt.difficult_cells;
       return;
     }
-    const auto& source_segment = request.source->segments()[cell.segment_index];
+    const auto& transmitter_segment = request.source->segments()[cell.segment_index];
     const Interval emission(cell.lower, cell.upper);
     if (self_path_from_cell_is_subfield(cell)) {
       if (search_upper == reception_value) {
@@ -883,11 +883,11 @@ DoubleAttempt run_double_attempt(const ExactPairRequest& request) {
       return;
     }
     if (same_history_endpoint(request, cell.upper, reception_value)) {
-      const auto source_velocity = source_segment.velocity_interval(emission);
-      const Interval speed = norm(source_velocity);
+      const auto transmitter_velocity = transmitter_segment.velocity_interval(emission);
+      const Interval speed = norm(transmitter_velocity);
       const bool subfield = speed.upper() < field_speed.lower();
       const bool superfield_component = std::any_of(
-          source_velocity.begin(), source_velocity.end(),
+          transmitter_velocity.begin(), transmitter_velocity.end(),
           [&](const Interval& component) {
             return component.lower() > field_speed.upper() ||
                 component.upper() < -field_speed.upper();
@@ -899,7 +899,7 @@ DoubleAttempt run_double_attempt(const ExactPairRequest& request) {
       }
     }
     const auto geometry = double_geometry(
-        receiver_state, source_segment, reception, emission, field_speed);
+        receiver_state, transmitter_segment, reception, emission, field_speed);
     if (geometry.residual.excludes_zero()) {
       ++attempt.excluded_cells;
       attempt.root_free_cells.push_back({
@@ -920,7 +920,7 @@ DoubleAttempt run_double_attempt(const ExactPairRequest& request) {
         attempt.token_dominated_failure =
             geometry.transmitter_factor.has_value() &&
             double_transmitter_factor_is_token_dominated(
-                source_segment, *geometry.transmitter_factor,
+                transmitter_segment, *geometry.transmitter_factor,
                 cell.upper - cell.lower);
         ++attempt.difficult_cells;
         return;
@@ -937,10 +937,10 @@ DoubleAttempt run_double_attempt(const ExactPairRequest& request) {
     }
 
     const auto lower_geometry = double_geometry(
-        receiver_state, source_segment, reception, Interval::point(cell.lower),
+        receiver_state, transmitter_segment, reception, Interval::point(cell.lower),
         field_speed);
     const auto upper_geometry = double_geometry(
-        receiver_state, source_segment, reception, Interval::point(cell.upper),
+        receiver_state, transmitter_segment, reception, Interval::point(cell.upper),
         field_speed);
     const int lower_sign = lower_geometry.residual.strict_sign();
     const int upper_sign = upper_geometry.residual.strict_sign();
@@ -948,7 +948,7 @@ DoubleAttempt run_double_attempt(const ExactPairRequest& request) {
     if (same_history_endpoint(request, cell.upper, reception_value) &&
         upper_sign == 0 &&
         endpoint_coordinate_coincidence(
-            *request.receiver, source_segment, reception_value, cell.upper) &&
+            *request.receiver, transmitter_segment, reception_value, cell.upper) &&
         lower_sign != 0) {
       attempt.coincident_endpoint_excluded = true;
       ++attempt.excluded_cells;
@@ -975,7 +975,7 @@ DoubleAttempt run_double_attempt(const ExactPairRequest& request) {
     }
     if (lower_sign == 0) {
       if (add_token_dominated_endpoint_root(
-              source_segment, cell.segment_index, cell.lower, cell.lower,
+              transmitter_segment, cell.segment_index, cell.lower, cell.lower,
               cell.upper, lower_geometry)) {
         return;
       }
@@ -985,7 +985,7 @@ DoubleAttempt run_double_attempt(const ExactPairRequest& request) {
     }
     if (upper_sign == 0) {
       if (add_token_dominated_endpoint_root(
-              source_segment, cell.segment_index, cell.upper, cell.lower,
+              transmitter_segment, cell.segment_index, cell.upper, cell.lower,
               cell.upper, upper_geometry)) {
         return;
       }
@@ -1007,12 +1007,12 @@ DoubleAttempt run_double_attempt(const ExactPairRequest& request) {
         return;
       }
       const auto middle_geometry = double_geometry(
-          receiver_state, source_segment, reception, Interval::point(middle),
+          receiver_state, transmitter_segment, reception, Interval::point(middle),
           field_speed);
       int middle_sign = middle_geometry.residual.strict_sign();
       if (middle_sign == 0) {
         if (!double_point_residual_is_token_dominated(
-                request, receiver_segment, source_segment, middle_geometry,
+                request, receiver_segment, transmitter_segment, middle_geometry,
                 reception_value, middle, field_speed_value,
                 same_retained_history)) {
           attempt.complete = false;
@@ -1020,7 +1020,7 @@ DoubleAttempt run_double_attempt(const ExactPairRequest& request) {
           return;
         }
         const auto surrounded = surround_double_root(
-            receiver_state, source_segment, reception, field_speed, middle,
+            receiver_state, transmitter_segment, reception, field_speed, middle,
             lower, upper, tolerance);
         if (!surrounded.has_value()) {
           attempt.complete = false;
@@ -1030,11 +1030,11 @@ DoubleAttempt run_double_attempt(const ExactPairRequest& request) {
         lower = surrounded->first;
         upper = surrounded->second;
         refined_lower_sign =
-            double_geometry(receiver_state, source_segment, reception,
+            double_geometry(receiver_state, transmitter_segment, reception,
                             Interval::point(lower), field_speed)
                 .residual.strict_sign();
         refined_upper_sign =
-            double_geometry(receiver_state, source_segment, reception,
+            double_geometry(receiver_state, transmitter_segment, reception,
                             Interval::point(upper), field_speed)
                 .residual.strict_sign();
         break;
@@ -1053,7 +1053,7 @@ DoubleAttempt run_double_attempt(const ExactPairRequest& request) {
       return;
     }
     const auto root_geometry = double_geometry(
-        receiver_state, source_segment, reception, Interval(lower, upper),
+        receiver_state, transmitter_segment, reception, Interval(lower, upper),
         field_speed);
     if (!root_geometry.transmitter_factor.has_value() ||
         !root_geometry.receiver_factor.has_value() ||
@@ -1878,17 +1878,17 @@ std::optional<MpVector> mp_correlated_self_displacement(
 
 MpGeometry mp_geometry(
     const MpReceiverState& receiver,
-    const MpCompiledSegment& source_segment,
+    const MpCompiledSegment& transmitter_segment,
     const MpInterval& reception,
     const MpInterval& emission,
     const MpInterval& field_speed) {
-  const auto source_velocity = mp_velocity(source_segment, emission);
+  const auto transmitter_velocity = mp_velocity(transmitter_segment, emission);
   const auto correlated_displacement =
       mp_correlated_self_displacement(receiver, reception, emission);
   const auto displacement = correlated_displacement.has_value()
       ? *correlated_displacement
       : mp_subtract_vector(
-            receiver.position, mp_position(source_segment, emission));
+            receiver.position, mp_position(transmitter_segment, emission));
   const MpInterval separation = mp_norm(displacement);
   const MpInterval residual = separation - field_speed * (reception - emission);
   if (separation.contains_zero()) {
@@ -1897,7 +1897,7 @@ MpGeometry mp_geometry(
   const auto direction = mp_divide_vector(displacement, separation);
   return {
       residual,
-      field_speed - mp_dot(direction, source_velocity),
+      field_speed - mp_dot(direction, transmitter_velocity),
       field_speed - mp_dot(direction, receiver.velocity),
   };
 }
@@ -2099,13 +2099,13 @@ MpVector mp_correlated_history_position(
 
 MpGeometry mp_geometry_with_source_position(
     const MpReceiverState& receiver,
-    const MpCompiledSegment& source_segment,
-    const MpVector& source_position,
+    const MpCompiledSegment& transmitter_segment,
+    const MpVector& transmitter_position,
     const MpInterval& reception,
     const MpInterval& emission,
     const MpInterval& field_speed) {
-  const auto source_velocity = mp_velocity(source_segment, emission);
-  const auto displacement = mp_subtract_vector(receiver.position, source_position);
+  const auto transmitter_velocity = mp_velocity(transmitter_segment, emission);
+  const auto displacement = mp_subtract_vector(receiver.position, transmitter_position);
   const MpInterval separation = mp_norm(displacement);
   const MpInterval residual = separation - field_speed * (reception - emission);
   if (separation.contains_zero()) {
@@ -2114,7 +2114,7 @@ MpGeometry mp_geometry_with_source_position(
   const auto direction = mp_divide_vector(displacement, separation);
   return {
       residual,
-      field_speed - mp_dot(direction, source_velocity),
+      field_speed - mp_dot(direction, transmitter_velocity),
       field_speed - mp_dot(direction, receiver.velocity),
   };
 }
@@ -2124,7 +2124,7 @@ struct MpRoot {
   MpFloat upper;
   MpInterval transmitter_factor;
   MpInterval receiver_factor;
-  std::vector<std::size_t> source_segment_indices;
+  std::vector<std::size_t> transmitter_segment_indices;
 };
 
 struct MpAttempt {
@@ -2193,15 +2193,15 @@ bool merge_mp_roots(std::vector<MpRoot>& roots) {
             merged.back().receiver_factor.upper()) > 0
             ? root.receiver_factor.upper()
             : merged.back().receiver_factor.upper());
-    merged.back().source_segment_indices.insert(
-        merged.back().source_segment_indices.end(),
-        root.source_segment_indices.begin(), root.source_segment_indices.end());
-    std::sort(merged.back().source_segment_indices.begin(),
-              merged.back().source_segment_indices.end());
-    merged.back().source_segment_indices.erase(
-        std::unique(merged.back().source_segment_indices.begin(),
-                    merged.back().source_segment_indices.end()),
-        merged.back().source_segment_indices.end());
+    merged.back().transmitter_segment_indices.insert(
+        merged.back().transmitter_segment_indices.end(),
+        root.transmitter_segment_indices.begin(), root.transmitter_segment_indices.end());
+    std::sort(merged.back().transmitter_segment_indices.begin(),
+              merged.back().transmitter_segment_indices.end());
+    merged.back().transmitter_segment_indices.erase(
+        std::unique(merged.back().transmitter_segment_indices.begin(),
+                    merged.back().transmitter_segment_indices.end()),
+        merged.back().transmitter_segment_indices.end());
   }
   roots = std::move(merged);
   return true;
@@ -2217,7 +2217,7 @@ bool mp_width_within(
 
 std::optional<std::pair<MpFloat, MpFloat>> surround_mp_root(
     const MpReceiverState& receiver,
-    const MpCompiledSegment& source_segment,
+    const MpCompiledSegment& transmitter_segment,
     const MpInterval& reception,
     const MpInterval& field_speed,
     const MpFloat& point,
@@ -2227,8 +2227,8 @@ std::optional<std::pair<MpFloat, MpFloat>> surround_mp_root(
     mpfr_prec_t bits) {
   MpFloat adjacent_lower(point);
   MpFloat adjacent_upper(point);
-  const MpFloat& segment_lower = source_segment.start_time.lower();
-  const MpFloat& segment_upper = source_segment.end_time.upper();
+  const MpFloat& segment_lower = transmitter_segment.start_time.lower();
+  const MpFloat& segment_upper = transmitter_segment.end_time.upper();
   for (unsigned stage = 0; stage <= 20; ++stage) {
     const unsigned long advances =
         stage == 0 ? 1UL : (1UL << (stage - 1U));
@@ -2242,12 +2242,12 @@ std::optional<std::pair<MpFloat, MpFloat>> surround_mp_root(
     }
     const int lower_sign =
         mp_geometry(
-            receiver, source_segment, reception,
+            receiver, transmitter_segment, reception,
             MpInterval::point(adjacent_lower), field_speed)
             .residual.strict_sign();
     const int upper_sign =
         mp_geometry(
-            receiver, source_segment, reception,
+            receiver, transmitter_segment, reception,
             MpInterval::point(adjacent_upper), field_speed)
             .residual.strict_sign();
     if (lower_sign != 0 && upper_sign != 0 && lower_sign != upper_sign) {
@@ -2272,11 +2272,11 @@ std::optional<std::pair<MpFloat, MpFloat>> surround_mp_root(
       continue;
     }
     const int lower_sign =
-        mp_geometry(receiver, source_segment, reception, MpInterval::point(lower),
+        mp_geometry(receiver, transmitter_segment, reception, MpInterval::point(lower),
                     field_speed)
             .residual.strict_sign();
     const int upper_sign =
-        mp_geometry(receiver, source_segment, reception, MpInterval::point(upper),
+        mp_geometry(receiver, transmitter_segment, reception, MpInterval::point(upper),
                     field_speed)
             .residual.strict_sign();
     if (lower_sign != 0 && upper_sign != 0 && lower_sign != upper_sign) {
@@ -2309,11 +2309,11 @@ std::optional<std::pair<MpFloat, MpFloat>> surround_mp_root(
       inward_upper.compare(point) > 0 &&
       mp_width_within(inward_lower, inward_upper, tolerance)) {
     const int lower_sign =
-        mp_geometry(receiver, source_segment, reception,
+        mp_geometry(receiver, transmitter_segment, reception,
                     MpInterval::point(inward_lower), field_speed)
             .residual.strict_sign();
     const int upper_sign =
-        mp_geometry(receiver, source_segment, reception,
+        mp_geometry(receiver, transmitter_segment, reception,
                     MpInterval::point(inward_upper), field_speed)
             .residual.strict_sign();
     if (lower_sign != 0 && upper_sign != 0 && lower_sign != upper_sign) {
@@ -2562,7 +2562,7 @@ std::optional<MpRoot> surround_mp_segment_join_root(
 
 bool mp_self_endpoint_open_cell_is_root_free(
     const ExactPairRequest& request,
-    const MpCompiledSegment& source_segment,
+    const MpCompiledSegment& transmitter_segment,
     const MpInterval& emission,
     const MpInterval& reception,
     const MpInterval& field_speed,
@@ -2587,7 +2587,7 @@ bool mp_self_endpoint_open_cell_is_root_free(
   if (emission.upper().compare(reception.upper()) != 0) {
     return false;
   }
-  const MpVector velocity = mp_velocity(source_segment, emission);
+  const MpVector velocity = mp_velocity(transmitter_segment, emission);
   const MpInterval speed = mp_norm(velocity);
   if (speed.upper().compare(field_speed.lower()) < 0) {
     return true;
@@ -2618,10 +2618,10 @@ MpAttempt run_mpfr_attempt(const ExactPairRequest& request, unsigned bits_value)
       request.receiver->history_id() == request.source->history_id() &&
       request.receiver->provenance_fingerprint() ==
           request.source->provenance_fingerprint();
-  auto source_history = mp_compile_history(*request.source, bits);
-  mp_attach_shared_join_positions(source_history);
+  auto transmitter_history = mp_compile_history(*request.source, bits);
+  mp_attach_shared_join_positions(transmitter_history);
   std::optional<std::vector<MpCompiledSegment>> receiver_history_storage;
-  const std::vector<MpCompiledSegment>* receiver_history = &source_history;
+  const std::vector<MpCompiledSegment>* receiver_history = &transmitter_history;
   if (request.receiver != request.source) {
     receiver_history_storage.emplace(
         mp_compile_history(*request.receiver, bits));
@@ -2648,19 +2648,19 @@ MpAttempt run_mpfr_attempt(const ExactPairRequest& request, unsigned bits_value)
 
   std::vector<Cell> cells;
   std::size_t first_segment = 0U;
-  std::size_t suffix_upper = source_history.size();
+  std::size_t suffix_upper = transmitter_history.size();
   while (first_segment < suffix_upper) {
     const std::size_t middle =
         first_segment + (suffix_upper - first_segment) / 2U;
-    if (source_history[middle].end_time.upper().compare(search_lower) <= 0) {
+    if (transmitter_history[middle].end_time.upper().compare(search_lower) <= 0) {
       first_segment = middle + 1U;
     } else {
       suffix_upper = middle;
     }
   }
   for (std::size_t index = first_segment;
-       index < source_history.size(); ++index) {
-    const auto& segment = source_history[index];
+       index < transmitter_history.size(); ++index) {
+    const auto& segment = transmitter_history[index];
     const MpFloat& segment_lower = segment.start_time.lower();
     if (segment_lower.compare(search_upper) >= 0) {
       break;
@@ -2678,10 +2678,10 @@ MpAttempt run_mpfr_attempt(const ExactPairRequest& request, unsigned bits_value)
     throw std::out_of_range("MPFR root search has no covered segment");
   }
   std::vector<bool> subfield_suffix(
-      source_history.size() + 1U, true);
+      transmitter_history.size() + 1U, true);
   if (same_retained_history) {
-    for (std::size_t index = source_history.size(); index-- > 0U;) {
-      const auto& segment = source_history[index];
+    for (std::size_t index = transmitter_history.size(); index-- > 0U;) {
+      const auto& segment = transmitter_history[index];
       const MpFloat& lower = segment.start_time.lower();
       const MpFloat& segment_upper = segment.end_time.upper();
       const MpFloat upper =
@@ -2704,7 +2704,7 @@ MpAttempt run_mpfr_attempt(const ExactPairRequest& request, unsigned bits_value)
         !subfield_suffix[cell.segment_index + 1U]) {
       return false;
     }
-    const auto& segment = source_history[cell.segment_index];
+    const auto& segment = transmitter_history[cell.segment_index];
     const MpFloat& segment_upper = segment.end_time.upper();
     const MpFloat upper = segment_upper.compare(reception.upper()) <= 0
         ? segment_upper : reception.upper();
@@ -2715,7 +2715,7 @@ MpAttempt run_mpfr_attempt(const ExactPairRequest& request, unsigned bits_value)
             .compare(field_speed.lower()) < 0;
   };
 
-  auto add_endpoint_root = [&](const MpCompiledSegment& source_segment,
+  auto add_endpoint_root = [&](const MpCompiledSegment& transmitter_segment,
                                std::size_t segment_index,
                                const MpFloat& point,
                                const MpFloat& cell_lower,
@@ -2725,23 +2725,23 @@ MpAttempt run_mpfr_attempt(const ExactPairRequest& request, unsigned bits_value)
     MpFloat upper(point);
     if (!point_residual.is_exact_zero()) {
       const auto surrounded = surround_mp_root(
-          receiver_state, source_segment, reception, field_speed, point,
+          receiver_state, transmitter_segment, reception, field_speed, point,
           cell_lower, cell_upper, tolerance, bits);
       if (!surrounded.has_value()) {
         std::optional<MpRoot> join_root;
-        const MpFloat& segment_start = source_segment.start_time.lower();
-        const MpFloat& segment_end = source_segment.end_time.upper();
+        const MpFloat& segment_start = transmitter_segment.start_time.lower();
+        const MpFloat& segment_end = transmitter_segment.end_time.upper();
         if (point.compare(segment_end) == 0 &&
-            segment_index + 1U < source_history.size()) {
+            segment_index + 1U < transmitter_history.size()) {
           join_root = surround_mp_segment_join_root(
-              receiver_state, source_segment,
-              source_history[segment_index + 1U], segment_index,
+              receiver_state, transmitter_segment,
+              transmitter_history[segment_index + 1U], segment_index,
               segment_index + 1U, reception, field_speed, search_lower,
               search_upper, tolerance, bits);
         } else if (point.compare(segment_start) == 0 && segment_index > 0U) {
           join_root = surround_mp_segment_join_root(
-              receiver_state, source_history[segment_index - 1U],
-              source_segment, segment_index - 1U, segment_index, reception,
+              receiver_state, transmitter_history[segment_index - 1U],
+              transmitter_segment, segment_index - 1U, segment_index, reception,
               field_speed, search_lower, search_upper, tolerance, bits);
         }
         if (join_root.has_value()) {
@@ -2762,7 +2762,7 @@ MpAttempt run_mpfr_attempt(const ExactPairRequest& request, unsigned bits_value)
         attempt.difficult_point_residual_upper =
             point_residual.upper().token(MPFR_RNDU);
         const auto bracket_geometry = mp_geometry(
-            receiver_state, source_segment, reception,
+            receiver_state, transmitter_segment, reception,
             MpInterval::bounds(cell_lower, cell_upper), field_speed);
         if (bracket_geometry.transmitter_factor.has_value()) {
           attempt.difficult_transmitter_factor_lower =
@@ -2778,12 +2778,12 @@ MpAttempt run_mpfr_attempt(const ExactPairRequest& request, unsigned bits_value)
         }
         attempt.difficult_lower_sign =
             mp_geometry(
-                receiver_state, source_segment, reception,
+                receiver_state, transmitter_segment, reception,
                 MpInterval::point(cell_lower), field_speed)
                 .residual.strict_sign();
         attempt.difficult_upper_sign =
             mp_geometry(
-                receiver_state, source_segment, reception,
+                receiver_state, transmitter_segment, reception,
                 MpInterval::point(cell_upper), field_speed)
                 .residual.strict_sign();
         ++attempt.difficult_cells;
@@ -2793,7 +2793,7 @@ MpAttempt run_mpfr_attempt(const ExactPairRequest& request, unsigned bits_value)
       upper = surrounded->second;
     }
     const auto root_geometry = mp_geometry(
-        receiver_state, source_segment, reception,
+        receiver_state, transmitter_segment, reception,
         MpInterval::bounds(lower, upper), field_speed);
     if (!root_geometry.transmitter_factor.has_value() ||
         !root_geometry.receiver_factor.has_value() ||
@@ -2827,7 +2827,7 @@ MpAttempt run_mpfr_attempt(const ExactPairRequest& request, unsigned bits_value)
       ++attempt.difficult_cells;
       return;
     }
-    const auto& source_segment = source_history[cell.segment_index];
+    const auto& transmitter_segment = transmitter_history[cell.segment_index];
     const MpInterval emission = MpInterval::bounds(cell.lower, cell.upper);
     if (self_path_from_cell_is_subfield(cell)) {
       if (search_upper.compare(reception.upper()) == 0) {
@@ -2837,14 +2837,14 @@ MpAttempt run_mpfr_attempt(const ExactPairRequest& request, unsigned bits_value)
       return;
     }
     if (mp_self_endpoint_open_cell_is_root_free(
-            request, source_segment, emission, reception,
+            request, transmitter_segment, emission, reception,
             field_speed, bits)) {
       attempt.coincident_endpoint_excluded = true;
       ++attempt.excluded_cells;
       return;
     }
     const auto geometry = mp_geometry(
-        receiver_state, source_segment, reception, emission, field_speed);
+        receiver_state, transmitter_segment, reception, emission, field_speed);
     if (geometry.residual.excludes_zero()) {
       ++attempt.excluded_cells;
       return;
@@ -2872,10 +2872,10 @@ MpAttempt run_mpfr_attempt(const ExactPairRequest& request, unsigned bits_value)
     }
 
     const auto lower_geometry = mp_geometry(
-        receiver_state, source_segment, reception, MpInterval::point(cell.lower),
+        receiver_state, transmitter_segment, reception, MpInterval::point(cell.lower),
         field_speed);
     const auto upper_geometry = mp_geometry(
-        receiver_state, source_segment, reception, MpInterval::point(cell.upper),
+        receiver_state, transmitter_segment, reception, MpInterval::point(cell.upper),
         field_speed);
     const int lower_sign = lower_geometry.residual.strict_sign();
     const int upper_sign = upper_geometry.residual.strict_sign();
@@ -2897,13 +2897,13 @@ MpAttempt run_mpfr_attempt(const ExactPairRequest& request, unsigned bits_value)
     }
     if (lower_sign == 0) {
       add_endpoint_root(
-          source_segment, cell.segment_index, cell.lower, cell.lower,
+          transmitter_segment, cell.segment_index, cell.lower, cell.lower,
           cell.upper, lower_geometry.residual);
       return;
     }
     if (upper_sign == 0) {
       add_endpoint_root(
-          source_segment, cell.segment_index, cell.upper, cell.lower,
+          transmitter_segment, cell.segment_index, cell.upper, cell.lower,
           cell.upper, upper_geometry.residual);
       return;
     }
@@ -2917,15 +2917,15 @@ MpAttempt run_mpfr_attempt(const ExactPairRequest& request, unsigned bits_value)
            iterations < request.max_depth) {
       const MpFloat middle = mp_split(lower, upper);
       const auto middle_geometry = mp_geometry(
-          receiver_state, source_segment, reception,
+          receiver_state, transmitter_segment, reception,
           MpInterval::point(middle), field_speed);
       int middle_sign = middle_geometry.residual.strict_sign();
       if (middle_sign == 0) {
         auto enclosed = surround_mp_root(
-            receiver_state, source_segment, reception, field_speed, middle,
+            receiver_state, transmitter_segment, reception, field_speed, middle,
             lower, upper, tolerance, bits);
         const auto bracket_geometry = mp_geometry(
-            receiver_state, source_segment, reception,
+            receiver_state, transmitter_segment, reception,
             MpInterval::bounds(lower, upper), field_speed);
         if (!enclosed.has_value() &&
             bracket_geometry.transmitter_factor.has_value()) {
@@ -2987,7 +2987,7 @@ MpAttempt run_mpfr_attempt(const ExactPairRequest& request, unsigned bits_value)
       return;
     }
     const auto root_geometry = mp_geometry(
-        receiver_state, source_segment, reception,
+        receiver_state, transmitter_segment, reception,
         MpInterval::bounds(lower, upper), field_speed);
     if (!root_geometry.transmitter_factor.has_value() ||
         !root_geometry.receiver_factor.has_value() ||
@@ -3019,13 +3019,13 @@ ExactPairCertificate double_certificate(
     const ExactPairRequest& request,
     const DoubleAttempt& attempt) {
   ExactPairCertificate certificate{
-      .schema = "eom_native_exact_pair_certificate/v0",
+      .schema = "eom_native_exact_pair_certificate/v1",
       .row_id = request.row_id,
       .receiver_history_id = request.receiver->history_id(),
-      .source_history_id = request.source->history_id(),
+      .transmitter_history_id = request.source->history_id(),
       .receiver_history_fingerprint =
           request.receiver->provenance_fingerprint(),
-      .source_history_fingerprint = request.source->provenance_fingerprint(),
+      .transmitter_history_fingerprint = request.source->provenance_fingerprint(),
       .reception_time = request.reception_time,
       .searched_lower = request.search_lower,
       .searched_upper = request.search_upper,
@@ -3058,7 +3058,7 @@ ExactPairCertificate double_certificate(
         .receiver_factor_lower = double_token(root.receiver_factor.lower()),
         .receiver_factor_upper = double_token(root.receiver_factor.upper()),
         .transmitter_factor_sign = root.transmitter_factor.strict_sign(),
-        .source_segment_indices = root.source_segment_indices,
+        .transmitter_segment_indices = root.transmitter_segment_indices,
         .precision_route = "binary64_outward",
         .precision_bits = 53,
     });
@@ -3076,7 +3076,7 @@ ExactPairCertificate double_certificate(
   certificate.root_free_cells.reserve(attempt.root_free_cells.size());
   for (const auto& cell : attempt.root_free_cells) {
     certificate.root_free_cells.push_back({
-        .source_segment_index = cell.source_segment_index,
+        .transmitter_segment_index = cell.transmitter_segment_index,
         .lower = double_token(cell.lower),
         .upper = double_token(cell.upper),
         .residual_lower = double_token(cell.residual.lower()),
@@ -3117,13 +3117,13 @@ ExactPairCertificate mpfr_certificate(
     bool exhausted) {
   const bool complete = attempt.complete;
   ExactPairCertificate certificate{
-      .schema = "eom_native_exact_pair_certificate/v0",
+      .schema = "eom_native_exact_pair_certificate/v1",
       .row_id = request.row_id,
       .receiver_history_id = request.receiver->history_id(),
-      .source_history_id = request.source->history_id(),
+      .transmitter_history_id = request.source->history_id(),
       .receiver_history_fingerprint =
           request.receiver->provenance_fingerprint(),
-      .source_history_fingerprint = request.source->provenance_fingerprint(),
+      .transmitter_history_fingerprint = request.source->provenance_fingerprint(),
       .reception_time = request.reception_time,
       .searched_lower = request.search_lower,
       .searched_upper = request.search_upper,
@@ -3195,7 +3195,7 @@ ExactPairCertificate mpfr_certificate(
         .receiver_factor_lower = root.receiver_factor.lower().token(MPFR_RNDD),
         .receiver_factor_upper = root.receiver_factor.upper().token(MPFR_RNDU),
         .transmitter_factor_sign = root.transmitter_factor.strict_sign(),
-        .source_segment_indices = root.source_segment_indices,
+        .transmitter_segment_indices = root.transmitter_segment_indices,
         .precision_route = "mpfr_directed_interval",
         .precision_bits = bits,
     });

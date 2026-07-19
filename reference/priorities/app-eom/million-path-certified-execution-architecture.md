@@ -4,7 +4,7 @@
 
 - Architecture id: `eom_million_path_execution/v0`
 - Stage: `accepted-priority-design`
-- Governing amendment: [eom_evolution_contract/v0/amendment-1](evolution-contract-v0-amendment-1-million-path-scale.md)
+- Governing amendment: [eom_evolution_contract/v0/amendment-1](evolution-contract-v1-amendment-1-million-path-scale.md)
 - Mathematical model: unchanged `master_eom_binding/v0`
 - Numeric contract: unchanged `eom_numeric_certification/v0`
 - Implementation status: not started
@@ -147,7 +147,7 @@ Work is compacted into queues by mathematical condition, not merely hardware:
 | Queue | Work | Authority route |
 | --- | --- | --- |
 | Block-bound bulk | Bounding boxes, delay bounds, and residual enclosures | Promoted SIMD/GPU enclosure kernel or stricter replay. |
-| Exact regular pairs | History interpolation, residual cells, simple roots, and regular force rows | Batched CPU SIMD or GPU kernels under the common budget. |
+| Exact regular pairs | History interpolation, residual cells, simple roots, and regular acceleration records | Batched CPU SIMD or GPU kernels under the common budget. |
 | Difficult roots | Near-zero $D_s$, close roots, folds, or uncertain root counts | Stricter device kernel, CPU extended precision, arbitrary precision, or interval service. |
 | Difficult reductions | Strong cancellation or budget overflow | Expansion, long accumulator, arbitrary precision, or interval reduction. |
 | Storage and checkpoint | Immutable chunk writes, hashes, and manifest preparation | Asynchronous, but unable to mutate accepted state. |

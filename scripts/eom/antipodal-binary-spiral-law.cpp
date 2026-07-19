@@ -423,7 +423,7 @@ SnapshotRow measure_snapshot(const Options& options, double s, bool verbose) {
     for (const auto& row : snapshot.root_certificates) {
       if (row.certificate.status != "certified_complete") {
         failures << "; root=" << row.receiver_path_id << "<-"
-                 << row.source_path_id << ':' << row.certificate.status << ':'
+                 << row.transmitter_path_id << ':' << row.certificate.status << ':'
                  << row.certificate.failure_code << ":cells="
                  << row.certificate.visited_cells << ":difficult="
                  << row.certificate.difficult_cells;
@@ -432,7 +432,7 @@ SnapshotRow measure_snapshot(const Options& options, double s, bool verbose) {
     for (const auto& pair : snapshot.acceleration.pair_certificates) {
       if (pair.status != "certified") {
         failures << "; acceleration=" << pair.receiver_path_id << "<-"
-                 << pair.source_path_id << ':' << pair.status << ':'
+                 << pair.transmitter_path_id << ':' << pair.status << ':'
                  << pair.failure_code;
       }
     }
@@ -446,7 +446,7 @@ SnapshotRow measure_snapshot(const Options& options, double s, bool verbose) {
   std::vector<double> native_self;
   for (const auto& row : snapshot.root_certificates) {
     const bool selected_receiver = row.receiver_path_id == "positive";
-    const bool self = row.receiver_path_id == row.source_path_id;
+    const bool self = row.receiver_path_id == row.transmitter_path_id;
     if (selected_receiver) {
       for (const auto& root : row.certificate.roots) {
         const double emission =
@@ -471,7 +471,7 @@ SnapshotRow measure_snapshot(const Options& options, double s, bool verbose) {
         !row.certificate.root_free_complement) {
       throw std::runtime_error(
           "root complement is not certified complete for " +
-          row.receiver_path_id + "<-" + row.source_path_id);
+          row.receiver_path_id + "<-" + row.transmitter_path_id);
     }
   }
   std::sort(native_partner.begin(), native_partner.end());

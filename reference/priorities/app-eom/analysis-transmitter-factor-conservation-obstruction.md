@@ -1,4 +1,4 @@
-# History-Only Conservation Obstruction for the Source-Density Equation
+# History-Only Conservation Obstruction for the Transmitter-Side Equation
 
 ## Status
 
@@ -159,9 +159,9 @@ The current two-time action cannot supply this missing selection. Its complete v
 
 Claim classification: **derived promotion obstruction**. A causal action or a direct history construction that produces the proposed acceleration and three fixed, bounded accounts on the same state would close it.
 
-## 5. Conservation cannot regularize coincident same-source birth
+## 5. Conservation cannot regularize coincident same-transmitter birth
 
-At coincident same-source birth, the complete transmitter-side impulse on a fixed local window obeys the regulator-uniform lower bound
+At coincident same-transmitter birth, the complete transmitter-side impulse on a fixed local window obeys the regulator-uniform lower bound
 
 $$
 J_{\eta,\epsilon_c}^{\mathrm{full}}(L,h)
@@ -175,7 +175,7 @@ $$
 
 Any nondegenerate momentum map converts this divergent velocity change into a divergent motion-account change. Assigning an equal opposite divergence to a wake account would balance a formal total but would not produce a finite outgoing velocity or a finite transition state.
 
-The same-source acceleration must therefore be made finite before conservation accounting can certify the transition. Conservation is a consistency condition on an admitted evolution, not a mechanism that removes a nonintegrable acceleration.
+The same-transmitter acceleration must therefore be made finite before conservation accounting can certify the transition. Conservation is a consistency condition on an admitted evolution, not a mechanism that removes a nonintegrable acceleration.
 
 Claim classification: **derived ordering of the two promotion obligations**. A finite outgoing retained state from the unchanged point-kernel transition would falsify it.
 
@@ -189,7 +189,7 @@ A non-circular conservation derivation needs all of the following from one Archi
 4. energy bounded below on the admitted state family;
 5. momentum and angular momentum transforming correctly under Euclidean translations and rotations;
 6. balance proved on general non-circular histories without defining any account from the residual it is meant to cancel;
-7. the same positive widths or near-origin rule used by the finite same-source transition.
+7. the same positive widths or near-origin rule used by the finite same-transmitter transition.
 
 If all wake quantities remain deterministic functions of source history, the construction must display those functions explicitly. If reception changes the wake state independently of the source history, that is a change to the current wake ontology and requires an operator theory decision before canon or implementation work.
 

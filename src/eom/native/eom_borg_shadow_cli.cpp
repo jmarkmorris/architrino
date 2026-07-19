@@ -166,7 +166,7 @@ rebase_trimmed_snapshot(
   auto rebased = cache.snapshot;
   for (auto& row : rebased.root_certificates) {
     const auto* receiver = parsed_path(paths, row.receiver_path_id);
-    const auto* source = parsed_path(paths, row.source_path_id);
+    const auto* source = parsed_path(paths, row.transmitter_path_id);
     if (receiver == nullptr || source == nullptr ||
         !row.certificate.stable_negative_prefix_certified ||
         row.certificate.memory_boundary_contact ||
@@ -182,7 +182,7 @@ rebase_trimmed_snapshot(
     }
     row.certificate.receiver_history_fingerprint =
         receiver->history.provenance_fingerprint();
-    row.certificate.source_history_fingerprint =
+    row.certificate.transmitter_history_fingerprint =
         source->history.provenance_fingerprint();
     row.certificate.searched_lower =
         source->history.segments().front().t_start_token();
@@ -571,11 +571,11 @@ void run(
           const auto* receiver = parsed_path(
               parsed_paths, row.receiver_path_id);
           const auto* source = parsed_path(
-              parsed_paths, row.source_path_id);
+              parsed_paths, row.transmitter_path_id);
           return receiver != nullptr && source != nullptr &&
               row.certificate.receiver_history_fingerprint ==
                   receiver->history.provenance_fingerprint() &&
-              row.certificate.source_history_fingerprint ==
+              row.certificate.transmitter_history_fingerprint ==
                   source->history.provenance_fingerprint();
         });
     if (!exact_fingerprints) {
@@ -635,7 +635,7 @@ void run(
       }
     }
   }
-  std::cout << "{\"schema\":\"eom_borg_native_response/v0\",\"status\":\""
+  std::cout << "{\"schema\":\"eom_borg_native_response/v1\",\"status\":\""
             << json_escape(result.status) << "\",\"evidenceStatus\":\""
             << json_escape(result.evidence_status)
             << "\",\"coreScale\":\"" << json_escape(request.core_scale)
@@ -852,8 +852,8 @@ void run(
         const auto& certificate = root_row.certificate;
         std::cout << "{\"receiverPathId\":\""
                   << json_escape(root_row.receiver_path_id)
-                  << "\",\"sourcePathId\":\""
-                  << json_escape(root_row.source_path_id)
+                  << "\",\"transmitterPathId\":\""
+                  << json_escape(root_row.transmitter_path_id)
                   << "\",\"status\":\""
                   << json_escape(certificate.status)
                   << "\",\"failureCode\":\""
@@ -914,8 +914,8 @@ void run(
         first_root_failure = false;
         std::cout << "{\"receiverPathId\":\""
                   << json_escape(row.receiver_path_id)
-                  << "\",\"sourcePathId\":\""
-                  << json_escape(row.source_path_id)
+                  << "\",\"transmitterPathId\":\""
+                  << json_escape(row.transmitter_path_id)
                   << "\",\"status\":\""
                   << json_escape(certificate.status)
                   << "\",\"failureCode\":\""
@@ -988,8 +988,8 @@ void run(
         first_acceleration_failure = false;
         std::cout << "{\"receiverPathId\":\""
                   << json_escape(certificate.receiver_path_id)
-                  << "\",\"sourcePathId\":\""
-                  << json_escape(certificate.source_path_id)
+                  << "\",\"transmitterPathId\":\""
+                  << json_escape(certificate.transmitter_path_id)
                   << "\",\"chart\":\"" << json_escape(certificate.chart)
                   << "\",\"status\":\"" << json_escape(certificate.status)
                   << "\",\"failureCode\":\""
@@ -1017,8 +1017,8 @@ void run(
         first_state_certificate = false;
         std::cout << "{\"receiverPathId\":\""
                   << json_escape(state.receiver_path_id)
-                  << "\",\"sourcePathId\":\""
-                  << json_escape(state.source_path_id)
+                  << "\",\"transmitterPathId\":\""
+                  << json_escape(state.transmitter_path_id)
                   << "\",\"status\":\"" << json_escape(state.status)
                   << "\",\"failureCode\":\""
                   << json_escape(state.failure_code)
@@ -1162,8 +1162,8 @@ void run(
         first_regulator_failure = false;
         std::cout << "{\"receiverPathId\":\""
                   << json_escape(regulator.receiver_path_id)
-                  << "\",\"sourcePathId\":\""
-                  << json_escape(regulator.source_path_id)
+                  << "\",\"transmitterPathId\":\""
+                  << json_escape(regulator.transmitter_path_id)
                   << "\",\"status\":\""
                   << json_escape(regulator.status)
                   << "\",\"failureCode\":\""
@@ -1268,10 +1268,10 @@ void run(
                       << event.receiver_position_error_upper
                       << ",\"receiverVelocityErrorUpper\":"
                       << event.receiver_velocity_error_upper
-                      << ",\"sourcePositionErrorUpper\":"
-                      << event.source_position_error_upper
-                      << ",\"sourceVelocityErrorUpper\":"
-                      << event.source_velocity_error_upper
+                      << ",\"transmitterPositionErrorUpper\":"
+                      << event.transmitter_position_error_upper
+                      << ",\"transmitterVelocityErrorUpper\":"
+                      << event.transmitter_velocity_error_upper
                       << ",\"lastMaximumComponentWidth\":"
                       << event.last_maximum_component_width
                       << ",\"lastMaximumPositionMomentComponentWidth\":"
@@ -1332,7 +1332,7 @@ void drain_failed_request_to_boundary() {
 
 void print_engine_exception_response(const std::exception& error) {
   std::cout
-      << "{\"schema\":\"eom_borg_native_response/v0\","
+      << "{\"schema\":\"eom_borg_native_response/v1\","
          "\"status\":\"halted\",\"evidenceStatus\":\"failed\","
          "\"claimGrade\":\"failed\",\"haltCode\":\"engine_exception\","
          "\"diagnosticDetail\":\""

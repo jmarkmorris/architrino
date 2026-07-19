@@ -34,7 +34,7 @@ struct MovingHistoryBlockCertificate {
   Interval distance;
   Interval delay;
   std::vector<std::string> receiver_history_ids;
-  std::vector<std::string> source_history_ids;
+  std::vector<std::string> transmitter_history_ids;
 };
 
 [[nodiscard]] MovingHistoryBlockCertificate certify_moving_history_block(

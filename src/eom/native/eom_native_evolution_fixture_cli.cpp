@@ -338,8 +338,8 @@ void print_atomic(const eom::NativeAtomicStepCertificate& certificate) {
       std::cout << "{\"status\":\"" << state.status
                 << "\",\"receiver_path_id\":\""
                 << state.receiver_path_id
-                << "\",\"source_path_id\":\""
-                << state.source_path_id
+                << "\",\"transmitter_path_id\":\""
+                << state.transmitter_path_id
                 << "\",\"receiver_routed_pair_count\":"
                 << state.receiver_routed_pair_count
                 << ",\"receiver_pair_allocation_weight\":"
@@ -661,13 +661,13 @@ void print_far_field_control(
       snapshot.far_field_enclosure_certificates.begin(),
       snapshot.far_field_enclosure_certificates.end(),
       [](const auto& row) {
-        return row.receiver_path_id == "a" && row.source_path_id == "b";
+        return row.receiver_path_id == "a" && row.transmitter_path_id == "b";
       });
   const auto pair = std::find_if(
       snapshot.acceleration.pair_certificates.begin(),
       snapshot.acceleration.pair_certificates.end(),
       [](const auto& row) {
-        return row.receiver_path_id == "a" && row.source_path_id == "b";
+        return row.receiver_path_id == "a" && row.transmitter_path_id == "b";
       });
   if (enclosure == snapshot.far_field_enclosure_certificates.end() ||
       pair == snapshot.acceleration.pair_certificates.end() ||
@@ -1236,7 +1236,7 @@ void print_all() {
   const auto cubic_snapshot = [](
       eom::ExactPairCertificate root) {
     eom::NativeAccelerationSnapshotCertificate snapshot{};
-    snapshot.schema = "eom_native_acceleration_snapshot/v0";
+    snapshot.schema = "eom_native_acceleration_snapshot/v1";
     snapshot.status = root.status;
     snapshot.reception_time = "0";
     snapshot.failure_code = root.failure_code;
@@ -1264,9 +1264,9 @@ void print_all() {
     auto root = cubic_rail_root;
     root.row_id = row_id;
     root.receiver_history_id = retained.history_id();
-    root.source_history_id = retained.history_id();
+    root.transmitter_history_id = retained.history_id();
     root.receiver_history_fingerprint = retained.provenance_fingerprint();
-    root.source_history_fingerprint = retained.provenance_fingerprint();
+    root.transmitter_history_fingerprint = retained.provenance_fingerprint();
     root.status = "certified_complete";
     root.failure_code.clear();
     root.root_free_complement = true;
@@ -1282,7 +1282,7 @@ void print_all() {
         .receiver_factor_lower = normal_lower,
         .receiver_factor_upper = normal_upper,
         .transmitter_factor_sign = 1,
-        .source_segment_indices = {
+        .transmitter_segment_indices = {
             retained.segment_index_at(-std::stod(delay_lower))},
         .precision_route = "mpfr_analytic_uniform_circle_fixture",
         .precision_bits = 512,
@@ -1310,7 +1310,7 @@ void print_all() {
         snapshot.root_certificates.begin(),
         snapshot.root_certificates.end(), [](const auto& candidate) {
           return candidate.receiver_path_id == "self" &&
-              candidate.source_path_id == "self";
+              candidate.transmitter_path_id == "self";
         });
     if (row == snapshot.root_certificates.end() ||
         row->certificate.roots.size() != 1U) {
@@ -1333,7 +1333,7 @@ void print_all() {
   }
 
   std::cout << std::setprecision(17)
-            << "{\"schema\":\"eom_native_evolution_fixture_packet/v0\","
+            << "{\"schema\":\"eom_native_evolution_fixture_packet/v1\","
             << "\"integration_method\":\"" << eom::kNativeIntegrationMethod
             << "\",\"future_history_rejected\":"
             << (future_history_rejected ? "true" : "false")
@@ -1512,7 +1512,7 @@ void print_far_field_dispersal_timing() {
       disabled_request, histories, 0, "0", "0.1");
   const auto& step = enabled.steps.front();
   const auto& final_step = enabled.steps.back();
-  std::cout << "{\"schema\":\"eom_far_field_dispersal_timing/v0\""
+  std::cout << "{\"schema\":\"eom_far_field_dispersal_timing/v1\""
             << ",\"enabled_status\":\"" << enabled.status
             << "\",\"enabled_step_wall_seconds\":"
             << step.timing.total_wall_seconds
@@ -1551,7 +1551,7 @@ void print_certified_correction_retry() {
   const auto& first = evolution.steps[0];
   const auto& second = evolution.steps[1];
   std::cout << std::setprecision(17)
-            << "{\"schema\":\"eom_certified_correction_retry/v0\""
+            << "{\"schema\":\"eom_certified_correction_retry/v1\""
             << ",\"first_failure_code\":\"" << first.failure_code << "\""
             << ",\"first_residual\":"
             << first.correction_residual.value_or(-1.0)

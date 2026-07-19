@@ -242,7 +242,7 @@ function buildMovingCircularRoot(request, emissionTime, rootId, residualInfo = n
     sourceVelocity: info.sourceSample.velocity,
     sourcePhase: info.sourceSample.phase,
     iterationCount: iterations,
-    sourceHistoryKind: "moving-circular-source",
+    sourceHistoryKind: "moving-circular-transmitter",
   };
 }
 
@@ -466,7 +466,7 @@ export function createMovingCircularSourceRootRequest({
   const receiverHistory = normalizeLinearReceiverHistoryForHit(receiver, safeHitTime);
   return {
     sourceRef,
-    sourceHistoryKind: "moving-circular-source",
+    sourceHistoryKind: "moving-circular-transmitter",
     source: {
       centerAtEpoch: vector(source?.centerAtEpoch ?? source?.center),
       centerVelocity: vector(source?.centerVelocity),
@@ -796,7 +796,7 @@ export function createMovingCircularSourceLinearizedRootRequests({
   );
   const receiverVelocity = receiverBase.velocity;
   const sourceHistory = {
-    kind: "moving-circular-source-linearized",
+    kind: "moving-circular-transmitter-linearized",
     sourceRef,
     source: {
       centerAtEpoch: vector(source?.centerAtEpoch ?? source?.center),
@@ -810,7 +810,7 @@ export function createMovingCircularSourceLinearizedRootRequests({
     },
     receiver: receiverBase,
     segmentCount: safeSegmentCount,
-    approximationPolicy: "linearized-moving-circular-source-segments",
+    approximationPolicy: "linearized-moving-circular-transmitter-segments",
   };
 
   return Array.from({ length: safeSegmentCount }, (_, index) => {

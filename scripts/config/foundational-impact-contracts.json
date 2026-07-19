@@ -52,11 +52,11 @@
         "applications": [
           "Photon app",
           "Causal Delay Feedback app",
-          "Animator delayed-hit rows"
+          "Animator delayed-hit records"
         ],
         "validation": [
           "strict content indexes",
-          "transmitter-side clean slate"
+          "transmitter-factor clean slate"
         ]
       },
       "reevaluation": {
@@ -66,7 +66,7 @@
             "reason": "Catch markdown/index drift after source equation or foundation prose changes."
           },
           {
-            "command": "node scripts/check-transmitter-side-clean-slate.mjs",
+            "command": "node scripts/check-transmitter-factor-clean-slate.mjs",
             "reason": "Catch stale receiver-playback acceleration wording and transmitter-side implementation drift."
           }
         ],
@@ -91,42 +91,38 @@
       }
     },
     {
-      "id": "master-equation.transmitter-side",
-      "title": "Source-density acceleration and signed root playback",
+      "id": "master-equation.transmitter-factor",
+      "title": "Transmitter-factor acceleration and signed root playback",
       "severity": "P0",
       "rationale": "The acceleration multiplier is c_f/|D_t|, while D_r/D_t is retained only as signed root playback; conflating them changes solver semantics.",
       "pathTriggers": [
         "content/markdown/aaa/dynamics/master-equation.md",
         "content/markdown/aaa/foundations/architrino.md",
-        "scripts/check-transmitter-side-clean-slate.mjs",
+        "scripts/check-transmitter-factor-clean-slate.mjs",
         "src/apps/photon/**",
         "src/apps/animator/display/**"
       ],
       "textTriggers": [
-        { "type": "literal", "value": "W^{\\mathrm{rec}}" },
-        { "type": "literal", "value": "W_{ij}^{\\mathrm{rec}}" },
-        { "type": "literal", "value": "branchWeight" },
-        { "type": "literal", "value": "receiverNormalFactor" },
-        { "type": "literal", "value": "receiverNormalNumerator" },
-        { "type": "literal", "value": "sourceNormalDenominator" },
-        { "type": "literal", "value": "D_{s" },
-        { "type": "literal", "value": "D_{T" },
-        { "type": "literal", "value": "\\kappa_{\\mathrm{hit}}" },
-        { "type": "literal", "value": "source-normal" },
-        { "type": "literal", "value": "receiver-normal" }
+        { "type": "literal", "value": "W^{\\mathrm{acc}}" },
+        { "type": "literal", "value": "D_t" },
+        { "type": "literal", "value": "D_r" },
+        { "type": "literal", "value": "transmitter_factor" },
+        { "type": "literal", "value": "receiver_factor" },
+        { "type": "literal", "value": "root_playback" },
+        { "type": "literal", "value": "acceleration_weight" }
       ],
       "consumers": {
         "applications": [
           "PhotonFormulaRuntime"
         ],
         "validation": [
-          "transmitter-side clean slate"
+          "transmitter-factor clean slate"
         ]
       },
       "reevaluation": {
         "validation": [
           {
-            "command": "node scripts/check-transmitter-side-clean-slate.mjs",
+            "command": "node scripts/check-transmitter-factor-clean-slate.mjs",
             "reason": "Primary guard for stale receiver-playback acceleration wording and transmitter-side code drift."
           },
           {
@@ -137,7 +133,7 @@
         "applications": [
           {
             "command": "node --test tests/photon-runtime.test.js",
-            "reason": "Recheck app-facing receiver-normal field requirements."
+            "reason": "Recheck app-facing transmitter-factor and root-playback fields."
           }
         ]
       }

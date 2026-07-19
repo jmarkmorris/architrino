@@ -1593,7 +1593,7 @@ emits $D_t$, $D_r$, and $W^{\mathrm{acc}}$.
 
 **Result:** The transmitter-side circular sign record is a restart diagnostic, not a
 no-go. A constant-speed circular conclusion requires the receiver-side
-branch record plus finite-window work, wake-flux, recoil, and multi-root ledger
+branch record plus finite-window work, wake flux, and multi-root ledger
 checks on the same retained record.
 
 **Conclusion within this circular benchmark:** The sub-field circular record is
@@ -3401,7 +3401,7 @@ This derivative is required for root continuation and change-of-reception-time c
 
 ##### Variation and line-of-action acceleration law
 
-This subsection is the bridge from the causal-hit rule to an action-style account. The physical rule has already said what a receiver feels: delayed line-of-action hits with transmitter-side acceleration weight. The variation below asks whether the same rule can be obtained from one regularized action ledger, so that acceleration, power, and conservation bookkeeping come from the same source rather than from separate matching rules.
+This subsection is the bridge from the causal-hit rule to an action-style account. The physical rule has already said what a receiver feels: delayed line-of-action hits with transmitter-side acceleration weight. The variation below asks whether the same rule can be obtained from one regularized action ledger, so that acceleration, power, and conservation bookkeeping come from the same functional rather than from separate matching rules.
 
 The branch law targeted by the action-level variation is:
 
@@ -3688,9 +3688,9 @@ without adding another $\delta_\eta(g)/r^2$ scale term. For $N\ge1$, the highest
 
 The conclusion is narrow but decisive for local repairs: no finite same-support local scalar or delta-jet counterterm cancels the scalar-kernel residual while leaving the canonical branch strength intact. A viable action-level repair must instead be nonlocal along the $(r,g)$ characteristic, or must use a richer velocity/history-dependent invariant action. Either route changes the action ontology enough that it should be discussed explicitly before canonization.
 
-The terminal common-center inter-layer chart gives a concrete obstruction to the remaining per-branch stationarity route. In that specialization, stationarity of $\hat{\mathbf r}/(rJ)$ forces the transmitter tangent to be parallel to the transmitter-receiver separation. The scalar part then reduces to $\rho_\delta(1-\rho_\delta)=0$, where $\rho_\delta$ denotes the branch value of $\partial_\delta\rho_b$: the first factor collapses a positive-delay branch when the transmitter speed is nonzero, and the second factor is $J=0$, a grazing branch excluded by the Jacobian floor. Thus terminal inter-layer charts should not expect the scalar scaffold to close by per-branch stationarity. The remaining local target is either branch-summed residual closure for a scale-only scaffold, or a recoil-inclusive action ledger that retains the residual as wake-emission resistance.
+The terminal common-center inter-layer chart gives a concrete obstruction to the remaining per-branch stationarity route. In that specialization, stationarity of $\hat{\mathbf r}/(rJ)$ forces the transmitter tangent to be parallel to the transmitter-receiver separation. The scalar part then reduces to $\rho_\delta(1-\rho_\delta)=0$, where $\rho_\delta$ denotes the branch value of $\partial_\delta\rho_b$: the first factor collapses a positive-delay branch when the transmitter speed is nonzero, and the second factor is $J=0$, a grazing branch excluded by the Jacobian floor. Thus terminal inter-layer charts should not expect the scalar scaffold to close by per-branch stationarity. The remaining local target is branch-summed residual closure for a scalar scaffold or a different action candidate derived from Architrino primitives.
 
-For the scale-only receiver-side branch target, the branch-summed residual target is the vanishing of the signed receiver-side interior Euler derivative after the direct inverse-square term is removed:
+For the transmitter-side branch target, the branch-summed residual target is the vanishing of the signed receiver-side interior Euler derivative after the direct inverse-square term is removed:
 $$
 \sum_{b:\,o_b=i}
 \kappa\,
@@ -3700,7 +3700,7 @@ $$
 =
 \mathbf{0}
 $$
-with the same positive-delay, Jacobian-floor, and boundary convention used by the branch chart. This is not the Master EOM acceleration residual and not the Noether conservation ledger. It is the additional condition needed for the scalar action scaffold to have no leftover interior Euler derivative on that receiver. If the same signed sum is nonzero and is retained by the action rather than cancelled, it is the local recoil term that must appear in the finite-window acceleration and energy ledger.
+with the same positive-delay, Jacobian-floor, and boundary convention used by the branch chart. This is not the Master EOM acceleration residual and not the Noether conservation ledger. It is the additional condition needed for the scalar action scaffold to have no leftover interior Euler derivative on that receiver. If the signed sum is nonzero, the scalar action candidate fails on that chart; the residual does not become a new acceleration term.
 
 **Nonlocal characteristic repair target.** The least invasive remaining action-level route is to solve the counterterm equation before imposing causal-surface support. In the reduced scalar variables, the required receiver-gradient correction has the form
 $$
@@ -3755,7 +3755,7 @@ D_{ij}K_{\mathrm{ct},+}^{(\eta)}
 \frac{D_{ij}R_{+}}{c_fR_{+}}\,
 \delta_\eta'\!\left(u-\frac{R_{+}}{c_f}\right)
 $$
-Thus the desired interior cancellation holds without an extra endpoint source only when $R_{+}$ is itself a characteristic endpoint, $D_{ij}R_{+}=0$.
+Thus the desired interior cancellation holds without an extra endpoint contribution only when $R_{+}$ is itself a characteristic endpoint, $D_{ij}R_{+}=0$.
 
 **Endpoint-ledger decision.** The displayed endpoint term is not automatically a Noether boundary term. Its support is
 $$

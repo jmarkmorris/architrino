@@ -267,13 +267,13 @@ const measuredClient = {
         rootDetails: !includeRootDetails ? [] : (step.rootAccounting ?? []).flatMap((row) =>
           (row.roots ?? []).map((root) => ({
             receiverPathId: row.receiverPathId,
-            sourcePathId: row.sourcePathId,
+            transmitterPathId: row.transmitterPathId,
             lower: Number(root.lower),
             upper: Number(root.upper),
             width: Number(root.upper) - Number(root.lower),
             precisionRoute: root.precisionRoute,
             precisionBits: root.precisionBits,
-            sourceSegmentIndices: root.sourceSegmentIndices,
+            transmitterSegmentIndices: root.transmitterSegmentIndices,
           }))),
       })),
       terminalFailure: finalStepFailure == null ? null : {
@@ -664,7 +664,7 @@ function summarizeChunks(chunks) {
             attemptedEnd: certificate.attemptedEnd,
             causticContractRow: certificate.causticContractRow,
             receiverPathId: certificate.receiverPathId,
-            sourcePathId: certificate.sourcePathId,
+            transmitterPathId: certificate.transmitterPathId,
             status: certificate.status,
             failureCode: certificate.failureCode,
             endpointReconstructionPassed:

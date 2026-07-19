@@ -37,8 +37,8 @@ const CHECKS = [
     args: ["scripts/check-master-equation-terminology-migration.mjs"],
   },
   {
-    name: "Check receiver-weighted Master EOM compatibility clean slate",
-    args: ["scripts/check-transmitter-side-clean-slate.mjs"],
+    name: "Check transmitter-factor Master EOM clean slate",
+    args: ["scripts/check-transmitter-factor-clean-slate.mjs"],
   },
   {
     name: "Check frequency-triplet notation drift",

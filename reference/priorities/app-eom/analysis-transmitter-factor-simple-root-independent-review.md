@@ -1,8 +1,8 @@
-# Independent Review of the Source-Density Simple-Root Limit
+# Independent Review of the Transmitter-Side Simple-Root Limit
 
 ## Status
 
-- Review target: [Source-Density Finite-Width Equation and Simple-Root Limit](analysis-transmitter-side-finite-width-simple-root-limit.md)
+- Review target: [Transmitter-Side Finite-Width Equation and Simple-Root Limit](analysis-transmitter-factor-finite-width-simple-root-limit.md)
 - Review method: independent reconstruction from the emission measure, an exact moving-receiver control, and a joint-limit audit
 - Standing: priority analysis; not canon and not an EOM solver specification
 - Verdict: pass after the qualifications and corrections recorded below
@@ -163,6 +163,6 @@ The target derivation has been corrected to:
 
 ## 5. Disposition
 
-The simple-root mathematical obligation passes independent review on its declared domain. The result may support the priority proposal as a derived lemma. It does not by itself support canon or EOM solver migration because it excludes folds, coincident same-source birth, and physical selection of the emission measure.
+The simple-root mathematical obligation passes independent review on its declared domain. The result may support the priority proposal as a derived lemma. It does not by itself support canon or EOM solver migration because it excludes folds, coincident same-transmitter birth, and physical selection of the emission measure.
 
 Promotion classification: **promote now within the priority proposal; defer canon with the remaining blockers**.

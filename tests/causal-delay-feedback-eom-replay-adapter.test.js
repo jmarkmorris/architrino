@@ -203,7 +203,7 @@ test("eom replay adapter resolves records through an async loader", async () => 
 
 test("shared EOM history dataset fails closed on foreign contract ids", () => {
   assert.throws(
-    () => createEomHistoryDataset(createEomRecordFixture({ contractId: "solver-app-bridge/v1" })),
+    () => createEomHistoryDataset(createEomRecordFixture({ contractId: "solver-app-bridge/v2" })),
     /requires contractId eom_evolution_contract\/v0/,
   );
 });

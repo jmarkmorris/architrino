@@ -11,14 +11,14 @@
   [master-eom-binding-v0.md](master-eom-binding-v0.md)
 - Common-domain matching:
   `amendment-1-bound-and-independently-certified`
-- Evolution authority: [evolution-contract-v0.md](evolution-contract-v0.md)
+- Evolution authority: [evolution-contract-v1.md](evolution-contract-v1.md)
 - Production authority: certified for the recorded first seed-0 transit;
   broader trajectory and encounter authority remains per-run and fail-closed
 
 ## Closure Target
 
 Replace the generic minimum-step collapse at a certified finite-order
-source-normal fold with one of two explicit outcomes:
+transmitter-side-factor fold with one of two explicit outcomes:
 
 1. an atomically published coupled segment whose fold contribution, endpoint
    state, regulator ladder, root topology, and sharp-chart exit are certified;
@@ -78,7 +78,7 @@ certified from the same attempted coupled candidate:
 1. `FWC-ENTRY-01/history`: the complete reception/emission causal triangle is
    covered by accepted retained histories and the memory boundary is root-free;
 2. `FWC-ENTRY-02/stratum`: the exact-pair certificate reports
-   `caustic_route_required` with a source-normal enclosure containing zero,
+   `caustic_route_required` with a transmitter-side-factor enclosure containing zero,
    independent start/end complete scans certify an interior opposite-sign root
    pair birth/death $\Delta N_{ij}=\pm2$, $\Delta D_{ij}=0$, or a consumed
    sharp-root separation enclosure intersects the declared core-route radius
@@ -95,7 +95,7 @@ certified from the same attempted coupled candidate:
 
 A speed magnitude equal to $c_f$ cannot satisfy `FWC-ENTRY-02` by itself.
 Receiver-normal silence $D_T=0$ also does not enter the route unless the
-source-normal predicate independently passes.
+transmitter-side-factor predicate independently passes.
 
 If repeated step reduction reaches `minimum_step` while the ordered-pair root
 certificate remains incomplete, the engine has not earned either sharp-chart
@@ -134,9 +134,9 @@ $$
 
 It is admitted only when $s_-<b^-\le b^+<s_+$,
 $s_+-s_-\le\tau$, the directed causal-residual enclosures at $s_-$ and $s_+$
-have strict opposite signs, and the left/right source-normal enclosures have
+have strict opposite signs, and the left/right transmitter-side-factor enclosures have
 one common strict sign. The intermediate-value theorem then proves existence,
-and the strict source-normal sign proves uniqueness. If any condition fails,
+and the strict transmitter-side-factor sign proves uniqueness. If any condition fails,
 the root remains `endpoint_root_not_surrounded` and entry remains fail-closed.
 
 Claim grade: `derived`. Falsifier: directed recomputation finds a bracket wider
@@ -455,7 +455,7 @@ $$
 where $\mathbf D$ is the displacement box and $\mathbf m$ is its componentwise
 midpoint. The line-of-action unit vector uses the analogous centered
 Jacobian enclosure wherever the separation interval excludes zero. The
-receiver-normal factor and softened kernel are also enclosed as one
+receiver-side-factor factor and softened kernel are also enclosed as one
 mean-value product, so their common displacement is not split into independent
 interval variables.
 
@@ -539,7 +539,7 @@ event floor obtains the exit predicate, the run halts with
 `minimum_step_exhausted`.
 
 Claim grade: `derived-design`. Falsifier: a published event segment whose
-endpoint pair is still `caustic_route_required`, has an unsigned source-normal
+endpoint pair is still `caustic_route_required`, has an unsigned transmitter-side-factor
 grade, or lacks a complete complement certificate.
 
 ## Acceptance And Error-Budget Rows
@@ -549,7 +549,7 @@ Every attempted event emits these rows, including failures:
 | Contract row | Quantity and required record | Pass condition | Named failure |
 | --- | --- | --- | --- |
 | `FWC-ENTRY-01` | history coverage and memory-boundary residual | boundary residual excludes zero | `caustic_history_coverage_failed` |
-| `FWC-ENTRY-02` | entry source-normal enclosure or topology delta | certified fold predicate | `caustic_entry_not_certified` |
+| `FWC-ENTRY-02` | entry transmitter-side-factor enclosure or topology delta | certified fold predicate | `caustic_entry_not_certified` |
 | `FWC-ENTRY-03` | stratum order and isolation | supported finite-order fold | `unsupported_caustic_or_singular_chart` |
 | `FWC-QUAD-01` | $\mathbf I$ enclosure, cells, depth, precision, largest residual width | component widths within impulse budget | `caustic_impulse_not_certified` |
 | `FWC-QUAD-02` | $\mathbf M$ enclosure, cells, depth, precision, largest residual width | component widths within position-moment budget | `caustic_position_moment_not_certified` |

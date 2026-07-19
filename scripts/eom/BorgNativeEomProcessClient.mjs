@@ -197,7 +197,7 @@ export function createBorgNativeEomProcessClient({
 }
 
 export function encodeNativeRequest(request, { cachedHistories = null } = {}) {
-  if (request?.contractId !== "eom_evolution_contract/v0" ||
+  if (request?.contractId !== "eom_evolution_contract/v1" ||
       !Array.isArray(request.histories) || request.histories.length === 0) {
     throw new TypeError("EOM process request lacks the EOM contract or histories.");
   }

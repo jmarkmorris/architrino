@@ -70,9 +70,9 @@ def oracle_status_class(certificate: Any) -> str:
         return certificate.status
     reasons = {cell.reason for cell in certificate.unresolved_cells}
     same_retained_history = (
-        certificate.receiver_history_id == certificate.source_history_id
+        certificate.receiver_history_id == certificate.transmitter_history_id
         and certificate.receiver_history_digest
-        == certificate.source_history_digest
+        == certificate.transmitter_history_digest
     )
     if reasons and (
         reasons <= {"transmitter_factor_interval_contains_zero"}
@@ -128,10 +128,10 @@ def compare_trace(
         reception = snapshot["reception_time"]
         for row in snapshot["root_certificates"]:
             receiver_id = row["receiver_path_id"]
-            source_id = row["source_path_id"]
+            transmitter_id = row["transmitter_path_id"]
             oracle = certify_causal_roots(
                 receiver=histories[receiver_id],
-                source=histories[source_id],
+                source=histories[transmitter_id],
                 reception_time=reception,
                 field_speed=packet["field_speed"],
                 search_lower=row["searched_lower"],
@@ -144,13 +144,13 @@ def compare_trace(
             divergence = first_row_divergence(row, oracle)
             if divergence is not None:
                 return {
-                    "schema": "eom_evolved_history_root_parity_result/v0",
+                    "schema": "eom_evolved_history_root_parity_result/v1",
                     "status": "diverged",
                     "run_id": packet["run_id"],
                     "first_divergent_step_index": snapshot["step_index"],
                     "first_divergent_reception_time": reception,
                     "receiver_path_id": receiver_id,
-                    "source_path_id": source_id,
+                    "transmitter_path_id": transmitter_id,
                     "reason": divergence,
                     "compared_snapshots": compared_snapshots,
                     "compared_rows": compared_rows,
@@ -164,7 +164,7 @@ def compare_trace(
                 flush=True,
             )
     return {
-        "schema": "eom_evolved_history_root_parity_result/v0",
+        "schema": "eom_evolved_history_root_parity_result/v1",
         "status": "parity_complete",
         "run_id": packet["run_id"],
         "first_divergent_step_index": None,

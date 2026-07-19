@@ -540,7 +540,7 @@ class CertifiedRetainedHistoryRootTests(unittest.TestCase):
         )
         certificate = self.certify(source)
         record = certificate.to_record()
-        self.assertEqual(record["schema"], "eom_root_completeness_certificate/v0")
+        self.assertEqual(record["schema"], "eom_root_completeness_certificate/v1")
         self.assertEqual(record["status"], "certified_complete")
         self.assertEqual(record["root_count"], 2)
         self.assertEqual(record["search"]["root_tolerance"], "1E-18")

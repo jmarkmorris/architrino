@@ -1225,8 +1225,8 @@ export function createPhotonAbsoluteSourceSegmentCausalRootRequests(
 ) {
   const measurement = options.measurement ?? resolvePhotonMeasurementParameters(state);
   const provider = createPhotonConstrainedSourceHistoryProvider(state, sourceRef, measurement, {
-    sourceHistoryKind: "moving-circular-source-linearized",
-    approximationPolicy: "linearized-moving-circular-source-segments",
+    sourceHistoryKind: "moving-circular-transmitter-linearized",
+    approximationPolicy: "linearized-moving-circular-transmitter-segments",
   });
   const hitTime = Number(observationTime) || 0;
   const maxDelay = normalizeNonnegativeSolverNumber(
@@ -1467,7 +1467,7 @@ function mapPhotonMovingCircularRootToDelayedRoot(state, sourceRef, measurement,
       },
     },
     receiverPoint,
-    sourceHistoryKind: root.sourceHistoryKind ?? request.sourceHistoryKind ?? "moving-circular-source",
+    sourceHistoryKind: root.sourceHistoryKind ?? request.sourceHistoryKind ?? "moving-circular-transmitter",
     sourceHistoryProviderId:
       request.sourceHistoryProvider?.providerId ?? PHOTON_SOURCE_HISTORY_PROVIDER_ID,
     sourceHistoryProviderKind:

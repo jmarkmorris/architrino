@@ -17,7 +17,7 @@ This file holds dated decisions, implementation status, validation results, fail
 - Expanded the performance requirement from native multithreading to an all-avenues program covering algorithmic scaling, SIMD/vectorization, memory locality, GPU, multi-GPU, heterogeneous CPU/GPU pipelines, and distributed execution.
 - Added a many-orders-of-magnitude multirate integration priority: fast paths and branch events may receive fine steps while slow paths use coarser same-law schedules, provided one causal absolute-time ledger and controlled cross-rate interpolation are preserved.
 - Separated same-law multirate stepping from renormalization-inspired reduced slow-sector models. Reduced models require an explicit approximation status, resolved comparison, remainder/error budget, and measured validity envelope.
-- Added a target envelope of many thousands to tens of thousands of architrinos and recorded the $N=10^4$ brute-force control scale of $10^8$ ordered receiver-source pairs per receiver time before history/root multiplicity.
+- Added a target envelope of many thousands to tens of thousands of architrinos and recorded the $N=10^4$ brute-force control scale of $10^8$ ordered receiver-transmitter pairs per receiver time before history/root multiplicity.
 - Added dedicated queue items for the performance architecture survey, large-population algorithmic scaling, deterministic CPU/SIMD execution, GPU/multi-GPU/heterogeneous execution, and a cross-backend performance-envelope gate.
 - Removed the earlier deferral of GPU/distributed exploration. Accelerator work may proceed alongside the correctness-first CPU path, but no backend gains EOM authority until it passes the independent oracle and convergence gates.
 
@@ -44,7 +44,7 @@ This file holds dated decisions, implementation status, validation results, fail
 - Promoted the supplied solver requirements into `eom_evolution_contract/v0`, a focused normative draft rather than leaving them only in an attachment or chat record.
 - Defined the invariant that every accepted trajectory segment comes from causal roots of the same run's accepted retained history.
 - Required continuous evaluable initial histories, root continuation through $dS/dT=D_T/D_s$, independent recovery scans, root-completeness certification, coupled immutable-state advancement, operational tolerance control, and fail-closed history boundaries.
-- Required canonical $D_s$, $D_T$, signed branch orientation, unsigned receiver-normal weight, polarity, charge product, inverse-square direction, $\eta$, and $\epsilon_c$ on the force rows actually consumed by integration.
+- Required canonical $D_s$, $D_T$, signed branch orientation, unsigned receiver-side-factor weight, polarity, charge product, inverse-square direction, $\eta$, and $\epsilon_c$ on the force rows actually consumed by integration.
 - Defined capability-derived `canonical`, `conditional`, `reference`, `display-only`, and `failed` evidence levels; successful execution cannot self-assign authority.
 - Added reconstructible per-root and per-step evidence schemas, explicit failure codes, sixteen validation gates, and a binary-outcome boundary requiring complete histories and stable full-history return for recurrence claims.
 - Reconciled the supplied velocity controls with the live Master Equation: constant-velocity straight super-field-speed motion is a zero-nontrivial-self-hit control, while exactly field-speed straight motion is a degenerate tangent case rather than an ordinary simple root.
@@ -66,17 +66,17 @@ This file holds dated decisions, implementation status, validation results, fail
 
 ## 2026-07-13 — Master EOM Binding Draft Exposed Regulated-Law Mismatch
 
-- Bound the unambiguous history space, causal-root condition, all-pair/self-pair domain, sharp receiver-normal acceleration, polarity, root transport, separator taxonomy, memory-boundary route, and caustic failure boundary in `master_eom_binding/v0`.
-- Derived the finite-width simple-root limit and found that the current dual-mollified corpus equation omits the receiver-normal numerator $|D_T|$. As written, its delta collapse produces $1/|D_s|$ rather than the canonical $|D_T/D_s|$ branch strength.
+- Bound the unambiguous history space, causal-root condition, all-pair/self-pair domain, sharp receiver-side-factor acceleration, polarity, root transport, separator taxonomy, memory-boundary route, and caustic failure boundary in `master_eom_binding/v0`.
+- Derived the finite-width simple-root limit and found that the current dual-mollified corpus equation omits the receiver-side-factor numerator $|D_T|$. As written, its delta collapse produces $1/|D_s|$ rather than the canonical $|D_T/D_s|$ branch strength.
 - Found that the current core factor $\widehat{\mathbf r}/(r^2+\epsilon_c^2)$ remains direction-undefined at $\mathbf r=0$, so it does not provide a complete coordinate-coincidence continuation.
-- Staged the receiver-normal finite-width equation and recommended the smooth radial kernel $\mathbf r/(r^2+\epsilon_c^2)^{3/2}$ because it is rotationally equivariant, zero at coincidence, polarity-blind apart from the canonical sign/charge factor, and converges to $\widehat{\mathbf r}/r^2$ off the origin.
+- Staged the receiver-side-factor finite-width equation and recommended the smooth radial kernel $\mathbf r/(r^2+\epsilon_c^2)^{3/2}$ because it is rotationally equivariant, zero at coincidence, polarity-blind apart from the canonical sign/charge factor, and converges to $\widehat{\mathbf r}/r^2$ off the origin.
 - Marked the binding `priority-only` and blocked its freeze on operator confirmation of the core kernel. No current solver, ABI, app, or reader-facing Master Equation prose was changed.
 
 ## 2026-07-13 — Master EOM Binding Accepted And Promoted
 
-- Accepted the operator's decision to bind the receiver-normal finite-width correction and the smooth radial core kernel.
+- Accepted the operator's decision to bind the receiver-side-factor finite-width correction and the smooth radial core kernel.
 - Corrected the canonical dual-mollified Master Equation so its integrand contains $|D_T|$ and uses $\mathbf r/(r^2+\epsilon_c^2)^{3/2}$.
-- Defined the complete receiver-normal vector integrand at coordinate coincidence by its zero continuous extension; the direction-dependent scalar $D_T$ is not evaluated independently at $\mathbf r=\mathbf 0$.
+- Defined the complete receiver-side-factor vector integrand at coordinate coincidence by its zero continuous extension; the direction-dependent scalar $D_T$ is not evaluated independently at $\mathbf r=\mathbf 0$.
 - Recorded the simple-root delta collapse to the canonical $|D_T/D_s|$ branch strength and froze `master_eom_binding/v0` against the resulting canonical source hash.
 - Removed the completed Master EOM binding item from the live queue and advanced the precision contract.
 - Left the current solver, ABI, apps, and dependencies unchanged.
@@ -101,7 +101,7 @@ This file holds dated decisions, implementation status, validation results, fail
 ## 2026-07-13 — Certified Retained-History And Root-Completeness Layer Completed
 
 - Implemented exact-decimal, contiguous piecewise-cubic retained histories with nominal $C^1$ continuity, explicit position and velocity reconstruction-error radii, and deterministic history digests.
-- Implemented directed-rounding decimal interval arithmetic for polynomial position, velocity, separation, causal residual, and source-normal evaluation without admitting binary floating-point inputs.
+- Implemented directed-rounding decimal interval arithmetic for polynomial position, velocity, separation, causal residual, and transmitter-side-factor evaluation without admitting binary floating-point inputs.
 - Implemented exhaustive classification of every cell in the declared retained search interval as root free, a unique simple-root bracket, an excluded coincident endpoint, or unresolved. A root-free-complement claim is emitted only when no unresolved cells remain.
 - Preserved multiple roots, close roots, exact roots, and segment-boundary roots; recorded memory-boundary contact separately so a truncated history cannot claim complete causal coverage.
 - Added rigorous open-cell exclusions for an $H(0)$ coincident endpoint under a uniform sub-$c_f$ speed bound or a uniform super-$c_f$ velocity-component bound. Exactly-on-the-rail motion remains unresolved rather than being forced into a simple-root result.
@@ -115,7 +115,7 @@ This file holds dated decisions, implementation status, validation results, fail
 - Amended the frozen evolution requirements with `eom_evolution_contract/v0/amendment-1`, raising the target from thousands or tens of thousands to at least $10^6$ active path identities with continuous retained histories.
 - Distinguished a million active paths from a million stored history rows and recorded the synchronized $N^2=10^{12}$ logical ordered-relationship domain before root multiplicity and history search.
 - Defined complete disjoint pair accounting through excluded, exact, enclosed, and unresolved membership classes; accepted evolution requires complete coverage and zero unresolved relationships.
-- Derived the certified receiver-source-time block residual enclosure $\mathcal G_{RB}(I)$ and permitted block pruning only when that enclosure excludes zero.
+- Derived the certified receiver-transmitter-time block residual enclosure $\mathcal G_{RB}(I)$ and permitted block pruning only when that enclosure excludes zero.
 - Bound the first production implementation to exact evaluation of every surviving active candidate. Later active aggregation requires certified root topology, reconstructible membership, and an acceleration remainder inside the accepted-state error budget.
 - Designed deterministic receiver ownership, immutable content-addressed history chunks, causal residency and prefetch, heterogeneous regular and difficult queues, fixed reduction identities, atomic accepted-window publication, streamed output manifests, and reproducible distributed restart.
 - Added an honest dense-workload boundary: if certified exclusion and controlled aggregation cannot reduce a noncompressible workload inside the declared hardware envelope, preflight returns `resource_envelope_exceeded` before publishing candidate evolution.
@@ -128,7 +128,7 @@ This file holds dated decisions, implementation status, validation results, fail
   exact-decimal interval reconstruction layer over the certified retained
   histories and root-completeness certificates.
 - Implemented the frozen sharp-root acceleration with certified $D_s$,
-  receiver-normal strength $|D_T/D_s|$, signed charge product, and the
+  receiver-side-factor strength $|D_T/D_s|$, signed charge product, and the
   unregularized inverse-square vector law. Exact-$c_f$ receiver motion emits a
   present but silent row, and super-$c_f$ receiver motion is not clamped.
 - Implemented the frozen finite-width pair law by adaptive interval quadrature
@@ -291,7 +291,7 @@ This file holds dated decisions, implementation status, validation results, fail
   in the block root-free or sends the complete block to exact fallback.
 - Implemented `eom_native_exact_pair_certificate/v0` and a bounded-thread batch.
   The batch isolates all regular simple roots, certifies the complement,
-  records source-normal and receiver-normal enclosures, preserves source
+  records transmitter-side-factor and receiver-side-factor enclosures, preserves source
   segment identity through boundary deduplication, and returns results in input
   order independently of worker completion order.
 - Implemented local numeric escalation from outward binary64 intervals to
@@ -320,9 +320,9 @@ This file holds dated decisions, implementation status, validation results, fail
 - Added `eom_native_pair_acceleration_certificate/v0`. It consumes only a
   complete exact-pair certificate covering the emission domain through the
   reception time, re-evaluates the retained histories, intersects source and
-  receiver normal enclosures, enforces the sharp source-normal floor, and
+  receiver normal enclosures, enforces the sharp transmitter-side-factor floor, and
   emits one auditable interval-vector row per admitted root.
-- Preserved the full receiver-normal law. The exact-field-speed receiver
+- Preserved the full receiver-side-factor law. The exact-field-speed receiver
   control produces a certified interval containing zero acceleration, and the
   super-field-speed receiver control remains active with negative receiver
   normal and nonzero branch strength; neither velocity is clamped.
@@ -335,7 +335,7 @@ This file holds dated decisions, implementation status, validation results, fail
   Coincident static self-pairs remain present as certified inactive zero
   contributions.
 - Added fail-closed controls for tangent roots, retained-memory contact,
-  tampered source-normal evidence, retained-history provenance mismatch, and an
+  tampered transmitter-side-factor evidence, retained-history provenance mismatch, and an
   acceleration enclosure wider than the declared tolerance. None publishes an
   acceleration total.
 - Added six independent 90-decimal-digit Python-oracle parity and replay tests,
@@ -362,7 +362,7 @@ This file holds dated decisions, implementation status, validation results, fail
 - Inflated the fine accepted history by the measured local discrepancy and
   reran complete root and acceleration certification on that exact history
   before publication.
-- Implemented source-normal-sign and root-count topology comparison between
+- Implemented transmitter-side-factor-sign and root-count topology comparison between
   substep endpoints. A changed signature returns
   `root_event_requires_subdivision` without publishing a candidate.
 - Implemented atomic in-memory publication. Accepted steps expose every path
@@ -388,7 +388,7 @@ This file holds dated decisions, implementation status, validation results, fail
 ## 2026-07-13 — Native Finite-Width Acceleration And Fold Event Acceptance Implemented
 
 - Implemented the bound finite-width causal-surface acceleration directly in
-  C++20: the smooth core kernel, receiver-normal magnitude, Gaussian causal
+  C++20: the smooth core kernel, receiver-side-factor magnitude, Gaussian causal
   surface, signed charge/coupling factor, complete retained emission interval,
   and adaptive outward interval quadrature are all consumed in one auditable
   pair row.
@@ -427,7 +427,7 @@ This file holds dated decisions, implementation status, validation results, fail
 - Extended the multiprecision finite-width backend to recompute the complete
   two-time fold/caustic impulse in directed MPFR intervals. The route includes
   retained-history interpolation, causal triangular-domain area, separation,
-  receiver-normal magnitude, Gaussian causal surface, smooth core kernel,
+  receiver-side-factor magnitude, Gaussian causal surface, smooth core kernel,
   signed coupling, adaptive quadrature, and deterministic pairwise reduction.
 - Added caller-bounded event precision escalation with recorded route and
   achieved bits. The forced difficult-row control completes at 128 bits and
@@ -647,7 +647,7 @@ This file holds dated decisions, implementation status, validation results, fail
   intervening segment to be strictly sub-field; a forced-MPFR mixed-speed
   regression prevents recurrence. The old divergent oracle row is now
   complete with zero roots and zero unresolved cells.
-- Added enclosed self-endpoint exclusion under a strict source-normal sign and
+- Added enclosed self-endpoint exclusion under a strict transmitter-side-factor sign and
   an explicit near-multiple self-root-cluster finite-width route.
 - Added the cubic endpoint-tangency regression using
   `rho=0.96009867914`, `omega=1.0415596039524766`, and `c_f=1`. The 90-digit
@@ -673,9 +673,9 @@ This file holds dated decisions, implementation status, validation results, fail
 - Added an explicit retained-error-token dominance test before precision
   escalation. Token-dominated simple roots now use the tolerance-scale
   strict-sign IVT bracket at binary64, including continuous segment joins.
-- Preserved the unchanged `1e-5` root tolerance, `1e-24` source-normal floor,
+- Preserved the unchanged `1e-5` root tolerance, `1e-24` transmitter-side-factor floor,
   and fail-closed policy. Root uniqueness still requires a sign-definite
-  source-normal hull across the accepted bracket.
+  transmitter-side-factor hull across the accepted bracket.
 
 ## 2026-07-14 — Warm-complement carry and certified delay window
 
@@ -686,7 +686,7 @@ This file holds dated decisions, implementation status, validation results, fail
 - Implemented the operator's corrected proof object: transport complete
   root-free residual cells, not root brackets. Reuse requires exact source
   segment token identity and a strict residual sign after widening by the
-  receiver-normal time bound plus certified candidate correction. Marginal
+  receiver-side-factor time bound plus certified candidate correction. Marginal
   cells return to the unchanged fail-closed classifier.
 - Tightened the certified history window from a global position box to the
   per-history-segment radial triangle bound.
@@ -912,13 +912,13 @@ This file holds dated decisions, implementation status, validation results, fail
 
 - Added certificate-only difficult-cell diagnostics to the MPFR exact-pair
   route. They record the emission cell, undecidable midpoint residual,
-  source-normal and receiver-normal enclosures, endpoint signs, and source
+  transmitter-side-factor and receiver-side-factor enclosures, endpoint signs, and source
   segment without changing root classification or acceleration.
 - The formerly blocking cell at reception time $T\approx32.48$ has opposite
   residual endpoint signs and
   $D_s\in[0.8549184784,0.8549184901]$. By strict monotonicity and the
   intermediate-value theorem it contains exactly one simple root. Applying the
-  mean-value theorem to the directed midpoint residual and source-normal
+  mean-value theorem to the directed midpoint residual and transmitter-side-factor
   enclosures narrows the emission root to a `2.551e-9` interval, inside the
   declared `1e-8` tolerance. The earlier inference that this was an
   off-diagonal fold or root-topology event is refuted.
@@ -1165,7 +1165,7 @@ This file holds dated decisions, implementation status, validation results, fail
 ## 2026-07-16 — Certified far-field contribution enclosure
 
 - **Derived:** a far subluminal source has at most one retained causal root,
-  and the frozen receiver-normal law is bounded by
+  and the frozen receiver-side-factor law is bounded by
   $\kappa|q_iq_j|(c_f+v_i)/(r_{\min}^2(c_f-v_j))$. The cutoff is solved from a
   declared acceleration-width slice; it is not a distance constant.
 - Implemented pre-root per-pair classification, symmetric acceleration rows,
@@ -1408,7 +1408,7 @@ This file holds dated decisions, implementation status, validation results, fail
 
 ## 2026-07-17 — Ordinary-root classification and monotone interior enclosure
 
-- **Derived:** for opposite strict endpoint signs and a one-sign source-normal
+- **Derived:** for opposite strict endpoint signs and a one-sign transmitter-side-factor
   enclosure, the mean-value theorem encloses the unique interior root by
   $[a,b]\cap(p-G_p/D_s([a,b]))$. This asymmetric row replaces the failed
   symmetric-probe-only decision without changing the `1e-3` Borg root
@@ -1508,7 +1508,7 @@ This file holds dated decisions, implementation status, validation results, fail
   no interval/MPFR root work, cell ledger, root certificate, FWC row,
   regulator ladder, or full/two-half certification comparison. Certified grade
   retains its prior route.
-- **Derived close-approach disposition:** core-active or near-source-normal-
+- **Derived close-approach disposition:** core-active or near-transmitter-side-factor-
   pole pairs use the frozen finite-width regulated integrand with fixed-order
   binary64 quadrature. A continuing step records only
   `DISPLAY-REGULATOR-01/display_core_regulator_applied` with its reception
@@ -1576,7 +1576,7 @@ This file holds dated decisions, implementation status, validation results, fail
   radius, accepted-step count, and controller-height token was bit-identical.
 - **Measured validation:** all 149 EOM Python tests and all 85 Borg JavaScript
   tests pass on the rebuilt local targets. The complete C++ target set builds,
-  and the content, scene-graph, receiver-normal, frequency-triplet, polarity,
+  and the content, scene-graph, receiver-side-factor, frequency-triplet, polarity,
   and animator pre-commit validators pass.
 - Claim grades: the single-route architecture, unchanged acceptance authority,
   and protocol field count are `derived` from the implementation; the build and
@@ -1733,7 +1733,7 @@ This file holds dated decisions, implementation status, validation results, fail
   `1e-3` root ceiling. Seeds 0 and 3 stop at source-segment joins even though
   the point-residual widths are below the ceiling. Every row retains strict
   normals near one and exhausts 512-bit MPFR, so arithmetic precision and a
-  source-normal pole are excluded.
+  transmitter-side-factor pole are excluded.
 - **Derived mechanism:** candidate construction collapses the three
   componentwise state radii to one maximum, stores one scalar error, and root
   evaluation reinflates every axis by that scalar. Join validation preserves
@@ -1852,7 +1852,7 @@ This file holds dated decisions, implementation status, validation results, fail
   feedback dominates. The observer's Research seed-0 outer-wall overhead is
   `216.97%`, also missing the requested low-single-digit target.
 - **Next closure object:** derive a root-time budget theorem mapping admitted
-  state and source-normal bounds to the unchanged root-time ceiling before
+  state and transmitter-side-factor bounds to the unchanged root-time ceiling before
   attempting another joint-state representation. No tolerance change is
   proposed.
 - **Evidence:**
@@ -1879,7 +1879,7 @@ This file holds dated decisions, implementation status, validation results, fail
 
 ## 2026-07-19 — Coincident-transition and history-only conservation closure attempt
 
-- **Derived finite-window no-go:** on the smooth same-source birth chart, the
+- **Derived finite-window no-go:** on the smooth same-transmitter birth chart, the
   complete transmitter-side impulse obeys a regulator-uniform lower bound
   proportional to
   $\min(c_f/(\alpha\epsilon_c^2),L/(\eta\epsilon_c))$. Both alternatives
@@ -1890,7 +1890,7 @@ This file holds dated decisions, implementation status, validation results, fail
 - **Derived acceptance result:** a fixed positive core makes the prescribed
   transition finite, but the current point-transceiver primitives do not fix a
   physical core scale, kernel, minimum self-hit delay, or alternative
-  near-origin same-source rule. The finite accepted transition gate therefore
+  near-origin same-transmitter rule. The finite accepted transition gate therefore
   closes negatively under the current primitives.
 - **Derived conservation obstruction:** the causal retained-history update
   determines acceleration but leaves the kinetic scalar $K(s)$, momentum map
@@ -1899,18 +1899,18 @@ This file holds dated decisions, implementation status, validation results, fail
   non-circularity requirement.
 - **Promotion audit:** receiver playback remains excluded from proposed base
   acceleration on the supported simple-root domain. Global canon and EOM
-  solver promotion remain deferred because same-source transition and
+  solver promotion remain deferred because same-transmitter transition and
   conservation require new derived structure or an explicit restriction of
   the claimed equation domain.
 - **Artifacts:**
-  [transmitter-side singular-event analysis](analysis-transmitter-side-fold-and-coincident-birth.md),
-  [history-only conservation obstruction](analysis-transmitter-side-conservation-obstruction.md),
+  [transmitter-side singular-event analysis](analysis-transmitter-factor-fold-and-coincident-birth.md),
+  [history-only conservation obstruction](analysis-transmitter-factor-conservation-obstruction.md),
   [going-forward walkthrough](master-equation-import-audit-walkthrough-2026-07-18.md),
   and [promotion-readiness matrix](master-equation-promotion-readiness-matrix.md).
 
 ## 2026-07-19 — Receiver-factor change-specific promotion audit
 
-- **Derived old-law baseline:** on the same smooth coincident same-source birth
+- **Derived old-law baseline:** on the same smooth coincident same-transmitter birth
   chart used for the transmitter-side no-go result, the current
   receiver-weighted factor approaches one, the separation is $2c_ft+O(t^2)$,
   and the sharp acceleration is proportional to $t^{-2}$. Its impulse already
@@ -1925,7 +1925,7 @@ This file holds dated decisions, implementation status, validation results, fail
   fixed kinetic, momentum, and wake accounts. The current two-time action's
   formal conservation identities belong to a future-dependent equation, not
   the causal update advanced by the EOM solver.
-- **Promotion-scope disposition:** coincident same-source birth and causal
+- **Promotion-scope disposition:** coincident same-transmitter birth and causal
   conservation remain global Master Equation debts, but they do not justify
   retaining the receiver multiplier. The factor correction is ready for a
   separately authorized scoped migration that preserves root transport and
@@ -1933,6 +1933,6 @@ This file holds dated decisions, implementation status, validation results, fail
 - **Unchanged authority boundary:** no canonical equation, EOM solver
   semantics, frozen evidence, or generated artifact was changed.
 - **Artifacts:**
-  [change-specific promotion audit](analysis-receiver-factor-change-specific-promotion-audit.md),
+  [change-specific promotion audit](archive/receiver-factor-migration/analysis-receiver-factor-change-specific-promotion-audit.md),
   [going-forward walkthrough](master-equation-import-audit-walkthrough-2026-07-18.md),
   and [promotion-readiness matrix](master-equation-promotion-readiness-matrix.md).
