@@ -166,7 +166,7 @@ test("equation mapping names the causal wake entry as the per-hit law", () => {
   const accelerationText = acceleration.content.find((block) => block.type === "text").text;
 
   assert.equal(document.title, "Causal Wake Per-Hit Law");
-  assert.match(accelerationText, /one acceleration contribution/u);
+  assert.match(accelerationText, /instantaneous acceleration contribution/u);
   assert.match(accelerationText, /full master equation sums this term/u);
 });
 
@@ -179,7 +179,7 @@ test("equation mapping places the full master equation immediately after the per
   assert.equal(masterEquation.title, "Causal Wake Master Equation");
   assert.deepEqual(
     masterEquation.anchors.map((anchor) => anchor.id),
-    ["totalAcceleration", "sourceSum", "emissionSum", "perHitLaw"]
+    ["totalAcceleration", "transmitterSum", "emissionSum", "perHitLaw"]
   );
   assert.equal(
     masterEquation.formulaParts.some(
@@ -197,6 +197,98 @@ test("equation mapping places the full master equation immediately after the per
     ),
     true
   );
+});
+
+test("equation mapping reproduces the canonical transmitter-side Master Equation", () => {
+  const documents = createSeedEquationMapDocuments();
+  const perHit = documents.find((entry) => entry.id === "eq-01-causal-wake-master-equation");
+  const masterEquation = documents.find(
+    (entry) => entry.id === "eq-01b-causal-wake-master-equation"
+  );
+  const accelerationFactor = perHit.overlays.find(
+    (overlay) => overlay.id === "transmitter-side"
+  );
+  const accelerationFactorMath = accelerationFactor.content.find(
+    (block) => block.type === "math"
+  ).tex;
+  const accelerationFactorText = accelerationFactor.content.find(
+    (block) => block.type === "text"
+  ).text;
+
+  assert.match(perHit.formulaTeX, /r_t\^2\(T_r;T_t\)/u);
+  assert.match(perHit.formulaTeX, /W_\{r\\leftarrow t\}\^\{\\mathrm\{acc\}\}\(T_r;T_t\)/u);
+  assert.match(masterEquation.formulaTeX, /r_t\^2\(T_r;T_t\)/u);
+  assert.equal(masterEquation.formulaTeX.includes("D_r"), false);
+  assert.equal(
+    accelerationFactorMath,
+    "W_{r\\leftarrow t}^{\\mathrm{acc}}(T_r;T_t)=c_f/\\left|D_t(T_r;T_t)\\right|"
+  );
+  assert.equal(accelerationFactorMath.includes("D_r"), false);
+  assert.match(accelerationFactorText, /Dₜ certified nonzero/u);
+  assert.match(accelerationFactorText, /fail closed/u);
+});
+
+test("equation mapping uses transmitter for the causal-hit role", () => {
+  const causalDocuments = createSeedEquationMapDocuments().filter((document) =>
+    ["eq-01-causal-wake-master-equation", "eq-01b-causal-wake-master-equation"].includes(
+      document.id
+    )
+  );
+
+  causalDocuments.forEach((document) => {
+    assert.equal(document.anchors.some((anchor) => /source/iu.test(anchor.id)), false);
+    collectVisibleEquationMapText(document).forEach(({ source, text }) => {
+      assert.equal(
+        /\bsources?\b/iu.test(text),
+        false,
+        `${source} should name the causal role as transmitter`
+      );
+    });
+  });
+});
+
+test("equation mapping marks every candidate equation as a target or comparison", () => {
+  createSeedEquationMapDocuments()
+    .filter((document) => document.claimLevel === "candidate-commentary")
+    .forEach((document) => {
+      const visibleText = collectVisibleEquationMapText(document)
+        .map(({ text }) => text)
+        .join(" ");
+      assert.match(
+        visibleText,
+        /\b(?:candidate|comparison|target|not yet|remains open|open derivation)\b/iu,
+        `${document.id} should expose its unresolved claim level in plain language`
+      );
+    });
+});
+
+test("equation mapping keeps open conservation accounts as residual targets", () => {
+  const conservation = createSeedEquationMapDocuments().find(
+    (entry) => entry.id === "eq-05-noether-conservation"
+  );
+
+  assert.match(conservation.formulaTeX, /\\mathcal R_E\(T_W\)/u);
+  assert.equal(conservation.formulaTeX.includes("\\boldsymbol{\\mathcal R}_P(T_W)"), true);
+  assert.equal(conservation.formulaTeX.includes("\\boldsymbol{\\mathcal R}_L(T_W)"), true);
+  assert.equal(conservation.formulaTeX.includes("P_{\\mathrm{mech}}"), false);
+  assert.equal(conservation.formulaTeX.includes("P_{\\mathrm{wake}}"), false);
+});
+
+test("equation mapping keeps cosmology and temperature dimensions explicit", () => {
+  const documents = createSeedEquationMapDocuments();
+  const friedmann = documents.find(
+    (entry) => entry.id === "eq-19-friedmann-continuity-lcdm"
+  );
+  const blackbody = documents.find(
+    (entry) => entry.id === "eq-22-planck-blackbody-occupancy"
+  );
+
+  assert.equal(
+    friedmann.formulaTeX.includes("\\frac{\\Lambda_{\\mathrm{eff}}c_0^2}{3}"),
+    true
+  );
+  assert.match(blackbody.formulaTeX, /k_BT_\{\\mathrm\{temp\}\}/u);
+  assert.equal(blackbody.formulaTeX.includes("k_BT,"), false);
 });
 
 test("equation mapping line-of-action callout names the emission point", () => {
