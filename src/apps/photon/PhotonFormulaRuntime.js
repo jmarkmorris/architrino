@@ -1175,7 +1175,7 @@ export async function computePhotonSelfHitDiagnosticsWithPrescribedPathAnalysis(
     return summarizePhotonSelfHitRows(
       rows,
       "span-skipped",
-      "Self-hit span rows skipped; helical same-source rows computed.",
+      "Self-hit span records skipped; helical same-transmitter causal hits computed.",
       helicalRows
     );
   }

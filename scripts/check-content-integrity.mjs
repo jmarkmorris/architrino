@@ -33,7 +33,11 @@ const CHECKS = [
     args: ["scripts/export-ios-textbook-package.mjs", "--check", "--strict"],
   },
   {
-    name: "Check receiver-normal Master EOM clean slate",
+    name: "Check current Master Equation terminology",
+    args: ["scripts/check-master-equation-terminology-migration.mjs"],
+  },
+  {
+    name: "Check receiver-weighted Master EOM compatibility clean slate",
     args: ["scripts/check-receiver-normal-clean-slate.mjs"],
   },
   {

@@ -455,7 +455,7 @@ export function computeMovingCircularObserverField(request = {}) {
         contributions.find((row) => row.receiverNormalEvidenceStatus !== "ok")
           ?.receiverNormalEvidenceStatus ?? "receiver_normal_branch_rows_missing",
         "warn",
-        "prescribed observer-field branches are missing receiver-normal rows"
+        "prescribed observer-field branches are missing receiver-side root-playback rows"
       )
     : createStatus("ok", "ok", "prescribed moving-circular observer field computed");
   return labelRecord({

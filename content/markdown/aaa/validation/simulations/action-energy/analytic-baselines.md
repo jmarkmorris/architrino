@@ -1,14 +1,14 @@
 # Analytic Baselines
 
 Purpose:
-- State the delay differential equations (DDEs) that govern canonical interactions under the delayed line-of-action law with receiver-normal branch strength.
+- State the delay differential equations (DDEs) that govern canonical interactions under the delayed line-of-action law with receiver-weighted acceleration factor.
 - Record exact analytical solutions only where they exist; otherwise, state solvability status without approximations.
 
 Models:
 - Fixed center (test particle, source stationary):
-  - The causal root is explicit, but the canonical receiver-normal acceleration is $\ddot r=-K W^{\mathrm{rec}}/r^2$ with $K=\kappa |q q'|>0$ and $W^{\mathrm{rec}}=\lvert 1-\dot r\rvert$ in field-speed units on the outward radial sign convention. The classical closed-form inverse-square fall is not a receiver-normal moving-receiver baseline.
+  - The causal root is explicit, but the canonical receiver-weighted acceleration is $\ddot r=-K W^{\mathrm{acc}}/r^2$ with $K=\kappa |q q'|>0$ and $W^{\mathrm{acc}}=\lvert 1-\dot r\rvert$ in field-speed units on the outward radial sign convention. The classical closed-form inverse-square fall is not a receiver-side moving-receiver baseline.
 - Two-body mutual interaction (opposite or equal charges):
-  - Coupled DDEs with causal roots $T_{\mathrm{em}}$ defined by $|X_i(T)-X_j(T_{\mathrm{em}})|=T-T_{\mathrm{em}}$ ($v=1$); accelerations superpose as $\pm \kappa \epsilon^2 W^{\mathrm{rec}}/r^2$ along the line of action.
+  - Coupled DDEs with causal roots $T_t$ defined by $|X_i(T)-X_j(T_t)|=T-T_t$ ($v=1$); accelerations superpose as $\pm \kappa \epsilon^2 W^{\mathrm{acc}}/r^2$ along the line of action.
   - No exact closed-form solutions are presently known for the coupled DDEs in general.
 
 Methodological priority:
@@ -84,23 +84,23 @@ Methodological priority:
   $$
   Before the branch average is formed, retain the root-resolved virial rows
   $$
-  V_{i\leftarrow j,T_{\mathrm{em}}}^{(\eta)}(T)
+  V_{i\leftarrow j,T_t}^{(\eta)}(T)
   =
   \mu_{\text{arch}}\,
   \mathbf X_i(T)
   \cdot
-  \mathbf A_{i\leftarrow j}^{(\eta)}(T;T_{\mathrm{em}})
+  \mathbf A_{i\leftarrow j}^{(\eta)}(T;T_t)
   $$
   and the corresponding delivered-power rows
   $$
-  P_{i\leftarrow j,T_{\mathrm{em}}}^{(\eta)}(T)
+  P_{i\leftarrow j,T_t}^{(\eta)}(T)
   =
   \mu_{\text{arch}}\,
-  \mathbf A_{i\leftarrow j}^{(\eta)}(T;T_{\mathrm{em}})
+  \mathbf A_{i\leftarrow j}^{(\eta)}(T;T_t)
   \cdot
   \mathbf V_i(T)
   $$
-  for every retained source/root hit $T_{\mathrm{em}}\in\mathcal C_{ij,b}^{(\eta)}(T)$. The net virial term is then the ledger-preserving sum
+  for every retained source/root hit $T_t\in\mathcal C_{ij,b}^{(\eta)}(T)$. The net virial term is then the ledger-preserving sum
   $$
   \sum_i
   \mu_{\text{arch}}\,
@@ -108,10 +108,10 @@ Methodological priority:
   =
   \sum_i
   \sum_j
-  \sum_{T_{\mathrm{em}}\in\mathcal C_{ij,b}^{(\eta)}(T)}
-  V_{i\leftarrow j,T_{\mathrm{em}}}^{(\eta)}(T)
+  \sum_{T_t\in\mathcal C_{ij,b}^{(\eta)}(T)}
+  V_{i\leftarrow j,T_t}^{(\eta)}(T)
   $$
-  on the same active causal-root ledger used by the acceleration residual and energy crosswalk. Thus a small branch-virial residual is meaningful only after source identity, polarity, emission time, Jacobian, receiver-normal branch strength, and receiver radial power have survived the row aggregation.
+  on the same active causal-root ledger used by the acceleration residual and energy crosswalk. Thus a small branch-virial residual is meaningful only after transmitter identity, polarity, emission time, Jacobian, receiver-weighted acceleration factor, and receiver radial power have survived the row aggregation.
   When the branch is differentiable after mollification and the same signed causal-root ledger is retained, direct differentiation gives the finite-window identity
   $$
   \left\langle
@@ -160,9 +160,9 @@ Methodological priority:
   diagnostic only until it supplies the same-domain scale generator, homogeneity
   degree, and branch coordinate needed for this stronger reduction.
 - Velocity-regime scope for the branch-virial target:
-  - Strict sub-field-speed branch windows are the closest to the classical comparison because nontrivial self-hit roots are excluded on the strictly sub-field-speed interval; delayed partner hits, source-normal denominators, and receiver-normal branch factors still remain in the acceleration term.
+  - Strict sub-field-speed branch windows are the closest to the classical comparison because nontrivial self-hit roots are excluded on the strictly sub-field-speed interval; delayed partner hits, transmitter-side factors, and receiver-weighted acceleration factors still remain in the acceleration term.
   - Field-speed or near-field-speed windows are threshold-sensitive. They require an explicit Jacobian floor, inactive-root gap floor, and unchanged causal-root ledger before the virial residual is meaningful.
-  - Super-field-speed history requires the retained self-hit and multi-root rows to be included in $\mathbf A_{i,b}^{(\eta)}(T)$. A speed label alone never certifies the branch; root existence, transversality, receiver-normal branch strength, and bounded endpoint virial drift do the work.
+  - Super-field-speed history requires the retained self-hit and multi-root rows to be included in $\mathbf A_{i,b}^{(\eta)}(T)$. A speed label alone never certifies the branch; root existence, transversality, receiver-weighted acceleration factor, and bounded endpoint virial drift do the work.
 - Failure modes:
   - $\mathcal{G}_b^{(\eta)}$ has unbounded secular drift on $W$.
   - The causal-root ledger changes, an inactive-root gap closes, or the Jacobian floor fails.
@@ -172,16 +172,16 @@ Methodological priority:
 Symmetric two-body on a line (exact DDE; challenges):
 - Let $X_1(T)=+\tfrac{1}{2}r(T)$ and $X_2(T)=-\tfrac{1}{2}r(T)$ with $r(T)>0$ and $v=1$. The causal-time condition implies
   $$
-  \frac{r(T)+r(T_{\mathrm{em}})}{2} \;=\; T - T_{\mathrm{em}},\qquad T_{\mathrm{em}}<T
+  \frac{r(T)+r(T_t)}{2} \;=\; T - T_t,\qquad T_t<T
   $$
-  or, writing $\Delta(T)=T-T_{\mathrm{em}}>0$ implicitly,
+  or, writing $\Delta(T)=T-T_t>0$ implicitly,
   $$
   r(T) + r\!\big(T-\Delta(T)\big) \;=\; 2\,\Delta(T)
   $$
 - For opposite polarities, the exact relative-coordinate equation is the state-dependent DDE
   $$
   \frac{d^2 r}{dT^2} \;=\; -\,\frac{8\,\kappa\,\epsilon^2}{\big(r(T) + r(T-\Delta(T))\big)^2}
-  W^{\mathrm{rec}}(T)
+  W^{\mathrm{acc}}(T)
   $$
   with $\Delta(T)$ determined by the implicit constraint above. For equal charges, the sign is reversed.
 
@@ -193,7 +193,7 @@ Integral (delta) form selecting the causal root:
   \mathrm{sgn}\!\big(X_1(T)-X_2(T-\Delta)\big)}
   {\lvert X_1(T)-X_2(T-\Delta)\rvert^{2}}\; d\Delta
   $$
-  whose evaluation selects the causal delay $\Delta(T)$. The receiver-normal branch strength must then be applied on the selected root to yield the DDE above.
+  whose evaluation selects the causal delay $\Delta(T)$. The receiver-weighted acceleration factor must then be applied on the selected root to yield the DDE above.
 
 Why closed-form solutions are unlikely (even with symmetry):
 - The delay is state-dependent: the unknown $r(T)$ appears both in the right-hand side and in the implicit constraint defining $\Delta(T)$, making the problem a nonlinear functional equation rather than an ODE.
@@ -215,7 +215,7 @@ Solution techniques (toolbox for delayed, radial DDEs):
 
 Deliverables:
 - Precise DDE forms and causal-root conditions for use in analysis and computation.
-- Cross-references to sections with receiver-normal baseline equations and status notes.
+- Cross-references to sections with receiver-side baseline equations and status notes.
 - A minimal benchmark ladder for closure tests:
   - fixed-center ODE recovery,
   - symmetric two-body delayed dynamics,

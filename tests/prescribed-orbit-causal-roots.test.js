@@ -7,7 +7,7 @@ import {
   solveMovingCircularSameSourceCausalRoots,
 } from "../src/prescribed-path-analysis/index.mjs";
 
-test("moving circular absolute-history roots use receiver-normal branch weight", () => {
+test("moving circular absolute-history roots use receiver-weighted acceleration", () => {
   const request = createMovingCircularSourceRootRequest({
     source: {
       centerAtEpoch: { x: 0, y: 0, z: 0 },
@@ -49,7 +49,7 @@ test("moving circular absolute-history roots use receiver-normal branch weight",
   assert.equal(root.receiverNormalFactor, 1.5);
   assert.equal(root.unsignedReceiverNormalFactor, 1.5);
   assert.equal(root.branchWeight, 1.5);
-  // Signed branch orientation m = D_T/D_s is emitted explicitly (additive).
+  // Signed branch orientation m = D_r/D_t is emitted explicitly (additive).
   assert.equal(root.signedBranchOrientation, 1.5);
 });
 
@@ -62,7 +62,7 @@ const VT095_SAME_SOURCE_SOURCE = {
   epochTime: 0,
 };
 
-test("same-source root emits the signed branch orientation; rigid circle stays reflection-locked at m=+1", () => {
+test("same-transmitter root emits the signed branch orientation; rigid circle stays reflection-locked at m=+1", () => {
   const rho = Math.sqrt(2 / 3);
   const response = solveMovingCircularSameSourceCausalRoots({
     source: { ...VT095_SAME_SOURCE_SOURCE, angularVelocity: 1.00196 / rho, angularAcceleration: 0 },
@@ -76,14 +76,14 @@ test("same-source root emits the signed branch orientation; rigid circle stays r
   assert.ok(response.roots.length >= 1);
   const root = response.roots[response.roots.length - 1];
   assert.equal(root.rootKind, "same-source");
-  // Fixed-omega rigid circle: reflection symmetry gives D_T = D_s, m = +1.
+  // Fixed-omega rigid circle: reflection symmetry gives D_r = D_t, m = +1.
   assert.ok(Math.abs(root.signedBranchOrientation - 1) < 1e-6);
   assert.ok(Math.abs(root.distance - 0.17662) < 2e-3);
   // branchWeight remains the unsigned magnitude by contract.
   assert.ok(Math.abs(root.branchWeight - Math.abs(root.signedBranchOrientation)) < 1e-12);
 });
 
-test("accelerating same-source history yields an absorptive (m<0) branch orientation past the field-speed hinge", () => {
+test("accelerating same-transmitter history yields an absorptive (m<0) branch orientation past the field-speed hinge", () => {
   const rho = Math.sqrt(2 / 3);
   const tStar = 0.42893;
   const response = solveMovingCircularSameSourceCausalRoots({
@@ -103,8 +103,8 @@ test("accelerating same-source history yields an absorptive (m<0) branch orienta
   assert.ok(response.roots.length >= 1);
   const root = response.roots[response.roots.length - 1];
   assert.ok(root.signedBranchOrientation < 0, `expected m<0, got ${root.signedBranchOrientation}`);
-  assert.ok(root.receiverNormalNumerator < 0, "D_T < 0 past the hinge");
-  assert.ok(root.sourceNormalDenominator > 0, "D_s > 0 past the hinge");
+  assert.ok(root.receiverNormalNumerator < 0, "D_r < 0 past the hinge");
+  assert.ok(root.sourceNormalDenominator > 0, "D_t > 0 past the hinge");
   // The unsigned branchWeight cannot see this sign.
   assert.ok(root.branchWeight > 0);
 });

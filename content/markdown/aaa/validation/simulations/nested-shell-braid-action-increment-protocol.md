@@ -28,7 +28,7 @@ $$
 \mathcal{T}_{\mathrm{acc}}=\varnothing
 $$
 
-unless both endpoint packets first satisfy branch-certificate eligibility: matching ledger identity, matching active-root convention, positive Jacobian floors, positive receiver-normal branch-strength floors or certified intervals, declared inactive-root or tail status, $\Delta_{\mathbf{k}}>0$, conservation pullback on the same rows, and refinement records sufficient to keep the endpoint status stable. Before that eligibility is supplied, a run may report diagnostics or rejected endpoint packets, but it may not promote `candidate_action_increment` or `candidate_h_recovery`.
+unless both endpoint packets first satisfy branch-certificate eligibility: matching ledger identity, matching active-root convention, positive Jacobian floors, positive receiver-weighted acceleration-factor floors or certified intervals, declared inactive-root or tail status, $\Delta_{\mathbf{k}}>0$, conservation pullback on the same rows, and refinement records sufficient to keep the endpoint status stable. Before that eligibility is supplied, a run may report diagnostics or rejected endpoint packets, but it may not promote `candidate_action_increment` or `candidate_h_recovery`.
 
 When endpoint eligibility has been established, the accepted transition class is
 
@@ -136,7 +136,7 @@ The campaign must include an approach-to-$c_f$ diagnostic on the same branch row
 
 This scan is the minimal numerical artifact for the paired action-spacing and self-hit well-posedness walls: it measures whether causal-root multiplicity, Jacobian floors, and stable-cycle action increments remain controlled as branch speed approaches $c_f$.
 
-For each declared scan family, report rows approaching the field speed from below, at the boundary when the continuation reaches it, and from above when the branch chart admits a super-field-speed interval. Each row must record the layer speed ratios, active partner-root count, active self-root count, active inter-layer-root count, minimum accepted Jacobian floor, minimum accepted receiver-normal branch strength, separator status, root-ledger identity, accepted/rejected status, and stable-cycle $\Delta I_{\mathrm{ME}}$ cluster assignment.
+For each declared scan family, report rows approaching the field speed from below, at the boundary when the continuation reaches it, and from above when the branch chart admits a super-field-speed interval. Each row must record the layer speed ratios, active partner-root count, active self-root count, active inter-layer-root count, minimum accepted Jacobian floor, minimum accepted receiver-weighted acceleration factor, separator status, root-ledger identity, accepted/rejected status, and stable-cycle $\Delta I_{\mathrm{ME}}$ cluster assignment.
 
 The scan has a simple discipline. A packet may not promote `candidate_h_recovery` if the accepted near-boundary rows lose their Jacobian floor, change active-root identity under refinement, or split into non-uniform stable action increments without a derived branch-class reason. In that case the packet may still report a useful diagnostic, but it has not recovered the Planck benchmark from a well-posed nested shell braid action scale.
 
@@ -188,7 +188,7 @@ Only a packet that also has small $\delta_h$ may promote `candidate_h_recovery`.
 | `phase-closure-open` | layer or inter-layer closure residuals exceed tolerance |
 | `root-ledger-instability` | active roots change under refinement or the self-hit parity condition fails |
 | `jacobian-floor-loss` | accepted near-boundary rows lose the declared minimum Jacobian floor |
-| `receiver-normal-branch-strength-loss` | accepted rows lose the declared receiver-normal branch-strength floor or leave its certified interval (receiver-normal null $W^{\mathrm{rec}}\to0$ or uncontrolled caustic $W^{\mathrm{rec}}\to\infty$) under refinement |
+| `receiver-side-branch-strength-loss` | accepted rows lose the declared receiver-weighted acceleration-factor floor or leave its certified interval (receiver-side null $W^{\mathrm{acc}}\to0$ or uncontrolled caustic $W^{\mathrm{acc}}\to\infty$) under refinement |
 | `field-speed-root-instability` | the approach-to-$c_f$ scan changes active-root identity, separator status, or branch status under refinement |
 | `nonuniform-action-spacing` | stable-cycle action increments split across the field-speed approach scan with no derived branch-class reason |
 | `energy-ledger-open` | $\mathcal{R}_E$ exceeds tolerance or the wake/root energy channel is unaccounted |

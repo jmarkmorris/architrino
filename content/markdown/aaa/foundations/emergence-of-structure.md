@@ -177,7 +177,7 @@ The recursive picture is easiest to read as a bottom-up construction ladder. The
 2. **Primitive transceivers:** status: primitive definition. Individual architrinos are the irreducible emitters/receivers of causal wake structure.
 3. **First bound assembly candidate:** status: branch-certificate target. A stable orbiting electrino:positrino binary is the first bound assembly once its branch stability certificate is supplied.
 4. **Nested shell braids:** status: simulated/conjectural construction target. Binaries can capture into larger nested systems, giving isolated binaries, shell braids, and nested shell braids with progressively stronger shielding structure.
-5. **Noether braid stabilization:** status: closure target. The nested shell braid is the first fully three-dimensional shielded Noether braid scaffold; see [Noether Braid](../noether-braid/noether-braid.md). Its persistence must be closed through delayed phase closure, nested energy separation, and reduced external reactivity through superposition. The sharpest current evidence makes this rung's burden concrete: isolated partner-wake diagnostics across three independent charts show the delayed kernel doing net positive work on the assembly, so a persistent braid must supply an exchange or export channel for that pumped action — internal multi-frequency exchange, same-source root transitions, or medium response — rather than merely balancing static forces; see the return-response question in [Symmetric Shell Braid](../noether-braid/braid-families.md#isolated-release-and-the-return-response-question).
+5. **Noether braid stabilization:** status: closure target. The nested shell braid is the first fully three-dimensional shielded Noether braid scaffold; see [Noether Braid](../noether-braid/noether-braid.md). Its persistence must be closed through delayed phase closure, nested energy separation, and reduced external reactivity through superposition. The sharpest current evidence makes this rung's burden concrete: isolated partner-wake diagnostics across three independent charts show the delayed kernel doing net positive work on the assembly, so a persistent braid must supply an exchange or export channel for that pumped action — internal multi-frequency exchange, same-transmitter root transitions, or medium response — rather than merely balancing static forces; see the return-response question in [Symmetric Shell Braid](../noether-braid/braid-families.md#isolated-release-and-the-return-response-question).
 6. **Fermions with axial layers:** status: working map and routing target. A nested shell braid plus a six-site axial layer is the current map for charged-fermion and quark family architecture; changing the shielding tier is the generation target, while pro/anti orientation tracks handedness within the same braid architecture rather than a separate substance type. Neutrino and near-photon branches require their own closure statements. This is the same ladder later used in [Particle Masses: Emergent Inertia in the Noether sea](../assemblies/particle-masses.md).
 7. **Collective medium:** status: effective collective-state target. Larger balanced populations of neutral braids organize into the [Noether sea](../spacetime/noether-sea.md), so the Noether sea is a higher-order collective state of neutral braids rather than a second fundamental substrate. Its pro/anti assembly hypotheses are tracked in [Noether Sea Pro/Anti Coupling](../spacetime/noether-sea-pro-anti-coupling.md).
 8. **Bosonic channels:** status: channel-specific routing targets. Propagating coupled disturbances of assemblies appear as effective bosonic channels, but the channels are not interchangeable. Photons are routed through the coaxial contra-rotating polarity-conjugate planar pair branch, weak carriers through massive corridor maps, and gluonic links through color-sector reconfiguration or ribbon-like coupling targets. These belong to the interaction/excitation branch of the hierarchy, not to a separate ontological species; see [Gauge Structure Emergence](../assemblies/gauge-structure-emergence.md).
@@ -225,11 +225,11 @@ However, because the potential density on each causal wake surface falls off as 
 A mathematically admissible many-source branch must satisfy the [Receiver-Centered Exhaustion Lemma](absolute-timespace.md#receiver-centered-exhaustion-lemma): it must make a limit such as
 $$
 \lim_{R\to\infty}
-\sum_{\substack{j,\ T_{\mathrm{em}}\in\mathcal{C}_{ij}(T)\\
-\|\mathbf X_j(T_{\mathrm{em}})-\mathbf X_i(T)\|<R}}
-\mathbf A_{ij}(T;T_{\mathrm{em}})
+\sum_{\substack{j,\ T_t\in\mathcal{C}_{ij}(T)\\
+\|\mathbf X_j(T_t)-\mathbf X_i(T)\|<R}}
+\mathbf A_{ij}(T;T_t)
 $$
-exist under the declared receiver-centered summation prescription, or else use the corresponding continuum condition. More invariantly, one may declare an exhaustion $\Lambda_R\uparrow\mathbb{R}^3$ and take the corresponding limit over source events with $\mathbf X_j(T_{\mathrm{em}})\in\Lambda_R$. Acceptable mechanisms include local neutrality, angular cancellation, shielding, a screened kernel, a finite active horizon, or a declared principal-value or mean-field subtraction. Without such a condition, the many-source wake sum is not mathematically well-defined.
+exist under the declared receiver-centered summation prescription, or else use the corresponding continuum condition. More invariantly, one may declare an exhaustion $\Lambda_R\uparrow\mathbb{R}^3$ and take the corresponding limit over transmitter events with $\mathbf X_j(T_t)\in\Lambda_R$. Acceptable mechanisms include local neutrality, angular cancellation, shielding, a screened kernel, a finite active horizon, or a declared principal-value or mean-field subtraction. Without such a condition, the many-source wake sum is not mathematically well-defined.
 
 For the weak homogeneous Noether sea case, local neutrality can be stronger than an assumption. If the far population is statistically homogeneous, isotropic, locally neutral over correlation length $\ell$, and mixing, then receiver-centered shell fluctuations are square-summable: shell $n$ contains $O(n^2)$ neutral cells, its signed fluctuation is $O(n)$, and the inverse-square dilution contributes $O(n^{-2})$, so the shell variance is $O(n^{-2})$. The corresponding shell series converges almost surely under the declared mixing bound. This is the convergence foothold needed by the Noether sea construction; it does not remove the separate burden for coherent, inhomogeneous, strong-field, or poorly screened branches.
 
@@ -237,27 +237,27 @@ This convergence discipline is what lets **metastable assemblies** maintain thei
 
 The infinite-history statement is therefore not a claim that every past wake carries equal computational weight. In principle, an architrino receives the delayed wake history that intersects it. In practical assembly dynamics, the active burden is bounded by inverse-square wake dilution, phase cancellation across remote populations, and the shielding or screening supplied by nested Noether braids. The mathematical task is to identify which causal-root branches remain dynamically active in a regime, not to treat the entire past universe as an undifferentiated influence of equal importance.
 
-Self-hit is not defined by speed alone. It occurs when the same-source causal-root set is nonempty:
+Self-hit is not defined by speed alone. It occurs when the same-transmitter causal-root set is nonempty:
 $$
 \mathcal{C}_{ii}(T)
 =
-\{\,T_{\mathrm{em}}<T:\|\mathbf X_i(T)-\mathbf X_i(T_{\mathrm{em}})\|=c_f(T-T_{\mathrm{em}})\,\}
+\{\,T_t<T:\|\mathbf X_i(T)-\mathbf X_i(T_t)\|=c_f(T-T_t)\,\}
 \ne
 \varnothing
 $$
-If $\|\mathbf V_i(U)\|\le c_f-\delta_v$ throughout the interval $[T_{\mathrm{em}},T]$ for some speed margin $\delta_v>0$, then no self-hit root can occur on that interval, because
+If $\|\mathbf V_i(U)\|\le c_f-\delta_v$ throughout the interval $[T_t,T]$ for some speed margin $\delta_v>0$, then no self-hit root can occur on that interval, because
 $$
-\|\mathbf X_i(T)-\mathbf X_i(T_{\mathrm{em}})\|
+\|\mathbf X_i(T)-\mathbf X_i(T_t)\|
 \le
-\int_{T_{\mathrm{em}}}^{T}\|\mathbf V_i(U)\|\,dU
+\int_{T_t}^{T}\|\mathbf V_i(U)\|\,dU
 <
-c_f(T-T_{\mathrm{em}})
+c_f(T-T_t)
 $$
-Thus reaching or exceeding $c_f$ somewhere along the intervening history is a necessary condition for a simple nontrivial self-hit root, apart from the degenerate straight field-speed tangent case excluded by the simple-root assumptions, but it is not sufficient. Curvature, acceleration, and branch geometry determine whether the worldline actually intersects its own emitted causal wake. The exact onset condition is root existence plus transversality, not the scalar inequality $\|\mathbf V\|>c_f$ alone; onset governs root existence, while an admitted self-hit acceleration contribution additionally carries the same-record receiver-normal branch strength.
+Thus reaching or exceeding $c_f$ somewhere along the intervening history is a necessary condition for a simple nontrivial self-hit root, apart from the degenerate straight field-speed tangent case excluded by the simple-root assumptions, but it is not sufficient. Curvature, acceleration, and branch geometry determine whether the worldline actually intersects its own emitted causal wake. The exact onset condition is root existence plus transversality, not the scalar inequality $\|\mathbf V\|>c_f$ alone; onset governs root existence, while an admitted self-hit acceleration contribution additionally carries the same-record receiver-weighted acceleration factor.
 
-This creates a threshold asymmetry in the system. A small acceleration caused by intersecting a wake can push an architrino into a branch chart where same-source roots become admissible, or where the transversality floor fails and a degenerate causal-root regime must be resolved. The transistor analogy is only pedagogical: a small input changes which channel is available. In $\mathbb{A}\mathbb{A}\mathbb{A}$, the underlying mechanism is not electronics but delayed causal-root selection.
+This creates a threshold asymmetry in the system. A small acceleration caused by intersecting a wake can push an architrino into a branch chart where same-transmitter roots become admissible, or where the transversality floor fails and a degenerate causal-root regime must be resolved. The transistor analogy is only pedagogical: a small input changes which channel is available. In $\mathbb{A}\mathbb{A}\mathbb{A}$, the underlying mechanism is not electronics but delayed causal-root selection.
 
-The common geometric pattern is codimension-one transition. Self-hit onset is a fold in the same-source causal-root set, context opening is a wall-crossing in the admitted-chart map $c\mapsto\Gamma_{\mathrm{adm}}(c)$, and basin branching is a separatrix crossing in the return section. In each case an integer or discrete branch label changes only when the retained chart crosses a singular stratum: an active-root count jumps, an admitted branch appears or disappears, or a basin label changes. Emergence is therefore not merely "larger patterns appear"; it is the formation and reorganization of persistent branches across stratified causal-root and basin geometry.
+The common geometric pattern is codimension-one transition. Self-hit onset is a fold in the same-transmitter causal-root set, context opening is a wall-crossing in the admitted-chart map $c\mapsto\Gamma_{\mathrm{adm}}(c)$, and basin branching is a separatrix crossing in the return section. In each case an integer or discrete branch label changes only when the retained chart crosses a singular stratum: an active-root count jumps, an admitted branch appears or disappears, or a basin label changes. Emergence is therefore not merely "larger patterns appear"; it is the formation and reorganization of persistent branches across stratified causal-root and basin geometry.
 
 ## Provenance within Emergence
 

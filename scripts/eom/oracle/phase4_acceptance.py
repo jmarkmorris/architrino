@@ -281,9 +281,9 @@ def certify_root_continuation(
     """Certify persistent root identities through a reception-time slab.
 
     Each admitted branch receives a disjoint emission-time tube.  Uniform
-    endpoint sign separation and a nonzero source-normal enclosure prove one
+    endpoint sign separation and a nonzero transmitter-side enclosure prove one
     root for every reception time in that tube.  The complement is certified
-    root-free over the complete slab.  A root-count change or a source-normal
+    root-free over the complete slab.  A root-count change or a transmitter-side
     enclosure containing zero is routed to the finite-width event control.
     """
 

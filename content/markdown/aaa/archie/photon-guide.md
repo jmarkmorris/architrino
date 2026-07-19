@@ -52,7 +52,7 @@ Presets are starting points for inspection, not certified photon branches. They 
 
 The Search configurations button looks for photon settings that are worth inspecting more closely. It starts from the current app settings, then tries nearby or systematic variations of the enabled binaries, I/M/O frequency powers, radius lanes, phase offsets, $\Delta x$, Virtual Observer position, Analyzer angle, and speed mode. The search includes a small set of `Lorentz factor` local-$c$ candidates so the results can expose configurations where derived $c_{\mathrm{sig}}/c_f$ and $c_\gamma/c_f$ materially change the moving-apparatus solve.
 
-The search generates a results list for the current session. The interactive search is intentionally bounded: it samples representative configuration families rather than trying every possible combination. Each result should include a short name, the full settings snapshot, the main plot and polarization summary, the diagnostics that made it stand out, and a plain-language reason to inspect it. When the absolute-history solver path is available, top results also record a compact comparison between the co-moving diagnostic and the absolute-history moving-apparatus diagnostic, including helical same-source phase-family counts when those rows are computed. Loading a result applies its settings to the app so it can be viewed, played, edited, or compared against a named preset.
+The search generates a results list for the current session. The interactive search is intentionally bounded: it samples representative configuration families rather than trying every possible combination. Each result should include a short name, the full settings snapshot, the main plot and polarization summary, the diagnostics that made it stand out, and a plain-language reason to inspect it. When the absolute-history solver path is available, top results also record a compact comparison between the co-moving diagnostic and the absolute-history moving-apparatus diagnostic, including helical same-transmitter phase-family counts when those rows are computed. Loading a result applies its settings to the app so it can be viewed, played, edited, or compared against a named preset.
 
 Useful results can be exported as JSON. Exported settings can later be reviewed and, when they are worth keeping, incorporated into the named preset set. Until a result is promoted that way, treat it as a session finding rather than a durable app preset.
 
@@ -63,11 +63,11 @@ The search should flag a configuration as interesting when it has one or more of
 - Sharp transitions: small changes in phase, $\Delta x$, Virtual Observer position, or radius produce a large change in the fitted polarization.
 - Robust patterns: the same behavior survives small nudges to the settings instead of depending on one exact slider position.
 - Absolute-history agreement or divergence: the absolute-history comparison either preserves the co-moving behavior, which is a stability clue, or changes it strongly, which is a useful stress clue.
-- Causal-root structure: low missed-source count, healthy Jacobian values together with a bounded receiver-normal branch strength $W^{\mathrm{rec}}=|D_T/D_s|$ (a healthy Jacobian alone is not sufficient), repeatable phase-at-hit families, or organized same-source and partner-hit roots.
+- Causal-root structure: low missed-source count, healthy Jacobian values together with a bounded receiver-weighted acceleration factor $W^{\mathrm{acc}}=|D_r/D_t|$ (a healthy Jacobian alone is not sufficient), repeatable phase-at-hit families, or organized same-transmitter and partner-hit roots.
 - Simple explanations: fewer active binaries, integer frequency ratios, simple phase offsets, or clean leading/trailing symmetry are preferred when the diagnostic quality is similar.
 - Diversity: the results list should avoid many tiny variations of the same pattern and keep representative examples from different pattern families.
 
-The search should mark numerically suspect cases as suspect rather than good. Missed roots, very small Jacobian values, a receiver-normal branch strength collapsing toward its null or diverging near a caustic, large delay-solve gaps, or unstable diagnostics can still be useful clues, but they should not be confused with clean polarization evidence.
+The search should mark numerically suspect cases as suspect rather than good. Missed roots, very small Jacobian values, a receiver-weighted acceleration factor collapsing toward its null or diverging near a caustic, large delay-solve gaps, or unstable diagnostics can still be useful clues, but they should not be confused with clean polarization evidence.
 
 ## Geometry Controls
 
@@ -101,7 +101,7 @@ When `Local c mode` is `Lorentz factor`, the `Signal c/c_f` and `Photon c_\gamma
 
 `Absolute history` makes the Electric Field plot use the moving-apparatus diagnostic. In that mode, each architrino source history and the Virtual Observer history translate along $+\hat{\mathbf x}$ at $c_\gamma$, and the shared solver helper solves the moving circular source against the moving Virtual Observer. This remains a diagnostic layer for the moving-apparatus calculation; the co-moving mode remains useful for comparison.
 
-The plotted E curve is recalculated by solving the causal-root equation from every active architrino source history to the Virtual Observer point. Each retained root contributes a radial Master-EOM-style hit weighted by $W^{\mathrm{rec}}/R^2$, where $R$ is the source-to-observer distance at the root and $W^{\mathrm{rec}}=\lvert D_T/D_s\rvert$ is computed from the same retained root record. The app then reconstructs the displayed $E_y$ and $E_z$ components from the transverse part of the summed receiver acceleration.
+The plotted E curve is recalculated by solving the causal-root equation from every active architrino source history to the Virtual Observer point. Each retained root contributes a radial Master-EOM-style hit weighted by $W^{\mathrm{acc}}/R^2$, where $R$ is the source-to-observer distance at the root and $W^{\mathrm{acc}}=\lvert D_r/D_t\rvert$ is computed from the same retained root record. The app then reconstructs the displayed $E_y$ and $E_z$ components from the transverse part of the summed receiver acceleration.
 
 The $\mathbf E$ graph auto-scales its vertical span from the maximum visible $|E_y|$ or $|E_z|$ sample, so the curve stays readable without changing the diagnostic field values. The displayed field comes directly from retained roots and the radial inverse-square causal-hit form rather than from a separate near/far mixing slider.
 
@@ -171,23 +171,23 @@ $$
 and
 
 $$
-D_{s,i,k}
+D_{t,i,k}
 =
 c_{\mathrm{sig}}-\mathbf v_i(\tau_{i,k})\cdot\mathbf n_{i,k},
 \qquad
-D_{T,i,k}
+D_{r,i,k}
 =
 c_{\mathrm{sig}}-\mathbf v_{\mathrm{VO}}(t)\cdot\mathbf n_{i,k}
 $$
 
-The displayed electric readout is reconstructed from the transverse part of the receiver-normal radial hit sum
+The displayed electric readout is reconstructed from the transverse part of the receiver-side radial hit sum
 
 $$
 \mathbf a_{\mathrm{VO}}(t)
 =
 g\sum_i\sum_k
 q_i
-\left|\frac{D_{T,i,k}}{D_{s,i,k}}\right|
+\left|\frac{D_{r,i,k}}{D_{t,i,k}}\right|
 \frac{\mathbf n_{i,k}}
 {R_{i,k}^2}
 $$
@@ -258,14 +258,14 @@ The live Diagnostics panel includes a quality word when a readout has a useful d
 | 7 | Root&nbsp;count | How many causal roots were retained after solving source histories. More than source count means at least one source has multiple roots. |
 | 8 | Max&nbsp;source&nbsp;v/c_f | The fastest active source speed compared with field speed. Above `1` means super-field-speed source motion is present; that is a regime indicator, not a delay-solve failure by itself. |
 | 9 | Min \|J\| | The smallest Jacobian magnitude in the causal-root sum. Very small values mean the branch is close to a pile-up or caustic. |
-| 10 | Span&nbsp;self-hit&nbsp;roots | How many enabled binary layers produced a retained same-source span row in the shared-geometry solver. This is the older circular speed-regime proxy. |
-| 11 | Span&nbsp;self-hit&nbsp;max&nbsp;$v/c_{\mathrm{sig}}$ | The largest span-proxy same-source speed ratio after combining photon-channel translation speed with transverse orbital speed. |
-| 12 | Helical&nbsp;self-hit&nbsp;roots | How many individual architrino helical source histories produced retained same-source roots. |
-| 13 | Helical&nbsp;self-hit&nbsp;max&nbsp;$v/c_{\mathrm{sig}}$ | The largest same-source speed ratio in the helical source-history rows. Values above `1` nominate a self-hit candidate regime. |
-| 14 | Helical&nbsp;self-hit&nbsp;min&nbsp;\|J\| | The smallest Jacobian magnitude among retained helical same-source roots. Very small values mean the self-hit family is close to a pile-up or caustic. |
-| 15 | Helical&nbsp;self-hit&nbsp;phase&nbsp;spread | How tightly retained helical same-source roots cluster by source phase. Smaller means the roots are more phase-aligned. |
-| 16 | Helical&nbsp;phase&nbsp;families | How many helical same-source root families are phase-stable after grouping by role, layer, charge, and source cycle. |
-| 17 | Best&nbsp;helical&nbsp;family | The most stable helical same-source family label, spread, and root count. |
+| 10 | Span&nbsp;self-hit&nbsp;roots | How many enabled binary layers produced a retained same-transmitter span row in the shared-geometry solver. This is the older circular speed-regime proxy. |
+| 11 | Span&nbsp;self-hit&nbsp;max&nbsp;$v/c_{\mathrm{sig}}$ | The largest span-proxy same-transmitter speed ratio after combining photon-channel translation speed with transverse orbital speed. |
+| 12 | Helical&nbsp;self-hit&nbsp;roots | How many individual architrino helical source histories produced retained same-transmitter roots. |
+| 13 | Helical&nbsp;self-hit&nbsp;max&nbsp;$v/c_{\mathrm{sig}}$ | The largest same-transmitter speed ratio in the helical transmitter-history rows. Values above `1` nominate a self-hit candidate regime. |
+| 14 | Helical&nbsp;self-hit&nbsp;min&nbsp;\|J\| | The smallest Jacobian magnitude among retained helical same-transmitter roots. Very small values mean the self-hit family is close to a pile-up or caustic. |
+| 15 | Helical&nbsp;self-hit&nbsp;phase&nbsp;spread | How tightly retained helical same-transmitter roots cluster by source phase. Smaller means the roots are more phase-aligned. |
+| 16 | Helical&nbsp;phase&nbsp;families | How many helical same-transmitter root families are phase-stable after grouping by role, layer, charge, and source cycle. |
+| 17 | Best&nbsp;helical&nbsp;family | The most stable helical same-transmitter family label, spread, and root count. |
 | 18 | Missed&nbsp;sources | How many active source rows produced no retained root. For a clean solve, this should be `0`. |
 | 19 | No&nbsp;catch-up&nbsp;sources | How many source histories did not causally catch the moving Virtual Observer in the scanned window. This can be a real moving-apparatus result when $c_\gamma$ is close to $c_{\mathrm{sig}}$. |
 | 20 | Stale&nbsp;windows | How many scan windows looked too old for the selected hit time. |

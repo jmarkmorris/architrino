@@ -161,9 +161,37 @@ Two frequently used kinematic terms with canonical meanings (operator-ratified 2
 
 | When you mean... | Prefer | Notes | Example |
 | --- | --- | --- | --- |
-| the instantaneous position an architrino occupies in an assembly configuration | `site` | every architrino is a transceiver, so its site at time $t$ is simultaneously its emission point and its reception point; compounds inherit this (`six-site`, `single-site self-hit`, `polar site`) | "The spindle braid has six sites on five horizontal circles." |
-| the point a causal wake was born | `source site at emission time` | the delayed formalism evaluates the source site at the causal root's emission time, not at reception time | "The line of action runs from the source site at emission time to the receiver's current site." |
+| the instantaneous position an architrino occupies in an assembly configuration | `site` | every architrino is a transceiver, so its site can transmit and receive; compounds inherit this (`six-site`, `single-site self-hit`, `polar site`) | "The spindle braid has six sites on five horizontal circles." |
+| the point an arriving causal wake was born | `transmitter site at emission time $T_t$` | the delayed formalism evaluates the transmitter at the causal root's emission time, not at reception time | "The line of action runs from the transmitter site at $T_t$ to the receiver site at $T_r$." |
 | uniform, unaccelerated translation of an assembly (or of the medium) relative to the void frame | `drift`, `drift speed` $u$ | drift deliberately connotes non-acceleration — a drifting rotation is a rigid screw motion; accelerated translation should be named as such, never called drift | "At drift $u$ the pinned internal cadence is $\omega_0\sqrt{1-u^2/c_f^2}$." |
+
+## Transmitter and Receiver Event Usage
+
+Use `transmitter` for the architrino at the past emission event $T_t$ whose wake arrives at the event being evaluated. Use `receiver` for the architrino at the current reception event $T_r$ whose acceleration is being evaluated. The two labels name causal roles on one hit; a single architrino may occupy either role on different hits and occupies both roles on a self-hit.
+
+The separation vector always runs from emission to reception:
+
+$$
+\mathbf r_t=\mathbf X_r(T_r)-\mathbf X_t(T_t).
+$$
+
+The corresponding factors are
+
+$$
+D_t=c_f-\hat{\mathbf r}_t\cdot\mathbf V_t(T_t),
+\qquad
+D_r=c_f-\hat{\mathbf r}_t\cdot\mathbf V_r(T_r),
+$$
+
+with exact root playback
+
+$$
+\frac{dT_t}{dT_r}=\frac{D_r}{D_t}.
+$$
+
+Use `transmitter-side factor` for $D_t$ and `receiver-side factor` for $D_r$. Use `root-playback derivative` for the signed ratio $D_r/D_t$. In the current canonical receiver-weighted acceleration, use `receiver-weighted acceleration factor` for $W^{\mathrm{acc}}=|D_r/D_t|$. These names do not promote the separate source-density proposal.
+
+Do not use the transmitter's position at $T_r$ as part of an arriving hit unless the sentence explicitly introduces a separate present-position diagnostic. Keep `source` where it has another established meaning, such as a document source, evidence source, software source, radiation source class, or generic source term in an equation.
 
 ## Field and Wake Usage
 

@@ -154,7 +154,7 @@ test("animator delayed-hit runtime consumes solver-owned path-history hit rows",
   assert.equal(hits[0].status, "path-history");
 });
 
-test("animator delayed-hit rows use receiver-normal strength for moving receivers", () => {
+test("animator delayed-hit rows use receiver-weighted acceleration for moving receivers", () => {
   const rowResponse = createAnimatorDelayedHitRowsFromStreamDescriptors(
     {
       streamId: "fixture-moving-receiver-stream",

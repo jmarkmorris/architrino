@@ -256,7 +256,7 @@ The standalone [Photon and Polarization Visualization App](../../../../photon.ht
 
 The app lets the reader change the candidate instead of only looking at a picture. Each braid has `I`, `M`, and `O` binaries with enable switches, frequency, radius, and phase controls. The $\Delta x$ control changes the gap between the two braids in the side view, while the Virtual Observer controls choose the $(x,y,z)$ point where the app calculates the displayed electric-field readout.
 
-That electric-field readout is not hand-drawn. The runtime sums delayed contributions from the active architrinos, finds causal roots, weights them by the receiver-normal branch strength $W^{\mathrm{rec}}/R^2$ on the same retained root, and reconstructs the transverse $\mathbf E$ signal at the Virtual Observer. The separate $\mathbf B$ graph is omitted because, in the plane-wave comparison case, $\mathbf B$ follows from $\mathbf E$ by $\mathbf B=(1/c_f)\hat{\mathbf x}\times\mathbf E$.
+That electric-field readout is not hand-drawn. The runtime sums delayed contributions from the active architrinos, finds causal roots, weights them by the receiver-weighted acceleration factor $W^{\mathrm{acc}}/R^2$ on the same retained root, and reconstructs the transverse $\mathbf E$ signal at the Virtual Observer. The separate $\mathbf B$ graph is omitted because, in the plane-wave comparison case, $\mathbf B$ follows from $\mathbf E$ by $\mathbf B=(1/c_f)\hat{\mathbf x}\times\mathbf E$.
 
 The polarization panel asks what kind of field the candidate actually produces. It fits $E_y(t)$ and $E_z(t)$ over one cycle and reports whether the observed signal looks weak, linear, circular, or elliptical. This is a diagnostic result, not a proof: the app helps find promising planar-pair settings, but photon closure still requires a separate branch-ledger argument.
 
@@ -315,7 +315,7 @@ The conceptual gain is that the note now separates three different burdens clean
 
 This mattered for the larger program because the nested shell braid has to satisfy several closure burdens at once: frequency hierarchy, horizon behavior, radiation suppression, and eventually an effective stress-tensor story for higher assemblies. The revised note now reads as a live research surface with explicit assumptions and explicit non-assumptions.
 
-## 2026-03-12: Receiver-Normal Master Equation Canon
+## 2026-03-12: Receiver-Weighted Master Equation Canon
 
 Relevant files:
 
@@ -325,38 +325,38 @@ Relevant files:
 - [Causal action functional](../dynamics/causal-action-functional.md)
 - [Lorentz near-miss in historical context](../philosophy-history/historical-context-and-missed-opportunities.md#lorentz-before-einstein-the-almost-substrate-moment)
 
-The master equation uses the receiver-normal branch factor in the canonical per-hit law:
+The master equation uses the receiver-weighted acceleration factor in the canonical per-hit law:
 $$
 \mathbf{a}_{ij}(t; t_0)
 =
 \kappa\,\sigma_{ij}\,
 \frac{|q_i q_j|}{r_{ij}^2(t;t_0)}\,
-W_{ij}^{\mathrm{rec}}(t;t_0)\,
+W_{ij}^{\mathrm{acc}}(t;t_0)\,
 \hat{\mathbf{r}}_{ij}(t;t_0),
 \qquad
-W_{ij}^{\mathrm{rec}}=\left|\frac{D_{T,ij}}{D_{s,ij}}\right|
+W_{ij}^{\mathrm{acc}}=\left|\frac{D_{r,ij}}{D_{t,ij}}\right|
 $$
 with
 $$
-D_{s,ij}=c_f-\mathbf{v}_j(t_0)\cdot\hat{\mathbf{r}}_{ij}(t;t_0),
+D_{t,ij}=c_f-\mathbf{v}_j(t_0)\cdot\hat{\mathbf{r}}_{ij}(t;t_0),
 \qquad
-D_{T,ij}=c_f-\mathbf{v}_i(t)\cdot\hat{\mathbf{r}}_{ij}(t;t_0).
+D_{r,ij}=c_f-\mathbf{v}_i(t)\cdot\hat{\mathbf{r}}_{ij}(t;t_0).
 $$
-Source strength itself does not change with speed. The source emits according to the same constant-cadence rule. The velocity dependence enters because both transceiver paths set the local wake crossing geometry: the source-normal denominator records how the emitted wake surfaces bunch or dilate, while the receiver-normal numerator records how the receiver cuts those surfaces.
+Source strength itself does not change with speed. The source emits according to the same constant-cadence rule. The velocity dependence enters because both transceiver paths set the local wake crossing geometry: the transmitter-side factor records how the emitted wake surfaces bunch or dilate, while the receiver-side factor records how the receiver cuts those surfaces.
 
-Receiver velocity appears in the received branch magnitude through $D_{T,ij}$ and in the work rate $\mathbf{F}\cdot\mathbf{v}$. Magnetic-like behavior remains an emergent closure target built from delayed geometry, receiver-normal branch strength, superposed radial hits, and assembly/Noether sea response; it is not inserted as a primitive cross-product force.
+Receiver velocity appears in the received branch magnitude through $D_{r,ij}$ and in the work rate $\mathbf{F}\cdot\mathbf{v}$. Magnetic-like behavior remains an emergent closure target built from delayed geometry, receiver-weighted acceleration factor, superposed radial hits, and assembly/Noether sea response; it is not inserted as a primitive cross-product force.
 
 The canon separates theorem-backed statements from closure targets. Current documents should not state, without local hypotheses, that the master equation is already the exact Euler-Lagrange variation of a completed non-local action or that global energy-momentum conservation is fully restored in every regime. The canonical stance is narrower: the regularized action-functional program supplies a variational lens, the per-hit law supplies the acceleration-first dynamics, and energy bookkeeping must state the assumptions under which work-energy, Noether-style, or action-based conclusions are being claimed.
 
 Corpus requirements:
 
-- remove bare $1/r^2$ and source-normal-only per-hit laws where receiver-normal branch strength belongs,
+- remove bare $1/r^2$ and transmitter-side-only per-hit laws where receiver-weighted acceleration factor belongs,
 - avoid splitting the theory into a permanent "reduced model" and a separate "candidate action" unless the local document is explicitly discussing an approximation,
 - replace over-broad conservation claims with assumption-scoped theorem language,
 - keep constant emission cadence distinct from received causal-flux modulation,
-- and include receiver-velocity effects through the receiver-normal numerator before promoting force, action, or finite-certificate rows.
+- and include receiver-velocity effects through the receiver-side factor before promoting force, action, or finite-certificate rows.
 
-The master equation is a genuinely delayed branch law rather than a static inverse-square law with delayed labels attached. The closure burdens are sharp: self-hit walls, magnetic-like behavior, Lorentz behavior, and action/energy structure all need to be derived from the receiver-normal delayed geometry rather than asserted through imported field-theory vocabulary.
+The master equation is a genuinely delayed branch law rather than a static inverse-square law with delayed labels attached. The closure burdens are sharp: self-hit walls, magnetic-like behavior, Lorentz behavior, and action/energy structure all need to be derived from the receiver-side delayed geometry rather than asserted through imported field-theory vocabulary.
 
 ## 2026-03-11 Closure Scorecard
 

@@ -355,24 +355,24 @@ const equationMapSeedDocuments = [
     backgroundId: DEFAULT_BACKGROUND_ID,
     claimLevel: "accepted-aaa-derivation",
     formulaTeX:
-      "\\mathbf A_{o'\\leftarrow o}=\\kappa\\sigma_{q_oq_{o'}}\\frac{|q_oq_{o'}|}{r^2}W_{o'\\leftarrow o}^{\\mathrm{rec}}\\hat{\\mathbf r}",
+      "\\mathbf A_{r\\leftarrow t}=\\kappa\\sigma_{tr}\\frac{|q_tq_r|}{r^2}W_{r\\leftarrow t}^{\\mathrm{acc}}\\hat{\\mathbf r}_t",
     anchors: [
       anchor("acceleration", "acceleration response", "per-hit acceleration active root"),
-      anchor("polarity", "source polarity", "kappa sigma source receiver polarity"),
+      anchor("polarity", "transmitter polarity", "kappa sigma transmitter receiver polarity"),
       anchor("inverseSquare", "wake dilution", "inverse-square causal wake dilution"),
-      anchor("branchStrength", "branch strength", "receiver-normal source-normal denominator branch factor"),
+      anchor("branchStrength", "acceleration factor", "receiver-weighted transmitter-side receiver-side factor"),
       anchor("direction", "line of action", "line-of-action causal-root direction"),
     ],
     formulaParts: [
-      mathPart("acceleration", "\\mathbf A_{o'\\leftarrow o}", "acceleration"),
+      mathPart("acceleration", "\\mathbf A_{r\\leftarrow t}", "acceleration"),
       textPart("eq", " = "),
-      mathPart("polarity", "\\kappa\\sigma_{q_oq_{o'}}", "polarity"),
+      mathPart("polarity", "\\kappa\\sigma_{tr}", "polarity"),
       textPart("space-1", " "),
-      mathPart("inverseSquare", "\\frac{|q_oq_{o'}|}{r^2}", "inverseSquare"),
+      mathPart("inverseSquare", "\\frac{|q_tq_r|}{r^2}", "inverseSquare"),
       textPart("space-2", " "),
-      mathPart("branchStrength", "W_{o'\\leftarrow o}^{\\mathrm{rec}}", "branchStrength"),
+      mathPart("branchStrength", "W_{r\\leftarrow t}^{\\mathrm{acc}}", "branchStrength"),
       textPart("space-3", " "),
-      mathPart("direction", "\\hat{\\mathbf r}", "direction"),
+      mathPart("direction", "\\hat{\\mathbf r}_t", "direction"),
     ],
     overlays: [
       overlay(
@@ -380,15 +380,15 @@ const equationMapSeedDocuments = [
         "Acceleration response",
         "acceleration",
         "Start with the left side: this is one acceleration contribution, the receiver's change in velocity from one active causal root. The full master equation sums this term over all sources and all active emission times.",
-        "\\mathbf A_{o'\\leftarrow o}",
+        "\\mathbf A_{r\\leftarrow t}",
         { x: 5, y: 8, width: 30, line: "above" }
       ),
       overlay(
         "polarity-coupling",
         "Sign and coupling",
         "polarity",
-        "An acceleration law needs two things before distance matters: which way the effect points, and how strongly it couples. In $\\mathbb{A}\\mathbb{A}\\mathbb{A}$, this term stores the ordered source-receiver sign and coupling for the active root.",
-        "\\kappa\\sigma_{q_oq_{o'}}",
+        "An acceleration law needs two things before distance matters: which way the effect points, and how strongly it couples. In $\\mathbb{A}\\mathbb{A}\\mathbb{A}$, this term stores the ordered transmitter-receiver sign and coupling for the active root.",
+        "\\kappa\\sigma_{tr}",
         { x: 35, y: 8, width: 30, line: "above" }
       ),
       overlay(
@@ -400,19 +400,19 @@ const equationMapSeedDocuments = [
         { x: 65, y: 22, width: 30, line: "above" }
       ),
       overlay(
-        "receiver-normal",
-        "History factor",
+        "receiver-weighted",
+        "Acceleration factor",
         "branchStrength",
-        "A delayed signal can arrive after its timing has been stretched, compressed, or weighted by the path. In $\\mathbb{A}\\mathbb{A}\\mathbb{A}$, this factor tells the receiver how source history and receiver history change the hit.",
-        "W^{\\mathrm{rec}}=\\left|D_T/D_s\\right|",
+        "The current acceleration weight combines transmitter-side wake spacing with receiver-side wake crossing. The signed ratio remains separately available as the root-playback derivative.",
+        "W^{\\mathrm{acc}}=\\left|D_r/D_t\\right|",
         { x: 6, y: 68, width: 34, line: "below" }
       ),
       overlay(
         "line-of-action",
         "Line of action",
         "direction",
-        "The unit vector is the arrow part of the law. It points from the source's point of emission toward the receiver, so the acceleration follows that line. In $\\mathbb{A}\\mathbb{A}\\mathbb{A}$, the direction and strength come from the same causal root.",
-        "\\hat{\\mathbf r}",
+        "The unit vector points from the transmitter's emission site toward the receiver's reception site. The transmitter's position at reception is not part of the arriving hit.",
+        "\\hat{\\mathbf r}_t",
         { x: 60, y: 82, width: 34, line: "below" }
       ),
     ],
@@ -424,23 +424,23 @@ const equationMapSeedDocuments = [
     backgroundId: DEFAULT_BACKGROUND_ID,
     claimLevel: "accepted-aaa-derivation",
     formulaTeX:
-      "\\frac{d^2\\mathbf X_i}{dT^2}=\\sum_j\\sum_{T_{\\mathrm{em}}\\in\\mathcal C_{ij}(T)}\\kappa\\sigma_{ij}\\frac{|q_iq_j|}{r_{ij}^2}W_{ij}^{\\mathrm{rec}}(T;T_{\\mathrm{em}})\\hat{\\mathbf r}_{ij}",
+      "\\frac{d^2\\mathbf X_r}{dT_r^2}=\\sum_t\\sum_{T_t\\in\\mathcal C_{r\\leftarrow t}(T_r)}\\kappa\\sigma_{tr}\\frac{|q_tq_r|}{r^2}W_{r\\leftarrow t}^{\\mathrm{acc}}(T_r;T_t)\\hat{\\mathbf r}_t",
     anchors: [
       anchor("totalAcceleration", "total acceleration", "total acceleration branch-sum response"),
-      anchor("sourceSum", "all sources", "outer sum over all sources partner hits self-hits"),
+      anchor("sourceSum", "all transmitters", "outer sum over transmitters partner hits self-hits"),
       anchor("emissionSum", "active emission times", "inner sum active causal roots emission times"),
       anchor("perHitLaw", "per-hit law", "per-hit acceleration contribution inside branch sum"),
     ],
     formulaParts: [
-      mathPart("totalAcceleration", "\\frac{d^2\\mathbf X_i}{dT^2}", "totalAcceleration"),
+      mathPart("totalAcceleration", "\\frac{d^2\\mathbf X_r}{dT_r^2}", "totalAcceleration"),
       textPart("eq", " = "),
-      mathPart("sourceSum", "\\sum_j", "sourceSum"),
+      mathPart("sourceSum", "\\sum_t", "sourceSum"),
       textPart("space-1", " "),
-      mathPart("emissionSum", "\\sum_{T_{\\mathrm{em}}\\in\\mathcal C_{ij}(T)}", "emissionSum"),
+      mathPart("emissionSum", "\\sum_{T_t\\in\\mathcal C_{r\\leftarrow t}(T_r)}", "emissionSum"),
       textPart("space-2", " "),
       mathPart(
         "perHitLaw",
-        "\\kappa\\sigma_{ij}\\frac{|q_iq_j|}{r_{ij}^2}W_{ij}^{\\mathrm{rec}}(T;T_{\\mathrm{em}})\\hat{\\mathbf r}_{ij}",
+        "\\kappa\\sigma_{tr}\\frac{|q_tq_r|}{r^2}W_{r\\leftarrow t}^{\\mathrm{acc}}(T_r;T_t)\\hat{\\mathbf r}_t",
         "perHitLaw"
       ),
     ],
@@ -449,32 +449,32 @@ const equationMapSeedDocuments = [
         "total-acceleration",
         "Total acceleration",
         "totalAcceleration",
-        "This is the full acceleration of receiver i at absolute time T. It is the vector sum of all active causal wake hits, not a single source-receiver hit.",
-        "\\frac{d^2\\mathbf X_i}{dT^2}",
+        "This is the receiver's full acceleration at reception. It is the vector sum of all active causal wake hits, not a single transmitter-receiver hit.",
+        "\\frac{d^2\\mathbf X_r}{dT_r^2}",
         { x: 5, y: 8, width: 28, line: "above" }
       ),
       overlay(
         "source-sum",
-        "All sources",
+        "All transmitters",
         "sourceSum",
-        "The outer sum scans every source j. Partner hits use j different from i; self-hits enter through the same sum when j equals i.",
-        "\\sum_j",
+        "The outer sum scans every transmitter t. Partner hits use different transmitter and receiver identities; self-hits use the same identity in both roles.",
+        "\\sum_t",
         { x: 36, y: 8, width: 26, line: "above" }
       ),
       overlay(
         "emission-sum",
         "Active emission times",
         "emissionSum",
-        "For each source, this inner sum scans the past emission times whose causal wake surfaces reach receiver i at the current time T.",
-        "\\sum_{T_{\\mathrm{em}}\\in\\mathcal C_{ij}(T)}",
+        "For each transmitter, this inner sum scans the emission times whose causal wake surfaces reach the receiver at reception.",
+        "\\sum_{T_t\\in\\mathcal C_{r\\leftarrow t}(T_r)}",
         { x: 64, y: 8, width: 31, line: "above" }
       ),
       overlay(
         "per-hit-contribution",
         "Per-hit contribution",
         "perHitLaw",
-        "Each term inside the sums is the per-hit law from the previous screen: sign and coupling, wake dilution, receiver-normal branch strength, and line of action.",
-        "\\kappa\\sigma_{ij}\\frac{|q_iq_j|}{r_{ij}^2}W_{ij}^{\\mathrm{rec}}\\hat{\\mathbf r}_{ij}",
+        "Each term inside the sums is the per-hit law from the previous screen: polarity and coupling, wake dilution, the current receiver-weighted acceleration factor, and the line of action.",
+        "\\kappa\\sigma_{tr}\\frac{|q_tq_r|}{r^2}W_{r\\leftarrow t}^{\\mathrm{acc}}\\hat{\\mathbf r}_t",
         { x: 33, y: 68, width: 34, line: "below" }
       ),
     ],

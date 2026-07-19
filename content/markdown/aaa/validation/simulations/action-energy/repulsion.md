@@ -9,26 +9,26 @@ Objectives:
 
 Delay differential equations (two-body, v=1):
 - Causal times:
-  - $T_{\mathrm{em}}^{(2\to 1)}\in\mathcal{C}_2(T)$ solves $\lvert X_1(T)-X_2(T_{\mathrm{em}})\rvert = T-T_{\mathrm{em}}$.
-  - $T_{\mathrm{em}}^{(1\to 2)}\in\mathcal{C}_1(T)$ solves $\lvert X_2(T)-X_1(T_{\mathrm{em}})\rvert = T-T_{\mathrm{em}}$.
+  - $T_t^{(2\to 1)}\in\mathcal{C}_2(T)$ solves $\lvert X_1(T)-X_2(T_t)\rvert = T-T_t$.
+  - $T_t^{(1\to 2)}\in\mathcal{C}_1(T)$ solves $\lvert X_2(T)-X_1(T_t)\rvert = T-T_t$.
 - Accelerations (sum over all causal roots if multiple exist):
   $$
   A_1(T)
   \;=\;
-  \sum_{T_{\mathrm{em}}\in\mathcal{C}_2(T)}
-  +\,\kappa\,\epsilon^2\,W_{12}^{\mathrm{rec}}(T;T_{\mathrm{em}})\frac{\mathrm{sgn}\!\big(X_1(T)-X_2(T_{\mathrm{em}})\big)}{r_{12}^2},
+  \sum_{T_t\in\mathcal{C}_2(T)}
+  +\,\kappa\,\epsilon^2\,W_{12}^{\mathrm{acc}}(T;T_t)\frac{\mathrm{sgn}\!\big(X_1(T)-X_2(T_t)\big)}{r_{12}^2},
   \quad
-  r_{12}=\big|X_1(T)-X_2(T_{\mathrm{em}})\big|
+  r_{12}=\big|X_1(T)-X_2(T_t)\big|
   $$
   $$
   A_2(T)
   \;=\;
-  \sum_{T_{\mathrm{em}}\in\mathcal{C}_1(T)}
-  -\,\kappa\,\epsilon^2\,W_{21}^{\mathrm{rec}}(T;T_{\mathrm{em}})\frac{\mathrm{sgn}\!\big(X_2(T)-X_1(T_{\mathrm{em}})\big)}{r_{21}^2},
+  \sum_{T_t\in\mathcal{C}_1(T)}
+  -\,\kappa\,\epsilon^2\,W_{21}^{\mathrm{acc}}(T;T_t)\frac{\mathrm{sgn}\!\big(X_2(T)-X_1(T_t)\big)}{r_{21}^2},
   \quad
-  r_{21}=\big|X_2(T)-X_1(T_{\mathrm{em}})\big|
+  r_{21}=\big|X_2(T)-X_1(T_t)\big|
   $$
-- $W_{12}^{\mathrm{rec}}$ and $W_{21}^{\mathrm{rec}}$ are the corresponding receiver-normal branch strengths. A root with a failed source-normal floor is a branch-transition or caustic case, not an ordinary stable row of this two-body DDE.
+- $W_{12}^{\mathrm{acc}}$ and $W_{21}^{\mathrm{acc}}$ are the corresponding receiver-weighted acceleration factors. A root with a failed transmitter-side floor is a branch-transition or caustic case, not an ordinary stable row of this two-body DDE.
 - Symmetry implies $X_1(T)=-X_2(T)$ and $A_1(T)=-A_2(T)$ for all $T$ given symmetric initial data.
 
 Solvability status:

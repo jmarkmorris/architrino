@@ -114,7 +114,7 @@ chapters still own their local details.
 | Inherited concept family | Current corpus use | Transfer class | Scope discipline |
 | --- | --- | --- | --- |
 | Euclidean geometry and vector calculus | Spatial metric $h_{ij}$, norms, dot products, gradients, and spatial integration on $\Sigma_T$ | Native substrate commitment plus direct mathematical tool | Geometry is fundamental only as Euclidean void geometry; it does not license Newtonian force ontology or 4D spacetime ontology |
-| Absolute-time parameterization | Global time $T$, worldlines, causal emission times $T_{\mathrm{em}}$, and $\mathbb{U}_{\text{now}}\equiv S(T)$ | Native substrate commitment | Proper time, clock readout, and time dilation remain observer-level recovery targets |
+| Absolute-time parameterization | Global time $T$, worldlines, causal emission times $T_t$, and $\mathbb{U}_{\text{now}}\equiv S(T)$ | Native substrate commitment | Proper time, clock readout, and time dilation remain observer-level recovery targets |
 | Distributional causal surfaces | Delta functions, Heaviside support, mollification, branch integrals, and weak limits | Direct mathematical tool | The distribution is a formal representation of causal wake support, not a continuum field substance |
 | Jacobian and branch analysis | Causal-root weights, transversality floors, caustic handling, and multi-root bookkeeping | Direct mathematical tool | A root ledger records admissible delayed channels; it is not itself an acceleration law or stability proof |
 | Inverse-square surface dilution | Causal wake density over expanding surfaces | Native dynamics component | It supplies the microscopic kernel but still owes effective recovery of observer-level field laws |
@@ -152,7 +152,7 @@ bookkeeping or proof scaffolds that remain subordinate to the native branch law.
 
 The important correction is the status of the familiar $1/r$ potential. The
 accepted primitive dynamics is not "a static $1/r$ field." The accepted
-primitive dynamics is the causal-root, inverse-square, receiver-normal
+primitive dynamics is the causal-root, inverse-square, receiver-side
 acceleration law. A $1/r$ expression appears as a stationary/path-history
 potential calibration and as a partial Fokker-type variational scaffold, but it
 does not by itself relieve the burden of deriving or certifying the Master EOM.
@@ -164,13 +164,13 @@ does not by itself relieve the burden of deriving or certifying the Master EOM.
 | Worldline kinematics | $\mathbf X_a(T)$, $\mathbf V_a=d\mathbf X_a/dT$, $\mathbf A_a=d\mathbf V_a/dT$ | Native absolute-time kinematics | Particle-specific inertial mass or $\mathbf{F}=m\mathbf{a}$ as primitive law |
 | Complete state and path history | $\mathbb{U}_{\text{now}}\equiv S(T)$ with history ledger $H_T$ and branch data $\mathcal{B}_T$ | Native bookkeeping requirement for deterministic delayed dynamics | A history-free Markov state or observer-accessible complete state |
 | Polarity and sign bookkeeping | $q_a=\sigma_a\epsilon$, $\sigma_a\in\{-1,+1\}$, $\sigma_{ij}=\mathrm{sign}(q_iq_j)$ | Native polarity bookkeeping with observer-charge calibration | A completed derivation of electric, weak, color, or generation structure |
-| Causal wake support | $\lVert\mathbf X-\mathbf X_{\mathrm{em}}\rVert=c_f(T-T_{\mathrm{em}})$ with $T>T_{\mathrm{em}}$ | Native causal support rule | A filled light cone, Lorentzian metric cone, or instantaneous action |
-| Causal-root set | $F_{ij}(T,T_{\mathrm{em}})=\lVert\mathbf X_i(T)-\mathbf X_j(T_{\mathrm{em}})\rVert-c_f(T-T_{\mathrm{em}})$ and $\mathcal{C}_{ij}(T)=\{\,T_{\mathrm{em}}<T:F_{ij}(T,T_{\mathrm{em}})=0\,\}$ | Native branch-selection geometry | Treating all past source points as active, or treating root existence as stability proof |
+| Causal wake support | $\lVert\mathbf X-\mathbf X_{\mathrm{em}}\rVert=c_f(T-T_t)$ with $T>T_t$ | Native causal support rule | A filled light cone, Lorentzian metric cone, or instantaneous action |
+| Causal-root set | $F_{ij}(T,T_t)=\lVert\mathbf X_i(T)-\mathbf X_j(T_t)\rVert-c_f(T-T_t)$ and $\mathcal{C}_{ij}(T)=\{\,T_t<T:F_{ij}(T,T_t)=0\,\}$ | Native branch-selection geometry | Treating all past source points as active, or treating root existence as stability proof |
 | Causal surface density | $\rho(T,\mathbf X)=\dfrac{q}{4\pi r^2}\delta(r-c_f\tau)H(\tau)$ | Distributional representation of causal wake support | A permanent filled $1/r$ near field or autonomous field substance |
 | Heaviside endpoint rule | $H(0)=0$ and $t_0<t$ in the causal-root set | Native endpoint convention | Instantaneous self-kick or zero-delay self-force |
-| Root Jacobian and transversality | $D_{s,ij}=c_f-\mathbf{v}_j(s)\cdot\hat{\mathbf{r}}_{ij}$ with positive branch floor | Direct source-normal branch-analysis tool in the native law | Replacing branch strength by source-normal data alone, speed magnitude, or ignoring caustic/fold regimes |
-| Per-hit acceleration | $\mathbf{a}_{ij}=\kappa\sigma_{ij}\dfrac{\lvert q_iq_j\rvert W_{ij}^{\mathrm{rec}}}{r_{ij}^2}\hat{\mathbf{r}}_{ij}$ with $W_{ij}^{\mathrm{rec}}=\lvert D_{T,ij}/D_{s,ij}\rvert$ | Accepted native dynamical law on certified branch charts | Cross-product forces, primitive magnetic fields, source-normal-only branch strength, or a mass-based force ontology |
-| Total acceleration | $\dfrac{d^2\mathbf X_i}{dT^2}=\sum_j\sum_{T_{\mathrm{em}}\in\mathcal{C}_{ij}(T)}\mathbf A_{ij}(T;T_{\mathrm{em}})$ | Accepted native branch sum | Bulk equations, convergence for infinite populations, or assembly stability without added branch records |
+| Root Jacobian and transversality | $D_{t,ij}=c_f-\mathbf{v}_j(s)\cdot\hat{\mathbf{r}}_{ij}$ with positive branch floor | Direct transmitter-side branch-analysis tool in the native law | Replacing branch strength by transmitter-side data alone, speed magnitude, or ignoring caustic/fold regimes |
+| Per-hit acceleration | $\mathbf{a}_{ij}=\kappa\sigma_{ij}\dfrac{\lvert q_iq_j\rvert W_{ij}^{\mathrm{acc}}}{r_{ij}^2}\hat{\mathbf{r}}_{ij}$ with $W_{ij}^{\mathrm{acc}}=\lvert D_{r,ij}/D_{t,ij}\rvert$ | Accepted native dynamical law on certified branch charts | Cross-product forces, primitive magnetic fields, transmitter-side-only branch strength, or a mass-based force ontology |
+| Total acceleration | $\dfrac{d^2\mathbf X_i}{dT^2}=\sum_j\sum_{T_t\in\mathcal{C}_{ij}(T)}\mathbf A_{ij}(T;T_t)$ | Accepted native branch sum | Bulk equations, convergence for infinite populations, or assembly stability without added branch records |
 | Superposition | Source contributions add linearly on the declared branch chart | Native source-addition rule and effective reconstruction tool | Wake-wake interaction as an independent substance law |
 | Regularized wake surface | $\delta(r-c_f\tau)\to\delta_\eta(r-c_f\tau)$, with optional core scale $\epsilon_c$ in proof models | Formal regularization and simulation/proof tool | A new substrate substance, a hidden fit parameter, or a completed $\eta\to0$ proof |
 | Potential reconstruction | $\Phi_{\text{net}}(\mathbf X,T)=\sum_o\Phi_o(\mathbf X,T)$ and $U_{o'}=q_{o'}\Phi_{\text{net}}[\text{history}]$ | Fixed-history bookkeeping and effective diagnostic | Static electrostatic ontology or source-position-only potential |
@@ -192,11 +192,11 @@ scaling. In the full delayed dynamics, however, the accepted branch law remains
 $$
 \frac{d^2 \mathbf X_i}{dT^2}
 =
-\sum_j\sum_{T_{\mathrm{em}}\in\mathcal{C}_{ij}(T)}
+\sum_j\sum_{T_t\in\mathcal{C}_{ij}(T)}
 \kappa\sigma_{ij}
-\frac{\lvert q_iq_j\rvert W_{ij}^{\mathrm{rec}}(T;T_{\mathrm{em}})}
-{R_{ij}^2(T;T_{\mathrm{em}})}
-\hat{\mathbf R}_{ij}(T;T_{\mathrm{em}}).
+\frac{\lvert q_iq_j\rvert W_{ij}^{\mathrm{acc}}(T;T_t)}
+{R_{ij}^2(T;T_t)}
+\hat{\mathbf R}_{ij}(T;T_t).
 $$
 
 The pure scalar $1/r$ action scaffold is not yet an unconditional foundation
@@ -233,7 +233,7 @@ Risk scores:
 | Causal-root set | 4 | Root existence is exact but branch completeness, multiplicity, and fold handling are hard | Record active roots, inactive gaps, memory depth, and branch-chart boundaries |
 | Causal surface density | 4 | The $1/r^2$ surface law can be mistaken for a permanent filled field and does not by itself solve convergence in large populations | Use it as distributional wake support with normalization, screening, or cancellation conditions |
 | Heaviside endpoint rule | 2 | Endpoint exclusion is clear, but regulator choices can reintroduce ambiguous self-contact behavior | Keep $H(0)=0$ and match any mollified endpoint convention to the same branch packet |
-| Source-normal transversality and receiver-normal strength | 4 | The source-normal denominator is essential and easy to misread as total branch strength; small denominators mark branch failure, not ordinary force amplification | Use $D_s$ for transversality floors, caustic routing, and root diagnostics; use $W^{\mathrm{rec}}=\lvert D_T/D_s\rvert$ for force/action strength |
+| Transmitter-side transversality and receiver-weighted acceleration factor | 4 | The transmitter-side factor is essential and easy to misread as total branch strength; small denominators mark branch failure, not ordinary force amplification | Use $D_t$ for transversality floors, caustic routing, and root diagnostics; use $W^{\mathrm{acc}}=\lvert D_r/D_t\rvert$ for force/action strength |
 | Per-hit acceleration | 4 | This is the accepted native law, but relying on it globally without branch certification overclaims exact closure | Attach use to certified causal roots, Jacobian floors, endpoint rules, and regularization status |
 | Total acceleration | 5 | The branch sum can hide missing roots, divergent far populations, or unproved infinite-system convergence | Declare finite horizons, summation prescriptions, cancellation estimates, or convergence proof targets |
 | Superposition | 4 | Linear source addition is native on a branch chart, but far-field accumulation and incoherent cancellation are nontrivial | Pair superposition with convergence, screening, finite-window, or mean-field controls |

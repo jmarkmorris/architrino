@@ -15,7 +15,7 @@ The executable layer currently contains:
   pair coverage, bounded node work, compact exact tiles, and a bounded native
   exact-pair fallback that now supplies coupled acceleration snapshots;
 - a deterministic multithreaded exact-pair retained-history/root batch;
-- complete simple-root brackets with source-normal and receiver-normal
+- complete simple-root brackets with transmitter-side and receiver-side
   enclosures, retained-history provenance fingerprints, segment identity,
   memory-boundary status, an inward-rounded MPFR tolerance-edge probe, and the
   canonical coincident self-endpoint rule;
@@ -44,8 +44,8 @@ The executable layer currently contains:
   certificate binds the history fingerprint, root-free open search,
   coincident-endpoint exclusion, memory boundary, start chart, and temporal
   rule;
-- one auditable acceleration row per admitted root, including source normal,
-  receiver normal, branch orientation, receiver strength, polarity, root
+- one auditable acceleration row per admitted root, including the transmitter-side
+  factor, receiver-side factor, branch orientation, acceleration strength, polarity, root
   precision route, and interval-vector contribution; and
 - complete ordered receiver-source matrices, including self-pairs, with a
   fixed pairwise interval reduction tree whose result is independent of worker

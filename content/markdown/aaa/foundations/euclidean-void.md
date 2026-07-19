@@ -139,13 +139,13 @@ This gives a plain rule for spatial identity:
 
 Fixed identity matters whenever a calculation needs provenance. Self-hit diagnostics, path-history bookkeeping, and simulations must know where a wake was emitted and where it is later received.
 
-For a received wake contribution, the provenance record keeps the source identity, emission time, emission location, receiver identity, reception time, and reception location:
+For a received wake contribution, the provenance record keeps the transmitter identity, emission time, emission location, receiver identity, reception time, and reception location:
 $$
-(j,T_{\mathrm{em}},\mathbf X_j(T_{\mathrm{em}}),i,T,\mathbf X_i(T))
+(j,T_t,\mathbf X_j(T_t),i,T,\mathbf X_i(T))
 $$
 The causal-root condition is then
 $$
-\|\mathbf X_i(T)-\mathbf X_j(T_{\mathrm{em}})\|_h=c_f(T-T_{\mathrm{em}})
+\|\mathbf X_i(T)-\mathbf X_j(T_t)\|_h=c_f(T-T_t)
 $$
 This condition is invariant under Euclidean translations and rotations of the chosen chart. The chart may be changed for calculation, but relabeling does not move the underlying void point where the emission occurred.
 
@@ -384,11 +384,11 @@ For a point $(\mathbf X,T)$, define the wake-support index set
 $$
 \mathcal{P}(\mathbf X,T)
 =
-\{(a,T_{\mathrm{em}}):T_{\mathrm{em}}<T,\ \|\mathbf X-\mathbf X_a(T_{\mathrm{em}})\|_h=c_f(T-T_{\mathrm{em}})\}.
+\{(a,T_t):T_t<T,\ \|\mathbf X-\mathbf X_a(T_t)\|_h=c_f(T-T_t)\}.
 $$
 This set records source identities and emission times whose causal isochrons pass through the point. It is a provenance index set, not a field. It has no independent state variables, stress, density, energy, or equation of motion.
 
-Equivalently, $\mathcal{P}(\mathbf X,T)$ is the receiver-side fiber of the tagged-emission map before the received wake terms are summed into an untagged potential. The receiver-centered exhaustion problem is therefore a summability question over this fiber: the weighted counting measure on $\mathcal{P}(\mathbf X,T)$ must converge after the receiver-normal branch strengths, inverse-square distance factors, and source-normal transversality floors are applied. Convergence of the Noether sea background is not a new property of the void. It is a condition on the population of provenance labels and their wake weights.
+Equivalently, $\mathcal{P}(\mathbf X,T)$ is the receiver-side fiber of the tagged-emission map before the received wake terms are summed into an untagged potential. The receiver-centered exhaustion problem is therefore a summability question over this fiber: the weighted counting measure on $\mathcal{P}(\mathbf X,T)$ must converge after the receiver-weighted acceleration factors, inverse-square distance factors, and transmitter-side transversality floors are applied. Convergence of the Noether sea background is not a new property of the void. It is a condition on the population of provenance labels and their wake weights.
 
 In this precise sense, the void is a **Plenum of Potential**: materially empty, but relationally available to causal-wake history. The phrase is explanatory rather than ontological. It does not add a new substance between the Euclidean void and the Noether sea, and it does not create a fourth layer alongside void, medium, and effective spacetime. It names the fact that an empty coordinate location can still lie within the superposed causal-wake history of the architrino population. Noether sea density and response variables belong to $\mathcal{N}_{\mathrm{sea}}$; $\mathcal{P}(\mathbf X,T)$ names only the wake-history provenance labels available at that point.
 

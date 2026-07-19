@@ -126,14 +126,14 @@ $$
 \mathcal{B}_{\partial\Omega}^{\mathrm{in}}(\le T)
 =
 \left\{
-(j,T_{\mathrm{em}},T_{\mathrm{cross}},\mathbf X_{\mathrm{cross}},
-\mathbf X_j(T_{\mathrm{em}}),\mathbf V_j(T_{\mathrm{em}}),q_j)
+(j,T_t,T_{\mathrm{cross}},\mathbf X_{\mathrm{cross}},
+\mathbf X_j(T_t),\mathbf V_j(T_t),q_j)
 \;:\;
-\mathbf X_j(T_{\mathrm{em}})\notin\Omega,\quad
-T_{\mathrm{em}}<T_{\mathrm{cross}}\le T,\quad
+\mathbf X_j(T_t)\notin\Omega,\quad
+T_t<T_{\mathrm{cross}}\le T,\quad
 \mathbf X_{\mathrm{cross}}\in\partial\Omega,\quad
-\|\mathbf X_{\mathrm{cross}}-\mathbf X_j(T_{\mathrm{em}})\|
-=c_f(T_{\mathrm{cross}}-T_{\mathrm{em}})
+\|\mathbf X_{\mathrm{cross}}-\mathbf X_j(T_t)\|
+=c_f(T_{\mathrm{cross}}-T_t)
 \right\}
 $$
 

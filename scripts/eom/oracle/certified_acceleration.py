@@ -250,7 +250,7 @@ class PairAccelerationRequest:
         if self.chart not in {"sharp", "finite_width"}:
             raise ValueError("acceleration chart must be sharp or finite_width")
         if self.source_normal_floor <= 0:
-            raise ValueError("source-normal floor must be positive")
+            raise ValueError("transmitter-side factor floor must be positive")
         if self.acceleration_tolerance <= 0:
             raise ValueError("acceleration tolerance must be positive")
         if self.quadrature_tolerance <= 0:
@@ -521,15 +521,15 @@ def _sharp_row(
     )
     if source_normal is None:
         raise AccelerationCertificationError(
-            "root and acceleration source-normal enclosures disagree"
+            "root and acceleration transmitter-side enclosures disagree"
         )
     if source_normal.contains_zero:
         raise AccelerationCertificationError(
-            "sharp acceleration source-normal enclosure contains zero"
+            "sharp acceleration transmitter-side enclosure contains zero"
         )
     if source_normal.absolute().lower < request.source_normal_floor:
         raise AccelerationCertificationError(
-            "sharp acceleration source-normal floor is not certified"
+            "sharp acceleration transmitter-side floor is not certified"
         )
     receiver_normal = field_speed - interval_dot(direction, receiver_velocity)
     branch_orientation = receiver_normal / source_normal

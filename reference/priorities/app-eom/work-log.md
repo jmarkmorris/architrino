@@ -1857,3 +1857,22 @@ This file holds dated decisions, implementation status, validation results, fail
   proposed.
 - **Evidence:**
   [borg-shadow-affine-dependency-diagnostic-apple-m3-2026-07-18.md](evidence/borg-shadow-affine-dependency-diagnostic-apple-m3-2026-07-18.md).
+
+## 2026-07-19 — Master Equation terminology migration
+
+- **Promoted terminology:** current AAA and reader-facing equation surfaces now
+  distinguish transmitter emission time $T_t$ from receiver reception time
+  $T_r$, use $D_t$ and $D_r$ for the two event-side factors, and name
+  $W^{\mathrm{acc}}=|D_r/D_t|$ as the receiver-weighted acceleration factor.
+- **Compatibility boundary:** existing schema fields, status codes, CLI fields,
+  serialized records, frozen evidence, and the old-law validator filename were
+  not renamed or redefined.
+- **Physics boundary:** the current receiver-weighted Master EOM and EOM solver
+  semantics are unchanged. The source-density acceleration proposal remains
+  priority-only.
+- **Measured validation:** both terminology validators pass, and 120 focused
+  Equation Mapping, prescribed-root, animator, and Photon tests pass. Generated
+  reading copies and indexes remain drifted because no write-mode generator was
+  authorized.
+- **Disposition:**
+  [master-equation-terminology-migration-disposition-2026-07-19.md](master-equation-terminology-migration-disposition-2026-07-19.md).

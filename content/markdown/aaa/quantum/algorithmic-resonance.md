@@ -18,7 +18,7 @@ The Quantum Fourier Transform is the natural comparison point because it convert
 
 That statement keeps the mathematics and the hardware tied together. The comparison is not merely that both stories use phase. The comparison is that a physical register must create the same constructive and destructive record channels that the abstract transform describes.
 
-- **Wake superposition:** The physical sum of delayed causal-wake contributions within the macroscopic assembly — the reconstructed potential $\Phi_\eta$ assembled by summing over the active causal roots $T_{\mathrm{em}}\in\mathcal{C}_{ij}(T)$ that reach the receiver at absolute time $T$.
+- **Wake superposition:** The physical sum of delayed causal-wake contributions within the macroscopic assembly — the reconstructed potential $\Phi_\eta$ assembled by summing over the active causal roots $T_t\in\mathcal{C}_{ij}(T)$ that reach the receiver at absolute time $T$.
 - **Destructive interference:** Cancellation of opposing electrino/positrino causal-wake contributions for non-periodic path histories, suppressing the corresponding dynamical trajectories.
 - **Constructive interference:** Phase alignment for periodic path histories, producing deep macroscopic basins of attraction.
 - **Amplification:** A possible role for $v > c_f$ inner-binary self-hit mechanics, which remains a closure target until the register-scale stability calculation is done.

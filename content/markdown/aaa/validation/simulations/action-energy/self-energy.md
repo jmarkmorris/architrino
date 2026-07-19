@@ -11,10 +11,10 @@ In classical electrostatics, a static $1/r$ potential yields an electric field $
 This project does not posit a static near field. Instead:
 
 - Measure-valued expanding causal surfaces (no static $1/r$ near field):
-  - Each emission is a razor-thin causal isochron with surface density $q/(4\pi r^2)$, represented by $\rho(T,T_{\mathrm{em}})=(q/(4\pi r^2))\delta(r-c_f\Delta)H(\Delta)$. The support at fixed $T$ is a causal wake surface $S_r$, not a three-dimensional $1/r^2$ fill down to $r=0$. See [Background and Simple Action](background-and-simple-action.md).
+  - Each emission is a razor-thin causal isochron with surface density $q/(4\pi r^2)$, represented by $\rho(T,T_t)=(q/(4\pi r^2))\delta(r-c_f\Delta)H(\Delta)$. The support at fixed $T$ is a causal wake surface $S_r$, not a three-dimensional $1/r^2$ fill down to $r=0$. See [Background and Simple Action](background-and-simple-action.md).
 
 - $H(0)=0$ (no coincident self-kick):
-  - The instantaneous emission $(\Delta=0)$ contributes nothing to the force on the emitter; $r=0$ roots beyond $\Delta=0$ do not exist because $r=c_f(T-T_{\mathrm{em}})$. This removes the only event where a literal $r=0$ could enter. See [Causal Set and Delay Geometry](causal-set-and-delay-geometry.md).
+  - The instantaneous emission $(\Delta=0)$ contributes nothing to the force on the emitter; $r=0$ roots beyond $\Delta=0$ do not exist because $r=c_f(T-T_t)$. This removes the only event where a literal $r=0$ could enter. See [Causal Set and Delay Geometry](causal-set-and-delay-geometry.md).
 
 - $\eta$-mollification (finite, well-defined work over resolved windows):
   - Replace $\delta(r-c_f\Delta)$ by a narrow Gaussian $\delta_\eta$ with width $\eta>0$ when differentiability is required. Potentials $\Phi_\eta$ and forces $-\nabla(q'\Phi_\eta)$ are then regular functions; on any resolved interval the work-energy identity holds:
@@ -22,7 +22,7 @@ This project does not posit a static near field. Instead:
     and remains finite. As $\eta\to0$, integrals converge in the weak sense to the impulsive model without introducing infinities. See [Well-posedness and Regularization](well-posedness-and-regularization.md).
 
 - Event-driven geometry (self-hits occur at $r>0$):
-  - Self-interaction requires outrunning recent wake surfaces $(\|\mathbf{v}\|>c_f)$. Self-hits are intersections with one's own earlier wakes at strictly positive radius $r>0$, yielding finite $W^{\mathrm{rec}}/r^2$ impulses (repulsive, like-on-like). There is no accumulation of divergent near-field energy at $r\to0$.
+  - Self-interaction requires outrunning recent wake surfaces $(\|\mathbf{v}\|>c_f)$. Self-hits are intersections with one's own earlier wakes at strictly positive radius $r>0$, yielding finite $W^{\mathrm{acc}}/r^2$ impulses (repulsive, like-on-like). There is no accumulation of divergent near-field energy at $r\to0$.
 
 Net effect: within a declared admissible branch chart, the canonical ontology (moving surface measures, H(0)=0, mollification for analysis) removes the zero-radius event that creates the classical point-charge self-energy divergence. Any remaining divergence claim must enter through a failed branch floor, failed window limit, or failed $\eta\to0$ convergence test rather than through an assumed static near field.
 

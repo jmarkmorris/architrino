@@ -20,7 +20,7 @@ Traditional superposition treats the indeterminacy as fundamental and ontologica
 
 In the $\mathbb{A}\mathbb{A}\mathbb{A}$ framework, superposition is an epistemic (operational) description of an underlying deterministic, multistable dynamical system. At the fundamental level, every architrino possesses a definite position and velocity in the Euclidean void at all absolute times. There is no ontological smearing. 
 
-Linear causal-wake addition is one substrate ingredient for quantum superposition recovery: the total potential experienced by any receiver is the exact, unmediated linear sum of all receiver-normal inverse-square causal wake-surface intersections at its current location. Recovering Hilbert-space superposition still requires an effective chart, basin measure, coherence condition, and record-channel closure.
+Linear causal-wake addition is one substrate ingredient for quantum superposition recovery: the total potential experienced by any receiver is the exact, unmediated linear sum of all receiver-side inverse-square causal wake-surface intersections at its current location. Recovering Hilbert-space superposition still requires an effective chart, basin measure, coherence condition, and record-channel closure.
 
 This statement is substrate-level and should not be confused with the effective claim that a quantum state has formed a superposition in some Hilbert basis. Basis-dependent superposition language is admissible only after a preparation, apparatus kernel, retained coarse-graining, and record window have been declared. A change of Hilbert representation may move the apparent state-vector branch structure without changing the underlying assembly, causal-wake, or record-channel content.
 

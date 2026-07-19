@@ -31,15 +31,15 @@ $$
 \mathbf{a}_{i\leftarrow j}
 \sim
 \kappa\,\sigma_{ij}\frac{\lvert q_iq_j\rvert}{r_{ij}^2}
-W_{ij}^{\mathrm{rec}}\hat{\mathbf{r}}_{ij},
+W_{ij}^{\mathrm{acc}}\hat{\mathbf{r}}_{ij},
 \qquad
-W_{ij}^{\mathrm{rec}}
+W_{ij}^{\mathrm{acc}}
 =
-\left|\frac{D_{T,ij}}{D_{s,ij}}\right|
+\left|\frac{D_{r,ij}}{D_{t,ij}}\right|
 $$
-Here $\sigma_{ij}=\mathrm{sign}(q_iq_j)$ is the polarity sign factor: $+1$ for like-polarity pairs, which repel, and $-1$ for unlike-polarity pairs, which attract; $r_{ij}=\|\mathbf X_i(T)-\mathbf X_j(T_{\mathrm{em}})\|$ is the delayed separation evaluated at a retained causal root, where it equals $c_f(T-T_{\mathrm{em}})$, not the simultaneous distance; and $\hat{\mathbf{r}}_{ij}$ points from the emission point $\mathbf X_j(T_{\mathrm{em}})$ toward the receiver $\mathbf X_i(T)$. $D_{s,ij}=c_f-\hat{\mathbf{r}}_{ij}\cdot\mathbf V_j(T_{\mathrm{em}})$ is the source-normal denominator and $D_{T,ij}=c_f-\hat{\mathbf{r}}_{ij}\cdot\mathbf V_i(T)$ is the receiver-normal numerator. The absolute value quotes only the branch-strength magnitude; the signed branch-orientation factor $m_{ij}=D_{T,ij}/D_{s,ij}$ and root-degree data remain dynamics-level branch data in the [Master Equation](../dynamics/master-equation.md#the-master-equation-canonical-form). The constraint conventions are: the causal constraint is length-valued, written $g_{ij}=r_{ij}-c_f(T-T_{\mathrm{em}})$ in the [Master Equation](../dynamics/master-equation.md#the-master-equation-canonical-form) and $F_{ij}$ in the foundations pages, and it carries the velocity-unit transversality floor $\lvert\partial_{T_{\mathrm{em}}}g_{ij}\rvert \ge \kappa_{\mathrm{hit}} > 0$; when a dimensionless floor is needed, the time-normalized object is $\tilde F_{ij}=F_{ij}/c_f$. Then $J_{ij}^{\mathrm{src}}=\partial_{T_{\mathrm{em}}} \tilde F_{ij}$ is the source-normal causal-root transversality Jacobian, and $c_fJ_{ij}^{\mathrm{src}}=\partial_{T_{\mathrm{em}}}g_{ij}=D_{s,ij}$, so the source-normal denominator is not a free inverse-strength parameter. It is the density-of-states factor of the causal-root map, while the active received branch strength is $W_{ij}^{\mathrm{rec}}$. The ordinary branch row is valid away from the Whitney-fold set
+Here $\sigma_{ij}=\mathrm{sign}(q_iq_j)$ is the polarity sign factor: $+1$ for like-polarity pairs, which repel, and $-1$ for unlike-polarity pairs, which attract; $r_{ij}=\|\mathbf X_i(T)-\mathbf X_j(T_t)\|$ is the delayed separation evaluated at a retained causal root, where it equals $c_f(T-T_t)$, not the simultaneous distance; and $\hat{\mathbf{r}}_{ij}$ points from the emission point $\mathbf X_j(T_t)$ toward the receiver $\mathbf X_i(T)$. $D_{t,ij}=c_f-\hat{\mathbf{r}}_{ij}\cdot\mathbf V_j(T_t)$ is the transmitter-side factor and $D_{r,ij}=c_f-\hat{\mathbf{r}}_{ij}\cdot\mathbf V_i(T)$ is the receiver-side factor. The absolute value quotes only the branch-strength magnitude; the signed branch-orientation factor $m_{ij}=D_{r,ij}/D_{t,ij}$ and root-degree data remain dynamics-level branch data in the [Master Equation](../dynamics/master-equation.md#the-master-equation-canonical-form). The constraint conventions are: the causal constraint is length-valued, written $g_{ij}=r_{ij}-c_f(T-T_t)$ in the [Master Equation](../dynamics/master-equation.md#the-master-equation-canonical-form) and $F_{ij}$ in the foundations pages, and it carries the velocity-unit transversality floor $\lvert\partial_{T_t}g_{ij}\rvert \ge \kappa_{\mathrm{hit}} > 0$; when a dimensionless floor is needed, the time-normalized object is $\tilde F_{ij}=F_{ij}/c_f$. Then $J_{ij}^{t}=\partial_{T_t} \tilde F_{ij}$ is the transmitter-side causal-root transversality Jacobian, and $c_fJ_{ij}^{t}=\partial_{T_t}g_{ij}=D_{t,ij}$, so the transmitter-side factor is not a free inverse-strength parameter. It is the density-of-states factor of the causal-root map, while the active received branch strength is $W_{ij}^{\mathrm{acc}}$. The ordinary branch row is valid away from the Whitney-fold set
 $$
-\Sigma_{ij}=\{F_{ij}=0,\ \partial_{T_{\mathrm{em}}} F_{ij}=0\},
+\Sigma_{ij}=\{F_{ij}=0,\ \partial_{T_t} F_{ij}=0\},
 $$
 while approaching $\Sigma_{ij}$ moves the calculation into the caustic or fold-resolution chart. Using this branch denominator therefore requires the simple-root floor stated above before the schematic acceleration law is treated as an ordinary row rather than a catastrophe-theoretic transition.
 
@@ -151,24 +151,24 @@ The emitted structure is a potential-bearing **causal wake**. The wake is physic
 
 The wake is not an independent substance. It has no freely specifiable state apart from the source architrino's path history. At the effective level, many such wake contributions may be summarized as a field, but the substrate term remains causal wake.
 
-Schematically, if the source history has time domain $I_a$, the wake emitted by architrino $a$ is a source-history functional
+Schematically, if the source history has time domain $I_a$, the wake emitted by architrino $a$ is a transmitter-history functional
 $$
 \mathcal{W}_a(\mathbf X,T)
 =
-\int_{\{T_{\mathrm{em}}\in I_a:\ T_{\mathrm{em}}<T\}}
+\int_{\{T_t\in I_a:\ T_t<T\}}
 q_a\,
-K\!\left(\mathbf X,T;\mathbf X_a(T_{\mathrm{em}}),T_{\mathrm{em}}\right)
-\,dT_{\mathrm{em}},
+K\!\left(\mathbf X,T;\mathbf X_a(T_t),T_t\right)
+\,dT_t,
 \qquad
 \operatorname{supp}K
 \subseteq
-\left\{\|\mathbf X-\mathbf X_a(T_{\mathrm{em}})\|=c_f(T-T_{\mathrm{em}})\right\}
+\left\{\|\mathbf X-\mathbf X_a(T_t)\|=c_f(T-T_t)\right\}
 $$
-The kernel $K$ is only a schematic placeholder here; the exact causal-root sets, source-normal denominators, receiver-normal branch strengths, kernels, and regularization belong to the dynamics chapter. The ontology claim is the dependency claim: after the source identity, polarity, and path history are fixed, there is no second material inventory or autonomous field state left to specify.
+The kernel $K$ is only a schematic placeholder here; the exact causal-root sets, transmitter-side factors, receiver-weighted acceleration factors, kernels, and regularization belong to the dynamics chapter. The ontology claim is the dependency claim: after the transmitter identity, polarity, and path history are fixed, there is no second material inventory or autonomous field state left to specify.
 
 Point-source causal-delay theories carry a known pathology class. Classical point-charge electrodynamics develops divergent self-energy at zero radius, runaway solution branches, and pre-acceleration in Abraham-Lorentz-Dirac-type reductions. This chapter does not solve those issues by naming the architrino primitive. It routes them to the dynamics layer: coincidence handling, self-hit admissibility, regularized or weak-limit kernels, Jacobian/transversality floors, and energy-momentum accounting must remove or quarantine those pathology channels in the branch being used.
 
-A retained point-transceiver branch is admissible as an ordinary ontology branch only if its regularized self-energy and self-acceleration rows remain finite under the declared regulator removal $\eta\to0$ or weak limit, with the active causal roots still protected by a transversality floor such as $\kappa_{\mathrm{hit}} > 0$. The two singular loci are not the same: the coincidence stratum $\{r_{ij}=0\}$ is a spatial point-kernel problem, while the caustic stratum $\{\partial_{T_{\mathrm{em}}} F_{ij}=0\}$ is a causal-root fold problem. The former requires the declared spatial or weak-limit regularization; the latter requires a fold-resolution chart and the active-root floor. If finite self-response or simple-root transversality fails, the branch is not an ordinary point-transceiver case; it must be rejected, moved to a caustic or regularized chart, or quarantined as a pathology channel in the dynamics chapter.
+A retained point-transceiver branch is admissible as an ordinary ontology branch only if its regularized self-energy and self-acceleration rows remain finite under the declared regulator removal $\eta\to0$ or weak limit, with the active causal roots still protected by a transversality floor such as $\kappa_{\mathrm{hit}} > 0$. The two singular loci are not the same: the coincidence stratum $\{r_{ij}=0\}$ is a spatial point-kernel problem, while the caustic stratum $\{\partial_{T_t} F_{ij}=0\}$ is a causal-root fold problem. The former requires the declared spatial or weak-limit regularization; the latter requires a fold-resolution chart and the active-root floor. If finite self-response or simple-root transversality fails, the branch is not an ordinary point-transceiver case; it must be rejected, moved to a caustic or regularized chart, or quarantined as a pathology channel in the dynamics chapter.
 
 Ontologically, the causal wake is a **dynamical geometry**: a source-provenanced interaction structure generated by the path history of the source architrino. It is not a material ether or hidden fluid in the Euclidean void. Distinct wakes superpose perfectly and do not scatter, bind, fragment, or interact with one another as substances.
 
@@ -182,7 +182,7 @@ This page fixes the ontological commitments:
 - Reception is universal across architrinos.
 - Emitted wake history supplies provenance for later dynamics.
 
-This chapter stops before the exact acceleration law. Exact causal wake surfaces, density representations, causal emission-time roots, source-normal denominators, receiver-normal branch strengths, inverse-square kernels, and regularization belong in [Master Equation](../dynamics/master-equation.md).
+This chapter stops before the exact acceleration law. Exact causal wake surfaces, density representations, causal emission-time roots, transmitter-side factors, receiver-weighted acceleration factors, inverse-square kernels, and regularization belong in [Master Equation](../dynamics/master-equation.md).
 
 ## Worldlines and Path History
 
@@ -211,13 +211,13 @@ The complete path history of an architrino matters to its identity ledger. This 
 
 An architrino has an emitted-wake history: the record of causal wakes sourced by that same persistent entity at earlier emission times.
 
-This is an ontology statement about source identity and path-history provenance. It is not the delay-root law. When a calculation needs wake-surface notation, causal emission-time sets, branch counts, or received acceleration, use [Master Equation](../dynamics/master-equation.md).
+This is an ontology statement about transmitter identity and path-history provenance. It is not the delay-root law. When a calculation needs wake-surface notation, causal emission-time sets, branch counts, or received acceleration, use [Master Equation](../dynamics/master-equation.md).
 
 ## Reception Rule Boundary
 
 The ontology only states that every architrino receives wake contributions according to one universal law. This is a universality claim about the primitive receiver, not a claim that all effective assemblies respond in the same coarse-grained way.
 
-It does not define the acceleration kernel, causal emission-time set, source-normal denominator, receiver-normal branch strength, root topology, or branch-resolved acceleration. Those are dynamical commitments, not primitive-entity ontology. The canonical source is [Master Equation](../dynamics/master-equation.md).
+It does not define the acceleration kernel, causal emission-time set, transmitter-side factor, receiver-weighted acceleration factor, root topology, or branch-resolved acceleration. Those are dynamical commitments, not primitive-entity ontology. The canonical source is [Master Equation](../dynamics/master-equation.md).
 
 ## Dynamics and Regime Boundary
 
@@ -225,7 +225,7 @@ This page does not own wake regimes, self-hit activation, maximum-curvature bina
 
 The canonical homes are:
 
-- [Master Equation](../dynamics/master-equation.md) for causal hits, delay roots, source-normal denominators, receiver-normal branch strengths, received acceleration, and branch topology.
+- [Master Equation](../dynamics/master-equation.md) for causal hits, delay roots, transmitter-side factors, receiver-weighted acceleration factors, received acceleration, and branch topology.
 - [Binary Dynamics](../dynamics/binary-dynamics.md) for wake-speed regimes, partner hit versus self-hit behavior, spiral contraction, and maximum-curvature binary analysis.
 - [Nested Shell Braid Dynamics](../noether-braid/braid-families.md#nested-shell-braid-dynamics) for coupled nested shell braid speed regimes, alignment behavior, and assembly-stability mechanisms.
 - [Noether Braid](../noether-braid/noether-braid.md) for the assembly-level Noether braid architecture built from those dynamics.

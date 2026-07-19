@@ -162,13 +162,13 @@ The clock threshold marks where weak locked-wake tails can bias local rates. The
 In the hydrogen case, the branch weights are therefore ledger projectors rather than electron-envelope probabilities or fitted radial profiles:
 
 $$
-w_{j,f}^{\mathrm{lock}}(T_{\mathrm{em}};T)
+w_{j,f}^{\mathrm{lock}}(T_t;T)
 =
 \mathbf{1}_{j\in\mathcal{I}_f(T)}
 \,
 \zeta_f
 \!\left(
-\mathcal{B}_{\mathbf Xj}^{(T_{\mathrm{em}})}
+\mathcal{B}_{\mathbf Xj}^{(T_t)}
 \right),
 \qquad
 f\in\{e,u_1,u_2,d\}
@@ -177,13 +177,13 @@ $$
 while the ambient term is
 
 $$
-w_j^{\mathrm{sea}}(T_{\mathrm{em}};T)
+w_j^{\mathrm{sea}}(T_t;T)
 =
 \mathbf{1}_{j\in\mathcal{I}_{\mathrm{sea}}(\Omega_{\mathrm{H}},T)}
 \,
 \zeta_{\mathrm{sea}}^{(\ell)}
 \!\left(
-\mathcal{B}_{\mathbf Xj}^{(T_{\mathrm{em}})}
+\mathcal{B}_{\mathbf Xj}^{(T_t)}
 \right)
 $$
 
@@ -192,38 +192,38 @@ For a hydrogen window this ambient projector has an explicit ledger-complement p
 $$
 \chi_{\mathrm{comp,H}}^{(\ell)}
 \!\left(
-\mathcal{B}_{\mathbf Xj}^{(T_{\mathrm{em}})}
+\mathcal{B}_{\mathbf Xj}^{(T_t)}
 \right)
 =
 \mathbf{1}_{j\in\mathcal{I}_{\mathrm{sea}}(\Omega_{\mathrm H},T)}
 \left[
 1-\zeta_e
 \!\left(
-\mathcal{B}_{\mathbf Xj}^{(T_{\mathrm{em}})}
+\mathcal{B}_{\mathbf Xj}^{(T_t)}
 \right)
 \right]
 \left[
 1-\zeta_{u_1}
 \!\left(
-\mathcal{B}_{\mathbf Xj}^{(T_{\mathrm{em}})}
+\mathcal{B}_{\mathbf Xj}^{(T_t)}
 \right)
 \right]
 \left[
 1-\zeta_{u_2}
 \!\left(
-\mathcal{B}_{\mathbf Xj}^{(T_{\mathrm{em}})}
+\mathcal{B}_{\mathbf Xj}^{(T_t)}
 \right)
 \right]
 \left[
 1-\zeta_d
 \!\left(
-\mathcal{B}_{\mathbf Xj}^{(T_{\mathrm{em}})}
+\mathcal{B}_{\mathbf Xj}^{(T_t)}
 \right)
 \right]
 \left[
 1-\zeta_{\mathrm{strong}}^{uud}
 \!\left(
-\mathcal{B}_{\mathbf Xj}^{(T_{\mathrm{em}})}
+\mathcal{B}_{\mathbf Xj}^{(T_t)}
 \right)
 \right]
 $$
@@ -233,12 +233,12 @@ The branch then remains ambient only if it also passes the local neutral-core eq
 $$
 \zeta_{\mathrm{sea,H}}^{(\ell)}
 \!\left(
-\mathcal{B}_{\mathbf Xj}^{(T_{\mathrm{em}})}
+\mathcal{B}_{\mathbf Xj}^{(T_t)}
 \right)
 =
 \chi_{\mathrm{comp,H}}^{(\ell)}
 \!\left(
-\mathcal{B}_{\mathbf Xj}^{(T_{\mathrm{em}})}
+\mathcal{B}_{\mathbf Xj}^{(T_t)}
 \right)
 \exp
 \!\left[
@@ -252,18 +252,18 @@ $$
 \right]
 $$
 
-where $\Delta_{\mathrm{cad,H}}^{(\ell)}$ and $\Delta_{\mathrm{bal,H}}^{(\ell)}$ are the window-normalized residuals of the parent projector in [Braid Envelope Geometry](../noether-braid/braid-envelope-geometry.md#assembly-noether-sea-interface-diagnostic), evaluated in $\Omega_{\mathrm H}$: the cadence residual compares the branch cadence $\nu_j(T_{\mathrm{em}})$ with the smoothed ambient Noether sea cadence $\bar\nu_{\mathrm{sea,H}}^{(\ell)}=\left\langle\nu\right\rangle_{\mathrm{sea},\ell}$ in $\Omega_{\mathrm H}$ and divides by the window cadence spread, while the balance residual measures the tolerance-normalized neutral-pairing and orientation-balance mismatch after the electron, quark, and strong-sector ledgers are removed. Both residuals are dimensionless, so the exponential argument is well formed. A branch locked to the electron, to any of the three quark assemblies, or to the proton's color-singlet corridor is therefore rejected from the ambient denominator even when it lies inside the same spatial coarse window. A neighboring neutral Noether braid in the same window is retained when it is not phase-locked to those matter ledgers and matches the local equilibrium record.
+where $\Delta_{\mathrm{cad,H}}^{(\ell)}$ and $\Delta_{\mathrm{bal,H}}^{(\ell)}$ are the window-normalized residuals of the parent projector in [Braid Envelope Geometry](../noether-braid/braid-envelope-geometry.md#assembly-noether-sea-interface-diagnostic), evaluated in $\Omega_{\mathrm H}$: the cadence residual compares the branch cadence $\nu_j(T_t)$ with the smoothed ambient Noether sea cadence $\bar\nu_{\mathrm{sea,H}}^{(\ell)}=\left\langle\nu\right\rangle_{\mathrm{sea},\ell}$ in $\Omega_{\mathrm H}$ and divides by the window cadence spread, while the balance residual measures the tolerance-normalized neutral-pairing and orientation-balance mismatch after the electron, quark, and strong-sector ledgers are removed. Both residuals are dimensionless, so the exponential argument is well formed. A branch locked to the electron, to any of the three quark assemblies, or to the proton's color-singlet corridor is therefore rejected from the ambient denominator even when it lies inside the same spatial coarse window. A neighboring neutral Noether braid in the same window is retained when it is not phase-locked to those matter ledgers and matches the local equilibrium record.
 
 The strong-sector ledger $\mathcal{L}_{\mathrm{strong}}^{uud}$ is part of the proton/hydrogen matter record for corridor calculations. It is not counted as ambient Noether sea merely because it lies between the three quark assemblies. Channel intensity then follows the same sector-exposure rule,
 
 $$
-\alpha_{j,X}(\mathbf X,T;T_{\mathrm{em}})
+\alpha_{j,X}(\mathbf X,T;T_t)
 =
 \left\|
 Q_X
 \!\left[
 \Pi_X
-\mathcal{B}_{\mathbf Xj}^{(T_{\mathrm{em}})}
+\mathcal{B}_{\mathbf Xj}^{(T_t)}
 \right]
 \right\|_X
 $$
@@ -288,15 +288,15 @@ $$
 =
 K_\ell *
 \sum_{j\in\mathcal I_f(T)}
-\sum_{T_{\mathrm{em}}\in\mathcal C_{\mathbf Xj}(T)}
+\sum_{T_t\in\mathcal C_{\mathbf Xj}(T)}
 \zeta_f
 \!\left(
-\mathcal B_{\mathbf Xj}^{(T_{\mathrm{em}})}
+\mathcal B_{\mathbf Xj}^{(T_t)}
 \right)
 \frac{
-\alpha_{j,X}(\mathbf X,T;T_{\mathrm{em}})
+\alpha_{j,X}(\mathbf X,T;T_t)
 \,
-W_{\mathbf Xj}^{\mathrm{rec},X}(T;T_{\mathrm{em}})
+W_{\mathbf Xj}^{\mathrm{rec},X}(T;T_t)
 }{
 r_{\mathbf Xj}^2
 },
@@ -304,7 +304,7 @@ r_{\mathbf Xj}^2
 f\in\{e,u_1,u_2,d\}
 $$
 
-The hydrogen channel decision is then not a free radius choice. It is the stability statement that the relevant exposure scan crosses the declared threshold while the same ambient branch-strength kernel uses $\zeta_{\mathrm{sea,H}}^{(\ell)}$ and the same-root receiver-normal factor $W_{\mathbf Xj}^{\mathrm{rec},X}=\lvert D_{T,\mathbf Xj}^{(X)}/D_{s,\mathbf Xj}\rvert$. The channel probe state behind $D_{T,\mathbf Xj}^{(X)}$ is inherited from the interface diagnostic in [Braid Envelope Geometry](../noether-braid/braid-envelope-geometry.md#assembly-noether-sea-interface-diagnostic): void-stationary for clock and packing scans, the declared path velocity for penetration scans, and an explicitly declared probe velocity for moving corridor scans. Clock scans use the dimensionless phase/cadence/delay norm; corridor scans use orientation, provenance, and strong-sector ledger coherence; packing scans use exclusion magnitude and envelope-shape response; and penetration scans use signed path acceleration plus phase disruption before taking the scalar dominance norm. The same branch can therefore be weakly visible to clocks while still far below the packing or penetration thresholds.
+The hydrogen channel decision is then not a free radius choice. It is the stability statement that the relevant exposure scan crosses the declared threshold while the same ambient branch-strength kernel uses $\zeta_{\mathrm{sea,H}}^{(\ell)}$ and the same-root receiver-side factor $W_{\mathbf Xj}^{\mathrm{rec},X}=\lvert D_{r,\mathbf Xj}^{(X)}/D_{t,\mathbf Xj}\rvert$. The channel probe state behind $D_{r,\mathbf Xj}^{(X)}$ is inherited from the interface diagnostic in [Braid Envelope Geometry](../noether-braid/braid-envelope-geometry.md#assembly-noether-sea-interface-diagnostic): void-stationary for clock and packing scans, the declared path velocity for penetration scans, and an explicitly declared probe velocity for moving corridor scans. Clock scans use the dimensionless phase/cadence/delay norm; corridor scans use orientation, provenance, and strong-sector ledger coherence; packing scans use exclusion magnitude and envelope-shape response; and penetration scans use signed path acceleration plus phase disruption before taking the scalar dominance norm. The same branch can therefore be weakly visible to clocks while still far below the packing or penetration thresholds.
 
 Hydrogen-specific tolerance scales are fixed by the channel readout being protected. For a declared hydrogen channel readout $\mathcal O_{\mathrm H,X}^{(\ell)}$, the admissible tolerance pullback is
 

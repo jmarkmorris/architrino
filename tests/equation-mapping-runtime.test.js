@@ -183,7 +183,10 @@ test("equation mapping places the full master equation immediately after the per
   );
   assert.equal(
     masterEquation.formulaParts.some(
-      (part) => part.kind === "math" && part.anchorId === "emissionSum" && part.tex.includes("\\mathcal C_{ij}(T)")
+      (part) =>
+        part.kind === "math" &&
+        part.anchorId === "emissionSum" &&
+        part.tex.includes("\\mathcal C_{r\\leftarrow t}(T_r)")
     ),
     true
   );
@@ -204,7 +207,7 @@ test("equation mapping line-of-action callout names the emission point", () => {
 
   assert.equal(
     lineOfAction.content.some(
-      (block) => block.type === "text" && block.text.includes("point of emission")
+      (block) => block.type === "text" && block.text.includes("transmitter's emission site")
     ),
     true
   );
@@ -230,7 +233,7 @@ test("equation mapping search includes subject, formula text, anchors, and overl
   const documents = createSeedEquationMapDocuments();
   assert.equal(filterEquationMapDocuments(documents, "AAA native").length >= 1, true);
   assert.equal(filterEquationMapDocuments(documents, "Lorentz factor").length >= 1, true);
-  assert.equal(filterEquationMapDocuments(documents, "receiver-normal").length >= 1, true);
+  assert.equal(filterEquationMapDocuments(documents, "receiver-weighted").length >= 1, true);
   assert.equal(filterEquationMapDocuments(documents, "redshift factor").length >= 1, true);
   assert.equal(filterEquationMapDocuments(documents, "not-present").length, 0);
 });
@@ -524,7 +527,10 @@ test("equation mapping seed formulas use layer-explicit coordinate notation", ()
     .join("\n");
 
   [
-    "D_t",
+    "D_s",
+    "D_T",
+    "T_{\\mathrm{em}}",
+    "W^{\\mathrm{rec}}",
     "\\partial_t",
     "dx^\\mu",
     "a_{\\mathrm{eff}}^2(t)",
@@ -1430,17 +1436,17 @@ test("equation mapping editor updates anchor labels and formula TeX", () => {
   );
   const nextDocument = normalizeEquationMapDocument(
     updateEquationAnchor(document, "branchStrength", {
-      label: "receiver-normal factor",
-      tex: "W^{\\mathrm{rec}}",
+      label: "receiver-weighted acceleration factor",
+      tex: "W^{\\mathrm{acc}}",
       searchText: "retained branch ledger",
     })
   );
   const sourceAnchor = nextDocument.anchors.find((anchor) => anchor.id === "branchStrength");
 
-  assert.equal(sourceAnchor.label, "receiver-normal factor");
+  assert.equal(sourceAnchor.label, "receiver-weighted acceleration factor");
   assert.equal(sourceAnchor.searchText, "retained branch ledger");
-  assert.equal(getFormulaPartTeXForAnchor(nextDocument, "branchStrength"), "W^{\\mathrm{rec}}");
-  assert.equal(nextDocument.formulaTeX.includes("W^{\\mathrm{rec}}"), true);
+  assert.equal(getFormulaPartTeXForAnchor(nextDocument, "branchStrength"), "W^{\\mathrm{acc}}");
+  assert.equal(nextDocument.formulaTeX.includes("W^{\\mathrm{acc}}"), true);
 });
 
 test("equation mapping editor creates and retargets overlay comments", () => {

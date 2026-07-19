@@ -67,11 +67,11 @@ function receiverNormalFields({ direction, sourceVelocity, receiverVelocity, sig
   const receiverNormalCrossingFactor = receiverNormalNumerator / signalSpeed;
   const receiverNormalFactor = receiverNormalNumerator / sourceNormalDenominator;
   const unsignedReceiverNormalFactor = Math.abs(receiverNormalFactor);
-  // Signed branch orientation m = D_T / D_s carried by the canonical master
-  // equation. Exposed explicitly alongside the unsigned branchWeight the force
-  // strength uses, so a same-source hinge consumer can apply the sign: past the
-  // field-speed crossing an accelerating receiver outruns its own emitting past,
-  // giving D_T < 0 < D_s and an absorptive (m < 0) contribution.
+  // Signed branch orientation m = D_r / D_t carried by the canonical master
+  // equation. Exposed explicitly alongside the unsigned branchWeight that the
+  // acceleration strength uses, so a same-transmitter hinge consumer can apply
+  // the sign: past the field-speed crossing an accelerating receiver outruns its
+  // own emitting past, giving D_r < 0 < D_t and an absorptive (m < 0) contribution.
   const signedBranchOrientation = receiverNormalFactor;
   let receiverNormalStatusCode = STATUS_OK;
   if (
@@ -114,7 +114,7 @@ export function evaluateMovingCircularSourcePhase(source = {}, timeSeconds = 0) 
   const angularVelocity = finiteNumber(source.angularVelocity);
   // Optional constant angular acceleration alpha (default 0 preserves the
   // fixed-omega rigid circle exactly). With alpha != 0 the tangential speed
-  // omega(t)*|r| sweeps through the field-speed edge, so a same-source root can
+  // omega(t)*|r| sweeps through the field-speed edge, so a same-transmitter root can
   // realize the pump-driven crossing rather than the reflection-locked m = +1.
   const angularAcceleration = finiteNumber(source.angularAcceleration);
   const dt = finiteNumber(timeSeconds) - epochTime;
@@ -682,7 +682,7 @@ export function solveMovingCircularSameSourceCausalRoots(request = {}) {
         sampledCount: 0,
         rootLimitReached: false,
       }),
-      status: { code: "empty_window", severity: "warning", message: "moving circular same-source root window is empty" },
+      status: { code: "empty_window", severity: "warning", message: "moving circular same-transmitter root window is empty" },
     };
   }
 
@@ -765,7 +765,7 @@ export function solveMovingCircularSameSourceCausalRoots(request = {}) {
       code: retained.length > 0 ? (scan.rootLimitReached ? "partial" : "ok") : noRootStatus.code,
       severity: retained.length > 0 ? (scan.rootLimitReached ? "warning" : "ok") : noRootStatus.severity,
       message: retained.length > 0
-        ? "moving circular same-source causal roots solved"
+        ? "moving circular same-transmitter causal roots solved"
         : noRootStatus.message,
     },
   };

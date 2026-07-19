@@ -2335,7 +2335,7 @@ enclose_mp_monotone_root(
     return std::nullopt;
   }
 
-  // For a root u_* in this one-sign source-normal bracket, the mean-value
+  // For a root u_* in this one-sign transmitter-side bracket, the mean-value
   // theorem gives u_* = point - g(point) / g'(xi).  Directed interval
   // division therefore encloses every root allowed by the retained-history
   // errors without requiring symmetric strict-sign probes around point.
@@ -2492,7 +2492,7 @@ std::optional<MpRoot> surround_mp_segment_join_root(
   // can therefore be wider than the root tolerance even when its nominal
   // radius is one half-tolerance.  Spend the tolerance left after enclosing
   // the represented join, then round both probe endpoints inward.  Strict
-  // opposite residual signs and one strict source-normal sign retain the same
+  // opposite residual signs and one strict transmitter-side sign retain the same
   // IVT plus monotonicity certificate used by the ordinary join probes.
   const MpFloat boundary_width =
       mp_subtract(boundary_upper, boundary_lower, MPFR_RNDU);
@@ -2885,7 +2885,7 @@ MpAttempt run_mpfr_attempt(const ExactPairRequest& request, unsigned bits_value)
         lower_sign != 0 && upper_sign == 0) {
       // The self identity fixes g(T,T)=0 even when independent retained-error
       // enclosures make the point evaluation merely contain zero.  A strict
-      // source-normal sign over this cell makes the residual monotone, so the
+      // transmitter-side sign over this cell makes the residual monotone, so the
       // sole zero is the H(0)-excluded coincident endpoint.
       attempt.coincident_endpoint_excluded = true;
       ++attempt.excluded_cells;

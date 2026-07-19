@@ -2825,7 +2825,7 @@ void validate_request(const NativeCoupledEvolutionRequest& request) {
   tolerance_value(request.field_speed, "field speed");
   tolerance_value(request.coupling, "coupling");
   tolerance_value(request.root_tolerance, "root tolerance");
-  tolerance_value(request.source_normal_floor, "source-normal floor");
+  tolerance_value(request.source_normal_floor, "transmitter-side factor floor");
   tolerance_value(request.acceleration_tolerance, "acceleration tolerance");
   if (!std::is_sorted(
           request.adjudicated_finite_width_pairs.begin(),

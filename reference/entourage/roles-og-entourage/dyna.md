@@ -17,7 +17,7 @@ Outputs stay **simulation-ready** and **constraint-ready**. Anchor formal equati
 
 ## Current Theory Alignment
 
-- Treat `dynamics/master-equation.md` as canonical for the delayed, radial, receiver-normal per-hit law and causal wake geometry.
+- Treat `dynamics/master-equation.md` as canonical for the delayed, radial, receiver-weighted per-hit acceleration law and causal wake geometry.
 - Use `dynamics/causal-action-functional.md` for variational/topological stability programs.
 - Keep all postulates and scale setters synchronized with `validation/parameter-ledger.md`.
 - Ensure continuum/emergent reductions remain consistent with `spacetime/*`, `quantum/*`, `validation/no-go-theorems.md`, and the active closure burdens in `reference/priorities/braid-program/priorities.md`.
@@ -32,8 +32,8 @@ Outputs stay **simulation-ready** and **constraint-ready**. Anchor formal equati
   - Single architrino: $x \in \mathbb{R}^3$, $v$ or $p$, polarity $s \in \{\pm\}$, plus minimal internal variables if needed (e.g. phase).
   - N-body: configuration space $(\mathbb{R}^3 \times \mathbb{R}^3 \times \{\pm\})^N$ over absolute time $t \in \mathbb{R}$.
 - Specify the **interaction law**:
-  - Potential kernel(s): radial inverse-square per-hit acceleration with causal roots, source-normal denominators, receiver-normal branch strength $W^{\mathrm{rec}}=\lvert D_t/D_s\rvert$, propagation at field speed $c_f$, and sign structure (pro/anti).
-  - Path-history dependence: forces at time $t$ depend on positions along earlier causal wake surfaces (via $t - r/c_f$).
+  - Potential kernel(s): radial inverse-square per-hit acceleration with causal roots, transmitter-side factors $D_t$, receiver-side factors $D_r$, receiver-weighted acceleration factor $W^{\mathrm{acc}}=\lvert D_r/D_t\rvert$, propagation at field speed $c_f$, and polarity sign structure.
+  - Path-history dependence: acceleration at reception time $T_r$ depends on positions along earlier causal wake surfaces emitted at $T_t$.
   - Velocity condition along a preferred ("radial") direction $\hat{\mathbf{u}}$:
     $$
     \left|\mathbf{v}_{\text{total}} \cdot \hat{\mathbf{u}}\right| = c_f

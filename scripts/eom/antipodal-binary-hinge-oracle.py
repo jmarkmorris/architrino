@@ -29,7 +29,7 @@ The absolute values are load-bearing. Dropping the one on the self hinge
 discards every root with delta > 2*pi, which are real from s ~ 4.61.
 
 Force. On this object r_hat . v_src = r_hat . v_recv in both channels, so
-D_s = D_T and W_rec = |D_T / D_s| = 1 exactly, away from a caustic. With
+D_t = D_r and W_acc = |D_r / D_t| = 1 exactly, away from a caustic. With
 a_r = -(kappa q^2 / R^2) F_r(s) and a_theta = +(kappa q^2 / R^2) F_theta(s),
 summed over the COMPLETE positive root sets P(s) and S(s):
 

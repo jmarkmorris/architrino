@@ -221,7 +221,8 @@ when required, then verify the manifest and integrity checks before publishing.
 Git hooks are configured through `.githooks`.
 
 The pre-commit hook checks content references, the scene graph, textbook reading
-copies, receiver-normal clean-slate status, notation drift, and animator runtime
+copies, receiver-weighted compatibility status, current Master Equation terminology,
+notation drift, and animator runtime
 wiring.
 
 The pre-push hook runs the Content Integrity gate and animator runtime wiring

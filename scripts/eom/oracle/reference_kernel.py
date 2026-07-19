@@ -151,7 +151,7 @@ def sharp_root_acceleration(
         receiver, source, reception_time, emission_time, field_speed
     )
     if source_normal == 0:
-        raise OracleDomainError("sharp root acceleration is undefined at D_s = 0")
+        raise OracleDomainError("sharp root acceleration is undefined at D_t = 0")
     q_product = _mp(charge_product)
     if q_product == 0:
         return vector((0, 0, 0))

@@ -253,17 +253,17 @@ NativeAccelerationRow reconstruct_row(
       evaluated_source_normal.intersection(certified_source_normal);
   if (!source_normal_intersection.has_value()) {
     throw AccelerationCertificationError(
-        "root and acceleration source-normal enclosures disagree");
+        "root and acceleration transmitter-side enclosures disagree");
   }
   const Interval source_normal = *source_normal_intersection;
   if (source_normal.contains_zero() ||
       source_normal.strict_sign() != root.source_normal_sign) {
     throw AccelerationCertificationError(
-        "sharp acceleration source-normal sign is uncertified");
+        "sharp acceleration transmitter-side sign is uncertified");
   }
   if (interval_absolute(source_normal).lower() < source_normal_floor.upper()) {
     throw AccelerationCertificationError(
-        "sharp acceleration source-normal floor is not certified");
+        "sharp acceleration transmitter-side floor is not certified");
   }
 
   const Interval evaluated_receiver_normal =
@@ -274,7 +274,7 @@ NativeAccelerationRow reconstruct_row(
       evaluated_receiver_normal.intersection(certified_receiver_normal);
   if (!receiver_normal_intersection.has_value()) {
     throw AccelerationCertificationError(
-        "root and acceleration receiver-normal enclosures disagree");
+        "root and acceleration receiver-side enclosures disagree");
   }
   const Interval receiver_normal = *receiver_normal_intersection;
   const Interval branch_orientation = receiver_normal / source_normal;
@@ -1398,7 +1398,7 @@ NativePairAccelerationCertificate certify_pair_acceleration(
     require_nonzero_charge(receiver_charge, "receiver charge");
     require_nonzero_charge(source_charge, "source charge");
     require_positive(coupling, "coupling");
-    require_positive(source_normal_floor, "source-normal floor");
+    require_positive(source_normal_floor, "transmitter-side factor floor");
     require_positive(causal_width, "causal width");
     require_positive(core_scale, "core scale");
     require_positive(acceleration_tolerance, "acceleration tolerance");

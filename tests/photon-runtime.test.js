@@ -617,7 +617,7 @@ test("Photon absolute-history source roots route through the moving-circular pre
   assert.ok(Array.isArray(roots));
 });
 
-test("prescribed-path observer field fails closed without complete receiver-normal branch rows", async () => {
+test("prescribed-path observer field fails closed without complete receiver-side root-playback rows", async () => {
   const response = computeMovingCircularObserverField({
     signalSpeed: 1,
     jacobianFloor: 1e-4,
@@ -680,7 +680,7 @@ test("Photon absolute-history field routes through the moving-circular prescribe
   assert.ok(Number.isFinite(field.electric.y));
 });
 
-test("Photon helical same-source roots route through the moving-circular prescribed-path analysis", async () => {
+test("Photon helical same-transmitter roots route through the moving-circular prescribed-path analysis", async () => {
   const state = createDefaultPhotonState();
   let sameSourceCalls = 0;
   const solveSameSourceRoots = async (request) => {
@@ -720,7 +720,7 @@ test("Photon self-hit span requests use absolute photon plus orbital speed ratio
   assert.equal(runRequest.envelope.interactionPolicy, "same-source-enabled");
 });
 
-test("Photon self-hit diagnostics route same-source rows through the prescribed-path analysis", async () => {
+test("Photon self-hit diagnostics route same-transmitter causal hits through the prescribed-path analysis", async () => {
   const state = createDefaultPhotonState();
   state.pair.photonSpeedCf = 0;
   const spans = [2.05, 0, 0, 2.05, 0, 0];
