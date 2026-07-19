@@ -1,6 +1,14 @@
 # The Master Equation — Going-Forward Proposal
 
-Operator walkthrough (full technical backing: the dispatch packet, same directory). This document proposes the going-forward master equation. Receiver velocity does not alter acceleration; the receiver-side crossing rate $D_r$ is bookkeeping only (playback ratio, root tracking). Promotion into canon and solver is a separate, explicit step — see the corpus migration plan at the end.
+Operator walkthrough. This document proposes the going-forward master equation while keeping three different strengths of claim separate:
+
+**Accepted (working decision).** The receiver-side crossing rate $D_r$ does not multiply the base acceleration row. $D_r$ survives only as bookkeeping: the playback ratio and root tracking. The root-transport identity $D_r/D_t$ never justified using $|D_r|$ as an instantaneous acceleration factor.
+
+**Strong candidate, conditional.** The base row $\kappa\,\sigma_{tr}\,|q_tq_r|\,(1/r^2)(c_f/|D_t|)\,\hat{\mathbf r}_t$ — derived from the selected scalar action, conditional on the uniform emission measure (0.4).
+
+**Proposed, open.** The accounting term $\mathbf A_C$: derived to exist from the same action, computed on two configurations only, no general definition yet. In particular, whether receiver velocity enters $\mathbf A_C$ on general configurations is **open** — this document does not make the blanket claim "receiver velocity does not alter acceleration," only the narrower claim that $D_r$ does not multiply the base row.
+
+Promotion into canon and solver is a separate, explicit step — see the corpus migration plan at the end.
 
 ## Terminology
 
@@ -12,34 +20,39 @@ Operator walkthrough (full technical backing: the dispatch packet, same director
 | $T_t$ | a transmitter (emission) time — an instant in the transmitter's past |
 | $T_r$ | the receiver (reception) time — the present instant analyzed |
 | wake shell | the sphere launched at $T_t$, centered on $\mathbf X_t(T_t)$, radius growing at $c_f$ forever; the wake is the continuous stream of all shells |
-| $r$, $\hat{\mathbf r}$ | separation $\mathbf X_r(T_r)-\mathbf X_t(T_t)$; its length, and the unit vector along the **emission ray** (from emission point toward receiver) |
+| $r$, $\hat{\mathbf r}_t$ | separation $\mathbf X_r(T_r)-\mathbf X_t(T_t)$: its length $r$, and the unit vector $\hat{\mathbf r}_t$ along the **emission ray** — from the emission point toward the receiver |
 | root | a value of $T_t$ solving the hit condition: an emission time whose shell crosses the receiver now |
-| $D_t = c_f - \hat{\mathbf r}\cdot\mathbf V_t(T_t)$ | wake-density factor: wake laid down per emission time occupies radial span $D_t\,dT_t$ toward the receiver |
-| $D_r = c_f - \hat{\mathbf r}\cdot\mathbf V_r(T_r)$ | crossing rate of the shell stream over the receiver. **Bookkeeping only** — appears in the playback ratio and root tracking, never in acceleration |
+| $D_t = c_f - \hat{\mathbf r}_t\cdot\mathbf V_t(T_t)$ | wake-density factor: wake laid down per emission time occupies radial span $D_t\,dT_t$ toward the receiver |
+| $D_r = c_f - \hat{\mathbf r}_t\cdot\mathbf V_r(T_r)$ | crossing rate of the shell stream over the receiver. **Bookkeeping only** — appears in the playback ratio and root tracking, never as a base-row factor |
 | fold | the event $D_t = 0$: roots created/destroyed in pairs |
 | $\boldsymbol\beta_t$ | $\mathbf V_t/c_f$: the transmitter's velocity in shell-speed units (in Part 1 the drift is constant) |
 | $\mathbf R$, $R$ | separation from the transmitter's **present** position: $\mathbf R = \mathbf X_r(T_r) - \mathbf X_t(T_r)$; $R = \|\mathbf R\|$ its length |
-| $\mathbf N$ | $\mathbf N = \mathbf R/R$: the unit vector pointing from the transmitter's present position toward the receiver — the **present ray**. Contrast $\hat{\mathbf r}$, which points from the *emission* position toward the receiver — the emission ray |
-| $p$ | $\mathbf N\cdot\boldsymbol\beta_t$: the radial part of the transmitter drift (positive = receding along the present ray) |
+| $\hat{\mathbf r}_{\text{now}}$ | $\mathbf R/R$: the unit vector from the transmitter's present position toward the receiver — the **present ray**. A comparison coordinate only: nothing propagates from the present position (Part 1). Contrast $\hat{\mathbf r}_t$, which points from the *emission* position toward the receiver — the emission ray |
+| $p$ | $\hat{\mathbf r}_{\text{now}}\cdot\boldsymbol\beta_t$: the radial part of the transmitter drift (positive = transmitter approaching the receiver along the present ray) |
+| $\boldsymbol\beta_{t\perp}$ | the transverse part of $\boldsymbol\beta_t$: $\boldsymbol\beta_t - p\,\hat{\mathbf r}_{\text{now}}$ — drift across the line of sight |
 | grade | magnitude of the spatial rate of change of arriving wake potential; $1/r^2$ for a static transmitter |
 | E/P/J | energy, momentum, angular momentum — the conserved accounts the master equation must balance |
 | first / second order | term sizes $\propto (v/c_f)^1$ and $(v/c_f)^2$: at $v/c_f=0.01$, about $1\%$ and $0.01\%$ of the main term |
-| $\mathbf A_C$ | the accounting term: a velocity-dependent pair acceleration required for E/P/J closure (Part 2) |
+| $\mathbf A_C$ | the accounting term: the additional acceleration row generated by the $K_C$ piece of the action (Part 2); velocity-dependent, pairwise, no general formula yet |
 
-## The Master Equation
+## The Proposed Master Equation
 
 $$
 \boxed{\;
-\mathbf A_r \;=\; \sum_{\text{roots}} \kappa\,\sigma_{tr}\,|q_tq_r|\;\frac{1}{r^2}\;\frac{c_f}{|D_t|}\;\hat{\mathbf r} \;\;+\;\; \mathbf A_C \;}
+\mathbf A_r \;=\; \sum_{\text{roots}} \kappa\,\sigma_{tr}\,|q_tq_r|\;\frac{1}{r^2}\;\frac{c_f}{|D_t|}\;\hat{\mathbf r}_t \;\;+\;\; \mathbf A_C \;}
 $$
 
-with $\sigma_{tr} = \mathrm{sign}(q_tq_r)$: like polarities accelerate apart along the emission ray, unlike together. In words: the receiver's acceleration is the grade of the arriving wake at its location; the transmitter-side density factor $c_f/|D_t|$ raises or lowers that grade; the receiver's own velocity plays no role. Orientation of a crossing — a shell front sweeping over the receiver, or the receiver punching out through a front from inside — is invisible to acceleration; it survives only in the sign of the playback ratio. Status of $\mathbf A_C$: derived to exist and to balance the E/P/J accounts on the tested configurations (Part 2); its value on further configurations is the chief open computation.
+with $\sigma_{tr} = \mathrm{sign}(q_tq_r)$: like polarities accelerate apart along the emission ray, unlike together. In words: the receiver's acceleration is the grade of the arriving wake at its location; the transmitter-side density factor $c_f/|D_t|$ raises or lowers that grade; the receiver's crossing rate $D_r$ never multiplies this row. Orientation of a crossing — a shell front sweeping over the receiver, or the receiver punching out through a front from inside — is invisible to acceleration; it survives only in the sign of the playback ratio.
+
+**Status, stated precisely.** This box is a *template*, not yet an executable law: $\mathbf A_C$ is defined in general only as the Euler-equation contribution of the $K_C$ kernel piece (Part 2), with computed values on exactly two configurations — the drifting-transmitter probe (Part 1) and the prescribed circular pair (Part 2). Whether receiver velocity enters $\mathbf A_C$ is open; the falsifier is direct — compute the moving-receiver variation of $K_C$: any nonzero $\mathbf V_r$-dependent term settles it.
 
 ## Part 0 — The Scene
 
 ### 0.1 Transceivers and wakes
 
-An architrino is a point transceiver in the Euclidean void. As transmitter it launches a shell every instant — expanding at $c_f$ from its launch point, forever. As receiver it is crossed at every instant by old shells (others', or its own past's if that past was ever fast enough), each crossing contributing acceleration by the master equation. Crossed by nothing, it moves straight at constant velocity. At any field point the summed wake potential is the sum of every arriving wake's contribution — electrino wakes below the neutral level, positrino wakes above. A moving transmitter's wake redistributes around it: densest directly ahead of the motion, sparsest directly behind, unchanged exactly abeam of the emission point, graded in between by the angle $\theta$ between the emission ray and $\mathbf V_t$ — $D_t = c_f - \|\mathbf V_t\|\cos\theta$, arriving density $\propto 1/D_t$.
+An architrino is a point transceiver in the Euclidean void. As transmitter it launches a shell every instant — expanding at $c_f$ from its launch point, forever. As receiver it is crossed at every instant by old shells (others', or its own past's if that past was ever fast enough), each crossing contributing acceleration by the master equation. Crossed by nothing, it moves straight at constant velocity. At any field point the summed wake potential is the sum of every arriving wake's contribution — electrino wakes below the neutral level, positrino wakes above.
+
+A moving transmitter's wake is misshapen everywhere: each shell stays a perfect sphere centered on its own launch point, but the launch points are strung along the drift, so the nested pattern is off-center in every direction. The radial density of the arriving stream follows the angle $\theta$ between the emission ray $\hat{\mathbf r}_t$ and $\mathbf V_t$: $D_t = c_f - \|\mathbf V_t\|\cos\theta$, arriving density $\propto 1/D_t$ — compressed ahead ($\theta = 0$), stretched behind ($\theta = 180^\circ$), varying smoothly as the cosine in between. At exactly $\theta = 90^\circ$ (emission ray orthogonal to the drift) the radial spacing of shells matches the static value, even though the pattern there is still off-center.
 
 ### 0.2 The hit condition
 
@@ -53,67 +66,132 @@ After birth, the two roots separate with *opposite signs of $D_t$*, so their pla
 
 ### 0.4 The density factor, before use
 
-The wake is continuous — no gaps; "density" means how much wake stream occupies a unit of radial distance. Wake emitted during $dT_t$ spans $(c_f - \hat{\mathbf r}\cdot\mathbf V_t)\,dT_t = D_t\,dT_t$ toward the receiver: the later shell is smaller by $c_f\,dT_t$ but its center moved $\mathbf V_t\,dT_t$. Approach compresses ($D_t<c_f$: denser, a steeper arriving grade), recession stretches ($D_t$ up to $2c_f$: a flatter grade). The factor $1/|D_t|$ in the master equation is *forced* — the change-of-variables factor of the hit condition, ordinary calculus.
+The wake is continuous — no gaps; "density" means how much wake stream occupies a unit of radial distance. Wake emitted during $dT_t$ spans $(c_f - \hat{\mathbf r}_t\cdot\mathbf V_t)\,dT_t = D_t\,dT_t$ toward the receiver: the later shell is smaller by $c_f\,dT_t$ but its center moved $\mathbf V_t\,dT_t$. Approach compresses ($D_t<c_f$: denser, a steeper arriving grade), recession stretches ($D_t$ up to $2c_f$: a flatter grade).
+
+The factor $1/|D_t|$ is derived **conditional on one modeling choice**: that wake is laid down uniformly in transmitter time — the emission measure. Given that measure, the factor is the change-of-variables factor of the hit condition, ordinary calculus with no further freedom; the $c_f$ in the numerator is static normalization. The measure itself remains a choice of the model, on the inventory of Part 1.
 
 ### 0.5 The playback ratio (where $D_r$ lives)
 
-Differentiating $g=0$: $\dfrac{dT_t}{dT_r} = \dfrac{D_r}{D_t}$ — seconds of transmitter history consumed per second of receiver present. Negative (receiver punching out through fronts, above $c_f$ only): history read in reverse. This ratio, and root tracking, are $D_r$'s only jobs.
+Differentiating $g=0$: $\dfrac{dT_t}{dT_r} = \dfrac{D_r}{D_t}$ — seconds of transmitter history consumed per second of receiver present. Negative (receiver punching out through fronts, above $c_f$ only): history read in reverse. This ratio, and root tracking, are $D_r$'s only jobs. Transport of roots is not transfer of acceleration: the identity $dT_t/dT_r = D_r/D_t$ never licensed $|D_r|$ as an instantaneous acceleration factor.
 
 ### 0.6 Rules of evidence; symmetries
 
-Grades of claim: derived / measured / inferred / guessed, each with a falsifier. Tests for any candidate law: E/P/J accounts balance on the same records; observer-level correspondence preserved (with the caveat of Part 1); a configuration exists where rivals predict differently, independently checkable. A model whose adjustable parameters were tuned to a target is evidence only about itself.
+Grades of claim: derived / measured / inferred / guessed, each with a falsifier. Tests for any candidate law: E/P/J accounts balance on the same records; a configuration exists where rivals predict differently, independently checkable. Observer-level physics (measured electrodynamics, magnetism) is *not* a test input at this level: it lives in the macro assembly world with the Noether sea between it and bare architrinos, and reproducing it must itself be **derived** — assemblies built in the sea on this master equation — an open obligation recorded in the blockers. A model whose adjustable parameters were tuned to a target is evidence only about itself.
 
 Symmetries (acting on whole wake histories): polarity flip is exact ($q_tq_r$ unchanged) — any matter/antimatter imbalance must be built, not inherited. Translations/rotations exact; their conserved quantities are the E/P/J accounts. Time reversal is *not* a symmetry — only past shells act; the arrow of time is an axiom. No boost symmetry exists (absolute space and time): that absence is why the receiver-velocity question was a real question needing evidence, not symmetry, to settle. Superposition (contributions add; shells never act on shells) is a postulate on the watch list.
 
 ---
 
-## Part 1 — The Single Drifting Architrino
+## Part 1 — One Drifting Transmitter, One Resting Probe
 
-One electrino moving with constant velocity $\mathbf V_t$ forever. Below $c_f$ it has no self-roots and no partners: the master equation itself makes its motion exactly uniform — nothing prescribed. Everything is closed-form at any $(x,y,z,T)$.
+**What this Part is for.** The simplest moving case there is: one transmitter, constant velocity, and a resting test receiver. Every quantity is closed-form, so each piece of the master equation can be watched doing its job — and this is the first place the accounting term $\mathbf A_C$ (derived in Part 2) visibly acts. Scope, stated plainly: this is a **one-way probe** — one transmitter history acting on a receiver with no history and no back-reaction. It is an ordered-pair coefficient calculation, not two-body dynamics.
 
-**The virtual observer.** At any field point ask: if a receiver popped into existence here, now, at rest, with no history — what acceleration does the master equation assign? (At rest there is no receiver-side anything; this mode probes the transmitter side alone.) The unique root gives, in closed form,
+**The question this Part answers** is not the receiver-velocity question. It is: *how do the delayed acceleration rows combine, and along which direction does their sum point?*
+
+**Causality, first.** The receiver interacts with a past emission event, full stop. Nothing at the transmitter's present position reaches back and modifies the arriving shell. The present position enters below only as a **comparison coordinate**: for constant velocity it is algebraically reconstructible from the emission event,
 
 $$
-\frac{r}{R} = \frac{p + \sqrt{1-\beta_t^2+p^2}}{1-\beta_t^2},
+\mathbf X_t(T_r) = \mathbf X_t(T_t) + \mathbf V_t\,(T_r - T_t),
 $$
 
-and the assigned acceleration is the master equation evaluated there: main-term magnitude $\kappa|q_tq_r|\,(c_f/D_t)/r^2$, direction **exactly along the emission ray $\hat{\mathbf r}$** — from the emission point to the observer.
+the way a delayed radar return tells you where the aircraft *was*, and known constant velocity lets you compute where it *is now*. Performing that reconstruction adds no information to the received signal and gives the shell no knowledge of the present position.
 
-**Step by step: where the net acceleration points.** (1) The wake acting now was launched a delay $r/c_f$ ago, from $\mathbf X_t(T_t)$ — behind the transmitter's present position. (2) The main term points along the emission ray. (3) During the delay the transmitter moved $\mathbf V_t\,(r/c_f)$; the component of that motion *across* the line of sight tilts the present ray away from the emission ray by an angle $\approx \beta_{t\perp}$ (the transverse part of $\boldsymbol\beta_t$) — a first-order angle. (4) The main-term magnitude is modulated by the density factor: expanded, $\dfrac{R^2}{\kappa|q_tq_r|}|\mathbf A| = 1-2p+\dots$ — stronger on the side the transmitter approaches, weaker behind, a first-order modulation. (5) The accounting term, computed at the architrino level from the action on this configuration (`analysis-accounting-term-drift-chart.md`, 2026-07-18), is exactly $\mathbf A_C = 2p\mathbf N-\boldsymbol\beta_t+O(\beta_t^2)$, so main term $+\;\mathbf A_C = \mathbf N + O(\beta_t^2)$. In words: at first order the two pieces of the master equation combine so the net acceleration points along the present ray $\mathbf N$ with the static magnitude — derived entirely at the base level. Remaining gap: a second-order residual $+p\boldsymbol\beta_t$.
+**The setup.** One electrino — the transmitter — moving with constant velocity $\mathbf V_t$ forever, speed below $c_f$. It has no partners, and below $c_f$ it has no self-roots (0.3), so nothing accelerates it: constant velocity is self-consistent, not prescribed.
 
-**Observer-level correspondence — stated with its caveat.** Measured electrodynamics lives in the macro assembly world, with a Noether sea between it and bare architrinos; whether it constrains a bare pair directly is itself an open mapping question. It enters here only as a correspondence *target*, never as a derivation input. That target: a uniformly moving charge accelerates a resting test charge exactly along the present ray, magnitude $\propto (1-\beta_t^2)/\big(R^2(1-\beta_t^2+p^2)^{3/2}\big) = \big(1+\tfrac12\beta_t^2-\tfrac32p^2+\dots\big)/R^2$ — no first-order terms. The base-level result of step (5) meets this target at first order. The second-order comparison (magnetic sector) stays open.
+**The probe.** Pop a receiver into existence at a chosen field point: at rest ($\mathbf V_r = 0$), no history. It feels the full wake acceleration; being at rest only switches off effects that depend on receiver velocity. Note what rest also does: with $\mathbf V_r = 0$, $D_r = c_f$, so the historical receiver-factor form and the proposed form **coincide identically on this probe** — Part 1 cannot discriminate the receiver question at all. That decision rests on the action collapse of Part 2, not on anything here.
 
-**And magnetism?** At observer level magnetism is *not* "the field is changing" — it is defined by its effect: an *additional acceleration on a moving test charge, proportional and perpendicular to that charge's velocity, doing no work*. A resting observer detects none, by definition. So the probe's second mode pops the observer in *with velocity*: the correspondence target is then the specific second-order term $\propto \mathbf V_r\times(\mathbf V_t\times\mathbf N)/c_f^2$. The master equation's main term has no receiver-velocity coupling at all — so whether $\mathbb{A}\mathbb{A}\mathbb{A}$ meets this target rests entirely on $\mathbf A_C$ at second order and on Part 4's recomputation. The changing arriving wake is real; whether it *acts* like observer-level magnetism is exactly that computation. Same caveat as above: the target is assembly-world; the derivation must stand at the architrino level.
+**Two rays.** The wake crossing the receiver now was launched a flight time $r/c_f$ ago, from the emission point $\mathbf X_t(T_t)$ — behind the transmitter's present position. So two directions matter: the emission ray $\hat{\mathbf r}_t$ (emission point → receiver — the direction the base row pushes along) and the present ray $\hat{\mathbf r}_{\text{now}}$ (present position → receiver). During the flight the transmitter moved $\mathbf V_t\,(r/c_f)$; the part of that motion *across* the line of sight opens an angle $\approx \beta_{t\perp}$ between the rays. At $\beta_t = 0.1$ abeam, that is about $0.1$ rad $\approx 6^\circ$ — a first-order angle.
 
-**Bulk consequence.** Each uniformly drifting transmitter's contribution to any collection, after the forced change of variables, is independent of its own drift; so no assembly-free collection of drifting architrinos produces drift-dependent acceleration anywhere. Derived, exact. Magnetism, if recovered, is not made of free drift.
+**The geometry, exactly.** Straight-line motion plus the hit condition ($r = c_f(T_r - T_t)$) gives a quadratic in $r$ whose one physical solution is
 
-**Forced vs proposed inventory:** forced — $1/|D_t|$, the playback ratio, the $1/r^2$ grade. Proposed — no receiver-velocity factor; the accounting term $\mathbf A_C$ (derived from the action, Part 2). Still open choices — density coupling (vs its spatial derivative: excluded by inverse-square statics); no transverse response; superposition.
+$$
+\frac{r}{R} = \frac{p + \sqrt{1-\beta_t^2+p^2}}{1-\beta_t^2}.
+$$
+
+In words: how much farther or nearer the emission point is than the present position. Approaching ($p>0$): the transmitter used to be farther away, so $r > R$. Receding ($p<0$): $r < R$. On-axis checks: receiver dead ahead of the drift, $r = R/(1-\beta_t)$; dead behind, $r = R/(1+\beta_t)$.
+
+**What the base row alone gives.** Magnitude $\kappa|q_tq_r|\,(c_f/D_t)/r^2$, direction $\sigma_{tr}\hat{\mathbf r}_t$. Work the dead-ahead case exactly: density gain $c_f/D_t = 1/(1-\beta_t)$, but distance loss $1/r^2 = (1-\beta_t)^2/R^2$ — the product is $(1-\beta_t)/R^2$. The emission-distance loss *beats* the density gain: the base row alone is **weaker on the approach side**, and by the mirror computation $(1+\beta_t)/R^2$ **stronger behind**. (Note the contrast with 0.1: the arriving wake is *densest* ahead — but acceleration also carries $1/r^2$ from the farther emission point, and that wins.) To first order at any angle, as a vector:
+
+$$
+\mathbf A_{\text{main}} \approx \sigma_{tr}\,\frac{\kappa|q_tq_r|}{R^2}\Big[(1-p)\,\hat{\mathbf r}_{\text{now}} + \boldsymbol\beta_{t\perp}\Big].
+$$
+
+In words: compared to a static transmitter sitting at the present position, the base row is weakened by $p$ on the approach side (strengthened behind), and tilted off the present ray by the transverse drift $\boldsymbol\beta_{t\perp}$ — the push leans toward where the transmitter is heading, because it comes from the emission point behind.
+
+**What $\mathbf A_C$ adds here.** Computed at the architrino level from the action on this configuration (`analysis-accounting-term-drift-chart.md`, 2026-07-18):
+
+$$
+\mathbf A_C \approx \sigma_{tr}\,\frac{\kappa|q_tq_r|}{R^2}\Big[p\,\hat{\mathbf r}_{\text{now}} - \boldsymbol\beta_{t\perp}\Big]
+\quad\text{(equivalently } 2p\,\hat{\mathbf r}_{\text{now}}-\boldsymbol\beta_t\text{)}.
+$$
+
+In words: exactly the missing radial strength, and exactly the opposite tilt.
+
+**The sum.**
+
+$$
+\mathbf A_{\text{main}} + \mathbf A_C = \sigma_{tr}\,\frac{\kappa|q_tq_r|}{R^2}\,\hat{\mathbf r}_{\text{now}} + O(\beta_t^2).
+$$
+
+In words: the two historical rows cancel their first-order aberration when expressed in present-separation coordinates — on this constant-velocity history, the sum happens to align with the mathematically reconstructed present position, at static magnitude. That is a statement about how two delayed terms combine, **not** about causation: both terms were computed entirely from the emission event; nothing acted from the present position. Neither piece aligns alone; their first-order structures cancel term by term. Both pieces come from the *same* action, so this cancellation is internal consistency of that action — evidence the action hangs together, not independent evidence that it is nature's. Remaining at second order: a residual $+p\boldsymbol\beta_t$, open.
+
+**Why compute present-ray alignment at all?** Because observer-level electrodynamics exhibits a corresponding uniform-motion cancellation. Checking whether the architrino action happens to reproduce that pattern is a **downstream recovery comparison** — worth recording, but per 0.6 not evidence at this level, and it is not established that a bare architrino pair must reproduce the observer-level result directly (the sea and assemblies may alter the mapping).
+
+**What Part 1 does not establish.** It does not test receiver velocity (set to zero, and $D_r=c_f$ makes the rival forms identical here). It does not define $\mathbf A_C$ beyond this configuration. It does not test reciprocal two-body dynamics or back-reaction. It does not check E/P/J closure on this probe (the popped-in receiver has no history to book against). It does not derive magnetism. And it does not prove a bare architrino must reproduce the observer-level moving-charge result — that reproduction remains an obligation to be derived through assemblies in the sea (0.6).
+
+**And magnetism?** Magnetism, wherever it appears, is defined by its effect: an *additional acceleration on a moving receiver, proportional and perpendicular to that receiver's velocity, doing no work*. A resting receiver detects none, by definition — hence the probe's second mode pops the observer in *with velocity*. That cross-product form is an **observer-level recovery target, not an architrino-level premise**. The proposed base row has no receiver-velocity coupling, so whether any such effect emerges rests on $\mathbf A_C$ (moving-receiver variation of $K_C$ — uncomputed) and on Part 4's recomputation. The changing arriving wake at a resting receiver is real, but it is not magnetism; magnetism requires the receiver-velocity-coupled acceleration, which is exactly the open computation.
+
+**Derived vs proposed inventory:** derived, conditional on the emission measure — $1/|D_t|$ (change of variables), the playback ratio, the $1/r^2$ grade. Chosen — the uniform emission measure itself (0.4). Proposed — the $D_r$ removal from the base row; the accounting term $\mathbf A_C$ from the action (Part 2). Still open choices — density coupling (vs its spatial derivative: excluded by inverse-square statics); no transverse response; superposition.
 
 ---
 
 ## Part 2 — The Accounting Derivation and $\mathbf A_C$
 
-**Act 1 — test configuration, caveat first.** Two opposite polarities on a circular orbit, both forever below $c_f$ (hence no self-roots — that is the velocity qualifier), one root each. Caveat (operator's, correct): it is not established that an isolated opposite pair can sustain a circle. No matter: like Part 1, this interrogates the equation on stated worldlines; it does not claim the worldlines are dynamical. On the spiral question itself, the computed verdict on this configuration (dispatch packet; drift-chart analysis): $\mathbf A_C$ is inward and radial but cannot cancel the main term's forward first-order power; the leading secular tendency is outward — an isolated opposite pair does not bind by itself, and binding remains an environment/structure question.
+**Act 1 — test configuration, caveat first.** Two opposite polarities on a circular orbit, both forever below $c_f$ (hence no self-roots — that is the velocity qualifier), one root each. Caveat (operator's, correct): it is not established that an isolated opposite pair can sustain a circle. No matter: like Part 1, this interrogates the equation on stated worldlines; it does not claim the worldlines are dynamical. On the spiral question, what is actually derived (2026-07-18): on the *imposed* circular history, the scale row has positive instantaneous tangential power on each worldline; $\mathbf A_C$ here is radial and does no instantaneous work; so the initial energy flow points outward. "The pair does not bind" would require evolving a self-consistent history and checking the orbit-averaged result — that is an inference beyond this calculation, and open. Falsifier for the unbinding inference: a self-consistent evolved pair with nonpositive orbit-averaged power, or a bounded return history.
 
 **Act 2 — the leftover.** Deriving the equation of motion from the theory's action on this configuration does not reproduce the density-factor row alone: a leftover acceleration term survives on each worldline, second order ($\beta^2$) relative to the main term, radial here. The pair's leftovers cancel jointly, but a valid derivation must close each worldline separately. Either the method is broken or the term is physical.
 
-**Act 3 — the leftover is lawful: $\mathbf A_C$.** The action's kernel splits exactly in two — algebra, nothing added: $K_0 = K_{\text{scale}} + K_C$. The scale piece yields the inverse-square density-factor row; $K_C$ yields precisely the leftover. The second piece is a legitimate part of the same action, so the conservation machinery applies to it alone: it carries its own E/P/J accounts, and they balance. So the leftover is the **accounting term** $\mathbf A_C$: an acceleration (units and role identical to the main term) required so that energy and momentum bookkeeping closes in a delayed-interaction world. A solitary resting architrino feels nothing from its own emission — isotropy cancels it; $\mathbf A_C$ is a pair term, zero for static pairs, growing as $(v/c_f)^2$ on this configuration. Its first-order content on the drifting-transmitter configuration of Part 1 is computed: $2p\mathbf N - \boldsymbol\beta_t$ (Part 1, step 5).
+**Act 3 — the leftover is lawful: $\mathbf A_C$.** Start from the regularized scalar kernel
+
+$$
+K_0^{(\eta)} = \frac{\delta_\eta(g)}{r},
+$$
+
+in words: a shell of width $\eta$ concentrated on the hit condition $g=0$, weighted by $1/r$. Its spatial variation splits exactly in two — algebra, nothing added:
+
+$$
+DK^{(\eta)}_{\text{scale}} = -\frac{\delta_\eta(g)}{r^2},
+\qquad
+DK^{(\eta)}_C = -\frac{\delta'_\eta(g)}{c_f\,r}.
+$$
+
+In words, this is the chain rule on a delayed interaction. The kernel depends on the receiver's path in two ways: through the amplitude $1/r$ at the selected emission event, and through *which* past emission event the causal constraint $g=0$ selects. Varying the path therefore produces two terms:
+
+$$
+d\!\left(\frac{\delta(g)}{r}\right)
+= \underbrace{\delta(g)\,d\!\left(\frac1r\right)}_{\text{scale row}}
+\;+\; \underbrace{\frac1r\,\delta'(g)\,dg}_{\text{causal-selection row}}.
+$$
+
+An engineering analogue: a variable-delay system $y(x) = a\big(x,\tau(x)\big)$ differentiates to $\dfrac{dy}{dx} = \dfrac{\partial a}{\partial x} + \dfrac{\partial a}{\partial\tau}\dfrac{d\tau}{dx}$ — the direct amplitude change, plus a second term because the selected delay itself shifts as the geometry changes. $\mathbf A_C$ is a term of the second kind: **not a signal from the transmitter's present position, but the response to how the causal-selection condition shifts when a worldline is varied.**
+
+After the emission-time delta collapse, the scale piece yields the inverse-square density-factor row; the $K_C$ piece yields precisely the leftover. The second piece is a legitimate part of the same action, so the conservation machinery applies to it alone: it carries its own E/P/J accounts, and they balance — **on the stated scope**: branch-preserving regular neighborhoods (no folds, positive separation), under endpoint-clear or period-matched boundary conventions. Nothing global is claimed. So the leftover is the **accounting term** $\mathbf A_C$: an acceleration (units and role identical to the main term) required so that energy and momentum bookkeeping closes in a delayed-interaction world — *if the kernel $K_0$ is the action*. A solitary resting architrino feels nothing from its own emission — isotropy cancels it; $\mathbf A_C$ is a pair term, zero for static pairs, growing as $(v/c_f)^2$ on this configuration. Its first-order content on the drifting-transmitter configuration is computed: $2p\,\hat{\mathbf r}_{\text{now}} - \boldsymbol\beta_t$ (Part 1).
 
 **Act 4 — the split is unambiguous.** The split used an arbitrary dividing point in an integral. If $\mathbf A_C$ depended on that choice it would be bookkeeping fiction. It does not: the difference between any two choices depends only on the flight time $T_r-T_t$, and any such term differentiates to zero in every direction that produces acceleration. The only thing the choice sets is the additive constant of stored wake energy, which has no dynamical effect. Derived.
 
-**Act 5 — convergence.** The action derivation produces the master equation with $\mathbf A_C$ on its own, at the architrino level. Independently, the observer-level correspondence target of Part 1 — subject to the assembly-world caveat — selects the same form: a receiver-velocity factor would produce a sign-odd first-order structure that no sign-even measurement-side effect can mimic. Two unrelated lines, one equation: that convergence is why this document proposes it.
+**Act 5 — what this derivation does and does not select.** The conditional result: *if* the scalar kernel $K_0 = \delta_\eta(g)/r$ is the fundamental action, *then* its complete Euler equation contains both rows — the scale row and $\mathbf A_C$ — and discarding $\mathbf A_C$ is not an option. That is what "selects the law": completeness of the variation, given the action. What it does not do: the E/P/J closure of Act 3 follows from the symmetries of the *same* action — it is internal consistency, not independent evidence, and it does not rank this action against rival actions. Observer-level physics is deliberately absent from the chain (0.6). What would elevate the proposal: a general history-functional definition of $\mathbf A_C$; the moving-receiver variation of $K_C$; a finite treatment of the $c_f$-crossing; recovery checks on configurations where rival laws predict differently.
 
-**Open blockers:** the $\mathbf A_C$ computation on general configurations (the drifting-transmitter and circular-pair configurations are computed; everything else is open); the $c_f$-crossing singularity (Part 3); the Part 4 recomputation; E/P/J closure spot-checks on further configurations; instruments — the single-electrino probe (resting mode: transmitter-side terms; moving mode: the magnetism-definition test) and the `app-roots` visualizer.
+**Open blockers:** a general history-functional definition of $\mathbf A_C$ (only the drifting-transmitter probe and the circular pair are computed); the moving-receiver variation of $K_C$ — does receiver velocity enter $\mathbf A_C$?; the $c_f$-crossing singularity (Part 3 — a promotion blocker); the Part 4 recomputation; E/P/J closure spot-checks on further configurations; the observer-level derivation — build assemblies in the Noether sea on this master equation and derive measured electrodynamics, including magnetism, from them; instruments — the single-electrino probe (resting mode: transmitter-side terms; moving mode: the magnetism-definition test) and the `app-roots` visualizer.
 
 ---
 
 ## Part 3 — The Width of a Shell
 
-Shell width and the smoothing of $1/r^2$ at zero separation are normally scaffolding: sent to the infinitesimal limit, every physical answer required to converge — a delta driven to the limit by calculus. Finding: at one event the limit fails. When an accelerating architrino's speed passes $c_f$, it begins **overtaking, from inside and behind them, the shell fronts it launched moments earlier — punching outward through its own recent wake**. The impulse from those first overtaken fronts has a limit-stable direction but a magnitude that grows without bound as width goes to zero, and grows differently along different limiting paths: calculus returns no answer at that event. Either the width is a real physical scale (the crossing impulse becomes a finite prediction), or the self-consistent feedback of the crossing tames it (uncomputed), or that event needs added structure. Below $c_f$ the sharp limit is clean everywhere.
+Shell width and the smoothing of $1/r^2$ at zero separation are normally scaffolding: sent to the infinitesimal limit, every physical answer required to converge — a delta driven to the limit by calculus. Finding: at one event the limit fails. When an accelerating architrino's speed passes $c_f$, it begins **overtaking, from inside and behind them, the shell fronts it launched moments earlier — punching outward through its own recent wake**. The impulse from those first overtaken fronts has a limit-stable direction but a magnitude that grows without bound as width goes to zero, and grows differently along different limiting paths: calculus returns no answer at that event. The proposed base row makes this *worse* than the historical form did — the vanishing $D_r$ numerator that once softened the coincident-endpoint event is gone. And the analysis so far is a frozen-history, newborn-root reduction; a self-consistent treatment of the transition could still change the verdict. Either the width is a real physical scale (the crossing impulse becomes a finite prediction), or the self-consistent feedback of the crossing tames it (uncomputed), or that event needs added structure. Below $c_f$ the sharp limit is clean everywhere. **This is a promotion blocker, not a side note** — see the migration gate.
 
 ## Part 4 — Shells Carrying a Velocity Record
 
-The one per-hit route to observer-level magnetism left open by Part 1's bulk result: each shell carries a record of $\mathbf V_t(T_t)$ (written $\mathbf V_{t,\text{rec}}$), and the receiver couples to it. Computed verdict so far: the simplest coupling fails (wrong direction structure); the coupling $\propto \mathbf V_r\times(\mathbf V_{t,\text{rec}}\times\hat{\mathbf r})/c_f^2$ — which never changes the receiver's speed, matching magnetism's defining property — passes the bulk comparison; but demanding consistency across all geometries of the two-architrino configuration forces one coefficient to equal 2, 1, and 0 simultaneously: contradiction. That verdict predates this proposal and must be recomputed against the master equation with $\mathbf A_C$. Until then this route is neither open nor closed.
+A candidate per-hit route to receiver-velocity-coupled acceleration: each shell carries a record of $\mathbf V_t(T_t)$ (written $\mathbf V_{t,\text{rec}}$), and the receiver couples to it. The cross-product target here is observer-level, a recovery goal — not an architrino-level premise. Computed verdict so far: the simplest coupling fails (wrong direction structure); the coupling $\propto \mathbf V_r\times(\mathbf V_{t,\text{rec}}\times\hat{\mathbf r}_t)/c_f^2$ — which never changes the receiver's speed — passes the bulk comparison; but demanding consistency across all geometries of the two-architrino configuration forces one coefficient to equal 2, 1, and 0 simultaneously: contradiction. That verdict predates this proposal and must be recomputed against the proposed master equation with $\mathbf A_C$. Until then this route is neither open nor closed.
 
 ---
 
@@ -121,10 +199,12 @@ The one per-hit route to observer-level magnetism left open by Part 1's bulk res
 
 Migration is a separate, explicit step; nothing below is executed by this document.
 
-**Documents.** Canon chapters stating the equation of motion adopt the master equation above; any statement carrying a receiver-velocity factor in the acceleration is replaced. Terminology propagates with it: $\mathbf V_t/\boldsymbol\beta_t$ subscript convention, "grade", emission ray vs present ray, $D_r$ as bookkeeping. This walkthrough remains the proposal source; the dispatch packet (P4, P10, P13, P16, P20) remains the technical backing. A canon derivation section for $\mathbf A_C$ (Acts 2–4) is written once the general-configuration computation lands.
+**Documents.** Canon chapters stating the equation of motion adopt the proposed master equation *once the gate below is met*; any statement using a receiver-side crossing-rate factor in the base acceleration row is replaced. Terminology is a **separate policy decision**, not bundled with the physics: current canon uses $D_s$ and $D_T$; this document uses $D_t$/$D_r$, $\hat{\mathbf r}_t$/$\hat{\mathbf r}_{\text{now}}$, and "grade." Until the terminology decision is made, canon keeps its symbols and this document maps onto them at the point of contact. A canon derivation section for $\mathbf A_C$ (Acts 2–4) is written once the general-configuration computation lands.
 
-**Apps.** EOM solver: implements the master equation; $\mathbf A_C$ enters as a derived pair term, never a tunable — blocked until $\mathbf A_C$ is computable beyond the tested configurations. Display/replay stack (shared adapter, Borg replay): consumes recorded EOM datasets, so no change at migration time; fixtures are regenerated after the solver lands, stale ones archived rather than upgraded in place. `app-roots`: built against the $(T_r,T_t)$ root-tracking bookkeeping of 0.3/0.5.
+**Self-containment obligation.** This walkthrough is the proposal source. It is not yet fully self-contained: the regularized kernel manipulations, the wake-history transfer definitions behind Act 3's E/P/J accounts, and the branch/endpoint conventions are stated here only in outline. Folding those derivations in, so a reader can check Part 2 from this document alone, is part of the documents workstream.
 
-**Working files.** Claims ledger and memory entries updated to point at this proposal. E/P/J spot-check computations promoted from the dispatch packet into a repeatable harness. Any working file still stating a receiver-velocity acceleration factor is corrected or archived.
+**Apps.** EOM solver: implements the proposed master equation; $\mathbf A_C$ enters as a derived pair term, never a tunable — blocked until $\mathbf A_C$ has a general history-functional definition evaluable on arbitrary admissible histories (including moving receivers and branch transitions) without chart-specific formulas. Display/replay stack (shared adapter, Borg replay): consumes recorded EOM datasets, so no change at migration time; fixtures are regenerated after the solver lands, stale ones archived rather than upgraded in place. `app-roots`: built against the $(T_r,T_t)$ root-tracking bookkeeping of 0.3/0.5.
 
-**Gate.** Nothing migrates until: $\mathbf A_C$ is computed on general configurations; E/P/J closure spot-checks pass on further configurations; Part 4 is recomputed.
+**Working files.** Claims ledger and memory entries updated to point at this proposal. E/P/J spot-check computations promoted into a repeatable harness. Any working file still using a receiver-side crossing-rate factor in the base acceleration row is corrected or archived.
+
+**Gate.** Nothing migrates until: $\mathbf A_C$ has a general history-functional definition, including the moving-receiver variation of $K_C$; E/P/J closure spot-checks pass on further configurations; the $c_f$-crossing (coincident-endpoint) transition has a finite, regulator-independent resolution (Part 3); Part 4 is recomputed.
