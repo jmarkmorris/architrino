@@ -32,7 +32,7 @@ defines the SR member. The 2026-07-18
 [import audit](../master-equation-closure/brainstorming.md) correctly separates
 the derived $D_s$ denominator from the postulated use of $|D_T|$ and from the
 postulated coupling of sampled surface density along $\hat{\mathbf r}$. The
-[dispatch packet](master-equation-import-audit-dispatch-2026-07-18.md) supplies
+[speculative variant ledger](analysis-speculative-variant-ledger.md) supplies
 the three-axis falsification standard used below.
 
 Direct inspection of

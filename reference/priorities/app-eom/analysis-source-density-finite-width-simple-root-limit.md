@@ -9,7 +9,7 @@
 
 ## Result in plain language
 
-If a transmitter emits wake uniformly through its own history, the finite-width wake equation reduces at an ordinary causal hit to the proposed factor $c_f/|D_t|$. The receiver's velocity does not enter that acceleration factor. It enters only when the causal hit is followed from one reception time to the next.
+If a transmitter emits wake uniformly through its own history, the finite-width wake equation reduces at an ordinary causal hit to a constant divided by $|D_t|$. Requiring a stationary transmitter to have unit causal-hit weight fixes that constant to $c_f$, giving the proposed factor $c_f/|D_t|$. The receiver's velocity does not enter that acceleration factor. It enters only when the causal hit is followed from one reception time to the next.
 
 This is a mathematical result conditional on the chosen uniform emission measure. It does not establish that nature uses that measure, and it does not resolve folds, coincident endpoints, or conservation.
 
@@ -48,11 +48,21 @@ Therefore $D_t$ measures how rapidly causal-surface distance changes as emission
 
 ## 2. Proposed finite-width equation
 
-Let $\delta_\eta(u)$ be a nonnegative, normalized wake profile of width $\eta>0$ measured in distance:
+Let the finite-width profiles form an approximate identity
 
 $$
-\int_{-\infty}^{\infty}\delta_\eta(u)\,du=1,
+\delta_\eta(u)
+=
+\frac{1}{\eta}\varphi\!\left(\frac{u}{\eta}\right),
 \qquad
+\varphi\ge0,
+\qquad
+\int_{-\infty}^{\infty}\varphi(u)\,du=1,
+$$
+
+where $\varphi$ is integrable. Thus the rescaled profile's mass leaves every fixed nonzero residual neighborhood and
+
+$$
 \delta_\eta(u)\longrightarrow\delta(u)
 \quad\text{as}\quad\eta\to0^+.
 $$
@@ -67,7 +77,21 @@ $$
 \epsilon_c>0.
 $$
 
-For retained history length $h$, the proposed finite-width acceleration from transmitter $t$ to receiver $r$ is
+Uniform emission through transmitter time first supplies a constant emission scale $\lambda_{\mathrm{em}}>0$:
+
+$$
+d\mu_t
+=
+\lambda_{\mathrm{em}}\,dT_t.
+$$
+
+At a stationary-transmitter root, $D_t=c_f$, so its sharp causal-hit weight is $\lambda_{\mathrm{em}}/c_f$. The declared static normalization sets that weight to one and therefore fixes
+
+$$
+\lambda_{\mathrm{em}}=c_f.
+$$
+
+For retained history length $h$, the resulting proposed finite-width acceleration from transmitter $t$ to receiver $r$ is
 
 $$
 \boxed{
@@ -82,7 +106,7 @@ c_f\,
 }.
 $$
 
-The factor $c_f$ normalizes the emission measure. Since $\delta_\eta$ has units of inverse distance, $c_f\delta_\eta(g)dT_t$ is dimensionless. For a stationary transmitter, $D_t=c_f$, so the sharp causal-hit weight becomes one.
+The factor $c_f$ therefore combines two declarations: constancy of the transmitter-time emission density and unit static normalization. Since $\delta_\eta$ has units of inverse distance, $c_f\delta_\eta(g)dT_t$ is dimensionless.
 
 The equation consumes the receiver's current position at $T_r$ and the transmitter's retained positions at $T_t<T_r$. It does not consume the transmitter's present position. Receiver velocity is absent from the acceleration integrand.
 
@@ -112,12 +136,11 @@ $$
 \end{aligned}
 $$
 
-If the core scale is then removed while $r_{\min}>0$, this becomes
+Because $r\ge r_{\min}>0$, the core kernel converges uniformly on every root neighborhood. The two regulators may therefore approach zero jointly, along any refinement path, and the result is
 
 $$
 \boxed{
-\lim_{\epsilon_c\to0^+}
-\lim_{\eta\to0^+}
+\lim_{(\eta,\epsilon_c)\to(0,0)}
 \mathbf A_{r\leftarrow t}^{(\eta,\epsilon_c)}(T_r)
 =
 \kappa\,\sigma_{tr}|q_tq_r|
@@ -156,7 +179,7 @@ c_f\,
 \,du.
 $$
 
-As $\eta\to0^+$, normalization and continuity evaluate the smooth factor at $u=0$, giving $c_f\mathbf K_{\epsilon_c}(\mathbf r_{t,\ell})/|D_{t,\ell}|$. The positive residual gap makes the contribution away from all root neighborhoods vanish. Summing the finitely many roots proves the first limit.
+As $\eta\to0^+$, the approximate-identity property and continuity evaluate the smooth factor at $u=0$, giving $c_f\mathbf K_{\epsilon_c}(\mathbf r_{t,\ell})/|D_{t,\ell}|$. The positive residual gap and approximate-identity tail condition make the contribution away from all root neighborhoods vanish. Summing the finitely many roots proves the first limit.
 
 For $r_\ell>0$,
 
@@ -169,13 +192,13 @@ $$
 \frac{\hat{\mathbf r}_{t,\ell}}{r_\ell^2},
 $$
 
-which proves the sharp equation.
+The distance floor makes this convergence uniform on the root neighborhoods. Combining it with the approximate-identity convergence proves the displayed joint limit.
 
 Claim classification: **derived**. This result is false if the change of variables produces any Jacobian other than $1/|D_t|$, or if direct evaluation of a simple-root example fails to approach the displayed sharp limit as both widths decrease.
 
 ## 4. Exact stationary check
 
-Take a stationary transmitter and receiver with fixed separation vector $\mathbf r$, where $0<r<c_fh$. There is one root,
+Take a stationary transmitter at the origin. At the selected reception event, let the receiver have position $\mathbf r=r\hat{\mathbf e}$ and arbitrary current velocity $\mathbf W$, where $0<r<c_fh$. There is one root,
 
 $$
 T_t=T_r-\frac{r}{c_f},
@@ -183,7 +206,7 @@ T_t=T_r-\frac{r}{c_f},
 D_t=c_f,
 $$
 
-and the spatial kernel is constant over emission time. For the Gaussian profile
+and the spatial kernel is constant over emission time. The receiver's current velocity does not enter the fixed reception event or the emission-time integral. For the Gaussian profile
 
 $$
 \delta_\eta(u)
@@ -206,7 +229,15 @@ $$
 \right],
 $$
 
-where $\Phi$ is the standard normal cumulative distribution. The bracket tends to one as $\eta\to0^+$, and the core kernel tends to $\hat{\mathbf r}/r^2$ as $\epsilon_c\to0^+$. This checks the $c_f$ normalization. It cannot distinguish the proposed equation from the receiver-weighted equation because a stationary receiver has $D_r=c_f$.
+where $\Phi$ is the standard normal cumulative distribution. The bracket tends to one as $\eta\to0^+$, and the core kernel tends to $\hat{\mathbf r}/r^2$ as $\epsilon_c\to0^+$. This checks the $c_f$ normalization for every $\mathbf W$ at the same reception position.
+
+The receiver-weighted sharp equation would instead multiply the same spatial result by
+
+$$
+\frac{|c_f-\hat{\mathbf e}\cdot\mathbf W|}{c_f}.
+$$
+
+Thus this exact control distinguishes the two equations whenever the receiver has nonzero radial velocity. It independently checks what each candidate measure predicts, but it does not provide external physical evidence selecting one measure.
 
 Claim classification: **derived analytic check**. Direct integration that differs from the displayed expression would overturn it.
 

@@ -179,7 +179,11 @@ and nonzero separation. The following cases require separate treatment.
 
 ### 5.1 Transmitter-side folds
 
-At $D_t=0$, the source-time change of variables fails. Two roots can be born or die at an interior fold. The sharp contribution diverges there and must be replaced by a finite-width wake calculation across the transition.
+At $D_t=0$, the emission-time change of variables fails. Two roots can be born or die at an interior fold.
+
+For an ordinary interior fold with nonzero separation and $D_r\ne0$, the two-root sharp acceleration grows as $1/\sqrt{|T_r-T_0|}$. Its value is infinite at the fold instant, but its reception-time integral is finite. [Source-Density Fold and Coincident-Birth Analysis](analysis-source-density-fold-and-coincident-birth.md) proves that the finite-width impulse has a regulator-independent sharp limit. The transition must therefore be advanced by its integrated acceleration, not by sampling the pointwise root formula at the fold.
+
+A simultaneous receiver turning point, higher-order contact, root accumulation, or memory-boundary contact is not an ordinary fold and remains outside that theorem.
 
 ### 5.2 Receiver turning points
 
@@ -189,7 +193,9 @@ At $D_r=0$ with $D_t\ne0$, the root is instantaneously stationary as a function 
 
 When an accelerating architrino crosses from below to above $c_f$, it can overtake wake surfaces emitted moments earlier. The newborn same-source root approaches the coincident endpoint with $D_t\to0$. Removing the former vanishing receiver numerator makes the local sharp impulse more singular, not less.
 
-The existing frozen-history calculation finds a divergent, refinement-path-dependent impulse as wake width and core scale are removed. That calculation does not yet include the complete self-consistent feedback during root birth, so it establishes a promotion blocker rather than a final physical prediction. A finite physical wake width, a self-consistent cancellation, or another derived transition law is required.
+The local analysis gives a sharp newborn acceleration proportional to $(T_r-T_0)^{-3}$ and a divergent, refinement-path-dependent impulse as wake width and core scale are removed. Fixed positive wake width and core scale make the event finite. Positive wake width alone is insufficient: the complete post-crossing endpoint layer diverges as the inverse square of the core scale when that scale is removed. A calculation that isolates only the newborn noncoincident root has weaker logarithmic core sensitivity in one regulator regime, but it is not the complete transition.
+
+The calculation proves that a generic smooth crossing is incompatible with the sharp base equation. It does not determine the self-consistent finite-width outcome after the crossing attempt. Promotion therefore requires independently constrained positive values for both widths, a derived near-diagonal same-source rule, or a causal past-history contribution that cancels the complete transition at the same singular order.
 
 ### 5.4 Finite retained history
 
@@ -201,14 +207,15 @@ The proposal is not selected merely because it is simpler than the current recei
 
 ### 6.1 Mathematical checks
 
-1. The uniform-emission finite-width equation and its $c_f/|D_t|$ simple-root limit are derived in [Source-Density Finite-Width Equation and Simple-Root Limit](analysis-source-density-finite-width-simple-root-limit.md). This closes the algebraic reduction, but it still requires independent review and does not cover folds or coincident endpoints.
-2. Produce a finite, regulator-independent treatment of transmitter-side folds and the coincident same-source transition, or establish a finite physical wake width with an independently constrained value.
-3. Prove that every acceleration contribution is computable from current receiver state plus retained past histories, with no prescribed future path.
-4. Construct energy, momentum, and angular-momentum wake accounts on the same past-history records and show that their balances close beyond symmetry-degenerate examples.
+1. **Passed on the declared domain:** the uniform-emission finite-width equation, static normalization, joint regulator limit, and $c_f/|D_t|$ simple-root reduction are derived in [Source-Density Finite-Width Equation and Simple-Root Limit](analysis-source-density-finite-width-simple-root-limit.md) and pass [independent mathematical review](analysis-source-density-simple-root-independent-review.md).
+2. **Passed for ordinary folds:** the finite-width acceleration has a finite, regulator-independent impulse across a nondegenerate interior fold with nonzero separation and $D_r\ne0$.
+3. **Blocked for coincident same-source birth:** the sharp impulse diverges. Resolve it with independently constrained positive wake width and core scale, a derived near-diagonal same-source rule, or a causal cancellation of the complete transition.
+4. **Passed for the positive-width equation and regular sharp charts:** [Source-Density Causal Retained-History Functional](analysis-source-density-causal-history-functional.md) proves that the acceleration is a causal functional of current receiver state plus retained past histories. Global sharp continuation remains blocked at coincident same-source birth, not by future dependence.
+5. **Blocked on new causal structure:** [Conservation Obstruction for the Scale-Only Source-Density Equation](analysis-source-density-conservation-obstruction.md) shows that the action selecting $c_f/|D_t|$ also produces a nonzero recoil contribution needed by its energy, momentum, and angular-momentum identities. [Causal-Recoil No-Go for the Current Two-Time Action](analysis-two-time-action-causal-recoil-no-go.md) proves that its complete recoil contribution cannot be rewritten as a functional of retained particle histories alone. Promotion therefore requires an independently evolving causal wake state, a different causal action for the scale-only equation, or independently derived non-circular wake accounts on one common record.
 
 ### 6.2 Discriminating tests
 
-At least one independently checkable configuration must distinguish
+The static-transmitter receiver-motion test now supplies an independently anchored first-order discriminator between
 
 $$
 \frac{c_f}{|D_t|}
@@ -216,13 +223,17 @@ $$
 \left|\frac{D_r}{D_t}\right|
 $$
 
-while holding the root, emission geometry, transmitter history, separation, polarity, and numerical regulators fixed. A stationary receiver cannot perform this test because $D_r=c_f$ makes the two expressions identical.
+while holding the root, emission geometry, transmitter history, separation, polarity, and numerical regulators fixed. [Static-Transmitter Receiver-Motion Discriminator](analysis-source-density-static-source-discriminator.md) compares receivers passing the same position with opposite radial velocities. The source-density equation gives the same acceleration to both; the receiver-weighted equation does not. The independent static-source electrodynamics recovery anchor contains no first-order receiver-velocity term and therefore selects the source-density result at that order.
 
 Useful tests must not use an oracle derived from either candidate law. A closed form from an independently justified wake model, a separately authored instrument with declared reach, or a downstream recovery calculation can supply independent evidence.
+
+The exact finite-width control in the [independent simple-root review](analysis-source-density-simple-root-independent-review.md) verifies the native algebra. The observer-level static-source anchor supplies the independent selection. This passes one discriminator without claiming that the complete electrodynamics recovery is finished.
 
 ### 6.3 Recovery obligations
 
 Observer-level electrodynamics, magnetism, Lorentz behavior, and assembly dynamics remain downstream recovery targets. They are not premises that may be inserted into the architrino-level equation. If receiver-velocity-dependent acceleration is required for those recoveries, it must be derived through an architrino-native mechanism, assembly dynamics, or Noether sea response rather than restored by reusing the unsupported receiver playback multiplier.
+
+The current scalar-action route already identifies one such architrino-native candidate: a recoil contribution distinct from the rejected receiver playback multiplier. It is not included in the proposed equation because the action is intrinsically two-sided: its complete variation needs both past emissions received now and present emissions received later. The [coincident-birth recoil asymptotic](analysis-causal-recoil-coincident-birth-asymptotic.md) shows that the incoming sharp contribution reinforces the same-source singularity at order $t^{-4}$, while its time-transposed companion is advanced. The causal-recoil no-go theorem rules out recovering that complete action contribution from retained particle histories alone. A new causal wake state or different conservation mechanism is a promotion obligation, not an optional embellishment.
 
 ## 7. Migration Plan
 
@@ -251,7 +262,9 @@ These definitions must be approved as one notation set before any broad replacem
 
 ### 7.2 Semantic inventory before edits
 
-The migration begins with a read-only inventory that classifies every affected use into one of these groups:
+The initial read-only classification is recorded in [Source-Density Master Equation Impact Inventory](master-equation-source-density-impact-inventory.md). Its current search snapshot finds 110 documentation and priority files plus 35 code, script, and test files containing receiver-normal terminology or symbols under the searched roots.
+
+The migration inventory classifies every affected use into one of these groups:
 
 1. reader-facing definitions, equations, diagrams, and explanations;
 2. priority analyses and active proof obligations;
@@ -261,7 +274,7 @@ The migration begins with a read-only inventory that classifies every affected u
 6. generated artifacts and their canonical source files;
 7. frozen evidence, provenance records, hashes, and historical decision records.
 
-Each occurrence receives a proposed disposition: rename, rewrite because its meaning changes, preserve as historical text, preserve as a compatibility field, or retire. This inventory is also where ambiguous uses are resolved before they can spread.
+Each occurrence receives a proposed disposition: rename, rewrite because its meaning changes, preserve as historical text, preserve as a compatibility field, or retire. The initial inventory establishes the architecture-level dispositions and identifies the direct acceleration paths. The final pre-migration pass must add an individual disposition for every frozen evidence artifact and every ambiguous machine field.
 
 ### 7.3 Canonical documents
 
@@ -308,10 +321,10 @@ Canonical source files are edited before generated copies. Generation occurs onl
 No canon or solver migration occurs until all of the following are satisfied:
 
 1. the uniform-emission finite-width law and its proposed simple-root limit have passed independent mathematical review;
-2. the fold and coincident-endpoint transitions have a finite accepted treatment;
-3. the acceleration is a causal functional of current state and retained past history only;
+2. ordinary folds have the derived finite impulse, and the coincident same-source transition has a finite accepted treatment;
+3. the positive-width acceleration is a causal retained-history functional, while any promoted sharp form has a complete transition rule on every admitted chart;
 4. energy, momentum, and angular-momentum accounts close on nondegenerate test histories;
-5. at least one independent discriminator has tested the receiver-factor decision;
-6. downstream derivations and evidence artifacts affected by the change have been inventoried and given explicit dispositions.
+5. the static-transmitter first-order discriminator has tested the receiver-factor decision, and no later recovery calculation has overturned it;
+6. the architecture-level impact inventory is complete, and every frozen evidence artifact and ambiguous machine field has an individual disposition before migration.
 
 Until then, this document records the working decision and its proof obligations. It does not change canon, code, or accepted evidence.
