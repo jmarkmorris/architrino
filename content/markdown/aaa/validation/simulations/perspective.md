@@ -146,7 +146,7 @@ Plain language summary: radial hits, time delay, constant per-wavefront amplitud
 
 ## Effective observables and states (quantum-like layer)
 
-Premise: single-hit information is sparse. At an instant, a receiver learns only (i) the net magnitude of the push and (ii) an unoriented line of action through its current position. The $\mathbb{U}_{\text{now}}$ universe-state perspective can include the full source-tagged emission ledger as complete-state bookkeeping, but a local receiver or Physical Observer cannot infer that hidden ledger from a single hit.
+Premise: single-hit information is sparse. At an instant, a receiver learns only (i) the net magnitude of the push and (ii) an unoriented line of action through its current position. The $\mathbb{U}_{\text{now}}$ universe-state perspective can include the full transmitter-tagged emission ledger as complete-state bookkeeping, but a local receiver or Physical Observer cannot infer that hidden ledger from a single hit.
 
 - Emission ledger (microstate): the set of tuples $(T_t,\mathbf X_j(T_t),\mathbf V_j(T_t),q_j)$ over all sources $j$ that causally affect the receiver.
 - Observational map: ledgers map to histories of hits $\{A(t_k),L(t_k)\}$ across one or more receivers and over time.

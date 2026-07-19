@@ -65,7 +65,7 @@ A third meaning-aware scan tested the role distinction beyond the canonical Mast
 
 - made $T_r$ explicit in the architrino definition, absolute-time and absolute-timespace causal-root constructions, Euclidean-void provenance tuple, emergence and self-hit conditions, Noether-braid kernel statement, and action-energy simulation recipes;
 - reserved bare $T$ for genuinely generic absolute-time coordinates, trajectories, windows, and observer-level discussions where no transmitter-receiver event pair is being distinguished;
-- migrated high-confidence causal roles such as past transmitter positions, apparatus transmitters, transmitter worldlines, and transmitter-side path history while preserving historical electrodynamics, generic equation sources, document sources, radiation-source classes, and machine fields;
+- migrated high-confidence causal roles such as past transmitter positions, apparatus transmitters, transmitter worldlines, transmitter-tagged wake provenance, and transmitter-side path history while preserving historical electrodynamics, generic equation sources, document sources, radiation-source classes, and machine fields;
 - replaced unexplained structural `row` labels with `branch`, and replaced local action or acceleration `row` labels with `entry` or `contribution`; and
 - strengthened the audit across all current AAA and Archie surfaces for role-specific reception $T$, past-source-position language, source-architrino language, source/receiver role pairs, and a targeted family of unexplained row phrases.
 

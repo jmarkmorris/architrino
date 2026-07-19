@@ -73,7 +73,7 @@ const FORBIDDEN_PATTERNS = [
     ],
   },
   {
-    pattern: /\bsource architrinos?\b|\b(?:source and receiver|receiver and source) (?:worldlines?|velocities?)\b/gi,
+    pattern: /\bsource architrinos?\b|\bsource-(?:tagged|identity)\b|\bsource re-enters\b|\b(?:source and receiver|receiver and source) (?:worldlines?|velocities?)\b/gi,
     label: "source used as causal-hit role",
     reason: "use transmitter when naming the architrino at the emission event",
     includeFiles: [/^(content\/markdown\/aaa|reference\/archie)\//],

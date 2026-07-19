@@ -13,8 +13,8 @@ The note is therefore a gatekeeping document. It should tell the reader what has
 ## Validation Protocols: Preferred-Frame Leakage and Frame Proxies
 
 ### Complete-State and Observational Proxies
-* **Complete-state diagnostic:** The $\mathbb{U}_{\text{now}}$ universe-state perspective can use the source-tagged wake-concentricity diagnostic in [Detecting the Absolute Frame](../foundations/detecting-the-absolute-frame.md). This is a foundational and simulation-level bookkeeping result, not an operational laboratory protocol for Physical Observers.
-* **CMB rest-frame proxy:** The CMB dipole-free frame is an empirical large-scale cosmology proxy for Noether sea rest. It is not an identification of the Euclidean-void rest frame, and it does not give Physical Observers direct access to complete source-tagged wake geometry.
+* **Complete-state diagnostic:** The $\mathbb{U}_{\text{now}}$ universe-state perspective can use the transmitter-tagged wake-concentricity diagnostic in [Detecting the Absolute Frame](../foundations/detecting-the-absolute-frame.md). This is a foundational and simulation-level bookkeeping result, not an operational laboratory protocol for Physical Observers.
+* **CMB rest-frame proxy:** The CMB dipole-free frame is an empirical large-scale cosmology proxy for Noether sea rest. It is not an identification of the Euclidean-void rest frame, and it does not give Physical Observers direct access to complete transmitter-tagged wake geometry.
 * **Protocol:** Compare simulation outputs against CMB-frame observational summaries only as a large-scale consistency check for Noether sea state and cosmological transport records.
 
 ### Null Tests for Absolute-Frame Drift
