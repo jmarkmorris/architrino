@@ -175,8 +175,22 @@ The existing recoil term cannot be appended to the causal base acceleration and 
 
 The complete finite-width action contribution cannot be converted into a retained-particle-history acceleration: [Causal-Recoil No-Go for the Current Two-Time Action](analysis-two-time-action-causal-recoil-no-go.md) proves that two continuations with the same past can give different time-transposed contributions. A finite-width incoming-recoil integral can still be evaluated as a diagnostic, but it cannot by itself complete the causal action law.
 
+The [Minimal Causal Wake-State Model](analysis-minimal-causal-wake-state-model.md) supplies one additional finite-width correction to the sharp interpretation. On the diagnostic newborn partition $\tau\ge t$, the leading constraint-derivative impulse is proportional to
+
+$$
+-\int_0^\infty
+\frac{
+\varphi(y^2/2)-\varphi(-y^2/2)
+}{y\sqrt{y^2+\rho^2}}
+\,dy.
+$$
+
+It vanishes for an even profile such as the Gaussian. Thus the forward $t^{-4}$ sharp term cannot be integrated first and then treated as the uniform finite-width impulse through the unresolved birth layer. The sharp and integrated finite-width limits do not commute. This cancellation is restricted to the newborn partition; it neither cancels the positive scale contribution nor controls the complementary coincident-endpoint layer.
+
+Claim classification: **derived partition-local finite-width correction**. A nonzero value of the displayed integral for an even profile would falsify it.
+
 ## 6. Disposition
 
-The straightforward recoil-cancellation hope fails on the incoming sharp chart. The result strengthens the requirement that recoil be derived as a causal finite-width history functional rather than imported from the time-symmetric action equation.
+The straightforward pointwise sharp recoil-cancellation hope fails on the incoming chart. The finite-width newborn partition has a leading even-profile cancellation, but the complete endpoint layer remains unresolved and the one-scalar causal state fails the polarity/positive-energy test. Recoil must therefore be derived from an acceptable causal wake state rather than imported from the time-symmetric action equation or inferred from one order of limits.
 
 Promotion classification: **priority-only; retained-particle-history recoil is closed negatively, while causal wake-state and coincident-birth closure remain blocked**.

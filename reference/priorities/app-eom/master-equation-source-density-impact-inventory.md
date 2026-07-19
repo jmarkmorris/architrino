@@ -160,7 +160,7 @@ No frozen evidence file is rewritten. Each receives one of four labels in the fi
 3. **old-law-only** — acceleration, evolution, branch, or acceptance result consumes the removed receiver factor and does not transfer;
 4. **rerun-eligible** — the underlying retained history remains admissible, but a new independently accepted evaluator and schema are required before rerun.
 
-The eight frozen evidence files found by the first search remain unclassified at individual-file level in this initial inventory. That file-by-file evidence ledger is required before migration, but writing it now would imply that the unresolved finite-width and recoil law were already fixed.
+The eight frozen evidence files found by the first search are classified individually in [Master Equation Frozen-Evidence Disposition Ledger](master-equation-frozen-evidence-disposition-ledger.md). The ledger preserves each file literally and separates geometry-retained, diagnostic-only, old-law-only, and rerun-eligible claims. This closes the current frozen-evidence classification without implying that the unresolved equation has been promoted.
 
 ## 8. Reproducible searches
 
@@ -180,6 +180,6 @@ Both searches must be rerun immediately before an authorized migration because c
 
 ## 9. Disposition
 
-This initial inventory closes the architecture-level classification but not the file-by-file migration ledger. It is sufficient to show that promotion is a versioned semantic change, not a formula substitution.
+This inventory, its [frozen-evidence ledger](master-equation-frozen-evidence-disposition-ledger.md), and the [live machine-field disposition](master-equation-machine-field-disposition.md) close the architecture-level, current frozen-artifact, and field-family classifications. The combined result shows that promotion is a versioned semantic change, not a formula substitution. Searches must still be rerun immediately before migration to catch concurrent additions.
 
 Promotion classification: **priority-only; migration deferred until the equation's coincident-birth and causal-recoil blockers are resolved**.
