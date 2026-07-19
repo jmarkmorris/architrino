@@ -2,11 +2,11 @@
 
 ## Status
 
-- Purpose: supply one independent discriminator between the transmitter-side and receiver-weighted acceleration factors
+- Purpose: supply one independent discriminator for removing receiver playback from base acceleration
 - Native input: one stationary transmitter, one moving receiver, one positive-delay simple root
-- Independent anchor: the observer-level stationary-transmitter electrodynamics comparison already derived in [Stationary-Transmitter First-Order Receiver Analysis](archive/receiver-weighted-law/analysis-static-source-receiver-row.md)
+- Independent anchor: the observer-level stationary-transmitter comparison stated in Section 3
 - Standing: priority analysis and downstream recovery test; not an architrino-level premise
-- Verdict: transmitter-side passes and receiver-weighted acceleration fails at first order in receiver radial velocity
+- Verdict: transmitter-factor acceleration passes the first-order receiver-radial-velocity recovery test
 
 ## Finding in plain language
 
@@ -57,7 +57,7 @@ The proposed transmitter-side equation gives
 
 $$
 \boxed{
-\mathbf A_{\mathrm{source}}(T_r)
+\mathbf A_{\mathrm{transmitter}}(T_r)
 =
 \mathbf A_0(R)
 }.
@@ -80,9 +80,9 @@ $$
 For two receiver states passing through the same position with radial velocities $\pm w\hat{\mathbf e}$ and the same transverse velocity,
 
 $$
-\mathbf A_{\mathrm{source}}(+w)
+\mathbf A_{\mathrm{transmitter}}(+w)
 -
-\mathbf A_{\mathrm{source}}(-w)
+\mathbf A_{\mathrm{transmitter}}(-w)
 =
 \mathbf0,
 $$
@@ -119,11 +119,8 @@ This test decides the receiver-factor question at first order. It does not estab
 
 - the full second-order moving-transmitter and moving-receiver recovery;
 - magnetic-like behavior of assemblies or the Noether sea;
-- the causal recoil contribution required by the scalar action;
 - coincident same-transmitter transition closure;
 - conservation on general retained histories.
-
-The action-derived scale-plus-recoil equation independently restores the moving-transmitter present-position result at first order, as shown in [Accounting-Term First Variation on the Uniform-Drift Chart](analysis-accounting-term-drift-chart.md). Its second-order and causal-recoil obligations remain open.
 
 ## 5. Disposition
 

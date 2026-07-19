@@ -5,7 +5,7 @@
 - Evidence id: `borg_certified_budget_v7_implementation_validation/apple-m3/2026-07-18`
 - Protocol: `EOM_BORG_NATIVE_V7`
 - Binding: ratified
-  [Master EOM Binding v0 Amendment 2](../master-eom-binding-v0-amendment-2-run-selected-certified-budgets.md)
+  the ratified run-selected certified-budget decision
 - Preset schema: `borg_certified_budget/v1`
 - Implementation acceptance: `blocked-research-parity`
 
@@ -211,7 +211,7 @@ node scripts/eom/profile-borg-certified-budget-sweep.mjs .tmp/eom-native-dev/eom
 node scripts/validate-content.mjs --check --strict
 node scripts/build-scene-graph.mjs --check --strict
 node scripts/check-foundational-impact.mjs --staged --warn-only
-node scripts/check-receiver-normal-clean-slate.mjs
+node scripts/check-transmitter-factor-clean-slate.mjs
 node scripts/angular-momentum/check-frequency-triplet-notation-drift.mjs
 node scripts/check-polarity-notation-drift.mjs
 node scripts/check-animator-runtime-wiring.mjs

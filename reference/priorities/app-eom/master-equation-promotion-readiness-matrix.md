@@ -15,8 +15,6 @@ The complete Master Equation is not globally closed. Two fundamental debts remai
 1. coincident same-transmitter birth has no finite joint regulator limit, and the point-transceiver ontology supplies no physical near-origin scale or replacement rule;
 2. the causal retained-history update determines acceleration but not a kinetic and momentum map or a non-circular wake-account update that closes energy, momentum, and angular momentum.
 
-The [change-specific audit](archive/receiver-factor-migration/analysis-receiver-factor-change-specific-promotion-audit.md) shows that both debts also exist under the current receiver-weighted causal law. The old law has a $t^{-2}$ coincident-birth acceleration with divergent impulse, while the proposed law has the stronger $t^{-3}$ divergence. Neither law has causal retained-history conservation accounts. These failures remain global closure obligations, but they do not supply evidence for restoring $|D_r|/c_f$ to base acceleration.
-
 Claim classification: **derived gate comparison plus inferred scoped-promotion disposition**.
 
 ## Readiness table
@@ -27,7 +25,7 @@ Claim classification: **derived gate comparison plus inferred scoped-promotion d
 | Receiver multiplier | Pass for removal at first order | Derived native comparison plus independent observer-level recovery target | Do not restore $|D_r|/c_f$ to base acceleration | An independent static-transmitter recovery contains the same universal first-order radial receiver-velocity term |
 | Receiver turning point | Pass under the transmitter-side finite-width equation when $D_t\ne0$ | Derived | Preserve the root and do not make base acceleration vanish merely because $D_r=0$ | The transmitter-time integral has a zero sharp limit at a simple root solely because $D_r=0$ |
 | Ordinary transmitter-side fold | Pass | Derived finite accumulated acceleration | Advance the transition by integrated acceleration, not point sampling | A nondegenerate fold with $r>0$ and $D_r\ne0$ has no common finite-width impulse limit |
-| Coincident same-transmitter birth | Fail under both laws; transmitter-side divergence is stronger | Derived old/new asymptotic, exact quadratic-path control, and finite-window lower bound | Keep the event fail-closed; it blocks global completion, not the scoped factor correction | An accepted old-law continuation exists, or an Architrino-native rule gives the proposed law a finite complete transition |
+| Coincident same-transmitter birth | Fail | Derived exact quadratic-path control and finite-window lower bound | Keep the event fail-closed; it blocks global completion, not the scoped factor correction | An Architrino-native rule gives the corrected law a finite complete transition |
 | Positive-width base causality | Pass | Derived retained-history update | The positive-width base equation is a causal initial-history law | The displayed update requires future particle data or has two continuations from one retained state on its regularity chart |
 | Energy, momentum, and angular momentum | Absent for both causal retained-history laws | Derived underdetermination and circularity test | Keep as a global closure debt; do not use it to retain the receiver multiplier | Fixed kinematic maps and predeclared wake accounts close all three totals on the same causal record without being defined from their residuals |
 | Full moving-transmitter/moving-receiver recovery | Open beyond the first-order static-transmitter control | Derived first-order pass; higher orders unproved | Do not claim complete electrodynamics or Lorentz recovery | Second-order and later required recovery terms match independent targets on one branch-certified record without restoring an unsupported universal receiver multiplier |
@@ -55,7 +53,6 @@ The closure work produced two negative theorems and then identified their correc
 
 - The complete coincident same-transmitter impulse diverges on every joint regulator-removal path. Keeping a mathematical core nonzero is not an accepted physical transition.
 - The history update does not choose the kinematic or wake accounts needed for conservation. Accounts defined as the negative accumulated residual are identities, not evidence.
-- The receiver-weighted law already has a divergent coincident same-transmitter impulse and does not possess conserved accounts for its causal retained-history update. The two failures are inherited global debts, not a physical case for its receiver multiplier.
 
 These are theory boundaries. A scoped migration must keep their events and claims outside its acceptance boundary.
 
@@ -66,7 +63,7 @@ The scoped correction is implemented:
 1. canon and the v1 binding use $c_f/|D_t|$;
 2. the EOM solver, independent oracle, prescribed-path analysis, Photon, and Animator use transmitter-side acceleration while preserving $D_r/D_t$ as signed root playback;
 3. coincident same-transmitter birth and every undeclared singular stratum remain fail closed;
-4. obsolete compatibility fields and user-facing old-law explanations are removed; historical contracts are isolated under `archive/`;
+4. obsolete compatibility fields, old-law explanations, and superseded migration records are removed;
 5. final corpus integrity and link validation remain the publication gate.
 
 For globally complete Master Equation closure:

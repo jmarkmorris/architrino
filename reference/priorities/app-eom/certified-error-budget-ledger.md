@@ -6,14 +6,14 @@
 - Date: 2026-07-18
 - Stage: `ratified-binding-input`
 - Owning queue item: `precision_convergence_and_failure_policy`
-- Binding amendment:
-  [Master EOM Binding v0 Amendment 2](master-eom-binding-v0-amendment-2-run-selected-certified-budgets.md)
+- Mathematical authority: [Master EOM Binding v1](master-eom-binding-v1.md)
+- Evolution authority: [Evolution Contract v1](evolution-contract-v1.md)
 - Operator ratification: `accepted-2026-07-18`
 - Claim grade: `derived-ratified`
 
 This packet defines and ratifies one dimensional ledger for ordinary certified
 evolution and finite-width events. Ratification authorizes the two named preset
-records and Amendment 2 implementation. It does not weaken a numerical gate or
+records and their implementation. It does not weaken a numerical gate or
 permit publication after a failed certificate row.
 
 ## Finding In Plain Language

@@ -34,7 +34,7 @@ position and velocity increments.
 The dimensional derivation and every remainder slice are in
 [the certified error-budget ledger](../certified-error-budget-ledger.md). The
 pending authority change is in
-[ratified Amendment 2](../master-eom-binding-v0-amendment-2-run-selected-certified-budgets.md).
+the ratified run-selected certified-budget decision.
 
 | Allocation | Interactive certified budget proposal | Research certified budget proposal |
 | --- | ---: | ---: |

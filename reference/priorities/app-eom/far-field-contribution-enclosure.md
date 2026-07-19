@@ -6,8 +6,8 @@ Evidence:
 [`evidence/far-field-contribution-enclosure-apple-m3-2026-07-16.md`](evidence/far-field-contribution-enclosure-apple-m3-2026-07-16.md)
 
 Claim level: derived mathematical contract unless a row is explicitly marked
-measured. This packet specializes the frozen law in
-`master-eom-binding-v0.md`; it does not change that law.
+measured. This packet specializes the current law in
+[Master EOM Binding v1](master-eom-binding-v1.md); it does not change that law.
 
 ## Purpose
 

@@ -1341,9 +1341,8 @@ This file holds dated decisions, implementation status, validation results, fail
   remains `3.51437e-11`; a valid regulator-matching enclosure must have radius
   at least that large and is predicted to reduce the post-accounting disjoint
   distance to zero while the total remains inside the unchanged `1e-7` budget.
-- Staged
-  [master-eom-binding-v0-amendment-1-common-domain-matching.md](master-eom-binding-v0-amendment-1-common-domain-matching.md)
-  as `pending-operator-ratification`. The frozen binding, finite-width route,
+- Staged the regulator-limit common-domain matching amendment as
+  `pending-operator-ratification`. The frozen binding, finite-width route,
   EOM solver, and Decimal oracle were not edited.
 - Falsifier: a certified regulator-error evaluation excludes the measured gap,
   independent regulator refinement does not move the raw finite-width chart
@@ -1364,10 +1363,8 @@ This file holds dated decisions, implementation status, validation results, fail
   emit $R^{\mathrm{reg}}$. Its existing `FWC-STATE-01` halt remains
   adjudicated until an independent implementation contains the actual chart
   difference and keeps the complete remainder inside the unchanged budget.
-- Ratified
-  [Master EOM Binding v0 Amendment 1](master-eom-binding-v0-amendment-1-common-domain-matching.md),
-  amended [master-eom-binding-v0.md](master-eom-binding-v0.md), and propagated
-  the normative condition into the finite-width route.
+- Ratified regulator-limit common-domain matching and propagated the normative
+  condition into the finite-width route.
 - Claim grade: `operator-decision` for the selected contract and `derived` for
   the matching condition. Falsifier: an analytic common-domain control lies
   outside the certified regulator remainder, or the complete numerical-plus-
@@ -1858,25 +1855,6 @@ This file holds dated decisions, implementation status, validation results, fail
 - **Evidence:**
   [borg-shadow-affine-dependency-diagnostic-apple-m3-2026-07-18.md](evidence/borg-shadow-affine-dependency-diagnostic-apple-m3-2026-07-18.md).
 
-## 2026-07-19 — Master Equation terminology migration
-
-- **Promoted terminology:** current AAA and reader-facing equation surfaces now
-  distinguish transmitter emission time $T_t$ from receiver reception time
-  $T_r$, use $D_t$ and $D_r$ for the two event-side factors, and name
-  $W^{\mathrm{acc}}=|D_r/D_t|$ as the receiver-weighted acceleration factor.
-- **Compatibility boundary:** existing schema fields, status codes, CLI fields,
-  serialized records, frozen evidence, and the old-law validator filename were
-  not renamed or redefined.
-- **Physics boundary:** the current receiver-weighted Master EOM and EOM solver
-  semantics are unchanged. The transmitter-side acceleration proposal remains
-  priority-only.
-- **Measured validation:** both terminology validators pass, and 120 focused
-  Equation Mapping, prescribed-root, animator, and Photon tests pass. Generated
-  reading copies and indexes remain drifted because no write-mode generator was
-  authorized.
-- **Disposition:**
-  [terminology migration disposition](archive/terminology-migration/master-equation-terminology-migration-disposition-2026-07-19.md).
-
 ## 2026-07-19 — Coincident-transition and history-only conservation closure attempt
 
 - **Derived finite-window no-go:** on the smooth same-transmitter birth chart, the
@@ -1933,6 +1911,5 @@ This file holds dated decisions, implementation status, validation results, fail
 - **Unchanged authority boundary:** no canonical equation, EOM solver
   semantics, frozen evidence, or generated artifact was changed.
 - **Artifacts:**
-  [change-specific promotion audit](archive/receiver-factor-migration/analysis-receiver-factor-change-specific-promotion-audit.md),
   [going-forward walkthrough](master-equation-import-audit-walkthrough-2026-07-18.md),
   and [promotion-readiness matrix](master-equation-promotion-readiness-matrix.md).

@@ -272,9 +272,7 @@ The complete Master Equation is not globally closed. Two fundamental debts remai
 1. the coincident same-transmitter transition has no finite joint regulator limit, and no physical near-origin rule is derived;
 2. the causal retained-history update does not determine non-circular energy, momentum, and angular-momentum accounts without additional kinematic and wake-account structure.
 
-The [change-specific promotion audit](archive/receiver-factor-migration/analysis-receiver-factor-change-specific-promotion-audit.md) tests whether those failures were introduced by the correction. They were not. On the same smooth coincident-birth chart, the current receiver-weighted law has a $t^{-2}$ acceleration and a divergent impulse; the proposed transmitter-side law has the stronger $t^{-3}$ divergence. The current causal receiver-weighted update also lacks derived conserved accounts; the two-time action's accounts belong to a future-dependent equation rather than the causal EOM solver update.
-
-The stronger transmitter-side divergence must remain fail-closed and visible. It blocks a claim of globally complete same-transmitter evolution, but it does not turn a previously accepted old-law transition into a failed new-law transition. Likewise, missing conservation remains a global closure obligation but is not evidence for the receiver multiplier.
+The coincident-birth divergence must remain fail-closed and visible. It blocks a claim of globally complete same-transmitter evolution. Missing conservation likewise remains a global closure obligation and does not justify adding receiver playback to the acceleration magnitude.
 
 The resulting disposition is:
 

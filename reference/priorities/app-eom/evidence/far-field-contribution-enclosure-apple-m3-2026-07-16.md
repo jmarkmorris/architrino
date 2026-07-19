@@ -11,7 +11,7 @@ Specification:
 [`../far-field-contribution-enclosure.md`](../far-field-contribution-enclosure.md)
 
 Frozen law:
-[`../master-eom-binding-v0.md`](../master-eom-binding-v0.md)
+the then-current Master EOM binding
 
 ## Build provenance
 

@@ -4,7 +4,7 @@
 
 - Contract id: eom_numeric_certification/v0
 - Stage: frozen-requirements
-- Mathematical authority: [master-eom-binding-v0.md](master-eom-binding-v0.md)
+- Mathematical authority: [master-eom-binding-v1.md](master-eom-binding-v1.md)
 - Evolution authority: [evolution-contract-v1.md](evolution-contract-v1.md)
 - Production implementation: not selected
 - Production language and accelerator stack: not selected
@@ -28,15 +28,15 @@ The unit of acceptance is an immutable coupled-history step. For a proposed
 advance from $T_n$ to $T_{n+1}$, the numeric certificate covers:
 
 1. every history value and interpolation enclosure consumed by the step;
-2. every ordered source-receiver pair, including self-pairs;
+2. every ordered transmitter-receiver pair, including same-transmitter pairs;
 3. every admitted causal root and a root-free certificate for the retained
    complement;
-4. every $D_s$, $D_T$, polarity, core-kernel, and acceleration contribution;
+4. every $D_t$, $D_r$, polarity, core-kernel, and acceleration contribution;
 5. the deterministic or enclosed accumulation of those contributions;
 6. the local truncation and propagation error of the coupled advance;
 7. the appended history segment and all continuation-critical controller state.
 
-The step is accepted atomically or rejected atomically. A diagnostic row
+The step is accepted atomically or rejected atomically. A diagnostic record
 computed after the state advance cannot certify the state that was actually
 advanced.
 
@@ -107,14 +107,14 @@ The following must be exact or certified by non-overlapping enclosures:
 - time and event ordering;
 - causal-root count and root identity;
 - membership inside the retained history interval;
-- the sign of $D_s$ away from a declared caustic chart;
+- the sign of $D_t$ away from a declared fold chart;
 - active, inactive, excluded-coincidence, unresolved, and certified-pruned
   classifications;
 - branch creation, continuation, merger, and memory-boundary exit;
 - timestep acceptance or rejection;
 - precision-route and backend-route decisions.
 
-A point estimate cannot decide a discrete row when its certified enclosure
+A point estimate cannot decide a discrete record when its certified enclosure
 contains the decision boundary.
 
 ### Continuous Quantities
@@ -139,8 +139,8 @@ E_{\mathrm{hist}},
 E_{\mathrm{interp}},
 E_{\mathrm{root}},
 E_{\mathrm{geom}},
-E_{D_s},
-E_{D_T},
+E_{D_t},
+E_{D_r},
 E_{\mathrm{kernel}},
 E_{\mathrm{sum}},
 E_{\mathrm{step}},
@@ -178,9 +178,9 @@ result.
 | --- | --- |
 | Absolute-time resolution | Ratio of local representable spacing to requested step and event separation. |
 | History interpolation | Basis conditioning plus a remainder or enclosure for the requested derivative order. |
-| Simple causal root | $1/|D_s|$ together with the root bracket width and residual enclosure. |
-| Receiver-normal cancellation | $(c_f+|\widehat{\mathbf r}\cdot\mathbf V_i|)/|D_T|$ when $D_T\ne0$. |
-| Core proximity | $r/\epsilon_c$ and the enclosure of the complete zero-extended receiver-side-factor vector integrand. |
+| Simple causal root | $1/|D_t|$ together with the root bracket width and residual enclosure. |
+| Root playback | An enclosure of $D_r/D_t$ after the $D_t$ floor is certified; $D_r=0$ is an allowed playback turn. |
+| Core proximity | $r/\epsilon_c$ and the enclosure of the complete zero-extended transmitter-factor vector integrand. |
 | Pair subtraction | Separation scale divided by the magnitude and uncertainty of the coordinates being differenced. |
 | Acceleration cancellation | $\sum_k\|\mathbf a_k\|/\|\sum_k\mathbf a_k\|$ with a declared zero-result route. |
 | Integrator step | Estimated or enclosed local error divided by the allocated step budget. |
@@ -223,9 +223,7 @@ Escalation is mandatory when any of the following occurs:
 - a time, sign, order, or inclusion enclosure contains its decision boundary;
 - a root residual or bracket cannot certify existence, uniqueness, or absence;
 - the retained complement cannot be certified root free;
-- the $D_s$ enclosure contains zero on a supposed simple-root chart;
-- the $D_T$ enclosure contains zero but cannot distinguish a true silent branch
-  from rounding uncertainty;
+- the $D_t$ enclosure contains zero on a supposed simple-root chart;
 - the complete core-integrand enclosure is not finite;
 - an accumulated acceleration enclosure exceeds its allocated budget;
 - two worker counts, backends, or precision levels disagree on a discrete row;
@@ -233,9 +231,10 @@ Escalation is mandatory when any of the following occurs:
 - the propagated accepted-state enclosure exceeds the caller's budget;
 - a nonfinite value appears without a certified mathematical interpretation.
 
-If increasing precision shows that $D_s=0$ is a real event, the row leaves the
-sharp chart and enters the finite-width caustic route. If it shows that $D_T=0$
-with $D_s\ne0$, the branch remains present with zero receiver-side-factor strength.
+If increasing precision shows that $D_t=0$ is a real event, the record leaves
+the sharp chart and enters the finite-width fold route. If it shows that
+$D_r=0$ with $D_t\ne0$, the root remains active, its signed playback turns
+through zero, and its transmitter-factor acceleration remains ordinary.
 Precision escalation must not erase either event.
 
 ## Root Certification
@@ -247,7 +246,7 @@ For every ordered pair, root work proceeds as:
 3. discard a cell only when its enclosure excludes zero;
 4. isolate a simple root with a certified method such as interval Newton or a
    safeguarded bracket plus derivative enclosure;
-5. certify uniqueness and the sign of $D_s$ on the final root interval;
+5. certify uniqueness and the sign of $D_t$ on the final root interval;
 6. merge or separate neighboring root intervals only through certified overlap
    and topology rules;
 7. certify the unclaimed complement root free.
@@ -381,8 +380,8 @@ The independent oracle and every promoted backend must pass:
 2. origin and scale-map invariance for identical physical histories;
 3. manufactured root problems with known counts, tangencies, close pairs, and
    root-free complements;
-4. $D_s$ sign and caustic routing under increasing precision;
-5. $D_T$ zero-crossing and silent-branch routing;
+4. $D_t$ sign and fold routing under increasing precision;
+5. $D_r$ zero-crossing with uninterrupted root activity and acceleration;
 6. core-coincidence zero-extension and $\epsilon_c$ refinement;
 7. cancellation-heavy ordered-pair reductions against a stricter enclosure;
 8. timestep and history-interpolation refinement;
