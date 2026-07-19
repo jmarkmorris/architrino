@@ -28,7 +28,7 @@ c_f-\mathbf V_j(T_t)\cdot\hat{\mathbf r}_{ij}(T_r;T_t),
 \qquad
 D_{r,ij}
 =
-c_f-\mathbf V_i(T)\cdot\hat{\mathbf r}_{ij}(T_r;T_t).
+c_f-\mathbf V_i(T_r)\cdot\hat{\mathbf r}_{ij}(T_r;T_t).
 $$
 
 Plain language: a retained hit must say both how the transmitter laid down the wake and how the receiver crossed that same wake. The ratio above is the receiver-weighted acceleration factor attached to that one retained root.
@@ -98,14 +98,14 @@ g_{ij}(T_r,T_t)
 $$
 
 Plain language: the root condition says that a wake emitted by transmitter $j$ at
-$T_t$ reaches receiver $i$ exactly at absolute time $T$.
+$T_t$ reaches receiver $i$ exactly at reception time $T_r$.
 
 On a simple retained root, $D_t\ne0$ supplies the local inverse-function
 condition. A retained record is the branch-local data packet that binds the
 root, transmitter identity, receiver identity, regulator state, and acceleration/action
-rows to one history chart. A retained box is an interval or chart neighborhood
-that encloses those rows together; outward-rounded intervals have endpoints
-rounded away from the computed value so the true row remains enclosed. The
+entries to one history chart. A retained box is an interval or chart neighborhood
+that encloses those entries together; outward-rounded intervals have endpoints
+rounded away from the computed value so the true entry remains enclosed. The
 branch label persists as long as the same retained record keeps:
 
 | Row | Required status |

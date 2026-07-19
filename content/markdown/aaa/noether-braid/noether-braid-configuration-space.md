@@ -184,7 +184,7 @@ The frequency-ratio family records return or winding-frequency relations. The ma
 | --- | --- |
 | iso-frequency `1:1:1` | Candidate family with common return rate across the three retained rows. The rigid uniaxial member is the **spindle braid** (see the named-candidate note above). |
 | integer-ratio `3:2:1` | Candidate family with integer return rates but no repeated-doubling assumption. |
-| doubling-frequency `4:2:1` | Candidate nested `I:M:O` family in which each inward row doubles the next outer row, studied in [Noether Braid Doubling-Frequency Resonance Lock](doubling-frequency-lock.md). |
+| doubling-frequency `4:2:1` | Candidate nested `I:M:O` family in which each inward binary frequency doubles the next outer binary frequency, studied in [Noether Braid Doubling-Frequency Resonance Lock](doubling-frequency-lock.md). |
 
 Frequency-ratio labels are candidate-family labels until the phase-return degree, causal-root ledger, finite-memory gluing, and stability rows close on the same branch. Hinge labels require their own speed and causal-root rows; they are not frequency-ratio names.
 

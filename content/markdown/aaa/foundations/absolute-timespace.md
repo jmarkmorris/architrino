@@ -371,47 +371,47 @@ $$
 
 The equality surface is an expanding causal isochron: at each later $T$ it appears as a spatial sphere in the Euclidean void, not as a fundamental light cone of a Lorentzian metric. The filled region records causal order and finite-speed reachability, but it is not the support of a single emitted wake. In the exact Master Equation, a receiver is acted on only at boundary roots satisfying the equality condition above. With a mollifier, support is a narrow neighborhood of that boundary and is interpreted in the weak limit.
 
-For source $j$ and receiver $i$, the canonical root function is
+For transmitter $j$ and receiver $i$, the canonical root function is
 $$
-F_{ij}(T,T_t)
+F_{ij}(T_r,T_t)
 =
-\|\mathbf X_i(T)-\mathbf X_j(T_t)\|-c_f(T-T_t),
+\|\mathbf X_i(T_r)-\mathbf X_j(T_t)\|-c_f(T_r-T_t),
 \qquad
-T_t<T
+T_t<T_r
 $$
 with active causal-root set
 $$
-\mathcal{C}_{ij}(T)
+\mathcal{C}_{ij}(T_r)
 =
-\{\,T_t<T:F_{ij}(T,T_t)=0\,\}
+\{\,T_t<T_r:F_{ij}(T_r,T_t)=0\,\}
 $$
 The same notation covers partner hits ($i\ne j$) and self-hits ($i=j$). Simple-root branch charts require the transversality floor
 $$
 \left|
-\partial_{T_t}F_{ij}(T,T_t)
+\partial_{T_t}F_{ij}(T_r,T_t)
 \right|
 =
 \left|
-c_f-\hat{\mathbf{r}}_{ij}(T,T_t)\cdot\mathbf V_j(T_t)
+c_f-\hat{\mathbf{r}}_{ij}(T_r,T_t)\cdot\mathbf V_j(T_t)
 \right|
 \ge
 \kappa_{\mathrm{hit}}>0
 $$
 where
 $$
-\mathbf{r}_{ij}(T,T_t)=\mathbf X_i(T)-\mathbf X_j(T_t),
+\mathbf{r}_{ij}(T_r,T_t)=\mathbf X_i(T_r)-\mathbf X_j(T_t),
 \qquad
 \hat{\mathbf{r}}_{ij}=\frac{\mathbf{r}_{ij}}{\|\mathbf{r}_{ij}\|}
 $$
 Failure of this floor marks a caustic-like or degenerate wake-root regime; it is a branch-chart failure condition, not an ordinary small perturbation.
 
-On a smooth retained branch $T_t=T_{t,\ell}(T)$, differentiating
-$F_{ij}(T,T_{t,\ell}(T))=0$ gives the receiver-side factor
+On a smooth retained branch $T_t=T_{t,\ell}(T_r)$, differentiating
+$F_{ij}(T_r,T_{t,\ell}(T_r))=0$ gives the receiver-side factor
 $$
-\frac{dT_{t,\ell}}{dT}
+\frac{dT_{t,\ell}}{dT_r}
 =
-\frac{c_f-\hat{\mathbf{r}}_{ij}(T,T_{t,\ell})\cdot\mathbf V_i(T)}
-{c_f-\hat{\mathbf{r}}_{ij}(T,T_{t,\ell})\cdot\mathbf V_j(T_{t,\ell})}
+\frac{c_f-\hat{\mathbf{r}}_{ij}(T_r,T_{t,\ell})\cdot\mathbf V_i(T_r)}
+{c_f-\hat{\mathbf{r}}_{ij}(T_r,T_{t,\ell})\cdot\mathbf V_j(T_{t,\ell})}
 $$
 This identity is not a new coupling constant. It distinguishes the transmitter-side
 causal-root Jacobian from the rate at which a moving receiver path samples the

@@ -12,7 +12,7 @@ Use the following regime definition near the horizon:
 $$
 v_M=c_f,\qquad v_O\to c_f
 $$
-The arrow records approach from ordinary exterior coupling. At terminal alignment, the outer row reaches the same field-speed threshold, with middle/outer binaries becoming coplanar and co-linear with the inner binary and precession ceasing in that limit.
+The arrow records approach from ordinary exterior coupling. At terminal alignment, the outer binary reaches the same field-speed threshold, with middle/outer binaries becoming coplanar and co-linear with the inner binary and precession ceasing in that limit.
 
 This condition is a constitutive boundary condition on Noether sea state, not an isolated metric ansatz imported from an asymptotically flat solution. The horizon is therefore treated as an interface problem: what packed assembly state is allowed, what boundary data reach the exterior, and which continuation labels remain finite? In schematic form, the horizon-interface closure problem is
 $$

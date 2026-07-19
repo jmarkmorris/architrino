@@ -141,11 +141,11 @@ Fixed identity matters whenever a calculation needs provenance. Self-hit diagnos
 
 For a received wake contribution, the provenance record keeps the transmitter identity, emission time, emission location, receiver identity, reception time, and reception location:
 $$
-(j,T_t,\mathbf X_j(T_t),i,T,\mathbf X_i(T))
+(j,T_t,\mathbf X_j(T_t),i,T_r,\mathbf X_i(T_r))
 $$
 The causal-root condition is then
 $$
-\|\mathbf X_i(T)-\mathbf X_j(T_t)\|_h=c_f(T-T_t)
+\|\mathbf X_i(T_r)-\mathbf X_j(T_t)\|_h=c_f(T_r-T_t)
 $$
 This condition is invariant under Euclidean translations and rotations of the chosen chart. The chart may be changed for calculation, but relabeling does not move the underlying void point where the emission occurred.
 

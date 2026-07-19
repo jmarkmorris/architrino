@@ -9,7 +9,7 @@ Core symbols:
 - $\eta>0$: causal-isochron thickness.
 - $\epsilon>0$: polarity-unit magnitude; Electrino $q=-\epsilon$, Positrino $q=+\epsilon$.
 - $\sigma_{q q'}=\mathrm{sign}(q\,q')\in\{+1,-1\}$.
-- $r=\|\mathbf X_{o'}(T)-\mathbf X_o(T_t)\|$, with $\hat{\mathbf{r}}=(\mathbf X_{o'}(T)-\mathbf X_o(T_t))/r$.
+- $r=\|\mathbf X_{o'}(T_r)-\mathbf X_o(T_t)\|$, with $\hat{\mathbf{r}}=(\mathbf X_{o'}(T_r)-\mathbf X_o(T_t))/r$.
 
 ## Dynamical Geometry
 
@@ -37,7 +37,7 @@ Core symbols:
   - $\sigma_{q q'}=\mathrm{sign}(q\,q')$ selects attraction vs repulsion while keeping the acceleration strictly collinear with $\hat{\mathbf{r}}$. Like-on-like ($\sigma$=+1) points along +$\hat{\mathbf{r}}$ (repulsion); unlike ($\sigma$=-1) points along -$\hat{\mathbf{r}}$ (attraction).
 
 - Line of action ($r$, $\hat{\mathbf{r}}$, $D_t$, $D_r$, $W^{\mathrm{acc}}$):
-  - $r=\|\mathbf X_{o'}(T)-\mathbf X_o(T_t)\|$ is the separation between the receiver “now” and the source at its causal emission time. $\hat{\mathbf{r}}$ is the corresponding unit vector. The transmitter-side factor is $D_t=c_f-\mathbf V_o(T_t)\cdot\hat{\mathbf{r}}$, the receiver-side factor is $D_r=c_f-\mathbf V_{o'}(T)\cdot\hat{\mathbf{r}}$, and the active branch strength is $W^{\mathrm{acc}}=\lvert D_r/D_t\rvert$. All per-hit actions are directed along this line; no transverse or right-hand-rule terms appear.
+  - $r=\|\mathbf X_{o'}(T_r)-\mathbf X_o(T_t)\|$ is the separation between the receiver at reception time $T_r$ and the transmitter at emission time $T_t$. $\hat{\mathbf{r}}$ is the corresponding unit vector. The transmitter-side factor is $D_t=c_f-\mathbf V_o(T_t)\cdot\hat{\mathbf{r}}$, the receiver-side factor is $D_r=c_f-\mathbf V_{o'}(T_r)\cdot\hat{\mathbf{r}}$, and the active branch strength is $W^{\mathrm{acc}}=\lvert D_r/D_t\rvert$. All per-hit acceleration contributions are directed along this line; no transverse or right-hand-rule terms appear.
 
 - Combined role in assembly scales:
   - The trio $(\kappa,\epsilon,\eta)$, together with the $1/r^2$ law, determines emergent scales such as the smallest sustainable orbit $d_0$ and fastest natural frequency $2\pi/t_0$. Intuitively, stronger coupling (larger $\kappa\epsilon^2$) and sharper wake surfaces (smaller $\eta$) favor tighter, faster structures until self-interaction and delay balance inward trends.

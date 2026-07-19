@@ -197,24 +197,24 @@ Field representation (transport/continuity form)
 - Emission is continuous with constant time-density $q(T)\equiv q_0$.
 
 Per-hit equation of motion (EOM)
-- For a receiver $o'$ at time $T$ and a source $j$, causal emission times satisfy
+- For a receiver $o'$ at reception time $T_r$ and a transmitter $j$, causal emission times satisfy
   $$
-  \|\mathbf X_{o'}(T) - \mathbf X_j(T_t)\| = v\,(T-T_t),\qquad T_t<T
+  \|\mathbf X_{o'}(T_r) - \mathbf X_j(T_t)\| = v\,(T_r-T_t),\qquad T_t<T_r
   $$
 - Each root contributes a line-of-action acceleration
   $$
-  \mathbf A_{o'\leftarrow j}(T;T_t)
+  \mathbf A_{o'\leftarrow j}(T_r;T_t)
   \;=\;
   \kappa\,\sigma_{q_j q_{o'}}\,\frac{|q_j q_{o'}|}{r^2}\,
-  W_{o'j}^{\mathrm{acc}}(T;T_t)\,\hat{\mathbf{r}},
+  W_{o'j}^{\mathrm{acc}}(T_r;T_t)\,\hat{\mathbf{r}},
   \quad
-  \hat{\mathbf{r}}=\frac{\mathbf X_{o'}(T)-\mathbf X_j(T_t)}{r},\ r>0
+  \hat{\mathbf{r}}=\frac{\mathbf X_{o'}(T_r)-\mathbf X_j(T_t)}{r},\ r>0
   $$
-  with $W_{o'j}^{\mathrm{acc}}=\lvert D_{r,o'j}/D_{t,o'j}\rvert$, $D_{t,o'j}=c_f-\mathbf V_j(T_t)\cdot\hat{\mathbf{r}}$, and $D_{r,o'j}=c_f-\mathbf V_{o'}(T)\cdot\hat{\mathbf{r}}$.
-  with total acceleration the sum over sources and roots. Convention $H(0)=0$ removes the instantaneous self-kick at $T_t=0$. Optional mollification replaces $\delta(\cdot)$ by $\delta_\eta(\cdot)$ to produce smooth pushes.
+  with $W_{o'j}^{\mathrm{acc}}=\lvert D_{r,o'j}/D_{t,o'j}\rvert$, $D_{t,o'j}=c_f-\mathbf V_j(T_t)\cdot\hat{\mathbf{r}}$, and $D_{r,o'j}=c_f-\mathbf V_{o'}(T_r)\cdot\hat{\mathbf{r}}$.
+  with total acceleration the sum over transmitters and roots. Convention $H(0)=0$ removes the instantaneous self-kick at zero delay. Optional mollification replaces $\delta(\cdot)$ by $\delta_\eta(\cdot)$ to produce smooth acceleration contributions.
 
 Implementation checklist
-- Root finding: solve $F(T_t;T)=\|\mathbf X_{o'}(T)-\mathbf X_j(T_t)\|-v(T-T_t)=0$ for all $j$ (including $j=o'$ for self-hits when kinematics permit).
+- Root finding: solve $F(T_t;T_r)=\|\mathbf X_{o'}(T_r)-\mathbf X_j(T_t)\|-v(T_r-T_t)=0$ for all transmitters $j$ (including $j=o'$ for self-hits when kinematics permit).
 - Accumulation: compute $r,\hat{\mathbf{r}}$, $D_t$, $D_r$, and $W^{\mathrm{acc}}$, apply $W^{\mathrm{acc}}/r^2$, then superpose.
 - Time stepping: impulsive mode (events) or mollified mode ($\eta>0$) with standard ODE integrators.
 - Self-interaction: appears when the worldline outruns recent wake surfaces ($\|\mathbf V\|>v$ for some emissions); self-hits are repulsive (like-on-like).

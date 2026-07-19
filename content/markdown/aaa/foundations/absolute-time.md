@@ -77,15 +77,15 @@ c_f=\frac{\hat c_f T_0}{L_0}
 $$
 Here hatted quantities are dimensional and unhatted quantities are nondimensional. With this convention, the nondimensional causal-root condition keeps the same form,
 $$
-\|\mathbf X_i(T)-\mathbf X_j(T_t)\|
+\|\mathbf X_i(T_r)-\mathbf X_j(T_t)\|
 =
-c_f(T-T_t)
+c_f(T_r-T_t)
 $$
 while the dimensional condition is
 $$
-\|\hat{\mathbf X}_i(\hat T)-\hat{\mathbf X}_j(\hat T_t)\|
+\|\hat{\mathbf X}_i(\hat T_r)-\hat{\mathbf X}_j(\hat T_t)\|
 =
-\hat c_f(\hat T-\hat T_t)
+\hat c_f(\hat T_r-\hat T_t)
 $$
 
 Choosing $T_0$ fixes the affine scale of $T$ for the declared model. Setting $c_f=1$ is the special unit convention $L_0/T_0=\hat c_f$; keeping $c_f$ explicit leaves the physical anchor visible.
@@ -267,38 +267,38 @@ The foundation stack keeps the relevant speed symbols distinct:
 
 These symbols must not be identified unless the local regime and derivation have been stated.
 
-**Path-History Interactions:** If source $j$ emits from $\mathbf X_j(T_t)$ and receiver $i$ is at $\mathbf X_i(T)$, the contributing emission times are the delayed roots
+**Path-History Interactions:** If transmitter $j$ emits from $\mathbf X_j(T_t)$ and receiver $i$ is at $\mathbf X_i(T_r)$, the contributing emission times are the delayed roots
 $$
-\mathcal{C}_{ij}(T)
+\mathcal{C}_{ij}(T_r)
 =
-\{\,T_t<T:\|\mathbf X_i(T)-\mathbf X_j(T_t)\|=c_f(T-T_t)\,\}
+\{\,T_t<T_r:\|\mathbf X_i(T_r)-\mathbf X_j(T_t)\|=c_f(T_r-T_t)\,\}
 $$
 
-Only emission times in $\mathcal{C}_{ij}(T)$ contribute to the receiver at time $T$. Earlier events that miss this root condition do not contribute through this channel. In dimensional variables, the same condition is written with hatted times and positions using the corresponding dimensional value of $c_f$.
+Only emission times in $\mathcal{C}_{ij}(T_r)$ contribute to the receiver at reception time $T_r$. Earlier events that miss this root condition do not contribute through this channel. In dimensional variables, the same condition is written with hatted times and positions using the corresponding dimensional value of $c_f$.
 
 Equivalently, define the root function
 $$
-F_{ij}(T,T_t)
+F_{ij}(T_r,T_t)
 =
-\|\mathbf X_i(T)-\mathbf X_j(T_t)\|-c_f(T-T_t),
+\|\mathbf X_i(T_r)-\mathbf X_j(T_t)\|-c_f(T_r-T_t),
 \qquad
-T_t<T
+T_t<T_r
 $$
-Then $\mathcal{C}_{ij}(T)=\{\,T_t<T:F_{ij}(T,T_t)=0\,\}$. The same set covers ordinary partner hits when $i\ne j$ and self-hits when $i=j$; no separate self-hit law is needed. A simple-root branch chart requires
+Then $\mathcal{C}_{ij}(T_r)=\{\,T_t<T_r:F_{ij}(T_r,T_t)=0\,\}$. The same set covers ordinary partner hits when $i\ne j$ and self-hits when $i=j$; no separate self-hit law is needed. A simple-root branch chart requires
 $$
 \left|
-\partial_{T_t}F_{ij}(T,T_t)
+\partial_{T_t}F_{ij}(T_r,T_t)
 \right|
 =
 \left|
-c_f-\hat{\mathbf{r}}_{ij}(T,T_t)\cdot\mathbf V_j(T_t)
+c_f-\hat{\mathbf{r}}_{ij}(T_r,T_t)\cdot\mathbf V_j(T_t)
 \right|
 \ge
 \kappa_{\mathrm{hit}}>0
 $$
 where
 $$
-\mathbf{r}_{ij}(T,T_t)=\mathbf X_i(T)-\mathbf X_j(T_t),
+\mathbf{r}_{ij}(T_r,T_t)=\mathbf X_i(T_r)-\mathbf X_j(T_t),
 \qquad
 \hat{\mathbf{r}}_{ij}=\frac{\mathbf{r}_{ij}}{\|\mathbf{r}_{ij}\|}
 $$
@@ -314,13 +314,13 @@ The corresponding root caustic set for a pair of histories is
 $$
 \Sigma_{ij}
 =
-\{(T,T_t):F_{ij}(T,T_t)=0,\ \partial_{T_t}F_{ij}(T,T_t)=0\}
+\{(T_r,T_t):F_{ij}(T_r,T_t)=0,\ \partial_{T_t}F_{ij}(T_r,T_t)=0\}
 $$
 On a generic one-parameter branch this is a Whitney fold, or $A_2$ singularity, of the root map $T_t\mapsto F_{ij}(T,T_t)$. Higher events such as a cusp, where $\partial_{T_t}^2F_{ij}=0$ also holds, are codimension-two alarms for branch-pair creation, annihilation, or merger of fold events. In simulation language, fold contact is the first warning that the Jacobian floor has failed; cusp contact is a stronger warning that the local branch-count catalogue itself is changing.
 
 This is one instance of a broader foundation-stack discipline: **non-degeneracy floors** convert exact failure sets into graded admissibility certificates. The root Jacobian floor here, the basin-separatrix floor in [Emergence](emergence-of-structure.md#context-as-constraint-on-basin-selection), and the basis-conditioning floor in [Constructing the Absolute Frame](constructing-the-absolute-frame.md#reconstruction-existence-lemma) serve the same role for different objects. They are certificate margins attached to declared charts, not universal constants.
 
-The interaction law is built entirely from path-history contributions at times $T_t < T$ that satisfy the causal-root condition; $\mathbb{A}\mathbb{A}\mathbb{A}$ contains no advanced or instantaneous interaction terms. This delayed-only support condition is a law-level causal asymmetry, not merely an initial-condition effect.
+The interaction law is built entirely from path-history contributions at emission times $T_t < T_r$ that satisfy the causal-root condition; $\mathbb{A}\mathbb{A}\mathbb{A}$ contains no advanced or instantaneous interaction terms. This delayed-only support condition is a law-level causal asymmetry, not merely an initial-condition effect.
 
 There are **no instantaneous actions-at-a-distance** and **no advanced potentials**.
 

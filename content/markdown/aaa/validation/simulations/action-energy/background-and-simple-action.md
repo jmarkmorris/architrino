@@ -11,21 +11,21 @@ The background is fixed absolute time times Euclidean space. Free paths are stra
   - "Geodesics are straight" means: in the absence of any interaction, a worldline $\mathbf X(T)$ satisfies $\mathbf A(T)=d^2\mathbf X/dT^2=\mathbf{0}$; motion is uniform and rectilinear in each slice $\Sigma_T$. The background is fixed; there is no curvature to encode forces.
 
 - Wake geometry as a continuous causal flux:
-  - Each architrino streams potential continuously. At any observation time $T$, the contribution emitted at past time $T_t$ sits on the **causal wake surface** (spherical isochron) $r=v(T-T_t)$ centered on $\mathbf X(T_t)$, with surface density $\propto 1/r^2$ so the integrated flux remains $q$.
+  - Each architrino streams potential continuously. At any reception time $T_r$, the contribution emitted at past time $T_t$ sits on the **causal wake surface** (spherical isochron) $r=v(T_r-T_t)$ centered on $\mathbf X(T_t)$, with surface density $\propto 1/r^2$ so the integrated flux remains $q$.
   - The potential wake is the superposition of all such causal isochrons from past emissions. The flux never shuts off; the surfaces are bookkeeping devices isolating portions of the path history whose intersection with a receiver delivers acceleration.
 
 - Intersection as the driver of acceleration:
-  - The receiver’s worldline is $\mathbf X_{o'}(T)$. An intersection at time $T$ means some earlier emission time $T_t < T$ satisfies the causal-distance condition
+  - The receiver's worldline is $\mathbf X_{o'}(T_r)$. An intersection at reception time $T_r$ means some earlier emission time $T_t<T_r$ satisfies the causal-distance condition
     $$
-    \|\mathbf X_{o'}(T)-\mathbf X_o(T_t)\|=v(T-T_t)
+    \|\mathbf X_{o'}(T_r)-\mathbf X_o(T_t)\|=v(T_r-T_t)
     $$
-    That event is a causal hit from source $o$’s past to the receiver’s present.
+    That event is a causal hit from transmitter $o$'s emission event to the receiver's reception event.
   - At a hit, the acceleration impulse is directed along
     $$
     \hat{\mathbf{r}}
     =
-    \frac{\mathbf X_{o'}(T)-\mathbf X_o(T_t)}
-    {\|\mathbf X_{o'}(T)-\mathbf X_o(T_t)\|}
+    \frac{\mathbf X_{o'}(T_r)-\mathbf X_o(T_t)}
+    {\|\mathbf X_{o'}(T_r)-\mathbf X_o(T_t)\|}
     $$
     No cross products or right-hand-rule terms appear; the action is collinear with $\hat{\mathbf{r}}$. Its magnitude is weighted by the receiver-weighted acceleration factor $W^{\mathrm{acc}}=\lvert D_r/D_t\rvert$: $D_t$ captures transmitter-side wake spacing and root transversality, while $D_r$ captures how the receiver cuts through that wake sequence.
 

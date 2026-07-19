@@ -1,12 +1,12 @@
 # Receiver velocity and work
 
-Because $\mathbf A_{o'\leftarrow o}(T;T_t)\parallel\hat{\mathbf{r}}$, a single hit changes only the radial velocity component:
+Because $\mathbf A_{o'\leftarrow o}(T_r;T_t)\parallel\hat{\mathbf{r}}$, a single hit changes only the radial velocity component:
 $$
 \frac{d}{dT}\mathbf V_\perp=\mathbf{0}\quad\text{from this hit},
 \qquad
 \frac{d}{dT}V_r
 =
-\mathbf A_{o'\leftarrow o}(T;T_t)\cdot\hat{\mathbf{r}}
+\mathbf A_{o'\leftarrow o}(T_r;T_t)\cdot\hat{\mathbf{r}}
 =
 \frac{\kappa\,\sigma_{q_o q_{o'}}\,\lvert q_o q_{o'}\rvert}{r^2}
 $$

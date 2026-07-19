@@ -225,9 +225,9 @@ However, because the potential density on each causal wake surface falls off as 
 A mathematically admissible many-source branch must satisfy the [Receiver-Centered Exhaustion Lemma](absolute-timespace.md#receiver-centered-exhaustion-lemma): it must make a limit such as
 $$
 \lim_{R\to\infty}
-\sum_{\substack{j,\ T_t\in\mathcal{C}_{ij}(T)\\
-\|\mathbf X_j(T_t)-\mathbf X_i(T)\|<R}}
-\mathbf A_{ij}(T;T_t)
+\sum_{\substack{j,\ T_t\in\mathcal{C}_{ij}(T_r)\\
+\|\mathbf X_j(T_t)-\mathbf X_i(T_r)\|<R}}
+\mathbf A_{ij}(T_r;T_t)
 $$
 exist under the declared receiver-centered summation prescription, or else use the corresponding continuum condition. More invariantly, one may declare an exhaustion $\Lambda_R\uparrow\mathbb{R}^3$ and take the corresponding limit over transmitter events with $\mathbf X_j(T_t)\in\Lambda_R$. Acceptable mechanisms include local neutrality, angular cancellation, shielding, a screened kernel, a finite active horizon, or a declared principal-value or mean-field subtraction. Without such a condition, the many-source wake sum is not mathematically well-defined.
 
@@ -239,19 +239,19 @@ The infinite-history statement is therefore not a claim that every past wake car
 
 Self-hit is not defined by speed alone. It occurs when the same-transmitter causal-root set is nonempty:
 $$
-\mathcal{C}_{ii}(T)
+\mathcal{C}_{ii}(T_r)
 =
-\{\,T_t<T:\|\mathbf X_i(T)-\mathbf X_i(T_t)\|=c_f(T-T_t)\,\}
+\{\,T_t<T_r:\|\mathbf X_i(T_r)-\mathbf X_i(T_t)\|=c_f(T_r-T_t)\,\}
 \ne
 \varnothing
 $$
-If $\|\mathbf V_i(U)\|\le c_f-\delta_v$ throughout the interval $[T_t,T]$ for some speed margin $\delta_v>0$, then no self-hit root can occur on that interval, because
+If $\|\mathbf V_i(U)\|\le c_f-\delta_v$ throughout the interval $[T_t,T_r]$ for some speed margin $\delta_v>0$, then no self-hit root can occur on that interval, because
 $$
-\|\mathbf X_i(T)-\mathbf X_i(T_t)\|
+\|\mathbf X_i(T_r)-\mathbf X_i(T_t)\|
 \le
-\int_{T_t}^{T}\|\mathbf V_i(U)\|\,dU
+\int_{T_t}^{T_r}\|\mathbf V_i(U)\|\,dU
 <
-c_f(T-T_t)
+c_f(T_r-T_t)
 $$
 Thus reaching or exceeding $c_f$ somewhere along the intervening history is a necessary condition for a simple nontrivial self-hit root, apart from the degenerate straight field-speed tangent case excluded by the simple-root assumptions, but it is not sufficient. Curvature, acceleration, and branch geometry determine whether the worldline actually intersects its own emitted causal wake. The exact onset condition is root existence plus transversality, not the scalar inequality $\|\mathbf V\|>c_f$ alone; onset governs root existence, while an admitted self-hit acceleration contribution additionally carries the same-record receiver-weighted acceleration factor.
 

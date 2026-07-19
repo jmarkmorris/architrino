@@ -39,7 +39,7 @@ We work throughout in units with primitive wake speed $c_f=1$; per-hit accelerat
 - What we assume:
 - Same-transmitter self-hit is accepted only when the root equation
   $$
-  \mathcal{C}_{aa}(T)=\{\,T_t<T:\|\mathbf X_a(T)-\mathbf X_a(T_t)\|=c_f(T-T_t)\,\}
+  \mathcal{C}_{aa}(T_r)=\{\,T_t<T_r:\|\mathbf X_a(T_r)-\mathbf X_a(T_t)\|=c_f(T_r-T_t)\,\}
   $$
   is nonempty and the active root passes the transversality/Jacobian floor and carries a retained receiver-weighted acceleration factor. A speed excursion above $c_f$ is a necessary warning condition for simple nontrivial roots, not a sufficient criterion.
   - Self-hits are always repulsive (like-on-like).

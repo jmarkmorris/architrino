@@ -3,18 +3,18 @@
 Event-aware integration (practical algorithm):
 
 1. Root finding:
-   - For each source $o$ (including $o'=o$ for potential self-hits), solve $F(T_t;T)=\|\mathbf X_{o'}(T)-\mathbf X_o(T_t)\|-(T-T_t)=0$ for $T_t< T$.
+   - For each transmitter $o$ (including $o'=o$ for potential self-hits), solve $F(T_t;T_r)=\|\mathbf X_{o'}(T_r)-\mathbf X_o(T_t)\|-(T_r-T_t)=0$ for $T_t<T_r$.
    - Discard non-physical roots by convention $H(0)=0$ (exclude $\Delta T=0$); note $r=0$ occurs only at $\Delta T=0$ and is thus excluded.
 
 2. Per-hit accumulation:
    - For each accepted root, compute $r$, $\hat{\mathbf{r}}$,
      $D_t=1-\mathbf V_o(T_t)\cdot\hat{\mathbf r}$,
-     $D_r=1-\mathbf V_{o'}(T)\cdot\hat{\mathbf r}$, and
+     $D_r=1-\mathbf V_{o'}(T_r)\cdot\hat{\mathbf r}$, and
      $W^{\mathrm{acc}}=\lvert D_r/D_t\rvert$. Then use
      $$
-     \mathbf A_{o'\leftarrow o}(T;T_t)=\kappa\,\sigma_{q_o q_{o'}}\,\frac{|q_o q_{o'}|}{r^2}W^{\mathrm{acc}}\,\hat{\mathbf{r}}
+     \mathbf A_{o'\leftarrow o}(T_r;T_t)=\kappa\,\sigma_{q_o q_{o'}}\,\frac{|q_o q_{o'}|}{r^2}W^{\mathrm{acc}}\,\hat{\mathbf{r}}
      $$
-   - Sum over all sources and all roots (superposition).
+   - Sum over all transmitters and all roots (superposition).
 
 3. Time stepping:
    - Impulsive mode: advance velocities with jumps at hit times (measure-driven ODE with velocity of bounded variation).
@@ -49,4 +49,4 @@ Event-aware integration (practical algorithm):
    - Fail closed if the signed ledger changes during the reported period, an active transmitter-side Jacobian floor or inactive-root gap vanishes, the receiver-weighted acceleration factor leaves its certified interval or its floor $\nu_{\mathrm{rec}}^{2\mathrm{B}}$ vanishes, the projected return-map spectrum is not computed, the energy residuals use a different window or branch chart than the motion residuals, or the extracted frequency is not stable under refinement.
    - Treat a visually periodic orbit without these entries as a search hit only. It is not a binary closure certificate.
 
-Plain language: At each time, find which past emissions can reach the receiver now, compute how the source laid down the wake and how the receiver crosses it, sum the radial pushes with $W^{\mathrm{acc}}/r^2$ strength, and step forward either with sharp kicks at exact hit times or with thin mollified wake surfaces for smooth integration.
+Plain language: At each reception time, find which past emissions can reach the receiver, compute how the transmitter laid down the wake and how the receiver crosses it, sum the radial acceleration contributions with $W^{\mathrm{acc}}/r^2$ strength, and step forward either with sharp kicks at exact hit times or with thin mollified wake surfaces for smooth integration.

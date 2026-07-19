@@ -57,6 +57,32 @@ const FORBIDDEN_PATTERNS = [
     reason: "name the actual acceleration contribution or acceleration law",
   },
   {
+    pattern: /\b(?:receiver|reception) time \$T\$|\breceiver[^.\n]{0,40} at (?:absolute )?time \$T\$/gi,
+    label: "role-specific reception T",
+    reason: "use T_r when T labels the receiver reception event",
+    includeFiles: [/^(content\/markdown\/aaa|reference\/archie)\//],
+  },
+  {
+    pattern: /\b(?:past|prior|earlier) source positions?\b/gi,
+    label: "source position used as causal-hit role",
+    reason: "use transmitter position for the past emission event",
+    includeFiles: [/^(content\/markdown\/aaa|reference\/archie)\//],
+    excludeFiles: ["content/markdown/aaa/philosophy-history/treasure-physics-overlooked.md"],
+  },
+  {
+    pattern: /\bsource architrinos?\b|\b(?:source and receiver|receiver and source) (?:worldlines?|velocities?)\b/gi,
+    label: "source used as causal-hit role",
+    reason: "use transmitter when naming the architrino at the emission event",
+    includeFiles: [/^(content\/markdown\/aaa|reference\/archie)\//],
+    excludeFiles: ["content/markdown/aaa/archie/comparative-glossary.md"],
+  },
+  {
+    pattern: /\b(?:ordinary|canonical per-hit|received branch|outer|inner self-hit|exterior-coupling|beyond-threshold interior|self-hit interior) rows?\b/gi,
+    label: "unexplained row jargon",
+    reason: "name the actual contribution, branch, record, or ledger entry",
+    includeFiles: [/^(content\/markdown\/aaa|reference\/archie)\//],
+  },
+  {
     pattern: /\bsame-source\b/gi,
     label: "same-source",
     reason: "use same-transmitter for causal-hit identity",
@@ -95,6 +121,15 @@ const REQUIRED_DEFINITIONS = [
   {
     file: "content/markdown/aaa/dynamics/master-equation.md",
     snippets: ["T_t", "T_r", "D_t", "D_r", "W^{\\mathrm{acc}}"],
+  },
+  {
+    file: "content/markdown/aaa/archie/comparative-glossary.md",
+    snippets: [
+      "Simple-Root Placeholder ($S(T_r)$)",
+      "Reception Time ($T_r$)",
+      "Root-Playback Derivative ($dT_t/dT_r$)",
+      "Ledger Row",
+    ],
   },
 ];
 

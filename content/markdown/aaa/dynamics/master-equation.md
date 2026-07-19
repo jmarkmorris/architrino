@@ -1838,8 +1838,8 @@ At each hit, log:
 - Transmitter ID $j$
 - Emission time $T_t$
 - Emission position $\mathbf X_j(T_t)$
-- Reception time $T$
-- Reception position $\mathbf X_i(T)$
+- Reception time $T_r$
+- Reception position $\mathbf X_i(T_r)$
 - Per-hit acceleration contribution (bookkeeping variable $\mathbf{F}_{ij}(T_r;T_t)$)
 
 **Use cases:**
@@ -1979,12 +1979,12 @@ $$
 \qquad
 \beta\equiv \frac{v}{c_f}=\frac{\omega R}{c_f}\in(0,1)
 $$
-Fix receiver $1$ at time $T$ and let the unique partner emission time be $T_t=T-\Delta$, with
+Fix receiver $1$ at reception time $T_r$ and let the unique partner emission time be $T_t=T_r-\Delta$, with
 $$
 \xi\equiv \frac{\omega\Delta}{2}\in\left(0,\frac{\pi}{2}\right)
 $$
-Write $\mathbf{e}_r(T)=(\cos\omega T,\sin\omega T,0)$ and
-$\mathbf{e}_\theta(T)=(-\sin\omega T,\cos\omega T,0)$ for the receiver polar frame.
+Write $\mathbf{e}_r(T_r)=(\cos\omega T_r,\sin\omega T_r,0)$ and
+$\mathbf{e}_\theta(T_r)=(-\sin\omega T_r,\cos\omega T_r,0)$ for the receiver polar frame.
 
 #### Proposition (Unique partner branch and exact delay equation)
 
@@ -2000,9 +2000,9 @@ The partner separation is
 $$
 \mathbf{r}_{12}(T_r;T_t)
 =
-\mathbf X_1(T)-\mathbf X_2(T_t)
+\mathbf X_1(T_r)-\mathbf X_2(T_t)
 =
-R\big(\mathbf{e}_r(T)+\mathbf{e}_r(T-\Delta)\big)
+R\big(\mathbf{e}_r(T_r)+\mathbf{e}_r(T_r-\Delta)\big)
 $$
 so
 $$

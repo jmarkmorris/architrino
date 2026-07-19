@@ -38,18 +38,18 @@ A note on what these symmetry operations are. No physical process relabels an el
 
 ### The Six-Point Symmetry Invariant Lemma
 
-The channel statement is a derivation about the delayed dynamics, proved for the partner-wake master-equation kernel class. For receiver $\ell$ at absolute time $T$, the retained acceleration law under proof is
+The channel statement is a derivation about the delayed dynamics, proved for the partner-wake master-equation kernel class. For receiver $\ell$ at reception time $T_r$, the retained acceleration law under proof is
 
 $$
-\mathbf A_\ell[\mathbf X]\!(T)
+\mathbf A_\ell[\mathbf X]\!(T_r)
 =
 \sum_{\ell'}\;
-\sum_{t_r\in\mathcal R_{\ell\ell'}[\mathbf X]\!(T)}
+\sum_{T_t\in\mathcal R_{\ell\ell'}[\mathbf X]\!(T_r)}
 \sigma_\ell\sigma_{\ell'}\,\kappa\,
-\frac{W(t_r)}{\left(d^2+\varepsilon^2\right)^{3/2}}\;\mathbf d
+\frac{W(T_t)}{\left(d^2+\varepsilon^2\right)^{3/2}}\;\mathbf d
 $$
 
-where $\mathbf d=\mathbf X_\ell(T)-\mathbf X_{\ell'}(t_r)$ with $d=\|\mathbf d\|$, the causal roots $t_r$ solve $d=c_f(T-t_r)$ within the retained history window, $\varepsilon$ is the softening, $\kappa$ the coupling, and the branch weight $W$ is the receiver-side factor over the floored transmitter-side factor with a sign-preserving Jacobian floor. Every scalar in the kernel is a function of separation, delay, transmitter-side speed, receiver-side speed, floors, softening, and coupling.
+where $\mathbf d=\mathbf X_\ell(T_r)-\mathbf X_{\ell'}(T_t)$ with $d=\|\mathbf d\|$, the causal roots $T_t$ solve $d=c_f(T_r-T_t)$ within the retained history window, $\varepsilon$ is the softening, $\kappa$ the coupling, and the branch weight $W$ is the receiver-side factor over the floored transmitter-side factor with a sign-preserving Jacobian floor. Every scalar in the kernel is a function of separation, delay, transmitter-side speed, receiver-side speed, floors, softening, and coupling.
 
 Four explicit hypotheses carry the proof:
 
