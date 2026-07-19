@@ -102,7 +102,7 @@ Each history record contains:
 - position and velocity representation;
 - interpolation method and version;
 - numeric representation and precision;
-- interpolation and source-data error bounds;
+- interpolation and transmitter-data error bounds;
 - scale map and coordinate/time origin;
 - provenance and content hash.
 

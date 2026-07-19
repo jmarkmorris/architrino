@@ -6,15 +6,18 @@ import { fileURLToPath } from "node:url";
 
 const ROOT_DIR = path.resolve(fileURLToPath(new URL("..", import.meta.url)));
 
-// These are current reader/explanatory surfaces. Historical priority records,
-// frozen evidence, generated artifacts, and machine-contract identifiers are
-// deliberately outside this audit and are dispositioned separately.
+// These are current reader, application, and machine-contract surfaces.
+// Historical evidence remains outside this audit only when it is isolated in
+// a priority evidence directory and is not consumed by current code.
 const SCAN_TARGETS = [
   "content/markdown/aaa",
   "reference/archie",
   "content/scenes",
   "src/apps/equation-mapping/EquationMappingData.js",
   "src/apps/photon",
+  "src/apps/animator",
+  "src/prescribed-path-analysis",
+  "src/contracts/solver-app-bridge/v2/schema.json",
   "src/eom/README.md",
 ];
 
@@ -107,8 +110,35 @@ const FORBIDDEN_PATTERNS = [
   {
     pattern: /\b(?:Source count|Max source|Missed sources|No catch-up sources|nearest source|Absolute source history)\b/g,
     label: "source role in Photon UI",
-    reason: "use transmitter in causal-hit UI labels while preserving source-named machine fields",
+    reason: "use transmitter in causal-hit UI labels and current causal machine fields",
     includeFiles: [/^src\/apps\/photon\//],
+  },
+  {
+    pattern: /\b(?:sourceHistory|sourceVelocity|sourcePosition|sourceRole|sourceLayer|sourceCharge|sourceId|sourceRef|sourceRoot|sourceMode|sourceOpacity|sourceMarker|sourceMaterial|sourceFieldShellId|sourceTransmitterId|sourceSampleCount|circularSource|sameSource|SameSource|CircularSource)\w*/g,
+    label: "source-named causal machine field",
+    reason: "use transmitter for current causal-role fields and functions",
+    includeFiles: [
+      /^src\/apps\/photon\//,
+      /^src\/apps\/animator\//,
+      /^src\/prescribed-path-analysis\//,
+      "src/contracts/solver-app-bridge/v2/schema.json",
+    ],
+  },
+  {
+    pattern: /\b(?:emitterId|emitterEmissionPosition|emitterSourceHistory|EmitterSourceHistory|AnimatorDelayedHitRows|DelayedHitTableRows|createAnimatorDelayedHitsFromSolverRows|ANIMATOR_DELAYED_HIT_ROWS|ANIMATOR_DELAYED_HIT_ROW_LAYOUT)\w*/g,
+    label: "emitter or row-named causal machine field",
+    reason: "use transmitter and record terminology on current Animator contracts",
+    includeFiles: [/^src\/apps\/animator\//],
+  },
+  {
+    pattern: /\b(?:phaseRows|selfHitRowCount|helicalSelfHitRowCount|helicalRowCount|helicalRows|subFieldRows|fieldSpeedRows|selfHitCandidateRows)\b/g,
+    label: "row-named causal diagnostic field",
+    reason: "use record terminology for causal diagnostic collections",
+    includeFiles: [
+      /^src\/apps\/photon\//,
+      /^src\/prescribed-path-analysis\//,
+      "src/contracts/solver-app-bridge/v2/schema.json",
+    ],
   },
 ];
 
@@ -131,7 +161,7 @@ const REQUIRED_DEFINITIONS = [
       "Simple-Root Placeholder ($S(T_r)$)",
       "Reception Time ($T_r$)",
       "Root-Playback Derivative ($dT_t/dT_r$)",
-      "Ledger Row",
+      "Ledger Entry",
     ],
   },
 ];

@@ -1,7 +1,7 @@
-export const ANIMATOR_DELAYED_HIT_ROWS_SCHEMA = "animator-delayed-hit-rows.v1";
+export const ANIMATOR_DELAYED_HIT_RECORDS_SCHEMA = "animator-delayed-hit-records.v1";
 export const ANIMATOR_DELAYED_HIT_STREAM_DESCRIPTOR_SCHEMA =
   "animator-delayed-hit-stream-descriptors.v1";
-export const ANIMATOR_DELAYED_HIT_ROW_LAYOUT = "delayed_hit_events.v1";
+export const ANIMATOR_DELAYED_HIT_RECORD_LAYOUT = "delayed_hit_events.v1";
 export const ANIMATOR_RECEIVER_PATH_DESCRIPTOR_LAYOUT = "path_segment.v1";
 
 const DEFAULT_FIELD_SPEED = 1;
@@ -227,7 +227,7 @@ function normalizeEmissionEvent(event = {}, index = 0, fallbackFieldSpeed = DEFA
   const metadata = event.metadata && typeof event.metadata === "object" ? event.metadata : {};
   return {
     id: normalizeString(event.id, `emission_${index + 1}`),
-    emitterId: normalizeString(event.emitterId ?? event.emitter ?? event.pathId, ""),
+    transmitterId: normalizeString(event.transmitterId ?? event.transmitter ?? event.pathId, ""),
     emissionTime: normalizeNumber(event.emissionTime ?? event.time ?? event.tEmit, 0),
     emissionPoint: normalizeVector(
       event.emissionPoint ?? event.position ?? event.emissionPosition
@@ -277,19 +277,19 @@ function normalizeReceiverPathDescriptor(descriptor = {}, index = 0) {
     pathId: normalizeString(descriptor.pathId, receiverId),
     pathKey,
     streamId: normalizeString(descriptor.streamId, ""),
-    layout: normalizeString(descriptor.layout ?? descriptor.rowLayout, ANIMATOR_RECEIVER_PATH_DESCRIPTOR_LAYOUT),
+    layout: normalizeString(descriptor.layout ?? descriptor.recordLayout, ANIMATOR_RECEIVER_PATH_DESCRIPTOR_LAYOUT),
     source: normalizeString(descriptor.source, "streamRef"),
     segments,
     metadata,
   };
 }
 
-function createDelayedHitRow({
+function createDelayedHitRecord({
   emission,
   emissionIndex,
   receiverDescriptor,
   intersection,
-  rowIndex,
+  recordIndex,
   options,
 }) {
   const receiverPosition = normalizeVector(intersection.sample.position);
@@ -309,16 +309,16 @@ function createDelayedHitRow({
     ? accelerationWeight
     : 0;
   const displayStrength = distance > 0 ? 1 / (distance * distance) : 0;
-  const emitterId = emission.emitterId;
+  const transmitterId = emission.transmitterId;
   const receiverId = receiverDescriptor.receiverId;
-  const branchId = `path_history_${idPart(emitterId, "source")}_to_${idPart(receiverId, "receiver")}_${emissionIndex}`;
+  const branchId = `path_history_${idPart(transmitterId, "transmitter")}_to_${idPart(receiverId, "receiver")}_${emissionIndex}`;
 
   return {
-    id: `solver_path_hit_${idPart(emitterId, "source")}_to_${idPart(receiverId, "receiver")}_t${timeIdPart(emission.emissionTime)}_${emissionIndex}`,
-    eventId: rowIndex,
-    rootId: rowIndex,
+    id: `solver_path_hit_${idPart(transmitterId, "transmitter")}_to_${idPart(receiverId, "receiver")}_t${timeIdPart(emission.emissionTime)}_${emissionIndex}`,
+    eventId: recordIndex,
+    rootId: recordIndex,
     statusCode: 0,
-    emitterId,
+    transmitterId,
     receiverId,
     branchId,
     emissionTime: emission.emissionTime,
@@ -338,14 +338,14 @@ function createDelayedHitRow({
     receiverPoint: receiverPosition,
     unitDirection,
     metadata: {
-      source: "solver-owned-stream-descriptor-row",
-      rowLayout: ANIMATOR_DELAYED_HIT_ROW_LAYOUT,
+      source: "solver-owned-stream-descriptor-record",
+      recordLayout: ANIMATOR_DELAYED_HIT_RECORD_LAYOUT,
       descriptorSchema: ANIMATOR_DELAYED_HIT_STREAM_DESCRIPTOR_SCHEMA,
       emissionIndex,
       receiverPathId: receiverDescriptor.pathId,
       receiverPathKey: receiverDescriptor.pathKey,
       receiverStreamId: receiverDescriptor.streamId,
-      receiverRowLayout: receiverDescriptor.layout,
+      receiverRecordLayout: receiverDescriptor.layout,
       segmentIndex: intersection.segment.segmentIndex,
       residual: intersection.residual,
       iterationCount: intersection.iterations,
@@ -363,7 +363,7 @@ function createDelayedHitRow({
   };
 }
 
-export function createAnimatorDelayedHitRowsFromStreamDescriptors(descriptor = {}, options = {}) {
+export function createAnimatorDelayedHitRecordsFromStreamDescriptors(descriptor = {}, options = {}) {
   const fallbackFieldSpeed = Math.max(
     MIN_FIELD_SPEED,
     normalizePositiveNumber(
@@ -397,17 +397,17 @@ export function createAnimatorDelayedHitRowsFromStreamDescriptors(descriptor = {
     1,
     Math.floor(normalizeNumber(options.maxIterations ?? descriptor.maxIterations, DEFAULT_MAX_ITERATIONS))
   );
-  const rows = [];
+  const records = [];
 
   emissionEvents.forEach((emission, emissionIndex) => {
-    if (rows.length >= maxHits) {
+    if (records.length >= maxHits) {
       return;
     }
     receiverPathDescriptors.forEach((receiverDescriptor) => {
-      if (rows.length >= maxHits) {
+      if (records.length >= maxHits) {
         return;
       }
-      if (!allowSelfHits && receiverDescriptor.receiverId === emission.emitterId) {
+      if (!allowSelfHits && receiverDescriptor.receiverId === emission.transmitterId) {
         return;
       }
       const segments = receiverDescriptor.segments.filter(
@@ -428,13 +428,13 @@ export function createAnimatorDelayedHitRowsFromStreamDescriptors(descriptor = {
         if (hitTime <= emission.emissionTime + MIN_HIT_DELAY) {
           continue;
         }
-        rows.push(
-          createDelayedHitRow({
+        records.push(
+          createDelayedHitRecord({
             emission,
             emissionIndex,
             receiverDescriptor,
             intersection,
-            rowIndex: rows.length,
+            recordIndex: records.length,
             options,
           })
         );
@@ -444,10 +444,10 @@ export function createAnimatorDelayedHitRowsFromStreamDescriptors(descriptor = {
   });
 
   return {
-    schema: ANIMATOR_DELAYED_HIT_ROWS_SCHEMA,
+    schema: ANIMATOR_DELAYED_HIT_RECORDS_SCHEMA,
     descriptorSchema: ANIMATOR_DELAYED_HIT_STREAM_DESCRIPTOR_SCHEMA,
-    rowLayout: ANIMATOR_DELAYED_HIT_ROW_LAYOUT,
-    receiverRowLayout: ANIMATOR_RECEIVER_PATH_DESCRIPTOR_LAYOUT,
+    recordLayout: ANIMATOR_DELAYED_HIT_RECORD_LAYOUT,
+    receiverRecordLayout: ANIMATOR_RECEIVER_PATH_DESCRIPTOR_LAYOUT,
     streamId: normalizeString(descriptor.streamId, ""),
     emissionEventCount: emissionEvents.length,
     receiverPathDescriptorCount: receiverPathDescriptors.length,
@@ -455,12 +455,12 @@ export function createAnimatorDelayedHitRowsFromStreamDescriptors(descriptor = {
       (total, receiver) => total + receiver.segments.length,
       0
     ),
-    rowCount: rows.length,
-    rows,
+    recordCount: records.length,
+    records,
     status: {
       code: "ok",
       severity: "ok",
-      message: "Animator delayed-hit rows computed from stream-backed solver descriptors",
+      message: "Animator delayed-hit records computed from stream-backed solver descriptors",
       recoverable: true,
     },
   };

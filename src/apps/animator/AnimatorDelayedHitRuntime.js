@@ -95,8 +95,8 @@ export function getAnimatorDelayedHitRenderState(hit = {}, timeSeconds = 0, opti
       DEFAULT_ANIMATOR_DELAYED_HIT_OPTIONS.activeWindowSeconds
     )
   );
-  const sourcePosition = normalizeVector(
-    hit.emitterEmissionPosition ?? hit.emissionPosition ?? hit.sourcePosition
+  const transmitterPosition = normalizeVector(
+    hit.transmitterEmissionPosition ?? hit.emissionPosition ?? hit.transmitterPosition
   );
   const receiverPosition = normalizeVector(hit.receiverPosition ?? hit.targetPosition);
   const span = Math.max(0.000001, hitTime - emissionTime);
@@ -124,12 +124,12 @@ export function getAnimatorDelayedHitRenderState(hit = {}, timeSeconds = 0, opti
   const active = Math.abs(time - hitTime) <= activeWindowSeconds;
   const visible = time >= emissionTime && time <= hitTime + fadeOutSeconds && fadeIn * fadeOut > 0;
   const opacity = visible ? baseOpacity * fadeIn * fadeOut : 0;
-  const connectorEndPosition = interpolateVector(sourcePosition, receiverPosition, travelProgress);
+  const connectorEndPosition = interpolateVector(transmitterPosition, receiverPosition, travelProgress);
   const receiverVisibility = time >= hitTime - activeWindowSeconds ? 1 : 0.36;
 
   return {
     id: normalizeString(hit.id, ""),
-    sourcePosition,
+    transmitterPosition,
     receiverPosition,
     connectorEndPosition,
     travelProgress,
@@ -139,13 +139,13 @@ export function getAnimatorDelayedHitRenderState(hit = {}, timeSeconds = 0, opti
     visible,
     opacity,
     connectorOpacity: opacity,
-    sourceOpacity: opacity,
+    transmitterOpacity: opacity,
     receiverOpacity: visible ? clamp(opacity * receiverVisibility, 0.12, 1) : 0,
     markerScale: active ? 1.35 : 1,
   };
 }
 
-export function createAnimatorDelayedHitTableRows(dataset = {}, timeSeconds = 0) {
+export function createAnimatorDelayedHitTableRecords(dataset = {}, timeSeconds = 0) {
   const time = normalizeNumber(timeSeconds, 0);
   return getDelayedHits(dataset).map((hit, index) => {
     const renderState = getAnimatorDelayedHitRenderState(hit, time);
@@ -161,7 +161,7 @@ export function createAnimatorDelayedHitTableRows(dataset = {}, timeSeconds = 0)
             : `${formatSeconds(time - hitTime)} after hit`;
     return {
       id: normalizeString(hit.id, `delayed_hit_${index + 1}`),
-      emitterId: normalizeString(hit.emitterId ?? hit.emitter, ""),
+      transmitterId: normalizeString(hit.transmitterId ?? hit.transmitter, ""),
       receiverId: normalizeString(hit.receiverId ?? hit.receiver, ""),
       branchId: normalizeString(hit.branchId, ""),
       jacobianLabel: formatFixed(hit.jacobian, 3, "n/a"),
@@ -176,57 +176,57 @@ export function createAnimatorDelayedHitTableRows(dataset = {}, timeSeconds = 0)
   });
 }
 
-export function createAnimatorDelayedHitsFromSolverRows(rowsOrResponse = [], options = {}) {
-  const rows = Array.isArray(rowsOrResponse)
-    ? rowsOrResponse
-    : Array.isArray(rowsOrResponse?.rows)
-      ? rowsOrResponse.rows
+export function createAnimatorDelayedHitsFromSolverRecords(recordsOrResponse = [], options = {}) {
+  const records = Array.isArray(recordsOrResponse)
+    ? recordsOrResponse
+    : Array.isArray(recordsOrResponse?.records)
+      ? recordsOrResponse.records
       : [];
-  return rows.filter(Boolean).map((row, index) => {
-    const metadata = row.metadata && typeof row.metadata === "object" ? row.metadata : {};
-    const emitterId = normalizeString(row.emitterId ?? row.emitter, `source_${index + 1}`);
-    const receiverId = normalizeString(row.receiverId ?? row.receiver, `receiver_${index + 1}`);
-    const emissionTime = normalizeNumber(row.emissionTime ?? row.tEmit, 0);
-    const hitTime = normalizeNumber(row.hitTime ?? row.t, emissionTime);
+  return records.filter(Boolean).map((record, index) => {
+    const metadata = record.metadata && typeof record.metadata === "object" ? record.metadata : {};
+    const transmitterId = normalizeString(record.transmitterId ?? record.transmitter, `transmitter_${index + 1}`);
+    const receiverId = normalizeString(record.receiverId ?? record.receiver, `receiver_${index + 1}`);
+    const emissionTime = normalizeNumber(record.emissionTime ?? record.tEmit, 0);
+    const hitTime = normalizeNumber(record.hitTime ?? record.t, emissionTime);
     const displayStrength = normalizeNumber(
       metadata.displayStrength,
-      normalizeNumber(row.displayStrength, normalizeNumber(row.strength, 0))
+      normalizeNumber(record.displayStrength, normalizeNumber(record.strength, 0))
     );
     return {
       id: normalizeString(
-        row.id,
-        `solver_path_hit_${idPart(emitterId, "source")}_to_${idPart(receiverId, "receiver")}_t${timeIdPart(emissionTime)}_${index}`
+        record.id,
+        `solver_path_hit_${idPart(transmitterId, "transmitter")}_to_${idPart(receiverId, "receiver")}_t${timeIdPart(emissionTime)}_${index}`
       ),
-      emitterId,
+      transmitterId,
       receiverId,
       hitTime,
       emissionTime,
-      emitterEmissionPosition: normalizeVector(row.emissionPoint ?? row.emitterEmissionPosition),
-      receiverPosition: normalizeVector(row.receiverPoint ?? row.receiverPosition),
+      transmitterEmissionPosition: normalizeVector(record.emissionPoint ?? record.transmitterEmissionPosition),
+      receiverPosition: normalizeVector(record.receiverPoint ?? record.receiverPosition),
       strength: displayStrength,
       branchId: normalizeString(
-        row.branchId,
-        `solver_path_history_${idPart(emitterId, "source")}_to_${idPart(receiverId, "receiver")}_${index}`
+        record.branchId,
+        `solver_path_history_${idPart(transmitterId, "transmitter")}_to_${idPart(receiverId, "receiver")}_${index}`
       ),
-      jacobian: normalizeNumber(row.jacobian, 0),
-      transmitterRadialSpeedAtEmission: normalizeNumber(row.transmitterRadialSpeedAtEmission, 0),
-      receiverRadialSpeedAtReception: normalizeNumber(row.receiverRadialSpeedAtReception, 0),
-      transmitterFactor: normalizeNumber(row.transmitterFactor, 0),
-      receiverFactor: normalizeNumber(row.receiverFactor, 0),
-      receiverCrossingRatio: normalizeNumber(row.receiverCrossingRatio, 0),
-      rootPlayback: normalizeNumber(row.rootPlayback, 0),
-      accelerationWeight: normalizeNumber(row.accelerationWeight, 0),
-      causalFactorStatusCode: normalizeNumber(row.causalFactorStatusCode, 0),
-      status: normalizeString(options.status ?? row.status, "solver-owned-row"),
+      jacobian: normalizeNumber(record.jacobian, 0),
+      transmitterRadialSpeedAtEmission: normalizeNumber(record.transmitterRadialSpeedAtEmission, 0),
+      receiverRadialSpeedAtReception: normalizeNumber(record.receiverRadialSpeedAtReception, 0),
+      transmitterFactor: normalizeNumber(record.transmitterFactor, 0),
+      receiverFactor: normalizeNumber(record.receiverFactor, 0),
+      receiverCrossingRatio: normalizeNumber(record.receiverCrossingRatio, 0),
+      rootPlayback: normalizeNumber(record.rootPlayback, 0),
+      accelerationWeight: normalizeNumber(record.accelerationWeight, 0),
+      causalFactorStatusCode: normalizeNumber(record.causalFactorStatusCode, 0),
+      status: normalizeString(options.status ?? record.status, "solver-owned-record"),
       metadata: {
         ...metadata,
-        source: normalizeString(metadata.source, "solver-owned-delayed-hit-row"),
-        rowLayout: normalizeString(metadata.rowLayout, "delayed_hit_events.v1"),
-        eventId: normalizeNumber(row.eventId, index),
-        rootId: normalizeNumber(row.rootId, index),
-        statusCode: normalizeNumber(row.statusCode, 0),
-        solverAccelerationWeight: normalizeNumber(row.accelerationWeight, 0),
-        unitDirection: normalizeVector(row.unitDirection),
+        source: normalizeString(metadata.source, "solver-owned-delayed-hit-record"),
+        recordLayout: normalizeString(metadata.recordLayout, "delayed_hit_events.v1"),
+        eventId: normalizeNumber(record.eventId, index),
+        rootId: normalizeNumber(record.rootId, index),
+        statusCode: normalizeNumber(record.statusCode, 0),
+        solverAccelerationWeight: normalizeNumber(record.accelerationWeight, 0),
+        unitDirection: normalizeVector(record.unitDirection),
       },
     };
   });

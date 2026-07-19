@@ -700,11 +700,11 @@ function formatPhotonSearchMeta(result) {
   const fitResidual = Number(polarization.fitResidual);
   const lag = Number(polarization.phaseLagDeg);
   const rootCount = Number(diagnostics.rootCount);
-  const sourceCount = Number(diagnostics.sourceCount);
+  const transmitterCount = Number(diagnostics.transmitterCount);
   const parts = [
     polarization.classificationLabel ?? "Open",
     `fit ${Number.isFinite(fitResidual) ? fitResidual.toFixed(3) : "n/a"}`,
-    `roots ${Number.isFinite(rootCount) ? rootCount : 0}/${Number.isFinite(sourceCount) ? sourceCount : 0}`,
+    `roots ${Number.isFinite(rootCount) ? rootCount : 0}/${Number.isFinite(transmitterCount) ? transmitterCount : 0}`,
   ];
   if (polarization.phaseLagDefined !== false && Number.isFinite(lag)) {
     parts.push(`lag ${lag.toFixed(1)} deg`);
@@ -1014,9 +1014,9 @@ export function createPhotonControlsRuntime({
   measurementSection.append(measurementControls);
   const absoluteHistoryControl = createCheckboxControl(documentLike, {
     label: "Absolute transmitter history",
-    checked: state.measurement?.sourceHistoryMode === "absolute_history",
+    checked: state.measurement?.transmitterHistoryMode === "absolute_history",
     onChange: (checked) => {
-      getState().measurement.sourceHistoryMode = checked ? "absolute_history" : "co_moving";
+      getState().measurement.transmitterHistoryMode = checked ? "absolute_history" : "co_moving";
       onStateChange();
     },
   });
@@ -1211,7 +1211,7 @@ export function createPhotonControlsRuntime({
     binaryControls.forEach((control) => {
       control.input.checked = getPhotonLayer(nextState, control.braidId, control.layerId).enabled !== false;
     });
-    absoluteHistoryControl.input.checked = nextState.measurement?.sourceHistoryMode === "absolute_history";
+    absoluteHistoryControl.input.checked = nextState.measurement?.transmitterHistoryMode === "absolute_history";
     speedModeControl.sync(speedSettings.speedMode);
     ["analyzerAngleDeg"].forEach((key) => {
       syncRange(controls[index], nextState.polarization[key]);

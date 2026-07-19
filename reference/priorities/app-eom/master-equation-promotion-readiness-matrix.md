@@ -3,7 +3,7 @@
 ## Status
 
 - Purpose: state the current promotion boundary after the transmitter-side, singular-event, causal-history, and conservation analyses
-- Standing: migration control document; implementation complete pending final corpus and validator audit
+- Standing: migration control document; scoped implementation and validation complete
 - Equation: transmitter-side base factor $c_f/|D_t|$ with receiver playback excluded from base acceleration strength
 
 ## Current verdict
@@ -21,7 +21,7 @@ Claim classification: **derived gate comparison plus inferred scoped-promotion d
 
 | Gate | Current result | Grade | Promotion consequence | Exact falsifier or closure condition |
 | --- | --- | --- | --- | --- |
-| Simple-root reduction | Pass on the declared distance-bounded simple-root domain | Derived and independently reconstructed | $c_f/|D_t|$ remains the proposed base factor | A correct uniform-emission change of variables yields a different factor, or a distance-bounded control fails the joint limit |
+| Simple-root reduction | Pass on the declared distance-bounded simple-root domain | Derived and independently reconstructed | $c_f/|D_t|$ is the current base factor | A correct uniform-emission change of variables yields a different factor, or a distance-bounded control fails the joint limit |
 | Receiver multiplier | Pass for removal at first order | Derived native comparison plus independent observer-level recovery target | Do not restore $|D_r|/c_f$ to base acceleration | An independent static-transmitter recovery contains the same universal first-order radial receiver-velocity term |
 | Receiver turning point | Pass under the transmitter-side finite-width equation when $D_t\ne0$ | Derived | Preserve the root and do not make base acceleration vanish merely because $D_r=0$ | The transmitter-time integral has a zero sharp limit at a simple root solely because $D_r=0$ |
 | Ordinary transmitter-side fold | Pass | Derived finite accumulated acceleration | Advance the transition by integrated acceleration, not point sampling | A nondegenerate fold with $r>0$ and $D_r\ne0$ has no common finite-width impulse limit |
@@ -29,7 +29,7 @@ Claim classification: **derived gate comparison plus inferred scoped-promotion d
 | Positive-width base causality | Pass | Derived retained-history update | The positive-width base equation is a causal initial-history law | The displayed update requires future particle data or has two continuations from one retained state on its regularity chart |
 | Energy, momentum, and angular momentum | Absent for both causal retained-history laws | Derived underdetermination and circularity test | Keep as a global closure debt; do not use it to retain the receiver multiplier | Fixed kinematic maps and predeclared wake accounts close all three totals on the same causal record without being defined from their residuals |
 | Full moving-transmitter/moving-receiver recovery | Open beyond the first-order static-transmitter control | Derived first-order pass; higher orders unproved | Do not claim complete electrodynamics or Lorentz recovery | Second-order and later required recovery terms match independent targets on one branch-certified record without restoring an unsupported universal receiver multiplier |
-| Migration audit | Canon, solver, oracle, prescribed-path analysis, Photon, Animator, current app schema, and active validation are migrated | Measured repository audit plus implementation tests | Complete final corpus integrity validation before publication | Any current surface still consumes or teaches $|D_r/D_t|$ as acceleration strength |
+| Migration audit | Canon, solver, oracle, prescribed-path analysis, Photon, Animator, current app schema, and active validation are migrated | Measured repository audit plus implementation tests | Scoped migration passes; generated scene-index drift remains a separate publication-process task | Any current surface still consumes or teaches $|D_r/D_t|$ as acceleration strength |
 
 ## What is ready now
 
@@ -39,11 +39,11 @@ The following priority-level statements are ready:
 2. only the transmitter's past emission position enters the arriving-hit geometry;
 3. $D_t$ controls emitted wake spacing and the emission-time change of variables;
 4. $D_r/D_t$ controls root playback as reception time advances;
-5. $D_r$ does not multiply the proposed base acceleration;
+5. $D_r$ does not multiply the base acceleration;
 6. ordinary folds have finite accumulated acceleration;
 7. a simple root does not disappear merely because $D_r=0$;
 8. positive-width base evolution is causal;
-9. coincident same-transmitter birth and causal conservation are global debts under both the old and proposed laws.
+9. coincident same-transmitter birth and causal conservation remain global debts.
 
 Together these statements define the completed fail-closed receiver-factor correction. They do not make the complete Master Equation globally closed.
 
@@ -64,7 +64,7 @@ The scoped correction is implemented:
 2. the EOM solver, independent oracle, prescribed-path analysis, Photon, and Animator use transmitter-side acceleration while preserving $D_r/D_t$ as signed root playback;
 3. coincident same-transmitter birth and every undeclared singular stratum remain fail closed;
 4. obsolete compatibility fields, old-law explanations, and superseded migration records are removed;
-5. final corpus integrity and link validation remain the publication gate.
+5. scoped terminology, link, implementation, and regression checks pass; unrelated generated scene-index drift remains outside this migration.
 
 For globally complete Master Equation closure:
 

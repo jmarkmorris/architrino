@@ -205,18 +205,18 @@ import {
 } from "../animator/AnimatorPlanarViewportRuntime.js";
 import {
   createAnimatorFieldShellInstance,
-  getAnimatorFieldShellEmitterPath,
+  getAnimatorFieldShellTransmitterPath,
   getAnimatorFieldShellRenderState,
 } from "../animator/AnimatorFieldShellRuntime.js";
 import {
   createAnimatorDelayedHitsFromSolverRows,
-  createAnimatorDelayedHitTableRows,
+  createAnimatorDelayedHitTableRecords,
   getAnimatorDelayedHitDiagnosticLabel,
   getAnimatorDelayedHitRenderState,
 } from "../animator/AnimatorDelayedHitRuntime.js";
 import {
-  createAnimatorDelayedHitRowsFromStreamDescriptors,
-} from "../animator/display/AnimatorDelayedHitRows.mjs";
+  createAnimatorDelayedHitRecordsFromStreamDescriptors,
+} from "../animator/display/AnimatorDelayedHitRecords.mjs";
 import {
   createAnimatorFieldShellCadenceTimes,
   createAnimatorFieldShellEventStreamPackage,
@@ -2179,7 +2179,7 @@ function getAnimatorPathChargeSign(path, documentData = animatorCurrentDocument)
 
 function getAnimatorFieldShellEmissionPath(fieldShell, simulationDataset, documentData = animatorCurrentDocument) {
   const paths = Array.isArray(documentData?.paths) ? documentData.paths : [];
-  return getAnimatorFieldShellEmitterPath(fieldShell, simulationDataset, paths, {
+  return getAnimatorFieldShellTransmitterPath(fieldShell, simulationDataset, paths, {
     isEligiblePath: (path) => getAnimatorDocumentPathSourceKind(path, documentData) === "solver-derived",
     getPathOwnerAssemblyId: getAnimatorPathOwnerAssemblyId,
     getPathParticleId: (path) => path?.metadata?.simulationParticleId ?? "",
@@ -2388,7 +2388,7 @@ function createAnimatorArchitrinoFieldShellEventPackage(
     },
     fieldSpeed,
     lifetimeSeconds: 1.6,
-    emitterSourceHistory: {
+    transmitterHistory: {
       documentData,
       simulationDataset,
       sampleTimes: cadenceTimes,
@@ -2435,7 +2435,7 @@ function createAnimatorArchitrinoPathHistoryDelayedHits(
     fieldSpeed: getAnimatorFieldShellSpeed(simulationDataset),
     sampleIntervalSeconds: animatorArchitrinoFieldShellEmissionIntervalSeconds,
   });
-  const rowResponse = createAnimatorDelayedHitRowsFromStreamDescriptors(
+  const rowResponse = createAnimatorDelayedHitRecordsFromStreamDescriptors(
     {
       schema: "animator-delayed-hit-stream-descriptors.v1",
       streamId: getAnimatorArchitrinoPathHistoryStreamId(simulationDataset),
@@ -2443,7 +2443,7 @@ function createAnimatorArchitrinoPathHistoryDelayedHits(
       emissionEvents: Array.isArray(fieldShellEventPackage?.emissionEvents)
         ? fieldShellEventPackage.emissionEvents
         : fieldShells.map((shell) => ({
-            emitterId: shell.emitterId,
+            transmitterId: shell.transmitterId,
             emissionTime: shell.emissionTime,
             emissionPoint: shell.emissionPosition,
             fieldSpeed: shell.fieldSpeed,
@@ -2503,7 +2503,7 @@ function createAnimatorArchitrinoFieldShellInstances(
       instances.push(
         createAnimatorFieldShellInstance(fieldShell, {
           id: `${ownerAssembly.id}_${memberId}`,
-          emitterId: memberId,
+          transmitterId: memberId,
           sign,
           emissionPosition: [emissionCenter.x, emissionCenter.y, emissionCenter.z],
           metadata: {
@@ -2511,7 +2511,7 @@ function createAnimatorArchitrinoFieldShellInstances(
             memberId,
             chargeType,
             binaryId: binary?.id ?? "",
-            emitterScope: "core-architrino",
+            transmitterScope: "core-architrino",
           },
         })
       );
@@ -3798,7 +3798,7 @@ function updateAnimatorAnimatedViewport(timeSeconds) {
 
   animatorTransferLines.forEach((line) => {
     const transfer = line.userData.transfer;
-    const sourcePoint = resolveAnimatorTransferEndpointPosition(
+    const transmitterPoint = resolveAnimatorTransferEndpointPosition(
       transfer?.source,
       assemblyCenters,
       motionTime
@@ -3808,12 +3808,12 @@ function updateAnimatorAnimatedViewport(timeSeconds) {
       assemblyCenters,
       motionTime
     );
-    if (!sourcePoint || !targetPoint) {
+    if (!transmitterPoint || !targetPoint) {
       line.userData.visibleByMotionState = false;
       line.visible = false;
       return;
     }
-    line.geometry.setFromPoints([sourcePoint, targetPoint]);
+    line.geometry.setFromPoints([transmitterPoint, targetPoint]);
     line.computeLineDistances();
     const isActiveByTime = transfer?.t == null || Math.abs(timeSeconds - Number(transfer.t)) <= 0.6;
     line.userData.visibleByMotionState = isActiveByTime;
@@ -4106,7 +4106,7 @@ function renderAnimatorDelayedHitTable(documentData, timeSeconds) {
     return;
   }
   const simulationDataset = getAnimatorSimulationDataset(documentData);
-  const rows = createAnimatorDelayedHitTableRows(simulationDataset, timeSeconds);
+  const rows = createAnimatorDelayedHitTableRecords(simulationDataset, timeSeconds);
   if (!rows.length) {
     animatorDelayedHitTable.hidden = true;
     animatorDelayedHitTable.replaceChildren();
@@ -4150,7 +4150,7 @@ function renderAnimatorDelayedHitTable(documentData, timeSeconds) {
     tr.classList.toggle("is-active", row.active);
     [
       row.stateLabel,
-      `${row.emitterId} > ${row.receiverId}`,
+      `${row.transmitterId} > ${row.receiverId}`,
       row.branchId || row.id,
       row.jacobianLabel,
       row.emissionTimeLabel,
@@ -4209,7 +4209,7 @@ function updateAnimatorPathHistoryLineSegments(timeSeconds) {
       return;
     }
     points.push(
-      vectorFromTriplet(renderState.sourcePosition),
+      vectorFromTriplet(renderState.transmitterPosition),
       vectorFromTriplet(renderState.connectorEndPosition)
     );
   });
@@ -4231,7 +4231,7 @@ function addAnimatorDelayedHitVisual(delayedHit) {
     delayedHit.emissionTime ?? 0
   );
   const connectorGeometry = new THREE.BufferGeometry().setFromPoints([
-    vectorFromTriplet(renderState.sourcePosition),
+    vectorFromTriplet(renderState.transmitterPosition),
     vectorFromTriplet(renderState.connectorEndPosition),
   ]);
   const connectorMaterial = new THREE.LineDashedMaterial({
@@ -4247,7 +4247,7 @@ function addAnimatorDelayedHitVisual(delayedHit) {
   connector.computeLineDistances();
   connector.renderOrder = 20;
 
-  const sourceMaterial = new THREE.MeshBasicMaterial({
+  const transmitterMaterial = new THREE.MeshBasicMaterial({
     color: 0xffffff,
     transparent: true,
     opacity: 0,
@@ -4261,9 +4261,12 @@ function addAnimatorDelayedHitVisual(delayedHit) {
     depthTest: false,
     depthWrite: false,
   });
-  const sourceMarker = new THREE.Mesh(new THREE.SphereGeometry(0.075, 18, 12), sourceMaterial);
+  const transmitterMarker = new THREE.Mesh(
+    new THREE.SphereGeometry(0.075, 18, 12),
+    transmitterMaterial
+  );
   const receiverMarker = new THREE.Mesh(new THREE.SphereGeometry(0.095, 18, 12), receiverMaterial);
-  sourceMarker.renderOrder = 21;
+  transmitterMarker.renderOrder = 21;
   receiverMarker.renderOrder = 21;
 
   const label = createAnimatorMemberLabelSprite(
@@ -4275,7 +4278,7 @@ function addAnimatorDelayedHitVisual(delayedHit) {
 
   const group = new THREE.Group();
   group.add(connector);
-  group.add(sourceMarker);
+  group.add(transmitterMarker);
   group.add(receiverMarker);
   group.add(label);
   group.visible = false;
@@ -4283,7 +4286,7 @@ function addAnimatorDelayedHitVisual(delayedHit) {
   group.userData.motionSourceKind = "solver-derived";
   group.userData.visibleByMotionState = false;
   group.userData.connector = connector;
-  group.userData.sourceMarker = sourceMarker;
+  group.userData.transmitterMarker = transmitterMarker;
   group.userData.receiverMarker = receiverMarker;
   group.userData.label = label;
   animatorViewportGroup.add(group);
@@ -4296,21 +4299,21 @@ function updateAnimatorDelayedHitVisualState(group, timeSeconds) {
     return;
   }
   const renderState = getAnimatorDelayedHitRenderState(delayedHit, timeSeconds);
-  const sourcePoint = vectorFromTriplet(renderState.sourcePosition);
+  const transmitterPoint = vectorFromTriplet(renderState.transmitterPosition);
   const receiverPoint = vectorFromTriplet(renderState.receiverPosition);
   const connectorEndPoint = vectorFromTriplet(renderState.connectorEndPosition);
   const connector = group.userData.connector;
   if (connector) {
-    connector.geometry.setFromPoints([sourcePoint, connectorEndPoint]);
+    connector.geometry.setFromPoints([transmitterPoint, connectorEndPoint]);
     connector.computeLineDistances();
     connector.material.opacity = renderState.connectorOpacity;
     connector.material.color.set(renderState.active ? 0xffffff : 0xdff7ff);
   }
-  const sourceMarker = group.userData.sourceMarker;
-  if (sourceMarker) {
-    sourceMarker.position.copy(sourcePoint);
-    sourceMarker.scale.setScalar(renderState.markerScale);
-    sourceMarker.material.opacity = renderState.sourceOpacity;
+  const transmitterMarker = group.userData.transmitterMarker;
+  if (transmitterMarker) {
+    transmitterMarker.position.copy(transmitterPoint);
+    transmitterMarker.scale.setScalar(renderState.markerScale);
+    transmitterMarker.material.opacity = renderState.transmitterOpacity;
   }
   const receiverMarker = group.userData.receiverMarker;
   if (receiverMarker) {
@@ -4320,7 +4323,7 @@ function updateAnimatorDelayedHitVisualState(group, timeSeconds) {
   }
   const label = group.userData.label;
   if (label) {
-    const midpoint = sourcePoint.clone().lerp(receiverPoint, 0.5);
+    const midpoint = transmitterPoint.clone().lerp(receiverPoint, 0.5);
     label.position.copy(midpoint).add(new THREE.Vector3(0, 0.24, 0));
     label.scale.set(0.48 * renderState.markerScale, 0.14 * renderState.markerScale, 1);
     label.material.opacity = renderState.active

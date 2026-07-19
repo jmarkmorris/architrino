@@ -2,23 +2,23 @@ import test from "node:test";
 import assert from "node:assert/strict";
 
 import {
-  createAnimatorDelayedHitsFromSolverRows,
-  createAnimatorDelayedHitTableRows,
+  createAnimatorDelayedHitsFromSolverRecords,
+  createAnimatorDelayedHitTableRecords,
   getAnimatorDelayedHitDiagnosticLabel,
   getAnimatorDelayedHitRenderState,
 } from "../src/apps/animator/AnimatorDelayedHitRuntime.js";
 import {
-  createAnimatorDelayedHitRowsFromStreamDescriptors,
-} from "../src/apps/animator/display/AnimatorDelayedHitRows.mjs";
+  createAnimatorDelayedHitRecordsFromStreamDescriptors,
+} from "../src/apps/animator/display/AnimatorDelayedHitRecords.mjs";
 
 test("animator delayed-hit runtime animates a connector from emission to receiver", () => {
   const hit = {
     id: "h1",
-    emitterId: "e0",
+    transmitterId: "e0",
     receiverId: "p0",
     emissionTime: 0,
     hitTime: 2,
-    emitterEmissionPosition: [0, 0, 0],
+    transmitterEmissionPosition: [0, 0, 0],
     receiverPosition: [10, 0, 0],
     strength: 0.2,
     branchId: "branch_a",
@@ -40,16 +40,16 @@ test("animator delayed-hit runtime animates a connector from emission to receive
   assert.equal(lateState.visible, false);
 });
 
-test("animator delayed-hit runtime formats branch and Jacobian table rows", () => {
+test("animator delayed-hit runtime formats branch and Jacobian records", () => {
   const dataset = {
     delayedHits: [
       {
         id: "h1",
-        emitterId: "e0",
+        transmitterId: "e0",
         receiverId: "p0",
         emissionTime: 0,
         hitTime: 1,
-        emitterEmissionPosition: [0, 0, 0],
+        transmitterEmissionPosition: [0, 0, 0],
         receiverPosition: [1, 0, 0],
         strength: 0.125,
         branchId: "branch_a",
@@ -64,9 +64,9 @@ test("animator delayed-hit runtime formats branch and Jacobian table rows", () =
     "branch_a J=0.875"
   );
 
-  const rows = createAnimatorDelayedHitTableRows(dataset, 0.75);
+  const rows = createAnimatorDelayedHitTableRecords(dataset, 0.75);
   assert.equal(rows.length, 1);
-  assert.equal(rows[0].emitterId, "e0");
+  assert.equal(rows[0].transmitterId, "e0");
   assert.equal(rows[0].receiverId, "p0");
   assert.equal(rows[0].branchId, "branch_a");
   assert.equal(rows[0].jacobianLabel, "0.875");
@@ -74,13 +74,13 @@ test("animator delayed-hit runtime formats branch and Jacobian table rows", () =
   assert.equal(rows[0].stateLabel, "0.25s to hit");
 });
 
-test("animator delayed-hit runtime consumes solver-owned path-history hit rows", () => {
-  const rowResponse = createAnimatorDelayedHitRowsFromStreamDescriptors(
+test("animator delayed-hit runtime consumes solver-owned path-history hit records", () => {
+  const recordResponse = createAnimatorDelayedHitRecordsFromStreamDescriptors(
     {
       streamId: "fixture-path-history-stream",
       fieldSpeed: 1,
       emissionEvents: [{
-        emitterId: "source_a",
+        transmitterId: "transmitter_a",
         emissionTime: 0,
         emissionPoint: [0, 0, 0],
         fieldSpeed: 1,
@@ -89,7 +89,7 @@ test("animator delayed-hit runtime consumes solver-owned path-history hit rows",
         receiverId: "receiver_b",
         pathKey: 2,
         streamId: "fixture-path-history-stream",
-        rowLayout: "path_segment.v1",
+        recordLayout: "path_segment.v1",
         segments: [
           {
             pathKey: 2,
@@ -120,47 +120,47 @@ test("animator delayed-hit runtime consumes solver-owned path-history hit rows",
     },
     { fieldSpeed: 1 }
   );
-  assert.equal(rowResponse.schema, "animator-delayed-hit-rows.v1");
-  assert.equal(rowResponse.descriptorSchema, "animator-delayed-hit-stream-descriptors.v1");
-  assert.equal(rowResponse.rowLayout, "delayed_hit_events.v1");
-  assert.equal(rowResponse.receiverRowLayout, "path_segment.v1");
-  assert.equal(rowResponse.streamId, "fixture-path-history-stream");
-  assert.equal(rowResponse.rows.length, 1);
-  assert.equal(rowResponse.rows[0].emitterId, "source_a");
-  assert.equal(rowResponse.rows[0].receiverId, "receiver_b");
-  assert.equal(rowResponse.rows[0].hitTime, 2);
-  assert.equal(rowResponse.rows[0].distance, 2);
-  assert.equal(rowResponse.rows[0].jacobian, 1);
-  assert.equal(rowResponse.rows[0].strength, 1);
-  assert.equal(rowResponse.rows[0].metadata.displayStrength, 0.25);
+  assert.equal(recordResponse.schema, "animator-delayed-hit-records.v1");
+  assert.equal(recordResponse.descriptorSchema, "animator-delayed-hit-stream-descriptors.v1");
+  assert.equal(recordResponse.recordLayout, "delayed_hit_events.v1");
+  assert.equal(recordResponse.receiverRecordLayout, "path_segment.v1");
+  assert.equal(recordResponse.streamId, "fixture-path-history-stream");
+  assert.equal(recordResponse.records.length, 1);
+  assert.equal(recordResponse.records[0].transmitterId, "transmitter_a");
+  assert.equal(recordResponse.records[0].receiverId, "receiver_b");
+  assert.equal(recordResponse.records[0].hitTime, 2);
+  assert.equal(recordResponse.records[0].distance, 2);
+  assert.equal(recordResponse.records[0].jacobian, 1);
+  assert.equal(recordResponse.records[0].strength, 1);
+  assert.equal(recordResponse.records[0].metadata.displayStrength, 0.25);
 
-  const hits = createAnimatorDelayedHitsFromSolverRows(rowResponse, {
+  const hits = createAnimatorDelayedHitsFromSolverRecords(recordResponse, {
     status: "path-history",
   });
 
   assert.equal(hits.length, 1);
-  assert.equal(hits[0].emitterId, "source_a");
+  assert.equal(hits[0].transmitterId, "transmitter_a");
   assert.equal(hits[0].receiverId, "receiver_b");
   assert.equal(hits[0].hitTime, 2);
-  assert.deepEqual(hits[0].emitterEmissionPosition, [0, 0, 0]);
+  assert.deepEqual(hits[0].transmitterEmissionPosition, [0, 0, 0]);
   assert.deepEqual(hits[0].receiverPosition, [2, 0, 0]);
   assert.equal(hits[0].strength, 0.25);
-  assert.equal(hits[0].metadata.source, "solver-owned-stream-descriptor-row");
-  assert.equal(hits[0].metadata.rowLayout, "delayed_hit_events.v1");
+  assert.equal(hits[0].metadata.source, "solver-owned-stream-descriptor-record");
+  assert.equal(hits[0].metadata.recordLayout, "delayed_hit_events.v1");
   assert.equal(hits[0].metadata.descriptorSchema, "animator-delayed-hit-stream-descriptors.v1");
   assert.equal(hits[0].metadata.receiverStreamId, "fixture-path-history-stream");
-  assert.equal(hits[0].metadata.receiverRowLayout, "path_segment.v1");
+  assert.equal(hits[0].metadata.receiverRecordLayout, "path_segment.v1");
   assert.equal(hits[0].metadata.solverAccelerationWeight, 1);
   assert.equal(hits[0].status, "path-history");
 });
 
 test("animator delayed-hit records keep acceleration independent of receiver velocity", () => {
-  const rowResponse = createAnimatorDelayedHitRowsFromStreamDescriptors(
+  const recordResponse = createAnimatorDelayedHitRecordsFromStreamDescriptors(
     {
       streamId: "fixture-moving-receiver-stream",
       fieldSpeed: 1,
       emissionEvents: [{
-        emitterId: "source_a",
+        transmitterId: "transmitter_a",
         emissionTime: 0,
         emissionPoint: [0, 0, 0],
         fieldSpeed: 1,
@@ -169,7 +169,7 @@ test("animator delayed-hit records keep acceleration independent of receiver vel
         receiverId: "receiver_b",
         pathKey: 2,
         streamId: "fixture-moving-receiver-stream",
-        rowLayout: "path_segment.v1",
+        recordLayout: "path_segment.v1",
         segments: [{
           pathKey: 2,
           segmentIndex: 0,
@@ -183,12 +183,12 @@ test("animator delayed-hit records keep acceleration independent of receiver vel
     { fieldSpeed: 1 }
   );
 
-  assert.equal(rowResponse.rows.length, 1);
-  const [row] = rowResponse.rows;
-  assert.ok(Math.abs(row.hitTime - 1.6) < 0.002);
-  assert.equal(row.jacobian, 1);
-  assert.equal(row.receiverCrossingRatio, 1.25);
-  assert.equal(row.rootPlayback, 1.25);
-  assert.equal(row.accelerationWeight, 1);
-  assert.equal(row.strength, 1);
+  assert.equal(recordResponse.records.length, 1);
+  const [record] = recordResponse.records;
+  assert.ok(Math.abs(record.hitTime - 1.6) < 0.002);
+  assert.equal(record.jacobian, 1);
+  assert.equal(record.receiverCrossingRatio, 1.25);
+  assert.equal(record.rootPlayback, 1.25);
+  assert.equal(record.accelerationWeight, 1);
+  assert.equal(record.strength, 1);
 });

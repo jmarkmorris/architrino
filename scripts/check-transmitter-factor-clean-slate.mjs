@@ -18,7 +18,7 @@ const AUTHORITATIVE_CODE = [
 const LIVE_SURFACES = [
   "src/prescribed-path-analysis/PrescribedOrbitCausalRoots.mjs",
   "src/prescribed-path-analysis/PrescribedPathAnalysis.mjs",
-  "src/apps/animator/display/AnimatorDelayedHitRows.mjs",
+  "src/apps/animator/display/AnimatorDelayedHitRecords.mjs",
   "src/apps/photon/PhotonFormulaRuntime.js",
   "src/contracts/solver-app-bridge/v2/schema.json",
 ];
@@ -29,9 +29,9 @@ if (process.argv.includes("--self-test")) {
   const sample =
     "transmitter-side acceleration weight $W^{\\mathrm{acc}}=\\lvert D_r/D_t\\rvert$";
   if (!staleCanonPatterns().some((pattern) => pattern.test(sample))) {
-    throw new Error("transmitter-side checker self-test missed the old acceleration ratio");
+    throw new Error("transmitter-factor checker self-test missed the old acceleration ratio");
   }
-  console.log("[transmitter-side-clean-slate] self-test passed");
+  console.log("[transmitter-factor-clean-slate] self-test passed");
   process.exit(0);
 }
 
@@ -41,14 +41,14 @@ scanLiveSurfaces();
 requireImplementationMarkers();
 
 if (findings.length > 0) {
-  console.error("[transmitter-side-clean-slate] failed");
+  console.error("[transmitter-factor-clean-slate] failed");
   for (const finding of findings) {
     console.error(`${finding.file}:${finding.line}: ${finding.message}`);
   }
   process.exit(1);
 }
 
-console.log("[transmitter-side-clean-slate] passed");
+console.log("[transmitter-factor-clean-slate] passed");
 
 function staleCanonPatterns() {
   return [
@@ -166,7 +166,7 @@ function requireImplementationMarkers() {
       "signalSpeed / Math.abs(transmitterFactor)",
     ],
     [
-      "src/apps/animator/display/AnimatorDelayedHitRows.mjs",
+      "src/apps/animator/display/AnimatorDelayedHitRecords.mjs",
       "emission.fieldSpeed / Math.abs(transmitterFactor)",
     ],
     [

@@ -140,12 +140,12 @@ and the strict transmitter-side-factor sign proves uniqueness. If any condition 
 the root remains `endpoint_root_not_surrounded` and entry remains fail-closed.
 
 Claim grade: `derived`. Falsifier: directed recomputation finds a bracket wider
-than $\tau$, a non-strict or equal residual sign, a zero-containing source
-normal, or more than one root in the admitted join bracket.
+than $\tau$, a non-strict or equal residual sign, a zero-containing transmitter
+factor, or more than one root in the admitted join bracket.
 
 ## Coupled Event Corrector
 
-Let $\mathcal E_i$ be the routed sources for receiver $i$. Let
+Let $\mathcal E_i$ be the routed transmitters for receiver $i$. Let
 $\mathbf B_i(T)$ be the deterministic sum of all non-event ordered-pair
 contributions. No pair may appear in both $\mathbf B_i$ and $\mathcal E_i$.
 For one corrector iterate, use the certified endpoint background enclosures
@@ -461,7 +461,7 @@ interval variables.
 
 For monotone emission cells, the two Gaussian CDF endpoints are evaluated as
 one difference with a shared receiver-position and reception-time box. When
-both endpoints lie in one retained source segment, their source displacement
+both endpoints lie in one retained transmitter segment, their transmitter displacement
 reuses the segment certificate
 
 $$
@@ -542,11 +542,11 @@ Claim grade: `derived-design`. Falsifier: a published event segment whose
 endpoint pair is still `caustic_route_required`, has an unsigned transmitter-side-factor
 grade, or lacks a complete complement certificate.
 
-## Acceptance And Error-Budget Rows
+## Acceptance And Error-Budget Records
 
-Every attempted event emits these rows, including failures:
+Every attempted event emits these records, including failures:
 
-| Contract row | Quantity and required record | Pass condition | Named failure |
+| Contract record | Quantity and required data | Pass condition | Named failure |
 | --- | --- | --- | --- |
 | `FWC-ENTRY-01` | history coverage and memory-boundary residual | boundary residual excludes zero | `caustic_history_coverage_failed` |
 | `FWC-ENTRY-02` | entry transmitter-side-factor enclosure or topology delta | certified fold predicate | `caustic_entry_not_certified` |
@@ -561,10 +561,10 @@ Every attempted event emits these rows, including failures:
 | `FWC-EXIT-01` | endpoint roots, signed $D_t$, degree, boundary clearance | sharp-chart exit passes | `caustic_exit_not_certified` |
 | `FWC-ATOM-01` | input, candidate, and published history fingerprints | unchanged on failure; candidate on complete acceptance | `caustic_atomic_publication_failed` |
 
-Each failed row records receiver/source identities, attempted window, regulator
+Each failed record stores receiver/transmitter identities, attempted window, regulator
 level, precision route, achieved precision, enclosure or scalar residual,
 declared tolerance, resource counts, and the nested numeric failure code. The
-evolution-level halt is `caustic_transit_uncertified` with the first failed row
+evolution-level halt is `caustic_transit_uncertified` with the first failed record
 preserved; generic step-floor exhaustion is not an admissible adjudication once
 `FWC-ENTRY-02` has passed.
 

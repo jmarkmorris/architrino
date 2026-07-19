@@ -59,8 +59,8 @@ function magnitude(a) {
   return Math.sqrt(dot(a, a));
 }
 
-function causalFactorFields({ direction, sourceVelocity, receiverVelocity, signalSpeed }) {
-  const transmitterRadialSpeedAtEmission = dot(sourceVelocity, direction);
+function causalFactorFields({ direction, transmitterVelocity, receiverVelocity, signalSpeed }) {
+  const transmitterRadialSpeedAtEmission = dot(transmitterVelocity, direction);
   const receiverRadialSpeedAtReception = dot(receiverVelocity, direction);
   const transmitterFactor = signalSpeed - transmitterRadialSpeedAtEmission;
   const receiverFactor = signalSpeed - receiverRadialSpeedAtReception;
@@ -99,32 +99,32 @@ function phaseRecord(rawPhase) {
   };
 }
 
-export function evaluateMovingCircularSourcePhase(source = {}, timeSeconds = 0) {
-  const epochTime = finiteNumber(source.epochTime);
-  const phaseAtEpoch = finiteNumber(source.phaseAtEpoch);
-  const angularVelocity = finiteNumber(source.angularVelocity);
+export function evaluateMovingCircularTransmitterPhase(transmitter = {}, timeSeconds = 0) {
+  const epochTime = finiteNumber(transmitter.epochTime);
+  const phaseAtEpoch = finiteNumber(transmitter.phaseAtEpoch);
+  const angularVelocity = finiteNumber(transmitter.angularVelocity);
   // Optional constant angular acceleration alpha (default 0 preserves the
   // fixed-omega rigid circle exactly). With alpha != 0 the tangential speed
   // omega(t)*|r| sweeps through the field-speed edge, so a same-transmitter root can
   // realize the pump-driven crossing rather than the reflection-locked m = +1.
-  const angularAcceleration = finiteNumber(source.angularAcceleration);
+  const angularAcceleration = finiteNumber(transmitter.angularAcceleration);
   const dt = finiteNumber(timeSeconds) - epochTime;
   return phaseRecord(
     phaseAtEpoch + angularVelocity * dt + 0.5 * angularAcceleration * dt * dt
   );
 }
 
-export function evaluateMovingCircularSourceHistory(source = {}, timeSeconds = 0) {
+export function evaluateMovingCircularTransmitterHistory(transmitter = {}, timeSeconds = 0) {
   const time = finiteNumber(timeSeconds);
-  const epochTime = finiteNumber(source.epochTime);
+  const epochTime = finiteNumber(transmitter.epochTime);
   const dt = time - epochTime;
-  const centerAtEpoch = vector(source.centerAtEpoch ?? source.center);
-  const centerVelocity = vector(source.centerVelocity);
-  const radiusU = vector(source.radiusU);
-  const radiusV = vector(source.radiusV);
-  const angularVelocity = finiteNumber(source.angularVelocity);
-  const angularAcceleration = finiteNumber(source.angularAcceleration);
-  const phase = evaluateMovingCircularSourcePhase(source, time);
+  const centerAtEpoch = vector(transmitter.centerAtEpoch ?? transmitter.center);
+  const centerVelocity = vector(transmitter.centerVelocity);
+  const radiusU = vector(transmitter.radiusU);
+  const radiusV = vector(transmitter.radiusV);
+  const angularVelocity = finiteNumber(transmitter.angularVelocity);
+  const angularAcceleration = finiteNumber(transmitter.angularAcceleration);
+  const phase = evaluateMovingCircularTransmitterPhase(transmitter, time);
   const cos = Math.cos(phase.rawRadians);
   const sin = Math.sin(phase.rawRadians);
   const center = add(centerAtEpoch, scale(centerVelocity, dt));
@@ -180,29 +180,29 @@ function normalizeLinearReceiverHistoryForHit(receiver = {}, hitTime = 0, errorB
 function movingCircularResidual(request, emissionTime) {
   const hitTime = finiteNumber(request.hitTime);
   const signalSpeed = positiveNumber(request.signalSpeed, 1);
-  const sourceSample = evaluateMovingCircularSourceHistory(request.source, emissionTime);
+  const transmitterSample = evaluateMovingCircularTransmitterHistory(request.transmitter, emissionTime);
   const receiverPoint = evaluateLinearHistoryPoint(request.receiver, hitTime);
-  const delta = subtract(receiverPoint, sourceSample.position);
+  const delta = subtract(receiverPoint, transmitterSample.position);
   const distance = magnitude(delta);
   return {
     residual: distance - signalSpeed * (hitTime - emissionTime),
-    sourceSample,
+    transmitterSample,
     receiverPoint,
     delta,
     distance,
   };
 }
 
-function movingCircularSameSourceResidual(request, emissionTime) {
+function movingCircularSameTransmitterResidual(request, emissionTime) {
   const hitTime = finiteNumber(request.hitTime);
   const signalSpeed = positiveNumber(request.signalSpeed, 1);
-  const sourceSample = evaluateMovingCircularSourceHistory(request.source, emissionTime);
-  const receiverSample = evaluateMovingCircularSourceHistory(request.source, hitTime);
-  const delta = subtract(receiverSample.position, sourceSample.position);
+  const transmitterSample = evaluateMovingCircularTransmitterHistory(request.transmitter, emissionTime);
+  const receiverSample = evaluateMovingCircularTransmitterHistory(request.transmitter, hitTime);
+  const delta = subtract(receiverSample.position, transmitterSample.position);
   const distance = magnitude(delta);
   return {
     residual: distance - signalSpeed * (hitTime - emissionTime),
-    sourceSample,
+    transmitterSample,
     receiverSample,
     receiverPoint: receiverSample.position,
     delta,
@@ -218,7 +218,7 @@ function buildMovingCircularRoot(request, emissionTime, rootId, residualInfo = n
   const direction = scale(info.delta, 1 / safeDistance);
   const causalFactors = causalFactorFields({
     direction,
-    sourceVelocity: info.sourceSample.velocity,
+    transmitterVelocity: info.transmitterSample.velocity,
     receiverVelocity: vector(request.receiver?.velocity),
     signalSpeed,
   });
@@ -237,24 +237,24 @@ function buildMovingCircularRoot(request, emissionTime, rootId, residualInfo = n
     jacobian,
     accelerationWeight,
     ...causalFactors,
-    sourcePoint: info.sourceSample.position,
+    transmitterPoint: info.transmitterSample.position,
     receiverPoint: info.receiverPoint,
-    sourceVelocity: info.sourceSample.velocity,
-    sourcePhase: info.sourceSample.phase,
+    transmitterVelocity: info.transmitterSample.velocity,
+    transmitterPhase: info.transmitterSample.phase,
     iterationCount: iterations,
-    sourceHistoryKind: "moving-circular-transmitter",
+    transmitterHistoryKind: "moving-circular-transmitter",
   };
 }
 
-function buildMovingCircularSameSourceRoot(request, emissionTime, rootId, residualInfo = null, iterations = 0) {
+function buildMovingCircularSameTransmitterRoot(request, emissionTime, rootId, residualInfo = null, iterations = 0) {
   const hitTime = finiteNumber(request.hitTime);
   const signalSpeed = positiveNumber(request.signalSpeed, 1);
-  const info = residualInfo ?? movingCircularSameSourceResidual(request, emissionTime);
+  const info = residualInfo ?? movingCircularSameTransmitterResidual(request, emissionTime);
   const safeDistance = Math.max(EPSILON, info.distance);
   const direction = scale(info.delta, 1 / safeDistance);
   const causalFactors = causalFactorFields({
     direction,
-    sourceVelocity: info.sourceSample.velocity,
+    transmitterVelocity: info.transmitterSample.velocity,
     receiverVelocity: info.receiverSample.velocity,
     signalSpeed,
   });
@@ -274,14 +274,14 @@ function buildMovingCircularSameSourceRoot(request, emissionTime, rootId, residu
     jacobian,
     accelerationWeight,
     ...causalFactors,
-    sourcePoint: info.sourceSample.position,
+    transmitterPoint: info.transmitterSample.position,
     receiverPoint: info.receiverPoint,
-    sourceVelocity: info.sourceSample.velocity,
+    transmitterVelocity: info.transmitterSample.velocity,
     receiverVelocity: info.receiverSample.velocity,
-    sourcePhase: info.sourceSample.phase,
+    transmitterPhase: info.transmitterSample.phase,
     receiverPhase: info.receiverSample.phase,
     iterationCount: iterations,
-    sourceHistoryKind: "moving-circular-same-transmitter",
+    transmitterHistoryKind: "moving-circular-same-transmitter",
   };
 }
 
@@ -317,25 +317,25 @@ function refineMovingCircularRoot(request, lowTime, highTime, lowResidual, highR
   return buildMovingCircularRoot(request, bestTime, 0, bestInfo, iterations);
 }
 
-function refineMovingCircularSameSourceRoot(request, lowTime, highTime, lowResidual, highResidual, maxIterations) {
+function refineMovingCircularSameTransmitterRoot(request, lowTime, highTime, lowResidual, highResidual, maxIterations) {
   let low = lowTime;
   let high = highTime;
   let fLow = lowResidual;
   let fHigh = highResidual;
   let bestTime = Math.abs(fLow) <= Math.abs(fHigh) ? low : high;
-  let bestInfo = movingCircularSameSourceResidual(request, bestTime);
+  let bestInfo = movingCircularSameTransmitterResidual(request, bestTime);
   let iterations = 0;
 
   for (; iterations < maxIterations; iterations += 1) {
     const mid = (low + high) / 2;
-    const midInfo = movingCircularSameSourceResidual(request, mid);
+    const midInfo = movingCircularSameTransmitterResidual(request, mid);
     const fMid = midInfo.residual;
     if (Math.abs(fMid) < Math.abs(bestInfo.residual)) {
       bestTime = mid;
       bestInfo = midInfo;
     }
     if (Math.abs(fMid) <= positiveNumber(request.rootTolerance, 1e-12)) {
-      return buildMovingCircularSameSourceRoot(request, mid, 0, midInfo, iterations + 1);
+      return buildMovingCircularSameTransmitterRoot(request, mid, 0, midInfo, iterations + 1);
     }
     if (Math.sign(fLow) === Math.sign(fMid)) {
       low = mid;
@@ -346,7 +346,7 @@ function refineMovingCircularSameSourceRoot(request, lowTime, highTime, lowResid
     }
   }
 
-  return buildMovingCircularSameSourceRoot(request, bestTime, 0, bestInfo, iterations);
+  return buildMovingCircularSameTransmitterRoot(request, bestTime, 0, bestInfo, iterations);
 }
 
 function dedupeRoots(roots, tolerance = 1e-9) {
@@ -379,8 +379,8 @@ function createMovingCircularScanSummary({
   rootLimitReached,
 }) {
   return {
-    sourceStartTime: start,
-    sourceEndTime: end,
+    transmitterStartTime: start,
+    transmitterEndTime: end,
     scanSubdivisions: steps,
     sampledCount,
     startResidual: startInfo?.residual ?? 0,
@@ -424,7 +424,7 @@ function classifyMovingCircularRootScan(scan, tolerance) {
       code: "no_catch_up_root",
       severity: "warning",
       rejectedReason: "no_catch_up_root",
-      message: "source influence did not catch the receiver within the scanned history window",
+      message: "transmitter influence did not catch the receiver within the scanned history window",
     };
   }
   if (scan.maxResidual < 0) {
@@ -443,46 +443,46 @@ function classifyMovingCircularRootScan(scan, tolerance) {
   };
 }
 
-export function createMovingCircularSourceRootRequest({
-  source,
+export function createMovingCircularTransmitterRootRequest({
+  transmitter,
   receiver,
   hitTime,
   signalSpeed,
-  sourceStartTime,
-  sourceEndTime,
+  transmitterStartTime,
+  transmitterEndTime,
   rootTolerance = 1e-12,
   maxIterations = 96,
   scanSubdivisions = 128,
   maxRoots = 32,
-  sourceRef = undefined,
+  transmitterRef = undefined,
 } = {}) {
   const safeHitTime = finiteNumber(hitTime);
-  const safeSourceEnd = Number.isFinite(Number(sourceEndTime))
-    ? Math.min(Number(sourceEndTime), safeHitTime)
+  const safeTransmitterEnd = Number.isFinite(Number(transmitterEndTime))
+    ? Math.min(Number(transmitterEndTime), safeHitTime)
     : safeHitTime;
-  const safeSourceStart = Number.isFinite(Number(sourceStartTime))
-    ? Math.min(Number(sourceStartTime), safeSourceEnd)
-    : safeSourceEnd - 1;
+  const safeTransmitterStart = Number.isFinite(Number(transmitterStartTime))
+    ? Math.min(Number(transmitterStartTime), safeTransmitterEnd)
+    : safeTransmitterEnd - 1;
   const receiverHistory = normalizeLinearReceiverHistoryForHit(receiver, safeHitTime);
   return {
-    sourceRef,
-    sourceHistoryKind: "moving-circular-transmitter",
-    source: {
-      centerAtEpoch: vector(source?.centerAtEpoch ?? source?.center),
-      centerVelocity: vector(source?.centerVelocity),
-      radiusU: vector(source?.radiusU),
-      radiusV: vector(source?.radiusV),
-      angularVelocity: finiteNumber(source?.angularVelocity),
-      angularAcceleration: finiteNumber(source?.angularAcceleration),
-      phaseAtEpoch: finiteNumber(source?.phaseAtEpoch),
-      epochTime: finiteNumber(source?.epochTime),
-      errorBound: finiteNumber(source?.errorBound),
+    transmitterRef,
+    transmitterHistoryKind: "moving-circular-transmitter",
+    transmitter: {
+      centerAtEpoch: vector(transmitter?.centerAtEpoch ?? transmitter?.center),
+      centerVelocity: vector(transmitter?.centerVelocity),
+      radiusU: vector(transmitter?.radiusU),
+      radiusV: vector(transmitter?.radiusV),
+      angularVelocity: finiteNumber(transmitter?.angularVelocity),
+      angularAcceleration: finiteNumber(transmitter?.angularAcceleration),
+      phaseAtEpoch: finiteNumber(transmitter?.phaseAtEpoch),
+      epochTime: finiteNumber(transmitter?.epochTime),
+      errorBound: finiteNumber(transmitter?.errorBound),
     },
     receiver: receiverHistory,
     hitTime: safeHitTime,
     signalSpeed: positiveNumber(signalSpeed, 1),
-    sourceStartTime: safeSourceStart,
-    sourceEndTime: safeSourceEnd,
+    transmitterStartTime: safeTransmitterStart,
+    transmitterEndTime: safeTransmitterEnd,
     rootTolerance: positiveNumber(rootTolerance, 1e-12),
     maxIterations: positiveInteger(maxIterations, 96),
     scanSubdivisions: positiveInteger(scanSubdivisions, 128),
@@ -490,10 +490,10 @@ export function createMovingCircularSourceRootRequest({
   };
 }
 
-export function solveMovingCircularSourceCausalRoots(request = {}) {
-  const normalized = createMovingCircularSourceRootRequest(request);
-  const start = normalized.sourceStartTime;
-  const end = normalized.sourceEndTime;
+export function solveMovingCircularTransmitterCausalRoots(request = {}) {
+  const normalized = createMovingCircularTransmitterRootRequest(request);
+  const start = normalized.transmitterStartTime;
+  const end = normalized.transmitterEndTime;
   const duration = Math.max(0, end - start);
   if (duration <= EPSILON) {
     return {
@@ -596,52 +596,52 @@ export function solveMovingCircularSourceCausalRoots(request = {}) {
       code: retained.length > 0 ? (scan.rootLimitReached ? "partial" : "ok") : noRootStatus.code,
       severity: retained.length > 0 ? (scan.rootLimitReached ? "warning" : "ok") : noRootStatus.severity,
       message: retained.length > 0
-        ? "moving circular source causal roots solved"
+        ? "moving circular transmitter causal roots solved"
         : noRootStatus.message,
     },
   };
 }
 
-export function createMovingCircularSameSourceRootRequest({
-  source,
+export function createMovingCircularSameTransmitterRootRequest({
+  transmitter,
   hitTime,
   signalSpeed,
-  sourceStartTime,
-  sourceEndTime,
+  transmitterStartTime,
+  transmitterEndTime,
   rootTolerance = 1e-12,
   minimumDelay = 1e-6,
   maxIterations = 96,
   scanSubdivisions = 128,
   maxRoots = 32,
-  sourceRef = undefined,
+  transmitterRef = undefined,
 } = {}) {
   const safeHitTime = finiteNumber(hitTime);
   const safeMinimumDelay = positiveNumber(minimumDelay, 1e-6);
   const latestEmissionTime = safeHitTime - safeMinimumDelay;
-  const safeSourceEnd = Number.isFinite(Number(sourceEndTime))
-    ? Math.min(Number(sourceEndTime), latestEmissionTime)
+  const safeTransmitterEnd = Number.isFinite(Number(transmitterEndTime))
+    ? Math.min(Number(transmitterEndTime), latestEmissionTime)
     : latestEmissionTime;
-  const safeSourceStart = Number.isFinite(Number(sourceStartTime))
-    ? Math.min(Number(sourceStartTime), safeSourceEnd)
-    : safeSourceEnd - 1;
+  const safeTransmitterStart = Number.isFinite(Number(transmitterStartTime))
+    ? Math.min(Number(transmitterStartTime), safeTransmitterEnd)
+    : safeTransmitterEnd - 1;
   return {
-    sourceRef,
-    sourceHistoryKind: "moving-circular-same-transmitter",
-    source: {
-      centerAtEpoch: vector(source?.centerAtEpoch ?? source?.center),
-      centerVelocity: vector(source?.centerVelocity),
-      radiusU: vector(source?.radiusU),
-      radiusV: vector(source?.radiusV),
-      angularVelocity: finiteNumber(source?.angularVelocity),
-      angularAcceleration: finiteNumber(source?.angularAcceleration),
-      phaseAtEpoch: finiteNumber(source?.phaseAtEpoch),
-      epochTime: finiteNumber(source?.epochTime),
-      errorBound: finiteNumber(source?.errorBound),
+    transmitterRef,
+    transmitterHistoryKind: "moving-circular-same-transmitter",
+    transmitter: {
+      centerAtEpoch: vector(transmitter?.centerAtEpoch ?? transmitter?.center),
+      centerVelocity: vector(transmitter?.centerVelocity),
+      radiusU: vector(transmitter?.radiusU),
+      radiusV: vector(transmitter?.radiusV),
+      angularVelocity: finiteNumber(transmitter?.angularVelocity),
+      angularAcceleration: finiteNumber(transmitter?.angularAcceleration),
+      phaseAtEpoch: finiteNumber(transmitter?.phaseAtEpoch),
+      epochTime: finiteNumber(transmitter?.epochTime),
+      errorBound: finiteNumber(transmitter?.errorBound),
     },
     hitTime: safeHitTime,
     signalSpeed: positiveNumber(signalSpeed, 1),
-    sourceStartTime: safeSourceStart,
-    sourceEndTime: safeSourceEnd,
+    transmitterStartTime: safeTransmitterStart,
+    transmitterEndTime: safeTransmitterEnd,
     minimumDelay: safeMinimumDelay,
     rootTolerance: positiveNumber(rootTolerance, 1e-12),
     maxIterations: positiveInteger(maxIterations, 96),
@@ -650,10 +650,10 @@ export function createMovingCircularSameSourceRootRequest({
   };
 }
 
-export function solveMovingCircularSameSourceCausalRoots(request = {}) {
-  const normalized = createMovingCircularSameSourceRootRequest(request);
-  const start = normalized.sourceStartTime;
-  const end = normalized.sourceEndTime;
+export function solveMovingCircularSameTransmitterCausalRoots(request = {}) {
+  const normalized = createMovingCircularSameTransmitterRootRequest(request);
+  const start = normalized.transmitterStartTime;
+  const end = normalized.transmitterEndTime;
   const duration = Math.max(0, end - start);
   if (duration <= EPSILON) {
     return {
@@ -681,7 +681,7 @@ export function solveMovingCircularSameSourceCausalRoots(request = {}) {
   const steps = normalized.scanSubdivisions;
   const roots = [];
   let priorTime = start;
-  let priorInfo = movingCircularSameSourceResidual(normalized, priorTime);
+  let priorInfo = movingCircularSameTransmitterResidual(normalized, priorTime);
   let endInfo = priorInfo;
   let minResidual = priorInfo.residual;
   let maxResidual = priorInfo.residual;
@@ -692,12 +692,12 @@ export function solveMovingCircularSameSourceCausalRoots(request = {}) {
   let rootLimitReached = false;
 
   if (Math.abs(priorInfo.residual) <= tolerance) {
-    roots.push(buildMovingCircularSameSourceRoot(normalized, priorTime, roots.length, priorInfo, 0));
+    roots.push(buildMovingCircularSameTransmitterRoot(normalized, priorTime, roots.length, priorInfo, 0));
   }
 
   for (let index = 1; index <= steps; index += 1) {
     const time = start + (duration * index) / steps;
-    const info = movingCircularSameSourceResidual(normalized, time);
+    const info = movingCircularSameTransmitterResidual(normalized, time);
     sampledCount += 1;
     endInfo = info;
     const priorResidual = priorInfo.residual;
@@ -714,9 +714,9 @@ export function solveMovingCircularSameSourceCausalRoots(request = {}) {
     }
     if (roots.length < normalized.maxRoots) {
       if (Math.abs(residual) <= tolerance) {
-        roots.push(buildMovingCircularSameSourceRoot(normalized, time, roots.length, info, 0));
+        roots.push(buildMovingCircularSameTransmitterRoot(normalized, time, roots.length, info, 0));
       } else if (hasSignChange) {
-        roots.push(refineMovingCircularSameSourceRoot(
+        roots.push(refineMovingCircularSameTransmitterRoot(
           normalized,
           priorTime,
           time,
@@ -737,7 +737,7 @@ export function solveMovingCircularSameSourceCausalRoots(request = {}) {
     start,
     end,
     steps,
-    startInfo: movingCircularSameSourceResidual(normalized, start),
+    startInfo: movingCircularSameTransmitterResidual(normalized, start),
     endInfo,
     minResidual,
     maxResidual,
@@ -762,31 +762,31 @@ export function solveMovingCircularSameSourceCausalRoots(request = {}) {
   };
 }
 
-export function createMovingCircularSourceLinearizedRootRequests({
-  source,
+export function createMovingCircularTransmitterLinearizedRootRequests({
+  transmitter,
   receiver,
   hitTime,
   signalSpeed,
-  sourceStartTime,
-  sourceEndTime,
+  transmitterStartTime,
+  transmitterEndTime,
   segmentCount = 24,
   rootTolerance = 1e-12,
   maxIterations = 64,
   scanSubdivisions = 8,
   maxRoots = 4,
   maxHits = 4,
-  sourceErrorBound = 0,
+  transmitterErrorBound = 0,
   receiverErrorBound = 0,
-  sourceRef = undefined,
+  transmitterRef = undefined,
 } = {}) {
   const safeHitTime = finiteNumber(hitTime);
-  const safeSourceEnd = Number.isFinite(Number(sourceEndTime))
-    ? Number(sourceEndTime)
+  const safeTransmitterEnd = Number.isFinite(Number(transmitterEndTime))
+    ? Number(transmitterEndTime)
     : safeHitTime;
-  const safeSourceStart = Number.isFinite(Number(sourceStartTime))
-    ? Number(sourceStartTime)
-    : safeSourceEnd - 1;
-  const duration = Math.max(EPSILON, safeSourceEnd - safeSourceStart);
+  const safeTransmitterStart = Number.isFinite(Number(transmitterStartTime))
+    ? Number(transmitterStartTime)
+    : safeTransmitterEnd - 1;
+  const duration = Math.max(EPSILON, safeTransmitterEnd - safeTransmitterStart);
   const safeSegmentCount = positiveInteger(segmentCount, 24);
   const safeSignalSpeed = positiveNumber(signalSpeed, 1);
   const receiverBase = normalizeLinearReceiverHistoryForHit(
@@ -795,18 +795,18 @@ export function createMovingCircularSourceLinearizedRootRequests({
     receiverErrorBound
   );
   const receiverVelocity = receiverBase.velocity;
-  const sourceHistory = {
+  const transmitterHistory = {
     kind: "moving-circular-transmitter-linearized",
-    sourceRef,
-    source: {
-      centerAtEpoch: vector(source?.centerAtEpoch ?? source?.center),
-      centerVelocity: vector(source?.centerVelocity),
-      radiusU: vector(source?.radiusU),
-      radiusV: vector(source?.radiusV),
-      angularVelocity: finiteNumber(source?.angularVelocity),
-      phaseAtEpoch: finiteNumber(source?.phaseAtEpoch),
-      epochTime: finiteNumber(source?.epochTime),
-      errorBound: finiteNumber(source?.errorBound, sourceErrorBound),
+    transmitterRef,
+    transmitter: {
+      centerAtEpoch: vector(transmitter?.centerAtEpoch ?? transmitter?.center),
+      centerVelocity: vector(transmitter?.centerVelocity),
+      radiusU: vector(transmitter?.radiusU),
+      radiusV: vector(transmitter?.radiusV),
+      angularVelocity: finiteNumber(transmitter?.angularVelocity),
+      phaseAtEpoch: finiteNumber(transmitter?.phaseAtEpoch),
+      epochTime: finiteNumber(transmitter?.epochTime),
+      errorBound: finiteNumber(transmitter?.errorBound, transmitterErrorBound),
     },
     receiver: receiverBase,
     segmentCount: safeSegmentCount,
@@ -814,21 +814,21 @@ export function createMovingCircularSourceLinearizedRootRequests({
   };
 
   return Array.from({ length: safeSegmentCount }, (_, index) => {
-    const segmentStart = safeSourceStart + (duration * index) / safeSegmentCount;
-    const segmentEnd = safeSourceStart + (duration * (index + 1)) / safeSegmentCount;
-    const sourceSample = evaluateMovingCircularSourceHistory(sourceHistory.source, segmentStart);
+    const segmentStart = safeTransmitterStart + (duration * index) / safeSegmentCount;
+    const segmentEnd = safeTransmitterStart + (duration * (index + 1)) / safeSegmentCount;
+    const transmitterSample = evaluateMovingCircularTransmitterHistory(transmitterHistory.transmitter, segmentStart);
     const receiverStart = Math.min(segmentStart, safeHitTime);
     const receiverPoint = evaluateLinearHistoryPoint(receiverBase, receiverStart);
     return {
-      sourceRef,
+      transmitterRef,
       segmentIndex: index,
-      sourceHistory,
-      source: {
+      transmitterHistory,
+      transmitter: {
         startTime: segmentStart,
         endTime: segmentEnd,
-        positionAtStart: sourceSample.position,
-        velocity: sourceSample.velocity,
-        errorBound: finiteNumber(source?.errorBound, sourceErrorBound),
+        positionAtStart: transmitterSample.position,
+        velocity: transmitterSample.velocity,
+        errorBound: finiteNumber(transmitter?.errorBound, transmitterErrorBound),
       },
       receiver: {
         startTime: receiverStart,

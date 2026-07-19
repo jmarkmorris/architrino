@@ -33,7 +33,7 @@ function roundSweepNumber(value, digits = 12) {
 
 function createSweepState({ presetId, photonSpeedCf, signalSpeedCf }) {
   const state = createPhotonPresetState(presetId);
-  state.measurement.sourceHistoryMode = "absolute_history";
+  state.measurement.transmitterHistoryMode = "absolute_history";
   state.pair.speedMode = "direct";
   state.pair.photonSpeedCf = photonSpeedCf;
   state.measurement.signalSpeedCf = signalSpeedCf;
@@ -57,11 +57,11 @@ function compactPhaseFamily(family = null) {
     role: family.role ?? "",
     layerId: family.layerId ?? "",
     chargeType: family.chargeType ?? "",
-    sourceCycleIndex: Number.isFinite(Number(family.sourceCycleIndex))
-      ? Number(family.sourceCycleIndex)
+    transmitterCycleIndex: Number.isFinite(Number(family.transmitterCycleIndex))
+      ? Number(family.transmitterCycleIndex)
       : 0,
     rootCount: Number(family.rootCount) || 0,
-    sourcePhaseSpreadDeg: roundSweepNumber(family.sourcePhaseSpreadDeg, 6),
+    transmitterPhaseSpreadDeg: roundSweepNumber(family.transmitterPhaseSpreadDeg, 6),
     receiverPhaseSpreadDeg: roundSweepNumber(family.receiverPhaseSpreadDeg, 6),
     minJacobianAbs: roundSweepNumber(family.minJacobianAbs, 12),
     maxFieldSpeedRatio: roundSweepNumber(family.maxFieldSpeedRatio, 6),
@@ -129,7 +129,7 @@ function compareBestCase(left, right) {
     Number(rightFamily.phaseLockStable) - Number(leftFamily.phaseLockStable) ||
     Number(rightFamily.phaseLockCandidate) - Number(leftFamily.phaseLockCandidate) ||
     rightFamily.rootCount - leftFamily.rootCount ||
-    leftFamily.sourcePhaseSpreadDeg - rightFamily.sourcePhaseSpreadDeg ||
+    leftFamily.transmitterPhaseSpreadDeg - rightFamily.transmitterPhaseSpreadDeg ||
     rightFamily.minJacobianAbs - leftFamily.minJacobianAbs ||
     left.caseId.localeCompare(right.caseId)
   );
@@ -240,7 +240,7 @@ async function evaluateSweepCase(sweepCase, config, options = {}) {
     ...sweepCase,
     observationTime: roundSweepNumber(observationTime, 12),
     status: diagnostics.status,
-    helicalRowCount: diagnostics.helicalRowCount,
+    helicalRecordCount: diagnostics.helicalRecordCount,
     helicalRootFoundCount: diagnostics.helicalRootFoundCount,
     helicalPhaseFamilyCount: diagnostics.helicalPhaseFamilyCount,
     helicalStablePhaseLockFamilyCount: diagnostics.helicalStablePhaseLockFamilyCount,

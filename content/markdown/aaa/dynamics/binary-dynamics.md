@@ -1399,7 +1399,7 @@ Below, $\mathcal{H}$ denotes the declared history chart for the packet being tes
 We formalize the acceleration term derived in the master equation.
 
 #### Definition 2 (Causal Constraint Functional)
-For a receiver architrino $i$ at time $T$ and transmitter $j$, the delay $\Delta_{ij}(T)$ is implicitly defined by the causal-isochron condition. Let $\phi \in \mathcal{H}$ be the history. A **causal root** is a value $\Delta > 0$ satisfying:
+For a receiver architrino $i$ at reception time $T_r$ and transmitter $j$, the delay $\Delta_{ij}(T_r)$ is implicitly defined by the causal-isochron condition. Let $\phi \in \mathcal{H}$ be the history. A **causal root** is a value $\Delta > 0$ satisfying:
 $$
 g_{ij}(\Delta, \phi) \equiv \|\phi_i(0) - \phi_j(-\Delta)\| - c_f \Delta = 0
 $$

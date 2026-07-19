@@ -71,7 +71,7 @@ function normalizeFrame(rawFrame = {}, index = 0) {
 function normalizeFieldShell(rawShell = {}, index = 0) {
   return {
     id: normalizeString(rawShell.id, `field_shell_${index + 1}`),
-    emitterId: normalizeString(rawShell.emitterId ?? rawShell.emitter, ""),
+    transmitterId: normalizeString(rawShell.transmitterId ?? rawShell.transmitter, ""),
     emissionTime: normalizeNumber(rawShell.emissionTime ?? rawShell.tEmit, 0),
     displayTime: normalizeNumber(rawShell.displayTime ?? rawShell.t, 0),
     emissionPosition: normalizeVector(rawShell.emissionPosition ?? rawShell.position),
@@ -94,12 +94,12 @@ function normalizeFieldShell(rawShell = {}, index = 0) {
 function normalizeDelayedHit(rawHit = {}, index = 0) {
   return {
     id: normalizeString(rawHit.id, `delayed_hit_${index + 1}`),
-    emitterId: normalizeString(rawHit.emitterId ?? rawHit.emitter, ""),
+    transmitterId: normalizeString(rawHit.transmitterId ?? rawHit.transmitter, ""),
     receiverId: normalizeString(rawHit.receiverId ?? rawHit.receiver, ""),
     hitTime: normalizeNumber(rawHit.hitTime ?? rawHit.t, 0),
     emissionTime: normalizeNumber(rawHit.emissionTime ?? rawHit.tEmit, 0),
-    emitterEmissionPosition: normalizeVector(
-      rawHit.emitterEmissionPosition ?? rawHit.emissionPosition
+    transmitterEmissionPosition: normalizeVector(
+      rawHit.transmitterEmissionPosition ?? rawHit.emissionPosition
     ),
     receiverPosition: normalizeVector(rawHit.receiverPosition),
     strength: normalizeNumber(rawHit.strength, 0),

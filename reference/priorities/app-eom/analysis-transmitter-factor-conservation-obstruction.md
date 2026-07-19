@@ -2,7 +2,7 @@
 
 ## Status
 
-- Purpose: determine whether energy, momentum, and angular momentum follow from the same retained-history update as the proposed transmitter-side acceleration
+- Purpose: determine whether energy, momentum, and angular momentum follow from the same retained-history update as the current transmitter-factor acceleration
 - Scope: the positive-width causal equation and its regular simple-root reduction with base factor $c_f/|D_t|$
 - Standing: priority analysis; not canon and not an EOM solver specification
 - Result: the retained-history update determines acceleration but does not determine the three conserved accounts from the current Architrino primitives
@@ -11,13 +11,13 @@
 
 The causal feedback loop is complete as an acceleration update: retained histories determine acceleration, acceleration changes the paths, and the changed paths extend the histories. That loop does not yet determine conserved energy, momentum, or angular momentum.
 
-Two ingredients are missing. First, the current theory leaves the kinetic and momentum functions of one architrino unspecified. Second, a causal wake is fixed by source history, but no independently derived rule assigns energy, momentum, or angular momentum to an emitted wake and updates those quantities when a receiver is accelerated.
+Two ingredients are missing. First, the current theory leaves the kinetic and momentum functions of one architrino unspecified. Second, a causal wake is fixed by transmitter history, but no independently derived rule assigns energy, momentum, or angular momentum to an emitted wake and updates those quantities when a receiver is accelerated.
 
 One can always create accounts that balance by defining each wake change as the negative of whatever motion change was just computed. That construction would make every acceleration law appear conservative and therefore supplies no evidence. It is the post hoc cancellation forbidden by the promotion gate.
 
 Claim classification: **derived underdetermination from the declared retained state and current kinematic definitions**. This is not a theorem that no future Architrino-native conservation construction can exist. It proves that the present primitives and acceleration equation do not yet supply one.
 
-## 1. State actually advanced by the proposed equation
+## 1. State actually advanced by the current equation
 
 At absolute time $T$, let the retained state be
 
@@ -42,7 +42,7 @@ $$
 
 This is a causal update. It uses the present receiver event and retained transmitter histories only. Appending the newly accepted path segment produces $\mathcal H_{T+dT}$.
 
-The state contains no separately specifiable wake amplitude, wake momentum density, or wake stress. Under the current point-transceiver ontology, the wake at $T$ is a deterministic record of source identity, polarity, and source path history.
+The state contains no separately specifiable wake amplitude, wake momentum density, or wake stress. Under the current point-transceiver ontology, the wake at $T$ is a deterministic record of transmitter identity, polarity, and transmitter path history.
 
 Claim classification: **derived restatement of the causal retained-history theorem and current ontology**. A pair of admissible updates with the same complete $\mathcal H_T$ but different accelerations would falsify the state-sufficiency claim for acceleration.
 
@@ -104,7 +104,7 @@ Claim classification: **derived kinematic underdetermination**. A unique $K$ and
 
 ## 3. The current wake record has no conservation update
 
-The current ontology states that emitted wakes are source-provenanced path-history structures. They superpose without scattering and have no freely specifiable state apart from source histories. This determines where and when a wake is received. It does not yet assign three transported quantities
+The current ontology states that emitted wakes are transmitter-provenanced path-history structures. They superpose without scattering and have no freely specifiable state apart from transmitter histories. This determines where and when a wake is received. It does not yet assign three transported quantities
 
 $$
 E_{\mathrm{wake}}[\mathcal H_T],
@@ -153,11 +153,11 @@ D\mathcal C[\mathcal H_T]
 =0.
 $$
 
-Here $D\mathcal C$ means the first-order change in the proposed account when the whole retained history is advanced. The acceleration law supplies the direction in which the state moves. It does not select a nontrivial solution $\mathcal C$, distinguish physical energy from another invariant, or prove a lower bound.
+Here $D\mathcal C$ means the first-order change in the candidate account when the whole retained history is advanced. The acceleration law supplies the direction in which the state moves. It does not select a nontrivial solution $\mathcal C$, distinguish physical energy from another invariant, or prove a lower bound.
 
-The current two-time action cannot supply this missing selection. Its complete variation depends on future receptions and does not reproduce the proposed past-history acceleration. Therefore its symmetry accounts are not conservation laws for the transmitter-side evolution.
+The current two-time action cannot supply this missing selection. Its complete variation depends on future receptions and does not reproduce the past-history acceleration. Therefore its symmetry accounts are not conservation laws for the transmitter-factor evolution.
 
-Claim classification: **derived promotion obstruction**. A causal action or a direct history construction that produces the proposed acceleration and three fixed, bounded accounts on the same state would close it.
+Claim classification: **derived promotion obstruction**. A causal action or a direct history construction that produces the current acceleration and three fixed, bounded accounts on the same state would close it.
 
 ## 5. Conservation cannot regularize coincident same-transmitter birth
 
@@ -184,14 +184,14 @@ Claim classification: **derived ordering of the two promotion obligations**. A f
 A non-circular conservation derivation needs all of the following from one Architrino-native construction:
 
 1. a fixed kinetic scalar and momentum map, or a fixed universal conversion rule, with compatibility for arbitrary acceleration direction;
-2. explicit wake account variables derived from source-provenanced emission data;
+2. explicit wake account variables derived from transmitter-provenanced emission data;
 3. a causal update for those variables through emission, propagation, reception, and finite-window boundary crossing;
 4. energy bounded below on the admitted state family;
 5. momentum and angular momentum transforming correctly under Euclidean translations and rotations;
 6. balance proved on general non-circular histories without defining any account from the residual it is meant to cancel;
 7. the same positive widths or near-origin rule used by the finite same-transmitter transition.
 
-If all wake quantities remain deterministic functions of source history, the construction must display those functions explicitly. If reception changes the wake state independently of the source history, that is a change to the current wake ontology and requires an operator theory decision before canon or implementation work.
+If all wake quantities remain deterministic functions of transmitter history, the construction must display those functions explicitly. If reception changes the wake state independently of the transmitter history, that is a change to the current wake ontology and requires an operator theory decision before canon or implementation work.
 
 ## 7. Disposition
 

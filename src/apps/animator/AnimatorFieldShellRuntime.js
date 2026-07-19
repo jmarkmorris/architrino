@@ -84,18 +84,18 @@ export function getAnimatorFieldShellSign(shell = {}, dataset = {}) {
   if (explicitSign !== 0) {
     return Math.sign(explicitSign);
   }
-  const emitterId = normalizeString(shell.emitterId ?? shell.emitter);
-  if (!emitterId) {
+  const transmitterId = normalizeString(shell.transmitterId ?? shell.transmitter);
+  if (!transmitterId) {
     return 0;
   }
   const particle = Array.isArray(dataset?.particles)
-    ? dataset.particles.find((candidate) => normalizeString(candidate?.id) === emitterId)
+    ? dataset.particles.find((candidate) => normalizeString(candidate?.id) === transmitterId)
     : null;
   const particleSign = normalizeNumber(particle?.polarity ?? particle?.sign ?? particle?.q, 0);
   return particleSign === 0 ? 0 : Math.sign(particleSign);
 }
 
-export function getAnimatorFieldShellEmitterPath(fieldShell = {}, dataset = {}, paths = [], options = {}) {
+export function getAnimatorFieldShellTransmitterPath(fieldShell = {}, dataset = {}, paths = [], options = {}) {
   const pathList = Array.isArray(paths) ? paths.filter(Boolean) : [];
   if (!pathList.length) {
     return null;
@@ -117,9 +117,9 @@ export function getAnimatorFieldShellEmitterPath(fieldShell = {}, dataset = {}, 
     return null;
   }
 
-  const emitterId = normalizeString(fieldShell.emitterId ?? fieldShell.emitter);
-  const exactParticlePath = emitterId
-    ? candidates.find((path) => normalizeString(getPathParticleId(path)) === emitterId)
+  const transmitterId = normalizeString(fieldShell.transmitterId ?? fieldShell.transmitter);
+  const exactParticlePath = transmitterId
+    ? candidates.find((path) => normalizeString(getPathParticleId(path)) === transmitterId)
     : null;
   if (exactParticlePath) {
     return exactParticlePath;
@@ -141,7 +141,7 @@ export function getAnimatorFieldShellEmitterPath(fieldShell = {}, dataset = {}, 
     if (signMatches.length === 1) {
       return signMatches[0];
     }
-    if (signMatches.length > 1 && emitterId) {
+    if (signMatches.length > 1 && transmitterId) {
       const sameSignParticleIds = Array.isArray(dataset?.particles)
         ? dataset.particles
             .filter((particle) => {
@@ -153,16 +153,16 @@ export function getAnimatorFieldShellEmitterPath(fieldShell = {}, dataset = {}, 
             })
             .map((particle) => normalizeString(particle?.id))
         : [];
-      const signIndex = sameSignParticleIds.indexOf(emitterId);
+      const signIndex = sameSignParticleIds.indexOf(transmitterId);
       if (signIndex >= 0) {
         return signMatches[signIndex % signMatches.length] ?? signMatches[0];
       }
     }
   }
 
-  if (emitterId && Array.isArray(dataset?.particles)) {
+  if (transmitterId && Array.isArray(dataset?.particles)) {
     const particleIndex = dataset.particles.findIndex(
-      (particle) => normalizeString(particle?.id) === emitterId
+      (particle) => normalizeString(particle?.id) === transmitterId
     );
     if (particleIndex >= 0) {
       return candidates[particleIndex % candidates.length] ?? null;
@@ -175,19 +175,19 @@ export function getAnimatorFieldShellEmitterPath(fieldShell = {}, dataset = {}, 
 export function createAnimatorFieldShellInstance(baseShell = {}, instance = {}) {
   const instanceId = normalizeString(instance.id, "instance");
   const baseId = normalizeString(baseShell.id, "field_shell");
-  const emitterId = normalizeString(instance.emitterId, baseShell.emitterId ?? baseShell.emitter);
+  const transmitterId = normalizeString(instance.transmitterId, baseShell.transmitterId ?? baseShell.transmitter);
   const sign = normalizeNumber(instance.sign, getAnimatorFieldShellSign(baseShell));
   return {
     ...baseShell,
     id: `${baseId}_${instanceId}`,
-    emitterId,
+    transmitterId,
     emissionPosition: normalizeVector(instance.emissionPosition ?? baseShell.emissionPosition ?? baseShell.position),
     sign,
     metadata: {
       ...(baseShell.metadata && typeof baseShell.metadata === "object" ? baseShell.metadata : {}),
       ...(instance.metadata && typeof instance.metadata === "object" ? instance.metadata : {}),
-      sourceFieldShellId: baseId,
-      sourceEmitterId: normalizeString(baseShell.emitterId ?? baseShell.emitter),
+      baseFieldShellId: baseId,
+      baseTransmitterId: normalizeString(baseShell.transmitterId ?? baseShell.transmitter),
       fixedEmissionPosition: true,
     },
   };

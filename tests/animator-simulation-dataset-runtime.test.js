@@ -33,7 +33,7 @@ test("animator simulation dataset normalizer preserves step-1 contract fields", 
     frames: [{ t: 0, particles: [{ id: "e0", position: [-1, 0], velocity: [1, 0] }] }],
     fieldShells: [
       {
-        emitter: "e0",
+        transmitter: "e0",
         tEmit: 0,
         t: 1,
         radius: 1,
@@ -44,7 +44,7 @@ test("animator simulation dataset normalizer preserves step-1 contract fields", 
     ],
     delayedHits: [
       {
-        emitter: "e0",
+        transmitter: "e0",
         receiver: "p0",
         t: 1,
         tEmit: 0,
@@ -57,7 +57,7 @@ test("animator simulation dataset normalizer preserves step-1 contract fields", 
   assert.equal(normalized.simulation.mode, "planar-2d");
   assert.equal(normalized.particles[0].polarity, -1);
   assert.deepEqual(normalized.frames[0].particles[0].position, [-1, 0, 0]);
-  assert.equal(normalized.fieldShells[0].emitterId, "e0");
+  assert.equal(normalized.fieldShells[0].transmitterId, "e0");
   assert.equal(normalized.fieldShells[0].fieldSpeed, 1);
   assert.equal(normalized.fieldShells[0].style.opacity, 0.12);
   assert.equal(normalized.fieldShells[0].metadata.sourceFrameIndex, 0);

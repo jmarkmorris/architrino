@@ -28,7 +28,7 @@ The input history is the initial condition for the delayed system. It is not per
 
 At an accepted receiver time $T_n$, EOM must:
 
-1. read each source path only from retained history available at $T_n$;
+1. read each transmitter path only from retained history available at $T_n$;
 2. continue known roots where their chart remains valid, independently scan for new or missed branches, solve the causal-root condition for every ordered receiver-transmitter pair, and certify that every admitted active root was enumerated;
 3. evaluate the canonical receiver-side-factor Master EOM using the same root ledger;
 4. advance the coupled state to a candidate $T_{n+1}$;
@@ -86,7 +86,7 @@ EOM should support:
 - dense output only as interpolation over accepted EOM states, never as a replacement for integration;
 - convergence runs over a declared timestep and rate-hierarchy ladder.
 
-Multirate execution must preserve one causal absolute-time ledger. At a receiver event $T$, every source sample at an emission time $T_{\mathrm{em}}$ must come from accepted retained history or from a controlled interpolant over accepted history. Predictor states may participate in an implicit correction iteration, but they do not become retained source history until the coupled step is accepted.
+Multirate execution must preserve one causal absolute-time ledger. At a receiver event $T$, every transmitter sample at an emission time $T_{\mathrm{em}}$ must come from accepted retained history or from a controlled interpolant over accepted history. Predictor states may participate in an implicit correction iteration, but they do not become retained transmitter history until the coupled step is accepted.
 
 There are two distinct slow-sector strategies:
 
@@ -159,7 +159,7 @@ The CPU design should make independent ordered-pair root searches and branch eva
 
 Required GPU investigation includes:
 
-- batched source-history interpolation;
+- batched transmitter-history interpolation;
 - causal residual evaluation over large candidate sets;
 - root-bracket detection and refinement kernels;
 - per-root branch-strength and acceleration evaluation;
@@ -167,7 +167,7 @@ Required GPU investigation includes:
 - deterministic or reproducible receiver reductions;
 - resident hot-history/state layouts that minimize host-device transfer;
 - overlap of CPU event/control work with GPU numeric kernels;
-- multi-GPU receiver, source, history-chunk, or spatial-domain partitioning;
+- multi-GPU receiver, transmitter, history-chunk, or spatial-domain partitioning;
 - transfer, synchronization, branch-divergence, occupancy, and accelerator-memory measurements.
 
 A GPU result is not authoritative because it is faster. It must pass the independent oracle, cross-backend convergence, root-count equality or justified bounded differences, and the declared precision budget. Hardware-dependent reduced precision must be explicit.

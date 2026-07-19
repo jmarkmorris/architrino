@@ -9,8 +9,7 @@ chunks returned `engine_exception` with the same diagnostic:
 search, acceleration reconstruction, coupled correction, publication, or
 $C_B$ extraction.
 
-**Claim grade: measured.** The direct falsifier is any run record in
-[`evidence/parallel-stream-pilot-2026-07/runs/`](evidence/parallel-stream-pilot-2026-07/runs/)
+**Claim grade: measured.** The direct falsifier is any run record in `runs/`
 showing an accepted step or a different diagnostic; none does.
 
 The PILOT coefficient interval is therefore
@@ -44,7 +43,7 @@ profile inside the declared resource envelope.
 ## Frozen scope and evidence role
 
 The pilot consumed the equations, six half-width allocations, and pass logic
-in [`analysis-parallel-stream-simulation-spec.md`](analysis-parallel-stream-simulation-spec.md)
+in [`analysis-parallel-stream-simulation-spec.md`](../../analysis-parallel-stream-simulation-spec.md)
 without changing them after output. The allocations remained
 
 | P5A error row | Maximum half-width |
@@ -96,8 +95,8 @@ The EOM solver rebuilt successfully before the pilot.
 | Host | MacBook Air `Mac15,13`, Apple M3, 8 cores, 24 GB |
 
 The exact commands and hashes are in
-[`build-provenance.json`](evidence/parallel-stream-pilot-2026-07/build-provenance.json)
-and [`pilot-instrument-lock.json`](evidence/parallel-stream-pilot-2026-07/pilot-instrument-lock.json).
+[`build-provenance.json`](build-provenance.json)
+and [`pilot-instrument-lock.json`](pilot-instrument-lock.json).
 No git command was used.
 
 **Claim grade: measured.** The falsifiers are the stored executable hash,
@@ -108,7 +107,7 @@ binary timestamp, or source timestamps disagreeing with this table.
 The failure is an input-binding rejection, not a root, history, geometry, or
 physics result. The frozen pilot budget has schema
 `parallel_stream_pilot_certified_budget/v0`. The live validator in
-[`CoupledEvolution.cpp`](../../../src/eom/src/CoupledEvolution.cpp) accepts a
+[`CoupledEvolution.cpp`](../../../../../src/eom/src/CoupledEvolution.cpp) accepts a
 nonempty certified budget only when its schema equals
 `borg_certified_budget/v1`; otherwise it throws the diagnostic returned in all
 13 records. That check occurs before the engine starts the timed scientific
@@ -210,7 +209,7 @@ because none executed. Geometry, path count, or pair count is not substituted
 for a profile.
 
 **Claim grade: measured.** The falsifier is any nonzero engine phase counter or
-an accepted run in [`pilot-profile.json`](evidence/parallel-stream-pilot-2026-07/pilot-profile.json).
+an accepted run in [`pilot-profile.json`](pilot-profile.json).
 
 ## Full-matrix feasibility
 
@@ -243,21 +242,21 @@ certificates, integration buffers, and output.
 cost.** Its falsifier is a measured P5A execution path that avoids materialized
 pair storage or demonstrates a lower memory footprint while retaining complete
 ordered-pair evidence. The supporting calculation is in
-[`feasibility-bound.json`](evidence/parallel-stream-pilot-2026-07/feasibility-bound.json).
+[`feasibility-bound.json`](feasibility-bound.json).
 
 The feasibility answer remains **NO**. The declared $0.10$ width is unchanged.
 Scale selection remains an operator decision and was not made here.
 
 ## Evidence inventory
 
-- [`pilot-instrument-manifest.json`](evidence/parallel-stream-pilot-2026-07/pilot-instrument-manifest.json): frozen cases, parameters, budgets, equations, and allocations.
-- [`pilot-instrument-lock.json`](evidence/parallel-stream-pilot-2026-07/pilot-instrument-lock.json): executable and input hashes fixed before output.
-- [`build-provenance.json`](evidence/parallel-stream-pilot-2026-07/build-provenance.json): build times, commands, host, and artifact hashes.
-- [`runs/`](evidence/parallel-stream-pilot-2026-07/runs/): all 13 fail-closed run records.
-- [`pilot-contract-compliance.json`](evidence/parallel-stream-pilot-2026-07/pilot-contract-compliance.json): machine-readable contract summary.
-- [`pilot-interval-record.json`](evidence/parallel-stream-pilot-2026-07/pilot-interval-record.json): interval rows and feasibility calculation.
-- [`pilot-profile.json`](evidence/parallel-stream-pilot-2026-07/pilot-profile.json): timer, counter, path, pair, and storage attribution.
-- [`feasibility-bound.json`](evidence/parallel-stream-pilot-2026-07/feasibility-bound.json): required tail extent and current-architecture memory projection.
+- [`pilot-instrument-manifest.json`](pilot-instrument-manifest.json): frozen cases, parameters, budgets, equations, and allocations.
+- [`pilot-instrument-lock.json`](pilot-instrument-lock.json): executable and input hashes fixed before output.
+- [`build-provenance.json`](build-provenance.json): build times, commands, host, and artifact hashes.
+- `runs/`: all 13 fail-closed run records.
+- [`pilot-contract-compliance.json`](pilot-contract-compliance.json): machine-readable contract summary.
+- [`pilot-interval-record.json`](pilot-interval-record.json): interval rows and feasibility calculation.
+- [`pilot-profile.json`](pilot-profile.json): timer, counter, path, pair, and storage attribution.
+- [`feasibility-bound.json`](feasibility-bound.json): required tail extent and current-architecture memory projection.
 
 ## Disposition
 
@@ -270,7 +269,7 @@ canonical null.
 Thread state: DONE
 Mode: edit-batch
 Authority used: edited only the authorized pilot report and evidence directory
-Files changed: `reference/priorities/app-eom/analysis-parallel-stream-pilot-report.md`; `reference/priorities/app-eom/evidence/parallel-stream-pilot-2026-07/`
+Files changed: `reference/priorities/app-eom/evidence/parallel-stream-pilot-2026-07/`
 Validation: passed JSON parsing, SHA-256 inventory, frozen-manifest lock, file-scope audit, and runner exit with no live exec session
 Closure goal: choose whether to authorize a new predeclared P5A budget/evidence binding; do not rerun this frozen pilot
 Op next action: separate operator decision required before any new instrument or scale selection

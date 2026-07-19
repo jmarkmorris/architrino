@@ -1,12 +1,12 @@
 import {
-  createMovingCircularSameSourceRootRequest as createMovingCircularSameSourceRootRequestKernel,
-  createMovingCircularSourceLinearizedRootRequests as createMovingCircularSourceLinearizedRootRequestsKernel,
-  createMovingCircularSourceRootRequest as createMovingCircularSourceRootRequestKernel,
+  createMovingCircularSameTransmitterRootRequest as createMovingCircularSameTransmitterRootRequestKernel,
+  createMovingCircularTransmitterLinearizedRootRequests as createMovingCircularTransmitterLinearizedRootRequestsKernel,
+  createMovingCircularTransmitterRootRequest as createMovingCircularTransmitterRootRequestKernel,
   evaluateLinearHistoryPoint as evaluateLinearHistoryPointKernel,
-  evaluateMovingCircularSourceHistory as evaluateMovingCircularSourceHistoryKernel,
-  evaluateMovingCircularSourcePhase as evaluateMovingCircularSourcePhaseKernel,
-  solveMovingCircularSameSourceCausalRoots as solveMovingCircularSameSourceCausalRootsKernel,
-  solveMovingCircularSourceCausalRoots as solveMovingCircularSourceCausalRootsKernel,
+  evaluateMovingCircularTransmitterHistory as evaluateMovingCircularTransmitterHistoryKernel,
+  evaluateMovingCircularTransmitterPhase as evaluateMovingCircularTransmitterPhaseKernel,
+  solveMovingCircularSameTransmitterCausalRoots as solveMovingCircularSameTransmitterCausalRootsKernel,
+  solveMovingCircularTransmitterCausalRoots as solveMovingCircularTransmitterCausalRootsKernel,
 } from "./PrescribedOrbitCausalRoots.mjs";
 
 export const PRESCRIBED_PATH_ANALYSIS_API_VERSION = "prescribed-path-analysis.v1";
@@ -34,8 +34,8 @@ function labelRecord(record = {}) {
   return { ...record, ...evidenceLabel() };
 }
 
-function labelRows(rows) {
-  return Array.isArray(rows) ? rows.map((row) => labelRecord(row)) : [];
+function labelRecords(records) {
+  return Array.isArray(records) ? records.map((record) => labelRecord(record)) : [];
 }
 
 function finiteNumber(value, fallback = 0) {
@@ -93,52 +93,52 @@ function createStatus(code = "ok", severity = "ok", message = "prescribed-path a
   return labelRecord({ code, severity, message });
 }
 
-export function evaluateMovingCircularSourcePhase(source = {}, timeSeconds = 0) {
-  return labelRecord(evaluateMovingCircularSourcePhaseKernel(source, timeSeconds));
+export function evaluateMovingCircularTransmitterPhase(transmitter = {}, timeSeconds = 0) {
+  return labelRecord(evaluateMovingCircularTransmitterPhaseKernel(transmitter, timeSeconds));
 }
 
-export function evaluateMovingCircularSourceHistory(source = {}, timeSeconds = 0) {
-  return labelRecord(evaluateMovingCircularSourceHistoryKernel(source, timeSeconds));
+export function evaluateMovingCircularTransmitterHistory(transmitter = {}, timeSeconds = 0) {
+  return labelRecord(evaluateMovingCircularTransmitterHistoryKernel(transmitter, timeSeconds));
 }
 
 export function evaluateLinearHistoryPoint(segment = {}, timeSeconds = 0) {
   return labelRecord(evaluateLinearHistoryPointKernel(segment, timeSeconds));
 }
 
-export function createMovingCircularSourceRootRequest(request = {}) {
-  return labelRecord(createMovingCircularSourceRootRequestKernel(request));
+export function createMovingCircularTransmitterRootRequest(request = {}) {
+  return labelRecord(createMovingCircularTransmitterRootRequestKernel(request));
 }
 
-export function createMovingCircularSameSourceRootRequest(request = {}) {
-  return labelRecord(createMovingCircularSameSourceRootRequestKernel(request));
+export function createMovingCircularSameTransmitterRootRequest(request = {}) {
+  return labelRecord(createMovingCircularSameTransmitterRootRequestKernel(request));
 }
 
-export function createMovingCircularSourceLinearizedRootRequests(request = {}) {
-  return labelRows(createMovingCircularSourceLinearizedRootRequestsKernel(request));
+export function createMovingCircularTransmitterLinearizedRootRequests(request = {}) {
+  return labelRecords(createMovingCircularTransmitterLinearizedRootRequestsKernel(request));
 }
 
-export function solveMovingCircularSourceCausalRoots(request = {}) {
-  const response = solveMovingCircularSourceCausalRootsKernel(request);
+export function solveMovingCircularTransmitterCausalRoots(request = {}) {
+  const response = solveMovingCircularTransmitterCausalRootsKernel(request);
   return labelRecord({
     ...response,
     schema: "prescribed-path-analysis/moving-circular-transmitter-causal-roots.v2",
-    roots: labelRows(response.roots),
+    roots: labelRecords(response.roots),
     status: labelRecord(response.status ?? createStatus()),
   });
 }
 
-export function solveMovingCircularSameSourceCausalRoots(request = {}) {
-  const response = solveMovingCircularSameSourceCausalRootsKernel(request);
+export function solveMovingCircularSameTransmitterCausalRoots(request = {}) {
+  const response = solveMovingCircularSameTransmitterCausalRootsKernel(request);
   return labelRecord({
     ...response,
     schema: "prescribed-path-analysis/moving-circular-same-transmitter-causal-roots.v2",
-    roots: labelRows(response.roots),
+    roots: labelRecords(response.roots),
     status: labelRecord(response.status ?? createStatus()),
   });
 }
 
-function causalFactorFields(direction, sourceVelocity, receiverVelocity, signalSpeed) {
-  const transmitterRadialSpeedAtEmission = dot(sourceVelocity, direction);
+function causalFactorFields(direction, transmitterVelocity, receiverVelocity, signalSpeed) {
+  const transmitterRadialSpeedAtEmission = dot(transmitterVelocity, direction);
   const receiverRadialSpeedAtReception = dot(receiverVelocity, direction);
   const transmitterFactor = signalSpeed - transmitterRadialSpeedAtEmission;
   const receiverFactor = signalSpeed - receiverRadialSpeedAtReception;
@@ -167,13 +167,13 @@ function causalFactorFields(direction, sourceVelocity, receiverVelocity, signalS
 function linearResidual(request, emissionTime) {
   const hitTime = finiteNumber(request.hitTime);
   const signalSpeed = positiveNumber(request.signalSpeed, 1);
-  const sourcePoint = evaluateLinearHistoryPointKernel(request.source, emissionTime);
+  const transmitterPoint = evaluateLinearHistoryPointKernel(request.transmitter, emissionTime);
   const receiverPoint = evaluateLinearHistoryPointKernel(request.receiver, hitTime);
-  const delta = subtract(receiverPoint, sourcePoint);
+  const delta = subtract(receiverPoint, transmitterPoint);
   const distance = magnitude(delta);
   return {
     residual: distance - signalSpeed * (hitTime - emissionTime),
-    sourcePoint,
+    transmitterPoint,
     receiverPoint,
     delta,
     distance,
@@ -184,13 +184,13 @@ function buildLinearRoot(request, emissionTime, rootId, bracketStart, bracketEnd
   const info = linearResidual(request, emissionTime);
   const distance = Math.max(EPSILON, info.distance);
   const direction = scale(info.delta, 1 / distance);
-  const sourceVelocity = vector(request.source?.velocity);
+  const transmitterVelocity = vector(request.transmitter?.velocity);
   const receiverVelocity = vector(request.receiver?.velocity);
   const signalSpeed = positiveNumber(request.signalSpeed, 1);
-  const normal = causalFactorFields(direction, sourceVelocity, receiverVelocity, signalSpeed);
+  const normal = causalFactorFields(direction, transmitterVelocity, receiverVelocity, signalSpeed);
   return labelRecord({
     receiverId: request.receiverId ?? "receiver",
-    sourceId: request.sourceId ?? "source",
+    transmitterId: request.transmitterId ?? "transmitter",
     rootId,
     rootKind: "partner",
     statusCode: Math.abs(normal.transmitterFactor) <= positiveNumber(request.rootTolerance, 1e-12)
@@ -209,9 +209,9 @@ function buildLinearRoot(request, emissionTime, rootId, bracketStart, bracketEnd
     bracketStart,
     bracketEnd,
     iterationCount: iterations,
-    sourcePoint: info.sourcePoint,
+    transmitterPoint: info.transmitterPoint,
     receiverPoint: info.receiverPoint,
-    sourceVelocity,
+    transmitterVelocity,
   });
 }
 
@@ -220,9 +220,9 @@ function duplicateRoot(roots, emissionTime, tolerance) {
 }
 
 export function solveLinearPrescribedPathCausalRoots(request = {}) {
-  const lower = finiteNumber(request.source?.startTime);
+  const lower = finiteNumber(request.transmitter?.startTime);
   const upper = Math.min(
-    finiteNumber(request.source?.endTime, finiteNumber(request.hitTime)),
+    finiteNumber(request.transmitter?.endTime, finiteNumber(request.hitTime)),
     finiteNumber(request.hitTime)
   );
   const tolerance = positiveNumber(request.rootTolerance, 1e-12);
@@ -310,22 +310,22 @@ export function solveLinearPrescribedPathCausalRoots(request = {}) {
   });
 }
 
-export function solveCircularSourceRootsAndHits(request = {}) {
-  const response = solveMovingCircularSourceCausalRoots({
+export function solveCircularTransmitterRootsAndHits(request = {}) {
+  const response = solveMovingCircularTransmitterCausalRoots({
     ...request,
-    source: {
-      ...request.source,
-      centerAtEpoch: request.source?.centerAtEpoch ?? request.source?.center,
-      centerVelocity: request.source?.centerVelocity ?? { x: 0, y: 0, z: 0 },
-      angularAcceleration: request.source?.angularAcceleration ?? 0,
+    transmitter: {
+      ...request.transmitter,
+      centerAtEpoch: request.transmitter?.centerAtEpoch ?? request.transmitter?.center,
+      centerVelocity: request.transmitter?.centerVelocity ?? { x: 0, y: 0, z: 0 },
+      angularAcceleration: request.transmitter?.angularAcceleration ?? 0,
     },
-    sourceStartTime: request.sourceStartTime ?? request.source?.startTime,
-    sourceEndTime: request.sourceEndTime ?? request.source?.endTime,
+    transmitterStartTime: request.transmitterStartTime ?? request.transmitter?.startTime,
+    transmitterEndTime: request.transmitterEndTime ?? request.transmitter?.endTime,
   });
   const hits = response.roots.map((root, eventId) => labelRecord({
     eventId,
     receiverId: root.receiverId ?? request.receiverId ?? "receiver",
-    sourceId: root.sourceId ?? request.sourceId ?? "source",
+    transmitterId: root.transmitterId ?? request.transmitterId ?? "transmitter",
     rootId: root.rootId,
     emissionTime: root.emissionTime,
     hitTime: root.hitTime,
@@ -333,13 +333,13 @@ export function solveCircularSourceRootsAndHits(request = {}) {
     distance: root.distance,
     jacobian: root.jacobian,
     strength: root.accelerationWeight,
-    emissionPoint: root.sourcePoint,
-    sourcePoint: root.sourcePoint,
+    emissionPoint: root.transmitterPoint,
+    transmitterPoint: root.transmitterPoint,
     receiverPoint: root.receiverPoint,
-    unitDirection: magnitude(subtract(root.receiverPoint, root.sourcePoint)) > EPSILON
+    unitDirection: magnitude(subtract(root.receiverPoint, root.transmitterPoint)) > EPSILON
       ? scale(
-          subtract(root.receiverPoint, root.sourcePoint),
-          1 / magnitude(subtract(root.receiverPoint, root.sourcePoint))
+          subtract(root.receiverPoint, root.transmitterPoint),
+          1 / magnitude(subtract(root.receiverPoint, root.transmitterPoint))
         )
       : { x: 0, y: 0, z: 0 },
     transmitterRadialSpeedAtEmission: root.transmitterRadialSpeedAtEmission,
@@ -401,7 +401,7 @@ export function computeMovingCircularObserverField(request = {}) {
   const branches = Array.isArray(request.branches) ? request.branches : [];
   const contributions = branches.map((branch, branchIndex) => {
     const direction = vector(branch.direction);
-    const sourceVelocity = vector(branch.sourceVelocity);
+    const transmitterVelocity = vector(branch.transmitterVelocity);
     const distance = Math.max(EPSILON, finiteNumber(branch.distance));
     const normal = resolveCausalFactorRecord(branch, signalSpeed);
     const electric = scale(
@@ -416,14 +416,14 @@ export function computeMovingCircularObserverField(request = {}) {
       jacobian: normal.transmitterFactor,
       jacobianAbs: Math.abs(normal.transmitterFactor),
       ...normal,
-      transmitterRadialSpeedAtEmission: finiteNumber(branch.transmitterRadialSpeedAtEmission, dot(sourceVelocity, direction)),
+      transmitterRadialSpeedAtEmission: finiteNumber(branch.transmitterRadialSpeedAtEmission, dot(transmitterVelocity, direction)),
       receiverRadialSpeedAtReception: finiteNumber(branch.receiverRadialSpeedAtReception),
       receiverCrossingRatio: finiteNumber(branch.receiverCrossingRatio),
       causalFactorStatusCode: Number.isFinite(Number(branch.causalFactorStatusCode))
         ? Number(branch.causalFactorStatusCode)
         : normal.evidenceStatus === "ok" ? STATUS_OK : -1,
       causalFactorEvidenceStatus: normal.evidenceStatus,
-      sourceSpeedRatio: magnitude(sourceVelocity) / signalSpeed,
+      transmitterSpeedRatio: magnitude(transmitterVelocity) / signalSpeed,
       receiverAcceleration: electric,
       electric,
       comparisonB: scale(cross({ x: 1, y: 0, z: 0 }, electric), 1 / signalSpeed),
@@ -446,12 +446,12 @@ export function computeMovingCircularObserverField(request = {}) {
         contributions.find((row) => row.causalFactorEvidenceStatus !== "ok")
           ?.causalFactorEvidenceStatus ?? "causal_factor_record_missing",
         "warn",
-        "prescribed observer-field branches are missing receiver-side root-playback rows"
+        "prescribed observer-field branches are missing receiver-side root-playback records"
       )
     : createStatus("ok", "ok", "prescribed moving-circular observer field computed");
   return labelRecord({
     schema: "prescribed-path-analysis/moving-circular-observer-field.v2",
-    sourceHistoryKind: "moving-circular-transmitter",
+    transmitterHistoryKind: "moving-circular-transmitter",
     branchCount: branches.length,
     contributionCount: contributions.length,
     contributions,
@@ -460,8 +460,8 @@ export function computeMovingCircularObserverField(request = {}) {
       (maximum, contribution) => Math.max(maximum, contribution.delaySolveGap),
       0
     ),
-    maxSourceSpeedRatio: contributions.reduce(
-      (maximum, contribution) => Math.max(maximum, contribution.sourceSpeedRatio),
+    maxTransmitterSpeedRatio: contributions.reduce(
+      (maximum, contribution) => Math.max(maximum, contribution.transmitterSpeedRatio),
       0
     ),
     jacobianAbsMin: contributions.length > 0
@@ -473,7 +473,7 @@ export function computeMovingCircularObserverField(request = {}) {
         contribution.delaySolveGap > finiteNumber(request.unstableGapThreshold, 0.05) ||
         contribution.jacobianAbs <= Math.max(EPSILON, finiteNumber(request.jacobianFloor, 1e-4))
     ).length,
-    nearestSourceDistance: contributions.length > 0
+    nearestTransmitterDistance: contributions.length > 0
       ? Math.min(...contributions.map((contribution) => contribution.distance))
       : 0,
     receiverAcceleration: electric,
@@ -486,17 +486,17 @@ export function computeMovingCircularObserverField(request = {}) {
 }
 
 function createObserverFieldBranch(root, rootResponse, requestIndex) {
-  const sourcePoint = vector(root.sourcePoint);
+  const transmitterPoint = vector(root.transmitterPoint);
   const receiverPoint = vector(root.receiverPoint);
-  const delta = subtract(receiverPoint, sourcePoint);
+  const delta = subtract(receiverPoint, transmitterPoint);
   const deltaDistance = magnitude(delta);
   const distance = Math.max(EPSILON, finiteNumber(root.distance, deltaDistance));
   return labelRecord({
-    sourceRootRequestIndex: requestIndex,
-    sourceRef: rootResponse.sourceRef ?? rootResponse.request?.sourceRef ?? null,
+    transmitterRootRequestIndex: requestIndex,
+    transmitterRef: rootResponse.transmitterRef ?? rootResponse.request?.transmitterRef ?? null,
     chargeSign: finiteNumber(rootResponse.branchChargeSign),
     direction: deltaDistance > EPSILON ? scale(delta, 1 / deltaDistance) : { x: 1, y: 0, z: 0 },
-    sourceVelocity: vector(root.sourceVelocity),
+    transmitterVelocity: vector(root.transmitterVelocity),
     distance,
     residual: root.residual,
     delay: root.delay,
@@ -508,40 +508,40 @@ function createObserverFieldBranch(root, rootResponse, requestIndex) {
     receiverCrossingRatio: root.receiverCrossingRatio,
     rootPlayback: root.rootPlayback,
     causalFactorStatusCode: root.causalFactorStatusCode,
-    sourceHistoryKind: root.sourceHistoryKind,
+    transmitterHistoryKind: root.transmitterHistoryKind,
   });
 }
 
 export function solveMovingCircularAbsoluteHistoryRun(request = {}) {
-  const sourceRootRequests = Array.isArray(request.sourceRootRequests)
-    ? request.sourceRootRequests
+  const transmitterRootRequests = Array.isArray(request.transmitterRootRequests)
+    ? request.transmitterRootRequests
     : [];
-  const sourceRootResponses = sourceRootRequests.map((sourceRootRequest, requestIndex) =>
+  const transmitterRootResponses = transmitterRootRequests.map((transmitterRootRequest, requestIndex) =>
     labelRecord({
-      ...solveMovingCircularSourceCausalRoots(sourceRootRequest),
+      ...solveMovingCircularTransmitterCausalRoots(transmitterRootRequest),
       requestIndex,
-      sourceRef: sourceRootRequest.sourceRef ?? null,
-      branchChargeSign: finiteNumber(sourceRootRequest.branchChargeSign),
+      transmitterRef: transmitterRootRequest.transmitterRef ?? null,
+      branchChargeSign: finiteNumber(transmitterRootRequest.branchChargeSign),
     })
   );
-  const roots = sourceRootResponses.flatMap((response, requestIndex) =>
-    response.roots.map((root, sourceRootIndex) => labelRecord({
+  const roots = transmitterRootResponses.flatMap((response, requestIndex) =>
+    response.roots.map((root, transmitterRootIndex) => labelRecord({
       ...root,
-      sourceRootRequestIndex: requestIndex,
-      sourceRootIndex,
-      sourceRef: response.sourceRef,
+      transmitterRootRequestIndex: requestIndex,
+      transmitterRootIndex,
+      transmitterRef: response.transmitterRef,
       branchChargeSign: response.branchChargeSign,
     }))
   );
   const branches = roots.map((root) =>
-    createObserverFieldBranch(root, sourceRootResponses[root.sourceRootRequestIndex], root.sourceRootRequestIndex)
+    createObserverFieldBranch(root, transmitterRootResponses[root.transmitterRootRequestIndex], root.transmitterRootRequestIndex)
   );
   const observerField = computeMovingCircularObserverField({
     ...(request.observerFieldRequest ?? {}),
     signalSpeed:
       request.observerFieldRequest?.signalSpeed ??
       request.signalSpeed ??
-      sourceRootResponses[0]?.request?.signalSpeed ??
+      transmitterRootResponses[0]?.request?.signalSpeed ??
       1,
     branches,
   });
@@ -552,50 +552,50 @@ export function solveMovingCircularAbsoluteHistoryRun(request = {}) {
   );
   return labelRecord({
     schema: "prescribed-path-analysis/moving-circular-absolute-history-run.v2",
-    sourceHistoryProvider: request.sourceHistoryProvider ?? null,
+    transmitterHistoryProvider: request.transmitterHistoryProvider ?? null,
     analysisBoundary: request.solverBoundary ?? request.analysisBoundary ?? null,
-    sourceRootRequests: labelRows(sourceRootRequests),
-    sourceRootResponses,
+    transmitterRootRequests: labelRecords(transmitterRootRequests),
+    transmitterRootResponses,
     roots,
     branches,
     observerField,
     rootCount: roots.length,
-    sourceRootRequestCount: sourceRootRequests.length,
-    unresolvedSourceCount: sourceRootResponses.filter((response) => response.roots.length === 0).length,
+    transmitterRootRequestCount: transmitterRootRequests.length,
+    unresolvedTransmitterCount: transmitterRootResponses.filter((response) => response.roots.length === 0).length,
     rowProductionOwner: PRESCRIBED_PATH_ANALYSIS_ID,
     status,
-    statuses: [status, ...sourceRootResponses.flatMap((response) => response.statuses ?? [])],
+    statuses: [status, ...transmitterRootResponses.flatMap((response) => response.statuses ?? [])],
   });
 }
 
 export function computeDelayedPotential(request = {}, itemIndex = 0) {
-  const source = request.source ?? {};
+  const transmitter = request.transmitter ?? {};
   const samplePoint = vector(request.samplePoint);
   const observationTime = finiteNumber(request.observationTime);
   const fieldSpeed = Math.max(0.001, finiteNumber(request.fieldSpeed, 6));
   const softening = Math.max(0.0001, finiteNumber(request.softening, 0.08));
   const iterations = positiveInteger(request.iterations, 4);
-  let tau = magnitude(subtract(samplePoint, evaluateLinearHistoryPointKernel(source, observationTime))) /
+  let tau = magnitude(subtract(samplePoint, evaluateLinearHistoryPointKernel(transmitter, observationTime))) /
     fieldSpeed;
   for (let index = 0; index < iterations; index += 1) {
-    const emittedPosition = evaluateLinearHistoryPointKernel(source, observationTime - tau);
+    const emittedPosition = evaluateLinearHistoryPointKernel(transmitter, observationTime - tau);
     tau = magnitude(subtract(samplePoint, emittedPosition)) / fieldSpeed;
   }
   const emissionTime = observationTime - tau;
-  const emissionPoint = evaluateLinearHistoryPointKernel(source, emissionTime);
+  const emissionPoint = evaluateLinearHistoryPointKernel(transmitter, emissionTime);
   const displacement = subtract(samplePoint, emissionPoint);
   const distance = Math.max(0.0001, magnitude(displacement));
   let denominator = Math.sqrt(distance * distance + softening * softening);
   let kappa = 1;
   if (request.useCausalDenominator === true) {
     const direction = scale(displacement, 1 / distance);
-    kappa = 1 - dot(direction, vector(source.velocity)) / fieldSpeed;
+    kappa = 1 - dot(direction, vector(transmitter.velocity)) / fieldSpeed;
     denominator *= Math.max(0.08, Math.abs(kappa));
   }
   const potential = finiteNumber(request.normalization, 1) *
-    finiteNumber(request.sourceCharge, 1) /
+    finiteNumber(request.transmitterCharge, 1) /
     denominator;
-  let statusCode = emissionTime < finiteNumber(source.startTime) || emissionTime > finiteNumber(source.endTime)
+  let statusCode = emissionTime < finiteNumber(transmitter.startTime) || emissionTime > finiteNumber(transmitter.endTime)
     ? STATUS_INSUFFICIENT_HISTORY_DEPTH
     : STATUS_OK;
   if (![tau, emissionTime, distance, denominator, potential, kappa].every(Number.isFinite)) {
@@ -618,7 +618,7 @@ export function computeDelayedPotential(request = {}, itemIndex = 0) {
 }
 
 export function computeDelayedPotentials(requests = []) {
-  return labelRows(requests.map((request, index) => computeDelayedPotential(request, index)));
+  return labelRecords(requests.map((request, index) => computeDelayedPotential(request, index)));
 }
 
 function circularSelfHitResidual(angle, fieldSpeedRatio) {
@@ -719,7 +719,7 @@ export function solveCircularSelfHitSpan(request = {}, itemIndex = 0) {
 }
 
 export function solveCircularSelfHitSpans(requests = []) {
-  return labelRows(requests.map((request, index) => solveCircularSelfHitSpan(request, index)));
+  return labelRecords(requests.map((request, index) => solveCircularSelfHitSpan(request, index)));
 }
 
 function normalizedPhase(value) {
@@ -727,8 +727,8 @@ function normalizedPhase(value) {
   return phase < 0 ? phase + 1 : phase;
 }
 
-function signedPhaseDelta(sourcePhase, receiverPhase) {
-  let delta = receiverPhase - sourcePhase;
+function signedPhaseDelta(transmitterPhase, receiverPhase) {
+  let delta = receiverPhase - transmitterPhase;
   while (delta > 0.5) delta -= 1;
   while (delta < -0.5) delta += 1;
   return delta;
@@ -736,84 +736,84 @@ function signedPhaseDelta(sourcePhase, receiverPhase) {
 
 export function computePhaseAtHits(request = {}) {
   const roots = Array.isArray(request.roots) ? request.roots : [];
-  const sourceClock = request.sourceClock ?? {};
+  const transmitterClock = request.transmitterClock ?? {};
   const receiverClock = request.receiverClock ?? {};
   const metadata = Array.isArray(request.metadata) ? request.metadata : [];
-  const rows = roots.map((root, index) => {
-    const sourceCyclePosition =
-      (finiteNumber(root.emissionTime) - finiteNumber(sourceClock.epoch)) /
-        positiveNumber(sourceClock.period, 1) +
-      finiteNumber(sourceClock.phaseOffset);
+  const records = roots.map((root, index) => {
+    const transmitterCyclePosition =
+      (finiteNumber(root.emissionTime) - finiteNumber(transmitterClock.epoch)) /
+        positiveNumber(transmitterClock.period, 1) +
+      finiteNumber(transmitterClock.phaseOffset);
     const receiverCyclePosition =
       (finiteNumber(root.hitTime) - finiteNumber(receiverClock.epoch)) /
         positiveNumber(receiverClock.period, 1) +
       finiteNumber(receiverClock.phaseOffset);
-    const sourcePhase = normalizedPhase(sourceCyclePosition);
+    const transmitterPhase = normalizedPhase(transmitterCyclePosition);
     const receiverPhase = normalizedPhase(receiverCyclePosition);
-    const phaseDelta = signedPhaseDelta(sourcePhase, receiverPhase);
-    const rowMetadata = metadata[index] ?? {};
+    const phaseDelta = signedPhaseDelta(transmitterPhase, receiverPhase);
+    const recordMetadata = metadata[index] ?? {};
     return labelRecord({
       rootId: root.rootId ?? index,
       statusCode: root.statusCode ?? STATUS_OK,
-      sourceCycleIndex: Math.floor(sourceCyclePosition),
+      transmitterCycleIndex: Math.floor(transmitterCyclePosition),
       receiverCycleIndex: Math.floor(receiverCyclePosition),
       emissionTime: finiteNumber(root.emissionTime),
       hitTime: finiteNumber(root.hitTime),
-      sourcePhase,
+      transmitterPhase,
       receiverPhase,
       phaseDelta,
       phaseSpread: Math.abs(phaseDelta),
-      rootKind: rowMetadata.rootKind ?? 0,
-      sourceLayerCode: rowMetadata.sourceLayerCode ?? 0,
-      receiverLayerCode: rowMetadata.receiverLayerCode ?? 0,
-      sourceRoleCode: rowMetadata.sourceRoleCode ?? 0,
-      receiverRoleCode: rowMetadata.receiverRoleCode ?? 0,
-      sourceChargeSign: rowMetadata.sourceChargeSign ?? 0,
-      receiverChargeSign: rowMetadata.receiverChargeSign ?? 0,
-      stateFlags: rowMetadata.stateFlags ?? 0,
+      rootKind: recordMetadata.rootKind ?? 0,
+      transmitterLayerCode: recordMetadata.transmitterLayerCode ?? 0,
+      receiverLayerCode: recordMetadata.receiverLayerCode ?? 0,
+      transmitterRoleCode: recordMetadata.transmitterRoleCode ?? 0,
+      receiverRoleCode: recordMetadata.receiverRoleCode ?? 0,
+      transmitterChargeSign: recordMetadata.transmitterChargeSign ?? 0,
+      receiverChargeSign: recordMetadata.receiverChargeSign ?? 0,
+      stateFlags: recordMetadata.stateFlags ?? 0,
     });
   });
   const status = createStatus("ok", "ok", "prescribed phase-at-hit diagnostics computed");
-  return labelRecord({ rows, status, statuses: [status], buffers: [] });
+  return labelRecord({ records, status, statuses: [status], buffers: [] });
 }
 
 export function summarizePhaseAtHits(request = {}) {
-  const rows = Array.isArray(request.rows) ? request.rows : [];
-  const numericRange = (key) => rows.length > 0
+  const records = Array.isArray(request.records) ? request.records : [];
+  const numericRange = (key) => records.length > 0
     ? {
-        start: Math.min(...rows.map((row) => finiteNumber(row[key]))),
-        end: Math.max(...rows.map((row) => finiteNumber(row[key]))),
+        start: Math.min(...records.map((record) => finiteNumber(record[key]))),
+        end: Math.max(...records.map((record) => finiteNumber(record[key]))),
       }
     : { start: 0, end: 0 };
-  const numericMean = (key) => rows.length > 0
-    ? rows.reduce((sum, row) => sum + finiteNumber(row[key]), 0) / rows.length
+  const numericMean = (key) => records.length > 0
+    ? records.reduce((sum, record) => sum + finiteNumber(record[key]), 0) / records.length
     : 0;
-  const statusCounts = [...rows.reduce((counts, row) => {
-    const statusCode = row.statusCode ?? STATUS_OK;
+  const statusCounts = [...records.reduce((counts, record) => {
+    const statusCode = record.statusCode ?? STATUS_OK;
     counts.set(statusCode, (counts.get(statusCode) ?? 0) + 1);
     return counts;
   }, new Map()).entries()]
     .sort(([left], [right]) => left - right)
-    .map(([statusCode, rowCount]) => ({ statusCode, rowCount }));
+    .map(([statusCode, recordCount]) => ({ statusCode, recordCount }));
   const status = createStatus("ok", "ok", "prescribed phase diagnostics summarized");
   return labelRecord({
     summary: labelRecord({
       schema: "solver-phase-at-hit-summary.v1",
-      rowCount: rows.length,
+      recordCount: records.length,
       rootIdRange: numericRange("rootId"),
       statusCounts,
-      sourceCycleIndexRange: numericRange("sourceCycleIndex"),
+      transmitterCycleIndexRange: numericRange("transmitterCycleIndex"),
       receiverCycleIndexRange: numericRange("receiverCycleIndex"),
       emissionTimeRange: numericRange("emissionTime"),
       hitTimeRange: numericRange("hitTime"),
-      sourcePhaseRange: numericRange("sourcePhase"),
+      transmitterPhaseRange: numericRange("transmitterPhase"),
       receiverPhaseRange: numericRange("receiverPhase"),
       phaseDeltaRange: numericRange("phaseDelta"),
       phaseSpreadRange: numericRange("phaseSpread"),
       meanPhaseDelta: numericMean("phaseDelta"),
       meanPhaseSpread: numericMean("phaseSpread"),
-      maxPhaseSpread: rows.length > 0
-        ? Math.max(...rows.map((row) => finiteNumber(row.phaseSpread)))
+      maxPhaseSpread: records.length > 0
+        ? Math.max(...records.map((record) => finiteNumber(record.phaseSpread)))
         : 0,
     }),
     status,
@@ -842,7 +842,7 @@ export async function runPrescribedPathAnalysisRequest(request = {}) {
       runId,
       datasetId,
       roots: solved.roots,
-      hits: labelRows(solved.roots.map((root, eventId) => ({
+      hits: labelRecords(solved.roots.map((root, eventId) => ({
         eventId,
         rootId: root.rootId,
         emissionTime: root.emissionTime,
@@ -851,13 +851,13 @@ export async function runPrescribedPathAnalysisRequest(request = {}) {
         distance: root.distance,
         jacobian: root.jacobian,
         strength: root.accelerationWeight,
-        emissionPoint: root.sourcePoint,
-        sourcePoint: root.sourcePoint,
+        emissionPoint: root.transmitterPoint,
+        transmitterPoint: root.transmitterPoint,
         receiverPoint: root.receiverPoint,
-        unitDirection: magnitude(subtract(root.receiverPoint, root.sourcePoint)) > EPSILON
+        unitDirection: magnitude(subtract(root.receiverPoint, root.transmitterPoint)) > EPSILON
           ? scale(
-              subtract(root.receiverPoint, root.sourcePoint),
-              1 / magnitude(subtract(root.receiverPoint, root.sourcePoint))
+              subtract(root.receiverPoint, root.transmitterPoint),
+              1 / magnitude(subtract(root.receiverPoint, root.transmitterPoint))
             )
           : { x: 0, y: 0, z: 0 },
         transmitterRadialSpeedAtEmission: root.transmitterRadialSpeedAtEmission,
@@ -869,7 +869,7 @@ export async function runPrescribedPathAnalysisRequest(request = {}) {
         causalFactorStatusCode: root.causalFactorStatusCode,
         statusCode: root.statusCode,
       }))),
-      rootLedgerDetails: labelRows(solved.roots.map((root) => ({
+      rootLedgerDetails: labelRecords(solved.roots.map((root) => ({
         entryKind: 1,
         rootId: root.rootId,
         statusCode: root.statusCode,
@@ -882,11 +882,11 @@ export async function runPrescribedPathAnalysisRequest(request = {}) {
     });
   } else if (request.runKind === "phaseDiagnostics") {
     const phase = computePhaseAtHits(request.config?.phaseRequest ?? {});
-    const phaseSummary = summarizePhaseAtHits({ rows: phase.rows });
+    const phaseSummary = summarizePhaseAtHits({ records: phase.records });
     response = labelRecord({
       runId,
       datasetId,
-      phaseRows: phase.rows,
+      phaseRecords: phase.records,
       phaseSummary: phaseSummary.summary,
       status: phase.status,
       statuses: [...phase.statuses, ...phaseSummary.statuses],

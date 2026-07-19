@@ -3,7 +3,7 @@
 ## Status
 
 - Binding id: `master_eom_binding/v1`
-- Stage: `implemented-pending-final-promotion-audit`
+- Stage: `implemented-and-validated`
 - Sharp simple-root law: `transmitter-side-bound`
 - Finite-width causal-surface law: `transmitter-side-bound`
 - Signed root playback: `preserved`
@@ -11,13 +11,13 @@
 - Coincident same-transmitter root birth: `fail-closed`
 - Higher or undeclared singular strata: `fail-closed`
 - Canonical document: [Master Equation](../../../content/markdown/aaa/dynamics/master-equation.md)
-- Source snapshot SHA-256: `pending-final-canonical-sweep`
+- Source snapshot SHA-256: `7c278196f82d713986c2a34adf584f9a003726db7913648d0b9c1e39b0122c70`
 
 ## Scope
 
-This binding replaces the acceleration multiplier in `master_eom_binding/v0`.
-It does not change the causal-root equation, retained-history obligation, signed
-root grading, root-completeness proof, or signed root-playback derivative.
+This binding defines the current acceleration multiplier, causal-root equation,
+retained-history obligation, signed root grading, root-completeness proof, and
+signed root-playback derivative.
 
 The corrected physical statement is:
 

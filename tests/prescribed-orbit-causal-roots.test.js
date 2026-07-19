@@ -2,14 +2,14 @@ import test from "node:test";
 import assert from "node:assert/strict";
 
 import {
-  createMovingCircularSourceRootRequest,
-  solveMovingCircularSourceCausalRoots,
-  solveMovingCircularSameSourceCausalRoots,
+  createMovingCircularTransmitterRootRequest,
+  solveMovingCircularTransmitterCausalRoots,
+  solveMovingCircularSameTransmitterCausalRoots,
 } from "../src/prescribed-path-analysis/index.mjs";
 
 test("moving circular absolute-history roots use transmitter-side acceleration", () => {
-  const request = createMovingCircularSourceRootRequest({
-    source: {
+  const request = createMovingCircularTransmitterRootRequest({
+    transmitter: {
       centerAtEpoch: { x: 0, y: 0, z: 0 },
       centerVelocity: { x: 0, y: 0, z: 0 },
       radiusU: { x: 0, y: 0, z: 0 },
@@ -25,13 +25,13 @@ test("moving circular absolute-history roots use transmitter-side acceleration",
     },
     hitTime: 10,
     signalSpeed: 1,
-    sourceStartTime: 0,
-    sourceEndTime: 10,
+    transmitterStartTime: 0,
+    transmitterEndTime: 10,
     scanSubdivisions: 16,
     maxRoots: 1,
   });
 
-  const response = solveMovingCircularSourceCausalRoots(request);
+  const response = solveMovingCircularTransmitterCausalRoots(request);
   assert.equal(response.evidenceGrade, "display-only-visualization");
   assert.equal(response.nonEvidence, true);
   assert.equal(response.dynamicalEvidence, false);
@@ -50,7 +50,7 @@ test("moving circular absolute-history roots use transmitter-side acceleration",
   assert.equal(root.accelerationWeight, 1);
 });
 
-const VT095_SAME_SOURCE_SOURCE = {
+const VT095_SAME_TRANSMITTER_TRANSMITTER = {
   centerAtEpoch: { x: 0, y: 0, z: 0 },
   centerVelocity: { x: 0, y: 0, z: 0 },
   radiusU: { x: Math.sqrt(2 / 3), y: 0, z: 0 },
@@ -61,12 +61,12 @@ const VT095_SAME_SOURCE_SOURCE = {
 
 test("same-transmitter root emits signed root playback; rigid circle stays reflection-locked at m=+1", () => {
   const rho = Math.sqrt(2 / 3);
-  const response = solveMovingCircularSameSourceCausalRoots({
-    source: { ...VT095_SAME_SOURCE_SOURCE, angularVelocity: 1.00196 / rho, angularAcceleration: 0 },
+  const response = solveMovingCircularSameTransmitterCausalRoots({
+    transmitter: { ...VT095_SAME_TRANSMITTER_TRANSMITTER, angularVelocity: 1.00196 / rho, angularAcceleration: 0 },
     hitTime: 0.4304,
     signalSpeed: 1,
-    sourceStartTime: 0.4304 - 2,
-    sourceEndTime: 0.4304,
+    transmitterStartTime: 0.4304 - 2,
+    transmitterEndTime: 0.4304,
     minimumDelay: 0.002,
     scanSubdivisions: 1024,
   });
@@ -82,17 +82,17 @@ test("same-transmitter root emits signed root playback; rigid circle stays refle
 test("accelerating same-transmitter history yields negative root playback past the field-speed hinge", () => {
   const rho = Math.sqrt(2 / 3);
   const tStar = 0.42893;
-  const response = solveMovingCircularSameSourceCausalRoots({
-    source: {
-      ...VT095_SAME_SOURCE_SOURCE,
+  const response = solveMovingCircularSameTransmitterCausalRoots({
+    transmitter: {
+      ...VT095_SAME_TRANSMITTER_TRANSMITTER,
       angularVelocity: 1 / rho, // tangential speed exactly c_f at epoch
       angularAcceleration: 0.9, // pump-driven tangential acceleration
       epochTime: tStar,
     },
     hitTime: tStar + 0.006,
     signalSpeed: 1,
-    sourceStartTime: tStar + 0.006 - 2,
-    sourceEndTime: tStar + 0.006,
+    transmitterStartTime: tStar + 0.006 - 2,
+    transmitterEndTime: tStar + 0.006,
     minimumDelay: 0.002,
     scanSubdivisions: 2048,
   });
@@ -108,18 +108,18 @@ test("accelerating same-transmitter history yields negative root playback past t
 test("zero angular acceleration is exactly backward-compatible with the fixed-omega circle", () => {
   const rho = Math.sqrt(2 / 3);
   const base = {
-    source: { ...VT095_SAME_SOURCE_SOURCE, angularVelocity: 1.00196 / rho },
+    transmitter: { ...VT095_SAME_TRANSMITTER_TRANSMITTER, angularVelocity: 1.00196 / rho },
     hitTime: 0.4304,
     signalSpeed: 1,
-    sourceStartTime: 0.4304 - 2,
-    sourceEndTime: 0.4304,
+    transmitterStartTime: 0.4304 - 2,
+    transmitterEndTime: 0.4304,
     minimumDelay: 0.002,
     scanSubdivisions: 512,
   };
-  const withoutField = solveMovingCircularSameSourceCausalRoots(base);
-  const withZeroAccel = solveMovingCircularSameSourceCausalRoots({
+  const withoutField = solveMovingCircularSameTransmitterCausalRoots(base);
+  const withZeroAccel = solveMovingCircularSameTransmitterCausalRoots({
     ...base,
-    source: { ...base.source, angularAcceleration: 0 },
+    transmitter: { ...base.transmitter, angularAcceleration: 0 },
   });
   const a = withoutField.roots[withoutField.roots.length - 1];
   const b = withZeroAccel.roots[withZeroAccel.roots.length - 1];

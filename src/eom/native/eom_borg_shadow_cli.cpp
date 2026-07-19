@@ -936,7 +936,7 @@ void run(
                   << ",\"mpfrEscalationAttemptCount\":"
                   << certificate.mpfr_escalation_attempt_count;
         if (certificate.has_difficult_cell) {
-          std::cout << ",\"difficultSourceSegmentIndex\":"
+          std::cout << ",\"difficultTransmitterSegmentIndex\":"
                     << certificate.difficult_source_segment_index
                     << ",\"difficultCellLower\":\""
                     << json_escape(certificate.difficult_cell_lower)
