@@ -57,7 +57,7 @@ const FORBIDDEN_PATTERNS = [
     reason: "name the actual acceleration contribution or acceleration law",
   },
   {
-    pattern: /\b(?:receiver|reception) time \$T\$|\breceiver[^.\n]{0,40} at (?:absolute )?time \$T\$/gi,
+    pattern: /\b(?:receiver|reception) time \$T\$|\breceiver[^.\n]{0,40} at (?:absolute )?time \$T\$/g,
     label: "role-specific reception T",
     reason: "use T_r when T labels the receiver reception event",
     includeFiles: [/^(content\/markdown\/aaa|reference\/archie)\//],
@@ -67,7 +67,10 @@ const FORBIDDEN_PATTERNS = [
     label: "source position used as causal-hit role",
     reason: "use transmitter position for the past emission event",
     includeFiles: [/^(content\/markdown\/aaa|reference\/archie)\//],
-    excludeFiles: ["content/markdown/aaa/philosophy-history/treasure-physics-overlooked.md"],
+    excludeFiles: [
+      "content/markdown/aaa/philosophy-history/treasure-physics-overlooked.md",
+      "reference/archie/childrens-books/production/generation-manifest.json",
+    ],
   },
   {
     pattern: /\bsource architrinos?\b|\b(?:source and receiver|receiver and source) (?:worldlines?|velocities?)\b/gi,

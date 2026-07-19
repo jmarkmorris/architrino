@@ -156,7 +156,7 @@ This distinction fixes the level of the claim. Ontologically, the preferred fram
 
 The concentricity diagnostic connects directly to the geometry developed in [Self-Interaction (Self-Hit Dynamics)](../dynamics/master-equation.md#self-interaction-self-hit-dynamics) and [Causal Interaction Set (The Geometry of Delay)](../dynamics/master-equation.md#causal-interaction-set-the-geometry-of-delay), but the two claims must remain distinct:
 
-- An architrino at rest ($\mathbf V=\mathbf{0}$) emits concentric causal isochrons, but it does not receive a delayed self-hit merely by being stationary. For $T_t<T$, the self-hit root condition would require $\|\mathbf X_i(T)-\mathbf X_i(T_t)\|=c_f(T-T_t)$; a stationary worldline has the left side equal to zero while the right side is positive.
+- An architrino at rest ($\mathbf V=\mathbf{0}$) emits concentric causal isochrons, but it does not receive a delayed self-hit merely by being stationary. For $T_t<T_r$, the self-hit root condition would require $\|\mathbf X_i(T_r)-\mathbf X_i(T_t)\|=c_f(T_r-T_t)$; a stationary worldline has the left side equal to zero while the right side is positive.
 - An architrino in ordinary sub-field-speed straight motion emits non-concentric source-tagged isochrons, but that is still not enough by itself to create a self-hit. Self-hit is a source-identity root condition, not a synonym for nonzero absolute velocity.
 - Curved path history and super-field-speed history are the relevant self-hit ingredients. Once the transmitter path folds through its own emitted causal isochrons, same-transmitter roots can enter the causal-root ledger and produce non-Markovian feedback.
 - In exact center-curve terms, a same-transmitter root exists when the source re-enters its own forward isochron:

@@ -1535,6 +1535,8 @@ This section derives these functionals, establishes the exact symmetry group of 
 
 We consider the regularized two-body system in the Euclidean void $\mathbb{R}^3$ with metric $\delta_{ij}$ and absolute time $T$.
 
+In this symmetry proof, bare $T$ is intentionally the generic absolute-time parameter transformed by time translation. When one delayed term is read as a causal hit, that evaluation event has reception time $T_r$ and the retained earlier root has emission time $T_t$.
+
 #### Definition 1 (The Fundamental Symmetry Group)
 The background substrate and the master equation interaction kernel
 $$

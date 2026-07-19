@@ -550,12 +550,12 @@ For well-posed dynamics on absolute timespace:
 
 ### Receiver-Centered Exhaustion Lemma
 
-Infinite source families must supply a declared summation or continuum prescription under which the many-source wake sum converges. For each receiver event $(i,T)$, choose an increasing receiver-centered exhaustion of retained transmitter events and take the limit in that order. In the simplest radial form the condition is
+Infinite source families must supply a declared summation or continuum prescription under which the many-source wake sum converges. For each receiver event $(i,T_r)$, choose an increasing receiver-centered exhaustion of retained transmitter events and take the limit in that order. In the simplest radial form the condition is
 $$
 \lim_{R\to\infty}
-\sum_{\substack{j,\ T_t\in\mathcal{C}_{ij}(T)\\
-\|\mathbf X_j(T_t)-\mathbf X_i(T)\|<R}}
-\mathbf A_{ij}(T;T_t)
+\sum_{\substack{j,\ T_t\in\mathcal{C}_{ij}(T_r)\\
+\|\mathbf X_j(T_t)-\mathbf X_i(T_r)\|<R}}
+\mathbf A_{ij}(T_r;T_t)
 $$
 with any neutrality, screening, principal-value, or mean-field subtraction rule stated before the limit is used. The exhaustion is over retained emission events, that is $(j,T_t)$ root pairs, not over sources: a super-wake-speed transmitter history can contribute several active roots entering the ball at different $R$, and the refinement-independence requirement applies to that event-level ordering.
 

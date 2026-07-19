@@ -233,6 +233,7 @@ $$
 
 Here:
 - $\mathbf X_i(T)$ is the trajectory of architrino $i$.
+- $T$ is the generic dummy variable of the action integral. At a retained causal hit it takes the receiver role $T_r$, while $T_t$ remains the transmitter emission time.
 - $\mu_{\text{arch}}$ is the universal force/energy bookkeeping constant, not a particle-specific inertial mass.
 - $r_{ij}(T;T_t)$ is the Euclidean separation between reception and emission events.
 - $\delta_\eta$ is a mollified delta function of width $\eta > 0$. It supports Lipschitz control only together with the collision floor, finite-branch, transversality, and integrability assumptions below.

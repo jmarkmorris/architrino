@@ -59,10 +59,22 @@ A second meaning-aware scan found three current-surface gaps beyond the original
 
 The focused audit now also rejects bare `acceleration row`, causal-hit `same-source`, reception $T$ beside $T_t$ in `master-equation.md`, and stale source-role labels in the Photon UI. The `same-source` phrase in `spacetime/black-holes.md` remains allowed because it denotes one astrophysical evidence packet, not transmitter identity.
 
+### Semantic blind-spot closure
+
+A third meaning-aware scan tested the role distinction beyond the canonical Master Equation chapter. It found explicit reception events still written with generic $T$, transmitter events still called source events in foundation and simulation explanations, and structural branches still called rows. The closure batch:
+
+- made $T_r$ explicit in the architrino definition, absolute-time and absolute-timespace causal-root constructions, Euclidean-void provenance tuple, emergence and self-hit conditions, Noether-braid kernel statement, and action-energy simulation recipes;
+- reserved bare $T$ for genuinely generic absolute-time coordinates, trajectories, windows, and observer-level discussions where no transmitter-receiver event pair is being distinguished;
+- migrated high-confidence causal roles such as past transmitter positions, apparatus transmitters, transmitter worldlines, and transmitter-side path history while preserving historical electrodynamics, generic equation sources, document sources, radiation-source classes, and machine fields;
+- replaced unexplained structural `row` labels with `branch`, and replaced local action or acceleration `row` labels with `entry` or `contribution`; and
+- strengthened the audit across all current AAA and Archie surfaces for role-specific reception $T$, past-source-position language, source-architrino language, source/receiver role pairs, and a targeted family of unexplained row phrases.
+
+The expanded audit deliberately excludes the historical Jefimenko comparison in `philosophy-history/treasure-physics-overlooked.md`, the phase-out quotation in `archie/comparative-glossary.md`, and the generated children's-book manifest. Those locations preserve historical, mapping, or generated text rather than current causal-role terminology. The audit now also requires the comparative-glossary entries for $S(T_r)$, $T_r$, $dT_t/dT_r$, and ledger-row usage, so deletion of the explanations fails closed.
+
 ## Changed surfaces
 
 - Controlled canon: `mathematics-terminology.md`, `terminology-usage.md`, `mathematics-style-guide.md`, and `comparative-glossary.md`.
-- Current AAA source corpus: 77 documents spanning foundations, dynamics, assemblies, Noether braid, reactions, quantum, spacetime, and validation.
+- Current AAA source corpus: the original 77-document migration plus the semantic blind-spot closure across foundations, dynamics, Noether braid, spacetime, philosophy/history, validation, and action-energy simulation notes.
 - Current technical and agent orientation: the Master Equation technical brief and active entourage role prompts.
 - Reader-facing application data: the Equation Mapping per-hit and full Master Equation screens, callouts, anchors, search text, and tests.
 - Explanatory implementation text: EOM solver README, comments and diagnostic messages, prescribed-path messages, oracle comments, and test names. Machine identifiers remain intact.
@@ -130,6 +142,18 @@ No ambiguous occurrence remains on the current-reader surfaces enforced by the n
 | `node scripts/validate-content.mjs --check --strict` | 0 errors and 3 warnings; existing `content/scenes/scenes_index.json` drift remains |
 | `node scripts/check-content-integrity.mjs` | blocked by that existing scene-index drift; the content audit itself reported 0 errors |
 | `node scripts/check-receiver-normal-clean-slate.mjs` | blocked by the concurrent priority file `analysis-receiver-factor-change-specific-promotion-audit.md:57`; this follow-up did not edit that file |
+
+### Semantic blind-spot validation record
+
+| Command | Measured result |
+| --- | --- |
+| `node scripts/check-master-equation-terminology-migration.mjs` | passed after expanding the audit to all current AAA and Archie reader surfaces for the newly identified semantic patterns |
+| `node --test tests/photon-runtime.test.js tests/prescribed-orbit-causal-roots.test.js tests/animator-delayed-hit-runtime.test.js tests/animator-receiver-path-descriptors.test.js tests/ideal-braid-runtime.test.js` | passed, 75 tests |
+| `git diff --check` | passed |
+| `node scripts/validate-content.mjs --check --strict` | 0 errors and 3 warnings; existing `content/scenes/scenes_index.json` drift remains |
+| `node scripts/build-scene-graph.mjs --check --strict` | 0 errors and 1 warning; generated scene graph, textbook TOC JSON, and generated TOC Markdown drift remain |
+| `node scripts/build-textbook-md-pdf.mjs --check` | 0 errors and 0 warnings; expected drift remains in all 12 generated reading copies |
+| `node scripts/export-ios-textbook-package.mjs --check --strict` | expected controlled-reference manifest and bundle hash drift for the four edited Archie references |
 
 No generator write command was run. The authorized repair commands, when regeneration is separately requested, are:
 
