@@ -20,7 +20,7 @@ Terminology note: the `causal set` in this simulation note is the causal interac
 
 - Local uniqueness (sub-field-speed, transverse crossing):
   - If the source speed is locally sub-field-speed ($\|\mathbf V_o(T_t)\|<1$) and the derivative $\partial_{T_t}F(T_t;T) = -\hat{\mathbf{r}}\!\cdot\!\mathbf V_o(T_t) + 1$ is nonzero at the root, then the implicit function theorem guarantees a unique, smooth root branch near $T$.
-  - Intuition: the expanding causal isochron intersects the moving source path transversely.
+  - Intuition: the expanding causal isochron intersects the moving transmitter path transversely.
 
 - Multiple roots (require super-field-speed):
   - When $\|\mathbf V_o\|> 1$ at some emission times, the source can outpace its recent wake surfaces, allowing several distinct historical points to satisfy the same distance-time constraint (multi-hit regime). If $\|\mathbf V_o\|<1$ everywhere, $F(T_t;T)$ is strictly increasing in $T_t$, so at most one causal root exists.

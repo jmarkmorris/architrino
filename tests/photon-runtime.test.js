@@ -511,7 +511,7 @@ test("Photon causal roots can be routed through the prescribed-path analysis for
   assert.equal(roots[0].residual, 0);
 });
 
-test("Photon circular-source analysis request preserves source orbit geometry", () => {
+test("Photon circular-transmitter analysis request preserves transmitter orbit geometry", () => {
   const state = createDefaultPhotonState();
   state.measurement.signalSpeedCf = 0.72;
   state.measurement.emissionSpeedCf = 0.72;
@@ -529,7 +529,7 @@ test("Photon circular-source analysis request preserves source orbit geometry", 
     emissionTime
   );
 
-  assert.ok(request.source.startTime <= emissionTime, "expected request source history before sample");
+  assert.ok(request.source.startTime <= emissionTime, "expected request transmitter history before sample");
   assert.equal(request.source.endTime, observationTime);
   assert.equal(request.receiver.endTime, observationTime);
   assert.equal(request.hitTime, observationTime);
@@ -541,7 +541,7 @@ test("Photon circular-source analysis request preserves source orbit geometry", 
   assertNear(request.source.angularVelocity, kinematics.angularVelocity);
 });
 
-test("Photon absolute-history segment requests move source and Virtual Observer at photon speed", () => {
+test("Photon absolute-history segment requests move transmitter and Virtual Observer at photon speed", () => {
   const state = createDefaultPhotonState();
   state.measurement.sourceHistoryMode = "absolute_history";
   state.measurement.signalSpeedCf = 0.85;
@@ -587,7 +587,7 @@ test("Photon absolute-history segment requests move source and Virtual Observer 
   );
 });
 
-test("Photon absolute-history source roots route through the moving-circular prescribed-path analysis", async () => {
+test("Photon absolute-history transmitter roots route through the moving-circular prescribed-path analysis", async () => {
   const state = createDefaultPhotonState();
   state.measurement.sourceHistoryMode = "absolute_history";
   state.measurement.signalSpeedCf = 0.9;
@@ -744,7 +744,7 @@ test("Photon self-hit diagnostics route same-transmitter causal hits through the
   assertNear(diagnostics.rows[0].span, spans[0]);
 });
 
-test("Photon self-hit diagnostics use prescribed span analysis when circular-source roots are injected", async () => {
+test("Photon self-hit diagnostics use prescribed span analysis when circular-transmitter roots are injected", async () => {
   const state = createDefaultPhotonState();
   const diagnostics = await computePhotonSelfHitDiagnosticsWithPrescribedPathAnalysis(state, {
     solveCircularSourceRootsHitsLedger: async () => ({ roots: [] }),
@@ -806,7 +806,7 @@ test("Photon helical self-hit phase-lock sweep summarizes sampled cases", async 
   ));
 });
 
-test("Photon circular-source roots, hits, and ledger rows can be routed through the prescribed-path analysis", async () => {
+test("Photon circular-transmitter roots, hits, and ledger entries can be routed through the prescribed-path analysis", async () => {
   const state = createDefaultPhotonState();
   const sourceRef = { braidId: "left", layerId: "O", chargeType: "positrino" };
   const observationTime = 0.75;
@@ -935,7 +935,7 @@ test("Photon delayed emission field can use absolute-history moving-circular ana
   assert.ok(Number.isFinite(field.electric.y));
 });
 
-test("Photon delayed emission field can be assembled from prescribed-path analysis circular-source roots", async () => {
+test("Photon delayed emission field can be assembled from prescribed-path analysis circular-transmitter roots", async () => {
   const state = createDefaultPhotonState();
   state.measurement.sourceHistoryMode = "co_moving";
   const bridge = createPhotonCircularSourceBridgeStub();
@@ -1408,7 +1408,7 @@ test("Photon diagnostics expose the active prescribed-path analysis library", as
   const rows = new Map(getPhotonDiagnosticRows(state, 0, summary));
 
   assert.equal(rows.get("Analysis library"), "prescribed-path-analysis");
-  assert.equal(rows.get("Motion source"), "Photon constrained");
+  assert.equal(rows.get("Motion history"), "Photon constrained");
   assert.equal(rows.get("Field reconstruction"), "prescribed-path analysis");
   assert.equal(rows.get("Span self-hit roots"), "6 / 6");
   assert.equal(rows.get("Span self-hit max v/c_sig"), "1.56");
@@ -1419,8 +1419,8 @@ test("Photon diagnostics expose the active prescribed-path analysis library", as
   assert.match(rows.get("Helical phase families"), /^\d+ \/ \d+$/);
   assert.match(rows.get("Helical phase-lock classes"), /^stable \d+, candidate \d+, singular \d+, self \d+$/);
   assert.match(rows.get("Best helical family"), / deg \(\d+\)$/);
-  assert.equal(rows.get("Missed sources"), "6");
-  assert.equal(rows.get("No catch-up sources"), "6");
+  assert.equal(rows.get("Missed transmitters"), "6");
+  assert.equal(rows.get("No catch-up transmitters"), "6");
   assert.equal(rows.get("Stale windows"), "0");
   assert.equal(rows.get("Near misses"), "0");
   assert.equal(rows.get("Root cap hits"), "0");

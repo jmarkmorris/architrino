@@ -14,6 +14,7 @@ const SCAN_TARGETS = [
   "reference/archie",
   "content/scenes",
   "src/apps/equation-mapping/EquationMappingData.js",
+  "src/apps/photon",
   "src/eom/README.md",
 ];
 
@@ -49,6 +50,36 @@ const FORBIDDEN_PATTERNS = [
     pattern: /W\^\{\\mathrm\{rec\}\}/g,
     label: "W^{\\mathrm{rec}}",
     reason: "use W^{\\mathrm{acc}} for the receiver-weighted acceleration factor",
+  },
+  {
+    pattern: /\bacceleration rows?\b/gi,
+    label: "acceleration row",
+    reason: "name the actual acceleration contribution or acceleration law",
+  },
+  {
+    pattern: /\bsame-source\b/gi,
+    label: "same-source",
+    reason: "use same-transmitter for causal-hit identity",
+    includeFiles: [/^(content\/markdown\/aaa|reference\/archie)\//],
+    excludeFiles: ["content/markdown/aaa/spacetime/black-holes.md"],
+  },
+  {
+    pattern: /\(T[;,]\s*T_t\)|T_t\s*<\s*T\b|T\s*-\s*T_t\b/g,
+    label: "reception T beside T_t",
+    reason: "use T_r when T is the receiver reception event",
+    includeFiles: ["content/markdown/aaa/dynamics/master-equation.md"],
+  },
+  {
+    pattern: /\b(?:moving|stationary|uniformly moving) sources?\b|\bsource(?:'s)? (?:path|orbit|velocity|identity|distance)\b|\bsource and receiver\b|\breceiver and source\b|\bsource-to-receiver\b|\bsource motion\b|\bsources? \$j\b/gi,
+    label: "source used as causal-hit role",
+    reason: "use transmitter for the architrino at the emission event",
+    includeFiles: ["content/markdown/aaa/dynamics/master-equation.md"],
+  },
+  {
+    pattern: /\b(?:Source count|Max source|Missed sources|No catch-up sources|nearest source|Absolute source history)\b/g,
+    label: "source role in Photon UI",
+    reason: "use transmitter in causal-hit UI labels while preserving source-named machine fields",
+    includeFiles: [/^src\/apps\/photon\//],
   },
 ];
 
@@ -113,6 +144,12 @@ function scanPath(targetPath) {
   const text = fs.readFileSync(targetPath, "utf8");
   const file = path.relative(ROOT_DIR, targetPath);
   for (const rule of FORBIDDEN_PATTERNS) {
+    if (rule.includeFiles && !rule.includeFiles.some((entry) => matchesFileRule(file, entry))) {
+      continue;
+    }
+    if (rule.excludeFiles?.some((entry) => matchesFileRule(file, entry))) {
+      continue;
+    }
     rule.pattern.lastIndex = 0;
     for (const match of text.matchAll(rule.pattern)) {
       findings.push({
@@ -123,6 +160,10 @@ function scanPath(targetPath) {
       });
     }
   }
+}
+
+function matchesFileRule(file, rule) {
+  return typeof rule === "string" ? file === rule : rule.test(file);
 }
 
 function lineNumberAt(text, index) {

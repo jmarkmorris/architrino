@@ -418,7 +418,7 @@ causal-root Jacobian from the rate at which a moving receiver path samples the
 same emitted causal wake sequence. A stationary receiver in the Euclidean-void
 rest frame sets the numerator to $c_f$; radial receiver motion changes the
 receiver-side action or wake-history rate and must be recorded when a proof
-uses accumulated action rather than only an event-local acceleration row.
+uses accumulated action rather than only an event-local acceleration contribution.
 
 The status of $\kappa_{\mathrm{hit}}$ is fixed in [Absolute Time](absolute-time.md#causality-and-finite-propagation-speed): it is a declared branch-chart or certificate lower bound, not a universal coupling constant, coordinate parameter, or regularization width.
 
@@ -557,7 +557,7 @@ $$
 \|\mathbf X_j(T_t)-\mathbf X_i(T)\|<R}}
 \mathbf A_{ij}(T;T_t)
 $$
-with any neutrality, screening, principal-value, or mean-field subtraction rule stated before the limit is used. The exhaustion is over retained emission events, that is $(j,T_t)$ root pairs, not over sources: a super-wake-speed source history can contribute several active roots entering the ball at different $R$, and the refinement-independence requirement applies to that event-level ordering.
+with any neutrality, screening, principal-value, or mean-field subtraction rule stated before the limit is used. The exhaustion is over retained emission events, that is $(j,T_t)$ root pairs, not over sources: a super-wake-speed transmitter history can contribute several active roots entering the ball at different $R$, and the refinement-independence requirement applies to that event-level ordering.
 
 This is an admissibility lemma for branches and continuum reductions: the branch is well-defined only when the receiver-centered limit exists under the declared subtraction or screening rule, and allowed refinements of the exhaustion do not change the resulting local acceleration. Inverse-square surface dilution alone is not enough in three spatial dimensions because the number of sources in a radial layer grows like $r^2\,dr$. The lemma supplies the convergence condition used by emergence arguments to justify effective locality and metastable assembly behavior.
 

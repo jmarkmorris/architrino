@@ -157,7 +157,7 @@ Relevant files:
 
 - [Causal Delay Feedback](../../../../causal-delay-feedback.html)
 
-The standalone [Causal Delay Feedback](../../../../causal-delay-feedback.html) app became the project surface for making causal-delay feedback depth visible. Its core lesson is that the present interaction state is not determined only by where the two architrinos are at the displayed instant. It also depends on retained source history, causal-root status, delayed-hit rows, and the active or rejected contribution records that determine which path-history terms can reach the other architrino now.
+The standalone [Causal Delay Feedback](../../../../causal-delay-feedback.html) app became the project surface for making causal-delay feedback depth visible. Its core lesson is that the present interaction state is not determined only by where the two architrinos are at the displayed instant. It also depends on retained transmitter history, causal-root status, delayed-hit records, and the active or rejected contribution records that determine which path-history terms can reach the other architrino now.
 
 The app presents that lesson as a time-space canvas rather than as a formula panel. An electrino path and a positrino path are drawn as solid trajectories. The dotted causal-wake arc series are not displayed as connections between fixed history markers. Each visible arc series is recomputed from the replay paths: it begins at the back-solved emission point on the emitting architrino path and ends at the reception point on the partner architrino path at the current replay time. The partial-arc view keeps the screen focused on the active emitter-to-receiver sector, while the full-circular-arc preset remains available for showing the complete emitted wake geometry.
 

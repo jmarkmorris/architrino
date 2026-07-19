@@ -314,10 +314,10 @@ export function getPhotonDiagnosticRows(state, timeSeconds, formulaSummary = nul
     ["Helicity estimate", diagnostics.helicityEstimate > 0 ? "+1" : "open", diagnostics.helicityEstimate > 0 ? "good" : "info"],
     ["Fit residual", formatPhotonFixed(diagnostics.fitResidual, 4), getLowerIsBetterQuality(diagnostics.fitResidual, { great: 0.005, good: 0.02, ok: 0.08, poor: 0.2 })],
     ["Mean delay", formatPhotonFixed(diagnostics.averageDelay, 3), "info"],
-    ["Source count", String(diagnostics.sourceCount), "info"],
+    ["Transmitter count", String(diagnostics.sourceCount), "info"],
     ["Root count", String(diagnostics.rootCount), "info"],
     [
-      "Motion source",
+      "Motion history",
       diagnostics.sourceHistoryProviderId ? "Photon constrained" : "unavailable",
       diagnostics.sourceHistoryProviderId ? "info" : "poor",
     ],
@@ -329,10 +329,10 @@ export function getPhotonDiagnosticRows(state, timeSeconds, formulaSummary = nul
       diagnostics.fieldReconstructionOwner === "prescribed_path_analysis" ? "info" : "poor",
     ],
     [
-      "Max source v/c_f",
+      "Max transmitter v/c_f",
       formatPhotonFixed(diagnostics.maxSourceSpeedRatio, 2),
       getSourceSpeedQuality(diagnostics),
-      { labelMath: "\\mathrm{Max\\ source}\\ v/c_f" },
+      { labelMath: "\\mathrm{Max\\ transmitter}\\ v/c_f" },
     ],
     [
       "Min |J|",
@@ -405,9 +405,9 @@ export function getPhotonDiagnosticRows(state, timeSeconds, formulaSummary = nul
       formatPhaseFamilyValue(diagnostics.helicalBestPhaseFamily),
       diagnostics.helicalBestPhaseFamily ? "info" : "poor",
     ],
-    ["Missed sources", String(diagnostics.unresolvedSourceCount), getMissedSourceQuality(diagnostics)],
+    ["Missed transmitters", String(diagnostics.unresolvedSourceCount), getMissedSourceQuality(diagnostics)],
     [
-      "No catch-up sources",
+      "No catch-up transmitters",
       String(diagnostics.noCatchUpSourceCount),
       diagnostics.noCatchUpSourceCount === 0 ? "great" : "info",
     ],

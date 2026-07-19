@@ -249,7 +249,7 @@ d\tau
 \frac{1}{c_0}
 \sqrt{-g^{\text{eff}}_{\mu\nu}dx_{\mathrm{eff}}^\mu dx_{\mathrm{eff}}^\nu}
 $$
-and extremizing this observer-level action must give the same weak-field acceleration row used in the PPN bundle,
+and extremizing this observer-level action must give the same weak-field acceleration contribution used in the PPN bundle,
 $$
 \frac{d^2x_{\mathrm{eff}}^i}{dt_{\mathrm{eff}}^2}
 =

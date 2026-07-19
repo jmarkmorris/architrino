@@ -1876,3 +1876,63 @@ This file holds dated decisions, implementation status, validation results, fail
   authorized.
 - **Disposition:**
   [master-equation-terminology-migration-disposition-2026-07-19.md](master-equation-terminology-migration-disposition-2026-07-19.md).
+
+## 2026-07-19 — Coincident-transition and history-only conservation closure attempt
+
+- **Derived finite-window no-go:** on the smooth same-source birth chart, the
+  complete source-density impulse obeys a regulator-uniform lower bound
+  proportional to
+  $\min(c_f/(\alpha\epsilon_c^2),L/(\eta\epsilon_c))$. Both alternatives
+  diverge on every joint $\eta,\epsilon_c\to0$ path. The earlier
+  $\epsilon_c^{-2}$ coefficient is retained only for its declared matched
+  refinement; the new bound covers extreme paths where the fixed reception
+  window changes the power of the divergence.
+- **Derived acceptance result:** a fixed positive core makes the prescribed
+  transition finite, but the current point-transceiver primitives do not fix a
+  physical core scale, kernel, minimum self-hit delay, or alternative
+  near-origin same-source rule. The finite accepted transition gate therefore
+  closes negatively under the current primitives.
+- **Derived conservation obstruction:** the causal retained-history update
+  determines acceleration but leaves the kinetic scalar $K(s)$, momentum map
+  $P(s)$, and wake-account update unspecified. Defining wake changes as the
+  negative accumulated motion changes balances by construction and fails the
+  non-circularity requirement.
+- **Promotion audit:** receiver playback remains excluded from proposed base
+  acceleration on the supported simple-root domain. Global canon and EOM
+  solver promotion remain deferred because same-source transition and
+  conservation require new derived structure or an explicit restriction of
+  the claimed equation domain.
+- **Artifacts:**
+  [source-density singular-event analysis](analysis-source-density-fold-and-coincident-birth.md),
+  [history-only conservation obstruction](analysis-source-density-conservation-obstruction.md),
+  [going-forward walkthrough](master-equation-import-audit-walkthrough-2026-07-18.md),
+  and [promotion-readiness matrix](master-equation-promotion-readiness-matrix.md).
+
+## 2026-07-19 — Receiver-factor change-specific promotion audit
+
+- **Derived old-law baseline:** on the same smooth coincident same-source birth
+  chart used for the source-density no-go result, the current
+  receiver-weighted factor approaches one, the separation is $2c_ft+O(t^2)$,
+  and the sharp acceleration is proportional to $t^{-2}$. Its impulse already
+  diverges. The source-density correction strengthens the divergence to
+  $t^{-3}$ but does not create the first failed sharp continuation.
+- **Exact analytic control:** the prescribed history
+  $\mathbf X(T)=\hat{\mathbf e}(c_fT+\alpha T^2/2)$ has the exact newborn root
+  $T_t=-T_r$, separation $2c_fT_r$, $D_t=\alpha T_r$, and
+  $D_r=-\alpha T_r$. Direct substitution reproduces the old $T_r^{-2}$ and
+  proposed $T_r^{-3}$ laws without a series approximation.
+- **Derived conservation baseline:** neither causal retained-history law has
+  fixed kinetic, momentum, and wake accounts. The current two-time action's
+  formal conservation identities belong to a future-dependent equation, not
+  the causal update advanced by the EOM solver.
+- **Promotion-scope disposition:** coincident same-source birth and causal
+  conservation remain global Master Equation debts, but they do not justify
+  retaining the receiver multiplier. The factor correction is ready for a
+  separately authorized scoped migration that preserves root transport and
+  fail-closed singular-event handling.
+- **Unchanged authority boundary:** no canonical equation, EOM solver
+  semantics, frozen evidence, or generated artifact was changed.
+- **Artifacts:**
+  [change-specific promotion audit](analysis-receiver-factor-change-specific-promotion-audit.md),
+  [going-forward walkthrough](master-equation-import-audit-walkthrough-2026-07-18.md),
+  and [promotion-readiness matrix](master-equation-promotion-readiness-matrix.md).

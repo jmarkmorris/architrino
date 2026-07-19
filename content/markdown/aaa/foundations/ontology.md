@@ -125,7 +125,7 @@ The architrino's intrinsic polarity is also not the full observer-level charge r
 
 The emitted causal wake is not another primitive substance, but it is real. It is the source-dependent, potential-bearing causal record by which path history becomes delayed interaction.
 
-For an architrino $a$ with worldline $\mathbf X_a(T)$ on time domain $I_a$ and polarity $q_a$, the wake may be read schematically as a functional of that source history:
+For an architrino $a$ with worldline $\mathbf X_a(T)$ on time domain $I_a$ and polarity $q_a$, the wake may be read schematically as a functional of that transmitter history:
 $$
 \mathcal{W}_a(\mathbf X,T)
 =

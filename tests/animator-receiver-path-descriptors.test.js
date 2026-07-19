@@ -39,7 +39,7 @@ function createStaticReceiverDocument() {
   };
 }
 
-test("animator receiver path descriptors derive path segments from source history", () => {
+test("animator receiver path descriptors derive path segments from transmitter history", () => {
   const packageResult = createAnimatorReceiverPathDescriptorPackage({
     streamId: "fixture-receiver-path-history",
     documentData: createStaticReceiverDocument(),

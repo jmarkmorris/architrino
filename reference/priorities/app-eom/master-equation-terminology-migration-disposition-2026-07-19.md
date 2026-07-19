@@ -18,7 +18,9 @@ changed-file and validation claims.
 | --- | --- | --- | --- |
 | $T_{\mathrm{em}}$ or an unambiguous emission variable | $T_t$ | transmitter emission time of the arriving wake | old serialized records and generated copies remain literal |
 | reception $T$ when an event role is being distinguished | $T_r$ | receiver reception time at which acceleration is evaluated | bare $T$ remains valid for generic absolute time |
+| local implicit-function variable $S(T_r)$ | preserve $S$ and identify $S(T_r)=T_t$ | function-valued placeholder used to differentiate a moving emission root | not a third physical time coordinate and not a stale emission symbol |
 | source role in an arriving causal hit | transmitter | architrino at its past emission event | `source*` machine fields remain unchanged; unrelated uses of source remain unchanged |
+| unexplained `row` | causal hit, acceleration contribution, root record, ledger entry, table entry, or mapping | the actual object named by the local context | literal schema fields, established ledger-row references, and historical quotations remain unchanged |
 | $D_s$ | $D_t$ | transmitter-side wake-spacing and emission-time Jacobian factor | `source_normal`, `sourceNormal*`, and current schema fields remain unchanged |
 | $D_T$ | $D_r$ | receiver-side wake-crossing and root-playback factor | `receiver_normal` and `receiverNormal*` fields remain unchanged |
 | $W^{\mathrm{rec}}=|D_T/D_s|$ | $W^{\mathrm{acc}}=|D_r/D_t|$ | receiver-weighted acceleration factor in the current canonical EOM | old `receiver_strength` meanings remain frozen by schema version |
@@ -45,6 +47,17 @@ rg -n -P '(?<![A-Za-z0-9_])D_s(?![A-Za-z0-9_])|(?<![A-Za-z0-9_])D_T(?![A-Za-z0-9
 ```
 
 Result: no matches. `node scripts/check-master-equation-terminology-migration.mjs` enforces the same current-reader boundary and also requires the new definitions to remain present.
+
+### Follow-up scan
+
+A second meaning-aware scan found three current-surface gaps beyond the original six-token audit: role-specific reception $T$ beside $T_t$ in the canonical Master Equation chapter, causal-hit uses of `source`, and bare `acceleration row` or similar unexplained `row` language. The follow-up batch:
+
+- made $T_r$ explicit throughout the canonical causal-hit definitions, root-transport lemma, regularized law, causal-root map, self-hit conditions, and energy-facing restatements;
+- retained $S$ in the simple-root transport lemma and stated its use explicitly as the local root function with $S(T_r)=T_t$;
+- migrated causal-role prose and Photon UI labels from source to transmitter while leaving source-named wire fields intact; and
+- replaced unexplained acceleration-row language with the actual acceleration contribution or record, while preserving established requirement-table and ledger-row uses.
+
+The focused audit now also rejects bare `acceleration row`, causal-hit `same-source`, reception $T$ beside $T_t$ in `master-equation.md`, and stale source-role labels in the Photon UI. The `same-source` phrase in `spacetime/black-holes.md` remains allowed because it denotes one astrophysical evidence packet, not transmitter identity.
 
 ## Changed surfaces
 
@@ -81,6 +94,8 @@ Generated artifacts are the only reader copies that still display the previous t
 - `receiver_normal`, `receiverNormalNumerator`, `receiverNormalFactor`, `unsignedReceiverNormalFactor`, `receiverNormalCrossingFactor`, `receiverNormalSpeed`, interval fields, and literal $D_T$ fields
 - `receiver_strength` and `branch_orientation`
 - `sourcePathId`, `source_history_ids`, `source_charge`, and receiver equivalents
+- `sourceCount`, `maxSourceSpeedRatio`, `unresolvedSourceCount`, `sourceHistoryKind`, and other source-named Photon and prescribed-path data fields
+- literal `same-source` schema values, root-kind values, branch-policy values, and compatibility identifiers
 - `receiver_normal_branch_rows_missing` and `receiver_normal_branch_rows_invalid`
 - `prescribed_path_absolute_history_receiver_normal_root_branch_sum`
 - `receiverNormalOwner`
@@ -104,6 +119,17 @@ No ambiguous occurrence remains on the current-reader surfaces enforced by the n
 | `node scripts/build-scene-graph.mjs --check --strict` | generated drift reported for scene graph, textbook TOC, and generated TOC Markdown; one missing-scene-index warning |
 | `node scripts/build-textbook-md-pdf.mjs --check` | expected generated reading-copy drift in all 12 reading copies |
 | `node scripts/export-ios-textbook-package.mjs --check --strict` | expected iOS package manifest and controlled-reference hash drift |
+
+### Follow-up validation record
+
+| Command | Measured result |
+| --- | --- |
+| `node scripts/check-master-equation-terminology-migration.mjs` | passed with the expanded reception-time, transmitter-role, row-language, and Photon UI checks |
+| `node --test tests/photon-runtime.test.js tests/prescribed-orbit-causal-roots.test.js tests/animator-delayed-hit-runtime.test.js tests/animator-receiver-path-descriptors.test.js tests/ideal-braid-runtime.test.js` | passed, 75 tests |
+| `git diff --check` | passed |
+| `node scripts/validate-content.mjs --check --strict` | 0 errors and 3 warnings; existing `content/scenes/scenes_index.json` drift remains |
+| `node scripts/check-content-integrity.mjs` | blocked by that existing scene-index drift; the content audit itself reported 0 errors |
+| `node scripts/check-receiver-normal-clean-slate.mjs` | blocked by the concurrent priority file `analysis-receiver-factor-change-specific-promotion-audit.md:57`; this follow-up did not edit that file |
 
 No generator write command was run. The authorized repair commands, when regeneration is separately requested, are:
 

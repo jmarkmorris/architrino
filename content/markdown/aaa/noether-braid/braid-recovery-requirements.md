@@ -65,7 +65,7 @@ P_{\mathrm{stab}}
 P_{\mathrm{conv}}
 $$
 
-Every predicate must use the same source-pair policy, same-transmitter policy, memory depth, support descriptor, action convention, event interval, and inventory ledger. If any row changes those conventions, the result is a ledger mismatch, not a retention result. The neutral-braid statement of this certificate, with the base-family notation, is given in [Neutral Braid](braid-recovery-requirements.md#base-family-certificate-instantiation); a shell or nested realization inherits the same rows and may compress the all-pairs ledger only after its reduction row proves how the compressed rows are inherited.
+Every predicate must use the same source-pair policy, same-transmitter policy, memory depth, support descriptor, action convention, event interval, and inventory ledger. If any row changes those conventions, the result is a ledger mismatch, not a retention result. The neutral-braid statement of this certificate, with the base-family notation, is given in [Neutral Braid](braid-recovery-requirements.md#base-family-certificate-instantiation); a shell or nested realization inherits the same rows and may compress the all-pairs ledger only after its reduction map proves how the compressed entries are inherited.
 
 ## The First-Failure Ladder
 
@@ -207,7 +207,7 @@ $$
 |\Pi_{\mathrm{all}}|=30
 $$
 
-Same-transmitter rows $(i,i)$ are governed by the declared same-transmitter policy and are deliberately excluded from $\Pi_{\mathrm{all}}$; the ordered distinct-pair count is therefore $6\times5=30$. The $3$ attractive and $2$ repulsive source-site counts for each receiver are inventory facts, not a compressed acceleration law. The acceleration row must still be assembled from the actual retained causal roots, delays, Jacobian floors, receiver-weighted acceleration factors, and line-of-action vectors for these ordered pairs. A shell braid or nested shell braid can reduce this ledger only after its reduction row proves how the compressed rows are inherited from the all-pairs ledger.
+Same-transmitter rows $(i,i)$ are governed by the declared same-transmitter policy and are deliberately excluded from $\Pi_{\mathrm{all}}$; the ordered distinct-pair count is therefore $6\times5=30$. The $3$ attractive and $2$ repulsive transmitter-site counts for each receiver are inventory facts, not a compressed acceleration law. The acceleration contribution must still be assembled from the actual retained causal roots, delays, Jacobian floors, receiver-weighted acceleration factors, and line-of-action vectors for these ordered pairs. A shell braid or nested shell braid can reduce this ledger only after its reduction map proves how the compressed entries are inherited from the all-pairs ledger.
 
 The certificate should report the first blocking row as
 

@@ -423,7 +423,7 @@ where $\Pi_E S(T_E)$ is the local source-assembly and environment record that de
 
 The same separation applies when the source observable is a luminosity standard rather than a single spectral line. For Type Ia supernovae, light-curve shape, color, dust, metallicity, host mass, and progenitor-age effects belong in the source and calibration analogue of $B_X(E)$ before any remaining redshift-distance curvature is assigned to path-history propagation. A correction that moves an effective fit from acceleration toward deceleration changes the calibrated source row first; it is not, by itself, evidence that the Euclidean void expands, stops expanding, or contracts. The propagation coefficient must be recomputed only after the source row, endpoint cadence, launch geometry, and catalogue selection terms have been declared.
 
-Launch geometry is the homogeneous-reference replay of the same source and receiver worldlines:
+Launch geometry is the homogeneous-reference replay of the same transmitter and receiver worldlines:
 
 $$
 D_v

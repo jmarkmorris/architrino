@@ -63,7 +63,7 @@ Layout crops, PDFs, 4:5 assets, and 9:16 assets are derivatives, not additional 
 Use a consistent visual grammar across the series:
 
 - **architrinos:** tiny luminous point transceivers with persistent identity, never generic "particles" floating without path history;
-- **causal wakes:** translucent expanding causal isochrons, usually curved arcs or rings whose centers remember earlier source positions;
+- **causal wakes:** translucent expanding causal isochrons, usually curved arcs or rings whose centers remember earlier transmitter positions;
 - **line of action:** a clean earlier-source-to-arrival arrow or glow path when an influence is received;
 - **Noether sea:** a subtle ambient lattice or dusting of neutral assembly motifs in the background, not empty darkness;
 - **assemblies:** stable patterns of several point transceivers held in geometric relation;

@@ -446,7 +446,7 @@ $$
 \frac{1}{\rho^2}.
 $$
 
-Since $\rho^2=\alpha\epsilon_c^2/(c_f^2\eta)$, both regimes have the same physical scale:
+Since $\rho^2=\alpha\epsilon_c^2/(c_f^2\eta)$, every matched refinement with fixed $0<\rho<\infty$ has the physical scale
 
 $$
 \boxed{
@@ -458,9 +458,11 @@ J_{\eta,\epsilon_c}^{\mathrm{full}}
 }.
 $$
 
-Thus the complete post-crossing cell is finite for fixed positive $\eta$ and $\epsilon_c$, but it has no finite core-removal limit even when $\eta$ remains positive. The causal width resolves the root merger; it does not regularize the inverse-square same-source diagonal by itself. The newborn-only logarithm in the width-dominated regime is not the complete-cell divergence: once the endpoint layer is restored, the inverse-square core divergence dominates.
+The displayed coefficient uses the limit in which the fixed physical reception-time and delay bounds become infinite after rescaling by $\ell_\eta$. That limit is not uniform on extreme paths where $\epsilon_c$ vanishes so much faster than $\eta$ that the finite reception-time boundary is reached before the complete core layer is sampled. On those paths the power of the divergence changes, but the divergence does not disappear. Section 3.5 gives a finite-window lower bound that covers every joint path.
 
-Claim classification: **derived within the local frozen-history, dual-width equation**. A bounded evaluation of the displayed positive full-cell integral as $\epsilon_c\to0^+$ would falsify this result.
+Thus the complete post-crossing cell is finite for fixed positive $\eta$ and $\epsilon_c$, but it has no finite joint sharp limit. The causal width resolves the root merger; it does not regularize the inverse-square same-source diagonal by itself. The newborn-only logarithm in the width-dominated regime is not the complete-cell answer because the endpoint layer supplies the stronger finite-window divergence.
+
+Claim classification: **derived within the local frozen-history, dual-width equation on the stated matched-refinement limit**. A bounded complete-cell impulse on any joint path is excluded separately by the finite-window lower bound in Section 3.5.
 
 ### 3.4 Consequence for self-consistent evolution
 
@@ -469,6 +471,65 @@ The calculation assumes a smooth crossing with finite $\alpha>0$. The resulting 
 It does not prove what replaces the crossing. A self-consistent positive-width history could turn, accelerate away, or enter another retained-history regime. Determining that outcome requires solving the same finite-width delayed equation, not replaying a prescribed crossing history.
 
 Claim classification: **derived incompatibility of the assumed smooth crossing; unresolved self-consistent outcome**. A self-consistent sharp solution with finite velocity through the stated crossing geometry would overturn the incompatibility result.
+
+### 3.5 Acceptance audit against the current primitives
+
+The complete endpoint-layer divergence can be bounded on a fixed physical transition window without choosing a regulator-refinement path. In the leading local normal form, integrate reception time over $0<t<L$ first. The complete impulse is
+
+$$
+J_{\eta,\epsilon_c}^{\mathrm{full}}(L,h)
+=
+\frac{K_ic_f^2}{\alpha}
+\int_0^h
+\frac{
+\Phi\!\left(\alpha\tau(L-\tau/2)/\eta\right)
+-
+\Phi\!\left(-\alpha\tau^2/(2\eta)\right)
+}
+{(c_f^2\tau^2+\epsilon_c^2)^{3/2}}
+\,d\tau,
+$$
+
+where $\Phi$ is the cumulative function of an even, nonnegative wake profile that is positive on a neighborhood of zero, including the Gaussian profile used above. Choose $\epsilon_c$ small enough that $2\epsilon_c/c_f<\min(L,h)$. On the core interval
+
+$$
+\frac{\epsilon_c}{c_f}
+\le\tau\le
+\frac{2\epsilon_c}{c_f},
+$$
+
+the denominator is bounded by a fixed multiple of $\epsilon_c^3$. The cumulative-function difference spans zero and is bounded below by a profile-dependent positive constant times
+
+$$
+\min\!\left(
+1,
+\frac{\alpha\epsilon_c L}{c_f\eta}
+\right).
+$$
+
+Therefore there is a constant $C_\varphi>0$, independent of $\eta$ and $\epsilon_c$, such that
+
+$$
+\boxed{
+J_{\eta,\epsilon_c}^{\mathrm{full}}(L,h)
+\ge
+C_\varphi K_i
+\min\!\left(
+\frac{c_f}{\alpha\epsilon_c^2},
+\frac{L}{\eta\epsilon_c}
+\right)
+}.
+$$
+
+Both quantities inside the minimum diverge on every path with $(\eta,\epsilon_c)\to(0,0)$. The complete finite-window impulse therefore has no finite joint regulator limit. On matched paths the first term gives the $\epsilon_c^{-2}$ result of Section 3.3. On extreme paths where the finite reception window cuts off that matched scaling, the second term still diverges.
+
+This independent finite-window bound makes the acceptance problem direct: changing the relative refinement rate of the wake thickness and core scale cannot produce a finite transition.
+
+The present ontology defines an architrino as a point transceiver. The positive core scale $\epsilon_c$ is presently a mathematical control on the near-origin kernel, not a physical architrino radius or an accepted wake-saturation length. The current regularization rule therefore requires a finite, common observable as both regulators are removed. The displayed lower bound proves that this requirement fails.
+
+A fixed positive $\epsilon_c$ would make the transition finite, but accepting it as physical would require a new derived near-origin wake law and a fixed value from existing primitives. Dimensional availability of a candidate length would not be sufficient: it would not determine the kernel shape, its dimensionless coefficient, or why the point-transceiver law saturates in precisely that form. The current primitives also supply no positive minimum self-hit delay and no rule that permanently excludes a root born from the coincident endpoint.
+
+Claim classification: **derived no-go result for acceptance under the current point-transceiver and removable-core rules**. It does not prove that every possible extension fails. It is falsified by an Architrino-native derivation that fixes a positive near-origin scale and kernel, or by a different same-source rule whose complete transition has a finite regulator-independent impulse.
 
 ## 4. Promotion consequences
 
@@ -486,6 +547,6 @@ The coincident event has only three currently visible resolution classes:
 2. derive a different near-diagonal same-source rule or exclusion from architrino-native principles;
 3. derive a causal past-history contribution that cancels the complete transition at the same singular order.
 
-Selecting among those classes changes the dynamics and is not justified by this local analysis. Until one is derived, the proposed sharp Master Equation cannot be promoted as a globally complete same-source law.
+Selecting among those classes changes the dynamics and is not justified by the current primitives. The acceptance audit above closes the present route negatively: fixed mathematical regulators do not become a finite accepted transition merely by being kept nonzero. Until a near-origin rule is derived, the proposed sharp Master Equation cannot be promoted as a globally complete same-source law.
 
 Promotion classification: **ordinary fold promote now within the priority proposal; coincident birth defer with a fundamental blocker**.

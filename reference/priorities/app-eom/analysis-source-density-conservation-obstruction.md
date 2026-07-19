@@ -1,161 +1,200 @@
-# Conservation Obstruction for the Scale-Only Source-Density Equation
+# History-Only Conservation Obstruction for the Source-Density Equation
 
 ## Status
 
-- Purpose: test the energy, momentum, and angular-momentum promotion obligation
-- Scope: the proposed scale-only acceleration with factor $c_f/|D_t|$
+- Purpose: determine whether energy, momentum, and angular momentum follow from the same retained-history update as the proposed source-density acceleration
+- Scope: the positive-width causal equation and its regular simple-root reduction with base factor $c_f/|D_t|$
 - Standing: priority analysis; not canon and not an EOM solver specification
-- Result: conservation is not derivable from the scale-only equation with the current action evidence
+- Result: the retained-history update determines acceleration but does not determine the three conserved accounts from the current Architrino primitives
 
 ## Finding in plain language
 
-The proposed base acceleration does not yet carry a proved conservation law. The action calculation that selects the factor $c_f/|D_t|$ also produces a second, nonzero recoil contribution. That recoil contribution is required by the same action's translation and rotation identities. Keeping the selected scale term while dropping the recoil term breaks the only current action-based route to energy, momentum, and angular-momentum balance.
+The causal feedback loop is complete as an acceleration update: retained histories determine acceleration, acceleration changes the paths, and the changed paths extend the histories. That loop does not yet determine conserved energy, momentum, or angular momentum.
 
-The acceleration equation by itself cannot repair this gap. It specifies how velocity changes, but it does not specify the primitive kinetic function, momentum function, or wake-history charges needed to state a unique conserved total.
+Two ingredients are missing. First, the current theory leaves the kinetic and momentum functions of one architrino unspecified. Second, a causal wake is fixed by source history, but no independently derived rule assigns energy, momentum, or angular momentum to an emitted wake and updates those quantities when a receiver is accelerated.
 
-Claim classification: **derived obstruction from the current scalar-action decomposition; inferred promotion consequence for every other possible action**.
+One can always create accounts that balance by defining each wake change as the negative of whatever motion change was just computed. That construction would make every acceleration law appear conservative and therefore supplies no evidence. It is the post hoc cancellation forbidden by the promotion gate.
 
-## 1. What the current action actually derives
+Claim classification: **derived underdetermination from the declared retained state and current kinematic definitions**. This is not a theorem that no future Architrino-native conservation construction can exist. It proves that the present primitives and acceleration equation do not yet supply one.
 
-The existing regularized scalar action has an exact kernel split
+## 1. State actually advanced by the proposed equation
+
+At absolute time $T$, let the retained state be
 
 $$
-K_0^{(\eta)}
+\mathcal H_T
 =
-K_{\mathrm{scale}}^{(\eta)}
+\left\{
+\mathbf X_i(T+s),\mathbf V_i(T+s),q_i:
+-h\le s\le0
+\right\}_{i=1}^N.
+$$
+
+The positive-width equation determines
+
+$$
+\dot{\mathbf X}_i(T)=\mathbf V_i(T),
+\qquad
+\dot{\mathbf V}_i(T)
+=
+\mathcal A_i^{(\eta,\epsilon_c)}[\mathcal H_T].
+$$
+
+This is a causal update. It uses the present receiver event and retained transmitter histories only. Appending the newly accepted path segment produces $\mathcal H_{T+dT}$.
+
+The state contains no separately specifiable wake amplitude, wake momentum density, or wake stress. Under the current point-transceiver ontology, the wake at $T$ is a deterministic record of source identity, polarity, and source path history.
+
+Claim classification: **derived restatement of the causal retained-history theorem and current ontology**. A pair of admissible updates with the same complete $\mathcal H_T$ but different accelerations would falsify the state-sufficiency claim for acceleration.
+
+## 2. Acceleration does not determine the motion accounts
+
+Let one architrino have speed $s_i=\|\mathbf V_i\|$. The current energy chapter permits a primitive kinetic scalar
+
+$$
+E_{k,i}=K(s_i)
+$$
+
+and a radial momentum-like vector
+
+$$
+\mathbf p_i=P(s_i)\hat{\mathbf V}_i.
+$$
+
+Their changes under the same acceleration are
+
+$$
+\frac{dE_{k,i}}{dT}
+=
+\frac{K'(s_i)}{s_i}
+\mathbf V_i\cdot\mathbf A_i,
+$$
+
+and, after decomposing $\mathbf A_i=A_{\parallel,i}\hat{\mathbf V}_i+\mathbf A_{\perp,i}$,
+
+$$
+\frac{d\mathbf p_i}{dT}
+=
+P'(s_i)A_{\parallel,i}\hat{\mathbf V}_i
 +
-K_C^{(\eta)}.
+\frac{P(s_i)}{s_i}\mathbf A_{\perp,i}.
 $$
 
-Its spatial variation gives two distinct acceleration contributions:
+The corresponding angular-momentum change is
 
 $$
-\mathbf A_i^{\mathrm{action}}
+\frac{d}{dT}
+\left(\mathbf X_i\times\mathbf p_i\right)
 =
-\mathbf A_{\mathrm{scale},i}^{(0)}
-+
-\mathbf A_{C,i}.
+\mathbf X_i\times\frac{d\mathbf p_i}{dT},
 $$
 
-The first contribution has the proposed simple-root factor
+because $\mathbf V_i$ is parallel to $\mathbf p_i$.
+
+The source-density acceleration fixes $\mathbf A_i$ but does not fix $K$ or $P$. Different allowed choices therefore give different energy, momentum, and angular-momentum changes on the same path history. The optional quadratic bookkeeping choice
 
 $$
-\frac{c_f}{|D_t|}.
+K(s)=\frac12\mu_{\mathrm{arch}}s^2,
+\qquad
+P(s)=\mu_{\mathrm{arch}}s
 $$
 
-The second contribution comes from the derivative of the causal constraint. It is nonzero on the branch-preserving perturbation family analyzed in [Recoil Pullback Lemma for the Pure Scalar Action](analysis-recoil-pullback-lemma.md). The same analysis constructs wake-history energy, momentum, and angular-momentum increments for that recoil contribution from the action's time-translation, spatial-translation, and rotation symmetries.
+is one consistent specialization, not a derivation from the Master Equation.
 
-Therefore the current action supports the recoil-inclusive equation, not the scale-only equation.
+Claim classification: **derived kinematic underdetermination**. A unique $K$ and $P$ derived from existing Architrino primitives, with their compatibility proved for arbitrary acceleration direction, would falsify this obstruction.
 
-Falsifier: a correct variation of the same action for which $\mathbf A_C$ vanishes identically on every retained branch chart.
+## 3. The current wake record has no conservation update
 
-## 2. Residual left by dropping recoil
-
-Suppose a trajectory is advanced with
+The current ontology states that emitted wakes are source-provenanced path-history structures. They superpose without scattering and have no freely specifiable state apart from source histories. This determines where and when a wake is received. It does not yet assign three transported quantities
 
 $$
-\mathbf A_i
+E_{\mathrm{wake}}[\mathcal H_T],
+\qquad
+\mathbf P_{\mathrm{wake}}[\mathcal H_T],
+\qquad
+\mathbf J_{\mathrm{wake}}[\mathcal H_T]
+$$
+
+or a rule for their emission, propagation, reception, and boundary flux.
+
+For any chosen $K$ and $P$, one could define
+
+$$
+\dot E_{\mathrm{wake}}
 =
-\mathbf A_{\mathrm{scale},i}^{(0)}
+-\frac{d}{dT}\sum_iE_{k,i},
 $$
 
-while the scalar action remains the proposed conservation authority. The trajectory then fails the full action equation by
-
 $$
-\mathbf R_i
+\dot{\mathbf P}_{\mathrm{wake}}
 =
--\mathbf A_{C,i}
-$$
-
-in the action-to-acceleration normalization used to compare the two contributions.
-
-The corresponding symmetry projections are proportional to
-
-$$
-\mathcal R_E
-=
-\sum_i
-\mathbf V_i\cdot\mathbf A_{C,i},
-$$
-
-$$
-\boldsymbol{\mathcal R}_P
-=
-\sum_i
-\mathbf A_{C,i},
+-\frac{d}{dT}\sum_i\mathbf p_i,
 $$
 
 and
 
 $$
-\boldsymbol{\mathcal R}_J
+\dot{\mathbf J}_{\mathrm{wake}}
 =
-\sum_i
-\mathbf X_i\times\mathbf A_{C,i}.
+-\frac{d}{dT}
+\sum_i\mathbf X_i\times\mathbf p_i.
 $$
 
-The recoil analysis exhibits branch-preserving perturbations for which these projections are not all zero. The scale-only trajectory therefore cannot inherit the scalar action's conserved wake-history totals.
+These definitions make all three totals constant by construction. They do not say what was emitted, what propagated at $c_f$, what crossed a boundary, or what changed at a reception. They provide no lower energy bound and no independent polarity or locality test. Because the definitions consume the residual they are supposed to explain, they are accounting identities rather than derived conservation laws.
 
-Plain language: deleting one term from an action-derived acceleration does not merely simplify the motion. It also deletes the transfer needed to balance the action's energy and motion accounts.
+Claim classification: **derived circularity test**. An account specified before the trajectory, computed from emitted and received wake data without using the balance residual as its definition, and closing on arbitrary nondegenerate test histories would pass this test.
 
-Claim classification: **derived for this action and its declared branch neighborhood**. A proof that all three displayed projections vanish identically on that same neighborhood would overturn the obstruction.
+## 4. Functional form of the missing theorem
 
-## 3. Why the acceleration equation alone is insufficient
-
-At substrate level, acceleration is primitive. A conservation statement nevertheless needs additional defined objects. For example, a kinetic scalar $K(s)$ and a radial momentum magnitude $P(s)$ must satisfy their declared compatibility relation before one can infer an energy change or a momentum balance from acceleration. Wake-history energy and motion accounts also require a rule assigning content to causal records and their boundary crossings.
-
-The scale-only Master Equation supplies none of these definitions uniquely. Many different kinetic functions and wake ledgers can reproduce the same instantaneous acceleration while assigning different conserved totals. Defining a missing wake account afterward as “whatever closes the residual” would be circular and would not provide independent evidence.
-
-Claim classification: **derived underdetermination**. A unique construction of all three conserved totals from the scale-only acceleration and existing architrino primitives alone would falsify it.
-
-## 4. Causality obstruction in the current action route
-
-The complete two-time action variation couples a present event both to past emissions received now and to present emissions received later. Its full Euler contribution is therefore not yet a functional of retained past history alone. The recoil wake-history increments are valid cross-cut action identities, but they do not by themselves provide a causal acceleration evaluator for $\mathbf A_C$.
-
-This leaves a two-sided requirement:
-
-1. dropping $\mathbf A_C$ loses the action-based conservation proof;
-2. retaining $\mathbf A_C$ is not acceptable until it is rewritten as a causal retained-history contribution or replaced by an independently derived causal mechanism.
-
-The obstruction is not solved by prescribing a future partner path. That would turn the Master Equation into a boundary-value rule rather than a past-history evolution law. [Causal-Recoil No-Go for the Current Two-Time Action](analysis-two-time-action-causal-recoil-no-go.md) proves the stronger statement: on arbitrary admissible continuations, no functional of retained particle histories alone can equal the complete current action variation. A causal reconstruction therefore requires an independent wake state or a different evolution principle.
-
-## 5. Minimum new structure needed for promotion
-
-The current direct action cannot produce the needed functional from particle histories alone. A conservation-supporting causal completion would instead need an independently evolving wake state $\Psi_T$ and an acceleration functional
+A conserved total $\mathcal C[\mathcal H]$ must be a fixed function of the retained state whose first change along the complete history update vanishes. Let $\mathcal G(\mathcal H_T)$ denote the history-shift generator: it shifts every stored segment toward the old boundary and appends the endpoint values fixed by $\dot{\mathbf X}_i=\mathbf V_i$ and $\dot{\mathbf V}_i=\mathcal A_i[\mathcal H_T]$. The conservation condition is
 
 $$
-\mathbf A_{C,i}^{\mathrm{ret}}
-\left[
-\Psi_T,
-\{\mathbf X_j(S):S\le T\}
-\right]
+D\mathcal C[\mathcal H_T]
+\left[\mathcal G(\mathcal H_T)\right]
+=0.
 $$
 
-with all of the following properties:
+Here $D\mathcal C$ means the first-order change in the proposed account when the whole retained history is advanced. The acceleration law supplies the direction in which the state moves. It does not select a nontrivial solution $\mathcal C$, distinguish physical energy from another invariant, or prove a lower bound.
 
-1. $\Psi_T$ has a causal update rule and declared initial data rather than being defined from a future trajectory;
-2. the acceleration uses current wake state and retained past particle histories only;
-3. it agrees with the accepted incoming regularized contribution on an endpoint-clear branch chart, while any difference from the two-sided action is stated rather than hidden;
-4. the same wake state defines energy, momentum, and angular-momentum increments;
-5. the three balance residuals vanish or converge to zero under one common regulator and history-window limit;
-6. it remains finite through ordinary folds;
-7. its coincident same-source asymptotic is computed explicitly, because the incoming action contribution is more singular than the scale acceleration;
-8. its definition does not depend on a prescribed future path or an arbitrary characteristic split.
+The current two-time action cannot supply this missing selection. Its complete variation depends on future receptions and does not reproduce the proposed past-history acceleration. Therefore its symmetry accounts are not conservation laws for the source-density evolution.
 
-This is one theorem target, not eight independent gates: the same causal wake state and the same retained record must satisfy all eight properties.
+Claim classification: **derived promotion obstruction**. A causal action or a direct history construction that produces the proposed acceleration and three fixed, bounded accounts on the same state would close it.
 
-## 6. Available resolution routes
+## 5. Conservation cannot regularize coincident same-source birth
 
-Three routes remain logically open:
+At coincident same-source birth, the complete source-density impulse on a fixed local window obeys the regulator-uniform lower bound
 
-1. introduce an independently evolving causal wake state and derive its recoil acceleration and conserved accounts;
-2. derive a different causal action whose complete variation is exactly the scale-only source-density equation;
-3. derive conserved realized-trajectory wake accounts independently of an action, with one common record and non-circular balance tests.
+$$
+J_{\eta,\epsilon_c}^{\mathrm{full}}(L,h)
+\ge
+C_\varphi K_i
+\min\!\left(
+\frac{c_f}{\alpha\epsilon_c^2},
+\frac{L}{\eta\epsilon_c}
+\right).
+$$
 
-The current evidence closes none of these routes. The first route has the strongest accounting foothold because the recoil kernel and its cross-cut symmetry increments already exist. However, [Causal-Recoil Asymptotic at Coincident Same-Source Birth](analysis-causal-recoil-coincident-birth-asymptotic.md) shows that the incoming sharp recoil has the same sign as the scale contribution and grows as $t^{-4}$, while the time-transposed companion belongs to an advanced pre-crossing event. The causal-recoil no-go theorem shows that the complete current action contribution cannot be reconstructed from retained particle histories alone. An added causal wake state would have to be derived and tested rather than inferred from the direct action by rearrangement.
+Any nondegenerate momentum map converts this divergent velocity change into a divergent motion-account change. Assigning an equal opposite divergence to a wake account would balance a formal total but would not produce a finite outgoing velocity or a finite transition state.
+
+The same-source acceleration must therefore be made finite before conservation accounting can certify the transition. Conservation is a consistency condition on an admitted evolution, not a mechanism that removes a nonintegrable acceleration.
+
+Claim classification: **derived ordering of the two promotion obligations**. A finite outgoing retained state from the unchanged point-kernel transition would falsify it.
+
+## 6. Smallest missing structure
+
+A non-circular conservation derivation needs all of the following from one Architrino-native construction:
+
+1. a fixed kinetic scalar and momentum map, or a fixed universal conversion rule, with compatibility for arbitrary acceleration direction;
+2. explicit wake account variables derived from source-provenanced emission data;
+3. a causal update for those variables through emission, propagation, reception, and finite-window boundary crossing;
+4. energy bounded below on the admitted state family;
+5. momentum and angular momentum transforming correctly under Euclidean translations and rotations;
+6. balance proved on general non-circular histories without defining any account from the residual it is meant to cancel;
+7. the same positive widths or near-origin rule used by the finite same-source transition.
+
+If all wake quantities remain deterministic functions of source history, the construction must display those functions explicitly. If reception changes the wake state independently of the source history, that is a change to the current wake ontology and requires an operator theory decision before canon or implementation work.
 
 ## 7. Disposition
 
-The conservation obligation remains open. The scale factor $c_f/|D_t|$ is supported by the current action's scale component, but the scale-only equation is not supported by that action's conservation identities.
+The history-only acceleration loop has been attempted to the limit of the current primitives. It is causal, but the three conserved accounts are underdetermined and no non-circular update law follows from the present state.
 
-Promotion classification: **defer with blocker**. The retained-particle-history recoil route is closed negatively; the next mathematical target is an independently evolving causal wake state or a different conservation construction.
+Promotion classification: **closed negatively under the current primitive set**. Further algebra on the same acceleration functional cannot supply the missing kinematic and wake-account definitions. Promotion requires new derived structure or a deliberate restriction of the claimed equation domain.

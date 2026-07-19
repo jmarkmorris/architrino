@@ -3,7 +3,7 @@
 - id: `the-tiny-transceivers-spread-05`
 - source: `content/assets/images/archie/childrens-books/source/the-tiny-transceivers/the-tiny-transceivers-spread-05.png`
 - lesson: An architrino transmits from its path-history.
-- geometry: A red point's earlier source position sends a red wake while the current red point has moved on.
+- geometry: A red point's earlier transmitter position sends a red wake while the current red point has moved on.
 
 ## Automated Checks
 

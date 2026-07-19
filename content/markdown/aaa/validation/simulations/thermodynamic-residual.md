@@ -13,7 +13,7 @@ For each Physical Observer $O$, effective-horizon patch $\partial\Omega$, and fi
 | Noether sea state | $n(\mathbf X,T)$, $\rho_{\text{NS}}(\mathbf X,T)$, $\chi_{\text{sea}}(\mathbf X,T)$, $u^i_{\mathrm{sea,eff}}$, $e^a{}_i$, $\gamma_{ij}^{\mathrm{eff}}$, and $N$ on the relevant region | fitting entropy, flux, and metric response with separate Noether sea states |
 | Physical Observer | worldline, clock-rate record, access region, reference resources, and observer acceleration $a_O$ derived from the metric channel | importing an external observer or a free Rindler frame |
 | Boundary patch | $\partial\Omega$, effective patch area $A_{\partial\Omega}^{\mathrm{eff}}$, orientation, and signed crossing convention | hiding the area comparison in an undefined horizon surface |
-| Boundary wake labels | retained label set $\mathcal{B}_{\partial\Omega}^{(O)}(\theta;W)$ with emitter identity, emission time, receiver or sensor identity, reception time, channel, and persistence criterion | counting unrecorded or inaccessible microstates |
+| Boundary wake labels | retained label set $\mathcal{B}_{\partial\Omega}^{(O)}(\theta;W)$ with transmitter identity, emission time, receiver or sensor identity, reception time, channel, and persistence criterion | counting unrecorded or inaccessible microstates |
 | Flux projection | either $T_{\mu\nu}^{\mathrm{eff}}(\theta)$ on the patch or a declared discrete estimator from the same causal-wake and provenance logs | fitting $dQ$ independently of the record |
 | Gates | predeclared $\epsilon_{\mathrm{thermo}}$, $\epsilon_A$, $\epsilon_E$, convergence tolerances, and negative controls | selecting tolerances after seeing the output |
 

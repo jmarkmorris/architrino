@@ -16,7 +16,7 @@ We work throughout in units with primitive wake speed $c_f=1$; per-hit accelerat
 
 - Why it matters:
   - Gauss-like behavior follows immediately ($1/r^2$ on causal wake fronts).
-  - Moving systems automatically generate tangential components in the receiver’s frame due to path-history geometry and causal-flux bunching: the “aim point” is in the past, source motion changes $D_t$, and receiver motion changes $D_r$. Orbital and vortex-like patterns emerge from delay, not from any $B\propto \mathbf{v}\times\mathbf{E}$ construction.
+  - Moving systems automatically generate tangential components in the receiver’s frame due to path-history geometry and causal-flux bunching: the “aim point” is in the past, transmitter motion changes $D_t$, and receiver motion changes $D_r$. Orbital and vortex-like patterns emerge from delay, not from any $B\propto \mathbf{v}\times\mathbf{E}$ construction.
 
 - Consequence:
   - Many “magnetic” phenomenologies (circulation, axial vortices, flux tubes) can be reproduced as kinematic consequences of delayed, receiver-side line-of-action pushes. There is no right-hand rule, no cross products, just geometry, flux weighting, and time delay.
@@ -29,7 +29,7 @@ We work throughout in units with primitive wake speed $c_f=1$; per-hit accelerat
   - Emission cadence and per-wavefront amplitude are constant at the source.
 
 - Why it matters:
-  - Simplifies calibration and emphasizes that stability and scale selection arise from delay and self-interaction. Source motion supplies the transmitter-side factor, receiver motion supplies the receiver-side factor and also enters instantaneous power via $\mathbf{F}\cdot\mathbf{v}$ through the radial component $v_r$.
+  - Simplifies calibration and emphasizes that stability and scale selection arise from delay and self-interaction. Transmitter motion supplies the transmitter-side factor, receiver motion supplies the receiver-side factor and also enters instantaneous power via $\mathbf{F}\cdot\mathbf{v}$ through the radial component $v_r$.
   - With $\eta$-mollification ($\delta\to\delta_\eta$), the calculation can define $\Phi_\eta$ and verify $\Delta E_k=-\Delta U$ on resolved intervals while still taking $\eta\to 0$ for sharp impulses.
 
 ---
@@ -119,7 +119,7 @@ We work throughout in units with primitive wake speed $c_f=1$; per-hit accelerat
 - Use $\Phi_\eta$ to evaluate $U$ and verify $\Delta E_k = -\,\Delta U$ across events that cross the self-hit onset boundary; in the $\eta\to 0$ limit, impulses integrate to the same work.
 
 4) Numerical recipe (robust, minimal assumptions)
-- For each receiver time $T$: (i) root-find causal emission times $T_t$ for all sources (and self), (ii) discard non-physical roots ($H(0)=0$, handle $r=0$ by symmetry), (iii) sum $a_{o′\leftarrow o}(T;T_t)$, (iv) integrate velocity and position with an event-aware scheme. Use $\varepsilon$-thickening for smooth integration when needed.
+- For each reception time $T_r$: (i) root-find causal emission times $T_t$ for all transmitters (and self), (ii) discard non-physical roots ($H(0)=0$, handle $r=0$ by symmetry), (iii) sum $a_{o′\leftarrow o}(T_r;T_t)$, (iv) integrate velocity and position with an event-aware scheme. Use $\varepsilon$-thickening for smooth integration when needed.
 
 ---
 

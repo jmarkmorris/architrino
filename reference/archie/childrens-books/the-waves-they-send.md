@@ -126,7 +126,7 @@ Read-aloud text:
 
 Editor note:
 
-Present action depends on past source position.
+Present action depends on the past transmitter position.
 
 ### Spread 9: Red Source
 

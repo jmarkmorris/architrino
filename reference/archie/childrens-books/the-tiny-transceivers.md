@@ -46,7 +46,7 @@ Illustration prompt:
 >
 > Use natural skin and hair tones only for people. Draw architrinos as small luminous point transceivers: pure red for one intrinsic kind, pure blue for the other intrinsic kind, with a tiny white glint when needed for identity and clarity. Use only white, black, pure red, pure blue, and red-blue purples for lab screens, tabletop surfaces, point entities, paths, wakes, arrival cues, line-of-action cues, glow regions, shadows, floor details, play objects, clothing, and all non-human visual systems.
 >
-> Electra and Poz sit beside a simple white tabletop message lab. On the lab surface, a few small luminous red and blue point transceivers move along visible red, blue, and purple path traces. One red point has an earlier source position with a faint red wake beginning, and one blue point has a received cue that bends its next path. The scene should invite the question "What are the tiny sender-receivers in nature?" through tiny trackable points, paths, sending, and receiving alone, with no text, labels, numbers, grids, panels, or formal diagrams.
+> Electra and Poz sit beside a simple white tabletop message lab. On the lab surface, a few small luminous red and blue point transceivers move along visible red, blue, and purple path traces. One red point has an earlier transmitter position with a faint red wake beginning, and one blue point has a received cue that bends its next path. The scene should invite the question "What are the tiny sender-receivers in nature?" through tiny trackable points, paths, sending, and receiving alone, with no text, labels, numbers, grids, panels, or formal diagrams.
 >
 > Architrinos must not look like atoms, planets, stars, dust, cartoon faces, beads, balls, germs, magic charms, social groups, pets, or characters. Do not map red/blue polarity to human identity, personality, gender, good/bad, anger/calm, liking/disliking, belonging, or social relation. Do not draw equations, captions, readable text, letters, numbers, logos, watermarks, extra characters, tiled floors, heavy grids, rulers, measurement marks, graphs, mazes, road maps, side-by-side panels, contact sheets, or detached formal diagrams.
 
@@ -176,11 +176,11 @@ An architrino transmits from its path-history.
 
 Geometry:
 
-A red point's earlier source position sends a red wake while the current red point has moved on.
+A red point's earlier transmitter position sends a red wake while the current red point has moved on.
 
 Background concepts:
 
-Transmission, earlier source position, path-history, red wake, moving point.
+Transmission, earlier transmitter position, path-history, red wake, moving point.
 
 Illustration prompt:
 
@@ -400,7 +400,7 @@ Transceiver, sender, receiver, message web, path bend, sparse interaction.
 
 Illustration prompt:
 
-> Several red and blue point transceivers on the lab screen both send and receive. Show a readable web of soft red, blue, and purple message cues: a few wakes begin from earlier source positions, and a few cues arrive at other points where paths bend. Keep the web sparse and child-readable, not a tangled network diagram. The visual lesson is transceiver behavior: each tiny point can be a sender and a receiver.
+> Several red and blue point transceivers on the lab screen both send and receive. Show a readable web of soft red, blue, and purple message cues: a few wakes begin from earlier transmitter positions, and a few cues arrive at other points where paths bend. Keep the web sparse and child-readable, not a tangled network diagram. The visual lesson is transceiver behavior: each tiny point can be a sender and a receiver.
 >
 > Keep source positions, traveling cues, received cues, and path bends visible. Avoid dense tangles, network-node diagrams, labels, readable text, letters, numbers, equations, grids, rulers, panels, faces on points, and detached diagrams.
 

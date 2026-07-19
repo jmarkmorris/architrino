@@ -677,7 +677,7 @@ D_v
 \frac{\mathbf v_Q}{c_{\gamma,Q}}
 $$
 
-where $\hat{\mathbf k}$ points from source to receiver, $c_{\gamma,Q}$ is the local photon-channel speed used for the endpoint comparison, and $\mathcal R_v$ carries higher-order and multi-root Jacobian corrections from the exact causal ledger.
+where $\hat{\mathbf k}$ points from transmitter to receiver, $c_{\gamma,Q}$ is the local photon-channel speed used for the endpoint comparison, and $\mathcal R_v$ carries higher-order and multi-root Jacobian corrections from the exact causal ledger.
 
 The path-history term is a line integral over the packet path through the Noether sea:
 

@@ -46,7 +46,7 @@ Each reaction record should state:
 | Energy-momentum and angular-momentum ledger | Internal energy, recoil, emitted assemblies, spin/vector ledger terms, wake-carried angular momentum, and medium excitation |
 | Weak-corridor record, when applicable | $\Delta A_W$, neutral Noether braid scaffold sourcing, shielded-energy exposure, corridor payload, recoil, product identity routing, and Noether sea return row |
 | Radiation event record, when applicable | Source assembly, source-depletion row, trigger geometry, $\delta\Theta_a$, $E_{\text{exc}}$, $E_\gamma$, recoil, medium excitation, polarization handoff, causal-wake ledger, photon Gate B event residual when $E_\gamma\ne0$, and closure status |
-| Provenance data | Source identity, emission time, causal-root branch, and local Noether sea state |
+| Provenance data | Transmitter identity, emission time, causal-root branch, and local Noether sea state |
 | Hybrid Standard Model matching, when applicable | Source lane, scheme, operator or observable, matching normalization, CKM/PMNS factor when applicable, matrix-element or factorization source, expansion or scaling parameter, systematic remainder, and regulator-removal or continuum record |
 | Closure status | What is established, what is assumed, and what remains to derive |
 

@@ -186,10 +186,10 @@ function renderFormulaSummary(documentLike, container, summary, { windowLike } =
     ["mu analyzer", formatPhotonFixed(summary.field.analyzer.fraction, 3)],
     ["cycle average", formatPhotonFixed(summary.averageAnalyzerFraction, 3)],
     ["analyzer residual", formatPhotonFixed(summary.analyzerResidual, 4)],
-    ["source count", String(summary.field.sourceCount)],
+    ["transmitter count", String(summary.field.sourceCount)],
     ["root count", String(summary.field.rootCount)],
     ["mean delay", formatPhotonFixed(summary.field.averageDelay, 3)],
-    ["nearest source", formatPhotonFixed(summary.field.nearestSourceDistance, 3)],
+    ["nearest transmitter", formatPhotonFixed(summary.field.nearestSourceDistance, 3)],
     ["", formatPhotonFixed(summary.stokes.s0, 3), undefined, { labelMath: "A_y^2 + A_z^2" }],
     ["", formatPhotonFixed(summary.stokes.s1, 3), undefined, { labelMath: "A_y^2 - A_z^2" }],
     [

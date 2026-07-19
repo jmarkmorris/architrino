@@ -1013,7 +1013,7 @@ export function createPhotonControlsRuntime({
   measurementControls.append(measurementZeroMarker);
   measurementSection.append(measurementControls);
   const absoluteHistoryControl = createCheckboxControl(documentLike, {
-    label: "Absolute source history",
+    label: "Absolute transmitter history",
     checked: state.measurement?.sourceHistoryMode === "absolute_history",
     onChange: (checked) => {
       getState().measurement.sourceHistoryMode = checked ? "absolute_history" : "co_moving";

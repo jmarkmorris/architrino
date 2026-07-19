@@ -597,7 +597,7 @@ function buildPhotonSearchCandidateResult(
       reasons,
       "strong-cancellation",
       "Strong cancellation",
-      `${diagnostics.sourceCount} sources with ${diagnostics.transverseAmplitude.toFixed(3)} net transverse field`,
+      `${diagnostics.sourceCount} transmitters with ${diagnostics.transverseAmplitude.toFixed(3)} net transverse field`,
       14 * (1 - Math.min(1, transversePerSource / 0.22))
     );
   }
@@ -621,7 +621,7 @@ function buildPhotonSearchCandidateResult(
       reasons,
       "root-family",
       "Multiple-root family",
-      `${diagnostics.rootCount} roots for ${diagnostics.sourceCount} sources`,
+      `${diagnostics.rootCount} roots for ${diagnostics.sourceCount} transmitters`,
       6
     );
   }

@@ -27,7 +27,7 @@ This is not merely a philosophical puzzle. It is a **practical requirement** for
 
 The diagnostic rests on the theory's **finite wake-speed** postulate: architrino-emitted causal wakes propagate at speed $c_f$ **relative to the Euclidean void**, not relative to the source's subsequent motion. This postulate structurally distinguishes the void rest frame, making it available to complete-state reconstruction through purely geometric relationships.
 
-The idea is easiest to see by following the centers of emitted wake surfaces. A stationary source keeps emitting from the same void point. A moving source leaves a sequence of distinct emission centers behind it. The center pattern, not an external grid label, carries the rest diagnostic.
+The idea is easiest to see by following the centers of emitted wake surfaces. A stationary transmitter keeps emitting from the same void point. A moving transmitter leaves a sequence of distinct emission centers behind it. The center pattern, not an external grid label, carries the rest diagnostic.
 
 ### The Nature of Causal Wakes
 
@@ -218,7 +218,7 @@ Assembly-based measuring devices are themselves distorted by motion and coupling
 ### The Source-Independence Assumption
 
 The diagnostic relies on a critical physical assumption:
-- **Wake propagation independence from source motion**: once emitted, the potential-bearing wake propagates at $c_f$ relative to the void, independent of the source's subsequent trajectory.
+- **Wake propagation independence from transmitter motion**: once emitted, the potential-bearing wake propagates at $c_f$ relative to the void, independent of the transmitter.s subsequent trajectory.
 
 This is analogous to **acoustic waves** in air: once a speaker emits sound, that wave propagates at the speed of sound in the medium. The wave does not follow the speaker if it moves. The analogy does not by itself answer Michelson-Morley-style null drift results; that burden is owned by the moving-assembly closure ladder, not by this complete-state diagnostic.
 

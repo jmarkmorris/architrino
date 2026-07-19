@@ -185,7 +185,7 @@ test("prescribed-path flight-time analysis returns a positive emission delay", a
   assert.equal(tau, expectedTau);
 });
 
-test("Ideal Braid flight time can be routed through the prescribed-path analysis for a linear source", async () => {
+test("Ideal Braid flight time can be routed through the prescribed-path analysis for a linear transmitter", async () => {
   const sourceStart = new THREE.Vector3(1, -0.5, 0.25);
   const sourceVelocity = new THREE.Vector3(0.2, 0.1, -0.05);
   const architrino = {

@@ -66,7 +66,7 @@ $$
     The invalid shortcut $\nabla\!\cdot(F_r\hat{\mathbf{r}})=\partial_rF_r$ breaks the conservation normalization of causal wake surfaces.
 
 - Finite-limit discipline:
-  - Treat finite source count, finite memory depth, finite step size, finite domain/window, and finite $\eta > 0$ as the first proof or simulation regime.
+  - Treat finite architrino count, finite memory depth, finite step size, finite domain/window, and finite $\eta > 0$ as the first proof or simulation regime.
   - Promote large-system, continuum, or $\eta\to0$ statements only after the retained observables converge under the declared refinement path.
   - Do not replace arbitrarily large finite systems with an actual infinite medium unless the limit preserves the causal-root count, transmitter-side Jacobian floors, receiver-weighted acceleration factors, work-energy residuals, and thermodynamic summaries being claimed.
 

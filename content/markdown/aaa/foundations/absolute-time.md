@@ -23,11 +23,11 @@ After that scale fixing, the remaining freedom is only translation by $b$. The b
 Ordinary language uses the word "time" for several different things. $\mathbb{A}\mathbb{A}\mathbb{A}$ separates those things so the reader does not confuse the substrate parameter with clocks or observations:
 
 1. **Substrate ordering:** Absolute time $T$ orders universe states. It is not directly measured by a physical clock and has no natural origin; its affine scale is fixed only after the causal-wake law and unit convention are declared.
-2. **Causal-wake implementation:** Architrino worldlines and emissions make the ordering physically operative. A transmitter event at emission time $T_t$ contributes at a receiver time $T$ only when the causal wake support satisfies
+2. **Causal-wake implementation:** Architrino worldlines and emissions make the ordering physically operative. A transmitter event at emission time $T_t$ contributes at a receiver time $T_r$ only when the causal wake support satisfies
 $$
-r_{ij}(T,T_t)=c_f(T-T_t),
+r_{ij}(T_r,T_t)=c_f(T_r-T_t),
 $$
-where $r_{ij}(T,T_t)=\|\mathbf X_i(T)-\mathbf X_j(T_t)\|$ is the receiver-transmitter separation. In this layer, temporal separation and Euclidean distance become a receiver-local interaction condition.
+where $r_{ij}(T_r,T_t)=\|\mathbf X_i(T_r)-\mathbf X_j(T_t)\|$ is the receiver-transmitter separation. In this layer, temporal separation and Euclidean distance become a receiver-local interaction condition.
 3. **Assembly clock readout:** Physical clock time is an assembly-level phase extraction. A stable binary or Noether braid branch supplies repeatable internal cycles, and observer clock time is the count of those cycles relative to a reference branch, not another substrate parameter. In the notation of [Proper Time and Time Dilation](../spacetime/proper-time-and-time-dilation.md), with $\varphi_{\mathcal A}$ the counted clock phase and $\Omega_{\mathcal A}^{(0)}$ its rest-branch reference rate,
 $$
 d\tau_{\mathcal A}

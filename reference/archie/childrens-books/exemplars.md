@@ -70,7 +70,7 @@ Why it works:
 Best for:
 
 - causal wake travel;
-- source-to-receiver direction;
+- transmitter-to-receiver direction;
 - child-facing propagation delay.
 
 ## The Tiny Transceivers
@@ -117,7 +117,7 @@ Best for:
 
 Why it works:
 
-- the visible path is paired with earlier source positions and expanding wake fronts;
+- the visible path is paired with earlier transmitter positions and expanding wake fronts;
 - accepted causal-history intersections stand out without requiring equations;
 - the self-action loop is present as geometry rather than exposition;
 - the single tabletop keeps the delayed-interaction simulator concrete without cutaway subpanels;
@@ -160,6 +160,6 @@ If a future image departs from these exemplars, revise the prompt by naming the 
 - too much ordinary full-color scenery;
 - clothing competing with polarity colors;
 - wake arcs centered on the wrong present-time object;
-- no visible earlier source positions;
+- no visible earlier transmitter positions;
 - Noether sea too noisy;
 - geometry floating as decoration rather than teaching the page lesson.

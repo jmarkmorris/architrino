@@ -1189,7 +1189,7 @@ export async function computePhotonSelfHitDiagnosticsWithPrescribedPathAnalysis(
   return summarizePhotonSelfHitRows(
     extractPhotonCircularSelfHitRows(runHandle, descriptors),
     "ok",
-    "Self-hit span rows computed by prescribed-path analysis.",
+    "Self-hit span records computed by prescribed-path analysis.",
     helicalRows
   );
 }

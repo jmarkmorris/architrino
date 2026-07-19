@@ -358,7 +358,7 @@ Preferred cast rule:
 | The message has a speed | Field speed | Potential waves propagate at field speed. |
 | The message changes the path | Action / force | Reception changes acceleration along the line of action. |
 | The path bends | Acceleration | Force changes velocity over time. |
-| The old path still matters | Path-history | Present action depends on admissible prior source positions. |
+| The old path still matters | Path-history | Present action depends on admissible prior transmitter positions. |
 | Many messages meet | Superposition | Received influences add at the receiver. |
 | A quiet pattern holds | Assembly | Stable interacting entities form persistent structure. |
 | It meets its own old message | Self-action | Self-hit / self-interaction with causal history. |

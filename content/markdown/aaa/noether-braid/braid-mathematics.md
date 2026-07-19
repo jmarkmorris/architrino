@@ -273,7 +273,7 @@ A recurring obstruction shapes the whole retention program: in chart after chart
 
 The reading discipline matters as much as the results. Each entry is scoped to the chart and assumptions that produced it; the agreement across charts is qualitative consilience, and no ledger quantity may be consumed across charts. None of these results rejects the neutral braid, shell braid, nested shell braid, bounded-speed, controlled self-hit, fold-layer, or medium-response programs.
 
-The constructive consequence is a sharpened search. Admissible persistent braids are necessarily non-rigid: the pumped tangential action must be exchanged with another internal channel — radial breathing against rotation, the two-frequency class whose closed figures are the integer phase-closure states — or absorbed by same-transmitter rows at the field-speed hinge, or exported to a Noether sea environment. The rigid ansatz cannot represent wake exhaust by construction, so its failure was arguably necessary: a retained branch must have somewhere to put the pumped action. The spectrum hunt below is therefore a hunt for relative periodic orbits, not relative equilibria.
+The constructive consequence is a sharpened search. Admissible persistent braids are necessarily non-rigid: the pumped tangential action must be exchanged with another internal channel — radial breathing against rotation, the two-frequency class whose closed figures are the integer phase-closure states — or absorbed by same-transmitter contributions at the field-speed hinge, or exported to a Noether sea environment. The rigid ansatz cannot represent wake exhaust by construction, so its failure was arguably necessary: a retained branch must have somewhere to put the pumped action. The spectrum hunt below is therefore a hunt for relative periodic orbits, not relative equilibria.
 
 ## The Eigen-Braid Spectrum
 
@@ -288,7 +288,7 @@ $$
 
 with angular rate $\omega$ and axial drift $u$. On the channel the free data reduce to the representative worldlines of the equivariant reduction, and the natural branch coordinate is the screw pitch, equivalently the pair $(u,\omega)$ with the channel radius.
 
-A constant-lag reduction makes the ansatz tractable, and it is a derivation. On the rotating-wave ansatz, every directed-pair causal delay is constant in time: splitting any initial separation into axial and transverse parts relative to $\hat{\mathbf n}$, the rotation acts only on the transverse part and the drift only on the axial part, so the separation norm between receiver time $T$ and source time $T-\tau$ depends on $\tau$ alone. Each directed pair's root residual
+A constant-lag reduction makes the ansatz tractable, and it is a derivation. On the rotating-wave ansatz, every directed-pair causal delay is constant in time: splitting any initial separation into axial and transverse parts relative to $\hat{\mathbf n}$, the rotation acts only on the transverse part and the drift only on the axial part, so the separation norm between reception time $T_r$ and transmitter emission time $T_r-\tau$ depends on $\tau$ alone. Each directed pair's root residual
 
 $$
 F_{ij}(\tau)
@@ -298,7 +298,7 @@ F_{ij}(\tau)
 -c_f^2\tau^2
 $$
 
-is a fixed transcendental function of the lag $\tau$, and causal roots are its zeros: constant phase lags. The same argument covers same-transmitter rows. The consequence is structural: on this ansatz the state-dependent delay system collapses to a finite algebraic problem, and the infinite-dimensional history disappears from the unknowns.
+is a fixed transcendental function of the lag $\tau$, and causal roots are its zeros: constant phase lags. The same argument covers same-transmitter root records. The consequence is structural: on this ansatz the state-dependent delay system collapses to a finite algebraic problem, and the infinite-dimensional history disappears from the unknowns.
 
 The spectrum system is then a theorem target. An admissible rotating-wave row is a solution of a finite residual system: for each representative receiver, the kinematic identity that the kernel sum over all constant-lag roots equals the ansatz acceleration; the root equations $F_{ij}(\tau_r)=0$ for every retained lag in the declared root-topology class; and the admissibility inequalities — sub-field speed or declared hinge occupancy, positive Jacobian floors, receiver-weighted acceleration-factor floors, noncollision margins. Solutions form the **eigen-braid spectrum**: for fixed drift and fixed root-topology class, a solution set $\{(\omega_k,R_k)\}$ indexed by root topology and winding data. Discreteness is a target rather than an assumption — the residuals are real-analytic away from caustics and collisions, so solution sets are generically isolated, and a degenerate continuum would itself be a reportable structure.
 

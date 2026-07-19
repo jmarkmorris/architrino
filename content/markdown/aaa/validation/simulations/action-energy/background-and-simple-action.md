@@ -1,6 +1,6 @@
 # Background and Simple Action
 
-The dynamics of an architrino are governed by a simple action: acceleration occurs when the receiver intersects a delayed causal wake surface emitted by a source architrino.
+The dynamics of an architrino are governed by a simple action: acceleration occurs when the receiver intersects a delayed causal wake surface emitted by a transmitter architrino.
 
 The background is fixed absolute time times Euclidean space. Free paths are straight. Accelerations come only from delayed causal hits, with line-of-action direction and receiver-weighted acceleration factor, never from background curvature.
 

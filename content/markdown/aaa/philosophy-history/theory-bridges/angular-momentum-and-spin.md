@@ -3181,7 +3181,7 @@ $$
 
 in the mollified apparatus-potential chart.
 
-The Master-Equation origin of this impulse is the constituent causal-hit sum. Let $\mathscr A_{\hat{\mathbf{m}}}$ be the set of apparatus source architrinos whose organized wake envelope defines the Stern-Gerlach gradient. For target constituent $i\in C$ and apparatus constituent $a\in\mathscr A_{\hat{\mathbf{m}}}$, define the apparatus cross-root set
+The Master-Equation origin of this impulse is the constituent causal-hit sum. Let $\mathscr A_{\hat{\mathbf{m}}}$ be the set of apparatus transmitter architrinos whose organized wake envelope defines the Stern-Gerlach gradient. For target constituent $i\in C$ and apparatus constituent $a\in\mathscr A_{\hat{\mathbf{m}}}$, define the apparatus cross-root set
 
 $$
 \mathcal C_{ia}^{A}(T)

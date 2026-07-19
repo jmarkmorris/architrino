@@ -235,7 +235,7 @@ export function solveLinearPrescribedPathCausalRoots(request = {}) {
     const status = createStatus(
       "insufficient_history_depth",
       "warn",
-      "source history ends before the prescribed causal search window starts"
+      "transmitter history ends before the prescribed causal search window starts"
     );
     return labelRecord({
       schema: "prescribed-path-analysis/linear-causal-roots.v1",

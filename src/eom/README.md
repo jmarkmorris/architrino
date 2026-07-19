@@ -44,7 +44,7 @@ The executable layer currently contains:
   certificate binds the history fingerprint, root-free open search,
   coincident-endpoint exclusion, memory boundary, start chart, and temporal
   rule;
-- one auditable acceleration row per admitted root, including the transmitter-side
+- one auditable acceleration contribution per admitted root, including the transmitter-side
   factor, receiver-side factor, branch orientation, acceleration strength, polarity, root
   precision route, and interval-vector contribution; and
 - complete ordered receiver-source matrices, including self-pairs, with a

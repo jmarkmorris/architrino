@@ -312,7 +312,7 @@ Only physical interactions can bend a trajectory. A curved path in the void is n
 
 Thus deviations from straight-line motion arise from causal wakes, self-interaction, assembly structure, and medium response. They do not arise from spatial curvature.
 
-Substrate acceleration terms must also carry provenance. A deviation from straight motion is admissible only when it is sourced by a causal-wake contribution, a self-hit row, an assembly interaction, or Noether sea response. A transverse or velocity-dependent term with no wake or medium provenance is either a coordinate artifact of a non-inertial chart or not a substrate acceleration in the ontology.
+Substrate acceleration terms must also carry provenance. A deviation from straight motion is admissible only when it is sourced by a causal-wake contribution, a self-hit contribution, an assembly interaction, or Noether sea response. A transverse or velocity-dependent term with no wake or medium provenance is either a coordinate artifact of a non-inertial chart or not a substrate acceleration in the ontology.
 
 ## Forbidden Transformations
 

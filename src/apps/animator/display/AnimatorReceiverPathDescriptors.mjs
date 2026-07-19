@@ -211,7 +211,7 @@ export function createAnimatorReceiverPathDescriptorPackage(descriptor = {}, opt
     status: {
       code: "ok",
       severity: "ok",
-      message: "Animator receiver path descriptors packaged from solver-owned source history",
+      message: "Animator receiver path descriptors packaged from solver-owned transmitter history",
       recoverable: true,
     },
   };

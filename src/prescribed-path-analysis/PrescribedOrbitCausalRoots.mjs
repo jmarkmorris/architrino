@@ -441,7 +441,7 @@ function classifyMovingCircularRootScan(scan, tolerance) {
       code: "stale_history_window",
       severity: "warning",
       rejectedReason: "stale_history_window",
-      message: "scanned source history appears older than the arrival window",
+      message: "scanned transmitter history appears older than the arrival window",
     };
   }
   return {
