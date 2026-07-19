@@ -1913,3 +1913,57 @@ This file holds dated decisions, implementation status, validation results, fail
 - **Artifacts:**
   [going-forward walkthrough](master-equation-import-audit-walkthrough-2026-07-18.md),
   and [promotion-readiness matrix](master-equation-promotion-readiness-matrix.md).
+
+## 2026-07-19 — Joint coincident-transition and conservation necessity audit
+
+- **Derived open-neighborhood result:** on the exact quadratic same-transmitter
+  control, every newborn root at every $T>0$ is already a noncoincident simple
+  root and its v1 acceleration is exactly proportional to $T^{-3}$. Changing
+  only the birth instant, or assigning an isolated event impulse before
+  resuming v1, leaves the divergent velocity integral unchanged.
+- **Derived suppression condition:** a locally regular nonnegative activation
+  $M(T)\sim CT^p$ gives a finite local impulse only when $p>2$. In the native
+  variable $z=D_t/c_f$, a smooth activation must therefore begin at cubic
+  order or later. A positive core supplies cubic suppression but imports the
+  presently undeclared scale $\epsilon_c$; infinitely many other suppressions
+  remain mathematically possible and physically unselected.
+- **Derived joint-construction requirement:** the near-origin rule and the
+  energy, momentum, and angular-momentum accounts cannot be separate patches.
+  A passive wake ledger cannot select the finite transition, while an active
+  wake state changes the complete causal state and must derive emission,
+  propagation, reception, near-origin acceleration, and boundary flux in one
+  predeclared update.
+- **Promotion audit:** the requested positive completion is not derivable from
+  the current point-transceiver history alone. Broader Master Equation closure
+  remains barred; the scoped receiver-factor correction remains implemented
+  and unchanged.
+- **Artifacts:**
+  [transmitter-side singular-event analysis](analysis-transmitter-factor-fold-and-coincident-birth.md),
+  [history-only conservation obstruction](analysis-transmitter-factor-conservation-obstruction.md),
+  [going-forward walkthrough](master-equation-import-audit-walkthrough-2026-07-18.md),
+  and [promotion-readiness matrix](master-equation-promotion-readiness-matrix.md).
+
+## 2026-07-19 — Borg receiver-factor contract migration closure
+
+- **Current contract identity:** Borg emits `eom_borg_shadow_request/v1` under
+  `eom_evolution_contract/v1`, with no scale amendment and with
+  `master_eom_binding/v1`. The process bridge rejects any mismatch before native
+  request encoding.
+- **Current certified-budget identity:** the canonical Interactive hash is
+  `bb4b8b72e01b2d038e2b760a3677a67e92e35d12c5d587f0a98d2079bce8d319`;
+  the canonical Research hash is
+  `74919ee63dc27d0aa7c43453e1762f380da886a63377912905f8f8070d3b9b3d`.
+  The bridge independently recomputes the canonical JSON and SHA-256 before
+  encoding the request.
+- **Historical-record boundary:** the earlier V7 hashes remain attached to the
+  V7 measurements. The numerical allocations did not change; the hash identity
+  changed because the serialized key migrated from `sourceNormalFloor` to
+  `transmitterFactorFloor`.
+- **Measured validation:** the complete Borg JavaScript suite passed `89/89`,
+  the native Borg process suite passed `13/13`, and the transmitter-factor
+  clean-slate check passed. The combined migration suite is `102/102`.
+- **Scope:** this completes Borg's receiver-factor contract migration. It does
+  not alter the corrected acceleration mathematics or close the coincident
+  same-transmitter and conservation debts.
+- **Evidence:**
+  [Borg receiver-factor contract migration validation](evidence/borg-receiver-factor-contract-migration-2026-07-19.md).

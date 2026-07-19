@@ -1,6 +1,6 @@
 # The Master Equation Receiver-Factor Correction
 
-This document explains the implemented correction to the Master Equation: the receiver's wake-crossing rate does not multiply the base acceleration. The transmitter's motion still matters because it changes how densely successive wake surfaces are laid down in space. The receiver's motion changes how the selected emission time moves through the transmitter's history, but that playback rate is not itself acceleration strength.
+This document explains the scoped, implemented correction to the Master Equation: the receiver's wake-crossing rate does not multiply the base acceleration. The transmitter's motion still matters because it changes how densely successive wake surfaces are laid down in space. The receiver's motion changes how the selected emission time moves through the transmitter's history, but that playback rate is not itself acceleration strength.
 
 The corrected base equation is
 
@@ -19,10 +19,11 @@ $$
 
 Its status is deliberately narrow:
 
-- **Implemented correction:** the receiver factor $|D_r|/c_f$ is removed from the base acceleration.
+- **Completed scoped migration:** the receiver factor $|D_r|/c_f$ is removed from the canonical base acceleration, the EOM solver, and Borg's live v1 request path on the certified transmitter-side domain.
 - **Conditional derivation:** $c_f/|D_t|$ follows from uniform wake emission in transmitter time and the causal-root change of variables.
 - **Retained postulates:** the inverse-square spatial dependence, radial line of action, polarity rule, linear superposition, and uniform emission measure remain model commitments unless separately derived.
-- **Open:** singular transitions, conservation on general histories, independent discriminating tests, and any separately derived receiver-velocity-dependent acceleration.
+- **Passed within scope:** the simple-root derivation, ordinary-fold integrated acceleration, first-order static-transmitter discriminator, contract migration, certified-budget identity checks, and fail-closed regression tests.
+- **Open beyond scope:** coincident same-transmitter continuation, conservation on general histories, complete observer-level recovery, and any separately derived receiver-velocity-dependent acceleration.
 
 Nothing in this correction says that receiver velocity can never affect the complete dynamics. It says only that the root-playback identity $D_r/D_t$ does not justify multiplying this base acceleration by $|D_r|/c_f$.
 
@@ -219,6 +220,8 @@ The local analysis gives a sharp newborn acceleration proportional to $(T_r-T_0)
 
 The calculation proves that a generic smooth crossing is incompatible with the sharp base equation. The finite-window lower bound in [Transmitter-Side Fold and Coincident-Birth Analysis](analysis-transmitter-factor-fold-and-coincident-birth.md) diverges on every joint wake-width and core-scale refinement path. The present point-transceiver primitives fix neither width as a positive physical scale and supply no alternative near-origin same-transmitter rule. This route therefore closes negatively: a finite accepted transition requires new derived structure, not a different regulator schedule.
 
+The exact quadratic control also rules out an event-only patch. Every newborn root at every $T_r>T_0$ is already a noncoincident simple root, and its canonical acceleration remains proportional to $(T_r-T_0)^{-3}$. A finite transition must suppress the contribution throughout an open post-birth neighborhood by more than two powers of $T_r-T_0$, exclude the entire endpoint-born branch, or derive a physical wake state that changes the near-origin law. Altering only the birth instant while resuming the simple-root formula immediately afterward leaves the divergent impulse unchanged.
+
 ### 5.4 Finite retained history
 
 Roots may enter or leave the retained history window even when no interior fold occurs. The EOM solver must distinguish a genuine root birth or death from a memory-boundary event and must fail closed when the available history is insufficient.
@@ -234,6 +237,7 @@ The correction was not selected merely because it is simpler than the former rec
 3. **Failed under the current primitives for coincident same-transmitter birth:** the complete finite-window impulse diverges on every joint regulator-removal path. A fixed positive core would change the point-transceiver law unless an Architrino-native near-origin rule fixes the scale and kernel. No such rule is currently derived.
 4. **Passed for the positive-width equation and regular sharp charts:** [Transmitter-Side Causal Retained-History Functional](analysis-transmitter-factor-causal-history-functional.md) proves that the acceleration is a causal functional of current receiver state plus retained past histories. Global sharp continuation remains blocked at coincident same-transmitter birth, not by future dependence.
 5. **Failed under the current primitives for conservation:** [History-Only Conservation Obstruction](analysis-transmitter-factor-conservation-obstruction.md) carries the retained-history construction to its present limit. The equation determines acceleration but not the kinetic function, momentum function, or an independently specified wake-account update. Defining wake changes as the negative accumulated motion changes would balance by construction and is rejected as circular. This failure does not justify adding another acceleration term; it identifies missing kinematic and wake-account structure.
+6. **Failed as two separate patches:** the finite-transition rule and the conserved accounts must come from one causal construction. A passive wake ledger cannot select among the infinitely many finite near-origin suppressions, while an active wake state changes the Master Equation state and must derive its own emission, propagation, reception, and boundary updates.
 
 ### 6.2 Discriminating tests
 
@@ -257,15 +261,27 @@ Observer-level electrodynamics, magnetism, Lorentz behavior, and assembly dynami
 
 The native feedback mechanism already present in the proposal is sufficient to change later behavior: reception changes acceleration, acceleration changes the later path, and the later path changes both later emissions and later wake crossings. No present event is allowed to depend on where that event's newly emitted wake will be received in the future.
 
-The history-only conservation construction has now been attempted. Its causal state update is sufficient for acceleration, but its conservation accounts are underdetermined. The missing information is explicit: a fixed kinetic and momentum map, plus a wake-account rule stated before evolution that assigns emission, propagation, reception, and boundary changes without reading the residual it must explain.
+The history-only conservation construction has now been attempted. Its causal state update is sufficient for acceleration away from the unresolved transition, but its conservation accounts are underdetermined. The missing information is explicit: a fixed kinetic and momentum map, plus a wake-account rule stated before evolution that assigns emission, propagation, reception, and boundary changes without reading the residual it must explain.
 
 If those quantities remain deterministic functions of transmitter history, the functions must be derived and displayed. If reception instead changes an independently evolving wake state, that changes the current ontology and requires a separate theory decision. Neither option licenses restoring the receiver playback multiplier or importing an observer-level field law.
 
+The same construction must also determine the near-origin acceleration. Conservation accounts added after a finite activation function has been chosen do not validate that function; conversely, a finite activation function without predeclared accounts does not close conservation. Broader Master Equation closure therefore remains barred until one joint retained-state update survives both tests on the same non-circular histories.
+
 ### 6.4 Repeated promotion audit
 
-The transmitter-side decision has two different standings, and they must not be merged into one verdict.
+The transmitter-side decision has three different standings, and they must not be merged into one verdict: mathematical support for the factor, measured completion of the scoped repository migration, and global closure of the full equation.
 
-The receiver-factor correction is implemented and validated within its scoped promotion boundary: uniform emission gives $c_f/|D_t|$, receiver playback $D_r/D_t$ does not justify multiplying base acceleration by $|D_r|/c_f$, the first-order static-transmitter discriminator agrees, and ordinary folds have a finite integrated acceleration. At a receiver turning point with $D_r=0$ and $D_t\ne0$, the root remains present and the transmitter-side acceleration remains finite.
+The mathematical correction is supported within its declared domain: uniform emission gives $c_f/|D_t|$, receiver playback $D_r/D_t$ does not justify multiplying base acceleration by $|D_r|/c_f$, the first-order static-transmitter discriminator agrees, and ordinary folds have a finite integrated acceleration. At a receiver turning point with $D_r=0$ and $D_t\ne0$, the root remains present and the transmitter-side acceleration remains finite.
+
+The scoped repository migration is also complete. Borg now emits
+`eom_borg_shadow_request/v1` under `eom_evolution_contract/v1`, with no scale
+amendment and with `master_eom_binding/v1`. Its process bridge rejects stale
+contract identities and recomputes the selected certified-budget hash from the
+canonical allocation object before native execution. The current Interactive
+and Research hashes are recorded in the
+[Certified Error-Budget Ledger](certified-error-budget-ledger.md). The complete
+Borg migration validation passed `102/102`, as recorded in
+[Borg Receiver-Factor Contract Migration Validation](evidence/borg-receiver-factor-contract-migration-2026-07-19.md).
 
 The complete Master Equation is not globally closed. Two fundamental debts remain negative under the current primitive set:
 
@@ -277,6 +293,10 @@ The coincident-birth divergence must remain fail-closed and visible. It blocks a
 The resulting disposition is:
 
 - **implemented within the scoped promotion boundary:** the base acceleration factor is $c_f/|D_t|$ on the certified transmitter-side domain, $D_r/D_t$ is retained for root playback, and singular-event routing remains fail closed;
+- **completed as a scoped migration:** canon, the v1 binding, the EOM solver, and Borg's live request and certified-budget identities agree on that boundary;
 - **not ready for global closure claims:** coincident same-transmitter continuation, causal conservation, and complete moving-transmitter and moving-receiver recovery remain open.
 
-The correction changes canon and EOM solver semantics. It does not promote old numerical evidence computed under the removed law, and it does not claim global same-transmitter or conservation closure.
+The correction changes canon and EOM solver semantics. Completing its migration
+does not reclassify old numerical evidence computed under the removed law, does
+not turn historical allocation hashes into current identities, and does not
+claim global same-transmitter or conservation closure.

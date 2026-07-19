@@ -7,6 +7,7 @@
 - Claim level: `priority-design`
 - Implementation status: `native-correctness-nucleus-and-borg-shadow-executable; production-conformance-open`
 - Model binding: `master_eom_binding/v1`
+- Borg live request schema: `eom_borg_shadow_request/v1`
 - Optional long-term scale amendment: [`eom_evolution_contract/v1/amendment-1`](evolution-contract-v1-amendment-1-million-path-scale.md); required only when a request or result claims the million-path profile
 - Initial-data type: continuous retained history functions only
 - Change control: revisions require an explicit contract amendment or successor version
@@ -79,6 +80,19 @@ The `master_eom_binding/v1` record pins the exact canonical definition for this 
 
 ## Request Contract
 
+### Borg Live Request Binding
+
+The bounded-population Borg path serializes this contract as
+`eom_borg_shadow_request/v1`. Every live request must carry
+`contractId=eom_evolution_contract/v1`, an empty `contractAmendmentIds` array,
+and `modelBindingId=master_eom_binding/v1`. The empty amendment list means that
+the request makes no million-path claim; it does not weaken the base contract.
+
+The browser runner and the process bridge must reject any schema, contract,
+amendment, or model-binding mismatch before a native evolution request is
+encoded. This check binds Borg to the corrected acceleration law without
+changing the numerical fields consumed by that law.
+
 ### Run Identity
 
 | Field | Requirement |
@@ -125,6 +139,15 @@ The request declares:
 - CPU, accelerator, memory, storage, and execution limits.
 
 `integration_tolerance` or its versioned replacement is operational: exceeding it rejects or refines a candidate step. A tolerance value that appears only in metadata is nonconforming.
+
+For Borg, the numerical and resource controls are selected by one atomic
+`borg_certified_budget/v1` record. The request carries the preset id, complete
+allocation object, its canonical JSON serialization, and the lowercase SHA-256
+of that serialization. The process bridge recomputes both the canonical JSON
+and the hash before encoding the native request. A mismatch rejects the request;
+the hash is an identity check, not evidence that the numerical ledger passed.
+The current preset identities are recorded in
+[Certified Error-Budget Ledger](certified-error-budget-ledger.md).
 
 ## Accepted-Step State Machine
 

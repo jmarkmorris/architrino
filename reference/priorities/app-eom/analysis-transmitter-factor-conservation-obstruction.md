@@ -193,8 +193,68 @@ A non-circular conservation derivation needs all of the following from one Archi
 
 If all wake quantities remain deterministic functions of transmitter history, the construction must display those functions explicitly. If reception changes the wake state independently of the transmitter history, that is a change to the current wake ontology and requires an operator theory decision before canon or implementation work.
 
-## 7. Disposition
+## 7. Joint transition-and-account necessity theorem
+
+The coincident transition and the conservation accounts cannot be supplied as two independent patches.
+
+Section 3.6 of [Transmitter-Side Fold and Coincident-Birth Analysis](analysis-transmitter-factor-fold-and-coincident-birth.md) proves that a finite same-transmitter transition must change the acceleration on an open post-birth neighborhood. On the exact quadratic control, any multiplicative replacement $M$ must satisfy
+
+$$
+\int_0^L \frac{M(T)}{T^3}\,dT<\infty.
+$$
+
+This admits infinitely many inequivalent finite updates. Conservation can select among them only if the energy, momentum, and angular-momentum accounts are declared before evolution and their update is dynamically coupled to the same $M$.
+
+Let $\mathcal Z_T$ denote any proposed independent wake state and let
+
+$$
+\mathcal S_T=(\mathcal H_T,\mathcal Z_T)
+$$
+
+be the complete causal state. A non-circular construction must supply one update generator
+
+$$
+\mathcal G_{\mathrm{joint}}(\mathcal S_T)
+$$
+
+that determines both the finite architrino continuation and the wake continuation, together with fixed accounts
+
+$$
+E[\mathcal S],
+\qquad
+\mathbf P[\mathcal S],
+\qquad
+\mathbf J[\mathcal S]
+$$
+
+satisfying
+
+$$
+DE[\mathcal S_T][\mathcal G_{\mathrm{joint}}]=0,
+$$
+
+$$
+D\mathbf P[\mathcal S_T][\mathcal G_{\mathrm{joint}}]=\mathbf0,
+$$
+
+and
+
+$$
+D\mathbf J[\mathcal S_T][\mathcal G_{\mathrm{joint}}]=\mathbf0
+$$
+
+apart from predeclared boundary flux.
+
+If $\mathcal Z_T$ does not affect the acceleration, then appending it cannot select the finite transition; updating its accounts as the negative motion residual is the circular construction already rejected. If $\mathcal Z_T$ does affect the acceleration, then the Master Equation state has changed and the same construction must derive its emission data, propagation law, reception update, near-origin suppression, and boundary flux. A wake state that is introduced only after choosing $M$ does not close this gate.
+
+The current point-transceiver primitives provide $\mathcal H_T$ but no independent $\mathcal Z_T$, no fixed $K$ and $P$, and no joint generator. They therefore do not determine a positive solution of the joint problem. This is stronger than saying that two calculations remain unfinished: it proves that completing either one in isolation cannot establish the requested closure.
+
+Claim classification: **derived necessity and underdetermination result**. A single predeclared causal construction that determines $M$, the outgoing retained state, and all three accounts without consuming their balance residuals would falsify it.
+
+## 8. Disposition
 
 The history-only acceleration loop has been attempted to the limit of the current primitives. It is causal, but the three conserved accounts are underdetermined and no non-circular update law follows from the present state.
 
-Promotion classification: **closed negatively under the current primitive set**. Further algebra on the same acceleration functional cannot supply the missing kinematic and wake-account definitions. Promotion requires new derived structure or a deliberate restriction of the claimed equation domain.
+The joint audit also rules out a bookkeeping-only completion: a finite transition must change the acceleration on an open set of simple same-transmitter roots, and the rule that makes that change must be the rule that carries the conserved accounts.
+
+Promotion classification: **closed negatively under the current primitive set**. Further algebra on the same acceleration functional cannot supply the missing near-origin rule, kinematic definitions, or wake-account update. Promotion requires one new joint causal construction or a deliberate restriction of the claimed equation domain.

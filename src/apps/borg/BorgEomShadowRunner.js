@@ -6,6 +6,9 @@ import {
 
 export const BORG_EOM_SHADOW_RUNNER_VERSION = "borg-eom-shadow-runner.v0";
 export const BORG_EOM_SHADOW_RUN_SOURCE = "computed-eom-shadow-chunks";
+export const BORG_EOM_REQUEST_SCHEMA = "eom_borg_shadow_request/v1";
+export const BORG_EOM_CONTRACT_ID = "eom_evolution_contract/v1";
+export const BORG_EOM_MODEL_BINDING_ID = "master_eom_binding/v1";
 export const BORG_EOM_COMPATIBILITY_HISTORY_PROVENANCE =
   "non-eom-history";
 export const BORG_EOM_ACCEPTED_INITIAL_HISTORY_EVOLUTION_CLAIM_LEVEL =
@@ -304,7 +307,7 @@ export function createBorgEomShadowRunConfig(manifest, options = {}) {
     threadCount: budget.resources.workerThreads,
     memoryBudgetBytes: budget.resources.requestMemoryBytes,
     certifiedBudget,
-    modelBindingId: options.modelBindingId ?? "master_eom_binding/v0",
+    modelBindingId: options.modelBindingId ?? BORG_EOM_MODEL_BINDING_ID,
   });
 }
 
@@ -407,8 +410,8 @@ export function createBorgEomShadowRequest({
     }
   });
   return Object.freeze({
-    schema: "eom_borg_shadow_request/v1",
-    contractId: "eom_evolution_contract/v1",
+    schema: BORG_EOM_REQUEST_SCHEMA,
+    contractId: BORG_EOM_CONTRACT_ID,
     contractAmendmentIds: Object.freeze([]),
     requestId: `borg-eom-shadow-request:chunk-${chunkIndex}`,
     runId: `borg-eom-shadow-run:chunk-${chunkIndex}`,

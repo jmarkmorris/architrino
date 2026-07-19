@@ -531,6 +531,92 @@ A fixed positive $\epsilon_c$ would make the transition finite, but accepting it
 
 Claim classification: **derived no-go result for acceptance under the current point-transceiver and removable-core rules**. It does not prove that every possible extension fails. It is falsified by an Architrino-native derivation that fixes a positive near-origin scale and kernel, or by a different same-transmitter rule whose complete transition has a finite regulator-independent impulse.
 
+### 3.6 Why an event-only repair cannot work
+
+The exact quadratic control makes the scope of any finite replacement precise. Let
+
+$$
+\mathbf X(T)
+=
+\hat{\mathbf e}
+\left(c_fT+\frac12\alpha T^2\right),
+\qquad
+\alpha>0.
+$$
+
+For every reception time $T>0$, the newborn root is already a noncoincident simple root:
+
+$$
+T_t=-T,
+\qquad
+r=2c_fT,
+\qquad
+D_t=\alpha T>0.
+$$
+
+Its canonical transmitter-side acceleration is exactly
+
+$$
+\mathbf A_{\mathrm{v1}}(T)
+=
+\hat{\mathbf e}
+\frac{K_i}{4\alpha c_f}T^{-3}.
+$$
+
+Suppose a proposed transition multiplies this contribution by a locally regular, nonnegative activation factor $M(T)$ so that the like-polarity direction is not reversed. The complete local velocity change contains
+
+$$
+\frac{K_i}{4\alpha c_f}
+\int_0^L \frac{M(T)}{T^3}\,dT.
+$$
+
+If the proposal preserves the v1 law on every simple root, then $M(T)=1$ for every $T>0$, and the integral diverges. Changing the acceleration only at $T=0$, assigning a finite impulse at that single instant, or excluding only the coincident endpoint therefore cannot repair the transition. The rule must change on a nonzero neighborhood of simple same-transmitter roots after birth.
+
+More generally, if $M(T)\sim C T^p$ near zero with $C>0$, local integrability requires
+
+$$
+p>2.
+$$
+
+Using the native dimensionless variable $z=D_t/c_f$, this condition is
+
+$$
+M(z)=O\!\left(z^{2+\delta}\right)
+\quad
+\text{for some }\delta>0.
+$$
+
+For a smooth integer-power activation, the first admissible power is therefore cubic. The fixed-core kernel has exactly this effect:
+
+$$
+\frac{r^3}{(r^2+\epsilon_c^2)^{3/2}}
+=O(T^3)
+\qquad
+(T\to0^+),
+$$
+
+but it does so by introducing the undeclared scale $\epsilon_c$. Infinitely many other activation functions satisfy the same integrability condition while giving different outgoing histories. Finiteness alone therefore does not select a physical rule.
+
+For example, on the $z\ge0$ birth chart, every member of
+
+$$
+M_n(z)=\frac{z^n}{1+z^n},
+\qquad
+n=3,4,5,\ldots,
+$$
+
+gives a finite local impulse and approaches the v1 value at large $z$, but the members disagree throughout the post-birth neighborhood. The present primitives contain no criterion that selects one $n$, this rational form, or any other member of the admissible class.
+
+The available resolution classes are now exhaustive at the level of the current equation:
+
+1. modify the same-transmitter acceleration on an open post-birth neighborhood;
+2. exclude the entire endpoint-born root branch, not merely its coincident endpoint; or
+3. introduce a physical near-origin wake state or scale whose update derives the required suppression.
+
+Each option changes a current dynamical commitment. The first abandons the universal v1 simple-root contribution on that neighborhood. The second abandons universal reception for a class of noncoincident same-transmitter roots. The third adds state or constitutive structure not present in the point-transceiver history alone.
+
+Claim classification: **derived necessity result on the exact control**. It is falsified by a finite transition that changes only the value at the birth instant while preserving the v1 contribution at every $T>0$ on the same history.
+
 ## 4. Promotion consequences
 
 | Event | Sharp transmitter-side status | Promotion consequence |
@@ -544,8 +630,8 @@ Claim classification: **derived no-go result for acceptance under the current po
 The coincident event has only three currently visible resolution classes:
 
 1. retain positive physical wake width and positive core scale, with both values independently constrained;
-2. derive a different near-diagonal same-transmitter rule or exclusion from architrino-native principles;
-3. derive a causal past-history contribution that cancels the complete transition at the same singular order.
+2. derive a different near-diagonal same-transmitter rule or whole-branch exclusion from Architrino-native principles;
+3. derive an independently evolving causal wake state that changes the open-neighborhood acceleration and supplies the same transition's conserved accounts.
 
 Selecting among those classes changes the dynamics and is not justified by the current primitives. The acceptance audit above closes the present route negatively: fixed mathematical regulators do not become a finite accepted transition merely by being kept nonzero. Until a near-origin rule is derived, the proposed sharp Master Equation cannot be promoted as a globally complete same-transmitter law.
 

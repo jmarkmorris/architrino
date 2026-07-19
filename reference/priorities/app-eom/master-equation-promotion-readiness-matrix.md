@@ -25,11 +25,12 @@ Claim classification: **derived gate comparison plus inferred scoped-promotion d
 | Receiver multiplier | Pass for removal at first order | Derived native comparison plus independent observer-level recovery target | Do not restore $|D_r|/c_f$ to base acceleration | An independent static-transmitter recovery contains the same universal first-order radial receiver-velocity term |
 | Receiver turning point | Pass under the transmitter-side finite-width equation when $D_t\ne0$ | Derived | Preserve the root and do not make base acceleration vanish merely because $D_r=0$ | The transmitter-time integral has a zero sharp limit at a simple root solely because $D_r=0$ |
 | Ordinary transmitter-side fold | Pass | Derived finite accumulated acceleration | Advance the transition by integrated acceleration, not point sampling | A nondegenerate fold with $r>0$ and $D_r\ne0$ has no common finite-width impulse limit |
-| Coincident same-transmitter birth | Fail | Derived exact quadratic-path control and finite-window lower bound | Keep the event fail-closed; it blocks global completion, not the scoped factor correction | An Architrino-native rule gives the corrected law a finite complete transition |
+| Coincident same-transmitter birth | Fail | Derived exact quadratic-path control, finite-window lower bound, and open-neighborhood necessity | Keep the event fail-closed; an event-only impulse cannot repair it because the divergent contribution persists on simple roots after birth | An Architrino-native rule changes the open post-birth neighborhood and gives the corrected law a finite complete transition |
 | Positive-width base causality | Pass | Derived retained-history update | The positive-width base equation is a causal initial-history law | The displayed update requires future particle data or has two continuations from one retained state on its regularity chart |
 | Energy, momentum, and angular momentum | Absent for both causal retained-history laws | Derived underdetermination and circularity test | Keep as a global closure debt; do not use it to retain the receiver multiplier | Fixed kinematic maps and predeclared wake accounts close all three totals on the same causal record without being defined from their residuals |
+| Joint finite-transition and conservation construction | Fail under current primitives | Derived necessity theorem | Do not accept separate near-origin and bookkeeping patches | One predeclared causal state update determines the finite transition and all three conserved accounts on the same histories |
 | Full moving-transmitter/moving-receiver recovery | Open beyond the first-order static-transmitter control | Derived first-order pass; higher orders unproved | Do not claim complete electrodynamics or Lorentz recovery | Second-order and later required recovery terms match independent targets on one branch-certified record without restoring an unsupported universal receiver multiplier |
-| Migration audit | Canon, solver, oracle, prescribed-path analysis, Photon, Animator, current app schema, and active validation are migrated | Measured repository audit plus implementation tests | Scoped migration passes; generated scene-index drift remains a separate publication-process task | Any current surface still consumes or teaches $|D_r/D_t|$ as acceleration strength |
+| Migration audit | Canon, solver, oracle, prescribed-path analysis, Photon, Animator, current app schema, and active validation are migrated | Measured repository audit plus implementation tests | Scoped migration passes | Any current surface still consumes or teaches $|D_r/D_t|$ as acceleration strength |
 
 ## What is ready now
 
@@ -52,7 +53,9 @@ Together these statements define the completed fail-closed receiver-factor corre
 The closure work produced two negative theorems and then identified their correct promotion scope:
 
 - The complete coincident same-transmitter impulse diverges on every joint regulator-removal path. Keeping a mathematical core nonzero is not an accepted physical transition.
+- The divergence persists on an open set of noncoincident simple roots after birth. A one-instant event handler cannot repair it while leaving the simple-root law unchanged.
 - The history update does not choose the kinematic or wake accounts needed for conservation. Accounts defined as the negative accumulated residual are identities, not evidence.
+- The finite transition and conserved accounts must be derived by one causal update. Completing them as separate patches cannot satisfy the joint gate.
 
 These are theory boundaries. A scoped migration must keep their events and claims outside its acceptance boundary.
 
@@ -64,13 +67,13 @@ The scoped correction is implemented:
 2. the EOM solver, independent oracle, prescribed-path analysis, Photon, and Animator use transmitter-side acceleration while preserving $D_r/D_t$ as signed root playback;
 3. coincident same-transmitter birth and every undeclared singular stratum remain fail closed;
 4. obsolete compatibility fields, old-law explanations, and superseded migration records are removed;
-5. scoped terminology, link, implementation, and regression checks pass; unrelated generated scene-index drift remains outside this migration.
+5. scoped terminology, link, implementation, and regression checks pass.
 
 For globally complete Master Equation closure:
 
-1. derive an Architrino-native near-origin same-transmitter law, or explicitly restrict the claimed Master Equation domain so that coincident same-transmitter birth is not admitted;
-2. derive the kinetic scalar, momentum map, and wake-account update from the same primitive structure, deciding explicitly whether wakes remain transmitter-history-only or acquire independent reception-updated state;
-3. prove a finite complete same-transmitter transition and close energy, momentum, and angular momentum on non-circular histories under that one construction;
+1. derive one Architrino-native causal state update whose near-origin same-transmitter law acts on the required open post-birth neighborhood;
+2. derive the kinetic scalar, momentum map, and wake-account update from that same construction, deciding explicitly whether wakes remain transmitter-history-only or acquire independent reception-updated state;
+3. prove a finite complete same-transmitter transition and close energy, momentum, and angular momentum on non-circular histories without defining any account from the residual it cancels;
 4. repeat independent recovery tests beyond first order and verify that no result requires a separately derived receiver-velocity acceleration mechanism.
 
 The global-closure work requires theory choices or new derivations. It cannot be completed by relabeling existing regulators or accounts, but it no longer blocks the narrower factor correction.

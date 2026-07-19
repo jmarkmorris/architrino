@@ -1,4 +1,11 @@
+import { createHash } from "node:crypto";
 import { spawn, spawnSync } from "node:child_process";
+
+import { canonicalStringify } from "../../src/apps/borg/BorgCertifiedBudgets.js";
+
+const BORG_EOM_REQUEST_SCHEMA = "eom_borg_shadow_request/v1";
+const BORG_EOM_CONTRACT_ID = "eom_evolution_contract/v1";
+const BORG_EOM_MODEL_BINDING_ID = "master_eom_binding/v1";
 
 export const BORG_NATIVE_EOM_PROCESS_CLIENT_VERSION =
   "borg-native-eom-process-client.v7";
@@ -197,9 +204,17 @@ export function createBorgNativeEomProcessClient({
 }
 
 export function encodeNativeRequest(request, { cachedHistories = null } = {}) {
-  if (request?.contractId !== "eom_evolution_contract/v1" ||
-      !Array.isArray(request.histories) || request.histories.length === 0) {
-    throw new TypeError("EOM process request lacks the EOM contract or histories.");
+  if (request?.schema !== BORG_EOM_REQUEST_SCHEMA ||
+      request?.contractId !== BORG_EOM_CONTRACT_ID ||
+      !Array.isArray(request.contractAmendmentIds) ||
+      request.contractAmendmentIds.length !== 0 ||
+      request.modelBindingId !== BORG_EOM_MODEL_BINDING_ID) {
+    throw new TypeError(
+      "EOM process request does not match the live request, evolution, and model-binding contracts.",
+    );
+  }
+  if (!Array.isArray(request.histories) || request.histories.length === 0) {
+    throw new TypeError("EOM process request lacks retained histories.");
   }
   const controls = request.numericalControls ?? {};
   const model = request.modelControls ?? {};
@@ -226,6 +241,16 @@ export function encodeNativeRequest(request, { cachedHistories = null } = {}) {
     model,
     allocations,
   );
+  const canonicalAllocations = canonicalStringify(allocations);
+  const allocationHash = createHash("sha256")
+    .update(canonicalAllocations)
+    .digest("hex");
+  if (certifiedBudget.allocationCanonicalJson !== canonicalAllocations ||
+      certifiedBudget.allocationHash !== allocationHash) {
+    throw new RangeError(
+      "EOM process request certified-budget hash does not match its canonical allocations.",
+    );
+  }
   const lines = [
     BORG_NATIVE_EOM_PROTOCOL_MAGIC,
     tabRecord([

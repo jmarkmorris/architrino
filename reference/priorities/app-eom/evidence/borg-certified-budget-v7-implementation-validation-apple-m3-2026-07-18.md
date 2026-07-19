@@ -9,6 +9,15 @@
 - Preset schema: `borg_certified_budget/v1`
 - Implementation acceptance: `blocked-research-parity`
 
+Historical identity notice: the allocation hashes in this record identify the
+V7 serialization measured on 2026-07-18. The later terminology migration
+renamed the serialized ordinary key from `sourceNormalFloor` to
+`transmitterFactorFloor`, leaving its value and every numerical allocation
+unchanged but necessarily changing both hashes. The current live identities are
+recorded in the [Certified Error-Budget Ledger](../certified-error-budget-ledger.md)
+and must be used for new requests. This evidence record retains the hashes that
+actually accompanied its measurements.
+
 The V7 implementation is fail-closed and its independent controls pass, but it
 does not pass the complete Amendment 2 acceptance gate. The reason is concrete:
 publishing the acceleration-derived state width changes the retained-history
@@ -56,9 +65,11 @@ independent tolerance or step knobs.
 | correction iterations / attempts / rejected | `12 / 1000 / 100` | same |
 | worker threads / request memory | `4 / 67108864` bytes | same |
 
-Claim grade: `derived-ratified`. Falsifier: the canonical serialization hashes
-to a different value, any request field differs from the selected allocation,
-or either displayed top-level one-step inequality fails.
+Claim grade: `derived-ratified-historical`. Falsifier: the canonical V7
+serialization used for this measurement hashes to a different value, any
+measured request field differs from its selected allocation, or either displayed
+top-level one-step inequality fails. These historical hashes are not the current
+live request identities.
 
 ## Pre-Ratification Tolerance Matrix
 
