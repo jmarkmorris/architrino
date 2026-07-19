@@ -10,6 +10,22 @@ Each dated section should preserve the reasoning of the moment closely enough th
 
 Entries are maintained in descending date order, with the newest `##` section first.
 
+## 2026-07-18: It's Greek to Me! Alphabet Game
+
+Relevant files:
+
+- [It's Greek to Me!](../../../../greek-letter-match.html)
+- [Greek alphabet game scene](../../../scenes/archie/greek_letter_match.json)
+- [Applications scene](../../../scenes/archie/applications.json)
+
+The standalone [It's Greek to Me!](../../../../greek-letter-match.html) game joined the Applications scene as a compact way to learn the 24-letter Greek alphabet. Its ring keeps each letter at one fixed position: alpha is at noon, beta follows clockwise, and omega completes the circle. The ring can show lowercase symbols, uppercase symbols, or English letter names, while the center presents the form the player must match.
+
+The fixed layout makes position part of the lesson rather than merely part of the interface. A correct choice turns the center green. An incorrect choice turns it red, highlights the correct ring item, and draws an arrow toward that answer. Each round can contain up to 24 prompts, with visible progress, a round percentage, and a session-only graph of completed-round scores. The player chooses when to lock in a full or partial round, and resetting starts a fresh session without preserving statistics outside the page.
+
+The game also includes a teaching mode that does not affect the score. Selecting any ring item reveals its English name, lowercase form, and uppercase form together in the center, with the answer arrow reversed to connect the chosen position back to the explanation. The Greek glyphs use Georgia with optical centering adjustments so their visible forms sit consistently in both the ring and the teaching display.
+
+This milestone matters because it gives the Applications scene a small educational game whose rules reinforce the alphabet's canonical order. Matching mode supports recall, teaching mode supports inspection, and the shared fixed ring lets a reader move between the two without relearning the layout.
+
 ## 2026-07-04: Coordinate-Layer Notation Established
 
 Relevant files:
