@@ -398,7 +398,8 @@ test("Borg EOM shadow runner sends retained histories and derives frames only fr
 
   const chunk = await runner.computeNextChunk();
   const request = requests[0];
-  assert.equal(request.contractId, "eom_evolution_contract/v0");
+  assert.equal(request.contractId, "eom_evolution_contract/v1");
+  assert.deepEqual(request.contractAmendmentIds, []);
   assert.equal(request.claimLevel, "migration-shadow");
   assert.deepEqual(request.absoluteTimeInterval, { start: "10", end: "10.2" });
   assert.equal(request.histories.length, 6);
@@ -993,7 +994,7 @@ test("Borg browser EOM client posts the retained-history contract to the local n
       };
     },
   });
-  const request = { contractId: "eom_evolution_contract/v0", histories: [{ pathId: "p" }] };
+  const request = { contractId: "eom_evolution_contract/v1", histories: [{ pathId: "p" }] };
   const response = await client.evolveRetainedHistories(request);
   assert.equal(response.status, "completed");
   assert.equal(calls[0].endpoint, "/api/eom/borg-shadow/v0");

@@ -407,9 +407,9 @@ export function createBorgEomShadowRequest({
     }
   });
   return Object.freeze({
-    schema: "eom_borg_shadow_request/v0",
-    contractId: "eom_evolution_contract/v0",
-    contractAmendmentIds: Object.freeze(["eom_evolution_contract/v0/amendment-1"]),
+    schema: "eom_borg_shadow_request/v1",
+    contractId: "eom_evolution_contract/v1",
+    contractAmendmentIds: Object.freeze([]),
     requestId: `borg-eom-shadow-request:chunk-${chunkIndex}`,
     runId: `borg-eom-shadow-run:chunk-${chunkIndex}`,
     claimLevel: "migration-shadow",

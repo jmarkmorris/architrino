@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
   "manifest_schema": "textbook_bundle_schema_v1",
-  "generated_at": "2026-07-19T22:39:13.294Z",
-  "package_version": "1.0.0-a7dd603a",
+  "generated_at": "2026-07-19T23:03:36.686Z",
+  "package_version": "1.0.0-99108a1a",
   "schema_version_note": "content_bundle_schema_v1",
   "textbook_toc": {
     "path": "content/graph/textbook_toc.json",
-    "sha256": "a7dd603a90e20ca39177347934c3fb6d3924f141997b695b1df1cb0099cc2443",
-    "size": 671238
+    "sha256": "99108a1abc20a07a61e02fd535504f9e79b193b2135973eef6cdf5ff01ca9dfb",
+    "size": 671295
   },
   "chapters": [
     {
@@ -172,8 +172,8 @@
       "sourcePath": "content/graph/textbook_toc.json",
       "role": "toc",
       "type": "json",
-      "size": 671671,
-      "sha256": "a7dd603a90e20ca39177347934c3fb6d3924f141997b695b1df1cb0099cc2443"
+      "size": 671728,
+      "sha256": "99108a1abc20a07a61e02fd535504f9e79b193b2135973eef6cdf5ff01ca9dfb"
     },
     {
       "path": "reading-copies/atomic-and-nuclear-assemblies.html",

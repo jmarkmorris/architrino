@@ -1538,7 +1538,7 @@ void print_certified_correction_retry() {
         history("certified-scaled-correction-a", "5", {"0", "0", "0", "0"})},
        {"scale-b", "1",
         history("certified-scaled-correction-b", "5", {"2", "0", "0", "0"})}},
-      "5", "5.04", "0.04", "0.000001", "1", "1", "1e-7", "1", 1);
+      "5", "5.04", "0.04", "0.000001", "1", "1", "1e-12", "1", 1);
   retry_request.max_step_attempts = 2;
   const auto evolution = eom::evolve_native_coupled_histories(retry_request);
   if (evolution.steps.size() < 2U) {

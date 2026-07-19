@@ -146,6 +146,11 @@
       "path": "content/scenes/archie/equation_mapping.json"
     },
     {
+      "id": "greek_letter_match",
+      "name": "It's Greek to Me!",
+      "path": "content/scenes/archie/greek_letter_match.json"
+    },
+    {
       "id": "archie__github_presence_and_community",
       "name": "GitHub Presence & Community",
       "path": "content/scenes/archie/github_presence_and_community.json"

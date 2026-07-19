@@ -650,7 +650,7 @@ class NativeCoupledEvolutionTests(unittest.TestCase):
         self.assertEqual(control["first_failure_code"], "coupled_correction_failed")
         expected_scale = min(
             0.5,
-            0.9 * math.sqrt(1e-7 / control["first_residual"]),
+            0.9 * math.sqrt(1e-12 / control["first_residual"]),
         )
         self.assertAlmostEqual(control["retry_scale"], expected_scale, places=6)
         self.assertLess(control["retry_scale"], 0.5)
