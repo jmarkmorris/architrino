@@ -1125,6 +1125,54 @@ Operator reduction adopted: **one drifting electrino + one test receiver ("virtu
 
 **Instrument note:** the single-electrino probe (resting-receiver mode = electric-sector rows; moving-receiver mode = bilinear/magnetic-sector rows) supersedes both stream designs as the minimal native experiment; the charged ring (P17 adjudication) remains the bulk discriminator. Back-reaction of the test receiver's wake on the transmitter is the only contamination; large separation and short windows bound it.
 
+## P20 — Accounting-Term First Order on the Drift Chart (operator-authorized 2026-07-18)
+
+Operator decision recorded (walkthrough revision): receiver velocity does not alter acceleration — working law is the P16-selected scale row plus recoil/accounting term, $\mathbf A = \kappa\sigma|q_tq_r|(c_f/|D_s|)\hat{\mathbf r}/r^2 + \mathbf A_C$. Canon/solver promotion held.
+
+```
+Closure goal: Compute the first-order-in-drift content of the same-action
+residual/recoil row A_C on the uniform-drift chart - one transmitter at
+constant velocity u (sub-field-speed, eternal straight line), one resting
+test receiver with no history (test limit, no back-reaction) - and determine
+whether scale row + A_C restores the present-position result of the
+observer-level benchmark (acceleration along the present ray N with
+magnitude 1 + O(beta^2), i.e., A_C supplies +2pN - beta at first order,
+p = N.beta), or fails to.
+
+Context: P10/P13 define A_C via the exact kernel split (K_C with
+DK_C = -delta_eta'(g)/(c_f r)), split-gauge independent, on the certified
+neighborhood. P16 selects the base c_f/|D_s|. P11's native expansion gives
+the base law's resting-receiver first-order rows N(1-2p)+beta versus the
+benchmark's N(1+O(beta^2)) (uniform-motion field along the present
+position). The operator's single-electrino probe (packet: Operator Review -
+Single-Electrino Probe) made this the campaign's decisive open computation.
+Structural hint: K_C is a derivative-of-constraint kernel, the same species
+that produces the observer-level conspiracy.
+
+Task: (1) Evaluate the full ordered-pair first variation of K_C on the
+uniform-drift chart for a static receiver, through first order in beta;
+state A_C's direction and magnitude coefficients in the (N, beta) basis.
+(2) Verdict: conspiracy restored exactly / partially (state residual) /
+not restored. (3) Consequence for the circular opposite pair: radial sign
+of A_C there and whether the selected law + A_C spirals in, out, or closes
+at leading order. (4) Consequence for the Part 4/P19 velocity-record
+recomputation: the corrected base rows to match against. (5) Claim-grade
+everything; falsifiers; no runs.
+
+Write restriction (strict): create exactly one new file,
+reference/priorities/app-eom/analysis-accounting-term-drift-chart.md.
+Modify no other file anywhere - no canon, no code, no shared ledgers, no
+other priorities areas. Read access unrestricted. No git commands.
+
+Expected output: the analysis file with the first-order A_C coefficients,
+the conspiracy verdict, the spiral consequence, corrected base rows, all
+claim-graded with falsifiers.
+```
+
+## P20 Adjudication (2026-07-18)
+
+P20 (`analysis-accounting-term-drift-chart.md`) endorsed; the decisive identity checked by adjudicator: $[\mathbf N(1-2p)+\boldsymbol\beta] + [2p\mathbf N-\boldsymbol\beta] = \mathbf N$ exactly. **Derived: $\mathbf A_C = 2p\mathbf N-\boldsymbol\beta+O(\beta^2)$ on the uniform-drift chart — the selected law + recoil restores the observer-level present-position result exactly at first order.** The moving-transmitter obstruction is resolved for the selected law (bare canon cannot match it). Remaining: second-order residual $+p\boldsymbol\beta$ (Darwin/magnetic sector open); circular pair leading secular tendency **outward** (consistent with historical rail-pump findings; isolated pairs don't bind — environment/structure question); P19 first-order cargo conditions become $a=b=0$ with the second-order contradiction intact, so the cargo family remains closed pending any second-order mechanism. Operator's walkthrough Decision 1 resolved in favor of the adopted law; canon/solver promotion still held.
+
 ## Appendix — Closed and Negative Results (index)
 
 Index of closed or negative verdicts; the full prompt and adjudication text for each thread lives at the listed location in this document.
