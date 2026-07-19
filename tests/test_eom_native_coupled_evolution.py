@@ -67,7 +67,7 @@ def oracle_request(
         coupling=coupling,
         chart_policy="sharp",
         root_tolerance="1e-7",
-        source_normal_floor="1e-24",
+        transmitter_factor_floor="1e-24",
         acceleration_tolerance="1e-5",
         quadrature_tolerance="1e-6",
         position_tolerance=position_tolerance,

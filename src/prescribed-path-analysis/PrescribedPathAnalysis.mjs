@@ -131,37 +131,36 @@ export function solveMovingCircularSameSourceCausalRoots(request = {}) {
   const response = solveMovingCircularSameSourceCausalRootsKernel(request);
   return labelRecord({
     ...response,
-    schema: "prescribed-path-analysis/moving-circular-same-source-causal-roots.v1",
+    schema: "prescribed-path-analysis/moving-circular-same-transmitter-causal-roots.v1",
     roots: labelRows(response.roots),
     status: labelRecord(response.status ?? createStatus()),
   });
 }
 
-function receiverNormalFields(direction, sourceVelocity, receiverVelocity, signalSpeed) {
-  const sourceNormalSpeed = dot(sourceVelocity, direction);
-  const receiverNormalSpeed = dot(receiverVelocity, direction);
-  const sourceNormalDenominator = signalSpeed - sourceNormalSpeed;
-  const receiverNormalNumerator = signalSpeed - receiverNormalSpeed;
-  const receiverNormalCrossingFactor = receiverNormalNumerator / signalSpeed;
-  const receiverNormalFactor = receiverNormalNumerator / sourceNormalDenominator;
-  const unsignedReceiverNormalFactor = Math.abs(receiverNormalFactor);
-  const receiverNormalStatusCode = !Number.isFinite(receiverNormalFactor)
+function causalFactorFields(direction, sourceVelocity, receiverVelocity, signalSpeed) {
+  const transmitterRadialSpeedAtEmission = dot(sourceVelocity, direction);
+  const receiverRadialSpeedAtReception = dot(receiverVelocity, direction);
+  const transmitterFactor = signalSpeed - transmitterRadialSpeedAtEmission;
+  const receiverFactor = signalSpeed - receiverRadialSpeedAtReception;
+  const receiverCrossingRatio = receiverFactor / signalSpeed;
+  const rootPlayback = receiverFactor / transmitterFactor;
+  const accelerationWeight = signalSpeed / Math.abs(transmitterFactor);
+  const causalFactorStatusCode = !Number.isFinite(rootPlayback)
     ? 25
-    : Math.abs(sourceNormalDenominator) <= EPSILON
+    : Math.abs(transmitterFactor) <= EPSILON
       ? STATUS_SMALL_JACOBIAN
-      : Math.abs(receiverNormalNumerator) <= EPSILON
+      : !Number.isFinite(accelerationWeight)
         ? 25
         : STATUS_OK;
   return {
-    sourceNormalSpeed,
-    receiverNormalSpeed,
-    sourceNormalDenominator,
-    receiverNormalNumerator,
-    receiverNormalCrossingFactor,
-    receiverNormalFactor,
-    unsignedReceiverNormalFactor,
-    signedBranchOrientation: receiverNormalFactor,
-    receiverNormalStatusCode,
+    transmitterRadialSpeedAtEmission,
+    receiverRadialSpeedAtReception,
+    transmitterFactor,
+    receiverFactor,
+    receiverCrossingRatio,
+    rootPlayback,
+    accelerationWeight,
+    causalFactorStatusCode,
   };
 }
 
@@ -188,13 +187,13 @@ function buildLinearRoot(request, emissionTime, rootId, bracketStart, bracketEnd
   const sourceVelocity = vector(request.source?.velocity);
   const receiverVelocity = vector(request.receiver?.velocity);
   const signalSpeed = positiveNumber(request.signalSpeed, 1);
-  const normal = receiverNormalFields(direction, sourceVelocity, receiverVelocity, signalSpeed);
+  const normal = causalFactorFields(direction, sourceVelocity, receiverVelocity, signalSpeed);
   return labelRecord({
     receiverId: request.receiverId ?? "receiver",
     sourceId: request.sourceId ?? "source",
     rootId,
     rootKind: "partner",
-    statusCode: Math.abs(normal.sourceNormalDenominator) <= positiveNumber(request.rootTolerance, 1e-12)
+    statusCode: Math.abs(normal.transmitterFactor) <= positiveNumber(request.rootTolerance, 1e-12)
       ? STATUS_SMALL_JACOBIAN
       : STATUS_OK,
     emissionTime,
@@ -202,9 +201,9 @@ function buildLinearRoot(request, emissionTime, rootId, bracketStart, bracketEnd
     delay: finiteNumber(request.hitTime) - emissionTime,
     distance: info.distance,
     residual: info.residual,
-    jacobian: normal.sourceNormalDenominator,
-    branchWeight: Number.isFinite(normal.unsignedReceiverNormalFactor)
-      ? normal.unsignedReceiverNormalFactor
+    jacobian: normal.transmitterFactor,
+    accelerationWeight: Number.isFinite(normal.accelerationWeight)
+      ? normal.accelerationWeight
       : Number.POSITIVE_INFINITY,
     ...normal,
     bracketStart,
@@ -333,7 +332,7 @@ export function solveCircularSourceRootsAndHits(request = {}) {
     delay: root.delay,
     distance: root.distance,
     jacobian: root.jacobian,
-    strength: root.branchWeight,
+    strength: root.accelerationWeight,
     emissionPoint: root.sourcePoint,
     sourcePoint: root.sourcePoint,
     receiverPoint: root.receiverPoint,
@@ -343,14 +342,13 @@ export function solveCircularSourceRootsAndHits(request = {}) {
           1 / magnitude(subtract(root.receiverPoint, root.sourcePoint))
         )
       : { x: 0, y: 0, z: 0 },
-    sourceNormalSpeed: root.sourceNormalSpeed,
-    receiverNormalSpeed: root.receiverNormalSpeed,
-    sourceNormalDenominator: root.sourceNormalDenominator,
-    receiverNormalNumerator: root.receiverNormalNumerator,
-    receiverNormalCrossingFactor: root.receiverNormalCrossingFactor,
-    receiverNormalFactor: root.receiverNormalFactor,
-    unsignedReceiverNormalFactor: root.unsignedReceiverNormalFactor,
-    receiverNormalStatusCode: root.receiverNormalStatusCode,
+    transmitterRadialSpeedAtEmission: root.transmitterRadialSpeedAtEmission,
+    receiverRadialSpeedAtReception: root.receiverRadialSpeedAtReception,
+    transmitterFactor: root.transmitterFactor,
+    receiverFactor: root.receiverFactor,
+    receiverCrossingRatio: root.receiverCrossingRatio,
+    rootPlayback: root.rootPlayback,
+    causalFactorStatusCode: root.causalFactorStatusCode,
     statusCode: root.statusCode,
   }));
   const rootLedgerDetails = response.roots.map((root) => labelRecord({
@@ -369,39 +367,32 @@ export function solveCircularSourceRootsAndHits(request = {}) {
   });
 }
 
-function resolveReceiverNormalRows(branch = {}) {
-  const branchWeight = Number(branch.branchWeight);
-  const sourceNormalDenominator = Number(branch.sourceNormalDenominator);
-  const receiverNormalNumerator = Number(branch.receiverNormalNumerator);
-  const receiverNormalFactor = Number(branch.receiverNormalFactor);
-  const unsignedReceiverNormalFactor = Number(branch.unsignedReceiverNormalFactor);
+function resolveCausalFactorRecord(branch = {}, signalSpeed = 1) {
+  const accelerationWeight = Number(branch.accelerationWeight);
+  const transmitterFactor = Number(branch.transmitterFactor);
+  const receiverFactor = Number(branch.receiverFactor);
+  const rootPlayback = Number(branch.rootPlayback);
   const complete = [
-    branchWeight,
-    sourceNormalDenominator,
-    receiverNormalNumerator,
-    receiverNormalFactor,
-    unsignedReceiverNormalFactor,
+    accelerationWeight,
+    transmitterFactor,
+    receiverFactor,
+    rootPlayback,
   ].every(Number.isFinite);
   const valid = complete &&
-    branchWeight >= 0 &&
-    unsignedReceiverNormalFactor >= 0 &&
-    Math.abs(sourceNormalDenominator) > EPSILON &&
-    Math.abs(receiverNormalFactor - receiverNormalNumerator / sourceNormalDenominator) <= 1e-9 * Math.max(1, Math.abs(receiverNormalFactor)) &&
-    Math.abs(unsignedReceiverNormalFactor - Math.abs(receiverNormalFactor)) <= 1e-9 * Math.max(1, unsignedReceiverNormalFactor) &&
-    Math.abs(branchWeight - unsignedReceiverNormalFactor) <= 1e-9 * Math.max(1, branchWeight);
+    accelerationWeight >= 0 &&
+    Math.abs(transmitterFactor) > EPSILON &&
+    Math.abs(rootPlayback - receiverFactor / transmitterFactor) <= 1e-9 * Math.max(1, Math.abs(rootPlayback)) &&
+    Math.abs(accelerationWeight - signalSpeed / Math.abs(transmitterFactor)) <= 1e-9 * Math.max(1, accelerationWeight);
   return {
-    branchWeight: valid ? branchWeight : 0,
-    sourceNormalDenominator: Number.isFinite(sourceNormalDenominator) ? sourceNormalDenominator : 0,
-    receiverNormalNumerator: Number.isFinite(receiverNormalNumerator) ? receiverNormalNumerator : 0,
-    receiverNormalFactor: Number.isFinite(receiverNormalFactor) ? receiverNormalFactor : 0,
-    unsignedReceiverNormalFactor: Number.isFinite(unsignedReceiverNormalFactor)
-      ? unsignedReceiverNormalFactor
-      : 0,
+    accelerationWeight: valid ? accelerationWeight : 0,
+    transmitterFactor: Number.isFinite(transmitterFactor) ? transmitterFactor : 0,
+    receiverFactor: Number.isFinite(receiverFactor) ? receiverFactor : 0,
+    rootPlayback: Number.isFinite(rootPlayback) ? rootPlayback : 0,
     evidenceStatus: valid
       ? "ok"
       : complete
-        ? "receiver_normal_branch_rows_invalid"
-        : "receiver_normal_branch_rows_missing",
+        ? "causal_factor_record_invalid"
+        : "causal_factor_record_missing",
   };
 }
 
@@ -412,26 +403,26 @@ export function computeMovingCircularObserverField(request = {}) {
     const direction = vector(branch.direction);
     const sourceVelocity = vector(branch.sourceVelocity);
     const distance = Math.max(EPSILON, finiteNumber(branch.distance));
-    const normal = resolveReceiverNormalRows(branch);
+    const normal = resolveCausalFactorRecord(branch, signalSpeed);
     const electric = scale(
       direction,
-      finiteNumber(branch.chargeSign) * normal.branchWeight / (distance * distance)
+      finiteNumber(branch.chargeSign) * normal.accelerationWeight / (distance * distance)
     );
     return labelRecord({
       branchIndex,
       delay: Math.max(0, finiteNumber(branch.delay)),
       distance,
       delaySolveGap: Math.abs(finiteNumber(branch.residual)),
-      jacobian: normal.sourceNormalDenominator,
-      jacobianAbs: Math.abs(normal.sourceNormalDenominator),
+      jacobian: normal.transmitterFactor,
+      jacobianAbs: Math.abs(normal.transmitterFactor),
       ...normal,
-      sourceNormalSpeed: finiteNumber(branch.sourceNormalSpeed, dot(sourceVelocity, direction)),
-      receiverNormalSpeed: finiteNumber(branch.receiverNormalSpeed),
-      receiverNormalCrossingFactor: finiteNumber(branch.receiverNormalCrossingFactor),
-      receiverNormalStatusCode: Number.isFinite(Number(branch.receiverNormalStatusCode))
-        ? Number(branch.receiverNormalStatusCode)
+      transmitterRadialSpeedAtEmission: finiteNumber(branch.transmitterRadialSpeedAtEmission, dot(sourceVelocity, direction)),
+      receiverRadialSpeedAtReception: finiteNumber(branch.receiverRadialSpeedAtReception),
+      receiverCrossingRatio: finiteNumber(branch.receiverCrossingRatio),
+      causalFactorStatusCode: Number.isFinite(Number(branch.causalFactorStatusCode))
+        ? Number(branch.causalFactorStatusCode)
         : normal.evidenceStatus === "ok" ? STATUS_OK : -1,
-      receiverNormalEvidenceStatus: normal.evidenceStatus,
+      causalFactorEvidenceStatus: normal.evidenceStatus,
       sourceSpeedRatio: magnitude(sourceVelocity) / signalSpeed,
       receiverAcceleration: electric,
       electric,
@@ -447,13 +438,13 @@ export function computeMovingCircularObserverField(request = {}) {
     { x: 0, y: 0, z: 0 }
   );
   const missingReceiverNormalCount = contributions.filter(
-    (contribution) => contribution.receiverNormalEvidenceStatus !== "ok"
+    (contribution) => contribution.causalFactorEvidenceStatus !== "ok"
   ).length;
   const delaySum = contributions.reduce((sum, contribution) => sum + contribution.delay, 0);
   const status = missingReceiverNormalCount > 0
     ? createStatus(
-        contributions.find((row) => row.receiverNormalEvidenceStatus !== "ok")
-          ?.receiverNormalEvidenceStatus ?? "receiver_normal_branch_rows_missing",
+        contributions.find((row) => row.causalFactorEvidenceStatus !== "ok")
+          ?.causalFactorEvidenceStatus ?? "causal_factor_record_missing",
         "warn",
         "prescribed observer-field branches are missing receiver-side root-playback rows"
       )
@@ -478,7 +469,7 @@ export function computeMovingCircularObserverField(request = {}) {
       : 0,
     unstableContributionCount: contributions.filter(
       (contribution) =>
-        contribution.receiverNormalEvidenceStatus !== "ok" ||
+        contribution.causalFactorEvidenceStatus !== "ok" ||
         contribution.delaySolveGap > finiteNumber(request.unstableGapThreshold, 0.05) ||
         contribution.jacobianAbs <= Math.max(EPSILON, finiteNumber(request.jacobianFloor, 1e-4))
     ).length,
@@ -509,15 +500,14 @@ function createObserverFieldBranch(root, rootResponse, requestIndex) {
     distance,
     residual: root.residual,
     delay: root.delay,
-    branchWeight: root.branchWeight,
-    sourceNormalSpeed: root.sourceNormalSpeed,
-    receiverNormalSpeed: root.receiverNormalSpeed,
-    sourceNormalDenominator: root.sourceNormalDenominator,
-    receiverNormalNumerator: root.receiverNormalNumerator,
-    receiverNormalCrossingFactor: root.receiverNormalCrossingFactor,
-    receiverNormalFactor: root.receiverNormalFactor,
-    unsignedReceiverNormalFactor: root.unsignedReceiverNormalFactor,
-    receiverNormalStatusCode: root.receiverNormalStatusCode,
+    accelerationWeight: root.accelerationWeight,
+    transmitterRadialSpeedAtEmission: root.transmitterRadialSpeedAtEmission,
+    receiverRadialSpeedAtReception: root.receiverRadialSpeedAtReception,
+    transmitterFactor: root.transmitterFactor,
+    receiverFactor: root.receiverFactor,
+    receiverCrossingRatio: root.receiverCrossingRatio,
+    rootPlayback: root.rootPlayback,
+    causalFactorStatusCode: root.causalFactorStatusCode,
     sourceHistoryKind: root.sourceHistoryKind,
   });
 }
@@ -860,7 +850,7 @@ export async function runPrescribedPathAnalysisRequest(request = {}) {
         delay: root.delay,
         distance: root.distance,
         jacobian: root.jacobian,
-        strength: root.branchWeight,
+        strength: root.accelerationWeight,
         emissionPoint: root.sourcePoint,
         sourcePoint: root.sourcePoint,
         receiverPoint: root.receiverPoint,
@@ -870,14 +860,13 @@ export async function runPrescribedPathAnalysisRequest(request = {}) {
               1 / magnitude(subtract(root.receiverPoint, root.sourcePoint))
             )
           : { x: 0, y: 0, z: 0 },
-        sourceNormalSpeed: root.sourceNormalSpeed,
-        receiverNormalSpeed: root.receiverNormalSpeed,
-        sourceNormalDenominator: root.sourceNormalDenominator,
-        receiverNormalNumerator: root.receiverNormalNumerator,
-        receiverNormalCrossingFactor: root.receiverNormalCrossingFactor,
-        receiverNormalFactor: root.receiverNormalFactor,
-        unsignedReceiverNormalFactor: root.unsignedReceiverNormalFactor,
-        receiverNormalStatusCode: root.receiverNormalStatusCode,
+        transmitterRadialSpeedAtEmission: root.transmitterRadialSpeedAtEmission,
+        receiverRadialSpeedAtReception: root.receiverRadialSpeedAtReception,
+        transmitterFactor: root.transmitterFactor,
+        receiverFactor: root.receiverFactor,
+        receiverCrossingRatio: root.receiverCrossingRatio,
+        rootPlayback: root.rootPlayback,
+        causalFactorStatusCode: root.causalFactorStatusCode,
         statusCode: root.statusCode,
       }))),
       rootLedgerDetails: labelRows(solved.roots.map((root) => ({

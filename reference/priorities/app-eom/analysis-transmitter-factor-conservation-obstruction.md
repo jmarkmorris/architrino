@@ -2,7 +2,7 @@
 
 ## Status
 
-- Purpose: determine whether energy, momentum, and angular momentum follow from the same retained-history update as the proposed source-density acceleration
+- Purpose: determine whether energy, momentum, and angular momentum follow from the same retained-history update as the proposed transmitter-side acceleration
 - Scope: the positive-width causal equation and its regular simple-root reduction with base factor $c_f/|D_t|$
 - Standing: priority analysis; not canon and not an EOM solver specification
 - Result: the retained-history update determines acceleration but does not determine the three conserved accounts from the current Architrino primitives
@@ -90,7 +90,7 @@ $$
 
 because $\mathbf V_i$ is parallel to $\mathbf p_i$.
 
-The source-density acceleration fixes $\mathbf A_i$ but does not fix $K$ or $P$. Different allowed choices therefore give different energy, momentum, and angular-momentum changes on the same path history. The optional quadratic bookkeeping choice
+The transmitter-side acceleration fixes $\mathbf A_i$ but does not fix $K$ or $P$. Different allowed choices therefore give different energy, momentum, and angular-momentum changes on the same path history. The optional quadratic bookkeeping choice
 
 $$
 K(s)=\frac12\mu_{\mathrm{arch}}s^2,
@@ -155,13 +155,13 @@ $$
 
 Here $D\mathcal C$ means the first-order change in the proposed account when the whole retained history is advanced. The acceleration law supplies the direction in which the state moves. It does not select a nontrivial solution $\mathcal C$, distinguish physical energy from another invariant, or prove a lower bound.
 
-The current two-time action cannot supply this missing selection. Its complete variation depends on future receptions and does not reproduce the proposed past-history acceleration. Therefore its symmetry accounts are not conservation laws for the source-density evolution.
+The current two-time action cannot supply this missing selection. Its complete variation depends on future receptions and does not reproduce the proposed past-history acceleration. Therefore its symmetry accounts are not conservation laws for the transmitter-side evolution.
 
 Claim classification: **derived promotion obstruction**. A causal action or a direct history construction that produces the proposed acceleration and three fixed, bounded accounts on the same state would close it.
 
 ## 5. Conservation cannot regularize coincident same-source birth
 
-At coincident same-source birth, the complete source-density impulse on a fixed local window obeys the regulator-uniform lower bound
+At coincident same-source birth, the complete transmitter-side impulse on a fixed local window obeys the regulator-uniform lower bound
 
 $$
 J_{\eta,\epsilon_c}^{\mathrm{full}}(L,h)

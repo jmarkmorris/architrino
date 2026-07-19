@@ -28,7 +28,7 @@ Delay differential equations (two-body, v=1):
   \quad
   r_{21}=\big|X_2(T)-X_1(T_t)\big|
   $$
-- $W_{12}^{\mathrm{acc}}$ and $W_{21}^{\mathrm{acc}}$ are the corresponding receiver-weighted acceleration factors. A root with a failed transmitter-side floor is a branch-transition or caustic case, not an ordinary stable row of this two-body DDE.
+- $W_{12}^{\mathrm{acc}}$ and $W_{21}^{\mathrm{acc}}$ are the corresponding transmitter-side acceleration weights. A root with a failed transmitter-side floor is a branch-transition or caustic case, not an ordinary stable row of this two-body DDE.
 - Symmetry implies $X_1(T)=-X_2(T)$ and $A_1(T)=-A_2(T)$ for all $T$ given symmetric initial data.
 
 Solvability status:

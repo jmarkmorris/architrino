@@ -10,7 +10,7 @@ The guiding observation is simple to state. A causal wake is the source-dependen
 
 Strictly, a wake carries nothing material. [Energy](../dynamics/energy.md) states the discipline: a wake is not a hidden fuel, a vacuum reservoir, or a second substance in the Euclidean void. What the wake makes available is fixed by the transmitter path:
 
-- **Potential**: the per-isochron amplitude, available wherever the wake passes, realized as force and work only when an actual receiver trajectory crosses it with its receiver-weighted acceleration factor.
+- **Potential**: the per-isochron amplitude, available wherever the wake passes, realized as force and work only when an actual receiver trajectory crosses it with its transmitter-side acceleration weight.
 - **Momentum and angular momentum**: conservation bookkeeping values, not cargo. Between emission and delayed reception, the accounting assigns these balances to the in-flight wake segment, and that assignment is computable entirely from the transmitter's path history. This is why internal torques need not cancel instantaneously in a causal-delay theory: between emission and reception, the balance lives in the wake record rather than in any assembly.
 - **Information**: the wake is an encoding of the source's worldline, propagating outward at $c_f$. A receiver sampling the wake is sampling the source's kinematic history at causal delay.
 

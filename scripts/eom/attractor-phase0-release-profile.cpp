@@ -269,7 +269,7 @@ int main(int argc, char** argv) {
     request.field_speed = "1";
     request.coupling = token(kNativeCoupling);
     request.root_tolerance = root_tolerance;
-    request.source_normal_floor = "1e-24";
+    request.transmitter_factor_floor = "1e-24";
     request.acceleration_tolerance = token(5e-3);
     request.chart_policy = "sharp";
     request.causal_width = "0.05";

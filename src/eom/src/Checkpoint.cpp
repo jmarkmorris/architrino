@@ -263,7 +263,7 @@ std::string model_fingerprint(
       request.field_speed,
       request.coupling,
       request.root_tolerance,
-      request.source_normal_floor,
+      request.transmitter_factor_floor,
       request.acceleration_tolerance,
       request.far_field_enclosure_fraction,
       request.use_far_field_enclosure_in_evolution ? "1" : "0",

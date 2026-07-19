@@ -391,7 +391,7 @@ class PiecewisePolynomialHistory:
 class RootBracket:
     lower: Decimal
     upper: Decimal
-    source_normal: DecimalInterval
+    transmitter_factor: DecimalInterval
     segment_indices: tuple[int, ...]
     exact: bool
 
@@ -464,9 +464,9 @@ class RootCompletenessCertificate:
                     "lower": str(root.lower),
                     "upper": str(root.upper),
                     "width": str(root.width),
-                    "source_normal_lower": str(root.source_normal.lower),
-                    "source_normal_upper": str(root.source_normal.upper),
-                    "source_normal_sign": root.source_normal.strict_sign,
+                    "transmitter_factor_lower": str(root.transmitter_factor.lower),
+                    "transmitter_factor_upper": str(root.transmitter_factor.upper),
+                    "transmitter_factor_sign": root.transmitter_factor.strict_sign,
                     "segment_indices": list(root.segment_indices),
                     "exact": root.exact,
                 }
@@ -516,7 +516,7 @@ def _residual_interval(
     ) * delay
 
 
-def _source_normal_interval(
+def _transmitter_factor_interval(
     receiver_position: IntervalVector,
     source_segment: CubicHistorySegment,
     emission_interval: DecimalInterval,
@@ -605,8 +605,8 @@ def _merge_root_brackets(
         if candidate.lower > current.upper:
             merged.append(candidate)
             continue
-        current_sign = current.source_normal.strict_sign
-        candidate_sign = candidate.source_normal.strict_sign
+        current_sign = current.transmitter_factor.strict_sign
+        candidate_sign = candidate.transmitter_factor.strict_sign
         if (
             current_sign is None
             or candidate_sign is None
@@ -635,7 +635,7 @@ def _merge_root_brackets(
         merged[-1] = RootBracket(
             lower,
             upper,
-            current.source_normal.hull(candidate.source_normal),
+            current.transmitter_factor.hull(candidate.transmitter_factor),
             tuple(sorted(set(current.segment_indices + candidate.segment_indices))),
             exact,
         )
@@ -698,7 +698,7 @@ def certify_causal_roots(
             correlated_displacement=correlated_displacement,
         )
 
-    def source_normal_for(
+    def transmitter_factor_for(
         segment: CubicHistorySegment,
         emission: DecimalInterval,
     ) -> DecimalInterval | None:
@@ -707,7 +707,7 @@ def certify_causal_roots(
             if same_retained_history
             else None
         )
-        return _source_normal_interval(
+        return _transmitter_factor_interval(
             receiver_position,
             segment,
             emission,
@@ -743,7 +743,7 @@ def certify_causal_roots(
     def add_exact_root(
         *,
         time: Decimal,
-        source_normal: DecimalInterval,
+        transmitter_factor: DecimalInterval,
         segment_index: int,
         cell_lower: Decimal,
         cell_upper: Decimal,
@@ -764,7 +764,7 @@ def certify_causal_roots(
             RootBracket(
                 time,
                 time,
-                source_normal,
+                transmitter_factor,
                 (segment_index,),
                 True,
             )
@@ -853,23 +853,23 @@ def certify_causal_roots(
                     and upper_sign in (-1, 1)
                     and lower_sign != upper_sign
                 ):
-                    left_normal = source_normal_for(
+                    left_normal = transmitter_factor_for(
                         left_segment,
                         DecimalInterval.bounds(lower, boundary, precision),
                     )
-                    right_normal = source_normal_for(
+                    right_normal = transmitter_factor_for(
                         right_segment,
                         DecimalInterval.bounds(boundary, upper, precision),
                     )
                     if left_normal is not None and right_normal is not None:
-                        source_normal = left_normal.hull(right_normal)
+                        transmitter_factor = left_normal.hull(right_normal)
                         if (
-                            source_normal.strict_sign in (-1, 1)
-                            and source_normal.strict_sign
+                            transmitter_factor.strict_sign in (-1, 1)
+                            and transmitter_factor.strict_sign
                             == left_normal.strict_sign
                             == right_normal.strict_sign
                         ):
-                            return lower, upper, source_normal
+                            return lower, upper, transmitter_factor
             with localcontext() as context:
                 context.prec = precision
                 radius = +(radius * Decimal(2))
@@ -937,14 +937,14 @@ def certify_causal_roots(
         cell_upper: Decimal,
     ) -> bool:
         bracket = DecimalInterval.bounds(lower, upper, precision)
-        source_normal = source_normal_for(segment, bracket)
-        if source_normal is None or source_normal.strict_sign not in (-1, 1):
+        transmitter_factor = transmitter_factor_for(segment, bracket)
+        if transmitter_factor is None or transmitter_factor.strict_sign not in (-1, 1):
             return False
         roots.append(
             RootBracket(
                 lower,
                 upper,
-                source_normal,
+                transmitter_factor,
                 (segment_index,),
                 False,
             )
@@ -1015,9 +1015,9 @@ def certify_causal_roots(
             )
             return
 
-        source_normal = source_normal_for(segment, cell)
-        source_normal_sign = (
-            source_normal.strict_sign if source_normal is not None else None
+        transmitter_factor = transmitter_factor_for(segment, cell)
+        transmitter_factor_sign = (
+            transmitter_factor.strict_sign if transmitter_factor is not None else None
         )
         lower_residual = residual_for(
             segment,
@@ -1036,7 +1036,7 @@ def certify_causal_roots(
             and upper_bound == reception
             and lower_sign in (-1, 1)
             and upper_sign is None
-            and source_normal_sign in (-1, 1)
+            and transmitter_factor_sign in (-1, 1)
         ):
             coincident_endpoint_excluded = True
             excluded.append(
@@ -1071,11 +1071,11 @@ def certify_causal_roots(
                 )
                 return
 
-        if source_normal_sign in (-1, 1):
+        if transmitter_factor_sign in (-1, 1):
             if lower_sign == 0:
                 add_exact_root(
                     time=cell_lower,
-                    source_normal=source_normal,
+                    transmitter_factor=transmitter_factor,
                     segment_index=segment_index,
                     cell_lower=cell_lower,
                     cell_upper=cell_upper,
@@ -1108,7 +1108,7 @@ def certify_causal_roots(
             if upper_sign == 0:
                 add_exact_root(
                     time=cell_upper,
-                    source_normal=source_normal,
+                    transmitter_factor=transmitter_factor,
                     segment_index=segment_index,
                     cell_lower=cell_lower,
                     cell_upper=cell_upper,
@@ -1158,7 +1158,7 @@ def certify_causal_roots(
                     RootBracket(
                         cell_lower,
                         cell_upper,
-                        source_normal,
+                        transmitter_factor,
                         (segment_index,),
                         False,
                     )
@@ -1170,16 +1170,16 @@ def certify_causal_roots(
             segment,
             DecimalInterval.point(midpoint, precision),
         )
-        if source_normal_sign in (-1, 1) and midpoint_residual.strict_sign == 0:
+        if transmitter_factor_sign in (-1, 1) and midpoint_residual.strict_sign == 0:
             add_exact_root(
                 time=midpoint,
-                source_normal=source_normal,  # type: ignore[arg-type]
+                transmitter_factor=transmitter_factor,  # type: ignore[arg-type]
                 segment_index=segment_index,
                 cell_lower=cell_lower,
                 cell_upper=cell_upper,
             )
             return
-        if source_normal_sign in (-1, 1) and midpoint_residual.strict_sign is None:
+        if transmitter_factor_sign in (-1, 1) and midpoint_residual.strict_sign is None:
             surrounded = surround_uncertain_point(
                 segment=segment,
                 point=midpoint,
@@ -1198,8 +1198,8 @@ def certify_causal_roots(
 
         if cell.width <= tolerance:
             unresolved_reason = (
-                "source_normal_interval_contains_zero"
-                if source_normal_sign is None
+                "transmitter_factor_interval_contains_zero"
+                if transmitter_factor_sign is None
                 else (
                     "self_root_cluster_requires_finite_width"
                     if same_retained_history

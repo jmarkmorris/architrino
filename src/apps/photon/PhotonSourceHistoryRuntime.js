@@ -14,7 +14,7 @@ export const PHOTON_SOURCE_HISTORY_BOUNDARY = Object.freeze({
   constrainedMotionOwner: "photon_app",
   sourceHistoryOwner: "photon_app",
   causalRootOwner: "prescribed_path_analysis",
-  receiverNormalOwner: "prescribed_path_analysis",
+  rootPlaybackOwner: "prescribed_path_analysis",
   fieldReconstructionOwner: "prescribed_path_analysis",
   evidenceGrade: "display-only-visualization",
   nonEvidence: true,

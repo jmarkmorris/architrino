@@ -254,7 +254,7 @@ export function computePhotonDiagnostics(state, timeSeconds, formulaSummary = nu
     sourceHistoryProviderId: formula.field.sourceHistoryProviderId ?? "",
     analysisFieldSchema: formula.field.analysisFieldSchema ?? "",
     fieldReconstructionOwner: formula.field.fieldReconstructionOwner ?? "",
-    receiverNormalOwner: formula.field.receiverNormalOwner ?? "",
+    rootPlaybackOwner: formula.field.rootPlaybackOwner ?? "",
     averageDelay: formula.field.averageDelay,
     delaySolveGapMax: formula.field.delaySolveGapMax,
     maxSourceSpeedRatio: formula.field.maxSourceSpeedRatio,

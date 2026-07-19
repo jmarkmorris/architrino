@@ -11,7 +11,7 @@ Objectives:
 
 Canonical delayed-law considerations:
 - Delay enters through the implicit emission times $T_t$ satisfying $\lvert X_1(T) - X_2(T_t)\rvert = T - T_t$ (and its counterpart).
-- All per-hit actions are radial along the line of action and carry the receiver-weighted acceleration factor $W^{\mathrm{acc}}=\lvert D_r/D_t\rvert$; $H(0)=0$ excludes $T_t=T$.
+- All per-hit actions are radial along the line of action and carry the transmitter-side acceleration weight $W^{\mathrm{acc}}=c_f/\lvert D_t\rvert$; $H(0)=0$ excludes $T_t=T$.
 
 Equations of motion (canonical delayed law; two-body, v=1):
 - Definitions:
@@ -39,7 +39,7 @@ Equations of motion (canonical delayed law; two-body, v=1):
   r_{21}=\big|X_2(T)-X_1(T_t)\big|
   $$
   Here $\sigma_{q_2 q_1}=\sigma_{q_1 q_2}=-1$ (unlike polarities attract),
-  $W_{ab}^{\mathrm{acc}}=\lvert D_{r,ab}/D_{t,ab}\rvert$ is the receiver-side
+  $W_{ab}^{\mathrm{acc}}=c_f/\lvert D_{t,ab}\rvert$ is the receiver-side
   branch strength on the corresponding root, $H(0)=0$ excludes $T_t=T$, and
   $\mathrm{sgn}(\cdot)$ denotes the sign function.
 

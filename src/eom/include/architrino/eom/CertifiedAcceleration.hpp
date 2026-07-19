@@ -31,7 +31,7 @@ struct NativeFarFieldEnclosureCertificate {
   std::optional<Interval> separation;
   std::optional<Interval> receiver_speed;
   std::optional<Interval> source_speed;
-  std::optional<Interval> source_normal_lower_bound;
+  std::optional<Interval> transmitter_factor_lower_bound;
   std::optional<Interval> pair_magnitude_bound;
   std::optional<Interval> pair_width_budget;
   std::optional<Interval> derived_cutoff_radius;
@@ -50,7 +50,7 @@ struct NativePairAccelerationRequest {
   std::string source_charge;
   std::string coupling;
   std::string chart = "sharp";
-  std::string source_normal_floor = "1e-30";
+  std::string transmitter_factor_floor = "1e-30";
   std::string causal_width = "0.2";
   std::string core_scale = "0.2";
   std::string acceleration_tolerance = "1e-9";
@@ -79,10 +79,10 @@ struct NativeAccelerationRow {
   std::string emission_upper;
   std::vector<std::size_t> source_segment_indices;
   std::optional<Interval> separation;
-  std::optional<Interval> source_normal;
-  std::optional<Interval> receiver_normal;
-  std::optional<Interval> branch_orientation;
-  std::optional<Interval> receiver_strength;
+  std::optional<Interval> transmitter_factor;
+  std::optional<Interval> receiver_factor;
+  std::optional<Interval> root_playback;
+  std::optional<Interval> acceleration_weight;
   int polarity;
   Interval charge_product_magnitude;
   Interval coupling;

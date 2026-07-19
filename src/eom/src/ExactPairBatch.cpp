@@ -48,8 +48,8 @@ std::string double_token(double value) {
 
 struct DoubleGeometry {
   Interval residual;
-  std::optional<Interval> source_normal;
-  std::optional<Interval> receiver_normal;
+  std::optional<Interval> transmitter_factor;
+  std::optional<Interval> receiver_factor;
 };
 
 struct DoubleReceiverState {
@@ -123,8 +123,8 @@ DoubleGeometry double_history_geometry(
 struct DoubleRoot {
   double lower;
   double upper;
-  Interval source_normal;
-  Interval receiver_normal;
+  Interval transmitter_factor;
+  Interval receiver_factor;
   std::vector<std::size_t> source_segment_indices;
 };
 
@@ -133,7 +133,7 @@ struct DoubleRootFreeCell {
   double lower;
   double upper;
   Interval residual;
-  Interval receiver_normal;
+  Interval receiver_factor;
 };
 
 struct DoubleAttempt {
@@ -164,7 +164,7 @@ bool same_segment_tokens(
       left.velocity_error_tokens() == right.velocity_error_tokens();
 }
 
-bool same_source_prefix_tokens(
+bool same_transmitter_prefix_tokens(
     const RetainedHistory& current,
     const RetainedHistory& prior,
     double lower,
@@ -258,16 +258,16 @@ bool merge_double_roots(std::vector<DoubleRoot>& roots) {
       merged.push_back(root);
       continue;
     }
-    if (root.source_normal.strict_sign() !=
-        merged.back().source_normal.strict_sign()) {
+    if (root.transmitter_factor.strict_sign() !=
+        merged.back().transmitter_factor.strict_sign()) {
       return false;
     }
     merged.back().lower = std::min(merged.back().lower, root.lower);
     merged.back().upper = std::max(merged.back().upper, root.upper);
-    merged.back().source_normal =
-        merged.back().source_normal.hull(root.source_normal);
-    merged.back().receiver_normal =
-        merged.back().receiver_normal.hull(root.receiver_normal);
+    merged.back().transmitter_factor =
+        merged.back().transmitter_factor.hull(root.transmitter_factor);
+    merged.back().receiver_factor =
+        merged.back().receiver_factor.hull(root.receiver_factor);
     merged.back().source_segment_indices.insert(
         merged.back().source_segment_indices.end(),
         root.source_segment_indices.begin(), root.source_segment_indices.end());
@@ -359,11 +359,11 @@ bool double_point_residual_is_token_dominated(
       enclosure_width <= 2.0 * token_radius + arithmetic_width;
 }
 
-bool double_source_normal_is_token_dominated(
+bool double_transmitter_factor_is_token_dominated(
     const CubicHistorySegment& source_segment,
-    const Interval& source_normal,
+    const Interval& transmitter_factor,
     double cell_width) {
-  if (!source_normal.contains_zero() ||
+  if (!transmitter_factor.contains_zero() ||
       (source_segment.position_error() <= 0.0 &&
        source_segment.velocity_error() <= 0.0)) {
     return false;
@@ -377,13 +377,13 @@ bool double_source_normal_is_token_dominated(
           direction_scale;
   const double arithmetic_width =
       256.0 * std::numeric_limits<double>::epsilon() *
-      std::max({1.0, std::abs(source_normal.lower()),
-                std::abs(source_normal.upper())});
+      std::max({1.0, std::abs(transmitter_factor.lower()),
+                std::abs(transmitter_factor.upper())});
   const double zero_overlap = std::min(
-      std::abs(source_normal.lower()), std::abs(source_normal.upper()));
-  return source_normal.width() > arithmetic_width &&
+      std::abs(transmitter_factor.lower()), std::abs(transmitter_factor.upper()));
+  return transmitter_factor.width() > arithmetic_width &&
       token_radius > arithmetic_width &&
-      source_normal.width() <= 2.0 * token_radius + arithmetic_width &&
+      transmitter_factor.width() <= 2.0 * token_radius + arithmetic_width &&
       zero_overlap <= 2.0 * token_radius + arithmetic_width;
 }
 
@@ -471,12 +471,12 @@ std::optional<DoubleRoot> surround_double_segment_join_root(
     const Interval root_interval(lower, upper);
     const auto root_geometry = double_history_geometry(
         receiver, source_history, reception, root_interval, field_speed);
-    if (!root_geometry.source_normal.has_value() ||
-        !root_geometry.receiver_normal.has_value()) {
+    if (!root_geometry.transmitter_factor.has_value() ||
+        !root_geometry.receiver_factor.has_value()) {
       return std::nullopt;
     }
-    const Interval source_normal = *root_geometry.source_normal;
-    if (source_normal.strict_sign() == 0) {
+    const Interval transmitter_factor = *root_geometry.transmitter_factor;
+    if (transmitter_factor.strict_sign() == 0) {
       return std::nullopt;
     }
     std::vector<std::size_t> source_segment_indices;
@@ -498,8 +498,8 @@ std::optional<DoubleRoot> surround_double_segment_join_root(
     return DoubleRoot{
         lower,
         upper,
-        source_normal,
-        *root_geometry.receiver_normal,
+        transmitter_factor,
+        *root_geometry.receiver_factor,
         std::move(source_segment_indices),
     };
   }
@@ -548,10 +548,10 @@ DoubleAttempt run_double_attempt(const ExactPairRequest& request) {
       request.receiver->velocity_hull(reception),
       same_retained_history,
       same_retained_history ? request.source : nullptr};
-  const double receiver_normal_abs_bound =
+  const double receiver_factor_abs_bound =
       (field_speed + norm(receiver_state.velocity)).upper();
-  const Interval fallback_receiver_normal =
-      Interval::point(0.0).inflate(receiver_normal_abs_bound);
+  const Interval fallback_receiver_factor =
+      Interval::point(0.0).inflate(receiver_factor_abs_bound);
   const auto& receiver_segment = request.receiver->segments()[
       request.receiver->segment_index_at(reception_value)];
   attempt.stable_negative_prefix_upper = search_lower;
@@ -593,10 +593,10 @@ DoubleAttempt run_double_attempt(const ExactPairRequest& request) {
         const Interval candidate_correction = norm(subtract(
             request.receiver->position_hull(prior_reception_interval),
             prior_receiver.position_hull(prior_reception_interval)));
-        const Interval receiver_normal_abs =
+        const Interval receiver_factor_abs =
             field_speed + norm(request.receiver->velocity_hull(reception_span));
         const Interval identity_drift = candidate_correction +
-            receiver_normal_abs * Interval::point(
+            receiver_factor_abs * Interval::point(
                 std::abs(reception_value - prior_reception));
         residual_drift_upper =
             std::min(residual_drift_upper, identity_drift.upper());
@@ -618,7 +618,7 @@ DoubleAttempt run_double_attempt(const ExactPairRequest& request) {
             request.warm_source_equality_precomputed
                 ? prior_prefix_upper <=
                       request.warm_source_prefix_token_stable_upper
-                : same_source_prefix_tokens(
+                : same_transmitter_prefix_tokens(
                       *request.source, prior_source, search_lower,
                       prior_prefix_upper);
         if (prior_prefix_upper > search_lower &&
@@ -799,9 +799,9 @@ DoubleAttempt run_double_attempt(const ExactPairRequest& request) {
       const auto root_geometry = double_geometry(
           receiver_state, source_segment, reception,
           Interval(surrounded->first, surrounded->second), field_speed);
-      if (!root_geometry.source_normal.has_value() ||
-          !root_geometry.receiver_normal.has_value() ||
-          root_geometry.source_normal->contains_zero()) {
+      if (!root_geometry.transmitter_factor.has_value() ||
+          !root_geometry.receiver_factor.has_value() ||
+          root_geometry.transmitter_factor->contains_zero()) {
         return false;
       }
       if (point == search_lower) {
@@ -810,8 +810,8 @@ DoubleAttempt run_double_attempt(const ExactPairRequest& request) {
       attempt.roots.push_back({
           surrounded->first,
           surrounded->second,
-          *root_geometry.source_normal,
-          *root_geometry.receiver_normal,
+          *root_geometry.transmitter_factor,
+          *root_geometry.receiver_factor,
           {segment_index},
       });
       return true;
@@ -855,7 +855,7 @@ DoubleAttempt run_double_attempt(const ExactPairRequest& request) {
             cell.lower,
             cell.upper,
             carried_residual,
-            fallback_receiver_normal,
+            fallback_receiver_factor,
         });
         return;
       }
@@ -907,20 +907,20 @@ DoubleAttempt run_double_attempt(const ExactPairRequest& request) {
           cell.lower,
           cell.upper,
           geometry.residual,
-          geometry.receiver_normal.value_or(fallback_receiver_normal),
+          geometry.receiver_factor.value_or(fallback_receiver_factor),
       });
       return;
     }
-    if (!geometry.source_normal.has_value() ||
-        geometry.source_normal->contains_zero()) {
+    if (!geometry.transmitter_factor.has_value() ||
+        geometry.transmitter_factor->contains_zero()) {
       if (cell.upper - cell.lower <= tolerance ||
           cell.depth == request.max_depth) {
         attempt.complete = false;
         attempt.caustic_candidate = true;
         attempt.token_dominated_failure =
-            geometry.source_normal.has_value() &&
-            double_source_normal_is_token_dominated(
-                source_segment, *geometry.source_normal,
+            geometry.transmitter_factor.has_value() &&
+            double_transmitter_factor_is_token_dominated(
+                source_segment, *geometry.transmitter_factor,
                 cell.upper - cell.lower);
         ++attempt.difficult_cells;
         return;
@@ -958,18 +958,18 @@ DoubleAttempt run_double_attempt(const ExactPairRequest& request) {
       ++attempt.excluded_cells;
       const Interval endpoint_residual =
           lower_geometry.residual.hull(upper_geometry.residual);
-      const Interval endpoint_receiver_normal =
-          lower_geometry.receiver_normal.has_value() &&
-                  upper_geometry.receiver_normal.has_value()
-              ? lower_geometry.receiver_normal->hull(
-                    *upper_geometry.receiver_normal)
-              : fallback_receiver_normal;
+      const Interval endpoint_receiver_factor =
+          lower_geometry.receiver_factor.has_value() &&
+                  upper_geometry.receiver_factor.has_value()
+              ? lower_geometry.receiver_factor->hull(
+                    *upper_geometry.receiver_factor)
+              : fallback_receiver_factor;
       attempt.root_free_cells.push_back({
           cell.segment_index,
           cell.lower,
           cell.upper,
           endpoint_residual,
-          endpoint_receiver_normal,
+          endpoint_receiver_factor,
       });
       return;
     }
@@ -1055,17 +1055,17 @@ DoubleAttempt run_double_attempt(const ExactPairRequest& request) {
     const auto root_geometry = double_geometry(
         receiver_state, source_segment, reception, Interval(lower, upper),
         field_speed);
-    if (!root_geometry.source_normal.has_value() ||
-        !root_geometry.receiver_normal.has_value() ||
-        root_geometry.source_normal->contains_zero()) {
+    if (!root_geometry.transmitter_factor.has_value() ||
+        !root_geometry.receiver_factor.has_value() ||
+        root_geometry.transmitter_factor->contains_zero()) {
       attempt.complete = false;
       attempt.caustic_candidate = true;
       ++attempt.difficult_cells;
       return;
     }
     attempt.roots.push_back(
-        {lower, upper, *root_geometry.source_normal,
-         *root_geometry.receiver_normal, {cell.segment_index}});
+        {lower, upper, *root_geometry.transmitter_factor,
+         *root_geometry.receiver_factor, {cell.segment_index}});
   };
 
   for (const auto& cell : cells) {
@@ -1813,8 +1813,8 @@ const MpCompiledSegment& mp_segment_at(
 
 struct MpGeometry {
   MpInterval residual;
-  std::optional<MpInterval> source_normal;
-  std::optional<MpInterval> receiver_normal;
+  std::optional<MpInterval> transmitter_factor;
+  std::optional<MpInterval> receiver_factor;
 };
 
 struct MpReceiverState {
@@ -2122,8 +2122,8 @@ MpGeometry mp_geometry_with_source_position(
 struct MpRoot {
   MpFloat lower;
   MpFloat upper;
-  MpInterval source_normal;
-  MpInterval receiver_normal;
+  MpInterval transmitter_factor;
+  MpInterval receiver_factor;
   std::vector<std::size_t> source_segment_indices;
 };
 
@@ -2145,10 +2145,10 @@ struct MpAttempt {
   std::string difficult_point;
   std::string difficult_point_residual_lower;
   std::string difficult_point_residual_upper;
-  std::string difficult_source_normal_lower;
-  std::string difficult_source_normal_upper;
-  std::string difficult_receiver_normal_lower;
-  std::string difficult_receiver_normal_upper;
+  std::string difficult_transmitter_factor_lower;
+  std::string difficult_transmitter_factor_upper;
+  std::string difficult_receiver_factor_lower;
+  std::string difficult_receiver_factor_upper;
   int difficult_lower_sign = 0;
   int difficult_upper_sign = 0;
 };
@@ -2165,8 +2165,8 @@ bool merge_mp_roots(std::vector<MpRoot>& roots) {
       merged.push_back(root);
       continue;
     }
-    if (root.source_normal.strict_sign() !=
-        merged.back().source_normal.strict_sign()) {
+    if (root.transmitter_factor.strict_sign() !=
+        merged.back().transmitter_factor.strict_sign()) {
       return false;
     }
     if (root.lower.compare(merged.back().lower) < 0) {
@@ -2175,24 +2175,24 @@ bool merge_mp_roots(std::vector<MpRoot>& roots) {
     if (root.upper.compare(merged.back().upper) > 0) {
       merged.back().upper = root.upper;
     }
-    merged.back().source_normal = MpInterval(
-        root.source_normal.lower().compare(
-            merged.back().source_normal.lower()) < 0
-            ? root.source_normal.lower()
-            : merged.back().source_normal.lower(),
-        root.source_normal.upper().compare(
-            merged.back().source_normal.upper()) > 0
-            ? root.source_normal.upper()
-            : merged.back().source_normal.upper());
-    merged.back().receiver_normal = MpInterval(
-        root.receiver_normal.lower().compare(
-            merged.back().receiver_normal.lower()) < 0
-            ? root.receiver_normal.lower()
-            : merged.back().receiver_normal.lower(),
-        root.receiver_normal.upper().compare(
-            merged.back().receiver_normal.upper()) > 0
-            ? root.receiver_normal.upper()
-            : merged.back().receiver_normal.upper());
+    merged.back().transmitter_factor = MpInterval(
+        root.transmitter_factor.lower().compare(
+            merged.back().transmitter_factor.lower()) < 0
+            ? root.transmitter_factor.lower()
+            : merged.back().transmitter_factor.lower(),
+        root.transmitter_factor.upper().compare(
+            merged.back().transmitter_factor.upper()) > 0
+            ? root.transmitter_factor.upper()
+            : merged.back().transmitter_factor.upper());
+    merged.back().receiver_factor = MpInterval(
+        root.receiver_factor.lower().compare(
+            merged.back().receiver_factor.lower()) < 0
+            ? root.receiver_factor.lower()
+            : merged.back().receiver_factor.lower(),
+        root.receiver_factor.upper().compare(
+            merged.back().receiver_factor.upper()) > 0
+            ? root.receiver_factor.upper()
+            : merged.back().receiver_factor.upper());
     merged.back().source_segment_indices.insert(
         merged.back().source_segment_indices.end(),
         root.source_segment_indices.begin(), root.source_segment_indices.end());
@@ -2327,11 +2327,11 @@ std::optional<std::pair<MpFloat, MpFloat>>
 enclose_mp_monotone_root(
     const MpFloat& point,
     const MpInterval& point_residual,
-    const MpInterval& source_normal,
+    const MpInterval& transmitter_factor,
     const MpFloat& bracket_lower,
     const MpFloat& bracket_upper,
     const MpFloat& tolerance) {
-  if (source_normal.contains_zero()) {
+  if (transmitter_factor.contains_zero()) {
     return std::nullopt;
   }
 
@@ -2340,7 +2340,7 @@ enclose_mp_monotone_root(
   // division therefore encloses every root allowed by the retained-history
   // errors without requiring symmetric strict-sign probes around point.
   const MpInterval candidate =
-      MpInterval::point(point) - point_residual / source_normal;
+      MpInterval::point(point) - point_residual / transmitter_factor;
   const MpFloat lower = candidate.lower().compare(bracket_lower) >= 0
       ? candidate.lower() : bracket_lower;
   const MpFloat upper = candidate.upper().compare(bracket_upper) <= 0
@@ -2420,27 +2420,27 @@ std::optional<MpRoot> surround_mp_segment_join_root(
             right_segment, *shared_position, right_segment.start_time,
             right_interval),
         reception, right_interval, field_speed);
-    if (left_geometry.source_normal.has_value() &&
-        right_geometry.source_normal.has_value() &&
-        left_geometry.receiver_normal.has_value() &&
-        right_geometry.receiver_normal.has_value()) {
-      const MpInterval source_normal = mp_hull(
-          *left_geometry.source_normal, *right_geometry.source_normal);
-      const MpInterval receiver_normal = mp_hull(
-          *left_geometry.receiver_normal, *right_geometry.receiver_normal);
+    if (left_geometry.transmitter_factor.has_value() &&
+        right_geometry.transmitter_factor.has_value() &&
+        left_geometry.receiver_factor.has_value() &&
+        right_geometry.receiver_factor.has_value()) {
+      const MpInterval transmitter_factor = mp_hull(
+          *left_geometry.transmitter_factor, *right_geometry.transmitter_factor);
+      const MpInterval receiver_factor = mp_hull(
+          *left_geometry.receiver_factor, *right_geometry.receiver_factor);
       const MpInterval boundary = MpInterval::point(boundary_lower);
       const auto boundary_geometry = mp_geometry_with_source_position(
           receiver, left_segment, *shared_position,
           reception, boundary, field_speed);
-      if (!source_normal.contains_zero() &&
+      if (!transmitter_factor.contains_zero() &&
           boundary_geometry.residual.contains_zero()) {
         const auto enclosed = enclose_mp_monotone_root(
-            boundary_lower, boundary_geometry.residual, source_normal,
+            boundary_lower, boundary_geometry.residual, transmitter_factor,
             lower, upper, tolerance);
         if (enclosed.has_value()) {
           return MpRoot{
-              enclosed->first, enclosed->second, source_normal,
-              receiver_normal,
+              enclosed->first, enclosed->second, transmitter_factor,
+              receiver_factor,
               {left_segment_index, right_segment_index}};
         }
       }
@@ -2465,25 +2465,25 @@ std::optional<MpRoot> surround_mp_segment_join_root(
       continue;
     }
 
-    if (!left_geometry.source_normal.has_value() ||
-        !right_geometry.source_normal.has_value() ||
-        !left_geometry.receiver_normal.has_value() ||
-        !right_geometry.receiver_normal.has_value()) {
+    if (!left_geometry.transmitter_factor.has_value() ||
+        !right_geometry.transmitter_factor.has_value() ||
+        !left_geometry.receiver_factor.has_value() ||
+        !right_geometry.receiver_factor.has_value()) {
       return std::nullopt;
     }
-    const MpInterval source_normal = mp_hull(
-        *left_geometry.source_normal, *right_geometry.source_normal);
-    if (source_normal.strict_sign() == 0 ||
-        source_normal.strict_sign() != left_geometry.source_normal->strict_sign() ||
-        source_normal.strict_sign() != right_geometry.source_normal->strict_sign()) {
+    const MpInterval transmitter_factor = mp_hull(
+        *left_geometry.transmitter_factor, *right_geometry.transmitter_factor);
+    if (transmitter_factor.strict_sign() == 0 ||
+        transmitter_factor.strict_sign() != left_geometry.transmitter_factor->strict_sign() ||
+        transmitter_factor.strict_sign() != right_geometry.transmitter_factor->strict_sign()) {
       return std::nullopt;
     }
     return MpRoot{
         lower,
         upper,
-        source_normal,
-        mp_hull(*left_geometry.receiver_normal,
-                *right_geometry.receiver_normal),
+        transmitter_factor,
+        mp_hull(*left_geometry.receiver_factor,
+                *right_geometry.receiver_factor),
         {left_segment_index, right_segment_index}};
   }
 
@@ -2533,24 +2533,24 @@ std::optional<MpRoot> surround_mp_segment_join_root(
         const auto right_geometry = mp_geometry(
             receiver, right_segment, reception,
             MpInterval::bounds(boundary_lower, upper), field_speed);
-        if (left_geometry.source_normal.has_value() &&
-            right_geometry.source_normal.has_value() &&
-            left_geometry.receiver_normal.has_value() &&
-            right_geometry.receiver_normal.has_value()) {
-          const MpInterval source_normal = mp_hull(
-              *left_geometry.source_normal, *right_geometry.source_normal);
-          if (source_normal.strict_sign() != 0 &&
-              source_normal.strict_sign() ==
-                  left_geometry.source_normal->strict_sign() &&
-              source_normal.strict_sign() ==
-                  right_geometry.source_normal->strict_sign()) {
+        if (left_geometry.transmitter_factor.has_value() &&
+            right_geometry.transmitter_factor.has_value() &&
+            left_geometry.receiver_factor.has_value() &&
+            right_geometry.receiver_factor.has_value()) {
+          const MpInterval transmitter_factor = mp_hull(
+              *left_geometry.transmitter_factor, *right_geometry.transmitter_factor);
+          if (transmitter_factor.strict_sign() != 0 &&
+              transmitter_factor.strict_sign() ==
+                  left_geometry.transmitter_factor->strict_sign() &&
+              transmitter_factor.strict_sign() ==
+                  right_geometry.transmitter_factor->strict_sign()) {
             return MpRoot{
                 lower,
                 upper,
-                source_normal,
+                transmitter_factor,
                 mp_hull(
-                    *left_geometry.receiver_normal,
-                    *right_geometry.receiver_normal),
+                    *left_geometry.receiver_factor,
+                    *right_geometry.receiver_factor),
                 {left_segment_index, right_segment_index}};
           }
         }
@@ -2764,17 +2764,17 @@ MpAttempt run_mpfr_attempt(const ExactPairRequest& request, unsigned bits_value)
         const auto bracket_geometry = mp_geometry(
             receiver_state, source_segment, reception,
             MpInterval::bounds(cell_lower, cell_upper), field_speed);
-        if (bracket_geometry.source_normal.has_value()) {
-          attempt.difficult_source_normal_lower =
-              bracket_geometry.source_normal->lower().token(MPFR_RNDD);
-          attempt.difficult_source_normal_upper =
-              bracket_geometry.source_normal->upper().token(MPFR_RNDU);
+        if (bracket_geometry.transmitter_factor.has_value()) {
+          attempt.difficult_transmitter_factor_lower =
+              bracket_geometry.transmitter_factor->lower().token(MPFR_RNDD);
+          attempt.difficult_transmitter_factor_upper =
+              bracket_geometry.transmitter_factor->upper().token(MPFR_RNDU);
         }
-        if (bracket_geometry.receiver_normal.has_value()) {
-          attempt.difficult_receiver_normal_lower =
-              bracket_geometry.receiver_normal->lower().token(MPFR_RNDD);
-          attempt.difficult_receiver_normal_upper =
-              bracket_geometry.receiver_normal->upper().token(MPFR_RNDU);
+        if (bracket_geometry.receiver_factor.has_value()) {
+          attempt.difficult_receiver_factor_lower =
+              bracket_geometry.receiver_factor->lower().token(MPFR_RNDD);
+          attempt.difficult_receiver_factor_upper =
+              bracket_geometry.receiver_factor->upper().token(MPFR_RNDU);
         }
         attempt.difficult_lower_sign =
             mp_geometry(
@@ -2795,9 +2795,9 @@ MpAttempt run_mpfr_attempt(const ExactPairRequest& request, unsigned bits_value)
     const auto root_geometry = mp_geometry(
         receiver_state, source_segment, reception,
         MpInterval::bounds(lower, upper), field_speed);
-    if (!root_geometry.source_normal.has_value() ||
-        !root_geometry.receiver_normal.has_value() ||
-        root_geometry.source_normal->contains_zero()) {
+    if (!root_geometry.transmitter_factor.has_value() ||
+        !root_geometry.receiver_factor.has_value() ||
+        root_geometry.transmitter_factor->contains_zero()) {
       attempt.complete = false;
       attempt.caustic_candidate = true;
       attempt.diagnostic_detail = "endpoint_root_normal_contains_zero";
@@ -2808,8 +2808,8 @@ MpAttempt run_mpfr_attempt(const ExactPairRequest& request, unsigned bits_value)
       attempt.memory_boundary_contact = true;
     }
     attempt.roots.push_back(
-        {lower, upper, *root_geometry.source_normal,
-         *root_geometry.receiver_normal, {segment_index}});
+        {lower, upper, *root_geometry.transmitter_factor,
+         *root_geometry.receiver_factor, {segment_index}});
   };
 
   std::function<void(const Cell&)> classify;
@@ -2849,13 +2849,13 @@ MpAttempt run_mpfr_attempt(const ExactPairRequest& request, unsigned bits_value)
       ++attempt.excluded_cells;
       return;
     }
-    if (!geometry.source_normal.has_value() ||
-        geometry.source_normal->contains_zero()) {
+    if (!geometry.transmitter_factor.has_value() ||
+        geometry.transmitter_factor->contains_zero()) {
       if (mp_width_within(cell.lower, cell.upper, tolerance) ||
           cell.depth == request.max_depth) {
         attempt.complete = false;
         attempt.caustic_candidate = true;
-        attempt.diagnostic_detail = "source_normal_contains_zero_at_root_tolerance";
+        attempt.diagnostic_detail = "transmitter_factor_contains_zero_at_root_tolerance";
         ++attempt.difficult_cells;
         return;
       }
@@ -2928,10 +2928,10 @@ MpAttempt run_mpfr_attempt(const ExactPairRequest& request, unsigned bits_value)
             receiver_state, source_segment, reception,
             MpInterval::bounds(lower, upper), field_speed);
         if (!enclosed.has_value() &&
-            bracket_geometry.source_normal.has_value()) {
+            bracket_geometry.transmitter_factor.has_value()) {
           enclosed = enclose_mp_monotone_root(
               middle, middle_geometry.residual,
-              *bracket_geometry.source_normal,
+              *bracket_geometry.transmitter_factor,
               lower, upper, tolerance);
         }
         if (!enclosed.has_value()) {
@@ -2947,17 +2947,17 @@ MpAttempt run_mpfr_attempt(const ExactPairRequest& request, unsigned bits_value)
               middle_geometry.residual.lower().token(MPFR_RNDD);
           attempt.difficult_point_residual_upper =
               middle_geometry.residual.upper().token(MPFR_RNDU);
-          if (bracket_geometry.source_normal.has_value()) {
-            attempt.difficult_source_normal_lower =
-                bracket_geometry.source_normal->lower().token(MPFR_RNDD);
-            attempt.difficult_source_normal_upper =
-                bracket_geometry.source_normal->upper().token(MPFR_RNDU);
+          if (bracket_geometry.transmitter_factor.has_value()) {
+            attempt.difficult_transmitter_factor_lower =
+                bracket_geometry.transmitter_factor->lower().token(MPFR_RNDD);
+            attempt.difficult_transmitter_factor_upper =
+                bracket_geometry.transmitter_factor->upper().token(MPFR_RNDU);
           }
-          if (bracket_geometry.receiver_normal.has_value()) {
-            attempt.difficult_receiver_normal_lower =
-                bracket_geometry.receiver_normal->lower().token(MPFR_RNDD);
-            attempt.difficult_receiver_normal_upper =
-                bracket_geometry.receiver_normal->upper().token(MPFR_RNDU);
+          if (bracket_geometry.receiver_factor.has_value()) {
+            attempt.difficult_receiver_factor_lower =
+                bracket_geometry.receiver_factor->lower().token(MPFR_RNDD);
+            attempt.difficult_receiver_factor_upper =
+                bracket_geometry.receiver_factor->upper().token(MPFR_RNDU);
           }
           attempt.difficult_lower_sign = refined_lower_sign;
           attempt.difficult_upper_sign = refined_upper_sign;
@@ -2989,9 +2989,9 @@ MpAttempt run_mpfr_attempt(const ExactPairRequest& request, unsigned bits_value)
     const auto root_geometry = mp_geometry(
         receiver_state, source_segment, reception,
         MpInterval::bounds(lower, upper), field_speed);
-    if (!root_geometry.source_normal.has_value() ||
-        !root_geometry.receiver_normal.has_value() ||
-        root_geometry.source_normal->contains_zero()) {
+    if (!root_geometry.transmitter_factor.has_value() ||
+        !root_geometry.receiver_factor.has_value() ||
+        root_geometry.transmitter_factor->contains_zero()) {
       attempt.complete = false;
       attempt.caustic_candidate = true;
       attempt.diagnostic_detail = "refined_root_normal_contains_zero";
@@ -2999,8 +2999,8 @@ MpAttempt run_mpfr_attempt(const ExactPairRequest& request, unsigned bits_value)
       return;
     }
     attempt.roots.push_back(
-        {lower, upper, *root_geometry.source_normal,
-         *root_geometry.receiver_normal, {cell.segment_index}});
+        {lower, upper, *root_geometry.transmitter_factor,
+         *root_geometry.receiver_factor, {cell.segment_index}});
   };
 
   for (const auto& cell : cells) {
@@ -3053,11 +3053,11 @@ ExactPairCertificate double_certificate(
     certificate.roots.push_back({
         .lower = double_token(root.lower),
         .upper = double_token(root.upper),
-        .source_normal_lower = double_token(root.source_normal.lower()),
-        .source_normal_upper = double_token(root.source_normal.upper()),
-        .receiver_normal_lower = double_token(root.receiver_normal.lower()),
-        .receiver_normal_upper = double_token(root.receiver_normal.upper()),
-        .source_normal_sign = root.source_normal.strict_sign(),
+        .transmitter_factor_lower = double_token(root.transmitter_factor.lower()),
+        .transmitter_factor_upper = double_token(root.transmitter_factor.upper()),
+        .receiver_factor_lower = double_token(root.receiver_factor.lower()),
+        .receiver_factor_upper = double_token(root.receiver_factor.upper()),
+        .transmitter_factor_sign = root.transmitter_factor.strict_sign(),
         .source_segment_indices = root.source_segment_indices,
         .precision_route = "binary64_outward",
         .precision_bits = 53,
@@ -3081,10 +3081,10 @@ ExactPairCertificate double_certificate(
         .upper = double_token(cell.upper),
         .residual_lower = double_token(cell.residual.lower()),
         .residual_upper = double_token(cell.residual.upper()),
-        .receiver_normal_lower =
-            double_token(cell.receiver_normal.lower()),
-        .receiver_normal_upper =
-            double_token(cell.receiver_normal.upper()),
+        .receiver_factor_lower =
+            double_token(cell.receiver_factor.lower()),
+        .receiver_factor_upper =
+            double_token(cell.receiver_factor.upper()),
         .lower_value = cell.lower,
         .upper_value = cell.upper,
         .residual_lower_value = cell.residual.lower(),
@@ -3102,7 +3102,7 @@ ExactPairCertificate double_token_dominated_failure_certificate(
   certificate.status = attempt.caustic_candidate
       ? "caustic_route_required" : "uncertified";
   certificate.failure_code = attempt.caustic_candidate
-      ? "numeric_source_normal_sign_uncertified"
+      ? "numeric_transmitter_factor_sign_uncertified"
       : "numeric_root_count_uncertified";
   certificate.root_free_complement = false;
   certificate.memory_boundary_contact = false;
@@ -3144,7 +3144,7 @@ ExactPairCertificate mpfr_certificate(
                           : (attempt.memory_boundary_contact
                                  ? "insufficient_history_depth"
                                  : (attempt.caustic_candidate
-                                        ? "numeric_source_normal_sign_uncertified"
+                                        ? "numeric_transmitter_factor_sign_uncertified"
                                         : (attempt.finite_width_root_cluster
                                                ? "numeric_self_root_cluster_uncertified"
                                         : (exhausted
@@ -3173,14 +3173,14 @@ ExactPairCertificate mpfr_certificate(
         attempt.difficult_point_residual_lower;
     certificate.difficult_point_residual_upper =
         attempt.difficult_point_residual_upper;
-    certificate.difficult_source_normal_lower =
-        attempt.difficult_source_normal_lower;
-    certificate.difficult_source_normal_upper =
-        attempt.difficult_source_normal_upper;
-    certificate.difficult_receiver_normal_lower =
-        attempt.difficult_receiver_normal_lower;
-    certificate.difficult_receiver_normal_upper =
-        attempt.difficult_receiver_normal_upper;
+    certificate.difficult_transmitter_factor_lower =
+        attempt.difficult_transmitter_factor_lower;
+    certificate.difficult_transmitter_factor_upper =
+        attempt.difficult_transmitter_factor_upper;
+    certificate.difficult_receiver_factor_lower =
+        attempt.difficult_receiver_factor_lower;
+    certificate.difficult_receiver_factor_upper =
+        attempt.difficult_receiver_factor_upper;
     certificate.difficult_lower_sign = attempt.difficult_lower_sign;
     certificate.difficult_upper_sign = attempt.difficult_upper_sign;
     return certificate;
@@ -3190,11 +3190,11 @@ ExactPairCertificate mpfr_certificate(
     certificate.roots.push_back({
         .lower = root.lower.token(MPFR_RNDD),
         .upper = root.upper.token(MPFR_RNDU),
-        .source_normal_lower = root.source_normal.lower().token(MPFR_RNDD),
-        .source_normal_upper = root.source_normal.upper().token(MPFR_RNDU),
-        .receiver_normal_lower = root.receiver_normal.lower().token(MPFR_RNDD),
-        .receiver_normal_upper = root.receiver_normal.upper().token(MPFR_RNDU),
-        .source_normal_sign = root.source_normal.strict_sign(),
+        .transmitter_factor_lower = root.transmitter_factor.lower().token(MPFR_RNDD),
+        .transmitter_factor_upper = root.transmitter_factor.upper().token(MPFR_RNDU),
+        .receiver_factor_lower = root.receiver_factor.lower().token(MPFR_RNDD),
+        .receiver_factor_upper = root.receiver_factor.upper().token(MPFR_RNDU),
+        .transmitter_factor_sign = root.transmitter_factor.strict_sign(),
         .source_segment_indices = root.source_segment_indices,
         .precision_route = "mpfr_directed_interval",
         .precision_bits = bits,

@@ -1,8 +1,8 @@
 # Effective Lagrangian
 
-This chapter asks whether the delayed Master EOM can be recovered from an action principle. In ordinary mechanics, a Lagrangian is useful because varying one scalar history functional gives the equations of motion. In $\mathbb{A}\mathbb{A}\mathbb{A}$ the target is harder: the functional must remember delayed causal roots, source identities, boundary terms, and receiver-weighted acceleration factor.
+This chapter asks whether the delayed Master EOM can be recovered from an action principle. In ordinary mechanics, a Lagrangian is useful because varying one scalar history functional gives the equations of motion. In $\mathbb{A}\mathbb{A}\mathbb{A}$ the target is harder: the functional must remember delayed causal roots, source identities, boundary terms, and transmitter-side acceleration weight.
 
-The restart rule is simple. Any variational scaffold in this chapter that does not produce receiver-weighted acceleration factor is invalid as closure evidence. The current target is to vary a path-history functional whose branch-reduced acceleration law carries $W^{\mathrm{acc}}=\lvert D_r/D_t\rvert$ on the same retained roots as the Master EOM. Transmitter-side factors remain transversality diagnostics until paired with the receiver-side factor and checked by the stated residuals.
+The restart rule is simple. Any variational scaffold in this chapter that does not produce transmitter-side acceleration weight is invalid as closure evidence. The current target is to vary a path-history functional whose branch-reduced acceleration law carries $W^{\mathrm{acc}}=c_f/\lvert D_t\rvert$ on the same retained roots as the Master EOM. Transmitter-side factors remain transversality diagnostics until paired with the receiver-side factor and checked by the stated residuals.
 
 Variational proof work therefore restarts from this canonical receiver-side target. No prior action stationarity, energy balance, or Noether wake-history verdict is inherited unless the same derivation reproduces the receiver-side branch law on the retained record.
 
@@ -96,7 +96,7 @@ where $m_{\mathrm{delay}}$ denotes the mass-like shift and $\Gamma_{\mathrm{dela
 
 Historically, the route into this form matters. Newtonian force balance can be projected along fixed-endpoint variations as virtual work. For conservative interactions, $\mathbf{F}=-\nabla V$ turns the work term into a variation of potential energy, while the inertial term supplies a variation of kinetic energy plus an endpoint term. When the endpoint variation vanishes, Hamilton's construction turns that differential relation into the stationary action of $K-V$. The useful condition is therefore stationarity of the action, not a literal minimum in every case.
 
-The same idea survives in $\mathbb{A}\mathbb{A}\mathbb{A}$ only after changing the object being varied. The Master EOM is not local in the instantaneous native variables $(\mathbf X_i(T),\mathbf V_i(T))$: receiver acceleration depends on delayed source coordinates, causal-root branches, receiver-weighted acceleration factors, and the retained causal-wake history. A local expression $L(\mathbf X,\mathbf V,T)$ therefore cannot be the substrate-level action for the exact law. The appropriate candidate is a multi-time path-history functional whose variation must reproduce the delayed receiver-side branch law.
+The same idea survives in $\mathbb{A}\mathbb{A}\mathbb{A}$ only after changing the object being varied. The Master EOM is not local in the instantaneous native variables $(\mathbf X_i(T),\mathbf V_i(T))$: receiver acceleration depends on delayed source coordinates, causal-root branches, transmitter-side acceleration weights, and the retained causal-wake history. A local expression $L(\mathbf X,\mathbf V,T)$ therefore cannot be the substrate-level action for the exact law. The appropriate candidate is a multi-time path-history functional whose variation must reproduce the delayed receiver-side branch law.
 
 The operational bridge is:
 
@@ -105,7 +105,7 @@ The operational bridge is:
 3. the action is promoted only if its variation yields the Master EOM on the retained branch chart;
 4. failure is measured by the variation residual $\mathbf{R}_i^{(\eta)}(T)$ and the window diagnostic $\epsilon_{\mathrm{var}}^{(\eta)}(W)$ defined below.
 
-Thus the Lagrangian question in $\mathbb{A}\mathbb{A}\mathbb{A}$ is not whether one can write a familiar-looking $T-V$ expression. The question is whether a delayed action with the same causal-root, transmitter-side factor, receiver-weighted acceleration-factor, boundary, and wake-history conventions as the Master EOM has a stationary variation whose residual closes. Only then do Noether-style energy, momentum, and angular-momentum statements become theorem-grade rather than diagnostic.
+Thus the Lagrangian question in $\mathbb{A}\mathbb{A}\mathbb{A}$ is not whether one can write a familiar-looking $T-V$ expression. The question is whether a delayed action with the same causal-root, transmitter-side factor, transmitter-side acceleration-weight, boundary, and wake-history conventions as the Master EOM has a stationary variation whose residual closes. Only then do Noether-style energy, momentum, and angular-momentum statements become theorem-grade rather than diagnostic.
 
 ### Ordinary Hamiltonian Orientation
 
@@ -309,7 +309,7 @@ W_{ij}^{\mathrm{acc}}(T;T_t)\,
 }
 {r_{ij}(T;T_t)^2}
 $$
-where $W_{ij}^{\mathrm{acc}}=\lvert D_{r,ij}/D_{t,ij}\rvert$ is computed on the same retained root record.
+where $W_{ij}^{\mathrm{acc}}=c_f/\lvert D_{t,ij}\rvert$ is computed on the same retained root record.
 This includes nontrivial self-hit branches $j=i$ when the trivial coincidence root is excluded.
 
 The branch collapse used here is an $\eta\to0^+$ simple-root statement, not an identity at arbitrary finite $\eta$. Since
@@ -783,7 +783,7 @@ $$
 \frac{\partial \mathcal{L}}{\partial(\partial_{x_{\mathrm{eff}}^i}\varphi_{\mathrm{eff}}^A)}
 =0.
 $$
-This is the common effective grammar behind Maxwell, Einstein-Hilbert, and Standard Model action formulations. For $\mathbb{A}\mathbb{A}\mathbb{A}$ it is not a license to treat fields as substrate objects. It is the recovery grammar a local chart must satisfy after the delayed branch record has been coarse-grained into admitted fields and after its Euler-Lagrange residual has been checked against the same causal-wake, boundary, and receiver-weighted acceleration-factor rows.
+This is the common effective grammar behind Maxwell, Einstein-Hilbert, and Standard Model action formulations. For $\mathbb{A}\mathbb{A}\mathbb{A}$ it is not a license to treat fields as substrate objects. It is the recovery grammar a local chart must satisfy after the delayed branch record has been coarse-grained into admitted fields and after its Euler-Lagrange residual has been checked against the same causal-wake, boundary, and transmitter-side acceleration-weight rows.
 
 ### Effective Hamiltonian Domain Gate
 

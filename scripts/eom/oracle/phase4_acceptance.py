@@ -92,7 +92,7 @@ def _residual_over(
     ) * delay
 
 
-def _source_normal_over(
+def _transmitter_factor_over(
     receiver: PiecewisePolynomialHistory,
     source: PiecewisePolynomialHistory,
     reception: DecimalInterval,
@@ -115,9 +115,9 @@ def _source_normal_over(
 def _strictly_straddles(
     lower_residual: DecimalInterval,
     upper_residual: DecimalInterval,
-    source_normal_sign: int,
+    transmitter_factor_sign: int,
 ) -> bool:
-    if source_normal_sign > 0:
+    if transmitter_factor_sign > 0:
         return lower_residual.upper < 0 and upper_residual.lower > 0
     return lower_residual.lower > 0 and upper_residual.upper < 0
 
@@ -147,7 +147,7 @@ class RootContinuationRow:
     end_upper: Decimal
     tube_lower: Decimal
     tube_upper: Decimal
-    source_normal: DecimalInterval
+    transmitter_factor: DecimalInterval
     status: str
 
     def to_record(self) -> dict[str, object]:
@@ -168,10 +168,10 @@ class RootContinuationRow:
                 "lower": str(self.tube_lower),
                 "upper": str(self.tube_upper),
             },
-            "source_normal": {
-                "lower": str(self.source_normal.lower),
-                "upper": str(self.source_normal.upper),
-                "sign": self.source_normal.strict_sign,
+            "transmitter_factor": {
+                "lower": str(self.transmitter_factor.lower),
+                "upper": str(self.transmitter_factor.upper),
+                "sign": self.transmitter_factor.strict_sign,
             },
             "status": self.status,
         }
@@ -359,8 +359,8 @@ def certify_root_continuation(
         pair_rows: list[RootContinuationRow] = []
         pair_failed = False
         for rank, (start_root, end_root) in enumerate(zip(start_roots, end_roots)):
-            if start_root.source_normal.strict_sign != end_root.source_normal.strict_sign:
-                events.append((receiver_id, source_id, "source_normal_sign_changed"))
+            if start_root.transmitter_factor.strict_sign != end_root.transmitter_factor.strict_sign:
+                events.append((receiver_id, source_id, "transmitter_factor_sign_changed"))
                 pair_failed = True
                 break
             tube_lower, tube_upper = _expanded_root_tube(
@@ -371,11 +371,11 @@ def certify_root_continuation(
                 precision,
             )
             emission = DecimalInterval.bounds(tube_lower, tube_upper, precision)
-            source_normal = _source_normal_over(
+            transmitter_factor = _transmitter_factor_over(
                 receiver, source, reception, emission, c_f
             )
-            if source_normal is None or source_normal.strict_sign is None:
-                events.append((receiver_id, source_id, "fold_or_caustic_source_normal"))
+            if transmitter_factor is None or transmitter_factor.strict_sign is None:
+                events.append((receiver_id, source_id, "fold_or_caustic_transmitter_factor"))
                 pair_failed = True
                 break
             lower_residual = _residual_over(
@@ -393,7 +393,7 @@ def certify_root_continuation(
                 c_f,
             )
             if not _strictly_straddles(
-                lower_residual, upper_residual, source_normal.strict_sign
+                lower_residual, upper_residual, transmitter_factor.strict_sign
             ):
                 unresolved.append((receiver_id, source_id, "continuation_tube_boundary_unresolved"))
                 pair_failed = True
@@ -419,7 +419,7 @@ def certify_root_continuation(
                     end_upper=end_root.upper,
                     tube_lower=tube_lower,
                     tube_upper=tube_upper,
-                    source_normal=source_normal,
+                    transmitter_factor=transmitter_factor,
                     status="certified_persistent",
                 )
             )
@@ -675,7 +675,7 @@ def _event_integrand(
     reception: DecimalInterval,
     emission: DecimalInterval,
 ) -> IntervalVector:
-    receiver_velocity, _, displacement, separation = _geometry_over(
+    _, _, displacement, separation = _geometry_over(
         request.receiver_history,
         request.source_history,
         reception,
@@ -683,23 +683,10 @@ def _event_integrand(
     )
     kernel = _core_kernel_interval(displacement, separation, request.core_scale)
     field_speed = DecimalInterval.point(request.field_speed, request.precision)
-    if separation.contains_zero:
-        receiver_strength = DecimalInterval.bounds(
-            0,
-            (field_speed + interval_norm(receiver_velocity)).upper,
-            request.precision,
-        )
-    else:
-        direction = interval_vector(
-            component / separation for component in displacement
-        )
-        receiver_strength = (
-            field_speed - interval_dot(direction, receiver_velocity)
-        ).absolute()
     residual = separation - field_speed * (reception - emission)
     mollifier = _gaussian_mollifier_interval(residual, request.causal_width)
     return _vector_scale(
-        _signed_charge_scale(request) * receiver_strength * mollifier,
+        _signed_charge_scale(request) * field_speed * mollifier,
         kernel,
     )
 
@@ -1194,7 +1181,7 @@ class OracleEvolutionCheckpoint:
             causal_width=None if causal_width == "None" else causal_width,
             core_scale=None if core_scale == "None" else core_scale,
             root_tolerance=decimal_policy["root_tolerance"],
-            source_normal_floor=decimal_policy["source_normal_floor"],
+            transmitter_factor_floor=decimal_policy["transmitter_factor_floor"],
             acceleration_tolerance=decimal_policy["acceleration_tolerance"],
             quadrature_tolerance=decimal_policy["quadrature_tolerance"],
             position_tolerance=decimal_policy["position_tolerance"],
@@ -1227,7 +1214,7 @@ def create_evolution_checkpoint(
         ("causal_width", str(request.causal_width)),
         ("core_scale", str(request.core_scale)),
         ("root_tolerance", str(request.root_tolerance)),
-        ("source_normal_floor", str(request.source_normal_floor)),
+        ("transmitter_factor_floor", str(request.transmitter_factor_floor)),
         ("acceleration_tolerance", str(request.acceleration_tolerance)),
         ("quadrature_tolerance", str(request.quadrature_tolerance)),
         ("position_tolerance", str(request.position_tolerance)),
@@ -1350,7 +1337,7 @@ def _refinement_signature(request: CoupledEvolutionRequest) -> tuple[object, ...
         request.causal_width,
         request.core_scale,
         request.root_tolerance,
-        request.source_normal_floor,
+        request.transmitter_factor_floor,
         request.acceleration_tolerance,
         request.quadrature_tolerance,
         request.position_tolerance,

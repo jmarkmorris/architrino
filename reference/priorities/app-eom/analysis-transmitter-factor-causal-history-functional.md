@@ -139,7 +139,7 @@ The result does not authorize extrapolation through $D_t=0$, $r=0$, an unresolve
 
 ## 4. Ordinary-fold continuation
 
-At a nondegenerate interior fold with $r>0$ and $D_r\ne0$, pointwise sharp acceleration is unbounded but has the finite impulse derived in [Source-Density Fold and Coincident-Birth Analysis](analysis-source-density-fold-and-coincident-birth.md). The fold impulse depends only on the causal rectangle covered by the current retained histories and the self-consistent candidate segment being advanced.
+At a nondegenerate interior fold with $r>0$ and $D_r\ne0$, pointwise sharp acceleration is unbounded but has the finite impulse derived in [Source-Density Fold and Coincident-Birth Analysis](analysis-transmitter-side-fold-and-coincident-birth.md). The fold impulse depends only on the causal rectangle covered by the current retained histories and the self-consistent candidate segment being advanced.
 
 This does not introduce future-path dependence. During evolution, the candidate segment is solved together with its acceleration and is accepted only if the resulting segment reproduces the same retained-history functional. A prescribed future transmitter path would be an invalid shortcut, not a requirement of the equation.
 
@@ -147,7 +147,7 @@ Claim classification: **derived causal structure; implementation acceptance rema
 
 ## 5. Global sharp obstruction
 
-At coincident same-source root birth, the sharp source-density contribution has no finite velocity impulse. The sharp functional therefore fails to define a global continuation across a generic smooth field-speed crossing. This is a mathematical failure of the sharp same-source equation, not evidence of future dependence.
+At coincident same-source root birth, the sharp transmitter-side contribution has no finite velocity impulse. The sharp functional therefore fails to define a global continuation across a generic smooth field-speed crossing. This is a mathematical failure of the sharp same-source equation, not evidence of future dependence.
 
 Fixed positive $\eta$ and $\epsilon_c$ restore a locally regular causal functional. A globally promotable equation must either retain and physically determine those scales or derive a different near-diagonal rule before claiming sharp same-source evolution.
 

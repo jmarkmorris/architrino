@@ -90,7 +90,7 @@ def request(
         source_charge=source_charge,
         coupling="1",
         chart=chart,
-        source_normal_floor="1e-30",
+        transmitter_factor_floor="1e-30",
         causal_width=causal_width,
         core_scale=core_scale,
         acceleration_tolerance=quadrature_tolerance,
@@ -142,26 +142,26 @@ class CertifiedAccelerationTests(unittest.TestCase):
         assert_contains(self, result.total_acceleration[0], "-0.25")
         self.assertTrue(result.total_acceleration[1].is_exact_zero)
         self.assertTrue(result.total_acceleration[2].is_exact_zero)
-        assert_contains(self, result.rows[0].source_normal, "1")
-        assert_contains(self, result.rows[0].receiver_normal, "1")
+        assert_contains(self, result.rows[0].transmitter_factor, "1")
+        assert_contains(self, result.rows[0].receiver_factor, "1")
         row_record = result.rows[0].to_record()
         self.assertEqual(row_record["polarity"], -1)
         self.assertEqual(row_record["charge_product_magnitude"], "1")
-        self.assertEqual(row_record["source_normal_sign"], 1)
+        self.assertEqual(row_record["transmitter_factor_sign"], 1)
         self.assertEqual(row_record["accumulation_group"], "receiver")
         self.assertEqual(
             row_record["acceptance_status"], "consumed_certified_sharp_root"
         )
         self.assertTrue(result.reconstruction_matches)
         self.assertEqual(
-            result.to_record()["schema"], "eom_pair_acceleration_certificate/v0"
+            result.to_record()["schema"], "eom_pair_acceleration_certificate/v1"
         )
         self.assertEqual(
             result.to_record()["numeric_policy"]["precision_decimal_digits"],
             PRECISION,
         )
 
-    def test_receiver_on_field_speed_rail_emits_silent_sharp_row(self) -> None:
+    def test_receiver_on_field_speed_rail_keeps_source_density_acceleration(self) -> None:
         receiver = history(
             "rail-receiver",
             segment(t_start="0", t_end="5", x=("-3", "1", "0", "0")),
@@ -173,8 +173,9 @@ class CertifiedAccelerationTests(unittest.TestCase):
 
         self.assertEqual(result.status, "active")
         self.assertEqual(len(result.rows), 1)
-        self.assertTrue(result.rows[0].receiver_normal.is_exact_zero)
-        self.assertTrue(result.total_acceleration[0].is_exact_zero)
+        self.assertTrue(result.rows[0].receiver_factor.is_exact_zero)
+        assert_contains(self, result.rows[0].acceleration_weight, "1")
+        assert_contains(self, result.total_acceleration[0], "-0.25")
 
     def test_super_field_speed_receiver_is_not_clamped(self) -> None:
         receiver = history(
@@ -187,8 +188,8 @@ class CertifiedAccelerationTests(unittest.TestCase):
         )
 
         self.assertEqual(result.status, "active")
-        assert_contains(self, result.rows[0].receiver_normal, "-1")
-        assert_contains(self, result.rows[0].receiver_strength, "1")
+        assert_contains(self, result.rows[0].receiver_factor, "-1")
+        assert_contains(self, result.rows[0].acceleration_weight, "1")
         assert_contains(self, result.total_acceleration[0], "-0.25")
 
     def test_multiple_sharp_roots_sum_into_receiver_total(self) -> None:
@@ -435,7 +436,7 @@ class AllPairAccelerationReconstructionTests(unittest.TestCase):
         self.assertTrue(result.reconstruction_matches)
         self.assertEqual(
             result.to_record()["schema"],
-            "eom_acceleration_reconstruction_certificate/v0",
+            "eom_acceleration_reconstruction_certificate/v1",
         )
 
     def test_missing_self_pair_is_rejected_structurally(self) -> None:

@@ -113,13 +113,10 @@ and
 $$
 W_{\mathbf Xj}^{\mathrm{rec},X}(T;T_t)
 \equiv
-\left|
-\frac{D_{r,\mathbf Xj}^{(X)}(T;T_t)}
-{D_{t,\mathbf Xj}(T;T_t)}
-\right|
+\frac{c_f}{|D_{t,\mathbf Xj}(T;T_t)|}
 $$
 
-as the receiver-weighted acceleration factor on the same root row. Then the simple-root diagnostic is
+as the transmitter-side acceleration weight on the same root row. Then the simple-root diagnostic is
 
 $$
 \mathcal{W}_{a,X}^{\mathrm{locked}}(\mathbf X,T;\ell)

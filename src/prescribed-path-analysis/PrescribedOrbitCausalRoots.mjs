@@ -2,7 +2,7 @@ const TWO_PI = Math.PI * 2;
 const EPSILON = 1e-9;
 const STATUS_OK = 0;
 const STATUS_SMALL_JACOBIAN = 14;
-const STATUS_RECEIVER_NORMAL_DEGENERATE = 25;
+const STATUS_CAUSAL_FACTOR_DEGENERATE = 25;
 
 function finiteNumber(value, fallback = 0) {
   const number = Number(value);
@@ -59,42 +59,33 @@ function magnitude(a) {
   return Math.sqrt(dot(a, a));
 }
 
-function receiverNormalFields({ direction, sourceVelocity, receiverVelocity, signalSpeed }) {
-  const sourceNormalSpeed = dot(sourceVelocity, direction);
-  const receiverNormalSpeed = dot(receiverVelocity, direction);
-  const sourceNormalDenominator = signalSpeed - sourceNormalSpeed;
-  const receiverNormalNumerator = signalSpeed - receiverNormalSpeed;
-  const receiverNormalCrossingFactor = receiverNormalNumerator / signalSpeed;
-  const receiverNormalFactor = receiverNormalNumerator / sourceNormalDenominator;
-  const unsignedReceiverNormalFactor = Math.abs(receiverNormalFactor);
-  // Signed branch orientation m = D_r / D_t carried by the canonical master
-  // equation. Exposed explicitly alongside the unsigned branchWeight that the
-  // acceleration strength uses, so a same-transmitter hinge consumer can apply
-  // the sign: past the field-speed crossing an accelerating receiver outruns its
-  // own emitting past, giving D_r < 0 < D_t and an absorptive (m < 0) contribution.
-  const signedBranchOrientation = receiverNormalFactor;
-  let receiverNormalStatusCode = STATUS_OK;
+function causalFactorFields({ direction, sourceVelocity, receiverVelocity, signalSpeed }) {
+  const transmitterRadialSpeedAtEmission = dot(sourceVelocity, direction);
+  const receiverRadialSpeedAtReception = dot(receiverVelocity, direction);
+  const transmitterFactor = signalSpeed - transmitterRadialSpeedAtEmission;
+  const receiverFactor = signalSpeed - receiverRadialSpeedAtReception;
+  const receiverCrossingRatio = receiverFactor / signalSpeed;
+  const rootPlayback = receiverFactor / transmitterFactor;
+  const accelerationWeight = signalSpeed / Math.abs(transmitterFactor);
+  let causalFactorStatusCode = STATUS_OK;
   if (
-    !Number.isFinite(receiverNormalFactor) ||
-    !Number.isFinite(receiverNormalCrossingFactor) ||
-    !Number.isFinite(unsignedReceiverNormalFactor)
+    !Number.isFinite(rootPlayback) ||
+    !Number.isFinite(receiverCrossingRatio) ||
+    !Number.isFinite(accelerationWeight)
   ) {
-    receiverNormalStatusCode = STATUS_RECEIVER_NORMAL_DEGENERATE;
-  } else if (Math.abs(sourceNormalDenominator) <= EPSILON) {
-    receiverNormalStatusCode = STATUS_SMALL_JACOBIAN;
-  } else if (Math.abs(receiverNormalNumerator) <= EPSILON) {
-    receiverNormalStatusCode = STATUS_RECEIVER_NORMAL_DEGENERATE;
+    causalFactorStatusCode = STATUS_CAUSAL_FACTOR_DEGENERATE;
+  } else if (Math.abs(transmitterFactor) <= EPSILON) {
+    causalFactorStatusCode = STATUS_SMALL_JACOBIAN;
   }
   return {
-    sourceNormalSpeed,
-    receiverNormalSpeed,
-    sourceNormalDenominator,
-    receiverNormalNumerator,
-    receiverNormalCrossingFactor,
-    receiverNormalFactor,
-    unsignedReceiverNormalFactor,
-    signedBranchOrientation,
-    receiverNormalStatusCode,
+    transmitterRadialSpeedAtEmission,
+    receiverRadialSpeedAtReception,
+    transmitterFactor,
+    receiverFactor,
+    receiverCrossingRatio,
+    rootPlayback,
+    accelerationWeight,
+    causalFactorStatusCode,
   };
 }
 
@@ -225,15 +216,15 @@ function buildMovingCircularRoot(request, emissionTime, rootId, residualInfo = n
   const info = residualInfo ?? movingCircularResidual(request, emissionTime);
   const safeDistance = Math.max(EPSILON, info.distance);
   const direction = scale(info.delta, 1 / safeDistance);
-  const receiverNormal = receiverNormalFields({
+  const causalFactors = causalFactorFields({
     direction,
     sourceVelocity: info.sourceSample.velocity,
     receiverVelocity: vector(request.receiver?.velocity),
     signalSpeed,
   });
-  const jacobian = receiverNormal.sourceNormalDenominator;
-  const branchWeight = Number.isFinite(receiverNormal.unsignedReceiverNormalFactor)
-    ? receiverNormal.unsignedReceiverNormalFactor
+  const jacobian = causalFactors.transmitterFactor;
+  const accelerationWeight = Number.isFinite(causalFactors.accelerationWeight)
+    ? causalFactors.accelerationWeight
     : 0;
   return {
     rootId,
@@ -244,8 +235,8 @@ function buildMovingCircularRoot(request, emissionTime, rootId, residualInfo = n
     distance: info.distance,
     residual: info.residual,
     jacobian,
-    branchWeight,
-    ...receiverNormal,
+    accelerationWeight,
+    ...causalFactors,
     sourcePoint: info.sourceSample.position,
     receiverPoint: info.receiverPoint,
     sourceVelocity: info.sourceSample.velocity,
@@ -261,28 +252,28 @@ function buildMovingCircularSameSourceRoot(request, emissionTime, rootId, residu
   const info = residualInfo ?? movingCircularSameSourceResidual(request, emissionTime);
   const safeDistance = Math.max(EPSILON, info.distance);
   const direction = scale(info.delta, 1 / safeDistance);
-  const receiverNormal = receiverNormalFields({
+  const causalFactors = causalFactorFields({
     direction,
     sourceVelocity: info.sourceSample.velocity,
     receiverVelocity: info.receiverSample.velocity,
     signalSpeed,
   });
-  const jacobian = receiverNormal.sourceNormalDenominator;
-  const branchWeight = Number.isFinite(receiverNormal.unsignedReceiverNormalFactor)
-    ? receiverNormal.unsignedReceiverNormalFactor
+  const jacobian = causalFactors.transmitterFactor;
+  const accelerationWeight = Number.isFinite(causalFactors.accelerationWeight)
+    ? causalFactors.accelerationWeight
     : 0;
   return {
     rootId,
     statusCode: 0,
-    rootKind: "same-source",
+    rootKind: "same-transmitter",
     emissionTime,
     hitTime,
     delay: Math.max(0, hitTime - emissionTime),
     distance: info.distance,
     residual: info.residual,
     jacobian,
-    branchWeight,
-    ...receiverNormal,
+    accelerationWeight,
+    ...causalFactors,
     sourcePoint: info.sourceSample.position,
     receiverPoint: info.receiverPoint,
     sourceVelocity: info.sourceSample.velocity,
@@ -290,7 +281,7 @@ function buildMovingCircularSameSourceRoot(request, emissionTime, rootId, residu
     sourcePhase: info.sourceSample.phase,
     receiverPhase: info.receiverSample.phase,
     iterationCount: iterations,
-    sourceHistoryKind: "moving-circular-same-source",
+    sourceHistoryKind: "moving-circular-same-transmitter",
   };
 }
 
@@ -635,7 +626,7 @@ export function createMovingCircularSameSourceRootRequest({
     : safeSourceEnd - 1;
   return {
     sourceRef,
-    sourceHistoryKind: "moving-circular-same-source",
+    sourceHistoryKind: "moving-circular-same-transmitter",
     source: {
       centerAtEpoch: vector(source?.centerAtEpoch ?? source?.center),
       centerVelocity: vector(source?.centerVelocity),

@@ -6,7 +6,7 @@ This chapter answers four linked questions. What kinetic bookkeeping is allowed 
 
 The chapter underwrites [Particle Masses](../assemblies/particle-masses.md), [Nested Shell Braid Dynamics](../noether-braid/braid-families.md#nested-shell-braid-dynamics), [Noether Braid](../noether-braid/noether-braid.md), [Noether Sea Pro/Anti Coupling](../spacetime/noether-sea-pro-anti-coupling.md), [Emergent Metric](../spacetime/emergent-metric.md), and the constructive delay-energy standard in [Delay Dynamics Energy](../validation/simulations/action-energy/delay-dynamics-energy.md).
 
-All such dynamics unfold on a fixed ontological background: absolute time plus the Euclidean void. Accelerations and motion arise from **delayed causal hits from causal isochrons**, with line-of-action direction and receiver-weighted acceleration factor, on this fixed background. We work in units with causal-wake propagation speed $c_f=1$.
+All such dynamics unfold on a fixed ontological background: absolute time plus the Euclidean void. Accelerations and motion arise from **delayed causal hits from causal isochrons**, with line-of-action direction and transmitter-side acceleration weight, on this fixed background. We work in units with causal-wake propagation speed $c_f=1$.
 
 The chapter keeps four levels separate. At the substrate level, kinetic and potential terms are architrino and causal-wake records on absolute time and the Euclidean void. At the dynamical level, energy changes through receiver-side causal hits and radial power. At the effective level, assemblies acquire inertia, apparent energy, and effective metric response through Noether sea coupling. At the inference level, scalar masses, thermodynamic records, and cosmological inventories are accepted only after a window, boundary record, and residual are declared.
 
@@ -104,14 +104,11 @@ c_f-\mathbf V_{o'}(T)\cdot\hat{\mathbf{r}}_{o'j},
 \qquad
 W_{o'j}^{\mathrm{acc}}(T;T_t)
 \equiv
-\left|
-\frac{D_{r,o'j}(T;T_t)}
-{D_{t,o'j}(T;T_t)}
-\right|
+\frac{c_f}{|D_{t,o'j}(T;T_t)|}
 $$
-is the receiver-weighted acceleration factor. Here $r_{o'j}$ and $\hat{\mathbf r}_{o'j}$ are evaluated on the same retained causal branch. The transmitter-side factor $D_t$
-is the causal-root transversality diagnostic; the numerator $D_r$ records how
-the receiver cuts through the emitted causal wake sequence.
+is the transmitter-side acceleration weight. Here $r_{o'j}$ and $\hat{\mathbf r}_{o'j}$ are evaluated on the same retained causal branch. The transmitter-side factor $D_t$
+sets root transversality and acceleration density; $D_r/D_t$ separately records
+signed root playback.
 
 Decompose the receiver's velocity into radial and transverse components:
 
@@ -152,7 +149,7 @@ Each $\Phi_o$ is built from the expanding causal isochrons emitted by source $o$
 
 The phrase "an architrino emits potential" should not be read as a transmitter continually spending an internal fuel. The emission is the causal-wake geometry of the architrino itself: at each emission time, an expanding causal isochron is added to the transmitter's path history. That causal structure can later participate in work, but it is not a material energy substance stored inside the Euclidean void.
 
-Potential energy is therefore relational. It is assigned when a receiver is placed in a transmitter's path-history causal-wake record and its trajectory intersects the relevant causal wake surfaces. The receiver's energy accounting depends on the active causal roots, their inverse-square distance factors, their polarity signs, the transmitter-side root denominator, the receiver-weighted acceleration factor, and the receiver's radial motion through the line of action. In the general per-hit law the transmitter-side factor is
+Potential energy is therefore relational. It is assigned when a receiver is placed in a transmitter's path-history causal-wake record and its trajectory intersects the relevant causal wake surfaces. The receiver's energy accounting depends on the active causal roots, their inverse-square distance factors, their polarity signs, the transmitter-side root denominator, the transmitter-side acceleration weight, and the receiver's radial motion through the line of action. In the general per-hit law the transmitter-side factor is
 
 $$
 D_{t,o'j}(T;T_t)
@@ -168,7 +165,7 @@ D_{r,o'j}(T;T_t)
 c_f-\mathbf V_{o'}(T)\cdot\hat{\mathbf{r}}_{o'j}.
 $$
 
-The branch strength is $W^{\mathrm{acc}}=\lvert D_r/D_t\rvert$, while the instantaneous power delivered to the receiver is controlled by
+The branch strength is $W^{\mathrm{acc}}=c_f/\lvert D_t\rvert$, while the instantaneous power delivered to the receiver is controlled by
 
 $$
 \mathbf A_{o'\leftarrow j}\cdot\mathbf V_{o'}
@@ -186,7 +183,7 @@ For a receiver architrino $o'$ with polarity $q_{o'}$ at position $\mathbf X_{o'
 
 $$U_{o'}(T) = q_{o'}\,\Phi_{\text{net}}[\text{history}]\big(\mathbf X_{o'}(T),T\big).$$
 
-The sign of $\Phi_{\text{net}}$ is not a sign on total energy. A negative causal-wake potential contribution from an electrino source is a polarity-signed interaction record; it becomes energy bookkeeping only after the receiver polarity, active causal root, line-of-action geometry, transmitter-side factor, receiver-weighted acceleration factor, and receiver radial motion are specified. Work can therefore occur relative to a negative potential without introducing a negative-energy substance or a negative total-energy reservoir.
+The sign of $\Phi_{\text{net}}$ is not a sign on total energy. A negative causal-wake potential contribution from an electrino source is a polarity-signed interaction record; it becomes energy bookkeeping only after the receiver polarity, active causal root, line-of-action geometry, transmitter-side factor, transmitter-side acceleration weight, and receiver radial motion are specified. Work can therefore occur relative to a negative potential without introducing a negative-energy substance or a negative total-energy reservoir.
 
 Unlike electrostatics, $\Phi_{\text{net}}$ is not a function of instantaneous source positions but a functional of their past worldlines intercepted by the backward causal-wake record of $\mathbf X_{o'}(T)$. The gradient $\nabla\Phi_{\text{net}}$ is taken with respect to the receiver's spatial coordinates on the fixed background, holding the causal history fixed. In the idealized picture, $\Phi$ is a distribution supported on causal isochrons, not a smooth continuum field.
 

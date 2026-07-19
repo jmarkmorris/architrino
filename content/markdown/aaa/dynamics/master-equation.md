@@ -2,7 +2,7 @@
 
 This chapter answers the first dynamics question: given architrinos moving in absolute time through the Euclidean void, what exactly makes one of them accelerate? The answer is the delayed, receiver-local law used throughout the dynamics branch. It defines what counts as a causal hit, how path history selects the active emission events, and how those hits sum into the acceleration of the receiver.
 
-For the primitive-entity ontology, see [Architrino](../foundations/architrino.md). This chapter begins where ontology becomes motion. A causal wake is not a vague field surrounding a transmitter; it is a delayed contact condition between a past emission event and a receiver event. When that condition closes, the receiver samples a line-of-action contribution with transmitter-side root legality and receiver-weighted acceleration factor.
+For the primitive-entity ontology, see [Architrino](../foundations/architrino.md). This chapter begins where ontology becomes motion. A causal wake is not a vague field surrounding a transmitter; it is a delayed contact condition between a past emission event and a receiver event. When that condition closes, the receiver samples a line-of-action contribution whose strength is set by the density of emitted causal surfaces at the receiver event.
 
 The chapter is long because it plays several roles at once: foundational law, theorem spine, analytic benchmark source, and numerical reference. The opening establishes the causal geometry and canonical equation. Later sections develop the delay differential equation form, self-hit structure, analytic regimes, and the energy-symmetry-conservation interface needed by binaries, Noether braids, effective geometry, and quantum closure.
 
@@ -74,7 +74,7 @@ where:
 
 (The per-hit acceleration $\mathbf A_{r\leftarrow t}(T_r;T_t)$ is defined below in canonical form. The substrate law is acceleration-first. If a force-like bookkeeping symbol is desired, introduce one universal conversion constant $\mu_{\text{arch}}$ and define $\mathbf F_{r\leftarrow t}\equiv\mu_{\text{arch}}\mathbf A_{r\leftarrow t}$.)
 
-**Key insight:** Both terms have the same functional form: a radial inverse-square law modulated by the receiver-side crossing of a causal wake branch. They differ only in whether transmitter and receiver are the same persistent architrino. The transmitter-side Jacobian remains the transversality floor that makes the causal root legal; the receiver-side factor says how the receiver path cuts through the emitted wake sequence.
+**Key insight:** Both terms have the same functional form: a radial inverse-square law weighted by the transmitter-side density of emitted causal surfaces. They differ only in whether transmitter and receiver are the same persistent architrino. The transmitter-side factor sets both root legality and transmitter-emission density. The receiver-side factor controls how a root is replayed as reception time advances; it does not multiply the instantaneous acceleration.
 
 #### Path-History Sum and Integral Representation
 
@@ -126,9 +126,9 @@ m_{r\leftarrow t}
 \qquad
 W_{r\leftarrow t}^{\mathrm{acc}}
 \equiv
-\left|\frac{D_r}{D_t}\right|.
+\frac{c_f}{|D_t|}.
 $$
-Here $m_{r\leftarrow t}=dT_{t,\ell}/dT_r=D_r/D_t$ is the signed root-playback derivative, while $W_{r\leftarrow t}^{\mathrm{acc}}$ is the unsigned receiver-weighted acceleration factor used in the current canonical acceleration magnitude. Acceleration at the reception event therefore depends on causal contributions selected by the transmitter path and on the receiver's crossing of those contributions, with no contribution from noncausal points on that path. The transmitter's position at $T_r$ is not part of the arriving-hit geometry.
+Here $m_{r\leftarrow t}=dT_{t,\ell}/dT_r=D_r/D_t$ is the signed root-playback derivative, while $W_{r\leftarrow t}^{\mathrm{acc}}$ is the dimensionless transmitter-side acceleration weight. Receiver velocity changes root playback and future geometry, but it does not change the strength of a causal surface that has already arrived. Acceleration at the reception event depends on the receiver's current position and the transmitter's retained emission history, with no contribution from noncausal points on that path. The transmitter's present position at $T_r$ is not part of the arriving-hit geometry.
 
 For a certified branch chart, simplicity is recorded as a transversality floor:
 $$
@@ -196,7 +196,7 @@ $$
 4C\sqrt{\varepsilon}
 $$
 
-The same conclusion holds for a finite-order algebraic caustic $g\sim (T_t-T_{t,\ast})^m-\lambda(T_r-T_{r,\ast})$ with finite $m > 1$: the transmitter-side factor in $W_{ij}^{\mathrm{acc}}$ scales like $|T_r-T_{r,\ast}|^{(m-1)/m}$ when the receiver-side factor is bounded, so the branch strength is locally integrable in receiver time. A persistent interval with $D_t=0$, a cusp with no finite-order normal form, a receiver-side factor degeneracy required by the proof chart, or a simultaneous collision-floor failure is not covered by this impulse lemma and must remain in the regularized chart. The simulation rule is therefore: integrate the regularized acceleration through a caustic transit and record the finite $\Delta\mathbf V$; do not hold the state exactly on $D_t=0$ as an infinite-acceleration constraint.
+The same conclusion holds for a finite-order algebraic caustic $g\sim (T_t-T_{t,\ast})^m-\lambda(T_r-T_{r,\ast})$ with finite $m > 1$: the transmitter-side weight scales like $|T_r-T_{r,\ast}|^{-(m-1)/m}$, whose exponent remains below one, so the branch strength is locally integrable in reception time when separation stays positive. A persistent interval with $D_t=0$, a cusp with no finite-order normal form, or a simultaneous collision-floor failure is not covered by this impulse lemma and must remain in the regularized chart. The simulation rule is therefore: integrate the regularized acceleration through a certified ordinary caustic transit and record the finite $\Delta\mathbf V$; do not hold the state exactly on $D_t=0$ as an infinite-acceleration constraint.
 
 The singular set should be routed by stratum, not by the single phrase "small denominator." Let
 $$
@@ -226,10 +226,7 @@ J_{ij}^{t}(T_r;T_t)
 \qquad
 W_{ij}^{\mathrm{acc}}(T_r;T_t)
 \equiv
-\left|
-\frac{D_{r,ij}(T_r;T_t)}
-{D_{t,ij}(T_r;T_t)}
-\right|,
+\frac{c_f}{|D_{t,ij}(T_r;T_t)|},
 $$
 one obtains the exact branch-resolved form
 $$
@@ -242,8 +239,7 @@ $$
 W_{ij}^{\mathrm{acc}}(T_r;T_t)
 \hat{\mathbf{r}}_{ij}(T_r;T_t)
 $$
-Since $\partial_{T_t}g_{ij}(T_r;T_t)=D_{t,ij}(T_r;T_t)=c_fJ_{ij}^{t}(T_r;T_t)$, the transmitter-time collapse supplies the transmitter-side factor. The reception-time crossing of the same branch supplies the receiver-side factor $D_{r,ij}$. Constant factors of $c_f$ are absorbed into $\kappa$ by convention.
-An architrino emits potential at a constant rate per unit absolute time, but a moving transmitter and a moving receiver together determine how that steady output is sampled. The received branch strength is therefore velocity dependent through the receiver-weighted acceleration factor $W_{ij}^{\mathrm{acc}}$: transmitter motion compresses or dilates the emitted wake sequence, while receiver-side motion changes the rate at which the receiver crosses that sequence. This factor is part of the fundamental branch law, not an optional correction.
+Since $\partial_{T_t}g_{ij}(T_r;T_t)=D_{t,ij}(T_r;T_t)=c_fJ_{ij}^{t}(T_r;T_t)$, the transmitter-time collapse supplies the transmitter-side weight. The numerator $c_f$ fixes the static-transmitter normalization and may instead be absorbed into $\kappa$ if that convention is stated consistently. Receiver motion remains in the root-playback derivative $D_r/D_t$, but not in the instantaneous acceleration weight.
 
 Numerical implementations discretize this representation by sampling candidate emission times and solving for the active roots. The familiar “sum over spherical wake surfaces” is therefore a numerical realization of the same branch-selection rule, not a separate physical mechanism.
 
@@ -262,9 +258,9 @@ $$
 $$
 Thus a simple causal root moves continuously with receiver time as long as the denominator stays away from zero. Simulations should track this root-transport residual alongside the root residual and the $J$ floor; failure of the transport equation is a branch-chart failure, not an ordinary acceleration fluctuation.
 
-#### Transmitter-Side Roots, Receiver-Weighted Acceleration, and Action Residual
+#### Transmitter-Side Roots, Source-Density Acceleration, and Action Residual
 
-For a retained causal-root record $(i,j,T_r,T_t)$, keep the transmitter-side root floor, receiver-weighted acceleration factor, and action residual as separate equations.
+For a retained causal-root record $(i,j,T_r,T_t)$, keep the transmitter-side root floor, transmitter-side acceleration weight, signed root playback, and action residual as separate equations.
 
 **Transmitter-side root floor.** The transmitter, meaning the emitting architrino on this causal hit, enters the root-selection denominator through the delay-map Jacobian
 $$
@@ -278,23 +274,21 @@ c_fJ_{ij}^{t}(T_r;T_t).
 $$
 Only the transmitter velocity projection along $\hat{\mathbf r}_{ij}$ appears in this transversality floor. Tangential transmitter motion still matters through the transmitter path, active root set, separation vector, and inactive-root gaps, but it is not a second instantaneous multiplier.
 
-**Receiver-weighted acceleration factor.** The receiver velocity controls how the same causal root moves as receiver time advances:
+**Signed root playback.** The receiver velocity controls how the same causal root moves as reception time advances:
 $$
 \frac{dT_{t,\ell}}{dT_r}
 =
 \frac{1-\hat{\mathbf r}_{ij}(T_r;T_{t,\ell})\cdot\mathbf V_i(T_r)/c_f}
 {1-\hat{\mathbf r}_{ij}(T_r;T_{t,\ell})\cdot\mathbf V_j(T_{t,\ell})/c_f}.
 $$
-Thus receiver motion belongs in the branch strength through
+This ratio is a transport quantity, not an acceleration multiplier. The acceleration weight is
 $$
 W_{ij}^{\mathrm{acc}}(T_r;T_{t,\ell})
 =
-\left|
-\frac{c_f-\hat{\mathbf r}_{ij}(T_r;T_{t,\ell})\cdot\mathbf V_i(T_r)}
-{c_f-\hat{\mathbf r}_{ij}(T_r;T_{t,\ell})\cdot\mathbf V_j(T_{t,\ell})}
-\right|.
+\frac{c_f}
+{\left|c_f-\hat{\mathbf r}_{ij}(T_r;T_{t,\ell})\cdot\mathbf V_j(T_{t,\ell})\right|}.
 $$
-A chart that changes receiver-side velocity can change the action magnitude even when the transmitter-side root denominator is unchanged.
+A chart that changes only receiver velocity at a fixed reception event does not change this arriving contribution. It changes root playback, later receiver positions, and therefore future causal records.
 
 **Action residual.** The variational-action question adds an independent proof burden. On a regularized action chart,
 $$
@@ -318,7 +312,7 @@ $$
 =
 0
 $$
-with the same branch floors and boundary convention used by the branch chart. If this residual is retained rather than cancelled, it must close as a recoil-inclusive wake-history term in the same energy, momentum, and angular-momentum ledger. This residual condition is not a license to drop the receiver-side factor. It is the test for promoting the action scaffold in [Exact Nonlocal Lagrangian](#exact-nonlocal-lagrangian) after the same transmitter-side floors, receiver-weighted acceleration-factor rows, and boundary convention have been declared.
+with the same branch floors and boundary convention used by the branch chart. If this residual is retained rather than cancelled, it must close as a wake-history term in the same energy, momentum, and angular-momentum account. This residual condition does not alter the transmitter-side law. It is the test for promoting the action scaffold in [Exact Nonlocal Lagrangian](#exact-nonlocal-lagrangian) after the same transmitter-side floors, acceleration weights, signed root-playback records, and boundary convention have been declared.
 
 #### Branch-Chart Closure Object
 
@@ -336,7 +330,7 @@ h_{\mathrm{mem}},
 \lambda_{\mathrm{sec}}
 \right)
 $$
-Here $\mathcal{R}^{\mathrm{act}}$ is the active causal-root set retained by the chart, $\mathcal{G}^{\mathrm{inact}}$ is the collection of inactive branch-gap functions, $\nu_J$ is the active-root transmitter-side Jacobian floor, $\nu_{\mathrm{rec}}$ is the retained receiver-weighted acceleration-factor floor or certified bounded interval for $W_{ij}^{\mathrm{acc}}$, $h_{\mathrm{mem}}$ is the required memory depth, $\mathcal{R}_{\mathrm{return}}$ is the return residual on the section, and $\lambda_{\mathrm{sec}}$ is the transverse section-stability margin.
+Here $\mathcal{R}^{\mathrm{act}}$ is the active causal-root set retained by the chart, $\mathcal{G}^{\mathrm{inact}}$ is the collection of inactive branch-gap functions, $\nu_J$ is the active-root transmitter-side Jacobian floor, $\nu_{\mathrm{rec}}$ is the retained transmitter-side acceleration-weight floor or certified bounded interval for $W_{ij}^{\mathrm{acc}}$, $h_{\mathrm{mem}}$ is the required memory depth, $\mathcal{R}_{\mathrm{return}}$ is the return residual on the section, and $\lambda_{\mathrm{sec}}$ is the transverse section-stability margin.
 
 The object is acceptable only when
 $$
@@ -392,9 +386,9 @@ F_\ell(\phi,\theta_\ell(\phi))=0,
 \left|\partial_\theta F_\ell(\phi,\theta_\ell(\phi))\right|
 \ge c_f\nu_J>0
 $$
-and if every inactive complement remains separated by the declared positive gap. Under these conditions the implicit-function theorem gives $C^1$ dependence of $\theta_\ell$ on the retained history, so the branch acceleration, root-transport residual, receiver-weighted acceleration-factor row, and wake-history Noether increments are functionals on one local history chart rather than pointwise rows that only happen to close at one evaluation time. This is the reconstruction-regularity content of the branch chart: the root reconstruction has an inverse bound controlled by the transversality floor, schematically $\|D\theta_\ell\|\lesssim (c_f\nu_J)^{-1}$ times the history-evaluation norm, until a fold or chart boundary is reached.
+and if every inactive complement remains separated by the declared positive gap. Under these conditions the implicit-function theorem gives $C^1$ dependence of $\theta_\ell$ on the retained history, so the branch acceleration, root-transport residual, transmitter-side acceleration-weight row, and wake-history Noether increments are functionals on one local history chart rather than pointwise rows that only happen to close at one evaluation time. This is the reconstruction-regularity content of the branch chart: the root reconstruction has an inverse bound controlled by the transversality floor, schematically $\|D\theta_\ell\|\lesssim (c_f\nu_J)^{-1}$ times the history-evaluation norm, until a fold or chart boundary is reached.
 
-This compatibility condition is a theorem-target requirement, not a new acceleration law. It says that a promoted branch chart must define a locally replayable delayed functional system: nearby retained histories must keep the same root identities, positive transmitter-side Jacobian floor, bounded receiver-weighted acceleration-factor row, inactive gaps, and finite memory depth until a declared fold, branch transition, or chart boundary is reached.
+This compatibility condition is a theorem-target requirement, not a new acceleration law. It says that a promoted branch chart must define a locally replayable delayed functional system: nearby retained histories must keep the same root identities, positive transmitter-side Jacobian floor, bounded transmitter-side acceleration-weight row, inactive gaps, and finite memory depth until a declared fold, branch transition, or chart boundary is reached.
 
 #### Local-To-Global Branch-Chart Gluing Target
 
@@ -446,19 +440,12 @@ $$
 \int_{T_r-h}^{T_r}
 \frac{\mathbf r_{ij}(T_r,T_t)}
 {\left(r_{ij}^2(T_r,T_t)+\epsilon_c^2\right)^{3/2}}
-\left|D_{r,ij}(T_r,T_t)\right|
+c_f
 \delta_\eta\!\big(r_{ij}(T_r,T_t)-c_f(T_r-T_t)\big)\,dT_t
 }
 $$
-where, for $r_{ij} > 0$,
-$$
-D_{r,ij}(T_r,T_t)
-\equiv
-c_f-\widehat{\mathbf r}_{ij}(T_r,T_t)\cdot\mathbf V_i(T_r)
-$$
-At $\mathbf r_{ij}=\mathbf 0$, the complete vector product multiplying
+At $\mathbf r_{ij}=\mathbf 0$, the softened vector kernel multiplying
 $\delta_\eta$ is defined by its continuous extension, which is $\mathbf 0$.
-The scalar $D_{r,ij}$ is not evaluated separately at that point.
 
 The sign convention remains
 $$
@@ -486,21 +473,21 @@ $$
 \epsilon_c
 $$
 smoothly regularizes the near-collision inverse-square amplitude. The factor
-$|D_{r,ij}|$ supplies the receiver-side wake-crossing rate. On a finite simple-root
+$c_f$ supplies the static-transmitter normalization. On a finite simple-root
 chart, collapse of the causal-surface delta function gives
 $$
 \int
 \frac{\mathbf r_{ij}}
 {\left(r_{ij}^2+\epsilon_c^2\right)^{3/2}}
-|D_{r,ij}|\,\delta(g_{ij})\,dT_t
+c_f\,\delta(g_{ij})\,dT_t
 =
 \sum_{T_t\in\mathcal C_{ij}(T_r)}
 \frac{\mathbf r_{ij}}
 {\left(r_{ij}^2+\epsilon_c^2\right)^{3/2}}
-\left|\frac{D_{r,ij}}{D_{t,ij}}\right|
+\frac{c_f}{|D_{t,ij}|}
 $$
 Thus the $\epsilon_c\to0^+$ limit away from coordinate coincidence recovers
-the canonical inverse-square receiver-side branch law. Branch-resolved
+the canonical inverse-square transmitter-side branch law. Branch-resolved
 formulas are local reductions of this equation on finite simple-root charts.
 They should not be used as the global definition across causal folds, caustic
 transit, or chart-boundary verification.
@@ -520,14 +507,14 @@ whose retained rows are generated by the dual-mollified evolution law above.
 The admissibility assumptions are:
 
 1. The evolution is causal in absolute time: every acceleration contribution is generated from $T_t<T_r$, and the self-coincident endpoint is excluded by the $H(0)=0$ convention or by the declared core regularization.
-2. The retained chart has finite memory, positive inactive-root gaps, a declared receiver-weighted acceleration-factor interval, and either a positive active-root transmitter-side Jacobian floor $\nu_J > 0$ or an explicitly declared finite-order caustic transit integrated in the dual-mollified law.
+2. The retained chart has finite memory, positive inactive-root gaps, a declared transmitter-side acceleration-weight interval, and either a positive active-root transmitter-side Jacobian floor $\nu_J > 0$ or an explicitly declared finite-order caustic transit integrated in the dual-mollified law.
 3. The active support stays away from an unregularized collision: either $r_{ij,\ell}\ge d > 0$ on the retained rows or the same $\epsilon_c$ cutoff is used in the acceleration, action, and energy rows.
 4. The regularized right-hand side is locally Lipschitz on the retained history tube, so the finite-$\eta$ state-dependent delay problem has existence, uniqueness, and continuation until a declared boundary of the admissible class is reached.
 5. The same regularized action or compatible realized-trajectory reconstruction supplies the acceleration contribution, wake-history energy, momentum, and angular-momentum rows. Endpoint leakage, omitted branch rows, and period-cut terms must appear as residuals rather than hidden corrections.
 
 Under these assumptions, the finite-$\eta$ theorem packet should prove the following local conclusions.
 
-- **Divergent self-energy is quarantined.** There is no accepted instantaneous self-kick, no unregularized $r=0$ self-root inside the chart, and every retained self-hit contribution is bounded by the declared $d$, $\epsilon_c$, $\eta$, $\nu_J$, and receiver-weighted acceleration-factor data. Any remaining divergence is therefore a failure of the branch floor, core convention, memory window, receiver-side interval, or $\eta\to0^+$ convergence claim, not an accepted finite-$\eta$ state.
+- **Divergent self-energy is quarantined.** There is no accepted instantaneous self-kick, no unregularized $r=0$ self-root inside the chart, and every retained self-hit contribution is bounded by the declared $d$, $\epsilon_c$, $\eta$, $\nu_J$, and transmitter-side acceleration-weight data. Any remaining divergence is therefore a failure of the branch floor, core convention, memory window, or $\eta\to0^+$ convergence claim, not an accepted finite-$\eta$ state. A coincident same-source root birth is not an accepted transition under this theorem target.
 - **Runaway solution branches are quarantined.** If the same action-level bookkeeping gives
   $$
   E_{\text{tot}}^{(\eta)}(T)=K_{\mu}(T)+E_{\text{wake}}^{(\eta)}(T),
@@ -567,7 +554,7 @@ $$
 $$
 where $\Sigma_{\mathrm{transit}}$ has a unique finite post-transit chart, $\Sigma_{\mathrm{bif}}^{\mathrm{multi}}$ has a finite labeled family of admissible continuations, and $\Sigma_{\mathrm{sing}}^{\mathrm{fail}}$ lacks a promoted finite chart. A trajectory crossing this boundary is not promoted as a closed Master Equation solution until the appropriate route is certified. It is routed to branch transition, finite multistability, caustic transit, core-regularization repair, finite-window leakage, or $\eta$-ladder failure according to which boundary component is reached.
 
-The validation residuals consumed by this theorem target are the root residual, root-transport residual, active transmitter-side Jacobian floor, receiver-weighted acceleration-factor interval, inactive-gap residual, finite-memory residual, return residual, finite-window energy residual $\mathcal{R}_E$, momentum residual $\mathcal{R}_P$, angular-momentum residual $\mathcal{R}_J$, Euler residual of the same action, endpoint or period-cut leakage, transition-observable residuals across $\eta$ refinement, and the symplectic residual $\mathcal{R}_{\Omega}$ when the branch is promoted to a reduced Hamiltonian chart. The theorem is finite-$\eta$ only; any zero-width or infinite-system statement requires the separate convergence boundary stated in the regularization package.
+The validation residuals consumed by this theorem target are the root residual, root-transport residual, active transmitter-side Jacobian floor, transmitter-side acceleration-weight interval, inactive-gap residual, finite-memory residual, return residual, finite-window energy residual $\mathcal{R}_E$, momentum residual $\mathcal{R}_P$, angular-momentum residual $\mathcal{R}_J$, Euler residual of the same action, endpoint or period-cut leakage, transition-observable residuals across $\eta$ refinement, and the symplectic residual $\mathcal{R}_{\Omega}$ when the branch is promoted to a reduced Hamiltonian chart. The theorem is finite-$\eta$ only; any zero-width or infinite-system statement requires the separate convergence boundary stated in the regularization package.
 
 ---
 
@@ -587,7 +574,7 @@ E_{\text{wake}}^{(\eta)}(T_r) =
 \frac{W_{ij}^{\mathrm{acc}}(T_r;T_t)}{r_{ij}^2(T_r;T_t)}\,
 \delta_\eta\!\big(r_{ij}(T_r;T_t) - c_f(T_r-T_t)\big)
 $$
-where $h$ bounds the causal memory depth used in analysis and simulation. Because this expression is written with the receiver-side branch-level inverse-square acceleration density, it should be treated as a diagnostic candidate unless it is derived from the same time-translation-invariant action-level regularization as the action charge below. If the dual-mollified law with a core cutoff $\epsilon_c$ is used, the energy diagnostic must carry the same cutoff convention. The nonlocal Noether charge used for theorem-level conservation is the boundary functional in [Action-level wake-energy functional at time boundary $T$](#action-level-wake-energy-functional-at-time-boundary-t).
+where $h$ bounds the causal memory depth used in analysis and simulation. Because this expression is written with the transmitter-side branch-level inverse-square acceleration density, it should be treated as a diagnostic candidate unless it is derived from the same time-translation-invariant action-level regularization as the action charge below. If the dual-mollified law with a core cutoff $\epsilon_c$ is used, the energy diagnostic must carry the same cutoff convention. The nonlocal Noether charge used for theorem-level conservation is the boundary functional in [Action-level wake-energy functional at time boundary $T$](#action-level-wake-energy-functional-at-time-boundary-t).
 
 ### Causal Interaction Set (The Geometry of Delay)
 
@@ -778,12 +765,12 @@ Three distinct events terminate a simple-root branch chart. They have different 
 | Event | Condition | Velocity that appears | Root ledger | Branch strength | Certificate route |
 | --- | --- | --- | --- | --- | --- |
 | **Transmitter-side fold** | $D_{t,ij}=0$, i.e. $\mathbf V_j(T_t)\cdot\hat{\mathbf r}_{ij}=c_f$ | transmitter, at emission time | fold: $\Delta N_{ij}=\pm2$, $\Delta D_{ij}=0$ (Proposition 3) | $W_{ij}^{\mathrm{acc}}\to\infty$ | finite-order caustic normal form and the finite-impulse lemma; cusps and higher strata route to a singular-stratum chart |
-| **Receiver-side null** | $D_{r,ij}=0$, i.e. $\mathbf V_i(T_r)\cdot\hat{\mathbf r}_{ij}=c_f$ | receiver, at reception time | unchanged: $\Delta N_{ij}=0$, $\Delta D_{ij}=0$ | $W_{ij}^{\mathrm{acc}}\to0$ | none needed for existence; the branch goes silent and the receiver-velocity affine chart ends at a modulus kink |
+| **Receiver-side playback turn** | $D_{r,ij}=0$, i.e. $\mathbf V_i(T_r)\cdot\hat{\mathbf r}_{ij}=c_f$ | receiver, at reception time | unchanged: $\Delta N_{ij}=0$, $\Delta D_{ij}=0$ | acceleration remains finite when $D_t\ne0$ | signed root playback reverses; no acceleration event route is needed |
 | **Memory-boundary exit** | $T_r-T_{t,\ell}\to h$ | either, through the delay | $\Delta N_{ij}=\pm1$ possible; $D_{ij}^{(h)}$ may change | finite | boundary-exit degree bookkeeping (Proposition 4); *not* a fold |
 
 Two consequences follow immediately.
 
-First, $\|\mathbf V_i(T_r)\|=c_f$ is by itself none of these. It is a receiver-side null only for branches whose line of action is aligned with the receiver's motion, and it is a transmitter-side fold only for the transmitter, at emission time, on the branches it emitted. A reduction that identifies the two — for instance by freezing the transmitter velocity equal to the receiver's on a locally affine window — manufactures a caustic at $\|\mathbf V_i\|=c_f$ that the exact law does not have. Locally affine branch tables are candidate generators; they may not be used to locate separators.
+First, $\|\mathbf V_i(T_r)\|=c_f$ is by itself none of these. It is a receiver-side playback turn only for branches whose line of action is aligned with the receiver's motion, and it is a transmitter-side fold only for the transmitter, at emission time, on the branches it emitted. A reduction that identifies the two manufactures a caustic at $\|\mathbf V_i\|=c_f$ that the exact law does not have. Locally affine branch tables are candidate generators; they may not be used to locate separators.
 
 Second, a closed-cycle parity ledger cannot be written over folds alone. On a cycle, $\sum_\Sigma\Delta N_{ij}=0$ and $\sum_\Sigma\Delta D_{ij}=0$ hold only after boundary-exit events are counted in the same sum, and those events carry odd unsigned jumps. Requiring every local jump to be even is a sufficient test only on charts certified free of memory-boundary exit.
 
@@ -839,7 +826,7 @@ $$
 \|\mathbf X_i(T_r) - \mathbf X_i(T_t)\| = c_f(T_r-T_t), \quad T_t<T_r
 $$
 
-This equation nominates a same-transmitter causal root. It becomes an admitted self-hit contribution only on a retained branch chart: the coincident $T_t=T_r$ branch is excluded by the $H(0)=0$ convention, the root has positive separation or explicit regularization data, the transversality/Jacobian floor is positive, the same-record receiver-weighted acceleration factor $W_{ii}^{\mathrm{acc}}$ is retained on its floor or certified bounded interval $\nu_{\mathrm{rec}}$, the active-root count is controlled, inactive-root gaps and finite memory are certified, and the stability/action ledger entries required by the claimed assembly branch close.
+This equation nominates a same-transmitter causal root. It becomes an admitted self-hit contribution only on a retained branch chart: the coincident $T_t=T_r$ branch is excluded by the $H(0)=0$ convention, the root has positive separation or explicit regularization data, the transversality/Jacobian floor is positive, the same-record transmitter-side acceleration weight $W_{ii}^{\mathrm{acc}}$ is retained on its floor or certified bounded interval $\nu_{\mathrm{rec}}$, the active-root count is controlled, inactive-root gaps and finite memory are certified, and the stability/action ledger entries required by the claimed assembly branch close.
 
 **Interval-speed lemma.** Let $\Delta=T_r-T_t>0$ and suppose $\mathbf X_i$ is absolutely continuous on $[T_t,T_r]$. If
 $$
@@ -855,7 +842,7 @@ This follows immediately from the triangle inequality. Therefore strict sub-fiel
 
 1. **Curvature**: Straight-line motion admits no self-hits (the worldline never intersects its own past causal isochrons).
 2. **Super-field-speed interval history**: along the interval from emission to reception, the architrino must have exceeded $c_f$ somewhere, unless the branch is the degenerate straight field-speed case excluded by the simple-root assumptions.
-3. **Regular branch admissibility**: the same-transmitter root must be retained on a branch chart with a positive transversality/Jacobian floor, a retained same-record receiver-weighted acceleration-factor interval ($W_{ii}^{\mathrm{acc}}$ on its floor or certified bounded interval $\nu_{\mathrm{rec}}$), controlled distance or regularization data, inactive-root gaps, finite memory, and the stability/action ledger entries required by the claimed assembly branch.
+3. **Regular branch admissibility**: the same-transmitter root must be retained on a branch chart with a positive transversality/Jacobian floor, a retained same-record transmitter-side acceleration-weight interval ($W_{ii}^{\mathrm{acc}}$ on its floor or certified bounded interval $\nu_{\mathrm{rec}}$), controlled distance or regularization data, inactive-root gaps, finite memory, and the stability/action ledger entries required by the claimed assembly branch.
 
 **Key clarification:**
 
@@ -973,7 +960,7 @@ $$
 \end{cases}
 $$
 
-**Transmitter-side factor and receiver-weighted acceleration factor:**
+**Transmitter-side factor, transmitter-side weight, and signed root playback:**
 
 $$
 D_{t,ij}(T_r;T_t)
@@ -988,10 +975,11 @@ $$
 $$
 W_{ij}^{\mathrm{acc}}(T_r;T_t)
 \equiv
-\left|
-\frac{D_{r,ij}(T_r;T_t)}
-{D_{t,ij}(T_r;T_t)}
-\right|
+\frac{c_f}{|D_{t,ij}(T_r;T_t)|},
+\qquad
+m_{ij}(T_r;T_t)
+\equiv
+\frac{D_{r,ij}(T_r;T_t)}{D_{t,ij}(T_r;T_t)}
 $$
 
 **Per-hit acceleration contribution:**
@@ -1018,12 +1006,13 @@ where:
 - $r_{ij}$: distance from emission point to reception point
 - $\hat{\mathbf{r}}_{ij}$: radial direction from emission to reception
 - $D_{t,ij}$: transmitter-side factor controlling root transversality and emitted-wake compression/dilation
-- $D_{r,ij}$: receiver-side factor controlling how the receiver crosses the emitted wake sequence
-- $W_{ij}^{\mathrm{acc}}$: unsigned receiver-weighted acceleration factor
+- $D_{r,ij}$: receiver-side factor used in signed root playback
+- $W_{ij}^{\mathrm{acc}}$: dimensionless transmitter-side acceleration weight
+- $m_{ij}$: signed rate at which the active emission root changes with reception time
 
-**Note on interaction structure:** The per-hit acceleration $\mathbf A_{ij}(T_r;T_t)$ is **radial in direction**: it points along the line of action $\hat{\mathbf{r}}_{ij}$ from the transmitter's past position to the receiver's current position. There are **no velocity-dependent cross-product terms** (no $\mathbf V_i \times \mathbf{B}$-like contributions) in the fundamental interaction kernel. However, the acceleration magnitude is not purely $1/r^2$; it is modulated by the receiver-weighted acceleration factor $W_{ij}^{\mathrm{acc}}$. Constant emission per unit absolute time at the transmitter is sampled by the receiver at a rate set by both transmitter-side and receiver-side motion.
+**Note on interaction structure:** The per-hit acceleration $\mathbf A_{ij}(T_r;T_t)$ is **radial in direction**: it points along the line of action $\hat{\mathbf{r}}_{ij}$ from the transmitter's past position to the receiver's current position. There are **no velocity-dependent cross-product terms** in the fundamental interaction kernel. The acceleration magnitude is the inverse-square density multiplied by the transmitter-side transmitter-side weight. Receiver velocity is absent from the instantaneous multiplier.
 
-**Implication for emergent forces**: All "magnetic" or velocity-dependent forces (e.g., Lorentz force $\mathbf V_{\mathrm{eff}} \times \mathbf{B}$) must arise from **delay geometry**, **receiver-side branch modulation**, and **superposition of radial hits**, not from intrinsic cross-product terms in the fundamental law. This places the burden of magnetic-field emergence on the assembly structure, Noether sea dynamics, and the finite-speed causal geometry itself.
+**Implication for emergent velocity dependence**: Any observer-level velocity-dependent response must arise from delayed geometry, root playback, wake-state evolution, and superposition of radial hits, not from an intrinsic receiver-velocity multiplier or cross-product term in the fundamental law.
 
 #### Total Acceleration (Sum Over All Causal Hits)
 
@@ -1051,7 +1040,7 @@ where:
 
 - Outer sum: over all transmitters $j$ (including $j = i$ for self-hits)
 - Inner sum: over all causal emission times $T_t \in \mathcal{C}_{ij}(T_r)$
-- Each term: radial inverse-square acceleration with sign $\sigma_{ij}$ and receiver-weighted acceleration factor $W_{ij}^{\mathrm{acc}}$
+- Each term: radial inverse-square acceleration with sign $\sigma_{ij}$ and transmitter-side acceleration weight $W_{ij}^{\mathrm{acc}}$
 
 **Explicit separation of partner and self-hit terms:**
 
@@ -1077,13 +1066,13 @@ $$
 
 (Strict inequality $T_t<T_r$; no $T_t = T_r$ allowed.)
 
-**Physical justification:** The causal wake surface at the instant of emission ($r = 0$, $\Delta = 0$) has not yet expanded; it cannot produce self-acceleration on the emitter "now." Under symmetric regularization (mollification), the $r \to 0$ limit yields zero net push.
+**Physical justification:** The causal wake surface at the instant of emission ($r = 0$, $\Delta = 0$) has not yet expanded; it cannot produce self-acceleration on the emitter "now." This endpoint exclusion does not certify a finite transition when a nontrivial same-source root is born from that endpoint.
 
-**No $r = 0$ causal roots beyond $\Delta = 0$:**
+**No accepted $r = 0$ sharp roots:**
 
-Because $r = c_f(T_r-T_t)$, $r = 0$ implies $\Delta = T_r-T_t = 0$. This case is excluded by $H(0) = 0$. There are no "collision singularities" in the causal set (architrinos can pass through each other; accelerations are mediated by expanding wake surfaces, not by contact).
+Because $r = c_f(T_r-T_t)$, $r = 0$ implies $\Delta = T_r-T_t = 0$. This case is excluded by $H(0) = 0$. A coincident same-source birth, simultaneous core/source-normal failure, or regulator-dependent continuation remains uncertified and must fail closed.
 
-This also fixes the status of later short-distance regularizations. A finite core cutoff or core mollifier is not a hard exclusion sphere, an elastic contact collision, or a primitive rule saying that causal wakes are blocked by or transmitted through an opaque core. It is a declared mathematical control on the near-origin amplitude inside a regularized branch chart. In the canonical branch law, a transmitter contribution is admitted by the causal-root constraint, polarity sign $\sigma_{ij}$, separation or regularization data, transversality/Jacobian control, the same-record receiver-weighted acceleration factor $W_{ij}^{\mathrm{acc}}$, active-root count, and the required stability/action/event ledgers. A polarity-dependent short-distance kernel would therefore be an additional model term that must be derived and validated; it cannot be inserted as an unproved like-versus-opposite collision or opacity rule.
+This also fixes the status of later short-distance regularizations. A finite core cutoff or core mollifier is not a hard exclusion sphere, an elastic contact collision, or a primitive rule saying that causal wakes are blocked by or transmitted through an opaque core. It is a declared mathematical control on the near-origin amplitude inside a regularized branch chart. In the canonical branch law, a transmitter contribution is admitted by the causal-root constraint, polarity sign $\sigma_{ij}$, separation or regularization data, transmitter-side transversality and transmitter-side control, active-root count, and the required stability/action/event accounts. A polarity-dependent short-distance kernel would therefore be an additional model term that must be derived and validated; it cannot be inserted as an unproved like-versus-opposite collision or opacity rule.
 
 #### Superposition Principle
 
@@ -1125,21 +1114,19 @@ $\hat{\mathbf{r}}_{ij}$ points **from the transmitter's historical position** $\
 
 Reflects the **surface density** of potential on the causal isochron. As that surface grows, the potential spreads over area $4\pi r^2$, so the density at any point scales as $1/r^2$.
 
-**The receiver-weighted acceleration factor $W_{ij}^{\mathrm{acc}}$:**
+**The transmitter-side acceleration weight $W_{ij}^{\mathrm{acc}}$:**
 
-Under the constant-time emission rule stated above, transmitter motion between emission instants deposits the output onto a history-dependent family of expanding causal surfaces. Motion of the transmitter toward the active branch compresses the spacing of successive wake arrivals; motion away from the branch dilates it. Receiver-side motion then changes how quickly the receiver cuts through that same sequence. The geometric branch factor is therefore
+Under the constant-time emission rule stated above, transmitter motion between emission instants deposits the output onto a history-dependent family of expanding causal surfaces. Motion of the transmitter toward the active branch compresses the spacing of successive surfaces; motion away from the branch dilates it. The geometric acceleration weight is therefore
 $$
 W_{ij}^{\mathrm{acc}}
 =
-\left|
-\frac{c_f-\hat{\mathbf r}_{ij}\cdot\mathbf V_i(T_r)}
-{c_f-\hat{\mathbf r}_{ij}\cdot\mathbf V_j(T_t)}
-\right|.
+\frac{c_f}
+{\left|c_f-\hat{\mathbf r}_{ij}\cdot\mathbf V_j(T_t)\right|}.
 $$
 
 **Absorption of geometric constants into $\kappa$:**
 
-All geometric normalization factors (e.g., $1/(4\pi)$ from spherical surface area and overall $1/c_f$ factors from $\delta$-function change-of-variables) are absorbed into the coupling constant $\kappa$ by convention. The canonical per-hit law is therefore written with an explicit inverse-square factor together with the dimensionless receiver-weighted acceleration factor $W_{ij}^{\mathrm{acc}}$.
+All geometric normalization factors (for example, $1/(4\pi)$ from spherical surface area) are absorbed into the coupling constant $\kappa$ by convention. The canonical per-hit law is therefore written with an explicit inverse-square factor together with the dimensionless transmitter-side acceleration weight $W_{ij}^{\mathrm{acc}}$.
 
 **Dimensional analysis:**
 
@@ -1198,130 +1185,69 @@ $$
 - **Emission rule**: fixed by the constant-time law stated above
 - **Spatial deposition**: velocity dependent because the transmitter changes position between emission instants
 
-The **emitted potential pattern in space** is not speed independent: a moving transmitter lays down successive wake surfaces from different points on its worldline. The **received** acceleration magnitude is therefore not purely a function of $r_{ij}$. It is modulated by $W_{ij}^{\mathrm{acc}}$, which measures how transmitter-side emission spacing and receiver-side crossing cadence combine on the active branch.
+The **emitted potential pattern in space** is velocity dependent because a moving transmitter emits successive causal surfaces from different historical positions. On a simple root, the resulting transmitter-side weight is
 
-The receiver's velocity $\mathbf V_i(T_r)$ appears directly through $D_{r,ij}=c_f-\hat{\mathbf r}_{ij}\cdot\mathbf V_i(T_r)$. It also influences:
+$$
+W_{ij}^{\mathrm{acc}}
+=
+\frac{c_f}
+{\left|c_f-\hat{\mathbf r}_{ij}\cdot\mathbf V_j(T_t)\right|}.
+$$
 
-1. The **branch strength** through $W_{ij}^{\mathrm{acc}}$.
-2. The **instantaneous power** through $\mathbf{F} \cdot \mathbf V = \|\mathbf{F}\| V_r$.
-3. The **subsequent evolution of $r_{ij}$** and future branch strengths.
-4. Which delayed branches are actually sampled along the receiver worldline over time.
+The receiver's instantaneous velocity is absent from this weight. Receiver motion still matters in three causal ways:
 
-For a uniformly moving transmitter and a fixed receiver on a simple branch, direct
-substitution in the receiver-weighted law gives a useful check. Let
+1. the receiver's current position selects the arriving root, separation, and line of action;
+2. the signed derivative $D_r/D_t$ controls how that root is replayed as reception time advances;
+3. acceleration changes the receiver's later path and therefore changes future transmissions and receptions.
+
+For a uniformly moving transmitter and a fixed receiver, let
+
 $$
 \mathbf X_j(T_t)=\mathbf X_{j,0}+\mathbf V_{j,0}T_t,
 \qquad
 \beta=\frac{\|\mathbf V_{j,0}\|}{c_f},
 \qquad
-\cos\theta=\frac{\mathbf V_{j,0}\cdot\hat{\mathbf{r}}_{ij}}{\|\mathbf V_{j,0}\|}
+\cos\theta=
+\frac{\mathbf V_{j,0}\cdot\hat{\mathbf r}_{ij}}
+{\|\mathbf V_{j,0}\|}.
 $$
-at the emission event. Then, with $\mathbf V_i(T_r)=0$,
+
+Then
+
 $$
 W_{ij}^{\mathrm{acc}}
 =
-\frac{1}{|1-\beta\cos\theta|}
+\frac{1}{|1-\beta\cos\theta|},
 $$
-and the received wake density attached to the simple root is proportional to
+
+so transmitter motion compresses the emitted surface density in forward directions and dilates it in trailing directions. This is a source-history effect, not a receiver-cadence multiplier and not an imported observer-level field law.
+
+#### Receiver Turning Is Not an Acceleration Singularity
+
+The receiver-side factor
+
 $$
-\frac{1}{r_{ij}^2\,|1-\beta\cos\theta|}
-$$
-For $0\le\beta<1$ this fixed-receiver substitution gives a headlight-style causal-wake anisotropy:
-$$
-\mathcal{D}_{\mathrm{wake}}(\theta;\beta)
+D_{r,ij}
 =
-\frac{1}{1-\beta\cos\theta}
+c_f-\hat{\mathbf r}_{ij}\cdot\mathbf V_i(T_r)
 $$
-up to the common inverse-square dilution and coupling normalization. The formula is not the general transceiver law; it is the $\mathbf V_i(T)=0$ reduction of $W_{ij}^{\mathrm{acc}}$ obtained from the canonical equation. It is also not a Lorentz transformation and does not add electrodynamic velocity-field or acceleration-field terms. Forward directions with $\cos\theta>0$ receive compressed isochron spacing, while trailing directions receive diluted spacing in this fixed-receiver check. Doppler shift, aberration, magnetic-like response, preferred-frame leakage estimates, and translating-binary asymmetry must be rederived from the full receiver-side branch geometry plus assembly and observer-channel closure rather than inserted as independent laws.
 
-For $\beta\ll1$,
+appears in the signed root-playback derivative
+
 $$
-\mathcal{D}_{\mathrm{wake}}(\theta;\beta)
+\frac{dT_{t,\ell}}{dT_r}
 =
-1+\beta\cos\theta+O(\beta^2).
-$$
-The even scalar part feeds the coarse scalar wake potential, while the odd velocity-directed part is the single-hit seed of the recoil and vector-transport channel described in [Effective Lagrangian](effective-lagrangian.md#regularized-nonlocal-action-and-variation). Under coarse-graining this is the same source of $\mathbf{A}_{\mathrm{wake}}$ and antisymmetric wake-stress diagnostics; it is not an independent magnetic law added on top of the Master Equation.
-
-**Receiver-side branch modulation:** Unlike models that make source strength itself a function of speed, the velocity dependence here enters through the **moving-transceiver geometry** of emission and reception, the **geometry of causal intersections**, and the **transmitter-side/receiver-side cadence ratio** in the Euclidean void. This is the origin of the receiver-side denominator-numerator law and the seed of relativistic and magnetic behavior in the emergent theory.
-
-#### Receiver-Velocity Affine Form and the Branch Resistance Tensor
-
-The receiver-side factor enters the canonical law only through $D_{r,ij}=c_f-\mathbf V_i(T_r)\cdot\hat{\mathbf r}_{ij}$, and it is the one place where the receiver's *instantaneous* velocity appears. Everything else in a causal-root record — the root $T_{t,\ell}$, the separation $r_{ij}$, the line of action $\hat{\mathbf r}_{ij}$, the transmitter-side factor $D_{t,ij}$ — is determined by the receiver's position and the retained transmitter history. That asymmetry has an exact consequence.
-
-On the **sub-field-speed receiver chart** $\|\mathbf V_i(T_r)\| < c_f$ every active branch satisfies $D_{r,ij} > 0$, so the modulus in $W_{ij}^{\mathrm{acc}}$ resolves. Define the branch coefficient
-
-$$
-w_\ell
-\equiv
-\kappa\,\sigma_{ij}\,
-\frac{|q_iq_j|}{r_{ij}^2\,|D_{t,ij}|},
+\frac{D_{r,ij}}{D_{t,ij}}.
 $$
 
-which carries the polarity sign and is independent of $\mathbf V_i(T_r)$. Then each per-hit term is $w_\ell(c_f-\mathbf V_i\cdot\hat{\mathbf r}_\ell)\hat{\mathbf r}_\ell$, and summing over the active causal-root set gives the **receiver-velocity affine form of the Master Equation**:
+When $D_{r,ij}=0$, the tracked emission time has a stationary point as a function of reception time. The causal root does not disappear, and its acceleration does not go silent. A static transmitter with $D_t=c_f$ supplies $W^{\mathrm{acc}}=1$ whether the receiver is stationary, momentarily satisfies $D_r=0$, or has $D_r<0$.
 
-$$
-\boxed{
-\frac{d^2\mathbf X_i}{dT_r^2}
-=
-c_f\,\boldsymbol{\Xi}_i
--
-\mathsf{M}_i\,\mathbf V_i(T_r)
-}
-$$
+This cleanly separates two events:
 
-$$
-\boldsymbol{\Xi}_i
-\equiv
-\sum_{\ell} w_\ell\,\hat{\mathbf r}_\ell,
-\qquad
-\mathsf{M}_i
-\equiv
-\sum_{\ell} w_\ell\,\hat{\mathbf r}_\ell\otimes\hat{\mathbf r}_\ell
-$$
+- $D_t=0$ is a transmitter-side fold or higher singularity and requires the declared fold or singular-event route.
+- $D_r=0$ is a root-playback turning point. It changes the sign of branch playback but is not an acceleration pole, zero, or chart boundary.
 
-Both the **branch drive** $\boldsymbol{\Xi}_i$ and the **branch resistance tensor** $\mathsf{M}_i$ are functionals of the retained history and of $\mathbf X_i(T_r)$ alone. The Master Equation is therefore *exactly affine* in the receiver's instantaneous velocity on this chart, with no approximation and no expansion in $\|\mathbf V_i\|/c_f$.
-
-**Polarity fixes the sign of the resistance.** $\mathsf{M}_i$ is a sum of rank-one projectors weighted by $w_\ell$, hence symmetric, with signature set entirely by $\sigma_{ij}$: every repulsive branch contributes a positive-semidefinite term, every attractive branch a negative-semidefinite term. Since $\sigma_{ii}=+1$, **every self-hit contributes positively.** Contracting the affine form with $\mathbf V_i$ gives the branch power
-
-$$
-\frac{d}{dT}\left(\tfrac{1}{2}\|\mathbf V_i\|^2\right)
-=
-c_f\,\boldsymbol{\Xi}_i\cdot\mathbf V_i
--
-\sum_\ell w_\ell\, s_\ell^2,
-\qquad
-s_\ell\equiv \mathbf V_i\cdot\hat{\mathbf r}_\ell
-$$
-
-The first term is odd in the radial rate $s_\ell$: it reverses sign when the radial motion reverses, and it is the only term a transmitter-side-only weight $c_f/|D_{t,ij}|$ retains. The second term is **even** in $s_\ell$ and does not reverse. Attraction ($w_\ell<0$) therefore injects at rate $|w_\ell|s_\ell^2$ on every branch, in both directions of radial motion; repulsion drains at the same rate, vanishing only at $s_\ell=0$. This is the exact sense in which the receiver-side factor is not a small kinematic correction: it is the entire velocity-dependent acceleration response, and it is a polarity-signed damping law.
-
-Dropping the receiver-side factor and weighting a branch by $c_f/|D_{t,ij}|$ instead — the transmitter-side-only Doppler weight — removes precisely the $w_\ell s_\ell^2$ term and leaves a work-symmetric law. A calculation built on that weight studies a different dynamical system, not a conservative approximation to this one.
-
-**Emergent velocity-dependent acceleration.** $\mathsf{M}_i\mathbf V_i$ is the velocity-dependent acceleration response promised in [Implication for emergent forces](#total-acceleration-sum-over-all-causal-hits). Because $\mathsf{M}_i$ is symmetric, the instantaneous branch law carries **no antisymmetric part**: there is no $\mathbf V_i\times\mathbf B$ contribution hidden inside a single evaluation of the causal-root set. Any magnetic-like antisymmetric response must therefore be generated by the history dependence of $\boldsymbol{\Xi}_i$ and $\mathsf{M}_i$ under assembly and Noether sea closure, not by the pointwise kernel.
-
-**Field-speed barrier.** As $\mathbf V_i\cdot\hat{\mathbf r}_\ell \to c_f^-$ on a branch, that branch's entire contribution vanishes. Since $\hat{\mathbf r}_\ell$ points from the past transmitter position toward the present receiver position, $\mathbf V_i\cdot\hat{\mathbf r}_\ell = c_f$ says the receiver recedes from that emission point at exactly field speed. Hence:
-
-> A branch whose transmitter lies behind the receiver, in the sense $\mathbf V_i\cdot\hat{\mathbf r}_\ell>0$, cannot accelerate the receiver through field speed along its own line of action. Only a branch with $\mathbf V_i\cdot\hat{\mathbf r}_\ell<c_f$ can. In one dimension this means a receiver can be carried through $|dX/dT|=c_f$ only by attraction from a transmitter image lying ahead of it, never by self-repulsion from its own path history.
-
-**Common-sightline arcs.** If every active branch on an arc shares one line-of-action sign, $\hat{\mathbf r}_\ell=\rho\,\hat{\mathbf e}$ with $\rho$ fixed, then $D_{r,\ell}=c_f-\rho\,\mathbf V_i\cdot\hat{\mathbf e}$ is a *common positive prefactor* of every term in the branch sum. On such an arc the receiver-side factor cannot change which branch family dominates; it rescales all magnitudes together by $|D_r|/c_f$. Dominance arguments survive the factor unchanged; acceleration floors and transit times do not, and must be rescaled by $|D_r|/c_f\in[1-U_{\max}/c_f,\,1+U_{\max}/c_f]$ on a tame envelope $\|\mathbf V_i\|\le U_{\max}<c_f$.
-
-**Chart boundary.** The affine form holds up to the **receiver-side null surface** $D_{r,ij}=0$, that is $\mathbf V_i(T_r)\cdot\hat{\mathbf r}_{ij}=c_f$. There the branch goes silent and the modulus in $W_{ij}^{\mathrm{acc}}$ acquires a kink; the acceleration is continuous but the affine chart ends. This surface changes no root count and is not a fold. Its relation to the other branch events is fixed in [Separator Taxonomy](#separator-taxonomy).
-
-In the collinear reduction $\hat{\mathbf r}_\ell=\pm1$ and $\hat{\mathbf r}_\ell\otimes\hat{\mathbf r}_\ell=1$, so the affine form collapses to a scalar delayed equation with polarity-signed damping,
-
-$$
-\frac{d^2X}{dT^2}
-+
-\Gamma(T)\,\frac{dX}{dT}
-=
-c_f\,\Xi(T),
-\qquad
-\Gamma=\sum_\ell w_\ell,
-\qquad
-\Xi=\sum_\ell w_\ell\,\hat r_\ell
-$$
-
-with $\Gamma$ and $\Xi$ independent of $dX/dT$ at time $T$.
+There is therefore no receiver-velocity resistance tensor and no primitive field-speed barrier in the Master Equation. Any effective damping, velocity-dependent assembly response, or observer-level magnetic-like behavior must be derived from delayed multi-branch geometry and wake-state evolution rather than inserted as an instantaneous receiver multiplier.
 
 ---
 
@@ -1373,7 +1299,7 @@ where $\mathcal{F}$ is a **causal functional**: it depends on the current state 
 
 #### Regularization (Mollified Causal Wake Surfaces, Finite $\eta$)
 
-The ideal model uses **surface-delta causal isochrons** in the emission-time integral. On a simple branch with a distance floor and a Jacobian floor, the delta collapses to a continuous reception-time branch contribution weighted by the receiver-weighted acceleration factor; singular or impulse-like behavior arises only when branches hit collision support, lose transversality, accumulate, or are sampled as unresolved numerical events. One may treat the singular limit as a measure-valued branch law, or regularize by replacing the surface delta with a narrow wake surface of thickness $\eta > 0$:
+The ideal model uses **surface-delta causal isochrons** in the emission-time integral. On a simple branch with a distance floor and a Jacobian floor, the delta collapses to a continuous reception-time branch contribution weighted by the transmitter-side acceleration weight; singular or impulse-like behavior arises only when branches hit collision support, lose transversality, accumulate, or are sampled as unresolved numerical events. One may treat the singular limit as a measure-valued branch law, or regularize by replacing the surface delta with a narrow wake surface of thickness $\eta > 0$:
 
 $$
 \delta(r - c_f\Delta) \longrightarrow \delta_\eta(r - c_f\Delta) = \frac{1}{\sqrt{2\pi}\,\eta} \exp\!\Big(-\frac{(r - c_f\Delta)^2}{2\eta^2}\Big)
@@ -1383,7 +1309,7 @@ while preserving total emission $q$.
 
 **Effect:** Under the finite-branch, distance-floor, and transversality assumptions stated below, this supports **continuous-in-time acceleration diagnostics** and classical $C^1$ solutions for $\mathbf X_i(T)$ given $C^1$ initial data.
 
-**In the super-field-speed regime** ($\|\mathbf V_a\| > c_f$), multiple self-roots can occur; summing over all causal times with an integrable regularization gives a finite contribution only while the active-root count, separation floor, Jacobian floor, and receiver-weighted acceleration factor remain controlled.
+**In the super-field-speed regime** ($\|\mathbf V_a\| > c_f$), multiple self-roots can occur; summing over all causal times with an integrable regularization gives a finite contribution only while the active-root count, separation floor, Jacobian floor, and transmitter-side acceleration weight remain controlled.
 
 **Convergence requirement:** As $\eta \to 0$, numerical solutions must converge to a well-defined limit. If a theorem or simulation also introduces a short-distance core mollifier $\epsilon_c$, it must declare whether the amplitude remains polarity-blind apart from $\sigma_{ij}|q_i q_j|$ or whether a derived polarity-dependent kernel has been added. The default law uses the former convention; the latter is a new closure claim and must preserve the same causal-root, symmetry, and event-ledger checks before it can be used in an assembly or blackbody argument.
 
@@ -1509,7 +1435,7 @@ $$
 
 The total acceleration on a particle at any instant is the **vector sum** of the contributions from every causal entry in its path history.
 
-**Operational implication:** Every architrino is continuously immersed in the superposed wakes of all others (and, when the same-transmitter root condition permits, its own). Tractability comes from treating each causal emission independently with $1/r^2$ distance weighting modulated by the receiver-weighted acceleration factor $W^{\mathrm{acc}}$, branch gaps, and screening or cancellation assumptions that make the retained sum finite.
+**Operational implication:** Every architrino is continuously immersed in the superposed wakes of all others (and, when the same-transmitter root condition permits, its own). Tractability comes from treating each causal emission independently with $1/r^2$ distance weighting modulated by the transmitter-side acceleration weight $W^{\mathrm{acc}}$, branch gaps, and screening or cancellation assumptions that make the retained sum finite.
 
 Inverse-square dilution alone is not a global convergence theorem. For an infinite transmitter family, a branch chart must declare a summation or continuum prescription under which
 $$
@@ -1522,7 +1448,7 @@ exists, or it must supply local neutrality, angular cancellation, shielding, a s
 
 #### Velocity Dependence
 
-**Statement:** The dynamics are **delayed** and **radial in direction**. Because both transceiver paths enter the causal geometry, the received acceleration magnitude is modulated by the receiver-weighted acceleration factor $W_{ij}^{\mathrm{acc}}$. Transmitter motion controls the transmitter-side factor; receiver motion controls the receiver-side factor and also affects the work rate through $\mathbf{F} \cdot \mathbf V = \|\mathbf{F}\| V_r$.
+**Statement:** The dynamics are **delayed** and **radial in direction**. The received acceleration magnitude is modulated by the transmitter-side acceleration weight $W_{ij}^{\mathrm{acc}}$. Transmitter motion controls this factor. Receiver motion controls signed root playback and affects the kinetic-rate diagnostic through its radial velocity, but it does not multiply the arriving acceleration.
 
 **Self-interaction requirement:** Self-hit requires super-field-speed interval history: the worldline must exceed $c_f$ somewhere along a nontrivial emission-to-reception interval, except for the degenerate field-speed tangent case excluded by the simple-root branch condition. Curvature alone is insufficient if $\|\mathbf V_a\| < c_f$ everywhere on the relevant interval.
 
@@ -1606,10 +1532,10 @@ Self-hit is **not** instantaneously tied to current velocity. An architrino that
 **Role in binary formation:** Self-hit provides a **repulsive radial contribution** that opposes the attractive pull of opposite-polarity partners. This competition produces:
 
 - **Maximum-curvature candidates**: the circular toy model identifies where a minimum-radius barrier must be analyzed.
-- **Null-separatrix protection**: the transmitter-side factor boundary $D_t=0$ acts as a geometric wall against collapse in the exact kernel when the receiver-side factor remains bounded.
-- **A closure test, not a closure proof**: the same receiver-weighted acceleration factor multiplies tangential as well as radial projections, so a transmitter-side null branch does not by itself prove vanishing tangential power or an exact locked orbit.
+- **Transmitter-side fold boundary**: $D_t=0$ is a transmitter-side pole. Ordinary folds require finite-impulse certification; coincident same-source birth and undeclared higher singularities fail closed.
+- **A closure test, not a closure proof**: the same transmitter-side acceleration weight multiplies tangential as well as radial projections, so a transmitter-side null branch does not by itself prove vanishing tangential power or an exact locked orbit.
 
-**Self-hit stabilization is field-speed gated (necessary condition for binding).** The [receiver-velocity affine form](#receiver-velocity-affine-form-and-the-branch-resistance-tensor) makes this precise. The velocity-dependent acceleration response is the branch resistance $\mathsf{M}_i=\sum_\ell w_\ell\,\hat{\mathbf r}_\ell\otimes\hat{\mathbf r}_\ell$, and its signature is set by polarity: an opposite-polarity partner branch has $w_\ell<0$ and therefore **anti-damps**, injecting kinetic energy at rate $|w_\ell|(\mathbf V_i\cdot\hat{\mathbf r}_\ell)^2$ on both approach and recession, while a self-branch has $w_\ell>0$ and **damps**. Self-repulsion is thus the only channel that can make the net velocity-dependent response dissipative. But a self-hit exists only where the retained history reaches field speed: on any stored interval with $\|\mathbf V_i\|\le c_f-\sigma$ for $\sigma>0$, the exact bound $\|\mathbf X_i(T_r)-\mathbf X_i(T_t)\|\le(c_f-\sigma)(T_r-T_t)<c_f(T_r-T_t)$ forbids a same-transmitter causal root. Therefore a bound self-hit orbit must reach field speed somewhere in its retained history; a strictly sub-field assembly cannot self-stabilize against partner anti-damping, and its only dissipative channel is inaccessible. This is why the stabilizing configurations are the maximum-curvature and persistent-memory orbits above, whose self-hits are born exactly at the field-speed excursion, and it is the reason a bound binary is intrinsically a field-speed object rather than a slow Keplerian one.
+**Self-hit root existence is field-speed gated.** On any stored interval with $\|\mathbf V_i\|\le c_f-\sigma$ for $\sigma>0$, the exact bound $\|\mathbf X_i(T_r)-\mathbf X_i(T_t)\|\le(c_f-\sigma)(T_r-T_t)<c_f(T_r-T_t)$ forbids a nontrivial same-transmitter causal root. Therefore a candidate self-hit orbit must reach field speed somewhere in its retained history. This is a root-existence condition, not a damping theorem or a proof of binding. Under the transmitter-side law the receiver-velocity resistance term does not exist; stabilization, if present, must be demonstrated by the full delayed branch geometry, singular-event routing, and conserved wake-state accounts.
 
 **Connection to quantum behavior:** At this chapter's claim level, non-Markovian memory and deterministic-but-complex self-hit dynamics are a candidate substrate mechanism for effective quantum-like behavior, not yet a derivation of the quantum formalism:
 
@@ -1632,7 +1558,7 @@ An important open problem is to map the phase-space attractor landscape for self
 
 **Equations:** On a retained partner branch, the radial coordinate
 $r(T)=\|\mathbf X_2(T)-\mathbf X_1(T)\|$ has the canonical receiver-side schematic form
-with receiver-weighted acceleration factor:
+with transmitter-side acceleration weight:
 
 $$
 \frac{d^2r}{dT^2}
@@ -1706,7 +1632,7 @@ $$
 
 Hence as $D_{t,ii}\to 0^+$ with bounded nonzero $D_{r,ii}$, the ideal branch-resolved pointwise response diverges, producing a restoring barrier that blocks naive continuation into a collapsing branch. This divergence should not be treated as a literal state pinned at infinite acceleration. Across a simple caustic transit, [Caustic Transit and Finite Impulse](#caustic-transit-and-finite-impulse) shows that the integrated velocity change can remain finite; with finite numerical regularization $\eta > 0$, the event appears as a large but finite impulse that sharpens as $\eta\to 0$.
 
-This null-separatrix is therefore an **amplitude wall** for the self branch only after the receiver-side factor is controlled. It is not, by itself, a theorem of circular closure. The same receiver-weighted acceleration factor multiplies every projection of the self-hit acceleration, including the tangential component, so contact with $D_{t,ii}=0$ obstructs collapse but does not by itself establish a periodic orbit or zero net cycle-averaged power.
+This transmitter-side fold is therefore an **amplitude pole** for the self branch. It is not, by itself, a theorem of circular closure. The same transmitter-side acceleration weight multiplies every projection of the self-hit acceleration, including the tangential component, so contact with $D_{t,ii}=0$ requires a certified event treatment and does not by itself establish a periodic orbit or zero net cycle-averaged kinetic-rate change.
 
 **Operational characterization of MCB:**
 - The inner branch evolves by caustic grazing near $J_{ii}=0$, with finite impulses across the regularized boundary rather than exact pinning on an infinite-acceleration surface.
@@ -1753,7 +1679,7 @@ if the resulting radial acceleration is the same.
 
 Any single hit can be **equivalently described** with a **stationary emitter** ($\|\mathbf V\| = 0$) placed somewhere along the same unoriented line of action, with the emitter's actual speed at emission accounted for by an adjusted emission time and, if desired, a surrogate location along that line.
 
-**Key property:** The same emission law is preserved in this recast; the velocity dependence is transferred into the adjusted emission geometry and the matched receiver-weighted acceleration factor.
+**Key property:** The same emission law is preserved in this recast; the velocity dependence is transferred into the adjusted emission geometry and the matched transmitter-side acceleration weight.
 
 **Utility:** This recast simplifies some analytic calculations and provides intuition for the receiver's "inference problem" (what transmitter configurations are consistent with a given hit?).
 
@@ -1872,8 +1798,8 @@ $$
 1. **Event-local at the receiver**: Only intersecting delayed causal wake surfaces contribute (no action-at-a-distance).
 2. **Non-Markovian**: Depends on full path history (self-hit memory).
 3. **Superposition**: Linear sum over all transmitters and causal roots.
-4. **Self-hit**: Repulsive same-transmitter interaction when $\mathcal{C}_{ii}(T_r)$ is nonempty with a valid transversality floor and a retained receiver-weighted acceleration factor; super-field-speed interval history is a necessary warning condition for simple nontrivial roots and can persist as memory after slowing down.
-5. **Radial line of action with receiver-side branch weighting**: No magnetic or velocity-cross-product terms; all per-hit accelerations point along $\hat{\mathbf{r}}_{ij}$, with magnitude modulated by $W_{ij}^{\mathrm{acc}}$.
+4. **Self-hit**: Repulsive same-transmitter interaction when $\mathcal{C}_{ii}(T_r)$ is nonempty with a valid transversality floor and a retained transmitter-side acceleration weight; super-field-speed interval history is a necessary warning condition for simple nontrivial roots and can persist as memory after slowing down.
+5. **Radial line of action with transmitter-side weighting**: No magnetic or velocity-cross-product terms; all per-hit accelerations point along $\hat{\mathbf{r}}_{ij}$, with magnitude modulated by $W_{ij}^{\mathrm{acc}}=c_f/|D_{t,ij}|$.
 
 #### Implications for Emergent Phenomena
 
@@ -2023,21 +1949,22 @@ h_\beta'(\xi)=-\sin\xi-\frac{1}{\beta}<0
 $$
 So $h_\beta$ is strictly decreasing and has exactly one root on $(0,\pi/2)$. $\square$
 
-#### Lemma (Circular receiver-side cancellation)
+#### Lemma (Circular root-playback identity)
 
 On every nondegenerate root of the uniform circular partner and self-hit charts,
 the receiver-side factor equals the transmitter-side factor:
 $$
-D_r=D_t,
-\qquad
-W^{\mathrm{acc}}=\left|\frac{D_r}{D_t}\right|=1.
+D_r=D_t.
 $$
 For the partner branch below, both transmitter and receiver velocity projections onto
 $\hat{\mathbf r}_{12}$ equal $-v\sin\xi$. For a uniform circular self root, the
 same rotational symmetry makes the transmitter and receiver projections equal on the
-same signed chord sheet. Thus the circular transmitter-side Jacobian remains a
-root-transversality and coarea diagnostic, but it is not an extra canonical
-branch-strength factor for the uniform circular acceleration contributions.
+same signed chord sheet. Thus the signed playback derivative is one, but the
+acceleration weight remains
+$$
+W^{\mathrm{acc}}=\frac{c_f}{|D_t|}=\frac{1}{|J^t|}.
+$$
+Root playback and acceleration strength do not cancel one another.
 
 #### Proposition (Exact partner-only circular receiver-side decomposition)
 
@@ -2051,13 +1978,14 @@ r_{12}=2R\cos\xi,
 \qquad
 J_{12}^{t}=1+\beta\sin\xi,
 \qquad
-W_{12}^{\mathrm{acc}}=1
+W_{12}^{\mathrm{acc}}=\frac{1}{1+\beta\sin\xi}
 $$
 Since the charges are opposite, the partner acceleration on receiver $1$ is
 $$
 \mathbf A_{12}
 =
 -\frac{\kappa |q_1q_2|}{4R^2\cos^2\xi}
+\frac{1}{1+\beta\sin\xi}
 \left(
 \cos\xi\,\mathbf{e}_r(T)-\sin\xi\,\mathbf{e}_\theta(T)
 \right)
@@ -2066,14 +1994,14 @@ Therefore the exact radial and tangential components are
 $$
 a_r^{(\mathrm{part})}
 =
--\frac{\kappa |q_1q_2|}{4R^2\cos\xi}<0
+-\frac{\kappa |q_1q_2|}
+{4R^2\cos\xi\,(1+\beta\sin\xi)}<0
 $$
 $$
 a_\theta^{(\mathrm{part})}
 =
-\frac{\kappa |q_1q_2|\,\sin\xi}{4R^2\cos^2\xi}
-=
-\frac{\kappa |q_1q_2|\,\tan\xi}{4R^2\cos\xi}
+\frac{\kappa |q_1q_2|\,\sin\xi}
+{4R^2\cos^2\xi\,(1+\beta\sin\xi)}
 >0
 $$
 
@@ -2111,9 +2039,10 @@ The receiver velocity is $\mathbf V_1(T)=v\mathbf e_\theta(T)$, and
 $$
 \mathbf V_1(T)\cdot\hat{\mathbf r}_{12}=-v\sin\xi.
 $$
-Therefore $D_r=D_t=c_f(1+\beta\sin\xi)$ and $W_{12}^{\mathrm{acc}}=1$ on this
-uniform circular branch. Because $\sigma_{12}=-1$ for opposite polarities, the
-canonical branch acceleration is $-\kappa|q_1q_2|\hat{\mathbf{r}}_{12}/r_{12}^2$,
+Therefore $D_r=D_t=c_f(1+\beta\sin\xi)$ and
+$W_{12}^{\mathrm{acc}}=(1+\beta\sin\xi)^{-1}$ on this uniform circular branch.
+Because $\sigma_{12}=-1$ for opposite polarities, the canonical branch acceleration is
+$-\kappa|q_1q_2|\hat{\mathbf{r}}_{12}/[r_{12}^2(1+\beta\sin\xi)]$,
 and projecting onto $\mathbf{e}_r(T)$ and $\mathbf{e}_\theta(T)$ yields the
 stated components. Since $\xi\in(0,\pi/2)$, every denominator is positive and
 $\sin\xi>0$, proving the sign claims. $\square$
@@ -2127,7 +2056,7 @@ $$
 Therefore an isolated opposite-polarity binary cannot realize an exact constant-speed circular orbit from partner delay alone.
 
 **Interpretation.**
-These are the exact receiver-side partner-only circular formulas needed elsewhere in the chapter. They show that the delayed partner branch supplies inward radial pull, but it also drives the motion forward along $\mathbf{e}_\theta$. Removing the stale transmitter-side factor strengthens the tangential obstruction on the uniform circular chart. Any tightening history must be certified on a non-circular branch or by an explicit finite-window energy ledger.
+These are the exact transmitter-side partner-only circular formulas needed elsewhere in the chapter. They show that the delayed partner branch supplies inward radial pull, but it also drives the motion forward along $\mathbf{e}_\theta$. The transmitter-side transmitter-side denominator rescales both projections without changing their signs. Any tightening history must be certified on a non-circular branch or by an explicit finite-window conserved-account closure.
 
 ---
 
@@ -2195,11 +2124,12 @@ $$
 \sim
 \frac{1}{48R^2\,\mu^2}
 $$
-This is a root-map caustic diagnostic, not the canonical acceleration strength on the
-uniform circular chart. By the circular receiver-side cancellation lemma,
-$D_r=D_t$ and $W_0^{\mathrm{acc}}=1$ away from the degenerate endpoint, so the
-canonical branch amplitude scales instead as $1/r_0^2\sim1/(24R^2\mu)$ before
-regularization and finite-impulse interpretation are applied.
+This is also the canonical transmitter-side scaling on the nondegenerate side of the
+uniform circular chart, because $W_0^{\mathrm{acc}}=1/|J_0|$. Thus the principal
+self-root amplitude scales as $O(\mu^{-2})$ near its coincident endpoint birth.
+The endpoint exclusion alone does not make that transition finite; it remains a
+failed singular event until one regularized treatment certifies a finite accepted
+impulse and the corresponding conserved accounts.
 
 Higher branches are also tractable. For the circular root function
 $$
@@ -2295,7 +2225,7 @@ So each new circular self branch is born directly on a Jacobian-null boundary: b
 > =
 > -\frac{J_{n,\pm}}{\beta},
 > $$
-> so the action-counting density carries an additional $|g_{\beta,s_n}'|^{-1}$ and scales as $O(\mu^{-1})$ at fixed nonzero $r_n^\star$. Under the receiver-weighted law this transmitter-side scaling is not an acceleration/action certificate by itself; it must be combined with the same-row receiver-side factor through $W^{\mathrm{acc}}=\lvert D_r/D_t\rvert$ before any action or acceleration contribution is promoted.
+> so the action-counting density carries an additional $|g_{\beta,s_n}'|^{-1}$ and scales as $O(\mu^{-1})$ at fixed nonzero $r_n^\star$. Under the transmitter-side law the acceleration weight is already $W^{\mathrm{acc}}=c_f/|D_t|=1/|J^t|$. Action counting remains a separate variational question and may not be inferred by multiplying the acceleration by signed root playback.
 >
 > Consequently the circular self-hit combinatorics remain linearly bounded in $\beta$. A one-sign subchart has
 > $$
@@ -2323,12 +2253,12 @@ So each new circular self branch is born directly on a Jacobian-null boundary: b
 This circular benchmark already:
 
 - Gives us analytic control of the causal roots (as solutions of a simple scalar transcendental),
-- Lets us write the receiver-side self-acceleration target as
+- Lets us write the transmitter-side self-acceleration target as
   $$
   \mathbf A_\text{self}(T) =
   \sum_n \kappa \frac{q^2}{r_n^2}W_{n}^{\mathrm{acc}}\hat{\mathbf{r}}_n
   $$
-  with $r_n = c_f \Delta_n$, $W_{n}^{\mathrm{acc}}=1$ on nondegenerate uniform circular roots, and directions that can be written explicitly in terms of the phase difference.
+  with $r_n = c_f \Delta_n$, $W_{n}^{\mathrm{acc}}=1/|J_n|$ on nondegenerate uniform circular roots, and directions that can be written explicitly in terms of the phase difference.
 
 The benchmark does not provide an elementary closed-form sum, but it gives the following controlled inputs:
 
@@ -2371,15 +2301,15 @@ With
 $$
 C=\frac{\kappa q^2}{4R^2}
 $$
-and uniform-circular receiver-weighted acceleration factor
+and uniform-circular transmitter-side acceleration weight
 $$
-W_s^{\mathrm{acc}}(\xi)=\left|\frac{D_r(\xi)}{D_t(\xi)}\right|=1,
+W_s^{\mathrm{acc}}(\xi)=\frac{c_f}{|D_t(\xi)|}=\frac{1}{|J(\xi)|},
 $$
 the branchwise self-hit projections are therefore
 $$
-a_r(\xi)=C\frac{\beta}{\xi},
+a_r(\xi)=C\frac{\beta}{\xi|J(\xi)|},
 \qquad
-a_\theta(\xi)=C\frac{\beta^2\cos\xi}{\xi^2}
+a_\theta(\xi)=C\frac{\beta^2\cos\xi}{\xi^2|J(\xi)|}
 $$
 Thus the radial projection is outward on every active self root, while the tangential projection is controlled entirely by the sign of $\cos\xi$.
 
@@ -2392,9 +2322,8 @@ The branch sheets have the following one-sign structure:
 | Higher positive left sheets | One root after birth from a Jacobian-null fold | Outward | Forward |
 | Higher positive right sheets | Paired root after the same birth | Outward | Backward |
 
-For comparison with older transmitter-side circular diagnostics, if one substitutes
-the coarea factor $1/|J|$ in place of the canonical uniform-circular value
-$W_s^{\mathrm{acc}}=1$, the diagnostic large-$\beta$ sums obey
+Away from fold neighborhoods, substituting the canonical transmitter-side weight
+$W_s^{\mathrm{acc}}=1/|J|$ gives the formal large-$\beta$ sums
 $$
 A_{r,\mathrm{src}}^{\mathrm{diag}}(\beta)
 =
@@ -2412,12 +2341,10 @@ $$
 =
 \frac{C\beta}{6}+O(C\log\beta)
 $$
-These are transmitter-side diagnostics only. They are retained to compare root
-families, but they are not canonical acceleration sums under the receiver-weighted law.
-With $W_s^{\mathrm{acc}}=1$, the positive-sine canonical radial sum has leading
-order $(C\beta/\pi)\log\beta$; the signed tangential constants must be redriven
-from the same receiver-side branch rows before any cancellation estimate is
-promoted.
+These are formal simple-root transmitter-side sums, not accepted global acceleration
+certificates, because their treatment of fold neighborhoods and coincident branch
+births is incomplete. The signed tangential constants must be redriven with the
+same regulated event convention before any cancellation estimate is promoted.
 
 The full signed $|\sin\xi|$ circular chart uses $s=\operatorname{sign}(\sin\xi)$ and
 $$
@@ -2471,13 +2398,12 @@ C\left(\frac{4}{\pi^2}-\frac{1}{12}\right)\beta,
 \qquad
 \frac{2C}{\pi}\log\beta-\frac{2C}{\pi}
 $$
-belong to the transmitter-side diagnostic chart in which $1/|J|$ was substituted
-for the receiver-weighted acceleration factor. They remain useful for comparing
-root-family bookkeeping, but they no longer certify an acceleration residual or a
-large-$\beta$ circular exclusion. Under the receiver-weighted law, the partner
-tangential drive grows one order faster in $\beta$, and the self-hit signed
-tangential and radial sums must be redriven with $W_s^{\mathrm{acc}}=1$ on the
-same signed chart before any large-$\beta$ residual verdict is promoted.
+belong to the formal simple-root transmitter-side chart. They remain useful for
+comparing root families, but they do not certify a global acceleration residual or
+a large-$\beta$ circular exclusion until fold neighborhoods and coincident births
+share one accepted event convention. The partner and self-hit signed tangential and
+radial sums must therefore be redriven on that regulated chart before any
+large-$\beta$ residual verdict is promoted.
 
 Thus the equal-magnitude bare circular chart remains an obstruction benchmark,
 not a closed no-go theorem. A retained constant-radius exclusion still requires
@@ -2512,7 +2438,7 @@ Analytic expectations:
   - That gives us a **pair of algebraic conditions** in $R$ and $\omega$ (or equivalently $R$ and $v$).
   - Solving those algebraic conditions (perhaps numerically) defines a maximum‑curvature solution family.
 
-However, the circular benchmark still exposes a serious obstruction in the bare two-body kernel. In the symmetric isolated binary, every active partner branch contributes a positive tangential component. The self sector is different: the circular self-hit branch table above gives outward radial support, while the tangential projection changes sign by sheet. The old transmitter-side large-$\beta$ cancellation constants are diagnostic only; under $W_s^{\mathrm{acc}}=1$, the signed self sums must be redriven before any cancellation claim is promoted. Therefore the former blanket self-branch positive-tangential claim is too strong. Exact constant-speed closure of the bare circular two-body ansatz is not ruled out by a branchwise sign argument alone; it requires the actual signed partner-plus-self tangential sum to vanish on a certified branch chart.
+However, the circular benchmark still exposes a serious obstruction in the bare two-body kernel. In the symmetric isolated binary, every active partner branch contributes a positive tangential component. The self sector is different: the circular self-hit branch table above gives outward radial support, while the tangential projection changes sign by sheet. The transmitter-side signed self sums must be redriven with $W_s^{\mathrm{acc}}=1/|J_s|$ and one accepted singular-event convention before any cancellation claim is promoted. Exact constant-speed closure of the bare circular two-body ansatz is not ruled out by a branchwise sign argument alone; it requires the actual signed partner-plus-self tangential sum to vanish on a certified branch chart.
 
 This sharpens the maximum-curvature program into a concrete fork:
 
@@ -2652,9 +2578,9 @@ J_{12}
 $$
 The sign is fixed by the circular limit: when $p_0=0$ and $\rho=1$, this gives $J_{12}=1+\beta\sin(\Delta/2)$.
 
-##### Closed Receiver-Weighted Spiral Branch Factors
+##### Closed Source-Density Spiral Branch Factors
 
-For acceleration contributions the transmitter-side factor is not the branch strength. Define
+For acceleration contributions the transmitter-side factor fixes the transmitter-side weight. Define
 the current and transmitter-event dimensionless tangential speeds
 $$
 b\equiv\frac{r(\theta)\dot\theta(\theta)}{c_f},
@@ -2677,25 +2603,21 @@ $$
 \frac{b}{\Lambda_p}
 \Big[p(1+\rho\cos\Delta)+\rho\sin\Delta\Big]
 $$
-Hence the exact partner branch strength is
+Hence the exact partner acceleration weight is
 $$
 \boxed{
 W_p^{\mathrm{acc}}(\theta,\Delta)
 =
-\left|
-\frac{
-1+\dfrac{b}{\Lambda_p}
-\big[p(1+\rho\cos\Delta)+\rho\sin\Delta\big]
-}{
+\frac{1}{\left|
 1+\dfrac{b_0}{\Lambda_p}
 \big[\sin\Delta-p_0(\cos\Delta+\rho)\big]
-}
-\right|
+\right|}
 }
 $$
-This expression is algebraic once a delayed root $\Delta$ is known. In the
-uniform circular limit $p=p_0=0$, $\rho=1$, and $b_0=b$, its numerator and
-denominator coincide, recovering $W_p^{\mathrm{acc}}=1$.
+This expression is algebraic once a delayed root $\Delta$ is known. The
+receiver-side expression remains useful for signed root playback but does not
+enter this weight. In the uniform circular limit,
+$W_p^{\mathrm{acc}}=(1+\beta\sin(\Delta/2))^{-1}$.
 
 For opposite polarities, the branch acceleration is
 $$
@@ -2774,22 +2696,16 @@ $$
 \boxed{
 W_s^{\mathrm{acc}}(\theta,\Delta)
 =
-\left|
-\frac{
-1-\dfrac{b}{\Lambda_s}
-\big[-p(1-\rho\cos\Delta)+\rho\sin\Delta\big]
-}{
+\frac{1}{\left|
 1-\dfrac{b_0}{\Lambda_s}
 \big[\sin\Delta+p_0(\rho-\cos\Delta)\big]
-}
-\right|
+\right|}
 }
 $$
-The uniform circular limit again gives $D_{r,s}=D_{t,s}$ and
-$W_s^{\mathrm{acc}}=1$ away from the common null endpoint. Thus the
-receiver-side restart does not require a new numerical ansatz for either
-spiral branch family: it requires evaluating these exact ratios on the retained
-root intervals.
+The uniform circular limit again gives $D_{r,s}=D_{t,s}$ for root playback, while
+$W_s^{\mathrm{acc}}=1/|J_{11}|$. Thus the transmitter-side restart requires
+evaluating the transmitter-side denominator on the retained root intervals and
+recording $D_r/D_t$ separately for continuation.
 
 For self-hit, $\sigma_{11}=+1$, so
 $$
@@ -2999,7 +2915,7 @@ $$
 q_1^2\frac{W_s^{\mathrm{acc}}S_T^s}{\Lambda_s^3}
 <0
 $$
-after the common positive factors are removed. Algebraic sign allowance is not enough; the delayed-root equations must actually admit those roots with positive transmitter-side floors, receiver-weighted acceleration-factor intervals, and finite memory depth.
+after the common positive factors are removed. Algebraic sign allowance is not enough; the delayed-root equations must actually admit those roots with positive transmitter-side floors, transmitter-side acceleration-weight intervals, and finite memory depth.
 
 At a minimum-radius event $\theta_\ast$, the pitch condition gives $p(\theta_\ast)=0$. Therefore both tangential numerators reduce locally to
 $$
@@ -3007,7 +2923,7 @@ S_T^p(\theta_\ast,\Delta)=S_T^s(\theta_\ast,\Delta)=\rho\sin\Delta
 $$
 Principal roots with $0<\Delta<\pi$ still carry the same positive tangential sign as the circular benchmark. The only bare-kernel escape routes are therefore:
 
-1. admissible older or wrapped roots with $\sin\Delta<0$ and enough receiver-weighted acceleration factor;
+1. admissible older or wrapped roots with $\sin\Delta<0$ and enough transmitter-side acceleration weight;
 2. off-turn variable-pitch intervals where the $p$-terms dominate the positive principal branches;
 3. additional medium, Noether braid, or multi-body structure outside the isolated two-body spiral ansatz.
 
@@ -3028,7 +2944,7 @@ r_\ast\dot\theta_\ast^2
 {r_\ast^2\Lambda_{s}^3}
 >0
 $$
-This is a theorem target, not a closure proof. It supplies the concrete falsification gate: enumerate the admissible partner and self roots on a variable-pitch candidate, certify their transmitter-side floors and same-row receiver-weighted acceleration-factor intervals, and test both the radial turn inequality and the weighted tangential sum. If all admissible roots keep the weighted tangential sum nonnegative on every candidate turn corridor, the bare isolated spiral does not beat the circular obstruction.
+This is a theorem target, not a closure proof. It supplies the concrete falsification gate: enumerate the admissible partner and self roots on a variable-pitch candidate, certify their transmitter-side floors and same-row transmitter-side acceleration-weight intervals, and test both the radial turn inequality and the weighted tangential sum. If all admissible roots keep the weighted tangential sum nonnegative on every candidate turn corridor, the bare isolated spiral does not beat the circular obstruction.
 
 For a retained chart at a turn center, the radial row can be normalized by the common acceleration factor, but that normalization separates the branch sum from the independent acceleration ratio. In the equal-magnitude opposite-polarity case, one may write
 $$
@@ -3046,9 +2962,9 @@ so the normalized turn row is
 $$
 \Gamma_{\mathrm{A1}}+B_r^{\mathrm{rec}}(\theta_\ast)>0
 $$
-The retained branch chart must emit same-record $D_t$, $D_r$, and $W^{\mathrm{acc}}$ rows before $B_r^{\mathrm{rec}}$ exists as acceleration evidence. It does not determine $\Gamma_{\mathrm{A1}}$ from $b_\ast=\Omega r_\ast/c_f$, from the delayed-root offsets, or from a branch-sum threshold. A branch certificate must therefore either supply an independently derived acceleration-ratio interval after the receiver-side branch sum exists or report the radial row as blocked.
+The retained branch chart must emit same-record $D_t$, $D_r$, transmitter-side acceleration weights, and signed root-playback records before $B_r^{\mathrm{rec}}$ exists as acceleration evidence. It does not determine $\Gamma_{\mathrm{A1}}$ from $b_\ast=\Omega r_\ast/c_f$, from the delayed-root offsets, or from a branch-sum threshold. A branch certificate must therefore either supply an independently derived acceleration-ratio interval after the transmitter-side branch sum exists or report the radial result as blocked.
 
-A fixed retained-chart benchmark is a receiver-side restart target. For the $a_{\mathrm{A1}}=0.204$, $b_\ast=7/2$ constant-$\Omega$ variable-pitch spiral on $I_\ast=[-\pi/6,\pi/6]$, the retained $3+1$ chart has active-root, inactive-gap, transmitter-side floor, finite-memory, and root-transport rows. Its radial, tangential, action, and pass/fail rows are not canonical Master EOM evidence until the same retained boxes emit $D_r/D_t$ branch-strength intervals for $P_1,P_2,P_3,S_1$.
+A fixed retained-chart benchmark is a transmitter-side restart target. For the $a_{\mathrm{A1}}=0.204$, $b_\ast=7/2$ constant-$\Omega$ variable-pitch spiral on $I_\ast=[-\pi/6,\pi/6]$, the retained $3+1$ chart has active-root, inactive-gap, transmitter-side floor, finite-memory, and root-transport records. Its radial, tangential, action, and pass/fail results are not canonical Master EOM evidence until the same retained boxes emit $c_f/|D_t|$ acceleration-weight intervals and $D_r/D_t$ playback intervals for $P_1,P_2,P_3,S_1$.
 
 If the same turn-center radial curve is allowed a variable angular rate, with $\omega_\ast=\dot\theta(0)>0$ and $\alpha_\ast=\ddot\theta(0)$, then $r'(0)=0$ and the local kinematic targets become
 $$
@@ -3056,7 +2972,7 @@ B_r^{\mathrm{rec}}(C_{\mathrm{A1}};0)=(a_{\mathrm{A1}}-1)\Gamma_\ast,
 \qquad
 T_0^{\mathrm{rec}}(C_{\mathrm{A1}})=\Gamma_\ast\frac{\alpha_\ast}{\omega_\ast^2}
 $$
-where $\Gamma_\ast=r_\ast^3\omega_\ast^2/(\kappa q_1^2)$. This supplies only a local angular-deceleration target for a variable-angular-rate continuation. It does not by itself close such a continuation, because the delayed roots and receiver-weighted acceleration factors must be recomputed for the nonconstant time law.
+where $\Gamma_\ast=r_\ast^3\omega_\ast^2/(\kappa q_1^2)$. This supplies only a local angular-deceleration target for a variable-angular-rate continuation. It does not by itself close such a continuation, because the delayed roots and transmitter-side acceleration weights must be recomputed for the nonconstant time law.
 
 The stronger invariant form of the target is the angular slope of the time law,
 $$
@@ -3083,7 +2999,7 @@ $$
 \frac{\omega_\ast}{\dot\theta(\phi)}-1
 \right)d\phi=0
 $$
-Thus the variable-rate A1 continuation is a finite-memory time-law problem: the local angular-deceleration target must be reconciled with inverse-rate averages over the delayed branch intervals and with the same-box receiver-weighted acceleration contributions. Simple one-parameter extensions of the local slope are not evidence unless they preserve the retained roots and recompute $W^{\mathrm{acc}}$ on the resulting branch ledger.
+Thus the variable-rate A1 continuation is a finite-memory time-law problem: the local angular-deceleration target must be reconciled with inverse-rate averages over the delayed branch intervals and with the same-box transmitter-side acceleration contributions. Simple one-parameter extensions of the local slope are not evidence unless they preserve the retained roots and recompute $W^{\mathrm{acc}}=c_f/|D_t|$ on the resulting branch record.
 
 This finite-memory condition is nevertheless not an algebraic no-go at the turn center. In past-lag coordinates $x=-\phi$, define
 $$
@@ -3147,7 +3063,7 @@ leading affine radial jet at sampled level and still keep a positive retained
 past profile with the expected $3+1$ active-root ledger after tangential
 transport. This does not certify A1 closure. It moves the theorem-grade burden
 to finite-collar control after endpoint-slope cancellation: positivity,
-inactive gaps, Jacobian floors, receiver-weighted acceleration factors, finite memory, tangential transport, and the
+inactive gaps, Jacobian floors, transmitter-side acceleration weights, finite memory, tangential transport, and the
 full radial residual must all be bounded on the same branch chart.
 
 ---
@@ -3191,11 +3107,11 @@ Several analytic checks provide footholds for the remaining closure targets. Roo
 
 1. **Partner-only circular orbit with causal delay ($v<c_f$)** has explicit radial and tangential components, including the positive tangential-drive obstruction for a bare constant-speed circle.
 2. **Uniform circular self-hit ($v>c_f$)** has principal-root onset asymptotics, signed higher-winding branch birth, branchwise radial/tangential projections, transmitter-side diagnostic large-$\beta$ estimates, and a receiver-side redrive target for promoted acceleration sums.
-3. **Variable-pitch spiral retained-chart benchmarks** expose both branch-chart rows and prescribed-history compatibility rows. The fixed A1 constant-$\Omega$ history has active-root, inactive-gap, transmitter-side Jacobian-floor, finite-memory, and root-transport rows, but its force-balance and outward-constant rows require receiver-weighted acceleration-factor intervals on the same boxes before they can act as closure evidence. A1 is therefore a restart target, not a replayable force-balance no-go, until the retained chart is redriven with $W_{ij}^{\mathrm{acc}}$.
+3. **Variable-pitch spiral retained-chart benchmarks** expose both branch-chart rows and prescribed-history compatibility rows. The fixed A1 constant-$\Omega$ history has active-root, inactive-gap, transmitter-side Jacobian-floor, finite-memory, and root-transport rows, but its force-balance and outward-constant rows require transmitter-side acceleration-weight intervals on the same boxes before they can act as closure evidence. A1 is therefore a restart target, not a replayable force-balance no-go, until the retained chart is redriven with $W_{ij}^{\mathrm{acc}}$.
 
 The remaining analytic targets are sharper:
 
-1. build the maximum-curvature branch certificate from active roots, inactive gaps, transmitter-side Jacobian floors, receiver-weighted acceleration-factor intervals, finite memory, root transport, returned-section residuals, radial/tangential balance, and the independent acceleration-ratio row;
+1. build the maximum-curvature branch certificate from active roots, inactive gaps, transmitter-side Jacobian floors, transmitter-side acceleration-weight intervals, finite memory, root transport, returned-section residuals, radial/tangential balance, and the independent acceleration-ratio row;
 2. coarse-grain the master equation around a homogeneous Noether sea and extract the linear response and dispersion relation $\omega(k)$;
 3. prove which regularized energy diagnostic is actually induced by a symmetry-preserving action-level regularization.
 
@@ -3400,18 +3316,18 @@ with leading $1/r_{ij}$ behavior plus geometry-dependent self-hit corrections.
 
 #### Exact Nonlocal Lagrangian
 
-**Receiver-side action target.** A scalar-action scaffold is closure-relevant
-only if its variation produces the receiver-side target
+**Source-density action target.** A scalar-action scaffold is closure-relevant
+only if its variation produces the transmitter-side target
 $W_{ij}^{\mathrm{acc}}\hat{\mathbf r}_{ij}/r_{ij}^2$ on the retained branch
-chart. Transmitter-side Jacobian terms in this subsection are transversality and
-root-chart diagnostics; they are not branch-strength rows unless paired with
-the receiver-side factor.
+chart with $W_{ij}^{\mathrm{acc}}=c_f/|D_{t,ij}|$. The signed playback factor
+$D_r/D_t$ is retained for root continuation but is not multiplied into the
+acceleration or action target.
 
 To connect with variational methods and with later continuum approximations, it is useful to exhibit the **action principle** for the delayed dynamics. Because the interactions depend on path history via causal wakes, the action is necessarily nonlocal in time.
 
 ##### Exact causal-delay Fokker-type interaction term
 
-For the focused scalar causal-locus statistic (definitions, theorem spine, and circular branch-count benchmark), see [Causal Action Functional](causal-action-functional.md#core-functional-definitions). That chapter's scalar action-counting functional is not an acceleration/action row unless it is rebuilt with $W_{ij}^{\mathrm{acc}}/r^2$. It is not automatically identical to the exact Fokker-type variational action below, whose $1/r$ causal kernel must be tested against the receiver-side branch law after variation.
+For the focused scalar causal-locus statistic (definitions, theorem spine, and circular branch-count benchmark), see [Causal Action Functional](causal-action-functional.md#core-functional-definitions). That chapter's scalar action-counting functional is not an acceleration/action row unless it is rebuilt with $W_{ij}^{\mathrm{acc}}/r^2$. It is not automatically identical to the exact Fokker-type variational action below, whose $1/r$ causal kernel must be tested against the transmitter-side branch law after variation.
 
 Let the worldline of architrino $i$ be $\mathbf X_i(T)$. For the action-scaffold discussion, the same universal bookkeeping constant may be inserted in the quadratic kinetic term:
 $$
@@ -3472,9 +3388,8 @@ S_{ij}
 {r_{ij}(T_r;T_t)\,\left|1-\hat{\mathbf{r}}_{ij}(T_r;T_t)\cdot\mathbf V_j(T_t)/c_f\right|}
 $$
 
-This branch-resolved form is written per receiver time after the transmitter-time
-delta has been integrated out. It should not be silently reused as a
-receiver-side action-rate measure. On a retained smooth root $T_t=T_{t,\ell}(T_r)$,
+This branch-resolved form is written per reception time after the transmitter-time
+delta has been integrated out. On a retained smooth root $T_t=T_{t,\ell}(T_r)$,
 the causal constraint also gives
 $$
 \frac{dT_{t,\ell}}{dT_r}
@@ -3482,11 +3397,11 @@ $$
 \frac{c_f-\hat{\mathbf{r}}_{ij}(T_r;T_{t,\ell})\cdot\mathbf V_i(T_r)}
 {c_f-\hat{\mathbf{r}}_{ij}(T_r;T_{t,\ell})\cdot\mathbf V_j(T_{t,\ell})}
 $$
-Therefore a transmitter-emission cadence mapped onto a moving receiver path carries a receiver-side factor in addition to the transmitter-side Jacobian denominator. The action, power, wake-history, and finite-window conservation quantities must consume the receiver-side branch measure on the same retained branch chart. Records that omit $D_r$ are not canonical acceleration or action evidence; fixed-receiver reductions must be obtained by direct substitution in $W_{ij}^{\mathrm{acc}}$.
+This derivative is required for root continuation and change-of-reception-time calculations. It does not create a second acceleration weight. An action, wake-history state, or conservation account that uses $D_r$ as an instantaneous strength must therefore be redriven. Records may retain $D_r/D_t$ as playback evidence while using $c_f/|D_t|$ for acceleration.
 
 ##### Variation and line-of-action acceleration law
 
-This subsection is the bridge from the causal-hit rule to an action-style account. The physical rule has already said what a receiver feels: delayed line-of-action hits with receiver-weighted acceleration factor. The variation below asks whether the same rule can be obtained from one regularized action ledger, so that acceleration, power, and conservation bookkeeping come from the same source rather than from separate matching rules.
+This subsection is the bridge from the causal-hit rule to an action-style account. The physical rule has already said what a receiver feels: delayed line-of-action hits with transmitter-side acceleration weight. The variation below asks whether the same rule can be obtained from one regularized action ledger, so that acceleration, power, and conservation bookkeeping come from the same source rather than from separate matching rules.
 
 The branch law targeted by the action-level variation is:
 
@@ -3530,7 +3445,7 @@ is the remaining distributional part of the proof. After the transmitter-side va
 $$
 \frac{W_{ij}^{\mathrm{acc}}\hat{\mathbf r}_{ij}}{r_{ij}^2}
 $$
-This $1/r^2$ scaling is not an added ansatz in the accepted proof route: it is the pull-back expected from a scale-invariant causal-cone constraint in 3D when varying a $1/r$ Fokker kernel. The full proof now also requires deriving the receiver-weighted acceleration factor and controlling the derivative-of-delta term under the same symmetry-preserving regularization.
+This $1/r^2$ scaling is not an added ansatz in the accepted proof route: it is the pull-back expected from a scale-invariant causal-cone constraint in 3D when varying a $1/r$ Fokker kernel. The full proof now also requires deriving the transmitter-side acceleration weight and controlling the derivative-of-delta term under the same symmetry-preserving regularization.
 
 The derivative-of-delta term has a useful exact reduction on any transversal branch. Since
 $$
@@ -3643,7 +3558,7 @@ $$
 =
 \mathbf{0}
 $$
-or if the action is supplemented by an explicit regularized counterterm whose receiver Euler derivative cancels this residual interior vector. Such a counterterm must come from an invariant action-level mechanism, not from fitting the already accepted acceleration law. Under the receiver-weighted law this is not a completed derivation; it is a warning that the pure scalar $1/r$ Fokker-type action is only a partial variational scaffold until the $W_{ij}^{\mathrm{acc}}$ target is derived.
+or if the action is supplemented by an explicit regularized counterterm whose receiver Euler derivative cancels this residual interior vector. Such a counterterm must come from an invariant action-level mechanism, not from fitting the already accepted acceleration law. Under the transmitter-side law this is not a completed derivation; it is a warning that the pure scalar $1/r$ Fokker-type action is only a partial variational scaffold until the $W_{ij}^{\mathrm{acc}}$ target is derived.
 
 Equivalently, define the direct scale term
 $$
@@ -3687,7 +3602,7 @@ $$
 $$
 with the same branch floors and boundary convention used to define the action. This windowed residual condition is the minimal proof obligation for upgrading the variational scaffold to an exact action derivation of the Master EOM.
 
-**Decision (pure scalar action).** The pure scalar $1/r$ Fokker-type scaffold does not generically derive the receiver-side canonical branch law. The remaining obstruction is local, not merely a boundary convention: the variational scaffold must produce the receiver-side factor as well as the transmitter-side factor.
+**Decision (pure scalar action).** The pure scalar $1/r$ Fokker-type scaffold remains unpromoted. The receiver-factor obstruction has been removed from its target, but the local derivative-of-delta residual and the future-reception boundary problem still must be resolved on the same causal retained-history update.
 
 Equivalently, on an admissible branch with $r_{ij}>0$ and $|J_{ij}|>J_{\min}>0$,
 $$
@@ -3701,7 +3616,7 @@ $$
 \ne
 \mathbf{0}
 $$
-is a certificate that the pure scalar scaffold leaves a nonzero receiver-acceleration residual on that branch. This falsifies the universal claim "the scalar $1/r$ action by itself is the exact action for the Master EOM." It does not falsify the receiver-weighted Master EOM, the action-level Noether bookkeeping on closed charts, or the possibility of a later invariant counterterm derived from a richer regularized action. It does mean the action proof path must start from the receiver-side branch target.
+is a certificate that the pure scalar scaffold leaves a nonzero receiver-acceleration residual on that branch. This falsifies the universal claim "the scalar $1/r$ action by itself is the exact action for the Master EOM." It does not falsify the transmitter-side Master Equation or the possibility of a later causal wake-state action. It means the action proof must close the residual, retained-history update, and conserved accounts without reintroducing receiver velocity into the arriving acceleration.
 
 **No-go scaffold (same-support local scalar counterterm).** The clean local scalar counterterm route is closed under the following restricted assumptions: the added term has the same causal-surface support as the $1/r$ kernel, uses only $\tilde g_{ij}$, $r_{ij}$, and $J_{ij}$ on the existing branch chart, introduces no new variables, adds no off-surface support, and is not fitted after the acceleration law is already known. Suppressing the common coupling and sign factors, the allowed branch-pair form is
 $$
@@ -4019,9 +3934,9 @@ K_{\mathrm{eff}}^{(\eta)}
 $$
 while the transmitter-end gradient is the opposite. Therefore a global spatial translation or rotation of both endpoints changes no interior action density, and a step translation or step rotation across $T_\ast$ exposes exactly the boundary increments above. The characteristic endpoint condition $D_{ij}R_{+}=0$, together with endpoint clearance, is the local reason these increments are wake-history boundary terms rather than a hidden extra receiver acceleration.
 
-This closes the local kernel-normalization and Noether-increment definition for the delayed-interior characteristic-tail repair. It does not by itself certify any proposed branch, terminal label, or Noether braid attractor: a branch chart must still show vanishing Euler residual, finite memory depth, positive transmitter-side Jacobian floors, retained same-record receiver-weighted acceleration-factor rows, and closure of $K_{\mu}+E_{\mathrm{wake,eff}}^{(\eta)}$, $\mathbf{P}_{\mathrm{mech}}+\mathbf{P}_{\mathrm{wake,eff}}^{(\eta)}$, and $\mathbf{J}_{\mathrm{mech}}+\mathbf{J}_{\mathrm{wake,eff}}^{(\eta)}$ over the same retained branch set.
+This closes the local kernel-normalization and Noether-increment definition for the delayed-interior characteristic-tail repair. It does not by itself certify any proposed branch, terminal label, or Noether braid attractor: a branch chart must still show vanishing Euler residual, finite memory depth, positive transmitter-side Jacobian floors, retained same-record transmitter-side acceleration-weight rows, and closure of $K_{\mu}+E_{\mathrm{wake,eff}}^{(\eta)}$, $\mathbf{P}_{\mathrm{mech}}+\mathbf{P}_{\mathrm{wake,eff}}^{(\eta)}$, and $\mathbf{J}_{\mathrm{mech}}+\mathbf{J}_{\mathrm{wake,eff}}^{(\eta)}$ over the same retained branch set.
 
-**Branch-chart conservation pullback.** Let $\mathfrak{B}(\Gamma,\mathcal{S};h,\eta,\epsilon_c)$ be a retained branch chart with active causal-root rows $\mathcal{R}^{\mathrm{act}}$, positive inactive-root gaps, positive transmitter-side Jacobian floor, a retained receiver-weighted acceleration-factor floor $\nu_{\mathrm{rec}}$, finite memory depth, and declared endpoint convention. For a time cut $T_\ast$, define the chart-restricted crossing domain
+**Branch-chart conservation pullback.** Let $\mathfrak{B}(\Gamma,\mathcal{S};h,\eta,\epsilon_c)$ be a retained branch chart with active causal-root rows $\mathcal{R}^{\mathrm{act}}$, positive inactive-root gaps, positive transmitter-side Jacobian floor, a retained transmitter-side acceleration-weight floor $\nu_{\mathrm{rec}}$, finite memory depth, and declared endpoint convention. For a time cut $T_\ast$, define the chart-restricted crossing domain
 $$
 X_{ij}^{\mathfrak{B}}(T_\ast)
 \equiv
@@ -4203,7 +4118,7 @@ which:
 
 - **Kinetic energy** is defined in the usual way at the architrino level, with internal kinetic energy of tightly bound self‑hit binaries contributing to assembly rest masses.
 - **Interaction energy** is not primitive as an instantaneous position function; it is encoded in the nonlocal causal charge $E_{\text{wake}}$ and may be reconstructed from the work-integral form $U$.
-- A **nonlocal variational scaffold** is available under the regularity and boundary assumptions stated above: a multi-time Lagrangian whose kernel enforces the causal isochron geometry and targets the Master EOM with its receiver-side inverse-square law, becoming an exact action derivation only when the constraint residual vanishes or is explicitly cancelled.
+- A **nonlocal variational scaffold** is available under the regularity and boundary assumptions stated above: a multi-time Lagrangian whose kernel enforces the causal isochron geometry and targets the Master EOM with its transmitter-side inverse-square law, becoming an exact action derivation only when the constraint residual vanishes or is explicitly cancelled.
 - The **total energy** for an isolated trajectory is history-aware; in suitable limits it reduces to a canonical $H_\text{eff} = \sum \mathbf{P}^2/2M + U_\text{eff}$ for effective assemblies, with no separate “field energy” ontology.
 
 All energy accounting remains localized to **architrinos and their assemblies** and is only updated at the instants when **causal wake surfaces intersect receivers** at $T = \text{now}$. The action-derived conserved charge is written as $K_{\mu}(T)+E_{\text{wake}}(T)$; a work-integral reconstruction $K_{\mu}(T)+U(T)$ is compatible only along realized trajectories after the same boundary convention and acceleration law have been declared.
@@ -4403,7 +4318,7 @@ E_{\mathrm{eff}}^i(x_{A,\mathrm{eff}}^i,t_{\mathrm{eff}})
 $$
 vanishes in the stated approximation while the underlying branch ledger remains a sum of line-of-action contributions. Failure of this residual is a magnetic-emergence failure, not evidence for inserting an intrinsic cross-product term into the Master EOM.
 
-**Constrained branch-multiplier formulation.** A constrained action is an active evidence row only if its branch kernel carries receiver-weighted acceleration factor. On a fixed retained branch chart, the causal roots may still be represented as constrained variables rather than solved away immediately. Let $T_{t,ij,\ell}(T)$ be the emission time assigned to retained row $\ell$ and define
+**Constrained branch-multiplier formulation.** A constrained action is an active evidence row only if its branch kernel carries transmitter-side acceleration weight. On a fixed retained branch chart, the causal roots may still be represented as constrained variables rather than solved away immediately. Let $T_{t,ij,\ell}(T)$ be the emission time assigned to retained row $\ell$ and define
 $$
 G_{ij,\ell}(T)
 \equiv
@@ -4415,7 +4330,7 @@ r_{ij,\ell}(T)
 \mathbf X_i(T)-\mathbf X_j(T_{t,ij,\ell}(T))
 \right\|
 $$
-The receiver-side target uses
+The transmitter-side target uses
 $$
 \mathcal{K}_{ij,\ell}^{\mathrm{rec},\eta}(T)
 \equiv
@@ -4424,11 +4339,9 @@ $$
 \qquad
 W_{ij,\ell}^{\mathrm{acc}}(T)
 =
-\left|
-\frac{D_{r,ij,\ell}(T)}{D_{t,ij,\ell}(T)}
-\right|
+\frac{c_f}{|D_{t,ij,\ell}(T)|}
 $$
-where $D_t=c_f-\hat{\mathbf r}\cdot\mathbf V_j(T_t)$ and $D_r=c_f-\hat{\mathbf r}\cdot\mathbf V_i(T)$. A branch-reduced constrained scaffold on a window $W$ must therefore be redriven in the form
+where $D_t=c_f-\hat{\mathbf r}\cdot\mathbf V_j(T_t)$. The receiver-side quantity $D_r=c_f-\hat{\mathbf r}\cdot\mathbf V_i(T)$ remains in signed root playback, not in this action-kernel target. A branch-reduced constrained scaffold on a window $W$ must therefore be redriven in the form
 $$
 S_{\mathfrak{B}}^{(\eta)}
 =

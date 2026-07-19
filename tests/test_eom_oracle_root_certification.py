@@ -100,7 +100,7 @@ class CertifiedRetainedHistoryRootTests(unittest.TestCase):
         self.assertLessEqual(certificate.roots[0].lower, Decimal("3"))
         self.assertGreaterEqual(certificate.roots[0].upper, Decimal("3"))
         self.assertLessEqual(certificate.roots[0].width, Decimal("1e-30"))
-        self.assertEqual(certificate.roots[0].source_normal.strict_sign, 1)
+        self.assertEqual(certificate.roots[0].transmitter_factor.strict_sign, 1)
         self.assertFalse(certificate.unresolved_cells)
 
     def test_uncertain_root_at_continuous_segment_join_is_certified(self) -> None:
@@ -140,7 +140,7 @@ class CertifiedRetainedHistoryRootTests(unittest.TestCase):
         self.assertGreaterEqual(root.upper, Decimal("0"))
         self.assertLessEqual(root.width, Decimal("1e-5"))
         self.assertEqual(root.segment_indices, (0, 1))
-        self.assertEqual(root.source_normal.strict_sign, 1)
+        self.assertEqual(root.transmitter_factor.strict_sign, 1)
 
     def test_v5_cubic_endpoint_tangency_and_departure_root_migration(self) -> None:
         with localcontext() as context:
@@ -225,7 +225,7 @@ class CertifiedRetainedHistoryRootTests(unittest.TestCase):
             all(root.width <= Decimal("1e-18") for root in certificate.roots)
         )
         self.assertEqual(
-            [root.source_normal.strict_sign for root in certificate.roots],
+            [root.transmitter_factor.strict_sign for root in certificate.roots],
             [-1, 1],
         )
         self.assertGreater(len(certificate.excluded_cells), 0)
@@ -286,7 +286,7 @@ class CertifiedRetainedHistoryRootTests(unittest.TestCase):
         self.assertTrue(certificate.unresolved_cells)
         self.assertTrue(
             any(
-                cell.reason == "source_normal_interval_contains_zero"
+                cell.reason == "transmitter_factor_interval_contains_zero"
                 for cell in certificate.unresolved_cells
             )
         )
@@ -372,7 +372,7 @@ class CertifiedRetainedHistoryRootTests(unittest.TestCase):
         self.assertLessEqual(root.lower, Decimal("-0.0625"))
         self.assertGreaterEqual(root.upper, Decimal("-0.0625"))
         self.assertLessEqual(root.width, Decimal("1e-5"))
-        self.assertEqual(root.source_normal.strict_sign, 1)
+        self.assertEqual(root.transmitter_factor.strict_sign, 1)
 
     def test_memory_boundary_root_prevents_complete_status(self) -> None:
         # x(S) = 3-S + S(S-1), so g(S)=S(S-1).

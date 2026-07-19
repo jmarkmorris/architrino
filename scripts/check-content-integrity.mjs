@@ -38,7 +38,7 @@ const CHECKS = [
   },
   {
     name: "Check receiver-weighted Master EOM compatibility clean slate",
-    args: ["scripts/check-receiver-normal-clean-slate.mjs"],
+    args: ["scripts/check-transmitter-side-clean-slate.mjs"],
   },
   {
     name: "Check frequency-triplet notation drift",

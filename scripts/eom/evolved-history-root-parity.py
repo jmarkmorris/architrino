@@ -75,12 +75,12 @@ def oracle_status_class(certificate: Any) -> str:
         == certificate.source_history_digest
     )
     if reasons and (
-        reasons <= {"source_normal_interval_contains_zero"}
+        reasons <= {"transmitter_factor_interval_contains_zero"}
         or (
             same_retained_history
             and reasons
             <= {
-                "source_normal_interval_contains_zero",
+                "transmitter_factor_interval_contains_zero",
                 "self_root_cluster_requires_finite_width",
             }
         )
@@ -111,8 +111,8 @@ def first_row_divergence(native: dict[str, Any], oracle: Any) -> str | None:
             return f"root_{index}_native_width_exceeds_tolerance"
         if oracle_root.width > Decimal(native["root_tolerance"]):
             return f"root_{index}_oracle_width_exceeds_tolerance"
-        if native_root["source_normal_sign"] != oracle_root.source_normal.strict_sign:
-            return f"root_{index}_source_normal_sign"
+        if native_root["transmitter_factor_sign"] != oracle_root.transmitter_factor.strict_sign:
+            return f"root_{index}_transmitter_factor_sign"
     return None
 
 

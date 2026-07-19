@@ -2,7 +2,7 @@
 
 ## Status
 
-- Review target: [Source-Density Finite-Width Equation and Simple-Root Limit](analysis-source-density-finite-width-simple-root-limit.md)
+- Review target: [Source-Density Finite-Width Equation and Simple-Root Limit](analysis-transmitter-side-finite-width-simple-root-limit.md)
 - Review method: independent reconstruction from the emission measure, an exact moving-receiver control, and a joint-limit audit
 - Standing: priority analysis; not canon and not an EOM solver specification
 - Verdict: pass after the qualifications and corrections recorded below

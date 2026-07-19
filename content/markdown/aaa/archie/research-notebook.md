@@ -256,7 +256,7 @@ The standalone [Photon and Polarization Visualization App](../../../../photon.ht
 
 The app lets the reader change the candidate instead of only looking at a picture. Each braid has `I`, `M`, and `O` binaries with enable switches, frequency, radius, and phase controls. The $\Delta x$ control changes the gap between the two braids in the side view, while the Virtual Observer controls choose the $(x,y,z)$ point where the app calculates the displayed electric-field readout.
 
-That electric-field readout is not hand-drawn. The runtime sums delayed contributions from the active architrinos, finds causal roots, weights them by the receiver-weighted acceleration factor $W^{\mathrm{acc}}/R^2$ on the same retained root, and reconstructs the transverse $\mathbf E$ signal at the Virtual Observer. The separate $\mathbf B$ graph is omitted because, in the plane-wave comparison case, $\mathbf B$ follows from $\mathbf E$ by $\mathbf B=(1/c_f)\hat{\mathbf x}\times\mathbf E$.
+That electric-field readout is not hand-drawn. The runtime sums delayed contributions from the active architrinos, finds causal roots, weights them by the transmitter-side acceleration weight $W^{\mathrm{acc}}/R^2$ on the same retained root, and reconstructs the transverse $\mathbf E$ signal at the Virtual Observer. The separate $\mathbf B$ graph is omitted because, in the plane-wave comparison case, $\mathbf B$ follows from $\mathbf E$ by $\mathbf B=(1/c_f)\hat{\mathbf x}\times\mathbf E$.
 
 The polarization panel asks what kind of field the candidate actually produces. It fits $E_y(t)$ and $E_z(t)$ over one cycle and reports whether the observed signal looks weak, linear, circular, or elliptical. This is a diagnostic result, not a proof: the app helps find promising planar-pair settings, but photon closure still requires a separate branch-ledger argument.
 
@@ -325,7 +325,7 @@ Relevant files:
 - [Causal action functional](../dynamics/causal-action-functional.md)
 - [Lorentz near-miss in historical context](../philosophy-history/historical-context-and-missed-opportunities.md#lorentz-before-einstein-the-almost-substrate-moment)
 
-The master equation uses the receiver-weighted acceleration factor in the canonical per-hit law:
+The master equation uses the transmitter-side acceleration weight in the canonical per-hit law:
 $$
 \mathbf{a}_{ij}(t; t_0)
 =
@@ -334,7 +334,7 @@ $$
 W_{ij}^{\mathrm{acc}}(t;t_0)\,
 \hat{\mathbf{r}}_{ij}(t;t_0),
 \qquad
-W_{ij}^{\mathrm{acc}}=\left|\frac{D_{r,ij}}{D_{t,ij}}\right|
+W_{ij}^{\mathrm{acc}}=\frac{c_f}{|D_{t,ij}|}
 $$
 with
 $$
@@ -344,13 +344,13 @@ D_{r,ij}=c_f-\mathbf{v}_i(t)\cdot\hat{\mathbf{r}}_{ij}(t;t_0).
 $$
 Source strength itself does not change with speed. The source emits according to the same constant-cadence rule. The velocity dependence enters because both transceiver paths set the local wake crossing geometry: the transmitter-side factor records how the emitted wake surfaces bunch or dilate, while the receiver-side factor records how the receiver cuts those surfaces.
 
-Receiver velocity appears in the received branch magnitude through $D_{r,ij}$ and in the work rate $\mathbf{F}\cdot\mathbf{v}$. Magnetic-like behavior remains an emergent closure target built from delayed geometry, receiver-weighted acceleration factor, superposed radial hits, and assembly/Noether sea response; it is not inserted as a primitive cross-product force.
+Receiver velocity appears in the received branch magnitude through $D_{r,ij}$ and in the work rate $\mathbf{F}\cdot\mathbf{v}$. Magnetic-like behavior remains an emergent closure target built from delayed geometry, transmitter-side acceleration weight, superposed radial hits, and assembly/Noether sea response; it is not inserted as a primitive cross-product force.
 
 The canon separates theorem-backed statements from closure targets. Current documents should not state, without local hypotheses, that the master equation is already the exact Euler-Lagrange variation of a completed non-local action or that global energy-momentum conservation is fully restored in every regime. The canonical stance is narrower: the regularized action-functional program supplies a variational lens, the per-hit law supplies the acceleration-first dynamics, and energy bookkeeping must state the assumptions under which work-energy, Noether-style, or action-based conclusions are being claimed.
 
 Corpus requirements:
 
-- remove bare $1/r^2$ and transmitter-side-only per-hit laws where receiver-weighted acceleration factor belongs,
+- remove bare $1/r^2$ and transmitter-side-only per-hit laws where transmitter-side acceleration weight belongs,
 - avoid splitting the theory into a permanent "reduced model" and a separate "candidate action" unless the local document is explicitly discussing an approximation,
 - replace over-broad conservation claims with assumption-scoped theorem language,
 - keep constant emission cadence distinct from received causal-flux modulation,

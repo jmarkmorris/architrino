@@ -254,7 +254,7 @@ export function encodeNativeRequest(request, { cachedHistories = null } = {}) {
       certifiedBudget.allocationCanonicalJson,
       allocations.topLevel.positionIncrement,
       allocations.topLevel.velocityIncrement,
-      allocations.ordinary.sourceNormalFloor,
+      allocations.ordinary.transmitterFactorFloor,
       allocations.finiteWidth.causalWidth,
       allocations.finiteWidth.receiverImpulseTotal,
       allocations.finiteWidth.receiverPositionMomentTotal,

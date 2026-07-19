@@ -2,7 +2,7 @@
 
 This chapter explains how action-like scalar summaries are allowed to enter receiver-weighted delayed dynamics. The [Master Equation](master-equation.md#the-master-equation-canonical-form) remains the vector law. The causal action functional is a branch statistic used to compare retained histories, estimate barriers, and feed stability or mass-response tests without replacing the line-of-action acceleration.
 
-The central warning is simple: a scalar action row is valid only on the same retained branch record that supplies the causal roots, transmitter-side factor, receiver-side factor, and receiver-weighted acceleration factor. Otherwise the statistic has lost the causal information that made the branch physical.
+The central warning is simple: a scalar action row is valid only on the same retained branch record that supplies the causal roots, transmitter-side factor, receiver-side factor, and transmitter-side acceleration weight. Otherwise the statistic has lost the causal information that made the branch physical.
 
 ## Problem Statement and Goal
 
@@ -10,15 +10,13 @@ This chapter gives the action-functional side of the canonical receiver-weighted
 job is not to preserve a separate scalar law. Its job is to define which
 retained branch records may be used for action, stability, mass-response, and
 transition-cost calculations after the branch has been rebuilt with
-receiver-weighted acceleration factor.
+transmitter-side acceleration weight.
 
 The active branch strength is
 $$
 W_{ij}^{\mathrm{acc}}(T_r;T_t)
 =
-\left|
-\frac{D_{r,ij}(T_r;T_t)}{D_{t,ij}(T_r;T_t)}
-\right|,
+\frac{c_f}{|D_{t,ij}(T_r;T_t)|},
 $$
 with
 $$
@@ -31,13 +29,9 @@ D_{r,ij}
 c_f-\mathbf V_i(T_r)\cdot\hat{\mathbf r}_{ij}(T_r;T_t).
 $$
 
-Plain language: a retained hit must say both how the transmitter laid down the wake and how the receiver crossed that same wake. The ratio above is the receiver-weighted acceleration factor attached to that one retained root.
+Plain language: a retained hit must say how densely the transmitter laid down the arriving wake surface. The receiver-side quantity is recorded separately through the signed playback derivative $D_r/D_t$.
 
-A branch record that contains only $D_t$ is incomplete for current acceleration/action
-use. $D_t$ remains the transmitter-side transversality denominator for root
-existence, caustic routing, and inactive-gap diagnostics. Acceleration, action, power,
-wake-history charge, mass-response, and conservation rows require $D_r$ on the
-same retained record.
+A branch record that contains $D_t$ but omits $D_r$ can still define the instantaneous acceleration weight, but it cannot certify root continuation through reception time. Action, power, wake-history, mass-response, and conservation claims must state whether they consume transmitter-side acceleration, signed root playback, or both; they may not multiply the two by default.
 
 ## Core Functional Definitions
 
@@ -70,7 +64,7 @@ branch carries over the window after signs, coupling scale, and push direction
 have been stripped off.
 
 This is a scalar statistic, not the vector Master EOM itself. It keeps the same
-causal roots and receiver-weighted acceleration factor while discarding the line-of-action
+causal roots and transmitter-side acceleration weight while discarding the line-of-action
 direction. Its use is limited:
 
 1. compare candidate branch classes,
@@ -113,7 +107,7 @@ branch label persists as long as the same retained record keeps:
 | root residual | zero on the retained box |
 | transmitter-side factor | bounded away from zero except declared caustic routing |
 | receiver-side factor | present on the same retained record |
-| receiver-weighted acceleration factor | outward-rounded $W^{\mathrm{acc}}$ interval |
+| transmitter-side acceleration weight | outward-rounded $W^{\mathrm{acc}}$ interval |
 | inactive gaps | positive on the retained complement |
 | finite memory | declared finite horizon |
 | regulator state | declared $\eta$ and $\epsilon_c$ limits or finite values |
@@ -224,7 +218,7 @@ $$
 
 This is a transition-cost target, not a proof of stability. A promoted barrier
 must state the retained branch path, the root identity across the path, the
-regulator state, and the same-record receiver-weighted acceleration-factor rows. If a
+regulator state, and the same-record transmitter-side acceleration-weight rows. If a
 later certificate uses an integral barrier instead, the promoted record must
 also declare the path measure, for example arclength in a stated metric on
 chart space.
@@ -236,7 +230,7 @@ A branch certificate that consumes this chapter must report:
 | Certificate row | Required content |
 | --- | --- |
 | branch identity | retained roots, inactive gaps, finite memory |
-| receiver-weighted acceleration factor | $D_t$, $D_r$, and $W^{\mathrm{acc}}$ enclosed on the same retained box |
+| transmitter-side acceleration weight | $D_t$, $D_r$, and $W^{\mathrm{acc}}$ enclosed on the same retained box |
 | scalar stationarity | first-variation or discrete comparison row for $\bar{\mathcal A}_{\mathrm{rec}}$ |
 | vector consistency | Master EOM residual on the same retained record |
 | Noether pullback | energy, momentum, and angular-momentum wake-history rows from the same action or realized-trajectory record; see [Energy](energy.md#energy-conservation-and-exchange) and [Delay Dynamics Energy](../validation/simulations/action-energy/delay-dynamics-energy.md#accepted-construction-routes) |

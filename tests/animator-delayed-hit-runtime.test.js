@@ -154,7 +154,7 @@ test("animator delayed-hit runtime consumes solver-owned path-history hit rows",
   assert.equal(hits[0].status, "path-history");
 });
 
-test("animator delayed-hit rows use receiver-weighted acceleration for moving receivers", () => {
+test("animator delayed-hit records keep acceleration independent of receiver velocity", () => {
   const rowResponse = createAnimatorDelayedHitRowsFromStreamDescriptors(
     {
       streamId: "fixture-moving-receiver-stream",
@@ -187,8 +187,8 @@ test("animator delayed-hit rows use receiver-weighted acceleration for moving re
   const [row] = rowResponse.rows;
   assert.ok(Math.abs(row.hitTime - 1.6) < 0.002);
   assert.equal(row.jacobian, 1);
-  assert.equal(row.receiverNormalCrossingFactor, 1.25);
-  assert.equal(row.receiverNormalFactor, 1.25);
-  assert.equal(row.unsignedReceiverNormalFactor, 1.25);
-  assert.equal(row.strength, 1.25);
+  assert.equal(row.receiverCrossingRatio, 1.25);
+  assert.equal(row.rootPlayback, 1.25);
+  assert.equal(row.accelerationWeight, 1);
+  assert.equal(row.strength, 1);
 });

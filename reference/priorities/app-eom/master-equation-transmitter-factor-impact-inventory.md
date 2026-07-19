@@ -68,7 +68,7 @@ as `receiver_strength` and multiplies the inverse-square contribution by it. The
 - `scripts/eom/oracle/certified_acceleration.py`
 - `scripts/eom/oracle/reference_kernel.py`
 
-The same files also multiply the finite-width kernel by $|D_r|$. A source-density implementation would instead multiply the finite-width kernel by $c_f$ and the sharp kernel by $c_f/|D_t|$.
+The same files also multiply the finite-width kernel by $|D_r|$. A transmitter-side implementation would instead multiply the finite-width kernel by $c_f$ and the sharp kernel by $c_f/|D_t|$.
 
 Initial disposition: **semantic replacement required only after the finite-width physical parameters, coincident-birth rule, causal recoil decision, and independent oracle strategy are settled**.
 
@@ -123,13 +123,13 @@ The validator surface includes:
 - `scripts/config/foundational-impact-contracts.json`
 - `scripts/validate-content.mjs`
 
-The receiver-normal clean-slate check deliberately enforces the current law. It cannot be changed into a source-density acceptance test in the same edit that changes the law and then be presented as independent evidence.
+The receiver-normal clean-slate check deliberately enforces the current law. It cannot be changed into a transmitter-side acceptance test in the same edit that changes the law and then be presented as independent evidence.
 
 Initial disposition:
 
 - preserve it unchanged while the current binding remains canonical;
 - during authorized migration, rename or freeze it as an old-law historical check;
-- create a new source-density checker only after the accepted equation, schema version, and independent analytic controls are fixed;
+- create a new transmitter-side checker only after the accepted equation, schema version, and independent analytic controls are fixed;
 - keep root-transport checks for $D_r/D_t$ in the new validation family.
 
 ## 6. Tests and oracles
@@ -180,6 +180,6 @@ Both searches must be rerun immediately before an authorized migration because c
 
 ## 9. Disposition
 
-This inventory, its [frozen-evidence ledger](master-equation-frozen-evidence-disposition-ledger.md), and the [live machine-field disposition](master-equation-machine-field-disposition.md) close the architecture-level, current frozen-artifact, and field-family classifications. The combined result shows that promotion is a versioned semantic change, not a formula substitution. Searches must still be rerun immediately before migration to catch concurrent additions.
+This inventory and its [frozen-evidence ledger](master-equation-frozen-evidence-disposition-ledger.md) close the architecture-level and frozen-artifact classifications. The migration is a versioned semantic change, not a formula substitution. Searches must still be rerun immediately before promotion to catch concurrent additions.
 
 Promotion classification: **priority-only; migration deferred until the equation's coincident-birth and causal-recoil blockers are resolved**.

@@ -297,15 +297,16 @@ function createDelayedHitRow({
   const displacement = vectorSubtract(receiverPosition, emissionPosition);
   const distance = vectorNorm(displacement);
   const unitDirection = unitVector(displacement, distance);
-  const receiverNormalSpeed = vectorDot(intersection.segment.velocity, unitDirection);
-  const sourceNormalSpeed = 0;
-  const sourceNormalDenominator = emission.fieldSpeed - sourceNormalSpeed;
-  const receiverNormalNumerator = emission.fieldSpeed - receiverNormalSpeed;
-  const receiverNormalCrossingFactor = receiverNormalNumerator / emission.fieldSpeed;
-  const receiverNormalFactor = receiverNormalNumerator / sourceNormalDenominator;
-  const jacobian = sourceNormalDenominator;
-  const strength = Number.isFinite(receiverNormalFactor) && Math.abs(sourceNormalDenominator) > SMALL_JACOBIAN
-    ? Math.abs(receiverNormalFactor)
+  const receiverRadialSpeedAtReception = vectorDot(intersection.segment.velocity, unitDirection);
+  const transmitterRadialSpeedAtEmission = 0;
+  const transmitterFactor = emission.fieldSpeed - transmitterRadialSpeedAtEmission;
+  const receiverFactor = emission.fieldSpeed - receiverRadialSpeedAtReception;
+  const receiverCrossingRatio = receiverFactor / emission.fieldSpeed;
+  const rootPlayback = receiverFactor / transmitterFactor;
+  const accelerationWeight = emission.fieldSpeed / Math.abs(transmitterFactor);
+  const jacobian = transmitterFactor;
+  const strength = Number.isFinite(accelerationWeight) && Math.abs(transmitterFactor) > SMALL_JACOBIAN
+    ? accelerationWeight
     : 0;
   const displayStrength = distance > 0 ? 1 / (distance * distance) : 0;
   const emitterId = emission.emitterId;
@@ -325,14 +326,14 @@ function createDelayedHitRow({
     distance,
     jacobian,
     strength,
-    sourceNormalSpeed,
-    receiverNormalSpeed,
-    sourceNormalDenominator,
-    receiverNormalNumerator,
-    receiverNormalCrossingFactor,
-    receiverNormalFactor,
-    unsignedReceiverNormalFactor: Math.abs(receiverNormalFactor),
-    receiverNormalStatusCode: Number.isFinite(receiverNormalFactor) ? 0 : 25,
+    transmitterRadialSpeedAtEmission,
+    receiverRadialSpeedAtReception,
+    transmitterFactor,
+    receiverFactor,
+    receiverCrossingRatio,
+    rootPlayback,
+    accelerationWeight,
+    causalFactorStatusCode: Number.isFinite(rootPlayback) ? 0 : 25,
     emissionPoint: emissionPosition,
     receiverPoint: receiverPosition,
     unitDirection,
@@ -349,7 +350,7 @@ function createDelayedHitRow({
       residual: intersection.residual,
       iterationCount: intersection.iterations,
       fieldSpeed: emission.fieldSpeed,
-      receiverNormalSpeed,
+      receiverRadialSpeedAtReception,
       displayStrength,
       ...(emission.metadata && typeof emission.metadata === "object"
         ? { emissionMetadata: { ...emission.metadata } }

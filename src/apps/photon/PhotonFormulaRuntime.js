@@ -434,7 +434,7 @@ function createDefaultPhotonSelfHitGeometryModel() {
     forceLawVersion: "causal-delay-v1",
     constantsHash: "constants:photon",
     causalSpeedPolicy: "branch-signal-speed-ratio",
-    branchPolicy: "first-positive-same-source-root",
+    branchPolicy: "first-positive-same-transmitter-root",
     unitConvention: "relative-speed-ratio",
     compatiblePrecisionPaths: ["scaled_f64_strict", "event_root_focused", "extended_precision"],
   };
@@ -458,7 +458,7 @@ function createDefaultPhotonSelfHitGeometryEnvelope({
       units: "cycles",
     },
     timeResolutionHint: 1 / (DEFAULT_SELF_HIT_SCAN_SUBDIVISIONS * 2),
-    interactionPolicy: "same-source-enabled",
+    interactionPolicy: "same-transmitter-enabled",
     expectedBranchComplexity:
       maxRatio > 1 + DEFAULT_SELF_HIT_FIELD_SPEED_TOLERANCE ? "medium" : "low",
     outputDetail: "geometry",
@@ -837,7 +837,7 @@ function summarizePhotonHelicalSelfHitPhaseFamilies(helicalRows = []) {
     const roots = Array.isArray(row.roots) ? row.roots : [];
     roots.forEach((root) => {
       const phase = root.phaseAtHit ?? row.phaseAtHit;
-      if (!phase || phase.rootKind !== "same-source") {
+      if (!phase || phase.rootKind !== "same-transmitter") {
         return;
       }
       const sourceCycleIndex = Number.isFinite(Number(phase.sourcePhaseCycleIndex))
@@ -1015,7 +1015,7 @@ function summarizePhotonSelfHitRows(rows = [], status = "ok", message = "", heli
 
 function createPhotonHelicalSelfHitRootRequest(state, sourceRef, measurement, hitTime, options = {}) {
   const provider = createPhotonConstrainedSourceHistoryProvider(state, sourceRef, measurement, {
-    sourceHistoryKind: "moving-circular-same-source",
+    sourceHistoryKind: "moving-circular-same-transmitter",
     receiverHistoryKind: "same-constrained-architrino-source",
   });
   const layer = getPhotonLayer(state, sourceRef.braidId, sourceRef.layerId);
@@ -1094,7 +1094,7 @@ async function createPhotonHelicalSelfHitRow(state, descriptor, chargeType, item
   return {
     analysisId: PHOTON_ANALYSIS_ID,
     itemIndex,
-    sourceHistoryKind: "moving-circular-same-source",
+    sourceHistoryKind: "moving-circular-same-transmitter",
     sourceHistoryProviderId:
       request.sourceHistoryProvider?.providerId ?? PHOTON_SOURCE_HISTORY_PROVIDER_ID,
     sourceHistoryProviderKind:
@@ -1405,8 +1405,8 @@ function createPhotonSelfHitPhaseAtHitRecord(
     : ((receiverRawPhase % TWO_PI) + TWO_PI) % TWO_PI;
   return {
     ...sourceRecord,
-    rootKind: "same-source",
-    receiverKind: "same-source",
+    rootKind: "same-transmitter",
+    receiverKind: "same-transmitter",
     receiverRole: sourceRecord.sourceRole,
     receiverBraidId: sourceRef.braidId,
     receiverLayerId: sourceRef.layerId,
@@ -1583,53 +1583,48 @@ function closePhotonScaled(left, right, tolerance = 1e-9) {
   return Math.abs(left - right) <= tolerance * scale;
 }
 
-function resolvePhotonReceiverNormalRows(root = {}) {
-  const branchWeight = readPhotonOptionalFiniteNumber(root.branchWeight);
-  const sourceNormalDenominator = readPhotonOptionalFiniteNumber(root.sourceNormalDenominator);
-  const receiverNormalNumerator = readPhotonOptionalFiniteNumber(root.receiverNormalNumerator);
-  const receiverNormalFactor = readPhotonOptionalFiniteNumber(root.receiverNormalFactor);
-  const unsignedReceiverNormalFactor = readPhotonOptionalFiniteNumber(root.unsignedReceiverNormalFactor);
+function resolvePhotonCausalFactorRecord(root = {}, signalSpeed = 1) {
+  const accelerationWeight = readPhotonOptionalFiniteNumber(root.accelerationWeight);
+  const transmitterFactor = readPhotonOptionalFiniteNumber(root.transmitterFactor);
+  const receiverFactor = readPhotonOptionalFiniteNumber(root.receiverFactor);
+  const rootPlayback = readPhotonOptionalFiniteNumber(root.rootPlayback);
   if (
-    branchWeight === null ||
-    sourceNormalDenominator === null ||
-    receiverNormalNumerator === null ||
-    receiverNormalFactor === null ||
-    unsignedReceiverNormalFactor === null
+    accelerationWeight === null ||
+    transmitterFactor === null ||
+    receiverFactor === null ||
+    rootPlayback === null
   ) {
     return {
-      branchWeight: 0,
-      sourceNormalDenominator: sourceNormalDenominator ?? 0,
-      receiverNormalNumerator: receiverNormalNumerator ?? 0,
-      receiverNormalFactor: receiverNormalFactor ?? 0,
-      unsignedReceiverNormalFactor: unsignedReceiverNormalFactor ?? 0,
-      evidenceStatus: "receiver_normal_branch_rows_missing",
+      accelerationWeight: 0,
+      transmitterFactor: transmitterFactor ?? 0,
+      receiverFactor: receiverFactor ?? 0,
+      rootPlayback: rootPlayback ?? 0,
+      evidenceStatus: "causal_factor_record_missing",
     };
   }
-  const expectedReceiverNormalFactor = receiverNormalNumerator / sourceNormalDenominator;
+  const expectedRootPlayback = receiverFactor / transmitterFactor;
+  const expectedAccelerationWeight = signalSpeed / Math.abs(transmitterFactor);
   if (
-    branchWeight < 0 ||
-    unsignedReceiverNormalFactor < 0 ||
-    Math.abs(sourceNormalDenominator) <= EPSILON ||
-    !Number.isFinite(expectedReceiverNormalFactor) ||
-    !closePhotonScaled(receiverNormalFactor, expectedReceiverNormalFactor) ||
-    !closePhotonScaled(unsignedReceiverNormalFactor, Math.abs(receiverNormalFactor)) ||
-    !closePhotonScaled(branchWeight, unsignedReceiverNormalFactor)
+    accelerationWeight < 0 ||
+    Math.abs(transmitterFactor) <= EPSILON ||
+    !Number.isFinite(expectedRootPlayback) ||
+    !Number.isFinite(expectedAccelerationWeight) ||
+    !closePhotonScaled(rootPlayback, expectedRootPlayback) ||
+    !closePhotonScaled(accelerationWeight, expectedAccelerationWeight)
   ) {
     return {
-      branchWeight: 0,
-      sourceNormalDenominator,
-      receiverNormalNumerator,
-      receiverNormalFactor,
-      unsignedReceiverNormalFactor,
-      evidenceStatus: "receiver_normal_branch_rows_invalid",
+      accelerationWeight: 0,
+      transmitterFactor,
+      receiverFactor,
+      rootPlayback,
+      evidenceStatus: "causal_factor_record_invalid",
     };
   }
   return {
-    branchWeight,
-    sourceNormalDenominator,
-    receiverNormalNumerator,
-    receiverNormalFactor,
-    unsignedReceiverNormalFactor,
+    accelerationWeight,
+    transmitterFactor,
+    receiverFactor,
+    rootPlayback,
     evidenceStatus: "ok",
   };
 }
@@ -1637,26 +1632,25 @@ function resolvePhotonReceiverNormalRows(root = {}) {
 function computePhotonDelayedContribution(root, measurement) {
   const n = root.direction;
   const signalSpeed = Math.max(EPSILON, measurement.emissionSpeedCf);
-  const sourceNormalSpeed = readPhotonFiniteNumber(
-    root.sourceNormalSpeed,
+  const transmitterRadialSpeedAtEmission = readPhotonFiniteNumber(
+    root.transmitterRadialSpeedAtEmission,
     dotVector(root.kinematics.velocity, n)
   );
-  const receiverNormalSpeed = readPhotonFiniteNumber(root.receiverNormalSpeed, 0);
-  const receiverNormalCrossingFactor = readPhotonFiniteNumber(root.receiverNormalCrossingFactor, 0);
+  const receiverRadialSpeedAtReception = readPhotonFiniteNumber(root.receiverRadialSpeedAtReception, 0);
+  const receiverCrossingRatio = readPhotonFiniteNumber(root.receiverCrossingRatio, 0);
   const {
-    branchWeight,
-    sourceNormalDenominator,
-    receiverNormalNumerator,
-    receiverNormalFactor,
-    unsignedReceiverNormalFactor,
+    accelerationWeight,
+    transmitterFactor,
+    receiverFactor,
+    rootPlayback,
     evidenceStatus,
-  } = resolvePhotonReceiverNormalRows(root);
-  const jacobian = sourceNormalDenominator;
+  } = resolvePhotonCausalFactorRecord(root, signalSpeed);
+  const jacobian = transmitterFactor;
   const jacobianAbs = Math.abs(jacobian);
   const sourceSpeedRatio = vectorMagnitude(root.kinematics.velocity) / signalSpeed;
   const receiverAcceleration = scaleVector(
     n,
-    root.kinematics.chargeSign * branchWeight / (root.distance * root.distance)
+    root.kinematics.chargeSign * accelerationWeight / (root.distance * root.distance)
   );
   const electric = receiverAcceleration;
   const comparisonB = scaleVector(crossVector(X_HAT, electric), 1 / signalSpeed);
@@ -1666,18 +1660,17 @@ function computePhotonDelayedContribution(root, measurement) {
     delaySolveGap: Math.abs(root.residual),
     jacobian,
     jacobianAbs,
-    branchWeight,
-    sourceNormalSpeed,
-    receiverNormalSpeed,
-    sourceNormalDenominator,
-    receiverNormalNumerator,
-    receiverNormalCrossingFactor,
-    receiverNormalFactor,
-    unsignedReceiverNormalFactor,
-    receiverNormalStatusCode: Number.isFinite(Number(root.receiverNormalStatusCode))
-      ? Number(root.receiverNormalStatusCode)
+    accelerationWeight,
+    transmitterRadialSpeedAtEmission,
+    receiverRadialSpeedAtReception,
+    transmitterFactor,
+    receiverFactor,
+    receiverCrossingRatio,
+    rootPlayback,
+    causalFactorStatusCode: Number.isFinite(Number(root.causalFactorStatusCode))
+      ? Number(root.causalFactorStatusCode)
       : evidenceStatus === "ok" ? 0 : -1,
-    receiverNormalEvidenceStatus: evidenceStatus,
+    causalFactorEvidenceStatus: evidenceStatus,
     sourceSpeedRatio,
     receiverAcceleration,
     electric,
@@ -1699,15 +1692,14 @@ function createPhotonObserverFieldBranchSumRequest(roots = [], measurement = {})
       distance: root.distance,
       residual: root.residual,
       delay: root.delay,
-      branchWeight: root.branchWeight,
-      sourceNormalSpeed: root.sourceNormalSpeed,
-      receiverNormalSpeed: root.receiverNormalSpeed,
-      sourceNormalDenominator: root.sourceNormalDenominator,
-      receiverNormalNumerator: root.receiverNormalNumerator,
-      receiverNormalCrossingFactor: root.receiverNormalCrossingFactor,
-      receiverNormalFactor: root.receiverNormalFactor,
-      unsignedReceiverNormalFactor: root.unsignedReceiverNormalFactor,
-      receiverNormalStatusCode: root.receiverNormalStatusCode,
+      accelerationWeight: root.accelerationWeight,
+      transmitterRadialSpeedAtEmission: root.transmitterRadialSpeedAtEmission,
+      receiverRadialSpeedAtReception: root.receiverRadialSpeedAtReception,
+      transmitterFactor: root.transmitterFactor,
+      receiverFactor: root.receiverFactor,
+      receiverCrossingRatio: root.receiverCrossingRatio,
+      rootPlayback: root.rootPlayback,
+      causalFactorStatusCode: root.causalFactorStatusCode,
       sourceHistoryKind: root.sourceHistoryKind,
       sourceHistoryProviderId: root.sourceHistoryProviderId ?? PHOTON_SOURCE_HISTORY_PROVIDER_ID,
       analysisBoundary: root.analysisBoundary ?? PHOTON_SOURCE_HISTORY_BOUNDARY,
@@ -1726,10 +1718,10 @@ function createPhotonAbsoluteObserverFieldContributionsFromSolverResponse(
     ...(solverContributions[index] ?? computePhotonDelayedContribution(root, measurement)),
   }));
   return {
-    sourceMode: "prescribed_path_absolute_history_receiver_normal_root_branch_sum",
+    sourceMode: "prescribed_path_absolute_history_transmitter_acceleration_sum",
     sourceHistoryProviderId: PHOTON_SOURCE_HISTORY_PROVIDER_ID,
     fieldReconstructionOwner: PHOTON_SOURCE_HISTORY_BOUNDARY.fieldReconstructionOwner,
-    receiverNormalOwner: PHOTON_SOURCE_HISTORY_BOUNDARY.receiverNormalOwner,
+    rootPlaybackOwner: PHOTON_SOURCE_HISTORY_BOUNDARY.rootPlaybackOwner,
     analysisFieldSchema: response.schema ?? "",
     contributions,
     electric: contributions.reduce(
@@ -2025,7 +2017,7 @@ function createPhotonDelayedEmissionFieldResult(fieldSum, rootSets, sourceRefs, 
     analysisId: PHOTON_ANALYSIS_ID,
     sourceHistoryProviderId: fieldSum.sourceHistoryProviderId ?? "",
     fieldReconstructionOwner: fieldSum.fieldReconstructionOwner ?? "",
-    receiverNormalOwner: fieldSum.receiverNormalOwner ?? "",
+    rootPlaybackOwner: fieldSum.rootPlaybackOwner ?? "",
     measurement,
     contributions,
     sourceCount: sourceRefs.length,
@@ -2217,7 +2209,7 @@ export async function computePhotonDelayedEmissionFieldWithPrescribedPathAnalysi
           ),
           unstableSourceCount: contributions.filter(
             (contribution) =>
-              contribution.receiverNormalEvidenceStatus !== "ok" ||
+              contribution.causalFactorEvidenceStatus !== "ok" ||
               contribution.delaySolveGap > 0.05 ||
               contribution.jacobianAbs <= JACOBIAN_FLOOR
           ).length,
@@ -2257,7 +2249,7 @@ export async function computePhotonObserverFieldWithPrescribedPathAnalysis(state
     analysisId: PHOTON_ANALYSIS_ID,
     sourceHistoryProviderId: delayedField.sourceHistoryProviderId ?? "",
     fieldReconstructionOwner: delayedField.fieldReconstructionOwner ?? "",
-    receiverNormalOwner: delayedField.receiverNormalOwner ?? "",
+    rootPlaybackOwner: delayedField.rootPlaybackOwner ?? "",
     measurement: delayedField.measurement,
     sourceCount: delayedField.sourceCount,
     rootCount: delayedField.rootCount,
@@ -2547,7 +2539,7 @@ export async function buildPhotonDerivedPolarizationTraceWithPrescribedPathAnaly
     analysisFieldSchema: currentField.analysisFieldSchema ?? "",
     sourceHistoryProviderId: currentField.sourceHistoryProviderId ?? "",
     fieldReconstructionOwner: currentField.fieldReconstructionOwner ?? "",
-    receiverNormalOwner: currentField.receiverNormalOwner ?? "",
+    rootPlaybackOwner: currentField.rootPlaybackOwner ?? "",
     referenceFrequency,
     cycleDuration,
     fitCycleStart,
@@ -2670,7 +2662,7 @@ export async function buildPhotonPlotSamplesWithPrescribedPathAnalysis(
     analysisId: PHOTON_ANALYSIS_ID,
     sourceHistoryProviderId: fields[0]?.field?.sourceHistoryProviderId ?? "",
     fieldReconstructionOwner: fields[0]?.field?.fieldReconstructionOwner ?? "",
-    receiverNormalOwner: fields[0]?.field?.receiverNormalOwner ?? "",
+    rootPlaybackOwner: fields[0]?.field?.rootPlaybackOwner ?? "",
     middleCycle: getPhotonMiddleCycleBounds(state),
     amplitudeScale,
     samples,

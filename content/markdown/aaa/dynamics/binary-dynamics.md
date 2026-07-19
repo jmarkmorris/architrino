@@ -28,7 +28,7 @@ $$
 $$
 The Electrino's emissions govern the Positrino's symmetric response through the corresponding partner equation.
 
-In the strictly sub-field-speed regime (no self-interaction, $\|\mathbf V\|\le c_f$), a stable, circular orbit is impossible. Because the attractive acceleration on each architrino points to the *past* position of its partner, it is not a true central acceleration. The principal circular branch proves a sharper direction diagnostic: the partner line of action has a forward tangential projection, so the partner-only near-circular ledger is anti-damped rather than a contraction proof. This diagnostic is not a receiver-side force-balance certificate. A logarithmic inward spiral can still be used as a separate non-circular ansatz or capture target, but its radial tightening must be certified by solving that branch chart with same-record receiver-weighted acceleration factor; it is not implied by the principal circular sign.
+In the strictly sub-field-speed regime (no self-interaction, $\|\mathbf V\|\le c_f$), a stable, circular orbit is impossible. Because the attractive acceleration on each architrino points to the *past* position of its partner, it is not a true central acceleration. The principal circular branch proves a sharper direction diagnostic: the partner line of action has a forward tangential projection, so the partner-only near-circular ledger is anti-damped rather than a contraction proof. This diagnostic is not a receiver-side force-balance certificate. A logarithmic inward spiral can still be used as a separate non-circular ansatz or capture target, but its radial tightening must be certified by solving that branch chart with same-record transmitter-side acceleration weight; it is not implied by the principal circular sign.
 
 The receiver-side reduction makes the direction test exact. The signed pitch $p=-\dot r/(r\omega)$ is positive while the binary spirals inward and negative while it spirals outward. The [closed spiral-direction flow](master-equation.md#closed-spiral-direction-flow) computes how that sign changes from the radial and azimuthal wake contributions.
 
@@ -57,7 +57,7 @@ V_{\mathrm{eff}}(r)=V(r)+\frac{ml^2}{2r^2}
 $$
 cannot be imported as the binary's governing reduction. A conserved angular-momentum-like quantity, if present, must include the causal-wake history term that balances the delayed torque.
 
-**Receiver-side circular simplification for the sub-field partner contribution.** In units with $c_f=1$, the circular speed is $s=R\omega$. On the non-translating symmetric circular chart, the transmitter and receiver velocity projections on every retained chord are equal. If two points on the circle have angles $a$ and $b$, then
+**Circular root-playback simplification for the sub-field partner contribution.** In units with $c_f=1$, the circular speed is $s=R\omega$. On the non-translating symmetric circular chart, the transmitter and receiver velocity projections on every retained chord are equal. If two points on the circle have angles $a$ and $b$, then
 $$
 \mathbf e_\theta(a)\cdot(\mathbf e_r(a)-\mathbf e_r(b))
 =
@@ -65,7 +65,7 @@ $$
 =
 \mathbf e_\theta(b)\cdot(\mathbf e_r(a)-\mathbf e_r(b)).
 $$
-Thus $D_r=D_t$ and $W^{\mathrm{acc}}=\lvert D_r/D_t\rvert=1$ for every retained root on this chart. The stripped circular partner contribution gives
+Thus $D_r=D_t$ and the signed root-playback derivative is one for every retained root on this chart. The acceleration weight is instead $W^{\mathrm{acc}}=c_f/\lvert D_t\rvert=1/|J^t|$. The circular partner contribution gives
 $$
 T_p
 \propto
@@ -137,7 +137,7 @@ R(T)\,A_{\mathrm{self},0,\eta}^{\mathrm{tan}}(T)\,dT
 $$
 when that limit exists under the same finite-caustic transit convention used for the velocity impulse. If the impulse limit is regulator-dependent, the branch-birth jump remains a diagnostic row rather than a promoted angular-momentum ledger entry.
 
-This section treats an exponential-in-angle spiral (logarithmic spiral) as a **modeling assumption** rather than a derived law. It sets the bookkeeping target: a path-history acceleration sum whose signed branch-birth increments and boundary wake fluxes yield the spiral contraction. Near $s=1^+$ the principal self row inherits the transmitter-side fold onset displayed below, but the canonical non-translating circular acceleration contribution uses $W^{\mathrm{acc}}=1$. After finite-window averaging, its branch-entry impulse must therefore be computed from the receiver-weighted acceleration scaling rather than from the sharper transmitter-side root-density wall.
+This section treats an exponential-in-angle spiral (logarithmic spiral) as a **modeling assumption** rather than a derived law. It sets the bookkeeping target: a path-history acceleration sum whose signed branch-birth increments and boundary wake fluxes yield the spiral contraction. Near $s=1^+$ the principal self branch inherits the transmitter-side fold onset displayed below, and the canonical acceleration weight is $W^{\mathrm{acc}}=1/|J_s|$. Its coincident endpoint birth is therefore more singular than the former stripped model and remains fail-closed.
 
 ## Spiral Binary Symmetry-Breaking Point ($\|\mathbf V\| = c_f$)
 
@@ -161,13 +161,13 @@ $$
 \qquad
 \frac{1}{\sin^2(\delta_s/2)\,|J_s|}\sim \mu^{-2}
 $$
-This is the first major consequence of the transmitter-side Jacobian: the hinge is not merely a change in root count but a genuine **caustic onset** for root density and action counting. On the non-translating symmetric circular chart, however, the equal-projection lemma gives $D_r=D_t$ and $W^{\mathrm{acc}}=1$. The canonical self-hit acceleration components scale instead as
+This is the first major consequence of the transmitter-side Jacobian: the hinge is not merely a change in root count but a genuine **caustic onset** for transmitter-emission density and action counting. On the non-translating symmetric circular chart the equal-projection lemma gives $D_r=D_t$, but $W^{\mathrm{acc}}=1/|J_s|$. The canonical self-hit acceleration components therefore scale as
 $$
-\frac{1}{\sin(\delta_s/2)}\sim \mu^{-1/2},
+\frac{1}{\sin(\delta_s/2)|J_s|}\sim \mu^{-3/2},
 \qquad
-\frac{1}{\sin^2(\delta_s/2)}\sim \mu^{-1}.
+\frac{1}{\sin^2(\delta_s/2)|J_s|}\sim \mu^{-2}.
 $$
-The principal self branch still turns on sharply, but the acceleration statement is an inverse-distance hinge rather than an additional $1/|J_s|$ amplification. Any candidate maximum-curvature balance must therefore keep the transmitter-side fold ledger separate from the receiver-weighted acceleration ledger before appealing to higher-winding smoothing.
+The principal self branch therefore has a non-integrable coincident-birth warning in the current analytic control. Any candidate maximum-curvature balance must route that transition through a finite accepted singular-event treatment before appealing to higher-winding smoothing.
 
 ## Self-Hit: Definition and Diagnostics
 
@@ -202,16 +202,16 @@ In the circular benchmark, the principal self-hit branch ($m=0$) becomes availab
 Receiver-side restart notice. The circular MCB branch topology, root labels,
 and transmitter-side Jacobian formulas remain useful geometry. Acceleration components,
 stability criteria, action rows, and any branch-weighted verdicts in this
-section must be redriven with $W^{\mathrm{acc}}=\lvert D_r/D_t\rvert$ before
+section must be redriven with $W^{\mathrm{acc}}=c_f/\lvert D_t\rvert$ before
 they can serve as canonical Master EOM evidence.
 
 Once self-hit turns on, the natural question is whether the dynamics converge to a limiting curvature. We call the candidate limit the **maximum-curvature binary (MCB)**. This section collects the full two-body, self-hit analysis for that candidate, including delay geometry, acceleration components, and stability criteria. It is the canonical reference for MCB attractor status.
 
 MCB stability claims rely on the well-posedness of the regularized SD-NDDE. In this chapter we treat $\eta > 0$ as fixed; any $\eta \to 0$ statement is outside the claims established here unless a weak-limit argument is explicitly supplied. The formal state-space framework appears in **State Space and Well-Posedness of the Two-Body Delay System**.
 
-**Goal**: Characterize the circular, constant-speed, constant-radius configuration of two opposite-polarity architrinos and investigate where curvature $1/R$ is maximized. We work in units with field speed $c_f = 1$ and use the canonical delayed per-hit law with radial line of action and receiver-weighted acceleration factor.
+**Goal**: Characterize the circular, constant-speed, constant-radius configuration of two opposite-polarity architrinos and investigate where curvature $1/R$ is maximized. We work in units with field speed $c_f = 1$ and use the canonical delayed per-hit law with radial line of action and transmitter-side acceleration weight.
 
-**Plain language**: We seek the tightest (smallest-$R$) steady circle an opposite-polarity pair can trace when the only acceleration contributions come from delayed line-of-action interactions with the partner (partner hits, possibly multiple at higher speed) and from each architrino's own past emissions (self-hits, accepted by same-transmitter roots; in the circular branch these require the super-field-speed side). In the canonical receiver-weighted law, each retained hit must carry both the transmitter-side factor and the receiver-side factor.
+**Plain language**: We seek the tightest (smallest-$R$) steady circle an opposite-polarity pair can trace when the only acceleration contributions come from delayed line-of-action interactions with the partner and from each architrino's own past emissions. In the canonical transmitter-side law, each retained hit carries $c_f/|D_t|$ as its acceleration weight and $D_r/D_t$ separately for root playback.
 
 ### Foundational Context (Ontological Clarification)
 
@@ -498,12 +498,12 @@ $$
 
 #### Canonical Per-Hit Accelerations
 
-Using the delayed law with line-of-action direction and receiver-weighted acceleration factor (where $\kappa$ is a coupling constant and $\epsilon = |e|/6$), define the same-root factors
+Using the delayed law with line-of-action direction and transmitter-side acceleration weight (where $\kappa$ is a coupling constant and $\epsilon = |e|/6$), define the same-root factors
 
 $$
-W_s^{\mathrm{acc}}=\left|\frac{D_{r,s}}{D_{t,s}}\right|,
+W_s^{\mathrm{acc}}=\frac{c_f}{|D_{t,s}|},
 \qquad
-W_p^{\mathrm{acc}}=\left|\frac{D_{r,p}}{D_{t,p}}\right|.
+W_p^{\mathrm{acc}}=\frac{c_f}{|D_{t,p}|}.
 $$
 
 The canonical per-hit acceleration contributions are
@@ -514,12 +514,12 @@ $$
 \mathbf A_p = -\kappa \epsilon^2 \frac{W_p^{\mathrm{acc}}}{r_p^2} \hat{u}_p.
 $$
 
-On the non-translating symmetric circular benchmark, the equal-projection lemma gives $D_r=D_t$ on every retained self or partner chord, so $W_s^{\mathrm{acc}}=W_p^{\mathrm{acc}}=1$. The circular canonical rows reduce to
+On the non-translating symmetric circular benchmark, the equal-projection lemma gives $D_r=D_t$ on every retained self or partner chord, so signed root playback is one. The acceleration weights remain $W_s^{\mathrm{acc}}=1/|J_s|$ and $W_p^{\mathrm{acc}}=1/J_p$. The circular canonical contributions are
 
 $$
-\mathbf A_s = +\kappa \epsilon^2 \frac{1}{r_s^2} \hat{u}_s,
+\mathbf A_s = +\kappa \epsilon^2 \frac{1}{r_s^2|J_s|} \hat{u}_s,
 \qquad
-\mathbf A_p = -\kappa \epsilon^2 \frac{1}{r_p^2} \hat{u}_p.
+\mathbf A_p = -\kappa \epsilon^2 \frac{1}{r_p^2J_p} \hat{u}_p.
 $$
 
 The transmitter-side factors remain the root-density and transversality diagnostics:
@@ -554,7 +554,7 @@ J_p = 1+\frac{\delta_p}{2}\tan(\delta_p/2)
 $$
 These formulas make the transmitter-side transversality asymmetry between the two branch types explicit:
 
-- The partner branch always satisfies $J_p > 1$, so the transmitter-side root-density diagnostic is diluted relative to a static inverse-square surrogate. The canonical non-translating circular acceleration contribution is not diluted because the receiver-side factor cancels the same denominator.
+- The partner branch always satisfies $J_p > 1$, so its transmitter-side acceleration is diluted relative to a static inverse-square surrogate.
 - The self branch can satisfy $J_s \to 0^+$, producing the causal bunching that sharpens self-hit into a null-separatrix wall for root density, action counting, and finite-$\eta$ branch certification.
 
 ---
@@ -566,7 +566,7 @@ Define **inward radial** as positive (toward center) and **tangential** as posit
 The projections in this subsection are transmitter-side circular diagnostics. They
 record branch orientation and root geometry, but they are not canonical Master EOM
 acceleration contributions until the same retained branches are recomputed with
-$D_t$, $D_r$, and $W^{\mathrm{acc}}=\lvert D_r/D_t\rvert$.
+$D_t$, $D_r$, and $W^{\mathrm{acc}}=c_f/\lvert D_t\rvert$.
 
 **Chord lengths**:
 $$
@@ -623,7 +623,7 @@ $$
 T^{t}(s < 1) = \frac{\kappa \epsilon^2 s^2}{R^2} \frac{\sin(\delta_p / 2)}{\delta_p^2\,|J_p|}
 $$
 
-Because $J_p = 1+s\sin(\delta_p/2) > 1$, the transmitter-side delay geometry weakens this diagnostic relative to a stripped inverse-square surrogate. In the canonical non-translating circular acceleration contribution, the receiver-side factor cancels the same denominator, so the retained partner row is the stripped positive tangential coefficient. That still excludes a particle-only constant-speed circular orbit, while finite-window wake and recoil balances remain necessary for any retained branch.
+Because $J_p = 1+s\sin(\delta_p/2) > 1$, the transmitter-side delay geometry weakens the canonical contribution relative to a stripped inverse-square surrogate by the factor $1/J_p$. Its tangential sign remains positive. That still excludes a particle-only constant-speed circular orbit on the stated same-sheet chart, while one causal retained-history account is still required for any broader conservation claim.
 
 ---
 
@@ -690,7 +690,7 @@ T_{\mathrm{net}}
 \sum_{m\in\mathcal{M}_s} w_{s,m} T_{s,m}
 >0
 $$
-where $w_{p,m},w_{s,m}\ge 0$ are same-row receiver-side branch weights induced by $W^{\mathrm{acc}}=\lvert D_r/D_t\rvert$ and any declared regularization/time averaging, and $\mathcal{M}_p,\mathcal{M}_s$ are active partner/self root sets.
+where $w_{p,m},w_{s,m}\ge 0$ are same-root transmitter-side weights induced by $W^{\mathrm{acc}}=c_f/\lvert D_t\rvert$ and any declared regularization/time averaging, and $\mathcal{M}_p,\mathcal{M}_s$ are active partner/self root sets.
 
 *Proof.*  
 For any active partner branch, the tangential contribution is
@@ -715,9 +715,9 @@ The sign is branch-invariant on this same-sheet chart because winding changes ti
 
 **Corollary.**  
 Within the same-sheet bare isolated two-body kernel, an exact constant-speed circular orbit
-with no boundary wake flux and no recoil term is impossible. Any MCB-like steady state must therefore close a finite-window balance: signed-ledger cancellation may reduce the local tangential drive, but the remaining forward power must be assigned either to wake escapement through $\partial W$, to a local recoil term, or to genuinely multi-body Noether braid exchange.
+with no boundary wake-state exchange is impossible. Any MCB-like steady state must therefore close a finite-window balance: signed-root cancellation may reduce the local tangential drive, but any remaining forward kinetic-rate change must close against the causal wake state or genuinely multi-body Noether braid exchange.
 
-**Interpretation.** The positive tangential component is not merely an obstruction to be erased. In a finite local window, partner and self wakes are continually emitted while only a subset of their causal isochrons later hit a local receiver. The unreceived portion exits the local window as wake-history flux. The same-sheet tangential drive is therefore the mechanical pump that can replace the interaction energy exported by those escaping causal wakes. A local binary can look particle-only conservative only if the outgoing wake record, recoil channel, and retained branch ledger are all included in the same balance law.
+**Interpretation.** The positive tangential component is not merely an obstruction to be erased. In a finite local window, partner and self wakes are continually emitted while only a subset of their causal isochrons later hit a local receiver. A local binary can be called conservative only if the retained causal wake state, its boundary exchange, and the active-root record close energy, momentum, and angular momentum on the same update.
 
 **Cohomology reading.** On a closed circular branch, write $\theta$ for the receiver phase and let
 $$
@@ -731,7 +731,7 @@ so $[\omega_T^{(b)}]\ne0$ in $H^1(S^1)$ and $\omega_T^{(b)}$ is not an exact der
 $$
 \left[\omega_T^{(b)}
 +\omega_{\partial W}^{(b)}
-+\omega_{\mathrm{recoil}}^{(b)}
++\omega_{\mathrm{wake}}^{(b)}
 +\omega_{\mathrm{multi}}^{(b)}
 \right]=0
 $$
@@ -745,43 +745,42 @@ N_{\mathrm{esc}}^{(b)}
 \frac{\mu_{\text{arch}}}{h\,\omega_b}
 \oint R\,T_{\mathrm{net}}^{(b)}(\theta)\,d\theta,
 $$
-where $h$ is the declared action unit used by the branch packet and the second equality assumes a uniform circular benchmark. If the primitive kinetic scalar is used instead of the quadratic proxy, the same packet must replace $\mu_{\text{arch}}$ by the declared $\mu_K$ row. A bare two-body circular closure can pass only when this class is cancelled by an explicitly retained signed sheet, wake-boundary, recoil, or multi-body exchange row.
+where $h$ is the declared action unit used by the branch packet and the second equality assumes a uniform circular benchmark. If the primitive kinetic scalar is used instead of the quadratic proxy, the same packet must replace $\mu_{\text{arch}}$ by the declared $\mu_K$ entry. A bare two-body circular closure can pass only when this class is cancelled by an explicitly retained signed sheet, causal wake-state, boundary, or multi-body exchange entry.
 
-**Plain language**: On the same-sheet chart, the isolated pair shows persistent tangential drive at the per-hit level; cancellation is hard because every certified root pushes the same way. The stable-branch question is not "how can the drive disappear?" but "which wake flux, recoil, or multi-body channel balances the drive without destroying the retained branch?" This is a primary test of the MCB attractor hypothesis.
+**Plain language**: On the same-sheet chart, the isolated pair shows persistent tangential drive at the per-hit level; cancellation is hard because every certified root accelerates the same way. The stable-branch question is whether one causal wake-state or multi-body update closes that drive without destroying the retained branch. This is a primary test of the MCB attractor hypothesis.
 
 ---
 
 ### What "Maximum Curvature" Demands
 
-**Mechanism summary (self-hit balance):** once $s>1$, each self-hit contributes a **repulsive acceleration away from its own past emission point**. In the symmetric circular geometry that repulsion has a **radial outward component** (opposing further contraction) and a **positive tangential component** (continuing to speed up the architrino). As the radius shrinks, both partner attraction and self-hit repulsion scale like $1/R^2$. On the non-translating symmetric circular chart, the receiver-side factor cancels the transmitter-side factor, so the force balance depends on chord geometry, signed-root content, finite-window wake/recoil rows, and the birth of additional self-hit roots at higher $s$. Maximum curvature would require the **outward self-hit radial component** to balance the inward partner pull without the still-positive tangential drive destroying constant-speed closure.
+**Mechanism summary (self-hit balance):** once $s>1$, each self-hit contributes a **repulsive acceleration away from its own past emission point**. In the symmetric circular geometry that repulsion has a radial outward component and a signed tangential component. As the radius shrinks, both partner attraction and self-hit repulsion scale like $1/R^2$ times their transmitter-side weights $1/|J|$. Maximum curvature would require the outward self-hit radial component to balance the inward partner pull without the tangential sum destroying constant-speed closure, and the coincident self-root birth must first have a finite accepted event treatment.
 
 The non-translating symmetric circular radial target is therefore the stripped
 receiver-weighted acceleration contribution:
 
 $$
-A_{\text{rad}} = \frac{\kappa \epsilon^2}{4R^2} \left( \frac{1}{\cos(\delta_p / 2)} - \frac{1}{\sin(\delta_s / 2)} \right).
+A_{\text{rad}} = \frac{\kappa \epsilon^2}{4R^2} \left( \frac{1}{\cos(\delta_p / 2)J_p} - \frac{1}{\sin(\delta_s / 2)|J_s|} \right).
 $$
 
 For translating, deformed, or non-circular branches, this target must be
 restored to the same-root form with
-$W_{\bullet}^{\mathrm{acc}}=\lvert D_{r,\bullet}/D_{t,\bullet}\rvert$.
+$W_{\bullet}^{\mathrm{acc}}=c_f/|D_{t,\bullet}|$, with $D_{r,\bullet}/D_{t,\bullet}$ retained separately for root playback.
 
 **Increasing curvature** ($1/R$ larger, so $R$ smaller) requires **stronger inward radial acceleration**. This occurs when:
 
 1. **$\delta_p$ increases** -> $\cos(\delta_p / 2)$ decreases -> partner term $1/\cos(\delta_p / 2)$ **increases** (stronger inward pull).
-2. **$\delta_s$ increases** -> $\sin(\delta_s / 2)$ increases -> the geometric part of the self term decreases, while the full outward response still depends on the same-root receiver-weighted acceleration factor $W_s^{\mathrm{acc}}$.
+2. **$\delta_s$ increases** -> $\sin(\delta_s / 2)$ increases -> the geometric part of the self term decreases, while the full outward response still depends on the same-root transmitter-side acceleration weight $W_s^{\mathrm{acc}}$.
 
 Two distinct balance mechanisms are now mathematically visible:
 
 1. **Near-threshold inverse-distance hinge plus transmitter-side fold.**
    On the principal self branch, $D_t$ loses its floor as $s\downarrow 1^+$,
-   but the circular acceleration contribution cancels that denominator against the
-   receiver-side factor. The remaining acceleration sharpening is the
-   inverse-distance self chord, while the $D_t$ wall remains a caustic in root
-   density, action counting, and finite-$\eta$ certification.
+   and the transmitter-side acceleration weight diverges as $1/|D_t|$. The
+   coincident branch birth therefore remains a failed singular event until a
+   finite regulator-independent transition is certified.
 
 2. **Higher-speed multi-branch redistribution.**
-   At larger $s$, additional self branches turn on and redistribute the outward response across several winding sectors. In that regime the detailed balance depends on the full receiver-side weighted sum over all active branches rather than on the principal branch alone.
+   At larger $s$, additional self branches turn on and redistribute the outward response across several winding sectors. In that regime the detailed balance depends on the full transmitter-side weighted sum over all active branches rather than on the principal branch alone.
 
 **However**: Due to the same-sheet per-hit $T > 0$ result, this "maximum curvature" state remains unverified for the isolated two-body system. Its stability must be tested by the full, signed, multi-root time-averaged dynamics.
 
@@ -1131,7 +1130,7 @@ M_p
 $$
 would provide a deterministic mechanism for quantized bound-state geometry: allowed radii and frequencies would be selected by integer causal-root ledgers rather than by a continuum of arbitrary circular orbits.
 
-This statement is deliberately conditional. This chapter derives the discrete root ledgers and the radial balance target, but the stability and quantization claims require the missing full-history certificate: finite active branches, positive Jacobian floors, receiver-weighted acceleration-factor floors, returned-history closure, and a monodromy or boundary-trapping argument. In practice, that certificate may close first in a collinear breather or Noether braid setting rather than in the bare circular two-body kernel.
+This statement is deliberately conditional. This chapter derives the discrete root ledgers and the radial balance target, but the stability and quantization claims require the missing full-history certificate: finite active branches, positive Jacobian floors, transmitter-side acceleration-weight floors, returned-history closure, and a monodromy or boundary-trapping argument. In practice, that certificate may close first in a collinear breather or Noether braid setting rather than in the bare circular two-body kernel.
 
 #### Branch Stability Target (Hessian Bridge)
 
@@ -1139,7 +1138,7 @@ The standard equilibrium test in central-force mechanics uses the Hessian of an 
 $$
 H_{ab}(q_\star)=\partial_a\partial_b V_{\mathrm{eff}}(q_\star)
 $$
-tests local stiffness in the non-symmetry directions. This is useful as comparison language, but it is not yet a stability proof for an architrino binary because the acceleration law depends on path-history, the active signed causal-root ledger, the receiver-weighted acceleration factor, and the branch Jacobian floors.
+tests local stiffness in the non-symmetry directions. This is useful as comparison language, but it is not yet a stability proof for an architrino binary because the acceleration law depends on path-history, the active signed causal-root ledger, the transmitter-side acceleration weight, and the branch Jacobian floors.
 
 The $\mathbb{A}\mathbb{A}\mathbb{A}$ branch-stability target is therefore a cycle-averaged stiffness matrix on a fixed branch chart. Let $b$ denote a fixed signed causal-root ledger and let $\mathbf{X}_b(T)$ be a candidate periodic history with period $P_b$. For reduced branch coordinates $y^a$ transverse to time shift, period reparameterization, Euclidean motions, and any phase-locked flat-connection moduli retained by an enclosing assembly chart, define the diagnostic stiffness target
 $$
@@ -1448,7 +1447,7 @@ This finite-$\eta$ functional is a transmitter-side certification surrogate unle
 the kernel also carries the receiver-side factor. When its sharp-limit
 branch reduction is used as a canonical acceleration contribution, each retained root
 must be corrected by the same-root factor $D_{r,ij}/c_f$ in magnitude
-(equivalently by $W_{ij}^{\mathrm{acc}}=\lvert D_{r,ij}/D_{t,ij}\rvert$ after
+(equivalently by $W_{ij}^{\mathrm{acc}}=c_f/\lvert D_{t,ij}\rvert$ after
 the delta collapse supplies the transmitter-side factor).
 
 On $\mathcal{H}_*$ this same formula is interpreted through the finite-$\eta$ integral first. The admissibility claim is weaker: the packet must show bounded velocity and finite total impulse across the grazing chart before it can pass to the $\eta\to0$ limit.

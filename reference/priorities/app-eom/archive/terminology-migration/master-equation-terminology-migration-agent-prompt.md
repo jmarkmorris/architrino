@@ -61,7 +61,7 @@ Before editing, read completely:
 - `content/markdown/aaa/archie/terminology-usage.md`
 - `content/markdown/aaa/archie/comparative-glossary.md`
 - `reference/priorities/app-eom/master-equation-import-audit-walkthrough-2026-07-18.md`
-- `reference/priorities/app-eom/master-equation-source-density-impact-inventory.md`
+- `reference/priorities/app-eom/master-equation-transmitter-side-impact-inventory.md`
 - `reference/priorities/app-eom/master-equation-frozen-evidence-disposition-ledger.md`
 - `reference/priorities/app-eom/master-equation-machine-field-disposition.md`
 - `reference/priorities/app-eom/master-equation-promotion-readiness-matrix.md`
@@ -99,7 +99,7 @@ Update controlled terminology definitions first, then dependent equations and pr
 ## Physics and evidence boundaries
 
 - Do not change the acceleration numerator, absolute-value convention, polarity rule, inverse-square kernel, root set, same-source admission rule, or any other dynamics semantics.
-- Do not implement the source-density proposal in the EOM solver.
+- Do not implement the transmitter-side proposal in the EOM solver.
 - Preserve $D_r/D_t$ wherever it is required for root continuation, branch orientation, or existing receiver-weighted acceleration being described.
 - Do not relabel an old-law result as evidence for the proposed law.
 - Do not rewrite frozen evidence, hashes, provenance records, historical decision records, or archived run outputs.
@@ -130,7 +130,7 @@ Update controlled terminology definitions first, then dependent equations and pr
 
 ## Claim and promotion discipline
 
-Treat the terminology migration as a naming migration, not equation promotion. Do not claim canon acceptance of the source-density acceleration proposal, conservation closure, coincident-birth closure, complete recovery, or solver readiness. If existing prose overclaims one of those while being edited, correct the claim level without changing the underlying equation unless the correction is mechanically required for truthful terminology.
+Treat the terminology migration as a naming migration, not equation promotion. Do not claim canon acceptance of the transmitter-side acceleration proposal, conservation closure, coincident-birth closure, complete recovery, or solver readiness. If existing prose overclaims one of those while being edited, correct the claim level without changing the underlying equation unless the correction is mechanically required for truthful terminology.
 
 ## Final handoff
 

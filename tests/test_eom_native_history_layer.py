@@ -533,8 +533,8 @@ class NativeHistoryLayerTests(unittest.TestCase):
                     self.assertGreaterEqual(native_upper, oracle_root.lower)
                     self.assertLessEqual(native_upper - native_lower, Decimal(tolerance))
                     self.assertEqual(
-                        native_root["source_normal_sign"],
-                        oracle_root.source_normal.strict_sign,
+                        native_root["transmitter_factor_sign"],
+                        oracle_root.transmitter_factor.strict_sign,
                     )
 
     def test_difficult_rows_escalate_without_promoting_uncertified_results(self) -> None:
@@ -644,7 +644,7 @@ class NativeHistoryLayerTests(unittest.TestCase):
         self.assertLessEqual(upper - lower, Decimal("1e-5"))
         self.assertLessEqual(lower, oracle.roots[0].upper)
         self.assertGreaterEqual(upper, oracle.roots[0].lower)
-        self.assertEqual(root["source_normal_sign"], 1)
+        self.assertEqual(root["transmitter_factor_sign"], 1)
 
     def test_mpfr_inward_probe_certifies_known_simple_root_at_tolerance_edge(
         self,
@@ -719,7 +719,7 @@ class NativeHistoryLayerTests(unittest.TestCase):
         self.assertLessEqual(upper - lower, Decimal("1e-8"))
         self.assertLessEqual(lower, oracle.roots[0].upper)
         self.assertGreaterEqual(upper, oracle.roots[0].lower)
-        self.assertEqual(native_root["source_normal_sign"], 1)
+        self.assertEqual(native_root["transmitter_factor_sign"], 1)
 
     def test_mpfr_monotone_enclosure_contains_asymmetric_analytic_root_set(
         self,
@@ -740,7 +740,7 @@ class NativeHistoryLayerTests(unittest.TestCase):
         self.assertLessEqual(lower, analytic_lower)
         self.assertGreaterEqual(upper, analytic_upper)
         self.assertLessEqual(upper - lower, Decimal("0.001"))
-        self.assertEqual(root["source_normal_sign"], 1)
+        self.assertEqual(root["transmitter_factor_sign"], 1)
 
     def test_mpfr_self_search_does_not_apply_endpoint_proof_to_older_cell(
         self,
@@ -794,7 +794,7 @@ class NativeHistoryLayerTests(unittest.TestCase):
         root = row["roots"][0]
         self.assertLessEqual(Decimal(root["lower"]), Decimal("0.5"))
         self.assertGreaterEqual(Decimal(root["upper"]), Decimal("0.5"))
-        self.assertEqual(root["source_normal_sign"], 1)
+        self.assertEqual(root["transmitter_factor_sign"], 1)
 
     def test_enclosed_self_root_cluster_routes_to_finite_width(self) -> None:
         row = self.pair("enclosed_self_root_cluster")
@@ -866,7 +866,7 @@ class NativeHistoryLayerTests(unittest.TestCase):
         self.assertGreaterEqual(upper, Decimal("0"))
         self.assertLessEqual(upper - lower, Decimal("1e-5"))
         self.assertEqual(root["source_segment_indices"], [0, 1])
-        self.assertEqual(root["source_normal_sign"], 1)
+        self.assertEqual(root["transmitter_factor_sign"], 1)
 
     def test_join_root_bracket_selects_every_short_segment_it_crosses(self) -> None:
         row = self.pair("short_segment_join_root")
@@ -880,7 +880,7 @@ class NativeHistoryLayerTests(unittest.TestCase):
         self.assertGreaterEqual(upper, Decimal("0"))
         self.assertLessEqual(upper - lower, Decimal("0.001"))
         self.assertGreater(len(root["source_segment_indices"]), 2)
-        self.assertEqual(root["source_normal_sign"], 1)
+        self.assertEqual(root["transmitter_factor_sign"], 1)
 
     def test_mpfr_join_root_uses_inward_representable_tolerance_probe(
         self,
@@ -944,7 +944,7 @@ class NativeHistoryLayerTests(unittest.TestCase):
         self.assertLessEqual(lower, oracle.roots[0].upper)
         self.assertGreaterEqual(upper, oracle.roots[0].lower)
         self.assertEqual(root["source_segment_indices"], [0, 1])
-        self.assertEqual(root["source_normal_sign"], 1)
+        self.assertEqual(root["transmitter_factor_sign"], 1)
 
     def test_mpfr_reconditions_continuous_join_chain_from_derivative_bound(
         self,
@@ -960,7 +960,7 @@ class NativeHistoryLayerTests(unittest.TestCase):
         self.assertLessEqual(lower, Decimal("0"))
         self.assertGreaterEqual(upper, Decimal("0"))
         self.assertLessEqual(upper - lower, Decimal("1e-5"))
-        self.assertEqual(root["source_normal_sign"], 1)
+        self.assertEqual(root["transmitter_factor_sign"], 1)
 
     def test_self_pair_endpoint_rule_handles_subfield_and_rail_histories(self) -> None:
         self.assertTrue(self.packet["inconsistent_circular_speed_rejected"])

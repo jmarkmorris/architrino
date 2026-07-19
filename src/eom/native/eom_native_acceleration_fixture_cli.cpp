@@ -91,7 +91,7 @@ eom::NativePairAccelerationRequest acceleration_request(
       .source_charge = source_charge,
       .coupling = "1",
       .chart = chart,
-      .source_normal_floor = "1e-30",
+      .transmitter_factor_floor = "1e-30",
       .causal_width = "0.2",
       .core_scale = "0.2",
       .acceleration_tolerance = tolerance,
@@ -170,14 +170,14 @@ void print_pair(const eom::NativePairAccelerationCertificate& certificate) {
               << ",\"chart\":\"" << row.chart
               << "\",\"emission_lower\":\"" << row.emission_lower
               << "\",\"emission_upper\":\"" << row.emission_upper
-              << "\",\"source_normal\":";
-    print_optional_interval(row.source_normal);
-    std::cout << ",\"receiver_normal\":";
-    print_optional_interval(row.receiver_normal);
-    std::cout << ",\"branch_orientation\":";
-    print_optional_interval(row.branch_orientation);
-    std::cout << ",\"receiver_strength\":";
-    print_optional_interval(row.receiver_strength);
+              << "\",\"transmitter_factor\":";
+    print_optional_interval(row.transmitter_factor);
+    std::cout << ",\"receiver_factor\":";
+    print_optional_interval(row.receiver_factor);
+    std::cout << ",\"root_playback\":";
+    print_optional_interval(row.root_playback);
+    std::cout << ",\"acceleration_weight\":";
+    print_optional_interval(row.acceleration_weight);
     std::cout << ",\"polarity\":" << row.polarity
               << ",\"acceptance_status\":\"" << row.acceptance_status
               << "\",\"root_precision_route\":\""
@@ -274,8 +274,8 @@ void print_all(bool include_pinned_fold_legacy) {
   if (tampered_roots.roots.empty()) {
     throw std::runtime_error("stationary fixture did not produce a root");
   }
-  tampered_roots.roots.front().source_normal_lower = "10";
-  tampered_roots.roots.front().source_normal_upper = "11";
+  tampered_roots.roots.front().transmitter_factor_lower = "10";
+  tampered_roots.roots.front().transmitter_factor_upper = "11";
   const auto tampered_failure = eom::certify_pair_acceleration(
       acceleration_request("tampered", "stationary-receiver",
                            "stationary-source", static_two, origin,
@@ -377,7 +377,7 @@ void print_all(bool include_pinned_fold_legacy) {
       .field_speed = "1",
       .root_tolerance = "1e-12",
       .status = "caustic_route_required",
-      .failure_code = "numeric_source_normal_sign_uncertified",
+      .failure_code = "numeric_transmitter_factor_sign_uncertified",
       .root_free_complement = false,
       .memory_boundary_contact = false,
       .coincident_endpoint_excluded = true,

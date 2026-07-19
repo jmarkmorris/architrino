@@ -10,7 +10,7 @@ Event-aware integration (practical algorithm):
    - For each accepted root, compute $r$, $\hat{\mathbf{r}}$,
      $D_t=1-\mathbf V_o(T_t)\cdot\hat{\mathbf r}$,
      $D_r=1-\mathbf V_{o'}(T_r)\cdot\hat{\mathbf r}$, and
-     $W^{\mathrm{acc}}=\lvert D_r/D_t\rvert$. Then use
+     $W^{\mathrm{acc}}=c_f/\lvert D_t\rvert$. Then use
      $$
      \mathbf A_{o'\leftarrow o}(T_r;T_t)=\kappa\,\sigma_{q_o q_{o'}}\,\frac{|q_o q_{o'}|}{r^2}W^{\mathrm{acc}}\,\hat{\mathbf{r}}
      $$
@@ -46,7 +46,7 @@ Event-aware integration (practical algorithm):
      \mathcal{R}_{\omega}^{2\mathrm{B}}
      \right).
      $$
-   - Fail closed if the signed ledger changes during the reported period, an active transmitter-side Jacobian floor or inactive-root gap vanishes, the receiver-weighted acceleration factor leaves its certified interval or its floor $\nu_{\mathrm{rec}}^{2\mathrm{B}}$ vanishes, the projected return-map spectrum is not computed, the energy residuals use a different window or branch chart than the motion residuals, or the extracted frequency is not stable under refinement.
+   - Fail closed if the signed ledger changes during the reported period, an active transmitter-side Jacobian floor or inactive-root gap vanishes, the transmitter-side acceleration weight leaves its certified interval or its floor $\nu_{\mathrm{rec}}^{2\mathrm{B}}$ vanishes, the projected return-map spectrum is not computed, the energy residuals use a different window or branch chart than the motion residuals, or the extracted frequency is not stable under refinement.
    - Treat a visually periodic orbit without these entries as a search hit only. It is not a binary closure certificate.
 
 Plain language: At each reception time, find which past emissions can reach the receiver, compute how the transmitter laid down the wake and how the receiver crosses it, sum the radial acceleration contributions with $W^{\mathrm{acc}}/r^2$ strength, and step forward either with sharp kicks at exact hit times or with thin mollified wake surfaces for smooth integration.

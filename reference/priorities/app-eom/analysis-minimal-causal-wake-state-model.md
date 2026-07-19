@@ -11,7 +11,7 @@
 
 The smallest local replacement for the action's future dependence stores the wake itself as part of the present state. Two scalar functions are sufficient for an initial-value problem: the wake amplitude now and its time derivative now. Their evolution carries past emissions forward at speed $c_f$, so acceleration at time $T$ uses the wake state already present at $T$ rather than asking where a receiver will be later.
 
-This construction reproduces both pieces of the spatial derivative of the existing scalar kernel. The inverse-square piece is the proposed source-density acceleration. The second piece comes from moving the causal surface when the receiver position varies; this is the contribution called recoil in the action analyses.
+This construction reproduces both pieces of the spatial derivative of the existing scalar kernel. The inverse-square piece is the proposed transmitter-side acceleration. The second piece comes from moving the causal surface when the receiver position varies; this is the contribution called recoil in the action analyses.
 
 The construction also exposes a decisive failure. With positive wake energy, a single scalar wake makes like polarities attract. Reversing the scalar sign makes like polarities repel, as required, but makes the wake energy unbounded below. The one-scalar model is therefore the smallest formal causal replacement, not a promotable physical completion.
 
@@ -43,7 +43,7 @@ $$
 
 is minimal for a second-order propagation equation: specifying $\phi$ alone does not determine whether a wake profile is moving outward or inward, while $(\phi,\chi)$ does.
 
-For a smooth normalized spatial profile $b_{\epsilon_c}$, define the polarity source density
+For a smooth normalized spatial profile $b_{\epsilon_c}$, define the polarity transmitter-emission density
 
 $$
 \rho_q^{(\epsilon_c)}(\mathbf x,T)

@@ -449,7 +449,7 @@ void run(
       .field_speed = run[8],
       .coupling = run[9],
       .root_tolerance = run[11],
-      .source_normal_floor = run[25],
+      .transmitter_factor_floor = run[25],
       .acceleration_tolerance = run[12],
       .far_field_enclosure_fraction = run[13],
       .use_far_field_enclosure_in_evolution = false,
@@ -878,16 +878,16 @@ void run(
           const auto& bracket = certificate.roots[bracket_index];
           std::cout << "{\"lower\":\"" << json_escape(bracket.lower)
                     << "\",\"upper\":\"" << json_escape(bracket.upper)
-                    << "\",\"sourceNormalLower\":\""
-                    << json_escape(bracket.source_normal_lower)
-                    << "\",\"sourceNormalUpper\":\""
-                    << json_escape(bracket.source_normal_upper)
-                    << "\",\"receiverNormalLower\":\""
-                    << json_escape(bracket.receiver_normal_lower)
-                    << "\",\"receiverNormalUpper\":\""
-                    << json_escape(bracket.receiver_normal_upper)
-                    << "\",\"sourceNormalSign\":"
-                    << bracket.source_normal_sign
+                    << "\",\"transmitterFactorLower\":\""
+                    << json_escape(bracket.transmitter_factor_lower)
+                    << "\",\"transmitterFactorUpper\":\""
+                    << json_escape(bracket.transmitter_factor_upper)
+                    << "\",\"receiverFactorLower\":\""
+                    << json_escape(bracket.receiver_factor_lower)
+                    << "\",\"receiverFactorUpper\":\""
+                    << json_escape(bracket.receiver_factor_upper)
+                    << "\",\"transmitterFactorSign\":"
+                    << bracket.transmitter_factor_sign
                     << ",\"precisionRoute\":\""
                     << json_escape(bracket.precision_route)
                     << "\",\"precisionBits\":" << bracket.precision_bits
@@ -951,13 +951,13 @@ void run(
                     << json_escape(
                         certificate.difficult_point_residual_upper)
                     << "\",\"difficultSourceNormalLower\":\""
-                    << json_escape(certificate.difficult_source_normal_lower)
+                    << json_escape(certificate.difficult_transmitter_factor_lower)
                     << "\",\"difficultSourceNormalUpper\":\""
-                    << json_escape(certificate.difficult_source_normal_upper)
+                    << json_escape(certificate.difficult_transmitter_factor_upper)
                     << "\",\"difficultReceiverNormalLower\":\""
-                    << json_escape(certificate.difficult_receiver_normal_lower)
+                    << json_escape(certificate.difficult_receiver_factor_lower)
                     << "\",\"difficultReceiverNormalUpper\":\""
-                    << json_escape(certificate.difficult_receiver_normal_upper)
+                    << json_escape(certificate.difficult_receiver_factor_upper)
                     << "\",\"difficultLowerSign\":"
                     << certificate.difficult_lower_sign
                     << ",\"difficultUpperSign\":"
@@ -1086,8 +1086,8 @@ void run(
                     << json_escape(common.reception_upper)
                     << "\",\"certifiedRootCount\":"
                     << common.certified_root_count
-                    << ",\"sourceNormalAbsoluteLower\":";
-          print_json_number(common.source_normal_absolute_lower);
+                    << ",\"transmitterFactorAbsoluteLower\":";
+          print_json_number(common.transmitter_factor_absolute_lower);
           std::cout << ",\"separationLower\":";
           print_json_number(common.separation_lower);
           std::cout << ",\"disjointComponent\":";

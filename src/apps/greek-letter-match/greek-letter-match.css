@@ -590,6 +590,7 @@ label {
   gap: calc(var(--ring-size) * 0.004);
   width: 88%;
   height: calc(var(--ring-size) * 0.075);
+  transform: translateY(calc(var(--ring-size) * -0.02));
 }
 
 .greek-match-teach-glyph {

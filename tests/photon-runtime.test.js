@@ -172,7 +172,7 @@ function createPhotonCircularSourceBridgeStub() {
           distance,
           residual: distance - delay * request.signalSpeed,
           jacobian: 1,
-          branchWeight: 1,
+          accelerationWeight: 1,
           sourcePoint,
           receiverPoint,
         },
@@ -191,7 +191,7 @@ function createPhotonCircularSourceBridgeStub() {
           hitTime: request.hitTime,
           residual: distance - delay * request.signalSpeed,
           jacobian: 1,
-          branchWeight: 1,
+          accelerationWeight: 1,
         },
       ],
       status: { code: "ok", severity: "ok", message: "circular-source causal roots solved" },
@@ -232,7 +232,7 @@ function createPhotonLinearRootBridgeStub() {
             distance,
             residual: 0,
             jacobian: 1,
-            branchWeight: 1,
+            accelerationWeight: 1,
             sourcePoint,
             receiverPoint,
           },
@@ -285,7 +285,7 @@ function createPhotonMixedSearchBridgeStub() {
             distance,
             residual: 0,
             jacobian: 1,
-            branchWeight: 1,
+            accelerationWeight: 1,
             sourcePoint,
             receiverPoint,
           },
@@ -495,7 +495,7 @@ test("Photon causal roots can be routed through the prescribed-path analysis for
               distance: 10,
               residual: 0,
               jacobian: 1,
-              branchWeight: 1,
+              accelerationWeight: 1,
               sourcePoint: { x: 0, y: 0, z: 0 },
               receiverPoint: { x: 10, y: 0, z: 0 },
             },
@@ -629,15 +629,15 @@ test("prescribed-path observer field fails closed without complete receiver-side
         distance: 2,
         residual: 0,
         delay: 0.25,
-        sourceNormalDenominator: 0.5,
+        transmitterFactor: 0.5,
       },
     ],
   });
 
-  assert.equal(response.status.code, "receiver_normal_branch_rows_missing");
+  assert.equal(response.status.code, "causal_factor_record_missing");
   assert.equal(response.unstableContributionCount, 1);
-  assert.equal(response.contributions[0].receiverNormalEvidenceStatus, "receiver_normal_branch_rows_missing");
-  assert.equal(response.contributions[0].branchWeight, 0);
+  assert.equal(response.contributions[0].causalFactorEvidenceStatus, "causal_factor_record_missing");
+  assert.equal(response.contributions[0].accelerationWeight, 0);
   assert.equal(response.electric.y, 0);
   assert.equal(response.comparisonB.z, 0);
 });
@@ -652,10 +652,10 @@ test("Photon absolute-history field routes through the moving-circular prescribe
   const runAbsoluteHistory = async (request) => {
     absoluteHistoryRunCalls += 1;
     assert.equal(request.sourceHistoryProviderId, PHOTON_SOURCE_HISTORY_PROVIDER_ID);
-    assert.equal(request.analysisBoundary.receiverNormalOwner, "prescribed_path_analysis");
+    assert.equal(request.analysisBoundary.rootPlaybackOwner, "prescribed_path_analysis");
     assert.equal(request.analysisBoundary.fieldReconstructionOwner, "prescribed_path_analysis");
     assert.equal(request.observerFieldRequest.sourceHistoryProviderId, PHOTON_SOURCE_HISTORY_PROVIDER_ID);
-    assert.equal(request.observerFieldRequest.analysisBoundary.receiverNormalOwner, "prescribed_path_analysis");
+    assert.equal(request.observerFieldRequest.analysisBoundary.rootPlaybackOwner, "prescribed_path_analysis");
     assert.ok(request.sourceRootRequests.length > 0);
     assert.ok(request.sourceRootRequests.every((sourceRequest) =>
       sourceRequest.sourceHistoryProvider?.providerId === PHOTON_SOURCE_HISTORY_PROVIDER_ID &&
@@ -672,10 +672,10 @@ test("Photon absolute-history field routes through the moving-circular prescribe
   });
 
   assert.equal(absoluteHistoryRunCalls, 1);
-  assert.equal(field.sourceMode, "prescribed_path_absolute_history_receiver_normal_root_branch_sum");
+  assert.equal(field.sourceMode, "prescribed_path_absolute_history_transmitter_acceleration_sum");
   assert.equal(field.analysisFieldSchema, "prescribed-path-analysis/moving-circular-observer-field.v1");
   assert.equal(field.sourceHistoryProviderId, PHOTON_SOURCE_HISTORY_PROVIDER_ID);
-  assert.equal(field.receiverNormalOwner, "prescribed_path_analysis");
+  assert.equal(field.rootPlaybackOwner, "prescribed_path_analysis");
   assert.equal(field.fieldReconstructionOwner, "prescribed_path_analysis");
   assert.ok(Number.isFinite(field.electric.y));
 });
@@ -717,7 +717,7 @@ test("Photon self-hit span requests use absolute photon plus orbital speed ratio
   assertNear(rows[1].fieldSpeedRatio, Math.hypot(0.6, 1));
   assertNear(rows[2].fieldSpeedRatio, Math.hypot(0.6, 0.8));
   assert.equal(rows[0].speedBudgetKind, "orthogonal_local_c_translation_plus_transverse_orbital");
-  assert.equal(runRequest.envelope.interactionPolicy, "same-source-enabled");
+  assert.equal(runRequest.envelope.interactionPolicy, "same-transmitter-enabled");
 });
 
 test("Photon self-hit diagnostics route same-transmitter causal hits through the prescribed-path analysis", async () => {
@@ -767,8 +767,8 @@ test("Photon self-hit diagnostics use prescribed span analysis when circular-tra
   assert.equal(diagnostics.helicalBestPhaseFamily.phaseLockClassification, "singular_candidate");
   assert.ok(diagnostics.helicalBestPhaseFamily.label.includes(" "));
   assert.ok(diagnostics.helicalRows.every((row) =>
-    row.sourceHistoryKind === "moving-circular-same-source" &&
-    row.phaseAtHit?.rootKind === "same-source" &&
+    row.sourceHistoryKind === "moving-circular-same-transmitter" &&
+    row.phaseAtHit?.rootKind === "same-transmitter" &&
     Number.isFinite(row.phaseAtHit.receiverPhaseDegrees)
   ));
 });
@@ -832,7 +832,7 @@ test("Photon circular-transmitter roots, hits, and ledger entries can be routed 
                 distance: 0.25,
                 residual: 0,
                 jacobian: 1,
-                branchWeight: 1,
+                accelerationWeight: 1,
                 sourcePoint: { x: -1, y: 0, z: 0 },
                 receiverPoint: state.measurement.virtualObserver,
               },
@@ -850,7 +850,7 @@ test("Photon circular-transmitter roots, hits, and ledger entries can be routed 
                 sourcePoint: { x: -1, y: 0, z: 0 },
                 receiverPoint: state.measurement.virtualObserver,
                 signalSpeed: 1,
-                branchWeight: 1,
+                accelerationWeight: 1,
                 jacobian: 1,
               },
             ],
@@ -867,7 +867,7 @@ test("Photon circular-transmitter roots, hits, and ledger entries can be routed 
                 hitTime: observationTime,
                 residual: 0,
                 jacobian: 1,
-                branchWeight: 1,
+                accelerationWeight: 1,
               },
             ],
             status: { code: "ok", severity: "ok", message: "circular-source causal roots solved" },
@@ -907,10 +907,10 @@ test("Photon delayed emission field can use absolute-history moving-circular ana
   });
 
   assert.equal(field.analysisId, "prescribed-path-analysis");
-  assert.equal(field.sourceMode, "prescribed_path_absolute_history_receiver_normal_root_branch_sum");
+  assert.equal(field.sourceMode, "prescribed_path_absolute_history_transmitter_acceleration_sum");
   assert.equal(field.analysisFieldSchema, "prescribed-path-analysis/moving-circular-observer-field.v1");
   assert.equal(field.sourceHistoryProviderId, PHOTON_SOURCE_HISTORY_PROVIDER_ID);
-  assert.equal(field.receiverNormalOwner, "prescribed_path_analysis");
+  assert.equal(field.rootPlaybackOwner, "prescribed_path_analysis");
   assert.equal(field.fieldReconstructionOwner, "prescribed_path_analysis");
   assert.equal(field.measurement.sourceHistoryMode, "absolute_history");
   assert.equal(field.sourceCount, buildPhotonArchitrinoSourceRefs(state).length);
@@ -927,7 +927,7 @@ test("Photon delayed emission field can use absolute-history moving-circular ana
   ));
   assert.ok(field.contributions.every((contribution) =>
     contribution.sourceHistoryProviderId === PHOTON_SOURCE_HISTORY_PROVIDER_ID &&
-    contribution.analysisBoundary.receiverNormalOwner === "prescribed_path_analysis"
+    contribution.analysisBoundary.rootPlaybackOwner === "prescribed_path_analysis"
   ));
   assert.ok(field.contributions.every((contribution) =>
     Number.isFinite(contribution.phaseAtHit?.sourcePhaseCycleIndex)
@@ -973,7 +973,7 @@ test("Photon formula and plot APIs expose central prescribed-path analysis resul
 
   assert.equal(summary.analysisId, "prescribed-path-analysis");
   assert.equal(summary.field.analysisId, "prescribed-path-analysis");
-  assert.equal(summary.field.sourceMode, "prescribed_path_absolute_history_receiver_normal_root_branch_sum");
+  assert.equal(summary.field.sourceMode, "prescribed_path_absolute_history_transmitter_acceleration_sum");
   assert.equal(summary.field.analysisFieldSchema, "prescribed-path-analysis/moving-circular-observer-field.v1");
   assert.equal(summary.field.sourceHistoryProviderId, PHOTON_SOURCE_HISTORY_PROVIDER_ID);
   assert.equal(summary.polarization.analysisId, "prescribed-path-analysis");
@@ -989,7 +989,7 @@ test("Photon formula and plot APIs expose central prescribed-path analysis resul
     solveCircularSourceRootsHitsLedger: observerBridge.solveCircularSourceRootsHitsLedger,
   });
   assert.equal(observerField.analysisId, "prescribed-path-analysis");
-  assert.equal(observerField.sourceMode, "prescribed_path_absolute_history_receiver_normal_root_branch_sum");
+  assert.equal(observerField.sourceMode, "prescribed_path_absolute_history_transmitter_acceleration_sum");
   assert.equal(observerField.analysisFieldSchema, "prescribed-path-analysis/moving-circular-observer-field.v1");
   assert.ok(Number.isFinite(observerField.electric.magnitude));
 
@@ -998,7 +998,7 @@ test("Photon formula and plot APIs expose central prescribed-path analysis resul
     solveCircularSourceRootsHitsLedger: plotBridge.solveCircularSourceRootsHitsLedger,
   });
   assert.equal(plot.analysisId, "prescribed-path-analysis");
-  assert.equal(plot.sourceMode, "prescribed_path_absolute_history_receiver_normal_root_branch_sum");
+  assert.equal(plot.sourceMode, "prescribed_path_absolute_history_transmitter_acceleration_sum");
   assert.equal(plot.analysisFieldSchema, "prescribed-path-analysis/moving-circular-observer-field.v1");
   assert.equal(plot.sourceHistoryProviderId, PHOTON_SOURCE_HISTORY_PROVIDER_ID);
   assert.equal(plot.samples.length, 5);
@@ -1335,7 +1335,7 @@ test("configuration search can score and compare settings through the prescribed
     assert.equal(result.comparison.status, "ok");
     assert.equal(
       result.comparison.absoluteHistory.sourceMode,
-      "prescribed_path_absolute_history_receiver_normal_root_branch_sum"
+      "prescribed_path_absolute_history_transmitter_acceleration_sum"
     );
     assert.ok(Number.isFinite(result.comparison.absoluteHistory.helicalPhaseFamilyCount));
     assert.ok(Number.isFinite(result.comparison.absoluteHistory.helicalStablePhaseFamilyCount));
@@ -1386,7 +1386,7 @@ test("configuration search compares co-moving and absolute-history analysis resu
     assert.equal(result.comparison.coMoving.sourceMode, "prescribed_path_circular_source_branch_sum");
     assert.equal(
       result.comparison.absoluteHistory.sourceMode,
-      "prescribed_path_absolute_history_receiver_normal_root_branch_sum"
+      "prescribed_path_absolute_history_transmitter_acceleration_sum"
     );
     assert.ok(Number.isFinite(result.comparison.deltas.strengthDelta));
     assert.ok(Number.isFinite(result.comparison.deltas.rootCountDelta));

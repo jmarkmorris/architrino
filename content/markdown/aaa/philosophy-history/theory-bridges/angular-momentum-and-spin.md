@@ -527,10 +527,7 @@ and
 $$
 W_{\ell\alpha,m\beta}^{\mathrm{rec},(b)}
 =
-\left|
-\frac{D_{r,\ell\alpha,m\beta}^{(b)}}
-{D_{t,\ell\alpha,m\beta}^{(b)}}
-\right|
+\frac{c_f}{|D_{t,\ell\alpha,m\beta}^{(b)}|}
 $$
 
 The branch force-like bookkeeping term is
@@ -2229,7 +2226,7 @@ $$
 {c_\star^2-\|\mathbf V_{\text{cm}}\|^2}
 $$
 
-Forward and rear sectors therefore accumulate different phase delays, transmitter-side factors, and receiver-weighted acceleration factors. Combined with the transverse causal budget
+Forward and rear sectors therefore accumulate different phase delays, transmitter-side factors, and transmitter-side acceleration weights. Combined with the transverse causal budget
 
 $$
 c_{\perp}
@@ -3231,7 +3228,7 @@ $$
 \hat{\mathbf r}_{ia}(t;s)
 $$
 
-where $W_{ia}^{\mathrm{acc}}(t;s)=\lvert D_{r,ia}/D_{t,ia}\rvert$ is evaluated on the same active branch as the angular-momentum row.
+where $W_{ia}^{\mathrm{acc}}(t;s)=c_f/\lvert D_{t,ia}\rvert$ is evaluated on the same active branch as the angular-momentum row.
 
 and the force-like bookkeeping variable is
 

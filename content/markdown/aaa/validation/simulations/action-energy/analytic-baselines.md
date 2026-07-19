@@ -1,7 +1,7 @@
 # Analytic Baselines
 
 Purpose:
-- State the delay differential equations (DDEs) that govern canonical interactions under the delayed line-of-action law with receiver-weighted acceleration factor.
+- State the delay differential equations (DDEs) that govern canonical interactions under the delayed line-of-action law with transmitter-side acceleration weight.
 - Record exact analytical solutions only where they exist; otherwise, state solvability status without approximations.
 
 Models:
@@ -111,7 +111,7 @@ Methodological priority:
   \sum_{T_t\in\mathcal C_{ij,b}^{(\eta)}(T)}
   V_{i\leftarrow j,T_t}^{(\eta)}(T)
   $$
-  on the same active causal-root ledger used by the acceleration residual and energy crosswalk. Thus a small branch-virial residual is meaningful only after transmitter identity, polarity, emission time, Jacobian, receiver-weighted acceleration factor, and receiver radial power have survived the row aggregation.
+  on the same active causal-root ledger used by the acceleration residual and energy crosswalk. Thus a small branch-virial residual is meaningful only after transmitter identity, polarity, emission time, Jacobian, transmitter-side acceleration weight, and receiver radial power have survived the row aggregation.
   When the branch is differentiable after mollification and the same signed causal-root ledger is retained, direct differentiation gives the finite-window identity
   $$
   \left\langle
@@ -160,9 +160,9 @@ Methodological priority:
   diagnostic only until it supplies the same-domain scale generator, homogeneity
   degree, and branch coordinate needed for this stronger reduction.
 - Velocity-regime scope for the branch-virial target:
-  - Strict sub-field-speed branch windows are the closest to the classical comparison because nontrivial self-hit roots are excluded on the strictly sub-field-speed interval; delayed partner hits, transmitter-side factors, and receiver-weighted acceleration factors still remain in the acceleration term.
+  - Strict sub-field-speed branch windows are the closest to the classical comparison because nontrivial self-hit roots are excluded on the strictly sub-field-speed interval; delayed partner hits, transmitter-side factors, and transmitter-side acceleration weights still remain in the acceleration term.
   - Field-speed or near-field-speed windows are threshold-sensitive. They require an explicit Jacobian floor, inactive-root gap floor, and unchanged causal-root ledger before the virial residual is meaningful.
-  - Super-field-speed history requires the retained self-hit and multi-root rows to be included in $\mathbf A_{i,b}^{(\eta)}(T)$. A speed label alone never certifies the branch; root existence, transversality, receiver-weighted acceleration factor, and bounded endpoint virial drift do the work.
+  - Super-field-speed history requires the retained self-hit and multi-root rows to be included in $\mathbf A_{i,b}^{(\eta)}(T)$. A speed label alone never certifies the branch; root existence, transversality, transmitter-side acceleration weight, and bounded endpoint virial drift do the work.
 - Failure modes:
   - $\mathcal{G}_b^{(\eta)}$ has unbounded secular drift on $W$.
   - The causal-root ledger changes, an inactive-root gap closes, or the Jacobian floor fails.
@@ -193,7 +193,7 @@ Integral (delta) form selecting the causal root:
   \mathrm{sgn}\!\big(X_1(T)-X_2(T-\Delta)\big)}
   {\lvert X_1(T)-X_2(T-\Delta)\rvert^{2}}\; d\Delta
   $$
-  whose evaluation selects the causal delay $\Delta(T)$. The receiver-weighted acceleration factor must then be applied on the selected root to yield the DDE above.
+  whose evaluation selects the causal delay $\Delta(T)$. The transmitter-side acceleration weight must then be applied on the selected root to yield the DDE above.
 
 Why closed-form solutions are unlikely (even with symmetry):
 - The delay is state-dependent: the unknown $r(T)$ appears both in the right-hand side and in the implicit constraint defining $\Delta(T)$, making the problem a nonlinear functional equation rather than an ODE.

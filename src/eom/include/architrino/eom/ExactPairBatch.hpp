@@ -52,8 +52,8 @@ struct NativeRootFreeCell {
   std::string upper;
   std::string residual_lower;
   std::string residual_upper;
-  std::string receiver_normal_lower;
-  std::string receiver_normal_upper;
+  std::string receiver_factor_lower;
+  std::string receiver_factor_upper;
   // Binary64 mirrors of the tokens above (tokens are max_digits10 and
   // round-trip exactly).  They exist so warm-start replay does not re-parse
   // every retained cell on every snapshot; numeric_values_valid guards
@@ -68,11 +68,11 @@ struct NativeRootFreeCell {
 struct NativeRootBracket {
   std::string lower;
   std::string upper;
-  std::string source_normal_lower;
-  std::string source_normal_upper;
-  std::string receiver_normal_lower;
-  std::string receiver_normal_upper;
-  int source_normal_sign;
+  std::string transmitter_factor_lower;
+  std::string transmitter_factor_upper;
+  std::string receiver_factor_lower;
+  std::string receiver_factor_upper;
+  int transmitter_factor_sign;
   std::vector<std::size_t> source_segment_indices;
   std::string precision_route;
   unsigned precision_bits;
@@ -124,10 +124,10 @@ struct ExactPairCertificate {
   std::string difficult_point;
   std::string difficult_point_residual_lower;
   std::string difficult_point_residual_upper;
-  std::string difficult_source_normal_lower;
-  std::string difficult_source_normal_upper;
-  std::string difficult_receiver_normal_lower;
-  std::string difficult_receiver_normal_upper;
+  std::string difficult_transmitter_factor_lower;
+  std::string difficult_transmitter_factor_upper;
+  std::string difficult_receiver_factor_lower;
+  std::string difficult_receiver_factor_upper;
   int difficult_lower_sign = 0;
   int difficult_upper_sign = 0;
 };

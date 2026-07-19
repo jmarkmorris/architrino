@@ -2,7 +2,7 @@
 
 ## Status
 
-- Purpose: test whether the existing scalar-action recoil contribution can cancel the source-density coincident-birth divergence
+- Purpose: test whether the existing scalar-action recoil contribution can cancel the transmitter-side coincident-birth divergence
 - Scope: incoming receiver-side recoil on the local smooth accelerating same-source chart
 - Standing: priority analysis; not a complete causal recoil theorem
 - Result: the incoming recoil has the same sign and a stronger sharp divergence; the time-transposed companion is advanced on this chart

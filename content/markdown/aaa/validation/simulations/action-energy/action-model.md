@@ -1,6 +1,6 @@
 # Action Model Comparison
 
-This note compares three modeling options for the emission-propagation-interaction pipeline and recommends a primary approach, with supporting roles for the others. We work in units with field speed $v=1$ unless stated otherwise; emission cadence and per-wavefront amplitude are constant at the source; per-hit actions are directed along $\hat{\mathbf{r}}$ with inverse-square geometric decay and receiver-weighted acceleration factor $W^{\mathrm{acc}}=\lvert D_r/D_t\rvert$; $H(0)=0$ excludes the coincident-time self-kick; no cross products or right-hand-rule terms appear.
+This note compares three modeling options for the emission-propagation-interaction pipeline and recommends a primary approach, with supporting roles for the others. We work in units with field speed $v=1$ unless stated otherwise; emission cadence and per-wavefront amplitude are constant at the source; per-hit actions are directed along $\hat{\mathbf{r}}$ with inverse-square geometric decay and transmitter-side acceleration weight $W^{\mathrm{acc}}=c_f/\lvert D_t\rvert$; $H(0)=0$ excludes the coincident-time self-kick; no cross products or right-hand-rule terms appear.
 
 ---
 
@@ -156,7 +156,7 @@ where:
 * $\mathbf V_s(T_t)=\dfrac{d\mathbf X_s}{dT_t}$ is the transmitter velocity at emission time $T_t$.
 * $\mathbf{n}(T_t) = \dfrac{\mathbf X-\mathbf X_s(T_t)}{r(T_t)}$ is the unit vector pointing from source (at emission) to the field point.
 
-In standard wave-equation solutions, a Jacobian factor $|1 - \mathbf{n}\!\cdot\!\mathbf V_s/c_f|$ arises from the change of variables used to evaluate the path history time delta. In this project’s canonical per-hit law, emission cadence and per-wavefront amplitude are constant and do not depend on emitter speed. The corresponding transmitter-side factor is the root-transversality field, while the active received branch strength is the receiver-side factor $W^{\mathrm{acc}}=\lvert D_r/D_t\rvert$ rather than an extra source-amplitude modulation.
+In standard wave-equation solutions, a Jacobian factor $|1 - \mathbf{n}\!\cdot\!\mathbf V_s/c_f|$ arises from the change of variables used to evaluate the path history time delta. In this project’s canonical per-hit law, emission cadence and per-wavefront amplitude are constant and do not depend on emitter speed. The corresponding transmitter-side factor is the root-transversality field, while the active received branch strength is the receiver-side factor $W^{\mathrm{acc}}=c_f/\lvert D_t\rvert$ rather than an extra source-amplitude modulation.
 
 ### Special simple case — stationary emitter
 
@@ -183,7 +183,7 @@ If $\mathbf X_s(T_t)=\mathbf X_0$ (emitter fixed) and $q(T_t)=Q\,\delta(T_t-T_{t
 
 ## Event-driven Radial-Transport + Per-Hit EOM (Canonical Method)
 
-Physical idea: represent emission as a conserved, razor-thin causal wake surface (a measure on the causal isochron), then drive particle motion by summing line-of-action per-hit accelerations with receiver-weighted acceleration factor at causal intersection times. We work in units with field speed $v=1$ unless noted; replace $v$ by $c_f$ otherwise.
+Physical idea: represent emission as a conserved, razor-thin causal wake surface (a measure on the causal isochron), then drive particle motion by summing line-of-action per-hit accelerations with transmitter-side acceleration weight at causal intersection times. We work in units with field speed $v=1$ unless noted; replace $v$ by $c_f$ otherwise.
 
 Field representation (transport/continuity form)
 - Source impulse at $(T_t,\mathbf X_0)$ creates a wake surface supported on $r = v(T-T_t)$ with surface density that conserves a constant per-wake surface amplitude $q$:
@@ -210,7 +210,7 @@ Per-hit equation of motion (EOM)
   \quad
   \hat{\mathbf{r}}=\frac{\mathbf X_{o'}(T_r)-\mathbf X_j(T_t)}{r},\ r>0
   $$
-  with $W_{o'j}^{\mathrm{acc}}=\lvert D_{r,o'j}/D_{t,o'j}\rvert$, $D_{t,o'j}=c_f-\mathbf V_j(T_t)\cdot\hat{\mathbf{r}}$, and $D_{r,o'j}=c_f-\mathbf V_{o'}(T_r)\cdot\hat{\mathbf{r}}$.
+  with $W_{o'j}^{\mathrm{acc}}=c_f/\lvert D_{t,o'j}\rvert$, $D_{t,o'j}=c_f-\mathbf V_j(T_t)\cdot\hat{\mathbf{r}}$, and $D_{r,o'j}=c_f-\mathbf V_{o'}(T_r)\cdot\hat{\mathbf{r}}$.
   with total acceleration the sum over transmitters and roots. Convention $H(0)=0$ removes the instantaneous self-kick at zero delay. Optional mollification replaces $\delta(\cdot)$ by $\delta_\eta(\cdot)$ to produce smooth acceleration contributions.
 
 Implementation checklist
@@ -221,7 +221,7 @@ Implementation checklist
 
 Relation to Methods 1 and 2
 - This is a transport/continuity model, not the scalar wave equation. The $1/r^2$ factor is a surface-density normalization (Gauss-like on the spherically expanding causal wake surfaces); it is compatible with conserving total emission per wake surface. In Method 2 the $\!1/(4\pi r)$ factor appears for a wave amplitude; taking gradients connects these scalings when mapping to accelerations.
-- The Doppler-type Jacobian $1-\mathbf{n}\!\cdot\!\mathbf V_s/c_f$ from Method 2 is the transmitter-side branch-transversality factor. Geometric constants are absorbed into $\kappa$ by convention, but the canonical per-hit strength uses the receiver-weighted acceleration factor $W^{\mathrm{acc}}=\lvert D_r/D_t\rvert$; no additional source-speed amplitude factor is introduced.
+- The Doppler-type Jacobian $1-\mathbf{n}\!\cdot\!\mathbf V_s/c_f$ from Method 2 is the transmitter-side branch-transversality factor. Geometric constants are absorbed into $\kappa$ by convention, but the canonical per-hit strength uses the transmitter-side acceleration weight $W^{\mathrm{acc}}=c_f/\lvert D_t\rvert$; no additional source-speed amplitude factor is introduced.
 - Numerically, this method targets particle dynamics directly (per-hit ODEs) rather than evolving a full field (Method 1) or evaluating fields at sparse probes (Method 2).
 
 Operator diagnostics (finite-window checks)
@@ -276,8 +276,8 @@ Practical implementation notes (concise)
 
 Axiomatic fidelity (delayed-only, line-of-action, constant transmitter emission)
 - Method 1: Partially aligned. The PDE yields $1/(4\pi r)$ wave amplitudes; mapping to $1/r^2$ per-hit accelerations requires gradients and conventions. Radial-only action is not built-in.
-- Method 2: Causality and superposition are exact; amplitudes are $1/(4\pi r)$ with a transmitter-side Jacobian $\left|1-\mathbf{n}\cdot\mathbf V_s/c_f\right|^{-1}$ when evaluating the path-history time delta. The canonical law keeps the corresponding transmitter-side factor as root-transversality data, while received acceleration magnitude uses $W^{\mathrm{acc}}=\lvert D_r/D_t\rvert$ and overall geometric normalizations are absorbed into $\kappa$ when comparing accelerations.
-- Method 3: Exact match. Delayed-only, line-of-action per-hit with constant transmitter emission is native, and the receiver-weighted acceleration factor appears explicitly in the received acceleration magnitude. Geometric normalizations are conventionally absorbed into $\kappa$.
+- Method 2: Causality and superposition are exact; amplitudes are $1/(4\pi r)$ with a transmitter-side Jacobian $\left|1-\mathbf{n}\cdot\mathbf V_s/c_f\right|^{-1}$ when evaluating the path-history time delta. The canonical law keeps the corresponding transmitter-side factor as root-transversality data, while received acceleration magnitude uses $W^{\mathrm{acc}}=c_f/\lvert D_t\rvert$ and overall geometric normalizations are absorbed into $\kappa$ when comparing accelerations.
+- Method 3: Exact match. Delayed-only, line-of-action per-hit with constant transmitter emission is native, and the transmitter-side acceleration weight appears explicitly in the received acceleration magnitude. Geometric normalizations are conventionally absorbed into $\kappa$.
 
 Causal root structure, self-interaction, multiplicity
 - Method 1: Self-hits and multiple roots are implicit in the evolving field; they are not directly enumerated as discrete events.
@@ -348,7 +348,7 @@ Method 3 — Event-driven radial-transport + per-hit EOM (canonical)
   - Numerically lightweight for particle dynamics; works cleanly with impulsive or mollified ODE integration.
 - Cons
   - Not derived from the scalar wave equation; global field-energy accounting is indirect (via mollified potentials).
-  - Must retain the transmitter-side factor and receiver-weighted acceleration factor from the Master EOM; a reduced test harness that omits either one is a noncanonical approximation rather than a calibration of $\kappa$.
+  - Must retain the transmitter-side factor and transmitter-side acceleration weight from the Master EOM; a reduced test harness that omits either one is a noncanonical approximation rather than a calibration of $\kappa$.
   - Accuracy depends on robust causal-root finding and regularization choices in complex multi-hit scenarios.
 
 ---

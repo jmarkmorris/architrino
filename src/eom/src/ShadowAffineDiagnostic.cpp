@@ -437,10 +437,10 @@ struct ShadowAffineDiagnostic::Impl {
       const auto& source_history = path_history(histories, pair.source_path_id).history;
       const auto receiver_affine = evaluate(pair.receiver_path_id, reception);
       const auto xr = receiver_history.nominal_position(reception);
-      const auto vr = receiver_history.nominal_velocity(reception);
       for (const auto& row : pair.rows) {
-        if (row.chart != "sharp_root" || !row.source_normal.has_value() ||
-            !row.receiver_normal.has_value()) continue;
+        if (row.chart != "sharp_root" || !row.transmitter_factor.has_value() ||
+            !row.receiver_factor.has_value() ||
+            !row.acceleration_weight.has_value()) continue;
         const double emission = 0.5 * (token(row.emission_lower) + token(row.emission_upper));
         const auto source_affine = evaluate(pair.source_path_id, emission);
         const auto xs = source_history.nominal_position(emission);
@@ -448,28 +448,24 @@ struct ShadowAffineDiagnostic::Impl {
         const auto source_acceleration = nominal_acceleration(source_history, emission);
         const auto displacement = subtract3(xr, xs);
         const double separation = norm3(displacement);
-        const double source_normal = row.source_normal->midpoint();
-        const double receiver_normal = row.receiver_normal->midpoint();
-        if (!(separation > 0.0) || source_normal == 0.0) continue;
+        const double transmitter_factor = row.transmitter_factor->midpoint();
+        if (!(separation > 0.0) || transmitter_factor == 0.0) continue;
         const auto direction = scale3(displacement, 1.0 / separation);
-        const double ratio = receiver_normal / source_normal;
-        const double strength = std::abs(ratio);
-        const double ratio_sign = ratio < 0.0 ? -1.0 : 1.0;
+        const double strength = row.acceleration_weight->midpoint();
         const double signed_scale = static_cast<double>(row.polarity) *
             row.charge_product_magnitude.midpoint() * row.coupling.midpoint();
         const double inverse_r3 = 1.0 / (separation * separation * separation);
         const double inverse_r5 = inverse_r3 / (separation * separation);
         const auto inverse_square_direction = scale3(displacement, inverse_r3);
         for (std::size_t symbol = 0U; symbol < symbols.size(); ++symbol) {
-          std::array<double, 3> dxr{}, dvr{}, dxs{}, dvs{};
+          std::array<double, 3> dxr{}, dxs{}, dvs{};
           for (std::size_t axis = 0U; axis < 3U; ++axis) {
             dxr[axis] = receiver_affine.position[axis][symbol];
-            dvr[axis] = receiver_affine.velocity[axis][symbol];
             dxs[axis] = source_affine.position[axis][symbol];
             dvs[axis] = source_affine.velocity[axis][symbol];
           }
           const double delta_emission =
-              (dot3(direction, dxs) - dot3(direction, dxr)) / source_normal;
+              (dot3(direction, dxs) - dot3(direction, dxr)) / transmitter_factor;
           const auto dxs_total = add3(dxs, scale3(vs, delta_emission));
           const auto dvs_total = add3(dvs, scale3(source_acceleration, delta_emission));
           const auto delta_displacement = subtract3(dxr, dxs_total);
@@ -477,14 +473,10 @@ struct ShadowAffineDiagnostic::Impl {
           const auto delta_direction = scale3(
               subtract3(delta_displacement, scale3(direction, radial_delta)),
               1.0 / separation);
-          const double delta_source_normal =
+          const double delta_transmitter_factor =
               -(dot3(delta_direction, vs) + dot3(direction, dvs_total));
-          const double delta_receiver_normal =
-              -(dot3(delta_direction, vr) + dot3(direction, dvr));
-          const double delta_strength = ratio_sign *
-              (delta_receiver_normal * source_normal -
-               receiver_normal * delta_source_normal) /
-              (source_normal * source_normal);
+          const double delta_strength =
+              -strength * delta_transmitter_factor / transmitter_factor;
           const auto delta_inverse_square = subtract3(
               scale3(delta_displacement, inverse_r3),
               scale3(displacement, 3.0 * dot3(displacement, delta_displacement) * inverse_r5));
@@ -507,13 +499,10 @@ struct ShadowAffineDiagnostic::Impl {
               subtract3(delta_displacement, scale3(direction, radial_delta)),
               1.0 / separation);
           const auto delta_source_velocity = scale3(source_acceleration, delta_emission);
-          const double delta_source_normal =
+          const double delta_transmitter_factor =
               -(dot3(delta_direction, vs) + dot3(direction, delta_source_velocity));
-          const double delta_receiver_normal = -dot3(delta_direction, vr);
-          const double delta_strength = ratio_sign *
-              (delta_receiver_normal * source_normal -
-               receiver_normal * delta_source_normal) /
-              (source_normal * source_normal);
+          const double delta_strength =
+              -strength * delta_transmitter_factor / transmitter_factor;
           const auto delta_inverse_square = subtract3(
               scale3(delta_displacement, inverse_r3),
               scale3(displacement, 3.0 * dot3(displacement, delta_displacement) * inverse_r5));
@@ -1010,10 +999,10 @@ struct ShadowAffineDiagnostic::Impl {
                  << ",\"shadowWidth\":" << *width
                  << ",\"linearizationSlackWidth\":" << 2.0 * *width
                  << ",\"recordedBoxWidth\":" << box_width
-                 << ",\"sourceNormalLower\":\""
-                 << json_escape(certificate.difficult_source_normal_lower)
-                 << "\",\"sourceNormalUpper\":\""
-                 << json_escape(certificate.difficult_source_normal_upper)
+                 << ",\"transmitterFactorLower\":\""
+                 << json_escape(certificate.difficult_transmitter_factor_lower)
+                 << "\",\"transmitterFactorUpper\":\""
+                 << json_escape(certificate.difficult_transmitter_factor_upper)
                  << "\",\"falsifier\":\"an independently differentiated nominal map gives a projected width at or above the recorded ceiling\"}\n";
         }
       };

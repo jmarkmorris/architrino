@@ -234,25 +234,6 @@ MpInterval square_root(const MpInterval& value) {
   return MpInterval(std::move(lower), std::move(upper));
 }
 
-MpInterval absolute(const MpInterval& value) {
-  const MpNumber zero = MpNumber::integer(0, value.bits());
-  if (value.lower().compare(zero) >= 0) {
-    return value;
-  }
-  if (value.upper().compare(zero) <= 0) {
-    MpNumber lower(value.bits());
-    MpNumber upper(value.bits());
-    mpfr_neg(lower.raw(), value.upper().raw(), MPFR_RNDD);
-    mpfr_neg(upper.raw(), value.lower().raw(), MPFR_RNDU);
-    return MpInterval(std::move(lower), std::move(upper));
-  }
-  MpNumber neg_lower(value.bits());
-  mpfr_neg(neg_lower.raw(), value.lower().raw(), MPFR_RNDU);
-  const MpNumber maximum =
-      neg_lower.compare(value.upper()) > 0 ? neg_lower : value.upper();
-  return MpInterval(zero, maximum);
-}
-
 MpInterval exponential(const MpInterval& value) {
   MpNumber lower(value.bits());
   MpNumber upper(value.bits());
@@ -279,10 +260,6 @@ MpVector subtract_vector(const MpVector& left, const MpVector& right) {
 
 MpVector scale_vector(const MpInterval& factor, const MpVector& value) {
   return {factor * value[0], factor * value[1], factor * value[2]};
-}
-
-MpInterval dot_vector(const MpVector& left, const MpVector& right) {
-  return left[0] * right[0] + left[1] * right[1] + left[2] * right[2];
 }
 
 MpInterval norm_vector(const MpVector& value) {
@@ -416,19 +393,6 @@ MpVector integrand(
       divide_vector(displacement, radial_square * square_root(radial_square));
   const MpInterval field_speed =
       MpInterval::decimal(certificate.field_speed, bits);
-  MpInterval receiver_strength = MpInterval::integer(0, bits);
-  if (separation.contains_zero()) {
-    receiver_strength = MpInterval(
-        MpNumber::integer(0, bits),
-        add_number(
-            field_speed.upper(), norm_vector(receiver_state.second).upper(),
-            MPFR_RNDU));
-  } else {
-    receiver_strength = absolute(
-        field_speed -
-        dot_vector(divide_vector(displacement, separation),
-                   receiver_state.second));
-  }
   const MpInterval residual =
       separation - field_speed * (reception - emission);
   const MpInterval eta = MpInterval::decimal(request.causal_width, bits);
@@ -449,7 +413,7 @@ MpVector integrand(
   const MpInterval scale =
       MpInterval::decimal(request.coupling, bits) *
       MpInterval::decimal(request.receiver_charge, bits) *
-      MpInterval::decimal(request.source_charge, bits) * receiver_strength *
+      MpInterval::decimal(request.source_charge, bits) * field_speed *
       mollifier;
   return scale_vector(scale, kernel);
 }
@@ -511,19 +475,6 @@ MpVector event_integrand(
       divide_vector(displacement, radial_square * square_root(radial_square));
   const MpInterval field_speed =
       MpInterval::decimal(request.field_speed, bits);
-  MpInterval receiver_strength = MpInterval::integer(0, bits);
-  if (separation.contains_zero()) {
-    receiver_strength = MpInterval(
-        MpNumber::integer(0, bits),
-        add_number(
-            field_speed.upper(), norm_vector(receiver_state.second).upper(),
-            MPFR_RNDU));
-  } else {
-    receiver_strength = absolute(
-        field_speed -
-        dot_vector(
-            divide_vector(displacement, separation), receiver_state.second));
-  }
   const MpInterval residual =
       separation - field_speed * (reception - emission);
   const MpInterval eta = MpInterval::decimal(request.causal_width, bits);
@@ -544,7 +495,7 @@ MpVector event_integrand(
   const MpInterval scale =
       MpInterval::decimal(request.coupling, bits) *
       MpInterval::decimal(request.receiver_charge, bits) *
-      MpInterval::decimal(request.source_charge, bits) * receiver_strength *
+      MpInterval::decimal(request.source_charge, bits) * field_speed *
       mollifier;
   return scale_vector(scale, kernel);
 }

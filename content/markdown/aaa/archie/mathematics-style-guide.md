@@ -163,7 +163,7 @@ Plain language: Each emission is a razor-thin causal wake surface; when needed, 
 
 ---
 
-## Master Equation of Motion (EOM; line of action with receiver-weighted acceleration factor)
+## Master Equation of Motion (EOM; line of action with transmitter-side acceleration weight)
 
 Given receiver $r$ at reception time $T_r$ and transmitter $t$ at causal emission time $T_t\in\mathcal C_{r\leftarrow t}(T_r)$, let
 $$
@@ -194,11 +194,9 @@ and
 $$
 W_{r\leftarrow t}^{\mathrm{acc}}(T_r;T_t)
 \equiv
-\left|
-\frac{D_r(T_r;T_t)}{D_t(T_r;T_t)}
-\right|.
+\frac{c_f}{|D_t(T_r;T_t)|}.
 $$
-The transmitter-side factor $D_t$ controls root transversality and wake-front compression or dilation from transmitter motion. The receiver-side factor $D_r$ controls how the moving receiver cuts through the same emitted wake sequence. The exact signed root-playback derivative is $dT_t/dT_r=D_r/D_t$. The unsigned ratio $W^{\mathrm{acc}}$ is the acceleration factor in the current canonical EOM; this terminology does not promote the separate source-density proposal.
+The transmitter-side factor $D_t$ controls root transversality and wake-front compression or dilation from transmitter motion. The receiver-side factor $D_r$ controls how the moving receiver cuts through the same emitted wake sequence. The exact signed root-playback derivative is $dT_t/dT_r=D_r/D_t$. The transmitter-side acceleration weight is $W^{\mathrm{acc}}=c_f/|D_t|$; it is not the magnitude of root playback.
 
 Total acceleration:
 $$
@@ -212,10 +210,10 @@ $$
 with $\Delta_j$ determined implicitly by $\|\mathbf X(T)-\mathbf X_j(T-\Delta_j)\| = v\,\Delta_j$, and per-hit contributions summed over all roots. In the $\eta\to 0$ limit interpret in the weak sense.
 
 Notes:
-- Emission cadence and per-wavefront amplitude are constant at the transmitter; the received acceleration magnitude is modulated by the receiver-weighted acceleration factor $W^{\mathrm{acc}}=\lvert D_r/D_t\rvert$.
+- Emission cadence and per-wavefront amplitude are constant at the transmitter; the received acceleration magnitude is modulated by the transmitter-side acceleration weight $W^{\mathrm{acc}}=c_f/\lvert D_t\rvert$.
 - No cross products, no right-hand-rule magnetism; every per-hit action is along $\hat{\mathbf{r}}$.
 
-Plain language: For each past emission that can reach the receiver now, push along the line back to where it came from, with inverse-square falloff multiplied by how the transmitter laid down the wake and how the receiver crosses it, then add all pushes.
+Plain language: For each past emission that can reach the receiver now, accelerate along the line from the transmitter's emission point to the receiver, with inverse-square falloff multiplied by how densely the transmitter laid down the wake surfaces, then add all contributions. Receiver motion changes root playback and future geometry, not the arriving multiplier.
 
 Receiver velocity decomposition (instantaneous):
 - Decompose the receiver velocity relative to $\hat{\mathbf r}_t$:

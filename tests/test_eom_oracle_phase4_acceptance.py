@@ -86,7 +86,7 @@ def request(
         causal_width="0.25",
         core_scale="0.2",
         root_tolerance="1e-10",
-        source_normal_floor="1e-24",
+        transmitter_factor_floor="1e-24",
         acceleration_tolerance="1e-7",
         quadrature_tolerance="1e-5",
         position_tolerance="1e-6",

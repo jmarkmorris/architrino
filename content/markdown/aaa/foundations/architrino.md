@@ -35,9 +35,9 @@ W_{ij}^{\mathrm{acc}}\hat{\mathbf{r}}_{ij},
 \qquad
 W_{ij}^{\mathrm{acc}}
 =
-\left|\frac{D_{r,ij}}{D_{t,ij}}\right|
+\frac{c_f}{|D_{t,ij}|}
 $$
-Here $\sigma_{ij}=\mathrm{sign}(q_iq_j)$ is the polarity sign factor: $+1$ for like-polarity pairs, which repel, and $-1$ for unlike-polarity pairs, which attract; $r_{ij}=\|\mathbf X_i(T_r)-\mathbf X_j(T_t)\|$ is the delayed separation evaluated at a retained causal root, where it equals $c_f(T_r-T_t)$, not the simultaneous distance; and $\hat{\mathbf{r}}_{ij}$ points from the transmitter's emission point $\mathbf X_j(T_t)$ toward the receiver's reception point $\mathbf X_i(T_r)$. $D_{t,ij}=c_f-\hat{\mathbf{r}}_{ij}\cdot\mathbf V_j(T_t)$ is the transmitter-side factor and $D_{r,ij}=c_f-\hat{\mathbf{r}}_{ij}\cdot\mathbf V_i(T_r)$ is the receiver-side factor. The absolute value quotes only the branch-strength magnitude; the signed branch-orientation factor $m_{ij}=D_{r,ij}/D_{t,ij}$ and root-degree data remain dynamics-level branch data in the [Master Equation](../dynamics/master-equation.md#the-master-equation-canonical-form). The constraint conventions are: the causal constraint is length-valued, written $g_{ij}=r_{ij}-c_f(T_r-T_t)$ in the [Master Equation](../dynamics/master-equation.md#the-master-equation-canonical-form) and $F_{ij}$ in the foundations pages, and it carries the velocity-unit transversality floor $\lvert\partial_{T_t}g_{ij}\rvert \ge \kappa_{\mathrm{hit}} > 0$; when a dimensionless floor is needed, the time-normalized object is $\tilde F_{ij}=F_{ij}/c_f$. Then $J_{ij}^{t}=\partial_{T_t} \tilde F_{ij}$ is the transmitter-side causal-root transversality Jacobian, and $c_fJ_{ij}^{t}=\partial_{T_t}g_{ij}=D_{t,ij}$, so the transmitter-side factor is not a free inverse-strength parameter. It is the density-of-states factor of the causal-root map, while the active received branch strength is $W_{ij}^{\mathrm{acc}}$. The ordinary simple-root acceleration contribution is valid away from the Whitney-fold set
+Here $\sigma_{ij}=\mathrm{sign}(q_iq_j)$ is the polarity sign factor: $+1$ for like-polarity pairs, which repel, and $-1$ for unlike-polarity pairs, which attract; $r_{ij}=\|\mathbf X_i(T_r)-\mathbf X_j(T_t)\|$ is the delayed separation evaluated at a retained causal root, where it equals $c_f(T_r-T_t)$, not the simultaneous distance; and $\hat{\mathbf{r}}_{ij}$ points from the transmitter's emission point $\mathbf X_j(T_t)$ toward the receiver's reception point $\mathbf X_i(T_r)$. $D_{t,ij}=c_f-\hat{\mathbf{r}}_{ij}\cdot\mathbf V_j(T_t)$ is the transmitter-side factor and $D_{r,ij}=c_f-\hat{\mathbf{r}}_{ij}\cdot\mathbf V_i(T_r)$ is the receiver-side factor. The acceleration weight depends only on $D_t$; the signed branch-orientation factor $m_{ij}=D_{r,ij}/D_{t,ij}$ and root-degree data remain dynamics-level branch data in the [Master Equation](../dynamics/master-equation.md#the-master-equation-canonical-form). The constraint conventions are: the causal constraint is length-valued, written $g_{ij}=r_{ij}-c_f(T_r-T_t)$ in the [Master Equation](../dynamics/master-equation.md#the-master-equation-canonical-form) and $F_{ij}$ in the foundations pages, and it carries the velocity-unit transversality floor $\lvert\partial_{T_t}g_{ij}\rvert \ge \kappa_{\mathrm{hit}} > 0$; when a dimensionless floor is needed, the time-normalized object is $\tilde F_{ij}=F_{ij}/c_f$. Then $J_{ij}^{t}=\partial_{T_t} \tilde F_{ij}$ is the transmitter-side causal-root transversality Jacobian, and $c_fJ_{ij}^{t}=\partial_{T_t}g_{ij}=D_{t,ij}$. It is the density-of-states factor of the causal-root map, and $W_{ij}^{\mathrm{acc}}=c_f/|D_{t,ij}|$ is the active acceleration weight. The ordinary simple-root acceleration contribution is valid away from the Whitney-fold set
 $$
 \Sigma_{ij}=\{F_{ij}=0,\ \partial_{T_t} F_{ij}=0\},
 $$
@@ -164,7 +164,7 @@ K\!\left(\mathbf X,T;\mathbf X_a(T_t),T_t\right)
 \subseteq
 \left\{\|\mathbf X-\mathbf X_a(T_t)\|=c_f(T-T_t)\right\}
 $$
-The kernel $K$ is only a schematic placeholder here; the exact causal-root sets, transmitter-side factors, receiver-weighted acceleration factors, kernels, and regularization belong to the dynamics chapter. The ontology claim is the dependency claim: after the transmitter identity, polarity, and path history are fixed, there is no second material inventory or autonomous field state left to specify.
+The kernel $K$ is only a schematic placeholder here; the exact causal-root sets, transmitter-side factors, transmitter-side acceleration weights, kernels, and regularization belong to the dynamics chapter. The ontology claim is the dependency claim: after the transmitter identity, polarity, and path history are fixed, there is no second material inventory or autonomous field state left to specify.
 
 Point-source causal-delay theories carry a known pathology class. Classical point-charge electrodynamics develops divergent self-energy at zero radius, runaway solution branches, and pre-acceleration in Abraham-Lorentz-Dirac-type reductions. This chapter does not solve those issues by naming the architrino primitive. It routes them to the dynamics layer: coincidence handling, self-hit admissibility, regularized or weak-limit kernels, Jacobian/transversality floors, and energy-momentum accounting must remove or quarantine those pathology channels in the branch being used.
 
@@ -182,7 +182,7 @@ This page fixes the ontological commitments:
 - Reception is universal across architrinos.
 - Emitted wake history supplies provenance for later dynamics.
 
-This chapter stops before the exact acceleration law. Exact causal wake surfaces, density representations, causal emission-time roots, transmitter-side factors, receiver-weighted acceleration factors, inverse-square kernels, and regularization belong in [Master Equation](../dynamics/master-equation.md).
+This chapter stops before the exact acceleration law. Exact causal wake surfaces, density representations, causal emission-time roots, transmitter-side factors, transmitter-side acceleration weights, inverse-square kernels, and regularization belong in [Master Equation](../dynamics/master-equation.md).
 
 ## Worldlines and Path History
 
@@ -217,7 +217,7 @@ This is an ontology statement about transmitter identity and path-history proven
 
 The ontology only states that every architrino receives wake contributions according to one universal law. This is a universality claim about the primitive receiver, not a claim that all effective assemblies respond in the same coarse-grained way.
 
-It does not define the acceleration kernel, causal emission-time set, transmitter-side factor, receiver-weighted acceleration factor, root topology, or branch-resolved acceleration. Those are dynamical commitments, not primitive-entity ontology. The canonical source is [Master Equation](../dynamics/master-equation.md).
+It does not define the acceleration kernel, causal emission-time set, transmitter-side factor, transmitter-side acceleration weight, root topology, or branch-resolved acceleration. Those are dynamical commitments, not primitive-entity ontology. The canonical source is [Master Equation](../dynamics/master-equation.md).
 
 ## Dynamics and Regime Boundary
 
@@ -225,7 +225,7 @@ This page does not own wake regimes, self-hit activation, maximum-curvature bina
 
 The canonical homes are:
 
-- [Master Equation](../dynamics/master-equation.md) for causal hits, delay roots, transmitter-side factors, receiver-weighted acceleration factors, received acceleration, and branch topology.
+- [Master Equation](../dynamics/master-equation.md) for causal hits, delay roots, transmitter-side factors, transmitter-side acceleration weights, received acceleration, and branch topology.
 - [Binary Dynamics](../dynamics/binary-dynamics.md) for wake-speed regimes, partner hit versus self-hit behavior, spiral contraction, and maximum-curvature binary analysis.
 - [Nested Shell Braid Dynamics](../noether-braid/braid-families.md#nested-shell-braid-dynamics) for coupled nested shell braid speed regimes, alignment behavior, and assembly-stability mechanisms.
 - [Noether Braid](../noether-braid/noether-braid.md) for the assembly-level Noether braid architecture built from those dynamics.

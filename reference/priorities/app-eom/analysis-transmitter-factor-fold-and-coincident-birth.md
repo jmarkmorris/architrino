@@ -2,7 +2,7 @@
 
 ## Status
 
-- Purpose: promotion analysis for singular causal events under the proposed source-density Master Equation
+- Purpose: promotion analysis for singular causal events under the proposed transmitter-side Master Equation
 - Scope: ordinary interior transmitter-side folds and coincident same-source root birth
 - Standing: priority analysis; not canon and not an EOM solver specification
 - Result: ordinary folds have a finite sharp impulse; coincident same-source birth does not
@@ -13,7 +13,7 @@ An ordinary fold and a coincident same-source birth must not share one treatment
 
 At an ordinary fold, two causal roots merge while their separation from the receiver remains nonzero. The pointwise acceleration becomes infinite like $1/\sqrt{|T_r-T_0|}$, but that singularity has a finite time integral. The finite-width equation therefore has a regulator-independent sharp impulse across the fold.
 
-At coincident same-source birth, the root singularity and the inverse-square spatial singularity occur together. The proposed source-density equation then has a nonintegrable sharp acceleration. Fixed positive wake width and core scale make the event finite, but the complete post-crossing endpoint layer diverges as the core scale is removed. Isolating only the newborn noncoincident root also gives a divergent, refinement-path-dependent sharp limit. This is a no-go result for the sharp equation with generic smooth same-source field-speed crossing.
+At coincident same-source birth, the root singularity and the inverse-square spatial singularity occur together. The proposed transmitter-side equation then has a nonintegrable sharp acceleration. Fixed positive wake width and core scale make the event finite, but the complete post-crossing endpoint layer diverges as the core scale is removed. Isolating only the newborn noncoincident root also gives a divergent, refinement-path-dependent sharp limit. This is a no-go result for the sharp equation with generic smooth same-source field-speed crossing.
 
 Claim classification: **derived on the local histories and nondegeneracy assumptions stated below**. The self-consistent outcome after the sharp-law failure remains unresolved.
 
@@ -533,7 +533,7 @@ Claim classification: **derived no-go result for acceptance under the current po
 
 ## 4. Promotion consequences
 
-| Event | Sharp source-density status | Promotion consequence |
+| Event | Sharp transmitter-side status | Promotion consequence |
 | --- | --- | --- |
 | Interior simple root | finite pointwise acceleration | mathematical reduction passes |
 | Ordinary interior fold with $r>0$ and $D_r\ne0$ | pointwise divergence but finite impulse | use the fold impulse, not point sampling |

@@ -77,7 +77,7 @@ node scripts/build-scene-graph.mjs --check --strict
 node scripts/check-foundational-impact.mjs --base origin/main --run
 node scripts/build-agent-startup-orientation.mjs --check
 node scripts/build-textbook-md-pdf.mjs --check
-node scripts/check-receiver-normal-clean-slate.mjs
+node scripts/check-transmitter-factor-clean-slate.mjs
 node scripts/angular-momentum/check-frequency-triplet-notation-drift.mjs
 node scripts/check-polarity-notation-drift.mjs
 node scripts/check-animator-runtime-wiring.mjs
@@ -124,7 +124,7 @@ node scripts/build-scene-graph.mjs --check --strict
 node scripts/check-foundational-impact.mjs --base origin/main --run
 node scripts/build-agent-startup-orientation.mjs --check
 node scripts/build-textbook-md-pdf.mjs --check
-node scripts/check-receiver-normal-clean-slate.mjs
+node scripts/check-transmitter-factor-clean-slate.mjs
 node scripts/angular-momentum/check-frequency-triplet-notation-drift.mjs
 node scripts/check-polarity-notation-drift.mjs
 node scripts/check-animator-runtime-wiring.mjs
@@ -588,7 +588,7 @@ node scripts/build-scene-graph.mjs --check --strict
 node scripts/check-foundational-impact.mjs --base origin/main --run
 node scripts/build-agent-startup-orientation.mjs --check
 node scripts/build-textbook-md-pdf.mjs --check
-node scripts/check-receiver-normal-clean-slate.mjs
+node scripts/check-transmitter-factor-clean-slate.mjs
 node scripts/angular-momentum/check-frequency-triplet-notation-drift.mjs
 node scripts/check-polarity-notation-drift.mjs
 node scripts/check-animator-runtime-wiring.mjs

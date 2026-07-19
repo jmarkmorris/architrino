@@ -5,7 +5,7 @@
 - Date: 2026-07-19
 - Scope: current AAA source prose, controlled Archie terminology, current technical orientation, reader-facing Equation Mapping text, explanatory EOM solver text, safe comments, and test descriptions
 - Change class: terminology-only; no Master Equation numerator, polarity rule, inverse-square kernel, causal-root set, absolute-value convention, same-transmitter admission rule, or EOM solver computation changed
-- Promotion classification: **promote now** for the terminology policy; **priority-only** for the source-density acceleration proposal
+- Promotion classification: **promote now** for the terminology policy; **priority-only** for the transmitter-side acceleration proposal
 
 The pre-edit working tree was clean. During this batch,
 `master-equation-import-audit-walkthrough-2026-07-18.md` acquired a separate
@@ -117,7 +117,7 @@ These fields require a new schema version or an explicitly authorized compatibil
 
 ## Ambiguous and deferred occurrences
 
-No ambiguous occurrence remains on the current-reader surfaces enforced by the new audit. Occurrences in priority analyses were intentionally deferred as a class because changing a symbol there can change whether a statement describes the receiver-weighted law, the source-density proposal, a diagnostic-only Jacobian, or frozen old-law evidence. The owning workstream must migrate such a packet only when it also updates the packet's equation-version and evidence disposition.
+No ambiguous occurrence remains on the current-reader surfaces enforced by the new audit. Occurrences in priority analyses were intentionally deferred as a class because changing a symbol there can change whether a statement describes the receiver-weighted law, the transmitter-side proposal, a diagnostic-only Jacobian, or frozen old-law evidence. The owning workstream must migrate such a packet only when it also updates the packet's equation-version and evidence disposition.
 
 ## Validation record
 
@@ -166,4 +166,4 @@ node scripts/export-ios-textbook-package.mjs --write --strict
 
 ## Physics boundary
 
-This migration changes names and explanations only. The current canonical equation and EOM solver still use receiver-weighted acceleration $W^{\mathrm{acc}}=|D_r/D_t|$. The source-density acceleration proposal remains priority-only and received no promotion, implementation, score movement, or new evidence from this edit.
+This migration changes names and explanations only. The current canonical equation and EOM solver still use receiver-weighted acceleration $W^{\mathrm{acc}}=|D_r/D_t|$. The transmitter-side acceleration proposal remains priority-only and received no promotion, implementation, score movement, or new evidence from this edit.

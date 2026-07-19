@@ -3,7 +3,7 @@
 ## Status
 
 - Purpose: decide whether the unresolved same-source and conservation failures block the proposed removal of the receiver multiplier
-- Scope: compare the current receiver-weighted law with the proposed source-density law on the same retained-history domain
+- Scope: compare the current receiver-weighted law with the proposed transmitter-side law on the same retained-history domain
 - Standing: priority analysis; not canon, accepted evidence, or an EOM solver authorization
 - Result: the factor correction is ready for scoped promotion, while the globally complete Master Equation remains unclosed
 
@@ -17,7 +17,7 @@ The current causal equation also does not have derived conserved energy, momentu
 
 These remain fundamental Master Equation debts. They are not evidence for retaining a receiver multiplier that fails its own derivation and first-order discriminator. The honest promotion is therefore narrower:
 
-- promote $c_f/|D_t|$ as the base factor on the certified source-density domain;
+- promote $c_f/|D_t|$ as the base factor on the certified transmitter-side domain;
 - retain $D_r/D_t$ only for root transport;
 - continue to fail closed at coincident same-source birth and other undeclared singular strata;
 - make no claim that the correction closes global continuation or conservation.
@@ -35,7 +35,7 @@ A_{\mathrm{old}}
 \left|\frac{D_r}{D_t}\right|,
 $$
 
-whereas the proposed source-density magnitude is
+whereas the proposed transmitter-side magnitude is
 
 $$
 A_{\mathrm{new}}
@@ -46,7 +46,7 @@ $$
 
 Both laws use the same causal root, emission position, separation, polarity, and transmitter-side degeneracy. They differ only in whether the receiver's wake-crossing rate multiplies acceleration.
 
-On every declared simple-root chart with $r>0$ and $D_t\ne0$, the source-density expression follows from the finite-width transmitter-time integral with uniform emission measure. The identity
+On every declared simple-root chart with $r>0$ and $D_t\ne0$, the transmitter-side expression follows from the finite-width transmitter-time integral with uniform emission measure. The identity
 
 $$
 \frac{dT_t}{dT_r}=\frac{D_r}{D_t}
@@ -122,7 +122,7 @@ $$
 =\infty.
 $$
 
-For comparison, the proposed source-density law has
+For comparison, the proposed transmitter-side law has
 
 $$
 \boxed{
@@ -208,7 +208,7 @@ Claim classification: **derived exact control**. Direct substitution into the ca
 
 ## 3. Why the stronger divergence does not disappear from the audit
 
-The stronger source-density singularity matters. It must remain visible in the solver route, regulator study, and any later attempt at a complete physical law. It cannot be dismissed as harmless.
+The stronger transmitter-side singularity matters. It must remain visible in the solver route, regulator study, and any later attempt at a complete physical law. It cannot be dismissed as harmless.
 
 It does not, however, compare an accepted old transition with a failed new transition. The current binding already fails closed when the transmitter-side floor and the near-origin kernel fail together, when a transition observable depends on regulator removal, or when no certified singular chart exists. Coincident same-source birth has all three properties.
 
@@ -246,9 +246,9 @@ The correction is ready only with the following explicit boundary:
 ### Promoted behavior
 
 - positive-delay simple roots with $r>0$ and $D_t\ne0$;
-- the source-density finite-width equation from which the simple-root factor is obtained;
+- the transmitter-side finite-width equation from which the simple-root factor is obtained;
 - ordinary transmitter-side folds with nonzero separation and $D_r\ne0$, advanced by their finite integrated acceleration;
-- receiver turning points with $D_r=0$ and $D_t\ne0$, where the causal root remains present and the source-density acceleration does not vanish;
+- receiver turning points with $D_r=0$ and $D_t\ne0$, where the causal root remains present and the transmitter-side acceleration does not vanish;
 - $D_r/D_t$ retained as signed root transport, never silently discarded from tracking.
 
 ### Behavior that remains fail-closed
@@ -272,7 +272,7 @@ The correction is ready only with the following explicit boundary:
 | --- | --- | --- | --- |
 | Uniform-emission simple-root reduction | Pass | Derived and independently reconstructed | Use $c_f/|D_t|$ |
 | Receiver multiplier | Pass for removal at first order | Derived native comparison plus independent recovery target | Do not restore $|D_r|/c_f$ |
-| Receiver turning point | Pass mathematically under the source-density finite-width equation | Derived | Preserve the root and finite source-density acceleration when $D_r=0$, $D_t\ne0$ |
+| Receiver turning point | Pass mathematically under the transmitter-side finite-width equation | Derived | Preserve the root and finite transmitter-side acceleration when $D_r=0$, $D_t\ne0$ |
 | Ordinary transmitter-side fold | Pass | Derived finite accumulated acceleration | Advance by integrated acceleration |
 | Coincident same-source birth | Fails under both laws; stronger under the proposal | Derived asymptotic plus exact quadratic-path control | Preserve fail-closed routing; do not claim global completion |
 | Causal conserved accounts | Absent for both retained-history laws | Derived baseline obstruction | Preserve the global closure gate; do not use it to retain the receiver multiplier |
@@ -280,7 +280,7 @@ The correction is ready only with the following explicit boundary:
 
 ## 8. Verdict
 
-The receiver-factor correction is **ready for scoped promotion** as the base acceleration on the declared source-density domain. The globally complete Master Equation is **not ready**.
+The receiver-factor correction is **ready for scoped promotion** as the base acceleration on the declared transmitter-side domain. The globally complete Master Equation is **not ready**.
 
 This verdict authorizes neither canon edits nor EOM solver semantic changes by itself. It supplies the physics disposition needed for a separate, explicitly authorized migration: change the factor, retain the root-transport identity, preserve singular-event fail-closed behavior, and state the unclosed global obligations without pretending that the old factor solved them.
 

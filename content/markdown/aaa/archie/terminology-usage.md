@@ -189,7 +189,7 @@ $$
 \frac{dT_t}{dT_r}=\frac{D_r}{D_t}.
 $$
 
-Use `transmitter-side factor` for $D_t$ and `receiver-side factor` for $D_r$. Use `root-playback derivative` for the signed ratio $D_r/D_t$. In the current canonical receiver-weighted acceleration, use `receiver-weighted acceleration factor` for $W^{\mathrm{acc}}=|D_r/D_t|$. These names do not promote the separate source-density proposal.
+Use `transmitter-side factor` for $D_t$ and `receiver-side factor` for $D_r$. Use `root-playback derivative` for the signed ratio $D_r/D_t$. In the canonical acceleration law, use `transmitter-side acceleration weight` for $W^{\mathrm{acc}}=c_f/|D_t|$. Never describe $D_r/D_t$ as an acceleration weight.
 
 Do not use the transmitter's position at $T_r$ as part of an arriving hit unless the sentence explicitly introduces a separate present-position diagnostic. Keep `source` where it has another established meaning, such as a document source, evidence source, software source, radiation source class, or generic source term in an equation.
 

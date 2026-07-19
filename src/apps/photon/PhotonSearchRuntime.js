@@ -783,7 +783,7 @@ function buildPhotonSearchCandidateResult(
       sourceHistoryProviderId: diagnostics.sourceHistoryProviderId ?? "",
       analysisFieldSchema: diagnostics.analysisFieldSchema ?? "",
       fieldReconstructionOwner: diagnostics.fieldReconstructionOwner ?? "",
-      receiverNormalOwner: diagnostics.receiverNormalOwner ?? "",
+      rootPlaybackOwner: diagnostics.rootPlaybackOwner ?? "",
       delaySolveGapMax: diagnostics.delaySolveGapMax,
       jacobianAbsMin: diagnostics.jacobianAbsMin,
       averageDelay: diagnostics.averageDelay,

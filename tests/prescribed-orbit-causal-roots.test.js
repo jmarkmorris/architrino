@@ -7,7 +7,7 @@ import {
   solveMovingCircularSameSourceCausalRoots,
 } from "../src/prescribed-path-analysis/index.mjs";
 
-test("moving circular absolute-history roots use receiver-weighted acceleration", () => {
+test("moving circular absolute-history roots use transmitter-side acceleration", () => {
   const request = createMovingCircularSourceRootRequest({
     source: {
       centerAtEpoch: { x: 0, y: 0, z: 0 },
@@ -44,13 +44,10 @@ test("moving circular absolute-history roots use receiver-weighted acceleration"
   assert.equal(root.delay, 5);
   assert.equal(root.distance, 5);
   assert.equal(root.jacobian, 1);
-  assert.equal(root.receiverNormalSpeed, -0.5);
-  assert.equal(root.receiverNormalNumerator, 1.5);
-  assert.equal(root.receiverNormalFactor, 1.5);
-  assert.equal(root.unsignedReceiverNormalFactor, 1.5);
-  assert.equal(root.branchWeight, 1.5);
-  // Signed branch orientation m = D_r/D_t is emitted explicitly (additive).
-  assert.equal(root.signedBranchOrientation, 1.5);
+  assert.equal(root.receiverRadialSpeedAtReception, -0.5);
+  assert.equal(root.receiverFactor, 1.5);
+  assert.equal(root.rootPlayback, 1.5);
+  assert.equal(root.accelerationWeight, 1);
 });
 
 const VT095_SAME_SOURCE_SOURCE = {
@@ -62,7 +59,7 @@ const VT095_SAME_SOURCE_SOURCE = {
   epochTime: 0,
 };
 
-test("same-transmitter root emits the signed branch orientation; rigid circle stays reflection-locked at m=+1", () => {
+test("same-transmitter root emits signed root playback; rigid circle stays reflection-locked at m=+1", () => {
   const rho = Math.sqrt(2 / 3);
   const response = solveMovingCircularSameSourceCausalRoots({
     source: { ...VT095_SAME_SOURCE_SOURCE, angularVelocity: 1.00196 / rho, angularAcceleration: 0 },
@@ -75,15 +72,14 @@ test("same-transmitter root emits the signed branch orientation; rigid circle st
   });
   assert.ok(response.roots.length >= 1);
   const root = response.roots[response.roots.length - 1];
-  assert.equal(root.rootKind, "same-source");
+  assert.equal(root.rootKind, "same-transmitter");
   // Fixed-omega rigid circle: reflection symmetry gives D_r = D_t, m = +1.
-  assert.ok(Math.abs(root.signedBranchOrientation - 1) < 1e-6);
+  assert.ok(Math.abs(root.rootPlayback - 1) < 1e-6);
   assert.ok(Math.abs(root.distance - 0.17662) < 2e-3);
-  // branchWeight remains the unsigned magnitude by contract.
-  assert.ok(Math.abs(root.branchWeight - Math.abs(root.signedBranchOrientation)) < 1e-12);
+  assert.ok(Math.abs(root.accelerationWeight - 1 / Math.abs(root.transmitterFactor)) < 1e-12);
 });
 
-test("accelerating same-transmitter history yields an absorptive (m<0) branch orientation past the field-speed hinge", () => {
+test("accelerating same-transmitter history yields negative root playback past the field-speed hinge", () => {
   const rho = Math.sqrt(2 / 3);
   const tStar = 0.42893;
   const response = solveMovingCircularSameSourceCausalRoots({
@@ -102,11 +98,11 @@ test("accelerating same-transmitter history yields an absorptive (m<0) branch or
   });
   assert.ok(response.roots.length >= 1);
   const root = response.roots[response.roots.length - 1];
-  assert.ok(root.signedBranchOrientation < 0, `expected m<0, got ${root.signedBranchOrientation}`);
-  assert.ok(root.receiverNormalNumerator < 0, "D_r < 0 past the hinge");
-  assert.ok(root.sourceNormalDenominator > 0, "D_t > 0 past the hinge");
-  // The unsigned branchWeight cannot see this sign.
-  assert.ok(root.branchWeight > 0);
+  assert.ok(root.rootPlayback < 0, `expected m<0, got ${root.rootPlayback}`);
+  assert.ok(root.receiverFactor < 0, "D_r < 0 past the hinge");
+  assert.ok(root.transmitterFactor > 0, "D_t > 0 past the hinge");
+  // The unsigned accelerationWeight cannot see this sign.
+  assert.ok(root.accelerationWeight > 0);
 });
 
 test("zero angular acceleration is exactly backward-compatible with the fixed-omega circle", () => {
@@ -128,6 +124,6 @@ test("zero angular acceleration is exactly backward-compatible with the fixed-om
   const a = withoutField.roots[withoutField.roots.length - 1];
   const b = withZeroAccel.roots[withZeroAccel.roots.length - 1];
   assert.equal(a.distance, b.distance);
-  assert.equal(a.signedBranchOrientation, b.signedBranchOrientation);
-  assert.equal(a.receiverNormalNumerator, b.receiverNormalNumerator);
+  assert.equal(a.rootPlayback, b.rootPlayback);
+  assert.equal(a.receiverFactor, b.receiverFactor);
 });

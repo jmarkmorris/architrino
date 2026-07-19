@@ -2,13 +2,13 @@
 
 ## Status
 
-- Purpose: state the current promotion boundary after the source-density, singular-event, causal-history, and conservation analyses
+- Purpose: state the current promotion boundary after the transmitter-side, singular-event, causal-history, and conservation analyses
 - Standing: priority control document; not canon, accepted evidence, or an implementation authorization
-- Equation under review: source-density base factor $c_f/|D_t|$ with receiver playback excluded from base acceleration strength
+- Equation under review: transmitter-side base factor $c_f/|D_t|$ with receiver playback excluded from base acceleration strength
 
 ## Current verdict
 
-The receiver multiplier should remain removed from the proposed base acceleration. That decision has passed its simple-root derivation and first-order static-transmitter discriminator and is ready for scoped promotion on the certified source-density domain.
+The receiver multiplier should remain removed from the proposed base acceleration. That decision has passed its simple-root derivation and first-order static-transmitter discriminator and is ready for scoped promotion on the certified transmitter-side domain.
 
 The complete Master Equation is not globally closed. Two fundamental debts remain negative under the current primitive set:
 
@@ -25,9 +25,9 @@ Claim classification: **derived gate comparison plus inferred scoped-promotion d
 | --- | --- | --- | --- | --- |
 | Simple-root reduction | Pass on the declared distance-bounded simple-root domain | Derived and independently reconstructed | $c_f/|D_t|$ remains the proposed base factor | A correct uniform-emission change of variables yields a different factor, or a distance-bounded control fails the joint limit |
 | Receiver multiplier | Pass for removal at first order | Derived native comparison plus independent observer-level recovery target | Do not restore $|D_r|/c_f$ to base acceleration | An independent static-transmitter recovery contains the same universal first-order radial receiver-velocity term |
-| Receiver turning point | Pass under the source-density finite-width equation when $D_t\ne0$ | Derived | Preserve the root and do not make base acceleration vanish merely because $D_r=0$ | The transmitter-time integral has a zero sharp limit at a simple root solely because $D_r=0$ |
+| Receiver turning point | Pass under the transmitter-side finite-width equation when $D_t\ne0$ | Derived | Preserve the root and do not make base acceleration vanish merely because $D_r=0$ | The transmitter-time integral has a zero sharp limit at a simple root solely because $D_r=0$ |
 | Ordinary transmitter-side fold | Pass | Derived finite accumulated acceleration | Advance the transition by integrated acceleration, not point sampling | A nondegenerate fold with $r>0$ and $D_r\ne0$ has no common finite-width impulse limit |
-| Coincident same-source birth | Fail under both laws; source-density divergence is stronger | Derived old/new asymptotic, exact quadratic-path control, and finite-window lower bound | Keep the event fail-closed; it blocks global completion, not the scoped factor correction | An accepted old-law continuation exists, or an Architrino-native rule gives the proposed law a finite complete transition |
+| Coincident same-source birth | Fail under both laws; transmitter-side divergence is stronger | Derived old/new asymptotic, exact quadratic-path control, and finite-window lower bound | Keep the event fail-closed; it blocks global completion, not the scoped factor correction | An accepted old-law continuation exists, or an Architrino-native rule gives the proposed law a finite complete transition |
 | Positive-width base causality | Pass | Derived retained-history update | The positive-width base equation is a causal initial-history law | The displayed update requires future particle data or has two continuations from one retained state on its regularity chart |
 | Energy, momentum, and angular momentum | Absent for both causal retained-history laws | Derived underdetermination and circularity test | Keep as a global closure debt; do not use it to retain the receiver multiplier | Fixed kinematic maps and predeclared wake accounts close all three totals on the same causal record without being defined from their residuals |
 | Full moving-transmitter/moving-receiver recovery | Open beyond the first-order static-transmitter control | Derived first-order pass; higher orders unproved | Do not claim complete electrodynamics or Lorentz recovery | Second-order and later required recovery terms match independent targets on one branch-certified record without restoring an unsupported universal receiver multiplier |
@@ -66,7 +66,7 @@ The shortest honest sequence now has two tracks.
 For the scoped receiver-factor correction:
 
 1. obtain explicit authorization for canon and EOM solver semantic migration;
-2. replace the receiver-weighted acceleration factor with the source-density factor in the canonical equation, finite-width binding, solver, oracle, tests, and live explanatory surfaces while preserving $D_r/D_t$ for root transport;
+2. replace the receiver-weighted acceleration factor with the transmitter-side factor in the canonical equation, finite-width binding, solver, oracle, tests, and live explanatory surfaces while preserving $D_r/D_t$ for root transport;
 3. preserve fail-closed routing for coincident same-source birth and every undeclared singular stratum;
 4. rerun the classified implementation-impact searches and independent validation before publication.
 

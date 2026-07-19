@@ -45,7 +45,7 @@ struct NativeCoupledEvolutionRequest {
   std::string field_speed;
   std::string coupling;
   std::string root_tolerance = "1e-12";
-  std::string source_normal_floor = "1e-30";
+  std::string transmitter_factor_floor = "1e-30";
   std::string acceleration_tolerance = "1e-9";
   // Fraction of the acceleration component-width tolerance reserved for
   // certified per-pair far-field enclosures. Zero disables the route.
@@ -375,7 +375,7 @@ struct NativeCommonDomainChartCertificate {
   std::string reception_lower;
   std::string reception_upper;
   std::size_t certified_root_count = 0;
-  double source_normal_absolute_lower = 0.0;
+  double transmitter_factor_absolute_lower = 0.0;
   double separation_lower = 0.0;
   std::optional<IntervalVector> sharp_impulse;
   std::optional<IntervalVector> finite_width_impulse;

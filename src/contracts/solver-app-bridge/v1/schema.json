@@ -2893,7 +2893,7 @@
             "validation_replay_mismatch",
             "app_contract_error",
             "internal_solver_error",
-            "receiver_normal_degenerate"
+            "causal_factor_degenerate"
           ]
         },
         "category": {
@@ -5229,7 +5229,7 @@
           "type": "number",
           "exclusiveMinimum": 0
         },
-        "branchWeightTolerance": {
+        "accelerationWeightTolerance": {
           "type": "number",
           "exclusiveMinimum": 0
         },
@@ -6070,15 +6070,14 @@
         "distance",
         "residual",
         "jacobian",
-        "branchWeight",
-        "sourceNormalSpeed",
-        "receiverNormalSpeed",
-        "sourceNormalDenominator",
-        "receiverNormalNumerator",
-        "receiverNormalCrossingFactor",
-        "receiverNormalFactor",
-        "unsignedReceiverNormalFactor",
-        "receiverNormalStatusCode",
+        "accelerationWeight",
+        "transmitterRadialSpeedAtEmission",
+        "receiverRadialSpeedAtReception",
+        "transmitterFactor",
+        "receiverFactor",
+        "receiverCrossingRatio",
+        "rootPlayback",
+        "causalFactorStatusCode",
         "sourcePoint",
         "receiverPoint",
         "coordinateFrame"
@@ -6124,31 +6123,28 @@
         "jacobian": {
           "type": "number"
         },
-        "branchWeight": {
+        "accelerationWeight": {
           "type": "number"
         },
-        "sourceNormalSpeed": {
+        "transmitterRadialSpeedAtEmission": {
           "type": "number"
         },
-        "receiverNormalSpeed": {
+        "receiverRadialSpeedAtReception": {
           "type": "number"
         },
-        "sourceNormalDenominator": {
+        "transmitterFactor": {
           "type": "number"
         },
-        "receiverNormalNumerator": {
+        "receiverFactor": {
           "type": "number"
         },
-        "receiverNormalCrossingFactor": {
+        "receiverCrossingRatio": {
           "type": "number"
         },
-        "receiverNormalFactor": {
+        "rootPlayback": {
           "type": "number"
         },
-        "unsignedReceiverNormalFactor": {
-          "type": "number"
-        },
-        "receiverNormalStatusCode": {
+        "causalFactorStatusCode": {
           "type": "integer",
           "minimum": 0
         },
@@ -6175,15 +6171,14 @@
         "distance",
         "residual",
         "jacobian",
-        "branchWeight",
-        "sourceNormalSpeed",
-        "receiverNormalSpeed",
-        "sourceNormalDenominator",
-        "receiverNormalNumerator",
-        "receiverNormalCrossingFactor",
-        "receiverNormalFactor",
-        "unsignedReceiverNormalFactor",
-        "receiverNormalStatusCode",
+        "accelerationWeight",
+        "transmitterRadialSpeedAtEmission",
+        "receiverRadialSpeedAtReception",
+        "transmitterFactor",
+        "receiverFactor",
+        "receiverCrossingRatio",
+        "rootPlayback",
+        "causalFactorStatusCode",
         "sourcePoint",
         "receiverPoint",
         "coordinateFrame",
@@ -6216,31 +6211,28 @@
         "jacobian": {
           "type": "number"
         },
-        "branchWeight": {
+        "accelerationWeight": {
           "type": "number"
         },
-        "sourceNormalSpeed": {
+        "transmitterRadialSpeedAtEmission": {
           "type": "number"
         },
-        "receiverNormalSpeed": {
+        "receiverRadialSpeedAtReception": {
           "type": "number"
         },
-        "sourceNormalDenominator": {
+        "transmitterFactor": {
           "type": "number"
         },
-        "receiverNormalNumerator": {
+        "receiverFactor": {
           "type": "number"
         },
-        "receiverNormalCrossingFactor": {
+        "receiverCrossingRatio": {
           "type": "number"
         },
-        "receiverNormalFactor": {
+        "rootPlayback": {
           "type": "number"
         },
-        "unsignedReceiverNormalFactor": {
-          "type": "number"
-        },
-        "receiverNormalStatusCode": {
+        "causalFactorStatusCode": {
           "type": "integer",
           "minimum": 0
         },
@@ -11105,15 +11097,14 @@
         "distance",
         "residual",
         "jacobian",
-        "branchWeight",
-        "sourceNormalSpeed",
-        "receiverNormalSpeed",
-        "sourceNormalDenominator",
-        "receiverNormalNumerator",
-        "receiverNormalCrossingFactor",
-        "receiverNormalFactor",
-        "unsignedReceiverNormalFactor",
-        "receiverNormalStatusCode",
+        "accelerationWeight",
+        "transmitterRadialSpeedAtEmission",
+        "receiverRadialSpeedAtReception",
+        "transmitterFactor",
+        "receiverFactor",
+        "receiverCrossingRatio",
+        "rootPlayback",
+        "causalFactorStatusCode",
         "sourcePoint",
         "receiverPoint"
       ],
@@ -11142,31 +11133,28 @@
         "jacobian": {
           "type": "number"
         },
-        "branchWeight": {
+        "accelerationWeight": {
           "type": "number"
         },
-        "sourceNormalSpeed": {
+        "transmitterRadialSpeedAtEmission": {
           "type": "number"
         },
-        "receiverNormalSpeed": {
+        "receiverRadialSpeedAtReception": {
           "type": "number"
         },
-        "sourceNormalDenominator": {
+        "transmitterFactor": {
           "type": "number"
         },
-        "receiverNormalNumerator": {
+        "receiverFactor": {
           "type": "number"
         },
-        "receiverNormalCrossingFactor": {
+        "receiverCrossingRatio": {
           "type": "number"
         },
-        "receiverNormalFactor": {
+        "rootPlayback": {
           "type": "number"
         },
-        "unsignedReceiverNormalFactor": {
-          "type": "number"
-        },
-        "receiverNormalStatusCode": {
+        "causalFactorStatusCode": {
           "type": "integer",
           "minimum": 0
         },
@@ -11197,18 +11185,17 @@
         "normalizedResidual",
         "rootTolerance",
         "jacobian",
-        "branchWeight",
+        "accelerationWeight",
         "bracketStart",
         "bracketEnd",
         "sourcePoint",
         "receiverPoint",
-        "sourceNormalSpeed",
-        "receiverNormalSpeed",
-        "sourceNormalDenominator",
-        "receiverNormalNumerator",
-        "receiverNormalCrossingFactor",
-        "receiverNormalFactor",
-        "unsignedReceiverNormalFactor",
+        "transmitterRadialSpeedAtEmission",
+        "receiverRadialSpeedAtReception",
+        "transmitterFactor",
+        "receiverFactor",
+        "receiverCrossingRatio",
+        "rootPlayback",
         "entryKind",
         "rootKind",
         "statusCode",
@@ -11216,7 +11203,7 @@
         "sequenceIndex",
         "iterationCount",
         "stateFlags",
-        "receiverNormalStatusCode",
+        "causalFactorStatusCode",
         "firstFailureCode"
       ],
       "properties": {
@@ -11273,7 +11260,7 @@
         "jacobian": {
           "type": "number"
         },
-        "branchWeight": {
+        "accelerationWeight": {
           "type": "number"
         },
         "bracketStart": {
@@ -11288,25 +11275,22 @@
         "receiverPoint": {
           "$ref": "#/$defs/vector3F64"
         },
-        "sourceNormalSpeed": {
+        "transmitterRadialSpeedAtEmission": {
           "type": "number"
         },
-        "receiverNormalSpeed": {
+        "receiverRadialSpeedAtReception": {
           "type": "number"
         },
-        "sourceNormalDenominator": {
+        "transmitterFactor": {
           "type": "number"
         },
-        "receiverNormalNumerator": {
+        "receiverFactor": {
           "type": "number"
         },
-        "receiverNormalCrossingFactor": {
+        "receiverCrossingRatio": {
           "type": "number"
         },
-        "receiverNormalFactor": {
-          "type": "number"
-        },
-        "unsignedReceiverNormalFactor": {
+        "rootPlayback": {
           "type": "number"
         },
         "entryKind": {
@@ -11338,7 +11322,7 @@
           "minimum": 0,
           "maximum": 4294967295
         },
-        "receiverNormalStatusCode": {
+        "causalFactorStatusCode": {
           "type": "integer",
           "minimum": 0
         },
@@ -11360,14 +11344,13 @@
         "distance",
         "jacobian",
         "strength",
-        "sourceNormalSpeed",
-        "receiverNormalSpeed",
-        "sourceNormalDenominator",
-        "receiverNormalNumerator",
-        "receiverNormalCrossingFactor",
-        "receiverNormalFactor",
-        "unsignedReceiverNormalFactor",
-        "receiverNormalStatusCode",
+        "transmitterRadialSpeedAtEmission",
+        "receiverRadialSpeedAtReception",
+        "transmitterFactor",
+        "receiverFactor",
+        "receiverCrossingRatio",
+        "rootPlayback",
+        "causalFactorStatusCode",
         "emissionPoint",
         "receiverPoint",
         "unitDirection"
@@ -11397,28 +11380,25 @@
         "strength": {
           "type": "number"
         },
-        "sourceNormalSpeed": {
+        "transmitterRadialSpeedAtEmission": {
           "type": "number"
         },
-        "receiverNormalSpeed": {
+        "receiverRadialSpeedAtReception": {
           "type": "number"
         },
-        "sourceNormalDenominator": {
+        "transmitterFactor": {
           "type": "number"
         },
-        "receiverNormalNumerator": {
+        "receiverFactor": {
           "type": "number"
         },
-        "receiverNormalCrossingFactor": {
+        "receiverCrossingRatio": {
           "type": "number"
         },
-        "receiverNormalFactor": {
+        "rootPlayback": {
           "type": "number"
         },
-        "unsignedReceiverNormalFactor": {
-          "type": "number"
-        },
-        "receiverNormalStatusCode": {
+        "causalFactorStatusCode": {
           "type": "integer",
           "minimum": 0
         },

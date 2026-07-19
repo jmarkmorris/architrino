@@ -180,7 +180,7 @@ class PairAccelerationRequest:
     source_charge: Decimal
     coupling: Decimal
     chart: str
-    source_normal_floor: Decimal
+    transmitter_factor_floor: Decimal
     causal_width: Decimal | None
     core_scale: Decimal | None
     acceleration_tolerance: Decimal
@@ -204,7 +204,7 @@ class PairAccelerationRequest:
         source_charge: object,
         coupling: object,
         chart: str = "sharp",
-        source_normal_floor: object = "1e-30",
+        transmitter_factor_floor: object = "1e-30",
         causal_width: object | None = None,
         core_scale: object | None = None,
         acceleration_tolerance: object = "1e-6",
@@ -222,7 +222,7 @@ class PairAccelerationRequest:
             source_charge=exact_decimal(source_charge),
             coupling=exact_decimal(coupling),
             chart=chart,
-            source_normal_floor=exact_decimal(source_normal_floor),
+            transmitter_factor_floor=exact_decimal(transmitter_factor_floor),
             causal_width=(
                 exact_decimal(causal_width) if causal_width is not None else None
             ),
@@ -249,7 +249,7 @@ class PairAccelerationRequest:
             raise ValueError("coupling must be positive")
         if self.chart not in {"sharp", "finite_width"}:
             raise ValueError("acceleration chart must be sharp or finite_width")
-        if self.source_normal_floor <= 0:
+        if self.transmitter_factor_floor <= 0:
             raise ValueError("transmitter-side factor floor must be positive")
         if self.acceleration_tolerance <= 0:
             raise ValueError("acceleration tolerance must be positive")
@@ -275,10 +275,10 @@ class AccelerationRow:
     emission_upper: Decimal
     source_segment_indices: tuple[int, ...]
     separation: DecimalInterval | None
-    source_normal: DecimalInterval | None
-    receiver_normal: DecimalInterval | None
-    branch_orientation: DecimalInterval | None
-    receiver_strength: DecimalInterval | None
+    transmitter_factor: DecimalInterval | None
+    receiver_factor: DecimalInterval | None
+    root_playback: DecimalInterval | None
+    acceleration_weight: DecimalInterval | None
     polarity: int
     charge_product_magnitude: Decimal
     coupling: Decimal
@@ -300,15 +300,15 @@ class AccelerationRow:
             "emission_upper": str(self.emission_upper),
             "source_segment_indices": list(self.source_segment_indices),
             "separation": _interval_record(self.separation),
-            "source_normal": _interval_record(self.source_normal),
-            "source_normal_sign": (
-                self.source_normal.strict_sign
-                if self.source_normal is not None
+            "transmitter_factor": _interval_record(self.transmitter_factor),
+            "transmitter_factor_sign": (
+                self.transmitter_factor.strict_sign
+                if self.transmitter_factor is not None
                 else None
             ),
-            "receiver_normal": _interval_record(self.receiver_normal),
-            "branch_orientation": _interval_record(self.branch_orientation),
-            "receiver_strength": _interval_record(self.receiver_strength),
+            "receiver_factor": _interval_record(self.receiver_factor),
+            "root_playback": _interval_record(self.root_playback),
+            "acceleration_weight": _interval_record(self.acceleration_weight),
             "polarity": self.polarity,
             "charge_product_magnitude": str(self.charge_product_magnitude),
             "coupling": str(self.coupling),
@@ -355,7 +355,7 @@ class PairAccelerationCertificate:
 
     def to_record(self) -> dict[str, object]:
         return {
-            "schema": "eom_pair_acceleration_certificate/v0",
+            "schema": "eom_pair_acceleration_certificate/v1",
             "status": self.status,
             "receiver_path_id": self.receiver_path_id,
             "source_path_id": self.source_path_id,
@@ -416,7 +416,7 @@ class AccelerationReconstructionCertificate:
 
     def to_record(self) -> dict[str, object]:
         return {
-            "schema": "eom_acceleration_reconstruction_certificate/v0",
+            "schema": "eom_acceleration_reconstruction_certificate/v1",
             "status": self.status,
             "path_ids": list(self.path_ids),
             "pair_count": len(self.pair_certificates),
@@ -513,33 +513,33 @@ def _sharp_row(
     field_speed = DecimalInterval.point(
         request.root_certificate.field_speed, precision
     )
-    source_normal_evaluated = field_speed - interval_dot(
+    transmitter_factor_evaluated = field_speed - interval_dot(
         direction, source_velocity
     )
-    source_normal = _interval_intersection(
-        root.source_normal, source_normal_evaluated
+    transmitter_factor = _interval_intersection(
+        root.transmitter_factor, transmitter_factor_evaluated
     )
-    if source_normal is None:
+    if transmitter_factor is None:
         raise AccelerationCertificationError(
             "root and acceleration transmitter-side enclosures disagree"
         )
-    if source_normal.contains_zero:
+    if transmitter_factor.contains_zero:
         raise AccelerationCertificationError(
             "sharp acceleration transmitter-side enclosure contains zero"
         )
-    if source_normal.absolute().lower < request.source_normal_floor:
+    if transmitter_factor.absolute().lower < request.transmitter_factor_floor:
         raise AccelerationCertificationError(
             "sharp acceleration transmitter-side floor is not certified"
         )
-    receiver_normal = field_speed - interval_dot(direction, receiver_velocity)
-    branch_orientation = receiver_normal / source_normal
-    receiver_strength = branch_orientation.absolute()
+    receiver_factor = field_speed - interval_dot(direction, receiver_velocity)
+    root_playback = receiver_factor / transmitter_factor
+    acceleration_weight = field_speed / transmitter_factor.absolute()
     radial_denominator = separation.square() * separation
     inverse_square_direction = interval_vector(
         component / radial_denominator for component in displacement
     )
     acceleration = _vector_scale(
-        _signed_charge_scale(request) * receiver_strength,
+        _signed_charge_scale(request) * acceleration_weight,
         inverse_square_direction,
     )
     return AccelerationRow(
@@ -552,10 +552,10 @@ def _sharp_row(
         emission_upper=root.upper,
         source_segment_indices=root.segment_indices,
         separation=separation,
-        source_normal=source_normal,
-        receiver_normal=receiver_normal,
-        branch_orientation=branch_orientation,
-        receiver_strength=receiver_strength,
+        transmitter_factor=transmitter_factor,
+        receiver_factor=receiver_factor,
+        root_playback=root_playback,
+        acceleration_weight=acceleration_weight,
         polarity=_polarity(request),
         charge_product_magnitude=_charge_product_magnitude(request),
         coupling=request.coupling,
@@ -573,7 +573,7 @@ def _finite_width_integrand_interval(
     emission: DecimalInterval,
 ) -> IntervalVector:
     precision = request.receiver_history.precision
-    receiver_velocity, _, displacement, separation = _geometry(
+    _, _, displacement, separation = _geometry(
         request.receiver_history,
         request.source_history,
         request.root_certificate.reception_time,
@@ -585,20 +585,6 @@ def _finite_width_integrand_interval(
     field_speed = DecimalInterval.point(
         request.root_certificate.field_speed, precision
     )
-    if separation.contains_zero:
-        receiver_speed = interval_norm(receiver_velocity)
-        receiver_strength = DecimalInterval.bounds(
-            0,
-            (field_speed + receiver_speed).upper,
-            precision,
-        )
-    else:
-        direction = interval_vector(
-            component / separation for component in displacement
-        )
-        receiver_strength = (
-            field_speed - interval_dot(direction, receiver_velocity)
-        ).absolute()
     residual = _residual_interval(
         request.receiver_history,
         request.source_history,
@@ -610,7 +596,7 @@ def _finite_width_integrand_interval(
         residual, request.causal_width  # type: ignore[arg-type]
     )
     return _vector_scale(
-        _signed_charge_scale(request) * receiver_strength * mollifier,
+        _signed_charge_scale(request) * field_speed * mollifier,
         kernel,
     )
 
@@ -701,10 +687,10 @@ def _finite_width_row(
                 )
             ),
             separation=None,
-            source_normal=None,
-            receiver_normal=None,
-            branch_orientation=None,
-            receiver_strength=None,
+            transmitter_factor=None,
+            receiver_factor=None,
+            root_playback=None,
+            acceleration_weight=None,
             polarity=_polarity(request),
             charge_product_magnitude=_charge_product_magnitude(request),
             coupling=request.coupling,
@@ -731,7 +717,7 @@ def _request_digest(request: PairAccelerationRequest) -> str:
             str(request.source_charge),
             str(request.coupling),
             request.chart,
-            str(request.source_normal_floor),
+            str(request.transmitter_factor_floor),
             str(request.causal_width),
             str(request.core_scale),
             str(request.acceleration_tolerance),

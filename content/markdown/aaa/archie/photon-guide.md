@@ -63,11 +63,11 @@ The search should flag a configuration as interesting when it has one or more of
 - Sharp transitions: small changes in phase, $\Delta x$, Virtual Observer position, or radius produce a large change in the fitted polarization.
 - Robust patterns: the same behavior survives small nudges to the settings instead of depending on one exact slider position.
 - Absolute-history agreement or divergence: the absolute-history comparison either preserves the co-moving behavior, which is a stability clue, or changes it strongly, which is a useful stress clue.
-- Causal-root structure: low missed-transmitter count, healthy Jacobian values together with a bounded receiver-weighted acceleration factor $W^{\mathrm{acc}}=|D_r/D_t|$ (a healthy Jacobian alone is not sufficient), repeatable phase-at-hit families, or organized same-transmitter and partner-hit roots.
+- Causal-root structure: low missed-transmitter count, healthy Jacobian values together with a bounded transmitter-side acceleration weight $W^{\mathrm{acc}}=c_f/|D_t|$, signed root playback $D_r/D_t$, repeatable phase-at-hit families, or organized same-transmitter and partner-hit roots.
 - Simple explanations: fewer active binaries, integer frequency ratios, simple phase offsets, or clean leading/trailing symmetry are preferred when the diagnostic quality is similar.
 - Diversity: the results list should avoid many tiny variations of the same pattern and keep representative examples from different pattern families.
 
-The search should mark numerically suspect cases as suspect rather than good. Missed roots, very small Jacobian values, a receiver-weighted acceleration factor collapsing toward its null or diverging near a caustic, large delay-solve gaps, or unstable diagnostics can still be useful clues, but they should not be confused with clean polarization evidence.
+The search should mark numerically suspect cases as suspect rather than good. Missed roots, very small Jacobian values, a transmitter-side acceleration weight collapsing toward its null or diverging near a caustic, large delay-solve gaps, or unstable diagnostics can still be useful clues, but they should not be confused with clean polarization evidence.
 
 ## Geometry Controls
 
@@ -101,7 +101,7 @@ When `Local c mode` is `Lorentz factor`, the `Signal c/c_f` and `Photon c_\gamma
 
 `Absolute history` makes the Electric Field plot use the moving-apparatus diagnostic. In that mode, each architrino transmitter history and the Virtual Observer history translate along $+\hat{\mathbf x}$ at $c_\gamma$, and the shared solver helper solves the moving circular transmitter against the moving Virtual Observer. This remains a diagnostic layer for the moving-apparatus calculation; the co-moving mode remains useful for comparison.
 
-The plotted E curve is recalculated by solving the causal-root equation from every active architrino transmitter history to the Virtual Observer point. Each retained root contributes a radial Master-EOM-style hit weighted by $W^{\mathrm{acc}}/R^2$, where $R$ is the transmitter-to-observer distance at the root and $W^{\mathrm{acc}}=\lvert D_r/D_t\rvert$ is computed from the same retained root record. The app then reconstructs the displayed $E_y$ and $E_z$ components from the transverse part of the summed receiver acceleration.
+The plotted E curve is recalculated by solving the causal-root equation from every active architrino transmitter history to the Virtual Observer point. Each retained root contributes a radial Master-EOM-style hit weighted by $W^{\mathrm{acc}}/R^2$, where $R$ is the transmitter-to-observer distance at the root and $W^{\mathrm{acc}}=c_f/\lvert D_t\rvert$ is computed from the same retained root record. The app then reconstructs the displayed $E_y$ and $E_z$ components from the transverse part of the summed receiver acceleration.
 
 The $\mathbf E$ graph auto-scales its vertical span from the maximum visible $|E_y|$ or $|E_z|$ sample, so the curve stays readable without changing the diagnostic field values. The displayed field comes directly from retained roots and the radial inverse-square causal-hit form rather than from a separate near/far mixing slider.
 
@@ -187,7 +187,7 @@ $$
 =
 g\sum_i\sum_k
 q_i
-\left|\frac{D_{r,i,k}}{D_{t,i,k}}\right|
+\frac{c_{\mathrm{sig}}}{|D_{t,i,k}|}
 \frac{\mathbf n_{i,k}}
 {R_{i,k}^2}
 $$

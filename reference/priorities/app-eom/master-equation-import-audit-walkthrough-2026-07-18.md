@@ -203,7 +203,7 @@ and nonzero separation. The following cases require separate treatment.
 
 At $D_t=0$, the emission-time change of variables fails. Two roots can be born or die at an interior fold.
 
-For an ordinary interior fold with nonzero separation and $D_r\ne0$, the two-root sharp acceleration grows as $1/\sqrt{|T_r-T_0|}$. Its value is infinite at the fold instant, but its reception-time integral is finite. [Source-Density Fold and Coincident-Birth Analysis](analysis-source-density-fold-and-coincident-birth.md) proves that the finite-width impulse has a regulator-independent sharp limit. The transition must therefore be advanced by its integrated acceleration, not by sampling the pointwise root formula at the fold.
+For an ordinary interior fold with nonzero separation and $D_r\ne0$, the two-root sharp acceleration grows as $1/\sqrt{|T_r-T_0|}$. Its value is infinite at the fold instant, but its reception-time integral is finite. [Source-Density Fold and Coincident-Birth Analysis](analysis-transmitter-side-fold-and-coincident-birth.md) proves that the finite-width impulse has a regulator-independent sharp limit. The transition must therefore be advanced by its integrated acceleration, not by sampling the pointwise root formula at the fold.
 
 A simultaneous receiver turning point, higher-order contact, root accumulation, or memory-boundary contact is not an ordinary fold and remains outside that theorem.
 
@@ -217,7 +217,7 @@ When an accelerating architrino crosses from below to above $c_f$, it can overta
 
 The local analysis gives a sharp newborn acceleration proportional to $(T_r-T_0)^{-3}$ and a divergent, refinement-path-dependent impulse as wake width and core scale are removed. Fixed positive wake width and core scale make the event finite. Positive wake width alone is insufficient. On matched refinements the complete endpoint layer diverges as the inverse square of the core scale; on extreme refinements the finite reception window changes the power but a uniform lower bound still diverges. A calculation that isolates only the newborn noncoincident root is not the complete transition.
 
-The calculation proves that a generic smooth crossing is incompatible with the sharp base equation. The finite-window lower bound in [Source-Density Fold and Coincident-Birth Analysis](analysis-source-density-fold-and-coincident-birth.md) diverges on every joint wake-width and core-scale refinement path. The present point-transceiver primitives fix neither width as a positive physical scale and supply no alternative near-origin same-source rule. This route therefore closes negatively: a finite accepted transition requires new derived structure, not a different regulator schedule.
+The calculation proves that a generic smooth crossing is incompatible with the sharp base equation. The finite-window lower bound in [Source-Density Fold and Coincident-Birth Analysis](analysis-transmitter-side-fold-and-coincident-birth.md) diverges on every joint wake-width and core-scale refinement path. The present point-transceiver primitives fix neither width as a positive physical scale and supply no alternative near-origin same-source rule. This route therefore closes negatively: a finite accepted transition requires new derived structure, not a different regulator schedule.
 
 ### 5.4 Finite retained history
 
@@ -229,11 +229,11 @@ The proposal is not selected merely because it is simpler than the current recei
 
 ### 6.1 Mathematical checks
 
-1. **Passed on the declared domain:** the uniform-emission finite-width equation, static normalization, joint regulator limit, and $c_f/|D_t|$ simple-root reduction are derived in [Source-Density Finite-Width Equation and Simple-Root Limit](analysis-source-density-finite-width-simple-root-limit.md) and pass [independent mathematical review](analysis-source-density-simple-root-independent-review.md).
+1. **Passed on the declared domain:** the uniform-emission finite-width equation, static normalization, joint regulator limit, and $c_f/|D_t|$ simple-root reduction are derived in [Source-Density Finite-Width Equation and Simple-Root Limit](analysis-transmitter-side-finite-width-simple-root-limit.md) and pass [independent mathematical review](analysis-transmitter-side-simple-root-independent-review.md).
 2. **Passed for ordinary folds:** the finite-width acceleration has a finite, regulator-independent impulse across a nondegenerate interior fold with nonzero separation and $D_r\ne0$.
 3. **Failed under the current primitives for coincident same-source birth:** the complete finite-window impulse diverges on every joint regulator-removal path. A fixed positive core would change the point-transceiver law unless an Architrino-native near-origin rule fixes the scale and kernel. No such rule is currently derived.
-4. **Passed for the positive-width equation and regular sharp charts:** [Source-Density Causal Retained-History Functional](analysis-source-density-causal-history-functional.md) proves that the acceleration is a causal functional of current receiver state plus retained past histories. Global sharp continuation remains blocked at coincident same-source birth, not by future dependence.
-5. **Failed under the current primitives for conservation:** [History-Only Conservation Obstruction](analysis-source-density-conservation-obstruction.md) carries the retained-history construction to its present limit. The equation determines acceleration but not the kinetic function, momentum function, or an independently specified wake-account update. Defining wake changes as the negative accumulated motion changes would balance by construction and is rejected as circular. This failure does not justify adding another acceleration term; it identifies missing kinematic and wake-account structure.
+4. **Passed for the positive-width equation and regular sharp charts:** [Source-Density Causal Retained-History Functional](analysis-transmitter-side-causal-history-functional.md) proves that the acceleration is a causal functional of current receiver state plus retained past histories. Global sharp continuation remains blocked at coincident same-source birth, not by future dependence.
+5. **Failed under the current primitives for conservation:** [History-Only Conservation Obstruction](analysis-transmitter-side-conservation-obstruction.md) carries the retained-history construction to its present limit. The equation determines acceleration but not the kinetic function, momentum function, or an independently specified wake-account update. Defining wake changes as the negative accumulated motion changes would balance by construction and is rejected as circular. This failure does not justify adding another acceleration term; it identifies missing kinematic and wake-account structure.
 
 ### 6.2 Discriminating tests
 
@@ -245,11 +245,11 @@ $$
 \left|\frac{D_r}{D_t}\right|
 $$
 
-while holding the root, emission geometry, transmitter history, separation, polarity, and numerical regulators fixed. [Static-Transmitter Receiver-Motion Discriminator](analysis-source-density-static-source-discriminator.md) compares receivers passing the same position with opposite radial velocities. The source-density equation gives the same acceleration to both; the receiver-weighted equation does not. The independent static-source electrodynamics recovery anchor contains no first-order receiver-velocity term and therefore selects the source-density result at that order.
+while holding the root, emission geometry, transmitter history, separation, polarity, and numerical regulators fixed. [Static-Transmitter Receiver-Motion Discriminator](analysis-transmitter-side-static-source-discriminator.md) compares receivers passing the same position with opposite radial velocities. The transmitter-side equation gives the same acceleration to both; the receiver-weighted equation does not. The independent static-source electrodynamics recovery anchor contains no first-order receiver-velocity term and therefore selects the transmitter-side result at that order.
 
 Useful tests must not use an oracle derived from either candidate law. A closed form from an independently justified wake model, a separately authored instrument with declared reach, or a downstream recovery calculation can supply independent evidence.
 
-The exact finite-width control in the [independent simple-root review](analysis-source-density-simple-root-independent-review.md) verifies the native algebra. The observer-level static-source anchor supplies the independent selection. This passes one discriminator without claiming that the complete electrodynamics recovery is finished.
+The exact finite-width control in the [independent simple-root review](analysis-transmitter-side-simple-root-independent-review.md) verifies the native algebra. The observer-level static-source anchor supplies the independent selection. This passes one discriminator without claiming that the complete electrodynamics recovery is finished.
 
 ### 6.3 Recovery obligations
 
@@ -263,22 +263,22 @@ If those quantities remain deterministic functions of source history, the functi
 
 ### 6.4 Repeated promotion audit
 
-The source-density decision has two different standings, and they must not be merged into one verdict.
+The transmitter-side decision has two different standings, and they must not be merged into one verdict.
 
-The receiver-factor correction is ready for scoped promotion: uniform emission gives $c_f/|D_t|$, receiver playback $D_r/D_t$ does not justify multiplying base acceleration by $|D_r|/c_f$, the first-order static-transmitter discriminator agrees, and ordinary folds have a finite integrated acceleration. At a receiver turning point with $D_r=0$ and $D_t\ne0$, the root remains present and the source-density acceleration remains finite.
+The receiver-factor correction is ready for scoped promotion: uniform emission gives $c_f/|D_t|$, receiver playback $D_r/D_t$ does not justify multiplying base acceleration by $|D_r|/c_f$, the first-order static-transmitter discriminator agrees, and ordinary folds have a finite integrated acceleration. At a receiver turning point with $D_r=0$ and $D_t\ne0$, the root remains present and the transmitter-side acceleration remains finite.
 
 The complete Master Equation is not globally closed. Two fundamental debts remain negative under the current primitive set:
 
 1. the coincident same-source transition has no finite joint regulator limit, and no physical near-origin rule is derived;
 2. the causal retained-history update does not determine non-circular energy, momentum, and angular-momentum accounts without additional kinematic and wake-account structure.
 
-The [change-specific promotion audit](analysis-receiver-factor-change-specific-promotion-audit.md) tests whether those failures were introduced by the correction. They were not. On the same smooth coincident-birth chart, the current receiver-weighted law has a $t^{-2}$ acceleration and a divergent impulse; the proposed source-density law has the stronger $t^{-3}$ divergence. The current causal receiver-weighted update also lacks derived conserved accounts; the two-time action's accounts belong to a future-dependent equation rather than the causal EOM solver update.
+The [change-specific promotion audit](analysis-receiver-factor-change-specific-promotion-audit.md) tests whether those failures were introduced by the correction. They were not. On the same smooth coincident-birth chart, the current receiver-weighted law has a $t^{-2}$ acceleration and a divergent impulse; the proposed transmitter-side law has the stronger $t^{-3}$ divergence. The current causal receiver-weighted update also lacks derived conserved accounts; the two-time action's accounts belong to a future-dependent equation rather than the causal EOM solver update.
 
-The stronger source-density divergence must remain fail-closed and visible. It blocks a claim of globally complete same-source evolution, but it does not turn a previously accepted old-law transition into a failed new-law transition. Likewise, missing conservation remains a global closure obligation but is not evidence for the receiver multiplier.
+The stronger transmitter-side divergence must remain fail-closed and visible. It blocks a claim of globally complete same-source evolution, but it does not turn a previously accepted old-law transition into a failed new-law transition. Likewise, missing conservation remains a global closure obligation but is not evidence for the receiver multiplier.
 
 The resulting disposition is:
 
-- **ready for separately authorized scoped promotion:** replace the base acceleration factor by $c_f/|D_t|$ on the certified source-density domain, retain $D_r/D_t$ for root transport, and preserve fail-closed singular-event routing;
+- **ready for separately authorized scoped promotion:** replace the base acceleration factor by $c_f/|D_t|$ on the certified transmitter-side domain, retain $D_r/D_t$ for root transport, and preserve fail-closed singular-event routing;
 - **not ready for global closure claims:** coincident same-source continuation, causal conservation, and complete moving-transmitter and moving-receiver recovery remain open.
 
 This document does not itself change canon, EOM solver semantics, or accepted evidence. Those changes require an explicitly authorized migration using the completed impact inventory and independent validation.

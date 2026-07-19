@@ -78,7 +78,7 @@ In this framework, the candidate substrate-level quantities are:
 
 ### Category B: Fundamental Entity
 - **Architrino polarity-unit magnitude** $\epsilon=|e|/6$
-- **Causal wake interaction kernel** (inverse-square line-of-action weighting modulated by the receiver-weighted acceleration factor $W^{\mathrm{acc}}$ over causal wake surfaces, with regularized coincidence handling)
+- **Causal wake interaction kernel** (inverse-square line-of-action weighting modulated by the transmitter-side acceleration weight $W^{\mathrm{acc}}$ over causal wake surfaces, with regularized coincidence handling)
 
 ### Category C: Assembly Geometry (Emergent but Calculable)
 - **Nested shell braid radius ratios** (inner/middle/outer scales)

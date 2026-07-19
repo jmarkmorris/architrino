@@ -69,7 +69,7 @@ J_{\min}
 \right|
 $$
 
-On the same active rows the certificate must also report the receiver-weighted acceleration factor $W^{\mathrm{acc}}=\lvert D_r/D_t\rvert$ (receiver-side factor $D_r=1-\mathbf v_{o'}(t)\cdot\hat{\mathbf r}_{o'j}(t;t_0)/c_f$) on its certified floor or bounded interval; a healthy transversality floor $J_{\min}$ alone does not certify the branch's force or action contribution.
+On the same active rows the certificate must also report the transmitter-side acceleration weight $W^{\mathrm{acc}}=c_f/\lvert D_t\rvert$ (receiver-side factor $D_r=1-\mathbf v_{o'}(t)\cdot\hat{\mathbf r}_{o'j}(t;t_0)/c_f$) on its certified floor or bounded interval; a healthy transversality floor $J_{\min}$ alone does not certify the branch's force or action contribution.
 
 Third, it reports a running retained-history energy-like functional and its variation across self-hit or separator crossings under $\Delta t$, $\eta$, and history-window refinement. A bounded-energy claim fails if the apparent bound disappears under refinement.
 

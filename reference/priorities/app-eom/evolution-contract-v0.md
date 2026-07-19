@@ -6,7 +6,7 @@
 - Stage: `requirements-frozen`
 - Claim level: `priority-design`
 - Implementation status: `native-correctness-nucleus-and-borg-shadow-executable; production-conformance-open`
-- Model binding: frozen `master_eom_binding/v0`
+- Model binding: `master_eom_binding/v1`
 - Optional long-term scale amendment: [`eom_evolution_contract/v0/amendment-1`](evolution-contract-v0-amendment-1-million-path-scale.md); required only when a request or result claims the million-path profile
 - Initial-data type: continuous retained history functions only
 - Change control: revisions require an explicit contract amendment or successor version
@@ -75,7 +75,7 @@ $$
 }.
 $$
 
-The `master_eom_binding/v0` record must pin the exact canonical source for this equation, $\kappa$, $c_f$, polarity convention, charge unit, causal-surface regulator $\eta$, core regulator $\epsilon_c$, coincident-endpoint convention, finite-history rule, branch aggregation, and caustic route.
+The `master_eom_binding/v1` record pins the exact canonical source for this equation, $\kappa$, $c_f$, polarity convention, charge unit, causal-surface regulator $\eta$, core regulator $\epsilon_c$, coincident-endpoint convention, finite-history rule, branch aggregation, and caustic route.
 
 ## Request Contract
 
@@ -86,7 +86,7 @@ The `master_eom_binding/v0` record must pin the exact canonical source for this 
 | `contract_id` | Exactly `eom_evolution_contract/v0`. |
 | `contract_amendment_ids` | Ordered amendment ids applicable to the request. Million-path conformance includes `eom_evolution_contract/v0/amendment-1`. |
 | `run_id` | Unique immutable identifier. |
-| `model_binding_id` | Content-addressed `master_eom_binding/v0` record. |
+| `model_binding_id` | Content-addressed `master_eom_binding/v1` record. |
 | `input_hash` | Hash over every history, model, numerical, precision, and resource input that can change the result. |
 | `absolute_time_interval` | Finite $[T_0,T_1]$ with $T_1\ge T_0$. |
 

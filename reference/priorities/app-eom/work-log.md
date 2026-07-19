@@ -1868,19 +1868,19 @@ This file holds dated decisions, implementation status, validation results, fail
   serialized records, frozen evidence, and the old-law validator filename were
   not renamed or redefined.
 - **Physics boundary:** the current receiver-weighted Master EOM and EOM solver
-  semantics are unchanged. The source-density acceleration proposal remains
+  semantics are unchanged. The transmitter-side acceleration proposal remains
   priority-only.
 - **Measured validation:** both terminology validators pass, and 120 focused
   Equation Mapping, prescribed-root, animator, and Photon tests pass. Generated
   reading copies and indexes remain drifted because no write-mode generator was
   authorized.
 - **Disposition:**
-  [master-equation-terminology-migration-disposition-2026-07-19.md](master-equation-terminology-migration-disposition-2026-07-19.md).
+  [terminology migration disposition](archive/terminology-migration/master-equation-terminology-migration-disposition-2026-07-19.md).
 
 ## 2026-07-19 — Coincident-transition and history-only conservation closure attempt
 
 - **Derived finite-window no-go:** on the smooth same-source birth chart, the
-  complete source-density impulse obeys a regulator-uniform lower bound
+  complete transmitter-side impulse obeys a regulator-uniform lower bound
   proportional to
   $\min(c_f/(\alpha\epsilon_c^2),L/(\eta\epsilon_c))$. Both alternatives
   diverge on every joint $\eta,\epsilon_c\to0$ path. The earlier
@@ -1903,18 +1903,18 @@ This file holds dated decisions, implementation status, validation results, fail
   conservation require new derived structure or an explicit restriction of
   the claimed equation domain.
 - **Artifacts:**
-  [source-density singular-event analysis](analysis-source-density-fold-and-coincident-birth.md),
-  [history-only conservation obstruction](analysis-source-density-conservation-obstruction.md),
+  [transmitter-side singular-event analysis](analysis-transmitter-side-fold-and-coincident-birth.md),
+  [history-only conservation obstruction](analysis-transmitter-side-conservation-obstruction.md),
   [going-forward walkthrough](master-equation-import-audit-walkthrough-2026-07-18.md),
   and [promotion-readiness matrix](master-equation-promotion-readiness-matrix.md).
 
 ## 2026-07-19 — Receiver-factor change-specific promotion audit
 
 - **Derived old-law baseline:** on the same smooth coincident same-source birth
-  chart used for the source-density no-go result, the current
+  chart used for the transmitter-side no-go result, the current
   receiver-weighted factor approaches one, the separation is $2c_ft+O(t^2)$,
   and the sharp acceleration is proportional to $t^{-2}$. Its impulse already
-  diverges. The source-density correction strengthens the divergence to
+  diverges. The transmitter-side correction strengthens the divergence to
   $t^{-3}$ but does not create the first failed sharp continuation.
 - **Exact analytic control:** the prescribed history
   $\mathbf X(T)=\hat{\mathbf e}(c_fT+\alpha T^2/2)$ has the exact newborn root

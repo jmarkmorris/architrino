@@ -203,7 +203,7 @@ u\hat{\mathbf e}
 \cdot\hat{\mathbf r}_{\sigma\sigma'}
 }{c_f}
 $$
-where $\hat{\mathbf r}_{\sigma\sigma'}$ is the unit vector from the transmitter emission point to the receiver-now point. This is structurally the same transmitter-side factor that appears in Lienard-Wiechert delay geometry. The analogy is useful only at the level of causal-root flux: the canonical Master EOM has the radial inverse-square line of action and receiver-weighted acceleration factor $W^{\mathrm{acc}}=\lvert D_r/D_t\rvert$, but not the full electrodynamic velocity-field and acceleration-field terms. The Lorentz answer therefore cannot be imported from classical electrodynamics; it must be computed on this branch.
+where $\hat{\mathbf r}_{\sigma\sigma'}$ is the unit vector from the transmitter emission point to the receiver-now point. This is structurally the same transmitter-side factor that appears in Lienard-Wiechert delay geometry. The analogy is useful only at the level of causal-root flux: the canonical Master EOM has the radial inverse-square line of action and transmitter-side acceleration weight $W^{\mathrm{acc}}=c_f/\lvert D_t\rvert$, but not the full electrodynamic velocity-field and acceleration-field terms. The Lorentz answer therefore cannot be imported from classical electrodynamics; it must be computed on this branch.
 
 The leading/trailing asymmetry in this translating ledger is already visible in the pure drift part of the same Jacobian. For a uniformly moving transmitter with drift ratio $\beta=u/c_f$ and $\theta$ the angle between the drift direction and the transmitter-to-receiver line of action, the simple-root wake-density factor is
 $$
@@ -1448,7 +1448,7 @@ for that class of material branches. The remaining Lorentz program is the constr
 
 ### Theorem A1 (translating binary Lorentz residual)
 
-The first constructive test of Theorem G is the translating maximum-curvature binary benchmark defined in [Translating Binary Benchmark](#translating-binary-benchmark). Start from the certified rest binary with radius $R_0$, period $T_0$, active root ledger $b_0$, positive Jacobian floors, and bounded receiver-weighted acceleration factors. For each $0<u<c_f$, solve the absolute-time delayed root equations for
+The first constructive test of Theorem G is the translating maximum-curvature binary benchmark defined in [Translating Binary Benchmark](#translating-binary-benchmark). Start from the certified rest binary with radius $R_0$, period $T_0$, active root ledger $b_0$, positive Jacobian floors, and bounded transmitter-side acceleration weights. For each $0<u<c_f$, solve the absolute-time delayed root equations for
 $$
 \mathbf X_{\sigma}(T)
 =

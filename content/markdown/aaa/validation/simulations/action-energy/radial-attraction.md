@@ -10,7 +10,7 @@ Objectives:
 
 Delay differential equation and exact reduction:
 - With field speed normalized to $v=1$ and a fixed source location $X_c$, the causal root satisfies $|X(T)-X_c|=T-T_t$ with $T_t<T$.
-- The per-hit law yields a line-of-action acceleration whose magnitude depends on the current separation $r(T)=|X(T)-X_c|$ and the receiver-weighted acceleration factor:
+- The per-hit law yields a line-of-action acceleration whose magnitude depends on the current separation $r(T)=|X(T)-X_c|$ and the transmitter-side acceleration weight:
   $$
   \frac{d^2X}{dT^2} \;=\; -\,\kappa\,\sigma_{q q'}\,\frac{|q q'|}{r(T)^2}W^{\mathrm{acc}}(T)\,\mathrm{sgn}\!\big(X(T)-X_c\big)
   $$

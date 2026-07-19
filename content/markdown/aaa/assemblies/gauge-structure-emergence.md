@@ -72,7 +72,7 @@ We map the abstract gauge groups of the Standard Model to physical deformations 
 
 1.  **U(1) (Electromagnetism):**
     *   *SM View:* Phase rotation of the complex field.
-    *   *$\mathbb{A}\mathbb{A}\mathbb{A}$ View:* A variation in the **potential density** or polarization alignment of the Noether sea. A particle moving through this gradient experiences a delayed line-of-action force whose transverse and velocity-dependent observer-level pieces arise from branch geometry, causal delay, and receiver-weighted acceleration-factor modulation (the transmitter-side Jacobian entering only as transversality and root-density data).
+    *   *$\mathbb{A}\mathbb{A}\mathbb{A}$ View:* A variation in the **potential density** or polarization alignment of the Noether sea. A particle moving through this gradient experiences a delayed line-of-action force whose transverse and velocity-dependent observer-level pieces arise from branch geometry, causal delay, and transmitter-side acceleration-weight modulation (the transmitter-side Jacobian entering only as transversality and root-density data).
 
 2.  **SU(2) (Weak Interaction):**
     *   *SM View:* Non-Abelian rotation in isospin space.
@@ -365,7 +365,7 @@ S_{\text{fund}}
 \frac{\kappa \epsilon^2\,W_{ij}^{\mathrm{acc}}}{\|\mathbf X_i(T)-\mathbf X_j(T-\Delta_{ij})\|^2}
 \right]
 $$
-Here $\Delta_{ij}=T-T_{t,ij}$ is the causal travel delay on the active branch, $\mu_{\text{arch}}$ is the universal force/energy bookkeeping constant, and $W_{ij}^{\mathrm{acc}}$ is the receiver-weighted acceleration factor on the active branch, so the electroweak closure map starts from the same receiver-side causal geometry as the master equation rather than from a stripped inverse-square surrogate.
+Here $\Delta_{ij}=T-T_{t,ij}$ is the causal travel delay on the active branch, $\mu_{\text{arch}}$ is the universal force/energy bookkeeping constant, and $W_{ij}^{\mathrm{acc}}$ is the transmitter-side acceleration weight on the active branch, so the electroweak closure map starts from the same receiver-side causal geometry as the master equation rather than from a stripped inverse-square surrogate.
 After fast-mode averaging of inner and middle binary phases (Lie-Deprit/Hamiltonian averaging) and coarse-graining to $q^2\ll \omega_M^2$, the minimal observer-level action is written as
 $$
 \mathcal{L}_{\text{eff}}

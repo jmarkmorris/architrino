@@ -2,17 +2,17 @@
 
 ## Status
 
-- Purpose: supply one independent discriminator between the source-density and receiver-weighted acceleration factors
+- Purpose: supply one independent discriminator between the transmitter-side and receiver-weighted acceleration factors
 - Native input: one stationary transmitter, one moving receiver, one positive-delay simple root
 - Independent anchor: the observer-level static-source electrodynamics comparison already derived in [Static-Source First-Order Receiver Analysis](analysis-static-source-receiver-row.md)
 - Standing: priority analysis and downstream recovery test; not an architrino-level premise
-- Verdict: source-density passes and receiver-weighted acceleration fails at first order in receiver radial velocity
+- Verdict: transmitter-side passes and receiver-weighted acceleration fails at first order in receiver radial velocity
 
 ## Finding in plain language
 
 Hold the transmitter history, causal root, reception position, separation, polarity, and spatial kernel fixed. Change only the receiver's radial velocity at that same position.
 
-The proposed source-density acceleration does not change. The receiver-weighted acceleration changes linearly. The independent static-source electrodynamics benchmark has no such first-order receiver-velocity term. This test therefore selects removal of the receiver multiplier at first order.
+The proposed transmitter-side acceleration does not change. The receiver-weighted acceleration changes linearly. The independent static-source electrodynamics benchmark has no such first-order receiver-velocity term. This test therefore selects removal of the receiver multiplier at first order.
 
 Claim classification: **derived native comparison plus observer-level recovery target**. This result does not prove the complete architrino-to-electrodynamics recovery.
 
@@ -53,7 +53,7 @@ $$
 
 ## 2. Competing predictions
 
-The proposed source-density equation gives
+The proposed transmitter-side equation gives
 
 $$
 \boxed{
@@ -103,13 +103,13 @@ This is a clean discriminator because no source motion, root change, separation 
 
 At observer level, the rest-frame interaction of a static electric source has a static radial electric contribution and no magnetic contribution. Receiver-velocity corrections to coordinate acceleration from relativistic inertia begin at second order in speed. Consequently the independently established recovery target has no term linear in receiver radial velocity.
 
-The source-density equation matches that first-order absence. The receiver-weighted equation predicts the forbidden term
+The transmitter-side equation matches that first-order absence. The receiver-weighted equation predicts the forbidden term
 
 $$
 -\frac{\hat{\mathbf e}\cdot\mathbf W}{c_f}\mathbf A_0(R).
 $$
 
-This observer-level result is used only as a recovery constraint. It is not inserted into the native derivation of the source-density factor.
+This observer-level result is used only as a recovery constraint. It is not inserted into the native derivation of the transmitter-side factor.
 
 Falsifier: an independently derived static-source observer comparison containing the same universal first-order radial-velocity term while retaining the established static electric, Doppler, clock, and ruler limits.
 
@@ -127,6 +127,6 @@ The action-derived scale-plus-recoil equation independently restores the moving-
 
 ## 5. Disposition
 
-The requirement for at least one independent discriminator is satisfied at first order by the static-transmitter receiver-motion test. It rejects the receiver multiplier and supports the source-density base factor without importing the observer equation into the native derivation.
+The requirement for at least one independent discriminator is satisfied at first order by the static-transmitter receiver-motion test. It rejects the receiver multiplier and supports the transmitter-side base factor without importing the observer equation into the native derivation.
 
 Promotion classification: **promote now within the priority proposal as an independent recovery discriminator; defer complete recovery**.

@@ -106,15 +106,15 @@ void print_pair(const eom::ExactPairCertificate& certificate) {
     const auto& root = certificate.roots[index];
     std::cout << "{\"lower\":\"" << root.lower
               << "\",\"upper\":\"" << root.upper
-              << "\",\"source_normal_lower\":\""
-              << root.source_normal_lower
-              << "\",\"source_normal_upper\":\""
-              << root.source_normal_upper
-              << "\",\"receiver_normal_lower\":\""
-              << root.receiver_normal_lower
-              << "\",\"receiver_normal_upper\":\""
-              << root.receiver_normal_upper
-              << "\",\"source_normal_sign\":" << root.source_normal_sign
+              << "\",\"transmitter_factor_lower\":\""
+              << root.transmitter_factor_lower
+              << "\",\"transmitter_factor_upper\":\""
+              << root.transmitter_factor_upper
+              << "\",\"receiver_factor_lower\":\""
+              << root.receiver_factor_lower
+              << "\",\"receiver_factor_upper\":\""
+              << root.receiver_factor_upper
+              << "\",\"transmitter_factor_sign\":" << root.transmitter_factor_sign
               << ",\"source_segment_indices\":";
     print_index_array(root.source_segment_indices);
     std::cout << ",\"precision_route\":\"" << root.precision_route

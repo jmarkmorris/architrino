@@ -537,7 +537,7 @@ std::vector<std::pair<std::string, std::string>> changed_topology_pairs(
     }
     std::vector<int> signs;
     for (const auto& root : row.certificate.roots) {
-      signs.push_back(root.source_normal_sign);
+      signs.push_back(root.transmitter_factor_sign);
     }
     start_rows[key] = std::move(signs);
   }
@@ -545,7 +545,7 @@ std::vector<std::pair<std::string, std::string>> changed_topology_pairs(
   for (const auto& row : end.root_certificates) {
     std::vector<int> signs;
     for (const auto& root : row.certificate.roots) {
-      signs.push_back(root.source_normal_sign);
+      signs.push_back(root.transmitter_factor_sign);
     }
     const auto key = std::make_pair(
         row.receiver_path_id, row.source_path_id);
@@ -688,10 +688,10 @@ certify_coincident_endpoint_root_continuation_impl(
   std::vector<int> start_signs;
   std::vector<int> end_signs;
   for (const auto& root : start_certificate.roots) {
-    start_signs.push_back(root.source_normal_sign);
+    start_signs.push_back(root.transmitter_factor_sign);
   }
   for (const auto& root : end_certificate.roots) {
-    end_signs.push_back(root.source_normal_sign);
+    end_signs.push_back(root.transmitter_factor_sign);
   }
   std::sort(start_signs.begin(), start_signs.end());
   std::sort(end_signs.begin(), end_signs.end());
@@ -1019,7 +1019,7 @@ bool certify_finite_width_exit(
       .source_charge = path_charge(request, source),
       .coupling = request.coupling,
       .chart = "sharp",
-      .source_normal_floor = request.source_normal_floor,
+      .transmitter_factor_floor = request.transmitter_factor_floor,
       .causal_width = request.causal_width,
       .core_scale = request.core_scale,
       .acceleration_tolerance = request.acceleration_tolerance,
@@ -1038,14 +1038,14 @@ bool certify_finite_width_exit(
       pair.rows.size() != roots.roots.size()) {
     return false;
   }
-  const Interval source_normal_floor =
-      Interval::decimal_token(request.source_normal_floor);
+  const Interval transmitter_factor_floor =
+      Interval::decimal_token(request.transmitter_factor_floor);
   const Interval core_scale = Interval::decimal_token(request.core_scale);
   for (const auto& row : pair.rows) {
-    if (!row.source_normal.has_value() ||
-        row.source_normal->contains_zero() ||
-        interval_absolute(*row.source_normal).lower() <
-            source_normal_floor.upper() ||
+    if (!row.transmitter_factor.has_value() ||
+        row.transmitter_factor->contains_zero() ||
+        interval_absolute(*row.transmitter_factor).lower() <
+            transmitter_factor_floor.upper() ||
         !row.separation.has_value() ||
         row.separation->lower() <= core_scale.upper()) {
       return false;
@@ -1187,7 +1187,7 @@ struct CommonRootTube {
   IntervalVector acceleration_hull;
   JetVector nominal_acceleration;
   JetVector emission_coordinate_sharp_acceleration;
-  double source_normal_absolute_lower;
+  double transmitter_factor_absolute_lower;
   double separation_lower;
 };
 
@@ -1201,25 +1201,25 @@ std::optional<CommonRootTube> certify_common_root_tube(
   const Interval field_speed = Interval::decimal_token(request.field_speed);
   const Interval core_scale = Interval::decimal_token(request.core_scale);
   const Interval normal_floor =
-      Interval::decimal_token(request.source_normal_floor);
+      Interval::decimal_token(request.transmitter_factor_floor);
   const Interval root_bracket(
       Interval::decimal_token(endpoint_root.lower).lower(),
       Interval::decimal_token(endpoint_root.upper).upper());
-  const Interval endpoint_source_normal(
-      Interval::decimal_token(endpoint_root.source_normal_lower).lower(),
-      Interval::decimal_token(endpoint_root.source_normal_upper).upper());
-  const Interval endpoint_receiver_normal(
-      Interval::decimal_token(endpoint_root.receiver_normal_lower).lower(),
-      Interval::decimal_token(endpoint_root.receiver_normal_upper).upper());
-  if (endpoint_source_normal.contains_zero()) return std::nullopt;
+  const Interval endpoint_transmitter_factor(
+      Interval::decimal_token(endpoint_root.transmitter_factor_lower).lower(),
+      Interval::decimal_token(endpoint_root.transmitter_factor_upper).upper());
+  const Interval endpoint_receiver_factor(
+      Interval::decimal_token(endpoint_root.receiver_factor_lower).lower(),
+      Interval::decimal_token(endpoint_root.receiver_factor_upper).upper());
+  if (endpoint_transmitter_factor.contains_zero()) return std::nullopt;
   double slope_bound = interval_absolute(
-      endpoint_receiver_normal / endpoint_source_normal).upper();
+      endpoint_receiver_factor / endpoint_transmitter_factor).upper();
   Interval emission = root_bracket;
   IntervalVector displacement{Interval::point(0.0), Interval::point(0.0),
                               Interval::point(0.0)};
   Interval separation = Interval::point(0.0);
-  Interval source_normal = endpoint_source_normal;
-  Interval receiver_normal = endpoint_receiver_normal;
+  Interval transmitter_factor = endpoint_transmitter_factor;
+  Interval receiver_factor = endpoint_receiver_factor;
   bool self_consistent = false;
   for (std::size_t iteration = 0; iteration < 8U; ++iteration) {
     const double padding = std::nextafter(
@@ -1241,16 +1241,16 @@ std::optional<CommonRootTube> certify_common_root_tube(
       return std::nullopt;
     }
     const IntervalVector direction = divide(displacement, separation);
-    source_normal = field_speed - dot(
+    transmitter_factor = field_speed - dot(
         direction, source.history.velocity_hull(emission));
-    receiver_normal = field_speed - dot(
+    receiver_factor = field_speed - dot(
         direction, receiver.history.velocity_hull(reception));
-    if (source_normal.contains_zero() ||
-        interval_absolute(source_normal).lower() < normal_floor.upper()) {
+    if (transmitter_factor.contains_zero() ||
+        interval_absolute(transmitter_factor).lower() < normal_floor.upper()) {
       return std::nullopt;
     }
     const double updated = interval_absolute(
-        receiver_normal / source_normal).upper();
+        receiver_factor / transmitter_factor).upper();
     if (updated <= slope_bound) {
       self_consistent = true;
       break;
@@ -1260,8 +1260,8 @@ std::optional<CommonRootTube> certify_common_root_tube(
   }
   if (!self_consistent) return std::nullopt;
 
-  const Interval receiver_strength = interval_absolute(
-      receiver_normal / source_normal);
+  const Interval acceleration_weight =
+      field_speed / interval_absolute(transmitter_factor);
   const Interval radial_denominator =
       interval_square(separation) * separation;
   const Interval signed_scale =
@@ -1269,7 +1269,7 @@ std::optional<CommonRootTube> certify_common_root_tube(
       Interval::decimal_token(path_charge(request, receiver.path_id)) *
       Interval::decimal_token(path_charge(request, source.path_id));
   const IntervalVector acceleration_hull = scale(
-      signed_scale * receiver_strength,
+      signed_scale * acceleration_weight,
       divide(displacement, radial_denominator));
 
   const auto receiver_state = nominal_history_state(
@@ -1288,7 +1288,7 @@ std::optional<CommonRootTube> certify_common_root_tube(
       dot(nominal_direction, source_state->velocity);
   const Interval nominal_dr = field_speed -
       dot(nominal_direction, receiver_state->velocity);
-  if (nominal_ds.contains_zero() || nominal_dr.contains_zero()) {
+  if (nominal_ds.contains_zero()) {
     return std::nullopt;
   }
   const Interval s1 = nominal_dr / nominal_ds;
@@ -1310,7 +1310,6 @@ std::optional<CommonRootTube> certify_common_root_tube(
   const Jet2 zero_jet{zero, zero, zero};
   JetVector receiver_position_jet{zero_jet, zero_jet, zero_jet};
   JetVector source_position_jet{zero_jet, zero_jet, zero_jet};
-  JetVector receiver_velocity_jet{zero_jet, zero_jet, zero_jet};
   JetVector source_velocity_jet{zero_jet, zero_jet, zero_jet};
   for (std::size_t axis = 0; axis < 3U; ++axis) {
     receiver_position_jet[axis] = {
@@ -1321,9 +1320,6 @@ std::optional<CommonRootTube> certify_common_root_tube(
         source_state->velocity[axis] * s1,
         source_state->acceleration[axis] * interval_square(s1) +
             source_state->velocity[axis] * s2};
-    receiver_velocity_jet[axis] = {
-        receiver_state->velocity[axis],
-        receiver_state->acceleration[axis], receiver_state->jerk[axis]};
     source_velocity_jet[axis] = {
         source_state->velocity[axis],
         source_state->acceleration[axis] * s1,
@@ -1338,9 +1334,7 @@ std::optional<CommonRootTube> certify_common_root_tube(
                    Interval::point(0.0)};
   const Jet2 ds_jet = jet_subtract(
       c_jet, jet_dot(n_jet, source_velocity_jet));
-  const Jet2 dr_jet = jet_subtract(
-      c_jet, jet_dot(n_jet, receiver_velocity_jet));
-  const Jet2 strength_jet = jet_absolute(jet_divide(dr_jet, ds_jet));
+  const Jet2 strength_jet = jet_absolute(jet_divide(c_jet, ds_jet));
   const Jet2 radial_cubed = jet_multiply(
       jet_multiply(r_jet, r_jet), r_jet);
   const Jet2 scale_jet = jet_multiply(
@@ -1356,7 +1350,6 @@ std::optional<CommonRootTube> certify_common_root_tube(
   // Every value below is evaluated on the certified common root tube.
   JetVector receiver_position_s_jet{zero_jet, zero_jet, zero_jet};
   JetVector source_position_s_jet{zero_jet, zero_jet, zero_jet};
-  JetVector receiver_velocity_s_jet{zero_jet, zero_jet, zero_jet};
   JetVector source_velocity_s_jet{zero_jet, zero_jet, zero_jet};
   for (std::size_t axis = 0; axis < 3U; ++axis) {
     receiver_position_s_jet[axis] = {
@@ -1364,8 +1357,6 @@ std::optional<CommonRootTube> certify_common_root_tube(
     source_position_s_jet[axis] = {
         source_state->position[axis], source_state->velocity[axis],
         source_state->acceleration[axis]};
-    receiver_velocity_s_jet[axis] = {
-        receiver_state->velocity[axis], zero, zero};
     source_velocity_s_jet[axis] = {
         source_state->velocity[axis], source_state->acceleration[axis],
         source_state->jerk[axis]};
@@ -1376,13 +1367,11 @@ std::optional<CommonRootTube> certify_common_root_tube(
   const JetVector n_s_jet = jet_scale(jet_inverse(r_s_jet), d_s_jet);
   const Jet2 ds_s_jet = jet_subtract(
       c_jet, jet_dot(n_s_jet, source_velocity_s_jet));
-  const Jet2 dr_s_jet = jet_subtract(
-      c_jet, jet_dot(n_s_jet, receiver_velocity_s_jet));
-  if (ds_s_jet.value.contains_zero() || dr_s_jet.value.contains_zero()) {
+  if (ds_s_jet.value.contains_zero()) {
     return std::nullopt;
   }
   const Jet2 s_strength_jet = jet_absolute(
-      jet_divide(dr_s_jet, ds_s_jet));
+      jet_divide(c_jet, ds_s_jet));
   const Jet2 s_radial_cubed = jet_multiply(
       jet_multiply(r_s_jet, r_s_jet), r_s_jet);
   const Jet2 s_scale_jet = jet_multiply(
@@ -1405,8 +1394,8 @@ std::optional<CommonRootTube> certify_common_root_tube(
       .acceleration_hull = acceleration_hull,
       .nominal_acceleration = nominal_acceleration,
       .emission_coordinate_sharp_acceleration = sharp_u_jet,
-      .source_normal_absolute_lower =
-          interval_absolute(source_normal).lower(),
+      .transmitter_factor_absolute_lower =
+          interval_absolute(transmitter_factor).lower(),
       .separation_lower = separation.lower(),
   };
 }
@@ -1538,14 +1527,14 @@ certify_common_domain_interval(
     return certificate;
   }
   certificate.certified_root_count = tubes.size();
-  certificate.source_normal_absolute_lower = tubes.empty()
+  certificate.transmitter_factor_absolute_lower = tubes.empty()
       ? std::numeric_limits<double>::infinity()
       : std::min_element(
             tubes.begin(), tubes.end(), [](const auto& left,
                                            const auto& right) {
-              return left.source_normal_absolute_lower <
-                  right.source_normal_absolute_lower;
-            })->source_normal_absolute_lower;
+              return left.transmitter_factor_absolute_lower <
+                  right.transmitter_factor_absolute_lower;
+            })->transmitter_factor_absolute_lower;
   certificate.separation_lower = tubes.empty()
       ? std::numeric_limits<double>::infinity()
       : std::min_element(
@@ -2334,7 +2323,20 @@ SubstepAttempt corrected_substep_impl(
                     receiver_id, source_id);
             if (endpoint_continuation.has_value()) {
               endpoint_root_continuations.push_back(*endpoint_continuation);
-              continue;
+              auto failed = failed_substep_certificate(
+                  start_time, end_time, std::move(start_snapshot),
+                  std::move(endpoint_snapshot), iteration, correction_error,
+                  "coincident_same_transmitter_birth_uncertified",
+                  candidate_histories, pinned_fold_onset_certificates);
+              failed.endpoint_root_continuations =
+                  std::move(endpoint_root_continuations);
+              if (request.failed_substep_candidate_callback) {
+                request.failed_substep_candidate_callback(
+                    start_time, end_time,
+                    "coincident_same_transmitter_birth_uncertified", iteration,
+                    candidate_histories);
+              }
+              return {std::move(failed), std::nullopt};
             }
           }
           const auto pair_request = receiver_pair_budget_request(
@@ -2825,7 +2827,7 @@ void validate_request(const NativeCoupledEvolutionRequest& request) {
   tolerance_value(request.field_speed, "field speed");
   tolerance_value(request.coupling, "coupling");
   tolerance_value(request.root_tolerance, "root tolerance");
-  tolerance_value(request.source_normal_floor, "transmitter-side factor floor");
+  tolerance_value(request.transmitter_factor_floor, "transmitter-side factor floor");
   tolerance_value(request.acceleration_tolerance, "acceleration tolerance");
   if (!std::is_sorted(
           request.adjudicated_finite_width_pairs.begin(),
@@ -3207,95 +3209,11 @@ IntervalVector unit_direction_enclosure(
 
 IntervalVector event_prefactor_enclosure(
     const IntervalVector& displacement,
-    const IntervalVector& receiver_velocity,
     const Interval& field_speed,
     const Interval& core_scale) {
-  const Interval separation = norm(displacement);
-  const IntervalVector direction =
-      unit_direction_enclosure(displacement, separation);
   const IntervalVector kernel =
       softened_kernel_enclosure(displacement, core_scale);
-  const Interval receiver_normal =
-      field_speed - dot(direction, receiver_velocity);
-  const Interval receiver_strength = interval_absolute(receiver_normal);
-  const IntervalVector direct = scale(receiver_strength, kernel);
-  if (separation.contains_zero() || receiver_normal.contains_zero()) {
-    return direct;
-  }
-  const double normal_sign = receiver_normal.lower() > 0.0 ? 1.0 : -1.0;
-
-  IntervalVector midpoint_displacement{
-      Interval::point(displacement[0].midpoint()),
-      Interval::point(displacement[1].midpoint()),
-      Interval::point(displacement[2].midpoint())};
-  IntervalVector midpoint_velocity{
-      Interval::point(receiver_velocity[0].midpoint()),
-      Interval::point(receiver_velocity[1].midpoint()),
-      Interval::point(receiver_velocity[2].midpoint())};
-  const Interval midpoint_separation = norm(midpoint_displacement);
-  if (midpoint_separation.contains_zero()) return direct;
-  const IntervalVector midpoint_direction =
-      divide(midpoint_displacement, midpoint_separation);
-  const IntervalVector midpoint_kernel =
-      softened_kernel_enclosure(midpoint_displacement, core_scale);
-  const Interval midpoint_strength = interval_absolute(
-      field_speed - dot(midpoint_direction, midpoint_velocity));
-  IntervalVector centered = scale(midpoint_strength, midpoint_kernel);
-
-  const Interval separation_cubed =
-      separation * separation * separation;
-  const Interval radial_square =
-      interval_square(separation) + interval_square(core_scale);
-  const Interval radial_three_halves =
-      radial_square * interval_sqrt(radial_square);
-  const Interval radial_five_halves =
-      interval_square(radial_square) * interval_sqrt(radial_square);
-  for (std::size_t derivative_axis = 0; derivative_axis < 3U;
-       ++derivative_axis) {
-    Interval strength_displacement_derivative = Interval::point(0.0);
-    for (std::size_t direction_axis = 0; direction_axis < 3U;
-         ++direction_axis) {
-      const Interval direction_jacobian =
-          Interval::point(
-              direction_axis == derivative_axis ? 1.0 : 0.0) /
-              separation -
-          displacement[direction_axis] * displacement[derivative_axis] /
-              separation_cubed;
-      strength_displacement_derivative =
-          strength_displacement_derivative -
-          Interval::point(normal_sign) * direction_jacobian *
-              receiver_velocity[direction_axis];
-    }
-    for (std::size_t axis = 0; axis < 3U; ++axis) {
-      const Interval kernel_jacobian =
-          Interval::point(axis == derivative_axis ? 1.0 : 0.0) /
-              radial_three_halves -
-          Interval::point(3.0) * displacement[axis] *
-              displacement[derivative_axis] / radial_five_halves;
-      const Interval prefactor_displacement_derivative =
-          strength_displacement_derivative * kernel[axis] +
-          receiver_strength * kernel_jacobian;
-      const Interval prefactor_velocity_derivative =
-          Interval::point(-normal_sign) * direction[derivative_axis] *
-          kernel[axis];
-      centered[axis] = centered[axis] +
-          prefactor_displacement_derivative *
-              (displacement[derivative_axis] -
-               midpoint_displacement[derivative_axis]) +
-          prefactor_velocity_derivative *
-              (receiver_velocity[derivative_axis] -
-               midpoint_velocity[derivative_axis]);
-    }
-  }
-  for (std::size_t axis = 0; axis < 3U; ++axis) {
-    const auto intersection = direct[axis].intersection(centered[axis]);
-    if (!intersection.has_value()) {
-      throw std::runtime_error(
-          "event prefactor mean-value enclosures disagree");
-    }
-    centered[axis] = *intersection;
-  }
-  return centered;
+  return scale(field_speed, kernel);
 }
 
 IntervalVector event_integrand(
@@ -3308,27 +3226,14 @@ IntervalVector event_integrand(
     const Interval& emission) {
   const IntervalVector receiver_position =
       receiver.history.position_hull(reception);
-  const IntervalVector receiver_velocity =
-      receiver.history.velocity_hull(reception);
   const IntervalVector source_position = source.history.position_hull(emission);
   const IntervalVector displacement =
       subtract(receiver_position, source_position);
   const Interval separation = norm(displacement);
   const Interval core_scale = Interval::decimal_token(request.core_scale);
   const Interval field_speed = Interval::decimal_token(request.field_speed);
-  IntervalVector prefactor{
-      Interval::point(0.0), Interval::point(0.0),
-      Interval::point(0.0)};
-  if (separation.contains_zero()) {
-    const Interval receiver_strength(
-        0.0, (field_speed + norm(receiver_velocity)).upper());
-    prefactor = scale(
-        receiver_strength,
-        softened_kernel_enclosure(displacement, core_scale));
-  } else {
-    prefactor = event_prefactor_enclosure(
-        displacement, receiver_velocity, field_speed, core_scale);
-  }
+  const IntervalVector prefactor = event_prefactor_enclosure(
+      displacement, field_speed, core_scale);
   const Interval residual =
       separation - field_speed * (reception - emission);
   const Interval eta = Interval::decimal_token(request.causal_width);
@@ -3357,8 +3262,6 @@ std::optional<IntervalVector> centered_event_rectangle_integral(
     const Interval& emission) {
   const IntervalVector receiver_position =
       receiver.history.position_hull(reception);
-  const IntervalVector receiver_velocity =
-      receiver.history.velocity_hull(reception);
   const IntervalVector source_position =
       source.history.position_hull(emission);
   const IntervalVector source_velocity =
@@ -3375,27 +3278,6 @@ std::optional<IntervalVector> centered_event_rectangle_integral(
   const Interval residual_derivative = field_speed - source_radial_speed;
   const IntervalVector displacement_derivative =
       scale(Interval::point(-1.0), source_velocity);
-  const IntervalVector direction_derivative = divide(
-      add(displacement_derivative,
-          scale(source_radial_speed, direction)),
-      separation);
-  const Interval receiver_normal =
-      field_speed - dot(direction, receiver_velocity);
-  const Interval receiver_normal_derivative =
-      Interval::point(0.0) -
-      dot(direction_derivative, receiver_velocity);
-  Interval receiver_strength_derivative = receiver_normal_derivative;
-  if (receiver_normal.upper() < 0.0) {
-    receiver_strength_derivative =
-        Interval::point(0.0) - receiver_normal_derivative;
-  } else if (receiver_normal.contains_zero()) {
-    const double bound = std::max(
-        std::abs(receiver_normal_derivative.lower()),
-        std::abs(receiver_normal_derivative.upper()));
-    receiver_strength_derivative = Interval(-bound, bound);
-  }
-  const Interval receiver_strength = interval_absolute(receiver_normal);
-
   const Interval core_scale = Interval::decimal_token(request.core_scale);
   const Interval radial_square =
       interval_square(separation) + interval_square(core_scale);
@@ -3435,12 +3317,10 @@ std::optional<IntervalVector> centered_event_rectangle_integral(
       Interval::decimal_token(receiver_charge) *
       Interval::decimal_token(source_charge);
   const IntervalVector derivative = scale(
-      signed_charge_scale,
+      signed_charge_scale * field_speed,
       add(
-          add(
-              scale(receiver_strength_derivative * mollifier, kernel),
-              scale(receiver_strength * mollifier, kernel_derivative)),
-          scale(receiver_strength * mollifier_derivative, kernel)));
+          scale(mollifier, kernel_derivative),
+          scale(mollifier_derivative, kernel)));
 
   const double midpoint = emission.midpoint();
   IntervalVector result = scale(
@@ -3589,8 +3469,6 @@ std::optional<IntervalVector> monotone_event_rectangle_integral(
     const Interval& emission) {
   const IntervalVector receiver_position =
       receiver.history.position_hull(reception);
-  const IntervalVector receiver_velocity =
-      receiver.history.velocity_hull(reception);
   const IntervalVector source_position =
       source.history.position_hull(emission);
   const IntervalVector source_velocity =
@@ -3642,10 +3520,6 @@ std::optional<IntervalVector> monotone_event_rectangle_integral(
   const Interval core_scale = Interval::decimal_token(request.core_scale);
   const Interval radial_square =
       interval_square(separation) + interval_square(core_scale);
-  const IntervalVector kernel =
-      softened_kernel_enclosure(displacement, core_scale);
-  const Interval receiver_strength = interval_absolute(
-      field_speed - dot(direction, receiver_velocity));
   const Interval signed_charge_scale =
       Interval::decimal_token(request.coupling) *
       Interval::decimal_token(receiver_charge) *
@@ -3655,29 +3529,10 @@ std::optional<IntervalVector> monotone_event_rectangle_integral(
       scale(
           signed_charge_scale * mollifier_integral,
           event_prefactor_enclosure(
-              displacement, receiver_velocity, field_speed, core_scale)));
+              displacement, field_speed, core_scale)));
 
   const IntervalVector displacement_derivative =
       scale(Interval::point(-1.0), source_velocity);
-  const IntervalVector direction_derivative = divide(
-      add(displacement_derivative,
-          scale(dot(direction, source_velocity), direction)),
-      separation);
-  const Interval receiver_normal =
-      field_speed - dot(direction, receiver_velocity);
-  const Interval receiver_normal_derivative =
-      Interval::point(0.0) -
-      dot(direction_derivative, receiver_velocity);
-  Interval receiver_strength_derivative = receiver_normal_derivative;
-  if (receiver_normal.upper() < 0.0) {
-    receiver_strength_derivative =
-        Interval::point(0.0) - receiver_normal_derivative;
-  } else if (receiver_normal.contains_zero()) {
-    const double bound = std::max(
-        std::abs(receiver_normal_derivative.lower()),
-        std::abs(receiver_normal_derivative.upper()));
-    receiver_strength_derivative = Interval(-bound, bound);
-  }
   const Interval radial_five_halves =
       interval_square(radial_square) * interval_sqrt(radial_square);
   const IntervalVector kernel_derivative = add(
@@ -3689,10 +3544,8 @@ std::optional<IntervalVector> monotone_event_rectangle_integral(
               radial_five_halves,
           displacement));
   const IntervalVector prefactor_derivative = scale(
-      signed_charge_scale,
-      add(
-          scale(receiver_strength_derivative, kernel),
-          scale(receiver_strength, kernel_derivative)));
+      signed_charge_scale * field_speed,
+      kernel_derivative);
 
   const double midpoint = emission.midpoint();
   const Interval midpoint_emission = Interval::point(midpoint);
@@ -3703,8 +3556,7 @@ std::optional<IntervalVector> monotone_event_rectangle_integral(
     IntervalVector centered = scale(
         signed_charge_scale * mollifier_integral,
         event_prefactor_enclosure(
-            midpoint_displacement, receiver_velocity,
-            field_speed, core_scale));
+            midpoint_displacement, field_speed, core_scale));
     const double remainder_scale =
         0.5 * emission.width() * mollifier_integral.upper();
     for (std::size_t axis = 0; axis < 3; ++axis) {
@@ -3868,8 +3720,6 @@ certify_binary64_fold_caustic_impulse(
     const Interval core_scale = Interval::decimal_token(request.core_scale);
     const IntervalVector receiver_position =
         receiver.history.position_hull(reception_all);
-    const IntervalVector receiver_velocity =
-        receiver.history.velocity_hull(reception_all);
     const IntervalVector source_position = source.history.full_position_hull();
     const Interval separation =
         norm(subtract(receiver_position, source_position));
@@ -3898,8 +3748,7 @@ certify_binary64_fold_caustic_impulse(
           (std::sqrt(2.0 * pi_lower) * causal_width.lower());
       const double kernel_component_bound =
           1.0 / (core_scale.lower() * core_scale.lower());
-      const double receiver_strength_bound =
-          field_speed.upper() + norm(receiver_velocity).upper();
+      const double acceleration_weight_bound = field_speed.upper();
       const double signed_scale_bound =
           interval_absolute(Interval::decimal_token(request.coupling)).upper() *
           interval_absolute(Interval::decimal_token(receiver_charge)).upper() *
@@ -3907,7 +3756,7 @@ certify_binary64_fold_caustic_impulse(
       const double prefix_area = causal_domain_area(
           reception_lower, reception_upper, search_lower, candidate).upper();
       const double candidate_tail_bound =
-          prefix_area * signed_scale_bound * receiver_strength_bound *
+          prefix_area * signed_scale_bound * acceleration_weight_bound *
           mollifier_upper * kernel_component_bound;
       if (2.0 * candidate_tail_bound <= tolerance * 0.5) {
         active_search_lower = candidate;
@@ -3961,8 +3810,6 @@ certify_binary64_fold_caustic_impulse(
       const Interval emission_cell(s_lower, s_upper);
       const IntervalVector cell_receiver_position =
           receiver.history.position_hull(reception_cell);
-      const IntervalVector cell_receiver_velocity =
-          receiver.history.velocity_hull(reception_cell);
       const IntervalVector cell_source_position =
           source.history.position_hull(emission_cell);
       const IntervalVector cell_displacement =
@@ -4007,15 +3854,7 @@ certify_binary64_fold_caustic_impulse(
             1.0 / (core_scale.lower() * core_scale.lower());
         const double kernel_component_bound =
             std::min(global_kernel_bound, separation_aware_kernel_bound);
-        double receiver_strength_bound =
-            field_speed.upper() + norm(cell_receiver_velocity).upper();
-        if (!cell_separation.contains_zero()) {
-          receiver_strength_bound = interval_absolute(
-              field_speed -
-              dot(unit_direction_enclosure(
-                      cell_displacement, cell_separation),
-                  cell_receiver_velocity)).upper();
-        }
+        const double acceleration_weight_bound = field_speed.upper();
         const double signed_scale_bound =
             interval_absolute(
                 Interval::decimal_token(request.coupling)).upper() *
@@ -4024,7 +3863,7 @@ certify_binary64_fold_caustic_impulse(
             interval_absolute(
                 Interval::decimal_token(source_charge)).upper();
         const double component_bound =
-            area.upper() * signed_scale_bound * receiver_strength_bound *
+            area.upper() * signed_scale_bound * acceleration_weight_bound *
             mollifier_upper * kernel_component_bound;
         const Interval tail(-component_bound, component_bound);
         integral = {tail, tail, tail};
@@ -4560,11 +4399,11 @@ NativeFarFieldEnclosureCertificate certify_far_field_enclosure(
         norm(receiver.history.velocity_hull(reception));
     const Interval source_speed = norm(source.history.velocity_hull(emission));
     const Interval field_speed = Interval::decimal_token(request.field_speed);
-    const Interval source_normal = field_speed - source_speed;
+    const Interval transmitter_factor = field_speed - source_speed;
     certificate.receiver_speed = receiver_speed;
     certificate.source_speed = source_speed;
-    certificate.source_normal_lower_bound = source_normal;
-    if (!(source_normal.lower() > 0.0)) {
+    certificate.transmitter_factor_lower_bound = transmitter_factor;
+    if (!(transmitter_factor.lower() > 0.0)) {
       certificate.failure_code = "FFE-NORMAL-01";
       return certificate;
     }
@@ -4574,11 +4413,10 @@ NativeFarFieldEnclosureCertificate certify_far_field_enclosure(
     const Interval charge_product = interval_absolute(
         Interval::decimal_token(path_charge(request, receiver.path_id)) *
         Interval::decimal_token(path_charge(request, source.path_id)));
-    const Interval receiver_normal_bound = field_speed + receiver_speed;
     const Interval denominator =
-        interval_square(separation) * source_normal;
+        interval_square(separation) * transmitter_factor;
     const Interval raw_bound =
-        coupling * charge_product * receiver_normal_bound / denominator;
+        coupling * charge_product * field_speed / denominator;
     const Interval magnitude_bound(0.0, raw_bound.upper());
     certificate.pair_magnitude_bound = magnitude_bound;
     if (!std::isfinite(magnitude_bound.upper())) {
@@ -4596,8 +4434,8 @@ NativeFarFieldEnclosureCertificate certify_far_field_enclosure(
     certificate.pair_width_budget = pair_width_budget;
     const Interval cutoff = interval_sqrt(
         Interval::point(2.0) * coupling * charge_product *
-        receiver_normal_bound /
-        (pair_width_budget * source_normal));
+        field_speed /
+        (pair_width_budget * transmitter_factor));
     certificate.derived_cutoff_radius = cutoff;
     const double radius = magnitude_bound.upper();
     const IntervalVector acceleration{
@@ -5219,13 +5057,13 @@ NativeAccelerationSnapshotCertificate certify_native_acceleration_snapshot(
                          !root.memory_boundary_contact) ||
                         (root.status == "caustic_route_required" &&
                          (root.failure_code ==
-                              "numeric_source_normal_sign_uncertified" ||
+                              "numeric_transmitter_factor_sign_uncertified" ||
                           root.failure_code ==
                               "numeric_self_root_cluster_uncertified") &&
                          !root.memory_boundary_contact)))
                   ? "finite_width"
                   : "sharp",
-          .source_normal_floor = request.source_normal_floor,
+          .transmitter_factor_floor = request.transmitter_factor_floor,
           .causal_width = request.causal_width,
           .core_scale = request.core_scale,
           .acceleration_tolerance = request.acceleration_tolerance,
