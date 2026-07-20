@@ -4,11 +4,14 @@
 #include "architrino/eom/CertifiedTraversal.hpp"
 #include "architrino/eom/ExactPairBatch.hpp"
 #include "architrino/eom/History.hpp"
+#include "architrino/eom/JointRootBracket.hpp"
+#include "architrino/eom/JointAffineHistory.hpp"
 
 #include <cstddef>
 #include <cstdint>
 #include <functional>
 #include <limits>
+#include <map>
 #include <optional>
 #include <string>
 #include <utility>
@@ -37,6 +40,11 @@ struct NativePublishedPath {
 struct NativeCoupledEvolutionRequest {
   std::string run_id;
   std::vector<NativeCoupledPathInput> paths;
+  // Retry-time admitted joint states keyed by the exact root row identity
+  // "receiver/transmitter/reception". The exact-pair consumer recomputes all
+  // geometry and ordinary fallback data before it can use one.
+  std::map<std::string, JointRootBracketRequest> joint_root_point_states;
+  std::map<std::string, JointAffineRetainedHistory> joint_histories;
   std::string start_time;
   std::string end_time;
   std::string initial_step;
@@ -505,6 +513,8 @@ struct NativeAtomicStepCertificate {
   std::string accepted_time;
   std::vector<NativeHistoryFingerprint> input_history_fingerprints;
   std::vector<NativePublishedPath> published_histories;
+  std::map<std::string, JointAffineRetainedHistory>
+      published_joint_histories;
   std::optional<std::vector<NativePublishedPath>>
       diagnostic_candidate_histories;
   std::vector<NativeHistoryFingerprint> candidate_history_fingerprints;
@@ -518,6 +528,8 @@ struct NativeAtomicStepCertificate {
   std::size_t certificate_cost_deferred_pair_count = 0;
   std::size_t certificate_cost_mpfr_attempt_count = 0;
   std::size_t certificate_cost_cooldown_remaining = 0;
+  double root_time_pressure_ratio = 0.0;
+  double root_pressure_step_cap = 0.0;
   std::string failure_code;
   std::optional<double> correction_residual;
   double correction_retry_scale = 0.0;
@@ -569,6 +581,7 @@ struct NativeCoupledEvolutionCertificate {
   std::string requested_end_time;
   std::string accepted_end_time;
   std::vector<NativePublishedPath> histories;
+  std::map<std::string, JointAffineRetainedHistory> joint_histories;
   std::vector<NativeAtomicStepCertificate> steps;
   std::size_t accepted_step_count;
   std::size_t rejected_step_count;

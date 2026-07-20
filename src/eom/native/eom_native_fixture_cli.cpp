@@ -1,10 +1,21 @@
 #include "architrino/eom/BlockExclusion.hpp"
 #include "architrino/eom/CertifiedTraversal.hpp"
+#include "architrino/eom/CenteredAffine.hpp"
+#include "architrino/eom/DelayedRootSensitivity.hpp"
 #include "architrino/eom/ExactPairBatch.hpp"
 #include "architrino/eom/History.hpp"
+#include "architrino/eom/JointState.hpp"
+#include "architrino/eom/JointRootBracket.hpp"
+#include "architrino/eom/JointAffineHistory.hpp"
+#include "architrino/eom/JointSharpRow.hpp"
+#include "architrino/eom/Krawczyk.hpp"
+#include "architrino/eom/RootTimeBudget.hpp"
+#include "architrino/eom/SharpAccelerationSensitivity.hpp"
 
 #include <cstdlib>
+#include <iomanip>
 #include <iostream>
+#include <limits>
 #include <stdexcept>
 #include <string>
 #include <vector>
@@ -121,6 +132,264 @@ void print_pair(const eom::ExactPairCertificate& certificate) {
               << "\",\"precision_bits\":" << root.precision_bits << '}';
   }
   std::cout << "]}";
+}
+
+void print_root_time_budget(
+    const char* id,
+    const eom::RootTimeBudgetCertificate& certificate) {
+  std::cout << "{\"id\":\"" << id << "\",\"schema\":\""
+            << certificate.schema << "\",\"certified\":"
+            << (certificate.certified ? "true" : "false")
+            << ",\"failure_code\":\"" << certificate.failure_code
+            << "\",\"nominal_separation_lower\":"
+            << certificate.nominal_separation_lower
+            << ",\"displacement_radius_upper\":"
+            << certificate.displacement_radius_upper
+            << ",\"projected_affine_radius_upper\":"
+            << certificate.projected_affine_radius_upper
+            << ",\"projected_remainder_radius_upper\":"
+            << certificate.projected_remainder_radius_upper
+            << ",\"nonlinear_remainder_radius_upper\":"
+            << certificate.nonlinear_remainder_radius_upper
+            << ",\"residual_width_upper\":"
+            << certificate.residual_width_upper
+            << ",\"transmitter_factor_magnitude_lower\":"
+            << certificate.transmitter_factor_magnitude_lower
+            << ",\"root_time_width_upper\":"
+            << certificate.root_time_width_upper
+            << ",\"root_time_tolerance\":"
+            << certificate.root_time_tolerance << '}';
+}
+
+void print_joint_root_time_consumption(
+    const char* id,
+    const eom::JointRootTimeConsumptionCertificate& certificate) {
+  std::cout << "{\"id\":\"" << id << "\",\"schema\":\""
+            << certificate.schema << "\",\"certified\":"
+            << (certificate.certified ? "true" : "false")
+            << ",\"failure_code\":\"" << certificate.failure_code
+            << "\",\"shared_symbol_count\":"
+            << certificate.shared_symbol_count
+            << ",\"receiver_fallback_dominates\":"
+            << (certificate.receiver_fallback_dominates ? "true" : "false")
+            << ",\"transmitter_fallback_dominates\":"
+            << (certificate.transmitter_fallback_dominates ? "true" : "false")
+            << ",\"joint_residual_width_upper\":"
+            << certificate.joint_budget.residual_width_upper
+            << ",\"joint_root_time_width_upper\":"
+            << certificate.joint_budget.root_time_width_upper
+            << ",\"ordinary_box_residual_width_upper\":"
+            << certificate.ordinary_box_budget.residual_width_upper
+            << ",\"ordinary_box_root_time_width_upper\":"
+            << certificate.ordinary_box_budget.root_time_width_upper << '}';
+}
+
+void print_krawczyk(
+    const char* id,
+    const eom::KrawczykCertificate& certificate) {
+  std::cout << "{\"id\":\"" << id << "\",\"schema\":\""
+            << certificate.schema << "\",\"certified_unique\":"
+            << (certificate.certified_unique ? "true" : "false")
+            << ",\"failure_code\":\"" << certificate.failure_code
+            << "\",\"dimension\":" << certificate.dimension
+            << ",\"preconditioner_nonsingular_certified\":"
+            << (certificate.preconditioner_nonsingular_certified
+                    ? "true" : "false")
+            << ",\"preconditioner_determinant_lower\":"
+            << (certificate.preconditioner_determinant.has_value()
+                    ? certificate.preconditioner_determinant->lower()
+                    : 0.0)
+            << ",\"preconditioner_determinant_upper\":"
+            << (certificate.preconditioner_determinant.has_value()
+                    ? certificate.preconditioner_determinant->upper()
+                    : 0.0)
+            << ",\"minimum_containment_margin\":"
+            << certificate.minimum_containment_margin << ",\"image\":[";
+  for (std::size_t index = 0U; index < certificate.image.size(); ++index) {
+    if (index > 0U) std::cout << ',';
+    std::cout << "{\"lower\":" << certificate.image[index].lower()
+              << ",\"upper\":" << certificate.image[index].upper() << '}';
+  }
+  std::cout << "]}";
+}
+
+void print_delayed_root_sensitivity(
+    const char* id,
+    const eom::DelayedRootSensitivityCertificate& certificate) {
+  std::cout << "{\"id\":\"" << id << "\",\"schema\":\""
+            << certificate.schema << "\",\"certified\":"
+            << (certificate.certified ? "true" : "false")
+            << ",\"failure_code\":\"" << certificate.failure_code
+            << "\",\"transmitter_factor_lower\":"
+            << certificate.transmitter_factor.lower()
+            << ",\"transmitter_factor_upper\":"
+            << certificate.transmitter_factor.upper()
+            << ",\"emission_time_coefficients\":[";
+  for (std::size_t index = 0U;
+       index < certificate.emission_time_coefficients.size(); ++index) {
+    if (index > 0U) std::cout << ',';
+    std::cout << "{\"lower\":"
+              << certificate.emission_time_coefficients[index].lower()
+              << ",\"upper\":"
+              << certificate.emission_time_coefficients[index].upper() << '}';
+  }
+  std::cout << "],\"effective_transmitter_position_coefficients\":[";
+  for (std::size_t symbol = 0U;
+       symbol < certificate.effective_transmitter_position_coefficients.size();
+       ++symbol) {
+    if (symbol > 0U) std::cout << ',';
+    std::cout << '[';
+    for (std::size_t axis = 0U; axis < 3U; ++axis) {
+      if (axis > 0U) std::cout << ',';
+      const auto& value =
+          certificate.effective_transmitter_position_coefficients[symbol][axis];
+      std::cout << "{\"lower\":" << value.lower()
+                << ",\"upper\":" << value.upper() << '}';
+    }
+    std::cout << ']';
+  }
+  std::cout << "],\"delayed_displacement_coefficients\":[";
+  for (std::size_t symbol = 0U;
+       symbol < certificate.delayed_displacement_coefficients.size();
+       ++symbol) {
+    if (symbol > 0U) std::cout << ',';
+    std::cout << '[';
+    for (std::size_t axis = 0U; axis < 3U; ++axis) {
+      if (axis > 0U) std::cout << ',';
+      const auto& value =
+          certificate.delayed_displacement_coefficients[symbol][axis];
+      std::cout << "{\"lower\":" << value.lower()
+                << ",\"upper\":" << value.upper() << '}';
+    }
+    std::cout << ']';
+  }
+  std::cout << "]}";
+}
+
+void print_sharp_acceleration_sensitivity(
+    const char* id,
+    const eom::SharpAccelerationSensitivityCertificate& certificate) {
+  const std::streamsize prior_precision = std::cout.precision();
+  std::cout << std::setprecision(std::numeric_limits<double>::max_digits10);
+  std::cout << "{\"id\":\"" << id << "\",\"schema\":\""
+            << certificate.schema << "\",\"certified\":"
+            << (certificate.certified ? "true" : "false")
+            << ",\"failure_code\":\"" << certificate.failure_code
+            << "\",\"acceleration_coefficients\":[";
+  for (std::size_t symbol = 0U;
+       symbol < certificate.acceleration_coefficients.size(); ++symbol) {
+    if (symbol > 0U) std::cout << ',';
+    std::cout << '[';
+    for (std::size_t axis = 0U; axis < 3U; ++axis) {
+      if (axis > 0U) std::cout << ',';
+      const auto& value = certificate.acceleration_coefficients[symbol][axis];
+      std::cout << "{\"lower\":" << value.lower()
+                << ",\"upper\":" << value.upper() << '}';
+    }
+    std::cout << ']';
+  }
+  std::cout << "],\"transmitter_factor_coefficients\":[";
+  for (std::size_t symbol = 0U;
+       symbol < certificate.transmitter_factor_coefficients.size(); ++symbol) {
+    if (symbol > 0U) std::cout << ',';
+    const auto& value = certificate.transmitter_factor_coefficients[symbol];
+    std::cout << "{\"lower\":" << value.lower()
+              << ",\"upper\":" << value.upper() << '}';
+  }
+  std::cout << "]}";
+  std::cout.precision(prior_precision);
+}
+
+void print_centered_affine(
+    const char* id,
+    const eom::CenteredAffineMapCertificate& certificate) {
+  const std::streamsize prior_precision = std::cout.precision();
+  std::cout << std::setprecision(std::numeric_limits<double>::max_digits10);
+  std::cout << "{\"id\":\"" << id << "\",\"schema\":\""
+            << certificate.schema << "\",\"certified\":"
+            << (certificate.certified ? "true" : "false")
+            << ",\"output_coefficients\":[";
+  for (std::size_t output = 0U;
+       output < certificate.output_coefficients.size(); ++output) {
+    if (output > 0U) std::cout << ',';
+    std::cout << '[';
+    for (std::size_t symbol = 0U;
+         symbol < certificate.output_coefficients[output].size(); ++symbol) {
+      if (symbol > 0U) std::cout << ',';
+      std::cout << certificate.output_coefficients[output][symbol];
+    }
+    std::cout << ']';
+  }
+  std::cout << "],\"output_remainder_radii_upper\":[";
+  for (std::size_t output = 0U;
+       output < certificate.output_remainder_radii_upper.size(); ++output) {
+    if (output > 0U) std::cout << ',';
+    std::cout << certificate.output_remainder_radii_upper[output];
+  }
+  std::cout << "]}";
+  std::cout.precision(prior_precision);
+}
+
+void print_joint_root_bracket(
+    const char* id,
+    const eom::JointRootBracketCertificate& certificate) {
+  const std::streamsize prior_precision = std::cout.precision();
+  std::cout << std::setprecision(std::numeric_limits<double>::max_digits10);
+  std::cout << "{\"id\":\"" << id << "\",\"schema\":\""
+            << certificate.schema << "\",\"certified\":"
+            << (certificate.certified ? "true" : "false")
+            << ",\"failure_code\":\"" << certificate.failure_code
+            << "\",\"root_lower\":" << certificate.root_bracket.lower()
+            << ",\"root_upper\":" << certificate.root_bracket.upper()
+            << ",\"left_residual_upper\":"
+            << certificate.left_residual_upper
+            << ",\"right_residual_lower\":"
+            << certificate.right_residual_lower
+            << ",\"bracket_half_width_upper\":"
+            << certificate.bracket_half_width_upper << '}';
+  std::cout.precision(prior_precision);
+}
+
+void print_joint_affine_evaluation(
+    const char* id,
+    const eom::JointAffinePointEvaluation& evaluation) {
+  const std::streamsize prior_precision = std::cout.precision();
+  std::cout << std::setprecision(std::numeric_limits<double>::max_digits10);
+  std::cout << "{\"id\":\"" << id
+            << "\",\"position_fallback_dominates\":"
+            << (evaluation.position_fallback_dominates ? "true" : "false")
+            << ",\"velocity_fallback_dominates\":"
+            << (evaluation.velocity_fallback_dominates ? "true" : "false")
+            << ",\"position_coefficient\":"
+            << evaluation.position.shared_symbol_coefficients[0][0]
+            << ",\"velocity_coefficient\":"
+            << evaluation.velocity_shared_coefficients[0][0]
+            << ",\"position_remainder\":"
+            << evaluation.position.independent_remainder_radii[0]
+            << ",\"velocity_remainder\":"
+            << evaluation.velocity_remainder_radii[0] << '}';
+  std::cout.precision(prior_precision);
+}
+
+void print_joint_sharp_row(
+    const char* id,
+    const eom::JointSharpRowCertificate& certificate) {
+  const std::streamsize prior_precision = std::cout.precision();
+  std::cout << std::setprecision(std::numeric_limits<double>::max_digits10);
+  std::cout << "{\"id\":\"" << id << "\",\"certified\":"
+            << (certificate.certified ? "true" : "false")
+            << ",\"failure_code\":\"" << certificate.failure_code
+            << "\",\"input_boxes_dominate\":"
+            << (certificate.input_boxes_dominate ? "true" : "false")
+            << ",\"accepted_acceleration_dominates\":"
+            << (certificate.accepted_acceleration_dominates ? "true" : "false")
+            << ",\"x_coefficient\":"
+            << (certificate.acceleration_coefficients.empty()
+                    ? 0.0
+                    : certificate.acceleration_coefficients[0][0])
+            << ",\"x_remainder\":"
+            << certificate.acceleration_remainder_radii_upper[0] << '}';
+  std::cout.precision(prior_precision);
 }
 
 void print_traversal(
@@ -347,6 +616,49 @@ std::vector<eom::ExactPairCertificate> pair_fixture() {
        segment("0.5", "1", {"0", "0", "0", "0"},
                {"0", "0", "0", "0"}, {"0", "0", "0", "0"},
                "1e-3", "0")});
+  const eom::RetainedHistory joint_root_receiver(
+      "joint-root-receiver",
+      {segment("0", "3", {"1", "0", "0", "0"},
+               {"0", "0", "0", "0"}, {"0", "0", "0", "0"},
+               "0.010200000000001", "0")});
+  const eom::RetainedHistory joint_root_source(
+      "joint-root-source",
+      {segment("0", "3", {"0", "0", "0", "0"},
+               {"0", "0", "0", "0"}, {"0", "0", "0", "0"},
+               "0.009800000000001", "0")});
+  const eom::JointRootBracketRequest joint_root_point_state{
+      .joint_state = {
+          .receiver = {
+              .path_id = "joint-root-receiver",
+              .shared_symbol_coefficients = {{1.02e-2, 0.0, 0.0}},
+              .independent_remainder_radii = {0.0, 0.0, 0.0},
+          },
+          .transmitter = {
+              .path_id = "joint-root-source",
+              .shared_symbol_coefficients = {{9.8e-3, 0.0, 0.0}},
+              .independent_remainder_radii = {0.0, 0.0, 0.0},
+          },
+      },
+      .emission_center = 1.0,
+  };
+  eom::JointAffineCubicSegment joint_receiver_segment;
+  eom::JointAffineCubicSegment joint_source_segment;
+  joint_receiver_segment.start_time = joint_source_segment.start_time = 0.0;
+  joint_receiver_segment.end_time = joint_source_segment.end_time = 3.0;
+  for (std::size_t axis = 0U; axis < 3U; ++axis) {
+    for (std::size_t degree = 0U; degree < 4U; ++degree) {
+      joint_receiver_segment.position_coefficients[axis][degree] = {0.0};
+      joint_source_segment.position_coefficients[axis][degree] = {0.0};
+    }
+  }
+  joint_receiver_segment.position_coefficients[0][0] = {1.02e-2};
+  joint_source_segment.position_coefficients[0][0] = {9.8e-3};
+  const eom::JointAffineRetainedHistory joint_receiver_history(
+      "joint-root-receiver", {"shared-translation"},
+      {joint_receiver_segment});
+  const eom::JointAffineRetainedHistory joint_source_history(
+      "joint-root-source", {"shared-translation"},
+      {joint_source_segment});
 
   std::vector<eom::ExactPairRequest> requests;
   auto add = [&](std::string row_id, const eom::RetainedHistory& target,
@@ -410,6 +722,39 @@ std::vector<eom::ExactPairCertificate> pair_fixture() {
       asymmetric_monotone_source, "1", "0", "1", "0.001", true);
   add("mpfr_reconditioned_join_chain", reconditioned_chain_receiver,
       reconditioned_chain_source, "1", "-1", "0.5", "1e-5", true);
+  requests.push_back({
+      .row_id = "joint_affine_difficult_root",
+      .receiver = &joint_root_receiver,
+      .source = &joint_root_source,
+      .reception_time = "2",
+      .search_lower = "0",
+      .search_upper = "1.9",
+      .field_speed = "1",
+      .root_tolerance = "0.001",
+      .max_depth = 256,
+      .max_cells = 500000,
+      .initial_mpfr_bits = 128,
+      .maximum_mpfr_bits = 512,
+      .force_precision_escalation = true,
+      .joint_root_point_state = &joint_root_point_state,
+  });
+  requests.push_back({
+      .row_id = "joint_affine_history_difficult_root",
+      .receiver = &joint_root_receiver,
+      .source = &joint_root_source,
+      .reception_time = "2",
+      .search_lower = "0",
+      .search_upper = "1.9",
+      .field_speed = "1",
+      .root_tolerance = "0.001",
+      .max_depth = 256,
+      .max_cells = 500000,
+      .initial_mpfr_bits = 128,
+      .maximum_mpfr_bits = 512,
+      .force_precision_escalation = true,
+      .joint_receiver_history = &joint_receiver_history,
+      .joint_transmitter_history = &joint_source_history,
+  });
   auto certificates = eom::certify_exact_pair_batch(requests, 4);
   const auto prior = eom::certify_exact_pair({
       .row_id = "warm_complement_prior",
@@ -449,6 +794,260 @@ std::vector<eom::ExactPairCertificate> pair_fixture() {
 }
 
 void print_all() {
+  const eom::JointSharpRowRequest joint_sharp_request{
+      .point_displacement = {
+          eom::Interval::point(2.0), eom::Interval::point(0.0),
+          eom::Interval::point(0.0)},
+      .displacement_box = {
+          eom::Interval(1.98, 2.02), eom::Interval(-1e-3, 1e-3),
+          eom::Interval(-1e-3, 1e-3)},
+      .point_transmitter_velocity = {
+          eom::Interval::point(0.25), eom::Interval::point(0.0),
+          eom::Interval::point(0.0)},
+      .transmitter_velocity_box = {
+          eom::Interval(0.24, 0.26), eom::Interval(-1e-3, 1e-3),
+          eom::Interval(-1e-3, 1e-3)},
+      .transmitter_acceleration_box = {
+          eom::Interval(0.09, 0.11), eom::Interval(-1e-3, 1e-3),
+          eom::Interval(-1e-3, 1e-3)},
+      .field_speed = eom::Interval::point(1.0),
+      .certified_transmitter_factor = eom::Interval(0.7, 0.8),
+      .signed_coupling = eom::Interval::point(3.0),
+      .receiver_position_coefficients = {{0.01, 0.0, 0.0}},
+      .transmitter_position_coefficients = {{0.004, 0.0, 0.0}},
+      .transmitter_velocity_coefficients = {{0.002, 0.0, 0.0}},
+      .receiver_position_remainder_radii = {1e-5, 1e-5, 1e-5},
+      .transmitter_position_remainder_radii = {1e-5, 1e-5, 1e-5},
+      .transmitter_velocity_remainder_radii = {1e-5, 1e-5, 1e-5},
+      .accepted_acceleration_enclosure = {
+          eom::Interval(-1.0, 3.0), eom::Interval(-1.0, 1.0),
+          eom::Interval(-1.0, 1.0)},
+  };
+  const auto joint_sharp_row =
+      eom::certify_joint_sharp_row(joint_sharp_request);
+  auto tight_joint_sharp_request = joint_sharp_request;
+  tight_joint_sharp_request.accepted_acceleration_enclosure = {
+      eom::Interval::point(1.0), eom::Interval::point(0.0),
+      eom::Interval::point(0.0)};
+  const auto tight_joint_sharp_row =
+      eom::certify_joint_sharp_row(tight_joint_sharp_request);
+  eom::JointAffineCubicSegment joint_history_segment;
+  joint_history_segment.start_time = 0.0;
+  joint_history_segment.end_time = 1.0;
+  for (std::size_t axis = 0U; axis < 3U; ++axis) {
+    for (std::size_t degree = 0U; degree < 4U; ++degree) {
+      joint_history_segment.position_coefficients[axis][degree] = {0.0};
+    }
+  }
+  joint_history_segment.position_coefficients[0] = {
+      eom::JointCoefficientRow{0.01}, eom::JointCoefficientRow{0.02},
+      eom::JointCoefficientRow{0.03}, eom::JointCoefficientRow{0.04}};
+  const eom::JointAffineRetainedHistory joint_affine_history(
+      "joint-history-control", {"epsilon-0"}, {joint_history_segment});
+  const auto joint_affine_evaluation = joint_affine_history.evaluate(
+      0.5, {0.1, 1e-15, 1e-15}, {0.1, 1e-15, 1e-15});
+  const auto centered_square = eom::certify_centered_affine_map({
+      .output_center = {1.0},
+      .output_center_enclosure = {eom::Interval::point(1.0)},
+      .jacobian_on_input_box = {{eom::Interval(1.8, 2.2)}},
+      .point_jacobian = {{2.0}},
+      .input_coefficients = {{0.1}},
+      .input_remainder_radii = {0.0},
+  });
+  const auto centered_common_translation =
+      eom::certify_centered_affine_map({
+          .output_center = {0.0},
+          .output_center_enclosure = {eom::Interval::point(0.0)},
+          .jacobian_on_input_box = {{
+              eom::Interval::point(1.0), eom::Interval::point(-1.0)}},
+          .point_jacobian = {{1.0, -1.0}},
+          .input_coefficients = {{0.01}, {0.01}},
+          .input_remainder_radii = {0.0, 0.0},
+      });
+  const eom::JointRootTimeConsumptionRequest bracket_joint_state{
+      .receiver = {
+          .path_id = "receiver",
+          .shared_symbol_coefficients = {{1.02e-2, 0.0, 0.0}},
+          .independent_remainder_radii = {0.0, 0.0, 0.0},
+          .ordinary_position_radii = {1.0200000000001e-2, 0.0, 0.0},
+      },
+      .transmitter = {
+          .path_id = "transmitter",
+          .shared_symbol_coefficients = {{9.8e-3, 0.0, 0.0}},
+          .independent_remainder_radii = {0.0, 0.0, 0.0},
+          .ordinary_position_radii = {9.800000000001e-3, 0.0, 0.0},
+      },
+      .nominal_displacement = {1.0, 0.0, 0.0},
+      .transmitter_factor = eom::Interval::point(1.0),
+      .root_time_tolerance = 1e-3,
+  };
+  const auto joint_root_bracket = eom::certify_joint_root_bracket({
+      .joint_state = bracket_joint_state,
+      .nominal_residual = eom::Interval::decimal_token("1e-5"),
+      .emission_center = 0.5,
+      .containing_cell = eom::Interval(0.49, 0.51),
+      .receiver_factor = eom::Interval::point(1.0),
+      .transmitter_segment_index = 0U,
+  });
+  const auto joint_root_bracket_offset_failure =
+      eom::certify_joint_root_bracket({
+          .joint_state = bracket_joint_state,
+          .nominal_residual = eom::Interval::decimal_token("2e-4"),
+          .emission_center = 0.5,
+          .containing_cell = eom::Interval(0.49, 0.51),
+          .receiver_factor = eom::Interval::point(1.0),
+          .transmitter_segment_index = 0U,
+      });
+  const auto delayed_root_analytic =
+      eom::certify_delayed_root_sensitivity({
+          .displacement = {
+              eom::Interval::point(2.0), eom::Interval::point(0.0),
+              eom::Interval::point(0.0)},
+          .transmitter_velocity = {
+              eom::Interval::point(0.25), eom::Interval::point(0.0),
+              eom::Interval::point(0.0)},
+          .field_speed = eom::Interval::point(1.0),
+          .certified_transmitter_factor = eom::Interval::point(0.75),
+          .receiver_position_coefficients = {{
+              eom::Interval::point(0.01), eom::Interval::point(0.0),
+              eom::Interval::point(0.0)}},
+          .transmitter_position_coefficients = {{
+              eom::Interval::point(0.004), eom::Interval::point(0.0),
+              eom::Interval::point(0.0)}},
+      });
+  const auto delayed_root_zero_factor =
+      eom::certify_delayed_root_sensitivity({
+          .displacement = {
+              eom::Interval::point(2.0), eom::Interval::point(0.0),
+              eom::Interval::point(0.0)},
+          .transmitter_velocity = {
+              eom::Interval::point(0.25), eom::Interval::point(0.0),
+              eom::Interval::point(0.0)},
+          .field_speed = eom::Interval::point(0.25),
+          .certified_transmitter_factor = eom::Interval::point(0.0),
+          .receiver_position_coefficients = {{
+              eom::Interval::point(0.01), eom::Interval::point(0.0),
+              eom::Interval::point(0.0)}},
+          .transmitter_position_coefficients = {{
+              eom::Interval::point(0.004), eom::Interval::point(0.0),
+              eom::Interval::point(0.0)}},
+      });
+  const auto sharp_acceleration_analytic =
+      eom::certify_sharp_acceleration_sensitivity({
+          .displacement = {
+              eom::Interval::point(2.0), eom::Interval::point(0.0),
+              eom::Interval::point(0.0)},
+          .transmitter_velocity = {
+              eom::Interval::point(0.25), eom::Interval::point(0.0),
+              eom::Interval::point(0.0)},
+          .transmitter_acceleration = {
+              eom::Interval::point(0.1), eom::Interval::point(0.0),
+              eom::Interval::point(0.0)},
+          .field_speed = eom::Interval::point(1.0),
+          .certified_transmitter_factor = eom::Interval::point(0.75),
+          .signed_coupling = eom::Interval::point(3.0),
+          .receiver_position_coefficients = {{
+              eom::Interval::point(0.01), eom::Interval::point(0.0),
+              eom::Interval::point(0.0)}},
+          .transmitter_position_coefficients = {{
+              eom::Interval::point(0.004), eom::Interval::point(0.0),
+              eom::Interval::point(0.0)}},
+          .transmitter_velocity_coefficients = {{
+              eom::Interval::point(0.002), eom::Interval::point(0.0),
+              eom::Interval::point(0.0)}},
+      });
+  const auto sqrt_two_krawczyk = eom::certify_krawczyk_inclusion({
+      .center = {1.4142},
+      .residual_at_center = {
+          eom::Interval::decimal_token("-0.00003836")},
+      .jacobian = {{eom::Interval::decimal_token("2.8").hull(
+          eom::Interval::decimal_token("3.0"))}},
+      .preconditioner = {{0.3535533905932738}},
+      .candidate_box = {eom::Interval(1.4, 1.5)},
+  });
+  const auto wrong_sign_krawczyk = eom::certify_krawczyk_inclusion({
+      .center = {1.4142},
+      .residual_at_center = {
+          eom::Interval::decimal_token("-0.00003836")},
+      .jacobian = {{eom::Interval(2.8, 3.0)}},
+      .preconditioner = {{-1.0}},
+      .candidate_box = {eom::Interval(1.4, 1.5)},
+  });
+  const auto dense_linear_krawczyk = eom::certify_krawczyk_inclusion({
+      .center = {0.2, 0.6},
+      .residual_at_center = {
+          eom::Interval::point(0.0), eom::Interval::point(0.0)},
+      .jacobian = {
+          {eom::Interval::point(2.0), eom::Interval::point(1.0)},
+          {eom::Interval::point(1.0), eom::Interval::point(3.0)}},
+      .preconditioner = {{0.6, -0.2}, {-0.2, 0.4}},
+      .candidate_box = {
+          eom::Interval(0.1, 0.3), eom::Interval(0.5, 0.7)},
+  });
+  const auto common_translation_budget = eom::certify_root_time_budget({
+      .nominal_displacement = {1.0, 0.0, 0.0},
+      .shared_symbol_coefficients = {{0.0, 0.0, 0.0}},
+      .independent_remainder_radii = {0.0, 0.0, 0.0},
+      .transmitter_factor = eom::Interval::point(1.0),
+      .root_time_tolerance = 1e-3,
+  });
+  const auto radial_pass_budget = eom::certify_root_time_budget({
+      .nominal_displacement = {1.0, 0.0, 0.0},
+      .shared_symbol_coefficients = {{4e-4, 0.0, 0.0}},
+      .independent_remainder_radii = {0.0, 0.0, 0.0},
+      .transmitter_factor = eom::Interval::point(1.0),
+      .root_time_tolerance = 1e-3,
+  });
+  const auto radial_fail_budget = eom::certify_root_time_budget({
+      .nominal_displacement = {1.0, 0.0, 0.0},
+      .shared_symbol_coefficients = {{6e-4, 0.0, 0.0}},
+      .independent_remainder_radii = {0.0, 0.0, 0.0},
+      .transmitter_factor = eom::Interval::point(1.0),
+      .root_time_tolerance = 1e-3,
+  });
+  const auto transverse_budget = eom::certify_root_time_budget({
+      .nominal_displacement = {1.0, 0.0, 0.0},
+      .shared_symbol_coefficients = {{0.0, 1e-2, 0.0}},
+      .independent_remainder_radii = {0.0, 0.0, 0.0},
+      .transmitter_factor = eom::Interval::point(1.0),
+      .root_time_tolerance = 1e-3,
+  });
+  const auto correlated_joint_consumption =
+      eom::certify_joint_root_time_consumption({
+          .receiver = {
+              .path_id = "receiver",
+              .shared_symbol_coefficients = {{1.02e-2, 0.0, 0.0}},
+              .independent_remainder_radii = {0.0, 0.0, 0.0},
+              .ordinary_position_radii = {1.0200000000001e-2, 0.0, 0.0},
+          },
+          .transmitter = {
+              .path_id = "transmitter",
+              .shared_symbol_coefficients = {{9.8e-3, 0.0, 0.0}},
+              .independent_remainder_radii = {0.0, 0.0, 0.0},
+              .ordinary_position_radii = {9.800000000001e-3, 0.0, 0.0},
+          },
+          .nominal_displacement = {1.0, 0.0, 0.0},
+          .transmitter_factor = eom::Interval::point(1.0),
+          .root_time_tolerance = 1e-3,
+      });
+  const auto fallback_failure_consumption =
+      eom::certify_joint_root_time_consumption({
+          .receiver = {
+              .path_id = "receiver",
+              .shared_symbol_coefficients = {{1.02e-2, 0.0, 0.0}},
+              .independent_remainder_radii = {0.0, 0.0, 0.0},
+              .ordinary_position_radii = {1e-2, 0.0, 0.0},
+          },
+          .transmitter = {
+              .path_id = "transmitter",
+              .shared_symbol_coefficients = {{9.8e-3, 0.0, 0.0}},
+              .independent_remainder_radii = {0.0, 0.0, 0.0},
+              .ordinary_position_radii = {9.800000000001e-3, 0.0, 0.0},
+          },
+          .nominal_displacement = {1.0, 0.0, 0.0},
+          .transmitter_factor = eom::Interval::point(1.0),
+          .root_time_tolerance = 1e-3,
+      });
   const auto receiver_a = history("block-receiver-a", {"0", "0.2", "0", "0"});
   const auto receiver_b = history("block-receiver-b", {"1", "0.1", "0", "0"});
   const auto far_source_a = history("block-far-a", {"20", "0.3", "0", "0"});
@@ -629,7 +1228,50 @@ void print_all() {
             << (inconsistent_circular_speed_rejected ? "true" : "false")
             << ",\"unaccepted_history_rejected\":"
             << (unaccepted_history_rejected ? "true" : "false")
-            << ",\"blocks\":[";
+            << ",\"root_time_budgets\":[";
+  print_root_time_budget("common_translation", common_translation_budget);
+  std::cout << ',';
+  print_root_time_budget("radial_pass", radial_pass_budget);
+  std::cout << ',';
+  print_root_time_budget("radial_fail", radial_fail_budget);
+  std::cout << ',';
+  print_root_time_budget("transverse_remainder", transverse_budget);
+  std::cout << "],\"joint_root_time_consumptions\":[";
+  print_joint_root_time_consumption(
+      "correlated_box_fail_joint_pass", correlated_joint_consumption);
+  std::cout << ',';
+  print_joint_root_time_consumption(
+      "fallback_dominance_failure", fallback_failure_consumption);
+  std::cout << "],\"krawczyk_controls\":[";
+  print_krawczyk("sqrt_two", sqrt_two_krawczyk);
+  std::cout << ',';
+  print_krawczyk("wrong_sign_preconditioner", wrong_sign_krawczyk);
+  std::cout << ',';
+  print_krawczyk("dense_linear", dense_linear_krawczyk);
+  std::cout << "],\"delayed_root_sensitivities\":[";
+  print_delayed_root_sensitivity("analytic_1d", delayed_root_analytic);
+  std::cout << ',';
+  print_delayed_root_sensitivity("zero_factor", delayed_root_zero_factor);
+  std::cout << "],\"sharp_acceleration_sensitivities\":[";
+  print_sharp_acceleration_sensitivity(
+      "analytic_1d", sharp_acceleration_analytic);
+  std::cout << "],\"centered_affine_maps\":[";
+  print_centered_affine("square", centered_square);
+  std::cout << ',';
+  print_centered_affine(
+      "common_translation", centered_common_translation);
+  std::cout << "],\"joint_root_brackets\":[";
+  print_joint_root_bracket("correlated", joint_root_bracket);
+  std::cout << ',';
+  print_joint_root_bracket(
+      "offset_exceeds_tolerance", joint_root_bracket_offset_failure);
+  std::cout << "],\"joint_affine_history_evaluations\":[";
+  print_joint_affine_evaluation("cubic", joint_affine_evaluation);
+  std::cout << "],\"joint_sharp_rows\":[";
+  print_joint_sharp_row("analytic", joint_sharp_row);
+  std::cout << ',';
+  print_joint_sharp_row("tight_fallback", tight_joint_sharp_row);
+  std::cout << "],\"blocks\":[";
   print_block(eom::certify_moving_history_block(far));
   std::cout << ',';
   print_block(eom::certify_moving_history_block(near));

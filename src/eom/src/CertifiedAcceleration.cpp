@@ -298,6 +298,7 @@ NativeAccelerationRow reconstruct_row(
       .reception_time = root_certificate.reception_time,
       .emission_lower = root.lower,
       .emission_upper = root.upper,
+      .evaluation_emission = emission,
       .transmitter_segment_indices = root.transmitter_segment_indices,
       .separation = separation,
       .transmitter_factor = transmitter_factor,

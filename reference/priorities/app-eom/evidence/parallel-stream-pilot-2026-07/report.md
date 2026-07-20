@@ -43,7 +43,7 @@ profile inside the declared resource envelope.
 ## Frozen scope and evidence role
 
 The pilot consumed the equations, six half-width allocations, and pass logic
-in [`analysis-parallel-stream-simulation-spec.md`](../../analysis-parallel-stream-simulation-spec.md)
+in the historical [`analysis-parallel-stream-simulation-spec.md`](../../archive/receiver-weighted-law/analysis-parallel-stream-simulation-spec.md)
 without changing them after output. The allocations remained
 
 | P5A error row | Maximum half-width |

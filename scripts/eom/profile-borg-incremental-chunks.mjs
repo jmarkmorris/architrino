@@ -30,7 +30,9 @@ if (!binaryPath) {
     "[--electrinos=N] [--positrinos=N] " +
     "[--coupling=K] [--max-per-axis-speed=V] [--history-depth=H] " +
     "[--certified-budget-id=ID] [--shadow-affine-output=PATH] " +
-    "[--shadow-affine-symbol-cap=N]",
+    "[--shadow-affine-symbol-cap=N] " +
+    "[--shadow-affine-disable-root-enclosure-symbols=true|false] " +
+    "[--shadow-affine-disable-acceleration-enclosure-symbols=true|false]",
   );
 }
 
@@ -80,6 +82,14 @@ const includeHistoryErrorSeries = booleanOption(
 );
 const includeRootDetails = booleanOption(options["root-details"], true);
 const shadowAffineOutput = options["shadow-affine-output"] ?? null;
+const shadowAffineDisableRootEnclosureSymbols = booleanOption(
+  options["shadow-affine-disable-root-enclosure-symbols"],
+  false,
+);
+const shadowAffineDisableAccelerationEnclosureSymbols = booleanOption(
+  options["shadow-affine-disable-acceleration-enclosure-symbols"],
+  false,
+);
 const shadowAffineSymbolCap = positiveInteger(
   options["shadow-affine-symbol-cap"],
   256,
@@ -135,6 +145,12 @@ const processClient = createBorgNativeEomProcessClient({
       : [
           `--shadow-affine-diagnostic=${shadowAffineOutput}`,
           `--shadow-affine-symbol-cap=${shadowAffineSymbolCap}`,
+          ...(shadowAffineDisableRootEnclosureSymbols
+            ? ["--shadow-affine-disable-root-enclosure-symbols"]
+            : []),
+          ...(shadowAffineDisableAccelerationEnclosureSymbols
+            ? ["--shadow-affine-disable-acceleration-enclosure-symbols"]
+            : []),
         ]),
   ],
   timeoutMs: 600000,
@@ -246,6 +262,8 @@ const measuredClient = {
       endTime: Number(request.absoluteTimeInterval.end),
       outerWallSeconds: (performance.now() - wallStart) / 1000,
       incrementalStartReused: response.incrementalChunkStartSnapshotReused,
+      jointStatePathCount: Number(response.jointStatePathCount ?? 0),
+      jointStateSymbolCount: Number(response.jointStateSymbolCount ?? 0),
       stableNegativePrefixPairCount: finalRootAccounting.filter(
         (row) => row.stableNegativePrefixCertified,
       ).length,
@@ -257,6 +275,8 @@ const measuredClient = {
         failureCode: step.failureCode,
         attemptedStart: Number(step.attemptedStart),
         attemptedEnd: Number(step.attemptedEnd),
+        rootTimePressureRatio: Number(step.rootTimePressureRatio ?? 0),
+        rootPressureStepCap: Number(step.rootPressureStepCap ?? 0),
         correctionResidual: step.correctionResidual,
         correctionRetryScale: step.correctionRetryScale,
         accelerationWidthMaxReceiver:
@@ -299,12 +319,21 @@ const measuredClient = {
     process.stderr.write(
       `[borg-profile] chunk=${nativeChunks.length}/${chunkCount} ` +
       `t=${response.acceptedEndTime} native=${response.timing.totalWallSeconds}s ` +
-      `reevaluated=${response.timing.rootReevaluatedCells}` +
+      `reevaluated=${response.timing.rootReevaluatedCells} ` +
+      `joint=${response.jointStatePathCount ?? 0}/` +
+      `${response.jointStateSymbolCount ?? 0}` +
       (regulatorCertificates.length > 0
         ? ` regulators=${regulatorCertificates.length}`
         : "") +
       "\n",
     );
+    if (response.status === "halted") {
+      process.stderr.write(
+        `[borg-profile] terminal-root-failures=${JSON.stringify(
+          finalStepFailure?.rootFailures ?? [],
+        )}\n`,
+      );
+    }
     return response;
   },
   dispose: () => processClient.dispose(),
@@ -630,6 +659,8 @@ function summarizeChunks(chunks) {
     claimGrade: chunk.claimGrade,
     memoryBudgetBytes: chunk.memoryBudgetBytes,
     memoryEstimateBytes: chunk.memoryEstimateBytes,
+    jointStatePathCount: chunk.jointStatePathCount,
+    jointStateSymbolCount: chunk.jointStateSymbolCount,
     traversalEnclosedPairs: chunk.traversalEnclosedPairs,
     enclosedErrorWidthTotal: chunk.enclosedErrorWidthTotal,
     enclosedErrorWidthMaxReceiver: chunk.enclosedErrorWidthMaxReceiver,

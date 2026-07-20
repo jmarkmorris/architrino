@@ -1967,3 +1967,83 @@ This file holds dated decisions, implementation status, validation results, fail
   same-transmitter and conservation debts.
 - **Evidence:**
   [Borg receiver-factor contract migration validation](evidence/borg-receiver-factor-contract-migration-2026-07-19.md).
+
+## 2026-07-20 — Current root-time budget theorem and post-migration row
+
+- **Measured current row:** the rebuilt unchanged-Research seed-0 run reaches
+  `T=6.457226562499999` and then rejects receiver `1001`, transmitter `1002`
+  with `interior_root_not_surrounded` at 512 bits. The independent-box residual
+  width is `1.0419675138687171e-3`, only `3.113351730342e-7` above the available
+  residual width set by the transmitter-side-factor floor and the unchanged
+  `1e-3` root-time tolerance.
+- **Derived theorem:** for joint displacement
+  $\mathbf d_0+\sum_j\mathbf a_j\epsilon_j+\mathbf r$, the projected affine
+  radius plus the Euclidean-norm Taylor remainder maps to the root-time budget
+  through the one-sign transmitter-side-factor floor. The implementation uses
+  outward-rounded binary64 intervals and fails closed if the displacement ball
+  reaches zero separation or the transmitter-side factor contains zero.
+- **Inferred current fit:** the non-authoritative shared-state replay has
+  displacement radius `1.7583103065752816e-4`, theorem residual width
+  `2.3416786501327129e-4`, and root-time width
+  `2.2480341383515460e-4`. This is below `1e-3`, but cannot certify the solver
+  row because the upstream shadow propagation is still binary64 first-order.
+- **Measured fallback rejection:** the production joint consumer rejects the
+  same shadow state before root use. Receiver projection/ordinary ratios are
+  `[1.28818,1.28847,1.24280]`; transmitter ratios are
+  `[1.26225,1.24630,1.23263]`. This `23%`–`29%` excess rules out a rounding-only
+  repair or coefficient rescaling without an inclusion proof.
+- **Derived consumption and inclusion cores:** added outward-rounded aligned
+  shared-symbol subtraction, ordinary fallback dominance, and dense Krawczyk
+  inclusion with an internally certified interval determinant. The analytic
+  correlated control makes the ordinary box fail while the joint row passes;
+  nonlinear scalar and dense linear Krawczyk controls pass, and negative
+  fallback and wrong-preconditioner controls fail closed.
+- **Derived delayed-row and representation components:** added the certified
+  implicit delayed-root derivative, the current sharp-root acceleration
+  Jacobian including transmitter motion and acceleration-weight response, and
+  a centered mean-value affine map that separates shared coefficients from
+  Jacobian-variation, input-remainder, center, and rounding charges. Independent
+  one-dimensional Decimal controls and nonlinear/cancellation controls pass.
+- **Derived joint-root acceptance bridge:** added a strict common-bracket
+  theorem that converts an admitted joint residual radius and the certified
+  one-sign transmitter-side factor into opposite endpoint signs for every
+  admitted symbol assignment. The MPFR difficult-cell consumer independently
+  rebuilds nominal geometry, ordinary radii, cell bounds, and factors rather
+  than consuming producer assertions. Its difficult correlated control returns
+  one root, a complete root-free complement, and
+  `joint_affine_outward_with_mpfr_factor` provenance where the ordinary product
+  box cannot surround the root.
+- **Derived retained joint-cubic representation:** added aligned cubic
+  coefficient rows, separate position/velocity remainders, outward Horner
+  evaluation with rounding charges, ordinary fallback dominance, append
+  validation, and direct exact-pair evaluation at a nominal Newton center.
+  Coupled-evolution requests now route path-indexed joint histories into Borg's
+  exhaustive exact-pair batches. The remaining upstream work is to populate
+  and append these histories from the certified 18-component corrector and
+  retain them in the incremental process cache.
+- **Derived certified sharp-row population:** added the centered production
+  row that retains point derivatives as shared acceleration coefficients and
+  charges interval-Jacobian variation, independent input remainders, and
+  subtraction/evaluation rounding separately. It verifies both input-box and
+  certified-acceleration fallback containment. The analytic `-0.0064` control
+  passes and a tight fallback is rejected.
+- **Measured representation ablations:** suppressing only the shadow's
+  root-bracket symbols reduces receiver projection/ordinary ratios to
+  `[1.08668,1.15637,1.03708]` and transmitter ratios to
+  `[1.00813,1.08898,0.98500]`. Suppressing both complete-width injections makes
+  the deliberately incomplete propagated-only row pass fallback dominance
+  with residual width `1.9114432702459094e-4` and root-time width
+  `1.8350040150861844e-4`. Both observer-only runs preserve the same
+  `T=6.457226562499999` halt and Research hash; neither changes acceptance.
+- **Independent controls:** common-translation cancellation, exact radial pass
+  and fail rows, a 90-digit Decimal transverse-norm control, delayed-root and
+  sharp-acceleration Decimal rows, and centered nonlinear/cancellation rows
+  pass. Current validation is native CTest `3/3`, history/root layer `32/32`,
+  and Borg process/isolation `13/13`.
+- **Next accepted object:** assemble the actual 18-by-18 endpoint-acceleration
+  corrector Jacobian from the certified row derivatives, enclose its implicit
+  remainder with Krawczyk, and publish the contracted coefficient/remainder
+  state with retained cubic segments. The literal 300-second requirement
+  remains open and no budget or EOM solver acceptance semantic changed.
+- **Evidence:**
+  [current root-time budget theorem](evidence/borg-current-root-time-budget-theorem-2026-07-20.md).

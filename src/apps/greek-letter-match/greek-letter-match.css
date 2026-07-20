@@ -365,6 +365,7 @@ label {
 }
 
 .greek-match-choice {
+  container-type: inline-size;
   position: absolute;
   z-index: 2;
   display: grid;
@@ -402,9 +403,8 @@ label {
 .greek-match-choice[data-representation="name"] {
   padding: 3px;
   font-family: "Helvetica Neue", Arial, sans-serif;
-  font-size: clamp(7px, calc(var(--ring-size) * 0.019), 15px);
   font-weight: 800;
-  letter-spacing: -0.06em;
+  letter-spacing: 0;
   line-height: 0.94;
   white-space: nowrap;
   text-transform: lowercase;
@@ -413,6 +413,10 @@ label {
 .greek-match-choice-label {
   display: block;
   pointer-events: none;
+}
+
+.greek-match-choice[data-representation="name"] .greek-match-choice-label {
+  font-size: clamp(8px, 35cqi, 30px);
 }
 
 .greek-match-optical-glyph {
@@ -613,6 +617,54 @@ label {
   font-size: clamp(7px, calc(var(--ring-size) * 0.014), 11px);
   font-weight: 730;
   line-height: 1.1;
+}
+
+.greek-match-pronunciation {
+  position: absolute;
+  top: calc(100% + clamp(5px, calc(var(--ring-size) * 0.012), 10px));
+  left: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: clamp(25px, calc(var(--ring-size) * 0.052), 38px);
+  padding: 4px clamp(8px, calc(var(--ring-size) * 0.018), 14px);
+  border: 1px solid rgba(231, 219, 255, 0.42);
+  border-radius: 999px;
+  background: rgba(24, 9, 45, 0.92);
+  box-shadow: 0 5px 16px rgba(3, 0, 10, 0.32);
+  color: #fff7cf;
+  cursor: pointer;
+  font-size: clamp(8px, calc(var(--ring-size) * 0.016), 12px);
+  font-weight: 800;
+  line-height: 1;
+  white-space: nowrap;
+  transform: translateX(-50%);
+}
+
+.greek-match-pronunciation:hover,
+.greek-match-pronunciation:focus-visible {
+  border-color: rgba(255, 232, 141, 0.86);
+  background: rgba(55, 27, 86, 0.98);
+  outline: none;
+  box-shadow:
+    0 0 0 3px rgba(255, 224, 115, 0.16),
+    0 5px 18px rgba(3, 0, 10, 0.38);
+}
+
+.greek-match-pronunciation-feedback {
+  position: absolute;
+  top: calc(100% + clamp(34px, calc(var(--ring-size) * 0.067), 50px));
+  left: 50%;
+  width: 180%;
+  color: rgba(245, 239, 255, 0.64);
+  font-size: clamp(7px, calc(var(--ring-size) * 0.012), 10px);
+  line-height: 1.2;
+  pointer-events: none;
+  transform: translateX(-50%);
+}
+
+.greek-match-pronunciation-feedback[data-state="error"] {
+  color: #ffd2dc;
 }
 
 .greek-match-perfect-label {
@@ -828,6 +880,23 @@ label {
   font-size: 10px;
   line-height: 1.35;
   text-align: center;
+}
+
+.greek-match-audio-credit {
+  margin: 7px 4px 0;
+  color: rgba(238, 232, 255, 0.42);
+  font-size: 9px;
+  line-height: 1.35;
+  text-align: center;
+}
+
+.greek-match-audio-credit a {
+  color: rgba(223, 205, 255, 0.72);
+}
+
+.greek-match-audio-credit a:hover,
+.greek-match-audio-credit a:focus-visible {
+  color: #fff7cf;
 }
 
 .greek-match-boot-error {

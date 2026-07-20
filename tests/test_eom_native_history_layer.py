@@ -119,6 +119,372 @@ class NativeHistoryLayerTests(unittest.TestCase):
             row for row in self.packet["pairs"] if row["row_id"] == row_id
         )
 
+    def root_time_budget(self, row_id: str) -> dict[str, object]:
+        return next(
+            row for row in self.packet["root_time_budgets"]
+            if row["id"] == row_id
+        )
+
+    def joint_root_time_consumption(self, row_id: str) -> dict[str, object]:
+        return next(
+            row for row in self.packet["joint_root_time_consumptions"]
+            if row["id"] == row_id
+        )
+
+    def krawczyk_control(self, row_id: str) -> dict[str, object]:
+        return next(
+            row for row in self.packet["krawczyk_controls"]
+            if row["id"] == row_id
+        )
+
+    def delayed_root_sensitivity(self, row_id: str) -> dict[str, object]:
+        return next(
+            row for row in self.packet["delayed_root_sensitivities"]
+            if row["id"] == row_id
+        )
+
+    def sharp_acceleration_sensitivity(
+        self, row_id: str
+    ) -> dict[str, object]:
+        return next(
+            row for row in self.packet["sharp_acceleration_sensitivities"]
+            if row["id"] == row_id
+        )
+
+    def centered_affine_map(self, row_id: str) -> dict[str, object]:
+        return next(
+            row for row in self.packet["centered_affine_maps"]
+            if row["id"] == row_id
+        )
+
+    def joint_root_bracket(self, row_id: str) -> dict[str, object]:
+        return next(
+            row for row in self.packet["joint_root_brackets"]
+            if row["id"] == row_id
+        )
+
+    def joint_affine_history_evaluation(
+        self, row_id: str
+    ) -> dict[str, object]:
+        return next(
+            row for row in self.packet["joint_affine_history_evaluations"]
+            if row["id"] == row_id
+        )
+
+    def joint_sharp_row(self, row_id: str) -> dict[str, object]:
+        return next(
+            row for row in self.packet["joint_sharp_rows"]
+            if row["id"] == row_id
+        )
+
+    def test_joint_root_time_budget_matches_independent_decimal_controls(self) -> None:
+        common = self.root_time_budget("common_translation")
+        radial_pass = self.root_time_budget("radial_pass")
+        radial_fail = self.root_time_budget("radial_fail")
+        transverse = self.root_time_budget("transverse_remainder")
+
+        self.assertTrue(common["certified"])
+        self.assertLessEqual(
+            Decimal(str(common["root_time_width_upper"])),
+            Decimal("1e-300"),
+        )
+
+        # For d=(1+a*epsilon,0,0) with |a|<1, the Euclidean norm is
+        # exactly linear and its complete residual width is 2a.
+        self.assertGreaterEqual(
+            Decimal(str(radial_pass["residual_width_upper"])),
+            Decimal("8e-4"),
+        )
+        self.assertTrue(radial_pass["certified"])
+        self.assertGreaterEqual(
+            Decimal(str(radial_fail["residual_width_upper"])),
+            Decimal("1.2e-3"),
+        )
+        self.assertFalse(radial_fail["certified"])
+        self.assertEqual(radial_fail["failure_code"], "root_time_budget_exceeded")
+
+        # For d=(1,0.01*epsilon,0), the exact nonlinear residual range is
+        # [0, sqrt(1+0.01^2)-1].  This independently checks that the native
+        # Taylor remainder contains the curved norm image.
+        exact_transverse_width = (
+            (Decimal("1") + Decimal("0.01") ** 2).sqrt() - Decimal("1")
+        )
+        self.assertGreaterEqual(
+            Decimal(str(transverse["residual_width_upper"])),
+            exact_transverse_width,
+        )
+        self.assertTrue(transverse["certified"])
+
+    def test_joint_consumption_passes_only_with_correlation_and_fallback_dominance(
+        self,
+    ) -> None:
+        correlated = self.joint_root_time_consumption(
+            "correlated_box_fail_joint_pass"
+        )
+        fallback_failure = self.joint_root_time_consumption(
+            "fallback_dominance_failure"
+        )
+
+        self.assertTrue(correlated["receiver_fallback_dominates"])
+        self.assertTrue(correlated["transmitter_fallback_dominates"])
+        self.assertTrue(correlated["certified"])
+        self.assertLessEqual(
+            Decimal(str(correlated["joint_root_time_width_upper"])),
+            Decimal("1e-3"),
+        )
+        self.assertGreater(
+            Decimal(str(correlated["ordinary_box_root_time_width_upper"])),
+            Decimal("1e-3"),
+        )
+
+        # The shared coefficient difference is exactly 0.0102-0.0098=0.0004,
+        # so the complete radial residual width is 0.0008. The independent
+        # product box instead admits at least +/-0.02, hence width 0.04.
+        self.assertGreaterEqual(
+            Decimal(str(correlated["joint_residual_width_upper"])),
+            Decimal("8e-4"),
+        )
+        self.assertGreaterEqual(
+            Decimal(str(correlated["ordinary_box_residual_width_upper"])),
+            Decimal("4e-2"),
+        )
+
+        self.assertFalse(fallback_failure["certified"])
+        self.assertFalse(fallback_failure["receiver_fallback_dominates"])
+        self.assertEqual(
+            fallback_failure["failure_code"],
+            "ordinary_fallback_does_not_dominate_joint_state",
+        )
+
+    def test_krawczyk_inclusion_contains_independent_sqrt_two_root(self) -> None:
+        positive = self.krawczyk_control("sqrt_two")
+        negative = self.krawczyk_control("wrong_sign_preconditioner")
+        dense = self.krawczyk_control("dense_linear")
+        exact_root = Decimal("2").sqrt()
+
+        self.assertTrue(positive["preconditioner_nonsingular_certified"])
+        self.assertTrue(positive["certified_unique"])
+        image = positive["image"][0]
+        self.assertLessEqual(Decimal(str(image["lower"])), exact_root)
+        self.assertGreaterEqual(Decimal(str(image["upper"])), exact_root)
+        self.assertGreater(
+            Decimal(str(positive["minimum_containment_margin"])),
+            Decimal("0"),
+        )
+
+        self.assertFalse(negative["certified_unique"])
+        self.assertEqual(
+            negative["failure_code"],
+            "krawczyk_image_not_strictly_interior",
+        )
+
+        self.assertTrue(dense["preconditioner_nonsingular_certified"])
+        self.assertTrue(dense["certified_unique"])
+        for image_row, exact_value in zip(
+            dense["image"], (Decimal("0.2"), Decimal("0.6")), strict=True
+        ):
+            self.assertLessEqual(Decimal(str(image_row["lower"])), exact_value)
+            self.assertGreaterEqual(Decimal(str(image_row["upper"])), exact_value)
+
+    def test_delayed_root_sensitivity_matches_independent_analytic_control(
+        self,
+    ) -> None:
+        positive = self.delayed_root_sensitivity("analytic_1d")
+        zero_factor = self.delayed_root_sensitivity("zero_factor")
+
+        # Independently evaluate the implicit root derivative from Decimal
+        # inputs: delta_S=(delta_Xs-delta_Xr)/(c-Vs).
+        emission_coefficient = (
+            Decimal("0.004") - Decimal("0.01")
+        ) / (Decimal("1") - Decimal("0.25"))
+        effective_transmitter_coefficient = Decimal("0.004") + (
+            Decimal("0.25") * emission_coefficient
+        )
+        delayed_displacement_coefficient = (
+            Decimal("0.01") - effective_transmitter_coefficient
+        )
+
+        self.assertTrue(positive["certified"])
+        emission = positive["emission_time_coefficients"][0]
+        self.assertLessEqual(
+            Decimal(str(emission["lower"])), emission_coefficient
+        )
+        self.assertGreaterEqual(
+            Decimal(str(emission["upper"])), emission_coefficient
+        )
+        effective = positive[
+            "effective_transmitter_position_coefficients"
+        ][0][0]
+        self.assertLessEqual(
+            Decimal(str(effective["lower"])),
+            effective_transmitter_coefficient,
+        )
+        self.assertGreaterEqual(
+            Decimal(str(effective["upper"])),
+            effective_transmitter_coefficient,
+        )
+        delayed = positive["delayed_displacement_coefficients"][0][0]
+        self.assertLessEqual(
+            Decimal(str(delayed["lower"])), delayed_displacement_coefficient
+        )
+        self.assertGreaterEqual(
+            Decimal(str(delayed["upper"])), delayed_displacement_coefficient
+        )
+
+        self.assertFalse(zero_factor["certified"])
+        self.assertEqual(
+            zero_factor["failure_code"],
+            "delayed_root_transmitter_factor_contains_zero",
+        )
+
+    def test_sharp_acceleration_sensitivity_matches_independent_decimal_row(
+        self,
+    ) -> None:
+        row = self.sharp_acceleration_sensitivity("analytic_1d")
+
+        # Independent one-dimensional derivative of
+        # A=K*c/((c-Vs)*d^2), including the implicit delayed-root response.
+        c = Decimal("1")
+        transmitter_factor = Decimal("0.75")
+        displacement = Decimal("2")
+        signed_coupling = Decimal("3")
+        emission_coefficient = Decimal("-0.008")
+        displacement_coefficient = Decimal("0.008")
+        transmitter_velocity_coefficient = (
+            Decimal("0.002") + Decimal("0.1") * emission_coefficient
+        )
+        expected = signed_coupling * c * (
+            transmitter_velocity_coefficient
+            / (transmitter_factor**2 * displacement**2)
+            - Decimal("2")
+            * displacement_coefficient
+            / (transmitter_factor * displacement**3)
+        )
+
+        self.assertLessEqual(abs(expected - Decimal("-0.0064")), Decimal("1e-27"))
+        self.assertTrue(row["certified"])
+        coefficient = row["acceleration_coefficients"][0][0]
+        self.assertLessEqual(Decimal(str(coefficient["lower"])), expected)
+        self.assertGreaterEqual(Decimal(str(coefficient["upper"])), expected)
+        factor_coefficient = row["transmitter_factor_coefficients"][0]
+        self.assertLessEqual(
+            Decimal(str(factor_coefficient["lower"])),
+            -transmitter_velocity_coefficient,
+        )
+        self.assertGreaterEqual(
+            Decimal(str(factor_coefficient["upper"])),
+            -transmitter_velocity_coefficient,
+        )
+
+    def test_centered_affine_map_bounds_nonlinearity_and_preserves_cancellation(
+        self,
+    ) -> None:
+        square = self.centered_affine_map("square")
+        translation = self.centered_affine_map("common_translation")
+
+        self.assertTrue(square["certified"])
+        self.assertEqual(
+            Decimal(str(square["output_coefficients"][0][0])),
+            Decimal("0.2"),
+        )
+        # Exact residual of (1+0.1*epsilon)^2 after the affine term is
+        # 0.01*epsilon^2.  The mean-value certificate must contain it.
+        self.assertGreaterEqual(
+            Decimal(str(square["output_remainder_radii_upper"][0])),
+            Decimal("0.01"),
+        )
+
+        self.assertTrue(translation["certified"])
+        self.assertLessEqual(
+            abs(Decimal(str(translation["output_coefficients"][0][0]))),
+            Decimal("1e-300"),
+        )
+        self.assertLessEqual(
+            Decimal(str(translation["output_remainder_radii_upper"][0])),
+            Decimal("1e-17"),
+        )
+
+    def test_joint_root_bracket_proves_uniform_endpoint_signs(self) -> None:
+        positive = self.joint_root_bracket("correlated")
+        offset_failure = self.joint_root_bracket(
+            "offset_exceeds_tolerance"
+        )
+
+        self.assertTrue(positive["certified"])
+        self.assertLess(Decimal(str(positive["left_residual_upper"])), 0)
+        self.assertGreater(Decimal(str(positive["right_residual_lower"])), 0)
+        self.assertLessEqual(
+            Decimal(str(positive["root_upper"]))
+            - Decimal(str(positive["root_lower"])),
+            Decimal("1e-3"),
+        )
+
+        self.assertFalse(offset_failure["certified"])
+        self.assertEqual(
+            offset_failure["failure_code"],
+            "joint_root_bracket_exceeds_tolerance",
+        )
+
+    def test_exact_pair_consumes_joint_state_without_trusting_geometry(self) -> None:
+        row = self.pair("joint_affine_difficult_root")
+
+        self.assertEqual(row["status"], "certified_complete")
+        self.assertTrue(row["root_free_complement"])
+        self.assertEqual(len(row["roots"]), 1)
+        root = row["roots"][0]
+        self.assertEqual(
+            root["precision_route"],
+            "joint_affine_outward_with_mpfr_factor",
+        )
+        self.assertLessEqual(
+            Decimal(root["upper"]) - Decimal(root["lower"]),
+            Decimal("0.001"),
+        )
+
+        retained = self.pair("joint_affine_history_difficult_root")
+        self.assertEqual(retained["status"], "certified_complete")
+        self.assertTrue(retained["root_free_complement"])
+        self.assertEqual(len(retained["roots"]), 1)
+        self.assertEqual(
+            retained["roots"][0]["precision_route"],
+            "joint_affine_outward_with_mpfr_factor",
+        )
+
+    def test_joint_affine_history_charges_horner_rounding(self) -> None:
+        row = self.joint_affine_history_evaluation("cubic")
+
+        self.assertTrue(row["position_fallback_dominates"])
+        self.assertTrue(row["velocity_fallback_dominates"])
+        self.assertLessEqual(
+            abs(Decimal(str(row["position_coefficient"])) - Decimal("0.0325")),
+            Decimal("1e-17"),
+        )
+        self.assertLessEqual(
+            abs(Decimal(str(row["velocity_coefficient"])) - Decimal("0.08")),
+            Decimal("1e-17"),
+        )
+        self.assertGreaterEqual(Decimal(str(row["position_remainder"])), 0)
+        self.assertGreaterEqual(Decimal(str(row["velocity_remainder"])), 0)
+
+    def test_joint_sharp_row_separates_coefficients_from_remainder(self) -> None:
+        row = self.joint_sharp_row("analytic")
+        tight = self.joint_sharp_row("tight_fallback")
+
+        self.assertTrue(row["input_boxes_dominate"])
+        self.assertTrue(row["accepted_acceleration_dominates"])
+        self.assertTrue(row["certified"])
+        self.assertLessEqual(
+            abs(Decimal(str(row["x_coefficient"])) - Decimal("-0.0064")),
+            Decimal("1e-15"),
+        )
+        self.assertGreater(Decimal(str(row["x_remainder"])), 0)
+
+        self.assertFalse(tight["certified"])
+        self.assertEqual(
+            tight["failure_code"],
+            "accepted_acceleration_does_not_dominate_joint_sharp_row",
+        )
+
     def test_self_chord_preserves_correlation_across_segment_joins(self) -> None:
         retained = PiecewisePolynomialHistory.from_segments(
             (

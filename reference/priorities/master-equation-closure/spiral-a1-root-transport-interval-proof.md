@@ -11,15 +11,15 @@ $$
 This packet consumes [spiral-a1-root-window-certificate](spiral-a1-root-window-certificate.md),
 [spiral-a1-restart](spiral-a1-restart.md), and the VP-1
 template [spiral-vp1-root-transport-interval-proof](spiral-vp1-root-transport-interval-proof.md).
-It supplies no canonical force/action evidence.
+It supplies no canonical action or conservation evidence.
 
 Claim level. Dependent analytic topology contract for the retained A1 chart.
 The root-transport row is not an independent interval obstruction once the same
 A1 active root tubes, nonzero active Jacobian floor, positive $b(\theta)$, and
 velocity-projection convention used in $J$ are certified. It is the differentiated
 causal-delay identity for the retained root equation. Repository theorem-grade
-status remains pending until a new receiver-normal certificate consumes these
-rows.
+status remains pending until a transmitter-side branch certificate consumes
+these records with accepted causal wake accounts.
 
 ## Fixed A1 Inputs
 
@@ -279,7 +279,8 @@ certified. The row is blocked only by dependency failure or convention mismatch:
 
 ## Promotion Decision
 
-Priority capture complete; receiver-normal rebuild pending. The A1
-root-transport row is not ready for authored corpus promotion as an isolated
-result because the A1 branch chart still requires same-record $D_s$, $D_T$, and
-$W^{\mathrm{rec}}$ rows before force/action interpretation.
+Priority capture complete; transmitter-side acceleration rebuild completed in
+[spiral-a1-restart](spiral-a1-restart.md). The A1 root-transport identity is not
+ready for authored corpus promotion as an isolated result because outward
+signed-playback intervals, radial and tangential aggregates, and accepted causal
+wake accounts remain open.

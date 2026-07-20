@@ -286,12 +286,23 @@ test("archived PDG edit scenes no longer resolve to standalone launch hrefs from
 
 test("standalone app entrypoints stay outside root app.js", () => {
   const rootEntrypoint = readRepoFile("app.js").trim();
+  const architrinoSceneRuntime = readRepoFile(
+    "src/apps/architrino/ArchitrinoSceneAppRuntime.js"
+  );
   const animatorEntrypoint = readRepoFile("src/apps/animator/main.js");
   const pdgeditEntrypoint = readRepoFile("src/apps/pdgedit/main.js");
 
   assert.match(
     rootEntrypoint,
     /^import "\.\/src\/apps\/architrino\/ArchitrinoSceneAppRuntime\.js(?:\?[^"]*)?";$/
+  );
+  assert.equal(
+    architrinoSceneRuntime.includes("createAnimatorDelayedHitsFromSolverRecords"),
+    true
+  );
+  assert.equal(
+    architrinoSceneRuntime.includes("createAnimatorDelayedHitsFromSolverRows"),
+    false
   );
   assert.equal(animatorEntrypoint.includes("../../../app.js"), false);
   assert.equal(animatorEntrypoint.includes("../architrino/ArchitrinoSceneAppRuntime.js"), true);

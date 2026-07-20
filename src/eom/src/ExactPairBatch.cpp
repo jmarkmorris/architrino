@@ -1,4 +1,6 @@
 #include "architrino/eom/ExactPairBatch.hpp"
+#include "architrino/eom/JointRootBracket.hpp"
+#include "architrino/eom/JointAffineHistory.hpp"
 
 #include "architrino/eom/Interval.hpp"
 
@@ -2125,6 +2127,7 @@ struct MpRoot {
   MpInterval transmitter_factor;
   MpInterval receiver_factor;
   std::vector<std::size_t> transmitter_segment_indices;
+  std::string precision_route = "mpfr_directed_interval";
 };
 
 struct MpAttempt {
@@ -2290,7 +2293,7 @@ std::optional<std::pair<MpFloat, MpFloat>> surround_mp_root(
   // the acceptance tolerance by a few ulps.  Select exact representable
   // points inward from the half-tolerance radius instead.  Opposite strict
   // residual signs at these points still give an IVT bracket, while the
-  // already-certified one-sign source normal proves that it contains exactly
+  // already-certified one-sign transmitter-side factor proves that it contains exactly
   // one simple root.
   const MpFloat two = MpFloat::unsigned_value(2, bits);
   const MpFloat inward_radius =
@@ -2935,9 +2938,249 @@ MpAttempt run_mpfr_attempt(const ExactPairRequest& request, unsigned bits_value)
               lower, upper, tolerance);
         }
         if (!enclosed.has_value()) {
+          std::string joint_failure_detail =
+              "joint_root_state_unavailable";
+          std::optional<JointRootBracketRequest> evaluated_joint_state;
+          const std::string& receiver_path_id =
+              request.receiver_path_id.empty()
+              ? request.receiver->history_id()
+              : request.receiver_path_id;
+          const std::string& source_path_id =
+              request.source_path_id.empty()
+              ? request.source->history_id()
+              : request.source_path_id;
+          const bool can_evaluate_joint_history =
+              request.joint_root_point_state == nullptr &&
+              request.joint_receiver_history != nullptr &&
+              request.joint_transmitter_history != nullptr &&
+              request.joint_receiver_history->path_id() ==
+                  receiver_path_id &&
+              request.joint_transmitter_history->path_id() ==
+                  source_path_id &&
+              request.joint_receiver_history->symbol_registry() ==
+                  request.joint_transmitter_history->symbol_registry();
+          if (request.joint_root_point_state != nullptr) {
+            joint_failure_detail = "joint_root_point_state_supplied";
+          } else if (request.joint_receiver_history == nullptr ||
+                     request.joint_transmitter_history == nullptr) {
+            joint_failure_detail = "joint_root_history_missing";
+          } else if (request.joint_receiver_history->path_id() !=
+                         receiver_path_id ||
+                     request.joint_transmitter_history->path_id() !=
+                         source_path_id) {
+            joint_failure_detail = "joint_root_history_identity_mismatch";
+          } else if (request.joint_receiver_history->symbol_registry() !=
+                     request.joint_transmitter_history->symbol_registry()) {
+            joint_failure_detail = "joint_root_history_registry_mismatch";
+          }
+          if (can_evaluate_joint_history) {
+            const double reception_value = parse_double(
+                request.reception_time, "joint history reception");
+            const double lower_value = parse_double(
+                lower.token(MPFR_RNDD), "joint history cell lower");
+            const double upper_value = parse_double(
+                upper.token(MPFR_RNDU), "joint history cell upper");
+            const double field_speed_value = parse_double(
+                request.field_speed, "joint history field speed");
+            double center = parse_double(
+                middle.token(MPFR_RNDN), "joint history initial center");
+            const auto receiver_nominal =
+                request.receiver->nominal_position(reception_value);
+            for (std::size_t iteration = 0U; iteration < 4U; ++iteration) {
+              const auto source_nominal =
+                  request.source->nominal_position(center);
+              const auto source_velocity =
+                  request.source->nominal_velocity(center);
+              std::array<double, 3> displacement{};
+              double separation_square = 0.0;
+              for (std::size_t axis = 0U; axis < 3U; ++axis) {
+                displacement[axis] =
+                    receiver_nominal[axis] - source_nominal[axis];
+                separation_square += displacement[axis] * displacement[axis];
+              }
+              const double separation = std::sqrt(separation_square);
+              if (!(separation > 0.0)) break;
+              double radial_speed = 0.0;
+              for (std::size_t axis = 0U; axis < 3U; ++axis) {
+                radial_speed += displacement[axis] * source_velocity[axis] /
+                    separation;
+              }
+              const double factor = field_speed_value - radial_speed;
+              if (!std::isfinite(factor) || factor == 0.0) break;
+              const double residual = separation -
+                  field_speed_value * (reception_value - center);
+              center = std::clamp(center - residual / factor,
+                                  lower_value, upper_value);
+            }
+            const auto ordinary_radii = [](const RetainedHistory& history,
+                                           double time,
+                                           bool velocity) {
+              const IntervalVector enclosure = velocity
+                  ? history.velocity_hull(Interval::point(time))
+                  : history.position_hull(Interval::point(time));
+              return std::array<double, 3>{
+                  0.5 * enclosure[0].width(),
+                  0.5 * enclosure[1].width(),
+                  0.5 * enclosure[2].width()};
+            };
+            if (request.joint_receiver_history->covers(reception_value) &&
+                request.joint_transmitter_history->covers(center)) {
+              const auto receiver_joint =
+                  request.joint_receiver_history->evaluate(
+                      reception_value,
+                      ordinary_radii(*request.receiver, reception_value, false),
+                      ordinary_radii(*request.receiver, reception_value, true));
+              const auto transmitter_joint =
+                  request.joint_transmitter_history->evaluate(
+                      center,
+                      ordinary_radii(*request.source, center, false),
+                      ordinary_radii(*request.source, center, true));
+              if (receiver_joint.position_fallback_dominates &&
+                  transmitter_joint.position_fallback_dominates) {
+                evaluated_joint_state = JointRootBracketRequest{
+                    .joint_state = {
+                        .receiver = receiver_joint.position,
+                        .transmitter = transmitter_joint.position,
+                    },
+                    .emission_center = center,
+                };
+                joint_failure_detail = "joint_root_state_evaluated";
+              } else {
+                joint_failure_detail =
+                    "joint_root_state_exceeds_ordinary_fallback";
+              }
+            } else {
+              joint_failure_detail = "joint_root_history_does_not_cover_point";
+            }
+          }
+          const JointRootBracketRequest* joint_point_state =
+              request.joint_root_point_state != nullptr
+              ? request.joint_root_point_state
+              : (evaluated_joint_state.has_value()
+                    ? &*evaluated_joint_state
+                    : nullptr);
+          if (joint_point_state != nullptr &&
+              bracket_geometry.transmitter_factor.has_value() &&
+              bracket_geometry.receiver_factor.has_value()) {
+            const auto& supplied_bracket = *joint_point_state;
+            const auto& supplied = supplied_bracket.joint_state;
+            const double middle_value = supplied_bracket.emission_center;
+            const MpFloat supplied_middle = MpFloat::decimal(
+                double_token(middle_value), bits, MPFR_RNDN);
+            if (supplied.receiver.path_id == receiver_path_id &&
+                supplied.transmitter.path_id == source_path_id &&
+                supplied_middle.compare(lower) >= 0 &&
+                supplied_middle.compare(upper) <= 0) {
+              const std::string middle_token = double_token(middle_value);
+              const double reception_value = parse_double(
+                  request.reception_time, "joint root reception");
+              const auto receiver_nominal =
+                  request.receiver->nominal_position(reception_value);
+              const auto transmitter_nominal =
+                  request.source->nominal_position(middle_value);
+              std::array<double, 3> nominal_displacement{};
+              for (std::size_t axis = 0U; axis < 3U; ++axis) {
+                nominal_displacement[axis] =
+                    receiver_nominal[axis] - transmitter_nominal[axis];
+              }
+              const auto ordinary_radii = [](const RetainedHistory& history,
+                                             double time) {
+                const IntervalVector position =
+                    history.position_hull(Interval::point(time));
+                return std::array<double, 3>{
+                    0.5 * position[0].width(),
+                    0.5 * position[1].width(),
+                    0.5 * position[2].width()};
+              };
+              const std::string factor_lower =
+                  bracket_geometry.transmitter_factor->lower().token(
+                      MPFR_RNDD);
+              const std::string factor_upper =
+                  bracket_geometry.transmitter_factor->upper().token(
+                      MPFR_RNDU);
+              const std::string receiver_factor_lower =
+                  bracket_geometry.receiver_factor->lower().token(MPFR_RNDD);
+              const std::string receiver_factor_upper =
+                  bracket_geometry.receiver_factor->upper().token(MPFR_RNDU);
+              JointRootTimeConsumptionRequest canonical_joint = supplied;
+              canonical_joint.receiver.ordinary_position_radii =
+                  ordinary_radii(*request.receiver, reception_value);
+              canonical_joint.transmitter.ordinary_position_radii =
+                  ordinary_radii(*request.source, middle_value);
+              canonical_joint.nominal_displacement = nominal_displacement;
+              canonical_joint.transmitter_factor = Interval(
+                  Interval::decimal_token(factor_lower).lower(),
+                  Interval::decimal_token(factor_upper).upper());
+              canonical_joint.root_time_tolerance = parse_double(
+                  request.root_tolerance, "joint root tolerance");
+              const IntervalVector nominal_displacement_interval{
+                  Interval::point(nominal_displacement[0]),
+                  Interval::point(nominal_displacement[1]),
+                  Interval::point(nominal_displacement[2])};
+              const Interval nominal_residual =
+                  norm(nominal_displacement_interval) -
+                  Interval::decimal_token(request.field_speed) *
+                      (Interval::decimal_token(request.reception_time) -
+                       Interval::decimal_token(middle_token));
+              const Interval containing_cell(
+                  Interval::decimal_token(lower.token(MPFR_RNDD)).lower(),
+                  Interval::decimal_token(upper.token(MPFR_RNDU)).upper());
+              const Interval receiver_factor(
+                  Interval::decimal_token(receiver_factor_lower).lower(),
+                  Interval::decimal_token(receiver_factor_upper).upper());
+              const auto joint_bracket = certify_joint_root_bracket({
+                  .joint_state = std::move(canonical_joint),
+                  .nominal_residual = nominal_residual,
+                  .emission_center = middle_value,
+                  .containing_cell = containing_cell,
+                  .receiver_factor = receiver_factor,
+                  .transmitter_segment_index = cell.segment_index,
+              });
+              joint_failure_detail =
+                  "joint_root/" + joint_bracket.failure_code +
+                  "/joint_width=" + double_token(
+                      joint_bracket.consumption.joint_budget
+                          .root_time_width_upper) +
+                  "/ordinary_width=" + double_token(
+                      joint_bracket.consumption.ordinary_box_budget
+                          .root_time_width_upper) +
+                  "/affine_radius=" + double_token(
+                      joint_bracket.consumption.joint_budget
+                          .projected_affine_radius_upper) +
+                  "/remainder_radius=" + double_token(
+                      joint_bracket.consumption.joint_budget
+                          .projected_remainder_radius_upper) +
+                  "/nonlinear_radius=" + double_token(
+                      joint_bracket.consumption.joint_budget
+                          .nonlinear_remainder_radius_upper) +
+                  "/bracket_half_width=" +
+                      double_token(joint_bracket.bracket_half_width_upper) +
+                  "/center_residual=" + double_token(
+                      joint_bracket.center_residual_magnitude_upper) +
+                  "/cell_width=" + double_token(
+                      containing_cell.width());
+              if (joint_bracket.certified) {
+                const std::string joint_lower =
+                    double_token(joint_bracket.root_bracket.lower());
+                const std::string joint_upper =
+                    double_token(joint_bracket.root_bracket.upper());
+                attempt.roots.push_back({
+                    MpFloat::decimal(joint_lower, bits, MPFR_RNDD),
+                    MpFloat::decimal(joint_upper, bits, MPFR_RNDU),
+                    *bracket_geometry.transmitter_factor,
+                    *bracket_geometry.receiver_factor,
+                    {cell.segment_index},
+                    "joint_affine_outward_with_mpfr_factor",
+                });
+                ++attempt.excluded_cells;
+                return;
+              }
+            }
+          }
           attempt.complete = false;
           attempt.finite_width_root_cluster = same_retained_history;
-          attempt.diagnostic_detail = "interior_root_not_surrounded";
+          attempt.diagnostic_detail =
+              "interior_root_not_surrounded/" + joint_failure_detail;
           attempt.has_difficult_cell = true;
           attempt.difficult_source_segment_index = cell.segment_index;
           attempt.difficult_cell_lower = lower.token(MPFR_RNDD);
@@ -3196,7 +3439,7 @@ ExactPairCertificate mpfr_certificate(
         .receiver_factor_upper = root.receiver_factor.upper().token(MPFR_RNDU),
         .transmitter_factor_sign = root.transmitter_factor.strict_sign(),
         .transmitter_segment_indices = root.transmitter_segment_indices,
-        .precision_route = "mpfr_directed_interval",
+        .precision_route = root.precision_route,
         .precision_bits = bits,
     });
   }

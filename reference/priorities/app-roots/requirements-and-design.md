@@ -59,7 +59,7 @@ Numeric readout strip (not a fifth pane, a compact status row): current $\beta$,
 ## Open Design Questions (discussion-scoped)
 
 - Whether Pane B should stay 2D (circles) for V1 or go straight to a 3D wake-surface scene comparable to `app-photon`/`app-borg` rendering.
-- Whether the circular-orbit source mode ships in V1 or is deferred as noted above.
-- Whether the numeric readout strip should also expose the receiver-normal branch strength $D_{T,ij}$, or stay limited to $\beta$, $D_s$, $N$, and time-to-fold for V1 simplicity.
+- Whether the circular-orbit transmitter mode ships in V1 or is deferred as noted above.
+- Whether the numeric readout strip should expose both $W_{r\leftarrow t}^{\mathrm{acc}}=c_f/|D_t|$ and signed root playback $D_r/D_t$, or stay limited to $\beta$, $D_t$, $N$, and time-to-fold for V1 simplicity.
 
 Status of all three: unresolved, no implementation dispatched.

@@ -1,6 +1,8 @@
 #include "architrino/eom/Checkpoint.hpp"
 #include "architrino/eom/CoupledEvolution.hpp"
 #include "architrino/eom/History.hpp"
+#include "architrino/eom/JointAccelerationSnapshot.hpp"
+#include "architrino/eom/JointEndpointCorrector.hpp"
 
 #include <algorithm>
 #include <array>
@@ -10,6 +12,7 @@
 #include <iomanip>
 #include <iostream>
 #include <limits>
+#include <map>
 #include <stdexcept>
 #include <string>
 #include <vector>
@@ -733,6 +736,140 @@ eom::NativeCoupledEvolutionRequest make_dispersed_boundary_request(
 }
 
 void print_all() {
+  const auto uncertain_static_history = [](const std::string& id,
+                                           const std::string& x) {
+    return eom::RetainedHistory(
+        id,
+        {eom::CubicHistorySegment(
+            "0", "2",
+            eom::CubicCoefficientTokens{
+                std::array<std::string, 4>{x, "0", "0", "0"},
+                std::array<std::string, 4>{"0", "0", "0", "0"},
+                std::array<std::string, 4>{"0", "0", "0", "0"}},
+            "0.001", "0.001")});
+  };
+  auto joint_snapshot_request = request(
+      "joint-snapshot-control",
+      {{"joint-a", "1", uncertain_static_history("joint-a", "0")},
+       {"joint-b", "-1", uncertain_static_history("joint-b", "1")}},
+      "2", "2.01", "0.01", "0.01");
+  joint_snapshot_request.root_tolerance = "0.01";
+  joint_snapshot_request.acceleration_tolerance = "10";
+  std::vector<eom::NativePublishedPath> joint_ordinary_histories;
+  for (const auto& path : joint_snapshot_request.paths) {
+    joint_ordinary_histories.push_back({path.path_id, path.history});
+  }
+  eom::JointAffineCubicSegment joint_a_segment;
+  eom::JointAffineCubicSegment joint_b_segment;
+  joint_a_segment.start_time = joint_b_segment.start_time = 0.0;
+  joint_a_segment.end_time = joint_b_segment.end_time = 2.0;
+  for (std::size_t axis = 0U; axis < 3U; ++axis) {
+    for (std::size_t degree = 0U; degree < 4U; ++degree) {
+      joint_a_segment.position_coefficients[axis][degree] = {0.0};
+      joint_b_segment.position_coefficients[axis][degree] = {0.0};
+    }
+  }
+  joint_a_segment.position_coefficients[0][0] = {0.0005};
+  joint_b_segment.position_coefficients[0][0] = {0.0005};
+  const std::map<std::string, eom::JointAffineRetainedHistory>
+      joint_snapshot_histories{
+          {"joint-a", eom::JointAffineRetainedHistory(
+              "joint-a", {"common-translation"}, {joint_a_segment})},
+          {"joint-b", eom::JointAffineRetainedHistory(
+              "joint-b", {"common-translation"}, {joint_b_segment})},
+      };
+  const auto joint_native_snapshot = eom::certify_native_acceleration_snapshot(
+      joint_snapshot_request, joint_ordinary_histories, "2");
+  const auto joint_snapshot = eom::certify_joint_acceleration_snapshot(
+      eom::Interval::point(1.0), joint_native_snapshot,
+      joint_ordinary_histories, joint_snapshot_histories);
+  if (!joint_snapshot.certified) {
+    throw std::runtime_error(
+        "joint acceleration snapshot control failed: " +
+        joint_snapshot.failure_code);
+  }
+  eom::JointAccelerationSnapshotCertificate corrector_snapshot;
+  corrector_snapshot.certified = true;
+  corrector_snapshot.shared_symbol_count = 7U;
+  for (const std::string path_id : {"corrector-a", "corrector-b"}) {
+    eom::JointReceiverAccelerationState receiver;
+    receiver.path_id = path_id;
+    receiver.shared_symbol_coefficients.resize(7U);
+    receiver.shared_symbol_coefficient_enclosures.assign(
+        7U, eom::IntervalVector{
+                eom::Interval::point(0.0), eom::Interval::point(0.0),
+                eom::Interval::point(0.0)});
+    const std::size_t path_offset = path_id == "corrector-a" ? 0U : 3U;
+    for (std::size_t axis = 0U; axis < 3U; ++axis) {
+      receiver.shared_symbol_coefficients[0U][axis] = 0.0002;
+      receiver.shared_symbol_coefficient_enclosures[0U][axis] =
+          eom::Interval::point(0.0002);
+      receiver.independent_remainder_radii[axis] = 1e-6;
+      for (std::size_t column = 0U; column < 6U; ++column) {
+        const double derivative = column == path_offset + axis
+            ? 0.2
+            : (column == ((path_offset + axis + 3U) % 6U) ? 0.05 : 0.0);
+        receiver.shared_symbol_coefficient_enclosures[1U + column][axis] =
+            eom::Interval::point(derivative * 1e-3);
+      }
+    }
+    corrector_snapshot.receivers.push_back(std::move(receiver));
+  }
+  const std::vector<std::array<double, 3>> retained_endpoint_coefficients{
+      std::array<double, 3>{0.0002, 0.0002, 0.0002}};
+  const auto corrector = eom::certify_joint_endpoint_corrector({
+      .path_ids = {"corrector-a", "corrector-b"},
+      .endpoint_centers = {
+          {"corrector-a", {0.0, 0.0, 0.0}},
+          {"corrector-b", {0.0, 0.0, 0.0}}},
+      .endpoint_shared_coefficients = {
+          {"corrector-a", retained_endpoint_coefficients},
+          {"corrector-b", retained_endpoint_coefficients}},
+      .evaluated_snapshot = corrector_snapshot,
+      .retained_symbol_count = 1U,
+      .corrector_variable_radii = std::vector<double>(6U, 1e-3),
+  });
+  if (!corrector.certified || corrector.dimension != 6U ||
+      !(corrector.krawczyk.minimum_containment_margin > 0.0)) {
+    throw std::runtime_error(
+        "joint endpoint corrector control failed: " +
+        corrector.failure_code);
+  }
+  auto failing_corrector_snapshot = corrector_snapshot;
+  failing_corrector_snapshot.receivers.front()
+      .independent_remainder_radii[0] = 0.01;
+  const auto failing_corrector = eom::certify_joint_endpoint_corrector({
+      .path_ids = {"corrector-a", "corrector-b"},
+      .endpoint_centers = {
+          {"corrector-a", {0.0, 0.0, 0.0}},
+          {"corrector-b", {0.0, 0.0, 0.0}}},
+      .endpoint_shared_coefficients = {
+          {"corrector-a", retained_endpoint_coefficients},
+          {"corrector-b", retained_endpoint_coefficients}},
+      .evaluated_snapshot = failing_corrector_snapshot,
+      .retained_symbol_count = 1U,
+      .corrector_variable_radii = std::vector<double>(6U, 1e-3),
+  });
+  if (failing_corrector.certified) {
+    throw std::runtime_error(
+        "joint endpoint corrector accepted an oversized parametric residual");
+  }
+  auto joint_evolution_request = joint_snapshot_request;
+  joint_evolution_request.run_id = "joint-corrected-evolution";
+  joint_evolution_request.joint_histories = joint_snapshot_histories;
+  joint_evolution_request.position_tolerance = "10";
+  joint_evolution_request.velocity_tolerance = "10";
+  const auto joint_evolution =
+      eom::evolve_native_coupled_histories(joint_evolution_request);
+  if (joint_evolution.status != "completed" ||
+      joint_evolution.joint_histories.size() != 2U ||
+      joint_evolution.joint_histories.at("joint-a").segments().size() <= 1U) {
+    throw std::runtime_error(
+        "joint corrected evolution failed: " + joint_evolution.halt_code +
+        (joint_evolution.steps.empty()
+             ? std::string{}
+             : "/" + joint_evolution.steps.back().failure_code));
+  }
   const auto static_request = request(
       "static-multistep",
       {{"p", "1", history("static-self-history", "2", {"0", "0", "0", "0"})}},

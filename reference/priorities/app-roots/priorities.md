@@ -15,13 +15,13 @@ This folder owns the priority work ledger for a proposed **Roots** visualization
 
 This packet uses $T_r$ for receiver time and $T_t$ for transmit (emission) time, in place of `master-equation.md`'s bare $T$ and $T_{\mathrm{em}}$, so panes and controls can name "receiver" and "transmit" time explicitly without relying on subscript position alone. The two notations refer to the same quantities; cross-reference `master-equation.md` by dropping the `r`/`t` subscripts back to $T$/$T_{\mathrm{em}}$.
 
-The app's subject is the **causal-root fold**: the mechanism in [Master Equation](../../../content/markdown/aaa/dynamics/master-equation.md#caustic-transit-and-finite-impulse) by which the number of active causal roots between a source worldline and a receiver event changes. A causal root is an emission event on the source worldline whose expanding causal wake intersects the receiver event now; the master EOM sums per-hit accelerations over the currently active roots (`master-equation.md`, "Master EOM"). The source-normal transversality floor
+The app's subject is the **causal-root fold**: the mechanism in [Master Equation](../../../content/markdown/aaa/dynamics/master-equation.md#caustic-transit-and-finite-impulse) by which the number of active causal roots between a transmitter path and a receiver event changes. A causal root is an emission event on the transmitter path whose expanding causal wake intersects the receiver event now; the Master EOM sums per-hit accelerations over the currently active roots (`master-equation.md`, "Master EOM"). The transmitter-side transversality floor
 
 $$
 D_{s,ij}(T_r;T_t) \equiv c_f - \hat{\mathbf r}_{ij}(T_r;T_t)\cdot\mathbf V_j(T_t)
 $$
 
-is the quantity that must stay away from zero for a root to be simple and legal. At a fold ($D_{s,ij}=0$ with the transversal control parameter crossing generically), two simple roots merge and either appear or disappear together: the generic fold law is $\Delta N=\pm2$ active roots with the receiver-normal branch-strength bookkeeping $\Delta D=0$ (`master-equation.md`, "Caustic Transit and Finite Impulse", $\Sigma^1$ stratum). This happens when the source's velocity component toward the receiver along $\hat{\mathbf r}_{ij}$ reaches $c_f$ — i.e., when the source is locally moving at the field speed along that line of sight, not when the source's total speed exceeds $c_f$ in some frame-independent sense. Cusp and higher strata ($\Sigma^{1,1}$ and deeper) can merge or split more than one root pair at once and are not covered by the generic fold law; they route to a separate singular-stratum treatment.
+is the quantity that must stay away from zero for a root to be simple and legal. At a fold ($D_{t,ij}=0$ with the transversal control parameter crossing generically), two simple roots merge and either appear or disappear together: the generic fold law is $\Delta N=\pm2$ active roots with signed-degree balance $\Delta D=0$ (`master-equation.md`, "Caustic Transit and Finite Impulse", $\Sigma^1$ stratum). This happens when the transmitter's velocity component toward the receiver along $\hat{\mathbf r}_{ij}$ reaches $c_f$—that is, when the transmitter locally moves at the field speed along that line of sight, not when its total speed exceeds $c_f$ in some frame-independent sense. Cusp and higher strata ($\Sigma^{1,1}$ and deeper) can merge or split more than one root pair at once and are not covered by the generic fold law; they route to a separate singular-stratum treatment.
 
 ## Objective
 
@@ -49,7 +49,7 @@ Resolved into the V1 design (see [requirements-and-design.md](requirements-and-d
 Still unresolved:
 
 - Whether Pane B (wake scene) stays 2D for V1 or goes straight to a 3D wake-surface scene comparable to `app-photon`/`app-borg`.
-- Whether the circular-orbit source mode ships in V1 or stays deferred.
-- Whether the numeric readout strip should also expose the receiver-normal branch strength $D_{T,ij}$.
+- Whether the circular-orbit transmitter mode ships in V1 or stays deferred.
+- Whether the numeric readout strip should expose both the transmitter-side acceleration weight $W_{r\leftarrow t}^{\mathrm{acc}}$ and the signed root-playback derivative $D_r/D_t$.
 
 No implementation dispatched.

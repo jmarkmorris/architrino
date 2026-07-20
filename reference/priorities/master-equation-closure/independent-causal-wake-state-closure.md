@@ -4,7 +4,7 @@
 
 - Claim level: `derivation-target`
 - Priority rank: `1` within Master Equation closure
-- Current result: `open`
+- Current result: `minimum-state-derived; closed-negatively-under-current-primitives`
 - Canonical regular-domain law: unchanged transmitter-side acceleration
 - Required outcome: one causal update that closes the coincident transition and conserved accounts together
 
@@ -22,6 +22,15 @@ update:
 
 This is a research program, not an accepted ontology change. The state must be
 derived before it can be promoted.
+
+The first full attempt is [Independent Causal Wake-State Minimum and
+Obstruction](analysis-independent-causal-wake-state.md). It derives directional
+surface resolution, a coupling or maturity variable, scalar wake energy, vector
+wake momentum, and explicit boundary flux as the smallest necessary state class.
+It also proves that the current primitives do not select the coincident-birth
+maturity law, the motion-account functions, an emission capacity, or a
+reception transfer. The route therefore remains fail closed until one new
+Architrino-native construction supplies all four together.
 
 ## Required State And Update
 

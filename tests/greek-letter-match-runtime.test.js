@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { readFileSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
 
 import {
   FEEDBACK_INTERVALS,
@@ -14,6 +14,7 @@ import {
   getCurrentLetterIndex,
   getGreekGlyphOpticalYOffset,
   getGreekMatchArrowCoordinates,
+  getGreekPronunciationUrl,
   getOpticallyCenteredGlyphPosition,
   getRoundPercent,
   getSphereColor,
@@ -55,8 +56,139 @@ test("Greek letters use the standard 24-letter order from alpha through omega", 
       "omega",
     ]
   );
-  assert.deepEqual(GREEK_LETTERS[0], { name: "alpha", upper: "Α", lower: "α" });
-  assert.deepEqual(GREEK_LETTERS.at(-1), { name: "omega", upper: "Ω", lower: "ω" });
+  assert.deepEqual(GREEK_LETTERS[0], {
+    name: "alpha",
+    upper: "Α",
+    lower: "α",
+    audioFile: "alpha.m4a",
+  });
+  assert.deepEqual(GREEK_LETTERS.at(-1), {
+    name: "omega",
+    upper: "Ω",
+    lower: "ω",
+    audioFile: "omega.m4a",
+  });
+});
+
+test("every Greek letter has one locally deployed pronunciation recording", () => {
+  assert.equal(new Set(GREEK_LETTERS.map((letter) => letter.audioFile)).size, 24);
+  for (const letter of GREEK_LETTERS) {
+    assert.match(letter.audioFile, /^[a-z]+\.m4a$/u);
+    assert.equal(
+      existsSync(
+        new URL(
+          `../src/apps/greek-letter-match/audio/${letter.audioFile}`,
+          import.meta.url
+        )
+      ),
+      true,
+      `${letter.name} pronunciation is missing`
+    );
+  }
+  assert.equal(
+    getGreekPronunciationUrl(
+      GREEK_LETTERS[0],
+      "https://architrino.com/src/apps/greek-letter-match/GreekLetterMatchRuntime.js"
+    ),
+    "https://architrino.com/src/apps/greek-letter-match/audio/alpha.m4a"
+  );
+
+  const provenance = readRepoFile(
+    "src/apps/greek-letter-match/audio/SOURCE.md"
+  );
+  assert.match(provenance, /Wikimedia Commons replacements/u);
+  assert.match(provenance, /GreekLetterLearner recordings/u);
+  assert.match(provenance, /CC BY-SA 3\.0/u);
+  assert.match(provenance, /CC BY-SA 4\.0/u);
+  assert.match(provenance, /CC0 1\.0/u);
+  assert.match(provenance, /Public domain/u);
+  for (const sourceFilename of [
+    "En-us-pie.ogg",
+    "En-us-psi.ogg",
+    "En-us-beta.ogg",
+    "En-us-iota.ogg",
+    "En-us-alpha.ogg",
+    "En-us-omicron.ogg",
+    "En-us-rho.ogg",
+    "En-us-theta.ogg",
+    "En-us-xi.ogg",
+    "En-us-chi.ogg",
+    "En-us-zeta.ogg",
+    "En-us-eta.ogg",
+    "En-us-omega.ogg",
+    "En-us-gamma.ogg",
+    "En-us-kappa.ogg",
+    "En-us-lambda.ogg",
+    "En-us-upsilon.ogg",
+  ]) {
+    assert.match(provenance, new RegExp(sourceFilename.replace(".", "\\."), "u"));
+  }
+});
+
+test("pronunciation playback reuses one audio player and restarts it", () => {
+  const audio = {
+    currentTime: 7,
+    pauseCalls: 0,
+    playCalls: 0,
+    pause() {
+      this.pauseCalls += 1;
+    },
+    play() {
+      this.playCalls += 1;
+      return Promise.resolve();
+    },
+  };
+  const runtime = Object.create(GreekLetterMatchRuntime.prototype);
+  runtime.audioFactory = () => audio;
+  runtime.pronunciationAudio = null;
+  runtime.pronunciationRequestId = 0;
+  runtime.pronunciationFeedback = { textContent: "", dataset: {} };
+
+  assert.equal(runtime.playPronunciation(0), true);
+  assert.equal(runtime.playPronunciation(1), true);
+  assert.equal(audio.pauseCalls, 2);
+  assert.equal(audio.playCalls, 2);
+  assert.equal(audio.currentTime, 0);
+  assert.match(audio.src, /\/audio\/beta\.m4a$/u);
+  assert.equal(runtime.pronunciationFeedback.textContent, "Playing beta.");
+  assert.equal(runtime.pronunciationFeedback.dataset.state, "playing");
+});
+
+test("teaching selection plays the selected letter without changing the score", () => {
+  const played = [];
+  const runtime = Object.create(GreekLetterMatchRuntime.prototype);
+  runtime.gameMode = "teach";
+  runtime.teachingLetterIndex = null;
+  runtime.session = createGreekMatchSession(() => 0);
+  runtime.render = () => {};
+  runtime.playPronunciation = (index) => played.push(index);
+
+  runtime.chooseLetter(7);
+
+  assert.equal(runtime.teachingLetterIndex, 7);
+  assert.deepEqual(played, [7]);
+  assert.equal(runtime.session.attempts, 0);
+  assert.equal(runtime.session.correct, 0);
+});
+
+test("game answers stay silent while the manual pronunciation target remains available", () => {
+  const played = [];
+  const runtime = Object.create(GreekLetterMatchRuntime.prototype);
+  runtime.gameMode = "game";
+  runtime.session = createGreekMatchSession(() => 0);
+  runtime.feedbackInterval = "standard";
+  runtime.render = () => {};
+  runtime.playPronunciation = (index) => played.push(index);
+  runtime.setTimeout = () => 1;
+
+  runtime.chooseLetter(0);
+
+  assert.deepEqual(played, []);
+  assert.equal(runtime.session.lastResult.selectedIndex, 0);
+  assert.equal(
+    runtime.getActivePronunciationIndex(),
+    runtime.session.lastResult.targetIndex
+  );
 });
 
 test("round order is shuffled without changing fixed ring positions", () => {
@@ -178,8 +310,8 @@ test("Georgia descender glyphs receive a proportional upward optical correction"
   assert.equal(getGreekGlyphOpticalYOffset("γ", 0), 0);
 });
 
-test("feedback choices use buttons only and avoid dropdown, slider, and sound controls", () => {
-  assert.deepEqual(FEEDBACK_INTERVALS, { standard: 2000, study: 3000, extended: 4000 });
+test("feedback choices use buttons only and avoid dropdown and slider controls", () => {
+  assert.deepEqual(FEEDBACK_INTERVALS, { standard: 1000, study: 2000, extended: 3000 });
   const html = readRepoFile("greek-letter-match.html");
   const runtime = readRepoFile("src/apps/greek-letter-match/GreekLetterMatchRuntime.js");
   const css = readRepoFile("src/apps/greek-letter-match/greek-letter-match.css");
@@ -188,6 +320,9 @@ test("feedback choices use buttons only and avoid dropdown, slider, and sound co
   assert.match(runtime, /input\.type = "radio"/u);
   assert.match(runtime, /"Next round"/u);
   assert.match(runtime, /"Teach me"/u);
+  assert.match(runtime, /greek-match-pronunciation/u);
+  assert.match(runtime, /playPronunciation/u);
+  assert.match(runtime, /credits & licenses/u);
   assert.match(runtime, /"Incorrect"/u);
   assert.doesNotMatch(runtime, /Try the highlighted answer/u);
   assert.match(runtime, /greek-match-teach-name/u);
@@ -201,6 +336,18 @@ test("feedback choices use buttons only and avoid dropdown, slider, and sound co
   assert.match(
     css,
     /greek-match-choice\[data-representation="symbol"\] \.greek-match-choice-label/u
+  );
+  assert.match(
+    css,
+    /\.greek-match-choice \{[^}]*container-type: inline-size;/u
+  );
+  assert.match(
+    css,
+    /\.greek-match-choice\[data-representation="name"\] \{[^}]*letter-spacing: 0;/u
+  );
+  assert.match(
+    css,
+    /\.greek-match-choice\[data-representation="name"\] \.greek-match-choice-label \{[^}]*font-size: clamp\(8px, 35cqi, 30px\);/u
   );
   assert.match(
     css,

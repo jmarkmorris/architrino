@@ -209,7 +209,7 @@ import {
   getAnimatorFieldShellRenderState,
 } from "../animator/AnimatorFieldShellRuntime.js";
 import {
-  createAnimatorDelayedHitsFromSolverRows,
+  createAnimatorDelayedHitsFromSolverRecords,
   createAnimatorDelayedHitTableRecords,
   getAnimatorDelayedHitDiagnosticLabel,
   getAnimatorDelayedHitRenderState,
@@ -2435,7 +2435,7 @@ function createAnimatorArchitrinoPathHistoryDelayedHits(
     fieldSpeed: getAnimatorFieldShellSpeed(simulationDataset),
     sampleIntervalSeconds: animatorArchitrinoFieldShellEmissionIntervalSeconds,
   });
-  const rowResponse = createAnimatorDelayedHitRecordsFromStreamDescriptors(
+  const recordResponse = createAnimatorDelayedHitRecordsFromStreamDescriptors(
     {
       schema: "animator-delayed-hit-stream-descriptors.v1",
       streamId: getAnimatorArchitrinoPathHistoryStreamId(simulationDataset),
@@ -2465,7 +2465,7 @@ function createAnimatorArchitrinoPathHistoryDelayedHits(
       },
     }
   );
-  return createAnimatorDelayedHitsFromSolverRows(rowResponse, {
+  return createAnimatorDelayedHitsFromSolverRecords(recordResponse, {
     status: "path-history",
   });
 }

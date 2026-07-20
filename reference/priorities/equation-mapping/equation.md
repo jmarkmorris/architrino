@@ -47,7 +47,7 @@ A precise observer fit with $\mathcal R_{\mathrm{lift},k}$ absent remains `2` or
 
 | ID | Equation or equation group | Representative equation | Primary AAA carrier | 6/23 a | 6/23 b | Closure driver | Promoted? |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| `EQ-01` | Causal wake master equation and per-hit law | $\mathbf{a}_{o'\leftarrow o}\propto r^{-2}W^{\mathrm{rec}}\hat{\mathbf r}$, $W^{\mathrm{rec}}=\lvert D_T/D_s\rvert$ | Architrino causal wakes, causal-root ledger | `5` | `5` | Keep all later maps tied to active roots, source-normal Jacobians, receiver-normal numerators, line-of-action hits, and event ledgers. The source-normal denominator alone is a transversality diagnostic, never a force weight. | ready |
+| `EQ-01` | Causal wake Master Equation and per-hit law | $\mathbf A_{r\leftarrow t}\propto r^{-2}W_{r\leftarrow t}^{\mathrm{acc}}\hat{\mathbf r}_t$, $W_{r\leftarrow t}^{\mathrm{acc}}=c_f/|D_t|$ | Architrino causal wakes, causal-root ledger | `5` | `5` | Keep all later maps tied to active roots, transmitter-side factors, transmitter-side acceleration weights, separate signed root playback $D_r/D_t$, line-of-action hits, and event ledgers. | ready on the certified regular domain; global transition and conservation closure open |
 | `EQ-02` | Lorentz factor, clock rate, and ruler contraction | $\gamma_{\star}=(1-\beta_{\star}^2)^{-1/2}$; $d\tau/dt_{\mathrm{eff}}=1/\gamma_{\star}$ | Moving Noether braid through local Noether sea | `4` | `4` | Derive moving-clock and moving-ruler factors from one branch ledger. |  |
 | `EQ-03` | Oblate spheroidal envelope ratio | $\xi=R_{\parallel}/R_{\perp}\to1/\gamma_{\mathrm{eff}}$ | Noether braid envelope geometry | `4` | `4` | Prove return-cycle closure produces the axis ratio, not just a visual match. |  |
 | `EQ-04` | Energy-momentum and rest energy | $E^2=p^2c_{\mathrm{eff}}^2+M_0^2c_{\mathrm{eff}}^4$ | Closed internal causal-history ledger, shielding, Noether sea response | `3` | `4` | Compose branch energy, exposure quotient, and medium-response tensor. |  |
@@ -125,22 +125,24 @@ The success condition is not that all speeds are identical. In weak homogeneous 
 The native substrate equation is the per-hit causal wake acceleration:
 
 $$
-\mathbf{a}_{o'\leftarrow o}(t;t_0)
+\mathbf A_{r\leftarrow t}(T_r;T_t)
 =
-\kappa\,\sigma_{q_o q_{o'}}
-\frac{|q_o q_{o'}|}{r^2}
-W_{o'\leftarrow o}^{\mathrm{rec}}(t;t_0)
-\hat{\mathbf r},
+\kappa\,\sigma_{q_t q_r}
+\frac{|q_t q_r|}{r^2}
+W_{r\leftarrow t}^{\mathrm{acc}}(T_r;T_t)
+\hat{\mathbf r}_t,
 $$
 
-with source-normal denominator, receiver-normal numerator, and branch strength
+with transmitter-side acceleration weight and separate signed root playback
 
 $$
-D_{s,o'\leftarrow o}=c_f-\mathbf v_o(t_0)\cdot\hat{\mathbf r},
+D_t=c_f-\mathbf V_t(T_t)\cdot\hat{\mathbf r}_t,
 \qquad
-D_{T,o'\leftarrow o}=c_f-\mathbf v_{o'}(t)\cdot\hat{\mathbf r},
+D_r=c_f-\mathbf V_r(T_r)\cdot\hat{\mathbf r}_t,
 \qquad
-W_{o'\leftarrow o}^{\mathrm{rec}}=\left|\frac{D_{T,o'\leftarrow o}}{D_{s,o'\leftarrow o}}\right|.
+W_{r\leftarrow t}^{\mathrm{acc}}=\frac{c_f}{|D_t|},
+\qquad
+\frac{dT_t}{dT_r}=\frac{D_r}{D_t}.
 $$
 
 ### AAA Mapping
@@ -149,9 +151,10 @@ This is the root equation from which the rest of the mapping must not drift. It 
 
 - finite causal delay;
 - inverse-square causal wake dilution;
-- receiver-normal branch strength;
+- transmitter-side acceleration weight;
+- separate signed root playback;
 - line-of-action direction;
-- source polarity and receiver polarity;
+- transmitter polarity and receiver polarity;
 - Jacobian bunching or dilution;
 - active-root branch structure.
 
@@ -161,7 +164,7 @@ Score: `5`.
 
 The equation is native. The open work is not to map it into AAA, but to prevent higher-level equations from bypassing it. Every later formula should identify which reduced record of active roots, wake energy, event ledgers, or Noether sea moments it consumes.
 
-Promotion disposition: `ready`. The row is native and the dependency note below is now explicit enough for reader-facing promotion work. Promotion should still preserve the internal/external distinction: `EQ-01` can be promoted as the root causal-wake equation, while downstream recovery claims remain at their current scores until their retained branch, event, or Noether sea records close.
+Promotion disposition: `ready` on certified regular simple-root and ordinary-fold charts. Global promotion remains blocked at coincident same-transmitter birth and at the missing causal conservation construction. Downstream recovery claims remain at their current scores until their retained branch, transition, event, and Noether sea records close.
 
 ### Dependency Note
 
