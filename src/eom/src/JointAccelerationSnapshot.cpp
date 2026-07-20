@@ -428,9 +428,6 @@ JointAccelerationSnapshotCertificate certify_joint_acceleration_snapshot(
         }
         rows.push_back(row_certificate);
         ++result.consumed_sharp_rows;
-        if (row_certificate.used_accepted_acceleration_fallback) {
-          ++result.accepted_acceleration_fallback_rows;
-        }
       }
     }
 

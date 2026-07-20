@@ -26,7 +26,6 @@ struct JointAccelerationSnapshotCertificate {
   std::string failure_code;
   std::size_t shared_symbol_count = 0U;
   std::size_t consumed_sharp_rows = 0U;
-  std::size_t accepted_acceleration_fallback_rows = 0U;
   double failure_max_projection_to_ordinary_ratio = 0.0;
   double failure_projection_upper = 0.0;
   double failure_ordinary_radius = 0.0;

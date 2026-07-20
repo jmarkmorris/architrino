@@ -300,24 +300,9 @@ JointSharpRowCertificate certify_joint_sharp_row(
         image.subset_of(request.accepted_acceleration_enclosure[axis]);
   }
   if (!result.accepted_acceleration_dominates) {
-    const IntervalVector zero_vector{
-        Interval::point(0.0), Interval::point(0.0),
-        Interval::point(0.0)};
-    result.acceleration_coefficients.assign(
-        symbol_count, std::array<double, 3>{0.0, 0.0, 0.0});
-    result.acceleration_coefficient_enclosures.assign(
-        symbol_count, zero_vector);
-    for (std::size_t axis = 0U; axis < 3U; ++axis) {
-      result.acceleration_center[axis] =
-          request.accepted_acceleration_enclosure[axis].midpoint();
-      result.acceleration_remainder_radii_upper[axis] = magnitude_upper(
-          request.accepted_acceleration_enclosure[axis] -
-          Interval::point(result.acceleration_center[axis]));
-      result.acceleration_projection_radii_upper[axis] =
-          result.acceleration_remainder_radii_upper[axis];
-    }
-    result.accepted_acceleration_dominates = true;
-    result.used_accepted_acceleration_fallback = true;
+    result.failure_code =
+        "accepted_acceleration_does_not_dominate_joint_sharp_row";
+    return result;
   }
   result.certified = true;
   return result;
