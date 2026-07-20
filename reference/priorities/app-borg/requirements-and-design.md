@@ -160,6 +160,14 @@ Velocity initialization needs first-class controls rather than a single random-s
 
 The launch-state editor should include a `custom` mode. In `custom` mode, the operator starts from any generated or explicit initial condition, then directly edits the staging state before running: click-drag an architrino to change its position, and click-drag the endpoint of its velocity ray to resize and reorient its initial velocity vector. These edits must update exact numeric fields and keep the run in a pending initial-condition state until the EOM solver accepts the run request.
 
+## Assembly-view Replay
+
+The canonical Borg page has a second, visibly distinct record-only mode selected by `borg.html?eomRecord=<url>`. It accepts only sealed `assembly-view-record.v0` files through `EomHistoryDataset.mjs`; `BorgBootstrap.js` mounts the replay path without constructing the live EOM client. Replay may evaluate only declared interpolation and display arithmetic. It cannot evolve, repair, extrapolate, compute accelerations or causal roots, classify branches, or upgrade evidence.
+
+Replay exposes persistent provenance, chart/evolved labels, authoritative retained-segment animation, delay-horizon trails, coverage-clamped scrub and playback, chart pose, co-rotating camera, frequency strobe, one-period loop, display-only swept envelope, static image export, and raw source-order collection navigation. Optional $S_3$ grouping and filters consume source-carried fields only and never replace the selected raw record.
+
+`assembly-view-record.v0` currently lacks declared comparison time/unit transforms, an external multi-record collection carrier, a required field-speed carrier, and spin/polarity-dipole vector carriers. Borg therefore rejects synchronized comparison and presents the other affected fields as unavailable. These are instrument-gate contract blockers, not authority for the app to define substitute fields.
+
 ## Path-History Retention
 
 Path history means the recorded source and receiver motion needed to replay where each architrino was when a causal root, delayed hit, or wake row was formed.

@@ -37,6 +37,12 @@ import {
 } from "./BorgLiveRunRetentionPolicy.js";
 import { BORG_RELEASE_BUDGET_MANIFEST_V1 } from "./BorgReleaseBudgetManifest.js";
 import { createBorgPathTrails } from "./BorgPathTrails.js";
+import { createBorgAssemblyViewControls } from "./BorgAssemblyViewControls.js";
+import { createBorgAssemblyViewScene } from "./BorgAssemblyViewScene.js";
+import {
+  createBorgAssemblyViewSession,
+  resolveBorgAssemblyViewStrobeTime,
+} from "./BorgAssemblyViewSession.js";
 import {
   BORG_MAX_VISUAL_CATCH_UP_FRAME_SETS,
   BORG_PLAYBACK_PREFILL_MAX_WALL_MS,
@@ -157,7 +163,9 @@ const STATUS_TONE = Object.freeze({
   "live-native-running": "warn",
   "eom-idle": "warn",
   "live-native-error": "bad",
+  "record-replay-error": "bad",
   "completed-live-native-run": "good",
+  "completed-recorded-replay": "warn",
   "measured-live-run-budget": "good",
   "partial-live-run-budget": "warn",
   "fail-closed-missing-contract": "bad",
@@ -175,12 +183,16 @@ const STATUS_LABEL = Object.freeze({
   "eom-shadow-stopped": "Forward EOM idle",
   "eom-idle": "Idle",
   "live-native-error": "Solver stopped",
+  "record-replay-error": "Replay stopped",
   "completed-live-native-run": "Forward complete",
+  "completed-recorded-replay": "Replay complete",
 });
 
 const SOLVER_FAILURE_BANNERS = Object.freeze({
   "live-native-error":
     "Computing stopped. The solver failed part-way; everything after the last good frame is missing.",
+  "record-replay-error":
+    "Replay stopped. Borg did not repair or extend the sealed record.",
 });
 
 const PARTICLE_POLARITY_STYLES = Object.freeze({
@@ -206,6 +218,12 @@ export function mountBorgApp(options = {}) {
   const manifest = options.manifest ?? BORG_DATASET_MANIFEST_V1;
   const surfaceDesign = options.surfaceDesign ?? BORG_APP_SURFACE_DESIGN_V1;
   validateBorgManifest({ manifest, surfaceDesign });
+  const replayRecords = options.eomRecordReplay?.records ??
+    (options.eomRecordReplay?.record ? [options.eomRecordReplay.record] : null);
+  const assemblyViewSession = options.assemblyViewSession ??
+    (replayRecords ? createBorgAssemblyViewSession(replayRecords) : null);
+  let activeReplayEntry = assemblyViewSession?.selected ?? null;
+  const replayActive = assemblyViewSession != null;
 
   const dom = {
     app: queryRequiredElement(documentLike, "#borg-app"),
@@ -214,6 +232,7 @@ export function mountBorgApp(options = {}) {
     solverBanner: documentLike.querySelector?.("#borg-solver-banner") ?? null,
     canvas: queryRequiredElement(documentLike, "#borg-canvas"),
     layerStrip: queryRequiredElement(documentLike, "#borg-layer-strip"),
+    envelopeSection: queryRequiredElement(documentLike, "#borg-envelope-section"),
     envelopeFields: queryRequiredElement(documentLike, "#borg-envelope-fields"),
     initialConditionFields: queryRequiredElement(documentLike, "#borg-initial-condition-fields"),
     initialConditionForm: queryRequiredElement(documentLike, "#borg-initial-condition-form"),
@@ -253,6 +272,25 @@ export function mountBorgApp(options = {}) {
     resetButton: queryRequiredElement(documentLike, "#borg-reset-view-button"),
     fitButton: queryRequiredElement(documentLike, "#borg-fit-view-button"),
     focusButton: queryRequiredElement(documentLike, "#borg-focus-selected-button"),
+    modeBoundary: queryRequiredElement(documentLike, "#borg-mode-boundary"),
+    modeLabel: queryRequiredElement(documentLike, "#borg-mode-label"),
+    modeDetail: queryRequiredElement(documentLike, "#borg-mode-detail"),
+    replayControls: queryRequiredElement(documentLike, "#borg-assembly-view-controls"),
+    replayAuthorityNotice: queryRequiredElement(documentLike, "#borg-replay-authority-notice"),
+    replayProvenance: queryRequiredElement(documentLike, "#borg-replay-provenance"),
+    replayRecordSelect: queryRequiredElement(documentLike, "#borg-replay-record-select"),
+    replayDisplayMode: queryRequiredElement(documentLike, "#borg-replay-display-mode"),
+    replayCameraMode: queryRequiredElement(documentLike, "#borg-replay-camera-mode"),
+    replayStrobeFrequency: queryRequiredElement(documentLike, "#borg-replay-strobe-frequency"),
+    replayStrobeButton: queryRequiredElement(documentLike, "#borg-replay-strobe-button"),
+    replayLoopPeriod: queryRequiredElement(documentLike, "#borg-replay-loop-period"),
+    replayExport: queryRequiredElement(documentLike, "#borg-replay-export"),
+    replayFilterField: queryRequiredElement(documentLike, "#borg-replay-filter-field"),
+    replayFilterValue: queryRequiredElement(documentLike, "#borg-replay-filter-value"),
+    replayGrouping: queryRequiredElement(documentLike, "#borg-replay-grouping"),
+    replayComparison: queryRequiredElement(documentLike, "#borg-replay-comparison"),
+    replayFeedback: queryRequiredElement(documentLike, "#borg-replay-feedback"),
+    replayOverlayFields: queryRequiredElement(documentLike, "#borg-replay-overlay-fields"),
   };
 
   const initialEomSeed = options.initialEomSeed ?? null;
@@ -281,10 +319,12 @@ export function mountBorgApp(options = {}) {
 
   const rootGroup = new THREE.Group();
   const boundaryShellGroup = new THREE.Group();
+  const assemblyContentGroup = new THREE.Group();
   const pathGroup = new THREE.Group();
   const velocityGroup = new THREE.Group();
   const pointGroup = new THREE.Group();
-  rootGroup.add(boundaryShellGroup, pathGroup, velocityGroup, pointGroup);
+  assemblyContentGroup.add(pathGroup, velocityGroup, pointGroup);
+  rootGroup.add(boundaryShellGroup, assemblyContentGroup);
   scene.add(rootGroup);
 
   scene.add(new THREE.HemisphereLight(0xf1f7ea, 0x2f352b, 1.45));
@@ -436,7 +476,26 @@ export function mountBorgApp(options = {}) {
       ? "accepted-initial-datum-active"
       : "manifest-values-active",
     resizeObserver: null,
+    replayDisplayMode: activeReplayEntry?.dataset.provenance.claimGrade === "chart-hypothesis"
+      ? "chart-pose"
+      : "animated",
+    replayStrobeEnabled: false,
+    replayStrobeFrequency: null,
+    replayLoopEnabled: false,
+    replayLoopPeriod: null,
+    pathTrailDuration: activeReplayEntry?.dataset.window.delayHorizon ??
+      HIGHLIGHTED_PATH_HISTORY_DURATION,
   };
+
+  const assemblyViewScene = createBorgAssemblyViewScene({
+    group: assemblyContentGroup,
+    toWorld: writeSolverPositionToWorld,
+    render,
+  });
+  if (activeReplayEntry) {
+    assemblyViewScene.setRecord(activeReplayEntry);
+  }
+  let assemblyViewControls = null;
 
   const diagnosticsPanelController = createBorgDiagnosticsPanelController({
     panel: dom.diagnosticsPanel,
@@ -451,6 +510,7 @@ export function mountBorgApp(options = {}) {
   configureTimeline();
   configureInitialConditionControls();
   configureEomControls();
+  configureAssemblyViewControls();
   resetView();
   bindEvents();
   updateLayerVisibility();
@@ -458,7 +518,11 @@ export function mountBorgApp(options = {}) {
   setPlayButtonPresentation(false);
   resize();
   if (autoStartEom) {
-    startDynamicNativeRunner();
+    if (replayActive) {
+      startRunAndPlayback();
+    } else {
+      startDynamicNativeRunner();
+    }
   }
 
   return {
@@ -467,6 +531,7 @@ export function mountBorgApp(options = {}) {
     setFrame: updateFrame,
     resetView,
     diagnosticsPanel: diagnosticsPanelController,
+    assemblyViewSession,
     dispose,
   };
 
@@ -589,10 +654,18 @@ export function mountBorgApp(options = {}) {
 
   function renderStaticPanels() {
     updateSourceStatusPresentation();
-    dom.manifestStatus.textContent = "Developer test";
-    dom.manifestStatus.dataset.status = surfaceDesign.claimLevel;
-    dom.manifestStatus.title = surfaceDesign.claimLevel;
-    setTone(dom.manifestStatus, "app-facing-projection");
+    dom.manifestStatus.textContent = replayActive
+      ? activeReplayEntry.dataset.provenance.claimGrade === "chart-hypothesis"
+        ? "Chart hypothesis"
+        : "Evolved record"
+      : "Developer test";
+    dom.manifestStatus.dataset.status = replayActive
+      ? activeReplayEntry.dataset.provenance.claimGrade
+      : surfaceDesign.claimLevel;
+    dom.manifestStatus.title = replayActive
+      ? "Record claim grade; replay does not independently verify it."
+      : surfaceDesign.claimLevel;
+    setTone(dom.manifestStatus, replayActive ? "recorded-eom-output" : "app-facing-projection");
 
     renderSourceFields();
     renderEnvelopeFields();
@@ -600,13 +673,18 @@ export function mountBorgApp(options = {}) {
   }
 
   function renderDiagnosticsPanel() {
-    updatePolarityDiagnostics();
+    if (!replayActive) {
+      updatePolarityDiagnostics();
+    }
     renderDiagnosticFields();
     renderFailClosedRows();
     renderFieldRows(
       dom.authorityFields,
       [
-        ["frameAuthority", "eom-shadow-output"],
+        ["frameAuthority", replayActive ? "recorded-eom-output" : "eom-shadow-output"],
+        ["replayAuthority", replayActive
+          ? "viewing creates no evidence and performs no independent verification"
+          : "not-applicable"],
         ...Object.entries(surfaceDesign.authorityMap).map(([key, value]) => [key, value]),
       ],
     );
@@ -625,12 +703,17 @@ export function mountBorgApp(options = {}) {
 
   function resetPolarityDiagnosticsHistory() {
     polarityEscapeLedger.reset();
-    appendPolarityEscapeRows(currentFrames);
+    if (!replayActive) {
+      appendPolarityEscapeRows(currentFrames);
+    }
     state.polarityDiagnostics = null;
     state.polarityDiagnosticFrameIndex = null;
   }
 
   function appendPolarityEscapeRows(frameRows) {
+    if (replayActive) {
+      return;
+    }
     polarityEscapeLedger.appendFrameRows(frameRows, {
       center: manifest.simulationEnvelope.center,
       radius: borgEnvelopeRadius(manifest),
@@ -759,7 +842,7 @@ export function mountBorgApp(options = {}) {
       ["Source claim", manifest.claimLevel],
       ["Frame rows", currentFrames.length],
       ["Native keyframes", frameSets.length],
-      ["Sample interval", manifest.simulationEnvelope.sampleInterval],
+      ["Sample interval", activeSampleInterval()],
       ["Playback source", state.sourceMode],
       ["Initial layout", manifest.initialConditions.initialLinePolicy],
     ]);
@@ -776,7 +859,7 @@ export function mountBorgApp(options = {}) {
     const runtimeWakeHorizon = manifest.simulationEnvelope.fieldSpeed * runtimeHistoryDepth;
     renderFieldRows(dom.envelopeFields, [
       ["outerRadius", borgEnvelopeRadius(manifest)],
-      ["sampleInterval", manifest.simulationEnvelope.sampleInterval],
+      ["sampleInterval", activeSampleInterval()],
       ["seedHistoryDepth", runtimeHistoryDepth],
       ["fieldSpeed", manifest.simulationEnvelope.fieldSpeed],
       ["coupling", state.eomCoupling],
@@ -1034,7 +1117,7 @@ export function mountBorgApp(options = {}) {
   }
 
   function configureEomControls() {
-    const enabled = Boolean(options.eomShadowRunner);
+    const enabled = Boolean(options.eomShadowRunner) && !replayActive;
     dom.eomControls.hidden = !enabled;
     if (!enabled) {
       return;
@@ -1043,6 +1126,120 @@ export function mountBorgApp(options = {}) {
     dom.eomDuration.step = String(options.eomShadowRunner?.sampleInterval ?? 0.01);
     dom.eomDuration.value = String(state.eomRunDuration);
     updateEomControlPresentation();
+  }
+
+  function configureAssemblyViewControls() {
+    dom.envelopeSection.hidden = replayActive;
+    if (!replayActive) {
+      dom.replayControls.hidden = true;
+      dom.modeBoundary.dataset.mode = "simulation-workspace";
+      dom.modeLabel.textContent = "Simulation workspace";
+      dom.modeDetail.textContent =
+        "Initial conditions and EOM solver runs remain separate from record-only replay.";
+      return;
+    }
+    dom.newDistributionButton.disabled = true;
+    dom.newDistributionButton.title =
+      "Disabled in assembly-view replay; replay cannot mutate workspace initial conditions.";
+    dom.runDurationButton.disabled = true;
+    dom.initialConditionForm.querySelectorAll?.("input, select, button").forEach((control) => {
+      control.disabled = true;
+    });
+    assemblyViewControls = createBorgAssemblyViewControls({
+      documentLike,
+      session: assemblyViewSession,
+      dom: {
+        controls: dom.replayControls,
+        modeBoundary: dom.modeBoundary,
+        modeLabel: dom.modeLabel,
+        modeDetail: dom.modeDetail,
+        authorityNotice: dom.replayAuthorityNotice,
+        provenance: dom.replayProvenance,
+        recordSelect: dom.replayRecordSelect,
+        displayMode: dom.replayDisplayMode,
+        cameraMode: dom.replayCameraMode,
+        strobeFrequency: dom.replayStrobeFrequency,
+        strobeButton: dom.replayStrobeButton,
+        loopButton: dom.replayLoopPeriod,
+        exportButton: dom.replayExport,
+        filterField: dom.replayFilterField,
+        filterValue: dom.replayFilterValue,
+        grouping: dom.replayGrouping,
+        comparison: dom.replayComparison,
+        feedback: dom.replayFeedback,
+        overlayFields: dom.replayOverlayFields,
+      },
+      onRecordChange: switchReplayRecord,
+      onDisplayModeChange: setReplayDisplayMode,
+      onCameraModeChange: (mode) => assemblyViewScene.setCameraMode(mode),
+      onStrobeChange(enabled, frequency) {
+        state.replayStrobeEnabled = enabled;
+        state.replayStrobeFrequency = enabled ? frequency : null;
+        updateFrame(state.activeFrameIndex);
+      },
+      onLoopChange(enabled, period) {
+        state.replayLoopEnabled = enabled;
+        state.replayLoopPeriod = enabled ? period : null;
+      },
+      onExport: exportReplayImage,
+    });
+  }
+
+  function setReplayDisplayMode(mode) {
+    if (!replayActive) {
+      return;
+    }
+    if (activeReplayEntry.dataset.provenance.claimGrade === "chart-hypothesis" && mode === "animated") {
+      throw new TypeError("Chart-hypothesis records open as static chart poses; animated evolution is unavailable.");
+    }
+    state.replayDisplayMode = mode;
+    assemblyViewScene.setDisplayMode(mode);
+    if (mode !== "animated") {
+      stopPlayback();
+      updateFrame(frameSets[0]?.frameIndex ?? state.activeFrameIndex);
+    }
+    updateTimelineBounds();
+  }
+
+  function switchReplayRecord(entry) {
+    stopPlayback();
+    disposeDynamicRunner();
+    activeReplayEntry = entry;
+    state.replayDisplayMode = entry.dataset.provenance.claimGrade === "chart-hypothesis"
+      ? "chart-pose"
+      : "animated";
+    state.replayStrobeEnabled = false;
+    state.replayStrobeFrequency = null;
+    state.replayLoopEnabled = false;
+    state.replayLoopPeriod = null;
+    state.pathTrailDuration = entry.dataset.window.delayHorizon;
+    assemblyViewScene.setRecord(entry);
+    assemblyViewScene.setDisplayMode(state.replayDisplayMode);
+    resetDynamicRunState();
+    renderStaticPanels();
+    startDynamicNativeRunner();
+  }
+
+  function exportReplayImage() {
+    if (!replayActive) {
+      return;
+    }
+    render();
+    const dataUrl = renderer.domElement?.toDataURL?.("image/png");
+    if (!dataUrl) {
+      assemblyViewControls?.setFeedback(
+        "Static image export is unavailable because this renderer cannot provide a PNG snapshot.",
+        "bad",
+      );
+      return;
+    }
+    const link = documentLike.createElement("a");
+    link.href = dataUrl;
+    link.download = `${activeReplayEntry.sourceId}-assembly-view.png`;
+    link.click();
+    assemblyViewControls?.setFeedback(
+      `Exported ${activeReplayEntry.sourceId} at recorded time ${activeFrameTime()}.`,
+    );
   }
 
   function updateEomControlPresentation() {
@@ -1099,6 +1296,15 @@ export function mountBorgApp(options = {}) {
   }
 
   function syncRunDurationButton() {
+    if (replayActive) {
+      dom.runDurationButton.textContent = "Recorded coverage";
+      dom.runDurationButton.dataset.runDuration = "recorded-coverage";
+      dom.runDurationButton.setAttribute("aria-label", "Run mode: recorded coverage");
+      dom.runDurationButton.title =
+        "Assembly-view replay is clamped to the sealed record's coverage.";
+      dom.runDurationButton.disabled = true;
+      return;
+    }
     const preset = getRunControlPreset(state.runControlPresetId);
     const label = formatRunDurationLabel(preset);
     dom.runDurationButton.textContent = label;
@@ -1112,7 +1318,7 @@ export function mountBorgApp(options = {}) {
     const presentation = getBorgTimelineRangePresentation({
       frameIndexes,
       activeFrameIndex: state.activeFrameIndex,
-      isForever: isForeverRunPreset(getRunControlPreset(state.runControlPresetId)),
+      isForever: !replayActive && isForeverRunPreset(getRunControlPreset(state.runControlPresetId)),
       isPlaying: state.playing,
     });
     dom.timelineRange.min = String(presentation.min);
@@ -1123,12 +1329,15 @@ export function mountBorgApp(options = {}) {
     dom.timelineRange.dataset.mode = presentation.mode;
     dom.timelineRange.title = presentation.title;
     dom.playButton.disabled = frameSets.length < 2;
+    if (replayActive && state.replayDisplayMode !== "animated") {
+      dom.playButton.disabled = true;
+    }
   }
 
   function formatActiveTimelineLabel(time, frameIndex) {
     const label = formatTimelineLabel(time, frameIndex);
     const rate = `${formatBorgRealtimeRate(state.playbackAdaptiveRate)}× realtime`;
-    if (!isForeverRunPreset(getRunControlPreset(state.runControlPresetId))) {
+    if (replayActive || !isForeverRunPreset(getRunControlPreset(state.runControlPresetId))) {
       return `${label} | ${rate}`;
     }
     const bufferedThrough = frameSets.at(-1)?.frameIndex ?? frameIndex;
@@ -1238,6 +1447,14 @@ export function mountBorgApp(options = {}) {
   }
 
   function applyFrameSet(frameSet, { outputLabel, rangeValue }) {
+    const requestedFrameIndex = frameSet.frameIndex;
+    frameSet = replayDisplayFrameSet(frameSet);
+    if (frameSet.frameIndex !== requestedFrameIndex || frameSet.time !== frameSets.find(
+      (candidate) => candidate.frameIndex === requestedFrameIndex,
+    )?.time) {
+      outputLabel = formatActiveTimelineLabel(frameSet.time, frameSet.frameIndex);
+      rangeValue = frameSet.frameIndex;
+    }
     const previousDiagnosticFrameIndex = state.activeFrameIndex;
     state.activeFrameIndex = frameSet.frameIndex;
     if (dom.timelineRange.dataset.mode !== "live-follow") {
@@ -1271,8 +1488,9 @@ export function mountBorgApp(options = {}) {
     pathTrails.setVisibleWindow({
       throughFrameIndex: frameSet.frameIndex,
       throughTime: frameSet.time,
-      duration: HIGHLIGHTED_PATH_HISTORY_DURATION,
+      duration: state.pathTrailDuration,
     });
+    assemblyViewScene.updateTime(frameSet.time);
     if (
       diagnosticsPanelController.isOpen() &&
       previousDiagnosticFrameIndex !== state.activeFrameIndex
@@ -1281,6 +1499,41 @@ export function mountBorgApp(options = {}) {
     }
     updateSelectedTag();
     render();
+  }
+
+  function replayDisplayFrameSet(frameSet) {
+    if (!replayActive || !state.replayStrobeEnabled) {
+      return frameSet;
+    }
+    const strobeTime = resolveBorgAssemblyViewStrobeTime(
+      activeReplayEntry,
+      frameSet.time,
+      state.replayStrobeFrequency,
+    );
+    const sourceFrameSet = [...frameSets].reverse().find(
+      (candidate) => candidate.time <= strobeTime,
+    ) ?? frameSets[0];
+    const frames = activeReplayEntry.dataset.worldlines.map((worldline) => {
+      const evaluated = activeReplayEntry.dataset.evaluateWorldline(worldline.id, strobeTime);
+      return Object.freeze({
+        pathKey: worldline.pathKey ?? worldline.id,
+        sourceWorldlineId: worldline.id,
+        sourceOrder: worldline.sourceIndex,
+        frameIndex: sourceFrameSet?.frameIndex ?? 0,
+        time: strobeTime,
+        position: evaluated.position,
+        velocity: evaluated.velocity,
+        errorBound: evaluated.errorBound,
+        stateFlags: worldline.stateFlags,
+        runSource: BORG_EOM_RECORD_REPLAY_RUN_SOURCE,
+        valueAuthority: "display-only-declared-interpolation",
+      });
+    });
+    return Object.freeze({
+      frameIndex: sourceFrameSet?.frameIndex ?? 0,
+      time: strobeTime,
+      frames: Object.freeze(frames),
+    });
   }
 
   function refreshVelocityLines() {
@@ -1350,6 +1603,9 @@ export function mountBorgApp(options = {}) {
 
   function startPlayback({ prefillComplete = false } = {}) {
     if (state.playing) {
+      return;
+    }
+    if (replayActive && state.replayDisplayMode !== "animated") {
       return;
     }
     if (
@@ -1456,6 +1712,16 @@ export function mountBorgApp(options = {}) {
         return;
       }
       stopPlayback();
+      return;
+    }
+    if (
+      replayActive &&
+      state.replayLoopEnabled &&
+      Number.isFinite(state.replayLoopPeriod) &&
+      fromFrameSet.time >= activeReplayEntry.dataset.window.start + state.replayLoopPeriod
+    ) {
+      updateFrame(frameSets[0]?.frameIndex ?? 0);
+      startPlaybackSegment(0, now);
       return;
     }
     maybeQueueDynamicFramesAhead();
@@ -1688,6 +1954,8 @@ export function mountBorgApp(options = {}) {
     windowLike.removeEventListener("resize", resize);
     windowLike.removeEventListener("keydown", handleKeyDown);
     diagnosticsPanelController.dispose();
+    assemblyViewControls?.dispose?.();
+    assemblyViewScene.dispose();
     disposeDynamicRunner();
     boundaryShellGroup.children.slice().forEach((object) => {
       object.geometry?.dispose?.();
@@ -1706,6 +1974,18 @@ export function mountBorgApp(options = {}) {
     target.y = (position.y - center.y) * worldUnitsPerSolverUnit;
     target.z = (position.z - center.z) * worldUnitsPerSolverUnit;
     return target;
+  }
+
+  function activeFrameTime() {
+    return frameSets.find((frameSet) => frameSet.frameIndex === state.activeFrameIndex)?.time ??
+      activeReplayEntry?.dataset.window.start ??
+      0;
+  }
+
+  function activeSampleInterval() {
+    return activeReplayEntry?.dataset.window.sampleInterval ??
+      options.eomShadowRunner?.sampleInterval ??
+      manifest.simulationEnvelope.sampleInterval;
   }
 
   function fitCameraToEnvelope(margin) {
@@ -1736,8 +2016,7 @@ export function mountBorgApp(options = {}) {
   function getPlaybackMsPerNativeStep() {
     return getBorgPlaybackMsPerFrameSet({
       playbackRate: state.playbackAdaptiveRate,
-      sampleInterval: options.eomShadowRunner?.sampleInterval ??
-        manifest.simulationEnvelope.sampleInterval,
+      sampleInterval: activeSampleInterval(),
     });
   }
 
@@ -1756,8 +2035,7 @@ export function mountBorgApp(options = {}) {
     state.playbackAdaptiveRate = getBorgInFlightProtectedPlaybackRate({
       adaptiveRate,
       remainingFrameSetCount,
-      sampleInterval: options.eomShadowRunner?.sampleInterval ??
-        manifest.simulationEnvelope.sampleInterval,
+      sampleInterval: activeSampleInterval(),
       chunkInFlight: Boolean(state.dynamicChunkPromise),
       chunkElapsedMs: state.dynamicChunkStartedAt == null
         ? 0
@@ -1767,9 +2045,12 @@ export function mountBorgApp(options = {}) {
   }
 
   function getPathKeys() {
-    return [...new Set(currentFrames.map((frame) => frame.pathKey))].sort(
-      (left, right) => left - right,
-    );
+    return [...new Set(currentFrames.map((frame) => frame.pathKey))].sort((left, right) => {
+      const numericDifference = Number(left) - Number(right);
+      return Number.isFinite(numericDifference)
+        ? numericDifference
+        : String(left).localeCompare(String(right), "en", { numeric: true });
+    });
   }
 
   function getRunInitialFrameRows() {
@@ -1833,8 +2114,17 @@ export function mountBorgApp(options = {}) {
         simulationOuterRadius: borgEnvelopeRadius(manifest),
       },
     );
+    const replayOptions = replayActive
+      ? {
+          ...options,
+          eomRecordReplay: {
+            ...options.eomRecordReplay,
+            record: activeReplayEntry.rawRecord,
+          },
+        }
+      : options;
     const runnerOptions = eomRunnerOptions ?? createDefaultEomRecordReplayOptions(
-      options,
+      replayOptions,
       preset,
     );
     if (!runnerOptions) {
@@ -1894,8 +2184,7 @@ export function mountBorgApp(options = {}) {
       playbackRate: playbackSpeedPresetById(
         state.playbackSpeedPresetId,
       ).maximumRealtimeRate,
-      sampleInterval: options.eomShadowRunner?.sampleInterval ??
-        manifest.simulationEnvelope.sampleInterval,
+      sampleInterval: activeSampleInterval(),
       maximumRetainedFrameSetCount:
         BORG_LIVE_RUN_RETENTION_POLICY_V1.retainedFrameSetLimit,
     });
@@ -1956,7 +2245,11 @@ export function mountBorgApp(options = {}) {
     }
     clearTimer(deadlineTimer);
     if (generation === state.dynamicRunGeneration && state.dynamicRunner) {
-      startPlayback({ prefillComplete: true });
+      if (replayActive && state.replayDisplayMode !== "animated") {
+        updateFrame(frameSets[0]?.frameIndex ?? 0);
+      } else {
+        startPlayback({ prefillComplete: true });
+      }
     }
   }
 
@@ -2003,7 +2296,9 @@ export function mountBorgApp(options = {}) {
           ? "halted-live-native-run"
           : state.dynamicRunner.canComputeNextChunk()
             ? chunk.source
-            : "completed-live-native-run";
+            : options.eomShadowRunner
+              ? "completed-live-native-run"
+              : "completed-recorded-replay";
         state.dynamicRunnerMessage = chunk.terminalHalt
           ? `certified prefix through T=${chunk.endTime}; failed candidate rejected (${chunk.terminalHalt.code})`
           : `chunk ${chunk.chunkIndex} ready`;
@@ -2084,8 +2379,10 @@ export function mountBorgApp(options = {}) {
         failedRunner?.dispose?.();
         state.dynamicRunnerStatus = options.eomShadowRunner
           ? "live-native-error"
-          : "live-native-error";
-        state.dynamicRunnerMessage = error?.message ?? "live native runner failed";
+          : "record-replay-error";
+        state.dynamicRunnerMessage = error?.message ?? (
+          options.eomShadowRunner ? "live native runner failed" : "record replay failed"
+        );
         if (!hadLiveFrames && options.eomShadowRunner) {
           state.sourceMode = "accepted-eom-seed-history";
           currentFrames = [...getRunInitialDisplayRows()];
@@ -2247,7 +2544,7 @@ export function mountBorgApp(options = {}) {
     pathTrails.setVisibleWindow({
       throughFrameIndex: state.activeFrameIndex,
       throughTime: activeFrameSet?.time ?? Number.POSITIVE_INFINITY,
-      duration: HIGHLIGHTED_PATH_HISTORY_DURATION,
+      duration: state.pathTrailDuration,
     });
   }
 
@@ -2853,6 +3150,16 @@ export function getBorgTimelineRangePresentation({
   isForever,
   isPlaying,
 }) {
+  if (!Array.isArray(frameIndexes) || frameIndexes.length === 0) {
+    return Object.freeze({
+      min: 0,
+      max: 0,
+      value: 0,
+      disabled: true,
+      mode: "empty",
+      title: "No recorded frame is available.",
+    });
+  }
   if (isForever && isPlaying) {
     return Object.freeze({
       min: 0,

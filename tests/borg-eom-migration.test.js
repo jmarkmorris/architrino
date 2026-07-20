@@ -68,6 +68,39 @@ const trajectoryFrames = createBorgPrescribedLinearHistoryRows(
   { historyStartTime: 0, historyEndTime: 10 },
 );
 
+function createAssemblyViewBootRecord(runId = "borg-boot-record-run") {
+  return {
+    schema: "assembly-view-record.v0",
+    provenance: {
+      engineId: "eom-solver",
+      engineVersion: "boot-fixture-v1",
+      runId,
+      claimGrade: "chart-hypothesis",
+      evidenceStatus: "display-only",
+      generatingSpec: "tests/borg-eom-migration.test.js",
+      date: "2026-07-20",
+    },
+    window: { start: 0, end: 1, delayHorizon: 1, sampleInterval: 0.5 },
+    worldlines: [{
+      id: "source-a",
+      polarity: 1,
+      coverageStart: 0,
+      coverageEnd: 1,
+      interpolation: "exact-inertial-polynomial/v1",
+      segments: [{
+        startTime: 0,
+        endTime: 1,
+        coefficients: [[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]],
+        positionError: 0,
+        velocityError: 0,
+      }],
+    }],
+    binaries: [],
+    ansatz: [],
+    events: [],
+  };
+}
+
 test("Borg mounts EOM idle by default and reserves automatic compute for explicit shadow mode", async () => {
   const eomClient = { async evolveRetainedHistories() {} };
   const defaultMounts = [];
@@ -175,12 +208,7 @@ test("Borg mounts EOM idle by default and reserves automatic compute for explici
   assert.equal(explicitShadowMounts[0].autoStartEom, true);
 
 
-  const record = {
-    contractId: "eom_evolution_contract/v0",
-    runId: "borg-boot-record-run",
-    claimLevel: "evolved-record",
-    histories: [],
-  };
+  const record = createAssemblyViewBootRecord();
   const recordMounts = [];
   const fetchCalls = [];
   const recordResult = await bootBorgApp({
@@ -203,7 +231,38 @@ test("Borg mounts EOM idle by default and reserves automatic compute for explici
   assert.deepEqual(fetchCalls, ["https://example.test/run.json"]);
   assert.equal(recordMounts.length, 1);
   assert.equal(recordMounts[0].eomRecordReplay.record, record);
+  assert.deepEqual(recordMounts[0].eomRecordReplay.records, [record]);
+  assert.equal(recordMounts[0].assemblyViewSession.selectedSourceId, "borg-boot-record-run");
   assert.equal(recordMounts[0].eomShadowRunner, undefined);
+
+  const comparisonMounts = [];
+  await bootBorgApp({
+    search:
+      "?eomRecord=https://example.test/chart.json&eomRecord=https://example.test/evolved.json",
+    createEomClient() {
+      throw new Error("record replay must never construct the live EOM client");
+    },
+    fetchLike: async (url) => ({
+      ok: true,
+      async json() {
+        return createAssemblyViewBootRecord(
+          url.includes("chart") ? "chart-direct-record" : "evolved-direct-record",
+        );
+      },
+    }),
+    mountApp(options) {
+      comparisonMounts.push(options);
+      return options;
+    },
+  });
+  assert.deepEqual(
+    comparisonMounts[0].assemblyViewSession.records.map((entry) => entry.sourceId),
+    ["chart-direct-record", "evolved-direct-record"],
+  );
+  assert.deepEqual(comparisonMounts[0].eomRecordReplay.sourceUrls, [
+    "https://example.test/chart.json",
+    "https://example.test/evolved.json",
+  ]);
 
   await assert.rejects(
     bootBorgApp({
@@ -213,7 +272,7 @@ test("Borg mounts EOM idle by default and reserves automatic compute for explici
         throw new Error("must not mount on a failed record fetch");
       },
     }),
-    /Borg EOM record fetch failed \(404\)/,
+    /Borg assembly-view record fetch failed \(404\)/,
   );
 });
 

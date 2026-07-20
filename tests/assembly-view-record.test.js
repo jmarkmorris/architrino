@@ -31,6 +31,7 @@ function createAssemblyViewRecordFixture(overrides = {}) {
     schema: ASSEMBLY_VIEW_RECORD_SCHEMA,
     provenance: {
       engineId: "eom-solver",
+      engineVersion: "eom-fixture-build-v1",
       runId: "assembly-view-fixture-run",
       claimGrade: "evolved-record",
       evidenceStatus: "executable_architecture_evidence",
@@ -47,6 +48,9 @@ function createAssemblyViewRecordFixture(overrides = {}) {
         coverageStart: "0",
         coverageEnd: "2",
         interpolation: "exact-inertial-polynomial/v1",
+        declaredPrehistorySegmentCount: 0,
+        evolvedSegmentCount: 1,
+        historyFingerprint: "fixture-path-1",
         segments: [inertialSegment(0, 2, [1, 2, 3], [0.5, 0, -0.25])],
         samples: [{ t: 0, position: { x: 1, y: 2, z: 3 } }],
       },
@@ -58,6 +62,9 @@ function createAssemblyViewRecordFixture(overrides = {}) {
         coverageStart: "0",
         coverageEnd: "2",
         interpolation: "exact-inertial-polynomial/v1",
+        declaredPrehistorySegmentCount: 0,
+        evolvedSegmentCount: 1,
+        historyFingerprint: "fixture-path-2",
         segments: [inertialSegment(0, 2, [-1, 0, 0], [0, 0.5, 0])],
       },
     ],
@@ -156,8 +163,48 @@ test("assembly-view-record worldlines without segments fail closed", () => {
   );
 });
 
+test("assembly-view-record required provenance and finite values fail closed with the field", () => {
+  const missingVersion = createAssemblyViewRecordFixture();
+  delete missingVersion.provenance.engineVersion;
+  assert.throws(
+    () => createEomHistoryDataset(missingVersion),
+    /provenance\.engineVersion must be concrete/,
+  );
+
+  const nonfinite = createAssemblyViewRecordFixture();
+  nonfinite.worldlines[1].segments[0].coefficients[2][1] = Number.POSITIVE_INFINITY;
+  assert.throws(
+    () => createEomHistoryDataset(nonfinite),
+    /must not contain non-finite numbers/,
+  );
+
+  const nonfiniteOverlay = createAssemblyViewRecordFixture();
+  nonfiniteOverlay.binaries = [{ frequency: "Infinity" }];
+  assert.throws(
+    () => createEomHistoryDataset(nonfiniteOverlay),
+    /binaries\[0\]\.frequency/,
+  );
+
+  const mismatchedCoverage = createAssemblyViewRecordFixture();
+  mismatchedCoverage.worldlines[0].coverageEnd = 1;
+  assert.throws(
+    () => createEomHistoryDataset(mismatchedCoverage),
+    /declared coverage \[0, 1\] does not match retained segments \[0, 2\]/,
+  );
+});
+
+test("evolved records require retained-history provenance on every worldline", () => {
+  const missingFingerprint = createAssemblyViewRecordFixture();
+  delete missingFingerprint.worldlines[0].historyFingerprint;
+  assert.throws(
+    () => createEomHistoryDataset(missingFingerprint),
+    /worldlines\[0\]\.historyFingerprint must be concrete/,
+  );
+});
+
 test("converter bars sampled replay reconstruction from evolved-record evidence", () => {
   const record = convertBorgTrajectoryToAssemblyViewRecord(createBorgTrajectoryFixture(), {
+    engineVersion: "converted-fixture-v1",
     generatingSpec: "reference/priorities/eom-attractor-search/priorities.md",
     delayHorizon: 10,
     date: "2026-07-16",
@@ -201,13 +248,20 @@ test("converter fails closed on foreign schemas and undeclared polarity", () => 
     stateFlags: 0,
   }));
   assert.throws(
-    () => convertBorgTrajectoryToAssemblyViewRecord(undeclaredPolarity),
+    () => convertBorgTrajectoryToAssemblyViewRecord(undeclaredPolarity, {
+      engineVersion: "converted-fixture-v1",
+      generatingSpec: "tests/assembly-view-record.test.js",
+      delayHorizon: 1,
+    }),
     /requires a declared path polarity/,
   );
 });
 
 test("Borg record replay runner plays assembly-view records directly", async () => {
   const record = convertBorgTrajectoryToAssemblyViewRecord(createBorgTrajectoryFixture(), {
+    engineVersion: "converted-fixture-v1",
+    generatingSpec: "tests/assembly-view-record.test.js",
+    delayHorizon: 1,
     date: "2026-07-16",
   });
   const runner = createBorgEomRecordReplayRunner(record, {

@@ -1,0 +1,80 @@
+{
+  "schema": "assembly-view-record.v0",
+  "sourceId": "browser-chart-record",
+  "provenance": {
+    "engineId": "eom-solver",
+    "engineVersion": "browser-fixture-build-v1",
+    "runId": "browser-chart-record",
+    "claimGrade": "chart-hypothesis",
+    "evidenceStatus": "display-only",
+    "generatingSpec": "tests/fixtures/borg-assembly-view-chart-record.v0.json",
+    "date": "2026-07-20"
+  },
+  "window": {
+    "start": 0,
+    "end": 1,
+    "delayHorizon": 0.5,
+    "sampleInterval": 0.05
+  },
+  "worldlines": [
+    {
+      "id": "chart-positrino",
+      "pathKey": "chart-positrino",
+      "polarity": 1,
+      "stateFlags": 1,
+      "coverageStart": 0,
+      "coverageEnd": 1,
+      "interpolation": "exact-inertial-polynomial/v1",
+      "segments": [
+        {
+          "startTime": 0,
+          "endTime": 1,
+          "coefficients": [[0.35, 0, 0, 0], [0.5, 0, 0, 0], [0.5, 0, 0, 0]],
+          "positionError": 0,
+          "velocityError": 0
+        }
+      ]
+    },
+    {
+      "id": "chart-electrino",
+      "pathKey": "chart-electrino",
+      "polarity": -1,
+      "stateFlags": 2,
+      "coverageStart": 0,
+      "coverageEnd": 1,
+      "interpolation": "exact-inertial-polynomial/v1",
+      "segments": [
+        {
+          "startTime": 0,
+          "endTime": 1,
+          "coefficients": [[0.65, 0, 0, 0], [0.5, 0, 0, 0], [0.5, 0, 0, 0]],
+          "positionError": 0,
+          "velocityError": 0
+        }
+      ]
+    }
+  ],
+  "binaries": [
+    {
+      "id": "chart-binary",
+      "members": ["chart-positrino", "chart-electrino"],
+      "frequency": 1,
+      "planarOffset": 0.3,
+      "phase": 0,
+      "planeOrientation": { "normal": { "x": 0, "y": 0, "z": 1 } }
+    }
+  ],
+  "ansatz": [
+    {
+      "label": "source-carried chart curve",
+      "points": [
+        { "x": 0.35, "y": 0.5, "z": 0.5 },
+        { "x": 0.4, "y": 0.6, "z": 0.5 },
+        { "x": 0.5, "y": 0.65, "z": 0.5 },
+        { "x": 0.6, "y": 0.6, "z": 0.5 },
+        { "x": 0.65, "y": 0.5, "z": 0.5 }
+      ]
+    }
+  ],
+  "events": []
+}

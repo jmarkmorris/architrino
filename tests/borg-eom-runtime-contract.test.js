@@ -248,14 +248,14 @@ test("Borg record replay chunks carry recorded frames with record provenance", a
   await runner.dispose();
 });
 
-test("Borg record replay marks canonical records with canonical value authority", async () => {
+test("Borg record replay never upgrades authority from producer-asserted evidence status", async () => {
   const runner = createBorgEomRecordReplayRunner(
     createBorgEomRecordFixture({ evidenceStatus: "canonical" }),
     { targetDuration: 0.6, chunkDuration: 0.6, sampleInterval: 0.2 },
   );
   const chunk = await runner.computeNextChunk();
   assert.equal(chunk.evidenceStatus, "canonical");
-  assert.equal(chunk.frames[0].valueAuthority, "canonical-eom-output");
+  assert.equal(chunk.frames[0].valueAuthority, "recorded-eom-output");
   await runner.dispose();
 });
 
@@ -391,7 +391,10 @@ test("Borg path-history renderer uses native row segments, not visual smoothing 
   assert.match(runtimeSource, /toggleRunDurationMode/);
   assert.doesNotMatch(runtimeSource, /startDynamicNativeRunnerIfNeeded/);
   assert.match(runtimeSource, /dom\.playButton\.disabled = frameSets\.length < 2/);
-  assert.match(runtimeSource, /if \(autoStartEom\) \{\s*startDynamicNativeRunner\(\);\s*\}/);
+  assert.match(
+    runtimeSource,
+    /if \(autoStartEom\) \{\s*if \(replayActive\) \{\s*startRunAndPlayback\(\);\s*\} else \{\s*startDynamicNativeRunner\(\);/,
+  );
   assert.match(runtimeSource, /applyLiveRunRetentionIfNeeded/);
   assert.match(runtimeSource, /compactedPathHistory/);
   assert.match(runtimeSource, /switchRunControlPreset/);

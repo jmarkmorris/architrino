@@ -170,6 +170,35 @@
         color: #ffb8ad;
       }
 
+      .borg-mode-boundary {
+        display: grid;
+        gap: 4px;
+        padding: 9px 10px;
+        border: 1px solid rgba(94, 183, 183, 0.5);
+        border-radius: 7px;
+        background: #17231f;
+      }
+
+      .borg-mode-boundary strong {
+        color: #d8fff3;
+        font-size: 12px;
+      }
+
+      .borg-mode-boundary span {
+        color: #abc8be;
+        font-size: 10px;
+        line-height: 1.35;
+      }
+
+      .borg-mode-boundary[data-mode="assembly-view-replay"] {
+        border-color: rgba(224, 176, 79, 0.72);
+        background: #282317;
+      }
+
+      .borg-mode-boundary[data-mode="assembly-view-replay"] strong {
+        color: #ffe3a4;
+      }
+
       .borg-section {
         margin: 0 0 14px;
         padding-top: 12px;
@@ -570,6 +599,87 @@
         font: inherit;
       }
 
+      .borg-replay-controls {
+        display: grid;
+        gap: 9px;
+      }
+
+      .borg-replay-controls[hidden] {
+        display: none;
+      }
+
+      .borg-replay-control {
+        display: grid;
+        gap: 4px;
+        color: #abc09f;
+        font-size: 10px;
+        font-weight: 720;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+      }
+
+      .borg-replay-control select,
+      .borg-replay-control input,
+      .borg-replay-action {
+        width: 100%;
+        min-width: 0;
+        height: 34px;
+        padding: 0 8px;
+        border: 1px solid rgba(139, 164, 126, 0.34);
+        border-radius: 6px;
+        background: #171c16;
+        color: #eaf6df;
+      }
+
+      .borg-replay-action {
+        cursor: pointer;
+        font-size: 11px;
+        font-weight: 780;
+      }
+
+      .borg-replay-action:disabled,
+      .borg-replay-control select:disabled,
+      .borg-replay-control input:disabled {
+        cursor: not-allowed;
+        opacity: 0.5;
+      }
+
+      .borg-replay-action:focus-visible,
+      .borg-replay-control select:focus-visible,
+      .borg-replay-control input:focus-visible {
+        border-color: #ffcf67;
+        outline: 2px solid rgba(255, 207, 103, 0.9);
+        outline-offset: 2px;
+      }
+
+      .borg-replay-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 7px;
+      }
+
+      .borg-replay-notice {
+        margin: 0;
+        padding: 8px;
+        border: 1px solid rgba(224, 176, 79, 0.36);
+        border-radius: 6px;
+        color: #ffdfa0;
+        background: #241f15;
+        font-size: 10px;
+        line-height: 1.4;
+      }
+
+      .borg-replay-notice[data-tone="bad"] {
+        border-color: rgba(229, 116, 99, 0.54);
+        color: #ffb8ad;
+        background: #291b17;
+      }
+
+      .borg-replay-provenance {
+        display: grid;
+        gap: 5px;
+      }
+
       .borg-eom-form .borg-run-duration-button {
         align-self: end;
         width: 100%;
@@ -865,6 +975,72 @@
           </div>
         </header>
 
+        <div id="borg-mode-boundary" class="borg-mode-boundary" data-mode="simulation-workspace" role="status">
+          <strong id="borg-mode-label">Simulation workspace</strong>
+          <span id="borg-mode-detail">Initial conditions and EOM solver runs remain separate from record-only replay.</span>
+        </div>
+
+        <section id="borg-assembly-view-controls" class="borg-section borg-replay-controls" aria-label="Assembly-view replay controls" hidden>
+          <h2>Assembly-view Replay</h2>
+          <p id="borg-replay-authority-notice" class="borg-replay-notice"></p>
+          <div id="borg-replay-provenance" class="borg-replay-provenance"></div>
+          <label class="borg-replay-control">
+            Raw record
+            <select id="borg-replay-record-select"></select>
+          </label>
+          <div class="borg-replay-grid">
+            <label class="borg-replay-control">
+              Display
+              <select id="borg-replay-display-mode">
+                <option value="animated">Animated replay</option>
+                <option value="chart-pose">Chart pose</option>
+                <option value="swept-envelope">Swept envelope</option>
+              </select>
+            </label>
+            <label class="borg-replay-control">
+              Camera
+              <select id="borg-replay-camera-mode">
+                <option value="free">Free camera</option>
+                <option value="co-rotating">Co-rotating</option>
+              </select>
+            </label>
+          </div>
+          <div class="borg-replay-grid">
+            <label class="borg-replay-control">
+              Strobe frequency
+              <input id="borg-replay-strobe-frequency" type="number" min="0" step="any" inputmode="decimal" />
+            </label>
+            <button id="borg-replay-strobe-button" class="borg-replay-action" type="button" aria-pressed="false">Strobe off</button>
+          </div>
+          <div class="borg-replay-grid">
+            <button id="borg-replay-loop-period" class="borg-replay-action" type="button" aria-pressed="false">Loop one period</button>
+            <button id="borg-replay-export" class="borg-replay-action" type="button">Export image</button>
+          </div>
+          <div class="borg-replay-grid">
+            <label class="borg-replay-control">
+              Source filter
+              <select id="borg-replay-filter-field"></select>
+            </label>
+            <label class="borg-replay-control">
+              Filter value
+              <select id="borg-replay-filter-value"></select>
+            </label>
+          </div>
+          <label class="borg-replay-control">
+            S3 navigation grouping
+            <select id="borg-replay-grouping">
+              <option value="raw">Raw source order</option>
+              <option value="s3">Group by source key</option>
+            </select>
+          </label>
+          <label class="borg-replay-control">
+            Comparison record
+            <select id="borg-replay-comparison"></select>
+          </label>
+          <output id="borg-replay-feedback" class="borg-replay-notice" role="status"></output>
+          <div id="borg-replay-overlay-fields" class="borg-field-list"></div>
+        </section>
+
         <section id="borg-eom-controls" class="borg-section borg-eom-controls" aria-label="EOM run and initial condition controls" hidden>
           <h2>EOM Run</h2>
           <form id="borg-initial-condition-form" class="borg-eom-form" novalidate>
@@ -935,7 +1111,7 @@
           <div id="borg-initial-condition-fields" class="borg-field-list"></div>
         </section>
 
-        <section class="borg-section" aria-label="Simulation envelope fields">
+        <section id="borg-envelope-section" class="borg-section" aria-label="Simulation envelope fields">
           <h2>Simulation Envelope</h2>
           <div id="borg-envelope-fields" class="borg-field-list"></div>
         </section>

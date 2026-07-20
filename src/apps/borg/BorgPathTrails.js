@@ -271,8 +271,11 @@ export function createBorgPathTrails({
   }
 
   function resetPath(pathKey) {
-    retainedTrails.get(Number(pathKey))?.clear();
-    compactedTrails.get(Number(pathKey))?.clear();
+    const exactKey = retainedTrails.has(pathKey) || compactedTrails.has(pathKey)
+      ? pathKey
+      : Number(pathKey);
+    retainedTrails.get(exactKey)?.clear();
+    compactedTrails.get(exactKey)?.clear();
   }
 
   function setCompactedPathHistory(compactedPathHistory) {

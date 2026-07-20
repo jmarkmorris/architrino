@@ -1374,6 +1374,8 @@ void run(
                       << event.monotone_residual_cells
                       << ",\"directJointCells\":"
                       << event.direct_joint_cells
+                      << ",\"jointDisplacementCells\":"
+                      << event.joint_displacement_cells
                       << ",\"receiverPositionErrorUpper\":"
                       << event.receiver_position_error_upper
                       << ",\"receiverVelocityErrorUpper\":"

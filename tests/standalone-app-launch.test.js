@@ -35,7 +35,7 @@ function createSessionStorageMock() {
   };
 }
 
-test("work-in-progress public app scenes resolve to standalone app paths", () => {
+test("standalone app scene mappings resolve to standalone app paths", () => {
   assert.equal(getStandaloneAppPathForScene("assembly-explorer"), "assembly-explorer.html");
   assert.equal(getStandaloneAppPathForScene("causal-delay-feedback"), "causal-delay-feedback.html");
   assert.equal(getStandaloneAppPathForScene("equation-mapping"), "equation-mapping.html");
@@ -175,6 +175,19 @@ test("standalone app home controls avoid bare index navigation", () => {
     assert.equal(runtime.includes('NAVIGATOR_HREF = "./index.html"'), false, runtimePath);
     assert.equal(runtime.includes('createNavLink("./index.html", "Home")'), false, runtimePath);
   }
+});
+
+test("Applications scene does not expose Assembly Explorer", () => {
+  const applicationsScene = JSON.parse(readRepoFile("content/scenes/archie/applications.json"));
+
+  assert.equal(
+    applicationsScene.scene.children.some((child) => child.nodeId === "assembly_explorer"),
+    false
+  );
+  assert.equal(
+    applicationsScene.objects.some((object) => object.id === "assembly_explorer"),
+    false
+  );
 });
 
 test("Applications scene exposes Equation Mapping as a standalone app scene", () => {

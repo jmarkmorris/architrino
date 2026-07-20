@@ -45,10 +45,6 @@
         "scenePath": "content/scenes/archie/molecule.json"
       },
       {
-        "nodeId": "assembly_explorer",
-        "scenePath": "content/scenes/archie/assembly_explorer.json"
-      },
-      {
         "nodeId": "causal_delay_feedback",
         "scenePath": "content/scenes/archie/causal_delay_feedback.json"
       },
@@ -121,14 +117,6 @@
       "radius": 2.2,
       "color": "#6d28d9",
       "labelTitle": "Molecule"
-    },
-    {
-      "id": "assembly_explorer",
-      "title": "Assembly Configuration Explorer",
-      "radius": 2.2,
-      "color": "#0f5f56",
-      "labelTitle": "Assembly Explorer",
-      "labelBadge": ""
     },
     {
       "id": "causal_delay_feedback",

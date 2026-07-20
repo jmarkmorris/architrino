@@ -14,6 +14,7 @@ import {
   createBorgInteractiveDefaults,
   createBorgPlacementPolicy,
 } from "./BorgInteractiveDefaults.js";
+import { createBorgAssemblyViewSession } from "./BorgAssemblyViewSession.js";
 
 export const BORG_DEFAULT_RUNTIME_MODE = "eom-shadow";
 export const BORG_RECORD_REPLAY_RUNTIME_MODE = "eom-record-replay";
@@ -29,17 +30,25 @@ export async function bootBorgApp({
   const query = new URLSearchParams(search);
   const runtimeMode = resolveBorgRuntimeMode(query);
   if (runtimeMode === BORG_RECORD_REPLAY_RUNTIME_MODE) {
-    const recordUrl = query.get("eomRecord");
-    const response = await fetchLike(recordUrl);
-    if (!response?.ok) {
-      throw new Error(
-        `Borg EOM record fetch failed (${response?.status ?? "no response"}): ${recordUrl}`,
-      );
-    }
-    const record = await response.json();
+    const recordUrls = query.getAll("eomRecord");
+    const records = await Promise.all(recordUrls.map(async (recordUrl) => {
+      const response = await fetchLike(recordUrl);
+      if (!response?.ok) {
+        throw new Error(
+          `Borg assembly-view record fetch failed (${response?.status ?? "no response"}): ${recordUrl}`,
+        );
+      }
+      return response.json();
+    }));
+    const assemblyViewSession = createBorgAssemblyViewSession(records);
     return mountApp({
       manifest,
-      eomRecordReplay: { record },
+      assemblyViewSession,
+      eomRecordReplay: {
+        record: records[0],
+        records,
+        sourceUrls: Object.freeze([...recordUrls]),
+      },
     });
   }
 

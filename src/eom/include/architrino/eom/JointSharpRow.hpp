@@ -37,6 +37,7 @@ struct JointSharpRowCertificate {
   std::array<double, 3> acceleration_projection_radii_upper{};
   bool input_boxes_dominate = false;
   bool accepted_acceleration_dominates = false;
+  bool used_accepted_acceleration_fallback = false;
 };
 
 // Centered mean-value propagation for one current sharp acceleration row.
