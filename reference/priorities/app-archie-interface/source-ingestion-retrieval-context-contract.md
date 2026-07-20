@@ -28,9 +28,11 @@ The answer engine source contract decides what can be claimed from the retrieved
 
 It is not runtime indexing code. It is the policy and schema target for future ingestion jobs, retrieval indexes, source route validators, source-chip rendering tests, answer fixtures, token receipts, visual artifacts, speech artifacts, issue drafts, and issue-mining reports.
 
-## Current Schema-Only Dry Run
+## Current Fixture-Backed Source Index
 
-The service scaffold now includes a source-index dry-run contract in [schema.json](../../../src/archie-service/contracts/v1/schema.json), a fixture at [source-index-dry-run.v1.json](../../../tests/archie-service/fixtures/source-index/source-index-dry-run.v1.json), and a negative validator plan at [negative-validator-suite.v1.json](../../../tests/archie-service/fixtures/validators/negative-validator-suite.v1.json).
+The service scaffold now includes source-index build-input, snapshot, exact-content-view, search-view, graph-view, metadata-view, dry-run, and negative-suite contracts in [schema.json](../../../src/archie-service/contracts/v1/schema.json). The deterministic implementation is [snapshot-v1.mjs](../../../src/archie-service/source-index/snapshot-v1.mjs); the review fixtures live under [source-index](../../../tests/archie-service/fixtures/source-index/source-index-build-input.v1.json); and [build-source-index.mjs](../../../scripts/archie-service/build-source-index.mjs) writes or checks the expected snapshot without enabling runtime answer generation.
+
+The bounded `search`, `read`, `topics`, and `neighbors` contract is fixture-backed in [MCP Tool Contract V1](../app-mcp/mcp-tool-contract-v1.md). Its pure query engine reads only the accepted snapshot, returns snapshot provenance and source chips, paginates records or exact content, excludes priority material publicly, and returns typed errors for missing, unauthorized, stale, incompatible, malformed, or over-budget requests. The [local fixture MCP adapter](../app-mcp/local-fixture-mcp-adapter.md) now exposes those semantics through a subprocess-tested public-scope stdio surface. Named-client conformance and manifest `source_context` population remain unresolved.
 
 The dry run proves the first manifest-facing route cases without enabling runtime answer generation:
 
@@ -46,7 +48,7 @@ The dry run proves the first manifest-facing route cases without enabling runtim
 
 Each dry-run case declares the requested route, route surface, expected disposition, source chip, manifest `sourceContext` fragment, and the invariants `feedsManifestSourceContext`, `noModelMemorySubstitution`, and `privatePromptIncluded: false`.
 
-This is still schema-only. The next implementation step is a check-mode source-index builder that can produce these route cases from current repo artifacts and fail closed when any route lacks authority, freshness, visibility, System Card routing, secret-boundary safety, private-prompt redaction, current terms, action confirmation, or source-authority discipline.
+The fixture-backed builder now produces deterministic hashed exact-content, search, graph, and metadata views from representative live repository sources. It fails closed on missing sources, duplicate ids, invalid canonical parents, priority authority or visibility inflation, false equation or figure provenance, stale source hashes, and altered view hashes. This is not yet complete production-corpus enumeration or a runtime `source_context` service.
 
 ## Core Invariant
 
@@ -217,18 +219,16 @@ The future implementation should include retrieval fixtures for:
 ## Implementation Handoff
 
 Closure goal:
-Turn the Source Ingestion And Retrieval Context Contract into a check-mode source-index builder, source-record normalization rules, source-chip payloads, freshness validators, missing-route fixtures, and `source_context` population tests for the Archie service.
+Extend the fixture-backed source-index snapshot into complete corpus record enumeration and manifest `source_context` population while preserving the accepted hash, provenance, visibility, canonical-parent, and source-authority gates.
 
 Use this packet, [assistant-mode-contract.md](../archie/assistant-mode-contract.md), [answer-artifact-manifest.md](answer-artifact-manifest.md), [manifest-service-contracts.md](manifest-service-contracts.md), [observability-public-status-incident-contract.md](observability-public-status-incident-contract.md), and [answer-engine-source-contract.md](answer-engine-source-contract.md) as the source of truth.
 
 Task:
-- Define source record schemas for authored corpus, generated reading copies, scene routes, app guides, Archie references, priority material, and curated external comparison sources.
-- Use the schema-only dry-run fixture as the first expected-output contract for markdown section, sphere portion, full-document sphere, app guide, System Card, priority exclusion, and missing-route behavior.
-- Use the negative validator suite to keep source output from enabling browser secrets, private prompt leakage, low-quality speech fallback, unconfirmed GitHub side effects, stale terms, or source-authority inflation.
-- Encode source freshness, canonical-parent, visibility, source-chip, and missing-route validation.
-- Encode source-miss, stale-index, excluded-source, retrieval-diagnostic, and source-index candidate observability classes.
-- Populate manifest `source_context` before answer generation, speech, visuals, token receipts, issue drafts, saved notes, or issue mining.
-- Add fixtures for published corpus, generated-copy parent routing, scene routes, app guides, priority visibility, external-source deferral, missing routes, stale indexes, System Card routing, source chips, and private-material exclusion.
+- Expand the representative hashed snapshot builder into complete corpus, generated-copy, scene-route, app-guide, Archie-reference, and policy-controlled priority/external record enumeration.
+- Populate manifest `source_context` from the accepted snapshot before answer generation, speech, visuals, token receipts, issue drafts, saved notes, or issue mining.
+- Add freshness and rollback behavior for full snapshots without weakening canonical-parent, visibility, source-chip, missing-route, or source-authority checks.
+- Preserve the existing route dry runs and source-index negative suite while adding complete-source fixtures and retrieval-context outputs.
+- Emit source-miss, stale-index, excluded-source, retrieval-diagnostic, and source-index candidate observability classes without private prompt text.
 
 Constraints:
 - Do not use model memory as public source authority.

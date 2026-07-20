@@ -44,9 +44,11 @@ export function createBorgAssemblyViewControls({
     dom.modeDetail.textContent =
       "Sealed record only. Workspace initial conditions and the EOM solver are disabled.";
     dom.authorityNotice.textContent = presentation.authorityNotice;
+    const prescribedGeometry = presentation.provenance.prescribedGeometry;
     renderFieldRows(documentLike, dom.provenance, [
       ["Record type", presentation.claimLabel],
-      ["Engine", `${presentation.provenance.engineId} ${presentation.provenance.engineVersion}`],
+      [prescribedGeometry ? "Geometry source" : "Engine", `${presentation.provenance.engineId} ${presentation.provenance.engineVersion}`],
+      ["Physics invoked", prescribedGeometry ? "no — prescribed chart arithmetic only" : "see source engine provenance"],
       ["Run id", presentation.provenance.runId],
       ["Claim grade", presentation.provenance.claimGrade],
       ["Evidence status", presentation.provenance.evidenceStatus],
@@ -61,10 +63,13 @@ export function createBorgAssemblyViewControls({
     renderOverlayRows(presentation);
 
     dom.displayMode.value = presentation.staticChartPose ? "chart-pose" : "animated";
-    dom.displayMode.querySelector?.('option[value="animated"]')?.toggleAttribute?.(
-      "disabled",
-      presentation.staticChartPose,
-    );
+    const animatedOption = dom.displayMode.querySelector?.('option[value="animated"]');
+    if (animatedOption) {
+      animatedOption.textContent = presentation.staticChartPose
+        ? "Prescribed path playback"
+        : "Animated replay";
+      animatedOption.toggleAttribute?.("disabled", false);
+    }
     dom.cameraMode.value = "free";
     const loop = resolveBorgAssemblyViewLoopPeriod(entry);
     dom.loopButton.disabled = !loop.available;
@@ -164,17 +169,21 @@ export function createBorgAssemblyViewControls({
     const binaries = presentation.binaryRows.length === 0
       ? "unavailable"
       : presentation.binaryRows.map((binary) =>
-        `${binary.sourceId}: f=${format(binary.frequency)}, separation=${format(binary.planarOffset)}`,
+        `${binary.sourceId}: f=${format(binary.frequency)}, radius=${format(binary.raw.layerRadius)}, cap=${format(binary.raw.capAngle)}, separation=${format(binary.planarOffset)}, speed=${format(binary.raw.carrierSpeed)}`,
       ).join(" | ");
     const events = presentation.eventRows.length === 0
       ? "unavailable"
       : presentation.eventRows.map((event) =>
         `${event.kind}@${format(event.time)}${event.worldlineId == null ? "" : `:${event.worldlineId}`}`,
       ).join(" | ");
+    const axes = presentation.binaryRows.filter((binary) =>
+      binary.raw?.axisPoint && Number.isFinite(Number(binary.raw?.axisDisplayHalfLength))
+    );
     renderFieldRows(documentLike, dom.overlayFields, [
       ["Polarity", "source-carried per worldline"],
       ["Speed relative to c_f", presentation.fieldSpeedStatus],
       ["Binaries", binaries],
+      ["Binary axes", axes.length === 0 ? "unavailable" : `${axes.length} source-carried axis rows`],
       ["Events", events],
       ["Branch status", presentation.sourceStatuses.branch ?? "unavailable"],
       ["Eigen-braid status", presentation.sourceStatuses.eigenBraid ?? "unavailable"],

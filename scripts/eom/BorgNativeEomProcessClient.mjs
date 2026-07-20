@@ -8,8 +8,8 @@ const BORG_EOM_CONTRACT_ID = "eom_evolution_contract/v1";
 const BORG_EOM_MODEL_BINDING_ID = "master_eom_binding/v1";
 
 export const BORG_NATIVE_EOM_PROCESS_CLIENT_VERSION =
-  "borg-native-eom-process-client.v7";
-export const BORG_NATIVE_EOM_PROTOCOL_MAGIC = "EOM_BORG_NATIVE_V8";
+  "borg-native-eom-process-client.v8";
+export const BORG_NATIVE_EOM_PROTOCOL_MAGIC = "EOM_BORG_NATIVE_V9";
 
 export function createBorgNativeEomProcessClient({
   binaryPath,
@@ -62,7 +62,8 @@ export function createBorgNativeEomProcessClient({
       requestQueue = responsePromise.catch(() => undefined);
       const response = await responsePromise;
       const merged = mergePublishedExtensions(request, response);
-      if (merged?.status === "completed" && Array.isArray(merged.histories)) {
+      if (request.runGrade === "certified" &&
+          merged?.status === "completed" && Array.isArray(merged.histories)) {
         wireHistoryCache = merged.histories;
         wireHistoryCacheGeneration = workerGeneration;
       } else {
@@ -133,7 +134,12 @@ export function createBorgNativeEomProcessClient({
         return;
       }
       const timeout = setTimeout(() => {
-        terminateWorker(new Error(`EOM process timed out after ${timeoutMs} ms.`));
+        const error = new Error(`EOM process timed out after ${timeoutMs} ms.`);
+        error.code = request.runGrade === "certified"
+          ? "certified_execution_timeout"
+          : "display_execution_timeout";
+        error.timeoutMs = timeoutMs;
+        terminateWorker(error);
       }, timeoutMs);
       activeRequest = { resolve, reject, timeout };
       worker.stdin.write(protocol, (error) => {
@@ -215,6 +221,9 @@ export function encodeNativeRequest(request, { cachedHistories = null } = {}) {
   }
   if (!Array.isArray(request.histories) || request.histories.length === 0) {
     throw new TypeError("EOM process request lacks retained histories.");
+  }
+  if (!["certified", "display"].includes(request.runGrade)) {
+    throw new TypeError("EOM process request requires runGrade certified or display.");
   }
   const controls = request.numericalControls ?? {};
   const model = request.modelControls ?? {};
@@ -307,6 +316,7 @@ export function encodeNativeRequest(request, { cachedHistories = null } = {}) {
       allocations.precision.roundingMode,
       allocations.finiteWidth.receiverAllocationRule,
       allocations.ordinary.quadratureTolerance,
+      request.runGrade,
       request.histories.length,
     ]),
   ];

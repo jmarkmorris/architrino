@@ -1,4 +1,5 @@
 #include "architrino/eom/CoupledEvolution.hpp"
+#include "architrino/eom/DisplayEvaluation.hpp"
 #include "architrino/eom/ShadowAffineDiagnostic.hpp"
 
 #include <algorithm>
@@ -21,7 +22,7 @@ namespace eom = architrino::eom;
 
 namespace {
 
-constexpr const char* kBorgNativeProtocolMagic = "EOM_BORG_NATIVE_V8";
+constexpr const char* kBorgNativeProtocolMagic = "EOM_BORG_NATIVE_V9";
 
 void print_json_number(double value) {
   if (std::isfinite(value)) {
@@ -38,6 +39,184 @@ struct ParsedPath {
   std::size_t input_segment_count;
   eom::RetainedHistory history;
 };
+
+std::string display_decimal_token(double value) {
+  if (!std::isfinite(value)) {
+    throw std::runtime_error("display_nonfinite_state");
+  }
+  std::ostringstream stream;
+  stream << std::setprecision(std::numeric_limits<double>::max_digits10)
+         << value;
+  return stream.str();
+}
+
+eom::NativeCoupledEvolutionCertificate evolve_display_point_histories(
+    const eom::NativeCoupledEvolutionRequest& request) {
+  double current_time = std::strtod(request.start_time.c_str(), nullptr);
+  const double requested_end = std::strtod(request.end_time.c_str(), nullptr);
+  const double requested_step = std::strtod(request.initial_step.c_str(), nullptr);
+  if (!std::isfinite(current_time) || !std::isfinite(requested_end) ||
+      !std::isfinite(requested_step) || !(requested_end > current_time) ||
+      !(requested_step > 0.0)) {
+    throw std::invalid_argument("display_invalid_evaluation_request");
+  }
+  std::vector<eom::NativePublishedPath> histories;
+  histories.reserve(request.paths.size());
+  for (const auto& path : request.paths) {
+    histories.push_back({path.path_id, path.history});
+  }
+  std::size_t retained_segment_count = 0U;
+  for (const auto& path : histories) {
+    retained_segment_count += path.history.segments().size();
+  }
+  const auto requested_step_count = static_cast<std::size_t>(std::ceil(
+      (requested_end - current_time) / requested_step));
+  const long double memory_estimate_wide =
+      static_cast<long double>(
+          retained_segment_count + requested_step_count * histories.size()) *
+          4096.0L +
+      static_cast<long double>(histories.size()) * 65536.0L +
+      static_cast<long double>(histories.size()) * histories.size() * 512.0L;
+  const std::uint64_t memory_estimate_bytes = memory_estimate_wide >=
+          static_cast<long double>(std::numeric_limits<std::uint64_t>::max())
+      ? std::numeric_limits<std::uint64_t>::max()
+      : static_cast<std::uint64_t>(std::ceil(memory_estimate_wide));
+  if (memory_estimate_bytes > request.memory_budget_bytes) {
+    return {
+        .schema = "eom_native_display_point_evolution/v1",
+        .status = "halted",
+        .run_id = request.run_id,
+        .start_time = request.start_time,
+        .requested_end_time = request.end_time,
+        .accepted_end_time = request.start_time,
+        .histories = std::move(histories),
+        .joint_histories = {},
+        .steps = {},
+        .accepted_step_count = 0U,
+        .rejected_step_count = 0U,
+        .controller_step_size = request.initial_step,
+        .halt_code = "memory_budget_exhausted",
+        .evidence_status = "failed",
+        .memory_budget_bytes = request.memory_budget_bytes,
+        .memory_estimate_bytes = memory_estimate_bytes,
+        .all_steps_atomic = true,
+        .timing = {},
+    };
+  }
+  std::size_t accepted_steps = 0U;
+  std::string current_time_token = request.start_time;
+  std::string halt_code;
+  while (current_time < requested_end) {
+    if (accepted_steps >= request.max_step_attempts) {
+      halt_code = "numeric_resource_limit_exhausted";
+      break;
+    }
+    eom::DisplayEvaluationRequest display_request{
+        .paths = {},
+        .reception_time = current_time,
+        .field_speed = std::strtod(request.field_speed.c_str(), nullptr),
+        .coupling = std::strtod(request.coupling.c_str(), nullptr),
+        .root_relative_tolerance =
+            std::strtod(request.root_tolerance.c_str(), nullptr),
+        .source_normal_floor =
+            std::strtod(request.transmitter_factor_floor.c_str(), nullptr),
+        .causal_width = std::strtod(request.causal_width.c_str(), nullptr),
+        .core_scale = std::strtod(request.core_scale.c_str(), nullptr),
+        .far_field_enclosure_fraction =
+            std::strtod(request.far_field_enclosure_fraction.c_str(), nullptr),
+        .acceleration_tolerance =
+            std::strtod(request.acceleration_tolerance.c_str(), nullptr),
+        .thread_count = request.thread_count,
+    };
+    display_request.paths.reserve(histories.size());
+    for (std::size_t index = 0U; index < histories.size(); ++index) {
+      display_request.paths.push_back({
+          histories[index].path_id,
+          std::strtod(request.paths[index].charge.c_str(), nullptr),
+          &histories[index].history,
+      });
+    }
+    const auto evaluated = eom::evaluate_display_acceleration(display_request);
+    if (evaluated.status != "display_evaluated") {
+      halt_code = evaluated.failure_code.empty()
+          ? "display_invalid_evaluation_request"
+          : evaluated.failure_code;
+      break;
+    }
+    std::map<std::string, std::array<double, 3>> acceleration_by_path;
+    for (const auto& receiver : evaluated.receiver_accelerations) {
+      acceleration_by_path.emplace(
+          receiver.receiver_path_id, receiver.acceleration);
+    }
+    const double end_time = std::min(requested_end, current_time + requested_step);
+    const std::string end_time_token = end_time == requested_end
+        ? request.end_time
+        : display_decimal_token(end_time);
+    std::vector<eom::NativePublishedPath> next_histories;
+    next_histories.reserve(histories.size());
+    for (const auto& path : histories) {
+      const auto found = acceleration_by_path.find(path.path_id);
+      if (found == acceleration_by_path.end()) {
+        throw std::runtime_error("display_invalid_evaluation_request");
+      }
+      const auto position = path.history.nominal_position(current_time);
+      const auto velocity = path.history.nominal_velocity(current_time);
+      eom::CubicCoefficientTokens coefficients{};
+      double position_scale = 1.0;
+      double velocity_scale = 1.0;
+      for (std::size_t axis = 0U; axis < 3U; ++axis) {
+        coefficients[axis] = {
+            display_decimal_token(position[axis]),
+            display_decimal_token(velocity[axis]),
+            display_decimal_token(0.5 * found->second[axis]),
+            "0",
+        };
+        position_scale = std::max(position_scale, std::abs(position[axis]));
+        velocity_scale = std::max(velocity_scale, std::abs(velocity[axis]));
+      }
+      const double position_storage_radius =
+          path.history.segments().back().position_error() +
+          64.0 * std::numeric_limits<double>::epsilon() * position_scale;
+      const double velocity_storage_radius =
+          path.history.segments().back().velocity_error() +
+          64.0 * std::numeric_limits<double>::epsilon() * velocity_scale;
+      next_histories.push_back({
+          path.path_id,
+          path.history.appended(eom::CubicHistorySegment(
+              current_time_token,
+              end_time_token,
+              std::move(coefficients),
+              display_decimal_token(position_storage_radius),
+              display_decimal_token(velocity_storage_radius))),
+      });
+    }
+    histories = std::move(next_histories);
+    current_time = end_time;
+    current_time_token = end_time_token;
+    ++accepted_steps;
+  }
+  const bool completed = current_time_token == request.end_time;
+  return {
+      .schema = "eom_native_display_point_evolution/v1",
+      .status = completed ? "completed" : "halted",
+      .run_id = request.run_id,
+      .start_time = request.start_time,
+      .requested_end_time = request.end_time,
+      .accepted_end_time = current_time_token,
+      .histories = std::move(histories),
+      .joint_histories = {},
+      .steps = {},
+      .accepted_step_count = accepted_steps,
+      .rejected_step_count = completed ? 0U : 1U,
+      .controller_step_size = request.initial_step,
+      .halt_code = completed ? "" : halt_code,
+      .evidence_status = completed ? "display-only" : "failed",
+      .memory_budget_bytes = request.memory_budget_bytes,
+      .memory_estimate_bytes = memory_estimate_bytes,
+      .all_steps_atomic = true,
+      .timing = {},
+  };
+}
 
 struct IncrementalSnapshotCache {
   std::string model_key;
@@ -452,11 +631,15 @@ void run(
     throw std::invalid_argument("unsupported Borg EOM native protocol");
   }
   const auto run = split_tabs(read_required_line("RUN record"));
-  if (run.size() != 54U || run[0] != "RUN") {
+  if (run.size() != 55U || run[0] != "RUN") {
     throw std::invalid_argument(
-        "invalid RUN record: expected exactly 54 tab-separated fields");
+        "invalid RUN record: expected exactly 55 tab-separated fields");
   }
-  const std::size_t path_count = parse_size(run[53], "path count");
+  const std::string run_grade = run[53];
+  if (run_grade != "certified" && run_grade != "display") {
+    throw std::invalid_argument("RUN grade must be certified or display");
+  }
+  const std::size_t path_count = parse_size(run[54], "path count");
   if (path_count == 0U || path_count > 1000000U) {
     throw std::invalid_argument("path count lies outside native protocol envelope");
   }
@@ -688,8 +871,12 @@ void run(
   bool reused_incremental_chunk_snapshot = false;
   eom::NativeCoupledEvolutionCertificate result;
   try {
-    result = eom::evolve_native_coupled_histories(request, reusable_snapshot);
-    reused_incremental_chunk_snapshot = reusable_snapshot != nullptr;
+    if (run_grade == "display") {
+      result = evolve_display_point_histories(request);
+    } else {
+      result = eom::evolve_native_coupled_histories(request, reusable_snapshot);
+      reused_incremental_chunk_snapshot = reusable_snapshot != nullptr;
+    }
   } catch (const std::invalid_argument&) {
     // A changed retained-history prefix invalidates the cache.  Recompute from
     // the request instead of letting stale incremental state kill the server.
@@ -698,7 +885,9 @@ void run(
     }
     incremental_cache->reset();
     rebased_incremental_chunk_snapshot = false;
-    result = eom::evolve_native_coupled_histories(request);
+    result = run_grade == "display"
+        ? evolve_display_point_histories(request)
+        : eom::evolve_native_coupled_histories(request);
   }
   if (shadow_affine_diagnostic != nullptr) {
     std::vector<eom::NativePublishedPath> diagnostic_inputs;
@@ -734,12 +923,15 @@ void run(
       }
     }
   }
+  const std::string output_grade =
+      run_grade == "display" ? "display-only" : result.evidence_status;
   std::cout << "{\"schema\":\"eom_borg_native_response/v1\",\"status\":\""
             << json_escape(result.status) << "\",\"evidenceStatus\":\""
-            << json_escape(result.evidence_status)
+            << json_escape(output_grade)
+            << "\",\"runGrade\":\"" << json_escape(run_grade)
             << "\",\"coreScale\":\"" << json_escape(request.core_scale)
             << "\",\"claimGrade\":\""
-            << json_escape(result.evidence_status) << "\""
+            << json_escape(output_grade) << "\""
             << ",\"acceptedEndTime\":\""
             << json_escape(result.accepted_end_time)
             << "\",\"acceptedStepCount\":" << result.accepted_step_count
@@ -1423,7 +1615,7 @@ void run(
       }
       print_segment(
           published.history.segments()[segment_index],
-          result.evidence_status);
+          output_grade);
     }
     std::cout << "]}";
   }

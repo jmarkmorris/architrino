@@ -206,3 +206,9 @@ Append-only. Dated entries, newest last. One entry per completed unit of work: w
   The former `eom-attractor-search` directory remains a focused evidence index.
 - This consolidation changes no harness measurement, campaign criterion, or
   booked physical fate.
+
+## 2026-07-20 — Illustrative spindle chart display pipeline
+
+- Added the focused `spindle-braid-chart-spec.v0` source with the operator-approved illustrative dimensionless member: zero drift; common angular frequency $\pi/2$; radii $0.22$, $0.32$, $0.44$; cap angles $20^\circ$, $40^\circ$, $65^\circ$; phases $0^\circ$, $120^\circ$, $240^\circ$; and polarity-assignment signs $+1,-1,+1$. These values are explicitly refinable chart choices, not physically selected parameters. Claim grade: declared input. Falsifier: the source JSON differs from any listed value.
+- Added a deterministic `prescribed-geometry` emitter and checked-in `assembly-view-record.v0`. Analytical tests verify finite right-handed frame input, stable labeled order, antipodality, constant radii and cap heights, common angular frequency, carrier speeds, boundary cases, Hermite endpoint agreement, and conservative interpolation bounds. Claim grade: derived analytical identities plus measured implementation checks. Falsifier: `node --test tests/spindle-chart-record.test.js` or the generator `--check` fails.
+- The record is `chart-hypothesis` / `display-only`; its six paths are prescribed display histories and no EOM solver, causal-root calculation, acceleration row, residual, stability test, or branch-selection test ran. The spindle family remains a candidate family and no retained branch or booked physical result follows. Claim grade: derived from the emitter call graph and provenance gate. Falsifier: the generator imports or invokes an EOM path, or the shared adapter accepts this engine id with an evolved or stronger evidence label.

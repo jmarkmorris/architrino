@@ -1,6 +1,7 @@
 import * as THREE from "../../../vendor/three/three.module.js";
 
-const ANSATZ_COLOR = 0xf1c76d;
+const ANSATZ_COLOR = 0xc6b6ff;
+const AXIS_COLORS = Object.freeze([0x8fdcf2, 0xf0a6d2, 0xb8a8ff]);
 const SWEPT_ENVELOPE_COLOR = 0x7bd6c2;
 
 export function createBorgAssemblyViewScene({
@@ -11,17 +12,23 @@ export function createBorgAssemblyViewScene({
   if (!group || typeof group.add !== "function") {
     throw new TypeError("Borg assembly-view scene requires a Three.js group.");
   }
+  const axisGroup = new THREE.Group();
+  axisGroup.userData.kind = "source-carried-binary-axes";
   const ansatzGroup = new THREE.Group();
+  ansatzGroup.userData.kind = "source-carried-ansatz-curves";
   const sweptEnvelopeGroup = new THREE.Group();
-  group.add(ansatzGroup, sweptEnvelopeGroup);
+  sweptEnvelopeGroup.userData.kind = "display-only-swept-envelope";
+  group.add(axisGroup, ansatzGroup, sweptEnvelopeGroup);
   let entry = null;
   let cameraMode = "free";
   let referenceRotation = null;
 
   function setRecord(nextEntry) {
     entry = nextEntry;
+    clearGroup(axisGroup);
     clearGroup(ansatzGroup);
     clearGroup(sweptEnvelopeGroup);
+    buildBinaryAxes(nextEntry?.dataset?.binaries ?? []);
     buildAnsatz(nextEntry?.dataset?.ansatz ?? []);
     referenceRotation = resolveSourceRotation(nextEntry);
     setCameraMode("free");
@@ -91,6 +98,55 @@ export function createBorgAssemblyViewScene({
     });
   }
 
+  function buildBinaryAxes(binaryRows) {
+    binaryRows.forEach((binary, sourceIndex) => {
+      const normal = binary?.planeOrientation?.normal ?? binary?.planeNormal;
+      const point = binary?.axisPoint;
+      const halfLength = Number(binary?.axisDisplayHalfLength);
+      if (!finiteVector(normal) || !finiteVector(point) || !(halfLength > 0)) {
+        return;
+      }
+      const normalLength = Math.hypot(Number(normal.x), Number(normal.y), Number(normal.z));
+      if (!(normalLength > 0)) {
+        return;
+      }
+      const unit = {
+        x: Number(normal.x) / normalLength,
+        y: Number(normal.y) / normalLength,
+        z: Number(normal.z) / normalLength,
+      };
+      const sourceStart = {
+        x: Number(point.x) - halfLength * unit.x,
+        y: Number(point.y) - halfLength * unit.y,
+        z: Number(point.z) - halfLength * unit.z,
+      };
+      const sourceEnd = {
+        x: Number(point.x) + halfLength * unit.x,
+        y: Number(point.y) + halfLength * unit.y,
+        z: Number(point.z) + halfLength * unit.z,
+      };
+      const start = toWorld(sourceStart, new THREE.Vector3());
+      const end = toWorld(sourceEnd, new THREE.Vector3());
+      const geometry = new THREE.BufferGeometry().setFromPoints([start, end]);
+      const material = new THREE.LineDashedMaterial({
+        color: AXIS_COLORS[sourceIndex % AXIS_COLORS.length],
+        dashSize: 0.12 + 0.035 * sourceIndex,
+        gapSize: 0.07 + 0.02 * sourceIndex,
+        transparent: true,
+        opacity: 0.78,
+        depthWrite: false,
+      });
+      const line = new THREE.Line(geometry, material);
+      line.computeLineDistances();
+      line.userData = {
+        sourceIndex,
+        sourceBinaryId: String(binary?.id ?? binary?.binaryId ?? `binary-${sourceIndex + 1}`),
+        valueAuthority: "source-carried-axis-point-normal-and-display-length",
+      };
+      axisGroup.add(line);
+    });
+  }
+
   function buildSweptEnvelope() {
     if (!entry) {
       return;
@@ -125,9 +181,10 @@ export function createBorgAssemblyViewScene({
   }
 
   function dispose() {
+    clearGroup(axisGroup);
     clearGroup(ansatzGroup);
     clearGroup(sweptEnvelopeGroup);
-    group.remove(ansatzGroup, sweptEnvelopeGroup);
+    group.remove(axisGroup, ansatzGroup, sweptEnvelopeGroup);
   }
 
   return Object.freeze({
@@ -176,6 +233,10 @@ function readPolylinePoints(row) {
     Number.isFinite(Number(point?.y)) &&
     Number.isFinite(Number(point?.z)),
   );
+}
+
+function finiteVector(vector) {
+  return ["x", "y", "z"].every((axis) => Number.isFinite(Number(vector?.[axis])));
 }
 
 function clearGroup(group) {

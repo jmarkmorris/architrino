@@ -387,19 +387,29 @@ property of a workload. Falsifier: the controller uses a residual other than
 the failed acceleration-consistency row, any acceptance gate changes, or a
 rejected candidate is published.
 
-The process protocol is `EOM_BORG_NATIVE_V8`. Its exact 54-field `RUN` record
+The process protocol is `EOM_BORG_NATIVE_V9`. Its exact 55-field `RUN` record
 carries the step controls, model controls, complete certified-budget identity
 and allocations, resource ceilings, thread count, memory budget, and path
-count. Its exact six-field `PATH` record carries a
+count, plus the one-way `certified` or `display` run grade. Its exact six-field `PATH` record carries a
 checked cached-prefix count plus the appended retained-history suffix. There
 is one exact 21-field `SEG` record containing the time bounds, twelve cubic
 coefficients, three position-error tokens, and three velocity-error tokens.
-There is no run-grade field, warning-continuation ledger, or alternate parser.
+The display grade does not carry an independent tolerance profile: it receives
+the same selected numerical and model controls, but routes through the
+non-certifying binary64 point evaluator and marks every appended segment
+`display-only`.
 
-Claim grade: `operator-decision` for certified-only publication and
-`derived-design` for the protocol and retry rules. Falsifier: an uncertified
-candidate is published, a request can select another numerical route, or a
-different protocol field count is accepted.
+If a certified request reaches the declared execution deadline before it can
+publish a result, Borg records `certified_execution_timeout` at the prior
+accepted cut, rejects the unfinished candidate without advancing history, and
+starts the same permanent display-only fork there. A display request timeout
+remains a hard stop because there is no lower run grade to enter.
+
+Claim grade: `operator-decision` for the permanent display-only fork after the
+first certified boundary and `derived-design` for the protocol and retry rules.
+Falsifier: a rejected or timed-out certified candidate is published, a display suffix gains
+claim authority, the selected tolerances change at the fork, or a different
+protocol field count is accepted.
 
 ### Demo-track regulator disposition
 

@@ -393,6 +393,11 @@ test("Borg path-history renderer uses native row segments, not visual smoothing 
   assert.match(runtimeSource, /dom\.playButton\.disabled = frameSets\.length < 2/);
   assert.match(
     runtimeSource,
+    /if \(replayActive && state\.replayDisplayMode !== "animated"\) \{\s*dom\.replayDisplayMode\.value = "animated";\s*setReplayDisplayMode\("animated"\);/,
+  );
+  assert.match(htmlSource, /grid-template-columns: 620px minmax\(0, 1fr\);/);
+  assert.match(
+    runtimeSource,
     /if \(autoStartEom\) \{\s*if \(replayActive\) \{\s*startRunAndPlayback\(\);\s*\} else \{\s*startDynamicNativeRunner\(\);/,
   );
   assert.match(runtimeSource, /applyLiveRunRetentionIfNeeded/);
@@ -409,6 +414,12 @@ test("Borg path-history renderer uses native row segments, not visual smoothing 
   assert.doesNotMatch(runtimeSource, /restoreFixtureRun/);
   assert.match(runtimeSource, /appendBorgFrameRowsInPlace/);
   assert.match(runtimeSource, /appendBorgFrameSetsInPlace/);
+  assert.match(runtimeSource, /const firstReplayRows = Boolean/);
+  assert.match(runtimeSource, /if \(firstReplayRows\) \{\s*rebuildParticleObjects\(\);/);
+  assert.match(
+    runtimeSource,
+    /provenance\.prescribedGeometry\?\.responseCenter \?\?\s*manifest\.simulationEnvelope\.center/,
+  );
   assert.match(
     runtimeSource,
     /appendBorgFrameRowsInPlace\(currentFrames, chunk\.frames\);[\s\S]*appendBorgFrameSetsInPlace\(frameSets, chunk\.frames\);/,
@@ -440,6 +451,10 @@ test("Borg path-history renderer uses native row segments, not visual smoothing 
   );
   assert.doesNotMatch(htmlSource, /<section[^>]*aria-label="Initial condition fields"/);
   assert.match(htmlSource, /id="borg-eom-history-status"/);
+  assert.match(htmlSource, /id="borg-eom-authority"[^>]*data-grade="claim-ready"/);
+  assert.match(htmlSource, /id="borg-eom-authority-label"[^>]*>Claim-ready mode</);
+  assert.match(htmlSource, /id="borg-eom-authority-detail"/);
+  assert.match(htmlSource, /\.borg-eom-authority\[data-grade="display"\]/);
   assert.match(htmlSource, /id="borg-eom-stop-button"/);
   assert.match(htmlSource, /id="borg-eom-restart-button"/);
   assert.match(htmlSource, /id="borg-eom-restart-button"[^>]*>Start \/ restart<\/button>/);
@@ -457,6 +472,10 @@ test("Borg path-history renderer uses native row segments, not visual smoothing 
   assert.match(runtimeSource, /minimumStep: certifiedBudget\.allocations\.controller\.minimumStep/);
   assert.match(runtimeSource, /maximumStep: certifiedBudget\.allocations\.controller\.maximumStep/);
   assert.match(runtimeSource, /forward EOM chunks/);
+  assert.match(runtimeSource, /state\.eomRunGrade === "display"/);
+  assert.match(runtimeSource, /Claim-ready through T=/);
+  assert.match(runtimeSource, /this suffix has no claim authority/);
+  assert.doesNotMatch(pathTrailsSource, /runGrade|displayGrade|claim-ready/u);
   assert.match(runtimeSource, /Exact polynomial causal seed history \(C1 inertial\)/);
   assert.match(runtimeSource, /Causal seed-history depth/);
   assert.match(runtimeSource, /EOM retained-history start/);

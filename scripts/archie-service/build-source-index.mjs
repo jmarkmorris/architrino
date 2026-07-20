@@ -2,36 +2,83 @@
 
 import fs from "node:fs";
 import path from "node:path";
+import {
+  buildSourceIndexSnapshot,
+  canonicalJson,
+  validateSourceIndexSnapshot,
+} from "../../src/archie-service/source-index/snapshot-v1.mjs";
 
 const rootDir = process.cwd();
 const args = process.argv.slice(2);
+const mode = args.length === 1 ? args[0] : null;
 const failures = [];
+const inputPath = "tests/archie-service/fixtures/source-index/source-index-build-input.v1.json";
+const snapshotPath = "tests/archie-service/fixtures/source-index/source-index-snapshot.v1.json";
+const negativeSuitePath = "tests/archie-service/fixtures/source-index/source-index-negative-suite.v1.json";
 
-if (args.length !== 1 || args[0] !== "--check") {
-  fail("Usage: node scripts/archie-service/build-source-index.mjs --check");
+if (!["--check", "--write"].includes(mode)) {
+  fail("Usage: node scripts/archie-service/build-source-index.mjs --check|--write");
 }
 
-const snapshot = readJson("tests/archie-service/fixtures/source-index/source-index-snapshot.v1.json");
+const input = readJson(inputPath);
 const dryRun = readJson("tests/archie-service/fixtures/source-index/source-index-dry-run.v1.json");
+const negativeSuite = readJson(negativeSuitePath);
 const validationPlan = readJson("tests/archie-service/fixtures/validators/negative-validator-suite.v1.json");
+let builtSnapshot;
 
-if (snapshot.schema !== "archie-source-index-snapshot/v1") {
-  failures.push("source-index snapshot fixture has unexpected schema");
+try {
+  builtSnapshot = buildSourceIndexSnapshot({ rootDir, input });
+} catch (error) {
+  fail(`Archie source-index build failed: ${error.message}`);
 }
+
+if (mode === "--write") {
+  fs.writeFileSync(path.join(rootDir, snapshotPath), `${JSON.stringify(builtSnapshot, null, 2)}\n`);
+}
+
+const snapshot = readJson(snapshotPath);
+if (canonicalJson(snapshot) !== canonicalJson(builtSnapshot)) {
+  failures.push(
+    `source-index snapshot drift: run node scripts/archie-service/build-source-index.mjs --write`
+  );
+}
+
+try {
+  validateSourceIndexSnapshot({ rootDir, snapshot });
+} catch (error) {
+  failures.push(`source-index snapshot validation failed: ${error.message}`);
+}
+
+const rebuiltSnapshot = buildSourceIndexSnapshot({ rootDir, input: deepClone(input) });
+if (rebuiltSnapshot.snapshotSha256 !== builtSnapshot.snapshotSha256) {
+  failures.push("identical source-index inputs produced different snapshot hashes");
+}
+
+const reorderedInput = deepClone(input);
+reorderedInput.sourceRecords.reverse();
+reorderedInput.graphEdges.reverse();
+reorderedInput.metadataRecords.reverse();
+const reorderedSnapshot = buildSourceIndexSnapshot({ rootDir, input: reorderedInput });
+if (reorderedSnapshot.snapshotSha256 !== builtSnapshot.snapshotSha256) {
+  failures.push("source-index input ordering changed the canonical snapshot hash");
+}
+
+validateNegativeCases({ input, snapshot: builtSnapshot, negativeSuite });
+
 if (dryRun.schema !== "archie-source-index-dry-run/v1") {
   failures.push("source-index dry-run fixture has unexpected schema");
 }
-if (validationPlan.checkModeBuilderContract?.scriptTarget !== "scripts/archie-service/build-source-index.mjs --check") {
+if (
+  validationPlan.checkModeBuilderContract?.scriptTarget !==
+  "scripts/archie-service/build-source-index.mjs --check"
+) {
   failures.push("negative validator suite does not target the source-index check-mode builder");
+}
+if (validationPlan.checkModeBuilderContract?.status !== "implemented") {
+  failures.push("source-index builder contract must report implemented status");
 }
 if (dryRun.snapshotId !== snapshot.snapshotId) {
   failures.push(`dry-run snapshotId ${dryRun.snapshotId} does not match snapshot ${snapshot.snapshotId}`);
-}
-
-for (const [key, artifactPath] of Object.entries(snapshot.generatedArtifactRefs ?? {})) {
-  if (!exists(artifactPath)) {
-    failures.push(`generated artifact ref ${key} does not exist: ${artifactPath}`);
-  }
 }
 
 const scenesIndex = readJson("content/scenes/scenes_index.json");
@@ -43,8 +90,8 @@ for (const routeCase of dryRun.routeCases ?? []) {
 }
 
 for (const placeholder of dryRun.validatorPlaceholders ?? []) {
-  if (placeholder.status !== "fixture_backed") {
-    failures.push(`${placeholder.validatorId}: expected fixture_backed status`);
+  if (!["fixture_backed", "implemented"].includes(placeholder.status)) {
+    failures.push(`${placeholder.validatorId}: expected fixture_backed or implemented status`);
   }
 }
 
@@ -56,9 +103,58 @@ if (failures.length > 0) {
   process.exit(1);
 }
 
+const action = mode === "--write" ? "write passed" : "check passed";
 console.log(
-  `Archie source-index check passed: ${dryRun.routeCases.length} route case(s), ${dryRun.validatorPlaceholders.length} validator placeholder(s)`
+  `Archie source-index ${action}: ${snapshot.snapshotId}, ${snapshot.views.search.records.length} source record(s), ${snapshot.views.graph.edges.length} graph edge(s), ${snapshot.views.metadata.records.length} metadata record(s), ${negativeSuite.cases.length} fail-closed case(s), sha256 ${snapshot.snapshotSha256}`
 );
+
+function validateNegativeCases({ input: baseInput, snapshot: baseSnapshot, negativeSuite: suite }) {
+  if (suite.schema !== "archie-source-index-negative-suite/v1") {
+    failures.push("source-index negative suite has unexpected schema");
+    return;
+  }
+  const caseIds = new Set();
+  for (const testCase of suite.cases ?? []) {
+    if (caseIds.has(testCase.caseId)) {
+      failures.push(`duplicate source-index negative case ${testCase.caseId}`);
+      continue;
+    }
+    caseIds.add(testCase.caseId);
+    const subject = deepClone(testCase.target === "input" ? baseInput : baseSnapshot);
+    applyMutation(subject, testCase.mutation);
+    try {
+      if (testCase.target === "input") {
+        buildSourceIndexSnapshot({ rootDir, input: subject });
+      } else if (testCase.target === "snapshot") {
+        validateSourceIndexSnapshot({ rootDir, snapshot: subject });
+      } else {
+        throw new Error(`unknown negative target ${testCase.target}`);
+      }
+      failures.push(`${testCase.caseId}: invalid subject was accepted`);
+    } catch (error) {
+      if (!error.message.includes(testCase.expectedError)) {
+        failures.push(
+          `${testCase.caseId}: expected error containing ${JSON.stringify(testCase.expectedError)}, received ${JSON.stringify(error.message)}`
+        );
+      }
+    }
+  }
+}
+
+function applyMutation(subject, mutation) {
+  if (mutation.operation !== "set") {
+    throw new Error(`unsupported mutation operation ${mutation.operation}`);
+  }
+  let target = subject;
+  const pathParts = mutation.path;
+  for (const part of pathParts.slice(0, -1)) {
+    if (target?.[part] === undefined) {
+      throw new Error(`mutation path is missing at ${String(part)}`);
+    }
+    target = target[part];
+  }
+  target[pathParts.at(-1)] = mutation.value;
+}
 
 function validateRouteCase(routeCase) {
   const label = routeCase.caseId;
@@ -204,10 +300,7 @@ function markdownAnchors(relativePath) {
   const anchors = new Set();
   for (const line of text.split(/\r?\n/)) {
     const match = /^(#{1,6})\s+(.+?)\s*$/.exec(line);
-    if (!match) {
-      continue;
-    }
-    anchors.add(slugifyHeading(match[2]));
+    if (match) anchors.add(slugifyHeading(match[2]));
   }
   return anchors;
 }
@@ -222,6 +315,10 @@ function slugifyHeading(value) {
     .trim()
     .replace(/\s+/g, "-")
     .replace(/-+/g, "-");
+}
+
+function deepClone(value) {
+  return JSON.parse(JSON.stringify(value));
 }
 
 function exists(relativePath) {

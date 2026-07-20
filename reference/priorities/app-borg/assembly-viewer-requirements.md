@@ -13,7 +13,7 @@ The viewer computes no physics: no accelerations, no causal roots, no evolution,
 ## Assembly View Record (schema v0 — finalized in [instrument-gate.md](../braid-program/campaigns/instrument-gate.md) §4, which is the source of truth; the summary below is the ratified requirements baseline)
 
 - `schema`: `assembly-view-record.v0`.
-- `provenance`: engine id and version; run id; claim grade (`chart-hypothesis` | `evolved-record`); generating spec/campaign reference; date.
+- `provenance`: engine id and version; run id; claim grade (`chart-hypothesis` | `evolved-record`); generating spec/campaign reference; date. `prescribed-geometry` is limited to `chart-hypothesis` / `display-only` records and must declare that no physics was invoked.
 - `window`: start time, end time, delay horizon $h$, sample interval.
 - `worldlines[]`: id; polarity ($\epsilon_+$/$\epsilon_-$); coverage; declared interpolation; authoritative retained `segments[]` for animation and booking; optional display-only samples of $(t, \mathbf x)$ and $\mathbf v$. In an `evolved-record`, the segments are the EOM solver's exact retained-history tokens; a segments-free worldline fails closed.
 - `binaries[]` (optional metadata): member worldline ids; frequency; plane orientation; planar offset / separation; phase.
@@ -37,6 +37,7 @@ The mode switch must be visible. Run controls are disabled in assembly-view repl
 Assembly-view replay extends the canonical Borg path rather than creating a second viewer runtime:
 
 - `src/apps/borg/BorgBootstrap.js` owns startup-mode selection. `borg.html?eomRecord=<url>` selects the `eom-record-replay` runtime mode, fetches each independently declared direct-record URL in source order, and mounts Borg without constructing the live EOM client.
+- `src/apps/borg/BorgBraidRecordCatalog.js` owns the immutable built-in braid navigation list. An entry contains only stable id, operator label, and sealed-record URL. It contains no geometry, physics, claim, or provenance fields; selecting an entry delegates to the existing bootstrap URL route.
 - `src/apps/shared/EomHistoryDataset.mjs` owns fail-closed record ingestion and evaluation of each record's declared interpolation. It remains the shared data adapter rather than moving schema logic into Borg.
 - `src/apps/borg/BorgEomRecordReplayRunner.js` adapts the sealed record to Borg's chunked rendering interface. It clamps playback to recorded coverage, carries source provenance, and never evolves or extends the record.
 - `src/apps/borg/BorgAppRuntime.js` owns the common scene, playback controls, layers, diagnostics, and display policy. Replay-specific UI must integrate through focused modules and thin composition-root wiring rather than duplicating the Borg runtime.
@@ -46,7 +47,7 @@ The simulation workspace may request EOM solver execution through the existing B
 
 ## Implemented Record-Only Core And Contract Blockers
 
-The implemented Borg path provides the visible mode boundary, persistent provenance, strict record validation, retained-segment animation through exactly the declared delay horizon $h$, coverage-clamped playback and scrubbing, chart pose, source-carried ansatz curves, co-rotating camera, frequency strobe, one-period loop, display-only swept envelope, static image export, raw source-order navigation, source-only filters, and optional source-carried $S_3$ grouping. `BorgAssemblyViewSession.js`, `BorgAssemblyViewControls.js`, and `BorgAssemblyViewScene.js` keep those policies focused while `BorgAppRuntime.js` remains the common scene and playback owner.
+The implemented Borg path provides the visible mode boundary, global braid-record selector, persistent provenance, strict record validation, retained-segment animation through exactly the declared delay horizon $h$, coverage-clamped playback and scrubbing, chart pose, source-carried light-purple ansatz curves, source-carried per-binary axis guides, co-rotating camera, frequency strobe, one-period loop, display-only swept envelope, static image export, raw source-order navigation, source-only filters, and optional source-carried $S_3$ grouping. Pressing Play from chart pose enters recorded-path playback before starting the timeline. The initial catalog entry is the source-defined illustrative spindle chart hypothesis. Its recorded-path playback animates the prescribed analytical geometry and does not represent simulated evolution. `BorgAssemblyViewSession.js`, `BorgAssemblyViewControls.js`, and `BorgAssemblyViewScene.js` keep those policies focused while `BorgAppRuntime.js` remains the common scene and playback owner.
 
 The following requirements remain fail-closed because `assembly-view-record.v0` does not ratify the required carrier:
 
@@ -67,6 +68,8 @@ The existing layer id `simulation-window` is a compatibility identifier. End-use
 
 Collection navigation preserves configuration-space identity without importing app-side analysis into replay authority:
 
+- Keep the built-in braid selector visible in both the simulation workspace and assembly-view replay. Selection always navigates through `borg.html?eomRecord=<encoded-url>`; the catalog never supplies record contents.
+- Treat every parameter variation as a separate source specification and sealed raw record. Radius or other member variations may be added to the catalog only after their labels, layer mapping, and complete source parameters are explicit; Borg does not generate a new geometry from browser-side controls.
 - Load one record directly, then add local-file and manifest/packet intake for collections of records when Borg's deferred import workflow opens.
 - Preserve source ids, source order, and raw record access. The viewer must not silently sort or relabel worldlines, binaries, branches, or layers.
 - For tri-binary configuration-search collections, preserve `unquotiented-labeled` rows. An optional $S_3$-equivalence grouping may reduce navigation clutter only when the source carries a permutation-canonical key; grouping hides no underlying record and never changes the selected raw record.
@@ -76,7 +79,7 @@ Collection navigation preserves configuration-space identity without importing a
 
 ## Display Modes
 
-1. **Animated core** (default): playback with scrub, slow-motion, loop-one-period; each architrino drawn with a retained-history trail of depth exactly $h$ — in a delay system the state is the history, so the honest state display is position plus that trail.
+1. **Recorded-path playback**: playback with scrub, slow-motion, and loop-one-period. An `evolved-record` draws retained EOM history; a prescribed `chart-hypothesis` draws only its declared display path. Each trail has source-declared depth $h$, but a chart trail is not simulation evidence.
 2. **Chart pose**: static hypothesis rendering with ansatz curves and overlays.
 3. **Co-rotating / screw-frame camera**: in the right frame a rigid candidate is a still image, so any motion in that frame is the residual made visible — "is it holding?" becomes "does the picture move?"
 4. **Strobe**: sample playback at a chosen frequency; the binary matching it freezes — visual frequency measurement.

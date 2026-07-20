@@ -258,6 +258,9 @@ export function mountBorgApp(options = {}) {
     timelineOutput: queryRequiredElement(documentLike, "#borg-time-output"),
     eomControls: queryRequiredElement(documentLike, "#borg-eom-controls"),
     eomDuration: queryRequiredElement(documentLike, "#borg-eom-duration"),
+    eomAuthority: queryRequiredElement(documentLike, "#borg-eom-authority"),
+    eomAuthorityLabel: queryRequiredElement(documentLike, "#borg-eom-authority-label"),
+    eomAuthorityDetail: queryRequiredElement(documentLike, "#borg-eom-authority-detail"),
     eomHistoryStatus: queryRequiredElement(documentLike, "#borg-eom-history-status"),
     eomStopButton: queryRequiredElement(documentLike, "#borg-eom-stop-button"),
     eomRestartButton: queryRequiredElement(documentLike, "#borg-eom-restart-button"),
@@ -275,6 +278,7 @@ export function mountBorgApp(options = {}) {
     modeBoundary: queryRequiredElement(documentLike, "#borg-mode-boundary"),
     modeLabel: queryRequiredElement(documentLike, "#borg-mode-label"),
     modeDetail: queryRequiredElement(documentLike, "#borg-mode-detail"),
+    braidRecordSelect: queryRequiredElement(documentLike, "#borg-braid-record-select"),
     replayControls: queryRequiredElement(documentLike, "#borg-assembly-view-controls"),
     replayAuthorityNotice: queryRequiredElement(documentLike, "#borg-replay-authority-notice"),
     replayProvenance: queryRequiredElement(documentLike, "#borg-replay-provenance"),
@@ -405,6 +409,9 @@ export function mountBorgApp(options = {}) {
     dynamicChunkStartedAt: null,
     dynamicChunksComputed: 0,
     eomDisplayStarted: false,
+    eomRunGrade: "certified",
+    eomDisplayGradeBoundary: null,
+    eomDisplayHistoryProjectionCount: 0,
     eomSeedHistoryDepth: positiveControlNumber(
       options.eomShadowRunner?.historyDepth,
       manifest.simulationEnvelope?.historyDepth ?? 10,
@@ -510,6 +517,7 @@ export function mountBorgApp(options = {}) {
   configureTimeline();
   configureInitialConditionControls();
   configureEomControls();
+  configureBraidRecordSelector();
   configureAssemblyViewControls();
   resetView();
   bindEvents();
@@ -1128,6 +1136,28 @@ export function mountBorgApp(options = {}) {
     updateEomControlPresentation();
   }
 
+  function configureBraidRecordSelector() {
+    const navigation = options.braidRecordNavigation;
+    dom.braidRecordSelect.textContent = "";
+    const placeholder = documentLike.createElement("option");
+    placeholder.value = "";
+    placeholder.textContent = "Select a braid record…";
+    dom.braidRecordSelect.append(placeholder);
+    for (const entry of navigation?.catalog?.entries ?? []) {
+      const option = documentLike.createElement("option");
+      option.value = entry.id;
+      option.textContent = entry.label;
+      dom.braidRecordSelect.append(option);
+    }
+    dom.braidRecordSelect.value = navigation?.selectedRecordId ?? "";
+    dom.braidRecordSelect.disabled = !navigation?.catalog?.entries?.length;
+    dom.braidRecordSelect.addEventListener("change", () => {
+      if (dom.braidRecordSelect.value) {
+        navigation.navigate(dom.braidRecordSelect.value);
+      }
+    });
+  }
+
   function configureAssemblyViewControls() {
     dom.envelopeSection.hidden = replayActive;
     if (!replayActive) {
@@ -1188,9 +1218,6 @@ export function mountBorgApp(options = {}) {
   function setReplayDisplayMode(mode) {
     if (!replayActive) {
       return;
-    }
-    if (activeReplayEntry.dataset.provenance.claimGrade === "chart-hypothesis" && mode === "animated") {
-      throw new TypeError("Chart-hypothesis records open as static chart poses; animated evolution is unavailable.");
     }
     state.replayDisplayMode = mode;
     assemblyViewScene.setDisplayMode(mode);
@@ -1279,6 +1306,17 @@ export function mountBorgApp(options = {}) {
       ? `${completedSteps} forward EOM chunks | ${displayStatus} | Forever`
       : `${completedSteps} / ${requestedSteps} forward EOM chunks | ${displayStatus}`;
     dom.eomProgressLabel.value = `${progressLabel}${failureDetail}`;
+    const displayGrade = state.eomRunGrade === "display";
+    dom.eomAuthority.dataset.grade = displayGrade ? "display" : "claim-ready";
+    dom.eomAuthorityLabel.textContent = displayGrade
+      ? "Display grade"
+      : "Claim-ready mode";
+    dom.eomAuthorityDetail.textContent = displayGrade
+      ? `Claim-ready through T=${state.eomDisplayGradeBoundary?.time}. ` +
+        `Display grade from T=${state.eomDisplayGradeBoundary?.time} ` +
+        `(${state.eomDisplayGradeBoundary?.code}); retained nominal history was point-projected ` +
+        `${state.eomDisplayHistoryProjectionCount} time(s), so this suffix has no claim authority.`
+      : "Certified tolerances are active. No display-grade boundary has been crossed.";
     const eomStartTime = options.eomShadowRunner?.startTime ?? 0;
     dom.eomHistoryStatus.value =
       `Exact polynomial causal seed history (C1 inertial) covers T=${Number(eomStartTime) - state.eomSeedHistoryDepth} to ${eomStartTime}. ` +
@@ -1329,9 +1367,6 @@ export function mountBorgApp(options = {}) {
     dom.timelineRange.dataset.mode = presentation.mode;
     dom.timelineRange.title = presentation.title;
     dom.playButton.disabled = frameSets.length < 2;
-    if (replayActive && state.replayDisplayMode !== "animated") {
-      dom.playButton.disabled = true;
-    }
   }
 
   function formatActiveTimelineLabel(time, frameIndex) {
@@ -1648,6 +1683,10 @@ export function mountBorgApp(options = {}) {
     if (state.playing) {
       stopPlayback();
     } else {
+      if (replayActive && state.replayDisplayMode !== "animated") {
+        dom.replayDisplayMode.value = "animated";
+        setReplayDisplayMode("animated");
+      }
       startPlayback();
     }
   }
@@ -1969,7 +2008,8 @@ export function mountBorgApp(options = {}) {
 
   /** Write solver coordinates into an existing {x,y,z} target; no allocation. */
   function writeSolverPositionToWorld(position, target) {
-    const center = manifest.simulationEnvelope.center;
+    const center = activeReplayEntry?.dataset.provenance.prescribedGeometry?.responseCenter ??
+      manifest.simulationEnvelope.center;
     target.x = (position.x - center.x) * worldUnitsPerSolverUnit;
     target.y = (position.y - center.y) * worldUnitsPerSolverUnit;
     target.z = (position.z - center.z) * worldUnitsPerSolverUnit;
@@ -2281,7 +2321,10 @@ export function mountBorgApp(options = {}) {
         const replaceDisplayedSeed = Boolean(
           options.eomShadowRunner && !state.eomDisplayStarted,
         );
-        const replaceCurrentFrames = replaceInitialRows || replaceDisplayedSeed;
+        const firstReplayRows = Boolean(
+          replayActive && previousFrameRowCount === 0 && chunk.frames?.length > 0,
+        );
+        const replaceCurrentFrames = replaceInitialRows || replaceDisplayedSeed || firstReplayRows;
         if (options.eomShadowRunner) {
           state.eomDisplayStarted = true;
           state.dynamicRunnerKind = "eom-shadow";
@@ -2290,17 +2333,23 @@ export function mountBorgApp(options = {}) {
           state.eomRetainedHistoryStart = chunk.retainedHistoryStart;
           state.eomRetainedHistoryEnd = chunk.retainedHistoryEnd;
           state.eomRetainedHistoryPolicy = chunk.retainedHistoryPolicy;
+          state.eomRunGrade = chunk.activeRunGrade ?? chunk.runGrade ?? "certified";
+          state.eomDisplayGradeBoundary = chunk.displayGradeBoundary ?? null;
+          state.eomDisplayHistoryProjectionCount =
+            chunk.displayHistoryProjectionCount ?? 0;
         }
         state.sourceMode = chunk.source;
-        state.dynamicRunnerStatus = chunk.terminalHalt
+        state.dynamicRunnerStatus = chunk.terminalHalt && !state.dynamicRunner.canComputeNextChunk()
           ? "halted-live-native-run"
           : state.dynamicRunner.canComputeNextChunk()
             ? chunk.source
             : options.eomShadowRunner
               ? "completed-live-native-run"
               : "completed-recorded-replay";
-        state.dynamicRunnerMessage = chunk.terminalHalt
-          ? `certified prefix through T=${chunk.endTime}; failed candidate rejected (${chunk.terminalHalt.code})`
+        state.dynamicRunnerMessage = chunk.transitionedToDisplayGrade
+          ? `claim-ready through T=${chunk.endTime}; continuing at display grade (${chunk.terminalHalt.code})`
+          : chunk.terminalHalt
+            ? `${chunk.runGrade} prefix through T=${chunk.endTime}; failed candidate rejected (${chunk.terminalHalt.code})`
           : `chunk ${chunk.chunkIndex} ready`;
         if (replaceCurrentFrames) {
           currentFrames = [...chunk.frames];
@@ -2311,6 +2360,9 @@ export function mountBorgApp(options = {}) {
         }
         if (replaceCurrentFrames) {
           polarityEscapeLedger.reset();
+        }
+        if (firstReplayRows) {
+          rebuildParticleObjects();
         }
         appendPolarityEscapeRows(chunk.frames);
         state.polarityDiagnosticFrameIndex = null;
@@ -2646,6 +2698,9 @@ export function mountBorgApp(options = {}) {
       ? "causal-seed-history-only"
       : "not-started";
     state.eomDisplayStarted = false;
+    state.eomRunGrade = "certified";
+    state.eomDisplayGradeBoundary = null;
+    state.eomDisplayHistoryProjectionCount = 0;
     state.dynamicTargetDuration = null;
     state.dynamicChunkDuration = null;
     state.liveRunBudget = createEmptyLiveRunBudget();

@@ -1,0 +1,436 @@
+{
+  "schema": "archie-mcp-tool-contract/v1",
+  "contractId": "mcp_tool_contract_fixture_001",
+  "snapshotId": "source_snapshot_fixture_001",
+  "limits": {
+    "maxQueryChars": 256,
+    "maxIdentifierChars": 512,
+    "maxItems": 20,
+    "minReadContentChars": 256,
+    "maxReadContentChars": 8000,
+    "maxResponseBytes": 32768
+  },
+  "cases": [
+    {
+      "caseId": "mcp-search-public-first-page-001",
+      "accessScope": "public",
+      "request": {
+        "schema": "archie-mcp-tool-request/v1",
+        "requestId": "request-search-public-001",
+        "tool": "search",
+        "snapshotId": "source_snapshot_fixture_001",
+        "visibilityScope": "public",
+        "arguments": {
+          "query": "ontology",
+          "filters": {
+            "sourceClasses": [],
+            "authorityStatuses": []
+          },
+          "limit": 1,
+          "cursor": null
+        }
+      },
+      "expectedResponse": {
+        "schema": "archie-mcp-tool-response/v1",
+        "requestId": "request-search-public-001",
+        "tool": "search",
+        "status": "ok",
+        "snapshot": {
+          "snapshotId": "source_snapshot_fixture_001",
+          "snapshotSha256": "0f37ac2a582bccb817591a261fd0530e508943bb9279309c7ec861e656ce880c",
+          "repositoryRef": "fixture-ref",
+          "visibilityPolicyVersion": "visibility_fixture_v1",
+          "freshnessState": "fresh"
+        },
+        "result": {
+          "kind": "search",
+          "query": "ontology",
+          "records": [
+            {
+              "rank": 1,
+              "rankScore": 720,
+              "matchReasons": [
+                "title_phrase",
+                "source_id",
+                "route",
+                "content_phrase",
+                "authority_preference"
+              ],
+              "source": {
+                "sourceId": "source.ontology-purpose",
+                "title": "Ontology: Purpose and Scope",
+                "route": "content/markdown/aaa/foundations/ontology.md#purpose-and-scope",
+                "sectionAnchor": "purpose-and-scope",
+                "sourceClass": "published_corpus",
+                "authorityStatus": "primary",
+                "visibility": "public",
+                "canonicalParent": null,
+                "claimLabelFloor": "published corpus",
+                "selectionSha256": "c3d07e652aaf196a1d11c5659b69b1441b06f9f3ce8cd8bd7161bc8838011721"
+              },
+              "teaser": "Ontology: Purpose and Scope ontological bedrock foundation levels absolute time architrino Euclidean void Noether sea Purpose and Scope This document establishes the ontological bedrock of $\\mathbb{A}\\mathbb{A}\\mathbb{A}$: what fundamentall"
+            }
+          ]
+        },
+        "page": {
+          "unit": "records",
+          "limit": 1,
+          "returned": 1,
+          "nextCursor": "eyJvZmZzZXQiOjEsInNjb3BlU2hhMjU2IjoiNjYyNzgyZTY2ZjRmNTY2NDdmNjk4NDE0NGYzNDA3YmU4MWFmYWVlODdmZGU3ZWViNDI5NmYxNGNhMThlY2RjMSIsInNoYTI1NiI6IjkzYmQxYWJjYWZhYmMyNDk4ZTEwNWFlOTY2N2NiNzU1ZTFmMDczZDhkM2NmNTFiMzJhYzlmNDE4MmNjZjY4ODUiLCJzbmFwc2hvdElkIjoic291cmNlX3NuYXBzaG90X2ZpeHR1cmVfMDAxIiwidG9vbCI6InNlYXJjaCIsInZlcnNpb24iOjEsInZpc2liaWxpdHlTY29wZSI6InB1YmxpYyJ9",
+          "truncated": true,
+          "truncationReasons": [
+            "record_limit"
+          ]
+        },
+        "error": null
+      }
+    },
+    {
+      "caseId": "mcp-read-public-truncated-001",
+      "accessScope": "public",
+      "request": {
+        "schema": "archie-mcp-tool-request/v1",
+        "requestId": "request-read-public-001",
+        "tool": "read",
+        "snapshotId": "source_snapshot_fixture_001",
+        "visibilityScope": "public",
+        "arguments": {
+          "topicOrRoute": "source.ontology-purpose",
+          "sectionAnchor": "purpose-and-scope",
+          "maxContentChars": 256,
+          "cursor": null,
+          "includeMetadata": true
+        }
+      },
+      "expectedResponse": {
+        "schema": "archie-mcp-tool-response/v1",
+        "requestId": "request-read-public-001",
+        "tool": "read",
+        "status": "ok",
+        "snapshot": {
+          "snapshotId": "source_snapshot_fixture_001",
+          "snapshotSha256": "0f37ac2a582bccb817591a261fd0530e508943bb9279309c7ec861e656ce880c",
+          "repositoryRef": "fixture-ref",
+          "visibilityPolicyVersion": "visibility_fixture_v1",
+          "freshnessState": "fresh"
+        },
+        "result": {
+          "kind": "read",
+          "source": {
+            "sourceId": "source.ontology-purpose",
+            "title": "Ontology: Purpose and Scope",
+            "route": "content/markdown/aaa/foundations/ontology.md#purpose-and-scope",
+            "sectionAnchor": "purpose-and-scope",
+            "sourceClass": "published_corpus",
+            "authorityStatus": "primary",
+            "visibility": "public",
+            "canonicalParent": null,
+            "claimLabelFloor": "published corpus",
+            "selectionSha256": "c3d07e652aaf196a1d11c5659b69b1441b06f9f3ce8cd8bd7161bc8838011721"
+          },
+          "contentType": "markdown",
+          "content": "## Purpose and Scope\n\nThis document establishes the ontological bedrock of $\\mathbb{A}\\mathbb{A}\\mathbb{A}$: what fundamentally exists, what is emergent, and what Physical Observers reconstruct from inside the system.\n\nIt defines six foundation routes:\n\n1.",
+          "contentOffset": 0,
+          "contentComplete": false,
+          "metadata": [
+            {
+              "metadataId": "metadata.ontology-level-tower",
+              "kind": "equation",
+              "sourceId": "source.ontology-purpose",
+              "route": "content/markdown/aaa/foundations/ontology.md#purpose-and-scope",
+              "sourceSelectionSha256": "c3d07e652aaf196a1d11c5659b69b1441b06f9f3ce8cd8bd7161bc8838011721",
+              "tex": "$$\nS(T)\n\\xrightarrow{\\Pi_{\\mathrm{assembly}}}\n\\mathfrak B(T)\n\\xrightarrow{\\Pi_{\\mathrm{eff}}}\n\\big(A,B_{ij},g^{\\mathrm{eff}},\\Phi_{\\mathrm{eff}}\\big)\n\\xrightarrow{\\Pi_{\\mathrm{record}}}\n\\bar S(T).\n$$",
+              "texSha256": "d553f0799da68ae1dedc68524a1d1ea3d50190df6bce58d575bbc038009be23c"
+            }
+          ]
+        },
+        "page": {
+          "unit": "characters",
+          "limit": 256,
+          "returned": 256,
+          "nextCursor": "eyJvZmZzZXQiOjI1Niwic2NvcGVTaGEyNTYiOiI5OGU1MjMzNzNlMmZmNmZmNDY2Y2FlNDBiZmQyZWJiZDNlMzc5NGM4YmMyMjU4MDI3OTdiMmViOGY1OTkwMmVkIiwic2hhMjU2IjoiNTA1ZjAwNzY3NTU4ZTA0NDVjNGM4Njg2YmU1OTVkMmRlOWVlMDEwYzVkNTFhMmQwZjJjNjU3MGI4NDU5N2U5YiIsInNuYXBzaG90SWQiOiJzb3VyY2Vfc25hcHNob3RfZml4dHVyZV8wMDEiLCJ0b29sIjoicmVhZCIsInZlcnNpb24iOjEsInZpc2liaWxpdHlTY29wZSI6InB1YmxpYyJ9",
+          "truncated": true,
+          "truncationReasons": [
+            "content_char_limit"
+          ]
+        },
+        "error": null
+      }
+    },
+    {
+      "caseId": "mcp-read-missing-source-001",
+      "accessScope": "public",
+      "request": {
+        "schema": "archie-mcp-tool-request/v1",
+        "requestId": "request-read-missing-001",
+        "tool": "read",
+        "snapshotId": "source_snapshot_fixture_001",
+        "visibilityScope": "public",
+        "arguments": {
+          "topicOrRoute": "source.does-not-exist",
+          "sectionAnchor": null,
+          "maxContentChars": 512,
+          "cursor": null,
+          "includeMetadata": false
+        }
+      },
+      "expectedResponse": {
+        "schema": "archie-mcp-tool-response/v1",
+        "requestId": "request-read-missing-001",
+        "tool": "read",
+        "status": "not_found",
+        "snapshot": {
+          "snapshotId": "source_snapshot_fixture_001",
+          "snapshotSha256": "0f37ac2a582bccb817591a261fd0530e508943bb9279309c7ec861e656ce880c",
+          "repositoryRef": "fixture-ref",
+          "visibilityPolicyVersion": "visibility_fixture_v1",
+          "freshnessState": "fresh"
+        },
+        "result": null,
+        "page": null,
+        "error": {
+          "code": "SOURCE_NOT_FOUND",
+          "message": "requested source or route is not present in the active snapshot",
+          "retriable": false
+        }
+      }
+    },
+    {
+      "caseId": "mcp-topics-public-first-page-001",
+      "accessScope": "public",
+      "request": {
+        "schema": "archie-mcp-tool-request/v1",
+        "requestId": "request-topics-public-001",
+        "tool": "topics",
+        "snapshotId": "source_snapshot_fixture_001",
+        "visibilityScope": "public",
+        "arguments": {
+          "filters": {
+            "sourceClasses": [],
+            "authorityStatuses": []
+          },
+          "limit": 1,
+          "cursor": null
+        }
+      },
+      "expectedResponse": {
+        "schema": "archie-mcp-tool-response/v1",
+        "requestId": "request-topics-public-001",
+        "tool": "topics",
+        "status": "ok",
+        "snapshot": {
+          "snapshotId": "source_snapshot_fixture_001",
+          "snapshotSha256": "0f37ac2a582bccb817591a261fd0530e508943bb9279309c7ec861e656ce880c",
+          "repositoryRef": "fixture-ref",
+          "visibilityPolicyVersion": "visibility_fixture_v1",
+          "freshnessState": "fresh"
+        },
+        "result": {
+          "kind": "topics",
+          "records": [
+            {
+              "sourceId": "source.ontology-purpose",
+              "title": "Ontology: Purpose and Scope",
+              "route": "content/markdown/aaa/foundations/ontology.md#purpose-and-scope",
+              "sectionAnchor": "purpose-and-scope",
+              "sourceClass": "published_corpus",
+              "authorityStatus": "primary",
+              "visibility": "public",
+              "canonicalParent": null,
+              "claimLabelFloor": "published corpus",
+              "selectionSha256": "c3d07e652aaf196a1d11c5659b69b1441b06f9f3ce8cd8bd7161bc8838011721"
+            }
+          ]
+        },
+        "page": {
+          "unit": "records",
+          "limit": 1,
+          "returned": 1,
+          "nextCursor": "eyJvZmZzZXQiOjEsInNjb3BlU2hhMjU2IjoiMDc2N2JmYWJhZjVmODBiYjMzOGEyMGEyOWRlOTA4ZGM2ZDAzOTMyMzA0M2Q2ZTc5ODdhZTBlMzYyN2Y0NDgxNCIsInNoYTI1NiI6IjUxYzQ5ZDMyMTJkYjkwMjkwNGFiMDA4ZmM4YjkwZmFlZTk3MjljMTRmNjMwZWUzNGYxNzViMmRlNzYyY2QyMGUiLCJzbmFwc2hvdElkIjoic291cmNlX3NuYXBzaG90X2ZpeHR1cmVfMDAxIiwidG9vbCI6InRvcGljcyIsInZlcnNpb24iOjEsInZpc2liaWxpdHlTY29wZSI6InB1YmxpYyJ9",
+          "truncated": true,
+          "truncationReasons": [
+            "record_limit"
+          ]
+        },
+        "error": null
+      }
+    },
+    {
+      "caseId": "mcp-neighbors-public-first-page-001",
+      "accessScope": "public",
+      "request": {
+        "schema": "archie-mcp-tool-request/v1",
+        "requestId": "request-neighbors-public-001",
+        "tool": "neighbors",
+        "snapshotId": "source_snapshot_fixture_001",
+        "visibilityScope": "public",
+        "arguments": {
+          "topicOrRoute": "source.ontology-purpose",
+          "edgeTypes": [],
+          "direction": "both",
+          "limit": 1,
+          "cursor": null
+        }
+      },
+      "expectedResponse": {
+        "schema": "archie-mcp-tool-response/v1",
+        "requestId": "request-neighbors-public-001",
+        "tool": "neighbors",
+        "status": "ok",
+        "snapshot": {
+          "snapshotId": "source_snapshot_fixture_001",
+          "snapshotSha256": "0f37ac2a582bccb817591a261fd0530e508943bb9279309c7ec861e656ce880c",
+          "repositoryRef": "fixture-ref",
+          "visibilityPolicyVersion": "visibility_fixture_v1",
+          "freshnessState": "fresh"
+        },
+        "result": {
+          "kind": "neighbors",
+          "origin": {
+            "sourceId": "source.ontology-purpose",
+            "title": "Ontology: Purpose and Scope",
+            "route": "content/markdown/aaa/foundations/ontology.md#purpose-and-scope",
+            "sectionAnchor": "purpose-and-scope",
+            "sourceClass": "published_corpus",
+            "authorityStatus": "primary",
+            "visibility": "public",
+            "canonicalParent": null,
+            "claimLabelFloor": "published corpus",
+            "selectionSha256": "c3d07e652aaf196a1d11c5659b69b1441b06f9f3ce8cd8bd7161bc8838011721"
+          },
+          "records": [
+            {
+              "edgeId": "edge.generated-ontology-mirrors-source",
+              "edgeType": "mirrors",
+              "direction": "incoming",
+              "evidenceSourceId": "source.generated-foundations-ontology",
+              "neighbor": {
+                "sourceId": "source.generated-foundations-ontology",
+                "title": "Generated Foundations Reading Copy: Ontology",
+                "route": "document-sphere:content/markdown/aaa/foundations/ontology.md",
+                "sectionAnchor": "ontology",
+                "sourceClass": "generated_reading_copy",
+                "authorityStatus": "routing_only",
+                "visibility": "public",
+                "canonicalParent": "source.ontology-purpose",
+                "claimLabelFloor": "unsupported",
+                "selectionSha256": "06e8ff6e4576f2faf41b2a1be5a8b02eea41c48f633ed1836b309d8f496ad47f"
+              }
+            }
+          ]
+        },
+        "page": {
+          "unit": "records",
+          "limit": 1,
+          "returned": 1,
+          "nextCursor": "eyJvZmZzZXQiOjEsInNjb3BlU2hhMjU2IjoiNTIwM2JmYzNmMDAzMTZlMDhmNjhlODAwYWQxNDFlYWEwMDIzYThiMmNkOGZjZTk0MjE5NmRmZmJmZjlmOGNjNCIsInNoYTI1NiI6ImU3OTQ5MmU5NjM0NDk3NzNiOWUxNDQ2OTZkYjFlNGMyNzBkYjA4NjY4YTY0MTVhMWY2YWMzOWRjNDNjYjMwNDIiLCJzbmFwc2hvdElkIjoic291cmNlX3NuYXBzaG90X2ZpeHR1cmVfMDAxIiwidG9vbCI6Im5laWdoYm9ycyIsInZlcnNpb24iOjEsInZpc2liaWxpdHlTY29wZSI6InB1YmxpYyJ9",
+          "truncated": true,
+          "truncationReasons": [
+            "record_limit"
+          ]
+        },
+        "error": null
+      }
+    },
+    {
+      "caseId": "mcp-read-priority-public-excluded-001",
+      "accessScope": "public",
+      "request": {
+        "schema": "archie-mcp-tool-request/v1",
+        "requestId": "request-read-priority-public-001",
+        "tool": "read",
+        "snapshotId": "source_snapshot_fixture_001",
+        "visibilityScope": "public",
+        "arguments": {
+          "topicOrRoute": "source.priority-mcp-contract",
+          "sectionAnchor": null,
+          "maxContentChars": 512,
+          "cursor": null,
+          "includeMetadata": false
+        }
+      },
+      "expectedResponse": {
+        "schema": "archie-mcp-tool-response/v1",
+        "requestId": "request-read-priority-public-001",
+        "tool": "read",
+        "status": "excluded_visibility",
+        "snapshot": {
+          "snapshotId": "source_snapshot_fixture_001",
+          "snapshotSha256": "0f37ac2a582bccb817591a261fd0530e508943bb9279309c7ec861e656ce880c",
+          "repositoryRef": "fixture-ref",
+          "visibilityPolicyVersion": "visibility_fixture_v1",
+          "freshnessState": "fresh"
+        },
+        "result": null,
+        "page": null,
+        "error": {
+          "code": "SOURCE_VISIBILITY_EXCLUDED",
+          "message": "requested source is outside the authorized visibility scope",
+          "retriable": false
+        }
+      }
+    },
+    {
+      "caseId": "mcp-read-priority-operator-visible-001",
+      "accessScope": "operator_developer",
+      "request": {
+        "schema": "archie-mcp-tool-request/v1",
+        "requestId": "request-read-priority-operator-001",
+        "tool": "read",
+        "snapshotId": "source_snapshot_fixture_001",
+        "visibilityScope": "operator_developer",
+        "arguments": {
+          "topicOrRoute": "source.priority-mcp-contract",
+          "sectionAnchor": null,
+          "maxContentChars": 256,
+          "cursor": null,
+          "includeMetadata": false
+        }
+      },
+      "expectedResponse": {
+        "schema": "archie-mcp-tool-response/v1",
+        "requestId": "request-read-priority-operator-001",
+        "tool": "read",
+        "status": "ok",
+        "snapshot": {
+          "snapshotId": "source_snapshot_fixture_001",
+          "snapshotSha256": "0f37ac2a582bccb817591a261fd0530e508943bb9279309c7ec861e656ce880c",
+          "repositoryRef": "fixture-ref",
+          "visibilityPolicyVersion": "visibility_fixture_v1",
+          "freshnessState": "fresh"
+        },
+        "result": {
+          "kind": "read",
+          "source": {
+            "sourceId": "source.priority-mcp-contract",
+            "title": "Architrino MCP Source Index Snapshot V1",
+            "route": "reference/priorities/app-mcp/source-index-snapshot-v1.md",
+            "sectionAnchor": null,
+            "sourceClass": "priority_material",
+            "authorityStatus": "priority_only",
+            "visibility": "development_status",
+            "canonicalParent": null,
+            "claimLabelFloor": "priority-only",
+            "selectionSha256": "8f435684fbfb173dd4648ec52e793239345b92ac541eabcfe2bf7436aa6b7d44"
+          },
+          "contentType": "markdown",
+          "content": "# Source Index Snapshot V1\n\n## Status\n\n- Kind: `priority-contract`\n- Claim level: `priority-only`\n- Status: `fixture-backed`\n- Parent tracker: [Architrino MCP](priorities.md)\n\n## Purpose\n\n`archie-source-index-snapshot/v1` is the first executable contract f",
+          "contentOffset": 0,
+          "contentComplete": false,
+          "metadata": []
+        },
+        "page": {
+          "unit": "characters",
+          "limit": 256,
+          "returned": 256,
+          "nextCursor": "eyJvZmZzZXQiOjI1Niwic2NvcGVTaGEyNTYiOiJjNDg0MzBlMDI1ZjRhZTcwNzg1MmE5ZjAwODYzNDhlYzNlZGM1NWUwZTk0YjFiMTBmMjRmNDVkZjNhMTg1ZjBjIiwic2hhMjU2IjoiMTQyOTM3MDczZjFlZTNlNTA2ZDA2OTEzYzJmZWVlMWY2NTI4YTYwOTkwMDE3MTUzYjUzOTE1NGM2YTdjN2U2OSIsInNuYXBzaG90SWQiOiJzb3VyY2Vfc25hcHNob3RfZml4dHVyZV8wMDEiLCJ0b29sIjoicmVhZCIsInZlcnNpb24iOjEsInZpc2liaWxpdHlTY29wZSI6Im9wZXJhdG9yX2RldmVsb3BlciJ9",
+          "truncated": true,
+          "truncationReasons": [
+            "content_char_limit"
+          ]
+        },
+        "error": null
+      }
+    }
+  ]
+}

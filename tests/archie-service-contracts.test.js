@@ -22,6 +22,26 @@ test("Archie service source-index dry-run validates current route evidence", () 
   assert.match(result.stdout, /Archie source-index check passed/);
 });
 
+test("Archie MCP tool contracts stay bounded and fixture-backed", () => {
+  const result = spawnSync("node", ["scripts/archie-service/validate-mcp-tool-contracts.mjs", "--check"], {
+    cwd: new URL("..", import.meta.url),
+    encoding: "utf8",
+  });
+
+  assert.equal(result.status, 0, `${result.stdout}\n${result.stderr}`);
+  assert.match(result.stdout, /Archie MCP tool-contract check passed/);
+});
+
+test("Archie fixture MCP server completes the local stdio protocol smoke", () => {
+  const result = spawnSync("node", ["scripts/archie-service/check-fixture-mcp-server.mjs", "--check"], {
+    cwd: new URL("..", import.meta.url),
+    encoding: "utf8",
+  });
+
+  assert.equal(result.status, 0, `${result.stdout}\n${result.stderr}`);
+  assert.match(result.stdout, /Archie fixture MCP check passed/);
+});
+
 test("Archie service negative validators fail closed without side effects", () => {
   const result = spawnSync("node", ["scripts/archie-service/validate-negative-validators.mjs", "--check"], {
     cwd: new URL("..", import.meta.url),

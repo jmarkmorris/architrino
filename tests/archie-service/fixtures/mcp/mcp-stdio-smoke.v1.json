@@ -1,0 +1,772 @@
+{
+  "schema": "archie-mcp-stdio-smoke/v1",
+  "smokeId": "archie_mcp_stdio_fixture_001",
+  "protocolVersion": "2025-11-25",
+  "serverCommand": [
+    "node",
+    "scripts/archie-service/run-fixture-mcp-server.mjs"
+  ],
+  "cases": [
+    {
+      "caseId": "mcp-stdio-initialize-001",
+      "message": {
+        "jsonrpc": "2.0",
+        "id": 1,
+        "method": "initialize",
+        "params": {
+          "protocolVersion": "2025-11-25",
+          "capabilities": {},
+          "clientInfo": {
+            "name": "architrino-fixture-smoke-client",
+            "version": "0.1.0"
+          }
+        }
+      },
+      "expectedResponse": {
+        "jsonrpc": "2.0",
+        "id": 1,
+        "result": {
+          "protocolVersion": "2025-11-25",
+          "capabilities": {
+            "tools": {
+              "listChanged": false
+            }
+          },
+          "serverInfo": {
+            "name": "architrino-fixture-mcp",
+            "title": "Architrino Fixture MCP",
+            "version": "0.1.0",
+            "description": "Read-only local MCP adapter over one validated Architrino fixture snapshot."
+          },
+          "instructions": "Use search to locate sources, read to retrieve exact bounded content, topics to enumerate addressable records, and neighbors only for declared direct graph edges. Source authority fields are mandatory context; retrieval is not proof."
+        }
+      }
+    },
+    {
+      "caseId": "mcp-stdio-initialized-notification-001",
+      "message": {
+        "jsonrpc": "2.0",
+        "method": "notifications/initialized"
+      },
+      "expectedResponse": null
+    },
+    {
+      "caseId": "mcp-stdio-tools-list-001",
+      "message": {
+        "jsonrpc": "2.0",
+        "id": 2,
+        "method": "tools/list",
+        "params": {
+          "_meta": {
+            "progressToken": "smoke-list"
+          }
+        }
+      },
+      "expectedResponse": {
+        "jsonrpc": "2.0",
+        "id": 2,
+        "result": {
+          "tools": [
+            {
+              "name": "search",
+              "title": "Search Architrino sources",
+              "description": "Search the active immutable Architrino source snapshot. Returns bounded, source-grounded matches with authority and snapshot provenance.",
+              "inputSchema": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "query"
+                ],
+                "properties": {
+                  "query": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 256
+                  },
+                  "filters": {
+                    "$ref": "#/$defs/filters"
+                  },
+                  "limit": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 20,
+                    "default": 10
+                  },
+                  "cursor": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "default": null
+                  }
+                },
+                "$defs": {
+                  "filters": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                      "sourceClasses": {
+                        "type": "array",
+                        "maxItems": 16,
+                        "uniqueItems": true,
+                        "items": {
+                          "type": "string",
+                          "enum": [
+                            "published_corpus",
+                            "generated_reading_copy",
+                            "scene_route",
+                            "app_guide",
+                            "archie_reference",
+                            "priority_material",
+                            "external_prior_physics"
+                          ]
+                        },
+                        "default": []
+                      },
+                      "authorityStatuses": {
+                        "type": "array",
+                        "maxItems": 16,
+                        "uniqueItems": true,
+                        "items": {
+                          "type": "string",
+                          "enum": [
+                            "primary",
+                            "routing_only",
+                            "diagnostic",
+                            "priority_only",
+                            "comparison_only",
+                            "excluded",
+                            "unsupported"
+                          ]
+                        },
+                        "default": []
+                      }
+                    },
+                    "default": {
+                      "sourceClasses": [],
+                      "authorityStatuses": []
+                    }
+                  }
+                }
+              },
+              "annotations": {
+                "readOnlyHint": true,
+                "destructiveHint": false,
+                "idempotentHint": true,
+                "openWorldHint": false
+              },
+              "execution": {
+                "taskSupport": "forbidden"
+              }
+            },
+            {
+              "name": "read",
+              "title": "Read an Architrino source",
+              "description": "Read an exact bounded content page from the active immutable snapshot by source id or exact route. Does not read repository source files per request.",
+              "inputSchema": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "topicOrRoute"
+                ],
+                "properties": {
+                  "topicOrRoute": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 512
+                  },
+                  "sectionAnchor": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "default": null
+                  },
+                  "maxContentChars": {
+                    "type": "integer",
+                    "minimum": 256,
+                    "maximum": 8000,
+                    "default": 4000
+                  },
+                  "cursor": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "default": null
+                  },
+                  "includeMetadata": {
+                    "type": "boolean",
+                    "default": true
+                  }
+                }
+              },
+              "annotations": {
+                "readOnlyHint": true,
+                "destructiveHint": false,
+                "idempotentHint": true,
+                "openWorldHint": false
+              },
+              "execution": {
+                "taskSupport": "forbidden"
+              }
+            },
+            {
+              "name": "topics",
+              "title": "List Architrino topics",
+              "description": "List bounded, directly addressable non-routing records from the active immutable source snapshot.",
+              "inputSchema": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "filters": {
+                    "$ref": "#/$defs/filters"
+                  },
+                  "limit": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 20,
+                    "default": 10
+                  },
+                  "cursor": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "default": null
+                  }
+                },
+                "$defs": {
+                  "filters": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                      "sourceClasses": {
+                        "type": "array",
+                        "maxItems": 16,
+                        "uniqueItems": true,
+                        "items": {
+                          "type": "string",
+                          "enum": [
+                            "published_corpus",
+                            "generated_reading_copy",
+                            "scene_route",
+                            "app_guide",
+                            "archie_reference",
+                            "priority_material",
+                            "external_prior_physics"
+                          ]
+                        },
+                        "default": []
+                      },
+                      "authorityStatuses": {
+                        "type": "array",
+                        "maxItems": 16,
+                        "uniqueItems": true,
+                        "items": {
+                          "type": "string",
+                          "enum": [
+                            "primary",
+                            "routing_only",
+                            "diagnostic",
+                            "priority_only",
+                            "comparison_only",
+                            "excluded",
+                            "unsupported"
+                          ]
+                        },
+                        "default": []
+                      }
+                    },
+                    "default": {
+                      "sourceClasses": [],
+                      "authorityStatuses": []
+                    }
+                  }
+                }
+              },
+              "annotations": {
+                "readOnlyHint": true,
+                "destructiveHint": false,
+                "idempotentHint": true,
+                "openWorldHint": false
+              },
+              "execution": {
+                "taskSupport": "forbidden"
+              }
+            },
+            {
+              "name": "neighbors",
+              "title": "List direct Architrino neighbors",
+              "description": "Return only directly declared, typed graph edges from the active immutable snapshot. No relationship is inferred.",
+              "inputSchema": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "topicOrRoute"
+                ],
+                "properties": {
+                  "topicOrRoute": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 512
+                  },
+                  "edgeTypes": {
+                    "type": "array",
+                    "maxItems": 16,
+                    "uniqueItems": true,
+                    "items": {
+                      "type": "string",
+                      "enum": [
+                        "routes_to",
+                        "mirrors",
+                        "related",
+                        "prerequisite",
+                        "contains",
+                        "depends_on"
+                      ]
+                    },
+                    "default": []
+                  },
+                  "direction": {
+                    "type": "string",
+                    "enum": [
+                      "outgoing",
+                      "incoming",
+                      "both"
+                    ],
+                    "default": "both"
+                  },
+                  "limit": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 20,
+                    "default": 10
+                  },
+                  "cursor": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "default": null
+                  }
+                }
+              },
+              "annotations": {
+                "readOnlyHint": true,
+                "destructiveHint": false,
+                "idempotentHint": true,
+                "openWorldHint": false
+              },
+              "execution": {
+                "taskSupport": "forbidden"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "caseId": "mcp-stdio-search-call-001",
+      "message": {
+        "jsonrpc": "2.0",
+        "id": 3,
+        "method": "tools/call",
+        "params": {
+          "name": "search",
+          "arguments": {
+            "query": "ontology",
+            "limit": 1
+          }
+        }
+      },
+      "expectedResponse": {
+        "jsonrpc": "2.0",
+        "id": 3,
+        "result": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"schema\":\"archie-mcp-tool-response/v1\",\"requestId\":\"mcp:3\",\"tool\":\"search\",\"status\":\"ok\",\"snapshot\":{\"snapshotId\":\"source_snapshot_fixture_001\",\"snapshotSha256\":\"0f37ac2a582bccb817591a261fd0530e508943bb9279309c7ec861e656ce880c\",\"repositoryRef\":\"fixture-ref\",\"visibilityPolicyVersion\":\"visibility_fixture_v1\",\"freshnessState\":\"fresh\"},\"result\":{\"kind\":\"search\",\"query\":\"ontology\",\"records\":[{\"rank\":1,\"rankScore\":720,\"matchReasons\":[\"title_phrase\",\"source_id\",\"route\",\"content_phrase\",\"authority_preference\"],\"source\":{\"sourceId\":\"source.ontology-purpose\",\"title\":\"Ontology: Purpose and Scope\",\"route\":\"content/markdown/aaa/foundations/ontology.md#purpose-and-scope\",\"sectionAnchor\":\"purpose-and-scope\",\"sourceClass\":\"published_corpus\",\"authorityStatus\":\"primary\",\"visibility\":\"public\",\"canonicalParent\":null,\"claimLabelFloor\":\"published corpus\",\"selectionSha256\":\"c3d07e652aaf196a1d11c5659b69b1441b06f9f3ce8cd8bd7161bc8838011721\"},\"teaser\":\"Ontology: Purpose and Scope ontological bedrock foundation levels absolute time architrino Euclidean void Noether sea Purpose and Scope This document establishes the ontological bedrock of $\\\\mathbb{A}\\\\mathbb{A}\\\\mathbb{A}$: what fundamentall\"}]},\"page\":{\"unit\":\"records\",\"limit\":1,\"returned\":1,\"nextCursor\":\"eyJvZmZzZXQiOjEsInNjb3BlU2hhMjU2IjoiNjYyNzgyZTY2ZjRmNTY2NDdmNjk4NDE0NGYzNDA3YmU4MWFmYWVlODdmZGU3ZWViNDI5NmYxNGNhMThlY2RjMSIsInNoYTI1NiI6IjkzYmQxYWJjYWZhYmMyNDk4ZTEwNWFlOTY2N2NiNzU1ZTFmMDczZDhkM2NmNTFiMzJhYzlmNDE4MmNjZjY4ODUiLCJzbmFwc2hvdElkIjoic291cmNlX3NuYXBzaG90X2ZpeHR1cmVfMDAxIiwidG9vbCI6InNlYXJjaCIsInZlcnNpb24iOjEsInZpc2liaWxpdHlTY29wZSI6InB1YmxpYyJ9\",\"truncated\":true,\"truncationReasons\":[\"record_limit\"]},\"error\":null}"
+            }
+          ],
+          "structuredContent": {
+            "schema": "archie-mcp-tool-response/v1",
+            "requestId": "mcp:3",
+            "tool": "search",
+            "status": "ok",
+            "snapshot": {
+              "snapshotId": "source_snapshot_fixture_001",
+              "snapshotSha256": "0f37ac2a582bccb817591a261fd0530e508943bb9279309c7ec861e656ce880c",
+              "repositoryRef": "fixture-ref",
+              "visibilityPolicyVersion": "visibility_fixture_v1",
+              "freshnessState": "fresh"
+            },
+            "result": {
+              "kind": "search",
+              "query": "ontology",
+              "records": [
+                {
+                  "rank": 1,
+                  "rankScore": 720,
+                  "matchReasons": [
+                    "title_phrase",
+                    "source_id",
+                    "route",
+                    "content_phrase",
+                    "authority_preference"
+                  ],
+                  "source": {
+                    "sourceId": "source.ontology-purpose",
+                    "title": "Ontology: Purpose and Scope",
+                    "route": "content/markdown/aaa/foundations/ontology.md#purpose-and-scope",
+                    "sectionAnchor": "purpose-and-scope",
+                    "sourceClass": "published_corpus",
+                    "authorityStatus": "primary",
+                    "visibility": "public",
+                    "canonicalParent": null,
+                    "claimLabelFloor": "published corpus",
+                    "selectionSha256": "c3d07e652aaf196a1d11c5659b69b1441b06f9f3ce8cd8bd7161bc8838011721"
+                  },
+                  "teaser": "Ontology: Purpose and Scope ontological bedrock foundation levels absolute time architrino Euclidean void Noether sea Purpose and Scope This document establishes the ontological bedrock of $\\mathbb{A}\\mathbb{A}\\mathbb{A}$: what fundamentall"
+                }
+              ]
+            },
+            "page": {
+              "unit": "records",
+              "limit": 1,
+              "returned": 1,
+              "nextCursor": "eyJvZmZzZXQiOjEsInNjb3BlU2hhMjU2IjoiNjYyNzgyZTY2ZjRmNTY2NDdmNjk4NDE0NGYzNDA3YmU4MWFmYWVlODdmZGU3ZWViNDI5NmYxNGNhMThlY2RjMSIsInNoYTI1NiI6IjkzYmQxYWJjYWZhYmMyNDk4ZTEwNWFlOTY2N2NiNzU1ZTFmMDczZDhkM2NmNTFiMzJhYzlmNDE4MmNjZjY4ODUiLCJzbmFwc2hvdElkIjoic291cmNlX3NuYXBzaG90X2ZpeHR1cmVfMDAxIiwidG9vbCI6InNlYXJjaCIsInZlcnNpb24iOjEsInZpc2liaWxpdHlTY29wZSI6InB1YmxpYyJ9",
+              "truncated": true,
+              "truncationReasons": [
+                "record_limit"
+              ]
+            },
+            "error": null
+          },
+          "isError": false
+        }
+      }
+    },
+    {
+      "caseId": "mcp-stdio-read-call-001",
+      "message": {
+        "jsonrpc": "2.0",
+        "id": 4,
+        "method": "tools/call",
+        "params": {
+          "name": "read",
+          "arguments": {
+            "topicOrRoute": "source.ontology-purpose",
+            "maxContentChars": 256
+          }
+        }
+      },
+      "expectedResponse": {
+        "jsonrpc": "2.0",
+        "id": 4,
+        "result": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"schema\":\"archie-mcp-tool-response/v1\",\"requestId\":\"mcp:4\",\"tool\":\"read\",\"status\":\"ok\",\"snapshot\":{\"snapshotId\":\"source_snapshot_fixture_001\",\"snapshotSha256\":\"0f37ac2a582bccb817591a261fd0530e508943bb9279309c7ec861e656ce880c\",\"repositoryRef\":\"fixture-ref\",\"visibilityPolicyVersion\":\"visibility_fixture_v1\",\"freshnessState\":\"fresh\"},\"result\":{\"kind\":\"read\",\"source\":{\"sourceId\":\"source.ontology-purpose\",\"title\":\"Ontology: Purpose and Scope\",\"route\":\"content/markdown/aaa/foundations/ontology.md#purpose-and-scope\",\"sectionAnchor\":\"purpose-and-scope\",\"sourceClass\":\"published_corpus\",\"authorityStatus\":\"primary\",\"visibility\":\"public\",\"canonicalParent\":null,\"claimLabelFloor\":\"published corpus\",\"selectionSha256\":\"c3d07e652aaf196a1d11c5659b69b1441b06f9f3ce8cd8bd7161bc8838011721\"},\"contentType\":\"markdown\",\"content\":\"## Purpose and Scope\\n\\nThis document establishes the ontological bedrock of $\\\\mathbb{A}\\\\mathbb{A}\\\\mathbb{A}$: what fundamentally exists, what is emergent, and what Physical Observers reconstruct from inside the system.\\n\\nIt defines six foundation routes:\\n\\n1.\",\"contentOffset\":0,\"contentComplete\":false,\"metadata\":[{\"metadataId\":\"metadata.ontology-level-tower\",\"kind\":\"equation\",\"sourceId\":\"source.ontology-purpose\",\"route\":\"content/markdown/aaa/foundations/ontology.md#purpose-and-scope\",\"sourceSelectionSha256\":\"c3d07e652aaf196a1d11c5659b69b1441b06f9f3ce8cd8bd7161bc8838011721\",\"tex\":\"$$\\nS(T)\\n\\\\xrightarrow{\\\\Pi_{\\\\mathrm{assembly}}}\\n\\\\mathfrak B(T)\\n\\\\xrightarrow{\\\\Pi_{\\\\mathrm{eff}}}\\n\\\\big(A,B_{ij},g^{\\\\mathrm{eff}},\\\\Phi_{\\\\mathrm{eff}}\\\\big)\\n\\\\xrightarrow{\\\\Pi_{\\\\mathrm{record}}}\\n\\\\bar S(T).\\n$$\",\"texSha256\":\"d553f0799da68ae1dedc68524a1d1ea3d50190df6bce58d575bbc038009be23c\"}]},\"page\":{\"unit\":\"characters\",\"limit\":256,\"returned\":256,\"nextCursor\":\"eyJvZmZzZXQiOjI1Niwic2NvcGVTaGEyNTYiOiIyYmM5YmE3OWRhMzk0MGNiMWMxZTk4OTRhN2ZiZmE5MDE4ZGE0MjdiMmY2ZTRjYjkyY2JmZmQ2YmE3Njk3OTg2Iiwic2hhMjU2IjoiYmU3MjBjY2RjMjU5Yjk2MDg5MTNjNWM4YzI1OWRiZDYyNDkwYTczYmEwNmQ0ZTg3NDllNTUxZDI4ZWY5Nzg0YSIsInNuYXBzaG90SWQiOiJzb3VyY2Vfc25hcHNob3RfZml4dHVyZV8wMDEiLCJ0b29sIjoicmVhZCIsInZlcnNpb24iOjEsInZpc2liaWxpdHlTY29wZSI6InB1YmxpYyJ9\",\"truncated\":true,\"truncationReasons\":[\"content_char_limit\"]},\"error\":null}"
+            }
+          ],
+          "structuredContent": {
+            "schema": "archie-mcp-tool-response/v1",
+            "requestId": "mcp:4",
+            "tool": "read",
+            "status": "ok",
+            "snapshot": {
+              "snapshotId": "source_snapshot_fixture_001",
+              "snapshotSha256": "0f37ac2a582bccb817591a261fd0530e508943bb9279309c7ec861e656ce880c",
+              "repositoryRef": "fixture-ref",
+              "visibilityPolicyVersion": "visibility_fixture_v1",
+              "freshnessState": "fresh"
+            },
+            "result": {
+              "kind": "read",
+              "source": {
+                "sourceId": "source.ontology-purpose",
+                "title": "Ontology: Purpose and Scope",
+                "route": "content/markdown/aaa/foundations/ontology.md#purpose-and-scope",
+                "sectionAnchor": "purpose-and-scope",
+                "sourceClass": "published_corpus",
+                "authorityStatus": "primary",
+                "visibility": "public",
+                "canonicalParent": null,
+                "claimLabelFloor": "published corpus",
+                "selectionSha256": "c3d07e652aaf196a1d11c5659b69b1441b06f9f3ce8cd8bd7161bc8838011721"
+              },
+              "contentType": "markdown",
+              "content": "## Purpose and Scope\n\nThis document establishes the ontological bedrock of $\\mathbb{A}\\mathbb{A}\\mathbb{A}$: what fundamentally exists, what is emergent, and what Physical Observers reconstruct from inside the system.\n\nIt defines six foundation routes:\n\n1.",
+              "contentOffset": 0,
+              "contentComplete": false,
+              "metadata": [
+                {
+                  "metadataId": "metadata.ontology-level-tower",
+                  "kind": "equation",
+                  "sourceId": "source.ontology-purpose",
+                  "route": "content/markdown/aaa/foundations/ontology.md#purpose-and-scope",
+                  "sourceSelectionSha256": "c3d07e652aaf196a1d11c5659b69b1441b06f9f3ce8cd8bd7161bc8838011721",
+                  "tex": "$$\nS(T)\n\\xrightarrow{\\Pi_{\\mathrm{assembly}}}\n\\mathfrak B(T)\n\\xrightarrow{\\Pi_{\\mathrm{eff}}}\n\\big(A,B_{ij},g^{\\mathrm{eff}},\\Phi_{\\mathrm{eff}}\\big)\n\\xrightarrow{\\Pi_{\\mathrm{record}}}\n\\bar S(T).\n$$",
+                  "texSha256": "d553f0799da68ae1dedc68524a1d1ea3d50190df6bce58d575bbc038009be23c"
+                }
+              ]
+            },
+            "page": {
+              "unit": "characters",
+              "limit": 256,
+              "returned": 256,
+              "nextCursor": "eyJvZmZzZXQiOjI1Niwic2NvcGVTaGEyNTYiOiIyYmM5YmE3OWRhMzk0MGNiMWMxZTk4OTRhN2ZiZmE5MDE4ZGE0MjdiMmY2ZTRjYjkyY2JmZmQ2YmE3Njk3OTg2Iiwic2hhMjU2IjoiYmU3MjBjY2RjMjU5Yjk2MDg5MTNjNWM4YzI1OWRiZDYyNDkwYTczYmEwNmQ0ZTg3NDllNTUxZDI4ZWY5Nzg0YSIsInNuYXBzaG90SWQiOiJzb3VyY2Vfc25hcHNob3RfZml4dHVyZV8wMDEiLCJ0b29sIjoicmVhZCIsInZlcnNpb24iOjEsInZpc2liaWxpdHlTY29wZSI6InB1YmxpYyJ9",
+              "truncated": true,
+              "truncationReasons": [
+                "content_char_limit"
+              ]
+            },
+            "error": null
+          },
+          "isError": false
+        }
+      }
+    },
+    {
+      "caseId": "mcp-stdio-topics-call-001",
+      "message": {
+        "jsonrpc": "2.0",
+        "id": 5,
+        "method": "tools/call",
+        "params": {
+          "name": "topics",
+          "arguments": {
+            "limit": 1
+          },
+          "_meta": {
+            "progressToken": "smoke-topics"
+          }
+        }
+      },
+      "expectedResponse": {
+        "jsonrpc": "2.0",
+        "id": 5,
+        "result": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"schema\":\"archie-mcp-tool-response/v1\",\"requestId\":\"mcp:5\",\"tool\":\"topics\",\"status\":\"ok\",\"snapshot\":{\"snapshotId\":\"source_snapshot_fixture_001\",\"snapshotSha256\":\"0f37ac2a582bccb817591a261fd0530e508943bb9279309c7ec861e656ce880c\",\"repositoryRef\":\"fixture-ref\",\"visibilityPolicyVersion\":\"visibility_fixture_v1\",\"freshnessState\":\"fresh\"},\"result\":{\"kind\":\"topics\",\"records\":[{\"sourceId\":\"source.ontology-purpose\",\"title\":\"Ontology: Purpose and Scope\",\"route\":\"content/markdown/aaa/foundations/ontology.md#purpose-and-scope\",\"sectionAnchor\":\"purpose-and-scope\",\"sourceClass\":\"published_corpus\",\"authorityStatus\":\"primary\",\"visibility\":\"public\",\"canonicalParent\":null,\"claimLabelFloor\":\"published corpus\",\"selectionSha256\":\"c3d07e652aaf196a1d11c5659b69b1441b06f9f3ce8cd8bd7161bc8838011721\"}]},\"page\":{\"unit\":\"records\",\"limit\":1,\"returned\":1,\"nextCursor\":\"eyJvZmZzZXQiOjEsInNjb3BlU2hhMjU2IjoiMDc2N2JmYWJhZjVmODBiYjMzOGEyMGEyOWRlOTA4ZGM2ZDAzOTMyMzA0M2Q2ZTc5ODdhZTBlMzYyN2Y0NDgxNCIsInNoYTI1NiI6IjUxYzQ5ZDMyMTJkYjkwMjkwNGFiMDA4ZmM4YjkwZmFlZTk3MjljMTRmNjMwZWUzNGYxNzViMmRlNzYyY2QyMGUiLCJzbmFwc2hvdElkIjoic291cmNlX3NuYXBzaG90X2ZpeHR1cmVfMDAxIiwidG9vbCI6InRvcGljcyIsInZlcnNpb24iOjEsInZpc2liaWxpdHlTY29wZSI6InB1YmxpYyJ9\",\"truncated\":true,\"truncationReasons\":[\"record_limit\"]},\"error\":null}"
+            }
+          ],
+          "structuredContent": {
+            "schema": "archie-mcp-tool-response/v1",
+            "requestId": "mcp:5",
+            "tool": "topics",
+            "status": "ok",
+            "snapshot": {
+              "snapshotId": "source_snapshot_fixture_001",
+              "snapshotSha256": "0f37ac2a582bccb817591a261fd0530e508943bb9279309c7ec861e656ce880c",
+              "repositoryRef": "fixture-ref",
+              "visibilityPolicyVersion": "visibility_fixture_v1",
+              "freshnessState": "fresh"
+            },
+            "result": {
+              "kind": "topics",
+              "records": [
+                {
+                  "sourceId": "source.ontology-purpose",
+                  "title": "Ontology: Purpose and Scope",
+                  "route": "content/markdown/aaa/foundations/ontology.md#purpose-and-scope",
+                  "sectionAnchor": "purpose-and-scope",
+                  "sourceClass": "published_corpus",
+                  "authorityStatus": "primary",
+                  "visibility": "public",
+                  "canonicalParent": null,
+                  "claimLabelFloor": "published corpus",
+                  "selectionSha256": "c3d07e652aaf196a1d11c5659b69b1441b06f9f3ce8cd8bd7161bc8838011721"
+                }
+              ]
+            },
+            "page": {
+              "unit": "records",
+              "limit": 1,
+              "returned": 1,
+              "nextCursor": "eyJvZmZzZXQiOjEsInNjb3BlU2hhMjU2IjoiMDc2N2JmYWJhZjVmODBiYjMzOGEyMGEyOWRlOTA4ZGM2ZDAzOTMyMzA0M2Q2ZTc5ODdhZTBlMzYyN2Y0NDgxNCIsInNoYTI1NiI6IjUxYzQ5ZDMyMTJkYjkwMjkwNGFiMDA4ZmM4YjkwZmFlZTk3MjljMTRmNjMwZWUzNGYxNzViMmRlNzYyY2QyMGUiLCJzbmFwc2hvdElkIjoic291cmNlX3NuYXBzaG90X2ZpeHR1cmVfMDAxIiwidG9vbCI6InRvcGljcyIsInZlcnNpb24iOjEsInZpc2liaWxpdHlTY29wZSI6InB1YmxpYyJ9",
+              "truncated": true,
+              "truncationReasons": [
+                "record_limit"
+              ]
+            },
+            "error": null
+          },
+          "isError": false
+        }
+      }
+    },
+    {
+      "caseId": "mcp-stdio-neighbors-call-001",
+      "message": {
+        "jsonrpc": "2.0",
+        "id": 6,
+        "method": "tools/call",
+        "params": {
+          "name": "neighbors",
+          "arguments": {
+            "topicOrRoute": "source.ontology-purpose",
+            "limit": 1
+          }
+        }
+      },
+      "expectedResponse": {
+        "jsonrpc": "2.0",
+        "id": 6,
+        "result": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"schema\":\"archie-mcp-tool-response/v1\",\"requestId\":\"mcp:6\",\"tool\":\"neighbors\",\"status\":\"ok\",\"snapshot\":{\"snapshotId\":\"source_snapshot_fixture_001\",\"snapshotSha256\":\"0f37ac2a582bccb817591a261fd0530e508943bb9279309c7ec861e656ce880c\",\"repositoryRef\":\"fixture-ref\",\"visibilityPolicyVersion\":\"visibility_fixture_v1\",\"freshnessState\":\"fresh\"},\"result\":{\"kind\":\"neighbors\",\"origin\":{\"sourceId\":\"source.ontology-purpose\",\"title\":\"Ontology: Purpose and Scope\",\"route\":\"content/markdown/aaa/foundations/ontology.md#purpose-and-scope\",\"sectionAnchor\":\"purpose-and-scope\",\"sourceClass\":\"published_corpus\",\"authorityStatus\":\"primary\",\"visibility\":\"public\",\"canonicalParent\":null,\"claimLabelFloor\":\"published corpus\",\"selectionSha256\":\"c3d07e652aaf196a1d11c5659b69b1441b06f9f3ce8cd8bd7161bc8838011721\"},\"records\":[{\"edgeId\":\"edge.generated-ontology-mirrors-source\",\"edgeType\":\"mirrors\",\"direction\":\"incoming\",\"evidenceSourceId\":\"source.generated-foundations-ontology\",\"neighbor\":{\"sourceId\":\"source.generated-foundations-ontology\",\"title\":\"Generated Foundations Reading Copy: Ontology\",\"route\":\"document-sphere:content/markdown/aaa/foundations/ontology.md\",\"sectionAnchor\":\"ontology\",\"sourceClass\":\"generated_reading_copy\",\"authorityStatus\":\"routing_only\",\"visibility\":\"public\",\"canonicalParent\":\"source.ontology-purpose\",\"claimLabelFloor\":\"unsupported\",\"selectionSha256\":\"06e8ff6e4576f2faf41b2a1be5a8b02eea41c48f633ed1836b309d8f496ad47f\"}}]},\"page\":{\"unit\":\"records\",\"limit\":1,\"returned\":1,\"nextCursor\":\"eyJvZmZzZXQiOjEsInNjb3BlU2hhMjU2IjoiNTIwM2JmYzNmMDAzMTZlMDhmNjhlODAwYWQxNDFlYWEwMDIzYThiMmNkOGZjZTk0MjE5NmRmZmJmZjlmOGNjNCIsInNoYTI1NiI6ImU3OTQ5MmU5NjM0NDk3NzNiOWUxNDQ2OTZkYjFlNGMyNzBkYjA4NjY4YTY0MTVhMWY2YWMzOWRjNDNjYjMwNDIiLCJzbmFwc2hvdElkIjoic291cmNlX3NuYXBzaG90X2ZpeHR1cmVfMDAxIiwidG9vbCI6Im5laWdoYm9ycyIsInZlcnNpb24iOjEsInZpc2liaWxpdHlTY29wZSI6InB1YmxpYyJ9\",\"truncated\":true,\"truncationReasons\":[\"record_limit\"]},\"error\":null}"
+            }
+          ],
+          "structuredContent": {
+            "schema": "archie-mcp-tool-response/v1",
+            "requestId": "mcp:6",
+            "tool": "neighbors",
+            "status": "ok",
+            "snapshot": {
+              "snapshotId": "source_snapshot_fixture_001",
+              "snapshotSha256": "0f37ac2a582bccb817591a261fd0530e508943bb9279309c7ec861e656ce880c",
+              "repositoryRef": "fixture-ref",
+              "visibilityPolicyVersion": "visibility_fixture_v1",
+              "freshnessState": "fresh"
+            },
+            "result": {
+              "kind": "neighbors",
+              "origin": {
+                "sourceId": "source.ontology-purpose",
+                "title": "Ontology: Purpose and Scope",
+                "route": "content/markdown/aaa/foundations/ontology.md#purpose-and-scope",
+                "sectionAnchor": "purpose-and-scope",
+                "sourceClass": "published_corpus",
+                "authorityStatus": "primary",
+                "visibility": "public",
+                "canonicalParent": null,
+                "claimLabelFloor": "published corpus",
+                "selectionSha256": "c3d07e652aaf196a1d11c5659b69b1441b06f9f3ce8cd8bd7161bc8838011721"
+              },
+              "records": [
+                {
+                  "edgeId": "edge.generated-ontology-mirrors-source",
+                  "edgeType": "mirrors",
+                  "direction": "incoming",
+                  "evidenceSourceId": "source.generated-foundations-ontology",
+                  "neighbor": {
+                    "sourceId": "source.generated-foundations-ontology",
+                    "title": "Generated Foundations Reading Copy: Ontology",
+                    "route": "document-sphere:content/markdown/aaa/foundations/ontology.md",
+                    "sectionAnchor": "ontology",
+                    "sourceClass": "generated_reading_copy",
+                    "authorityStatus": "routing_only",
+                    "visibility": "public",
+                    "canonicalParent": "source.ontology-purpose",
+                    "claimLabelFloor": "unsupported",
+                    "selectionSha256": "06e8ff6e4576f2faf41b2a1be5a8b02eea41c48f633ed1836b309d8f496ad47f"
+                  }
+                }
+              ]
+            },
+            "page": {
+              "unit": "records",
+              "limit": 1,
+              "returned": 1,
+              "nextCursor": "eyJvZmZzZXQiOjEsInNjb3BlU2hhMjU2IjoiNTIwM2JmYzNmMDAzMTZlMDhmNjhlODAwYWQxNDFlYWEwMDIzYThiMmNkOGZjZTk0MjE5NmRmZmJmZjlmOGNjNCIsInNoYTI1NiI6ImU3OTQ5MmU5NjM0NDk3NzNiOWUxNDQ2OTZkYjFlNGMyNzBkYjA4NjY4YTY0MTVhMWY2YWMzOWRjNDNjYjMwNDIiLCJzbmFwc2hvdElkIjoic291cmNlX3NuYXBzaG90X2ZpeHR1cmVfMDAxIiwidG9vbCI6Im5laWdoYm9ycyIsInZlcnNpb24iOjEsInZpc2liaWxpdHlTY29wZSI6InB1YmxpYyJ9",
+              "truncated": true,
+              "truncationReasons": [
+                "record_limit"
+              ]
+            },
+            "error": null
+          },
+          "isError": false
+        }
+      }
+    },
+    {
+      "caseId": "mcp-stdio-read-missing-call-001",
+      "message": {
+        "jsonrpc": "2.0",
+        "id": 7,
+        "method": "tools/call",
+        "params": {
+          "name": "read",
+          "arguments": {
+            "topicOrRoute": "source.does-not-exist"
+          }
+        }
+      },
+      "expectedResponse": {
+        "jsonrpc": "2.0",
+        "id": 7,
+        "result": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"schema\":\"archie-mcp-tool-response/v1\",\"requestId\":\"mcp:7\",\"tool\":\"read\",\"status\":\"not_found\",\"snapshot\":{\"snapshotId\":\"source_snapshot_fixture_001\",\"snapshotSha256\":\"0f37ac2a582bccb817591a261fd0530e508943bb9279309c7ec861e656ce880c\",\"repositoryRef\":\"fixture-ref\",\"visibilityPolicyVersion\":\"visibility_fixture_v1\",\"freshnessState\":\"fresh\"},\"result\":null,\"page\":null,\"error\":{\"code\":\"SOURCE_NOT_FOUND\",\"message\":\"requested source or route is not present in the active snapshot\",\"retriable\":false}}"
+            }
+          ],
+          "structuredContent": {
+            "schema": "archie-mcp-tool-response/v1",
+            "requestId": "mcp:7",
+            "tool": "read",
+            "status": "not_found",
+            "snapshot": {
+              "snapshotId": "source_snapshot_fixture_001",
+              "snapshotSha256": "0f37ac2a582bccb817591a261fd0530e508943bb9279309c7ec861e656ce880c",
+              "repositoryRef": "fixture-ref",
+              "visibilityPolicyVersion": "visibility_fixture_v1",
+              "freshnessState": "fresh"
+            },
+            "result": null,
+            "page": null,
+            "error": {
+              "code": "SOURCE_NOT_FOUND",
+              "message": "requested source or route is not present in the active snapshot",
+              "retriable": false
+            }
+          },
+          "isError": true
+        }
+      }
+    },
+    {
+      "caseId": "mcp-stdio-unknown-tool-001",
+      "message": {
+        "jsonrpc": "2.0",
+        "id": 8,
+        "method": "tools/call",
+        "params": {
+          "name": "write",
+          "arguments": {}
+        }
+      },
+      "expectedResponse": {
+        "jsonrpc": "2.0",
+        "id": 8,
+        "error": {
+          "code": -32602,
+          "message": "Unknown tool: write"
+        }
+      }
+    },
+    {
+      "caseId": "mcp-stdio-ping-001",
+      "message": {
+        "jsonrpc": "2.0",
+        "id": 9,
+        "method": "ping"
+      },
+      "expectedResponse": {
+        "jsonrpc": "2.0",
+        "id": 9,
+        "result": {}
+      }
+    }
+  ]
+}

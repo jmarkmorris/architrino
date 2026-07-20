@@ -41,11 +41,18 @@ export function createBorgEomHttpClient({
         return payload;
       } catch (error) {
         if (error?.name === "AbortError") {
-          throw new Error(
+          const requestError = new Error(
             timedOut
               ? `Borg EOM service timed out after ${timeoutMs} ms.`
               : "Borg EOM service request was cancelled.",
           );
+          if (timedOut) {
+            requestError.code = request?.runGrade === "certified"
+              ? "certified_execution_timeout"
+              : "display_execution_timeout";
+            requestError.timeoutMs = timeoutMs;
+          }
+          throw requestError;
         }
         throw error;
       } finally {

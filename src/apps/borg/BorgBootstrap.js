@@ -15,6 +15,7 @@ import {
   createBorgPlacementPolicy,
 } from "./BorgInteractiveDefaults.js";
 import { createBorgAssemblyViewSession } from "./BorgAssemblyViewSession.js";
+import { BORG_BRAID_RECORD_CATALOG } from "./BorgBraidRecordCatalog.js";
 
 export const BORG_DEFAULT_RUNTIME_MODE = "eom-shadow";
 export const BORG_RECORD_REPLAY_RUNTIME_MODE = "eom-record-replay";
@@ -25,10 +26,17 @@ export async function bootBorgApp({
   createEomClient = createBorgEomHttpClient,
   manifest = BORG_DATASET_MANIFEST_V1,
   fetchLike = globalThis.fetch,
+  locationLike = globalThis.location,
+  braidRecordCatalog = BORG_BRAID_RECORD_CATALOG,
   startupSeedIndex = createBorgStartupSeedIndex(),
 } = {}) {
   const query = new URLSearchParams(search);
   const runtimeMode = resolveBorgRuntimeMode(query);
+  const braidRecordNavigation = createBorgBraidRecordNavigation({
+    catalog: braidRecordCatalog,
+    selectedRecordUrls: query.getAll("eomRecord"),
+    locationLike,
+  });
   if (runtimeMode === BORG_RECORD_REPLAY_RUNTIME_MODE) {
     const recordUrls = query.getAll("eomRecord");
     const records = await Promise.all(recordUrls.map(async (recordUrl) => {
@@ -49,6 +57,7 @@ export async function bootBorgApp({
         records,
         sourceUrls: Object.freeze([...recordUrls]),
       },
+      braidRecordNavigation,
     });
   }
 
@@ -125,6 +134,45 @@ export async function bootBorgApp({
       simulationOuterRadius: displayPlacement.seedingRadius,
       coupling: String(interactiveDefaults.coupling),
     },
+    braidRecordNavigation,
+  });
+}
+
+export function createBorgBraidRecordNavigation({
+  catalog = BORG_BRAID_RECORD_CATALOG,
+  selectedRecordUrls = [],
+  locationLike = globalThis.location,
+} = {}) {
+  const entries = catalog?.entries;
+  if (!Array.isArray(entries)) {
+    throw new TypeError("Borg braid record navigation requires a validated catalog.");
+  }
+  const selectedRecordId = entries.find((entry) =>
+    selectedRecordUrls.includes(entry.recordUrl)
+  )?.id ?? null;
+
+  function buildUrl(recordId) {
+    const entry = entries.find((candidate) => candidate.id === recordId);
+    if (!entry) {
+      throw new RangeError(`Borg braid record catalog has no entry ${String(recordId)}.`);
+    }
+    return `borg.html?eomRecord=${encodeURIComponent(entry.recordUrl)}`;
+  }
+
+  function navigate(recordId) {
+    const url = buildUrl(recordId);
+    if (typeof locationLike?.assign !== "function") {
+      throw new TypeError("Borg braid record navigation requires location.assign().");
+    }
+    locationLike.assign(url);
+    return url;
+  }
+
+  return Object.freeze({
+    catalog,
+    selectedRecordId,
+    buildUrl,
+    navigate,
   });
 }
 

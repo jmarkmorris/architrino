@@ -8,7 +8,7 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[1]
-PROTOCOL_MAGIC = "EOM_BORG_NATIVE_V8"
+PROTOCOL_MAGIC = "EOM_BORG_NATIVE_V9"
 
 
 def run_record(
@@ -31,6 +31,7 @@ def run_record(
     correction_tolerance: str = "1e-8",
     thread_count: str = "2",
     memory_budget: str = "67108864",
+    run_grade: str = "certified",
     path_count: str = "1",
 ) -> str:
     return "\t".join((
@@ -45,7 +46,7 @@ def run_record(
         "128", "512", "256", "500000", "32", "200000", "24",
         "200000", "12", "1000", "100", "sharp_with_finite_width_fallback",
         "fixed-pairwise", "outward", "equal-routed-pair-weight/v1",
-        acceleration_tolerance, path_count,
+        acceleration_tolerance, run_grade, path_count,
     ))
 
 
@@ -140,6 +141,48 @@ class NativeBorgProcessTests(unittest.TestCase):
         self.assertGreater(
             len(response["publishedExtensions"][0]["segments"]), 0
         )
+
+    def test_display_grade_preserves_numerical_path_but_marks_every_output_display_only(self) -> None:
+        protocol = "\n".join((
+            PROTOCOL_MAGIC,
+            run_record(
+                "native-process-display", "2", "2.1",
+                run_grade="display", path_count="2",
+            ),
+            "PATH\tp\t1\t1\t0\t1",
+            "SEG\t0\t2\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0",
+            "PATH\tq\t-1\t2\t0\t1",
+            "SEG\t0\t2\t0.5\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0",
+            "END",
+            "",
+        ))
+        completed = subprocess.run(
+            [str(self.binary), "borg-shadow-v0"],
+            input=protocol,
+            check=True,
+            cwd=ROOT,
+            capture_output=True,
+            text=True,
+        )
+        response = json.loads(completed.stdout)
+        self.assertEqual(response["status"], "completed")
+        self.assertEqual(response["runGrade"], "display")
+        self.assertEqual(response["evidenceStatus"], "display-only")
+        self.assertEqual(response["claimGrade"], "display-only")
+        self.assertEqual(len(response["publishedExtensions"]), 2)
+        segments = [
+            extension["segments"][0]
+            for extension in response["publishedExtensions"]
+        ]
+        self.assertTrue(any(
+            float(segment["coefficients"][0][2]) != 0.0
+            for segment in segments
+        ))
+        self.assertTrue(all(
+            segment["evidenceStatus"] == "display-only" and
+            segment["claimGrade"] == "display-only"
+            for segment in segments
+        ))
 
     def test_shadow_affine_diagnostic_is_bit_identical_and_sidecar_only(self) -> None:
         protocol = "\n".join((
@@ -264,7 +307,7 @@ class NativeBorgProcessTests(unittest.TestCase):
         )
         self.assertNotEqual(completed.returncode, 0)
         self.assertIn(
-            "invalid RUN record: expected exactly 54 tab-separated fields",
+            "invalid RUN record: expected exactly 55 tab-separated fields",
             completed.stderr,
         )
 

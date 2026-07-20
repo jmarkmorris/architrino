@@ -1,0 +1,110 @@
+{
+  "schema": "archie-mcp-tool-negative-suite/v1",
+  "suiteId": "mcp_tool_negative_fixture_001",
+  "cases": [
+    {
+      "caseId": "mcp-search-limit-negative-001",
+      "baseCaseId": "mcp-search-public-first-page-001",
+      "accessScope": "public",
+      "requestMutation": {
+        "operation": "set",
+        "path": ["arguments", "limit"],
+        "value": 21
+      },
+      "snapshotMutation": null,
+      "expectedStatus": "invalid_request",
+      "expectedErrorCode": "INVALID_REQUEST"
+    },
+    {
+      "caseId": "mcp-read-budget-negative-001",
+      "baseCaseId": "mcp-read-public-truncated-001",
+      "accessScope": "public",
+      "requestMutation": {
+        "operation": "set",
+        "path": ["arguments", "maxContentChars"],
+        "value": 8001
+      },
+      "snapshotMutation": null,
+      "expectedStatus": "invalid_request",
+      "expectedErrorCode": "INVALID_REQUEST"
+    },
+    {
+      "caseId": "mcp-snapshot-mismatch-negative-001",
+      "baseCaseId": "mcp-topics-public-first-page-001",
+      "accessScope": "public",
+      "requestMutation": {
+        "operation": "set",
+        "path": ["snapshotId"],
+        "value": "different-snapshot"
+      },
+      "snapshotMutation": null,
+      "expectedStatus": "incompatible_snapshot",
+      "expectedErrorCode": "SNAPSHOT_ID_MISMATCH"
+    },
+    {
+      "caseId": "mcp-operator-scope-unauthorized-negative-001",
+      "baseCaseId": "mcp-topics-public-first-page-001",
+      "accessScope": "public",
+      "requestMutation": {
+        "operation": "set",
+        "path": ["visibilityScope"],
+        "value": "operator_developer"
+      },
+      "snapshotMutation": null,
+      "expectedStatus": "forbidden_visibility",
+      "expectedErrorCode": "VISIBILITY_SCOPE_FORBIDDEN"
+    },
+    {
+      "caseId": "mcp-malformed-cursor-negative-001",
+      "baseCaseId": "mcp-search-public-first-page-001",
+      "accessScope": "public",
+      "requestMutation": {
+        "operation": "set",
+        "path": ["arguments", "cursor"],
+        "value": "not-a-valid-cursor"
+      },
+      "snapshotMutation": null,
+      "expectedStatus": "invalid_cursor",
+      "expectedErrorCode": "CURSOR_MALFORMED"
+    },
+    {
+      "caseId": "mcp-stale-snapshot-negative-001",
+      "baseCaseId": "mcp-topics-public-first-page-001",
+      "accessScope": "public",
+      "requestMutation": null,
+      "snapshotMutation": {
+        "operation": "set",
+        "path": ["freshnessState"],
+        "value": "stale"
+      },
+      "expectedStatus": "stale_snapshot",
+      "expectedErrorCode": "SNAPSHOT_NOT_FRESH"
+    },
+    {
+      "caseId": "mcp-neighbor-edge-type-negative-001",
+      "baseCaseId": "mcp-neighbors-public-first-page-001",
+      "accessScope": "public",
+      "requestMutation": {
+        "operation": "set",
+        "path": ["arguments", "edgeTypes"],
+        "value": ["causes"]
+      },
+      "snapshotMutation": null,
+      "expectedStatus": "invalid_request",
+      "expectedErrorCode": "INVALID_REQUEST"
+    },
+    {
+      "caseId": "mcp-duplicate-filter-negative-001",
+      "baseCaseId": "mcp-search-public-first-page-001",
+      "accessScope": "public",
+      "requestMutation": {
+        "operation": "set",
+        "path": ["arguments", "filters", "sourceClasses"],
+        "value": ["published_corpus", "published_corpus"]
+      },
+      "snapshotMutation": null,
+      "expectedStatus": "invalid_request",
+      "expectedErrorCode": "INVALID_REQUEST"
+    }
+  ]
+}

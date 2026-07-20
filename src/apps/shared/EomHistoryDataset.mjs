@@ -21,6 +21,7 @@ export const EOM_EVOLUTION_CONTRACT_ID = "eom_evolution_contract/v0";
 export const ASSEMBLY_VIEW_RECORD_SCHEMA = "assembly-view-record.v0";
 export const EOM_HISTORY_DATASET_SCHEMA = "eom-history-dataset.v0";
 export const EOM_HISTORY_DEFAULT_ENGINE_ID = "eom-solver";
+export const PRESCRIBED_GEOMETRY_ENGINE_ID = "prescribed-geometry";
 export const ASSEMBLY_VIEW_CLAIM_GRADES = Object.freeze(["chart-hypothesis", "evolved-record"]);
 
 const AXES = Object.freeze(["x", "y", "z"]);
@@ -172,15 +173,18 @@ function normalizeProvenance(record, options, { isAssemblyViewRecord = false } =
     requireConcreteString(claimGrade, "provenance.claimGrade");
     requireConcreteString(runId, "provenance.runId");
     requireConcreteString(engineId, "provenance.engineId");
-    if (engineId !== EOM_HISTORY_DEFAULT_ENGINE_ID) {
+    if (![EOM_HISTORY_DEFAULT_ENGINE_ID, PRESCRIBED_GEOMETRY_ENGINE_ID].includes(engineId)) {
       throw new TypeError(
-        `assembly-view-record.v0 provenance.engineId must be ${EOM_HISTORY_DEFAULT_ENGINE_ID}; received ${engineId}.`,
+        `assembly-view-record.v0 provenance.engineId must be ${EOM_HISTORY_DEFAULT_ENGINE_ID} or ${PRESCRIBED_GEOMETRY_ENGINE_ID}; received ${engineId}.`,
       );
     }
     requireConcreteString(engineVersion, "provenance.engineVersion");
     requireConcreteString(evidenceStatus, "provenance.evidenceStatus");
     requireConcreteString(generatingSpec, "provenance.generatingSpec");
     requireConcreteString(date, "provenance.date");
+    if (engineId === PRESCRIBED_GEOMETRY_ENGINE_ID) {
+      validatePrescribedGeometryProvenance(record.provenance, { claimGrade, evidenceStatus });
+    }
   }
   return Object.freeze({
     engineId,
@@ -194,7 +198,40 @@ function normalizeProvenance(record, options, { isAssemblyViewRecord = false } =
     date,
     conversion: record.provenance?.conversion ?? null,
     sourceProvenance: record.provenance?.importedHistoryAuthority ?? null,
+    prescribedGeometry: record.provenance?.prescribedGeometry ?? null,
   });
+}
+
+function validatePrescribedGeometryProvenance(provenance, { claimGrade, evidenceStatus }) {
+  if (claimGrade !== "chart-hypothesis" || evidenceStatus !== "display-only") {
+    throw new TypeError(
+      "prescribed-geometry records must carry claimGrade chart-hypothesis and evidenceStatus display-only.",
+    );
+  }
+  const declaration = provenance.prescribedGeometry;
+  if (!declaration || typeof declaration !== "object" || Array.isArray(declaration)) {
+    throw new TypeError(
+      "prescribed-geometry records require provenance.prescribedGeometry.",
+    );
+  }
+  for (const field of ["emitterId", "sourceSchema", "interpolation", "errorMethod"]) {
+    requireConcreteString(declaration[field], `provenance.prescribedGeometry.${field}`);
+  }
+  if (declaration.physicsInvoked !== false) {
+    throw new TypeError(
+      "prescribed-geometry records require provenance.prescribedGeometry.physicsInvoked=false.",
+    );
+  }
+  for (const axis of AXES) {
+    requiredFiniteNumber(
+      declaration.responseCenter?.[axis],
+      `provenance.prescribedGeometry.responseCenter.${axis}`,
+    );
+  }
+  requiredPositiveNumber(
+    declaration.sphericalEnvelopeRadius,
+    "provenance.prescribedGeometry.sphericalEnvelopeRadius",
+  );
 }
 
 function normalizeWindow(record, worldlines, { isAssemblyViewRecord = false } = {}) {
@@ -378,6 +415,15 @@ function validateAssemblyViewMetadata(record) {
       for (const axis of AXES) {
         requiredFiniteNumber(normal?.[axis], `binaries[${index}].planeNormal.${axis}`);
       }
+    }
+    if (binary?.axisPoint != null || binary?.axisDisplayHalfLength != null) {
+      for (const axis of AXES) {
+        requiredFiniteNumber(binary.axisPoint?.[axis], `binaries[${index}].axisPoint.${axis}`);
+      }
+      requiredPositiveNumber(
+        binary.axisDisplayHalfLength,
+        `binaries[${index}].axisDisplayHalfLength`,
+      );
     }
   });
   (record.ansatz ?? []).forEach((row, rowIndex) => {
