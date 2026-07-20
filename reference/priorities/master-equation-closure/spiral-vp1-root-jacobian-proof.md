@@ -5,7 +5,7 @@ Status: complete proof packet for the VP-1 active-root continuation and Jacobian
 Claim level: topology diagnostic. This packet does not claim a theorem-grade
 interval proof and supplies no canonical force/action evidence. It gives active
 root labels, fixed root tubes, sampled gap and Jacobian margins that may seed a
-new receiver-normal rebuild.
+new transmitter-side acceleration rebuild.
 
 Certificate verdict: sampled-pass for the partner/self active-root continuation and Jacobian-floor rows on
 $$
@@ -13,7 +13,7 @@ I_\ast=\left[-\frac{\pi}{6},\frac{\pi}{6}\right],
 \qquad
 D_{\mathrm{cert}}=\left[\frac{1}{2},4\pi\right].
 $$
-No active branch exchange, root-count change, or active Jacobian-null contact was found in the sampled diagnostic. The theorem-grade row remains pending until the same constants are reproduced by an outward-rounded interval certificate over the active tubes and inactive complements, and any force/action consumer also supplies same-record $D_s$, $D_T$, and $W^{\mathrm{rec}}$ rows.
+No active branch exchange, root-count change, or active Jacobian-null contact was found in the sampled diagnostic. The theorem-grade result remains pending until the same constants are reproduced by an outward-rounded interval certificate over the active tubes and inactive complements. Any acceleration consumer must also supply same-record transmitter factor $D_t$ and $W_{\mathrm{acc}}=c_f/|D_t|$; any timing consumer must supply the separate signed playback factor $D_r/D_t$.
 
 ## Equations Used
 

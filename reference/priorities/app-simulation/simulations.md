@@ -171,7 +171,7 @@ The `endpoint_eligibility` value is inherited from the nested shell braid
 action-increment protocol. Because that protocol sets
 $\mathcal{T}_{\mathrm{acc}}=\varnothing$ until both endpoint packets have
 matching ledger identity, matching active-root convention, positive Jacobian
-floors, positive receiver-normal branch-strength floors or certified intervals, inactive-root or tail status, $\Delta_{\mathbf{k}}>0$, conservation
+floors, finite transmitter-side acceleration-contribution intervals, inactive-root or tail status, $\Delta_{\mathbf{k}}>0$, conservation
 pullback, and refinement records, the field-speed scan has only two legal
 pre-acceptance modes:
 

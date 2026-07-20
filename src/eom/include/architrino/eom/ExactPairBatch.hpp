@@ -10,6 +10,8 @@
 namespace architrino::eom {
 
 struct ExactPairCertificate;
+struct JointRootBracketRequest;
+class JointAffineRetainedHistory;
 
 struct ExactPairWarmStart {
   const ExactPairCertificate* certificate = nullptr;
@@ -21,6 +23,11 @@ struct ExactPairRequest {
   std::string row_id;
   const RetainedHistory* receiver;
   const RetainedHistory* source;
+  // Coupled-state path identities are distinct from retained-history
+  // provenance identities.  Empty values preserve the standalone exact-pair
+  // convention of using history_id().
+  std::string receiver_path_id;
+  std::string source_path_id;
   std::string reception_time;
   std::string search_lower;
   std::string search_upper;
@@ -44,6 +51,13 @@ struct ExactPairRequest {
   double warm_source_prefix_token_stable_upper =
       -std::numeric_limits<double>::infinity();
   std::size_t warm_source_aligned_equal_segments = 0;
+  // Optional admitted joint coefficient state at the difficult point.  The
+  // exact-pair consumer ignores its nominal geometry, ordinary radii, factor,
+  // and tolerance fields and recomputes those independently from this request's
+  // retained histories and difficult cell before applying the joint theorem.
+  const JointRootBracketRequest* joint_root_point_state = nullptr;
+  const JointAffineRetainedHistory* joint_receiver_history = nullptr;
+  const JointAffineRetainedHistory* joint_transmitter_history = nullptr;
 };
 
 struct NativeRootFreeCell {

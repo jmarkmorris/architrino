@@ -1,4 +1,6 @@
 #include "architrino/eom/CoupledEvolution.hpp"
+#include "architrino/eom/JointAccelerationSnapshot.hpp"
+#include "architrino/eom/JointEndpointCorrector.hpp"
 #include "architrino/eom/MultiprecisionAcceleration.hpp"
 
 #include <algorithm>
@@ -107,6 +109,8 @@ using SnapshotTotals = std::map<std::string, IntervalVector>;
 struct SubstepAttempt {
   NativeCorrectedSubstepCertificate certificate;
   std::optional<std::vector<NativePublishedPath>> histories;
+  std::optional<std::map<std::string, JointAffineRetainedHistory>>
+      joint_histories;
 };
 
 void accumulate_substep_snapshot_timing(
@@ -385,6 +389,321 @@ SnapshotTotals snapshot_totals(
   return result;
 }
 
+struct JointAccelerationAffineState {
+  std::array<double, 3> center{};
+  std::vector<std::array<double, 3>> coefficients;
+  std::array<double, 3> remainder_radii{};
+};
+
+using JointAccelerationAffineStates =
+    std::map<std::string, JointAccelerationAffineState>;
+
+double interval_radius_upper(const Interval& value) {
+  return std::max(std::abs(value.lower()), std::abs(value.upper()));
+}
+
+double outward_radius_sum(const std::vector<double>& terms) {
+  Interval result = Interval::point(0.0);
+  bool initialized = false;
+  for (const double term : terms) {
+    if (!(term >= 0.0) || !std::isfinite(term)) {
+      throw std::invalid_argument(
+          "joint affine radius term must be finite and nonnegative");
+    }
+    if (term == 0.0) continue;
+    result = initialized
+        ? result + Interval::point(term)
+        : Interval::point(term);
+    initialized = true;
+  }
+  return initialized ? result.upper() : 0.0;
+}
+
+JointAccelerationAffineStates joint_acceleration_states(
+    const JointAccelerationSnapshotCertificate& snapshot) {
+  if (!snapshot.certified) {
+    throw std::invalid_argument(
+        "joint acceleration states require a certified snapshot");
+  }
+  JointAccelerationAffineStates result;
+  for (const auto& receiver : snapshot.receivers) {
+    JointAccelerationAffineState state{
+        .center = receiver.center,
+        .coefficients = receiver.shared_symbol_coefficients,
+        .remainder_radii = receiver.independent_remainder_radii,
+    };
+    for (std::size_t symbol = 0U;
+         symbol < receiver.shared_symbol_coefficients.size(); ++symbol) {
+      for (std::size_t axis = 0U; axis < 3U; ++axis) {
+        state.remainder_radii[axis] = outward_radius_sum({
+            state.remainder_radii[axis],
+            interval_radius_upper(
+                receiver.shared_symbol_coefficient_enclosures[symbol][axis] -
+                Interval::point(
+                    receiver.shared_symbol_coefficients[symbol][axis])),
+        });
+      }
+    }
+    result.emplace(receiver.path_id, std::move(state));
+  }
+  return result;
+}
+
+std::map<std::string, JointAffineRetainedHistory>
+append_joint_candidate_segments(
+    const std::vector<NativePublishedPath>& ordinary_histories,
+    const std::map<std::string, JointAffineRetainedHistory>& joint_histories,
+    const std::string& start_time,
+    const std::string& end_time,
+    const JointAccelerationAffineStates& start_acceleration,
+    const JointAccelerationAffineStates& end_acceleration,
+    const std::set<std::string>& right_endpoint_acceleration_paths) {
+  const double start = scalar_token(start_time);
+  const double end = scalar_token(end_time);
+  const double step = end - start;
+  if (!(step > 0.0) || joint_histories.size() != ordinary_histories.size()) {
+    throw std::invalid_argument(
+        "joint candidate segment domain is invalid");
+  }
+  std::map<std::string, JointAffineRetainedHistory> result;
+  for (const auto& ordinary : ordinary_histories) {
+    const auto joint_found = joint_histories.find(ordinary.path_id);
+    const auto start_found = start_acceleration.find(ordinary.path_id);
+    const auto end_found = end_acceleration.find(ordinary.path_id);
+    if (joint_found == joint_histories.end() ||
+        start_found == start_acceleration.end() ||
+        end_found == end_acceleration.end()) {
+      throw std::invalid_argument(
+          "joint candidate segment lacks a path state");
+    }
+    const std::size_t symbol_count =
+        joint_found->second.symbol_registry().size();
+    if (start_found->second.coefficients.size() != symbol_count ||
+        end_found->second.coefficients.size() != symbol_count) {
+      throw std::invalid_argument(
+          "joint candidate acceleration registry is not aligned");
+    }
+    const Interval start_point = Interval::point(start);
+    const auto position_box =
+        ordinary.history.correlated_position_hull(start_point);
+    const auto velocity_box = ordinary.history.velocity_hull(start_point);
+    const auto initial = joint_found->second.evaluate(
+        start, component_radii(position_box), component_radii(velocity_box));
+    if (!initial.position_fallback_dominates ||
+        !initial.velocity_fallback_dominates) {
+      throw std::invalid_argument(
+          "joint candidate initial state exceeds ordinary fallback");
+    }
+    JointAffineCubicSegment segment;
+    segment.start_time = start;
+    segment.end_time = end;
+    const bool right_endpoint =
+        right_endpoint_acceleration_paths.contains(ordinary.path_id);
+    for (std::size_t axis = 0U; axis < 3U; ++axis) {
+      for (std::size_t degree = 0U; degree < 4U; ++degree) {
+        segment.position_coefficients[axis][degree].assign(
+            symbol_count, 0.0);
+      }
+      for (std::size_t symbol = 0U; symbol < symbol_count; ++symbol) {
+        const double acceleration_start = right_endpoint
+            ? end_found->second.coefficients[symbol][axis]
+            : start_found->second.coefficients[symbol][axis];
+        const double acceleration_end =
+            end_found->second.coefficients[symbol][axis];
+        segment.position_coefficients[axis][0U][symbol] =
+            initial.position.shared_symbol_coefficients[symbol][axis];
+        segment.position_coefficients[axis][1U][symbol] =
+            initial.velocity_shared_coefficients[symbol][axis];
+        segment.position_coefficients[axis][2U][symbol] =
+            0.5 * acceleration_start;
+        segment.position_coefficients[axis][3U][symbol] =
+            (acceleration_end - acceleration_start) / (6.0 * step);
+      }
+      const double acceleration_start_remainder = right_endpoint
+          ? end_found->second.remainder_radii[axis]
+          : start_found->second.remainder_radii[axis];
+      const double acceleration_end_remainder =
+          end_found->second.remainder_radii[axis];
+      if (right_endpoint) {
+        segment.position_remainder_radii[axis] = outward_radius_sum({
+            initial.position.independent_remainder_radii[axis],
+            step * initial.velocity_remainder_radii[axis],
+            0.5 * step * step * acceleration_end_remainder,
+        });
+        segment.velocity_remainder_radii[axis] = outward_radius_sum({
+            initial.velocity_remainder_radii[axis],
+            step * acceleration_end_remainder,
+        });
+      } else {
+        segment.position_remainder_radii[axis] = outward_radius_sum({
+            initial.position.independent_remainder_radii[axis],
+            step * initial.velocity_remainder_radii[axis],
+            (step * step / 3.0) * acceleration_start_remainder,
+            (step * step / 6.0) * acceleration_end_remainder,
+        });
+        segment.velocity_remainder_radii[axis] = outward_radius_sum({
+            initial.velocity_remainder_radii[axis],
+            0.5 * step * acceleration_start_remainder,
+            0.5 * step * acceleration_end_remainder,
+        });
+      }
+    }
+    result.emplace(
+        ordinary.path_id,
+        joint_found->second.appended(std::move(segment)));
+  }
+  return result;
+}
+
+struct JointEndpointContraction {
+  bool certified = false;
+  std::string failure_code;
+  std::map<std::string, JointAffineRetainedHistory> histories;
+};
+
+JointEndpointContraction contract_joint_endpoint(
+    const NativeCoupledEvolutionRequest& request,
+    const std::vector<NativePublishedPath>& input_ordinary_histories,
+    const std::vector<NativePublishedPath>& candidate_ordinary_histories,
+    const std::string& start_time,
+    const std::string& end_time,
+    const NativeAccelerationSnapshotCertificate& endpoint_snapshot,
+    const JointAccelerationAffineStates& start_acceleration,
+    const JointAccelerationAffineStates& endpoint_acceleration,
+    const SnapshotTotals& endpoint_centers,
+    const std::set<std::string>& right_endpoint_acceleration_paths) {
+  JointEndpointContraction result;
+  if (request.joint_histories.empty()) {
+    result.certified = true;
+    return result;
+  }
+  auto endpoint_without_remainder = endpoint_acceleration;
+  for (auto& [path_id, state] : endpoint_without_remainder) {
+    static_cast<void>(path_id);
+    state.remainder_radii = {0.0, 0.0, 0.0};
+  }
+  const auto base_histories = append_joint_candidate_segments(
+      input_ordinary_histories, request.joint_histories,
+      start_time, end_time, start_acceleration, endpoint_without_remainder,
+      right_endpoint_acceleration_paths);
+  const auto ids = path_ids(request);
+  const std::size_t dimension = 3U * ids.size();
+  const std::size_t retained_symbol_count =
+      request.joint_histories.begin()->second.symbol_registry().size();
+  std::vector<double> radii(dimension, 0.0);
+  std::vector<std::string> corrector_symbols;
+  corrector_symbols.reserve(dimension);
+  for (std::size_t path = 0U; path < ids.size(); ++path) {
+    const auto center_found = endpoint_centers.find(ids[path]);
+    if (center_found == endpoint_centers.end()) {
+      throw std::invalid_argument(
+          "joint endpoint contraction lacks an endpoint center");
+    }
+    for (std::size_t axis = 0U; axis < 3U; ++axis) {
+      const std::size_t index = 3U * path + axis;
+      radii[index] = std::max(
+          std::numeric_limits<double>::denorm_min(),
+          0.5 * center_found->second[axis].width());
+      corrector_symbols.push_back(
+          "endpoint-corrector/" + end_time + "/" + ids[path] + "/" +
+          std::to_string(axis));
+    }
+  }
+
+  std::map<std::string, JointAffineRetainedHistory> extended_histories;
+  const double step = scalar_token(end_time) - scalar_token(start_time);
+  for (std::size_t path = 0U; path < ids.size(); ++path) {
+    auto expanded = base_histories.at(ids[path]).with_appended_symbols(
+        corrector_symbols);
+    auto segments = expanded.segments();
+    auto& segment = segments.back();
+    const bool right_endpoint =
+        right_endpoint_acceleration_paths.contains(ids[path]);
+    for (std::size_t axis = 0U; axis < 3U; ++axis) {
+      const std::size_t column = 3U * path + axis;
+      const std::size_t symbol = retained_symbol_count + column;
+      if (right_endpoint) {
+        segment.position_coefficients[axis][2U][symbol] =
+            0.5 * radii[column];
+      } else {
+        segment.position_coefficients[axis][3U][symbol] =
+            radii[column] / (6.0 * step);
+      }
+    }
+    extended_histories.emplace(
+        ids[path], JointAffineRetainedHistory(
+            ids[path], expanded.symbol_registry(), std::move(segments)));
+  }
+  const auto evaluated = certify_joint_acceleration_snapshot(
+      Interval::decimal_token(request.field_speed), endpoint_snapshot,
+      candidate_ordinary_histories, extended_histories);
+  if (!evaluated.certified) {
+    result.failure_code = evaluated.failure_code + "/ratio=" +
+        (std::isfinite(
+             evaluated.failure_max_projection_to_ordinary_ratio)
+             ? decimal_token(
+                   evaluated.failure_max_projection_to_ordinary_ratio)
+             : "infinite") +
+        "/projection=" +
+        decimal_token(evaluated.failure_projection_upper) +
+        "/ordinary=" +
+        decimal_token(evaluated.failure_ordinary_radius) +
+        "/state=" + evaluated.failure_state;
+    return result;
+  }
+  std::map<std::string, std::array<double, 3>> centers;
+  std::map<std::string, std::vector<std::array<double, 3>>> coefficients;
+  for (const auto& id : ids) {
+    centers.emplace(id, midpoints(endpoint_centers.at(id)));
+    coefficients.emplace(id, endpoint_acceleration.at(id).coefficients);
+  }
+  const auto corrector = certify_joint_endpoint_corrector({
+      .path_ids = ids,
+      .endpoint_centers = std::move(centers),
+      .endpoint_shared_coefficients = std::move(coefficients),
+      .evaluated_snapshot = evaluated,
+      .retained_symbol_count = retained_symbol_count,
+      .corrector_variable_radii = radii,
+  });
+  if (!corrector.certified) {
+    double minimum_radius = std::numeric_limits<double>::infinity();
+    double maximum_radius = 0.0;
+    double maximum_image_radius = 0.0;
+    double maximum_residual_radius = 0.0;
+    for (const double radius : radii) {
+      minimum_radius = std::min(minimum_radius, radius);
+      maximum_radius = std::max(maximum_radius, radius);
+    }
+    for (const auto& image : corrector.krawczyk.image) {
+      maximum_image_radius = std::max(
+          maximum_image_radius, interval_radius_upper(image));
+    }
+    for (const auto& residual : corrector.parametric_residual_at_center) {
+      maximum_residual_radius = std::max(
+          maximum_residual_radius, interval_radius_upper(residual));
+    }
+    result.failure_code = corrector.failure_code +
+        "/minimum_radius=" + decimal_token(minimum_radius) +
+        "/maximum_radius=" + decimal_token(maximum_radius) +
+        "/maximum_image=" + decimal_token(maximum_image_radius) +
+        "/maximum_residual=" + decimal_token(maximum_residual_radius) +
+        "/minimum_margin=" +
+        decimal_token(corrector.krawczyk.minimum_containment_margin);
+    return result;
+  }
+  auto contracted_endpoint = endpoint_acceleration;
+  for (const auto& id : ids) {
+    contracted_endpoint.at(id).remainder_radii =
+        corrector.endpoint_remainder_radii.at(id);
+  }
+  result.histories = append_joint_candidate_segments(
+      input_ordinary_histories, request.joint_histories,
+      start_time, end_time, start_acceleration, contracted_endpoint,
+      right_endpoint_acceleration_paths);
+  result.certified = true;
+  return result;
+}
+
 double acceleration_correction_error(
     const SnapshotTotals& guess,
     const SnapshotTotals& evaluated) {
@@ -465,6 +784,79 @@ double step_error_ratio(
             error.velocity_error / velocity_tolerance));
   }
   return ratio;
+}
+
+double accepted_root_time_pressure_ratio(
+    const NativeCoupledEvolutionRequest& request,
+    const NativeAtomicStepCertificate& step) {
+  if (!step.accepted_snapshot.has_value()) return 0.0;
+  const double tolerance = tolerance_value(
+      request.root_tolerance, "root-time tolerance");
+  const double reception = scalar_token(
+      step.accepted_snapshot->reception_time);
+  double result = 0.0;
+  for (const auto& pair :
+       step.accepted_snapshot->acceleration.pair_certificates) {
+    for (const auto& row : pair.rows) {
+      if (row.chart != "sharp_root" ||
+          !row.transmitter_factor.has_value()) {
+        continue;
+      }
+      const double emission = row.evaluation_emission.has_value()
+          ? row.evaluation_emission->midpoint()
+          : 0.5 * (
+                scalar_token(row.emission_lower) +
+                scalar_token(row.emission_upper));
+      const auto& receiver = path_history(
+          step.published_histories, row.receiver_path_id).history;
+      const auto& transmitter = path_history(
+          step.published_histories, row.transmitter_path_id).history;
+      if (!receiver.covers(Interval::point(reception)) ||
+          !transmitter.covers(Interval::point(emission))) {
+        continue;
+      }
+      const auto receiver_center = receiver.nominal_position(reception);
+      const auto transmitter_center = transmitter.nominal_position(emission);
+      const auto receiver_box = receiver.position_hull(
+          Interval::point(reception));
+      const auto transmitter_box = transmitter.position_hull(
+          Interval::point(emission));
+      std::array<double, 3> displacement{};
+      std::array<double, 3> remainder{};
+      for (std::size_t axis = 0U; axis < 3U; ++axis) {
+        displacement[axis] =
+            receiver_center[axis] - transmitter_center[axis];
+        const double receiver_radius = std::max(
+            receiver_center[axis] - receiver_box[axis].lower(),
+            receiver_box[axis].upper() - receiver_center[axis]);
+        const double transmitter_radius = std::max(
+            transmitter_center[axis] - transmitter_box[axis].lower(),
+            transmitter_box[axis].upper() - transmitter_center[axis]);
+        remainder[axis] = outward_radius_sum({
+            std::max(0.0, receiver_radius),
+            std::max(0.0, transmitter_radius),
+        });
+      }
+      const auto budget = certify_root_time_budget({
+          .nominal_displacement = displacement,
+          .shared_symbol_coefficients = {},
+          .independent_remainder_radii = remainder,
+          .transmitter_factor = *row.transmitter_factor,
+          .root_time_tolerance = tolerance,
+      });
+      result = std::max(
+          result, budget.root_time_width_upper / tolerance);
+    }
+  }
+  return result;
+}
+
+double root_pressure_step_scale(double ratio) {
+  // Retain the ordinary-box pressure ratio as telemetry.  Once an admitted
+  // joint state is present, that fallback ratio is not the active root gate
+  // and must not constrain the adaptive controller.
+  static_cast<void>(ratio);
+  return 1.0;
 }
 
 double continuous_step_scale(
@@ -1892,6 +2284,319 @@ std::vector<NativePublishedPath> inflate_fine_histories(
   return result;
 }
 
+std::map<std::string, JointAffineRetainedHistory> inflate_joint_histories(
+    const std::map<std::string, JointAffineRetainedHistory>& input_histories,
+    const std::map<std::string, JointAffineRetainedHistory>& fine_histories,
+    const std::vector<NativePathLocalError>& local_errors) {
+  if (input_histories.empty()) return {};
+  std::map<std::string, JointAffineRetainedHistory> result;
+  for (const auto& [path_id, fine] : fine_histories) {
+    const auto input_found = input_histories.find(path_id);
+    const auto error_found = std::find_if(
+        local_errors.begin(), local_errors.end(), [&](const auto& error) {
+          return error.path_id == path_id;
+        });
+    if (input_found == input_histories.end() ||
+        error_found == local_errors.end() ||
+        input_found->second.symbol_registry() != fine.symbol_registry()) {
+      throw std::invalid_argument(
+          "joint fine history inflation domain is not aligned");
+    }
+    auto segments = fine.segments();
+    for (std::size_t index = input_found->second.segments().size();
+         index < segments.size(); ++index) {
+      for (std::size_t axis = 0U; axis < 3U; ++axis) {
+        segments[index].position_remainder_radii[axis] = outward_radius_sum({
+            segments[index].position_remainder_radii[axis],
+            error_found->position_errors[axis],
+        });
+        segments[index].velocity_remainder_radii[axis] = outward_radius_sum({
+            segments[index].velocity_remainder_radii[axis],
+            error_found->velocity_errors[axis],
+        });
+      }
+    }
+    result.emplace(
+        path_id, JointAffineRetainedHistory(
+            path_id, fine.symbol_registry(), std::move(segments)));
+  }
+  if (result.size() != input_histories.size()) {
+    throw std::invalid_argument(
+        "joint fine history inflation lacks a path");
+  }
+  return result;
+}
+
+std::pair<double, double> joint_symbol_segment_bounds(
+    const JointAffineCubicSegment& segment,
+    std::size_t axis,
+    std::size_t symbol) {
+  const auto& rows = segment.position_coefficients[axis];
+  const bool structurally_zero = std::all_of(
+      rows.begin(), rows.end(), [&](const auto& row) {
+        return row[symbol] == 0.0;
+      });
+  if (structurally_zero) return {0.0, 0.0};
+  const Interval local(0.0, segment.end_time - segment.start_time);
+  Interval position = Interval::point(rows[3U][symbol]);
+  for (int degree = 2; degree >= 0; --degree) {
+    position = position * local + Interval::point(
+        rows[static_cast<std::size_t>(degree)][symbol]);
+  }
+  Interval velocity = Interval::point(3.0) *
+      Interval::point(rows[3U][symbol]);
+  velocity = velocity * local +
+      Interval::point(2.0) * Interval::point(rows[2U][symbol]);
+  velocity = velocity * local + Interval::point(rows[1U][symbol]);
+  return {
+      interval_radius_upper(position), interval_radius_upper(velocity)};
+}
+
+std::map<std::string, JointAffineRetainedHistory> condense_joint_histories(
+    const std::map<std::string, JointAffineRetainedHistory>& histories,
+    std::size_t maximum_symbols) {
+  if (histories.empty()) return {};
+  const auto& registry = histories.begin()->second.symbol_registry();
+  for (const auto& [path_id, history] : histories) {
+    static_cast<void>(path_id);
+    if (history.symbol_registry() != registry) {
+      throw std::invalid_argument(
+          "joint condensation symbol registries are not aligned");
+    }
+  }
+  if (registry.size() <= maximum_symbols) return histories;
+
+  std::vector<double> scores(registry.size(), 0.0);
+  for (const auto& [path_id, history] : histories) {
+    static_cast<void>(path_id);
+    for (const auto& segment : history.segments()) {
+      const double span = segment.end_time - segment.start_time;
+      for (std::size_t axis = 0U; axis < 3U; ++axis) {
+        const auto& rows = segment.position_coefficients[axis];
+        for (std::size_t symbol = 0U; symbol < registry.size(); ++symbol) {
+          const double c0 = std::abs(rows[0U][symbol]);
+          const double c1h = std::abs(rows[1U][symbol]) * span;
+          const double c2h2 =
+              std::abs(rows[2U][symbol]) * span * span;
+          const double c3h3 =
+              std::abs(rows[3U][symbol]) * span * span * span;
+          scores[symbol] = std::max(
+              scores[symbol], c0 + c1h + c2h2 + c3h3);
+        }
+      }
+    }
+    if (history.endpoint_override().has_value()) {
+      const auto& endpoint = *history.endpoint_override();
+      for (std::size_t symbol = 0U; symbol < registry.size(); ++symbol) {
+        for (std::size_t axis = 0U; axis < 3U; ++axis) {
+          scores[symbol] = std::max({
+              scores[symbol],
+              std::abs(
+                  endpoint.position_shared_symbol_coefficients[symbol][axis]),
+              std::abs(
+                  endpoint.velocity_shared_symbol_coefficients[symbol][axis]),
+          });
+        }
+      }
+    }
+  }
+  std::vector<std::size_t> ranked(registry.size());
+  for (std::size_t symbol = 0U; symbol < registry.size(); ++symbol) {
+    ranked[symbol] = symbol;
+  }
+  std::stable_sort(
+      ranked.begin(), ranked.end(), [&](std::size_t left, std::size_t right) {
+        return scores[left] > scores[right];
+      });
+  ranked.resize(maximum_symbols);
+  std::sort(ranked.begin(), ranked.end());
+  std::vector<bool> retained(registry.size(), false);
+  std::vector<std::string> retained_registry;
+  retained_registry.reserve(maximum_symbols);
+  for (const std::size_t symbol : ranked) {
+    retained[symbol] = true;
+    retained_registry.push_back(registry[symbol]);
+  }
+
+  std::map<std::string, JointAffineRetainedHistory> result;
+  for (const auto& [path_id, history] : histories) {
+    auto segments = history.segments();
+    for (auto& segment : segments) {
+      for (std::size_t axis = 0U; axis < 3U; ++axis) {
+        std::vector<double> removed_position_bounds;
+        std::vector<double> removed_velocity_bounds;
+        removed_position_bounds.reserve(registry.size() - maximum_symbols);
+        removed_velocity_bounds.reserve(registry.size() - maximum_symbols);
+        for (std::size_t symbol = 0U; symbol < registry.size(); ++symbol) {
+          if (retained[symbol]) continue;
+          const auto [position_bound, velocity_bound] =
+              joint_symbol_segment_bounds(segment, axis, symbol);
+          removed_position_bounds.push_back(position_bound);
+          removed_velocity_bounds.push_back(velocity_bound);
+        }
+        removed_position_bounds.push_back(
+            segment.position_remainder_radii[axis]);
+        removed_velocity_bounds.push_back(
+            segment.velocity_remainder_radii[axis]);
+        segment.position_remainder_radii[axis] =
+            outward_radius_sum(removed_position_bounds);
+        segment.velocity_remainder_radii[axis] =
+            outward_radius_sum(removed_velocity_bounds);
+        for (std::size_t degree = 0U; degree < 4U; ++degree) {
+          JointCoefficientRow next;
+          next.reserve(maximum_symbols);
+          for (const std::size_t symbol : ranked) {
+            next.push_back(
+                segment.position_coefficients[axis][degree][symbol]);
+          }
+          segment.position_coefficients[axis][degree] = std::move(next);
+        }
+      }
+    }
+    auto endpoint = history.endpoint_override();
+    if (endpoint.has_value()) {
+      std::vector<std::array<double, 3>> positions;
+      std::vector<std::array<double, 3>> velocities;
+      positions.reserve(maximum_symbols);
+      velocities.reserve(maximum_symbols);
+      for (std::size_t axis = 0U; axis < 3U; ++axis) {
+        std::vector<double> position_terms{
+            endpoint->position_remainder_radii[axis]};
+        std::vector<double> velocity_terms{
+            endpoint->velocity_remainder_radii[axis]};
+        for (std::size_t symbol = 0U; symbol < registry.size(); ++symbol) {
+          if (retained[symbol]) continue;
+          position_terms.push_back(std::abs(
+              endpoint->position_shared_symbol_coefficients[symbol][axis]));
+          velocity_terms.push_back(std::abs(
+              endpoint->velocity_shared_symbol_coefficients[symbol][axis]));
+        }
+        endpoint->position_remainder_radii[axis] =
+            outward_radius_sum(position_terms);
+        endpoint->velocity_remainder_radii[axis] =
+            outward_radius_sum(velocity_terms);
+      }
+      for (const std::size_t symbol : ranked) {
+        positions.push_back(
+            endpoint->position_shared_symbol_coefficients[symbol]);
+        velocities.push_back(
+            endpoint->velocity_shared_symbol_coefficients[symbol]);
+      }
+      endpoint->position_shared_symbol_coefficients = std::move(positions);
+      endpoint->velocity_shared_symbol_coefficients = std::move(velocities);
+    }
+    result.emplace(
+        path_id, JointAffineRetainedHistory(
+            path_id, retained_registry, std::move(segments),
+            std::move(endpoint)));
+  }
+  return result;
+}
+
+std::map<std::string, JointAffineRetainedHistory>
+lift_joint_endpoint_remainders(
+    const std::vector<NativePublishedPath>& ordinary_histories,
+    const std::map<std::string, JointAffineRetainedHistory>& joint_histories,
+    const std::string& endpoint_time) {
+  if (joint_histories.empty()) return {};
+  if (joint_histories.size() != ordinary_histories.size()) {
+    throw std::invalid_argument(
+        "joint endpoint lift domain is not aligned");
+  }
+  const double endpoint = scalar_token(endpoint_time);
+  const auto& input_registry =
+      joint_histories.begin()->second.symbol_registry();
+  for (const auto& [path_id, history] : joint_histories) {
+    static_cast<void>(path_id);
+    if (history.symbol_registry() != input_registry) {
+      throw std::invalid_argument(
+          "joint endpoint lift symbol registries are not aligned");
+    }
+  }
+
+  std::vector<std::string> endpoint_symbols;
+  endpoint_symbols.reserve(6U * ordinary_histories.size());
+  for (const auto& ordinary : ordinary_histories) {
+    for (std::size_t axis = 0U; axis < 3U; ++axis) {
+      endpoint_symbols.push_back(
+          "endpoint-state/" + endpoint_time + "/" + ordinary.path_id +
+          "/position/" + std::to_string(axis));
+      endpoint_symbols.push_back(
+          "endpoint-state/" + endpoint_time + "/" + ordinary.path_id +
+          "/velocity/" + std::to_string(axis));
+    }
+  }
+  for (const auto& symbol : endpoint_symbols) {
+    if (std::find(input_registry.begin(), input_registry.end(), symbol) !=
+        input_registry.end()) {
+      throw std::invalid_argument(
+          "joint endpoint lift would duplicate a retained symbol");
+    }
+  }
+
+  std::map<std::string, JointAffineRetainedHistory> result;
+  for (std::size_t path = 0U; path < ordinary_histories.size(); ++path) {
+    const auto& ordinary = ordinary_histories[path];
+    const auto joint_found = joint_histories.find(ordinary.path_id);
+    if (joint_found == joint_histories.end()) {
+      throw std::invalid_argument(
+          "joint endpoint lift lacks a path history");
+    }
+    const Interval endpoint_point = Interval::point(endpoint);
+    const auto position_box =
+        ordinary.history.correlated_position_hull(endpoint_point);
+    const auto velocity_box = ordinary.history.velocity_hull(endpoint_point);
+    const auto position_radii = component_radii(position_box);
+    const auto velocity_radii = component_radii(velocity_box);
+    const auto evaluation = joint_found->second.evaluate(
+        endpoint, position_radii, velocity_radii);
+    if (!evaluation.position_fallback_dominates ||
+        !evaluation.velocity_fallback_dominates) {
+      throw std::invalid_argument(
+          "joint endpoint lift input exceeds ordinary fallback");
+    }
+
+    auto expanded =
+        joint_found->second.with_appended_symbols(endpoint_symbols);
+    JointAffineEndpointOverride lifted{
+        .time = endpoint,
+        .position_shared_symbol_coefficients =
+            evaluation.position.shared_symbol_coefficients,
+        .velocity_shared_symbol_coefficients =
+            evaluation.velocity_shared_coefficients,
+        .position_remainder_radii = {0.0, 0.0, 0.0},
+        .velocity_remainder_radii = {0.0, 0.0, 0.0},
+    };
+    lifted.position_shared_symbol_coefficients.resize(
+        expanded.symbol_registry().size(),
+        std::array<double, 3>{0.0, 0.0, 0.0});
+    lifted.velocity_shared_symbol_coefficients.resize(
+        expanded.symbol_registry().size(),
+        std::array<double, 3>{0.0, 0.0, 0.0});
+    for (std::size_t axis = 0U; axis < 3U; ++axis) {
+      const std::size_t position_symbol =
+          input_registry.size() + 6U * path + 2U * axis;
+      const std::size_t velocity_symbol = position_symbol + 1U;
+      lifted.position_shared_symbol_coefficients[position_symbol][axis] =
+          evaluation.position.independent_remainder_radii[axis];
+      lifted.velocity_shared_symbol_coefficients[velocity_symbol][axis] =
+          evaluation.velocity_remainder_radii[axis];
+    }
+    auto lifted_history = JointAffineRetainedHistory(
+        ordinary.path_id, expanded.symbol_registry(), expanded.segments(),
+        std::move(lifted));
+    const auto check = lifted_history.evaluate(
+        endpoint, position_radii, velocity_radii);
+    if (!check.position_fallback_dominates ||
+        !check.velocity_fallback_dominates) {
+      throw std::invalid_argument(
+          "joint endpoint lift exceeds ordinary fallback");
+    }
+    result.emplace(ordinary.path_id, std::move(lifted_history));
+  }
+  return result;
+}
+
 std::array<Interval, 4> coefficient_intervals(
     const std::array<std::string, 4>& tokens) {
   return {
@@ -2198,12 +2903,39 @@ SubstepAttempt corrected_substep_impl(
   for (const auto& certificate : pinned_fold_onset_certificates) {
     pinned_fold_onset_path_set.insert(certificate.path_id);
   }
+  const bool joint_enabled = !request.joint_histories.empty();
+  JointAccelerationAffineStates start_joint_states;
+  if (joint_enabled) {
+    const auto joint_start = certify_joint_acceleration_snapshot(
+        Interval::decimal_token(request.field_speed), start_snapshot,
+        histories, request.joint_histories);
+    if (!joint_start.certified) {
+      return {
+          failed_substep_certificate(
+              start_time, end_time, std::move(start_snapshot), std::nullopt,
+              0U, std::nullopt, joint_start.failure_code, std::nullopt,
+              pinned_fold_onset_certificates),
+          std::nullopt,
+          std::nullopt,
+      };
+    }
+    start_joint_states = joint_acceleration_states(joint_start);
+  }
   const SnapshotTotals start_totals = snapshot_totals(start_snapshot);
   auto predictor_histories = append_candidate_segments(
       histories, start_time, end_time, start_totals, start_totals, {},
       timing);
+  std::map<std::string, JointAffineRetainedHistory>
+      predictor_joint_histories;
+  auto predictor_request = request;
+  if (joint_enabled) {
+    predictor_joint_histories = append_joint_candidate_segments(
+        histories, request.joint_histories, start_time, end_time,
+        start_joint_states, start_joint_states, {});
+    predictor_request.joint_histories = predictor_joint_histories;
+  }
   auto predictor_snapshot = certify_native_acceleration_snapshot(
-      request, predictor_histories, end_time,
+      predictor_request, predictor_histories, end_time,
       request.use_warm_root_exclusion ? &start_snapshot : nullptr,
       request.use_warm_root_exclusion ? &histories : nullptr,
       defer_endpoint_root_precision_escalation);
@@ -2229,6 +2961,24 @@ SubstepAttempt corrected_substep_impl(
   }
 
   SnapshotTotals endpoint_guess = snapshot_totals(predictor_snapshot);
+  JointAccelerationAffineStates endpoint_joint_guess;
+  if (joint_enabled) {
+    const auto joint_predictor = certify_joint_acceleration_snapshot(
+        Interval::decimal_token(request.field_speed), predictor_snapshot,
+        predictor_histories, predictor_joint_histories);
+    if (!joint_predictor.certified) {
+      return {
+          failed_substep_certificate(
+              start_time, end_time, std::move(start_snapshot),
+              std::move(predictor_snapshot), 0U, std::nullopt,
+              joint_predictor.failure_code, predictor_histories,
+              pinned_fold_onset_certificates),
+          std::nullopt,
+          std::nullopt,
+      };
+    }
+    endpoint_joint_guess = joint_acceleration_states(joint_predictor);
+  }
   auto last_histories = predictor_histories;
   auto last_snapshot = predictor_snapshot;
   std::optional<double> correction_error;
@@ -2239,8 +2989,18 @@ SubstepAttempt corrected_substep_impl(
     auto candidate_histories = append_candidate_segments(
         histories, start_time, end_time, start_totals, endpoint_guess,
         pinned_fold_onset_path_set, timing);
+    std::map<std::string, JointAffineRetainedHistory>
+        candidate_joint_histories;
+    auto candidate_request = request;
+    if (joint_enabled) {
+      candidate_joint_histories = append_joint_candidate_segments(
+          histories, request.joint_histories, start_time, end_time,
+          start_joint_states, endpoint_joint_guess,
+          pinned_fold_onset_path_set);
+      candidate_request.joint_histories = candidate_joint_histories;
+    }
     auto endpoint_snapshot = certify_native_acceleration_snapshot(
-        request, candidate_histories, end_time,
+        candidate_request, candidate_histories, end_time,
         request.use_warm_root_exclusion ? &last_snapshot : nullptr,
         request.use_warm_root_exclusion ? &last_histories : nullptr,
         defer_endpoint_root_precision_escalation);
@@ -2265,10 +3025,50 @@ SubstepAttempt corrected_substep_impl(
       };
     }
     const SnapshotTotals evaluated = snapshot_totals(endpoint_snapshot);
+    JointAccelerationAffineStates evaluated_joint_states;
+    if (joint_enabled) {
+      const auto evaluated_joint = certify_joint_acceleration_snapshot(
+          Interval::decimal_token(request.field_speed), endpoint_snapshot,
+          candidate_histories, candidate_joint_histories);
+      if (!evaluated_joint.certified) {
+        return {
+            failed_substep_certificate(
+                start_time, end_time, std::move(start_snapshot),
+                std::move(endpoint_snapshot), iteration, correction_error,
+                evaluated_joint.failure_code, candidate_histories,
+                pinned_fold_onset_certificates),
+            std::nullopt,
+            std::nullopt,
+        };
+      }
+      evaluated_joint_states = joint_acceleration_states(evaluated_joint);
+    }
     correction_error = acceleration_correction_error(endpoint_guess, evaluated);
     last_histories = candidate_histories;
     last_snapshot = endpoint_snapshot;
-    if (*correction_error <= correction_tolerance) {
+    const bool joint_center_settled =
+        !joint_enabled || *correction_error <= 1e-13;
+    if (*correction_error <= correction_tolerance && joint_center_settled) {
+      std::optional<std::map<std::string, JointAffineRetainedHistory>>
+          contracted_joint_histories;
+      if (joint_enabled) {
+        const auto contraction = contract_joint_endpoint(
+            request, histories, candidate_histories, start_time, end_time,
+            endpoint_snapshot, start_joint_states, endpoint_joint_guess,
+            endpoint_guess, pinned_fold_onset_path_set);
+        if (!contraction.certified) {
+          return {
+              failed_substep_certificate(
+                  start_time, end_time, std::move(start_snapshot),
+                  std::move(endpoint_snapshot), iteration, correction_error,
+                  contraction.failure_code, candidate_histories,
+                  pinned_fold_onset_certificates),
+              std::nullopt,
+              std::nullopt,
+          };
+        }
+        contracted_joint_histories = contraction.histories;
+      }
       std::vector<NativeFoldCausticImpulseCertificate> event_impulses;
       std::vector<NativeRegulatorConvergenceCertificate>
           regulator_convergence_certificates;
@@ -2646,9 +3446,14 @@ SubstepAttempt corrected_substep_impl(
               std::move(state_certificates),
           .candidate_history_fingerprints = fingerprints(candidate_histories),
       };
-      return {std::move(certificate), std::move(candidate_histories)};
+      return {
+          std::move(certificate), std::move(candidate_histories),
+          std::move(contracted_joint_histories)};
     }
     endpoint_guess = evaluated;
+    if (joint_enabled) {
+      endpoint_joint_guess = std::move(evaluated_joint_states);
+    }
   }
   auto failed = failed_substep_certificate(
       start_time, end_time, std::move(start_snapshot),
@@ -2990,6 +3795,7 @@ NativeAtomicStepCertificate rejected_step(
       .accepted_time = start_time,
       .input_history_fingerprints = input_fingerprints,
       .published_histories = input_histories,
+      .published_joint_histories = request.joint_histories,
       .diagnostic_candidate_histories =
           request.retain_diagnostic_candidate_histories &&
                   candidate_histories.has_value()
@@ -4512,6 +5318,18 @@ NativeAccelerationSnapshotCertificate certify_native_acceleration_snapshot(
       far_field_enclosure_certificates;
   std::string pair_selection_route = "exhaustive_exact_pair_batch";
   std::string traversal_failure;
+  const auto joint_root_state = [&](const std::string& row_id)
+      -> const JointRootBracketRequest* {
+    const auto found = request.joint_root_point_states.find(row_id);
+    return found == request.joint_root_point_states.end()
+        ? nullptr
+        : &found->second;
+  };
+  const auto joint_history = [&](const std::string& path_id)
+      -> const JointAffineRetainedHistory* {
+    const auto found = request.joint_histories.find(path_id);
+    return found == request.joint_histories.end() ? nullptr : &found->second;
+  };
   std::vector<ExactPairWarmStart> warm_starts(logical_pair_count);
   std::map<std::string, const NativePublishedPath*> warm_history_by_id;
   std::map<std::pair<std::string, std::string>,
@@ -4607,6 +5425,8 @@ NativeAccelerationSnapshotCertificate certify_native_acceleration_snapshot(
                   reception_time,
               .receiver = &receiver.history,
               .source = &source.history,
+              .receiver_path_id = receiver.path_id,
+              .source_path_id = source.path_id,
               .reception_time = reception_time,
               .search_lower = active_search_lower,
               .search_upper = reception_time,
@@ -4623,6 +5443,11 @@ NativeAccelerationSnapshotCertificate certify_native_acceleration_snapshot(
                       warm_histories != nullptr
                   ? &warm_starts[logical_index]
                   : nullptr,
+              .joint_root_point_state = joint_root_state(
+                  receiver.path_id + "/" + source.path_id + "/" +
+                  reception_time),
+              .joint_receiver_history = joint_history(receiver.path_id),
+              .joint_transmitter_history = joint_history(source.path_id),
           });
         }
         ++logical_index;
@@ -4768,6 +5593,8 @@ NativeAccelerationSnapshotCertificate certify_native_acceleration_snapshot(
                     reception_time,
                 .receiver = &receiver.history,
                 .source = &source.history,
+                .receiver_path_id = receiver.path_id,
+                .source_path_id = source.path_id,
                 .reception_time = reception_time,
                 .search_lower = active_search_lower,
                 .search_upper = reception_time,
@@ -4784,6 +5611,11 @@ NativeAccelerationSnapshotCertificate certify_native_acceleration_snapshot(
                         warm_histories != nullptr
                     ? &warm_starts[logical_index]
                     : nullptr,
+                .joint_root_point_state = joint_root_state(
+                    receiver.path_id + "/" + source.path_id + "/" +
+                    reception_time),
+                .joint_receiver_history = joint_history(receiver.path_id),
+                .joint_transmitter_history = joint_history(source.path_id),
             });
           }
         }
@@ -4952,9 +5784,11 @@ NativeAccelerationSnapshotCertificate certify_native_acceleration_snapshot(
       for (const auto& source : histories) {
         root_requests.push_back({
             .row_id = receiver.path_id + "/" + source.path_id + "/" +
-                      reception_time,
+                reception_time,
             .receiver = &receiver.history,
             .source = &source.history,
+            .receiver_path_id = receiver.path_id,
+            .source_path_id = source.path_id,
             .reception_time = reception_time,
             .search_lower =
                 causal_prefix_exclusion.status == "certified_complete"
@@ -4980,6 +5814,11 @@ NativeAccelerationSnapshotCertificate certify_native_acceleration_snapshot(
             .warm_source_aligned_equal_segments = warm_equality_available
                 ? warm_source_equality[transmitter_index].aligned_equal_segments
                 : 0,
+            .joint_root_point_state = joint_root_state(
+                receiver.path_id + "/" + source.path_id + "/" +
+                reception_time),
+            .joint_receiver_history = joint_history(receiver.path_id),
+            .joint_transmitter_history = joint_history(source.path_id),
         });
         ++transmitter_index;
       }
@@ -5304,6 +6143,13 @@ NativeAtomicStepCertificate certify_native_atomic_coupled_step_impl(
         "accepted first-half substep lacks a reusable endpoint snapshot");
   }
   auto second_half_request = request;
+  if (!request.joint_histories.empty()) {
+    if (!first_half.joint_histories.has_value()) {
+      throw std::runtime_error(
+          "accepted first-half substep lacks joint histories");
+    }
+    second_half_request.joint_histories = *first_half.joint_histories;
+  }
   for (const auto& state :
        first_half.certificate.finite_width_state_certificates) {
     const auto pair = std::make_pair(
@@ -5351,6 +6197,14 @@ NativeAtomicStepCertificate certify_native_atomic_coupled_step_impl(
         &full.certificate.start_snapshot;
     for (std::size_t quarter = 0U; quarter < 4U; ++quarter) {
       auto quarter_request = request;
+      if (!request.joint_histories.empty() && !quarter_attempts.empty()) {
+        if (!quarter_attempts.back().joint_histories.has_value()) {
+          throw std::runtime_error(
+              "accepted quarter substep lacks joint histories");
+        }
+        quarter_request.joint_histories =
+            *quarter_attempts.back().joint_histories;
+      }
       quarter_request.allow_pending_finite_width_exit = quarter < 3U;
       if (!quarter_attempts.empty()) {
         for (const auto& state : quarter_attempts.back()
@@ -5409,6 +6263,18 @@ NativeAtomicStepCertificate certify_native_atomic_coupled_step_impl(
   const auto& fine_histories = request.use_quarter_step_publication
       ? *quarter_attempts.back().histories
       : *second_half.histories;
+  const std::map<std::string, JointAffineRetainedHistory>*
+      fine_joint_histories = nullptr;
+  if (!request.joint_histories.empty()) {
+    const auto& selected_joint = request.use_quarter_step_publication
+        ? quarter_attempts.back().joint_histories
+        : second_half.joint_histories;
+    if (!selected_joint.has_value()) {
+      throw std::runtime_error(
+          "accepted fine candidate lacks joint histories");
+    }
+    fine_joint_histories = &*selected_joint;
+  }
   auto local_errors = endpoint_local_errors(
       coarse_histories, fine_histories, end_time);
   std::vector<NativeCorrectedSubstepCertificate> substeps;
@@ -5435,6 +6301,11 @@ NativeAtomicStepCertificate certify_native_atomic_coupled_step_impl(
 
   const auto inflation_timing_start = SteadyClock::now();
   MultiratePublication multirate_publication;
+  if (!request.joint_histories.empty() &&
+      request.use_synchronized_multirate_publication) {
+    throw std::invalid_argument(
+        "joint-state publication does not yet support multirate selection");
+  }
   auto accepted_histories = request.use_synchronized_multirate_publication
       ? (multirate_publication = synchronized_multirate_histories(
              request, histories, *full.histories, *second_half.histories,
@@ -5442,14 +6313,20 @@ NativeAtomicStepCertificate certify_native_atomic_coupled_step_impl(
          multirate_publication.histories)
       : inflate_fine_histories(
             histories, fine_histories, local_errors);
+  auto accepted_joint_histories = fine_joint_histories == nullptr
+      ? std::map<std::string, JointAffineRetainedHistory>{}
+      : inflate_joint_histories(
+            request.joint_histories, *fine_joint_histories, local_errors);
   timing->history_copy_hash_wall_seconds +=
       elapsed_seconds(inflation_timing_start);
   if (!substeps.back().endpoint_snapshot.has_value()) {
     throw std::runtime_error("accepted candidate substep lacks endpoint snapshot");
   }
   const auto recertification_timing_start = SteadyClock::now();
+  auto recertification_request = request;
+  recertification_request.joint_histories = accepted_joint_histories;
   auto accepted_snapshot = certify_native_acceleration_snapshot(
-      request, accepted_histories, end_time,
+      recertification_request, accepted_histories, end_time,
       request.use_warm_root_exclusion
           ? &*substeps.back().endpoint_snapshot
           : nullptr,
@@ -5495,6 +6372,7 @@ NativeAtomicStepCertificate certify_native_atomic_coupled_step_impl(
       .accepted_time = end_time,
       .input_history_fingerprints = input_fingerprints,
       .published_histories = std::move(accepted_histories),
+      .published_joint_histories = std::move(accepted_joint_histories),
       .diagnostic_candidate_histories = std::nullopt,
       .candidate_history_fingerprints = candidate_fingerprints,
       .substeps = std::move(substeps),
@@ -5685,6 +6563,10 @@ NativeCoupledEvolutionCertificate evolve_native_coupled_histories(
   for (const auto& path : request.paths) {
     histories.push_back({path.path_id, path.history});
   }
+  auto joint_histories = request.joint_histories;
+  const auto boundary_joint_histories = lift_joint_endpoint_remainders(
+      histories, condense_joint_histories(joint_histories, 220U),
+      request.start_time);
   const std::uint64_t memory_estimate_bytes =
       estimate_coupled_working_set_bytes(request);
   if (memory_estimate_bytes > request.memory_budget_bytes) {
@@ -5698,6 +6580,7 @@ NativeCoupledEvolutionCertificate evolve_native_coupled_histories(
         .requested_end_time = request.end_time,
         .accepted_end_time = request.start_time,
         .histories = std::move(histories),
+        .joint_histories = std::move(joint_histories),
         .steps = {},
         .accepted_step_count = 0U,
         .rejected_step_count = 0U,
@@ -5766,6 +6649,9 @@ NativeCoupledEvolutionCertificate evolve_native_coupled_histories(
             absolute_time_rounding_envelope(
                 current_time, current_time + attempted_step);
     auto step_request = request;
+    step_request.joint_histories = accepted_count == 0U
+        ? boundary_joint_histories
+        : joint_histories;
     step_request.adjudicated_finite_width_pairs.assign(
         adjudicated_finite_width_pairs.begin(),
         adjudicated_finite_width_pairs.end());
@@ -5782,6 +6668,14 @@ NativeCoupledEvolutionCertificate evolve_native_coupled_histories(
       adjudicated_finite_width_pairs.clear();
       const bool accepted_after_certificate_cost_adjustment =
           certificate_cost_probe_adjustments > 0U;
+      const double root_time_pressure_ratio =
+          accepted_root_time_pressure_ratio(request, step);
+      const double root_pressure_maximum_step = std::max(
+          minimum_step,
+          maximum_step * root_pressure_step_scale(
+              root_time_pressure_ratio));
+      step.root_time_pressure_ratio = root_time_pressure_ratio;
+      step.root_pressure_step_cap = root_pressure_maximum_step;
       const bool growth_headroom = request.use_adaptive_step_growth &&
           step_has_growth_headroom(request, step);
       const double accepted_step_scale =
@@ -5790,6 +6684,7 @@ NativeCoupledEvolutionCertificate evolve_native_coupled_histories(
           ? continuous_step_scale(request, step, true)
           : 1.0;
       histories = step.published_histories;
+      joint_histories = step.published_joint_histories;
       current_time_token = step.accepted_time;
       current_time = scalar_token(current_time_token);
       ++accepted_count;
@@ -5812,7 +6707,7 @@ NativeCoupledEvolutionCertificate evolve_native_coupled_histories(
         if (!reaches_end) {
           step_size = std::clamp(
               attempted_step * accepted_step_scale,
-              minimum_step, maximum_step);
+              minimum_step, root_pressure_maximum_step);
         }
         consecutive_growth_headroom_steps = 0U;
         continue;
@@ -5820,9 +6715,11 @@ NativeCoupledEvolutionCertificate evolve_native_coupled_histories(
       consecutive_growth_headroom_steps = growth_headroom
           ? consecutive_growth_headroom_steps + 1U
           : 0U;
+      step_size = std::min(step_size, root_pressure_maximum_step);
       if (consecutive_growth_headroom_steps >= 2U &&
-          step_size < maximum_step) {
-        step_size = std::min(maximum_step, step_size * 2.0);
+          step_size < root_pressure_maximum_step) {
+        step_size = std::min(
+            root_pressure_maximum_step, step_size * 2.0);
         consecutive_growth_headroom_steps = 0U;
       }
       continue;
@@ -5952,6 +6849,7 @@ NativeCoupledEvolutionCertificate evolve_native_coupled_histories(
       .requested_end_time = request.end_time,
       .accepted_end_time = current_time_token,
       .histories = std::move(histories),
+      .joint_histories = std::move(joint_histories),
       .steps = std::move(steps),
       .accepted_step_count = accepted_count,
       .rejected_step_count = rejected_count,

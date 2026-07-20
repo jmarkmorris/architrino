@@ -127,8 +127,8 @@ The C++20 layer now implements
 accepts only a complete, non-memory-boundary exact-pair certificate whose
 searched domain reaches the reception time. For each admitted root it
 re-evaluates retained-history position and velocity, intersects the resulting
-source and receiver normals with the root certificate, certifies the source
-normal away from zero, and emits the bound Master EOM interval-vector
+transmitter-side and receiver-side factors with the root certificate, certifies the transmitter-side
+factor away from zero, and emits the bound Master EOM interval-vector
 contribution. Root/history identity is bound by both the history identifier and
 a fingerprint of the exact segment tokens. Tangent, memory-boundary,
 provenance-mismatch, tampered-normal, and excessive-width controls fail without

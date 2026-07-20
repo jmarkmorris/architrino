@@ -38,10 +38,10 @@ The current app implements:
 - absolute-history source-scan diagnostics for no-catch-up sources, stale windows, near misses, and root-cap hits;
 - a transverse polarization inset derived from a one-cycle branch-sum fit, with optional raw one-cycle branch-sum points behind the fit;
 - formula and diagnostic panels with quality words where the readout has a useful direction;
-- shared-geometry same-source self-hit span diagnostics for enabled leading/trailing Inner/Middle/Outer binaries, using the vector sum of photon-channel speed and transverse orbital speed as the solver speed ratio;
-- first-pass helical same-source root rows for individual architrino source histories, with source phase-at-hit, receiver phase-at-hit, and phase-family grouping by role, layer, charge, and source cycle;
+- shared-geometry same-transmitter self-hit span diagnostics for enabled leading/trailing Inner/Middle/Outer binaries, using the vector sum of photon-channel speed and transverse orbital speed as the solver speed ratio;
+- first-pass helical same-transmitter root results for individual architrino transmitter histories, with transmitter phase-at-hit, receiver phase-at-hit, and phase-family grouping by role, layer, charge, and transmitter cycle;
 - a named preset dropdown that can load a complete photon settings state and reset back to the last loaded preset;
-- a bounded `Search configurations` workflow that samples representative configuration families, includes derived local-$c$ speed-mode candidates, generates session-local scored settings, compares top co-moving and absolute-history diagnostics when the solver path is available, includes helical same-source phase-family summaries for bounded comparison runs, supports preview/load/play, rename/delete, selected/all JSON export, JSON import, and promotion into session presets;
+- a bounded `Search configurations` workflow that samples representative configuration families, includes derived local-$c$ speed-mode candidates, generates session-local scored settings, compares top co-moving and absolute-history diagnostics when the solver path is available, includes helical same-transmitter phase-family summaries for bounded comparison runs, supports preview/load/play, rename/delete, selected/all JSON export, JSON import, and promotion into session presets;
 - and in-app Markdown viewing for the user-facing guide and the two supporting corpus bridges.
 
 ## Candidate Model
@@ -150,7 +150,7 @@ The Virtual Observer $x$, $y$, and $z$ sliders should continue to show a visible
 
 The lower Electric Field plot is based on a Virtual Observer branch-sum calculation from the architrino source histories in the two braids. This mapping is diagnostic-only and is not a photon-substrate derivation or closure certificate. The current root equation uses the visible signal-speed control $c_{\mathrm{sig}}/c_f$.
 
-The default calculation is now `Absolute history`: the two braid centers and the Virtual Observer translate at $c_\gamma$, and the Electric Field plot is reconstructed from shared solver-layer moving-circular source roots and observer-field contribution rows. The `co_moving` mode remains available as a comparison diagnostic where braid centers are held at fixed app-frame offsets and the Virtual Observer is held at a fixed app-frame coordinate. Absolute history is still not the final photon-substrate calculation because same-source self-hit row coverage, deeper phase-spread summaries, and broader source-history generalization remain open.
+The default calculation is now `Absolute history`: the two braid centers and the Virtual Observer translate at $c_\gamma$, and the Electric Field plot is reconstructed from shared solver-layer moving-circular transmitter roots and observer-field contributions. The `co_moving` mode remains available as a comparison diagnostic where braid centers are held at fixed app-frame offsets and the Virtual Observer is held at a fixed app-frame coordinate. Absolute history is still not the final photon-substrate calculation because same-transmitter self-hit coverage, deeper phase-spread summaries, and broader transmitter-history generalization remain open.
 
 The Virtual Observer coordinate is
 
@@ -215,7 +215,7 @@ D_{T,i,k}
 c_{\mathrm{sig}}-\mathbf v_{\mathrm{VO}}(t)\cdot\mathbf n_{i,k}.
 $$
 
-The Virtual Observer receiver acceleration is the receiver-normal radial hit sum for a unit positive receiver:
+The Virtual Observer acceleration is the radial sum of transmitter-side causal-hit contributions for a unit positive receiver:
 
 $$
 \mathbf a_{\mathrm{VO}}(t)
@@ -332,15 +332,15 @@ This means the co-moving branch sum is not enough for photon-substrate closure. 
 
 #### Reusable Solver Contract
 
-The moving-apparatus calculation and the same-source self-hit calculation should share one reusable absolute-history solver. The solver should accept source histories, a receiver history, the declared photon-channel speed $c_\gamma$, the branch signal speed $c_{\mathrm{sig}}$, and an admissibility policy, then return:
+The moving-apparatus calculation and the same-transmitter self-hit calculation should share one reusable absolute-history solver. The solver should accept transmitter histories, a receiver history, the declared photon-channel speed $c_\gamma$, the branch signal speed $c_{\mathrm{sig}}$, and an admissibility policy, then return:
 
 - every retained source-to-observer causal root;
-- every retained same-source causal root when self-hit diagnostics are enabled;
+- every retained same-transmitter causal root when self-hit diagnostics are enabled;
 - the root delay, source position, source velocity, receiver position, residual, and Jacobian for each row;
 - the source phase-at-hit for each retained root, including layer id, charge sign, leading/trailing role, orbit phase, and phase cycle index;
 - the receiver phase-at-hit for every modeled receiver binary, with `n/a` for the Virtual Observer;
 - rejected-root reasons such as insufficient history, no catch-up root, singular root, small Jacobian, or transversality-floor failure;
-- the receiver-normal hit sum;
+- the transmitter-side causal-hit contribution sum;
 - the reconstructed receiver acceleration;
 - and the observer-level transverse field derived from that acceleration.
 
@@ -360,10 +360,10 @@ Phase-lock should be treated as an output diagnostic of this solver, not as an i
 
 - do same-layer leading and trailing hits arrive at repeatable phase offsets;
 - are those phase offsets stable across cycles;
-- do same-source roots return at phase positions that reinforce the emitting binary;
+- do same-transmitter roots return at phase positions that reinforce the emitting binary;
 - and do linear, circular, or elliptical observer candidates correspond to low phase-spread root families.
 
-Candidate phase-lock mechanisms include partner-hit loops, same-source self-hit loops, and any retained causal round-trip family whose phase rows recur across cycles. The reusable solver should therefore provide phase-spread summaries by layer, braid role, charge sign, root kind, and cycle. These summaries should let the app distinguish a manually chosen phase preset from a causal phase-lock family produced by the delayed branch geometry.
+Candidate phase-lock mechanisms include partner-hit loops, same-transmitter self-hit loops, and any retained causal round-trip family whose phase results recur across cycles. The reusable solver should therefore provide phase-spread summaries by layer, braid role, charge sign, root kind, and cycle. These summaries should let the app distinguish a manually chosen phase preset from a causal phase-lock family produced by the delayed branch geometry.
 
 #### Field-Reconstruction Pipeline
 
@@ -374,7 +374,7 @@ $$
 \rightarrow
 \text{all causal roots}
 \rightarrow
-\text{receiver-normal hit sum}
+\text{transmitter-side contribution sum}
 \rightarrow
 \text{receiver acceleration}
 \rightarrow
@@ -391,11 +391,11 @@ $$
 \left(\frac{2\pi f_kR_k}{c_f}\right)^2
 $$
 
-can nominate self-hit candidate regimes, but a self-hit row exists only when the solver retains a positive same-source causal root with acceptable residual, Jacobian, and transverse geometry.
+can nominate self-hit candidate regimes, but a self-hit exists only when the solver retains a positive same-transmitter causal root with acceptable residual, Jacobian, and transverse geometry.
 
 #### Solver Interface
 
-Photon should use the EOM solver bridge for source histories, receiver histories, causal-root ledgers, same-source roots, phase-at-hit rows, rejected-root reasons, Jacobian diagnostics, and observer-field reconstruction.
+Photon should use the EOM solver bridge for transmitter histories, receiver histories, causal-root ledgers, same-transmitter roots, phase-at-hit results, rejected-root reasons, Jacobian diagnostics, and observer-field reconstruction.
 
 ### Polarization And Formulas
 
@@ -472,7 +472,7 @@ The search should flag a configuration as interesting when one or more of these 
 - sharp transitions: small setting changes produce large changes in fitted polarization or analyzer response;
 - robust patterns: the behavior survives small nudges rather than depending on one exact slider value;
 - absolute-history comparison: either strong agreement between co-moving and absolute-history modes, or strong divergence that marks the configuration as a useful moving-apparatus stress case;
-- causal-root structure: low missed-source count, healthy Jacobian values, repeatable phase-at-hit families, or organized same-source and partner-hit roots;
+- causal-root structure: low missed-transmitter count, healthy Jacobian values, repeatable phase-at-hit families, or organized same-transmitter and partner-hit roots;
 - simple explanations: fewer enabled binaries, integer frequency ratios, simple phase offsets, or clean leading/trailing symmetry;
 - and diversity: the result set should prefer representative examples from different pattern families over many tiny variations of the same case.
 
@@ -480,12 +480,12 @@ Suspect numerical cases should be labeled as suspect, not good. Missed roots, ve
 
 ## Open Work Queue
 
-1. `reusable_absolute_history_solver` - A fourth pass exists: Photon now keeps the constrained architrino motion as an app-level source-history provider, attaches that provider and solver-boundary record to absolute-history causal-root requests, routes source-to-Virtual-Observer roots and observer-field reconstruction through the shared `solveMovingCircularAbsoluteHistoryRunF64` facade by default, routes helical same-source roots through the shared same-source facade, and still exposes the lower-level `solveMovingCircularSourceCausalRootsF64` and `computeMovingCircularObserverFieldF64` facades for targeted diagnostics. The run facade accepts source-history requests plus branch charge signs from Photon, solves retained causal-root rows, builds receiver-normal branch rows, and reconstructs observer fields in one facade call. E-field, polarization, diagnostics, plots, and search exports carry the source-history provider id plus receiver-normal and field-reconstruction ownership metadata. Mapped contributions carry source phase-at-hit rows, same-source rows carry source/receiver phase-at-hit metadata, Photon reports trailing/leading hit phase-spread diagnostics, and the app reports no-catch-up, stale-window, near-miss, root-cap, Jacobian, and grouped phase-family summaries. Remaining work: generalize the facade beyond Photon-specific circular histories, expose receiver phase rows where the receiver is not only the Virtual Observer or same source, deepen phase-spread diagnostics across source-to-observer and same-source families, expand rejected-root reasons to singular-root/small-Jacobian/transversality-floor cases, and harden observer-level field reconstruction for local-$c$ translation. Status: `open`.
+1. `reusable_absolute_history_solver` - A fourth pass exists: Photon now keeps the constrained architrino motion as an app-level transmitter-history provider, attaches that provider and solver-boundary record to absolute-history causal-root requests, routes transmitter-to-Virtual-Observer roots and observer-field reconstruction through the shared `solveMovingCircularAbsoluteHistoryRunF64` facade by default, routes helical same-transmitter roots through the shared same-transmitter facade, and still exposes the lower-level `solveMovingCircularSourceCausalRootsF64` and `computeMovingCircularObserverFieldF64` compatibility facades for targeted diagnostics. The run facade accepts transmitter-history requests plus branch polarity signs from Photon, solves retained causal-root records, builds transmitter-side acceleration records with separate signed root playback, and reconstructs observer fields in one facade call. E-field, polarization, diagnostics, plots, and search exports carry the transmitter-history provider id plus acceleration and field-reconstruction ownership metadata. Mapped contributions carry transmitter phase-at-hit records, same-transmitter records carry transmitter/receiver phase-at-hit metadata, Photon reports trailing/leading hit phase-spread diagnostics, and the app reports no-catch-up, stale-window, near-miss, root-cap, Jacobian, and grouped phase-family summaries. Remaining work: generalize the facade beyond Photon-specific circular histories, expose receiver phase records where the receiver is not only the Virtual Observer or same transmitter, deepen phase-spread diagnostics across transmitter-to-observer and same-transmitter families, expand rejected-root reasons to singular-root/small-Jacobian/transversality-floor cases, and harden observer-level field reconstruction for local-$c$ translation. Status: `open`.
 2. `local_c_parameterization` - First pass exists: Photon supports direct $c_{\mathrm{sig}}/c_f$ and $c_\gamma/c_f$ controls, plus a `Lorentz factor` speed mode that derives both values from the selected local $\gamma$ and feeds that derived speed into the absolute-history solver. Remaining work: replace or supplement the provisional $\gamma$ mapping with declared Noether sea state variables when the local-$c$ theory input is available, and add richer diagnostics explaining when the derived speed creates no-catch-up or stale-root regimes. Status: `open`.
 3. `moving_apparatus_delta_x_mapping` - Default absolute-history mode now translates source and Virtual Observer histories at $c_\gamma$ through the shared moving-circular facade, and the diagnostics panel reports no-catch-up, stale-window, near-miss, and root-cap summaries. Remaining work: make this mode the authoritative $\Delta x$ diagnostic and add clearer stale-root aging thresholds. Status: `open`.
-4. `absolute_source_history_self_hit` - Third pass exists: Photon now combines photon-channel translation speed with transverse binary speed as an explicit orthogonal vector-sum speed budget, reports legacy shared-geometry circular self-hit span rows, computes helical same-source root rows through the shared moving-circular same-source facade with retained roots, Jacobian values, source/receiver phase-at-hit metadata, groups retained roots into phase families by role, layer, charge, and source cycle, separates sub-field, field-speed-boundary, and self-hit speed regimes in diagnostics, and labels helical families as stable phase-lock, phase-lock candidate, diffuse phase family, phase drift, singular candidate, or single-hit. The sweep evidence in [helical-self-hit-phase-lock-sweep.v1.json](helical-self-hit-phase-lock-sweep.v1.json) covers 756 preset/speed/observation-phase cases; it found 5,116 phase families, 5,068 helical roots, zero stable phase-lock families, and 422 singular-candidate families. Remaining work: deepen rejected-root reasons for same-source rows, and extend sweeps beyond the current moving-circular constrained-source grid if new source-history families are introduced. Status: `open`.
+4. `absolute_source_history_self_hit` - Third pass exists: Photon now combines photon-channel translation speed with transverse binary speed as an explicit orthogonal vector-sum speed budget, reports legacy shared-geometry circular self-hit span results, and computes helical same-transmitter roots through the compatibility facade retained under its literal machine name. The results include retained roots, Jacobian values, transmitter/receiver phase-at-hit metadata, phase families grouped by role, layer, charge, and transmitter cycle, and diagnostics separating sub-field, field-speed-boundary, and self-hit regimes. The sweep evidence in [helical-self-hit-phase-lock-sweep.v1.json](helical-self-hit-phase-lock-sweep.v1.json) covers 756 preset/speed/observation-phase cases; it found 5,116 phase families, 5,068 helical roots, zero stable phase-lock families, and 422 singular-candidate families. Remaining work: deepen rejected-root reasons for same-transmitter results, and extend sweeps beyond the current moving-circular constrained-transmitter grid if new transmitter-history families are introduced. Status: `open`.
 5. `substrate_mapping_refinement` - Refine the Virtual Observer branch-sum mapping from I/M/O layer parameters to transverse observer-field amplitudes, while preserving claim discipline and distinguishing co-moving diagnostics from absolute-history results. Status: `open`.
-6. `configuration_search_absolute_history_comparison` - First pass exists: Configuration Search now stores and scores a compact co-moving versus absolute-history comparison for top results using the shared moving-circular absolute-history solver, bounded comparison runs include helical same-source phase-family counts and stable-family deltas, and the candidate pool now includes representative direct and Lorentz-factor local-$c$ speed modes. Remaining work: support deeper/background comparison runs when useful, add search filters for local-$c$ and phase-family traits, and use the phase-family summaries in richer result filtering/export workflows. Status: `open`.
+6. `configuration_search_absolute_history_comparison` - First pass exists: Configuration Search now stores and scores a compact co-moving versus absolute-history comparison for top results using the shared moving-circular absolute-history solver, bounded comparison runs include helical same-transmitter phase-family counts and stable-family deltas, and the candidate pool now includes representative direct and Lorentz-factor local-$c$ speed modes. Remaining work: support deeper/background comparison runs when useful, add search filters for local-$c$ and phase-family traits, and use the phase-family summaries in richer result filtering/export workflows. Status: `open`.
 7. `shared_visual_extraction` - Extract shared Ideal Braid / photon architrino marker, orbit-path, tint-profile, and layered-trail helpers if the visual grammar needs to be maintained across both apps. Status: `open`.
 
 ## Deferred Non-Goals

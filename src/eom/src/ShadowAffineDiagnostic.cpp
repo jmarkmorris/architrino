@@ -1,4 +1,5 @@
 #include "architrino/eom/ShadowAffineDiagnostic.hpp"
+#include "architrino/eom/JointState.hpp"
 
 #include <algorithm>
 #include <array>
@@ -55,6 +56,24 @@ struct FailedCandidateCapture {
   std::string failure_code;
   std::size_t iteration = 0U;
   std::vector<NativePublishedPath> histories;
+};
+
+struct JointResidualEstimate {
+  double projected_width = 0.0;
+  double displacement_radius = 0.0;
+  double nominal_separation = 0.0;
+  double nonlinear_remainder_width = 0.0;
+  double residual_width_bound = 0.0;
+  double ordinary_box_residual_width_bound = 0.0;
+  bool fallback_dominance_certified = false;
+};
+
+struct JointConsumptionFailure {
+  std::string failure_code;
+  std::array<double, 3> receiver_projection_radii{};
+  std::array<double, 3> receiver_ordinary_radii{};
+  std::array<double, 3> transmitter_projection_radii{};
+  std::array<double, 3> transmitter_ordinary_radii{};
 };
 
 double token(const std::string& value) {
@@ -186,9 +205,14 @@ struct ShadowAffineDiagnostic::Impl {
       throw std::runtime_error("cannot open shadow affine diagnostic output");
     }
     output << "{\"record\":\"observer_start\",\"schema\":"
-              "\"eom_shadow_affine_diagnostic/v1\",\"authority\":"
+              "\"eom_shadow_affine_diagnostic/v2\",\"authority\":"
               "\"non_authoritative_binary64_round_to_nearest\","
-              "\"symbolCap\":" << options.symbol_cap << "}\n";
+              "\"symbolCap\":" << options.symbol_cap
+           << ",\"includeRootEnclosureSymbols\":"
+           << (options.include_root_enclosure_symbols ? "true" : "false")
+           << ",\"includeAccelerationEnclosureSymbols\":"
+           << (options.include_acceleration_enclosure_symbols ? "true" : "false")
+           << "}\n";
     output.flush();
   }
 
@@ -203,6 +227,7 @@ struct ShadowAffineDiagnostic::Impl {
   std::size_t global_step_index = 0U;
   std::string active_run_id;
   std::optional<FailedCandidateCapture> failed_candidate;
+  std::optional<JointConsumptionFailure> joint_consumption_failure;
 
   template <typename Visitor>
   void visit_rows(Visitor&& visitor) {
@@ -371,31 +396,37 @@ struct ShadowAffineDiagnostic::Impl {
       const NativeAccelerationSnapshotCertificate& snapshot) {
     std::vector<SymbolMeta> metadata;
     std::vector<std::string> keys;
-    for (const auto& pair : snapshot.acceleration.pair_certificates) {
-      for (const auto& row : pair.rows) {
-        if (row.chart != "sharp_root") continue;
-        const double width = 0.5 * std::max(0.0, token(row.emission_upper) - token(row.emission_lower));
-        metadata.push_back({
-            .source = "consumed_root_time_enclosure_half_width",
-            .path_id = pair.receiver_path_id,
-            .transmitter_path_id = pair.transmitter_path_id,
-            .axis = "root_time",
-            .time = row.reception_time,
-            .magnitude = width,
-        });
-        keys.push_back("root:" + root_key(pair, row));
+    if (options.include_root_enclosure_symbols) {
+      for (const auto& pair : snapshot.acceleration.pair_certificates) {
+        for (const auto& row : pair.rows) {
+          if (row.chart != "sharp_root") continue;
+          const double width = 0.5 * std::max(
+              0.0, token(row.emission_upper) - token(row.emission_lower));
+          metadata.push_back({
+              .source = "consumed_root_time_enclosure_half_width",
+              .path_id = pair.receiver_path_id,
+              .transmitter_path_id = pair.transmitter_path_id,
+              .axis = "root_time",
+              .time = row.reception_time,
+              .magnitude = width,
+          });
+          keys.push_back("root:" + root_key(pair, row));
+        }
       }
     }
-    for (const auto& receiver : snapshot.acceleration.receiver_totals) {
-      for (std::size_t axis = 0U; axis < 3U; ++axis) {
-        metadata.push_back({
-            .source = "accepted_acceleration_enclosure_half_width",
-            .path_id = receiver.receiver_path_id,
-            .axis = std::to_string(axis),
-            .time = snapshot.reception_time,
-            .magnitude = 0.5 * receiver.acceleration[axis].width(),
-        });
-        keys.push_back("acc:" + acceleration_key(receiver.receiver_path_id, axis));
+    if (options.include_acceleration_enclosure_symbols) {
+      for (const auto& receiver : snapshot.acceleration.receiver_totals) {
+        for (std::size_t axis = 0U; axis < 3U; ++axis) {
+          metadata.push_back({
+              .source = "accepted_acceleration_enclosure_half_width",
+              .path_id = receiver.receiver_path_id,
+              .axis = std::to_string(axis),
+              .time = snapshot.reception_time,
+              .magnitude = 0.5 * receiver.acceleration[axis].width(),
+          });
+          keys.push_back(
+              "acc:" + acceleration_key(receiver.receiver_path_id, axis));
+        }
       }
     }
     const auto slots = allocate(std::move(metadata));
@@ -825,12 +856,13 @@ struct ShadowAffineDiagnostic::Impl {
     if (!rejected_candidate) ++global_step_index;
   }
 
-  std::optional<double> joint_residual_width(
+  std::optional<JointResidualEstimate> joint_residual_estimate(
       const std::vector<NativePublishedPath>& histories,
       const std::string& receiver_id,
       const std::string& transmitter_id,
       double reception,
-      double emission) const {
+      double emission) {
+    joint_consumption_failure.reset();
     const auto& receiver = path_history(histories, receiver_id).history;
     const auto& source = path_history(histories, transmitter_id).history;
     const auto normalize_time = [](const RetainedHistory& history, double time)
@@ -851,21 +883,71 @@ struct ShadowAffineDiagnostic::Impl {
     emission = *safe_emission;
     const auto displacement = subtract3(
         receiver.nominal_position(reception), source.nominal_position(emission));
-    const double separation = norm3(displacement);
-    if (!(separation > 0.0)) return std::nullopt;
-    const auto direction = scale3(displacement, 1.0 / separation);
     const auto receiver_affine = evaluate(receiver_id, reception);
     const auto transmitter_affine = evaluate(transmitter_id, emission);
-    Row projection = zero();
-    for (std::size_t axis = 0U; axis < 3U; ++axis) {
-      projection = add_row(
-          projection,
-          scale_row(
-              subtract_row(
-                  receiver_affine.position[axis], transmitter_affine.position[axis]),
-              direction[axis]));
+    std::vector<std::array<double, 3>> receiver_coefficients(symbols.size());
+    std::vector<std::array<double, 3>> transmitter_coefficients(symbols.size());
+    for (std::size_t symbol = 0U; symbol < symbols.size(); ++symbol) {
+      for (std::size_t axis = 0U; axis < 3U; ++axis) {
+        receiver_coefficients[symbol][axis] =
+            receiver_affine.position[axis][symbol];
+        transmitter_coefficients[symbol][axis] =
+            transmitter_affine.position[axis][symbol];
+      }
     }
-    return 2.0 * row_radius(projection);
+    const auto ordinary_radii = [](const RetainedHistory& history, double time) {
+      const IntervalVector position =
+          history.position_hull(Interval::point(time));
+      return std::array<double, 3>{
+          0.5 * position[0].width(),
+          0.5 * position[1].width(),
+          0.5 * position[2].width()};
+    };
+    const auto receiver_ordinary_radii = ordinary_radii(receiver, reception);
+    const auto transmitter_ordinary_radii = ordinary_radii(source, emission);
+    const auto consumption = certify_joint_root_time_consumption({
+        .receiver = {
+            .path_id = receiver_id,
+            .shared_symbol_coefficients = std::move(receiver_coefficients),
+            .independent_remainder_radii = {0.0, 0.0, 0.0},
+            .ordinary_position_radii = receiver_ordinary_radii,
+        },
+        .transmitter = {
+            .path_id = transmitter_id,
+            .shared_symbol_coefficients = std::move(transmitter_coefficients),
+            .independent_remainder_radii = {0.0, 0.0, 0.0},
+            .ordinary_position_radii = transmitter_ordinary_radii,
+        },
+        .nominal_displacement = displacement,
+        .transmitter_factor = Interval::point(1.0),
+        .root_time_tolerance = std::numeric_limits<double>::max(),
+    });
+    if (!consumption.receiver_fallback_dominates ||
+        !consumption.transmitter_fallback_dominates ||
+        consumption.joint_budget.failure_code[0] != '\0') {
+      joint_consumption_failure = JointConsumptionFailure{
+          .failure_code = consumption.failure_code,
+          .receiver_projection_radii =
+              consumption.receiver_projection_radii_upper,
+          .receiver_ordinary_radii = receiver_ordinary_radii,
+          .transmitter_projection_radii =
+              consumption.transmitter_projection_radii_upper,
+          .transmitter_ordinary_radii = transmitter_ordinary_radii,
+      };
+      return std::nullopt;
+    }
+    const auto& budget = consumption.joint_budget;
+    return JointResidualEstimate{
+        .projected_width = 2.0 * budget.projected_affine_radius_upper,
+        .displacement_radius = budget.displacement_radius_upper,
+        .nominal_separation = budget.nominal_separation_lower,
+        .nonlinear_remainder_width =
+            2.0 * budget.nonlinear_remainder_radius_upper,
+        .residual_width_bound = budget.residual_width_upper,
+        .ordinary_box_residual_width_bound =
+            consumption.ordinary_box_budget.residual_width_upper,
+        .fallback_dominance_certified = true,
+    };
   }
 
   void record_step_event_enclosures(
@@ -891,10 +973,10 @@ struct ShadowAffineDiagnostic::Impl {
           emission = 0.5 * (token(root->certificate.roots.front().lower) +
                             token(root->certificate.roots.front().upper));
         }
-        const auto width = joint_residual_width(
+        const auto estimate = joint_residual_estimate(
             histories, regulator.receiver_path_id, regulator.transmitter_path_id,
             reception, emission);
-        if (!width.has_value()) continue;
+        if (!estimate.has_value()) continue;
         const double support = event.causal_width.empty()
             ? 0.0 : std::abs(token(event.causal_width));
         const double recorded_box_state_width = 2.0 * (
@@ -903,7 +985,9 @@ struct ShadowAffineDiagnostic::Impl {
             support * (event.receiver_velocity_error_upper +
                        event.transmitter_velocity_error_upper));
         const double dependency_scale = recorded_box_state_width > 0.0
-            ? std::min(1.0, *width / recorded_box_state_width) : 1.0;
+            ? std::min(
+                  1.0, estimate->residual_width_bound / recorded_box_state_width)
+            : 1.0;
         const double shadow_event_width =
             event.last_maximum_component_width * dependency_scale;
         output << "{\"record\":\"event_enclosure\",\"grade\":\"inferred\","
@@ -915,7 +999,19 @@ struct ShadowAffineDiagnostic::Impl {
                << json_escape(regulator.transmitter_path_id)
                << "\",\"receptionTime\":" << std::setprecision(17) << reception
                << ",\"emissionTime\":" << emission
-               << ",\"shadowProjectedResidualWidthEstimate\":" << *width
+               << ",\"shadowProjectedResidualWidthEstimate\":"
+               << estimate->projected_width
+               << ",\"shadowDisplacementRadiusEstimate\":"
+               << estimate->displacement_radius
+               << ",\"nominalSeparation\":" << estimate->nominal_separation
+               << ",\"shadowNonlinearRemainderWidthBound\":"
+               << estimate->nonlinear_remainder_width
+               << ",\"shadowResidualWidthBound\":"
+               << estimate->residual_width_bound
+               << ",\"ordinaryFallbackResidualWidthBound\":"
+               << estimate->ordinary_box_residual_width_bound
+               << ",\"fallbackDominanceCertified\":"
+               << (estimate->fallback_dominance_certified ? "true" : "false")
                << ",\"recordedBoxStateWidth\":" << recorded_box_state_width
                << ",\"dependencyScale\":" << dependency_scale
                << ",\"shadowEventEnclosureWidthEstimate\":"
@@ -961,10 +1057,10 @@ struct ShadowAffineDiagnostic::Impl {
           if (!certificate.has_difficult_cell || certificate.difficult_point.empty()) continue;
           const double reception = token(certificate.reception_time);
           const double emission = token(certificate.difficult_point);
-          const auto width = joint_residual_width(
+          const auto estimate = joint_residual_estimate(
               *terminal_histories, root.receiver_path_id, root.transmitter_path_id,
               reception, emission);
-          if (!width.has_value()) {
+          if (!estimate.has_value()) {
             const auto& receiver_history =
                 path_history(*terminal_histories, root.receiver_path_id).history;
             const auto& transmitter_history =
@@ -981,11 +1077,51 @@ struct ShadowAffineDiagnostic::Impl {
                    << ",\"receiverHistoryEnd\":" << receiver_history.t_end()
                    << ",\"transmitterHistoryStart\":" << transmitter_history.t_start()
                    << ",\"transmitterHistoryEnd\":" << transmitter_history.t_end()
-                   << "}\n";
+                   << ",\"failureCode\":\""
+                   << (joint_consumption_failure.has_value()
+                           ? json_escape(joint_consumption_failure->failure_code)
+                           : "joint_state_time_unavailable")
+                   << "\"";
+            const auto print_radii = [&](const char* label,
+                                         const std::array<double, 3>& radii) {
+              output << ",\"" << label << "\":[" << radii[0] << ','
+                     << radii[1] << ',' << radii[2] << ']';
+            };
+            if (joint_consumption_failure.has_value()) {
+              print_radii(
+                  "receiverProjectionRadii",
+                  joint_consumption_failure->receiver_projection_radii);
+              print_radii(
+                  "receiverOrdinaryRadii",
+                  joint_consumption_failure->receiver_ordinary_radii);
+              print_radii(
+                  "transmitterProjectionRadii",
+                  joint_consumption_failure->transmitter_projection_radii);
+              print_radii(
+                  "transmitterOrdinaryRadii",
+                  joint_consumption_failure->transmitter_ordinary_radii);
+            }
+            output << "}\n";
             continue;
           }
           const double box_width = token(certificate.difficult_point_residual_upper) -
               token(certificate.difficult_point_residual_lower);
+          const double source_normal_interval_lower = token(
+              certificate.difficult_transmitter_factor_lower);
+          const double source_normal_interval_upper = token(
+              certificate.difficult_transmitter_factor_upper);
+          const bool source_normal_excludes_zero =
+              source_normal_interval_lower > 0.0 ||
+              source_normal_interval_upper < 0.0;
+          const double source_normal_lower = source_normal_excludes_zero
+              ? std::min(std::abs(source_normal_interval_lower),
+                         std::abs(source_normal_interval_upper))
+              : 0.0;
+          const double root_time_width_bound = source_normal_lower > 0.0
+              ? (Interval::point(estimate->residual_width_bound) /
+                 Interval::point(source_normal_lower)).upper()
+              : std::numeric_limits<double>::infinity();
+          const double root_time_tolerance = token(request.root_tolerance);
           output << "{\"record\":\"joint_residual\",\"grade\":\"inferred\","
                     "\"runId\":\"" << json_escape(request.run_id)
                  << "\",\"presetId\":\""
@@ -996,8 +1132,22 @@ struct ShadowAffineDiagnostic::Impl {
                  << json_escape(root.transmitter_path_id)
                  << "\",\"receptionTime\":" << std::setprecision(17) << reception
                  << ",\"emissionTime\":" << emission
-                 << ",\"shadowWidth\":" << *width
-                 << ",\"linearizationSlackWidth\":" << 2.0 * *width
+                 << ",\"shadowWidth\":" << estimate->projected_width
+                 << ",\"shadowDisplacementRadiusEstimate\":"
+                 << estimate->displacement_radius
+                 << ",\"nominalSeparation\":" << estimate->nominal_separation
+                 << ",\"shadowNonlinearRemainderWidthBound\":"
+                 << estimate->nonlinear_remainder_width
+                 << ",\"shadowResidualWidthBound\":"
+                 << estimate->residual_width_bound
+                 << ",\"ordinaryFallbackResidualWidthBound\":"
+                 << estimate->ordinary_box_residual_width_bound
+                 << ",\"fallbackDominanceCertified\":"
+                 << (estimate->fallback_dominance_certified ? "true" : "false")
+                 << ",\"shadowRootTimeWidthBound\":" << root_time_width_bound
+                 << ",\"rootTimeTolerance\":" << root_time_tolerance
+                 << ",\"fitsRootTimeTolerance\":"
+                 << (root_time_width_bound <= root_time_tolerance ? "true" : "false")
                  << ",\"recordedBoxWidth\":" << box_width
                  << ",\"transmitterFactorLower\":\""
                  << json_escape(certificate.difficult_transmitter_factor_lower)
@@ -1025,10 +1175,10 @@ struct ShadowAffineDiagnostic::Impl {
             emission = 0.5 * (token(root->certificate.roots.front().lower) +
                               token(root->certificate.roots.front().upper));
           }
-          const auto width = joint_residual_width(
+          const auto estimate = joint_residual_estimate(
               *terminal_histories, regulator.receiver_path_id,
               regulator.transmitter_path_id, reception, emission);
-          if (!width.has_value()) continue;
+          if (!estimate.has_value()) continue;
           const double support = event.causal_width.empty()
               ? 0.0 : std::abs(token(event.causal_width));
           const double recorded_box_state_width = 2.0 * (
@@ -1037,7 +1187,10 @@ struct ShadowAffineDiagnostic::Impl {
               support * (event.receiver_velocity_error_upper +
                          event.transmitter_velocity_error_upper));
           const double dependency_scale = recorded_box_state_width > 0.0
-              ? std::min(1.0, *width / recorded_box_state_width) : 1.0;
+              ? std::min(
+                    1.0,
+                    estimate->residual_width_bound / recorded_box_state_width)
+              : 1.0;
           const double shadow_event_width =
               event.last_maximum_component_width * dependency_scale;
           output << "{\"record\":\"event_enclosure\",\"grade\":\"inferred\","
@@ -1048,7 +1201,19 @@ struct ShadowAffineDiagnostic::Impl {
                  << json_escape(regulator.transmitter_path_id)
                  << "\",\"receptionTime\":" << std::setprecision(17) << reception
                  << ",\"emissionTime\":" << emission
-                 << ",\"shadowProjectedResidualWidthEstimate\":" << *width
+                 << ",\"shadowProjectedResidualWidthEstimate\":"
+                 << estimate->projected_width
+                 << ",\"shadowDisplacementRadiusEstimate\":"
+                 << estimate->displacement_radius
+                 << ",\"nominalSeparation\":" << estimate->nominal_separation
+                 << ",\"shadowNonlinearRemainderWidthBound\":"
+                 << estimate->nonlinear_remainder_width
+                 << ",\"shadowResidualWidthBound\":"
+                 << estimate->residual_width_bound
+                 << ",\"ordinaryFallbackResidualWidthBound\":"
+                 << estimate->ordinary_box_residual_width_bound
+                 << ",\"fallbackDominanceCertified\":"
+                 << (estimate->fallback_dominance_certified ? "true" : "false")
                  << ",\"recordedBoxStateWidth\":" << recorded_box_state_width
                  << ",\"dependencyScale\":" << dependency_scale
                  << ",\"shadowEventEnclosureWidthEstimate\":"

@@ -19,11 +19,11 @@ P_3=[6.78,6.92],
 S_1=[4.80,4.90].
 $$
 
-Claim level. Topology diagnostic for the active-root and inactive-gap rows. The
-mathematical sign rows below may seed a receiver-normal rebuild for the declared
+Claim level. Topology diagnostic for the active-root and inactive-gap results. The
+mathematical sign results below may seed a transmitter-side acceleration rebuild for the declared
 fixed tubes, but no generated report or purged runner is an active authority.
 
-Verdict for this lane: `topology-diagnostic-only; receiver-normal rebuild required`.
+Verdict for this lane: `topology-diagnostic-only; transmitter-side acceleration rebuild required`.
 
 ## Equations Used
 
@@ -225,9 +225,9 @@ so the fixed tubes remain below the corridor-specific finite-memory bound.
 | Excluded self coincidence | analytic-pass | $|F_s|/\Delta\ge0.6794678492\ldots$ |
 | Finite memory for fixed tubes | pass | $6.92<B_{\mathrm{mem}}^{\mathrm{VP1}}=7.8221162806\ldots$ |
 
-The lane blocker is receiver-normal rebuild. A future certificate must recompute
-any radial, tangential, action, or pass/fail row from same-record $D_s$, $D_T$,
-and $W^{\mathrm{rec}}$ intervals rather than integrating these topology rows
+The lane blocker is the transmitter-side acceleration rebuild. A future certificate must recompute
+any radial, tangential, action, or pass/fail result from same-record $D_t$ and
+$W_{\mathrm{acc}}=c_f/|D_t|$ intervals, with $D_r/D_t$ carried separately only for signed playback, rather than integrating these topology results
 into a purged runner.
 
 This packet does not decide the root-transport row, radial-turn force-ratio row, or weighted tangential-drive interval row. It only closes the active-root interval-tube and inactive-complement sign-gap lane for the declared VP-1 contract.

@@ -223,7 +223,7 @@ Every ordered pair, including self-pairs, must be `certified_complete` at
 release and at every residual evaluation point. Before $t_c$, the ledger must
 also certify that no active root can still reach the seeded interval. An
 unresolved complement, precision ceiling, memory boundary, caustic, or
-source-normal/receiver-normal pole closes the claim window and fails the run
+transmitter-side-factor pole closes the claim window and fails the run
 closed.
 
 ## Independent-Oracle Parity (G5)

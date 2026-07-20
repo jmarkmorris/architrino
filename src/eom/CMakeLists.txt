@@ -15,10 +15,21 @@ add_library(eom_native STATIC
   src/History.cpp
   src/BlockExclusion.cpp
   src/CertifiedTraversal.cpp
+  src/CenteredAffine.cpp
   src/ExactPairBatch.cpp
   src/CertifiedAcceleration.cpp
   src/MultiprecisionAcceleration.cpp
   src/CoupledEvolution.cpp
+  src/DelayedRootSensitivity.cpp
+  src/JointState.cpp
+  src/JointAffineHistory.cpp
+  src/JointAccelerationSnapshot.cpp
+  src/JointEndpointCorrector.cpp
+  src/JointRootBracket.cpp
+  src/JointSharpRow.cpp
+  src/Krawczyk.cpp
+  src/RootTimeBudget.cpp
+  src/SharpAccelerationSensitivity.cpp
   src/ShadowAffineDiagnostic.cpp
   src/Checkpoint.cpp
 )

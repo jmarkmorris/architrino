@@ -6,6 +6,32 @@ Use [brainstorming.md](brainstorming.md) for provisional ideas, insights, concep
 
 ## Log Entries
 
+- 2026-07-20: Completed the receiver-factor authority audit. The obsolete
+  receiver-weighted branch-strength, restart-ledger, and wake-action packets
+  were moved under `history/`; current shared trackers and branch packets now
+  distinguish transmitter-side acceleration $c_f/|D_t|$ from signed playback
+  $D_r/D_t$. The completed audit task was removed from the live queue and all
+  later items were renumbered. Historical numerical results retain only the
+  topology or instrumentation reach stated in their records.
+
+- 2026-07-20: Executed the independently evolving causal wake-state route. The
+  derived result is a minimum information requirement: direction-resolved
+  coupling, scalar energy, vector momentum, and explicit boundary flux. The
+  same-transmitter endpoint requires more-than-quadratic suppression, but the
+  current primitives do not select the suppression, motion-account maps,
+  emission capacity, or reception transfer. The route therefore closed
+  negatively under the current primitive set; no ontology, canon, EOM solver,
+  transition, or conservation claim was promoted.
+
+- 2026-07-20: Rebuilt the retained A1 turn-center acceleration with
+  transmitter-side weights and separate signed playback. Reciprocal interval
+  inversion gives certified acceleration-weight bounds for $P_1,P_2,P_3,S_1$;
+  the executable point diagnostic gives
+  $B_r=-0.005994753660055432$ and
+  $B_\theta=-0.00758582133246552$. The point result is diagnostic, not an
+  outward aggregate certificate. A1 action, conservation, outward constants,
+  and branch promotion remain blocked on the missing causal wake construction.
+
 - 2026-07-16: Consolidated the lane around the first missing
   `receiver_normal_branch_strength_certificate/v0` object. The live tracker was
   reduced to queue, blocker, routing, and promotion state; the former long-form

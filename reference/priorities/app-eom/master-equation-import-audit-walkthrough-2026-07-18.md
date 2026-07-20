@@ -238,6 +238,7 @@ The correction was not selected merely because it is simpler than the former rec
 4. **Passed for the positive-width equation and regular sharp charts:** [Transmitter-Side Causal Retained-History Functional](analysis-transmitter-factor-causal-history-functional.md) proves that the acceleration is a causal functional of current receiver state plus retained past histories. Global sharp continuation remains blocked at coincident same-transmitter birth, not by future dependence.
 5. **Failed under the current primitives for conservation:** [History-Only Conservation Obstruction](analysis-transmitter-factor-conservation-obstruction.md) carries the retained-history construction to its present limit. The equation determines acceleration but not the kinetic function, momentum function, or an independently specified wake-account update. Defining wake changes as the negative accumulated motion changes would balance by construction and is rejected as circular. This failure does not justify adding another acceleration term; it identifies missing kinematic and wake-account structure.
 6. **Failed as two separate patches:** the finite-transition rule and the conserved accounts must come from one causal construction. A passive wake ledger cannot select among the infinitely many finite near-origin suppressions, while an active wake state changes the Master Equation state and must derive its own emission, propagation, reception, and boundary updates.
+7. **The independent wake-state route was executed and closed negatively under the current primitives:** [Independent Causal Wake-State Minimum and Obstruction](../master-equation-closure/analysis-independent-causal-wake-state.md) derives the minimum information that a candidate state must determine: direction-resolved coupling, scalar energy, vector momentum, and explicit retained-boundary flux. Finite coincident birth requires more-than-quadratic suppression; an analytic rule begins no lower than cubic order. The present primitives select neither that suppression nor the motion-account, emission-capacity, and reception-transfer maps. The analysis therefore supplies a precise missing-law boundary, not an accepted wake ontology.
 
 ### 6.2 Discriminating tests
 
@@ -263,9 +264,11 @@ The native feedback mechanism already present in the proposal is sufficient to c
 
 The history-only conservation construction has now been attempted. Its causal state update is sufficient for acceleration away from the unresolved transition, but its conservation accounts are underdetermined. The missing information is explicit: a fixed kinetic and momentum map, plus a wake-account rule stated before evolution that assigns emission, propagation, reception, and boundary changes without reading the residual it must explain.
 
-If those quantities remain deterministic functions of transmitter history, the functions must be derived and displayed. If reception instead changes an independently evolving wake state, that changes the current ontology and requires a separate theory decision. Neither option licenses restoring the receiver playback multiplier or importing an observer-level field law.
+The independently evolving wake-state option has now been tested rather than merely proposed. It requires a direction-resolved state that determines acceleration coupling, energy, and momentum, plus a predeclared reception update and boundary flux. That test did not find a unique Architrino-native construction: the current primitives leave the coincident-birth suppression, motion-account maps, emission capacity, and reception transfer undetermined. This negative result neither licenses restoring the receiver playback multiplier nor licenses importing an observer-level field law.
 
 The same construction must also determine the near-origin acceleration. Conservation accounts added after a finite activation function has been chosen do not validate that function; conversely, a finite activation function without predeclared accounts does not close conservation. Broader Master Equation closure therefore remains barred until one joint retained-state update survives both tests on the same non-circular histories.
+
+The first retained-branch recomputation has also begun. [Spiral A1 Transmitter-Side Rebuild](../master-equation-closure/spiral-a1-restart.md) derives transmitter-side acceleration-weight intervals for the retained $P_1,P_2,P_3,S_1$ roots and reports a turn-center radial/tangential diagnostic with signed playback kept separate. It does not promote the A1 branch: outward aggregate bounds and an accepted causal wake state are still missing, so action and all three conserved accounts remain fail closed.
 
 ### 6.4 Repeated promotion audit
 
@@ -283,10 +286,12 @@ and Research hashes are recorded in the
 Borg migration validation passed `102/102`, as recorded in
 [Borg Receiver-Factor Contract Migration Validation](evidence/borg-receiver-factor-contract-migration-2026-07-19.md).
 
-The complete Master Equation is not globally closed. Two fundamental debts remain negative under the current primitive set:
+The complete Master Equation is not globally closed. The 2026-07-20 repeated audit executed the independently evolving wake-state route and the first A1 transmitter-side recomputation. Two fundamental debts remain negative under the current primitive set:
 
 1. the coincident same-transmitter transition has no finite joint regulator limit, and no physical near-origin rule is derived;
 2. the causal retained-history update does not determine non-circular energy, momentum, and angular-momentum accounts without additional kinematic and wake-account structure.
+
+The repository-authority audit is complete for the receiver-factor change. The three obsolete receiver-weighted Master Equation packets are isolated under `reference/priorities/master-equation-closure/history/`; current priority dependencies no longer treat them as acceleration, action, or promotion authority. The old parallel-stream specification that explicitly consumed the removed equation is likewise isolated under `reference/priorities/app-eom/archive/receiver-weighted-law/`. Historical records remain available as history, not as current evidence.
 
 The coincident-birth divergence must remain fail-closed and visible. It blocks a claim of globally complete same-transmitter evolution. Missing conservation likewise remains a global closure obligation and does not justify adding receiver playback to the acceleration magnitude.
 

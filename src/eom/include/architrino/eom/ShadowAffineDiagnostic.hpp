@@ -12,6 +12,8 @@ namespace architrino::eom {
 struct ShadowAffineDiagnosticOptions {
   std::string output_path;
   std::size_t symbol_cap = 256U;
+  bool include_root_enclosure_symbols = true;
+  bool include_acceleration_enclosure_symbols = true;
 };
 
 // Binary64, round-to-nearest, diagnostics-only affine propagation.  This

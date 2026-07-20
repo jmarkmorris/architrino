@@ -28,9 +28,9 @@ Claim classification: **derived gate comparison plus inferred scoped-promotion d
 | Coincident same-transmitter birth | Fail | Derived exact quadratic-path control, finite-window lower bound, and open-neighborhood necessity | Keep the event fail-closed; an event-only impulse cannot repair it because the divergent contribution persists on simple roots after birth | An Architrino-native rule changes the open post-birth neighborhood and gives the corrected law a finite complete transition |
 | Positive-width base causality | Pass | Derived retained-history update | The positive-width base equation is a causal initial-history law | The displayed update requires future particle data or has two continuations from one retained state on its regularity chart |
 | Energy, momentum, and angular momentum | Absent for both causal retained-history laws | Derived underdetermination and circularity test | Keep as a global closure debt; do not use it to retain the receiver multiplier | Fixed kinematic maps and predeclared wake accounts close all three totals on the same causal record without being defined from their residuals |
-| Joint finite-transition and conservation construction | Fail under current primitives | Derived necessity theorem | Do not accept separate near-origin and bookkeeping patches | One predeclared causal state update determines the finite transition and all three conserved accounts on the same histories |
+| Joint finite-transition and conservation construction | Fail under current primitives after the independent wake-state route | Derived minimum-information requirement, integrability condition, and underdetermination obstruction | Do not accept separate near-origin and bookkeeping patches | One predeclared causal state update determines the maturity law, motion-account maps, emission capacity, reception transfer, finite transition, and all three conserved accounts on the same histories |
 | Full moving-transmitter/moving-receiver recovery | Open beyond the first-order static-transmitter control | Derived first-order pass; higher orders unproved | Do not claim complete electrodynamics or Lorentz recovery | Second-order and later required recovery terms match independent targets on one branch-certified record without restoring an unsupported universal receiver multiplier |
-| Migration audit | Canon, solver, oracle, prescribed-path analysis, Photon, Animator, current app schema, and active validation are migrated | Measured repository audit plus implementation tests | Scoped migration passes | Any current surface still consumes or teaches $|D_r/D_t|$ as acceleration strength |
+| Migration audit | Canon, solver, oracle, prescribed-path analysis, Photon, Animator, current app schema, active validation, and current priority authority are migrated; receiver-weighted packets are isolated as history | Measured repository audit plus implementation tests | Scoped migration passes | Any current surface still consumes or teaches $|D_r/D_t|$ as acceleration strength |
 
 ## What is ready now
 
@@ -56,6 +56,8 @@ The closure work produced two negative theorems and then identified their correc
 - The divergence persists on an open set of noncoincident simple roots after birth. A one-instant event handler cannot repair it while leaving the simple-root law unchanged.
 - The history update does not choose the kinematic or wake accounts needed for conservation. Accounts defined as the negative accumulated residual are identities, not evidence.
 - The finite transition and conserved accounts must be derived by one causal update. Completing them as separate patches cannot satisfy the joint gate.
+- The independently evolving wake-state route determines the information a candidate must carry, but the current primitives do not determine its coincident-birth maturity law, motion-account maps, emission capacity, or reception transfer. This closes that attempt negatively; it does not supply a new ontology.
+- The retained A1 chart now has transmitter-side acceleration-weight intervals and a turn-center diagnostic with playback separated. It still lacks outward aggregate bounds and accepted wake accounts, so it is not a promoted physical branch.
 
 These are theory boundaries. A scoped migration must keep their events and claims outside its acceptance boundary.
 
@@ -66,7 +68,7 @@ The scoped correction is implemented:
 1. canon and the v1 binding use $c_f/|D_t|$;
 2. the EOM solver, independent oracle, prescribed-path analysis, Photon, and Animator use transmitter-side acceleration while preserving $D_r/D_t$ as signed root playback;
 3. coincident same-transmitter birth and every undeclared singular stratum remain fail closed;
-4. obsolete compatibility fields, old-law explanations, and superseded migration records are removed;
+4. obsolete compatibility fields and old-law explanations are removed from canon, current applications, machine contracts, and the EOM solver; historical priority records are isolated and current priority dependencies are being redriven;
 5. scoped terminology, link, implementation, and regression checks pass.
 
 For globally complete Master Equation closure:

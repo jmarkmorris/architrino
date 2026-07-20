@@ -6,8 +6,8 @@ This focused priority packet is owned by [Master-Equation Closure](priorities.md
 
 - Status: `defer-with-blocker`.
 - Claim grade: candidate constitutive response.
-- First blocker: no accepted EOM-evolved retained branch currently binds the pressure perturbation, receiver-normal branch strength, Noether sea response, and downstream projections to one record.
-- Barred substitution: toy pressure rows, source-normal-only diagnostics, archived braid quotients, empirical material fits, or observable-local coefficients cannot replace the same-record retained-branch input.
+- First blocker: no accepted EOM-evolved retained branch currently binds the pressure perturbation, transmitter-side acceleration records, causal wake accounts, Noether sea response, and downstream projections to one retained state.
+- Barred substitution: toy pressure records, transmitter-side diagnostics without the causal wake accounts, archived braid quotients, empirical material fits, or observable-local coefficients cannot replace the same-state retained-branch input.
 
 ## Shared Constitutive Object
 
@@ -49,25 +49,28 @@ $$
 
 The same $\mathcal C_{\mathrm{sea}}^{(\ell)}$ record must feed every consumer. A separate fitted response for clocks, signal delay, inertia, effective metric, pressure, or cosmology is a failure, not closure.
 
-## Receiver-Normal Intake
+## Transmitter-Side Intake
 
-The constitutive record is admissible only when the unperturbed and perturbed rows share:
+The constitutive record is admissible only when the unperturbed and perturbed states share:
 
 $$
-D_s=c_f-\hat{\mathbf r}\cdot\mathbf v_j(s),
+D_t=c_f-\hat{\mathbf r}_t\cdot\mathbf V_t(T_t),
 \qquad
-D_T=c_f-\hat{\mathbf r}\cdot\mathbf v_i(t),
+D_r=c_f-\hat{\mathbf r}_t\cdot\mathbf V_r(T_r),
 \qquad
-W^{\mathrm{rec}}=\left|\frac{D_T}{D_s}\right|.
+W^{\mathrm{acc}}=\frac{c_f}{|D_t|},
+\qquad
+\frac{dT_t}{dT_r}=\frac{D_r}{D_t}.
 $$
 
 The minimum intake is:
 
 | Field | Same-record requirement |
 | --- | --- |
-| Retained identity | EOM run id, branch id, source/receiver ids, retained history window, root ids, regulator state, and artifact hash. |
+| Retained identity | EOM run id, branch id, transmitter/receiver ids, retained history window, root ids, regulator state, and artifact hash. |
 | Pressure row | $\Delta P_\ell$, scale $\ell$, analysis window, strain direction, and branch-preserving or branch-transition status. |
-| Receiver-normal row | $D_s$, $D_T$, $W^{\mathrm{rec}}$, aggregation list, sign margins, and negative controls on both pressure states. |
+| Causal-hit records | $D_t$, $D_r$, $W^{\mathrm{acc}}$, $D_r/D_t$, retained-contribution list, sign margins, and negative controls on both pressure states. |
+| Causal wake accounts | Accepted wake-state variables, transition status, and energy, momentum, angular-momentum, and boundary-flux accounts from the same causal update. |
 | Noether sea state | $\rho_{\text{NS}}$, $n$, $\chi_{\text{sea}}$, $\Gamma_N$, $\lambda$, $\xi$, $S_{ij}$, and $\mathcal M_{\text{sea}}^{ab}$ before and after perturbation. |
 | Reversibility | Explicit residual showing whether the row remains below the declared transport or branch-transition threshold. |
 | Consumer projections | Clock, signal, inertia, effective-metric, or material readouts derived from the same constitutive row without private retuning. |
@@ -76,9 +79,9 @@ The minimum intake is:
 
 The first target is `pressure_dependent_noether_sea_constitutive_response/v0`:
 
-1. consume one accepted EOM-evolved retained branch with a populated `receiver_normal_branch_strength_certificate/v0`;
+1. consume one accepted EOM-evolved retained branch with transmitter-side acceleration, separate signed root playback, and accepted causal wake accounts;
 2. apply one signed subthreshold pressure pair $\{0,+\Delta P_\ell\}$ and one wrong-sign or record-mismatch negative control;
-3. recompute the same retained root identities, $D_s$, $D_T$, $W^{\mathrm{rec}}$, and $\theta_{\mathrm{sea}}^{(\ell)}$ fields at both pressure rows;
+3. recompute the same retained root identities, $D_t$, $D_r$, $W^{\mathrm{acc}}$, $D_r/D_t$, causal wake state, and $\theta_{\mathrm{sea}}^{(\ell)}$ fields at both pressure states;
 4. report the finite-difference response vector
 
    $$
@@ -104,7 +107,7 @@ This packet protects one live derivation route and does not create a separate va
 | Consumer | Allowed use |
 | --- | --- |
 | Lorentz/GR bridge | Derive moving-clock, ruler, signal, and weak-field metric response from one shared medium record. |
-| Mass response | Consume $\mathcal M_{\text{sea}}^{ab}$ only after receiver-normal exposure and internal-energy rows share the retained identity. |
+| Mass response | Consume $\mathcal M_{\text{sea}}^{ab}$ only after transmitter-side exposure, causal wake accounts, and internal-energy records share the retained identity. |
 | Condensed matter | Test reversible pressure/strain response separately from dissipative transport or branch transition. |
 | Equation mapping | Project the shared state into observer-level rows without upgrading coefficients before acceptance. |
 | Cosmology | Use the same constitutive state for effective metric, pressure, growth, and low-acceleration projections; no sector-local retuning. |
@@ -112,7 +115,7 @@ This packet protects one live derivation route and does not create a separate va
 ## Falsifiers
 
 - The pressure perturbation changes the retained root or branch identity without a declared transition row.
-- $D_s$, $D_T$, or $W^{\mathrm{rec}}$ is missing, record-mismatched, or replaced by a source-normal-only diagnostic.
+- $D_t$, $D_r$, $W^{\mathrm{acc}}$, $D_r/D_t$, or a required causal wake account is missing or record-mismatched, or playback is reused as acceleration strength.
 - The response vector fails to settle under smaller $\Delta P_\ell$ or tighter EOM refinement.
 - Clock, signal, inertia, effective-metric, or material projections require mutually incompatible coefficient rows for the same state.
 - A supposedly reversible row carries unlogged dissipation, excitation, radiation, or branch change.

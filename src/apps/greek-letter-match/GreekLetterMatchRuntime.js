@@ -4,31 +4,38 @@ import {
 } from "../navigator/StandaloneAppHomeRuntime.js";
 
 export const GREEK_LETTERS = Object.freeze([
-  Object.freeze({ name: "alpha", upper: "Α", lower: "α" }),
-  Object.freeze({ name: "beta", upper: "Β", lower: "β" }),
-  Object.freeze({ name: "gamma", upper: "Γ", lower: "γ" }),
-  Object.freeze({ name: "delta", upper: "Δ", lower: "δ" }),
-  Object.freeze({ name: "epsilon", upper: "Ε", lower: "ε" }),
-  Object.freeze({ name: "zeta", upper: "Ζ", lower: "ζ" }),
-  Object.freeze({ name: "eta", upper: "Η", lower: "η" }),
-  Object.freeze({ name: "theta", upper: "Θ", lower: "θ" }),
-  Object.freeze({ name: "iota", upper: "Ι", lower: "ι" }),
-  Object.freeze({ name: "kappa", upper: "Κ", lower: "κ" }),
-  Object.freeze({ name: "lambda", upper: "Λ", lower: "λ" }),
-  Object.freeze({ name: "mu", upper: "Μ", lower: "μ" }),
-  Object.freeze({ name: "nu", upper: "Ν", lower: "ν" }),
-  Object.freeze({ name: "xi", upper: "Ξ", lower: "ξ" }),
-  Object.freeze({ name: "omicron", upper: "Ο", lower: "ο" }),
-  Object.freeze({ name: "pi", upper: "Π", lower: "π" }),
-  Object.freeze({ name: "rho", upper: "Ρ", lower: "ρ" }),
-  Object.freeze({ name: "sigma", upper: "Σ", lower: "σ" }),
-  Object.freeze({ name: "tau", upper: "Τ", lower: "τ" }),
-  Object.freeze({ name: "upsilon", upper: "Υ", lower: "υ" }),
-  Object.freeze({ name: "phi", upper: "Φ", lower: "φ" }),
-  Object.freeze({ name: "chi", upper: "Χ", lower: "χ" }),
-  Object.freeze({ name: "psi", upper: "Ψ", lower: "ψ" }),
-  Object.freeze({ name: "omega", upper: "Ω", lower: "ω" }),
+  Object.freeze({ name: "alpha", upper: "Α", lower: "α", audioFile: "alpha.m4a" }),
+  Object.freeze({ name: "beta", upper: "Β", lower: "β", audioFile: "beta.m4a" }),
+  Object.freeze({ name: "gamma", upper: "Γ", lower: "γ", audioFile: "gamma.m4a" }),
+  Object.freeze({ name: "delta", upper: "Δ", lower: "δ", audioFile: "delta.m4a" }),
+  Object.freeze({ name: "epsilon", upper: "Ε", lower: "ε", audioFile: "epsilon.m4a" }),
+  Object.freeze({ name: "zeta", upper: "Ζ", lower: "ζ", audioFile: "zeta.m4a" }),
+  Object.freeze({ name: "eta", upper: "Η", lower: "η", audioFile: "eta.m4a" }),
+  Object.freeze({ name: "theta", upper: "Θ", lower: "θ", audioFile: "theta.m4a" }),
+  Object.freeze({ name: "iota", upper: "Ι", lower: "ι", audioFile: "iota.m4a" }),
+  Object.freeze({ name: "kappa", upper: "Κ", lower: "κ", audioFile: "kappa.m4a" }),
+  Object.freeze({ name: "lambda", upper: "Λ", lower: "λ", audioFile: "lambda.m4a" }),
+  Object.freeze({ name: "mu", upper: "Μ", lower: "μ", audioFile: "mu.m4a" }),
+  Object.freeze({ name: "nu", upper: "Ν", lower: "ν", audioFile: "nu.m4a" }),
+  Object.freeze({ name: "xi", upper: "Ξ", lower: "ξ", audioFile: "xi.m4a" }),
+  Object.freeze({ name: "omicron", upper: "Ο", lower: "ο", audioFile: "omicron.m4a" }),
+  Object.freeze({ name: "pi", upper: "Π", lower: "π", audioFile: "pi.m4a" }),
+  Object.freeze({ name: "rho", upper: "Ρ", lower: "ρ", audioFile: "rho.m4a" }),
+  Object.freeze({ name: "sigma", upper: "Σ", lower: "σ", audioFile: "sigma.m4a" }),
+  Object.freeze({ name: "tau", upper: "Τ", lower: "τ", audioFile: "tau.m4a" }),
+  Object.freeze({ name: "upsilon", upper: "Υ", lower: "υ", audioFile: "upsilon.m4a" }),
+  Object.freeze({ name: "phi", upper: "Φ", lower: "φ", audioFile: "phi.m4a" }),
+  Object.freeze({ name: "chi", upper: "Χ", lower: "χ", audioFile: "chi.m4a" }),
+  Object.freeze({ name: "psi", upper: "Ψ", lower: "ψ", audioFile: "psi.m4a" }),
+  Object.freeze({ name: "omega", upper: "Ω", lower: "ω", audioFile: "omega.m4a" }),
 ]);
+
+export function getGreekPronunciationUrl(letter, moduleUrl = import.meta.url) {
+  if (!letter?.audioFile) {
+    return null;
+  }
+  return new URL(`./audio/${letter.audioFile}`, moduleUrl).href;
+}
 
 // This is the navigator's default structured-sphere progression (the jewel palette).
 export const SPHERE_COLOR_PROGRESSION = Object.freeze([
@@ -51,9 +58,9 @@ export const SPHERE_COLOR_PROGRESSION = Object.freeze([
 ]);
 
 export const FEEDBACK_INTERVALS = Object.freeze({
-  standard: 2000,
-  study: 3000,
-  extended: 4000,
+  standard: 1000,
+  study: 2000,
+  extended: 3000,
 });
 
 function normalizeRandomValue(randomValue) {
@@ -313,6 +320,13 @@ export class GreekLetterMatchRuntime {
     this.random = typeof options.random === "function" ? options.random : Math.random;
     this.setTimeout = options.setTimeout ?? this.window?.setTimeout?.bind(this.window) ?? globalThis.setTimeout;
     this.clearTimeout = options.clearTimeout ?? this.window?.clearTimeout?.bind(this.window) ?? globalThis.clearTimeout;
+    this.audioFactory =
+      typeof options.audioFactory === "function"
+        ? options.audioFactory
+        : () =>
+            typeof this.window?.Audio === "function"
+              ? new this.window.Audio()
+              : null;
     this.symbolCase = "lower";
     this.centerRepresentation = "name";
     this.feedbackInterval = "standard";
@@ -320,6 +334,8 @@ export class GreekLetterMatchRuntime {
     this.teachingLetterIndex = null;
     this.session = createGreekMatchSession(this.random);
     this.feedbackTimer = null;
+    this.pronunciationAudio = null;
+    this.pronunciationRequestId = 0;
     this.resizeObserver = null;
     this.choiceButtons = [];
     this.choiceLabels = [];
@@ -365,7 +381,7 @@ export class GreekLetterMatchRuntime {
         this.document,
         "p",
         "",
-        "Alpha to Omega · Learn all 24 letters by position, symbol, and name."
+        "Alpha to Omega · Learn all 24 letters by position, symbol, name, and pronunciation."
       )
     );
     heading.append(mark, headingText);
@@ -438,9 +454,9 @@ export class GreekLetterMatchRuntime {
         name: "greek-feedback-interval",
         value: this.feedbackInterval,
         options: [
-          { value: "standard", label: "2 s" },
-          { value: "study", label: "3 s" },
-          { value: "extended", label: "4 s" },
+          { value: "standard", label: "1 s" },
+          { value: "study", label: "2 s" },
+          { value: "extended", label: "3 s" },
         ],
         onChange: (value) => {
           this.feedbackInterval = value;
@@ -521,12 +537,38 @@ export class GreekLetterMatchRuntime {
     }
 
     this.center = createElement(this.document, "div", "greek-match-center");
-    this.center.setAttribute("role", "status");
-    this.center.setAttribute("aria-live", "polite");
     this.centerKicker = createElement(this.document, "div", "greek-match-center-kicker", "Match");
     this.centerValue = createElement(this.document, "div", "greek-match-center-value");
     this.centerStatus = createElement(this.document, "div", "greek-match-center-status");
-    this.center.append(this.centerKicker, this.centerValue, this.centerStatus);
+    this.centerStatus.setAttribute("role", "status");
+    this.centerStatus.setAttribute("aria-live", "polite");
+    this.pronunciationButton = createElement(
+      this.document,
+      "button",
+      "greek-match-pronunciation",
+      "Hear pronunciation"
+    );
+    this.pronunciationButton.type = "button";
+    this.pronunciationButton.addEventListener("click", () => {
+      const letterIndex = this.getActivePronunciationIndex();
+      if (letterIndex != null) {
+        this.playPronunciation(letterIndex);
+      }
+    });
+    this.pronunciationFeedback = createElement(
+      this.document,
+      "div",
+      "greek-match-pronunciation-feedback"
+    );
+    this.pronunciationFeedback.setAttribute("role", "status");
+    this.pronunciationFeedback.setAttribute("aria-live", "polite");
+    this.center.append(
+      this.centerKicker,
+      this.centerValue,
+      this.centerStatus,
+      this.pronunciationButton,
+      this.pronunciationFeedback
+    );
 
     this.perfectLabel = createElement(
       this.document,
@@ -589,6 +631,45 @@ export class GreekLetterMatchRuntime {
         "Scores stay only in this page session and clear when you leave or reset."
       )
     );
+    const audioCredit = createElement(
+      this.document,
+      "p",
+      "greek-match-audio-credit",
+      "Pronunciation sources: "
+    );
+    const audioCreditLink = createElement(
+      this.document,
+      "a",
+      "",
+      "GreekLetterLearner"
+    );
+    audioCreditLink.href = "https://github.com/TechNolaByte/GreekLetterLearner";
+    audioCreditLink.target = "_blank";
+    audioCreditLink.rel = "noreferrer";
+    const wikimediaCreditLink = createElement(
+      this.document,
+      "a",
+      "",
+      "Wikimedia Commons"
+    );
+    wikimediaCreditLink.href = "https://commons.wikimedia.org/";
+    wikimediaCreditLink.target = "_blank";
+    wikimediaCreditLink.rel = "noreferrer";
+    const audioDetailsLink = createElement(
+      this.document,
+      "a",
+      "",
+      "credits & licenses"
+    );
+    audioDetailsLink.href = new URL("./audio/SOURCE.md", import.meta.url).href;
+    audioCredit.append(
+      audioCreditLink,
+      this.document.createTextNode(" · "),
+      wikimediaCreditLink,
+      this.document.createTextNode(" · "),
+      audioDetailsLink
+    );
+    chartSection.append(audioCredit);
     panel.append(panelHeader, scoreCard, chartSection);
     return panel;
   }
@@ -623,10 +704,102 @@ export class GreekLetterMatchRuntime {
     return representation === "name" ? letter.name : letter[representation];
   }
 
+  getActivePronunciationIndex() {
+    if (this.gameMode === "teach") {
+      return this.teachingLetterIndex;
+    }
+    return getCurrentLetterIndex(this.session);
+  }
+
+  setPronunciationFeedback(message, state = "") {
+    if (!this.pronunciationFeedback) {
+      return;
+    }
+    this.pronunciationFeedback.textContent = message;
+    this.pronunciationFeedback.dataset.state = state;
+  }
+
+  stopPronunciation() {
+    this.pronunciationRequestId += 1;
+    if (!this.pronunciationAudio) {
+      return;
+    }
+    this.pronunciationAudio.pause?.();
+    try {
+      this.pronunciationAudio.currentTime = 0;
+    } catch {
+      // Some browser audio implementations reject seeking before metadata loads.
+    }
+  }
+
+  playPronunciation(letterIndex) {
+    const normalizedIndex = Number(letterIndex);
+    const letter = GREEK_LETTERS[normalizedIndex];
+    if (!letter) {
+      return false;
+    }
+
+    if (!this.pronunciationAudio) {
+      try {
+        this.pronunciationAudio = this.audioFactory();
+      } catch {
+        this.pronunciationAudio = null;
+      }
+    }
+    const audio = this.pronunciationAudio;
+    if (!audio || typeof audio.play !== "function") {
+      this.setPronunciationFeedback("Pronunciation audio is unavailable.", "error");
+      return false;
+    }
+
+    this.stopPronunciation();
+    const requestId = ++this.pronunciationRequestId;
+    audio.preload = "auto";
+    audio.src = getGreekPronunciationUrl(letter);
+    audio.onended = () => {
+      if (requestId === this.pronunciationRequestId) {
+        this.setPronunciationFeedback("");
+      }
+    };
+    audio.onerror = () => {
+      if (requestId === this.pronunciationRequestId) {
+        this.setPronunciationFeedback(
+          `Could not play ${letter.name}. Try the speaker again.`,
+          "error"
+        );
+      }
+    };
+    this.setPronunciationFeedback(`Playing ${letter.name}.`, "playing");
+
+    try {
+      const playResult = audio.play();
+      if (playResult && typeof playResult.catch === "function") {
+        playResult.catch(() => {
+          if (requestId === this.pronunciationRequestId) {
+            this.setPronunciationFeedback(
+              `Could not play ${letter.name}. Try the speaker again.`,
+              "error"
+            );
+          }
+        });
+      }
+      return true;
+    } catch {
+      if (requestId === this.pronunciationRequestId) {
+        this.setPronunciationFeedback(
+          `Could not play ${letter.name}. Try the speaker again.`,
+          "error"
+        );
+      }
+      return false;
+    }
+  }
+
   chooseLetter(index) {
     if (this.gameMode === "teach") {
       this.teachingLetterIndex = index;
       this.render();
+      this.playPronunciation(index);
       return;
     }
     if (this.session.locked || this.session.roundComplete) {
@@ -638,6 +811,7 @@ export class GreekLetterMatchRuntime {
     this.feedbackTimer = this.setTimeout(() => {
       this.feedbackTimer = null;
       this.session = advanceGreekMatch(this.session);
+      this.setPronunciationFeedback("");
       this.render();
     }, waitMilliseconds);
   }
@@ -650,6 +824,8 @@ export class GreekLetterMatchRuntime {
       this.clearTimeout(this.feedbackTimer);
       this.feedbackTimer = null;
     }
+    this.stopPronunciation();
+    this.setPronunciationFeedback("");
     this.session = startNextGreekMatchRound(this.session, this.random);
     this.render();
   }
@@ -665,6 +841,8 @@ export class GreekLetterMatchRuntime {
     if (this.session.locked) {
       this.session = advanceGreekMatch(this.session);
     }
+    this.stopPronunciation();
+    this.setPronunciationFeedback("");
     this.gameMode = mode;
     this.teachingLetterIndex = null;
     this.render();
@@ -675,6 +853,8 @@ export class GreekLetterMatchRuntime {
       this.clearTimeout(this.feedbackTimer);
       this.feedbackTimer = null;
     }
+    this.stopPronunciation();
+    this.setPronunciationFeedback("");
     this.session = createGreekMatchSession(this.random);
     this.teachingLetterIndex = null;
     this.render();
@@ -814,6 +994,27 @@ export class GreekLetterMatchRuntime {
             : "Choose its symbol";
     }
 
+    const activePronunciationIndex = this.getActivePronunciationIndex();
+    const activePronunciationLetter =
+      activePronunciationIndex == null
+        ? null
+        : GREEK_LETTERS[activePronunciationIndex];
+    this.pronunciationButton.hidden = !activePronunciationLetter;
+    this.pronunciationButton.disabled = !activePronunciationLetter;
+    if (activePronunciationLetter) {
+      this.pronunciationButton.textContent = `🔊 Hear ${activePronunciationLetter.name}`;
+      this.pronunciationButton.setAttribute(
+        "aria-label",
+        `Hear ${activePronunciationLetter.name} pronounced`
+      );
+    } else {
+      this.pronunciationButton.textContent = "🔊 Hear pronunciation";
+      this.pronunciationButton.setAttribute(
+        "aria-label",
+        "Choose a Greek letter to hear its pronunciation"
+      );
+    }
+
     const showWrongAnswerArrow = Boolean(!isTeaching && lastResult && !lastResult.isCorrect);
     const showTeachingArrow = Boolean(isTeaching && teachingLetter);
     const showAnswerArrow = showWrongAnswerArrow || showTeachingArrow;
@@ -845,10 +1046,10 @@ export class GreekLetterMatchRuntime {
     );
     this.nextRoundButton.disabled = isTeaching || this.session.attempts <= 0;
     this.setupSummary.textContent = isTeaching
-      ? "Choose any ring item to see its name, lowercase, and uppercase forms. Teaching does not change your score."
+      ? "Choose any ring item to see its forms and hear its pronunciation. Teaching does not change your score."
       : this.centerRepresentation === "name"
-        ? `Names are in the center. Choose the ${this.symbolCase}case symbol at its fixed alphabet position.`
-        : `${this.symbolCase === "lower" ? "Lowercase" : "Uppercase"} symbols are in the center. Choose the English name.`;
+        ? `Names are in the center. Choose the ${this.symbolCase}case symbol at its fixed alphabet position. Use Hear when you want the pronunciation.`
+        : `${this.symbolCase === "lower" ? "Lowercase" : "Uppercase"} symbols are in the center. Choose the English name. Use Hear when you want the pronunciation.`;
 
     const isPerfect =
       this.session.roundComplete &&
@@ -902,6 +1103,12 @@ export class GreekLetterMatchRuntime {
     if (this.feedbackTimer != null) {
       this.clearTimeout(this.feedbackTimer);
       this.feedbackTimer = null;
+    }
+    this.stopPronunciation();
+    if (this.pronunciationAudio) {
+      this.pronunciationAudio.removeAttribute?.("src");
+      this.pronunciationAudio.load?.();
+      this.pronunciationAudio = null;
     }
     this.resizeObserver?.disconnect?.();
     if (this.fallbackResizeHandler) {

@@ -9,6 +9,7 @@
 #include <iomanip>
 #include <iostream>
 #include <limits>
+#include <map>
 #include <optional>
 #include <sstream>
 #include <stdexcept>
@@ -42,6 +43,7 @@ struct IncrementalSnapshotCache {
   std::string model_key;
   eom::NativeAccelerationSnapshotCertificate snapshot;
   std::vector<eom::NativePublishedPath> histories;
+  std::map<std::string, eom::JointAffineRetainedHistory> joint_histories;
 };
 
 bool step_contains_caustic_entry_trigger(
@@ -192,6 +194,89 @@ rebase_trimmed_snapshot(
     row.certificate.root_free_cells.clear();
   }
   return rebased;
+}
+
+std::map<std::string, eom::JointAffineRetainedHistory>
+seed_exact_joint_histories(const std::vector<ParsedPath>& paths) {
+  std::map<std::string, eom::JointAffineRetainedHistory> result;
+  for (const auto& path : paths) {
+    std::vector<eom::JointAffineCubicSegment> segments;
+    segments.reserve(path.history.segments().size());
+    for (const auto& ordinary : path.history.segments()) {
+      eom::JointAffineCubicSegment segment;
+      segment.start_time = ordinary.t_start();
+      segment.end_time = ordinary.t_end();
+      segment.position_remainder_radii = ordinary.position_errors();
+      segment.velocity_remainder_radii = ordinary.velocity_errors();
+      for (std::size_t axis = 0U; axis < 3U; ++axis) {
+        for (std::size_t degree = 0U; degree < 4U; ++degree) {
+          segment.position_coefficients[axis][degree] = {};
+        }
+      }
+      segments.push_back(std::move(segment));
+    }
+    result.emplace(
+        path.path_id, eom::JointAffineRetainedHistory(
+            path.path_id, {}, std::move(segments)));
+  }
+  return result;
+}
+
+bool paths_have_exact_zero_errors(const std::vector<ParsedPath>& paths) {
+  return std::all_of(paths.begin(), paths.end(), [](const auto& path) {
+    return std::all_of(
+        path.history.segments().begin(), path.history.segments().end(),
+        [](const auto& segment) {
+          return std::all_of(
+                     segment.position_errors().begin(),
+                     segment.position_errors().end(),
+                     [](double value) { return value == 0.0; }) &&
+              std::all_of(
+                  segment.velocity_errors().begin(),
+                  segment.velocity_errors().end(),
+                  [](double value) { return value == 0.0; });
+        });
+  });
+}
+
+std::optional<std::map<std::string, eom::JointAffineRetainedHistory>>
+rebase_trimmed_joint_histories(
+    const IncrementalSnapshotCache& cache,
+    const std::vector<ParsedPath>& paths) {
+  if (cache.joint_histories.empty() ||
+      cache.histories.size() != paths.size()) {
+    return std::nullopt;
+  }
+  std::map<std::string, eom::JointAffineRetainedHistory> result;
+  for (const auto& path : paths) {
+    const auto* prior_ordinary = cached_history(cache, path.path_id);
+    const auto joint_found = cache.joint_histories.find(path.path_id);
+    if (prior_ordinary == nullptr ||
+        joint_found == cache.joint_histories.end() ||
+        !is_exact_suffix(path.history, *prior_ordinary) ||
+        joint_found->second.segments().size() !=
+            prior_ordinary->segments().size() ||
+        path.history.segments().size() >
+            joint_found->second.segments().size()) {
+      return std::nullopt;
+    }
+    const std::size_t offset = joint_found->second.segments().size() -
+        path.history.segments().size();
+    std::vector<eom::JointAffineCubicSegment> segments(
+        joint_found->second.segments().begin() +
+            static_cast<std::ptrdiff_t>(offset),
+        joint_found->second.segments().end());
+    if (segments.empty() ||
+        segments.front().start_time != path.history.t_start() ||
+        segments.back().end_time != path.history.t_end()) {
+      return std::nullopt;
+    }
+    result.emplace(
+        path.path_id, eom::JointAffineRetainedHistory(
+            path.path_id, joint_found->second.symbol_registry(),
+            std::move(segments)));
+  }
+  return result;
 }
 
 std::vector<std::string> split_tabs(const std::string& line) {
@@ -557,6 +642,19 @@ void run(
                      << path.state_flags << '\n';
   }
   const std::string model_key = model_key_stream.str();
+  if (incremental_cache != nullptr && incremental_cache->has_value() &&
+      (*incremental_cache)->model_key == model_key) {
+    const auto rebased_joint = rebase_trimmed_joint_histories(
+        **incremental_cache, parsed_paths);
+    if (rebased_joint.has_value()) {
+      request.joint_histories = *rebased_joint;
+    }
+  }
+  if (request.joint_histories.empty() &&
+      parsed_paths.size() == 6U &&
+      paths_have_exact_zero_errors(parsed_paths)) {
+    request.joint_histories = seed_exact_joint_histories(parsed_paths);
+  }
   std::optional<eom::NativeAccelerationSnapshotCertificate> rebased_snapshot;
   const eom::NativeAccelerationSnapshotCertificate* reusable_snapshot = nullptr;
   bool rebased_incremental_chunk_snapshot = false;
@@ -629,6 +727,7 @@ void run(
               .model_key = model_key,
               .snapshot = *step->accepted_snapshot,
               .histories = result.histories,
+              .joint_histories = result.joint_histories,
           });
           break;
         }
@@ -667,6 +766,13 @@ void run(
             << (reused_incremental_chunk_snapshot ? "true" : "false")
             << ",\"incrementalChunkStartSnapshotRebased\":"
             << (rebased_incremental_chunk_snapshot ? "true" : "false")
+            << ",\"jointStatePathCount\":"
+            << request.joint_histories.size()
+            << ",\"jointStateSymbolCount\":"
+            << (request.joint_histories.empty()
+                    ? 0U
+                    : request.joint_histories.begin()
+                          ->second.symbol_registry().size())
             << ",\"timing\":{"
             << "\"snapshotTotalWallSeconds\":"
             << result.timing.snapshot_total_wall_seconds
@@ -788,7 +894,11 @@ void run(
               << json_escape(step.attempted_start)
               << "\",\"attemptedEnd\":\""
               << json_escape(step.attempted_end)
-              << "\",\"pairSelectionRoute\":\""
+              << "\",\"rootTimePressureRatio\":"
+              << step.root_time_pressure_ratio
+              << ",\"rootPressureStepCap\":"
+              << step.root_pressure_step_cap
+              << ",\"pairSelectionRoute\":\""
               << (diagnostic_snapshot != nullptr
                       ? json_escape(diagnostic_snapshot->pair_selection_route)
                       : "none")
@@ -1358,7 +1468,9 @@ int main(int argc, char** argv) {
                    "[--disable-certified-traversal] "
                    "[--traversal-exact-tile-pair-limit=N] "
                    "[--shadow-affine-diagnostic=PATH] "
-                   "[--shadow-affine-symbol-cap=N]\n";
+                   "[--shadow-affine-symbol-cap=N] "
+                   "[--shadow-affine-disable-root-enclosure-symbols] "
+                   "[--shadow-affine-disable-acceleration-enclosure-symbols]\n";
       return EXIT_FAILURE;
     }
     unsigned maximum_mpfr_bits = 512;
@@ -1369,6 +1481,8 @@ int main(int argc, char** argv) {
     std::uint64_t traversal_exact_tile_pair_limit = 64;
     std::string shadow_affine_output_path;
     std::size_t shadow_affine_symbol_cap = 256U;
+    bool shadow_affine_include_root_enclosure_symbols = true;
+    bool shadow_affine_include_acceleration_enclosure_symbols = true;
     for (int argument_index = 2; argument_index < argc; ++argument_index) {
       const std::string option = argv[argument_index];
       constexpr const char* precision_prefix = "--maximum-mpfr-bits=";
@@ -1438,6 +1552,12 @@ int main(int argc, char** argv) {
           throw std::invalid_argument(
               "shadow affine symbol cap must be at least 32");
         }
+      } else if (option ==
+                 "--shadow-affine-disable-root-enclosure-symbols") {
+        shadow_affine_include_root_enclosure_symbols = false;
+      } else if (option ==
+                 "--shadow-affine-disable-acceleration-enclosure-symbols") {
+        shadow_affine_include_acceleration_enclosure_symbols = false;
       } else {
         throw std::invalid_argument("unsupported Borg EOM native option");
       }
@@ -1447,6 +1567,10 @@ int main(int argc, char** argv) {
       shadow_affine_diagnostic.emplace(eom::ShadowAffineDiagnosticOptions{
           .output_path = shadow_affine_output_path,
           .symbol_cap = shadow_affine_symbol_cap,
+          .include_root_enclosure_symbols =
+              shadow_affine_include_root_enclosure_symbols,
+          .include_acceleration_enclosure_symbols =
+              shadow_affine_include_acceleration_enclosure_symbols,
       });
     }
     auto* shadow_affine = shadow_affine_diagnostic.has_value()
@@ -1490,7 +1614,9 @@ int main(int argc, char** argv) {
                    "[--disable-certified-traversal] "
                    "[--traversal-exact-tile-pair-limit=N] "
                    "[--shadow-affine-diagnostic=PATH] "
-                   "[--shadow-affine-symbol-cap=N]\n";
+                   "[--shadow-affine-symbol-cap=N] "
+                   "[--shadow-affine-disable-root-enclosure-symbols] "
+                   "[--shadow-affine-disable-acceleration-enclosure-symbols]\n";
       return EXIT_FAILURE;
     }
     return EXIT_SUCCESS;

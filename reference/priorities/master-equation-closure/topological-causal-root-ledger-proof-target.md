@@ -259,7 +259,7 @@ $$
 
 The trivial endpoint $s=t$, $n=0$ is excluded. Therefore the compact
 pair-contact lemma does not automatically prove self-hit. For small
-$\tau=t-s$, the same-source torus distance behaves locally like
+$\tau=t-s$, the same-transmitter torus distance behaves locally like
 $$
 d_L(t,t-\tau)
 =
@@ -276,13 +276,13 @@ $$
 
 A strict sub-field-speed interval therefore has no nearby simple self-hit root.
 A super-field-speed arc supplies the local sign needed for a candidate
-self-hit onset, but a retained branch still must provide the same-source root,
-positive Jacobian floor or caustic route, receiver-normal branch strength, finite memory, and action/energy
+self-hit onset, but a retained branch still must provide the same-transmitter root,
+positive transmitter-side Jacobian floor or caustic route, finite transmitter-side acceleration contribution, finite memory, and action/energy
 ledger closure.
 
 This keeps the existing distinction intact:
 
-- Self-hit is determined by source identity.
+- Self-hit is determined by transmitter identity.
 - Multi-hit is determined by root count.
 - A partner row can be single-root or multi-root.
 - A self row can be single-root or multi-root.
@@ -474,7 +474,7 @@ marked compact-box only unless a local noncompact replacement is supplied.
 4. Classify root-count changes by endpoint, memory edge, caustic, core, seam,
    and omitted-row strata.
 5. State the self-hit criterion separately and show why strict sub-field-speed
-   same-source arcs do not supply nearby self-hit roots.
+   same-transmitter arcs do not supply nearby self-hit roots.
 6. Test whether the topology-native ledger condition gives downstream
    branch-chart consumers the same retained source-record identity burden
    without adding a new force, gate, or ontology.

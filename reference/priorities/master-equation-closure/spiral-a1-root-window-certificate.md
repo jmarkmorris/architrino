@@ -10,14 +10,14 @@ I_\ast=\left[-\frac{\pi}{6},\frac{\pi}{6}\right],
 \qquad
 D_{\mathrm{cert}}=\left[\frac{1}{2},4\pi\right].
 $$
-This packet writes the $a_{\mathrm{A1}}$ root-window, inactive-gap, Jacobian-floor,
-self-coincidence, and finite-memory rows. It supplies no canonical force/action
-evidence.
+This packet writes the $a_{\mathrm{A1}}$ root-window, inactive-gap,
+transmitter-side floor, self-coincidence, and finite-memory records. It supplies
+no canonical action or conservation evidence.
 
-Claim level. Priority topology packet for the retained $3+1$ root chart. A new
-receiver-normal certificate must reproduce any retained topology it consumes and
-must add same-record $D_s$, $D_T$, and $W^{\mathrm{rec}}$ rows before any
-force/action interpretation.
+Claim level. Priority topology packet for the retained $3+1$ root chart. The
+transmitter-side rebuild must reproduce any retained topology it consumes and
+must add same-record $D_t$, $D_r$, $W^{\mathrm{acc}}$, and signed playback
+before any physical interpretation.
 
 ## Candidate Definition
 
@@ -283,10 +283,9 @@ candidate constants:
    same retained active identities before the chart can be promoted as a full
    branch-history certificate.
 7. `radial_turn` and `tangential_drive`: the companion
-   [spiral-a1-restart](spiral-a1-restart.md) packet
-   now requires same-box $D_s$, $D_T$, and $W^{\mathrm{rec}}$ rows before any
-   force/action verdict can be promoted. This root-window packet is topology
-   evidence only.
+   [spiral-a1-restart](spiral-a1-restart.md) packet derives same-box
+   $W^{\mathrm{acc}}=c_f/|D_t|$ intervals and keeps $D_r/D_t$ as playback.
+   Outward aggregates, action, and conservation remain separate obligations.
 
 ## Packet Verdict
 
@@ -295,9 +294,9 @@ Jacobian-floor, self-coincidence, and finite-memory rows above certify the
 retained $P_1,P_2,P_3,S_1$ chart at priority-packet level under the displayed
 finite-cover arithmetic.
 
-Repository verdict: `receiver_normal_restart_required`. No deleted sidecar or
-generated report is an active authority for this chart.
+Repository verdict: `transmitter_side_acceleration_rebuilt`. No deleted sidecar
+or generated report is an active authority for this chart.
 
 Promotion decision: priority-only for closure. The A1 retained root chart is not
-ready for reader-facing corpus promotion as a closure result until the
-receiver-normal branch table is emitted.
+ready for reader-facing corpus promotion as a closure result until outward
+aggregates and accepted causal wake accounts are emitted.

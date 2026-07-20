@@ -9,7 +9,7 @@
 - Source rows: [equation.md](equation.md) and [priorities.md](priorities.md)
 - Edit boundary: this packet only. Do not update `equation.md` or `priorities.md` from this packet.
 
-This packet ties the native causal wake equation to Noether-style conservation laws without promoting a new reader-facing claim. The central rule is same-root conservation: energy, momentum, and angular momentum may be scored only when their wake-history charges, event ledger, boundary flux, and residuals consume the same causal-root ledger, Jacobian floors, memory convention, branch label, and Noether sea state as the force row.
+This packet ties the native causal wake equation to Noether-style conservation laws without promoting a new reader-facing claim. The central rule is same-root conservation: energy, momentum, and angular momentum may be scored only when their wake-history charges, event ledger, boundary flux, and residuals consume the same causal-root ledger, transmitter-side floors, memory convention, branch label, and Noether sea state as the acceleration calculation.
 
 ## Packet Attack Card
 
@@ -33,34 +33,36 @@ node scripts/equation-mapping/finite-window-conservation-residual.mjs --input sc
 
 | Standard comparison term | $\mathbb{A}\mathbb{A}\mathbb{A}$ geometric readout | Required carrier or row | Same-record binding | Fail-closed negative control | Smallest accepted evidence object |
 | --- | --- | --- | --- | --- | --- |
-| Native causal wake acceleration (`EQ-01`) | Per-hit active-root row with source/receiver identity, causal emission time, branch Jacobian, polarity, distance, and retained Noether sea state. | Retained branch chart $\mathfrak B$ with accepted active-root set and Jacobian-floor rows. | The force row must share ordered-pair policy, active-root labels, memory depth, regularization, Jacobian floor, endpoint convention, tail convention, branch label, and Noether sea state with every conservation consumer. | Root-signature split, missing branch chart, missing active roots, or observer-level force fit that bypasses causal-root provenance. | Source-backed retained branch chart proving the active-root row and causal-root Jacobian data for the selected finite window. |
-| Same-root conservation checksum | $d_{\mathrm{root}}(\operatorname{RootSig}_X,\operatorname{RootSig}_Y)=0$ across force, action, wake charge, event, boundary, and observer-export rows. | Accepted `same_root_conservation_checksum` row under the same branch chart. | Force, action, wake-energy, momentum, angular-momentum, event-ledger, and boundary rows must share the same $\operatorname{RootSig}$ or explicitly report `ledger-rerun-required`. | `eq01-05.root_signature_split`, same-source policy missing, or row-local active-root relabeling. | Accepted same-root checksum object comparing all conservation consumers against the force-row root signature. |
+| Native causal wake acceleration (`EQ-01`) | Per-hit active-root record with transmitter/receiver identity, causal emission time, transmitter-side factor, polarity, distance, and retained Noether sea state. | Retained branch chart $\mathfrak B$ with accepted active-root set and transmitter-side floor records. | The acceleration calculation must share ordered-pair policy, active-root labels, memory depth, regularization, transmitter-side floor, endpoint convention, tail convention, branch label, and Noether sea state with every conservation consumer. | Root-signature split, missing branch chart, missing active roots, or observer-level acceleration fit that bypasses causal-root provenance. | Evidence-backed retained branch chart proving the active-root records and transmitter-side causal data for the selected finite window. |
+| Same-root conservation checksum | $d_{\mathrm{root}}(\operatorname{RootSig}_X,\operatorname{RootSig}_Y)=0$ across acceleration, action, wake charge, event, boundary, and observer-export records. | Accepted `same_root_conservation_checksum` record under the same branch chart. | Acceleration, action, wake-energy, momentum, angular-momentum, event-ledger, and boundary records must share the same $\operatorname{RootSig}$ or explicitly report `ledger-rerun-required`. | `eq01-05.root_signature_split`, same-transmitter policy missing, or local active-root relabeling. | Accepted same-root checksum object comparing all conservation consumers against the acceleration root signature. |
 | Finite-window energy, momentum, and angular-momentum charges (`EQ-05`) | $E_{\mathrm{ret}}$, $\mathbf P_{\mathrm{ret}}$, $\mathbf J_{\mathrm{ret}}$ from mechanical, wake, and declared Noether sea terms on one retained chart. | Accepted finite-window charge rows plus wake-history and Noether sea inclusion/exclusion declarations. | Mechanical, wake, Noether sea, branch chart, boundary, and event rows must agree on which terms are retained in $\Omega(t)$ and which leave through updates. | Double-counting Noether sea terms, wake-energy crosswalk split, and energy/momentum charges built from a separate potential. | Source-backed finite-window charge bundle with wake, mechanical, Noether sea, and exclusion rows all bound to $\mathfrak B$. |
-| Event-ledger balance | $\mathcal L_{E\mathbf p\mathbf J}(\mathsf e)=0$ for branch transitions, radiation, recoil, reactions, support-boundary crossings, and medium updates. | Accepted event ledger row with source branch, selected channels, outgoing assemblies, photon packets, recoil targets, medium updates, remnant states, and provenance records. | Event inputs $X$, channel set $I_{\mathsf e}$, outputs $Y_{\mathsf e}$, root signatures, path rows, and remnant/medium updates must share one event identity. | Hidden sinks, unrecorded medium/remnant update, same-source policy bypass, and event row sourced only to a priority packet. | Retained event object whose energy, momentum, angular momentum, polarity, architrino, path, medium, and remnant deltas close or report classified defects. |
+| Event-ledger balance | $\mathcal L_{E\mathbf p\mathbf J}(\mathsf e)=0$ for branch transitions, radiation, reactions, support-boundary crossings, and medium updates. | Accepted event ledger record with transmitter branch, selected channels, outgoing assemblies, photon packets, medium updates, remnant states, and provenance records. | Event inputs $X$, channel set $I_{\mathsf e}$, outputs $Y_{\mathsf e}$, root signatures, path records, and remnant/medium updates must share one event identity. | Hidden sinks, unrecorded medium/remnant update, same-transmitter policy bypass, and an event record supported only by a priority packet. | Retained event object whose energy, momentum, angular momentum, polarity, architrino, path, medium, and remnant deltas close or report classified defects. |
 | Flux-boundary balance | Boundary flux from causal-wake escapement, assembly crossings, retained medium exchange, endpoint leakage, and support-boundary updates. | Accepted boundary-flux row under the retained branch chart. | Boundary flux must consume the same support window, branch chart, active-root ledger, event rows, and retained Noether sea inclusion policy as the charge rows. | Boundary flux as an independent continuum reservoir, endpoint leakage hidden inside a fitted conservation residual, or support-window mismatch. | Source-backed boundary-flux row proving outgoing/incoming terms and endpoint leakage for the selected finite window. |
 | Finite-window conservation residual | $\mathcal R_{01-05}^{\mathfrak B}(W)$ with normalized $\epsilon_E$, $\epsilon_P$, $\epsilon_J$, endpoint/cut leakage, event residuals, boundary residuals, and wake-energy crosswalk. | Accepted `finite_window_conservation_residual` row with accepted branch chart and all dependent rows. | The residual must use one branch chart, one root signature policy, one event ledger set, one boundary-flux row, and one wake-energy construction route or an explicit crosswalk residual. | `missing_accepted_branch_chart`, wake-energy route split, unclassified finite-window defect, and hidden retune between force and conservation rows. | One retained branch calculation where the checker advances past `missing_accepted_branch_chart` and reports all finite-window defects as Euler/force residual, endpoint leakage, event ledger, or boundary flux. |
 
 ## Root Law And Retained Window
 
-For a receiver $o'$ and source $o$, the native per-hit causal wake acceleration is
+For receiver $r$ and transmitter $t$, the native per-hit causal wake acceleration is
 
 $$
-\mathbf{a}_{o'\leftarrow o}(t;t_0)
+\mathbf A_{r\leftarrow t}(T_r;T_t)
 =
-\kappa\,\sigma_{q_o q_{o'}}
-\frac{|q_o q_{o'}|}{r^2}
-W_{o'\leftarrow o}^{\mathrm{rec}}(t;t_0)
-\hat{\mathbf r},
+\kappa\,\sigma_{q_t q_r}
+\frac{|q_t q_r|}{r^2}
+W_{r\leftarrow t}^{\mathrm{acc}}(T_r;T_t)
+\hat{\mathbf r}_t,
 $$
 
-with source-normal denominator, receiver-normal numerator, and branch strength
+with transmitter-side acceleration weight and separate signed root playback
 
 $$
-D_{s,o'\leftarrow o}=c_f-\mathbf v_o(t_0)\cdot\hat{\mathbf r},
+D_t=c_f-\mathbf V_t(T_t)\cdot\hat{\mathbf r}_t,
 \qquad
-D_{T,o'\leftarrow o}=c_f-\mathbf v_{o'}(t)\cdot\hat{\mathbf r},
+D_r=c_f-\mathbf V_r(T_r)\cdot\hat{\mathbf r}_t,
 \qquad
-W_{o'\leftarrow o}^{\mathrm{rec}}=\left|\frac{D_{T,o'\leftarrow o}}{D_{s,o'\leftarrow o}}\right|.
+W_{r\leftarrow t}^{\mathrm{acc}}=\frac{c_f}{|D_t|},
+\qquad
+\frac{dT_t}{dT_r}=\frac{D_r}{D_t}.
 $$
 
 On a retained branch chart
@@ -82,34 +84,34 @@ h,
 \right),
 $$
 
-the active root set for one ordered source/receiver row is
+the active root set for one ordered transmitter/receiver pair is
 
 $$
-\mathcal{A}_{o'o}^{\mathfrak{B}}(t;h)
+\mathcal{A}_{rt}^{\mathfrak{B}}(T_r;h)
 =
 \left\{
 \alpha:
-0<\eta_{o'o,\alpha}(t)\le h,\,
-G_{o'o}(t,\eta_{o'o,\alpha})=0,\,
-|J_{o'o,\alpha}(t)|\ge J_0
+0<\eta_{rt,\alpha}(T_r)\le h,\,
+G_{rt}(T_r,\eta_{rt,\alpha})=0,\,
+|D_{t,rt,\alpha}(T_r)|\ge D_{t,0}
 \right\}.
 $$
 
-The force row used by every downstream equation is therefore the branch sum
+The acceleration used by every downstream equation is therefore the retained-branch sum
 
 $$
-\mathbf{a}_{o'}^{\mathfrak{B}}(t)
+\mathbf A_r^{\mathfrak{B}}(T_r)
 =
-\sum_o
-\sum_{\alpha\in\mathcal{A}_{o'o}^{\mathfrak{B}}(t;h)}
-\kappa\,\sigma_{q_o q_{o'}}
-|q_o q_{o'}|
-\frac{W_{o'o,\alpha}^{\mathrm{rec}}}
-{r_{o'o,\alpha}^{2}}
-\hat{\mathbf r}_{o'o,\alpha}.
+\sum_t
+\sum_{\alpha\in\mathcal{A}_{rt}^{\mathfrak{B}}(T_r;h)}
+\kappa\,\sigma_{q_t q_r}
+|q_t q_r|
+\frac{W_{r\leftarrow t,\alpha}^{\mathrm{acc}}}
+{r_{rt,\alpha}^{2}}
+\hat{\mathbf r}_{t,\alpha}.
 $$
 
-This row is native only when the same retained active-root ledger carries $D_s$, $D_T$, and $W^{\mathrm{rec}}$ for each branch. The open conservation burden is to build energy, momentum, angular-momentum, wake, event, and boundary rows from that same retained active-root ledger rather than from a separate fitted potential or observer-level field.
+This calculation is native only when the same retained active-root ledger carries $D_t$, $D_r$, $W^{\mathrm{acc}}$, and $D_r/D_t$ for each branch, with playback kept separate from acceleration strength. The open conservation burden is to derive energy, momentum, angular momentum, wake, event, and boundary records from that same retained state rather than from a separate fitted potential or observer-level field.
 
 ## Same-Root Conservation Contract
 
@@ -150,9 +152,9 @@ $$
 \mathcal{R}_{\mathrm{same}}(X,Y;\mathfrak{B})=0.
 $$
 
-Here $d_{\mathrm{root}}=0$ only when the two rows share the same ordered source-pair policy, active root labels, inactive-root gaps, finite memory convention, Jacobian floor, receiver-normal branch strength, endpoint convention, tail treatment, branch label, and Noether sea state. If the force row, action row, wake-history charge, event ledger, or observer export uses a different signature, the downstream row must return `ledger-rerun-required`.
+Here $d_{\mathrm{root}}=0$ only when the two records share the same ordered transmitter-pair policy, active root labels, inactive-root gaps, finite memory convention, transmitter-side floor, acceleration weights, playback convention, endpoint convention, tail treatment, branch label, and Noether sea state. If the acceleration, action, wake-history charge, event ledger, or observer export uses a different signature, the downstream result must return `ledger-rerun-required`.
 
-Same-source self-hit rows are not compressed into the cross-site all-pairs ledger. When a retained branch needs self-hit roots, it must attach an explicit same-source policy
+Same-transmitter self-hit records are not compressed into the cross-site all-pairs ledger. When a retained branch needs self-hit roots, it must attach an explicit same-transmitter policy
 
 $$
 \operatorname{SelfRootSig}_{i}(\mathfrak{B})
@@ -161,14 +163,14 @@ $$
 \mathcal{A}_{ii}^{\mathrm{self}},
 \mathcal{I}_{ii}^{\mathrm{self}},
 h_{ii}^{\mathrm{self}},
-J_{0,ii}^{\mathrm{self}},
-W_{ii}^{\mathrm{rec,self}},
+D_{t,0,ii}^{\mathrm{self}},
+W_{ii}^{\mathrm{acc,self}},
 \mathrm{trivial\ diagonal\ exclusion},
 \mathrm{core\ cutoff}
 \right)
 $$
 
-and then include that signature in $\operatorname{RootSig}_X$. A same-source row can support self-hit energy and angular momentum only if it preserves the nontrivial self-root convention and does not rewrite the cross-site ordered-pair ledger.
+and then include that signature in $\operatorname{RootSig}_X$. A same-transmitter record can support self-hit energy and angular momentum only if it preserves the nontrivial self-root convention and does not rewrite the cross-site ordered-pair ledger.
 
 ## Conservation Charges On One Retained Chart
 
@@ -297,7 +299,7 @@ $$
 \Delta\mathbf J_{\mathrm{upd}}.
 $$
 
-The update terms are not hidden sinks. They are allowed only when the recorded branch update, Noether sea update, support-boundary update, or remnant update is computed from the same $X$ and appears in $Y_{\mathsf e}$. The path row must include source identity, emission time, active causal-root branch, branch-Jacobian provenance, and any same-source or fold-layer convention used by the event.
+The update terms are not hidden sinks. They are allowed only when the recorded branch update, Noether sea update, support-boundary update, or remnant update is computed from the same $X$ and appears in $Y_{\mathsf e}$. The path record must include transmitter identity, emission time, active causal-root branch, branch-Jacobian provenance, and any same-transmitter or fold-layer convention used by the event.
 
 ## Flux-Boundary Equation
 
@@ -425,7 +427,7 @@ These candidates are reusable enough to become independent equation rows or name
 | `event_ledger_balance_equation` | $\mathcal{L}_{E\mathbf{p}\mathbf{J}}(\mathsf e)=\mathbf 0$ | Photon, reaction, radiation, measurement, recoil, resonance, and branch-transition rows. | Already established as priority grammar; needs sector instantiations. |
 | `flux_boundary_balance_equation` | $\Delta_W Q_{\mathrm{ret}}+\Phi_{Q,\partial\Omega}-Q_{\mathrm{ext}}-Q_{\mathrm{event}}=R_{Q,W}$ | Noether sea transport, thermodynamics, cosmology, entropy, and finite detector windows. | Internal/candidate; energy version has native support, vector rows need worked examples. |
 | `finite_window_conservation_residual` | $\mathcal{R}_{01-05}^{\mathfrak{B}}(W)$ with $(\epsilon_E,\epsilon_P,\epsilon_J)$ | Mass-shell, Lorentz, effective metric, photon, and precision rows. | Executable attempt exists in [finite-window-conservation-residual.mjs](../../../scripts/equation-mapping/finite-window-conservation-residual.mjs); current fixture blocks at `missing_accepted_branch_chart`. |
-| `same_source_self_hit_policy` | $\operatorname{SelfRootSig}_{i}(\mathfrak{B})$ attached to $\operatorname{RootSig}_X$ | Self-hit energy, angular momentum, photon branch maintenance, and nested shell braid transitions. | Internal/candidate; prevents same-source rows from being hidden inside cross-site ledgers. |
+| `same_transmitter_self_hit_policy` | $\operatorname{SelfRootSig}_{i}(\mathfrak{B})$ attached to $\operatorname{RootSig}_X$ | Self-hit energy, angular momentum, photon branch maintenance, and nested shell braid transitions. | Internal/candidate; prevents same-transmitter records from being hidden inside cross-site ledgers. |
 | `wake_energy_crosswalk_residual` | $\epsilon_{\mathrm{cross}}^{\mathfrak{B}}$ comparing action-boundary, work-integral, and boundary-flux routes. | Delay-energy, effective Lagrangian, thermodynamics, and no-runaway claims. | Internal/candidate; required when more than one wake-energy construction is invoked. |
 | `ledger_transition_gauge_matching` | Equality of pre/post branch energy gauges plus declared $\Delta_{\mathrm{ledger}}$ at root changes. | Action quantization, nested shell braid energy routing, and branch-transition packets. | Internal/candidate; strong local use in energy bookkeeping, no general theorem yet. |
 
@@ -454,7 +456,7 @@ $$
 \right)
 $$
 
-for a two-body or reduced neutral-braid branch chart with declared $h$, $\eta$, $\epsilon_c$, active roots, inactive gaps, Jacobian floor, receiver-normal branch strength, and endpoint convention. The calculation should output:
+for a two-body or reduced neutral-braid branch chart with declared $h$, $\eta$, $\epsilon_c$, active roots, inactive gaps, transmitter-side floor, acceleration weights, separate playback, and endpoint convention. The calculation should output:
 
 - the force row from the native per-hit causal wake law;
 - the wake-history charge route used for $E_{\mathrm{wake}}$, $\mathbf P_{\mathrm{wake}}$, and $\mathbf J_{\mathrm{wake}}$;
@@ -473,7 +475,7 @@ The first proof step is not to prove all conservation laws globally. It is to sh
 | `eq01-05.event_sink_hidden` | Recoil, remnant, medium update, radiation, support-boundary, or branch transition is used as an untracked loss term instead of a row in $\mathcal{L}_{E\mathbf{p}\mathbf{J}}$. |
 | `eq01-05.boundary_flux_hidden` | Wake escapement or assembly/medium crossing leaves $\Omega$ without appearing in $\Phi_{Q,\partial\Omega}$. |
 | `eq01-05.no_double_count_failed` | The same near-field, wake, or Noether sea exchange is counted both in a retained charge and in an event or boundary channel. |
-| `eq01-05.same_source_policy_missing` | A self-hit contribution is used for energy or angular momentum without a declared same-source root policy and trivial-diagonal exclusion. |
+| `eq01-05.same_transmitter_policy_missing` | A self-hit contribution is used for energy or angular momentum without a declared same-transmitter root policy and trivial-diagonal exclusion. |
 | `eq01-05.action_symmetry_overreach` | A regularized equation-of-motion diagnostic is described as an exact Noether charge before the action regularization, variation residual, and endpoint leakage rows close. |
 
 ## Promotion Classification
@@ -505,6 +507,6 @@ node scripts/equation-mapping/finite-window-conservation-residual.mjs --input sc
 node scripts/equation-mapping/finite-window-conservation-residual.mjs --input scripts/equation-mapping/finite-window-conservation-no-double-count-negative-control.v1.json --summary --pretty --require-populated
 ```
 
-- Reusable common equations named now: same-root checksum, event-ledger balance, flux-boundary balance, finite-window conservation residual, same-source self-hit policy, wake-energy crosswalk residual, and ledger-transition gauge matching.
+- Reusable common equations named now: same-root checksum, event-ledger balance, flux-boundary balance, finite-window conservation residual, same-transmitter self-hit policy, wake-energy crosswalk residual, and ledger-transition gauge matching.
 - Open blocker: no accepted branch calculation currently populates $\mathcal{R}_{01-05}^{\mathfrak{B}}(W)$ with source-backed event, boundary, and wake-history rows.
 - Next mathematical object: replace the attempt fixture with an accepted branch chart carrying certified active roots and a declared action or work-integral route.

@@ -328,16 +328,16 @@ $$
 
 Here $\mathcal{A}_{\mathrm{H}}$ is the exact hydrogen matter-assembly ledger, $S_{\mathrm{sea}}^{\Omega_{\mathrm{H}}}$ is the local Noether sea complement, and $\partial\Omega_f(D_X,t)$ is the effective spatial interface extracted from locked-assembly wake dominance in channel $X$. The closure target is to derive $D_{f,X}$ from the same Noether braid geometry and causal-wake ledgers used for mass, confinement, and atomic orbital recovery.
 
-The receiver-normal kernel scaffold derives the two wake terms from the Master-Equation causal-root flux. In a declared channel $X$, the locked numerator keeps the receiver-normal branch strength
+The transmitter-side kernel scaffold derives the two wake terms from the Master Equation causal-root flux. In a declared channel $X$, the locked numerator keeps the transmitter-side acceleration weight
 
 $$
 w_{j,f}^{\mathrm{lock}}(t_0;t)
 \frac{\alpha_{j,X}(\mathbf{x},t;t_0)}
 {r_{\mathbf{x}j}^2(t;t_0)}
-W_{\mathbf{x}j}^{\mathrm{rec}}(t;t_0)
+W_{\mathbf{x}\leftarrow j}^{\mathrm{acc}}(t;t_0)
 $$
 
-for contributors $j\in\mathcal{I}_f(t)$ that are phase-locked to the fermion ledger, while the ambient denominator uses the same receiver-normal branch strength for $j\in\mathcal{I}_{\mathrm{sea}}(\Omega_\ell,t)$ after excluding the fermion ledger. The source-normal denominator remains a root-transversality input for retained branches. The first threshold discipline is
+for contributors $j\in\mathcal{I}_f(t)$ that are phase-locked to the fermion ledger, while the ambient denominator uses the same transmitter-side acceleration weight for $j\in\mathcal{I}_{\mathrm{sea}}(\Omega_\ell,t)$ after excluding the fermion ledger. Here $W^{\mathrm{acc}}=c_f/|D_t|$; $D_r/D_t$ remains a separate signed root-playback record. The first threshold discipline is
 
 $$
 0

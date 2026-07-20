@@ -72,6 +72,7 @@ const MIME_TYPES = new Map([
   [".js", "text/javascript; charset=utf-8"],
   [".json", "application/json; charset=utf-8"],
   [".md", "text/markdown; charset=utf-8"],
+  [".m4a", "audio/mp4"],
   [".mjs", "text/javascript; charset=utf-8"],
   [".pdf", "application/pdf"],
   [".png", "image/png"],

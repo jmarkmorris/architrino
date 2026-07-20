@@ -77,6 +77,7 @@ struct NativeAccelerationRow {
   std::string reception_time;
   std::string emission_lower;
   std::string emission_upper;
+  std::optional<Interval> evaluation_emission;
   std::vector<std::size_t> transmitter_segment_indices;
   std::optional<Interval> separation;
   std::optional<Interval> transmitter_factor;
