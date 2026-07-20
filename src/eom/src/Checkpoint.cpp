@@ -228,7 +228,7 @@ NativeCheckpointPath take_history(
 
 void require_checkpoint_consistency(
     const NativeEvolutionCheckpoint& checkpoint) {
-  if (checkpoint.schema != "eom_native_evolution_checkpoint/v4" ||
+  if (checkpoint.schema != "eom_native_evolution_checkpoint/v5" ||
       checkpoint.run_id.empty() || checkpoint.paths.empty()) {
     throw std::invalid_argument("checkpoint identity or path domain is invalid");
   }
@@ -263,7 +263,7 @@ std::string model_fingerprint(
       request.field_speed,
       request.coupling,
       request.root_tolerance,
-      request.source_normal_floor,
+      request.transmitter_factor_floor,
       request.acceleration_tolerance,
       request.far_field_enclosure_fraction,
       request.use_far_field_enclosure_in_evolution ? "1" : "0",
@@ -358,7 +358,7 @@ NativeEvolutionCheckpoint create_native_evolution_checkpoint(
         "checkpoint source is not an atomic result for the request");
   }
   NativeEvolutionCheckpoint checkpoint{
-      .schema = "eom_native_evolution_checkpoint/v4",
+      .schema = "eom_native_evolution_checkpoint/v5",
       .run_id = certificate.run_id,
       .accepted_time = certificate.accepted_end_time,
       .controller_step_size = certificate.controller_step_size,

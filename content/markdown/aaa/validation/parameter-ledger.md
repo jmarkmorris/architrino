@@ -219,15 +219,15 @@ T_*=\frac{R_*}{c_f}=\frac{\kappa\epsilon^2}{c_f^3}
 $$
 For $\tilde{\mathbf X}=\mathbf X/R_*$, $\tilde T=T/T_*$, and $\tilde q_i=q_i/\epsilon=\pm1$, the causal constraint and bare acceleration law reduce to
 $$
-\tilde R_{ij}=\tilde T-\tilde T_{\mathrm{em}}
+\tilde R_{ij}=\tilde T-\tilde T_t
 $$
 and
 $$
 \frac{d^2\tilde{\mathbf X}_i}{d\tilde T^2}
 =
-\sum_j\sum_{\tilde T_{\mathrm{em}}\in\tilde{\mathcal{C}}_{ij}(\tilde T)}
+\sum_j\sum_{\tilde T_t\in\tilde{\mathcal{C}}_{ij}(\tilde T)}
 \sigma_{ij}
-\frac{|\tilde q_i\tilde q_j|\,\tilde W_{ij}^{\mathrm{rec}}}
+\frac{|\tilde q_i\tilde q_j|\,\tilde W_{ij}^{\mathrm{acc}}}
 {\tilde R_{ij}^2}
 \hat{\mathbf R}_{ij}
 $$
@@ -243,7 +243,7 @@ These symbols belong to the delayed microscopic law itself.
 | --- | --- | --- | --- | --- | --- |
 | K1 | $c_f$ | Fundamental parameter | Primitive | field speed of causal wake propagation | [../dynamics/master-equation.md](../dynamics/master-equation.md), [../foundations/absolute-timespace.md](../foundations/absolute-timespace.md) |
 | K2 | $\epsilon$ | Fundamental parameter | Primitive | potential polarity-unit magnitude, with observer-level electric charge reconstructed from it | [../assemblies/fermions/quantum-number-mapping.md](../assemblies/fermions/quantum-number-mapping.md), [../assemblies/gauge-structure-emergence.md](../assemblies/gauge-structure-emergence.md) |
-| K3 | $\kappa$ | Fundamental parameter or normalization-sensitive coupling | Open as primitive/normalization split; universal in the substrate acceleration law | coupling multiplying $\sigma_{ij}\lvert q_iq_j\rvert W_{ij}^{\mathrm{rec}}/r_{ij}^2$ in the per-hit acceleration law; because a single architrino has no primitive inertial mass, this is not an $F=ma$ coefficient; with $c_f$ and $\epsilon$ it sets the two-body scale $R_*=\kappa\epsilon^2/c_f^2$ rather than a Layer-I dimensionless fit constant; dimensional row $[\kappa]=\mathrm{L}^3\,\mathrm{T}^{-2}\,\mathrm{Q}^{-2}$ | [../dynamics/master-equation.md](../dynamics/master-equation.md), [architrino-si-base-units.md](./architrino-si-base-units.md), [../foundations/architrino.md](../foundations/architrino.md) |
+| K3 | $\kappa$ | Fundamental parameter or normalization-sensitive coupling | Open as primitive/normalization split; universal in the substrate acceleration law | coupling multiplying $\sigma_{ij}\lvert q_iq_j\rvert W_{ij}^{\mathrm{acc}}/r_{ij}^2$ in the per-hit acceleration law; because a single architrino has no primitive inertial mass, this is not an $F=ma$ coefficient; with $c_f$ and $\epsilon$ it sets the two-body scale $R_*=\kappa\epsilon^2/c_f^2$ rather than a Layer-I dimensionless fit constant; dimensional row $[\kappa]=\mathrm{L}^3\,\mathrm{T}^{-2}\,\mathrm{Q}^{-2}$ | [../dynamics/master-equation.md](../dynamics/master-equation.md), [architrino-si-base-units.md](./architrino-si-base-units.md), [../foundations/architrino.md](../foundations/architrino.md) |
 | K4 | $\eta$ | Regulator / convention | Open but non-ontological | mollifier width used to regularize causal wake surfaces for smooth dynamics and numerics | [simulations/action-energy/well-posedness-and-regularization.md](./simulations/action-energy/well-posedness-and-regularization.md), [../dynamics/master-equation.md](../dynamics/master-equation.md) |
 | K5 | $Z_e$ | Regulator / convention | Convention, default $Z_e=1$ | coarse-graining / normalization factor in the substrate-to-observer charge map | [../assemblies/gauge-structure-emergence.md](../assemblies/gauge-structure-emergence.md), [../assemblies/fermions/quantum-number-mapping.md](../assemblies/fermions/quantum-number-mapping.md) |
 
@@ -311,9 +311,9 @@ $$
 =
 \sum_b
 \kappa\,\sigma_{ab}|q_aq_b|
-\int_{-\infty}^{T}\!dT_{\mathrm{em}}\;
-\frac{\hat{\mathbf R}_{ab}(T;T_{\mathrm{em}})}{R_{ab}(T;T_{\mathrm{em}})^2}\,
-\delta_\eta\!\big(R_{ab}(T;T_{\mathrm{em}})-c_f(T-T_{\mathrm{em}})\big)
+\int_{-\infty}^{T}\!dT_t\;
+\frac{\hat{\mathbf R}_{ab}(T;T_t)}{R_{ab}(T;T_t)^2}\,
+\delta_\eta\!\big(R_{ab}(T;T_t)-c_f(T-T_t)\big)
 $$
 
 This is the substrate-side parameter core. Any exact or numerical closure that changes these symbols chapter by chapter is not a closed theory.

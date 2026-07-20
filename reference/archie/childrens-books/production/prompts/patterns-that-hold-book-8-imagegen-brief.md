@@ -52,7 +52,7 @@ The beads are clearly still moving, with strings angled in different current pos
 
 ### Spread 7: Messages Fit
 
-Each bead's motion sends a soft purple timing cue toward the next bead: a short glow path or ring arrives just as the next bead begins its own swing. The cues should look like gentle play geometry grown from the bead motion, not a detached diagram. Keep the three beads, source motion, arrival motion, and fitted timing visible without arrowheads, labels, numbers, grids, or equations.
+Each bead's motion sends a soft purple timing cue toward the next bead: a short glow path or ring arrives just as the next bead begins its own swing. The cues should look like gentle play geometry grown from the bead motion, not a detached diagram. Keep the three beads, transmitter motion, arrival motion, and fitted timing visible without arrowheads, labels, numbers, grids, or equations.
 
 ### Spread 8: One Part Changed
 

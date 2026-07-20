@@ -39,6 +39,7 @@ test("work-in-progress public app scenes resolve to standalone app paths", () =>
   assert.equal(getStandaloneAppPathForScene("assembly-explorer"), "assembly-explorer.html");
   assert.equal(getStandaloneAppPathForScene("causal-delay-feedback"), "causal-delay-feedback.html");
   assert.equal(getStandaloneAppPathForScene("equation-mapping"), "equation-mapping.html");
+  assert.equal(getStandaloneAppPathForScene("greek-letter-match"), "greek-letter-match.html");
   assert.equal(getStandaloneAppPathForScene("animator"), "animator.html");
   assert.equal(getStandaloneAppPathForScene("borg"), "borg.html");
   assert.equal(
@@ -52,6 +53,10 @@ test("work-in-progress public app scenes resolve to standalone app paths", () =>
   assert.equal(
     getStandaloneAppPathForScene("content/scenes/archie/equation_mapping.json"),
     "equation-mapping.html"
+  );
+  assert.equal(
+    getStandaloneAppPathForScene("content/scenes/archie/greek_letter_match.json"),
+    "greek-letter-match.html"
   );
   assert.equal(getStandaloneAppPathForScene("content/scenes/archie/animator.json"), "animator.html");
   assert.equal(getStandaloneAppPathForScene("content/scenes/archie/borg.json"), "borg.html");
@@ -187,6 +192,31 @@ test("Applications scene exposes Equation Mapping as a standalone app scene", ()
   );
   assert.equal(
     applicationsScene.objects.some((object) => object.id === "equation_mapping" && object.labelTitle === "Equation Mapping"),
+    true
+  );
+});
+
+test("Applications scene exposes It's Greek to Me! as a standalone app scene", () => {
+  const applicationsScene = JSON.parse(readRepoFile("content/scenes/archie/applications.json"));
+  const greekMatchScene = JSON.parse(readRepoFile("content/scenes/archie/greek_letter_match.json"));
+
+  assert.equal(greekMatchScene.scene.id, "greek-letter-match");
+  assert.equal(greekMatchScene.scene.title, "It's Greek to Me!");
+  assert.equal(
+    applicationsScene.scene.children.some(
+      (child) =>
+        child.nodeId === "greek_letter_match" &&
+        child.scenePath === "content/scenes/archie/greek_letter_match.json"
+    ),
+    true
+  );
+  assert.equal(
+    applicationsScene.objects.some(
+      (object) =>
+        object.id === "greek_letter_match" &&
+        object.labelTitle === "It's Greek to Me!" &&
+        object.labelSubtitle === "Alpha to Omega"
+    ),
     true
   );
 });

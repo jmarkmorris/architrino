@@ -17,14 +17,14 @@ A $\mathbb{U}_{\text{now}}$ is defined by:
   - Local potential $\Phi(\mathbf X_k,T)$
   - Local gradient $\nabla_{\mathbf X}\Phi(\mathbf X_k,T)$ (force proxy)
   - Optional local Noether sea state variables (e.g., $\rho_{\text{NS}}$, alignment/orientation metrics)
-  - Causal wake surface provenance/event tags: for each received contribution at $(\mathbf X_k,T)$, record `emitter_id` together with $T_{\mathrm{em}}$, satisfying $\| \mathbf X_k - \mathbf X_{\text{emitter}}(T_{\mathrm{em}})\| = c_f (T - T_{\mathrm{em}})$
-  - Photon packet provenance when a radiation channel is declared: source event, path segment, before/after frequency, recoil or medium-energy exchange, remnant row, and signed exchange residual
+  - Causal wake surface provenance/event tags: for each received contribution at $(\mathbf X_k,T_r)$, record `transmitter_id` together with $T_t$, satisfying $\| \mathbf X_k - \mathbf X_{\text{transmitter}}(T_t)\| = c_f (T_r - T_t)$
+  - Photon packet provenance when a radiation channel is declared: transmitter event, path segment, before/after frequency, recoil or medium-energy exchange, remnant row, and signed exchange residual
   - Optional finite-window operator diagnostics for declared reconstructed channels $\mathbf{Y}_\eta$, including Gauss, Stokes, and wake-surface normalization residuals
 
 ### Minimal synthetic products
 - Time series: $\Phi(T)$, $\nabla_{\mathbf X}\Phi(T)$ at fixed points ("stationary detectors")
 - Snapshot field maps: $\Phi(\mathbf X,T_\ast)$, $\nabla_{\mathbf X}\Phi(\mathbf X,T_\ast)$ over grids at fixed $T_\ast$
-- Provenance tables: `receiver_id`, $T$, `emitter_id`, $T_{\mathrm{em}}$, `contribution_strength`
+- Provenance tables: `receiver_id`, $T_r$, `transmitter_id`, $T_t$, `contribution_strength`
 - Propagation diagnostics: arrival-time distributions, dispersion tests, effective $c_{\text{eff}}$ estimates
 - Coarse kinetic moments when a continuum reduction is claimed: density, current, momentum-current tensor, energy-flux vector, and memory-current residuals derived from the same event-root records
 - Stochastic summaries when a noise model is claimed: drift vector, diffusion tensor, first two distribution moments, and direct ensemble comparison against event-root histories
@@ -47,7 +47,7 @@ Synthetic observables are envelope-limited. A detector-like output should carry 
 - **Causality residual (per record $m$):**
   $$
   \rho_m \equiv
-  \frac{\left|\|\mathbf X_k-\mathbf X_{i_m}(T_{\mathrm{em},m})\|-c_f\,(T_m-T_{\mathrm{em},m})\right|}
+  \frac{\left|\|\mathbf X_k-\mathbf X_{i_m}(T_{t,m})\|-c_f\,(T_m-T_{t,m})\right|}
   {\max(c_f\Delta T,\varepsilon_r)},
   \qquad \varepsilon_r=10^{-12}
   $$
@@ -56,7 +56,7 @@ Synthetic observables are envelope-limited. A detector-like output should carry 
 
 - **Temporal ordering check:**
   $$
-  \theta_m \equiv \frac{T_{\mathrm{em},m}-T_m}{\Delta T}
+  \theta_m \equiv \frac{T_{t,m}-T_m}{\Delta T}
   $$
   Pass if fraction with $\theta_m>10^{-9}$ is $\le 10^{-6}$.
 
@@ -83,7 +83,7 @@ Synthetic observables are envelope-limited. A detector-like output should carry 
   $$
   Pass if both residuals are $\le 2\times10^{-2}$ on resolved windows and decrease under spatial refinement. These are diagnostics on reconstructed continuum channels, not claims that the channel is substrate ontology.
 
-- **Distributional wake-surface normalization:** for emitted wake surface $m$ with source strength $q_m$, delay $\tau_m=T-T_{\mathrm{em},m}$, and radial annulus $R_-\le r_m\le R_+$ around the emission point, use
+- **Distributional wake-surface normalization:** for emitted wake surface $m$ with source strength $q_m$, delay $\tau_m=T-T_{t,m}$, and radial annulus $R_-\le r_m\le R_+$ around the emission point, use
   $$
   Q^{\mathrm{ann}}_{m,\eta}=
   q_mH(\tau_m)\int_{R_-}^{R_+}\delta_\eta(r_m-c_f\tau_m)\,dr_m
@@ -245,4 +245,4 @@ until thresholds are met.
 
 * **Virtual Sensor:** Implementation of the $\mathbb{U}_{\text{now}}$ universe-state perspective. Samples potential/gradient at fixed coordinates.
 * **Post-Processing:** Convert Virtual Sensor data (Ground Truth) into Physical Observer data (what a moving clock measures).
-* **Provenance:** Track emitter ID and emission time for every potential contribution at a grid point.
+* **Provenance:** Track transmitter identity and emission time for every potential contribution at a grid point.

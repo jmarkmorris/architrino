@@ -44,23 +44,23 @@ import {
   snapPhotonRangeControlValue,
 } from "../src/apps/photon/PhotonControlsRuntime.js";
 import {
-  buildPhotonArchitrinoSourceRefs,
+  buildPhotonArchitrinoTransmitterRefs,
   buildPhotonDerivedPolarizationTraceWithPrescribedPathAnalysis,
   buildPhotonPlotSamplesWithPrescribedPathAnalysis,
   computePhotonDelayedEmissionFieldWithPrescribedPathAnalysis,
   computePhotonFormulaSummaryWithPrescribedPathAnalysis,
   computePhotonObserverFieldWithPrescribedPathAnalysis,
   createPhotonAbsoluteMovingCircularCausalRootRequest,
-  createPhotonAbsoluteSourceSegmentCausalRootRequests,
-  createPhotonCircularSourceCausalRootRequest,
+  createPhotonAbsoluteTransmitterSegmentCausalRootRequests,
+  createPhotonCircularTransmitterCausalRootRequest,
   createPhotonCircularSelfHitSpansRunRequest,
   createPhotonCausalRootsSolverRunRequest,
   computePhotonSelfHitDiagnosticsWithPrescribedPathAnalysis,
   fitPhotonPolarizationFromSamples,
   getPhotonArchitrinoKinematics,
-  solvePhotonAbsoluteCausalRootsForSourceWithPrescribedPathAnalysis,
-  solvePhotonCircularSourceCausalRootsWithPrescribedPathAnalysis,
-  solvePhotonCircularSourceRootsHitsLedgerWithPrescribedPathAnalysis,
+  solvePhotonAbsoluteCausalRootsForTransmitterWithPrescribedPathAnalysis,
+  solvePhotonCircularTransmitterCausalRootsWithPrescribedPathAnalysis,
+  solvePhotonCircularTransmitterRootsHitsLedgerWithPrescribedPathAnalysis,
   solvePhotonCausalRootsWithPrescribedPathAnalysis,
 } from "../src/apps/photon/PhotonFormulaRuntime.js";
 import {
@@ -78,9 +78,9 @@ import {
   runPhotonSelfHitPhaseLockSweep,
 } from "../src/apps/photon/PhotonSelfHitSweepRuntime.js";
 import {
-  PHOTON_SOURCE_HISTORY_BOUNDARY,
-  PHOTON_SOURCE_HISTORY_PROVIDER_ID,
-} from "../src/apps/photon/PhotonSourceHistoryRuntime.js";
+  PHOTON_TRANSMITTER_HISTORY_BOUNDARY,
+  PHOTON_TRANSMITTER_HISTORY_PROVIDER_ID,
+} from "../src/apps/photon/PhotonTransmitterHistoryRuntime.js";
 import {
   advancePhotonModelTime,
   getPhotonRuntimeTimes,
@@ -89,8 +89,8 @@ import {
 import {
   computeMovingCircularObserverField,
   solveMovingCircularAbsoluteHistoryRun,
-  solveMovingCircularSameSourceCausalRoots,
-  solveMovingCircularSourceCausalRoots,
+  solveMovingCircularSameTransmitterCausalRoots,
+  solveMovingCircularTransmitterCausalRoots,
 } from "../src/prescribed-path-analysis/index.mjs";
 import {
   computePhotonStageLayout,
@@ -120,7 +120,7 @@ function createPhotonTestSolverInitRequest() {
   };
 }
 
-function evaluateCircularSourceRequestPosition(segment, time) {
+function evaluateCircularTransmitterRequestPosition(segment, time) {
   const phase = segment.phaseAtEpoch + segment.angularVelocity * (time - segment.epochTime);
   return {
     x: segment.center.x + segment.radiusU.x * Math.cos(phase) + segment.radiusV.x * Math.sin(phase),
@@ -138,30 +138,30 @@ function evaluateLinearSegmentPosition(segment, time) {
   };
 }
 
-function createPhotonCircularSourceBridgeStub() {
+function createPhotonCircularTransmitterBridgeStub() {
   const calls = [];
-  const solveCircularSourceRootsHitsLedger = async (request) => {
+  const solveCircularTransmitterRootsHitsLedger = async (request) => {
     calls.push(request);
     let emissionTime = Number(request.hitTime) || 0;
-    let sourcePoint = evaluateCircularSourceRequestPosition(request.source, emissionTime);
+    let transmitterPoint = evaluateCircularTransmitterRequestPosition(request.transmitter, emissionTime);
     const receiverPoint = request.receiver.positionAtStart;
     let distance = Math.hypot(
-      receiverPoint.x - sourcePoint.x,
-      receiverPoint.y - sourcePoint.y,
-      receiverPoint.z - sourcePoint.z
+      receiverPoint.x - transmitterPoint.x,
+      receiverPoint.y - transmitterPoint.y,
+      receiverPoint.z - transmitterPoint.z
     );
     for (let index = 0; index < 6; index += 1) {
       emissionTime = request.hitTime - distance / Math.max(1e-12, request.signalSpeed);
-      sourcePoint = evaluateCircularSourceRequestPosition(request.source, emissionTime);
+      transmitterPoint = evaluateCircularTransmitterRequestPosition(request.transmitter, emissionTime);
       distance = Math.hypot(
-        receiverPoint.x - sourcePoint.x,
-        receiverPoint.y - sourcePoint.y,
-        receiverPoint.z - sourcePoint.z
+        receiverPoint.x - transmitterPoint.x,
+        receiverPoint.y - transmitterPoint.y,
+        receiverPoint.z - transmitterPoint.z
       );
     }
     const delay = request.hitTime - emissionTime;
     return {
-      schema: "solver-circular-source-roots-hits-ledger-f64.v1",
+      schema: "solver-circular-transmitter-roots-hits-ledger-f64.v2",
       roots: [
         {
           rootId: 0,
@@ -172,8 +172,8 @@ function createPhotonCircularSourceBridgeStub() {
           distance,
           residual: distance - delay * request.signalSpeed,
           jacobian: 1,
-          branchWeight: 1,
-          sourcePoint,
+          accelerationWeight: 1,
+          transmitterPoint,
           receiverPoint,
         },
       ],
@@ -185,19 +185,19 @@ function createPhotonCircularSourceBridgeStub() {
           entryKind: 1,
           statusCode: 0,
           iterationCount: 6,
-          bracketStart: request.source.startTime,
-          bracketEnd: request.source.endTime,
+          bracketStart: request.transmitter.startTime,
+          bracketEnd: request.transmitter.endTime,
           emissionTime,
           hitTime: request.hitTime,
           residual: distance - delay * request.signalSpeed,
           jacobian: 1,
-          branchWeight: 1,
+          accelerationWeight: 1,
         },
       ],
-      status: { code: "ok", severity: "ok", message: "circular-source causal roots solved" },
+      status: { code: "ok", severity: "ok", message: "circular-transmitter causal roots solved" },
     };
   };
-  return { calls, solveCircularSourceRootsHitsLedger };
+  return { calls, solveCircularTransmitterRootsHitsLedger };
 }
 
 function createPhotonLinearRootBridgeStub() {
@@ -205,13 +205,13 @@ function createPhotonLinearRootBridgeStub() {
   const runPrescribedPathAnalysis = async (runRequest) => {
     const request = runRequest.config.rootRequest;
     calls.push(request);
-    const emissionTime = (request.source.startTime + request.source.endTime) / 2;
-    const sourcePoint = evaluateLinearSegmentPosition(request.source, emissionTime);
+    const emissionTime = (request.transmitter.startTime + request.transmitter.endTime) / 2;
+    const transmitterPoint = evaluateLinearSegmentPosition(request.transmitter, emissionTime);
     const receiverPoint = evaluateLinearSegmentPosition(request.receiver, request.hitTime);
     const distance = Math.hypot(
-      receiverPoint.x - sourcePoint.x,
-      receiverPoint.y - sourcePoint.y,
-      receiverPoint.z - sourcePoint.z
+      receiverPoint.x - transmitterPoint.x,
+      receiverPoint.y - transmitterPoint.y,
+      receiverPoint.z - transmitterPoint.z
     );
     const delay = request.hitTime - emissionTime;
     return {
@@ -232,8 +232,8 @@ function createPhotonLinearRootBridgeStub() {
             distance,
             residual: 0,
             jacobian: 1,
-            branchWeight: 1,
-            sourcePoint,
+            accelerationWeight: 1,
+            transmitterPoint,
             receiverPoint,
           },
         ],
@@ -245,7 +245,7 @@ function createPhotonLinearRootBridgeStub() {
 }
 
 function createPhotonMixedSearchBridgeStub() {
-  const circularBridge = createPhotonCircularSourceBridgeStub();
+  const circularBridge = createPhotonCircularTransmitterBridgeStub();
   const runCalls = [];
   const runPrescribedPathAnalysis = async (runRequest) => {
     runCalls.push(runRequest);
@@ -259,13 +259,13 @@ function createPhotonMixedSearchBridgeStub() {
     }
     const request = runRequest.config.rootRequest;
     assert.ok(request, "mixed search bridge requires a rootRequest for causal root runs");
-    const emissionTime = (request.source.startTime + request.source.endTime) / 2;
-    const sourcePoint = evaluateLinearSegmentPosition(request.source, emissionTime);
+    const emissionTime = (request.transmitter.startTime + request.transmitter.endTime) / 2;
+    const transmitterPoint = evaluateLinearSegmentPosition(request.transmitter, emissionTime);
     const receiverPoint = evaluateLinearSegmentPosition(request.receiver, request.hitTime);
     const distance = Math.hypot(
-      receiverPoint.x - sourcePoint.x,
-      receiverPoint.y - sourcePoint.y,
-      receiverPoint.z - sourcePoint.z
+      receiverPoint.x - transmitterPoint.x,
+      receiverPoint.y - transmitterPoint.y,
+      receiverPoint.z - transmitterPoint.z
     );
     return {
       requestId: runRequest.requestId,
@@ -285,8 +285,8 @@ function createPhotonMixedSearchBridgeStub() {
             distance,
             residual: 0,
             jacobian: 1,
-            branchWeight: 1,
-            sourcePoint,
+            accelerationWeight: 1,
+            transmitterPoint,
             receiverPoint,
           },
         ],
@@ -297,7 +297,7 @@ function createPhotonMixedSearchBridgeStub() {
   return {
     circularCalls: circularBridge.calls,
     runCalls,
-    solveCircularSourceRootsHitsLedger: circularBridge.solveCircularSourceRootsHitsLedger,
+    solveCircularTransmitterRootsHitsLedger: circularBridge.solveCircularTransmitterRootsHitsLedger,
     runPrescribedPathAnalysis,
   };
 }
@@ -378,7 +378,7 @@ test("default photon state encodes trailing and leading braid convention", () =>
     });
   });
   assert.deepEqual(state.measurement.virtualObserver, { x: 0, y: 0, z: 0 });
-  assert.equal(state.measurement.sourceHistoryMode, "absolute_history");
+  assert.equal(state.measurement.transmitterHistoryMode, "absolute_history");
   assert.equal(state.pair.speedMode, "direct");
   assert.equal(state.pair.localLorentzFactor, 100);
   assert.equal(state.measurement.signalSpeedCf, 1);
@@ -442,7 +442,7 @@ test("left braid angles advance counter-clockwise while right braid angles advan
 
 test("Photon causal roots can be routed through the prescribed-path analysis for linear segments", async () => {
   const rootRequest = {
-    source: {
+    transmitter: {
       startTime: 0,
       endTime: 10,
       positionAtStart: { x: 0, y: 0, z: 0 },
@@ -495,8 +495,8 @@ test("Photon causal roots can be routed through the prescribed-path analysis for
               distance: 10,
               residual: 0,
               jacobian: 1,
-              branchWeight: 1,
-              sourcePoint: { x: 0, y: 0, z: 0 },
+              accelerationWeight: 1,
+              transmitterPoint: { x: 0, y: 0, z: 0 },
               receiverPoint: { x: 10, y: 0, z: 0 },
             },
           ],
@@ -511,26 +511,26 @@ test("Photon causal roots can be routed through the prescribed-path analysis for
   assert.equal(roots[0].residual, 0);
 });
 
-test("Photon circular-source analysis request preserves source orbit geometry", () => {
+test("Photon circular-transmitter analysis request preserves transmitter orbit geometry", () => {
   const state = createDefaultPhotonState();
   state.measurement.signalSpeedCf = 0.72;
   state.measurement.emissionSpeedCf = 0.72;
   state.pair.photonSpeedCf = 0.72;
-  const sourceRef = { braidId: "left", layerId: "O", chargeType: "electrino" };
+  const transmitterRef = { braidId: "left", layerId: "O", chargeType: "electrino" };
   const observationTime = 0.75;
-  const request = createPhotonCircularSourceCausalRootRequest(state, sourceRef, observationTime);
-  const emissionTime = (request.source.startTime + request.source.endTime) / 2;
-  const requestPosition = evaluateCircularSourceRequestPosition(request.source, emissionTime);
+  const request = createPhotonCircularTransmitterCausalRootRequest(state, transmitterRef, observationTime);
+  const emissionTime = (request.transmitter.startTime + request.transmitter.endTime) / 2;
+  const requestPosition = evaluateCircularTransmitterRequestPosition(request.transmitter, emissionTime);
   const kinematics = getPhotonArchitrinoKinematics(
     state,
-    sourceRef.braidId,
-    sourceRef.layerId,
-    sourceRef.chargeType,
+    transmitterRef.braidId,
+    transmitterRef.layerId,
+    transmitterRef.chargeType,
     emissionTime
   );
 
-  assert.ok(request.source.startTime <= emissionTime, "expected request source history before sample");
-  assert.equal(request.source.endTime, observationTime);
+  assert.ok(request.transmitter.startTime <= emissionTime, "expected request transmitter history before sample");
+  assert.equal(request.transmitter.endTime, observationTime);
   assert.equal(request.receiver.endTime, observationTime);
   assert.equal(request.hitTime, observationTime);
   assert.equal(request.signalSpeed, 0.72);
@@ -538,21 +538,21 @@ test("Photon circular-source analysis request preserves source orbit geometry", 
   assertNear(requestPosition.x, kinematics.position.x);
   assertNear(requestPosition.y, kinematics.position.y);
   assertNear(requestPosition.z, kinematics.position.z);
-  assertNear(request.source.angularVelocity, kinematics.angularVelocity);
+  assertNear(request.transmitter.angularVelocity, kinematics.angularVelocity);
 });
 
-test("Photon absolute-history segment requests move source and Virtual Observer at photon speed", () => {
+test("Photon absolute-history segment requests move transmitter and Virtual Observer at photon speed", () => {
   const state = createDefaultPhotonState();
-  state.measurement.sourceHistoryMode = "absolute_history";
+  state.measurement.transmitterHistoryMode = "absolute_history";
   state.measurement.signalSpeedCf = 0.85;
   state.measurement.emissionSpeedCf = 0.85;
   state.pair.photonSpeedCf = 0.6;
   state.measurement.virtualObserver.x = 0.25;
-  const sourceRef = { braidId: "left", layerId: "O", chargeType: "positrino" };
+  const transmitterRef = { braidId: "left", layerId: "O", chargeType: "positrino" };
   const observationTime = 1.5;
-  const requests = createPhotonAbsoluteSourceSegmentCausalRootRequests(
+  const requests = createPhotonAbsoluteTransmitterSegmentCausalRootRequests(
     state,
-    sourceRef,
+    transmitterRef,
     observationTime,
     {
       maxDelay: 0.5,
@@ -562,52 +562,52 @@ test("Photon absolute-history segment requests move source and Virtual Observer 
   const first = requests[0];
   const kinematics = getPhotonArchitrinoKinematics(
     state,
-    sourceRef.braidId,
-    sourceRef.layerId,
-    sourceRef.chargeType,
-    first.source.startTime
+    transmitterRef.braidId,
+    transmitterRef.layerId,
+    transmitterRef.chargeType,
+    first.transmitter.startTime
   );
 
   assert.equal(requests.length, 2);
   assert.equal(first.signalSpeed, 0.85);
   assert.equal(first.receiver.velocity.x, 0.6);
-  assert.equal(first.source.velocity.x, 0.6);
-  assert.equal(first.sourceHistory.kind, "moving-circular-source-linearized");
-  assert.equal(first.sourceHistory.approximationPolicy, "linearized-moving-circular-source-segments");
-  assert.equal(first.sourceHistoryProvider.providerId, PHOTON_SOURCE_HISTORY_PROVIDER_ID);
-  assert.equal(first.sourceHistoryProvider.boundary.sourceHistoryOwner, "photon_app");
-  assert.equal(first.sourceHistoryProvider.boundary.causalRootOwner, "prescribed_path_analysis");
+  assert.equal(first.transmitter.velocity.x, 0.6);
+  assert.equal(first.transmitterHistory.kind, "moving-circular-transmitter-linearized");
+  assert.equal(first.transmitterHistory.approximationPolicy, "linearized-moving-circular-transmitter-segments");
+  assert.equal(first.transmitterHistoryProvider.providerId, PHOTON_TRANSMITTER_HISTORY_PROVIDER_ID);
+  assert.equal(first.transmitterHistoryProvider.boundary.transmitterHistoryOwner, "photon_app");
+  assert.equal(first.transmitterHistoryProvider.boundary.causalRootOwner, "prescribed_path_analysis");
   assert.equal(first.analysisBoundary.fieldReconstructionOwner, "prescribed_path_analysis");
-  assert.equal(first.sourceHistory.source.centerVelocity.x, 0.6);
-  assert.deepEqual(first.sourceHistory.sourceRef, sourceRef);
-  assertNear(first.source.positionAtStart.x, kinematics.position.x + 0.6 * first.source.startTime);
+  assert.equal(first.transmitterHistory.transmitter.centerVelocity.x, 0.6);
+  assert.deepEqual(first.transmitterHistory.transmitterRef, transmitterRef);
+  assertNear(first.transmitter.positionAtStart.x, kinematics.position.x + 0.6 * first.transmitter.startTime);
   assertNear(
     first.receiver.positionAtStart.x,
     state.measurement.virtualObserver.x + 0.6 * first.receiver.startTime
   );
 });
 
-test("Photon absolute-history source roots route through the moving-circular prescribed-path analysis", async () => {
+test("Photon absolute-history transmitter roots route through the moving-circular prescribed-path analysis", async () => {
   const state = createDefaultPhotonState();
-  state.measurement.sourceHistoryMode = "absolute_history";
+  state.measurement.transmitterHistoryMode = "absolute_history";
   state.measurement.signalSpeedCf = 0.9;
   state.measurement.emissionSpeedCf = 0.9;
   state.pair.photonSpeedCf = 0.5;
-  const sourceRef = { braidId: "right", layerId: "O", chargeType: "electrino" };
+  const transmitterRef = { braidId: "right", layerId: "O", chargeType: "electrino" };
   let movingCalls = 0;
-  const solveMovingCircularSourceRoots = async (request) => {
+  const solveMovingCircularTransmitterRoots = async (request) => {
     movingCalls += 1;
-    assert.equal(request.sourceHistoryProvider.providerId, PHOTON_SOURCE_HISTORY_PROVIDER_ID);
+    assert.equal(request.transmitterHistoryProvider.providerId, PHOTON_TRANSMITTER_HISTORY_PROVIDER_ID);
     assert.equal(request.analysisBoundary.causalRootOwner, "prescribed_path_analysis");
-    return solveMovingCircularSourceCausalRoots(request);
+    return solveMovingCircularTransmitterCausalRoots(request);
   };
 
-  const roots = await solvePhotonAbsoluteCausalRootsForSourceWithPrescribedPathAnalysis(
+  const roots = await solvePhotonAbsoluteCausalRootsForTransmitterWithPrescribedPathAnalysis(
     state,
-    sourceRef,
+    transmitterRef,
     0.5,
     {
-      solveMovingCircularSourceRoots,
+      solveMovingCircularTransmitterRoots,
       maxDelay: 0.4,
       scanSubdivisions: 24,
     }
@@ -617,7 +617,7 @@ test("Photon absolute-history source roots route through the moving-circular pre
   assert.ok(Array.isArray(roots));
 });
 
-test("prescribed-path observer field fails closed without complete receiver-normal branch rows", async () => {
+test("prescribed-path observer field fails closed without complete receiver-side root-playback records", async () => {
   const response = computeMovingCircularObserverField({
     signalSpeed: 1,
     jacobianFloor: 1e-4,
@@ -625,42 +625,42 @@ test("prescribed-path observer field fails closed without complete receiver-norm
       {
         chargeSign: 1,
         direction: { x: 0, y: 1, z: 0 },
-        sourceVelocity: { x: 0, y: 0, z: 0 },
+        transmitterVelocity: { x: 0, y: 0, z: 0 },
         distance: 2,
         residual: 0,
         delay: 0.25,
-        sourceNormalDenominator: 0.5,
+        transmitterFactor: 0.5,
       },
     ],
   });
 
-  assert.equal(response.status.code, "receiver_normal_branch_rows_missing");
+  assert.equal(response.status.code, "causal_factor_record_missing");
   assert.equal(response.unstableContributionCount, 1);
-  assert.equal(response.contributions[0].receiverNormalEvidenceStatus, "receiver_normal_branch_rows_missing");
-  assert.equal(response.contributions[0].branchWeight, 0);
+  assert.equal(response.contributions[0].causalFactorEvidenceStatus, "causal_factor_record_missing");
+  assert.equal(response.contributions[0].accelerationWeight, 0);
   assert.equal(response.electric.y, 0);
   assert.equal(response.comparisonB.z, 0);
 });
 
 test("Photon absolute-history field routes through the moving-circular prescribed-path run", async () => {
   const state = createDefaultPhotonState();
-  state.measurement.sourceHistoryMode = "absolute_history";
+  state.measurement.transmitterHistoryMode = "absolute_history";
   state.measurement.signalSpeedCf = 0.9;
   state.measurement.emissionSpeedCf = 0.9;
   state.pair.photonSpeedCf = 0.5;
   let absoluteHistoryRunCalls = 0;
   const runAbsoluteHistory = async (request) => {
     absoluteHistoryRunCalls += 1;
-    assert.equal(request.sourceHistoryProviderId, PHOTON_SOURCE_HISTORY_PROVIDER_ID);
-    assert.equal(request.analysisBoundary.receiverNormalOwner, "prescribed_path_analysis");
+    assert.equal(request.transmitterHistoryProviderId, PHOTON_TRANSMITTER_HISTORY_PROVIDER_ID);
+    assert.equal(request.analysisBoundary.rootPlaybackOwner, "prescribed_path_analysis");
     assert.equal(request.analysisBoundary.fieldReconstructionOwner, "prescribed_path_analysis");
-    assert.equal(request.observerFieldRequest.sourceHistoryProviderId, PHOTON_SOURCE_HISTORY_PROVIDER_ID);
-    assert.equal(request.observerFieldRequest.analysisBoundary.receiverNormalOwner, "prescribed_path_analysis");
-    assert.ok(request.sourceRootRequests.length > 0);
-    assert.ok(request.sourceRootRequests.every((sourceRequest) =>
-      sourceRequest.sourceHistoryProvider?.providerId === PHOTON_SOURCE_HISTORY_PROVIDER_ID &&
-      sourceRequest.analysisBoundary?.causalRootOwner === "prescribed_path_analysis" &&
-      Number.isFinite(sourceRequest.branchChargeSign)
+    assert.equal(request.observerFieldRequest.transmitterHistoryProviderId, PHOTON_TRANSMITTER_HISTORY_PROVIDER_ID);
+    assert.equal(request.observerFieldRequest.analysisBoundary.rootPlaybackOwner, "prescribed_path_analysis");
+    assert.ok(request.transmitterRootRequests.length > 0);
+    assert.ok(request.transmitterRootRequests.every((transmitterRequest) =>
+      transmitterRequest.transmitterHistoryProvider?.providerId === PHOTON_TRANSMITTER_HISTORY_PROVIDER_ID &&
+      transmitterRequest.analysisBoundary?.causalRootOwner === "prescribed_path_analysis" &&
+      Number.isFinite(transmitterRequest.branchChargeSign)
     ));
     return solveMovingCircularAbsoluteHistoryRun(request);
   };
@@ -672,29 +672,29 @@ test("Photon absolute-history field routes through the moving-circular prescribe
   });
 
   assert.equal(absoluteHistoryRunCalls, 1);
-  assert.equal(field.sourceMode, "prescribed_path_absolute_history_receiver_normal_root_branch_sum");
-  assert.equal(field.analysisFieldSchema, "prescribed-path-analysis/moving-circular-observer-field.v1");
-  assert.equal(field.sourceHistoryProviderId, PHOTON_SOURCE_HISTORY_PROVIDER_ID);
-  assert.equal(field.receiverNormalOwner, "prescribed_path_analysis");
+  assert.equal(field.transmitterMode, "prescribed_path_absolute_history_transmitter_acceleration_sum");
+  assert.equal(field.analysisFieldSchema, "prescribed-path-analysis/moving-circular-observer-field.v2");
+  assert.equal(field.transmitterHistoryProviderId, PHOTON_TRANSMITTER_HISTORY_PROVIDER_ID);
+  assert.equal(field.rootPlaybackOwner, "prescribed_path_analysis");
   assert.equal(field.fieldReconstructionOwner, "prescribed_path_analysis");
   assert.ok(Number.isFinite(field.electric.y));
 });
 
-test("Photon helical same-source roots route through the moving-circular prescribed-path analysis", async () => {
+test("Photon helical same-transmitter roots route through the moving-circular prescribed-path analysis", async () => {
   const state = createDefaultPhotonState();
-  let sameSourceCalls = 0;
-  const solveSameSourceRoots = async (request) => {
-    sameSourceCalls += 1;
-    return solveMovingCircularSameSourceCausalRoots(request);
+  let sameTransmitterCalls = 0;
+  const solveSameTransmitterRoots = async (request) => {
+    sameTransmitterCalls += 1;
+    return solveMovingCircularSameTransmitterCausalRoots(request);
   };
 
   const diagnostics = await computePhotonSelfHitDiagnosticsWithPrescribedPathAnalysis(state, {
-    solveMovingCircularSameSourceRoots: solveSameSourceRoots,
+    solveMovingCircularSameTransmitterRoots: solveSameTransmitterRoots,
     skipSpanSelfHitDiagnostics: true,
   });
 
-  assert.equal(sameSourceCalls, 12);
-  assert.equal(diagnostics.helicalRowCount, 12);
+  assert.equal(sameTransmitterCalls, 12);
+  assert.equal(diagnostics.helicalRecordCount, 12);
   assert.equal(diagnostics.status, "span-skipped");
 });
 
@@ -717,10 +717,10 @@ test("Photon self-hit span requests use absolute photon plus orbital speed ratio
   assertNear(rows[1].fieldSpeedRatio, Math.hypot(0.6, 1));
   assertNear(rows[2].fieldSpeedRatio, Math.hypot(0.6, 0.8));
   assert.equal(rows[0].speedBudgetKind, "orthogonal_local_c_translation_plus_transverse_orbital");
-  assert.equal(runRequest.envelope.interactionPolicy, "same-source-enabled");
+  assert.equal(runRequest.envelope.interactionPolicy, "same-transmitter-enabled");
 });
 
-test("Photon self-hit diagnostics route same-source rows through the prescribed-path analysis", async () => {
+test("Photon self-hit diagnostics route same-transmitter causal hits through the prescribed-path analysis", async () => {
   const state = createDefaultPhotonState();
   state.pair.photonSpeedCf = 0;
   const spans = [2.05, 0, 0, 2.05, 0, 0];
@@ -735,26 +735,26 @@ test("Photon self-hit diagnostics route same-source rows through the prescribed-
   });
 
   assert.equal(diagnostics.status, "ok");
-  assert.equal(diagnostics.rowCount, 6);
+  assert.equal(diagnostics.recordCount, 6);
   assert.equal(diagnostics.candidateCount, 2);
   assert.equal(diagnostics.rootFoundCount, 2);
-  assert.equal(diagnostics.rows[0].role, "trailing");
-  assert.equal(diagnostics.rows[0].layerId, "I");
-  assert.equal(diagnostics.rows[0].resultKind, "root_solved");
-  assertNear(diagnostics.rows[0].span, spans[0]);
+  assert.equal(diagnostics.records[0].role, "trailing");
+  assert.equal(diagnostics.records[0].layerId, "I");
+  assert.equal(diagnostics.records[0].resultKind, "root_solved");
+  assertNear(diagnostics.records[0].span, spans[0]);
 });
 
-test("Photon self-hit diagnostics use prescribed span analysis when circular-source roots are injected", async () => {
+test("Photon self-hit diagnostics use prescribed span analysis when circular-transmitter roots are injected", async () => {
   const state = createDefaultPhotonState();
   const diagnostics = await computePhotonSelfHitDiagnosticsWithPrescribedPathAnalysis(state, {
-    solveCircularSourceRootsHitsLedger: async () => ({ roots: [] }),
+    solveCircularTransmitterRootsHitsLedger: async () => ({ roots: [] }),
   });
 
   assert.equal(diagnostics.status, "ok");
-  assert.equal(diagnostics.rowCount, 6);
+  assert.equal(diagnostics.recordCount, 6);
   assert.equal(diagnostics.rootFoundCount, 6);
   assert.ok(diagnostics.candidateCount >= 2);
-  assert.equal(diagnostics.helicalRowCount, 12);
+  assert.equal(diagnostics.helicalRecordCount, 12);
   assert.equal(diagnostics.helicalRootFoundCount, 12);
   assert.ok(diagnostics.helicalPhaseFamilyCount > 0);
   assert.equal(diagnostics.helicalStablePhaseFamilyCount, 0);
@@ -766,10 +766,10 @@ test("Photon self-hit diagnostics use prescribed span analysis when circular-sou
   assert.equal(diagnostics.helicalBestPhaseFamily.speedFamily, "self_hit");
   assert.equal(diagnostics.helicalBestPhaseFamily.phaseLockClassification, "singular_candidate");
   assert.ok(diagnostics.helicalBestPhaseFamily.label.includes(" "));
-  assert.ok(diagnostics.helicalRows.every((row) =>
-    row.sourceHistoryKind === "moving-circular-same-source" &&
-    row.phaseAtHit?.rootKind === "same-source" &&
-    Number.isFinite(row.phaseAtHit.receiverPhaseDegrees)
+  assert.ok(diagnostics.helicalRecords.every((record) =>
+    record.transmitterHistoryKind === "moving-circular-same-transmitter" &&
+    record.phaseAtHit?.rootKind === "same-transmitter" &&
+    Number.isFinite(record.phaseAtHit.receiverPhaseDegrees)
   ));
 });
 
@@ -806,22 +806,22 @@ test("Photon helical self-hit phase-lock sweep summarizes sampled cases", async 
   ));
 });
 
-test("Photon circular-source roots, hits, and ledger rows can be routed through the prescribed-path analysis", async () => {
+test("Photon circular-transmitter roots, hits, and ledger entries can be routed through the prescribed-path analysis", async () => {
   const state = createDefaultPhotonState();
-  const sourceRef = { braidId: "left", layerId: "O", chargeType: "positrino" };
+  const transmitterRef = { braidId: "left", layerId: "O", chargeType: "positrino" };
   const observationTime = 0.75;
-  const response = await solvePhotonCircularSourceRootsHitsLedgerWithPrescribedPathAnalysis(
+  const response = await solvePhotonCircularTransmitterRootsHitsLedgerWithPrescribedPathAnalysis(
     state,
-    sourceRef,
+    transmitterRef,
     observationTime,
     {
-      async solveCircularSourceRootsAndHits(request) {
+      async solveCircularTransmitterRootsAndHits(request) {
           assert.equal(request.hitTime, observationTime);
           assert.equal(request.receiver.positionAtStart.x, state.measurement.virtualObserver.x);
-          assert.equal(request.source.center.x < 0, true);
+          assert.equal(request.transmitter.center.x < 0, true);
           assert.ok(request.scanSubdivisions >= 48);
           return {
-            schema: "solver-circular-source-roots-hits-ledger-f64.v1",
+            schema: "solver-circular-transmitter-roots-hits-ledger-f64.v2",
             roots: [
               {
                 rootId: 0,
@@ -832,8 +832,8 @@ test("Photon circular-source roots, hits, and ledger rows can be routed through 
                 distance: 0.25,
                 residual: 0,
                 jacobian: 1,
-                branchWeight: 1,
-                sourcePoint: { x: -1, y: 0, z: 0 },
+                accelerationWeight: 1,
+                transmitterPoint: { x: -1, y: 0, z: 0 },
                 receiverPoint: state.measurement.virtualObserver,
               },
             ],
@@ -841,16 +841,16 @@ test("Photon circular-source roots, hits, and ledger rows can be routed through 
               {
                 hitId: 0,
                 rootId: 0,
-                sourcePathKey: 0,
+                transmitterPathKey: 0,
                 receiverPathKey: 0,
                 emissionTime: 0.5,
                 hitTime: observationTime,
                 delay: 0.25,
                 distance: 0.25,
-                sourcePoint: { x: -1, y: 0, z: 0 },
+                transmitterPoint: { x: -1, y: 0, z: 0 },
                 receiverPoint: state.measurement.virtualObserver,
                 signalSpeed: 1,
-                branchWeight: 1,
+                accelerationWeight: 1,
                 jacobian: 1,
               },
             ],
@@ -867,26 +867,26 @@ test("Photon circular-source roots, hits, and ledger rows can be routed through 
                 hitTime: observationTime,
                 residual: 0,
                 jacobian: 1,
-                branchWeight: 1,
+                accelerationWeight: 1,
               },
             ],
-            status: { code: "ok", severity: "ok", message: "circular-source causal roots solved" },
+            status: { code: "ok", severity: "ok", message: "circular-transmitter causal roots solved" },
           };
       },
     }
   );
 
   assert.equal(response.analysisId, "prescribed-path-analysis");
-  assert.equal(response.schema, "solver-circular-source-roots-hits-ledger-f64.v1");
+  assert.equal(response.schema, "solver-circular-transmitter-roots-hits-ledger-f64.v2");
   assert.equal(response.hits.length, 1);
   assert.equal(response.rootLedgerDetails.length, 1);
   assert.equal(response.rootLedgerDetails[0].entryKind, 1);
-  const roots = await solvePhotonCircularSourceCausalRootsWithPrescribedPathAnalysis(
+  const roots = await solvePhotonCircularTransmitterCausalRootsWithPrescribedPathAnalysis(
     state,
-    sourceRef,
+    transmitterRef,
     observationTime,
     {
-      async solveCircularSourceRootsHitsLedger(request) {
+      async solveCircularTransmitterRootsHitsLedger(request) {
         assert.equal(request.hitTime, observationTime);
         return response;
       },
@@ -907,56 +907,56 @@ test("Photon delayed emission field can use absolute-history moving-circular ana
   });
 
   assert.equal(field.analysisId, "prescribed-path-analysis");
-  assert.equal(field.sourceMode, "prescribed_path_absolute_history_receiver_normal_root_branch_sum");
-  assert.equal(field.analysisFieldSchema, "prescribed-path-analysis/moving-circular-observer-field.v1");
-  assert.equal(field.sourceHistoryProviderId, PHOTON_SOURCE_HISTORY_PROVIDER_ID);
-  assert.equal(field.receiverNormalOwner, "prescribed_path_analysis");
+  assert.equal(field.transmitterMode, "prescribed_path_absolute_history_transmitter_acceleration_sum");
+  assert.equal(field.analysisFieldSchema, "prescribed-path-analysis/moving-circular-observer-field.v2");
+  assert.equal(field.transmitterHistoryProviderId, PHOTON_TRANSMITTER_HISTORY_PROVIDER_ID);
+  assert.equal(field.rootPlaybackOwner, "prescribed_path_analysis");
   assert.equal(field.fieldReconstructionOwner, "prescribed_path_analysis");
-  assert.equal(field.measurement.sourceHistoryMode, "absolute_history");
-  assert.equal(field.sourceCount, buildPhotonArchitrinoSourceRefs(state).length);
+  assert.equal(field.measurement.transmitterHistoryMode, "absolute_history");
+  assert.equal(field.transmitterCount, buildPhotonArchitrinoTransmitterRefs(state).length);
   assert.ok(field.rootCount > 0);
-  assert.equal(field.unresolvedSourceCount, field.noCatchUpSourceCount);
-  assert.equal(field.staleHistorySourceCount, 0);
-  assert.equal(field.nearMissSourceCount, 0);
-  assert.equal(field.rootDiagnostics.rejectedReasonCounts.no_catch_up_root, field.noCatchUpSourceCount);
+  assert.equal(field.unresolvedTransmitterCount, field.noCatchUpTransmitterCount);
+  assert.equal(field.staleHistoryTransmitterCount, 0);
+  assert.equal(field.nearMissTransmitterCount, 0);
+  assert.equal(field.rootDiagnostics.rejectedReasonCounts.no_catch_up_root, field.noCatchUpTransmitterCount);
   assert.ok(field.contributions.every((contribution) =>
-    contribution.kinematics.sourceHistoryMode === "absolute_history_moving_circular"
+    contribution.kinematics.transmitterHistoryMode === "absolute_history_moving_circular"
   ));
   assert.ok(field.contributions.every((contribution) =>
-    contribution.sourceHistoryKind === "moving-circular-source"
+    contribution.transmitterHistoryKind === "moving-circular-transmitter"
   ));
   assert.ok(field.contributions.every((contribution) =>
-    contribution.sourceHistoryProviderId === PHOTON_SOURCE_HISTORY_PROVIDER_ID &&
-    contribution.analysisBoundary.receiverNormalOwner === "prescribed_path_analysis"
+    contribution.transmitterHistoryProviderId === PHOTON_TRANSMITTER_HISTORY_PROVIDER_ID &&
+    contribution.analysisBoundary.rootPlaybackOwner === "prescribed_path_analysis"
   ));
   assert.ok(field.contributions.every((contribution) =>
-    Number.isFinite(contribution.phaseAtHit?.sourcePhaseCycleIndex)
+    Number.isFinite(contribution.phaseAtHit?.transmitterPhaseCycleIndex)
   ));
   assert.ok(Number.isFinite(field.electric.y));
 });
 
-test("Photon delayed emission field can be assembled from prescribed-path analysis circular-source roots", async () => {
+test("Photon delayed emission field can be assembled from prescribed-path analysis circular-transmitter roots", async () => {
   const state = createDefaultPhotonState();
-  state.measurement.sourceHistoryMode = "co_moving";
-  const bridge = createPhotonCircularSourceBridgeStub();
+  state.measurement.transmitterHistoryMode = "co_moving";
+  const bridge = createPhotonCircularTransmitterBridgeStub();
   const field = await computePhotonDelayedEmissionFieldWithPrescribedPathAnalysis(state, 0.75, {
-    solveCircularSourceRootsHitsLedger: bridge.solveCircularSourceRootsHitsLedger,
+    solveCircularTransmitterRootsHitsLedger: bridge.solveCircularTransmitterRootsHitsLedger,
   });
 
   assert.equal(field.analysisId, "prescribed-path-analysis");
-  assert.equal(field.sourceMode, "prescribed_path_circular_source_branch_sum");
-  assert.equal(field.sourceCount, buildPhotonArchitrinoSourceRefs(state).length);
-  assert.equal(field.rootCount, field.sourceCount);
-  assert.equal(bridge.calls.length, field.sourceCount);
+  assert.equal(field.transmitterMode, "prescribed_path_circular_transmitter_branch_sum");
+  assert.equal(field.transmitterCount, buildPhotonArchitrinoTransmitterRefs(state).length);
+  assert.equal(field.rootCount, field.transmitterCount);
+  assert.equal(bridge.calls.length, field.transmitterCount);
   assert.ok(field.contributions.every((contribution) =>
     contribution.analysisId === "prescribed-path-analysis"
   ));
   assert.ok(field.contributions.every((contribution) =>
-    contribution.sourceHistoryKind === "co_moving_circular_source"
+    contribution.transmitterHistoryKind === "co_moving_circular_transmitter"
   ));
   assert.ok(field.contributions.every((contribution) =>
     contribution.phaseAtHit?.receiverKind === "virtual-observer" &&
-    Number.isFinite(contribution.phaseAtHit.sourcePhaseDegrees)
+    Number.isFinite(contribution.phaseAtHit.transmitterPhaseDegrees)
   ));
   assert.ok(Number.isFinite(field.electric.y));
   assert.ok(Number.isFinite(field.comparisonB.z));
@@ -964,43 +964,43 @@ test("Photon delayed emission field can be assembled from prescribed-path analys
 
 test("Photon formula and plot APIs expose central prescribed-path analysis results", async () => {
   const state = createDefaultPhotonState();
-  const summaryBridge = createPhotonCircularSourceBridgeStub();
+  const summaryBridge = createPhotonCircularTransmitterBridgeStub();
   const summary = await computePhotonFormulaSummaryWithPrescribedPathAnalysis(state, 0.5, {
-    solveCircularSourceRootsHitsLedger: summaryBridge.solveCircularSourceRootsHitsLedger,
+    solveCircularTransmitterRootsHitsLedger: summaryBridge.solveCircularTransmitterRootsHitsLedger,
     polarizationSampleCount: 24,
     analyzerSampleCount: 8,
   });
 
   assert.equal(summary.analysisId, "prescribed-path-analysis");
   assert.equal(summary.field.analysisId, "prescribed-path-analysis");
-  assert.equal(summary.field.sourceMode, "prescribed_path_absolute_history_receiver_normal_root_branch_sum");
-  assert.equal(summary.field.analysisFieldSchema, "prescribed-path-analysis/moving-circular-observer-field.v1");
-  assert.equal(summary.field.sourceHistoryProviderId, PHOTON_SOURCE_HISTORY_PROVIDER_ID);
+  assert.equal(summary.field.transmitterMode, "prescribed_path_absolute_history_transmitter_acceleration_sum");
+  assert.equal(summary.field.analysisFieldSchema, "prescribed-path-analysis/moving-circular-observer-field.v2");
+  assert.equal(summary.field.transmitterHistoryProviderId, PHOTON_TRANSMITTER_HISTORY_PROVIDER_ID);
   assert.equal(summary.polarization.analysisId, "prescribed-path-analysis");
-  assert.equal(summary.polarization.sourceHistoryProviderId, PHOTON_SOURCE_HISTORY_PROVIDER_ID);
+  assert.equal(summary.polarization.transmitterHistoryProviderId, PHOTON_TRANSMITTER_HISTORY_PROVIDER_ID);
   assert.ok(Number.isFinite(summary.polarization.amplitudes.y));
   assert.ok(Number.isFinite(summary.averageAnalyzerFraction));
   assert.ok(summary.field.contributions.every((contribution) =>
-    contribution.kinematics.sourceHistoryMode === "absolute_history_moving_circular"
+    contribution.kinematics.transmitterHistoryMode === "absolute_history_moving_circular"
   ));
 
-  const observerBridge = createPhotonCircularSourceBridgeStub();
+  const observerBridge = createPhotonCircularTransmitterBridgeStub();
   const observerField = await computePhotonObserverFieldWithPrescribedPathAnalysis(state, 0.5, {
-    solveCircularSourceRootsHitsLedger: observerBridge.solveCircularSourceRootsHitsLedger,
+    solveCircularTransmitterRootsHitsLedger: observerBridge.solveCircularTransmitterRootsHitsLedger,
   });
   assert.equal(observerField.analysisId, "prescribed-path-analysis");
-  assert.equal(observerField.sourceMode, "prescribed_path_absolute_history_receiver_normal_root_branch_sum");
-  assert.equal(observerField.analysisFieldSchema, "prescribed-path-analysis/moving-circular-observer-field.v1");
+  assert.equal(observerField.transmitterMode, "prescribed_path_absolute_history_transmitter_acceleration_sum");
+  assert.equal(observerField.analysisFieldSchema, "prescribed-path-analysis/moving-circular-observer-field.v2");
   assert.ok(Number.isFinite(observerField.electric.magnitude));
 
-  const plotBridge = createPhotonCircularSourceBridgeStub();
+  const plotBridge = createPhotonCircularTransmitterBridgeStub();
   const plot = await buildPhotonPlotSamplesWithPrescribedPathAnalysis(state, 0.5, 4, {
-    solveCircularSourceRootsHitsLedger: plotBridge.solveCircularSourceRootsHitsLedger,
+    solveCircularTransmitterRootsHitsLedger: plotBridge.solveCircularTransmitterRootsHitsLedger,
   });
   assert.equal(plot.analysisId, "prescribed-path-analysis");
-  assert.equal(plot.sourceMode, "prescribed_path_absolute_history_receiver_normal_root_branch_sum");
-  assert.equal(plot.analysisFieldSchema, "prescribed-path-analysis/moving-circular-observer-field.v1");
-  assert.equal(plot.sourceHistoryProviderId, PHOTON_SOURCE_HISTORY_PROVIDER_ID);
+  assert.equal(plot.transmitterMode, "prescribed_path_absolute_history_transmitter_acceleration_sum");
+  assert.equal(plot.analysisFieldSchema, "prescribed-path-analysis/moving-circular-observer-field.v2");
+  assert.equal(plot.transmitterHistoryProviderId, PHOTON_TRANSMITTER_HISTORY_PROVIDER_ID);
   assert.equal(plot.samples.length, 5);
   assert.ok(Number.isFinite(plot.amplitudeScale));
 });
@@ -1297,9 +1297,9 @@ test("named photon presets expose the required candidate configurations", () => 
 
 test("configuration search can score and compare settings through the prescribed-path analysis", async () => {
   const state = createDefaultPhotonState();
-  const bridge = createPhotonCircularSourceBridgeStub();
+  const bridge = createPhotonCircularTransmitterBridgeStub();
   const results = await createPhotonConfigurationSearchResultsWithPrescribedPathAnalysis(state, {
-    solveCircularSourceRootsHitsLedger: bridge.solveCircularSourceRootsHitsLedger,
+    solveCircularTransmitterRootsHitsLedger: bridge.solveCircularTransmitterRootsHitsLedger,
     limit: 2,
     maxCandidates: 2,
     summaryOptions: {
@@ -1315,7 +1315,7 @@ test("configuration search can score and compare settings through the prescribed
   assert.equal(results.length, 2);
   assert.ok(bridge.calls.length > 0);
   assert.ok(results.every((result) =>
-    result.diagnostics.sourceHistoryProviderId === PHOTON_SOURCE_HISTORY_PROVIDER_ID &&
+    result.diagnostics.transmitterHistoryProviderId === PHOTON_TRANSMITTER_HISTORY_PROVIDER_ID &&
     result.diagnostics.fieldReconstructionOwner === "prescribed_path_analysis"
   ));
   assert.ok(results.some((result) =>
@@ -1334,8 +1334,8 @@ test("configuration search can score and compare settings through the prescribed
     assert.ok(Number.isFinite(result.diagnostics.rootCount));
     assert.equal(result.comparison.status, "ok");
     assert.equal(
-      result.comparison.absoluteHistory.sourceMode,
-      "prescribed_path_absolute_history_receiver_normal_root_branch_sum"
+      result.comparison.absoluteHistory.transmitterMode,
+      "prescribed_path_absolute_history_transmitter_acceleration_sum"
     );
     assert.ok(Number.isFinite(result.comparison.absoluteHistory.helicalPhaseFamilyCount));
     assert.ok(Number.isFinite(result.comparison.absoluteHistory.helicalStablePhaseFamilyCount));
@@ -1350,7 +1350,7 @@ test("configuration search compares co-moving and absolute-history analysis resu
   const state = createDefaultPhotonState();
   const bridge = createPhotonMixedSearchBridgeStub();
   const results = await createPhotonConfigurationSearchResultsWithPrescribedPathAnalysis(state, {
-    solveCircularSourceRootsHitsLedger: bridge.solveCircularSourceRootsHitsLedger,
+    solveCircularTransmitterRootsHitsLedger: bridge.solveCircularTransmitterRootsHitsLedger,
     runPrescribedPathAnalysis: bridge.runPrescribedPathAnalysis,
     limit: 2,
     maxCandidates: 2,
@@ -1383,10 +1383,10 @@ test("configuration search compares co-moving and absolute-history analysis resu
   assert.ok(!bridge.runCalls.some((runRequest) => runRequest.runKind === "sharedGeometry"));
   results.forEach((result) => {
     assert.equal(result.comparison.status, "ok");
-    assert.equal(result.comparison.coMoving.sourceMode, "prescribed_path_circular_source_branch_sum");
+    assert.equal(result.comparison.coMoving.transmitterMode, "prescribed_path_circular_transmitter_branch_sum");
     assert.equal(
-      result.comparison.absoluteHistory.sourceMode,
-      "prescribed_path_absolute_history_receiver_normal_root_branch_sum"
+      result.comparison.absoluteHistory.transmitterMode,
+      "prescribed_path_absolute_history_transmitter_acceleration_sum"
     );
     assert.ok(Number.isFinite(result.comparison.deltas.strengthDelta));
     assert.ok(Number.isFinite(result.comparison.deltas.rootCountDelta));
@@ -1399,16 +1399,16 @@ test("configuration search compares co-moving and absolute-history analysis resu
 
 test("Photon diagnostics expose the active prescribed-path analysis library", async () => {
   const state = createDefaultPhotonState();
-  const bridge = createPhotonCircularSourceBridgeStub();
+  const bridge = createPhotonCircularTransmitterBridgeStub();
   const summary = await computePhotonFormulaSummaryWithPrescribedPathAnalysis(state, 0, {
-    solveCircularSourceRootsHitsLedger: bridge.solveCircularSourceRootsHitsLedger,
+    solveCircularTransmitterRootsHitsLedger: bridge.solveCircularTransmitterRootsHitsLedger,
     polarizationSampleCount: 6,
     analyzerSampleCount: 3,
   });
   const rows = new Map(getPhotonDiagnosticRows(state, 0, summary));
 
   assert.equal(rows.get("Analysis library"), "prescribed-path-analysis");
-  assert.equal(rows.get("Motion source"), "Photon constrained");
+  assert.equal(rows.get("Motion history"), "Photon constrained");
   assert.equal(rows.get("Field reconstruction"), "prescribed-path analysis");
   assert.equal(rows.get("Span self-hit roots"), "6 / 6");
   assert.equal(rows.get("Span self-hit max v/c_sig"), "1.56");
@@ -1419,8 +1419,8 @@ test("Photon diagnostics expose the active prescribed-path analysis library", as
   assert.match(rows.get("Helical phase families"), /^\d+ \/ \d+$/);
   assert.match(rows.get("Helical phase-lock classes"), /^stable \d+, candidate \d+, singular \d+, self \d+$/);
   assert.match(rows.get("Best helical family"), / deg \(\d+\)$/);
-  assert.equal(rows.get("Missed sources"), "6");
-  assert.equal(rows.get("No catch-up sources"), "6");
+  assert.equal(rows.get("Missed transmitters"), "6");
+  assert.equal(rows.get("No catch-up transmitters"), "6");
   assert.equal(rows.get("Stale windows"), "0");
   assert.equal(rows.get("Near misses"), "0");
   assert.equal(rows.get("Root cap hits"), "0");
@@ -1432,9 +1432,9 @@ test("Photon diagnostics expose the active prescribed-path analysis library", as
 test("configuration search results export and import full settings", async () => {
   const state = createDefaultPhotonState();
   state.measurement.virtualObserver.y = 1.25;
-  const bridge = createPhotonCircularSourceBridgeStub();
+  const bridge = createPhotonCircularTransmitterBridgeStub();
   const results = await createPhotonConfigurationSearchResultsWithPrescribedPathAnalysis(state, {
-    solveCircularSourceRootsHitsLedger: bridge.solveCircularSourceRootsHitsLedger,
+    solveCircularTransmitterRootsHitsLedger: bridge.solveCircularTransmitterRootsHitsLedger,
     limit: 3,
     maxCandidates: 3,
     summaryOptions: {
@@ -1473,7 +1473,7 @@ test("photon state normalization preserves configured values", () => {
   state.polarization.analyzerAngleDeg = 45;
   state.pair.right.layers.M.frequencyHz = 7;
   state.pair.right.layers.O.enabled = false;
-  state.measurement.sourceHistoryMode = "absolute_history";
+  state.measurement.transmitterHistoryMode = "absolute_history";
   state.pair.photonSpeedCf = 0.83;
   state.measurement.signalSpeedCf = 0.74;
   state.measurement.virtualObserver.x = 5.25;
@@ -1486,7 +1486,7 @@ test("photon state normalization preserves configured values", () => {
   assert.equal(normalized.pair.right.layers.M.frequencyHz, 8);
   assert.equal(normalized.pair.right.layers.O.enabled, false);
   assert.equal(normalized.pair.photonSpeedCf, 0.83);
-  assert.equal(normalized.measurement.sourceHistoryMode, "absolute_history");
+  assert.equal(normalized.measurement.transmitterHistoryMode, "absolute_history");
   assert.equal(normalized.measurement.signalSpeedCf, 0.74);
   assert.equal(normalized.measurement.emissionSpeedCf, 0.74);
   assert.equal(normalized.measurement.virtualObserver.x, 5.25);
@@ -1497,9 +1497,9 @@ test("photon state normalization preserves configured values", () => {
 test("formula summary reports a derived prescribed-path-analysis polarization fit", async () => {
   const state = createDefaultPhotonState();
   state.polarization.analyzerAngleDeg = 60;
-  const bridge = createPhotonCircularSourceBridgeStub();
+  const bridge = createPhotonCircularTransmitterBridgeStub();
   const summary = await computePhotonFormulaSummaryWithPrescribedPathAnalysis(state, 0.5, {
-    solveCircularSourceRootsHitsLedger: bridge.solveCircularSourceRootsHitsLedger,
+    solveCircularTransmitterRootsHitsLedger: bridge.solveCircularTransmitterRootsHitsLedger,
     polarizationSampleCount: 6,
     analyzerSampleCount: 3,
   });
@@ -1555,9 +1555,9 @@ test("polarization fitter classifies unequal quadrature amplitudes as elliptical
 test("derived prescribed-path-analysis polarization trace uses the fitted current field", async () => {
   const state = createDefaultPhotonState();
   state.polarization.analyzerAngleDeg = 17;
-  const bridge = createPhotonCircularSourceBridgeStub();
+  const bridge = createPhotonCircularTransmitterBridgeStub();
   const trace = await buildPhotonDerivedPolarizationTraceWithPrescribedPathAnalysis(state, 0.5, 6, {
-    solveCircularSourceRootsHitsLedger: bridge.solveCircularSourceRootsHitsLedger,
+    solveCircularTransmitterRootsHitsLedger: bridge.solveCircularTransmitterRootsHitsLedger,
     minimumPolarizationSampleCount: 6,
   });
 
@@ -1574,9 +1574,9 @@ test("derived prescribed-path-analysis polarization trace uses the fitted curren
 
 test("derived prescribed-path-analysis polarization inset trace is centered on the oscillating component", async () => {
   const state = createDefaultPhotonState();
-  const bridge = createPhotonCircularSourceBridgeStub();
+  const bridge = createPhotonCircularTransmitterBridgeStub();
   const trace = await buildPhotonDerivedPolarizationTraceWithPrescribedPathAnalysis(state, 0, 6, {
-    solveCircularSourceRootsHitsLedger: bridge.solveCircularSourceRootsHitsLedger,
+    solveCircularTransmitterRootsHitsLedger: bridge.solveCircularTransmitterRootsHitsLedger,
     minimumPolarizationSampleCount: 6,
   });
   const eyValues = trace.samples.map((sample) => sample.ey);
@@ -1593,9 +1593,9 @@ test("derived prescribed-path-analysis polarization inset trace is centered on t
 test("derived prescribed-path-analysis polarization ellipse fit stays stable while the current point advances", async () => {
   const state = createDefaultPhotonState();
   state.polarization.analyzerAngleDeg = 17;
-  const bridge = createPhotonCircularSourceBridgeStub();
+  const bridge = createPhotonCircularTransmitterBridgeStub();
   const options = {
-    solveCircularSourceRootsHitsLedger: bridge.solveCircularSourceRootsHitsLedger,
+    solveCircularTransmitterRootsHitsLedger: bridge.solveCircularTransmitterRootsHitsLedger,
     minimumPolarizationSampleCount: 6,
   };
   const first = await buildPhotonDerivedPolarizationTraceWithPrescribedPathAnalysis(state, 0.5, 6, options);
@@ -1611,9 +1611,9 @@ test("derived prescribed-path-analysis polarization ellipse fit stays stable whi
 
 test("polarization inset current vector follows display time between analysis snapshots", async () => {
   const state = createDefaultPhotonState();
-  const bridge = createPhotonCircularSourceBridgeStub();
+  const bridge = createPhotonCircularTransmitterBridgeStub();
   const trace = await buildPhotonDerivedPolarizationTraceWithPrescribedPathAnalysis(state, 0.5, 6, {
-    solveCircularSourceRootsHitsLedger: bridge.solveCircularSourceRootsHitsLedger,
+    solveCircularTransmitterRootsHitsLedger: bridge.solveCircularTransmitterRootsHitsLedger,
     minimumPolarizationSampleCount: 6,
   });
   const snapshotTime = trace.fitCycleStart + trace.currentProgress * trace.cycleDuration;

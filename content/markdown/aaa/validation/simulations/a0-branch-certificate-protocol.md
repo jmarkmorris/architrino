@@ -6,7 +6,7 @@ The protocol does not treat $A_0$ as a particle label. It treats $A_0$ as a cali
 
 ## Master-Equation Handoff Boundary
 
-If a run consumes a master-equation branch-chart object $\mathfrak{B}(\Gamma,\mathcal{S};h,\eta,\epsilon_c)$, the consumed data must remain branch-certificate data: active roots, inactive gaps, source-normal Jacobian floors, same-record receiver-normal numerator and branch-strength intervals $(D_s,D_T,W^{\mathrm{rec}})$, memory depth, returned-section residual, section stability, and the refinement schedule that preserves the same branch identity. These fields may support Tier 0 and Tier 1 certification only.
+If a run consumes a master-equation branch-chart object $\mathfrak{B}(\Gamma,\mathcal{S};h,\eta,\epsilon_c)$, the consumed data must remain branch-certificate data: active roots, inactive gaps, transmitter-side Jacobian floors, same-record transmitter-side acceleration-weight intervals $W^{\mathrm{acc}}$, receiver-side factors $D_r$, signed root-playback intervals $D_r/D_t$, memory depth, returned-section residual, section stability, and the refinement schedule that preserves the same branch identity. These fields may support Tier 0 and Tier 1 certification only.
 
 The same packet must keep downstream extraction fields separate. `energy_ledger`, `far_field_shielding`, `medium_response`, and `mass_summary` remain not-computed until their tiers pass. A run fails the handoff if $\zeta(A_0)$, $\mathcal{L}_{\text{aniso}}$, or $\mathcal{M}_{\text{sea}}^{ab}$ changes under root-ledger refinement, inactive-gap refinement, history-window extension, or controlled $\eta$ refinement while the branch label and quotient row are claimed to be unchanged.
 
@@ -69,7 +69,7 @@ J_{\min}
 \right|
 $$
 
-On the same active rows the certificate must also report the receiver-normal branch strength $W^{\mathrm{rec}}=\lvert D_T/D_s\rvert$ (receiver-normal numerator $D_T=1-\mathbf v_{o'}(t)\cdot\hat{\mathbf r}_{o'j}(t;t_0)/c_f$) on its certified floor or bounded interval; a healthy transversality floor $J_{\min}$ alone does not certify the branch's force or action contribution.
+On the same active records the certificate must also report the transmitter-side acceleration weight $W^{\mathrm{acc}}=c_f/\lvert D_t\rvert$ on its certified floor or bounded interval. It must report the receiver-side factor $D_r=1-\mathbf v_{o'}(t)\cdot\hat{\mathbf r}_{o'j}(t;t_0)/c_f$ separately for signed root playback. A healthy transversality floor $J_{\min}$ alone does not certify the branch's acceleration or action contribution.
 
 Third, it reports a running retained-history energy-like functional and its variation across self-hit or separator crossings under $\Delta t$, $\eta$, and history-window refinement. A bounded-energy claim fails if the apparent bound disappears under refinement.
 

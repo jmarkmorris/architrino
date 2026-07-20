@@ -37,7 +37,7 @@ from .local_benchmarks import (
 )
 
 
-SCHEMA = "eom_performance_architecture_baseline/v0"
+SCHEMA = "eom_performance_architecture_baseline/v1"
 
 
 def _source_digests(repo: Path) -> dict[str, str]:
@@ -75,7 +75,7 @@ def _nested_control() -> dict[str, Any]:
             }
         )
     return {
-        "schema": "eom_stationary_block_exclusion_nested_control/v0",
+        "schema": "eom_stationary_block_exclusion_nested_control/v1",
         "authority": AUTHORITY,
         "cases": cases,
         "all_pass": all(

@@ -71,7 +71,7 @@ function normalizeFrame(rawFrame = {}, index = 0) {
 function normalizeFieldShell(rawShell = {}, index = 0) {
   return {
     id: normalizeString(rawShell.id, `field_shell_${index + 1}`),
-    emitterId: normalizeString(rawShell.emitterId ?? rawShell.emitter, ""),
+    transmitterId: normalizeString(rawShell.transmitterId ?? rawShell.transmitter, ""),
     emissionTime: normalizeNumber(rawShell.emissionTime ?? rawShell.tEmit, 0),
     displayTime: normalizeNumber(rawShell.displayTime ?? rawShell.t, 0),
     emissionPosition: normalizeVector(rawShell.emissionPosition ?? rawShell.position),
@@ -94,25 +94,25 @@ function normalizeFieldShell(rawShell = {}, index = 0) {
 function normalizeDelayedHit(rawHit = {}, index = 0) {
   return {
     id: normalizeString(rawHit.id, `delayed_hit_${index + 1}`),
-    emitterId: normalizeString(rawHit.emitterId ?? rawHit.emitter, ""),
+    transmitterId: normalizeString(rawHit.transmitterId ?? rawHit.transmitter, ""),
     receiverId: normalizeString(rawHit.receiverId ?? rawHit.receiver, ""),
     hitTime: normalizeNumber(rawHit.hitTime ?? rawHit.t, 0),
     emissionTime: normalizeNumber(rawHit.emissionTime ?? rawHit.tEmit, 0),
-    emitterEmissionPosition: normalizeVector(
-      rawHit.emitterEmissionPosition ?? rawHit.emissionPosition
+    transmitterEmissionPosition: normalizeVector(
+      rawHit.transmitterEmissionPosition ?? rawHit.emissionPosition
     ),
     receiverPosition: normalizeVector(rawHit.receiverPosition),
     strength: normalizeNumber(rawHit.strength, 0),
     branchId: normalizeString(rawHit.branchId, ""),
     jacobian: normalizeNumber(rawHit.jacobian, 0),
-    sourceNormalSpeed: normalizeNumber(rawHit.sourceNormalSpeed, 0),
-    receiverNormalSpeed: normalizeNumber(rawHit.receiverNormalSpeed, 0),
-    sourceNormalDenominator: normalizeNumber(rawHit.sourceNormalDenominator, 0),
-    receiverNormalNumerator: normalizeNumber(rawHit.receiverNormalNumerator, 0),
-    receiverNormalCrossingFactor: normalizeNumber(rawHit.receiverNormalCrossingFactor, 0),
-    receiverNormalFactor: normalizeNumber(rawHit.receiverNormalFactor, 0),
-    unsignedReceiverNormalFactor: normalizeNumber(rawHit.unsignedReceiverNormalFactor, 0),
-    receiverNormalStatusCode: normalizeNumber(rawHit.receiverNormalStatusCode, 0),
+    transmitterRadialSpeedAtEmission: normalizeNumber(rawHit.transmitterRadialSpeedAtEmission, 0),
+    receiverRadialSpeedAtReception: normalizeNumber(rawHit.receiverRadialSpeedAtReception, 0),
+    transmitterFactor: normalizeNumber(rawHit.transmitterFactor, 0),
+    receiverFactor: normalizeNumber(rawHit.receiverFactor, 0),
+    receiverCrossingRatio: normalizeNumber(rawHit.receiverCrossingRatio, 0),
+    rootPlayback: normalizeNumber(rawHit.rootPlayback, 0),
+    accelerationWeight: normalizeNumber(rawHit.accelerationWeight, 0),
+    causalFactorStatusCode: normalizeNumber(rawHit.causalFactorStatusCode, 0),
     status: normalizeString(rawHit.status, "recorded"),
     metadata:
       rawHit.metadata && typeof rawHit.metadata === "object"

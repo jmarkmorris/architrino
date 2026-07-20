@@ -193,7 +193,7 @@ export const DEFAULT_PHOTON_STATE = Object.freeze({
     analyzerAngleDeg: 0,
   },
   measurement: {
-    sourceHistoryMode: "absolute_history",
+    transmitterHistoryMode: "absolute_history",
     virtualObserver: {
       x: 0,
       y: 0,
@@ -388,7 +388,7 @@ export function normalizePhotonState(input = DEFAULT_PHOTON_STATE) {
       ),
     },
     measurement: {
-      sourceHistoryMode: state.measurement?.sourceHistoryMode === "absolute_history"
+      transmitterHistoryMode: state.measurement?.transmitterHistoryMode === "absolute_history"
         ? "absolute_history"
         : "co_moving",
       virtualObserver: {

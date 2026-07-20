@@ -8,17 +8,17 @@
 - Implementation status: `first-certified-finite-width-transit; demo-track-regulator-halt-accepted; post-transit-horizon-open`
 - Owning queue item: `coupled_retained_history_integrator`
 - Mathematical authority:
-  [master-eom-binding-v0.md](master-eom-binding-v0.md)
+  [master-eom-binding-v1.md](master-eom-binding-v1.md)
 - Common-domain matching:
   `amendment-1-bound-and-independently-certified`
-- Evolution authority: [evolution-contract-v0.md](evolution-contract-v0.md)
+- Evolution authority: [evolution-contract-v1.md](evolution-contract-v1.md)
 - Production authority: certified for the recorded first seed-0 transit;
   broader trajectory and encounter authority remains per-run and fail-closed
 
 ## Closure Target
 
 Replace the generic minimum-step collapse at a certified finite-order
-source-normal fold with one of two explicit outcomes:
+transmitter-side-factor fold with one of two explicit outcomes:
 
 1. an atomically published coupled segment whose fold contribution, endpoint
    state, regulator ladder, root topology, and sharp-chart exit are certified;
@@ -40,7 +40,7 @@ $$
 \kappa\,\sigma_{ij}|q_iq_j|
 \int_{T-h}^{T}
 \mathbf K_{\epsilon_c}(\mathbf r_{ij}(T,S))
-|D_{T,ij}(T,S)|
+c_f
 \delta_\eta(g_{ij}(T,S))\,dS.
 $$
 
@@ -78,7 +78,7 @@ certified from the same attempted coupled candidate:
 1. `FWC-ENTRY-01/history`: the complete reception/emission causal triangle is
    covered by accepted retained histories and the memory boundary is root-free;
 2. `FWC-ENTRY-02/stratum`: the exact-pair certificate reports
-   `caustic_route_required` with a source-normal enclosure containing zero,
+   `caustic_route_required` with a transmitter-side-factor enclosure containing zero,
    independent start/end complete scans certify an interior opposite-sign root
    pair birth/death $\Delta N_{ij}=\pm2$, $\Delta D_{ij}=0$, or a consumed
    sharp-root separation enclosure intersects the declared core-route radius
@@ -94,8 +94,8 @@ certified from the same attempted coupled candidate:
    refinement ratio, ladder length, tolerances, and resource ceilings.
 
 A speed magnitude equal to $c_f$ cannot satisfy `FWC-ENTRY-02` by itself.
-Receiver-normal silence $D_T=0$ also does not enter the route unless the
-source-normal predicate independently passes.
+A root-playback turn $D_r=0$ also does not enter the route unless the
+transmitter-factor predicate independently passes.
 
 If repeated step reduction reaches `minimum_step` while the ordered-pair root
 certificate remains incomplete, the engine has not earned either sharp-chart
@@ -105,7 +105,7 @@ root failure and achieved precision, and records the regulator level as
 `not-evaluated`. This is an adjudicated entry failure, not a caustic claim.
 
 Claim grade: `derived-design`. Falsifier: a route entry whose same-record root
-certificate has neither a zero-containing $D_s$ enclosure, the certified
+certificate has neither a zero-containing $D_t$ enclosure, the certified
 opposite-sign interior topology change, nor a separation enclosure intersecting
 the declared core-route radius.
 
@@ -134,18 +134,18 @@ $$
 
 It is admitted only when $s_-<b^-\le b^+<s_+$,
 $s_+-s_-\le\tau$, the directed causal-residual enclosures at $s_-$ and $s_+$
-have strict opposite signs, and the left/right source-normal enclosures have
+have strict opposite signs, and the left/right transmitter-side-factor enclosures have
 one common strict sign. The intermediate-value theorem then proves existence,
-and the strict source-normal sign proves uniqueness. If any condition fails,
+and the strict transmitter-side-factor sign proves uniqueness. If any condition fails,
 the root remains `endpoint_root_not_surrounded` and entry remains fail-closed.
 
 Claim grade: `derived`. Falsifier: directed recomputation finds a bracket wider
-than $\tau$, a non-strict or equal residual sign, a zero-containing source
-normal, or more than one root in the admitted join bracket.
+than $\tau$, a non-strict or equal residual sign, a zero-containing transmitter
+factor, or more than one root in the admitted join bracket.
 
 ## Coupled Event Corrector
 
-Let $\mathcal E_i$ be the routed sources for receiver $i$. Let
+Let $\mathcal E_i$ be the routed transmitters for receiver $i$. Let
 $\mathbf B_i(T)$ be the deterministic sum of all non-event ordered-pair
 contributions. No pair may appear in both $\mathbf B_i$ and $\mathcal E_i$.
 For one corrector iterate, use the certified endpoint background enclosures
@@ -190,10 +190,10 @@ $\mathbf M_{ij}$ rows.
 
 Second, sharp/finite-width chart agreement is tested only on a declared common
 domain $C_{ij}\subset[T_0,T_1]$ where the sharp roots and root-free complement
-are complete, every admitted root has $|D_s|\ge\nu_s>0$, and the separation is
+are complete, every admitted root has $|D_t|\ge\nu_t>0$, and the separation is
 outside the core-active stratum. By
-[Master EOM Binding v0 Amendment 1](master-eom-binding-v0-amendment-1-common-domain-matching.md),
-agreement is a regulator-limit obligation rather than raw equality at fixed
+[Master EOM Binding v1](master-eom-binding-v1.md), agreement is a
+regulator-limit obligation rather than raw equality at fixed
 positive $\eta$ and $\epsilon_c$. For every component $k$, the restricted
 integrals must satisfy
 
@@ -250,7 +250,7 @@ with no finite-width row cannot certify passage of the rejected event.
 
 Claim grade: `derived`. Falsifier: an independent integration of the emitted
 background and event rows excludes the candidate endpoint; a claimed
-common-domain cell contains $D_s=0$, incomplete roots, or the core stratum; an
+common-domain cell contains $D_t=0$, incomplete roots, or the core stratum; an
 endpoint shortcut exceeds either remainder; a matching row does not enclose
 the actual positive-regulator chart difference or exceeds the unchanged event
 budget; or a rejected event pair
@@ -271,21 +271,21 @@ rejected parent or exit-pending first half loses its ordered pair, the emitted
 rows do not reconstruct their endpoint, a conforming certificate omits a
 required matching row, or an exit-pending history appears in published output.
 
-### Amendment 1 remainder implementation
+### Regulator-limit remainder implementation
 
 For every certified root tube, the implementation constructs a second-order
 interval jet of the sharp quotient in emission time $S$. It then changes the
-derivative coordinate to $u=g(T,S)$ using the certified nonzero source normal:
+derivative coordinate to $u=g(T,S)$ using the certified nonzero transmitter factor:
 
 $$
 \frac{d^2P_0}{du^2}
 =
-\frac{P_{0,SS}}{D_s^2}
+\frac{P_{0,SS}}{D_t^2}
 -
-\frac{P_{0,S}D_{s,S}}{D_s^3}.
+\frac{P_{0,S}D_{t,S}}{D_t^3}.
 $$
 
-This emits the certified $\partial_u^2P_0$ bound and evaluates the Amendment 1
+This emits the certified $\partial_u^2P_0$ bound and evaluates the
 leading core-plus-causal-width term. The leading term is integrated once for
 the impulse row and once with the nonnegative endpoint position weight for the
 position-moment row.
@@ -303,15 +303,15 @@ inside the unchanged event budget.
 
 This residual construction makes the production row conservative; it does not
 make self-agreement independent evidence. Its independent check is the
-stationary simple-root closed form in Amendment 1. The common-domain path
+stationary simple-root closed form. The common-domain path
 encloses that analytic positive-regulator difference without changing the
 Decimal oracle.
 
 Claim grade: `derived-implementation` for the coordinate conversion and
 outward residual construction; `measured` for the analytic containment and
 seed-0 passage recorded in
-[the Amendment 1 implementation evidence](evidence/eom-fwc-regulator-matching-remainder-seed-0-2026-07-17.md).
-Falsifier: a nonzero $D_s$ tube violates the displayed derivative conversion;
+[the regulator-limit implementation evidence](evidence/eom-fwc-regulator-matching-remainder-seed-0-2026-07-17.md).
+Falsifier: a nonzero $D_t$ tube violates the displayed derivative conversion;
 the analytic stationary difference lies outside the emitted remainder; a row
 passes with positive post-accounting distance or with its complete remainder
 above budget; or a published segment lacks passing state and exit rows.
@@ -455,13 +455,13 @@ $$
 where $\mathbf D$ is the displacement box and $\mathbf m$ is its componentwise
 midpoint. The line-of-action unit vector uses the analogous centered
 Jacobian enclosure wherever the separation interval excludes zero. The
-receiver-normal factor and softened kernel are also enclosed as one
+constant field-speed factor and softened kernel are also enclosed as one
 mean-value product, so their common displacement is not split into independent
 interval variables.
 
 For monotone emission cells, the two Gaussian CDF endpoints are evaluated as
 one difference with a shared receiver-position and reception-time box. When
-both endpoints lie in one retained source segment, their source displacement
+both endpoints lie in one retained transmitter segment, their transmitter displacement
 reuses the segment certificate
 
 $$
@@ -525,7 +525,7 @@ An event candidate returns to the sharp chart only when complete endpoint scans
 certify all of the following:
 
 1. every routed pair has a complete finite root set and root-free complement;
-2. every admitted endpoint root has $|D_s|\ge\nu_s$ with nonzero signed grading;
+2. every admitted endpoint root has $|D_t|\ge\nu_t$ with nonzero signed grading;
 3. the observed interior root-count change, if any, is an opposite-sign pair
    change with degree preserved;
 4. no routed root touches the retained-memory boundary;
@@ -539,17 +539,17 @@ event floor obtains the exit predicate, the run halts with
 `minimum_step_exhausted`.
 
 Claim grade: `derived-design`. Falsifier: a published event segment whose
-endpoint pair is still `caustic_route_required`, has an unsigned source-normal
+endpoint pair is still `caustic_route_required`, has an unsigned transmitter-side-factor
 grade, or lacks a complete complement certificate.
 
-## Acceptance And Error-Budget Rows
+## Acceptance And Error-Budget Records
 
-Every attempted event emits these rows, including failures:
+Every attempted event emits these records, including failures:
 
-| Contract row | Quantity and required record | Pass condition | Named failure |
+| Contract record | Quantity and required data | Pass condition | Named failure |
 | --- | --- | --- | --- |
 | `FWC-ENTRY-01` | history coverage and memory-boundary residual | boundary residual excludes zero | `caustic_history_coverage_failed` |
-| `FWC-ENTRY-02` | entry source-normal enclosure or topology delta | certified fold predicate | `caustic_entry_not_certified` |
+| `FWC-ENTRY-02` | entry transmitter-side-factor enclosure or topology delta | certified fold predicate | `caustic_entry_not_certified` |
 | `FWC-ENTRY-03` | stratum order and isolation | supported finite-order fold | `unsupported_caustic_or_singular_chart` |
 | `FWC-QUAD-01` | $\mathbf I$ enclosure, cells, depth, precision, largest residual width | component widths within impulse budget | `caustic_impulse_not_certified` |
 | `FWC-QUAD-02` | $\mathbf M$ enclosure, cells, depth, precision, largest residual width | component widths within position-moment budget | `caustic_position_moment_not_certified` |
@@ -558,13 +558,13 @@ Every attempted event emits these rows, including failures:
 | `FWC-STATE-01` | event-aware endpoint reconstruction, common-domain chart overlap with any shortcut remainder, and pinned child-window coverage | endpoint enclosed and every routed pair discharged only by a passing state/exit row | `caustic_state_reconstruction_failed` |
 | `FWC-STATE-02` | successive event-corrector endpoint deltas | position and velocity correction budgets pass | `caustic_correction_failed` |
 | `FWC-STEP-01` | full/two-half event-aware local error | position and velocity step budgets pass | `numeric_step_budget_exceeded` |
-| `FWC-EXIT-01` | endpoint roots, signed $D_s$, degree, boundary clearance | sharp-chart exit passes | `caustic_exit_not_certified` |
+| `FWC-EXIT-01` | endpoint roots, signed $D_t$, degree, boundary clearance | sharp-chart exit passes | `caustic_exit_not_certified` |
 | `FWC-ATOM-01` | input, candidate, and published history fingerprints | unchanged on failure; candidate on complete acceptance | `caustic_atomic_publication_failed` |
 
-Each failed row records receiver/source identities, attempted window, regulator
+Each failed record stores receiver/transmitter identities, attempted window, regulator
 level, precision route, achieved precision, enclosure or scalar residual,
 declared tolerance, resource counts, and the nested numeric failure code. The
-evolution-level halt is `caustic_transit_uncertified` with the first failed row
+evolution-level halt is `caustic_transit_uncertified` with the first failed record
 preserved; generic step-floor exhaustion is not an admissible adjudication once
 `FWC-ENTRY-02` has passed.
 

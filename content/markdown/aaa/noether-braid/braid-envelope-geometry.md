@@ -71,65 +71,62 @@ D_{a,X}(\mathbf X,T)
 }
 $$
 
-The first computable form comes from the same causal-root flux used in the Master Equation. Fix a coarse-graining kernel $K_\ell$, a channel $X$ being tested, and a sample event $(\mathbf X,T)$. For a source constituent $j$ at emission time $T_{\mathrm{em}}$, define
+The first computable form comes from the same causal-root flux used in the Master Equation. Fix a coarse-graining kernel $K_\ell$, a channel $X$ being tested, and a sample event $(\mathbf X,T)$. For a transmitter constituent $j$ at emission time $T_t$, define
 
 $$
-r_{\mathbf Xj}(T;T_{\mathrm{em}})
+r_{\mathbf Xj}(T;T_t)
 =
-\left\|\mathbf X-\mathbf X_j(T_{\mathrm{em}})\right\|,
+\left\|\mathbf X-\mathbf X_j(T_t)\right\|,
 \qquad
-g_{\mathbf Xj}(T;T_{\mathrm{em}})
+g_{\mathbf Xj}(T;T_t)
 =
-r_{\mathbf Xj}(T;T_{\mathrm{em}})-c_f(T-T_{\mathrm{em}})
+r_{\mathbf Xj}(T;T_t)-c_f(T-T_t)
 $$
 
 $$
-J_{\mathbf Xj}(T;T_{\mathrm{em}})
+J_{\mathbf Xj}(T;T_t)
 =
 1-
-\frac{\mathbf V_j(T_{\mathrm{em}})\cdot\hat{\mathbf{r}}_{\mathbf Xj}(T;T_{\mathrm{em}})}{c_f},
+\frac{\mathbf V_j(T_t)\cdot\hat{\mathbf{r}}_{\mathbf Xj}(T;T_t)}{c_f},
 \qquad
 \mathcal{C}_{\mathbf Xj}(T)
 =
-\{T_{\mathrm{em}}<T:g_{\mathbf Xj}(T;T_{\mathrm{em}})=0\}
+\{T_t<T:g_{\mathbf Xj}(T;T_t)=0\}
 $$
 
-Let $\mathcal{I}_a(T)$ be the architrino constituents and bound wake records belonging to assembly $a$, and let $\mathcal{I}_{\mathrm{sea}}(\Omega_\ell,T)$ be the ambient Noether sea contributors in the same coarse window after excluding $\mathcal{I}_a(T)$. Let $w_{j,a}^{\mathrm{lock}}(T_{\mathrm{em}};T)$ retain the branches phase-locked to the assembly label, let $w_j^{\mathrm{sea}}(T_{\mathrm{em}};T)$ retain the ambient branches, and let $\alpha_{j,X}(\mathbf X,T;T_{\mathrm{em}})\ge 0$ be the channel intensity inherited from branch-ledger exposure in channel $X$.
+Let $\mathcal{I}_a(T)$ be the architrino constituents and bound wake records belonging to assembly $a$, and let $\mathcal{I}_{\mathrm{sea}}(\Omega_\ell,T)$ be the ambient Noether sea contributors in the same coarse window after excluding $\mathcal{I}_a(T)$. Let $w_{j,a}^{\mathrm{lock}}(T_t;T)$ retain the branches phase-locked to the assembly label, let $w_j^{\mathrm{sea}}(T_t;T)$ retain the ambient branches, and let $\alpha_{j,X}(\mathbf X,T;T_t)\ge 0$ be the channel intensity inherited from branch-ledger exposure in channel $X$.
 
-The receiver-normal factor needs a declared probe state because the sample event $(\mathbf X,T)$ is not itself an architrino worldline. For clock, packing, and stationary interface-level scans, use a void-stationary probe, $\mathbf V_{\mathrm{probe},X}(\mathbf X,T)=\mathbf 0$, so $D_{T,\mathbf Xj}^{(X)}=c_f$. For penetration along a declared test path, use $\mathbf V_{\mathrm{probe},\mathrm{penetration}}=v_{\mathrm{path}}\hat{\mathbf{u}}$ at the sample event. A moving reaction-corridor scan must declare its probe velocity before this diagnostic is evaluated. With that channel probe fixed, define
+The receiver-side factor needs a declared probe state because the sample event $(\mathbf X,T)$ is not itself an architrino worldline. It is retained for root playback and path-rate diagnostics, not as part of the acceleration weight. For clock, packing, and stationary interface-level scans, use a void-stationary probe, $\mathbf V_{\mathrm{probe},X}(\mathbf X,T)=\mathbf 0$, so $D_{r,\mathbf Xj}^{(X)}=c_f$. For penetration along a declared test path, use $\mathbf V_{\mathrm{probe},\mathrm{penetration}}=v_{\mathrm{path}}\hat{\mathbf{u}}$ at the sample event. A moving reaction-corridor scan must declare its probe velocity before this diagnostic is evaluated. With that channel probe fixed, define
 
 $$
-D_{s,\mathbf Xj}(T;T_{\mathrm{em}})
+D_{t,\mathbf Xj}(T;T_t)
 \equiv
-c_f-\mathbf V_j(T_{\mathrm{em}})\cdot\hat{\mathbf{r}}_{\mathbf Xj}(T;T_{\mathrm{em}}),
+c_f-\mathbf V_j(T_t)\cdot\hat{\mathbf{r}}_{\mathbf Xj}(T;T_t),
 \qquad
-D_{T,\mathbf Xj}^{(X)}(T;T_{\mathrm{em}})
+D_{r,\mathbf Xj}^{(X)}(T;T_t)
 \equiv
-c_f-\mathbf V_{\mathrm{probe},X}(\mathbf X,T)\cdot\hat{\mathbf{r}}_{\mathbf Xj}(T;T_{\mathrm{em}})
+c_f-\mathbf V_{\mathrm{probe},X}(\mathbf X,T)\cdot\hat{\mathbf{r}}_{\mathbf Xj}(T;T_t)
 $$
 
 and
 
 $$
-W_{\mathbf Xj}^{\mathrm{rec},X}(T;T_{\mathrm{em}})
+W_{\mathbf Xj}^{\mathrm{acc},X}(T;T_t)
 \equiv
-\left|
-\frac{D_{T,\mathbf Xj}^{(X)}(T;T_{\mathrm{em}})}
-{D_{s,\mathbf Xj}(T;T_{\mathrm{em}})}
-\right|
+\frac{c_f}{|D_{t,\mathbf Xj}(T;T_t)|}
 $$
 
-as the receiver-normal branch strength on the same root row. Then the simple-root diagnostic is
+as the transmitter-side acceleration weight on the same root record. Then the simple-root diagnostic is
 
 $$
 \mathcal{W}_{a,X}^{\mathrm{locked}}(\mathbf X,T;\ell)
 =
 K_\ell *
 \sum_{j\in\mathcal{I}_a(T)}
-\sum_{T_{\mathrm{em}}\in\mathcal{C}_{\mathbf Xj}(T)}
-w_{j,a}^{\mathrm{lock}}(T_{\mathrm{em}};T)
-\frac{\alpha_{j,X}(\mathbf X,T;T_{\mathrm{em}})W_{\mathbf Xj}^{\mathrm{rec},X}(T;T_{\mathrm{em}})}
-{r_{\mathbf Xj}^2(T;T_{\mathrm{em}})}
+\sum_{T_t\in\mathcal{C}_{\mathbf Xj}(T)}
+w_{j,a}^{\mathrm{lock}}(T_t;T)
+\frac{\alpha_{j,X}(\mathbf X,T;T_t)W_{\mathbf Xj}^{\mathrm{acc},X}(T;T_t)}
+{r_{\mathbf Xj}^2(T;T_t)}
 $$
 
 and
@@ -139,39 +136,39 @@ $$
 =
 K_\ell *
 \sum_{j\in\mathcal{I}_{\mathrm{sea}}(\Omega_\ell,T)}
-\sum_{T_{\mathrm{em}}\in\mathcal{C}_{\mathbf Xj}(T)}
-w_j^{\mathrm{sea}}(T_{\mathrm{em}};T)
-\frac{\alpha_{j,X}(\mathbf X,T;T_{\mathrm{em}})W_{\mathbf Xj}^{\mathrm{rec},X}(T;T_{\mathrm{em}})}
-{r_{\mathbf Xj}^2(T;T_{\mathrm{em}})}
+\sum_{T_t\in\mathcal{C}_{\mathbf Xj}(T)}
+w_j^{\mathrm{sea}}(T_t;T)
+\frac{\alpha_{j,X}(\mathbf X,T;T_t)W_{\mathbf Xj}^{\mathrm{acc},X}(T;T_t)}
+{r_{\mathbf Xj}^2(T;T_t)}
 $$
 
 These coefficients are not fit amplitudes. For each accepted causal root, define the root-selected branch record
 
 $$
-\mathcal{B}_{\mathbf Xj}^{(T_{\mathrm{em}})}
+\mathcal{B}_{\mathbf Xj}^{(T_t)}
 =
 \left(
 j,\,
-T_{\mathrm{em}},\,
+T_t,\,
 \hat{\mathbf{r}}_{\mathbf Xj},\,
 r_{\mathbf Xj},\,
 J_{\mathbf Xj},\,
 q_j,\,
 \mathcal{L}_{j}^{\mathrm{wake}},\,
 \Lambda_j
-\right)_{(\mathbf X,T;T_{\mathrm{em}})}
+\right)_{(\mathbf X,T;T_t)}
 $$
 
-Here $\mathcal{L}_{j}^{\mathrm{wake}}$ is the wake-history ledger carried by the source branch and $\Lambda_j$ is the closure label or neutral braid label available on that branch. The locked weight is the assembly projector
+Here $\mathcal{L}_{j}^{\mathrm{wake}}$ is the wake-history ledger carried by the transmitter branch and $\Lambda_j$ is the closure label or neutral braid label available on that branch. The locked weight is the assembly projector
 
 $$
-w_{j,a}^{\mathrm{lock}}(T_{\mathrm{em}};T)
+w_{j,a}^{\mathrm{lock}}(T_t;T)
 =
 \mathbf{1}_{j\in\mathcal{I}_a(T)}
 \,
 \zeta_a
 \!\left(
-\mathcal{B}_{\mathbf Xj}^{(T_{\mathrm{em}})}
+\mathcal{B}_{\mathbf Xj}^{(T_t)}
 \right)
 $$
 
@@ -180,7 +177,7 @@ where $\zeta_a\in[0,1]$ is one for an accepted phase-locked branch of $\Lambda_a
 $$
 \zeta_a^{(\eta_\Lambda)}
 \!\left(
-\mathcal{B}_{\mathbf Xj}^{(T_{\mathrm{em}})}
+\mathcal{B}_{\mathbf Xj}^{(T_t)}
 \right)
 =
 \exp
@@ -189,7 +186,7 @@ $$
 \frac{
 d_{\Lambda_a}^2
 \!\left(
-\mathcal{B}_{\mathbf Xj}^{(T_{\mathrm{em}})}
+\mathcal{B}_{\mathbf Xj}^{(T_t)}
 \right)}
 {\eta_\Lambda^2}
 \right]
@@ -198,13 +195,13 @@ $$
 where $d_{\Lambda_a}$ measures closure-label, phase, and branch-provenance mismatch against the accepted assembly ledger. The ambient weight is the complement projector
 
 $$
-w_j^{\mathrm{sea}}(T_{\mathrm{em}};T)
+w_j^{\mathrm{sea}}(T_t;T)
 =
 \mathbf{1}_{j\in\mathcal{I}_{\mathrm{sea}}(\Omega_\ell,T)}
 \,
 \zeta_{\mathrm{sea}}^{(\ell)}
 \!\left(
-\mathcal{B}_{\mathbf Xj}^{(T_{\mathrm{em}})}
+\mathcal{B}_{\mathbf Xj}^{(T_t)}
 \right)
 $$
 
@@ -215,7 +212,7 @@ The first symbolic form of this ambient projector comes from ledger complement p
 $$
 \chi_{\mathrm{comp}}^{(\ell)}
 \!\left(
-\mathcal{B}_{\mathbf Xj}^{(T_{\mathrm{em}})}
+\mathcal{B}_{\mathbf Xj}^{(T_t)}
 \right)
 =
 \mathbf{1}_{j\in\mathcal{I}_{\mathrm{sea}}(\Omega_\ell,T)}
@@ -224,7 +221,7 @@ $$
 1-
 \zeta_{a'}
 \!\left(
-\mathcal{B}_{\mathbf Xj}^{(T_{\mathrm{em}})}
+\mathcal{B}_{\mathbf Xj}^{(T_t)}
 \right)
 \right]
 $$
@@ -248,11 +245,11 @@ Let $\nu_k$ be the cadence variable of neutral braid $k$, let $\bar\nu_{\mathrm{
 $$
 \Delta_{\mathrm{cad}}^{(\ell)}
 \!\left(
-\mathcal{B}_{\mathbf Xj}^{(T_{\mathrm{em}})}
+\mathcal{B}_{\mathbf Xj}^{(T_t)}
 \right)
 =
 \frac{
-\nu_j(T_{\mathrm{em}})-\bar\nu_{\mathrm{sea}}^{(\ell)}(\mathbf X,T)
+\nu_j(T_t)-\bar\nu_{\mathrm{sea}}^{(\ell)}(\mathbf X,T)
 }{
 \sqrt{\sigma_{\nu,\ell}^2+\epsilon_\nu^2}
 }
@@ -281,12 +278,12 @@ The ambient acceptance is then
 $$
 \zeta_{\mathrm{sea}}^{(\ell)}
 \!\left(
-\mathcal{B}_{\mathbf Xj}^{(T_{\mathrm{em}})}
+\mathcal{B}_{\mathbf Xj}^{(T_t)}
 \right)
 =
 \chi_{\mathrm{comp}}^{(\ell)}
 \!\left(
-\mathcal{B}_{\mathbf Xj}^{(T_{\mathrm{em}})}
+\mathcal{B}_{\mathbf Xj}^{(T_t)}
 \right)
 \exp
 \!\left[
@@ -307,32 +304,32 @@ The channel intensity is the channel exposure of the same root-selected branch r
 $$
 \mathcal{E}_{X}
 \!\left(
-\mathcal{B}_{\mathbf Xj}^{(T_{\mathrm{em}})}
+\mathcal{B}_{\mathbf Xj}^{(T_t)}
 \right)
 =
 Q_X
 \!\left[
 \Pi_X
-\mathcal{B}_{\mathbf Xj}^{(T_{\mathrm{em}})}
+\mathcal{B}_{\mathbf Xj}^{(T_t)}
 \right],
 \qquad
-\alpha_{j,X}(\mathbf X,T;T_{\mathrm{em}})
+\alpha_{j,X}(\mathbf X,T;T_t)
 =
 \left\|
 \mathcal{E}_{X}
 \!\left(
-\mathcal{B}_{\mathbf Xj}^{(T_{\mathrm{em}})}
+\mathcal{B}_{\mathbf Xj}^{(T_t)}
 \right)
 \right\|_X
 $$
 
-The projection $\Pi_X$ selects the channel being tested and $Q_X$ removes only equivalences that preserve that channel's benchmark. The intensity $\alpha_{j,X}$ is dimensionless because the channel norms are tolerance ratios. The dimensional coupling $\kappa$ and polarity factors enter only through retained channel entries that already require them, such as the signed acceleration used by penetration. Clock-coupling keeps cadence and phase entries that perturb the clock functional. Reaction-corridor calculations keep the oriented exchange, line-defect, color, weak, or provenance entries declared by that corridor. Packing keeps scalar or tensor exclusion-stress magnitude after force signs are discarded. Penetration keeps the local acceleration and phase-disruption entries along the tested path. These channels may use different $\Pi_X$, but they must not change the causal-root kernel, the assembly/complement split, or the source branch record.
+The projection $\Pi_X$ selects the channel being tested and $Q_X$ removes only equivalences that preserve that channel's benchmark. The intensity $\alpha_{j,X}$ is dimensionless because the channel norms are tolerance ratios. The dimensional coupling $\kappa$ and polarity factors enter only through retained channel entries that already require them, such as the signed acceleration used by penetration. Clock-coupling keeps cadence and phase entries that perturb the clock functional. Reaction-corridor calculations keep the oriented exchange, line-defect, color, weak, or provenance entries declared by that corridor. Packing keeps scalar or tensor exclusion-stress magnitude after acceleration signs are discarded. Penetration keeps the local acceleration and phase-disruption entries along the tested path. These channels may use different $\Pi_X$, but they must not change the causal-root kernel, the assembly/complement split, or the transmitter branch record.
 
-The first concrete projector family can be stated as retained entries of $\mathcal{B}_{\mathbf Xj}^{(T_{\mathrm{em}})}$ plus derived local entries computed from the same branch. For the clock channel,
+The first concrete projector family can be stated as retained entries of $\mathcal{B}_{\mathbf Xj}^{(T_t)}$ plus derived local entries computed from the same branch. For the clock channel,
 
 $$
 \Pi_{\mathrm{clock}}
-\mathcal{B}_{\mathbf Xj}^{(T_{\mathrm{em}})}
+\mathcal{B}_{\mathbf Xj}^{(T_t)}
 =
 \left(
 \delta\theta_{\mathrm{clk}}^{(j)},\,
@@ -350,7 +347,7 @@ For a reaction corridor,
 
 $$
 \Pi_{\mathrm{corridor}}
-\mathcal{B}_{\mathbf Xj}^{(T_{\mathrm{em}})}
+\mathcal{B}_{\mathbf Xj}^{(T_t)}
 =
 \left(
 \hat{\mathbf{r}}_{\mathbf Xj},\,
@@ -368,7 +365,7 @@ For packing,
 
 $$
 \Pi_{\mathrm{packing}}
-\mathcal{B}_{\mathbf Xj}^{(T_{\mathrm{em}})}
+\mathcal{B}_{\mathbf Xj}^{(T_t)}
 =
 \left(
 \left\|\mathcal{L}_{j}^{\mathrm{wake}}\right\|_{\mathrm{excl}},\,
@@ -386,11 +383,11 @@ For penetration along a declared test path with tangent $\hat{\mathbf{u}}$ at $\
 
 $$
 \Pi_{\mathrm{penetration}}
-\mathcal{B}_{\mathbf Xj}^{(T_{\mathrm{em}})}
+\mathcal{B}_{\mathbf Xj}^{(T_t)}
 =
 \left(
-\mathbf{a}_{\mathbf X\leftarrow j}(T;T_{\mathrm{em}}),\,
-\mathbf{a}_{\mathbf X\leftarrow j}(T;T_{\mathrm{em}})\cdot\hat{\mathbf{u}},\,
+\mathbf{a}_{\mathbf X\leftarrow j}(T;T_t),\,
+\mathbf{a}_{\mathbf X\leftarrow j}(T;T_t)\cdot\hat{\mathbf{u}},\,
 \Delta\phi_{\mathrm{disrupt}}^{(j)},\,
 r_{\mathbf Xj},\,
 J_{\mathbf Xj},\,
@@ -593,7 +590,7 @@ The mismatch metric used in the regularized locked projector must also be ledger
 $$
 d_{\Lambda_a}^2
 \!\left(
-\mathcal{B}_{\mathbf Xj}^{(T_{\mathrm{em}})}
+\mathcal{B}_{\mathbf Xj}^{(T_t)}
 \right)
 =
 d_{\mathrm{disc}}^2

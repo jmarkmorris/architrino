@@ -1,0 +1,14 @@
+{
+  "schema": "parallel_stream_pilot_instrument_lock/v0",
+  "frozenBeforeScientificOutput": true,
+  "manifestPath": "/Users/markmorris/vibe/architrino/reference/priorities/app-eom/evidence/parallel-stream-pilot-2026-07/pilot-instrument-manifest.json",
+  "manifestSha256": "a4e39bc69eadd6fa3dc3a2bbf0b46bd8c9b7655c67bb808709482371ddbb6bf9",
+  "executablePath": "/tmp/architrino-eom-p5a-pilot-build/eom_borg_shadow_cli",
+  "executableSha256": "c1d592a341771961fc0bf60cf3ed5406c4b4df3a8ebb21a5962bdd9ded854a9d",
+  "inputHashes": {
+    "p5aSpec": "b38c56ba67644db39f357173a8d27d6e1a80027819502d070fb2d996cf06ee1e",
+    "modelBinding": "5f68960947dd62b309fce7d24889cb8655b24755d01fb08e902a31bb9bddbbce",
+    "precisionContract": "4f05cb74d3506a485ba40c126625e83167bae68e4a5cbe216069d0a6595daac1",
+    "evolutionContract": "3a30c9b2448d735f771480be7c42e40d1eabe1610a5dd5dbd8041bc75525cd6a"
+  }
+}

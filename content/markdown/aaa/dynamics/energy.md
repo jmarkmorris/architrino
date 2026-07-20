@@ -6,9 +6,9 @@ This chapter answers four linked questions. What kinetic bookkeeping is allowed 
 
 The chapter underwrites [Particle Masses](../assemblies/particle-masses.md), [Nested Shell Braid Dynamics](../noether-braid/braid-families.md#nested-shell-braid-dynamics), [Noether Braid](../noether-braid/noether-braid.md), [Noether Sea Pro/Anti Coupling](../spacetime/noether-sea-pro-anti-coupling.md), [Emergent Metric](../spacetime/emergent-metric.md), and the constructive delay-energy standard in [Delay Dynamics Energy](../validation/simulations/action-energy/delay-dynamics-energy.md).
 
-All such dynamics unfold on a fixed ontological background: absolute time plus the Euclidean void. Forces and motion arise from **delayed causal hits from causal isochrons**, with line-of-action direction and receiver-normal branch strength, on this fixed background. We work in units with causal-wake propagation speed $c_f=1$.
+All such dynamics unfold on a fixed ontological background: absolute time plus the Euclidean void. Accelerations and motion arise from **delayed causal hits from causal isochrons**, with line-of-action direction and transmitter-side acceleration weight, on this fixed background. We work in units with causal-wake propagation speed $c_f=1$.
 
-The chapter keeps four levels separate. At the substrate level, kinetic and potential terms are architrino and causal-wake records on absolute time and the Euclidean void. At the dynamical level, energy changes through receiver-normal causal hits and radial power. At the effective level, assemblies acquire inertia, apparent energy, and effective metric response through Noether sea coupling. At the inference level, scalar masses, thermodynamic records, and cosmological inventories are accepted only after a window, boundary record, and residual are declared.
+The chapter keeps four levels separate. At the substrate level, kinetic and potential terms are architrino and causal-wake records on absolute time and the Euclidean void. At the dynamical level, energy changes through receiver-side causal hits and radial power. At the effective level, assemblies acquire inertia, apparent energy, and effective metric response through Noether sea coupling. At the inference level, scalar masses, thermodynamic records, and cosmological inventories are accepted only after a window, boundary record, and residual are declared.
 
 Spacetime in this framework belongs to the effective level, not the ontological one. The ambient Noether sea is built from dense populations of neutral Noether braid assemblies occupying the Euclidean void. Its energetic state and configuration control how energy, inertia, and effective geometry appear at larger scales.
 
@@ -85,33 +85,30 @@ Here $\mathbf{F}_a$ is the optional force-like bookkeeping quantity associated w
 From the canonical per-hit law
 
 $$
-\mathbf A_{o'\leftarrow j}(T;T_{\mathrm{em}})
+\mathbf A_{o'\leftarrow j}(T;T_t)
 =
 \kappa\,\sigma_{q_j q_{o'}}\,
 \frac{|q_j q_{o'}|}{r_{o'j}^2}
-W_{o'j}^{\mathrm{rec}}(T;T_{\mathrm{em}})\,\hat{\mathbf{r}}_{o'j}
+W_{o'j}^{\mathrm{acc}}(T;T_t)\,\hat{\mathbf{r}}_{o'j}
 $$
 
 where
 $$
-D_{s,o'j}(T;T_{\mathrm{em}})
+D_{t,o'j}(T;T_t)
 \equiv
-c_f-\mathbf V_j(T_{\mathrm{em}})\cdot\hat{\mathbf{r}}_{o'j},
+c_f-\mathbf V_j(T_t)\cdot\hat{\mathbf{r}}_{o'j},
 \qquad
-D_{T,o'j}(T;T_{\mathrm{em}})
+D_{r,o'j}(T;T_t)
 \equiv
 c_f-\mathbf V_{o'}(T)\cdot\hat{\mathbf{r}}_{o'j},
 \qquad
-W_{o'j}^{\mathrm{rec}}(T;T_{\mathrm{em}})
+W_{o'j}^{\mathrm{acc}}(T;T_t)
 \equiv
-\left|
-\frac{D_{T,o'j}(T;T_{\mathrm{em}})}
-{D_{s,o'j}(T;T_{\mathrm{em}})}
-\right|
+\frac{c_f}{|D_{t,o'j}(T;T_t)|}
 $$
-is the receiver-normal branch strength. Here $r_{o'j}$ and $\hat{\mathbf r}_{o'j}$ are evaluated on the same retained causal branch. The source-normal denominator $D_s$
-is the causal-root transversality diagnostic; the numerator $D_T$ records how
-the receiver cuts through the emitted causal wake sequence.
+is the transmitter-side acceleration weight. Here $r_{o'j}$ and $\hat{\mathbf r}_{o'j}$ are evaluated on the same retained causal branch. The transmitter-side factor $D_t$
+sets root transversality and acceleration density; $D_r/D_t$ separately records
+signed root playback.
 
 Decompose the receiver's velocity into radial and transverse components:
 
@@ -127,7 +124,7 @@ Because $\mathbf A_{o'\leftarrow j}\parallel\hat{\mathbf{r}}_{o'j}$:
   \mu_{\text{arch}}\mathbf A_{o'\leftarrow j}\cdot\mathbf V_{o'}
   =
   \mu_{\text{arch}}\kappa\,\sigma_{q_j q_{o'}}\,|q_j q_{o'}|
-  \frac{W_{o'j}^{\mathrm{rec}}(T;T_{\mathrm{em}})}{r_{o'j}^2}\,V_r
+  \frac{W_{o'j}^{\mathrm{acc}}(T;T_t)}{r_{o'j}^2}\,V_r
   $$
 
   Only $V_r$ contributes to instantaneous quadratic-proxy power. For the primitive scalar $K$, replace $\mu_{\text{arch}}$ by $\mu_K(\|\mathbf V_{o'}\|)$.
@@ -150,25 +147,25 @@ Each $\Phi_o$ is built from the expanding causal isochrons emitted by source $o$
 
 ### Potential Availability Is Geometric
 
-The phrase "an architrino emits potential" should not be read as a source continually spending an internal fuel. The emission is the causal-wake geometry of the architrino itself: at each emission time, an expanding causal isochron is added to the source's path history. That causal structure can later participate in work, but it is not a material energy substance stored inside the Euclidean void.
+The phrase "an architrino emits potential" should not be read as a transmitter continually spending an internal fuel. The emission is the causal-wake geometry of the architrino itself: at each emission time, an expanding causal isochron is added to the transmitter's path history. That causal structure can later participate in work, but it is not a material energy substance stored inside the Euclidean void.
 
-Potential energy is therefore relational. It is assigned when a receiver is placed in a source's path-history causal-wake record and its trajectory intersects the relevant causal wake surfaces. The receiver's energy accounting depends on the active causal roots, their inverse-square distance factors, their polarity signs, the source-normal root denominator, the receiver-normal branch factor, and the receiver's radial motion through the line of action. In the general per-hit law the source-normal denominator is
+Potential energy is therefore relational. It is assigned when a receiver is placed in a transmitter's path-history causal-wake record and its trajectory intersects the relevant causal wake surfaces. The receiver's energy accounting depends on the active causal roots, their inverse-square distance factors, their polarity signs, the transmitter-side root denominator, the transmitter-side acceleration weight, and the receiver's radial motion through the line of action. In the general per-hit law the transmitter-side factor is
 
 $$
-D_{s,o'j}(T;T_{\mathrm{em}})
+D_{t,o'j}(T;T_t)
 =
-c_f-\mathbf V_j(T_{\mathrm{em}})\cdot\hat{\mathbf{r}}_{o'j}
+c_f-\mathbf V_j(T_t)\cdot\hat{\mathbf{r}}_{o'j}
 $$
 
-and the receiver-normal numerator is
+and the receiver-side factor is
 
 $$
-D_{T,o'j}(T;T_{\mathrm{em}})
+D_{r,o'j}(T;T_t)
 =
 c_f-\mathbf V_{o'}(T)\cdot\hat{\mathbf{r}}_{o'j}.
 $$
 
-The branch strength is $W^{\mathrm{rec}}=\lvert D_T/D_s\rvert$, while the instantaneous power delivered to the receiver is controlled by
+The branch strength is $W^{\mathrm{acc}}=c_f/\lvert D_t\rvert$, while the instantaneous power delivered to the receiver is controlled by
 
 $$
 \mathbf A_{o'\leftarrow j}\cdot\mathbf V_{o'}
@@ -176,7 +173,7 @@ $$
 \|\mathbf A_{o'\leftarrow j}\|\,V_r
 $$
 
-On an affine partner chart, the source-normal denominator and receiver-normal numerator must both be tracked. The simple branch expression $J_p=1+(dX/dT)/c_f$ is only a source-normal topology expression unless the receiver-normal factor is also present on the same chart.
+On an affine partner chart, the transmitter-side factor and receiver-side factor must both be tracked. The simple branch expression $J_p=1+(dX/dT)/c_f$ is only a transmitter-side topology expression unless the receiver-side factor is also present on the same chart.
 
 Thus the potential to do work is broadly available wherever causal wakes pass, but work is realized only through an actual receiver trajectory. A quiet region is not a region with no causal activity; it is a region where the active wake contributions sum to negligible net acceleration and negligible net power for the assemblies present there.
 
@@ -186,7 +183,7 @@ For a receiver architrino $o'$ with polarity $q_{o'}$ at position $\mathbf X_{o'
 
 $$U_{o'}(T) = q_{o'}\,\Phi_{\text{net}}[\text{history}]\big(\mathbf X_{o'}(T),T\big).$$
 
-The sign of $\Phi_{\text{net}}$ is not a sign on total energy. A negative causal-wake potential contribution from an electrino source is a polarity-signed interaction record; it becomes energy bookkeeping only after the receiver polarity, active causal root, line-of-action geometry, source-normal denominator, receiver-normal branch factor, and receiver radial motion are specified. Work can therefore occur relative to a negative potential without introducing a negative-energy substance or a negative total-energy reservoir.
+The sign of $\Phi_{\text{net}}$ is not a sign on total energy. A negative causal-wake potential contribution from an electrino source is a polarity-signed interaction record; it becomes energy bookkeeping only after the receiver polarity, active causal root, line-of-action geometry, transmitter-side factor, transmitter-side acceleration weight, and receiver radial motion are specified. Work can therefore occur relative to a negative potential without introducing a negative-energy substance or a negative total-energy reservoir.
 
 Unlike electrostatics, $\Phi_{\text{net}}$ is not a function of instantaneous source positions but a functional of their past worldlines intercepted by the backward causal-wake record of $\mathbf X_{o'}(T)$. The gradient $\nabla\Phi_{\text{net}}$ is taken with respect to the receiver's spatial coordinates on the fixed background, holding the causal history fixed. In the idealized picture, $\Phi$ is a distribution supported on causal isochrons, not a smooth continuum field.
 
@@ -221,7 +218,7 @@ Both bounds must use the same horizon, screening, and summation prescription tha
 
 Mean-zero wake potential is therefore not zero total energy. A statistically neutral $50/50$ electrino/positrino inventory can make the large-scale potential gradient and received power nearly vanish while still carrying kinetic energy, local correlated interaction energy, retained wake-history content, and Noether sea organization. The conserved quantity for an isolated exact trajectory is the history-aware total ledger, not "initial kinetic energy plus a naive instantaneous potential" evaluated after the wake record has been discarded.
 
-For energy accounting, cancellation is applied only after source identity, polarity, emission time, active causal root, branch Jacobian, line-of-action geometry, and receiver radial power have been retained. A net-zero scalar potential channel is therefore a projection of a richer source-tagged ledger, not proof that no wake-history energy, internal branch energy, or coherent work opportunity remains available to a receiver whose branch resolves the contributing rows.
+For energy accounting, cancellation is applied only after transmitter identity, polarity, emission time, active causal root, branch Jacobian, line-of-action geometry, and receiver radial power have been retained. A net-zero scalar potential channel is therefore a projection of a richer transmitter-tagged ledger, not proof that no wake-history energy, internal branch energy, or coherent work opportunity remains available to a receiver whose branch resolves the contributing rows.
 
 Phase-locked bound states are the important exception. In a localized assembly, nearby constituents do not sample random phases; their active causal roots are correlated, and the $1/r^2$ distance factor lets the nearest coherent branches dominate over the far incoherent background. A collinear breather, for example, is precisely a reduced setting in which two opposite-polarity architrinos can form a localized, non-canceling causal resonance: instead of averaging away, the partner-hit and self-hit branches stay phase organized enough to exchange kinetic and potential energy across a bounded cycle.
 
@@ -229,9 +226,9 @@ Phase-locked bound states are the important exception. In a localized assembly, 
 
 ## Energy Conservation and Exchange
 
-In the exact causal theory, energy conservation is enforced through exchange between kinetic motion and the causal-history interaction content encoded by wakes. This wake term should not be read as an independent material reservoir that drains from the emitter with every unreceived isochron; it is the nonlocal bookkeeping required by the same delayed causal action that generates the hits. For mollified working models, the strongest exact conservation claims remain conditional on the regularization being derived from the same time-translation-invariant causal action rather than inserted only at the equation-of-motion level.
+In the exact causal theory, energy conservation is enforced through exchange between kinetic motion and the causal-history interaction content encoded by wakes. This wake term should not be read as an independent material reservoir that drains from the transmitter with every unreceived isochron; it is the nonlocal bookkeeping required by the same delayed causal action that generates the hits. For mollified working models, the strongest exact conservation claims remain conditional on the regularization being derived from the same time-translation-invariant causal action rather than inserted only at the equation-of-motion level.
 
-Classical virial language is recovered only at branch level. The familiar comparison form $\langle 2K-pU\rangle=0$ is admissible after a retained branch chart supplies a branch-local potential, homogeneity degree, and proof that the same acceleration row used by the Master EOM is generated by that potential over the declared window. Standard mechanics often writes $T$ for kinetic energy in this formula; here $K$ avoids collision with absolute time $T$. Until those rows close, virial behavior remains a diagnostic on the causal-root ledger rather than a primitive substrate axiom; see the branch-virial target in [Analytic Baselines](../validation/simulations/action-energy/analytic-baselines.md#analytic-baselines).
+Classical virial language is recovered only at branch level. The familiar comparison form $\langle 2K-pU\rangle=0$ is admissible after a retained branch chart supplies a branch-local potential, homogeneity degree, and proof that the same acceleration contribution used by the Master EOM is generated by that potential over the declared window. Standard mechanics often writes $T$ for kinetic energy in this formula; here $K$ avoids collision with absolute time $T$. Until those rows close, virial behavior remains a diagnostic on the causal-root ledger rather than a primitive substrate axiom; see the branch-virial target in [Analytic Baselines](../validation/simulations/action-energy/analytic-baselines.md#analytic-baselines).
 
 For a single architrino:
 
@@ -326,7 +323,7 @@ $$
 
 This is not a claim that $\sum_a E_{k,a}$ is constant on $\Sigma_T$, nor that a finite simulation window conserves its particle-only ledger. Delayed hits move energy between mechanical motion and causal-wake history, and finite windows must also name boundary flux, external work, and residuals. A calculation that omits one of those terms has not established energy nonconservation; it has exposed an incomplete retained record.
 
-In working models the exact claim is conditional. If the mollifier, history window, self-branch cutoff, or characteristic-tail repair is inserted only at the equation-of-motion level, then the same expression is a diagnostic to monitor, not a proved Noether charge. Exact conservation is promoted only when the same regularized action supplies both the force row and the energy row, and when the energy residual in this section vanishes under refinement. The formal construction routes, crosswalk residual, and promotion conditions for $E_{\text{wake}}$ are isolated in [Delay Dynamics Energy](../validation/simulations/action-energy/delay-dynamics-energy.md).
+In working models the exact claim is conditional. If the mollifier, history window, self-branch cutoff, or characteristic-tail repair is inserted only at the equation-of-motion level, then the same expression is a diagnostic to monitor, not a proved Noether charge. Exact conservation is promoted only when the same regularized action supplies both the acceleration contribution and the energy row, and when the energy residual in this section vanishes under refinement. The formal construction routes, crosswalk residual, and promotion conditions for $E_{\text{wake}}$ are isolated in [Delay Dynamics Energy](../validation/simulations/action-energy/delay-dynamics-energy.md).
 
 The finite-$\eta$ pathology theorem target in [Master Equation](./master-equation.md#finite-eta-pathology-quarantine-theorem-target) uses this conservation status in a restricted way. The no-runaway conclusion is available only when the action-derived $E_{\text{wake}}^{(\eta)}$, or a compatible realized-trajectory reconstruction, has a declared lower bound on the same admissible branch chart. If the lower bound is absent, the run is not promoted as a closed solution; it is routed to the continuation boundary where collapse, missing wake-history bookkeeping, regulator dependence, or endpoint leakage must be resolved.
 
@@ -336,21 +333,21 @@ For reaction or radiation events, energy can leave the source assembly as photon
 
 This is a boundary-accounting idea, not a new energy reservoir. If a wake leaves the chosen local window before any retained receiver crosses it, the local work ledger cannot spend that wake internally. The accounting must therefore mark it as escaped flux, recoil, boundary exchange, or another declared handoff rather than hiding it inside the local assembly.
 
-For a finite local window $W\subset\Sigma_T$, **wake escapement** is the subset of emitted causal isochrons that exit the retained window without intersecting any retained receiver inside that window. More explicitly, if architrino $a$ emits at $T_{\mathrm{em}}$, define the causal isochron at later time $T$ by
+For a finite local window $W\subset\Sigma_T$, **wake escapement** is the subset of emitted causal isochrons that exit the retained window without intersecting any retained receiver inside that window. More explicitly, if architrino $a$ emits at $T_t$, define the causal isochron at later time $T$ by
 
 $$
-C_a(T;T_{\mathrm{em}})
+C_a(T;T_t)
 =
 \left\{
 \mathbf Y\in\Sigma_T:
-\left\|\mathbf Y-\mathbf X_a(T_{\mathrm{em}})\right\|
+\left\|\mathbf Y-\mathbf X_a(T_t)\right\|
 =
-c_f(T-T_{\mathrm{em}})
+c_f(T-T_t)
 \right\}
 $$
 The emitted isochron belongs to the escapement set $\mathcal{E}_{\mathrm{esc}}(W)$ when it has a first retained boundary crossing
 $$
-C_a(T_{\partial W};T_{\mathrm{em}})\cap\partial W\ne\varnothing
+C_a(T_{\partial W};T_t)\cap\partial W\ne\varnothing
 $$
 and there is no retained receiver hit before that crossing:
 $$
@@ -358,11 +355,11 @@ $$
 \quad
 \text{with}
 \quad
-T_{\mathrm{em}}<T_r<T_{\partial W},
+T_t<T_r<T_{\partial W},
 \quad
 \mathbf X_b(T_r)\in W,
 \quad
-\mathbf X_b(T_r)\in C_a(T_r;T_{\mathrm{em}})
+\mathbf X_b(T_r)\in C_a(T_r;T_t)
 $$
 
 Wake escapement is therefore a finite-window boundary classification, not a new substance in the Euclidean void. It names the portion of causal-wake history that cannot be balanced by local receiver work because no local receiver intercepted it. In a contracting binary, the persistent positive tangential drive identified in [Binary Dynamics](binary-dynamics.md#tangential-drive-and-wake-escapement) should be read against this boundary ledger: particle kinetic gain, local interaction-energy change, recoil, and escaped wake flux are parts of one balance law.
@@ -397,7 +394,7 @@ $$
 \delta_\eta'\!\left(u-\frac{R_{+}}{c_f}\right)
 \longrightarrow 0
 $$
-on the retained branch chart. If $D_{ij}R_{+}\ne0$ and this residual does not vanish, the endpoint is an interior Euler source rather than a conservation-boundary term. In that case the characteristic-tail action changes the accepted branch force and cannot be used to close exact energy conservation for the canonical Master EOM.
+on the retained branch chart. If $D_{ij}R_{+}\ne0$ and this residual does not vanish, the endpoint is an interior Euler source rather than a conservation-boundary term. In that case the characteristic-tail action changes the accepted branch acceleration and cannot be used to close exact energy conservation for the canonical Master EOM.
 
 The analogous momentum and angular-momentum closures must also remain tied to the same window and boundary data. The finite-window momentum functional $P_W^i$ contains the mechanical momentum retained in $W$ plus the retained wake-history momentum record:
 $$

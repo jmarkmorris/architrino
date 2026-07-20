@@ -9,9 +9,9 @@
       "elementLegendSource": "content/graph/runtime_routes.json"
     },
     "counts": {
-      "nodes": 586,
-      "edges": 1352,
-      "scenes": 376,
+      "nodes": 587,
+      "edges": 1353,
+      "scenes": 377,
       "markdownIndexes": 0,
       "markdownDocs": 193,
       "runtimeEdges": 476,
@@ -320,6 +320,12 @@
       "id": "equation-mapping",
       "name": "Equation Mapping",
       "path": "content/scenes/archie/equation_mapping.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "greek_letter_match",
+      "name": "It's Greek to Me!",
+      "path": "content/scenes/archie/greek_letter_match.json",
       "nodeType": "scene"
     },
     {
@@ -3850,6 +3856,15 @@
       "name": "Comparative Glossary",
       "path": "content/scenes/archie/glossary.json",
       "searchTarget": "content/scenes/archie/glossary.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/archie/greek_letter_match.json",
+      "nodeType": "scene",
+      "id": "greek_letter_match",
+      "name": "It's Greek to Me!",
+      "path": "content/scenes/archie/greek_letter_match.json",
+      "searchTarget": "content/scenes/archie/greek_letter_match.json",
       "implicit": false
     },
     {
@@ -8845,7 +8860,7 @@
       "to": "scene:content/scenes/archie/animator.json",
       "edgeType": "subscene",
       "source": "content/scenes/archie/applications.json",
-      "field": "scene.children[10]"
+      "field": "scene.children[11]"
     },
     {
       "from": "scene:content/scenes/archie/applications.json",
@@ -8859,7 +8874,7 @@
       "to": "scene:content/scenes/archie/borg.json",
       "edgeType": "subscene",
       "source": "content/scenes/archie/applications.json",
-      "field": "scene.children[11]"
+      "field": "scene.children[12]"
     },
     {
       "from": "scene:content/scenes/archie/applications.json",
@@ -8874,6 +8889,13 @@
       "edgeType": "subscene",
       "source": "content/scenes/archie/applications.json",
       "field": "scene.children[9]"
+    },
+    {
+      "from": "scene:content/scenes/archie/applications.json",
+      "to": "scene:content/scenes/archie/greek_letter_match.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/archie/applications.json",
+      "field": "scene.children[10]"
     },
     {
       "from": "scene:content/scenes/archie/applications.json",

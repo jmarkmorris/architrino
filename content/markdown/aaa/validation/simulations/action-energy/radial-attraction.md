@@ -2,34 +2,34 @@
 
 Setup:
 - A test architrino with polarity $q'$ falls radially toward a fixed center with polarity $q$.
-- The interaction is delayed; the causal emission time exists uniquely for a fixed source, but the receiver-normal factor makes the acceleration depend on receiver radial velocity as well as current separation.
+- The fixed transmitter has a unique causal emission time. Its transmitter-side factor is $D_t=c_f$, so receiver radial velocity does not multiply the arriving acceleration.
 
 Objectives:
-- Receiver-normal baseline equations for $r(T)$ and $V_r(T)$.
+- Receiver-side baseline equations for $r(T)$ and $V_r(T)$.
 - Energy balance and integral expressions suitable for comparison.
 
-Delay differential equation and exact reduction:
-- With field speed normalized to $v=1$ and a fixed source location $X_c$, the causal root satisfies $|X(T)-X_c|=T-T_{\mathrm{em}}$ with $T_{\mathrm{em}}<T$.
-- The per-hit law yields a line-of-action acceleration whose magnitude depends on the current separation $r(T)=|X(T)-X_c|$ and the receiver-normal branch strength:
+Delay equation and exact reduction:
+- With field speed normalized to $c_f=1$ and a fixed transmitter location $X_c$, the causal root satisfies $|X(T_r)-X_c|=T_r-T_t$ with $T_t<T_r$.
+- The per-hit law yields a line-of-action acceleration whose magnitude depends on the current separation $r(T)=|X(T)-X_c|$ and the transmitter-side acceleration weight:
   $$
-  \frac{d^2X}{dT^2} \;=\; -\,\kappa\,\sigma_{q q'}\,\frac{|q q'|}{r(T)^2}W^{\mathrm{rec}}(T)\,\mathrm{sgn}\!\big(X(T)-X_c\big)
+  \frac{d^2X}{dT^2} \;=\; -\,\kappa\,\sigma_{q q'}\,\frac{|q q'|}{r(T)^2}W^{\mathrm{acc}}(T)\,\mathrm{sgn}\!\big(X(T)-X_c\big)
   $$
   Writing $K=\kappa\,|q q'|>0$ and $r=\lvert X-X_c\rvert$, the radial ODE is
   $$
-  \frac{d^2r}{dT^2} \;=\; -\,\frac{K}{r(T)^2}W^{\mathrm{rec}}(T),
+  \frac{d^2r}{dT^2} \;=\; -\,\frac{K}{r(T)^2}W^{\mathrm{acc}}(T),
   \qquad
-  W^{\mathrm{rec}}(T)=\left|1-\frac{dr}{dT}\right|
+  W^{\mathrm{acc}}(T)=1
   $$
-  on the outward radial sign convention and field-speed units.
+  in field-speed units.
 
 Solvability status:
-- The classical inverse-square fall formulas are not a canonical receiver-normal baseline for a moving receiver. They apply only to the frozen instant where $W^{\mathrm{rec}}=1$ and do not describe the subsequent receiver-normal evolution.
-- No closed-form solution is presently asserted for the velocity-dependent receiver-normal radial fall.
+- The fixed-transmitter case reduces exactly to the inverse-square radial equation. Its mathematical closed forms are therefore valid comparison cases for the trajectory once initial conditions are declared.
+- This does not establish a conserved Master-Equation energy account; it establishes only the reduced acceleration equation for this fixed-transmitter geometry.
 
 Notes:
-- For a fixed source, $D_s=1$ in field-speed units. The nontrivial receiver-normal factor is $D_T=1-\frac{dr}{dT}$ on the outward radial sign convention.
+- For a fixed transmitter, $D_t=1$ and $W^{\mathrm{acc}}=1$ in field-speed units. The receiver-side factor $D_r=1-dr/dT$ controls signed root playback, and radial velocity controls instantaneous power.
 
 Use:
-- A simple ground-truth receiver-normal root geometry against which delayed-law simulations can check receiver-normal modulation.
+- An analytic fixed-transmitter check that must remain invariant when receiver velocity is varied at fixed reception position and retained transmitter history.
 
-Plain language: A fixed center still gives an easy causal root, but a moving receiver crosses the wake differently as it falls. The hit strength changes with that crossing speed, so the familiar closed-form inverse-square fall is not the receiver-normal benchmark.
+Plain language: At the same position and against the same fixed transmitter history, two receivers with different velocities get the same arriving acceleration. Their later paths and the rate at which they replay emission history differ.

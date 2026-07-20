@@ -316,7 +316,7 @@ A toy boat wake reaches a paper leaf and moves it.
 
 Background concepts:
 
-Moving source, wake, arrival object, changed motion.
+Moving transmitter, wake, arrival object, changed motion.
 
 Illustration prompt:
 

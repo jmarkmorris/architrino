@@ -87,6 +87,7 @@ Current application and application-like surfaces include:
 - Assembly Configuration Explorer: `assembly-explorer.html`
 - Causal Delay Feedback: `causal-delay-feedback.html`
 - Equation Mapping: `equation-mapping.html`
+- It's Greek to Me! — Alpha to Omega: `greek-letter-match.html`
 - Animator: `animator.html`
 - Borg App: `borg.html`
 - Molecule Visualization: `molecule.html`
@@ -220,7 +221,8 @@ when required, then verify the manifest and integrity checks before publishing.
 Git hooks are configured through `.githooks`.
 
 The pre-commit hook checks content references, the scene graph, textbook reading
-copies, receiver-normal clean-slate status, notation drift, and animator runtime
+copies, receiver-weighted compatibility status, current Master Equation terminology,
+notation drift, and animator runtime
 wiring.
 
 The pre-push hook runs the Content Integrity gate and animator runtime wiring

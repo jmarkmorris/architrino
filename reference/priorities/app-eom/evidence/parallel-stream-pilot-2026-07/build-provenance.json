@@ -1,0 +1,40 @@
+{
+  "schema": "parallel_stream_pilot_build_provenance/v0",
+  "claimGrade": "measured",
+  "host": {
+    "model": "MacBook Air",
+    "identifier": "Mac15,13",
+    "chip": "Apple M3",
+    "cores": 8,
+    "memoryBytes": 25769803776,
+    "memoryDisplay": "24 GB",
+    "operatingSystem": "Darwin 25.5.0 arm64"
+  },
+  "latestSource": {
+    "path": "src/eom/src/ShadowAffineDiagnostic.cpp",
+    "modified": "2026-07-18T13:27:45-0400"
+  },
+  "configurationStarted": "2026-07-18T16:52:24-0400",
+  "binaryBuilt": "2026-07-18T16:52:39-0400",
+  "binaryBuildLagAfterLatestSourceSeconds": 12294,
+  "buildCommands": [
+    "cmake -S src/eom -B /tmp/architrino-eom-p5a-pilot-build -DCMAKE_BUILD_TYPE=Release",
+    "cmake --build /tmp/architrino-eom-p5a-pilot-build --parallel 8"
+  ],
+  "buildResult": "success-all-targets",
+  "observedCompileWallSeconds": 7.5,
+  "protocol": "EOM_BORG_NATIVE_V8",
+  "artifacts": {
+    "eomBorgShadowCli": {
+      "path": "/tmp/architrino-eom-p5a-pilot-build/eom_borg_shadow_cli",
+      "bytes": 1301520,
+      "sha256": "c1d592a341771961fc0bf60cf3ed5406c4b4df3a8ebb21a5962bdd9ded854a9d"
+    },
+    "eomNativeStaticLibrary": {
+      "path": "/tmp/architrino-eom-p5a-pilot-build/libeom_native.a",
+      "sha256": "fe5069e825d035b118576e6f18c073c2cd224b2574f8be5b7f2154ab0833b010"
+    }
+  },
+  "sourceTreeAggregateSha256": "0bb743775965dce4b8b776af5ada234acd3be2676636296b492388783197a3a3",
+  "gitCommandsUsed": false
+}

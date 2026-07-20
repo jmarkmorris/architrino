@@ -68,11 +68,11 @@ def _geometry_over(
     emission: DecimalInterval,
 ) -> tuple[IntervalVector, IntervalVector, IntervalVector, DecimalInterval]:
     receiver_position, receiver_velocity = _history_state_over(receiver, reception)
-    source_position, source_velocity = _history_state_over(source, emission)
-    displacement = _vector_subtract(receiver_position, source_position)
+    transmitter_position, transmitter_velocity = _history_state_over(source, emission)
+    displacement = _vector_subtract(receiver_position, transmitter_position)
     return (
         receiver_velocity,
-        source_velocity,
+        transmitter_velocity,
         displacement,
         interval_norm(displacement),
     )
@@ -92,14 +92,14 @@ def _residual_over(
     ) * delay
 
 
-def _source_normal_over(
+def _transmitter_factor_over(
     receiver: PiecewisePolynomialHistory,
     source: PiecewisePolynomialHistory,
     reception: DecimalInterval,
     emission: DecimalInterval,
     field_speed: Decimal,
 ) -> DecimalInterval | None:
-    _, source_velocity, displacement, separation = _geometry_over(
+    _, transmitter_velocity, displacement, separation = _geometry_over(
         receiver, source, reception, emission
     )
     if separation.contains_zero:
@@ -109,27 +109,27 @@ def _source_normal_over(
     )
     return DecimalInterval.point(
         field_speed, reception.precision
-    ) - interval_dot(direction, source_velocity)
+    ) - interval_dot(direction, transmitter_velocity)
 
 
 def _strictly_straddles(
     lower_residual: DecimalInterval,
     upper_residual: DecimalInterval,
-    source_normal_sign: int,
+    transmitter_factor_sign: int,
 ) -> bool:
-    if source_normal_sign > 0:
+    if transmitter_factor_sign > 0:
         return lower_residual.upper < 0 and upper_residual.lower > 0
     return lower_residual.lower > 0 and upper_residual.upper < 0
 
 
 def _root_identity(
     receiver_id: str,
-    source_id: str,
+    transmitter_id: str,
     rank: int,
     start_snapshot: AccelerationSnapshotCertificate,
 ) -> str:
     payload = (
-        f"{receiver_id}\n{source_id}\n{rank}\n"
+        f"{receiver_id}\n{transmitter_id}\n{rank}\n"
         f"{start_snapshot.reception_time}\n{start_snapshot.input_digest}"
     )
     return sha256(payload.encode("utf-8")).hexdigest()
@@ -138,7 +138,7 @@ def _root_identity(
 @dataclass(frozen=True)
 class RootContinuationRow:
     receiver_path_id: str
-    source_path_id: str
+    transmitter_path_id: str
     root_rank: int
     root_identity: str
     start_lower: Decimal
@@ -147,13 +147,13 @@ class RootContinuationRow:
     end_upper: Decimal
     tube_lower: Decimal
     tube_upper: Decimal
-    source_normal: DecimalInterval
+    transmitter_factor: DecimalInterval
     status: str
 
     def to_record(self) -> dict[str, object]:
         return {
             "receiver_path_id": self.receiver_path_id,
-            "source_path_id": self.source_path_id,
+            "transmitter_path_id": self.transmitter_path_id,
             "root_rank": self.root_rank,
             "root_identity": self.root_identity,
             "start_bracket": {
@@ -168,10 +168,10 @@ class RootContinuationRow:
                 "lower": str(self.tube_lower),
                 "upper": str(self.tube_upper),
             },
-            "source_normal": {
-                "lower": str(self.source_normal.lower),
-                "upper": str(self.source_normal.upper),
-                "sign": self.source_normal.strict_sign,
+            "transmitter_factor": {
+                "lower": str(self.transmitter_factor.lower),
+                "upper": str(self.transmitter_factor.upper),
+                "sign": self.transmitter_factor.strict_sign,
             },
             "status": self.status,
         }
@@ -193,7 +193,7 @@ class RootContinuationCertificate:
         return tuple(
             (
                 row.receiver_path_id,
-                row.source_path_id,
+                row.transmitter_path_id,
                 row.root_rank,
                 row.root_identity,
             )
@@ -202,19 +202,19 @@ class RootContinuationCertificate:
 
     def to_record(self) -> dict[str, object]:
         return {
-            "schema": "eom_root_continuation_certificate/v0",
+            "schema": "eom_root_continuation_certificate/v1",
             "status": self.status,
             "start_time": str(self.start_time),
             "end_time": str(self.end_time),
             "rows": [row.to_record() for row in self.rows],
             "stable_zero_root_pairs": [
-                {"receiver_path_id": receiver, "source_path_id": source}
+                {"receiver_path_id": receiver, "transmitter_path_id": source}
                 for receiver, source in self.stable_zero_root_pairs
             ],
             "event_pairs": [
                 {
                     "receiver_path_id": receiver,
-                    "source_path_id": source,
+                    "transmitter_path_id": source,
                     "reason": reason,
                 }
                 for receiver, source, reason in self.event_pairs
@@ -222,7 +222,7 @@ class RootContinuationCertificate:
             "unresolved_pairs": [
                 {
                     "receiver_path_id": receiver,
-                    "source_path_id": source,
+                    "transmitter_path_id": source,
                     "reason": reason,
                 }
                 for receiver, source, reason in self.unresolved_pairs
@@ -281,9 +281,9 @@ def certify_root_continuation(
     """Certify persistent root identities through a reception-time slab.
 
     Each admitted branch receives a disjoint emission-time tube.  Uniform
-    endpoint sign separation and a nonzero source-normal enclosure prove one
+    endpoint sign separation and a nonzero transmitter-side enclosure prove one
     root for every reception time in that tube.  The complement is certified
-    root-free over the complete slab.  A root-count change or a source-normal
+    root-free over the complete slab.  A root-count change or a transmitter-side
     enclosure containing zero is routed to the finite-width event control.
     """
 
@@ -312,18 +312,18 @@ def certify_root_continuation(
     unresolved: list[tuple[str, str, str]] = []
     prior = dict(prior_identities or {})
 
-    for receiver_id, source_id in start_pairs:
-        start_certificate = start_pairs[(receiver_id, source_id)]
-        end_certificate = end_pairs[(receiver_id, source_id)]
+    for receiver_id, transmitter_id in start_pairs:
+        start_certificate = start_pairs[(receiver_id, transmitter_id)]
+        end_certificate = end_pairs[(receiver_id, transmitter_id)]
         receiver = history_by_path[receiver_id]
-        source = history_by_path[source_id]
+        source = history_by_path[transmitter_id]
         if start_certificate.status != "certified_complete" or end_certificate.status != "certified_complete":
-            unresolved.append((receiver_id, source_id, "endpoint_root_set_uncertified"))
+            unresolved.append((receiver_id, transmitter_id, "endpoint_root_set_uncertified"))
             continue
         start_roots = start_certificate.roots
         end_roots = end_certificate.roots
         if len(start_roots) != len(end_roots):
-            events.append((receiver_id, source_id, "root_count_changed"))
+            events.append((receiver_id, transmitter_id, "root_count_changed"))
             continue
         if not start_roots:
             same_history = (
@@ -336,7 +336,7 @@ def certify_root_continuation(
                 and end_certificate.coincident_endpoint_excluded
                 and _same_history_endpoint_is_stable(source, reception, c_f)
             ):
-                stable_zero.append((receiver_id, source_id))
+                stable_zero.append((receiver_id, transmitter_id))
                 continue
             residual = _residual_over(
                 receiver,
@@ -350,17 +350,17 @@ def certify_root_continuation(
                 c_f,
             )
             if residual.contains_zero:
-                unresolved.append((receiver_id, source_id, "zero_root_complement_unresolved"))
+                unresolved.append((receiver_id, transmitter_id, "zero_root_complement_unresolved"))
             else:
-                stable_zero.append((receiver_id, source_id))
+                stable_zero.append((receiver_id, transmitter_id))
             continue
 
         tubes: list[tuple[Decimal, Decimal]] = []
         pair_rows: list[RootContinuationRow] = []
         pair_failed = False
         for rank, (start_root, end_root) in enumerate(zip(start_roots, end_roots)):
-            if start_root.source_normal.strict_sign != end_root.source_normal.strict_sign:
-                events.append((receiver_id, source_id, "source_normal_sign_changed"))
+            if start_root.transmitter_factor.strict_sign != end_root.transmitter_factor.strict_sign:
+                events.append((receiver_id, transmitter_id, "transmitter_factor_sign_changed"))
                 pair_failed = True
                 break
             tube_lower, tube_upper = _expanded_root_tube(
@@ -371,11 +371,11 @@ def certify_root_continuation(
                 precision,
             )
             emission = DecimalInterval.bounds(tube_lower, tube_upper, precision)
-            source_normal = _source_normal_over(
+            transmitter_factor = _transmitter_factor_over(
                 receiver, source, reception, emission, c_f
             )
-            if source_normal is None or source_normal.strict_sign is None:
-                events.append((receiver_id, source_id, "fold_or_caustic_source_normal"))
+            if transmitter_factor is None or transmitter_factor.strict_sign is None:
+                events.append((receiver_id, transmitter_id, "fold_or_caustic_transmitter_factor"))
                 pair_failed = True
                 break
             lower_residual = _residual_over(
@@ -393,24 +393,24 @@ def certify_root_continuation(
                 c_f,
             )
             if not _strictly_straddles(
-                lower_residual, upper_residual, source_normal.strict_sign
+                lower_residual, upper_residual, transmitter_factor.strict_sign
             ):
-                unresolved.append((receiver_id, source_id, "continuation_tube_boundary_unresolved"))
+                unresolved.append((receiver_id, transmitter_id, "continuation_tube_boundary_unresolved"))
                 pair_failed = True
                 break
             if tubes and tube_lower <= tubes[-1][1]:
-                unresolved.append((receiver_id, source_id, "continuation_tubes_overlap"))
+                unresolved.append((receiver_id, transmitter_id, "continuation_tubes_overlap"))
                 pair_failed = True
                 break
             identity = prior.get(
-                (receiver_id, source_id, rank),
-                _root_identity(receiver_id, source_id, rank, start_snapshot),
+                (receiver_id, transmitter_id, rank),
+                _root_identity(receiver_id, transmitter_id, rank, start_snapshot),
             )
             tubes.append((tube_lower, tube_upper))
             pair_rows.append(
                 RootContinuationRow(
                     receiver_path_id=receiver_id,
-                    source_path_id=source_id,
+                    transmitter_path_id=transmitter_id,
                     root_rank=rank,
                     root_identity=identity,
                     start_lower=start_root.lower,
@@ -419,7 +419,7 @@ def certify_root_continuation(
                     end_upper=end_root.upper,
                     tube_lower=tube_lower,
                     tube_upper=tube_upper,
-                    source_normal=source_normal,
+                    transmitter_factor=transmitter_factor,
                     status="certified_persistent",
                 )
             )
@@ -450,7 +450,7 @@ def certify_root_continuation(
                 c_f,
             )
             if residual.contains_zero:
-                unresolved.append((receiver_id, source_id, "root_free_slab_complement_unresolved"))
+                unresolved.append((receiver_id, transmitter_id, "root_free_slab_complement_unresolved"))
                 pair_failed = True
                 break
         if not pair_failed:
@@ -488,11 +488,11 @@ def certify_root_continuation(
 @dataclass(frozen=True)
 class EventImpulseRequest:
     receiver_path_id: str
-    source_path_id: str
+    transmitter_path_id: str
     receiver_history: PiecewisePolynomialHistory
-    source_history: PiecewisePolynomialHistory
+    transmitter_history: PiecewisePolynomialHistory
     receiver_charge: Decimal
-    source_charge: Decimal
+    transmitter_charge: Decimal
     reception_lower: Decimal
     reception_upper: Decimal
     search_lower: Decimal
@@ -510,11 +510,11 @@ class EventImpulseRequest:
         cls,
         *,
         receiver_path_id: str,
-        source_path_id: str,
+        transmitter_path_id: str,
         receiver_history: PiecewisePolynomialHistory,
-        source_history: PiecewisePolynomialHistory,
+        transmitter_history: PiecewisePolynomialHistory,
         receiver_charge: object,
-        source_charge: object,
+        transmitter_charge: object,
         reception_lower: object,
         reception_upper: object,
         search_lower: object,
@@ -538,11 +538,11 @@ class EventImpulseRequest:
         )
         request = cls(
             receiver_path_id=receiver_path_id,
-            source_path_id=source_path_id,
+            transmitter_path_id=transmitter_path_id,
             receiver_history=receiver_history,
-            source_history=source_history,
+            transmitter_history=transmitter_history,
             receiver_charge=exact_decimal(receiver_charge),
-            source_charge=exact_decimal(source_charge),
+            transmitter_charge=exact_decimal(transmitter_charge),
             reception_lower=reception_lower_decimal,
             reception_upper=reception_upper_decimal,
             search_lower=exact_decimal(search_lower),
@@ -563,19 +563,19 @@ class EventImpulseRequest:
         return self.receiver_history.precision
 
     def _validate(self) -> None:
-        if not self.receiver_path_id or not self.source_path_id:
+        if not self.receiver_path_id or not self.transmitter_path_id:
             raise ValueError("event impulse requires nonempty path identities")
-        if self.receiver_history.precision != self.source_history.precision:
+        if self.receiver_history.precision != self.transmitter_history.precision:
             raise ValueError("event impulse histories require one precision")
         if self.reception_lower >= self.reception_upper:
             raise ValueError("event impulse requires an increasing reception window")
         if self.reception_lower < self.receiver_history.t_start or self.reception_upper > self.receiver_history.t_end:
             raise ValueError("event impulse reception window is outside receiver history")
-        if self.search_lower < self.source_history.t_start or self.search_lower >= self.reception_lower:
-            raise ValueError("event impulse requires retained source history before the event")
-        if self.reception_upper > self.source_history.t_end:
-            raise ValueError("event impulse source history must cover the reception window")
-        if self.receiver_charge == 0 or self.source_charge == 0:
+        if self.search_lower < self.transmitter_history.t_start or self.search_lower >= self.reception_lower:
+            raise ValueError("event impulse requires retained transmitter history before the event")
+        if self.reception_upper > self.transmitter_history.t_end:
+            raise ValueError("event impulse transmitter history must cover the reception window")
+        if self.receiver_charge == 0 or self.transmitter_charge == 0:
             raise ValueError("event impulse charges must be nonzero")
         if min(
             self.field_speed,
@@ -594,7 +594,7 @@ class EventImpulseRequest:
 class EventImpulseCertificate:
     status: str
     receiver_path_id: str
-    source_path_id: str
+    transmitter_path_id: str
     reception_lower: Decimal
     reception_upper: Decimal
     causal_width: Decimal
@@ -610,7 +610,7 @@ class EventImpulseCertificate:
             "schema": "eom_fold_caustic_impulse_certificate/v1",
             "status": self.status,
             "receiver_path_id": self.receiver_path_id,
-            "source_path_id": self.source_path_id,
+            "transmitter_path_id": self.transmitter_path_id,
             "reception_window": {
                 "lower": str(self.reception_lower),
                 "upper": str(self.reception_upper),
@@ -675,31 +675,18 @@ def _event_integrand(
     reception: DecimalInterval,
     emission: DecimalInterval,
 ) -> IntervalVector:
-    receiver_velocity, _, displacement, separation = _geometry_over(
+    _, _, displacement, separation = _geometry_over(
         request.receiver_history,
-        request.source_history,
+        request.transmitter_history,
         reception,
         emission,
     )
     kernel = _core_kernel_interval(displacement, separation, request.core_scale)
     field_speed = DecimalInterval.point(request.field_speed, request.precision)
-    if separation.contains_zero:
-        receiver_strength = DecimalInterval.bounds(
-            0,
-            (field_speed + interval_norm(receiver_velocity)).upper,
-            request.precision,
-        )
-    else:
-        direction = interval_vector(
-            component / separation for component in displacement
-        )
-        receiver_strength = (
-            field_speed - interval_dot(direction, receiver_velocity)
-        ).absolute()
     residual = separation - field_speed * (reception - emission)
     mollifier = _gaussian_mollifier_interval(residual, request.causal_width)
     return _vector_scale(
-        _signed_charge_scale(request) * receiver_strength * mollifier,
+        _signed_charge_scale(request) * field_speed * mollifier,
         kernel,
     )
 
@@ -730,11 +717,11 @@ def certify_fold_caustic_impulse(
     payload = "\n".join(
         (
             request.receiver_path_id,
-            request.source_path_id,
+            request.transmitter_path_id,
             request.receiver_history.digest(),
-            request.source_history.digest(),
+            request.transmitter_history.digest(),
             str(request.receiver_charge),
-            str(request.source_charge),
+            str(request.transmitter_charge),
             str(request.reception_lower),
             str(request.reception_upper),
             str(request.search_lower),
@@ -754,7 +741,7 @@ def certify_fold_caustic_impulse(
     )
     boundary_residual = _residual_over(
         request.receiver_history,
-        request.source_history,
+        request.transmitter_history,
         reception_all,
         DecimalInterval.point(request.search_lower, request.precision),
         request.field_speed,
@@ -763,7 +750,7 @@ def certify_fold_caustic_impulse(
         return EventImpulseCertificate(
             "uncertified",
             request.receiver_path_id,
-            request.source_path_id,
+            request.transmitter_path_id,
             request.reception_lower,
             request.reception_upper,
             request.causal_width,
@@ -897,7 +884,7 @@ def certify_fold_caustic_impulse(
         request.reception_upper,
     )
     emission_points = _history_breakpoints(
-        request.source_history,
+        request.transmitter_history,
         request.search_lower,
         request.reception_upper,
     )
@@ -923,7 +910,7 @@ def certify_fold_caustic_impulse(
         return EventImpulseCertificate(
             "uncertified",
             request.receiver_path_id,
-            request.source_path_id,
+            request.transmitter_path_id,
             request.reception_lower,
             request.reception_upper,
             request.causal_width,
@@ -941,7 +928,7 @@ def certify_fold_caustic_impulse(
         return EventImpulseCertificate(
             "uncertified",
             request.receiver_path_id,
-            request.source_path_id,
+            request.transmitter_path_id,
             request.reception_lower,
             request.reception_upper,
             request.causal_width,
@@ -959,7 +946,7 @@ def certify_fold_caustic_impulse(
         return EventImpulseCertificate(
             "uncertified",
             request.receiver_path_id,
-            request.source_path_id,
+            request.transmitter_path_id,
             request.reception_lower,
             request.reception_upper,
             request.causal_width,
@@ -973,7 +960,7 @@ def certify_fold_caustic_impulse(
     return EventImpulseCertificate(
         "certified_complete",
         request.receiver_path_id,
-        request.source_path_id,
+        request.transmitter_path_id,
         request.reception_lower,
         request.reception_upper,
         request.causal_width,
@@ -1046,7 +1033,7 @@ def _checkpoint_digest_payload(
     prefix_digest: str,
 ) -> str:
     payload = [
-        "eom_oracle_checkpoint/v0",
+        "eom_oracle_checkpoint/v1",
         run_id,
         *path_ids,
         str(accepted_time),
@@ -1098,7 +1085,7 @@ class OracleEvolutionCheckpoint:
 
     def to_record(self) -> dict[str, object]:
         return {
-            "schema": "eom_oracle_checkpoint/v0",
+            "schema": "eom_oracle_checkpoint/v1",
             "run_id": self.run_id,
             "path_ids": list(self.path_ids),
             "accepted_time": str(self.accepted_time),
@@ -1121,7 +1108,7 @@ class OracleEvolutionCheckpoint:
 
     @classmethod
     def from_record(cls, record: Mapping[str, object]) -> "OracleEvolutionCheckpoint":
-        if record.get("schema") != "eom_oracle_checkpoint/v0":
+        if record.get("schema") != "eom_oracle_checkpoint/v1":
             raise ValueError("unsupported oracle checkpoint schema")
         path_ids = tuple(str(value) for value in record["path_ids"])  # type: ignore[union-attr]
         raw_histories = record["histories"]
@@ -1194,7 +1181,7 @@ class OracleEvolutionCheckpoint:
             causal_width=None if causal_width == "None" else causal_width,
             core_scale=None if core_scale == "None" else core_scale,
             root_tolerance=decimal_policy["root_tolerance"],
-            source_normal_floor=decimal_policy["source_normal_floor"],
+            transmitter_factor_floor=decimal_policy["transmitter_factor_floor"],
             acceleration_tolerance=decimal_policy["acceleration_tolerance"],
             quadrature_tolerance=decimal_policy["quadrature_tolerance"],
             position_tolerance=decimal_policy["position_tolerance"],
@@ -1227,7 +1214,7 @@ def create_evolution_checkpoint(
         ("causal_width", str(request.causal_width)),
         ("core_scale", str(request.core_scale)),
         ("root_tolerance", str(request.root_tolerance)),
-        ("source_normal_floor", str(request.source_normal_floor)),
+        ("transmitter_factor_floor", str(request.transmitter_factor_floor)),
         ("acceleration_tolerance", str(request.acceleration_tolerance)),
         ("quadrature_tolerance", str(request.quadrature_tolerance)),
         ("position_tolerance", str(request.position_tolerance)),
@@ -1327,7 +1314,7 @@ class CoupledRefinementCertificate:
 
     def to_record(self) -> dict[str, object]:
         return {
-            "schema": "eom_coupled_refinement_ladder_certificate/v0",
+            "schema": "eom_coupled_refinement_ladder_certificate/v1",
             "status": self.status,
             "levels": [level.to_record() for level in self.levels],
             "deltas": [delta.to_record() for delta in self.deltas],
@@ -1350,7 +1337,7 @@ def _refinement_signature(request: CoupledEvolutionRequest) -> tuple[object, ...
         request.causal_width,
         request.core_scale,
         request.root_tolerance,
-        request.source_normal_floor,
+        request.transmitter_factor_floor,
         request.acceleration_tolerance,
         request.quadrature_tolerance,
         request.position_tolerance,
@@ -1526,7 +1513,7 @@ class Phase4AcceptanceMatrixCertificate:
 
     def to_record(self) -> dict[str, object]:
         return {
-            "schema": "eom_independent_oracle_phase4_acceptance/v0",
+            "schema": "eom_independent_oracle_phase4_acceptance/v1",
             "status": self.status,
             "cases": [case.to_record() for case in self.cases],
             "missing_controls": list(self.missing_controls),

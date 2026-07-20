@@ -33,8 +33,12 @@ const CHECKS = [
     args: ["scripts/export-ios-textbook-package.mjs", "--check", "--strict"],
   },
   {
-    name: "Check receiver-normal Master EOM clean slate",
-    args: ["scripts/check-receiver-normal-clean-slate.mjs"],
+    name: "Check current Master Equation terminology",
+    args: ["scripts/check-master-equation-terminology-migration.mjs"],
+  },
+  {
+    name: "Check transmitter-factor Master EOM clean slate",
+    args: ["scripts/check-transmitter-factor-clean-slate.mjs"],
   },
   {
     name: "Check frequency-triplet notation drift",

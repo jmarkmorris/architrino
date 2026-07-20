@@ -114,8 +114,8 @@ Counts traverse_stationary_blocks(const std::vector<double> &positions,
   struct Work {
     std::uint64_t receiver_begin;
     std::uint64_t receiver_end;
-    std::uint64_t source_begin;
-    std::uint64_t source_end;
+    std::uint64_t transmitter_begin;
+    std::uint64_t transmitter_end;
   };
 
   std::vector<Work> stack;
@@ -133,30 +133,30 @@ Counts traverse_stationary_blocks(const std::vector<double> &positions,
     ++counts.visited_nodes;
 
     const auto receiver_count = work.receiver_end - work.receiver_begin;
-    const auto source_count = work.source_end - work.source_begin;
+    const auto transmitter_count = work.transmitter_end - work.transmitter_begin;
     const double receiver_min = positions[work.receiver_begin];
     const double receiver_max = positions[work.receiver_end - 1];
-    const double source_min = positions[work.source_begin];
-    const double source_max = positions[work.source_end - 1];
+    const double transmitter_min = positions[work.transmitter_begin];
+    const double transmitter_max = positions[work.transmitter_end - 1];
 
     double lower_distance = 0.0;
-    if (receiver_max < source_min) {
+    if (receiver_max < transmitter_min) {
       lower_distance = std::nextafter(
-          source_min - receiver_max, -std::numeric_limits<double>::infinity());
-    } else if (source_max < receiver_min) {
+          transmitter_min - receiver_max, -std::numeric_limits<double>::infinity());
+    } else if (transmitter_max < receiver_min) {
       lower_distance = std::nextafter(
-          receiver_min - source_max, -std::numeric_limits<double>::infinity());
+          receiver_min - transmitter_max, -std::numeric_limits<double>::infinity());
     }
     if (lower_distance > causal_reach_upper) {
-      counts.excluded_pairs += receiver_count * source_count;
+      counts.excluded_pairs += receiver_count * transmitter_count;
       continue;
     }
 
-    if (receiver_count <= leaf_size && source_count <= leaf_size) {
-      counts.exact_fallback_pairs += receiver_count * source_count;
+    if (receiver_count <= leaf_size && transmitter_count <= leaf_size) {
+      counts.exact_fallback_pairs += receiver_count * transmitter_count;
       for (auto receiver = work.receiver_begin; receiver < work.receiver_end;
            ++receiver) {
-        for (auto source = work.source_begin; source < work.source_end; ++source) {
+        for (auto source = work.transmitter_begin; source < work.transmitter_end; ++source) {
           const double distance = std::abs(positions[receiver] - positions[source]);
           if (distance > 0.0 && distance <= 1.0) {
             ++counts.active_root_pairs;
@@ -166,14 +166,14 @@ Counts traverse_stationary_blocks(const std::vector<double> &positions,
       continue;
     }
 
-    if (receiver_count >= source_count && receiver_count > leaf_size) {
+    if (receiver_count >= transmitter_count && receiver_count > leaf_size) {
       const auto middle = work.receiver_begin + receiver_count / 2;
-      stack.push_back({middle, work.receiver_end, work.source_begin, work.source_end});
-      stack.push_back({work.receiver_begin, middle, work.source_begin, work.source_end});
+      stack.push_back({middle, work.receiver_end, work.transmitter_begin, work.transmitter_end});
+      stack.push_back({work.receiver_begin, middle, work.transmitter_begin, work.transmitter_end});
     } else {
-      const auto middle = work.source_begin + source_count / 2;
-      stack.push_back({work.receiver_begin, work.receiver_end, middle, work.source_end});
-      stack.push_back({work.receiver_begin, work.receiver_end, work.source_begin, middle});
+      const auto middle = work.transmitter_begin + transmitter_count / 2;
+      stack.push_back({work.receiver_begin, work.receiver_end, middle, work.transmitter_end});
+      stack.push_back({work.receiver_begin, work.receiver_end, work.transmitter_begin, middle});
     }
   }
   return counts;
@@ -347,7 +347,7 @@ int main(int argc, char **argv) {
 
     std::cout << std::setprecision(17);
     std::cout << "{";
-    std::cout << "\"schema\":\"eom_native_kernel_baseline/v0\",";
+    std::cout << "\"schema\":\"eom_native_kernel_baseline/v1\",";
     std::cout << "\"authority\":\"reference-benchmark-only\",";
     std::cout << "\"population\":" << config.population << ",";
     std::cout << "\"threads\":" << config.threads << ",";

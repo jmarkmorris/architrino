@@ -85,13 +85,13 @@ do {
     let floatBytes = config.pairs * MemoryLayout<Float>.stride
     let outputBytes = config.pairs * MemoryLayout<UInt32>.stride
     guard let receiver = device.makeBuffer(length: floatBytes, options: .storageModeShared),
-          let sourceBuffer = device.makeBuffer(length: floatBytes, options: .storageModeShared),
+          let transmitterBuffer = device.makeBuffer(length: floatBytes, options: .storageModeShared),
           let output = device.makeBuffer(length: outputBytes, options: .storageModeShared) else {
         throw NSError(domain: "eom-metal-baseline", code: 3,
                       userInfo: [NSLocalizedDescriptionKey: "cannot allocate shared Metal buffers"])
     }
     let receiverValues = receiver.contents().bindMemory(to: Float.self, capacity: config.pairs)
-    let sourceValues = sourceBuffer.contents().bindMemory(to: Float.self, capacity: config.pairs)
+    let sourceValues = transmitterBuffer.contents().bindMemory(to: Float.self, capacity: config.pairs)
     for index in 0..<config.pairs {
         receiverValues[index] = Float(index % 4096) * 0.125
         sourceValues[index] = Float((index * 104729 + 17) % 4096) * 0.125
@@ -105,7 +105,7 @@ do {
         }
         encoder.setComputePipelineState(pipeline)
         encoder.setBuffer(receiver, offset: 0, index: 0)
-        encoder.setBuffer(sourceBuffer, offset: 0, index: 1)
+        encoder.setBuffer(transmitterBuffer, offset: 0, index: 1)
         encoder.setBuffer(output, offset: 0, index: 2)
         var count = UInt32(config.pairs)
         encoder.setBytes(&count, length: MemoryLayout<UInt32>.stride, index: 3)
@@ -141,9 +141,9 @@ do {
             throw NSError(domain: "eom-metal-baseline", code: 3,
                           userInfo: [NSLocalizedDescriptionKey: "cannot encode Metal transfer"])
         }
-        encoder.copy(from: transferSource, sourceOffset: 0,
+        encoder.copy(from: transferSource, transmitterOffset: 0,
                      to: transferPrivate, destinationOffset: 0, size: transferBytes)
-        encoder.copy(from: transferPrivate, sourceOffset: 0,
+        encoder.copy(from: transferPrivate, transmitterOffset: 0,
                      to: transferDestination, destinationOffset: 0, size: transferBytes)
         encoder.endEncoding()
         let (wall, gpu) = commandTimes(commandBuffer, wallStart: DispatchTime.now().uptimeNanoseconds)
@@ -158,7 +158,7 @@ do {
     let countedBytes = Double(transferBytes * 2)
     let witness = output.contents().bindMemory(to: UInt32.self, capacity: config.pairs)[config.pairs / 2]
     let result: [String: Any] = [
-        "schema": "eom_metal_bound_baseline/v0",
+        "schema": "eom_metal_bound_baseline/v1",
         "authority": "reference-benchmark-only",
         "numeric_format": "binary32",
         "device": device.name,

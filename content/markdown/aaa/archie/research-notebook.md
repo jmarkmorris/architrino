@@ -10,6 +10,22 @@ Each dated section should preserve the reasoning of the moment closely enough th
 
 Entries are maintained in descending date order, with the newest `##` section first.
 
+## 2026-07-18: It's Greek to Me! Alphabet Game
+
+Relevant files:
+
+- [It's Greek to Me!](../../../../greek-letter-match.html)
+- [Greek alphabet game scene](../../../scenes/archie/greek_letter_match.json)
+- [Applications scene](../../../scenes/archie/applications.json)
+
+The standalone [It's Greek to Me!](../../../../greek-letter-match.html) game joined the Applications scene as a compact way to learn the 24-letter Greek alphabet. Its ring keeps each letter at one fixed position: alpha is at noon, beta follows clockwise, and omega completes the circle. The ring can show lowercase symbols, uppercase symbols, or English letter names, while the center presents the form the player must match.
+
+The fixed layout makes position part of the lesson rather than merely part of the interface. A correct choice turns the center green. An incorrect choice turns it red, highlights the correct ring item, and draws an arrow toward that answer. Each round can contain up to 24 prompts, with visible progress, a round percentage, and a session-only graph of completed-round scores. The player chooses when to lock in a full or partial round, and resetting starts a fresh session without preserving statistics outside the page.
+
+The game also includes a teaching mode that does not affect the score. Selecting any ring item reveals its English name, lowercase form, and uppercase form together in the center, with the answer arrow reversed to connect the chosen position back to the explanation. The Greek glyphs use Georgia with optical centering adjustments so their visible forms sit consistently in both the ring and the teaching display.
+
+This milestone matters because it gives the Applications scene a small educational game whose rules reinforce the alphabet's canonical order. Matching mode supports recall, teaching mode supports inspection, and the shared fixed ring lets a reader move between the two without relearning the layout.
+
 ## 2026-07-04: Coordinate-Layer Notation Established
 
 Relevant files:
@@ -129,7 +145,7 @@ s_1:s_2:s_3
 =
 r_1:r_2:r_3
 $$
-when the same angular-frequency convention is used. Thus an iso-frequency branch can naturally contain one or more super-field-speed carrier rows if a retained lever arm is large enough, while the primitive causal wake speed remains $c_f$. That is not a signal-speed violation. It is a branch-geometry statement: the source trajectory can enter regimes with additional self-hit or partner-hit roots, Jacobian sign changes, folds, and caustic behavior.
+when the same angular-frequency convention is used. Thus an iso-frequency branch can naturally contain one or more super-field-speed carrier rows if a retained lever arm is large enough, while the primitive causal wake speed remains $c_f$. That is not a signal-speed violation. It is a branch-geometry statement: the transmitter trajectory can enter regimes with additional self-hit or partner-hit roots, Jacobian sign changes, folds, and caustic behavior.
 
 This insight changes how the current candidates should be read. Doubling-frequency locks, role-assigned middle-hinge frequency candidates, and iso-frequency rows are subfamilies of $\widetilde{\mathcal C}_{3B}$, not definitions of the Noether braid architecture. The iso-frequency row is especially valuable because it separates a common clock or return-frequency condition from the energy, radius, velocity, phase, and ledger data that may actually distinguish the three binaries. If such a branch exists, the energy differentials and speed regimes would be consequences of branch energy placement and retained lever-arm geometry, not of an imposed frequency hierarchy.
 
@@ -141,9 +157,9 @@ Relevant files:
 
 - [Causal Delay Feedback](../../../../causal-delay-feedback.html)
 
-The standalone [Causal Delay Feedback](../../../../causal-delay-feedback.html) app became the project surface for making causal-delay feedback depth visible. Its core lesson is that the present interaction state is not determined only by where the two architrinos are at the displayed instant. It also depends on retained source history, causal-root status, delayed-hit rows, and the active or rejected contribution records that determine which path-history terms can reach the other architrino now.
+The standalone [Causal Delay Feedback](../../../../causal-delay-feedback.html) app became the project surface for making causal-delay feedback depth visible. Its core lesson is that the present interaction state is not determined only by where the two architrinos are at the displayed instant. It also depends on retained transmitter history, causal-root status, delayed-hit records, and the active or rejected contribution records that determine which path-history terms can reach the other architrino now.
 
-The app presents that lesson as a time-space canvas rather than as a formula panel. An electrino path and a positrino path are drawn as solid trajectories. The dotted causal-wake arc series are not displayed as connections between fixed history markers. Each visible arc series is recomputed from the replay paths: it begins at the back-solved emission point on the emitting architrino path and ends at the reception point on the partner architrino path at the current replay time. The partial-arc view keeps the screen focused on the active emitter-to-receiver sector, while the full-circular-arc preset remains available for showing the complete emitted wake geometry.
+The app presents that lesson as a time-space canvas rather than as a formula panel. An electrino path and a positrino path are drawn as solid trajectories. The dotted causal-wake arc series are not displayed as connections between fixed history markers. Each visible arc series is recomputed from the replay paths: it begins at the back-solved emission point on the transmitting architrino path and ends at the reception point on the partner architrino path at the current replay time. The partial-arc view keeps the screen focused on the active transmitter-to-receiver sector, while the full-circular-arc preset remains available for showing the complete emitted wake geometry.
 
 The runtime moved the app beyond a hand-drawn demonstration. The standalone page presents a representative mock replay through the explicit `?replay=mock` review mode. The mock replay advances the electrino and positrino together from declared initial positions and velocities, publishes frame samples and path-history data, and leaves the canvas runtime to derive the two wake series by back-solving emission points against the current reception points. The mock replay preserves a replay-shaped dataset contract: frames, retained path-history samples, delayed-hit diagnostics, rejected or unresolved root diagnostics, and compact contribution summaries.
 
@@ -240,7 +256,7 @@ The standalone [Photon and Polarization Visualization App](../../../../photon.ht
 
 The app lets the reader change the candidate instead of only looking at a picture. Each braid has `I`, `M`, and `O` binaries with enable switches, frequency, radius, and phase controls. The $\Delta x$ control changes the gap between the two braids in the side view, while the Virtual Observer controls choose the $(x,y,z)$ point where the app calculates the displayed electric-field readout.
 
-That electric-field readout is not hand-drawn. The runtime sums delayed contributions from the active architrinos, finds causal roots, weights them by the receiver-normal branch strength $W^{\mathrm{rec}}/R^2$ on the same retained root, and reconstructs the transverse $\mathbf E$ signal at the Virtual Observer. The separate $\mathbf B$ graph is omitted because, in the plane-wave comparison case, $\mathbf B$ follows from $\mathbf E$ by $\mathbf B=(1/c_f)\hat{\mathbf x}\times\mathbf E$.
+That electric-field readout is not hand-drawn. The runtime sums delayed contributions from the active architrinos, finds causal roots, weights them by the transmitter-side acceleration weight $W^{\mathrm{acc}}/R^2$ on the same retained root, and reconstructs the transverse $\mathbf E$ signal at the Virtual Observer. The separate $\mathbf B$ graph is omitted because, in the plane-wave comparison case, $\mathbf B$ follows from $\mathbf E$ by $\mathbf B=(1/c_f)\hat{\mathbf x}\times\mathbf E$.
 
 The polarization panel asks what kind of field the candidate actually produces. It fits $E_y(t)$ and $E_z(t)$ over one cycle and reports whether the observed signal looks weak, linear, circular, or elliptical. This is a diagnostic result, not a proof: the app helps find promising planar-pair settings, but photon closure still requires a separate branch-ledger argument.
 
@@ -299,7 +315,7 @@ The conceptual gain is that the note now separates three different burdens clean
 
 This mattered for the larger program because the nested shell braid has to satisfy several closure burdens at once: frequency hierarchy, horizon behavior, radiation suppression, and eventually an effective stress-tensor story for higher assemblies. The revised note now reads as a live research surface with explicit assumptions and explicit non-assumptions.
 
-## 2026-03-12: Receiver-Normal Master Equation Canon
+## Master Equation Canon
 
 Relevant files:
 
@@ -309,38 +325,38 @@ Relevant files:
 - [Causal action functional](../dynamics/causal-action-functional.md)
 - [Lorentz near-miss in historical context](../philosophy-history/historical-context-and-missed-opportunities.md#lorentz-before-einstein-the-almost-substrate-moment)
 
-The master equation uses the receiver-normal branch factor in the canonical per-hit law:
+The master equation uses the transmitter-side acceleration weight in the canonical per-hit law:
 $$
 \mathbf{a}_{ij}(t; t_0)
 =
 \kappa\,\sigma_{ij}\,
 \frac{|q_i q_j|}{r_{ij}^2(t;t_0)}\,
-W_{ij}^{\mathrm{rec}}(t;t_0)\,
+W_{ij}^{\mathrm{acc}}(t;t_0)\,
 \hat{\mathbf{r}}_{ij}(t;t_0),
 \qquad
-W_{ij}^{\mathrm{rec}}=\left|\frac{D_{T,ij}}{D_{s,ij}}\right|
+W_{ij}^{\mathrm{acc}}=\frac{c_f}{|D_{t,ij}|}
 $$
 with
 $$
-D_{s,ij}=c_f-\mathbf{v}_j(t_0)\cdot\hat{\mathbf{r}}_{ij}(t;t_0),
+D_{t,ij}=c_f-\mathbf{v}_j(t_0)\cdot\hat{\mathbf{r}}_{ij}(t;t_0),
 \qquad
-D_{T,ij}=c_f-\mathbf{v}_i(t)\cdot\hat{\mathbf{r}}_{ij}(t;t_0).
+D_{r,ij}=c_f-\mathbf{v}_i(t)\cdot\hat{\mathbf{r}}_{ij}(t;t_0).
 $$
-Source strength itself does not change with speed. The source emits according to the same constant-cadence rule. The velocity dependence enters because both transceiver paths set the local wake crossing geometry: the source-normal denominator records how the emitted wake surfaces bunch or dilate, while the receiver-normal numerator records how the receiver cuts those surfaces.
+The transmitter emits according to the same constant-cadence rule. Transmitter motion changes how the emitted wake surfaces bunch or dilate through $D_t$. Receiver motion changes the signed playback of successive emission times through $D_r/D_t$, but it does not change the acceleration strength of a surface that has already arrived.
 
-Receiver velocity appears in the received branch magnitude through $D_{T,ij}$ and in the work rate $\mathbf{F}\cdot\mathbf{v}$. Magnetic-like behavior remains an emergent closure target built from delayed geometry, receiver-normal branch strength, superposed radial hits, and assembly/Noether sea response; it is not inserted as a primitive cross-product force.
+Receiver velocity appears in signed root playback through $D_{r,ij}/D_{t,ij}$ and affects later reception geometry. Magnetic-like behavior remains an emergent closure target built from delayed geometry, transmitter-side acceleration weight, superposed radial hits, and assembly/Noether sea response; it is not inserted as a primitive cross-product acceleration.
 
 The canon separates theorem-backed statements from closure targets. Current documents should not state, without local hypotheses, that the master equation is already the exact Euler-Lagrange variation of a completed non-local action or that global energy-momentum conservation is fully restored in every regime. The canonical stance is narrower: the regularized action-functional program supplies a variational lens, the per-hit law supplies the acceleration-first dynamics, and energy bookkeeping must state the assumptions under which work-energy, Noether-style, or action-based conclusions are being claimed.
 
 Corpus requirements:
 
-- remove bare $1/r^2$ and source-normal-only per-hit laws where receiver-normal branch strength belongs,
+- include the transmitter-side acceleration weight wherever the canonical per-hit law is stated,
 - avoid splitting the theory into a permanent "reduced model" and a separate "candidate action" unless the local document is explicitly discussing an approximation,
 - replace over-broad conservation claims with assumption-scoped theorem language,
 - keep constant emission cadence distinct from received causal-flux modulation,
-- and include receiver-velocity effects through the receiver-normal numerator before promoting force, action, or finite-certificate rows.
+- and retain receiver velocity only in root playback, future geometry, and derived energy-rate accounts where it is actually used.
 
-The master equation is a genuinely delayed branch law rather than a static inverse-square law with delayed labels attached. The closure burdens are sharp: self-hit walls, magnetic-like behavior, Lorentz behavior, and action/energy structure all need to be derived from the receiver-normal delayed geometry rather than asserted through imported field-theory vocabulary.
+The master equation is a genuinely delayed branch law rather than a static inverse-square law with delayed labels attached. The closure burdens are sharp: self-hit walls, magnetic-like behavior, Lorentz behavior, and action/energy structure all need to be derived from delayed geometry rather than asserted through imported field-theory vocabulary.
 
 ## 2026-03-11 Closure Scorecard
 

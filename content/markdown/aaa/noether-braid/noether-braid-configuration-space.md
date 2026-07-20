@@ -169,7 +169,7 @@ When $D_{\mathrm{plane}}=0$ or the branch has no retained three-row frame, hande
 
 The speed regime records how retained speed rows relate to the field speed $c_f$. Sub-field-speed rows satisfy speeds below the local field-speed hinge; field-speed rows sit at the transition scale; super-field-speed rows enter regimes where delayed self-interaction can become available. In nested `I:M:O` notation, these rows are assigned only after the retained branch supplies the role map.
 
-Field-speed hinge occupancy is a separate axis. It asks which row, if any, operates within a declared tolerance of $c_f$, and it must say which speed statistic is being tested: transverse carrier speed, orbital/circulation speed, or another branch-declared component. A hinge row is not automatically a self-hit row. It is the speed-regime condition at which the branch can transition from the partner-only regime toward a ledger with both partner-hit and self-hit access, provided the same-source causal-root ledger and transversality rows also close.
+Field-speed hinge occupancy is a separate axis. It asks which row, if any, operates within a declared tolerance of $c_f$, and it must say which speed statistic is being tested: transverse carrier speed, orbital/circulation speed, or another branch-declared component. A hinge row is not automatically a self-hit row. It is the speed-regime condition at which the branch can transition from the partner-only regime toward a ledger with both partner-hit and self-hit access, provided the same-transmitter causal-root ledger and transversality rows also close.
 
 | Hinge value | Meaning |
 | --- | --- |
@@ -184,7 +184,7 @@ The frequency-ratio family records return or winding-frequency relations. The ma
 | --- | --- |
 | iso-frequency `1:1:1` | Candidate family with common return rate across the three retained rows. The rigid uniaxial member is the **spindle braid** (see the named-candidate note above). |
 | integer-ratio `3:2:1` | Candidate family with integer return rates but no repeated-doubling assumption. |
-| doubling-frequency `4:2:1` | Candidate nested `I:M:O` family in which each inward row doubles the next outer row, studied in [Noether Braid Doubling-Frequency Resonance Lock](doubling-frequency-lock.md). |
+| doubling-frequency `4:2:1` | Candidate nested `I:M:O` family in which each inward binary frequency doubles the next outer binary frequency, studied in [Noether Braid Doubling-Frequency Resonance Lock](doubling-frequency-lock.md). |
 
 Frequency-ratio labels are candidate-family labels until the phase-return degree, causal-root ledger, finite-memory gluing, and stability rows close on the same branch. Hinge labels require their own speed and causal-root rows; they are not frequency-ratio names.
 
@@ -498,18 +498,18 @@ s_1:s_2:s_3
 $$
 If one retained lever arm is large enough at the common frequency, then that layer has $s_a>c_f$.
 
-This is not a signal-speed claim. The primitive causal wake still propagates at $c_f$. A row with $s_a>c_f$ is a carrier-trajectory row in the retained branch chart. Its importance is dynamical: it changes the causal-root inventory. Super-field-speed carrier motion can create additional self-hit and partner-hit roots, force Jacobian sign changes, and move the branch into the fold and caustic regimes that feed the causal-root ledger. The possibility of one or more super-field-speed layers is therefore a reason to scan the full Noether braid configuration space rather than preselecting a single speed hierarchy.
+This is not a signal-speed claim. The primitive causal wake still propagates at $c_f$. A row with $s_a>c_f$ is a carrier-trajectory row in the retained branch chart. Its importance is dynamical: it changes the causal-root inventory. Super-field-speed carrier motion can create additional self-hit and partner-hit roots, acceleration-Jacobian sign changes, and move the branch into the fold and caustic regimes that feed the causal-root ledger. The possibility of one or more super-field-speed layers is therefore a reason to scan the full Noether braid configuration space rather than preselecting a single speed hierarchy.
 
-In a certified row, the important event is not speed alone but the appearance of same-source causal roots with the required transversality floors; a certified row that contributes force or action additionally carries the same-record receiver-normal branch strength, while the signed-root topology below is fixed by root existence and the causal-root Jacobian sign. Still, $s_a>c_f$ is the natural warning gate for the layer's self-hit signed-root complex:
+In a certified row, the important event is not speed alone but the appearance of same-transmitter causal roots with the required transversality floors; a certified row that contributes acceleration or action additionally carries the same-record transmitter-side acceleration weight, while the signed-root topology below is fixed by root existence and the causal-root Jacobian sign. Still, $s_a>c_f$ is the natural warning gate for the layer's self-hit signed-root complex:
 $$
 C_+^{(a)}\oplus C_-^{(a)}.
 $$
-This is the layerwise specialization of the [signed causal-root complex](../dynamics/master-equation.md#signed-causal-root-complex): simple same-source roots are split by the sign of their causal-root Jacobian before the layer contributes to assembly topological charge.
+This is the layerwise specialization of the [signed causal-root complex](../dynamics/master-equation.md#signed-causal-root-complex): simple same-transmitter roots are split by the sign of their causal-root Jacobian before the layer contributes to assembly topological charge.
 A branch with one super-field-speed layer can carry a different assembly topological charge structure from a branch with two or three such layers, because the self-hit ledgers and signed degrees are layer-dependent. This is another reason the search must preserve the full unordered speed tuple $s_1:s_2:s_3$ rather than collapsing immediately to a preferred hierarchy.
 
 One named family realizes this decoupling directly. The [**spindle braid**](spindle-braid.md) is the rigid uniaxial iso-frequency configuration: each binary a tilted antipodal pair, each layer's speed $s_a=\omega R_a\cos\alpha_a$, so the tilt angles decouple the speed tuple from the spherical nesting order and the farthest layer can be the slowest. The spindle braid is a named candidate family with the planar tri-binary and axial-dipole configurations as its own boundary members; its full definition and discrete-symmetry structure are stated in [Spindle Braid](spindle-braid.md). No family ordering is asserted.
 
-A terminology boundary applies throughout this section: the field-speed value $s_a=c_f$ is a **coordinate locus** of the configuration space — the boundary where the same-source root inventory changes — and nothing here asserts that any dynamical mechanism holds a layer at that locus. Occupancy of the locus is a chart label, not an attractor claim.
+A terminology boundary applies throughout this section: the field-speed value $s_a=c_f$ is a **coordinate locus** of the configuration space — the boundary where the same-transmitter root inventory changes — and nothing here asserts that any dynamical mechanism holds a layer at that locus. Occupancy of the locus is a chart label, not an attractor claim.
 
 
 ## Stability In A Sea Of Like Assemblies

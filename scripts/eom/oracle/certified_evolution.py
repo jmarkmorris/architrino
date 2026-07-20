@@ -118,7 +118,7 @@ class CoupledEvolutionRequest:
     causal_width: Decimal | None
     core_scale: Decimal | None
     root_tolerance: Decimal
-    source_normal_floor: Decimal
+    transmitter_factor_floor: Decimal
     acceleration_tolerance: Decimal
     quadrature_tolerance: Decimal
     position_tolerance: Decimal
@@ -153,7 +153,7 @@ class CoupledEvolutionRequest:
         causal_width: object | None = "0.01",
         core_scale: object | None = "0.01",
         root_tolerance: object = "1e-18",
-        source_normal_floor: object = "1e-30",
+        transmitter_factor_floor: object = "1e-30",
         acceleration_tolerance: object = "1e-8",
         quadrature_tolerance: object = "1e-8",
         position_tolerance: object = "1e-8",
@@ -192,7 +192,7 @@ class CoupledEvolutionRequest:
                 exact_decimal(core_scale) if core_scale is not None else None
             ),
             root_tolerance=exact_decimal(root_tolerance),
-            source_normal_floor=exact_decimal(source_normal_floor),
+            transmitter_factor_floor=exact_decimal(transmitter_factor_floor),
             acceleration_tolerance=exact_decimal(acceleration_tolerance),
             quadrature_tolerance=exact_decimal(quadrature_tolerance),
             position_tolerance=exact_decimal(position_tolerance),
@@ -259,7 +259,7 @@ class CoupledEvolutionRequest:
                 raise ValueError("finite-width routing requires positive core scale")
         for value in (
             self.root_tolerance,
-            self.source_normal_floor,
+            self.transmitter_factor_floor,
             self.acceleration_tolerance,
             self.quadrature_tolerance,
             self.position_tolerance,
@@ -294,13 +294,13 @@ class AccelerationSnapshotCertificate:
 
     def to_record(self) -> dict[str, object]:
         return {
-            "schema": "eom_acceleration_snapshot_certificate/v0",
+            "schema": "eom_acceleration_snapshot_certificate/v1",
             "status": self.status,
             "reception_time": str(self.reception_time),
             "root_certificates": [
                 {
                     "receiver_path_id": receiver,
-                    "source_path_id": source,
+                    "transmitter_path_id": source,
                     "certificate": certificate.to_record(),
                 }
                 for receiver, source, certificate in self.root_certificates
@@ -325,7 +325,7 @@ class CorrectedSubstepCertificate:
 
     def to_record(self) -> dict[str, object]:
         return {
-            "schema": "eom_corrected_substep_certificate/v0",
+            "schema": "eom_corrected_substep_certificate/v1",
             "status": self.status,
             "start_time": str(self.start_time),
             "end_time": str(self.end_time),
@@ -392,7 +392,7 @@ class AtomicStepCertificate:
 
     def to_record(self) -> dict[str, object]:
         return {
-            "schema": "eom_atomic_coupled_step_certificate/v0",
+            "schema": "eom_atomic_coupled_step_certificate/v1",
             "status": self.status,
             "run_id": self.run_id,
             "step_index": self.step_index,
@@ -449,7 +449,7 @@ class CoupledEvolutionCertificate:
 
     def to_record(self) -> dict[str, object]:
         return {
-            "schema": "eom_coupled_evolution_certificate/v0",
+            "schema": "eom_coupled_evolution_certificate/v1",
             "status": self.status,
             "run_id": self.run_id,
             "start_time": str(self.start_time),
@@ -479,20 +479,20 @@ def _finite_width_fallback_allowed(
 ) -> bool:
     reasons = {cell.reason for cell in certificate.unresolved_cells}
     same_retained_history = (
-        certificate.receiver_history_id == certificate.source_history_id
+        certificate.receiver_history_id == certificate.transmitter_history_id
         and certificate.receiver_history_digest
-        == certificate.source_history_digest
+        == certificate.transmitter_history_digest
     )
     return (
         certificate.status == "uncertified"
         and bool(certificate.unresolved_cells)
         and (
-            reasons <= {"source_normal_interval_contains_zero"}
+            reasons <= {"transmitter_factor_interval_contains_zero"}
             or (
                 same_retained_history
                 and reasons
                 <= {
-                    "source_normal_interval_contains_zero",
+                    "transmitter_factor_interval_contains_zero",
                     "self_root_cluster_requires_finite_width",
                 }
             )
@@ -550,11 +550,11 @@ def certify_acceleration_snapshot(
     pair_requests: list[PairAccelerationRequest] = []
     for receiver_id in request.path_ids:
         receiver = history_by_path[receiver_id]
-        for source_id in request.path_ids:
-            source = history_by_path[source_id]
+        for transmitter_id in request.path_ids:
+            source = history_by_path[transmitter_id]
             root = certify_causal_roots(
                 receiver=receiver,
-                source=source,
+                transmitter=source,
                 reception_time=reception_time,
                 field_speed=request.field_speed,
                 search_lower=source.t_start,
@@ -563,19 +563,19 @@ def certify_acceleration_snapshot(
                 max_depth=request.root_max_depth,
                 max_cells=request.root_max_cells,
             )
-            root_rows.append((receiver_id, source_id, root))
+            root_rows.append((receiver_id, transmitter_id, root))
             pair_requests.append(
                 PairAccelerationRequest.from_decimal_tokens(
                     receiver_path_id=receiver_id,
-                    source_path_id=source_id,
+                    transmitter_path_id=transmitter_id,
                     receiver_history=receiver,
-                    source_history=source,
+                    transmitter_history=source,
                     root_certificate=root,
                     receiver_charge=charge_by_path[receiver_id],
-                    source_charge=charge_by_path[source_id],
+                    transmitter_charge=charge_by_path[transmitter_id],
                     coupling=request.coupling,
                     chart=_choose_chart(request, root),
-                    source_normal_floor=request.source_normal_floor,
+                    transmitter_factor_floor=request.transmitter_factor_floor,
                     causal_width=request.causal_width,
                     core_scale=request.core_scale,
                     acceleration_tolerance=request.acceleration_tolerance,
@@ -615,7 +615,7 @@ def _root_topology_signature(
         (
             receiver,
             source,
-            tuple(root.source_normal.strict_sign for root in certificate.roots),
+            tuple(root.transmitter_factor.strict_sign for root in certificate.roots),
         )
         for receiver, source, certificate in snapshot.root_certificates
     )
@@ -1186,7 +1186,7 @@ def _request_digest(request: CoupledEvolutionRequest) -> str:
         str(request.causal_width),
         str(request.core_scale),
         str(request.root_tolerance),
-        str(request.source_normal_floor),
+        str(request.transmitter_factor_floor),
         str(request.acceleration_tolerance),
         str(request.quadrature_tolerance),
         str(request.position_tolerance),
@@ -1220,7 +1220,7 @@ def _resolved_policy(
         ("causal_width", str(request.causal_width)),
         ("core_scale", str(request.core_scale)),
         ("root_tolerance", str(request.root_tolerance)),
-        ("source_normal_floor", str(request.source_normal_floor)),
+        ("transmitter_factor_floor", str(request.transmitter_factor_floor)),
         ("acceleration_tolerance", str(request.acceleration_tolerance)),
         ("quadrature_tolerance", str(request.quadrature_tolerance)),
         ("position_tolerance", str(request.position_tolerance)),

@@ -80,7 +80,7 @@ function getStateSearchKey(state) {
       right: normalized.pair.right.layers,
     },
     measurement: {
-      sourceHistoryMode: normalized.measurement.sourceHistoryMode,
+      transmitterHistoryMode: normalized.measurement.transmitterHistoryMode,
       observer: normalized.measurement.virtualObserver,
       signalSpeedCf: Number(normalized.measurement.signalSpeedCf ?? 1).toPrecision(10),
     },
@@ -394,9 +394,9 @@ function summarizePhotonSearchPerturbation(summary, nextSummary) {
   };
 }
 
-function createPhotonSearchModeState(state, sourceHistoryMode) {
+function createPhotonSearchModeState(state, transmitterHistoryMode) {
   const next = cloneNormalizedPhotonState(state);
-  next.measurement.sourceHistoryMode = sourceHistoryMode === "absolute_history"
+  next.measurement.transmitterHistoryMode = transmitterHistoryMode === "absolute_history"
     ? "absolute_history"
     : "co_moving";
   return normalizePhotonState(next);
@@ -404,7 +404,7 @@ function createPhotonSearchModeState(state, sourceHistoryMode) {
 
 function summarizePhotonSearchMode(summary, diagnostics) {
   return {
-    sourceMode: summary.field.sourceMode,
+    transmitterMode: summary.field.transmitterMode,
     classification: summary.polarization.classification,
     classificationLabel: summary.polarization.classificationLabel,
     fitResidual: summary.fitResidual,
@@ -414,17 +414,17 @@ function summarizePhotonSearchMode(summary, diagnostics) {
     amplitudeZ: summary.polarization.amplitudes.z,
     amplitudeRatio: summary.polarization.amplitudes.relative,
     transverseAmplitude: diagnostics.transverseAmplitude,
-    sourceCount: diagnostics.sourceCount,
+    transmitterCount: diagnostics.transmitterCount,
     rootCount: diagnostics.rootCount,
-    unresolvedSourceCount: diagnostics.unresolvedSourceCount,
-    unstableSourceCount: diagnostics.unstableSourceCount,
+    unresolvedTransmitterCount: diagnostics.unresolvedTransmitterCount,
+    unstableTransmitterCount: diagnostics.unstableTransmitterCount,
     delaySolveGapMax: diagnostics.delaySolveGapMax,
     jacobianAbsMin: diagnostics.jacobianAbsMin,
     averageDelay: diagnostics.averageDelay,
     helicalPhaseFamilyCount: diagnostics.helicalPhaseFamilyCount,
     helicalStablePhaseFamilyCount: diagnostics.helicalStablePhaseFamilyCount,
     helicalBestPhaseFamilyLabel: diagnostics.helicalBestPhaseFamily?.label ?? "",
-    helicalBestPhaseFamilySpreadDeg: diagnostics.helicalBestPhaseFamily?.sourcePhaseSpreadDeg ?? 0,
+    helicalBestPhaseFamilySpreadDeg: diagnostics.helicalBestPhaseFamily?.transmitterPhaseSpreadDeg ?? 0,
   };
 }
 
@@ -441,7 +441,7 @@ function computePhotonSearchComparisonDeltas(coMoving, absoluteHistory) {
     phaseDeltaDeg,
     fitResidualDelta: Math.abs(absoluteHistory.fitResidual - coMoving.fitResidual),
     rootCountDelta: absoluteHistory.rootCount - coMoving.rootCount,
-    unresolvedDelta: absoluteHistory.unresolvedSourceCount - coMoving.unresolvedSourceCount,
+    unresolvedDelta: absoluteHistory.unresolvedTransmitterCount - coMoving.unresolvedTransmitterCount,
     jacobianRatio: absoluteHistory.jacobianAbsMin / Math.max(EPSILON, coMoving.jacobianAbsMin),
     stableHelicalFamilyDelta:
       (absoluteHistory.helicalStablePhaseFamilyCount ?? 0) -
@@ -449,8 +449,8 @@ function computePhotonSearchComparisonDeltas(coMoving, absoluteHistory) {
   };
 }
 
-async function computePhotonSearchModeSummary(state, sourceHistoryMode, options = {}) {
-  const modeState = createPhotonSearchModeState(state, sourceHistoryMode);
+async function computePhotonSearchModeSummary(state, transmitterHistoryMode, options = {}) {
+  const modeState = createPhotonSearchModeState(state, transmitterHistoryMode);
   const summary = await computePhotonFormulaSummaryWithPrescribedPathAnalysis(
     modeState,
     0,
@@ -478,7 +478,7 @@ async function comparePhotonSearchHistoryModes(state, summary, diagnostics, opti
       message: "Absolute-history comparison skipped for this lower-priority candidate.",
     };
   }
-  const currentMode = state.measurement?.sourceHistoryMode === "absolute_history"
+  const currentMode = state.measurement?.transmitterHistoryMode === "absolute_history"
     ? "absolute_history"
     : "co_moving";
   const coMoving = currentMode === "co_moving"
@@ -561,10 +561,10 @@ function buildPhotonSearchCandidateResult(
   const speedSettings = resolvePhotonSpeedSettings(state);
   const enabledCount = countEnabledLayers(state);
   const suspect =
-    diagnostics.unresolvedSourceCount > 0 ||
+    diagnostics.unresolvedTransmitterCount > 0 ||
     diagnostics.delaySolveGapMax > 0.05 ||
     diagnostics.jacobianAbsMin <= 1e-4 ||
-    diagnostics.unstableSourceCount > 0;
+    diagnostics.unstableTransmitterCount > 0;
 
   if (classification !== "weak" && summary.fitResidual <= 0.08 && strength > 0.05) {
     components.cleanPolarization = pushReason(
@@ -591,19 +591,19 @@ function buildPhotonSearchCandidateResult(
     );
   }
 
-  const transversePerSource = diagnostics.transverseAmplitude / Math.max(1, diagnostics.sourceCount);
-  if (diagnostics.sourceCount >= 8 && transversePerSource <= 0.22) {
+  const transversePerTransmitter = diagnostics.transverseAmplitude / Math.max(1, diagnostics.transmitterCount);
+  if (diagnostics.transmitterCount >= 8 && transversePerTransmitter <= 0.22) {
     components.cancellation = pushReason(
       reasons,
       "strong-cancellation",
       "Strong cancellation",
-      `${diagnostics.sourceCount} sources with ${diagnostics.transverseAmplitude.toFixed(3)} net transverse field`,
-      14 * (1 - Math.min(1, transversePerSource / 0.22))
+      `${diagnostics.transmitterCount} transmitters with ${diagnostics.transverseAmplitude.toFixed(3)} net transverse field`,
+      14 * (1 - Math.min(1, transversePerTransmitter / 0.22))
     );
   }
 
   if (
-    diagnostics.unresolvedSourceCount === 0 &&
+    diagnostics.unresolvedTransmitterCount === 0 &&
     diagnostics.delaySolveGapMax <= 0.01 &&
     diagnostics.jacobianAbsMin >= 0.05
   ) {
@@ -616,12 +616,12 @@ function buildPhotonSearchCandidateResult(
     );
   }
 
-  if (diagnostics.rootCount > diagnostics.sourceCount && diagnostics.sourceCount > 0) {
+  if (diagnostics.rootCount > diagnostics.transmitterCount && diagnostics.transmitterCount > 0) {
     components.rootFamily = pushReason(
       reasons,
       "root-family",
       "Multiple-root family",
-      `${diagnostics.rootCount} roots for ${diagnostics.sourceCount} sources`,
+      `${diagnostics.rootCount} roots for ${diagnostics.transmitterCount} transmitters`,
       6
     );
   }
@@ -685,7 +685,7 @@ function buildPhotonSearchCandidateResult(
   if (comparison?.status === "ok") {
     const deltas = comparison.deltas ?? {};
     const comparisonSuspect =
-      comparison.absoluteHistory?.unresolvedSourceCount > 0 ||
+      comparison.absoluteHistory?.unresolvedTransmitterCount > 0 ||
       comparison.absoluteHistory?.delaySolveGapMax > 0.05 ||
       comparison.absoluteHistory?.jacobianAbsMin <= 1e-4;
     if (
@@ -705,7 +705,7 @@ function buildPhotonSearchCandidateResult(
       deltas.classificationChanged ||
       deltas.strengthDelta >= 0.4 ||
       deltas.phaseDeltaDeg >= 30 ||
-      Math.abs(deltas.rootCountDelta) >= Math.max(2, diagnostics.sourceCount * 0.25)
+      Math.abs(deltas.rootCountDelta) >= Math.max(2, diagnostics.transmitterCount * 0.25)
     ) {
       components.absoluteDivergence = pushReason(
         reasons,
@@ -720,7 +720,7 @@ function buildPhotonSearchCandidateResult(
         reasons,
         "absolute-history-suspect",
         "Absolute-history suspect",
-        `absolute mode missed ${comparison.absoluteHistory.unresolvedSourceCount}, min |J| ${comparison.absoluteHistory.jacobianAbsMin.toFixed(4)}`,
+        `absolute mode missed ${comparison.absoluteHistory.unresolvedTransmitterCount}, min |J| ${comparison.absoluteHistory.jacobianAbsMin.toFixed(4)}`,
         -8
       );
     }
@@ -731,7 +731,7 @@ function buildPhotonSearchCandidateResult(
       reasons,
       "suspect-numerics",
       "Suspect numerics",
-      `missed ${diagnostics.unresolvedSourceCount}, gap ${diagnostics.delaySolveGapMax.toFixed(3)}, min |J| ${diagnostics.jacobianAbsMin.toFixed(4)}`,
+      `missed ${diagnostics.unresolvedTransmitterCount}, gap ${diagnostics.delaySolveGapMax.toFixed(3)}, min |J| ${diagnostics.jacobianAbsMin.toFixed(4)}`,
       -12
     );
   }
@@ -776,14 +776,14 @@ function buildPhotonSearchCandidateResult(
       analyzerResidual: summary.analyzerResidual,
       analyzerTarget: summary.analyzerTarget,
       averageAnalyzerFraction: summary.averageAnalyzerFraction,
-      sourceCount: diagnostics.sourceCount,
+      transmitterCount: diagnostics.transmitterCount,
       rootCount: diagnostics.rootCount,
-      unresolvedSourceCount: diagnostics.unresolvedSourceCount,
-      unstableSourceCount: diagnostics.unstableSourceCount,
-      sourceHistoryProviderId: diagnostics.sourceHistoryProviderId ?? "",
+      unresolvedTransmitterCount: diagnostics.unresolvedTransmitterCount,
+      unstableTransmitterCount: diagnostics.unstableTransmitterCount,
+      transmitterHistoryProviderId: diagnostics.transmitterHistoryProviderId ?? "",
       analysisFieldSchema: diagnostics.analysisFieldSchema ?? "",
       fieldReconstructionOwner: diagnostics.fieldReconstructionOwner ?? "",
-      receiverNormalOwner: diagnostics.receiverNormalOwner ?? "",
+      rootPlaybackOwner: diagnostics.rootPlaybackOwner ?? "",
       delaySolveGapMax: diagnostics.delaySolveGapMax,
       jacobianAbsMin: diagnostics.jacobianAbsMin,
       averageDelay: diagnostics.averageDelay,
@@ -802,7 +802,7 @@ function buildPhotonSearchCandidateResult(
       helicalBestPhaseFamilyLabel: diagnostics.helicalBestPhaseFamily?.label ?? "",
       helicalBestPhaseFamilyClass: diagnostics.helicalBestPhaseFamily?.phaseLockClassification ?? "",
       helicalBestPhaseFamilySpeedFamily: diagnostics.helicalBestPhaseFamily?.speedFamily ?? "",
-      helicalBestPhaseFamilySpreadDeg: diagnostics.helicalBestPhaseFamily?.sourcePhaseSpreadDeg ?? 0,
+      helicalBestPhaseFamilySpreadDeg: diagnostics.helicalBestPhaseFamily?.transmitterPhaseSpreadDeg ?? 0,
       speedMode: speedSettings.speedMode,
       localLorentzFactor: speedSettings.localLorentzFactor,
       signalSpeedCf: speedSettings.signalSpeedCf,

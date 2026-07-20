@@ -35,8 +35,8 @@ struct CertifiedTraversalNode {
   std::string status;
   std::size_t receiver_begin;
   std::size_t receiver_end;
-  std::size_t source_begin;
-  std::size_t source_end;
+  std::size_t transmitter_begin;
+  std::size_t transmitter_end;
   double emission_lower;
   double emission_upper;
   std::uint64_t logical_ordered_pairs;
@@ -47,8 +47,8 @@ struct CertifiedExactTile {
   std::string tile_id;
   std::size_t receiver_begin;
   std::size_t receiver_end;
-  std::size_t source_begin;
-  std::size_t source_end;
+  std::size_t transmitter_begin;
+  std::size_t transmitter_end;
   std::uint64_t logical_ordered_pairs;
 };
 
@@ -56,8 +56,8 @@ struct CertifiedMembershipTile {
   std::string status;
   std::size_t receiver_begin;
   std::size_t receiver_end;
-  std::size_t source_begin;
-  std::size_t source_end;
+  std::size_t transmitter_begin;
+  std::size_t transmitter_end;
   std::uint64_t logical_ordered_pairs;
 };
 

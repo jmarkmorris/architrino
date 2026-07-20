@@ -157,7 +157,7 @@ Maintain and update a ledger separating:
 For concrete reference, the canonical `validation/parameter-ledger.md` table enumerates:
   * **A1 (Field Speed)**: $c_f \equiv 1$, the fundamental causal propagation speed that defines the path-history cone.
   * **A2 (Charge Magnitude)**: $\epsilon = e/6$, the unit source strength entering every wake emission and reception.
-  * **A3 (Interaction Law)**: the delayed, radial, receiver-normal per-hit law in `dynamics/master-equation.md`, summed over causal roots $t_0\in\mathcal{C}_{o'j}(t)$ with branch strength $W^{\mathrm{rec}}=\lvert D_t/D_s\rvert$.
+  * **A3 (Interaction Law)**: the delayed, radial, receiver-weighted per-hit acceleration law in `dynamics/master-equation.md`, summed over transmitter emission times $T_t\in\mathcal C_{r\leftarrow t}(T_r)$ with acceleration factor $W^{\mathrm{acc}}=\lvert D_r/D_t\rvert$.
   * **A4 (Polarity Balance)**: global neutrality $\sum q = 0$ on the initial slice (Sec 3.2).
   * **A5 (Particle Geometry)**: point-like $r=0$ architrinos as transceivers of continuous flux.
   * **A6 (Coupling Constant)**: $\kappa$ (pending derivation, likely tied to Coulomb constant) that scales every per-hit acceleration.

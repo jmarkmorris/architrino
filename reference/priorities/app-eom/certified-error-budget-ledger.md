@@ -6,14 +6,14 @@
 - Date: 2026-07-18
 - Stage: `ratified-binding-input`
 - Owning queue item: `precision_convergence_and_failure_policy`
-- Binding amendment:
-  [Master EOM Binding v0 Amendment 2](master-eom-binding-v0-amendment-2-run-selected-certified-budgets.md)
+- Mathematical authority: [Master EOM Binding v1](master-eom-binding-v1.md)
+- Evolution authority: [Evolution Contract v1](evolution-contract-v1.md)
 - Operator ratification: `accepted-2026-07-18`
 - Claim grade: `derived-ratified`
 
 This packet defines and ratifies one dimensional ledger for ordinary certified
 evolution and finite-width events. Ratification authorizes the two named preset
-records and Amendment 2 implementation. It does not weaken a numerical gate or
+records and their implementation. It does not weaken a numerical gate or
 permit publication after a failed certificate row.
 
 ## Finding In Plain Language
@@ -230,9 +230,16 @@ acceptance gate.
 All values use the current Borg nondimensional scale map with $c_f=1$. Their
 dimensions remain the ones declared above.
 
+The live request identity is `eom_borg_shadow_request/v1` under
+`eom_evolution_contract/v1`, with no scale amendment and with
+`master_eom_binding/v1`. The canonical ordinary allocation key is
+`transmitterFactorFloor`; changing a serialized key changes the allocation hash
+even when its numerical value is unchanged.
+
 | Field | Interactive certified budget | Research certified budget |
 | --- | ---: | ---: |
 | preset id | `interactive-certified-v1` | `research-certified-v1` |
+| allocation SHA-256 | `bb4b8b72e01b2d038e2b760a3677a67e92e35d12c5d587f0a98d2079bce8d319` | `74919ee63dc27d0aa7c43453e1762f380da886a63377912905f8f8070d3b9b3d` |
 | $B_x$ per accepted step | `2e-2` | `2e-2` |
 | $B_v$ per accepted step | `4e-2` | `3e-2` |
 | root-time ceiling $\tau_t$ | `1e-3` | `1e-3` |
@@ -248,7 +255,7 @@ dimensions remain the ones declared above.
 | core scale $\epsilon_{c,0}$ | `0.2` | `0.2` |
 | regulator ratio $\rho$ | `0.5` | `0.5` |
 | regulator levels | `3` | `3` |
-| source-normal floor | `1e-30` | `1e-30` |
+| transmitter-side-factor floor | `1e-30` | `1e-30` |
 | bulk precision floor | certified outward binary64 | certified outward binary64 |
 | difficult-row initial precision | `128` bits | `128` bits |
 | difficult-row maximum precision | `512` bits | `512` bits |
@@ -287,7 +294,8 @@ unmeasured remainder.
 
 Claim grade: `derived-ratified`. Falsifier: recomputing either displayed sum
 exceeds its top-level budget, the current live Borg allocation differs from the
-Research row, or an implementation omits a listed allocation or regulator.
+Research row, either canonical serialization produces a different displayed
+hash, or an implementation omits a listed allocation or regulator.
 
 The pre-implementation acceleration-`3x` candidate was not a coherent certified
 output contract. At `T=1.2`, seed 0 differed from the tighter sensitivity

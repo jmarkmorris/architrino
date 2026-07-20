@@ -7,14 +7,14 @@ import {
 
 const TWO_PI = Math.PI * 2;
 
-export const PHOTON_SOURCE_HISTORY_PROVIDER_ID =
-  "photon-constrained-architrino-source-history.v1";
+export const PHOTON_TRANSMITTER_HISTORY_PROVIDER_ID =
+  "photon-constrained-architrino-transmitter-history.v1";
 
-export const PHOTON_SOURCE_HISTORY_BOUNDARY = Object.freeze({
+export const PHOTON_TRANSMITTER_HISTORY_BOUNDARY = Object.freeze({
   constrainedMotionOwner: "photon_app",
-  sourceHistoryOwner: "photon_app",
+  transmitterHistoryOwner: "photon_app",
   causalRootOwner: "prescribed_path_analysis",
-  receiverNormalOwner: "prescribed_path_analysis",
+  rootPlaybackOwner: "prescribed_path_analysis",
   fieldReconstructionOwner: "prescribed_path_analysis",
   evidenceGrade: "display-only-visualization",
   nonEvidence: true,
@@ -36,12 +36,12 @@ export function getPhotonAbsoluteObserverPositionAtTime(measurement, timeSeconds
   };
 }
 
-export function createPhotonConstrainedMovingCircularSourceHistory(state, sourceRef, measurement) {
-  const layer = getPhotonLayer(state, sourceRef.braidId, sourceRef.layerId);
+export function createPhotonConstrainedMovingCircularTransmitterHistory(state, transmitterRef, measurement) {
+  const layer = getPhotonLayer(state, transmitterRef.braidId, transmitterRef.layerId);
   const radius = Number(layer.radius) || 0;
   return {
     centerAtEpoch: {
-      x: getPhotonConstrainedBraidCenterX(state, sourceRef.braidId),
+      x: getPhotonConstrainedBraidCenterX(state, transmitterRef.braidId),
       y: 0,
       z: 0,
     },
@@ -53,15 +53,15 @@ export function createPhotonConstrainedMovingCircularSourceHistory(state, source
     radiusU: { x: 0, y: radius, z: 0 },
     radiusV: { x: 0, y: 0, z: radius },
     angularVelocity:
-      getPhotonDirectionSign(state, sourceRef.braidId) *
+      getPhotonDirectionSign(state, transmitterRef.braidId) *
       TWO_PI *
       (Number(layer.frequencyHz) || 0),
     phaseAtEpoch: getPhotonLayerAngleRadians(
       state,
-      sourceRef.braidId,
-      sourceRef.layerId,
+      transmitterRef.braidId,
+      transmitterRef.layerId,
       0,
-      sourceRef.chargeType
+      transmitterRef.chargeType
     ),
     epochTime: 0,
   };
@@ -80,24 +80,24 @@ export function createPhotonConstrainedVirtualObserverHistory(measurement) {
   };
 }
 
-export function createPhotonConstrainedSourceHistoryProvider(
+export function createPhotonConstrainedTransmitterHistoryProvider(
   state,
-  sourceRef,
+  transmitterRef,
   measurement,
   options = {}
 ) {
   return {
-    providerId: PHOTON_SOURCE_HISTORY_PROVIDER_ID,
+    providerId: PHOTON_TRANSMITTER_HISTORY_PROVIDER_ID,
     providerKind: "constrained_architrino_motion",
-    sourceHistoryKind: options.sourceHistoryKind ?? "moving-circular-source",
+    transmitterHistoryKind: options.transmitterHistoryKind ?? "moving-circular-transmitter",
     receiverHistoryKind: options.receiverHistoryKind ?? "moving-linear-virtual-observer",
     approximationPolicy: options.approximationPolicy ?? "exact-moving-circular-provider",
-    boundary: PHOTON_SOURCE_HISTORY_BOUNDARY,
-    sourceRef: { ...sourceRef },
-    source: createPhotonConstrainedMovingCircularSourceHistory(state, sourceRef, measurement),
+    boundary: PHOTON_TRANSMITTER_HISTORY_BOUNDARY,
+    transmitterRef: { ...transmitterRef },
+    transmitter: createPhotonConstrainedMovingCircularTransmitterHistory(state, transmitterRef, measurement),
     receiver: createPhotonConstrainedVirtualObserverHistory(measurement),
     measurement: {
-      sourceHistoryMode: measurement?.sourceHistoryMode ?? "absolute_history",
+      transmitterHistoryMode: measurement?.transmitterHistoryMode ?? "absolute_history",
       signalSpeedCf: Number(measurement?.signalSpeedCf) || 0,
       photonSpeedCf: Number(measurement?.photonSpeedCf) || 0,
     },

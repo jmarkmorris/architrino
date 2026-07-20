@@ -2,7 +2,7 @@
 
 This chapter isolates the energy problem created by causal-delay dynamics. It is foundations-adjacent because it states what kind of energy object the substrate law is allowed to use before later chapters invoke conservation, no-runaway arguments, event ledgers, or Noether sea exchange.
 
-The core warning is simple: time-translation invariance of a state-dependent delay equation does not by itself supply the familiar local Noether energy of finite-dimensional mechanics. In $\mathbb{A}\mathbb{A}\mathbb{A}$, any term written as $E_{\text{wake}}$ must be constructed from the same causal-history law, regularization, branch chart, and boundary convention that generate the force row. Otherwise it is a diagnostic label, not a conserved charge.
+The core warning is simple: time-translation invariance of a state-dependent delay equation does not by itself supply the familiar local Noether energy of finite-dimensional mechanics. In $\mathbb{A}\mathbb{A}\mathbb{A}$, any term written as $E_{\text{wake}}$ must be constructed from the same causal-history law, regularization, branch chart, and boundary convention that generate the acceleration contribution. Otherwise it is a diagnostic label, not a conserved charge.
 
 ## Energy Construction Problem
 
@@ -46,16 +46,16 @@ There are three admissible ways to define the wake-energy term. A calculation ma
 
 ### Action-Boundary Route
 
-If a symmetry-preserving nonlocal action supplies the force row, then the energy term is the time-boundary charge induced by absolute-time translation. With causal-delay interaction kernel $\mathcal{K}_{ij}^{E}(T_1,T_{\mathrm{em}})$ chosen by the same action as the force residual,
+If a symmetry-preserving nonlocal action supplies the acceleration contribution, then the energy term is the time-boundary charge induced by absolute-time translation. With causal-delay interaction kernel $\mathcal{K}_{ij}^{E}(T_1,T_t)$ chosen by the same action as the acceleration residual,
 $$
 E_{\text{wake},\mathfrak{B}}^{(\eta)}(T)
 =
 \frac{1}{2}
 \sum_{i,j}
-\int_{-\infty}^{T}dT_{\mathrm{em}}
+\int_{-\infty}^{T}dT_t
 \int_T^\infty dT_1\,
 \partial_{T_1}
-\mathcal{K}_{ij,\mathfrak{B}}^{E,\eta}(T_1,T_{\mathrm{em}})
+\mathcal{K}_{ij,\mathfrak{B}}^{E,\eta}(T_1,T_t)
 $$
 is the candidate in-flight causal-history charge. This is the route developed in [Master Equation](../../../dynamics/master-equation.md#action-level-wake-energy-functional-at-time-boundary-t) and [Effective Lagrangian](../../../dynamics/effective-lagrangian.md#symmetries-and-history-aware-conservation-laws). It becomes theorem-level only when the same action also gives the accepted acceleration law and the endpoint leakage residual vanishes.
 
@@ -78,7 +78,7 @@ This route is trajectory-local. It is useful for simulations and branch replay, 
 
 #### Binary Branch Work Ledger
 
-For a solved two-body branch chart $b$, the work-integral route has a concrete first test. Let $\mathbf A_{i,b}^{(\eta)}(T)$ be the acceleration row obtained from exactly the active causal roots retained by the binary branch chart. With the quadratic kinetic proxy, define the delivered branch power by
+For a solved two-body branch chart $b$, the work-integral route has a concrete first test. Let $\mathbf A_{i,b}^{(\eta)}(T)$ be the acceleration contribution obtained from exactly the active causal roots retained by the binary branch chart. With the quadratic kinetic proxy, define the delivered branch power by
 $$
 P_{b,\mathrm{work}}^{(\eta)}(T)
 =
@@ -88,12 +88,12 @@ P_{b,\mathrm{work}}^{(\eta)}(T)
 \cdot
 \mathbf V_i(T)
 $$
-The same row must also be available before superposition. For each retained source/root hit $(i,j,T_{\mathrm{em}})$ on the branch chart, define the root-resolved delivered power
+The same row must also be available before superposition. For each retained source/root hit $(i,j,T_t)$ on the branch chart, define the root-resolved delivered power
 $$
-P_{i\leftarrow j,T_{\mathrm{em}}}^{(\eta)}(T)
+P_{i\leftarrow j,T_t}^{(\eta)}(T)
 =
 \mu_{\text{arch}}\,
-\mathbf A_{i\leftarrow j}^{(\eta)}(T;T_{\mathrm{em}})
+\mathbf A_{i\leftarrow j}^{(\eta)}(T;T_t)
 \cdot
 \mathbf V_i(T)
 $$
@@ -103,10 +103,10 @@ P_{b,\mathrm{work}}^{(\eta)}(T)
 =
 \sum_i
 \sum_j
-\sum_{T_{\mathrm{em}}\in\mathcal C_{ij,b}^{(\eta)}(T)}
-P_{i\leftarrow j,T_{\mathrm{em}}}^{(\eta)}(T)
+\sum_{T_t\in\mathcal C_{ij,b}^{(\eta)}(T)}
+P_{i\leftarrow j,T_t}^{(\eta)}(T)
 $$
-on the same active causal-root ledger. This root-resolved form is the accounting guardrail: source identity, polarity, emission time, Jacobian, and receiver radial power are retained before the net branch work is collapsed to one scalar.
+on the same active causal-root ledger. This root-resolved form is the accounting guardrail: transmitter identity, polarity, emission time, Jacobian, and receiver radial power are retained before the net branch work is collapsed to one scalar.
 and reconstruct the compatible causal-history interaction contribution by
 $$
 U_{b,\mathrm{work}}^{(\eta)}(T)
@@ -178,11 +178,11 @@ $$
 \varepsilon
 }
 $$
-where $\Phi_{\partial\Omega,E}^{(\eta)}(W)=\int_W\int_{\partial\Omega}\mathbf{J}_E^{(\eta)}\cdot\hat{\mathbf{n}}\,dA\,dT$ is the declared boundary energy flux. The chart promotes only if $\Delta_{\mathrm{E,cross}}^{(\eta)}\to0$ under the same refinement limit used for the force residual.
+where $\Phi_{\partial\Omega,E}^{(\eta)}(W)=\int_W\int_{\partial\Omega}\mathbf{J}_E^{(\eta)}\cdot\hat{\mathbf{n}}\,dA\,dT$ is the declared boundary energy flux. The chart promotes only if $\Delta_{\mathrm{E,cross}}^{(\eta)}\to0$ under the same refinement limit used for the acceleration residual.
 
 ## Conservation Residual
 
-Let $\mathbf{R}_i^{(\eta)}$ be the Euler or force residual of the declared action-derived model, and let $\mathcal{B}_E^{(\eta)}$ collect endpoint leakage, period cuts, excluded self-coincidence boundaries, and omitted branch rows. The finite-window conservation residual is
+Let $\mathbf{R}_i^{(\eta)}$ be the Euler or acceleration residual of the declared action-derived model, and let $\mathcal{B}_E^{(\eta)}$ collect endpoint leakage, period cuts, excluded self-coincidence boundaries, and omitted branch rows. The finite-window conservation residual is
 $$
 \mathcal{R}_{E}^{(\eta)}(W;\mathfrak{B})
 =
@@ -244,7 +244,7 @@ A delay-energy construction is promotable only when the branch chart names:
 
 1. the retained history window $h$ and memory truncation residual;
 2. the causal-surface regularization $\eta$ and any core cutoff $\epsilon_c$;
-3. active causal roots, inactive-root gaps, the active source-normal Jacobian floor, and the retained receiver-normal branch-strength floor or certified interval $\nu_{\mathrm{rec}}$ for $W^{\mathrm{rec}}$;
+3. active causal roots, inactive-root gaps, the active transmitter-side Jacobian floor, and the retained transmitter-side acceleration-weight floor or certified interval $\nu_{\mathrm{rec}}$ for $W^{\mathrm{acc}}$;
 4. the exact route used for $E_{\text{wake}}$;
 5. boundary flux, endpoint leakage, period-cut terms, and excluded self-coincidence rows;
 6. the crosswalk residual whenever more than one energy construction is invoked;

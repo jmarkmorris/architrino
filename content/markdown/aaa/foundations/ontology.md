@@ -59,7 +59,7 @@ Here $\mathfrak B(T)$ denotes the retained assembly and branch records and $\Pi_
 
 A quantity is well-defined at a level only if it survives the corresponding forgetting map. A residual measures failure to survive that quotient. Examples include provenance leakage $\epsilon_{\mathrm{prov}}$, branch or record residuals $\mathcal R_{\mathcal Q}$, clock-composition residuals $\Delta^{\mathrm{comp}}$, and clock-universality residuals $\epsilon_{\mathrm{univ}}$. This is why level discipline is not only vocabulary discipline. It decides which invariants remain meaningful after a projection.
 
-Many projections also need regularity. A reconstruction or projection map is locally usable only where its active inverse has a declared non-degeneracy floor. The root chart uses $|\partial_{T_{\mathrm{em}}} F|\ge\kappa_{\mathrm{hit}}>0$, where $F$ is the causal-root function defined in The Fundamental Entity below and owned by [Master Equation](../dynamics/master-equation.md); frame construction uses a basis-conditioning floor such as $\sin\theta_{\min}>0$; wake-center reconstruction uses a finite solid-angle floor; basin partitions use separatrix regularity; and clock extraction requires a retained hyperbolic limit cycle with a unique rotation number.
+Many projections also need regularity. A reconstruction or projection map is locally usable only where its active inverse has a declared non-degeneracy floor. The root chart uses $|\partial_{T_t} F|\ge\kappa_{\mathrm{hit}}>0$, where $F$ is the causal-root function defined in The Fundamental Entity below and owned by [Master Equation](../dynamics/master-equation.md); frame construction uses a basis-conditioning floor such as $\sin\theta_{\min}>0$; wake-center reconstruction uses a finite solid-angle floor; basin partitions use separatrix regularity; and clock extraction requires a retained hyperbolic limit cycle with a unique rotation number.
 
 The shared theorem target is a reconstruction-regularity lemma: away from the generically codimension-1 floor-failure locus, the relevant map has controlled local inverse behavior. At the floor failure, the theory must report a residual, branch jump, or reconfiguration event rather than silently reusing a smooth chart.
 
@@ -67,7 +67,7 @@ Two distinctions govern the rest of this hub.
 
 First, primitive substance is not the same as emergent matter. The architrino is primitive substance. Matter begins only when assemblies acquire mass, exclusion, persistence, and organized branch behavior.
 
-Second, physical reality is not the same as independent material inventory. Causal wakes are physically real, finite-speed, potential-bearing causal records. They are not an extra material ingredient floating in the void. Their content is fixed by source identity, polarity, and path history.
+Second, physical reality is not the same as independent material inventory. Causal wakes are physically real, finite-speed, potential-bearing causal records. They are not an extra material ingredient floating in the void. Their content is fixed by transmitter identity, polarity, and path history.
 
 A conservative entry criterion for emergent matter status is therefore two-part. A stable assembly $A$ must carry a nonzero closed internal causal-history energy ledger $E_{\text{internal}}(A) > 0$ as defined in [Energy](../dynamics/energy.md), and it must carry an assembly-level exclusion record protected by retained curve-configuration topology plus a branch-preserving action or energy barrier. The Euclidean void supplies no ambient topological superselection. The protected data must be carried by the assembly itself, for example by an oblate spheroidal exclusion envelope together with the ordered-frame, framed linking, or causal-writhe data needed for fermionic matter, and by a nonzero barrier $\Delta E_{\mathrm{excl}}>0$ against deformation through the forbidden branch. This is an entry criterion for the mass-map and exclusion programs, not a completed derivation of particle masses or spin-statistics.
 
@@ -125,23 +125,23 @@ The architrino's intrinsic polarity is also not the full observer-level charge r
 
 The emitted causal wake is not another primitive substance, but it is real. It is the source-dependent, potential-bearing causal record by which path history becomes delayed interaction.
 
-For an architrino $a$ with worldline $\mathbf X_a(T)$ on time domain $I_a$ and polarity $q_a$, the wake may be read schematically as a functional of that source history:
+For an architrino $a$ with worldline $\mathbf X_a(T)$ on time domain $I_a$ and polarity $q_a$, the wake may be read schematically as a functional of that transmitter history:
 $$
 \mathcal{W}_a(\mathbf X,T)
 =
-\int_{\{T_{\mathrm{em}}\in I_a:\ T_{\mathrm{em}}<T\}}
+\int_{\{T_t\in I_a:\ T_t<T\}}
 q_a\,
-K\!\left(\mathbf X,T;\mathbf X_a(T_{\mathrm{em}}),T_{\mathrm{em}}\right)
-\,dT_{\mathrm{em}},
+K\!\left(\mathbf X,T;\mathbf X_a(T_t),T_t\right)
+\,dT_t,
 \qquad
 \operatorname{supp}K
 \subseteq
-\left\{\|\mathbf X-\mathbf X_a(T_{\mathrm{em}})\|=c_f(T-T_{\mathrm{em}})\right\}
+\left\{\|\mathbf X-\mathbf X_a(T_t)\|=c_f(T-T_t)\right\}
 $$
 
-The $dT_{\mathrm{em}}$ integral is schematic because the support condition selects causal roots of $F_a(\mathbf X,T;T_{\mathrm{em}})=\|\mathbf X-\mathbf X_a(T_{\mathrm{em}})\|-c_f(T-T_{\mathrm{em}})$ rather than an ordinary interval of source times. In the Master Equation this is implemented by a surface-delta or root-sum expression with the simple-root transversality floor $\lvert\partial_{T_{\mathrm{em}}}F_a\rvert \ge \kappa_{\mathrm{hit}} > 0$; if that floor fails, the contribution belongs to branch-chart or regularization analysis rather than to this ontology-level functional. The floor has a direct physical reading: on the wake support, $\partial_{T_{\mathrm{em}}}F_a = c_f-\hat{\mathbf r}\cdot\mathbf V_a(T_{\mathrm{em}})$, the source-normal denominator derived in [Absolute Timespace](./absolute-timespace.md#causal-wake-geometry), so floor failure is the caustic condition in which the source closes on the receiver at the wake speed along the line of sight: the same zero that makes the Lienard-Wiechert delayed-potential denominator diverge in classical electrodynamics, and a generic occurrence for super-wake-speed sources. In this ontology-level wake functional the kernel's source dependence is written through the emission-time position $\mathbf X_a(T_{\mathrm{em}})$ only; source emission-velocity dependence enters through the root-sum Jacobian $1/\lvert\partial_{T_{\mathrm{em}}}F_a\rvert$, i.e. the inverse source-normal denominator, not through additional kernel arguments. The full transceiver acceleration law separately carries the receiver-normal branch factor $W_{ij}^{\mathrm{rec}}$; both factors are owned by the [Master Equation](../dynamics/master-equation.md).
+The $dT_t$ integral is schematic because the support condition selects causal roots of $F_a(\mathbf X,T;T_t)=\|\mathbf X-\mathbf X_a(T_t)\|-c_f(T-T_t)$ rather than an ordinary interval of source times. In the Master Equation this is implemented by a surface-delta or root-sum expression with the simple-root transversality floor $\lvert\partial_{T_t}F_a\rvert \ge \kappa_{\mathrm{hit}} > 0$; if that floor fails, the contribution belongs to branch-chart or regularization analysis rather than to this ontology-level functional. The floor has a direct physical reading: on the wake support, $\partial_{T_t}F_a = c_f-\hat{\mathbf r}\cdot\mathbf V_a(T_t)$, the transmitter-side factor derived in [Absolute Timespace](./absolute-timespace.md#causal-wake-geometry), so floor failure is the caustic condition in which the source closes on the receiver at the wake speed along the line of sight: the same zero that makes the Lienard-Wiechert delayed-potential denominator diverge in classical electrodynamics, and a generic occurrence for super-wake-speed sources. In this ontology-level wake functional the kernel's source dependence is written through the emission-time position $\mathbf X_a(T_t)$ only; transmitter emission-velocity dependence enters through the root-sum Jacobian $1/\lvert\partial_{T_t}F_a\rvert$, i.e. the inverse transmitter-side factor, not through additional kernel arguments. The full transceiver acceleration law separately carries the transmitter-side acceleration weight $W_{ij}^{\mathrm{acc}}$; both factors are owned by the [Master Equation](../dynamics/master-equation.md).
 
-This formula is a level assignment, not a replacement for the Master Equation. It states the dependency: once source identity, polarity, and path history are fixed, no additional freely specifiable wake substance remains. Effective field language may summarize many wake contributions, but the substrate account remains source-provenanced causal-wake history.
+This formula is a level assignment, not a replacement for the Master Equation. It states the dependency: once transmitter identity, polarity, and path history are fixed, no additional freely specifiable wake substance remains. Effective field language may summarize many wake contributions, but the substrate account remains source-provenanced causal-wake history.
 
 In this ontology hub, the key commitment is:
 
@@ -242,7 +242,7 @@ The canonical parameter accounting lives in [Parameter Ledger](../validation/par
 The ontology-level distinction is a level assignment, not a numerical claim:
 
 - substrate commitments belong to [Absolute Time](./absolute-time.md), [Euclidean Void](./euclidean-void.md), [Absolute Timespace](./absolute-timespace.md), and [Architrino](./architrino.md);
-- force-law parameters and regulators belong to [Master Equation](../dynamics/master-equation.md) and the validation ledger;
+- acceleration-law parameters and regulators belong to [Master Equation](../dynamics/master-equation.md) and the validation ledger;
 - assembly radii, shielding factors, metric coefficients, and observer-level constants are closure targets, not primitive ontology.
 
 For current open parameter status, see [Parameter Ledger](../validation/parameter-ledger.md) and [Known Tensions](../validation/known-tensions.md).

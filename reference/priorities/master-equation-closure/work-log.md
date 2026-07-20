@@ -21,3 +21,14 @@ Use [brainstorming.md](brainstorming.md) for provisional ideas, insights, concep
   receiver-normal intake, first executable finite-difference packet, consumer
   routing, and falsifiers. Status remains `defer-with-blocker`; no coefficient
   or corpus claim was promoted.
+
+- 2026-07-19: Ranked `independent_causal_wake_state_closure` first after the
+  scoped receiver-factor migration. The live tracker now requires one causal
+  state update to reproduce transmitter-side acceleration on regular charts,
+  cross coincident same-transmitter birth finitely, and close energy, momentum,
+  and angular momentum without residual-defined bookkeeping. Receiver-weighted
+  certificate packets lost current acceleration/action authority; retained root
+  geometry and $D_r/D_t$ playback remain reusable within their declared reach.
+  Added [independent-causal-wake-state-closure.md](independent-causal-wake-state-closure.md)
+  as the focused derivation and falsifier packet. No ontology or corpus claim
+  was promoted.

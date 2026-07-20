@@ -122,9 +122,9 @@ def normal_factors(
         raise OracleDomainError("normal factors are undefined at coordinate coincidence")
     direction = scale(1 / separation, displacement)
     c_f = _mp(field_speed)
-    source_normal = c_f - dot(direction, emission.velocity)
-    receiver_normal = c_f - dot(direction, reception.velocity)
-    return source_normal, receiver_normal, direction, separation
+    transmitter_factor = c_f - dot(direction, emission.velocity)
+    receiver_factor = c_f - dot(direction, reception.velocity)
+    return transmitter_factor, receiver_factor, direction, separation
 
 
 def core_kernel(displacement: Sequence[mp.mpf], core_scale: object) -> Vector:
@@ -147,21 +147,21 @@ def sharp_root_acceleration(
     coupling: object,
     charge_product: object,
 ) -> Vector:
-    source_normal, receiver_normal, direction, separation = normal_factors(
+    transmitter_factor, _, direction, separation = normal_factors(
         receiver, source, reception_time, emission_time, field_speed
     )
-    if source_normal == 0:
-        raise OracleDomainError("sharp root acceleration is undefined at D_s = 0")
+    if transmitter_factor == 0:
+        raise OracleDomainError("sharp root acceleration is undefined at D_t = 0")
     q_product = _mp(charge_product)
     if q_product == 0:
         return vector((0, 0, 0))
     polarity_sign = mp.sign(q_product)
-    branch_strength = abs(receiver_normal / source_normal)
+    acceleration_weight = _mp(field_speed) / abs(transmitter_factor)
     magnitude = (
         _mp(coupling)
         * polarity_sign
         * abs(q_product)
-        * branch_strength
+        * acceleration_weight
         / (separation * separation)
     )
     return scale(magnitude, direction)
@@ -183,14 +183,12 @@ def finite_width_integrand(
         raise OracleDomainError("causal-surface width must be positive")
     reception_time_mp = _mp(reception_time)
     emission_time_mp = _mp(emission_time)
-    reception, emission, displacement, separation = pair_geometry(
+    _, _, displacement, separation = pair_geometry(
         receiver, source, reception_time_mp, emission_time_mp
     )
     kernel = core_kernel(displacement, core_scale)
     if separation == 0:
         return vector((0, 0, 0))
-    direction = scale(1 / separation, displacement)
-    receiver_normal = _mp(field_speed) - dot(direction, reception.velocity)
     residual = separation - _mp(field_speed) * (
         reception_time_mp - emission_time_mp
     )
@@ -202,7 +200,7 @@ def finite_width_integrand(
         _mp(coupling)
         * mp.sign(q_product)
         * abs(q_product)
-        * abs(receiver_normal)
+        * _mp(field_speed)
         * delta_eta
     )
     return scale(factor, kernel)

@@ -23,11 +23,11 @@ After that scale fixing, the remaining freedom is only translation by $b$. The b
 Ordinary language uses the word "time" for several different things. $\mathbb{A}\mathbb{A}\mathbb{A}$ separates those things so the reader does not confuse the substrate parameter with clocks or observations:
 
 1. **Substrate ordering:** Absolute time $T$ orders universe states. It is not directly measured by a physical clock and has no natural origin; its affine scale is fixed only after the causal-wake law and unit convention are declared.
-2. **Causal-wake implementation:** Architrino worldlines and emissions make the ordering physically operative. A source event at emission time $T_{\mathrm{em}}$ contributes at a receiver time $T$ only when the causal wake support satisfies
+2. **Causal-wake implementation:** Architrino worldlines and emissions make the ordering physically operative. A transmitter event at emission time $T_t$ contributes at a receiver time $T_r$ only when the causal wake support satisfies
 $$
-r_{ij}(T,T_{\mathrm{em}})=c_f(T-T_{\mathrm{em}}),
+r_{ij}(T_r,T_t)=c_f(T_r-T_t),
 $$
-where $r_{ij}(T,T_{\mathrm{em}})=\|\mathbf X_i(T)-\mathbf X_j(T_{\mathrm{em}})\|$ is the receiver-source separation. In this layer, temporal separation and Euclidean distance become a receiver-local interaction condition.
+where $r_{ij}(T_r,T_t)=\|\mathbf X_i(T_r)-\mathbf X_j(T_t)\|$ is the receiver-transmitter separation. In this layer, temporal separation and Euclidean distance become a receiver-local interaction condition.
 3. **Assembly clock readout:** Physical clock time is an assembly-level phase extraction. A stable binary or Noether braid branch supplies repeatable internal cycles, and observer clock time is the count of those cycles relative to a reference branch, not another substrate parameter. In the notation of [Proper Time and Time Dilation](../spacetime/proper-time-and-time-dilation.md), with $\varphi_{\mathcal A}$ the counted clock phase and $\Omega_{\mathcal A}^{(0)}$ its rest-branch reference rate,
 $$
 d\tau_{\mathcal A}
@@ -55,7 +55,7 @@ dT
 $$
 on the oriented time line. This 1-form is closed and exact, and its level sets define simultaneity slices when combined with space in the product manifold $\mathcal{M} = \mathbb{R} \times \mathbb{R}^3$.
 
-The notation keeps the levels apart. The symbol $\tau$ is reserved for derived observer proper time. Emission times use $T_{\mathrm{em}}$, and causal delay is written $\Delta_{ij}=T-T_{\mathrm{em}}$ rather than by reusing the proper-time symbol.
+The notation keeps the levels apart. The symbol $\tau$ is reserved for derived observer proper time. Emission times use $T_t$, and causal delay is written $\Delta_{ij}=T-T_t$ rather than by reusing the proper-time symbol.
 
 The substrate structure is absolute time together with the Euclidean void, formally the absolute timespace $\mathcal{M}$. Effective spacetime geometry and proper time are later observer-level reconstructions from assembly dynamics, clock behavior, and Noether sea response. They are not additional time coordinates at the ontological level.
 
@@ -77,15 +77,15 @@ c_f=\frac{\hat c_f T_0}{L_0}
 $$
 Here hatted quantities are dimensional and unhatted quantities are nondimensional. With this convention, the nondimensional causal-root condition keeps the same form,
 $$
-\|\mathbf X_i(T)-\mathbf X_j(T_{\mathrm{em}})\|
+\|\mathbf X_i(T_r)-\mathbf X_j(T_t)\|
 =
-c_f(T-T_{\mathrm{em}})
+c_f(T_r-T_t)
 $$
 while the dimensional condition is
 $$
-\|\hat{\mathbf X}_i(\hat T)-\hat{\mathbf X}_j(\hat T_{\mathrm{em}})\|
+\|\hat{\mathbf X}_i(\hat T_r)-\hat{\mathbf X}_j(\hat T_t)\|
 =
-\hat c_f(\hat T-\hat T_{\mathrm{em}})
+\hat c_f(\hat T_r-\hat T_t)
 $$
 
 Choosing $T_0$ fixes the affine scale of $T$ for the declared model. Setting $c_f=1$ is the special unit convention $L_0/T_0=\hat c_f$; keeping $c_f$ explicit leaves the physical anchor visible.
@@ -124,7 +124,7 @@ $$
 
 Causal influence is stricter than temporal precedence. Event A can influence event B only when $T_A<T_B$ and event B lies on the finite-speed causal wake support emitted from A. Being earlier is necessary; being on the received wake support is the additional physical condition.
 
-**Remark on the Thermodynamic Arrow of Time:** The background time manifold $\mathbb{R}$ is symmetric under time reversal $T \mapsto -T$ as a bare oriented line. The declared interaction law is not time-symmetric in that same sense: causal wakes contribute only from emission times $T_{\mathrm{em}}<T$, and the theory excludes advanced or instantaneous interaction terms.
+**Remark on the Thermodynamic Arrow of Time:** The background time manifold $\mathbb{R}$ is symmetric under time reversal $T \mapsto -T$ as a bare oriented line. The declared interaction law is not time-symmetric in that same sense: causal wakes contribute only from emission times $T_t<T$, and the theory excludes advanced or instantaneous interaction terms.
 
 The causal arrow is therefore a law-level feature of the master-equation support convention. Thermodynamic, biological, and cosmological arrows are emergent finite-window properties built on that oriented dynamics, initial and boundary conditions, and the records retained by a finite observer. This differs from time-symmetric absorber formulations, where past- and future-supported solutions are treated as part of one law. The law-level asymmetry also carries a recovery burden of the same family as preferred-frame leakage: effective observer-level dynamics must recover microreversibility and detailed-balance behavior in the validated equilibrium and weak-interaction regimes up to known $T$-violation bounds, with the derivation owned by the theory-bridge layer.
 
@@ -220,7 +220,7 @@ $$
 
 This symmetry expresses the principle that **the laws of physics are time-translation invariant**: the same admissible state and path-history data, translated by a constant amount in $T$, obey the same dynamical law.
 
-The larger group of smooth orientation-preserving time relabelings is not a symmetry of the substrate law. Once the constant wake speed and receiving-law normalization are fixed, nonlinear time reparametrizations change the causal-root spacing, source-normal denominators, and receiver-normal factors rather than merely changing units.
+The larger group of smooth orientation-preserving time relabelings is not a symmetry of the substrate law. Once the constant wake speed and receiving-law normalization are fixed, nonlinear time reparametrizations change the causal-root spacing, transmitter-side factors, and receiver-side factors rather than merely changing units.
 
 **Connection to Conservation Laws:** Time-translation invariance is the kinematic basis for **energy conservation** when the relevant dynamics admit an energy or action formulation. In this chapter, the point is structural: the background clock supplies a fixed parameter against which such conservation statements can be formulated.
 
@@ -229,7 +229,7 @@ $$
 T \mapsto -T
 $$
 
-This is a **mathematical symmetry** of the manifold $\mathbb{R}$, not automatically a symmetry of the declared dynamics. The master equation chooses future as increasing $T$ by summing only over causal-root rows with $T_{\mathrm{em}}<T$. A reflected history would solve a different future-supported law unless the causal-support convention were changed. The **causal orientation** is therefore part of the dynamics' support rule; it is not curvature, force, or internal structure of the time background itself.
+This is a **mathematical symmetry** of the manifold $\mathbb{R}$, not automatically a symmetry of the declared dynamics. The master equation chooses future as increasing $T$ by summing only over causal-root rows with $T_t<T$. A reflected history would solve a different future-supported law unless the causal-support convention were changed. The **causal orientation** is therefore part of the dynamics' support rule; it is not curvature, force, or internal structure of the time background itself.
 
 ## Role of Time in Dynamics
 
@@ -267,44 +267,44 @@ The foundation stack keeps the relevant speed symbols distinct:
 
 These symbols must not be identified unless the local regime and derivation have been stated.
 
-**Path-History Interactions:** If source $j$ emits from $\mathbf X_j(T_{\mathrm{em}})$ and receiver $i$ is at $\mathbf X_i(T)$, the contributing emission times are the delayed roots
+**Path-History Interactions:** If transmitter $j$ emits from $\mathbf X_j(T_t)$ and receiver $i$ is at $\mathbf X_i(T_r)$, the contributing emission times are the delayed roots
 $$
-\mathcal{C}_{ij}(T)
+\mathcal{C}_{ij}(T_r)
 =
-\{\,T_{\mathrm{em}}<T:\|\mathbf X_i(T)-\mathbf X_j(T_{\mathrm{em}})\|=c_f(T-T_{\mathrm{em}})\,\}
+\{\,T_t<T_r:\|\mathbf X_i(T_r)-\mathbf X_j(T_t)\|=c_f(T_r-T_t)\,\}
 $$
 
-Only emission times in $\mathcal{C}_{ij}(T)$ contribute to the receiver at time $T$. Earlier events that miss this root condition do not contribute through this channel. In dimensional variables, the same condition is written with hatted times and positions using the corresponding dimensional value of $c_f$.
+Only emission times in $\mathcal{C}_{ij}(T_r)$ contribute to the receiver at reception time $T_r$. Earlier events that miss this root condition do not contribute through this channel. In dimensional variables, the same condition is written with hatted times and positions using the corresponding dimensional value of $c_f$.
 
 Equivalently, define the root function
 $$
-F_{ij}(T,T_{\mathrm{em}})
+F_{ij}(T_r,T_t)
 =
-\|\mathbf X_i(T)-\mathbf X_j(T_{\mathrm{em}})\|-c_f(T-T_{\mathrm{em}}),
+\|\mathbf X_i(T_r)-\mathbf X_j(T_t)\|-c_f(T_r-T_t),
 \qquad
-T_{\mathrm{em}}<T
+T_t<T_r
 $$
-Then $\mathcal{C}_{ij}(T)=\{\,T_{\mathrm{em}}<T:F_{ij}(T,T_{\mathrm{em}})=0\,\}$. The same set covers ordinary partner hits when $i\ne j$ and self-hits when $i=j$; no separate self-hit law is needed. A simple-root branch chart requires
+Then $\mathcal{C}_{ij}(T_r)=\{\,T_t<T_r:F_{ij}(T_r,T_t)=0\,\}$. The same set covers ordinary partner hits when $i\ne j$ and self-hits when $i=j$; no separate self-hit law is needed. A simple-root branch chart requires
 $$
 \left|
-\partial_{T_{\mathrm{em}}}F_{ij}(T,T_{\mathrm{em}})
+\partial_{T_t}F_{ij}(T_r,T_t)
 \right|
 =
 \left|
-c_f-\hat{\mathbf{r}}_{ij}(T,T_{\mathrm{em}})\cdot\mathbf V_j(T_{\mathrm{em}})
+c_f-\hat{\mathbf{r}}_{ij}(T_r,T_t)\cdot\mathbf V_j(T_t)
 \right|
 \ge
 \kappa_{\mathrm{hit}}>0
 $$
 where
 $$
-\mathbf{r}_{ij}(T,T_{\mathrm{em}})=\mathbf X_i(T)-\mathbf X_j(T_{\mathrm{em}}),
+\mathbf{r}_{ij}(T_r,T_t)=\mathbf X_i(T_r)-\mathbf X_j(T_t),
 \qquad
 \hat{\mathbf{r}}_{ij}=\frac{\mathbf{r}_{ij}}{\|\mathbf{r}_{ij}\|}
 $$
 Failure of this transversality floor marks a caustic-like or degenerate wake-root regime. It must be routed to branch-chart or regularization analysis rather than treated as an ordinary force perturbation.
 
-For self-hits, the shared root function does not erase the additional geometry carried by source identity. When $i=j$, a root means the same worldline $\gamma_i$ re-enters its own forward causal isochron. In general this is a curvature, torsion, and return-geometry condition on $\gamma_i$, not a speed test by itself. A super-field-speed segment is a regime warning for possible self-hit roots, but the accepted branch is still defined by same-source root existence together with the transversality floor and the retained receiver-normal branch strength.
+For self-hits, the shared root function does not erase the additional geometry carried by transmitter identity. When $i=j$, a root means the same worldline $\gamma_i$ re-enters its own forward causal isochron. In general this is a curvature, torsion, and return-geometry condition on $\gamma_i$, not a speed test by itself. A super-field-speed segment is a regime warning for possible self-hit roots, but the accepted branch is still defined by same-transmitter root existence together with the transversality floor and the retained transmitter-side acceleration weight.
 
 The symbol $\kappa_{\mathrm{hit}}>0$ is not a universal coupling constant and not the regularization width $\eta$. It denotes a declared positive lower bound for one retained branch chart, certificate, or regularized model after the units, root labels, endpoint convention, and memory window have been fixed. Concrete branch packets may report the same condition as a certified Jacobian floor such as $J_0$ or $\nu_J$. The existence of a positive floor is part of simple-root admissibility; its numerical value belongs to the branch-chart or validation record, not to the universal parameter ledger. It is not a coordinate parameter and cannot be removed by relabeling the same history.
 
@@ -314,25 +314,25 @@ The corresponding root caustic set for a pair of histories is
 $$
 \Sigma_{ij}
 =
-\{(T,T_{\mathrm{em}}):F_{ij}(T,T_{\mathrm{em}})=0,\ \partial_{T_{\mathrm{em}}}F_{ij}(T,T_{\mathrm{em}})=0\}
+\{(T_r,T_t):F_{ij}(T_r,T_t)=0,\ \partial_{T_t}F_{ij}(T_r,T_t)=0\}
 $$
-On a generic one-parameter branch this is a Whitney fold, or $A_2$ singularity, of the root map $T_{\mathrm{em}}\mapsto F_{ij}(T,T_{\mathrm{em}})$. Higher events such as a cusp, where $\partial_{T_{\mathrm{em}}}^2F_{ij}=0$ also holds, are codimension-two alarms for branch-pair creation, annihilation, or merger of fold events. In simulation language, fold contact is the first warning that the Jacobian floor has failed; cusp contact is a stronger warning that the local branch-count catalogue itself is changing.
+On a generic one-parameter branch this is a Whitney fold, or $A_2$ singularity, of the root map $T_t\mapsto F_{ij}(T,T_t)$. Higher events such as a cusp, where $\partial_{T_t}^2F_{ij}=0$ also holds, are codimension-two alarms for branch-pair creation, annihilation, or merger of fold events. In simulation language, fold contact is the first warning that the Jacobian floor has failed; cusp contact is a stronger warning that the local branch-count catalogue itself is changing.
 
 This is one instance of a broader foundation-stack discipline: **non-degeneracy floors** convert exact failure sets into graded admissibility certificates. The root Jacobian floor here, the basin-separatrix floor in [Emergence](emergence-of-structure.md#context-as-constraint-on-basin-selection), and the basis-conditioning floor in [Constructing the Absolute Frame](constructing-the-absolute-frame.md#reconstruction-existence-lemma) serve the same role for different objects. They are certificate margins attached to declared charts, not universal constants.
 
-The interaction law is built entirely from path-history contributions at times $T_{\mathrm{em}} < T$ that satisfy the causal-root condition; $\mathbb{A}\mathbb{A}\mathbb{A}$ contains no advanced or instantaneous interaction terms. This delayed-only support condition is a law-level causal asymmetry, not merely an initial-condition effect.
+The interaction law is built entirely from path-history contributions at emission times $T_t < T_r$ that satisfy the causal-root condition; $\mathbb{A}\mathbb{A}\mathbb{A}$ contains no advanced or instantaneous interaction terms. This delayed-only support condition is a law-level causal asymmetry, not merely an initial-condition effect.
 
 There are **no instantaneous actions-at-a-distance** and **no advanced potentials**.
 
-This gives the postulate a hard failure wall. Postulate 1 fails if any accepted substrate-level interaction requires support from $T_{\mathrm{em}} > T$, instantaneous coupling at spatial separation, or a clock-rate field that enters the receiving law as an independent substrate variable rather than as a derived assembly readout. Observer-level proper time, clock dilation, and effective metric lapse may still be recovered, but they cannot be promoted into a second fundamental time parameter without replacing the postulate.
+This gives the postulate a hard failure wall. Postulate 1 fails if any accepted substrate-level interaction requires support from $T_t > T$, instantaneous coupling at spatial separation, or a clock-rate field that enters the receiving law as an independent substrate variable rather than as a derived assembly readout. Observer-level proper time, clock dilation, and effective metric lapse may still be recovered, but they cannot be promoted into a second fundamental time parameter without replacing the postulate.
 
 ## Path History and Non-Markovian Memory
 
 A critical feature of $\mathbb{A}\mathbb{A}\mathbb{A}$ is that **all interactions are mediated by path history**. The present receiver does not respond to an instantaneous distant object. It responds to the cumulative causal wake surfaces that reach it from prior emission events.
 
-At time $T$, an architrino at position $\mathbf X(T)$ receives wake contributions where its worldline intersects **causal wake surfaces** emitted at all past times $T_{\mathrm{em}} < T$; through the [Master Equation](../dynamics/master-equation.md), those received wakes determine receiver-local acceleration rather than a primitive force. This gives rise to **non-Markovian memory effects**, including the self-hit regime where an architrino interacts with its own past emissions.
+At time $T$, an architrino at position $\mathbf X(T)$ receives wake contributions where its worldline intersects **causal wake surfaces** emitted at all past times $T_t < T$; through the [Master Equation](../dynamics/master-equation.md), those received wakes determine receiver-local acceleration rather than a primitive force. This gives rise to **non-Markovian memory effects**, including the self-hit regime where an architrino interacts with its own past emissions.
 
-Because $T$ is universal and absolute, the past (all $T_{\mathrm{em}} < T$) is unambiguous, and the theory can sum or integrate over admissible delayed contributions. This allows for a mechanistic model of interaction without invoking action-at-a-distance, while still permitting **deterministic multistability** at self-hit thresholds.
+Because $T$ is universal and absolute, the past (all $T_t < T$) is unambiguous, and the theory can sum or integrate over admissible delayed contributions. This allows for a mechanistic model of interaction without invoking action-at-a-distance, while still permitting **deterministic multistability** at self-hit thresholds.
 
 ## Provenance and Identity Through Time
 

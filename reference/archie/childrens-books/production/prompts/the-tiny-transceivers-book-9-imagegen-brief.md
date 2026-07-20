@@ -25,7 +25,7 @@ Use the established series visual direction, with Book 9 focused on explicit arc
 
 ### Cover
 
-Electra and Poz sit beside a simple white tabletop message lab. On the lab surface, a few small luminous red and blue point transceivers move along visible red, blue, and purple path traces. One red point has an earlier source position with a faint red wake beginning, and one blue point has a received cue that bends its next path. The scene should invite the question "What are the tiny sender-receivers in nature?" through tiny trackable points, paths, sending, and receiving alone, with no text, labels, numbers, grids, panels, or formal diagrams.
+Electra and Poz sit beside a simple white tabletop message lab. On the lab surface, a few small luminous red and blue point transceivers move along visible red, blue, and purple path traces. One red point has an earlier transmitter position with a faint red wake beginning, and one blue point has a received cue that bends its next path. The scene should invite the question "What are the tiny sender-receivers in nature?" through tiny trackable points, paths, sending, and receiving alone, with no text, labels, numbers, grids, panels, or formal diagrams.
 
 ### Spread 1: The Message Lab
 
@@ -77,7 +77,7 @@ The lab screen now holds many small red and blue point transceivers, each with i
 
 ### Spread 13: Send And Receive
 
-Several red and blue point transceivers on the lab screen both send and receive. Show a readable web of soft red, blue, and purple message cues: a few wakes begin from earlier source positions, and a few cues arrive at other points where paths bend. Keep the web sparse and child-readable, not a tangled network diagram. The visual lesson is transceiver behavior: each tiny point can be a sender and a receiver.
+Several red and blue point transceivers on the lab screen both send and receive. Show a readable web of soft red, blue, and purple message cues: a few wakes begin from earlier transmitter positions, and a few cues arrive at other points where paths bend. Keep the web sparse and child-readable, not a tangled network diagram. The visual lesson is transceiver behavior: each tiny point can be a sender and a receiver.
 
 ### Spread 14: The Discovery
 

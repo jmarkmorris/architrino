@@ -99,7 +99,7 @@ $$
 \left(\sum_s q_s A_s(\mathbf X,T)\right)^2
 \right\rangle_{\Delta T}^{1/2}.
 $$
-Here $\theta$ labels the shared candidate record being tested, $A_s$ denotes the branch-resolved wake amplitude from source segment $s$ — defined on the same retained causal root as the branch law and carrying the same-record receiver-normal branch strength and inverse-square factor $W^{\mathrm{rec}}_s/r_s^2$, not a bare $1/r$ or root-independent amplitude — and $\mathcal{K}_{\mathrm{sea}}$ is a constitutive response coefficient to be derived, not fitted independently. The route is useful only if the same averaged excitation also supplies the lapse, spatial-compliance, lensing, Shapiro, and PPN rows.
+Here $\theta$ labels the shared candidate record being tested, $A_s$ denotes the branch-resolved wake amplitude from source segment $s$ — defined on the same retained causal root as the branch law and carrying the same-record transmitter-side acceleration weight and inverse-square factor $W^{\mathrm{acc}}_s/r_s^2$, not a bare $1/r$ or root-independent amplitude — and $\mathcal{K}_{\mathrm{sea}}$ is a constitutive response coefficient to be derived, not fitted independently. The route is useful only if the same averaged excitation also supplies the lapse, spatial-compliance, lensing, Shapiro, and PPN rows.
 
 ## ADM/Cartan Reconstruction Surface
 
@@ -249,7 +249,7 @@ d\tau
 \frac{1}{c_0}
 \sqrt{-g^{\text{eff}}_{\mu\nu}dx_{\mathrm{eff}}^\mu dx_{\mathrm{eff}}^\nu}
 $$
-and extremizing this observer-level action must give the same weak-field acceleration row used in the PPN bundle,
+and extremizing this observer-level action must give the same weak-field acceleration contribution used in the PPN bundle,
 $$
 \frac{d^2x_{\mathrm{eff}}^i}{dt_{\mathrm{eff}}^2}
 =

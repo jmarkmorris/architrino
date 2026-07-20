@@ -5,8 +5,8 @@
 - Stage: `priority-design`
 - Implementation: `not-started`
 - Authority: operator-selected EOM boundary
-- Frozen normative requirements: [evolution-contract-v0.md](evolution-contract-v0.md)
-- Million-path amendment: [eom_evolution_contract/v0/amendment-1](evolution-contract-v0-amendment-1-million-path-scale.md)
+- Frozen normative requirements: [evolution-contract-v1.md](evolution-contract-v1.md)
+- Million-path amendment: [eom_evolution_contract/v0/amendment-1](evolution-contract-v1-amendment-1-million-path-scale.md)
 - Million-path architecture: [eom_million_path_execution/v0](million-path-certified-execution-architecture.md)
 
 ## Defining Operation
@@ -28,9 +28,9 @@ The input history is the initial condition for the delayed system. It is not per
 
 At an accepted receiver time $T_n$, EOM must:
 
-1. read each source path only from retained history available at $T_n$;
-2. continue known roots where their chart remains valid, independently scan for new or missed branches, solve the causal-root condition for every ordered receiver-source pair, and certify that every admitted active root was enumerated;
-3. evaluate the canonical receiver-normal Master EOM using the same root ledger;
+1. read each transmitter path only from retained history available at $T_n$;
+2. continue known roots where their chart remains valid, independently scan for new or missed branches, solve the causal-root condition for every ordered receiver-transmitter pair, and certify that every admitted active root was enumerated;
+3. evaluate the canonical receiver-side-factor Master EOM using the same root ledger;
 4. advance the coupled state to a candidate $T_{n+1}$;
 5. correct, refine, or reject the candidate when root, state, event, or error controls fail;
 6. append only the accepted state to retained history;
@@ -40,11 +40,11 @@ At an accepted receiver time $T_n$, EOM must:
 
 EOM must accept finite sub-field-speed, exactly field-speed, and super-field-speed path velocities. It must not clamp, reject, or perturb a state merely because $\|\mathbf V_i\|$ is less than, equal to, or greater than $c_f$.
 
-The equality $\|\mathbf V_i\|=c_f$ is not by itself a singularity. At each ordered receiver-source row, including $i=j$, the engine must evaluate the actual causal-root geometry and the source-normal and receiver-normal factors. A rail-aligned row may produce $D_s=0$, $D_T=0$, a root fold, a receiver-normal null, or another chart event; those outcomes require the declared certified transition, regularization, or fail-closed route. They may not be replaced by a global prohibition on field-speed motion.
+The equality $\|\mathbf V_i\|=c_f$ is not by itself a singularity. At each ordered receiver-transmitter pair, including $i=j$, the engine must evaluate the actual causal-root geometry and the transmitter-side and receiver-side factors. A rail-aligned pair may produce $D_t=0$, $D_r=0$, a root fold, a receiver-playback turning point, or another chart event; those outcomes require the declared certified transition, regularization, or fail-closed route. They may not be replaced by a global prohibition on field-speed motion.
 
 Super-field-speed motion is also inside the required domain. It may create multiple partner roots or nontrivial self-history roots, so exhaustive root enumeration and branch identity become more important rather than optional.
 
-Every ordered pair $(i,j)$ has continuous logical accounting at every accepted receiver event. This does not assert that every pair has a nonzero force or an active causal root, nor does it require an uncompressed $N^2$ output table. Each pair must resolve to an explicit active, inactive, excluded-coincidence, or unresolved row, or to a certified exclusion or aggregation record whose membership and error bound cover that pair. A missing contribution can therefore never be confused with a skipped pair. Same-source accounting excludes only the coincident endpoint $T_{\mathrm{em}}=T$ under the canonical convention; it must retain every admitted nontrivial same-source root with $T_{\mathrm{em}}<T$. A one-architrino request is therefore valid when its retained self-history satisfies the input contract.
+Every ordered pair $(i,j)$ has continuous logical accounting at every accepted receiver event. This does not assert that every pair has a nonzero acceleration or an active causal root, nor does it require an uncompressed $N^2$ output table. Each pair must resolve to an explicit active, inactive, excluded-coincidence, or unresolved record, or to a certified exclusion or aggregation record whose membership and error bound cover that pair. A missing contribution can therefore never be confused with a skipped pair. Same-transmitter accounting excludes only the coincident endpoint $T_{\mathrm{em}}=T$ under the canonical convention; it must retain every admitted nontrivial same-transmitter root with $T_{\mathrm{em}}<T$. A one-architrino request is therefore valid when its retained self-history satisfies the input contract.
 
 ## Required Input
 
@@ -62,9 +62,9 @@ Every ordered pair $(i,j)$ has continuous logical accounting at every accepted r
 
 | Output | Required content |
 | --- | --- |
-| Evolved path histories | Every accepted position and velocity row through $T_1$, or through the last accepted state before a declared halt, returned inline only for bounded runs and otherwise through immutable content-addressed chunks plus an output manifest. |
-| Root ledger | Active, inactive, unresolved, same-source, partner, birth/death, caustic, source-normal, receiver-normal, residual, and branch-identity rows. |
-| Interaction ledger | Per-root and per-receiver acceleration contributions tied to the root and history rows actually used. |
+| Evolved path histories | Every accepted position and velocity record through $T_1$, or through the last accepted state before a declared halt, returned inline only for bounded runs and otherwise through immutable content-addressed chunks plus an output manifest. |
+| Root ledger | Active, inactive, unresolved, same-transmitter, partner, birth/death, caustic, transmitter-side-factor, receiver-side-factor, residual, and branch-identity records. |
+| Interaction ledger | Per-root and per-receiver acceleration contributions tied to the root and history records actually used. |
 | Step ledger | Attempted and accepted steps, error estimate, rejection reason, correction iterations, event subdivisions, and integration method. |
 | Execution record | EOM version, model hash, input hash, thread count, deterministic reduction policy, precision path, platform, timing, and resource use. |
 | Halt record | Completed interval or exact first failure: insufficient history, unresolved root, branch ambiguity, singular chart, minimum-step exhaustion, nonfinite state, cancellation, storage failure, or resource-envelope rejection. |
@@ -81,12 +81,12 @@ EOM should support:
 - individual-path or grouped block-step schedules so fast paths and active branch events can advance more finely than slow paths;
 - separate integration cadence and output cadence;
 - minimum and maximum timestep bounds;
-- event-local subdivision around root births, deaths, folds, same-source onset, close approach, and other declared chart boundaries;
-- rejected-step rollback without publishing candidate history rows;
+- event-local subdivision around root births, deaths, folds, same-transmitter onset, close approach, and other declared chart boundaries;
+- rejected-step rollback without publishing candidate history records;
 - dense output only as interpolation over accepted EOM states, never as a replacement for integration;
 - convergence runs over a declared timestep and rate-hierarchy ladder.
 
-Multirate execution must preserve one causal absolute-time ledger. At a receiver event $T$, every source sample at an emission time $T_{\mathrm{em}}$ must come from accepted retained history or from a controlled interpolant over accepted history. Predictor states may participate in an implicit correction iteration, but they do not become retained source history until the coupled step is accepted.
+Multirate execution must preserve one causal absolute-time ledger. At a receiver event $T$, every transmitter sample at an emission time $T_{\mathrm{em}}$ must come from accepted retained history or from a controlled interpolant over accepted history. Predictor states may participate in an implicit correction iteration, but they do not become retained transmitter history until the coupled step is accepted.
 
 There are two distinct slow-sector strategies:
 
@@ -106,7 +106,7 @@ Candidate levels include:
 5. interval or ball enclosures for decisions that require a certified bound;
 6. exact or adaptive robust predicates for signs, orderings, coincidences, and topology-changing decisions when floating-point subtraction is inconclusive.
 
-The exact ladder remains a language-and-library decision. Its contract does not: a row may be promoted locally without forcing the entire simulation into the most expensive representation, every promotion must be recorded, and no stage may silently fall back to a weaker precision than the request or its condition estimate requires. If the maximum allowed precision still cannot certify a required decision, the candidate step must be rejected or the run must halt with the unresolved quantity and achieved enclosure.
+The exact ladder remains a language-and-library decision. Its contract does not: a record may be promoted locally without forcing the entire simulation into the most expensive representation, every promotion must be recorded, and no stage may silently fall back to a weaker precision than the request or its condition estimate requires. If the maximum allowed precision still cannot certify a required decision, the candidate step must be rejected or the run must halt with the unresolved quantity and achieved enclosure.
 
 ### Scaling And Stability Rules
 
@@ -117,15 +117,15 @@ The numerical design should combine additional precision with stable formulation
 - represent absolute time as a stable epoch-plus-offset or equivalent split form when a fine local timestep is small relative to the global epoch;
 - use compensated, pairwise, expansion, or otherwise error-controlled accumulation for large interaction reductions;
 - use overflow- and underflow-resistant norms, ratios, and residual normalizations;
-- carry interpolation, root, force, integration, synchronization, and reduction error estimates separately before combining them into the accepted-step budget;
-- use condition estimates to promote only the rows, roots, reductions, or correction stages that require stricter arithmetic;
+- carry interpolation, root, acceleration, integration, synchronization, and reduction error estimates separately before combining them into the accepted-step budget;
+- use condition estimates to promote only the records, roots, reductions, or correction stages that require stricter arithmetic;
 - compare residuals to problem-scaled tolerances and enclosures, never to an unscaled universal epsilon.
 
-High-risk locations include near-cancelling causal-root residuals, near-caustic source-normal factors, receiver-normal branch strength, close approaches, large-population acceleration sums, interpolation between widely separated multirate levels, and reductions whose order changes across threads or accelerators. Root count, root activity, branch identity, event ordering, and sign decisions are discrete outcomes; tolerance-level disagreement in a continuous value does not excuse disagreement in those outcomes.
+High-risk locations include near-cancelling causal-root residuals, near-caustic transmitter-side factors, signed root playback and transmitter-side acceleration weight, close approaches, large-population acceleration sums, interpolation between widely separated multirate levels, and reductions whose order changes across threads or accelerators. Root count, root activity, branch identity, event ordering, and sign decisions are discrete outcomes; tolerance-level disagreement in a continuous value does not excuse disagreement in those outcomes.
 
 ### Precision On Accelerators
 
-The accelerator design may use a heterogeneous precision pipeline. Well-conditioned bulk rows can remain on the GPU in a validated hardware format, while flagged rows move to a stricter device kernel or a CPU software-multiprecision queue. The transfer and escalation cost is part of the end-to-end benchmark.
+The accelerator design may use a heterogeneous precision pipeline. Well-conditioned bulk records can remain on the GPU in a validated hardware format, while flagged records move to a stricter device kernel or a CPU software-multiprecision queue. The transfer and escalation cost is part of the end-to-end benchmark.
 
 A GPU path is not authoritative when it merely agrees approximately on positions while producing a different certified root count, active-root set, sign, event order, or branch identity. Promotion requires cross-precision and cross-backend convergence, plus certified enclosures or independent multiprecision evidence at the difficult cases defined by the acceptance oracle.
 
@@ -159,7 +159,7 @@ The CPU design should make independent ordered-pair root searches and branch eva
 
 Required GPU investigation includes:
 
-- batched source-history interpolation;
+- batched transmitter-history interpolation;
 - causal residual evaluation over large candidate sets;
 - root-bracket detection and refinement kernels;
 - per-root branch-strength and acceleration evaluation;
@@ -167,7 +167,7 @@ Required GPU investigation includes:
 - deterministic or reproducible receiver reductions;
 - resident hot-history/state layouts that minimize host-device transfer;
 - overlap of CPU event/control work with GPU numeric kernels;
-- multi-GPU receiver, source, history-chunk, or spatial-domain partitioning;
+- multi-GPU receiver, transmitter, history-chunk, or spatial-domain partitioning;
 - transfer, synchronization, branch-divergence, occupancy, and accelerator-memory measurements.
 
 A GPU result is not authoritative because it is faster. It must pass the independent oracle, cross-backend convergence, root-count equality or justified bounded differences, and the declared precision budget. Hardware-dependent reduced precision must be explicit.
@@ -183,7 +183,7 @@ architecture in
 [million-path-certified-execution-architecture.md](million-path-certified-execution-architecture.md),
 including:
 
-- causal space-time block enclosures that prove complete receiver-source-time
+- causal space-time block enclosures that prove complete receiver-transmitter-time
   blocks root free;
 - complete disjoint accounting of excluded, exact, enclosed, and unresolved
   ordered relationships;
@@ -221,7 +221,7 @@ Benchmarks must span population size, path-history depth, active-root density, t
 - SIMD gain and memory-bandwidth utilization;
 - GPU kernel, transfer, synchronization, and end-to-end speedups;
 - multi-GPU or distributed scaling where available;
-- peak and steady memory per path and retained-history row;
+- peak and steady memory per path and retained-history record;
 - load imbalance and time spent in interpolation, root solving, force accumulation, integration, storage, and synchronization;
 - numerical differences against the independent oracle and single-thread CPU reference.
 

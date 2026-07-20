@@ -151,7 +151,7 @@ Start with short arcs that can produce both one-panel and three- or four-panel v
 
 | Arc | Core question | Main cast | Typical endpoint |
 | --- | --- | --- | --- |
-| Hidden Delay | Why does the present depend on earlier source positions? | Mia, Sophia, Rachel | A reader can explain causal-delay intuition without treating it as ordinary instantaneous force. |
+| Hidden Delay | Why does the present depend on earlier transmitter positions? | Mia, Sophia, Rachel | A reader can explain causal-delay intuition without treating it as ordinary instantaneous force. |
 | Records And Measurement | What makes a measurement a record? | Rachel, Mia, Sophia | A reader sees measurement as physical interaction and record formation, not magic observation. |
 | Geometry You Can See | What is the equation doing geometrically? | Sophia, Mia | A reader can map a symbol or closure target to a visual relation. |
 | Public Workbench | How do I inspect the claim? | Julian, Rachel | A reader is routed to source files, simulations, or open proof burdens. |

@@ -77,7 +77,7 @@ $$
 $$
 
 This map is a closure target unless the local document has already derived the
-needed row. It must not be smuggled in by reusing the same letters on both
+needed mapping. It must not be smuggled in by reusing the same letters on both
 sides. In programs and app data, the same rule applies to field names and
 labels: EOM solver state, display coordinates, and effective observer
 coordinates must not share one undifferentiated symbol when a calculation or
@@ -122,15 +122,20 @@ Plain language: Objects move as dots in 3D through successive instants; speeds a
 - Field speed is $v$; by default we non-dimensionalize to $v=1$.
 - Causal-time condition (CT):
   $$
-  \Delta_{o'j}=T-T_{\mathrm{em}},\quad r = \|\mathbf X_{o'}(T) - \mathbf X_j(T_{\mathrm{em}})\|,\quad r = v\,\Delta_{o'j}
+  \mathbf r_t=\mathbf X_r(T_r)-\mathbf X_t(T_t),\quad
+  \Delta_{r\leftarrow t}=T_r-T_t,\quad
+  r=\|\mathbf r_t\|=v\,\Delta_{r\leftarrow t}
   $$
 - Causal set:
   $$
-  \mathcal{C}_{o'j}(T) = \{\, T_{\mathrm{em}} < T \mid \|\mathbf X_{o'}(T) - \mathbf X_j(T_{\mathrm{em}})\| = v\,(T - T_{\mathrm{em}}) \,\}
+  \mathcal C_{r\leftarrow t}(T_r)
+  =
+  \{\,T_t<T_r\mid\|\mathbf X_r(T_r)-\mathbf X_t(T_t)\|=v(T_r-T_t)\,\}
   $$
 - Conventions:
   - $H(0)=0$ (no instantaneous self-kick).
-  - No $r=0$ causal roots beyond $\Delta_{o'j}=0$: because $r = v(T - T_{\mathrm{em}})$, $r=0$ implies $\Delta_{o'j}=0$; that coincident-time case is excluded by $H(0)=0$. Under mollification, the symmetric limit as $r\to 0$ yields zero net push.
+  - No $r=0$ causal roots exist beyond $\Delta_{r\leftarrow t}=0$: because $r=v(T_r-T_t)$, $r=0$ implies $T_r=T_t$; that coincident-time case is excluded by $H(0)=0$.
+  - This exclusion does not supply a continuation through a coincident same-transmitter root birth. Such a singular event remains fail closed until one finite transition rule certifies its root ledger and conserved accounts.
 
 Plain language: A push now only happens if a past causal wake surface has had exactly enough time to reach the receiver.
 
@@ -138,13 +143,13 @@ Plain language: A push now only happens if a past causal wake surface has had ex
 
 ## Distributions and regularization (causal wake surfaces)
 
-- Point emission at $(T_{\mathrm{em}},\mathbf X_{\mathrm{em}})$:
+- Point emission at $(T_t,\mathbf X_{\mathrm{em}})$:
   $$
-  \text{source} = q\,\delta(T - T_{\mathrm{em}})\,\delta^{(3)}(\mathbf X - \mathbf X_{\mathrm{em}})
+  \text{source} = q\,\delta(T - T_t)\,\delta^{(3)}(\mathbf X - \mathbf X_{\mathrm{em}})
   $$
 -- Expanding causal wake surface at speed v:
   $$
-  \rho(T,\mathbf X) = \frac{q}{4\pi r^2}\,\delta(r - v\,\Delta)\,H(\Delta),\quad r=\|\mathbf X-\mathbf X_{\mathrm{em}}\|,\ \Delta=T-T_{\mathrm{em}}
+  \rho(T,\mathbf X) = \frac{q}{4\pi r^2}\,\delta(r - v\,\Delta)\,H(\Delta),\quad r=\|\mathbf X-\mathbf X_{\mathrm{em}}\|,\ \Delta=T-T_t
   $$
   $$
   \rho = \frac{q}{4\pi r^2}\,\delta_{S_{v\Delta}}(\mathbf X-\mathbf X_{\mathrm{em}})\,H(\Delta)
@@ -159,47 +164,44 @@ Plain language: Each emission is a razor-thin causal wake surface; when needed, 
 
 ---
 
-## Master Equation of Motion (EOM; line of action with receiver-normal branch strength)
+## Master Equation of Motion (EOM; line of action with transmitter-side acceleration weight)
 
-Given a receiver $o'$ at time $T$ and a source $j$ at causal emission time $T_{\mathrm{em}} \in \mathcal{C}_{o'j}(T)$, let
+Given receiver $r$ at reception time $T_r$ and transmitter $t$ at causal emission time $T_t\in\mathcal C_{r\leftarrow t}(T_r)$, let
 $$
-r_{o'j}(T;T_{\mathrm{em}})=\|\mathbf X_{o'}(T)-\mathbf X_j(T_{\mathrm{em}})\|,
+r(T_r;T_t)=\|\mathbf X_r(T_r)-\mathbf X_t(T_t)\|,
 \qquad
-\hat{\mathbf{r}}_{o'j}(T;T_{\mathrm{em}})=\frac{\mathbf X_{o'}(T)-\mathbf X_j(T_{\mathrm{em}})}{r_{o'j}(T;T_{\mathrm{em}})}
+\hat{\mathbf r}_t(T_r;T_t)=\frac{\mathbf X_r(T_r)-\mathbf X_t(T_t)}{r(T_r;T_t)}
 $$
-and $\sigma_{q_j q_{o'}}=\mathrm{sign}(q_j q_{o'}) \in \{+1,-1\}$.
+and $\sigma_{tr}=\operatorname{sign}(q_tq_r)\in\{+1,-1\}$.
 
 Canonical per-hit acceleration:
 $$
-\mathbf A_{o'\leftarrow j}(T; T_{\mathrm{em}})
-= \kappa\,\sigma_{q_j q_{o'}}\,
-\frac{|q_j q_{o'}|}{r_{o'j}^2(T;T_{\mathrm{em}})}
-W_{o'j}^{\mathrm{rec}}(T;T_{\mathrm{em}})\,\hat{\mathbf{r}}_{o'j}(T;T_{\mathrm{em}})
+\mathbf A_{r\leftarrow t}(T_r;T_t)
+=\kappa\,\sigma_{tr}\,
+\frac{|q_tq_r|}{r^2(T_r;T_t)}
+W_{r\leftarrow t}^{\mathrm{acc}}(T_r;T_t)\,\hat{\mathbf r}_t(T_r;T_t)
 $$
 where
 $$
-D_{s,o'j}(T;T_{\mathrm{em}})
+D_t(T_r;T_t)
 \equiv
-c_f-\mathbf V_j(T_{\mathrm{em}})\cdot\hat{\mathbf{r}}_{o'j}(T;T_{\mathrm{em}}),
+c_f-\mathbf V_t(T_t)\cdot\hat{\mathbf r}_t(T_r;T_t),
 \qquad
-D_{T,o'j}(T;T_{\mathrm{em}})
+D_r(T_r;T_t)
 \equiv
-c_f-\mathbf V_{o'}(T)\cdot\hat{\mathbf{r}}_{o'j}(T;T_{\mathrm{em}})
+c_f-\mathbf V_r(T_r)\cdot\hat{\mathbf r}_t(T_r;T_t)
 $$
 and
 $$
-W_{o'j}^{\mathrm{rec}}(T;T_{\mathrm{em}})
+W_{r\leftarrow t}^{\mathrm{acc}}(T_r;T_t)
 \equiv
-\left|
-\frac{D_{T,o'j}(T;T_{\mathrm{em}})}
-{D_{s,o'j}(T;T_{\mathrm{em}})}
-\right|.
+\frac{c_f}{|D_t(T_r;T_t)|}.
 $$
-The source-normal denominator $D_s$ controls root transversality and wake-front compression or dilation from source motion. The receiver-normal numerator $D_T$ controls how the moving receiver cuts through the same emitted wake sequence. The unsigned ratio $W^{\mathrm{rec}}$ is the branch-strength factor in the acceleration magnitude.
+The transmitter-side factor $D_t$ controls root transversality and wake-front compression or dilation from transmitter motion. The receiver-side factor $D_r$ controls how the moving receiver cuts through the same emitted wake sequence. The exact signed root-playback derivative is $dT_t/dT_r=D_r/D_t$. The transmitter-side acceleration weight is $W^{\mathrm{acc}}=c_f/|D_t|$; it is not the magnitude of root playback.
 
 Total acceleration:
 $$
-\mathbf A_{o'}(T) = \sum_{j}\ \sum_{T_{\mathrm{em}} \in \mathcal{C}_{o'j}(T)} \mathbf A_{o'\leftarrow j}(T; T_{\mathrm{em}})
+\mathbf A_r(T_r)=\sum_t\ \sum_{T_t\in\mathcal C_{r\leftarrow t}(T_r)}\mathbf A_{r\leftarrow t}(T_r;T_t)
 $$
 
 DDE view: let native state $\mathsf Z = (\mathbf X, \mathbf V)$. With $\eta>0$ regularization, the dynamics admit a causal functional form
@@ -209,21 +211,25 @@ $$
 with $\Delta_j$ determined implicitly by $\|\mathbf X(T)-\mathbf X_j(T-\Delta_j)\| = v\,\Delta_j$, and per-hit contributions summed over all roots. In the $\eta\to 0$ limit interpret in the weak sense.
 
 Notes:
-- Emission cadence and per-wavefront amplitude are constant at the source; the received force magnitude is modulated by the receiver-normal branch factor $W^{\mathrm{rec}}=\lvert D_T/D_s\rvert$.
+- Emission cadence and per-wavefront amplitude are constant at the transmitter; the received acceleration magnitude is modulated by the transmitter-side acceleration weight $W^{\mathrm{acc}}=c_f/\lvert D_t\rvert$.
 - No cross products, no right-hand-rule magnetism; every per-hit action is along $\hat{\mathbf{r}}$.
 
-Plain language: For each past emission that can reach the receiver now, push along the line back to where it came from, with inverse-square falloff multiplied by how the source laid down the wake and how the receiver crosses it, then add all pushes.
+Plain language: For each past emission that can reach the receiver now, accelerate along the line from the transmitter's emission point to the receiver, with inverse-square falloff multiplied by how densely the transmitter laid down the wake surfaces, then add all contributions. Receiver motion changes root playback and future geometry, not the arriving multiplier.
 
 Receiver velocity decomposition (instantaneous):
-- Decompose the receiver velocity relative to $\hat{\mathbf{r}}_{o'j}$:
+- Decompose the receiver velocity relative to $\hat{\mathbf r}_t$:
   $$
-  \mathbf V_{o'} = V_r\,\hat{\mathbf{r}}_{o'j} + \mathbf V_\perp,\qquad V_r = \mathbf V_{o'}\cdot \hat{\mathbf{r}}_{o'j}
+  \mathbf V_r = V_{r,\parallel}\,\hat{\mathbf r}_t + \mathbf V_{r,\perp},
+  \qquad
+  V_{r,\parallel}=\mathbf V_r\cdot\hat{\mathbf r}_t
   $$
-- Because $\mathbf A_{o'\leftarrow j} \parallel \hat{\mathbf{r}}_{o'j}$, a single hit updates only the radial component:
+- Because $\mathbf A_{r\leftarrow t}\parallel\hat{\mathbf r}_t$, a single hit updates only the radial component:
   $$
-  \frac{d}{dT}\mathbf V_\perp = 0,\qquad \frac{d}{dT}V_r = \mathbf A_{o'\leftarrow j}\cdot \hat{\mathbf{r}}_{o'j}
+  \frac{d}{dT_r}\mathbf V_{r,\perp}=0,
+  \qquad
+  \frac{d}{dT_r}V_{r,\parallel}=\mathbf A_{r\leftarrow t}\cdot\hat{\mathbf r}_t
   $$
-- Local trend: inward motion ($V_r<0$) tends to strengthen subsequent per-hit contributions via the $1/r^2$ factor; outward ($V_r>0$) tends to weaken them, all else equal.
+- Local trend: inward motion ($V_{r,\parallel}<0$) tends to strengthen subsequent per-hit contributions via the $1/r^2$ factor; outward motion ($V_{r,\parallel}>0$) tends to weaken them, all else equal.
 
 Plain language: a hit changes only the along-the-line piece of your velocity right then; sideways motion is unchanged at that instant.
 
@@ -236,8 +242,8 @@ Plain language: a hit changes only the along-the-line piece of your velocity rig
     $$
     U_{\text{pot}} = q'\,\Phi_\eta
     $$
-- Force relation:
-  - Holds pointwise for $\Phi_\eta$; as $\eta \to 0$, interpret in the weak sense over resolved intervals:
+- Potential-gradient bookkeeping relation:
+  - Holds pointwise for $\Phi_\eta$; the force symbol is optional assembly-level bookkeeping, and as $\eta \to 0$, interpret it in the weak sense over resolved intervals:
     $$
     \mathbf{F} = -\nabla U_{\text{pot}}
     $$
@@ -246,7 +252,7 @@ Plain language: a hit changes only the along-the-line piece of your velocity rig
   \Delta E_k \;=\; \int \mathbf{F}\cdot d\mathbf X \;=\; -\,\Delta U_{\text{pot}}
   $$
 
-Plain language: With slightly thick causal wake surfaces, the usual “force is minus gradient of potential” works; in the razor-thin limit it works after integrating over small time windows.
+Plain language: With slightly thick causal wake surfaces, the optional force-bookkeeping variable is minus the potential gradient; the primitive substrate statement remains the per-hit acceleration law, and the razor-thin limit is interpreted after integrating over small time windows.
 
 ---
 
@@ -258,10 +264,10 @@ Plain language: With slightly thick causal wake surfaces, the usual “force is 
 - In axial-inventory and weak-coupling-triad counts, write signed polarity units as $\epsilon_+$ and $\epsilon_-$, for example $5\epsilon_+ + 1\epsilon_-$. Do not use initial-letter polarity shorthand for these inventories.
 - $\kappa>0$ universal coupling.
 - $\eta>0$ mollifier width (regularization parameter).
-- Emission cadence and per-wavefront amplitude are constant. Receiver-normal velocity enters the branch strength through $D_T$ and enters instantaneous power through $\,\mathbf{F}\cdot\mathbf V = \|\mathbf{F}\|\,V_r$.
+- Emission cadence and per-wavefront amplitude are constant. Receiver-side velocity enters signed root playback through $D_r/D_t$ and instantaneous power through the radial factor $\mathbf A\cdot\mathbf V=\|\mathbf A\|V_{r,\parallel}$; it does not multiply the instantaneous acceleration weight.
 - $r$, $\hat{\mathbf{r}}$ as above; $H$ is the Heaviside step function with $H(0)=0$.
 
-Plain language: Fix units so the field speed is one; use $\epsilon$ as the basic polarity unit; emission cadence and per-wavefront amplitude are constant; receiver motion changes received branch strength through $D_T$ and power through radial velocity.
+Plain language: Fix units so the field speed is one; use $\epsilon$ as the basic polarity unit; transmitter motion sets the arriving acceleration weight, while receiver motion changes root playback, future geometry, and instantaneous power.
 
 ---
 
@@ -276,13 +282,13 @@ Plain language: Fix units so the field speed is one; use $\epsilon$ as the basic
 ## Editorial micro-style
 
 - After formal definitions, add a brief “Plain language” sentence.
-- Use consistent symbol set: $\mathcal{C}_{o'j}(T)$, $T_{\mathrm{em}}$, $r$, $\hat{\mathbf{r}}$, $v$, $\epsilon$, $\kappa$, $D_s$, $D_T$, and $W^{\mathrm{rec}}$; reserve $J^{\mathrm{src}}$ for source-normal causal-Jacobian diagnostics.
+- Use consistent event-role notation: $\mathcal C_{r\leftarrow t}(T_r)$, $T_t$, $T_r$, $\mathbf r_t$, $r$, $\hat{\mathbf r}_t$, $v$, $\epsilon$, $\kappa$, $D_t$, $D_r$, $W^{\mathrm{acc}}$, and $J^t$.
 - Equation tags (optional): (CT) causal-time, (EOM) equation of motion, (REG) regularization, (ENER) energetics.
-- Emission cadence and per-wavefront amplitude are constant; receiver-normal motion changes the crossing cadence of the emitted wake sequence.
+- Emission cadence and per-wavefront amplitude are constant; receiver-side motion changes the crossing cadence of the emitted wake sequence.
 - Notation for “now”: use $T_{\mathrm{now}}$ or a locally declared $T_\ast$ for a fixed native evaluation time; use $t_{\mathrm{eff,obs}}$ for effective observation time after an observer chart has been declared.
 - Canonical universe-now notation: use $\mathbb{U}_{\text{now}} \equiv S(T)$ for the complete ontic universe state; do not substitute alternate labels or glyph variants.
 - Emitters/receivers are individual architrinos; composite assemblies never emit or receive as wholes; their behavior emerges from constituent architrinos.
-- Use “surrogate location” to denote a stationary, hypothetical emitter placed on the receiver’s current unoriented line of action that reproduces the same instantaneous hit; use “surrogate-location recast” when referring to this rewriting.
+- Use “surrogate location” to denote a stationary, hypothetical transmitter placed on the receiver's current unoriented line of action that reproduces the same instantaneous hit; use “surrogate-location recast” when referring to this rewriting.
 - On first occurrence in a doc: “We work in units with field speed v=1 unless stated otherwise.”
 - KaTeX lint:
   - Use `$...$` inline math for short symbols or ratios in prose.

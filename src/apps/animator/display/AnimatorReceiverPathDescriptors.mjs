@@ -1,9 +1,9 @@
 import {
   ANIMATOR_RECEIVER_PATH_DESCRIPTOR_LAYOUT,
-} from "./AnimatorDelayedHitRows.mjs";
+} from "./AnimatorDelayedHitRecords.mjs";
 import {
-  ANIMATOR_FIELD_SHELL_EMITTER_SOURCE_HISTORY_SCHEMA,
-  createAnimatorFieldShellEmitterSourceHistory,
+  ANIMATOR_FIELD_SHELL_TRANSMITTER_HISTORY_SCHEMA,
+  createAnimatorFieldShellTransmitterHistory,
 } from "./AnimatorFieldShellEventStream.mjs";
 
 export const ANIMATOR_RECEIVER_PATH_DESCRIPTOR_PACKAGE_SCHEMA =
@@ -40,37 +40,37 @@ function normalizePositiveNumber(value, fallback, min = 0) {
   return number > min ? number : fallback;
 }
 
-function resolveSourceHistory(descriptor = {}, fallbackFieldSpeed = 1) {
-  const sourceHistory =
-    descriptor.receiverSourceHistory ??
-    descriptor.emitterSourceHistory ??
-    descriptor.sourceHistory;
+function resolveTransmitterHistory(descriptor = {}, fallbackFieldSpeed = 1) {
+  const transmitterHistory =
+    descriptor.receiverTransmitterHistory ??
+    descriptor.transmitterHistory ??
+    descriptor.transmitterHistory;
   if (
-    sourceHistory?.schema === ANIMATOR_FIELD_SHELL_EMITTER_SOURCE_HISTORY_SCHEMA &&
-    Array.isArray(sourceHistory.samples)
+    transmitterHistory?.schema === ANIMATOR_FIELD_SHELL_TRANSMITTER_HISTORY_SCHEMA &&
+    Array.isArray(transmitterHistory.samples)
   ) {
-    return sourceHistory;
+    return transmitterHistory;
   }
-  return createAnimatorFieldShellEmitterSourceHistory({
-    ...(sourceHistory && typeof sourceHistory === "object" ? sourceHistory : {}),
-    documentData: descriptor.documentData ?? sourceHistory?.documentData,
-    simulationDataset: descriptor.simulationDataset ?? sourceHistory?.simulationDataset,
-    sampleTimes: descriptor.sampleTimes ?? sourceHistory?.sampleTimes,
-    timeWindow: descriptor.timeWindow ?? sourceHistory?.timeWindow,
-    fieldSpeed: descriptor.fieldSpeed ?? sourceHistory?.fieldSpeed ?? fallbackFieldSpeed,
+  return createAnimatorFieldShellTransmitterHistory({
+    ...(transmitterHistory && typeof transmitterHistory === "object" ? transmitterHistory : {}),
+    documentData: descriptor.documentData ?? transmitterHistory?.documentData,
+    simulationDataset: descriptor.simulationDataset ?? transmitterHistory?.simulationDataset,
+    sampleTimes: descriptor.sampleTimes ?? transmitterHistory?.sampleTimes,
+    timeWindow: descriptor.timeWindow ?? transmitterHistory?.timeWindow,
+    fieldSpeed: descriptor.fieldSpeed ?? transmitterHistory?.fieldSpeed ?? fallbackFieldSpeed,
     sampleIntervalSeconds:
       descriptor.sampleIntervalSeconds ??
-      sourceHistory?.sampleIntervalSeconds ??
+      transmitterHistory?.sampleIntervalSeconds ??
       descriptor.intervalSeconds ??
-      sourceHistory?.intervalSeconds,
-    cadence: descriptor.cadence ?? sourceHistory?.cadence,
-    datasetId: descriptor.datasetId ?? sourceHistory?.datasetId,
+      transmitterHistory?.intervalSeconds,
+    cadence: descriptor.cadence ?? transmitterHistory?.cadence,
+    datasetId: descriptor.datasetId ?? transmitterHistory?.datasetId,
   });
 }
 
 function getSampleReceiverId(sample, index) {
   return normalizeString(
-    sample.receiverId ?? sample.receiver ?? sample.emitterId ?? sample.id,
+    sample.receiverId ?? sample.receiver ?? sample.transmitterId ?? sample.id,
     `receiver_${index + 1}`
   );
 }
@@ -83,20 +83,20 @@ function createDescriptorState(sample, receiverId, pathKey, streamId) {
     receiverId,
     pathKey,
     streamId,
-    rowLayout: ANIMATOR_RECEIVER_PATH_DESCRIPTOR_LAYOUT,
+    recordLayout: ANIMATOR_RECEIVER_PATH_DESCRIPTOR_LAYOUT,
     source: "streamRef",
     samples: [],
     metadata: {
       source: "solver-owned-receiver-path-descriptor",
-      sourceHistorySchema: metadata.sourceHistorySchema ??
-        ANIMATOR_FIELD_SHELL_EMITTER_SOURCE_HISTORY_SCHEMA,
+      transmitterHistorySchema: metadata.transmitterHistorySchema ??
+        ANIMATOR_FIELD_SHELL_TRANSMITTER_HISTORY_SCHEMA,
       motionSource: metadata.motionSource ?? "solver-derived",
       ownerAssemblyId: metadata.ownerAssemblyId ?? "",
       memberId: metadata.memberId ?? receiverId,
       chargeType: metadata.chargeType ?? "",
       binaryId: metadata.binaryId ?? "",
       sign: normalizeNumber(sample.sign, 0),
-      emitterScope: metadata.emitterScope ?? "core-architrino",
+      transmitterScope: metadata.transmitterScope ?? "core-architrino",
       streamSource: "animator-architrino-path-history",
     },
   };
@@ -143,10 +143,10 @@ export function createAnimatorReceiverPathDescriptorPackage(descriptor = {}, opt
     1,
     0
   );
-  const sourceHistory = resolveSourceHistory(descriptor, fallbackFieldSpeed);
+  const transmitterHistory = resolveTransmitterHistory(descriptor, fallbackFieldSpeed);
   const datasetId = normalizeString(
     descriptor.datasetId ??
-      sourceHistory.metadata?.datasetId ??
+      transmitterHistory.metadata?.datasetId ??
       descriptor.simulationDataset?.id,
     "animator"
   );
@@ -160,7 +160,7 @@ export function createAnimatorReceiverPathDescriptorPackage(descriptor = {}, opt
   );
   const descriptorByReceiverId = new Map();
 
-  (Array.isArray(sourceHistory.samples) ? sourceHistory.samples : [])
+  (Array.isArray(transmitterHistory.samples) ? transmitterHistory.samples : [])
     .filter(Boolean)
     .forEach((sample, sampleIndex) => {
       const receiverId = getSampleReceiverId(sample, sampleIndex);
@@ -196,22 +196,22 @@ export function createAnimatorReceiverPathDescriptorPackage(descriptor = {}, opt
 
   return {
     schema: ANIMATOR_RECEIVER_PATH_DESCRIPTOR_PACKAGE_SCHEMA,
-    sourceHistorySchema: sourceHistory.schema,
-    rowLayout: ANIMATOR_RECEIVER_PATH_DESCRIPTOR_LAYOUT,
+    transmitterHistorySchema: transmitterHistory.schema,
+    recordLayout: ANIMATOR_RECEIVER_PATH_DESCRIPTOR_LAYOUT,
     streamId,
     descriptorCount: receiverPathDescriptors.length,
     segmentCount,
     receiverPathDescriptors,
-    sourceHistory,
+    transmitterHistory,
     metadata: {
       source: "solver-owned-receiver-path-descriptor-package",
       datasetId,
-      sourceSampleCount: sourceHistory.sampleCount ?? sourceHistory.samples?.length ?? 0,
+      transmitterSampleCount: transmitterHistory.sampleCount ?? transmitterHistory.samples?.length ?? 0,
     },
     status: {
       code: "ok",
       severity: "ok",
-      message: "Animator receiver path descriptors packaged from solver-owned source history",
+      message: "Animator receiver path descriptors packaged from solver-owned transmitter history",
       recoverable: true,
     },
   };

@@ -73,7 +73,7 @@ Every serious candidate must implement the same versioned benchmark packet with 
 1. retained-history interpolation across shallow and deep histories, including scale-separated timestamps;
 2. batched causal-residual evaluation and root-bracket isolation over regular and highly divergent workloads;
 3. a near-caustic root refinement case that forces precision escalation and produces a certified root count;
-4. receiver-normal branch evaluation containing near-cancellation and discrete sign decisions;
+4. receiver-side-factor branch evaluation containing near-cancellation and discrete sign decisions;
 5. deterministic many-source acceleration reductions across population and worker-count ladders;
 6. multirate scheduling, cross-rate interpolation, rejection, rollback, and branch-event subdivision;
 7. hot-history residency, cold-history streaming, checkpoint creation, and exact continuation;

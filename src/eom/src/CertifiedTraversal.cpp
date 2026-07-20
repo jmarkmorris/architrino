@@ -16,8 +16,8 @@ struct PendingNode {
   std::string node_id;
   std::size_t receiver_begin;
   std::size_t receiver_end;
-  std::size_t source_begin;
-  std::size_t source_end;
+  std::size_t transmitter_begin;
+  std::size_t transmitter_end;
   Interval emission;
   std::size_t emission_depth;
 };
@@ -32,13 +32,13 @@ Interval token_bounds(const TimeIntervalTokens& tokens) {
 }
 
 std::uint64_t checked_pair_count(
-    std::size_t receiver_count, std::size_t source_count) {
+    std::size_t receiver_count, std::size_t transmitter_count) {
   if (receiver_count >
-      std::numeric_limits<std::uint64_t>::max() / source_count) {
+      std::numeric_limits<std::uint64_t>::max() / transmitter_count) {
     throw std::overflow_error("ordered-pair count overflows uint64");
   }
   return static_cast<std::uint64_t>(receiver_count) *
-      static_cast<std::uint64_t>(source_count);
+      static_cast<std::uint64_t>(transmitter_count);
 }
 
 void checked_add(std::uint64_t& total, std::uint64_t value) {
@@ -103,9 +103,9 @@ Interval node_residual(
     const Interval& field_speed) {
   const IntervalVector receiver_positions = member_position_hull(
       request.receivers, node.receiver_begin, node.receiver_end, reception);
-  const IntervalVector source_positions = member_position_hull(
-      request.sources, node.source_begin, node.source_end, emission);
-  return norm(subtract(receiver_positions, source_positions)) -
+  const IntervalVector transmitter_positions = member_position_hull(
+      request.sources, node.transmitter_begin, node.transmitter_end, emission);
+  return norm(subtract(receiver_positions, transmitter_positions)) -
       field_speed * (reception - emission);
 }
 
@@ -121,13 +121,13 @@ std::size_t checked_pair_tracking_bytes(std::uint64_t logical_pairs) {
 
 void mark_exact_pairs(
     std::vector<bool>& exact_pairs,
-    std::size_t source_population,
+    std::size_t transmitter_population,
     const PendingNode& node) {
   for (std::size_t receiver = node.receiver_begin;
        receiver < node.receiver_end; ++receiver) {
-    const std::size_t row = receiver * source_population;
-    for (std::size_t source = node.source_begin;
-         source < node.source_end; ++source) {
+    const std::size_t row = receiver * transmitter_population;
+    for (std::size_t source = node.transmitter_begin;
+         source < node.transmitter_end; ++source) {
       exact_pairs[row + source] = true;
     }
   }
@@ -136,7 +136,7 @@ void mark_exact_pairs(
 std::uint64_t build_membership_tiles(
     const std::vector<bool>& exact_pairs,
     std::size_t receiver_population,
-    std::size_t source_population,
+    std::size_t transmitter_population,
     bool traversal_complete,
     std::vector<CertifiedMembershipTile>& memberships,
     std::vector<CertifiedExactTile>& exact_tiles,
@@ -144,15 +144,15 @@ std::uint64_t build_membership_tiles(
   std::uint64_t exact_count = 0;
   std::size_t exact_tile_index = 0;
   for (std::size_t receiver = 0; receiver < receiver_population; ++receiver) {
-    const std::size_t row = receiver * source_population;
+    const std::size_t row = receiver * transmitter_population;
     std::size_t source = 0;
-    while (source < source_population) {
+    while (source < transmitter_population) {
       const bool exact = exact_pairs[row + source];
       const std::string status = exact
           ? "exact_tile"
           : (traversal_complete ? "excluded" : "unresolved");
       const std::size_t begin = source;
-      while (source < source_population &&
+      while (source < transmitter_population &&
              exact_pairs[row + source] == exact) {
         ++source;
       }
@@ -162,8 +162,8 @@ std::uint64_t build_membership_tiles(
           .status = status,
           .receiver_begin = receiver,
           .receiver_end = receiver + 1U,
-          .source_begin = begin,
-          .source_end = source,
+          .transmitter_begin = begin,
+          .transmitter_end = source,
           .logical_ordered_pairs = count,
       });
       if (exact) {
@@ -173,8 +173,8 @@ std::uint64_t build_membership_tiles(
                 std::to_string(exact_tile_index++),
             .receiver_begin = receiver,
             .receiver_end = receiver + 1U,
-            .source_begin = begin,
-            .source_end = source,
+            .transmitter_begin = begin,
+            .transmitter_end = source,
             .logical_ordered_pairs = count,
         });
       }
@@ -221,7 +221,7 @@ CertifiedTraversalCertificate certify_moving_history_traversal(
   if (checked_pair_tracking_bytes(logical_pairs) >
       request.maximum_pair_tracking_bytes) {
     return CertifiedTraversalCertificate{
-        .schema = "eom_certified_recursive_causal_index/v0",
+        .schema = "eom_certified_recursive_causal_index/v1",
         .traversal_id = request.traversal_id,
         .status = "uncertified",
         .failure_code = "resource_envelope_exceeded",
@@ -238,14 +238,14 @@ CertifiedTraversalCertificate certify_moving_history_traversal(
             .status = "unresolved",
             .receiver_begin = 0,
             .receiver_end = request.receivers.size(),
-            .source_begin = 0,
-            .source_end = request.sources.size(),
+            .transmitter_begin = 0,
+            .transmitter_end = request.sources.size(),
             .logical_ordered_pairs = logical_pairs,
         }},
     };
   }
   CertifiedTraversalCertificate result{
-      .schema = "eom_certified_recursive_causal_index/v0",
+      .schema = "eom_certified_recursive_causal_index/v1",
       .traversal_id = request.traversal_id,
       .status = "uncertified",
       .failure_code = "resource_envelope_exceeded",
@@ -266,8 +266,8 @@ CertifiedTraversalCertificate certify_moving_history_traversal(
       .node_id = "root",
       .receiver_begin = 0,
       .receiver_end = request.receivers.size(),
-      .source_begin = 0,
-      .source_end = request.sources.size(),
+      .transmitter_begin = 0,
+      .transmitter_end = request.sources.size(),
       .emission = emission,
       .emission_depth = 0,
   }};
@@ -278,9 +278,9 @@ CertifiedTraversalCertificate certify_moving_history_traversal(
     ++result.visited_nodes;
     const std::size_t receiver_count =
         node.receiver_end - node.receiver_begin;
-    const std::size_t source_count = node.source_end - node.source_begin;
+    const std::size_t transmitter_count = node.transmitter_end - node.transmitter_begin;
     const std::uint64_t pair_count =
-        checked_pair_count(receiver_count, source_count);
+        checked_pair_count(receiver_count, transmitter_count);
     const Interval residual =
         node_residual(request, node, reception, node.emission, field_speed);
     if (residual.excludes_zero()) {
@@ -289,8 +289,8 @@ CertifiedTraversalCertificate certify_moving_history_traversal(
           .status = "excluded",
           .receiver_begin = node.receiver_begin,
           .receiver_end = node.receiver_end,
-          .source_begin = node.source_begin,
-          .source_end = node.source_end,
+          .transmitter_begin = node.transmitter_begin,
+          .transmitter_end = node.transmitter_end,
           .emission_lower = node.emission.lower(),
           .emission_upper = node.emission.upper(),
           .logical_ordered_pairs = pair_count,
@@ -300,7 +300,7 @@ CertifiedTraversalCertificate certify_moving_history_traversal(
     }
     const bool membership_leaf =
         pair_count <= request.exact_tile_pair_limit ||
-        (receiver_count == 1U && source_count == 1U);
+        (receiver_count == 1U && transmitter_count == 1U);
     const bool can_split_emission = membership_leaf &&
         node.emission_depth < request.maximum_emission_depth &&
         node.emission.lower() < node.emission.upper();
@@ -313,8 +313,8 @@ CertifiedTraversalCertificate certify_moving_history_traversal(
           .status = "exact_tile",
           .receiver_begin = node.receiver_begin,
           .receiver_end = node.receiver_end,
-          .source_begin = node.source_begin,
-          .source_end = node.source_end,
+          .transmitter_begin = node.transmitter_begin,
+          .transmitter_end = node.transmitter_end,
           .emission_lower = node.emission.lower(),
           .emission_upper = node.emission.upper(),
           .logical_ordered_pairs = pair_count,
@@ -329,8 +329,8 @@ CertifiedTraversalCertificate certify_moving_history_traversal(
           .status = "unresolved",
           .receiver_begin = node.receiver_begin,
           .receiver_end = node.receiver_end,
-          .source_begin = node.source_begin,
-          .source_end = node.source_end,
+          .transmitter_begin = node.transmitter_begin,
+          .transmitter_end = node.transmitter_end,
           .emission_lower = node.emission.lower(),
           .emission_upper = node.emission.upper(),
           .logical_ordered_pairs = pair_count,
@@ -345,8 +345,8 @@ CertifiedTraversalCertificate certify_moving_history_traversal(
         .status = "subdivide",
         .receiver_begin = node.receiver_begin,
         .receiver_end = node.receiver_end,
-        .source_begin = node.source_begin,
-        .source_end = node.source_end,
+        .transmitter_begin = node.transmitter_begin,
+        .transmitter_end = node.transmitter_end,
         .emission_lower = node.emission.lower(),
         .emission_upper = node.emission.upper(),
         .logical_ordered_pairs = pair_count,
@@ -359,8 +359,8 @@ CertifiedTraversalCertificate certify_moving_history_traversal(
           .node_id = node.node_id + "/t1",
           .receiver_begin = node.receiver_begin,
           .receiver_end = node.receiver_end,
-          .source_begin = node.source_begin,
-          .source_end = node.source_end,
+          .transmitter_begin = node.transmitter_begin,
+          .transmitter_end = node.transmitter_end,
           .emission = Interval(midpoint, node.emission.upper()),
           .emission_depth = node.emission_depth + 1U,
       });
@@ -368,20 +368,20 @@ CertifiedTraversalCertificate certify_moving_history_traversal(
           .node_id = node.node_id + "/t0",
           .receiver_begin = node.receiver_begin,
           .receiver_end = node.receiver_end,
-          .source_begin = node.source_begin,
-          .source_end = node.source_end,
+          .transmitter_begin = node.transmitter_begin,
+          .transmitter_end = node.transmitter_end,
           .emission = Interval(node.emission.lower(), midpoint),
           .emission_depth = node.emission_depth + 1U,
       });
-    } else if (source_count >= receiver_count && source_count > 1U) {
+    } else if (transmitter_count >= receiver_count && transmitter_count > 1U) {
       const std::size_t midpoint =
-          node.source_begin + source_count / 2U;
+          node.transmitter_begin + transmitter_count / 2U;
       pending.push_back({
           .node_id = node.node_id + "/s1",
           .receiver_begin = node.receiver_begin,
           .receiver_end = node.receiver_end,
-          .source_begin = midpoint,
-          .source_end = node.source_end,
+          .transmitter_begin = midpoint,
+          .transmitter_end = node.transmitter_end,
           .emission = node.emission,
           .emission_depth = node.emission_depth,
       });
@@ -389,8 +389,8 @@ CertifiedTraversalCertificate certify_moving_history_traversal(
           .node_id = node.node_id + "/s0",
           .receiver_begin = node.receiver_begin,
           .receiver_end = node.receiver_end,
-          .source_begin = node.source_begin,
-          .source_end = midpoint,
+          .transmitter_begin = node.transmitter_begin,
+          .transmitter_end = midpoint,
           .emission = node.emission,
           .emission_depth = node.emission_depth,
       });
@@ -401,8 +401,8 @@ CertifiedTraversalCertificate certify_moving_history_traversal(
           .node_id = node.node_id + "/r1",
           .receiver_begin = midpoint,
           .receiver_end = node.receiver_end,
-          .source_begin = node.source_begin,
-          .source_end = node.source_end,
+          .transmitter_begin = node.transmitter_begin,
+          .transmitter_end = node.transmitter_end,
           .emission = node.emission,
           .emission_depth = node.emission_depth,
       });
@@ -410,8 +410,8 @@ CertifiedTraversalCertificate certify_moving_history_traversal(
           .node_id = node.node_id + "/r0",
           .receiver_begin = node.receiver_begin,
           .receiver_end = midpoint,
-          .source_begin = node.source_begin,
-          .source_end = node.source_end,
+          .transmitter_begin = node.transmitter_begin,
+          .transmitter_end = node.transmitter_end,
           .emission = node.emission,
           .emission_depth = node.emission_depth,
       });
@@ -466,7 +466,7 @@ CertifiedTraversalExactBatchCertificate certify_traversal_exact_pair_batch(
   const auto& traversal = *request.traversal_request;
   const auto& certificate = *request.traversal_certificate;
   CertifiedTraversalExactBatchCertificate result{
-      .schema = "eom_certified_traversal_exact_pair_batch/v0",
+      .schema = "eom_certified_traversal_exact_pair_batch/v1",
       .traversal_id = traversal.traversal_id,
       .status = "uncertified",
       .failure_code = "traversal_not_certified",
@@ -523,12 +523,12 @@ CertifiedTraversalExactBatchCertificate certify_traversal_exact_pair_batch(
   for (const auto& tile : certificate.exact_tiles) {
     for (std::size_t receiver_index = tile.receiver_begin;
          receiver_index < tile.receiver_end; ++receiver_index) {
-      for (std::size_t source_index = tile.source_begin;
-           source_index < tile.source_end; ++source_index) {
+      for (std::size_t transmitter_index = tile.transmitter_begin;
+           transmitter_index < tile.transmitter_end; ++transmitter_index) {
         const auto& receiver = traversal.receivers[receiver_index];
-        const auto& source = traversal.sources[source_index];
+        const auto& source = traversal.sources[transmitter_index];
         const std::size_t logical_index =
-            receiver_index * traversal.sources.size() + source_index;
+            receiver_index * traversal.sources.size() + transmitter_index;
         exact_requests.push_back({
             .row_id = traversal.traversal_id + "/" + receiver.path_id + "/" +
                 source.path_id,

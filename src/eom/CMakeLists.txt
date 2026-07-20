@@ -19,6 +19,7 @@ add_library(eom_native STATIC
   src/CertifiedAcceleration.cpp
   src/MultiprecisionAcceleration.cpp
   src/CoupledEvolution.cpp
+  src/ShadowAffineDiagnostic.cpp
   src/Checkpoint.cpp
 )
 target_include_directories(eom_native

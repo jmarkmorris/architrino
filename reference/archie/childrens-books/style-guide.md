@@ -133,7 +133,7 @@ Do not draw them as generic dust, stars, atoms, balls, or cartoon faces. Their i
 
 ### Causal Wakes
 
-Causal wakes should be translucent arcs or rings centered on earlier source positions:
+Causal wakes should be translucent arcs or rings centered on earlier transmitter positions:
 
 - red source, red wake;
 - blue source, blue wake;
@@ -144,7 +144,7 @@ The center of a wake should often be visibly different from the source's current
 
 ### Line Of Action
 
-Use a clean line or arrow from the relevant earlier source position to the receiver:
+Use a clean line or arrow from the relevant earlier transmitter position to the receiver:
 
 - red line for red-source influence;
 - blue line for blue-source influence;
@@ -326,7 +326,7 @@ Before saving an image as production direction, check:
 - Purple indicates overlap, balance, basins, neutral medium, or depth.
 - White and black maintain readability.
 - The page's main geometry lesson is clear.
-- Earlier source positions are visible when teaching causal wakes or path-history.
+- Earlier transmitter positions are visible when teaching causal wakes or path-history.
 - The Noether sea is quiet unless the page is explicitly about it.
 - There is no in-image text, label, equation, watermark, or logo.
 - The image leaves usable white or quiet space for layout text.

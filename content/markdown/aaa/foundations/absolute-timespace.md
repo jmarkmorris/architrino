@@ -90,7 +90,7 @@ $$
 dT
 $$
 
-This 1-form is closed, exact, and nowhere vanishing on $\mathcal{M}$. Its level sets are the simultaneity slices $\Sigma_T$. The symbol $\tau$ is reserved for derived observer proper time; emission times use $T_{\mathrm{em}}$, and causal delay is written $\Delta_{ij}=T-T_{\mathrm{em}}$.
+This 1-form is closed, exact, and nowhere vanishing on $\mathcal{M}$. Its level sets are the simultaneity slices $\Sigma_T$. The symbol $\tau$ is reserved for derived observer proper time; emission times use $T_t$, and causal delay is written $\Delta_{ij}=T-T_t$.
 
 The spatial metric on each slice is
 $$
@@ -139,9 +139,9 @@ $$
 
 The terms proportional to $2\boldsymbol{\Omega}\times\mathbf V'$, $\boldsymbol{\Omega}\times(\boldsymbol{\Omega}\times\mathbf X')$, and $(d\boldsymbol{\Omega}/dT)\times\mathbf X'$ are coordinate descriptions on absolute timespace. They do not add curvature to the Euclidean void, and they do not introduce a substrate magnetic field. Their value is diagnostic: they show how transverse-looking observer equations can arise from a choice of non-inertial chart while the underlying substrate remains $\mathbb{R}\times\mathbb{R}^3$ with the selected flat connection in the Euclidean-void rest frame.
 
-The provenance no-go is strict. A transverse velocity-dependent term produced only by a rotating or accelerating coordinate chart carries no source identity, emission time, causal-root label, or wake-energy ledger entry. It therefore cannot source a physical wake-mediated interaction or an emergent magnetic channel. A genuine transverse interaction must be traced to causal-wake provenance in the Master Equation or to an explicitly derived observer-level reduction of such provenance, not to inertial-coordinate algebra alone.
+The provenance no-go is strict. A transverse velocity-dependent term produced only by a rotating or accelerating coordinate chart carries no transmitter identity, emission time, causal-root label, or wake-energy ledger entry. It therefore cannot source a physical wake-mediated interaction or an emergent magnetic channel. A genuine transverse interaction must be traced to causal-wake provenance in the Master Equation or to an explicitly derived observer-level reduction of such provenance, not to inertial-coordinate algebra alone.
 
-Equivalently, let $\mathcal{P}[\mathcal{T}]$ denote the provenance payload of a candidate force term $\mathcal{T}$: source identity, emission time, causal-root label, and energy or wake-history row when those data exist. Pure inertial-coordinate terms satisfy
+Equivalently, let $\mathcal{P}[\mathcal{T}]$ denote the provenance payload of a candidate acceleration term $\mathcal{T}$: transmitter identity, emission time, causal-root label, and energy or wake-history row when those data exist. Pure inertial-coordinate terms satisfy
 $$
 \mathcal{P}[\mathcal{T}_{\mathrm{inertial}}]=\varnothing
 $$
@@ -220,7 +220,7 @@ $$
 K=\frac{1}{2}m\|\mathbf V\|^2
 $$
 
-Forces cause accelerations in the Euclidean void. Time supplies the universal evolution parameter; it does not supply curvature, force, or clock dilation by itself.
+Causal-root hits produce accelerations in the Euclidean void. Time supplies the universal evolution parameter; it does not supply curvature, acceleration, or clock dilation by itself.
 
 The same distinction applies to momentum and inertia: the kinematic variables live on the substrate, while the coefficients that make them measurable are effective assembly responses.
 
@@ -313,12 +313,12 @@ Although Galilean boosts preserve the product foliation kinematically, the inter
 The distinction is visible directly in the root equation. Under a Galilean coordinate change $\mathbf X'=\mathbf X-\mathbf U T$, the same primitive wake condition becomes
 $$
 \left\|
-\mathbf X'_i(T)-\mathbf X'_j(T_{\mathrm{em}})+\mathbf U(T-T_{\mathrm{em}})
+\mathbf X'_i(T)-\mathbf X'_j(T_t)+\mathbf U(T-T_t)
 \right\|
 =
-c_f(T-T_{\mathrm{em}}),
+c_f(T-T_t),
 \qquad
-T_{\mathrm{em}}<T
+T_t<T
 $$
 Thus boosts preserve the product foliation and are allowed coordinate descriptions, but they do not preserve the same isotropic wake-law form unless $\mathbf U=\mathbf{0}$ relative to the Euclidean-void rest frame. Galilean boosts are therefore kinematic coordinate transformations of the background, not dynamical symmetries of the primitive wake law.
 
@@ -357,68 +357,68 @@ $$
 T_A<T_B
 $$
 
-A wake emitted at $(T_{\mathrm{em}},\mathbf X_{\mathrm{em}})$ reaches points on the causal wake surface
+A wake emitted at $(T_t,\mathbf X_{\mathrm{em}})$ reaches points on the causal wake surface
 $$
-\|\mathbf X-\mathbf X_{\mathrm{em}}\|=c_f(T-T_{\mathrm{em}}),
+\|\mathbf X-\mathbf X_{\mathrm{em}}\|=c_f(T-T_t),
 \qquad
-T>T_{\mathrm{em}}
+T>T_t
 $$
 
 The filled causal future of that emission is
 $$
-\{(T,\mathbf X):T\geq T_{\mathrm{em}},\ \|\mathbf X-\mathbf X_{\mathrm{em}}\|\leq c_f(T-T_{\mathrm{em}})\}
+\{(T,\mathbf X):T\geq T_t,\ \|\mathbf X-\mathbf X_{\mathrm{em}}\|\leq c_f(T-T_t)\}
 $$
 
 The equality surface is an expanding causal isochron: at each later $T$ it appears as a spatial sphere in the Euclidean void, not as a fundamental light cone of a Lorentzian metric. The filled region records causal order and finite-speed reachability, but it is not the support of a single emitted wake. In the exact Master Equation, a receiver is acted on only at boundary roots satisfying the equality condition above. With a mollifier, support is a narrow neighborhood of that boundary and is interpreted in the weak limit.
 
-For source $j$ and receiver $i$, the canonical root function is
+For transmitter $j$ and receiver $i$, the canonical root function is
 $$
-F_{ij}(T,T_{\mathrm{em}})
+F_{ij}(T_r,T_t)
 =
-\|\mathbf X_i(T)-\mathbf X_j(T_{\mathrm{em}})\|-c_f(T-T_{\mathrm{em}}),
+\|\mathbf X_i(T_r)-\mathbf X_j(T_t)\|-c_f(T_r-T_t),
 \qquad
-T_{\mathrm{em}}<T
+T_t<T_r
 $$
 with active causal-root set
 $$
-\mathcal{C}_{ij}(T)
+\mathcal{C}_{ij}(T_r)
 =
-\{\,T_{\mathrm{em}}<T:F_{ij}(T,T_{\mathrm{em}})=0\,\}
+\{\,T_t<T_r:F_{ij}(T_r,T_t)=0\,\}
 $$
 The same notation covers partner hits ($i\ne j$) and self-hits ($i=j$). Simple-root branch charts require the transversality floor
 $$
 \left|
-\partial_{T_{\mathrm{em}}}F_{ij}(T,T_{\mathrm{em}})
+\partial_{T_t}F_{ij}(T_r,T_t)
 \right|
 =
 \left|
-c_f-\hat{\mathbf{r}}_{ij}(T,T_{\mathrm{em}})\cdot\mathbf V_j(T_{\mathrm{em}})
+c_f-\hat{\mathbf{r}}_{ij}(T_r,T_t)\cdot\mathbf V_j(T_t)
 \right|
 \ge
 \kappa_{\mathrm{hit}}>0
 $$
 where
 $$
-\mathbf{r}_{ij}(T,T_{\mathrm{em}})=\mathbf X_i(T)-\mathbf X_j(T_{\mathrm{em}}),
+\mathbf{r}_{ij}(T_r,T_t)=\mathbf X_i(T_r)-\mathbf X_j(T_t),
 \qquad
 \hat{\mathbf{r}}_{ij}=\frac{\mathbf{r}_{ij}}{\|\mathbf{r}_{ij}\|}
 $$
 Failure of this floor marks a caustic-like or degenerate wake-root regime; it is a branch-chart failure condition, not an ordinary small perturbation.
 
-On a smooth retained branch $T_{\mathrm{em}}=T_{\mathrm{em},\ell}(T)$, differentiating
-$F_{ij}(T,T_{\mathrm{em},\ell}(T))=0$ gives the receiver-normal factor
+On a smooth retained branch $T_t=T_{t,\ell}(T_r)$, differentiating
+$F_{ij}(T_r,T_{t,\ell}(T_r))=0$ gives the receiver-side factor
 $$
-\frac{dT_{\mathrm{em},\ell}}{dT}
+\frac{dT_{t,\ell}}{dT_r}
 =
-\frac{c_f-\hat{\mathbf{r}}_{ij}(T,T_{\mathrm{em},\ell})\cdot\mathbf V_i(T)}
-{c_f-\hat{\mathbf{r}}_{ij}(T,T_{\mathrm{em},\ell})\cdot\mathbf V_j(T_{\mathrm{em},\ell})}
+\frac{c_f-\hat{\mathbf{r}}_{ij}(T_r,T_{t,\ell})\cdot\mathbf V_i(T_r)}
+{c_f-\hat{\mathbf{r}}_{ij}(T_r,T_{t,\ell})\cdot\mathbf V_j(T_{t,\ell})}
 $$
-This identity is not a new coupling constant. It distinguishes the source-normal
+This identity is not a new coupling constant. It distinguishes the transmitter-side
 causal-root Jacobian from the rate at which a moving receiver path samples the
 same emitted causal wake sequence. A stationary receiver in the Euclidean-void
 rest frame sets the numerator to $c_f$; radial receiver motion changes the
-receiver-normal action or wake-history rate and must be recorded when a proof
-uses accumulated action rather than only an event-local force row.
+receiver-side action or wake-history rate and must be recorded when a proof
+uses accumulated action rather than only an event-local acceleration contribution.
 
 The status of $\kappa_{\mathrm{hit}}$ is fixed in [Absolute Time](absolute-time.md#causality-and-finite-propagation-speed): it is a declared branch-chart or certificate lower bound, not a universal coupling constant, coordinate parameter, or regularization width.
 
@@ -437,8 +437,8 @@ $$
 N_+(A)-N_-(A)
 =
 \sum_{i,j\in A}
-\sum_{T_{\mathrm{em}}\in\mathcal{C}_{ij}}
-\operatorname{sgn}\!\left(\partial_{T_{\mathrm{em}}}F_{ij}\right)
+\sum_{T_t\in\mathcal{C}_{ij}}
+\operatorname{sgn}\!\left(\partial_{T_t}F_{ij}\right)
 $$
 with the sums taken over the retained self-hit and partner-hit rows on the branch chart. The two components detect different failure channels. Generic fold events create or annihilate root pairs of opposite Jacobian sign, so they change the unsigned count $N=N_++N_-$ by $\pm 2$ while leaving $\chi_{\mathrm{root}}$ invariant; this is the fold-pair surgery conservation recorded in [Master Equation](../dynamics/master-equation.md#signed-causal-root-complex) and [Noether Braid Topological Charge](../noether-braid/noether-braid-topological-charge.md). A near-threshold fold cascade therefore appears as jumps in $(N_+,N_-)$, while a jump in $\chi_{\mathrm{root}}(A)$ signals a root crossing the chart or memory boundary, a pair-set change, or a degeneracy outside the generic fold class. A structural-integrity failure near the wake-speed threshold should appear in this sign-resolved ledger rather than as a smooth kinematic slowing of the substrate background. This is a diagnostic target for Theorem G, not a proof that every branch fails at the same value of $\|\mathbf{v}\|$.
 
@@ -550,14 +550,14 @@ For well-posed dynamics on absolute timespace:
 
 ### Receiver-Centered Exhaustion Lemma
 
-Infinite source families must supply a declared summation or continuum prescription under which the many-source wake sum converges. For each receiver event $(i,T)$, choose an increasing receiver-centered exhaustion of retained source events and take the limit in that order. In the simplest radial form the condition is
+Infinite source families must supply a declared summation or continuum prescription under which the many-source wake sum converges. For each receiver event $(i,T_r)$, choose an increasing receiver-centered exhaustion of retained transmitter events and take the limit in that order. In the simplest radial form the condition is
 $$
 \lim_{R\to\infty}
-\sum_{\substack{j,\ T_{\mathrm{em}}\in\mathcal{C}_{ij}(T)\\
-\|\mathbf X_j(T_{\mathrm{em}})-\mathbf X_i(T)\|<R}}
-\mathbf A_{ij}(T;T_{\mathrm{em}})
+\sum_{\substack{j,\ T_t\in\mathcal{C}_{ij}(T_r)\\
+\|\mathbf X_j(T_t)-\mathbf X_i(T_r)\|<R}}
+\mathbf A_{ij}(T_r;T_t)
 $$
-with any neutrality, screening, principal-value, or mean-field subtraction rule stated before the limit is used. The exhaustion is over retained emission events, that is $(j,T_{\mathrm{em}})$ root pairs, not over sources: a super-wake-speed source history can contribute several active roots entering the ball at different $R$, and the refinement-independence requirement applies to that event-level ordering.
+with any neutrality, screening, principal-value, or mean-field subtraction rule stated before the limit is used. The exhaustion is over retained emission events, that is $(j,T_t)$ root pairs, not over sources: a super-wake-speed transmitter history can contribute several active roots entering the ball at different $R$, and the refinement-independence requirement applies to that event-level ordering.
 
 This is an admissibility lemma for branches and continuum reductions: the branch is well-defined only when the receiver-centered limit exists under the declared subtraction or screening rule, and allowed refinements of the exhaustion do not change the resulting local acceleration. Inverse-square surface dilution alone is not enough in three spatial dimensions because the number of sources in a radial layer grows like $r^2\,dr$. The lemma supplies the convergence condition used by emergence arguments to justify effective locality and metastable assembly behavior.
 

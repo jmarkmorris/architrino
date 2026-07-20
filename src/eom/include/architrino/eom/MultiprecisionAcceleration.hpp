@@ -17,9 +17,9 @@ struct MpfrAccelerationAttempt {
 
 struct MpfrEventImpulseRequest {
   const RetainedHistory* receiver_history;
-  const RetainedHistory* source_history;
+  const RetainedHistory* transmitter_history;
   std::string receiver_charge;
-  std::string source_charge;
+  std::string transmitter_charge;
   std::string reception_lower;
   std::string reception_upper;
   std::string search_lower;

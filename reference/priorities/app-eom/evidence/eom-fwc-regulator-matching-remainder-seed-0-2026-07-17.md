@@ -4,7 +4,7 @@
 
 - Date: 2026-07-17
 - Binding authority:
-  [Master EOM Binding v0 Amendment 1](../master-eom-binding-v0-amendment-1-common-domain-matching.md)
+  the ratified regulator-limit common-domain matching decision
 - Route:
   [Finite-Width Close-Approach And Caustic Route](../finite-width-close-approach-caustic-route.md)
 - Run grade: `certified`

@@ -109,10 +109,10 @@ def _geometry(
     receiver_position, receiver_velocity = _history_state_over(
         receiver, receiver_time
     )
-    source_position, source_velocity = _history_state_over(source, emission)
-    displacement = _vector_subtract(receiver_position, source_position)
+    transmitter_position, transmitter_velocity = _history_state_over(source, emission)
+    displacement = _vector_subtract(receiver_position, transmitter_position)
     separation = interval_norm(displacement)
-    return receiver_velocity, source_velocity, displacement, separation
+    return receiver_velocity, transmitter_velocity, displacement, separation
 
 
 def _residual_interval(
@@ -172,15 +172,15 @@ def _vector_record(value: IntervalVector) -> list[dict[str, str]]:
 @dataclass(frozen=True)
 class PairAccelerationRequest:
     receiver_path_id: str
-    source_path_id: str
+    transmitter_path_id: str
     receiver_history: PiecewisePolynomialHistory
-    source_history: PiecewisePolynomialHistory
+    transmitter_history: PiecewisePolynomialHistory
     root_certificate: RootCompletenessCertificate
     receiver_charge: Decimal
-    source_charge: Decimal
+    transmitter_charge: Decimal
     coupling: Decimal
     chart: str
-    source_normal_floor: Decimal
+    transmitter_factor_floor: Decimal
     causal_width: Decimal | None
     core_scale: Decimal | None
     acceleration_tolerance: Decimal
@@ -196,15 +196,15 @@ class PairAccelerationRequest:
         cls,
         *,
         receiver_path_id: str,
-        source_path_id: str,
+        transmitter_path_id: str,
         receiver_history: PiecewisePolynomialHistory,
-        source_history: PiecewisePolynomialHistory,
+        transmitter_history: PiecewisePolynomialHistory,
         root_certificate: RootCompletenessCertificate,
         receiver_charge: object,
-        source_charge: object,
+        transmitter_charge: object,
         coupling: object,
         chart: str = "sharp",
-        source_normal_floor: object = "1e-30",
+        transmitter_factor_floor: object = "1e-30",
         causal_width: object | None = None,
         core_scale: object | None = None,
         acceleration_tolerance: object = "1e-6",
@@ -214,15 +214,15 @@ class PairAccelerationRequest:
     ) -> "PairAccelerationRequest":
         request = cls(
             receiver_path_id=receiver_path_id,
-            source_path_id=source_path_id,
+            transmitter_path_id=transmitter_path_id,
             receiver_history=receiver_history,
-            source_history=source_history,
+            transmitter_history=transmitter_history,
             root_certificate=root_certificate,
             receiver_charge=exact_decimal(receiver_charge),
-            source_charge=exact_decimal(source_charge),
+            transmitter_charge=exact_decimal(transmitter_charge),
             coupling=exact_decimal(coupling),
             chart=chart,
-            source_normal_floor=exact_decimal(source_normal_floor),
+            transmitter_factor_floor=exact_decimal(transmitter_factor_floor),
             causal_width=(
                 exact_decimal(causal_width) if causal_width is not None else None
             ),
@@ -237,20 +237,20 @@ class PairAccelerationRequest:
         return request
 
     def _validate(self) -> None:
-        if not self.receiver_path_id or not self.source_path_id:
+        if not self.receiver_path_id or not self.transmitter_path_id:
             raise ValueError("acceleration requests require nonempty path identities")
-        if self.receiver_history.precision != self.source_history.precision:
+        if self.receiver_history.precision != self.transmitter_history.precision:
             raise ValueError("receiver and source precision must match")
         if self.root_certificate.precision != self.receiver_history.precision:
             raise ValueError("root certificate and history precision must match")
-        if self.receiver_charge == 0 or self.source_charge == 0:
+        if self.receiver_charge == 0 or self.transmitter_charge == 0:
             raise ValueError("bound primitive charge inputs must be nonzero")
         if self.coupling <= 0:
             raise ValueError("coupling must be positive")
         if self.chart not in {"sharp", "finite_width"}:
             raise ValueError("acceleration chart must be sharp or finite_width")
-        if self.source_normal_floor <= 0:
-            raise ValueError("source-normal floor must be positive")
+        if self.transmitter_factor_floor <= 0:
+            raise ValueError("transmitter-side factor floor must be positive")
         if self.acceleration_tolerance <= 0:
             raise ValueError("acceleration tolerance must be positive")
         if self.quadrature_tolerance <= 0:
@@ -267,18 +267,18 @@ class PairAccelerationRequest:
 @dataclass(frozen=True)
 class AccelerationRow:
     receiver_path_id: str
-    source_path_id: str
+    transmitter_path_id: str
     chart: str
     row_index: int
     reception_time: Decimal
     emission_lower: Decimal
     emission_upper: Decimal
-    source_segment_indices: tuple[int, ...]
+    transmitter_segment_indices: tuple[int, ...]
     separation: DecimalInterval | None
-    source_normal: DecimalInterval | None
-    receiver_normal: DecimalInterval | None
-    branch_orientation: DecimalInterval | None
-    receiver_strength: DecimalInterval | None
+    transmitter_factor: DecimalInterval | None
+    receiver_factor: DecimalInterval | None
+    root_playback: DecimalInterval | None
+    acceleration_weight: DecimalInterval | None
     polarity: int
     charge_product_magnitude: Decimal
     coupling: Decimal
@@ -292,23 +292,23 @@ class AccelerationRow:
     def to_record(self) -> dict[str, object]:
         return {
             "receiver_path_id": self.receiver_path_id,
-            "source_path_id": self.source_path_id,
+            "transmitter_path_id": self.transmitter_path_id,
             "chart": self.chart,
             "row_index": self.row_index,
             "reception_time": str(self.reception_time),
             "emission_lower": str(self.emission_lower),
             "emission_upper": str(self.emission_upper),
-            "source_segment_indices": list(self.source_segment_indices),
+            "transmitter_segment_indices": list(self.transmitter_segment_indices),
             "separation": _interval_record(self.separation),
-            "source_normal": _interval_record(self.source_normal),
-            "source_normal_sign": (
-                self.source_normal.strict_sign
-                if self.source_normal is not None
+            "transmitter_factor": _interval_record(self.transmitter_factor),
+            "transmitter_factor_sign": (
+                self.transmitter_factor.strict_sign
+                if self.transmitter_factor is not None
                 else None
             ),
-            "receiver_normal": _interval_record(self.receiver_normal),
-            "branch_orientation": _interval_record(self.branch_orientation),
-            "receiver_strength": _interval_record(self.receiver_strength),
+            "receiver_factor": _interval_record(self.receiver_factor),
+            "root_playback": _interval_record(self.root_playback),
+            "acceleration_weight": _interval_record(self.acceleration_weight),
             "polarity": self.polarity,
             "charge_product_magnitude": str(self.charge_product_magnitude),
             "coupling": str(self.coupling),
@@ -331,7 +331,7 @@ class AccelerationRow:
 class PairAccelerationCertificate:
     status: str
     receiver_path_id: str
-    source_path_id: str
+    transmitter_path_id: str
     chart: str
     rows: tuple[AccelerationRow, ...]
     total_acceleration: IntervalVector | None
@@ -355,10 +355,10 @@ class PairAccelerationCertificate:
 
     def to_record(self) -> dict[str, object]:
         return {
-            "schema": "eom_pair_acceleration_certificate/v0",
+            "schema": "eom_pair_acceleration_certificate/v1",
             "status": self.status,
             "receiver_path_id": self.receiver_path_id,
-            "source_path_id": self.source_path_id,
+            "transmitter_path_id": self.transmitter_path_id,
             "chart": self.chart,
             "row_count": len(self.rows),
             "rows": [row.to_record() for row in self.rows],
@@ -416,7 +416,7 @@ class AccelerationReconstructionCertificate:
 
     def to_record(self) -> dict[str, object]:
         return {
-            "schema": "eom_acceleration_reconstruction_certificate/v0",
+            "schema": "eom_acceleration_reconstruction_certificate/v1",
             "status": self.status,
             "path_ids": list(self.path_ids),
             "pair_count": len(self.pair_certificates),
@@ -437,20 +437,20 @@ def _verify_root_provenance(request: PairAccelerationRequest) -> None:
     certificate = request.root_certificate
     if certificate.receiver_history_id != request.receiver_history.history_id:
         raise AccelerationCertificationError("receiver history identity mismatch")
-    if certificate.source_history_id != request.source_history.history_id:
-        raise AccelerationCertificationError("source history identity mismatch")
+    if certificate.transmitter_history_id != request.transmitter_history.history_id:
+        raise AccelerationCertificationError("transmitter history identity mismatch")
     if certificate.receiver_history_digest != request.receiver_history.digest():
         raise AccelerationCertificationError("receiver history digest mismatch")
-    if certificate.source_history_digest != request.source_history.digest():
-        raise AccelerationCertificationError("source history digest mismatch")
+    if certificate.transmitter_history_digest != request.transmitter_history.digest():
+        raise AccelerationCertificationError("transmitter history digest mismatch")
     if certificate.searched_upper != certificate.reception_time:
         raise AccelerationCertificationError(
             "acceleration requires root coverage through reception time"
         )
     if certificate.reception_time > request.receiver_history.t_end:
         raise AccelerationCertificationError("receiver history lacks reception state")
-    if certificate.searched_lower < request.source_history.t_start:
-        raise AccelerationCertificationError("source history lacks search boundary")
+    if certificate.searched_lower < request.transmitter_history.t_start:
+        raise AccelerationCertificationError("transmitter history lacks search boundary")
 
 
 def _signed_charge_scale(request: PairAccelerationRequest) -> DecimalInterval:
@@ -458,25 +458,25 @@ def _signed_charge_scale(request: PairAccelerationRequest) -> DecimalInterval:
     return (
         DecimalInterval.point(request.coupling, precision)
         * DecimalInterval.point(request.receiver_charge, precision)
-        * DecimalInterval.point(request.source_charge, precision)
+        * DecimalInterval.point(request.transmitter_charge, precision)
     )
 
 
 def _polarity(request: PairAccelerationRequest) -> int:
     receiver_positive = request.receiver_charge > 0
-    source_positive = request.source_charge > 0
-    return 1 if receiver_positive == source_positive else -1
+    transmitter_positive = request.transmitter_charge > 0
+    return 1 if receiver_positive == transmitter_positive else -1
 
 
 def _charge_product_magnitude(request: PairAccelerationRequest) -> Decimal:
     required_precision = (
         len(request.receiver_charge.as_tuple().digits)
-        + len(request.source_charge.as_tuple().digits)
+        + len(request.transmitter_charge.as_tuple().digits)
         + 2
     )
     with localcontext() as context:
         context.prec = max(request.receiver_history.precision, required_precision)
-        return abs(request.receiver_charge * request.source_charge)
+        return abs(request.receiver_charge * request.transmitter_charge)
 
 
 def _require_total_width(
@@ -497,9 +497,9 @@ def _sharp_row(
 ) -> AccelerationRow:
     precision = request.receiver_history.precision
     emission = DecimalInterval.bounds(root.lower, root.upper, precision)
-    receiver_velocity, source_velocity, displacement, separation = _geometry(
+    receiver_velocity, transmitter_velocity, displacement, separation = _geometry(
         request.receiver_history,
-        request.source_history,
+        request.transmitter_history,
         request.root_certificate.reception_time,
         emission,
     )
@@ -513,49 +513,49 @@ def _sharp_row(
     field_speed = DecimalInterval.point(
         request.root_certificate.field_speed, precision
     )
-    source_normal_evaluated = field_speed - interval_dot(
-        direction, source_velocity
+    transmitter_factor_evaluated = field_speed - interval_dot(
+        direction, transmitter_velocity
     )
-    source_normal = _interval_intersection(
-        root.source_normal, source_normal_evaluated
+    transmitter_factor = _interval_intersection(
+        root.transmitter_factor, transmitter_factor_evaluated
     )
-    if source_normal is None:
+    if transmitter_factor is None:
         raise AccelerationCertificationError(
-            "root and acceleration source-normal enclosures disagree"
+            "root and acceleration transmitter-side enclosures disagree"
         )
-    if source_normal.contains_zero:
+    if transmitter_factor.contains_zero:
         raise AccelerationCertificationError(
-            "sharp acceleration source-normal enclosure contains zero"
+            "sharp acceleration transmitter-side enclosure contains zero"
         )
-    if source_normal.absolute().lower < request.source_normal_floor:
+    if transmitter_factor.absolute().lower < request.transmitter_factor_floor:
         raise AccelerationCertificationError(
-            "sharp acceleration source-normal floor is not certified"
+            "sharp acceleration transmitter-side floor is not certified"
         )
-    receiver_normal = field_speed - interval_dot(direction, receiver_velocity)
-    branch_orientation = receiver_normal / source_normal
-    receiver_strength = branch_orientation.absolute()
+    receiver_factor = field_speed - interval_dot(direction, receiver_velocity)
+    root_playback = receiver_factor / transmitter_factor
+    acceleration_weight = field_speed / transmitter_factor.absolute()
     radial_denominator = separation.square() * separation
     inverse_square_direction = interval_vector(
         component / radial_denominator for component in displacement
     )
     acceleration = _vector_scale(
-        _signed_charge_scale(request) * receiver_strength,
+        _signed_charge_scale(request) * acceleration_weight,
         inverse_square_direction,
     )
     return AccelerationRow(
         receiver_path_id=request.receiver_path_id,
-        source_path_id=request.source_path_id,
+        transmitter_path_id=request.transmitter_path_id,
         chart="sharp_root",
         row_index=row_index,
         reception_time=request.root_certificate.reception_time,
         emission_lower=root.lower,
         emission_upper=root.upper,
-        source_segment_indices=root.segment_indices,
+        transmitter_segment_indices=root.segment_indices,
         separation=separation,
-        source_normal=source_normal,
-        receiver_normal=receiver_normal,
-        branch_orientation=branch_orientation,
-        receiver_strength=receiver_strength,
+        transmitter_factor=transmitter_factor,
+        receiver_factor=receiver_factor,
+        root_playback=root_playback,
+        acceleration_weight=acceleration_weight,
         polarity=_polarity(request),
         charge_product_magnitude=_charge_product_magnitude(request),
         coupling=request.coupling,
@@ -573,9 +573,9 @@ def _finite_width_integrand_interval(
     emission: DecimalInterval,
 ) -> IntervalVector:
     precision = request.receiver_history.precision
-    receiver_velocity, _, displacement, separation = _geometry(
+    _, _, displacement, separation = _geometry(
         request.receiver_history,
-        request.source_history,
+        request.transmitter_history,
         request.root_certificate.reception_time,
         emission,
     )
@@ -585,23 +585,9 @@ def _finite_width_integrand_interval(
     field_speed = DecimalInterval.point(
         request.root_certificate.field_speed, precision
     )
-    if separation.contains_zero:
-        receiver_speed = interval_norm(receiver_velocity)
-        receiver_strength = DecimalInterval.bounds(
-            0,
-            (field_speed + receiver_speed).upper,
-            precision,
-        )
-    else:
-        direction = interval_vector(
-            component / separation for component in displacement
-        )
-        receiver_strength = (
-            field_speed - interval_dot(direction, receiver_velocity)
-        ).absolute()
     residual = _residual_interval(
         request.receiver_history,
-        request.source_history,
+        request.transmitter_history,
         request.root_certificate.reception_time,
         emission,
         request.root_certificate.field_speed,
@@ -610,7 +596,7 @@ def _finite_width_integrand_interval(
         residual, request.causal_width  # type: ignore[arg-type]
     )
     return _vector_scale(
-        _signed_charge_scale(request) * receiver_strength * mollifier,
+        _signed_charge_scale(request) * field_speed * mollifier,
         kernel,
     )
 
@@ -627,7 +613,7 @@ def _finite_width_row(
     lower_point = DecimalInterval.point(certificate.searched_lower, precision)
     boundary_residual = _residual_interval(
         request.receiver_history,
-        request.source_history,
+        request.transmitter_history,
         certificate.reception_time,
         lower_point,
         certificate.field_speed,
@@ -677,7 +663,7 @@ def _finite_width_row(
         )
 
     total = _zero_vector(precision)
-    cells = request.source_history.covered_cells(
+    cells = request.transmitter_history.covered_cells(
         certificate.searched_lower, certificate.reception_time
     )
     for _, _, lower, upper in cells:
@@ -686,13 +672,13 @@ def _finite_width_row(
     return (
         AccelerationRow(
             receiver_path_id=request.receiver_path_id,
-            source_path_id=request.source_path_id,
+            transmitter_path_id=request.transmitter_path_id,
             chart="finite_width_pair",
             row_index=0,
             reception_time=certificate.reception_time,
             emission_lower=certificate.searched_lower,
             emission_upper=certificate.reception_time,
-            source_segment_indices=tuple(
+            transmitter_segment_indices=tuple(
                 sorted(
                     {
                         index
@@ -701,10 +687,10 @@ def _finite_width_row(
                 )
             ),
             separation=None,
-            source_normal=None,
-            receiver_normal=None,
-            branch_orientation=None,
-            receiver_strength=None,
+            transmitter_factor=None,
+            receiver_factor=None,
+            root_playback=None,
+            acceleration_weight=None,
             polarity=_polarity(request),
             charge_product_magnitude=_charge_product_magnitude(request),
             coupling=request.coupling,
@@ -723,15 +709,15 @@ def _request_digest(request: PairAccelerationRequest) -> str:
     payload = "\n".join(
         (
             request.receiver_path_id,
-            request.source_path_id,
+            request.transmitter_path_id,
             request.receiver_history.digest(),
-            request.source_history.digest(),
+            request.transmitter_history.digest(),
             request.root_certificate.input_digest,
             str(request.receiver_charge),
-            str(request.source_charge),
+            str(request.transmitter_charge),
             str(request.coupling),
             request.chart,
-            str(request.source_normal_floor),
+            str(request.transmitter_factor_floor),
             str(request.causal_width),
             str(request.core_scale),
             str(request.acceleration_tolerance),
@@ -777,7 +763,7 @@ def certify_pair_acceleration(
         return PairAccelerationCertificate(
             status=status,
             receiver_path_id=request.receiver_path_id,
-            source_path_id=request.source_path_id,
+            transmitter_path_id=request.transmitter_path_id,
             chart=request.chart,
             rows=rows,
             total_acceleration=total,
@@ -793,7 +779,7 @@ def certify_pair_acceleration(
         return PairAccelerationCertificate(
             status="uncertified",
             receiver_path_id=request.receiver_path_id,
-            source_path_id=request.source_path_id,
+            transmitter_path_id=request.transmitter_path_id,
             chart=request.chart,
             rows=(),
             total_acceleration=None,
@@ -824,7 +810,7 @@ def certify_acceleration_reconstruction(
     }
     request_by_pair: dict[tuple[str, str], PairAccelerationRequest] = {}
     for request in pair_requests:
-        key = (request.receiver_path_id, request.source_path_id)
+        key = (request.receiver_path_id, request.transmitter_path_id)
         if key in request_by_pair:
             raise ValueError(f"duplicate ordered-pair acceleration request: {key}")
         request_by_pair[key] = request
@@ -865,9 +851,9 @@ def certify_acceleration_reconstruction(
                 request.receiver_charge,
             ),
             (
-                request.source_path_id,
-                request.source_history,
-                request.source_charge,
+                request.transmitter_path_id,
+                request.transmitter_history,
+                request.transmitter_charge,
             ),
         ):
             digest = retained_history.digest()

@@ -76,7 +76,7 @@ def evolution_request(
         coupling=coupling,
         chart_policy=chart_policy,
         root_tolerance=root_tolerance,
-        source_normal_floor="1e-24",
+        transmitter_factor_floor="1e-24",
         acceleration_tolerance=acceleration_tolerance,
         quadrature_tolerance="1e-6",
         position_tolerance=position_tolerance,
@@ -120,7 +120,7 @@ class CertifiedCoupledEvolutionTests(unittest.TestCase):
         self.assertEqual(velocity, (Decimal(0), Decimal(0), Decimal(0)))
         self.assertEqual(len(output.segments), 5)
         self.assertEqual(
-            result.to_record()["schema"], "eom_coupled_evolution_certificate/v0"
+            result.to_record()["schema"], "eom_coupled_evolution_certificate/v1"
         )
 
     def test_super_field_speed_inertial_self_history_is_not_clamped(self) -> None:

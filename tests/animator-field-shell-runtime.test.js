@@ -4,7 +4,7 @@ import assert from "node:assert/strict";
 import {
   createAnimatorFieldShellInstance,
   getAnimatorFieldShellColor,
-  getAnimatorFieldShellEmitterPath,
+  getAnimatorFieldShellTransmitterPath,
   getAnimatorFieldShellOpacityAtTime,
   getAnimatorFieldShellRadiusAtTime,
   getAnimatorFieldShellRenderState,
@@ -85,7 +85,7 @@ test("solver-derived field shells are continuous even without upgraded metadata"
   assert.ok(getAnimatorFieldShellOpacityAtTime(shell, 3, {}, { fadeOutSeconds: 0.5 }) > 0);
 });
 
-test("animator field shells resolve emitter paths by exact id then charge sign", () => {
+test("animator field shells resolve transmitter paths by exact id then charge sign", () => {
   const paths = [
     { id: "solver_path_e0", metadata: { simulationParticleId: "e0" } },
     { id: "solver_path_p0", metadata: { simulationParticleId: "p0" } },
@@ -101,20 +101,20 @@ test("animator field shells resolve emitter paths by exact id then charge sign",
   };
 
   assert.equal(
-    getAnimatorFieldShellEmitterPath({ emitterId: "p0", sign: 1 }, dataset, paths, options)?.id,
+    getAnimatorFieldShellTransmitterPath({ transmitterId: "p0", sign: 1 }, dataset, paths, options)?.id,
     "solver_path_p0"
   );
   assert.equal(
-    getAnimatorFieldShellEmitterPath({ emitterId: "p1", sign: -1 }, dataset, paths, options)?.id,
+    getAnimatorFieldShellTransmitterPath({ transmitterId: "p1", sign: -1 }, dataset, paths, options)?.id,
     "solver_path_e0"
   );
 });
 
-test("animator field shell instances preserve solver timing while targeting architrino emitters", () => {
+test("animator field shell instances preserve solver timing while targeting architrino transmitters", () => {
   const instance = createAnimatorFieldShellInstance(
     {
       id: "shell_p0_12",
-      emitterId: "p0",
+      transmitterId: "p0",
       emissionTime: 1.25,
       displayTime: 2.85,
       emissionPosition: [1, 0, 0],
@@ -124,25 +124,25 @@ test("animator field shell instances preserve solver timing while targeting arch
     },
     {
       id: "solver_particle_p_electrino_2",
-      emitterId: "electrino_2",
+      transmitterId: "electrino_2",
       sign: -1,
       emissionPosition: [4.2, -0.8, 0.4],
       metadata: {
         ownerAssemblyId: "solver_particle_p",
         memberId: "electrino_2",
-        emitterScope: "core-architrino",
+        transmitterScope: "core-architrino",
       },
     }
   );
 
   assert.equal(instance.id, "shell_p0_12_solver_particle_p_electrino_2");
-  assert.equal(instance.emitterId, "electrino_2");
+  assert.equal(instance.transmitterId, "electrino_2");
   assert.equal(instance.emissionTime, 1.25);
   assert.equal(instance.displayTime, 2.85);
   assert.deepEqual(instance.emissionPosition, [4.2, -0.8, 0.4]);
   assert.equal(instance.sign, -1);
-  assert.equal(instance.metadata.sourceFieldShellId, "shell_p0_12");
-  assert.equal(instance.metadata.sourceEmitterId, "p0");
+  assert.equal(instance.metadata.baseFieldShellId, "shell_p0_12");
+  assert.equal(instance.metadata.baseTransmitterId, "p0");
   assert.equal(instance.metadata.fixedEmissionPosition, true);
-  assert.equal(instance.metadata.emitterScope, "core-architrino");
+  assert.equal(instance.metadata.transmitterScope, "core-architrino");
 });

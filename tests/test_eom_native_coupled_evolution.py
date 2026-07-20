@@ -67,7 +67,7 @@ def oracle_request(
         coupling=coupling,
         chart_policy="sharp",
         root_tolerance="1e-7",
-        source_normal_floor="1e-24",
+        transmitter_factor_floor="1e-24",
         acceleration_tolerance="1e-5",
         quadrature_tolerance="1e-6",
         position_tolerance=position_tolerance,
@@ -265,7 +265,7 @@ class NativeCoupledEvolutionTests(unittest.TestCase):
     def test_checkpoint_roundtrip_is_atomic_tamper_evident_and_continuous(self) -> None:
         checkpoint = self.packet["checkpoint"]
         self.assertEqual(
-            checkpoint["schema"], "eom_native_evolution_checkpoint/v4"
+            checkpoint["schema"], "eom_native_evolution_checkpoint/v5"
         )
         self.assertGreater(checkpoint["byte_length"], 0)
         self.assertEqual(
@@ -646,11 +646,11 @@ class NativeCoupledEvolutionTests(unittest.TestCase):
             text=True,
         )
         control = json.loads(completed.stdout)
-        self.assertEqual(control["schema"], "eom_certified_correction_retry/v0")
+        self.assertEqual(control["schema"], "eom_certified_correction_retry/v1")
         self.assertEqual(control["first_failure_code"], "coupled_correction_failed")
         expected_scale = min(
             0.5,
-            0.9 * math.sqrt(1e-7 / control["first_residual"]),
+            0.9 * math.sqrt(1e-12 / control["first_residual"]),
         )
         self.assertAlmostEqual(control["retry_scale"], expected_scale, places=6)
         self.assertLess(control["retry_scale"], 0.5)
@@ -667,11 +667,11 @@ class NativeCoupledEvolutionTests(unittest.TestCase):
         oracle = certify_fold_caustic_impulse(
             EventImpulseRequest.from_decimal_tokens(
                 receiver_path_id="receiver",
-                source_path_id="source",
+                transmitter_path_id="source",
                 receiver_history=receiver,
-                source_history=source,
+                transmitter_history=source,
                 receiver_charge="1",
-                source_charge="1",
+                transmitter_charge="1",
                 reception_lower="2.99",
                 reception_upper="3.01",
                 search_lower="0",
@@ -729,11 +729,11 @@ class NativeCoupledEvolutionTests(unittest.TestCase):
                 oracle = certify_fold_caustic_impulse(
                     EventImpulseRequest.from_decimal_tokens(
                         receiver_path_id="receiver",
-                        source_path_id="source",
+                        transmitter_path_id="source",
                         receiver_history=receiver,
-                        source_history=source,
+                        transmitter_history=source,
                         receiver_charge="1",
-                        source_charge="1",
+                        transmitter_charge="1",
                         reception_lower="2.99",
                         reception_upper="3.01",
                         search_lower="0",

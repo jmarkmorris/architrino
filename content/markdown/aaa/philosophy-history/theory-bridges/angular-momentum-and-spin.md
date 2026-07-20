@@ -28,12 +28,12 @@ That statement answers the first question directly. $\mathbb{A}\mathbb{A}\mathbb
 $$
 \frac{d^2\mathbf X_i}{dT^2}
 =
-\sum_j\sum_{T_{\mathrm{em}}\in\mathcal{C}_{ij}(T)}
+\sum_j\sum_{T_t\in\mathcal{C}_{ij}(T)}
 \kappa\,\sigma_{ij}
 \frac{|q_iq_j|}
-{r_{ij}^2(T;T_{\mathrm{em}})}
-W_{ij}^{\mathrm{rec}}(T;T_{\mathrm{em}})
-\hat{\mathbf r}_{ij}(T;T_{\mathrm{em}})
+{r_{ij}^2(T;T_t)}
+W_{ij}^{\mathrm{acc}}(T;T_t)
+\hat{\mathbf r}_{ij}(T;T_t)
 $$
 
 The only vector direction inside one hit is the delayed radial line of action $\hat{\mathbf{r}}_{ij}$. There is no primitive cross-product force, no intrinsic magnetic right-hand-rule term, and no point-particle spin axis. Any angular, magnetic-like, spin-like, or helicity-like behavior must be reconstructed from delayed geometry, superposition, assembly circulation, and measurement coupling.
@@ -112,11 +112,11 @@ The table shows why the answer cannot be simply "angular momentum exists" or "sp
 For two architrinos in an otherwise empty Euclidean void, the active causal-root condition is
 
 $$
-\|\mathbf X_1(T)-\mathbf X_2(T_{\mathrm{em}})\|
+\|\mathbf X_1(T)-\mathbf X_2(T_t)\|
 =
-c_f(T-T_{\mathrm{em}}),
+c_f(T-T_t),
 \qquad
-T_{\mathrm{em}} < T
+T_t < T
 $$
 
 The sign of $q_1q_2$ determines attraction or repulsion:
@@ -143,11 +143,11 @@ $$
 then the hit changes the along-the-line component directly, while the transverse component changes only through the later rotation of the line of action. The instantaneous power is proportional to $V_r$:
 
 $$
-P_{12}(T;T_{\mathrm{em}})
+P_{12}(T;T_t)
 =
 \mu_{\text{arch}}\,
 \kappa\sigma_{12}
-\frac{|q_1q_2|W_{12}^{\mathrm{rec}}(T;T_{\mathrm{em}})}
+\frac{|q_1q_2|W_{12}^{\mathrm{acc}}(T;T_t)}
 {r_{12}^2}
 V_r
 $$
@@ -183,11 +183,11 @@ The correct statement is that a spiraling binary has orbital-like rotational act
 The maximum-curvature binary is the candidate limiting state reached if a contraction or capture history enters self-hit geometry. Self-hit exists when the same architrino intersects its own earlier causal wake:
 
 $$
-\|\mathbf X_i(T)-\mathbf X_i(T_{\mathrm{em}})\|
+\|\mathbf X_i(T)-\mathbf X_i(T_t)\|
 =
-c_f(T-T_{\mathrm{em}}),
+c_f(T-T_t),
 \qquad
-T_{\mathrm{em}} < T
+T_t < T
 $$
 
 For uniform circular motion, the self-delay equation in units with $c_f=1$ is
@@ -435,10 +435,10 @@ $$
 \mathcal C_{\ell\alpha,m\beta}(T)
 =
 \left\{
-T_{\mathrm{em}} < T:
-\left\|\mathbf X_{\ell,\alpha}(T)-\mathbf X_{m,\beta}(T_{\mathrm{em}})\right\|
+T_t < T:
+\left\|\mathbf X_{\ell,\alpha}(T)-\mathbf X_{m,\beta}(T_t)\right\|
 =
-c_f(T-T_{\mathrm{em}})
+c_f(T-T_t)
 \right\}
 $$
 
@@ -449,11 +449,11 @@ $$
 =
 \left\{
 (\ell,\alpha;m,\beta;b):
-T_{\mathrm{em}}^{(b)}\in\mathcal C_{\ell\alpha,m\beta}(T)
+T_t^{(b)}\in\mathcal C_{\ell\alpha,m\beta}(T)
 \right\}
 $$
 
-record the active source-receiver branches. For member phases, use
+record the active transmitter-receiver branches. For member phases, use
 
 $$
 \vartheta_{\ell,\alpha}(T)
@@ -468,7 +468,7 @@ $$
 =
 \vartheta_{\ell,\alpha}(T)
 -
-\vartheta_{m,\beta}(T_{\mathrm{em}}^{(b)})
+\vartheta_{m,\beta}(T_t^{(b)})
 +
 \phi_{\ell m}^{(b)}
 -
@@ -490,8 +490,8 @@ $$
 \mathcal H_{\ell,\alpha}(T)
 =
 \left\{
-T_{\mathrm{em}}\in\mathcal C_{\ell\alpha,\ell\alpha}(T):
-T_{\mathrm{em}} < T,\ H(T-T_{\mathrm{em}})=1
+T_t\in\mathcal C_{\ell\alpha,\ell\alpha}(T):
+T_t < T,\ H(T-T_t)=1
 \right\}
 $$
 
@@ -502,7 +502,7 @@ For an active branch, set
 $$
 \mathbf r_{\ell\alpha,m\beta}^{(b)}(T)
 =
-\mathbf X_{\ell,\alpha}(T)-\mathbf X_{m,\beta}(T_{\mathrm{em}}^{(b)}),
+\mathbf X_{\ell,\alpha}(T)-\mathbf X_{m,\beta}(T_t^{(b)}),
 \qquad
 \hat{\mathbf r}_{\ell\alpha,m\beta}^{(b)}
 =
@@ -513,12 +513,12 @@ $$
 and
 
 $$
-D_{s,\ell\alpha,m\beta}^{(b)}
+D_{t,\ell\alpha,m\beta}^{(b)}
 =
-c_f-\mathbf V_{m,\beta}(T_{\mathrm{em}}^{(b)})\cdot
+c_f-\mathbf V_{m,\beta}(T_t^{(b)})\cdot
 \hat{\mathbf r}_{\ell\alpha,m\beta}^{(b)},
 \qquad
-D_{T,\ell\alpha,m\beta}^{(b)}
+D_{r,\ell\alpha,m\beta}^{(b)}
 =
 c_f-\mathbf V_{\ell,\alpha}(T)\cdot
 \hat{\mathbf r}_{\ell\alpha,m\beta}^{(b)}
@@ -527,10 +527,7 @@ and
 $$
 W_{\ell\alpha,m\beta}^{\mathrm{rec},(b)}
 =
-\left|
-\frac{D_{T,\ell\alpha,m\beta}^{(b)}}
-{D_{s,\ell\alpha,m\beta}^{(b)}}
-\right|
+\frac{c_f}{|D_{t,\ell\alpha,m\beta}^{(b)}|}
 $$
 
 The branch force-like bookkeeping term is
@@ -1610,7 +1607,7 @@ $$
 \widetilde r(s)
 =
 \left(
-T_{\mathrm{em},r}(s),
+T_{t,r}(s),
 k_r(s),
 \mathcal E_r(s),
 \Xi_r(s),
@@ -2206,7 +2203,7 @@ This return is $SO(3)$-like if the full lifted state returns after $2\pi$, and s
 - Chirality or causal-writhe parity, not merely $\operatorname{sgn}\det[\hat{\mathbf n}_I,\hat{\mathbf n}_M,\hat{\mathbf n}_O]$, but a component-resolved causal-writhe candidate tied to $\mathfrak R$.
 - Group-velocity exposure data: signs and projection classes of $\hat{\mathbf n}_a$ and layer angular-momentum channels relative to $\mathbf V_{\text{cm}}$.
 
-Group velocity alters closure through the causal-root equation. For an internal source-receiver displacement $\mathbf d$ in a moving core,
+Group velocity alters closure through the causal-root equation. For an internal transmitter-receiver displacement $\mathbf d$ in a moving core,
 
 $$
 \|\mathbf d+\mathbf V_{\text{cm}}\Delta\|=c_\star\Delta
@@ -2229,7 +2226,7 @@ $$
 {c_\star^2-\|\mathbf V_{\text{cm}}\|^2}
 $$
 
-Forward and rear sectors therefore accumulate different phase delays, source-normal denominators, and receiver-normal branch strengths. Combined with the transverse causal budget
+Forward and rear sectors therefore accumulate different phase delays, transmitter-side factors, and transmitter-side acceleration weights. Combined with the transverse causal budget
 
 $$
 c_{\perp}
@@ -3181,31 +3178,31 @@ $$
 
 in the mollified apparatus-potential chart.
 
-The Master-Equation origin of this impulse is the constituent causal-hit sum. Let $\mathscr A_{\hat{\mathbf{m}}}$ be the set of apparatus source architrinos whose organized wake envelope defines the Stern-Gerlach gradient. For target constituent $i\in C$ and apparatus constituent $a\in\mathscr A_{\hat{\mathbf{m}}}$, define the apparatus cross-root set
+The Master-Equation origin of this impulse is the constituent causal-hit sum. Let $\mathscr A_{\hat{\mathbf{m}}}$ be the set of apparatus transmitter architrinos whose organized wake envelope defines the Stern-Gerlach gradient. For target constituent $i\in C$ and apparatus constituent $a\in\mathscr A_{\hat{\mathbf{m}}}$, define the apparatus cross-root set
 
 $$
 \mathcal C_{ia}^{A}(T)
 =
 \left\{
-T_{\mathrm{em}}<T:
-\left\|\mathbf X_i(T)-\mathbf X_a(T_{\mathrm{em}})\right\|
+T_t<T:
+\left\|\mathbf X_i(T)-\mathbf X_a(T_t)\right\|
 =
-c_f(T-T_{\mathrm{em}})
+c_f(T-T_t)
 \right\}
 $$
 
-For each root $T_{\mathrm{em}}\in\mathcal C_{ia}^{A}(T)$, write
+For each root $T_t\in\mathcal C_{ia}^{A}(T)$, write
 
 $$
-\mathbf r_{ia}(T;T_{\mathrm{em}})
+\mathbf r_{ia}(T;T_t)
 =
-\mathbf X_i(T)-\mathbf X_a(T_{\mathrm{em}}),
+\mathbf X_i(T)-\mathbf X_a(T_t),
 \qquad
-r_{ia}(T;T_{\mathrm{em}})=\|\mathbf r_{ia}(T;T_{\mathrm{em}})\|,
+r_{ia}(T;T_t)=\|\mathbf r_{ia}(T;T_t)\|,
 \qquad
-\hat{\mathbf r}_{ia}(T;T_{\mathrm{em}})
+\hat{\mathbf r}_{ia}(T;T_t)
 =
-\frac{\mathbf r_{ia}(T;T_{\mathrm{em}})}{r_{ia}(T;T_{\mathrm{em}})}
+\frac{\mathbf r_{ia}(T;T_t)}{r_{ia}(T;T_t)}
 $$
 
 and
@@ -3226,12 +3223,12 @@ $$
 \sum_{s\in\mathcal C_{ia}^{A}(t)}
 \sigma_{ia}
 |q_iq_a|
-\frac{W_{ia}^{\mathrm{rec}}(t;s)}
+\frac{W_{ia}^{\mathrm{acc}}(t;s)}
 {r_{ia}^2(t;s)}
 \hat{\mathbf r}_{ia}(t;s)
 $$
 
-where $W_{ia}^{\mathrm{rec}}(t;s)=\lvert D_{T,ia}/D_{s,ia}\rvert$ is evaluated on the same active branch as the angular-momentum row.
+where $W_{ia}^{\mathrm{acc}}(t;s)=c_f/\lvert D_{t,ia}\rvert$ is evaluated on the same active branch as the angular-momentum row.
 
 and the force-like bookkeeping variable is
 

@@ -4,14 +4,14 @@
 
 This document gives a philosophical orientation for what a causal wake can and cannot carry, and for what that implies about information, conservation bookkeeping, and the limits of inference in $\mathbb{A}\mathbb{A}\mathbb{A}$. It belongs in the philosophy-history lane because it organizes level discipline around one arc: the wake as record, superposition as lossless transport, reception as lossy projection, and inherited physics as compression. The canonical technical owners remain [Architrino](../foundations/architrino.md), [Master Equation](../dynamics/master-equation.md), [Energy](../dynamics/energy.md), [Observer Framework](../spacetime/observer-framework.md), and [Measurement Ontology](../quantum/measurement-ontology.md).
 
-The guiding observation is simple to state. A causal wake is the source-dependent causal-isochron record of an architrino's emissions. Its entire content is fixed by three inputs: source identity, polarity, and path history. Everything a wake is said to carry, whether energy, momentum, angular momentum, or information, is a different projection of one and the same path-history functional read through causal-delay geometry. Nothing rides in the wake as cargo, and nothing about the wake degrades in flight. What is lost, and lost immediately, is lost at reception.
+The guiding observation is simple to state. A causal wake is the source-dependent causal-isochron record of an architrino's emissions. Its entire content is fixed by three inputs: transmitter identity, polarity, and path history. Everything a wake is said to carry, whether energy, momentum, angular momentum, or information, is a different projection of one and the same path-history functional read through causal-delay geometry. Nothing rides in the wake as cargo, and nothing about the wake degrades in flight. What is lost, and lost immediately, is lost at reception.
 
 ## What a Wake Carries
 
-Strictly, a wake carries nothing material. [Energy](../dynamics/energy.md) states the discipline: a wake is not a hidden fuel, a vacuum reservoir, or a second substance in the Euclidean void. What the wake makes available is fixed by the source worldline:
+Strictly, a wake carries nothing material. [Energy](../dynamics/energy.md) states the discipline: a wake is not a hidden fuel, a vacuum reservoir, or a second substance in the Euclidean void. What the wake makes available is fixed by the transmitter path:
 
-- **Potential**: the per-isochron amplitude, available wherever the wake passes, realized as force and work only when an actual receiver trajectory crosses it with its receiver-normal branch strength.
-- **Momentum and angular momentum**: conservation bookkeeping values, not cargo. Between emission and delayed reception, the accounting assigns these balances to the in-flight wake segment, and that assignment is computable entirely from the source's path history. This is why internal torques need not cancel instantaneously in a causal-delay theory: between emission and reception, the balance lives in the wake record rather than in any assembly.
+- **Potential**: the per-isochron amplitude, available wherever the wake passes, realized as force and work only when an actual receiver trajectory crosses it with its transmitter-side acceleration weight.
+- **Momentum and angular momentum**: conservation bookkeeping values, not cargo. Between emission and delayed reception, the accounting assigns these balances to the in-flight wake segment, and that assignment is computable entirely from the transmitter's path history. This is why internal torques need not cancel instantaneously in a causal-delay theory: between emission and reception, the balance lives in the wake record rather than in any assembly.
 - **Information**: the wake is an encoding of the source's worldline, propagating outward at $c_f$. A receiver sampling the wake is sampling the source's kinematic history at causal delay.
 
 The unifying statement is a stronger claim than a metaphor: energy in flight, angular momentum in flight, and information in flight are three bookkeeping projections of one object, the path-history record read through the delayed causal geometry. The complete state of the universe is architrino identities, polarities, and path histories; wakes contribute no independent degrees of freedom. This is why the theory can keep conservation exact without keeping it instantaneous: the accounts balance, but some balances are temporarily held in the record between emission and reception.
@@ -32,7 +32,7 @@ Second, separating the sum requires structure. A point receiver sampling one acc
 
 ## The Projection Loss
 
-Nothing is lost in transmission; everything is lost in projection. The wake in flight is a faithful record: globally, the full isochron structure determines the source worldline. But a receiver never gets the wake. It gets the wake's value at one event. That readout is degenerate, and the degeneracy is present from the very first hit ever received, even in a two-architrino universe with no competition and no noise.
+Nothing is lost in transmission; everything is lost in projection. The wake in flight is a faithful record: globally, the full isochron structure determines the transmitter path. But a receiver never gets the wake. It gets the wake's value at one event. That readout is degenerate, and the degeneracy is present from the very first hit ever received, even in a two-architrino universe with no competition and no noise.
 
 The ambiguity set for a single hit includes at least:
 
@@ -40,7 +40,7 @@ The ambiguity set for a single hit includes at least:
 - **Side versus polarity.** An acceleration toward $+\hat{\mathbf x}$ is equally consistent with an opposite-polarity source ahead of the receiver and a same-polarity source behind it. The sign of the interaction and the side of the sky are conflated in a single sample.
 - **Multiplicity.** Hits arrive unlabeled. One acceleration vector may be one source or the coherent sum of many. Emitters cannot be counted from a sample.
 
-Dimension counting makes the loss unavoidable rather than merely difficult. An instantaneous reception is one vector in $\mathbb{R}^3$, while the generating data of even a single contribution, the emission point, the source velocity at emission, the polarity, and the number of contributing sources, has more degrees of freedom. The readout map is many-to-one, so no inverse exists.
+Dimension counting makes the loss unavoidable rather than merely difficult. An instantaneous reception is one vector in $\mathbb{R}^3$, while the generating data of even a single contribution, the emission point, the transmitter velocity at emission, the polarity, and the number of contributing sources, has more degrees of freedom. The readout map is many-to-one, so no inverse exists.
 
 This gives the mechanism behind a level rule the corpus already enforces: a receiver or observer may infer source configurations from hit records, but inference does not determine the ontic history unless the missing path-history data are supplied. The data is missing because reception is a projection. The degeneracy is partially broken by time series against persistent sources, by extended assemblies acting as structured receivers, and by multi-point sampling, and it is never fully broken from inside: embedded Physical Observers only ever hold projections, as developed in [Observer Framework](../spacetime/observer-framework.md) and [Measurement Ontology](../quantum/measurement-ontology.md).
 
@@ -78,7 +78,7 @@ The discipline closes on itself. Explanations, theories, observers, and the scie
 
 ## Placement and Claim Levels
 
-- **Ontological**: the wake as causal-isochron record whose content is fixed by source identity, polarity, and path history; no independent wake degrees of freedom.
+- **Ontological**: the wake as causal-isochron record whose content is fixed by transmitter identity, polarity, and path history; no independent wake degrees of freedom.
 - **Derivational, owned elsewhere**: linear superposition of the net potential, the receiver-local hit sum, self-hit structure, and the wake-history energy, momentum, and angular-momentum accounting rows, all owned by [Master Equation](../dynamics/master-equation.md) and [Energy](../dynamics/energy.md).
 - **Elementary but load-bearing**: the single-hit degeneracy and its dimension-counting argument, which supply the mechanism behind the inference limits already enforced in the dynamics and observer chapters.
 - **Closure targets**: the assembly-scale selectivity mechanism behind structured reception; the proposed inheritance of quantum indistinguishability from hit-level unlabeledness, owned by the assembly and quantum chapters; the certified conservation theorem with wake-history rows and controlled residuals, and the active-root census behind universal contact, both owned by the master-equation proof program.

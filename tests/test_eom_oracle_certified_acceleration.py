@@ -53,7 +53,7 @@ def roots(
 ):
     return certify_causal_roots(
         receiver=receiver,
-        source=source,
+        transmitter=source,
         reception_time=reception,
         field_speed="1",
         search_lower=lower,
@@ -66,13 +66,13 @@ def roots(
 
 def request(
     receiver_id: str,
-    source_id: str,
+    transmitter_id: str,
     receiver: PiecewisePolynomialHistory,
     source: PiecewisePolynomialHistory,
     root_certificate,
     *,
     receiver_charge: str = "1",
-    source_charge: str = "-1",
+    transmitter_charge: str = "-1",
     chart: str = "sharp",
     causal_width: str | None = None,
     core_scale: str | None = None,
@@ -82,15 +82,15 @@ def request(
 ) -> PairAccelerationRequest:
     return PairAccelerationRequest.from_decimal_tokens(
         receiver_path_id=receiver_id,
-        source_path_id=source_id,
+        transmitter_path_id=transmitter_id,
         receiver_history=receiver,
-        source_history=source,
+        transmitter_history=source,
         root_certificate=root_certificate,
         receiver_charge=receiver_charge,
-        source_charge=source_charge,
+        transmitter_charge=transmitter_charge,
         coupling="1",
         chart=chart,
-        source_normal_floor="1e-30",
+        transmitter_factor_floor="1e-30",
         causal_width=causal_width,
         core_scale=core_scale,
         acceleration_tolerance=quadrature_tolerance,
@@ -112,7 +112,7 @@ def assert_contains(
 
 class CertifiedAccelerationTests(unittest.TestCase):
     def setUp(self) -> None:
-        self.source_origin = history(
+        self.transmitter_origin = history(
             "source-origin",
             segment(t_start="0", t_end="5", x=("0", "0", "0", "0")),
         )
@@ -131,10 +131,10 @@ class CertifiedAccelerationTests(unittest.TestCase):
 
     def test_sharp_root_reconstructs_exact_stationary_pair_acceleration(self) -> None:
         certificate = roots(
-            self.receiver_two, self.source_origin, reception="5"
+            self.receiver_two, self.transmitter_origin, reception="5"
         )
         result = certify_pair_acceleration(
-            request("receiver", "source", self.receiver_two, self.source_origin, certificate)
+            request("receiver", "source", self.receiver_two, self.transmitter_origin, certificate)
         )
 
         self.assertEqual(result.status, "active")
@@ -142,53 +142,54 @@ class CertifiedAccelerationTests(unittest.TestCase):
         assert_contains(self, result.total_acceleration[0], "-0.25")
         self.assertTrue(result.total_acceleration[1].is_exact_zero)
         self.assertTrue(result.total_acceleration[2].is_exact_zero)
-        assert_contains(self, result.rows[0].source_normal, "1")
-        assert_contains(self, result.rows[0].receiver_normal, "1")
+        assert_contains(self, result.rows[0].transmitter_factor, "1")
+        assert_contains(self, result.rows[0].receiver_factor, "1")
         row_record = result.rows[0].to_record()
         self.assertEqual(row_record["polarity"], -1)
         self.assertEqual(row_record["charge_product_magnitude"], "1")
-        self.assertEqual(row_record["source_normal_sign"], 1)
+        self.assertEqual(row_record["transmitter_factor_sign"], 1)
         self.assertEqual(row_record["accumulation_group"], "receiver")
         self.assertEqual(
             row_record["acceptance_status"], "consumed_certified_sharp_root"
         )
         self.assertTrue(result.reconstruction_matches)
         self.assertEqual(
-            result.to_record()["schema"], "eom_pair_acceleration_certificate/v0"
+            result.to_record()["schema"], "eom_pair_acceleration_certificate/v1"
         )
         self.assertEqual(
             result.to_record()["numeric_policy"]["precision_decimal_digits"],
             PRECISION,
         )
 
-    def test_receiver_on_field_speed_rail_emits_silent_sharp_row(self) -> None:
+    def test_receiver_on_field_speed_rail_keeps_transmitter_density_acceleration(self) -> None:
         receiver = history(
             "rail-receiver",
             segment(t_start="0", t_end="5", x=("-3", "1", "0", "0")),
         )
-        certificate = roots(receiver, self.source_origin, reception="5")
+        certificate = roots(receiver, self.transmitter_origin, reception="5")
         result = certify_pair_acceleration(
-            request("receiver", "source", receiver, self.source_origin, certificate)
+            request("receiver", "source", receiver, self.transmitter_origin, certificate)
         )
 
         self.assertEqual(result.status, "active")
         self.assertEqual(len(result.rows), 1)
-        self.assertTrue(result.rows[0].receiver_normal.is_exact_zero)
-        self.assertTrue(result.total_acceleration[0].is_exact_zero)
+        self.assertTrue(result.rows[0].receiver_factor.is_exact_zero)
+        assert_contains(self, result.rows[0].acceleration_weight, "1")
+        assert_contains(self, result.total_acceleration[0], "-0.25")
 
     def test_super_field_speed_receiver_is_not_clamped(self) -> None:
         receiver = history(
             "superfield-receiver",
             segment(t_start="0", t_end="5", x=("-8", "2", "0", "0")),
         )
-        certificate = roots(receiver, self.source_origin, reception="5")
+        certificate = roots(receiver, self.transmitter_origin, reception="5")
         result = certify_pair_acceleration(
-            request("receiver", "source", receiver, self.source_origin, certificate)
+            request("receiver", "source", receiver, self.transmitter_origin, certificate)
         )
 
         self.assertEqual(result.status, "active")
-        assert_contains(self, result.rows[0].receiver_normal, "-1")
-        assert_contains(self, result.rows[0].receiver_strength, "1")
+        assert_contains(self, result.rows[0].receiver_factor, "-1")
+        assert_contains(self, result.rows[0].acceleration_weight, "1")
         assert_contains(self, result.total_acceleration[0], "-0.25")
 
     def test_multiple_sharp_roots_sum_into_receiver_total(self) -> None:
@@ -208,7 +209,7 @@ class CertifiedAccelerationTests(unittest.TestCase):
                 receiver,
                 source,
                 certificate,
-                source_charge="1",
+                transmitter_charge="1",
             )
         )
 
@@ -230,7 +231,7 @@ class CertifiedAccelerationTests(unittest.TestCase):
                 self_history,
                 self_history,
                 certificate,
-                source_charge="1",
+                transmitter_charge="1",
             )
         )
 
@@ -291,7 +292,7 @@ class CertifiedAccelerationTests(unittest.TestCase):
 
     def test_history_provenance_mismatch_fails_closed(self) -> None:
         certificate = roots(
-            self.receiver_two, self.source_origin, reception="5"
+            self.receiver_two, self.transmitter_origin, reception="5"
         )
         altered_source = history(
             "source-origin",
@@ -311,14 +312,14 @@ class CertifiedAccelerationTests(unittest.TestCase):
 
     def test_finite_width_pair_is_certified_by_adaptive_interval_quadrature(self) -> None:
         certificate = roots(
-            self.receiver_two, self.source_origin, reception="5"
+            self.receiver_two, self.transmitter_origin, reception="5"
         )
         result = certify_pair_acceleration(
             request(
                 "receiver",
                 "source",
                 self.receiver_two,
-                self.source_origin,
+                self.transmitter_origin,
                 certificate,
                 chart="finite_width",
                 causal_width="0.2",
@@ -369,14 +370,14 @@ class CertifiedAccelerationTests(unittest.TestCase):
 
     def test_finite_width_resource_exhaustion_fails_closed(self) -> None:
         certificate = roots(
-            self.receiver_two, self.source_origin, reception="5"
+            self.receiver_two, self.transmitter_origin, reception="5"
         )
         result = certify_pair_acceleration(
             request(
                 "receiver",
                 "source",
                 self.receiver_two,
-                self.source_origin,
+                self.transmitter_origin,
                 certificate,
                 chart="finite_width",
                 causal_width="0.2",
@@ -400,20 +401,20 @@ class AllPairAccelerationReconstructionTests(unittest.TestCase):
             segment(t_start="0", t_end="3", x=("2", "0", "0", "0")),
         )
 
-    def pair_request(self, receiver_id: str, source_id: str) -> PairAccelerationRequest:
+    def pair_request(self, receiver_id: str, transmitter_id: str) -> PairAccelerationRequest:
         histories = {"a": self.path_a, "b": self.path_b}
         charges = {"a": "1", "b": "-1"}
         receiver = histories[receiver_id]
-        source = histories[source_id]
+        source = histories[transmitter_id]
         certificate = roots(receiver, source, reception="3")
         return request(
             receiver_id,
-            source_id,
+            transmitter_id,
             receiver,
             source,
             certificate,
             receiver_charge=charges[receiver_id],
-            source_charge=charges[source_id],
+            transmitter_charge=charges[transmitter_id],
         )
 
     def test_complete_binary_matrix_includes_self_pairs_and_reconstructs_totals(self) -> None:
@@ -435,7 +436,7 @@ class AllPairAccelerationReconstructionTests(unittest.TestCase):
         self.assertTrue(result.reconstruction_matches)
         self.assertEqual(
             result.to_record()["schema"],
-            "eom_acceleration_reconstruction_certificate/v0",
+            "eom_acceleration_reconstruction_certificate/v1",
         )
 
     def test_missing_self_pair_is_rejected_structurally(self) -> None:
@@ -471,12 +472,12 @@ class AllPairAccelerationReconstructionTests(unittest.TestCase):
         ]
         inconsistent = PairAccelerationRequest.from_decimal_tokens(
             receiver_path_id="a",
-            source_path_id="b",
+            transmitter_path_id="b",
             receiver_history=self.path_a,
-            source_history=self.path_b,
+            transmitter_history=self.path_b,
             root_certificate=roots(self.path_a, self.path_b, reception="3"),
             receiver_charge="2",
-            source_charge="-1",
+            transmitter_charge="-1",
             coupling="1",
         )
         requests[1] = inconsistent

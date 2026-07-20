@@ -40,7 +40,7 @@ The important review question is whether the work states the architecture's burd
 
 The following are already acknowledged burdens. Useful review adds precision, failure modes, or the smallest artifact that could test them.
 
-1. **Self-hit well-posedness.** Same-source causal-root selection must preserve deterministic multistability without runaway energy growth near Jacobian zeros.
+1. **Self-hit well-posedness.** Same-transmitter causal-root selection must preserve deterministic multistability without runaway energy growth near Jacobian zeros.
 
 2. **Action spacing.** Stable delayed braid branches must export a uniform closed-cycle action increment consistent with $h$; this is downstream of self-hit energy boundedness.
 

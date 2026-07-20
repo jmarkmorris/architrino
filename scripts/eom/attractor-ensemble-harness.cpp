@@ -493,7 +493,7 @@ eom::NativeCoupledEvolutionRequest build_request(
   request.field_speed = "1";
   request.coupling = token(kNativeCoupling);
   request.root_tolerance = options.root_tolerance;
-  request.source_normal_floor = "1e-24";
+  request.transmitter_factor_floor = "1e-24";
   request.acceleration_tolerance = token(5e-3);
   request.chart_policy = "sharp";
   request.causal_width = "0.05";
@@ -973,7 +973,7 @@ void write_manifest(
     const std::string& status) {
   std::ofstream output(path);
   output << std::setprecision(17)
-         << "{\"schema\":\"eom_attractor_ensemble_run_manifest/v0\""
+         << "{\"schema\":\"eom_attractor_ensemble_run_manifest/v1\""
          << ",\"runId\":";
   write_json_string(output, options.run_id);
   output << ",\"seedFamily\":";
@@ -1344,7 +1344,7 @@ int main(int argc, char** argv) {
         if (row.certificate.status != "certified_complete") {
           ++unresolved;
           std::cerr << "root " << row.receiver_path_id << "<-"
-                    << row.source_path_id
+                    << row.transmitter_path_id
                     << " status=" << row.certificate.status
                     << " failure=" << row.certificate.failure_code << '\n';
         }

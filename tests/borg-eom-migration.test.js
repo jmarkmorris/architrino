@@ -1,6 +1,12 @@
 import assert from "node:assert/strict";
 import { createHash } from "node:crypto";
-import { chmodSync, mkdtempSync, rmSync, writeFileSync } from "node:fs";
+import {
+  chmodSync,
+  mkdtempSync,
+  readFileSync,
+  rmSync,
+  writeFileSync,
+} from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { test } from "node:test";
@@ -8,6 +14,9 @@ import { test } from "node:test";
 import { BORG_DATASET_MANIFEST_V1 } from "../src/apps/borg/BorgAppManifest.js";
 import {
   BORG_EOM_ACCEPTED_INITIAL_HISTORY_EVOLUTION_CLAIM_LEVEL,
+  BORG_EOM_CONTRACT_ID,
+  BORG_EOM_MODEL_BINDING_ID,
+  BORG_EOM_REQUEST_SCHEMA,
   BORG_EOM_SHADOW_RUN_SOURCE,
   createBorgContinuousRetainedHistories,
   createBorgEomShadowRequest,
@@ -268,7 +277,7 @@ test("Borg EOM accepts individual polarity counts through a continuous prescribe
   assert.equal(histories[0].sourceClaimLevel, BORG_PRESCRIBED_INITIAL_HISTORY_CLAIM_LEVEL);
 });
 
-test("Borg computes artificial-history depth from causal separation and source speed", () => {
+test("Borg computes artificial-history depth from causal separation and transmitter speed", () => {
   const rows = [
     {
       pathKey: 1,
@@ -292,7 +301,7 @@ test("Borg computes artificial-history depth from causal separation and source s
       position: { x: 0, y: 0, z: 0 },
       velocity: { x: 1, y: 0, z: 0 },
     }]),
-    /requires sub-field source speed/,
+    /requires sub-field transmitter speed/,
   );
 });
 
@@ -350,6 +359,40 @@ test("Borg certified-budget hashes identify the complete canonical allocations",
   }
 });
 
+test("Borg live contract and certified-budget records match the runtime identities", () => {
+  const bindingRecord = readFileSync(new URL(
+    "../reference/priorities/app-eom/master-eom-binding-v1.md",
+    import.meta.url,
+  ), "utf8");
+  const contractRecord = readFileSync(new URL(
+    "../reference/priorities/app-eom/evolution-contract-v1.md",
+    import.meta.url,
+  ), "utf8");
+  const budgetLedger = readFileSync(new URL(
+    "../reference/priorities/app-eom/certified-error-budget-ledger.md",
+    import.meta.url,
+  ), "utf8");
+  const masterEquation = readFileSync(new URL(
+    "../content/markdown/aaa/dynamics/master-equation.md",
+    import.meta.url,
+  ));
+  const sourceHash = bindingRecord.match(
+    /Source snapshot SHA-256: `([0-9a-f]{64})`/u,
+  )?.[1];
+
+  assert.equal(
+    sourceHash,
+    createHash("sha256").update(masterEquation).digest("hex"),
+  );
+  assert.equal(contractRecord.includes(`\`${BORG_EOM_REQUEST_SCHEMA}\``), true);
+  assert.equal(contractRecord.includes(`\`${BORG_EOM_CONTRACT_ID}\``), true);
+  assert.equal(contractRecord.includes(`\`${BORG_EOM_MODEL_BINDING_ID}\``), true);
+  for (const preset of BORG_CERTIFIED_BUDGET_PRESETS) {
+    assert.equal(budgetLedger.includes(`\`${preset.id}\``), true);
+    assert.equal(budgetLedger.includes(`\`${preset.allocationHash}\``), true);
+  }
+});
+
 test("Borg EOM migration imports a complete continuous past, never a state-only start", () => {
   const histories = createBorgContinuousRetainedHistories(
     trajectoryFrames,
@@ -398,7 +441,10 @@ test("Borg EOM shadow runner sends retained histories and derives frames only fr
 
   const chunk = await runner.computeNextChunk();
   const request = requests[0];
-  assert.equal(request.contractId, "eom_evolution_contract/v0");
+  assert.equal(request.schema, BORG_EOM_REQUEST_SCHEMA);
+  assert.equal(request.contractId, BORG_EOM_CONTRACT_ID);
+  assert.deepEqual(request.contractAmendmentIds, []);
+  assert.equal(request.modelBindingId, BORG_EOM_MODEL_BINDING_ID);
   assert.equal(request.claimLevel, "migration-shadow");
   assert.deepEqual(request.absoluteTimeInterval, { start: "10", end: "10.2" });
   assert.equal(request.histories.length, 6);
@@ -796,6 +842,24 @@ test("Borg native process protocol carries the same continuous-history request",
   assert.equal(protocol.includes("initialStates"), false);
   assert.equal(protocol.includes("futurePaths"), false);
 
+  assert.throws(
+    () => encodeNativeRequest({
+      ...requests[0],
+      modelBindingId: "master_eom_binding/v0",
+    }),
+    /does not match the live request, evolution, and model-binding contracts/,
+  );
+  assert.throws(
+    () => encodeNativeRequest({
+      ...requests[0],
+      certifiedBudget: {
+        ...requests[0].certifiedBudget,
+        allocationHash: "0".repeat(64),
+      },
+    }),
+    /certified-budget hash does not match its canonical allocations/,
+  );
+
   const deltaProtocol = encodeNativeRequest(requests[0], {
     cachedHistories: requests[0].histories,
   });
@@ -993,7 +1057,7 @@ test("Borg browser EOM client posts the retained-history contract to the local n
       };
     },
   });
-  const request = { contractId: "eom_evolution_contract/v0", histories: [{ pathId: "p" }] };
+  const request = { contractId: "eom_evolution_contract/v1", histories: [{ pathId: "p" }] };
   const response = await client.evolveRetainedHistories(request);
   assert.equal(response.status, "completed");
   assert.equal(calls[0].endpoint, "/api/eom/borg-shadow/v0");

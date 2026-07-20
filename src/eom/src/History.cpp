@@ -762,7 +762,7 @@ RetainedHistory RetainedHistory::uniform_circular(
 
   RetainedHistory history(std::move(history_id), std::move(segments));
   UniformCircularEndpointCertificate certificate{
-      .schema = "eom_uniform_circular_endpoint_certificate/v0",
+      .schema = "eom_uniform_circular_endpoint_certificate/v1",
       .valid_start_time = request.t_start,
       .valid_reception_time = request.t_end,
       .maximum_segment_step = request.maximum_segment_step,

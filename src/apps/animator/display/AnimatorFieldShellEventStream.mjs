@@ -6,8 +6,8 @@ export const ANIMATOR_FIELD_SHELL_EVENT_ROW_LAYOUT = "field_shell_events.v1";
 export const ANIMATOR_FIELD_SHELL_EVENT_STORE_SCHEMA = "path_event_store.v1";
 export const ANIMATOR_FIELD_SHELL_EVENT_MANIFEST_SCHEMA =
   "animator-field-shell-event-stream-manifest.v1";
-export const ANIMATOR_FIELD_SHELL_EMITTER_SOURCE_HISTORY_SCHEMA =
-  "animator-field-shell-emitter-source-history.v1";
+export const ANIMATOR_FIELD_SHELL_TRANSMITTER_HISTORY_SCHEMA =
+  "animator-field-shell-transmitter-source-history.v1";
 export const ANIMATOR_FIELD_SHELL_EVENT_NATIVE_FILE_MANIFEST_SCHEMA =
   "solver-native-file-stream-manifest.v1";
 export const ANIMATOR_FIELD_SHELL_EVENT_STREAM_INDEX_SCHEMA = "solver-stream-index.v1";
@@ -112,15 +112,15 @@ function normalizeStoragePolicy(storagePolicy, byteLength = 0) {
 }
 
 function normalizeSample(sample = {}, index = 0, fallbackFieldSpeed = DEFAULT_FIELD_SPEED) {
-  const emitterId = normalizeString(
-    sample.emitterId ?? sample.emitter ?? sample.id,
-    `emitter_${index + 1}`
+  const transmitterId = normalizeString(
+    sample.transmitterId ?? sample.transmitter ?? sample.id,
+    `transmitter_${index + 1}`
   );
   const metadata = sample.metadata && typeof sample.metadata === "object" ? sample.metadata : {};
   return {
-    id: normalizeString(sample.id, emitterId),
-    emitterId,
-    receiverId: normalizeString(sample.receiverId ?? sample.receiver, emitterId),
+    id: normalizeString(sample.id, transmitterId),
+    transmitterId,
+    receiverId: normalizeString(sample.receiverId ?? sample.receiver, transmitterId),
     time: normalizeNumber(sample.time ?? sample.emissionTime ?? sample.tEmit, 0),
     sampleIndex: Math.max(0, Math.floor(normalizeNumber(sample.sampleIndex, index))),
     position: normalizeVector(sample.position ?? sample.emissionPosition),
@@ -649,15 +649,15 @@ function findCoreMemberId(members, chargeType, binaryIndex) {
   return prefixMatches[binaryIndex] ?? null;
 }
 
-function resolveEmitterSourceHistory(descriptor = {}, fallbackFieldSpeed = DEFAULT_FIELD_SPEED) {
-  const sourceHistory = descriptor.emitterSourceHistory;
-  if (sourceHistory && typeof sourceHistory === "object") {
-    return sourceHistory.schema === ANIMATOR_FIELD_SHELL_EMITTER_SOURCE_HISTORY_SCHEMA &&
-      Array.isArray(sourceHistory.samples)
-      ? sourceHistory
-      : createAnimatorFieldShellEmitterSourceHistory({
-          ...sourceHistory,
-          fieldSpeed: sourceHistory.fieldSpeed ?? fallbackFieldSpeed,
+function resolveTransmitterHistory(descriptor = {}, fallbackFieldSpeed = DEFAULT_FIELD_SPEED) {
+  const transmitterHistory = descriptor.transmitterHistory;
+  if (transmitterHistory && typeof transmitterHistory === "object") {
+    return transmitterHistory.schema === ANIMATOR_FIELD_SHELL_TRANSMITTER_HISTORY_SCHEMA &&
+      Array.isArray(transmitterHistory.samples)
+      ? transmitterHistory
+      : createAnimatorFieldShellTransmitterHistory({
+          ...transmitterHistory,
+          fieldSpeed: transmitterHistory.fieldSpeed ?? fallbackFieldSpeed,
         });
   }
   return null;
@@ -680,7 +680,7 @@ function createFieldShellEventRow(sample, rowIndex, descriptor, options) {
     DEFAULT_INTERVAL_SECONDS,
     0
   );
-  const id = `field_shell_event_${idPart(sample.emitterId, "emitter")}_t${timeIdPart(sample.time)}_${rowIndex}`;
+  const id = `field_shell_event_${idPart(sample.transmitterId, "transmitter")}_t${timeIdPart(sample.time)}_${rowIndex}`;
 
   return {
     id,
@@ -688,7 +688,7 @@ function createFieldShellEventRow(sample, rowIndex, descriptor, options) {
     rowLayout: ANIMATOR_FIELD_SHELL_EVENT_ROW_LAYOUT,
     eventClass: "field_shell_emitted",
     streamId: descriptor.streamId,
-    emitterId: sample.emitterId,
+    transmitterId: sample.transmitterId,
     emissionTime: sample.time,
     emissionPoint: sample.position,
     fieldSpeed,
@@ -767,7 +767,7 @@ function createEventStore(streamId, rows) {
       eventTime: row.emissionTime,
       eventId: row.id,
       eventClass: row.eventClass,
-      affectedIds: [row.emitterId],
+      affectedIds: [row.transmitterId],
       rowLayout: row.rowLayout,
       statusCode: row.statusCode,
       checksumScope: "field-shell-event-row",
@@ -795,7 +795,7 @@ function createManifest({ stream, rows, cadence, eventStore, byteLength }) {
             end: Math.max(...rows.map((row) => row.emissionTime)),
           }
         : { start: 0, end: 0 },
-      emitterCount: new Set(rows.map((row) => row.emitterId)).size,
+      transmitterCount: new Set(rows.map((row) => row.transmitterId)).size,
       storageTarget: stream.storagePolicy.target,
       durable: stream.storagePolicy.durable === true,
     },
@@ -887,7 +887,7 @@ function encodeFieldShellEventRowsV1(rows) {
     view.setFloat64(offset + 64, normalizeNumber(row.displayTime, row.emissionTime), true);
     view.setFloat64(offset + 72, normalizeNumber(row.cadenceIntervalSeconds, 0), true);
     view.setBigUint64(offset + 80, safeUint64BigInt(row.cadenceIndex), true);
-    view.setBigUint64(offset + 88, fnv1a64StringBigInt(row.emitterId), true);
+    view.setBigUint64(offset + 88, fnv1a64StringBigInt(row.transmitterId), true);
     view.setFloat64(offset + 96, normalizeNumber(row.strength, 1), true);
     view.setFloat64(
       offset + 104,
@@ -1065,8 +1065,8 @@ function createNativeFieldShellEventStorage({ streamId, rows, fallbackTimeRange,
 
 function rowToFieldShell(row) {
   return {
-    id: `architrino_shell_${row.emitterId}_${row.cadenceIndex}`,
-    emitterId: row.emitterId,
+    id: `architrino_shell_${row.transmitterId}_${row.cadenceIndex}`,
+    transmitterId: row.transmitterId,
     emissionTime: row.emissionTime,
     displayTime: row.displayTime,
     emissionPosition: vectorTriplet(row.emissionPoint),
@@ -1087,7 +1087,7 @@ function rowToFieldShell(row) {
 function rowToEmissionEvent(row) {
   return {
     id: row.id,
-    emitterId: row.emitterId,
+    transmitterId: row.transmitterId,
     emissionTime: row.emissionTime,
     emissionPoint: vectorTriplet(row.emissionPoint),
     fieldSpeed: row.fieldSpeed,
@@ -1100,7 +1100,7 @@ function rowToEmissionEvent(row) {
   };
 }
 
-export function createAnimatorFieldShellEmitterSourceHistory(descriptor = {}) {
+export function createAnimatorFieldShellTransmitterHistory(descriptor = {}) {
   const documentData = descriptor.documentData ?? descriptor.document ?? {};
   const simulationDataset = descriptor.simulationDataset ?? null;
   const timeWindow = normalizeTimeWindow(descriptor.timeWindow ?? getSceneTimeWindow(documentData));
@@ -1161,7 +1161,7 @@ export function createAnimatorFieldShellEmitterSourceHistory(descriptor = {}) {
           );
           samples.push({
             id: `${assembly.id}_${memberId}`,
-            emitterId: `${assembly.id}_${memberId}`,
+            transmitterId: `${assembly.id}_${memberId}`,
             receiverId: `${assembly.id}_${memberId}`,
             time: sampleTime,
             sampleIndex,
@@ -1169,13 +1169,13 @@ export function createAnimatorFieldShellEmitterSourceHistory(descriptor = {}) {
             sign,
             fieldSpeed,
             metadata: {
-              sourceHistorySchema: ANIMATOR_FIELD_SHELL_EMITTER_SOURCE_HISTORY_SCHEMA,
+              transmitterHistorySchema: ANIMATOR_FIELD_SHELL_TRANSMITTER_HISTORY_SCHEMA,
               motionSource: "solver-derived",
               ownerAssemblyId: assembly.id,
               memberId,
               chargeType,
               binaryId: binary?.id ?? "",
-              emitterScope: "core-architrino",
+              transmitterScope: "core-architrino",
               sampleIntervalSeconds,
             },
           });
@@ -1185,7 +1185,7 @@ export function createAnimatorFieldShellEmitterSourceHistory(descriptor = {}) {
   });
 
   return {
-    schema: ANIMATOR_FIELD_SHELL_EMITTER_SOURCE_HISTORY_SCHEMA,
+    schema: ANIMATOR_FIELD_SHELL_TRANSMITTER_HISTORY_SCHEMA,
     timeWindow,
     sampleTimes,
     sampleIntervalSeconds,
@@ -1193,7 +1193,7 @@ export function createAnimatorFieldShellEmitterSourceHistory(descriptor = {}) {
     sampleCount: samples.length,
     samples,
     metadata: {
-      source: "solver-owned-field-shell-emitter-source-history",
+      source: "solver-owned-field-shell-transmitter-source-history",
       datasetId: normalizeString(simulationDataset?.id ?? descriptor.datasetId, ""),
       assemblyCount: assemblies.length,
       pathCount: paths.length,
@@ -1272,13 +1272,13 @@ export function createAnimatorFieldShellEventStreamPackage(descriptor = {}, opti
     lifetimeSeconds,
     cadence,
   };
-  const emitterSourceHistory = resolveEmitterSourceHistory(descriptor, fieldSpeed);
-  const emitterSamples = Array.isArray(descriptor.emitterSamples)
-    ? descriptor.emitterSamples
-    : Array.isArray(emitterSourceHistory?.samples)
-      ? emitterSourceHistory.samples
+  const transmitterHistory = resolveTransmitterHistory(descriptor, fieldSpeed);
+  const transmitterSamples = Array.isArray(descriptor.transmitterSamples)
+    ? descriptor.transmitterSamples
+    : Array.isArray(transmitterHistory?.samples)
+      ? transmitterHistory.samples
       : [];
-  const rows = emitterSamples
+  const rows = transmitterSamples
     .filter(Boolean)
     .map((sample, index) => normalizeSample(sample, index, fieldSpeed))
     .filter((sample) => sample.time >= timeWindow.start - 1e-9 && sample.time <= timeWindow.end + 1e-9)
@@ -1364,7 +1364,7 @@ export function createAnimatorFieldShellEventStreamPackage(descriptor = {}, opti
     stream,
     manifest,
     nativeFileManifest,
-    emitterSourceHistory,
+    transmitterHistory,
     eventStore,
     buffer,
     buffers,

@@ -495,7 +495,7 @@ $$
 10^{-13}
 $$
 
-across tested material pairs after the corresponding inertial and gravitational response maps are compared. The exact bound belongs to the selected experimental class, but the structural point is fixed: if $\delta_A$ carries unsuppressed composition dependence, or if the acceleration row and gradient row use different Noether sea records, the scalar mass relation is only a fitted average rather than a branch consequence.
+across tested material pairs after the corresponding inertial and gravitational response maps are compared. The exact bound belongs to the selected experimental class, but the structural point is fixed: if $\delta_A$ carries unsuppressed composition dependence, or if the acceleration contribution and gradient row use different Noether sea records, the scalar mass relation is only a fitted average rather than a branch consequence.
 
 Equivalently, the tensor response that maps exposed internal energy into $p_{\text{int}}^a$ must have the same homogeneous low-energy limit in acceleration and gradient probes:
 

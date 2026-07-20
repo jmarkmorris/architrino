@@ -59,7 +59,7 @@ const LORENTZ_CHART_GAMMA_CAP = 6;
 const FIELD_SPEED_REFERENCE_BINARY_INDEX = 1;
 const DEFAULT_SOLVER_MEMORY_BUDGET_BYTES = 64 * 1024 * 1024;
 const DEFAULT_FLIGHT_TIME_TOLERANCE = 1e-12;
-const DEFAULT_FLIGHT_TIME_SOURCE_HISTORY_DEPTH = 10;
+const DEFAULT_FLIGHT_TIME_TRANSMITTER_HISTORY_DEPTH = 10;
 const IDEAL_BRAID_ANALYSIS_ID = PRESCRIBED_PATH_ANALYSIS_ID;
 const IDEAL_BRAID_RUNTIME_SOLVER_MEMORY_BUDGET_BYTES = 64 * 1024 * 1024;
 const IDEAL_BRAID_SURFACE_SOLVER_TIME_QUANTUM_SECONDS = 1 / 8;
@@ -451,7 +451,7 @@ export function createIdealBraidFlightTimeRunRequest(
     options.memoryBudgetBytes,
     DEFAULT_SOLVER_MEMORY_BUDGET_BYTES
   );
-  const source = createIdealBraidFlightTimeSourceSegment(
+  const transmitter = createIdealBraidFlightTimeTransmitterSegment(
     architrino,
     observationTime,
     options
@@ -469,7 +469,7 @@ export function createIdealBraidFlightTimeRunRequest(
     configHash: options.configHash ?? `ideal-braid-flight-time:${formatSolverIdNumber(observationTime)}`,
     model: options.model ?? createDefaultIdealBraidFlightTimeModel(),
     envelope: options.envelope ?? createDefaultIdealBraidFlightTimeEnvelope({
-      source,
+      transmitter,
       observationTime,
       memoryBudgetBytes,
     }),
@@ -478,13 +478,13 @@ export function createIdealBraidFlightTimeRunRequest(
       geometryRequest: {
         delayedPotentials: [
         {
-          source,
+          transmitter,
           samplePoint: vectorToPrescribedPathAnalysis(samplePoint),
           observationTime: Number(observationTime) || 0,
           fieldSpeed,
           normalization: Number(options.normalization ?? 1) || 1,
           softening: Math.max(0.0001, Number(options.softening ?? 0.08) || 0.08),
-          sourceCharge: Number(options.sourceCharge ?? architrino?.q ?? 1) || 1,
+          transmitterCharge: Number(options.transmitterCharge ?? architrino?.q ?? 1) || 1,
           iterations,
           useCausalDenominator: options.useCausalDenominator === true,
         },
@@ -566,18 +566,18 @@ export function createIdealBraidPotentialSamplesRunRequest(
     options.memoryBudgetBytes,
     DEFAULT_SOLVER_MEMORY_BUDGET_BYTES
   );
-  const sources = architrinos.map((architrino) =>
-    createIdealBraidFlightTimeSourceSegment(architrino, observationTime, options)
+  const transmitters = architrinos.map((architrino) =>
+    createIdealBraidFlightTimeTransmitterSegment(architrino, observationTime, options)
   );
   const delayedPotentials = points.flatMap((samplePoint) =>
-    architrinos.map((architrino, sourceIndex) => ({
-      source: cloneSolverSegment(sources[sourceIndex]),
+    architrinos.map((architrino, transmitterIndex) => ({
+      transmitter: cloneSolverSegment(transmitters[transmitterIndex]),
       samplePoint: vectorToPrescribedPathAnalysis(samplePoint),
       observationTime: Number(observationTime) || 0,
       fieldSpeed,
       normalization: Number(options.normalization ?? 1) || 1,
       softening: Math.max(0.0001, Number(options.softening ?? 0.08) || 0.08),
-      sourceCharge: Number(options.sourceCharge ?? architrino?.q ?? 1) || 1,
+      transmitterCharge: Number(options.transmitterCharge ?? architrino?.q ?? 1) || 1,
       iterations,
       useCausalDenominator: options.useCausalDenominator === true,
     }))
@@ -601,10 +601,10 @@ export function createIdealBraidPotentialSamplesRunRequest(
     envelope:
       options.envelope ??
       createDefaultIdealBraidPotentialSamplesEnvelope({
-        sources,
+        transmitters,
         observationTime,
         sampleCount: points.length,
-        sourceCount: architrinos.length,
+        transmitterCount: architrinos.length,
         memoryBudgetBytes,
       }),
     errorBudget: options.errorBudget ?? createDefaultIdealBraidFlightTimeErrorBudget(tolerance),
@@ -636,23 +636,23 @@ export async function computePotentialSamplesWithPrescribedPathAnalysis(
   const runHandle = await runIdealBraidPrescribedPathAnalysis(options, runRequest);
   return extractIdealBraidPotentialSamplesSnapshot(runHandle, {
     sampleCount: points.length,
-    sourceCount: architrinos.length,
+    transmitterCount: architrinos.length,
   });
 }
 
 function extractIdealBraidPotentialSamplesSnapshot(
   runHandle = {},
-  { sampleCount = 0, sourceCount = 0 } = {}
+  { sampleCount = 0, transmitterCount = 0 } = {}
 ) {
   const response = runHandle.response ?? runHandle;
   const geometry = response.geometry ?? response;
   const rows = Array.isArray(geometry.delayedPotentials) ? geometry.delayedPotentials : [];
   const samplePotentials = Array.from({ length: sampleCount }, () => 0);
   const contributionsBySample = Array.from({ length: sampleCount }, () => []);
-  const rowSourceCount = Math.max(1, sourceCount);
+  const rowTransmitterCount = Math.max(1, transmitterCount);
   rows.forEach((row, rowIndex) => {
     const itemIndex = Number.isInteger(row.itemIndex) ? row.itemIndex : rowIndex;
-    const sampleIndex = Math.floor(itemIndex / rowSourceCount);
+    const sampleIndex = Math.floor(itemIndex / rowTransmitterCount);
     if (sampleIndex < 0 || sampleIndex >= sampleCount) {
       return;
     }
@@ -680,22 +680,22 @@ function extractIdealBraidPotentialSamplesSnapshot(
   };
 }
 
-function createIdealBraidFlightTimeSourceSegment(architrino, observationTime, options = {}) {
-  if (options.sourceSegment && typeof options.sourceSegment === "object") {
-    return cloneSolverSegment(options.sourceSegment);
+function createIdealBraidFlightTimeTransmitterSegment(architrino, observationTime, options = {}) {
+  if (options.transmitterSegment && typeof options.transmitterSegment === "object") {
+    return cloneSolverSegment(options.transmitterSegment);
   }
-  const endTime = Number.isFinite(Number(options.sourceEndTime))
-    ? Number(options.sourceEndTime)
+  const endTime = Number.isFinite(Number(options.transmitterEndTime))
+    ? Number(options.transmitterEndTime)
     : Number(observationTime) || 0;
   const historyDepth = normalizePositiveSolverNumber(
-    options.sourceHistoryDepth,
-    DEFAULT_FLIGHT_TIME_SOURCE_HISTORY_DEPTH
+    options.transmitterHistoryDepth,
+    DEFAULT_FLIGHT_TIME_TRANSMITTER_HISTORY_DEPTH
   );
-  const startTime = Number.isFinite(Number(options.sourceStartTime))
-    ? Number(options.sourceStartTime)
+  const startTime = Number.isFinite(Number(options.transmitterStartTime))
+    ? Number(options.transmitterStartTime)
     : endTime - historyDepth;
-  const linearizationTime = Number.isFinite(Number(options.sourceLinearizationTime))
-    ? Number(options.sourceLinearizationTime)
+  const linearizationTime = Number.isFinite(Number(options.transmitterLinearizationTime))
+    ? Number(options.transmitterLinearizationTime)
     : endTime;
   const velocity = typeof architrino?.velocityAt === "function"
     ? vectorToPrescribedPathAnalysis(architrino.velocityAt(linearizationTime))
@@ -714,7 +714,7 @@ function createIdealBraidFlightTimeSourceSegment(architrino, observationTime, op
     endTime,
     positionAtStart,
     velocity,
-    errorBound: normalizeNonnegativeSolverNumber(options.sourceErrorBound, 0),
+    errorBound: normalizeNonnegativeSolverNumber(options.transmitterErrorBound, 0),
   };
 }
 
@@ -748,18 +748,18 @@ function createDefaultIdealBraidPotentialSamplesModel() {
     forceLawVersion: "causal-delay-v1",
     constantsHash: "constants:ideal-braid",
     causalSpeedPolicy: "field-speed",
-    branchPolicy: "batched-linear-source-segments",
+    branchPolicy: "batched-linear-transmitter-segments",
     unitConvention: "relative",
     compatiblePrecisionPaths: ["scaled_f64_strict", "event_root_focused", "extended_precision"],
   };
 }
 
 function createDefaultIdealBraidFlightTimeEnvelope({
-  source,
+  transmitter,
   observationTime,
   memoryBudgetBytes,
 } = {}) {
-  const startTime = Number(source?.startTime) || 0;
+  const startTime = Number(transmitter?.startTime) || 0;
   const endTime = Number.isFinite(Number(observationTime)) ? Number(observationTime) : startTime;
   const duration = Math.max(0, endTime - startTime);
   const stepHint = duration > 0 ? duration / 64 : 1;
@@ -768,33 +768,33 @@ function createDefaultIdealBraidFlightTimeEnvelope({
     assemblyCount: 1,
     timeWindow: { start: startTime, end: endTime, stepHint, units: "seconds" },
     timeResolutionHint: stepHint,
-    interactionPolicy: "single-source-delayed-potential",
+    interactionPolicy: "single-transmitter-delayed-potential",
     expectedBranchComplexity: "low",
     outputDetail: "geometry",
     memoryBudgetBytes,
     storageBudgetBytes: memoryBudgetBytes,
     latencyTarget: "interactive",
-    simplificationPolicy: "linear-source-segment",
+    simplificationPolicy: "linear-transmitter-segment",
   };
 }
 
 function createDefaultIdealBraidPotentialSamplesEnvelope({
-  sources = [],
+  transmitters = [],
   observationTime,
   sampleCount = 0,
-  sourceCount = 0,
+  transmitterCount = 0,
   memoryBudgetBytes,
 } = {}) {
   const startTime = Math.min(
-    ...sources.map((source) => Number(source?.startTime)).filter(Number.isFinite),
+    ...transmitters.map((transmitter) => Number(transmitter?.startTime)).filter(Number.isFinite),
     Number(observationTime) || 0
   );
   const endTime = Number.isFinite(Number(observationTime)) ? Number(observationTime) : startTime;
   const duration = Math.max(0, endTime - startTime);
   const stepHint = duration > 0 ? duration / 64 : 1;
   return {
-    entityCount: sourceCount,
-    assemblyCount: Math.max(1, sourceCount),
+    entityCount: transmitterCount,
+    assemblyCount: Math.max(1, transmitterCount),
     timeWindow: { start: startTime, end: endTime, stepHint, units: "seconds" },
     timeResolutionHint: stepHint,
     interactionPolicy: "batched-delayed-potential-surface",
@@ -803,9 +803,9 @@ function createDefaultIdealBraidPotentialSamplesEnvelope({
     memoryBudgetBytes,
     storageBudgetBytes: memoryBudgetBytes,
     latencyTarget: "interactive",
-    simplificationPolicy: "linear-source-segments",
+    simplificationPolicy: "linear-transmitter-segments",
     sampleCount,
-    sourceCount,
+    transmitterCount,
   };
 }
 

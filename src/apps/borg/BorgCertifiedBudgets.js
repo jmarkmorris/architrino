@@ -65,7 +65,7 @@ const COMMON_ORDINARY = Object.freeze({
   correctionAccelerationResidual: "1e-1",
   acceptedStepPosition: "1e-2",
   acceptedStepVelocity: "1e-2",
-  sourceNormalFloor: "1e-30",
+  transmitterFactorFloor: "1e-30",
   chartPolicy: "sharp_with_finite_width_fallback",
 });
 
@@ -135,7 +135,7 @@ const PRESETS = deepFreeze({
       "Ratified watching candidate with wider declared acceleration and event enclosures.",
     allocations: INTERACTIVE_ALLOCATIONS,
     allocationCanonicalJson: canonicalStringify(INTERACTIVE_ALLOCATIONS),
-    allocationHash: "11f005592d4636dec0cec8a062ce95ac7ab84bf51da36961fefcffa74705d33f",
+    allocationHash: "bb4b8b72e01b2d038e2b760a3677a67e92e35d12c5d587f0a98d2079bce8d319",
   },
   [BORG_RESEARCH_CERTIFIED_BUDGET_ID]: {
     id: BORG_RESEARCH_CERTIFIED_BUDGET_ID,
@@ -144,7 +144,7 @@ const PRESETS = deepFreeze({
       "Ratified tighter allocation retained as the default until parity acceptance passes.",
     allocations: RESEARCH_ALLOCATIONS,
     allocationCanonicalJson: canonicalStringify(RESEARCH_ALLOCATIONS),
-    allocationHash: "9fb413d991d7bc31457af7c062f32a3cacef94b6830a1cc8beb59227c9911b36",
+    allocationHash: "74919ee63dc27d0aa7c43453e1762f380da886a63377912905f8f8070d3b9b3d",
   },
 });
 

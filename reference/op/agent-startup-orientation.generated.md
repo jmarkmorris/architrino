@@ -71,17 +71,17 @@ A source hash change means this target should be regenerated and then skimmed fo
 
 | Source | Lines | SHA-256 |
 | --- | ---: | --- |
-| [AGENTS.md](../../AGENTS.md) | 260 | `32d73181e1171729` |
-| [README.md](../../README.md) | 228 | `2b8b8908f8f5e7eb` |
-| [.githooks/pre-commit](../../.githooks/pre-commit) | 26 | `15ba33ec6351c320` |
+| [AGENTS.md](../../AGENTS.md) | 261 | `86df69ca83e59a3d` |
+| [README.md](../../README.md) | 230 | `93c624da916dc41c` |
+| [.githooks/pre-commit](../../.githooks/pre-commit) | 26 | `5331ab8c7d197f5b` |
 | [.githooks/pre-push](../../.githooks/pre-push) | 8 | `a7c833e57b9fced6` |
-| [scripts/check-content-integrity.mjs](../../scripts/check-content-integrity.mjs) | 87 | `c4d4d71c71e7b1a0` |
+| [scripts/check-content-integrity.mjs](../../scripts/check-content-integrity.mjs) | 91 | `975569f02d18b91b` |
 | [reference/op/README.md](README.md) | 28 | `28671b225e029ae3` |
 | [reference/op/codex-goal-seeking-prompt-template.md](codex-goal-seeking-prompt-template.md) | 197 | `00a79efd8882c06f` |
 | [reference/op/codex-multiprompt.md](codex-multiprompt.md) | 97 | `d15ca9c97840ca90` |
 | [reference/op/theory-orientation.md](theory-orientation.md) | 44 | `716614f3310f4697` |
 | [reference/op/source-mining-best-practice.md](source-mining-best-practice.md) | 495 | `a0613465356e98a5` |
-| [reference/op/codex-pr-branch.md](codex-pr-branch.md) | 669 | `ad9b5e1852cc5be6` |
+| [reference/op/codex-pr-branch.md](codex-pr-branch.md) | 669 | `885e0f6d893a4635` |
 | [reference/priorities/README.md](../priorities/README.md) | 44 | `1fc23f4be2b4bc12` |
 | [reference/entourage/archie/prompts/README.md](../entourage/archie/prompts/README.md) | 42 | `8322492fa93db454` |
 | [reference/entourage/archie/prompts/corpus-advancement-pass.md](../entourage/archie/prompts/corpus-advancement-pass.md) | 637 | `bbbc5d6fe1df6081` |
@@ -92,7 +92,7 @@ A source hash change means this target should be regenerated and then skimmed fo
 | [reference/entourage/archie/prompts/core-geometry-theorem-reviewer.md](../entourage/archie/prompts/core-geometry-theorem-reviewer.md) | 59 | `fef7b4e05ccc9501` |
 | [reference/entourage/archie/prompts/priority-lane-resume.md](../entourage/archie/prompts/priority-lane-resume.md) | 71 | `434d7a791d81c766` |
 | [content/markdown/aaa/archie/academic-style-guide.md](../../content/markdown/aaa/archie/academic-style-guide.md) | 383 | `afc7b450bf43bee2` |
-| [content/markdown/aaa/archie/mathematics-style-guide.md](../../content/markdown/aaa/archie/mathematics-style-guide.md) | 301 | `c53bc0548c1710ba` |
-| [content/markdown/aaa/archie/mathematics-terminology.md](../../content/markdown/aaa/archie/mathematics-terminology.md) | 139 | `4957e0ba9b4a2254` |
-| [content/markdown/aaa/archie/terminology-usage.md](../../content/markdown/aaa/archie/terminology-usage.md) | 491 | `486ef139bb513fa0` |
-| [content/markdown/aaa/archie/comparative-glossary.md](../../content/markdown/aaa/archie/comparative-glossary.md) | 163 | `a05e903f57bbd58a` |
+| [content/markdown/aaa/archie/mathematics-style-guide.md](../../content/markdown/aaa/archie/mathematics-style-guide.md) | 307 | `db1ec8a9a86ceeb4` |
+| [content/markdown/aaa/archie/mathematics-terminology.md](../../content/markdown/aaa/archie/mathematics-terminology.md) | 139 | `c64af9424e03f31d` |
+| [content/markdown/aaa/archie/terminology-usage.md](../../content/markdown/aaa/archie/terminology-usage.md) | 519 | `1a7535837e664794` |
+| [content/markdown/aaa/archie/comparative-glossary.md](../../content/markdown/aaa/archie/comparative-glossary.md) | 175 | `3d4f0ab51eaccad0` |

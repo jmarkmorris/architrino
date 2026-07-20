@@ -166,7 +166,7 @@ class NativeHistoryLayerTests(unittest.TestCase):
             segment(("0", "0.2", "0", "0")),
             segment(("1", "0.1", "0", "0")),
         )
-        source_groups = (
+        transmitter_groups = (
             (
                 segment(("20", "0.3", "0", "0")),
                 segment(("22", "-0.2", "0", "0")),
@@ -183,12 +183,12 @@ class NativeHistoryLayerTests(unittest.TestCase):
             receiver_x = receiver_x.hull(receiver.position_interval(reception)[0])
 
         expected_statuses: list[str] = []
-        for sources in source_groups:
-            source_x = sources[0].position_interval(emission)[0]
+        for sources in transmitter_groups:
+            transmitter_x = sources[0].position_interval(emission)[0]
             for source in sources[1:]:
-                source_x = source_x.hull(source.position_interval(emission)[0])
+                transmitter_x = transmitter_x.hull(source.position_interval(emission)[0])
             displacement = (
-                receiver_x - source_x,
+                receiver_x - transmitter_x,
                 DecimalInterval.point("0", 90),
                 DecimalInterval.point("0", 90),
             )
@@ -297,10 +297,10 @@ class NativeHistoryLayerTests(unittest.TestCase):
             lower = max(Decimal("0"), Decimal(str(node["emission_lower"])))
             upper = Decimal(str(node["emission_upper"]))
             for receiver_index in range(node["receiver_begin"], node["receiver_end"]):
-                for source_index in range(node["source_begin"], node["source_end"]):
+                for transmitter_index in range(node["transmitter_begin"], node["transmitter_end"]):
                     oracle = certify_causal_roots(
                         receiver=receivers[receiver_index],
-                        source=sources[source_index],
+                        transmitter=sources[transmitter_index],
                         reception_time="4",
                         field_speed="1",
                         search_lower=str(lower),
@@ -313,17 +313,17 @@ class NativeHistoryLayerTests(unittest.TestCase):
                     self.assertEqual(oracle.roots, ())
 
         exact_pairs = {
-            (receiver_index, source_index)
+            (receiver_index, transmitter_index)
             for tile in self.packet["traversal"]["membership_tiles"]
             if tile["status"] == "exact_tile"
             for receiver_index in range(tile["receiver_begin"], tile["receiver_end"])
-            for source_index in range(tile["source_begin"], tile["source_end"])
+            for transmitter_index in range(tile["transmitter_begin"], tile["transmitter_end"])
         }
         independently_active = False
-        for receiver_index, source_index in sorted(exact_pairs):
+        for receiver_index, transmitter_index in sorted(exact_pairs):
             oracle = certify_causal_roots(
                 receiver=receivers[receiver_index],
-                source=sources[source_index],
+                transmitter=sources[transmitter_index],
                 reception_time="4",
                 field_speed="1",
                 search_lower="0",
@@ -417,10 +417,10 @@ class NativeHistoryLayerTests(unittest.TestCase):
             lower = max(Decimal("0"), Decimal(str(node["emission_lower"])))
             upper = Decimal(str(node["emission_upper"]))
             for receiver_index in range(node["receiver_begin"], node["receiver_end"]):
-                for source_index in range(node["source_begin"], node["source_end"]):
+                for transmitter_index in range(node["transmitter_begin"], node["transmitter_end"]):
                     oracle = certify_causal_roots(
                         receiver=receivers[receiver_index],
-                        source=sources[source_index],
+                        transmitter=sources[transmitter_index],
                         reception_time="2",
                         field_speed="1",
                         search_lower=str(lower),
@@ -433,17 +433,17 @@ class NativeHistoryLayerTests(unittest.TestCase):
                     self.assertEqual(oracle.roots, ())
 
         exact_pairs = {
-            (receiver_index, source_index)
+            (receiver_index, transmitter_index)
             for tile in traversal["membership_tiles"]
             if tile["status"] == "exact_tile"
             for receiver_index in range(tile["receiver_begin"], tile["receiver_end"])
-            for source_index in range(tile["source_begin"], tile["source_end"])
+            for transmitter_index in range(tile["transmitter_begin"], tile["transmitter_end"])
         }
         independently_active = False
-        for receiver_index, source_index in sorted(exact_pairs):
+        for receiver_index, transmitter_index in sorted(exact_pairs):
             oracle = certify_causal_roots(
                 receiver=receivers[receiver_index],
-                source=sources[source_index],
+                transmitter=sources[transmitter_index],
                 reception_time="2",
                 field_speed="1",
                 search_lower="0",
@@ -513,7 +513,7 @@ class NativeHistoryLayerTests(unittest.TestCase):
             with self.subTest(row_id=row_id):
                 oracle = certify_causal_roots(
                     receiver=target,
-                    source=source,
+                    transmitter=source,
                     reception_time=reception,
                     field_speed="1",
                     search_lower=lower,
@@ -533,8 +533,8 @@ class NativeHistoryLayerTests(unittest.TestCase):
                     self.assertGreaterEqual(native_upper, oracle_root.lower)
                     self.assertLessEqual(native_upper - native_lower, Decimal(tolerance))
                     self.assertEqual(
-                        native_root["source_normal_sign"],
-                        oracle_root.source_normal.strict_sign,
+                        native_root["transmitter_factor_sign"],
+                        oracle_root.transmitter_factor.strict_sign,
                     )
 
     def test_difficult_rows_escalate_without_promoting_uncertified_results(self) -> None:
@@ -621,7 +621,7 @@ class NativeHistoryLayerTests(unittest.TestCase):
         )
         oracle = certify_causal_roots(
             receiver=receiver,
-            source=source,
+            transmitter=source,
             reception_time="0.5",
             field_speed="1",
             search_lower="-0.5",
@@ -644,7 +644,7 @@ class NativeHistoryLayerTests(unittest.TestCase):
         self.assertLessEqual(upper - lower, Decimal("1e-5"))
         self.assertLessEqual(lower, oracle.roots[0].upper)
         self.assertGreaterEqual(upper, oracle.roots[0].lower)
-        self.assertEqual(root["source_normal_sign"], 1)
+        self.assertEqual(root["transmitter_factor_sign"], 1)
 
     def test_mpfr_inward_probe_certifies_known_simple_root_at_tolerance_edge(
         self,
@@ -694,7 +694,7 @@ class NativeHistoryLayerTests(unittest.TestCase):
         )
         oracle = certify_causal_roots(
             receiver=receiver,
-            source=source,
+            transmitter=source,
             reception_time="0.000000002",
             field_speed="1",
             search_lower="-0.000000020",
@@ -719,7 +719,7 @@ class NativeHistoryLayerTests(unittest.TestCase):
         self.assertLessEqual(upper - lower, Decimal("1e-8"))
         self.assertLessEqual(lower, oracle.roots[0].upper)
         self.assertGreaterEqual(upper, oracle.roots[0].lower)
-        self.assertEqual(native_root["source_normal_sign"], 1)
+        self.assertEqual(native_root["transmitter_factor_sign"], 1)
 
     def test_mpfr_monotone_enclosure_contains_asymmetric_analytic_root_set(
         self,
@@ -740,7 +740,7 @@ class NativeHistoryLayerTests(unittest.TestCase):
         self.assertLessEqual(lower, analytic_lower)
         self.assertGreaterEqual(upper, analytic_upper)
         self.assertLessEqual(upper - lower, Decimal("0.001"))
-        self.assertEqual(root["source_normal_sign"], 1)
+        self.assertEqual(root["transmitter_factor_sign"], 1)
 
     def test_mpfr_self_search_does_not_apply_endpoint_proof_to_older_cell(
         self,
@@ -777,7 +777,7 @@ class NativeHistoryLayerTests(unittest.TestCase):
         )
         oracle = certify_causal_roots(
             receiver=retained,
-            source=retained,
+            transmitter=retained,
             reception_time="2",
             field_speed="1",
             search_lower="0",
@@ -794,7 +794,7 @@ class NativeHistoryLayerTests(unittest.TestCase):
         root = row["roots"][0]
         self.assertLessEqual(Decimal(root["lower"]), Decimal("0.5"))
         self.assertGreaterEqual(Decimal(root["upper"]), Decimal("0.5"))
-        self.assertEqual(root["source_normal_sign"], 1)
+        self.assertEqual(root["transmitter_factor_sign"], 1)
 
     def test_enclosed_self_root_cluster_routes_to_finite_width(self) -> None:
         row = self.pair("enclosed_self_root_cluster")
@@ -844,7 +844,7 @@ class NativeHistoryLayerTests(unittest.TestCase):
         )
         oracle = certify_causal_roots(
             receiver=receiver,
-            source=source,
+            transmitter=source,
             reception_time="1",
             field_speed="1",
             search_lower="-1",
@@ -865,8 +865,8 @@ class NativeHistoryLayerTests(unittest.TestCase):
         self.assertLessEqual(lower, Decimal("0"))
         self.assertGreaterEqual(upper, Decimal("0"))
         self.assertLessEqual(upper - lower, Decimal("1e-5"))
-        self.assertEqual(root["source_segment_indices"], [0, 1])
-        self.assertEqual(root["source_normal_sign"], 1)
+        self.assertEqual(root["transmitter_segment_indices"], [0, 1])
+        self.assertEqual(root["transmitter_factor_sign"], 1)
 
     def test_join_root_bracket_selects_every_short_segment_it_crosses(self) -> None:
         row = self.pair("short_segment_join_root")
@@ -879,8 +879,8 @@ class NativeHistoryLayerTests(unittest.TestCase):
         self.assertLessEqual(lower, Decimal("0"))
         self.assertGreaterEqual(upper, Decimal("0"))
         self.assertLessEqual(upper - lower, Decimal("0.001"))
-        self.assertGreater(len(root["source_segment_indices"]), 2)
-        self.assertEqual(root["source_normal_sign"], 1)
+        self.assertGreater(len(root["transmitter_segment_indices"]), 2)
+        self.assertEqual(root["transmitter_factor_sign"], 1)
 
     def test_mpfr_join_root_uses_inward_representable_tolerance_probe(
         self,
@@ -919,7 +919,7 @@ class NativeHistoryLayerTests(unittest.TestCase):
         )
         oracle = certify_causal_roots(
             receiver=receiver,
-            source=source,
+            transmitter=source,
             reception_time="2.3",
             field_speed="1",
             search_lower="1",
@@ -943,8 +943,8 @@ class NativeHistoryLayerTests(unittest.TestCase):
         self.assertLessEqual(upper - lower, Decimal("0.0000000004"))
         self.assertLessEqual(lower, oracle.roots[0].upper)
         self.assertGreaterEqual(upper, oracle.roots[0].lower)
-        self.assertEqual(root["source_segment_indices"], [0, 1])
-        self.assertEqual(root["source_normal_sign"], 1)
+        self.assertEqual(root["transmitter_segment_indices"], [0, 1])
+        self.assertEqual(root["transmitter_factor_sign"], 1)
 
     def test_mpfr_reconditions_continuous_join_chain_from_derivative_bound(
         self,
@@ -960,7 +960,7 @@ class NativeHistoryLayerTests(unittest.TestCase):
         self.assertLessEqual(lower, Decimal("0"))
         self.assertGreaterEqual(upper, Decimal("0"))
         self.assertLessEqual(upper - lower, Decimal("1e-5"))
-        self.assertEqual(root["source_normal_sign"], 1)
+        self.assertEqual(root["transmitter_factor_sign"], 1)
 
     def test_self_pair_endpoint_rule_handles_subfield_and_rail_histories(self) -> None:
         self.assertTrue(self.packet["inconsistent_circular_speed_rejected"])
@@ -988,7 +988,7 @@ class NativeHistoryLayerTests(unittest.TestCase):
         piecewise = self.pair("piecewise_boundary")
         self.assertEqual(piecewise["status"], "certified_complete")
         self.assertEqual(len(piecewise["roots"]), 1)
-        self.assertEqual(piecewise["roots"][0]["source_segment_indices"], [0, 1])
+        self.assertEqual(piecewise["roots"][0]["transmitter_segment_indices"], [0, 1])
 
     def test_multithreaded_batch_output_is_deterministic(self) -> None:
         self.assertEqual(self.packet, self._run_fixture())

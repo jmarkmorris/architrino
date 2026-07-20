@@ -185,16 +185,16 @@ test("prescribed-path flight-time analysis returns a positive emission delay", a
   assert.equal(tau, expectedTau);
 });
 
-test("Ideal Braid flight time can be routed through the prescribed-path analysis for a linear source", async () => {
-  const sourceStart = new THREE.Vector3(1, -0.5, 0.25);
-  const sourceVelocity = new THREE.Vector3(0.2, 0.1, -0.05);
+test("Ideal Braid flight time can be routed through the prescribed-path analysis for a linear transmitter", async () => {
+  const transmitterStart = new THREE.Vector3(1, -0.5, 0.25);
+  const transmitterVelocity = new THREE.Vector3(0.2, 0.1, -0.05);
   const architrino = {
     q: 2,
     positionAt(timeSeconds) {
-      return sourceStart.clone().add(sourceVelocity.clone().multiplyScalar(timeSeconds));
+      return transmitterStart.clone().add(transmitterVelocity.clone().multiplyScalar(timeSeconds));
     },
     velocityAt() {
-      return sourceVelocity.clone();
+      return transmitterVelocity.clone();
     },
   };
   const samplePoint = new THREE.Vector3(3.4, 1.2, -0.7);
@@ -202,10 +202,10 @@ test("Ideal Braid flight time can be routed through the prescribed-path analysis
   const options = {
     fieldSpeed: 6,
     iterations: 6,
-    sourceStartTime: 0,
-    sourceEndTime: observationTime,
+    transmitterStartTime: 0,
+    transmitterEndTime: observationTime,
     normalization: 2,
-    sourceCharge: 2,
+    transmitterCharge: 2,
     useCausalDenominator: true,
   };
   const expectedTau = 0.483125;
@@ -225,7 +225,7 @@ test("Ideal Braid flight time can be routed through the prescribed-path analysis
   assert.equal(runRequest.runKind, "sharedGeometry");
   assert.equal(runRequest.envelope.timeWindow.units, "seconds");
   assert.equal(runRequest.config.geometryRequest.delayedPotentials[0].iterations, 6);
-  assert.deepEqual(runRequest.config.geometryRequest.delayedPotentials[0].source.velocity, {
+  assert.deepEqual(runRequest.config.geometryRequest.delayedPotentials[0].transmitter.velocity, {
     x: 0.2,
     y: 0.1,
     z: -0.05,

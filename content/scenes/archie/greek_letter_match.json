@@ -1,0 +1,14 @@
+{
+  "schemaVersion": "0.1",
+  "scene": {
+    "id": "greek-letter-match",
+    "title": "It's Greek to Me!",
+    "type": "Scene-Diagram",
+    "units": "relative",
+    "wrapLabels": true,
+    "layout": {
+      "type": "static"
+    }
+  },
+  "objects": []
+}

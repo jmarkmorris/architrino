@@ -40,25 +40,25 @@ class EomOracleReferenceKernelTests(unittest.TestCase):
         self.assertEqual(acceleration[1], 0)
         self.assertEqual(acceleration[2], 0)
 
-    def test_receiver_normal_rail_branch_is_silent(self) -> None:
+    def test_receiver_factor_rail_keeps_transmitter_density_acceleration(self) -> None:
         rail_receiver = inertial_history((2, 0, 0), (1, 0, 0), epoch=5)
-        source_normal, receiver_normal, _, _ = normal_factors(
+        transmitter_factor, receiver_factor, _, _ = normal_factors(
             rail_receiver, self.source, 5, 3, 1
         )
-        self.assertEqual(source_normal, 1)
-        self.assertEqual(receiver_normal, 0)
+        self.assertEqual(transmitter_factor, 1)
+        self.assertEqual(receiver_factor, 0)
         acceleration = sharp_root_acceleration(
             rail_receiver, self.source, 5, 3, 1, 1, -1
         )
-        self.assertEqual(acceleration, vector((0, 0, 0)))
+        self.assertEqual(acceleration, vector((mp.mpf("-0.25"), 0, 0)))
 
     def test_super_field_speed_receiver_is_not_clamped(self) -> None:
         fast_receiver = inertial_history((2, 0, 0), (2, 0, 0), epoch=5)
-        source_normal, receiver_normal, _, _ = normal_factors(
+        transmitter_factor, receiver_factor, _, _ = normal_factors(
             fast_receiver, self.source, 5, 3, 1
         )
-        self.assertEqual(source_normal, 1)
-        self.assertEqual(receiver_normal, -1)
+        self.assertEqual(transmitter_factor, 1)
+        self.assertEqual(receiver_factor, -1)
         acceleration = sharp_root_acceleration(
             fast_receiver, self.source, 5, 3, 1, 1, -1
         )

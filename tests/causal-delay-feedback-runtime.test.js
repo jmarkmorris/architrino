@@ -2451,17 +2451,17 @@ test("causal delay feedback wake fronts and receiver markers synchronize for eve
   });
 
   runtime.dataset.wakeLinks.forEach((link) => {
-    const sourcePoint = runtime.dataset.history[link.sourceKind].find((point) => point.depth === link.sourceDepth);
+    const transmitterPoint = runtime.dataset.history[link.sourceKind].find((point) => point.depth === link.sourceDepth);
     const receiverPoint = runtime.dataset.history[link.receiverKind].find((point) => point.depth === link.receiverDepth);
 
     runtime.updateWakeLinkGeometry();
 
-    const beforeSource = runtime.getWakeTiming(link, sourcePoint.t - 0.01);
-    const atSource = runtime.getWakeTiming(link, sourcePoint.t);
+    const beforeSource = runtime.getWakeTiming(link, transmitterPoint.t - 0.01);
+    const atSource = runtime.getWakeTiming(link, transmitterPoint.t);
     const atReceiver = runtime.getWakeTiming(link, receiverPoint.t);
     const justAfterReceiver = runtime.getWakeTiming(link, receiverPoint.t + 1e-9);
     const afterReceiver = runtime.getWakeTiming(link, receiverPoint.t + 0.01);
-    const sourceFront = runtime.getWakeFrontCenterPoint(link, sourcePoint.t);
+    const sourceFront = runtime.getWakeFrontCenterPoint(link, transmitterPoint.t);
     const receiverFront = runtime.getWakeFrontCenterPoint(link, receiverPoint.t);
     const receivingMarker = runtime.getReplayPathPoint(link.receiverKind, receiverPoint.t);
     const synchronization = runtime.getWakeArrivalSynchronization(link);
@@ -2476,11 +2476,11 @@ test("causal delay feedback wake fronts and receiver markers synchronize for eve
     assert.equal(afterReceiver.active, false);
     assert.equal(atReceiver.completedForLoop, false);
     assert.equal(afterReceiver.completedForLoop, true);
-    assert.equal(link.emissionTime, sourcePoint.t);
+    assert.equal(link.emissionTime, transmitterPoint.t);
     assert.equal(link.hitTime, receiverPoint.t);
-    assert.equal(link.travelTime, receiverPoint.t - sourcePoint.t);
-    assertNear(sourceFront.x, sourcePoint.x);
-    assertNear(sourceFront.y, sourcePoint.y);
+    assert.equal(link.travelTime, receiverPoint.t - transmitterPoint.t);
+    assertNear(sourceFront.x, transmitterPoint.x);
+    assertNear(sourceFront.y, transmitterPoint.y);
     assertNear(receiverFront.x, receiverPoint.x);
     assertNear(receiverFront.y, receiverPoint.y);
     assert.equal(receivingMarker.x, receiverPoint.x);
@@ -2497,7 +2497,7 @@ test("causal delay feedback partial wake arc series disappears after reception u
     window: fakeWindow,
   });
   const link = runtime.dataset.wakeLinks[0];
-  const sourcePoint = runtime.dataset.history[link.sourceKind].find((point) => point.depth === link.sourceDepth);
+  const transmitterPoint = runtime.dataset.history[link.sourceKind].find((point) => point.depth === link.sourceDepth);
   const receiverPoint = runtime.dataset.history[link.receiverKind].find((point) => point.depth === link.receiverDepth);
   let drawnArcCount = 0;
   runtime.drawDottedArc = () => {
@@ -2512,7 +2512,7 @@ test("causal delay feedback partial wake arc series disappears after reception u
   assert.equal(drawnArcCount, 0);
 
   drawnArcCount = 0;
-  runtime.drawWakeProgression({}, link, sourcePoint.t + (receiverPoint.t - sourcePoint.t) * 0.5);
+  runtime.drawWakeProgression({}, link, transmitterPoint.t + (receiverPoint.t - transmitterPoint.t) * 0.5);
   assert(drawnArcCount > 0);
 });
 
@@ -2522,9 +2522,9 @@ test("causal delay feedback partial wake arc fronts keep radial sector boundarie
     window: fakeWindow,
   });
   const link = runtime.dataset.wakeLinks[0];
-  const sourcePoint = runtime.dataset.history[link.sourceKind].find((point) => point.depth === link.sourceDepth);
+  const transmitterPoint = runtime.dataset.history[link.sourceKind].find((point) => point.depth === link.sourceDepth);
   const receiverPoint = runtime.dataset.history[link.receiverKind].find((point) => point.depth === link.receiverDepth);
-  const replayTime = sourcePoint.t + (receiverPoint.t - sourcePoint.t) * 0.75;
+  const replayTime = transmitterPoint.t + (receiverPoint.t - transmitterPoint.t) * 0.75;
   const arcs = [];
   runtime.drawDottedArc = (_ctx, center, radius, startDeg, endDeg) => {
     arcs.push({ center, radius, startDeg, endDeg });
@@ -2591,13 +2591,13 @@ test("causal delay feedback full circular wakes are emitted from moving path ori
     },
   });
   const partialLink = partialRuntime.dataset.wakeLinks[0];
-  const sourcePoint = partialRuntime.dataset.history[partialLink.sourceKind].find(
+  const transmitterPoint = partialRuntime.dataset.history[partialLink.sourceKind].find(
     (point) => point.depth === partialLink.sourceDepth,
   );
   const receiverPoint = partialRuntime.dataset.history[partialLink.receiverKind].find(
     (point) => point.depth === partialLink.receiverDepth,
   );
-  const replayTime = sourcePoint.t + (receiverPoint.t - sourcePoint.t) * 0.75;
+  const replayTime = transmitterPoint.t + (receiverPoint.t - transmitterPoint.t) * 0.75;
   const partialCalls = [];
   const fullCalls = [];
   partialRuntime.drawDottedArc = (_ctx, _center, radius, startDeg, endDeg, color, dotRadius) => {

@@ -187,8 +187,8 @@ std::string membership_fingerprint(
         (tile.status == "exact_tile" ? 2U : 4U));
     value = fnv_mix(value, tile.receiver_begin);
     value = fnv_mix(value, tile.receiver_end);
-    value = fnv_mix(value, tile.source_begin);
-    value = fnv_mix(value, tile.source_end);
+    value = fnv_mix(value, tile.transmitter_begin);
+    value = fnv_mix(value, tile.transmitter_end);
     value = fnv_mix(value, tile.logical_ordered_pairs);
   }
   std::ostringstream stream;
@@ -200,7 +200,7 @@ struct Population {
   std::vector<eom::RetainedHistory> receivers;
   std::vector<eom::RetainedHistory> sources;
   std::vector<eom::MovingHistoryMember> receiver_members;
-  std::vector<eom::MovingHistoryMember> source_members;
+  std::vector<eom::MovingHistoryMember> transmitter_members;
 };
 
 Population make_population(std::string_view kind, std::size_t count) {
@@ -222,23 +222,23 @@ Population make_population(std::string_view kind, std::size_t count) {
     const double receiver_velocity = moving
         ? 0.02 + 0.003 * static_cast<double>(index % 7U)
         : 0.0;
-    double source_position = receiver_position;
-    double source_velocity = moving
+    double transmitter_position = receiver_position;
+    double transmitter_velocity = moving
         ? -0.014 + 0.005 * static_cast<double>(index % 5U)
         : 0.0;
     if (sparse) {
       if (index + sparse_near_count < count) {
-        source_position = 1000.0 + static_cast<double>(index) * 0.001;
+        transmitter_position = 1000.0 + static_cast<double>(index) * 0.001;
         if (moving) {
-          source_velocity =
+          transmitter_velocity =
               -0.01 + 0.004 * static_cast<double>(index % 5U);
         }
       } else {
         const std::size_t local = index - (count - sparse_near_count);
-        source_position = 0.75 + static_cast<double>(local) /
+        transmitter_position = 0.75 + static_cast<double>(local) /
             (2.0 * static_cast<double>(sparse_near_count));
         if (moving) {
-          source_velocity = 0.005 +
+          transmitter_velocity = 0.005 +
               0.01 * static_cast<double>(local) /
                   static_cast<double>(
                       std::max<std::size_t>(1U, sparse_near_count - 1U));
@@ -249,19 +249,19 @@ Population make_population(std::string_view kind, std::size_t count) {
         0.002 + 0.0002 * static_cast<double>(index % 5U);
     const double receiver_cubic =
         0.0001 + 0.00002 * static_cast<double>(index % 3U);
-    double source_quadratic =
+    double transmitter_quadratic =
         -0.0014 - 0.0001 * static_cast<double>(index % 5U);
-    double source_cubic =
+    double transmitter_cubic =
         0.00008 + 0.00001 * static_cast<double>(index % 3U);
     if (sparse && index + sparse_near_count < count) {
-      source_quadratic =
+      transmitter_quadratic =
           -0.001 + 0.00015 * static_cast<double>(index % 5U);
-      source_cubic =
+      transmitter_cubic =
           -0.00007 - 0.00001 * static_cast<double>(index % 3U);
     } else if (sparse) {
-      source_quadratic =
+      transmitter_quadratic =
           0.001 + 0.00015 * static_cast<double>(index % 5U);
-      source_cubic =
+      transmitter_cubic =
           0.00005 + 0.00001 * static_cast<double>(index % 3U);
     }
     if (accelerating) {
@@ -269,24 +269,24 @@ Population make_population(std::string_view kind, std::size_t count) {
           "receiver-" + std::to_string(index), receiver_position,
           receiver_velocity, receiver_quadratic, receiver_cubic));
       population.sources.push_back(piecewise_cubic_history(
-          "source-" + std::to_string(index), source_position,
-          source_velocity, source_quadratic, source_cubic));
+          "source-" + std::to_string(index), transmitter_position,
+          transmitter_velocity, transmitter_quadratic, transmitter_cubic));
     } else {
       population.receivers.push_back(linear_history(
           "receiver-" + std::to_string(index), receiver_position,
           receiver_velocity));
       population.sources.push_back(linear_history(
-          "source-" + std::to_string(index), source_position,
-          source_velocity));
+          "source-" + std::to_string(index), transmitter_position,
+          transmitter_velocity));
     }
   }
   population.receiver_members.reserve(count);
-  population.source_members.reserve(count);
+  population.transmitter_members.reserve(count);
   for (std::size_t index = 0; index < count; ++index) {
     population.receiver_members.push_back({
         "receiver-" + std::to_string(index),
         &population.receivers[index], true});
-    population.source_members.push_back({
+    population.transmitter_members.push_back({
         "source-" + std::to_string(index),
         &population.sources[index], true});
   }
@@ -302,7 +302,7 @@ void print_common(
   const double logical_double = static_cast<double>(logical);
   const bool complete = status == "certified_complete";
   std::cout << std::setprecision(17)
-            << "{\"schema\":\"eom_recursive_block_benchmark/v0\""
+            << "{\"schema\":\"eom_recursive_block_benchmark/v1\""
             << ",\"route\":\"" << route << "\""
             << ",\"population_kind\":\"" << kind << "\""
             << ",\"population\":" << population
@@ -347,7 +347,7 @@ void run_traversal(
   const eom::CertifiedTraversalRequest request{
       .traversal_id = std::string(kind) + "-" + std::to_string(count),
       .receivers = population.receiver_members,
-      .sources = population.source_members,
+      .sources = population.transmitter_members,
       .reception = {"2", "2"},
       .emission = {"0", "2"},
       .field_speed = "1",

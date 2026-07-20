@@ -10,8 +10,8 @@ Objectives:
 - Exact analytic solutions if available; otherwise, status of solvability.
 
 Canonical delayed-law considerations:
-- Delay enters through the implicit emission times $T_{\mathrm{em}}$ satisfying $\lvert X_1(T) - X_2(T_{\mathrm{em}})\rvert = T - T_{\mathrm{em}}$ (and its counterpart).
-- All per-hit actions are radial along the line of action and carry the receiver-normal branch strength $W^{\mathrm{rec}}=\lvert D_T/D_s\rvert$; $H(0)=0$ excludes $T_{\mathrm{em}}=T$.
+- Delay enters through the implicit emission times $T_t$ satisfying $\lvert X_1(T) - X_2(T_t)\rvert = T - T_t$ (and its counterpart).
+- All per-hit actions are radial along the line of action and carry the transmitter-side acceleration weight $W^{\mathrm{acc}}=c_f/\lvert D_t\rvert$; $H(0)=0$ excludes $T_t=T$.
 
 Equations of motion (canonical delayed law; two-body, v=1):
 - Definitions:
@@ -19,28 +19,28 @@ Equations of motion (canonical delayed law; two-body, v=1):
   - Coupling: $\kappa>0$ is the universal coupling constant; we work in units with field speed $v=1$.
   - Separation: $r(T)=|X_1(T)-X_2(T)|>0$.
 - Causal (path-history) times:
-  - $T_{\mathrm{em}}^{(2\to 1)}\in\mathcal{C}_2(T)$ solves $\lvert X_1(T)-X_2(T_{\mathrm{em}})\rvert = T-T_{\mathrm{em}}$.
-  - $T_{\mathrm{em}}^{(1\to 2)}\in\mathcal{C}_1(T)$ solves $\lvert X_2(T)-X_1(T_{\mathrm{em}})\rvert = T-T_{\mathrm{em}}$.
+  - $T_t^{(2\to 1)}\in\mathcal{C}_2(T)$ solves $\lvert X_1(T)-X_2(T_t)\rvert = T-T_t$.
+  - $T_t^{(1\to 2)}\in\mathcal{C}_1(T)$ solves $\lvert X_2(T)-X_1(T_t)\rvert = T-T_t$.
 - Per-particle accelerations (sum over all causal roots if multiple exist):
   $$
   A_1(T)
   \;=\;
-  \sum_{T_{\mathrm{em}}\in\mathcal{C}_2(T)}
-  -\,\kappa\,\epsilon^2\,W_{12}^{\mathrm{rec}}(T;T_{\mathrm{em}})\frac{\mathrm{sgn}\!\big(X_1(T)-X_2(T_{\mathrm{em}})\big)}{r_{12}^2},
+  \sum_{T_t\in\mathcal{C}_2(T)}
+  -\,\kappa\,\epsilon^2\,W_{12}^{\mathrm{acc}}(T;T_t)\frac{\mathrm{sgn}\!\big(X_1(T)-X_2(T_t)\big)}{r_{12}^2},
   \quad
-  r_{12}=\big|X_1(T)-X_2(T_{\mathrm{em}})\big|
+  r_{12}=\big|X_1(T)-X_2(T_t)\big|
   $$
   $$
   A_2(T)
   \;=\;
-  \sum_{T_{\mathrm{em}}\in\mathcal{C}_1(T)}
-  +\,\kappa\,\epsilon^2\,W_{21}^{\mathrm{rec}}(T;T_{\mathrm{em}})\frac{\mathrm{sgn}\!\big(X_2(T)-X_1(T_{\mathrm{em}})\big)}{r_{21}^2},
+  \sum_{T_t\in\mathcal{C}_1(T)}
+  +\,\kappa\,\epsilon^2\,W_{21}^{\mathrm{acc}}(T;T_t)\frac{\mathrm{sgn}\!\big(X_2(T)-X_1(T_t)\big)}{r_{21}^2},
   \quad
-  r_{21}=\big|X_2(T)-X_1(T_{\mathrm{em}})\big|
+  r_{21}=\big|X_2(T)-X_1(T_t)\big|
   $$
   Here $\sigma_{q_2 q_1}=\sigma_{q_1 q_2}=-1$ (unlike polarities attract),
-  $W_{ab}^{\mathrm{rec}}=\lvert D_{T,ab}/D_{s,ab}\rvert$ is the receiver-normal
-  branch strength on the corresponding root, $H(0)=0$ excludes $T_{\mathrm{em}}=T$, and
+  $W_{ab}^{\mathrm{acc}}=c_f/\lvert D_{t,ab}\rvert$ is the receiver-side
+  branch strength on the corresponding root, $H(0)=0$ excludes $T_t=T$, and
   $\mathrm{sgn}(\cdot)$ denotes the sign function.
 
 Relative-coordinate DDE:
@@ -48,18 +48,18 @@ Relative-coordinate DDE:
   $$
   \frac{d^2r}{dT^2}\;=\;A_1(T)-A_2(T)
   \;=\;
-  -\,\kappa\,\epsilon^2\sum_{T_{\mathrm{em}}\in\mathcal{C}_2(T)}W_{12}^{\mathrm{rec}}(T;T_{\mathrm{em}})\frac{\mathrm{sgn}\!\big(r_{12}\big)}{r_{12}^2}
-  -\,\kappa\,\epsilon^2\sum_{T_{\mathrm{em}}\in\mathcal{C}_1(T)}W_{21}^{\mathrm{rec}}(T;T_{\mathrm{em}})\frac{\mathrm{sgn}\!\big(r_{21}\big)}{r_{21}^2}
+  -\,\kappa\,\epsilon^2\sum_{T_t\in\mathcal{C}_2(T)}W_{12}^{\mathrm{acc}}(T;T_t)\frac{\mathrm{sgn}\!\big(r_{12}\big)}{r_{12}^2}
+  -\,\kappa\,\epsilon^2\sum_{T_t\in\mathcal{C}_1(T)}W_{21}^{\mathrm{acc}}(T;T_t)\frac{\mathrm{sgn}\!\big(r_{21}\big)}{r_{21}^2}
   $$
-  with $r_{12}=|X_1(T)-X_2(T_{\mathrm{em}})|$ and $r_{21}=|X_2(T)-X_1(T_{\mathrm{em}})|$ defined by their respective causal-root conditions. No exact closed-form solution is presently known for the coupled DDE system.
+  with $r_{12}=|X_1(T)-X_2(T_t)|$ and $r_{21}=|X_2(T)-X_1(T_t)|$ defined by their respective causal-root conditions. No exact closed-form solution is presently known for the coupled DDE system.
 
 Nonlinear history-anchored form (vector notation for clarity):
   $$
-  \mathbf A_1(T)\;=\;-\,\kappa\,\epsilon^2\,W_{12}^{\mathrm{rec}}\,
-  \frac{\mathbf X_1(T)-\mathbf X_2\!\big(T_{\mathrm{em}}^{(2\to 1)}\big)}{\big\|\mathbf X_1(T)-\mathbf X_2\!\big(T_{\mathrm{em}}^{(2\to 1)}\big)\big\|^3},
+  \mathbf A_1(T)\;=\;-\,\kappa\,\epsilon^2\,W_{12}^{\mathrm{acc}}\,
+  \frac{\mathbf X_1(T)-\mathbf X_2\!\big(T_t^{(2\to 1)}\big)}{\big\|\mathbf X_1(T)-\mathbf X_2\!\big(T_t^{(2\to 1)}\big)\big\|^3},
   \qquad
-  \mathbf A_2(T)\;=\;+\,\kappa\,\epsilon^2\,W_{21}^{\mathrm{rec}}\,
-  \frac{\mathbf X_2(T)-\mathbf X_1\!\big(T_{\mathrm{em}}^{(1\to 2)}\big)}{\big\|\mathbf X_2(T)-\mathbf X_1\!\big(T_{\mathrm{em}}^{(1\to 2)}\big)\big\|^3}
+  \mathbf A_2(T)\;=\;+\,\kappa\,\epsilon^2\,W_{21}^{\mathrm{acc}}\,
+  \frac{\mathbf X_2(T)-\mathbf X_1\!\big(T_t^{(1\to 2)}\big)}{\big\|\mathbf X_2(T)-\mathbf X_1\!\big(T_t^{(1\to 2)}\big)\big\|^3}
   $$
   The attachment points are the partners’ path-history locations at their respective causal emission times; linearizations and small-parameter expansions are intentionally omitted.
 

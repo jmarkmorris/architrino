@@ -1,0 +1,72 @@
+{
+  "schema": "parallel_stream_pilot_run_record/v0",
+  "claimGrade": "measured-pilot-only",
+  "config": {
+    "id": "profile-worker1-p0-pp",
+    "sA": 1,
+    "sB": 1,
+    "rho": 1,
+    "a": 0.5,
+    "ell": 2,
+    "g": 2,
+    "historyDepth": 12,
+    "u": 0.02,
+    "q": 1,
+    "fieldSpeed": 1,
+    "coupling": 1,
+    "t0": 0,
+    "t1": 0.001,
+    "t2Short": 0.0015,
+    "t2": 0.002,
+    "step": 0.001,
+    "workers": 1,
+    "purpose": "worker-replay",
+    "phase": 0
+  },
+  "requestFingerprint": "ad9dfdf724a533e8579784e4d7279c8d443d0e76f4d7b1e02244e6e109bbffbc",
+  "requestSummary": {
+    "runId": "profile-worker1-p0-pp:chunk-0",
+    "interval": {
+      "start": "0",
+      "end": "0.001"
+    },
+    "pathCount": 64,
+    "logicalOrderedPairsPerSnapshot": 4096,
+    "budgetPresetId": "p5a-pilot-sharp-w1-h0p001",
+    "budgetAllocationHash": "cb17be29488a67c45b0973fb5b5119e8e53abcbc81848aa14d25b70bd34b640f",
+    "chartPolicy": "sharp"
+  },
+  "harnessWallSeconds": 0.00677087499999999,
+  "contract": {
+    "completed": false,
+    "evidenceCanonical": false,
+    "allStepsAtomic": false,
+    "pathExtensionCountComplete": false,
+    "noRejectedSteps": true,
+    "noFailClosedSteps": true,
+    "completeOrderedPairs": true,
+    "completeRootRows": false,
+    "historyCoverage": false,
+    "sharpOnly": true,
+    "failClosedCode": "engine_exception"
+  },
+  "response": {
+    "schema": "eom_borg_native_response/v0",
+    "status": "halted",
+    "evidenceStatus": "failed",
+    "claimGrade": "failed",
+    "haltCode": "engine_exception",
+    "diagnosticDetail": "certified budget provenance is incomplete or malformed",
+    "acceptedEndTime": null,
+    "acceptedStepCount": 0,
+    "rejectedStepCount": 0,
+    "stepFailures": [],
+    "publishedExtensions": [],
+    "diagnostics": [
+      {
+        "code": "engine_exception",
+        "detail": "certified budget provenance is incomplete or malformed"
+      }
+    ]
+  }
+}

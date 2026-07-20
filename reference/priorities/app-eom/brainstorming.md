@@ -19,7 +19,7 @@ This file holds provisional feature ideas, performance directions, validation po
 - A strict distinction between same-law coarse stepping and a genuinely coarse-grained slow-sector model; the latter needs its own validation envelope and claim limit.
 - Independent integration cadence, diagnostic cadence, checkpoint cadence, and output cadence.
 - Embedded error estimation, step rejection, rollback, and retry limits.
-- Root-event prediction so the engine can refine before a birth, death, fold, or same-source onset rather than discovering it only after a large step.
+- Root-event prediction so the engine can refine before a birth, death, fold, or same-transmitter onset rather than discovering it only after a large step.
 - Multiple integration methods behind one EOM contract for cross-integrator comparison; no method becomes authoritative merely because it is fastest.
 - Dense interpolation over accepted steps for output and root search, with interpolation error included in the budget.
 - A reproducible convergence-run mode that automatically executes a declared timestep and precision ladder.
@@ -30,7 +30,7 @@ This file holds provisional feature ideas, performance directions, validation po
 - Epoch-plus-offset absolute time so a very small local step remains representable during a long absolute-time run.
 - A measured precision ladder: binary64 bulk work; hardware extended precision where it is real and portable enough; software double-double, quad-double, expansions, or binary128-class arithmetic; arbitrary precision; and interval or ball certification.
 - Per-root and per-reduction escalation so a small irregular tail can use expensive arithmetic without forcing every ordered pair onto it.
-- Certified sign and ordering predicates around root activity, event order, source-normal and receiver-normal factors, and branch transitions.
+- Certified sign and ordering predicates around root activity, event order, transmitter-side-factor and receiver-side-factor factors, and branch transitions.
 - Compensated, pairwise, binned, or expansion reductions for many-source acceleration accumulation and reproducibility across worker counts.
 - Cross-precision shadow samples during long runs to measure whether the current fast path remains inside its declared envelope.
 - Precision-aware checkpointing that preserves representations, rounding policy, controller state, and pending escalations.
@@ -81,8 +81,8 @@ This file holds provisional feature ideas, performance directions, validation po
 ### Million-Path Scaling
 
 - Benchmark envelopes at $N=10^4$, $10^5$, and $10^6$, with exhaustive smaller controls.
-- Treat $10^{12}$ logical ordered receiver-source relationships at $N=10^6$ as the synchronized brute-force domain before root multiplicity and history scans.
-- Use certified receiver-source-time block enclosures for exact root-free exclusion and retain complete pair membership records.
+- Treat $10^{12}$ logical ordered receiver-transmitter relationships at $N=10^6$ as the synchronized brute-force domain before root multiplicity and history scans.
+- Use certified receiver-transmitter-time block enclosures for exact root-free exclusion and retain complete pair membership records.
 - Root-branch continuation and predictive brackets between accepted receiver events.
 - Evaluate every surviving active candidate exactly in the first production implementation.
 - Admit later hierarchical source grouping, multipole-style summaries, and low-rank history representations only with certified root topology and conservative acceleration remainder bounds.

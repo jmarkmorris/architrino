@@ -1,4 +1,5 @@
 #include "architrino/eom/CoupledEvolution.hpp"
+#include "architrino/eom/ShadowAffineDiagnostic.hpp"
 
 #include <algorithm>
 #include <array>
@@ -165,7 +166,7 @@ rebase_trimmed_snapshot(
   auto rebased = cache.snapshot;
   for (auto& row : rebased.root_certificates) {
     const auto* receiver = parsed_path(paths, row.receiver_path_id);
-    const auto* source = parsed_path(paths, row.source_path_id);
+    const auto* source = parsed_path(paths, row.transmitter_path_id);
     if (receiver == nullptr || source == nullptr ||
         !row.certificate.stable_negative_prefix_certified ||
         row.certificate.memory_boundary_contact ||
@@ -181,7 +182,7 @@ rebase_trimmed_snapshot(
     }
     row.certificate.receiver_history_fingerprint =
         receiver->history.provenance_fingerprint();
-    row.certificate.source_history_fingerprint =
+    row.certificate.transmitter_history_fingerprint =
         source->history.provenance_fingerprint();
     row.certificate.searched_lower =
         source->history.segments().front().t_start_token();
@@ -356,6 +357,7 @@ void run(
     std::size_t event_max_cells,
     bool use_certified_traversal,
     std::uint64_t traversal_exact_tile_pair_limit,
+    eom::ShadowAffineDiagnostic* shadow_affine_diagnostic = nullptr,
     std::optional<IncrementalSnapshotCache>* incremental_cache = nullptr,
     bool* request_boundary_consumed = nullptr) {
   if (request_boundary_consumed != nullptr) {
@@ -447,7 +449,7 @@ void run(
       .field_speed = run[8],
       .coupling = run[9],
       .root_tolerance = run[11],
-      .source_normal_floor = run[25],
+      .transmitter_factor_floor = run[25],
       .acceleration_tolerance = run[12],
       .far_field_enclosure_fraction = run[13],
       .use_far_field_enclosure_in_evolution = false,
@@ -505,6 +507,25 @@ void run(
   };
   request.thread_count = parse_size(run[17], "thread count");
   request.use_quarter_step_publication = true;
+  request.retain_diagnostic_candidate_histories =
+      shadow_affine_diagnostic != nullptr;
+  if (shadow_affine_diagnostic != nullptr) {
+    shadow_affine_diagnostic->begin_evolution(request.run_id);
+    request.failed_substep_candidate_callback =
+        [shadow_affine_diagnostic](
+            const std::string& start_time,
+            const std::string& end_time,
+            const std::string& failure_code,
+            std::size_t iteration,
+            const std::vector<eom::NativePublishedPath>& histories) {
+          try {
+            shadow_affine_diagnostic->capture_failed_candidate(
+                start_time, end_time, failure_code, iteration, histories);
+          } catch (...) {
+            // Diagnostics are fail-open and cannot alter the certified path.
+          }
+        };
+  }
   if (request.maximum_mpfr_bits > maximum_mpfr_bits ||
       request.quadrature_max_depth > quadrature_max_depth ||
       request.quadrature_max_cells > quadrature_max_cells ||
@@ -550,11 +571,11 @@ void run(
           const auto* receiver = parsed_path(
               parsed_paths, row.receiver_path_id);
           const auto* source = parsed_path(
-              parsed_paths, row.source_path_id);
+              parsed_paths, row.transmitter_path_id);
           return receiver != nullptr && source != nullptr &&
               row.certificate.receiver_history_fingerprint ==
                   receiver->history.provenance_fingerprint() &&
-              row.certificate.source_history_fingerprint ==
+              row.certificate.transmitter_history_fingerprint ==
                   source->history.provenance_fingerprint();
         });
     if (!exact_fingerprints) {
@@ -581,6 +602,23 @@ void run(
     rebased_incremental_chunk_snapshot = false;
     result = eom::evolve_native_coupled_histories(request);
   }
+  if (shadow_affine_diagnostic != nullptr) {
+    std::vector<eom::NativePublishedPath> diagnostic_inputs;
+    diagnostic_inputs.reserve(parsed_paths.size());
+    for (const auto& path : parsed_paths) {
+      diagnostic_inputs.push_back({path.path_id, path.history});
+    }
+    try {
+      shadow_affine_diagnostic->consume_evolution(
+          request, diagnostic_inputs, result);
+    } catch (const std::exception& error) {
+      // The observer is non-authoritative.  A diagnostic failure must not
+      // change any certified gate, publication, controller choice, or stdout
+      // protocol token.
+      std::cerr << "shadow affine diagnostic failed open: " << error.what()
+                << '\n';
+    }
+  }
   if (incremental_cache != nullptr) {
     incremental_cache->reset();
     if (result.status == "completed") {
@@ -597,7 +635,7 @@ void run(
       }
     }
   }
-  std::cout << "{\"schema\":\"eom_borg_native_response/v0\",\"status\":\""
+  std::cout << "{\"schema\":\"eom_borg_native_response/v1\",\"status\":\""
             << json_escape(result.status) << "\",\"evidenceStatus\":\""
             << json_escape(result.evidence_status)
             << "\",\"coreScale\":\"" << json_escape(request.core_scale)
@@ -814,8 +852,8 @@ void run(
         const auto& certificate = root_row.certificate;
         std::cout << "{\"receiverPathId\":\""
                   << json_escape(root_row.receiver_path_id)
-                  << "\",\"sourcePathId\":\""
-                  << json_escape(root_row.source_path_id)
+                  << "\",\"transmitterPathId\":\""
+                  << json_escape(root_row.transmitter_path_id)
                   << "\",\"status\":\""
                   << json_escape(certificate.status)
                   << "\",\"failureCode\":\""
@@ -840,16 +878,16 @@ void run(
           const auto& bracket = certificate.roots[bracket_index];
           std::cout << "{\"lower\":\"" << json_escape(bracket.lower)
                     << "\",\"upper\":\"" << json_escape(bracket.upper)
-                    << "\",\"sourceNormalLower\":\""
-                    << json_escape(bracket.source_normal_lower)
-                    << "\",\"sourceNormalUpper\":\""
-                    << json_escape(bracket.source_normal_upper)
-                    << "\",\"receiverNormalLower\":\""
-                    << json_escape(bracket.receiver_normal_lower)
-                    << "\",\"receiverNormalUpper\":\""
-                    << json_escape(bracket.receiver_normal_upper)
-                    << "\",\"sourceNormalSign\":"
-                    << bracket.source_normal_sign
+                    << "\",\"transmitterFactorLower\":\""
+                    << json_escape(bracket.transmitter_factor_lower)
+                    << "\",\"transmitterFactorUpper\":\""
+                    << json_escape(bracket.transmitter_factor_upper)
+                    << "\",\"receiverFactorLower\":\""
+                    << json_escape(bracket.receiver_factor_lower)
+                    << "\",\"receiverFactorUpper\":\""
+                    << json_escape(bracket.receiver_factor_upper)
+                    << "\",\"transmitterFactorSign\":"
+                    << bracket.transmitter_factor_sign
                     << ",\"precisionRoute\":\""
                     << json_escape(bracket.precision_route)
                     << "\",\"precisionBits\":" << bracket.precision_bits
@@ -876,8 +914,8 @@ void run(
         first_root_failure = false;
         std::cout << "{\"receiverPathId\":\""
                   << json_escape(row.receiver_path_id)
-                  << "\",\"sourcePathId\":\""
-                  << json_escape(row.source_path_id)
+                  << "\",\"transmitterPathId\":\""
+                  << json_escape(row.transmitter_path_id)
                   << "\",\"status\":\""
                   << json_escape(certificate.status)
                   << "\",\"failureCode\":\""
@@ -898,7 +936,7 @@ void run(
                   << ",\"mpfrEscalationAttemptCount\":"
                   << certificate.mpfr_escalation_attempt_count;
         if (certificate.has_difficult_cell) {
-          std::cout << ",\"difficultSourceSegmentIndex\":"
+          std::cout << ",\"difficultTransmitterSegmentIndex\":"
                     << certificate.difficult_source_segment_index
                     << ",\"difficultCellLower\":\""
                     << json_escape(certificate.difficult_cell_lower)
@@ -913,13 +951,13 @@ void run(
                     << json_escape(
                         certificate.difficult_point_residual_upper)
                     << "\",\"difficultSourceNormalLower\":\""
-                    << json_escape(certificate.difficult_source_normal_lower)
+                    << json_escape(certificate.difficult_transmitter_factor_lower)
                     << "\",\"difficultSourceNormalUpper\":\""
-                    << json_escape(certificate.difficult_source_normal_upper)
+                    << json_escape(certificate.difficult_transmitter_factor_upper)
                     << "\",\"difficultReceiverNormalLower\":\""
-                    << json_escape(certificate.difficult_receiver_normal_lower)
+                    << json_escape(certificate.difficult_receiver_factor_lower)
                     << "\",\"difficultReceiverNormalUpper\":\""
-                    << json_escape(certificate.difficult_receiver_normal_upper)
+                    << json_escape(certificate.difficult_receiver_factor_upper)
                     << "\",\"difficultLowerSign\":"
                     << certificate.difficult_lower_sign
                     << ",\"difficultUpperSign\":"
@@ -950,8 +988,8 @@ void run(
         first_acceleration_failure = false;
         std::cout << "{\"receiverPathId\":\""
                   << json_escape(certificate.receiver_path_id)
-                  << "\",\"sourcePathId\":\""
-                  << json_escape(certificate.source_path_id)
+                  << "\",\"transmitterPathId\":\""
+                  << json_escape(certificate.transmitter_path_id)
                   << "\",\"chart\":\"" << json_escape(certificate.chart)
                   << "\",\"status\":\"" << json_escape(certificate.status)
                   << "\",\"failureCode\":\""
@@ -979,8 +1017,8 @@ void run(
         first_state_certificate = false;
         std::cout << "{\"receiverPathId\":\""
                   << json_escape(state.receiver_path_id)
-                  << "\",\"sourcePathId\":\""
-                  << json_escape(state.source_path_id)
+                  << "\",\"transmitterPathId\":\""
+                  << json_escape(state.transmitter_path_id)
                   << "\",\"status\":\"" << json_escape(state.status)
                   << "\",\"failureCode\":\""
                   << json_escape(state.failure_code)
@@ -1048,8 +1086,8 @@ void run(
                     << json_escape(common.reception_upper)
                     << "\",\"certifiedRootCount\":"
                     << common.certified_root_count
-                    << ",\"sourceNormalAbsoluteLower\":";
-          print_json_number(common.source_normal_absolute_lower);
+                    << ",\"transmitterFactorAbsoluteLower\":";
+          print_json_number(common.transmitter_factor_absolute_lower);
           std::cout << ",\"separationLower\":";
           print_json_number(common.separation_lower);
           std::cout << ",\"disjointComponent\":";
@@ -1124,8 +1162,8 @@ void run(
         first_regulator_failure = false;
         std::cout << "{\"receiverPathId\":\""
                   << json_escape(regulator.receiver_path_id)
-                  << "\",\"sourcePathId\":\""
-                  << json_escape(regulator.source_path_id)
+                  << "\",\"transmitterPathId\":\""
+                  << json_escape(regulator.transmitter_path_id)
                   << "\",\"status\":\""
                   << json_escape(regulator.status)
                   << "\",\"failureCode\":\""
@@ -1230,10 +1268,10 @@ void run(
                       << event.receiver_position_error_upper
                       << ",\"receiverVelocityErrorUpper\":"
                       << event.receiver_velocity_error_upper
-                      << ",\"sourcePositionErrorUpper\":"
-                      << event.source_position_error_upper
-                      << ",\"sourceVelocityErrorUpper\":"
-                      << event.source_velocity_error_upper
+                      << ",\"transmitterPositionErrorUpper\":"
+                      << event.transmitter_position_error_upper
+                      << ",\"transmitterVelocityErrorUpper\":"
+                      << event.transmitter_velocity_error_upper
                       << ",\"lastMaximumComponentWidth\":"
                       << event.last_maximum_component_width
                       << ",\"lastMaximumPositionMomentComponentWidth\":"
@@ -1294,7 +1332,7 @@ void drain_failed_request_to_boundary() {
 
 void print_engine_exception_response(const std::exception& error) {
   std::cout
-      << "{\"schema\":\"eom_borg_native_response/v0\","
+      << "{\"schema\":\"eom_borg_native_response/v1\","
          "\"status\":\"halted\",\"evidenceStatus\":\"failed\","
          "\"claimGrade\":\"failed\",\"haltCode\":\"engine_exception\","
          "\"diagnosticDetail\":\""
@@ -1318,7 +1356,9 @@ int main(int argc, char** argv) {
                    "[--quadrature-max-cells=N] "
                    "[--event-max-cells=N] "
                    "[--disable-certified-traversal] "
-                   "[--traversal-exact-tile-pair-limit=N]\n";
+                   "[--traversal-exact-tile-pair-limit=N] "
+                   "[--shadow-affine-diagnostic=PATH] "
+                   "[--shadow-affine-symbol-cap=N]\n";
       return EXIT_FAILURE;
     }
     unsigned maximum_mpfr_bits = 512;
@@ -1327,6 +1367,8 @@ int main(int argc, char** argv) {
     std::size_t event_max_cells = 200000;
     bool use_certified_traversal = true;
     std::uint64_t traversal_exact_tile_pair_limit = 64;
+    std::string shadow_affine_output_path;
+    std::size_t shadow_affine_symbol_cap = 256U;
     for (int argument_index = 2; argument_index < argc; ++argument_index) {
       const std::string option = argv[argument_index];
       constexpr const char* precision_prefix = "--maximum-mpfr-bits=";
@@ -1335,6 +1377,10 @@ int main(int argc, char** argv) {
       constexpr const char* event_cells_prefix = "--event-max-cells=";
       constexpr const char* traversal_tile_prefix =
           "--traversal-exact-tile-pair-limit=";
+      constexpr const char* shadow_affine_prefix =
+          "--shadow-affine-diagnostic=";
+      constexpr const char* shadow_affine_cap_prefix =
+          "--shadow-affine-symbol-cap=";
       if (option.starts_with(precision_prefix)) {
         const std::size_t parsed = parse_size(
             option.substr(std::char_traits<char>::length(precision_prefix)),
@@ -1376,10 +1422,35 @@ int main(int argc, char** argv) {
           throw std::invalid_argument(
               "traversal exact tile pair limit must be positive");
         }
+      } else if (option.starts_with(shadow_affine_prefix)) {
+        shadow_affine_output_path = option.substr(
+            std::char_traits<char>::length(shadow_affine_prefix));
+        if (shadow_affine_output_path.empty()) {
+          throw std::invalid_argument(
+              "shadow affine diagnostic path must be nonempty");
+        }
+      } else if (option.starts_with(shadow_affine_cap_prefix)) {
+        shadow_affine_symbol_cap = parse_size(
+            option.substr(std::char_traits<char>::length(
+                shadow_affine_cap_prefix)),
+            "shadow affine symbol cap");
+        if (shadow_affine_symbol_cap < 32U) {
+          throw std::invalid_argument(
+              "shadow affine symbol cap must be at least 32");
+        }
       } else {
         throw std::invalid_argument("unsupported Borg EOM native option");
       }
     }
+    std::optional<eom::ShadowAffineDiagnostic> shadow_affine_diagnostic;
+    if (!shadow_affine_output_path.empty()) {
+      shadow_affine_diagnostic.emplace(eom::ShadowAffineDiagnosticOptions{
+          .output_path = shadow_affine_output_path,
+          .symbol_cap = shadow_affine_symbol_cap,
+      });
+    }
+    auto* shadow_affine = shadow_affine_diagnostic.has_value()
+        ? &*shadow_affine_diagnostic : nullptr;
     const std::string mode = argv[1];
     if (mode == "print-protocol-version") {
       std::cout << kBorgNativeProtocolMagic << '\n';
@@ -1387,7 +1458,8 @@ int main(int argc, char** argv) {
       run(
           maximum_mpfr_bits, quadrature_max_depth, quadrature_max_cells,
           event_max_cells,
-          use_certified_traversal, traversal_exact_tile_pair_limit);
+          use_certified_traversal, traversal_exact_tile_pair_limit,
+          shadow_affine);
     } else if (mode == "borg-shadow-server-v0") {
       std::optional<IncrementalSnapshotCache> incremental_cache;
       while (std::cin.peek() != std::char_traits<char>::eof()) {
@@ -1397,6 +1469,7 @@ int main(int argc, char** argv) {
               maximum_mpfr_bits, quadrature_max_depth, quadrature_max_cells,
               event_max_cells,
               use_certified_traversal, traversal_exact_tile_pair_limit,
+              shadow_affine,
               &incremental_cache, &request_boundary_consumed);
         } catch (const std::exception& error) {
           incremental_cache.reset();
@@ -1415,7 +1488,9 @@ int main(int argc, char** argv) {
                    "[--quadrature-max-cells=N] "
                    "[--event-max-cells=N] "
                    "[--disable-certified-traversal] "
-                   "[--traversal-exact-tile-pair-limit=N]\n";
+                   "[--traversal-exact-tile-pair-limit=N] "
+                   "[--shadow-affine-diagnostic=PATH] "
+                   "[--shadow-affine-symbol-cap=N]\n";
       return EXIT_FAILURE;
     }
     return EXIT_SUCCESS;

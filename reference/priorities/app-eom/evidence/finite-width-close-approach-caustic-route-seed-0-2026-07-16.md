@@ -479,7 +479,7 @@ to one rather than remaining large.
 ### Ratified matching disposition
 
 On 2026-07-17 the operator adopted
-[Master EOM Binding v0 Amendment 1](../master-eom-binding-v0-amendment-1-common-domain-matching.md):
+the ratified regulator-limit common-domain matching decision:
 common-domain authority is regulator-limit matching with a certified
 $R^{\mathrm{reg}}$, not exact sharp/finite-width identity at fixed positive
 $\eta$ and $\epsilon_c$. The measured raw gaps above remain valid instrument

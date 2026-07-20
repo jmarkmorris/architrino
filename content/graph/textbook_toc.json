@@ -1066,10 +1066,10 @@
                 "sections": [
                   {
                     "kind": "markdown-section",
-                    "title": "Time-based PDE (wave equation with a moving point source)",
+                    "title": "Time-based PDE (wave equation with a moving point source term)",
                     "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/action-model.md",
-                    "markdownSection": "Time-based PDE (wave equation with a moving point source)",
-                    "sectionKey": "time based pde wave equation with a moving point source",
+                    "markdownSection": "Time-based PDE (wave equation with a moving point source term)",
+                    "sectionKey": "time based pde wave equation with a moving point source term",
                     "headingLevel": 2
                   },
                   {
@@ -7923,10 +7923,10 @@
                 "sections": [
                   {
                     "kind": "markdown-section",
-                    "title": "Delayed Emission and Receiver-Normal Hits",
+                    "title": "Delayed Emission and Transmitter-Side Acceleration",
                     "markdownPath": "content/markdown/aaa/validation/simulations/perspective.md",
-                    "markdownSection": "Delayed Emission and Receiver-Normal Hits",
-                    "sectionKey": "delayed emission and receiver normal hits",
+                    "markdownSection": "Delayed Emission and Transmitter-Side Acceleration",
+                    "sectionKey": "delayed emission and transmitter side acceleration",
                     "headingLevel": 2
                   },
                   {
@@ -8027,10 +8027,10 @@
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "Single-source multi-hit nuance vs universal superposition",
+                    "title": "Single-transmitter multi-hit nuance vs universal superposition",
                     "markdownPath": "content/markdown/aaa/validation/simulations/perspective.md",
-                    "markdownSection": "Single-source multi-hit nuance vs universal superposition",
-                    "sectionKey": "single source multi hit nuance vs universal superposition",
+                    "markdownSection": "Single-transmitter multi-hit nuance vs universal superposition",
+                    "sectionKey": "single transmitter multi hit nuance vs universal superposition",
                     "headingLevel": 2
                   },
                   {

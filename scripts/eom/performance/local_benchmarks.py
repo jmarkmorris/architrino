@@ -55,7 +55,7 @@ def numpy_baseline(samples: int) -> dict[str, Any]:
         lambda: float(np.sum(pair_values, dtype=np.float64)), repeats=5
     )
     return {
-        "schema": "eom_numpy_kernel_baseline/v0",
+        "schema": "eom_numpy_kernel_baseline/v1",
         "authority": AUTHORITY,
         "numeric_format": "binary64",
         "pair_classification": {
@@ -98,7 +98,7 @@ def oracle_baseline(iterations: int) -> dict[str, Any]:
     def certify() -> Any:
         return certify_causal_roots(
             receiver=receiver,
-            source=source,
+            transmitter=source,
             reception_time="5",
             field_speed="1",
             search_lower="0",
@@ -118,7 +118,7 @@ def oracle_baseline(iterations: int) -> dict[str, Any]:
     states = [segment.nominal_state(value) for value in times]
     interpolation_seconds = time.perf_counter() - start
     return {
-        "schema": "eom_independent_oracle_cost_baseline/v0",
+        "schema": "eom_independent_oracle_cost_baseline/v1",
         "authority": AUTHORITY,
         "numeric_format": "decimal_interval_90_digits",
         "root_certification": {
@@ -160,7 +160,7 @@ def storage_baseline(mebibytes: int) -> dict[str, Any]:
                 digest.update(data)
         read_seconds = time.perf_counter() - start
     return {
-        "schema": "eom_local_storage_baseline/v0",
+        "schema": "eom_local_storage_baseline/v1",
         "authority": AUTHORITY,
         "bytes": total_bytes,
         "write_fsync_seconds": write_seconds,
@@ -321,7 +321,7 @@ def native_baselines(repo: Path, *, quick: bool, logical_cpus: int) -> dict[str,
     scalar_interp_rate = scalar_reference["history_interpolation"]["rows_per_second"]
     single = thread_scaling[0]["block_traversal"]["seconds"]
     return {
-        "schema": "eom_native_architecture_survey/v0",
+        "schema": "eom_native_architecture_survey/v1",
         "authority": AUTHORITY,
         "candidate_language": "C++20",
         "compiler_version": subprocess.run(

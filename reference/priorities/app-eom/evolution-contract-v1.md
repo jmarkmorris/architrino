@@ -1,13 +1,14 @@
-# EOM Evolution Contract v0
+# EOM Evolution Contract v1
 
 ## Status
 
-- Contract id: `eom_evolution_contract/v0`
+- Contract id: `eom_evolution_contract/v1`
 - Stage: `requirements-frozen`
 - Claim level: `priority-design`
 - Implementation status: `native-correctness-nucleus-and-borg-shadow-executable; production-conformance-open`
-- Model binding: frozen `master_eom_binding/v0`
-- Optional long-term scale amendment: [`eom_evolution_contract/v0/amendment-1`](evolution-contract-v0-amendment-1-million-path-scale.md); required only when a request or result claims the million-path profile
+- Model binding: `master_eom_binding/v1`
+- Borg live request schema: `eom_borg_shadow_request/v1`
+- Optional long-term scale amendment: [`eom_evolution_contract/v1/amendment-1`](evolution-contract-v1-amendment-1-million-path-scale.md); required only when a request or result claims the million-path profile
 - Initial-data type: continuous retained history functions only
 - Change control: revisions require an explicit contract amendment or successor version
 
@@ -15,7 +16,7 @@
 
 A conforming EOM implementation generates each accepted trajectory segment from the causal roots of the retained trajectory history that the same run has actually accepted.
 
-No prescribed future path, display force, guidance acceleration, damping, boundary relaxation, undeclared softening, or self-assigned evidence label can substitute for this closed loop:
+No prescribed future path, display acceleration, guidance acceleration, damping, boundary relaxation, undeclared softening, or self-assigned evidence label can substitute for this closed loop:
 
 $$
 \text{accepted history}
@@ -31,7 +32,7 @@ $$
 
 ## Canonical Per-Root Calculation
 
-For receiver $i$ at absolute time $T$, source $j$, and every admitted emission time $S<T$ satisfying
+For receiver $i$ at absolute time $T$, transmitter $j$, and every admitted emission time $S<T$ satisfying
 
 $$
 \left\|\mathbf X_i(T)-\mathbf X_j(S)\right\|=c_f(T-S),
@@ -48,17 +49,17 @@ r_{ij}=\left\|\mathbf X_i(T)-\mathbf X_j(S)\right\|,
 $$
 
 $$
-D_{s,ij}=c_f-\widehat{\mathbf r}_{ij}\cdot\mathbf V_j(S),
+D_{t,ij}=c_f-\widehat{\mathbf r}_{ij}\cdot\mathbf V_j(S),
 \qquad
-D_{T,ij}=c_f-\widehat{\mathbf r}_{ij}\cdot\mathbf V_i(T),
+D_{r,ij}=c_f-\widehat{\mathbf r}_{ij}\cdot\mathbf V_i(T),
 $$
 
 and, on a certified simple-root chart,
 
 $$
-m_{ij}=\frac{D_{T,ij}}{D_{s,ij}},
+m_{ij}=\frac{D_{r,ij}}{D_{t,ij}},
 \qquad
-W_{ij}^{\mathrm{rec}}=\left|m_{ij}\right|.
+W_{ij}^{\mathrm{acc}}=\frac{c_f}{|D_{t,ij}|}.
 $$
 
 The accepted acceleration is
@@ -69,24 +70,37 @@ $$
 \sum_j
 \sum_{S\in\mathcal C_{ij}(T)}
 \kappa\,\sigma_{ij}|q_iq_j|
-\frac{W^{\mathrm{rec}}_{ij}(T;S)}
+\frac{W^{\mathrm{acc}}_{ij}(T;S)}
 {r_{ij}^{2}(T;S)}
 \widehat{\mathbf r}_{ij}(T;S)
 }.
 $$
 
-The `master_eom_binding/v0` record must pin the exact canonical source for this equation, $\kappa$, $c_f$, polarity convention, charge unit, causal-surface regulator $\eta$, core regulator $\epsilon_c$, coincident-endpoint convention, finite-history rule, branch aggregation, and caustic route.
+The `master_eom_binding/v1` record pins the exact canonical definition for this equation, $\kappa$, $c_f$, polarity convention, charge unit, causal-surface regulator $\eta$, core regulator $\epsilon_c$, coincident-endpoint convention, finite-history rule, branch aggregation, and caustic route.
 
 ## Request Contract
+
+### Borg Live Request Binding
+
+The bounded-population Borg path serializes this contract as
+`eom_borg_shadow_request/v1`. Every live request must carry
+`contractId=eom_evolution_contract/v1`, an empty `contractAmendmentIds` array,
+and `modelBindingId=master_eom_binding/v1`. The empty amendment list means that
+the request makes no million-path claim; it does not weaken the base contract.
+
+The browser runner and the process bridge must reject any schema, contract,
+amendment, or model-binding mismatch before a native evolution request is
+encoded. This check binds Borg to the corrected acceleration law without
+changing the numerical fields consumed by that law.
 
 ### Run Identity
 
 | Field | Requirement |
 | --- | --- |
-| `contract_id` | Exactly `eom_evolution_contract/v0`. |
-| `contract_amendment_ids` | Ordered amendment ids applicable to the request. Million-path conformance includes `eom_evolution_contract/v0/amendment-1`. |
+| `contract_id` | Exactly `eom_evolution_contract/v1`. |
+| `contract_amendment_ids` | Ordered amendment ids applicable to the request. Million-path conformance includes `eom_evolution_contract/v1/amendment-1`. |
 | `run_id` | Unique immutable identifier. |
-| `model_binding_id` | Content-addressed `master_eom_binding/v0` record. |
+| `model_binding_id` | Content-addressed `master_eom_binding/v1` record. |
 | `input_hash` | Hash over every history, model, numerical, precision, and resource input that can change the result. |
 | `absolute_time_interval` | Finite $[T_0,T_1]$ with $T_1\ge T_0$. |
 
@@ -102,7 +116,7 @@ Each history record contains:
 - position and velocity representation;
 - interpolation method and version;
 - numeric representation and precision;
-- interpolation and source-data error bounds;
+- interpolation and transmitter-data error bounds;
 - scale map and coordinate/time origin;
 - provenance and content hash.
 
@@ -126,21 +140,30 @@ The request declares:
 
 `integration_tolerance` or its versioned replacement is operational: exceeding it rejects or refines a candidate step. A tolerance value that appears only in metadata is nonconforming.
 
+For Borg, the numerical and resource controls are selected by one atomic
+`borg_certified_budget/v1` record. The request carries the preset id, complete
+allocation object, its canonical JSON serialization, and the lowercase SHA-256
+of that serialization. The process bridge recomputes both the canonical JSON
+and the hash before encoding the native request. A mismatch rejects the request;
+the hash is an identity check, not evidence that the numerical ledger passed.
+The current preset identities are recorded in
+[Certified Error-Budget Ledger](certified-error-budget-ledger.md).
+
 ## Accepted-Step State Machine
 
 For every candidate receiver event, a conforming implementation must:
 
 1. create one immutable view of the last accepted coupled state and retained histories;
 2. account for every ordered pair $(i,j)$, including every self-pair;
-3. continue known simple roots using $dS/dT=D_T/D_s$ when their chart remains valid;
+3. continue known simple roots using $dS/dT=D_r/D_t$ when their chart remains valid;
 4. independently scan certified intervals for new, missed, merged, or disappearing roots;
-5. certify history coverage and root completeness before force accumulation;
-6. compute $r$, $\widehat{\mathbf r}$, residual, $D_s$, $D_T$, $m$, $W^{\mathrm{rec}}$, polarity, charge product, regulator state, and acceleration for every consumed root;
-7. route folds and caustics through the finite-width causal-surface equation and finite-impulse treatment rather than evaluating an infinite pointwise force;
+5. certify history coverage and root completeness before acceleration accumulation;
+6. compute $r$, $\widehat{\mathbf r}$, residual, $D_t$, $D_r$, $m$, $W^{\mathrm{acc}}$, polarity, charge product, regulator state, and acceleration for every consumed root;
+7. route folds and caustics through the finite-width causal-surface equation and finite-impulse treatment rather than evaluating an infinite pointwise acceleration;
 8. sum the canonical acceleration under the declared deterministic/reproducible reduction policy;
 9. advance all paths from the same immutable accepted state;
 10. estimate error, correct or subdivide events, and accept or reject the complete coupled candidate;
-11. append no candidate state or history row until the coupled step is accepted;
+11. append no candidate state or history record until the coupled step is accepted;
 12. atomically append the accepted state and all continuation-critical root, regulator, controller, and provenance records.
 
 Updating one path early and using its candidate value to advance another path in the same nominal step is prohibited.
@@ -149,9 +172,9 @@ Updating one path early and using its candidate value to advance another path in
 
 Every ordered pair remains inside the logical interaction domain at every accepted receiver event. A pair must resolve to an explicit active, inactive, excluded-coincidence, or unresolved record, or to a certified exclusion/aggregation record whose membership and error bound resolve back to the pair.
 
-The $j=i$ path uses the same causal-root and acceleration machinery as partner paths. The coincident endpoint $S=T$ is excluded by the model binding; every admitted earlier same-source root is retained. A one-path request is valid and must exercise self-history behavior.
+The $j=i$ path uses the same causal-root and acceleration machinery as partner paths. The coincident endpoint $S=T$ is excluded by the model binding; every admitted earlier same-transmitter root is retained. A one-path request is valid and must exercise self-history behavior.
 
-The supported velocity domain includes $\|\mathbf V\|<c_f$, $\|\mathbf V\|=c_f$, and $\|\mathbf V\|>c_f$. Equality with $c_f$ is not alone a singularity. Actual $D_s$, $D_T$, root, fold, caustic, and receiver-normal geometry determine the numerical route. Super-field-speed curved histories may have multiple self-roots; constant-velocity straight-line super-field-speed motion is a required zero-nontrivial-self-root control.
+The supported velocity domain includes $\|\mathbf V\|<c_f$, $\|\mathbf V\|=c_f$, and $\|\mathbf V\|>c_f$. Equality with $c_f$ is not alone a singularity. Actual $D_t$, $D_r$, root, fold, caustic, and receiver-side geometry determine the numerical route. Super-field-speed curved histories may have multiple self-roots; constant-velocity straight-line super-field-speed motion is a required zero-nontrivial-self-root control.
 
 ## Root Completeness And History Coverage
 
@@ -169,49 +192,49 @@ Every root-search record must identify:
 
 For an interior simple-root bracket $[a,b]$, let $g(S)$ be the causal
 residual, let a probe $p\in[a,b]$ have certified enclosure $G_p$, and let the
-source-normal enclosure $D_s([a,b])$ exclude zero. Opposite strict residual
-signs at $a$ and $b$ certify existence, while the one-sign source normal
+transmitter-side-factor enclosure $D_t([a,b])$ exclude zero. Opposite strict residual
+signs at $a$ and $b$ certify existence, while the one-sign transmitter-side factor
 certifies uniqueness. The mean-value theorem then gives the outward root
 enclosure
 
 $$
-I_*=[a,b]\cap\left(p-\frac{G_p}{D_s([a,b])}\right).
+I_*=[a,b]\cap\left(p-\frac{G_p}{D_t([a,b])}\right).
 $$
 
-The root row may accept $I_*$ when its outward width is within the unchanged
-root tolerance and the source-normal enclosure over $I_*$ still excludes
+The root record may accept $I_*$ when its outward width is within the unchanged
+root tolerance and the transmitter-side-factor enclosure over $I_*$ still excludes
 zero. This asymmetric enclosure is required before declaring
 `interior_root_not_surrounded`; a symmetric probe about $p$ is not by itself a
 completeness test.
 
 If a possible root reaches the retained-history boundary or completeness cannot be certified, the candidate step fails with `insufficient_history_depth` or `unresolved_root_set`. The contribution is never silently omitted.
 
-An ordinary `root_completeness_not_certified` row carries no finite-width
-contract row and no regulator level. `FWC-ENTRY-02` is emitted only when the
+An ordinary `root_completeness_not_certified` record carries no finite-width
+contract record and no regulator level. `FWC-ENTRY-02` is emitted only when the
 root certificate actually requires the caustic route; selecting the
 sharp-with-finite-width-fallback chart does not reclassify every unresolved
 root as a caustic.
 
 When step reduction reaches the declared minimum step, an underlying
-`coupled_correction_failed` row remains the terminal halt code. The controller
+`coupled_correction_failed` record remains the terminal halt code. The controller
 does not replace that adjudicated cause with the generic
 `minimum_step_exhausted` label. This naming rule does not accept the rejected
 step or change the minimum step.
 
 ## Regularization And Caustics
 
-Softening is prohibited unless it is the regulator explicitly pinned by the model binding. Each affected root records $\eta$, $\epsilon_c$, regulator version, chart, refinement level, and whether the row is sharp-simple, finite-width, fold-transit, core-regularized, or failed.
+Softening is prohibited unless it is the regulator explicitly pinned by the model binding. Each affected root records $\eta$, $\epsilon_c$, regulator version, chart, refinement level, and whether the record is sharp-simple, finite-width, fold-transit, core-regularized, or failed.
 
-The sharp quotient $D_T/D_s$ is consumed only on a certified simple-root chart with the required source-normal floor. A fold or caustic triggers event refinement and the finite-width causal-surface calculation. The integrator records the transition and finite velocity impulse. Persistent degeneracy, unsupported higher-order strata, simultaneous regulator failure, or failure of the regulator-convergence policy rejects the candidate step or halts the run.
+The sharp quotient $D_r/D_t$ is consumed only on a certified simple-root chart with the required transmitter-side-factor floor. A fold or caustic triggers event refinement and the finite-width causal-surface calculation. The integrator records the transition and finite velocity impulse. Persistent degeneracy, unsupported higher-order strata, simultaneous regulator failure, or failure of the regulator-convergence policy rejects the candidate step or halts the run.
 
 ## Precision And Adaptivity
 
 Step size, event subdivision, and precision respond to:
 
-- force and local-truncation variation;
+- acceleration and local-truncation variation;
 - root residual and bracket width;
-- small $|D_s|$ or $|D_T|$ and poor quotient conditioning;
-- source or receiver field-speed crossings, followed by evaluation of the actual pair geometry;
+- small $|D_t|$ or $|D_r|$ and poor quotient conditioning;
+- transmitter or receiver field-speed crossings, followed by evaluation of the actual pair geometry;
 - root birth, death, merge, split, or caustic proximity;
 - close approach and regulator activation;
 - retained-history interpolation error;
@@ -228,10 +251,10 @@ Every acceleration used by an accepted or rejected step must be reconstructible 
 
 | Field group | Required content |
 | --- | --- |
-| Identity | Run, attempted-step, receiver, source, ordered-pair, root, branch, and history-segment identities. |
+| Identity | Run, attempted-step, receiver, transmitter, ordered-pair, root, branch, and history-segment identities. |
 | Time | Emission time $S$, reception time $T$, bracket/enclosure, and searched interval. |
-| State | Source state at $S$ and receiver state at $T$, including numeric representation and error bound. |
-| Geometry | $r$, $\widehat{\mathbf r}$, causal residual, $D_s$, $D_T$, signed $m=D_T/D_s$, and unsigned $W^{\mathrm{rec}}$. |
+| State | Transmitter state at $S$ and receiver state at $T$, including numeric representation and error bound. |
+| Geometry | $r$, $\widehat{\mathbf r}$, causal residual, $D_t$, $D_r$, signed root playback $m=D_r/D_t$, and acceleration weight $W^{\mathrm{acc}}=c_f/|D_t|$. |
 | Interaction | $\kappa$, $c_f$, $\sigma_{ij}$, $|q_iq_j|$, regularized inverse-square amplitude, signed vector contribution, and accumulation order/group. |
 | Root status | Active, inactive, excluded-coincidence, unresolved, birth, death, merge, split, fold, caustic, or certified-pruned status. |
 | Certification | Completeness method, condition estimate, precision path, regulator state, residual/enclosure, and acceptance result. |
@@ -244,8 +267,8 @@ The step record contains attempted and accepted times, all input-history hashes,
 
 | Status | Meaning |
 | --- | --- |
-| `canonical` | The complete bound Master EOM loop ran, all required histories and roots were complete, every consumed force row used canonical factors, and numerical/regulator acceptance passed. |
-| `conditional` | A force, root, or stability calculation was evaluated on prescribed history without evolving that history under this contract. |
+| `canonical` | The complete bound Master EOM loop ran, all required histories and roots were complete, every consumed acceleration record used canonical factors, and numerical/regulator acceptance passed. |
+| `conditional` | An acceleration, root, or stability calculation was evaluated on prescribed history without evolving that history under this contract. |
 | `reference` | An independent comparison implementation produced the result and is not the production authority. |
 | `display-only` | Visual interpolation or authored motion produced the output. |
 | `failed` | History, root completeness, precision, regulator, integration, storage, or other required control failed. |
@@ -280,18 +303,18 @@ Before any consumer may use EOM motion for a critical decision, the implementati
 | ID | Validation | Required result |
 | --- | --- | --- |
 | `VAL-01` | Inertial control | A certified empty active-root set gives exact constant velocity under the declared representation. |
-| `VAL-02` | Straight-line self control | Constant-velocity super-field-speed straight motion produces no nontrivial same-source root. |
-| `VAL-03` | Manufactured linear roots | Root times, residuals, $D_s$, $D_T$, $m$, and $W^{\mathrm{rec}}$ match the analytic result. |
+| `VAL-02` | Straight-line self control | Constant-velocity super-field-speed straight motion produces no nontrivial same-transmitter root. |
+| `VAL-03` | Manufactured linear roots | Root times, residuals, $D_t$, $D_r$, $m$, and $W^{\mathrm{acc}}$ match the analytic result. |
 | `VAL-04` | Circular partner benchmark | Numerical partner roots and acceleration components match the closed form. |
-| `VAL-05` | Circular self-hit benchmark | Every signed same-source root, root birth, and $W^{\mathrm{rec}}=1$ row is recovered. |
-| `VAL-06` | Accelerating receiver-normal benchmark | A case with $D_T/D_s<0$ reproduces signed orientation and unsigned force weight. |
+| `VAL-05` | Circular self-hit benchmark | Every same-transmitter root and root birth is recovered, with $W^{\mathrm{acc}}=c_f/|D_t|$ on each simple root. |
+| `VAL-06` | Receiver-playback benchmark | Cases with $D_r=0$ and $D_r/D_t<0$ preserve the root and reproduce signed root playback without zeroing or reversing the transmitter-side acceleration weight. |
 | `VAL-07` | Symmetric binary benchmark | Complete ledgers satisfy the declared $180^\circ$ symmetry. |
 | `VAL-08` | Root-fold benchmark | A root pair appears or disappears with correct signed transition data and finite integrated impulse. |
 | `VAL-09` | Step convergence | $dt$, $dt/2$, and $dt/4$ converge at the claimed order. |
 | `VAL-10` | History convergence | Increasing retained depth stops changing the result once all causal support is included. |
 | `VAL-11` | Regulator convergence | Controlled $\eta$ and $\epsilon_c$ ladders reach the declared limit or fail explicitly. |
 | `VAL-12` | Independent oracle | Production results agree with closed-form mathematics or genuinely independent code. |
-| `VAL-13` | Ledger reconstruction | Emitted per-root rows reproduce accepted acceleration bit-for-bit or inside a declared rounding enclosure. |
+| `VAL-13` | Ledger reconstruction | Emitted per-root records reproduce accepted acceleration bit-for-bit or inside a declared rounding enclosure. |
 | `VAL-14` | Restart and threading parity | Checkpoint restart and allowed worker-count changes produce equivalent results under the declared policy. |
 | `VAL-15` | Input sensitivity | Cases constructed to depend on $c_f$, history depth, tolerance, precision, or regulators change or fail as predicted when each input changes. |
 | `VAL-16` | Evidence negative controls | Prescribed-history, display, incomplete-root, zero-wake-with-unproved-inactivity, and failed runs cannot report `canonical`. |
@@ -306,9 +329,9 @@ No EOM-backed consumer may decide that a binary spirals inward, spirals outward,
 
 - both complete initial retained histories;
 - both ordered partner root families;
-- both same-source root families;
+- both same-transmitter root families;
 - field-speed and super-field-speed branch transitions encountered by the run;
-- all receiver-normal weights and regulator transitions;
+- all transmitter-side acceleration weights and regulator transitions;
 - adaptive evolution over the declared many-orbit interval;
 - radius, radial velocity, angular velocity, torque, acceleration, and complete root-ledger histories;
 - timestep, history-depth, precision, regulator, restart, and worker-count convergence appropriate to the claim.
@@ -329,4 +352,4 @@ plus a stable return map under declared small perturbations. A repeating noncirc
 
 Existing streaming, ABI, root, and precision components are reuse candidates only after a contract audit proves their semantics and evidence behavior. No existing component receives EOM authority because its name or output shape resembles this contract.
 
-The current solver remains unchanged while dependencies are inventoried. Its outputs cannot satisfy `eom_evolution_contract/v0`, and its current `canonical_eom_evidence` field remains non-authoritative.
+The current solver remains unchanged while dependencies are inventoried. Its outputs cannot satisfy `eom_evolution_contract/v1`, and its current `canonical_eom_evidence` field remains non-authoritative.

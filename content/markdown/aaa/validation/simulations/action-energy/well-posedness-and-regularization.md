@@ -19,7 +19,7 @@ $$
   - Select $\eta$ small relative to local geometric scales (path curvature radius, inter-source spacing) to approximate the event-driven picture while maintaining numerical stability.
 
 - Distributional wake-surface normalization:
-  - Treat $\delta(r-v\Delta)$ and $\delta_\eta(r-v\Delta)$ as distributions, so the invariant statement is an integrated statement against a test function, not the sampled height of the spike. For $\Delta=T-T_{\mathrm{em}}$ and $r=\|\mathbf X-\mathbf X_0\|$,
+  - Treat $\delta(r-v\Delta)$ and $\delta_\eta(r-v\Delta)$ as distributions, so the invariant statement is an integrated statement against a test function, not the sampled height of the spike. For $\Delta=T-T_t$ and $r=\|\mathbf X-\mathbf X_0\|$,
     $$
     \rho_\eta(T,\mathbf X)=
     \frac{q}{4\pi r^2}\,\delta_\eta(r-v\Delta)\,H(\Delta)
@@ -66,9 +66,9 @@ $$
     The invalid shortcut $\nabla\!\cdot(F_r\hat{\mathbf{r}})=\partial_rF_r$ breaks the conservation normalization of causal wake surfaces.
 
 - Finite-limit discipline:
-  - Treat finite source count, finite memory depth, finite step size, finite domain/window, and finite $\eta > 0$ as the first proof or simulation regime.
+  - Treat finite architrino count, finite memory depth, finite step size, finite domain/window, and finite $\eta > 0$ as the first proof or simulation regime.
   - Promote large-system, continuum, or $\eta\to0$ statements only after the retained observables converge under the declared refinement path.
-  - Do not replace arbitrarily large finite systems with an actual infinite medium unless the limit preserves the causal-root count, source-normal Jacobian floors, receiver-normal branch strengths, work-energy residuals, and thermodynamic summaries being claimed.
+  - Do not replace arbitrarily large finite systems with an actual infinite medium unless the limit preserves the causal-root count, transmitter-side Jacobian floors, transmitter-side acceleration weights, work-energy residuals, and thermodynamic summaries being claimed.
 
 - State-dependent branch-transition discipline:
   - State-dependent delay systems can lose classical branch continuation at transition points where a delayed argument crosses a branch boundary, a causal-root count changes, or a derivative-sensitive row enters a fold-layer. A finite-$\eta$ run must therefore record how the regularized trajectory crosses each such window rather than treating the crossing as ordinary time-step noise.
@@ -101,7 +101,7 @@ $$
     E_{\mathrm{trans}}(Y;\eta,\eta/2;I_*)\le\tau_{\mathrm{trans},Y}
     \quad\text{for every }Y\in\mathcal{Y}_{\eta,*}
     $$
-    and every root-ledger row in $I_*$ keeps source identity, branch class, and status metadata under the same matching rule used by $\Delta_{\eta,\mathrm{root}}$.
+    and every root-ledger row in $I_*$ keeps transmitter identity, branch class, and status metadata under the same matching rule used by $\Delta_{\eta,\mathrm{root}}$.
   - If the branch status flips under $\eta$ refinement, route the run to $\mathsf{branch\_root\_instability}$. If the status is stable but the promoted transition observables fail the tolerance, route it to $\mathsf{regulator\_dependence}$. If the transition record is missing, route it to $\mathsf{artifact\_incomplete}$.
   - For nonsmooth windows, the transition record must include jump-location rows
     $$
@@ -186,7 +186,7 @@ Crossing any component of $\partial\mathcal{A}_\eta$ changes the promotion statu
 For the finite-$\eta$ pathology theorem target in [Master Equation](../../../dynamics/master-equation.md#finite-eta-pathology-quarantine-theorem-target), a promoted run family must report the same boundary components as observables, not only as solver diagnostics. Divergent self-energy is routed through the $d$ or $\epsilon_c$ row, runaway behavior through the $E_{\text{wake}}^{(\eta)}$ lower-bound row, pre-acceleration through the retained-history and endpoint-convention row, and caustic blow-up through the $\nu$ and transition-status rows. The minimum residual packet is:
 
 - root residual and root-transport residual for every retained row,
-- active source-normal Jacobian floor, receiver-normal branch-strength floor or certified interval, and inactive-root gap,
+- active transmitter-side Jacobian floor, transmitter-side acceleration-weight floor or certified interval, and inactive-root gap,
 - finite-memory coverage and endpoint or period-cut leakage,
 - energy, momentum, and angular-momentum residuals computed with the same $\eta$, window, and endpoint convention,
 - transition-observable refinement residuals $E_{\mathrm{trans}}(Y;\eta,\eta/2;I_*)$ for every fold-layer or caustic transit promoted through the window,

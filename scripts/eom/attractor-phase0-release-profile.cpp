@@ -269,7 +269,7 @@ int main(int argc, char** argv) {
     request.field_speed = "1";
     request.coupling = token(kNativeCoupling);
     request.root_tolerance = root_tolerance;
-    request.source_normal_floor = "1e-24";
+    request.transmitter_factor_floor = "1e-24";
     request.acceleration_tolerance = token(5e-3);
     request.chart_policy = "sharp";
     request.causal_width = "0.05";
@@ -318,7 +318,7 @@ int main(int argc, char** argv) {
       throw std::runtime_error("cannot open output: " + output_path);
     }
     output << std::setprecision(17)
-           << "{\"schema\":\"eom_attractor_phase0_release_profile/v0\""
+           << "{\"schema\":\"eom_attractor_phase0_release_profile/v1\""
            << ",\"seed_family\":\"phase0-shell-v1\""
            << ",\"population\":" << population
            << ",\"thread_count\":" << thread_count

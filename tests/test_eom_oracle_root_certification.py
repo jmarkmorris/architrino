@@ -71,7 +71,7 @@ class CertifiedRetainedHistoryRootTests(unittest.TestCase):
     ):
         return certify_causal_roots(
             receiver=self.receiver,
-            source=source,
+            transmitter=source,
             reception_time=reception,
             field_speed="1",
             search_lower=lower,
@@ -87,7 +87,7 @@ class CertifiedRetainedHistoryRootTests(unittest.TestCase):
         )
         certificate = certify_causal_roots(
             receiver=self.receiver,
-            source=stationary_source,
+            transmitter=stationary_source,
             reception_time="5",
             field_speed="1",
             search_lower="0",
@@ -100,7 +100,7 @@ class CertifiedRetainedHistoryRootTests(unittest.TestCase):
         self.assertLessEqual(certificate.roots[0].lower, Decimal("3"))
         self.assertGreaterEqual(certificate.roots[0].upper, Decimal("3"))
         self.assertLessEqual(certificate.roots[0].width, Decimal("1e-30"))
-        self.assertEqual(certificate.roots[0].source_normal.strict_sign, 1)
+        self.assertEqual(certificate.roots[0].transmitter_factor.strict_sign, 1)
         self.assertFalse(certificate.unresolved_cells)
 
     def test_uncertain_root_at_continuous_segment_join_is_certified(self) -> None:
@@ -125,7 +125,7 @@ class CertifiedRetainedHistoryRootTests(unittest.TestCase):
         )
         certificate = certify_causal_roots(
             receiver=receiver,
-            source=source,
+            transmitter=source,
             reception_time="1",
             field_speed="1",
             search_lower="-1",
@@ -140,7 +140,7 @@ class CertifiedRetainedHistoryRootTests(unittest.TestCase):
         self.assertGreaterEqual(root.upper, Decimal("0"))
         self.assertLessEqual(root.width, Decimal("1e-5"))
         self.assertEqual(root.segment_indices, (0, 1))
-        self.assertEqual(root.source_normal.strict_sign, 1)
+        self.assertEqual(root.transmitter_factor.strict_sign, 1)
 
     def test_v5_cubic_endpoint_tangency_and_departure_root_migration(self) -> None:
         with localcontext() as context:
@@ -225,7 +225,7 @@ class CertifiedRetainedHistoryRootTests(unittest.TestCase):
             all(root.width <= Decimal("1e-18") for root in certificate.roots)
         )
         self.assertEqual(
-            [root.source_normal.strict_sign for root in certificate.roots],
+            [root.transmitter_factor.strict_sign for root in certificate.roots],
             [-1, 1],
         )
         self.assertGreater(len(certificate.excluded_cells), 0)
@@ -286,7 +286,7 @@ class CertifiedRetainedHistoryRootTests(unittest.TestCase):
         self.assertTrue(certificate.unresolved_cells)
         self.assertTrue(
             any(
-                cell.reason == "source_normal_interval_contains_zero"
+                cell.reason == "transmitter_factor_interval_contains_zero"
                 for cell in certificate.unresolved_cells
             )
         )
@@ -298,7 +298,7 @@ class CertifiedRetainedHistoryRootTests(unittest.TestCase):
         )
         certificate = certify_causal_roots(
             receiver=self.receiver,
-            source=tangent_source,
+            transmitter=tangent_source,
             reception_time="3",
             field_speed="1",
             search_lower="0",
@@ -356,7 +356,7 @@ class CertifiedRetainedHistoryRootTests(unittest.TestCase):
         )
         certificate = certify_causal_roots(
             receiver=receiver,
-            source=source,
+            transmitter=source,
             reception_time="0.5",
             field_speed="1",
             search_lower="-0.5",
@@ -372,7 +372,7 @@ class CertifiedRetainedHistoryRootTests(unittest.TestCase):
         self.assertLessEqual(root.lower, Decimal("-0.0625"))
         self.assertGreaterEqual(root.upper, Decimal("-0.0625"))
         self.assertLessEqual(root.width, Decimal("1e-5"))
-        self.assertEqual(root.source_normal.strict_sign, 1)
+        self.assertEqual(root.transmitter_factor.strict_sign, 1)
 
     def test_memory_boundary_root_prevents_complete_status(self) -> None:
         # x(S) = 3-S + S(S-1), so g(S)=S(S-1).
@@ -419,7 +419,7 @@ class CertifiedRetainedHistoryRootTests(unittest.TestCase):
         )
         slow = certify_causal_roots(
             receiver=self.receiver,
-            source=source,
+            transmitter=source,
             reception_time="5",
             field_speed="1",
             search_lower="0",
@@ -428,7 +428,7 @@ class CertifiedRetainedHistoryRootTests(unittest.TestCase):
         )
         fast = certify_causal_roots(
             receiver=self.receiver,
-            source=source,
+            transmitter=source,
             reception_time="5",
             field_speed="2",
             search_lower="0",
@@ -446,7 +446,7 @@ class CertifiedRetainedHistoryRootTests(unittest.TestCase):
         )
         certificate = certify_causal_roots(
             receiver=static_history,
-            source=static_history,
+            transmitter=static_history,
             reception_time="3",
             field_speed="1",
             search_lower="0",
@@ -471,7 +471,7 @@ class CertifiedRetainedHistoryRootTests(unittest.TestCase):
         )
         certificate = certify_causal_roots(
             receiver=fast_history,
-            source=fast_history,
+            transmitter=fast_history,
             reception_time="3",
             field_speed="1",
             search_lower="0",
@@ -502,7 +502,7 @@ class CertifiedRetainedHistoryRootTests(unittest.TestCase):
         )
         certificate = certify_causal_roots(
             receiver=enclosed_history,
-            source=enclosed_history,
+            transmitter=enclosed_history,
             reception_time="3",
             field_speed="1",
             search_lower="0",
@@ -520,7 +520,7 @@ class CertifiedRetainedHistoryRootTests(unittest.TestCase):
         )
         certificate = certify_causal_roots(
             receiver=rail_history,
-            source=rail_history,
+            transmitter=rail_history,
             reception_time="3",
             field_speed="1",
             search_lower="0",
@@ -540,7 +540,7 @@ class CertifiedRetainedHistoryRootTests(unittest.TestCase):
         )
         certificate = self.certify(source)
         record = certificate.to_record()
-        self.assertEqual(record["schema"], "eom_root_completeness_certificate/v0")
+        self.assertEqual(record["schema"], "eom_root_completeness_certificate/v1")
         self.assertEqual(record["status"], "certified_complete")
         self.assertEqual(record["root_count"], 2)
         self.assertEqual(record["search"]["root_tolerance"], "1E-18")

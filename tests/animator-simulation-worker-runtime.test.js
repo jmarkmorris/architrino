@@ -159,7 +159,7 @@ test("animator simulation worker fails closed without a recorded EOM dataset", a
 
 test("animator simulation worker fails closed on a foreign contract id", async () => {
   const request = createAnimatorSimulationWorkerRunRequest(
-    { eomRecord: createEomRecordFixture({ contractId: "solver-app-bridge/v1" }) },
+    { eomRecord: createEomRecordFixture({ contractId: "solver-app-bridge/v2" }) },
     { requestId: "foreign_contract_test" }
   );
   await assert.rejects(
