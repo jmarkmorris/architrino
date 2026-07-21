@@ -67,4 +67,3 @@ struct DisplayEvaluationResult {
     const DisplayEvaluationRequest& request);
 
 }  // namespace architrino::eom
-

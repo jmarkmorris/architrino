@@ -891,4 +891,3 @@ DisplayEvaluationResult evaluate_display_acceleration(
 }
 
 }  // namespace architrino::eom
-
