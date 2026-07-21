@@ -129,7 +129,7 @@ $$
 
 A planar lower-rank braid (`PL`) may still be dynamically meaningful, but it is not a promoted rank-three Noether braid branch until the three-row frame condition and its conditioning floor are supplied on the same retained record.
 
-The planar reduced chart is different. A reduced planar chart is a proof or simulation representation that places branch data into a common plane or near-plane so a restricted calculation can be performed. The canonical planar rank-three Noether braid reduced chart is the rank-three instance of this reduced chart usage. Such a chart may also represent a `PL` candidate, the terminal boundary of a nested shell braid, or the photon-channel bridge described by the coaxial contra-rotating polarity-conjugate planar pair. It should therefore be named as a chart, not used as a base-family name.
+The planar reduced chart is different. A reduced planar chart is a proof or simulation representation that places branch data into a common plane or near-plane so a restricted calculation can be performed. The canonical planar rank-three Noether braid reduced chart is the rank-three instance of this reduced chart usage. Such a chart may also represent a `PL` candidate, the terminal boundary of a nested shell braid, or the photon-channel bridge described by the coaxial contra-rotating polarity-conjugate planar pair. The generic opposite-circulation composition coordinates for two complete B1 records are defined separately by [C2](braid-family-c.md#c2); planarization and photon identity are additional constraints. A planar reduced chart should therefore be named as a chart, not used as a base-family name.
 
 ## Polarity Placement
 

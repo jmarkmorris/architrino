@@ -191,7 +191,7 @@ Family A and Family B meet on a boundary. Every Family-A member reaches the coin
 
 ## Family C: Two-Braid Composition
 
-Family C contains assemblies made from two complete `B1` braids. The relative braid-center displacement, relative orientation, and relative phase remain explicit assembly coordinates.
+Family C contains assemblies made from two complete `B1` braids. Its exact composition chart, twelve endpoint paths, derived axis offset, and physical-mapping boundary are developed in [Braid Family C](braid-family-c.md). The relative braid-center displacement, relative orientation, and relative phase remain explicit assembly coordinates.
 
 `C1` is the co-rotating member: the two component braids have the same circulation sense. `C2` is the counter-rotating member: the two component braids have opposite circulation senses. These members define prescribed composition classes only; they do not assert a binding or retention mechanism.
 

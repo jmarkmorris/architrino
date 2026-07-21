@@ -1,6 +1,6 @@
 # Braid Taxonomy Migration
 
-Status: IN PROGRESS. The operator selected the hybrid architecture on 2026-07-21. The Family-A and Family-B definition-only batches are complete; Family C and later dynamics and interpretation migrations remain open.
+Status: IN PROGRESS. The operator selected the hybrid architecture on 2026-07-21. The Family-A, Family-B, and Family-C definition-only batches are complete; later dynamics and interpretation migrations remain open.
 
 ## Accepted Document Architecture
 
@@ -58,8 +58,8 @@ The taxonomy remains compact. A family document explains inherited geometry once
 2. Complete: migrate only definition-grade A1 and A2 material from `braid-families.md`; delete the migrated source blocks while leaving dynamics, particle mappings, and proof claims in place for separate adjudication.
 3. Complete for routing: define the A1.2/A2 boundary and link `doubling-frequency-lock.md` to A1.3. A full specialist-document terminology migration remains open.
 4. Complete: create `braid-family-b.md`; migrate B1 geometry, its common-midpoint relation, its coordinate boundaries, and axial-translation specialization from `spindle-braid.md`; delete the migrated source blocks.
-5. Create `braid-family-c.md`; audit photon and other dual-braid sources before importing any physical mapping.
-6. In progress: update shared mathematics, envelope, recovery, hub, and downstream consumer documents to consume the accepted IDs. Family-A and Family-B definition links are migrated; the controlled Archie canon and the full spin-bridge terminology sweep remain separate batches.
+5. Complete: create `braid-family-c.md`; define the exact two-B1 composition chart and audit photon and other dual-braid sources without importing an unestablished physical mapping.
+6. In progress: update shared mathematics, envelope, recovery, hub, and downstream consumer documents to consume the accepted IDs. Family-A, Family-B, and Family-C definition links are migrated; the controlled Archie canon and the full spin-bridge terminology sweep remain separate batches.
 7. Remove or replace superseded old family documents only after link, scene, generated-index, and textbook checks pass.
 
 ## First Review Batch
@@ -88,3 +88,18 @@ The Family-B definition-only batch produced one self-contained `braid-family-b.m
 The migrated definition, boundary, and screw-motion blocks were deleted from `spindle-braid.md`. Its harmonic-matching hypothesis, discrete-symmetry derivations, and retention burden remain in place under a B1 specialist title.
 
 Controlled terminology references in `content/markdown/aaa/archie` and the extended B1 spin-bridge discussion are intentionally deferred. They require a dedicated terminology/canon batch rather than silent expansion of this definition-only migration.
+
+## Third Review Batch
+
+The Family-C definition-only batch produced one self-contained `braid-family-c.md` containing:
+
+- the exact twelve endpoint paths of two complete B1 components;
+- geometric assembly-center and braid-center-displacement definitions;
+- the relative frame rotation $Q_{21}$ and reference-time phase offset $\Delta\phi$;
+- the reference-meridian convention needed to prevent relative orientation and relative phase from double-counting the same circular-path rotation;
+- independently assignable B1 geometry for the two components unless a constrained source record states an equality;
+- axis offset derived from center displacement and relative orientation, including the distinction between coaxial axial spacing and transverse axis displacement;
+- C1 as the same-circulation member and C2 as the opposite-circulation member;
+- an explicit boundary between the generic C2 chart and photon-specific planarization, coaxiality, polarity conjugation, propagation, and closure claims.
+
+The photon, neutrino, and meson sources were audited. No generic Family-C definition block was deleted from them: their two-braid passages carry physical component or channel claims that are not encoded by C1 or C2. The photon chapter now links its nearest generic C2 coordinate chart while retaining all photon-specific geometry and closure obligations. Neutrino and meson mappings remain unassigned because their B1 component membership and relative-configuration rows have not been established.

@@ -17,7 +17,7 @@ The prescribed geometry is organized by [Braid Taxonomy](braid-taxonomy.md). Its
 | [**neutral braid**](braid-families.md#the-neutral-braid-base-of-the-family-ladder) | The broad six-architrino neutral case before any required binary grouping or radial organization. | Polarity balance and causal-return bookkeeping. |
 | [**Family A**](braid-family-a.md) | One braid whose three binary axes are orthogonal at the near-rest endpoint and converge toward the group-translation direction under the prescribed response. | `A1` is the three-radius hinge member; `A2` is the fully symmetric no-hinge member. |
 | [**Family B**](braid-family-b.md) | One braid whose three binary midpoints and axes coincide. | `B1` is the rigid common-frequency member. |
-| [**Family C**](braid-taxonomy.md#family-c-two-braid-composition) | An assembly composed of two complete B1 braids. | `C1` co-rotates; `C2` counter-rotates. |
+| [**Family C**](braid-family-c.md) | An assembly composed of two complete B1 braids. | `C1` has the same circulation sense; `C2` has the opposite circulation sense. |
 
 These definitions name prescribed coordinate classes, not retained-branch existence. Stable all-pairs roots, recovery after perturbation, and observer-export behavior are theorem targets that must be certified by the branch ledger rather than read back into a family identifier. The broader diagnostic axes and search variables remain in [Noether Braid Configuration Space](noether-braid-configuration-space.md).
 
@@ -43,6 +43,7 @@ It does not carry the detailed family derivations, select a frequency family, as
 | Taxonomy | [Braid Taxonomy](braid-taxonomy.md) | The canonical coordinates, family/member identifiers, master tables, and prescribed response endpoints. |
 | Family definition | [Braid Family A](braid-family-a.md) | The shared Family-A geometry, A1 variants, A2 symmetry, and the boundary between A1.2 and A2. |
 | Family definition | [Braid Family B](braid-family-b.md) | The exact B1 path geometry, coordinate boundaries, axial-translation specialization, and Family-A boundary. |
+| Family definition | [Braid Family C](braid-family-c.md) | The exact two-B1 composition chart, C1/C2 circulation relation, derived axis offset, and physical-mapping boundary. |
 | Configuration space | [Noether Braid Configuration Space](noether-braid-configuration-space.md) | The classification axes, evidence-level terms, and the rank-three angular-momentum-frame search variables. |
 | Retention and interpretation | [Neutral-Braid Retention and Interpretation](braid-families.md) | The base neutral braid, A1/A2 retention questions, closure labels, dynamics, dressing, and downstream hypotheses not yet assigned to specialist member documents. |
 | Mathematics | [Braid Mathematics](braid-mathematics.md) | The core-agnostic machinery: invariant channels and equivariant reductions, exact channel identities, the exact speed budget, eigen-braid spectrum framing, fold-set action quantization as hypothesis, and the Thomson dressing mechanism. |
@@ -50,7 +51,7 @@ It does not carry the detailed family derivations, select a frequency family, as
 | Export | [Braid Envelope Geometry](braid-envelope-geometry.md) | The family-general envelope and observer-export interface: dynamic exclusion envelope, sea-interface diagnostic, canonical geometry variables, and the Lorentz projection. |
 | Export | [Noether Braid Topological Charge](noether-braid-topological-charge.md) | Classification of retained branch charts. |
 
-A first reading should follow the table order: what a retained braid must satisfy, then the coordinate taxonomy and Family-A and Family-B definitions, then the broader configuration space, shared mathematics, and A1.3 analysis, with the export chapters as the interface layer. Search progress is not tracked in these chapters.
+A first reading should follow the table order: what a retained braid must satisfy, then the coordinate taxonomy and Family-A, Family-B, and Family-C definitions, then the broader configuration space, shared mathematics, and A1.3 analysis, with the export chapters as the interface layer. Search progress is not tracked in these chapters.
 
 ## Medium-Selection Burden
 

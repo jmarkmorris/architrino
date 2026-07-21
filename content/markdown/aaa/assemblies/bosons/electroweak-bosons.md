@@ -18,6 +18,8 @@ The photon is the canonical electromagnetic transport channel. Unlike Standard M
 *   **The Assembly:** A photon is a specific, coherent bundle of these historical influences (per-hit actions) organized into a stable planar-pair mode. Emission is not the excitation of a background field; it is the release of an accepted action ledger into a photon channel.
 
 ### Geometric Unit: The Coaxial Contra-Rotating Polarity-Conjugate Planar Pair
+The nearest generic taxonomy chart is [C2](../../noether-braid/braid-family-c.md#c2), which defines the opposite-circulation composition of two complete B1 records. It becomes a photon coordinate skeleton only if both photon-side planar records are established as B1 components. The photon hypothesis is more restrictive: it additionally requires planarization, coaxial placement, propagation-axis alignment, polarity conjugation, and the closure properties developed below. Those extra requirements remain photon-channel claims rather than Family-C coordinates.
+
 At the finest scale, the photon unit is a composite assembly:
 *   **Planar braids:** Unlike volumetric fermion assemblies, the photon constituents are planarized Noether braid assemblies.
 *   **The pair:** A planar braid and its polarity-conjugate braid are stacked **coaxially** on the propagation axis $\hat{\mathbf{k}}$.
