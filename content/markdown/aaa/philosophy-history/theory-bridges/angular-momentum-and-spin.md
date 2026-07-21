@@ -16,7 +16,7 @@ The related material is best read as an ordered path rather than as a flat list 
 
 1. Start with primitive ontology in [Architrino](../../foundations/architrino.md) and [Ontology](../../foundations/ontology.md).
 2. Use [Master Equation](../../dynamics/master-equation.md) and [Causal Action Functional](../../dynamics/causal-action-functional.md) for delayed conservation and wake-history bookkeeping.
-3. Use [Spindle Braid](../../noether-braid/spindle-braid.md) for the uniaxial braid mechanics that spin must descend from, with [Nested Shell Braid Dynamics](../../noether-braid/braid-families.md#nested-shell-braid-dynamics) as the retained nested-comparison realization.
+3. Use [Braid Family B](../../noether-braid/braid-family-b.md) for the exact B1 common-axis kinematics that spin must descend from, with [B1 Hypotheses and Discrete Symmetry](../../noether-braid/spindle-braid.md) carrying its symmetry derivations and [Nested Shell Braid Dynamics](../../noether-braid/braid-families.md#nested-shell-braid-dynamics) carrying the retained Family-A comparison material.
 4. Treat [Measurement Ontology](../../quantum/measurement-ontology.md), [Electroweak Bosons](../../assemblies/bosons/electroweak-bosons.md), and [Bell's Theorem](./bell-theorem.md) as downstream tests rather than source derivations.
 
 ## Primitive Status
@@ -216,7 +216,7 @@ If a stable maximum-curvature binary exists, it may define a fundamental length 
 
 ## Spindle Braid Spin Scaffold
 
-The [spindle braid](../../noether-braid/spindle-braid.md) — the rigid uniaxial iso-frequency family, a named candidate family with no ranking asserted — supplies this bridge with its primary realization of the angular-momentum ledger, and its rigid co-rotation makes the kinematic half of that ledger exact rather than approximate. Where the nested-comparison scaffold below must carry three separate layer normals $\hat{\mathbf n}_\ell$ and combine them into an approximate rank-three construction, the spindle braid has one axis, exactly.
+[B1](../../noether-braid/braid-family-b.md#b1) supplies this bridge with its primary common-axis realization of the angular-momentum ledger, and its rigid common-frequency rotation makes the kinematic half of that ledger exact rather than approximate. Where the Family-A comparison scaffold below must carry three separate binary normals $\hat{\mathbf n}_\ell$ and combine them into an approximate rank-three construction, B1 has one axis exactly.
 
 ### The Exact Kinematic Ledger of the Rigid Uniaxial Family
 

@@ -1,6 +1,6 @@
 # Braid Envelope Geometry
 
-This chapter is the canonical home for the geometric footprint of a Noether braid assembly: its dynamic exclusion envelope, the envelope forms of the named families, the canonical geometry variables, and the assembly-level deformation channels. It faces the Noether sea and effective-spacetime consumers because the geometry of many such envelopes is the local material out of which Noether sea density, strain, and delay variables are coarse-grained. The machinery here is stated family-generally wherever possible: the family scaffolds belong to [Spindle Braid](spindle-braid.md) and [Braid Families](braid-families.md), and the delayed dynamics that stabilize and deform a braid belong to the mechanism material of those chapters.
+This chapter is the canonical home for the geometric footprint of a Noether braid assembly: its dynamic exclusion envelope, the envelope forms of the named families, the canonical geometry variables, and the assembly-level deformation channels. It faces the Noether sea and effective-spacetime consumers because the geometry of many such envelopes is the local material out of which Noether sea density, strain, and delay variables are coarse-grained. The prescribed family coordinates belong to [Braid Taxonomy](braid-taxonomy.md), with Family A developed in [Braid Family A](braid-family-a.md) and Family B in [Braid Family B](braid-family-b.md); delayed retention and deformation mechanisms belong to their mathematical and member-specific owners.
 
 A Noether braid is not a static object. It is a dynamic system of six architrinos whose high-frequency paths sweep out a persistent volume of intense wake activity. That swept volume is the assembly's effective exclusion envelope.
 
@@ -13,14 +13,14 @@ That is why this geometry matters downstream. Pressure, packing, clock/ruler res
 This chapter is the envelope and export-interface chapter for braid geometry. It owns:
 
 - the dynamic exclusion-envelope interpretation of a braid assembly,
-- the envelope forms of the named families — the spindle family's fusiform envelope and the nested family's oblate spheroidal envelope,
+- the envelope forms associated with the member coordinates — B1's common-axis envelope and the Family-A oblate spheroidal envelope,
 - the role of the boundary layer in setting the leading envelope surface,
 - and assembly-level deformation of the envelope under external effective fields, nearby wakes, and Noether sea conditions.
 
 This chapter does not own:
 
 - primitive architrino ontology; see [Architrino](../foundations/architrino.md),
-- the family scaffolds; see [Spindle Braid](spindle-braid.md) and [Braid Families](braid-families.md),
+- the prescribed family scaffolds; see [Braid Taxonomy](braid-taxonomy.md), [Braid Family A](braid-family-a.md), and [Braid Family B](braid-family-b.md),
 - exact delay-root dynamics; see [Master Equation](../dynamics/master-equation.md),
 - observer clocks and rulers; see [Proper Time and Time Dilation](../spacetime/proper-time-and-time-dilation.md),
 - or metric reconstruction; see [Emergent Metric](../spacetime/emergent-metric.md).
@@ -658,7 +658,7 @@ Clock-coupling can be sensitive to weak locked-wake tails. A reaction corridor n
 
 ## Envelope Forms
 
-The envelope form is family data: the union of the swept constituent paths, together with any precession, sets the time-averaged boundary that neighbors and the Noether sea read. Two named forms are in use. The [spindle braid](spindle-braid.md) — a named candidate family — sweeps a **fusiform envelope** at rest, elongated along its shared axis and widest in its working equatorial ring, as set by the rigid uniaxial co-rotation of its tilted antipodal binaries. The nested shell braid family sweeps the **oblate spheroidal envelope** described next. The semiaxis variables below apply to both forms, but the rest-shape sign of their ratio is family data: fusiform means $R_{\parallel}>R_{\perp}$, while oblate means $R_{\parallel}<R_{\perp}$. The moving Lorentz-projection target is a separate branch response and must not be inferred from either rest-shape sign.
+The envelope form is family data: the union of the swept constituent paths, together with any precession, sets the time-averaged boundary that neighbors and the Noether sea read. [B1](braid-family-b.md#b1) sweeps a common-axis envelope at rest, with axial extent set by the $h_a$ values and transverse extent set by the $\rho_a$ values. B1 does not fix the sign of $R_{\parallel}-R_{\perp}$: an elongated, equatorial, or intermediate envelope can be selected by its binary coordinates. The Family-A response uses the **oblate spheroidal envelope** described next. The moving Lorentz-projection target is a separate branch response and must not be inferred from a rest-shape sign.
 
 ### Oblate Spheroidal Form (Nested Family)
 
@@ -843,7 +843,7 @@ For local assembly modeling, use this page as the geometric source for:
 - deformation of the family-leading envelope paths under local gradients,
 - and exclusion-volume changes relevant to packing, shielding, and collision channels.
 
-For the nested-family definitions, use [Braid Families](braid-families.md), where the oblate causal envelope is treated as a delay-geometry input. For the spindle-family definition, use [Spindle Braid](spindle-braid.md); its moving-envelope projection remains open.
+For the Family-A definitions, use [Braid Family A](braid-family-a.md), where the prescribed flattening response is separated from the EOM-solver retention burden. For the Family-B definition, use [Braid Family B](braid-family-b.md); its moving-envelope projection remains open.
 
 For Noether sea modeling, use [Noether sea](../spacetime/noether-sea.md) and [Noether Sea Pro/Anti Coupling](../spacetime/noether-sea-pro-anti-coupling.md), where many Noether braids become a coupled medium rather than isolated assembly envelopes.
 

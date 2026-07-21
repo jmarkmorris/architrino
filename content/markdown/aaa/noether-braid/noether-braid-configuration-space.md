@@ -1,6 +1,6 @@
 # Noether Braid Configuration Space
 
-This chapter gives the Noether braid search space: the classification axes, the evidence-level vocabulary, and the rank-three angular-momentum-frame variables that locate any candidate configuration before it is named. It comes after the family map in [Noether Braid](noether-braid.md) and the retention contract of [Braid Recovery Requirements](braid-recovery-requirements.md), and before the named regions of the space — the base branch definitions of [Braid Families](braid-families.md), the doubling-frequency `4:2:1` lock, iso-frequency candidates, and field-speed hinge-occupancy candidates. Within the rank-three sublocus, a branch candidate is a three-row retained state whose energies, phase offsets, angular-momentum rows, plane orientations, causal-root ledgers, frequencies, radii, speeds, and whole-branch group velocity must be solved together.
+This chapter gives the Noether braid search space: the classification axes, the evidence-level vocabulary, and the rank-three angular-momentum-frame variables that locate any candidate configuration before it is named. It comes after the family map in [Noether Braid](noether-braid.md), the prescribed coordinates in [Braid Taxonomy](braid-taxonomy.md), and the retention contract of [Braid Recovery Requirements](braid-recovery-requirements.md). The named regions include [Family A](braid-family-a.md), the `4:2:1` lock, iso-frequency candidates, and field-speed hinge-occupancy candidates. Within the rank-three sublocus, a branch candidate is a three-row retained state whose energies, phase offsets, angular-momentum rows, plane orientations, causal-root ledgers, frequencies, radii, speeds, and whole-branch group velocity must be solved together.
 
 This is a search architecture and theorem target, not a completed classification theorem. The goal is to find which regions of the Noether braid configuration space support stable retained branches in a Noether sea populated by like assemblies, identify which branches remain candidate braids and which can be promoted to certified braids, and then use those branches as the entry point for assembly topological charge, energy differentials, shielding, and accessory-architrino capture.
 
@@ -47,11 +47,11 @@ $$
 Each entry records a different kind of structure. Mixing the entries creates a candidate configuration; it does not by itself prove that the delayed dynamics admit a stable branch. Retention and certification are evidence statuses, not configuration axes.
 
 
-## A Named Candidate: The Spindle Braid
+## Family-B Example: B1
 
-A reader who wants one concrete configuration to hold in mind while reading the axes below can hold this one. The **spindle braid** ([Spindle Braid](spindle-braid.md)) is the rigid uniaxial iso-frequency family: all six architrinos co-rotate at one common frequency about a single axis, each binary a tilted antipodal pair, with the tilt angles decoupling each layer's speed from its nesting radius. Its name is literal dynamics, not only appearance: the opposite-polarity attraction channels form the staggered [drum lacing](braid-mathematics.md#drum-geometry), and rotation winds that lacing into helices, so the static drum picture and the braid picture are the same channel viewed at two levels. It contains the planar tri-binary and the axial-dipole configurations as its flat and full-tilt limits, so those are best read as boundary members of the spindle family rather than rivals.
+A reader who wants one concrete configuration to hold in mind while reading the axes below can use [B1](braid-family-b.md#b1). Its three neutral binaries share one midpoint, one axis, one frequency, and one circulation sense. Binary $a$ has internal speed $s_a=2\pi f\rho_a$, so different transverse orbit radii produce different internal speeds even though all three binaries share $f$. The all-equatorial and all-axial depictions are coordinate boundaries of the same member.
 
-The status discipline binds. The spindle braid is a named candidate family, not a retained branch, and no family ranking is asserted: comparative adjudication among the families is an open obligation of the theory, and every family in this classifier remains a live candidate on equal footing. The alternative families below are the search's bookkeeping: the comparison population any candidate must eventually be measured against.
+The status discipline binds. B1 is a prescribed member, not a retained branch, and no family ranking is asserted. Its exact geometry does not establish physical formation, retention, or preference over another taxonomy member.
 
 
 ## Classification Axes
@@ -92,7 +92,7 @@ Support geometry records how the six paths occupy their branch support. These la
 | --- | --- | --- |
 | no declared shell support | Candidate branch whose base inventory has not declared a controlled radial band or common shell. | Absence of a support claim, not proof of branch failure. |
 | shell braid | Neutral braid with one declared controlled radial support band or common shell. | Support class requiring radial control rows for retention. |
-| nested shell braid | Shell braid with three ordered radial support bands. | Support class defined in [Nested Shell Braid](braid-families.md#nested-shell-braid) and used by [Braid Envelope Geometry](braid-envelope-geometry.md) and the nested dynamics material in [Explored Braid Geometries](braid-families.md#nested-shell-braid-dynamics). |
+| nested shell braid | Shell braid with three ordered radial support bands. | Support classifier whose three-radius Family-A locus is [A1](braid-family-a.md#a1); it is also used by [Braid Envelope Geometry](braid-envelope-geometry.md) and the A1 dynamics material in [Neutral-Braid Retention and Interpretation](braid-families.md#nested-shell-braid-dynamics). |
 | oblate spheroidal envelope | Candidate support or envelope geometry whose path-history boundary is flattened relative to a spherical support while treating the two transverse semiaxes as equal. | Explored support variation, not a retained class by name alone and not proof of Lorentz deformation. |
 
 Support geometry should not be confused with binary grouping or with Lorentz deformation. A branch may have shell support before it proves three persistent binary rows. Conversely, a rank-three frame may be used as a reduced diagnostic without proving that the full six-body support is a retained nested shell braid. An oblate spheroidal envelope is a geometry label: it records a branch-envelope axis ratio such as $\xi=R_{\parallel}/R_{\perp} < 1$ on the declared chart. Lorentz deformation is tested separately as a moving-branch clock/ruler export law.
@@ -182,7 +182,7 @@ The frequency-ratio family records return or winding-frequency relations. The ma
 
 | Frequency-ratio value | Meaning |
 | --- | --- |
-| iso-frequency `1:1:1` | Candidate family with common return rate across the three retained rows. The rigid uniaxial member is the **spindle braid** (see the named-candidate note above). |
+| iso-frequency `1:1:1` | Candidate family with common return rate across the three retained rows. The rigid common-axis member is [B1](braid-family-b.md#b1). |
 | integer-ratio `3:2:1` | Candidate family with integer return rates but no repeated-doubling assumption. |
 | doubling-frequency `4:2:1` | Candidate nested `I:M:O` family in which each inward binary frequency doubles the next outer binary frequency, studied in [Noether Braid Doubling-Frequency Resonance Lock](doubling-frequency-lock.md). |
 
@@ -413,7 +413,7 @@ $$
 \qquad
 R_{\parallel}\ \text{measured along }\hat{\mathbf e}_{P},
 $$
-while the same internal angular-momentum ledger remains retained. Thus the retained rows decompose internal angular momentum into principal directions, while group velocity and total momentum select the moving-envelope axis. They do not turn the leading [spindle braid](spindle-braid.md) into a nested-family oblate envelope; the spindle's fusiform rest geometry and its moving-envelope projection are separate family rows in [Braid Envelope Geometry](braid-envelope-geometry.md#envelope-forms).
+while the same internal angular-momentum ledger remains retained. Thus the retained rows decompose internal angular momentum into principal directions, while group velocity and total momentum select the moving-envelope axis. They do not convert the [B1](braid-family-b.md#b1) common-axis internal geometry into a Family-A oblate response; B1's member-declared rest envelope and its moving-envelope projection are separate records in [Braid Envelope Geometry](braid-envelope-geometry.md#envelope-forms).
 
 ## Unordered Layer Semantics
 
@@ -507,7 +507,7 @@ $$
 This is the layerwise specialization of the [signed causal-root complex](../dynamics/master-equation.md#signed-causal-root-complex): simple same-transmitter roots are split by the sign of their causal-root Jacobian before the layer contributes to assembly topological charge.
 A branch with one super-field-speed layer can carry a different assembly topological charge structure from a branch with two or three such layers, because the self-hit ledgers and signed degrees are layer-dependent. This is another reason the search must preserve the full unordered speed tuple $s_1:s_2:s_3$ rather than collapsing immediately to a preferred hierarchy.
 
-One named family realizes this decoupling directly. The [**spindle braid**](spindle-braid.md) is the rigid uniaxial iso-frequency configuration: each binary a tilted antipodal pair, each layer's speed $s_a=\omega R_a\cos\alpha_a$, so the tilt angles decouple the speed tuple from the spherical nesting order and the farthest layer can be the slowest. The spindle braid is a named candidate family with the planar tri-binary and axial-dipole configurations as its own boundary members; its full definition and discrete-symmetry structure are stated in [Spindle Braid](spindle-braid.md). No family ordering is asserted.
+Family B realizes this decoupling directly. In [B1](braid-family-b.md#b1), each binary has internal speed $s_a=2\pi f\rho_a$, so the speed tuple is independent of the total-radius ordering when the transverse orbit radii are chosen independently. The equatorial and axial cases are coordinate boundaries of B1. Its harmonic-matching hypothesis and discrete-symmetry derivations are stated in [B1 Hypotheses and Discrete Symmetry](spindle-braid.md). No family ordering is asserted.
 
 A terminology boundary applies throughout this section: the field-speed value $s_a=c_f$ is a **coordinate locus** of the configuration space — the boundary where the same-transmitter root inventory changes — and nothing here asserts that any dynamical mechanism holds a layer at that locus. Occupancy of the locus is a chart label, not an attractor claim.
 
