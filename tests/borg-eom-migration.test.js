@@ -163,7 +163,7 @@ test("Borg mounts EOM idle by default and reserves automatic compute for explici
     defaultMounts[0].initialEomSeed.certificate.geometryCertificate.requiredMinimumSeparation,
     displayPlacement.minimumPairSeparation,
   );
-  assert.equal(defaultMounts[0].eomShadowRunner.eomClient, eomClient);
+  assert.equal(defaultMounts[0].eomShadowRunner.eomClientFactory(), eomClient);
   assert.equal(defaultMounts[0].eomShadowRunner.pathCount, 6);
   assert.equal(defaultMounts[0].eomShadowRunner.startTime, 0);
   assert.equal(
@@ -246,7 +246,12 @@ test("Borg mounts EOM idle by default and reserves automatic compute for explici
   assert.equal(recordMounts[0].eomRecordReplay.record, record);
   assert.deepEqual(recordMounts[0].eomRecordReplay.records, [record]);
   assert.equal(recordMounts[0].assemblyViewSession.selectedSourceId, "borg-boot-record-run");
-  assert.equal(recordMounts[0].eomShadowRunner, undefined);
+  assert.equal(
+    typeof recordMounts[0].eomShadowRunner.eomClientFactory,
+    "function",
+    "the one-screen workbench retains a lazy simulation capability",
+  );
+  assert.equal(recordMounts[0].autoStartEom, true);
 
   const comparisonMounts = [];
   await bootBorgApp({
@@ -1331,6 +1336,94 @@ test("Borg native client rejects protocol skew with a restart instruction", () =
       },
     );
   } finally {
+    rmSync(fixtureDirectory, { recursive: true, force: true });
+  }
+});
+
+test("Borg native clients own separate exact-history temporary roots", async () => {
+  const fixtureDirectory = mkdtempSync(join(tmpdir(), "borg-eom-history-owner-"));
+  const fixtureBinary = join(fixtureDirectory, "history-owner-eom-binary.mjs");
+  const fixtureSource = `#!/usr/bin/env node
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
+import { join } from "node:path";
+if (process.argv[2] === "print-protocol-version") {
+  process.stdout.write("EOM_BORG_NATIVE_V10\\n");
+  process.exit(0);
+}
+const rootArgument = process.argv.find((argument) =>
+  argument.startsWith("--history-temp-root="));
+const historyTempRoot = rootArgument.slice("--history-temp-root=".length);
+mkdirSync(historyTempRoot, { recursive: true });
+const marker = join(historyTempRoot, "worker-owner");
+writeFileSync(marker, String(process.pid), "utf8");
+let buffer = "";
+process.stdin.setEncoding("utf8");
+process.stdin.on("data", (chunk) => {
+  buffer += chunk;
+  while (buffer.includes("\\nEND\\n")) {
+    const boundary = buffer.indexOf("\\nEND\\n") + 5;
+    const request = buffer.slice(0, boundary);
+    buffer = buffer.slice(boundary);
+    const lines = request.trim().split("\\n");
+    const run = lines.find((line) => line.startsWith("RUN\\t")).split("\\t");
+    const paths = lines.filter((line) => line.startsWith("PATH\\t"));
+    process.stdout.write(JSON.stringify({
+      status: "completed",
+      acceptedEndTime: run[3],
+      historyTempRoot,
+      markerOwned: existsSync(marker) &&
+        readFileSync(marker, "utf8") === String(process.pid),
+      publishedExtensions: paths.map((line) => ({
+        pathId: line.split("\\t")[1],
+        segments: [],
+      })),
+    }) + "\\n");
+  }
+});
+`;
+  let firstClient = null;
+  let secondClient = null;
+  try {
+    writeFileSync(fixtureBinary, fixtureSource, "utf8");
+    chmodSync(fixtureBinary, 0o755);
+    const config = createBorgEomShadowRunConfig(BORG_DATASET_MANIFEST_V1, {
+      startTime: 10,
+      targetDuration: 10.2,
+      chunkDuration: 0.1,
+    });
+    const histories = createBorgContinuousRetainedHistories(
+      trajectoryFrames,
+      BORG_DATASET_MANIFEST_V1,
+      { historyEndTime: 10 },
+    );
+    const request = createBorgEomShadowRequest({
+      manifest: BORG_DATASET_MANIFEST_V1,
+      config,
+      histories,
+      chunkIndex: 0,
+      startTime: 10,
+      endTime: 10.1,
+    });
+    firstClient = createBorgNativeEomProcessClient({ binaryPath: fixtureBinary });
+    const first = await firstClient.evolveRetainedHistories(request);
+    secondClient = createBorgNativeEomProcessClient({ binaryPath: fixtureBinary });
+    const second = await secondClient.evolveRetainedHistories({
+      ...request,
+      requestId: "history-owner-second",
+      runId: "history-owner-second",
+    });
+    const firstAfterSecondStarted = await firstClient.evolveRetainedHistories({
+      ...request,
+      requestId: "history-owner-first-again",
+    });
+
+    assert.notEqual(first.historyTempRoot, second.historyTempRoot);
+    assert.equal(first.markerOwned, true);
+    assert.equal(second.markerOwned, true);
+    assert.equal(firstAfterSecondStarted.markerOwned, true);
+  } finally {
+    await firstClient?.dispose();
+    await secondClient?.dispose();
     rmSync(fixtureDirectory, { recursive: true, force: true });
   }
 });

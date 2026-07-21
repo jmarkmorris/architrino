@@ -1,0 +1,148 @@
+{
+  "schema": "archie-mcp-remote-deployment-contract/v1",
+  "contractId": "architrino_mcp_remote_deployment_fixture_001",
+  "deploymentState": "fixture_only",
+  "remoteReady": false,
+  "publicDeploymentAuthorized": false,
+  "host": null,
+  "protocol": {
+    "revision": "2025-11-25",
+    "transport": "streamable_http",
+    "jsonRpcEncoding": "utf-8",
+    "endpointPath": "/mcp",
+    "postRequestBody": "single_json_rpc_message",
+    "postAcceptTypes": [
+      "application/json",
+      "text/event-stream"
+    ],
+    "postResponseModes": [
+      "application/json"
+    ],
+    "getMode": "method_not_allowed_405",
+    "deleteMode": "method_not_allowed_405",
+    "sessionMode": "stateless",
+    "protocolVersionHeaderRequiredAfterInitialization": true,
+    "unsupportedProtocolVersionStatus": 400
+  },
+  "networkBoundary": {
+    "localBindAddress": "127.0.0.1",
+    "directPublicBindAllowed": false,
+    "tlsRequiredAtIngress": true,
+    "tlsConfigured": false,
+    "trustedProxyConfigured": false
+  },
+  "originPolicy": {
+    "validationRequired": true,
+    "exactAllowlistConfigured": false,
+    "allowedOrigins": [],
+    "wildcardsAllowed": false,
+    "invalidOriginStatus": 403,
+    "missingOriginPolicy": "allow_only_after_authentication"
+  },
+  "authorization": {
+    "requiredForRemote": true,
+    "profile": "oauth_2_1_protected_resource",
+    "authorizationServerConfigured": false,
+    "protectedResourceMetadataRequired": true,
+    "bearerHeaderOnly": true,
+    "queryTokensAllowed": false,
+    "audienceValidationRequired": true,
+    "requiredScopes": [
+      "architrino:mcp:read"
+    ],
+    "tokenPassthroughAllowed": false
+  },
+  "limits": {
+    "maxRequestBytes": 65536,
+    "maxResponseBytes": 32768,
+    "requestTimeoutMs": 10000,
+    "requestsPerMinutePerPrincipal": 60,
+    "burstRequestsPerPrincipal": 10,
+    "maxConcurrentRequestsPerPrincipal": 4,
+    "maxUnauthenticatedRequestsPerMinutePerAddress": 10
+  },
+  "logging": {
+    "safeFields": [
+      "event_class",
+      "request_id",
+      "principal_pseudonym",
+      "tool_name",
+      "response_status",
+      "http_status",
+      "duration_ms",
+      "request_bytes",
+      "response_bytes",
+      "snapshot_id",
+      "snapshot_sha256"
+    ],
+    "forbiddenFields": [
+      "authorization_header",
+      "access_token",
+      "cookie",
+      "raw_query",
+      "raw_arguments",
+      "raw_result_content",
+      "source_content",
+      "private_prompt",
+      "provider_payload",
+      "credential",
+      "raw_log"
+    ],
+    "rawRequestBodyAllowed": false,
+    "rawResponseBodyAllowed": false,
+    "queryTextAllowed": false,
+    "sourceContentAllowed": false,
+    "credentialsAllowed": false
+  },
+  "health": {
+    "livenessPath": "/health/live",
+    "readinessPath": "/health/ready",
+    "publicDetail": "status_only",
+    "readinessRequires": [
+      "validated_snapshot",
+      "fresh_snapshot",
+      "configured_snapshot_hash_match",
+      "origin_allowlist",
+      "authorization",
+      "rate_limiter",
+      "safe_logging",
+      "rollback_candidate"
+    ],
+    "readinessFailureStatus": 503
+  },
+  "snapshotPublication": {
+    "candidatePath": "content/generated/source-index/local-full-corpus-snapshot.v1.json",
+    "candidateSnapshotId": "source_snapshot_full_corpus_v1_5c4e4fca61a177b7e432",
+    "candidateSnapshotSha256": "592d130a8349e9dde6273a549bf8a6ef1da2d4ba34cca18c525ecc4df01bae26",
+    "candidateRepositoryRef": "local-source-state:5c4e4fca61a177b7e432f14ae7c0b9cc19c522f84cd1d0aa640c5c65d9ecbeb9",
+    "acceptedMainRequiredForRemote": true,
+    "candidateIsAcceptedMain": false,
+    "loadMode": "startup_once",
+    "activationMode": "atomic_pointer_swap",
+    "validateBeforeActivation": true,
+    "repositoryReadDuringRequest": false,
+    "writeDuringRequest": false
+  },
+  "rollback": {
+    "requiredBeforeRemoteReady": true,
+    "candidateConfigured": false,
+    "compatibilitySmokeRequired": true,
+    "lastSmokeStatus": "pending",
+    "restoreMode": "atomic_pointer_swap",
+    "publicStatusRequiredWhenUserVisible": true
+  },
+  "capabilityBoundary": {
+    "tools": [
+      "search",
+      "read",
+      "topics",
+      "neighbors"
+    ],
+    "resourcesEnabled": false,
+    "promptsEnabled": false,
+    "modelCallsAllowed": false,
+    "repositoryWritesAllowed": false,
+    "externalActionsAllowed": false,
+    "durableUserStateAllowed": false
+  }
+}

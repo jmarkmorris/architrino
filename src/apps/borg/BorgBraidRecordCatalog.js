@@ -9,6 +9,12 @@ export const BORG_BRAID_RECORD_CATALOG = createBorgBraidRecordCatalog([
     recordUrl:
       "content/assets/borg/records/illustrative-spindle-chart-hypothesis.assembly-view-record.v0.json",
   },
+  {
+    id: "illustrative-planar-tri-binary-spindle-boundary-v0",
+    label: "Spindle boundary — planar tri-binary",
+    recordUrl:
+      "content/assets/borg/records/illustrative-planar-tri-binary-spindle-boundary.assembly-view-record.v0.json",
+  },
 ]);
 
 export function createBorgBraidRecordCatalog(entries) {

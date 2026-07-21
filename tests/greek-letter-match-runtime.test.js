@@ -357,4 +357,8 @@ test("feedback choices use buttons only and avoid dropdown and slider controls",
     css,
     /\.greek-match-center \{[^}]*width: 25%;[^}]*height: 25%;/u
   );
+  assert.match(
+    css,
+    /\.greek-match-center\[data-feedback="teaching"\] \.greek-match-center-status \{[^}]*flex: 0 0 auto;[^}]*white-space: nowrap;/u
+  );
 });

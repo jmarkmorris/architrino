@@ -184,8 +184,7 @@
 
       .borg-mode-boundary {
         display: grid;
-        grid-template-columns: minmax(0, 1fr) max-content;
-        align-items: center;
+        grid-template-columns: minmax(0, 1fr);
         gap: 10px;
         padding: 9px 10px;
         border: 1px solid rgba(94, 183, 183, 0.5);
@@ -221,15 +220,6 @@
         margin-top: 18px;
       }
 
-      .borg-prescribed-workspace-link {
-        display: block;
-        margin-top: 8px;
-      }
-
-      .borg-prescribed-workspace-link[hidden] {
-        display: none;
-      }
-
       .borg-mode-boundary strong {
         color: #d8fff3;
         font-size: 12px;
@@ -248,6 +238,33 @@
 
       .borg-mode-boundary[data-mode="assembly-view-replay"] strong {
         color: #ffe3a4;
+      }
+
+      .borg-starting-geometry-control {
+        display: grid;
+        gap: 5px;
+        color: #d8fff3;
+        font-size: 11px;
+        font-weight: 760;
+      }
+
+      .borg-starting-geometry-control select {
+        width: 100%;
+      }
+
+      .borg-prescribed-branch {
+        display: grid;
+        gap: 8px;
+        margin: 12px 0;
+        padding: 10px;
+        border: 1px solid rgba(94, 183, 183, 0.34);
+        border-radius: 7px;
+        background: rgba(23, 35, 31, 0.72);
+      }
+
+      .borg-prescribed-branch strong {
+        color: #d8fff3;
+        font-size: 11px;
       }
 
       .borg-section {
@@ -1332,12 +1349,19 @@
           </div>
         </header>
 
-        <div id="borg-mode-boundary" class="borg-mode-boundary" data-mode="simulation-workspace" role="status">
+        <div id="borg-mode-boundary" class="borg-mode-boundary" data-mode="simulation-workspace">
+          <label class="borg-starting-geometry-control" for="borg-starting-geometry">
+            Starting geometry
+            <select id="borg-starting-geometry">
+              <optgroup label="Generated">
+                <option value="random" selected>Random architrinos</option>
+              </optgroup>
+            </select>
+          </label>
           <div class="borg-mode-copy">
-            <strong id="borg-mode-label">Simulation workspace</strong>
-            <span id="borg-mode-detail">Initial conditions and EOM solver runs remain separate from record-only replay.</span>
+            <strong id="borg-mode-label">Random initial conditions</strong>
+            <span id="borg-mode-detail" role="status">Display- or Claim-grade EOM simulation is available after Play.</span>
           </div>
-          <a id="borg-mode-switch" class="borg-mode-switch" href="borg.html" hidden>Open simulation workspace</a>
         </div>
         <div id="borg-eom-authority" class="borg-eom-authority" data-grade="display">
           <strong id="borg-eom-authority-label">Run grade</strong>
@@ -1347,20 +1371,20 @@
           </select>
           <span id="borg-eom-authority-detail" role="status">Display-only evolution starts directly from the input history and carries no claim authority.</span>
         </div>
-        <a id="borg-prescribed-workspace-link" class="borg-mode-switch borg-prescribed-workspace-link" href="borg.html">Open prescribed geometry workspace</a>
-
         <section id="borg-assembly-view-controls" class="borg-section borg-replay-controls" aria-label="Assembly-view replay controls" hidden>
-          <label id="borg-prescribed-record-control" class="borg-replay-control">
-            Prescribed Geometry
-            <select id="borg-prescribed-record-select"></select>
-          </label>
-
           <section class="borg-binary-geometry" aria-labelledby="borg-binary-geometry-heading">
             <h2 id="borg-binary-geometry-heading">Braid Taxonomy</h2>
             <p>Cap angle locates each antipodal pair above and below the equatorial plane; it is not an orbit-plane tilt.</p>
             <div class="borg-table-scroll">
               <table id="borg-binary-geometry-table" class="borg-binary-table"></table>
             </div>
+          </section>
+
+          <section id="borg-prescribed-branch" class="borg-prescribed-branch" aria-labelledby="borg-prescribed-branch-heading">
+            <strong id="borg-prescribed-branch-heading">Display simulation branch</strong>
+            <span id="borg-prescribed-branch-profile" class="borg-control-help">Optional EOM solver continuation at Display grade.</span>
+            <button id="borg-start-prescribed-display" class="borg-replay-action" type="button">Continue with Display simulation</button>
+            <output id="borg-prescribed-branch-feedback" class="borg-control-help" role="status">Select a history cut after the record start.</output>
           </section>
 
           <details class="borg-control-drawer">
@@ -1421,7 +1445,7 @@
 
         <section id="borg-eom-controls" class="borg-section borg-eom-controls" aria-label="EOM run and initial condition controls" hidden>
           <form id="borg-initial-condition-form" class="borg-eom-form" novalidate>
-            <details class="borg-control-drawer" open>
+            <details id="borg-initial-condition-drawer" class="borg-control-drawer" open>
               <summary>Initial conditions</summary>
               <div class="borg-drawer-content borg-eom-form-grid">
                 <label class="borg-initial-control is-wide">

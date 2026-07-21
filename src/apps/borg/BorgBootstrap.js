@@ -36,7 +36,10 @@ export async function bootBorgApp({
     catalog: braidRecordCatalog,
     selectedRecordUrls: query.getAll("eomRecord"),
     locationLike,
+    fetchLike,
   });
+  let assemblyViewSession = null;
+  let eomRecordReplay = null;
   if (runtimeMode === BORG_RECORD_REPLAY_RUNTIME_MODE) {
     const recordUrls = query.getAll("eomRecord");
     const records = await Promise.all(recordUrls.map(async (recordUrl) => {
@@ -48,17 +51,12 @@ export async function bootBorgApp({
       }
       return response.json();
     }));
-    const assemblyViewSession = createBorgAssemblyViewSession(records);
-    return mountApp({
-      manifest,
-      assemblyViewSession,
-      eomRecordReplay: {
-        record: records[0],
-        records,
-        sourceUrls: Object.freeze([...recordUrls]),
-      },
-      braidRecordNavigation,
-    });
+    assemblyViewSession = createBorgAssemblyViewSession(records);
+    eomRecordReplay = {
+      record: records[0],
+      records,
+      sourceUrls: Object.freeze([...recordUrls]),
+    };
   }
 
   const eomStartTime = 0;
@@ -113,9 +111,10 @@ export async function bootBorgApp({
     initialConditionConfig: activeInitialConditionConfig,
     // Ordinary Borg startup must stay interactive. The long retained-history
     // evolution is an explicit diagnostic action, not page-load work.
-    autoStartEom: query.get("eom") === "shadow",
+    autoStartEom:
+      runtimeMode === BORG_RECORD_REPLAY_RUNTIME_MODE || query.get("eom") === "shadow",
     eomShadowRunner: {
-      eomClient: createEomClient(),
+      eomClientFactory: createEomClient,
       startTime: eomStartTime,
       targetDuration: eomStartTime + eomDuration,
       runDuration: eomDuration,
@@ -133,6 +132,8 @@ export async function bootBorgApp({
       simulationOuterRadius: displayPlacement.seedingRadius,
       coupling: String(interactiveDefaults.coupling),
     },
+    assemblyViewSession,
+    eomRecordReplay,
     braidRecordNavigation,
   });
 }
@@ -141,6 +142,7 @@ export function createBorgBraidRecordNavigation({
   catalog = BORG_BRAID_RECORD_CATALOG,
   selectedRecordUrls = [],
   locationLike = globalThis.location,
+  fetchLike = globalThis.fetch,
 } = {}) {
   const entries = catalog?.entries;
   if (!Array.isArray(entries)) {
@@ -167,11 +169,29 @@ export function createBorgBraidRecordNavigation({
     return url;
   }
 
+  async function load(recordId) {
+    const entry = entries.find((candidate) => candidate.id === recordId);
+    if (!entry) {
+      throw new RangeError(`Borg braid catalog has no record ${String(recordId)}.`);
+    }
+    if (typeof fetchLike !== "function") {
+      throw new TypeError("Borg braid record loading requires fetch().");
+    }
+    const response = await fetchLike(entry.recordUrl);
+    if (!response?.ok) {
+      throw new Error(
+        `Borg prescribed geometry fetch failed (${response?.status ?? "no response"}): ${entry.recordUrl}`,
+      );
+    }
+    return response.json();
+  }
+
   return Object.freeze({
     catalog,
     selectedRecordId,
     buildUrl,
     navigate,
+    load,
   });
 }
 

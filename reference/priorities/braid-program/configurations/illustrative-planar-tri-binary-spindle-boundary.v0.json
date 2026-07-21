@@ -1,0 +1,69 @@
+{
+  "schema": "spindle-braid-chart-spec.v0",
+  "specId": "illustrative-planar-tri-binary-spindle-boundary-v0",
+  "label": "Illustrative planar tri-binary spindle boundary",
+  "claimGrade": "chart-hypothesis",
+  "evidenceStatus": "display-only",
+  "date": "2026-07-21",
+  "taxonomy": {
+    "family": "spindle-braid",
+    "familyLabel": "Spindle braid",
+    "classification": "boundary-member",
+    "classificationLabel": "Boundary member",
+    "variant": "planar-tri-binary",
+    "variantLabel": "Planar tri-binary limit",
+    "canonSource": "content/markdown/aaa/noether-braid/spindle-braid.md#boundary-members"
+  },
+  "sourceOrder": ["planar-spindle-binary-1", "planar-spindle-binary-2", "planar-spindle-binary-3"],
+  "frame": {
+    "e1": [1, 0, 0],
+    "e2": [0, 1, 0],
+    "axis": [0, 0, 1],
+    "orthonormalTolerance": 1e-12
+  },
+  "responseCenter": [0, 0, 0],
+  "axialDriftSpeed": 0,
+  "angularFrequency": 1.5707963267948966,
+  "displayTrailPeriods": 1,
+  "layers": [
+    {
+      "binaryId": "planar-spindle-binary-1",
+      "worldlineIds": ["planar-spindle-1-0", "planar-spindle-1-1"],
+      "radius": 0.22,
+      "capAngle": 0,
+      "phase": 0,
+      "polarityAssignment": 1
+    },
+    {
+      "binaryId": "planar-spindle-binary-2",
+      "worldlineIds": ["planar-spindle-2-0", "planar-spindle-2-1"],
+      "radius": 0.32,
+      "capAngle": 0,
+      "phase": 2.0943951023931953,
+      "polarityAssignment": -1
+    },
+    {
+      "binaryId": "planar-spindle-binary-3",
+      "worldlineIds": ["planar-spindle-3-0", "planar-spindle-3-1"],
+      "radius": 0.44,
+      "capAngle": 0,
+      "phase": 4.1887902047863905,
+      "polarityAssignment": 1
+    }
+  ],
+  "recordInterval": {
+    "start": 0,
+    "end": 8,
+    "delayHorizon": 2
+  },
+  "interpolation": {
+    "rule": "piecewise-cubic-hermite/v0",
+    "interval": 0.05,
+    "errorMethod": "fourth-derivative-hermite-envelope/v1",
+    "positionDivisor": 300,
+    "velocityDivisor": 8,
+    "roundoffMultiplier": 64
+  },
+  "ansatzSampleCount": 96,
+  "sphericalEnvelopeRadius": 0.5
+}

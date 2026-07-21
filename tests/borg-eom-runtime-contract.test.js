@@ -413,7 +413,10 @@ test("Borg path-history renderer uses native row segments, not visual smoothing 
     /if \(replayActive && state\.replayDisplayMode !== "animated"\) \{\s*setReplayDisplayMode\("animated"\);/,
   );
   assert.doesNotMatch(htmlSource, /id="borg-replay-display-mode"/);
-  assert.match(runtimeSource, /dom\.newDistributionButton\.hidden = replayActive;/);
+  assert.match(
+    runtimeSource,
+    /dom\.newDistributionButton\.hidden = replayActive \|\| activePrescribedDisplayBranch != null;/,
+  );
   assert.match(
     htmlSource,
     /\.borg-timeline \.borg-icon-button\[hidden\],[\s\S]*\.borg-eom-authority\[hidden\] \{\s*display: none;/,
@@ -488,7 +491,7 @@ test("Borg path-history renderer uses native row segments, not visual smoothing 
   assert.doesNotMatch(htmlSource, /id="borg-eom-restart-button"/);
   assert.doesNotMatch(htmlSource, /id="borg-apply-initial-condition"/);
   assert.match(htmlSource, /id="borg-eom-progress"[^>]*value="0"[^>]*hidden/);
-  assert.match(htmlSource, /<details class="borg-control-drawer" open>\s*<summary>Initial conditions<\/summary>/);
+  assert.match(htmlSource, /<details id="borg-initial-condition-drawer" class="borg-control-drawer" open>\s*<summary>Initial conditions<\/summary>/);
   assert.match(htmlSource, /class="borg-control-drawer"[\s\S]*<summary>Run status<\/summary>/);
   assert.match(htmlSource, /Initial history[\s\S]*Exact inertial polynomial/);
   assert.match(htmlSource, /Forward evolution[\s\S]*EOM chunks after T=0/);
@@ -544,11 +547,24 @@ test("Borg path-history renderer uses native row segments, not visual smoothing 
   assert.match(runtimeSource, /scheduleInitialConditionReset/);
   assert.match(runtimeSource, /applyInitialConditionResetNow/);
   assert.match(runtimeSource, /startNewDistributionRun\(\{ advanceSeed: true, autoStart: false \}\)/);
-  assert.match(runtimeSource, /if \(!replayActive && options\.eomShadowRunner && !state\.dynamicRunner\) \{\s*startRunAndPlayback\(\);/);
-  assert.match(htmlSource, /id="borg-prescribed-record-control"[\s\S]*Prescribed Geometry[\s\S]*id="borg-prescribed-record-select"/);
-  assert.match(runtimeSource, /navigation\.navigate\(dom\.prescribedRecordSelect\.value\)/);
-  assert.match(htmlSource, /id="borg-prescribed-workspace-link"[^>]*>Open prescribed geometry workspace<\/a>/);
-  assert.match(htmlSource, /id="borg-mode-boundary"[\s\S]*id="borg-eom-authority"[\s\S]*id="borg-prescribed-workspace-link"/);
+  assert.match(runtimeSource, /if \(isEomSimulationActive\(\) && !state\.dynamicRunner\) \{\s*startRunAndPlayback\(\);/);
+  assert.match(
+    htmlSource,
+    /Starting geometry[\s\S]*id="borg-starting-geometry"[\s\S]*Random architrinos/,
+  );
+  assert.match(runtimeSource, /navigation\.load\(nextId\)/);
+  assert.doesNotMatch(htmlSource, /Open prescribed geometry workspace/);
+  assert.match(
+    htmlSource,
+    /id="borg-starting-geometry"[\s\S]*id="borg-eom-authority"[\s\S]*id="borg-assembly-view-controls"/,
+  );
+  assert.match(htmlSource, /id="borg-start-prescribed-display"[^>]*>Continue with Display simulation<\/button>/);
+  assert.match(runtimeSource, /createBorgPrescribedDisplayBranch/);
+  assert.match(runtimeSource, /simulationWorkspaceSnapshots/);
+  assert.match(runtimeSource, /let currentFrames = replayActive \? \[\] : \[\.\.\.initialDisplayRows\];/);
+  assert.match(runtimeSource, /if \(!replayActive && activePrescribedDisplayBranch == null\)/);
+  assert.match(runtimeSource, /Selected history cut: T=\$\{cut\.toFixed\(3\)\}/);
+  assert.doesNotMatch(runtimeSource, /Start display simulation from T=/);
   assert.doesNotMatch(htmlSource, /borg-replay-strobe|borg-replay-loop-period/);
   assert.doesNotMatch(runtimeSource, /replayStrobe|replayLoop|resolveBorgAssemblyViewStrobeTime/);
   assert.match(htmlSource, /id="borg-replay-export"[^>]*>Export image<\/button>[\s\S]*id="borg-replay-export-animation"[^>]*disabled[^>]*>Export animation<\/button>/);
@@ -615,6 +631,17 @@ test("Borg surface keeps EOM-native layer policy and fail-closed authority", () 
   const shellLayer = surfaceDesign.layerStrip.find((layer) => layer.layer === "boundary-shell-status");
   assert.equal(shellLayer.state, "contextual-disabled");
   assert.equal(shellLayer.valueAuthority, "fail-closed-value");
+});
+
+test("Borg prescribed-geometry provenance presents source-carried braid taxonomy", () => {
+  const assemblyViewControlsSource = readFileSync(
+    new URL("../src/apps/borg/BorgAssemblyViewControls.js", import.meta.url),
+    "utf8",
+  );
+  assert.match(assemblyViewControlsSource, /\["Braid family", taxonomy\.familyLabel\]/);
+  assert.match(assemblyViewControlsSource, /\["Taxonomy class", taxonomy\.classificationLabel\]/);
+  assert.match(assemblyViewControlsSource, /\["Variant", taxonomy\.variantLabel\]/);
+  assert.match(assemblyViewControlsSource, /\["Canon source", taxonomy\.canonSource\]/);
 });
 
 function uniqueFrameIndexes(frames) {

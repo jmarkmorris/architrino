@@ -4,7 +4,7 @@
 
 - Kind: `priority-evidence`
 - Claim level: `measured where marked; documented capability where marked`
-- Status: `sdk-and-codex-passing-chatgpt-desktop-pending`
+- Status: `fixture-and-full-corpus-sdk-codex-passing-chatgpt-full-corpus-unmeasured`
 - Parent tracker: [Architrino MCP](priorities.md)
 - Server boundary: [Local Fixture MCP Adapter](local-fixture-mcp-adapter.md)
 
@@ -16,9 +16,9 @@ This packet separates protocol conformance from client-surface conformance. A ma
 
 | Surface | Evidence grade | Result | Exact boundary |
 | --- | --- | --- | --- |
-| Official MCP TypeScript SDK `@modelcontextprotocol/sdk` `1.29.0` | `measured` | `passed` | The SDK initialized the server, negotiated tools, listed exactly four tools, called `topics`, `search`, `read`, and `neighbors`, observed `SOURCE_NOT_FOUND` as a tool-level error, pinged, and closed the stdio transport. |
-| Codex bundled CLI `0.145.0-alpha.18` from the installed ChatGPT desktop app | `measured` | `passed-after-fix` | One ephemeral read-only Codex turn initialized the required server, discovered it, called all four tools, consumed structured content, and reported all four statuses as `ok`. A second fresh turn loaded the saved shared configuration without command-line server overrides and returned three `topics` records with `status: ok`. |
-| ChatGPT desktop local MCP surface | `documented capability` | `installed; pending direct invocation` | The shared `architrino_fixture` stdio entry is installed and enabled. The current OpenAI Codex manual says the ChatGPT desktop app supports local stdio MCP and shares configuration with Codex. This active task cannot reload the new connection without a restart or new chat. No direct ChatGPT tool call is claimed. |
+| Official MCP TypeScript SDK `@modelcontextprotocol/sdk` `1.29.0` | `measured` | `fixture and full corpus passed` | The SDK initialized each launcher, negotiated tools, listed exactly four tools, called `topics`, `search`, `read`, and `neighbors`, observed `SOURCE_NOT_FOUND` as a tool-level error, pinged, and closed the stdio transport. |
+| Codex bundled CLI `0.145.0-alpha.18` from the installed ChatGPT desktop app | `measured` | `fixture and full corpus passed` | The fixture passed through ephemeral and saved configurations. On 2026-07-21 a fresh ephemeral read-only turn loaded only `architrino_full`, called all four tools successfully against snapshot `592d130a8349e9dde6273a549bf8a6ef1da2d4ba34cca18c525ecc4df01bae26`, observed `SOURCE_NOT_FOUND`, and made no persistent configuration change. |
+| ChatGPT desktop local MCP surface | `operator-reported` | `fixture working; exact conformance detail incomplete` | The operator reported that the installed `architrino_fixture` connection is working. No retained direct transcript establishes all four calls plus missing-source behavior, so this is not graded as complete direct conformance. The full-corpus launcher is not persistently configured and has not been called by ChatGPT desktop. |
 | ChatGPT web | `documented limitation` | `not a local-stdio target` | The current OpenAI Codex manual says ChatGPT web uses remote MCP-backed plugin tools and does not read local Codex configuration. |
 
 ## Compatibility Defect Found And Corrected
@@ -41,6 +41,15 @@ The repository still has no root Node package manifest or lockfile, so the SDK i
 ```bash
 node scripts/archie-service/check-fixture-mcp-sdk-conformance.mjs \
   --sdk-root /path/to/node_modules/@modelcontextprotocol/sdk
+```
+
+The same runner targets the full-corpus launcher with:
+
+```bash
+node scripts/archie-service/check-fixture-mcp-sdk-conformance.mjs \
+  --sdk-root /path/to/node_modules/@modelcontextprotocol/sdk \
+  --launcher scripts/archie-service/run-full-corpus-mcp-server.mjs \
+  --server-name architrino-full-corpus-mcp
 ```
 
 The measured pass used the recommended stable V1 package, `@modelcontextprotocol/sdk@1.29.0`, installed in a temporary directory with `zod@4`. The official SDK repository currently labels its V2 main branch pre-alpha and recommends V1 for production use.
@@ -69,16 +78,16 @@ After operator approval, the same entry was installed in the shared MCP configur
 
 `codex mcp get architrino_fixture` and `codex mcp list` report the stdio entry enabled. A fresh ephemeral Codex turn then loaded that saved entry and called `topics` successfully. The entry remains enabled for later operator inspection in both Codex and ChatGPT desktop.
 
-## ChatGPT Desktop Completion Gate
+## ChatGPT Desktop Evidence Boundary
 
-Direct ChatGPT desktop acceptance requires one fresh client session:
+Strict fixture acceptance still requires a retained fresh-client result showing all four tools and the missing-source behavior. Full-corpus acceptance additionally requires operator approval before adding or replacing any persistent MCP entry:
 
 1. restart the MCP connection or open a fresh ChatGPT chat as the UI requires;
-2. confirm that `architrino_fixture` appears in `/mcp` or the connection picker;
+2. confirm that the intended fixture or full-corpus connection appears in `/mcp` or the connection picker;
 3. call all four tools and record structured-result and error behavior;
 4. remove the development connection later if it should not remain installed.
 
-This step is intentionally not represented as complete from shared configuration or Codex behavior. The ChatGPT UI must itself discover and call the server.
+The operator report is retained as useful evidence that the fixture connection works, but it is intentionally not promoted to a complete four-tool conformance result. The ChatGPT UI must itself discover and call the full-corpus server before that named surface is marked passing.
 
 ## Sources Checked
 

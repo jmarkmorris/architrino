@@ -270,8 +270,8 @@ class RetainedHistory {
   }
   [[nodiscard]] std::optional<UniformCircularAnalyticState>
   uniform_circular_analytic_state(const Interval& time) const;
-  [[nodiscard]] double t_start() const noexcept;
-  [[nodiscard]] double t_end() const noexcept;
+  [[nodiscard]] double t_start() const;
+  [[nodiscard]] double t_end() const;
   [[nodiscard]] double nominal_speed_upper_bound() const noexcept {
     return nominal_speed_upper_bound_;
   }

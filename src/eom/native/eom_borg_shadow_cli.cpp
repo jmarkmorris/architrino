@@ -1096,6 +1096,11 @@ void run(
           .histories = std::move(cached_histories),
           .joint_histories = result.joint_histories,
       });
+    } else {
+      // A halted request has no reusable worker prefix. Release its disk store
+      // as well, so a browser retry can resend complete history into a clean
+      // directory even when the halt was caused by external file loss.
+      eom::release_history_disk_storage_run();
     }
   }
   const std::string output_grade =
@@ -2063,6 +2068,11 @@ int main(int argc, char** argv) {
               &incremental_cache, &request_boundary_consumed);
         } catch (const std::exception& error) {
           incremental_cache.reset();
+          // A disk-history read or write failure invalidates the complete
+          // worker-owned store, not merely the current snapshot. Release it so
+          // the next full request starts from a clean run directory instead of
+          // reopening a missing or damaged block.
+          eom::release_history_disk_storage_run();
           if (!request_boundary_consumed) {
             drain_failed_request_to_boundary();
           }

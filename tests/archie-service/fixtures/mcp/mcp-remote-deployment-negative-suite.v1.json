@@ -1,0 +1,129 @@
+{
+  "schema": "archie-mcp-remote-deployment-negative-suite/v1",
+  "suiteId": "architrino_mcp_remote_deployment_negative_001",
+  "baseFixture": "tests/archie-service/fixtures/mcp/mcp-remote-deployment-contract.v1.json",
+  "cases": [
+    {
+      "caseId": "remote-public-deploy-authority-negative-001",
+      "path": "publicDeploymentAuthorized",
+      "value": true,
+      "expectedCode": "PUBLIC_DEPLOYMENT_FORBIDDEN"
+    },
+    {
+      "caseId": "remote-ready-with-open-gates-negative-001",
+      "path": "remoteReady",
+      "value": true,
+      "expectedCode": "REMOTE_READINESS_GATES_OPEN"
+    },
+    {
+      "caseId": "remote-wrong-transport-negative-001",
+      "path": "protocol.transport",
+      "value": "stdio",
+      "expectedCode": "TRANSPORT_MISMATCH"
+    },
+    {
+      "caseId": "remote-wrong-endpoint-negative-001",
+      "path": "protocol.endpointPath",
+      "value": "/api/mcp",
+      "expectedCode": "MCP_ENDPOINT_MISMATCH"
+    },
+    {
+      "caseId": "remote-stream-get-negative-001",
+      "path": "protocol.getMode",
+      "value": "server_sent_events",
+      "expectedCode": "UNSUPPORTED_STREAMING_MODE"
+    },
+    {
+      "caseId": "remote-origin-wildcard-negative-001",
+      "path": "originPolicy.wildcardsAllowed",
+      "value": true,
+      "expectedCode": "ORIGIN_WILDCARD_FORBIDDEN"
+    },
+    {
+      "caseId": "remote-origin-value-wildcard-negative-001",
+      "path": "originPolicy.allowedOrigins",
+      "value": [
+        "https://*.example.com"
+      ],
+      "expectedCode": "ORIGIN_ALLOWLIST_INVALID"
+    },
+    {
+      "caseId": "remote-auth-disabled-negative-001",
+      "path": "authorization.requiredForRemote",
+      "value": false,
+      "expectedCode": "REMOTE_AUTH_REQUIRED"
+    },
+    {
+      "caseId": "remote-query-token-negative-001",
+      "path": "authorization.queryTokensAllowed",
+      "value": true,
+      "expectedCode": "QUERY_TOKEN_FORBIDDEN"
+    },
+    {
+      "caseId": "remote-token-passthrough-negative-001",
+      "path": "authorization.tokenPassthroughAllowed",
+      "value": true,
+      "expectedCode": "TOKEN_PASSTHROUGH_FORBIDDEN"
+    },
+    {
+      "caseId": "remote-tls-optional-negative-001",
+      "path": "networkBoundary.tlsRequiredAtIngress",
+      "value": false,
+      "expectedCode": "REMOTE_TLS_REQUIRED"
+    },
+    {
+      "caseId": "remote-response-ceiling-negative-001",
+      "path": "limits.maxResponseBytes",
+      "value": 65536,
+      "expectedCode": "TOOL_RESPONSE_LIMIT_MISMATCH"
+    },
+    {
+      "caseId": "remote-query-log-negative-001",
+      "path": "logging.queryTextAllowed",
+      "value": true,
+      "expectedCode": "SENSITIVE_LOGGING_FORBIDDEN"
+    },
+    {
+      "caseId": "remote-repository-read-negative-001",
+      "path": "snapshotPublication.repositoryReadDuringRequest",
+      "value": true,
+      "expectedCode": "REQUEST_REPOSITORY_READ_FORBIDDEN"
+    },
+    {
+      "caseId": "remote-non-atomic-activation-negative-001",
+      "path": "snapshotPublication.activationMode",
+      "value": "in_place_overwrite",
+      "expectedCode": "ATOMIC_ACTIVATION_REQUIRED"
+    },
+    {
+      "caseId": "remote-rollback-optional-negative-001",
+      "path": "rollback.requiredBeforeRemoteReady",
+      "value": false,
+      "expectedCode": "ROLLBACK_REQUIRED"
+    },
+    {
+      "caseId": "remote-write-tool-negative-001",
+      "path": "capabilityBoundary.tools",
+      "value": [
+        "search",
+        "read",
+        "topics",
+        "neighbors",
+        "write"
+      ],
+      "expectedCode": "CAPABILITY_BOUNDARY_VIOLATION"
+    },
+    {
+      "caseId": "remote-model-call-negative-001",
+      "path": "capabilityBoundary.modelCallsAllowed",
+      "value": true,
+      "expectedCode": "CAPABILITY_BOUNDARY_VIOLATION"
+    },
+    {
+      "caseId": "remote-unbounded-rate-negative-001",
+      "path": "limits.requestsPerMinutePerPrincipal",
+      "value": 0,
+      "expectedCode": "INVALID_REQUEST_LIMIT"
+    }
+  ]
+}

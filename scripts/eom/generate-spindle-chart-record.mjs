@@ -26,6 +26,32 @@ export const DEFAULT_SPINDLE_RECORD_PATH = path.resolve(
   SCRIPT_DIRECTORY,
   "../../content/assets/borg/records/illustrative-spindle-chart-hypothesis.assembly-view-record.v0.json",
 );
+export const SPINDLE_CHART_TARGETS = Object.freeze([
+  Object.freeze({
+    specPath: DEFAULT_SPINDLE_SPEC_PATH,
+    outPath: DEFAULT_SPINDLE_RECORD_PATH,
+  }),
+  Object.freeze({
+    specPath: path.resolve(
+      SCRIPT_DIRECTORY,
+      "../../reference/priorities/braid-program/configurations/illustrative-planar-tri-binary-spindle-boundary.v0.json",
+    ),
+    outPath: path.resolve(
+      SCRIPT_DIRECTORY,
+      "../../content/assets/borg/records/illustrative-planar-tri-binary-spindle-boundary.assembly-view-record.v0.json",
+    ),
+  }),
+  Object.freeze({
+    specPath: path.resolve(
+      SCRIPT_DIRECTORY,
+      "../../reference/priorities/braid-program/configurations/illustrative-full-cap-axial-spindle-boundary.v0.json",
+    ),
+    outPath: path.resolve(
+      SCRIPT_DIRECTORY,
+      "../../content/assets/borg/records/illustrative-full-cap-axial-spindle-boundary.assembly-view-record.v0.json",
+    ),
+  }),
+]);
 
 export function validateSpindleChartSpec(spec) {
   if (!spec || typeof spec !== "object" || spec.schema !== SPINDLE_CHART_SPEC_SCHEMA) {
@@ -33,6 +59,31 @@ export function validateSpindleChartSpec(spec) {
   }
   for (const field of ["specId", "label", "date"]) {
     requireConcreteString(spec[field], field);
+  }
+  const taxonomy = spec.taxonomy;
+  if (!taxonomy || typeof taxonomy !== "object" || Array.isArray(taxonomy)) {
+    throw new TypeError("spindle chart specification requires taxonomy metadata.");
+  }
+  for (const field of [
+    "family",
+    "familyLabel",
+    "classification",
+    "classificationLabel",
+    "variant",
+    "variantLabel",
+    "canonSource",
+  ]) {
+    requireConcreteString(taxonomy[field], `taxonomy.${field}`);
+  }
+  if (taxonomy.family !== "spindle-braid") {
+    throw new TypeError("spindle chart taxonomy.family must be spindle-braid.");
+  }
+  if (!["family-member", "boundary-member", "frequency-variant", "parameter-variant"].includes(
+    taxonomy.classification,
+  )) {
+    throw new TypeError(
+      "spindle chart taxonomy.classification must be family-member, boundary-member, frequency-variant, or parameter-variant.",
+    );
   }
   if (spec.claimGrade !== "chart-hypothesis" || spec.evidenceStatus !== "display-only") {
     throw new TypeError(
@@ -279,6 +330,7 @@ export function generateSpindleChartRecord(rawSpec, options = {}) {
         responseCenter: objectVector(spec.responseCenter),
         sphericalEnvelopeRadius: spec.sphericalEnvelopeRadius,
         displayTrailPeriods: spec.displayTrailPeriods,
+        taxonomy: Object.freeze({ ...spec.taxonomy }),
       },
     },
     window: {
@@ -347,6 +399,7 @@ function parseArgs(args) {
     specPath: DEFAULT_SPINDLE_SPEC_PATH,
     outPath: DEFAULT_SPINDLE_RECORD_PATH,
     mode: null,
+    all: false,
   };
   for (let index = 0; index < args.length; index += 1) {
     const arg = args[index];
@@ -356,6 +409,8 @@ function parseArgs(args) {
       index += 1;
       if (arg === "--spec") parsed.specPath = path.resolve(value);
       if (arg === "--out") parsed.outPath = path.resolve(value);
+    } else if (arg === "--all") {
+      parsed.all = true;
     } else if (arg === "--write" || arg === "--check") {
       if (parsed.mode) throw new TypeError("choose exactly one of --write or --check.");
       parsed.mode = arg.slice(2);
@@ -366,6 +421,9 @@ function parseArgs(args) {
   if (!parsed.mode) {
     throw new TypeError("spindle chart generator requires --write or --check.");
   }
+  if (parsed.all && args.some((arg) => arg === "--spec" || arg === "--out")) {
+    throw new TypeError("spindle chart generator --all cannot be combined with --spec or --out.");
+  }
   return parsed;
 }
 
@@ -375,27 +433,35 @@ export function serializeSpindleChartRecord(record) {
 
 function runCli() {
   const args = parseArgs(process.argv.slice(2));
-  const spec = JSON.parse(fs.readFileSync(args.specPath, "utf8"));
+  const targets = args.all
+    ? SPINDLE_CHART_TARGETS
+    : [{ specPath: args.specPath, outPath: args.outPath }];
+  targets.forEach((target) => processTarget(target, args.mode));
+}
+
+function processTarget({ specPath, outPath }, mode) {
+  const spec = JSON.parse(fs.readFileSync(specPath, "utf8"));
   const record = generateSpindleChartRecord(spec, {
-    generatingSpec: path.relative(process.cwd(), args.specPath),
+    generatingSpec: path.relative(process.cwd(), specPath),
   });
   const serialized = serializeSpindleChartRecord(record);
-  if (args.mode === "write") {
-    fs.mkdirSync(path.dirname(args.outPath), { recursive: true });
-    fs.writeFileSync(args.outPath, serialized);
-    process.stdout.write(`spindle chart record written: ${args.outPath}\n`);
+  if (mode === "write") {
+    fs.mkdirSync(path.dirname(outPath), { recursive: true });
+    fs.writeFileSync(outPath, serialized);
+    process.stdout.write(`spindle chart record written: ${outPath}\n`);
     return;
   }
-  if (!fs.existsSync(args.outPath)) {
-    throw new Error(`spindle chart record drift: missing generated record ${args.outPath}`);
+  if (!fs.existsSync(outPath)) {
+    throw new Error(`spindle chart record drift: missing generated record ${outPath}`);
   }
-  const current = fs.readFileSync(args.outPath, "utf8");
+  const current = fs.readFileSync(outPath, "utf8");
   if (current !== serialized) {
     throw new Error(
-      `spindle chart record drift: run node scripts/eom/generate-spindle-chart-record.mjs --write`,
+      "spindle chart record drift: run " +
+      "node scripts/eom/generate-spindle-chart-record.mjs --all --write",
     );
   }
-  process.stdout.write(`spindle chart record check passed: ${args.outPath}\n`);
+  process.stdout.write(`spindle chart record check passed: ${outPath}\n`);
 }
 
 function requireConcreteString(value, label) {

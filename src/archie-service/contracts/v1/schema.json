@@ -11,6 +11,8 @@
     { "$ref": "#/$defs/mcpToolContractSuite" },
     { "$ref": "#/$defs/mcpToolNegativeSuite" },
     { "$ref": "#/$defs/mcpStdioSmoke" },
+    { "$ref": "#/$defs/mcpRemoteDeploymentContract" },
+    { "$ref": "#/$defs/mcpRemoteDeploymentNegativeSuite" },
     { "$ref": "#/$defs/sourceIndexDryRun" },
     { "$ref": "#/$defs/serviceValidationPlan" },
     { "$ref": "#/$defs/endpointResponseContracts" },
@@ -2849,6 +2851,206 @@
         "notebookTermsVersion": { "type": "string", "minLength": 1 },
         "supportRoute": { "type": "string", "minLength": 1 },
         "legalReviewState": { "$ref": "#/$defs/legalReviewState" }
+      }
+    },
+    "mcpRemoteDeploymentContract": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema",
+        "contractId",
+        "deploymentState",
+        "remoteReady",
+        "publicDeploymentAuthorized",
+        "host",
+        "protocol",
+        "networkBoundary",
+        "originPolicy",
+        "authorization",
+        "limits",
+        "logging",
+        "health",
+        "snapshotPublication",
+        "rollback",
+        "capabilityBoundary"
+      ],
+      "properties": {
+        "schema": { "const": "archie-mcp-remote-deployment-contract/v1" },
+        "contractId": { "type": "string", "minLength": 1 },
+        "deploymentState": { "const": "fixture_only" },
+        "remoteReady": { "const": false },
+        "publicDeploymentAuthorized": { "const": false },
+        "host": { "type": "null" },
+        "protocol": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["revision", "transport", "jsonRpcEncoding", "endpointPath", "postRequestBody", "postAcceptTypes", "postResponseModes", "getMode", "deleteMode", "sessionMode", "protocolVersionHeaderRequiredAfterInitialization", "unsupportedProtocolVersionStatus"],
+          "properties": {
+            "revision": { "const": "2025-11-25" },
+            "transport": { "const": "streamable_http" },
+            "jsonRpcEncoding": { "const": "utf-8" },
+            "endpointPath": { "const": "/mcp" },
+            "postRequestBody": { "const": "single_json_rpc_message" },
+            "postAcceptTypes": { "type": "array", "minItems": 2, "items": { "type": "string", "minLength": 1 } },
+            "postResponseModes": { "type": "array", "minItems": 1, "items": { "type": "string", "minLength": 1 } },
+            "getMode": { "const": "method_not_allowed_405" },
+            "deleteMode": { "const": "method_not_allowed_405" },
+            "sessionMode": { "const": "stateless" },
+            "protocolVersionHeaderRequiredAfterInitialization": { "const": true },
+            "unsupportedProtocolVersionStatus": { "const": 400 }
+          }
+        },
+        "networkBoundary": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["localBindAddress", "directPublicBindAllowed", "tlsRequiredAtIngress", "tlsConfigured", "trustedProxyConfigured"],
+          "properties": {
+            "localBindAddress": { "const": "127.0.0.1" },
+            "directPublicBindAllowed": { "const": false },
+            "tlsRequiredAtIngress": { "const": true },
+            "tlsConfigured": { "type": "boolean" },
+            "trustedProxyConfigured": { "type": "boolean" }
+          }
+        },
+        "originPolicy": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["validationRequired", "exactAllowlistConfigured", "allowedOrigins", "wildcardsAllowed", "invalidOriginStatus", "missingOriginPolicy"],
+          "properties": {
+            "validationRequired": { "const": true },
+            "exactAllowlistConfigured": { "type": "boolean" },
+            "allowedOrigins": { "type": "array", "items": { "type": "string", "minLength": 1 } },
+            "wildcardsAllowed": { "const": false },
+            "invalidOriginStatus": { "const": 403 },
+            "missingOriginPolicy": { "const": "allow_only_after_authentication" }
+          }
+        },
+        "authorization": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["requiredForRemote", "profile", "authorizationServerConfigured", "protectedResourceMetadataRequired", "bearerHeaderOnly", "queryTokensAllowed", "audienceValidationRequired", "requiredScopes", "tokenPassthroughAllowed"],
+          "properties": {
+            "requiredForRemote": { "const": true },
+            "profile": { "const": "oauth_2_1_protected_resource" },
+            "authorizationServerConfigured": { "type": "boolean" },
+            "protectedResourceMetadataRequired": { "const": true },
+            "bearerHeaderOnly": { "const": true },
+            "queryTokensAllowed": { "const": false },
+            "audienceValidationRequired": { "const": true },
+            "requiredScopes": { "type": "array", "minItems": 1, "items": { "type": "string", "minLength": 1 } },
+            "tokenPassthroughAllowed": { "const": false }
+          }
+        },
+        "limits": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["maxRequestBytes", "maxResponseBytes", "requestTimeoutMs", "requestsPerMinutePerPrincipal", "burstRequestsPerPrincipal", "maxConcurrentRequestsPerPrincipal", "maxUnauthenticatedRequestsPerMinutePerAddress"],
+          "properties": {
+            "maxRequestBytes": { "type": "integer", "minimum": 1 },
+            "maxResponseBytes": { "const": 32768 },
+            "requestTimeoutMs": { "type": "integer", "minimum": 1 },
+            "requestsPerMinutePerPrincipal": { "type": "integer", "minimum": 1 },
+            "burstRequestsPerPrincipal": { "type": "integer", "minimum": 1 },
+            "maxConcurrentRequestsPerPrincipal": { "type": "integer", "minimum": 1 },
+            "maxUnauthenticatedRequestsPerMinutePerAddress": { "type": "integer", "minimum": 1 }
+          }
+        },
+        "logging": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["safeFields", "forbiddenFields", "rawRequestBodyAllowed", "rawResponseBodyAllowed", "queryTextAllowed", "sourceContentAllowed", "credentialsAllowed"],
+          "properties": {
+            "safeFields": { "type": "array", "minItems": 1, "items": { "type": "string", "minLength": 1 } },
+            "forbiddenFields": { "type": "array", "minItems": 1, "items": { "type": "string", "minLength": 1 } },
+            "rawRequestBodyAllowed": { "const": false },
+            "rawResponseBodyAllowed": { "const": false },
+            "queryTextAllowed": { "const": false },
+            "sourceContentAllowed": { "const": false },
+            "credentialsAllowed": { "const": false }
+          }
+        },
+        "health": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["livenessPath", "readinessPath", "publicDetail", "readinessRequires", "readinessFailureStatus"],
+          "properties": {
+            "livenessPath": { "const": "/health/live" },
+            "readinessPath": { "const": "/health/ready" },
+            "publicDetail": { "const": "status_only" },
+            "readinessRequires": { "type": "array", "minItems": 1, "items": { "type": "string", "minLength": 1 } },
+            "readinessFailureStatus": { "const": 503 }
+          }
+        },
+        "snapshotPublication": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["candidatePath", "candidateSnapshotId", "candidateSnapshotSha256", "candidateRepositoryRef", "acceptedMainRequiredForRemote", "candidateIsAcceptedMain", "loadMode", "activationMode", "validateBeforeActivation", "repositoryReadDuringRequest", "writeDuringRequest"],
+          "properties": {
+            "candidatePath": { "type": "string", "minLength": 1 },
+            "candidateSnapshotId": { "type": "string", "minLength": 1 },
+            "candidateSnapshotSha256": { "type": "string", "minLength": 64 },
+            "candidateRepositoryRef": { "type": "string", "minLength": 1 },
+            "acceptedMainRequiredForRemote": { "const": true },
+            "candidateIsAcceptedMain": { "type": "boolean" },
+            "loadMode": { "const": "startup_once" },
+            "activationMode": { "const": "atomic_pointer_swap" },
+            "validateBeforeActivation": { "const": true },
+            "repositoryReadDuringRequest": { "const": false },
+            "writeDuringRequest": { "const": false }
+          }
+        },
+        "rollback": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["requiredBeforeRemoteReady", "candidateConfigured", "compatibilitySmokeRequired", "lastSmokeStatus", "restoreMode", "publicStatusRequiredWhenUserVisible"],
+          "properties": {
+            "requiredBeforeRemoteReady": { "const": true },
+            "candidateConfigured": { "type": "boolean" },
+            "compatibilitySmokeRequired": { "const": true },
+            "lastSmokeStatus": { "type": "string", "enum": ["pending", "pass", "fail_closed"] },
+            "restoreMode": { "const": "atomic_pointer_swap" },
+            "publicStatusRequiredWhenUserVisible": { "const": true }
+          }
+        },
+        "capabilityBoundary": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["tools", "resourcesEnabled", "promptsEnabled", "modelCallsAllowed", "repositoryWritesAllowed", "externalActionsAllowed", "durableUserStateAllowed"],
+          "properties": {
+            "tools": { "type": "array", "minItems": 4, "items": { "type": "string", "minLength": 1 } },
+            "resourcesEnabled": { "const": false },
+            "promptsEnabled": { "const": false },
+            "modelCallsAllowed": { "const": false },
+            "repositoryWritesAllowed": { "const": false },
+            "externalActionsAllowed": { "const": false },
+            "durableUserStateAllowed": { "const": false }
+          }
+        }
+      }
+    },
+    "mcpRemoteDeploymentNegativeSuite": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema", "suiteId", "baseFixture", "cases"],
+      "properties": {
+        "schema": { "const": "archie-mcp-remote-deployment-negative-suite/v1" },
+        "suiteId": { "type": "string", "minLength": 1 },
+        "baseFixture": { "type": "string", "minLength": 1 },
+        "cases": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["caseId", "path", "value", "expectedCode"],
+            "properties": {
+              "caseId": { "type": "string", "minLength": 1 },
+              "path": { "type": "string", "minLength": 1 },
+              "value": {},
+              "expectedCode": { "type": "string", "minLength": 1 }
+            }
+          }
+        }
       }
     },
     "deploymentSmokePlan": {

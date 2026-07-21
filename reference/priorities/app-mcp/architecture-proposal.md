@@ -60,10 +60,10 @@ The implementation should extend the live repository shape rather than create a 
 | Generated graph artifacts | `content/graph/` | Existing runtime routes, scene graph, and textbook table of contents. |
 | Assets | `content/assets/` | Images and other public source assets. |
 | Existing service contracts | `src/archie-service/contracts/` | Source, manifest, endpoint, provider, action, and service boundaries. |
-| Existing source-index contract | `src/archie-service/source-index/snapshot-v1.mjs` and `scripts/archie-service/build-source-index.mjs` | Deterministic fixture builder and checker for hashed exact-content, search, graph, and metadata views; not yet a complete production corpus indexer. |
+| Existing source-index contract | `src/archie-service/source-index/snapshot-v1.mjs`, `src/archie-service/source-index/full-corpus-v1.mjs`, and the owned builders | Deterministic fixture regression plus complete local-corpus enumeration for hashed exact-content, search, graph, and metadata views. |
 | Existing MCP tool contract | `src/archie-service/mcp/tool-contract-v1.mjs` and `scripts/archie-service/validate-mcp-tool-contracts.mjs` | Pure bounded `search`, `read`, `topics`, and `neighbors` semantics over one snapshot, consumed unchanged by the local adapter. |
-| Local MCP adapter | `src/archie-service/mcp/fixture-stdio-adapter.mjs` and `scripts/archie-service/run-fixture-mcp-server.mjs` | Runnable public-scope stdio adapter over the fixture snapshot; named-client conformance and remote transport remain unresolved. |
-| Versioned index output target | `content/generated/source-index/` or deployment artifact storage | Proposed immutable snapshots; final storage decision remains open. |
+| Local MCP adapter | Shared request core plus fixture and full-corpus launchers under `scripts/archie-service/` | Runnable public-scope stdio adapters over one startup-loaded immutable snapshot; full-corpus SDK and Codex conformance pass locally. |
+| Local versioned index output | `content/generated/source-index/local-full-corpus-snapshot.v1.json` | App-mcp-owned local immutable snapshot; remote artifact storage and accepted-`main` publication remain open. |
 
 The MCP service should be a protocol adapter over the shared source index. It should not fork source classes, visibility rules, source authority, System Card routing, or deployment boundaries already owned by the Archie service packets.
 

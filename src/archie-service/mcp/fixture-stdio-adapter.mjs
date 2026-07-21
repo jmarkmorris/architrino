@@ -4,13 +4,14 @@ import {
   MCP_TOOL_LIMITS,
 } from "./tool-contract-v1.mjs";
 import {
-  canonicalJson,
   hashCanonical,
 } from "../source-index/snapshot-v1.mjs";
 
 export const MCP_PROTOCOL_VERSION = "2025-11-25";
 export const MCP_FIXTURE_SERVER_NAME = "architrino-fixture-mcp";
 export const MCP_FIXTURE_SERVER_VERSION = "0.1.0";
+export const MCP_FULL_CORPUS_SERVER_NAME = "architrino-full-corpus-mcp";
+export const MCP_FULL_CORPUS_SERVER_VERSION = "1.0.0-local";
 
 const TOOL_NAMES = ["search", "read", "topics", "neighbors"];
 
@@ -103,8 +104,29 @@ export const MCP_TOOL_DEFINITIONS = Object.freeze([
 ]);
 
 export function createFixtureMcpSession({ snapshot, accessScope = "public" }) {
-  assertFixtureSnapshotBundle(snapshot);
-  requireCondition(accessScope === "public", "fixture MCP adapter currently supports public access only");
+  return createMcpSession({ snapshot, accessScope });
+}
+
+export function createMcpSession({
+  snapshot,
+  accessScope = "public",
+  serverInfo = {
+    name: MCP_FIXTURE_SERVER_NAME,
+    title: "Architrino Fixture MCP",
+    version: MCP_FIXTURE_SERVER_VERSION,
+    description: "Read-only local MCP adapter over one validated Architrino fixture snapshot.",
+  },
+  expectedVisibilityPolicyVersion = null,
+}) {
+  assertSnapshotBundle(snapshot, { expectedVisibilityPolicyVersion });
+  requireCondition(accessScope === "public", "local MCP adapter currently supports public access only");
+  requireCondition(typeof serverInfo?.name === "string" && serverInfo.name.length > 0, "serverInfo requires name");
+  requireCondition(typeof serverInfo?.title === "string" && serverInfo.title.length > 0, "serverInfo requires title");
+  requireCondition(typeof serverInfo?.version === "string" && serverInfo.version.length > 0, "serverInfo requires version");
+  requireCondition(
+    typeof serverInfo?.description === "string" && serverInfo.description.length > 0,
+    "serverInfo requires description"
+  );
   let state = "new";
 
   return {
@@ -129,12 +151,7 @@ export function createFixtureMcpSession({ snapshot, accessScope = "public" }) {
         return jsonRpcResult(message.id, {
           protocolVersion: MCP_PROTOCOL_VERSION,
           capabilities: { tools: { listChanged: false } },
-          serverInfo: {
-            name: MCP_FIXTURE_SERVER_NAME,
-            title: "Architrino Fixture MCP",
-            version: MCP_FIXTURE_SERVER_VERSION,
-            description: "Read-only local MCP adapter over one validated Architrino fixture snapshot.",
-          },
+          serverInfo,
           instructions: "Use search to locate sources, read to retrieve exact bounded content, topics to enumerate addressable records, and neighbors only for declared direct graph edges. Source authority fields are mandatory context; retrieval is not proof.",
         });
       }
@@ -148,8 +165,26 @@ export function createFixtureMcpSession({ snapshot, accessScope = "public" }) {
 }
 
 export function assertFixtureSnapshotBundle(snapshot) {
-  requireCondition(snapshot?.schema === "archie-source-index-snapshot/v1", "fixture snapshot has incompatible schema");
-  requireCondition(snapshot.freshnessState === "fresh", "fixture snapshot must be fresh");
+  return assertSnapshotBundle(snapshot);
+}
+
+export function assertSnapshotBundle(snapshot, { expectedVisibilityPolicyVersion = null } = {}) {
+  requireCondition(snapshot?.schema === "archie-source-index-snapshot/v1", "snapshot has incompatible schema");
+  requireCondition(snapshot.freshnessState === "fresh", "snapshot must be fresh");
+  requireCondition(
+    typeof snapshot.repositoryRef === "string" && snapshot.repositoryRef.length > 0,
+    "snapshot lacks repository provenance"
+  );
+  requireCondition(
+    typeof snapshot.visibilityPolicyVersion === "string" && snapshot.visibilityPolicyVersion.length > 0,
+    "snapshot lacks a visibility policy version"
+  );
+  if (expectedVisibilityPolicyVersion !== null) {
+    requireCondition(
+      snapshot.visibilityPolicyVersion === expectedVisibilityPolicyVersion,
+      "snapshot visibility policy version mismatch"
+    );
+  }
   const expectedViews = {
     content: "archie-source-content-view/v1",
     search: "archie-source-search-view/v1",
@@ -172,9 +207,14 @@ export function assertFixtureSnapshotBundle(snapshot) {
 
   const sourceInputById = new Map(snapshot.sourceInputs.map((entry) => [entry.sourceId, entry]));
   const searchById = new Map(snapshot.views.search.records.map((entry) => [entry.sourceId, entry]));
-  requireCondition(sourceInputById.size === snapshot.sourceInputs.length, "fixture snapshot has duplicate source inputs");
-  requireCondition(searchById.size === snapshot.views.search.records.length, "fixture snapshot has duplicate search records");
-  requireCondition(searchById.size === sourceInputById.size, "fixture snapshot source/search counts differ");
+  requireCondition(sourceInputById.size === snapshot.sourceInputs.length, "snapshot has duplicate source inputs");
+  requireCondition(searchById.size === snapshot.views.search.records.length, "snapshot has duplicate search records");
+  requireCondition(searchById.size === sourceInputById.size, "snapshot source/search counts differ");
+  const countedRecords = Object.values(snapshot.sourceRecordCountByClass ?? {}).reduce(
+    (total, count) => total + count,
+    0
+  );
+  requireCondition(countedRecords === searchById.size, "snapshot source-class counts differ from records");
 
   for (const content of snapshot.views.content.records) {
     const sourceInput = sourceInputById.get(content.sourceId);
