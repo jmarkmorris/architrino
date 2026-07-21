@@ -64,6 +64,9 @@ export function validateSpindleChartSpec(spec) {
   if (omega === 0) {
     throw new RangeError("spindle chart angularFrequency must be nonzero.");
   }
+  if (!Number.isSafeInteger(spec.displayTrailPeriods) || spec.displayTrailPeriods < 1) {
+    throw new TypeError("spindle chart displayTrailPeriods must be a positive safe integer.");
+  }
   if (!Array.isArray(spec.layers) || spec.layers.length !== 3) {
     throw new TypeError("spindle chart specification requires exactly three labeled layers.");
   }
@@ -275,6 +278,7 @@ export function generateSpindleChartRecord(rawSpec, options = {}) {
         physicsInvoked: false,
         responseCenter: objectVector(spec.responseCenter),
         sphericalEnvelopeRadius: spec.sphericalEnvelopeRadius,
+        displayTrailPeriods: spec.displayTrailPeriods,
       },
     },
     window: {

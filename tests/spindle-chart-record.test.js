@@ -45,6 +45,10 @@ test("spindle chart specification validates its finite right-handed frame and fi
   const reordered = structuredClone(spec);
   reordered.sourceOrder.reverse();
   assert.throws(() => validateSpindleChartSpec(reordered), /preserve the declared layer order/);
+
+  const invalidTrail = structuredClone(spec);
+  invalidTrail.displayTrailPeriods = 0;
+  assert.throws(() => validateSpindleChartSpec(invalidTrail), /displayTrailPeriods/);
 });
 
 test("prescribed spindle sites satisfy the sphere, antipodal, separation, and common-speed identities", () => {
@@ -168,6 +172,7 @@ test("generated spindle record is deterministic, checked in, ingestible, and pro
   assert.equal(dataset.provenance.prescribedGeometry.physicsInvoked, false);
   assert.deepEqual(dataset.provenance.prescribedGeometry.responseCenter, { x: 0, y: 0, z: 0 });
   assert.equal(dataset.provenance.prescribedGeometry.sphericalEnvelopeRadius, 0.5);
+  assert.equal(dataset.provenance.prescribedGeometry.displayTrailPeriods, 1);
   assert.equal(dataset.worldlines.length, 6);
   assert.equal(dataset.binaries.length, 3);
   assert.equal(dataset.ansatz.length, 6);

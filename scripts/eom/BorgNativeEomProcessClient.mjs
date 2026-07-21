@@ -1,5 +1,6 @@
 import { createHash } from "node:crypto";
 import { spawn, spawnSync } from "node:child_process";
+import { statSync } from "node:fs";
 
 import { canonicalStringify } from "../../src/apps/borg/BorgCertifiedBudgets.js";
 
@@ -8,7 +9,7 @@ const BORG_EOM_CONTRACT_ID = "eom_evolution_contract/v1";
 const BORG_EOM_MODEL_BINDING_ID = "master_eom_binding/v1";
 
 export const BORG_NATIVE_EOM_PROCESS_CLIENT_VERSION =
-  "borg-native-eom-process-client.v8";
+  "borg-native-eom-process-client.v9";
 export const BORG_NATIVE_EOM_PROTOCOL_MAGIC = "EOM_BORG_NATIVE_V9";
 
 export function createBorgNativeEomProcessClient({
@@ -43,6 +44,7 @@ export function createBorgNativeEomProcessClient({
   let cancellationGeneration = 0;
   let wireHistoryCache = null;
   let wireHistoryCacheGeneration = 0;
+  let workerBinarySignature = null;
 
   const client = Object.freeze({
     schema: BORG_NATIVE_EOM_PROCESS_CLIENT_VERSION,
@@ -84,13 +86,20 @@ export function createBorgNativeEomProcessClient({
 
   function ensureWorker() {
     if (worker && worker.exitCode == null && !worker.killed) {
-      return;
+      const currentBinarySignature = readBinarySignature(binaryPath);
+      if (currentBinarySignature === workerBinarySignature) {
+        return;
+      }
+      terminateWorker(
+        new Error("EOM worker executable changed; restarting current binary."),
+      );
     }
     const generation = ++workerGeneration;
     wireHistoryCache = null;
     wireHistoryCacheGeneration = 0;
     responseBuffer = "";
     errorBuffer = "";
+    workerBinarySignature = readBinarySignature(binaryPath);
     worker = spawn(binaryPath, ["borg-shadow-server-v0", ...binaryArgs], {
       stdio: ["pipe", "pipe", "pipe"],
     });
@@ -181,6 +190,7 @@ export function createBorgNativeEomProcessClient({
     const pending = activeRequest;
     activeRequest = null;
     worker = null;
+    workerBinarySignature = null;
     wireHistoryCache = null;
     wireHistoryCacheGeneration = 0;
     if (pending) {
@@ -194,6 +204,7 @@ export function createBorgNativeEomProcessClient({
     activeRequest = null;
     const current = worker;
     worker = null;
+    workerBinarySignature = null;
     wireHistoryCache = null;
     wireHistoryCacheGeneration = 0;
     ++workerGeneration;
@@ -207,6 +218,11 @@ export function createBorgNativeEomProcessClient({
       current.kill("SIGKILL");
     }
   }
+}
+
+function readBinarySignature(binaryPath) {
+  const stats = statSync(binaryPath);
+  return `${stats.dev}:${stats.ino}:${stats.size}:${stats.mtimeMs}`;
 }
 
 export function encodeNativeRequest(request, { cachedHistories = null } = {}) {

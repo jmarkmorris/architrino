@@ -1,7 +1,6 @@
 import {
-  BORG_ASSEMBLY_VIEW_CONTRACT_BLOCKERS,
   createBorgAssemblyViewPresentation,
-  resolveBorgAssemblyViewLoopPeriod,
+  resolveBorgAssemblyViewTrail,
 } from "./BorgAssemblyViewSession.js";
 
 const FILTER_LABELS = Object.freeze({
@@ -20,14 +19,9 @@ export function createBorgAssemblyViewControls({
   session,
   dom,
   onRecordChange,
-  onDisplayModeChange,
   onCameraModeChange,
-  onStrobeChange,
-  onLoopChange,
   onExport,
 }) {
-  let strobeEnabled = false;
-  let loopEnabled = false;
   const listeners = [];
 
   function listen(element, type, handler) {
@@ -40,60 +34,40 @@ export function createBorgAssemblyViewControls({
     const presentation = createBorgAssemblyViewPresentation(entry);
     dom.controls.hidden = false;
     dom.modeBoundary.dataset.mode = "assembly-view-replay";
-    dom.modeLabel.textContent = "Assembly-view replay";
-    dom.modeDetail.textContent =
-      "Sealed record only. Workspace initial conditions and the EOM solver are disabled.";
-    dom.authorityNotice.textContent = presentation.authorityNotice;
+    dom.modeLabel.textContent = "Record replay";
+    dom.modeDetail.textContent = "A sealed prescribed path is open; the EOM solver is not running.";
+    dom.modeSwitch.hidden = false;
+    dom.modeSwitch.textContent = "Open simulation workspace";
+    dom.dateChip.hidden = false;
+    dom.dateChip.textContent = presentation.provenance.date;
+    dom.dateChip.title = `Record date ${presentation.provenance.date}`;
     const prescribedGeometry = presentation.provenance.prescribedGeometry;
     renderFieldRows(documentLike, dom.provenance, [
-      ["Record type", presentation.claimLabel],
       [prescribedGeometry ? "Geometry source" : "Engine", `${presentation.provenance.engineId} ${presentation.provenance.engineVersion}`],
       ["Physics invoked", prescribedGeometry ? "no — prescribed chart arithmetic only" : "see source engine provenance"],
       ["Run id", presentation.provenance.runId],
-      ["Claim grade", presentation.provenance.claimGrade],
-      ["Evidence status", presentation.provenance.evidenceStatus],
       ["Generating specification", presentation.provenance.generatingSpec],
-      ["Date", presentation.provenance.date],
       ["Coverage", `${presentation.coverage.start} to ${presentation.coverage.end}`],
       ["Delay horizon h", presentation.delayHorizon],
     ]);
+    dom.recordControl.hidden = session.records.length < 2;
+    dom.collectionTools.hidden = session.records.length < 2;
     renderRecordOptions();
     renderFilterOptions();
     renderComparisonOptions();
+    renderBinaryGeometryTable(documentLike, dom.binaryGeometryTable, presentation.binaryRows);
     renderOverlayRows(presentation);
 
-    dom.displayMode.value = presentation.staticChartPose ? "chart-pose" : "animated";
-    const animatedOption = dom.displayMode.querySelector?.('option[value="animated"]');
-    if (animatedOption) {
-      animatedOption.textContent = presentation.staticChartPose
-        ? "Prescribed path playback"
-        : "Animated replay";
-      animatedOption.toggleAttribute?.("disabled", false);
-    }
     dom.cameraMode.value = "free";
-    const loop = resolveBorgAssemblyViewLoopPeriod(entry);
-    dom.loopButton.disabled = !loop.available;
-    dom.loopButton.title = loop.available
-      ? `Loop ${loop.period} recorded time units from source binary frequency ${loop.frequency}.`
-      : loop.message;
-    if (!loop.available) {
-      loopEnabled = false;
-      syncToggle(dom.loopButton, false, "Loop one period");
-    }
-    const frequency = loop.frequency ?? null;
-    dom.strobeFrequency.value = frequency == null ? "" : String(frequency);
-    dom.strobeButton.disabled = frequency == null;
+    const trail = resolveBorgAssemblyViewTrail(entry);
+    dom.trailSummary.textContent = trail.periodCount == null
+      ? `Trail depth: ${format(trail.duration)} recorded time units.`
+      : `Trail: ${trail.periodCount} full rotation${trail.periodCount === 1 ? "" : "s"} (${format(trail.duration)} recorded time units).`;
     dom.cameraMode.querySelector?.('option[value="co-rotating"]')?.toggleAttribute?.(
       "disabled",
-      frequency == null || !hasPlaneNormal(entry),
+      trail.period == null || !hasPlaneNormal(entry),
     );
-    setFeedback(
-      session.records.length > 1
-        ? BORG_ASSEMBLY_VIEW_CONTRACT_BLOCKERS.comparisonTransforms
-        : BORG_ASSEMBLY_VIEW_CONTRACT_BLOCKERS.collectionCarrier,
-      "bad",
-    );
-    onDisplayModeChange?.(dom.displayMode.value);
+    setFeedback("", "warn");
   }
 
   function renderRecordOptions() {
@@ -166,11 +140,6 @@ export function createBorgAssemblyViewControls({
   }
 
   function renderOverlayRows(presentation) {
-    const binaries = presentation.binaryRows.length === 0
-      ? "unavailable"
-      : presentation.binaryRows.map((binary) =>
-        `${binary.sourceId}: f=${format(binary.frequency)}, radius=${format(binary.raw.layerRadius)}, cap=${format(binary.raw.capAngle)}, separation=${format(binary.planarOffset)}, speed=${format(binary.raw.carrierSpeed)}`,
-      ).join(" | ");
     const events = presentation.eventRows.length === 0
       ? "unavailable"
       : presentation.eventRows.map((event) =>
@@ -181,8 +150,10 @@ export function createBorgAssemblyViewControls({
     );
     renderFieldRows(documentLike, dom.overlayFields, [
       ["Polarity", "source-carried per worldline"],
-      ["Speed relative to c_f", presentation.fieldSpeedStatus],
-      ["Binaries", binaries],
+      ["Speed relative to c_f", {
+        text: "Unavailable in this record schema.",
+        title: presentation.fieldSpeedStatus,
+      }],
       ["Binary axes", axes.length === 0 ? "unavailable" : `${axes.length} source-carried axis rows`],
       ["Events", events],
       ["Branch status", presentation.sourceStatuses.branch ?? "unavailable"],
@@ -190,7 +161,10 @@ export function createBorgAssemblyViewControls({
       ["Axis-alignment status", presentation.sourceStatuses.axisAlignment ?? "unavailable"],
       ["Topological charge", presentation.sourceStatuses.topologicalCharge ?? "unavailable"],
       ["Capture status", presentation.sourceStatuses.capture ?? "unavailable"],
-      ["Spin / polarity dipole", presentation.spinDipoleStatus],
+      ["Spin / polarity dipole", {
+        text: "Unavailable in this record schema.",
+        title: presentation.spinDipoleStatus,
+      }],
       ["Ansatz curves", presentation.ansatz.length || "unavailable"],
     ]);
   }
@@ -208,19 +182,13 @@ export function createBorgAssemblyViewControls({
     dom.feedback.value = message;
     dom.feedback.textContent = message;
     dom.feedback.dataset.tone = tone;
+    dom.feedback.hidden = !message;
   }
 
   listen(dom.recordSelect, "change", () => {
-    strobeEnabled = false;
-    loopEnabled = false;
-    syncToggle(dom.strobeButton, false, "Strobe");
-    syncToggle(dom.loopButton, false, "Loop one period");
     const entry = session.selectSource(dom.recordSelect.value);
     onRecordChange?.(entry);
     render();
-  });
-  listen(dom.displayMode, "change", () => {
-    onDisplayModeChange?.(dom.displayMode.value);
   });
   listen(dom.cameraMode, "change", () => {
     try {
@@ -230,26 +198,6 @@ export function createBorgAssemblyViewControls({
       dom.cameraMode.value = "free";
       setFeedback(error?.message ?? String(error), "bad");
     }
-  });
-  listen(dom.strobeButton, "click", () => {
-    const frequency = Number(dom.strobeFrequency.value);
-    if (!Number.isFinite(frequency) || frequency <= 0) {
-      setFeedback("Strobe requires a positive frequency.", "bad");
-      return;
-    }
-    strobeEnabled = !strobeEnabled;
-    syncToggle(dom.strobeButton, strobeEnabled, "Strobe");
-    onStrobeChange?.(strobeEnabled, frequency);
-  });
-  listen(dom.loopButton, "click", () => {
-    const loop = resolveBorgAssemblyViewLoopPeriod(session.selected);
-    if (!loop.available) {
-      setFeedback(loop.message, "bad");
-      return;
-    }
-    loopEnabled = !loopEnabled;
-    syncToggle(dom.loopButton, loopEnabled, "Loop one period");
-    onLoopChange?.(loopEnabled, loop.period);
   });
   listen(dom.exportButton, "click", () => onExport?.());
   listen(dom.grouping, "change", () => {
@@ -309,10 +257,67 @@ function renderFieldRows(documentLike, container, rows) {
     labelElement.textContent = label;
     const valueElement = documentLike.createElement("span");
     valueElement.className = "borg-field-value";
-    valueElement.textContent = format(value);
+    const displayedValue = value && typeof value === "object" && !Array.isArray(value)
+      ? value.text
+      : value;
+    valueElement.textContent = format(displayedValue);
+    if (value && typeof value === "object" && value.title) {
+      valueElement.title = value.title;
+    }
     row.append(labelElement, valueElement);
     container.append(row);
   });
+}
+
+function renderBinaryGeometryTable(documentLike, table, binaryRows) {
+  table.textContent = "";
+  const caption = documentLike.createElement("caption");
+  caption.textContent = "Source-defined spindle braid geometry";
+  const head = documentLike.createElement("thead");
+  const headRow = documentLike.createElement("tr");
+  ["Field", ...binaryRows.map((_, index) => `Binary ${index + 1}`)].forEach((label) => {
+    const cell = documentLike.createElement("th");
+    cell.scope = "col";
+    cell.textContent = label;
+    headRow.append(cell);
+  });
+  head.append(headRow);
+  const body = documentLike.createElement("tbody");
+  const rows = [
+    ["Source id", (binary) => binary.sourceId],
+    ["Radius", (binary) => binary.raw.layerRadius],
+    ["Frequency", (binary) => binary.frequency],
+    ["Cap angle", (binary) => formatDegrees(binary.raw.capAngle)],
+    ["Axial spacing", (binary) => binary.planarOffset],
+    ["Phase", (binary) => formatDegrees(binary.phase)],
+    ["Transverse radius", (binary) => binary.raw.transverseRadius],
+    ["Carrier speed", (binary) => binary.raw.carrierSpeed],
+    ["Polarity assignment", (binary) => signed(binary.raw.polarityAssignment)],
+  ];
+  rows.forEach(([label, read]) => {
+    const row = documentLike.createElement("tr");
+    const heading = documentLike.createElement("th");
+    heading.scope = "row";
+    heading.textContent = label;
+    row.append(heading);
+    binaryRows.forEach((binary) => {
+      const cell = documentLike.createElement("td");
+      cell.textContent = format(read(binary));
+      row.append(cell);
+    });
+    body.append(row);
+  });
+  table.append(caption, head, body);
+}
+
+function formatDegrees(radians) {
+  const number = Number(radians);
+  return Number.isFinite(number) ? `${format(number * 180 / Math.PI)}°` : null;
+}
+
+function signed(value) {
+  const number = Number(value);
+  return Number.isFinite(number) && number > 0 ? `+${format(number)}` : value;
 }
 
 function syncToggle(button, active, label) {

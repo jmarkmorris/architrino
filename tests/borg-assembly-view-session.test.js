@@ -6,8 +6,7 @@ import {
   assessBorgAssemblyViewComparison,
   createBorgAssemblyViewPresentation,
   createBorgAssemblyViewSession,
-  resolveBorgAssemblyViewLoopPeriod,
-  resolveBorgAssemblyViewStrobeTime,
+  resolveBorgAssemblyViewTrail,
 } from "../src/apps/borg/BorgAssemblyViewSession.js";
 
 function record(runId, overrides = {}) {
@@ -116,31 +115,39 @@ test("presentation labels chart and evolved records distinctly without upgrading
   const evolved = createBorgAssemblyViewSession([
     record("evolved", { claimGrade: "evolved-record", evidenceStatus: "canonical" }),
   ]).selected;
-  assert.equal(createBorgAssemblyViewPresentation(chart).claimLabel, "Chart hypothesis");
+  assert.equal(createBorgAssemblyViewPresentation(chart).claimLabel, "Prescribed Geometry");
   const evolvedPresentation = createBorgAssemblyViewPresentation(evolved);
   assert.equal(evolvedPresentation.claimLabel, "Evolved record");
   assert.equal(evolvedPresentation.provenance.evidenceStatus, "canonical");
   assert.match(evolvedPresentation.authorityNotice, /create no evidence/);
 });
 
-test("strobe and one-period loop use source-carried frequency and stay inside recorded coverage", () => {
-  const entry = createBorgAssemblyViewSession([
-    record("frequency", {
-      binaries: [{
-        id: "binary-a",
-        frequency: 2,
-        planeOrientation: { normal: { x: 0, y: 0, z: 1 } },
-      }],
-    }),
-  ]).selected;
-  assert.deepEqual(resolveBorgAssemblyViewLoopPeriod(entry), {
-    available: true,
-    period: 0.5,
-    frequency: 2,
-    sourceBinaryIndex: 0,
+test("prescribed chart trails use the source-defined number of full rotations", () => {
+  const raw = record("prescribed-trail", {
+    binaries: [{
+      id: "binary-a",
+      frequency: 0.25,
+      planeOrientation: { normal: { x: 0, y: 0, z: 1 } },
+    }],
   });
-  assert.equal(resolveBorgAssemblyViewStrobeTime(entry, 0.74, 2), 0.5);
-  assert.equal(resolveBorgAssemblyViewStrobeTime(entry, 9, 2), 2);
+  raw.provenance.engineId = "prescribed-geometry";
+  raw.provenance.prescribedGeometry = {
+    emitterId: "test-emitter.v0",
+    sourceSchema: "test-source.v0",
+    interpolation: "exact-inertial-polynomial/v1",
+    errorMethod: "test-error-method.v0",
+    physicsInvoked: false,
+    responseCenter: { x: 0, y: 0, z: 0 },
+    sphericalEnvelopeRadius: 1,
+    displayTrailPeriods: 2,
+  };
+  const entry = createBorgAssemblyViewSession([raw]).selected;
+  assert.deepEqual(resolveBorgAssemblyViewTrail(entry), {
+    duration: 8,
+    period: 4,
+    periodCount: 2,
+    source: "prescribed-display-periods",
+  });
 });
 
 test("play and scrub attempts outside recorded coverage fail closed", () => {

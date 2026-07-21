@@ -23,8 +23,20 @@ import {
   createBorgEomShadowRequest,
   createBorgEomShadowRunConfig,
   createBorgEomShadowRunner,
+  floorBorgDisplayGradeBoundary,
   trimBorgRetainedHistories,
 } from "../src/apps/borg/BorgEomShadowRunner.js";
+
+test("Borg floors display-grade boundaries instead of rounding them up", () => {
+  assert.deepEqual(floorBorgDisplayGradeBoundary("6.499"), {
+    time: 6.4,
+    token: "6.4",
+  });
+  assert.deepEqual(floorBorgDisplayGradeBoundary("-6.401"), {
+    time: -6.5,
+    token: "-6.5",
+  });
+});
 import {
   BORG_NATIVE_EOM_PROTOCOL_MAGIC,
   createBorgNativeEomProcessClient,
@@ -594,6 +606,44 @@ test("Borg EOM carries the controller height across atomic chunks", async () => 
   assert.equal(requests[1].numericalControls.useAdaptiveStepGrowth, true);
 });
 
+test("Borg floors a display-grade boundary to one decimal before the next chunk", async () => {
+  const requests = [];
+  const exactBoundary = "10.100000000000001";
+  const runner = createBorgEomShadowRunner(BORG_DATASET_MANIFEST_V1, {
+    eomClient: {
+      async evolveRetainedHistories(request) {
+        requests.push(request);
+        if (requests.length === 1) {
+          return {
+            ...createFakeEomResponse(
+              request,
+              "executable_architecture_evidence",
+              { endTime: exactBoundary },
+            ),
+            status: "halted",
+            haltCode: "minimum_step_exhausted",
+          };
+        }
+        return createFakeEomResponse(request, "display-only");
+      },
+    },
+    initialFrameRows: trajectoryFrames,
+    startTime: 10,
+    targetDuration: 10.2,
+    chunkDuration: 0.2,
+    sampleInterval: 0.05,
+  });
+
+  await runner.computeNextChunk();
+  await runner.computeNextChunk();
+
+  assert.equal(requests[1].absoluteTimeInterval.start, "10.1");
+  assert.ok(requests[1].histories.every((history) =>
+    history.coverageEnd === "10.1" &&
+    history.segments.at(-1).endTime === "10.1"
+  ));
+});
+
 test("Borg EOM shadow runner supports a deterministic retained-history population subset", async () => {
   const requests = [];
   const runner = createBorgEomShadowRunner(BORG_DATASET_MANIFEST_V1, {
@@ -799,6 +849,27 @@ test("Borg EOM fail-closed responses preserve native diagnostics", async () => {
   });
 });
 
+test("Borg names the exact response provenance field that failed", async () => {
+  const runner = createBorgEomShadowRunner(BORG_DATASET_MANIFEST_V1, {
+    eomClient: {
+      async evolveRetainedHistories(request) {
+        return {
+          ...createFakeEomResponse(request, "executable_architecture_evidence"),
+          claimGrade: "failed",
+        };
+      },
+    },
+    initialFrameRows: trajectoryFrames,
+    startTime: 10,
+    targetDuration: 10.2,
+    chunkDuration: 0.2,
+  });
+  await assert.rejects(
+    runner.computeNextChunk(),
+    /inconsistent provenance: claimGrade expected executable_architecture_evidence/,
+  );
+});
+
 test("Borg crosses once from a certified prefix into a display-only continuation", async () => {
   const requests = [];
   const runner = createBorgEomShadowRunner(BORG_DATASET_MANIFEST_V1, {
@@ -809,14 +880,14 @@ test("Borg crosses once from a certified prefix into a display-only continuation
           return createFakeEomResponse(request, "display-only");
         }
         const response = createFakeEomResponse(
-          request, "failed", { endTime: "10.1" },
+          request, "failed", { endTime: "10.149999999999999" },
         );
         return {
           ...response,
           status: "halted",
           haltCode: "root_completeness_not_certified",
           allStepsAtomic: true,
-          acceptedEndTime: "10.1",
+          acceptedEndTime: "10.149999999999999",
         };
       },
     },
@@ -833,6 +904,11 @@ test("Borg crosses once from a certified prefix into a display-only continuation
   assert.equal(chunk.terminalHalt.code, "root_completeness_not_certified");
   assert.equal(chunk.promotionEligible, false);
   assert.equal(chunk.frames.at(-1).time, 10.1);
+  assert.ok(chunk.frames.every((frame) => frame.time <= 10.1));
+  assert.ok(chunk.histories.every((history) =>
+    history.coverageEnd === "10.1" &&
+    history.segments.at(-1).endTime === "10.1"
+  ));
   assert.equal(chunk.runGrade, "certified");
   assert.equal(chunk.activeRunGrade, "display");
   assert.deepEqual(chunk.displayGradeBoundary, {
@@ -844,6 +920,7 @@ test("Borg crosses once from a certified prefix into a display-only continuation
   const displayChunk = await runner.computeNextChunk();
   assert.equal(requests[0].runGrade, "certified");
   assert.equal(requests[1].runGrade, "display");
+  assert.equal(requests[1].absoluteTimeInterval.start, "10.1");
   assert.deepEqual(requests[1].numericalControls, requests[0].numericalControls);
   assert.ok(requests[1].histories.every((history) =>
     history.segments.every((segment) =>
@@ -1120,6 +1197,72 @@ test("Borg native client rejects protocol skew with a restart instruction", () =
         return true;
       },
     );
+  } finally {
+    rmSync(fixtureDirectory, { recursive: true, force: true });
+  }
+});
+
+test("Borg native client restarts a persistent worker when its executable changes", async () => {
+  const fixtureDirectory = mkdtempSync(join(tmpdir(), "borg-eom-binary-refresh-"));
+  const fixtureBinary = join(fixtureDirectory, "refreshable-eom-binary.mjs");
+  const fixtureSource = (marker) => `#!/usr/bin/env node
+if (process.argv[2] === "print-protocol-version") {
+  process.stdout.write("EOM_BORG_NATIVE_V9\\n");
+  process.exit(0);
+}
+let buffer = "";
+process.stdin.setEncoding("utf8");
+process.stdin.on("data", (chunk) => {
+  buffer += chunk;
+  while (buffer.includes("\\nEND\\n")) {
+    const boundary = buffer.indexOf("\\nEND\\n") + 5;
+    const request = buffer.slice(0, boundary);
+    buffer = buffer.slice(boundary);
+    const lines = request.trim().split("\\n");
+    const run = lines.find((line) => line.startsWith("RUN\\t")).split("\\t");
+    const paths = lines.filter((line) => line.startsWith("PATH\\t"));
+    process.stdout.write(JSON.stringify({
+      status: "completed",
+      acceptedEndTime: run[3],
+      binaryMarker: ${JSON.stringify(marker)},
+      publishedExtensions: paths.map((line) => ({
+        pathId: line.split("\\t")[1],
+        segments: [],
+      })),
+    }) + "\\n");
+  }
+});
+`;
+  try {
+    writeFileSync(fixtureBinary, fixtureSource("first"), "utf8");
+    chmodSync(fixtureBinary, 0o755);
+    const config = createBorgEomShadowRunConfig(BORG_DATASET_MANIFEST_V1, {
+      startTime: 10,
+      targetDuration: 10.2,
+      chunkDuration: 0.1,
+    });
+    const histories = createBorgContinuousRetainedHistories(
+      trajectoryFrames,
+      BORG_DATASET_MANIFEST_V1,
+      { historyEndTime: 10 },
+    );
+    const request = createBorgEomShadowRequest({
+      manifest: BORG_DATASET_MANIFEST_V1,
+      config,
+      histories,
+      chunkIndex: 0,
+      startTime: 10,
+      endTime: 10.1,
+    });
+    const client = createBorgNativeEomProcessClient({ binaryPath: fixtureBinary });
+    const first = await client.evolveRetainedHistories(request);
+    writeFileSync(fixtureBinary, fixtureSource("replacement"), "utf8");
+    chmodSync(fixtureBinary, 0o755);
+    const replacement = await client.evolveRetainedHistories(request);
+
+    assert.equal(first.binaryMarker, "first");
+    assert.equal(replacement.binaryMarker, "replacement");
+    await client.dispose();
   } finally {
     rmSync(fixtureDirectory, { recursive: true, force: true });
   }

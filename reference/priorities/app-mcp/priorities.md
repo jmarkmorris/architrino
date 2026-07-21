@@ -20,18 +20,18 @@ Define and implement the smallest deterministic MCP service that lets compatible
 
 ## Queue
 
-1. `chatgpt_desktop_conformance` — Add the [local fixture adapter](local-fixture-mcp-adapter.md) as a temporary ChatGPT desktop stdio connection from a fresh client session, call all four tools, record structured-result and missing-source behavior, then remove the temporary connection if it should not persist. Status: `operator-session-required`. Depends on: the completed official SDK and Codex passes in [client-conformance.md](client-conformance.md).
+1. `chatgpt_desktop_conformance` — Restart the installed `architrino_fixture` connection from a fresh ChatGPT desktop session, call all four tools, record structured-result and missing-source behavior, then leave or remove the development connection according to operator preference. Status: `fresh-client-session-required`. Depends on: the completed official SDK and Codex passes plus the enabled shared connection in [client-conformance.md](client-conformance.md).
 2. `host_and_deployment_decision` — Refresh the provisional hosting comparison, choose a host, and define staging, production, health checks, rollback, rate limits, logs, secrets, and availability expectations. Status: `pending`. Depends on: `chatgpt_desktop_conformance`.
 3. `higher_order_graph_tools` — Add mechanically checkable graph operations such as `walk`, `trace`, `compare`, `related`, `context`, and `learning_path` only after their semantics and source-authority limits are fixture-tested. Status: `deferred`. Depends on: accepted V1 service evidence.
 4. `hybrid_semantic_retrieval` — Add embeddings only as a declared fallback after deterministic retrieval, with model/provider, privacy, freshness, cost, and source-authority gates. Status: `deferred`. Depends on: stable deterministic retrieval and measured recall gaps.
 
 ## Current Blocker
 
-The official TypeScript SDK V1 and installed Codex client now accept the adapter and call all four tools. The remaining blocker is a direct ChatGPT desktop call from a fresh client session; the active task cannot reload a newly added local MCP connection without a restart or new chat, and shared Codex behavior is not accepted as ChatGPT evidence.
+The official TypeScript SDK V1 and installed Codex client accept the adapter. The shared `architrino_fixture` connection is installed, enabled, and independently reloaded by a fresh Codex turn. The remaining blocker is a direct ChatGPT desktop call after a connection restart or new chat; shared Codex behavior is not accepted as ChatGPT evidence.
 
 ## Next Action
 
-From a fresh ChatGPT desktop session, temporarily add the documented stdio connection, discover and call all four tools, verify the typed structured results and missing-source error, and remove the temporary connection if it should not remain installed.
+From a fresh ChatGPT desktop session, restart or reload the installed connection, discover and call all four tools, verify the typed structured results and missing-source error, and retain or remove the development connection according to operator preference.
 
 ## Boundaries
 

@@ -210,7 +210,7 @@ export function createBorgAssemblyViewPresentation(entry, { time } = {}) {
   return Object.freeze({
     runtimeMode: BORG_ASSEMBLY_VIEW_MODE,
     claimLabel: dataset.provenance.claimGrade === "chart-hypothesis"
-      ? "Chart hypothesis"
+      ? "Prescribed Geometry"
       : "Evolved record",
     staticChartPose: dataset.provenance.claimGrade === "chart-hypothesis",
     provenance: dataset.provenance,
@@ -230,7 +230,7 @@ export function createBorgAssemblyViewPresentation(entry, { time } = {}) {
   });
 }
 
-export function resolveBorgAssemblyViewLoopPeriod(entry) {
+function resolveSourcePeriod(entry) {
   const frequencies = entry.dataset.binaries
     .map((binary) => Number(binary?.frequency))
     .filter((frequency) => Number.isFinite(frequency) && frequency > 0);
@@ -238,7 +238,7 @@ export function resolveBorgAssemblyViewLoopPeriod(entry) {
     return Object.freeze({
       available: false,
       period: null,
-      message: "Loop one period is unavailable because the selected record carries no positive binary frequency.",
+      message: "A source period is unavailable because the selected record carries no positive binary frequency.",
     });
   }
   return Object.freeze({
@@ -249,18 +249,29 @@ export function resolveBorgAssemblyViewLoopPeriod(entry) {
   });
 }
 
-export function resolveBorgAssemblyViewStrobeTime(entry, requestedTime, frequency) {
-  const time = Number(requestedTime);
-  const strobeFrequency = Number(frequency);
-  if (!Number.isFinite(time) || !Number.isFinite(strobeFrequency) || !(strobeFrequency > 0)) {
-    throw new TypeError("Borg assembly-view strobe requires finite time and a positive source-carried frequency.");
+export function resolveBorgAssemblyViewTrail(entry) {
+  const loop = resolveSourcePeriod(entry);
+  const prescribed = entry?.dataset?.provenance?.prescribedGeometry;
+  const periodCount = Number(prescribed?.displayTrailPeriods);
+  if (
+    entry?.dataset?.provenance?.engineId === "prescribed-geometry" &&
+    loop.available &&
+    Number.isSafeInteger(periodCount) &&
+    periodCount > 0
+  ) {
+    return Object.freeze({
+      duration: loop.period * periodCount,
+      period: loop.period,
+      periodCount,
+      source: "prescribed-display-periods",
+    });
   }
-  const { start, end } = entry.dataset.window;
-  const period = 1 / strobeFrequency;
-  // A strobe may hold the most recent source phase, but it may never expose a
-  // future phase before playback reaches it.
-  const snapped = start + Math.floor((time - start) / period + 1e-12) * period;
-  return Math.min(end, Math.max(start, snapped));
+  return Object.freeze({
+    duration: entry?.dataset?.window?.delayHorizon ?? null,
+    period: loop.available ? loop.period : null,
+    periodCount: null,
+    source: "record-delay-horizon",
+  });
 }
 
 function normalizeRecordEntry(record, sourceIndex) {

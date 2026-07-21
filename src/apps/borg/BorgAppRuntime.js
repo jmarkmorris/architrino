@@ -41,7 +41,7 @@ import { createBorgAssemblyViewControls } from "./BorgAssemblyViewControls.js";
 import { createBorgAssemblyViewScene } from "./BorgAssemblyViewScene.js";
 import {
   createBorgAssemblyViewSession,
-  resolveBorgAssemblyViewStrobeTime,
+  resolveBorgAssemblyViewTrail,
 } from "./BorgAssemblyViewSession.js";
 import {
   BORG_MAX_VISUAL_CATCH_UP_FRAME_SETS,
@@ -91,6 +91,7 @@ const ENVELOPE_GUIDE_OPACITY = 0.88;
 const DEFAULT_PLAYBACK_SPEED_PRESET_ID = "normal";
 const DEFAULT_RUN_CONTROL_PRESET_ID = "live-forever";
 const FINITE_RUN_CONTROL_PRESET_ID = "live-60s";
+const FIVE_MINUTE_RUN_CONTROL_PRESET_ID = "live-300s";
 const DEFAULT_DISTRIBUTION_LABEL = "manifest initial-condition policy";
 const PLAYBACK_SPEED_PRESETS = Object.freeze([
   Object.freeze({ id: "detail", label: "Detail", maximumRealtimeRate: 1 / 12 }),
@@ -100,8 +101,8 @@ const PLAYBACK_SPEED_PRESETS = Object.freeze([
 const RUN_CONTROL_PRESETS = Object.freeze([
   Object.freeze({
     id: DEFAULT_RUN_CONTROL_PRESET_ID,
-    label: "Forever",
-    displayLabel: "Forever",
+    label: "No limit",
+    displayLabel: "No limit",
     sourceMode: "live",
     durationMode: "forever",
     targetDuration: Number.POSITIVE_INFINITY,
@@ -118,12 +119,26 @@ const RUN_CONTROL_PRESETS = Object.freeze([
     minTargetDuration: 60,
     minChunkDuration: 4,
   }),
+  Object.freeze({
+    id: FIVE_MINUTE_RUN_CONTROL_PRESET_ID,
+    label: "5 minutes",
+    displayLabel: "5 min",
+    sourceMode: "live",
+    targetDuration: 300,
+    chunkDuration: 20,
+    minTargetDuration: 300,
+    minChunkDuration: 4,
+  }),
 ]);
 const PATH_RENDER_ORDER = 2;
 const ARCHITRINO_RENDER_ORDER = 6;
 const PLAY_ICON_PATH = "M8 5v14l11-7z";
 const PAUSE_ICON_PATH = "M8 5h3v14H8zM13 5h3v14h-3z";
-const HIDDEN_LAYER_BUTTONS = new Set(["simulation-window", "architrino-position"]);
+const HIDDEN_LAYER_BUTTONS = new Set([
+  "simulation-window",
+  "architrino-position",
+  "diagnostics",
+]);
 
 const LAYER_LABELS = Object.freeze({
   "simulation-window": "Sphere",
@@ -139,9 +154,9 @@ const LAYER_TITLES = Object.freeze({
   "simulation-window": "Spherical simulation envelope",
   "architrino-position": "Architrino positions from native frame rows",
   "path-history": "Path-history traces from native path rows",
-  "velocity-vectors": "Velocity direction overlay",
-  "wake-streams": "Wake streams are fail-closed until native rows exist",
-  "boundary-shell-status": "Boundary-shell status is fail-closed until EOM rows exist",
+  "velocity-vectors": "Display-only velocity-direction rays from the current frame rows",
+  "wake-streams": "Unavailable: the EOM solver has not supplied retained wake-stream rows",
+  "boundary-shell-status": "Unavailable: the EOM solver has not supplied boundary-shell status rows",
   diagnostics: "Diagnostics are shown in the right rail",
 });
 
@@ -247,6 +262,7 @@ export function mountBorgApp(options = {}) {
     initialConditionFeedback: queryRequiredElement(documentLike, "#borg-initial-condition-feedback"),
     nativeStatus: queryRequiredElement(documentLike, "#borg-native-status"),
     manifestStatus: queryRequiredElement(documentLike, "#borg-manifest-status"),
+    sourceProvenance: queryRequiredElement(documentLike, "#borg-source-provenance"),
     sourceFields: queryRequiredElement(documentLike, "#borg-source-fields"),
     diagnosticsFields: queryRequiredElement(documentLike, "#borg-diagnostics-fields"),
     failClosedList: queryRequiredElement(documentLike, "#borg-fail-closed-list"),
@@ -256,14 +272,12 @@ export function mountBorgApp(options = {}) {
     selectedTag: queryRequiredElement(documentLike, "#borg-selected-tag"),
     timelineRange: queryRequiredElement(documentLike, "#borg-time-range"),
     timelineOutput: queryRequiredElement(documentLike, "#borg-time-output"),
+    timeline: queryRequiredElement(documentLike, "#borg-timeline"),
     eomControls: queryRequiredElement(documentLike, "#borg-eom-controls"),
-    eomDuration: queryRequiredElement(documentLike, "#borg-eom-duration"),
     eomAuthority: queryRequiredElement(documentLike, "#borg-eom-authority"),
     eomAuthorityLabel: queryRequiredElement(documentLike, "#borg-eom-authority-label"),
     eomAuthorityDetail: queryRequiredElement(documentLike, "#borg-eom-authority-detail"),
     eomHistoryStatus: queryRequiredElement(documentLike, "#borg-eom-history-status"),
-    eomStopButton: queryRequiredElement(documentLike, "#borg-eom-stop-button"),
-    eomRestartButton: queryRequiredElement(documentLike, "#borg-eom-restart-button"),
     eomProgress: queryRequiredElement(documentLike, "#borg-eom-progress"),
     eomProgressLabel: queryRequiredElement(documentLike, "#borg-eom-progress-label"),
     runDurationButton: queryRequiredElement(documentLike, "#borg-run-duration-button"),
@@ -278,16 +292,17 @@ export function mountBorgApp(options = {}) {
     modeBoundary: queryRequiredElement(documentLike, "#borg-mode-boundary"),
     modeLabel: queryRequiredElement(documentLike, "#borg-mode-label"),
     modeDetail: queryRequiredElement(documentLike, "#borg-mode-detail"),
-    braidRecordSelect: queryRequiredElement(documentLike, "#borg-braid-record-select"),
+    modeSwitch: queryRequiredElement(documentLike, "#borg-mode-switch"),
+    recordDateChip: queryRequiredElement(documentLike, "#borg-record-date-chip"),
+    prescribedWorkspaceLink: queryRequiredElement(documentLike, "#borg-prescribed-workspace-link"),
+    prescribedRecordControl: queryRequiredElement(documentLike, "#borg-prescribed-record-control"),
+    prescribedRecordSelect: queryRequiredElement(documentLike, "#borg-prescribed-record-select"),
     replayControls: queryRequiredElement(documentLike, "#borg-assembly-view-controls"),
-    replayAuthorityNotice: queryRequiredElement(documentLike, "#borg-replay-authority-notice"),
     replayProvenance: queryRequiredElement(documentLike, "#borg-replay-provenance"),
+    replayCollectionTools: queryRequiredElement(documentLike, "#borg-replay-collection-tools"),
+    replayRecordControl: queryRequiredElement(documentLike, "#borg-replay-record-control"),
     replayRecordSelect: queryRequiredElement(documentLike, "#borg-replay-record-select"),
-    replayDisplayMode: queryRequiredElement(documentLike, "#borg-replay-display-mode"),
     replayCameraMode: queryRequiredElement(documentLike, "#borg-replay-camera-mode"),
-    replayStrobeFrequency: queryRequiredElement(documentLike, "#borg-replay-strobe-frequency"),
-    replayStrobeButton: queryRequiredElement(documentLike, "#borg-replay-strobe-button"),
-    replayLoopPeriod: queryRequiredElement(documentLike, "#borg-replay-loop-period"),
     replayExport: queryRequiredElement(documentLike, "#borg-replay-export"),
     replayFilterField: queryRequiredElement(documentLike, "#borg-replay-filter-field"),
     replayFilterValue: queryRequiredElement(documentLike, "#borg-replay-filter-value"),
@@ -295,6 +310,8 @@ export function mountBorgApp(options = {}) {
     replayComparison: queryRequiredElement(documentLike, "#borg-replay-comparison"),
     replayFeedback: queryRequiredElement(documentLike, "#borg-replay-feedback"),
     replayOverlayFields: queryRequiredElement(documentLike, "#borg-replay-overlay-fields"),
+    replayBinaryGeometryTable: queryRequiredElement(documentLike, "#borg-binary-geometry-table"),
+    replayTrailSummary: queryRequiredElement(documentLike, "#borg-replay-trail-summary"),
   };
 
   const initialEomSeed = options.initialEomSeed ?? null;
@@ -378,6 +395,7 @@ export function mountBorgApp(options = {}) {
     pointerLastY: 0,
     pointerTravel: 0,
     playing: false,
+    playbackRequested: false,
     playFrameRequestId: null,
     playFrameRequestKind: null,
     playbackFromSetIndex: 0,
@@ -486,12 +504,9 @@ export function mountBorgApp(options = {}) {
     replayDisplayMode: activeReplayEntry?.dataset.provenance.claimGrade === "chart-hypothesis"
       ? "chart-pose"
       : "animated",
-    replayStrobeEnabled: false,
-    replayStrobeFrequency: null,
-    replayLoopEnabled: false,
-    replayLoopPeriod: null,
-    pathTrailDuration: activeReplayEntry?.dataset.window.delayHorizon ??
-      HIGHLIGHTED_PATH_HISTORY_DURATION,
+    pathTrailDuration: activeReplayEntry
+      ? resolveBorgAssemblyViewTrail(activeReplayEntry).duration
+      : HIGHLIGHTED_PATH_HISTORY_DURATION,
   };
 
   const assemblyViewScene = createBorgAssemblyViewScene({
@@ -503,6 +518,7 @@ export function mountBorgApp(options = {}) {
     assemblyViewScene.setRecord(activeReplayEntry);
   }
   let assemblyViewControls = null;
+  let initialConditionResetTimer = null;
 
   const diagnosticsPanelController = createBorgDiagnosticsPanelController({
     panel: dom.diagnosticsPanel,
@@ -517,7 +533,7 @@ export function mountBorgApp(options = {}) {
   configureTimeline();
   configureInitialConditionControls();
   configureEomControls();
-  configureBraidRecordSelector();
+  configurePrescribedGeometryWorkspaceLink();
   configureAssemblyViewControls();
   resetView();
   bindEvents();
@@ -664,7 +680,7 @@ export function mountBorgApp(options = {}) {
     updateSourceStatusPresentation();
     dom.manifestStatus.textContent = replayActive
       ? activeReplayEntry.dataset.provenance.claimGrade === "chart-hypothesis"
-        ? "Chart hypothesis"
+        ? "Prescribed Geometry"
         : "Evolved record"
       : "Developer test";
     dom.manifestStatus.dataset.status = replayActive
@@ -1124,54 +1140,91 @@ export function mountBorgApp(options = {}) {
     renderInitialConditionFields();
   }
 
+  function scheduleInitialConditionReset() {
+    const clearTimer = windowLike.clearTimeout?.bind(windowLike) ?? clearTimeout;
+    const setTimer = windowLike.setTimeout?.bind(windowLike) ?? setTimeout;
+    if (initialConditionResetTimer != null) {
+      clearTimer(initialConditionResetTimer);
+    }
+    initialConditionResetTimer = setTimer(() => {
+      initialConditionResetTimer = null;
+      startNewDistributionRun({ advanceSeed: false, autoStart: false });
+    }, 250);
+  }
+
+  function applyInitialConditionResetNow() {
+    const clearTimer = windowLike.clearTimeout?.bind(windowLike) ?? clearTimeout;
+    if (initialConditionResetTimer != null) {
+      clearTimer(initialConditionResetTimer);
+      initialConditionResetTimer = null;
+    }
+    startNewDistributionRun({ advanceSeed: false, autoStart: false });
+  }
+
   function configureEomControls() {
     const enabled = Boolean(options.eomShadowRunner) && !replayActive;
     dom.eomControls.hidden = !enabled;
+    dom.eomAuthority.hidden = !enabled;
     if (!enabled) {
       return;
     }
-    dom.eomDuration.min = String(options.eomShadowRunner?.sampleInterval ?? 0.01);
-    dom.eomDuration.step = String(options.eomShadowRunner?.sampleInterval ?? 0.01);
-    dom.eomDuration.value = String(state.eomRunDuration);
     updateEomControlPresentation();
   }
 
-  function configureBraidRecordSelector() {
+  function configurePrescribedGeometryWorkspaceLink() {
     const navigation = options.braidRecordNavigation;
-    dom.braidRecordSelect.textContent = "";
-    const placeholder = documentLike.createElement("option");
-    placeholder.value = "";
-    placeholder.textContent = "Select a braid record…";
-    dom.braidRecordSelect.append(placeholder);
-    for (const entry of navigation?.catalog?.entries ?? []) {
-      const option = documentLike.createElement("option");
-      option.value = entry.id;
-      option.textContent = entry.label;
-      dom.braidRecordSelect.append(option);
+    const entry = navigation?.catalog?.entries?.[0] ?? null;
+    dom.prescribedWorkspaceLink.hidden = replayActive || !entry;
+    if (entry) {
+      dom.prescribedWorkspaceLink.href = navigation.buildUrl(entry.id);
     }
-    dom.braidRecordSelect.value = navigation?.selectedRecordId ?? "";
-    dom.braidRecordSelect.disabled = !navigation?.catalog?.entries?.length;
-    dom.braidRecordSelect.addEventListener("change", () => {
-      if (dom.braidRecordSelect.value) {
-        navigation.navigate(dom.braidRecordSelect.value);
+    dom.prescribedRecordSelect.textContent = "";
+    navigation?.catalog?.entries?.forEach((catalogEntry) => {
+      const option = documentLike.createElement("option");
+      option.value = catalogEntry.id;
+      option.textContent = catalogEntry.label;
+      dom.prescribedRecordSelect.append(option);
+    });
+    if (navigation?.selectedRecordId) {
+      dom.prescribedRecordSelect.value = navigation.selectedRecordId;
+    } else if (replayActive) {
+      const externalOption = documentLike.createElement("option");
+      externalOption.value = "";
+      externalOption.textContent = "External prescribed geometry";
+      externalOption.disabled = true;
+      externalOption.selected = true;
+      dom.prescribedRecordSelect.prepend(externalOption);
+    }
+    dom.prescribedRecordControl.hidden = !replayActive || !entry;
+    dom.prescribedRecordSelect.addEventListener("change", () => {
+      if (dom.prescribedRecordSelect.value) {
+        navigation.navigate(dom.prescribedRecordSelect.value);
       }
     });
   }
 
   function configureAssemblyViewControls() {
     dom.envelopeSection.hidden = replayActive;
+    dom.nativeStatus.hidden = replayActive;
+    dom.sourceProvenance.hidden = replayActive;
+    dom.timeline.classList.toggle("is-replay", replayActive);
+    dom.newDistributionButton.hidden = replayActive;
+    dom.runDurationButton.hidden = replayActive;
     if (!replayActive) {
       dom.replayControls.hidden = true;
       dom.modeBoundary.dataset.mode = "simulation-workspace";
       dom.modeLabel.textContent = "Simulation workspace";
       dom.modeDetail.textContent =
         "Initial conditions and EOM solver runs remain separate from record-only replay.";
+      dom.modeSwitch.hidden = true;
+      dom.prescribedWorkspaceLink.hidden = false;
+      dom.recordDateChip.hidden = true;
       return;
     }
     dom.newDistributionButton.disabled = true;
     dom.newDistributionButton.title =
       "Disabled in assembly-view replay; replay cannot mutate workspace initial conditions.";
-    dom.runDurationButton.disabled = true;
+    dom.prescribedWorkspaceLink.hidden = true;
     dom.initialConditionForm.querySelectorAll?.("input, select, button").forEach((control) => {
       control.disabled = true;
     });
@@ -1183,14 +1236,13 @@ export function mountBorgApp(options = {}) {
         modeBoundary: dom.modeBoundary,
         modeLabel: dom.modeLabel,
         modeDetail: dom.modeDetail,
-        authorityNotice: dom.replayAuthorityNotice,
+        modeSwitch: dom.modeSwitch,
+        dateChip: dom.recordDateChip,
         provenance: dom.replayProvenance,
+        collectionTools: dom.replayCollectionTools,
+        recordControl: dom.replayRecordControl,
         recordSelect: dom.replayRecordSelect,
-        displayMode: dom.replayDisplayMode,
         cameraMode: dom.replayCameraMode,
-        strobeFrequency: dom.replayStrobeFrequency,
-        strobeButton: dom.replayStrobeButton,
-        loopButton: dom.replayLoopPeriod,
         exportButton: dom.replayExport,
         filterField: dom.replayFilterField,
         filterValue: dom.replayFilterValue,
@@ -1198,21 +1250,14 @@ export function mountBorgApp(options = {}) {
         comparison: dom.replayComparison,
         feedback: dom.replayFeedback,
         overlayFields: dom.replayOverlayFields,
+        binaryGeometryTable: dom.replayBinaryGeometryTable,
+        trailSummary: dom.replayTrailSummary,
       },
       onRecordChange: switchReplayRecord,
-      onDisplayModeChange: setReplayDisplayMode,
       onCameraModeChange: (mode) => assemblyViewScene.setCameraMode(mode),
-      onStrobeChange(enabled, frequency) {
-        state.replayStrobeEnabled = enabled;
-        state.replayStrobeFrequency = enabled ? frequency : null;
-        updateFrame(state.activeFrameIndex);
-      },
-      onLoopChange(enabled, period) {
-        state.replayLoopEnabled = enabled;
-        state.replayLoopPeriod = enabled ? period : null;
-      },
       onExport: exportReplayImage,
     });
+    setReplayDisplayMode(state.replayDisplayMode);
   }
 
   function setReplayDisplayMode(mode) {
@@ -1223,7 +1268,10 @@ export function mountBorgApp(options = {}) {
     assemblyViewScene.setDisplayMode(mode);
     if (mode !== "animated") {
       stopPlayback();
-      updateFrame(frameSets[0]?.frameIndex ?? state.activeFrameIndex);
+      const frameIndex = mode === "chart-pose"
+        ? resolveReplayChartPoseFrameIndex()
+        : frameSets[0]?.frameIndex ?? state.activeFrameIndex;
+      updateFrame(frameIndex);
     }
     updateTimelineBounds();
   }
@@ -1235,11 +1283,7 @@ export function mountBorgApp(options = {}) {
     state.replayDisplayMode = entry.dataset.provenance.claimGrade === "chart-hypothesis"
       ? "chart-pose"
       : "animated";
-    state.replayStrobeEnabled = false;
-    state.replayStrobeFrequency = null;
-    state.replayLoopEnabled = false;
-    state.replayLoopPeriod = null;
-    state.pathTrailDuration = entry.dataset.window.delayHorizon;
+    state.pathTrailDuration = resolveBorgAssemblyViewTrail(entry).duration;
     assemblyViewScene.setRecord(entry);
     assemblyViewScene.setDisplayMode(state.replayDisplayMode);
     resetDynamicRunState();
@@ -1290,7 +1334,6 @@ export function mountBorgApp(options = {}) {
       "eom-shadow-stopped": "stopped",
       "live-native-error": "failed",
     })[state.dynamicRunnerStatus] ?? state.dynamicRunnerStatus;
-    dom.eomDuration.disabled = forever;
     dom.eomProgress.hidden = forever;
     if (forever) {
       dom.eomProgress.max = "1";
@@ -1303,52 +1346,46 @@ export function mountBorgApp(options = {}) {
       ? ` | ${state.dynamicRunnerMessage}`
       : "";
     const progressLabel = forever
-      ? `${completedSteps} forward EOM chunks | ${displayStatus} | Forever`
+      ? `${completedSteps} forward EOM chunks | ${displayStatus} | No limit`
       : `${completedSteps} / ${requestedSteps} forward EOM chunks | ${displayStatus}`;
     dom.eomProgressLabel.value = `${progressLabel}${failureDetail}`;
     const displayGrade = state.eomRunGrade === "display";
-    dom.eomAuthority.dataset.grade = displayGrade ? "display" : "claim-ready";
+    dom.eomAuthority.dataset.grade = displayGrade ? "display" : "claim";
     dom.eomAuthorityLabel.textContent = displayGrade
       ? "Display grade"
-      : "Claim-ready mode";
+      : "Claim grade";
+    const gradeBoundaryTime = formatTimelineTime(
+      Number(state.eomDisplayGradeBoundary?.time),
+    );
+    const projectionCount = state.eomDisplayHistoryProjectionCount;
+    const projectionDescription = projectionCount === 1
+      ? "once"
+      : `${projectionCount} times`;
     dom.eomAuthorityDetail.textContent = displayGrade
-      ? `Claim-ready through T=${state.eomDisplayGradeBoundary?.time}. ` +
-        `Display grade from T=${state.eomDisplayGradeBoundary?.time} ` +
+      ? `Claim grade through T=${gradeBoundaryTime}. ` +
+        `Display grade from T=${gradeBoundaryTime} ` +
         `(${state.eomDisplayGradeBoundary?.code}); retained nominal history was point-projected ` +
-        `${state.eomDisplayHistoryProjectionCount} time(s), so this suffix has no claim authority.`
+        `${projectionDescription}, so this suffix has no claim authority.`
       : "Certified tolerances are active. No display-grade boundary has been crossed.";
     const eomStartTime = options.eomShadowRunner?.startTime ?? 0;
     dom.eomHistoryStatus.value =
       `Exact polynomial causal seed history (C1 inertial) covers T=${Number(eomStartTime) - state.eomSeedHistoryDepth} to ${eomStartTime}. ` +
       "It is certified input, not EOM output. Computed motion after T=0 is appended as the separately evolving retained history.";
     dom.eomHistoryStatus.textContent = dom.eomHistoryStatus.value;
-    dom.eomStopButton.disabled = !state.dynamicRunner && !state.dynamicChunkPromise;
-  }
-
-  function readEomControlValues() {
-    state.eomRunDuration = positiveControlNumber(
-      dom.eomDuration.value,
-      state.eomRunDuration,
-    );
-    dom.eomDuration.value = String(state.eomRunDuration);
   }
 
   function syncRunDurationButton() {
     if (replayActive) {
-      dom.runDurationButton.textContent = "Recorded coverage";
-      dom.runDurationButton.dataset.runDuration = "recorded-coverage";
-      dom.runDurationButton.setAttribute("aria-label", "Run mode: recorded coverage");
-      dom.runDurationButton.title =
-        "Assembly-view replay is clamped to the sealed record's coverage.";
-      dom.runDurationButton.disabled = true;
+      dom.runDurationButton.hidden = true;
       return;
     }
+    dom.runDurationButton.hidden = false;
     const preset = getRunControlPreset(state.runControlPresetId);
     const label = formatRunDurationLabel(preset);
-    dom.runDurationButton.textContent = label;
+    dom.runDurationButton.value = preset.id;
     dom.runDurationButton.dataset.runDuration = preset.id;
     dom.runDurationButton.setAttribute("aria-label", `Run mode: ${label}`);
-    dom.runDurationButton.title = "Toggle run mode between Forever and 60 seconds";
+    dom.runDurationButton.title = "Choose a one-minute, five-minute, or unlimited simulation.";
   }
 
   function updateTimelineBounds() {
@@ -1366,11 +1403,13 @@ export function mountBorgApp(options = {}) {
     dom.timelineRange.disabled = presentation.disabled;
     dom.timelineRange.dataset.mode = presentation.mode;
     dom.timelineRange.title = presentation.title;
-    dom.playButton.disabled = frameSets.length < 2;
+    dom.playButton.disabled = frameSets.length < 2 && !(
+      options.eomShadowRunner && !replayActive
+    );
   }
 
   function formatActiveTimelineLabel(time, frameIndex) {
-    const label = formatTimelineLabel(time, frameIndex);
+    const label = formatTimelineLabel(time);
     const rate = `${formatBorgRealtimeRate(state.playbackAdaptiveRate)}× realtime`;
     if (replayActive || !isForeverRunPreset(getRunControlPreset(state.runControlPresetId))) {
       return `${label} | ${rate}`;
@@ -1389,20 +1428,25 @@ export function mountBorgApp(options = {}) {
       togglePlayback();
     });
     dom.startButton.addEventListener("click", goToStartFrame);
-    dom.newDistributionButton.addEventListener("click", startNewDistributionRun);
+    dom.newDistributionButton.addEventListener("click", () => {
+      startNewDistributionRun({ advanceSeed: true, autoStart: false });
+    });
     dom.initialConditionForm.addEventListener("submit", (event) => {
       event.preventDefault();
-      startNewDistributionRun();
     });
-    dom.initialConditionForm.addEventListener("input", markInitialConditionControlsPending);
+    dom.initialConditionForm.addEventListener("input", () => {
+      markInitialConditionControlsPending();
+      scheduleInitialConditionReset();
+    });
+    dom.initialConditionForm.addEventListener("change", applyInitialConditionResetNow);
     dom.certifiedBudget.addEventListener("change", () => {
       const preset = getBorgCertifiedBudgetPreset(dom.certifiedBudget.value);
       dom.stepHeight.value = preset.allocations.controller.maximumStep;
       dom.minimumStep.value = preset.allocations.controller.minimumStep;
     });
-    dom.runDurationButton.addEventListener("click", toggleRunDurationMode);
-    dom.eomStopButton.addEventListener("click", stopEomRun);
-    dom.eomRestartButton.addEventListener("click", restartEomRun);
+    dom.runDurationButton.addEventListener("change", () => {
+      switchRunControlPreset(dom.runDurationButton.value);
+    });
     dom.playbackSpeed.addEventListener("change", () => {
       state.playbackSpeedPresetId = playbackSpeedPresetById(dom.playbackSpeed.value).id;
       updateAdaptivePlaybackRate();
@@ -1452,6 +1496,7 @@ export function mountBorgApp(options = {}) {
     pointGroup.visible = state.activeLayers.has("architrino-position");
     pathGroup.visible = state.activeLayers.has("path-history");
     pathTrails.setVisible(pathGroup.visible);
+    assemblyViewScene.setPathVisible(pathGroup.visible);
     velocityGroup.visible = state.activeLayers.has("velocity-vectors");
     velocityLines.forEach((line) => {
       line.visible = velocityGroup.visible;
@@ -1482,14 +1527,6 @@ export function mountBorgApp(options = {}) {
   }
 
   function applyFrameSet(frameSet, { outputLabel, rangeValue }) {
-    const requestedFrameIndex = frameSet.frameIndex;
-    frameSet = replayDisplayFrameSet(frameSet);
-    if (frameSet.frameIndex !== requestedFrameIndex || frameSet.time !== frameSets.find(
-      (candidate) => candidate.frameIndex === requestedFrameIndex,
-    )?.time) {
-      outputLabel = formatActiveTimelineLabel(frameSet.time, frameSet.frameIndex);
-      rangeValue = frameSet.frameIndex;
-    }
     const previousDiagnosticFrameIndex = state.activeFrameIndex;
     state.activeFrameIndex = frameSet.frameIndex;
     if (dom.timelineRange.dataset.mode !== "live-follow") {
@@ -1534,41 +1571,6 @@ export function mountBorgApp(options = {}) {
     }
     updateSelectedTag();
     render();
-  }
-
-  function replayDisplayFrameSet(frameSet) {
-    if (!replayActive || !state.replayStrobeEnabled) {
-      return frameSet;
-    }
-    const strobeTime = resolveBorgAssemblyViewStrobeTime(
-      activeReplayEntry,
-      frameSet.time,
-      state.replayStrobeFrequency,
-    );
-    const sourceFrameSet = [...frameSets].reverse().find(
-      (candidate) => candidate.time <= strobeTime,
-    ) ?? frameSets[0];
-    const frames = activeReplayEntry.dataset.worldlines.map((worldline) => {
-      const evaluated = activeReplayEntry.dataset.evaluateWorldline(worldline.id, strobeTime);
-      return Object.freeze({
-        pathKey: worldline.pathKey ?? worldline.id,
-        sourceWorldlineId: worldline.id,
-        sourceOrder: worldline.sourceIndex,
-        frameIndex: sourceFrameSet?.frameIndex ?? 0,
-        time: strobeTime,
-        position: evaluated.position,
-        velocity: evaluated.velocity,
-        errorBound: evaluated.errorBound,
-        stateFlags: worldline.stateFlags,
-        runSource: BORG_EOM_RECORD_REPLAY_RUN_SOURCE,
-        valueAuthority: "display-only-declared-interpolation",
-      });
-    });
-    return Object.freeze({
-      frameIndex: sourceFrameSet?.frameIndex ?? 0,
-      time: strobeTime,
-      frames: Object.freeze(frames),
-    });
   }
 
   function refreshVelocityLines() {
@@ -1643,6 +1645,8 @@ export function mountBorgApp(options = {}) {
     if (replayActive && state.replayDisplayMode !== "animated") {
       return;
     }
+    state.playbackRequested = true;
+    setPlayButtonPresentation(true);
     if (
       !prefillComplete &&
       options.eomShadowRunner &&
@@ -1664,6 +1668,7 @@ export function mountBorgApp(options = {}) {
       currentSetIndex = 0;
       updateFrame(frameSets[0].frameIndex);
     }
+    state.playbackRequested = false;
     state.playing = true;
     state.playbackBufferRefilling = true;
     setPlayButtonPresentation(true);
@@ -1674,18 +1679,22 @@ export function mountBorgApp(options = {}) {
 
   function stopPlayback() {
     state.playing = false;
+    state.playbackRequested = false;
     setPlayButtonPresentation(false);
     cancelQueuedPlaybackFrame();
     updateTimelineBounds();
   }
 
   function togglePlayback() {
-    if (state.playing) {
+    if (state.playing || state.playbackRequested) {
       stopPlayback();
     } else {
       if (replayActive && state.replayDisplayMode !== "animated") {
-        dom.replayDisplayMode.value = "animated";
         setReplayDisplayMode("animated");
+      }
+      if (!replayActive && options.eomShadowRunner && !state.dynamicRunner) {
+        startRunAndPlayback();
+        return;
       }
       startPlayback();
     }
@@ -1694,6 +1703,10 @@ export function mountBorgApp(options = {}) {
   function setPlayButtonPresentation(isPlaying) {
     dom.playButton.classList.toggle("is-active", isPlaying);
     dom.playButton.setAttribute("aria-pressed", isPlaying ? "true" : "false");
+    dom.playButton.toggleAttribute(
+      "aria-busy",
+      state.playbackRequested && !state.playing,
+    );
     dom.playButton.setAttribute("aria-label", isPlaying ? "Pause" : "Play");
     dom.playButton.title = isPlaying ? "Pause" : "Play";
     dom.playButtonIcon.setAttribute("d", isPlaying ? PAUSE_ICON_PATH : PLAY_ICON_PATH);
@@ -1751,16 +1764,6 @@ export function mountBorgApp(options = {}) {
         return;
       }
       stopPlayback();
-      return;
-    }
-    if (
-      replayActive &&
-      state.replayLoopEnabled &&
-      Number.isFinite(state.replayLoopPeriod) &&
-      fromFrameSet.time >= activeReplayEntry.dataset.window.start + state.replayLoopPeriod
-    ) {
-      updateFrame(frameSets[0]?.frameIndex ?? 0);
-      startPlaybackSegment(0, now);
       return;
     }
     maybeQueueDynamicFramesAhead();
@@ -1989,6 +1992,10 @@ export function mountBorgApp(options = {}) {
 
   function dispose() {
     stopPlayback();
+    if (initialConditionResetTimer != null) {
+      (windowLike.clearTimeout?.bind(windowLike) ?? clearTimeout)(initialConditionResetTimer);
+      initialConditionResetTimer = null;
+    }
     state.resizeObserver?.disconnect?.();
     windowLike.removeEventListener("resize", resize);
     windowLike.removeEventListener("keydown", handleKeyDown);
@@ -2210,17 +2217,22 @@ export function mountBorgApp(options = {}) {
   }
 
   function startRunAndPlayback() {
+    state.playbackRequested = true;
+    setPlayButtonPresentation(true);
     const generation = state.dynamicRunGeneration;
     const firstChunk = startDynamicNativeRunner();
     if (!firstChunk) {
       startPlayback();
+      if (frameSets.length < 2) {
+        stopPlayback();
+      }
       return;
     }
     beginPlaybackPrefill(firstChunk, generation);
   }
 
   function getPlaybackPrefillTargetFrameSetCount() {
-    return getBorgPlaybackPrefillTargetFrameSetCount({
+    const ordinaryTarget = getBorgPlaybackPrefillTargetFrameSetCount({
       playbackRate: playbackSpeedPresetById(
         state.playbackSpeedPresetId,
       ).maximumRealtimeRate,
@@ -2228,6 +2240,16 @@ export function mountBorgApp(options = {}) {
       maximumRetainedFrameSetCount:
         BORG_LIVE_RUN_RETENTION_POLICY_V1.retainedFrameSetLimit,
     });
+    if (!replayActive || state.replayDisplayMode !== "chart-pose") {
+      return ordinaryTarget;
+    }
+    const trailFrameCount = Math.ceil(
+      state.pathTrailDuration / activeSampleInterval(),
+    ) + 1;
+    return Math.min(
+      BORG_LIVE_RUN_RETENTION_POLICY_V1.retainedFrameSetLimit,
+      Math.max(ordinaryTarget, trailFrameCount),
+    );
   }
 
   function beginPlaybackPrefill(firstChunk, generation) {
@@ -2261,7 +2283,8 @@ export function mountBorgApp(options = {}) {
     while (
       pendingChunk &&
       generation === state.dynamicRunGeneration &&
-      state.dynamicRunner
+      state.dynamicRunner &&
+      state.playbackRequested
     ) {
       const outcome = await Promise.race([
         pendingChunk.then((chunk) => ({ chunk })),
@@ -2270,7 +2293,7 @@ export function mountBorgApp(options = {}) {
       if (outcome.deadlineReached) {
         break;
       }
-      if (!outcome.chunk || !state.dynamicRunner) {
+      if (!outcome.chunk || !state.dynamicRunner || !state.playbackRequested) {
         clearTimer(deadlineTimer);
         return;
       }
@@ -2284,13 +2307,31 @@ export function mountBorgApp(options = {}) {
       pendingChunk = ensureDynamicFramesAhead({ generation });
     }
     clearTimer(deadlineTimer);
-    if (generation === state.dynamicRunGeneration && state.dynamicRunner) {
+    if (generation === state.dynamicRunGeneration &&
+        state.dynamicRunner &&
+        state.playbackRequested) {
       if (replayActive && state.replayDisplayMode !== "animated") {
-        updateFrame(frameSets[0]?.frameIndex ?? 0);
+        updateFrame(resolveReplayChartPoseFrameIndex());
       } else {
         startPlayback({ prefillComplete: true });
       }
     }
+  }
+
+  function resolveReplayChartPoseFrameIndex() {
+    if (!replayActive || !activeReplayEntry || frameSets.length === 0) {
+      return frameSets[0]?.frameIndex ?? 0;
+    }
+    const trail = resolveBorgAssemblyViewTrail(activeReplayEntry);
+    const targetTime = Math.min(
+      activeReplayEntry.dataset.window.end,
+      activeReplayEntry.dataset.window.start + Math.max(0, Number(trail.duration) || 0),
+    );
+    return frameSets.reduce((closest, candidate) =>
+      Math.abs(candidate.time - targetTime) < Math.abs(closest.time - targetTime)
+        ? candidate
+        : closest
+    ).frameIndex;
   }
 
   function ensureDynamicFramesAhead({
@@ -2347,7 +2388,7 @@ export function mountBorgApp(options = {}) {
               ? "completed-live-native-run"
               : "completed-recorded-replay";
         state.dynamicRunnerMessage = chunk.transitionedToDisplayGrade
-          ? `claim-ready through T=${chunk.endTime}; continuing at display grade (${chunk.terminalHalt.code})`
+          ? `claim grade through T=${formatTimelineTime(chunk.endTime)}; continuing at display grade (${chunk.terminalHalt.code})`
           : chunk.terminalHalt
             ? `${chunk.runGrade} prefix through T=${chunk.endTime}; failed candidate rejected (${chunk.terminalHalt.code})`
           : `chunk ${chunk.chunkIndex} ready`;
@@ -2417,6 +2458,12 @@ export function mountBorgApp(options = {}) {
         renderSourceFields();
         refreshDiagnosticsPanel();
         updateEomControlPresentation();
+        if (state.playbackRequested &&
+            !state.playing &&
+            !state.playbackPrefillPromise &&
+            frameSets.length >= 2) {
+          startPlayback({ prefillComplete: true });
+        }
         return chunk;
       })
       .catch((error) => {
@@ -2426,6 +2473,7 @@ export function mountBorgApp(options = {}) {
         const hadLiveFrames =
           state.sourceMode === BORG_EOM_RECORD_REPLAY_RUN_SOURCE ||
           state.sourceMode === BORG_EOM_SHADOW_RUN_SOURCE;
+        stopPlayback();
         const failedRunner = state.dynamicRunner;
         state.dynamicRunner = null;
         failedRunner?.dispose?.();
@@ -2474,30 +2522,6 @@ export function mountBorgApp(options = {}) {
         }
       });
     return state.dynamicChunkPromise;
-  }
-
-  function stopEomRun() {
-    if (!options.eomShadowRunner) {
-      return;
-    }
-    stopPlayback();
-    disposeDynamicRunner();
-    state.dynamicRunnerStatus = "eom-shadow-stopped";
-    state.dynamicRunnerMessage = "stopped by operator; no further history published";
-    updateSourceStatusPresentation();
-    renderSourceFields();
-    updateEomControlPresentation();
-  }
-
-  function restartEomRun() {
-    if (!options.eomShadowRunner) {
-      return;
-    }
-    readEomControlValues();
-    stopPlayback();
-    disposeDynamicRunner();
-    resetDynamicRunState();
-    startRunAndPlayback();
   }
 
   function canExtendDynamicRun() {
@@ -2646,22 +2670,29 @@ export function mountBorgApp(options = {}) {
     const preset = getRunControlPreset(presetId);
     stopPlayback();
     state.runControlPresetId = preset.id;
+    if (!isForeverRunPreset(preset)) {
+      state.eomRunDuration = Number(preset.targetDuration);
+    }
     syncRunDurationButton();
     disposeDynamicRunner();
+    resetDynamicRunState();
+    setSimulationReadyForPlay(
+      `${formatRunDurationLabel(preset)} selected; press Play to run`,
+    );
+  }
+
+  function setSimulationReadyForPlay(message) {
     state.dynamicRunnerStatus = options.eomShadowRunner
       ? "eom-shadow-stopped"
       : "eom-idle";
-    state.dynamicRunnerMessage = `${formatRunDurationLabel(preset)} selected; press Start / restart to run`;
+    state.dynamicRunnerMessage = message;
+    state.dynamicRunnerKind = options.eomShadowRunner
+      ? "eom-seed-idle"
+      : "eom-idle";
     updateSourceStatusPresentation();
     renderSourceFields();
+    refreshDiagnosticsPanel();
     updateEomControlPresentation();
-  }
-
-  function toggleRunDurationMode() {
-    const nextPresetId = state.runControlPresetId === DEFAULT_RUN_CONTROL_PRESET_ID
-      ? FINITE_RUN_CONTROL_PRESET_ID
-      : DEFAULT_RUN_CONTROL_PRESET_ID;
-    switchRunControlPreset(nextPresetId);
   }
 
   function resetDynamicRunState() {
@@ -2714,14 +2745,18 @@ export function mountBorgApp(options = {}) {
     updateEomControlPresentation();
   }
 
-  async function startNewDistributionRun() {
-    readEomControlValues();
+  async function startNewDistributionRun({
+    advanceSeed = true,
+    autoStart = false,
+  } = {}) {
     const config = readInitialConditionControls();
     if (!config) {
       return;
     }
     stopPlayback();
-    state.distributionSeedIndex += 1;
+    if (advanceSeed) {
+      state.distributionSeedIndex += 1;
+    }
     const placement = createBorgPlacementPolicy(
       manifest,
       config.electrinoCount + config.positrinoCount,
@@ -2779,12 +2814,19 @@ export function mountBorgApp(options = {}) {
     syncRunDurationButton();
     disposeDynamicRunner();
     resetDynamicRunState();
-    startRunAndPlayback();
+    if (autoStart) {
+      startRunAndPlayback();
+    } else {
+      setSimulationReadyForPlay(
+        `${state.distributionLabel} ready; press Play to run`,
+      );
+    }
   }
 
   function disposeDynamicRunner() {
     state.dynamicRunGeneration += 1;
     state.playbackPrefillPromise = null;
+    state.playbackRequested = false;
     state.dynamicChunkPromise = null;
     state.dynamicChunkStartedAt = null;
     const runner = state.dynamicRunner;
@@ -2839,7 +2881,7 @@ function playbackSpeedPresetById(presetId) {
 
 function formatRunDurationLabel(preset) {
   if (isForeverRunPreset(preset)) {
-    return "Forever";
+    return "No limit";
   }
   const target = preset?.effectiveTargetDuration ?? preset?.targetDuration;
   if (Number.isFinite(Number(target))) {
@@ -3153,8 +3195,8 @@ function formatDiagnosticPercentagePoints(value) {
     : "not-measured";
 }
 
-function formatTimelineLabel(time, frameIndex) {
-  return `solver t ${formatTimelineTime(time)} | keyframe ${frameIndex}`;
+function formatTimelineLabel(time) {
+  return `T ${formatTimelineTime(time)}`;
 }
 
 function formatTimelineTime(value) {
@@ -3234,7 +3276,7 @@ export function getBorgTimelineRangePresentation({
     disabled: false,
     mode: isForever ? "live-buffer" : "finite-run",
     title: isForever
-      ? "Buffered-frame scrubber; a Forever run has no finite completion percentage."
+      ? "Buffered-frame scrubber; a no-limit run has no finite completion percentage."
       : "Run progress and frame scrubber.",
   });
 }

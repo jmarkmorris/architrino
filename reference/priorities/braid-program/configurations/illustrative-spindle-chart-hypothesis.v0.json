@@ -15,6 +15,7 @@
   "responseCenter": [0, 0, 0],
   "axialDriftSpeed": 0,
   "angularFrequency": 1.5707963267948966,
+  "displayTrailPeriods": 1,
   "layers": [
     {
       "binaryId": "spindle-binary-1",

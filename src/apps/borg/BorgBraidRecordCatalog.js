@@ -5,7 +5,7 @@ const ENTRY_FIELDS = Object.freeze(["id", "label", "recordUrl"]);
 export const BORG_BRAID_RECORD_CATALOG = createBorgBraidRecordCatalog([
   {
     id: "illustrative-spindle-chart-hypothesis-v0",
-    label: "Illustrative spindle chart hypothesis",
+    label: "Illustrative spindle prescribed geometry",
     recordUrl:
       "content/assets/borg/records/illustrative-spindle-chart-hypothesis.assembly-view-record.v0.json",
   },

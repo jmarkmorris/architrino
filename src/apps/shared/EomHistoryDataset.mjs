@@ -232,6 +232,10 @@ function validatePrescribedGeometryProvenance(provenance, { claimGrade, evidence
     declaration.sphericalEnvelopeRadius,
     "provenance.prescribedGeometry.sphericalEnvelopeRadius",
   );
+  requiredPositiveInteger(
+    declaration.displayTrailPeriods,
+    "provenance.prescribedGeometry.displayTrailPeriods",
+  );
 }
 
 function normalizeWindow(record, worldlines, { isAssemblyViewRecord = false } = {}) {
@@ -530,6 +534,14 @@ function requiredNonnegativeInteger(value, label) {
   const number = Number(value);
   if (!Number.isSafeInteger(number) || number < 0) {
     throw new TypeError(`assembly-view-record.v0 ${label} must be a nonnegative safe integer.`);
+  }
+  return number;
+}
+
+function requiredPositiveInteger(value, label) {
+  const number = Number(value);
+  if (!Number.isSafeInteger(number) || number < 1) {
+    throw new TypeError(`assembly-view-record.v0 ${label} must be a positive safe integer.`);
   }
   return number;
 }

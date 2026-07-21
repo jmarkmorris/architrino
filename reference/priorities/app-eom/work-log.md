@@ -2,11 +2,12 @@
 
 This file holds dated decisions, implementation status, validation results, failed paths, migration handoffs, and operator/developer communication for the EOM priority area. Keep the live queue in [priorities.md](priorities.md), provisional ideas in [brainstorming.md](brainstorming.md), and the defining contract in [application-and-engine-contract.md](application-and-engine-contract.md).
 
-## 2026-07-20 — One-Way Claim-Ready To Display-Grade Continuation
+## 2026-07-20 — One-Way Claim-Grade To Display-Grade Continuation
 
-- **Operator decision:** Borg always starts with the selected certified budget and certified EOM evolution. At the first certification or tolerance boundary it preserves the accepted prefix, changes the panel from green `Claim-ready mode` to red `Display grade`, and never upgrades that run again. Path colors carry no authority state. Claim grade: operator decision. Falsifier: a run starts red, returns from red to green, recolors a trajectory by grade, or labels any red segment claim-ready.
+- **Operator decision:** Borg always starts with the selected certified budget and certified EOM evolution. At the first certification or tolerance boundary it preserves the accepted prefix, changes the panel from green `Claim grade` to red `Display grade`, and never upgrades that run again. Path colors carry no authority state. Claim grade: operator decision. Falsifier: a run starts red, returns from red to green, recolors a trajectory by grade, or gives any red segment claim authority.
 - **Implemented:** protocol V9 carries `runGrade`; the first eligible certified halt records one immutable boundary and point-projects the accepted retained history. A certified execution timeout also crosses at the prior accepted cut without accepting or advancing the unfinished candidate. Display requests use the binary64 delayed-master-equation evaluator and synchronized population point steps with the same selected root tolerance, acceleration tolerance, coupling, field speed, core scale, step height, and retained-history window. They do not use a second user tolerance profile. Every response and segment is forced to `display-only` and is promotion-ineligible. Claim grade: derived from the request, native routing, timeout routing, and evidence-status call graph. Falsifier: certified and display requests differ in a selected numerical control, a timed-out candidate advances history, a red segment reports another grade, or display output passes the promotion gate.
 - **Validation:** focused JavaScript tests cover the immutable downgrade boundary, timeout-at-prior-cut boundary, identical numerical controls, point-projected history, permanent display authority, hard memory/engine stops, and protocol V9. The native process suite covers certified behavior plus a nonzero two-path display acceleration whose response and segments are all `display-only`. Browser QA measured the green panel and caught two fallback defects—exact retained-history center-line discontinuity and certified-gate reuse after downgrade—before the point evaluator was installed. A deterministic end-to-end run then measured a third defect: certified evolution remained active but exceeded the 180-second execution deadline at `T=8.7`, which previously killed the run. After timeout routing was added, an actual native-worker timeout produced the immutable boundary at `T=0`, restarted the worker in display grade, and published three consecutive display chunks through `T=0.9`. Claim grade: measured for the named tests, panel states, timeout boundary, and three-chunk native continuation; a full browser endurance run across the final timeout fallback remains an open measurement, not claim evidence. Falsifier: any named test fails, the panel omits its boundary, or a fresh browser run stops at the first certifiability failure or certified execution timeout instead of entering the point evaluator.
+- **Exact boundary-token repair:** the runner now carries each native accepted-end token unchanged into the next request. Converting that token to a JavaScript number and back could alter its exact decimal spelling/value enough for the next retained segment to fail the exact contiguity gate. The focused regression preserves `10.100000000000001`, and a native display continuation published `[7.2,7.5]`, `[7.5,7.8]`, and `[7.8,8.1]` without the reported engine exception. Claim grade: derived mechanism and measured native continuation. Falsifier: an accepted token changes before the next request or the native harness reproduces `retained-history segments must be contiguous` at the same boundary.
 
 ## 2026-07-13 — Priority Area Created
 
@@ -2053,3 +2054,58 @@ This file holds dated decisions, implementation status, validation results, fail
   remains open and no budget or EOM solver acceptance semantic changed.
 - **Evidence:**
   [current root-time budget theorem](evidence/borg-current-root-time-budget-theorem-2026-07-20.md).
+
+## 2026-07-20 — Borg one-decimal claim cut and current-worker display handoff
+
+- **Measured browser failure:** a live Research run published a certified prefix
+  through `T=7.976367187499999`, crossed to display grade, and then stopped on
+  the generic `inconsistent certified provenance` response check. After the
+  check was made field-specific, a second live crossing at `T=3.4` identified
+  the actual mismatch as `evidenceStatus` and `claimGrade`, both of which came
+  back as `failed` instead of `display-only`.
+- **Derived claim boundary:** the first eligible certified halt now floors its
+  exact decimal accepted time to one digit after the decimal point, truncates
+  every retained polynomial history at that exact cut, discards the accepted
+  sliver above the cut, point-projects the cut histories once, and begins the
+  display request from the same token. Thus an accepted endpoint such as
+  `6.449999999999999` yields claim grade through `T=6.4` and a display-only
+  suffix beginning at `T=6.4`; no frame or retained segment from the discarded
+  sliver is published.
+- **Inferred stale-worker cause, guarded in code:** the local development server
+  was still connected to an EOM worker launched before the on-disk display
+  binary was rebuilt. The process client now records the executable device,
+  inode, size, and modification time and replaces the persistent worker before
+  the next request whenever that signature changes. The response validator
+  remains fail closed and now names each mismatched provenance field.
+- **Measured UI result:** the authority panel renders the boundary with one
+  decimal digit and grammatical projection count. The timeline now reads
+  `T n.m | rate | lead`; it no longer displays `solver` or the keyframe number.
+- **Measured validation:** the complete Borg JavaScript suite passes `109/109`
+  (including the focused transition set at `48/48`); native Borg process tests
+  pass `14/14`; the browser at shared port `5173` renders the
+  revised panel and `T 0.0 | 0.60× realtime | lead 0` timeline without a visible
+  runtime failure. The current native display test independently returns
+  `runGrade=display`, `evidenceStatus=display-only`, and
+  `claimGrade=display-only`.
+- **Scope:** this repairs Borg's exploratory display handoff. It does not give
+  the suffix claim authority and does not reduce the open
+  `coupled_retained_history_integrator` long-horizon acceptance obligation.
+
+## 2026-07-20 — Borg Play request survives slow first-chunk prefill
+
+- **Measured interaction failure:** Play entered the prefill loop but left the
+  control labeled and drawn as Play. If the first EOM chunk took longer than
+  the 30-second prefill deadline, the deadline attempted playback with no
+  frames and then forgot the request; the eventual first chunk was buffered but
+  never started.
+- **Derived interaction contract:** pressing Play now records a pending playback
+  request immediately, changes the control to pressed Pause with busy state,
+  and preserves that request until frames exist. A chunk arriving after the
+  prefill deadline starts playback. Pressing Pause while startup is pending
+  cancels the request without publishing rejected motion.
+- **Measured browser validation:** the live control changed from Play to pressed
+  Pause within 250 ms. The same run crossed the former deadline, produced three
+  chunks, and advanced to `T=0.1` with 80 buffered frames; Pause then restored
+  the Play control. The complete Borg JavaScript suite remains `109/109`.
+- **Scope:** this changes only start/pause orchestration and visible feedback;
+  it does not change EOM evolution, tolerances, histories, or claim grading.

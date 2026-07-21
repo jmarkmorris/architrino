@@ -47,7 +47,7 @@ The simulation workspace may request EOM solver execution through the existing B
 
 ## Implemented Record-Only Core And Contract Blockers
 
-The implemented Borg path provides the visible mode boundary, global braid-record selector, persistent provenance, strict record validation, retained-segment animation through exactly the declared delay horizon $h$, coverage-clamped playback and scrubbing, chart pose, source-carried light-purple ansatz curves, source-carried per-binary axis guides, co-rotating camera, frequency strobe, one-period loop, display-only swept envelope, static image export, raw source-order navigation, source-only filters, and optional source-carried $S_3$ grouping. Pressing Play from chart pose enters recorded-path playback before starting the timeline. The initial catalog entry is the source-defined illustrative spindle chart hypothesis. Its recorded-path playback animates the prescribed analytical geometry and does not represent simulated evolution. `BorgAssemblyViewSession.js`, `BorgAssemblyViewControls.js`, and `BorgAssemblyViewScene.js` keep those policies focused while `BorgAppRuntime.js` remains the common scene and playback owner.
+The implemented Borg path provides the visible mode boundary, catalog-backed prescribed-geometry selector, persistent provenance, strict record validation, retained-segment animation through exactly the declared delay horizon $h$ for evolved records, source-defined whole-period trail depth for prescribed charts, coverage-clamped playback and scrubbing, chart pose, source-carried light-purple ansatz curves, source-carried per-binary axis guides, co-rotating camera, display-only swept envelope, static image export, a disabled animation-export placeholder, raw source-order navigation, source-only filters, and optional source-carried $S_3$ grouping. Pressing Play from chart pose enters recorded-path playback before starting the timeline. The initial catalog entry is the source-defined illustrative spindle prescribed geometry. Its recorded-path playback animates the prescribed analytical geometry, shows one complete rotation of trail, and does not represent simulated evolution. `BorgAssemblyViewSession.js`, `BorgAssemblyViewControls.js`, and `BorgAssemblyViewScene.js` keep those policies focused while `BorgAppRuntime.js` remains the common scene and playback owner.
 
 The following requirements remain fail-closed because `assembly-view-record.v0` does not ratify the required carrier:
 
@@ -68,7 +68,7 @@ The existing layer id `simulation-window` is a compatibility identifier. End-use
 
 Collection navigation preserves configuration-space identity without importing app-side analysis into replay authority:
 
-- Keep the built-in braid selector visible in both the simulation workspace and assembly-view replay. Selection always navigates through `borg.html?eomRecord=<encoded-url>`; the catalog never supplies record contents.
+- Keep prescribed geometry separate from random live initial conditions. The simulation workspace exposes `Open prescribed geometry workspace`, which navigates through `borg.html?eomRecord=<encoded-url>`; the catalog never supplies record contents or live-run initial conditions.
 - Treat every parameter variation as a separate source specification and sealed raw record. Radius or other member variations may be added to the catalog only after their labels, layer mapping, and complete source parameters are explicit; Borg does not generate a new geometry from browser-side controls.
 - Load one record directly, then add local-file and manifest/packet intake for collections of records when Borg's deferred import workflow opens.
 - Preserve source ids, source order, and raw record access. The viewer must not silently sort or relabel worldlines, binaries, branches, or layers.
@@ -79,13 +79,12 @@ Collection navigation preserves configuration-space identity without importing a
 
 ## Display Modes
 
-1. **Recorded-path playback**: playback with scrub, slow-motion, and loop-one-period. An `evolved-record` draws retained EOM history; a prescribed `chart-hypothesis` draws only its declared display path. Each trail has source-declared depth $h$, but a chart trail is not simulation evidence.
+1. **Recorded-path playback**: playback with scrub and slow-motion. An `evolved-record` draws retained EOM history through source-declared depth $h$; a prescribed `chart-hypothesis` draws only its declared display path through its source-defined positive whole number of periods. A prescribed trail is not simulation evidence.
 2. **Chart pose**: static hypothesis rendering with ansatz curves and overlays.
 3. **Co-rotating / screw-frame camera**: in the right frame a rigid candidate is a still image, so any motion in that frame is the residual made visible — "is it holding?" becomes "does the picture move?"
-4. **Strobe**: sample playback at a chosen frequency; the binary matching it freezes — visual frequency measurement.
-5. **Envelope**: display-only time-averaged swept envelope (fusiform, oblate, or emergent shape) evaluated from the record's declared interpolation.
-6. **Comparison**: two or more records side-by-side or overlaid with synchronized time — the collapse-protocol view.
-7. **Export**: static images for corpus figures.
+4. **Envelope**: display-only time-averaged swept envelope (fusiform, oblate, or emergent shape) evaluated from the record's declared interpolation.
+5. **Comparison**: two or more records side-by-side or overlaid with synchronized time — the collapse-protocol view.
+6. **Export**: static images for corpus figures; animation export remains visibly unavailable until its encoding and file contract are implemented.
 
 ## Overlays
 

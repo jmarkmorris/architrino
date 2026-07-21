@@ -2,6 +2,8 @@ import * as THREE from "../../../vendor/three/three.module.js";
 
 const ANSATZ_COLOR = 0xc6b6ff;
 const AXIS_COLORS = Object.freeze([0x8fdcf2, 0xf0a6d2, 0xb8a8ff]);
+const COINCIDENT_AXIS_COLOR = 0xd6dde3;
+const AXIS_COINCIDENCE_TOLERANCE = 1e-9;
 const SWEPT_ENVELOPE_COLOR = 0x7bd6c2;
 
 export function createBorgAssemblyViewScene({
@@ -22,6 +24,8 @@ export function createBorgAssemblyViewScene({
   let entry = null;
   let cameraMode = "free";
   let referenceRotation = null;
+  let displayMode = "animated";
+  let pathVisible = true;
 
   function setRecord(nextEntry) {
     entry = nextEntry;
@@ -31,15 +35,24 @@ export function createBorgAssemblyViewScene({
     buildBinaryAxes(nextEntry?.dataset?.binaries ?? []);
     buildAnsatz(nextEntry?.dataset?.ansatz ?? []);
     referenceRotation = resolveSourceRotation(nextEntry);
+    ansatzGroup.visible = pathVisible && displayMode === "chart-pose";
+    sweptEnvelopeGroup.visible = displayMode === "swept-envelope";
     setCameraMode("free");
   }
 
   function setDisplayMode(mode) {
-    ansatzGroup.visible = mode === "chart-pose";
+    displayMode = mode;
+    ansatzGroup.visible = pathVisible && mode === "chart-pose";
     sweptEnvelopeGroup.visible = mode === "swept-envelope";
     if (mode === "swept-envelope" && sweptEnvelopeGroup.children.length === 0) {
       buildSweptEnvelope();
     }
+    render?.();
+  }
+
+  function setPathVisible(visible) {
+    pathVisible = Boolean(visible);
+    ansatzGroup.visible = pathVisible && displayMode === "chart-pose";
     render?.();
   }
 
@@ -99,48 +112,35 @@ export function createBorgAssemblyViewScene({
   }
 
   function buildBinaryAxes(binaryRows) {
-    binaryRows.forEach((binary, sourceIndex) => {
-      const normal = binary?.planeOrientation?.normal ?? binary?.planeNormal;
-      const point = binary?.axisPoint;
-      const halfLength = Number(binary?.axisDisplayHalfLength);
-      if (!finiteVector(normal) || !finiteVector(point) || !(halfLength > 0)) {
-        return;
-      }
-      const normalLength = Math.hypot(Number(normal.x), Number(normal.y), Number(normal.z));
-      if (!(normalLength > 0)) {
-        return;
-      }
-      const unit = {
-        x: Number(normal.x) / normalLength,
-        y: Number(normal.y) / normalLength,
-        z: Number(normal.z) / normalLength,
-      };
+    const visibleAxes = groupCoincidentBinaryAxes(binaryRows);
+    visibleAxes.forEach((axis, visibleIndex) => {
       const sourceStart = {
-        x: Number(point.x) - halfLength * unit.x,
-        y: Number(point.y) - halfLength * unit.y,
-        z: Number(point.z) - halfLength * unit.z,
+        x: axis.offset.x + axis.minimum * axis.unit.x,
+        y: axis.offset.y + axis.minimum * axis.unit.y,
+        z: axis.offset.z + axis.minimum * axis.unit.z,
       };
       const sourceEnd = {
-        x: Number(point.x) + halfLength * unit.x,
-        y: Number(point.y) + halfLength * unit.y,
-        z: Number(point.z) + halfLength * unit.z,
+        x: axis.offset.x + axis.maximum * axis.unit.x,
+        y: axis.offset.y + axis.maximum * axis.unit.y,
+        z: axis.offset.z + axis.maximum * axis.unit.z,
       };
       const start = toWorld(sourceStart, new THREE.Vector3());
       const end = toWorld(sourceEnd, new THREE.Vector3());
       const geometry = new THREE.BufferGeometry().setFromPoints([start, end]);
-      const material = new THREE.LineDashedMaterial({
-        color: AXIS_COLORS[sourceIndex % AXIS_COLORS.length],
-        dashSize: 0.12 + 0.035 * sourceIndex,
-        gapSize: 0.07 + 0.02 * sourceIndex,
+      const material = new THREE.LineBasicMaterial({
+        color: axis.sourceBinaryIds.length > 1
+          ? COINCIDENT_AXIS_COLOR
+          : AXIS_COLORS[visibleIndex % AXIS_COLORS.length],
         transparent: true,
         opacity: 0.78,
         depthWrite: false,
       });
       const line = new THREE.Line(geometry, material);
-      line.computeLineDistances();
       line.userData = {
-        sourceIndex,
-        sourceBinaryId: String(binary?.id ?? binary?.binaryId ?? `binary-${sourceIndex + 1}`),
+        sourceIndex: axis.sourceIndices[0],
+        sourceBinaryId: axis.sourceBinaryIds[0],
+        sourceBinaryIds: Object.freeze([...axis.sourceBinaryIds]),
+        coincidentSourceCount: axis.sourceBinaryIds.length,
         valueAuthority: "source-carried-axis-point-normal-and-display-length",
       };
       axisGroup.add(line);
@@ -190,6 +190,7 @@ export function createBorgAssemblyViewScene({
   return Object.freeze({
     setRecord,
     setDisplayMode,
+    setPathVisible,
     setCameraMode,
     updateTime,
     dispose,
@@ -200,6 +201,82 @@ export function createBorgAssemblyViewScene({
       return referenceRotation != null;
     },
   });
+}
+
+function groupCoincidentBinaryAxes(binaryRows) {
+  const groups = [];
+  binaryRows.forEach((binary, sourceIndex) => {
+    const axis = normalizeBinaryAxis(binary, sourceIndex);
+    if (!axis) {
+      return;
+    }
+    const group = groups.find((candidate) => axesCoincide(candidate, axis));
+    if (group) {
+      group.minimum = Math.min(group.minimum, axis.minimum);
+      group.maximum = Math.max(group.maximum, axis.maximum);
+      group.sourceIndices.push(sourceIndex);
+      group.sourceBinaryIds.push(axis.sourceBinaryId);
+      return;
+    }
+    groups.push({
+      ...axis,
+      sourceIndices: [sourceIndex],
+      sourceBinaryIds: [axis.sourceBinaryId],
+    });
+  });
+  return groups;
+}
+
+function normalizeBinaryAxis(binary, sourceIndex) {
+  const normal = binary?.planeOrientation?.normal ?? binary?.planeNormal;
+  const point = binary?.axisPoint;
+  const halfLength = Number(binary?.axisDisplayHalfLength);
+  if (!finiteVector(normal) || !finiteVector(point) || !(halfLength > 0)) {
+    return null;
+  }
+  const normalLength = Math.hypot(Number(normal.x), Number(normal.y), Number(normal.z));
+  if (!(normalLength > 0)) {
+    return null;
+  }
+  const unit = {
+    x: Number(normal.x) / normalLength,
+    y: Number(normal.y) / normalLength,
+    z: Number(normal.z) / normalLength,
+  };
+  const firstNonzero = [unit.x, unit.y, unit.z].find(
+    (component) => Math.abs(component) > AXIS_COINCIDENCE_TOLERANCE,
+  );
+  if (firstNonzero < 0) {
+    unit.x *= -1;
+    unit.y *= -1;
+    unit.z *= -1;
+  }
+  const numericPoint = {
+    x: Number(point.x),
+    y: Number(point.y),
+    z: Number(point.z),
+  };
+  const center = numericPoint.x * unit.x + numericPoint.y * unit.y + numericPoint.z * unit.z;
+  return {
+    unit,
+    offset: {
+      x: numericPoint.x - center * unit.x,
+      y: numericPoint.y - center * unit.y,
+      z: numericPoint.z - center * unit.z,
+    },
+    minimum: center - halfLength,
+    maximum: center + halfLength,
+    sourceBinaryId: String(binary?.id ?? binary?.binaryId ?? `binary-${sourceIndex + 1}`),
+  };
+}
+
+function axesCoincide(left, right) {
+  return vectorDistance(left.unit, right.unit) <= AXIS_COINCIDENCE_TOLERANCE &&
+    vectorDistance(left.offset, right.offset) <= AXIS_COINCIDENCE_TOLERANCE;
+}
+
+function vectorDistance(left, right) {
+  return Math.hypot(left.x - right.x, left.y - right.y, left.z - right.z);
 }
 
 function resolveSourceRotation(entry) {

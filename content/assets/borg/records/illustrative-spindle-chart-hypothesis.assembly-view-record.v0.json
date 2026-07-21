@@ -20,7 +20,8 @@
         "y": 0,
         "z": 0
       },
-      "sphericalEnvelopeRadius": 0.5
+      "sphericalEnvelopeRadius": 0.5,
+      "displayTrailPeriods": 1
     }
   },
   "window": {
