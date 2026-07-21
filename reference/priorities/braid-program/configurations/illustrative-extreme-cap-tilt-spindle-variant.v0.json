@@ -12,7 +12,7 @@
     "classificationLabel": "Parameter variant",
     "variant": "extreme-cap-tilt",
     "variantLabel": "Extreme cap-tilt inspection member",
-    "canonSource": "content/markdown/aaa/noether-braid/spindle-braid.md#definition-and-geometry"
+    "canonSource": "content/markdown/aaa/noether-braid/braid-b1-symmetry.md#definition-and-geometry"
   },
   "sourceOrder": ["extreme-cap-spindle-binary-1", "extreme-cap-spindle-binary-2", "extreme-cap-spindle-binary-3"],
   "frame": {

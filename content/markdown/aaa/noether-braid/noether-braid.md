@@ -10,11 +10,46 @@ This question is the crux of the theory. The Noether sea, the particle architect
 
 One working principle of this scene deserves stating openly. When two statements derived along independent routes turn out to describe the same limit — the horizon-alignment condition and the vanishing of the axial polarity dipole, or the same minimum-energy arrangement organizing both the braid core and its accessory dressing — that coincidence is treated as a seam of the underlying ontology, not as an accident to admire. In a correct substrate theory one mechanism surfaces in many observer-level places precisely because it is one mechanism, so each multi-route convergence is logged, the common cause is hunted, and the identified mechanism is then required to make at least one new prediction beyond the statements it unified. Convergences that resist unification are equally valuable, because they mark places where the ontology is still missing a part.
 
+## Neutral-Braid Base
+
+The neutral braid is the broad six-architrino case before a family member imposes a binary partition or geometric relation. Its polarity inventory contains three electrinos and three positrinos, indexed by $i\in\{1,\ldots,6\}$ with signs $\sigma_i\in\{+1,-1\}$ satisfying
+
+$$
+\#\{i:\sigma_i=+1\}
+=
+\#\{i:\sigma_i=-1\}
+=3,
+\qquad
+\sum_{i=1}^{6}\sigma_i=0.
+$$
+
+Equivalently, the compact inventory is $3\epsilon_+ + 3\epsilon_-$. This ledger is imposed before any binary partition, member assignment, or reference fixture. Each architrino has three attractive opposite-polarity channels and two repulsive same-polarity channels among the other five sites. The $3+2$ count is an inventory fact, not a compressed acceleration law; an acceleration row must still be assembled from the retained causal roots and path history.
+
+Before a family chart is selected, the intrinsic path of architrino $i$ may be represented by a closed arclength curve
+
+$$
+\mathbf Y_i:\mathbb{R}/L_i\mathbb{Z}\to\mathbb{R}^3,
+\qquad
+\left\|\mathbf Y_i'(s)\right\|=1,
+$$
+
+with physical trajectory
+
+$$
+\mathbf X_i(T)=\mathbf Y_i(\lambda_i(T)),
+\qquad
+\frac{d\lambda_i}{dT}(T)=\nu_i(T),
+\qquad
+0<\nu_-\leq\nu_i(T)\leq\nu_+<\infty.
+$$
+
+Thus the base class permits changing support geometry, nonuniform speed, changing local curvature, and delayed multi-channel response without first reducing the motion to exact binary rows. A retained neutral braid must still return to a closed causal ledger within the declared recovery tolerance. Every A, B, or C component braid inherits this neutral inventory before adding its member coordinates.
+
 The prescribed geometry is organized by [Braid Taxonomy](braid-taxonomy.md). Its current map is:
 
 | Term | Definition | Additional structure |
 | --- | --- | --- |
-| [**neutral braid**](braid-families.md#the-neutral-braid-base-of-the-family-ladder) | The broad six-architrino neutral case before any required binary grouping or radial organization. | Polarity balance and causal-return bookkeeping. |
+| [**neutral braid**](#neutral-braid-base) | The broad six-architrino neutral case before any required binary grouping or radial organization. | Polarity balance and causal-return bookkeeping. |
 | [**Family A**](braid-family-a.md) | One braid whose three binary axes are orthogonal at the near-rest endpoint and converge toward the group-translation direction under the prescribed response. | `A1` is the three-radius hinge member; `A2` is the fully symmetric no-hinge member. |
 | [**Family B**](braid-family-b.md) | One braid whose three binary midpoints and axes coincide. | `B1` is the rigid common-frequency member. |
 | [**Family C**](braid-family-c.md) | An assembly composed of two complete B1 braids. | `C1` has the same circulation sense; `C2` has the opposite circulation sense. |
@@ -44,10 +79,10 @@ It does not carry the detailed family derivations, select a frequency family, as
 | Family definition and member analysis | [Braid Family A](braid-family-a.md) | The shared Family-A geometry, A1 variants, A2 symmetry, the A1.2/A2 boundary, and A2 retention diagnostics. |
 | Family definition | [Braid Family B](braid-family-b.md) | The exact B1 path geometry, coordinate boundaries, axial-translation specialization, and Family-A boundary. |
 | Family definition | [Braid Family C](braid-family-c.md) | The exact two-B1 composition chart, C1/C2 circulation relation, derived axis offset, and physical-mapping boundary. |
-| Configuration space | [Noether Braid Configuration Space](noether-braid-configuration-space.md) | The classification axes, evidence-level terms, and the rank-three angular-momentum-frame search variables. |
-| Retention and interpretation | [Neutral-Braid Retention and Interpretation](braid-families.md) | The base neutral braid, A1 retention questions, closure labels, dynamics, dressing, and downstream hypotheses not yet assigned to specialist member documents. |
+| Configuration space | [Noether Braid Configuration Space](noether-braid-configuration-space.md) | The evidence-level terms and supplementary rank-three angular-momentum-frame diagnostics outside the canonical taxonomy. |
+| A1 dynamics and interpretation | [A1 Dynamics and Interpretation](braid-a1-dynamics.md) | A1 retention questions, closure labels, cadence retuning, scaling, alignment, and downstream hypotheses. |
 | Mathematics | [Braid Mathematics](braid-mathematics.md) | The core-agnostic machinery: invariant channels and equivariant reductions, exact channel identities, the exact speed budget, eigen-braid spectrum framing, fold-set action quantization as hypothesis, and the Thomson dressing mechanism. |
-| Analysis | [Doubling-Frequency Resonance Lock](doubling-frequency-lock.md) | The A1.3 `4:2:1` candidate and its lock analysis. |
+| Analysis | [A1.3 Doubling-Frequency Resonance Lock](braid-a1-3-doubling-frequency-lock.md) | The A1.3 $4{:}2{:}1$ candidate and its lock analysis. |
 | Export | [Braid Envelope Geometry](braid-envelope-geometry.md) | The family-general envelope and observer-export interface: dynamic exclusion envelope, sea-interface diagnostic, canonical geometry variables, and the Lorentz projection. |
 | Export | [Noether Braid Topological Charge](noether-braid-topological-charge.md) | Classification of retained branch charts. |
 

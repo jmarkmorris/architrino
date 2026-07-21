@@ -16,7 +16,7 @@ The related material is best read as an ordered path rather than as a flat list 
 
 1. Start with primitive ontology in [Architrino](../../foundations/architrino.md) and [Ontology](../../foundations/ontology.md).
 2. Use [Master Equation](../../dynamics/master-equation.md) and [Causal Action Functional](../../dynamics/causal-action-functional.md) for delayed conservation and wake-history bookkeeping.
-3. Use [Braid Family B](../../noether-braid/braid-family-b.md) for the exact B1 common-axis kinematics that spin must descend from, with [B1 Hypotheses and Discrete Symmetry](../../noether-braid/spindle-braid.md) carrying its symmetry derivations and [Nested Shell Braid Dynamics](../../noether-braid/braid-families.md#nested-shell-braid-dynamics) carrying the retained Family-A comparison material.
+3. Use [Braid Family B](../../noether-braid/braid-family-b.md) for the exact B1 common-axis kinematics that spin must descend from, with [B1 Hypotheses and Discrete Symmetry](../../noether-braid/braid-b1-symmetry.md) carrying its symmetry derivations and [Nested Shell Braid Dynamics](../../noether-braid/braid-a1-dynamics.md#a1-dynamics) carrying the retained Family-A comparison material.
 4. Treat [Measurement Ontology](../../quantum/measurement-ontology.md), [Electroweak Bosons](../../assemblies/bosons/electroweak-bosons.md), and [Bell's Theorem](./bell-theorem.md) as downstream tests rather than source derivations.
 
 ## Primitive Status

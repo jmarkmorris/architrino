@@ -155,7 +155,13 @@ $$
 
 The combined binary envelope is nearly spherical at the near-rest endpoint in a weak-gradient deep-space environment. Increasing group translation speed or gravitational gradient increases $\lambda_A$, compresses the envelope along $\hat{\mathbf u}_A$, and makes the envelope increasingly oblate. The event-horizon response endpoint and the photon-channel response endpoint use the flat limit $\lambda_A=1$. These endpoint assignments are prescribed Family-A taxonomy; deriving the response path and either physical channel from an EOM-solver record remains open.
 
-`A1` is the general Family-A member. It has three pairwise different binary radii, allows three independently assigned binary frequencies, and assigns binary 2 the hinge role. A constrained variant `A1.x` inherits these Family-A and A1 characteristics except where its row explicitly replaces them.
+`A1` is the general Family-A member. Its binary indices are ordered by radius,
+
+$$
+0<R_1<R_2<R_3,
+$$
+
+so binary 1 is inner, binary 2 is middle, and binary 3 is outer. A1 allows three independently assigned binary frequencies and assigns the middle binary, binary 2, the hinge role. A constrained variant `A1.x` inherits these Family-A and A1 characteristics except where its row explicitly replaces them.
 
 `A2` is the fully symmetric Family-A member. It has no distinguished hinge. Its three binaries have equal radii, equal axial half-separations, equal transverse orbit radii, equal frequencies, one circulation sense, and phases separated by $120^\circ$. Thus a $120^\circ$ rotation about $\hat{\mathbf u}_A$ cyclically permutes the three binaries without selecting one of them.
 
@@ -223,7 +229,7 @@ The first three tables carry the geometry. The fourth table supplies optional na
 
 ### Individual Binary Master Table
 
-Within `A1`, the symbols $R_1,R_2,R_3$ denote pairwise different radii. A repeated symbol $R$ or $f$ declares equality across the corresponding rows. Unconstrained phases remain $\phi_1,\phi_2,\phi_3$. The $h_a$ and $\rho_a$ columns carry the axial and transverse decomposition of $R_a$ defined above. Family-C members inherit the individual-binary rows of their two B1 components.
+Within `A1`, the symbols $R_1,R_2,R_3$ obey $0<R_1<R_2<R_3$ and identify the inner, middle, and outer binaries respectively. A repeated symbol $R$ or $f$ declares equality across the corresponding rows. Unconstrained phases remain $\phi_1,\phi_2,\phi_3$. The $h_a$ and $\rho_a$ columns carry the axial and transverse decomposition of $R_a$ defined above. Family-C members inherit the individual-binary rows of their two B1 components.
 
 | Member ID | Braid index | Binary index | Radius | Axial half-separation | Transverse orbit radius | Frequency | Phase |
 | --- | --- | --- | --- | --- | --- | --- | --- |

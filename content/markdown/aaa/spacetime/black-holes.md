@@ -1114,7 +1114,7 @@ This chapter centralizes the black-hole ontology and hands specific tasks to adj
 
 - [singularity-resolution.md](./singularity-resolution.md): canonical horizon alignment condition and singularity replacement language.
 - [general-relativity.md](./general-relativity.md): weak-field and strong-field observational closure targets.
-- [Nested Shell Braid Dynamics](../noether-braid/braid-families.md#nested-shell-braid-dynamics): nested shell braid regime map, recycling sketches, and kinematic hypotheses.
+- [Nested Shell Braid Dynamics](../noether-braid/braid-a1-dynamics.md#a1-dynamics): nested shell braid regime map, recycling sketches, and kinematic hypotheses.
 - [Mapping the Planck Scale to the Nested Shell Braid Geometry](../philosophy-history/theory-bridges/planck-scale-nested-shell-braid-alignment.md): Planck-alignment interpretation of terminal horizon locking.
 - [../cosmology/dark-energy.md](../cosmology/dark-energy.md): effective dark-energy source terms and late-time expansion history.
 - [../cosmology/CMB.md](../cosmology/CMB.md): recycling cosmology and SMBH-sourced chronology mapping.

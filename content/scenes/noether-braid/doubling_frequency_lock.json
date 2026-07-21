@@ -2,7 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "noether_braid__doubling_frequency_lock",
-    "title": "Doubling-Frequency Resonance Lock",
+    "title": "A1.3 Doubling-Frequency Resonance Lock",
     "type": "Scene-Markdown-View",
     "units": "relative",
     "wrapLabels": true,
@@ -11,7 +11,7 @@
     },
     "source": {
       "type": "markdown",
-      "path": "content/markdown/aaa/noether-braid/doubling-frequency-lock.md"
+      "path": "content/markdown/aaa/noether-braid/braid-a1-3-doubling-frequency-lock.md"
     },
     "view": {
       "columns": 1,

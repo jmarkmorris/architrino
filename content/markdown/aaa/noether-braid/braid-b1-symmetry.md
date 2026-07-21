@@ -2,7 +2,7 @@
 
 This chapter owns the B1 harmonic-matching hypothesis, discrete-symmetry derivations, and open retention burden. The prescribed common-center, common-axis path geometry and its equatorial, axial, and axial-translation loci are defined in [Braid Family B](braid-family-b.md).
 
-The status discipline of the braid stack binds throughout. B1 is a prescribed member, not a retained branch. The kernel-covariance results below are derivations within their declared scope; physical formation, self-support, retention, selection, and observer-level symmetry recovery remain open. The retained-branch certificate target of [Neutral-Braid Retention and Interpretation](braid-families.md#the-neutral-braid-base-of-the-family-ladder) governs those claims.
+The status discipline of the braid stack binds throughout. B1 is a prescribed member, not a retained branch. The kernel-covariance results below are derivations within their declared scope; physical formation, self-support, retention, selection, and observer-level symmetry recovery remain open. The retained-branch certificate target of [Braid Recovery Requirements](braid-recovery-requirements.md) governs those claims.
 
 ## The Harmonic-Matching Hypothesis
 
@@ -56,4 +56,4 @@ The B1 construction therefore supplies a conditional discrete-symmetry scaffold,
 
 ## Candidate Status and Open Burden
 
-B1 is a prescribed member. Everything beyond its exact geometry and the declared kernel-covariance structure is open: whether any realization satisfies the master equation, whether a satisfying realization persists under evolution, whether persistence requires an environment, and how B1 compares with the other taxonomy members. Those questions are governed by the retention contract of [Braid Recovery Requirements](braid-recovery-requirements.md) and the certificate target of [Neutral-Braid Retention and Interpretation](braid-families.md#the-neutral-braid-base-of-the-family-ladder). Results enter this chapter only when established, with instrument and claim level stated.
+B1 is a prescribed member. Everything beyond its exact geometry and the declared kernel-covariance structure is open: whether any realization satisfies the master equation, whether a satisfying realization persists under evolution, whether persistence requires an environment, and how B1 compares with the other taxonomy members. Those questions are governed by the retention contract of [Braid Recovery Requirements](braid-recovery-requirements.md). Results enter this chapter only when established, with instrument and claim level stated.

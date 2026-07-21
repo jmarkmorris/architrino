@@ -1,6 +1,6 @@
 # Braid Taxonomy Migration
 
-Status: IN PROGRESS. The operator selected the hybrid architecture on 2026-07-21. The Family-A, Family-B, and Family-C definition-only batches are complete; later dynamics and interpretation migrations remain open.
+Status: COMPLETE. The operator selected the hybrid architecture on 2026-07-21. The Family-A, Family-B, and Family-C definition batches, specialist-document split, shared-chapter re-indexing, and legacy-source removal are complete. The next operation is a document-by-document review of the thirteen current sources listed below, not another legacy migration batch.
 
 ## Accepted Document Architecture
 
@@ -29,28 +29,28 @@ The taxonomy remains compact. A family document explains inherited geometry once
 | Current source | Current material | Proposed destination | Disposition |
 | --- | --- | --- | --- |
 | `noether-braid.md` | Neutral six-architrino scaffold and scene orientation | Remain in `noether-braid.md` | Retain as the hub; replace the old family ladder with the A/B/C map only after the family documents exist. |
-| `braid-families.md` | Neutral-braid base inventory | `noether-braid.md` and `braid-taxonomy.md` | Consolidate the minimum inventory definition; do not repeat its channel analysis in the taxonomy. |
+| `braid-families.md` | Neutral-braid base inventory | `noether-braid.md` and `braid-taxonomy.md` | Migrated. The base inventory and generic closed-path chart are in the hub; the old source was removed. |
 | `braid-families.md` | “Symmetric Shell Braid,” “One-Band Family,” and “Symmetric Member” | `braid-family-a.md`, member A2 | Migrated. The durable equal-geometry, equal-frequency, threefold-symmetry content is in A2 coordinates; the prior definition block was deleted. |
 | `braid-families.md` | A2 isolated-release and return-response material | `braid-family-a.md`, A2 retention subsection; shared certificate details remain in `braid-recovery-requirements.md` | Migrated with the equivariance theorem, recovery residual, conditional no-return certificate, and open evolution scope preserved. |
 | `braid-families.md` | A2 sea-embedding material | `braid-family-a.md`, A2 retention subsection | Migrated as an open member-specific environmental return-response route; population-selection burdens remain with the Noether sea. |
-| `braid-families.md` | Accessory dressing and apparent-energy interpretations | Downstream assembly and mass-map documents | Do not make these properties part of A2's geometric definition. |
+| `braid-families.md` | Accessory dressing and apparent-energy interpretations | `braid-mathematics.md`, downstream assembly documents, and priority-only material | Migrated or triaged. The Thomson mechanism remains shared mathematics; the incompatible four-site/two-site quark shortcut is priority-only pending a six-site moment ledger. |
 | `braid-families.md` | “Nested Shell Braid,” its relation to the symmetric member, and its ordered-radius/frequency descriptions | `braid-family-a.md`, A1 and A1.x subsections | Migrated. The durable three-radius, hinge, frequency-variant, and symmetry-boundary content is in A1 coordinates; the prior definition block was deleted. |
-| `braid-families.md` | Integer phase-closure states | A1 family subsection, with member-specific details routed to A1.3 or A1.4 | Preserve the distinction between exact periodicity and dynamical selection. |
-| `braid-families.md` | Cadence retuning, scaling curves, reduced closure labels, and dynamics | Specialist member document or proof-program material after an ID audit | Do not merge into the family definition until the applicable member is identified. |
-| `braid-families.md` | Geometry and exclusion-envelope material | `braid-envelope-geometry.md` | Keep envelope mathematics shared and reference member IDs from that owner. |
-| `braid-families.md` | Generation and fermion-architecture interpretations | Downstream assembly documents | Keep observer-facing mappings separate from the braid taxonomy. |
+| `braid-families.md` | Integer phase-closure states | `braid-a1-dynamics.md`, with A1.3 specialization in `braid-a1-3-doubling-frequency-lock.md` | Migrated with exact periodicity kept separate from dynamical selection. |
+| `braid-families.md` | Cadence retuning, scaling curves, reduced closure labels, and dynamics | `braid-a1-dynamics.md` | Migrated into an A1 specialist chapter; no retained EOM-solver branch is asserted. |
+| `braid-families.md` | Geometry and exclusion-envelope material | `braid-envelope-geometry.md` | Migrated and re-indexed by A1/B1 member ID. |
+| `braid-families.md` | Generation and fermion-architecture interpretations | `braid-a1-dynamics.md` as a compact hypothesis interface plus downstream assembly documents | Migrated without making the mapping part of the A1 definition. |
 | `spindle-braid.md` | Definition, exact prescribed geometry, and screw motion | `braid-family-b.md`, B1 | Migrated. The exact common-center path equation, canonical coordinates, speed relation, and axial-translation specialization are in B1; the prior definition and screw-motion blocks were deleted. |
 | `spindle-braid.md` | Planar and axial boundary members | `braid-family-b.md`, B1 coordinate-boundary section | Migrated as equatorial and axial coordinate loci. No decimal member IDs were introduced. |
-| `spindle-braid.md` | Harmonic-matching hypothesis | `spindle-braid.md`, retitled B1 specialist content | Retained with hypothesis grade; it is not part of the B1 definition. |
-| `spindle-braid.md` | B1-specific discrete-symmetry structure | `spindle-braid.md`, retitled B1 specialist content | Retained as derivation-grade kernel covariance and open observer-recovery targets. Shared-mathematics promotion remains a later adjudication. |
-| `doubling-frequency-lock.md` | `4:2:1` assumptions, identities, propositions, and diagnostics | Specialist document for A1.3 | Retain as a specialist member document; rename only after its A1.3 role mapping is checked throughout. |
-| `noether-braid-configuration-space.md` | Classification axes and frequency families | `braid-taxonomy.md` | Merge only coordinates accepted into the new taxonomy; retire conflicting or redundant classifiers. |
+| `spindle-braid.md` | Harmonic-matching hypothesis | `braid-b1-symmetry.md` | Migrated with hypothesis grade; it is not part of the B1 definition. |
+| `spindle-braid.md` | B1-specific discrete-symmetry structure | `braid-b1-symmetry.md` | Migrated as derivation-grade kernel covariance and open observer-recovery targets. |
+| `doubling-frequency-lock.md` | $4{:}2{:}1$ assumptions, identities, propositions, and diagnostics | `braid-a1-3-doubling-frequency-lock.md` | Migrated and explicitly scoped to A1.3. |
+| `noether-braid-configuration-space.md` | Classification axes and frequency families | `braid-taxonomy.md` | Completed. Accepted coordinates are in the taxonomy; polarity-placement and old support classifiers were removed, while noncanonical frame and speed diagnostics remain explicitly supplementary. |
 | `noether-braid-configuration-space.md` | General branch state, group velocity, frame conditioning, and unordered-label mathematics | `braid-mathematics.md` or another shared mathematical owner | Keep shared mathematics outside family definitions. |
 | `noether-braid-configuration-space.md` | Evidence levels, certification, stability, and Noether sea burdens | `braid-recovery-requirements.md` and the Noether sea owner | Do not mix proof status into the coordinate taxonomy. |
-| `braid-mathematics.md` | Shared symmetry and delayed-dynamics mathematics | Remain in `braid-mathematics.md` | Replace old family labels with IDs only after each mapping is accepted. The old drum depiction maps to A2 geometry but remains mathematics, not a family. |
-| `braid-envelope-geometry.md` | Envelope definitions and deformation mathematics | Remain in `braid-envelope-geometry.md` | Re-index envelope cases by member ID after Family A and Family B documents exist. |
-| `braid-recovery-requirements.md` | Retained-branch certificate and recovery burdens | Remain in `braid-recovery-requirements.md` | Instantiate the shared requirements by member ID without duplicating them in every family document. |
-| `noether-braid-topological-charge.md` | Cross-family topological definitions | Remain in `noether-braid-topological-charge.md` | Update consumers to member IDs only where the applicable geometry has been established. |
+| `braid-mathematics.md` | Shared symmetry and delayed-dynamics mathematics | Remain in `braid-mathematics.md` | Re-indexed. The former descriptive two-ring label is now A2 two-ring geometry; obsolete polarity-placement terminology was removed. |
+| `braid-envelope-geometry.md` | Envelope definitions and deformation mathematics | Remain in `braid-envelope-geometry.md` | Re-indexed by A1/B1 and corrected to the accepted near-spherical-to-oblate Family-A response. |
+| `braid-recovery-requirements.md` | Retained-branch certificate and recovery burdens | Remain in `braid-recovery-requirements.md` | Re-indexed by neutral base and A/B/C member without duplicating requirements in family documents. |
+| `noether-braid-topological-charge.md` | Cross-family topological definitions | Remain in `noether-braid-topological-charge.md` | Re-indexed; the old `NSH-421` comparison label is now A1.3. |
 
 ## Proposed Migration Order
 
@@ -59,8 +59,8 @@ The taxonomy remains compact. A family document explains inherited geometry once
 3. Complete for routing: define the A1.2/A2 boundary and link `doubling-frequency-lock.md` to A1.3. A full specialist-document terminology migration remains open.
 4. Complete: create `braid-family-b.md`; migrate B1 geometry, its common-midpoint relation, its coordinate boundaries, and axial-translation specialization from `spindle-braid.md`; delete the migrated source blocks.
 5. Complete: create `braid-family-c.md`; define the exact two-B1 composition chart and audit photon and other dual-braid sources without importing an unestablished physical mapping.
-6. In progress: update shared mathematics, envelope, recovery, hub, and downstream consumer documents to consume the accepted IDs. Family-A, Family-B, and Family-C definition links are migrated; the controlled Archie canon and the full spin-bridge terminology sweep remain separate batches.
-7. Remove or replace superseded old family documents only after link, scene, generated-index, and textbook checks pass.
+6. Complete: update shared mathematics, envelope, recovery, hub, configuration-space, topological-charge, and live link consumers to use the accepted IDs.
+7. Complete: replace the superseded family source with `braid-a1-dynamics.md`, rename the B1 and A1.3 specialists, and remove all live source dependence on the legacy filenames.
 
 ## First Review Batch
 
@@ -114,4 +114,38 @@ The first post-definition batch moved the A2-specific retention unit into `braid
 - the resulting absorber target at the field-speed threshold;
 - the open like-assembly Noether sea response route.
 
-The migrated block was deleted from `braid-families.md`, and its live incoming links were redirected to the A2 owner. Accessory dressing stayed in `braid-families.md` because it is an assembly-interpretation hypothesis rather than an A2 retention result. Its incoming labels were updated without changing its claim grade.
+The migrated block was deleted from `braid-families.md`, and its live incoming links were redirected to the A2 owner. Accessory dressing was held outside A2 because it is an assembly-interpretation hypothesis rather than an A2 retention result; the final batch completed its separate triage.
+
+## Final Migration Batch
+
+The final batch completed the source split and re-indexing:
+
+- moved the neutral six-architrino base and generic closed-path chart into `noether-braid.md`;
+- renamed the remaining A1-specific source to `braid-a1-dynamics.md` and converted its closure label from $\Lambda_{\mathrm{NS}}$ to $\Lambda_{A1}$;
+- renamed the A1.3 and B1 specialist chapters and repaired their live incoming links;
+- converted shared mathematics, envelope geometry, recovery requirements, configuration-space diagnostics, and topological charge to the accepted member identifiers;
+- removed polarity-placement and legacy support-name classifiers from the canonical-facing analysis space;
+- retained the shared Thomson dressing mechanism while routing the incompatible four-site/two-site quark shortcut to priority-only review against the current six-site inventory;
+- removed the superseded `braid-families.md`, `spindle-braid.md`, and `doubling-frequency-lock.md` source paths.
+
+## Current Source Inventory for Review
+
+Migration is complete. The next pass should decide, one current source at a time, whether its role is still needed, whether it overlaps another source, and whether it should remain separate or be consolidated.
+
+| Current source | Current role | Review question |
+| --- | --- | --- |
+| `noether-braid.md` | Hub and neutral-braid base | Is the hub compact enough, and does it route the stack in the right reading order? |
+| `braid-taxonomy.md` | Canonical dimensions and master tables | Are the four tables complete and mutually orthogonal? |
+| `braid-family-a.md` | Family A, A1, A2, and constrained A1 members | Does every definition belong here, with no dynamics leakage? |
+| `braid-family-b.md` | Family B and B1 coordinates | Are B1 boundaries and parameters stated once and only once? |
+| `braid-family-c.md` | C1/C2 two-B1 composition | Is the generic dual-braid chart sufficiently separated from photon-specific claims? |
+| `braid-a1-dynamics.md` | A1 closure, retuning, scaling, alignment, and interpretations | Should this remain one specialist chapter or split into dynamics and downstream interpretation? |
+| `braid-a1-3-doubling-frequency-lock.md` | A1.3 lock mathematics | Is the 611-line specialist still internally coherent, or should shared mathematics move out? |
+| `braid-b1-symmetry.md` | B1 harmonic matching and discrete symmetry | Is this small specialist worth keeping separate from Family B? |
+| `braid-mathematics.md` | Shared exact and hypothesis-level machinery | Which member-specific results should move back to their owners? |
+| `noether-braid-configuration-space.md` | Supplementary branch diagnostics | Does this remain useful after the canonical taxonomy, or should its durable mathematics be distributed? |
+| `braid-recovery-requirements.md` | Realization-independent retention contract | Is the neutral-base instantiation still the right example? |
+| `braid-envelope-geometry.md` | Dynamic envelope and export interface | Should member-specific envelope projections be split from the shared interface? |
+| `noether-braid-topological-charge.md` | Candidate cross-member topological labels | Which definitions are mature enough to retain in reader-facing prose? |
+
+No legacy source remains to migrate. Controlled Archie terminology, downstream chapter titles, runtime identifiers, and generated artifacts are separate follow-up scopes; they are not hidden remnants of the source migration.

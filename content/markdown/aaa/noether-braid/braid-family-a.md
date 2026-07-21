@@ -24,7 +24,7 @@ The coincident-axis endpoint is also a geometric boundary with Family B. A Famil
 
 ## A1
 
-A1 is the general three-radius Family-A member. Its three binary radii are pairwise different, its three frequencies are independently assignable, and binary 2 has the distinguished hinge role. The hinge is a member assignment, not an additional coordinate and not a stability result.
+A1 is the general three-radius Family-A member. Its indices follow the radius order $0<R_1<R_2<R_3$: binary 1 is inner, binary 2 is middle, and binary 3 is outer. Its three frequencies are independently assignable, and the middle binary has the distinguished hinge role. The hinge is a member assignment, not an additional coordinate and not a stability result.
 
 Because the radii are unequal, A1 does not have the exact cyclic pair-permutation symmetry of A2. A spatial rotation preserves radius, so it cannot map one A1 binary onto another binary of a different radius. An integer frequency ratio can make the full prescribed figure repeat after a common period, but it does not restore spatial equivalence among the three binaries.
 

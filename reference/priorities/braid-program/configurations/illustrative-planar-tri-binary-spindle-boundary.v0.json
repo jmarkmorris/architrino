@@ -12,7 +12,7 @@
     "classificationLabel": "Boundary member",
     "variant": "planar-tri-binary",
     "variantLabel": "Planar tri-binary limit",
-    "canonSource": "content/markdown/aaa/noether-braid/spindle-braid.md#boundary-members"
+    "canonSource": "content/markdown/aaa/noether-braid/braid-b1-symmetry.md#boundary-members"
   },
   "sourceOrder": ["planar-spindle-binary-1", "planar-spindle-binary-2", "planar-spindle-binary-3"],
   "frame": {
