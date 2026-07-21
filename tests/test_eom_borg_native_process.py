@@ -8,7 +8,7 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[1]
-PROTOCOL_MAGIC = "EOM_BORG_NATIVE_V9"
+PROTOCOL_MAGIC = "EOM_BORG_NATIVE_V10"
 
 
 def run_record(
@@ -33,6 +33,9 @@ def run_record(
     memory_budget: str = "67108864",
     run_grade: str = "certified",
     path_count: str = "1",
+    causal_retention_policy: str = "none",
+    causal_retention_center: tuple[str, str, str] = ("0", "0", "0"),
+    causal_retention_radius: str = "0",
 ) -> str:
     return "\t".join((
         "RUN", run_id, start, end, initial_step, minimum_step,
@@ -47,6 +50,8 @@ def run_record(
         "200000", "12", "1000", "100", "sharp_with_finite_width_fallback",
         "fixed-pairwise", "outward", "equal-routed-pair-weight/v1",
         acceleration_tolerance, run_grade, path_count,
+        causal_retention_policy, *causal_retention_center,
+        causal_retention_radius,
     ))
 
 
@@ -184,6 +189,144 @@ class NativeBorgProcessTests(unittest.TestCase):
             for segment in segments
         ))
 
+    def test_display_causal_retention_releases_only_a_wavefront_cleared_prefix(self) -> None:
+        zero_segment = "\t".join((
+            "SEG", "-2", "-1", *(["0"] * 18),
+        ))
+        next_zero_segment = "\t".join((
+            "SEG", "-1", "0", *(["0"] * 18),
+        ))
+        protocol = "\n".join((
+            PROTOCOL_MAGIC,
+            run_record(
+                "display-causal-retention", "0", "0.1",
+                run_grade="display", path_count="1",
+                causal_retention_policy="fixed-spherical-receiver-envelope",
+                causal_retention_center=("0", "0", "0"),
+                causal_retention_radius="0.5",
+            ),
+            "PATH\tp\t1\t1\t0\t2",
+            zero_segment,
+            next_zero_segment,
+            "END",
+            "",
+        ))
+        completed = subprocess.run(
+            [str(self.binary), "borg-shadow-v0"], input=protocol,
+            check=True, cwd=ROOT, capture_output=True, text=True,
+        )
+        response = json.loads(completed.stdout)
+        self.assertEqual(response["status"], "completed")
+        certificate = response["causalHistoryRetention"]
+        self.assertEqual(certificate["receiverDomainStatus"], "enclosed")
+        self.assertEqual(certificate["totalRetiredSegmentCount"], 1)
+        self.assertEqual(certificate["paths"], [{
+            "pathId": "p",
+            "retiredPrefixCount": 1,
+            "retainedSegmentCount": 2,
+            "retainedCoverageStart": "-1",
+            "clearedThroughTime": "-1",
+        }])
+
+    def test_display_causal_retention_rejects_an_envelope_crossing_before_publication(self) -> None:
+        moving_segment = "\t".join((
+            "SEG", "-0.1", "0",
+            "0.47", "0.2", "0", "0",
+            "0", "0", "0", "0",
+            "0", "0", "0", "0",
+            *(["0"] * 6),
+        ))
+        protocol = "\n".join((
+            PROTOCOL_MAGIC,
+            run_record(
+                "display-causal-boundary", "0", "0.1",
+                run_grade="display", path_count="1",
+                causal_retention_policy="fixed-spherical-receiver-envelope",
+                causal_retention_center=("0", "0", "0"),
+                causal_retention_radius="0.5",
+            ),
+            "PATH\tp\t1\t1\t0\t1",
+            moving_segment,
+            "END",
+            "",
+        ))
+        completed = subprocess.run(
+            [str(self.binary), "borg-shadow-v0"], input=protocol,
+            check=True, cwd=ROOT, capture_output=True, text=True,
+        )
+        response = json.loads(completed.stdout)
+        self.assertEqual(response["status"], "completed")
+        self.assertEqual(response["acceptedEndTime"], "0.1")
+        self.assertEqual(response["haltCode"], "")
+        self.assertIsNone(response["causalHistoryRetention"])
+        self.assertEqual(
+            len(response["publishedExtensions"][0]["segments"]), 1,
+        )
+
+    def test_native_server_keeps_stationary_display_history_bounded_across_many_chunks(self) -> None:
+        worker = subprocess.Popen(
+            [str(self.binary), "borg-shadow-server-v0"],
+            stdin=subprocess.PIPE,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            cwd=ROOT,
+            text=True,
+        )
+        assert worker.stdin is not None
+        assert worker.stdout is not None
+        retained_count = 2
+        maximum_retained_count = retained_count
+        total_retired = 0
+        try:
+            for chunk in range(40):
+                start = f"{chunk * 0.2:.1f}"
+                end = f"{(chunk + 1) * 0.2:.1f}"
+                rows = [
+                    PROTOCOL_MAGIC,
+                    run_record(
+                        "bounded-display", start, end,
+                        initial_step="0.1", minimum_step="0.1",
+                        maximum_step="0.1", run_grade="display",
+                        path_count="1",
+                        causal_retention_policy=
+                            "fixed-spherical-receiver-envelope",
+                        causal_retention_center=("0", "0", "0"),
+                        causal_retention_radius="0.5",
+                    ),
+                ]
+                if chunk == 0:
+                    rows.extend((
+                        "PATH\tp\t1\t1\t0\t2",
+                        "\t".join(("SEG", "-2", "-1", *(["0"] * 18))),
+                        "\t".join(("SEG", "-1", "0", *(["0"] * 18))),
+                    ))
+                else:
+                    rows.append(
+                        f"PATH\tp\t1\t1\t{retained_count}\t0"
+                    )
+                rows.extend(("END", ""))
+                worker.stdin.write("\n".join(rows))
+                worker.stdin.flush()
+                response = json.loads(worker.stdout.readline())
+                self.assertEqual(response["status"], "completed")
+                certificate = response["causalHistoryRetention"]
+                retained_count = certificate["paths"][0][
+                    "retainedSegmentCount"
+                ]
+                maximum_retained_count = max(
+                    maximum_retained_count, retained_count
+                )
+                total_retired += certificate["totalRetiredSegmentCount"]
+        finally:
+            worker.stdin.close()
+            worker.wait(timeout=10)
+            worker.stdout.close()
+            assert worker.stderr is not None
+            worker.stderr.close()
+        self.assertEqual(end, "8.0")
+        self.assertGreater(total_retired, 70)
+        self.assertLessEqual(maximum_retained_count, 9)
+
     def test_shadow_affine_diagnostic_is_bit_identical_and_sidecar_only(self) -> None:
         protocol = "\n".join((
             PROTOCOL_MAGIC,
@@ -307,7 +450,7 @@ class NativeBorgProcessTests(unittest.TestCase):
         )
         self.assertNotEqual(completed.returncode, 0)
         self.assertIn(
-            "invalid RUN record: expected exactly 55 tab-separated fields",
+            "invalid RUN record: expected exactly 60 tab-separated fields",
             completed.stderr,
         )
 
@@ -412,7 +555,7 @@ class NativeBorgProcessTests(unittest.TestCase):
         first_request = "\n".join((
             PROTOCOL_MAGIC,
             run_record(
-                "certified-delta-0", "0", "0.01",
+                "certified-delta", "0", "0.01",
                 initial_step="0.01", minimum_step="0.01",
                 maximum_step="0.01", coupling="0.0005",
                 root_tolerance="1e-8", acceleration_tolerance="0.1",
@@ -437,7 +580,7 @@ class NativeBorgProcessTests(unittest.TestCase):
         second_request = "\n".join((
             PROTOCOL_MAGIC,
             run_record(
-                "certified-delta-1", "0.01", "0.02",
+                "certified-delta", "0.01", "0.02",
                 initial_step="0.01", minimum_step="0.01",
                 maximum_step="0.01", coupling="0.0005",
                 root_tolerance="1e-8", acceleration_tolerance="0.1",
@@ -464,6 +607,97 @@ class NativeBorgProcessTests(unittest.TestCase):
         self.assertFalse(second["incrementalChunkStartSnapshotRebased"])
         self.assertGreater(
             len(second["publishedExtensions"][0]["segments"]), 0
+        )
+        self.assertEqual(stderr, "")
+
+    def test_native_server_accepts_display_history_prefix_without_retransmission(self) -> None:
+        first_request = "\n".join((
+            PROTOCOL_MAGIC,
+            run_record(
+                "display-delta", "0", "0.01",
+                initial_step="0.01", minimum_step="0.01",
+                maximum_step="0.01", coupling="0.0005",
+                root_tolerance="1e-8", acceleration_tolerance="0.1",
+                run_grade="display",
+            ),
+            "PATH\tp\t1\t1\t0\t1",
+            "SEG\t-1\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0",
+            "END", "",
+        ))
+        worker = subprocess.Popen(
+            [str(self.binary), "borg-shadow-server-v0"],
+            stdin=subprocess.PIPE, stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE, cwd=ROOT, text=True,
+        )
+        assert worker.stdin is not None
+        assert worker.stdout is not None
+        worker.stdin.write(first_request)
+        worker.stdin.flush()
+        first = json.loads(worker.stdout.readline())
+        cached_count = 1 + len(first["publishedExtensions"][0]["segments"])
+        second_request = "\n".join((
+            PROTOCOL_MAGIC,
+            run_record(
+                "display-delta", "0.01", "0.02",
+                initial_step="0.01", minimum_step="0.01",
+                maximum_step="0.01", coupling="0.0005",
+                root_tolerance="1e-8", acceleration_tolerance="0.1",
+                run_grade="display",
+            ),
+            f"PATH\tp\t1\t1\t{cached_count}\t0",
+            "END", "",
+        ))
+        worker.stdin.write(second_request)
+        worker.stdin.flush()
+        second = json.loads(worker.stdout.readline())
+        worker.stdin.close()
+        worker.wait(timeout=10)
+        worker.stdout.close()
+        assert worker.stderr is not None
+        stderr = worker.stderr.read()
+        worker.stderr.close()
+
+        retained_segments = [{
+            "startTime": "-1",
+            "endTime": "0",
+            "coefficients": [["0", "0", "0", "0"]] * 3,
+            "positionErrors": ["0", "0", "0"],
+            "velocityErrors": ["0", "0", "0"],
+        }, *first["publishedExtensions"][0]["segments"]]
+        cold_rows = [
+            PROTOCOL_MAGIC,
+            run_record(
+                "display-cold-1", "0.01", "0.02",
+                initial_step="0.01", minimum_step="0.01",
+                maximum_step="0.01", coupling="0.0005",
+                root_tolerance="1e-8", acceleration_tolerance="0.1",
+                run_grade="display",
+            ),
+            f"PATH\tp\t1\t1\t0\t{len(retained_segments)}",
+        ]
+        for segment in retained_segments:
+            cold_rows.append("\t".join((
+                "SEG", segment["startTime"], segment["endTime"],
+                *(coefficient for axis in segment["coefficients"]
+                  for coefficient in axis),
+                *segment["positionErrors"], *segment["velocityErrors"],
+            )))
+        cold_rows.extend(("END", ""))
+        cold_completed = subprocess.run(
+            [str(self.binary), "borg-shadow-v0"],
+            input="\n".join(cold_rows), check=True, cwd=ROOT,
+            capture_output=True, text=True,
+        )
+        cold = json.loads(cold_completed.stdout)
+
+        self.assertEqual(first["status"], "completed")
+        self.assertEqual(second["status"], "completed")
+        self.assertEqual(second["acceptedEndTime"], "0.02")
+        self.assertGreater(
+            len(second["publishedExtensions"][0]["segments"]), 0
+        )
+        self.assertEqual(
+            second["publishedExtensions"], cold["publishedExtensions"]
         )
         self.assertEqual(stderr, "")
 
@@ -548,7 +782,7 @@ class NativeBorgProcessTests(unittest.TestCase):
         assert worker.stdin is not None
         assert worker.stdout is not None
         worker.stdin.write(protocol(
-            "incremental-0", "2", "2.1", [initial_prefix, initial_suffix]
+            "incremental", "2", "2.1", [initial_prefix, initial_suffix]
         ))
         worker.stdin.flush()
         first = json.loads(worker.stdout.readline())
@@ -557,7 +791,7 @@ class NativeBorgProcessTests(unittest.TestCase):
             *first["publishedExtensions"][0]["segments"],
         ]
         second_protocol = protocol(
-            "incremental-1", "2.1", "2.2", continued_segments, "0.05"
+            "incremental", "2.1", "2.2", continued_segments, "0.05"
         )
         worker.stdin.write(second_protocol)
         worker.stdin.flush()
@@ -589,6 +823,138 @@ class NativeBorgProcessTests(unittest.TestCase):
             second["timing"]["rootReevaluatedCells"],
             cold_second["timing"]["rootReevaluatedCells"],
         )
+
+    def test_display_exact_history_pages_to_disk_and_cleans_run_storage(self) -> None:
+        with tempfile.TemporaryDirectory(
+            prefix="borg-exact-history-test-"
+        ) as storage_name:
+            storage = Path(storage_name)
+            stale = storage / "stale.aehb"
+            stale.write_text("stale", encoding="utf-8")
+            segments = [
+                "\t".join((
+                    "SEG", str(index - 130), str(index - 129),
+                    *(["0"] * 18),
+                ))
+                for index in range(130)
+            ]
+            first_request = "\n".join((
+                PROTOCOL_MAGIC,
+                run_record(
+                    "disk-paged-display", "0", "0.1",
+                    run_grade="display", path_count="1",
+                ),
+                "PATH\tp\t1\t1\t0\t130",
+                *segments,
+                "END", "",
+            ))
+            in_memory = subprocess.run(
+                [str(self.binary), "borg-shadow-v0"],
+                input=first_request, check=True, cwd=ROOT,
+                capture_output=True, text=True,
+            )
+            worker = subprocess.Popen(
+                [
+                    str(self.binary), "borg-shadow-server-v0",
+                    f"--history-temp-root={storage}",
+                    "--history-disk-limit-bytes=1099511627776",
+                    "--history-cache-blocks-per-thread=2",
+                ],
+                stdin=subprocess.PIPE, stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE, cwd=ROOT, text=True,
+            )
+            assert worker.stdin is not None
+            assert worker.stdout is not None
+            worker.stdin.write(first_request)
+            worker.stdin.flush()
+            paged = json.loads(worker.stdout.readline())
+            self.assertEqual(paged["status"], "completed")
+            self.assertEqual(
+                paged["publishedExtensions"],
+                json.loads(in_memory.stdout)["publishedExtensions"],
+            )
+            history_storage = paged["historyStorage"]
+            self.assertEqual(
+                history_storage["schema"],
+                "eom_exact_history_disk_store/v1",
+            )
+            self.assertEqual(
+                history_storage["mode"], "disk-backed-exact-blocks",
+            )
+            self.assertEqual(
+                history_storage["maximumDiskBytes"], 1099511627776,
+            )
+            self.assertGreaterEqual(history_storage["blockFileCount"], 2)
+            self.assertGreater(history_storage["diskBytes"], 0)
+            self.assertFalse(stale.exists())
+            self.assertGreaterEqual(len(list(storage.rglob("*.aehb"))), 2)
+
+            replacement_request = "\n".join((
+                PROTOCOL_MAGIC,
+                run_record(
+                    "replacement-display-run", "2", "2.1",
+                    run_grade="display", path_count="1",
+                ),
+                "PATH\tp\t1\t1\t0\t1",
+                "\t".join(("SEG", "0", "2", *(["0"] * 18))),
+                "END", "",
+            ))
+            worker.stdin.write(replacement_request)
+            worker.stdin.flush()
+            replacement = json.loads(worker.stdout.readline())
+            self.assertEqual(replacement["status"], "completed")
+            self.assertEqual(
+                replacement["historyStorage"]["blockFileCount"], 0,
+            )
+            self.assertEqual(list(storage.rglob("*.aehb")), [])
+            worker.stdin.close()
+            worker.wait(timeout=10)
+            worker.stdout.close()
+            assert worker.stderr is not None
+            self.assertEqual(worker.stderr.read(), "")
+            worker.stderr.close()
+            self.assertEqual(list(storage.rglob("*.aehb")), [])
+
+    def test_display_exact_history_disk_limit_fails_before_partial_publish(self) -> None:
+        with tempfile.TemporaryDirectory(
+            prefix="borg-exact-history-cap-test-"
+        ) as storage_name:
+            storage = Path(storage_name)
+            segments = [
+                "\t".join((
+                    "SEG", str(index - 64), str(index - 63),
+                    *(["0"] * 18),
+                ))
+                for index in range(64)
+            ]
+            protocol = "\n".join((
+                PROTOCOL_MAGIC,
+                run_record(
+                    "disk-limit-display", "0", "0.1",
+                    run_grade="display", path_count="1",
+                ),
+                "PATH\tp\t1\t1\t0\t64",
+                *segments,
+                "END", "",
+            ))
+            completed = subprocess.run(
+                [
+                    str(self.binary), "borg-shadow-server-v0",
+                    f"--history-temp-root={storage}",
+                    "--history-disk-limit-bytes=1",
+                ],
+                input=protocol, check=True, cwd=ROOT,
+                capture_output=True, text=True,
+            )
+            response = json.loads(completed.stdout)
+            self.assertEqual(response["status"], "halted")
+            self.assertEqual(response["haltCode"], "engine_exception")
+            self.assertEqual(
+                response["diagnosticDetail"],
+                "exact_history_disk_limit_exhausted",
+            )
+            self.assertEqual(response["publishedExtensions"], [])
+            self.assertEqual(list(storage.rglob("*.aehb")), [])
 
 
 if __name__ == "__main__":

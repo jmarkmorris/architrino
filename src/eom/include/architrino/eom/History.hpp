@@ -59,6 +59,30 @@ struct UniformCircularAnalyticState {
   IntervalVector acceleration;
 };
 
+struct HistoryDiskStorageOptions {
+  std::string root_directory;
+  std::uint64_t maximum_disk_bytes = UINT64_C(1099511627776);
+  std::size_t cached_blocks_per_thread = 16U;
+};
+
+struct HistoryDiskStorageStats {
+  bool enabled = false;
+  std::string schema = "eom_exact_history_disk_store/v1";
+  std::uint64_t maximum_disk_bytes = 0U;
+  std::uint64_t disk_bytes = 0U;
+  std::uint64_t block_file_count = 0U;
+  std::size_t cached_blocks_per_thread = 0U;
+  std::string run_id;
+};
+
+// The Borg persistent worker owns this lifecycle. Configuration removes stale
+// files under the dedicated root; begin replaces the preceding run; release
+// removes the active run. Full immutable blocks are exact token records.
+void configure_history_disk_storage(const HistoryDiskStorageOptions& options);
+void begin_history_disk_storage_run(const std::string& run_id);
+void release_history_disk_storage_run() noexcept;
+[[nodiscard]] HistoryDiskStorageStats history_disk_storage_stats() noexcept;
+
 class CubicHistorySegment {
  public:
   CubicHistorySegment(
@@ -161,6 +185,10 @@ class CubicHistorySegment {
 
 class HistorySegmentSequence {
  public:
+  // Public only so the translation-unit disk pager can define the opaque
+  // implementation. Callers still cannot construct or inspect Storage.
+  struct Storage;
+
   class const_iterator {
    public:
     using iterator_category = std::forward_iterator_tag;
@@ -194,13 +222,16 @@ class HistorySegmentSequence {
       std::size_t index) const;
   [[nodiscard]] const CubicHistorySegment& front() const;
   [[nodiscard]] const CubicHistorySegment& back() const;
+  [[nodiscard]] std::size_t resident_segment_count() const noexcept;
+  [[nodiscard]] std::size_t disk_backed_block_count() const noexcept;
   [[nodiscard]] const_iterator begin() const { return {this, 0U}; }
   [[nodiscard]] const_iterator end() const { return {this, size()}; }
   [[nodiscard]] HistorySegmentSequence appended(
       CubicHistorySegment segment) const;
+  [[nodiscard]] HistorySegmentSequence retained_suffix(
+      std::size_t first_segment_index) const;
 
  private:
-  struct Storage;
   explicit HistorySegmentSequence(std::shared_ptr<const Storage> storage)
       : storage_(std::move(storage)) {}
 
@@ -262,6 +293,8 @@ class RetainedHistory {
       const Interval& reception,
       const Interval& emission) const;
   [[nodiscard]] RetainedHistory appended(CubicHistorySegment segment) const;
+  [[nodiscard]] RetainedHistory retained_suffix(
+      std::size_t first_segment_index) const;
 
  private:
   RetainedHistory(
@@ -272,6 +305,11 @@ class RetainedHistory {
       double nominal_speed_upper_bound,
       std::optional<UniformCircularEndpointCertificate>
           uniform_circular_endpoint_certificate);
+  struct RecomputeMetadataTag {};
+  RetainedHistory(
+      std::string history_id,
+      HistorySegmentSequence segments,
+      RecomputeMetadataTag);
 
   std::string history_id_;
   HistorySegmentSequence segments_;

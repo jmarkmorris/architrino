@@ -15,7 +15,10 @@ import {
   createBorgFrameSetsFromRows,
   mergeBorgFrameRows,
 } from "../src/apps/borg/BorgFrameRows.js";
-import { createDefaultEomShadowRunnerOptions } from "../src/apps/borg/BorgAppRuntime.js";
+import {
+  createDefaultEomShadowRunnerOptions,
+  formatBorgTimelineTime,
+} from "../src/apps/borg/BorgAppRuntime.js";
 import {
   BORG_EOM_RECORD_REPLAY_RUNNER_VERSION,
   BORG_EOM_RECORD_REPLAY_RUN_SOURCE,
@@ -74,6 +77,15 @@ test("Borg path history is on and visible by default", () => {
     BORG_APP_SURFACE_DESIGN_V1.layerStrip.find((entry) => entry.layer === "path-history")?.state,
     "on",
   );
+});
+
+test("Borg timeline uses a fixed-width hours-minutes-seconds clock", () => {
+  assert.equal(formatBorgTimelineTime(0), "00:00:00.0");
+  assert.equal(formatBorgTimelineTime(59.94), "00:00:59.9");
+  assert.equal(formatBorgTimelineTime(59.96), "00:01:00.0");
+  assert.equal(formatBorgTimelineTime(119.4), "00:01:59.4");
+  assert.equal(formatBorgTimelineTime(3661.28), "01:01:01.3");
+  assert.equal(formatBorgTimelineTime(Number.NaN), "--:--:--.-");
 });
 
 test("Borg selected certified budget atomically owns its step controller", () => {
@@ -361,7 +373,8 @@ test("Borg path-history renderer uses native row segments, not visual smoothing 
     /borgEnvelopeRadius\(manifest\) \*\s*worldUnitsPerSolverUnit/,
   );
   assert.match(runtimeSource, /DEFAULT_CAMERA_FIT_MARGIN = 1\.43/);
-  assert.match(runtimeSource, /HIGHLIGHTED_PATH_HISTORY_DURATION = 20/);
+  assert.match(runtimeSource, /DEFAULT_PATH_TRAIL_DURATION = 30/);
+  assert.match(runtimeSource, /PATH_TRAIL_DURATIONS = Object\.freeze\(\[30, 60, 90, 180, 360\]\)/);
   assert.doesNotMatch(runtimeSource, /centralBallRadius|radialBufferMargin/);
   assert.doesNotMatch(runtimeSource, /BORG_DISPLAY_RUN_GRADE/);
   assert.doesNotMatch(runtimeSource, /borgNdcPositionIsOutsideScreen/);
@@ -439,7 +452,7 @@ test("Borg path-history renderer uses native row segments, not visual smoothing 
   assert.doesNotMatch(runtimeSource, /setTimeout\(\s*\(\) => ensureDynamicFramesAhead/);
   assert.match(runtimeSource, /getBorgPlaybackRefillDecision/);
   assert.match(runtimeSource, /Playback rate/);
-  assert.match(runtimeSource, /× realtime/);
+  assert.match(runtimeSource, /function formatActiveTimelineLabel\(time\) \{\s*return formatTimelineLabel\(time\);\s*\}/);
   assert.match(runtimeSource, /createBorgAcceptedInertialSeedHistory/);
   assert.match(runtimeSource, /appendedFrameRows = Array\.isArray\(chunk\.frames\)/);
   assert.doesNotMatch(htmlSource, /M9\.8 6\.2a6\.8/);
@@ -480,7 +493,14 @@ test("Borg path-history renderer uses native row segments, not visual smoothing 
   assert.match(htmlSource, /Initial history[\s\S]*Exact inertial polynomial/);
   assert.match(htmlSource, /Forward evolution[\s\S]*EOM chunks after T=0/);
   assert.match(htmlSource, /id="borg-run-duration-button"[\s\S]*value="live-60s">1 min<[\s\S]*value="live-300s">5 min<[\s\S]*value="live-forever" selected>No limit</);
-  assert.match(htmlSource, /id="borg-time-range"[\s\S]*id="borg-run-duration-button"[\s\S]*id="borg-playback-speed"/);
+  assert.match(
+    htmlSource,
+    /id="borg-history-duration"[\s\S]*value="30" selected>30 s<[\s\S]*value="60">60 s<[\s\S]*value="90">90 s<[\s\S]*value="180">180 s<[\s\S]*value="360">360 s</,
+  );
+  assert.match(htmlSource, /id="borg-time-range"[\s\S]*id="borg-run-duration-button"[\s\S]*id="borg-history-duration"[\s\S]*id="borg-playback-speed"/);
+  assert.match(htmlSource, /id="borg-time-output"[^>]*>T 00:00:00\.0<\/output>/);
+  assert.match(runtimeSource, /dom\.historyDuration\.hidden = replayActive/);
+  assert.match(runtimeSource, /duration: state\.pathTrailDuration/);
   assert.match(runtimeSource, /dom\.eomProgress\.hidden = forever/);
   assert.match(runtimeSource, /runtimeControls\.coupling \?\? configured\.coupling/);
   assert.match(runtimeSource, /initialStep: certifiedBudget\.allocations\.controller\.initialStep/);
@@ -494,7 +514,7 @@ test("Borg path-history renderer uses native row segments, not visual smoothing 
   assert.doesNotMatch(runtimeSource, /Claim grade through T=/);
   assert.match(
     runtimeSource,
-    /function formatTimelineLabel\([\s\S]*?return `T \$\{formatTimelineTime\(time\)\}`;/,
+    /function formatTimelineLabel\([\s\S]*?return `T \$\{formatBorgTimelineTime\(time\)\}`;/,
   );
   assert.doesNotMatch(runtimeSource, /return `solver t /);
   assert.doesNotMatch(pathTrailsSource, /runGrade|displayGrade|claim-ready/u);

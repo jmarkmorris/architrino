@@ -99,7 +99,7 @@ for (const population of populations) {
 process.stdout.write(`${JSON.stringify({
   schema: "borg_certified_budget_sweep/v1",
   claimLevel: "measured-current-binary-sensitivity-control",
-  protocol: "EOM_BORG_NATIVE_V9",
+  protocol: "EOM_BORG_NATIVE_V10",
   closeEncounterBudgets: {
     researchReceiverImpulse: "1e-7",
     researchReceiverPositionMoment: "1e-7",

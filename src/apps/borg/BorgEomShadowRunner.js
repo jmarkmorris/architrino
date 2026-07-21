@@ -3,6 +3,15 @@ import {
   canonicalStringify,
   getBorgCertifiedBudgetPreset,
 } from "./BorgCertifiedBudgets.js";
+import {
+  BORG_DISPLAY_HOST_MEMORY_ENVELOPE_SCHEMA,
+  createBorgDisplayHostMemoryEnvelope,
+} from "./BorgDisplayHostMemoryEnvelope.js";
+import {
+  applyBorgCausalHistoryRetention,
+  createBorgCausalHistoryRetentionRequest,
+  validateBorgCausalHistoryRetentionCertificate,
+} from "./BorgCausalHistoryRetention.js";
 
 export const BORG_EOM_SHADOW_RUNNER_VERSION = "borg-eom-shadow-runner.v0";
 export const BORG_EOM_SHADOW_RUN_SOURCE = "computed-eom-shadow-chunks";
@@ -17,6 +26,8 @@ export const BORG_EOM_RUN_GRADE_CERTIFIED = "certified";
 export const BORG_EOM_RUN_GRADE_DISPLAY = "display";
 export const BORG_EOM_CERTIFIED_EXECUTION_TIMEOUT =
   "certified_execution_timeout";
+
+let borgEomRunSequence = 0;
 
 const POSITRINO_STATE_FLAG = 1;
 const ELECTRINO_STATE_FLAG = 2;
@@ -76,6 +87,7 @@ export function createBorgEomShadowRunner(manifest, options = {}) {
   let controllerStepSize = config.initialStep;
   let chunkIndex = 0;
   let disposed = false;
+  let runReleased = false;
 
   return Object.freeze({
     schema: BORG_EOM_SHADOW_RUNNER_VERSION,
@@ -153,9 +165,18 @@ export function createBorgEomShadowRunner(manifest, options = {}) {
       controllerStepSize = response.controllerStepSize;
       nextStartTime = response.acceptedEndTime;
       nextStartTimeToken = response.acceptedEndTimeToken;
-      histories = retainBorgHistoryWindow(response.histories, {
-        minimumCoverageStart: roundTime(nextStartTime - config.historyDepth),
-      });
+      histories = runGrade === BORG_EOM_RUN_GRADE_DISPLAY
+        ? response.histories.every(
+            (history) => history.serverExactHistory === true,
+          )
+          ? response.histories
+          : applyBorgCausalHistoryRetention(
+              response.histories,
+              response.causalHistoryRetention,
+            )
+        : retainBorgHistoryWindow(response.histories, {
+            minimumCoverageStart: roundTime(nextStartTime - config.historyDepth),
+          });
       const retainedHistoryStart = Number(histories[0].coverageStart);
       const retainedHistoryEnd = Number(histories[0].coverageEnd);
       const frames = createFramesFromHistories(
@@ -171,6 +192,11 @@ export function createBorgEomShadowRunner(manifest, options = {}) {
       chunkIndex += 1;
       if (response.terminalHalt) {
         disposed = true;
+      }
+      if (!response.terminalHalt && nextStartTime >= targetDuration &&
+          !runReleased && typeof client.releaseRun === "function") {
+        runReleased = true;
+        await client.releaseRun();
       }
       return Object.freeze({
         schema: BORG_EOM_SHADOW_RUNNER_VERSION,
@@ -194,11 +220,20 @@ export function createBorgEomShadowRunner(manifest, options = {}) {
         phase: "live",
         initialHistoryAccepted,
         coreScale: response.coreScale,
+        memoryBudgetBytes: response.memoryBudgetBytes,
+        hostMemoryEnvelope: response.hostMemoryEnvelope,
+        causalHistoryRetention: response.causalHistoryRetention,
         budgetProvenance: response.budgetProvenance,
         retainedHistoryStart,
         retainedHistoryEnd,
         retainedHistoryPolicy: runGrade === BORG_EOM_RUN_GRADE_DISPLAY
-          ? "rolling-display-grade-point-history-window"
+          ? response.historyStorage?.enabled === true
+            ? response.causalHistoryRetention == null
+              ? "solver-disk-backed-exact-history-no-retirement"
+              : "solver-disk-backed-exact-history-with-certified-retirement"
+            : response.causalHistoryRetention == null
+              ? "append-only-display-grade-point-history"
+              : "solver-cleared-fixed-envelope-display-history"
           : "rolling-certified-history-window",
         claimGrade: response.claimGrade,
         evolutionClaimLevel: runGrade === BORG_EOM_RUN_GRADE_DISPLAY
@@ -220,6 +255,7 @@ export function createBorgEomShadowRunner(manifest, options = {}) {
     },
     async dispose() {
       disposed = true;
+      runReleased = true;
       if (typeof client.dispose === "function") {
         await client.dispose();
       }
@@ -274,6 +310,13 @@ export function createBorgEomShadowRunConfig(manifest, options = {}) {
     options.historyDepth,
     manifest.simulationEnvelope?.historyDepth ?? 10,
   );
+  const causalHistoryRetention = createBorgCausalHistoryRetentionRequest({
+    enabled:
+      runGrade === BORG_EOM_RUN_GRADE_DISPLAY &&
+      options.causalHistoryRetention === true,
+    center: manifest.simulationEnvelope?.center,
+    radius: outerRadius,
+  });
   const coreScale = Number(budget.finiteWidth.coreScale);
   const farFieldEnclosureFraction = budget.ordinary.farFieldEnclosureFraction;
   const targetDuration = finiteNumber(
@@ -324,6 +367,8 @@ export function createBorgEomShadowRunConfig(manifest, options = {}) {
   return Object.freeze({
     schema: BORG_EOM_SHADOW_RUNNER_VERSION,
     runSource: BORG_EOM_SHADOW_RUN_SOURCE,
+    runId: String(options.runId ??
+      `borg-eom-shadow-run:${Date.now()}:${++borgEomRunSequence}`),
     runGrade,
     startTime,
     targetDuration,
@@ -334,6 +379,7 @@ export function createBorgEomShadowRunConfig(manifest, options = {}) {
     simulationOuterRadius: outerRadius,
     historyStartTime: roundTime(startTime - historyDepth),
     historyDepth,
+    causalHistoryRetention,
     coreScale,
     geometricDelayBound,
     historySafetyMargin,
@@ -472,7 +518,7 @@ export function createBorgEomShadowRequest({
     contractId: BORG_EOM_CONTRACT_ID,
     contractAmendmentIds: Object.freeze([]),
     requestId: `borg-eom-shadow-request:chunk-${chunkIndex}`,
-    runId: `borg-eom-shadow-run:chunk-${chunkIndex}`,
+    runId: config.runId ?? "borg-eom-shadow-run",
     runGrade,
     claimLevel: "migration-shadow",
     modelBindingId: config.modelBindingId,
@@ -515,6 +561,7 @@ export function createBorgEomShadowRequest({
     resourceEnvelope: Object.freeze({
       memoryBudgetBytes: config.memoryBudgetBytes,
       failurePolicy: "fail-closed",
+      causalHistoryRetention: config.causalHistoryRetention,
     }),
     provenance: Object.freeze({
       appId: "borg",
@@ -869,10 +916,40 @@ function normalizeEomResponse(rawResponse, request) {
   const budgetProvenance = response.budgetProvenance;
   const requestedBudget = request.certifiedBudget;
   const provenanceMismatches = [];
+  let hostMemoryEnvelope = null;
+  if (response.hostMemoryEnvelope != null) {
+    try {
+      const expectedHostMemoryEnvelope = createBorgDisplayHostMemoryEnvelope({
+        hostTotalMemoryBytes:
+          response.hostMemoryEnvelope.hostTotalMemoryBytes,
+        hostAvailableMemoryBytes:
+          response.hostMemoryEnvelope.hostAvailableMemoryBytes,
+        workerResidentBytes:
+          response.hostMemoryEnvelope.workerResidentBytes,
+        previousMemoryEstimateBytes:
+          response.hostMemoryEnvelope.previousMemoryEstimateBytes,
+      });
+      if (request.runGrade !== BORG_EOM_RUN_GRADE_DISPLAY ||
+          response.hostMemoryEnvelope.schema !==
+            BORG_DISPLAY_HOST_MEMORY_ENVELOPE_SCHEMA ||
+          response.hostMemoryEnvelope.admitted !== true ||
+          canonicalStringify(response.hostMemoryEnvelope) !==
+            canonicalStringify(expectedHostMemoryEnvelope)) {
+        provenanceMismatches.push("hostMemoryEnvelope");
+      } else {
+        hostMemoryEnvelope = expectedHostMemoryEnvelope;
+      }
+    } catch {
+      provenanceMismatches.push("hostMemoryEnvelope");
+    }
+  }
+  const expectedMemoryBudgetBytes = hostMemoryEnvelope == null
+    ? Number(request.resourceEnvelope.memoryBudgetBytes)
+    : hostMemoryEnvelope.requestMemoryBudgetBytes;
   if (coreScale !== Number(request.modelControls.coreScale)) {
     provenanceMismatches.push("coreScale");
   }
-  if (memoryBudgetBytes !== Number(request.resourceEnvelope.memoryBudgetBytes)) {
+  if (memoryBudgetBytes !== expectedMemoryBudgetBytes) {
     provenanceMismatches.push("memoryBudgetBytes");
   }
   if (memoryEstimateBytes > memoryBudgetBytes) {
@@ -912,6 +989,18 @@ function normalizeEomResponse(rawResponse, request) {
       `${provenanceMismatches.join(", ")}.`,
     );
   }
+  let causalHistoryRetention = null;
+  try {
+    causalHistoryRetention = validateBorgCausalHistoryRetentionCertificate(
+      response.causalHistoryRetention ?? null,
+      request.resourceEnvelope.causalHistoryRetention ?? null,
+    );
+  } catch (error) {
+    throw new Error(
+      `Borg EOM shadow response has inconsistent causal-history provenance: ${error.message}`,
+    );
+  }
+  const historyStorage = validateHistoryStorage(response.historyStorage);
   return Object.freeze({
     status: response.status,
     runGrade: responseRunGrade,
@@ -919,6 +1008,9 @@ function normalizeEomResponse(rawResponse, request) {
     coreScale,
     memoryBudgetBytes,
     memoryEstimateBytes,
+    hostMemoryEnvelope,
+    causalHistoryRetention,
+    historyStorage,
     claimGrade,
     budgetProvenance: Object.freeze({
       schema: budgetProvenance.schema,
@@ -942,6 +1034,37 @@ function normalizeEomResponse(rawResponse, request) {
     }) : null,
     histories: Object.freeze(histories),
     diagnostics: Array.isArray(response.diagnostics) ? response.diagnostics : [],
+  });
+}
+
+function validateHistoryStorage(value) {
+  if (value == null) {
+    return null;
+  }
+  const maximumDiskBytes = Number(value.maximumDiskBytes);
+  const diskBytes = Number(value.diskBytes);
+  const blockFileCount = Number(value.blockFileCount);
+  const cachedBlocksPerThread = Number(value.cachedBlocksPerThread);
+  if (value.schema !== "eom_exact_history_disk_store/v1" ||
+      value.mode !== "disk-backed-exact-blocks" ||
+      value.enabled !== true ||
+      !Number.isSafeInteger(maximumDiskBytes) || maximumDiskBytes <= 0 ||
+      maximumDiskBytes > 1024 ** 4 ||
+      !Number.isSafeInteger(diskBytes) || diskBytes < 0 ||
+      diskBytes > maximumDiskBytes ||
+      !Number.isSafeInteger(blockFileCount) || blockFileCount < 0 ||
+      !Number.isSafeInteger(cachedBlocksPerThread) ||
+      cachedBlocksPerThread < 2) {
+    throw new Error("Borg EOM shadow response has invalid exact-history storage provenance.");
+  }
+  return Object.freeze({
+    schema: value.schema,
+    mode: value.mode,
+    enabled: true,
+    maximumDiskBytes,
+    diskBytes,
+    blockFileCount,
+    cachedBlocksPerThread,
   });
 }
 

@@ -7,6 +7,7 @@
 #include <charconv>
 #include <cmath>
 #include <cstdlib>
+#include <filesystem>
 #include <iomanip>
 #include <iostream>
 #include <limits>
@@ -22,7 +23,7 @@ namespace eom = architrino::eom;
 
 namespace {
 
-constexpr const char* kBorgNativeProtocolMagic = "EOM_BORG_NATIVE_V9";
+constexpr const char* kBorgNativeProtocolMagic = "EOM_BORG_NATIVE_V10";
 
 void print_json_number(double value) {
   if (std::isfinite(value)) {
@@ -39,6 +40,112 @@ struct ParsedPath {
   std::size_t input_segment_count;
   eom::RetainedHistory history;
 };
+
+struct CausalHistoryRetentionConfig {
+  bool enabled = false;
+  std::string policy = "none";
+  std::array<std::string, 3> center_tokens{"0", "0", "0"};
+  std::array<double, 3> center{};
+  std::string radius_token = "0";
+  double radius = 0.0;
+};
+
+struct CausalHistoryRetentionPath {
+  std::string path_id;
+  std::size_t retired_prefix_count = 0U;
+  std::size_t retained_segment_count = 0U;
+  std::string retained_coverage_start;
+  std::string cleared_through_time;
+};
+
+struct CausalHistoryRetentionCertificate {
+  std::vector<CausalHistoryRetentionPath> paths;
+  std::size_t total_retired_segment_count = 0U;
+};
+
+double interval_component_absolute_upper(const eom::Interval& value) {
+  return std::max(std::abs(value.lower()), std::abs(value.upper()));
+}
+
+double radial_upper_from_center(
+    const eom::IntervalVector& position,
+    const std::array<double, 3>& center) {
+  std::array<double, 3> component{};
+  for (std::size_t axis = 0U; axis < 3U; ++axis) {
+    component[axis] = interval_component_absolute_upper(
+        position[axis] - eom::Interval::point(center[axis]));
+  }
+  return std::nextafter(
+      std::hypot(component[0], component[1], component[2]),
+      std::numeric_limits<double>::infinity());
+}
+
+bool endpoint_inside_receiver_envelope(
+    const eom::RetainedHistory& history,
+    double time,
+    const CausalHistoryRetentionConfig& retention) {
+  if (!retention.enabled) return true;
+  return radial_upper_from_center(
+      history.position_hull(eom::Interval::point(time)), retention.center) <=
+      retention.radius;
+}
+
+CausalHistoryRetentionCertificate certify_causal_history_retirement(
+    const std::vector<eom::NativePublishedPath>& histories,
+    const std::string& reception_time_token,
+    const std::string& published_window_start_token,
+    const std::string& field_speed_token,
+    const CausalHistoryRetentionConfig& retention) {
+  CausalHistoryRetentionCertificate certificate;
+  certificate.paths.reserve(histories.size());
+  const eom::Interval reception =
+      eom::Interval::decimal_token(reception_time_token);
+  const eom::Interval published_window_start =
+      eom::Interval::decimal_token(published_window_start_token);
+  const eom::Interval field_speed =
+      eom::Interval::decimal_token(field_speed_token);
+  if (!(field_speed.lower() > 0.0)) {
+    throw std::invalid_argument(
+        "causal-history retention requires positive field speed");
+  }
+  for (const auto& path : histories) {
+    const auto& segments = path.history.segments();
+    std::size_t retired = 0U;
+    std::string cleared_through = segments.front().t_start_token();
+    while (retired + 1U < segments.size()) {
+      const auto& segment = segments[retired];
+      if (segment.t_end_interval().upper() >
+          published_window_start.lower()) {
+        break;
+      }
+      const eom::Interval emission_end = segment.t_end_interval();
+      const eom::Interval wave_radius =
+          field_speed * (reception - emission_end);
+      const eom::Interval full_emission(
+          segment.t_start_interval().lower(),
+          segment.t_end_interval().upper());
+      const double source_radius = radial_upper_from_center(
+          segment.position_interval(full_emission), retention.center);
+      const double envelope_reach = std::nextafter(
+          source_radius + retention.radius,
+          std::numeric_limits<double>::infinity());
+      if (!(wave_radius.lower() > envelope_reach)) {
+        break;
+      }
+      cleared_through = segment.t_end_token();
+      ++retired;
+    }
+    certificate.total_retired_segment_count += retired;
+    certificate.paths.push_back({
+        .path_id = path.path_id,
+        .retired_prefix_count = retired,
+        .retained_segment_count = segments.size() - retired,
+        .retained_coverage_start = segments[retired].t_start_token(),
+        .cleared_through_time = cleared_through,
+    });
+  }
+  return certificate;
+}
 
 std::string display_decimal_token(double value) {
   if (!std::isfinite(value)) {
@@ -65,15 +172,19 @@ eom::NativeCoupledEvolutionCertificate evolve_display_point_histories(
   for (const auto& path : request.paths) {
     histories.push_back({path.path_id, path.history});
   }
-  std::size_t retained_segment_count = 0U;
+  std::size_t resident_segment_count = 0U;
   for (const auto& path : histories) {
-    retained_segment_count += path.history.segments().size();
+    resident_segment_count +=
+        path.history.segments().resident_segment_count();
   }
-  const auto requested_step_count = static_cast<std::size_t>(std::ceil(
-      (requested_end - current_time) / requested_step));
+  const auto disk_stats = eom::history_disk_storage_stats();
+  const std::size_t bounded_page_segments = disk_stats.enabled
+      ? disk_stats.cached_blocks_per_thread * 64U * request.thread_count
+      : 0U;
   const long double memory_estimate_wide =
       static_cast<long double>(
-          retained_segment_count + requested_step_count * histories.size()) *
+          resident_segment_count + bounded_page_segments +
+          64U * histories.size()) *
           4096.0L +
       static_cast<long double>(histories.size()) * 65536.0L +
       static_cast<long double>(histories.size()) * histories.size() * 512.0L;
@@ -180,15 +291,14 @@ eom::NativeCoupledEvolutionCertificate evolve_display_point_histories(
       const double velocity_storage_radius =
           path.history.segments().back().velocity_error() +
           64.0 * std::numeric_limits<double>::epsilon() * velocity_scale;
+      eom::CubicHistorySegment candidate(
+          current_time_token,
+          end_time_token,
+          std::move(coefficients),
+          display_decimal_token(position_storage_radius),
+          display_decimal_token(velocity_storage_radius));
       next_histories.push_back({
-          path.path_id,
-          path.history.appended(eom::CubicHistorySegment(
-              current_time_token,
-              end_time_token,
-              std::move(coefficients),
-              display_decimal_token(position_storage_radius),
-              display_decimal_token(velocity_storage_radius))),
-      });
+          path.path_id, path.history.appended(std::move(candidate))});
     }
     histories = std::move(next_histories);
     current_time = end_time;
@@ -220,7 +330,7 @@ eom::NativeCoupledEvolutionCertificate evolve_display_point_histories(
 
 struct IncrementalSnapshotCache {
   std::string model_key;
-  eom::NativeAccelerationSnapshotCertificate snapshot;
+  std::optional<eom::NativeAccelerationSnapshotCertificate> snapshot;
   std::vector<eom::NativePublishedPath> histories;
   std::map<std::string, eom::JointAffineRetainedHistory> joint_histories;
 };
@@ -333,7 +443,7 @@ std::optional<eom::NativeAccelerationSnapshotCertificate>
 rebase_trimmed_snapshot(
     const IncrementalSnapshotCache& cache,
     const std::vector<ParsedPath>& paths) {
-  if (paths.empty()) {
+  if (paths.empty() || !cache.snapshot.has_value()) {
     return std::nullopt;
   }
   const double retained_start = paths.front().history.t_start();
@@ -344,7 +454,7 @@ rebase_trimmed_snapshot(
       return std::nullopt;
     }
   }
-  auto rebased = cache.snapshot;
+  auto rebased = *cache.snapshot;
   for (auto& row : rebased.root_certificates) {
     const auto* receiver = parsed_path(paths, row.receiver_path_id);
     const auto* source = parsed_path(paths, row.transmitter_path_id);
@@ -631,17 +741,49 @@ void run(
     throw std::invalid_argument("unsupported Borg EOM native protocol");
   }
   const auto run = split_tabs(read_required_line("RUN record"));
-  if (run.size() != 55U || run[0] != "RUN") {
+  if (run.size() != 60U || run[0] != "RUN") {
     throw std::invalid_argument(
-        "invalid RUN record: expected exactly 55 tab-separated fields");
+        "invalid RUN record: expected exactly 60 tab-separated fields");
   }
   const std::string run_grade = run[53];
   if (run_grade != "certified" && run_grade != "display") {
     throw std::invalid_argument("RUN grade must be certified or display");
   }
+  if (incremental_cache != nullptr) {
+    const auto disk_stats = eom::history_disk_storage_stats();
+    if (disk_stats.enabled && disk_stats.run_id != run[1]) {
+      incremental_cache->reset();
+      eom::begin_history_disk_storage_run(run[1]);
+    }
+  }
   const std::size_t path_count = parse_size(run[54], "path count");
   if (path_count == 0U || path_count > 1000000U) {
     throw std::invalid_argument("path count lies outside native protocol envelope");
+  }
+  CausalHistoryRetentionConfig causal_retention;
+  causal_retention.policy = run[55];
+  if (causal_retention.policy != "none" &&
+      causal_retention.policy != "fixed-spherical-receiver-envelope") {
+    throw std::invalid_argument(
+        "unsupported causal-history retention policy");
+  }
+  causal_retention.enabled = causal_retention.policy != "none";
+  for (std::size_t axis = 0U; axis < 3U; ++axis) {
+    causal_retention.center_tokens[axis] = run[56U + axis];
+    causal_retention.center[axis] =
+        std::strtod(run[56U + axis].c_str(), nullptr);
+    if (!std::isfinite(causal_retention.center[axis])) {
+      throw std::invalid_argument(
+          "causal-history receiver-envelope center must be finite");
+    }
+  }
+  causal_retention.radius_token = run[59];
+  causal_retention.radius = std::strtod(run[59].c_str(), nullptr);
+  if (causal_retention.enabled &&
+      (!(causal_retention.radius > 0.0) ||
+       !std::isfinite(causal_retention.radius) || run_grade != "display")) {
+    throw std::invalid_argument(
+        "causal-history retention requires a positive Display receiver envelope");
   }
   std::vector<ParsedPath> parsed_paths;
   parsed_paths.reserve(path_count);
@@ -843,9 +985,10 @@ void run(
   bool rebased_incremental_chunk_snapshot = false;
   if (incremental_cache != nullptr && incremental_cache->has_value() &&
       (*incremental_cache)->model_key == model_key &&
-      (*incremental_cache)->snapshot.status == "certified_complete" &&
-      (*incremental_cache)->snapshot.reception_time == request.start_time) {
-    reusable_snapshot = &(*incremental_cache)->snapshot;
+      (*incremental_cache)->snapshot.has_value() &&
+      (*incremental_cache)->snapshot->status == "certified_complete" &&
+      (*incremental_cache)->snapshot->reception_time == request.start_time) {
+    reusable_snapshot = &*(*incremental_cache)->snapshot;
     const bool exact_fingerprints = std::all_of(
         reusable_snapshot->root_certificates.begin(),
         reusable_snapshot->root_certificates.end(), [&](const auto& row) {
@@ -889,6 +1032,25 @@ void run(
         ? evolve_display_point_histories(request)
         : eom::evolve_native_coupled_histories(request);
   }
+  std::optional<CausalHistoryRetentionCertificate>
+      causal_retention_certificate;
+  if (causal_retention.enabled &&
+      !result.accepted_end_time.empty()) {
+    const double accepted_time =
+        std::strtod(result.accepted_end_time.c_str(), nullptr);
+    const bool receiver_domain_enclosed = std::isfinite(accepted_time) &&
+        std::all_of(
+            result.histories.begin(), result.histories.end(),
+            [&](const auto& path) {
+              return endpoint_inside_receiver_envelope(
+                  path.history, accepted_time, causal_retention);
+            });
+    if (receiver_domain_enclosed) {
+      causal_retention_certificate = certify_causal_history_retirement(
+          result.histories, result.accepted_end_time, request.start_time,
+          request.field_speed, causal_retention);
+    }
+  }
   if (shadow_affine_diagnostic != nullptr) {
     std::vector<eom::NativePublishedPath> diagnostic_inputs;
     diagnostic_inputs.reserve(parsed_paths.size());
@@ -909,18 +1071,31 @@ void run(
   if (incremental_cache != nullptr) {
     incremental_cache->reset();
     if (result.status == "completed") {
+      std::optional<eom::NativeAccelerationSnapshotCertificate>
+          accepted_snapshot;
       for (auto step = result.steps.rbegin(); step != result.steps.rend();
            ++step) {
         if (step->status == "accepted" && step->accepted_snapshot.has_value()) {
-          incremental_cache->emplace(IncrementalSnapshotCache{
-              .model_key = model_key,
-              .snapshot = *step->accepted_snapshot,
-              .histories = result.histories,
-              .joint_histories = result.joint_histories,
-          });
+          accepted_snapshot = *step->accepted_snapshot;
           break;
         }
       }
+      auto cached_histories = result.histories;
+      if (causal_retention_certificate.has_value()) {
+        for (std::size_t index = 0U; index < cached_histories.size(); ++index) {
+          const std::size_t retired =
+              causal_retention_certificate->paths[index]
+                  .retired_prefix_count;
+          cached_histories[index].history =
+              cached_histories[index].history.retained_suffix(retired);
+        }
+      }
+      incremental_cache->emplace(IncrementalSnapshotCache{
+          .model_key = model_key,
+          .snapshot = std::move(accepted_snapshot),
+          .histories = std::move(cached_histories),
+          .joint_histories = result.joint_histories,
+      });
     }
   }
   const std::string output_grade =
@@ -944,6 +1119,57 @@ void run(
             << ",\"haltCode\":\"" << json_escape(result.halt_code)
             << "\",\"memoryBudgetBytes\":" << result.memory_budget_bytes
             << ",\"memoryEstimateBytes\":" << result.memory_estimate_bytes
+            << ",\"causalHistoryRetention\":";
+  if (causal_retention_certificate.has_value()) {
+    std::cout
+        << "{\"schema\":\"borg-causal-history-retention/v1\""
+        << ",\"policy\":\"fixed-spherical-receiver-envelope\""
+        << ",\"receiverDomain\":\"all-requested-receiver-events-inside-envelope\""
+        << ",\"outsideReceiverPolicy\":\"preserve-exact-history-no-retirement\""
+        << ",\"receiverDomainStatus\":\"enclosed\""
+        << ",\"center\":[\""
+        << json_escape(causal_retention.center_tokens[0]) << "\",\""
+        << json_escape(causal_retention.center_tokens[1]) << "\",\""
+        << json_escape(causal_retention.center_tokens[2]) << "\"]"
+        << ",\"radius\":\""
+        << json_escape(causal_retention.radius_token) << "\""
+        << ",\"totalRetiredSegmentCount\":"
+        << causal_retention_certificate->total_retired_segment_count
+        << ",\"paths\":[";
+    for (std::size_t index = 0U;
+         index < causal_retention_certificate->paths.size(); ++index) {
+      if (index > 0U) std::cout << ',';
+      const auto& row = causal_retention_certificate->paths[index];
+      std::cout
+          << "{\"pathId\":\"" << json_escape(row.path_id) << "\""
+          << ",\"retiredPrefixCount\":" << row.retired_prefix_count
+          << ",\"retainedSegmentCount\":" << row.retained_segment_count
+          << ",\"retainedCoverageStart\":\""
+          << json_escape(row.retained_coverage_start) << "\""
+          << ",\"clearedThroughTime\":\""
+          << json_escape(row.cleared_through_time) << "\"}";
+    }
+    std::cout << "]}";
+  } else {
+    std::cout << "null";
+  }
+  const auto history_storage = eom::history_disk_storage_stats();
+  std::cout
+      << ",\"historyStorage\":{\"schema\":\""
+      << json_escape(history_storage.schema)
+      << "\",\"mode\":\""
+      << (history_storage.enabled
+              ? "disk-backed-exact-blocks"
+              : "in-memory-exact-blocks")
+      << "\""
+      << ",\"enabled\":" << (history_storage.enabled ? "true" : "false")
+      << ",\"maximumDiskBytes\":" << history_storage.maximum_disk_bytes
+      << ",\"diskBytes\":" << history_storage.disk_bytes
+      << ",\"blockFileCount\":" << history_storage.block_file_count
+      << ",\"cachedBlocksPerThread\":"
+      << history_storage.cached_blocks_per_thread
+      << "}";
+  std::cout
             << ",\"budgetProvenance\":{\"schema\":\""
             << json_escape(request.certified_budget_schema)
             << "\",\"presetId\":\""
@@ -1663,6 +1889,9 @@ int main(int argc, char** argv) {
                    "[--traversal-exact-tile-pair-limit=N] "
                    "[--shadow-affine-diagnostic=PATH] "
                    "[--shadow-affine-symbol-cap=N] "
+                   "[--history-temp-root=PATH] "
+                   "[--history-disk-limit-bytes=N] "
+                   "[--history-cache-blocks-per-thread=N] "
                    "[--shadow-affine-disable-root-enclosure-symbols] "
                    "[--shadow-affine-disable-acceleration-enclosure-symbols]\n";
       return EXIT_FAILURE;
@@ -1677,6 +1906,11 @@ int main(int argc, char** argv) {
     std::size_t shadow_affine_symbol_cap = 256U;
     bool shadow_affine_include_root_enclosure_symbols = true;
     bool shadow_affine_include_acceleration_enclosure_symbols = true;
+    std::string history_temp_root =
+        (std::filesystem::temp_directory_path() /
+         "architrino-eom-exact-history-borg-worker").string();
+    std::uint64_t history_disk_limit_bytes = UINT64_C(1099511627776);
+    std::size_t history_cache_blocks_per_thread = 16U;
     for (int argument_index = 2; argument_index < argc; ++argument_index) {
       const std::string option = argv[argument_index];
       constexpr const char* precision_prefix = "--maximum-mpfr-bits=";
@@ -1689,6 +1923,11 @@ int main(int argc, char** argv) {
           "--shadow-affine-diagnostic=";
       constexpr const char* shadow_affine_cap_prefix =
           "--shadow-affine-symbol-cap=";
+      constexpr const char* history_root_prefix = "--history-temp-root=";
+      constexpr const char* history_limit_prefix =
+          "--history-disk-limit-bytes=";
+      constexpr const char* history_cache_prefix =
+          "--history-cache-blocks-per-thread=";
       if (option.starts_with(precision_prefix)) {
         const std::size_t parsed = parse_size(
             option.substr(std::char_traits<char>::length(precision_prefix)),
@@ -1746,6 +1985,31 @@ int main(int argc, char** argv) {
           throw std::invalid_argument(
               "shadow affine symbol cap must be at least 32");
         }
+      } else if (option.starts_with(history_root_prefix)) {
+        history_temp_root = option.substr(
+            std::char_traits<char>::length(history_root_prefix));
+        if (history_temp_root.empty()) {
+          throw std::invalid_argument(
+              "exact history temporary root must be nonempty");
+        }
+      } else if (option.starts_with(history_limit_prefix)) {
+        history_disk_limit_bytes = parse_size(
+            option.substr(std::char_traits<char>::length(history_limit_prefix)),
+            "exact history disk limit");
+        if (history_disk_limit_bytes == 0U ||
+            history_disk_limit_bytes > UINT64_C(1099511627776)) {
+          throw std::invalid_argument(
+              "exact history disk limit must lie between one byte and one TiB");
+        }
+      } else if (option.starts_with(history_cache_prefix)) {
+        history_cache_blocks_per_thread = parse_size(
+            option.substr(std::char_traits<char>::length(history_cache_prefix)),
+            "exact history cache blocks per thread");
+        if (history_cache_blocks_per_thread < 2U ||
+            history_cache_blocks_per_thread > 1024U) {
+          throw std::invalid_argument(
+              "exact history cache must hold between 2 and 1024 blocks per thread");
+        }
       } else if (option ==
                  "--shadow-affine-disable-root-enclosure-symbols") {
         shadow_affine_include_root_enclosure_symbols = false;
@@ -1779,6 +2043,14 @@ int main(int argc, char** argv) {
           use_certified_traversal, traversal_exact_tile_pair_limit,
           shadow_affine);
     } else if (mode == "borg-shadow-server-v0") {
+      eom::configure_history_disk_storage({
+          .root_directory = history_temp_root,
+          .maximum_disk_bytes = history_disk_limit_bytes,
+          .cached_blocks_per_thread = history_cache_blocks_per_thread,
+      });
+      struct HistoryDiskRunGuard {
+        ~HistoryDiskRunGuard() { eom::release_history_disk_storage_run(); }
+      } history_disk_run_guard;
       std::optional<IncrementalSnapshotCache> incremental_cache;
       while (std::cin.peek() != std::char_traits<char>::eof()) {
         bool request_boundary_consumed = false;
@@ -1809,6 +2081,9 @@ int main(int argc, char** argv) {
                    "[--traversal-exact-tile-pair-limit=N] "
                    "[--shadow-affine-diagnostic=PATH] "
                    "[--shadow-affine-symbol-cap=N] "
+                   "[--history-temp-root=PATH] "
+                   "[--history-disk-limit-bytes=N] "
+                   "[--history-cache-blocks-per-thread=N] "
                    "[--shadow-affine-disable-root-enclosure-symbols] "
                    "[--shadow-affine-disable-acceleration-enclosure-symbols]\n";
       return EXIT_FAILURE;

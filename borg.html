@@ -575,8 +575,8 @@
         min-width: 0;
         min-height: 0;
         display: grid;
-        grid-template-columns: 40px 40px 40px minmax(96px, 1fr) 104px 88px minmax(128px, auto);
-        gap: 10px;
+        grid-template-columns: 40px 40px 40px minmax(48px, 1fr) 96px 70px 82px minmax(150px, auto);
+        gap: 6px;
         align-items: center;
         padding: 12px 14px;
         border-top: 1px solid rgba(139, 164, 126, 0.24);
@@ -668,9 +668,13 @@
         font-size: 12px;
         font-weight: 760;
         text-align: right;
+        font-variant-numeric: tabular-nums;
+        min-width: 12ch;
+        white-space: nowrap;
       }
 
       .borg-run-duration-button,
+      .borg-history-duration,
       .borg-playback-speed {
         height: 40px;
         padding: 0 10px;
@@ -684,11 +688,20 @@
       }
 
       .borg-run-duration-button {
-        width: 104px;
+        width: 96px;
         cursor: pointer;
       }
 
       .borg-run-duration-button[hidden] {
+        display: none;
+      }
+
+      .borg-history-duration {
+        width: 70px;
+        cursor: pointer;
+      }
+
+      .borg-history-duration[hidden] {
         display: none;
       }
 
@@ -1137,7 +1150,7 @@
       }
 
       .borg-playback-speed {
-        width: 88px;
+        width: 82px;
       }
 
       #borg-boot-error {
@@ -1273,8 +1286,13 @@
           width: 100%;
         }
 
-        .borg-playback-speed {
+        .borg-history-duration {
           grid-column: 3 / 5;
+          width: 100%;
+        }
+
+        .borg-playback-speed {
+          grid-column: 1 / 5;
           width: 100%;
         }
 
@@ -1581,8 +1599,15 @@
           <option value="live-300s">5 min</option>
           <option value="live-forever" selected>No limit</option>
         </select>
+        <select id="borg-history-duration" class="borg-history-duration" aria-label="Path-history trail duration" title="Displayed path-history trail in simulation time T">
+          <option value="30" selected>30 s</option>
+          <option value="60">60 s</option>
+          <option value="90">90 s</option>
+          <option value="180">180 s</option>
+          <option value="360">360 s</option>
+        </select>
         <select id="borg-playback-speed" class="borg-playback-speed" aria-label="Playback speed"></select>
-        <output id="borg-time-output" class="borg-time-output">solver t 2 | keyframe 2</output>
+        <output id="borg-time-output" class="borg-time-output">T 00:00:00.0</output>
       </section>
     </div>
     <script type="module" src="./src/apps/borg/main.js"></script>

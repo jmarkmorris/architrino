@@ -30,7 +30,10 @@ import {
   createBorgNativeEomProcessClient,
   encodeNativeRequest,
 } from "../scripts/eom/BorgNativeEomProcessClient.mjs";
-import { createBorgEomHttpClient } from "../src/apps/borg/BorgEomHttpClient.js";
+import {
+  BORG_EOM_HTTP_HISTORY_TRANSPORT_SCHEMA,
+  createBorgEomHttpClient,
+} from "../src/apps/borg/BorgEomHttpClient.js";
 import {
   BORG_ACCEPTED_SEED_HISTORY_CLAIM_LEVEL,
   BORG_ACCEPTED_SEED_HISTORY_PROVENANCE,
@@ -54,6 +57,15 @@ import {
 import {
   BORG_CERTIFIED_BUDGET_PRESETS,
 } from "../src/apps/borg/BorgCertifiedBudgets.js";
+import {
+  BORG_DISPLAY_HOST_MEMORY_ENVELOPE_SCHEMA,
+  BORG_DISPLAY_HOST_MEMORY_POLICY_ID,
+  createBorgDisplayHostMemoryEnvelope,
+} from "../src/apps/borg/BorgDisplayHostMemoryEnvelope.js";
+import {
+  BORG_CAUSAL_HISTORY_RETENTION_POLICY,
+  BORG_CAUSAL_HISTORY_RETENTION_SCHEMA,
+} from "../src/apps/borg/BorgCausalHistoryRetention.js";
 
 const trajectoryFrames = createBorgPrescribedLinearHistoryRows(
   createBorgSeededInitialConditionRows({
@@ -419,6 +431,43 @@ test("Borg certified-budget hashes identify the complete canonical allocations",
   }
 });
 
+test("Borg Display host memory keeps a proportional Mac reserve and admits available growth", () => {
+  const gibibyte = 1024 ** 3;
+  const envelope = createBorgDisplayHostMemoryEnvelope({
+    hostTotalMemoryBytes: 64 * gibibyte,
+    hostAvailableMemoryBytes: 32 * gibibyte,
+    workerResidentBytes: 128 * 1024 ** 2,
+    previousMemoryEstimateBytes: 256 * 1024 ** 2,
+  });
+  const expectedReserve = Math.ceil(64 * gibibyte * 0.2);
+
+  assert.equal(envelope.schema, BORG_DISPLAY_HOST_MEMORY_ENVELOPE_SCHEMA);
+  assert.equal(envelope.policyId, BORG_DISPLAY_HOST_MEMORY_POLICY_ID);
+  assert.equal(envelope.admitted, true);
+  assert.equal(envelope.hostReserveBytes, expectedReserve);
+  assert.equal(
+    envelope.workerResidentLimitBytes,
+    envelope.workerResidentBytes + envelope.availableGrowthBytes,
+  );
+  assert.equal(
+    envelope.requestMemoryBudgetBytes,
+    envelope.previousMemoryEstimateBytes +
+      envelope.hostAvailableMemoryBytes - expectedReserve,
+  );
+  assert.ok(envelope.requestMemoryBudgetBytes > 64 * 1024 ** 2);
+
+  const pressured = createBorgDisplayHostMemoryEnvelope({
+    hostTotalMemoryBytes: 8 * gibibyte,
+    hostAvailableMemoryBytes: 2 * gibibyte,
+    workerResidentBytes: 96 * 1024 ** 2,
+    previousMemoryEstimateBytes: 128 * 1024 ** 2,
+  });
+  assert.equal(pressured.hostReserveBytes, 2 * gibibyte);
+  assert.equal(pressured.availableGrowthBytes, 0);
+  assert.equal(pressured.admitted, false);
+  assert.equal(pressured.requestMemoryBudgetBytes, 128 * 1024 ** 2);
+});
+
 test("Borg live contract and certified-budget records match the runtime identities", () => {
   const bindingRecord = readFileSync(new URL(
     "../reference/priorities/app-eom/master-eom-binding-v1.md",
@@ -606,9 +655,10 @@ test("Borg display grade starts directly from point-projected input history", as
     runGrade: "display",
     initialFrameRows: trajectoryFrames,
     startTime: 10,
-    targetDuration: 10.1,
-    chunkDuration: 0.05,
-    sampleInterval: 0.05,
+    targetDuration: 30.4,
+    chunkDuration: 10.2,
+    sampleInterval: 0.2,
+    historyDepth: 10,
   });
 
   const first = await runner.computeNextChunk();
@@ -625,14 +675,115 @@ test("Borg display grade starts directly from point-projected input history", as
     )
   ));
   assert.equal(requests[1].runGrade, "display");
-  assert.equal(requests[1].absoluteTimeInterval.start, "10.05");
+  assert.equal(requests[1].absoluteTimeInterval.start, "20.2");
+  assert.equal(
+    requests[1].histories[0].coverageStart,
+    requests[0].histories[0].coverageStart,
+  );
   assert.equal(first.activeRunGrade, "display");
   assert.equal(second.activeRunGrade, "display");
   assert.equal(first.transitionedToDisplayGrade, false);
   assert.equal(first.displayGradeBoundary, null);
   assert.equal(first.displayHistoryProjectionCount, 1);
+  assert.equal(first.retainedHistoryPolicy, "append-only-display-grade-point-history");
   assert.equal(first.promotionEligible, false);
-  assert.equal(second.endTime, 10.1);
+  assert.equal(second.endTime, 30.4);
+});
+
+test("Borg Display releases exactly the solver-cleared retained prefix", async () => {
+  const requests = [];
+  const runner = createBorgEomShadowRunner(BORG_DATASET_MANIFEST_V1, {
+    eomClient: {
+      async evolveRetainedHistories(request) {
+        requests.push(request);
+        const response = createFakeEomResponse(request, "display-only");
+        const paths = response.histories.map((history) => ({
+          pathId: history.pathId,
+          retiredPrefixCount: history.segments.length - 1,
+          retainedSegmentCount: 1,
+          retainedCoverageStart: String(history.segments.at(-1).startTime),
+          clearedThroughTime: String(history.segments.at(-1).startTime),
+        }));
+        return {
+          ...response,
+          causalHistoryRetention: {
+            schema: BORG_CAUSAL_HISTORY_RETENTION_SCHEMA,
+            policy: BORG_CAUSAL_HISTORY_RETENTION_POLICY,
+            receiverDomain: "all-requested-receiver-events-inside-envelope",
+            outsideReceiverPolicy: "preserve-exact-history-no-retirement",
+            receiverDomainStatus: "enclosed",
+            center: ["0.5", "0.5", "0.5"],
+            radius: "0.5",
+            totalRetiredSegmentCount: paths.reduce(
+              (sum, path) => sum + path.retiredPrefixCount,
+              0,
+            ),
+            paths,
+          },
+        };
+      },
+    },
+    runGrade: "display",
+    causalHistoryRetention: true,
+    initialFrameRows: trajectoryFrames,
+    startTime: 10,
+    targetDuration: 10.4,
+    chunkDuration: 0.2,
+    sampleInterval: 0.2,
+  });
+
+  const first = await runner.computeNextChunk();
+  const second = await runner.computeNextChunk();
+
+  assert.equal(first.retainedHistoryPolicy,
+    "solver-cleared-fixed-envelope-display-history");
+  assert.equal(first.histories.every((history) => history.segments.length === 1), true);
+  assert.equal(requests[1].histories.every((history) => history.segments.length === 1), true);
+  assert.equal(requests[1].histories[0].coverageStart, "10");
+  assert.equal(second.histories.every((history) => history.segments.length === 1), true);
+  const runFields = encodeNativeRequest(requests[0]).split("\n")[1].split("\t");
+  assert.deepEqual(runFields.slice(55), [
+    BORG_CAUSAL_HISTORY_RETENTION_POLICY,
+    "0.5",
+    "0.5",
+    "0.5",
+    "0.5",
+  ]);
+});
+
+test("Borg Display response accepts a self-consistent host memory envelope without changing Claim budget", async () => {
+  const hostMemoryEnvelope = createBorgDisplayHostMemoryEnvelope({
+    hostTotalMemoryBytes: 32 * 1024 ** 3,
+    hostAvailableMemoryBytes: 16 * 1024 ** 3,
+    workerResidentBytes: 96 * 1024 ** 2,
+    previousMemoryEstimateBytes: 128 * 1024 ** 2,
+  });
+  const runner = createBorgEomShadowRunner(BORG_DATASET_MANIFEST_V1, {
+    eomClient: {
+      async evolveRetainedHistories(request) {
+        return createFakeEomResponse(request, "display-only", {
+          hostMemoryEnvelope,
+          memoryBudgetBytes: hostMemoryEnvelope.requestMemoryBudgetBytes,
+        });
+      },
+    },
+    runGrade: "display",
+    initialFrameRows: trajectoryFrames,
+    startTime: 10,
+    targetDuration: 10.2,
+    chunkDuration: 0.2,
+  });
+
+  const chunk = await runner.computeNextChunk();
+  assert.equal(
+    chunk.memoryBudgetBytes,
+    hostMemoryEnvelope.requestMemoryBudgetBytes,
+  );
+  assert.deepEqual(chunk.hostMemoryEnvelope, hostMemoryEnvelope);
+  assert.equal(
+    chunk.budgetProvenance.allocations.resources.requestMemoryBytes,
+    64 * 1024 * 1024,
+  );
 });
 
 test("Borg EOM shadow runner supports a deterministic retained-history population subset", async () => {
@@ -1015,9 +1166,9 @@ test("Borg native process protocol carries the same continuous-history request",
   await runner.computeNextChunk();
   const protocol = encodeNativeRequest(requests[0]);
   assert.equal(protocol.split("\n")[0], BORG_NATIVE_EOM_PROTOCOL_MAGIC);
-  assert.match(protocol, /^EOM_BORG_NATIVE_V9\nRUN\t/u);
+  assert.match(protocol, /^EOM_BORG_NATIVE_V10\nRUN\t/u);
   const runFields = protocol.split("\n")[1].split("\t");
-  assert.equal(runFields.length, 55);
+  assert.equal(runFields.length, 60);
   assert.equal(runFields[4], "0.05");
   assert.equal(runFields[6], "0.05");
   assert.equal(runFields[7], "1");
@@ -1030,11 +1181,52 @@ test("Borg native process protocol carries the same continuous-history request",
   assert.equal(runFields[22], requests[0].certifiedBudget.allocationCanonicalJson);
   assert.equal(runFields[53], "certified");
   assert.equal(runFields[54], "6");
+  assert.deepEqual(runFields.slice(55), ["none", "0", "0", "0", "0"]);
   assert.equal(protocol.match(/^PATH\t/gmu)?.length, 6);
   assert.equal(protocol.match(/^SEG\t/gmu)?.length, 6);
   assert.match(protocol, /\nEND\n$/u);
   assert.equal(protocol.includes("initialStates"), false);
   assert.equal(protocol.includes("futurePaths"), false);
+
+  const displayHostEnvelope = createBorgDisplayHostMemoryEnvelope({
+    hostTotalMemoryBytes: 32 * 1024 ** 3,
+    hostAvailableMemoryBytes: 16 * 1024 ** 3,
+    workerResidentBytes: 128 * 1024 ** 2,
+    previousMemoryEstimateBytes: 64 * 1024 ** 2,
+  });
+  const displayHostRequest = {
+    ...requests[0],
+    runGrade: "display",
+    resourceEnvelope: {
+      ...requests[0].resourceEnvelope,
+      memoryBudgetBytes: displayHostEnvelope.requestMemoryBudgetBytes,
+    },
+    hostMemoryEnvelope: displayHostEnvelope,
+  };
+  const displayHostRunFields = encodeNativeRequest(displayHostRequest)
+    .split("\n")[1]
+    .split("\t");
+  assert.equal(displayHostRunFields[18], String(
+    displayHostEnvelope.requestMemoryBudgetBytes,
+  ));
+  assert.equal(displayHostRunFields[53], "display");
+  assert.throws(
+    () => encodeNativeRequest({
+      ...displayHostRequest,
+      runGrade: "certified",
+    }),
+    /permitted only for Display grade/u,
+  );
+  assert.throws(
+    () => encodeNativeRequest({
+      ...displayHostRequest,
+      resourceEnvelope: {
+        ...displayHostRequest.resourceEnvelope,
+        memoryBudgetBytes: displayHostEnvelope.requestMemoryBudgetBytes + 1,
+      },
+    }),
+    /does not match its request budget/u,
+  );
 
   assert.throws(
     () => encodeNativeRequest({
@@ -1129,7 +1321,7 @@ test("Borg native client rejects protocol skew with a restart instruction", () =
     assert.throws(
       () => createBorgNativeEomProcessClient({ binaryPath: fixtureBinary }),
       (error) => {
-        assert.match(error.message, /dev server encoder=EOM_BORG_NATIVE_V9/u);
+        assert.match(error.message, /dev server encoder=EOM_BORG_NATIVE_V10/u);
         assert.match(error.message, /binary parser=EOM_BORG_NATIVE_V999/u);
         assert.match(
           error.message,
@@ -1148,7 +1340,7 @@ test("Borg native client restarts a persistent worker when its executable change
   const fixtureBinary = join(fixtureDirectory, "refreshable-eom-binary.mjs");
   const fixtureSource = (marker) => `#!/usr/bin/env node
 if (process.argv[2] === "print-protocol-version") {
-  process.stdout.write("EOM_BORG_NATIVE_V9\\n");
+  process.stdout.write("EOM_BORG_NATIVE_V10\\n");
   process.exit(0);
 }
 let buffer = "";
@@ -1214,7 +1406,7 @@ test("Borg native client clears its history prefix after a halted request", asyn
   const fixtureBinary = join(fixtureDirectory, "cache-reset-eom-binary.mjs");
   const fixtureSource = `#!/usr/bin/env node
 if (process.argv[2] === "print-protocol-version") {
-  process.stdout.write("EOM_BORG_NATIVE_V9\\n");
+  process.stdout.write("EOM_BORG_NATIVE_V10\\n");
   process.exit(0);
 }
 let buffer = "";
@@ -1303,6 +1495,95 @@ process.stdin.on("data", (chunk) => {
   }
 });
 
+test("Borg server process client forwards a validated Display prefix without segment retransmission", async () => {
+  const fixtureDirectory = mkdtempSync(join(tmpdir(), "borg-eom-display-prefix-"));
+  const fixtureBinary = join(fixtureDirectory, "display-prefix-eom-binary.mjs");
+  const fixtureSource = `#!/usr/bin/env node
+if (process.argv[2] === "print-protocol-version") {
+  process.stdout.write("EOM_BORG_NATIVE_V10\\n");
+  process.exit(0);
+}
+let buffer = "";
+process.stdin.setEncoding("utf8");
+process.stdin.on("data", (chunk) => {
+  buffer += chunk;
+  while (buffer.includes("\\nEND\\n")) {
+    const boundary = buffer.indexOf("\\nEND\\n") + 5;
+    const request = buffer.slice(0, boundary);
+    buffer = buffer.slice(boundary);
+    const lines = request.trim().split("\\n");
+    const run = lines.find((line) => line.startsWith("RUN\\t")).split("\\t");
+    const paths = lines.filter((line) => line.startsWith("PATH\\t"));
+    const prefixes = paths.map((line) => Number(line.split("\\t")[4]));
+    process.stdout.write(JSON.stringify({
+      status: "completed",
+      acceptedEndTime: run[3],
+      observedMaximumCachedPrefix: Math.max(...prefixes),
+      publishedExtensions: paths.map((line) => ({
+        pathId: line.split("\\t")[1],
+        segments: [],
+      })),
+    }) + "\\n");
+  }
+});
+`;
+  try {
+    writeFileSync(fixtureBinary, fixtureSource, "utf8");
+    chmodSync(fixtureBinary, 0o755);
+    const config = createBorgEomShadowRunConfig(BORG_DATASET_MANIFEST_V1, {
+      startTime: 10,
+      targetDuration: 10.2,
+      chunkDuration: 0.1,
+    });
+    const histories = createBorgContinuousRetainedHistories(
+      trajectoryFrames,
+      BORG_DATASET_MANIFEST_V1,
+      { historyEndTime: 10 },
+    );
+    const firstRequest = createBorgEomShadowRequest({
+      manifest: BORG_DATASET_MANIFEST_V1,
+      config,
+      histories,
+      chunkIndex: 0,
+      startTime: 10,
+      endTime: 10.1,
+      runGrade: "display",
+    });
+    const client = createBorgNativeEomProcessClient({
+      binaryPath: fixtureBinary,
+      returnDisplayHistoryExtensions: true,
+      workerResidentMemoryReader: (pid) => pid == null ? 0 : 128 * 1024 ** 2,
+    });
+    assert.equal(client.workerResidentBytes, 0);
+    const first = await client.evolveRetainedHistories(firstRequest);
+    assert.ok(client.workerResidentBytes > 0);
+    const second = await client.evolveRetainedHistories({
+      ...firstRequest,
+      requestId: "display-prefix-1",
+      runId: "display-prefix-1",
+      absoluteTimeInterval: { start: "10.1", end: "10.2" },
+      histories: firstRequest.histories.map((history) => ({
+        ...history,
+        coverageEnd: "10.1",
+        segments: [],
+      })),
+      historyTransport: {
+        schema: BORG_EOM_HTTP_HISTORY_TRANSPORT_SCHEMA,
+        cacheToken: first.historyTransport.cacheToken,
+        cachedPrefixCounts: first.historyTransport.segmentCounts,
+      },
+    });
+
+    assert.equal(first.observedMaximumCachedPrefix, 0);
+    assert.ok(second.observedMaximumCachedPrefix > 0);
+    assert.equal(second.histories, undefined);
+    assert.deepEqual(second.historyTransport.segmentCounts, [1, 1, 1, 1, 1, 1]);
+    await client.dispose();
+  } finally {
+    rmSync(fixtureDirectory, { recursive: true, force: true });
+  }
+});
+
 test("Borg browser EOM client posts the retained-history contract to the local native endpoint", async () => {
   const calls = [];
   const client = createBorgEomHttpClient({
@@ -1323,6 +1604,281 @@ test("Borg browser EOM client posts the retained-history contract to the local n
   assert.equal(calls[0].endpoint, "/api/eom/borg-shadow/v0");
   assert.equal(calls[0].init.method, "POST");
   assert.deepEqual(JSON.parse(calls[0].init.body), request);
+});
+
+test("Borg browser EOM client sends only a validated cached prefix after the first Display increment", async () => {
+  const calls = [];
+  const segment = (startTime, endTime) => ({
+    startTime,
+    endTime,
+    coefficients: Array.from({ length: 3 }, () => ["0", "0", "0", "0"]),
+    positionErrors: ["0", "0", "0"],
+    velocityErrors: ["0", "0", "0"],
+  });
+  const responses = [
+    {
+      status: "completed",
+      acceptedEndTime: "0.1",
+      publishedExtensions: [{ pathId: "p", segments: [segment("0", "0.1")] }],
+      historyTransport: {
+        schema: BORG_EOM_HTTP_HISTORY_TRANSPORT_SCHEMA,
+        cacheToken: "cache:1",
+        segmentCounts: [2],
+      },
+    },
+    {
+      status: "completed",
+      acceptedEndTime: "0.2",
+      publishedExtensions: [{ pathId: "p", segments: [segment("0.1", "0.2")] }],
+      historyTransport: {
+        schema: BORG_EOM_HTTP_HISTORY_TRANSPORT_SCHEMA,
+        cacheToken: "cache:2",
+        segmentCounts: [3],
+      },
+    },
+  ];
+  const client = createBorgEomHttpClient({
+    fetchImpl: async (_endpoint, init) => {
+      calls.push(JSON.parse(init.body));
+      return {
+        ok: true,
+        status: 200,
+        async text() {
+          return JSON.stringify(responses.shift());
+        },
+      };
+    },
+  });
+  const initialRequest = {
+    runGrade: "display",
+    histories: [{
+      pathId: "p",
+      charge: "1",
+      coverageStart: "-1",
+      coverageEnd: "0",
+      segments: [segment("-1", "0")],
+    }],
+  };
+  const first = await client.evolveRetainedHistories(initialRequest);
+  const second = await client.evolveRetainedHistories({
+    ...initialRequest,
+    histories: first.histories,
+  });
+
+  assert.equal(calls[0].historyTransport, undefined);
+  assert.equal(calls[0].histories[0].segments.length, 1);
+  assert.equal(calls[1].historyTransport.cacheToken, "cache:1");
+  assert.deepEqual(calls[1].historyTransport.cachedPrefixCounts, [2]);
+  assert.deepEqual(calls[1].histories[0].segments, []);
+  assert.equal(second.histories[0].segments.length, 3);
+  assert.deepEqual(second.histories[0].segments, [
+    segment("-1", "0"),
+    segment("0", "0.1"),
+    segment("0.1", "0.2"),
+  ]);
+});
+
+test("Borg browser EOM cache releases a solver-cleared prefix before the next increment", async () => {
+  const calls = [];
+  const segment = (startTime, endTime) => ({
+    startTime,
+    endTime,
+    coefficients: Array.from({ length: 3 }, () => ["0", "0", "0", "0"]),
+    positionErrors: ["0", "0", "0"],
+    velocityErrors: ["0", "0", "0"],
+  });
+  const retention = (retainedCoverageStart) => ({
+    schema: BORG_CAUSAL_HISTORY_RETENTION_SCHEMA,
+    policy: BORG_CAUSAL_HISTORY_RETENTION_POLICY,
+    totalRetiredSegmentCount: 1,
+    paths: [{
+      pathId: "p",
+      retiredPrefixCount: 1,
+      retainedSegmentCount: 1,
+      retainedCoverageStart,
+      clearedThroughTime: retainedCoverageStart,
+    }],
+  });
+  const responses = [
+    {
+      status: "completed",
+      acceptedEndTime: "0.1",
+      publishedExtensions: [{ pathId: "p", segments: [segment("0", "0.1")] }],
+      causalHistoryRetention: retention("0"),
+      historyTransport: {
+        schema: BORG_EOM_HTTP_HISTORY_TRANSPORT_SCHEMA,
+        cacheToken: "bounded:1",
+        segmentCounts: [1],
+      },
+    },
+    {
+      status: "completed",
+      acceptedEndTime: "0.2",
+      publishedExtensions: [{ pathId: "p", segments: [segment("0.1", "0.2")] }],
+      causalHistoryRetention: retention("0.1"),
+      historyTransport: {
+        schema: BORG_EOM_HTTP_HISTORY_TRANSPORT_SCHEMA,
+        cacheToken: "bounded:2",
+        segmentCounts: [1],
+      },
+    },
+  ];
+  const client = createBorgEomHttpClient({
+    fetchImpl: async (_endpoint, init) => {
+      calls.push(JSON.parse(init.body));
+      return {
+        ok: true,
+        status: 200,
+        async text() {
+          return JSON.stringify(responses.shift());
+        },
+      };
+    },
+  });
+  const initialRequest = {
+    runGrade: "display",
+    histories: [{
+      pathId: "p",
+      charge: "1",
+      coverageStart: "-1",
+      coverageEnd: "0",
+      segments: [segment("-1", "0")],
+    }],
+  };
+  const first = await client.evolveRetainedHistories(initialRequest);
+  const second = await client.evolveRetainedHistories({
+    ...initialRequest,
+    histories: first.histories,
+  });
+
+  assert.equal(first.histories[0].coverageStart, "0");
+  assert.equal(first.histories[0].segments.length, 1);
+  assert.deepEqual(calls[1].historyTransport.cachedPrefixCounts, [1]);
+  assert.deepEqual(calls[1].histories[0].segments, []);
+  assert.equal(second.histories[0].coverageStart, "0.1");
+  assert.deepEqual(second.histories[0].segments, [segment("0.1", "0.2")]);
+});
+
+test("Borg browser keeps a bounded Display window while the worker prefix grows", async () => {
+  const calls = [];
+  const segment = (startTime, endTime) => ({
+    startTime,
+    endTime,
+    coefficients: Array.from({ length: 3 }, () => ["0", "0", "0", "0"]),
+    positionErrors: ["0", "0", "0"],
+    velocityErrors: ["0", "0", "0"],
+  });
+  const client = createBorgEomHttpClient({
+    fetchImpl: async (_endpoint, init) => {
+      const body = JSON.parse(init.body);
+      calls.push(body);
+      const start = Number(body.absoluteTimeInterval.start);
+      const end = Number(body.absoluteTimeInterval.end);
+      const prefix = body.historyTransport?.cachedPrefixCounts?.[0] ??
+        body.histories[0].segments.length;
+      return {
+        ok: true,
+        status: 200,
+        async text() {
+          return JSON.stringify({
+            status: "completed",
+            acceptedEndTime: String(end),
+            publishedExtensions: [{
+              pathId: "p",
+              segments: [segment(String(start), String(end))],
+            }],
+            historyTransport: {
+              schema: BORG_EOM_HTTP_HISTORY_TRANSPORT_SCHEMA,
+              cacheToken: `cache:${calls.length}`,
+              segmentCounts: [prefix + 1],
+            },
+          });
+        },
+      };
+    },
+  });
+  let histories = [{
+    pathId: "p",
+    charge: "1",
+    coverageStart: "-1",
+    coverageEnd: "0",
+    segments: [segment("-1", "0")],
+  }];
+  for (let increment = 0; increment < 100; increment += 1) {
+    const start = increment / 10;
+    const end = (increment + 1) / 10;
+    const response = await client.evolveRetainedHistories({
+      runGrade: "display",
+      absoluteTimeInterval: { start: String(start), end: String(end) },
+      histories,
+    });
+    histories = response.histories;
+    assert.equal(histories[0].serverExactHistory, true);
+    assert.ok(histories[0].segments.length <= 2);
+  }
+  assert.equal(calls.length, 100);
+  assert.equal(calls[99].histories[0].segments.length, 0);
+  assert.deepEqual(calls[99].historyTransport.cachedPrefixCounts, [100]);
+});
+
+test("Borg browser EOM client stops if its worker-owned exact history is lost", async () => {
+  const calls = [];
+  let responseIndex = 0;
+  const history = {
+    pathId: "p",
+    charge: "1",
+    segments: [{
+      startTime: "-1",
+      endTime: "0",
+      coefficients: Array.from({ length: 3 }, () => ["0", "0", "0", "0"]),
+      positionErrors: ["0", "0", "0"],
+      velocityErrors: ["0", "0", "0"],
+    }],
+  };
+  const client = createBorgEomHttpClient({
+    fetchImpl: async (_endpoint, init) => {
+      const body = JSON.parse(init.body);
+      calls.push(body);
+      responseIndex += 1;
+      if (responseIndex === 2) {
+        return {
+          ok: false,
+          status: 500,
+          async text() {
+            return JSON.stringify({
+              error: "stale",
+              code: "display_history_cache_miss",
+            });
+          },
+        };
+      }
+      return {
+        ok: true,
+        status: 200,
+        async text() {
+          return JSON.stringify({
+            status: "completed",
+            acceptedEndTime: "0",
+            publishedExtensions: [{ pathId: "p", segments: [] }],
+            historyTransport: {
+              schema: BORG_EOM_HTTP_HISTORY_TRANSPORT_SCHEMA,
+              cacheToken: `cache:${responseIndex}`,
+              segmentCounts: [1],
+            },
+          });
+        },
+      };
+    },
+  });
+  const request = { runGrade: "display", histories: [history] };
+  const first = await client.evolveRetainedHistories(request);
+  await assert.rejects(
+    client.evolveRetainedHistories({ ...request, histories: first.histories }),
+    (error) => error?.code === "display_exact_history_store_lost",
+  );
+
+  assert.equal(calls.length, 2);
+  assert.equal(calls[1].histories[0].segments.length, 0);
 });
 
 test("disposing the Borg browser EOM client aborts an active native request", async () => {
@@ -1376,8 +1932,11 @@ function createFakeEomResponse(request, evidenceStatus, options = {}) {
     evidenceStatus,
     claimGrade: evidenceStatus,
     coreScale: request.modelControls.coreScale,
-    memoryBudgetBytes: request.resourceEnvelope.memoryBudgetBytes,
+    memoryBudgetBytes:
+      options.memoryBudgetBytes ?? request.resourceEnvelope.memoryBudgetBytes,
     memoryEstimateBytes: 1,
+    hostMemoryEnvelope: options.hostMemoryEnvelope ?? null,
+    causalHistoryRetention: options.causalHistoryRetention ?? null,
     budgetProvenance: {
       schema: request.certifiedBudget.schema,
       presetId: request.certifiedBudget.presetId,

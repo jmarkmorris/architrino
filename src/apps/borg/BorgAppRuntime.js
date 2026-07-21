@@ -80,12 +80,15 @@ const BORG_LIVE_RUN_BUDGET_VERSION = "borg-live-run-budget.v1";
 const CAMERA_MIN_DISTANCE = 4.8;
 const CAMERA_MAX_DISTANCE = 28;
 const DEFAULT_CAMERA_FIT_MARGIN = 1.43;
-const HIGHLIGHTED_PATH_HISTORY_DURATION = 20;
+const DEFAULT_PATH_TRAIL_DURATION = 30;
+const PATH_TRAIL_DURATIONS = Object.freeze([30, 60, 90, 180, 360]);
 const FIT_VIEW_MARGIN = 1.02;
 const DEFAULT_ROTATION_X = -0.44;
 const DEFAULT_ROTATION_Y = 0.66;
 const ARCHITRINO_POINT_PIXEL_SIZE = 8;
 const ARCHITRINO_PICK_THRESHOLD = 0.22;
+const VELOCITY_RAY_MINIMUM_VISIBLE_LENGTH = 0.22;
+const VELOCITY_RAY_LOG_SCALE = 0.88;
 const BOUNDARY_SHELL_LATITUDE_COUNT = 25;
 const BOUNDARY_SHELL_LONGITUDE_COUNT = 48;
 const ENVELOPE_GUIDE_COLOR = 0xcbd0c8;
@@ -284,6 +287,7 @@ export function mountBorgApp(options = {}) {
     eomProgress: queryRequiredElement(documentLike, "#borg-eom-progress"),
     eomProgressLabel: queryRequiredElement(documentLike, "#borg-eom-progress-label"),
     runDurationButton: queryRequiredElement(documentLike, "#borg-run-duration-button"),
+    historyDuration: queryRequiredElement(documentLike, "#borg-history-duration"),
     playbackSpeed: queryRequiredElement(documentLike, "#borg-playback-speed"),
     playButton: queryRequiredElement(documentLike, "#borg-play-button"),
     playButtonIcon: queryRequiredElement(documentLike, "#borg-play-button path"),
@@ -510,7 +514,7 @@ export function mountBorgApp(options = {}) {
       : "animated",
     pathTrailDuration: activeReplayEntry
       ? resolveBorgAssemblyViewTrail(activeReplayEntry).duration
-      : HIGHLIGHTED_PATH_HISTORY_DURATION,
+      : DEFAULT_PATH_TRAIL_DURATION,
   };
 
   const assemblyViewScene = createBorgAssemblyViewScene({
@@ -1022,6 +1026,8 @@ export function mountBorgApp(options = {}) {
   function configureTimeline() {
     updateTimelineBounds();
     syncRunDurationButton();
+    dom.historyDuration.hidden = replayActive;
+    dom.historyDuration.value = String(state.pathTrailDuration);
     dom.playbackSpeed.textContent = "";
     PLAYBACK_SPEED_PRESETS.forEach((preset) => {
       const option = documentLike.createElement("option");
@@ -1405,15 +1411,8 @@ export function mountBorgApp(options = {}) {
     );
   }
 
-  function formatActiveTimelineLabel(time, frameIndex) {
-    const label = formatTimelineLabel(time);
-    const rate = `${formatBorgRealtimeRate(state.playbackAdaptiveRate)}× realtime`;
-    if (replayActive || !isForeverRunPreset(getRunControlPreset(state.runControlPresetId))) {
-      return `${label} | ${rate}`;
-    }
-    const bufferedThrough = frameSets.at(-1)?.frameIndex ?? frameIndex;
-    const leadFrameSets = Math.max(0, bufferedThrough - frameIndex);
-    return `${label} | ${rate} | lead ${leadFrameSets}`;
+  function formatActiveTimelineLabel(time) {
+    return formatTimelineLabel(time);
   }
 
   function bindEvents() {
@@ -1448,6 +1447,17 @@ export function mountBorgApp(options = {}) {
     dom.runDurationButton.addEventListener("change", () => {
       switchRunControlPreset(dom.runDurationButton.value);
     });
+    const applyPathTrailDuration = () => {
+      const requestedDuration = Number(dom.historyDuration.value);
+      state.pathTrailDuration = PATH_TRAIL_DURATIONS.includes(requestedDuration)
+        ? requestedDuration
+        : DEFAULT_PATH_TRAIL_DURATION;
+      dom.historyDuration.value = String(state.pathTrailDuration);
+      pathTrails.setVisibleDuration(state.pathTrailDuration);
+      render();
+    };
+    dom.historyDuration.addEventListener("input", applyPathTrailDuration);
+    dom.historyDuration.addEventListener("change", applyPathTrailDuration);
     dom.playbackSpeed.addEventListener("change", () => {
       state.playbackSpeedPresetId = playbackSpeedPresetById(dom.playbackSpeed.value).id;
       updateAdaptivePlaybackRate();
@@ -1596,7 +1606,7 @@ export function mountBorgApp(options = {}) {
     } else {
       velocityDirection.set(1, 0, 0);
     }
-    const length = Math.log10(1 + speed) * 0.88;
+    const length = getBorgVelocityRayLength(speed);
     const positions = line.geometry.getAttribute("position");
     positions.setXYZ(0, velocityStart.x, velocityStart.y, velocityStart.z);
     positions.setXYZ(
@@ -2424,7 +2434,10 @@ export function mountBorgApp(options = {}) {
           replaceInitialRows: replaceCurrentFrames,
           appendedFrameRows,
           presetId: state.runControlPresetId,
-          memoryBudgetBytes: state.dynamicRunner?.config?.memoryBudgetBytes ?? null,
+          memoryBudgetBytes:
+            chunk.memoryBudgetBytes ??
+            state.dynamicRunner?.config?.memoryBudgetBytes ??
+            null,
         });
         state.playbackMeasuredProductionRate = updateBorgMeasuredProductionRate({
           previousRate: state.playbackMeasuredProductionRate,
@@ -3008,6 +3021,19 @@ export function createDefaultEomShadowRunnerOptions(
   };
 }
 
+export function getBorgVelocityRayLength(speed) {
+  const numericSpeed = Number(speed);
+  if (!Number.isFinite(numericSpeed) || numericSpeed <= 0) {
+    return 0;
+  }
+  // Display-grade evolution commonly begins with very small nonzero speeds.
+  // Preserve the logarithmic magnitude cue, but give every nonzero vector a
+  // visible direction ray instead of letting log10(1 + speed) collapse it to
+  // a sub-pixel line.
+  return VELOCITY_RAY_MINIMUM_VISIBLE_LENGTH +
+    Math.log10(1 + numericSpeed) * VELOCITY_RAY_LOG_SCALE;
+}
+
 function createEmptyLiveRunBudget() {
   return Object.freeze({
     schema: BORG_LIVE_RUN_BUDGET_VERSION,
@@ -3204,15 +3230,22 @@ function formatDiagnosticPercentagePoints(value) {
 }
 
 function formatTimelineLabel(time) {
-  return `T ${formatTimelineTime(time)}`;
+  return `T ${formatBorgTimelineTime(time)}`;
 }
 
-function formatTimelineTime(value) {
+export function formatBorgTimelineTime(value) {
   if (!Number.isFinite(value)) {
-    return String(value);
+    return "--:--:--.-";
   }
-  const rounded = Math.abs(value) < 0.05 ? 0 : value;
-  return rounded.toFixed(1);
+  const sign = value < -0.05 ? "-" : "";
+  const totalTenths = Math.round(Math.abs(value) * 10);
+  const hours = Math.floor(totalTenths / 36000);
+  const minutes = Math.floor((totalTenths % 36000) / 600);
+  const seconds = Math.floor((totalTenths % 600) / 10);
+  const tenths = totalTenths % 10;
+  return `${sign}${String(hours).padStart(2, "0")}:` +
+    `${String(minutes).padStart(2, "0")}:` +
+    `${String(seconds).padStart(2, "0")}.${tenths}`;
 }
 
 function formatNumber(value) {

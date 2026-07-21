@@ -128,6 +128,34 @@ test("generator preserves stable ids, source order, polarity assignment, and seg
   });
 });
 
+test("each prescribed binary pair lies in two exactly parallel member planes", () => {
+  checkedRecord.binaries.forEach((binary) => {
+    const normal = binary.planeOrientation.normal;
+    const normalLength = Math.hypot(normal.x, normal.y, normal.z);
+    const unit = {
+      x: normal.x / normalLength,
+      y: normal.y / normalLength,
+      z: normal.z / normalLength,
+    };
+    const memberOffsets = binary.members.map((worldlineId) => {
+      const curve = checkedRecord.ansatz.find((row) => row.worldlineId === worldlineId);
+      assert.ok(curve, `${worldlineId} must carry a prescribed chart curve`);
+      const offsets = curve.points.map((point) =>
+        point.x * unit.x + point.y * unit.y + point.z * unit.z
+      );
+      assert.ok(
+        Math.max(...offsets) - Math.min(...offsets) < 1e-13,
+        `${worldlineId} must remain in one plane normal to the binary axis`,
+      );
+      return offsets[0];
+    });
+    assert.ok(
+      Math.abs(memberOffsets[0] + memberOffsets[1]) < 1e-13,
+      `${binary.id} member planes must be equal and opposite about the response center`,
+    );
+  });
+});
+
 test("Hermite endpoints and velocities agree with the analytical chart and declared errors bound dense samples", () => {
   const dataset = createEomHistoryDataset(checkedRecord);
   checkedRecord.worldlines.forEach((worldline, worldlineIndex) => {

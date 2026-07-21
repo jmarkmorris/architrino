@@ -7,11 +7,15 @@
 #include <cmath>
 #include <cstdint>
 #include <cstdlib>
+#include <filesystem>
+#include <fstream>
 #include <iomanip>
 #include <limits>
+#include <mutex>
 #include <optional>
 #include <sstream>
 #include <stdexcept>
+#include <system_error>
 #include <utility>
 
 namespace architrino::eom {
@@ -522,18 +526,394 @@ IntervalVector CubicHistorySegment::velocity_interval(
   return result;
 }
 
+namespace {
+
+struct ExactHistoryDiskBlock {
+  std::filesystem::path path;
+  std::uint64_t bytes = 0U;
+  std::uint64_t generation = 0U;
+};
+
+struct ExactHistoryDiskRuntime {
+  std::mutex mutex;
+  bool enabled = false;
+  std::filesystem::path root_directory;
+  std::filesystem::path run_directory;
+  std::uint64_t maximum_disk_bytes = 0U;
+  std::uint64_t disk_bytes = 0U;
+  std::uint64_t block_file_count = 0U;
+  std::uint64_t next_block_id = 0U;
+  std::uint64_t generation = 0U;
+  std::size_t cached_blocks_per_thread = 16U;
+  std::string run_id;
+};
+
+ExactHistoryDiskRuntime& exact_history_disk_runtime() {
+  static ExactHistoryDiskRuntime runtime;
+  return runtime;
+}
+
+void write_u64(std::ostream& output, std::uint64_t value) {
+  for (unsigned byte = 0U; byte < 8U; ++byte) {
+    output.put(static_cast<char>((value >> (byte * 8U)) & 0xffU));
+  }
+  if (!output) {
+    throw std::runtime_error("exact history disk write failed");
+  }
+}
+
+std::uint64_t read_u64(std::istream& input) {
+  std::uint64_t value = 0U;
+  for (unsigned byte = 0U; byte < 8U; ++byte) {
+    const int character = input.get();
+    if (character == std::char_traits<char>::eof()) {
+      throw std::runtime_error("exact history disk block is truncated");
+    }
+    value |= static_cast<std::uint64_t>(
+        static_cast<unsigned char>(character)) << (byte * 8U);
+  }
+  return value;
+}
+
+void write_token(std::ostream& output, const std::string& token) {
+  write_u64(output, token.size());
+  output.write(token.data(), static_cast<std::streamsize>(token.size()));
+  if (!output) {
+    throw std::runtime_error("exact history token write failed");
+  }
+}
+
+std::string read_token(std::istream& input) {
+  const std::uint64_t size = read_u64(input);
+  if (size > UINT64_C(1048576)) {
+    throw std::runtime_error("exact history token exceeds the disk format envelope");
+  }
+  std::string token(static_cast<std::size_t>(size), '\0');
+  input.read(token.data(), static_cast<std::streamsize>(token.size()));
+  if (!input) {
+    throw std::runtime_error("exact history token is truncated");
+  }
+  return token;
+}
+
+void remove_disk_block(const ExactHistoryDiskBlock& descriptor) noexcept {
+  auto& runtime = exact_history_disk_runtime();
+  std::lock_guard lock(runtime.mutex);
+  if (!runtime.enabled || descriptor.generation != runtime.generation) {
+    return;
+  }
+  std::error_code error;
+  const bool removed = std::filesystem::remove(descriptor.path, error);
+  if (removed) {
+    runtime.disk_bytes = descriptor.bytes > runtime.disk_bytes
+        ? 0U : runtime.disk_bytes - descriptor.bytes;
+    if (runtime.block_file_count > 0U) {
+      --runtime.block_file_count;
+    }
+  }
+}
+
+}  // namespace
+
+void configure_history_disk_storage(
+    const HistoryDiskStorageOptions& options) {
+  if (options.root_directory.empty() || options.maximum_disk_bytes == 0U ||
+      options.cached_blocks_per_thread < 2U) {
+    throw std::invalid_argument(
+        "exact history disk storage requires a root, positive limit, and "
+        "at least two cached blocks per thread");
+  }
+  const std::filesystem::path root =
+      std::filesystem::path(options.root_directory).lexically_normal();
+  if (!root.is_absolute() || root == root.root_path() ||
+      root.filename().empty()) {
+    throw std::invalid_argument(
+        "exact history disk storage requires a dedicated absolute root");
+  }
+  auto& runtime = exact_history_disk_runtime();
+  std::lock_guard lock(runtime.mutex);
+  std::error_code error;
+  std::filesystem::remove_all(root, error);
+  if (error) {
+    throw std::runtime_error("exact_history_stale_cleanup_failed");
+  }
+  std::filesystem::create_directories(root, error);
+  if (error) {
+    throw std::runtime_error("exact_history_disk_root_create_failed");
+  }
+  ++runtime.generation;
+  runtime.enabled = true;
+  runtime.root_directory = root;
+  runtime.run_directory.clear();
+  runtime.maximum_disk_bytes = options.maximum_disk_bytes;
+  runtime.disk_bytes = 0U;
+  runtime.block_file_count = 0U;
+  runtime.next_block_id = 0U;
+  runtime.cached_blocks_per_thread = options.cached_blocks_per_thread;
+  runtime.run_id.clear();
+}
+
+void begin_history_disk_storage_run(const std::string& run_id) {
+  if (run_id.empty()) {
+    throw std::invalid_argument("exact history disk run id must be nonempty");
+  }
+  auto& runtime = exact_history_disk_runtime();
+  std::lock_guard lock(runtime.mutex);
+  if (!runtime.enabled || runtime.root_directory.empty()) {
+    return;
+  }
+  std::error_code error;
+  std::filesystem::remove_all(runtime.root_directory, error);
+  if (error) {
+    throw std::runtime_error("exact_history_prior_run_cleanup_failed");
+  }
+  std::filesystem::create_directories(runtime.root_directory, error);
+  if (error) {
+    throw std::runtime_error("exact_history_disk_root_create_failed");
+  }
+  ++runtime.generation;
+  runtime.run_directory = runtime.root_directory /
+      ("run-" + std::to_string(runtime.generation));
+  std::filesystem::create_directories(runtime.run_directory, error);
+  if (error) {
+    runtime.run_directory.clear();
+    throw std::runtime_error("exact_history_run_directory_create_failed");
+  }
+  runtime.disk_bytes = 0U;
+  runtime.block_file_count = 0U;
+  runtime.next_block_id = 0U;
+  runtime.run_id = run_id;
+}
+
+void release_history_disk_storage_run() noexcept {
+  auto& runtime = exact_history_disk_runtime();
+  std::lock_guard lock(runtime.mutex);
+  ++runtime.generation;
+  std::error_code ignored;
+  if (!runtime.root_directory.empty()) {
+    std::filesystem::remove_all(runtime.root_directory, ignored);
+    std::filesystem::create_directories(runtime.root_directory, ignored);
+  }
+  runtime.run_directory.clear();
+  runtime.disk_bytes = 0U;
+  runtime.block_file_count = 0U;
+  runtime.next_block_id = 0U;
+  runtime.run_id.clear();
+}
+
+HistoryDiskStorageStats history_disk_storage_stats() noexcept {
+  auto& runtime = exact_history_disk_runtime();
+  std::lock_guard lock(runtime.mutex);
+  return {
+      .enabled = runtime.enabled,
+      .schema = "eom_exact_history_disk_store/v1",
+      .maximum_disk_bytes = runtime.maximum_disk_bytes,
+      .disk_bytes = runtime.disk_bytes,
+      .block_file_count = runtime.block_file_count,
+      .cached_blocks_per_thread = runtime.cached_blocks_per_thread,
+      .run_id = runtime.run_id,
+  };
+}
+
 struct HistorySegmentSequence::Storage {
   static constexpr std::size_t kBlockSize = 64U;
   using Block = std::vector<CubicHistorySegment>;
 
-  std::vector<std::shared_ptr<const Block>> blocks;
+  struct Slot {
+    std::shared_ptr<const Block> memory;
+    std::shared_ptr<const ExactHistoryDiskBlock> disk;
+    std::size_t size = 0U;
+  };
+
+  std::vector<Slot> blocks;
+  std::vector<std::size_t> cumulative_ends;
   std::size_t size = 0U;
+
+  void rebuild_index() {
+    cumulative_ends.clear();
+    cumulative_ends.reserve(blocks.size());
+    size = 0U;
+    for (const auto& block : blocks) {
+      size += block.size;
+      cumulative_ends.push_back(size);
+    }
+  }
 };
+
+namespace {
+
+using ExactHistoryBlock = HistorySegmentSequence::Storage::Block;
+using ExactHistorySlot = HistorySegmentSequence::Storage::Slot;
+
+std::shared_ptr<const ExactHistoryDiskBlock> write_exact_history_block(
+    const ExactHistoryBlock& block) {
+  auto& runtime = exact_history_disk_runtime();
+  std::ostringstream encoded(std::ios::binary);
+  encoded.write("AEHB0001", 8);
+  write_u64(encoded, block.size());
+  for (const auto& segment : block) {
+    write_token(encoded, segment.t_start_token());
+    write_token(encoded, segment.t_end_token());
+    for (const auto& axis : segment.coefficient_tokens()) {
+      for (const auto& token : axis) {
+        write_token(encoded, token);
+      }
+    }
+    for (const auto& token : segment.position_error_tokens()) {
+      write_token(encoded, token);
+    }
+    for (const auto& token : segment.velocity_error_tokens()) {
+      write_token(encoded, token);
+    }
+  }
+  const std::string bytes = encoded.str();
+
+  std::lock_guard lock(runtime.mutex);
+  if (!runtime.enabled || runtime.run_directory.empty()) {
+    return nullptr;
+  }
+  if (bytes.size() > runtime.maximum_disk_bytes -
+          std::min(runtime.disk_bytes, runtime.maximum_disk_bytes)) {
+    throw std::runtime_error("exact_history_disk_limit_exhausted");
+  }
+  const auto final_path = runtime.run_directory /
+      ("block-" + std::to_string(runtime.next_block_id++) + ".aehb");
+  const auto temporary_path = final_path.string() + ".tmp";
+  {
+    std::ofstream output(temporary_path, std::ios::binary | std::ios::trunc);
+    output.write(bytes.data(), static_cast<std::streamsize>(bytes.size()));
+    output.close();
+    if (!output) {
+      std::error_code ignored;
+      std::filesystem::remove(temporary_path, ignored);
+      throw std::runtime_error("exact_history_disk_write_failed");
+    }
+  }
+  std::error_code rename_error;
+  std::filesystem::rename(temporary_path, final_path, rename_error);
+  if (rename_error) {
+    std::error_code ignored;
+    std::filesystem::remove(temporary_path, ignored);
+    throw std::runtime_error("exact_history_disk_publish_failed");
+  }
+  runtime.disk_bytes += bytes.size();
+  ++runtime.block_file_count;
+  auto* descriptor = new ExactHistoryDiskBlock{
+      final_path, static_cast<std::uint64_t>(bytes.size()), runtime.generation};
+  return std::shared_ptr<const ExactHistoryDiskBlock>(
+      descriptor,
+      [](const ExactHistoryDiskBlock* value) {
+        remove_disk_block(*value);
+        delete value;
+      });
+}
+
+std::shared_ptr<const ExactHistoryBlock> read_exact_history_block(
+    const ExactHistoryDiskBlock& descriptor) {
+  std::ifstream input(descriptor.path, std::ios::binary);
+  char magic[8]{};
+  input.read(magic, 8);
+  if (!input || std::string(magic, 8) != "AEHB0001") {
+    throw std::runtime_error("exact history disk block has invalid format");
+  }
+  const std::uint64_t count = read_u64(input);
+  if (count == 0U || count > HistorySegmentSequence::Storage::kBlockSize) {
+    throw std::runtime_error("exact history disk block has invalid segment count");
+  }
+  auto block = std::make_shared<ExactHistoryBlock>();
+  block->reserve(static_cast<std::size_t>(count));
+  for (std::uint64_t index = 0U; index < count; ++index) {
+    std::string t_start = read_token(input);
+    std::string t_end = read_token(input);
+    CubicCoefficientTokens coefficients{};
+    for (auto& axis : coefficients) {
+      for (auto& token : axis) {
+        token = read_token(input);
+      }
+    }
+    HistoryErrorTokens position_errors{};
+    HistoryErrorTokens velocity_errors{};
+    for (auto& token : position_errors) token = read_token(input);
+    for (auto& token : velocity_errors) token = read_token(input);
+    block->emplace_back(
+        std::move(t_start), std::move(t_end), std::move(coefficients),
+        std::move(position_errors), std::move(velocity_errors));
+  }
+  return block;
+}
+
+std::shared_ptr<const ExactHistoryBlock> exact_history_slot_block(
+    const ExactHistorySlot& slot) {
+  if (slot.memory) {
+    return slot.memory;
+  }
+  if (!slot.disk) {
+    throw std::logic_error("exact history block has no storage");
+  }
+  struct CacheEntry {
+    std::filesystem::path path;
+    std::uint64_t generation = 0U;
+    std::shared_ptr<const ExactHistoryBlock> block;
+  };
+  struct ThreadCache {
+    std::vector<CacheEntry> entries;
+    std::size_t next = 0U;
+  };
+  thread_local ThreadCache cache;
+  for (const auto& entry : cache.entries) {
+    if (entry.generation == slot.disk->generation &&
+        entry.path == slot.disk->path) {
+      return entry.block;
+    }
+  }
+  auto loaded = read_exact_history_block(*slot.disk);
+  std::size_t limit = 16U;
+  {
+    auto& runtime = exact_history_disk_runtime();
+    std::lock_guard lock(runtime.mutex);
+    limit = std::max<std::size_t>(2U, runtime.cached_blocks_per_thread);
+  }
+  if (cache.entries.size() < limit) {
+    cache.entries.push_back({slot.disk->path, slot.disk->generation, loaded});
+  } else {
+    cache.entries[cache.next] = {
+        slot.disk->path, slot.disk->generation, loaded};
+    cache.next = (cache.next + 1U) % limit;
+  }
+  return loaded;
+}
+
+ExactHistorySlot make_exact_history_slot(
+    std::shared_ptr<const ExactHistoryBlock> block) {
+  if (!block || block->empty()) {
+    throw std::invalid_argument("exact history block must not be empty");
+  }
+  const std::size_t block_size = block->size();
+  if (block_size == HistorySegmentSequence::Storage::kBlockSize) {
+    if (auto disk = write_exact_history_block(*block)) {
+      return {.memory = nullptr, .disk = std::move(disk), .size = block_size};
+    }
+  }
+  return {.memory = std::move(block), .disk = nullptr, .size = block_size};
+}
+
+std::pair<std::size_t, std::size_t> locate_exact_history_segment(
+    const HistorySegmentSequence::Storage& storage,
+    std::size_t index) {
+  const auto found = std::upper_bound(
+      storage.cumulative_ends.begin(), storage.cumulative_ends.end(), index);
+  const std::size_t block_index = static_cast<std::size_t>(
+      found - storage.cumulative_ends.begin());
+  const std::size_t block_start = block_index == 0U
+      ? 0U : storage.cumulative_ends[block_index - 1U];
+  return {block_index, index - block_start};
+}
+
+}  // namespace
 
 HistorySegmentSequence::HistorySegmentSequence(
     std::vector<CubicHistorySegment> segments) {
   auto storage = std::make_shared<Storage>();
-  storage->size = segments.size();
   storage->blocks.reserve(
       (segments.size() + Storage::kBlockSize - 1U) / Storage::kBlockSize);
   for (std::size_t offset = 0U; offset < segments.size();
@@ -545,8 +925,9 @@ HistorySegmentSequence::HistorySegmentSequence(
     for (std::size_t index = offset; index < block_end; ++index) {
       block->push_back(std::move(segments[index]));
     }
-    storage->blocks.push_back(std::move(block));
+    storage->blocks.push_back(make_exact_history_slot(std::move(block)));
   }
+  storage->rebuild_index();
   storage_ = std::move(storage);
 }
 
@@ -559,9 +940,9 @@ const CubicHistorySegment& HistorySegmentSequence::operator[](
   if (index >= size()) {
     throw std::out_of_range("history segment index lies outside the sequence");
   }
-  const std::size_t block_index = index / Storage::kBlockSize;
-  const std::size_t local_index = index % Storage::kBlockSize;
-  return (*storage_->blocks[block_index])[local_index];
+  const auto [block_index, local_index] =
+      locate_exact_history_segment(*storage_, index);
+  return (*exact_history_slot_block(storage_->blocks[block_index]))[local_index];
 }
 
 const CubicHistorySegment& HistorySegmentSequence::front() const {
@@ -578,22 +959,72 @@ const CubicHistorySegment& HistorySegmentSequence::back() const {
   return (*this)[size() - 1U];
 }
 
+std::size_t HistorySegmentSequence::resident_segment_count() const noexcept {
+  std::size_t count = 0U;
+  for (const auto& slot : storage_->blocks) {
+    if (slot.memory) {
+      count += slot.size;
+    }
+  }
+  return count;
+}
+
+std::size_t HistorySegmentSequence::disk_backed_block_count() const noexcept {
+  return static_cast<std::size_t>(std::count_if(
+      storage_->blocks.begin(), storage_->blocks.end(),
+      [](const auto& slot) { return slot.disk != nullptr; }));
+}
+
 HistorySegmentSequence HistorySegmentSequence::appended(
     CubicHistorySegment segment) const {
   auto storage = std::make_shared<Storage>(*storage_);
   if (!storage->blocks.empty() &&
-      storage->blocks.back()->size() < Storage::kBlockSize) {
-    auto block =
-        std::make_shared<Storage::Block>(*storage->blocks.back());
+      storage->blocks.back().size < Storage::kBlockSize) {
+    auto block = std::make_shared<Storage::Block>(
+        *exact_history_slot_block(storage->blocks.back()));
     block->push_back(std::move(segment));
-    storage->blocks.back() = std::move(block);
+    storage->blocks.back() = make_exact_history_slot(std::move(block));
   } else {
     auto block = std::make_shared<Storage::Block>();
     block->reserve(Storage::kBlockSize);
     block->push_back(std::move(segment));
-    storage->blocks.push_back(std::move(block));
+    storage->blocks.push_back(make_exact_history_slot(std::move(block)));
   }
-  ++storage->size;
+  storage->rebuild_index();
+  return HistorySegmentSequence(std::move(storage));
+}
+
+HistorySegmentSequence HistorySegmentSequence::retained_suffix(
+    std::size_t first_segment_index) const {
+  if (first_segment_index >= size()) {
+    throw std::out_of_range(
+        "history segment suffix must preserve at least one segment");
+  }
+  if (first_segment_index == 0U) {
+    return *this;
+  }
+  const auto [first_block_index, first_local_index] =
+      locate_exact_history_segment(*storage_, first_segment_index);
+  auto storage = std::make_shared<Storage>();
+  storage->blocks.reserve(storage_->blocks.size() - first_block_index);
+  if (first_local_index == 0U) {
+    storage->blocks.insert(
+        storage->blocks.end(),
+        storage_->blocks.begin() + static_cast<std::ptrdiff_t>(first_block_index),
+        storage_->blocks.end());
+  } else {
+    const auto first = exact_history_slot_block(
+        storage_->blocks[first_block_index]);
+    auto trimmed = std::make_shared<Storage::Block>(
+        first->begin() + static_cast<std::ptrdiff_t>(first_local_index),
+        first->end());
+    storage->blocks.push_back(make_exact_history_slot(std::move(trimmed)));
+    storage->blocks.insert(
+        storage->blocks.end(),
+        storage_->blocks.begin() + static_cast<std::ptrdiff_t>(first_block_index + 1U),
+        storage_->blocks.end());
+  }
+  storage->rebuild_index();
   return HistorySegmentSequence(std::move(storage));
 }
 
@@ -623,6 +1054,15 @@ HistorySegmentSequence::const_iterator::operator++(int) {
 RetainedHistory::RetainedHistory(
     std::string history_id,
     std::vector<CubicHistorySegment> segments)
+    : RetainedHistory(
+          std::move(history_id),
+          HistorySegmentSequence(std::move(segments)),
+          RecomputeMetadataTag{}) {}
+
+RetainedHistory::RetainedHistory(
+    std::string history_id,
+    HistorySegmentSequence segments,
+    RecomputeMetadataTag)
     : history_id_(std::move(history_id)),
       segments_(std::move(segments)),
       fingerprint_state_(initial_history_fingerprint_state()) {
@@ -851,6 +1291,20 @@ RetainedHistory RetainedHistory::appended(CubicHistorySegment segment) const {
       history_id_, segments_.appended(std::move(segment)), fingerprint_state,
       hull(*full_position_hull_, position), speed_upper,
       uniform_circular_endpoint_certificate_);
+}
+
+RetainedHistory RetainedHistory::retained_suffix(
+    std::size_t first_segment_index) const {
+  if (first_segment_index >= segments_.size()) {
+    throw std::out_of_range(
+        "retained-history suffix must preserve at least one segment");
+  }
+  if (first_segment_index == 0U) {
+    return *this;
+  }
+  return RetainedHistory(
+      history_id_, segments_.retained_suffix(first_segment_index),
+      RecomputeMetadataTag{});
 }
 
 std::optional<UniformCircularAnalyticState>

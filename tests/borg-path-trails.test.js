@@ -98,6 +98,26 @@ test("path trail highlights only the requested five-second history window", () =
   assert.equal(positions[lastVertex * 3], 50);
 });
 
+test("reducing the requested trail duration immediately shortens an existing trail", () => {
+  const group = createGroupStub();
+  const trails = createTrails(group);
+  trails.appendFrameRows(straightPathRows(2001));
+
+  trails.setVisibleWindow({
+    throughFrameIndex: 2000,
+    throughTime: 400,
+    duration: 360,
+  });
+  assert.equal(drawnPointCount(onlyTrail(group)), 1801);
+
+  trails.setVisibleDuration(30);
+  assert.equal(
+    drawnPointCount(onlyTrail(group)),
+    151,
+    "the draw range must shrink without appending a frame or rebuilding history",
+  );
+});
+
 test("retained and compacted path trails use the brighter shared presentation", () => {
   const retainedGroup = createGroupStub();
   const retained = createTrails(retainedGroup);
@@ -109,7 +129,7 @@ test("retained and compacted path trails use the brighter shared presentation", 
   compacted.setCompactedPathHistory({
     1001: straightPathRows(2),
   });
-  assert.equal(onlyTrail(compactedGroup).material.opacity, 0.68);
+  assert.equal(onlyTrail(compactedGroup).material.opacity, 1);
 });
 
 test("path trail ends at the architrino, not past it", () => {
@@ -221,7 +241,7 @@ test("compacted history is time-bounded too, and sits behind the retained trail"
     ],
   });
   const compactedTrail = onlyTrail(group);
-  assert.equal(compactedTrail.renderOrder, 1, "faded older history renders under the recent trail");
+  assert.equal(compactedTrail.renderOrder, 1, "older history renders under the recent trail");
 
   trails.setThroughFrameIndex(8);
   assert.equal(drawnPointCount(compactedTrail), 2, "older history obeys the same time bound");
