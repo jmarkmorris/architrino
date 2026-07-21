@@ -23,20 +23,8 @@ import {
   createBorgEomShadowRequest,
   createBorgEomShadowRunConfig,
   createBorgEomShadowRunner,
-  floorBorgDisplayGradeBoundary,
   trimBorgRetainedHistories,
 } from "../src/apps/borg/BorgEomShadowRunner.js";
-
-test("Borg floors display-grade boundaries instead of rounding them up", () => {
-  assert.deepEqual(floorBorgDisplayGradeBoundary("6.499"), {
-    time: 6.4,
-    token: "6.4",
-  });
-  assert.deepEqual(floorBorgDisplayGradeBoundary("-6.401"), {
-    time: -6.5,
-    token: "-6.5",
-  });
-});
 import {
   BORG_NATIVE_EOM_PROTOCOL_MAGIC,
   createBorgNativeEomProcessClient,
@@ -606,42 +594,45 @@ test("Borg EOM carries the controller height across atomic chunks", async () => 
   assert.equal(requests[1].numericalControls.useAdaptiveStepGrowth, true);
 });
 
-test("Borg floors a display-grade boundary to one decimal before the next chunk", async () => {
+test("Borg display grade starts directly from point-projected input history", async () => {
   const requests = [];
-  const exactBoundary = "10.100000000000001";
   const runner = createBorgEomShadowRunner(BORG_DATASET_MANIFEST_V1, {
     eomClient: {
       async evolveRetainedHistories(request) {
         requests.push(request);
-        if (requests.length === 1) {
-          return {
-            ...createFakeEomResponse(
-              request,
-              "executable_architecture_evidence",
-              { endTime: exactBoundary },
-            ),
-            status: "halted",
-            haltCode: "minimum_step_exhausted",
-          };
-        }
         return createFakeEomResponse(request, "display-only");
       },
     },
+    runGrade: "display",
     initialFrameRows: trajectoryFrames,
     startTime: 10,
-    targetDuration: 10.2,
-    chunkDuration: 0.2,
+    targetDuration: 10.1,
+    chunkDuration: 0.05,
     sampleInterval: 0.05,
   });
 
-  await runner.computeNextChunk();
-  await runner.computeNextChunk();
+  const first = await runner.computeNextChunk();
+  const second = await runner.computeNextChunk();
 
-  assert.equal(requests[1].absoluteTimeInterval.start, "10.1");
-  assert.ok(requests[1].histories.every((history) =>
-    history.coverageEnd === "10.1" &&
-    history.segments.at(-1).endTime === "10.1"
+  assert.equal(requests[0].runGrade, "display");
+  assert.equal(requests[0].absoluteTimeInterval.start, "10");
+  assert.ok(requests[0].histories.every((history) =>
+    history.sourceClaimLevel === "display-only" &&
+    history.sourceAcceptedInitialDatum === false &&
+    history.segments.every((segment) =>
+      segment.positionErrors.every((error) => error === "0") &&
+      segment.velocityErrors.every((error) => error === "0")
+    )
   ));
+  assert.equal(requests[1].runGrade, "display");
+  assert.equal(requests[1].absoluteTimeInterval.start, "10.05");
+  assert.equal(first.activeRunGrade, "display");
+  assert.equal(second.activeRunGrade, "display");
+  assert.equal(first.transitionedToDisplayGrade, false);
+  assert.equal(first.displayGradeBoundary, null);
+  assert.equal(first.displayHistoryProjectionCount, 1);
+  assert.equal(first.promotionEligible, false);
+  assert.equal(second.endTime, 10.1);
 });
 
 test("Borg EOM shadow runner supports a deterministic retained-history population subset", async () => {
@@ -870,15 +861,12 @@ test("Borg names the exact response provenance field that failed", async () => {
   );
 });
 
-test("Borg crosses once from a certified prefix into a display-only continuation", async () => {
+test("Borg claim grade publishes only its accepted prefix and then stops", async () => {
   const requests = [];
   const runner = createBorgEomShadowRunner(BORG_DATASET_MANIFEST_V1, {
     eomClient: {
       async evolveRetainedHistories(request) {
         requests.push(request);
-        if (request.runGrade === "display") {
-          return createFakeEomResponse(request, "display-only");
-        }
         const response = createFakeEomResponse(
           request, "failed", { endTime: "10.149999999999999" },
         );
@@ -898,53 +886,31 @@ test("Borg crosses once from a certified prefix into a display-only continuation
     sampleInterval: 0.05,
   });
   const chunk = await runner.computeNextChunk();
-  assert.equal(chunk.statusCode, "display-grade-boundary");
-  assert.equal(chunk.endTime, 10.1);
+  assert.equal(chunk.statusCode, "halted-prefix");
+  assert.equal(chunk.endTime, 10.149999999999999);
   assert.equal(chunk.terminalHalt.failedCandidateRejected, true);
   assert.equal(chunk.terminalHalt.code, "root_completeness_not_certified");
   assert.equal(chunk.promotionEligible, false);
-  assert.equal(chunk.frames.at(-1).time, 10.1);
-  assert.ok(chunk.frames.every((frame) => frame.time <= 10.1));
   assert.ok(chunk.histories.every((history) =>
-    history.coverageEnd === "10.1" &&
-    history.segments.at(-1).endTime === "10.1"
+    history.coverageEnd === "10.149999999999999" &&
+    history.segments.at(-1).endTime === "10.149999999999999"
   ));
   assert.equal(chunk.runGrade, "certified");
-  assert.equal(chunk.activeRunGrade, "display");
-  assert.deepEqual(chunk.displayGradeBoundary, {
-    time: 10.1,
-    code: "root_completeness_not_certified",
-  });
-  assert.equal(runner.canComputeNextChunk(), true);
-
-  const displayChunk = await runner.computeNextChunk();
-  assert.equal(requests[0].runGrade, "certified");
-  assert.equal(requests[1].runGrade, "display");
-  assert.equal(requests[1].absoluteTimeInterval.start, "10.1");
-  assert.deepEqual(requests[1].numericalControls, requests[0].numericalControls);
-  assert.ok(requests[1].histories.every((history) =>
-    history.segments.every((segment) =>
-      segment.positionErrors.every((error) => error === "0") &&
-      segment.velocityErrors.every((error) => error === "0")
-    )
-  ));
-  assert.equal(displayChunk.runGrade, "display");
-  assert.equal(displayChunk.evidenceStatus, "display-only");
-  assert.equal(displayChunk.claimGrade, "display-only");
-  assert.equal(displayChunk.promotionEligible, false);
-  assert.deepEqual(displayChunk.displayGradeBoundary, chunk.displayGradeBoundary);
+  assert.equal(chunk.activeRunGrade, "certified");
+  assert.equal(chunk.transitionedToDisplayGrade, false);
+  assert.equal(chunk.displayGradeBoundary, null);
+  assert.equal(chunk.displayHistoryProjectionCount, 0);
   assert.equal(runner.canComputeNextChunk(), false);
+  assert.equal(requests[0].runGrade, "certified");
+  assert.equal(requests.length, 1);
 });
 
-test("Borg crosses to display grade when certified execution times out before advancing", async () => {
+test("Borg claim grade stops instead of changing grade after an execution timeout", async () => {
   const requests = [];
   const runner = createBorgEomShadowRunner(BORG_DATASET_MANIFEST_V1, {
     eomClient: {
       async evolveRetainedHistories(request) {
         requests.push(request);
-        if (request.runGrade === "display") {
-          return createFakeEomResponse(request, "display-only");
-        }
         const error = new Error("certified execution timed out");
         error.code = BORG_EOM_CERTIFIED_EXECUTION_TIMEOUT;
         error.timeoutMs = 180000;
@@ -958,40 +924,15 @@ test("Borg crosses to display grade when certified execution times out before ad
     sampleInterval: 0.05,
   });
 
-  const boundary = await runner.computeNextChunk();
-  assert.equal(boundary.statusCode, "display-grade-boundary");
-  assert.equal(boundary.startTime, 10);
-  assert.equal(boundary.endTime, 10);
-  assert.equal(boundary.terminalHalt.failedCandidateRejected, true);
-  assert.equal(boundary.terminalHalt.acceptedPrefixAdvanced, false);
-  assert.deepEqual(boundary.displayGradeBoundary, {
-    time: 10,
-    code: BORG_EOM_CERTIFIED_EXECUTION_TIMEOUT,
+  await assert.rejects(runner.computeNextChunk(), (error) => {
+    assert.equal(error.code, BORG_EOM_CERTIFIED_EXECUTION_TIMEOUT);
+    assert.equal(error.timeoutMs, 180000);
+    return true;
   });
-  assert.equal(boundary.activeRunGrade, "display");
-  assert.equal(boundary.evidenceStatus, "failed");
-  assert.equal(boundary.claimGrade, "failed");
-  assert.equal(boundary.evolutionClaimLevel, "failed");
-  assert.equal(boundary.promotionEligible, false);
-  assert.equal(boundary.frames.length, BORG_DATASET_MANIFEST_V1.population.architrinoCount);
-  assert.ok(boundary.frames.every((frame) =>
-    frame.valueAuthority === "accepted-mathematical-initial-datum"
-  ));
-  assert.equal(boundary.diagnostics[0].timeoutMs, 180000);
-  assert.ok(boundary.histories.every((history) =>
-    history.segments.every((segment) =>
-      segment.positionErrors.every((error) => error === "0") &&
-      segment.velocityErrors.every((error) => error === "0")
-    )
-  ));
-
-  const display = await runner.computeNextChunk();
   assert.equal(requests[0].runGrade, "certified");
-  assert.equal(requests[1].runGrade, "display");
-  assert.deepEqual(requests[1].numericalControls, requests[0].numericalControls);
-  assert.equal(display.runGrade, "display");
-  assert.equal(display.evidenceStatus, "display-only");
-  assert.equal(display.endTime, 10.2);
+  assert.equal(requests.length, 1);
+  assert.equal(runner.runGrade, "certified");
+  assert.equal(runner.canComputeNextChunk(), false);
 });
 
 test("Borg keeps memory and engine failures as hard stops", async () => {
@@ -1404,7 +1345,7 @@ test("disposing the Borg browser EOM client aborts an active native request", as
   await assert.rejects(pending, /cancelled/u);
 });
 
-test("Borg browser EOM client grades a certified request timeout for display fallback", async () => {
+test("Borg browser EOM client reports a certified request timeout without changing grade", async () => {
   const client = createBorgEomHttpClient({
     timeoutMs: 1,
     fetchImpl: async (_endpoint, init) =>

@@ -399,17 +399,19 @@ the same selected numerical and model controls, but routes through the
 non-certifying binary64 point evaluator and marks every appended segment
 `display-only`.
 
-If a certified request reaches the declared execution deadline before it can
-publish a result, Borg records `certified_execution_timeout` at the prior
-accepted cut, rejects the unfinished candidate without advancing history, and
-starts the same permanent display-only fork there. A display request timeout
-remains a hard stop because there is no lower run grade to enter.
+Borg selects one run grade before evolution and keeps it for the whole run.
+`Display grade` point-projects the input histories at the initial cut and sends
+every increment directly through the non-certifying route. Each completed
+increment becomes the retained input history for the next increment. `Claim
+grade` sends every increment through certification and stops at the last
+accepted prefix if certification, execution, or the declared deadline fails.
+There is no automatic grade change in either direction.
 
-Claim grade: `operator-decision` for the permanent display-only fork after the
-first certified boundary and `derived-design` for the protocol and retry rules.
-Falsifier: a rejected or timed-out certified candidate is published, a display suffix gains
-claim authority, the selected tolerances change at the fork, or a different
-protocol field count is accepted.
+Claim grade: `operator-decision` for the fixed-grade contract and
+`derived-design` for the protocol and failure rules. Falsifier: a request grade
+changes during one run, display grade enters the certifying route, claim grade
+continues after a failed candidate, a display segment gains claim authority,
+or a different protocol field count is accepted.
 
 ### Demo-track regulator disposition
 

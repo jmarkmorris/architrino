@@ -15,6 +15,8 @@ import {
   createBorgEomRecordReplayRunner,
 } from "./BorgEomRecordReplayRunner.js";
 import {
+  BORG_EOM_RUN_GRADE_CERTIFIED,
+  BORG_EOM_RUN_GRADE_DISPLAY,
   BORG_EOM_SHADOW_RUN_SOURCE,
   createBorgEomShadowRunConfig,
   createBorgEomShadowRunner,
@@ -277,6 +279,7 @@ export function mountBorgApp(options = {}) {
     eomAuthority: queryRequiredElement(documentLike, "#borg-eom-authority"),
     eomAuthorityLabel: queryRequiredElement(documentLike, "#borg-eom-authority-label"),
     eomAuthorityDetail: queryRequiredElement(documentLike, "#borg-eom-authority-detail"),
+    eomRunGrade: queryRequiredElement(documentLike, "#borg-eom-run-grade"),
     eomHistoryStatus: queryRequiredElement(documentLike, "#borg-eom-history-status"),
     eomProgress: queryRequiredElement(documentLike, "#borg-eom-progress"),
     eomProgressLabel: queryRequiredElement(documentLike, "#borg-eom-progress-label"),
@@ -427,9 +430,10 @@ export function mountBorgApp(options = {}) {
     dynamicChunkStartedAt: null,
     dynamicChunksComputed: 0,
     eomDisplayStarted: false,
-    eomRunGrade: "certified",
-    eomDisplayGradeBoundary: null,
-    eomDisplayHistoryProjectionCount: 0,
+    eomRunGrade: normalizeEomRunGrade(
+      options.eomShadowRunner?.runGrade,
+      BORG_EOM_RUN_GRADE_DISPLAY,
+    ),
     eomSeedHistoryDepth: positiveControlNumber(
       options.eomShadowRunner?.historyDepth,
       manifest.simulationEnvelope?.historyDepth ?? 10,
@@ -1055,6 +1059,7 @@ export function mountBorgApp(options = {}) {
     dom.certifiedBudget.value = state.eomCertifiedBudgetId;
     dom.stepHeight.value = String(state.eomStepHeight);
     dom.minimumStep.value = String(state.eomMinimumStep);
+    dom.eomRunGrade.value = state.eomRunGrade;
     dom.velocityMaxComponent.value = String(config.randomVelocityMaxComponentMagnitude);
     dom.velocityMinSpeed.value = String(config.randomVelocityMinSpeed);
   }
@@ -1123,6 +1128,10 @@ export function mountBorgApp(options = {}) {
     state.eomStepHeight = stepHeight;
     state.eomMinimumStep = minimumStep;
     state.eomPathCount = validation.config.electrinoCount + validation.config.positrinoCount;
+    state.eomRunGrade = normalizeEomRunGrade(
+      dom.eomRunGrade.value,
+      BORG_EOM_RUN_GRADE_DISPLAY,
+    );
     state.initialConditionEditStatus = "accepted-runtime-edit";
     syncInitialConditionInputs();
     return validation.config;
@@ -1349,24 +1358,12 @@ export function mountBorgApp(options = {}) {
       ? `${completedSteps} forward EOM chunks | ${displayStatus} | No limit`
       : `${completedSteps} / ${requestedSteps} forward EOM chunks | ${displayStatus}`;
     dom.eomProgressLabel.value = `${progressLabel}${failureDetail}`;
-    const displayGrade = state.eomRunGrade === "display";
+    const displayGrade = state.eomRunGrade === BORG_EOM_RUN_GRADE_DISPLAY;
     dom.eomAuthority.dataset.grade = displayGrade ? "display" : "claim";
-    dom.eomAuthorityLabel.textContent = displayGrade
-      ? "Display grade"
-      : "Claim grade";
-    const gradeBoundaryTime = formatTimelineTime(
-      Number(state.eomDisplayGradeBoundary?.time),
-    );
-    const projectionCount = state.eomDisplayHistoryProjectionCount;
-    const projectionDescription = projectionCount === 1
-      ? "once"
-      : `${projectionCount} times`;
+    dom.eomRunGrade.value = state.eomRunGrade;
     dom.eomAuthorityDetail.textContent = displayGrade
-      ? `Claim grade through T=${gradeBoundaryTime}. ` +
-        `Display grade from T=${gradeBoundaryTime} ` +
-        `(${state.eomDisplayGradeBoundary?.code}); retained nominal history was point-projected ` +
-        `${projectionDescription}, so this suffix has no claim authority.`
-      : "Certified tolerances are active. No display-grade boundary has been crossed.";
+      ? "Display-only evolution starts directly from the point-projected input history at T=0. Each completed increment becomes the history for the next increment; this run has no claim authority."
+      : "Claim-grade evolution uses certified tolerances and stops if certification or execution fails. It never changes to display grade.";
     const eomStartTime = options.eomShadowRunner?.startTime ?? 0;
     dom.eomHistoryStatus.value =
       `Exact polynomial causal seed history (C1 inertial) covers T=${Number(eomStartTime) - state.eomSeedHistoryDepth} to ${eomStartTime}. ` +
@@ -1439,6 +1436,10 @@ export function mountBorgApp(options = {}) {
       scheduleInitialConditionReset();
     });
     dom.initialConditionForm.addEventListener("change", applyInitialConditionResetNow);
+    dom.eomRunGrade.addEventListener("change", () => {
+      markInitialConditionControlsPending();
+      applyInitialConditionResetNow();
+    });
     dom.certifiedBudget.addEventListener("change", () => {
       const preset = getBorgCertifiedBudgetPreset(dom.certifiedBudget.value);
       dom.stepHeight.value = preset.allocations.controller.maximumStep;
@@ -2158,6 +2159,7 @@ export function mountBorgApp(options = {}) {
         coupling: state.eomCoupling,
         stepHeight: state.eomStepHeight,
         minimumStep: state.eomMinimumStep,
+        runGrade: state.eomRunGrade,
         simulationOuterRadius: borgEnvelopeRadius(manifest),
       },
     );
@@ -2374,10 +2376,10 @@ export function mountBorgApp(options = {}) {
           state.eomRetainedHistoryStart = chunk.retainedHistoryStart;
           state.eomRetainedHistoryEnd = chunk.retainedHistoryEnd;
           state.eomRetainedHistoryPolicy = chunk.retainedHistoryPolicy;
-          state.eomRunGrade = chunk.activeRunGrade ?? chunk.runGrade ?? "certified";
-          state.eomDisplayGradeBoundary = chunk.displayGradeBoundary ?? null;
-          state.eomDisplayHistoryProjectionCount =
-            chunk.displayHistoryProjectionCount ?? 0;
+          state.eomRunGrade = normalizeEomRunGrade(
+            chunk.activeRunGrade ?? chunk.runGrade,
+            state.eomRunGrade,
+          );
         }
         state.sourceMode = chunk.source;
         state.dynamicRunnerStatus = chunk.terminalHalt && !state.dynamicRunner.canComputeNextChunk()
@@ -2387,9 +2389,7 @@ export function mountBorgApp(options = {}) {
             : options.eomShadowRunner
               ? "completed-live-native-run"
               : "completed-recorded-replay";
-        state.dynamicRunnerMessage = chunk.transitionedToDisplayGrade
-          ? `claim grade through T=${formatTimelineTime(chunk.endTime)}; continuing at display grade (${chunk.terminalHalt.code})`
-          : chunk.terminalHalt
+        state.dynamicRunnerMessage = chunk.terminalHalt
             ? `${chunk.runGrade} prefix through T=${chunk.endTime}; failed candidate rejected (${chunk.terminalHalt.code})`
           : `chunk ${chunk.chunkIndex} ready`;
         if (replaceCurrentFrames) {
@@ -2729,9 +2729,6 @@ export function mountBorgApp(options = {}) {
       ? "causal-seed-history-only"
       : "not-started";
     state.eomDisplayStarted = false;
-    state.eomRunGrade = "certified";
-    state.eomDisplayGradeBoundary = null;
-    state.eomDisplayHistoryProjectionCount = 0;
     state.dynamicTargetDuration = null;
     state.dynamicChunkDuration = null;
     state.liveRunBudget = createEmptyLiveRunBudget();
@@ -2977,6 +2974,10 @@ export function createDefaultEomShadowRunnerOptions(
   );
   return {
     ...configured,
+    runGrade: normalizeEomRunGrade(
+      runtimeControls.runGrade ?? configured.runGrade,
+      BORG_EOM_RUN_GRADE_DISPLAY,
+    ),
     certifiedBudgetId: certifiedBudget.id,
     startTime: historyEndTime,
     targetDuration: historyEndTime + runDuration,
@@ -3119,6 +3120,13 @@ function boundedInteger(value, fallback, minimum, maximum) {
 function positiveControlNumber(value, fallback) {
   const number = Number(value);
   return Number.isFinite(number) && number > 0 ? number : fallback;
+}
+
+function normalizeEomRunGrade(value, fallback) {
+  return value === BORG_EOM_RUN_GRADE_CERTIFIED ||
+      value === BORG_EOM_RUN_GRADE_DISPLAY
+    ? value
+    : fallback;
 }
 
 function finiteBudgetNumber(value) {

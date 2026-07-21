@@ -102,6 +102,7 @@ test("Borg selected certified budget atomically owns its step controller", () =>
   assert.equal(resolved.maximumStep, "0.05");
   assert.equal(resolved.minimumStep, "0.0001");
   assert.equal(resolved.useAdaptiveStepGrowth, true);
+  assert.equal(resolved.runGrade, "display");
 });
 
 test("Borg app manifest is design-owned policy and passes validation", () => {
@@ -462,8 +463,12 @@ test("Borg path-history renderer uses native row segments, not visual smoothing 
   );
   assert.doesNotMatch(htmlSource, /<section[^>]*aria-label="Initial condition fields"/);
   assert.match(htmlSource, /id="borg-eom-history-status"/);
-  assert.match(htmlSource, /id="borg-eom-authority"[^>]*data-grade="claim"/);
-  assert.match(htmlSource, /id="borg-eom-authority-label"[^>]*>Claim grade</);
+  assert.match(htmlSource, /id="borg-eom-authority"[^>]*data-grade="display"/);
+  assert.match(htmlSource, /id="borg-eom-authority-label"[^>]*>Run grade</);
+  assert.match(
+    htmlSource,
+    /id="borg-eom-run-grade"[\s\S]*value="display" selected>Display grade<[\s\S]*value="certified">Claim grade</,
+  );
   assert.match(htmlSource, /id="borg-eom-authority-detail"/);
   assert.match(htmlSource, /\.borg-eom-authority\[data-grade="display"\]/);
   assert.doesNotMatch(htmlSource, /id="borg-eom-stop-button"/);
@@ -482,10 +487,11 @@ test("Borg path-history renderer uses native row segments, not visual smoothing 
   assert.match(runtimeSource, /minimumStep: certifiedBudget\.allocations\.controller\.minimumStep/);
   assert.match(runtimeSource, /maximumStep: certifiedBudget\.allocations\.controller\.maximumStep/);
   assert.match(runtimeSource, /forward EOM chunks/);
-  assert.match(runtimeSource, /state\.eomRunGrade === "display"/);
-  assert.match(runtimeSource, /Claim grade through T=/);
-  assert.match(runtimeSource, /Claim grade through T=\$\{gradeBoundaryTime\}/);
-  assert.match(runtimeSource, /this suffix has no claim authority/);
+  assert.match(runtimeSource, /state\.eomRunGrade === BORG_EOM_RUN_GRADE_DISPLAY/);
+  assert.match(runtimeSource, /point-projected input history at T=0/);
+  assert.match(runtimeSource, /It never changes to display grade/);
+  assert.match(runtimeSource, /runtimeControls\.runGrade \?\? configured\.runGrade/);
+  assert.doesNotMatch(runtimeSource, /Claim grade through T=/);
   assert.match(
     runtimeSource,
     /function formatTimelineLabel\([\s\S]*?return `T \$\{formatTimelineTime\(time\)\}`;/,

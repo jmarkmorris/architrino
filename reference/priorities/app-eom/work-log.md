@@ -2109,3 +2109,29 @@ This file holds dated decisions, implementation status, validation results, fail
   the Play control. The complete Borg JavaScript suite remains `109/109`.
 - **Scope:** this changes only start/pause orchestration and visible feedback;
   it does not change EOM evolution, tolerances, histories, or claim grading.
+
+## 2026-07-20 — Borg fixed run-grade selection
+
+- **Operator decision:** Borg no longer starts every run in claim grade and then
+  crosses to display grade. The panel selects one fixed grade for the run;
+  `Display grade` is the startup selection because exploratory motion must not
+  pay certification cost, while `Claim grade` retains certification and stops
+  at the first halt or execution failure.
+- **Derived implementation:** display grade point-projects the accepted input
+  histories once at `T=0`, marks them `display-only`, and sends the first and
+  every later request directly through the non-certifying EOM route. Each
+  completed increment supplies the retained history for the next increment.
+  Claim grade never changes grade, and its failed or timed-out candidate cannot
+  initiate a display continuation.
+- **Measured regression:** the full Borg JavaScript suite passes `108/108`; the
+  focused migration and UI-contract subset passes `43/43`. The direct display
+  control verifies two consecutive requests remain `display`, the first input
+  is point-projected, and the second starts at the first accepted endpoint. The
+  claim controls verify a halted accepted prefix and a certified timeout both
+  stop without a second request. In the live browser, display grade completed
+  21 chunks through retained-history `T=6.3` at a measured production rate of
+  `18.97× realtime`; switching to claim grade reset the timeline to `T=0`
+  without starting evolution, and switching back restored display grade.
+- **Scope:** this restores a fast exploratory path but gives no claim authority
+  to display output and does not reduce the open claim-grade long-horizon
+  obligation in `coupled_retained_history_integrator`.

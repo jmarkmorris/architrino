@@ -122,9 +122,8 @@ export async function bootBorgApp({
       historyDepth: seedHistoryDepth,
       certifiedBudgetId: certifiedBudget.id,
       pathCount: endpointRows.length,
-      // Batch six 0.05 certified steps per process round trip. This keeps the
-      // EOM solver's numerical step unchanged while avoiding protocol cost on
-      // every rendered sample interval.
+      // Batch six 0.05 EOM steps per process round trip. The selected run
+      // grade stays fixed while protocol traffic remains below render cadence.
       chunkDuration: 0.3,
       sampleInterval,
       initialStep: certifiedBudget.allocations.controller.initialStep,

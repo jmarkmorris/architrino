@@ -18,20 +18,18 @@ export const BORG_EOM_RUN_GRADE_DISPLAY = "display";
 export const BORG_EOM_CERTIFIED_EXECUTION_TIMEOUT =
   "certified_execution_timeout";
 
-const BORG_EOM_HARD_HALT_CODES = new Set([
-  "diagnostic_accepted_step_limit_reached",
-  "display_insufficient_history_depth",
-  "display_invalid_evaluation_request",
-  "display_nonfinite_state",
-  "display_root_isolation_unresolved",
-  "display_root_solve_not_converged",
-  "engine_exception",
-  "memory_budget_exhausted",
-  "numeric_resource_limit_exhausted",
-]);
-
 const POSITRINO_STATE_FLAG = 1;
 const ELECTRINO_STATE_FLAG = 2;
+
+function normalizeBorgEomRunGrade(value) {
+  if (value == null) {
+    return BORG_EOM_RUN_GRADE_CERTIFIED;
+  }
+  if (value === BORG_EOM_RUN_GRADE_CERTIFIED || value === BORG_EOM_RUN_GRADE_DISPLAY) {
+    return value;
+  }
+  throw new TypeError(`Unsupported Borg EOM run grade: ${value}.`);
+}
 
 export function createBorgEomShadowRunner(manifest, options = {}) {
   if (!manifest || typeof manifest !== "object") {
@@ -62,18 +60,21 @@ export function createBorgEomShadowRunner(manifest, options = {}) {
       sourceClaimLevel: options.initialHistoryClaimLevel,
     },
   );
+  const runGrade = config.runGrade;
+  const initialHistoryAccepted = histories.every(
+    (history) => history.sourceAcceptedInitialDatum === true,
+  );
+  let displayHistoryProjectionCount = 0;
+  if (runGrade === BORG_EOM_RUN_GRADE_DISPLAY) {
+    histories = projectBorgHistoriesToDisplayGrade(histories);
+    displayHistoryProjectionCount = 1;
+  }
   let nextStartTime = config.startTime;
   let nextStartTimeToken = String(config.startTime);
   let targetDuration = config.targetDuration;
   let chunkDuration = config.chunkDuration;
   let controllerStepSize = config.initialStep;
   let chunkIndex = 0;
-  let runGrade = BORG_EOM_RUN_GRADE_CERTIFIED;
-  let displayGradeBoundary = null;
-  let displayHistoryProjectionCount = 0;
-  const initialHistoryAccepted = histories.every(
-    (history) => history.sourceAcceptedInitialDatum === true,
-  );
   let disposed = false;
 
   return Object.freeze({
@@ -96,9 +97,6 @@ export function createBorgEomShadowRunner(manifest, options = {}) {
     },
     get runGrade() {
       return runGrade;
-    },
-    get displayGradeBoundary() {
-      return displayGradeBoundary;
     },
     canComputeNextChunk() {
       return !disposed && nextStartTime < targetDuration;
@@ -141,61 +139,21 @@ export function createBorgEomShadowRunner(manifest, options = {}) {
         endTimeToken,
         initialStep: controllerStepSize,
         runGrade,
-        displayGradeBoundary,
+        displayGradeBoundary: null,
         displayHistoryProjectionCount,
       });
       let rawResponse;
       try {
         rawResponse = await client.evolveRetainedHistories(request);
       } catch (error) {
-        if (runGrade === BORG_EOM_RUN_GRADE_CERTIFIED &&
-            error?.code === BORG_EOM_CERTIFIED_EXECUTION_TIMEOUT) {
-          const boundary = createCertifiedTimeoutBoundaryChunk({
-            config,
-            histories,
-            chunkIndex,
-            startTime,
-            controllerStepSize,
-            initialHistoryAccepted,
-            timeoutMs: error.timeoutMs,
-          });
-          displayGradeBoundary = boundary.displayGradeBoundary;
-          runGrade = BORG_EOM_RUN_GRADE_DISPLAY;
-          histories = boundary.histories;
-          nextStartTime = boundary.endTime;
-          nextStartTimeToken = String(boundary.histories[0].coverageEnd);
-          displayHistoryProjectionCount = boundary.displayHistoryProjectionCount;
-          chunkIndex += 1;
-          return boundary;
-        }
+        disposed = true;
         throw error;
       }
       const response = normalizeEomResponse(rawResponse, request);
       controllerStepSize = response.controllerStepSize;
-      const chunkRunGrade = runGrade;
-      let publishedEndTime = response.acceptedEndTime;
-      let publishedEndTimeToken = response.acceptedEndTimeToken;
-      let publishedHistories = response.histories;
-      let transitionedToDisplayGrade = false;
-      if (response.terminalHalt &&
-          runGrade === BORG_EOM_RUN_GRADE_CERTIFIED &&
-          isDisplayGradeContinuationEligible(response.terminalHalt.code) &&
-          displayGradeBoundary === null) {
-        const boundary = floorBorgDisplayGradeBoundary(response.acceptedEndTimeToken);
-        publishedEndTime = boundary.time;
-        publishedEndTimeToken = boundary.token;
-        publishedHistories = truncateBorgRetainedHistories(response.histories, {
-          coverageEnd: boundary.token,
-        });
-        displayGradeBoundary = Object.freeze({
-          time: boundary.time,
-          code: response.terminalHalt.code,
-        });
-        transitionedToDisplayGrade = true;
-      }
-      nextStartTime = publishedEndTime;
-      nextStartTimeToken = publishedEndTimeToken;
-      histories = retainBorgHistoryWindow(publishedHistories, {
+      nextStartTime = response.acceptedEndTime;
+      nextStartTimeToken = response.acceptedEndTimeToken;
+      histories = retainBorgHistoryWindow(response.histories, {
         minimumCoverageStart: roundTime(nextStartTime - config.historyDepth),
       });
       const retainedHistoryStart = Number(histories[0].coverageStart);
@@ -203,7 +161,7 @@ export function createBorgEomShadowRunner(manifest, options = {}) {
       const frames = createFramesFromHistories(
         histories,
         startTime,
-        publishedEndTime,
+        response.acceptedEndTime,
         config.sampleInterval,
         chunkIndex,
         response.evidenceStatus,
@@ -212,32 +170,24 @@ export function createBorgEomShadowRunner(manifest, options = {}) {
       );
       chunkIndex += 1;
       if (response.terminalHalt) {
-        if (isDisplayGradeContinuationEligible(response.terminalHalt.code)) {
-          runGrade = BORG_EOM_RUN_GRADE_DISPLAY;
-          histories = projectBorgHistoriesToDisplayGrade(histories);
-          displayHistoryProjectionCount += 1;
-        } else {
-          disposed = true;
-        }
+        disposed = true;
       }
       return Object.freeze({
         schema: BORG_EOM_SHADOW_RUNNER_VERSION,
         source: BORG_EOM_SHADOW_RUN_SOURCE,
-        statusCode: transitionedToDisplayGrade
-          ? "display-grade-boundary"
-          : response.terminalHalt
+        statusCode: response.terminalHalt
             ? "halted-prefix"
             : "ok",
         chunkIndex: chunkIndex - 1,
         requestId: request.requestId,
         runId: request.runId,
         startTime,
-        endTime: publishedEndTime,
+        endTime: response.acceptedEndTime,
         terminalHalt: response.terminalHalt,
-        runGrade: chunkRunGrade,
+        runGrade,
         activeRunGrade: runGrade,
-        transitionedToDisplayGrade,
-        displayGradeBoundary,
+        transitionedToDisplayGrade: false,
+        displayGradeBoundary: null,
         displayHistoryProjectionCount,
         sampleInterval: config.sampleInterval,
         controllerStepSize,
@@ -251,7 +201,7 @@ export function createBorgEomShadowRunner(manifest, options = {}) {
           ? "rolling-display-grade-point-history-window"
           : "rolling-certified-history-window",
         claimGrade: response.claimGrade,
-        evolutionClaimLevel: chunkRunGrade === BORG_EOM_RUN_GRADE_DISPLAY
+        evolutionClaimLevel: runGrade === BORG_EOM_RUN_GRADE_DISPLAY
           ? "display-only-eom-evolution-from-point-projected-history"
           : initialHistoryAccepted
             ? BORG_EOM_ACCEPTED_INITIAL_HISTORY_EVOLUTION_CLAIM_LEVEL
@@ -260,7 +210,7 @@ export function createBorgEomShadowRunner(manifest, options = {}) {
         histories,
         evidenceStatus: response.evidenceStatus,
         promotionEligible:
-          chunkRunGrade === BORG_EOM_RUN_GRADE_CERTIFIED &&
+          runGrade === BORG_EOM_RUN_GRADE_CERTIFIED &&
           initialHistoryAccepted &&
           isBorgEomPromotionEligible(response, options.acceptanceGate),
         diagnostics: Object.freeze(response.diagnostics),
@@ -277,94 +227,11 @@ export function createBorgEomShadowRunner(manifest, options = {}) {
   });
 }
 
-function createCertifiedTimeoutBoundaryChunk({
-  config,
-  histories,
-  chunkIndex,
-  startTime,
-  controllerStepSize,
-  initialHistoryAccepted,
-  timeoutMs,
-}) {
-  const boundary = floorBorgDisplayGradeBoundary(String(startTime));
-  const truncatedHistories = truncateBorgRetainedHistories(histories, {
-    coverageEnd: boundary.token,
-  });
-  const displayGradeBoundary = Object.freeze({
-    time: boundary.time,
-    code: BORG_EOM_CERTIFIED_EXECUTION_TIMEOUT,
-  });
-  const projectedHistories = projectBorgHistoriesToDisplayGrade(truncatedHistories);
-  const displayHistoryProjectionCount = 1;
-  const terminalHalt = Object.freeze({
-    code: BORG_EOM_CERTIFIED_EXECUTION_TIMEOUT,
-    failedCandidateRejected: true,
-    acceptedPrefixEndTime: boundary.time,
-    acceptedPrefixAdvanced: false,
-  });
-  const frames = createFramesFromHistories(
-    truncatedHistories,
-    boundary.time,
-    boundary.time,
-    config.sampleInterval,
-    chunkIndex,
-    "failed",
-    "failed",
-    initialHistoryAccepted,
-    boundary.time === config.startTime
-      ? "accepted-mathematical-initial-datum"
-      : null,
-  );
-  return Object.freeze({
-    schema: BORG_EOM_SHADOW_RUNNER_VERSION,
-    source: BORG_EOM_SHADOW_RUN_SOURCE,
-    statusCode: "display-grade-boundary",
-    chunkIndex,
-    requestId: `borg-eom-shadow-request:chunk-${chunkIndex}`,
-    runId: `borg-eom-shadow-run:chunk-${chunkIndex}`,
-    startTime,
-    endTime: boundary.time,
-    terminalHalt,
-    runGrade: BORG_EOM_RUN_GRADE_CERTIFIED,
-    activeRunGrade: BORG_EOM_RUN_GRADE_DISPLAY,
-    transitionedToDisplayGrade: true,
-    displayGradeBoundary,
-    displayHistoryProjectionCount,
-    sampleInterval: config.sampleInterval,
-    controllerStepSize,
-    phase: "live",
-    initialHistoryAccepted,
-    coreScale: config.coreScale,
-    budgetProvenance: Object.freeze({
-      schema: config.certifiedBudget.allocations.schema,
-      presetId: config.certifiedBudget.id,
-      allocationHash: config.certifiedBudget.allocationHash,
-      allocationCanonicalJson: config.certifiedBudget.allocationCanonicalJson,
-      allocations: config.certifiedBudget.allocations,
-    }),
-    retainedHistoryStart: Number(projectedHistories[0].coverageStart),
-    retainedHistoryEnd: boundary.time,
-    retainedHistoryPolicy: "rolling-display-grade-point-history-window",
-    claimGrade: "failed",
-    evolutionClaimLevel: "failed",
-    frames: Object.freeze(frames),
-    histories: projectedHistories,
-    evidenceStatus: "failed",
-    promotionEligible: false,
-    diagnostics: Object.freeze([Object.freeze({
-      code: BORG_EOM_CERTIFIED_EXECUTION_TIMEOUT,
-      timeoutMs: Number(timeoutMs) || null,
-      acceptedPrefixAdvanced: false,
-    })]),
-    bufferCount: 0,
-    bufferByteLength: 0,
-  });
-}
-
 export function createBorgEomShadowRunConfig(manifest, options = {}) {
   const certifiedBudget = getBorgCertifiedBudgetPreset(
     options.certifiedBudgetId ?? BORG_DEFAULT_CERTIFIED_BUDGET_ID,
   );
+  const runGrade = normalizeBorgEomRunGrade(options.runGrade);
   const budget = certifiedBudget.allocations;
   const sampleInterval = positiveNumber(
     options.sampleInterval,
@@ -457,6 +324,7 @@ export function createBorgEomShadowRunConfig(manifest, options = {}) {
   return Object.freeze({
     schema: BORG_EOM_SHADOW_RUNNER_VERSION,
     runSource: BORG_EOM_SHADOW_RUN_SOURCE,
+    runGrade,
     startTime,
     targetDuration,
     chunkDuration,
@@ -798,40 +666,6 @@ function exactDecimalMultiply(left, right) {
   });
 }
 
-function compareExactDecimals(left, right) {
-  const commonScale = Math.max(left.scale, right.scale);
-  const leftNumerator = left.numerator * 10n ** BigInt(commonScale - left.scale);
-  const rightNumerator = right.numerator * 10n ** BigInt(commonScale - right.scale);
-  return leftNumerator < rightNumerator ? -1 : leftNumerator > rightNumerator ? 1 : 0;
-}
-
-export function floorBorgDisplayGradeBoundary(token) {
-  const parsed = parseExactDecimal(token);
-  const targetScale = 1;
-  let scaledNumerator;
-  if (parsed.scale <= targetScale) {
-    scaledNumerator = parsed.numerator * 10n ** BigInt(targetScale - parsed.scale);
-  } else {
-    const divisor = 10n ** BigInt(parsed.scale - targetScale);
-    scaledNumerator = parsed.numerator / divisor;
-    if (parsed.numerator < 0n && parsed.numerator % divisor !== 0n) {
-      scaledNumerator -= 1n;
-    }
-  }
-  const tokenAtOneDecimal = formatFixedDecimal(scaledNumerator, targetScale);
-  return Object.freeze({
-    time: Number(tokenAtOneDecimal),
-    token: tokenAtOneDecimal,
-  });
-}
-
-function formatFixedDecimal(numerator, scale) {
-  const negative = numerator < 0n;
-  const digits = (negative ? -numerator : numerator).toString().padStart(scale + 1, "0");
-  const split = digits.length - scale;
-  return `${negative ? "-" : ""}${digits.slice(0, split)}.${digits.slice(split)}`;
-}
-
 function normalizeExactDecimal(value) {
   while (value.scale > 0 && value.numerator % 10n === 0n) {
     value.numerator /= 10n;
@@ -850,54 +684,6 @@ function formatExactDecimal(value) {
   const padded = digits.padStart(normalized.scale + 1, "0");
   const split = padded.length - normalized.scale;
   return `${negative ? "-" : ""}${padded.slice(0, split)}.${padded.slice(split)}`;
-}
-
-function isDisplayGradeContinuationEligible(haltCode) {
-  return !BORG_EOM_HARD_HALT_CODES.has(String(haltCode));
-}
-
-export function truncateBorgRetainedHistories(histories, { coverageEnd } = {}) {
-  if (!Array.isArray(histories) || histories.length === 0) {
-    throw new TypeError("Retained-history truncation requires path histories.");
-  }
-  const cutToken = String(coverageEnd);
-  const cut = parseExactDecimal(cutToken);
-  return Object.freeze(histories.map((history) => {
-    if (compareExactDecimals(parseExactDecimal(history.coverageStart), cut) >= 0 ||
-        compareExactDecimals(parseExactDecimal(history.coverageEnd), cut) < 0) {
-      throw new RangeError(
-        `Borg EOM retained history ${history.pathId} does not cover ${cutToken}.`,
-      );
-    }
-    const segments = [];
-    for (const segment of history.segments) {
-      const segmentStart = parseExactDecimal(segment.startTime);
-      const segmentEnd = parseExactDecimal(segment.endTime);
-      if (compareExactDecimals(segmentStart, cut) >= 0) {
-        break;
-      }
-      if (compareExactDecimals(segmentEnd, cut) <= 0) {
-        segments.push(segment);
-        continue;
-      }
-      segments.push(Object.freeze({
-        ...segment,
-        endTime: cutToken,
-      }));
-      break;
-    }
-    if (segments.length === 0 ||
-        compareExactDecimals(parseExactDecimal(segments.at(-1).endTime), cut) !== 0) {
-      throw new Error(
-        `Borg EOM retained history ${history.pathId} cannot be cut exactly at ${cutToken}.`,
-      );
-    }
-    return Object.freeze({
-      ...history,
-      coverageEnd: cutToken,
-      segments: Object.freeze(segments),
-    });
-  }));
 }
 
 export function trimBorgRetainedHistories(histories, { coverageStart } = {}) {
