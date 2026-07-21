@@ -1,0 +1,418 @@
+{
+  "schema": "archie-mcp-loopback-http-smoke/v1",
+  "smokeId": "architrino_mcp_loopback_http_smoke_001",
+  "contractFixture": "tests/archie-service/fixtures/mcp/mcp-remote-deployment-contract.v1.json",
+  "activeSnapshotFixture": "tests/archie-service/fixtures/source-index/source-index-snapshot.v1.json",
+  "rollbackBuildInputFixture": "tests/archie-service/fixtures/source-index/source-index-build-input.v1.json",
+  "allowedOrigin": "https://client.architrino.test",
+  "tokenEnvironmentVariable": "ARCHITRINO_MCP_LOCAL_TOKEN",
+  "cases": [
+    {
+      "caseId": "http-live-001",
+      "method": "GET",
+      "path": "/health/live",
+      "authorization": "not_applicable",
+      "origin": "missing",
+      "protocolVersion": "missing",
+      "contentType": "missing",
+      "accept": "missing",
+      "bodyMode": "none",
+      "message": null,
+      "expectedHttpStatus": 200,
+      "expectedBodyStatus": "live",
+      "expectedRpcErrorCode": null
+    },
+    {
+      "caseId": "http-ready-001",
+      "method": "GET",
+      "path": "/health/ready",
+      "authorization": "not_applicable",
+      "origin": "missing",
+      "protocolVersion": "missing",
+      "contentType": "missing",
+      "accept": "missing",
+      "bodyMode": "none",
+      "message": null,
+      "expectedHttpStatus": 200,
+      "expectedBodyStatus": "ready",
+      "expectedRpcErrorCode": null
+    },
+    {
+      "caseId": "http-initialize-001",
+      "method": "POST",
+      "path": "/mcp",
+      "authorization": "valid",
+      "origin": "valid",
+      "protocolVersion": "missing",
+      "contentType": "json",
+      "accept": "mcp",
+      "bodyMode": "json",
+      "message": {
+        "jsonrpc": "2.0",
+        "id": 1,
+        "method": "initialize",
+        "params": {
+          "protocolVersion": "2025-11-25",
+          "capabilities": {},
+          "clientInfo": {
+            "name": "architrino-http-smoke",
+            "version": "1.0.0"
+          }
+        }
+      },
+      "expectedHttpStatus": 200,
+      "expectedBodyStatus": null,
+      "expectedRpcErrorCode": null
+    },
+    {
+      "caseId": "http-initialized-notification-001",
+      "method": "POST",
+      "path": "/mcp",
+      "authorization": "valid",
+      "origin": "valid",
+      "protocolVersion": "current",
+      "contentType": "json",
+      "accept": "mcp",
+      "bodyMode": "json",
+      "message": {
+        "jsonrpc": "2.0",
+        "method": "notifications/initialized"
+      },
+      "expectedHttpStatus": 202,
+      "expectedBodyStatus": null,
+      "expectedRpcErrorCode": null
+    },
+    {
+      "caseId": "http-tools-list-001",
+      "method": "POST",
+      "path": "/mcp",
+      "authorization": "valid",
+      "origin": "missing",
+      "protocolVersion": "current",
+      "contentType": "json",
+      "accept": "mcp",
+      "bodyMode": "json",
+      "message": {
+        "jsonrpc": "2.0",
+        "id": 2,
+        "method": "tools/list",
+        "params": {}
+      },
+      "expectedHttpStatus": 200,
+      "expectedBodyStatus": null,
+      "expectedRpcErrorCode": null
+    },
+    {
+      "caseId": "http-topics-call-001",
+      "method": "POST",
+      "path": "/mcp",
+      "authorization": "valid",
+      "origin": "valid",
+      "protocolVersion": "current",
+      "contentType": "json",
+      "accept": "mcp",
+      "bodyMode": "json",
+      "message": {
+        "jsonrpc": "2.0",
+        "id": 3,
+        "method": "tools/call",
+        "params": {
+          "name": "topics",
+          "arguments": {}
+        }
+      },
+      "expectedHttpStatus": 200,
+      "expectedBodyStatus": null,
+      "expectedRpcErrorCode": null
+    },
+    {
+      "caseId": "http-search-call-001",
+      "method": "POST",
+      "path": "/mcp",
+      "authorization": "valid",
+      "origin": "valid",
+      "protocolVersion": "current",
+      "contentType": "json",
+      "accept": "mcp",
+      "bodyMode": "json",
+      "message": {
+        "jsonrpc": "2.0",
+        "id": 4,
+        "method": "tools/call",
+        "params": {
+          "name": "search",
+          "arguments": {
+            "query": "Architrino"
+          }
+        }
+      },
+      "expectedHttpStatus": 200,
+      "expectedBodyStatus": null,
+      "expectedRpcErrorCode": null
+    },
+    {
+      "caseId": "http-read-call-001",
+      "method": "POST",
+      "path": "/mcp",
+      "authorization": "valid",
+      "origin": "valid",
+      "protocolVersion": "current",
+      "contentType": "json",
+      "accept": "mcp",
+      "bodyMode": "json",
+      "message": {
+        "jsonrpc": "2.0",
+        "id": 5,
+        "method": "tools/call",
+        "params": {
+          "name": "read",
+          "arguments": {
+            "topicOrRoute": "source.ontology-purpose"
+          }
+        }
+      },
+      "expectedHttpStatus": 200,
+      "expectedBodyStatus": null,
+      "expectedRpcErrorCode": null
+    },
+    {
+      "caseId": "http-neighbors-call-001",
+      "method": "POST",
+      "path": "/mcp",
+      "authorization": "valid",
+      "origin": "valid",
+      "protocolVersion": "current",
+      "contentType": "json",
+      "accept": "mcp",
+      "bodyMode": "json",
+      "message": {
+        "jsonrpc": "2.0",
+        "id": 6,
+        "method": "tools/call",
+        "params": {
+          "name": "neighbors",
+          "arguments": {
+            "topicOrRoute": "source.ontology-purpose"
+          }
+        }
+      },
+      "expectedHttpStatus": 200,
+      "expectedBodyStatus": null,
+      "expectedRpcErrorCode": null
+    },
+    {
+      "caseId": "http-missing-read-001",
+      "method": "POST",
+      "path": "/mcp",
+      "authorization": "valid",
+      "origin": "valid",
+      "protocolVersion": "current",
+      "contentType": "json",
+      "accept": "mcp",
+      "bodyMode": "json",
+      "message": {
+        "jsonrpc": "2.0",
+        "id": 7,
+        "method": "tools/call",
+        "params": {
+          "name": "read",
+          "arguments": {
+            "topicOrRoute": "missing-http-topic"
+          }
+        }
+      },
+      "expectedHttpStatus": 200,
+      "expectedBodyStatus": null,
+      "expectedRpcErrorCode": null
+    },
+    {
+      "caseId": "http-get-mcp-405-001",
+      "method": "GET",
+      "path": "/mcp",
+      "authorization": "valid",
+      "origin": "valid",
+      "protocolVersion": "current",
+      "contentType": "missing",
+      "accept": "sse",
+      "bodyMode": "none",
+      "message": null,
+      "expectedHttpStatus": 405,
+      "expectedBodyStatus": "method_not_allowed",
+      "expectedRpcErrorCode": null
+    },
+    {
+      "caseId": "http-delete-mcp-405-001",
+      "method": "DELETE",
+      "path": "/mcp",
+      "authorization": "valid",
+      "origin": "valid",
+      "protocolVersion": "current",
+      "contentType": "missing",
+      "accept": "missing",
+      "bodyMode": "none",
+      "message": null,
+      "expectedHttpStatus": 405,
+      "expectedBodyStatus": "method_not_allowed",
+      "expectedRpcErrorCode": null
+    },
+    {
+      "caseId": "http-get-missing-protocol-version-001",
+      "method": "GET",
+      "path": "/mcp",
+      "authorization": "valid",
+      "origin": "valid",
+      "protocolVersion": "missing",
+      "contentType": "missing",
+      "accept": "sse",
+      "bodyMode": "none",
+      "message": null,
+      "expectedHttpStatus": 400,
+      "expectedBodyStatus": "unsupported_protocol_version",
+      "expectedRpcErrorCode": null
+    },
+    {
+      "caseId": "http-query-string-001",
+      "method": "POST",
+      "path": "/mcp?unexpected=1",
+      "authorization": "valid",
+      "origin": "valid",
+      "protocolVersion": "current",
+      "contentType": "json",
+      "accept": "mcp",
+      "bodyMode": "json",
+      "message": {
+        "jsonrpc": "2.0",
+        "id": 13,
+        "method": "ping"
+      },
+      "expectedHttpStatus": 400,
+      "expectedBodyStatus": "invalid_request",
+      "expectedRpcErrorCode": null
+    },
+    {
+      "caseId": "http-invalid-origin-001",
+      "method": "POST",
+      "path": "/mcp",
+      "authorization": "valid",
+      "origin": "invalid",
+      "protocolVersion": "current",
+      "contentType": "json",
+      "accept": "mcp",
+      "bodyMode": "json",
+      "message": {
+        "jsonrpc": "2.0",
+        "id": 8,
+        "method": "ping"
+      },
+      "expectedHttpStatus": 403,
+      "expectedBodyStatus": "forbidden",
+      "expectedRpcErrorCode": null
+    },
+    {
+      "caseId": "http-missing-authorization-001",
+      "method": "POST",
+      "path": "/mcp",
+      "authorization": "missing",
+      "origin": "valid",
+      "protocolVersion": "current",
+      "contentType": "json",
+      "accept": "mcp",
+      "bodyMode": "json",
+      "message": {
+        "jsonrpc": "2.0",
+        "id": 9,
+        "method": "ping"
+      },
+      "expectedHttpStatus": 401,
+      "expectedBodyStatus": "unauthorized",
+      "expectedRpcErrorCode": null
+    },
+    {
+      "caseId": "http-invalid-protocol-version-001",
+      "method": "POST",
+      "path": "/mcp",
+      "authorization": "valid",
+      "origin": "valid",
+      "protocolVersion": "invalid",
+      "contentType": "json",
+      "accept": "mcp",
+      "bodyMode": "json",
+      "message": {
+        "jsonrpc": "2.0",
+        "id": 10,
+        "method": "ping"
+      },
+      "expectedHttpStatus": 400,
+      "expectedBodyStatus": "unsupported_protocol_version",
+      "expectedRpcErrorCode": null
+    },
+    {
+      "caseId": "http-wrong-content-type-001",
+      "method": "POST",
+      "path": "/mcp",
+      "authorization": "valid",
+      "origin": "valid",
+      "protocolVersion": "current",
+      "contentType": "text",
+      "accept": "mcp",
+      "bodyMode": "json",
+      "message": {
+        "jsonrpc": "2.0",
+        "id": 11,
+        "method": "ping"
+      },
+      "expectedHttpStatus": 415,
+      "expectedBodyStatus": "unsupported_media_type",
+      "expectedRpcErrorCode": null
+    },
+    {
+      "caseId": "http-wrong-accept-001",
+      "method": "POST",
+      "path": "/mcp",
+      "authorization": "valid",
+      "origin": "valid",
+      "protocolVersion": "current",
+      "contentType": "json",
+      "accept": "json_only",
+      "bodyMode": "json",
+      "message": {
+        "jsonrpc": "2.0",
+        "id": 12,
+        "method": "ping"
+      },
+      "expectedHttpStatus": 406,
+      "expectedBodyStatus": "not_acceptable",
+      "expectedRpcErrorCode": null
+    },
+    {
+      "caseId": "http-malformed-json-001",
+      "method": "POST",
+      "path": "/mcp",
+      "authorization": "valid",
+      "origin": "valid",
+      "protocolVersion": "current",
+      "contentType": "json",
+      "accept": "mcp",
+      "bodyMode": "malformed",
+      "message": null,
+      "expectedHttpStatus": 400,
+      "expectedBodyStatus": null,
+      "expectedRpcErrorCode": -32700
+    },
+    {
+      "caseId": "http-oversized-body-001",
+      "method": "POST",
+      "path": "/mcp",
+      "authorization": "valid",
+      "origin": "valid",
+      "protocolVersion": "current",
+      "contentType": "json",
+      "accept": "mcp",
+      "bodyMode": "oversized",
+      "message": null,
+      "expectedHttpStatus": 413,
+      "expectedBodyStatus": "request_too_large",
+      "expectedRpcErrorCode": null
+    }
+  ]
+}

@@ -11,7 +11,7 @@
 
 ## Purpose
 
-This contract defines the boundary a future remote Architrino MCP adapter must satisfy before staging or public use. It does not start an HTTP listener, select a host, create credentials, change a client connection, or deploy anything.
+This contract defines the boundary a future remote Architrino MCP adapter must satisfy before staging or public use. The separate [Loopback Streamable HTTP Adapter](loopback-streamable-http-adapter.md) implements the local test boundary; this contract still does not select a host, create remote credentials, change a persistent client connection, or deploy anything.
 
 The plain-language rule is: the local four-tool query engine may be wrapped in a remote transport only when the wrapper preserves the same read-only snapshot boundary and independently passes its network, authorization, load, health, logging, and rollback gates.
 
@@ -24,6 +24,7 @@ The plain-language rule is: the local four-tool query engine may be wrapped in a
 | [Contract validator](../../../src/archie-service/mcp/remote-deployment-contract-v1.mjs) | Applies cross-field transport, security, limit, snapshot, rollback, and capability invariants. |
 | [Executable checker](../../../scripts/archie-service/validate-mcp-remote-deployment-contract.mjs) | Loads the fixtures and current full-corpus candidate, then exercises every positive and negative case without network or writes. |
 | [Focused tests](../../../tests/archie-service-mcp-remote-deployment-contract.test.js) | Check fixture-only state, all negative cases, and candidate snapshot identity enforcement. |
+| [Loopback implementation](loopback-streamable-http-adapter.md) | Exercises the transport contract locally without promoting the fixture to remote-ready or public-deployment status. |
 
 ## Protocol Basis
 
@@ -128,7 +129,7 @@ Liveness must not become readiness. A running process with a stale or mismatched
 
 ## Snapshot Activation and Rollback
 
-The future adapter reads one immutable snapshot at startup, validates it completely, and swaps an active pointer atomically. An atomic pointer swap means requests see either the complete prior snapshot or the complete new snapshot, never a partially overwritten file.
+The loopback adapter reads one immutable snapshot at startup, validates it completely, and swaps an active pointer atomically. An atomic pointer swap means requests see either the complete prior snapshot or the complete new snapshot, never a partially overwritten file. A remote implementation must preserve the same rule with separately published snapshots.
 
 The request path performs no repository scan, filesystem write, model call, or external action. Remote publication additionally requires a snapshot tied to accepted `main`. The current full-corpus artifact identifies a local source state, so `candidateIsAcceptedMain` remains false and blocks readiness.
 
@@ -181,10 +182,10 @@ node scripts/archie-service/validate-contracts.mjs
 
 Measured on 2026-07-21, the owned checker accepted the fixture-only contract and all 19 fail-closed cases. The combined MCP/source-index regression passed all 20 tests, the broader Archie service contract suite passed all 16 tests, the shared schema validator accepted 37 fixtures with zero errors, strict content validation reported zero errors and warnings, and priority ranking kept all 37 rows aligned.
 
-This is implementation evidence for the contract and validator. It is not evidence that an HTTP adapter exists, that OAuth works with Codex or ChatGPT, that a host meets the load limits, that rollback works in staging, or that public deployment is authorized.
+This is implementation evidence for the contract and validator. The separate local HTTP adapter and official SDK conformance now exist; this evidence still does not establish OAuth, Codex-over-HTTP or ChatGPT-over-HTTP, host load, staging rollback, or public-deployment authorization.
 
 ## Closure Boundary
 
 The remote transport and deployment-hardening contract is defined, fixture-backed, and executable without network access or writes. Its falsifier is direct: if an unsafe negative case passes, the candidate snapshot can change without detection, or `remoteReady` becomes true while a named gate is open, this closure fails.
 
-The next implementation object is the local-only Streamable HTTP adapter. It should exercise POST, GET 405, origin rejection, protocol versions, authorization hooks, rate limits, redacted events, health state, and atomic snapshot selection against these fixtures before any host or staging environment is selected.
+The local-only Streamable HTTP adapter now exercises POST, GET/DELETE 405, origin rejection, protocol versions, authorization hooks, rate and size limits, redacted events, health state, atomic snapshot selection, and rollback mechanics. Named Codex and ChatGPT HTTP client conformance remains the next local evidence object before any host or staging environment is selected.

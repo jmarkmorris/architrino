@@ -25,11 +25,11 @@ import {
   getPresetById,
 } from "./CausalDelayFeedbackReplayAdapter.js";
 import { EOM_REPLAY_DATASET_SOURCE } from "./CausalDelayFeedbackEomReplayAdapter.js";
+import {
+  TRANSPORT_CONTROL_ICON,
+  setTransportControlButtonPresentation,
+} from "../../runtime/TransportControlIcons.js";
 
-const ICON_HELP = Object.freeze({
-  play: "Play replay",
-  pause: "Pause replay",
-});
 const REPLAY_LOOP_SECONDS = 9;
 const TIME_EPSILON = 1e-6;
 const INITIAL_VELOCITY_ARROW_SCALE = 0.04;
@@ -288,7 +288,6 @@ class CausalDelayFeedbackRuntime {
       app: queryRequiredElement(this.document, "#causal-delay-feedback-app"),
       canvas: queryRequiredElement(this.document, "#causal-delay-feedback-canvas"),
       playButton: queryRequiredElement(this.document, "#causal-delay-feedback-play"),
-      pauseButton: queryRequiredElement(this.document, "#causal-delay-feedback-pause"),
       resetButton: queryRequiredElement(this.document, "#causal-delay-feedback-reset"),
       settingsButton: queryRequiredElement(this.document, "#causal-delay-feedback-settings"),
       visualSwitches: queryRequiredElement(this.document, "#causal-delay-feedback-visual-switches"),
@@ -380,10 +379,7 @@ class CausalDelayFeedbackRuntime {
     this.document.addEventListener("keydown", this.boundKeyDown);
 
     this.dom.playButton.addEventListener("click", () => {
-      this.setPlaying(true);
-    });
-    this.dom.pauseButton.addEventListener("click", () => {
-      this.setPlaying(false);
+      this.setPlaying(!this.isPlaying);
     });
     this.dom.resetButton.addEventListener("click", () => {
       this.resetReplayTime();
@@ -1415,20 +1411,19 @@ class CausalDelayFeedbackRuntime {
 
   updatePlayButton() {
     if (this.dom?.playButton) {
-      this.dom.playButton.setAttribute("aria-label", ICON_HELP.play);
-      this.dom.playButton.setAttribute("aria-pressed", this.isPlaying ? "true" : "false");
-      this.dom.playButton.title = ICON_HELP.play;
-      this.dom.playButton.dataset.tooltip = ICON_HELP.play;
-      this.dom.playButton.innerHTML =
-        '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l10-7z"></path></svg>';
+      const label = this.isPlaying ? "Pause replay" : "Play replay";
+      this.dom.playButton.classList?.toggle("is-active", this.isPlaying);
+      setTransportControlButtonPresentation(this.dom.playButton, {
+        kind: this.isPlaying ? TRANSPORT_CONTROL_ICON.PAUSE : TRANSPORT_CONTROL_ICON.PLAY,
+        label,
+        pressed: this.isPlaying,
+      });
     }
-    if (this.dom?.pauseButton) {
-      this.dom.pauseButton.setAttribute("aria-label", ICON_HELP.pause);
-      this.dom.pauseButton.setAttribute("aria-pressed", this.isPlaying ? "false" : "true");
-      this.dom.pauseButton.title = ICON_HELP.pause;
-      this.dom.pauseButton.dataset.tooltip = ICON_HELP.pause;
-      this.dom.pauseButton.innerHTML =
-        '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14"></path><path d="M16 5v14"></path></svg>';
+    if (this.dom?.resetButton) {
+      setTransportControlButtonPresentation(this.dom.resetButton, {
+        kind: TRANSPORT_CONTROL_ICON.RESET,
+        label: "Reset replay",
+      });
     }
   }
 

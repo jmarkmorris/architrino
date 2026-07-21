@@ -1,5 +1,9 @@
 import * as THREE from "../../../vendor/three/three.module.js";
 import {
+  TRANSPORT_CONTROL_ICON,
+  setTransportControlButtonPresentation,
+} from "../../runtime/TransportControlIcons.js";
+import {
   BORG_APP_SURFACE_DESIGN_V1,
   BORG_DATASET_MANIFEST_V1,
   BORG_FAIL_CLOSED_ROWS,
@@ -50,6 +54,7 @@ import {
   createBorgPrescribedDisplayBranch,
 } from "./BorgPrescribedDisplayBranch.js";
 import {
+  BORG_MAX_REALTIME_PLAYBACK_RATE,
   BORG_MAX_VISUAL_CATCH_UP_FRAME_SETS,
   BORG_PLAYBACK_PREFILL_MAX_WALL_MS,
   formatBorgRealtimeRate,
@@ -97,16 +102,10 @@ const BOUNDARY_SHELL_LATITUDE_COUNT = 25;
 const BOUNDARY_SHELL_LONGITUDE_COUNT = 48;
 const ENVELOPE_GUIDE_COLOR = 0xcbd0c8;
 const ENVELOPE_GUIDE_OPACITY = 0.88;
-const DEFAULT_PLAYBACK_SPEED_PRESET_ID = "normal";
 const DEFAULT_RUN_CONTROL_PRESET_ID = "live-forever";
 const FINITE_RUN_CONTROL_PRESET_ID = "live-60s";
 const FIVE_MINUTE_RUN_CONTROL_PRESET_ID = "live-300s";
 const DEFAULT_DISTRIBUTION_LABEL = "manifest initial-condition policy";
-const PLAYBACK_SPEED_PRESETS = Object.freeze([
-  Object.freeze({ id: "detail", label: "Detail", maximumRealtimeRate: 1 / 12 }),
-  Object.freeze({ id: "normal", label: "Normal", maximumRealtimeRate: 0.6 }),
-  Object.freeze({ id: "fast", label: "Realtime", maximumRealtimeRate: 1 }),
-]);
 const RUN_CONTROL_PRESETS = Object.freeze([
   Object.freeze({
     id: DEFAULT_RUN_CONTROL_PRESET_ID,
@@ -141,8 +140,6 @@ const RUN_CONTROL_PRESETS = Object.freeze([
 ]);
 const PATH_RENDER_ORDER = 2;
 const ARCHITRINO_RENDER_ORDER = 6;
-const PLAY_ICON_PATH = "M8 5v14l11-7z";
-const PAUSE_ICON_PATH = "M8 5h3v14H8zM13 5h3v14h-3z";
 const HIDDEN_LAYER_BUTTONS = new Set([
   "simulation-window",
   "architrino-position",
@@ -196,20 +193,6 @@ const STATUS_TONE = Object.freeze({
   failed: "bad",
   passed: "good",
   "not-measured": "warn",
-});
-
-const STATUS_LABEL = Object.freeze({
-  "recorded-eom-dataset-chunks": "EOM replay",
-  "eom-record-replay-running": "EOM replay",
-  "live-native-running": "Live compute",
-  "computed-eom-shadow-chunks": "Forward EOM",
-  "eom-shadow-running": "Forward EOM",
-  "eom-shadow-stopped": "Forward EOM idle",
-  "eom-idle": "Idle",
-  "live-native-error": "Solver stopped",
-  "record-replay-error": "Replay stopped",
-  "completed-live-native-run": "Forward complete",
-  "completed-recorded-replay": "Replay complete",
 });
 
 const SOLVER_FAILURE_BANNERS = Object.freeze({
@@ -276,8 +259,6 @@ export function mountBorgApp(options = {}) {
     velocityMaxComponent: queryRequiredElement(documentLike, "#borg-velocity-max-component"),
     velocityMinSpeed: queryRequiredElement(documentLike, "#borg-velocity-min-speed"),
     initialConditionFeedback: queryRequiredElement(documentLike, "#borg-initial-condition-feedback"),
-    nativeStatus: queryRequiredElement(documentLike, "#borg-native-status"),
-    manifestStatus: queryRequiredElement(documentLike, "#borg-manifest-status"),
     sourceProvenance: queryRequiredElement(documentLike, "#borg-source-provenance"),
     sourceFields: queryRequiredElement(documentLike, "#borg-source-fields"),
     diagnosticsFields: queryRequiredElement(documentLike, "#borg-diagnostics-fields"),
@@ -299,9 +280,7 @@ export function mountBorgApp(options = {}) {
     eomProgressLabel: queryRequiredElement(documentLike, "#borg-eom-progress-label"),
     runDurationButton: queryRequiredElement(documentLike, "#borg-run-duration-button"),
     historyDuration: queryRequiredElement(documentLike, "#borg-history-duration"),
-    playbackSpeed: queryRequiredElement(documentLike, "#borg-playback-speed"),
     playButton: queryRequiredElement(documentLike, "#borg-play-button"),
-    playButtonIcon: queryRequiredElement(documentLike, "#borg-play-button path"),
     startButton: queryRequiredElement(documentLike, "#borg-start-frame-button"),
     newDistributionButton: queryRequiredElement(documentLike, "#borg-new-distribution-button"),
     resetButton: queryRequiredElement(documentLike, "#borg-reset-view-button"),
@@ -311,6 +290,7 @@ export function mountBorgApp(options = {}) {
     modeLabel: queryRequiredElement(documentLike, "#borg-mode-label"),
     modeDetail: queryRequiredElement(documentLike, "#borg-mode-detail"),
     startingGeometry: queryRequiredElement(documentLike, "#borg-starting-geometry"),
+    startingGeometryOptions: queryRequiredElement(documentLike, "#borg-starting-geometry-options"),
     recordDateChip: queryRequiredElement(documentLike, "#borg-record-date-chip"),
     prescribedBranch: queryRequiredElement(documentLike, "#borg-prescribed-branch"),
     prescribedBranchProfile: queryRequiredElement(documentLike, "#borg-prescribed-branch-profile"),
@@ -424,11 +404,8 @@ export function mountBorgApp(options = {}) {
     playbackToSetIndex: 0,
     playbackSegmentStartedAt: null,
     playbackSegmentProgress: 0,
-    playbackSpeedPresetId: DEFAULT_PLAYBACK_SPEED_PRESET_ID,
     playbackMeasuredProductionRate: null,
-    playbackAdaptiveRate: PLAYBACK_SPEED_PRESETS.find(
-      (preset) => preset.id === DEFAULT_PLAYBACK_SPEED_PRESET_ID,
-    ).maximumRealtimeRate,
+    playbackAdaptiveRate: BORG_MAX_REALTIME_PLAYBACK_RATE,
     playbackBufferRefilling: true,
     playbackPrefillPromise: null,
     runControlPresetId: options.initialRunControlPresetId ?? DEFAULT_RUN_CONTROL_PRESET_ID,
@@ -527,9 +504,11 @@ export function mountBorgApp(options = {}) {
     replayDisplayMode: activeReplayEntry?.dataset.provenance.claimGrade === "chart-hypothesis"
       ? "chart-pose"
       : "animated",
-    pathTrailDuration: activeReplayEntry
-      ? resolveBorgAssemblyViewTrail(activeReplayEntry).duration
-      : DEFAULT_PATH_TRAIL_DURATION,
+    pathTrailDuration: normalizePathTrailDuration(
+      activeReplayEntry
+        ? resolveBorgAssemblyViewTrail(activeReplayEntry).duration
+        : DEFAULT_PATH_TRAIL_DURATION,
+    ),
   };
 
   if (replayActive && initialEomSeed) {
@@ -589,6 +568,10 @@ export function mountBorgApp(options = {}) {
   updateLayerVisibility();
   updateFrame(state.activeFrameIndex);
   setPlayButtonPresentation(false);
+  setTransportControlButtonPresentation(dom.startButton, {
+    kind: TRANSPORT_CONTROL_ICON.FIRST_FRAME,
+    label: "First frame",
+  });
   resize();
   if (autoStartEom) {
     if (replayActive) {
@@ -729,28 +712,6 @@ export function mountBorgApp(options = {}) {
 
   function renderStaticPanels() {
     updateSourceStatusPresentation();
-    dom.manifestStatus.textContent = activePrescribedDisplayBranch
-      ? "Display simulation"
-      : replayActive
-      ? activeReplayEntry.dataset.provenance.claimGrade === "chart-hypothesis"
-        ? "Prescribed Geometry"
-        : "Evolved record"
-      : "Developer test";
-    dom.manifestStatus.dataset.status = activePrescribedDisplayBranch
-      ? "display-only"
-      : replayActive
-      ? activeReplayEntry.dataset.provenance.claimGrade
-      : surfaceDesign.claimLevel;
-    dom.manifestStatus.title = activePrescribedDisplayBranch
-      ? `${activePrescribedDisplayBranch.profile.label}; promotion prohibited.`
-      : replayActive
-      ? "Record claim grade; replay does not independently verify it."
-      : surfaceDesign.claimLevel;
-    setTone(
-      dom.manifestStatus,
-      replayActive ? "recorded-eom-output" : "app-facing-projection",
-    );
-
     renderSourceFields();
     renderEnvelopeFields();
     renderInitialConditionFields();
@@ -881,10 +842,10 @@ export function mountBorgApp(options = {}) {
     renderFieldRows(dom.sourceFields, [
       ["Run source", state.sourceMode],
       ["Run mode", formatRunDurationLabel(activePreset)],
-      ["Playback rate", `${formatBorgRealtimeRate(state.playbackAdaptiveRate)}× realtime`],
-      ["Measured production rate", state.playbackMeasuredProductionRate == null
+      ["Playback pace", `${formatBorgRealtimeRate(state.playbackAdaptiveRate)} T/s`],
+      ["Solver production", state.playbackMeasuredProductionRate == null
         ? "not-measured"
-        : `${formatBorgRealtimeRate(state.playbackMeasuredProductionRate)}× realtime`],
+        : `${formatBorgRealtimeRate(state.playbackMeasuredProductionRate)} T/s`],
       ["Finite duration", state.eomRunDuration],
       ["Preset basis", activePreset?.thresholdAuthority ?? "not-measured"],
       ["Preset target", formatRunTargetDuration(activePreset)],
@@ -1078,16 +1039,7 @@ export function mountBorgApp(options = {}) {
   function configureTimeline() {
     updateTimelineBounds();
     syncRunDurationButton();
-    dom.historyDuration.hidden = replayActive;
     dom.historyDuration.value = String(state.pathTrailDuration);
-    dom.playbackSpeed.textContent = "";
-    PLAYBACK_SPEED_PRESETS.forEach((preset) => {
-      const option = documentLike.createElement("option");
-      option.value = preset.id;
-      option.textContent = preset.label;
-      dom.playbackSpeed.append(option);
-    });
-    dom.playbackSpeed.value = state.playbackSpeedPresetId;
   }
 
   function configureInitialConditionControls() {
@@ -1117,7 +1069,7 @@ export function mountBorgApp(options = {}) {
     dom.certifiedBudget.value = state.eomCertifiedBudgetId;
     dom.stepHeight.value = String(state.eomStepHeight);
     dom.minimumStep.value = String(state.eomMinimumStep);
-    dom.eomRunGrade.value = state.eomRunGrade;
+    setBorgRadioGroupValue(dom.eomRunGrade, state.eomRunGrade);
     dom.velocityMaxComponent.value = String(config.randomVelocityMaxComponentMagnitude);
     dom.velocityMinSpeed.value = String(config.randomVelocityMinSpeed);
   }
@@ -1187,7 +1139,7 @@ export function mountBorgApp(options = {}) {
     state.eomMinimumStep = minimumStep;
     state.eomPathCount = validation.config.electrinoCount + validation.config.positrinoCount;
     state.eomRunGrade = normalizeEomRunGrade(
-      dom.eomRunGrade.value,
+      getBorgRadioGroupValue(dom.eomRunGrade),
       BORG_EOM_RUN_GRADE_DISPLAY,
     );
     state.initialConditionEditStatus = "accepted-runtime-edit";
@@ -1244,36 +1196,33 @@ export function mountBorgApp(options = {}) {
 
   function configureStartingGeometryControl() {
     const navigation = options.braidRecordNavigation;
-    dom.startingGeometry.textContent = "";
-    const generatedGroup = documentLike.createElement("optgroup");
-    generatedGroup.label = "Generated";
-    const randomOption = documentLike.createElement("option");
-    randomOption.value = "random";
-    randomOption.textContent = "Random architrinos";
-    generatedGroup.append(randomOption);
-    dom.startingGeometry.append(generatedGroup);
+    dom.startingGeometryOptions.textContent = "";
+    appendBorgRadioChoice(documentLike, dom.startingGeometryOptions, {
+      name: "borg-starting-geometry",
+      value: "random",
+      label: "Random architrinos",
+    });
     const entries = navigation?.catalog?.entries ?? [];
-    if (entries.length > 0) {
-      const prescribedGroup = documentLike.createElement("optgroup");
-      prescribedGroup.label = "Prescribed geometries";
-      entries.forEach((catalogEntry) => {
-        const option = documentLike.createElement("option");
-        option.value = catalogEntry.id;
-        option.textContent = catalogEntry.label;
-        prescribedGroup.append(option);
+    entries.forEach((catalogEntry) => {
+      appendBorgRadioChoice(documentLike, dom.startingGeometryOptions, {
+        name: "borg-starting-geometry",
+        value: catalogEntry.id,
+        label: catalogEntry.label,
       });
-      dom.startingGeometry.append(prescribedGroup);
-    }
+    });
     if (activeStartingGeometryId !== "random" &&
         !entries.some((entry) => entry.id === activeStartingGeometryId)) {
-      const option = documentLike.createElement("option");
-      option.value = activeStartingGeometryId;
-      option.textContent = "External prescribed geometry";
-      dom.startingGeometry.append(option);
+      appendBorgRadioChoice(documentLike, dom.startingGeometryOptions, {
+        name: "borg-starting-geometry",
+        value: activeStartingGeometryId,
+        label: "External prescribed geometry",
+      });
     }
-    dom.startingGeometry.value = activeStartingGeometryId;
-    dom.startingGeometry.addEventListener("change", () => {
-      switchStartingGeometry(dom.startingGeometry.value);
+    setBorgRadioGroupValue(dom.startingGeometry, activeStartingGeometryId);
+    dom.startingGeometry.addEventListener("change", (event) => {
+      if (event.target?.type === "radio" && event.target.checked) {
+        switchStartingGeometry(event.target.value);
+      }
     });
     dom.prescribedBranchProfile.textContent =
       "Optional: continue from the selected prescribed-history time with the EOM solver at Display grade. " +
@@ -1282,7 +1231,6 @@ export function mountBorgApp(options = {}) {
 
   function configureAssemblyViewControls() {
     dom.envelopeSection.hidden = replayActive;
-    dom.nativeStatus.hidden = replayActive;
     dom.sourceProvenance.hidden = replayActive;
     dom.timeline.classList.toggle("is-replay", replayActive);
     dom.newDistributionButton.hidden = replayActive || activePrescribedDisplayBranch != null;
@@ -1386,7 +1334,7 @@ export function mountBorgApp(options = {}) {
     } catch (error) {
       dom.prescribedBranchFeedback.value = error?.message ?? String(error);
       dom.prescribedBranchFeedback.textContent = dom.prescribedBranchFeedback.value;
-      dom.startingGeometry.value = activeStartingGeometryId;
+      setBorgRadioGroupValue(dom.startingGeometry, activeStartingGeometryId);
     } finally {
       dom.startingGeometry.disabled = false;
     }
@@ -1425,7 +1373,7 @@ export function mountBorgApp(options = {}) {
     });
     assemblyViewScene.setRecord(activeReplayEntry);
     assemblyViewScene.setDisplayMode("animated");
-    dom.startingGeometry.value = geometryId;
+    setBorgRadioGroupValue(dom.startingGeometry, geometryId);
     configureAssemblyViewControls();
     rebuildBoundaryShell();
     rebuildParticleObjects();
@@ -1459,10 +1407,9 @@ export function mountBorgApp(options = {}) {
     state.replayDisplayMode = activeReplayEntry.dataset.provenance.claimGrade === "chart-hypothesis"
       ? "chart-pose"
       : "animated";
-    state.pathTrailDuration = resolveBorgAssemblyViewTrail(activeReplayEntry).duration;
     assemblyViewScene.setRecord(activeReplayEntry);
     assemblyViewScene.setDisplayMode(state.replayDisplayMode);
-    dom.startingGeometry.value = geometryId;
+    setBorgRadioGroupValue(dom.startingGeometry, geometryId);
     configureAssemblyViewControls();
     rebuildBoundaryShell();
     rebuildParticleObjects();
@@ -1586,7 +1533,6 @@ export function mountBorgApp(options = {}) {
     state.replayDisplayMode = entry.dataset.provenance.claimGrade === "chart-hypothesis"
       ? "chart-pose"
       : "animated";
-    state.pathTrailDuration = resolveBorgAssemblyViewTrail(entry).duration;
     assemblyViewScene.setRecord(entry);
     assemblyViewScene.setDisplayMode(state.replayDisplayMode);
     currentFrames = [];
@@ -1667,7 +1613,7 @@ export function mountBorgApp(options = {}) {
     dom.eomProgressLabel.value = `${progressLabel}${failureDetail}`;
     const displayGrade = state.eomRunGrade === BORG_EOM_RUN_GRADE_DISPLAY;
     dom.eomAuthority.dataset.grade = displayGrade ? "display" : "claim";
-    dom.eomRunGrade.value = state.eomRunGrade;
+    setBorgRadioGroupValue(dom.eomRunGrade, state.eomRunGrade);
     dom.eomAuthorityDetail.textContent = activePrescribedDisplayBranch
       ? `Display-only evolution starts at T=${activePrescribedDisplayBranch.selectedCutTime} from the exact prescribed segment prefix after Display projection. This child branch has no claim authority.`
       : displayGrade
@@ -1766,14 +1712,6 @@ export function mountBorgApp(options = {}) {
     };
     dom.historyDuration.addEventListener("input", applyPathTrailDuration);
     dom.historyDuration.addEventListener("change", applyPathTrailDuration);
-    dom.playbackSpeed.addEventListener("change", () => {
-      state.playbackSpeedPresetId = playbackSpeedPresetById(dom.playbackSpeed.value).id;
-      updateAdaptivePlaybackRate();
-      if (state.playing) {
-        state.playbackSegmentStartedAt = getPlaybackNow();
-        maybeQueueDynamicFramesAhead();
-      }
-    });
     dom.resetButton.addEventListener("click", resetView);
     dom.fitButton.addEventListener("click", fitView);
     dom.focusButton.addEventListener("click", focusSelected);
@@ -2024,14 +1962,15 @@ export function mountBorgApp(options = {}) {
 
   function setPlayButtonPresentation(isPlaying) {
     dom.playButton.classList.toggle("is-active", isPlaying);
-    dom.playButton.setAttribute("aria-pressed", isPlaying ? "true" : "false");
     dom.playButton.toggleAttribute(
       "aria-busy",
       state.playbackRequested && !state.playing,
     );
-    dom.playButton.setAttribute("aria-label", isPlaying ? "Pause" : "Play");
-    dom.playButton.title = isPlaying ? "Pause" : "Play";
-    dom.playButtonIcon.setAttribute("d", isPlaying ? PAUSE_ICON_PATH : PLAY_ICON_PATH);
+    setTransportControlButtonPresentation(dom.playButton, {
+      kind: isPlaying ? TRANSPORT_CONTROL_ICON.PAUSE : TRANSPORT_CONTROL_ICON.PLAY,
+      label: isPlaying ? "Pause" : "Play",
+      pressed: isPlaying,
+    });
   }
 
   function handleKeyDown(event) {
@@ -2392,9 +2331,7 @@ export function mountBorgApp(options = {}) {
 
   function updateAdaptivePlaybackRate(now = getPlaybackNow()) {
     const adaptiveRate = getBorgAdaptivePlaybackRate({
-      requestedRate: playbackSpeedPresetById(
-        state.playbackSpeedPresetId,
-      ).maximumRealtimeRate,
+      requestedRate: BORG_MAX_REALTIME_PLAYBACK_RATE,
       measuredProductionRate: state.playbackMeasuredProductionRate,
     });
     const remainingFrameSetCount = Math.max(
@@ -2567,9 +2504,7 @@ export function mountBorgApp(options = {}) {
 
   function getPlaybackPrefillTargetFrameSetCount() {
     const ordinaryTarget = getBorgPlaybackPrefillTargetFrameSetCount({
-      playbackRate: playbackSpeedPresetById(
-        state.playbackSpeedPresetId,
-      ).maximumRealtimeRate,
+      playbackRate: BORG_MAX_REALTIME_PLAYBACK_RATE,
       sampleInterval: activeSampleInterval(),
       maximumRetainedFrameSetCount:
         BORG_LIVE_RUN_RETENTION_POLICY_V1.retainedFrameSetLimit,
@@ -2970,12 +2905,6 @@ export function mountBorgApp(options = {}) {
   }
 
   function updateSourceStatusPresentation() {
-    dom.nativeStatus.textContent = STATUS_LABEL[state.dynamicRunnerStatus] ?? state.dynamicRunnerStatus;
-    dom.nativeStatus.dataset.status = state.dynamicRunnerStatus;
-    dom.nativeStatus.title = state.dynamicRunnerMessage
-      ? `${state.dynamicRunnerStatus}: ${state.dynamicRunnerMessage}`
-      : state.dynamicRunnerStatus;
-    setTone(dom.nativeStatus, state.dynamicRunnerStatus);
     updateSolverBanner();
   }
 
@@ -3214,11 +3143,17 @@ function getParticleStyle(pathKey, particleStyles) {
   };
 }
 
-function playbackSpeedPresetById(presetId) {
+function normalizePathTrailDuration(value) {
+  const requested = Number(value);
+  if (PATH_TRAIL_DURATIONS.includes(requested)) {
+    return requested;
+  }
+  if (!Number.isFinite(requested) || requested <= 0) {
+    return DEFAULT_PATH_TRAIL_DURATION;
+  }
   return (
-    PLAYBACK_SPEED_PRESETS.find((preset) => preset.id === presetId) ??
-    PLAYBACK_SPEED_PRESETS.find((preset) => preset.id === DEFAULT_PLAYBACK_SPEED_PRESET_ID) ??
-    PLAYBACK_SPEED_PRESETS[0]
+    PATH_TRAIL_DURATIONS.find((duration) => duration >= requested) ??
+    PATH_TRAIL_DURATIONS.at(-1)
   );
 }
 
@@ -3611,6 +3546,36 @@ function isEditableTarget(target) {
 function setTone(element, status) {
   const tone = STATUS_TONE[status] ?? "display";
   element.dataset.tone = tone;
+}
+
+function appendBorgRadioChoice(documentLike, container, {
+  name,
+  value,
+  label,
+}) {
+  const choice = documentLike.createElement("label");
+  choice.className = "borg-radio-choice";
+  const input = documentLike.createElement("input");
+  input.type = "radio";
+  input.name = name;
+  input.value = value;
+  const text = documentLike.createElement("span");
+  text.textContent = label;
+  choice.append(input, text);
+  container.append(choice);
+  return input;
+}
+
+function getBorgRadioGroupValue(group) {
+  return [...group.querySelectorAll('input[type="radio"]')]
+    .find((input) => input.checked)?.value ?? "";
+}
+
+function setBorgRadioGroupValue(group, value) {
+  const requestedValue = String(value ?? "");
+  group.querySelectorAll('input[type="radio"]').forEach((input) => {
+    input.checked = input.value === requestedValue;
+  });
 }
 
 function clamp(value, min, max) {

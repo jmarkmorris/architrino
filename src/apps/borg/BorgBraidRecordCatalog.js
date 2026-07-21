@@ -10,6 +10,12 @@ export const BORG_BRAID_RECORD_CATALOG = createBorgBraidRecordCatalog([
       "content/assets/borg/records/illustrative-spindle-chart-hypothesis.assembly-view-record.v0.json",
   },
   {
+    id: "illustrative-extreme-cap-tilt-spindle-variant-v0",
+    label: "Spindle variant — extreme cap tilt",
+    recordUrl:
+      "content/assets/borg/records/illustrative-extreme-cap-tilt-spindle-variant.assembly-view-record.v0.json",
+  },
+  {
     id: "illustrative-planar-tri-binary-spindle-boundary-v0",
     label: "Spindle boundary — planar tri-binary",
     recordUrl:

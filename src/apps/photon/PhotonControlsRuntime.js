@@ -17,6 +17,10 @@ import {
 import {
   PHOTON_DEFAULT_PRESET_ID,
 } from "./PhotonPresetRuntime.js";
+import {
+  TRANSPORT_CONTROL_ICON,
+  setTransportControlButtonPresentation,
+} from "../../runtime/TransportControlIcons.js";
 
 function formatControlValue(value, digits = 2) {
   if (!Number.isFinite(Number(value))) {
@@ -682,6 +686,16 @@ function createButton(documentLike, label, className = "photon-button") {
   return button;
 }
 
+function createTransportButton(documentLike, label, kind) {
+  const button = createButton(documentLike, "", "photon-button photon-transport-button");
+  const icon = createElement(documentLike, "span", "photon-transport-icon");
+  icon.dataset.transportIconHost = "";
+  const text = createElement(documentLike, "span", "photon-transport-label", label);
+  button.append(icon, text);
+  setTransportControlButtonPresentation(button, { kind, label });
+  return { button, text };
+}
+
 function formatPhotonSearchScore(score) {
   return Number.isFinite(Number(score)) ? Number(score).toFixed(1) : "0.0";
 }
@@ -849,7 +863,11 @@ function createSearchControl(
       const actions = createElement(documentLike, "div", "photon-search-result-actions");
       const previewButton = createButton(documentLike, "Preview");
       const loadButton = createButton(documentLike, "Load");
-      const playButton = createButton(documentLike, "Play");
+      const playButton = createTransportButton(
+        documentLike,
+        "Play",
+        TRANSPORT_CONTROL_ICON.PLAY,
+      ).button;
       const promoteButton = createButton(
         documentLike,
         result.promotedPresetId ? "Promoted" : "Promote"
@@ -949,8 +967,10 @@ export function createPhotonControlsRuntime({
   });
   timeSection.append(presetControl.row);
   const actionGrid = createElement(documentLike, "div", "photon-action-grid");
-  const pauseButton = createButton(documentLike, "Pause");
-  const resetTimeButton = createButton(documentLike, "Reset time");
+  const pauseControl = createTransportButton(documentLike, "Pause", TRANSPORT_CONTROL_ICON.PAUSE);
+  const resetTimeControl = createTransportButton(documentLike, "Reset time", TRANSPORT_CONTROL_ICON.RESET);
+  const pauseButton = pauseControl.button;
+  const resetTimeButton = resetTimeControl.button;
   const resetStateButton = createButton(documentLike, "Reset all");
   const pathsButton = createButton(documentLike, "Paths on", "photon-button is-active");
   actionGrid.append(pauseButton, resetTimeButton, resetStateButton, pathsButton);
@@ -1217,7 +1237,14 @@ export function createPhotonControlsRuntime({
       syncRange(controls[index], nextState.polarization[key]);
       index += 1;
     });
-    pauseButton.textContent = nextState.time.paused ? "Play" : "Pause";
+    const pauseLabel = nextState.time.paused ? "Play" : "Pause";
+    pauseControl.text.textContent = pauseLabel;
+    pauseButton.classList.toggle("is-active", !nextState.time.paused);
+    setTransportControlButtonPresentation(pauseButton, {
+      kind: nextState.time.paused ? TRANSPORT_CONTROL_ICON.PLAY : TRANSPORT_CONTROL_ICON.PAUSE,
+      label: pauseLabel,
+      pressed: !nextState.time.paused,
+    });
     syncToggleButton(pathsButton, nextState.view.pathsVisible, "Paths on", "Paths off");
     rawPolarizationControl.input.checked = nextState.view?.rawPolarizationVisible !== false;
   }

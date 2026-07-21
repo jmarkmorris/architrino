@@ -1,4 +1,8 @@
 import * as THREE from "../../../vendor/three/three.module.js";
+import {
+  TRANSPORT_CONTROL_ICON,
+  setTransportControlButtonPresentation,
+} from "../../runtime/TransportControlIcons.js";
 import { createMarkdownRuntime } from "../../runtime/MarkdownRuntime.js";
 import { extractMarkdownSection } from "../../services/MarkdownPolicyService.js";
 import {
@@ -1928,21 +1932,17 @@ export function mountIdealBraid(options = {}) {
 
   function updatePauseButton() {
     const label = dom.freezeToggle.querySelector(".ideal-braid-control-label");
-    const icon = dom.freezeToggle.querySelector(".ideal-braid-control-icon");
-    const nextLabel = state.frozen ? "Resume" : "Pause";
+    const nextLabel = state.frozen ? "Play" : "Pause";
     if (label) {
       label.textContent = nextLabel;
     } else {
       dom.freezeToggle.textContent = nextLabel;
     }
-    if (icon) {
-      icon.classList.toggle("is-play", state.frozen);
-      icon.classList.toggle("is-pause", !state.frozen);
-    }
-    dom.freezeToggle.setAttribute(
-      "aria-label",
-      state.frozen ? "Resume animation" : "Pause animation"
-    );
+    setTransportControlButtonPresentation(dom.freezeToggle, {
+      kind: state.frozen ? TRANSPORT_CONTROL_ICON.PLAY : TRANSPORT_CONTROL_ICON.PAUSE,
+      label: state.frozen ? "Play animation" : "Pause animation",
+      pressed: !state.frozen,
+    });
   }
 
   function syncControls() {
@@ -1950,7 +1950,7 @@ export function mountIdealBraid(options = {}) {
     setButtonActive(dom.pathToggle, state.pathsVisible);
     setButtonActive(dom.surfaceToggle, state.surfaceVisible);
     setButtonActive(dom.axesToggle, state.axesVisible);
-    setButtonActive(dom.freezeToggle, state.frozen);
+    setButtonActive(dom.freezeToggle, !state.frozen);
     updatePauseButton();
     dom.radiusOutput.value = formatFixed(state.radius, 2);
     dom.betaOutput.value = formatFixed(lorentzState.beta, 3);

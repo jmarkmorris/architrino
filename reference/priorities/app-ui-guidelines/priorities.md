@@ -32,6 +32,8 @@ The repo has several mature UI surfaces, but their top controls have grown indep
 
 The next opportunity is to define one top dynamic control bar that can be reused across the webapp and standalone apps without flattening specialized workbench controls into global navigation.
 
+Local playback surfaces now share the accepted [transport-control standard](transport-controls.md) and icon runtime. This does not move those controls into the top dynamic control bar.
+
 ## Objective
 
 Standardize top-right navigation and document controls across the webapp, standalone apps, markdown displays, and page-like utilities.
@@ -83,6 +85,7 @@ The detailed standard and audit live in [top-dynamic-control-bar.md](top-dynamic
 | File | Role | Primary targets |
 | --- | --- | --- |
 | [top-dynamic-control-bar.md](top-dynamic-control-bar.md) | Candidate control-bar standard, current surface inventory, non-conformer migration plan, and validation expectations. | `index.html`, standalone app HTML entrypoints, app runtimes under `src/apps/`, and markdown display controls. |
+| [transport-controls.md](transport-controls.md) | Accepted transport semantics, canonical glyph set, shared implementation path, and migration record. | Borg, Animator, Causal Delay Feedback, Ideal Braid, Photon, and `src/runtime/TransportControlIcons.js`. |
 
 ## Related Guidance
 

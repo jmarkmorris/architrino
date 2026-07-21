@@ -13,6 +13,7 @@
     { "$ref": "#/$defs/mcpStdioSmoke" },
     { "$ref": "#/$defs/mcpRemoteDeploymentContract" },
     { "$ref": "#/$defs/mcpRemoteDeploymentNegativeSuite" },
+    { "$ref": "#/$defs/mcpLoopbackHttpSmoke" },
     { "$ref": "#/$defs/sourceIndexDryRun" },
     { "$ref": "#/$defs/serviceValidationPlan" },
     { "$ref": "#/$defs/endpointResponseContracts" },
@@ -2851,6 +2852,44 @@
         "notebookTermsVersion": { "type": "string", "minLength": 1 },
         "supportRoute": { "type": "string", "minLength": 1 },
         "legalReviewState": { "$ref": "#/$defs/legalReviewState" }
+      }
+    },
+    "mcpLoopbackHttpSmoke": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema", "smokeId", "contractFixture", "activeSnapshotFixture", "rollbackBuildInputFixture", "allowedOrigin", "tokenEnvironmentVariable", "cases"],
+      "properties": {
+        "schema": { "const": "archie-mcp-loopback-http-smoke/v1" },
+        "smokeId": { "type": "string", "minLength": 1 },
+        "contractFixture": { "type": "string", "minLength": 1 },
+        "activeSnapshotFixture": { "type": "string", "minLength": 1 },
+        "rollbackBuildInputFixture": { "type": "string", "minLength": 1 },
+        "allowedOrigin": { "type": "string", "minLength": 1 },
+        "tokenEnvironmentVariable": { "type": "string", "minLength": 1 },
+        "cases": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["caseId", "method", "path", "authorization", "origin", "protocolVersion", "contentType", "accept", "bodyMode", "message", "expectedHttpStatus", "expectedBodyStatus", "expectedRpcErrorCode"],
+            "properties": {
+              "caseId": { "type": "string", "minLength": 1 },
+              "method": { "type": "string", "enum": ["GET", "POST", "DELETE"] },
+              "path": { "type": "string", "minLength": 1 },
+              "authorization": { "type": "string", "enum": ["valid", "missing", "not_applicable"] },
+              "origin": { "type": "string", "enum": ["valid", "invalid", "missing"] },
+              "protocolVersion": { "type": "string", "enum": ["current", "invalid", "missing"] },
+              "contentType": { "type": "string", "enum": ["json", "text", "missing"] },
+              "accept": { "type": "string", "enum": ["mcp", "sse", "json_only", "missing"] },
+              "bodyMode": { "type": "string", "enum": ["none", "json", "malformed", "oversized"] },
+              "message": {},
+              "expectedHttpStatus": { "type": "integer", "minimum": 100 },
+              "expectedBodyStatus": { "type": ["string", "null"] },
+              "expectedRpcErrorCode": { "type": ["integer", "null"] }
+            }
+          }
+        }
       }
     },
     "mcpRemoteDeploymentContract": {

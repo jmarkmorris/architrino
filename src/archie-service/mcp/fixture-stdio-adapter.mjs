@@ -107,6 +107,41 @@ export function createFixtureMcpSession({ snapshot, accessScope = "public" }) {
   return createMcpSession({ snapshot, accessScope });
 }
 
+export function createStatelessMcpHandler({
+  snapshot,
+  accessScope = "public",
+  serverInfo = {
+    name: MCP_FULL_CORPUS_SERVER_NAME,
+    title: "Architrino Full Corpus MCP",
+    version: MCP_FULL_CORPUS_SERVER_VERSION,
+    description: "Read-only local MCP adapter over one validated full-corpus Architrino snapshot.",
+  },
+  expectedVisibilityPolicyVersion = null,
+}) {
+  assertSnapshotBundle(snapshot, { expectedVisibilityPolicyVersion });
+  requireCondition(accessScope === "public", "local MCP adapter currently supports public access only");
+  requireServerInfo(serverInfo);
+
+  return {
+    handle(message) {
+      const envelopeError = validateJsonRpcEnvelope(message);
+      if (envelopeError) return envelopeError;
+
+      const isNotification = !Object.prototype.hasOwnProperty.call(message, "id");
+      if (isNotification) return null;
+      if (message.method === "ping") return jsonRpcResult(message.id, {});
+      if (message.method === "initialize") {
+        const paramsError = validateInitializeParams(message.params);
+        if (paramsError) return jsonRpcError(message.id, -32602, paramsError);
+        return initializeResult(message.id, serverInfo);
+      }
+      if (message.method === "tools/list") return handleToolsList(message);
+      if (message.method === "tools/call") return handleToolCall({ message, snapshot, accessScope });
+      return jsonRpcError(message.id, -32601, `Method not found: ${message.method}`);
+    },
+  };
+}
+
 export function createMcpSession({
   snapshot,
   accessScope = "public",
@@ -120,13 +155,7 @@ export function createMcpSession({
 }) {
   assertSnapshotBundle(snapshot, { expectedVisibilityPolicyVersion });
   requireCondition(accessScope === "public", "local MCP adapter currently supports public access only");
-  requireCondition(typeof serverInfo?.name === "string" && serverInfo.name.length > 0, "serverInfo requires name");
-  requireCondition(typeof serverInfo?.title === "string" && serverInfo.title.length > 0, "serverInfo requires title");
-  requireCondition(typeof serverInfo?.version === "string" && serverInfo.version.length > 0, "serverInfo requires version");
-  requireCondition(
-    typeof serverInfo?.description === "string" && serverInfo.description.length > 0,
-    "serverInfo requires description"
-  );
+  requireServerInfo(serverInfo);
   let state = "new";
 
   return {
@@ -148,12 +177,7 @@ export function createMcpSession({
         const paramsError = validateInitializeParams(message.params);
         if (paramsError) return jsonRpcError(message.id, -32602, paramsError);
         state = "initializing";
-        return jsonRpcResult(message.id, {
-          protocolVersion: MCP_PROTOCOL_VERSION,
-          capabilities: { tools: { listChanged: false } },
-          serverInfo,
-          instructions: "Use search to locate sources, read to retrieve exact bounded content, topics to enumerate addressable records, and neighbors only for declared direct graph edges. Source authority fields are mandatory context; retrieval is not proof.",
-        });
+        return initializeResult(message.id, serverInfo);
       }
 
       if (state !== "ready") return jsonRpcError(message.id, -32002, "Server not initialized");
@@ -383,6 +407,25 @@ function validateInitializeParams(params) {
 
 function jsonRpcResult(id, result) {
   return { jsonrpc: "2.0", id, result };
+}
+
+function initializeResult(id, serverInfo) {
+  return jsonRpcResult(id, {
+    protocolVersion: MCP_PROTOCOL_VERSION,
+    capabilities: { tools: { listChanged: false } },
+    serverInfo,
+    instructions: "Use search to locate sources, read to retrieve exact bounded content, topics to enumerate addressable records, and neighbors only for declared direct graph edges. Source authority fields are mandatory context; retrieval is not proof.",
+  });
+}
+
+function requireServerInfo(serverInfo) {
+  requireCondition(typeof serverInfo?.name === "string" && serverInfo.name.length > 0, "serverInfo requires name");
+  requireCondition(typeof serverInfo?.title === "string" && serverInfo.title.length > 0, "serverInfo requires title");
+  requireCondition(typeof serverInfo?.version === "string" && serverInfo.version.length > 0, "serverInfo requires version");
+  requireCondition(
+    typeof serverInfo?.description === "string" && serverInfo.description.length > 0,
+    "serverInfo requires description"
+  );
 }
 
 function sharedInputDefinitions() {

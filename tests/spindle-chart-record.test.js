@@ -64,10 +64,10 @@ test("spindle chart target registry is immutable, ordered, and source/output uni
   assert.equal(Object.isFrozen(SPINDLE_CHART_TARGETS), true);
   assert.deepEqual(
     fixtures.map(({ spec: source }) => source.taxonomy.classification),
-    ["family-member", "boundary-member", "boundary-member"],
+    ["family-member", "parameter-variant", "boundary-member", "boundary-member"],
   );
-  assert.equal(new Set(SPINDLE_CHART_TARGETS.map((target) => target.specPath)).size, 3);
-  assert.equal(new Set(SPINDLE_CHART_TARGETS.map((target) => target.outPath)).size, 3);
+  assert.equal(new Set(SPINDLE_CHART_TARGETS.map((target) => target.specPath)).size, 4);
+  assert.equal(new Set(SPINDLE_CHART_TARGETS.map((target) => target.outPath)).size, 4);
   SPINDLE_CHART_TARGETS.forEach((target) => assert.equal(Object.isFrozen(target), true));
 });
 
@@ -262,7 +262,7 @@ test("every registered spindle source generates its sealed record deterministica
 });
 
 test("planar tri-binary boundary is exactly coplanar and periodic", () => {
-  const { spec: planar, record } = fixtures[1];
+  const { spec: planar, record } = fixtures[2];
   assert.equal(planar.layers.every((layer) => layer.capAngle === 0), true);
   record.binaries.forEach((binary) => {
     assert.equal(binary.separation, 0);
@@ -286,7 +286,7 @@ test("planar tri-binary boundary is exactly coplanar and periodic", () => {
 });
 
 test("full-cap axial boundary reduces to three static antipodal axial pairs", () => {
-  const { spec: axial, record } = fixtures[2];
+  const { spec: axial, record } = fixtures[3];
   assert.equal(axial.layers.every((layer) => layer.capAngle === Math.PI / 2), true);
   record.binaries.forEach((binary, index) => {
     assert.ok(binary.transverseRadius < 1e-15);
@@ -307,4 +307,19 @@ test("full-cap axial boundary reduces to three static antipodal axial pairs", ()
     }
   });
   assert.deepEqual(record.worldlines.map((worldline) => worldline.polarity).sort(), [-1, -1, -1, 1, 1, 1]);
+});
+
+test("extreme cap-tilt variant remains moving and uses the declared inspection angles", () => {
+  const { spec: extreme, record } = fixtures[1];
+  const expectedAngles = [70, 80, 85].map((degrees) => degrees * Math.PI / 180);
+  extreme.layers.forEach((layer, index) => {
+    assert.ok(Math.abs(layer.capAngle - expectedAngles[index]) < 1e-15);
+    assert.ok(record.binaries[index].transverseRadius > 0);
+    assert.ok(record.binaries[index].carrierSpeed > 0);
+    const start = evaluateSpindleSite(extreme, index, 0, 0);
+    const quarterTurn = evaluateSpindleSite(extreme, index, 0, 1);
+    assert.ok(Math.hypot(...start.position.map((value, axis) =>
+      value - quarterTurn.position[axis]
+    )) > 1e-3);
+  });
 });

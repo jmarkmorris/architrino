@@ -34,6 +34,16 @@ export const SPINDLE_CHART_TARGETS = Object.freeze([
   Object.freeze({
     specPath: path.resolve(
       SCRIPT_DIRECTORY,
+      "../../reference/priorities/braid-program/configurations/illustrative-extreme-cap-tilt-spindle-variant.v0.json",
+    ),
+    outPath: path.resolve(
+      SCRIPT_DIRECTORY,
+      "../../content/assets/borg/records/illustrative-extreme-cap-tilt-spindle-variant.assembly-view-record.v0.json",
+    ),
+  }),
+  Object.freeze({
+    specPath: path.resolve(
+      SCRIPT_DIRECTORY,
       "../../reference/priorities/braid-program/configurations/illustrative-planar-tri-binary-spindle-boundary.v0.json",
     ),
     outPath: path.resolve(

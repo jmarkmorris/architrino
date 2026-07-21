@@ -356,7 +356,8 @@ test("Borg path-history renderer uses native row segments, not visual smoothing 
   assert.doesNotMatch(runtimeSource, /CatmullRomCurve3/);
   assert.doesNotMatch(runtimeSource, /TubeGeometry/);
   assert.match(runtimeSource, /rebuildPathTrails/);
-  assert.match(runtimeSource, /PLAYBACK_SPEED_PRESETS/);
+  assert.doesNotMatch(runtimeSource, /PLAYBACK_SPEED_PRESETS|playbackSpeedPresetById/);
+  assert.match(runtimeSource, /requestedRate: BORG_MAX_REALTIME_PLAYBACK_RATE/);
   assert.match(runtimeSource, /BOUNDARY_SHELL_LATITUDE_COUNT = 25/);
   assert.match(runtimeSource, /BOUNDARY_SHELL_LONGITUDE_COUNT = 48/);
   assert.match(runtimeSource, /ENVELOPE_GUIDE_COLOR = 0xcbd0c8/);
@@ -378,8 +379,8 @@ test("Borg path-history renderer uses native row segments, not visual smoothing 
   assert.doesNotMatch(runtimeSource, /centralBallRadius|radialBufferMargin/);
   assert.doesNotMatch(runtimeSource, /BORG_DISPLAY_RUN_GRADE/);
   assert.doesNotMatch(runtimeSource, /borgNdcPositionIsOutsideScreen/);
-  assert.match(htmlSource, /\.borg-status-chip\[hidden\]\s*\{\s*display: none;/);
-  assert.match(runtimeSource, /dom\.nativeStatus\.hidden = replayActive;/);
+  assert.doesNotMatch(htmlSource, /borg-status-stack|borg-native-status|borg-manifest-status/);
+  assert.doesNotMatch(runtimeSource, /nativeStatus|manifestStatus|STATUS_LABEL/);
   assert.match(runtimeSource, /dom\.sourceProvenance\.hidden = replayActive;/);
   assert.doesNotMatch(runtimeSource, /SphereGeometry/);
   assert.doesNotMatch(runtimeSource, /BoxGeometry/);
@@ -454,7 +455,9 @@ test("Borg path-history renderer uses native row segments, not visual smoothing 
   );
   assert.doesNotMatch(runtimeSource, /setTimeout\(\s*\(\) => ensureDynamicFramesAhead/);
   assert.match(runtimeSource, /getBorgPlaybackRefillDecision/);
-  assert.match(runtimeSource, /Playback rate/);
+  assert.match(runtimeSource, /Playback pace/);
+  assert.doesNotMatch(runtimeSource, /Playback Slow|Playback Normal|Playback Fast/);
+  assert.doesNotMatch(runtimeSource, /label: "Realtime"/);
   assert.match(runtimeSource, /function formatActiveTimelineLabel\(time\) \{\s*return formatTimelineLabel\(time\);\s*\}/);
   assert.match(runtimeSource, /createBorgAcceptedInertialSeedHistory/);
   assert.match(runtimeSource, /appendedFrameRows = Array\.isArray\(chunk\.frames\)/);
@@ -471,8 +474,8 @@ test("Borg path-history renderer uses native row segments, not visual smoothing 
     htmlSource,
     /κ coupling[\s\S]*class="borg-step-control-group"[\s\S]*Step height[\s\S]*Adaptive minimum/,
   );
-  assert.match(htmlSource, /Max per-axis speed/);
-  assert.match(htmlSource, /Minimum total speed/);
+  assert.match(htmlSource, /Max per-axis speed relative to c<sub>f<\/sub> = 1/);
+  assert.match(htmlSource, /Minimum total speed relative to c<sub>f<\/sub> = 1/);
   assert.match(
     htmlSource,
     /id="borg-eom-controls"[\s\S]*id="borg-initial-condition-form"[\s\S]*id="borg-initial-condition-fields"/,
@@ -483,8 +486,9 @@ test("Borg path-history renderer uses native row segments, not visual smoothing 
   assert.match(htmlSource, /id="borg-eom-authority-label"[^>]*>Run grade</);
   assert.match(
     htmlSource,
-    /id="borg-eom-run-grade"[\s\S]*value="display" selected>Display grade<[\s\S]*value="certified">Claim grade</,
+    /id="borg-eom-run-grade"[^>]*class="borg-radio-group"[\s\S]*type="radio" name="borg-eom-run-grade" value="display" checked[\s\S]*Display grade[\s\S]*type="radio" name="borg-eom-run-grade" value="certified"[\s\S]*Claim grade/,
   );
+  assert.doesNotMatch(htmlSource, /<select id="borg-eom-run-grade"/);
   assert.match(htmlSource, /id="borg-eom-authority-detail"/);
   assert.match(htmlSource, /\.borg-eom-authority\[data-grade="display"\]/);
   assert.doesNotMatch(htmlSource, /id="borg-eom-stop-button"/);
@@ -498,11 +502,13 @@ test("Borg path-history renderer uses native row segments, not visual smoothing 
   assert.match(htmlSource, /id="borg-run-duration-button"[\s\S]*value="live-60s">1 min<[\s\S]*value="live-300s">5 min<[\s\S]*value="live-forever" selected>No limit</);
   assert.match(
     htmlSource,
-    /id="borg-history-duration"[\s\S]*value="30" selected>30 s<[\s\S]*value="60">60 s<[\s\S]*value="90">90 s<[\s\S]*value="180">180 s<[\s\S]*value="360">360 s</,
+    /id="borg-history-duration"[\s\S]*value="30" selected>Trail 30 s<[\s\S]*value="60">Trail 60 s<[\s\S]*value="90">Trail 90 s<[\s\S]*value="180">Trail 180 s<[\s\S]*value="360">Trail 360 s</,
   );
-  assert.match(htmlSource, /id="borg-time-range"[\s\S]*id="borg-run-duration-button"[\s\S]*id="borg-history-duration"[\s\S]*id="borg-playback-speed"/);
+  assert.match(htmlSource, /id="borg-time-range"[\s\S]*id="borg-run-duration-button"[\s\S]*id="borg-history-duration"[\s\S]*id="borg-time-output"/);
+  assert.doesNotMatch(htmlSource, /id="borg-playback-speed"|aria-label="Playback pace"/);
   assert.match(htmlSource, /id="borg-time-output"[^>]*>T 00:00:00\.0<\/output>/);
-  assert.match(runtimeSource, /dom\.historyDuration\.hidden = replayActive/);
+  assert.doesNotMatch(runtimeSource, /historyDuration\.hidden/);
+  assert.match(runtimeSource, /normalizePathTrailDuration/);
   assert.match(runtimeSource, /duration: state\.pathTrailDuration/);
   assert.match(runtimeSource, /dom\.eomProgress\.hidden = forever/);
   assert.match(runtimeSource, /runtimeControls\.coupling \?\? configured\.coupling/);
@@ -550,8 +556,12 @@ test("Borg path-history renderer uses native row segments, not visual smoothing 
   assert.match(runtimeSource, /if \(isEomSimulationActive\(\) && !state\.dynamicRunner\) \{\s*startRunAndPlayback\(\);/);
   assert.match(
     htmlSource,
-    /Starting geometry[\s\S]*id="borg-starting-geometry"[\s\S]*Random architrinos/,
+    /id="borg-starting-geometry"[^>]*class="borg-radio-group"[\s\S]*Starting geometry[\s\S]*type="radio" name="borg-starting-geometry" value="random" checked[\s\S]*Random architrinos/,
   );
+  assert.doesNotMatch(htmlSource, /<select id="borg-starting-geometry"/);
+  assert.match(runtimeSource, /appendBorgRadioChoice[\s\S]*catalogEntry\.label/);
+  assert.match(runtimeSource, /setBorgRadioGroupValue\(dom\.startingGeometry, activeStartingGeometryId\)/);
+  assert.match(htmlSource, /\.borg-radio-choice[\s\S]*font-size: 12px/);
   assert.match(runtimeSource, /navigation\.load\(nextId\)/);
   assert.doesNotMatch(htmlSource, /Open prescribed geometry workspace/);
   assert.match(
@@ -570,13 +580,14 @@ test("Borg path-history renderer uses native row segments, not visual smoothing 
   assert.match(htmlSource, /id="borg-replay-export"[^>]*>Export image<\/button>[\s\S]*id="borg-replay-export-animation"[^>]*disabled[^>]*>Export animation<\/button>/);
   assert.match(runtimeSource, /dom\.runDurationButton\.hidden = replayActive;/);
   assert.doesNotMatch(runtimeSource, /Recorded coverage|recorded-coverage/);
-  assert.match(runtimeSource, /\? "Prescribed Geometry"\s*: "Evolved record"/);
+  assert.match(runtimeSource, /"Prescribed geometry · display-only"/);
+  assert.match(runtimeSource, /"Prescribed geometry · Display simulation"/);
   assert.match(
     runtimeSource,
     /nextFromSetIndex >= frameSets\.length - 1[\s\S]*newestFrameSet[\s\S]*applyFrameSet\(newestFrameSet[\s\S]*playbackFromSetIndex = newestSetIndex/,
   );
   assert.doesNotMatch(htmlSource, /id="borg-run-source"/);
-  assert.match(htmlSource, /id="borg-playback-speed"/);
+  assert.doesNotMatch(htmlSource, /id="borg-playback-speed"/);
   assert.match(
     htmlSource,
     /id="borg-diagnostics-toggle"[\s\S]*aria-label="Show diagnostics"[\s\S]*aria-pressed="false"/,

@@ -4,9 +4,9 @@
 
 - Kind: `priority-evidence`
 - Claim level: `measured where marked; documented capability where marked`
-- Status: `fixture-and-full-corpus-sdk-codex-passing-chatgpt-full-corpus-unmeasured`
+- Status: `stdio-and-http-sdk-passing-stdio-codex-passing-chatgpt-full-corpus-unmeasured`
 - Parent tracker: [Architrino MCP](priorities.md)
-- Server boundary: [Local Fixture MCP Adapter](local-fixture-mcp-adapter.md)
+- Server boundaries: [Local Fixture MCP Adapter](local-fixture-mcp-adapter.md) and [Loopback Streamable HTTP Adapter](loopback-streamable-http-adapter.md)
 
 ## Purpose
 
@@ -16,7 +16,7 @@ This packet separates protocol conformance from client-surface conformance. A ma
 
 | Surface | Evidence grade | Result | Exact boundary |
 | --- | --- | --- | --- |
-| Official MCP TypeScript SDK `@modelcontextprotocol/sdk` `1.29.0` | `measured` | `fixture and full corpus passed` | The SDK initialized each launcher, negotiated tools, listed exactly four tools, called `topics`, `search`, `read`, and `neighbors`, observed `SOURCE_NOT_FOUND` as a tool-level error, pinged, and closed the stdio transport. |
+| Official MCP TypeScript SDK `@modelcontextprotocol/sdk` `1.29.0` | `measured` | `stdio fixture, stdio full corpus, and Streamable HTTP full corpus passed` | The SDK initialized each transport, negotiated tools, listed exactly four tools, called `topics`, `search`, `read`, and `neighbors`, observed `SOURCE_NOT_FOUND`, and pinged. The HTTP pass additionally accepted GET 405, used no session id, remained locally ready, and changed no persistent client configuration. |
 | Codex bundled CLI `0.145.0-alpha.18` from the installed ChatGPT desktop app | `measured` | `fixture and full corpus passed` | The fixture passed through ephemeral and saved configurations. On 2026-07-21 a fresh ephemeral read-only turn loaded only `architrino_full`, called all four tools successfully against snapshot `592d130a8349e9dde6273a549bf8a6ef1da2d4ba34cca18c525ecc4df01bae26`, observed `SOURCE_NOT_FOUND`, and made no persistent configuration change. |
 | ChatGPT desktop local MCP surface | `operator-reported` | `fixture working; exact conformance detail incomplete` | The operator reported that the installed `architrino_fixture` connection is working. No retained direct transcript establishes all four calls plus missing-source behavior, so this is not graded as complete direct conformance. The full-corpus launcher is not persistently configured and has not been called by ChatGPT desktop. |
 | ChatGPT web | `documented limitation` | `not a local-stdio target` | The current OpenAI Codex manual says ChatGPT web uses remote MCP-backed plugin tools and does not read local Codex configuration. |
@@ -53,6 +53,15 @@ node scripts/archie-service/check-fixture-mcp-sdk-conformance.mjs \
 ```
 
 The measured pass used the recommended stable V1 package, `@modelcontextprotocol/sdk@1.29.0`, installed in a temporary directory with `zod@4`. The official SDK repository currently labels its V2 main branch pre-alpha and recommends V1 for production use.
+
+The Streamable HTTP runner is:
+
+```bash
+node scripts/archie-service/check-loopback-mcp-http-sdk-conformance.mjs \
+  --sdk-root /path/to/node_modules/@modelcontextprotocol/sdk
+```
+
+It starts only an ephemeral `127.0.0.1` server, supplies a fixture bearer credential through the SDK request headers, performs all four calls plus the missing-source and ping checks, closes the server, and writes no client configuration.
 
 ## Codex Configuration Used
 
@@ -105,3 +114,5 @@ Client conformance is not accepted for a surface if:
 - a missing source becomes a transport error, invented data, or an untyped success;
 - a client causes repository-source reads, writes, model calls inside the adapter, or external actions;
 - a result is inferred from another client rather than measured through the named surface.
+
+Codex and ChatGPT are not yet graded passing over Streamable HTTP. The official SDK result proves protocol interoperability, not acceptance by those named client products.

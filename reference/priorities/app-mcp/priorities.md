@@ -12,7 +12,7 @@ This folder owns the proposed Model Context Protocol (MCP) access layer for the 
 
 The target is a read-only, source-grounded protocol surface over versioned indexes built from the repository's accepted `main` snapshot. The repository remains authoritative. Generated indexes and MCP responses remain derived routing and retrieval artifacts; they do not promote theory claims or replace authored corpus sources.
 
-The starting design is recorded in [architecture-proposal.md](architecture-proposal.md). The executable source-index contract is recorded in [source-index-snapshot-v1.md](source-index-snapshot-v1.md), the bounded four-tool boundary is recorded in [mcp-tool-contract-v1.md](mcp-tool-contract-v1.md), the fixture regression surface is recorded in [local-fixture-mcp-adapter.md](local-fixture-mcp-adapter.md), the complete local implementation is recorded in [full-corpus-local-v1.md](full-corpus-local-v1.md), the remote safety boundary is recorded in [remote-transport-deployment-hardening-v1.md](remote-transport-deployment-hardening-v1.md), and independent client results are recorded in [client-conformance.md](client-conformance.md). Provisional extensions belong in [brainstorming.md](brainstorming.md), and dated implementation or adjudication history belongs in [work-log.md](work-log.md).
+The starting design is recorded in [architecture-proposal.md](architecture-proposal.md). The executable source-index contract is recorded in [source-index-snapshot-v1.md](source-index-snapshot-v1.md), the bounded four-tool boundary is recorded in [mcp-tool-contract-v1.md](mcp-tool-contract-v1.md), the fixture regression surface is recorded in [local-fixture-mcp-adapter.md](local-fixture-mcp-adapter.md), the complete local implementation is recorded in [full-corpus-local-v1.md](full-corpus-local-v1.md), the remote safety boundary is recorded in [remote-transport-deployment-hardening-v1.md](remote-transport-deployment-hardening-v1.md), the loopback HTTP implementation is recorded in [loopback-streamable-http-adapter.md](loopback-streamable-http-adapter.md), and independent client results are recorded in [client-conformance.md](client-conformance.md). Provisional extensions belong in [brainstorming.md](brainstorming.md), and dated implementation or adjudication history belongs in [work-log.md](work-log.md).
 
 ## Objective
 
@@ -20,17 +20,17 @@ Define and implement the smallest deterministic MCP service that lets compatible
 
 ## Queue
 
-1. `local_streamable_http_adapter` — Implement and fixture a loopback-only Streamable HTTP adapter over the unchanged four-tool core, including origin, protocol-version, authorization-hook, limit, safe-log, health, snapshot-activation, and rollback behavior. Status: `pending`. Depends on: the completed [Remote Transport and Deployment Hardening V1](remote-transport-deployment-hardening-v1.md).
+1. `named_http_client_conformance` — Verify the loopback URL through ephemeral Codex and the supported ChatGPT desktop surface without replacing the working stdio entry or making a persistent HTTP configuration change without approval. Status: `pending`. Depends on: the completed [Loopback Streamable HTTP Adapter](loopback-streamable-http-adapter.md).
 2. `higher_order_graph_tools` — Add mechanically checkable graph operations such as `walk`, `trace`, `compare`, `related`, `context`, and `learning_path` only after their semantics and source-authority limits are fixture-tested. Status: `deferred`. Depends on: accepted V1 service evidence.
 3. `hybrid_semantic_retrieval` — Add embeddings only as a declared fallback after deterministic retrieval, with model/provider, privacy, freshness, cost, and source-authority gates. Status: `deferred`. Depends on: stable deterministic retrieval and measured recall gaps.
 
 ## Current Blocker
 
-No blocker remains for the remote transport contract. The fixture is deliberately not remote-ready because TLS ingress, a trusted proxy, exact origins, an authorization server, an accepted-`main` snapshot, and a tested rollback candidate do not exist yet. Those are implementation gates, not authority to select a host or deploy.
+No blocker remains for the loopback HTTP implementation or official SDK conformance. Named Codex and ChatGPT HTTP conformance remains unmeasured. Remote readiness separately remains false because TLS ingress, a trusted proxy, exact deployment origins, an authorization server, an accepted-`main` snapshot, and a real prior rollback snapshot do not exist yet.
 
 ## Next Action
 
-Implement the contract as a loopback-only Streamable HTTP adapter and prove its fail-closed behavior locally before selecting a host or staging environment.
+Test the loopback URL through an ephemeral Codex configuration, then determine whether the supported ChatGPT desktop surface can use the same URL without disturbing the working stdio entry.
 
 ## Boundaries
 

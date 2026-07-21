@@ -117,7 +117,7 @@ The subprocess smoke currently proves:
 11. the adapter core imports no filesystem, HTTP, network, or child-process module and contains no write or fetch call;
 12. the launcher performs exactly one startup snapshot read and no write or network call.
 
-These measurements establish local fixture behavior. The full-corpus smoke and focused tests independently establish complete-corpus local retrieval over 1,898 records, and the separate conformance pass establishes acceptance of both launchers by official TypeScript SDK V1 `1.29.0` and Codex. This does not establish compatibility with every current MCP client, direct ChatGPT desktop invocation of the full-corpus launcher, Streamable HTTP behavior, authentication, rate limiting, deployment readiness, or public launch readiness.
+These measurements establish local stdio fixture behavior. The full-corpus smoke and focused tests independently establish complete-corpus local retrieval over 1,898 records, and the separate conformance pass establishes acceptance of both stdio launchers by official TypeScript SDK V1 `1.29.0` and Codex. The [Loopback Streamable HTTP Adapter](loopback-streamable-http-adapter.md) separately establishes HTTP, local authorization-hook, rate-limit, health, safe-log, and rollback-fixture behavior. Neither local adapter establishes remote deployment or public launch readiness.
 
 ## Acceptance Falsifiers
 
@@ -135,4 +135,4 @@ The local adapter is not accepted if:
 
 ## Remaining Boundary
 
-The remaining implementation boundary is remote transport and deployment hardening. Direct full-corpus ChatGPT desktop conformance remains separately unmeasured because enabling that launcher would change persistent MCP configuration. Any later correction must preserve the completed source-authority, visibility, provenance, pagination, response-budget, and no-side-effect contracts.
+The remaining local evidence boundary is named Codex and ChatGPT desktop conformance over the loopback URL. Direct full-corpus ChatGPT desktop conformance remains separately unmeasured because any persistent connection change requires operator approval. Any later correction must preserve the completed source-authority, visibility, provenance, pagination, response-budget, and no-side-effect contracts.

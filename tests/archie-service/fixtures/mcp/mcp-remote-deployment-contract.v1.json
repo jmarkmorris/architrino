@@ -73,7 +73,8 @@
       "request_bytes",
       "response_bytes",
       "snapshot_id",
-      "snapshot_sha256"
+      "snapshot_sha256",
+      "listen_address"
     ],
     "forbiddenFields": [
       "authorization_header",

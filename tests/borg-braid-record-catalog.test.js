@@ -12,11 +12,12 @@ test("Borg braid catalog is immutable record routing data with no geometry or ph
   assert.equal(BORG_BRAID_RECORD_CATALOG.id, BORG_BRAID_RECORD_CATALOG_ID);
   assert.equal(Object.isFrozen(BORG_BRAID_RECORD_CATALOG), true);
   assert.equal(Object.isFrozen(BORG_BRAID_RECORD_CATALOG.entries), true);
-  assert.equal(BORG_BRAID_RECORD_CATALOG.entries.length, 2);
+  assert.equal(BORG_BRAID_RECORD_CATALOG.entries.length, 3);
   assert.deepEqual(
     BORG_BRAID_RECORD_CATALOG.entries.map((entry) => entry.id),
     [
       "illustrative-spindle-chart-hypothesis-v0",
+      "illustrative-extreme-cap-tilt-spindle-variant-v0",
       "illustrative-planar-tri-binary-spindle-boundary-v0",
     ],
   );
@@ -24,6 +25,7 @@ test("Borg braid catalog is immutable record routing data with no geometry or ph
     BORG_BRAID_RECORD_CATALOG.entries.map((entry) => entry.label),
     [
       "Illustrative spindle prescribed geometry",
+      "Spindle variant — extreme cap tilt",
       "Spindle boundary — planar tri-binary",
     ],
   );

@@ -39,6 +39,7 @@ const SAFE_LOG_FIELDS = [
   "response_bytes",
   "snapshot_id",
   "snapshot_sha256",
+  "listen_address",
 ];
 
 export function validateMcpRemoteDeploymentContract({ contract, candidateSnapshot }) {

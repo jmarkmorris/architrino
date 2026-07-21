@@ -77,10 +77,26 @@ When an audit item becomes broad or long-lived, promote it out of this guide int
 | Primary button style | Use dark translucent buttons with a thin cool-gray border, white text/icons, and compact rounded geometry (`6px`-`8px` radius for text buttons, `999px` for pills) | Some animator action pills and `.animator-assembly-menu-orb` controls use brighter gradient/orb treatments than the standard shell buttons |
 | Secondary button style | Reuse the same dark-shell button family for secondary actions, usually at `28px`-`34px` height with lighter emphasis than active toggles | Scene chrome icon buttons are circular `32px` controls rather than text buttons |
 | Icon-only buttons | Use clear semantic line icons in 32px circular shell buttons for Search, Info, Notes, layout toggle, and full-document open | `#animator-docs-button` uses an emoji book icon, element navigation uses triangle glyphs instead of line SVG icons |
+| Transport controls | Use the shared 24x24 monoline SVG set for `Play`, `Pause`, `First frame`, `Rewind`, `Reset`, and `Stop`. Render at 18x18 with `currentColor`, a 2px stroke, rounded caps and joins, and no text glyphs or app-local path variants. |  |
 | Hover treatment | Brighten the border and deepen the background on hover/focus; some pill/key controls also lift slightly | Hyde navigation keys and legend pills add translation/lift effects, unlike most shell buttons |
 | Active/pressed treatment | Use `.is-active` plus stronger accent border/fill, and pair stateful toggles with `aria-pressed` where applicable | Some buttons only change hover state and never expose a pressed state |
 | Disabled treatment | Dim unavailable controls with reduced opacity and a non-interactive cursor | Disabled opacity varies by control family: `0.28`, `0.4`, and `0.5` are all in use |
 | Focus-visible treatment | Prefer visible keyboard focus through brighter borders on buttons and `1px`-`2px` outlines on nav controls and form fields | Some button families rely on border-color change only, while inputs/selects and nav controls use explicit outlines |
+
+### Transport Controls
+
+Transport controls use the shared implementation in `src/runtime/TransportControlIcons.js`. Apps may choose an icon-only shell or pair the icon with a visible label, but they must not redraw these symbols in local SVG, CSS pseudo-elements, Unicode characters, or text approximations.
+
+| Control | Canonical meaning | Icon construction |
+| --- | --- | --- |
+| `Play` | Start or resume movement from the current playhead. | Right-pointing triangle. |
+| `Pause` | Hold the current playhead without returning it to the beginning. | Two independent vertical strokes. |
+| `First frame` | Move to the earliest available frame and remain paused. | Vertical start bar with a left-pointing triangle. |
+| `Rewind` | Move backward through available frames without implying a full state reset. | Two left-pointing triangles. |
+| `Reset` | Restore the named simulation or replay scope to its defined initial state, such as `Reset time`; do not imply that unrelated parameters also reset. | Counterclockwise circular arrow. |
+| `Stop` | End the active run or playback operation; use only when the app supports a state distinct from Pause. | Square. |
+
+A fixed-location Play/Pause toggle shows the action that clicking will perform: `Pause` while movement is active and `Play` while movement is held. Its `aria-label`, `title`, icon, and `aria-pressed` state update together; `aria-pressed="true"` means playback is active. `First frame`, `Reset`, and `Stop` are not interchangeable: use the control whose behavior matches the definitions above.
 
 ## Panels, Overlays, and Menus
 

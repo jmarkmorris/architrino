@@ -126,4 +126,4 @@ The local V1 implementation is not accepted if:
 
 ## Remaining Boundary
 
-Remote transport, authentication, rate limiting, safe logging, health checks, rollback publication, and hosting are a separate deployment campaign. Direct ChatGPT desktop use of the full-corpus launcher would require a persistent connection change or an equivalent UI configuration and therefore remains unmeasured pending operator approval.
+The [Loopback Streamable HTTP Adapter](loopback-streamable-http-adapter.md) now exercises the full-corpus snapshot through local HTTP, fixture authorization, limits, safe events, health, and rollback mechanics. Named Codex and ChatGPT HTTP conformance, real OAuth, accepted-`main` publication, a separately published rollback snapshot, TLS ingress, hosting, and public deployment remain separate campaigns. Direct ChatGPT desktop use still requires a supported connection surface and operator approval before any persistent configuration change.
