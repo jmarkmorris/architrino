@@ -31,8 +31,8 @@ The taxonomy remains compact. A family document explains inherited geometry once
 | `noether-braid.md` | Neutral six-architrino scaffold and scene orientation | Remain in `noether-braid.md` | Retain as the hub; replace the old family ladder with the A/B/C map only after the family documents exist. |
 | `braid-families.md` | Neutral-braid base inventory | `noether-braid.md` and `braid-taxonomy.md` | Consolidate the minimum inventory definition; do not repeat its channel analysis in the taxonomy. |
 | `braid-families.md` | “Symmetric Shell Braid,” “One-Band Family,” and “Symmetric Member” | `braid-family-a.md`, member A2 | Migrated. The durable equal-geometry, equal-frequency, threefold-symmetry content is in A2 coordinates; the prior definition block was deleted. |
-| `braid-families.md` | A2 isolated-release and return-response material | `braid-family-a.md`, A2 retention subsection; shared certificate details remain in `braid-recovery-requirements.md` | Preserve the negative/result scope and separate geometry from retention. |
-| `braid-families.md` | A2 sea-embedding material | A2 family subsection or the owning Noether sea chapter | Route only member-specific response claims to Family A; keep population-selection burdens with the Noether sea. |
+| `braid-families.md` | A2 isolated-release and return-response material | `braid-family-a.md`, A2 retention subsection; shared certificate details remain in `braid-recovery-requirements.md` | Migrated with the equivariance theorem, recovery residual, conditional no-return certificate, and open evolution scope preserved. |
+| `braid-families.md` | A2 sea-embedding material | `braid-family-a.md`, A2 retention subsection | Migrated as an open member-specific environmental return-response route; population-selection burdens remain with the Noether sea. |
 | `braid-families.md` | Accessory dressing and apparent-energy interpretations | Downstream assembly and mass-map documents | Do not make these properties part of A2's geometric definition. |
 | `braid-families.md` | “Nested Shell Braid,” its relation to the symmetric member, and its ordered-radius/frequency descriptions | `braid-family-a.md`, A1 and A1.x subsections | Migrated. The durable three-radius, hinge, frequency-variant, and symmetry-boundary content is in A1 coordinates; the prior definition block was deleted. |
 | `braid-families.md` | Integer phase-closure states | A1 family subsection, with member-specific details routed to A1.3 or A1.4 | Preserve the distinction between exact periodicity and dynamical selection. |
@@ -72,7 +72,7 @@ The smallest useful first merge is Family A definition material only:
 - durable symmetry statements from the old symmetric-member section;
 - no retention, Noether sea selection, particle-generation, or mass-map claims.
 
-This batch produced one self-contained `braid-family-a.md`. After the destination and inbound links were established, the migrated definition blocks were deleted from `braid-families.md`; its retained A1/A2 dynamics and interpretation material remains for separate adjudication.
+This batch produced one self-contained `braid-family-a.md`. After the destination and inbound links were established, the migrated definition blocks were deleted from `braid-families.md`; its A1 dynamics, accessory dressing, and other unassigned interpretation material remain for separate adjudication.
 
 ## Second Review Batch
 
@@ -103,3 +103,15 @@ The Family-C definition-only batch produced one self-contained `braid-family-c.m
 - an explicit boundary between the generic C2 chart and photon-specific planarization, coaxiality, polarity conjugation, propagation, and closure claims.
 
 The photon, neutrino, and meson sources were audited. No generic Family-C definition block was deleted from them: their two-braid passages carry physical component or channel claims that are not encoded by C1 or C2. The photon chapter now links its nearest generic C2 coordinate chart while retaining all photon-specific geometry and closure obligations. Neutrino and meson mappings remain unassigned because their B1 component membership and relative-configuration rows have not been established.
+
+## Fourth Review Batch
+
+The first post-definition batch moved the A2-specific retention unit into `braid-family-a.md`:
+
+- the near-antipodality residual and contraction target;
+- the established invariant-channel scope and open dynamical-fate scope;
+- the conditional no-return bound $\ddot R\ge -K/R^2$ with escape margin $\dot R^2>2K/R$;
+- the resulting absorber target at the field-speed threshold;
+- the open like-assembly Noether sea response route.
+
+The migrated block was deleted from `braid-families.md`, and its live incoming links were redirected to the A2 owner. Accessory dressing stayed in `braid-families.md` because it is an assembly-interpretation hypothesis rather than an A2 retention result. Its incoming labels were updated without changing its claim grade.

@@ -41,11 +41,11 @@ It does not carry the detailed family derivations, select a frequency family, as
 | --- | --- | --- |
 | Requirements | [Braid Recovery Requirements](braid-recovery-requirements.md) | The realization-independent retention-certificate shape, its base-family instantiation, proof-burden order, and recovery-target inventory. |
 | Taxonomy | [Braid Taxonomy](braid-taxonomy.md) | The canonical coordinates, family/member identifiers, master tables, and prescribed response endpoints. |
-| Family definition | [Braid Family A](braid-family-a.md) | The shared Family-A geometry, A1 variants, A2 symmetry, and the boundary between A1.2 and A2. |
+| Family definition and member analysis | [Braid Family A](braid-family-a.md) | The shared Family-A geometry, A1 variants, A2 symmetry, the A1.2/A2 boundary, and A2 retention diagnostics. |
 | Family definition | [Braid Family B](braid-family-b.md) | The exact B1 path geometry, coordinate boundaries, axial-translation specialization, and Family-A boundary. |
 | Family definition | [Braid Family C](braid-family-c.md) | The exact two-B1 composition chart, C1/C2 circulation relation, derived axis offset, and physical-mapping boundary. |
 | Configuration space | [Noether Braid Configuration Space](noether-braid-configuration-space.md) | The classification axes, evidence-level terms, and the rank-three angular-momentum-frame search variables. |
-| Retention and interpretation | [Neutral-Braid Retention and Interpretation](braid-families.md) | The base neutral braid, A1/A2 retention questions, closure labels, dynamics, dressing, and downstream hypotheses not yet assigned to specialist member documents. |
+| Retention and interpretation | [Neutral-Braid Retention and Interpretation](braid-families.md) | The base neutral braid, A1 retention questions, closure labels, dynamics, dressing, and downstream hypotheses not yet assigned to specialist member documents. |
 | Mathematics | [Braid Mathematics](braid-mathematics.md) | The core-agnostic machinery: invariant channels and equivariant reductions, exact channel identities, the exact speed budget, eigen-braid spectrum framing, fold-set action quantization as hypothesis, and the Thomson dressing mechanism. |
 | Analysis | [Doubling-Frequency Resonance Lock](doubling-frequency-lock.md) | The A1.3 `4:2:1` candidate and its lock analysis. |
 | Export | [Braid Envelope Geometry](braid-envelope-geometry.md) | The family-general envelope and observer-export interface: dynamic exclusion envelope, sea-interface diagnostic, canonical geometry variables, and the Lorentz projection. |
