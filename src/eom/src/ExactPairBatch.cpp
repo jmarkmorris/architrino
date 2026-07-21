@@ -1621,7 +1621,6 @@ MpVector mp_divide_vector(const MpVector& value, const MpInterval& divisor) {
 // derivative coefficients use the same directed interval operations as the
 // former per-evaluation path; compiling them only changes when that work runs.
 struct MpCompiledSegment {
-  const CubicHistorySegment* source;
   MpInterval start_time;
   MpInterval end_time;
   std::array<std::array<MpInterval, 4>, 3> position_coefficients;
@@ -1671,7 +1670,6 @@ MpCompiledSegment mp_compile_segment(
       mp_compile_velocity_axis(position_coefficients[2], two, three),
   };
   return {
-      .source = &segment,
       .start_time = MpInterval::decimal(segment.t_start_token(), bits),
       .end_time = MpInterval::decimal(segment.t_end_token(), bits),
       .position_coefficients = std::move(position_coefficients),

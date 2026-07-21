@@ -1,19 +1,19 @@
-# Assembly Viewer — Requirements Sketch
+# Assembly Viewer — Requirements
 
-Status: operator-ratified capture (2026-07-16); requirements sketch owned by the Borg app lane, not an implementation license. The Braid Program instrument gate has adopted the record schema below and remains its source of truth.
+Status: operator-ratified requirements owned by the Borg app lane. The Braid Program instrument gate has adopted the record schema below and remains its source of truth. The record-only core is implemented; full packet closure is blocked on the schema carriers listed below and remains open in [priorities.md](priorities.md).
 
 ## Purpose
 
-A 3D Borg capability for looking at the assemblies the Braid Program models and the emergent assemblies its evolutions produce. Two first-class uses: (1) **chart pose** — render a proposed configuration from the configuration chart, with its ansatz orbital curves and overlays, clearly labeled hypothesis; (2) **evolved record** — render the output of an EOM campaign run, clearly labeled evolved, including side-by-side or overlaid seed comparisons for the collapse protocol.
+A 3D Borg capability for looking at the assemblies the Braid Program models and the emergent assemblies its evolutions produce inside Borg's spherical simulation envelope. Two first-class uses: (1) **chart pose** — render a proposed configuration from the configuration chart, with its ansatz orbital curves and overlays, clearly labeled hypothesis; (2) **evolved record** — render the output of an EOM campaign run, clearly labeled evolved, including side-by-side or overlaid seed comparisons for the collapse protocol.
 
 ## The Viewer-Not-Instrument Rule (non-negotiable)
 
 The viewer computes no physics: no accelerations, no causal roots, no evolution, no residuals. It draws recorded data only. Every scene shows a provenance banner — engine, run id, claim grade (`chart-hypothesis` or `evolved-record`), and instrument references. Rationale: the legacy failure mode was app-facing paths quietly computing non-canonical physics under production labels; a pure viewer cannot launder a claim. Any derived display quantity (speed color, trail depth) is evaluated only from the record's declared interpolation and metadata by declared display arithmetic, never by re-running dynamics.
 
-## Assembly View Record (schema v0 — finalized in [instrument-gate.md](../braid-program/campaigns/instrument-gate.md) §4, which is the source of truth; the sketch below is the ratified requirements baseline)
+## Assembly View Record (schema v0 — finalized in [instrument-gate.md](../braid-program/campaigns/instrument-gate.md) §4, which is the source of truth; the summary below is the ratified requirements baseline)
 
 - `schema`: `assembly-view-record.v0`.
-- `provenance`: engine id and version; run id; claim grade (`chart-hypothesis` | `evolved-record`); generating spec/campaign reference; date.
+- `provenance`: engine id and version; run id; claim grade (`chart-hypothesis` | `evolved-record`); generating spec/campaign reference; date. `prescribed-geometry` is limited to `chart-hypothesis` / `display-only` records and must declare that no physics was invoked.
 - `window`: start time, end time, delay horizon $h$, sample interval.
 - `worldlines[]`: id; polarity ($\epsilon_+$/$\epsilon_-$); coverage; declared interpolation; authoritative retained `segments[]` for animation and booking; optional display-only samples of $(t, \mathbf x)$ and $\mathbf v$. In an `evolved-record`, the segments are the EOM solver's exact retained-history tokens; a segments-free worldline fails closed.
 - `binaries[]` (optional metadata): member worldline ids; frequency; plane orientation; planar offset / separation; phase.
@@ -32,10 +32,44 @@ Borg has two adjacent capabilities with different authority boundaries:
 
 The mode switch must be visible. Run controls are disabled in assembly-view replay, and replay controls do not mutate the simulation workspace's initial conditions or solver envelope.
 
+## Current Borg Integration Architecture
+
+Assembly-view replay extends the canonical Borg path rather than creating a second viewer runtime:
+
+- `src/apps/borg/BorgBootstrap.js` owns startup-mode selection. `borg.html?eomRecord=<url>` selects the `eom-record-replay` runtime mode, fetches each independently declared direct-record URL in source order, and mounts Borg without constructing the live EOM client.
+- `src/apps/borg/BorgBraidRecordCatalog.js` owns the immutable built-in braid navigation list. An entry contains only stable id, operator label, and sealed-record URL. It contains no geometry, physics, claim, or provenance fields; selecting an entry delegates to the existing bootstrap URL route.
+- `src/apps/shared/EomHistoryDataset.mjs` owns fail-closed record ingestion and evaluation of each record's declared interpolation. It remains the shared data adapter rather than moving schema logic into Borg.
+- `src/apps/borg/BorgEomRecordReplayRunner.js` adapts the sealed record to Borg's chunked rendering interface. It clamps playback to recorded coverage, carries source provenance, and never evolves or extends the record.
+- `src/apps/borg/BorgAppRuntime.js` owns the common scene, playback controls, layers, diagnostics, and display policy. Replay-specific UI must integrate through focused modules and thin composition-root wiring rather than duplicating the Borg runtime.
+- `src/apps/borg/BorgAppManifest.js` owns the simulation-envelope and app-surface policy. Assembly-view replay may present record-carried values, but it does not mutate that policy or use it to upgrade record authority.
+
+The simulation workspace may request EOM solver execution through the existing Borg EOM client only after explicit Start. The browser does not implement a second evolution law. Assembly-view replay does not construct or call that client at all.
+
+## Implemented Record-Only Core And Contract Blockers
+
+The implemented Borg path provides the visible mode boundary, catalog-backed prescribed-geometry selector, persistent provenance, strict record validation, retained-segment animation through exactly the declared delay horizon $h$ for evolved records, source-defined whole-period trail depth for prescribed charts, coverage-clamped playback and scrubbing, chart pose, source-carried light-purple ansatz curves, source-carried per-binary axis guides, co-rotating camera, display-only swept envelope, static image export, a disabled animation-export placeholder, raw source-order navigation, source-only filters, and optional source-carried $S_3$ grouping. Pressing Play from chart pose enters recorded-path playback before starting the timeline. The initial catalog entry is the source-defined illustrative spindle prescribed geometry. Its recorded-path playback animates the prescribed analytical geometry, shows one complete rotation of trail, and does not represent simulated evolution. `BorgAssemblyViewSession.js`, `BorgAssemblyViewControls.js`, and `BorgAssemblyViewScene.js` keep those policies focused while `BorgAppRuntime.js` remains the common scene and playback owner.
+
+The following requirements remain fail-closed because `assembly-view-record.v0` does not ratify the required carrier:
+
+- Synchronized compatible-record comparison needs declared time-transform and unit-transform fields. Borg accepts no guessed identity transform and performs no silent rescaling.
+- External multi-record collection intake needs a ratified packet or manifest carrier. Repeated direct `eomRecord` URLs exercise the in-memory collection model without defining a new packet schema; local-file and packet intake remain part of the deferred general import workflow.
+- Speed relative to $c_f$ needs a required source-carried field-speed value. Source-declared crossing events may be shown, but Borg does not derive a speed regime without that carrier.
+- Spin and polarity-dipole glyphs need ratified vector fields. Borg shows them as unavailable rather than assigning meaning to unrelated metadata.
+
+These missing-contract states are viewer limitations, not record failures. The instrument gate remains the only authority that can add the carriers.
+
+## Spherical Envelope Visual Contract
+
+The current Borg viewport renders exactly one bright light-gray dotted outer boundary shell. It does not render cubic walls, face boundaries, great-circle guides, a second central-ball sphere, continuous `LineLoop` guides, panels, or filled boundary-shell patches. Assembly-view work must preserve that geometry unless the operator explicitly changes the Borg surface design.
+
+The existing layer id `simulation-window` is a compatibility identifier. End-user labels and new prose call the geometry the **spherical simulation envelope** or **outer boundary shell**. `centralBall` and `centralBallRadius` remain dataset and diagnostic concepts, but the current viewport does not render a central-ball guide.
+
 ## Dataset Intake And Collection Navigation
 
 Collection navigation preserves configuration-space identity without importing app-side analysis into replay authority:
 
+- Keep prescribed geometry separate from random live initial conditions. The simulation workspace exposes `Open prescribed geometry workspace`, which navigates through `borg.html?eomRecord=<encoded-url>`; the catalog never supplies record contents or live-run initial conditions.
+- Treat every parameter variation as a separate source specification and sealed raw record. Radius or other member variations may be added to the catalog only after their labels, layer mapping, and complete source parameters are explicit; Borg does not generate a new geometry from browser-side controls.
 - Load one record directly, then add local-file and manifest/packet intake for collections of records when Borg's deferred import workflow opens.
 - Preserve source ids, source order, and raw record access. The viewer must not silently sort or relabel worldlines, binaries, branches, or layers.
 - For tri-binary configuration-search collections, preserve `unquotiented-labeled` rows. An optional $S_3$-equivalence grouping may reduce navigation clutter only when the source carries a permutation-canonical key; grouping hides no underlying record and never changes the selected raw record.
@@ -45,22 +79,21 @@ Collection navigation preserves configuration-space identity without importing a
 
 ## Display Modes
 
-1. **Animated core** (default): playback with scrub, slow-motion, loop-one-period; each architrino drawn with a retained-history trail of depth exactly $h$ — in a delay system the state is the history, so the honest state display is position plus that trail.
+1. **Recorded-path playback**: playback with scrub and slow-motion. An `evolved-record` draws retained EOM history through source-declared depth $h$; a prescribed `chart-hypothesis` draws only its declared display path through its source-defined positive whole number of periods. A prescribed trail is not simulation evidence.
 2. **Chart pose**: static hypothesis rendering with ansatz curves and overlays.
 3. **Co-rotating / screw-frame camera**: in the right frame a rigid candidate is a still image, so any motion in that frame is the residual made visible — "is it holding?" becomes "does the picture move?"
-4. **Strobe**: sample playback at a chosen frequency; the binary matching it freezes — visual frequency measurement.
-5. **Envelope**: display-only time-averaged swept envelope (fusiform, oblate, or emergent shape) evaluated from the record's declared interpolation.
-6. **Comparison**: two or more records side-by-side or overlaid with synchronized time — the collapse-protocol view.
-7. **Export**: static images for corpus figures.
+4. **Envelope**: display-only time-averaged swept envelope (fusiform, oblate, or emergent shape) evaluated from the record's declared interpolation.
+5. **Comparison**: two or more records side-by-side or overlaid with synchronized time — the collapse-protocol view.
+6. **Export**: static images for corpus figures; animation export remains visibly unavailable until its encoding and file contract are implemented.
 
 ## Overlays
 
 Polarity coloring; speed color-mapped against $c_f$ with explicit field-speed-crossing markers; per-binary frequency labels; planar-offset separation; spin and polarity-dipole glyphs with the $\chi=\operatorname{sign}(\mathbf p\cdot\mathbf S)$ sign where the record's metadata supports them; event markers from the record's event list; and source-carried branch, eigen-braid, axis-alignment, topological-charge, or capture status. Overlays render only record-carried or declared-arithmetic display quantities.
 
-## Borg Re-Base
+## Borg Integration Rule
 
-Keep Borg's rendering and UI surface (simulation window, replay, display policy), but give assembly-view replay the record schema above as its only data spine. Prerequisites already satisfied (2026-07-16): the app-borg lane is re-pointed to the EOM engine, and the current initial-condition provenance path reports `canonicalEomEvidence: false`, pinned by Borg tests. Assembly-view replay must still never consume the live bridge directly; it consumes only `assembly-view-record.v0` files.
+Keep Borg's canonical spherical-envelope scene, playback surface, and display policy, while giving assembly-view replay the record schema above as its only data spine. The existing direct-record route is the first replay entry point, not completion of this packet. Assembly-view replay must never consume the live EOM bridge directly; it consumes only `assembly-view-record.v0` files through the shared adapter and record replay runner.
 
 ## Non-Goals (v0)
 
-No physics inside assembly-view replay; no live engine coupling from replay; no editing of records; no viewer-authored branch diagnostics; no authority — nothing rendered here is evidence, and the banner says so. Borg's separate simulation workspace may invoke the EOM solver, but that capability does not weaken these replay-mode non-goals.
+No physics inside assembly-view replay; no live engine coupling from replay; no editing of records; no viewer-authored branch diagnostics; and no authority upgrade. A source record may carry booked evidence, but rendering it creates no new evidence and cannot strengthen its claim grade. The provenance banner says so. Borg's separate simulation workspace may request an EOM solver run, but that capability does not weaken these replay-mode non-goals.

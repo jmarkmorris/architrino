@@ -43,6 +43,21 @@ export function convertBorgTrajectoryToAssemblyViewRecord(trajectory, options = 
   if (runId.length === 0) {
     throw new TypeError("converter requires the replay to carry a runId.");
   }
+  const engineVersion = requiredConcreteString(
+    options.engineVersion ?? trajectory.engineVersion ?? trajectory.engineBuildId,
+    "engineVersion",
+  );
+  const generatingSpec = requiredConcreteString(
+    options.generatingSpec ?? trajectory.generatingSpec,
+    "generatingSpec",
+  );
+  const delayHorizon = requiredFiniteNumber(
+    options.delayHorizon ?? trajectory.historyDepth,
+    "delayHorizon",
+  );
+  if (delayHorizon < 0) {
+    throw new TypeError("converter delayHorizon must be nonnegative.");
+  }
   const byPathKey = new Map();
   rows.forEach((row) => {
     const pathKey = Number(row.pathKey);
@@ -59,11 +74,11 @@ export function convertBorgTrajectoryToAssemblyViewRecord(trajectory, options = 
     schema: ASSEMBLY_VIEW_RECORD_SCHEMA,
     provenance: {
       engineId: options.engineId ?? "eom-solver",
-      engineVersion: options.engineVersion ?? null,
+      engineVersion,
       runId,
       claimGrade: "chart-hypothesis",
       evidenceStatus: "display-only",
-      generatingSpec: options.generatingSpec ?? null,
+      generatingSpec,
       date: options.date ?? new Date().toISOString().slice(0, 10),
       conversion: {
         converter: ASSEMBLY_VIEW_CONVERTER_ID,
@@ -77,8 +92,8 @@ export function convertBorgTrajectoryToAssemblyViewRecord(trajectory, options = 
     window: {
       start,
       end,
-      delayHorizon: finiteOrNull(options.delayHorizon),
-      sampleInterval: finiteOrNull(trajectory.sampleInterval),
+      delayHorizon,
+      sampleInterval: requiredFiniteNumber(trajectory.sampleInterval, "sampleInterval"),
     },
     worldlines,
     binaries: [],
@@ -163,6 +178,13 @@ function requiredFiniteNumber(value, label) {
     throw new TypeError(`converter ${label} must be finite.`);
   }
   return number;
+}
+
+function requiredConcreteString(value, label) {
+  if (typeof value !== "string" || value.trim().length === 0 || value === "unspecified") {
+    throw new TypeError(`converter requires a concrete ${label}.`);
+  }
+  return value;
 }
 
 function finiteOrNull(value) {

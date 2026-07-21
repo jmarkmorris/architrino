@@ -5,7 +5,12 @@
   "oneOf": [
     { "$ref": "#/$defs/answerArtifactManifest" },
     { "$ref": "#/$defs/answerRequest" },
+    { "$ref": "#/$defs/sourceIndexBuildInput" },
     { "$ref": "#/$defs/sourceIndexSnapshot" },
+    { "$ref": "#/$defs/sourceIndexNegativeSuite" },
+    { "$ref": "#/$defs/mcpToolContractSuite" },
+    { "$ref": "#/$defs/mcpToolNegativeSuite" },
+    { "$ref": "#/$defs/mcpStdioSmoke" },
     { "$ref": "#/$defs/sourceIndexDryRun" },
     { "$ref": "#/$defs/serviceValidationPlan" },
     { "$ref": "#/$defs/endpointResponseContracts" },
@@ -1584,23 +1589,306 @@
         "action": { "$ref": "#/$defs/actionPreflightCore" }
       }
     },
+    "sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "sourceIndexInputRecord": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "sourceId",
+        "title",
+        "route",
+        "sourcePath",
+        "sectionAnchor",
+        "sourceClass",
+        "authorityStatus",
+        "visibility",
+        "canonicalParent",
+        "claimLabelFloor",
+        "aliases",
+        "keywords"
+      ],
+      "properties": {
+        "sourceId": { "type": "string", "minLength": 1 },
+        "title": { "type": "string", "minLength": 1 },
+        "route": { "type": "string", "minLength": 1 },
+        "sourcePath": { "type": "string", "minLength": 1 },
+        "sectionAnchor": { "type": ["string", "null"] },
+        "sourceClass": { "$ref": "#/$defs/sourceClass" },
+        "authorityStatus": {
+          "type": "string",
+          "enum": ["primary", "routing_only", "diagnostic", "priority_only", "comparison_only", "excluded", "unsupported"]
+        },
+        "visibility": {
+          "type": "string",
+          "enum": ["public", "development_status", "operator_developer", "external_curated", "excluded"]
+        },
+        "canonicalParent": { "type": ["string", "null"] },
+        "claimLabelFloor": { "$ref": "#/$defs/claimLabel" },
+        "aliases": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "keywords": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "sourceIndexGraphEdgeInput": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["edgeId", "from", "to", "edgeType", "evidenceSourceId"],
+      "properties": {
+        "edgeId": { "type": "string", "minLength": 1 },
+        "from": { "type": "string", "minLength": 1 },
+        "to": { "type": "string", "minLength": 1 },
+        "edgeType": {
+          "type": "string",
+          "enum": ["routes_to", "mirrors", "related", "prerequisite", "contains", "depends_on"]
+        },
+        "evidenceSourceId": { "type": "string", "minLength": 1 }
+      }
+    },
+    "sourceIndexMetadataInput": {
+      "oneOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["metadataId", "kind", "sourceId", "tex"],
+          "properties": {
+            "metadataId": { "type": "string", "minLength": 1 },
+            "kind": { "const": "equation" },
+            "sourceId": { "type": "string", "minLength": 1 },
+            "tex": { "type": "string", "minLength": 1 }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["metadataId", "kind", "sourceId", "assetPath", "altText"],
+          "properties": {
+            "metadataId": { "type": "string", "minLength": 1 },
+            "kind": { "const": "figure" },
+            "sourceId": { "type": "string", "minLength": 1 },
+            "assetPath": { "type": "string", "minLength": 1 },
+            "altText": { "type": "string", "minLength": 1 }
+          }
+        }
+      ]
+    },
+    "sourceIndexBuildInput": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema",
+        "snapshotId",
+        "repositoryRef",
+        "generatedArtifactRefs",
+        "visibilityPolicyVersion",
+        "freshnessState",
+        "rollbackParent",
+        "sourceRecords",
+        "graphEdges",
+        "metadataRecords"
+      ],
+      "properties": {
+        "schema": { "const": "archie-source-index-build-input/v1" },
+        "snapshotId": { "type": "string", "minLength": 1 },
+        "repositoryRef": { "type": "string", "minLength": 1 },
+        "generatedArtifactRefs": { "$ref": "#/$defs/sourceIndexGeneratedArtifactRefs" },
+        "visibilityPolicyVersion": { "type": "string", "minLength": 1 },
+        "freshnessState": {
+          "type": "string",
+          "enum": ["fresh", "stale", "degraded", "unavailable", "rollback_snapshot"]
+        },
+        "rollbackParent": { "type": ["string", "null"] },
+        "sourceRecords": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/sourceIndexInputRecord" }
+        },
+        "graphEdges": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/sourceIndexGraphEdgeInput" }
+        },
+        "metadataRecords": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/sourceIndexMetadataInput" }
+        }
+      }
+    },
+    "sourceIndexGeneratedArtifactRefs": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["sceneGraph", "markdownIndex", "readingCopies", "textbookToc"],
+      "properties": {
+        "sceneGraph": { "type": "string", "minLength": 1 },
+        "markdownIndex": { "type": "string", "minLength": 1 },
+        "readingCopies": { "type": "string", "minLength": 1 },
+        "textbookToc": { "type": "string", "minLength": 1 }
+      }
+    },
+    "sourceIndexSourceInput": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["sourceId", "sourcePath", "sectionAnchor", "sourceContentSha256", "selectionSha256"],
+      "properties": {
+        "sourceId": { "type": "string", "minLength": 1 },
+        "sourcePath": { "type": "string", "minLength": 1 },
+        "sectionAnchor": { "type": ["string", "null"] },
+        "sourceContentSha256": { "$ref": "#/$defs/sha256" },
+        "selectionSha256": { "$ref": "#/$defs/sha256" }
+      }
+    },
+    "sourceIndexContentRecord": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["sourceId", "contentType", "content", "selectionSha256"],
+      "properties": {
+        "sourceId": { "type": "string", "minLength": 1 },
+        "contentType": { "type": "string", "enum": ["markdown", "json", "text"] },
+        "content": { "type": "string" },
+        "selectionSha256": { "$ref": "#/$defs/sha256" }
+      }
+    },
+    "sourceIndexSearchRecord": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "sourceId",
+        "title",
+        "route",
+        "sectionAnchor",
+        "sourceClass",
+        "authorityStatus",
+        "visibility",
+        "canonicalParent",
+        "claimLabelFloor",
+        "aliases",
+        "keywords",
+        "sourceContentSha256",
+        "selectionSha256",
+        "searchText",
+        "publicEligible"
+      ],
+      "properties": {
+        "sourceId": { "type": "string", "minLength": 1 },
+        "title": { "type": "string", "minLength": 1 },
+        "route": { "type": "string", "minLength": 1 },
+        "sectionAnchor": { "type": ["string", "null"] },
+        "sourceClass": { "$ref": "#/$defs/sourceClass" },
+        "authorityStatus": {
+          "type": "string",
+          "enum": ["primary", "routing_only", "diagnostic", "priority_only", "comparison_only", "excluded", "unsupported"]
+        },
+        "visibility": {
+          "type": "string",
+          "enum": ["public", "development_status", "operator_developer", "external_curated", "excluded"]
+        },
+        "canonicalParent": { "type": ["string", "null"] },
+        "claimLabelFloor": { "$ref": "#/$defs/claimLabel" },
+        "aliases": { "type": "array", "items": { "type": "string", "minLength": 1 } },
+        "keywords": { "type": "array", "items": { "type": "string", "minLength": 1 } },
+        "sourceContentSha256": { "$ref": "#/$defs/sha256" },
+        "selectionSha256": { "$ref": "#/$defs/sha256" },
+        "searchText": { "type": "string", "minLength": 1 },
+        "publicEligible": { "type": "boolean" }
+      }
+    },
+    "sourceIndexGraphNode": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["sourceId", "title", "route", "sourceClass", "authorityStatus", "visibility", "canonicalParent"],
+      "properties": {
+        "sourceId": { "type": "string", "minLength": 1 },
+        "title": { "type": "string", "minLength": 1 },
+        "route": { "type": "string", "minLength": 1 },
+        "sourceClass": { "$ref": "#/$defs/sourceClass" },
+        "authorityStatus": { "type": "string", "minLength": 1 },
+        "visibility": { "type": "string", "minLength": 1 },
+        "canonicalParent": { "type": ["string", "null"] }
+      }
+    },
+    "sourceIndexEquationRecord": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["metadataId", "kind", "sourceId", "route", "sourceSelectionSha256", "tex", "texSha256"],
+      "properties": {
+        "metadataId": { "type": "string", "minLength": 1 },
+        "kind": { "const": "equation" },
+        "sourceId": { "type": "string", "minLength": 1 },
+        "route": { "type": "string", "minLength": 1 },
+        "sourceSelectionSha256": { "$ref": "#/$defs/sha256" },
+        "tex": { "type": "string", "minLength": 1 },
+        "texSha256": { "$ref": "#/$defs/sha256" }
+      }
+    },
+    "sourceIndexFigureRecord": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["metadataId", "kind", "sourceId", "route", "sourceSelectionSha256", "assetPath", "assetSha256", "altText"],
+      "properties": {
+        "metadataId": { "type": "string", "minLength": 1 },
+        "kind": { "const": "figure" },
+        "sourceId": { "type": "string", "minLength": 1 },
+        "route": { "type": "string", "minLength": 1 },
+        "sourceSelectionSha256": { "$ref": "#/$defs/sha256" },
+        "assetPath": { "type": "string", "minLength": 1 },
+        "assetSha256": { "$ref": "#/$defs/sha256" },
+        "altText": { "type": "string", "minLength": 1 }
+      }
+    },
     "sourceIndexSnapshot": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["schema", "snapshotId", "repositoryRef", "generatedArtifactRefs", "sourceRecordCountByClass", "visibilityPolicyVersion", "freshnessState", "rollbackParent"],
+      "required": [
+        "schema",
+        "snapshotId",
+        "repositoryRef",
+        "schemaVersions",
+        "hashAlgorithm",
+        "normalization",
+        "generatedArtifactRefs",
+        "generatedArtifactDigests",
+        "sourceRecordCountByClass",
+        "visibilityPolicyVersion",
+        "freshnessState",
+        "rollbackParent",
+        "sourceInputs",
+        "views",
+        "snapshotSha256"
+      ],
       "properties": {
         "schema": { "const": "archie-source-index-snapshot/v1" },
         "snapshotId": { "type": "string", "minLength": 1 },
         "repositoryRef": { "type": "string", "minLength": 1 },
-        "generatedArtifactRefs": {
+        "schemaVersions": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["snapshot", "content", "search", "graph", "metadata"],
+          "properties": {
+            "snapshot": { "const": "archie-source-index-snapshot/v1" },
+            "content": { "const": "archie-source-content-view/v1" },
+            "search": { "const": "archie-source-search-view/v1" },
+            "graph": { "const": "archie-source-graph-view/v1" },
+            "metadata": { "const": "archie-source-metadata-view/v1" }
+          }
+        },
+        "hashAlgorithm": { "const": "sha256" },
+        "normalization": { "const": "canonical-json-v1" },
+        "generatedArtifactRefs": { "$ref": "#/$defs/sourceIndexGeneratedArtifactRefs" },
+        "generatedArtifactDigests": {
           "type": "object",
           "additionalProperties": false,
           "required": ["sceneGraph", "markdownIndex", "readingCopies", "textbookToc"],
           "properties": {
-            "sceneGraph": { "type": "string", "minLength": 1 },
-            "markdownIndex": { "type": "string", "minLength": 1 },
-            "readingCopies": { "type": "string", "minLength": 1 },
-            "textbookToc": { "type": "string", "minLength": 1 }
+            "sceneGraph": { "$ref": "#/$defs/sha256" },
+            "markdownIndex": { "$ref": "#/$defs/sha256" },
+            "readingCopies": { "$ref": "#/$defs/sha256" },
+            "textbookToc": { "$ref": "#/$defs/sha256" }
           }
         },
         "sourceRecordCountByClass": {
@@ -1622,7 +1910,523 @@
           "type": "string",
           "enum": ["fresh", "stale", "degraded", "unavailable", "rollback_snapshot"]
         },
-        "rollbackParent": { "type": ["string", "null"] }
+        "rollbackParent": { "type": ["string", "null"] },
+        "sourceInputs": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/sourceIndexSourceInput" }
+        },
+        "views": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["content", "search", "graph", "metadata"],
+          "properties": {
+            "content": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["schema", "records", "sha256"],
+              "properties": {
+                "schema": { "const": "archie-source-content-view/v1" },
+                "records": {
+                  "type": "array",
+                  "minItems": 1,
+                  "items": { "$ref": "#/$defs/sourceIndexContentRecord" }
+                },
+                "sha256": { "$ref": "#/$defs/sha256" }
+              }
+            },
+            "search": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["schema", "records", "sha256"],
+              "properties": {
+                "schema": { "const": "archie-source-search-view/v1" },
+                "records": {
+                  "type": "array",
+                  "minItems": 1,
+                  "items": { "$ref": "#/$defs/sourceIndexSearchRecord" }
+                },
+                "sha256": { "$ref": "#/$defs/sha256" }
+              }
+            },
+            "graph": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["schema", "nodes", "edges", "sha256"],
+              "properties": {
+                "schema": { "const": "archie-source-graph-view/v1" },
+                "nodes": {
+                  "type": "array",
+                  "minItems": 1,
+                  "items": { "$ref": "#/$defs/sourceIndexGraphNode" }
+                },
+                "edges": {
+                  "type": "array",
+                  "items": { "$ref": "#/$defs/sourceIndexGraphEdgeInput" }
+                },
+                "sha256": { "$ref": "#/$defs/sha256" }
+              }
+            },
+            "metadata": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["schema", "records", "sha256"],
+              "properties": {
+                "schema": { "const": "archie-source-metadata-view/v1" },
+                "records": {
+                  "type": "array",
+                  "items": {
+                    "oneOf": [
+                      { "$ref": "#/$defs/sourceIndexEquationRecord" },
+                      { "$ref": "#/$defs/sourceIndexFigureRecord" }
+                    ]
+                  }
+                },
+                "sha256": { "$ref": "#/$defs/sha256" }
+              }
+            }
+          }
+        },
+        "snapshotSha256": { "$ref": "#/$defs/sha256" }
+      }
+    },
+    "sourceIndexNegativeMutation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["operation", "path", "value"],
+      "properties": {
+        "operation": { "const": "set" },
+        "path": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "anyOf": [
+              { "type": "string", "minLength": 1 },
+              { "type": "integer", "minimum": 0 }
+            ]
+          }
+        },
+        "value": {}
+      }
+    },
+    "sourceIndexNegativeSuite": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema", "suiteId", "cases"],
+      "properties": {
+        "schema": { "const": "archie-source-index-negative-suite/v1" },
+        "suiteId": { "type": "string", "minLength": 1 },
+        "cases": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["caseId", "target", "mutation", "expectedError"],
+            "properties": {
+              "caseId": { "type": "string", "minLength": 1 },
+              "target": { "type": "string", "enum": ["input", "snapshot"] },
+              "mutation": { "$ref": "#/$defs/sourceIndexNegativeMutation" },
+              "expectedError": { "type": "string", "minLength": 1 }
+            }
+          }
+        }
+      }
+    },
+    "mcpVisibilityScope": {
+      "type": "string",
+      "enum": ["public", "operator_developer"]
+    },
+    "mcpFilters": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["sourceClasses", "authorityStatuses"],
+      "properties": {
+        "sourceClasses": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/sourceClass" }
+        },
+        "authorityStatuses": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": ["primary", "routing_only", "diagnostic", "priority_only", "comparison_only", "excluded", "unsupported"]
+          }
+        }
+      }
+    },
+    "mcpSearchArguments": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["query", "filters", "limit", "cursor"],
+      "properties": {
+        "query": { "type": "string", "minLength": 1, "maxLength": 256 },
+        "filters": { "$ref": "#/$defs/mcpFilters" },
+        "limit": { "type": "integer", "minimum": 1, "maximum": 20 },
+        "cursor": { "type": ["string", "null"] }
+      }
+    },
+    "mcpReadArguments": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["topicOrRoute", "sectionAnchor", "maxContentChars", "cursor", "includeMetadata"],
+      "properties": {
+        "topicOrRoute": { "type": "string", "minLength": 1, "maxLength": 512 },
+        "sectionAnchor": { "type": ["string", "null"] },
+        "maxContentChars": { "type": "integer", "minimum": 256, "maximum": 8000 },
+        "cursor": { "type": ["string", "null"] },
+        "includeMetadata": { "type": "boolean" }
+      }
+    },
+    "mcpTopicsArguments": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["filters", "limit", "cursor"],
+      "properties": {
+        "filters": { "$ref": "#/$defs/mcpFilters" },
+        "limit": { "type": "integer", "minimum": 1, "maximum": 20 },
+        "cursor": { "type": ["string", "null"] }
+      }
+    },
+    "mcpNeighborsArguments": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["topicOrRoute", "edgeTypes", "direction", "limit", "cursor"],
+      "properties": {
+        "topicOrRoute": { "type": "string", "minLength": 1, "maxLength": 512 },
+        "edgeTypes": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": ["routes_to", "mirrors", "related", "prerequisite", "contains", "depends_on"]
+          }
+        },
+        "direction": { "type": "string", "enum": ["outgoing", "incoming", "both"] },
+        "limit": { "type": "integer", "minimum": 1, "maximum": 20 },
+        "cursor": { "type": ["string", "null"] }
+      }
+    },
+    "mcpToolRequest": {
+      "oneOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["schema", "requestId", "tool", "snapshotId", "visibilityScope", "arguments"],
+          "properties": {
+            "schema": { "const": "archie-mcp-tool-request/v1" },
+            "requestId": { "type": "string", "minLength": 1 },
+            "tool": { "const": "search" },
+            "snapshotId": { "type": "string", "minLength": 1 },
+            "visibilityScope": { "$ref": "#/$defs/mcpVisibilityScope" },
+            "arguments": { "$ref": "#/$defs/mcpSearchArguments" }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["schema", "requestId", "tool", "snapshotId", "visibilityScope", "arguments"],
+          "properties": {
+            "schema": { "const": "archie-mcp-tool-request/v1" },
+            "requestId": { "type": "string", "minLength": 1 },
+            "tool": { "const": "read" },
+            "snapshotId": { "type": "string", "minLength": 1 },
+            "visibilityScope": { "$ref": "#/$defs/mcpVisibilityScope" },
+            "arguments": { "$ref": "#/$defs/mcpReadArguments" }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["schema", "requestId", "tool", "snapshotId", "visibilityScope", "arguments"],
+          "properties": {
+            "schema": { "const": "archie-mcp-tool-request/v1" },
+            "requestId": { "type": "string", "minLength": 1 },
+            "tool": { "const": "topics" },
+            "snapshotId": { "type": "string", "minLength": 1 },
+            "visibilityScope": { "$ref": "#/$defs/mcpVisibilityScope" },
+            "arguments": { "$ref": "#/$defs/mcpTopicsArguments" }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["schema", "requestId", "tool", "snapshotId", "visibilityScope", "arguments"],
+          "properties": {
+            "schema": { "const": "archie-mcp-tool-request/v1" },
+            "requestId": { "type": "string", "minLength": 1 },
+            "tool": { "const": "neighbors" },
+            "snapshotId": { "type": "string", "minLength": 1 },
+            "visibilityScope": { "$ref": "#/$defs/mcpVisibilityScope" },
+            "arguments": { "$ref": "#/$defs/mcpNeighborsArguments" }
+          }
+        }
+      ]
+    },
+    "mcpSourceChip": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["sourceId", "title", "route", "sectionAnchor", "sourceClass", "authorityStatus", "visibility", "canonicalParent", "claimLabelFloor", "selectionSha256"],
+      "properties": {
+        "sourceId": { "type": "string", "minLength": 1 },
+        "title": { "type": "string", "minLength": 1 },
+        "route": { "type": "string", "minLength": 1 },
+        "sectionAnchor": { "type": ["string", "null"] },
+        "sourceClass": { "$ref": "#/$defs/sourceClass" },
+        "authorityStatus": { "type": "string", "enum": ["primary", "routing_only", "diagnostic", "priority_only", "comparison_only", "excluded", "unsupported"] },
+        "visibility": { "type": "string", "enum": ["public", "development_status", "operator_developer", "external_curated", "excluded"] },
+        "canonicalParent": { "type": ["string", "null"] },
+        "claimLabelFloor": { "$ref": "#/$defs/claimLabel" },
+        "selectionSha256": { "$ref": "#/$defs/sha256" }
+      }
+    },
+    "mcpSnapshotProvenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["snapshotId", "snapshotSha256", "repositoryRef", "visibilityPolicyVersion", "freshnessState"],
+      "properties": {
+        "snapshotId": { "type": "string", "minLength": 1 },
+        "snapshotSha256": { "$ref": "#/$defs/sha256" },
+        "repositoryRef": { "type": "string", "minLength": 1 },
+        "visibilityPolicyVersion": { "type": "string", "minLength": 1 },
+        "freshnessState": { "type": "string", "enum": ["fresh", "stale", "degraded", "unavailable", "rollback_snapshot"] }
+      }
+    },
+    "mcpPage": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["unit", "limit", "returned", "nextCursor", "truncated", "truncationReasons"],
+      "properties": {
+        "unit": { "type": "string", "enum": ["records", "characters"] },
+        "limit": { "type": "integer", "minimum": 1 },
+        "returned": { "type": "integer", "minimum": 0 },
+        "nextCursor": { "type": ["string", "null"] },
+        "truncated": { "type": "boolean" },
+        "truncationReasons": {
+          "type": "array",
+          "items": { "type": "string", "enum": ["record_limit", "content_char_limit", "response_byte_limit"] }
+        }
+      }
+    },
+    "mcpSearchRecord": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["rank", "rankScore", "matchReasons", "source", "teaser"],
+      "properties": {
+        "rank": { "type": "integer", "minimum": 1 },
+        "rankScore": { "type": "integer", "minimum": 1 },
+        "matchReasons": { "type": "array", "minItems": 1, "items": { "type": "string", "minLength": 1 } },
+        "source": { "$ref": "#/$defs/mcpSourceChip" },
+        "teaser": { "type": "string" }
+      }
+    },
+    "mcpSearchResult": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "query", "records"],
+      "properties": {
+        "kind": { "const": "search" },
+        "query": { "type": "string", "minLength": 1 },
+        "records": { "type": "array", "items": { "$ref": "#/$defs/mcpSearchRecord" } }
+      }
+    },
+    "mcpReadResult": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "source", "contentType", "content", "contentOffset", "contentComplete", "metadata"],
+      "properties": {
+        "kind": { "const": "read" },
+        "source": { "$ref": "#/$defs/mcpSourceChip" },
+        "contentType": { "type": "string", "enum": ["markdown", "json", "text"] },
+        "content": { "type": "string" },
+        "contentOffset": { "type": "integer", "minimum": 0 },
+        "contentComplete": { "type": "boolean" },
+        "metadata": {
+          "type": "array",
+          "items": {
+            "oneOf": [
+              { "$ref": "#/$defs/sourceIndexEquationRecord" },
+              { "$ref": "#/$defs/sourceIndexFigureRecord" }
+            ]
+          }
+        }
+      }
+    },
+    "mcpTopicsResult": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "records"],
+      "properties": {
+        "kind": { "const": "topics" },
+        "records": { "type": "array", "items": { "$ref": "#/$defs/mcpSourceChip" } }
+      }
+    },
+    "mcpNeighborRecord": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["edgeId", "edgeType", "direction", "evidenceSourceId", "neighbor"],
+      "properties": {
+        "edgeId": { "type": "string", "minLength": 1 },
+        "edgeType": { "type": "string", "enum": ["routes_to", "mirrors", "related", "prerequisite", "contains", "depends_on"] },
+        "direction": { "type": "string", "enum": ["outgoing", "incoming"] },
+        "evidenceSourceId": { "type": "string", "minLength": 1 },
+        "neighbor": { "$ref": "#/$defs/mcpSourceChip" }
+      }
+    },
+    "mcpNeighborsResult": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "origin", "records"],
+      "properties": {
+        "kind": { "const": "neighbors" },
+        "origin": { "$ref": "#/$defs/mcpSourceChip" },
+        "records": { "type": "array", "items": { "$ref": "#/$defs/mcpNeighborRecord" } }
+      }
+    },
+    "mcpToolError": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["code", "message", "retriable"],
+      "properties": {
+        "code": { "type": "string", "minLength": 1 },
+        "message": { "type": "string", "minLength": 1 },
+        "retriable": { "type": "boolean" }
+      }
+    },
+    "mcpToolResponse": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema", "requestId", "tool", "status", "snapshot", "result", "page", "error"],
+      "properties": {
+        "schema": { "const": "archie-mcp-tool-response/v1" },
+        "requestId": { "type": "string", "minLength": 1 },
+        "tool": { "type": "string", "enum": ["search", "read", "topics", "neighbors"] },
+        "status": {
+          "type": "string",
+          "enum": ["ok", "invalid_request", "invalid_cursor", "not_found", "excluded_visibility", "forbidden_visibility", "incompatible_snapshot", "stale_snapshot", "response_limit_exceeded"]
+        },
+        "snapshot": { "$ref": "#/$defs/mcpSnapshotProvenance" },
+        "result": {
+          "oneOf": [
+            { "type": "null" },
+            { "$ref": "#/$defs/mcpSearchResult" },
+            { "$ref": "#/$defs/mcpReadResult" },
+            { "$ref": "#/$defs/mcpTopicsResult" },
+            { "$ref": "#/$defs/mcpNeighborsResult" }
+          ]
+        },
+        "page": {
+          "oneOf": [
+            { "type": "null" },
+            { "$ref": "#/$defs/mcpPage" }
+          ]
+        },
+        "error": {
+          "oneOf": [
+            { "type": "null" },
+            { "$ref": "#/$defs/mcpToolError" }
+          ]
+        }
+      }
+    },
+    "mcpToolLimits": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["maxQueryChars", "maxIdentifierChars", "maxItems", "minReadContentChars", "maxReadContentChars", "maxResponseBytes"],
+      "properties": {
+        "maxQueryChars": { "const": 256 },
+        "maxIdentifierChars": { "const": 512 },
+        "maxItems": { "const": 20 },
+        "minReadContentChars": { "const": 256 },
+        "maxReadContentChars": { "const": 8000 },
+        "maxResponseBytes": { "const": 32768 }
+      }
+    },
+    "mcpToolContractSuite": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema", "contractId", "snapshotId", "limits", "cases"],
+      "properties": {
+        "schema": { "const": "archie-mcp-tool-contract/v1" },
+        "contractId": { "type": "string", "minLength": 1 },
+        "snapshotId": { "type": "string", "minLength": 1 },
+        "limits": { "$ref": "#/$defs/mcpToolLimits" },
+        "cases": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["caseId", "accessScope", "request", "expectedResponse"],
+            "properties": {
+              "caseId": { "type": "string", "minLength": 1 },
+              "accessScope": { "$ref": "#/$defs/mcpVisibilityScope" },
+              "request": { "$ref": "#/$defs/mcpToolRequest" },
+              "expectedResponse": { "$ref": "#/$defs/mcpToolResponse" }
+            }
+          }
+        }
+      }
+    },
+    "mcpNullableMutation": {
+      "oneOf": [
+        { "type": "null" },
+        { "$ref": "#/$defs/sourceIndexNegativeMutation" }
+      ]
+    },
+    "mcpToolNegativeSuite": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema", "suiteId", "cases"],
+      "properties": {
+        "schema": { "const": "archie-mcp-tool-negative-suite/v1" },
+        "suiteId": { "type": "string", "minLength": 1 },
+        "cases": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["caseId", "baseCaseId", "accessScope", "requestMutation", "snapshotMutation", "expectedStatus", "expectedErrorCode"],
+            "properties": {
+              "caseId": { "type": "string", "minLength": 1 },
+              "baseCaseId": { "type": "string", "minLength": 1 },
+              "accessScope": { "$ref": "#/$defs/mcpVisibilityScope" },
+              "requestMutation": { "$ref": "#/$defs/mcpNullableMutation" },
+              "snapshotMutation": { "$ref": "#/$defs/mcpNullableMutation" },
+              "expectedStatus": { "type": "string", "minLength": 1 },
+              "expectedErrorCode": { "type": "string", "minLength": 1 }
+            }
+          }
+        }
+      }
+    },
+    "mcpStdioSmoke": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema", "smokeId", "protocolVersion", "serverCommand", "cases"],
+      "properties": {
+        "schema": { "const": "archie-mcp-stdio-smoke/v1" },
+        "smokeId": { "type": "string", "minLength": 1 },
+        "protocolVersion": { "const": "2025-11-25" },
+        "serverCommand": {
+          "type": "array",
+          "minItems": 2,
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "cases": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["caseId", "message", "expectedResponse"],
+            "properties": {
+              "caseId": { "type": "string", "minLength": 1 },
+              "message": { "type": "object" },
+              "expectedResponse": { "type": ["object", "null"] }
+            }
+          }
+        }
       }
     },
     "sourceIndexDryRun": {

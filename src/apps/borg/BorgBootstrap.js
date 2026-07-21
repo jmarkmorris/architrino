@@ -14,6 +14,8 @@ import {
   createBorgInteractiveDefaults,
   createBorgPlacementPolicy,
 } from "./BorgInteractiveDefaults.js";
+import { createBorgAssemblyViewSession } from "./BorgAssemblyViewSession.js";
+import { BORG_BRAID_RECORD_CATALOG } from "./BorgBraidRecordCatalog.js";
 
 export const BORG_DEFAULT_RUNTIME_MODE = "eom-shadow";
 export const BORG_RECORD_REPLAY_RUNTIME_MODE = "eom-record-replay";
@@ -24,22 +26,38 @@ export async function bootBorgApp({
   createEomClient = createBorgEomHttpClient,
   manifest = BORG_DATASET_MANIFEST_V1,
   fetchLike = globalThis.fetch,
+  locationLike = globalThis.location,
+  braidRecordCatalog = BORG_BRAID_RECORD_CATALOG,
   startupSeedIndex = createBorgStartupSeedIndex(),
 } = {}) {
   const query = new URLSearchParams(search);
   const runtimeMode = resolveBorgRuntimeMode(query);
+  const braidRecordNavigation = createBorgBraidRecordNavigation({
+    catalog: braidRecordCatalog,
+    selectedRecordUrls: query.getAll("eomRecord"),
+    locationLike,
+  });
   if (runtimeMode === BORG_RECORD_REPLAY_RUNTIME_MODE) {
-    const recordUrl = query.get("eomRecord");
-    const response = await fetchLike(recordUrl);
-    if (!response?.ok) {
-      throw new Error(
-        `Borg EOM record fetch failed (${response?.status ?? "no response"}): ${recordUrl}`,
-      );
-    }
-    const record = await response.json();
+    const recordUrls = query.getAll("eomRecord");
+    const records = await Promise.all(recordUrls.map(async (recordUrl) => {
+      const response = await fetchLike(recordUrl);
+      if (!response?.ok) {
+        throw new Error(
+          `Borg assembly-view record fetch failed (${response?.status ?? "no response"}): ${recordUrl}`,
+        );
+      }
+      return response.json();
+    }));
+    const assemblyViewSession = createBorgAssemblyViewSession(records);
     return mountApp({
       manifest,
-      eomRecordReplay: { record },
+      assemblyViewSession,
+      eomRecordReplay: {
+        record: records[0],
+        records,
+        sourceUrls: Object.freeze([...recordUrls]),
+      },
+      braidRecordNavigation,
     });
   }
 
@@ -104,9 +122,8 @@ export async function bootBorgApp({
       historyDepth: seedHistoryDepth,
       certifiedBudgetId: certifiedBudget.id,
       pathCount: endpointRows.length,
-      // Batch six 0.05 certified steps per process round trip. This keeps the
-      // EOM solver's numerical step unchanged while avoiding protocol cost on
-      // every rendered sample interval.
+      // Batch six 0.05 EOM steps per process round trip. The selected run
+      // grade stays fixed while protocol traffic remains below render cadence.
       chunkDuration: 0.3,
       sampleInterval,
       initialStep: certifiedBudget.allocations.controller.initialStep,
@@ -116,6 +133,45 @@ export async function bootBorgApp({
       simulationOuterRadius: displayPlacement.seedingRadius,
       coupling: String(interactiveDefaults.coupling),
     },
+    braidRecordNavigation,
+  });
+}
+
+export function createBorgBraidRecordNavigation({
+  catalog = BORG_BRAID_RECORD_CATALOG,
+  selectedRecordUrls = [],
+  locationLike = globalThis.location,
+} = {}) {
+  const entries = catalog?.entries;
+  if (!Array.isArray(entries)) {
+    throw new TypeError("Borg braid record navigation requires a validated catalog.");
+  }
+  const selectedRecordId = entries.find((entry) =>
+    selectedRecordUrls.includes(entry.recordUrl)
+  )?.id ?? null;
+
+  function buildUrl(recordId) {
+    const entry = entries.find((candidate) => candidate.id === recordId);
+    if (!entry) {
+      throw new RangeError(`Borg braid record catalog has no entry ${String(recordId)}.`);
+    }
+    return `borg.html?eomRecord=${encodeURIComponent(entry.recordUrl)}`;
+  }
+
+  function navigate(recordId) {
+    const url = buildUrl(recordId);
+    if (typeof locationLike?.assign !== "function") {
+      throw new TypeError("Borg braid record navigation requires location.assign().");
+    }
+    locationLike.assign(url);
+    return url;
+  }
+
+  return Object.freeze({
+    catalog,
+    selectedRecordId,
+    buildUrl,
+    navigate,
   });
 }
 

@@ -21,6 +21,7 @@ export const EOM_EVOLUTION_CONTRACT_ID = "eom_evolution_contract/v0";
 export const ASSEMBLY_VIEW_RECORD_SCHEMA = "assembly-view-record.v0";
 export const EOM_HISTORY_DATASET_SCHEMA = "eom-history-dataset.v0";
 export const EOM_HISTORY_DEFAULT_ENGINE_ID = "eom-solver";
+export const PRESCRIBED_GEOMETRY_ENGINE_ID = "prescribed-geometry";
 export const ASSEMBLY_VIEW_CLAIM_GRADES = Object.freeze(["chart-hypothesis", "evolved-record"]);
 
 const AXES = Object.freeze(["x", "y", "z"]);
@@ -38,12 +39,24 @@ export function createEomHistoryDataset(record, options = {}) {
       `EOM history dataset requires contractId ${EOM_EVOLUTION_CONTRACT_ID} or schema ${ASSEMBLY_VIEW_RECORD_SCHEMA}; received ${String(record.contractId ?? record.schema ?? "none")}.`,
     );
   }
+  if (isAssemblyViewRecord) {
+    rejectNonfiniteNumbers(record, "record");
+  }
   const provenance = normalizeProvenance(record, options, { isAssemblyViewRecord });
   const worldlines = normalizeWorldlines(
     record.histories ?? record.worldlines,
     { isAssemblyViewRecord },
   );
-  const window = normalizeWindow(record, worldlines);
+  const window = normalizeWindow(record, worldlines, { isAssemblyViewRecord });
+  if (isAssemblyViewRecord) {
+    validateAssemblyViewMetadata(record);
+  }
+  const duplicateWorldlineId = firstDuplicate(worldlines.map((worldline) => worldline.id));
+  if (isAssemblyViewRecord && duplicateWorldlineId != null) {
+    throw new TypeError(
+      `assembly-view-record.v0 worldline id ${duplicateWorldlineId} is duplicated; source ids must remain stable and unique.`,
+    );
+  }
   const worldlinesById = new Map(worldlines.map((worldline) => [worldline.id, worldline]));
 
   function requireWorldline(worldlineId) {
@@ -118,9 +131,15 @@ export function createEomHistoryDataset(record, options = {}) {
     provenance,
     window,
     worldlines,
+    rawRecord: record,
     events: Object.freeze(Array.isArray(record.events) ? [...record.events] : []),
     binaries: Object.freeze(Array.isArray(record.binaries) ? [...record.binaries] : []),
     ansatz: Object.freeze(Array.isArray(record.ansatz) ? [...record.ansatz] : []),
+    navigation: Object.freeze(
+      record.navigation && typeof record.navigation === "object"
+        ? { ...record.navigation }
+        : {},
+    ),
     evaluateWorldline,
     createFrameSamples,
     createTrailSamples,
@@ -145,41 +164,110 @@ function normalizeProvenance(record, options, { isAssemblyViewRecord = false } =
   if (typeof runId !== "string" || runId.length === 0) {
     throw new TypeError("EOM history dataset requires a runId; displayed datasets must carry provenance.");
   }
+  const engineId = record.provenance?.engineId ?? options.engineId ?? EOM_HISTORY_DEFAULT_ENGINE_ID;
+  const engineVersion = record.provenance?.engineVersion ?? null;
+  const evidenceStatus = record.provenance?.evidenceStatus ?? record.evidenceStatus ?? null;
+  const generatingSpec = record.provenance?.generatingSpec ?? null;
+  const date = record.provenance?.date ?? null;
+  if (isAssemblyViewRecord) {
+    requireConcreteString(claimGrade, "provenance.claimGrade");
+    requireConcreteString(runId, "provenance.runId");
+    requireConcreteString(engineId, "provenance.engineId");
+    if (![EOM_HISTORY_DEFAULT_ENGINE_ID, PRESCRIBED_GEOMETRY_ENGINE_ID].includes(engineId)) {
+      throw new TypeError(
+        `assembly-view-record.v0 provenance.engineId must be ${EOM_HISTORY_DEFAULT_ENGINE_ID} or ${PRESCRIBED_GEOMETRY_ENGINE_ID}; received ${engineId}.`,
+      );
+    }
+    requireConcreteString(engineVersion, "provenance.engineVersion");
+    requireConcreteString(evidenceStatus, "provenance.evidenceStatus");
+    requireConcreteString(generatingSpec, "provenance.generatingSpec");
+    requireConcreteString(date, "provenance.date");
+    if (engineId === PRESCRIBED_GEOMETRY_ENGINE_ID) {
+      validatePrescribedGeometryProvenance(record.provenance, { claimGrade, evidenceStatus });
+    }
+  }
   return Object.freeze({
-    engineId:
-      record.provenance?.engineId ?? options.engineId ?? EOM_HISTORY_DEFAULT_ENGINE_ID,
-    engineVersion: record.provenance?.engineVersion ?? null,
+    engineId,
+    engineVersion,
     runId,
     requestId: record.requestId ?? null,
     contractId: EOM_EVOLUTION_CONTRACT_ID,
     claimGrade,
-    evidenceStatus: record.provenance?.evidenceStatus ?? record.evidenceStatus ?? null,
-    generatingSpec: record.provenance?.generatingSpec ?? null,
+    evidenceStatus,
+    generatingSpec,
+    date,
+    conversion: record.provenance?.conversion ?? null,
     sourceProvenance: record.provenance?.importedHistoryAuthority ?? null,
+    prescribedGeometry: record.provenance?.prescribedGeometry ?? null,
   });
 }
 
-function normalizeWindow(record, worldlines) {
+function validatePrescribedGeometryProvenance(provenance, { claimGrade, evidenceStatus }) {
+  if (claimGrade !== "chart-hypothesis" || evidenceStatus !== "display-only") {
+    throw new TypeError(
+      "prescribed-geometry records must carry claimGrade chart-hypothesis and evidenceStatus display-only.",
+    );
+  }
+  const declaration = provenance.prescribedGeometry;
+  if (!declaration || typeof declaration !== "object" || Array.isArray(declaration)) {
+    throw new TypeError(
+      "prescribed-geometry records require provenance.prescribedGeometry.",
+    );
+  }
+  for (const field of ["emitterId", "sourceSchema", "interpolation", "errorMethod"]) {
+    requireConcreteString(declaration[field], `provenance.prescribedGeometry.${field}`);
+  }
+  if (declaration.physicsInvoked !== false) {
+    throw new TypeError(
+      "prescribed-geometry records require provenance.prescribedGeometry.physicsInvoked=false.",
+    );
+  }
+  for (const axis of AXES) {
+    requiredFiniteNumber(
+      declaration.responseCenter?.[axis],
+      `provenance.prescribedGeometry.responseCenter.${axis}`,
+    );
+  }
+  requiredPositiveNumber(
+    declaration.sphericalEnvelopeRadius,
+    "provenance.prescribedGeometry.sphericalEnvelopeRadius",
+  );
+  requiredPositiveInteger(
+    declaration.displayTrailPeriods,
+    "provenance.prescribedGeometry.displayTrailPeriods",
+  );
+}
+
+function normalizeWindow(record, worldlines, { isAssemblyViewRecord = false } = {}) {
   const coverageStart = Math.max(...worldlines.map((worldline) => worldline.coverage.start));
   const coverageEnd = Math.min(...worldlines.map((worldline) => worldline.coverage.end));
-  const start = finiteNumber(
-    record.window?.start ?? record.absoluteTimeInterval?.start,
-    coverageStart,
-  );
-  const end = finiteNumber(
-    record.window?.end ?? record.absoluteTimeInterval?.end,
-    coverageEnd,
-  );
+  const start = isAssemblyViewRecord
+    ? requiredFiniteNumber(record.window?.start, "window.start")
+    : finiteNumber(record.window?.start ?? record.absoluteTimeInterval?.start, coverageStart);
+  const end = isAssemblyViewRecord
+    ? requiredFiniteNumber(record.window?.end, "window.end")
+    : finiteNumber(record.window?.end ?? record.absoluteTimeInterval?.end, coverageEnd);
   if (!(end > start) && !(end === start)) {
     throw new RangeError("EOM history dataset window is empty or inverted.");
   }
+  if (start < coverageStart || end > coverageEnd) {
+    throw new RangeError(
+      `EOM history dataset window [${start}, ${end}] exceeds common recorded coverage [${coverageStart}, ${coverageEnd}].`,
+    );
+  }
+  const sampleInterval = isAssemblyViewRecord
+    ? requiredPositiveNumber(record.window?.sampleInterval, "window.sampleInterval")
+    : finiteNumber(record.window?.sampleInterval ?? record.sampleInterval, null);
+  const delayHorizon = isAssemblyViewRecord
+    ? requiredNonnegativeNumber(record.window?.delayHorizon, "window.delayHorizon")
+    : finiteNumber(record.window?.delayHorizon, null);
   return Object.freeze({
     start,
     end,
     coverageStart,
     coverageEnd,
-    sampleInterval: finiteNumber(record.window?.sampleInterval ?? record.sampleInterval, null),
-    delayHorizon: finiteNumber(record.window?.delayHorizon, null),
+    sampleInterval,
+    delayHorizon,
   });
 }
 
@@ -187,12 +275,12 @@ function normalizeWorldlines(histories, { isAssemblyViewRecord = false } = {}) {
   if (!Array.isArray(histories) || histories.length === 0) {
     throw new TypeError("EOM history dataset requires a nonempty histories/worldlines array.");
   }
-  return Object.freeze(histories.map((history) =>
-    normalizeWorldline(history, { isAssemblyViewRecord }),
+  return Object.freeze(histories.map((history, sourceIndex) =>
+    normalizeWorldline(history, { isAssemblyViewRecord, sourceIndex }),
   ));
 }
 
-function normalizeWorldline(history, { isAssemblyViewRecord = false } = {}) {
+function normalizeWorldline(history, { isAssemblyViewRecord = false, sourceIndex = 0 } = {}) {
   if (!history || typeof history !== "object") {
     throw new TypeError("EOM history dataset worldline must be an object.");
   }
@@ -213,7 +301,7 @@ function normalizeWorldline(history, { isAssemblyViewRecord = false } = {}) {
     );
   }
   const segments = history.segments.map((segment, index) =>
-    normalizeSegment(segment, id, index),
+    normalizeSegment(segment, id, index, { isAssemblyViewRecord }),
   );
   for (let index = 0; index + 1 < segments.length; index += 1) {
     if (segments[index].endTime !== segments[index + 1].startTime) {
@@ -223,27 +311,46 @@ function normalizeWorldline(history, { isAssemblyViewRecord = false } = {}) {
     }
   }
   const coverage = Object.freeze({
-    start: finiteNumber(history.coverageStart, segments[0].startTime),
-    end: finiteNumber(history.coverageEnd, segments.at(-1).endTime),
+    start: isAssemblyViewRecord
+      ? requiredFiniteNumber(history.coverageStart, `worldline ${id} coverageStart`)
+      : finiteNumber(history.coverageStart, segments[0].startTime),
+    end: isAssemblyViewRecord
+      ? requiredFiniteNumber(history.coverageEnd, `worldline ${id} coverageEnd`)
+      : finiteNumber(history.coverageEnd, segments.at(-1).endTime),
   });
+  if (coverage.start !== segments[0].startTime || coverage.end !== segments.at(-1).endTime) {
+    throw new RangeError(
+      `EOM worldline ${id} declared coverage [${coverage.start}, ${coverage.end}] does not match retained segments [${segments[0].startTime}, ${segments.at(-1).endTime}].`,
+    );
+  }
+  const interpolation = history.interpolation;
+  if (isAssemblyViewRecord) {
+    requireConcreteString(interpolation, `worldline ${id} interpolation`);
+  }
+  validateOptionalSamples(history.samples, id);
   return Object.freeze({
     id,
-    pathKey: Number.isFinite(Number(history.pathKey)) ? Number(history.pathKey) : null,
+    sourceIndex,
+    pathKey: history.pathKey ?? id,
     polarity: Math.sign(charge),
     charge,
     stateFlags: Number(history.stateFlags) || 0,
     coverage,
-    interpolation: history.interpolation ?? "piecewise-cubic-hermite/v0",
+    interpolation: interpolation ?? "piecewise-cubic-hermite/v0",
     sourceProvenance: history.sourceProvenance ?? null,
     sourceClaimLevel: history.sourceClaimLevel ?? null,
     segments: Object.freeze(segments),
+    declaredPrehistorySegmentCount: finiteIntegerOrNull(history.declaredPrehistorySegmentCount),
+    evolvedSegmentCount: finiteIntegerOrNull(history.evolvedSegmentCount),
+    historyFingerprint: history.historyFingerprint ?? null,
+    rawWorldline: history,
     // Optional display-only sampled rows (assembly-view-record.v0 sidecar);
     // never evaluated as state.
     samples: Object.freeze(Array.isArray(history.samples) ? [...history.samples] : []),
   });
 }
 
-function normalizeSegment(segment, worldlineId, index) {
+function normalizeSegment(segment, worldlineId, index, { isAssemblyViewRecord = false } = {}) {
   const startTime = requiredFiniteNumber(
     segment?.startTime,
     `worldline ${worldlineId} segment ${index} startTime`,
@@ -273,14 +380,195 @@ function normalizeSegment(segment, worldlineId, index) {
       ),
     ));
   });
+  const positionError = isAssemblyViewRecord
+    ? requiredNonnegativeNumber(segment.positionError, `worldline ${worldlineId} segment ${index} positionError`)
+    : optionalErrorBound(segment.positionError ?? segment.positionErrors);
+  const velocityError = isAssemblyViewRecord
+    ? requiredNonnegativeNumber(segment.velocityError, `worldline ${worldlineId} segment ${index} velocityError`)
+    : optionalErrorBound(segment.velocityError ?? segment.velocityErrors);
   return Object.freeze({
     startTime,
     endTime,
     coefficients: Object.freeze(coefficients),
-    positionError: Math.abs(Number(segment.positionError)) || 0,
-    velocityError: Math.abs(Number(segment.velocityError)) || 0,
+    positionError,
+    velocityError,
   });
 }
+
+function validateAssemblyViewMetadata(record) {
+  if (!record.provenance || typeof record.provenance !== "object") {
+    throw new TypeError("assembly-view-record.v0 requires provenance.");
+  }
+  if (!record.window || typeof record.window !== "object") {
+    throw new TypeError("assembly-view-record.v0 requires window.");
+  }
+  for (const field of ["binaries", "ansatz", "events"]) {
+    if (record[field] != null && !Array.isArray(record[field])) {
+      throw new TypeError(`assembly-view-record.v0 ${field} must be an array when present.`);
+    }
+    rejectNonfiniteNumbers(record[field], field);
+  }
+  (record.binaries ?? []).forEach((binary, index) => {
+    for (const field of ["frequency", "planarOffset", "separation", "phase"]) {
+      if (binary?.[field] != null) {
+        requiredFiniteNumber(binary[field], `binaries[${index}].${field}`);
+      }
+    }
+    const normal = binary?.planeOrientation?.normal ?? binary?.planeNormal;
+    if (normal != null) {
+      for (const axis of AXES) {
+        requiredFiniteNumber(normal?.[axis], `binaries[${index}].planeNormal.${axis}`);
+      }
+    }
+    if (binary?.axisPoint != null || binary?.axisDisplayHalfLength != null) {
+      for (const axis of AXES) {
+        requiredFiniteNumber(binary.axisPoint?.[axis], `binaries[${index}].axisPoint.${axis}`);
+      }
+      requiredPositiveNumber(
+        binary.axisDisplayHalfLength,
+        `binaries[${index}].axisDisplayHalfLength`,
+      );
+    }
+  });
+  (record.ansatz ?? []).forEach((row, rowIndex) => {
+    const points = row?.points ?? row?.samples ?? row?.polyline;
+    if (!Array.isArray(points)) {
+      throw new TypeError(`assembly-view-record.v0 ansatz[${rowIndex}] requires a sampled polyline.`);
+    }
+    points.forEach((point, pointIndex) => {
+      const position = point?.position ?? point;
+      for (const axis of AXES) {
+        requiredFiniteNumber(
+          position?.[axis],
+          `ansatz[${rowIndex}].points[${pointIndex}].${axis}`,
+        );
+      }
+    });
+  });
+  (record.events ?? []).forEach((event, index) => {
+    requiredFiniteNumber(event?.time, `events[${index}].time`);
+  });
+  if (record.provenance.claimGrade === "evolved-record") {
+    record.worldlines.forEach((worldline, index) => {
+      const label = `worldlines[${index}]`;
+      const declaredCount = requiredNonnegativeInteger(
+        worldline.declaredPrehistorySegmentCount,
+        `${label}.declaredPrehistorySegmentCount`,
+      );
+      const evolvedCount = requiredNonnegativeInteger(
+        worldline.evolvedSegmentCount,
+        `${label}.evolvedSegmentCount`,
+      );
+      requireConcreteString(worldline.historyFingerprint, `${label}.historyFingerprint`);
+      if (declaredCount + evolvedCount !== worldline.segments.length) {
+        throw new RangeError(
+          `assembly-view-record.v0 ${label} segment counts do not match segments.length.`,
+        );
+      }
+    });
+  }
+}
+
+function validateOptionalSamples(samples, worldlineId) {
+  if (samples == null) {
+    return;
+  }
+  if (!Array.isArray(samples)) {
+    throw new TypeError(`assembly-view-record worldline ${worldlineId} samples must be an array.`);
+  }
+  samples.forEach((sample, index) => {
+    requiredFiniteNumber(sample?.t, `worldline ${worldlineId} sample ${index} t`);
+    AXES.forEach((axis) => {
+      requiredFiniteNumber(
+        sample?.position?.[axis],
+        `worldline ${worldlineId} sample ${index} position.${axis}`,
+      );
+      if (sample?.velocity != null) {
+        requiredFiniteNumber(
+          sample.velocity?.[axis],
+          `worldline ${worldlineId} sample ${index} velocity.${axis}`,
+        );
+      }
+    });
+  });
+}
+
+function rejectNonfiniteNumbers(value, path) {
+  if (typeof value === "number" && !Number.isFinite(value)) {
+    throw new TypeError(`assembly-view-record.v0 ${path} must not contain non-finite numbers.`);
+  }
+  if (Array.isArray(value)) {
+    value.forEach((entry, index) => rejectNonfiniteNumbers(entry, `${path}[${index}]`));
+  } else if (value && typeof value === "object") {
+    Object.entries(value).forEach(([key, entry]) =>
+      rejectNonfiniteNumbers(entry, `${path}.${key}`),
+    );
+  }
+}
+
+function optionalErrorBound(value) {
+  if (Array.isArray(value)) {
+    return Math.max(0, ...value.map((entry) => Math.abs(Number(entry)) || 0));
+  }
+  const number = Number(value);
+  return Number.isFinite(number) ? Math.abs(number) : 0;
+}
+
+function firstDuplicate(values) {
+  const seen = new Set();
+  for (const value of values) {
+    if (seen.has(value)) {
+      return value;
+    }
+    seen.add(value);
+  }
+  return null;
+}
+
+function finiteIntegerOrNull(value) {
+  const number = Number(value);
+  return Number.isSafeInteger(number) && number >= 0 ? number : null;
+}
+
+function requiredNonnegativeInteger(value, label) {
+  const number = Number(value);
+  if (!Number.isSafeInteger(number) || number < 0) {
+    throw new TypeError(`assembly-view-record.v0 ${label} must be a nonnegative safe integer.`);
+  }
+  return number;
+}
+
+function requiredPositiveInteger(value, label) {
+  const number = Number(value);
+  if (!Number.isSafeInteger(number) || number < 1) {
+    throw new TypeError(`assembly-view-record.v0 ${label} must be a positive safe integer.`);
+  }
+  return number;
+}
+
+function requireConcreteString(value, label) {
+  if (typeof value !== "string" || value.trim().length === 0 || value === "unspecified") {
+    throw new TypeError(`assembly-view-record.v0 ${label} must be concrete.`);
+  }
+  return value;
+}
+
+function requiredPositiveNumber(value, label) {
+  const number = requiredFiniteNumber(value, label);
+  if (!(number > 0)) {
+    throw new RangeError(`EOM history dataset ${label} must be greater than zero.`);
+  }
+  return number;
+}
+
+function requiredNonnegativeNumber(value, label) {
+  const number = requiredFiniteNumber(value, label);
+  if (number < 0) {
+    throw new RangeError(`EOM history dataset ${label} must be nonnegative.`);
+  }
+  return number;
+}
+
 
 function evaluateWorldlineSegments(worldline, time) {
   if (!Number.isFinite(time)) {

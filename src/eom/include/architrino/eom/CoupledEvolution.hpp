@@ -195,6 +195,7 @@ struct NativeFoldCausticImpulseCertificate {
   std::size_t centered_emission_cells = 0;
   std::size_t monotone_residual_cells = 0;
   std::size_t direct_joint_cells = 0;
+  std::size_t joint_displacement_cells = 0;
   double receiver_position_error_upper = 0.0;
   double receiver_velocity_error_upper = 0.0;
   double transmitter_position_error_upper = 0.0;
@@ -612,7 +613,9 @@ certify_native_fold_caustic_impulse(
     const std::string& receiver_charge,
     const std::string& transmitter_charge,
     const std::string& reception_lower,
-    const std::string& reception_upper);
+    const std::string& reception_upper,
+    const JointAffineRetainedHistory* joint_receiver = nullptr,
+    const JointAffineRetainedHistory* joint_source = nullptr);
 
 [[nodiscard]] NativeCommonDomainChartCertificate
 certify_native_common_domain_chart(
@@ -632,7 +635,9 @@ certify_native_regulator_convergence(
     const std::string& receiver_charge,
     const std::string& transmitter_charge,
     const std::string& reception_lower,
-    const std::string& reception_upper);
+    const std::string& reception_upper,
+    const JointAffineRetainedHistory* joint_receiver = nullptr,
+    const JointAffineRetainedHistory* joint_source = nullptr);
 
 [[nodiscard]] NativeAtomicStepCertificate certify_native_atomic_coupled_step(
     const NativeCoupledEvolutionRequest& request,

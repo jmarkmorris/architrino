@@ -55,6 +55,24 @@ test("Borg Forever playback restores the absolute buffered-frame scrubber when p
   assert.equal(paused.disabled, false);
 });
 
+test("Borg disables the timeline before any recorded frame is available", () => {
+  const empty = getBorgTimelineRangePresentation({
+    frameIndexes: [],
+    activeFrameIndex: 12,
+    isForever: false,
+    isPlaying: false,
+  });
+
+  assert.deepEqual(empty, {
+    min: 0,
+    max: 0,
+    value: 0,
+    disabled: true,
+    mode: "empty",
+    title: "No recorded frame is available.",
+  });
+});
+
 test("Borg playback re-anchors by absolute keyframe after retention rebuilds frame sets", () => {
   const firstRetainedWindow = Array.from(
     { length: 720 },

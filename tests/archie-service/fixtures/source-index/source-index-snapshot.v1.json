@@ -2,11 +2,26 @@
   "schema": "archie-source-index-snapshot/v1",
   "snapshotId": "source_snapshot_fixture_001",
   "repositoryRef": "fixture-ref",
+  "schemaVersions": {
+    "snapshot": "archie-source-index-snapshot/v1",
+    "content": "archie-source-content-view/v1",
+    "search": "archie-source-search-view/v1",
+    "graph": "archie-source-graph-view/v1",
+    "metadata": "archie-source-metadata-view/v1"
+  },
+  "hashAlgorithm": "sha256",
+  "normalization": "canonical-json-v1",
   "generatedArtifactRefs": {
-    "sceneGraph": "content/graph/scene_graph.json",
     "markdownIndex": "content/markdown/markdown_index.json",
     "readingCopies": "content/generated/markdown/textbook/reading-copies/",
+    "sceneGraph": "content/graph/scene_graph.json",
     "textbookToc": "content/graph/textbook_toc.json"
+  },
+  "generatedArtifactDigests": {
+    "markdownIndex": "6b5210a5973da3bbfa9b982b04218dd7d56ab894ee03fb45571f65120a0d9e06",
+    "readingCopies": "1296fefc2c753d82f38c53c646a919e475f6a483f93a0738b4af90ddb92a4407",
+    "sceneGraph": "05a62b75bf1e7b92987985044c0e416f1ad06da8545392886460837894b8bf94",
+    "textbookToc": "99108a1abc20a07a61e02fd535504f9e79b193b2135973eef6cdf5ff01ca9dfb"
   },
   "sourceRecordCountByClass": {
     "published_corpus": 1,
@@ -19,5 +34,342 @@
   },
   "visibilityPolicyVersion": "visibility_fixture_v1",
   "freshnessState": "fresh",
-  "rollbackParent": null
+  "rollbackParent": null,
+  "sourceInputs": [
+    {
+      "sourceId": "source.app-guide",
+      "sourcePath": "content/markdown/aaa/archie/about-the-webapp.md",
+      "sectionAnchor": "open-architrino",
+      "sourceContentSha256": "4c2048a224ad801cfca102d12772508d33e815595242254f0e0e58c35da1fd63",
+      "selectionSha256": "8e21372bd10a216ed5ba3dc4a63ac253e795f0e9fd4d9304cdde8d4f70b5eaa1"
+    },
+    {
+      "sourceId": "source.generated-foundations-ontology",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/foundations.md",
+      "sectionAnchor": "ontology",
+      "sourceContentSha256": "bfd58ceda319083a4d2c2b6d634b16dbe63abec4e5886f54bbdb32491c32098b",
+      "selectionSha256": "06e8ff6e4576f2faf41b2a1be5a8b02eea41c48f633ed1836b309d8f496ad47f"
+    },
+    {
+      "sourceId": "source.ontology-purpose",
+      "sourcePath": "content/markdown/aaa/foundations/ontology.md",
+      "sectionAnchor": "purpose-and-scope",
+      "sourceContentSha256": "4f41da03e278e0c25f8c85f2c599980ab5d6a57cb926941541cf161d1f7d1064",
+      "selectionSha256": "c3d07e652aaf196a1d11c5659b69b1441b06f9f3ce8cd8bd7161bc8838011721"
+    },
+    {
+      "sourceId": "source.priority-mcp-contract",
+      "sourcePath": "reference/priorities/app-mcp/source-index-snapshot-v1.md",
+      "sectionAnchor": null,
+      "sourceContentSha256": "8f435684fbfb173dd4648ec52e793239345b92ac541eabcfe2bf7436aa6b7d44",
+      "selectionSha256": "8f435684fbfb173dd4648ec52e793239345b92ac541eabcfe2bf7436aa6b7d44"
+    },
+    {
+      "sourceId": "source.scene-ontology",
+      "sourcePath": "content/scenes/foundations/foundational_ontology.json",
+      "sectionAnchor": null,
+      "sourceContentSha256": "34a61a3cc2c43c1798726a3613d8e590edd32dcd5f7ca4572d45d18e88d36c5b",
+      "selectionSha256": "34a61a3cc2c43c1798726a3613d8e590edd32dcd5f7ca4572d45d18e88d36c5b"
+    },
+    {
+      "sourceId": "source.system-card",
+      "sourcePath": "content/markdown/aaa/archie/system-card.md",
+      "sectionAnchor": "answering-posture",
+      "sourceContentSha256": "c478b4e04a0e02930d55d55c759de5cbbacc9a74e0e23e101a8edbd0c287abba",
+      "selectionSha256": "e09e4fbb8bf5008c542ea9494f8d34f43bfbc5849420157cf63848820a373866"
+    }
+  ],
+  "views": {
+    "content": {
+      "schema": "archie-source-content-view/v1",
+      "records": [
+        {
+          "sourceId": "source.app-guide",
+          "contentType": "markdown",
+          "content": "## Open Architrino\n\n![Architrino logo and QR code for architrino.com](../../../assets/images/brand/architrino-logo-qr-landscape.png)\n\nScan the QR code to open [architrino.com](https://www.architrino.com).\n",
+          "selectionSha256": "8e21372bd10a216ed5ba3dc4a63ac253e795f0e9fd4d9304cdde8d4f70b5eaa1"
+        },
+        {
+          "sourceId": "source.generated-foundations-ontology",
+          "contentType": "markdown",
+          "content": "## Ontology\n\nOntology asks a simple question: what is actually there before an observer names it, measures it, or compresses it into a model?\n\nFor $\\mathbb{A}\\mathbb{A}\\mathbb{A}$, the answer has layers. At the bottom are absolute time, the Euclidean void, and architrinos. Above that are assemblies, causal wakes, and the Noether sea. Above that are effective fields, particles, clocks, rulers, metrics, and observer records. The main rule of this chapter is that those layers must not be mixed.\n\nThis chapter is the bedrock map. It says what exists at the substrate level, what emerges from assembly and medium behavior, and which terms must stay level-aware for the rest of the corpus to remain coherent.\n\n---\n\n### Purpose and Scope\n\nThis document establishes the ontological bedrock of $\\mathbb{A}\\mathbb{A}\\mathbb{A}$: what fundamentally exists, what is emergent, and what Physical Observers reconstruct from inside the system.\n\nIt defines six foundation routes:\n\n1. **The Substrate**: [absolute time](../../../../markdown/aaa/foundations/absolute-time.md), [Euclidean void](../../../../markdown/aaa/foundations/euclidean-void.md), and [absolute timespace](../../../../markdown/aaa/foundations/absolute-timespace.md).\n2. **The Fundamental Entity**: [architrino](../../../../markdown/aaa/foundations/architrino.md), the point transceiver of potential-bearing causal wakes.\n3. **The Physical Medium**: [Noether sea](../../../../markdown/aaa/spacetime/noether-sea.md), the emergent physical medium formed by coupled neutral Noether braid assemblies.\n4. **The Observer Framework**: [complete-state versus Physical Observer access](../../../../markdown/aaa/spacetime/observer-framework.md).\n5. **Terminology Discipline**: [canonical level-aware terminology](../../../../markdown/aaa/archie/terminology-usage.md).\n6. **Parameter Ledger**: [fundamental postulates versus derived quantities](../../../../markdown/aaa/validation/parameter-ledger.md).\n\nThe point is not to make every later result true by definition. The point is to keep the starting inventory clean. Dynamics, assembly mappings, particle families, effective spacetime, and cosmology all depend on these foundations. If the level assignment is wrong here, the error propagates everywhere else.\n\nThe teaching order uses four levels:\n\n| Level | Plain meaning | Typical examples |\n|:---|:---|:---|\n| Substrate ontology | What exists before observer reconstruction. | Absolute time, Euclidean void, architrino identities, intrinsic polarity, causal-wake support. |\n| Assembly and medium behavior | What organized architrino configurations do. | Noether braids, stable branches, Noether sea density, stress, flow, and response. |\n| Effective description | What observers can summarize as familiar physics. | Metric, field, particle, mass, charge, clock, ruler, and potential language. |\n| Observer inference | What embedded Physical Observers can actually record. | Detector records, clock readings, coincidence windows, spectra, quantum states, and coarse histories. |\n\nThis ontology also has a boundary. It states the internal bedrock of $\\mathbb{A}\\mathbb{A}\\mathbb{A}$. It does not claim to explain why absolute time, the Euclidean void, the architrino identity set, $c_f$, or $\\kappa$ exist rather than not exist. Those are primitive postulates inside the present theory unless a separate meta-ontological account is supplied.\n\nThat distinction matters. Deriving particles, fields, clock behavior, and effective spacetime from architrino dynamics is one kind of explanation. Explaining why the substrate itself exists is a different kind of claim.\n\nThe same level discipline can be read through the canonical symbol map:\n\n| Level | Canonical variables or records | Owning chapters |\n|:---|:---|:---|\n| Substrate ontology | $T$, $\\Sigma_T$, $h_{ij}$, $\\mathbf X_a(T)$, $q_a$, causal-wake support | [Absolute Time](../../../../markdown/aaa/foundations/absolute-time.md), [Euclidean Void](../../../../markdown/aaa/foundations/euclidean-void.md), [Absolute Timespace](../../../../markdown/aaa/foundations/absolute-timespace.md), [Architrino](../../../../markdown/aaa/foundations/architrino.md) |\n| Assembly and medium behavior | assembly branch records, $\\Lambda_{\\text{NS}}$, $\\rho_{\\text{NS}}(\\mathbf X,T)$, $\\Sigma_{\\text{sea}}(\\mathbf X,T)$, $\\mathbf u_{\\text{sea}}(\\mathbf X,T)$ | [Noether Braid](../../../../markdown/aaa/noether-braid/noether-braid.md), [Braid Envelope Geometry](../../../../markdown/aaa/noether-braid/braid-envelope-geometry.md), [Noether sea](../../../../markdown/aaa/spacetime/noether-sea.md) |\n| Effective description | $A(\\mathcal{N}_{\\mathrm{sea}})$, $B_{ij}(\\mathcal{N}_{\\mathrm{sea}})$, $u^i_{\\mathrm{sea,eff}}$, $g^{\\text{eff}}_{\\mu\\nu}$, $\\Phi_{\\text{eff}}$ | [Emergent Metric](../../../../markdown/aaa/spacetime/emergent-metric.md), [Proper Time and Time Dilation](../../../../markdown/aaa/spacetime/proper-time-and-time-dilation.md), [Particle Masses](../../../../markdown/aaa/assemblies/particle-masses.md) |\n| Observer inference | $\\Pi_{\\mathrm{obs}}:S(T)\\to\\bar S(T)$, Physical Observer records $\\Theta_A^{(O,W)}$, detector and measurement records | [Observer Framework](../../../../markdown/aaa/spacetime/observer-framework.md), [Wavefunction Ontology](../../../../markdown/aaa/quantum/wavefunction-ontology.md), [Measurement Ontology](../../../../markdown/aaa/quantum/measurement-ontology.md) |\n\nEquivalently, the four levels form a tower of forgetting maps:\n$$\nS(T)\n\\xrightarrow{\\Pi_{\\mathrm{assembly}}}\n\\mathfrak B(T)\n\\xrightarrow{\\Pi_{\\mathrm{eff}}}\n\\big(A,B_{ij},g^{\\mathrm{eff}},\\Phi_{\\mathrm{eff}}\\big)\n\\xrightarrow{\\Pi_{\\mathrm{record}}}\n\\bar S(T).\n$$\nHere $\\mathfrak B(T)$ denotes the retained assembly and branch records and $\\Pi_{\\mathrm{record}}$ is the final record-extraction arrow. The canonical observer projection is the composite $\\Pi_{\\mathrm{obs}}=\\Pi_{\\mathrm{record}}\\circ\\Pi_{\\mathrm{eff}}\\circ\\Pi_{\\mathrm{assembly}}:S(T)\\to\\bar S(T)$, matching the definition in [Architrino](../../../../markdown/aaa/foundations/architrino.md#provenance-and-persistence). Pullback of retained information along the tower induces a decreasing filtration on $S(T)$. Each arrow keeps some information and discards some information. Individual provenance labels, path-history depth, inactive branch alternatives, fine assembly coordinates, medium microstate, and apparatus-inaccessible records may be lost at different stages.\n\nA quantity is well-defined at a level only if it survives the corresponding forgetting map. A residual measures failure to survive that quotient. Examples include provenance leakage $\\epsilon_{\\mathrm{prov}}$, branch or record residuals $\\mathcal R_{\\mathcal Q}$, clock-composition residuals $\\Delta^{\\mathrm{comp}}$, and clock-universality residuals $\\epsilon_{\\mathrm{univ}}$. This is why level discipline is not only vocabulary discipline. It decides which invariants remain meaningful after a projection.\n\nMany projections also need regularity. A reconstruction or projection map is locally usable only where its active inverse has a declared non-degeneracy floor. The root chart uses $|\\partial_{T_t} F|\\ge\\kappa_{\\mathrm{hit}}>0$, where $F$ is the causal-root function defined in The Fundamental Entity below and owned by [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md); frame construction uses a basis-conditioning floor such as $\\sin\\theta_{\\min}>0$; wake-center reconstruction uses a finite solid-angle floor; basin partitions use separatrix regularity; and clock extraction requires a retained hyperbolic limit cycle with a unique rotation number.\n\nThe shared theorem target is a reconstruction-regularity lemma: away from the generically codimension-1 floor-failure locus, the relevant map has controlled local inverse behavior. At the floor failure, the theory must report a residual, branch jump, or reconfiguration event rather than silently reusing a smooth chart.\n\nTwo distinctions govern the rest of this hub.\n\nFirst, primitive substance is not the same as emergent matter. The architrino is primitive substance. Matter begins only when assemblies acquire mass, exclusion, persistence, and organized branch behavior.\n\nSecond, physical reality is not the same as independent material inventory. Causal wakes are physically real, finite-speed, potential-bearing causal records. They are not an extra material ingredient floating in the void. Their content is fixed by transmitter identity, polarity, and path history.\n\nA conservative entry criterion for emergent matter status is therefore two-part. A stable assembly $A$ must carry a nonzero closed internal causal-history energy ledger $E_{\\text{internal}}(A) > 0$ as defined in [Energy](../../../../markdown/aaa/dynamics/energy.md), and it must carry an assembly-level exclusion record protected by retained curve-configuration topology plus a branch-preserving action or energy barrier. The Euclidean void supplies no ambient topological superselection. The protected data must be carried by the assembly itself, for example by an oblate spheroidal exclusion envelope together with the ordered-frame, framed linking, or causal-writhe data needed for fermionic matter, and by a nonzero barrier $\\Delta E_{\\mathrm{excl}}>0$ against deformation through the forbidden branch. This is an entry criterion for the mass-map and exclusion programs, not a completed derivation of particle masses or spin-statistics.\n\n### The Substrate\n\nThe substrate is what $\\mathbb{A}\\mathbb{A}\\mathbb{A}$ treats as fundamental. It is not what a local observer necessarily sees. It is the underlying stage and primitive inventory from which observer-level physics must be reconstructed.\n\n#### Absolute Time\n\n[Absolute Time](../../../../markdown/aaa/foundations/absolute-time.md) is the canonical substrate-level specification of the universal time parameter $T$. It defines time as a one-dimensional, continuous, oriented, non-dynamical continuum $\\mathbb{R}$ with absolute event ordering, no kinematic time dilation, no relativity of simultaneity, and no reparametrization freedom beyond unit choice and origin choice: constancy of $c_f$ and form-invariance of the receiving law pin $T$ to its affine class.\n\nIn this ontology hub, the key commitment is:\n\n> **Postulate 1 (Absolute Time):** Time is an absolute, universal, one-dimensional continuum $\\mathbb{R}$ with fixed orientation, a scale anchored by the constant primitive wake speed $c_f$ and the receiving law, frame-independent duration, non-dynamical status, and no substrate-level time dilation or relativity of simultaneity. Dynamics occur through finite-speed causal-wake propagation ($c_f$) in absolute time, with all interactions routed through path history rather than instantaneous action-at-a-distance or advanced effects; worldlines are parametrized directly by $T$, with no reparametrization freedom beyond unit choice and origin choice.\n\nThis postulate is not a claim that embedded clocks all read the same rate. Clock slowing, synchronization offsets, and proper-time readings belong to assembly and Noether sea dynamics at the observer-accessible level.\n\nFor the argumentative case, see [Absolute Time Defense](../../../../markdown/aaa/foundations/absolute-time-defense.md). For observer-level clocks and dilation, see [Proper Time and Time Dilation](../../../../markdown/aaa/spacetime/proper-time-and-time-dilation.md).\n\n#### Euclidean Void\n\n[Euclidean Void](../../../../markdown/aaa/foundations/euclidean-void.md) is the canonical substrate-level specification of the fixed spatial container. It defines three-dimensional space as flat, homogeneous, isotropic, non-dynamical $\\mathbb{R}^3$ with metric $h_{ij}=\\delta_{ij}$, fixed coordinate identity, Euclidean distance, spatial operators, and Euclidean symmetry group $E(3)$.\n\nIn this ontology hub, the key commitment is:\n\n> **Postulate 2 (Euclidean Void):** Space is an absolute, static, flat, homogeneous, isotropic container $\\mathbb{R}^3$ with fixed Euclidean metric $h_{ij}=\\delta_{ij}$. Curvature-like observations arise from contents, wakes, and dynamics inside the void, not from curvature of the void itself.\n\nThis is a container claim. It does not deny that observers can reconstruct curved effective geometry. The Noether sea is physical content within the void, not the void itself. For the Noether sea branch, see [Noether sea](../../../../markdown/aaa/spacetime/noether-sea.md), [Noether Sea Pro/Anti Coupling](../../../../markdown/aaa/spacetime/noether-sea-pro-anti-coupling.md), and [Emergent Metric](../../../../markdown/aaa/spacetime/emergent-metric.md).\n\n#### Absolute Timespace\n\n[Absolute Timespace](../../../../markdown/aaa/foundations/absolute-timespace.md) is the canonical product-structure specification for the background arena $\\mathcal{M}=\\mathbb{R}\\times\\mathbb{R}^3$. It owns the foliation into simultaneous Euclidean slices, the separated clock-form/spatial-metric data $(dT,h)$, Galilean kinematic structure, product measures and spatial operators, and causal wake geometry.\n\nIn this ontology hub, the key commitment is:\n\n> **Postulate 3 (Absolute Timespace):** The background arena is the product manifold $\\mathcal{M}=\\mathbb{R}\\times\\mathbb{R}^3$, equipped with the exact substrate clock form $dT$ and Euclidean spatial metric $h_{ij}=\\delta_{ij}$, foliated by absolute-time slices $\\Sigma_T$. The background is non-dynamical and non-curved; causality is ordered by $T$ and constrained by finite wake speed $c_f$. The product background preserves Galilean kinematic structure, while the interaction law, by fixing the wake speed $c_f$ relative to the void, structurally distinguishes the void rest frame.\n\nThe product notation packages the substrate clock and the spatial container. It does not introduce a non-degenerate four-dimensional metric as primitive ontology. Relativistic spacetime language enters only after medium response, clock/ruler behavior, and signal reconstruction have been derived or modeled.\n\nFor the factor-level specifications, see [Absolute Time](../../../../markdown/aaa/foundations/absolute-time.md) and [Euclidean Void](../../../../markdown/aaa/foundations/euclidean-void.md). For the observer-level metric bridge, see [Emergent Metric](../../../../markdown/aaa/spacetime/emergent-metric.md).\n\n---\n\n### The Fundamental Entity\n\n[Architrino](../../../../markdown/aaa/foundations/architrino.md) is the canonical primitive-entity specification for $\\mathbb{A}\\mathbb{A}\\mathbb{A}$. It defines the architrino as a point transceiver in absolute timespace with definite polarity, persistent identity, continuous causal-wake emission, universal wake reception, and non-creation/non-destruction at the ontological level.\n\nThe architrino is the sole primitive material substance of the theory. That does not make an isolated architrino a matter particle. Rest mass, spatial exclusion, fermionic behavior, and particle species are downstream assembly properties.\n\nThe same caution applies to exchange behavior. Fermion and boson exchange labels are assembly-level recovery targets, not inserted projector postulates. Any effective antisymmetric or symmetric exchange label must be routed through a retained branch record, currently the ordered-frame spinor program and the nested shell braid closure label $\\Lambda_{\\text{NS}}$.\n\nThe hard wall is the two-assembly exchange loop. An exchange of two identical braids is a loop in the configuration space of retained assembly configurations, not in the topology of the ambient void. The ambient quotient does supply a candidate loop class: for two identical centers in $\\mathbb{R}^3$, the unordered coincidence-free configuration space has fundamental group $\\mathbb{Z}_2$ generated by the exchange loop, the Leinaas-Myrheim/Laidlaw-DeWitt class. What the void does not supply is superselection: nothing forces a recovered effective state to transform nontrivially around that loop. The fermionic route must therefore establish two facts about the retained dynamics. The dynamically retained framed two-assembly component must not trivialize the exchange class after the allowed quotient, and the recovered effective state bundle must carry holonomy $-1$ around it. If either fails, whether the class dies in the retained component or the holonomy is trivial, the antisymmetric projector has not been recovered from assembly dynamics and would have to be inserted at the effective level. The generic failure mode is trivial holonomy, not a missing loop class.\n\nThe architrino's intrinsic polarity is also not the full observer-level charge record. Electric, weak, color, and particle labels are effective bookkeeping to be recovered from assembly geometry and medium response.\n\nThe emitted causal wake is not another primitive substance, but it is real. It is the source-dependent, potential-bearing causal record by which path history becomes delayed interaction.\n\nFor an architrino $a$ with worldline $\\mathbf X_a(T)$ on time domain $I_a$ and polarity $q_a$, the wake may be read schematically as a functional of that transmitter history:\n$$\n\\mathcal{W}_a(\\mathbf X,T)\n=\n\\int_{\\{T_t\\in I_a:\\ T_t<T\\}}\nq_a\\,\nK\\!\\left(\\mathbf X,T;\\mathbf X_a(T_t),T_t\\right)\n\\,dT_t,\n\\qquad\n\\operatorname{supp}K\n\\subseteq\n\\left\\{\\|\\mathbf X-\\mathbf X_a(T_t)\\|=c_f(T-T_t)\\right\\}\n$$\n\nThe $dT_t$ integral is schematic because the support condition selects causal roots of $F_a(\\mathbf X,T;T_t)=\\|\\mathbf X-\\mathbf X_a(T_t)\\|-c_f(T-T_t)$ rather than an ordinary interval of source times. In the Master Equation this is implemented by a surface-delta or root-sum expression with the simple-root transversality floor $\\lvert\\partial_{T_t}F_a\\rvert \\ge \\kappa_{\\mathrm{hit}} > 0$; if that floor fails, the contribution belongs to branch-chart or regularization analysis rather than to this ontology-level functional. The floor has a direct physical reading: on the wake support, $\\partial_{T_t}F_a = c_f-\\hat{\\mathbf r}\\cdot\\mathbf V_a(T_t)$, the transmitter-side factor derived in [Absolute Timespace](../../../../markdown/aaa/foundations/absolute-timespace.md#causal-wake-geometry), so floor failure is the caustic condition in which the source closes on the receiver at the wake speed along the line of sight: the same zero that makes the Lienard-Wiechert delayed-potential denominator diverge in classical electrodynamics, and a generic occurrence for super-wake-speed sources. In this ontology-level wake functional the kernel's source dependence is written through the emission-time position $\\mathbf X_a(T_t)$ only; transmitter emission-velocity dependence enters through the root-sum Jacobian $1/\\lvert\\partial_{T_t}F_a\\rvert$, i.e. the inverse transmitter-side factor, not through additional kernel arguments. The full transceiver acceleration law separately carries the transmitter-side acceleration weight $W_{ij}^{\\mathrm{acc}}$; both factors are owned by the [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md).\n\nThis formula is a level assignment, not a replacement for the Master Equation. It states the dependency: once transmitter identity, polarity, and path history are fixed, no additional freely specifiable wake substance remains. Effective field language may summarize many wake contributions, but the substrate account remains source-provenanced causal-wake history.\n\nIn this ontology hub, the key commitment is:\n\n> **Postulate 4 (Architrino):** The architrino is the sole primitive entity of $\\mathbb{A}\\mathbb{A}\\mathbb{A}$: a point transceiver in absolute timespace with definite polarity, persistent identity, continuous causal-wake emission, universal wake reception, and non-creation/non-destruction at the ontological level. The set of architrino identities is fixed. Particles, effective fields, clock behavior, and emergent spacetime phenomena arise from architrino configurations, wake intersections, and assembly dynamics rather than from additional fundamental substances.\n\nFor the full primitive-entity page, see [Architrino](../../../../markdown/aaa/foundations/architrino.md). For the receiving-law derivation, see [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md). For assembly emergence, see [Emergence](../../../../markdown/aaa/foundations/emergence-of-structure.md) and [Noether Braid](../../../../markdown/aaa/noether-braid/noether-braid.md).\n\n---\n\n### The Physical Medium\n\n[Noether sea](../../../../markdown/aaa/spacetime/noether-sea.md) is the canonical medium-ontology page. It defines the Noether sea as the emergent physical medium formed by coupled neutral Noether braid assemblies occupying the Euclidean void.\n\nThis is the first step away from primitive ontology. The Noether sea is physically real content, but its variables are medium and assembly variables rather than new container geometry.\n\nIn this ontology hub, the key commitment is:\n\n> **Medium Commitment (Noether sea):** The Noether sea is physical content inside the Euclidean void, not the void itself. It carries density, stress, energy, orientation, flow, and response properties. Effective gravity, clock and ruler behavior, signal delay/refraction, inertia, and cosmological behavior are reconstructed from Noether sea dynamics and assembly coupling, not from curvature or expansion of the void.\n\nThe routing boundary is:\n\n- [Noether sea](../../../../markdown/aaa/spacetime/noether-sea.md) owns medium ontology, state variables, and terminology.\n- [Noether Sea Pro/Anti Coupling](../../../../markdown/aaa/spacetime/noether-sea-pro-anti-coupling.md) owns pro/anti coupling hypotheses and medium assembly motifs.\n- [Emergent Metric](../../../../markdown/aaa/spacetime/emergent-metric.md) owns the map from medium variables to effective metric language.\n- [Proper Time and Time Dilation](../../../../markdown/aaa/spacetime/proper-time-and-time-dilation.md) owns clock and ruler behavior.\n- [Cosmology Ontology](../../../../markdown/aaa/cosmology/cosmology-ontology.md) owns the cosmology-level interpretation of Noether sea evolution.\n\n### The Observer Framework\n\n[Observer Framework](../../../../markdown/aaa/spacetime/observer-framework.md) is the canonical page for the $\\mathbb{U}_{\\text{now}}$ universe-state perspective, Physical Observers, the ontic/epistemic distinction, and absolute-versus-operational simultaneity.\n\nThe complete ontic state is the absolute-time slice $\\mathbb{U}_{\\text{now}}\\equiv S(T)$. A Physical Observer samples only a constrained record inside that state, using clocks, rulers, and signals whose behavior is itself produced by assembly and Noether sea dynamics.\n\nIn this ontology hub, the key commitment is:\n\n> **Observer Commitment:** $\\mathbb{A}\\mathbb{A}\\mathbb{A}$ distinguishes the complete ontic state on an absolute-time slice from the measurements available to embedded Physical Observers. Physical Observers are assemblies inside the Noether sea, so their clocks, rulers, synchronization procedures, and records are dynamical outputs. Effective relativity and quantum state descriptions belong to this observer-accessible layer, not to the primitive substrate itself.\n\nThere is no observer outside the ledger. A Physical Observer's records are themselves entries inside $S(T)$. Inference is therefore an internal subsystem reconstructing a coarse description from its own accessible records, not a second-level spectator reading the complete state without constraint.\n\nObserver descriptions can be indispensable without being final ontology. Effective metric reconstruction, wave function transition, and particle records are inferential summaries of accessible interactions. They do not replace the substrate and assembly account.\n\n#### Bell Nonlocality Placement\n\nBell-family experiments are treated as a hard observer-level correlation constraint on any deterministic completion. They are not treated as evidence by themselves for ontological randomness, backward causation, or faster-than-$c_f$ signal transfer.\n\nThe complete state on $\\Sigma_T$ remains definite in the $\\mathbb{U}_{\\text{now}}$ universe-state perspective. A Physical Observer has access only to pair records, detector settings, coincidence windows, and statistical summaries.\n\nThe no-go guardrail is strict. If measurement independence, no advanced influence, finite-speed local response, and local factorization over a complete past-state variable $\\lambda$ are all retained, then the Bell-local factorization is restored and Bell violations cannot be recovered. The Bell bridge must choose and declare which Bell assumption fails. A foundation page may route that burden, but it must not imply that shared provenance alone solves Bell.\n\nThe placement is therefore level-specific. If $\\mathbb{A}\\mathbb{A}\\mathbb{A}$ preserves measurement independence and no-signaling at the observer level, then Bell violation must come from an explicitly nonseparable substrate response, such as a $c_f$-mediated coordination channel outside effective light cones with no-signaling shielding, or another declared nonseparable mechanism.\n\nA $c_f$-mediated option is a substantive hierarchy claim. The primitive coordination channel must lie outside the observer photon cone, so $c_f > c_0$ after the low-energy photon speed $c_0$ is calibrated. Any stronger hierarchy such as $c_f \\gg c_0$ must be reconciled with photon dressing, moving-assembly Lorentz closure, and clock/ruler universality. It must also evade the finite-speed hidden-influence obstruction: finite superluminal influences with $c_0 < v < \\infty$ can become operationally signaling in multipartite Bell scenarios.\n\nThe observer-level compression must fail the factorizable local-response form\n$$\nP(a,b\\mid \\hat{m}_A,\\hat{m}_B,\\lambda)\n=\nP(a\\mid \\hat{m}_A,\\lambda)\\,\nP(b\\mid \\hat{m}_B,\\lambda)\n$$\nwithout adding instantaneous causal influence between detectors. If instead measurement independence is relaxed, that relaxation must be stated quantitatively, and the text must not also claim exact measurement independence.\n\nThese options are mutually exclusive at the bridge level:\n\n- **Substrate nonseparability:** retain strict measurement independence and no-signaling; Bell violation is recovered through nonfactorizable pair-provenance and apparatus-response coupling.\n- **Controlled relaxation of measurement independence:** relax measurement independence in the declared substrate response variables; the relaxation must be bounded to prevent macroscopic backward causation or signaling claims.\n\nWorking selection, still provisional until the Bell derivation closes: $\\mathbb{A}\\mathbb{A}\\mathbb{A}$ follows the substrate-nonseparability route. That means measurement independence and observer no-signaling are retained, while Bell nonfactorizability is carried by a live substrate-causal $c_f$ coordination channel, gated by pair provenance. Controlled measurement-independence relaxation remains a comparison or failure route, not the active ontology-hub selection.\n\nA mere shared-source story is not enough. If the retained provenance screens the two detector wings into independent local laws, the account has fallen back into the Bell-local class. Any shared record, including a framed pair-braid or linking invariant, is part of the complete past-state variable $\\lambda$; if each wing's response remains a local function of its own setting and that record, Bell factorization returns and the correlation stays inside the Bell-local bound. The active route therefore assigns the two roles explicitly: pair provenance gates the live $c_f$-mediated apparatus-response coupling, and the live channel carries the nonfactorizability. During the measurement window the coupled response law must fail the product form while leaving each one-wing marginal setting-independent. Coordination outside the effective photon cone is allowed when $c_f > c_0$; faster-than-$c_f$ influence and controllable observer signaling remain forbidden. This makes the finite-speed hidden-influence obstruction a real closure burden rather than a footnote: the route predicts either measurable degradation toward the Bell-local bound when the $c_f$ channel cannot connect the wings during the measurement window, or an $\\mathbb{A}\\mathbb{A}\\mathbb{A}$-specific derivation showing why that obstruction is evaded while preserving no-signaling. The detailed derivation and residual tests belong to [Bell's Theorem](../../../../markdown/aaa/philosophy-history/theory-bridges/bell-theorem.md) and [Entanglement and Nonlocality](../../../../markdown/aaa/philosophy-history/theory-bridges/entanglement-nonlocality.md).\n\nThe routing boundary is:\n\n- [Observer Framework](../../../../markdown/aaa/spacetime/observer-framework.md) owns complete-state versus Physical Observer access.\n- [Proper Time and Time Dilation](../../../../markdown/aaa/spacetime/proper-time-and-time-dilation.md) owns observer clocks, clock slowing, and $t\\mapsto\\tau$ extraction.\n- [Lorentz Kinematics](../../../../markdown/aaa/spacetime/lorentz-kinematics.md) owns moving-assembly deformation, clock/ruler retuning, two-way signal synchronization, and preferred-frame leakage bounds.\n- [Emergent Metric](../../../../markdown/aaa/spacetime/emergent-metric.md) owns metric reconstruction from observer clocks, rulers, and signals.\n- [Wavefunction Ontology](../../../../markdown/aaa/quantum/wavefunction-ontology.md) and [Measurement Ontology](../../../../markdown/aaa/quantum/measurement-ontology.md) own quantum-state and measurement descriptions at the observer-accessible layer.\n- [Bell's Theorem](../../../../markdown/aaa/philosophy-history/theory-bridges/bell-theorem.md) and [Entanglement and Nonlocality](../../../../markdown/aaa/philosophy-history/theory-bridges/entanglement-nonlocality.md) own Bell-family correlation recovery, no-signaling, measurement-independence, pair-provenance closure tests, and the Bancal finite-speed-influence no-signaling obstruction.\n\n### Terminology Discipline\n\nTerminology discipline is controlled by the Archie canon, not by this hub. The relevant references are:\n\n- [Terminology Usage](../../../../markdown/aaa/archie/terminology-usage.md) for level-aware usage rules and examples.\n- [Comparative Glossary](../../../../markdown/aaa/archie/comparative-glossary.md) for standard-framework to $\\mathbb{A}\\mathbb{A}\\mathbb{A}$ translation.\n- [Mathematics Terminology](../../../../markdown/aaa/archie/mathematics-terminology.md) for formal notation.\n- [Academic Style Guide](../../../../markdown/aaa/archie/academic-style-guide.md) for prose discipline.\n\nThis ontology hub keeps only the global rule:\n\n> Use substrate-native terms for substrate ontology, medium terms for Noether sea contents, and effective/observer terms for emergent descriptions. Do not let `spacetime`, `field`, `charge`, `vacuum`, or `particle` silently cross levels without saying which level is being described.\n\n### Parameter Ledger\n\nThe canonical parameter accounting lives in [Parameter Ledger](../../../../markdown/aaa/validation/parameter-ledger.md). This ontology hub does not own tables of numerical inputs, closure targets, naturalness tests, or simulation regulators.\n\nThe ontology-level distinction is a level assignment, not a numerical claim:\n\n- substrate commitments belong to [Absolute Time](../../../../markdown/aaa/foundations/absolute-time.md), [Euclidean Void](../../../../markdown/aaa/foundations/euclidean-void.md), [Absolute Timespace](../../../../markdown/aaa/foundations/absolute-timespace.md), and [Architrino](../../../../markdown/aaa/foundations/architrino.md);\n- acceleration-law parameters and regulators belong to [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md) and the validation ledger;\n- assembly radii, shielding factors, metric coefficients, and observer-level constants are closure targets, not primitive ontology.\n\nFor current open parameter status, see [Parameter Ledger](../../../../markdown/aaa/validation/parameter-ledger.md) and [Known Tensions](../../../../markdown/aaa/validation/known-tensions.md).\n\n### Open Questions and Validation Routing\n\nOpen questions and closure burdens belong in [Known Tensions](../../../../markdown/aaa/validation/known-tensions.md), [Closure Scorecard](../../../../markdown/aaa/validation/closure-scorecard.md), and the relevant branch chapters. This ontology hub keeps only stable commitments.\n\nFor the current pressure ledger, see:\n\n- [Known Tensions](../../../../markdown/aaa/validation/known-tensions.md) for unresolved closure burdens.\n- [Parameter Ledger](../../../../markdown/aaa/validation/parameter-ledger.md) for open symbols and closure targets.\n- [Wavefunction Ontology](../../../../markdown/aaa/quantum/wavefunction-ontology.md) and [Measurement Ontology](../../../../markdown/aaa/quantum/measurement-ontology.md) for quantum-ontology status.\n- [Cosmology Ontology](../../../../markdown/aaa/cosmology/cosmology-ontology.md) for universe-history framing.\n\n---\n\n### Summary\n\nThis ontology hub establishes six commitments:\n\n1. **Substrate:** absolute time and Euclidean void form the fixed non-dynamical product background called absolute timespace.\n2. **Primitive entity:** the architrino is the fixed-identity primitive point transceiver with polarity and persistent identity.\n3. **Causal record:** causal wakes are real source-provenanced path-history records, not extra substances in the void.\n4. **Medium:** the Noether sea is emergent physical content formed by coupled neutral Noether braid assemblies inside the Euclidean void.\n5. **Observer framework:** complete-state bookkeeping is distinct from Physical Observer access.\n6. **Routing discipline:** terminology, parameters, closure burdens, and open validation questions belong to their owning chapters once the topic moves beyond ontology.\n\nAll subsequent chapters build on these foundations. This hub intentionally points outward once a topic becomes dynamics, assembly structure, observer-clock extraction, terminology canon, parameter closure, or validation pressure.\n",
+          "selectionSha256": "06e8ff6e4576f2faf41b2a1be5a8b02eea41c48f633ed1836b309d8f496ad47f"
+        },
+        {
+          "sourceId": "source.ontology-purpose",
+          "contentType": "markdown",
+          "content": "## Purpose and Scope\n\nThis document establishes the ontological bedrock of $\\mathbb{A}\\mathbb{A}\\mathbb{A}$: what fundamentally exists, what is emergent, and what Physical Observers reconstruct from inside the system.\n\nIt defines six foundation routes:\n\n1. **The Substrate**: [absolute time](./absolute-time.md), [Euclidean void](./euclidean-void.md), and [absolute timespace](./absolute-timespace.md).\n2. **The Fundamental Entity**: [architrino](./architrino.md), the point transceiver of potential-bearing causal wakes.\n3. **The Physical Medium**: [Noether sea](../spacetime/noether-sea.md), the emergent physical medium formed by coupled neutral Noether braid assemblies.\n4. **The Observer Framework**: [complete-state versus Physical Observer access](../spacetime/observer-framework.md).\n5. **Terminology Discipline**: [canonical level-aware terminology](../archie/terminology-usage.md).\n6. **Parameter Ledger**: [fundamental postulates versus derived quantities](../validation/parameter-ledger.md).\n\nThe point is not to make every later result true by definition. The point is to keep the starting inventory clean. Dynamics, assembly mappings, particle families, effective spacetime, and cosmology all depend on these foundations. If the level assignment is wrong here, the error propagates everywhere else.\n\nThe teaching order uses four levels:\n\n| Level | Plain meaning | Typical examples |\n|:---|:---|:---|\n| Substrate ontology | What exists before observer reconstruction. | Absolute time, Euclidean void, architrino identities, intrinsic polarity, causal-wake support. |\n| Assembly and medium behavior | What organized architrino configurations do. | Noether braids, stable branches, Noether sea density, stress, flow, and response. |\n| Effective description | What observers can summarize as familiar physics. | Metric, field, particle, mass, charge, clock, ruler, and potential language. |\n| Observer inference | What embedded Physical Observers can actually record. | Detector records, clock readings, coincidence windows, spectra, quantum states, and coarse histories. |\n\nThis ontology also has a boundary. It states the internal bedrock of $\\mathbb{A}\\mathbb{A}\\mathbb{A}$. It does not claim to explain why absolute time, the Euclidean void, the architrino identity set, $c_f$, or $\\kappa$ exist rather than not exist. Those are primitive postulates inside the present theory unless a separate meta-ontological account is supplied.\n\nThat distinction matters. Deriving particles, fields, clock behavior, and effective spacetime from architrino dynamics is one kind of explanation. Explaining why the substrate itself exists is a different kind of claim.\n\nThe same level discipline can be read through the canonical symbol map:\n\n| Level | Canonical variables or records | Owning chapters |\n|:---|:---|:---|\n| Substrate ontology | $T$, $\\Sigma_T$, $h_{ij}$, $\\mathbf X_a(T)$, $q_a$, causal-wake support | [Absolute Time](./absolute-time.md), [Euclidean Void](./euclidean-void.md), [Absolute Timespace](./absolute-timespace.md), [Architrino](./architrino.md) |\n| Assembly and medium behavior | assembly branch records, $\\Lambda_{\\text{NS}}$, $\\rho_{\\text{NS}}(\\mathbf X,T)$, $\\Sigma_{\\text{sea}}(\\mathbf X,T)$, $\\mathbf u_{\\text{sea}}(\\mathbf X,T)$ | [Noether Braid](../noether-braid/noether-braid.md), [Braid Envelope Geometry](../noether-braid/braid-envelope-geometry.md), [Noether sea](../spacetime/noether-sea.md) |\n| Effective description | $A(\\mathcal{N}_{\\mathrm{sea}})$, $B_{ij}(\\mathcal{N}_{\\mathrm{sea}})$, $u^i_{\\mathrm{sea,eff}}$, $g^{\\text{eff}}_{\\mu\\nu}$, $\\Phi_{\\text{eff}}$ | [Emergent Metric](../spacetime/emergent-metric.md), [Proper Time and Time Dilation](../spacetime/proper-time-and-time-dilation.md), [Particle Masses](../assemblies/particle-masses.md) |\n| Observer inference | $\\Pi_{\\mathrm{obs}}:S(T)\\to\\bar S(T)$, Physical Observer records $\\Theta_A^{(O,W)}$, detector and measurement records | [Observer Framework](../spacetime/observer-framework.md), [Wavefunction Ontology](../quantum/wavefunction-ontology.md), [Measurement Ontology](../quantum/measurement-ontology.md) |\n\nEquivalently, the four levels form a tower of forgetting maps:\n$$\nS(T)\n\\xrightarrow{\\Pi_{\\mathrm{assembly}}}\n\\mathfrak B(T)\n\\xrightarrow{\\Pi_{\\mathrm{eff}}}\n\\big(A,B_{ij},g^{\\mathrm{eff}},\\Phi_{\\mathrm{eff}}\\big)\n\\xrightarrow{\\Pi_{\\mathrm{record}}}\n\\bar S(T).\n$$\nHere $\\mathfrak B(T)$ denotes the retained assembly and branch records and $\\Pi_{\\mathrm{record}}$ is the final record-extraction arrow. The canonical observer projection is the composite $\\Pi_{\\mathrm{obs}}=\\Pi_{\\mathrm{record}}\\circ\\Pi_{\\mathrm{eff}}\\circ\\Pi_{\\mathrm{assembly}}:S(T)\\to\\bar S(T)$, matching the definition in [Architrino](./architrino.md#provenance-and-persistence). Pullback of retained information along the tower induces a decreasing filtration on $S(T)$. Each arrow keeps some information and discards some information. Individual provenance labels, path-history depth, inactive branch alternatives, fine assembly coordinates, medium microstate, and apparatus-inaccessible records may be lost at different stages.\n\nA quantity is well-defined at a level only if it survives the corresponding forgetting map. A residual measures failure to survive that quotient. Examples include provenance leakage $\\epsilon_{\\mathrm{prov}}$, branch or record residuals $\\mathcal R_{\\mathcal Q}$, clock-composition residuals $\\Delta^{\\mathrm{comp}}$, and clock-universality residuals $\\epsilon_{\\mathrm{univ}}$. This is why level discipline is not only vocabulary discipline. It decides which invariants remain meaningful after a projection.\n\nMany projections also need regularity. A reconstruction or projection map is locally usable only where its active inverse has a declared non-degeneracy floor. The root chart uses $|\\partial_{T_t} F|\\ge\\kappa_{\\mathrm{hit}}>0$, where $F$ is the causal-root function defined in The Fundamental Entity below and owned by [Master Equation](../dynamics/master-equation.md); frame construction uses a basis-conditioning floor such as $\\sin\\theta_{\\min}>0$; wake-center reconstruction uses a finite solid-angle floor; basin partitions use separatrix regularity; and clock extraction requires a retained hyperbolic limit cycle with a unique rotation number.\n\nThe shared theorem target is a reconstruction-regularity lemma: away from the generically codimension-1 floor-failure locus, the relevant map has controlled local inverse behavior. At the floor failure, the theory must report a residual, branch jump, or reconfiguration event rather than silently reusing a smooth chart.\n\nTwo distinctions govern the rest of this hub.\n\nFirst, primitive substance is not the same as emergent matter. The architrino is primitive substance. Matter begins only when assemblies acquire mass, exclusion, persistence, and organized branch behavior.\n\nSecond, physical reality is not the same as independent material inventory. Causal wakes are physically real, finite-speed, potential-bearing causal records. They are not an extra material ingredient floating in the void. Their content is fixed by transmitter identity, polarity, and path history.\n\nA conservative entry criterion for emergent matter status is therefore two-part. A stable assembly $A$ must carry a nonzero closed internal causal-history energy ledger $E_{\\text{internal}}(A) > 0$ as defined in [Energy](../dynamics/energy.md), and it must carry an assembly-level exclusion record protected by retained curve-configuration topology plus a branch-preserving action or energy barrier. The Euclidean void supplies no ambient topological superselection. The protected data must be carried by the assembly itself, for example by an oblate spheroidal exclusion envelope together with the ordered-frame, framed linking, or causal-writhe data needed for fermionic matter, and by a nonzero barrier $\\Delta E_{\\mathrm{excl}}>0$ against deformation through the forbidden branch. This is an entry criterion for the mass-map and exclusion programs, not a completed derivation of particle masses or spin-statistics.\n",
+          "selectionSha256": "c3d07e652aaf196a1d11c5659b69b1441b06f9f3ce8cd8bd7161bc8838011721"
+        },
+        {
+          "sourceId": "source.priority-mcp-contract",
+          "contentType": "markdown",
+          "content": "# Source Index Snapshot V1\n\n## Status\n\n- Kind: `priority-contract`\n- Claim level: `priority-only`\n- Status: `fixture-backed`\n- Parent tracker: [Architrino MCP](priorities.md)\n\n## Purpose\n\n`archie-source-index-snapshot/v1` is the first executable contract for the immutable data bundle that a future MCP adapter will consume.\n\nThe contract does not create a public MCP endpoint or a complete production corpus index. It establishes the smaller supply-side boundary first: the same declared inputs must produce the same normalized snapshot; every output record must retain source provenance and visibility; derived routes must point to an authored canonical parent; and altered hashes or authority inflation must fail closed.\n\n## Implemented Artifacts\n\n| Artifact | Role |\n| --- | --- |\n| [Archie service schema](../../../src/archie-service/contracts/v1/schema.json) | Defines the build-input, snapshot, search-view, graph-view, metadata-view, and negative-suite shapes. |\n| [Snapshot implementation](../../../src/archie-service/source-index/snapshot-v1.mjs) | Builds canonical views, computes hashes, enforces authority rules, and validates snapshots. |\n| [Build input fixture](../../../tests/archie-service/fixtures/source-index/source-index-build-input.v1.json) | Declares six representative source records, two explicit graph edges, one equation, one figure, and the live generated-artifact inputs. |\n| [Generated snapshot fixture](../../../tests/archie-service/fixtures/source-index/source-index-snapshot.v1.json) | Stores the expected normalized snapshot and its hashes. |\n| [Negative suite](../../../tests/archie-service/fixtures/source-index/source-index-negative-suite.v1.json) | Declares failures for missing paths, duplicate ids, invalid parents, authority inflation, visibility leakage, false metadata provenance, and stale hashes. |\n| [Builder and checker](../../../scripts/archie-service/build-source-index.mjs) | Writes the review fixture in `--write` mode and performs deterministic, provenance, authority, route, and negative checks in `--check` mode. |\n| [Focused tests](../../../tests/archie-service-source-index-snapshot.test.js) | Rebuilds the fixture, tests input-order invariance, and confirms tampering and priority-authority inflation are rejected. |\n\n## Snapshot Contents\n\nOne snapshot contains:\n\n1. snapshot and view schema versions;\n2. the declared repository ref;\n3. the SHA-256 hashing rule and `canonical-json-v1` normalization rule;\n4. live generated-artifact routes and their digests;\n5. source-record counts by controlled source class;\n6. visibility-policy version, freshness, and rollback parent;\n7. per-source file and selected-section hashes;\n8. a deterministic exact-content view for snapshot-only reads;\n9. a deterministic search view;\n10. a typed graph view;\n11. an equation-and-figure metadata view;\n12. per-view hashes and one enclosing snapshot hash.\n\nBuild time is deliberately excluded from the hashed payload. A changing timestamp would make identical inputs produce different fingerprints.\n\n## Hash Boundaries\n\nThe contract uses SHA-256 as a change detector.\n\n| Hash | Covers | Failure meaning |\n| --- | --- | --- |\n| `sourceContentSha256` | Raw bytes of one source file. | The source file changed or the recorded digest is false. |\n| `selectionSha256` | The exact selected Markdown section or full source record. | The indexed section changed even if its route did not. |\n| Content-view `sha256` | Exact selected content, type, source id, and selection hash for every source. | Readable snapshot content changed or detached from source provenance. |\n| `assetSha256` | The exact figure asset bytes. | The figure changed or the metadata points to the wrong asset. |\n| Generated-artifact digest | One generated file, or a sorted path-plus-hash manifest for a directory. | A graph, Markdown index, reading copy, or table-of-contents input changed. |\n| View `sha256` | The canonical exact-content, search, graph, or metadata view without its own hash field. | That view was altered or normalized differently. |\n| `snapshotSha256` | The complete canonical snapshot without its own hash field. | Any protected snapshot field or child view changed. |\n\nThe fixture proves order invariance by reversing the declared source, graph-edge, and metadata arrays and requiring the same final snapshot hash.\n\n## Provenance Contract\n\nEach searchable source record carries:\n\n- stable source id;\n- title and route;\n- physical source path and optional section anchor through `sourceInputs`;\n- source class;\n- authority status;\n- visibility;\n- canonical parent where required;\n- strongest allowed claim label;\n- source-file and selection hashes.\n\nEquation metadata is admitted only when the exact TeX occurs in its selected source. Figure metadata is admitted only when the selected Markdown source actually references the declared asset. Extraction does not validate the mathematics or turn the figure into proof.\n\nGraph edges and metadata records inherit retrieval visibility from their `evidenceSourceId` or `sourceId`. A future MCP tool must apply that source-record visibility before returning either record; the relationship or metadata payload cannot make itself public independently.\n\n## Visibility And Authority Matrix\n\n| Source class | Allowed authority | Allowed visibility | Parent rule |\n| --- | --- | --- | --- |\n| `published_corpus` | `primary` | `public` | No parent required. |\n| `generated_reading_copy` | `routing_only` | `public` | Must name a `published_corpus` parent. |\n| `scene_route` | `routing_only` | `public` | Must name a `published_corpus` parent. |\n| `app_guide` | `diagnostic` | `public` | No parent required for app behavior. |\n| `archie_reference` | `primary` or `diagnostic` | `public` | No parent required under the current source policy. |\n| `priority_material` | `priority_only` or `excluded` | `development_status`, `operator_developer`, or `excluded` | It cannot become ordinary public corpus authority. |\n| `external_prior_physics` | `comparison_only` or `excluded` | `external_curated` or `excluded` | It cannot become native theory authority. |\n\nThe matrix is enforced while building and while reading the completed snapshot. Generated routing layers therefore cannot elevate themselves by copying authoritative prose.\n\n## Fail-Closed Fixtures\n\nThe negative suite must reject:\n\n1. a source path that does not exist;\n2. duplicate source ids;\n3. a missing canonical parent;\n4. a scene route parent that is not published corpus;\n5. priority material marked `primary`;\n6. priority material marked `public`;\n7. equation TeX absent from its source section;\n8. a figure asset not referenced by its source section;\n9. an old source hash attached to current source bytes;\n10. an altered search-view hash.\n\nThese are test fixtures for the stated contract. They do not independently prove every future full-corpus ingestion path; production expansion must preserve the same gates while adding source families and record volume.\n\n## Upstream Freshness Gate\n\nThe snapshot builder hashes the generated artifacts it receives; it does not replace their owning generators or prove that they are current relative to canonical sources. The ordered pipeline must run `node scripts/check-content-integrity.mjs` before building or publishing a source-index snapshot.\n\nIf that upstream check reports generated drift, the snapshot is not publishable even when its own hashes are internally consistent. After the owning generator is explicitly run and its check passes, the source-index snapshot will correctly report digest drift until its expected artifact is regenerated and rechecked.\n\n## Commands\n\nCheck without writing:\n\n```bash\nnode scripts/archie-service/build-source-index.mjs --check\nnode --test tests/archie-service-source-index-snapshot.test.js\nnode scripts/check-content-integrity.mjs\n```\n\nRegenerate the expected fixture after an explicitly accepted source or contract change:\n\n```bash\nnode scripts/archie-service/build-source-index.mjs --write\nnode scripts/archie-service/build-source-index.mjs --check\n```\n\n## Acceptance Falsifiers\n\nThe V1 contract is not accepted if any of these observations occurs:\n\n- identical declared inputs produce different snapshot hashes;\n- reordering input records changes the snapshot hash;\n- a source or asset changes while its recorded hash still passes;\n- priority material enters the public set or gains primary authority;\n- a generated route lacks a published canonical parent but still builds;\n- an equation or figure is indexed without source evidence;\n- `--check` modifies any file;\n- schema validation or the focused negative suite fails.\n\n## Remaining Boundary\n\nThis artifact closes the first source-index contract object and now supplies the exact-content view required by [MCP Tool Contract V1](mcp-tool-contract-v1.md). It is still a representative fixture rather than complete production-corpus enumeration.\n",
+          "selectionSha256": "8f435684fbfb173dd4648ec52e793239345b92ac541eabcfe2bf7436aa6b7d44"
+        },
+        {
+          "sourceId": "source.scene-ontology",
+          "contentType": "json",
+          "content": "{\n  \"schemaVersion\": \"0.1\",\n  \"scene\": {\n    \"id\": \"foundations__foundational_ontology\",\n    \"title\": \"Ontology\",\n    \"type\": \"Scene-Markdown-View\",\n    \"units\": \"relative\",\n    \"wrapLabels\": true,\n    \"layout\": {\n      \"type\": \"static\"\n    },\n    \"source\": {\n      \"type\": \"markdown\",\n      \"path\": \"content/markdown/aaa/foundations/ontology.md\"\n    },\n    \"view\": {\n      \"columns\": 1,\n      \"autoOpen\": true\n    }\n  },\n  \"objects\": []\n}\n",
+          "selectionSha256": "34a61a3cc2c43c1798726a3613d8e590edd32dcd5f7ca4572d45d18e88d36c5b"
+        },
+        {
+          "sourceId": "source.system-card",
+          "contentType": "markdown",
+          "content": "## Answering Posture\n\nThe ordinary Archie answer should be useful first: clear, direct, and written from the $\\mathbb{A}\\mathbb{A}\\mathbb{A}$ frame when the selected mode calls for it.\n\nThe system card carries the heavier status burden. A normal answer can link to the system card, cite the strongest local sources, and keep moving. When a user asks whether a claim is proven, blocked, speculative, or only a working route, Archie should route them directly to the relevant scorecard, gate, or validation document.\n",
+          "selectionSha256": "e09e4fbb8bf5008c542ea9494f8d34f43bfbc5849420157cf63848820a373866"
+        }
+      ],
+      "sha256": "3902af9d41207eabe279793730a204c9bf08cc365db7a2d5b3b8ba46d0040df2"
+    },
+    "search": {
+      "schema": "archie-source-search-view/v1",
+      "records": [
+        {
+          "sourceId": "source.app-guide",
+          "title": "Open Architrino",
+          "route": "content/markdown/aaa/archie/about-the-webapp.md#open-architrino",
+          "sectionAnchor": "open-architrino",
+          "sourceClass": "app_guide",
+          "authorityStatus": "diagnostic",
+          "visibility": "public",
+          "canonicalParent": null,
+          "claimLabelFloor": "app diagnostic",
+          "aliases": [
+            "webapp guide"
+          ],
+          "keywords": [
+            "application",
+            "navigation",
+            "webapp"
+          ],
+          "sourceContentSha256": "4c2048a224ad801cfca102d12772508d33e815595242254f0e0e58c35da1fd63",
+          "selectionSha256": "8e21372bd10a216ed5ba3dc4a63ac253e795f0e9fd4d9304cdde8d4f70b5eaa1",
+          "searchText": "Open Architrino webapp guide application navigation webapp Open Architrino Architrino logo and QR code for architrino.com Scan the QR code to open architrino.com.",
+          "publicEligible": true
+        },
+        {
+          "sourceId": "source.generated-foundations-ontology",
+          "title": "Generated Foundations Reading Copy: Ontology",
+          "route": "document-sphere:content/markdown/aaa/foundations/ontology.md",
+          "sectionAnchor": "ontology",
+          "sourceClass": "generated_reading_copy",
+          "authorityStatus": "routing_only",
+          "visibility": "public",
+          "canonicalParent": "source.ontology-purpose",
+          "claimLabelFloor": "unsupported",
+          "aliases": [
+            "foundations reading copy"
+          ],
+          "keywords": [
+            "generated",
+            "ontology",
+            "reading copy"
+          ],
+          "sourceContentSha256": "bfd58ceda319083a4d2c2b6d634b16dbe63abec4e5886f54bbdb32491c32098b",
+          "selectionSha256": "06e8ff6e4576f2faf41b2a1be5a8b02eea41c48f633ed1836b309d8f496ad47f",
+          "searchText": "Generated Foundations Reading Copy: Ontology foundations reading copy generated reading copy ontology Ontology Ontology asks a simple question: what is actually there before an observer names it, measures it, or compresses it into a model? For $\\mathbb{A}\\mathbb{A}\\mathbb{A}$, the answer has layers. At the bottom are absolute time, the Euclidean void, and architrinos. Above that are assemblies, causal wakes, and the Noether sea. Above that are effective fields, particles, clocks, rulers, metrics, and observer records. The main rule of this chapter is that those layers must no",
+          "publicEligible": true
+        },
+        {
+          "sourceId": "source.ontology-purpose",
+          "title": "Ontology: Purpose and Scope",
+          "route": "content/markdown/aaa/foundations/ontology.md#purpose-and-scope",
+          "sectionAnchor": "purpose-and-scope",
+          "sourceClass": "published_corpus",
+          "authorityStatus": "primary",
+          "visibility": "public",
+          "canonicalParent": null,
+          "claimLabelFloor": "published corpus",
+          "aliases": [
+            "foundation levels",
+            "ontological bedrock"
+          ],
+          "keywords": [
+            "absolute time",
+            "architrino",
+            "Euclidean void",
+            "Noether sea"
+          ],
+          "sourceContentSha256": "4f41da03e278e0c25f8c85f2c599980ab5d6a57cb926941541cf161d1f7d1064",
+          "selectionSha256": "c3d07e652aaf196a1d11c5659b69b1441b06f9f3ce8cd8bd7161bc8838011721",
+          "searchText": "Ontology: Purpose and Scope ontological bedrock foundation levels absolute time architrino Euclidean void Noether sea Purpose and Scope This document establishes the ontological bedrock of $\\mathbb{A}\\mathbb{A}\\mathbb{A}$: what fundamentally exists, what is emergent, and what Physical Observers reconstruct from inside the system. It defines six foundation routes: 1. The Substrate : absolute time, Euclidean void, and absolute timespace. 2. The Fundamental Entity : architrino, the point transceiver of potential-bearing causal wakes. 3. The Physical Medium : Noether sea, the emergent physical m",
+          "publicEligible": true
+        },
+        {
+          "sourceId": "source.priority-mcp-contract",
+          "title": "Architrino MCP Source Index Snapshot V1",
+          "route": "reference/priorities/app-mcp/source-index-snapshot-v1.md",
+          "sectionAnchor": null,
+          "sourceClass": "priority_material",
+          "authorityStatus": "priority_only",
+          "visibility": "development_status",
+          "canonicalParent": null,
+          "claimLabelFloor": "priority-only",
+          "aliases": [
+            "MCP snapshot contract"
+          ],
+          "keywords": [
+            "deterministic hash",
+            "MCP",
+            "provenance",
+            "source index"
+          ],
+          "sourceContentSha256": "8f435684fbfb173dd4648ec52e793239345b92ac541eabcfe2bf7436aa6b7d44",
+          "selectionSha256": "8f435684fbfb173dd4648ec52e793239345b92ac541eabcfe2bf7436aa6b7d44",
+          "searchText": "Architrino MCP Source Index Snapshot V1 MCP snapshot contract deterministic hash MCP provenance source index Source Index Snapshot V1 Status - Kind: priority-contract - Claim level: priority-only - Status: fixture-backed - Parent tracker: Architrino MCP Purpose archie-source-index-snapshot/v1 is the first executable contract for the immutable data bundle that a future MCP adapter will consume. The contract does not create a public MCP endpoint or a complete production corpus index. It establishes the smaller supply-side boundary first: the same declared inputs must produce the same",
+          "publicEligible": false
+        },
+        {
+          "sourceId": "source.scene-ontology",
+          "title": "Ontology Scene Route",
+          "route": "scene:foundations__foundational_ontology#section:purpose-and-scope",
+          "sectionAnchor": null,
+          "sourceClass": "scene_route",
+          "authorityStatus": "routing_only",
+          "visibility": "public",
+          "canonicalParent": "source.ontology-purpose",
+          "claimLabelFloor": "unsupported",
+          "aliases": [
+            "ontology sphere"
+          ],
+          "keywords": [
+            "route",
+            "scene",
+            "sphere"
+          ],
+          "sourceContentSha256": "34a61a3cc2c43c1798726a3613d8e590edd32dcd5f7ca4572d45d18e88d36c5b",
+          "selectionSha256": "34a61a3cc2c43c1798726a3613d8e590edd32dcd5f7ca4572d45d18e88d36c5b",
+          "searchText": "Ontology Scene Route ontology sphere scene sphere route { \"schemaVersion\": \"0.1\", \"scene\": { \"id\": \"foundations foundational ontology\", \"title\": \"Ontology\", \"type\": \"Scene-Markdown-View\", \"units\": \"relative\", \"wrapLabels\": true, \"layout\": { \"type\": \"static\" }, \"source\": { \"type\": \"markdown\", \"path\": \"content/markdown/aaa/foundations/ontology.md\" }, \"view\": { \"columns\": 1, \"autoOpen\": true } }, \"objects\": [] }",
+          "publicEligible": true
+        },
+        {
+          "sourceId": "source.system-card",
+          "title": "System Card: Answering Posture",
+          "route": "content/markdown/aaa/archie/system-card.md#answering-posture",
+          "sectionAnchor": "answering-posture",
+          "sourceClass": "archie_reference",
+          "authorityStatus": "primary",
+          "visibility": "public",
+          "canonicalParent": null,
+          "claimLabelFloor": "AAA-native stance",
+          "aliases": [
+            "answering posture"
+          ],
+          "keywords": [
+            "claim status",
+            "source authority",
+            "System Card"
+          ],
+          "sourceContentSha256": "c478b4e04a0e02930d55d55c759de5cbbacc9a74e0e23e101a8edbd0c287abba",
+          "selectionSha256": "e09e4fbb8bf5008c542ea9494f8d34f43bfbc5849420157cf63848820a373866",
+          "searchText": "System Card: Answering Posture answering posture claim status source authority System Card Answering Posture The ordinary Archie answer should be useful first: clear, direct, and written from the $\\mathbb{A}\\mathbb{A}\\mathbb{A}$ frame when the selected mode calls for it. The system card carries the heavier status burden. A normal answer can link to the system card, cite the strongest local sources, and keep moving. When a user asks whether a claim is proven, blocked, speculative, or only a working route, Archie should route them directly to the relevant scorecard,",
+          "publicEligible": true
+        }
+      ],
+      "sha256": "feedf048c986986b198495a42025577cfb48e276a4525be5f67a7754d8f3594b"
+    },
+    "graph": {
+      "schema": "archie-source-graph-view/v1",
+      "nodes": [
+        {
+          "sourceId": "source.app-guide",
+          "title": "Open Architrino",
+          "route": "content/markdown/aaa/archie/about-the-webapp.md#open-architrino",
+          "sourceClass": "app_guide",
+          "authorityStatus": "diagnostic",
+          "visibility": "public",
+          "canonicalParent": null
+        },
+        {
+          "sourceId": "source.generated-foundations-ontology",
+          "title": "Generated Foundations Reading Copy: Ontology",
+          "route": "document-sphere:content/markdown/aaa/foundations/ontology.md",
+          "sourceClass": "generated_reading_copy",
+          "authorityStatus": "routing_only",
+          "visibility": "public",
+          "canonicalParent": "source.ontology-purpose"
+        },
+        {
+          "sourceId": "source.ontology-purpose",
+          "title": "Ontology: Purpose and Scope",
+          "route": "content/markdown/aaa/foundations/ontology.md#purpose-and-scope",
+          "sourceClass": "published_corpus",
+          "authorityStatus": "primary",
+          "visibility": "public",
+          "canonicalParent": null
+        },
+        {
+          "sourceId": "source.priority-mcp-contract",
+          "title": "Architrino MCP Source Index Snapshot V1",
+          "route": "reference/priorities/app-mcp/source-index-snapshot-v1.md",
+          "sourceClass": "priority_material",
+          "authorityStatus": "priority_only",
+          "visibility": "development_status",
+          "canonicalParent": null
+        },
+        {
+          "sourceId": "source.scene-ontology",
+          "title": "Ontology Scene Route",
+          "route": "scene:foundations__foundational_ontology#section:purpose-and-scope",
+          "sourceClass": "scene_route",
+          "authorityStatus": "routing_only",
+          "visibility": "public",
+          "canonicalParent": "source.ontology-purpose"
+        },
+        {
+          "sourceId": "source.system-card",
+          "title": "System Card: Answering Posture",
+          "route": "content/markdown/aaa/archie/system-card.md#answering-posture",
+          "sourceClass": "archie_reference",
+          "authorityStatus": "primary",
+          "visibility": "public",
+          "canonicalParent": null
+        }
+      ],
+      "edges": [
+        {
+          "edgeId": "edge.generated-ontology-mirrors-source",
+          "from": "source.generated-foundations-ontology",
+          "to": "source.ontology-purpose",
+          "edgeType": "mirrors",
+          "evidenceSourceId": "source.generated-foundations-ontology"
+        },
+        {
+          "edgeId": "edge.scene-ontology-routes-to-source",
+          "from": "source.scene-ontology",
+          "to": "source.ontology-purpose",
+          "edgeType": "routes_to",
+          "evidenceSourceId": "source.scene-ontology"
+        }
+      ],
+      "sha256": "e97ead40e1d1dc1e227e92e1cbdfe482218a3b9927fa34b99ff0fa615c18836e"
+    },
+    "metadata": {
+      "schema": "archie-source-metadata-view/v1",
+      "records": [
+        {
+          "metadataId": "metadata.ontology-level-tower",
+          "kind": "equation",
+          "sourceId": "source.ontology-purpose",
+          "route": "content/markdown/aaa/foundations/ontology.md#purpose-and-scope",
+          "sourceSelectionSha256": "c3d07e652aaf196a1d11c5659b69b1441b06f9f3ce8cd8bd7161bc8838011721",
+          "tex": "$$\nS(T)\n\\xrightarrow{\\Pi_{\\mathrm{assembly}}}\n\\mathfrak B(T)\n\\xrightarrow{\\Pi_{\\mathrm{eff}}}\n\\big(A,B_{ij},g^{\\mathrm{eff}},\\Phi_{\\mathrm{eff}}\\big)\n\\xrightarrow{\\Pi_{\\mathrm{record}}}\n\\bar S(T).\n$$",
+          "texSha256": "d553f0799da68ae1dedc68524a1d1ea3d50190df6bce58d575bbc038009be23c"
+        },
+        {
+          "metadataId": "metadata.webapp-logo",
+          "kind": "figure",
+          "sourceId": "source.app-guide",
+          "route": "content/markdown/aaa/archie/about-the-webapp.md#open-architrino",
+          "sourceSelectionSha256": "8e21372bd10a216ed5ba3dc4a63ac253e795f0e9fd4d9304cdde8d4f70b5eaa1",
+          "assetPath": "content/assets/images/brand/architrino-logo-qr-landscape.png",
+          "assetSha256": "eabd1ef937fdf8a49295971e64eaddd320c5d0c250eb2822188459a6c134d6d7",
+          "altText": "Architrino logo and QR code for architrino.com"
+        }
+      ],
+      "sha256": "b601a00ecae2b3403e391e05d9de11959d8b1019f9a0052219cfc84f5ee319db"
+    }
+  },
+  "snapshotSha256": "0f37ac2a582bccb817591a261fd0530e508943bb9279309c7ec861e656ce880c"
 }

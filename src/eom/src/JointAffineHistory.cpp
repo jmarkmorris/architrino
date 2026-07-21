@@ -1,10 +1,12 @@
 #include "architrino/eom/JointAffineHistory.hpp"
+#include "architrino/eom/History.hpp"
 
 #include <algorithm>
 #include <cmath>
 #include <limits>
 #include <stdexcept>
 #include <string>
+#include <utility>
 
 namespace architrino::eom {
 namespace {
@@ -70,6 +72,74 @@ bool dominates(
     if (projection[axis] > ordinary[axis]) return false;
   }
   return true;
+}
+
+struct JointSegmentIntervalEvaluation {
+  IntervalVector nominal_position;
+  std::vector<IntervalVector> position_coefficients;
+  std::array<double, 3> remainder_radii{};
+};
+
+Interval polynomial_interval(
+    const std::array<JointCoefficientRow, 4>& rows,
+    std::size_t symbol,
+    const Interval& local_time) {
+  Interval value = Interval::point(rows[3][symbol]);
+  for (int degree = 2; degree >= 0; --degree) {
+    value = value * local_time +
+        Interval::point(rows[static_cast<std::size_t>(degree)][symbol]);
+  }
+  return value;
+}
+
+JointSegmentIntervalEvaluation interval_evaluation(
+    const RetainedHistory& ordinary,
+    const JointAffineRetainedHistory& joint,
+    const Interval& time) {
+  if (!ordinary.covers(time) ||
+      !joint.covers(time.lower()) || !joint.covers(time.upper())) {
+    throw std::invalid_argument(
+        "joint displacement evaluation lacks retained-history coverage");
+  }
+  const std::size_t ordinary_index =
+      ordinary.segment_index_at(time.midpoint());
+  const auto& ordinary_segment = ordinary.segments()[ordinary_index];
+  if (time.lower() < ordinary_segment.t_start() ||
+      time.upper() > ordinary_segment.t_end()) {
+    throw std::invalid_argument(
+        "joint displacement interval crosses a retained segment boundary");
+  }
+  const auto joint_segment = std::lower_bound(
+      joint.segments().begin(), joint.segments().end(),
+      ordinary_segment.t_start(),
+      [](const auto& candidate, double start) {
+        return candidate.start_time < start;
+      });
+  if (joint_segment == joint.segments().end() ||
+      joint_segment->start_time != ordinary_segment.t_start() ||
+      joint_segment->end_time != ordinary_segment.t_end()) {
+    throw std::invalid_argument(
+        "joint and ordinary retained segment registries disagree");
+  }
+  JointSegmentIntervalEvaluation result{
+      .nominal_position = ordinary_segment.nominal_position_interval(time),
+      .position_coefficients = std::vector<IntervalVector>(
+          joint.symbol_registry().size(),
+          IntervalVector{
+              Interval::point(0.0), Interval::point(0.0),
+              Interval::point(0.0)}),
+      .remainder_radii = joint_segment->position_remainder_radii,
+  };
+  const Interval local_time = time -
+      Interval::point(joint_segment->start_time);
+  for (std::size_t symbol = 0U;
+       symbol < joint.symbol_registry().size(); ++symbol) {
+    for (std::size_t axis = 0U; axis < 3U; ++axis) {
+      result.position_coefficients[symbol][axis] = polynomial_interval(
+          joint_segment->position_coefficients[axis], symbol, local_time);
+    }
+  }
+  return result;
 }
 
 }  // namespace
@@ -304,6 +374,84 @@ JointAffineRetainedHistory JointAffineRetainedHistory::with_appended_symbols(
   return JointAffineRetainedHistory(
       path_id_, std::move(registry), std::move(segments),
       std::move(endpoint_override));
+}
+
+IntervalVector joint_affine_displacement_hull(
+    const RetainedHistory& receiver_ordinary,
+    const JointAffineRetainedHistory& receiver_joint,
+    const Interval& reception,
+    const RetainedHistory& transmitter_ordinary,
+    const JointAffineRetainedHistory& transmitter_joint,
+    const Interval& emission) {
+  if (receiver_joint.path_id() == transmitter_joint.path_id() ||
+      receiver_joint.symbol_registry() !=
+          transmitter_joint.symbol_registry()) {
+    throw std::invalid_argument(
+        "joint displacement requires distinct paths with aligned symbols");
+  }
+  const auto receiver = interval_evaluation(
+      receiver_ordinary, receiver_joint, reception);
+  const auto transmitter = interval_evaluation(
+      transmitter_ordinary, transmitter_joint, emission);
+  const IntervalVector ordinary_displacement = subtract(
+      receiver_ordinary.position_hull(reception),
+      transmitter_ordinary.position_hull(emission));
+  IntervalVector result = subtract(
+      receiver.nominal_position, transmitter.nominal_position);
+  for (std::size_t axis = 0U; axis < 3U; ++axis) {
+    const double remainder = outward_sum(
+        receiver.remainder_radii[axis],
+        transmitter.remainder_radii[axis]);
+    result[axis] = result[axis] + Interval(-remainder, remainder);
+  }
+  for (std::size_t symbol = 0U;
+       symbol < receiver.position_coefficients.size(); ++symbol) {
+    for (std::size_t axis = 0U; axis < 3U; ++axis) {
+      result[axis] = result[axis] +
+          (receiver.position_coefficients[symbol][axis] -
+           transmitter.position_coefficients[symbol][axis]) *
+              Interval(-1.0, 1.0);
+    }
+  }
+  for (std::size_t axis = 0U; axis < 3U; ++axis) {
+    const auto intersection =
+        result[axis].intersection(ordinary_displacement[axis]);
+    if (!intersection.has_value()) {
+      throw std::runtime_error(
+          "joint and ordinary displacement enclosures disagree");
+    }
+    result[axis] = *intersection;
+  }
+  return result;
+}
+
+IntervalVector joint_affine_segment_pair_error_hull(
+    const JointAffineCubicSegment& receiver,
+    const JointAffineCubicSegment& transmitter,
+    std::size_t shared_symbol_count) {
+  IntervalVector result{
+      Interval::point(0.0), Interval::point(0.0), Interval::point(0.0)};
+  for (std::size_t axis = 0U; axis < 3U; ++axis) {
+    const double remainder = outward_sum(
+        receiver.position_remainder_radii[axis],
+        transmitter.position_remainder_radii[axis]);
+    result[axis] = Interval(-remainder, remainder);
+  }
+  const Interval receiver_local(
+      0.0, receiver.end_time - receiver.start_time);
+  const Interval transmitter_local(
+      0.0, transmitter.end_time - transmitter.start_time);
+  for (std::size_t symbol = 0U; symbol < shared_symbol_count; ++symbol) {
+    for (std::size_t axis = 0U; axis < 3U; ++axis) {
+      const Interval coefficient = polynomial_interval(
+          receiver.position_coefficients[axis], symbol, receiver_local) -
+          polynomial_interval(
+              transmitter.position_coefficients[axis], symbol,
+              transmitter_local);
+      result[axis] = result[axis] + coefficient * Interval(-1.0, 1.0);
+    }
+  }
+  return result;
 }
 
 }  // namespace architrino::eom

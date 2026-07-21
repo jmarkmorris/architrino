@@ -270,10 +270,12 @@ The step record contains attempted and accepted times, all input-history hashes,
 | `canonical` | The complete bound Master EOM loop ran, all required histories and roots were complete, every consumed acceleration record used canonical factors, and numerical/regulator acceptance passed. |
 | `conditional` | An acceleration, root, or stability calculation was evaluated on prescribed history without evolving that history under this contract. |
 | `reference` | An independent comparison implementation produced the result and is not the production authority. |
-| `display-only` | Visual interpolation or authored motion produced the output. |
+| `display-only` | Visual interpolation, authored motion, or an explicitly non-certifying point evolution produced the output. |
 | `failed` | History, root completeness, precision, regulator, integration, storage, or other required control failed. |
 
 Evidence status is derived from recorded capabilities actually exercised. Successful return, entrypoint name, backend identity, or caller request cannot set it directly.
+
+A consumer may fork a one-way `display-only` continuation from the last accepted boundary after certified evolution fails or does not return before the consumer's declared execution deadline. A deadline boundary advances no history: the unfinished candidate is rejected and the fork starts at the previously accepted cut. The accepted prefix keeps its existing evidence status. The continuation must use a separately identified non-certifying evaluator, mark every appended segment `display-only`, and remain permanently ineligible for promotion. It may not publish the rejected or unfinished certified candidate as accepted history or imply that the display suffix extends the certified prefix's authority.
 
 ## Required Failure Codes
 

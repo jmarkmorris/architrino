@@ -601,9 +601,18 @@ JointEndpointContraction contract_joint_endpoint(
     }
     for (std::size_t axis = 0U; axis < 3U; ++axis) {
       const std::size_t index = 3U * path + axis;
+      const double endpoint_center =
+          center_found->second[axis].midpoint();
+      const double endpoint_radius = interval_radius_upper(
+          center_found->second[axis] -
+          Interval::point(endpoint_center));
       radii[index] = std::max(
           std::numeric_limits<double>::denorm_min(),
-          0.5 * center_found->second[axis].width());
+          outward_radius_sum({
+              endpoint_radius,
+              joint_acceleration_representation_rounding_envelope(
+                  center_found->second[axis], ids.size() - 1U),
+          }));
       corrector_symbols.push_back(
           "endpoint-corrector/" + end_time + "/" + ids[path] + "/" +
           std::to_string(axis));
@@ -670,13 +679,25 @@ JointEndpointContraction contract_joint_endpoint(
     double maximum_radius = 0.0;
     double maximum_image_radius = 0.0;
     double maximum_residual_radius = 0.0;
+    std::size_t minimum_margin_index = 0U;
     for (const double radius : radii) {
       minimum_radius = std::min(minimum_radius, radius);
       maximum_radius = std::max(maximum_radius, radius);
     }
-    for (const auto& image : corrector.krawczyk.image) {
+    for (std::size_t index = 0U;
+         index < corrector.krawczyk.image.size(); ++index) {
+      const auto& image = corrector.krawczyk.image[index];
       maximum_image_radius = std::max(
           maximum_image_radius, interval_radius_upper(image));
+      const double margin = std::min(
+          corrector.krawczyk.lower_containment_margins[index],
+          corrector.krawczyk.upper_containment_margins[index]);
+      const double current_margin = std::min(
+          corrector.krawczyk.lower_containment_margins[
+              minimum_margin_index],
+          corrector.krawczyk.upper_containment_margins[
+              minimum_margin_index]);
+      if (margin < current_margin) minimum_margin_index = index;
     }
     for (const auto& residual : corrector.parametric_residual_at_center) {
       maximum_residual_radius = std::max(
@@ -688,7 +709,24 @@ JointEndpointContraction contract_joint_endpoint(
         "/maximum_image=" + decimal_token(maximum_image_radius) +
         "/maximum_residual=" + decimal_token(maximum_residual_radius) +
         "/minimum_margin=" +
-        decimal_token(corrector.krawczyk.minimum_containment_margin);
+        decimal_token(corrector.krawczyk.minimum_containment_margin) +
+        "/minimum_margin_path=" + ids[minimum_margin_index / 3U] +
+        "/minimum_margin_axis=" +
+        std::to_string(minimum_margin_index % 3U) +
+        "/minimum_margin_radius=" +
+        decimal_token(radii[minimum_margin_index]) +
+        "/minimum_margin_image=" +
+        decimal_token(
+            corrector.krawczyk.image[minimum_margin_index].lower()) +
+        "," + decimal_token(
+            corrector.krawczyk.image[minimum_margin_index].upper()) +
+        "/minimum_margin_residual=" +
+        decimal_token(
+            corrector.parametric_residual_at_center[
+                minimum_margin_index].lower()) +
+        "," + decimal_token(
+            corrector.parametric_residual_at_center[
+                minimum_margin_index].upper());
     return result;
   }
   auto contracted_endpoint = endpoint_acceleration;
@@ -852,10 +890,9 @@ double accepted_root_time_pressure_ratio(
 }
 
 double root_pressure_step_scale(double ratio) {
-  // Retain the ordinary-box pressure ratio as telemetry.  Once an admitted
-  // joint state is present, that fallback ratio is not the active root gate
-  // and must not constrain the adaptive controller.
-  static_cast<void>(ratio);
+  if (ratio > 0.3) return 0.125;
+  if (ratio > 0.2) return 0.25;
+  if (ratio > 0.1) return 0.5;
   return 1.0;
 }
 
@@ -3141,6 +3178,14 @@ SubstepAttempt corrected_substep_impl(
           }
           const auto pair_request = receiver_pair_budget_request(
               request, event_pairs, receiver_id);
+          const JointAffineRetainedHistory* event_joint_receiver =
+              joint_enabled
+              ? &candidate_joint_histories.at(receiver_id)
+              : nullptr;
+          const JointAffineRetainedHistory* event_joint_transmitter =
+              joint_enabled
+              ? &candidate_joint_histories.at(transmitter_id)
+              : nullptr;
           const auto regulator_timing_start = SteadyClock::now();
           auto regulator = certify_native_regulator_convergence(
               pair_request,
@@ -3148,7 +3193,8 @@ SubstepAttempt corrected_substep_impl(
               path_history(candidate_histories, transmitter_id),
               path_charge(request, receiver_id),
               path_charge(request, transmitter_id),
-              start_time, end_time);
+              start_time, end_time,
+              event_joint_receiver, event_joint_transmitter);
           timing->regulator_ladder_wall_seconds +=
               elapsed_seconds(regulator_timing_start);
           auto event = regulator.accepted_event_impulse;
@@ -4022,19 +4068,103 @@ IntervalVector event_prefactor_enclosure(
   return scale(field_speed, kernel);
 }
 
+struct EventJointDisplacementCache {
+  const NativePublishedPath& receiver;
+  const NativePublishedPath& source;
+  const JointAffineRetainedHistory& joint_receiver;
+  const JointAffineRetainedHistory& joint_source;
+  std::map<std::pair<std::size_t, std::size_t>, IntervalVector> error_hulls;
+
+  const JointAffineCubicSegment& joint_segment(
+      const JointAffineRetainedHistory& history,
+      const CubicHistorySegment& ordinary_segment) const {
+    const auto found = std::lower_bound(
+        history.segments().begin(), history.segments().end(),
+        ordinary_segment.t_start(),
+        [](const auto& candidate, double start) {
+          return candidate.start_time < start;
+        });
+    if (found == history.segments().end() ||
+        found->start_time != ordinary_segment.t_start() ||
+        found->end_time != ordinary_segment.t_end()) {
+      throw std::invalid_argument(
+          "joint event and ordinary segment registries disagree");
+    }
+    return *found;
+  }
+
+  IntervalVector displacement(
+      const Interval& reception,
+      const Interval& emission) {
+    const std::size_t receiver_index =
+        receiver.history.segment_index_at(reception.midpoint());
+    const std::size_t source_index =
+        source.history.segment_index_at(emission.midpoint());
+    const auto& receiver_segment =
+        receiver.history.segments()[receiver_index];
+    const auto& source_segment = source.history.segments()[source_index];
+    if (reception.lower() < receiver_segment.t_start() ||
+        reception.upper() > receiver_segment.t_end() ||
+        emission.lower() < source_segment.t_start() ||
+        emission.upper() > source_segment.t_end()) {
+      throw std::invalid_argument(
+          "joint event cell crosses a retained segment boundary");
+    }
+    const auto key = std::make_pair(receiver_index, source_index);
+    const auto [found, inserted] = error_hulls.try_emplace(
+        key, IntervalVector{
+            Interval::point(0.0), Interval::point(0.0),
+            Interval::point(0.0)});
+    if (inserted) {
+      found->second = joint_affine_segment_pair_error_hull(
+          joint_segment(joint_receiver, receiver_segment),
+          joint_segment(joint_source, source_segment),
+          joint_receiver.symbol_registry().size());
+    }
+    IntervalVector result = add(
+        subtract(
+            receiver_segment.nominal_position_interval(reception),
+            source_segment.nominal_position_interval(emission)),
+        found->second);
+    const IntervalVector ordinary = subtract(
+        receiver.history.position_hull(reception),
+        source.history.position_hull(emission));
+    for (std::size_t axis = 0U; axis < 3U; ++axis) {
+      const auto intersection = result[axis].intersection(ordinary[axis]);
+      if (!intersection.has_value()) {
+        throw std::runtime_error(
+            "joint event and ordinary displacement enclosures disagree");
+      }
+      result[axis] = *intersection;
+    }
+    return result;
+  }
+};
+
+IntervalVector event_displacement(
+    const NativePublishedPath& receiver,
+    const NativePublishedPath& source,
+    EventJointDisplacementCache* joint_cache,
+    const Interval& reception,
+    const Interval& emission) {
+  return joint_cache == nullptr
+      ? subtract(
+            receiver.history.position_hull(reception),
+            source.history.position_hull(emission))
+      : joint_cache->displacement(reception, emission);
+}
+
 IntervalVector event_integrand(
     const NativeCoupledEvolutionRequest& request,
     const NativePublishedPath& receiver,
     const NativePublishedPath& source,
+    EventJointDisplacementCache* joint_cache,
     const std::string& receiver_charge,
     const std::string& transmitter_charge,
     const Interval& reception,
     const Interval& emission) {
-  const IntervalVector receiver_position =
-      receiver.history.position_hull(reception);
-  const IntervalVector transmitter_position = source.history.position_hull(emission);
-  const IntervalVector displacement =
-      subtract(receiver_position, transmitter_position);
+  const IntervalVector displacement = event_displacement(
+      receiver, source, joint_cache, reception, emission);
   const Interval separation = norm(displacement);
   const Interval core_scale = Interval::decimal_token(request.core_scale);
   const Interval field_speed = Interval::decimal_token(request.field_speed);
@@ -4062,18 +4192,15 @@ std::optional<IntervalVector> centered_event_rectangle_integral(
     const NativeCoupledEvolutionRequest& request,
     const NativePublishedPath& receiver,
     const NativePublishedPath& source,
+    EventJointDisplacementCache* joint_cache,
     const std::string& receiver_charge,
     const std::string& transmitter_charge,
     const Interval& reception,
     const Interval& emission) {
-  const IntervalVector receiver_position =
-      receiver.history.position_hull(reception);
-  const IntervalVector transmitter_position =
-      source.history.position_hull(emission);
   const IntervalVector transmitter_velocity =
       source.history.velocity_hull(emission);
-  const IntervalVector displacement =
-      subtract(receiver_position, transmitter_position);
+  const IntervalVector displacement = event_displacement(
+      receiver, source, joint_cache, reception, emission);
   const Interval separation = norm(displacement);
   if (separation.contains_zero()) return std::nullopt;
 
@@ -4132,8 +4259,9 @@ std::optional<IntervalVector> centered_event_rectangle_integral(
   IntervalVector result = scale(
       Interval::point(emission.upper() - emission.lower()),
       event_integrand(
-          request, receiver, source, receiver_charge, transmitter_charge,
-          reception, Interval::point(midpoint)));
+          request, receiver, source, joint_cache,
+          receiver_charge, transmitter_charge, reception,
+          Interval::point(midpoint)));
   const double emission_width = emission.upper() - emission.lower();
   const double remainder_scale =
       emission_width * emission_width * 0.25;
@@ -4269,18 +4397,17 @@ std::optional<IntervalVector> monotone_event_rectangle_integral(
     const NativeCoupledEvolutionRequest& request,
     const NativePublishedPath& receiver,
     const NativePublishedPath& source,
+    EventJointDisplacementCache* joint_cache,
     const std::string& receiver_charge,
     const std::string& transmitter_charge,
     const Interval& reception,
     const Interval& emission) {
   const IntervalVector receiver_position =
       receiver.history.position_hull(reception);
-  const IntervalVector transmitter_position =
-      source.history.position_hull(emission);
   const IntervalVector transmitter_velocity =
       source.history.velocity_hull(emission);
-  const IntervalVector displacement =
-      subtract(receiver_position, transmitter_position);
+  const IntervalVector displacement = event_displacement(
+      receiver, source, joint_cache, reception, emission);
   const Interval separation = norm(displacement);
   if (separation.contains_zero()) return std::nullopt;
   const IntervalVector direction =
@@ -4355,8 +4482,9 @@ std::optional<IntervalVector> monotone_event_rectangle_integral(
 
   const double midpoint = emission.midpoint();
   const Interval midpoint_emission = Interval::point(midpoint);
-  const IntervalVector midpoint_displacement = subtract(
-      receiver_position, source.history.position_hull(midpoint_emission));
+  const IntervalVector midpoint_displacement = event_displacement(
+      receiver, source, joint_cache, reception,
+      midpoint_emission);
   const Interval midpoint_separation = norm(midpoint_displacement);
   if (!midpoint_separation.contains_zero()) {
     IntervalVector centered = scale(
@@ -4458,7 +4586,9 @@ certify_binary64_fold_caustic_impulse(
     const std::string& receiver_charge,
     const std::string& transmitter_charge,
     const std::string& reception_lower_token,
-    const std::string& reception_upper_token) {
+    const std::string& reception_upper_token,
+    const JointAffineRetainedHistory* joint_receiver,
+    const JointAffineRetainedHistory* joint_source) {
   NativeFoldCausticImpulseCertificate certificate{
       .schema = "eom_native_fold_caustic_impulse_certificate/v1",
       .status = "uncertified",
@@ -4476,6 +4606,27 @@ certify_binary64_fold_caustic_impulse(
       .failure_code = "numeric_event_impulse_uncertified",
   };
   try {
+    if ((joint_receiver == nullptr) != (joint_source == nullptr)) {
+      throw std::invalid_argument(
+          "event displacement requires both joint histories or neither");
+    }
+    if (joint_receiver != nullptr &&
+        joint_receiver->symbol_registry() != joint_source->symbol_registry()) {
+      throw std::invalid_argument(
+          "event joint histories require aligned shared symbols");
+    }
+    std::optional<EventJointDisplacementCache> joint_cache;
+    if (joint_receiver != nullptr) {
+      joint_cache.emplace(EventJointDisplacementCache{
+          .receiver = receiver,
+          .source = source,
+          .joint_receiver = *joint_receiver,
+          .joint_source = *joint_source,
+          .error_hulls = {},
+      });
+    }
+    EventJointDisplacementCache* joint_cache_pointer =
+        joint_cache.has_value() ? &*joint_cache : nullptr;
     const double reception_lower = scalar_token(reception_lower_token);
     const double reception_upper = scalar_token(reception_upper_token);
     const double search_lower = source.history.t_start();
@@ -4505,9 +4656,9 @@ certify_binary64_fold_caustic_impulse(
     }
     const Interval emission_boundary = Interval::point(search_lower);
     const Interval boundary_residual =
-        norm(subtract(
-            receiver.history.position_hull(reception_all),
-            source.history.position_hull(emission_boundary))) -
+        norm(event_displacement(
+            receiver, source, joint_cache_pointer,
+            reception_all, emission_boundary)) -
         Interval::decimal_token(request.field_speed) *
             (reception_all - emission_boundary);
     if (boundary_residual.contains_zero()) {
@@ -4526,7 +4677,8 @@ certify_binary64_fold_caustic_impulse(
     const Interval core_scale = Interval::decimal_token(request.core_scale);
     const IntervalVector receiver_position =
         receiver.history.position_hull(reception_all);
-    const IntervalVector transmitter_position = source.history.full_position_hull();
+    const IntervalVector transmitter_position =
+        source.history.full_position_hull();
     const Interval separation =
         norm(subtract(receiver_position, transmitter_position));
     const double eta = causal_width.upper();
@@ -4614,12 +4766,12 @@ certify_binary64_fold_caustic_impulse(
           causal_domain_area(t_lower, t_upper, s_lower, s_upper);
       const Interval reception_cell(t_lower, t_upper);
       const Interval emission_cell(s_lower, s_upper);
-      const IntervalVector cell_receiver_position =
-          receiver.history.position_hull(reception_cell);
-      const IntervalVector cell_source_position =
-          source.history.position_hull(emission_cell);
-      const IntervalVector cell_displacement =
-          subtract(cell_receiver_position, cell_source_position);
+      const IntervalVector cell_displacement = event_displacement(
+          receiver, source, joint_cache_pointer,
+          reception_cell, emission_cell);
+      if (joint_cache_pointer != nullptr) {
+        ++certificate.joint_displacement_cells;
+      }
       const Interval cell_separation = norm(cell_displacement);
       const Interval cell_residual =
           cell_separation -
@@ -4635,13 +4787,15 @@ certify_binary64_fold_caustic_impulse(
           Interval::point(0.0)};
       const auto centered_rectangle = s_upper <= t_lower
           ? centered_event_rectangle_integral(
-                request, receiver, source, receiver_charge, transmitter_charge,
-                reception_cell, emission_cell)
+                request, receiver, source, joint_cache_pointer,
+                receiver_charge, transmitter_charge, reception_cell,
+                emission_cell)
           : std::nullopt;
       const auto monotone_rectangle = s_upper <= t_lower
           ? monotone_event_rectangle_integral(
-                request, receiver, source, receiver_charge, transmitter_charge,
-                reception_cell, emission_cell)
+                request, receiver, source, joint_cache_pointer,
+                receiver_charge, transmitter_charge, reception_cell,
+                emission_cell)
           : std::nullopt;
       if (residual_distance > 0.0) {
         ++certificate.gaussian_tail_cells;
@@ -4692,8 +4846,9 @@ certify_binary64_fold_caustic_impulse(
         integral = scale(
             area,
             event_integrand(
-                request, receiver, source, receiver_charge, transmitter_charge,
-                reception_cell, emission_cell));
+                request, receiver, source, joint_cache_pointer,
+                receiver_charge, transmitter_charge, reception_cell,
+                emission_cell));
       }
       if (monotone_rectangle.has_value()) {
         ++certificate.monotone_residual_cells;
@@ -4908,7 +5063,9 @@ NativeFoldCausticImpulseCertificate certify_native_fold_caustic_impulse(
     const std::string& receiver_charge,
     const std::string& transmitter_charge,
     const std::string& reception_lower_token,
-    const std::string& reception_upper_token) {
+    const std::string& reception_upper_token,
+    const JointAffineRetainedHistory* joint_receiver,
+    const JointAffineRetainedHistory* joint_source) {
   tolerance_value(request.causal_width, "causal width");
   tolerance_value(request.core_scale, "core scale");
   tolerance_value(request.event_impulse_tolerance, "event impulse tolerance");
@@ -4923,7 +5080,8 @@ NativeFoldCausticImpulseCertificate certify_native_fold_caustic_impulse(
   NativeFoldCausticImpulseCertificate certificate =
       certify_binary64_fold_caustic_impulse(
           request, receiver, source, receiver_charge, transmitter_charge,
-          reception_lower_token, reception_upper_token);
+          reception_lower_token, reception_upper_token,
+          joint_receiver, joint_source);
   if (certificate.status == "certified_complete" &&
       !request.force_event_precision_escalation) {
     return certificate;
@@ -4995,7 +5153,9 @@ NativeRegulatorConvergenceCertificate certify_native_regulator_convergence(
     const std::string& receiver_charge,
     const std::string& transmitter_charge,
     const std::string& reception_lower,
-    const std::string& reception_upper) {
+    const std::string& reception_upper,
+    const JointAffineRetainedHistory* joint_receiver,
+    const JointAffineRetainedHistory* joint_source) {
   const double ratio = exact_decimal_value(request.regulator_refinement_ratio);
   const double tolerance = tolerance_value(
       request.regulator_convergence_tolerance,
@@ -5008,7 +5168,7 @@ NativeRegulatorConvergenceCertificate certify_native_regulator_convergence(
   }
   const auto base_event = certify_native_fold_caustic_impulse(
       request, receiver, source, receiver_charge, transmitter_charge,
-      reception_lower, reception_upper);
+      reception_lower, reception_upper, joint_receiver, joint_source);
   NativeRegulatorConvergenceCertificate certificate{
       .schema = "eom_native_regulator_convergence_certificate/v1",
       .status = "uncertified",
@@ -5091,7 +5251,7 @@ NativeRegulatorConvergenceCertificate certify_native_regulator_convergence(
       }
       auto event = certify_native_fold_caustic_impulse(
           refined_request, receiver, source, receiver_charge, transmitter_charge,
-          reception_lower, reception_upper);
+          reception_lower, reception_upper, joint_receiver, joint_source);
       std::optional<double> delta;
       std::optional<double> position_moment_delta;
       if (event.status == "certified_complete" && event.impulse.has_value() &&

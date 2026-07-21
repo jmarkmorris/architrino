@@ -467,6 +467,8 @@ void print_event(
             << "\",\"status\":\"" << certificate.status
             << "\",\"failure_code\":\"" << certificate.failure_code
             << "\",\"visited_cells\":" << certificate.visited_cells
+            << ",\"joint_displacement_cells\":"
+            << certificate.joint_displacement_cells
             << ",\"precision_route\":\"" << certificate.precision_route
             << "\",\"precision_bits\":" << certificate.precision_bits
             << ",\"impulse\":";
@@ -1233,6 +1235,58 @@ void print_all() {
   const auto event_control = eom::certify_native_fold_caustic_impulse(
       event_control_request, event_receiver, event_source, "1", "1",
       "2.99", "3.01");
+  const auto uncertain_event_history = [](
+      const std::string& id,
+      const std::array<std::string, 4>& x) {
+    return eom::RetainedHistory(
+        id,
+        {eom::CubicHistorySegment(
+            "0", "3.01",
+            eom::CubicCoefficientTokens{
+                x, {"0", "0", "0", "0"}, {"0", "0", "0", "0"}},
+            "0.0001", "0.0001")});
+  };
+  const eom::NativePublishedPath uncertain_event_receiver{
+      "receiver",
+      uncertain_event_history(
+          "uncertain-event-control-receiver", {"0", "0", "0", "0"})};
+  const eom::NativePublishedPath uncertain_event_source{
+      "source",
+      uncertain_event_history(
+          "uncertain-event-control-source", {"5.25", "-4", "1", "0"})};
+  eom::JointAffineCubicSegment event_receiver_joint_segment;
+  eom::JointAffineCubicSegment event_source_joint_segment;
+  event_receiver_joint_segment.start_time =
+      event_source_joint_segment.start_time = 0.0;
+  event_receiver_joint_segment.end_time =
+      event_source_joint_segment.end_time = 3.01;
+  for (std::size_t axis = 0U; axis < 3U; ++axis) {
+    for (std::size_t degree = 0U; degree < 4U; ++degree) {
+      event_receiver_joint_segment.position_coefficients[axis][degree] =
+          {0.0};
+      event_source_joint_segment.position_coefficients[axis][degree] =
+          {0.0};
+    }
+    event_receiver_joint_segment.position_remainder_radii[axis] = 1e-8;
+    event_source_joint_segment.position_remainder_radii[axis] = 1e-8;
+  }
+  event_receiver_joint_segment.position_coefficients[0][0] = {0.00009};
+  event_source_joint_segment.position_coefficients[0][0] = {0.00009};
+  const eom::JointAffineRetainedHistory event_receiver_joint(
+      "receiver", {"common-event-translation"},
+      {event_receiver_joint_segment});
+  const eom::JointAffineRetainedHistory event_source_joint(
+      "source", {"common-event-translation"},
+      {event_source_joint_segment});
+  const auto uncertain_event_ordinary =
+      eom::certify_native_fold_caustic_impulse(
+          event_control_request, uncertain_event_receiver,
+          uncertain_event_source, "1", "1", "2.99", "3.01");
+  const auto uncertain_event_joint =
+      eom::certify_native_fold_caustic_impulse(
+          event_control_request, uncertain_event_receiver,
+          uncertain_event_source, "1", "1", "2.99", "3.01",
+          &event_receiver_joint, &event_source_joint);
   auto research_budget_event_request = event_control_request;
   research_budget_event_request.coupling = "1e-6";
   research_budget_event_request.event_impulse_tolerance = "3.5e-8";
@@ -1553,6 +1607,10 @@ void print_all() {
   print_pinned_fold_temporal_onset(pinned_temporal_disabled_onset);
   std::cout << ",\"event_control\":";
   print_event(event_control);
+  std::cout << ",\"uncertain_event_ordinary\":";
+  print_event(uncertain_event_ordinary);
+  std::cout << ",\"uncertain_event_joint\":";
+  print_event(uncertain_event_joint);
   std::cout << ",\"research_budget_event_control\":";
   print_event(research_budget_event_control);
   std::cout << ",\"interactive_budget_event_control\":";

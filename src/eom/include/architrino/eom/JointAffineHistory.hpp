@@ -9,6 +9,8 @@
 
 namespace architrino::eom {
 
+class RetainedHistory;
+
 using JointCoefficientRow = std::vector<double>;
 using JointCubicCoefficientRows =
     std::array<std::array<JointCoefficientRow, 4>, 3>;
@@ -80,5 +82,25 @@ class JointAffineRetainedHistory {
   std::vector<JointAffineCubicSegment> segments_;
   std::optional<JointAffineEndpointOverride> endpoint_override_;
 };
+
+// Encloses receiver minus transmitter position while retaining cancellation
+// between aligned shared symbols. The ordinary histories remain an
+// independently certified fallback, and the returned components are the
+// intersections of the joint and ordinary displacement enclosures.
+[[nodiscard]] IntervalVector joint_affine_displacement_hull(
+    const RetainedHistory& receiver_ordinary,
+    const JointAffineRetainedHistory& receiver_joint,
+    const Interval& reception,
+    const RetainedHistory& transmitter_ordinary,
+    const JointAffineRetainedHistory& transmitter_joint,
+    const Interval& emission);
+
+// Precomputes the shared-error part of a displacement enclosure over one
+// complete receiver/source segment pair. It is independent of quadrature-cell
+// boundaries and may therefore be reused by every cell in that segment pair.
+[[nodiscard]] IntervalVector joint_affine_segment_pair_error_hull(
+    const JointAffineCubicSegment& receiver,
+    const JointAffineCubicSegment& transmitter,
+    std::size_t shared_symbol_count);
 
 }  // namespace architrino::eom

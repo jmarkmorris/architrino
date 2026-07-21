@@ -84,7 +84,6 @@ Current application and application-like surfaces include:
 
 - Ideal Noether Braid: `ideal-braid.html`
 - Photon and Polarization Visualization App: `photon.html`
-- Assembly Configuration Explorer: `assembly-explorer.html`
 - Causal Delay Feedback: `causal-delay-feedback.html`
 - Equation Mapping: `equation-mapping.html`
 - It's Greek to Me! — Alpha to Omega: `greek-letter-match.html`

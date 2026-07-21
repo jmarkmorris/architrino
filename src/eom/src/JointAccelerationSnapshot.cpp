@@ -39,8 +39,65 @@ double magnitude_upper(const Interval& value) {
   return std::max(std::abs(value.lower()), std::abs(value.upper()));
 }
 
+Interval centered_representation_hull(
+    const Interval& value,
+    std::size_t accumulated_row_count) {
+  const double center = value.midpoint();
+  const double radius = magnitude_upper(value - Interval::point(center));
+  const double rounding_envelope =
+      joint_acceleration_representation_rounding_envelope(
+          value, accumulated_row_count);
+  return Interval::point(center) + Interval(-radius, radius) +
+      Interval(-rounding_envelope, rounding_envelope);
+}
+
 double outward_sum(double left, double right) {
   return (Interval::point(left) + Interval::point(right)).upper();
+}
+
+bool permits_accepted_acceleration_fallback(const std::string& failure_code) {
+  return failure_code.starts_with(
+             "joint_sharp_input_box_does_not_dominate") ||
+      failure_code ==
+          "accepted_acceleration_does_not_dominate_joint_sharp_row";
+}
+
+bool is_certified_nonsharp_row(const NativeAccelerationRow& row) {
+  return
+      (row.chart == "finite_width_pair" &&
+       row.acceptance_status == "consumed_certified_finite_width_pair") ||
+      (row.chart == "far_field_enclosure" &&
+       row.acceptance_status == "consumed_certified_far_field_enclosure");
+}
+
+JointSharpRowCertificate accepted_acceleration_fallback(
+    const IntervalVector& accepted_acceleration,
+    std::size_t symbol_count) {
+  JointSharpRowCertificate result;
+  result.certified = true;
+  result.used_accepted_acceleration_fallback = true;
+  result.acceleration_coefficients.assign(
+      symbol_count, std::array<double, 3>{0.0, 0.0, 0.0});
+  result.acceleration_coefficient_enclosures.assign(
+      symbol_count,
+      IntervalVector{
+          Interval::point(0.0), Interval::point(0.0),
+          Interval::point(0.0)});
+  result.accepted_acceleration_dominates = true;
+  for (std::size_t axis = 0U; axis < 3U; ++axis) {
+    const double center = accepted_acceleration[axis].midpoint();
+    const double radius = magnitude_upper(
+        accepted_acceleration[axis] - Interval::point(center));
+    result.acceleration_center[axis] = center;
+    result.acceleration_remainder_radii_upper[axis] = radius;
+    result.acceleration_projection_radii_upper[axis] = radius;
+    const Interval image =
+        Interval::point(center) + Interval(-radius, radius);
+    result.accepted_acceleration_dominates =
+        result.accepted_acceleration_dominates &&
+        image.subset_of(accepted_acceleration[axis]);
+  }
+  return result;
 }
 
 IntervalVector acceleration_hull(
@@ -138,6 +195,18 @@ std::size_t source_segment_at_center(
 
 }  // namespace
 
+double joint_acceleration_representation_rounding_envelope(
+    const Interval& value,
+    std::size_t accumulated_row_count) {
+  const double center = value.midpoint();
+  const double radius = magnitude_upper(value - Interval::point(center));
+  const double scale = std::max({
+      std::abs(value.lower()), std::abs(value.upper()), std::abs(center),
+      radius, std::numeric_limits<double>::min()});
+  return (8.0 + 2.0 * static_cast<double>(accumulated_row_count)) *
+      std::numeric_limits<double>::epsilon() * scale;
+}
+
 JointAccelerationSnapshotCertificate certify_joint_acceleration_snapshot(
     const Interval& field_speed,
     const NativeAccelerationSnapshotCertificate& snapshot,
@@ -174,7 +243,7 @@ JointAccelerationSnapshotCertificate certify_joint_acceleration_snapshot(
     const auto& receiver_ordinary =
         ordinary_history(ordinary_histories, receiver_id).history;
     const auto receiver_position_box =
-        receiver_ordinary.position_hull(reception_interval);
+        receiver_ordinary.correlated_position_hull(reception_interval);
     const auto receiver_velocity_box =
         receiver_ordinary.velocity_hull(reception_interval);
     const auto receiver_joint = receiver_joint_found->second.evaluate(
@@ -224,6 +293,7 @@ JointAccelerationSnapshotCertificate certify_joint_acceleration_snapshot(
     }
 
     std::vector<JointSharpRowCertificate> rows;
+    std::size_t receiver_fallback_rows = 0U;
     for (const auto& pair : snapshot.acceleration.pair_certificates) {
       if (pair.receiver_path_id != receiver_id) continue;
       const auto transmitter_joint_found =
@@ -245,9 +315,27 @@ JointAccelerationSnapshotCertificate certify_joint_acceleration_snapshot(
         return result;
       }
       for (const auto& row : pair.rows) {
-        if (row.chart != "sharp_root" ||
-            !row.transmitter_factor.has_value()) {
-          result.failure_code = "joint_snapshot_nonsharp_row_not_supported";
+        if (row.chart != "sharp_root") {
+          if (!is_certified_nonsharp_row(row)) {
+            result.failure_code =
+                "joint_snapshot_nonsharp_row_not_supported/chart=" +
+                row.chart + "/acceptance=" + row.acceptance_status;
+            return result;
+          }
+          rows.push_back(accepted_acceleration_fallback(
+              row.acceleration, result.shared_symbol_count));
+          ++result.accepted_acceleration_fallback_rows;
+          ++receiver_fallback_rows;
+          if (row.chart == "finite_width_pair") {
+            ++result.consumed_finite_width_rows;
+          } else {
+            ++result.consumed_far_field_rows;
+          }
+          continue;
+        }
+        if (!row.transmitter_factor.has_value()) {
+          result.failure_code =
+              "joint_snapshot_sharp_row_lacks_transmitter_factor";
           return result;
         }
         const Interval emission = row.evaluation_emission.value_or(Interval(
@@ -255,7 +343,7 @@ JointAccelerationSnapshotCertificate certify_joint_acceleration_snapshot(
             Interval::decimal_token(row.emission_upper).upper()));
         const double emission_center = emission.midpoint();
         const auto transmitter_position_box =
-            transmitter_ordinary.position_hull(emission);
+            transmitter_ordinary.correlated_position_hull(emission);
         const auto transmitter_velocity_box =
             transmitter_ordinary.velocity_hull(emission);
         const auto receiver_nominal =
@@ -363,7 +451,7 @@ JointAccelerationSnapshotCertificate certify_joint_acceleration_snapshot(
           displacement[axis] =
               receiver_nominal[axis] - transmitter_nominal[axis];
         }
-        const auto row_certificate = certify_joint_sharp_row({
+        auto row_certificate = certify_joint_sharp_row({
             .point_displacement = point_vector(displacement),
             .displacement_box = subtract(
                 receiver_position_box, transmitter_position_box),
@@ -391,6 +479,14 @@ JointAccelerationSnapshotCertificate certify_joint_acceleration_snapshot(
                 transmitter_joint.velocity_remainder_radii,
             .accepted_acceleration_enclosure = row.acceleration,
         });
+        if (!row_certificate.certified &&
+            permits_accepted_acceleration_fallback(
+                row_certificate.failure_code)) {
+          row_certificate = accepted_acceleration_fallback(
+              row.acceleration, result.shared_symbol_count);
+          ++result.accepted_acceleration_fallback_rows;
+          ++receiver_fallback_rows;
+        }
         if (!row_certificate.certified) {
           std::ostringstream detail;
           detail << row_certificate.failure_code
@@ -484,8 +580,9 @@ JointAccelerationSnapshotCertificate certify_joint_acceleration_snapshot(
                 coefficient_sum[axis] - Interval::point(coefficient)));
       }
     }
-    receiver_state.accepted_total_dominates = true;
+    receiver_state.accepted_total_representation_hull_dominates = true;
     const auto& total = accepted_total(snapshot, receiver_id).acceleration;
+    std::string total_failure_detail;
     for (std::size_t axis = 0U; axis < 3U; ++axis) {
       double projection = receiver_state.independent_remainder_radii[axis];
       for (const auto& coefficient :
@@ -496,12 +593,44 @@ JointAccelerationSnapshotCertificate certify_joint_acceleration_snapshot(
       receiver_state.projection_radii_upper[axis] = projection;
       const Interval image = Interval::point(receiver_state.center[axis]) +
           Interval(-projection, projection);
-      receiver_state.accepted_total_dominates =
-          receiver_state.accepted_total_dominates && image.subset_of(total[axis]);
+      const Interval accepted_representation_hull =
+          centered_representation_hull(total[axis], rows.size());
+      const bool axis_dominated =
+          image.subset_of(accepted_representation_hull);
+      receiver_state.accepted_total_representation_hull_dominates =
+          receiver_state.accepted_total_representation_hull_dominates &&
+          axis_dominated;
+      if (!axis_dominated && total_failure_detail.empty()) {
+        const double available = std::min(
+            receiver_state.center[axis] - total[axis].lower(),
+            total[axis].upper() - receiver_state.center[axis]);
+        const double ratio = available > 0.0
+            ? projection / available
+            : std::numeric_limits<double>::infinity();
+        std::ostringstream detail;
+        detail << std::setprecision(17)
+               << "/receiver=" << receiver_id
+               << "/axis=" << axis
+               << "/center=" << receiver_state.center[axis]
+               << "/projection=" << projection
+               << "/available=" << available
+               << "/ratio=" << ratio
+               << "/image=" << image.lower() << "," << image.upper()
+               << "/accepted=" << total[axis].lower() << ","
+               << total[axis].upper()
+               << "/accepted_representation="
+               << accepted_representation_hull.lower() << ","
+               << accepted_representation_hull.upper()
+               << "/receiver_fallback_rows=" << receiver_fallback_rows
+               << "/snapshot_fallback_rows="
+               << result.accepted_acceleration_fallback_rows;
+        total_failure_detail = detail.str();
+      }
     }
-    if (!receiver_state.accepted_total_dominates) {
+    if (!receiver_state.accepted_total_representation_hull_dominates) {
       result.failure_code =
-          "accepted_total_does_not_dominate_joint_acceleration";
+          "accepted_total_representation_hull_does_not_dominate_joint_acceleration" +
+          total_failure_detail;
       return result;
     }
     result.receivers.push_back(std::move(receiver_state));

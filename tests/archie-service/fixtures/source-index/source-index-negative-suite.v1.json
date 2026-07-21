@@ -1,0 +1,106 @@
+{
+  "schema": "archie-source-index-negative-suite/v1",
+  "suiteId": "source_index_snapshot_negative_fixture_001",
+  "cases": [
+    {
+      "caseId": "source-index-missing-path-negative-001",
+      "target": "input",
+      "mutation": {
+        "operation": "set",
+        "path": ["sourceRecords", 0, "sourcePath"],
+        "value": "content/markdown/aaa/missing/not-real.md"
+      },
+      "expectedError": "source path missing for source.ontology-purpose"
+    },
+    {
+      "caseId": "source-index-duplicate-id-negative-001",
+      "target": "input",
+      "mutation": {
+        "operation": "set",
+        "path": ["sourceRecords", 1, "sourceId"],
+        "value": "source.ontology-purpose"
+      },
+      "expectedError": "duplicate source record source.ontology-purpose"
+    },
+    {
+      "caseId": "source-index-missing-canonical-parent-negative-001",
+      "target": "input",
+      "mutation": {
+        "operation": "set",
+        "path": ["sourceRecords", 1, "canonicalParent"],
+        "value": "source.missing"
+      },
+      "expectedError": "source.scene-ontology canonical parent is missing"
+    },
+    {
+      "caseId": "source-index-wrong-canonical-parent-class-negative-001",
+      "target": "input",
+      "mutation": {
+        "operation": "set",
+        "path": ["sourceRecords", 1, "canonicalParent"],
+        "value": "source.app-guide"
+      },
+      "expectedError": "source.scene-ontology canonical parent must be published_corpus"
+    },
+    {
+      "caseId": "source-index-priority-authority-inflation-negative-001",
+      "target": "input",
+      "mutation": {
+        "operation": "set",
+        "path": ["sourceRecords", 5, "authorityStatus"],
+        "value": "primary"
+      },
+      "expectedError": "priority_material requires authorityStatus priority_only or excluded"
+    },
+    {
+      "caseId": "source-index-priority-public-visibility-negative-001",
+      "target": "input",
+      "mutation": {
+        "operation": "set",
+        "path": ["sourceRecords", 5, "visibility"],
+        "value": "public"
+      },
+      "expectedError": "priority_material cannot use visibility public"
+    },
+    {
+      "caseId": "source-index-equation-provenance-negative-001",
+      "target": "input",
+      "mutation": {
+        "operation": "set",
+        "path": ["metadataRecords", 1, "tex"],
+        "value": "$$not present in the source$$"
+      },
+      "expectedError": "equation metadata.ontology-level-tower is not present in source selection"
+    },
+    {
+      "caseId": "source-index-figure-provenance-negative-001",
+      "target": "input",
+      "mutation": {
+        "operation": "set",
+        "path": ["metadataRecords", 0, "assetPath"],
+        "value": "content/assets/images/brand/noether-braid-all-platforms-avatar-master-1024x1024.png"
+      },
+      "expectedError": "figure metadata.webapp-logo asset is not referenced by its source selection"
+    },
+    {
+      "caseId": "source-index-stale-source-hash-negative-001",
+      "target": "snapshot",
+      "mutation": {
+        "operation": "set",
+        "path": ["sourceInputs", 0, "sourceContentSha256"],
+        "value": "0000000000000000000000000000000000000000000000000000000000000000"
+      },
+      "expectedError": "source input content hash mismatch"
+    },
+    {
+      "caseId": "source-index-stale-search-view-hash-negative-001",
+      "target": "snapshot",
+      "mutation": {
+        "operation": "set",
+        "path": ["views", "search", "sha256"],
+        "value": "0000000000000000000000000000000000000000000000000000000000000000"
+      },
+      "expectedError": "search view hash mismatch"
+    }
+  ]
+}

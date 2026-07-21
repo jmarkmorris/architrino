@@ -2,6 +2,31 @@
 
 This file holds dated decisions, implementation status, validation results, failed paths, migration handoffs, and operator/developer communication for the EOM priority area. Keep the live queue in [priorities.md](priorities.md), provisional ideas in [brainstorming.md](brainstorming.md), and the defining contract in [application-and-engine-contract.md](application-and-engine-contract.md).
 
+## 2026-07-20 — Solver-Owned Fixed-Envelope Causal Retirement
+
+- **Implemented:** protocol V10 adds an optional Display-only fixed spherical receiver-domain policy. For each leading source segment, the EOM worker outward-encloses every source position on the cubic, adds the receiver-envelope radius, and compares that maximum reach with the smallest causal radius emitted by the segment at the accepted reception time. A strict separation retires the segment; equality or overlap retains it. The worker rejects a candidate receiver segment whose complete position enclosure crosses the sphere before publication. Claim grade: derived implementation. Falsifier: a retired segment's causal sphere intersects any point in the declared envelope at or after the accepted cut, an overlapping interval is retired, or a crossing candidate is published.
+- **Ownership closure:** the same certificate advances the retained prefix in the native incremental cache, process cache, HTTP cache, and Borg runner. Prefix transport continues from the shortened segment count instead of retransmitting or reconstructing released rows. A 40-chunk stationary one-path native-worker control reached `T=8.0`, retired more than seventy segments, and retained at most nine; a full local HTTP-stack control reached `T=5.0` with a thirteen-segment final window after 103 releases. Claim grade: measured for the named controls, not an arbitrary-population endurance result. Falsifier: any cache continues to report the pre-retirement count, either control grows linearly with elapsed time, or cold and cached continuation diverges.
+- **Indefinite-run boundary:** ordinary Borg paths remain active after crossing the dotted sphere, so the fixed-envelope premise is false for current unrestricted runs and the policy remains opt-in. Bounded-memory indefinite Display evolution requires an explicit lifecycle that removes outbound identities from the active ordered-pair domain and supplies separately identified inbound boundary histories, or a disk-backed exact-history path for an unbounded active domain. Claim grade: derived boundary condition. Falsifier: current Borg ordered-pair evaluation excludes every escaped identity, or an all-space proof establishes that every released segment is unreachable despite unrestricted field-speed and super-field-speed motion.
+
+## 2026-07-20 — Host-Aware Display Resource Admission
+
+- **Implemented:** Claim grade retains the certified fixed 64 MiB request allocation. Display grade receives a separate host-memory envelope computed by the local service from macOS available-memory pressure, actual persistent-worker RSS, the prior native memory estimate, and a host reserve equal to the larger of 20% of installed RAM or 2 GiB. The envelope is self-consistency checked at the process encoder and response consumer; it can alter only the native admission ceiling. Claim grade: derived implementation. Falsifier: any numerical control changes with the envelope, Claim accepts the envelope, or Display consumes memory reserved for the host.
+- **Measured boundary crossing:** the default 3:3 Display run passed the former `T≈119` fixed-budget halt and was paused at `T=142.0`. At `T≈129`, its native estimate was approximately 72.8 MiB against an effective envelope of approximately 12.1 GiB; measured RSS was approximately 90.5 MiB for the server and 35.7 MiB for the worker. The Borg suite passed `114/114` and the native process suite passed `15/15`. Claim grade: measured for the named build, run, and instruments. Falsifier: either suite fails or the same host-aware build halts at the old 64 MiB estimate while host memory remains above reserve.
+- **Superseded history boundary:** this audit correctly found that no causal history was then released. Protocol V10 now supplies and consumes a fixed-envelope certificate, subject to the boundary-lifecycle condition recorded above.
+
+## 2026-07-20 — Display Retained-History Prefix Transport
+
+- **Implemented:** Display-grade EOM continuation now preserves the full causally reachable history in the native worker while transporting only an exact cached prefix declaration plus newly appended segments. The first request remains complete. Later requests carry an opaque cache token and per-path segment counts; the unchanged-prefix case emits no `SEG` rows. Native Display completion now persists the history cache without manufacturing a certified snapshot, while the certified reuse route still requires an actual accepted snapshot. Claim grade: derived from the transport, cache, and snapshot branches. Falsifier: a Display increment deletes reachable history, the second unchanged-prefix request emits a segment row, or Claim grade consumes an absent Display snapshot.
+- **Failure boundary:** cache-token, path-order, charge, or segment-count disagreement rejects reuse. The browser may then retransmit one complete request, but no stale prefix is admitted. Halt, cancellation, worker restart, and executable replacement clear cache authority. Claim grade: measured by the stale-prefix, halted-cache, persistent-worker, and executable-refresh regressions. Falsifier: any named invalidation leaves a cached prefix usable.
+- **Validation:** cached and cold native Display second increments produced identical published extensions; the native process suite passed `15/15`, the Borg suite passed `112/112`, and live browser playback passed the former short-run failure region and was paused at `T 00:00:28.6`. At that point the server measured approximately 66 MiB RSS and the worker approximately 14 MiB RSS. Claim grade: measured for the named instruments; this is not an unlimited-duration result. Falsifier: the parity output differs, either suite fails, or an endurance run shows full-prefix request growth remains the dominant allocation.
+
+## 2026-07-20 — One-Way Claim-Grade To Display-Grade Continuation
+
+- **Operator decision:** Borg always starts with the selected certified budget and certified EOM evolution. At the first certification or tolerance boundary it preserves the accepted prefix, changes the panel from green `Claim grade` to red `Display grade`, and never upgrades that run again. Path colors carry no authority state. Claim grade: operator decision. Falsifier: a run starts red, returns from red to green, recolors a trajectory by grade, or gives any red segment claim authority.
+- **Implemented:** protocol V9 carries `runGrade`; the first eligible certified halt records one immutable boundary and point-projects the accepted retained history. A certified execution timeout also crosses at the prior accepted cut without accepting or advancing the unfinished candidate. Display requests use the binary64 delayed-master-equation evaluator and synchronized population point steps with the same selected root tolerance, acceleration tolerance, coupling, field speed, core scale, step height, and retained-history window. They do not use a second user tolerance profile. Every response and segment is forced to `display-only` and is promotion-ineligible. Claim grade: derived from the request, native routing, timeout routing, and evidence-status call graph. Falsifier: certified and display requests differ in a selected numerical control, a timed-out candidate advances history, a red segment reports another grade, or display output passes the promotion gate.
+- **Validation:** focused JavaScript tests cover the immutable downgrade boundary, timeout-at-prior-cut boundary, identical numerical controls, point-projected history, permanent display authority, hard memory/engine stops, and protocol V9. The native process suite covers certified behavior plus a nonzero two-path display acceleration whose response and segments are all `display-only`. Browser QA measured the green panel and caught two fallback defects—exact retained-history center-line discontinuity and certified-gate reuse after downgrade—before the point evaluator was installed. A deterministic end-to-end run then measured a third defect: certified evolution remained active but exceeded the 180-second execution deadline at `T=8.7`, which previously killed the run. After timeout routing was added, an actual native-worker timeout produced the immutable boundary at `T=0`, restarted the worker in display grade, and published three consecutive display chunks through `T=0.9`. Claim grade: measured for the named tests, panel states, timeout boundary, and three-chunk native continuation; a full browser endurance run across the final timeout fallback remains an open measurement, not claim evidence. Falsifier: any named test fails, the panel omits its boundary, or a fresh browser run stops at the first certifiability failure or certified execution timeout instead of entering the point evaluator.
+- **Exact boundary-token repair:** the runner now carries each native accepted-end token unchanged into the next request. Converting that token to a JavaScript number and back could alter its exact decimal spelling/value enough for the next retained segment to fail the exact contiguity gate. The focused regression preserves `10.100000000000001`, and a native display continuation published `[7.2,7.5]`, `[7.5,7.8]`, and `[7.8,8.1]` without the reported engine exception. Claim grade: derived mechanism and measured native continuation. Falsifier: an accepted token changes before the next request or the native harness reproduces `retained-history segments must be contiguous` at the same boundary.
+
 ## 2026-07-13 — Priority Area Created
 
 - Created `reference/priorities/app-eom/` for the operator-selected `EOM` Equation of Motion application.
@@ -2047,3 +2072,211 @@ This file holds dated decisions, implementation status, validation results, fail
   remains open and no budget or EOM solver acceptance semantic changed.
 - **Evidence:**
   [current root-time budget theorem](evidence/borg-current-root-time-budget-theorem-2026-07-20.md).
+
+## 2026-07-20 — Borg one-decimal claim cut and current-worker display handoff
+
+- **Measured browser failure:** a live Research run published a certified prefix
+  through `T=7.976367187499999`, crossed to display grade, and then stopped on
+  the generic `inconsistent certified provenance` response check. After the
+  check was made field-specific, a second live crossing at `T=3.4` identified
+  the actual mismatch as `evidenceStatus` and `claimGrade`, both of which came
+  back as `failed` instead of `display-only`.
+- **Derived claim boundary:** the first eligible certified halt now floors its
+  exact decimal accepted time to one digit after the decimal point, truncates
+  every retained polynomial history at that exact cut, discards the accepted
+  sliver above the cut, point-projects the cut histories once, and begins the
+  display request from the same token. Thus an accepted endpoint such as
+  `6.449999999999999` yields claim grade through `T=6.4` and a display-only
+  suffix beginning at `T=6.4`; no frame or retained segment from the discarded
+  sliver is published.
+- **Inferred stale-worker cause, guarded in code:** the local development server
+  was still connected to an EOM worker launched before the on-disk display
+  binary was rebuilt. The process client now records the executable device,
+  inode, size, and modification time and replaces the persistent worker before
+  the next request whenever that signature changes. The response validator
+  remains fail closed and now names each mismatched provenance field.
+- **Measured UI result:** the authority panel renders the boundary with one
+  decimal digit and grammatical projection count. The timeline now reads
+  `T n.m | rate | lead`; it no longer displays `solver` or the keyframe number.
+- **Measured validation:** the complete Borg JavaScript suite passes `109/109`
+  (including the focused transition set at `48/48`); native Borg process tests
+  pass `14/14`; the browser at shared port `5173` renders the
+  revised panel and `T 0.0 | 0.60× realtime | lead 0` timeline without a visible
+  runtime failure. The current native display test independently returns
+  `runGrade=display`, `evidenceStatus=display-only`, and
+  `claimGrade=display-only`.
+- **Scope:** this repairs Borg's exploratory display handoff. It does not give
+  the suffix claim authority and does not reduce the open
+  `coupled_retained_history_integrator` long-horizon acceptance obligation.
+
+## 2026-07-20 — Borg Play request survives slow first-chunk prefill
+
+- **Measured interaction failure:** Play entered the prefill loop but left the
+  control labeled and drawn as Play. If the first EOM chunk took longer than
+  the 30-second prefill deadline, the deadline attempted playback with no
+  frames and then forgot the request; the eventual first chunk was buffered but
+  never started.
+- **Derived interaction contract:** pressing Play now records a pending playback
+  request immediately, changes the control to pressed Pause with busy state,
+  and preserves that request until frames exist. A chunk arriving after the
+  prefill deadline starts playback. Pressing Pause while startup is pending
+  cancels the request without publishing rejected motion.
+- **Measured browser validation:** the live control changed from Play to pressed
+  Pause within 250 ms. The same run crossed the former deadline, produced three
+  chunks, and advanced to `T=0.1` with 80 buffered frames; Pause then restored
+  the Play control. The complete Borg JavaScript suite remains `109/109`.
+- **Scope:** this changes only start/pause orchestration and visible feedback;
+  it does not change EOM evolution, tolerances, histories, or claim grading.
+
+## 2026-07-20 — Borg fixed run-grade selection
+
+- **Operator decision:** Borg no longer starts every run in claim grade and then
+  crosses to display grade. The panel selects one fixed grade for the run;
+  `Display grade` is the startup selection because exploratory motion must not
+  pay certification cost, while `Claim grade` retains certification and stops
+  at the first halt or execution failure.
+- **Derived implementation:** display grade point-projects the accepted input
+  histories once at `T=0`, marks them `display-only`, and sends the first and
+  every later request directly through the non-certifying EOM route. Each
+  completed increment supplies the retained history for the next increment.
+  Claim grade never changes grade, and its failed or timed-out candidate cannot
+  initiate a display continuation.
+- **Measured regression:** the full Borg JavaScript suite passes `108/108`; the
+  focused migration and UI-contract subset passes `43/43`. The direct display
+  control verifies two consecutive requests remain `display`, the first input
+  is point-projected, and the second starts at the first accepted endpoint. The
+  claim controls verify a halted accepted prefix and a certified timeout both
+  stop without a second request. In the live browser, display grade completed
+  21 chunks through retained-history `T=6.3` at a measured production rate of
+  `18.97× realtime`; switching to claim grade reset the timeline to `T=0`
+  without starting evolution, and switching back restored display grade.
+- **Scope:** this restores a fast exploratory path but gives no claim authority
+  to display output and does not reduce the open claim-grade long-horizon
+  obligation in `coupled_retained_history_integrator`.
+
+## 2026-07-20 — Display retained-history depth repair
+
+- **Measured failure:** after fixed-grade selection shipped, a display run still
+  halted on `display_insufficient_history_depth`. Browser provenance exposed the
+  mechanism directly: with evolution retained through `T=6.3`, Borg had slid
+  the oldest EOM history boundary forward to `T=5.25`, so a delayed lookup could
+  fall outside the supplied path.
+- **Derived repair:** display grade no longer applies the claim-grade bounded
+  history trim. It keeps the point-projected input plus every computed segment
+  append-only and continues sending only display-grade requests. Claim grade
+  retains its bounded certified window.
+- **Measured validation:** the direct regression crosses a would-have-trimmed
+  boundary and verifies that the second display request preserves the first
+  request's exact coverage start. The full Borg JavaScript suite passes
+  `108/108`. A fresh browser run preserved retained-history start `T=-1.01`
+  through 93 chunks and retained-history end `T=27.9` without the reported halt;
+  its measured production rate at that longer history was `1.19× realtime`.
+- **Remaining performance fact:** display root lookup now scans a growing
+  history, so measured production declined as the retained interval grew. That
+  is a performance/indexing obligation, not permission to discard causal input.
+
+## 2026-07-20 — Selectable visible trail and causal-history boundary
+
+- **Operator decision:** both fixed run grades may select a visible path-history
+  age in simulation time $T$. Borg now places 30, 60, 90, 180, and 360 after
+  the run-duration limit and before playback speed, with 30 as the simulation-
+  workspace default. The selection redraws trails without resetting or
+  restarting evolution; prescribed replay remains source-defined.
+- **Derived boundary:** visible trail age is a rendering policy, not a causal-
+  history-depth policy. EOM input may retire an older retained segment only
+  when a solver-owned causal-support test proves that no future requested
+  receiver event can reach it. Until that proof exists, display history remains
+  append-only; using the visible age as a trim would recreate the measured
+  `display_insufficient_history_depth` failure.
+- **Measured validation:** focused path-trail, live-retention, and runtime-
+  contract tests pass `34/34`, and the complete Borg JavaScript suite passes
+  `108/108`. Live browser interaction changed 30 to 180 and
+  back without moving the `T=0` timeline or starting evolution, and the final
+  desktop layout kept `No limit`, `30 s`, `Normal`, and the time readout on one
+  row. Falsifier: a selector change resets or starts evolution, changes EOM
+  retained-history coverage, appears in prescribed replay, or fails to bound
+  the visible trails by the selected simulation-time interval.
+
+## 2026-07-20 — Borg `T=119.4` memory audit
+
+- **Operator measurement:** the default Display-grade run reached `T=119.4`,
+  the longest reported Borg evolution, before a memory-related stop.
+- **Derived stop mechanism:** Display grade keeps every accepted segment and
+  uses the certified preset's 64 MiB request-memory allocation. Its native
+  admission estimate charges 4096 bytes for every retained or requested path
+  segment, plus fixed path and ordered-pair overhead. With six paths, the
+  budget contains 16,283.5 segment-equivalents after fixed overhead. A stop at
+  `T=119.4` corresponds to an average accepted step near `0.0441`, consistent
+  with the selected adaptive ceiling `0.05`. The exact failed response payload
+  was not retained, so this is a derived match rather than a measured halt-code
+  assertion.
+- **Measured live memory state:** macOS reported 53% memory free. Sampling the
+  active native worker measured a 107 MiB physical-footprint peak while it was
+  constructing and exact-decimal-validating the complete retained histories.
+  After the request settled, the native worker was about 64 MiB resident and
+  the Node development server about 895 MiB resident. This was not a system
+  out-of-memory event.
+- **Derived duplication map:** Borg's rendered frames are capped at 720 after a
+  900-frame compaction trigger, with at most 512 compacted points per path.
+  The unbounded object is the causal history: the browser runner owns the full
+  segment arrays, the HTTP client stringifies them, the server buffers and
+  parses the complete JSON body, the process client re-encodes every Display-
+  grade segment because its wire-prefix cache is certified-only, the native
+  worker reconstructs and caches the histories, and the full response is
+  merged back. Both success-only promise queues also retain the last full
+  response value.
+- **Closure boundary:** raising 64 MiB merely moves the next stop. Long-run
+  closure requires persistent suffix-only transport, queue promises that
+  settle to no retained payload, extension-only browser responses, indexed or
+  file-backed causal history, and solver-owned causal-support retirement. No
+  history may be dropped solely because it is outside the visible trail.
+- **Population-scaling control:** a later 2-electrino/2-positrino Display-grade
+  run reached `T=186.3`. Its endurance ratio relative to the six-path
+  `T=119.4` run is about `1.56`, close to the `6/4 = 1.5` inverse path-count
+  scaling expected when retained segment rows dominate the fixed memory
+  estimate. Different adaptive step histories explain why exact equality is
+  not expected. Claim grade: inferred agreement from two operator-reported
+  runs, not a controlled memory ladder. Falsifier: direct retained-segment and
+  `memoryEstimateBytes` records do not scale with path count as predicted.
+
+## 2026-07-20 — Disk-backed exact retained history
+
+- **Operator decision:** preserve escaped architrinos and unchanged EOM
+  semantics; move older immutable retained-history blocks out of RAM; permit up
+  to one TiB of temporary disk per run; remove stale temporary history before a
+  run; and release the active temporary store when the run ends. A live block
+  may be deleted only under a solver-owned causal-unreachability certificate.
+- **Derived implementation:** the EOM history sequence remains persistent and
+  copy-on-write, but each complete 64-segment block is now written as a
+  versioned exact decimal-token record. The worker pages blocks through a
+  bounded per-thread cache, while the browser keeps only the current drawing
+  interval and the Node relay keeps only path identities and exact segment
+  counts. A lost worker store stops as `display_exact_history_store_lost`
+  instead of retrying from an incomplete browser suffix. Leaving the fixed
+  receiver envelope suppresses retirement certification but no longer stops
+  Display evolution.
+- **Measured exactness and lifecycle controls:** a 130-segment request created
+  multiple disk blocks and returned byte-identical published extensions versus
+  the in-memory path. A one-byte disk envelope failed before publication as
+  `exact_history_disk_limit_exhausted`. A stale block was removed at worker
+  startup, a replacement run removed the preceding run, and worker exit left
+  zero block files. A 100-increment browser control kept at most two local
+  segments while the worker-owned prefix grew to 101 segments.
+- **Measured live control:** after rebuilding the local service, a default 3:3
+  Display run advanced to `T=5.0` in about 1.5 wall seconds and held 24 exact
+  block files totaling about 792 KiB. Ending the run with New distribution
+  returned the block-file count to zero. This is an operating-path check, not a
+  long-horizon throughput measurement.
+- **Regression:** all Borg JavaScript tests pass `120/120`; native Borg process
+  tests pass `20/20`; and all three native fixture packets exit successfully.
+  The rebuilt `eom_borg_shadow_cli` is newer than both changed native sources.
+- **Claim boundary:** measured implementation evidence only. This closes the
+  unbounded retained-history copying and temporary-file lifecycle boundary for
+  Display grade. It does not give Display output claim authority, prove
+  indefinite execution, close checkpoint/restart, or bound every transient
+  Claim-grade certification workspace.
+- **Falsifier:** reject this closure if paged decimal tokens differ from the
+  in-memory path; resident relay history grows with total worker prefix length;
+  an escaped path is halted by retention policy; a live block disappears
+  without a solver clearance certificate; the one-TiB cap is exceeded; or any
+  `.aehb` file remains after the run-release path completes.

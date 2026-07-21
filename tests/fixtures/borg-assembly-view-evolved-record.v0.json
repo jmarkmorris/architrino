@@ -1,0 +1,77 @@
+{
+  "schema": "assembly-view-record.v0",
+  "sourceId": "browser-evolved-record",
+  "provenance": {
+    "engineId": "eom-solver",
+    "engineVersion": "browser-fixture-build-v1",
+    "runId": "browser-evolved-record",
+    "claimGrade": "evolved-record",
+    "evidenceStatus": "developer-test-fixture",
+    "generatingSpec": "tests/fixtures/borg-assembly-view-evolved-record.v0.json",
+    "date": "2026-07-20"
+  },
+  "window": {
+    "start": 0,
+    "end": 2,
+    "delayHorizon": 0.75,
+    "sampleInterval": 0.05
+  },
+  "worldlines": [
+    {
+      "id": "positrino-a",
+      "pathKey": "positrino-a",
+      "polarity": 1,
+      "stateFlags": 1,
+      "coverageStart": 0,
+      "coverageEnd": 2,
+      "interpolation": "exact-inertial-polynomial/v1",
+      "declaredPrehistorySegmentCount": 0,
+      "evolvedSegmentCount": 1,
+      "historyFingerprint": "browser-evolved-positrino-a-v1",
+      "segments": [
+        {
+          "startTime": 0,
+          "endTime": 2,
+          "coefficients": [[0.3, 0.16, 0, 0], [0.42, 0.02, 0, 0], [0.5, 0, 0, 0]],
+          "positionError": 0,
+          "velocityError": 0
+        }
+      ]
+    },
+    {
+      "id": "electrino-b",
+      "pathKey": "electrino-b",
+      "polarity": -1,
+      "stateFlags": 2,
+      "coverageStart": 0,
+      "coverageEnd": 2,
+      "interpolation": "exact-inertial-polynomial/v1",
+      "declaredPrehistorySegmentCount": 0,
+      "evolvedSegmentCount": 1,
+      "historyFingerprint": "browser-evolved-electrino-b-v1",
+      "segments": [
+        {
+          "startTime": 0,
+          "endTime": 2,
+          "coefficients": [[0.7, -0.16, 0, 0], [0.58, -0.02, 0, 0], [0.5, 0, 0, 0]],
+          "positionError": 0,
+          "velocityError": 0
+        }
+      ]
+    }
+  ],
+  "binaries": [
+    {
+      "id": "browser-binary",
+      "members": ["positrino-a", "electrino-b"],
+      "frequency": 2,
+      "planarOffset": 0.4,
+      "phase": 0,
+      "planeOrientation": { "normal": { "x": 0, "y": 0, "z": 1 } }
+    }
+  ],
+  "ansatz": [],
+  "events": [
+    { "kind": "source-declared-field-speed-crossing", "time": 1.25, "worldlineId": "positrino-a" }
+  ]
+}

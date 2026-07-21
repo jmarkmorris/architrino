@@ -10,7 +10,7 @@
     },
     "counts": {
       "nodes": 587,
-      "edges": 1353,
+      "edges": 1352,
       "scenes": 377,
       "markdownIndexes": 0,
       "markdownDocs": 193,
@@ -8860,42 +8860,35 @@
       "to": "scene:content/scenes/archie/animator.json",
       "edgeType": "subscene",
       "source": "content/scenes/archie/applications.json",
-      "field": "scene.children[11]"
-    },
-    {
-      "from": "scene:content/scenes/archie/applications.json",
-      "to": "scene:content/scenes/archie/assembly_explorer.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/archie/applications.json",
-      "field": "scene.children[7]"
+      "field": "scene.children[10]"
     },
     {
       "from": "scene:content/scenes/archie/applications.json",
       "to": "scene:content/scenes/archie/borg.json",
       "edgeType": "subscene",
       "source": "content/scenes/archie/applications.json",
-      "field": "scene.children[12]"
+      "field": "scene.children[11]"
     },
     {
       "from": "scene:content/scenes/archie/applications.json",
       "to": "scene:content/scenes/archie/causal_delay_feedback.json",
       "edgeType": "subscene",
       "source": "content/scenes/archie/applications.json",
-      "field": "scene.children[8]"
+      "field": "scene.children[7]"
     },
     {
       "from": "scene:content/scenes/archie/applications.json",
       "to": "scene:content/scenes/archie/equation_mapping.json",
       "edgeType": "subscene",
       "source": "content/scenes/archie/applications.json",
-      "field": "scene.children[9]"
+      "field": "scene.children[8]"
     },
     {
       "from": "scene:content/scenes/archie/applications.json",
       "to": "scene:content/scenes/archie/greek_letter_match.json",
       "edgeType": "subscene",
       "source": "content/scenes/archie/applications.json",
-      "field": "scene.children[10]"
+      "field": "scene.children[9]"
     },
     {
       "from": "scene:content/scenes/archie/applications.json",

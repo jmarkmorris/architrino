@@ -30,6 +30,9 @@ export function createBorgEomRecordReplayRunner(record, options = {}) {
     engineId: historyDataset.provenance.engineId,
     claimGrade: historyDataset.provenance.claimGrade,
     evidenceStatus: historyDataset.provenance.evidenceStatus,
+    engineVersion: historyDataset.provenance.engineVersion,
+    generatingSpec: historyDataset.provenance.generatingSpec,
+    date: historyDataset.provenance.date,
     startTime: windowStart,
     // Recorded coverage is a hard ceiling: replay can be shortened but never
     // extended past what the engine actually evolved.
@@ -39,9 +42,10 @@ export function createBorgEomRecordReplayRunner(record, options = {}) {
     sampleInterval,
     memoryBudgetBytes: positiveNumber(options.memoryBudgetBytes, DEFAULT_MEMORY_BUDGET_BYTES),
   });
-  const frameValueAuthority = historyDataset.provenance.evidenceStatus === "canonical"
-    ? "canonical-eom-output"
-    : "recorded-eom-output";
+  // The record may report an evidence status, but the viewer never consumes a
+  // producer assertion as an authority upgrade. Rendering remains recorded
+  // output at every source claim grade.
+  const frameValueAuthority = "recorded-eom-output";
   let nextStartTime = windowStart;
   let targetDuration = config.targetDuration;
   let chunkDuration = config.chunkDuration;
@@ -147,9 +151,9 @@ function createRecordedFrames(
     historyDataset.worldlines.forEach((worldline) => {
       const state = historyDataset.evaluateWorldline(worldline.id, time);
       frames.push(Object.freeze({
-        pathKey: Number.isFinite(Number(worldline.pathKey))
-          ? Number(worldline.pathKey)
-          : Number(worldline.id),
+        pathKey: worldline.pathKey ?? worldline.id,
+        sourceWorldlineId: worldline.id,
+        sourceOrder: worldline.sourceIndex,
         frameIndex: Math.round((time - historyDataset.window.start) / sampleInterval),
         time,
         position: state.position,

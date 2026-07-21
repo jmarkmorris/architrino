@@ -15,7 +15,10 @@ import {
   createBorgFrameSetsFromRows,
   mergeBorgFrameRows,
 } from "../src/apps/borg/BorgFrameRows.js";
-import { createDefaultEomShadowRunnerOptions } from "../src/apps/borg/BorgAppRuntime.js";
+import {
+  createDefaultEomShadowRunnerOptions,
+  formatBorgTimelineTime,
+} from "../src/apps/borg/BorgAppRuntime.js";
 import {
   BORG_EOM_RECORD_REPLAY_RUNNER_VERSION,
   BORG_EOM_RECORD_REPLAY_RUN_SOURCE,
@@ -76,6 +79,15 @@ test("Borg path history is on and visible by default", () => {
   );
 });
 
+test("Borg timeline uses a fixed-width hours-minutes-seconds clock", () => {
+  assert.equal(formatBorgTimelineTime(0), "00:00:00.0");
+  assert.equal(formatBorgTimelineTime(59.94), "00:00:59.9");
+  assert.equal(formatBorgTimelineTime(59.96), "00:01:00.0");
+  assert.equal(formatBorgTimelineTime(119.4), "00:01:59.4");
+  assert.equal(formatBorgTimelineTime(3661.28), "01:01:01.3");
+  assert.equal(formatBorgTimelineTime(Number.NaN), "--:--:--.-");
+});
+
 test("Borg selected certified budget atomically owns its step controller", () => {
   const eomClient = {};
   const resolved = createDefaultEomShadowRunnerOptions(
@@ -102,6 +114,7 @@ test("Borg selected certified budget atomically owns its step controller", () =>
   assert.equal(resolved.maximumStep, "0.05");
   assert.equal(resolved.minimumStep, "0.0001");
   assert.equal(resolved.useAdaptiveStepGrowth, true);
+  assert.equal(resolved.runGrade, "display");
 });
 
 test("Borg app manifest is design-owned policy and passes validation", () => {
@@ -248,14 +261,14 @@ test("Borg record replay chunks carry recorded frames with record provenance", a
   await runner.dispose();
 });
 
-test("Borg record replay marks canonical records with canonical value authority", async () => {
+test("Borg record replay never upgrades authority from producer-asserted evidence status", async () => {
   const runner = createBorgEomRecordReplayRunner(
     createBorgEomRecordFixture({ evidenceStatus: "canonical" }),
     { targetDuration: 0.6, chunkDuration: 0.6, sampleInterval: 0.2 },
   );
   const chunk = await runner.computeNextChunk();
   assert.equal(chunk.evidenceStatus, "canonical");
-  assert.equal(chunk.frames[0].valueAuthority, "canonical-eom-output");
+  assert.equal(chunk.frames[0].valueAuthority, "recorded-eom-output");
   await runner.dispose();
 });
 
@@ -360,17 +373,21 @@ test("Borg path-history renderer uses native row segments, not visual smoothing 
     /borgEnvelopeRadius\(manifest\) \*\s*worldUnitsPerSolverUnit/,
   );
   assert.match(runtimeSource, /DEFAULT_CAMERA_FIT_MARGIN = 1\.43/);
-  assert.match(runtimeSource, /HIGHLIGHTED_PATH_HISTORY_DURATION = 20/);
+  assert.match(runtimeSource, /DEFAULT_PATH_TRAIL_DURATION = 30/);
+  assert.match(runtimeSource, /PATH_TRAIL_DURATIONS = Object\.freeze\(\[30, 60, 90, 180, 360\]\)/);
   assert.doesNotMatch(runtimeSource, /centralBallRadius|radialBufferMargin/);
   assert.doesNotMatch(runtimeSource, /BORG_DISPLAY_RUN_GRADE/);
   assert.doesNotMatch(runtimeSource, /borgNdcPositionIsOutsideScreen/);
   assert.match(htmlSource, /\.borg-status-chip\[hidden\]\s*\{\s*display: none;/);
+  assert.match(runtimeSource, /dom\.nativeStatus\.hidden = replayActive;/);
+  assert.match(runtimeSource, /dom\.sourceProvenance\.hidden = replayActive;/);
   assert.doesNotMatch(runtimeSource, /SphereGeometry/);
   assert.doesNotMatch(runtimeSource, /BoxGeometry/);
   assert.doesNotMatch(runtimeSource, /PLAYBACK_MS_PER_NATIVE_STEP/);
   assert.match(runtimeSource, /RUN_CONTROL_PRESETS/);
   assert.match(runtimeSource, /live-forever/);
   assert.match(runtimeSource, /live-60s/);
+  assert.match(runtimeSource, /live-300s/);
   assert.match(nativeProcessClientSource, /worker\.stdin\.on\("error"/);
   assert.match(
     localDevServerSource,
@@ -388,10 +405,26 @@ test("Borg path-history renderer uses native row segments, not visual smoothing 
   assert.match(runtimeSource, /readLiveRunBudgetSnapshot/);
   assert.match(runtimeSource, /createBorgSeededInitialConditionRows/);
   assert.equal(runtimeSource.includes("Live 3000 / 20"), false);
-  assert.match(runtimeSource, /toggleRunDurationMode/);
+  assert.doesNotMatch(runtimeSource, /toggleRunDurationMode/);
   assert.doesNotMatch(runtimeSource, /startDynamicNativeRunnerIfNeeded/);
-  assert.match(runtimeSource, /dom\.playButton\.disabled = frameSets\.length < 2/);
-  assert.match(runtimeSource, /if \(autoStartEom\) \{\s*startDynamicNativeRunner\(\);\s*\}/);
+  assert.match(runtimeSource, /dom\.playButton\.disabled = frameSets\.length < 2 && !\(/);
+  assert.match(
+    runtimeSource,
+    /if \(replayActive && state\.replayDisplayMode !== "animated"\) \{\s*setReplayDisplayMode\("animated"\);/,
+  );
+  assert.doesNotMatch(htmlSource, /id="borg-replay-display-mode"/);
+  assert.match(runtimeSource, /dom\.newDistributionButton\.hidden = replayActive;/);
+  assert.match(
+    htmlSource,
+    /\.borg-timeline \.borg-icon-button\[hidden\],[\s\S]*\.borg-eom-authority\[hidden\] \{\s*display: none;/,
+  );
+  assert.match(runtimeSource, /assemblyViewScene\.setPathVisible\(pathGroup\.visible\);/);
+  assert.match(runtimeSource, /"diagnostics",\s*\]\);/);
+  assert.match(htmlSource, /grid-template-columns: 620px minmax\(0, 1fr\);/);
+  assert.match(
+    runtimeSource,
+    /if \(autoStartEom\) \{\s*if \(replayActive\) \{\s*startRunAndPlayback\(\);\s*\} else \{\s*startDynamicNativeRunner\(\);/,
+  );
   assert.match(runtimeSource, /applyLiveRunRetentionIfNeeded/);
   assert.match(runtimeSource, /compactedPathHistory/);
   assert.match(runtimeSource, /switchRunControlPreset/);
@@ -406,6 +439,12 @@ test("Borg path-history renderer uses native row segments, not visual smoothing 
   assert.doesNotMatch(runtimeSource, /restoreFixtureRun/);
   assert.match(runtimeSource, /appendBorgFrameRowsInPlace/);
   assert.match(runtimeSource, /appendBorgFrameSetsInPlace/);
+  assert.match(runtimeSource, /const firstReplayRows = Boolean/);
+  assert.match(runtimeSource, /if \(firstReplayRows\) \{\s*rebuildParticleObjects\(\);/);
+  assert.match(
+    runtimeSource,
+    /provenance\.prescribedGeometry\?\.responseCenter \?\?\s*manifest\.simulationEnvelope\.center/,
+  );
   assert.match(
     runtimeSource,
     /appendBorgFrameRowsInPlace\(currentFrames, chunk\.frames\);[\s\S]*appendBorgFrameSetsInPlace\(frameSets, chunk\.frames\);/,
@@ -413,7 +452,7 @@ test("Borg path-history renderer uses native row segments, not visual smoothing 
   assert.doesNotMatch(runtimeSource, /setTimeout\(\s*\(\) => ensureDynamicFramesAhead/);
   assert.match(runtimeSource, /getBorgPlaybackRefillDecision/);
   assert.match(runtimeSource, /Playback rate/);
-  assert.match(runtimeSource, /× realtime/);
+  assert.match(runtimeSource, /function formatActiveTimelineLabel\(time\) \{\s*return formatTimelineLabel\(time\);\s*\}/);
   assert.match(runtimeSource, /createBorgAcceptedInertialSeedHistory/);
   assert.match(runtimeSource, /appendedFrameRows = Array\.isArray\(chunk\.frames\)/);
   assert.doesNotMatch(htmlSource, /M9\.8 6\.2a6\.8/);
@@ -421,7 +460,7 @@ test("Borg path-history renderer uses native row segments, not visual smoothing 
   assert.match(htmlSource, /id="borg-new-distribution-button"/);
   assert.match(htmlSource, /id="borg-run-duration-button"/);
   assert.doesNotMatch(htmlSource, /id="borg-eom-path-count"/);
-  assert.match(htmlSource, /id="borg-eom-duration"[^>]*value="60"/);
+  assert.doesNotMatch(htmlSource, /id="borg-eom-duration"/);
   assert.match(htmlSource, /id="borg-coupling"[^>]*value="0\.005"/);
   assert.match(htmlSource, /id="borg-step-height"[^>]*value="0\.025"/);
   assert.match(htmlSource, /id="borg-minimum-step"[^>]*value="0\.0001"/);
@@ -437,23 +476,48 @@ test("Borg path-history renderer uses native row segments, not visual smoothing 
   );
   assert.doesNotMatch(htmlSource, /<section[^>]*aria-label="Initial condition fields"/);
   assert.match(htmlSource, /id="borg-eom-history-status"/);
-  assert.match(htmlSource, /id="borg-eom-stop-button"/);
-  assert.match(htmlSource, /id="borg-eom-restart-button"/);
-  assert.match(htmlSource, /id="borg-eom-restart-button"[^>]*>Start \/ restart<\/button>/);
-  assert.match(htmlSource, /id="borg-eom-progress"[^>]*value="0"[^>]*hidden/);
-  assert.match(htmlSource, /\.borg-eom-form \.borg-run-duration-button \{\s*align-self: end;/);
-  assert.match(htmlSource, /Initial history[\s\S]*Exact inertial polynomial/);
-  assert.match(htmlSource, /Forward evolution[\s\S]*EOM chunks after T=0/);
+  assert.match(htmlSource, /id="borg-eom-authority"[^>]*data-grade="display"/);
+  assert.match(htmlSource, /id="borg-eom-authority-label"[^>]*>Run grade</);
   assert.match(
     htmlSource,
-    /id="borg-run-duration-button"[\s\S]*Finite duration \(s\)[\s\S]*Initial conditions[\s\S]*id="borg-eom-stop-button"[\s\S]*id="borg-eom-restart-button"[\s\S]*id="borg-apply-initial-condition"/,
+    /id="borg-eom-run-grade"[\s\S]*value="display" selected>Display grade<[\s\S]*value="certified">Claim grade</,
   );
+  assert.match(htmlSource, /id="borg-eom-authority-detail"/);
+  assert.match(htmlSource, /\.borg-eom-authority\[data-grade="display"\]/);
+  assert.doesNotMatch(htmlSource, /id="borg-eom-stop-button"/);
+  assert.doesNotMatch(htmlSource, /id="borg-eom-restart-button"/);
+  assert.doesNotMatch(htmlSource, /id="borg-apply-initial-condition"/);
+  assert.match(htmlSource, /id="borg-eom-progress"[^>]*value="0"[^>]*hidden/);
+  assert.match(htmlSource, /<details class="borg-control-drawer" open>\s*<summary>Initial conditions<\/summary>/);
+  assert.match(htmlSource, /class="borg-control-drawer"[\s\S]*<summary>Run status<\/summary>/);
+  assert.match(htmlSource, /Initial history[\s\S]*Exact inertial polynomial/);
+  assert.match(htmlSource, /Forward evolution[\s\S]*EOM chunks after T=0/);
+  assert.match(htmlSource, /id="borg-run-duration-button"[\s\S]*value="live-60s">1 min<[\s\S]*value="live-300s">5 min<[\s\S]*value="live-forever" selected>No limit</);
+  assert.match(
+    htmlSource,
+    /id="borg-history-duration"[\s\S]*value="30" selected>30 s<[\s\S]*value="60">60 s<[\s\S]*value="90">90 s<[\s\S]*value="180">180 s<[\s\S]*value="360">360 s</,
+  );
+  assert.match(htmlSource, /id="borg-time-range"[\s\S]*id="borg-run-duration-button"[\s\S]*id="borg-history-duration"[\s\S]*id="borg-playback-speed"/);
+  assert.match(htmlSource, /id="borg-time-output"[^>]*>T 00:00:00\.0<\/output>/);
+  assert.match(runtimeSource, /dom\.historyDuration\.hidden = replayActive/);
+  assert.match(runtimeSource, /duration: state\.pathTrailDuration/);
   assert.match(runtimeSource, /dom\.eomProgress\.hidden = forever/);
   assert.match(runtimeSource, /runtimeControls\.coupling \?\? configured\.coupling/);
   assert.match(runtimeSource, /initialStep: certifiedBudget\.allocations\.controller\.initialStep/);
   assert.match(runtimeSource, /minimumStep: certifiedBudget\.allocations\.controller\.minimumStep/);
   assert.match(runtimeSource, /maximumStep: certifiedBudget\.allocations\.controller\.maximumStep/);
   assert.match(runtimeSource, /forward EOM chunks/);
+  assert.match(runtimeSource, /state\.eomRunGrade === BORG_EOM_RUN_GRADE_DISPLAY/);
+  assert.match(runtimeSource, /point-projected input history at T=0/);
+  assert.match(runtimeSource, /It never changes to display grade/);
+  assert.match(runtimeSource, /runtimeControls\.runGrade \?\? configured\.runGrade/);
+  assert.doesNotMatch(runtimeSource, /Claim grade through T=/);
+  assert.match(
+    runtimeSource,
+    /function formatTimelineLabel\([\s\S]*?return `T \$\{formatBorgTimelineTime\(time\)\}`;/,
+  );
+  assert.doesNotMatch(runtimeSource, /return `solver t /);
+  assert.doesNotMatch(pathTrailsSource, /runGrade|displayGrade|claim-ready/u);
   assert.match(runtimeSource, /Exact polynomial causal seed history \(C1 inertial\)/);
   assert.match(runtimeSource, /Causal seed-history depth/);
   assert.match(runtimeSource, /EOM retained-history start/);
@@ -464,9 +528,33 @@ test("Borg path-history renderer uses native row segments, not visual smoothing 
   );
   assert.match(
     runtimeSource,
+    /function startRunAndPlayback\(\) \{\s*state\.playbackRequested = true;\s*setPlayButtonPresentation\(true\);/,
+  );
+  assert.match(runtimeSource, /state\.playing \|\| state\.playbackRequested/);
+  assert.match(runtimeSource, /"aria-busy",\s*state\.playbackRequested && !state\.playing/);
+  assert.match(
+    runtimeSource,
     /function prefillPlaybackBuffer[\s\S]*BORG_PLAYBACK_PREFILL_MAX_WALL_MS[\s\S]*startPlayback\(\{ prefillComplete: true \}\)/,
   );
-  assert.match(runtimeSource, /selected; press Start \/ restart to run/);
+  assert.match(
+    runtimeSource,
+    /state\.playbackRequested &&\s*!state\.playing &&\s*!state\.playbackPrefillPromise &&\s*frameSets\.length >= 2[\s\S]*startPlayback\(\{ prefillComplete: true \}\)/,
+  );
+  assert.match(runtimeSource, /selected; press Play to run/);
+  assert.match(runtimeSource, /scheduleInitialConditionReset/);
+  assert.match(runtimeSource, /applyInitialConditionResetNow/);
+  assert.match(runtimeSource, /startNewDistributionRun\(\{ advanceSeed: true, autoStart: false \}\)/);
+  assert.match(runtimeSource, /if \(!replayActive && options\.eomShadowRunner && !state\.dynamicRunner\) \{\s*startRunAndPlayback\(\);/);
+  assert.match(htmlSource, /id="borg-prescribed-record-control"[\s\S]*Prescribed Geometry[\s\S]*id="borg-prescribed-record-select"/);
+  assert.match(runtimeSource, /navigation\.navigate\(dom\.prescribedRecordSelect\.value\)/);
+  assert.match(htmlSource, /id="borg-prescribed-workspace-link"[^>]*>Open prescribed geometry workspace<\/a>/);
+  assert.match(htmlSource, /id="borg-mode-boundary"[\s\S]*id="borg-eom-authority"[\s\S]*id="borg-prescribed-workspace-link"/);
+  assert.doesNotMatch(htmlSource, /borg-replay-strobe|borg-replay-loop-period/);
+  assert.doesNotMatch(runtimeSource, /replayStrobe|replayLoop|resolveBorgAssemblyViewStrobeTime/);
+  assert.match(htmlSource, /id="borg-replay-export"[^>]*>Export image<\/button>[\s\S]*id="borg-replay-export-animation"[^>]*disabled[^>]*>Export animation<\/button>/);
+  assert.match(runtimeSource, /dom\.runDurationButton\.hidden = replayActive;/);
+  assert.doesNotMatch(runtimeSource, /Recorded coverage|recorded-coverage/);
+  assert.match(runtimeSource, /\? "Prescribed Geometry"\s*: "Evolved record"/);
   assert.match(
     runtimeSource,
     /nextFromSetIndex >= frameSets\.length - 1[\s\S]*newestFrameSet[\s\S]*applyFrameSet\(newestFrameSet[\s\S]*playbackFromSetIndex = newestSetIndex/,
@@ -501,8 +589,10 @@ test("Borg path-history renderer uses native row segments, not visual smoothing 
   );
   assert.match(
     htmlSource,
-    /\.borg-camera-controls \{[\s\S]*grid-template-columns: repeat\(4, 32px\);[\s\S]*justify-self: end;/,
+    /\.borg-camera-drawer \{[\s\S]*position: relative;[\s\S]*\.borg-camera-controls \{[\s\S]*grid-template-columns: repeat\(3, 32px\);/,
   );
+  assert.match(htmlSource, /\.borg-viewport-chip \{[\s\S]*border-radius: 6px;/);
+  assert.match(htmlSource, /\.borg-replay-grid \{[\s\S]*align-items: end;/);
   assert.match(
     htmlSource,
     /\.borg-camera-controls \.borg-icon-button \{[\s\S]*width: 32px;[\s\S]*min-width: 32px;[\s\S]*padding: 0;/,

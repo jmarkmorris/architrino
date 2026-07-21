@@ -1,6 +1,7 @@
 import { createReadStream, existsSync, statSync } from "node:fs";
 import { createServer } from "node:http";
 import { dirname, extname, join, normalize, resolve } from "node:path";
+import { freemem, platform, totalmem } from "node:os";
 import { spawnSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
 import {
@@ -9,6 +10,9 @@ import {
 } from "./DevServerHttpCache.mjs";
 import { createPdgLiveArtifactRuntime } from "./PdgLiveArtifactRuntime.mjs";
 import { createBorgNativeEomProcessClient } from "../eom/BorgNativeEomProcessClient.mjs";
+import {
+  createBorgDisplayHostMemoryEnvelope,
+} from "../../src/apps/borg/BorgDisplayHostMemoryEnvelope.js";
 
 const SCRIPT_DIR = dirname(fileURLToPath(import.meta.url));
 const REPO_ROOT = resolve(SCRIPT_DIR, "../..");
@@ -48,11 +52,14 @@ const pdgLiveArtifactRuntime = isEnabledEnvironmentFlag(process.env.PDG_LIVE_ART
 
 let eomBorgClient = EOM_BORG_SHADOW_ENABLED ? createEomBorgClient() : null;
 let eomBorgQueue = Promise.resolve();
+let displayHostMemoryMeasurement = null;
+const DISPLAY_HOST_MEMORY_SAMPLE_INTERVAL_MS = 1000;
 
 function createEomBorgClient() {
   const client = createBorgNativeEomProcessClient({
     binaryPath: prepareEomBorgNativeBinary(),
     timeoutMs: 180000,
+    returnDisplayHistoryExtensions: true,
   });
   process.stdout.write(`[eom] Borg EOM protocol agreed: ${client.protocolMagic}.\n`);
   return client;
@@ -161,8 +168,19 @@ function readJsonRequest(request, maximumBytes = 64 * 1024 * 1024) {
 }
 
 async function serveEomBorgShadow(request, response) {
-  if (!EOM_BORG_SHADOW_ENABLED || request.method !== "POST") {
+  if (!EOM_BORG_SHADOW_ENABLED ||
+      !["POST", "DELETE"].includes(request.method)) {
     sendNotFound(response);
+    return;
+  }
+  if (request.method === "DELETE") {
+    const client = eomBorgClient;
+    eomBorgClient = null;
+    if (client) {
+      await client.releaseRun();
+    }
+    response.writeHead(204, { "Cache-Control": "no-store" });
+    response.end();
     return;
   }
   const body = await readJsonRequest(request);
@@ -182,10 +200,17 @@ async function serveEomBorgShadow(request, response) {
   // the close handler is about to dispose.
   const execute = () => {
     client = getEomBorgClient();
-    return client.evolveRetainedHistories(body);
+    const effectiveRequest = createHostAwareBorgRequest(body, client);
+    return client.evolveRetainedHistories(effectiveRequest).then((result) => ({
+      ...result,
+      hostMemoryEnvelope: effectiveRequest.hostMemoryEnvelope ?? null,
+    }));
   };
   const resultPromise = eomBorgQueue.then(execute, execute);
-  eomBorgQueue = resultPromise.catch(() => undefined);
+  eomBorgQueue = resultPromise.then(
+    () => undefined,
+    () => undefined,
+  );
   const result = await resultPromise;
   response.writeHead(200, {
     "Content-Type": "application/json; charset=utf-8",
@@ -193,6 +218,72 @@ async function serveEomBorgShadow(request, response) {
   });
   responseCompleted = true;
   response.end(JSON.stringify(result));
+}
+
+function createHostAwareBorgRequest(request, client) {
+  if (request?.runGrade !== "display") {
+    return request;
+  }
+  const measurement = readDisplayHostMemoryMeasurement(client);
+  const hostMemoryEnvelope = createBorgDisplayHostMemoryEnvelope({
+    hostTotalMemoryBytes: measurement.hostTotalMemoryBytes,
+    hostAvailableMemoryBytes: measurement.hostAvailableMemoryBytes,
+    workerResidentBytes: measurement.workerResidentBytes,
+    previousMemoryEstimateBytes: client.lastMemoryEstimateBytes,
+  });
+  if (!hostMemoryEnvelope.admitted) {
+    const error = new Error(
+      "Display evolution stopped before consuming the host memory reserve.",
+    );
+    error.code = "display_host_memory_reserve";
+    throw error;
+  }
+  return {
+    ...request,
+    resourceEnvelope: {
+      ...request.resourceEnvelope,
+      memoryBudgetBytes: hostMemoryEnvelope.requestMemoryBudgetBytes,
+    },
+    hostMemoryEnvelope,
+  };
+}
+
+function readDisplayHostMemoryMeasurement(client) {
+  const now = Date.now();
+  const workerPid = client.workerPid;
+  if (displayHostMemoryMeasurement != null &&
+      displayHostMemoryMeasurement.workerPid === workerPid &&
+      now - displayHostMemoryMeasurement.sampledAtMs <
+        DISPLAY_HOST_MEMORY_SAMPLE_INTERVAL_MS) {
+    return displayHostMemoryMeasurement;
+  }
+  const hostTotalMemoryBytes = totalmem();
+  displayHostMemoryMeasurement = {
+    sampledAtMs: now,
+    workerPid,
+    hostTotalMemoryBytes,
+    hostAvailableMemoryBytes:
+      readHostAvailableMemoryBytes(hostTotalMemoryBytes),
+    workerResidentBytes: client.workerResidentBytes,
+  };
+  return displayHostMemoryMeasurement;
+}
+
+function readHostAvailableMemoryBytes(hostTotalMemoryBytes) {
+  if (platform() === "darwin") {
+    const pressure = spawnSync("/usr/bin/memory_pressure", ["-Q"], {
+      encoding: "utf8",
+    });
+    const percent = String(pressure.stdout ?? "").match(
+      /System-wide memory free percentage:\s*(\d+)%/u,
+    );
+    if (!pressure.error && pressure.status === 0 && percent) {
+      return Math.floor(
+        hostTotalMemoryBytes * Number(percent[1]) / 100,
+      );
+    }
+  }
+  return freemem();
 }
 
 function serveFile(request, response) {
@@ -240,7 +331,9 @@ const server = createServer(async (request, response) => {
       "Cache-Control": "no-store",
     });
     const message = String(error?.message || "Internal server error");
-    response.end(isEomRequest ? JSON.stringify({ error: message }) : message);
+    response.end(isEomRequest
+      ? JSON.stringify({ error: message, code: error?.code ?? null })
+      : message);
   }
 });
 

@@ -21,6 +21,7 @@ add_library(eom_native STATIC
   src/MultiprecisionAcceleration.cpp
   src/CoupledEvolution.cpp
   src/DelayedRootSensitivity.cpp
+  src/DisplayEvaluation.cpp
   src/JointState.cpp
   src/JointAffineHistory.cpp
   src/JointAccelerationSnapshot.cpp

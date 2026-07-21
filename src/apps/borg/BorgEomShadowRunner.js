@@ -3,6 +3,15 @@ import {
   canonicalStringify,
   getBorgCertifiedBudgetPreset,
 } from "./BorgCertifiedBudgets.js";
+import {
+  BORG_DISPLAY_HOST_MEMORY_ENVELOPE_SCHEMA,
+  createBorgDisplayHostMemoryEnvelope,
+} from "./BorgDisplayHostMemoryEnvelope.js";
+import {
+  applyBorgCausalHistoryRetention,
+  createBorgCausalHistoryRetentionRequest,
+  validateBorgCausalHistoryRetentionCertificate,
+} from "./BorgCausalHistoryRetention.js";
 
 export const BORG_EOM_SHADOW_RUNNER_VERSION = "borg-eom-shadow-runner.v0";
 export const BORG_EOM_SHADOW_RUN_SOURCE = "computed-eom-shadow-chunks";
@@ -13,9 +22,25 @@ export const BORG_EOM_COMPATIBILITY_HISTORY_PROVENANCE =
   "non-eom-history";
 export const BORG_EOM_ACCEPTED_INITIAL_HISTORY_EVOLUTION_CLAIM_LEVEL =
   "eom-evolution-conditioned-on-accepted-initial-history";
+export const BORG_EOM_RUN_GRADE_CERTIFIED = "certified";
+export const BORG_EOM_RUN_GRADE_DISPLAY = "display";
+export const BORG_EOM_CERTIFIED_EXECUTION_TIMEOUT =
+  "certified_execution_timeout";
+
+let borgEomRunSequence = 0;
 
 const POSITRINO_STATE_FLAG = 1;
 const ELECTRINO_STATE_FLAG = 2;
+
+function normalizeBorgEomRunGrade(value) {
+  if (value == null) {
+    return BORG_EOM_RUN_GRADE_CERTIFIED;
+  }
+  if (value === BORG_EOM_RUN_GRADE_CERTIFIED || value === BORG_EOM_RUN_GRADE_DISPLAY) {
+    return value;
+  }
+  throw new TypeError(`Unsupported Borg EOM run grade: ${value}.`);
+}
 
 export function createBorgEomShadowRunner(manifest, options = {}) {
   if (!manifest || typeof manifest !== "object") {
@@ -46,15 +71,23 @@ export function createBorgEomShadowRunner(manifest, options = {}) {
       sourceClaimLevel: options.initialHistoryClaimLevel,
     },
   );
+  const runGrade = config.runGrade;
+  const initialHistoryAccepted = histories.every(
+    (history) => history.sourceAcceptedInitialDatum === true,
+  );
+  let displayHistoryProjectionCount = 0;
+  if (runGrade === BORG_EOM_RUN_GRADE_DISPLAY) {
+    histories = projectBorgHistoriesToDisplayGrade(histories);
+    displayHistoryProjectionCount = 1;
+  }
   let nextStartTime = config.startTime;
+  let nextStartTimeToken = String(config.startTime);
   let targetDuration = config.targetDuration;
   let chunkDuration = config.chunkDuration;
   let controllerStepSize = config.initialStep;
   let chunkIndex = 0;
-  const initialHistoryAccepted = histories.every(
-    (history) => history.sourceAcceptedInitialDatum === true,
-  );
   let disposed = false;
+  let runReleased = false;
 
   return Object.freeze({
     schema: BORG_EOM_SHADOW_RUNNER_VERSION,
@@ -73,6 +106,9 @@ export function createBorgEomShadowRunner(manifest, options = {}) {
     },
     get chunkDuration() {
       return chunkDuration;
+    },
+    get runGrade() {
+      return runGrade;
     },
     canComputeNextChunk() {
       return !disposed && nextStartTime < targetDuration;
@@ -103,6 +139,7 @@ export function createBorgEomShadowRunner(manifest, options = {}) {
         targetDuration,
         roundTime(startTime + chunkDuration),
       );
+      const endTimeToken = String(endTime);
       const request = createBorgEomShadowRequest({
         manifest,
         config,
@@ -110,22 +147,42 @@ export function createBorgEomShadowRunner(manifest, options = {}) {
         chunkIndex,
         startTime,
         endTime,
+        startTimeToken: nextStartTimeToken,
+        endTimeToken,
         initialStep: controllerStepSize,
+        runGrade,
+        displayGradeBoundary: null,
+        displayHistoryProjectionCount,
       });
-      const rawResponse = await client.evolveRetainedHistories(request);
+      let rawResponse;
+      try {
+        rawResponse = await client.evolveRetainedHistories(request);
+      } catch (error) {
+        disposed = true;
+        throw error;
+      }
       const response = normalizeEomResponse(rawResponse, request);
       controllerStepSize = response.controllerStepSize;
-      const publishedEndTime = response.acceptedEndTime;
-      nextStartTime = publishedEndTime;
-      histories = retainBorgHistoryWindow(response.histories, {
-        minimumCoverageStart: roundTime(nextStartTime - config.historyDepth),
-      });
+      nextStartTime = response.acceptedEndTime;
+      nextStartTimeToken = response.acceptedEndTimeToken;
+      histories = runGrade === BORG_EOM_RUN_GRADE_DISPLAY
+        ? response.histories.every(
+            (history) => history.serverExactHistory === true,
+          )
+          ? response.histories
+          : applyBorgCausalHistoryRetention(
+              response.histories,
+              response.causalHistoryRetention,
+            )
+        : retainBorgHistoryWindow(response.histories, {
+            minimumCoverageStart: roundTime(nextStartTime - config.historyDepth),
+          });
       const retainedHistoryStart = Number(histories[0].coverageStart);
       const retainedHistoryEnd = Number(histories[0].coverageEnd);
       const frames = createFramesFromHistories(
         histories,
         startTime,
-        publishedEndTime,
+        response.acceptedEndTime,
         config.sampleInterval,
         chunkIndex,
         response.evidenceStatus,
@@ -136,33 +193,59 @@ export function createBorgEomShadowRunner(manifest, options = {}) {
       if (response.terminalHalt) {
         disposed = true;
       }
+      if (!response.terminalHalt && nextStartTime >= targetDuration &&
+          !runReleased && typeof client.releaseRun === "function") {
+        runReleased = true;
+        await client.releaseRun();
+      }
       return Object.freeze({
         schema: BORG_EOM_SHADOW_RUNNER_VERSION,
         source: BORG_EOM_SHADOW_RUN_SOURCE,
-        statusCode: response.terminalHalt ? "halted-prefix" : "ok",
+        statusCode: response.terminalHalt
+            ? "halted-prefix"
+            : "ok",
         chunkIndex: chunkIndex - 1,
         requestId: request.requestId,
         runId: request.runId,
         startTime,
-        endTime: publishedEndTime,
+        endTime: response.acceptedEndTime,
         terminalHalt: response.terminalHalt,
+        runGrade,
+        activeRunGrade: runGrade,
+        transitionedToDisplayGrade: false,
+        displayGradeBoundary: null,
+        displayHistoryProjectionCount,
         sampleInterval: config.sampleInterval,
         controllerStepSize,
         phase: "live",
         initialHistoryAccepted,
         coreScale: response.coreScale,
+        memoryBudgetBytes: response.memoryBudgetBytes,
+        hostMemoryEnvelope: response.hostMemoryEnvelope,
+        causalHistoryRetention: response.causalHistoryRetention,
         budgetProvenance: response.budgetProvenance,
         retainedHistoryStart,
         retainedHistoryEnd,
-        retainedHistoryPolicy: "rolling-certified-history-window",
+        retainedHistoryPolicy: runGrade === BORG_EOM_RUN_GRADE_DISPLAY
+          ? response.historyStorage?.enabled === true
+            ? response.causalHistoryRetention == null
+              ? "solver-disk-backed-exact-history-no-retirement"
+              : "solver-disk-backed-exact-history-with-certified-retirement"
+            : response.causalHistoryRetention == null
+              ? "append-only-display-grade-point-history"
+              : "solver-cleared-fixed-envelope-display-history"
+          : "rolling-certified-history-window",
         claimGrade: response.claimGrade,
-        evolutionClaimLevel: initialHistoryAccepted
+        evolutionClaimLevel: runGrade === BORG_EOM_RUN_GRADE_DISPLAY
+          ? "display-only-eom-evolution-from-point-projected-history"
+          : initialHistoryAccepted
             ? BORG_EOM_ACCEPTED_INITIAL_HISTORY_EVOLUTION_CLAIM_LEVEL
             : "eom-evolution-conditioned-on-unaccepted-history",
         frames: Object.freeze(frames),
         histories,
         evidenceStatus: response.evidenceStatus,
         promotionEligible:
+          runGrade === BORG_EOM_RUN_GRADE_CERTIFIED &&
           initialHistoryAccepted &&
           isBorgEomPromotionEligible(response, options.acceptanceGate),
         diagnostics: Object.freeze(response.diagnostics),
@@ -172,6 +255,7 @@ export function createBorgEomShadowRunner(manifest, options = {}) {
     },
     async dispose() {
       disposed = true;
+      runReleased = true;
       if (typeof client.dispose === "function") {
         await client.dispose();
       }
@@ -183,6 +267,7 @@ export function createBorgEomShadowRunConfig(manifest, options = {}) {
   const certifiedBudget = getBorgCertifiedBudgetPreset(
     options.certifiedBudgetId ?? BORG_DEFAULT_CERTIFIED_BUDGET_ID,
   );
+  const runGrade = normalizeBorgEomRunGrade(options.runGrade);
   const budget = certifiedBudget.allocations;
   const sampleInterval = positiveNumber(
     options.sampleInterval,
@@ -225,6 +310,13 @@ export function createBorgEomShadowRunConfig(manifest, options = {}) {
     options.historyDepth,
     manifest.simulationEnvelope?.historyDepth ?? 10,
   );
+  const causalHistoryRetention = createBorgCausalHistoryRetentionRequest({
+    enabled:
+      runGrade === BORG_EOM_RUN_GRADE_DISPLAY &&
+      options.causalHistoryRetention === true,
+    center: manifest.simulationEnvelope?.center,
+    radius: outerRadius,
+  });
   const coreScale = Number(budget.finiteWidth.coreScale);
   const farFieldEnclosureFraction = budget.ordinary.farFieldEnclosureFraction;
   const targetDuration = finiteNumber(
@@ -275,6 +367,9 @@ export function createBorgEomShadowRunConfig(manifest, options = {}) {
   return Object.freeze({
     schema: BORG_EOM_SHADOW_RUNNER_VERSION,
     runSource: BORG_EOM_SHADOW_RUN_SOURCE,
+    runId: String(options.runId ??
+      `borg-eom-shadow-run:${Date.now()}:${++borgEomRunSequence}`),
+    runGrade,
     startTime,
     targetDuration,
     chunkDuration,
@@ -284,6 +379,7 @@ export function createBorgEomShadowRunConfig(manifest, options = {}) {
     simulationOuterRadius: outerRadius,
     historyStartTime: roundTime(startTime - historyDepth),
     historyDepth,
+    causalHistoryRetention,
     coreScale,
     geometricDelayBound,
     historySafetyMargin,
@@ -399,25 +495,37 @@ export function createBorgEomShadowRequest({
   chunkIndex,
   startTime,
   endTime,
+  startTimeToken = String(startTime),
+  endTimeToken = String(endTime),
   initialStep = config.initialStep,
+  runGrade = BORG_EOM_RUN_GRADE_CERTIFIED,
+  displayGradeBoundary = null,
+  displayHistoryProjectionCount = 0,
 }) {
   if (!Array.isArray(histories) || histories.length === 0) {
     throw new TypeError("Borg EOM request requires continuous retained histories.");
   }
   histories.forEach((history) => {
-    if (Number(history.coverageEnd) !== Number(startTime)) {
+    if (String(history.coverageEnd) !== String(startTimeToken)) {
       throw new Error("Borg EOM histories must end at the requested evolution start.");
     }
   });
+  if (![BORG_EOM_RUN_GRADE_CERTIFIED, BORG_EOM_RUN_GRADE_DISPLAY].includes(runGrade)) {
+    throw new TypeError(`Unsupported Borg EOM run grade: ${runGrade}.`);
+  }
   return Object.freeze({
     schema: BORG_EOM_REQUEST_SCHEMA,
     contractId: BORG_EOM_CONTRACT_ID,
     contractAmendmentIds: Object.freeze([]),
     requestId: `borg-eom-shadow-request:chunk-${chunkIndex}`,
-    runId: `borg-eom-shadow-run:chunk-${chunkIndex}`,
+    runId: config.runId ?? "borg-eom-shadow-run",
+    runGrade,
     claimLevel: "migration-shadow",
     modelBindingId: config.modelBindingId,
-    absoluteTimeInterval: Object.freeze({ start: String(startTime), end: String(endTime) }),
+    absoluteTimeInterval: Object.freeze({
+      start: String(startTimeToken),
+      end: String(endTimeToken),
+    }),
     histories,
     numericalControls: Object.freeze({
       integrationMode: "adaptive-coupled",
@@ -453,6 +561,7 @@ export function createBorgEomShadowRequest({
     resourceEnvelope: Object.freeze({
       memoryBudgetBytes: config.memoryBudgetBytes,
       failurePolicy: "fail-closed",
+      causalHistoryRetention: config.causalHistoryRetention,
     }),
     provenance: Object.freeze({
       appId: "borg",
@@ -470,8 +579,158 @@ export function createBorgEomShadowRequest({
       retainedHistoryEnd: histories[0].coverageEnd,
       geometricDelayBound: config.geometricDelayBound,
       historySafetyMargin: config.historySafetyMargin,
+      displayGradeBoundary,
+      displayHistoryProjectionCount,
     }),
   });
+}
+
+export function projectBorgHistoriesToDisplayGrade(histories) {
+  if (!Array.isArray(histories) || histories.length === 0) {
+    throw new TypeError("Display-grade projection requires retained histories.");
+  }
+  return Object.freeze(histories.map((history) => Object.freeze({
+    ...history,
+    sourceProvenance: "borg-display-grade-point-history/v1",
+    sourceClaimLevel: "display-only",
+    sourceAcceptedInitialDatum: false,
+    segments: projectHistorySegmentsToPointTrajectory(history.segments),
+  })));
+}
+
+function projectHistorySegmentsToPointTrajectory(segments) {
+  const projected = [];
+  let continuousStartTokens = null;
+  segments.forEach((segment, segmentIndex) => {
+    const startTime = requiredFiniteNumber(
+      segment.startTime,
+      `display projection segment ${segmentIndex} start`,
+    );
+    const endTime = requiredFiniteNumber(
+      segment.endTime,
+      `display projection segment ${segmentIndex} end`,
+    );
+    if (!(endTime > startTime)) {
+      throw new Error("Display-grade retained-history segments must have positive duration.");
+    }
+    const coefficients = segment.coefficients.map((axis, axisIndex) => {
+      const projectedAxis = [...axis];
+      if (continuousStartTokens) {
+        projectedAxis[0] = continuousStartTokens.position[axisIndex];
+        projectedAxis[1] = continuousStartTokens.velocity[axisIndex];
+      }
+      return Object.freeze(projectedAxis.map(String));
+    });
+    const pointSegment = Object.freeze({
+      ...segment,
+      coefficients: Object.freeze(coefficients),
+      positionErrors: Object.freeze(["0", "0", "0"]),
+      velocityErrors: Object.freeze(["0", "0", "0"]),
+      evidenceStatus: "display-only",
+      claimGrade: "display-only",
+    });
+    projected.push(pointSegment);
+    continuousStartTokens = evaluateExactDecimalSegmentEnd(
+      coefficients,
+      exactDecimalSubtract(segment.endTime, segment.startTime),
+    );
+  });
+  return Object.freeze(projected);
+}
+
+function evaluateExactDecimalSegmentEnd(coefficients, localTime) {
+  const time = parseExactDecimal(localTime);
+  const position = [];
+  const velocity = [];
+  coefficients.forEach((axis) => {
+    const [c0, c1, c2, c3] = axis.map(parseExactDecimal);
+    position.push(formatExactDecimal(exactDecimalAdd(
+      c0,
+      exactDecimalMultiply(time, exactDecimalAdd(
+        c1,
+        exactDecimalMultiply(time, exactDecimalAdd(
+          c2,
+          exactDecimalMultiply(time, c3),
+        )),
+      )),
+    )));
+    velocity.push(formatExactDecimal(exactDecimalAdd(
+      c1,
+      exactDecimalAdd(
+        exactDecimalMultiply(
+          { numerator: 2n, scale: 0 },
+          exactDecimalMultiply(time, c2),
+        ),
+        exactDecimalMultiply(
+          { numerator: 3n, scale: 0 },
+          exactDecimalMultiply(exactDecimalMultiply(time, time), c3),
+        ),
+      ),
+    )));
+  });
+  return { position, velocity };
+}
+
+function exactDecimalSubtract(left, right) {
+  const negativeRight = parseExactDecimal(right);
+  negativeRight.numerator = -negativeRight.numerator;
+  return formatExactDecimal(exactDecimalAdd(parseExactDecimal(left), negativeRight));
+}
+
+function parseExactDecimal(token) {
+  const match = String(token).trim().match(
+    /^([+-]?)(\d+)(?:\.(\d*))?(?:[eE]([+-]?\d+))?$/u,
+  );
+  if (!match) {
+    throw new TypeError(`Invalid exact decimal token: ${token}.`);
+  }
+  const sign = match[1] === "-" ? -1n : 1n;
+  const fraction = match[3] ?? "";
+  const exponent = Number(match[4] ?? 0);
+  let numerator = sign * BigInt(`${match[2]}${fraction}`);
+  let scale = fraction.length - exponent;
+  if (scale < 0) {
+    numerator *= 10n ** BigInt(-scale);
+    scale = 0;
+  }
+  return normalizeExactDecimal({ numerator, scale });
+}
+
+function exactDecimalAdd(left, right) {
+  const scale = Math.max(left.scale, right.scale);
+  return normalizeExactDecimal({
+    numerator:
+      left.numerator * 10n ** BigInt(scale - left.scale) +
+      right.numerator * 10n ** BigInt(scale - right.scale),
+    scale,
+  });
+}
+
+function exactDecimalMultiply(left, right) {
+  return normalizeExactDecimal({
+    numerator: left.numerator * right.numerator,
+    scale: left.scale + right.scale,
+  });
+}
+
+function normalizeExactDecimal(value) {
+  while (value.scale > 0 && value.numerator % 10n === 0n) {
+    value.numerator /= 10n;
+    value.scale -= 1;
+  }
+  return value;
+}
+
+function formatExactDecimal(value) {
+  const normalized = normalizeExactDecimal({ ...value });
+  const negative = normalized.numerator < 0n;
+  const digits = (negative ? -normalized.numerator : normalized.numerator).toString();
+  if (normalized.scale === 0) {
+    return `${negative ? "-" : ""}${digits}`;
+  }
+  const padded = digits.padStart(normalized.scale + 1, "0");
+  const split = padded.length - normalized.scale;
+  return `${negative ? "-" : ""}${padded.slice(0, split)}.${padded.slice(split)}`;
 }
 
 export function trimBorgRetainedHistories(histories, { coverageStart } = {}) {
@@ -604,6 +863,7 @@ function createRetainedHistorySegments(rows) {
 function normalizeEomResponse(rawResponse, request) {
   const response = rawResponse?.response ?? rawResponse;
   const acceptedEndTime = Number(response?.acceptedEndTime);
+  const acceptedEndTimeToken = String(response?.acceptedEndTime ?? "");
   const requestStart = Number(request.absoluteTimeInterval.start);
   const requestEnd = Number(request.absoluteTimeInterval.end);
   const completed = response?.status === "completed" &&
@@ -615,7 +875,11 @@ function normalizeEomResponse(rawResponse, request) {
     acceptedEndTime < requestEnd;
   if (!response || (!completed && !certifiedPrefix)) {
     const failure = response?.haltCode ?? response?.failureCode ?? "eom_shadow_run_failed";
-    const error = new Error(`Borg EOM shadow run failed closed: ${failure}.`);
+    const diagnosticDetail = String(response?.diagnosticDetail ?? "").trim();
+    const error = new Error(
+      `Borg EOM shadow run failed closed: ${failure}.` +
+      (diagnosticDetail ? ` ${diagnosticDetail}` : ""),
+    );
     error.code = failure;
     error.eomResponse = response ?? null;
     throw error;
@@ -637,6 +901,10 @@ function normalizeEomResponse(rawResponse, request) {
     "response coreScale",
   ));
   const claimGrade = String(response.claimGrade ?? response.evidenceStatus ?? "failed");
+  const responseRunGrade = String(response.runGrade ?? request.runGrade);
+  const expectedEvidenceStatus = request.runGrade === BORG_EOM_RUN_GRADE_DISPLAY
+    ? "display-only"
+    : String(response.evidenceStatus ?? "failed");
   const memoryBudgetBytes = requiredPositiveInteger(
     response.memoryBudgetBytes ?? request.resourceEnvelope.memoryBudgetBytes,
     "response memoryBudgetBytes",
@@ -647,25 +915,102 @@ function normalizeEomResponse(rawResponse, request) {
   );
   const budgetProvenance = response.budgetProvenance;
   const requestedBudget = request.certifiedBudget;
-  if (coreScale !== Number(request.modelControls.coreScale) ||
-      memoryBudgetBytes !== Number(request.resourceEnvelope.memoryBudgetBytes) ||
-      memoryEstimateBytes > memoryBudgetBytes ||
-      claimGrade !== String(response.evidenceStatus ?? "failed") ||
-      budgetProvenance?.schema !== requestedBudget.schema ||
-      budgetProvenance?.presetId !== requestedBudget.presetId ||
-      budgetProvenance?.allocationHash !== requestedBudget.allocationHash ||
-      budgetProvenance?.allocationCanonicalJson !==
-        requestedBudget.allocationCanonicalJson ||
-      canonicalStringify(budgetProvenance?.allocations) !==
-        requestedBudget.allocationCanonicalJson) {
-    throw new Error("Borg EOM shadow response has inconsistent certified provenance.");
+  const provenanceMismatches = [];
+  let hostMemoryEnvelope = null;
+  if (response.hostMemoryEnvelope != null) {
+    try {
+      const expectedHostMemoryEnvelope = createBorgDisplayHostMemoryEnvelope({
+        hostTotalMemoryBytes:
+          response.hostMemoryEnvelope.hostTotalMemoryBytes,
+        hostAvailableMemoryBytes:
+          response.hostMemoryEnvelope.hostAvailableMemoryBytes,
+        workerResidentBytes:
+          response.hostMemoryEnvelope.workerResidentBytes,
+        previousMemoryEstimateBytes:
+          response.hostMemoryEnvelope.previousMemoryEstimateBytes,
+      });
+      if (request.runGrade !== BORG_EOM_RUN_GRADE_DISPLAY ||
+          response.hostMemoryEnvelope.schema !==
+            BORG_DISPLAY_HOST_MEMORY_ENVELOPE_SCHEMA ||
+          response.hostMemoryEnvelope.admitted !== true ||
+          canonicalStringify(response.hostMemoryEnvelope) !==
+            canonicalStringify(expectedHostMemoryEnvelope)) {
+        provenanceMismatches.push("hostMemoryEnvelope");
+      } else {
+        hostMemoryEnvelope = expectedHostMemoryEnvelope;
+      }
+    } catch {
+      provenanceMismatches.push("hostMemoryEnvelope");
+    }
   }
+  const expectedMemoryBudgetBytes = hostMemoryEnvelope == null
+    ? Number(request.resourceEnvelope.memoryBudgetBytes)
+    : hostMemoryEnvelope.requestMemoryBudgetBytes;
+  if (coreScale !== Number(request.modelControls.coreScale)) {
+    provenanceMismatches.push("coreScale");
+  }
+  if (memoryBudgetBytes !== expectedMemoryBudgetBytes) {
+    provenanceMismatches.push("memoryBudgetBytes");
+  }
+  if (memoryEstimateBytes > memoryBudgetBytes) {
+    provenanceMismatches.push("memoryEstimateBytes exceeds memoryBudgetBytes");
+  }
+  if (responseRunGrade !== request.runGrade) {
+    provenanceMismatches.push(
+      `runGrade expected ${request.runGrade} but received ${responseRunGrade}`,
+    );
+  }
+  if (String(response.evidenceStatus ?? "failed") !== expectedEvidenceStatus) {
+    provenanceMismatches.push(`evidenceStatus expected ${expectedEvidenceStatus}`);
+  }
+  if (claimGrade !== expectedEvidenceStatus) {
+    provenanceMismatches.push(`claimGrade expected ${expectedEvidenceStatus}`);
+  }
+  if (budgetProvenance?.schema !== requestedBudget.schema) {
+    provenanceMismatches.push("certifiedBudget.schema");
+  }
+  if (budgetProvenance?.presetId !== requestedBudget.presetId) {
+    provenanceMismatches.push("certifiedBudget.presetId");
+  }
+  if (budgetProvenance?.allocationHash !== requestedBudget.allocationHash) {
+    provenanceMismatches.push("certifiedBudget.allocationHash");
+  }
+  if (budgetProvenance?.allocationCanonicalJson !==
+      requestedBudget.allocationCanonicalJson) {
+    provenanceMismatches.push("certifiedBudget.allocationCanonicalJson");
+  }
+  if (canonicalStringify(budgetProvenance?.allocations) !==
+      requestedBudget.allocationCanonicalJson) {
+    provenanceMismatches.push("certifiedBudget.allocations");
+  }
+  if (provenanceMismatches.length > 0) {
+    throw new Error(
+      "Borg EOM shadow response has inconsistent provenance: " +
+      `${provenanceMismatches.join(", ")}.`,
+    );
+  }
+  let causalHistoryRetention = null;
+  try {
+    causalHistoryRetention = validateBorgCausalHistoryRetentionCertificate(
+      response.causalHistoryRetention ?? null,
+      request.resourceEnvelope.causalHistoryRetention ?? null,
+    );
+  } catch (error) {
+    throw new Error(
+      `Borg EOM shadow response has inconsistent causal-history provenance: ${error.message}`,
+    );
+  }
+  const historyStorage = validateHistoryStorage(response.historyStorage);
   return Object.freeze({
     status: response.status,
-    evidenceStatus: response.evidenceStatus ?? "failed",
+    runGrade: responseRunGrade,
+    evidenceStatus: expectedEvidenceStatus,
     coreScale,
     memoryBudgetBytes,
     memoryEstimateBytes,
+    hostMemoryEnvelope,
+    causalHistoryRetention,
+    historyStorage,
     claimGrade,
     budgetProvenance: Object.freeze({
       schema: budgetProvenance.schema,
@@ -679,6 +1024,9 @@ function normalizeEomResponse(rawResponse, request) {
       "response controllerStepSize",
     ))),
     acceptedEndTime: completed ? requestEnd : acceptedEndTime,
+    acceptedEndTimeToken: completed
+      ? String(request.absoluteTimeInterval.end)
+      : acceptedEndTimeToken,
     terminalHalt: certifiedPrefix ? Object.freeze({
       code: String(response.haltCode ?? "eom_shadow_run_failed"),
       failedCandidateRejected: true,
@@ -686,6 +1034,37 @@ function normalizeEomResponse(rawResponse, request) {
     }) : null,
     histories: Object.freeze(histories),
     diagnostics: Array.isArray(response.diagnostics) ? response.diagnostics : [],
+  });
+}
+
+function validateHistoryStorage(value) {
+  if (value == null) {
+    return null;
+  }
+  const maximumDiskBytes = Number(value.maximumDiskBytes);
+  const diskBytes = Number(value.diskBytes);
+  const blockFileCount = Number(value.blockFileCount);
+  const cachedBlocksPerThread = Number(value.cachedBlocksPerThread);
+  if (value.schema !== "eom_exact_history_disk_store/v1" ||
+      value.mode !== "disk-backed-exact-blocks" ||
+      value.enabled !== true ||
+      !Number.isSafeInteger(maximumDiskBytes) || maximumDiskBytes <= 0 ||
+      maximumDiskBytes > 1024 ** 4 ||
+      !Number.isSafeInteger(diskBytes) || diskBytes < 0 ||
+      diskBytes > maximumDiskBytes ||
+      !Number.isSafeInteger(blockFileCount) || blockFileCount < 0 ||
+      !Number.isSafeInteger(cachedBlocksPerThread) ||
+      cachedBlocksPerThread < 2) {
+    throw new Error("Borg EOM shadow response has invalid exact-history storage provenance.");
+  }
+  return Object.freeze({
+    schema: value.schema,
+    mode: value.mode,
+    enabled: true,
+    maximumDiskBytes,
+    diskBytes,
+    blockFileCount,
+    cachedBlocksPerThread,
   });
 }
 
@@ -698,6 +1077,7 @@ function createFramesFromHistories(
   evidenceStatus,
   claimGrade,
   initialHistoryAccepted,
+  valueAuthorityOverride = null,
 ) {
   const frames = [];
   const sampleCount = Math.round((endTime - startTime) / sampleInterval);
@@ -717,13 +1097,13 @@ function createFramesFromHistories(
         stateFlags: history.stateFlags ?? 0,
         dynamicChunkIndex: chunkIndex,
         runSource: BORG_EOM_SHADOW_RUN_SOURCE,
-        valueAuthority: initialHistoryAccepted
+        valueAuthority: valueAuthorityOverride ?? (initialHistoryAccepted
           ? evidenceStatus === "canonical"
             ? "canonical-eom-output-conditioned-on-accepted-initial-history"
             : "eom-shadow-output-conditioned-on-accepted-initial-history"
           : evidenceStatus === "canonical"
             ? "canonical-eom-output"
-            : "eom-shadow-output",
+            : "eom-shadow-output"),
       }));
     });
   }

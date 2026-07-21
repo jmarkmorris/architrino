@@ -29,7 +29,7 @@
 
       #borg-app {
         display: grid;
-        grid-template-columns: 310px minmax(0, 1fr);
+        grid-template-columns: 620px minmax(0, 1fr);
         grid-template-rows: minmax(0, 1fr) 108px;
         width: 100%;
         height: 100%;
@@ -114,8 +114,15 @@
         line-height: 1;
       }
 
+      .borg-title {
+        display: flex;
+        align-items: baseline;
+        gap: 10px;
+        min-width: 0;
+      }
+
       .borg-title p {
-        margin: 5px 0 0;
+        margin: 0;
         color: #abb6a5;
         font-size: 11px;
         font-weight: 700;
@@ -123,6 +130,7 @@
 
       .borg-status-stack {
         display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
         gap: 6px;
         min-width: 0;
         justify-items: stretch;
@@ -150,6 +158,10 @@
         display: none;
       }
 
+      #borg-native-status[hidden] + #borg-manifest-status {
+        grid-column: 1 / -1;
+      }
+
       .borg-status-chip[data-tone="good"] {
         border-color: rgba(139, 209, 124, 0.54);
         color: #c9f5bd;
@@ -168,6 +180,74 @@
       .borg-status-chip[data-tone="bad"] {
         border-color: rgba(229, 116, 99, 0.62);
         color: #ffb8ad;
+      }
+
+      .borg-mode-boundary {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) max-content;
+        align-items: center;
+        gap: 10px;
+        padding: 9px 10px;
+        border: 1px solid rgba(94, 183, 183, 0.5);
+        border-radius: 7px;
+        background: #17231f;
+      }
+
+      .borg-mode-copy {
+        display: grid;
+        gap: 4px;
+        min-width: 0;
+      }
+
+      .borg-mode-switch {
+        min-height: 30px;
+        padding: 7px 9px;
+        border: 1px solid rgba(224, 176, 79, 0.52);
+        border-radius: 6px;
+        color: #ffe3a4;
+        background: rgba(34, 28, 16, 0.72);
+        font-size: 10px;
+        font-weight: 780;
+        line-height: 1.35;
+        text-align: center;
+        text-decoration: none;
+      }
+
+      .borg-mode-switch[hidden] {
+        display: none;
+      }
+
+      .borg-mode-boundary + .borg-section {
+        margin-top: 18px;
+      }
+
+      .borg-prescribed-workspace-link {
+        display: block;
+        margin-top: 8px;
+      }
+
+      .borg-prescribed-workspace-link[hidden] {
+        display: none;
+      }
+
+      .borg-mode-boundary strong {
+        color: #d8fff3;
+        font-size: 12px;
+      }
+
+      .borg-mode-boundary span {
+        color: #abc8be;
+        font-size: 10px;
+        line-height: 1.35;
+      }
+
+      .borg-mode-boundary[data-mode="assembly-view-replay"] {
+        border-color: rgba(224, 176, 79, 0.72);
+        background: #282317;
+      }
+
+      .borg-mode-boundary[data-mode="assembly-view-replay"] strong {
+        color: #ffe3a4;
       }
 
       .borg-section {
@@ -238,8 +318,8 @@
 
       .borg-field-row {
         display: grid;
-        grid-template-columns: minmax(0, 1fr) minmax(88px, auto);
-        align-items: center;
+        grid-template-columns: minmax(140px, 0.42fr) minmax(0, 0.58fr);
+        align-items: start;
         gap: 8px;
         min-height: 28px;
         padding: 5px 7px;
@@ -261,7 +341,8 @@
         font-size: 11px;
         font-weight: 760;
         line-height: 1.25;
-        text-align: right;
+        text-align: left;
+        overflow-wrap: anywhere;
       }
 
       .borg-viewport-toolbar {
@@ -275,6 +356,30 @@
         align-items: center;
         gap: 7px;
         pointer-events: none;
+      }
+
+      .borg-viewport-status {
+        display: grid;
+        grid-template-columns: max-content minmax(0, 1fr);
+        align-items: center;
+        gap: 7px;
+        min-width: 0;
+      }
+
+      .borg-viewport-chip {
+        min-height: 32px;
+        padding: 8px 10px;
+        border: 1px solid rgba(139, 164, 126, 0.34);
+        border-radius: 6px;
+        color: #dfe7d6;
+        background: rgba(32, 35, 29, 0.94);
+        font-size: 11px;
+        font-weight: 760;
+        line-height: 1.3;
+      }
+
+      .borg-viewport-chip[hidden] {
+        display: none;
       }
 
       .borg-viewport-toolbar > * {
@@ -327,12 +432,64 @@
         outline: none;
       }
 
-      .borg-camera-controls {
+      .borg-view-tools {
         display: grid;
-        grid-template-columns: repeat(4, 32px);
+        grid-template-columns: max-content 32px;
         grid-auto-flow: column;
         gap: 7px;
         justify-self: end;
+        align-items: start;
+      }
+
+      .borg-camera-drawer {
+        position: relative;
+      }
+
+      .borg-camera-drawer summary {
+        min-height: 32px;
+        padding: 8px 10px;
+        border: 1px solid rgba(139, 164, 126, 0.3);
+        border-radius: 6px;
+        background: #20231d;
+        color: #dfe7d6;
+        cursor: pointer;
+        font-size: 11px;
+        font-weight: 780;
+        line-height: 14px;
+        list-style: none;
+      }
+
+      .borg-camera-drawer summary::-webkit-details-marker {
+        display: none;
+      }
+
+      .borg-camera-panel {
+        position: absolute;
+        top: 39px;
+        right: 0;
+        width: 220px;
+        padding: 9px;
+        border: 1px solid rgba(139, 164, 126, 0.34);
+        border-radius: 7px;
+        background: rgba(25, 27, 22, 0.98);
+        box-shadow: 0 12px 26px rgba(0, 0, 0, 0.3);
+      }
+
+      .borg-camera-panel select {
+        width: 100%;
+        height: 34px;
+        padding: 0 7px;
+        border: 1px solid rgba(139, 164, 126, 0.34);
+        border-radius: 6px;
+        background: #171c16;
+        color: #eaf6df;
+      }
+
+      .borg-camera-controls {
+        display: grid;
+        grid-template-columns: repeat(3, 32px);
+        gap: 7px;
+        margin-top: 8px;
       }
 
       .borg-camera-controls .borg-icon-button {
@@ -418,16 +575,25 @@
         min-width: 0;
         min-height: 0;
         display: grid;
-        grid-template-columns: 40px 40px 40px minmax(96px, 1fr) 88px minmax(128px, auto);
-        gap: 10px;
+        grid-template-columns: 40px 40px 40px minmax(48px, 1fr) 96px 70px 82px minmax(150px, auto);
+        gap: 6px;
         align-items: center;
         padding: 12px 14px;
         border-top: 1px solid rgba(139, 164, 126, 0.24);
       }
 
+      .borg-timeline.is-replay {
+        grid-template-columns: 40px 40px minmax(96px, 1fr) 88px minmax(128px, auto);
+      }
+
       .borg-timeline .borg-icon-button {
         width: 40px;
         height: 40px;
+      }
+
+      .borg-timeline .borg-icon-button[hidden],
+      .borg-eom-authority[hidden] {
+        display: none;
       }
 
       .borg-range {
@@ -502,9 +668,13 @@
         font-size: 12px;
         font-weight: 760;
         text-align: right;
+        font-variant-numeric: tabular-nums;
+        min-width: 12ch;
+        white-space: nowrap;
       }
 
       .borg-run-duration-button,
+      .borg-history-duration,
       .borg-playback-speed {
         height: 40px;
         padding: 0 10px;
@@ -518,11 +688,29 @@
       }
 
       .borg-run-duration-button {
-        width: 128px;
+        width: 96px;
         cursor: pointer;
       }
 
+      .borg-run-duration-button[hidden] {
+        display: none;
+      }
+
+      .borg-history-duration {
+        width: 70px;
+        cursor: pointer;
+      }
+
+      .borg-history-duration[hidden] {
+        display: none;
+      }
+
       .borg-eom-form {
+        display: grid;
+        gap: 9px;
+      }
+
+      .borg-eom-form-grid {
         display: grid;
         grid-template-columns: repeat(2, minmax(0, 1fr));
         gap: 9px;
@@ -568,6 +756,212 @@
         background: #171c16;
         color: #eaf6df;
         font: inherit;
+      }
+
+      .borg-replay-controls {
+        display: grid;
+        gap: 9px;
+      }
+
+      .borg-replay-controls[hidden] {
+        display: none;
+      }
+
+      .borg-replay-control {
+        display: grid;
+        gap: 4px;
+        color: #abc09f;
+        font-size: 10px;
+        font-weight: 720;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+      }
+
+      .borg-replay-control select,
+      .borg-replay-control input,
+      .borg-replay-action {
+        width: 100%;
+        min-width: 0;
+        height: 34px;
+        padding: 0 8px;
+        border: 1px solid rgba(139, 164, 126, 0.34);
+        border-radius: 6px;
+        background: #171c16;
+        color: #eaf6df;
+      }
+
+      .borg-replay-action {
+        cursor: pointer;
+        font-size: 11px;
+        font-weight: 780;
+      }
+
+      .borg-replay-action:disabled,
+      .borg-replay-control select:disabled,
+      .borg-replay-control input:disabled {
+        cursor: not-allowed;
+        opacity: 0.5;
+      }
+
+      .borg-replay-action:focus-visible,
+      .borg-replay-control select:focus-visible,
+      .borg-replay-control input:focus-visible {
+        border-color: #ffcf67;
+        outline: 2px solid rgba(255, 207, 103, 0.9);
+        outline-offset: 2px;
+      }
+
+      .borg-replay-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        align-items: end;
+        gap: 7px;
+      }
+
+      .borg-replay-notice {
+        margin: 0;
+        padding: 8px;
+        border: 1px solid rgba(224, 176, 79, 0.36);
+        border-radius: 6px;
+        color: #ffdfa0;
+        background: #241f15;
+        font-size: 10px;
+        line-height: 1.4;
+      }
+
+      .borg-replay-notice[data-tone="bad"] {
+        border-color: rgba(229, 116, 99, 0.54);
+        color: #ffb8ad;
+        background: #291b17;
+      }
+
+      .borg-replay-provenance {
+        display: grid;
+        gap: 5px;
+      }
+
+      .borg-visually-hidden-label > span {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+      }
+
+      .borg-control-drawer {
+        min-width: 0;
+      }
+
+      .borg-control-drawer[hidden] {
+        display: none;
+      }
+
+      .borg-control-drawer > summary {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        align-items: center;
+        min-height: 34px;
+        padding: 6px 8px;
+        border: 1px solid rgba(139, 164, 126, 0.22);
+        border-radius: 6px;
+        background: #1a1d18;
+        color: #dfe7d6;
+        cursor: pointer;
+        font-size: 11px;
+        font-weight: 780;
+        list-style: none;
+      }
+
+      .borg-control-drawer > summary::-webkit-details-marker {
+        display: none;
+      }
+
+      .borg-control-drawer > summary::after {
+        content: "+";
+        color: #aeb8a6;
+      }
+
+      .borg-control-drawer[open] > summary::after {
+        content: "−";
+      }
+
+      .borg-drawer-content {
+        margin-top: 7px;
+      }
+
+      .borg-drawer-content > * + * {
+        margin-top: 7px;
+      }
+
+      .borg-control-help,
+      .borg-binary-geometry p {
+        display: block;
+        margin: 0;
+        color: #aeb8a6;
+        font-size: 10px;
+        line-height: 1.4;
+      }
+
+      .borg-binary-geometry {
+        min-width: 0;
+        padding: 10px;
+        border: 1px solid rgba(94, 183, 183, 0.36);
+        border-radius: 7px;
+        background: rgba(23, 35, 31, 0.58);
+      }
+
+      .borg-binary-geometry h2 {
+        margin-bottom: 4px;
+      }
+
+      .borg-table-scroll {
+        margin-top: 8px;
+        overflow-x: auto;
+      }
+
+      .borg-binary-table {
+        width: 100%;
+        min-width: 500px;
+        border-collapse: collapse;
+        table-layout: fixed;
+        font-size: 10px;
+      }
+
+      .borg-binary-table caption {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+      }
+
+      .borg-binary-table th,
+      .borg-binary-table td {
+        padding: 6px 7px;
+        border: 1px solid rgba(139, 164, 126, 0.18);
+        overflow-wrap: anywhere;
+        text-align: left;
+        vertical-align: top;
+      }
+
+      .borg-binary-table thead th {
+        color: #c2f2f1;
+        background: rgba(27, 42, 37, 0.88);
+      }
+
+      .borg-binary-table tbody th {
+        width: 25%;
+        color: #abc09f;
+        background: rgba(23, 28, 22, 0.72);
+      }
+
+      .borg-binary-table td {
+        color: #f2f5ec;
+        background: rgba(32, 35, 29, 0.72);
       }
 
       .borg-eom-form .borg-run-duration-button {
@@ -659,6 +1053,53 @@
         line-height: 1.35;
       }
 
+      .borg-eom-authority {
+        display: grid;
+        gap: 3px;
+        margin-top: 8px;
+        padding: 9px 10px;
+        border: 1px solid rgba(139, 209, 124, 0.5);
+        border-radius: 6px;
+        background: rgba(40, 92, 43, 0.2);
+      }
+
+      .borg-eom-authority strong {
+        color: #a9ee9b;
+        font-size: 11px;
+      }
+
+      .borg-eom-authority select {
+        width: 100%;
+        min-height: 30px;
+        padding: 5px 28px 5px 8px;
+        border: 1px solid rgba(169, 238, 155, 0.45);
+        border-radius: 5px;
+        color: #e8f6e3;
+        background: #1d2a1c;
+        font: inherit;
+      }
+
+      .borg-eom-authority span {
+        color: #c8dbbd;
+        font-size: 10px;
+        line-height: 1.35;
+      }
+
+      .borg-eom-authority[data-grade="display"] {
+        border-color: rgba(255, 118, 101, 0.62);
+        background: rgba(112, 35, 29, 0.24);
+      }
+
+      .borg-eom-authority[data-grade="display"] strong,
+      .borg-eom-authority[data-grade="display"] span {
+        color: #ffb8ad;
+      }
+
+      .borg-eom-authority[data-grade="display"] select {
+        border-color: rgba(255, 184, 173, 0.5);
+        background: #321b18;
+      }
+
       .borg-eom-stage-map {
         grid-column: 1 / -1;
         display: grid;
@@ -709,7 +1150,7 @@
       }
 
       .borg-playback-speed {
-        width: 88px;
+        width: 82px;
       }
 
       #borg-boot-error {
@@ -808,7 +1249,7 @@
           right: 14px;
         }
 
-        .borg-camera-controls {
+        .borg-view-tools {
           position: absolute;
           right: 14px;
           z-index: 3;
@@ -816,12 +1257,16 @@
           bottom: 14px;
         }
 
-        .borg-solver-banner-slot {
+        .borg-viewport-status {
           position: absolute;
           left: 14px;
           right: 14px;
           top: 92px;
           z-index: 20;
+        }
+
+        .borg-solver-banner-slot {
+          position: static;
         }
 
         #borg-solver-banner {
@@ -832,14 +1277,36 @@
           grid-template-columns: 40px 40px 40px minmax(0, 1fr);
         }
 
-        .borg-playback-speed {
+        .borg-timeline.is-replay {
+          grid-template-columns: 40px 40px minmax(0, 1fr);
+        }
+
+        .borg-run-duration-button {
+          grid-column: 1 / 3;
+          width: 100%;
+        }
+
+        .borg-history-duration {
           grid-column: 3 / 5;
           width: 100%;
+        }
+
+        .borg-playback-speed {
+          grid-column: 1 / 5;
+          width: 100%;
+        }
+
+        .borg-timeline.is-replay .borg-playback-speed {
+          grid-column: 3 / 4;
         }
 
         .borg-time-output {
           grid-column: 1 / 5;
           text-align: left;
+        }
+
+        .borg-timeline.is-replay .borg-time-output {
+          grid-column: 1 / 4;
         }
       }
 
@@ -865,82 +1332,167 @@
           </div>
         </header>
 
+        <div id="borg-mode-boundary" class="borg-mode-boundary" data-mode="simulation-workspace" role="status">
+          <div class="borg-mode-copy">
+            <strong id="borg-mode-label">Simulation workspace</strong>
+            <span id="borg-mode-detail">Initial conditions and EOM solver runs remain separate from record-only replay.</span>
+          </div>
+          <a id="borg-mode-switch" class="borg-mode-switch" href="borg.html" hidden>Open simulation workspace</a>
+        </div>
+        <div id="borg-eom-authority" class="borg-eom-authority" data-grade="display">
+          <strong id="borg-eom-authority-label">Run grade</strong>
+          <select id="borg-eom-run-grade" aria-labelledby="borg-eom-authority-label">
+            <option value="display" selected>Display grade</option>
+            <option value="certified">Claim grade</option>
+          </select>
+          <span id="borg-eom-authority-detail" role="status">Display-only evolution starts directly from the input history and carries no claim authority.</span>
+        </div>
+        <a id="borg-prescribed-workspace-link" class="borg-mode-switch borg-prescribed-workspace-link" href="borg.html">Open prescribed geometry workspace</a>
+
+        <section id="borg-assembly-view-controls" class="borg-section borg-replay-controls" aria-label="Assembly-view replay controls" hidden>
+          <label id="borg-prescribed-record-control" class="borg-replay-control">
+            Prescribed Geometry
+            <select id="borg-prescribed-record-select"></select>
+          </label>
+
+          <section class="borg-binary-geometry" aria-labelledby="borg-binary-geometry-heading">
+            <h2 id="borg-binary-geometry-heading">Braid Taxonomy</h2>
+            <p>Cap angle locates each antipodal pair above and below the equatorial plane; it is not an orbit-plane tilt.</p>
+            <div class="borg-table-scroll">
+              <table id="borg-binary-geometry-table" class="borg-binary-table"></table>
+            </div>
+          </section>
+
+          <details class="borg-control-drawer">
+            <summary>Playback tools</summary>
+            <div class="borg-drawer-content">
+              <output id="borg-replay-trail-summary" class="borg-control-help"></output>
+              <div class="borg-replay-grid">
+                <button id="borg-replay-export" class="borg-replay-action" type="button">Export image</button>
+                <button id="borg-replay-export-animation" class="borg-replay-action" type="button" disabled title="Animation export is not implemented yet.">Export animation</button>
+              </div>
+            </div>
+          </details>
+
+          <details id="borg-replay-collection-tools" class="borg-control-drawer" hidden>
+            <summary>Record collection</summary>
+            <div class="borg-drawer-content">
+              <label id="borg-replay-record-control" class="borg-replay-control">
+                Raw record
+                <select id="borg-replay-record-select"></select>
+              </label>
+              <div class="borg-replay-grid">
+                <label class="borg-replay-control">
+                  Source filter
+                  <select id="borg-replay-filter-field"></select>
+                </label>
+                <label class="borg-replay-control">
+                  Filter value
+                  <select id="borg-replay-filter-value"></select>
+                </label>
+              </div>
+              <label class="borg-replay-control">
+                Permutation grouping
+                <select id="borg-replay-grouping">
+                  <option value="raw">Raw source order</option>
+                  <option value="s3">Group by source S3 key</option>
+                </select>
+              </label>
+              <p class="borg-control-help">S3 grouping combines navigation rows only when records carry the same source-defined permutation key; it never changes a raw record.</p>
+              <label class="borg-replay-control">
+                Comparison record
+                <select id="borg-replay-comparison"></select>
+              </label>
+            </div>
+          </details>
+
+          <output id="borg-replay-feedback" class="borg-replay-notice" role="status"></output>
+
+          <details class="borg-control-drawer">
+            <summary>Additional record fields</summary>
+            <div id="borg-replay-overlay-fields" class="borg-field-list borg-drawer-content"></div>
+          </details>
+
+          <details class="borg-control-drawer">
+            <summary>Provenance</summary>
+            <div id="borg-replay-provenance" class="borg-replay-provenance borg-drawer-content"></div>
+          </details>
+        </section>
+
         <section id="borg-eom-controls" class="borg-section borg-eom-controls" aria-label="EOM run and initial condition controls" hidden>
-          <h2>EOM Run</h2>
           <form id="borg-initial-condition-form" class="borg-eom-form" novalidate>
-            <div class="borg-eom-subheading">Run controls</div>
-            <button id="borg-run-duration-button" class="borg-run-duration-button" type="button" aria-label="Run mode: Forever" title="Toggle run mode between Forever and 60 seconds">Forever</button>
-            <label class="borg-eom-control">
-              Finite duration (s)
-              <input id="borg-eom-duration" type="number" min="0.01" step="0.01" value="60" inputmode="decimal" />
-            </label>
-            <div class="borg-eom-subheading">Initial conditions</div>
-            <label class="borg-initial-control is-wide">
-              Certified error budget
-              <select id="borg-certified-budget" title="One complete certified numerical contract; every published output retains its declared error intervals.">
-                <option value="interactive-certified-v1">Interactive certified budget</option>
-                <option value="research-certified-v1" selected>Research certified budget</option>
-              </select>
-            </label>
-            <label class="borg-initial-control">
-              Electrinos
-              <input id="borg-electrino-count" type="number" min="0" max="512" step="1" value="3" inputmode="numeric" />
-            </label>
-            <label class="borg-initial-control">
-              Positrinos
-              <input id="borg-positrino-count" type="number" min="0" max="512" step="1" value="3" inputmode="numeric" />
-            </label>
-            <label class="borg-initial-control">
-              κ coupling
-              <input id="borg-coupling" type="number" min="0.000001" step="0.001" value="0.005" inputmode="decimal" title="Universal EOM coupling scale in Borg's normalized units; larger values strengthen every pair acceleration." />
-            </label>
-            <div class="borg-step-control-group" role="group" aria-label="Adaptive step controls">
-              <label class="borg-initial-control">
-                Step height
-                <input id="borg-step-height" type="number" min="0.0001" max="0.05" step="0.0001" value="0.025" inputmode="decimal" title="The step height used at run start and the largest height adaptive stepping may recover." />
-              </label>
-              <label class="borg-initial-control">
-                Adaptive minimum
-                <input id="borg-minimum-step" type="number" min="0.0001" max="0.05" step="0.0001" value="0.0001" inputmode="decimal" title="The smallest height adaptive stepping may try before the run halts." />
-              </label>
-            </div>
-            <label class="borg-initial-control">
-              Max per-axis speed
-              <input id="borg-velocity-max-component" type="number" min="0" step="0.001" value="0" inputmode="decimal" title="Maximum magnitude allowed separately for vx, vy, and vz." />
-            </label>
-            <label class="borg-initial-control">
-              Minimum total speed
-              <input id="borg-velocity-min-speed" type="number" min="0" step="0.001" value="0" inputmode="decimal" title="Minimum magnitude of the complete initial velocity vector: sqrt(vx² + vy² + vz²)." />
-            </label>
-            <button id="borg-eom-stop-button" class="borg-eom-action is-stop" type="button">Stop</button>
-            <button id="borg-eom-restart-button" class="borg-eom-action" type="button">Start / restart</button>
-            <button id="borg-apply-initial-condition" class="borg-initial-action" type="submit">Apply &amp; run</button>
-            <output id="borg-initial-condition-feedback" class="borg-initial-feedback" data-tone="accepted">Manifest values active</output>
-            <p class="borg-eom-action-help">Start / restart uses the applied conditions. Apply &amp; run first accepts the edited conditions and builds a new exact polynomial history. Both start canvas playback; Stop halts computation and playback.</p>
-            <div class="borg-eom-stage-map" aria-label="EOM input and evolution stages">
-              <div class="borg-eom-stage">
-                <span>Initial history</span>
-                <strong>Exact inertial polynomial</strong>
+            <details class="borg-control-drawer" open>
+              <summary>Initial conditions</summary>
+              <div class="borg-drawer-content borg-eom-form-grid">
+                <label class="borg-initial-control is-wide">
+                  Certified error budget
+                  <select id="borg-certified-budget" title="One complete certified numerical contract; every published output retains its declared error intervals.">
+                    <option value="interactive-certified-v1">Interactive certified budget</option>
+                    <option value="research-certified-v1" selected>Research certified budget</option>
+                  </select>
+                </label>
+                <label class="borg-initial-control">
+                  Electrinos
+                  <input id="borg-electrino-count" type="number" min="0" max="512" step="1" value="3" inputmode="numeric" />
+                </label>
+                <label class="borg-initial-control">
+                  Positrinos
+                  <input id="borg-positrino-count" type="number" min="0" max="512" step="1" value="3" inputmode="numeric" />
+                </label>
+                <label class="borg-initial-control">
+                  κ coupling
+                  <input id="borg-coupling" type="number" min="0.000001" step="0.001" value="0.005" inputmode="decimal" title="Universal EOM coupling scale in Borg's normalized units; larger values strengthen every pair acceleration." />
+                </label>
+                <div class="borg-step-control-group" role="group" aria-label="Adaptive step controls">
+                  <label class="borg-initial-control">
+                    Step height
+                    <input id="borg-step-height" type="number" min="0.0001" max="0.05" step="0.0001" value="0.025" inputmode="decimal" title="The step height used at run start and the largest height adaptive stepping may recover." />
+                  </label>
+                  <label class="borg-initial-control">
+                    Adaptive minimum
+                    <input id="borg-minimum-step" type="number" min="0.0001" max="0.05" step="0.0001" value="0.0001" inputmode="decimal" title="The smallest height adaptive stepping may try before the run halts." />
+                  </label>
+                </div>
+                <label class="borg-initial-control">
+                  Max per-axis speed
+                  <input id="borg-velocity-max-component" type="number" min="0" step="0.001" value="0" inputmode="decimal" title="Maximum magnitude allowed separately for vx, vy, and vz." />
+                </label>
+                <label class="borg-initial-control">
+                  Minimum total speed
+                  <input id="borg-velocity-min-speed" type="number" min="0" step="0.001" value="0" inputmode="decimal" title="Minimum magnitude of the complete initial velocity vector: sqrt(vx² + vy² + vz²)." />
+                </label>
+                <output id="borg-initial-condition-feedback" class="borg-initial-feedback" data-tone="accepted">Manifest values active</output>
               </div>
-              <span class="borg-eom-stage-separator" aria-hidden="true">→</span>
-              <div class="borg-eom-stage">
-                <span>Forward evolution</span>
-                <strong>EOM chunks after T=0</strong>
+            </details>
+            <details class="borg-control-drawer">
+              <summary>Run status</summary>
+              <div class="borg-drawer-content">
+                <div class="borg-eom-stage-map" aria-label="EOM input and evolution stages">
+                  <div class="borg-eom-stage">
+                    <span>Initial history</span>
+                    <strong>Exact inertial polynomial</strong>
+                  </div>
+                  <span class="borg-eom-stage-separator" aria-hidden="true">→</span>
+                  <div class="borg-eom-stage">
+                    <span>Forward evolution</span>
+                    <strong>EOM chunks after T=0</strong>
+                  </div>
+                </div>
+                <progress id="borg-eom-progress" class="borg-eom-progress" max="1" value="0" hidden></progress>
+                <output id="borg-eom-progress-label" class="borg-eom-progress-label">0 forward EOM chunks | stopped | No limit</output>
+                <output id="borg-eom-history-status" class="borg-eom-history-status">The exact polynomial initial history is certified input, not EOM output. Forward EOM evolution starts at T=0.</output>
+                <div id="borg-initial-condition-fields" class="borg-field-list"></div>
               </div>
-            </div>
-            <progress id="borg-eom-progress" class="borg-eom-progress" max="1" value="0" hidden></progress>
-            <output id="borg-eom-progress-label" class="borg-eom-progress-label">0 forward EOM chunks | stopped | Forever</output>
-            <output id="borg-eom-history-status" class="borg-eom-history-status">The exact polynomial initial history is certified input, not EOM output. Forward EOM evolution starts at T=0.</output>
+            </details>
           </form>
-          <div id="borg-initial-condition-fields" class="borg-field-list"></div>
         </section>
 
-        <section class="borg-section" aria-label="Simulation envelope fields">
-          <h2>Simulation Envelope</h2>
-          <div id="borg-envelope-fields" class="borg-field-list"></div>
-        </section>
+        <details id="borg-envelope-section" class="borg-section borg-control-drawer" aria-label="Simulation envelope fields">
+          <summary>Simulation envelope</summary>
+          <div id="borg-envelope-fields" class="borg-field-list borg-drawer-content"></div>
+        </details>
 
-        <details class="borg-provenance-drawer" aria-label="Source provenance">
+        <details id="borg-source-provenance" class="borg-provenance-drawer" aria-label="Simulation source provenance">
           <summary>Provenance</summary>
           <div id="borg-source-fields" class="borg-field-list"></div>
         </details>
@@ -950,32 +1502,36 @@
         <canvas id="borg-canvas" tabindex="0" aria-label="Borg native frame viewport"></canvas>
         <div class="borg-viewport-toolbar">
           <nav id="borg-layer-strip" class="borg-layer-strip" aria-label="Viewport layers"></nav>
-          <div class="borg-solver-banner-slot">
+          <div class="borg-viewport-status">
+            <span id="borg-record-date-chip" class="borg-viewport-chip" hidden></span>
+            <div class="borg-solver-banner-slot">
             <div id="borg-solver-banner" role="status" hidden></div>
+            </div>
           </div>
-          <div class="borg-camera-controls" aria-label="View controls">
-            <button id="borg-reset-view-button" class="borg-icon-button" type="button" aria-label="Reset view" title="Reset view">
-              <svg viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M5 12l7-6 7 6"></path>
-                <path d="M7.5 10.5v7h9v-7"></path>
-                <path d="M10 17.5v-4h4v4"></path>
-              </svg>
-            </button>
-            <button id="borg-fit-view-button" class="borg-icon-button" type="button" aria-label="Fit view" title="Fit view">
-              <svg viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M5 9V5h4"></path>
-                <path d="M15 5h4v4"></path>
-                <path d="M19 15v4h-4"></path>
-                <path d="M9 19H5v-4"></path>
-              </svg>
-            </button>
-            <button id="borg-focus-selected-button" class="borg-icon-button" type="button" aria-label="Focus selected" title="Focus selected">
-              <svg viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M12 8v8"></path>
-                <path d="M8 12h8"></path>
-                <path d="M4 12a8 8 0 1 0 16 0a8 8 0 1 0-16 0"></path>
-              </svg>
-            </button>
+          <div class="borg-view-tools" aria-label="View controls">
+            <details class="borg-camera-drawer">
+              <summary>Camera</summary>
+              <div class="borg-camera-panel">
+                <label class="borg-replay-control">
+                  Mode
+                  <select id="borg-replay-camera-mode">
+                    <option value="free">Free camera</option>
+                    <option value="co-rotating">Co-rotating</option>
+                  </select>
+                </label>
+                <div class="borg-camera-controls">
+                  <button id="borg-reset-view-button" class="borg-icon-button" type="button" aria-label="Reset view" title="Reset view">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l7-6 7 6"></path><path d="M7.5 10.5v7h9v-7"></path><path d="M10 17.5v-4h4v4"></path></svg>
+                  </button>
+                  <button id="borg-fit-view-button" class="borg-icon-button" type="button" aria-label="Fit view" title="Fit view">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 9V5h4"></path><path d="M15 5h4v4"></path><path d="M19 15v4h-4"></path><path d="M9 19H5v-4"></path></svg>
+                  </button>
+                  <button id="borg-focus-selected-button" class="borg-icon-button" type="button" aria-label="Focus selected" title="Focus selected">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 8v8"></path><path d="M8 12h8"></path><path d="M4 12a8 8 0 1 0 16 0a8 8 0 1 0-16 0"></path></svg>
+                  </button>
+                </div>
+              </div>
+            </details>
             <button id="borg-diagnostics-toggle" class="borg-icon-button" type="button" aria-label="Show diagnostics" aria-controls="borg-diagnostics-panel" aria-pressed="false" title="Show diagnostics">
               <svg viewBox="0 0 24 24" aria-hidden="true">
                 <path class="borg-panel-icon-pane" d="M15 5h3a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-3z"></path>
@@ -1015,7 +1571,7 @@
         </section>
       </aside>
 
-      <section class="borg-timeline" aria-label="Timeline">
+      <section id="borg-timeline" class="borg-timeline" aria-label="Timeline">
         <button id="borg-play-button" class="borg-icon-button" type="button" aria-label="Play" title="Play">
           <svg viewBox="0 0 24 24" aria-hidden="true">
             <path d="M8 5v14l11-7z"></path>
@@ -1029,15 +1585,29 @@
         </button>
         <button id="borg-new-distribution-button" class="borg-icon-button" type="button" aria-label="New distribution" title="New distribution">
           <svg viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M4 7h3.5c1.5 0 2.6.7 3.4 2.1l2.2 3.8c.8 1.4 1.9 2.1 3.4 2.1H20"></path>
-            <path d="M17 12l3 3-3 3"></path>
-            <path d="M4 17h3.5c1.5 0 2.6-.7 3.4-2.1l2.2-3.8c.8-1.4 1.9-2.1 3.4-2.1H20"></path>
-            <path d="M17 6l3 3-3 3"></path>
+            <rect x="5" y="5" width="14" height="14" rx="3"></rect>
+            <circle cx="9" cy="9" r="1" fill="currentColor" stroke="none"></circle>
+            <circle cx="15" cy="9" r="1" fill="currentColor" stroke="none"></circle>
+            <circle cx="12" cy="12" r="1" fill="currentColor" stroke="none"></circle>
+            <circle cx="9" cy="15" r="1" fill="currentColor" stroke="none"></circle>
+            <circle cx="15" cy="15" r="1" fill="currentColor" stroke="none"></circle>
           </svg>
         </button>
-        <input id="borg-time-range" class="borg-range" type="range" min="0" max="2" step="1" value="2" aria-label="Keyframe" title="Buffered-frame scrubber; a Forever run has no finite completion percentage." />
+        <input id="borg-time-range" class="borg-range" type="range" min="0" max="2" step="1" value="2" aria-label="Keyframe" title="Buffered-frame scrubber; a no-limit run has no finite completion percentage." />
+        <select id="borg-run-duration-button" class="borg-run-duration-button" aria-label="Simulation duration">
+          <option value="live-60s">1 min</option>
+          <option value="live-300s">5 min</option>
+          <option value="live-forever" selected>No limit</option>
+        </select>
+        <select id="borg-history-duration" class="borg-history-duration" aria-label="Path-history trail duration" title="Displayed path-history trail in simulation time T">
+          <option value="30" selected>30 s</option>
+          <option value="60">60 s</option>
+          <option value="90">90 s</option>
+          <option value="180">180 s</option>
+          <option value="360">360 s</option>
+        </select>
         <select id="borg-playback-speed" class="borg-playback-speed" aria-label="Playback speed"></select>
-        <output id="borg-time-output" class="borg-time-output">solver t 2 | keyframe 2</output>
+        <output id="borg-time-output" class="borg-time-output">T 00:00:00.0</output>
       </section>
     </div>
     <script type="module" src="./src/apps/borg/main.js"></script>

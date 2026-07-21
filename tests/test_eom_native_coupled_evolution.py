@@ -714,6 +714,37 @@ class NativeCoupledEvolutionTests(unittest.TestCase):
         self.assertIsNone(exhausted["impulse"])
         self.assertIn("cell_limit_exhausted", exhausted["failure_code"])
 
+    def test_joint_event_displacement_is_consumed_and_tightens_the_same_event(self) -> None:
+        ordinary = self.packet["uncertain_event_ordinary"]
+        joint = self.packet["uncertain_event_joint"]
+        self.assertEqual(ordinary["status"], "certified_complete")
+        self.assertEqual(joint["status"], "certified_complete")
+        self.assertEqual(joint["joint_displacement_cells"], joint["visited_cells"])
+        self.assertEqual(ordinary["joint_displacement_cells"], 0)
+
+        strict_tightening = False
+        for ordinary_vector, joint_vector in (
+            (ordinary["impulse"], joint["impulse"]),
+            (ordinary["position_moment"], joint["position_moment"]),
+        ):
+            for ordinary_component, joint_component in zip(
+                ordinary_vector, joint_vector
+            ):
+                assert_overlaps(self, ordinary_component, joint_component)
+                ordinary_width = (
+                    Decimal(str(ordinary_component["upper"]))
+                    - Decimal(str(ordinary_component["lower"]))
+                )
+                joint_width = (
+                    Decimal(str(joint_component["upper"]))
+                    - Decimal(str(joint_component["lower"]))
+                )
+                self.assertLessEqual(joint_width, ordinary_width)
+                strict_tightening = strict_tightening or (
+                    joint_width < ordinary_width
+                )
+        self.assertTrue(strict_tightening)
+
     def test_selectable_event_budgets_contain_unchanged_oracle_and_reject_under_budget(self) -> None:
         receiver = oracle_history(
             "event-control-receiver", "3.01", ("0", "0", "0", "0")

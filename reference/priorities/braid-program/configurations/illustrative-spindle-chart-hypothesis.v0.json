@@ -1,0 +1,60 @@
+{
+  "schema": "spindle-braid-chart-spec.v0",
+  "specId": "illustrative-spindle-chart-hypothesis-v0",
+  "label": "Illustrative spindle chart hypothesis",
+  "claimGrade": "chart-hypothesis",
+  "evidenceStatus": "display-only",
+  "date": "2026-07-20",
+  "sourceOrder": ["spindle-binary-1", "spindle-binary-2", "spindle-binary-3"],
+  "frame": {
+    "e1": [1, 0, 0],
+    "e2": [0, 1, 0],
+    "axis": [0, 0, 1],
+    "orthonormalTolerance": 1e-12
+  },
+  "responseCenter": [0, 0, 0],
+  "axialDriftSpeed": 0,
+  "angularFrequency": 1.5707963267948966,
+  "displayTrailPeriods": 1,
+  "layers": [
+    {
+      "binaryId": "spindle-binary-1",
+      "worldlineIds": ["spindle-1-0", "spindle-1-1"],
+      "radius": 0.22,
+      "capAngle": 0.3490658503988659,
+      "phase": 0,
+      "polarityAssignment": 1
+    },
+    {
+      "binaryId": "spindle-binary-2",
+      "worldlineIds": ["spindle-2-0", "spindle-2-1"],
+      "radius": 0.32,
+      "capAngle": 0.6981317007977318,
+      "phase": 2.0943951023931953,
+      "polarityAssignment": -1
+    },
+    {
+      "binaryId": "spindle-binary-3",
+      "worldlineIds": ["spindle-3-0", "spindle-3-1"],
+      "radius": 0.44,
+      "capAngle": 1.1344640137963142,
+      "phase": 4.1887902047863905,
+      "polarityAssignment": 1
+    }
+  ],
+  "recordInterval": {
+    "start": 0,
+    "end": 8,
+    "delayHorizon": 2
+  },
+  "interpolation": {
+    "rule": "piecewise-cubic-hermite/v0",
+    "interval": 0.05,
+    "errorMethod": "fourth-derivative-hermite-envelope/v1",
+    "positionDivisor": 300,
+    "velocityDivisor": 8,
+    "roundoffMultiplier": 64
+  },
+  "ansatzSampleCount": 96,
+  "sphericalEnvelopeRadius": 0.5
+}

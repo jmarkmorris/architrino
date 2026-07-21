@@ -4,7 +4,7 @@
   "checkModeBuilderContract": {
     "builderId": "source_index_builder_check",
     "scriptTarget": "scripts/archie-service/build-source-index.mjs --check",
-    "status": "planned",
+    "status": "implemented",
     "inputArtifactClasses": [
       "authored_markdown",
       "generated_reading_copy",
@@ -18,6 +18,11 @@
       "source_records",
       "source_chips",
       "source_index_snapshot",
+      "deterministic_exact_content_view",
+      "deterministic_search_view",
+      "typed_graph_view",
+      "equation_figure_metadata_view",
+      "source_and_artifact_hashes",
       "source_index_dry_run_cases",
       "manifest_source_context_fragments",
       "source_index_candidate_records"

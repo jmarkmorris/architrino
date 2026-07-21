@@ -1,8 +1,7 @@
 import * as THREE from "../../../vendor/three/three.module.js";
 
 const INITIAL_POINT_CAPACITY = 512;
-const RETAINED_TRAIL_OPACITY = 1;
-const COMPACTED_TRAIL_OPACITY = 0.68;
+const TRAIL_OPACITY = 1;
 
 /**
  * Path-history trails for the Borg app.
@@ -208,6 +207,7 @@ export function createBorgPathTrails({
     resetPath,
     setThroughFrameIndex,
     setVisibleWindow,
+    setVisibleDuration,
     setVisible,
     dispose,
     get retainedTrailCount() {
@@ -247,7 +247,7 @@ export function createBorgPathTrails({
         return;
       }
       const trail = ensureTrail(retainedTrails, row.pathKey, {
-        opacity: RETAINED_TRAIL_OPACITY,
+        opacity: TRAIL_OPACITY,
         order: renderOrder,
       });
       toWorld(row.position, scratch);
@@ -271,8 +271,11 @@ export function createBorgPathTrails({
   }
 
   function resetPath(pathKey) {
-    retainedTrails.get(Number(pathKey))?.clear();
-    compactedTrails.get(Number(pathKey))?.clear();
+    const exactKey = retainedTrails.has(pathKey) || compactedTrails.has(pathKey)
+      ? pathKey
+      : Number(pathKey);
+    retainedTrails.get(exactKey)?.clear();
+    compactedTrails.get(exactKey)?.clear();
   }
 
   function setCompactedPathHistory(compactedPathHistory) {
@@ -288,7 +291,7 @@ export function createBorgPathTrails({
         return;
       }
       const trail = ensureTrail(compactedTrails, Number(pathKey), {
-        opacity: COMPACTED_TRAIL_OPACITY,
+        opacity: TRAIL_OPACITY,
         order: renderOrder - 1,
       });
       points.forEach((point) => {
@@ -323,6 +326,11 @@ export function createBorgPathTrails({
   }) {
     throughFrameIndex = Number(nextFrameIndex);
     throughTime = Number(nextTime);
+    visibleDuration = Number(duration);
+    applyThroughFrameIndex();
+  }
+
+  function setVisibleDuration(duration) {
     visibleDuration = Number(duration);
     applyThroughFrameIndex();
   }

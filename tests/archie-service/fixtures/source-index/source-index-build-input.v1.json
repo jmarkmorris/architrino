@@ -1,0 +1,131 @@
+{
+  "schema": "archie-source-index-build-input/v1",
+  "snapshotId": "source_snapshot_fixture_001",
+  "repositoryRef": "fixture-ref",
+  "generatedArtifactRefs": {
+    "sceneGraph": "content/graph/scene_graph.json",
+    "markdownIndex": "content/markdown/markdown_index.json",
+    "readingCopies": "content/generated/markdown/textbook/reading-copies/",
+    "textbookToc": "content/graph/textbook_toc.json"
+  },
+  "visibilityPolicyVersion": "visibility_fixture_v1",
+  "freshnessState": "fresh",
+  "rollbackParent": null,
+  "sourceRecords": [
+    {
+      "sourceId": "source.ontology-purpose",
+      "title": "Ontology: Purpose and Scope",
+      "route": "content/markdown/aaa/foundations/ontology.md#purpose-and-scope",
+      "sourcePath": "content/markdown/aaa/foundations/ontology.md",
+      "sectionAnchor": "purpose-and-scope",
+      "sourceClass": "published_corpus",
+      "authorityStatus": "primary",
+      "visibility": "public",
+      "canonicalParent": null,
+      "claimLabelFloor": "published corpus",
+      "aliases": ["ontological bedrock", "foundation levels"],
+      "keywords": ["absolute time", "architrino", "Euclidean void", "Noether sea"]
+    },
+    {
+      "sourceId": "source.scene-ontology",
+      "title": "Ontology Scene Route",
+      "route": "scene:foundations__foundational_ontology#section:purpose-and-scope",
+      "sourcePath": "content/scenes/foundations/foundational_ontology.json",
+      "sectionAnchor": null,
+      "sourceClass": "scene_route",
+      "authorityStatus": "routing_only",
+      "visibility": "public",
+      "canonicalParent": "source.ontology-purpose",
+      "claimLabelFloor": "unsupported",
+      "aliases": ["ontology sphere"],
+      "keywords": ["scene", "sphere", "route"]
+    },
+    {
+      "sourceId": "source.generated-foundations-ontology",
+      "title": "Generated Foundations Reading Copy: Ontology",
+      "route": "document-sphere:content/markdown/aaa/foundations/ontology.md",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/foundations.md",
+      "sectionAnchor": "ontology",
+      "sourceClass": "generated_reading_copy",
+      "authorityStatus": "routing_only",
+      "visibility": "public",
+      "canonicalParent": "source.ontology-purpose",
+      "claimLabelFloor": "unsupported",
+      "aliases": ["foundations reading copy"],
+      "keywords": ["generated", "reading copy", "ontology"]
+    },
+    {
+      "sourceId": "source.app-guide",
+      "title": "Open Architrino",
+      "route": "content/markdown/aaa/archie/about-the-webapp.md#open-architrino",
+      "sourcePath": "content/markdown/aaa/archie/about-the-webapp.md",
+      "sectionAnchor": "open-architrino",
+      "sourceClass": "app_guide",
+      "authorityStatus": "diagnostic",
+      "visibility": "public",
+      "canonicalParent": null,
+      "claimLabelFloor": "app diagnostic",
+      "aliases": ["webapp guide"],
+      "keywords": ["application", "navigation", "webapp"]
+    },
+    {
+      "sourceId": "source.system-card",
+      "title": "System Card: Answering Posture",
+      "route": "content/markdown/aaa/archie/system-card.md#answering-posture",
+      "sourcePath": "content/markdown/aaa/archie/system-card.md",
+      "sectionAnchor": "answering-posture",
+      "sourceClass": "archie_reference",
+      "authorityStatus": "primary",
+      "visibility": "public",
+      "canonicalParent": null,
+      "claimLabelFloor": "AAA-native stance",
+      "aliases": ["answering posture"],
+      "keywords": ["claim status", "source authority", "System Card"]
+    },
+    {
+      "sourceId": "source.priority-mcp-contract",
+      "title": "Architrino MCP Source Index Snapshot V1",
+      "route": "reference/priorities/app-mcp/source-index-snapshot-v1.md",
+      "sourcePath": "reference/priorities/app-mcp/source-index-snapshot-v1.md",
+      "sectionAnchor": null,
+      "sourceClass": "priority_material",
+      "authorityStatus": "priority_only",
+      "visibility": "development_status",
+      "canonicalParent": null,
+      "claimLabelFloor": "priority-only",
+      "aliases": ["MCP snapshot contract"],
+      "keywords": ["deterministic hash", "MCP", "provenance", "source index"]
+    }
+  ],
+  "graphEdges": [
+    {
+      "edgeId": "edge.generated-ontology-mirrors-source",
+      "from": "source.generated-foundations-ontology",
+      "to": "source.ontology-purpose",
+      "edgeType": "mirrors",
+      "evidenceSourceId": "source.generated-foundations-ontology"
+    },
+    {
+      "edgeId": "edge.scene-ontology-routes-to-source",
+      "from": "source.scene-ontology",
+      "to": "source.ontology-purpose",
+      "edgeType": "routes_to",
+      "evidenceSourceId": "source.scene-ontology"
+    }
+  ],
+  "metadataRecords": [
+    {
+      "metadataId": "metadata.webapp-logo",
+      "kind": "figure",
+      "sourceId": "source.app-guide",
+      "assetPath": "content/assets/images/brand/architrino-logo-qr-landscape.png",
+      "altText": "Architrino logo and QR code for architrino.com"
+    },
+    {
+      "metadataId": "metadata.ontology-level-tower",
+      "kind": "equation",
+      "sourceId": "source.ontology-purpose",
+      "tex": "$$\nS(T)\n\\xrightarrow{\\Pi_{\\mathrm{assembly}}}\n\\mathfrak B(T)\n\\xrightarrow{\\Pi_{\\mathrm{eff}}}\n\\big(A,B_{ij},g^{\\mathrm{eff}},\\Phi_{\\mathrm{eff}}\\big)\n\\xrightarrow{\\Pi_{\\mathrm{record}}}\n\\bar S(T).\n$$"
+    }
+  ]
+}

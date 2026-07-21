@@ -25,17 +25,21 @@
 
 This packet defines the first implementation scaffold and fixture plan for the future Archie question service.
 
-It translates the deployment architecture into concrete module boundaries, schema packages, fixture locations, source-index artifacts, environment variable classes, CI gates, and rollout stages. It is intentionally schema-only: it does not create runtime AI calls, provider credentials, deployment config, payment processing, durable notebooks, public launch behavior, or production service code.
+It translates the deployment architecture into concrete module boundaries, schema packages, fixture locations, source-index artifacts, environment variable classes, CI gates, and rollout stages. It now includes one deliberately narrow runtime: a local, public-scope, fixture-backed stdio MCP adapter. It still does not create runtime AI calls, provider credentials, deployment config, payment processing, durable notebooks, public launch behavior, or production service code.
 
-## Current Schema-Only Landing
+## Current Contract-First Landing
 
-The first schema-only scaffold is now present:
+The contract-first scaffold and local fixture MCP surface are now present:
 
 | Surface | Path | Role |
 | --- | --- | --- |
-| Root contract schema | [schema.json](../../../src/archie-service/contracts/v1/schema.json) | Validates Answer Artifact Manifest, answer request, source-index snapshot, source-index dry-run, service validation plan, endpoint response contracts, provider capability registry, provider-sandbox contracts, provider-gateway contracts, token-ledger sandbox contracts, issue-mining sandbox contracts, action-broker sandbox contracts, token receipt, action preflight, service status, service terms, and deployment smoke-plan fixture shapes. |
+| Root contract schema | [schema.json](../../../src/archie-service/contracts/v1/schema.json) | Validates Answer Artifact Manifest, answer request, source-index build input, hashed source-index snapshot and views, bounded MCP request/response and negative suites, source-index negative suite and dry run, service validation plan, endpoint response contracts, provider capability registry, provider-sandbox contracts, provider-gateway contracts, token-ledger sandbox contracts, issue-mining sandbox contracts, action-broker sandbox contracts, token receipt, action preflight, service status, service terms, and deployment smoke-plan fixture shapes. |
+| MCP tool-contract checker | [validate-mcp-tool-contracts.mjs](../../../scripts/archie-service/validate-mcp-tool-contracts.mjs) | Checks seven complete request/response pairs, eight fail-closed cases, and first-page cursor continuation across `search`, `read`, `topics`, and `neighbors` without starting a server. |
+| Local fixture MCP adapter | [fixture-stdio-adapter.mjs](../../../src/archie-service/mcp/fixture-stdio-adapter.mjs) | Maps current stdio JSON-RPC lifecycle, tool discovery, and tool calls onto the bounded pure query engine with public visibility and in-memory snapshot-only request handling. |
+| Local fixture MCP launcher | [run-fixture-mcp-server.mjs](../../../scripts/archie-service/run-fixture-mcp-server.mjs) | Reads one fixture snapshot at startup and then reserves stdin/stdout for newline-delimited MCP messages. |
+| Local fixture MCP smoke | [check-fixture-mcp-server.mjs](../../../scripts/archie-service/check-fixture-mcp-server.mjs) | Spawns the launcher and checks initialization, all four tool calls, structured/text parity, missing-source behavior, unknown-tool rejection, ping, and no-write/no-network boundaries. |
 | Contract validator | [validate-contracts.mjs](../../../scripts/archie-service/validate-contracts.mjs) | Checks all Archie service fixture JSON files against the root schema and runs a simple secret-boundary scan. |
-| Source-index check-mode script | [build-source-index.mjs](../../../scripts/archie-service/build-source-index.mjs) | Checks generated artifact refs, real markdown anchors, scene-source routing, canonical parent expectations, priority exclusion, and missing-route source-context behavior without writing artifacts. |
+| Source-index builder and checker | [build-source-index.mjs](../../../scripts/archie-service/build-source-index.mjs) | Writes the expected review snapshot in explicit `--write` mode; in `--check` mode it verifies deterministic exact-content, search, graph, and metadata views, live source and artifact hashes, canonical parents, authority and visibility, equation and figure provenance, route dry runs, and fail-closed cases without writing. |
 | Negative validator script | [validate-negative-validators.mjs](../../../scripts/archie-service/validate-negative-validators.mjs) | Checks the negative validator suite for no-write behavior, no runtime side effects, no browser secrets, no private prompt leakage, and no source-authority upgrades. |
 | Endpoint response script | [validate-endpoint-responses.mjs](../../../scripts/archie-service/validate-endpoint-responses.mjs) | Checks fixture-backed endpoint response contracts for `POST /answers`, listen, visualize, issue draft, service terms, and service status without HTTP handlers or runtime side effects. |
 | Fixture service selector | [fixture-response-selector.mjs](../../../src/archie-service/http/fixture-response-selector.mjs) | Selects validated response fixtures by endpoint id and request fixture while requiring runtime providers, public routes, durable storage, and payments to stay disabled. |
@@ -50,7 +54,7 @@ The first schema-only scaffold is now present:
 | Token-ledger sandbox script | [validate-token-ledger-sandbox.mjs](../../../scripts/archie-service/validate-token-ledger-sandbox.mjs) | Checks provider-gateway work units against cost-map coverage, estimates, holds, charges, refunds, cap-exceeded blocks, auto-fund-pending blocks, terms blocks, provider-cost-map blocks, and no-payment/no-private-prompt invariants. |
 | Issue-mining sandbox script | [validate-issue-mining-sandbox.mjs](../../../scripts/archie-service/validate-issue-mining-sandbox.mjs) | Checks manifest-derived issue signals for duplicate keys, owner lanes, smallest next artifacts, receipt id linkage, action preflight state, report clusters, noise summary, fix queues, no hidden GitHub writes, and no private prompt leakage. |
 | Action-broker sandbox script | [validate-action-broker-sandbox.mjs](../../../scripts/archie-service/validate-action-broker-sandbox.mjs) | Checks manifest submit-issue actions and issue-mining draft metadata for confirmation-gated prefilled GitHub URL behavior, unconfirmed/cancelled/terms/credential fail-closed states, and no hidden writes or credentials. |
-| Node test wrapper | [archie-service-contracts.test.js](../../../tests/archie-service-contracts.test.js) | Runs the contract validator, source-index dry-run check, negative-validator check, endpoint-response check, fixture service selector check, render-contract check, secret-boundary check, staging-smoke check, rollback check, provider-sandbox check, provider-gateway check, token-ledger sandbox check, issue-mining sandbox check, and action-broker sandbox check through `node --test`. |
+| Node test wrappers | [archie-service-contracts.test.js](../../../tests/archie-service-contracts.test.js), [archie-service-source-index-snapshot.test.js](../../../tests/archie-service-source-index-snapshot.test.js), and [archie-service-mcp-tool-contract.test.js](../../../tests/archie-service-mcp-tool-contract.test.js) | Run the service contract stack plus focused deterministic snapshot, bounded MCP retrieval, cursor, visibility, stale-hash, and priority-authority tests through `node --test`. |
 | Manifest fixture example | [text-answer.manifest.v1.json](../../../tests/archie-service/fixtures/manifests/text-answer.manifest.v1.json) | Stores schema-only manifest expectations for source context, claim context, answer body, token receipt, privacy state, actions, issue-mining metadata, and observability context. |
 | Fail-closed manifest fixtures | [fail-closed](../../../tests/archie-service/fixtures/manifests/fail-closed/provider-browser-key.manifest.v1.json) | Stores manifest-shaped refusal/fallback responses for browser-key refusal, private-prompt leakage, low-quality speech fallback, unconfirmed GitHub handoff, stale terms, and source-authority inflation. |
 | Endpoint response contracts | [endpoint-response-contracts.v1.json](../../../tests/archie-service/fixtures/endpoints/endpoint-response-contracts.v1.json) | Stores fixture-backed response contracts for answer creation, listen, visualize, issue draft, service terms, and service status endpoints. |
@@ -72,6 +76,8 @@ Current validation command:
 ```bash
 node scripts/archie-service/validate-contracts.mjs --check
 node scripts/archie-service/build-source-index.mjs --check
+node scripts/archie-service/validate-mcp-tool-contracts.mjs --check
+node scripts/archie-service/check-fixture-mcp-server.mjs --check
 node scripts/archie-service/validate-negative-validators.mjs --check
 node scripts/archie-service/validate-endpoint-responses.mjs --check
 node scripts/archie-service/check-fixture-service-stub.mjs --check
@@ -84,10 +90,13 @@ node scripts/archie-service/validate-provider-gateway.mjs --check
 node scripts/archie-service/validate-token-ledger-sandbox.mjs --check
 node scripts/archie-service/validate-issue-mining-sandbox.mjs --check
 node scripts/archie-service/validate-action-broker-sandbox.mjs --check
+node --test tests/archie-service-source-index-snapshot.test.js
+node --test tests/archie-service-mcp-tool-contract.test.js
+node --test tests/archie-service-fixture-mcp-server.test.js
 node --test tests/archie-service-contracts.test.js
 ```
 
-This is still not a service runtime. The schema and fixtures are the fail-closed contract surface that future implementation must satisfy before endpoint handlers, provider adapters, payment flows, durable storage, deployment config, or public routes are added.
+This is not a production or hosted service runtime. The local MCP process is a test adapter over one fixture snapshot; the broader schemas and fixtures remain the fail-closed contract surface that future endpoint handlers, provider adapters, payment flows, durable storage, deployment config, or public routes must satisfy.
 
 ## Scaffold Principle
 
@@ -97,7 +106,7 @@ Before any provider-backed answer generation exists, the repo should be able to 
 
 1. a manifest schema;
 2. service endpoint request/response schemas;
-3. source-index snapshot and dry-run route-resolution shape;
+3. source-index snapshot, exact-content view, bounded MCP tool pairs, and dry-run route-resolution shape;
 4. provider capability registry shape;
 5. token ledger receipt shape;
 6. action broker confirmation shape;
@@ -141,8 +150,12 @@ The first script layer should produce and verify artifacts without running runti
 
 | Script | Purpose |
 | --- | --- |
-| `scripts/archie-service/build-source-index.mjs --check` | Present. Verifies source-index snapshots, generated artifact refs, route dry-run cases, real markdown anchors, scene-source routing, canonical parents, priority exclusion, and missing-route behavior without writing artifacts. |
-| `scripts/archie-service/build-source-index.mjs --write` | Write versioned source-index snapshots only when explicitly requested or when generated drift is expected. |
+| `scripts/archie-service/build-source-index.mjs --check` | Present. Rebuilds in memory and verifies deterministic snapshot equality, input-order invariance, source and artifact hashes, exact-content/search/graph/metadata view hashes, route dry runs, canonical parents, visibility, source authority, metadata provenance, and ten fail-closed cases without writing artifacts. |
+| `scripts/archie-service/build-source-index.mjs --write` | Present. Writes the versioned review fixture, then runs the same deterministic and fail-closed checks. Use only for an explicit contract/source change or expected generated drift. |
+| `scripts/archie-service/validate-mcp-tool-contracts.mjs --check` | Present. Recomputes seven bounded tool responses, eight fail-closed cases, and cursor continuation for all four tools without starting a server. |
+| `scripts/archie-service/validate-mcp-tool-contracts.mjs --write` | Present. Regenerates the expected request/response fixture after an explicitly accepted tool-contract or snapshot change, then applies the same checks. |
+| `scripts/archie-service/check-fixture-mcp-server.mjs --check` | Present. Spawns the local stdio adapter and checks initialization, static tool discovery, all four calls, missing-source and unknown-tool errors, ping, snapshot immutability, and static no-network/no-write boundaries. |
+| `scripts/archie-service/check-fixture-mcp-server.mjs --write` | Present. Regenerates the expected stdio transcript after an explicitly accepted adapter, protocol, tool, or snapshot change, then applies the same checks. |
 | `scripts/archie-service/validate-contracts.mjs --check` | Present. Validates JSON Schema fixtures and secret-boundary negatives for the schema-only scaffold. |
 | `scripts/archie-service/validate-negative-validators.mjs --check` | Present. Verifies fail-closed negative validator cases for browser-key refusal, private-prompt leakage, low-quality speech fallback, unconfirmed GitHub handoff, stale terms, and source-authority inflation. |
 | `scripts/archie-service/validate-endpoint-responses.mjs --check` | Present. Verifies fixture-backed endpoint response contracts for answer, listen, visualize, issue draft, service terms, and service status responses without enabling runtime service behavior. |
@@ -170,7 +183,8 @@ Fixtures now live in a service-owned test area rather than being mixed into app 
 | `tests/archie-service/fixtures/render/` | Present. Render contract fixture for selected response rendering of source chips, claim labels, displayed verbatim text, token receipts, action confirmations, speech sync, issue drafts, service terms, and service status. |
 | `tests/archie-service/fixtures/security/` | Present. Secret-boundary scan plan for fixture JSON, browser-client helpers, fixture HTTP source, and static-output candidates. |
 | `tests/archie-service/fixtures/static-output/` | Present. Static entry candidate fixture with public terms/status links and disabled provider/payment flags. |
-| `tests/archie-service/fixtures/source-index/` | Present. Source-index snapshot fixture with generated artifact refs, source counts, visibility policy, freshness, and rollback parent; dry-run route fixture for markdown sections, sphere portions, full-document spheres, app guides, System Card routes, priority exclusion, and missing routes. |
+| `tests/archie-service/fixtures/source-index/` | Present. Build input, generated hashed snapshot, ten-case negative suite, and route dry run covering representative source classes, exact-content/search/graph/metadata views, canonical parents, visibility, source authority, equations, figures, generated artifacts, priority exclusion, and missing routes. |
+| `tests/archie-service/fixtures/mcp/` | Present. Seven complete bounded request/response pairs, eight fail-closed request/snapshot mutations, and one subprocess stdio transcript covering initialization, discovery, all four calls, errors, and ping. |
 | `tests/archie-service/fixtures/provider-registry/` | Present. Provider registry, provider-sandbox contracts, and provider-gateway contracts for answer text, high-quality speech fallback, generated image policy block, moderation, retrieval embedding, rerank, cost class, health state, fallback, privacy/terms state, no-call adapter behavior, and no-browser-key fixtures. |
 | `tests/archie-service/fixtures/token-ledger/` | Present. Standalone token receipt plus token-ledger sandbox contracts with hold, charge, refund, work units, source classes, cap-exceeded, auto-fund-pending, terms-block, provider-cost-map, payment-disabled, and no-private-prompt expectations. |
 | `tests/archie-service/fixtures/issue-mining/` | Present. Issue-mining sandbox contracts with manifest-derived safe inputs, public-link fixtures, excluded drafts/private material, owner lanes, clusters, noise summaries, and fix queues. |

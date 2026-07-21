@@ -17,7 +17,7 @@ export function createBorgFrameSetsFromRows(frames = []) {
       Object.freeze({
         frameIndex,
         time: rows[0]?.time ?? frameIndex,
-        frames: Object.freeze(rows.slice().sort((left, right) => left.pathKey - right.pathKey)),
+        frames: Object.freeze(rows.slice().sort(compareFramePathKeys)),
       }),
     );
 }
@@ -32,7 +32,7 @@ export function mergeBorgFrameRows(existingFrames = [], incomingFrames = []) {
   });
   return [...byKey.values()].sort((left, right) => {
     const frameDelta = left.frameIndex - right.frameIndex;
-    return frameDelta !== 0 ? frameDelta : left.pathKey - right.pathKey;
+    return frameDelta !== 0 ? frameDelta : compareFramePathKeys(left, right);
   });
 }
 
@@ -115,4 +115,15 @@ export function appendBorgFrameSetsInPlace(existingFrameSets = [], incomingFrame
 
 function frameRowKey(frame = {}) {
   return `${frame.frameIndex}:${frame.pathKey}`;
+}
+
+function compareFramePathKeys(left, right) {
+  const leftNumber = Number(left.pathKey);
+  const rightNumber = Number(right.pathKey);
+  if (Number.isFinite(leftNumber) && Number.isFinite(rightNumber)) {
+    return leftNumber - rightNumber;
+  }
+  return String(left.pathKey).localeCompare(String(right.pathKey), "en", {
+    numeric: true,
+  });
 }

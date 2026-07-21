@@ -353,4 +353,8 @@ test("feedback choices use buttons only and avoid dropdown and slider controls",
     css,
     /\.greek-match-choice-symbol text \{[^}]*font-family: Georgia, "Times New Roman", serif;/u
   );
+  assert.match(
+    css,
+    /\.greek-match-center \{[^}]*width: 25%;[^}]*height: 25%;/u
+  );
 });
