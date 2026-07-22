@@ -1,0 +1,226 @@
+{
+  "schema": "prescribed-path-analysis/b1-complete-cycle-probe-protocol.v1",
+  "protocolId": "b1-complete-cycle-internal-and-enclosing-surface-v1",
+  "claimGrade": "derived",
+  "claimBoundary": {
+    "prescribedPathAnalyticsOnly": true,
+    "pathEvolutionInvoked": false,
+    "eomSolverInvoked": false,
+    "excludedClaims": [
+      "stability",
+      "energy",
+      "retention",
+      "physical-realization"
+    ]
+  },
+  "applicability": {
+    "familyId": "B",
+    "memberId": "B1",
+    "sourceCount": 6,
+    "maximumSourceEnvelopeRadius": 0.5,
+    "requiredPrescribedReturnPeriod": 4,
+    "requiredCenterAtEpoch": [0, 0, 0],
+    "requiredCenterVelocity": [0, 0, 0],
+    "requiredFrame": {
+      "e1": [1, 0, 0],
+      "e2": [0, 1, 0],
+      "axis": [0, 0, 1]
+    }
+  },
+  "eventEvaluator": {
+    "fieldSpeed": 1,
+    "coupling": 1,
+    "history": {
+      "start": 0,
+      "end": 8,
+      "minimumDelay": 1e-12
+    },
+    "rootPolicy": {
+      "id": "all-retained-simple-roots/sub-field-speed-certified.v1",
+      "tolerance": 1e-12,
+      "maxIterations": 128
+    },
+    "tolerances": {
+      "cancellationFloor": 1e-30,
+      "rootTransversalityFloor": 1e-8,
+      "minimumSeparationFloor": 1e-8,
+      "convergenceAbsolute": 1e-9
+    },
+    "geometry": {
+      "minimumSeparationSamples": 128
+    },
+    "convergence": {
+      "rootTolerance": 1e-14,
+      "maxIterations": 192,
+      "minimumSeparationSamples": 256
+    }
+  },
+  "completeCycle": {
+    "start": 4,
+    "period": 4,
+    "samplingRule": "uniform-left-closed-periodic-grid.v1",
+    "endpointConvention": "include-start/exclude-return-end.v1",
+    "timeQuadrature": "equal-weight-periodic-trapezoid.v1",
+    "primary": {
+      "timeSamples": 64,
+      "polarOrder": 12,
+      "azimuthCount": 24
+    },
+    "refined": {
+      "timeSamples": 128,
+      "polarOrder": 18,
+      "azimuthCount": 36
+    }
+  },
+  "internalProbes": {
+    "fixedCartesianGrid": {
+      "kind": "stationary-coordinate-probe-grid.v1",
+      "axisCoordinates": [-0.5, -0.25, 0, 0.25, 0.5],
+      "probePolarities": [1, -1],
+      "identitySubsets": {
+        "braidCenter": [[0, 0, 0]],
+        "binaryMidpoints": [
+          { "binaryId": "spindle-binary-1", "position": [0, 0, 0] },
+          { "binaryId": "spindle-binary-2", "position": [0, 0, 0] },
+          { "binaryId": "spindle-binary-3", "position": [0, 0, 0] }
+        ],
+        "declaredAxis": "all grid points with x=0 and y=0"
+      },
+      "deduplication": "one event per coordinate with all semantic identities retained.v1"
+    },
+    "sourceEndpointReceivers": {
+      "kind": "prescribed-source-endpoint-probe.v1",
+      "receiverPosition": "exact source position at each observation time",
+      "receiverPolarity": "source charge",
+      "selfHitPolicy": "exclude-same-source-id.v1",
+      "reportedRows": [
+        "per-transmitter acceleration contribution",
+        "net acceleration response",
+        "prescribed-path acceleration",
+        "partial prescribed-path equation mismatch"
+      ],
+      "mismatchBoundary": "partial unless every declared acceleration contribution is implemented"
+    }
+  },
+  "enclosingSurfaces": {
+    "kind": "centered-sphere-sequence.v1",
+    "center": [0, 0, 0],
+    "radii": [0.75, 1, 1.5, 2],
+    "probePolarities": [1, -1],
+    "angularRule": "gauss-legendre-cos-theta/uniform-azimuth-product.v1",
+    "surfaceWeight": "R^2 times solid-angle weight",
+    "coordinateConvention": {
+      "cosThetaAxis": [0, 0, 1],
+      "phiZeroAxis": [1, 0, 0],
+      "positivePhiToward": [0, 1, 0]
+    }
+  },
+  "externalExposureReduction": {
+    "cycleSurfaceNormalization": "one-over-cycle-period.v1",
+    "netIntegrand": "squared-norm-of-net-probe-acceleration.v1",
+    "rawIntegrand": "square-of-sum-of-constituent-acceleration-magnitudes.v1",
+    "etaExt": "L_ext/(L_raw+exposureFloor).v1",
+    "exposureFloor": 1e-30,
+    "reportedMeasures": [
+      "L_ext(R) for each probe polarity",
+      "L_raw(R) for each probe polarity",
+      "eta_ext(R) for each probe polarity",
+      "peak surface acceleration norm and event identity",
+      "signed wake and unsigned wake surface norms"
+    ],
+    "polarityParityDiagnostic": "difference between positive and negative squared-norm rows"
+  },
+  "angularReduction": {
+    "basis": "real-orthonormal-spherical-harmonics/condon-shortley.v1",
+    "realForm": "m-negative=sqrt(2)Im(Y_l_abs(m));m-zero=Y_l_0;m-positive=sqrt(2)Re(Y_l_m).v1",
+    "maximumDegree": 8,
+    "channels": [
+      "signedWake",
+      "unsignedWake",
+      "radialProbeAccelerationPositive",
+      "radialProbeAccelerationNegative",
+      "probeAccelerationNormSquaredPositive",
+      "probeAccelerationNormSquaredNegative"
+    ],
+    "powerByDegree": "sum-of-squared-real-coefficients.v1",
+    "anisotropy": {
+      "nonMonopolePowerFraction": "sum(l=1..8 power_l)/(sum(l=0..8 power_l)+floor)",
+      "rawNormalizedNonMonopoleAmplitude": "sqrt(sum(l=1..8 net_power_l)/(raw_constituent_power+floor))",
+      "floor": 1e-30
+    }
+  },
+  "spectralReduction": {
+    "basis": "complete-cycle-complex-dft.v1",
+    "normalization": "one-over-time-sample-count.v1",
+    "maximumHarmonic": 16,
+    "channels": [
+      "internal endpoint net acceleration components",
+      "surface signedWake angular coefficients",
+      "surface radial probe-acceleration angular coefficients",
+      "surface acceleration-norm-squared angular coefficients"
+    ],
+    "reportedRows": [
+      "complex coefficient",
+      "magnitude",
+      "phase",
+      "retained-band power",
+      "Parseval residual"
+    ]
+  },
+  "radialScalingReduction": {
+    "positiveMeasureRelativeFloor": 1e-24,
+    "positiveMeasures": [
+      "L_ext",
+      "L_raw",
+      "signed-wake surface norm",
+      "unsigned-wake surface norm",
+      "angular power by degree",
+      "spectral band power"
+    ],
+    "pairwiseExponent": "-log(M(R_b)/M(R_a))/log(R_b/R_a)",
+    "globalFit": "unweighted-least-squares-of-log-measure-on-log-radius.v1",
+    "reportedRows": [
+      "pairwise exponent",
+      "global exponent",
+      "log-space fit residual"
+    ],
+    "claimBoundary": "report measured scaling only; do not preassign a far-field exponent"
+  },
+  "localSourceSensitivity": {
+    "coordinates": ["alpha_1", "alpha_2", "alpha_3"],
+    "domain": [0, 1.5707963267948966],
+    "coordinateTransform": {
+      "h_a": "R_a sin(alpha_a)",
+      "rho_a": "R_a cos(alpha_a)"
+    },
+    "primaryStep": 0.006135923151542565,
+    "refinedStep": 0.0030679615757712823,
+    "interiorStencil": "three-point-centered.v1",
+    "boundaryStencil": "three-point-second-order-one-sided.v1",
+    "derivative": "measure difference per radian.v1",
+    "convergence": "absolute difference between primary-step and refined-step derivative",
+    "measures": [
+      "L_ext and eta_ext at every radius",
+      "anisotropy rows at every radius",
+      "peak external response at every radius",
+      "retained spectral band powers",
+      "radial-scaling exponents",
+      "internal endpoint peak and RMS acceleration response"
+    ]
+  },
+  "failClosedGates": {
+    "sourceSpeed": "every source speed bound is strictly below field speed",
+    "rootCompleteness": "every retained event has the certified complete root ledger",
+    "rootTransversality": "minimum absolute D_t is at least 1e-8",
+    "minimumSeparation": "minimum source-source separation is at least 1e-8",
+    "eventConvergence": "maximum event-level change is at most 1e-9",
+    "quadratureConvergence": {
+      "exposureRelative": 0.01,
+      "anisotropyAbsolute": 0.01,
+      "retainedSpectralPowerRelative": 0.02,
+      "radialExponentAbsolute": 0.05,
+      "sourceSensitivityRelativeOrAbsolute": 0.02
+    },
+    "failurePolicy": "reject affected source result; emit diagnostic ledger but no accepted reduced-measure row.v1"
+  }
+}

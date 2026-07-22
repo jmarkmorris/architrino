@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-07-22T02:33:12.736Z",
+  "generated_at": "2026-07-22T05:11:42.064Z",
   "total_links": 1792,
   "links": [
     {
@@ -11774,6 +11774,22 @@
     {
       "sourceChapterId": "spacetime",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-sea-and-effective-spacetime.md",
+      "target": "#a1-adiabatic-decoupling-bound",
+      "kind": "anchor",
+      "status": "skip_anchor",
+      "targetBundlePath": ""
+    },
+    {
+      "sourceChapterId": "spacetime",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-sea-and-effective-spacetime.md",
+      "target": "#a1-adiabatic-decoupling-bound",
+      "kind": "anchor",
+      "status": "skip_anchor",
+      "targetBundlePath": ""
+    },
+    {
+      "sourceChapterId": "spacetime",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-sea-and-effective-spacetime.md",
       "target": "#algebraic-effective-metric-map-from-the-handoff-tuple",
       "kind": "anchor",
       "status": "skip_anchor",
@@ -11783,22 +11799,6 @@
       "sourceChapterId": "spacetime",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-sea-and-effective-spacetime.md",
       "target": "#clock-channel-expansion-and-minimal-closure-solution",
-      "kind": "anchor",
-      "status": "skip_anchor",
-      "targetBundlePath": ""
-    },
-    {
-      "sourceChapterId": "spacetime",
-      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-sea-and-effective-spacetime.md",
-      "target": "#nested-shell-braid-adiabatic-decoupling-bound",
-      "kind": "anchor",
-      "status": "skip_anchor",
-      "targetBundlePath": ""
-    },
-    {
-      "sourceChapterId": "spacetime",
-      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-sea-and-effective-spacetime.md",
-      "target": "#nested-shell-braid-adiabatic-decoupling-bound",
       "kind": "anchor",
       "status": "skip_anchor",
       "targetBundlePath": ""

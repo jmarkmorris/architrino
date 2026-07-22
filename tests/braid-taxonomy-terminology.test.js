@@ -104,7 +104,7 @@ test("A1 public-display scanner rejects old prose labels but preserves machine c
 
 test("A1 public display surfaces use the approved name", () => {
   const result = scanA1PublicDisplayTerminology();
-  assert.equal(result.files.length, 7);
+  assert.equal(result.files.length, 9);
   assert.deepEqual(result.findings, []);
 });
 

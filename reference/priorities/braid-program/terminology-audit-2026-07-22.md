@@ -1,6 +1,6 @@
 # Braid Terminology Audit — 2026-07-22
 
-Status: source migration and enforcement complete; generated rebuild awaiting explicit operator authorization under the repository's generated-artifact rule.
+Status: complete; source migration, strict enforcement, generated propagation, and independent check-mode validation all pass.
 
 ## Scope and Evidence
 
@@ -18,7 +18,7 @@ That command prints the file, line, rule, replacement guidance, and full source-
 node scripts/check-braid-taxonomy-terminology.mjs
 ```
 
-The strict gate now scans all 198 reader-facing corpus Markdown files rather than a hand-selected migrated subset. The command also checks 15 Borg configuration/reader-facing control surfaces and 7 A1 public-display source surfaces, for 220 controlled files in its current combined output.
+The strict gate now scans all 198 reader-facing corpus Markdown files rather than a hand-selected migrated subset. The command also checks 15 Borg configuration/reader-facing control surfaces and 9 A1 public-display source/generated surfaces, for 222 controlled files in its current combined output.
 
 ## Inventory Totals
 
@@ -253,7 +253,7 @@ The expansion made in this campaign is exact and test-backed:
 - all 198 corpus Markdown files are strict-scan targets, not a hand-selected migration subset;
 - member and family identifiers are audit-only because ordinary theorem/table symbols create unavoidable collisions;
 - noncanonical `ideal braid` display names are strict after the operator decision, with one exact file-and-line-content exemption for the dated research-notebook heading;
-- seven public-display source surfaces receive a separate space-separated-name scan so that `ideal-braid` and `ideal_braid` machine strings remain exempt without hiding reader-facing regressions;
+- nine public-display source/generated surfaces receive a separate space-separated-name scan so that `ideal-braid` and `ideal_braid` machine strings remain exempt without hiding reader-facing regressions;
 - comma-separated H/M/L, positional binary phrases with up to three intervening adjectives, and shielding codes are strict;
 - Borg prescribed-source and visible-reader strings receive their own semantic scan rather than scanning machine payload keys blindly;
 - unit tests cover every new rule, the audit-only/strict split, false-positive-safe inline machine strings, and Borg values.
@@ -264,26 +264,17 @@ No newly discovered reader-facing terminology class remains unenforced. Generate
 
 ## Validation State
 
-- Strict combined terminology scan: passes, 220 controlled files, zero findings; the corpus component is 198 Markdown files.
+- Strict combined terminology scan: passes, 222 controlled files, zero findings; the corpus component is 198 Markdown files.
 - Scanner unit tests: 16/16 pass.
 - Targeted scanner, A1 Lorentz Geometry runtime, standalone-launch, transport-control, and markdown-layout tests: 56/56 pass.
-- Content-manifest validation: passes in strict check mode with zero errors and zero warnings across 383 scene configs, 198 corpus Markdown files, and 874 repository Markdown files.
-- iOS package check: passes against the currently generated reading copies. It must be rerun after those upstream copies are rebuilt.
+- Content-manifest validation: passes in strict check mode with zero errors and zero warnings across 383 scene configs, 198 corpus Markdown files, and 875 repository Markdown files.
+- Generated scene graph/TOC check: passes in strict check mode with 599 nodes, 1,364 edges, 582 search entries, 181 textbook TOC entries, and 1,455 TOC sections.
+- Generated reading-copy check: passes for all 12 textbook reading-copy Markdown files.
+- Full-corpus source-index check: passes with 1,947 source records, 1,749 edges, 4,388 metadata records, 1,457 published-corpus records, and snapshot `45f259ad144ca8ad00032d816422489dfb5dcdd4dcb6a5997372c1099ad1cad6`.
+- iOS package check: passes against the rebuilt reading copies with 11 chapters, 35 mapped files, 1,792 captured links, and 3,756 search entries.
 - `git diff --check`: passes.
 - Audit-only member/family and ambiguous retired-token findings remain reportable by design; they are not hidden behind the strict gate.
-- Generated scene graph/TOC check: drift in `content/graph/scene_graph.json`, `content/graph/textbook_toc.json`, and `content/generated/markdown/textbook/toc.md`.
-- Generated reading-copy check: drift in all 12 textbook reading-copy Markdown files. This check covers the whole corpus, so the drift set is broader than the two source chapters edited by the display-name migration.
-- Full-corpus source-index check: drift in `content/generated/source-index/local-full-corpus-snapshot.v1.json`.
-- The scene and Markdown index validator checks membership rather than display-field equality; `content/scenes/scenes_index.json` therefore still needs an authorized rebuild to propagate the changed scene title even though validation passes.
 
-Repository policy forbids implicit generator writes during an ordinary edit batch. The exact rebuild sequence, if authorized, is:
+The reading-copy and source-index generators consume the current canonical corpus, so their regenerated diffs also include unrelated accepted corpus changes that had accumulated since the preceding generated snapshot. Their check-mode reproduction is clean; the main terminology migration source and contract changes are recorded in commit `8d4ee47f4`, while this closeout adds the generated-index correction, its regression guard, and the final audit state.
 
-```bash
-node scripts/validate-content.mjs --write --strict
-node scripts/build-scene-graph.mjs --write --strict
-node scripts/build-textbook-md-pdf.mjs --write
-node scripts/archie-service/build-full-corpus-source-index.mjs --write
-node scripts/export-ios-textbook-package.mjs --write --strict
-```
-
-After that sequence, rerun the corresponding `--check` commands, the strict terminology scan, the targeted tests, and `git diff --check` before closing the migration.
+The completion audit found one generator limitation: `validate-content.mjs --write` preserves an existing scene-index `name` even when the canonical scene title changes, and its check mode validates path membership rather than field equality. Under the repository's documented stale/broken-generator exception, the single `archie__ideal_braid` generated index name was corrected directly, the scene graph and full-corpus source index were rebuilt from it, and both generated surfaces were added to the strict public-display scanner. Falsifier: either generated surface again contains the retired space-separated app name while the strict scanner still passes.

@@ -161,4 +161,48 @@ This campaign completes only the methodology's initial Monte Carlo coverage stag
 
 ## Smallest B1 Campaign Follow-Up
 
-The next analytical step is to assign a complete-cycle internal and enclosing-surface probe protocol before directed refinement. That protocol must add the still-pending external exposure, anisotropy, peak external response, spectral, radial-scaling, and local source-sensitivity measures without changing or relabeling the present wake and acceleration-response results.
+The complete-cycle assignment is `protocols/b1-complete-cycle-probe-protocol.v1.json`, with schema `prescribed-path-analysis/b1-complete-cycle-probe-protocol.v1`. It fixes one cycle on $[4,8)$, 64 primary time samples, 128 refined time samples, a $5\times5\times5$ fixed Cartesian grid spanning the source-envelope bounding box, six prescribed-source endpoint receivers, and enclosing spheres at radii $0.75$, $1$, $1.5$, and $2$. Every sphere uses a Gauss-Legendre grid in $\cos\theta$ and a uniform azimuth grid: $12\times24$ directions in the primary pass and $18\times36$ in the convergence pass.
+
+The start time leaves a conservative retained-history margin of $1.5$ time units at the outer sphere: $4-(2+0.5)/c_f=1.5$ for $c_f=1$. The source envelope radius is $0.5$. The endpoint $T=8$ is excluded from quadrature because it duplicates $T=4$ on the declared period.
+
+The protocol also predeclares:
+
+- both virtual-probe polarities on every fixed and surface coordinate;
+- same-source exclusion for the six moving endpoint receivers;
+- cycle-and-surface exposure norms and the raw constituent normalization;
+- real orthonormal spherical harmonics through degree $8$;
+- complete-cycle Fourier rows through harmonic $16$;
+- pairwise and global log-radius scaling rows without assuming an expected exponent; and
+- cap-angle sensitivities in $\alpha_1,\alpha_2,\alpha_3$ using a central step $\pi/512$, a half-step convergence check, and second-order one-sided stencils at domain boundaries.
+
+`buildB1SurfaceEventAnalysisProtocol` expands any declared radius and resolution into a canonical `analysis-protocol.v1` accepted by `evaluatePrescribedRecordAnalysis`. `evaluateB1StreamingSurfaceReductions` evaluates one stationary surface time batch at a time, independently rechecks the event validity obligations, passes each complete raw result packet to the configured analytical-data-store callback, and retains only reduction accumulators between batches. It emits the external-exposure, angular-power, anisotropy, complete-cycle spectral, and radial-scaling rows. Moving endpoint receivers and local source-sensitivity stencils remain outside this reduction result.
+
+Validate the declaration and its independent quadrature, symmetry, Fourier, causal-reach, and fail-closed checks with:
+
+```bash
+node --test \
+  tests/b1-complete-cycle-probe-protocol.test.js \
+  tests/b1-streaming-reductions.test.js
+```
+
+The primary surface assignment contains `73,728` event locations across the four radii; the refined assignment contains `331,776`. Each event retains both probe-polarity responses in one canonical evaluator packet. These counts exclude the internal fixed and moving-receiver ledgers.
+
+Write the deterministic B1 interior-reference reduction and its gzip-compressed raw event packets with:
+
+```bash
+node scripts/eom/run-b1-complete-cycle-streaming-reduction.mjs \
+  --write src/prescribed-path-analysis/fixtures/b1-interior-complete-cycle-reduction.result-packet.v1.json
+```
+
+The raw result packets are written under `.tmp/prescribed-path-analysis/b1-interior-complete-cycle-raw/` by default. Every stored packet is bound into the reduction result by its compressed and uncompressed SHA-256 hashes, event result hash, event protocol hash, raw causal-root-ledger hash, row counts, radius, resolution, and time index. The checked reduction result retains the exact quadrature nodes and weights and the primary-versus-refined convergence comparisons.
+
+Check the result without rewriting it:
+
+```bash
+node scripts/eom/run-b1-complete-cycle-streaming-reduction.mjs \
+  --check src/prescribed-path-analysis/fixtures/b1-interior-complete-cycle-reduction.result-packet.v1.json
+```
+
+Add `--verify-raw-store` when the local raw store is present and should also be byte-hash checked. Moving endpoint probes and cap-angle stencil evaluation can use the same streaming boundary, but they are not implemented or inferred by this surface result.
+
+Use `--replay-raw-store` to recompute the reductions from the preserved packets without repeating the causal-root evaluations. Replay still independently verifies every packet, ledger hash, event gate, and compressed artifact hash before using its samples.

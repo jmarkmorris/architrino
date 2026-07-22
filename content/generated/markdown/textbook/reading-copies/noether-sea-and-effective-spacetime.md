@@ -74,7 +74,7 @@ not a primitive frame-free photon scalar. The redshift task is to compute the en
 
 ### Composition
 
-The Noether sea is composed of neutral Noether braid assemblies. The best-developed Noether braid case is the nested shell braid, made from three nested electrino:positrino binaries. A Noether braid itself is not elementary; its stability is a downstream assembly result.
+The Noether sea is composed of neutral Noether braid assemblies. The best-developed prescribed case is Family A, made from three indexed electrino:positrino binaries. A Noether braid itself is not elementary; its stability is a downstream assembly result.
 
 This composition statement is a theorem target, not a permission to ignore other possible architrino assemblies. The universe-state inventory may contain many finite assembly classes: bare binaries, transient multi-body reaction corridors, larger $N$-site branches, charged assemblies, photon-channel packets, neutrino-like near-photon assemblies, and strong-field branch variants. Most of those may be physically real without being the ambient Noether sea population. The medium claim is that one neutral assembly class supplies the weak homogeneous background whose coarse variables recover clocks, rulers, signal speeds, pressure, inertia, and effective metric behavior.
 
@@ -110,7 +110,7 @@ $$
 
 The first term enforces weak homogeneous transparency and hides ordinary medium-drift leakage; the second term enforces that clocks, photon transport, matter response, or neutrino-like propagation still consume the same retained Noether sea record. A candidate class that sets the coupling to zero passes neither row: it may become invisible, but it no longer reconstructs the effective observables assigned to the Noether sea.
 
-The nested shell braid-centered Noether sea claim is therefore the statement that the corresponding class $\mathfrak C_{\mathrm{nest}}$ can drive $\mathcal R_{\mathrm{sea\text{-}class}}(\mathfrak C_{\mathrm{nest}})$ below the accepted tolerance while other candidate classes either fail one of the rows or are classified as localized matter, radiation, reaction, or strong-field branches. This is stronger than saying that nested shell braid exclusion volumes are visually plausible. It is a comparative selection problem over assembly classes.
+The Family-A-centered Noether sea claim is therefore the statement that the corresponding class $\mathfrak C_A$—prescribed one-braid records whose three axes run from mutual orthogonality toward the group-translation direction along $\lambda_A$—can drive $\mathcal R_{\mathrm{sea\text{-}class}}(\mathfrak C_A)$ below the accepted tolerance while other candidate classes either fail one of the rows or are classified as localized matter, radiation, reaction, or strong-field branches. This is stronger than saying that Family-A exclusion envelopes are visually plausible. It is a comparative selection problem over assembly classes, not a consequence of the taxonomy definition.
 
 The large-scale Noether sea is modeled as a balanced population of complementary Noether braid orientations.
 
@@ -128,7 +128,7 @@ The Noether sea changes how isolated assembly calculations should be read. A tru
 
 At the ontology level, a matter braid embedded in the Noether sea is an open assembly, not an isolated clockwork object. It exchanges angular momentum and causal-wake structure with neighboring neutral braids while preserving its own closure ledger. The exact boundary between assembly-locked and ambient contributions is the channel-dependent [assembly-Noether sea interface diagnostic](../../../../markdown/aaa/noether-braid/braid-envelope-geometry.md#assembly-noether-sea-interface-diagnostic), $D_{a,X}$; spatial proximity alone does not decide which record owns a contribution.
 
-The current spindle-family evidence sharpens that picture without closing the full medium problem. At measurement level on the prescribed response families, a phase-matched responsive sea supplies forward torque to the inner circulation and cap-directed support, while the tested axially organized responses do not supply the missing equatorial support. At mechanism-estimate level, this motivates an angular-momentum metabolism: the sea feeds an assembly channel, internal wake transport redistributes that input, and outgoing wake returns angular momentum to the sea's orientation order. A self-consistent closed loop has not yet been derived, so the metabolism is a constitutive closure target rather than a retained-branch theorem.
+The current B1 evidence sharpens that picture without closing the full medium problem. B1 here means the prescribed chart with one common midpoint, one coincident binary axis, one common frequency, and one common circulation sense; per-binary radii, axial half-separations, transverse orbit radii, and phases remain independent. At measurement level on the prescribed response records, a phase-matched responsive sea supplies forward torque to the source-record circulation channel and axial support, while the tested axially organized responses do not supply the missing equatorial support. At mechanism-estimate level, this motivates an angular-momentum metabolism: the sea feeds an assembly channel, internal wake transport redistributes that input, and outgoing wake returns angular momentum to the sea's orientation order. A self-consistent closed loop has not yet been derived, so the metabolism is a constitutive closure target rather than a retained-branch theorem.
 
 The static cage result gives the complementary effective picture. When a braid's support deficit selects a polar-covering neighbor cage, the retained object is a braid-plus-cage complex, closer to a molecule in a solvent than to a point object fixed at a lattice site. That comparison is effective framing, not ontology: the underlying objects remain Noether braid assemblies and causal wakes, and the cage still requires its own reciprocal force and stability ledger. Together, the metabolism and cage pictures explain why the Noether sea is part of the assembly's physical boundary conditions rather than decorative background.
 
@@ -418,7 +418,7 @@ $$
 
 The point of this expression is not to add a new quantum postulate at the Noether sea level. It records the same closed-cycle action accounting used in the [Cadence-Scale Retuning Hypothesis](../../../../markdown/aaa/noether-braid/braid-a1-dynamics.md#cadence-scale-retuning-hypothesis): a cadence state carries energy as action per cycle times cycles per unit absolute time. A single Noether braid may cross a neighboring branch through an $h$-scale ledger step, while a large asynchronous ensemble can produce an apparently smooth drift in the coarse variables.
 
-At the single Noether braid level, each accepted $h$-scale transfer forces the braid to retune its cadence-scale closure. The retuning may appear as a cadence shift, shell-binary radius shift, envelope-scale change, envelope-ratio change, orientation or strain update, or modified coupling to neighboring braids. In the simplest fixed-speed shell-binary approximation,
+At the single Noether braid level, each accepted $h$-scale transfer requires the braid to retune its cadence-scale closure. The retuning may appear as a cadence shift, indexed-binary radius shift, envelope-scale change, envelope-ratio change, orientation or strain update, or modified coupling to neighboring braids. In the simplest fixed-speed indexed-binary approximation,
 
 $$
 v_N\sim 2\pi R_N\nu_N,
@@ -426,7 +426,7 @@ v_N\sim 2\pi R_N\nu_N,
 R_N\nu_N\approx\text{constant}
 $$
 
-so a higher accepted cadence corresponds to a smaller representative scale, while a lower accepted cadence corresponds to a larger representative scale. The full nested shell braid can partition the same transaction across its inner, middle, and outer layers, so this relation is a first estimate rather than a complete closure law.
+so a higher accepted cadence corresponds to a smaller representative scale, while a lower accepted cadence corresponds to a larger representative scale. A full Family-A record can partition the same transaction across its three indexed binaries, so this relation is a first estimate rather than a complete closure law.
 
 At the ensemble level, let $f_N(\nu,\mathbf X,T)$ be the local distribution of Noether braid cadence states. The cadence-space current is the coarse-grained flux of many branchwise retunings:
 
@@ -485,7 +485,7 @@ $$
 
 This pair test assumes the reverse increment returns to the starting cadence, $\Delta\nu_N^{(q,-)}(\nu+\Delta\nu_N^{(q,+)})=-\Delta\nu_N^{(q,+)}(\nu)$, so the second rate is evaluated on the paired reverse branch rather than an unrelated local decrement.
 
-If $\mathcal R_{\mathrm{db}}^{(T)}=0$ after coarse-graining, individual $+h$ and $-h$ ledger transitions may still occur, but the temperature channel produces no net cadence-space drift. If the residual is nonzero, the signed imbalance contributes to $J_\nu^{(T)}$ and therefore biases cadence-scale retuning. In the fixed-speed shell-binary approximation above, positive cadence drift trends toward smaller representative scale, while negative cadence drift trends toward larger representative scale. The full theorem target is to derive the rates $r_\varsigma$, the retuning increments $\Delta\nu_N^{(q,\varsigma)}$, and the layer partition of the same action transaction from a closed nested shell braid branch record rather than treating temperature as an external force.
+If $\mathcal R_{\mathrm{db}}^{(T)}=0$ after coarse-graining, individual $+h$ and $-h$ ledger transitions may still occur, but the temperature channel produces no net cadence-space drift. If the residual is nonzero, the signed imbalance contributes to $J_\nu^{(T)}$ and therefore biases cadence-scale retuning. In the fixed-speed indexed-binary approximation above, positive cadence drift trends toward smaller representative scale, while negative cadence drift trends toward larger representative scale. The full theorem target is to derive the rates $r_\varsigma$, the retuning increments $\Delta\nu_N^{(q,\varsigma)}$, and the indexed-binary partition of the same action transaction from a closed Family-A branch record rather than treating temperature as an external driver.
 
 #### Ambient-Branch Acceptance
 
@@ -971,7 +971,7 @@ Their observed inertia and mass are expected to depend on:
 
 - internal energy storage,
 - shielding depth,
-- exposure of inner binary structure,
+- exposure of declared indexed-binary structure,
 - medium-dressed compliance and inertial response,
 - and how the assembly closes its causal ledger relative to the surrounding Noether sea.
 
@@ -1027,7 +1027,7 @@ This page does not own:
 
 ### Summary Commitment
 
-> **Medium Commitment (Noether sea):** The Noether sea is the emergent physical medium formed by coupled neutral Noether braid assemblies occupying the Euclidean void. It carries density, stress, energy, orientation, flow, and response properties. Effective gravity, clock dilation, signal delay/refraction, inertia, and cosmological behavior are reconstructed from Noether sea dynamics and assembly coupling, not from curvature or expansion of the void itself. Matter assemblies and Noether braid branches are physically meaningful as local retained branches embedded in this medium record; isolated branch calculations are seed charts or limiting cases unless their Noether sea state and nearby-assembly boundary residuals are statused. The claim that nested shell braid-like neutral assemblies dominate the weak homogeneous medium remains a comparative selection target: other architrino assembly classes must be rejected, subordinated, or classified by the same ambient selection residual before Noether sea composition is closed.
+> **Medium Commitment (Noether sea):** The Noether sea is the emergent physical medium formed by coupled neutral Noether braid assemblies occupying the Euclidean void. It carries density, stress, energy, orientation, flow, and response properties. Effective gravity, clock dilation, signal delay/refraction, inertia, and cosmological behavior are reconstructed from Noether sea dynamics and assembly coupling, not from curvature or expansion of the void itself. Matter assemblies and Noether braid branches are physically meaningful as local retained branches embedded in this medium record; isolated branch calculations are seed charts or limiting cases unless their Noether sea state and nearby-assembly boundary residuals are statused. The claim that Family-A neutral assemblies dominate the weak homogeneous medium remains a comparative selection target: other architrino assembly classes must be rejected, subordinated, or classified by the same ambient selection residual before Noether sea composition is closed.
 
 ## Noether Sea Pro/Anti Coupling
 
@@ -1044,12 +1044,12 @@ The starting picture is deliberately simple. A Noether sea carrier is a Noether 
 - pro-Noether braid orientation
 - anti-Noether braid orientation
 
-For nested shell braid consumers, the working orientation convention is:
+For Noether braid consumers, the working orientation convention is:
 
 - pro-Noether braid orientation: precession order $H \to M \to L$ in time;
 - anti-Noether braid orientation: precession order $H \to L \to M$ in time.
 
-This ordered convention is the reader-facing orientation basis. The carrier for that two-valued label is not a coordinate convention. A completed pro/anti assignment must be a deformation-stable orientation row in the retained branch record, such as the ordered nested shell braid chirality and causal-writhe or framed-topology candidates discussed in [Constructing the Absolute Frame](../../../../markdown/aaa/foundations/constructing-the-absolute-frame.md#parity-convention-and-dynamical-chirality) and [Horizon Chirality](../../../../markdown/aaa/spacetime/horizon-chirality.md#proanti-before-planar-lock).
+This ordered convention is the reader-facing orientation basis. The carrier for that two-valued label is not a coordinate convention. A completed pro/anti assignment must be a deformation-stable orientation row in the retained branch record, such as the indexed Noether braid chirality and causal-writhe or framed-topology candidates discussed in [Constructing the Absolute Frame](../../../../markdown/aaa/foundations/constructing-the-absolute-frame.md#parity-convention-and-dynamical-chirality) and [Horizon Chirality](../../../../markdown/aaa/spacetime/horizon-chirality.md#proanti-before-planar-lock).
 
 The orientation label does not assign matter versus antimatter. Global polarity conjugation $C$ leaves the `HML/HLM` worldline order unchanged, while parity $P$ reverses it. A matter branch and its polarity-conjugate antimatter branch may therefore each occur on either pro/anti orientation once the full retained branch and charged-sector ledgers are supplied. This sea-level orientation balance is distinct from the visible-sector [matter-antimatter asymmetry](../../../../markdown/aaa/philosophy-history/solving-the-crisis.md#matter-antimatter-asymmetry) question, which belongs to polarity-conjugate branch populations, weak-sector asymmetry, early-state boundary conditions, and reaction-ledger bias. The key claim is that stable large-scale Noether sea behavior may require both orientations to coexist and couple, so the Noether sea does not drift into one ordered-frame handedness.
 
@@ -2402,7 +2402,7 @@ The first executable scaffold keeps the clock proof burden visible. Its accepted
 
 ### Mechanisms for Time Dilation
 
-Two coupled mechanisms change the internal frequency of a Noether braid clock (the prescribed common-axis candidate is [B1](../../../../markdown/aaa/noether-braid/braid-family-b.md#b1)):
+Two coupled mechanisms change the internal frequency of a Noether braid clock (the prescribed [B1](../../../../markdown/aaa/noether-braid/braid-family-b.md#b1) candidate has one common midpoint, one coincident binary axis, one common frequency, and one common circulation sense, while its per-binary radii, axial half-separations, transverse orbit radii, and phases remain independent):
 
 #### Kinematic Effect (Velocity Dependence)
 
@@ -2573,6 +2573,8 @@ $$
 a\in\{1,2,3\}
 $$
 with radii $R_a=\|\mathbf r_a\|$. The three radii are independently assignable and do not order or relabel the binaries.
+
+For this state to carry the A1 label, its three binary axes must also be mutually orthogonal at the Family-A near-rest endpoint and converge toward the group-translation direction along the prescribed flattening coordinate $\lambda_A$. The frequencies $f_a$ remain independently assignable, and the axial half-separations $h_a$, transverse orbit radii $\rho_a$, phases $\phi_a$, and circulation rows remain explicit binary coordinates. This prescribed chart does not establish that the clock is retained or stable under EOM-solver evolution; failure to preserve the declared coordinate relations on the same evolved record would falsify the A1 clock assignment.
 
 #### Microscopic Evolution Equation (Regularized)
 
@@ -2796,7 +2798,7 @@ The opening abstract states the target; the later sections move through the gove
 
 The reader should keep four moving pieces distinct. The substrate has a preferred rest frame. A moving assembly can deform and retune. Physical Observers synchronize clocks and rulers using assemblies and signals. Precision experiments see only the exported observer record. Lorentz recovery succeeds only if the same retained branch hides the first piece from the fourth by controlling the middle two.
 
-For the theory-bridge version that maps special-relativistic terms directly to the deformable Noether braid story, see [the special-relativity bridge](../../../../markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-braid.md). For the reader-facing synthesis of the branch-quantized Lorentz milestone, see [Return-Cycle Lorentz Quantization](../../../../markdown/aaa/philosophy-history/theory-bridges/return-cycle-lorentz-quantization.md). For the interactive geometry surface, open [Ideal Noether Braid: Lorentz Geometry App](../../../../../ideal-braid.html).
+For the theory-bridge version that maps special-relativistic terms directly to the deformable Noether braid story, see [the special-relativity bridge](../../../../markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-braid.md). For the reader-facing synthesis of the branch-quantized Lorentz milestone, see [Return-Cycle Lorentz Quantization](../../../../markdown/aaa/philosophy-history/theory-bridges/return-cycle-lorentz-quantization.md). For the interactive geometry surface, open [A1 Lorentz Geometry App](../../../../../ideal-braid.html).
 
 ### Coordinate Layers
 
@@ -2890,7 +2892,9 @@ The absolute velocity used by the substrate solver cannot remain an observer-acc
 
 #### Mathematical objective
 
-Given a translating bound assembly (binary and then nested shell braid), derive:
+Given a translating bound assembly, first for one binary and then for the prescribed A1 chart, derive:
+
+Here `A1` means one complete Family-A braid with persistent binary indices $a\in\{1,2,3\}$, independently assignable positive radii $R_a$ and frequencies $f_a$, mutually orthogonal binary axes at $\lambda_A=0$, and axes converging toward the group-translation direction as $\lambda_A\to1$. Axial half-separations, transverse orbit radii, phases, and circulation remain explicit binary coordinates. The label supplies no Lorentz law, retained branch, hierarchy, particle assignment, or stability result; those are the theorem targets below, falsified if same-record evolution fails the coordinate or observer-residual gates.
 
 1. The velocity-dependent equilibrium shape tensor $Q(v)$ and its anisotropy.
 2. The velocity-dependent internal period $T(v)$.
@@ -3550,9 +3554,9 @@ k_4=-\frac{1}{9}\qquad \ell_4=\frac{2}{9}
 $$
 before leakage terms are added.
 
-#### Outer-binary transduction hypothesis (working)
+#### binary-3 transduction hypothesis (working)
 
-Assume the outer binary $L$ is the dominant transducer for energy exchange with passerby assemblies (non-locally coupled encounters). Under this hypothesis, the leading kinematic response is boundary-driven at $L$, then propagated inward through $M$ and $H$ couplings.
+Assume binary 3 is the dominant transducer for energy exchange with passerby assemblies (non-locally coupled encounters). Under this source-record hypothesis, the leading kinematic response is boundary-driven at binary 3, then propagated through binaries 2 and 1. The indices are persistent identities, not a radius or energy ordering.
 
 For locally coupled assemblies (strong axial coupling), interaction pathways are distinct and should be modeled as a separate regime, not merged with passerby-transfer fits.
 
@@ -3560,7 +3564,7 @@ For locally coupled assemblies (strong axial coupling), interaction pathways are
 
 For an assembly state
 $$
-\mathcal{S}=\{v_{\text{tr}}, f_H,f_M,f_L,\mathbf{A},\mathcal{E}_{\text{excl}},\tau_{\text{op}}\}
+\mathcal{S}=\{v_{\text{tr}}, f_1,f_2,f_3,\mathbf{A},\mathcal{E}_{\text{excl}},\tau_{\text{op}}\}
 $$
 let one absorbed quantum $\Delta E_q$ induce
 $$
@@ -3569,8 +3573,8 @@ $$
 with the following structured components:
 
 1. Translational architrino speed increase: $\Delta v_{\text{tr}}>0$.
-2. Discrete frequency retuning of $H,M,L$: $\Delta f_k=n_k\,\delta f_k$, with $n_k\in\mathbb{Z}$ and $k\in\{H,M,L\}$.
-3. Nested shell braid axis realignment: $\Delta\mathbf{A}\neq 0$ (precession/tilt of principal axes).
+2. Discrete frequency retuning of binaries $1,2,3$: $\Delta f_k=n_k\,\delta f_k$, with $n_k\in\mathbb{Z}$ and $k\in\{1,2,3\}$.
+3. A1 axis realignment: $\Delta\mathbf{A}\neq 0$ (precession/tilt of principal axes).
 4. Exclusion-zone geometry shift: $\Delta\mathcal{E}_{\text{excl}}\neq 0$ (shape and orientation update).
 5. Operational time response shift: $\Delta\tau_{\text{op}}\neq 0$.
 
@@ -3578,42 +3582,42 @@ with the following structured components:
 
 The observer-level clock-dilation channel is not yet fully mapped in substrate variables. The working interpretation in this document is:
 $$
-\tau_{\text{op}}=\tau_{\text{op}}(f_H,f_M,f_L,\mathbf{A},\mathcal{E}_{\text{excl}},v_{\text{tr}})
+\tau_{\text{op}}=\tau_{\text{op}}(f_1,f_2,f_3,\mathbf{A},\mathcal{E}_{\text{excl}},v_{\text{tr}})
 $$
 where $\tau_{\text{op}}$ is an emergent clock functional of assembly internal frequencies, axis geometry, exclusion-zone shape, and translation state.
 
-The immediate task is to identify which subset dominates $\partial \tau_{\text{op}}/\partial E$ in the passerby-transfer regime, with the default prior that outer-binary $L$ mediated updates are first-order.
+The immediate task is to identify which subset dominates $\partial \tau_{\text{op}}/\partial E$ in the passerby-transfer regime, with the default prior that binary-3-mediated updates are first-order.
 
 #### Evolving scenario: exclusion-volume driven effective spacetime
 
 Working assumption:
 
-1. The outer precessing binary of a Noether braid defines the effective exclusion volume boundary; see [Braid Envelope Geometry](../../../../markdown/aaa/noether-braid/braid-envelope-geometry.md).
-2. Each nested shell braid layer ($H,M,L$) has its own circulation axis.
+1. In the working source record, binary 3 defines the effective exclusion-volume boundary; see [Braid Envelope Geometry](../../../../markdown/aaa/noether-braid/braid-envelope-geometry.md). This is a provisional branch role, not a taxonomy identity.
+2. Each A1 binary ($1,2,3$) has its own circulation axis.
 3. Total angular and translational momentum are conserved at assembly level (up to modeled exchange channels with environment).
 
 Proposed mechanism chain under applied force (acceleration of a Noether braid-based assembly):
 
 1. External forcing increases translational state.
-2. Axis coupling drives partial alignment of $H,M,L$ circulation axes.
+2. Axis coupling drives partial alignment of the three persistently indexed circulation axes.
 3. Alignment is accompanied by binary radius contraction across layers (with layer-dependent sensitivity).
-4. The exclusion volume changes shape and orientation because its boundary is set by the precessing outer binary $L$.
+4. The exclusion volume changes shape and orientation because the working source record assigns its boundary to precessing binary 3.
 5. Neighboring assemblies then see changed path-history geometry and interaction timing.
 6. At coarse scale, this appears as a modified effective kinematic/geometric background, i.e. an emergent spacetime response.
 
 This can be treated as a coupled state map:
 $$
-(\mathbf V,\mathbf{A}_H,\mathbf{A}_M,\mathbf{A}_L,R_H,R_M,R_L,\mathcal{E}_{\text{excl}})
+(\mathbf V,\mathbf{A}_1,\mathbf{A}_2,\mathbf{A}_3,R_1,R_2,R_3,\mathcal{E}_{\text{excl}})
 \xrightarrow{\;\Delta \mathbf{p}\;}
-(\mathbf V',\mathbf{A}_H',\mathbf{A}_M',\mathbf{A}_L',R_H',R_M',R_L',\mathcal{E}_{\text{excl}}')
+(\mathbf V',\mathbf{A}_1',\mathbf{A}_2',\mathbf{A}_3',R_1',R_2',R_3',\mathcal{E}_{\text{excl}}')
 $$
 
 Initial directional hypothesis for acceleration response:
 $$
-\|\mathbf{A}_H-\mathbf{A}_L\|,\ \|\mathbf{A}_M-\mathbf{A}_L\| \downarrow\qquad
-R_H,R_M,R_L \downarrow
+\|\mathbf{A}_1-\mathbf{A}_3\|,\ \|\mathbf{A}_2-\mathbf{A}_3\| \downarrow\qquad
+R_1,R_2,R_3 \downarrow
 $$
-with the strongest transduction at $L$.
+with the strongest transduction provisionally assigned to binary 3.
 
 Interpretive thesis:
 
@@ -3838,12 +3842,12 @@ Start with a single causal path-history binary under constant drift $\mathbf V$.
 2. Closed-form or asymptotic estimates for $(a_{\parallel}/a_{\perp})(\beta)$.
 3. First nonzero leakage coefficients in the $\beta$ expansion.
 
-#### Stage B: nested shell braid full closure
+#### Stage B: A1 full closure
 
-Promote to a nested shell braid with coupled circulation scales. Establish:
+Promote to an A1 with coupled circulation scales. Establish:
 
 1. Persistence of aligned attractor family under drift.
-2. Factorization or controlled coupling of inner/middle/outer period shifts.
+2. Factorization or controlled coupling of 1/2/3 period shifts.
 3. Emergent universal $\gamma$-law independent of axial-structure details, within a defined class.
 
 #### Stage C: continuum handoff
@@ -3858,7 +3862,7 @@ so local assembly kinematics and macroscopic refractive geometry are mathematica
 
 To connect the two-channel deformation model to observables, use the following sequence:
 
-1. Single-braid constitutive closure: derive or fit-test $R_\perp(E)$ and induced $\xi(E,\beta)$ from causal path-history nested shell braid dynamics.
+1. Single-braid constitutive closure: derive or fit-test $R_\perp(E)$ and induced $\xi(E,\beta)$ from causal path-history A1 dynamics.
 2. Effective-medium propagation law: construct $n_{\text{eff}}(\xi,\lambda,n)$ for signal transport through deformed Noether braid populations.
 3. Effective metric extraction: build $g_{\mu\nu}^{\text{eff}}$ from medium variables and preferred-frame structure.
 4. Weak-field consistency checks: verify Newtonian limit and required post-Newtonian behavior in the operational observer sector.
@@ -4115,7 +4119,7 @@ $$
 \left(-\frac{1}{3},-\frac{4}{3},-\frac{1}{9},\frac{2}{9}\right)
 +O(\epsilon_{\mathrm{br}}+\epsilon_{\mathrm{hier}}+\epsilon_{\mathrm{reg}})
 $$
-The error terms have distinct jobs. $\epsilon_{\mathrm{br}}$ measures branch-chart incompleteness or missed active roots, $\epsilon_{\mathrm{hier}}$ measures nested shell braid hierarchy leakage away from the binary benchmark, and $\epsilon_{\mathrm{reg}}$ measures finite-$\eta$ regularization error. This condition is stronger than fitting $L_{\parallel}=L_0/\gamma$ and $T(v)=\gamma T_0$. It says the fitted coefficients must be traceable to active causal roots with no independent Lorentz postulate and no per-observable retuning.
+The error terms have distinct jobs. $\epsilon_{\mathrm{br}}$ measures branch-chart incompleteness or missed active roots, $\epsilon_{\mathrm{hier}}$ measures A1 hierarchy leakage away from the binary benchmark, and $\epsilon_{\mathrm{reg}}$ measures finite-$\eta$ regularization error. This condition is stronger than fitting $L_{\parallel}=L_0/\gamma$ and $T(v)=\gamma T_0$. It says the fitted coefficients must be traceable to active causal roots with no independent Lorentz postulate and no per-observable retuning.
 
 This gives a possible prediction of the framework. If Lorentz behavior is rooted in causal-root progression, then the first nonzero deviations from exact Lorentz closure should not be arbitrary smooth functions of speed. They should inherit the structure of branch charts: smooth even-power drift terms inside a fixed chart, plus localized or resonant leakage near separator events, small-divisor interlayer resonances, or changes in admissible root multiplicity. In a nonresonant chart the leakage should obey
 $$
@@ -4144,13 +4148,13 @@ The technology-facing status is therefore conditional. The immediate test is not
 
 This also prevents overclaiming. This chapter does not prove that quantum mechanics causes special relativity. It states a narrower closure target: in $\mathbb{A}\mathbb{A}\mathbb{A}$, the discrete causal-root progression that supports quantum-facing assembly behavior must also generate the Lorentz formulas in the homogeneous weak-field observer limit. If the branch ledger produces quantum-like discreteness but fails to produce the Lorentz coefficient vector, then the proposed common mechanism fails. If it produces the Lorentz vector only by tuning a separate clock law, ruler law, or photon speed for each observable, the Lorentz bridge also fails.
 
-#### Nested shell braid adiabatic decoupling bound
+#### A1 adiabatic decoupling bound
 
 Let
 $$
 \mathbf{c}^{(2)}\equiv (k_2,\ell_2,k_4,\ell_4)_{\text{binary}}
 \qquad
-\mathbf{c}^{(3)}\equiv (k_2,\ell_2,k_4,\ell_4)_{\text{nested shell braid}}
+\mathbf{c}^{(3)}\equiv (k_2,\ell_2,k_4,\ell_4)_{\text{A1}}
 $$
 and define
 $$
@@ -4161,31 +4165,31 @@ $$
 \qquad
 \|x\|_W^2\equiv x^\top W x,\ W\succ 0
 $$
-For nested layers $(H,M,L)$, decompose the outer-channel stiffness as
+For the source record's indexed rows $(1,2,3)$, decompose the binary-3 channel stiffness as
 $$
 K_{ab}^{(3)}
 =
-K_{ab}^{(L)}
+K_{ab}^{(3)}
 +
-\left\langle \frac{\partial^2\mathcal{U}_{L\leftrightarrow M}}{\partial r_a\partial r_b}\right\rangle_{\text{cyc}}
+\left\langle \frac{\partial^2\mathcal{U}_{3\leftrightarrow 2}}{\partial r_a\partial r_b}\right\rangle_{\text{cyc}}
 +
-\left\langle \frac{\partial^2\mathcal{U}_{L\leftrightarrow H}}{\partial r_a\partial r_b}\right\rangle_{\text{cyc}}
+\left\langle \frac{\partial^2\mathcal{U}_{3\leftrightarrow 1}}{\partial r_a\partial r_b}\right\rangle_{\text{cyc}}
 $$
 Under hierarchical separation
 $$
-\omega_H\gg \omega_M\gg \omega_L\qquad
-r_H\ll r_M\ll r_L
+\omega_1\gg \omega_2\gg \omega_3\qquad
+r_1\ll r_2\ll r_3
 $$
-apply Hamiltonian averaging (Lie-Deprit transform) to eliminate fast phases. The monopole part renormalizes $\mathcal{I}_0$ only; the dipole contribution vanishes in the inner-layer center-of-mass frame; the leading anisotropic correction is quadrupolar and scales as $(r_M/r_L)^2$. Therefore
+apply Hamiltonian averaging (Lie-Deprit transform) to eliminate fast phases. The monopole part renormalizes $\mathcal{I}_0$ only; the dipole contribution vanishes in the binary-1 center-of-mass frame; the leading anisotropic correction is quadrupolar and scales as $(r_2/r_3)^2$. This hierarchy is a declared source-record ordering, not a meaning of the persistent indices. Therefore
 $$
 \mathcal{D}_{23}
 \le
-C_Q\left(\frac{r_M}{r_L}\right)^2
-+O\!\left(\left(\frac{r_H}{r_L}\right)^2\right)
+C_Q\left(\frac{r_2}{r_3}\right)^2
++O\!\left(\left(\frac{r_1}{r_3}\right)^2\right)
 $$
 A sufficient closure condition is
 $$
-\left(\frac{r_M}{r_L}\right)^2\le C_{23}\epsilon_{\text{LV}}
+\left(\frac{r_2}{r_3}\right)^2\le C_{23}\epsilon_{\text{LV}}
 $$
 which yields
 $$
@@ -4194,9 +4198,9 @@ $$
 
 #### Spectral-decoupling vulnerability criterion
 
-The [Nested Shell Braid Adiabatic Decoupling Bound](#nested-shell-braid-adiabatic-decoupling-bound) assumes Diophantine nonresonance:
+The [A1 Adiabatic Decoupling Bound](#a1-adiabatic-decoupling-bound) assumes Diophantine nonresonance:
 $$
-|m\omega_L-n\omega_M|
+|m\omega_L-n\omega_2|
 \ge
 \frac{\gamma_D}{(|m|+|n|)^{\tau_D}}
 \quad
@@ -4206,7 +4210,7 @@ $$
 $$
 If this condition is violated so that
 $$
-|m\omega_L-n\omega_M|\lesssim \delta\omega_{\text{nl}}
+|m\omega_L-n\omega_2|\lesssim \delta\omega_{\text{nl}}
 $$
 for small integers $(m,n)$ and nonlinear coupling width $\delta\omega_{\text{nl}}$, then small divisors invalidate the homological equations of the Lie transform. The resulting secular resonance destroys adiabatic decoupling, can break KAM tori, and drives $O(1)$ interlayer energy exchange. In that regime, coefficient drift can exceed the quadrupole estimate and local preferred-frame leakage can rise above $O(\epsilon_{\text{LV}})$ even when geometric hierarchy is large.
 
@@ -4278,7 +4282,7 @@ If these equalities hold on the same branch ledger, the Lorentzian compensation 
 
 #### Theorem A (attractor existence under drift)
 
-For admissible coupling and regularization parameters, there exists a bounded translating attractor family for binary and nested shell braid systems for $\|\mathbf V\|<c_f$.
+For admissible coupling and regularization parameters, there exists a bounded translating attractor family for binary and A1 systems for $\|\mathbf V\|<c_f$.
 
 #### Theorem B (anisotropic deformation law)
 
@@ -4331,10 +4335,10 @@ the drift-response coefficients are locally identifiable from $(a_{\parallel}/a_
 
 #### Theorem F (cross-regime universality of closure coefficients)
 
-If binary and nested shell braid attracting branches exist, are smooth in $\beta$, share the same coarse-grained causal kernel class, and satisfy nonresonant hierarchy
+If binary and A1 attracting branches exist, are smooth in $\beta$, share the same coarse-grained causal kernel class, and satisfy nonresonant hierarchy
 $$
-\omega_H\gg \omega_M\gg \omega_L\qquad
-|m\omega_L-n\omega_M|
+\omega_H\gg \omega_2\gg \omega_L\qquad
+|m\omega_L-n\omega_2|
 \ge
 \frac{\gamma_D}{(|m|+|n|)^{\tau_D}}
 \ \ \forall\ m,n\in\mathbb{Z}\setminus\{0\}
@@ -4347,10 +4351,10 @@ $$
 \mathbf{c}^{(3)}-\mathbf{c}^{(2)}
 \right\|_{W}
 \le
-C_Q\left(\frac{r_M}{r_L}\right)^2
-+O\!\left(\left(\frac{r_H}{r_L}\right)^2\right)
+C_Q\left(\frac{r_2}{r_3}\right)^2
++O\!\left(\left(\frac{r_1}{r_3}\right)^2\right)
 $$
-In particular, if $(r_M/r_L)^2\le C_{23}\epsilon_{\text{LV}}$, operational Lorentz closure is universal across these two micro-regimes up to preferred-frame leakage.
+In particular, if $(r_2/r_3)^2\le C_{23}\epsilon_{\text{LV}}$, operational Lorentz closure is universal across these two micro-regimes up to preferred-frame leakage.
 
 #### Theorem G (structural-integrity common-limit closure)
 
@@ -4386,7 +4390,7 @@ The Lorentzian conspiracy program fails if any of the following occur:
 3. Residual anisotropy terms exceed accepted bounds after full observer construction.
 4. Different assembly decorations produce incompatible kinematic laws that prevent universal operational closure.
 5. The weak-field connection built from $g_{\mu\nu}^{\text{eff}}$ fails to reproduce a Newtonian Poisson limit for $\Phi_{\text{eff}}$ in the operational observer sector.
-6. Diophantine nonresonance fails (small-divisor regime), causing secular interlayer resonance and invalidating the adiabatic mismatch bound used in [Nested Shell Braid Adiabatic Decoupling Bound](#nested-shell-braid-adiabatic-decoupling-bound).
+6. Diophantine nonresonance fails (small-divisor regime), causing secular interbinary resonance and invalidating the adiabatic mismatch bound used in [A1 Adiabatic Decoupling Bound](#a1-adiabatic-decoupling-bound).
 7. The extracted Lorentz coefficients cannot be traced to the causal-root ledger on a completed branch chart, or the same ledger cannot generate clock, ruler, and two-way signal closure without separate per-observable tuning.
 
 ### Position in the $\mathbb{A}\mathbb{A}\mathbb{A}$ Program
@@ -4404,7 +4408,7 @@ Primary theory anchors:
 1. [dynamics/master-equation.md](../../../../markdown/aaa/dynamics/master-equation.md)
 2. [dynamics/causal-action-functional.md](../../../../markdown/aaa/dynamics/causal-action-functional.md)
 3. [dynamics/binary-dynamics.md](../../../../markdown/aaa/dynamics/binary-dynamics.md)
-4. [Nested Shell Braid Dynamics](../../../../markdown/aaa/noether-braid/braid-a1-dynamics.md#a1-dynamics)
+4. [A1 Dynamics](../../../../markdown/aaa/noether-braid/braid-a1-dynamics.md#a1-dynamics)
 5. `spacetime/*`
 6. [validation/constraint-ledger.md](../../../../markdown/aaa/validation/constraint-ledger.md)
 7. [validation/no-go-theorems.md](../../../../markdown/aaa/validation/no-go-theorems.md)
@@ -5027,7 +5031,7 @@ $$
 \longrightarrow
 \frac{1}{4}
 $$
-Together with $\sum_{P_a\in\mathcal{P}_{\partial\Omega}}A_{\mathrm{eff}}(P_a)\to A_{\partial\Omega}^{\mathrm{eff}}$, these claims imply the area density above. This does not prove the coefficient by definition. It reduces the problem to a local aligned-interface calculation: terminal nested shell braid alignment must supply a universal block entropy density, its patch-area normalization, and surrounding Noether sea correlations short-range enough that the boundary count is additive up to edge residuals.
+Together with $\sum_{P_a\in\mathcal{P}_{\partial\Omega}}A_{\mathrm{eff}}(P_a)\to A_{\partial\Omega}^{\mathrm{eff}}$, these claims imply the area density above. This does not prove the coefficient by definition. It reduces the problem to a local aligned-interface calculation: terminal Family-A alignment must supply a universal block entropy density, its patch-area normalization, and surrounding Noether sea correlations short-range enough that the boundary count is additive up to edge residuals.
 
 ### Refraction vs. Curvature
 
@@ -6723,7 +6727,7 @@ This is the quantity used for binary-orbit energy-loss consistency checks. Energ
 
 ## Black Holes
 
-This chapter is the main black-hole orientation document for the spacetime branch. Its purpose is to tell the reader what survives from standard compact-object phenomenology, what is being reinterpreted at the constitutive level, and how the strong-field nested shell braid regime is supposed to replace singularity language without losing observational discipline.
+This chapter is the main black-hole orientation document for the spacetime branch. Its purpose is to tell the reader what survives from standard compact-object phenomenology, what is being reinterpreted at the constitutive level, and how a candidate strong-field Noether-braid regime is supposed to replace singularity language without losing observational discipline. No black-hole constituent is assigned a braid-taxonomy member here.
 
 The opening establishes the three-layer distinction between observables, constitutive strong-field structure, and substrate ontology. The later sections then work through horizon conditions, interior regime structure, release channels, and cosmological embedding.
 
@@ -6739,19 +6743,19 @@ The chapter does not replace weak-field or observer-level black-hole phenomenolo
 
 ### What the Framework Treats as a Black Hole
 
-In $\mathbb{A}\mathbb{A}\mathbb{A}$, a black hole is not a hole in the Euclidean void. It is a region of the Noether sea driven into an extreme alignment and compression regime by sustained inward transport of matter, radiation, and medium deformation. The effective exterior still behaves like a compact gravitating source, but the interior ontology is not a geometric singularity. It is a structured nested shell braid regime with three coupled zones:
+In $\mathbb{A}\mathbb{A}\mathbb{A}$, a black hole is not a hole in the Euclidean void. It is a region of the Noether sea hypothesized to enter an extreme alignment and compression regime through sustained inward transport of matter, radiation, and medium deformation. The effective exterior still behaves like a compact gravitating source, but the candidate interior ontology is not a geometric singularity. It is a proposed Noether-braid regime with three coupled zones:
 
-| Zone | Nested shell braid role | Constituent branch-speed regime | Effective black-hole language |
+| Zone | Candidate braid role | Constituent branch-speed regime | Effective black-hole language |
 | :--- | :--- | :--- | :--- |
-| Exterior bulk | outer-dominant volumetric assemblies | outer branch $v_O < c_f$ in ordinary exterior coupling | outside observer region |
-| Horizon interface | middle-layer locking with outer-layer terminal alignment | $v_M=c_f$ with $v_O\to c_f$ for the locked interface components | event/apparent horizon comparison |
-| Interior core | self-hit-dominant maximal-curvature assemblies | inner self-hit branch speed exceeds $c_f$ | black-hole interior |
+| Exterior bulk | outer-dominant volumetric assemblies | outer branch $v_3 < c_f$ in ordinary exterior coupling | outside observer region |
+| Horizon interface | source-record binary-2 locking with binary-3 terminal alignment | $v_2=c_f$ with $v_3\to c_f$ for the locked interface components | event/apparent horizon comparison; roles are provisional, not taxonomy identities |
+| Interior core | self-hit-dominant maximal-curvature assemblies | branch-derived self-hit carrier speed exceeds $c_f$ | black-hole interior |
 
 This should be read as one constitutive continuum rather than three disconnected objects. The black-hole vocabulary remains useful at the effective level, but the ontic content is a regime map of the Noether sea.
 
-The same regime map already appears locally inside the nested shell braid. The middle binary is the symmetry-breaking threshold, the inner self-hit binary is the beyond-threshold interior branch, and the outer binary is the exterior-coupling branch that strong-field collapse drives toward terminal alignment. In this sense a Noether braid contains the primitive black-hole analogue: a local horizon/interior pattern that can later be population-amplified into an observer-level compact object. This is not an imported primordial-black-hole model. It is the native claim that black-hole structure is the large-scale continuation of a branch pattern already present in the assembly ontology.
+The working source record assigns binary 2 the symmetry-breaking threshold, binary 1 the beyond-threshold self-hit continuation, and binary 3 the exterior-coupling channel that strong-field collapse would drive toward terminal Family-A alignment. These are provisional source-record assignments, not meanings of the persistent indices and not a retained-branch result. In this conjecture a candidate Noether braid contains the primitive black-hole analogue: a local horizon/interior pattern that could later be population-amplified into an observer-level compact object. This is not an imported primordial-black-hole model; it is a falsifiable proposed continuation from assembly-scale branch behavior.
 
-When the local branch is described from the assembly side, this transition is the braid symmetry-breaking point: the middle hinge remains at $c_f$, the outer binary is driven to the same terminal threshold, and the inner self-hit branch supplies the interior continuation.
+When the local branch is described from the assembly side, this transition is the braid symmetry-breaking point: the source record's binary-2 threshold row remains at $c_f$, binary 3 is driven to the same terminal threshold, and binary 1 supplies the self-hit interior continuation.
 
 Critical-collapse work in GR supplies a useful threshold comparison for this language. In Choptuik-style scalar collapse, finely tuned effective initial data approach a discretely self-similar solution at the border between dispersal and black-hole formation, and recent large-$D$ work gives analytic expressions for a related family. The useful point for this chapter is not that substrate spacetime literally crystallizes. It is that black-hole formation should have a threshold record: exterior dispersal, horizon-interface capture, and interior continuation must be separated by the same branch data rather than by an ad hoc singular endpoint.
 
@@ -6824,7 +6828,7 @@ M_{\mathrm{Ch}}\approx \frac{5.83}{\mu_e^2}M_\odot
 $$
 with $\mu_e$ the nucleons-per-electron composition factor. In a collapsing iron core, electron capture lowers the electron fraction $Y_e=1/\mu_e$, so the effective support limit falls as the active core is already compressed.
 
-The $\mathbb{A}\mathbb{A}\mathbb{A}$ reading is that the Chandrasekhar calculation is not merely a historical astrophysics result. It is an observer-level signature of an assembly support channel losing authority. In the white-dwarf branch, electron assemblies still act as a pressure reservoir: their volumetric nested shell braid envelopes supply effective exclusion and packing response while nuclei remain identifiable. As compression drives the electron population into the relativistic regime, additional inward work no longer returns as a proportionally stronger outward support law. The same work is increasingly routed into cadence, exposed response, heat, neutrino channels, nuclear breakup, Noether sea stress, and remnant bookkeeping.
+The $\mathbb{A}\mathbb{A}\mathbb{A}$ reading is that the Chandrasekhar calculation is not merely a historical astrophysics result. It is an observer-level signature of an assembly support channel losing authority. In the white-dwarf candidate mapping, volumetric electron-braid envelopes would supply effective exclusion and packing response while nuclei remain identifiable. As compression drives the electron population into the relativistic regime, additional inward work no longer returns as a proportionally stronger outward support law. The same work is increasingly routed into cadence, exposed response, heat, neutrino channels, nuclear breakup, Noether sea stress, and remnant bookkeeping.
 
 The branch distinction should not be collapsed into a single "shrinking electron" picture. Ordinary orbital compression belongs to the atomic and condensed-matter precursors. Degenerate electron pressure belongs to a delocalized fermion reservoir after ordinary orbitals have ceased to be the right description. Material Noether braid scale compression is a deeper assembly-level ledger that must be derived separately from the same retained compact-region record. A successful $\mathbb{A}\mathbb{A}\mathbb{A}$ collapse map has to connect these stages without pretending that an atomic orbital radius, a Fermi spacing, and a Noether braid scale ratio are the same variable.
 
@@ -6905,7 +6909,7 @@ $$
 
 #### Neutron-Star Branch as a Radial Test
 
-The neutron-star branch is the sharpest compact-object test before horizon-interface language becomes active. It is already far outside weak-field matter, but it remains a non-horizon branch as long as volumetric neutron-rich matter support has not been forced into terminal nested shell braid alignment. For a spherical bookkeeping radius $r$ inside a star of surface radius $R_*$, the useful local record is not a scalar density alone but a Noether sea state and matter-response bundle,
+The neutron-star branch is the sharpest compact-object test before horizon-interface language becomes active. It is already far outside weak-field matter, but it remains a non-horizon branch in the candidate mapping as long as volumetric neutron-rich matter support has not been forced into terminal Family-A alignment. For a spherical bookkeeping radius $r$ inside a star of surface radius $R_*$, the useful local record is not a scalar density alone but a Noether sea state and matter-response bundle,
 
 $$
 \Theta_{\mathrm{NS}}(r)
@@ -6929,7 +6933,7 @@ Inside the star, electron-envelope language has mostly lost authority. The activ
 
 $$
 0<
-1-\frac{v_O(r)}{c_f},
+1-\frac{v_3(r)}{c_f},
 \qquad
 0\le s_n(r)\le1,
 \qquad
@@ -6938,21 +6942,21 @@ $$
 \mathcal{L}_{E\mathbf{p}\mathbf{J}}^{(\Omega_r)}\ \text{closes}
 $$
 
-for all retained radii $0\le r\le R_*$. Here $v_O$ is the outer-binary speed in the relevant branch record, $s_n$ is the packing-headroom diagnostic when a pressure-packing model is being used, and $\mathcal{R}_H$ is the strong-field regularity residual. The $s_n$ condition should be read as a candidate pressure-response target until a neutron-star dense-matter branch supplies the corresponding $K_{\mathrm{pack}}$, packing ceiling, and branch residuals.
+for all retained radii $0\le r\le R_*$. Here $v_3$ is the binary-3 speed in the relevant branch record, $s_n$ is the packing-headroom diagnostic when a pressure-packing model is being used, and $\mathcal{R}_H$ is the strong-field regularity residual. The $s_n$ condition should be read as a candidate pressure-response target until a neutron-star dense-matter branch supplies the corresponding $K_{\mathrm{pack}}$, packing ceiling, and branch residuals.
 
-The center of an ideal nonrotating neutron star is therefore not automatically horizon-like. The first radial gradients vanish there by symmetry, while pressure, stress, cadence stretch, and packing pressure can be maximal. If scalar density response is exhausted while $v_O<c_f$, the response must route into shape, strain, contact, transport, or dense-matter branch change. If the same record forces $v_O\to c_f$ and activates the horizon-interface condition, the neutron-star branch has ended and the continuation belongs to the horizon-interface branch below.
+The center of an ideal nonrotating neutron star is therefore not automatically horizon-like. The first radial gradients vanish there by symmetry, while pressure, stress, cadence stretch, and packing pressure can be maximal. If scalar density response is exhausted while $v_3<c_f$, the response must route into shape, strain, contact, transport, or dense-matter branch change. If the same record forces $v_3\to c_f$ and activates the horizon-interface condition, the neutron-star branch has ended and the continuation belongs to the horizon-interface branch below.
 
 ### Canonical Horizon Condition
 
 The canonical strong-field alignment condition is inherited from [singularity-resolution.md](../../../../markdown/aaa/spacetime/singularity-resolution.md). Near the horizon interface, the working regime definition is
 
 $$
-v_M = c_f,
+v_2 = c_f,
 \qquad
-v_O \to c_f
+v_3 \to c_f
 $$
 
-with the middle and outer binaries becoming coplanar and co-linear with the inner binary at alignment and precession ceasing in that limit.
+with binaries 2 and 3 becoming coplanar and collinear with binary 1 at alignment and precession ceasing in that limit.
 
 This condition fixes the local meaning of the horizon in the framework. The horizon is not merely a geometric surface drawn inside an effective metric. It is the constitutive interface where terminal alignment is reached and where ordinary volumetric assemblies are compressed into a boundary-like state. For Planck-language mapping, the rule used throughout the project is that the relevant "Planck scale" is this alignment condition unless a more specific derivation overrides it.
 
@@ -7059,7 +7063,7 @@ At the assembly level, opposite-charge binaries driven past the hinge near $c_f$
 
 The constitutive claim is modest but important: singularity language remains a warning that weak-field effective variables have exceeded their domain, while the ontic replacement is a structured maximum-curvature core with finite internal bookkeeping.
 
-One preserved strong-field intuition is that sufficiently old or sufficiently compressed interiors may approach an ordered collapse limit rather than a thermalized point. In that heuristic picture, maximal-curvature nested shell braids pack into a near-crystalline interior, while most entropy remains associated with the active shear and shredding layers nearer the horizon interface. This is not yet a constitutive derivation, but it is a useful candidate for how collapse can saturate without an ontic singularity.
+One preserved strong-field intuition is that sufficiently old or sufficiently compressed interiors may approach an ordered collapse limit rather than a thermalized point. In that heuristic picture, maximal-curvature candidate braids pack into a near-crystalline interior, while most entropy remains associated with the active shear and shredding layers nearer the horizon interface. This is not yet a constitutive derivation or a taxonomy assignment, but it is a useful candidate for how collapse can saturate without an ontic singularity.
 
 #### High-Energy Probe Closure Target
 
@@ -7072,8 +7076,8 @@ $$
 \lesssim
 R_H(E;\theta)
 \quad\Longrightarrow\quad
-v_M=c_f,\quad
-v_O\to c_f,\quad
+v_2=c_f,\quad
+v_3\to c_f,\quad
 S_H\sim k_B\log\left|\mathcal{B}_{H}\right|
 $$
 
@@ -7088,9 +7092,9 @@ $$
 \int dE\,w(E)\,
 \mathbf{1}_{\ell_{\mathrm{probe}}(E)\le R_H(E;\theta)}
 \left[
-\left(1-\frac{v_M}{c_f}\right)^2
+\left(1-\frac{v_2}{c_f}\right)^2
 +
-\left(1-\frac{v_O}{c_f}\right)^2
+\left(1-\frac{v_3}{c_f}\right)^2
 +
 d_{\mathrm{curv}}\!\left(\mathcal{B}_H\right)
 +
@@ -7141,7 +7145,7 @@ The worked classification is:
 | Probe regime | Condition | Required native record |
 | --- | --- | --- |
 | particle-probe | $E < E_H(\theta)$ | ordinary scattering or effective-field comparison may remain valid if sector gates pass |
-| handoff | $E\approx E_H(\theta)$ | the same $\theta$ must activate $v_M=c_f$, $v_O\to c_f$, and finite maximum-curvature labels |
+| handoff | $E\approx E_H(\theta)$ | the same $\theta$ must activate $v_2=c_f$, $v_3\to c_f$, and finite maximum-curvature labels |
 | horizon-interface | $E > E_H(\theta)$ | the record must report $\mathcal{B}_H$, $S_H$, release-channel rows, and exterior compact-object observables |
 
 The falsifier is not merely failure to choose a numerical Planck scale. The falsifier is a split record: if the short-distance probe uses one $\theta$ while the induced horizon-interface, entropy, and release-channel ledgers require another, then the high-energy closure has not survived promotion.
@@ -7152,8 +7156,8 @@ The horizon interface is the most important black-hole concept in the local dial
 
 At this interface:
 
-- the middle binary remains locked at $v = c_f$;
-- the outer binary is driven to its terminal alignment limit $v_O \to c_f$;
+- the binary 2 remains locked at $v = c_f$;
+- the binary 3 is driven to its terminal alignment limit $v_3 \to c_f$;
 - precession collapses toward zero;
 - information flow is compressed into an interface-like channel rather than ordinary volumetric propagation.
 
@@ -7198,7 +7202,7 @@ where $\Delta E_{H,j}$ is the horizon-interface or interior strong-field row and
 
 This is the disciplined version of the "roiling horizon" intuition. The horizon interface may contain intense photon-channel and photon-adjacent activity, and some of it may be routed into jets, diffuse radiative outflow, dark-sector escape, or later visible conversion. But each proposed route must state the release selector, the energy-frequency ledger, the polarization and angular-momentum handoff, and the coupling to the surrounding Noether sea. Otherwise the claim has only renamed black-hole radiation rather than deriving a strong-field transport channel.
 
-Modern holographic entropy work, including Ryu-Takayanagi, island, and replica-wormhole calculations, should be treated in this chapter as a comparison framework rather than as imported ontology. Its value is that it sharpens a high-value consistency target: a mature horizon-interface model should explain how compressed interface bookkeeping can remain compatible with Page-curve recovery and smooth effective horizons. It does not, by itself, supply the $\mathbb{A}\mathbb{A}\mathbb{A}$ mechanism. The native task is still to derive entropy and information accounting from terminal nested shell braid alignment, path-history bookkeeping, Noether sea storage, and release-channel selection.
+Modern holographic entropy work, including Ryu-Takayanagi, island, and replica-wormhole calculations, should be treated in this chapter as a comparison framework rather than as imported ontology. Its value is that it sharpens a high-value consistency target: a mature horizon-interface model should explain how compressed interface bookkeeping can remain compatible with Page-curve recovery and smooth effective horizons. It does not, by itself, supply the $\mathbb{A}\mathbb{A}\mathbb{A}$ mechanism. The local task is still to derive entropy and information accounting from the hypothesized terminal Family-A alignment, path-history bookkeeping, Noether sea storage, and release-channel selection.
 
 The Ryu-Takayanagi comparison makes this distinction sharper. A region-anchored entropy surface is not automatically the event horizon; in vacuum or nonthermal comparisons it can have no horizon component at all, while in thermal black-hole limits a large-region surface can wrap the horizon. For a candidate strong-field record $\theta$, let $\gamma_A^{\mathrm{eff}}(\theta)$ be the effective entropy surface associated with access region $A$, and let $H_{\mathrm{eff}}(\theta)=\{F_H=0\}$ denote the observer-level horizon surface selected by the same record. The useful diagnostic is the horizon-wrapping fraction
 $$
@@ -7222,8 +7226,8 @@ $$
 \sum_i E_i = M c_0^2,\quad
 \sum_i \mathbf{J}_i = \mathbf{J},\quad
 \sum_i q_i = Q,\quad
-v_M=c_f,\quad
-v_O\to c_f,\quad
+v_2=c_f,\quad
+v_3\to c_f,\quad
 \text{horizon-interface compatibility}
 \right\}
 $$
@@ -7420,7 +7424,7 @@ This gives a compact comparison rule for evaporation and endpoint proposals. A p
 
 No-hair, cosmic-censorship, Cauchy-horizon, and endpoint theorems enter this chapter with the same assumption discipline. Their strongest use is to preserve exterior compact-object behavior, horizon regularity, non-arbitrary continuation, and finite-release accounting where their hypotheses match the comparison regime. When a theorem assumes an isolated vacuum black hole, asymptotically flat exterior, or global hyperbolicity condition, it cannot by itself settle a black hole embedded in an evolving Noether sea. The retained burden is sharper: the native horizon-interface record must reproduce the exterior $(M,\mathbf{J},Q)$ coarse-graining, avoid observer-level naked-singularity pathology, and select a finite continuation family using finite active-medium boundary data.
 
-As a heuristic geometric picture, the horizon can also be described as a **dimensional pinch** in the nested shell braid shape trajectory. On this reading, ordinary 3D assemblies are flattened toward a near-planar disk at the alignment interface, while the interior self-hit regime permits re-opening of the suppressed axial degree of freedom. In shorthand, the proposed shape path is
+As a heuristic geometric picture, the horizon can also be described as a **dimensional pinch** along the candidate Family-A response path. On this reading, ordinary 3D assemblies are flattened toward a near-planar disk at the alignment interface, while the interior self-hit regime permits re-opening of the suppressed axial degree of freedom. In shorthand, the proposed response path is
 $$
 \text{3D sphere} \to \text{2D horizon disk} \to \text{3D interior reopening}
 $$
@@ -7438,7 +7442,7 @@ The strong-field closure should therefore be posed as a Noether sea boundary-con
 $$
 F_H=0,
 \qquad
-v_M=c_f,\quad v_O\to c_f
+v_2=c_f,\quad v_3\to c_f
 $$
 
 This chapter instantiates the canonical continuation-label slot $\{\Lambda_{\text{NS}}\}$ with the horizon-interface label ensemble $\{\lambda_i^H\}$ defined above, and $\partial\Omega$ denotes the boundary data supplied by the surrounding Noether sea and the effective exterior comparison region. The equation is a closure target, not a completed model: the task is to show that the same Noether sea variables that recover weak-field gravity can also admit a regular terminal-alignment interface under non-isolated embedding conditions. Compact, topologically identified, or otherwise non-asymptotically-flat comparison settings are useful stress tests for this requirement, but they do not add extra dimensions to the substrate ontology.
@@ -7449,7 +7453,7 @@ Recent regular-horizon cosmological-embedding work is useful at this comparison 
 
 ### Interior Dynamics and Recycling
 
-Inside the black-hole regime, the dominant language is recycling rather than annihilation. Matter and radiation driven inward do not disappear from ontology. They are processed through inner self-hit layers, middle-layer interface locking, and outer-layer reconfiguration. The resulting interior is best treated as a statistical medium of maximal-curvature assemblies rather than as a smooth classical fluid or a single deterministic orbit family.
+Inside the black-hole regime, the dominant language is recycling rather than annihilation. Matter and radiation driven inward do not disappear from ontology. They are processed through branch-derived self-hit layers, interface locking, and exposed-channel reconfiguration. The resulting interior is best treated as a statistical medium of maximal-curvature assemblies rather than as a smooth classical fluid or a single deterministic orbit family.
 
 The working picture has four parts:
 
@@ -7503,7 +7507,7 @@ A_H(M;\theta)
 4\pi R_H^2(M;\theta)
 $$
 
-The native strong-field interpretation does not treat $R_H$ or $A_H$ as primitive geometry of the Euclidean void. They are observer-level readouts of the same horizon-interface condition $v_M=c_f,\ v_O\to c_f$. Still, their scaling organizes which closure burden dominates. The interface label capacity scales schematically like
+The native strong-field interpretation does not treat $R_H$ or $A_H$ as primitive geometry of the Euclidean void. They are observer-level readouts of the same horizon-interface condition $v_2=c_f,\ v_3\to c_f$. Still, their scaling organizes which closure burden dominates. The interface label capacity scales schematically like
 
 $$
 N_{\mathrm{align}}(M;\theta)
@@ -7728,7 +7732,7 @@ This residual also states a useful failure mode. A model that matches a near-hol
 
 ### Relation to Dark Energy and Expansion History
 
-The black-hole chapter does not identify dark energy with black holes by definition. The baseline dark-energy mechanism in $\mathbb{A}\mathbb{A}\mathbb{A}$ remains Noether sea relaxation, as developed in [../cosmology/dark-energy.md](../../../../markdown/aaa/cosmology/dark-energy.md). Black holes enter that story only if strong-field recycling makes a measurable contribution to the slowly varying outer-binary tension sector.
+The black-hole chapter does not identify dark energy with black holes by definition. The baseline dark-energy mechanism in $\mathbb{A}\mathbb{A}\mathbb{A}$ remains Noether sea relaxation, as developed in [../cosmology/dark-energy.md](../../../../markdown/aaa/cosmology/dark-energy.md). Black holes enter that story only if strong-field recycling makes a measurable contribution to the slowly varying binary-3 tension sector.
 
 The clean constitutive chain is:
 
@@ -7767,7 +7771,7 @@ Within $\mathbb{A}\mathbb{A}\mathbb{A}$, such a signal would be interpreted cons
 
 That interpretation remains conditional. The observational correlation must first survive ordinary astrophysical alternatives such as hidden accretion, merger incompleteness, host selection, and mass-calibration drift. Even if the correlation survives, the theory still must show how interior recycling feeds a cosmological source term without spoiling other closure targets.
 
-In local usage, $K$ should therefore be treated as a phenomenological diagnostic rather than as a primitive constant of nature. Its value summarizes how strongly the population of recycling sites appears to track the expansion history in a given observational reconstruction. The underlying $\mathbb{A}\mathbb{A}\mathbb{A}$ claim would remain deeper: any apparent coupling must emerge from nested shell braid alignment, maximum-curvature storage, interface transport, and outward medium loading.
+In local usage, $K$ should therefore be treated as a phenomenological diagnostic rather than as a primitive constant of nature. Its value summarizes how strongly the population of recycling sites appears to track the expansion history in a given observational reconstruction. The underlying $\mathbb{A}\mathbb{A}\mathbb{A}$ hypothesis remains deeper: any apparent coupling must emerge from a derived braid-alignment response, maximum-curvature storage, interface transport, and outward medium loading.
 
 ### Population History and Source Accounting
 
@@ -7837,8 +7841,8 @@ This chapter centralizes the black-hole ontology and hands specific tasks to adj
 
 - [singularity-resolution.md](../../../../markdown/aaa/spacetime/singularity-resolution.md): canonical horizon alignment condition and singularity replacement language.
 - [general-relativity.md](../../../../markdown/aaa/spacetime/general-relativity.md): weak-field and strong-field observational closure targets.
-- [Nested Shell Braid Dynamics](../../../../markdown/aaa/noether-braid/braid-a1-dynamics.md#a1-dynamics): nested shell braid regime map, recycling sketches, and kinematic hypotheses.
-- [Mapping the Planck Scale to the Nested Shell Braid Geometry](../../../../markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-braid-alignment.md): Planck-alignment interpretation of terminal horizon locking.
+- [A1 Dynamics](../../../../markdown/aaa/noether-braid/braid-a1-dynamics.md#a1-dynamics): prescribed A1 regime map, recycling sketches, and kinematic hypotheses; it does not establish the black-hole assignment.
+- [Mapping the Planck Scale to the A1 Geometry](../../../../markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-braid-alignment.md): exploratory Planck-alignment interpretation of terminal horizon locking.
 - [../cosmology/dark-energy.md](../../../../markdown/aaa/cosmology/dark-energy.md): effective dark-energy source terms and late-time expansion history.
 - [../cosmology/CMB.md](../../../../markdown/aaa/cosmology/CMB.md): recycling cosmology and SMBH-sourced chronology mapping.
 - [../cosmology/dark-matter.md](../../../../markdown/aaa/cosmology/dark-matter.md): dark-sector processing and SMBH recycling constraints.
@@ -7849,7 +7853,7 @@ In $\mathbb{A}\mathbb{A}\mathbb{A}$, black holes are strong-field Noether sea re
 
 ## Singularity Resolution
 
-This chapter explains what replaces a singularity in the strong-field part of the model. The guiding idea is not that an infinite-density point is hidden behind better coordinates. It is that compact Noether braid assemblies enter a finite maximum-curvature or horizon-interface regime whose boundary data must close. This is the canonical strong-field bridge for [Noether Braid](../../../../markdown/aaa/noether-braid/noether-braid.md), [Nested Shell Braid Dynamics](../../../../markdown/aaa/noether-braid/braid-a1-dynamics.md#a1-dynamics), and [Black Holes](../../../../markdown/aaa/spacetime/black-holes.md).
+This chapter explains what replaces a singularity in the strong-field part of the model. The guiding idea is not that an infinite-density point is hidden behind better coordinates. It is that compact Noether braid assemblies enter a finite maximum-curvature or horizon-interface regime whose boundary data must close. This is the canonical strong-field bridge for [Noether Braid](../../../../markdown/aaa/noether-braid/noether-braid.md), [A1 Dynamics](../../../../markdown/aaa/noether-braid/braid-a1-dynamics.md#a1-dynamics), and [Black Holes](../../../../markdown/aaa/spacetime/black-holes.md).
 
 The important conversion is from an infinite-endpoint question to a finite-boundary-data question. The strong-field model must say what assembly state is packed, what exterior records remain readable, what boundary data determine continuation, and why no zero-volume or arbitrary branch endpoint is required.
 
@@ -7859,9 +7863,9 @@ This chapter is the canonical source for the strong-field event-horizon alignmen
 
 Use the following regime definition near the horizon:
 $$
-v_M=c_f,\qquad v_O\to c_f
+v_2=c_f,\qquad v_3\to c_f
 $$
-The arrow records approach from ordinary exterior coupling. At terminal alignment, the outer binary reaches the same field-speed threshold, with middle/outer binaries becoming coplanar and co-linear with the inner binary and precession ceasing in that limit.
+The arrow records approach from ordinary exterior coupling in this declared source record. At terminal alignment, binary 3 reaches the same field-speed threshold as binary 2, all three indexed binary axes become coplanar and co-linear, and precession ceases in that limit. These speed assignments are source-record constraints, not taxonomy-assigned roles.
 
 This condition is a constitutive boundary condition on Noether sea state, not an isolated metric ansatz imported from an asymptotically flat solution. The horizon is therefore treated as an interface problem: what packed assembly state is allowed, what boundary data reach the exterior, and which continuation labels remain finite? In schematic form, the horizon-interface closure problem is
 $$
@@ -7874,7 +7878,7 @@ F_H\!\left[
 \right]
 =0,
 \qquad
-v_M=c_f,\quad v_O\to c_f
+v_2=c_f,\quad v_3\to c_f
 $$
 The boundary data $\partial\Omega$ record the surrounding Noether sea state and effective exterior state, and $\{\Lambda_{\text{NS}}\}$ is the finite set of retained strong-field continuation labels selected by the record. Specific chapters instantiate this label slot with their own ensembles; for example, [Black Holes](../../../../markdown/aaa/spacetime/black-holes.md) uses its horizon-interface label ensemble $\{\lambda_i^H\}$. This display is the canonical statement of the horizon-interface closure problem: other chapters should cite this section and write the shorthand $F_H=0$ rather than restating the argument list. A viable singularity replacement must solve the alignment condition with finite boundary data in embedded, non-isolated settings, rather than relying on asymptotic flatness as an implicit support.
 
@@ -8037,44 +8041,44 @@ Recent regular-horizon cosmological-coupling constructions sharpen this warning.
 
 ### Maximal Curvature vs Planck Scale
 
-The **inner binary** (maximal curvature, self-hit regime) is a stabilization outcome of wake dynamics. The **middle binary always rides field speed** ($v=c_f$), with **scale and cadence retuning**; it serves as the **energy-storage fulcrum** for transfers across the nested shell braid.
+In the working indexed chart, **binary 1** is assigned the maximal-curvature self-hit regime as a proposed stabilization outcome of wake dynamics. **Binary 2** is constrained to the field-speed row ($v_2=c_f$), with **scale and cadence retuning**, as a candidate energy-storage channel for transfers across the candidate braid record. Neither role selects a taxonomy member or is established as a retained mechanism.
 
-In strong-field conditions (e.g., near an event horizon), the **outer binary frequency increases** and its **velocity approaches field speed**, while the **middle binary** remains at $v=c_f$ as its radius/frequency shift. At the horizon, the **middle and outer binaries reach $v=c_f$ and become coplanar and co-linear with the inner binary**, with **precession ceasing** at alignment.
+In the same working source record, strong-field conditions increase **binary 3's frequency** and drive $v_3$ toward field speed, while **binary 2** remains at $v_2=c_f$ as its radius and frequency shift. At the horizon-interface limit, binaries 2 and 3 reach $c_f$, all three indexed axes align, and precession ceases. This is a prescribed closure target, not a retained-branch result.
 
-One preserved intuition, to be read only as a heuristic, is that this alignment limit may correspond to a temporary **planar horizon state** rather than to the final interior shape. In that picture, the horizon is the point of strongest flattening, while deeper interior self-hit pressure can reopen the suppressed polar degree of freedom so the nested shell braid returns to a finite 3D configuration instead of terminating in a zero-volume endpoint. This is compatible with the maximum-curvature replacement logic, but it is not yet a derived mechanism; compare [Horizon Chirality and Planar Spin](../../../../markdown/aaa/spacetime/horizon-chirality.md).
+One preserved intuition, to be read only as a heuristic, is that this alignment limit may correspond to a temporary **planar horizon state** rather than to the final interior shape. In that picture, the horizon is the point of strongest flattening, while deeper interior self-hit response can reopen the suppressed polar degree of freedom so the Family-A braid returns to a finite 3D configuration instead of terminating in a zero-volume endpoint. This is compatible with the maximum-curvature replacement logic, but it is not yet a derived mechanism; compare [Horizon Chirality and Planar Spin](../../../../markdown/aaa/spacetime/horizon-chirality.md).
 
-**Mapping rule:** "Planck-scale" references in this framework map to the **event-horizon alignment condition** (nested shell braid coplanarity/co-linearity at $v=c_f$), unless an explicit derivation links them to another scale. The field-speed rows in this mapping are necessary alignment indicators, not a self-hit proof by themselves; the admitted branch still needs same-transmitter root existence, transversality/Jacobian control, transmitter-side acceleration weight, and retained ledger closure.
+**Mapping rule:** "Planck-scale" references in this framework map to the **event-horizon alignment condition** (Family-A axis convergence in the declared field-speed chart), unless an explicit derivation links them to another scale. The field-speed rows in this mapping are necessary alignment indicators, not a self-hit proof by themselves; the admitted branch still needs same-transmitter root existence, transversality/Jacobian control, transmitter-side acceleration weight, and retained ledger closure.
 
 ## Horizon Chirality
 
-This chapter studies one narrow theory question: how the Noether braid `pro/anti` distinction should be understood as a nested shell braid approaches the planar horizon state. For this note we set aside bookkeeping questions and focus on geometry, orbit direction, and the reduction from a 3D precessing scaffold to a planar exterior view.
+This chapter studies one narrow theory question: how the Noether braid `pro/anti` distinction should be understood as a Family-A braid approaches the planar horizon state. For this note we set aside bookkeeping questions and focus on geometry, orbit direction, and the reduction from a 3D precessing scaffold to a planar exterior view.
 
-The guiding problem is simple. In ordinary low-stress conditions, the nested shell braid is a fully 3D object with ordered binary roles and precession structure. At the event horizon, the same assembly is driven toward coplanarity and alignment. The question is whether `pro/anti` remains directly visible in that planar state or whether only a reduced exterior spin pattern survives.
+The guiding problem is simple. In ordinary low-stress conditions, the Family-A braid is a fully 3D object with persistent binary indices, an ordered set of normals, and precession structure. At the event horizon, the same assembly is hypothesized to approach coplanarity and alignment. The question is whether `pro/anti` remains directly visible in that planar state or whether only a reduced exterior spin pattern survives.
 
 The chapter is therefore a reduction map, not a new chirality doctrine. It keeps four labels from collapsing into one another: the deeper 3D pro/anti branch orientation, polarity conjugation at fixed worldlines, the planar clockwise/counterclockwise sign seen from an exterior normal, and any later helicity-like sign tied to a propagation or translation axis.
 
-### Canonical Horizon Condition
+### Source-Record Horizon Condition
 
-The canonical horizon condition is inherited from [singularity-resolution.md](../../../../markdown/aaa/spacetime/singularity-resolution.md) and [black-holes.md](../../../../markdown/aaa/spacetime/black-holes.md). Near the horizon interface, the working regime is
+The Family-A terminal-alignment target is inherited from [singularity-resolution.md](../../../../markdown/aaa/spacetime/singularity-resolution.md) and [black-holes.md](../../../../markdown/aaa/spacetime/black-holes.md). In the illustrative source record used here, the near-horizon speed rows are
 
 $$
-v_M = c_f,
+v_2 = c_f,
 \qquad
-v_O \to c_f
+v_3 \to c_f
 $$
 
-with the middle and outer binaries becoming coplanar and co-linear with the inner binary at alignment and precession ceasing in that limit.
+with binaries 2 and 3 becoming coplanar and collinear with binary 1 at alignment and precession ceasing in that limit.
 
-This chapter does not alter that constitutive rule. It asks what chirality information can still be distinguished once the nested shell braid has been compressed into that planar boundary-like state.
+The speed assignments to binaries 2 and 3 belong to this source record; the taxonomy does not assign field-speed roles to fixed indices. This chapter asks what chirality information can still be distinguished once the Family-A braid has been compressed into that planar boundary-like state.
 
 ### Pro/Anti Before Planar Lock
 
-Away from the horizon, the project treats `pro/anti` as an ordering property of the 3D nested shell braid scaffold rather than as polarity conjugation, matter/antimatter, or a net-charge distinction. The orientation basis is owned by [Noether Sea Pro/Anti Coupling](../../../../markdown/aaa/spacetime/noether-sea-pro-anti-coupling.md#proanti-noether-braid-basis):
+Away from the horizon, the project treats `pro/anti` as an ordering property of the 3D Family-A braid scaffold rather than as polarity conjugation, matter/antimatter, or a net-charge distinction. The orientation basis is owned by [Noether Sea Pro/Anti Coupling](../../../../markdown/aaa/spacetime/noether-sea-pro-anti-coupling.md#proanti-noether-braid-basis):
 
-- `pro`: $H \to M \to L$ ordering in time;
-- `anti`: $H \to L \to M$ ordering in time.
+- `pro`: $1 \to 2 \to 3$ ordering in time;
+- `anti`: $1 \to 3 \to 2$ ordering in time.
 
-That distinction is natural in the ordinary nested shell braid because the three binaries occupy non-coplanar planes with an ordered set of normals and a genuine precession structure. In that regime, `pro/anti` is a 3D chirality datum.
+That distinction is natural in the ordinary Family-A braid because the three binaries occupy non-coplanar planes with an ordered set of normals and a genuine precession structure. In that regime, `pro/anti` is a 3D chirality datum.
 
 The strongest mathematical candidate beneath that datum comes from [causal-action-functional.md](../../../../markdown/aaa/dynamics/causal-action-functional.md): the causal writhe
 
@@ -8090,7 +8094,7 @@ records signed causal-locus crossings or linkages in the retained branch record 
 
 So the cleanest reading is:
 
-- the surface convention for `pro/anti` remains the ordered `HML/HLM` nested shell braid distinction;
+- the surface convention for `pro/anti` remains the ordered `123/132` Family-A braid distinction;
 - the best formalization candidate is a topological branch label carried by the retained causal-locus and framed-topology record, with $Wr_c$ as a leading crossing statistic only when the same retained branch record also supplies $D_t$, $D_r$, and $W^{\mathrm{acc}}$.
 - polarity conjugation $C$ leaves that order unchanged because it relabels polarities at fixed worldlines; parity $P$ reverses the order.
 
@@ -8118,7 +8122,7 @@ To keep terms from sliding into one another, use the following provisional dicti
 
 | Label | Meaning in this note | Typical regime |
 | --- | --- | --- |
-| `pro/anti` | the deeper 3D Noether braid ordered orientation, tracked by structure such as `HML` versus `HLM`; $C$-even and $P$-odd | pre-planar 3D braid |
+| `pro/anti` | the deeper 3D Noether braid ordered orientation, tracked by structure such as `123` versus `132`; $C$-even and $P$-odd | pre-planar 3D braid |
 | polarity-conjugate pair | one retained record $\mathfrak B$ and its fixed-worldline polarity-reversed image $C(\mathfrak B)$ | any regime, including the planar limit |
 | `CW/CCW` | the exterior planar angular-momentum sign seen from one chosen viewing side of a planarized Noether braid | horizon / planar lock |
 | `left/right` | a possible axial sign relative to translation, for example $\hat J_{\text{net}} \parallel \pm \hat{\mathbf V}$, if that later proves to control forward exposure of the weak-active structure | high-velocity aligned regime |
@@ -8136,15 +8140,15 @@ The horizon question becomes clearer when compared against the main assembly sec
 | $2+2$ pro/anti cluster hypothesis | `2+2` pro/anti cluster | 3D coupled cluster | shows balanced multi-braid organization without collapsing to one sign |
 | Orientation-selective reaction channels | pro/anti encounters can open rapid reconfiguration channels without thereby being matter/antimatter events | mixed 3D and reaction geometry | tests whether ordered orientation changes reaction accessibility |
 
-This comparison helps keep the horizon problem honest. The goal is not to prove that the universe is mostly pro or mostly anti. The goal is to understand how one compressed nested shell braid advertises its branch structure when driven into the strongest alignment regime.
+This comparison helps keep the horizon problem honest. The goal is not to prove that the universe is mostly pro or mostly anti. The goal is to understand how one compressed Family-A braid advertises its branch structure when driven into the strongest alignment regime.
 
 The photon row is also an interface to the radiation and cosmology stack. Because the photon carrier is already a moving planar pro/anti pair, it is the ordinary transport channel most naturally comparable to the flat symmetry-breaking state. That does not make every photon a horizon fragment, but it does make horizon-adjacent photon processing a serious candidate mechanism: the same planar branch logic can appear as free photon propagation, horizon-interface compression, strong-field blueshift, outward redshift, or release-channel conversion depending on the surrounding Noether sea record.
 
 ### Exterior Planar Angular-Momentum Basis
 
-Fix one exterior viewing direction normal to the horizon disk. From that viewpoint, each planar binary appears to rotate either clockwise (`CW`) or counterclockwise (`CCW`). If the three binaries remain distinguishable by role as `H`, `M`, and `L`, then the full planar angular-momentum sign space contains exactly $2^3 = 8$ possibilities.
+Fix one exterior viewing direction normal to the horizon disk. From that viewpoint, each planar binary appears to rotate either clockwise (`CW`) or counterclockwise (`CCW`). If the three binaries remain distinguishable by persistent indices `1`, `2`, and `3`, then the full planar angular-momentum sign space contains exactly $2^3 = 8$ possibilities.
 
-| Row | H | M | L | Class | Comment |
+| Row | 1 | 2 | 3 | Class | Comment |
 | --- | --- | --- | --- | --- | --- |
 | 1 | `CW` | `CW` | `CW` | uniform | clean common-sign lock |
 | 2 | `CW` | `CW` | `CCW` | mixed |  |
@@ -8180,22 +8184,22 @@ The simplest exterior quantity is the sign of the common planar angular momentum
 
 This chapter will call that reduced exterior quantity **boundary helicity**: the horizon-local sign of common planar angular momentum relative to a chosen normal. The term is deliberately narrower than standard helicity until the normal is identified with the relevant propagation or translation direction.
 
-The deeper `pro/anti` distinction is plausibly stronger than boundary helicity alone. In the 3D scaffold, `pro/anti` tracks ordered nested shell braid chirality, not merely the sign of one visible planar swirl. Once the horizon suppresses precession and forces coplanarity, two different 3D histories may collapse to the same exterior planar sign.
+The deeper `pro/anti` distinction is plausibly stronger than boundary helicity alone. In the 3D scaffold, `pro/anti` tracks ordered Family-A braid chirality, not merely the sign of one visible planar swirl. Once the horizon suppresses precession and forces coplanarity, two different 3D histories may collapse to the same exterior planar sign.
 
 That motivates the following working distinction:
 
 - **Boundary helicity:** the visible sign of the common planar angular momentum at the horizon, measured relative to a chosen normal.
-- **Core chirality:** the deeper `pro/anti` distinction inherited from the ordered 3D nested shell braid before flattening.
+- **Core chirality:** the deeper `pro/anti` distinction inherited from the ordered 3D Family-A braid before flattening.
 
 If this distinction is correct, then the horizon does not necessarily erase `pro/anti`, but it may compress it so strongly that the exterior observer sees only a reduced proxy.
 
 ### Translation-Axis Alignment at High Velocity
 
-The next question is whether a rapidly translating nested shell braid should drive the three orbital angular-momentum vectors toward the translation axis itself.
+The next question is whether a rapidly translating Family-A braid should drive the three orbital angular-momentum vectors toward the translation axis itself.
 
 The answer is dynamical rather than purely kinematic. Straight-line translation does **not** require that result merely from conservation laws. In the path-history dynamics, total linear momentum and total angular momentum are distinct conserved quantities, so an isolated translating assembly may in principle carry internal angular momentum whose axis is not parallel to the center-of-mass velocity.
 
-The stronger argument comes from the high-velocity delay geometry. Use the primitive branch-chart channel here: $v_{\text{trans}}=\|\mathbf V_{\text{trans}}\|$ is the native center-drift speed, $\beta_f=v_{\text{trans}}/c_f$, and $\gamma_f=(1-\beta_f^2)^{-1/2}$. Let $(x_{\perp,1},x_{\perp,2},x_\parallel)$ be principal-frame coordinates for the oblate spheroidal envelope, with $x_\parallel$ along the translation direction. Then the geometry inherited from [Braid Envelope Geometry](../../../../markdown/aaa/noether-braid/braid-envelope-geometry.md) and its dynamics treatment in [Nested Shell Braid Dynamics](../../../../markdown/aaa/noether-braid/braid-a1-dynamics.md#a1-dynamics) is
+The stronger argument comes from the high-velocity delay geometry. Use the primitive branch-chart channel here: $v_{\text{trans}}=\|\mathbf V_{\text{trans}}\|$ is the native center-drift speed, $\beta_f=v_{\text{trans}}/c_f$, and $\gamma_f=(1-\beta_f^2)^{-1/2}$. Let $(x_{\perp,1},x_{\perp,2},x_\parallel)$ be principal-frame coordinates for the oblate spheroidal envelope, with $x_\parallel$ along the translation direction. Then the geometry inherited from [Braid Envelope Geometry](../../../../markdown/aaa/noether-braid/braid-envelope-geometry.md) and its dynamics treatment in [A1 Dynamics](../../../../markdown/aaa/noether-braid/braid-a1-dynamics.md#a1-dynamics) is
 
 $$
 \frac{x_{\perp,1}^2+x_{\perp,2}^2}{R_\perp^2}
@@ -8243,7 +8247,7 @@ $$
 
 so the restoring pressure toward axial alignment strengthens as $v_{\text{trans}} \to c_f$.
 
-This gives a precise version of the intuition: a high-velocity nested shell braid should be driven toward a state in which the three orbital angular-momentum vectors are **coaxial with the line of translation**, not because momentum conservation alone demands it, but because delayed closure becomes least frustrated there.
+This gives a precise version of the intuition: a high-velocity Family-A braid should be driven toward a state in which the three orbital angular-momentum vectors are **coaxial with the line of translation**, not because momentum conservation alone demands it, but because delayed closure becomes least frustrated there.
 
 ### Exact Conservation Versus Dynamical Selection
 
@@ -8273,7 +8277,7 @@ $$
 
 The intended label flow along that ladder is:
 
-1. In the ordinary 3D regime, `pro/anti` is carried by ordered nested shell braid chirality.
+1. In the ordinary 3D regime, `pro/anti` is carried by ordered Family-A braid chirality.
 2. Under high translation speed, the orbital normals are biased toward the translation axis.
 3. Near the terminal aligned state, the surviving branch data may reduce to the sign of the common axial orientation and then to the sign of the visible planar helicity.
 4. After passage through the lock, the Noether braid may either preserve that branch, re-expand with the same handed history, or undergo a deeper reconfiguration if the planar degeneracy is strong enough.
@@ -8284,8 +8288,8 @@ This ladder is still a working map, not a completed derivation. Its value is org
 
 The most conservative horizon hypothesis is that the stable terminal branches are the two uniform planar rows:
 
-- Row 1: `H = M = L = CW`;
-- Row 8: `H = M = L = CCW`.
+- Row 1: `1 = 2 = 3 = CW`;
+- Row 8: `1 = 2 = 3 = CCW`.
 
 These are the cleanest candidates for the two horizon-level branches that an exterior observer could identify. In that reading, the horizon presents a binary choice of common-sign planar lock.
 
@@ -8321,11 +8325,11 @@ In the more cautious reduction, the two uniform planar states are still the visi
 - the uniform planar sign is the **visible boundary marker**;
 - the deeper `pro/anti` label still refers to the ordered 3D chirality from which the planar state was reached.
 
-On this reading, the horizon preserves only a compressed image of the deeper nested shell braid chirality. The exterior observer sees the branch, but not necessarily the full internal ordering history.
+On this reading, the horizon preserves only a compressed image of the deeper Family-A braid chirality. The exterior observer sees the branch, but not necessarily the full internal ordering history.
 
-Theory B is the stronger conceptual fit with the existing 3D `HML/HLM` framing, because that framing is richer than a single planar spin sign.
+Theory B is the stronger conceptual fit with the existing 3D `123/132` framing, because that framing is richer than a single planar spin sign.
 
-The history-lifted reading also sets a guardrail for nearby labels. Horizon `pro/anti`, boundary helicity, `CW/CCW`, `HML/HLM`, and weak left/right language should not be identified with one another by a visible planar sign alone. A stronger identification requires the [same-record spinor-label pullback](../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md#same-record-spinor-label-pullback): a component row carrying the lifted history $\widetilde r(s)$, the row-local parity checks $\Pi_{W,r}^{2\pi}$ and $\Pi_{W,r}^{4\pi}$, a quotient witness, doubled-path restoration, and gauge invariance. Without those rows, the horizon sign is a boundary-visible marker for a deeper branch history, not the whole chirality proof.
+The history-lifted reading also sets a guardrail for nearby labels. Horizon `pro/anti`, boundary helicity, `CW/CCW`, `123/132`, and weak left/right language should not be identified with one another by a visible planar sign alone. A stronger identification requires the [same-record spinor-label pullback](../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md#same-record-spinor-label-pullback): a component row carrying the lifted history $\widetilde r(s)$, the row-local parity checks $\Pi_{W,r}^{2\pi}$ and $\Pi_{W,r}^{4\pi}$, a quotient witness, doubled-path restoration, and gauge invariance. Without those rows, the horizon sign is a boundary-visible marker for a deeper branch history, not the whole chirality proof.
 
 ### Possible Left/Right Spin Mapping
 
@@ -8352,7 +8356,7 @@ In that reading, the horizon or near-horizon limit does not merely present two b
 
 or the reverse, depending on the eventual sign convention.
 
-This should remain a live hypothesis rather than a settled identification. The safe claim is only that the high-velocity math strongly favors **axialization** of the nested shell braid angular-momentum vectors along the line of translation, and that the surviving sign choice is exactly the kind of binary datum that could later map onto a left/right spin label.
+This should remain a live hypothesis rather than a settled identification. The safe claim is only that the high-velocity math strongly favors **axialization** of the Family-A braid angular-momentum vectors along the line of translation, and that the surviving sign choice is exactly the kind of binary datum that could later map onto a left/right spin label.
 
 The explicit defer condition is that terminal axial sign,
 
@@ -8368,10 +8372,10 @@ This chapter mixes canonical inputs with stronger and weaker hypotheses. The dis
 
 | Claim | Status |
 | --- | --- |
-| horizon lock drives the nested shell braid toward coplanarity and suppresses precession | canonical in project framing |
+| Family-A terminal alignment drives the braid toward coplanarity and suppresses precession | canonical target in project framing; retained-branch derivation remains open |
 | `pro/anti` is a deeper 3D Noether braid chirality label rather than a net-charge label | canonical working convention |
 | `Wr_c` and causal-locus topology supply the best formalization candidate for that chirality | strong structural candidate only on the same retained branch record that supplies $D_t$, $D_r$, and $W^{\mathrm{acc}}$; not yet sole canonical definition |
-| the planar exterior sign space has 8 rows for labeled `H/M/L` binaries | exact combinatorial statement |
+| the planar exterior sign space has 8 rows for labeled `1/2/3` binaries | exact combinatorial statement |
 | high translation speed biases orbital normals toward the translation axis | strong geometric argument in this chapter |
 | the two uniform planar rows are the most likely stable terminal horizon branches | strong working hypothesis |
 | the six mixed rows are transitional or frustrated rather than stable endpoint states | plausible but still open |
@@ -8416,7 +8420,7 @@ The safest working rule is:
 
 ### Simulation Diagnostics
 
-If this note is to become more than a conceptual sketch, the following diagnostics should be added to simulations of fast translating or horizon-adjacent nested shell braids:
+If this note is to become more than a conceptual sketch, the following diagnostics should be added to simulations of fast translating or horizon-adjacent Family-A braids:
 
 - **Axis-alignment diagnostic:** track $\hat J_{\text{net}} \cdot \hat{\mathbf V}$ and test whether it tends toward $\pm 1$ as $v_{\text{trans}} \to c_f$.
 - **Tilt decay diagnostic:** track each orbital-normal angle $\alpha_i$ to test whether non-axial states relax toward the translation axis with a rate that grows with $\gamma$.
@@ -8431,8 +8435,8 @@ The full planar spin-sign space at the horizon has eight rows because each of th
 
 That yields a disciplined provisional picture:
 
-- `pro/anti` in the ordinary nested shell braid is a 3D chirality or ordering property;
-- the horizon compresses the nested shell braid into a planar state with a reduced exterior signature;
+- `pro/anti` in the ordinary Family-A braid is a 3D chirality or ordering property;
+- the horizon compresses the Family-A braid into a planar state with a reduced exterior signature;
 - the exterior planar state has eight logical spin permutations;
 - the two uniform rows are the best candidates for stable horizon branches;
 - the other six rows are most naturally read as transitional, frustrated, or unstable states unless future dynamics show otherwise.
@@ -8441,8 +8445,8 @@ That yields a disciplined provisional picture:
 
 - [singularity-resolution.md](../../../../markdown/aaa/spacetime/singularity-resolution.md): canonical horizon alignment condition.
 - [black-holes.md](../../../../markdown/aaa/spacetime/black-holes.md): horizon interface and strong-field ontology.
-- [Nested Shell Braid Dynamics](../../../../markdown/aaa/noether-braid/braid-a1-dynamics.md#a1-dynamics): regime map, planarity diagnostics, and alignment observables.
-- [Mapping the Planck Scale to the Nested Shell Braid Geometry](../../../../markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-braid-alignment.md): terminal planar lock and alignment-horizon interpretation.
+- [A1 Dynamics](../../../../markdown/aaa/noether-braid/braid-a1-dynamics.md#a1-dynamics): regime map, planarity diagnostics, and alignment observables.
+- [Mapping the Planck Scale to Family-A Geometry](../../../../markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-braid-alignment.md): terminal planar lock and alignment-horizon interpretation.
 - [angular-momentum-and-spin.md](../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md): shared proof ledger for promoting boundary-helicity proxy language into observer-level spin or helicity claims.
 - [../assemblies/fermions/color-charge-su3.md](../../../../markdown/aaa/assemblies/fermions/color-charge-su3.md): separation of pro/anti ordered orientation from matter/antimatter polarity conjugation.
 - [../assemblies/fermions/quantum-number-mapping.md](../../../../markdown/aaa/assemblies/fermions/quantum-number-mapping.md): ordered-triad, polarity-conjugation, and chirality language.

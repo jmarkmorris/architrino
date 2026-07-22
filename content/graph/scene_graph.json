@@ -348,7 +348,7 @@
     },
     {
       "id": "archie__ideal_braid",
-      "name": "Ideal Noether Braid: Lorentz Geometry App",
+      "name": "A1 Lorentz Geometry",
       "path": "content/scenes/archie/ideal_braid.json",
       "nodeType": "scene"
     },
@@ -2604,7 +2604,7 @@
     },
     {
       "id": "content/markdown/aaa/archie/ideal-braid-guide.md",
-      "name": "Ideal Braid Guide",
+      "name": "A1 Lorentz Geometry Guide",
       "path": "content/markdown/aaa/archie/ideal-braid-guide.md",
       "nodeType": "markdown_doc"
     },
@@ -3174,7 +3174,7 @@
     },
     {
       "id": "content/markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-braid-alignment.md",
-      "name": "Mapping the Planck Scale to the Nested Shell Braid Geometry",
+      "name": "Mapping the Planck Scale to the A1 Geometry",
       "path": "content/markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-braid-alignment.md",
       "nodeType": "markdown_doc"
     },
@@ -3582,7 +3582,7 @@
     },
     {
       "id": "content/markdown/aaa/validation/simulations/nested-shell-braid-action-increment-protocol.md",
-      "name": "Nested Shell Braid Action-Increment Protocol",
+      "name": "A1 Action-Increment Protocol",
       "path": "content/markdown/aaa/validation/simulations/nested-shell-braid-action-increment-protocol.md",
       "nodeType": "markdown_doc"
     },
@@ -3952,7 +3952,7 @@
       "nodeId": "scene:content/scenes/archie/ideal_braid.json",
       "nodeType": "scene",
       "id": "archie__ideal_braid",
-      "name": "Ideal Noether Braid: Lorentz Geometry App",
+      "name": "A1 Lorentz Geometry",
       "path": "content/scenes/archie/ideal_braid.json",
       "searchTarget": "content/scenes/archie/ideal_braid.json",
       "implicit": false
@@ -7327,7 +7327,7 @@
       "nodeId": "markdown_doc:content/markdown/aaa/archie/ideal-braid-guide.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/archie/ideal-braid-guide.md",
-      "name": "Ideal Braid Guide",
+      "name": "A1 Lorentz Geometry Guide",
       "path": "content/markdown/aaa/archie/ideal-braid-guide.md",
       "searchTarget": "content/markdown/aaa/archie/ideal-braid-guide.md",
       "implicit": false
@@ -8182,7 +8182,7 @@
       "nodeId": "markdown_doc:content/markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-braid-alignment.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-braid-alignment.md",
-      "name": "Mapping the Planck Scale to the Nested Shell Braid Geometry",
+      "name": "Mapping the Planck Scale to the A1 Geometry",
       "path": "content/markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-braid-alignment.md",
       "searchTarget": "content/markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-braid-alignment.md",
       "implicit": false
@@ -8794,7 +8794,7 @@
       "nodeId": "markdown_doc:content/markdown/aaa/validation/simulations/nested-shell-braid-action-increment-protocol.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/validation/simulations/nested-shell-braid-action-increment-protocol.md",
-      "name": "Nested Shell Braid Action-Increment Protocol",
+      "name": "A1 Action-Increment Protocol",
       "path": "content/markdown/aaa/validation/simulations/nested-shell-braid-action-increment-protocol.md",
       "searchTarget": "content/markdown/aaa/validation/simulations/nested-shell-braid-action-increment-protocol.md",
       "implicit": false

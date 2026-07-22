@@ -594,15 +594,15 @@ Family and member names are optional aliases. The Description column may aid nav
 
 | Member ID | Family name | Member name | Geometry record | Borg depiction | Description |
 | --- | --- | --- | --- | --- | --- |
-| `A1` | Noether core | General independent-coordinate | Not yet assigned | Not yet assigned | General Family-A member with independently assignable positive radii, frequencies, phases, and binary decompositions. |
-| `A1.1` | Noether core | Equal-frequency | Not yet assigned | Not yet assigned | A1 constrained to one common binary frequency while retaining independently assignable radii. |
-| `A1.2` | Noether core | Equal-frequency equal-radius | Not yet assigned | Not yet assigned | A1 constrained to equal radii, equal frequencies, and phases separated by $120^\circ$. |
-| `A1.3` | Noether core | 4:2:1-frequency | Not yet assigned | Not yet assigned | A1 constrained to the indexed frequency ratio $f_1:f_2:f_3=4:2:1$; the ratio does not order the radii. |
-| `A1.4` | Noether core | 3:2:1-frequency | Not yet assigned | Not yet assigned | A1 constrained to the indexed frequency ratio $f_1:f_2:f_3=3:2:1$; the ratio does not order the radii. |
-| `A2` | Noether core | Fully symmetric | Not yet assigned | Not yet assigned | Three equivalent binaries with equal geometry, equal frequencies, $120^\circ$ phase spacing, and one circulation sense. |
-| `B1` | Coincident binary axes | Rigid common-frequency | Not yet assigned | Not yet assigned | One braid with one common binary midpoint, coincident binary axes, one common frequency, and one common circulation sense. |
-| `C1` | Two-braid composition | Co-rotating B1 pair | Not yet assigned | Not yet assigned | Two complete B1 braids with a common circulation sense and explicit relative placement, orientation, and phase. |
-| `C2` | Two-braid composition | Counter-rotating B1 pair | Not yet assigned | Not yet assigned | Two complete B1 braids with opposite circulation senses and explicit relative placement, orientation, and phase. |
+| `A1` | Noether core | General independent-coordinate | `family-a-a1-general-v1` | `A1 — general` | General Family-A member with independently assignable positive radii, frequencies, phases, and binary decompositions. |
+| `A1.1` | Noether core | Equal-frequency | `family-a-a1-1-equal-frequency-v1` | `A1.1 — equal frequency` | A1 constrained to one common binary frequency while retaining independently assignable radii. |
+| `A1.2` | Noether core | Equal-frequency equal-radius | `family-a-a1-2-equal-frequency-equal-radius-v1` | `A1.2 — equal frequency, equal radius` | A1 constrained to equal radii, equal frequencies, and phases separated by $120^\circ$. |
+| `A1.3` | Noether core | 4:2:1-frequency | `family-a-a1-3-4-2-1-frequency-v1` | `A1.3 — 4:2:1 frequency` | A1 constrained to the indexed frequency ratio $f_1:f_2:f_3=4:2:1$; the ratio does not order the radii. |
+| `A1.4` | Noether core | 3:2:1-frequency | `family-a-a1-4-3-2-1-frequency-v1` | `A1.4 — 3:2:1 frequency` | A1 constrained to the indexed frequency ratio $f_1:f_2:f_3=3:2:1$; the ratio does not order the radii. |
+| `A2` | Noether core | Fully symmetric | `family-a-a2-fully-symmetric-v1` | `A2 — fully symmetric` | Three equivalent binaries with equal geometry, equal frequencies, $120^\circ$ phase spacing, and one circulation sense. |
+| `B1` | Coincident binary axes | Rigid common-frequency | Four source records: interior, high-axial, all-equatorial, and all-axial | Four `B1` coordinate labels in Borg | One braid with one common binary midpoint, coincident binary axes, one common frequency, and one common circulation sense. |
+| `C1` | Two-braid composition | Co-rotating B1 pair | `family-c-c1-co-rotating-b1-pair-v1` | `C1 — co-rotating B1 pair` | Two complete B1 braids with a common circulation sense and explicit relative placement, orientation, and phase. |
+| `C2` | Two-braid composition | Counter-rotating B1 pair | `family-c-c2-counter-rotating-b1-pair-v1` | `C2 — counter-rotating B1 pair` | Two complete B1 braids with opposite circulation senses and explicit relative placement, orientation, and phase. |
 
 ## Braid Family A
 
@@ -2156,7 +2156,7 @@ $$
 3\left(\hat{\mathbf n}\cdot\left(\epsilon_{+,x}-\epsilon_{-,x}\right)\right)\hat{\mathbf n}
 $$
 
-The transverse dipole components cancel in balanced three-phase fashion. This cancellation is a statement about the braid's summed distant signature, not about the accelerations inside it: each architrino still receives the full delayed influence of all five partners through its own causal roots, and none of those per-receiver contributions vanish. What cancels is the collective polarity-signed moment that a distant receiver reconstructs from the superposed wakes. A branch that flattens toward the transverse plane therefore loses its leading polarity-signed moment entirely: the flattened fast configuration is quiet at dipole order, with its first surviving structure at higher moment order. This identity is the channel's native contribution to the energy-shielding story used by the nested chapters, and it links the terminal planar limit to wake quietness rather than to increased exposure.
+The transverse dipole components cancel in balanced three-phase fashion. This cancellation is a statement about the braid's summed distant signature, not about the accelerations inside it: each architrino still receives the full delayed influence of all five partners through its own causal roots, and none of those per-receiver contributions vanish. What cancels is the collective polarity-signed moment that a distant receiver reconstructs from the superposed wakes. A branch that flattens toward the transverse plane therefore loses its leading polarity-signed moment entirely: the flattened fast configuration is quiet at dipole order, with its first surviving structure at higher moment order. This identity is the channel's native contribution to the energy-shielding story used by the Family-A chapters, and it links the terminal planar limit to wake quietness rather than to increased exposure.
 
 ### Momentum Screw and Helicity
 
@@ -2872,16 +2872,56 @@ is a geometry-response exposure fraction. It measures external cancellation unde
 
 The signed wake $\mathcal W$, unsigned wake $\mathcal W_{\mathrm{abs}}$, virtual-probe response $\mathbf A_p$, angular coefficients, and exposure fraction $\eta_{\mathrm{ext}}$ are the available analytical ledgers. None is an energy quantity. This method therefore does not report total energy, apparent energy, apparent-energy fractions, or stability scores. It also does not include a Noether-sea response. Introducing any such quantity requires a separate definition and cannot be accomplished by relabeling a wake-exposure measure.
 
-### Parameter Sampling
+### Analytical Evaluation Programs
+
+The measures in this chapter require analytical programs that evaluate the declared formulas for an exact source record. These programs are not assembly-evolution simulations. They hold the prescribed paths fixed and calculate their consequences at the requested absolute-coordinate events.
+
+The analytical program suite should have separable components for:
+
+1. validating and evaluating the source paths, velocities, accelerations, periods, and taxonomy coordinates;
+2. enumerating every retained causal root and recording its identity, topology, and $D_t$ margin;
+3. evaluating $\mathcal W$, $\mathcal W_{\mathrm{abs}}$, $\chi_{\mathcal W}$, and $\mathbf A_p$ at internal and external probes;
+4. reducing the event-level results into the separation, root, mismatch, exposure, angular, spectral, radial-scaling, symmetry, and sensitivity measures defined above; and
+5. emitting a result packet keyed by the exact source hash and protocol hash.
+
+Each component must expose numerical tolerances and convergence checks. Where a closed-form, symmetry-protected, static, or other independently known analytical case exists, it should be used as an independent check. Replaying output from the same program establishes reproducibility, not correctness.
+
+Only after these programs can calculate the common measure set should a broad parameter campaign begin. Otherwise a sampling run merely produces many configurations without a controlled basis for comparing them.
+
+### Monte Carlo Configuration-Space Analysis
 
 Let $\boldsymbol\theta$ contain the complete taxonomy coordinates, group-translation speed, phase origin, and any permitted prescribed-history coordinates. A sampling campaign must publish the domain $\Theta$, units, constraints, and sampling measure. There is no coordinate-free meaning to “random braid”; uniform sampling in radius, logarithmic radius, speed, or frequency represents different candidate populations.
 
-The analytical campaign has two stages:
+For a family/member candidate $M$, define its admissible configuration space by
 
-1. **Random coverage.** Draw a reproducible, seeded sample from each declared measure over $\Theta$. Use stratification so narrow coordinate regions are not lost by chance.
-2. **Directed refinement.** Refine around strong external cancellation, admissible root margins, and boundaries where root topology or prescribed-period closure changes. Include deliberately adverse directions so the method does not optimize only one favorable projection.
+$$
+\Theta_M
+=
+\left\{
+\boldsymbol\theta:
+\boldsymbol\theta\text{ satisfies the taxonomy relations and declared analysis gates for }M
+\right\}.
+$$
+
+A Monte Carlo campaign draws prescribed instantiations $\boldsymbol\theta^{(k)}\in\Theta_M$, builds the exact source record $S(\boldsymbol\theta^{(k)})$, and runs the analytical programs to obtain
+
+$$
+\mathbf G^{(k)}
+=
+\mathbf G\!\left[S(\boldsymbol\theta^{(k)});P\right].
+$$
+
+The common protocol $P$ must remain fixed across the compared sample. A changed source definition, measure, probe set, history depth, root policy, boundary, or normalization requires an impact review and invalidates every affected score. The campaign must recompute those scores before they re-enter the comparison population.
+
+The analytical campaign has three stages:
+
+1. **Monte Carlo coverage.** Draw a reproducible, seeded sample from each declared measure over $\Theta_M$. Use stratification so narrow coordinate regions are not lost by chance.
+2. **Directed refinement.** Add targeted samples around strong external cancellation, admissible root margins, candidate optima, and boundaries where root topology or prescribed-period closure changes. Include deliberately adverse directions so the method does not optimize only one favorable projection.
+3. **Robustness and sensitivity analysis.** Resample neighborhoods around leading instantiations, vary one declared coordinate at a time where useful, and report whether the apparent advantage survives small changes in coordinates, sampling measure, and numerical resolution.
 
 Every result row must include the family/member identifier, full parameter vector, source grade, sampling measure, seed or directed-selection rule, root status, numerical resolution, and metric uncertainty.
+
+The campaign output should include the distribution of every objective and gate, parameter-to-measure sensitivity, correlations that may reveal redundant coordinates, the non-dominated set under $\mathbf G_{\mathrm{an}}$, and the location and width of robust favorable regions. A single best sampled point is not enough: the central question is whether a candidate has a reproducible favorable region in configuration space or only a narrowly tuned instantiation.
 
 ### Candidate Grading
 
@@ -2894,9 +2934,11 @@ The prescribed-record analytical grade is fail-closed and occurs in this order:
 
 A prescribed chart receives only an analytical prescribed-record grade. Stability and energy are outside the method and outside its score.
 
-#### Initial Prescribed-Candidate Cohort
+#### Candidate Cohort Registry
 
-The initial comparison cohort contains four prescribed instantiations of `B1`. These candidate names describe their taxonomy coordinates; they do not create additional taxonomy members. All four use one common midpoint, the common axis $\hat{\mathbf n}_B=(0,0,1)$, group translation speed $s_{\mathrm{grp}}=0$, radii
+The comparison cohort spans every currently defined family/member class in the taxonomy. Each column below now names one complete prescribed source record $S$. The source-record hash identifies that exact record; it is not an analytical score. Every analytical cell remains `Pending` until the candidate has been evaluated under the common protocol declared for the completed cohort.
+
+The four exact `B1` prescribed instantiations retain compatibility source identifiers while using taxonomy-first display names. These candidate names describe their taxonomy coordinates; they do not create additional taxonomy members. All four use one common midpoint, the common axis $\hat{\mathbf n}_B=(0,0,1)$, group translation speed $s_{\mathrm{grp}}=0$, radii
 
 $$
 (R_1,R_2,R_3)=(0.22,0.32,0.44),
@@ -2906,20 +2948,40 @@ common frequency $f=0.25$, and phases $(\phi_1,\phi_2,\phi_3)=(0,2\pi/3,4\pi/3)$
 
 | Candidate name | $(h_1,h_2,h_3)$ | $(\rho_1,\rho_2,\rho_3)$ | Coordinate status |
 | --- | --- | --- | --- |
-| `B1 interior-coordinate reference` | $(0.075244432,0.205692035,0.398775426)$ | $(0.206732377,0.245134222,0.185952035)$ | Interior for all three binaries |
-| `B1 high-axial-fraction interior` | $(0.206732377,0.315138481,0.438325667)$ | $(0.075244432,0.055567417,0.038348527)$ | Interior for all three binaries, with $h_a/R_a$ near the axial boundary |
-| `B1 all-equatorial boundary` | $(0,0,0)$ | $(0.22,0.32,0.44)$ | $h_a=0$ for all three binaries |
-| `B1 all-axial boundary` | $(0.22,0.32,0.44)$ | $(0,0,0)$ | $\rho_a=0$ for all three binaries |
+| `B1 — interior reference` | $(0.075244432,0.205692035,0.398775426)$ | $(0.206732377,0.245134222,0.185952035)$ | Interior for all three binaries |
+| `B1 — high-axial interior` | $(0.206732377,0.315138481,0.438325667)$ | $(0.075244432,0.055567417,0.038348527)$ | Interior for all three binaries, with $h_a/R_a$ near the axial boundary |
+| `B1 — all-equatorial boundary` | $(0,0,0)$ | $(0.22,0.32,0.44)$ | $h_a=0$ for all three binaries |
+| `B1 — all-axial boundary` | $(0.22,0.32,0.44)$ | $(0,0,0)$ | $\rho_a=0$ for all three binaries |
 
 The derived $h_a$ and $\rho_a$ values are shown to nine decimal places for identification; they are not analytical results. The complete source record $S$ remains authoritative for exact coordinates, endpoint identities, and polarities. Every scored row also depends on one common analysis protocol $P$.
 
-#### Candidate Comparison Table
+#### Candidate Comparison Tables
 
-The comparison table uses candidates as columns and metrics as rows. `Pending` means that the candidate has not yet been evaluated under the shared source-and-protocol declaration printed with the table. `NA` is reserved for a measure whose definition does not apply; it must not be used merely because a value has not been computed.
+The comparison tables use candidates as columns and metrics as rows. The family split keeps the tables readable; every table uses the same metric definitions and protocol. `Pending` means that the candidate has not yet been evaluated under the shared source-and-protocol declaration printed with the table. `NA` is reserved for a measure whose definition does not apply; it must not be used merely because a value has not been computed.
 
-| Metric or gate | `B1 interior-coordinate reference` | `B1 high-axial-fraction interior` | `B1 all-equatorial boundary` | `B1 all-axial boundary` |
+##### Family-A Candidates
+
+| Metric or gate | `A1` | `A1.1` | `A1.2` | `A1.3` | `A1.4` | `A2` |
+| --- | --- | --- | --- | --- | --- | --- |
+| Source-record hash | `aa974681189f3ece5068c499ed93a901ce4719c39a44302c2e563d23bf464717` | `d5ef7ac45284cf6ff100f6f10e162020448912ff52d44e543418c8aaaf70787f` | `edf5599cbdd6245cecd9b6aa3d9ad078be8849706306383becc8b2c29f70074f` | `1d7af234bf15296f9e4cfb6341b7137375a996cbcbe502141e1d6b5a331e8beb` | `75e6e79632c76938dc8aa176544eeb932a7d70efba949774d83abbb824718b9e` | `96b5d0cf9161fb542818d3a1a6b2cbe819edd1603ef7bc239e6991813dfe7cb4` |
+| Common protocol hash | Pending | Pending | Pending | Pending | Pending | Pending |
+| Prescribed-period closure | Pending | Pending | Pending | Pending | Pending | Pending |
+| Minimum separation $d_{\min}$ | Pending | Pending | Pending | Pending | Pending | Pending |
+| Root-transversality margin $\min|D_t|$ | Pending | Pending | Pending | Pending | Pending | Pending |
+| Root-topology completeness | Pending | Pending | Pending | Pending | Pending | Pending |
+| Numerical convergence | Pending | Pending | Pending | Pending | Pending | Pending |
+| External-exposure fraction $\eta_{\mathrm{ext}}(R)$ | Pending | Pending | Pending | Pending | Pending | Pending |
+| Anisotropy $\epsilon_{\mathrm{aniso}}(R)$ | Pending | Pending | Pending | Pending | Pending | Pending |
+| Peak external response $A_{\mathrm{ext,peak}}(R)$ | Pending | Pending | Pending | Pending | Pending | Pending |
+| Peak signed-cancellation ratio $\chi_{\mathcal W,\mathrm{peak}}(R)$ | Pending | Pending | Pending | Pending | Pending | Pending |
+| Source-parameter sensitivity $S_{\boldsymbol\theta}$ | Pending | Pending | Pending | Pending | Pending | Pending |
+| Dominance status | Pending | Pending | Pending | Pending | Pending | Pending |
+
+##### Family-B Candidates
+
+| Metric or gate | `B1 — interior reference` | `B1 — high-axial interior` | `B1 — all-equatorial boundary` | `B1 — all-axial boundary` |
 | --- | --- | --- | --- | --- |
-| Source-record hash | Pending | Pending | Pending | Pending |
+| Source-record hash | `3ad1e879d3364db0d332bdc59cac042c3c5bc552365a2e227f2392339ab2506b` | `31f8d06f954c9c9fe64c8a9d2316d479dad49b8eb2437bba844a718b03202cd0` | `c2079804643afa4254a7f037ee479f804af0a2c88f4b2680fe9c69c836f7595b` | `a61aba26f4258e3b5a80595da1bb7f84e0c8790da0b43d732e08ee3f7e320ed6` |
 | Common protocol hash | Pending | Pending | Pending | Pending |
 | Prescribed-period closure | Pending | Pending | Pending | Pending |
 | Minimum separation $d_{\min}$ | Pending | Pending | Pending | Pending |
@@ -2932,6 +2994,24 @@ The comparison table uses candidates as columns and metrics as rows. `Pending` m
 | Peak signed-cancellation ratio $\chi_{\mathcal W,\mathrm{peak}}(R)$ | Pending | Pending | Pending | Pending |
 | Source-parameter sensitivity $S_{\boldsymbol\theta}$ | Pending | Pending | Pending | Pending |
 | Dominance status | Pending | Pending | Pending | Pending |
+
+##### Family-C Candidates
+
+| Metric or gate | `C1` | `C2` |
+| --- | --- | --- |
+| Source-record hash | `65e8bd4c68a36fb59ff67fab4e8bef78aba640a66f796752e49276235c7fdb7a` | `61bcdb5871affe8aa76a12e1ac0765f81eaf67342fa164eab33b28a8878c29d7` |
+| Common protocol hash | Pending | Pending |
+| Prescribed-period closure | Pending | Pending |
+| Minimum separation $d_{\min}$ | Pending | Pending |
+| Root-transversality margin $\min|D_t|$ | Pending | Pending |
+| Root-topology completeness | Pending | Pending |
+| Numerical convergence | Pending | Pending |
+| External-exposure fraction $\eta_{\mathrm{ext}}(R)$ | Pending | Pending |
+| Anisotropy $\epsilon_{\mathrm{aniso}}(R)$ | Pending | Pending |
+| Peak external response $A_{\mathrm{ext,peak}}(R)$ | Pending | Pending |
+| Peak signed-cancellation ratio $\chi_{\mathcal W,\mathrm{peak}}(R)$ | Pending | Pending |
+| Source-parameter sensitivity $S_{\boldsymbol\theta}$ | Pending | Pending |
+| Dominance status | Pending | Pending |
 
 Each published table must state the enclosing radius or radius sequence, surface and time reductions, probe polarity, normalization, tolerance, and uncertainty attached to every scalar row. A cell may link to a fuller ledger when a scalar would hide root transitions, angular structure, or phase dependence.
 
@@ -2981,7 +3061,7 @@ A publishable candidate analysis contains:
 4. the probe geometry and raw time-dependent curves;
 5. prescribed-period closure, root, separation, cancellation, anisotropy, spectral, and source-sensitivity metrics;
 6. an explicit analytical claim boundary that excludes energy and stability conclusions;
-7. the random and directed sampling declarations;
+7. the Monte Carlo, directed-refinement, and robustness sampling declarations;
 8. the gate result and multi-objective comparison vector; and
 9. the exact observation that would falsify each promoted claim.
 

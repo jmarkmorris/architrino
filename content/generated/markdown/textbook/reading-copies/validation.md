@@ -111,13 +111,16 @@ In this framework, the candidate substrate-level quantities are:
 - **Causal wake interaction kernel** (inverse-square line-of-action weighting modulated by the transmitter-side acceleration weight $W^{\mathrm{acc}}$ over causal wake surfaces, with regularized coincidence handling)
 
 #### Category C: Assembly Geometry (Emergent but Calculable)
-- **Nested shell braid radius ratios** (inner/middle/outer scales)
+
+In this section `A1` means only the prescribed Family-A member with persistent binary indices, independently assignable positive radii and frequencies, mutually orthogonal axes at the near-rest endpoint, and axes that converge toward the group-translation direction along $\lambda_A$. Axial half-separations, transverse orbit radii, phases, and circulation remain explicit binary coordinates. None of the unit, particle, quantization, stability, or retention claims below follows from that definition; each remains a derivation target and fails if the same evolved record does not retain the declared coordinates and required ledger rows.
+
+- **A1 indexed radius tuple** $(R_1,R_2,R_3)$, with no radius order encoded by the indices
 - **Maximum curvature binary radius** $r_{\text{max-curv}}$ (where $v \gg c_f$)
 - **Reference Noether braid density** $\rho_{\text{NS},0}$ (the normalization scale for $n(\mathbf X,T)$)
 
 **Everything else** (masses, coupling constants, cosmological parameters) should be **derivable** from these via:
 - Self-hit dynamics (non-Markovian evolution)
-- Nested shell braid stability conditions (quantization)
+- A1 stability conditions (quantization)
 - Noether sea coupling (emergent metric, inertia)
 
 #### Primitive-to-Derived Measure Ladder
@@ -144,24 +147,24 @@ $$
 **Architrino Interpretation:**
 
 The hyperfine transition is caused by:
-- Interaction between the **outer electron's nested shell braid** (magnetic moment from its Middle Binary orbital motion at $v \approx c_f$)
-- The **nuclear spin** (magnetic moment from proton/neutron Middle Binary configurations)
+- Interaction between the **electron assembly's candidate braid scaffold** and the nucleus; the source record used here assigns the magnetic-moment row to binary 2 at $v_2 \approx c_f$, but neither the electron identity nor this role follows from the taxonomy
+- The **nuclear spin** (magnetic moment from proton/neutron records with an explicitly assigned binary-2 channel)
 
 This is an atomic-clock validation target, not a closed spin derivation. The electron magnetic moment, nuclear spin ledger, and hyperfine coupling must inherit [Angular Momentum and Spin](../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md), [Atomic Structure](../../../../markdown/aaa/nuclear-atomic/atomic-structure.md), and [Atomic Spectra](../../../../markdown/aaa/nuclear-atomic/atomic-spectra.md) before $\Delta \nu_{\text{Cs}}$ can be claimed from first principles.
 
 **What we must derive:**
 $$
-\Delta \nu_{\text{Cs}} = f(\text{nested shell braid geometry, } c_f, \epsilon, \text{ Noether sea coupling})
+\Delta \nu_{\text{Cs}} = f(\text{candidate indexed braid geometry, } c_f, \epsilon, \text{ Noether sea coupling})
 $$
 
 **Challenge:** The frequency is determined by:
-- The Middle Binary's orbital frequency (sets the magnetic moment)
+- The source record's binary-2 orbital frequency (sets the candidate magnetic-moment row)
 - The coupling strength between electron and atomic nucleus (mediated by Noether sea response, with photon exchange as the observer-level channel)
 - The nuclear configuration (133 nucleons = complex assembly)
 
 **Pathway:**
-1. Calculate the electron's Middle Binary orbital frequency $\omega_{\text{MB}}$ for Cs ground state
-2. Calculate the magnetic moment $\mu = \frac{\epsilon \cdot \omega_{\text{MB}} \cdot r_{\text{MB}}}{2}$ (classical analogue)
+1. Calculate the electron source record's binary-2 orbital frequency $\omega_2$ for the Cs ground state
+2. Calculate the magnetic moment $\mu = \frac{\epsilon \cdot \omega_2 \cdot r_2}{2}$ (classical analogue)
 3. Calculate the nuclear spin coupling via Noether sea-mediated potential exchange
 4. Derive the splitting frequency
 
@@ -212,27 +215,27 @@ via the Kibble balance (relating mechanical power to electromagnetic power).
 
 **Architrino Interpretation:**
 
-The Planck constant $h$ is the observer-level benchmark for a quantum of **closed-cycle action**. The $\mathbb{A}\mathbb{A}\mathbb{A}$ derivation target is to recover this scale from nested shell braid geometry and the lower recordable basin-measure scale, not to assume it as a primitive input. In the target reduction, $h$ is related to the radian-normalized **outer-binary rotational action** by $\hbar=h/(2\pi)$:
+The Planck constant $h$ is the observer-level benchmark for a quantum of **closed-cycle action**. The $\mathbb{A}\mathbb{A}\mathbb{A}$ derivation target is to recover this scale from A1 geometry and the lower recordable basin-measure scale, not to assume it as a primitive input. In the illustrative source record, $h$ is related to the radian-normalized **binary-3 rotational action** by $\hbar=h/(2\pi)$:
 $$
-L_{\text{outer}} = n \hbar = n \frac{h}{2\pi}
+L_3 = n \hbar = n \frac{h}{2\pi}
 $$
 
 **Hypothesis:**
 $$
-\hbar \stackrel{\text{hyp.}}{\approx} \epsilon \cdot c_f \cdot r_{\text{outer}},
+\hbar \stackrel{\text{hyp.}}{\approx} \epsilon \cdot c_f \cdot r_3,
 \qquad
 h = 2\pi\hbar
 $$
-where $r_{\text{outer}}$ is the characteristic radius of the outer binary in the hydrogen ground-state assembly. This is an internal nested shell braid action variable, not the observer-level electron orbital angular momentum quantum number $\ell$ of the hydrogen $1s$ state.
+where $r_3$ is the characteristic radius assigned to binary 3 in the hydrogen ground-state source record. This is a candidate internal braid action variable, not the observer-level electron orbital angular momentum quantum number $\ell$ of the hydrogen $1s$ state. The particle assignment and action role are source-record hypotheses, not meanings of index 3 or of an A1 taxonomy label.
 
 **Derivation pathway:**
-1. Calculate the outer-binary radius for the hydrogen ground-state assembly (energy minimization + self-hit constraints).
+1. Calculate $r_3$ for the hydrogen ground-state source record (energy minimization + self-hit constraints).
 2. Show that closed-cycle action quantization ($\oint p\,dq = n h$) and the equivalent radian-normalized relation ($I=n\hbar$) arise from geometric quantization of the internal binary orbit.
-3. Relate $h$ and $\hbar$ to $\epsilon$, $c_f$, and nested shell braid geometry.
+3. Relate $h$ and $\hbar$ to $\epsilon$, $c_f$, and indexed A1 geometry.
 
 **Target relation:**
 $$
-h \propto \epsilon \cdot c_f \cdot (\text{geometric factor from nested shell braid})
+h \propto \epsilon \cdot c_f \cdot (\text{geometric factor from A1})
 $$
 
 ---
@@ -254,7 +257,7 @@ $$
 **What we must explain:**
 - Why only integer multiples of $\epsilon$ appear in stable observer-level electric-charge inventories (charge quantization)
 - Why we observe $0, \pm |e|/3, \pm 2|e|/3, \pm |e|$ in nature, never an isolated $\pm\epsilon$ polarity unit
-- Candidate answer: **confinement or dynamical suppression**. The $\epsilon$ polarity units are bound in nested shell braids (quarks) or assemblies (leptons). Isolated $\pm\epsilon$ polarity units are not observed as stable observer-level particles, so the suppression mechanism remains a closure target rather than a completed infinite-energy theorem.
+- Candidate answer: **confinement or dynamical suppression**. The working particle map binds the $\epsilon$ polarity units in candidate quark or lepton braid scaffolds. Isolated $\pm\epsilon$ polarity units are not observed as stable observer-level particles, so the braid assignment and suppression mechanism remain closure targets rather than completed theorems.
 
 ---
 
@@ -289,7 +292,7 @@ k_B = f(\text{thermalized ensemble measure, accessible mode energy, } c_f, \thet
 $$
 
 **Pathway:**
-1. Derive the effective assembly mass or accessible mode-energy scale from nested shell braid dynamics.
+1. Derive the effective assembly mass or accessible mode-energy scale from A1 dynamics.
 2. Declare the thermalized ensemble window, retained measure, and Noether sea state.
 3. Show that the accessible velocity or mode distribution recovers the Maxwell-Boltzmann or equipartition limit inside that window.
 4. Relate the distribution width to $k_B T_{\mathrm{temp}}$ while keeping shielded stored energy outside the accessible temperature channel.
@@ -322,7 +325,7 @@ N_A = \frac{1 \text{ g}}{1 \text{ amu}} = \frac{1 \text{ g}}{m_{\text{proton}}/1
 $$
 
 **What we must derive:**
-- The proton mass $m_p$ from nested shell braid geometry (3 quarks = 3 nested shell braids + gluon wake structure + Noether sea coupling)
+- The proton mass $m_p$ from candidate braid-based assembly geometry (3 candidate quark scaffolds + gluon wake structure + Noether sea coupling)
 
 ---
 
@@ -342,7 +345,7 @@ This is a **psychophysical constant**, not a physical one. It relates:
 The frequency 540 THz corresponds to green light ($\lambda \approx 555$ nm), where the human eye is most sensitive.
 
 **What we can say:**
-- Photons at 540 THz are planar-mode phase records with $\omega = 2\pi \times 540 \times 10^{12}$ rad/s; assigning that frequency to a specific Middle Binary is still a derivation target.
+- Photons at 540 THz are planar-mode phase records with $\omega = 2\pi \times 540 \times 10^{12}$ rad/s; assigning that frequency to a specific indexed binary is still a derivation target.
 - The human retina's photoreceptors (assemblies themselves) couple resonantly to this frequency
 - The constant 683 lm/W is **arbitrary**—it's a choice of units based on human biology
 
@@ -352,9 +355,9 @@ The frequency 540 THz corresponds to green light ($\lambda \approx 555$ nm), whe
 
 | SI Constant | Status in $\mathbb{A}\mathbb{A}\mathbb{A}$ | Derivation Pathway |
 |-------------|-------------------------------|-------------------|
-| $\Delta \nu_{\text{Cs}}$ | **Derivation target (open)** | Hyperfine splitting from middle-binary magnetic moments |
+| $\Delta \nu_{\text{Cs}}$ | **Derivation target (open)** | Hyperfine splitting from source-record binary-2 magnetic-moment rows |
 | $c$ | **Operational limit near $c_f$** | Low-gradient photon-channel speed; deviations are encoded by $\chi_\gamma$ |
-| $h$ | **Derivation target (open)** | Closed-cycle action quantization; equivalent outer-binary rotational-action increments in units of $\hbar$; lower recordable basin-measure scale after quantum closure |
+| $h$ | **Derivation target (open)** | Closed-cycle action quantization; source-record binary-3 rotational-action increments in units of $\hbar$; lower recordable basin-measure scale after quantum closure |
 | $e$ | **Recovered observer benchmark** | $|e|=6\epsilon$ after choosing the observer-level electric bookkeeping normalization |
 | $k_B$ | **Derivation target (open)** | Noether sea thermal equilibrium + assembly mass |
 | $N_A$ | **Emergent** | Follows from proton mass derivation |
@@ -369,25 +372,25 @@ If the $\mathbb{A}\mathbb{A}\mathbb{A}$ program succeeds, we can **replace** the
 #### Candidate Substrate Inputs (Architrino SI)
 1. **Architrino polarity-unit magnitude** $\epsilon=|e|/6$ (with observer charge benchmark $|e|=6\epsilon$)
 2. **Field speed** $c_f$ (replaces $c$)
-3. **Nested shell braid geometry parameter** (e.g., outer radius $r_{\text{outer}}$ or max-curvature radius) (replaces $h$)
+3. **A1 geometry parameter** (for example, source-record radius $r_3$ or the maximum-curvature radius) (replaces $h$)
 4. **Neutral Noether braid assembly mass** $m_{\text{NS}}$ (replaces $k_B$ when combined with $c_f$)
 
 **Everything else is intended to be derived after closure:**
 - $|e| = 6\epsilon$
 - $c_{\text{eff}}\to c_f$ in the low-gradient Noether sea limit
-- $h \stackrel{\text{target}}{=} 2\pi \epsilon \cdot c_f \cdot r_{\text{outer}}$ after the action-closure derivation, not by definition
+- $h \stackrel{\text{target}}{=} 2\pi \epsilon \cdot c_f \cdot r_3$ for the declared source record after the action-closure derivation, not by definition
 - $k_B = f(m_{\text{NS}}, c_f)$
 - $N_A = f(m_p / m_{\text{NS}})$
-- $\Delta \nu_{\text{Cs}} = f(\text{Cs nested shell braid geometry})$
+- $\Delta \nu_{\text{Cs}} = f(\text{candidate Cs braid geometry})$
 
 **Result target:** If the closure program succeeds, the seven SI constants reduce to **3-4 fundamental parameters**, with the rest emergent.
 
 ---
 
 #### Tier 1 (Must Answer)
-1. **Derive $h$ from nested shell braid geometry**
-   - Show that Outer Binary quantization yields $L = n\hbar$
-   - Calculate $r_{\text{outer}}$ for hydrogen 1s
+1. **Derive $h$ from A1 geometry**
+   - Show that the declared binary-3 action row yields $L_3 = n\hbar$
+   - Calculate $r_3$ for the hydrogen 1s source record
    - Predict $h$ and compare to SI value
 
 2. **Confirm $c = c_f$ within bounds**
@@ -411,7 +414,7 @@ If the $\mathbb{A}\mathbb{A}\mathbb{A}$ program succeeds, we can **replace** the
    - Predict $k_B$ value
 
 #### Tier 3 (Refinement)
-6. **Map all SM particles to nested shell braid recipes**
+6. **Map all SM particles to family/member assembly recipes**
    - Create "particle cookbook" (analogous to chemical formulas)
    - Show charge, spin, statistics all emerge from geometry
 
@@ -712,12 +715,12 @@ These quantities belong to Noether braid architecture, shielding, branch structu
 
 | ID | Symbol | Class | Status | Meaning | Primary home |
 | --- | --- | --- | --- | --- | --- |
-| G0 | $A_0$ | Geometric closure target | Open | calibration-free neutral rest-branch Noether braid reference attractor used to derive the first mass-map outputs before particle benchmarks enter | [Particle Masses](../../../../markdown/aaa/assemblies/particle-masses.md), [Nested Shell Braid Dynamics](../../../../markdown/aaa/noether-braid/braid-a1-dynamics.md#a1-dynamics), [Energy](../../../../markdown/aaa/dynamics/energy.md) |
+| G0 | $A_0$ | Geometric closure target | Open | calibration-free neutral rest-branch Noether braid reference attractor used to derive the first mass-map outputs before particle benchmarks enter | [Particle Masses](../../../../markdown/aaa/assemblies/particle-masses.md), [A1 Dynamics](../../../../markdown/aaa/noether-braid/braid-a1-dynamics.md#a1-dynamics), [Energy](../../../../markdown/aaa/dynamics/energy.md) |
 | G0a | $\mathcal{P}_{A_0}$ | Geometric closure target | Open; compact finite-coordinate no-go recorded, branch-chart revision required before Tier 1 continuation | certificate packet tying the finite closure graph $\mathcal{G}_{A_0}$, active root ledger, quotient Floquet gap $\Delta_{\mathbf{k}}$, shielding extraction, and $\mathcal{M}_{\text{sea}}^{ab}$ response probe into one promotion sequence | [simulations/a0-branch-certificate-protocol.md](../../../../markdown/aaa/validation/simulations/a0-branch-certificate-protocol.md), [simulations/a0-tier0-result-interpretation.md](../../../../markdown/aaa/validation/simulations/a0-tier0-result-interpretation.md), [../assemblies/particle-masses.md](../../../../markdown/aaa/assemblies/particle-masses.md) |
-| G1 | $R_{\text{inner}},R_{\text{middle}},R_{\text{outer}}$ | Geometric closure target | Open | characteristic radii of the nested shell braid support rows in the Noether braid | [Noether Braid](../../../../markdown/aaa/noether-braid/noether-braid.md), [Braid Envelope Geometry](../../../../markdown/aaa/noether-braid/braid-envelope-geometry.md), [Nested Shell Braid Dynamics](../../../../markdown/aaa/noether-braid/braid-a1-dynamics.md#a1-dynamics) |
-| G2 | $\omega_{\text{inner}},\omega_{\text{middle}},\omega_{\text{outer}}$ | Geometric closure target | Open | characteristic binary frequencies associated with the nested radii | [Nested Shell Braid Dynamics](../../../../markdown/aaa/noether-braid/braid-a1-dynamics.md#a1-dynamics), [Particle Masses](../../../../markdown/aaa/assemblies/particle-masses.md) |
-| G3 | $R_{\text{align}}$ | Geometric closure target | Open, conjectural | outer-binary alignment radius in the terminal Planck-alignment map | [Mapping the Planck Scale to the Nested Shell Braid Geometry](../../../../markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-braid-alignment.md) |
-| G4 | $\mathcal{A}_{\text{align}}^{\text{cycle}}, I_{\text{align}}$ | Geometric closure target | Open, conjectural | closed-cycle action and radian-normalized rotational-action increment of the aligned terminal mode | [Mapping the Planck Scale to the Nested Shell Braid Geometry](../../../../markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-braid-alignment.md) |
+| G1 | $R_1,R_2,R_3$ | Geometric closure target | Open | characteristic radii of the indexed A1 binary rows | [Noether Braid](../../../../markdown/aaa/noether-braid/noether-braid.md), [Braid Envelope Geometry](../../../../markdown/aaa/noether-braid/braid-envelope-geometry.md), [A1 Dynamics](../../../../markdown/aaa/noether-braid/braid-a1-dynamics.md#a1-dynamics) |
+| G2 | $\omega_1,\omega_2,\omega_3$ | Geometric closure target | Open | characteristic frequencies of the indexed A1 binaries | [A1 Dynamics](../../../../markdown/aaa/noether-braid/braid-a1-dynamics.md#a1-dynamics), [Particle Masses](../../../../markdown/aaa/assemblies/particle-masses.md) |
+| G3 | $R_{\text{align}}$ | Geometric closure target | Open, conjectural | assembly-level alignment radius in the terminal Family-A map | [Mapping the Planck Scale to Family-A Alignment Geometry](../../../../markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-braid-alignment.md) |
+| G4 | $\mathcal{A}_{\text{align}}^{\text{cycle}}, I_{\text{align}}$ | Geometric closure target | Open, conjectural | closed-cycle action and radian-normalized rotational-action increment of the aligned terminal mode | [Mapping the Planck Scale to Family-A Alignment Geometry](../../../../markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-braid-alignment.md) |
 | G5 | $\zeta(A)$ | Geometric closure target | Open | shielding or leakage factor of assembly $A$, defined by far-field suppression relative to naive constituent exposure | [../dynamics/energy.md](../../../../markdown/aaa/dynamics/energy.md), [../assemblies/particle-masses.md](../../../../markdown/aaa/assemblies/particle-masses.md) |
 | G6 | $\alpha$ | Geometric closure target | Open | axial-frame misalignment angle used in the weak-mixing / quark-geometry program | [../assemblies/fermions/weak-mixing-angle.md](../../../../markdown/aaa/assemblies/fermions/weak-mixing-angle.md) |
 | G7 | $\phi_c$ | Geometric closure target | Open | color-sector azimuth selecting the exceptional axial-frame orientation | [../assemblies/fermions/weak-mixing-angle.md](../../../../markdown/aaa/assemblies/fermions/weak-mixing-angle.md) |
@@ -746,8 +749,8 @@ These quantities are where closure is tested. They are not substrate inputs.
 | ID | Symbol | Class | Status | Meaning | Primary home |
 | --- | --- | --- | --- | --- | --- |
 | O1 | $e$ | Observable benchmark | Derived target | elementary charge reconstructed from substrate charge and normalization map | [../assemblies/fermions/quantum-number-mapping.md](../../../../markdown/aaa/assemblies/fermions/quantum-number-mapping.md), [../assemblies/gauge-structure-emergence.md](../../../../markdown/aaa/assemblies/gauge-structure-emergence.md) |
-| O2 | $h,\hbar$ | Observable benchmark / geometric target | Open | full-cycle action quantum and radian-normalized angular-momentum quantum to be related to nested shell braid alignment, orbital closure, and any lower recordable basin-measure scale derived by quantum closure | [Angular Momentum and Spin](../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md), [Mapping the Planck Scale to the Nested Shell Braid Geometry](../../../../markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-braid-alignment.md), [Architrino SI Base Units](../../../../markdown/aaa/validation/architrino-si-base-units.md) |
-| O3 | $G$ or $G_{\text{eff}}$ | Observable benchmark / constitutive target | Open | effective gravitational coupling emerging from medium compliance and alignment geometry | [Mapping the Planck Scale to the Nested Shell Braid Geometry](../../../../markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-braid-alignment.md), [Emergent Metric](../../../../markdown/aaa/spacetime/emergent-metric.md) |
+| O2 | $h,\hbar$ | Observable benchmark / geometric target | Open | full-cycle action quantum and radian-normalized angular-momentum quantum to be related to Family-A alignment, orbital closure, and any lower recordable basin-measure scale derived by quantum closure | [Angular Momentum and Spin](../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md), [Mapping the Planck Scale to Family-A Alignment Geometry](../../../../markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-braid-alignment.md), [Architrino SI Base Units](../../../../markdown/aaa/validation/architrino-si-base-units.md) |
+| O3 | $G$ or $G_{\text{eff}}$ | Observable benchmark / constitutive target | Open | effective gravitational coupling emerging from medium compliance and alignment geometry | [Mapping the Planck Scale to Family-A Alignment Geometry](../../../../markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-braid-alignment.md), [Emergent Metric](../../../../markdown/aaa/spacetime/emergent-metric.md) |
 | O4 | $m_{\text{inertial}}(A)$ | Derived output | Open | inertial mass of assembly $A$, extracted operationally from shielding and medium response | [../dynamics/energy.md](../../../../markdown/aaa/dynamics/energy.md), [../assemblies/particle-masses.md](../../../../markdown/aaa/assemblies/particle-masses.md) |
 | O5 | $\theta_W^{\text{bare}}$ and $\theta_W$ | Geometric target / observable benchmark | Open | bare geometric weak-mixing increment and the measured electroweak mixing angle it must eventually inform | [../assemblies/fermions/weak-mixing-angle.md](../../../../markdown/aaa/assemblies/fermions/weak-mixing-angle.md), [../assemblies/gauge-structure-emergence.md](../../../../markdown/aaa/assemblies/gauge-structure-emergence.md) |
 | O6 | $(\alpha_1,\alpha_2,\alpha_3)$ | Observable benchmark | Open | standard PPN preferred-frame coefficients derived from $(\Xi_1,\Xi_2,\Xi_3)$ | [../spacetime/ppn-parameters.md](../../../../markdown/aaa/spacetime/ppn-parameters.md) |
@@ -932,7 +935,7 @@ The corpus supports the following conservative closure assessment.
 - whether $\eta$ should disappear entirely from physical statements after the weak limit is taken,
 - whether any specific maximum-curvature binary branch exists and is stable under the full signed-root, finite-window two-body dynamics,
 - the $A_0$ reference-attractor output packet,
-- the actual nested shell braid radii/frequency ladder,
+- the actual indexed A1 radii/frequency record,
 - the shielding map $\zeta(A)$ across the fermion spectrum,
 - the medium-response tensor $\mathcal{M}_{\text{sea}}^{ab}$ that turns shielded internal energy into inertial and gradient response,
 - the constitutive functions $(\Omega,\xi)$ and the weak-field coefficient set $(\gamma_{\text{eff}},C_2,\Xi_i)$,
@@ -971,7 +974,7 @@ where $\mathcal{P}_{\text{shared}}$ is the common substrate-plus-constitutive se
 - [../dynamics/master-equation.md](../../../../markdown/aaa/dynamics/master-equation.md)
 - [../dynamics/energy.md](../../../../markdown/aaa/dynamics/energy.md)
 - [../philosophy-history/theory-bridges/angular-momentum-and-spin.md](../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md)
-- [Mapping the Planck Scale to the Nested Shell Braid Geometry](../../../../markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-braid-alignment.md)
+- [Mapping the Planck Scale to Family-A Alignment Geometry](../../../../markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-braid-alignment.md)
 - [../spacetime/emergent-metric.md](../../../../markdown/aaa/spacetime/emergent-metric.md)
 - [../spacetime/ppn-parameters.md](../../../../markdown/aaa/spacetime/ppn-parameters.md)
 - [../assemblies/fermions/weak-mixing-angle.md](../../../../markdown/aaa/assemblies/fermions/weak-mixing-angle.md)
@@ -3251,10 +3254,10 @@ We work throughout in units with primitive wake speed $c_f=1$; per-hit accelerat
 
 ---
 
-#### Assembly grammar -> nested shell braid and flux tubes
+#### Assembly Grammar to Candidate Braids and Flux Tubes
 
 - What we assume:
-  - Binary orbits are the base motif; binaries can nest with wide scale separation; a nested shell braid is dynamically robust.
+  - Binary orbits are the base motif; binaries can occupy widely separated radii; a three-binary candidate is hypothesized to be dynamically robust, but this statement does not assign a taxonomy member.
   - Polar regions of fast binaries host persistent axial structures (vortex-like loci in the delayed wake geometry), which couple between assemblies.
 
 - Why it matters:
@@ -3439,7 +3442,7 @@ Plain language: we can test the framework by checking order effects, interferenc
 
 This note is the launch overview for the simulation branch. It explains the common simulation frame, the role of the virtual $\mathbb{U}_{\text{now}}$ universe-state perspective, and the separation between raw microstate logging and detector-level synthetic observables.
 
-Use it as the top orientation document before reading the more specialized [Simulation Run Protocols](../../../../markdown/aaa/validation/simulations/run-protocols.md), convergence checks, action-energy notes, the [$A_0$ branch certificate protocol](../../../../markdown/aaa/validation/simulations/a0-branch-certificate-protocol.md), the [$A_0$ Tier 0 result interpretation](../../../../markdown/aaa/validation/simulations/a0-tier0-result-interpretation.md), the [Nested Shell Braid Action-Increment Protocol](../../../../markdown/aaa/validation/simulations/nested-shell-braid-action-increment-protocol.md), the [Retuning-Map Toy Model](../../../../markdown/aaa/validation/simulations/retuning-map-toy-model.md), the [Cosmology Shared Residual Fit Protocol](../../../../markdown/aaa/validation/simulations/cosmology-shared-residual-fit.md), the [Redshift-Budget Toy Model](../../../../markdown/aaa/validation/simulations/redshift-budget-toy-model.md), the [Static Response Vector Toy Model](../../../../markdown/aaa/validation/simulations/static-response-vector-toy-model.md), and the [Hydrogen $\Gamma_N$ Spectral Coefficient Row Toy Scan](../../../../markdown/aaa/validation/simulations/hydrogen-gamma-n-spectral-row-toy-scan.md).
+Use it as the top orientation document before reading the more specialized [Simulation Run Protocols](../../../../markdown/aaa/validation/simulations/run-protocols.md), convergence checks, action-energy notes, the [$A_0$ branch certificate protocol](../../../../markdown/aaa/validation/simulations/a0-branch-certificate-protocol.md), the [$A_0$ Tier 0 result interpretation](../../../../markdown/aaa/validation/simulations/a0-tier0-result-interpretation.md), the [A1 Action-Increment Protocol](../../../../markdown/aaa/validation/simulations/nested-shell-braid-action-increment-protocol.md), the [Retuning-Map Toy Model](../../../../markdown/aaa/validation/simulations/retuning-map-toy-model.md), the [Cosmology Shared Residual Fit Protocol](../../../../markdown/aaa/validation/simulations/cosmology-shared-residual-fit.md), the [Redshift-Budget Toy Model](../../../../markdown/aaa/validation/simulations/redshift-budget-toy-model.md), the [Static Response Vector Toy Model](../../../../markdown/aaa/validation/simulations/static-response-vector-toy-model.md), and the [Hydrogen $\Gamma_N$ Spectral Coefficient Row Toy Scan](../../../../markdown/aaa/validation/simulations/hydrogen-gamma-n-spectral-row-toy-scan.md).
 
 #### Simulation Frame: Virtual $\mathbb{U}_{\text{now}}$ Perspective
 
@@ -3841,7 +3844,7 @@ No major physical claim is accepted without:
 
 ### A0 Branch Certificate Protocol
 
-This protocol defines the simulation-facing handoff for the $A_0$ reference attractor described in [Particle Masses](../../../../markdown/aaa/assemblies/particle-masses.md#reference-attractor-gate), [Nested Shell Braid Dynamics](../../../../markdown/aaa/noether-braid/braid-a1-dynamics.md#a1-dynamics), and [Energy](../../../../markdown/aaa/dynamics/energy.md). It specializes the general [Simulation Run Protocols](../../../../markdown/aaa/validation/simulations/run-protocols.md) to the first neutral rest-branch nested shell braid mass-map target.
+This protocol defines the simulation-facing handoff for the $A_0$ reference attractor described in [Particle Masses](../../../../markdown/aaa/assemblies/particle-masses.md#reference-attractor-gate), [A1 Dynamics](../../../../markdown/aaa/noether-braid/braid-a1-dynamics.md#a1-dynamics), and [Energy](../../../../markdown/aaa/dynamics/energy.md). It specializes the general [Simulation Run Protocols](../../../../markdown/aaa/validation/simulations/run-protocols.md) to the first neutral rest-branch mass-map candidate constrained to A1 coordinates: persistent indices, independently assignable positive radii and frequencies, mutually orthogonal near-rest axes, the declared Family-A response direction, and explicit remaining binary coordinates. The target is not called retained or stable until the same-record certificate rows pass.
 
 The protocol does not treat $A_0$ as a particle label. It treats $A_0$ as a calibration-free branch certificate problem: find a finite, stable, multi-scale causal-root ledger before energy, shielding, Noether sea response, or mass comparisons enter.
 
@@ -3860,7 +3863,7 @@ An auditable $A_0$ branch certificate should preserve one top-level packet shape
 | `metadata` | run identifier, code or derivation version, source commit, integrator, tolerances, $\eta$, sampling schedule, and history-window rule | makes the packet reproducible |
 | `sea_cell` | $u^i_{\text{sea}}$, $G_{\text{grad}}$, $n$, $\chi_{\text{sea}}$, declared $c_\star$, and boundary conditions | fixes the homogeneous Noether sea cell and prevents mixing $c_f$ with $c_{\text{eff}}$ |
 | `branch_label` | layer windings, inter-layer closure integers, handedness, carrier ellipticity, and active root-branch summary | identifies the branch being certified |
-| `z_lambda` | quotient-coordinate row $z_\Lambda$: $\varepsilon_{IM}$, $\varepsilon_{MO}$, $T_I/T_M$, $T_M/T_O$, $\delta_M$, layer ellipticities, $G_{\ell m}$, $\chi_N$, $H_I,H_M,H_O$, $\Phi_{\text{rel}}$, removed gauges $SO(3)$, $S^1_{\mathbf{k}}$, $\Gamma_\Lambda$, branch class $[\Lambda]$, and quotient-degeneracy status | records the reduced moduli coordinate rather than an unquotiented carrier representative |
+| `z_lambda` | quotient-coordinate row $z_\Lambda$: $\varepsilon_{12}$, $\varepsilon_{23}$, $T_1/T_2$, $T_2/T_3$, $\delta_2$, binary ellipticities, $G_{\ell m}$, $\chi_N$, $H_1,H_2,H_3$, $\Phi_{\text{rel}}$, removed gauges $SO(3)$, $S^1_{\mathbf{k}}$, $\Gamma_\Lambda$, branch class $[\Lambda]$, and quotient-degeneracy status | records the reduced moduli coordinate rather than an unquotiented carrier representative |
 | `branch_chart_revision` | conditional pre-rerun record for any revised reduced branch coordinate, including source fields, equality map, equation and coefficient counts, held-out residual rule, phase-origin rule when a phase split is used, symmetry or quotient behavior, locked-key exclusion, benchmark exclusion, and `accepted_history_boundary: false` | prevents residual-selected coordinates or post-fit added columns from masquerading as branch geometry |
 | `state_vector` | six architrino labels, polarities, reduced geometry, frequencies, phase offsets, carrier chart, history segment, and center gauge | gives the reduced Noether braid state vector |
 | `closure_system` | active variables, causal-root equations, layer phase closure, inter-layer closure, center-gauge closure, speed-ordering inequalities, and tolerances | ties closure labels to equations rather than only to names |
@@ -3871,7 +3874,7 @@ An auditable $A_0$ branch certificate should preserve one top-level packet shape
 | `Delta_k` | $\Delta_{\mathbf{k}}$ value, status, role, nonpositive-gap failure code, and note; Tier 0 emits null with `not_computed_in_tier0` | keeps the Floquet handoff visible before Tier 1 computes the return map |
 | `stability` | monodromy or finite-difference return map, excluded symmetry modes, non-symmetry Floquet multipliers, and the computed $\Delta_{\mathbf{k}}$ once Tier 1 exists | separates integer closure from attractor stability |
 | `group_velocity_anisotropy` | $\mathbf{V}_{\text{cm}}$, declared $c_\star$, $\beta_\star$, envelope ratio, forward/backward delay ratio, tensor $\mathcal{A}_{\mathrm{gv}}^{ij}$, refinement status, and whether the entry is rest residue, small-velocity response, or probe-induced drift | keeps motion-induced deformation separate from shielding leakage |
-| `energy_ledger` | sign-resolved kinetic content, interaction terms, wake/history terms, layer totals $E_I,E_M,E_O$, $E_{\text{internal}}(A_0)$, delayed-Noether status (`action-derived`, `quasi-Noether`, or `diagnostic-only`), the running retained-history energy-like functional across active self-hit crossings, and action per closed cycle after bounded-energy status | supplies the unshielded energy reservoir after Tier 1 passes |
+| `energy_ledger` | sign-resolved kinetic content, interaction terms, wake/history terms, binary totals $E_1,E_2,E_3$, $E_{\text{internal}}(A_0)$, delayed-Noether status (`action-derived`, `quasi-Noether`, or `diagnostic-only`), the running retained-history energy-like functional across active self-hit crossings, and action per closed cycle after bounded-energy status | supplies the unshielded energy reservoir after Tier 1 passes |
 | `far_field_shielding` | extraction radii, angular grid, selected wake channel, $\mathcal{L}(\hat{\mathbf{R}})$, naive constituent sum, leading isotropic projection, $\zeta(A_0)$, $\mathcal{L}_{\text{aniso}}$, and convergence status | turns shielding into an extracted far-field quantity after Tier 1 passes |
 | `medium_response` | acceleration probes, gradient probes, extracted $\mathcal{M}_{\text{sea}}^{ab}$ baseline, symmetric tensor part, antisymmetric residue, and response anisotropy | compatibility field for testing Noether sea inertial and gravitational response after shielding passes |
 | `mass_summary` | $\zeta(A_0)E_{\text{internal}}(A_0)/E_0$, unresolved constants, response-map assumptions, and explicitly excluded particle benchmarks | records only calibration-free mass-facing output |
@@ -3951,8 +3954,8 @@ Required inputs:
 
 - homogeneous Noether sea cell with $u^i_{\text{sea}}=0$, $G_{\text{grad}}=0$, $n=1$, $\chi_{\text{sea}}=1$, and primitive wake speed $c_f$;
 - layer labels $\ell\in\{I,M,O\}$ and polarity labels $\sigma\in\{+,-\}$;
-- scale ratios $\varepsilon_{IM}=R_I/R_M$ and $\varepsilon_{MO}=R_M/R_O$;
-- speed offsets enforcing $s_I > c_f$, $s_M \approx c_f$, and $s_O < c_f$;
+- scale ratios $\varepsilon_{12}=R_1/R_2$ and $\varepsilon_{23}=R_2/R_3$;
+- speed offsets enforcing $s_1 > c_f$, $s_2 \approx c_f$, and $s_3 < c_f$;
 - candidate handedness tuple and carrier ellipticity;
 - $\eta > 0$, sampling resolution, and history-window rule.
 
@@ -3962,7 +3965,7 @@ Required outputs:
 | --- | --- |
 | `branch_label` | layer windings, inter-layer closure integers, handedness, and active root-branch summary |
 | `closure_labels` | declared $T_{\mathbf{k}}$, winding integers, inter-layer closure integers, and active root classes |
-| `z_lambda` | reduced quotient-coordinate row $z_\Lambda$, including radius ratios, period ratios, $\delta_M$, layer ellipticities, plane Gram data $G_{\ell m}$, $\chi_N$, handedness labels, phase-offset quotient status, removed gauges, branch class $[\Lambda]$, and `quotient_degenerate` |
+| `z_lambda` | reduced quotient-coordinate row $z_\Lambda$, including radius ratios, period ratios, $\delta_2$, binary ellipticities, plane Gram data $G_{\ell m}$, $\chi_N$, handedness labels, phase-offset quotient status, removed gauges, branch class $[\Lambda]$, and `quotient_degenerate` |
 | `state_vector` | reduced geometry, frequencies, phase offsets, carrier chart, and center gauge |
 | `closure_system` | active causal-root, phase-closure, inter-layer-closure, center-gauge, and speed-ordering equations used by the row |
 | `root_ledger` | active and raw partner, self, and inter-layer root counts with delays, branch Jacobians, separator flags, root-count changes across separators, parity events, and excluded near-zero self roots separated |
@@ -3985,7 +3988,7 @@ The row-level `failure_code` field is a machine-readable enum. The accepted valu
 | `candidate` | all Tier 0 promotion gates pass | row may seed Tier 1 continuation only |
 | `quotient-degenerate` | $z_\Lambda$ has degenerate plane-normal Gram or orientation data after quotienting global rotations | reject the row as a reduced moduli coordinate |
 | `scale-separation-collapse` | radius or period ratios violate the declared separated-scale Tier 0 regime | reject the row or widen the scan only as a controlled scale-separation test |
-| `speed-order-collapse` | $\mathcal{R}_{\text{speed}}$ fails the intended $s_I > c_f$, $s_M \approx c_f$, $s_O < c_f$ ordering | reject the row before attractor continuation |
+| `speed-order-collapse` | $\mathcal{R}_{\text{speed}}$ fails the declared $s_1 > c_f$, $s_2 \approx c_f$, $s_3 < c_f$ constraint | reject the row before attractor continuation |
 | `phase-closure-open` | $\mathcal{R}_{\text{phase}}$ fails layer winding closure over $T_{\mathbf{k}}$ | reject the row until integer closure is restored |
 | `carrier-residual-open` | $\mathcal{R}_{\text{state}}$ or $\mathcal{R}_{\text{drift}}$ fails the Tier 0 carrier chart tolerance | reject the row as an unclosed diagnostic carrier |
 | `root-residual-open` | $\mathcal{R}_{\text{root}}$ fails on candidate active causal-root branches | reject the row until active roots solve within tolerance |
@@ -4080,7 +4083,7 @@ with $\mathbf D_\ell(T)$, the basis terms $\mathbf A_{a,B}$, the coefficient rul
 
 Tier 2 begins only after Tier 1 passes. It computes the internal-energy ledger and far-field shielding extraction described in [Energy](../../../../markdown/aaa/dynamics/energy.md). The required outputs are:
 
-- $E_I$, $E_M$, $E_O$, and $E_{\text{internal}}(A_0)$;
+- $E_1$, $E_2$, $E_3$, and $E_{\text{internal}}(A_0)$;
 - interaction and wake/history bookkeeping with no double counting;
 - far-field wake coefficients $\mathcal{L}(\hat{\mathbf{R}})$ over extraction radii and angular grids;
 - the naive constituent sum $\mathcal{L}_{\text{naive}}$ and the leading isotropic projection $\Pi_0\mathcal{L}$;
@@ -4363,7 +4366,7 @@ Tier 0 asks one deliberately small question: is this reduced branch chart organi
 
 That boundary is the point of the document. A candidate row can be useful without being promoted. The artifact must make that difference machine-readable so a diagnostic success does not turn into an accidental theory claim.
 
-The Tier 0 artifact is not an attractor proof. It is a certificate-facing filter that decides whether a reduced carrier chart is disciplined enough to seed Tier 1 $\eta > 0$ continuation. Its output should be read together with the mass thesis in [Particle Masses](../../../../markdown/aaa/assemblies/particle-masses.md), the energy ledger definitions in [Energy](../../../../markdown/aaa/dynamics/energy.md), the dynamics baseline in [Nested Shell Braid Dynamics](../../../../markdown/aaa/noether-braid/braid-a1-dynamics.md#a1-dynamics), and the closure bookkeeping in [Parameter Ledger](../../../../markdown/aaa/validation/parameter-ledger.md).
+The Tier 0 artifact is not an attractor proof. It is a certificate-facing filter that decides whether a reduced carrier chart is disciplined enough to seed Tier 1 $\eta > 0$ continuation. Its output should be read together with the mass thesis in [Particle Masses](../../../../markdown/aaa/assemblies/particle-masses.md), the energy ledger definitions in [Energy](../../../../markdown/aaa/dynamics/energy.md), the dynamics baseline in [A1 Dynamics](../../../../markdown/aaa/noether-braid/braid-a1-dynamics.md#a1-dynamics), and the closure bookkeeping in [Parameter Ledger](../../../../markdown/aaa/validation/parameter-ledger.md).
 
 ##### Output Status
 
@@ -4391,7 +4394,7 @@ The emitted `z_lambda` object is the row-level representation of $z_\Lambda$. It
 | `schema` | version marker for the quotient-coordinate row |
 | `radius_ratios` | $\varepsilon_{IM}$ and $\varepsilon_{MO}$ |
 | `period_ratios` | $T_I/T_M$ and $T_M/T_O$, so time-scale separation is checked alongside radius separation |
-| `delta_M` | middle-layer speed offset $(s_M-c_f)/c_f$ |
+| `delta_M` | compatibility field for the source-record binary-2 speed offset $(s_2-c_f)/c_f$; the stable field name is not a taxonomy identity |
 | `ellipticity` and `ellipticity_status` | layer ellipticity data and whether Tier 0 used a shared scalar chart |
 | `plane_gram` | $G_{\ell m}$ values for the quotient-reduced binary-plane normals |
 | `orientation_class` | $\chi_N$, the triple product, and a nondegenerate or degenerate status |
@@ -4792,9 +4795,11 @@ A future closure packet becomes promotable only if:
 
 #### Nested Shell Braid Action-Increment Protocol
 
-This protocol defines the simulation-facing test for deriving or falsifying the one-cycle action increment used by the quantum closure program. It specializes [Simulation Run Protocols](../../../../markdown/aaa/validation/simulations/run-protocols.md) and [Convergence Tests](../../../../markdown/aaa/validation/simulations/convergence-tests.md) to the question left open by [Nested Shell Braid Dynamics](../../../../markdown/aaa/noether-braid/braid-a1-dynamics.md#a1-dynamics), [Noether Braid Doubling-Frequency Resonance Lock](../../../../markdown/aaa/noether-braid/braid-a1-3-doubling-frequency-lock.md), [Angular Momentum and Spin](../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md), and [Mapping the Planck Scale](../../../../markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-braid-alignment.md).
+This protocol defines the simulation-facing test for deriving or falsifying the one-cycle action increment used by the quantum closure program. It specializes [Simulation Run Protocols](../../../../markdown/aaa/validation/simulations/run-protocols.md) and [Convergence Tests](../../../../markdown/aaa/validation/simulations/convergence-tests.md) to the question left open by [A1 Dynamics](../../../../markdown/aaa/noether-braid/braid-a1-dynamics.md#a1-dynamics), [A1.3 Doubling-Frequency Resonance Lock](../../../../markdown/aaa/noether-braid/braid-a1-3-doubling-frequency-lock.md), [Angular Momentum and Spin](../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md), and [Mapping the Planck Scale](../../../../markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-braid-alignment.md).
 
-The target is narrow. The run must compute the smallest accepted Master-Equation projected action increment from candidate nested shell braid branch transitions whose stability rows pass. It may compare the resulting scale to the observer-level `$h,\hbar$` benchmark after the computation. It may not insert $\hbar$ as an input step size.
+Here an A1 candidate must carry the complete prescribed coordinate ownership: persistent indices $a\in\{1,2,3\}$, independently assignable positive radii and frequencies, mutually orthogonal axes at the Family-A near-rest endpoint, axes converging toward the group-translation direction along $\lambda_A$, and explicit axial-half-separation, transverse-orbit-radius, phase, and circulation rows. A1.3 additionally requires $f_1:f_2:f_3=4:2:1$. Neither label supplies stability, retention, or a universal action increment; failure of the same evolved record to preserve the coordinate and ledger rows rejects the candidate.
+
+The target is narrow. The run must compute the smallest accepted Master-Equation projected action increment from candidate A1 branch transitions whose stability rows pass. It may compare the resulting scale to the observer-level `$h,\hbar$` benchmark after the computation. It may not insert $\hbar$ as an input step size.
 
 ##### Closure Question
 
@@ -4804,7 +4809,7 @@ $$
 \quad\Longrightarrow\quad
 \Delta\Gamma_{\text{cell}}=h^n
 $$
-for $n$ record-facing action-angle channels. This protocol tests the missing premise. It asks whether accepted nested shell braid dynamics select a positive increment $\Delta I_*$ such that
+for $n$ record-facing action-angle channels. This protocol tests the missing premise. It asks whether accepted A1 dynamics select a positive increment $\Delta I_*$ such that
 $$
 h_{\mathbb{A}\mathbb{A}\mathbb{A}}=2\pi\Delta I_*
 $$
@@ -4814,7 +4819,7 @@ Passing this protocol would not complete quantum theory. It would only promote t
 
 ##### Accepted Transition Class
 
-Let $B_q$ and $B_{q'}$ denote candidate nested shell braid branch states with passed stability rows, layer radii, frequencies, speeds, plane normals, active causal-root ledger, and wake ledger. A candidate accepted transition belongs to
+Let $B_q$ and $B_{q'}$ denote candidate A1 branch states with passed stability rows, indexed binary radii, frequencies, speeds, plane normals, active causal-root ledger, and wake ledger. A candidate accepted transition belongs to
 
 $$
 \mathcal{T}_{\mathrm{acc}}=\varnothing
@@ -4930,7 +4935,7 @@ This scan is the minimal numerical artifact for the paired action-spacing and se
 
 For each declared scan family, report rows approaching the field speed from below, at the boundary when the continuation reaches it, and from above when the branch chart admits a super-field-speed interval. Each row must record the layer speed ratios, active partner-root count, active self-root count, active inter-layer-root count, minimum accepted Jacobian floor, minimum accepted transmitter-side acceleration weight, separator status, root-ledger identity, accepted/rejected status, and stable-cycle $\Delta I_{\mathrm{ME}}$ cluster assignment.
 
-The scan has a simple discipline. A packet may not promote `candidate_h_recovery` if the accepted near-boundary rows lose their Jacobian floor, change active-root identity under refinement, or split into non-uniform stable action increments without a derived branch-class reason. In that case the packet may still report a useful diagnostic, but it has not recovered the Planck benchmark from a well-posed nested shell braid action scale.
+The scan has a simple discipline. A packet may not promote `candidate_h_recovery` if the accepted near-boundary rows lose their Jacobian floor, change active-root identity under refinement, or split into non-uniform stable action increments without a derived branch-class reason. In that case the packet may still report a useful diagnostic, but it has not recovered the Planck benchmark from a well-posed A1 action scale.
 
 ##### Required Packet Files
 
@@ -4995,11 +5000,11 @@ This protocol preserves the level distinction. A passing action-increment packet
 
 #### Retuning-Map Toy Model
 
-This protocol documents the first arithmetic fixture for the cadence-scale retuning map introduced in [Nested Shell Braid Dynamics](../../../../markdown/aaa/noether-braid/braid-a1-dynamics.md#cadence-scale-retuning-hypothesis). The fixture is not a delayed-dynamics proof. It replays the constrained branch bookkeeping for an accepted $\Delta A_{\mathrm{cyc}}=\pm h$ transaction and reports whether the resulting increment can be treated as a same-branch retuning.
+This protocol documents the first arithmetic fixture for the cadence-scale retuning map introduced in [A1 Dynamics](../../../../markdown/aaa/noether-braid/braid-a1-dynamics.md#cadence-scale-retuning-hypothesis). The fixture is not a delayed-dynamics proof. It replays the constrained branch bookkeeping for an accepted $\Delta A_{\mathrm{cyc}}=\pm h$ transaction and reports whether the resulting increment can be treated as a same-branch retuning.
 
 The toy model answers an accounting question before it answers a physics question. If a branch accepts one action-sized transaction, can the cadence, radius, scale, and speed rows be retuned without leaving the declared branch regime? Only after that arithmetic is clean does the harder delayed-dynamics proof become worth asking.
 
-The purpose is narrow: turn the retuning scaffold into a machine-readable packet that outputs $(\Delta\nu_N,\Delta R_I,\Delta R_M,\Delta R_O,\Delta\lambda,\Delta\xi)$ and the corresponding first estimate for the cadence-space current $J_\nu$.
+The purpose is narrow: turn the retuning scaffold into a machine-readable packet that outputs $(\Delta\nu_N,\Delta R_1,\Delta R_2,\Delta R_3,\Delta\lambda,\Delta\xi)$ and the corresponding first estimate for the cadence-space current $J_\nu$.
 
 ##### Runtime Artifact
 
@@ -5025,8 +5030,8 @@ $$
 \mathbf{y}_q
 =
 \left(
-\ln\nu_I,\ln\nu_M,\ln\nu_O,\,
-\ln R_I,\ln R_M,\ln R_O,\,
+\ln\nu_1,\ln\nu_2,\ln\nu_3,\,
+\ln R_1,\ln R_2,\ln R_3,\,
 \ln\lambda,\ln\xi
 \right)^T
 $$
@@ -5055,23 +5060,23 @@ $$
 and the declared linearized branch constraints. The layer-speed diagnostics are then checked through
 
 $$
-\Delta\ln s_\ell
+\Delta\ln s_a
 =
-\Delta\ln R_\ell
+\Delta\ln R_a
 +
-\Delta\ln\nu_\ell,
+\Delta\ln\nu_a,
 \qquad
-\ell\in\{I,M,O\}
+a\in\{1,2,3\}
 $$
 
-The script applies the ordinary nested shell braid speed gates:
+The script applies the candidate source-record speed gates below. These branch roles do not assign an A1 or other taxonomy member:
 
 $$
-s_I'>c_f,
+s_1'>c_f,
 \qquad
-\left|s_M'-c_f\right|\le\epsilon_M c_f,
+\left|s_2'-c_f\right|\le\epsilon_2 c_f,
 \qquad
-s_O'<c_f
+s_3'<c_f
 $$
 
 The representative Noether braid cadence increment is
@@ -5079,13 +5084,13 @@ The representative Noether braid cadence increment is
 $$
 \Delta\ln\nu_N
 =
-w_I\Delta\ln\nu_I
+w_1\Delta\ln\nu_1
 +
-w_M\Delta\ln\nu_M
+w_2\Delta\ln\nu_2
 +
-w_O\Delta\ln\nu_O,
+w_3\Delta\ln\nu_3,
 \qquad
-w_I+w_M+w_O=1
+w_1+w_2+w_3=1
 $$
 
 For a local rate density $r_\sigma$ of accepted $\sigma$ transactions per braid, the first current estimate is
@@ -5105,8 +5110,8 @@ Each scenario supplies:
 
 | Field | Meaning |
 | --- | --- |
-| `reference_state` | baseline $R_I,R_M,R_O,\lambda,\xi,\nu_N,s_I,s_M,s_O,c_f,\epsilon_M$ |
-| `representative_cadence_weights` | weights $w_I,w_M,w_O$ used to extract $\Delta\nu_N$ |
+| `reference_state` | baseline $R_1,R_2,R_3,\lambda,\xi,\nu_N,s_1,s_2,s_3,c_f,\epsilon_2$ |
+| `representative_cadence_weights` | weights $w_1,w_2,w_3$ used to extract $\Delta\nu_N$ |
 | `compliance_diagonal` | diagonal version of $\mathbf{K}^{\mathrm{ret}}_q$ |
 | `action_gradient_h_per_log` | linearized $D A_{\mathrm{cyc},q}$ row in $h$ units per log variable |
 | `constraints` | linearized branch constraints, each with coefficients and target |
@@ -5124,9 +5129,9 @@ The fixture reports:
 | --- | --- |
 | `status` | `candidate` only when constraints and speed gates pass |
 | `delta_y` | solved logarithmic retuning vector |
-| `retuning_components` | $(\Delta\nu_N,\Delta R_I,\Delta R_M,\Delta R_O,\Delta\lambda,\Delta\xi)$ |
+| `retuning_components` | $(\Delta\nu_N,\Delta R_1,\Delta R_2,\Delta R_3,\Delta\lambda,\Delta\xi)$ |
 | `constraint_residual_max` | largest absolute residual in the declared linear constraints |
-| `speed_gates` | post-retuning checks for inner, middle, and outer layer speed regimes |
+| `speed_gates` | post-retuning checks for the declared binary 1, 2, and 3 speed regimes |
 | `J_nu.contribution` | $f_N r_\sigma\Delta\nu_N^{(q,\sigma)}$ for the transaction |
 | `net_J_nu.value` | sum of transaction contributions in the scenario |
 | `net_J_nu.higher_order_estimate` | magnitude estimate for the omitted $O((\Delta\nu_N)^2\partial_\nu f_N)$ term |
@@ -5138,7 +5143,7 @@ The default mock packet has two rows.
 | Scenario | Expected behavior |
 | --- | --- |
 | `same_branch_plus_minus_balance` | Plus and minus one-$h$ retunings both pass the speed gates. Unequal local rates leave a small signed current, `net_J_nu.value` near `0.0017019`. |
-| `middle_hinge_violation_control` | The linear action constraint solves, but the middle layer leaves the declared hinge tolerance. The row fails with `middle-hinge-violation`. |
+| `middle_hinge_violation_control` | The linear action constraint solves, but source-record binary 2 leaves the declared hinge tolerance. The compatibility ID remains unchanged; the row fails with `middle-hinge-violation`. |
 
 These numbers are fixture expectations only. They validate arithmetic, packet shape, branch-gate reporting, and the current estimate. They do not validate a physical Noether braid branch.
 
@@ -5149,7 +5154,7 @@ The first failure modes are concrete:
 | Diagnostic pattern | Meaning |
 | --- | --- |
 | nonzero `constraint_residual_max` above tolerance | the declared linearized branch constraints are not actually solved |
-| `middle-hinge-violation` | the retuning cannot be treated as a same-regime middle-hinge update |
+| `middle-hinge-violation` | compatibility diagnostic: binary 2 leaves the source-record field-speed tolerance |
 | `inner-speed-regime-crossing` or `outer-speed-regime-crossing` | the transaction crosses a speed-regime boundary |
 | large higher-order current estimate | the continuum current requires smaller steps, narrower bins, or a higher-order transport model |
 | candidate branch with missing physical return-map source | the fixture is arithmetic only and must be replaced by a delayed-dynamics branch packet before promotion |
@@ -7174,7 +7179,7 @@ The $\Delta$ column is computed as the latest dated $\mathbb{A}\mathbb{A}\mathbb
 | UV/IR+Regularization Completion | 6 | Ultraviolet and infrared completion quality, including cutoff dependence, singular behavior, regularization limits, horizon/singularity issues, and asymptotics. | 72 | 30 | 30 | 54 | -18 |
 | Master EOM+Local Dynamics | 9 | Certified closure of the core equations of motion: local field/effective equations in modern physics and delayed path-history dynamics in $\mathbb{A}\mathbb{A}\mathbb{A}$. | 95 | 64 | 60 | 83 | -12 |
 | Cross-Regime Bridge | 8 | Mathematical consistency across regimes: micro to macro, quantum to classical, particle to cosmology, weak to strong gravity, and thermodynamics. | 78 | 38 | 42 | 74 | -4 |
-| Internal Constituent Dynamics | 5 | Detailed closure of internal constituent regimes: bound-state/composite dynamics in modern physics and nested shell braid/Noether braid dynamics in $\mathbb{A}\mathbb{A}\mathbb{A}$. | 82 | 52 | 55 | 82 | 0 |
+| Internal Constituent Dynamics | 5 | Detailed closure of internal constituent regimes: bound-state/composite dynamics in modern physics and Family-A/Noether braid dynamics in $\mathbb{A}\mathbb{A}\mathbb{A}$. | 82 | 52 | 55 | 82 | 0 |
 | Falsification Gates | 4 | Explicitness and enforceability of falsification thresholds, stop conditions, validation gates, and failure criteria. | 98 | 82 | 80 | 98 | 0 |
 | Discriminating Predictions+Anomaly Discipline | 6 | Independently checkable risky predictions, anomaly-resolution discipline, residual accounting for known tensions, and protection against post-hoc fitting. | 86 | 48 | 48 | 70 | -16 |
 | Coverage+Interface Readiness | 2 | Coverage completeness across mathematics/geometry-relevant domains, including interface consistency and minimally developed sections. | 97 | 72 | 72 | 97 | 0 |
@@ -7218,7 +7223,7 @@ Falsification and coverage now score near modern-operational levels because the 
 
 The 2026-05-22 assessment raises the weighted $\mathbb{A}\mathbb{A}\mathbb{A}$ score from `59` to `61`. The increase is concentrated in notation, internal constituent dynamics, cross-regime bridge quality, and falsification discipline. It is not a coefficient-recovery jump: the central benchmark rows still lack a retained branch that recovers masses, Lorentz / PPN coefficients, photon-channel coefficients, Born/Bell measures, weak mixing, Standard Model masses, or cosmological residuals from one accepted native record.
 
-The largest corpus-side improvement is the Noether braid taxonomy. The corpus now separates the broad neutral braid, shell braid, and nested shell braid cases; treats exact binaries as a proof assumption rather than a naming axiom; and routes dynamic exclusion-envelope geometry into a dedicated nested shell braid geometry chapter. That chapter adds a computable assembly/Noether sea interface diagnostic,
+The Noether braid taxonomy separates the broad neutral assembly class from the prescribed Family-A, Family-B, and Family-C charts; treats exact binaries as a proof assumption rather than a naming axiom; and routes dynamic exclusion-envelope geometry into the dedicated braid-envelope chapter. That chapter adds a computable assembly/Noether sea interface diagnostic,
 
 $$
 D_{a,X}(\mathbf X,T)

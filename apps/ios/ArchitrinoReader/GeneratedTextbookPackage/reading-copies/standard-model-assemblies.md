@@ -241,7 +241,7 @@ c_i+c_j+c_k=0
 \quad\Longrightarrow\quad
 n_i^\theta+n_j^\theta+n_k^\theta\to0
 $$
-The native value of this test is not the formal identity by itself. The value is whether the existing H/M/L color-exceptionality relation $Q_H+Q_M+Q_L=0$ and the scattering numerator ledger can be derived as two projections of the same branch geometry.
+The native value of this test is not the formal identity by itself. The value is whether the indexed color-exceptionality relation $Q_1+Q_2+Q_3=0$ and the scattering numerator ledger can be derived as two projections of the same branch geometry.
 
 Positive-geometry amplitude work adds one more useful guardrail. If an amplitude is represented by a positive-coordinate auxiliary geometry, then physical boundaries should carry the factorization residues above, while spurious cell boundaries should cancel in the sum. In native terms, a positive-geometry chart is admissible only as a certificate for boundary factorization, spurious-pole cancellation, and record-domain consistency. It does not replace the causal-wake and assembly derivation.
 
@@ -271,7 +271,7 @@ Quantum field theory for uniformly accelerated, Rindler observers predicts that 
 Why do observer-level electric charges appear in units of $e/3$?
 *   The Standard Model asserts this; $\mathbb{A}\mathbb{A}\mathbb{A}$ treats it as a stability-selection closure target grounded first in a protected six-unit polarity inventory, with the six-site axial layer as the current charged-fermion working realization.
 *   **Stability Selection:** The $\mathbb{U}_{\text{now}}$ universe-state perspective sees that arbitrary clusters of $\epsilon$ polarity units are likely unstable. They either collapse into an unstable self-hit branch or disperse.
-*   **The Survivors:** Specific geometric configurations of six sign-carrying units are candidate stable resonances where attractive and repulsive forces balance through the assembly branch. In the axial-layer realization these appear as six-pole axial patterns supported by the nested shell braid structure. The local combinatorics reproduce the observed charge set; dynamical exclusion of non-SM stable assemblies remains part of the closure burden.
+*   **The Survivors:** Specific geometric configurations of six sign-carrying units are candidate stable resonances where attractive and repulsive accelerations balance through the assembly branch. In the axial-layer realization these appear as six-pole axial patterns supported by a candidate Noether braid; this construction does not assign a taxonomy member. The local combinatorics reproduce the observed charge set; dynamical exclusion of non-SM stable assemblies remains part of the closure burden.
 
 **SM Charge Quantization ($\mathbb{A}\mathbb{A}\mathbb{A}$: Six $\epsilon$ Polarity Slots)**
 
@@ -370,7 +370,7 @@ S_{\text{fund}}
 \right]
 $$
 Here $\Delta_{ij}=T-T_{t,ij}$ is the causal travel delay on the active branch, $\mu_{\text{arch}}$ is the universal force/energy bookkeeping constant, and $W_{ij}^{\mathrm{acc}}$ is the transmitter-side acceleration weight on the active branch, so the electroweak closure map starts from the same receiver-side causal geometry as the master equation rather than from a stripped inverse-square surrogate.
-After fast-mode averaging of inner and middle binary phases (Lie-Deprit/Hamiltonian averaging) and coarse-graining to $q^2\ll \omega_M^2$, the minimal observer-level action is written as
+After fast-mode averaging of the declared fast binary phases (Lie-Deprit/Hamiltonian averaging) and coarse-graining to $q^2\ll \omega_{\mathrm{fast}}^2$, the minimal observer-level action is written as
 $$
 \mathcal{L}_{\text{eff}}
 =
@@ -387,10 +387,10 @@ The leading composite correction is modeled as
 $$
 \mathcal{L}_{\text{comp}}
 =
-\frac{R_L^2}{2}\,\bar{\Psi}\gamma^\mu D^\nu\mathcal{F}_{\mu\nu}\Psi
-+O(R_L^4)
+\frac{R_{\mathrm{comp}}^2}{2}\,\bar{\Psi}\gamma^\mu D^\nu\mathcal{F}_{\mu\nu}\Psi
++O(R_{\mathrm{comp}}^4)
 $$
-where $R_L$ is the outer-binary scale.
+where $R_{\mathrm{comp}}$ is the declared composite scale extracted from the indexed binary record.
 
 For the formal closure layer beneath this working map, see [Gauge Symmetries](../../../../markdown/aaa/assemblies/gauge-symmetries.md) and [Effective Lagrangian](../../../../markdown/aaa/dynamics/effective-lagrangian.md).
 
@@ -444,21 +444,21 @@ $$
 a_\ell^{\text{model}}
 =
 a_\ell^{\text{SM,ref}}
-+\mathcal{C}_\ell\,(m_\ell R_L)^2
-+O(R_L^4)
++\mathcal{C}_\ell\,(m_\ell R_{\mathrm{comp}})^2
++O(R_{\mathrm{comp}}^4)
 $$
 
 In natural units ($\hbar=c=1$), the leading form factor correction for lepton-pair production is
 $$
-F(s)=1-\frac{sR_L^2}{4},
+F(s)=1-\frac{sR_{\mathrm{comp}}^2}{4},
 \qquad
 \sigma_{\text{model}}(s)=\sigma_{\text{SM}}(s)\,|F(s)|^2
 $$
-For $R_L\sim 10^{-19}\,\text{m}$, this predicts negligible deviations at $\sqrt{s}=10.58\,\text{GeV}$ but a marginal Gate 1-level deviation near the $Z$ pole at $\sqrt{s}=91.19\,\text{GeV}$. Calling the $Z$-pole shift negligible requires a substantially smaller outer-binary scale, for example $R_L\lesssim3\times10^{-20}\,\text{m}$.
+For $R_{\mathrm{comp}}\sim 10^{-19}\,\text{m}$, this predicts negligible deviations at $\sqrt{s}=10.58\,\text{GeV}$ but a marginal Gate 1-level deviation near the $Z$ pole at $\sqrt{s}=91.19\,\text{GeV}$. Calling the $Z$-pole shift negligible requires a substantially smaller composite scale, for example $R_{\mathrm{comp}}\lesssim3\times10^{-20}\,\text{m}$.
 
 #### Falsification Gates for This Map
 
-1. If the $R_L$ needed to fit $\Delta a_\mu$ implies $|\Delta\sigma/\sigma|>10^{-3}$ near the LEP $Z$ pole, the composite correction map is ruled out.
+1. If the $R_{\mathrm{comp}}$ needed to fit $\Delta a_\mu$ implies $|\Delta\sigma/\sigma|>10^{-3}$ near the LEP $Z$ pole, the composite correction map is ruled out.
 2. If the required hierarchy violates nonresonance and destabilizes closure in the kinematic sector, the electroweak map is not self-consistent with Lorentz closure.
 3. If charge reconstruction from six-pole averaging acquires drift-dependent leakage (non-integer multiples of $e/3$), the quantization map fails.
 4. If the map predicts additional stable charged fermions, unsuppressed partner channels, proton-instability corridors, extra gauge modes, or other non-baseline observables above null-result bounds, the added structure is not a closed unification result.
@@ -783,7 +783,7 @@ Here $\epsilon^{abc}$ is the $SU(2)$ Levi-Civita structure constant; it is unrel
 ### SU(3) Color Sector
 
 **Theorem 3 (Color algebra closure in axis-exceptionality basis).**
-In the ordered basis $(H,M,L)$, the eight generators built from axis mixers and two diagonal traceless operators close a Lie algebra isomorphic to $\mathfrak{su}(3)$.
+In the persistently indexed basis $(1,2,3)$, the eight generators built from axis mixers and two diagonal traceless operators close a Lie algebra isomorphic to $\mathfrak{su}(3)$.
 
 This is the rigorous closure result already proven in [color-charge-su3](../../../../markdown/aaa/assemblies/fermions/color-charge-su3.md#algebra-closure-rigorous-statement). Therefore effective color transport acts through
 $$
@@ -1272,9 +1272,9 @@ This does not mean dense matter stops responding to pressure. It means the scala
 
 #### The Noether Braid as Causal Ledger Closure
 
-A Noether braid can be read as a stable closure of delayed path-history relations. The inner, middle, and outer binaries continually exchange partner-hit, self-hit, and inter-layer wakes. When those returns close with stable phase and integer ledger structure, the assembly traps geometric history in a localized causal circuit.
+A Noether braid can be read as a stable closure of delayed path-history relations. The three indexed binaries continually exchange partner-hit, self-hit, and inter-binary wakes. When those returns close with stable phase and integer ledger structure, the assembly traps geometric history in a localized causal circuit.
 
-When the braid moves or is placed under a gradient, the closure does not remain a static set of circular binaries. The inner, middle, and outer binary planes are drawn into a coupled spiral-helical pattern: pitch, radius, phase, and inter-layer timing retune together so delayed wakes still return to the correct partners and layers. This spiral-helical relocking is the geometric carrier of inertia in the present thesis.
+When the braid moves or is placed under a gradient, the closure does not remain a static set of circular binaries. The planes of binaries $a\in\{1,2,3\}$ are drawn into a coupled spiral-helical pattern: pitch, radius, phase, and inter-binary timing retune together so delayed wakes still return to the correct partners and binary records. This spiral-helical relocking is the geometric carrier of inertia in the present thesis.
 
 In this view, rest energy is the energy stored in the closed causal ledger, and mass is the externally exposed response of that ledger when the braid is accelerated, perturbed, or placed in a Noether sea gradient. Shielding determines how much of the internal closure couples to the far field.
 
@@ -1298,7 +1298,7 @@ Apparent inertial mass is expected to arise from a connected stack of effects:
   $$
   m_{\text{apparent}}c_{\text{eff}}^2 \sim \zeta(A)\,E_{\text{internal}}(A)
   $$
-- **Generational Hierarchy:** Heavier generations (Gen II, Gen III) have **reduced shielding** because outer or middle shielding tiers are depleted on the branch lifetime window. With fewer coherent support layers, more of the inner high-energy core is exposed, increasing $\zeta$ and thus the apparent mass. This is a shielding-coherence statement, not a deletion of the H/M/L axial frame that carries color and electroweak bookkeeping.
+- **Generational Hierarchy:** Heavier generations (Gen II, Gen III) have **reduced shielding** because one or two declared indexed supports are depleted on the branch lifetime window. With fewer coherent supports, more of the high-energy core is exposed, increasing $\zeta$ and thus the apparent mass. This is a shielding-coherence statement over the persistent binary indices, not a deletion of the axial frame that carries color and electroweak bookkeeping.
 
 ##### Medium-Dressed Inertial Response
 - **The Medium:** The Noether sea is not empty space; it is a dynamic population of neutral Noether braid assemblies. Moving or accelerating an assembly changes how its internal causal ledger closes relative to the Noether sea.
@@ -1607,7 +1607,7 @@ $$
 \frac{(r_e+r_\mu+r_\tau)^2}{r_e^2+r_\mu^2+r_\tau^2}=\frac{3}{2}
 $$
 
-Within $\mathbb{A}\mathbb{A}\mathbb{A}$, the natural place to test this is the generation-by-shielding ladder. If the three charged leptons are the same braid-scaffold-plus-axial-layer architecture viewed through three shielding tiers, then a mass-root relation may be an external clue that the exposure map from nested shell braid, Generation-II shielding, and Generation-III shielding branches is more constrained than a generic monotone hierarchy.
+Within $\mathbb{A}\mathbb{A}\mathbb{A}$, the natural place to test this is the generation-by-shielding ladder. If the three charged leptons are the same candidate braid-scaffold-plus-axial-layer architecture viewed through three shielding-support vectors, then a mass-root relation may be an external clue that the exposure map from full, Generation-II, and Generation-III shielding branches is more constrained than a generic monotone hierarchy. This particle map does not assign a braid-taxonomy member.
 
 The conservative use of Koide here is therefore:
 
@@ -1636,7 +1636,7 @@ That means a Koide-like benchmark, if it is useful at all, belongs first to the 
 
 To advance from qualitative thesis to quantitative mass prediction, the active mass program must close five linked steps.
 
-1. **Stable nested shell braid attractor:** derive one robust Noether braid attractor family with radii, frequencies, branch data, and stability diagnostics.
+1. **Stable A1 attractor target:** derive one robust Noether braid attractor family whose three persistent binaries have independently assignable positive radii and frequencies, mutually orthogonal axes at the Family-A near-rest endpoint, and axes that converge toward the group-translation direction along the prescribed flattening coordinate; record the remaining binary coordinates, branch data, and stability diagnostics. The `A1` label fixes this prescribed chart but does not prejudge retention.
 2. **Internal energy ledger:** compute the dimensionless internal energy stored in that attractor without assuming the particle mass being derived.
 3. **Shielding extraction:** derive $\zeta(A)$ from far-field wake cancellation and exposed coupling geometry.
 4. **Medium-dressed response:** derive the response tensor that turns shielded internal energy into inertial and gravitational response in the weak-field regime.
@@ -1644,17 +1644,17 @@ To advance from qualitative thesis to quantitative mass prediction, the active m
 
 #### Reference Attractor Gate
 
-The first mass-side calculation should not begin by fitting the electron mass. It should begin with a calibration-free reference attractor, denoted $A_0$: a neutral, rest-branch nested shell braid in a weak homogeneous Noether sea cell. This gate turns the mass thesis from a symbolic relation into a concrete closure target that can be checked before particle labels, charged-lepton ratios, or measured constants enter the calculation.
+The first mass-side calculation should not begin by fitting the electron mass. It should begin with a calibration-free reference attractor, denoted $A_0$: a neutral rest-branch candidate constrained to the A1 prescribed coordinates in a weak homogeneous Noether sea cell. This gate turns the mass thesis from a symbolic relation into a concrete closure target that can be checked before particle labels, charged-lepton ratios, or measured constants enter the calculation. Failure to retain the A1 coordinate relations on the same evolved record rejects this candidate before any mass comparison.
 
-This attractor should not be pictured as three independent circular binaries. The inner, middle, and outer binaries occupy different causal-speed regimes: the inner binary is self-hit and super-field-speed on the active branch, the middle binary sits near the $v = c_f$ separator, and the outer binary remains sub-field-speed as the shielding and boundary-coupling interface. Circular or elliptic pictures can still be useful as carrier charts, but only after the coupled root ledger, phase lock, and stability diagnostics are respected.
+This attractor should not be pictured as three independent circular binaries. Its source record assigns different causal-speed regimes to the persistent indices: binary 1 is self-hit and super-field-speed on the active branch, binary 2 sits near the $v=c_f$ fold, and binary 3 remains sub-field-speed as the shielding and boundary-coupling channel. These assignments define the $A_0$ candidate record; they are not taxonomy-assigned roles. Circular or elliptic pictures can still be useful as carrier charts, but only after the coupled root ledger, phase lock, and stability diagnostics are respected.
 
-For the mass program, this distinction controls which internal corrections matter. Nonresonant fast structure in the inner layer may average out of the leading far-field shielding estimate, especially when the layer scales differ strongly. Resonant corrections, near-separator corrections, and small leakage asymmetries cannot be discarded in the same way, because they can change the accepted branch, the Floquet gap, or the extracted $\zeta(A_0)$ itself.
+For the mass program, this distinction controls which internal corrections matter. Nonresonant fast structure in source-record binary 1 may average out of the leading far-field shielding estimate, especially when the binary scales differ strongly. Resonant corrections, near-separator corrections, and small leakage asymmetries cannot be discarded in the same way, because they can change the accepted branch, the Floquet gap, or the extracted $\zeta(A_0)$ itself. The fast role is measured on the record and is not a meaning of index 1.
 
 The minimal $A_0$ output contract is:
 
 | Output class | Required content | Why it matters |
 | --- | --- | --- |
-| Geometry and winding | $R_I,R_M,R_O$, binary-plane normals, handedness, phase offsets, layer windings, and inter-layer closure integers | fixes the attractor as an integer-labeled Noether braid state rather than a loose configuration sketch |
+| Geometry and winding | $R_1,R_2,R_3$, binary-plane normals, handedness, phase offsets, binary windings, and inter-binary closure integers | fixes the attractor as an integer-labeled Noether braid state rather than a loose configuration sketch |
 | Root ledger and stability | partner-hit counts, self-hit counts, inter-layer hit channels, closure residuals, return-map residuals, and the non-symmetry Floquet gap $\Delta_{\mathbf{k}}$ | separates stable closed cycles from integer-looking but dynamically unstable candidates |
 | Internal energy ledger | $E_I,E_M,E_O$, interaction and wake terms, total $E_{\text{internal}}(A_0)$, and action per closed cycle | supplies the unshielded reservoir in the mass-map roadmap formula |
 | Group-velocity anisotropy | declared $\mathbf{V}_{\text{cm}}$, causal speed $c_\star$, $\beta_\star$, envelope ratio, forward/backward delay ratio, and anisotropy tensor $\mathcal{A}_{\mathrm{gv}}^{ij}$ | keeps motion-induced deformation separate from far-field shielding leakage |
@@ -1689,7 +1689,7 @@ The canonical chapter should carry this interface but not the detailed simulatio
 
 ### Color Charge SU(3)
 
-This chapter gives the assembly-level interpretation of color charge and effective `SU(3)` structure. Its purpose is to explain how quark color bookkeeping, confinement language, and nested shell braid scaffold geometry are meant to fit together before the full topological confinement derivation is closed. It is the fermion-side companion to [Gluons and the Strong Force: Geometric Origins](../../../../markdown/aaa/assemblies/bosons/gluons.md) and [Quarks](../../../../markdown/aaa/assemblies/fermions/quarks.md).
+This chapter gives a candidate assembly-level interpretation of color charge and effective `SU(3)` structure. Its purpose is to explain how quark color bookkeeping, confinement language, and a prescribed A1 scaffold are hypothesized to fit together before the particle assignment and full topological confinement derivation are closed. It is the fermion-side companion to [Gluons and the Strong Force: Geometric Origins](../../../../markdown/aaa/assemblies/bosons/gluons.md) and [Quarks](../../../../markdown/aaa/assemblies/fermions/quarks.md).
 
 The standard color label is extremely successful as algebra. The implementation question is different: what physical feature of a quark assembly can be counted in three ways, transformed by an octet of corridor modes, and hidden inside color-singlet hadrons? This chapter answers at the recovery-target level: color is axis exceptionality in the axial frame of a Noether braid assembly.
 
@@ -1699,39 +1699,41 @@ That means the word `color` should be read as a structured bookkeeping channel, 
 
 #### Ontology, Notation, and Generations
 
-##### Nested Shell Braid Scaffold
+##### A1 Scaffold
 
-Each fermion is built on a **nested shell braid scaffold**: three nested electrino:positrino binaries sharing a center. We use **Noether braid** for the broader class of conserved-quantity-bearing braids; see [Noether Braid](../../../../markdown/aaa/noether-braid/noether-braid.md).
+The working Gen-I fermion mapping uses a candidate **A1 scaffold**: three persistently indexed electrino:positrino binaries whose positive radii and frequencies are independently assignable, whose axes are mutually orthogonal at the Family-A near-rest endpoint, and whose axes converge toward the group-translation direction along the prescribed flattening coordinate. Phases, axial half-separations, transverse orbit radii, and circulation remain explicit binary coordinates. **Noether braid** remains the broader neutral six-architrino class; see [Noether Braid](../../../../markdown/aaa/noether-braid/noether-braid.md). The taxonomy defines this prescribed geometry only; it does not establish a quark assignment, retention, stability, or color mechanism.
 
 The scaffold supplies the stable reference triad. The axial layer supplies the visible polarity pattern. Color appears only when those two facts together leave one axis distinguishable from the other two.
 
-We label the three binaries by their dynamical regime:
+The illustrative source record used in this chapter assigns the following dynamical regimes to the persistent binary indices:
 
-- **H‑binary (High / inner)**
+- **Binary 1**
   - Smallest radius
-  - Velocity $v_H > c_f$
+  - Velocity $v_1 > c_f$
   - Self‑hit regime (strong path memory, highest curvature/energy)
 
-- **M‑binary (Medium / middle)**
+- **Binary 2**
   - Intermediate radius
-  - Velocity $v_M = c_f$
+  - Velocity $v_2 = c_f$
   - Symmetry‑breaking “pivot” scale
 
-- **L‑binary (Low / outer)**
+- **Binary 3**
   - Largest radius
-  - Velocity $v_L < c_f$
-  - Lowest curvature; outer envelope, expansion/contraction behavior
+  - Velocity $v_3 < c_f$
+  - Lowest curvature; exposed-envelope expansion/contraction behavior
+
+These speed, radius, curvature, and shielding roles are hypotheses of this source record. They are not meanings of indices 1, 2, and 3, and another A1 branch may assign the derived roles differently.
 
 Each binary defines one **axis** with two **polar sites**. We use $\epsilon=|e|/6$ for the polarity-unit magnitude, with $\epsilon_-\equiv-\epsilon$ and $\epsilon_+\equiv+\epsilon$. Each polar site is occupied by either:
 
 - Electrino ($\epsilon_-$), or
 - Positrino ($\epsilon_+$).
 
-So each Noether braid has 3 axes (H, M, L) × 2 poles = **6 polar sites**.
+So each Noether braid has 3 axes (1, 2, 3) × 2 poles = **6 polar sites**.
 
 We distinguish:
 
-- **Scaffold architrinos**: the three electrino:positrino pairs in the H, M, L binaries (2 per binary → 6 per quark).
+- **Scaffold architrinos**: the three electrino:positrino pairs in the 1, 2, 3 binaries (2 per binary → 6 per quark).
 - **Axial architrinos**: the six $\epsilon_\pm$ axial-inventory entries bound to the polar sites.
 
 For a Gen‑I quark:
@@ -1746,43 +1748,43 @@ For a Gen‑I baryon (3 quarks):
 - 18 axial architrinos
 - **36 architrinos** total.
 
-We use “nested shell braid” for the nested shell-support structure and “Noether braid” when emphasizing the broader conserved-quantity-bearing class.
+We use **A1** only for this prescribed indexed Family-A member and **Noether braid** for the broader neutral six-architrino class. Every color and particle assignment in this chapter remains a candidate mapping.
 
 ##### Generational excitation states
 
-Standard Model “generations” are interpreted as **excitation states** of the same nested shell braid topology:
+Standard Model “generations” are interpreted as candidate **excitation states** of the same A1-based architecture:
 
 - **Gen‑I (ground‑state assembly)**
-  - All three binaries assembled: [H, M, L].
-  - Fully shielded H core.
+  - All three binaries assembled: [1, 2, 3].
+  - Fully shielded 1 core.
 
 - **Gen‑II (first excitation)**
-  - [H, M] remain coherently assembled as shielding support.
-  - L‑tier support is depleted, unassembled, or transient on the branch lifetime window, exposing more of the H/M structure.
+  - [1, 2] remain coherently assembled as shielding support.
+  - 3‑tier support is depleted, unassembled, or transient on the branch lifetime window, exposing more of the 1/2 structure.
 
 - **Gen‑III (second excitation)**
-  - H remains coherently assembled as shielding support.
-  - M and L support are depleted on the branch lifetime window; the H self-hit core is effectively naked.
+  - 1 remains coherently assembled as shielding support.
+  - 2 and 3 support are depleted on the branch lifetime window; the 1 self-hit core is effectively naked.
 
 We treat these as **different assembly states**, not ordinary dissociation products in time. Heavier generations require energy input to form and relax back via W/Z/$\gamma$/$\nu$ emission, but the depletion signal still has to propagate to the weakly bound axial layer through causal wakes and relocking cycles before the branch opens its reaction corridor.
 
-In this section, color is defined on the ordered axial frame $\{D_H,D_M,D_L\}$, not on the count of shielding tiers that remain coherent. Here $D_H,D_M,D_L$ denote the three polar-dyad records carried by the H, M, and L axes. Higher generations inherit the same color triplet through this metastable H/M/L axial record even when one or more shielding tiers are depleted. This separation is required because top and bottom quarks must remain color triplets while carrying Generation-III mass and lifetime behavior.
+In this section, color is defined on the ordered axial frame $\{D_1,D_2,D_3\}$, not on the count of shielding tiers that remain coherent. Here $D_1,D_2,D_3$ denote the three polar-dyad records carried by the 1, 2, and 3 axes. Higher generations inherit the same color triplet through this metastable 1/2/3 axial record even when one or more shielding tiers are depleted. This separation is required because top and bottom quarks must remain color triplets while carrying Generation-III mass and lifetime behavior.
 
 ##### Braid orientation and matter/antimatter conjugation
 
 Beyond which binaries are present, their **precession order** defines a pro/anti braid orientation:
 
-- **Pro orientation:** precession order $H \to M \to L$ in time.
-- **Anti orientation:** precession order $H \to L \to M$ in time.
+- **Pro orientation:** precession order $1 \to 2 \to 3$ in time.
+- **Anti orientation:** precession order $1 \to 3 \to 2$ in time.
 
 This is the fermion-sector consumer of the pro/anti orientation basis defined in [Noether Sea Pro/Anti Coupling](../../../../markdown/aaa/spacetime/noether-sea-pro-anti-coupling.md#proanti-noether-braid-basis). The orientation is parity-facing: parity exchanges the two orders. It does not distinguish particles from antiparticles. Matter/antimatter instead follows whole-branch polarity conjugation at fixed worldlines, which preserves the pro/anti order. Color is independent of both binary labels.
 
 #### Colorless Fermions: Axis Uniformity
 
 **Core rule:**
-Color charge appears only when the nested shell braid axes are **not equivalent**. If all three axes carry the same axial pattern, there is no “which axis is special?” degree of freedom → **no color**.
+Color charge appears only when the indexed A1 axes are **not equivalent**. If all three axes carry the same axial pattern, there is no “which axis is special?” degree of freedom → **no color**.
 
-This is the entry point for the whole chapter. Leptons are colorless because their axial pattern does not single out an H, M, or L axis. Quarks are colored because their axial pattern does.
+This is the entry point for the whole chapter. Leptons are colorless because their axial pattern does not single out axis 1, 2, or 3. Quarks are colored because their axial pattern does.
 
 ##### Stealth and color neutrality
 
@@ -1799,7 +1801,7 @@ This does not derive the full color algebra by itself, but it gives a clean geom
 ##### Electron and positron
 
 - **Electron**:
-  $(\text{H},\text{M},\text{L}) = (-/-,\ -/- ,\ -/-)$
+  $(\text{1},\text{2},\text{3}) = (-/-,\ -/- ,\ -/-)$
   - Each axis: net $-2\epsilon$.
   - Total: $-6\epsilon=-e$.
   - All axes identical → SU(3)$_c$ singlet.
@@ -1816,7 +1818,7 @@ Neutrinos are treated as near-photon neutral assemblies rather than ordinary six
 
 This makes the color statement sharper:
 
-- The neutrino has no stable quark-like axial layer on which one H, M, or L axis can become exceptional.
+- The neutrino has no stable quark-like axial layer on which one 1, 2, or 3 axis can become exceptional.
 - Its polarity-conjugate pairing cancels charge-like exposure and leaves no color triplet degree of freedom.
 - The balanced $3\epsilon_+,3\epsilon_-$ notation used in weak bookkeeping is an interaction projection, not a constituent color pattern.
 
@@ -1848,12 +1850,12 @@ The key structural rule for **admissible, stable quark‑like Noether braids** i
 
 > Exactly **two axes share the same axial class**, and the third is **different in kind** (negative-polarity dyad vs positive-polarity dyad vs mixed dyad).
 
-We **forbid** stable states with all three axes in different classes (for example H positive-polarity dyad, M negative-polarity dyad, L mixed dyad). Those “three-different” configurations have no clear background/exceptional split; in our picture they are dynamically unstable in the Noether sea and quickly relax or disintegrate.
+We **forbid** stable states with all three axes in different classes (for example 1 positive-polarity dyad, 2 negative-polarity dyad, 3 mixed dyad). Those “three-different” configurations have no clear background/exceptional split; in our picture they are dynamically unstable in the Noether sea and quickly relax or disintegrate.
 
 Therefore:
 
-- **Colorless**: H,M,L all same class, for example all negative-polarity dyads or all mixed dyads.
-- **Colored quark**: H,M,L pattern is one of:
+- **Colorless**: 1,2,3 all same class, for example all negative-polarity dyads or all mixed dyads.
+- **Colored quark**: 1,2,3 pattern is one of:
   - two background dyads and one exceptional dyad
   where the exceptional dyad class differs from the background dyad class.
 
@@ -1878,16 +1880,16 @@ Thus:
 
 Define color basis:
 
-- $|u_H\rangle$: H axis is mixed (exceptional), while M and L are positive-polarity dyads.
-- $|u_M\rangle$: M exceptional.
-- $|u_L\rangle$: L exceptional.
+- $|u_1\rangle$: 1 axis is mixed (exceptional), while 2 and 3 are positive-polarity dyads.
+- $|u_2\rangle$: 2 exceptional.
+- $|u_3\rangle$: 3 exceptional.
 
 These span the color space:
-$\mathcal{H}^{\text{color}}_u = \mathrm{span}\{|u_H\rangle,|u_M\rangle,|u_L\rangle\} \cong \mathbb{C}^3.$
+$\mathcal{H}^{\text{color}}_u = \mathrm{span}\{|u_1\rangle,|u_2\rangle,|u_3\rangle\} \cong \mathbb{C}^3.$
 
 Pole assignment inside the exceptional axis (which pole hosts the electrino) changes local dipole structure but not which axis is exceptional; at the level of color it’s a **gauge‑like internal redundancy**.
 
-Anti-up quarks use an anti-nested shell braid with 5 electrinos, 1 positrino (and reversed braid), forming the conjugate triplet **3̄** with basis $|\bar u_H\rangle,|\bar u_M\rangle,|\bar u_L\rangle$.
+Anti-up quarks use the polarity-conjugate A1 branch with 5 electrinos and 1 positrino in the axial layer, forming the conjugate triplet **3̄** with basis $|\bar u_1\rangle,|\bar u_2\rangle,|\bar u_3\rangle$.
 
 ##### Down‑type quarks ($4\epsilon_-,2\epsilon_+$)
 
@@ -1899,7 +1901,7 @@ All admissible axis‑class patterns consistent with $4\epsilon_-,2\epsilon_+$ a
 
 ###### Family I - one positive-polarity dyad, two negative-polarity dyads
 
-Written as (H,M,L):
+Written as (1,2,3):
 
 - (A) negative, negative, positive
 - (B) negative, positive, negative
@@ -1927,12 +1929,12 @@ In both families, the same structural pattern appears:
 
 Thus for down‑type $d$ we again define:
 
-- $|d_H\rangle$: H axis is exceptional, either a positive-polarity dyad among negative-polarity dyads or a negative-polarity dyad among mixed dyads.
-- $|d_M\rangle$: M exceptional.
-- $|d_L\rangle$: L exceptional.
+- $|d_1\rangle$: 1 axis is exceptional, either a positive-polarity dyad among negative-polarity dyads or a negative-polarity dyad among mixed dyads.
+- $|d_2\rangle$: 2 exceptional.
+- $|d_3\rangle$: 3 exceptional.
 
 and:
-$\mathcal{H}^{\text{color}}_d = \mathrm{span}\{|d_H\rangle,|d_M\rangle,|d_L\rangle\} \cong \mathbb{C}^3.$
+$\mathcal{H}^{\text{color}}_d = \mathrm{span}\{|d_1\rangle,|d_2\rangle,|d_3\rangle\} \cong \mathbb{C}^3.$
 
 ###### Family selection: dynamic, not arbitrary
 
@@ -1949,7 +1951,7 @@ The shared branch-selection rule is therefore:
 $$
 F_\star(q,\mathcal{B})\in\{I,II\},\qquad q\in\{d,s,b\}
 $$
-where $\mathcal{B}$ denotes the local branch context: generation tier, hadron boundary conditions, effective forcing window, and Noether sea environment. Once $F_\star$ is selected, its three H/M/L permutations form the red/green/blue triplet for that down-type quark. The other family is a competing branch sector, not an additional observed species.
+where $\mathcal{B}$ denotes the local branch context: generation tier, hadron boundary conditions, effective forcing window, and Noether sea environment. Once $F_\star$ is selected, its three 1/2/3 permutations form the red/green/blue triplet for that down-type quark. The other family is a competing branch sector, not an additional observed species.
 
 ##### Rigorous low-energy branch-selection criterion
 
@@ -2024,12 +2026,12 @@ In that case both families are generically long-lived and comparably populated, 
 
 For any quark flavor $q$, define the color state space
 $$
-\mathcal{H}^{\text{color}}_q \equiv \mathrm{span}\{|q_H\rangle,|q_M\rangle,|q_L\rangle\}\cong\mathbb{C}^3
+\mathcal{H}^{\text{color}}_q \equiv \mathrm{span}\{|q_1\rangle,|q_2\rangle,|q_3\rangle\}\cong\mathbb{C}^3
 $$
-where $|q_H\rangle,|q_M\rangle,|q_L\rangle$ mean "axis-exceptionality on H/M/L", respectively.
+where $|q_1\rangle,|q_2\rangle,|q_3\rangle$ mean "axis-exceptionality on 1/2/3", respectively.
 Fix this ordered basis and identify it with the canonical triplet basis
 $$
-|q_H\rangle\leftrightarrow e_1,\quad |q_M\rangle\leftrightarrow e_2,\quad |q_L\rangle\leftrightarrow e_3
+|q_1\rangle\leftrightarrow e_1,\quad |q_2\rangle\leftrightarrow e_2,\quad |q_3\rangle\leftrightarrow e_3
 $$
 
 ##### Admissible color transformations
@@ -2037,7 +2039,7 @@ $$
 We model internal color reconfiguration by linear maps $U:\mathcal{H}^{\text{color}}_q\to\mathcal{H}^{\text{color}}_q$ satisfying:
 
 - Preserve net electric charge and total axial inventory.
-- Preserve the one-axis-exceptionality sector (map superpositions of $|q_H\rangle,|q_M\rangle,|q_L\rangle$ to itself).
+- Preserve the one-axis-exceptionality sector (map superpositions of $|q_1\rangle,|q_2\rangle,|q_3\rangle$ to itself).
 - Preserve Born norm (probability conservation): $U^\dagger U=I$.
 - Preserve oriented color volume (gauge-fixed convention): $\det U=1$.
 
@@ -2050,8 +2052,8 @@ The usual global phase map $|q\rangle\to e^{i\theta}|q\rangle$ is treated as uno
 
 ##### Generator basis from axis operations
 
-Let $E_{ab}$ be matrix units in the ordered basis $(H,M,L)$, i.e.
-$(E_{ab})_{cd}=\delta_{ac}\delta_{bd}$ for $a,b\in\{H,M,L\}$.
+Let $E_{ab}$ be matrix units in the ordered basis $(1,2,3)$, i.e.
+$(E_{ab})_{cd}=\delta_{ac}\delta_{bd}$ for $a,b\in\{1,2,3\}$.
 Define Hermitian generators:
 $$
 T^{(x)}_{ab}\equiv \frac{1}{2}(E_{ab}+E_{ba}),\qquad
@@ -2059,19 +2061,19 @@ T^{(y)}_{ab}\equiv -\frac{i}{2}(E_{ab}-E_{ba})
 \quad (a<b)
 $$
 giving six off-diagonal generators:
-$(HM),(HL),(ML)$ each with $(x,y)$ components.
+$(12),(13),(23)$ each with $(x,y)$ components.
 Define diagonal generators:
 $$
-H_1\equiv \frac{1}{2}(E_{HH}-E_{MM}),\qquad
-H_2\equiv \frac{1}{2\sqrt{3}}(E_{HH}+E_{MM}-2E_{LL})
+H_1\equiv \frac{1}{2}(E_{11}-E_{22}),\qquad
+H_2\equiv \frac{1}{2\sqrt{3}}(E_{11}+E_{22}-2E_{33})
 $$
-These eight matrices are exactly the standard $T^a=\lambda_a/2$ basis up to the explicit relabeling $1\leftrightarrow H$, $2\leftrightarrow M$, $3\leftrightarrow L$.
+These eight matrices are exactly the standard $T^a=\lambda_a/2$ basis in the indexed-axis ordering.
 
 ##### Algebra closure (rigorous statement)
 
 **Proposition.** The real span of
 $$
-\mathcal{B}=\{T^{(x)}_{HM},T^{(y)}_{HM},T^{(x)}_{HL},T^{(y)}_{HL},T^{(x)}_{ML},T^{(y)}_{ML},H_1,H_2\}
+\mathcal{B}=\{T^{(x)}_{12},T^{(y)}_{12},T^{(x)}_{13},T^{(y)}_{13},T^{(x)}_{23},T^{(y)}_{23},H_1,H_2\}
 $$
 is an 8-dimensional Lie algebra isomorphic to $\mathfrak{su}(3)$; equivalently,
 $$
@@ -2102,7 +2104,7 @@ Symmetry breaking is then tested as a residual, not promoted to a second color r
 $$
 M_{\mathbb{A}\mathbb{A}\mathbb{A}}(\theta)=m_0\mathbf{1}+\alpha T_8+\beta D_8+\Delta_{\mathrm{axis}}(\theta)
 $$
-where $T_8$ and $D_8$ denote the two octet-breaking directions available to the adjoint classification, and $\Delta_{\mathrm{axis}}(\theta)$ is the native correction from H/M/L regime differences, axial-layer family selection, and braid energy. The recovery residual is
+where $T_8$ and $D_8$ denote the two octet-breaking directions available to the adjoint classification, and $\Delta_{\mathrm{axis}}(\theta)$ is the native correction from indexed-axis response differences, axial-layer family selection, and braid energy. The recovery residual is
 $$
 \mathcal{R}_{8}
 =\min_{m_0,\alpha,\beta,\theta}
@@ -2110,11 +2112,11 @@ $$
 $$
 A branch fails this Eightfold-way check if $\mathcal{R}_{8}$ can be made small only by fitting unrelated parameters separately for baryons, mesons, and color confinement, or if $\Delta_{\mathrm{axis}}$ erases the triplet/conjugate-triplet and adjoint structure above. The source signal to preserve is therefore narrow: algebraic classification and Gell-Mann-Okubo-style mass splitting are recovery constraints on the emergent branch, not evidence that the classification algebra is the underlying medium.
 
-##### Example: H↔M axis-swap generator
+##### Example: 1↔2 axis-swap generator
 
-The infinitesimal H↔M mixer is
+The infinitesimal 1↔2 mixer is
 $$
-T^{(x)}_{HM}
+T^{(x)}_{12}
 =\frac{1}{2}\begin{pmatrix}
 0&1&0\\
 1&0&0\\
@@ -2122,15 +2124,15 @@ T^{(x)}_{HM}
 \end{pmatrix}
 =\frac{\lambda_1}{2}
 $$
-It continuously rotates exceptionality between H and M while leaving L unchanged at first order. Together with $T^{(y)}_{HM}=\lambda_2/2$, it generates the embedded SU(2) subgroup acting on the $(H,M)$ color plane.
+It continuously rotates exceptionality between 1 and 2 while leaving 3 unchanged at first order. Together with $T^{(y)}_{12}=\lambda_2/2$, it generates the embedded SU(2) subgroup acting on the $(1,2)$ color plane.
 
 #### Baryons, Color Singlets, and the 9‑Axis Braid
 
 A Gen‑I baryon (e.g., proton or neutron) consists of:
 
 - 3 quarks → 3 Noether braids
-- Each with H, M, L axes
-- Total of **9 axes**: H₁,M₁,L₁; H₂,M₂,L₂; H₃,M₃,L₃.
+- Each with 1, 2, 3 axes
+- Total of **9 axes**: 1₁,2₁,3₁; 1₂,2₂,3₂; 1₃,2₃,3₃.
 - 18 scaffold architrinos + 18 axial architrinos → **36 architrinos**.
 
 ##### Color singlet condition as closed braid
@@ -2139,20 +2141,20 @@ In SU(3):
 
 - Baryon color state: $3 \otimes 3 \otimes 3 \supset 1$ (fully antisymmetric singlet).
 
-In nested shell braid geometry:
+In A1-based geometry:
 
-- A color singlet baryon is a configuration where each of H, M, L is exceptional **once** across the three quarks, and the 9 axes form a **closed coupling network** (a closed braid).
+- A color singlet baryon is a configuration where each of 1, 2, 3 is exceptional **once** across the three quarks, and the 9 axes form a **closed coupling network** (a closed braid).
 - Example proton (uud, schematic):
 
-  - Quark 1 (u): exceptional on H → $|u_H\rangle$
-  - Quark 2 (u): exceptional on M → $|u_M\rangle$
-  - Quark 3 (d): exceptional on L within the selected down-type family $F_\star$ → $|d_L;F_\star\rangle$
+  - Quark 1 (u): exceptional on 1 → $|u_1\rangle$
+  - Quark 2 (u): exceptional on 2 → $|u_2\rangle$
+  - Quark 3 (d): exceptional on 3 within the selected down-type family $F_\star$ → $|d_3;F_\star\rangle$
 
-The displayed assignment is one component of the fully antisymmetrized color singlet; the physical SU(3) singlet sums the H/M/L assignments with the Levi-Civita color tensor.
+The displayed assignment is one component of the fully antisymmetrized color singlet; the physical SU(3) singlet sums the 1/2/3 assignments with the Levi-Civita color tensor.
 
 At large distances, axis‑dependent multipoles from each regime cancel:
 
-- H‑exceptionality from one quark is compensated by M and L exceptionality from others in the composite singlet combination.
+- 1‑exceptionality from one quark is compensated by 2 and 3 exceptionality from others in the composite singlet combination.
 - Net color flux into the surrounding Noether sea is zero; only isotropic observer-level monopole readouts (charge, baryon number, effective mass) remain.
 
 This closed 3‑strand braid (in color space) is **topologically distinct** from 2‑strand configurations (mesons). Breaking a baryon into pure leptons/mesons would require nonlocal rupture of the Noether braids: that is the topological underpinning for **baryon number conservation** in this model (proton stability).
@@ -2161,21 +2163,21 @@ This closed 3‑strand braid (in color space) is **topologically distinct** from
 
 Even for color‑singlet nucleons:
 
-- Internal H, M, L structures and down‑quark family choices determine how perfectly the 9‑axis braid is screened at distances ≲ 1–2 fm.
+- Internal 1, 2, 3 structures and down‑quark family choices determine how perfectly the 9‑axis braid is screened at distances ≲ 1–2 fm.
 
 Heuristic:
 
-- At inter-nucleon separations ~ a few fm, outer L-axes (and to some degree M-axes) from neighboring nucleons begin to overlap and couple through the Noether sea.
-- These residual couplings act like **meson exchange** in standard nuclear physics, producing an attractive Yukawa‑like force with a hard‑core repulsion scale tied to H/M structure.
+- At inter-nucleon separations ~ a few fm, the source record's more exposed axis-3 channels (and to some degree axis-2 channels) from neighboring nucleons begin to overlap and couple through the Noether sea.
+- These residual couplings act like **meson exchange** in standard nuclear physics, producing an attractive Yukawa‑like force with a hard‑core repulsion scale tied to the less exposed indexed channels.
 
 The downstream nucleon-potential derivation must use:
 
 - the selected down‑quark Family-I or Family-II sector,
-- Axis‑overlap geometry (L‑L, L‑M interactions),
+- Axis‑overlap geometry (3‑3, 3‑2 interactions),
 
 as its inputs for nucleon–nucleon potentials and binding energies in the nuclear section. The local interface is:
 
-> Residual strong force emerges from the same axis/braid structure as color, via imperfect screening of H/M/L at finite nucleon separations.
+> Residual strong force emerges from the same axis/braid structure as color, via imperfect screening of 1/2/3 at finite nucleon separations.
 
 #### Closure Interface: Confinement Energy Scaling
 
@@ -2189,7 +2191,7 @@ for open color braids/flux sectors, while closed singlet sectors satisfy
 $$
 E_{\mathrm{closed}}(\ell_{\mathrm{corr}})\to E_{\infty}<\infty
 $$
-and vanishing far-field color flux. Here $\ell_{\mathrm{corr}}$ is the open color-corridor length, distinct from the L-binary axis label.
+and vanishing far-field color flux. Here $\ell_{\mathrm{corr}}$ is the open color-corridor length, distinct from binary index 3.
 
 The Wilson-loop benchmark is the observer-level gauge-theory diagnostic for the same distinction. For a rectangular loop $C_{R,T}$ in the fundamental color representation, with $R$ and $T$ retained as standard lattice loop-extents rather than native axis or absolute-time labels, the strong-sector branch should recover
 $$
@@ -2229,14 +2231,14 @@ Primary topology spine: [dynamics/causal-action-functional.md](../../../../markd
 
 #### Summary and Interfaces
 
-- A **nested shell braid** is the current three-axis $(H,M,L)$, six-site axial candidate for carrying conserved charge labels via internal symmetries; delayed-dynamics minimality remains a theorem target.
+- **A1** is the current three-axis $(1,2,3)$ scaffold candidate used here for carrying conserved charge labels through internal symmetries; delayed-dynamics retention remains a theorem target.
 - **Colorless** charged leptons have identical axial patterns on all three axes, while neutrinos are colorless near-photon polarity-conjugate neutral pairs; neither route supplies quark-like axis exceptionality.
 - **Quarks** have “two‑same + one‑different” axis‑class patterns:
   - Up‑type: two positive-polarity dyads, one mixed dyad.
   - Down‑type: either two negative-polarity dyads with one positive-polarity dyad, or two mixed dyads with one negative-polarity dyad.
-- Color = which axis (H,M,L) is exceptional. This yields a natural triplet color space $\mathbb{C}^3$ on which SU(3) acts via charge‑preserving, det‑1 reconfigurations of axis exceptionality and phase.
+- Color = which axis (1,2,3) is exceptional. This yields a natural triplet color space $\mathbb{C}^3$ on which SU(3) acts via charge‑preserving, det‑1 reconfigurations of axis exceptionality and phase.
 - **Baryon color singlets** = closed 9‑axis braids; **flux tubes** = open braids in the Noether sea with linear energy cost per unit length → confinement.
-- Down‑quark pattern families, H/M/L regime differences, and braid orientation are downstream interfaces for neutrino oscillation modeling, proton-neutron mass and moment differences, residual nuclear forces, and QCD phase-transition or early-universe thermodynamics. Those applications must inherit the same color-exceptionality and confinement ledger rather than introducing separate color rules.
+- Down‑quark pattern families, indexed-axis response differences, and braid orientation are downstream interfaces for neutrino oscillation modeling, proton-neutron mass and moment differences, residual nuclear forces, and QCD phase-transition or early-universe thermodynamics. Those applications must inherit the same color-exceptionality and confinement ledger rather than introducing separate color rules.
 
 ### Electron
 
@@ -2252,7 +2254,7 @@ It is the Generation-I charged-lepton reference case for [Noether Braid](../../.
 
 #### Axial Inventory and Generation Core
 
-The electron uses the charged-fermion axial-layer rule in its lowest shielding-coherence class. The $e^-$ branch has a pro-nested shell braid with full inner/middle/outer shielding support and a six-site axial inventory of $6\epsilon_-$. The $e^+$ branch is the charge-conjugate branch with axial inventory $6\epsilon_+$. In both cases the charged lepton is a color singlet: the axial layer carries electric and weak bookkeeping, not color-axis exceptionality.
+The electron uses the charged-fermion axial-layer rule in its lowest shielding-coherence class. The working hypothesis assigns the $e^-$ branch a pro-oriented candidate Noether braid with shielding support from all three indexed binaries and a six-site axial inventory of $6\epsilon_-$. The $e^+$ branch is the charge-conjugate candidate with axial inventory $6\epsilon_+$. This particle assignment does not identify a taxonomy member or establish a retained branch. In both cases the charged lepton is a color singlet: the axial layer carries electric and weak bookkeeping, not color-axis exceptionality.
 
 Using the shielding-quotient notation from [Quantum Number Mapping](../../../../markdown/aaa/assemblies/fermions/quantum-number-mapping.md#candidate-generation-operator), the generation-core record is therefore not a new charge pattern. It is the shielding-coherence class of the same charged-lepton axial inventory:
 
@@ -2358,11 +2360,11 @@ The reader-facing rule is simple: electron, muon, and tau belong to one charged-
 
 #### Axial Inventory and Shielding-Coherence Classes
 
-Muon and tau branches do not introduce new charged-lepton axial inventories. They keep the charged-lepton six-site axial layer and move along the shielding-coherence classes of the charged-lepton generation ladder. The class tuple is ordered $(H,M,L)$, the same inner/middle/outer support order used by the shielding-quotient definition in [Quantum Number Mapping](../../../../markdown/aaa/assemblies/fermions/quantum-number-mapping.md#candidate-generation-operator): $1$ means that support tier remains coherently active, while $0$ means that tier is depleted on the branch lifetime window.
+Muon and tau branches do not introduce new charged-lepton axial inventories. They keep the charged-lepton six-site axial layer and move along the shielding-coherence classes of the charged-lepton generation ladder. The class tuple is ordered by the persistent binary indices $a\in\{1,2,3\}$ used by the shielding-quotient definition in [Quantum Number Mapping](../../../../markdown/aaa/assemblies/fermions/quantum-number-mapping.md#candidate-generation-operator): $1$ means that indexed support remains coherently active, while $0$ means that support is depleted on the branch lifetime window.
 
-| Branch | Shielding-coherence class (ordered $H,M,L$) | Core readout | Charged axial inventory | Claim status |
+| Branch | Shielding-coherence class (persistent indices $1,2,3$) | Core readout | Charged axial inventory | Claim status |
 | --- | --- | --- | --- | --- |
-| $e^-$ | $(1,1,1)$ | nested shell braid shielding branch | $6\epsilon_-$ | reference charged-lepton branch |
+| $e^-$ | $(1,1,1)$ | full-shielding candidate braid | $6\epsilon_-$ | reference charged-lepton hypothesis; taxonomy member unassigned |
 | $\mu^-$ | $(1,1,0)$ | Generation-II shielding branch | $6\epsilon_-$ | Generation-II charged-lepton target |
 | $\tau^-$ | $(1,0,0)$ | Generation-III shielding branch | $6\epsilon_-$ | Generation-III charged-lepton target |
 
@@ -2636,7 +2638,7 @@ The neutral-lepton branch is revised by observable gates, not by importing an in
 - **Absolute mass gate:** the eigenvalues of $H_{\mathrm{geo}}$ must remain compatible, through the same comparison-layer map from mass-squared response to ordinary mass language, with oscillation splittings, direct kinematic bounds, and cosmological bounds on $\sum_i m_i$. If future data force the lightest neutrino mass close to zero, the near-photon phase operator should explain that as a boundary or shielding limit of the neutral core-pair spectrum rather than as an added parameter.
 - **Dirac/Majorana gate:** Claim level: derivation from the parity of the chirality invariant, conditional on that invariant being $C$-odd; the geometry that realizes it is not required, and the open joint below is named rather than deferred. **If the neutrino's handedness invariant is $C$-odd, the assembly is conjugate-distinct, the branch is Dirac-like, and the neutrino does not itself violate total lepton number.** The step is short: polarity conjugation reverses a $C$-odd invariant, $C:\chi\to-\chi$ (see [Discrete-Symmetry Structure](../../../../markdown/aaa/noether-braid/braid-b1-symmetry.md#discrete-symmetry-structure)), so a self-conjugate neutrino requires $\chi=-\chi$, hence $\chi=0$, hence no handedness at all — contradicting the observed one-handedness of the weak corridor. The orbit of the assembly under $\{1,C,P,CP\}$ then carries four members: the weak-coupled pair $\nu$ and $\bar\nu=CP(\nu)$ at one sign of $\chi$, and the parity enantiomers $C(\nu)$ and $P(\nu)$ at the other. Four states with two decoupled is the Dirac count, not the Majorana count of two.
 
-  This argument does not depend on the retained braid geometry. It needs only the *transformation character* of the handedness invariant, not the structure that realizes it: any $C$-odd polar quantity locked to the spin forces the same conclusion, whatever the assembly turns out to look like. The cap polarity dipole $\mathbf p$ of the spindle family is one realization and is not privileged here.
+  This argument does not depend on the retained braid geometry. It needs only the *transformation character* of the handedness invariant, not the structure that realizes it: any $C$-odd polar quantity locked to the spin forces the same conclusion, whatever the assembly turns out to look like. The axial polarity dipole $\mathbf p$ of prescribed B1 geometry—one common midpoint, one coincident binary axis, one common frequency, and one common circulation sense—is one realization and is not privileged or claimed retained here.
 
   **The open joint is the character itself, and it is the whole gate.** A chiral object admits two distinct pseudoscalars, and they carry opposite $C$-parity. A polarity-type invariant $\operatorname{sign}(\mathbf p\cdot\mathbf S)$ is $C$-odd and $P$-odd, hence $CP$-even. A helicity-type invariant $\operatorname{sign}(\mathbf v\cdot\mathbf S)$ is $P$-odd but $C$-**even**. Both reproduce maximal parity violation, so the observed handedness of the weak channel does not discriminate between them and cannot settle this gate. Only the $C$-odd branch entails Dirac; a $C$-even handedness invariant leaves the neutrino free to be self-conjugate.
 
@@ -2665,12 +2667,12 @@ The dictionary is not the same thing as a completed derivation. A charge row, co
 The practical reading rule is: this page defines the labels, not their final proof. It says which assembly feature a Standard Model quantum number is supposed to read, and then leaves the stability, reaction, and null-result tests to the chapters that own those closures.
 
 #### Purpose
-This document establishes the canonical dictionary translating **Nested Shell Braid Assembly Geometry** into **Standard Model (SM) Quantum Numbers**.
+This document records a candidate dictionary translating a **Noether braid scaffold** into **Standard Model (SM) quantum-number targets**. The particle assignment is a hypothesis, not part of the braid taxonomy and not a retained-branch result.
 
 The dictionary is needed because the same physical assembly is read in several languages. A Noether braid branch supplies generation and chirality, an axial inventory supplies electric bookkeeping, a weak-coupling exposure supplies weak labels, and axis exceptionality supplies color. Without a stable dictionary, later mass and reaction claims would silently change what the symbols mean.
 
 The parent charge target is a protected six-unit polarity inventory whose signed sum supplies observer-level electric bookkeeping. For charged fermions and quarks, this chapter uses the **Noether braid + axial layer** model as the working realization of that target:
-1.  **The Noether braid:** A neutral, rotating nested shell braid structure whose retained branch supplies generation and mass-scale candidates. Its pro/anti ordered orientation is a parity-facing label; matter/antimatter belongs instead to the whole-branch polarity-conjugation relation.
+1.  **The Noether braid:** A candidate neutral rotating structure whose still-unproved retained branch would supply generation and mass-scale candidates. Its pro/anti ordered orientation is a parity-facing label; matter/antimatter belongs instead to the whole-branch polarity-conjugation relation.
 2.  **The Axial Layer:** A candidate realization in which the six-unit polarity inventory appears as 6 axial architrinos occupying polar sites on the Noether braid, defining the effective electric-charge bookkeeping, weak isospin, and color-sector pattern.
 
 This is a charged-fermion working model, not a proof that every six-unit charge carrier must be axial or external to the braid. The six units may ultimately be internal to the Noether braid, externally coupled to it, embedded in the retained path-history, or realized by a non-axial coupled branch. The axial layer remains useful because it supplies a concrete six-site geometry on which weak-triad and color-exceptionality hypotheses can be tested.
@@ -2709,10 +2711,10 @@ Note: **Mass is derived**, not a quantum number here; it comes from shielded int
 Generation-I charged leptons and quarks contain the full neutral Noether braid scaffold. Higher-generation charged fermions retain depleted shielding branches of the same braid family: the gauge-facing axial frame persists as a delayed branch record, while one or more coherent shielding tiers are no longer assembled as part of the active scaffold.
 
 *   **Composition:** The broad Noether braid class carries three Electrinos and three Positrinos on one retained causal-return ledger.
-*   **Generation-I Noether braid (nested shell braid):** Three ordered support bands (inner, middle, outer). Total 6 architrinos ($3\epsilon_+,3\epsilon_-$).
-*   **Higher-generation shielding branches:** Generation II keeps the inner and middle coherent supports ($2\epsilon_+,2\epsilon_-$); Generation III keeps only the inner support ($1\epsilon_+,1\epsilon_-$). These are depleted branches, not full Noether braids in the six-architrino scaffold sense.
-*   **Nested-scale picture:** The support bands should be read as a genuine radial hierarchy, not just as three items in a list. The middle support band sits inside the shielding domain of the outer support band, and the inner support band sits inside the shielding domains of both. In that sense, the higher-generation inner scaffold may be viewed as what is revealed when the outer shielding tier is removed and the assembly is read further inward.
-*   **Pro/anti ordered orientation:** Where a three-dimensional retained braid has an ordered high-, middle-, and low-frequency frame, pro denotes `HML` order and anti denotes `HLM` order. Parity exchanges the two orders; polarity conjugation leaves the order unchanged.
+*   **Generation-I candidate braid:** Three persistently indexed support rows. Total 6 architrinos ($3\epsilon_+,3\epsilon_-$). This support chart does not by itself identify a taxonomy member.
+*   **Higher-generation shielding branches:** The working source record assigns coherent shielding support to binaries 1, 2, and 3 in Generation I; to binaries 1 and 2 in Generation II ($2\epsilon_+,2\epsilon_-$); and to binary 1 in Generation III ($1\epsilon_+,1\epsilon_-$). These are record-specific support assignments, not meanings of the binary indices or radius-order statements. The depleted branches are not full Noether braids in the six-architrino scaffold sense.
+*   **Shielding picture:** The source record treats the three indexed support rows as a shielding hierarchy. Which row shields another must be established by the retained geometry and exposure ledger; it is not inferred from the index.
+*   **Pro/anti ordered orientation:** For a retained three-dimensional braid, pro and anti denote the two deformation-stable indexed-frame orientations, represented here by `123` and `132`. Parity exchanges the two orientations; polarity conjugation leaves the orientation unchanged.
 *   **Matter/antimatter conjugation:** Matter and antimatter are whole retained branches related by polarity conjugation at fixed worldlines, including the path-history, causal-root, wake-history, action, and stability rows. In charged sectors the visible polarity inventory must also map to the conjugate charge row. Neither branch is selected by pro/anti orientation alone.
 *   **Net Charge:** Always $0$.
 
@@ -2731,7 +2733,7 @@ The Noether braid plus axial layer should be read as a selected stability candid
 | :--- | :--- | :--- |
 | Opposite-polarity binary | Causal-wake attraction and opposite-polarity locking make a neutral two-body branch dynamically available across many energy regimes. | Natural assembly seed, but too externally reactive to serve as a stable low-energy fermion by itself. |
 | Partial two-tier support branch | A larger, lower-energy support tier can partially shield a smaller, higher-energy support tier. | Partial shielding is not enough for the charged-fermion scaffold; this branch still lacks the full three-dimensional angular-momentum accommodation required by the model. |
-| Nested shell braid candidate | Ordered support bands supply a neutral braid scaffold, retained internal causal history, a shielding hierarchy, and rotational accommodation across three spatial directions. | Working charged-fermion scaffold. Its stability, mass scale, and generation hierarchy remain derivation targets rather than asserted facts. |
+| Candidate Noether braid | Ordered support bands would supply a neutral braid scaffold, retained internal causal history, a shielding hierarchy, and rotational accommodation across three spatial directions. | Working charged-fermion scaffold. Its stability, mass scale, generation hierarchy, and taxonomy-member assignment remain derivation targets rather than asserted facts. |
 | Six-site axial layer | The binary axes provide six polar sites where a protected polarity inventory can phase-lock to the scaffold. | Working realization of charged-fermion electric bookkeeping and weak/color exposure. Non-SM low-energy inventories must still be dynamically excluded. |
 
 This makes selection a closure burden. A viable fermion branch must pass branch stability, shielding, angular-momentum accommodation, axial-inventory stability, and the null constraint that unobserved low-energy partners do not appear as stable assemblies.
@@ -2757,18 +2759,18 @@ This remains a geometric hypothesis rather than a finished derivation. Its value
 
 #### The Fermion Mapping (Generation I)
 
-Charged Generation I leptons and quarks utilize the full **nested shell braid**. The neutrino entry records the active weak-sector mapping while deferring the physical neutral-pair geometry to [Neutrinos](../../../../markdown/aaa/assemblies/fermions/neutrinos.md).
+The working hypothesis assigns charged Generation I leptons and quarks the full **candidate Noether braid scaffold**. The neutrino entry records the active weak-sector mapping while deferring the physical neutral-pair geometry to [Neutrinos](../../../../markdown/aaa/assemblies/fermions/neutrinos.md).
 
 ##### Leptons
 
 **The Electron ($e^-$)**
-*   **Braid scaffold:** Matter nested shell braid ($3\epsilon_+,3\epsilon_-$, neutral); its pro/anti ordered orientation is a separate parity-facing label.
+*   **Braid scaffold:** Candidate matter Noether braid ($3\epsilon_+,3\epsilon_-$, neutral); its pro/anti ordered orientation is a separate parity-facing label.
 *   **Axial Layer:** 6 Electrinos ($6\epsilon_-$).
 *   **Net Charge:** $0 (\text{braid}) - 6\epsilon (\text{axial}) = -6\epsilon = -1e$.
 *   **Total Count:** 12 architrinos.
 
 **The Positron ($e^+$)**
-*   **Braid scaffold:** Polarity-conjugate antimatter nested shell braid ($3\epsilon_+,3\epsilon_-$, neutral).
+*   **Braid scaffold:** Candidate polarity-conjugate antimatter Noether braid ($3\epsilon_+,3\epsilon_-$, neutral).
 *   **Axial Layer:** 6 Positrinos ($6\epsilon_+$).
 *   **Net Charge:** $0 + 6\epsilon = +1e$.
 *   **Note:** The positron is not antimatter because its axial layer uses positive-polarity units. Its antimatter status belongs to the polarity-conjugate retained branch; the $6\epsilon_+$ axial layer supplies the conjugate electric-charge inventory and must be retained with the same history-bearing branch.
@@ -2783,12 +2785,12 @@ Charged Generation I leptons and quarks utilize the full **nested shell braid**.
 ##### Quarks
 
 **The Up Quark ($u$)**
-*   **Braid scaffold:** Matter nested shell braid.
+*   **Braid scaffold:** Candidate matter Noether braid.
 *   **Axial Layer:** 1 Electrino, 5 Positrinos ($1\epsilon_-,5\epsilon_+$).
 *   **Net Charge:** $+5\epsilon - 1\epsilon = +4\epsilon = +2/3e$.
 
 **The Down Quark ($d$)**
-*   **Braid scaffold:** Matter nested shell braid.
+*   **Braid scaffold:** Candidate matter Noether braid.
 *   **Axial Layer:** 4 Electrinos, 2 Positrinos ($4\epsilon_-,2\epsilon_+$).
 *   **Net Charge:** $+2\epsilon - 4\epsilon = -2\epsilon = -1/3e$.
 
@@ -2796,11 +2798,11 @@ Charged Generation I leptons and quarks utilize the full **nested shell braid**.
 
 | Particle | Braid scaffold | Axial Layer | Net Charge ($e$) | Total Architrinos |
 | :--- | :--- | :--- | :--- | :--- |
-| **Electron** ($e^-$) | Matter nested shell braid | $6\epsilon_-$ | -1 | 12 |
-| **Positron** ($e^+$) | Polarity-conjugate antimatter nested shell braid | $6\epsilon_+$ | +1 | 12 |
+| **Electron** ($e^-$) | Candidate matter Noether braid | $6\epsilon_-$ | -1 | 12 |
+| **Positron** ($e^+$) | Candidate polarity-conjugate antimatter Noether braid | $6\epsilon_+$ | +1 | 12 |
 | **Neutrino** ($\nu_e$) | Near-planar polarity-conjugate braid pair | no stable axial layer; effective $3\epsilon_+,3\epsilon_-$ weak ledger | 0 | geometry-dependent |
-| **Up Quark** ($u$) | Matter nested shell braid | $5\epsilon_+,1\epsilon_-$ | +2/3 | 12 |
-| **Down Quark** ($d$) | Matter nested shell braid | $2\epsilon_+,4\epsilon_-$ | -1/3 | 12 |
+| **Up Quark** ($u$) | Candidate matter Noether braid | $5\epsilon_+,1\epsilon_-$ | +2/3 | 12 |
+| **Down Quark** ($d$) | Candidate matter Noether braid | $2\epsilon_+,4\epsilon_-$ | -1/3 | 12 |
 
 ---
 
@@ -2824,7 +2826,7 @@ The closure target is one retained assembly record whose projections recover the
 In the Standard Model, the Weak Force only acts on "Left-Handed" particles. It transforms members of a doublet (e.g., $e^- \leftrightarrow \nu_e$) into each other. We map this to the **weak-coupling-triad hypothesis**.
 
 ##### The Weak-Coupling Triad Geometry
-In the axial-layer realization, every charged-fermion six-unit carrier consists of 6 polar sites. We hypothesize that these are organized into two groups based on the nested shell braid rotation axis:
+In the axial-layer realization, every charged-fermion six-unit carrier consists of 6 polar sites. We hypothesize that these are organized into two groups based on a candidate braid rotation axis:
 1.  **The Shielded Triad (3 sites):** Geometrically locked or obscured by the binary precession. These axial occupancies *cannot* be swapped without destroying the particle.
 2.  **The weak-coupling triad (3 sites):** Exposed to the Noether sea. These are the "switchable bits."
 
@@ -2940,7 +2942,7 @@ Why can't a Right-Handed Electron ($e^-_R$) turn into a Neutrino?
 In the Standard Model, quarks carry one of three color labels, while leptons are color singlets. In the current $\mathbb{A}\mathbb{A}\mathbb{A}$ bookkeeping, color is the **axis-exceptionality state** of a Noether braid with an axial layer: one axis is distinguished relative to the other two, and the three possible choices span the quark color triplet.
 
 ##### The Definition of Color
-Use the ordered-frame axes $(H,M,L)$.
+Use the persistently indexed axes $(1,2,3)$.
 
 - **Charged leptons:** the three axes remain equivalent, so there is no distinguished axis and no color degree of freedom. Neutrinos are also colorless, but by the near-photon neutral-pair route rather than by a stable charged-fermion axial layer.
 - **Up-type quarks:** the six-site axial count $5\epsilon_+,1\epsilon_-$ forces one mixed polarity dyad against two positive-polarity dyads, so color is the choice of which axis carries the mixed pattern.
@@ -2948,9 +2950,9 @@ Use the ordered-frame axes $(H,M,L)$.
 
 With the usual naming convention,
 $$
-|q_H\rangle \leftrightarrow \text{Red},\qquad
-|q_M\rangle \leftrightarrow \text{Green},\qquad
-|q_L\rangle \leftrightarrow \text{Blue}
+|q_1\rangle \leftrightarrow \text{Red},\qquad
+|q_2\rangle \leftrightarrow \text{Green},\qquad
+|q_3\rangle \leftrightarrow \text{Blue}
 $$
 These labels are a basis convention on the quark color triplet, not an additional physical charge layered on top of axis exceptionality.
 
@@ -2959,7 +2961,7 @@ Because a colored quark leaves one axis exceptional, it opens a non-singlet stro
 
 - **Single quark:** the open corridor carries a line-like energy cost that grows with separation, so isolated color sectors are excluded.
 - **Meson ($q \bar{q}$):** a triplet and anti-triplet can close the corridor into a singlet flux tube.
-- **Baryon ($qqq$):** one H-exceptional, one M-exceptional, and one L-exceptional quark can close into the color-singlet braid
+- **Baryon ($qqq$):** one axis-1-exceptional, one axis-2-exceptional, and one axis-3-exceptional quark can close into the color-singlet braid
   $$
   3\otimes 3\otimes 3 \supset 1
   $$
@@ -2968,7 +2970,7 @@ Because a colored quark leaves one axis exceptional, it opens a non-singlet stro
 ##### Gluons
 Gluons are the axis-reconfiguration carriers of this sector.
 
-- They move quarks within the ordered basis $(H,M,L)$ while preserving flavor inventory and electric charge.
+- They move quarks within the ordered basis $(1,2,3)$ while preserving flavor inventory and electric charge.
 - Geometrically they are ribbon-like or vortex-like corridor excitations on the shared flux structure.
 - At the effective level, their eight independent traceless modes are the adjoint generators of $SU(3)_c$.
 
@@ -2999,7 +3001,7 @@ for every tested baryon-violating channel $\mathcal{C}_{\Delta B\ne0}$, while th
 
 At the representation and charge-bookkeeping layer, the dictionary recovers the Standard Model labels as:
 
-- **$SU(3)_c$ (color):** axis-exceptionality of the Noether braid plus axial layer. Quarks occupy the triplet basis $|q_H\rangle, |q_M\rangle, |q_L\rangle$ (conventionally Red, Green, Blue), while charged leptons remain axis-uniform singlets and neutrinos remain singlets by the near-photon neutral-pair route. Gluons are axis-reconfiguration ribbons or corridor modes forming the octet.
+- **$SU(3)_c$ (color):** axis-exceptionality of the Noether braid plus axial layer. Quarks occupy the triplet basis $|q_1\rangle, |q_2\rangle, |q_3\rangle$ (conventionally Red, Green, Blue), while charged leptons remain axis-uniform singlets and neutrinos remain singlets by the near-photon neutral-pair route. Gluons are axis-reconfiguration ribbons or corridor modes forming the octet.
 - **$SU(2)_L$ (weak isospin):** polarity of the **weak-coupling triad** (three exposed polar sites, or the effective near-photon weak projection for neutrinos). Left-handed fermions are doublets; right-handed fermions are singlets (weak-coupling triad hidden).
 - **$U(1)_Y$ (weak hypercharge):** net charge of the **Shielded Triad** (three hidden sites) plus braid offset; mixes with $T_3$ to give electric charge via $Q = T_3 + Y/2$.
 - **Electromagnetism ($U(1)_{\mathrm{EM}}$):** photon is the post-mixing planar mode; $W^\pm$ and $Z$ are the chiral corridors moving weak-coupling-triad charge/phase; see [Electroweak Bosons](../../../../markdown/aaa/assemblies/bosons/electroweak-bosons.md).
@@ -3225,15 +3227,15 @@ while adding $\nu_R$ (equivalently $\nu^c_L$ in left-chiral bookkeeping) restore
 
 #### The Generation Mechanism (Mass Hierarchy)
 
-For charged fermions and quarks, generations are defined by the depletion of coherent shielding support in the nested Noether braid. The axial layer remains a six-site gauge-facing record, so generation changes exposed mass response and lifetime without deleting the H/M/L axial frame that carries color and electroweak bookkeeping.
+For charged fermions and quarks, generations are provisionally defined by depletion of coherent shielding support in the candidate source record. The axial layer remains a six-site gauge-facing record, so generation changes exposed mass response and lifetime without deleting the 1/2/3 axial frame that carries color and electroweak bookkeeping.
 
-Equivalently, the generation ladder can be read as a nested shielding hierarchy:
+Equivalently, the generation ladder can be read as an indexed shielding hierarchy:
 
-- **Generation I:** full three-tier shielding, with inner binaries screened by outer ones,
-- **Generation II:** outer shielding support depleted, exposing the deeper engine more directly,
-- **Generation III:** outer and middle shielding support depleted, leaving the innermost engine maximally exposed.
+- **Generation I:** all three source-record shielding rows coherent,
+- **Generation II:** the source record's binary-3 shielding support depleted, exposing the remaining engine more directly,
+- **Generation III:** the source record's binary-3 and binary-2 shielding support depleted, leaving the binary-1 engine maximally exposed.
 
-This is stronger than the statement "fewer shielding tiers means more mass." The outer and middle support tiers act as real shielding support for deeper braid energy. At higher generation the depleted tier may be ablated, unassembled, or unable to remain phase locked on the branch lifetime window, but the gauge projection still reads the ordered H/M/L axial dyads until the assembly dissociates.
+This is stronger than the statement "fewer shielding rows means more mass." In this source record, the assigned binary-3 and binary-2 support rows shield the remaining braid energy. At higher generation a depleted support row may be ablated, unassembled, or unable to remain phase locked on the branch lifetime window, but the gauge projection still reads the indexed axial dyads until the assembly dissociates.
 
 ##### Shielding Depletion and Axial Delay
 
@@ -3245,7 +3247,7 @@ $$
 \text{color}=\text{exceptional-axis class}
 $$
 
-Generation depletion therefore does not collapse a top or bottom quark to a one-color object. It changes how much support the H/M/L braid hierarchy supplies to the axial layer. The weakly bound axial architrinos remain in the polar attachment layer, but their stability is controlled by delayed support from the shielding tiers.
+Generation depletion therefore does not collapse a top or bottom quark to a one-color object. It changes how much support the 1/2/3 braid hierarchy supplies to the axial layer. The weakly bound axial architrinos remain in the polar attachment layer, but their stability is controlled by delayed support from the shielding tiers.
 
 A minimal lifetime hook is the causal time for a shielding-tier failure to reach the weak-coupling triad and force relocking:
 
@@ -3303,10 +3305,10 @@ The least risky way to make $T_{\mathrm{gen}}$ concrete is to define it first on
 $$
 \mathsf{s}_{\mathrm{sh}}(A)
 =
-(s_{\mathrm{in}},s_{\mathrm{mid}},s_{\mathrm{out}})
+(s_1,s_2,s_3)
 \in\{0,1\}^3
 $$
-record which inner, middle, and outer shielding tiers remain coherently active as shielding support for the charged-fermion or quark branch $A$. The present generation thesis admits only the three quotient classes
+record which persistently indexed binaries remain coherently active as shielding support for the charged-fermion or quark branch $A$ in this source record. The present generation thesis admits only the three quotient classes
 $$
 \mathfrak{G}_{\mathrm{sh}}
 =
@@ -3319,9 +3321,9 @@ T_{\mathrm{gen}}:
 $$
 where the last arrow is a quotient-closure check, not a claim that an exposed Generation III assembly dynamically rebuilds the missing shielding tiers.
 
-The entries of $\mathsf{s}_{\mathrm{sh}}$ are shielding-coherence bits, not a deletion of the gauge-facing axial frame. They do record real scaffold-count reduction: depleted tiers are absent or unassembled as coherent shielding supports, while the H/M/L axial frame persists as a delayed branch record for gauge projection. Let the axial dyads be
+The entries of $\mathsf{s}_{\mathrm{sh}}$ are shielding-coherence bits, not a deletion of the gauge-facing axial frame. They do record real scaffold-count reduction: depleted tiers are absent or unassembled as coherent shielding supports, while the 1/2/3 axial frame persists as a delayed branch record for gauge projection. Let the axial dyads be
 $$
-\mathcal{D}_{\mathrm{ax}}(A)=\{D_H,D_M,D_L\}
+\mathcal{D}_{\mathrm{ax}}(A)=\{D_1,D_2,D_3\}
 $$
 For quark branches the color label remains
 $$
@@ -3390,7 +3392,7 @@ The explicit shared fitting packet lives in [Particle Masses](../../../../markdo
 *   **Braid-support readout:** **Generation-II shielding branch** (Inner, Middle coherently support the branch).
     *   Composition: $2\epsilon_+,2\epsilon_-$ (4 architrinos).
 *   **Axial Layer:** 6 axial architrinos (unchanged).
-*   **Physics:** Without coherent outer shielding support, the high-energy inner binaries are more exposed to the Noether sea, increasing the externally exposed response of the internal causal ledger. The H/M/L axial frame remains defined during the branch lifetime, so the generation change affects mass response and lifetime without changing the gauge representation.
+*   **Physics:** Without the source record's coherent binary-3 shielding support, the indexed binaries carrying the high-energy rows are more exposed to the Noether sea, increasing the externally exposed response of the internal causal ledger. The 1/2/3 axial frame remains defined during the branch lifetime, so the generation change affects mass response and lifetime without changing the gauge representation.
 *   **Example: The Muon ($\mu^-$)**
     *   Braid scaffold: Pro Generation-II shielding branch (4 architrinos).
     *   Axial Layer: $6\epsilon_-$.
@@ -3402,7 +3404,7 @@ The explicit shared fitting packet lives in [Particle Masses](../../../../markdo
     *   Composition: $1\epsilon_+,1\epsilon_-$ (2 architrinos).
     *   *Note:* This is the bare high-energy engine, extremely unstable/reactive.
 *   **Axial Layer:** 6 axial architrinos (unchanged).
-*   **Physics:** Maximal exposure of the maximum-curvature regime. Highest mass. Shortest lifetime. In the nested shielding picture, this is the innermost engine with essentially no outer energy screen remaining, while the metastable axial dyads still carry charge, color, and weak-coupling bookkeeping until dissociation.
+*   **Physics:** Maximal exposure of the maximum-curvature regime. Highest mass. Shortest lifetime. In the indexed shielding picture, this is the innermost engine with essentially no outer energy screen remaining, while the metastable axial dyads still carry charge, color, and weak-coupling bookkeeping until dissociation.
 *   **Example: The Top Quark ($t$)**
     *   Braid scaffold: Pro Generation-III shielding branch (2 architrinos).
     *   Axial Layer: $5\epsilon_+,1\epsilon_-$.
@@ -3411,9 +3413,9 @@ The explicit shared fitting packet lives in [Particle Masses](../../../../markdo
 ##### Braid-Scaffold Depletion, Axial Vortices, and Lifetime (plain view)
 
 - **What the binaries do:** In the axial-layer realization, each coherent shielding tier supplies axial-vortex support that helps hold the six axial architrinos in phase with the Noether braid and shares load into the Noether sea.
-- **Gen I (nested shell braid):** Three coherent shielding tiers give a stiff 3D support scaffold that locks the axial layer, spreads stress, and shields the deeper braid layers. Long-lived.
-- **Gen II (Generation-II shielding branch):** The outer support tier is depleted. The H/M/L axial frame persists as a delayed branch record, but small perturbations reach the weakly bound axial layer more easily after causal propagation and relocking cycles. Lifetime drops.
-- **Gen III (Generation-III shielding branch):** Outer and middle support are depleted. The axial layer is metastable around the exposed inner engine, almost no outer screening remains for the deepest braid-scaffold energy, and the reaction corridor opens quickly. Very short-lived.
+- **Gen I candidate:** Three coherent shielding tiers would give a stiff 3D support scaffold that locks the axial layer, spreads stress, and shields the deeper braid layers. Long-lived if the proposed retention mechanism closes.
+- **Gen II (Generation-II shielding branch):** Support index 3 is depleted in this source record. The 1/2/3 axial frame persists as a delayed branch record, but small perturbations reach the weakly bound axial layer more easily after causal propagation and relocking cycles. Lifetime drops if the proposed branch is retained.
+- **Gen III (Generation-III shielding branch):** Support indices 3 and 2 are depleted in this source record. The axial layer is hypothesized to be metastable around the exposed binary-1 channel, with little screening of the remaining braid-scaffold energy, so the reaction corridor opens quickly. These are candidate record roles, not radius meanings of the indices.
 - **Takeaway:** Fewer coherent shielding tiers means higher exposed mass response and shorter lifetime, not fewer color states.
 
 ---
@@ -3444,7 +3446,7 @@ Baryons are bound states of 3 quarks held together by shared flux/gluon planar a
 
 ##### Reaction Pathways
 *   **Muon Reaction ($\mu^- \to e^- + \bar{\nu}_e + \nu_\mu$):**
-    *   This represents the electron assembly **associating** by acquiring an outer support tier onto the muon's Generation-II braid scaffold, while neutrino sub-assemblies **dissociate** from the parent weak reaction channel.
+    *   This represents the electron assembly **associating** by acquiring support index 3 onto the muon's candidate Generation-II braid scaffold, while neutrino sub-assemblies **dissociate** from the parent weak reaction channel. The index is a persistent record identity, not an outer-radius label.
     *   *Alternative View:* The muon braid scaffold does not simply break down. The muon (high mass, exposed) must *acquire* shielding (lower mass, stable) from the Noether sea to become an electron, while the excess channel content leaves as neutrino dissociation products. This is a heavy-to-light weak reaction with the ambient Noether sea density, not an ontic disappearance.
 
 ---
@@ -3458,17 +3460,17 @@ This table consolidates the mapping between Abstract Standard Model Quantum Numb
 | **Electric Charge** | $Q$ | Coupling strength to the Photon ($\gamma$). | For charged fermions: net signed count of the protected six-unit polarity inventory, $Q = \epsilon(N_+ - N_-)$; in the axial-layer realization this is the net axial count. For neutrinos: neutral polarity-conjugate near-photon cancellation with an effective weak ledger. |
 | **Weak Isospin** | $T_3$ | Coupling to $W^\pm$ bosons; transforms doublets. | **Polarity of the weak-coupling triad.** The net charge state of the 3 exposed polar sites. (+1/2 = positive-polarity dominant, -1/2 = negative-polarity dominant). |
 | **Weak Hypercharge** | $Y$ | $Y = 2(Q - T_3)$. | **Charge of the Shielded Triad.** The net charge of the 3 hidden polar sites plus any braid offset. |
-| **Color Charge** | $C$ | Strong Force charge (Red, Green, Blue). | **Axis exceptionality.** The ordered-basis choice $|q_H\rangle$, $|q_M\rangle$, or $|q_L\rangle$ for which Noether braid axis is exceptional relative to the other two. |
-| **Spin** | $s$, $\mathbf{S}$; $\mathbf{J}$ for total angular momentum | Intrinsic angular-momentum representation. For a spin-$\tfrac{1}{2}$ fermion, $s=\tfrac{1}{2}$, $\mathbf{S}^2=s(s+1)\hbar^2$, and a chosen-axis projection is $m_s\hbar=\pm\tfrac{1}{2}\hbar$. | **Ordered-frame spinor topology.** The nested shell braid is modeled as an ordered non-coplanar frame whose internal phase changes sign under a $2\pi$ rotation and closes only after $4\pi$. Fermion spin-$\tfrac{1}{2}$ is therefore a closure target of the $SU(2)\to SO(3)$ double-cover map, not merely a literal mechanical orbit. |
+| **Color Charge** | $C$ | Strong Force charge (Red, Green, Blue). | **Axis exceptionality.** The ordered-basis choice $|q_1\rangle$, $|q_2\rangle$, or $|q_3\rangle$ for which Noether braid axis is exceptional relative to the other two. |
+| **Spin** | $s$, $\mathbf{S}$; $\mathbf{J}$ for total angular momentum | Intrinsic angular-momentum representation. For a spin-$\tfrac{1}{2}$ fermion, $s=\tfrac{1}{2}$, $\mathbf{S}^2=s(s+1)\hbar^2$, and a chosen-axis projection is $m_s\hbar=\pm\tfrac{1}{2}\hbar$. | **Candidate ordered-frame spinor topology.** The proposed scaffold is modeled as an ordered non-coplanar frame whose internal phase changes sign under a $2\pi$ rotation and closes only after $4\pi$. Fermion spin-$\tfrac{1}{2}$ is therefore a closure target of the $SU(2)\to SO(3)$ double-cover map, not merely a literal mechanical orbit. |
 | **Chirality** | $L/R$ | Handedness (projection of spin on momentum). | **Weak-coupling-triad exposure.** <br>• **Left ($L$):** The same ordered-frame spinor/exposure record exposes the weak-coupling triad to the ambient Noether sea (interaction allowed).<br>• **Right ($R$):** The same record hides the weak-coupling triad in the particle's wake or shield (interaction blocked). Spin-projection language is observer-level shorthand until the $SU(2)\to SO(3)$ lift and $\Delta_{\mathrm{WCT}}$ row pass. |
-| **Generation** | I, II, III | Mass hierarchy (Flavor). | **Noether Braid Shielding Level.**<br>• **Gen I:** nested shell braid (full shielding).<br>• **Gen II:** Generation-II shielding branch (partial shielding).<br>• **Gen III:** Generation-III shielding branch (exposed Noether braid). |
+| **Generation** | I, II, III | Mass hierarchy (Flavor). | **Candidate Noether braid shielding level.**<br>• **Gen I:** full-shielding candidate.<br>• **Gen II:** Generation-II shielding branch (partial shielding).<br>• **Gen III:** Generation-III shielding branch (exposed Noether braid). |
 | **Baryon/Lepton No.** | $B, L$ | Global matter labels. | **Sector tag + polarity-conjugate branch sign.** For elementary fermions, quark-like color-triplet assemblies carry $B=\pm 1/3,\ L=0$; lepton-like color-singlet assemblies carry $B=0,\ L=\pm 1$. The matter branch has the positive sign and its polarity-conjugate antimatter branch has the negative sign; pro/anti orientation is independent. |
 
 For the **Elementary Fermions** (Quarks and Leptons), this table is complete at the quantum-number bookkeeping layer. The neutrino's internal geometry remains delegated to the near-photon closure program.
 
 ##### Spin and the $4\pi$ Rule
 
-This is a closure target, not a completed proof. The nested shell braid has three non-coplanar binary planes with ordered normals. Keeping the conserved angular-momentum ledger fixed, the visible ordered frame projects to $SO(3)$, while the causal-root and phase history may carry an additional sheet label.
+This is a closure target, not a completed proof. The candidate chart assumes three non-coplanar binary planes with ordered normals; this assumption does not identify a taxonomy member. Keeping the conserved angular-momentum ledger fixed, the visible ordered frame projects to $SO(3)$, while the causal-root and phase history may carry an additional sheet label.
 
 The target is that a $2\pi$ spatial rotation returns the visible ordered frame but transports the history-lifted state to the opposite sheet, while a $4\pi$ rotation restores the full state. If this lift exists, it supplies the geometric route to spin-$\tfrac{1}{2}$ behavior through the $SU(2)\to SO(3)$ double cover. If the history lift closes after $2\pi$, the ordered-frame route does not derive fermion spinor behavior.
 
@@ -3485,7 +3487,7 @@ In $\mathbb{A}\mathbb{A}\mathbb{A}$, these symbols are not separate primitive ob
 Across the repo, the working geometric rule is that the spin label tracks the **kind of orientation data** the excitation carries:
 
 - **Spin-$0$ (scalar):** purely radial or isotropic breathing, with no preferred direction attached to the mode itself.
-- **Spin-$\tfrac{1}{2}$ (fermionic spinor):** an ordered nested shell braid scaffold whose history-lifted state changes sheet under a $2\pi$ turn and closes only after $4\pi$.
+- **Spin-$\tfrac{1}{2}$ (fermionic spinor):** a candidate ordered braid scaffold whose history-lifted state changes sheet under a $2\pi$ turn and closes only after $4\pi$.
 - **Spin-$1$ (vector):** an excitation with one distinguished axis plus transverse/helical structure around that axis.
 - **Spin-$2$ (tensor):** a transverse-traceless shape disturbance carrying quadrupolar deformation data rather than a single axis alone.
 
@@ -3539,7 +3541,7 @@ Spin closure target (formal, not yet proven):
 $$
 \widetilde{R}:SU(2)\simeq \mathrm{Spin}(3)\to SO(3)
 $$
-with nested shell braid ordered-frame evolution transforming on the double cover so that $2\pi$ and $4\pi$ rotations are distinguished at the internal phase level.
+with the candidate ordered-frame evolution transforming on the double cover so that $2\pi$ and $4\pi$ rotations are distinguished at the internal phase level.
 
 #### Weak-Mixing and Composite-Observable Closure Hooks
 
@@ -3634,9 +3636,9 @@ The same shared precision interface owns the lepton-pair production form factor 
 
 This chapter collects the quark catalog for $\mathbb{A}\mathbb{A}\mathbb{A}$ in one place. A quark is treated as a color-exposed fermion assembly: a neutral Noether braid scaffold plus a six-site axial layer whose pattern exposes charge, weak bookkeeping, and one exceptional color axis.
 
-The aim is narrower than a full QCD derivation. This page states, in a single canonical reference, how the six quark flavors are built from the nested shell braid program, how their axial patterns encode charge, how color is assigned, how many architrinos each flavor contains, and what a gluon is allowed to do to a quark state. The catalog is the bookkeeping target; confinement, running couplings, hadron spectra, and nonperturbative QCD recovery remain downstream closure problems.
+The aim is narrower than a full QCD derivation. This page states, in a single canonical reference, the candidate shielding program for the six quark flavors, how their axial patterns would encode charge, how color is assigned, how many architrinos each flavor contains, and what a gluon is allowed to do to a quark state. The catalog is a bookkeeping target; the particle-to-braid assignment, confinement, running couplings, hadron spectra, and nonperturbative QCD recovery remain downstream closure problems.
 
-The useful first picture is a layered object. The Noether braid scaffold carries the neutral branch and generation tier. Whole-branch polarity conjugation distinguishes matter from antimatter, while pro/anti ordered orientation is a separate parity-facing label. The axial layer carries the exposed polarity pattern. Color appears when one H/M/L axis is exceptional relative to the other two. The quark catalog is the table of those allowed exposed patterns.
+The useful first picture is a layered object. The Noether braid scaffold carries the neutral branch and generation tier. Whole-branch polarity conjugation distinguishes matter from antimatter, while pro/anti ordered orientation is a separate parity-facing label. The axial layer carries the exposed polarity pattern. Color appears when one indexed axis is exceptional relative to the other two. The quark catalog is the table of those allowed exposed patterns.
 
 At the substrate level, a quark is a Noether braid assembly with an axial layer. The braid scaffold fixes generation tier, and the retained polarity-conjugation record fixes its matter/antimatter relation. The six-site axial layer fixes electric charge and the weak-active axial pattern. Color then appears when one axis is exceptional relative to the other two. At the effective level this reproduces the quark triplet structure of the Standard Model and supplies the coupling channel for gluons.
 
@@ -3653,11 +3655,11 @@ The quark construction used here follows the same Noether braid-plus-axial split
 
 For matter quarks, the braid scaffold is a **matter branch**. It is neutral in total charge and differs across generations by shielding-coherence level, not by changing the gauge-facing color frame. The matter branch may carry either pro or anti ordered orientation; polarity conjugation preserves that orientation while producing the corresponding antimatter branch:
 
-- **Generation I:** nested shell braid shielding branch, 6 coherent scaffold architrinos.
-- **Generation II:** Generation-II shielding branch, 4 coherent scaffold architrinos; the outer support tier is depleted on the branch lifetime window.
-- **Generation III:** Generation-III shielding branch, 2 coherent scaffold architrinos; the outer and middle support tiers are depleted on the branch lifetime window.
+- **Generation I:** full-shielding candidate braid, 6 coherent scaffold architrinos; taxonomy member unassigned.
+- **Generation II:** Generation-II shielding branch, 4 coherent scaffold architrinos; support index 3 is depleted on the candidate branch lifetime window.
+- **Generation III:** Generation-III shielding branch, 2 coherent scaffold architrinos; support indices 3 and 2 are depleted on the candidate branch lifetime window. These source-record roles do not encode a radius order.
 
-The axial layer stays six sites wide in all three generations. Each site is occupied by either an electrino $(-\epsilon)$ or a positrino $(+\epsilon)$, with $\epsilon = |e|/6$. The H/M/L axial dyads remain the branch-level record that color and electroweak bookkeeping read, even when one or more shielding tiers no longer supply coherent support.
+The axial layer stays six sites wide in all three generations. Each site is occupied by either an electrino $(-\epsilon)$ or a positrino $(+\epsilon)$, with $\epsilon = |e|/6$. The indexed axial dyads remain the branch-level record that color and electroweak bookkeeping read, even when one or more shielding tiers no longer supply coherent support.
 
 ##### Counting rule
 
@@ -3677,7 +3679,7 @@ for Generations I, II, and III respectively. Here $N_{\text{braid}}$ counts cohe
 
 ##### Axis notation
 
-To describe color and axial geometry compactly, use the three Noether braid axes $(H,M,L)$ and the following polarity-dyad classes:
+To describe color and axial geometry compactly, use the three persistently indexed Noether braid axes $(1,2,3)$ and the following polarity-dyad classes:
 
 - $(\epsilon_+,\epsilon_+)$: an axis whose two polar sites are both positive-polarity.
 - $(\epsilon_-,\epsilon_-)$: an axis whose two polar sites are both negative-polarity.
@@ -3688,7 +3690,7 @@ In the fully shielded implementation picture, each axis contains:
 - one neutral source binary, with one orbiting electrino and one orbiting positrino,
 - plus one polar dyad attached to that binary axis.
 
-The polarity-dyad labels refer only to that one polar dyad. They do not mean that the underlying source binary stops being neutral. In higher-generation branches, a depleted shielding tier may no longer act as a coherent source binary, but the polar dyad and its H/M/L branch label remain the gauge-facing color record until the quark branch dissociates.
+The polarity-dyad labels refer only to that one polar dyad. They do not mean that the underlying source binary stops being neutral. In higher-generation branches, a depleted shielding tier may no longer act as a coherent source binary, but the polar dyad and its persistent index remain the gauge-facing color record until the quark branch dissociates.
 
 Colorless fermions keep the three axes equivalent. Quarks do not. A quark becomes color-charged when exactly one axis is exceptional relative to the other two.
 
@@ -3900,8 +3902,8 @@ This should still be treated cautiously. The table supports a candidate mapping 
 
 | Flavor | Type | Generation | Braid scaffold | Braid architrinos | Axial pattern | Net charge | Total architrinos | Axis template |
 | --- | --- | --- | --- | ---: | --- | ---: | ---: | --- |
-| $u$ | up-type | I | pro nested shell braid | 6 | $5\epsilon_+,1\epsilon_-$ | $+2/3$ | 12 | one mixed dyad, two positive-polarity dyads |
-| $d$ | down-type | I | pro nested shell braid | 6 | $2\epsilon_+,4\epsilon_-$ | $-1/3$ | 12 | selected family $F_\star$: one positive-polarity dyad with two negative-polarity dyads if $F_\star=I$, or one negative-polarity dyad with two mixed dyads if $F_\star=II$ |
+| $u$ | up-type | I | pro-oriented candidate braid | 6 | $5\epsilon_+,1\epsilon_-$ | $+2/3$ | 12 | one mixed dyad, two positive-polarity dyads |
+| $d$ | down-type | I | pro-oriented candidate braid | 6 | $2\epsilon_+,4\epsilon_-$ | $-1/3$ | 12 | selected family $F_\star$: one positive-polarity dyad with two negative-polarity dyads if $F_\star=I$, or one negative-polarity dyad with two mixed dyads if $F_\star=II$ |
 | $c$ | up-type | II | pro Generation-II shielding branch | 4 | $5\epsilon_+,1\epsilon_-$ | $+2/3$ | 10 | same up-type color template on a Generation-II braid scaffold |
 | $s$ | down-type | II | pro Generation-II shielding branch | 4 | $2\epsilon_+,4\epsilon_-$ | $-1/3$ | 10 | same selected-family rule on a Generation-II braid scaffold |
 | $t$ | up-type | III | pro Generation-III shielding branch | 2 | $5\epsilon_+,1\epsilon_-$ | $+2/3$ | 8 | same up-type color template on a Generation-III braid scaffold |
@@ -3911,11 +3913,11 @@ This should still be treated cautiously. The table supports a candidate mapping 
 
 ###### Up quark
 
-The up quark is the ground-state up-type quark. It uses the full pro nested shell braid scaffold and the $5\epsilon_+,1\epsilon_-$ axial layer. Its defining axis geometry is one mixed axis against two positive-polarity-rich axes.
+The up quark is the ground-state up-type quark. The working assignment gives it a full pro-oriented candidate scaffold and the $5\epsilon_+,1\epsilon_-$ axial layer. Its defining axis geometry is one mixed axis against two positive-polarity-rich axes; no taxonomy-member assignment is established.
 
 ###### Down quark
 
-The down quark is the ground-state down-type quark. It also uses the full pro nested shell braid scaffold, but with the $2\epsilon_+,4\epsilon_-$ axial layer. Its color structure comes from a single exceptional axis within the selected Family-I or Family-II sector, not from both families appearing as independent down-like species.
+The down quark is the ground-state down-type quark. The working assignment gives it a full pro-oriented candidate scaffold, but with the $2\epsilon_+,4\epsilon_-$ axial layer. Its color structure comes from a single exceptional axis within the selected Family-I or Family-II sector, not from both families appearing as independent down-like species.
 
 ###### Charm quark
 
@@ -3923,7 +3925,7 @@ The charm quark keeps the up-type axial pattern but sheds the outer shielding su
 
 ###### Strange quark
 
-The strange quark is the Generation-II down-type partner of charm. It keeps the $2\epsilon_+,4\epsilon_-$ axial pattern but lives on a Generation-II braid scaffold rather than a nested shell braid scaffold, with the same selected-family branch rule applied after the shielding tier is fixed.
+The strange quark is the Generation-II down-type partner of charm. It keeps the $2\epsilon_+,4\epsilon_-$ axial pattern but lives on a Generation-II candidate braid scaffold rather than the full-shielding candidate, with the same selected-family branch rule applied after the shielding tier is fixed.
 
 ###### Top quark
 
@@ -3939,30 +3941,30 @@ The bottom quark is the Generation-III down-type branch. It carries the down-typ
 
 For any quark flavor $q$, the color space is the ordered basis
 $$
-\mathcal{H}^{\text{color}}_q = \mathrm{span}\{|q_H\rangle, |q_M\rangle, |q_L\rangle\}
+\mathcal{H}^{\text{color}}_q = \mathrm{span}\{|q_1\rangle, |q_2\rangle, |q_3\rangle\}
 $$
-where $|q_H\rangle$, $|q_M\rangle$, and $|q_L\rangle$ mean that the exceptional axis sits on $H$, $M$, or $L$ respectively.
+where $|q_1\rangle$, $|q_2\rangle$, and $|q_3\rangle$ mean that the exceptional axis sits on indexed axis 1, 2, or 3 respectively.
 
 This basis may be identified with the conventional color labels by the fixed phase convention
 $$
-|q_H\rangle \leftrightarrow \text{Red} \leftrightarrow 0^\circ
+|q_1\rangle \leftrightarrow \text{Red} \leftrightarrow 0^\circ
 $$
 $$
-|q_M\rangle \leftrightarrow \text{Green} \leftrightarrow 120^\circ
+|q_2\rangle \leftrightarrow \text{Green} \leftrightarrow 120^\circ
 $$
 $$
-|q_L\rangle \leftrightarrow \text{Blue} \leftrightarrow 240^\circ
+|q_3\rangle \leftrightarrow \text{Blue} \leftrightarrow 240^\circ
 $$
 
 The exact angular labels are conventional. What matters geometrically is that the three states are separated by the three-way axis choice and behave as the triplet basis of the color sector.
 
 ##### Up-type color table
 
-| Color | Ordered axis pattern $(H,M,L)$ | Interpretation |
+| Color | Ordered axis pattern $(1,2,3)$ | Interpretation |
 | --- | --- | --- |
-| Red | mixed dyad, positive-polarity dyad, positive-polarity dyad | H-axis exceptional |
-| Green | positive-polarity dyad, mixed dyad, positive-polarity dyad | M-axis exceptional |
-| Blue | positive-polarity dyad, positive-polarity dyad, mixed dyad | L-axis exceptional |
+| Red | mixed dyad, positive-polarity dyad, positive-polarity dyad | axis 1 exceptional |
+| Green | positive-polarity dyad, mixed dyad, positive-polarity dyad | axis 2 exceptional |
+| Blue | positive-polarity dyad, positive-polarity dyad, mixed dyad | axis 3 exceptional |
 
 This table applies directly to $u$, and by generation lifting also to $c$ and $t$.
 
@@ -3977,9 +3979,9 @@ The most concrete current implementation candidate is:
 
 So for an up quark:
 
-- **Red** means the H-axis is the mixed axis and the other two axes are $(\epsilon_+,\epsilon_+)$,
-- **Green** means the M-axis is the mixed axis,
-- **Blue** means the L-axis is the mixed axis.
+- **Red** means axis 1 is the mixed axis and the other two axes are $(\epsilon_+,\epsilon_+)$,
+- **Green** means axis 2 is the mixed axis,
+- **Blue** means axis 3 is the mixed axis.
 
 This matches the intuitive “minority carrier” language already used elsewhere in the repo, but it sharpens it: the minority electrino is most naturally understood as living on one of the two polar sites of the exceptional axis's polar dyad, not as replacing one member of the neutral source binary itself.
 
@@ -3995,19 +3997,19 @@ The corresponding antiquark is obtained by the charged-sector conjugate axial pa
 
 Family I:
 
-| Color | Ordered axis pattern $(H,M,L)$ | Interpretation |
+| Color | Ordered axis pattern $(1,2,3)$ | Interpretation |
 | --- | --- | --- |
-| Red | positive-polarity dyad, negative-polarity dyad, negative-polarity dyad | H-axis exceptional |
-| Green | negative-polarity dyad, positive-polarity dyad, negative-polarity dyad | M-axis exceptional |
-| Blue | negative-polarity dyad, negative-polarity dyad, positive-polarity dyad | L-axis exceptional |
+| Red | positive-polarity dyad, negative-polarity dyad, negative-polarity dyad | axis 1 exceptional |
+| Green | negative-polarity dyad, positive-polarity dyad, negative-polarity dyad | axis 2 exceptional |
+| Blue | negative-polarity dyad, negative-polarity dyad, positive-polarity dyad | axis 3 exceptional |
 
 Family II:
 
-| Color | Ordered axis pattern $(H,M,L)$ | Interpretation |
+| Color | Ordered axis pattern $(1,2,3)$ | Interpretation |
 | --- | --- | --- |
-| Red | negative-polarity dyad, mixed dyad, mixed dyad | H-axis exceptional |
-| Green | mixed dyad, negative-polarity dyad, mixed dyad | M-axis exceptional |
-| Blue | mixed dyad, mixed dyad, negative-polarity dyad | L-axis exceptional |
+| Red | negative-polarity dyad, mixed dyad, mixed dyad | axis 1 exceptional |
+| Green | mixed dyad, negative-polarity dyad, mixed dyad | axis 2 exceptional |
+| Blue | mixed dyad, mixed dyad, negative-polarity dyad | axis 3 exceptional |
 
 These are candidate-sector tables. For any realized $d$, $s$, or $b$ branch, one selected family $F_\star$ supplies the three color states; the other family is not counted as an additional long-lived down-type particle. A branch that leaves both tables comparably stable in the same low-energy window over-predicts down-type species and fails the selection target.
 
@@ -4018,7 +4020,7 @@ A single quark is never colorless. Color neutrality appears only in composite st
 - **Mesons:** $3 \otimes \bar 3 \supset 1$.
 - **Baryons:** $3 \otimes 3 \otimes 3 \supset 1$.
 
-In the baryon picture used elsewhere in the repo, a color singlet is a closed 9-axis braid in which $H$, $M$, and $L$ exceptionality each appear once across the three Noether braids.
+In the baryon picture used elsewhere in the repo, a color singlet is a closed 9-axis braid in which axis-1, axis-2, and axis-3 exceptionality each appear once across the three Noether braids.
 
 #### Coupling rules to gluons
 
@@ -4044,7 +4046,7 @@ This remains a structural hypothesis, not yet a closed derivation. It is include
 
 At the quark level, a pure gluon coupling is allowed to do the following:
 
-1. Rotate or swap axis exceptionality within the ordered basis $(H,M,L)$.
+1. Rotate or swap axis exceptionality within the ordered basis $(1,2,3)$.
 2. Transfer color phase between quarks connected by a flux tube.
 3. Preserve the total six-site axial inventory of each flavor class.
 4. Preserve electric charge.
@@ -4053,16 +4055,16 @@ At the quark level, a pure gluon coupling is allowed to do the following:
 
 In practical terms, a gluon may change
 $$
-|u_H\rangle \leftrightarrow |u_M\rangle,\qquad
-|u_M\rangle \leftrightarrow |u_L\rangle,\qquad
-|u_H\rangle \leftrightarrow |u_L\rangle
+|u_1\rangle \leftrightarrow |u_2\rangle,\qquad
+|u_2\rangle \leftrightarrow |u_3\rangle,\qquad
+|u_1\rangle \leftrightarrow |u_3\rangle
 $$
 and likewise for down-type states, without changing $u \leftrightarrow d$ or Generation I $\leftrightarrow$ II $\leftrightarrow$ III. Strong couplings move quarks around inside color space; they do not perform weak flavor conversion.
-For down-type states this color motion is internal to the selected Family-I or Family-II sector. Pure gluon exchange may rotate H/M/L exceptionality, but it is not allowed to hop between Family I and Family II as a hidden flavor change.
+For down-type states this color motion is internal to the selected Family-I or Family-II sector. Pure gluon exchange may rotate exceptionality among indexed axes 1, 2, and 3, but it is not allowed to hop between Family I and Family II as a hidden flavor change.
 
 ##### Generator picture
 
-With the ordered basis $(H,M,L)$ fixed, the color action is represented by
+With the ordered basis $(1,2,3)$ fixed, the color action is represented by
 $$
 U \in SU(3)
 $$
@@ -4070,7 +4072,7 @@ because the transformation must preserve norm, remain within the one-axis-except
 
 The eight gluon modes are then the eight traceless generators of this action. In axis language:
 
-- off-diagonal generators move exceptionality between the pairs $(H,M)$, $(H,L)$, and $(M,L)$;
+- off-diagonal generators move exceptionality between the pairs $(1,2)$, $(1,3)$, and $(2,3)$;
 - diagonal generators compare the relative color weights of those three axes;
 - the fully symmetric singlet combination is removed, leaving the familiar octet rather than a non-confining ninth long-range mode.
 
@@ -4131,7 +4133,7 @@ The following parts of the quark catalog are fixed strongly enough to be treated
 - down-type axial count $2\epsilon_+,4\epsilon_-$,
 - generation as Noether braid shielding level,
 - architrino counts $12$, $10$, and $8$ for Generations I, II, and III,
-- color as axis exceptionality in the three-state $(H,M,L)$ basis,
+- color as axis exceptionality in the three-state $(1,2,3)$ basis,
 - gluon action as an $SU(3)$ color reconfiguration that preserves flavor inventory.
 
 ##### Still open
@@ -4184,7 +4186,7 @@ $$
 \theta_{\mathrm{inc}}=\frac{\pi}{6}=30^\circ
 $$
 
-This is intentionally narrower than a claim that the H/M/L axes themselves tilt or precess into new orientations. The nested shell braid scaffold remains the kinematic frame. What changes is the orientation of the **principal axial frame** and therefore the orientation of the **weak-coupling triad** relative to the fixed core frame.
+This is intentionally narrower than a claim that the three indexed binary axes themselves tilt or precess into new orientations. The candidate braid scaffold remains the kinematic frame; no taxonomy member is assigned by this weak-sector construction. What changes is the orientation of the **principal axial frame** and therefore the orientation of the **weak-coupling triad** relative to the fixed core frame.
 
 ---
 
@@ -4194,11 +4196,11 @@ We separate two structures that are often spoken about together but should not b
 
 ##### 1. Core frame
 
-The [Noether braid](../../../../markdown/aaa/noether-braid/noether-braid.md) is the neutral nested shell braid scaffold. It defines:
+The [Noether braid](../../../../markdown/aaa/noether-braid/noether-braid.md) is the neutral six-architrino scaffold. It defines:
 
 - generation via shielding level,
 - the retained matter-versus-polarity-conjugate branch relation,
-- the three reference axes $(H,M,L)$,
+- the three persistently indexed reference axes $(1,2,3)$,
 - the geometric seat of spinor behavior.
 
 In this idea, the core frame is **not** allowed to undergo a new quark-specific axial distortion. Its role is to provide the reference triad
@@ -4331,7 +4333,7 @@ The following are allowed to rotate relative to the fixed core frame:
 
 The following are **not** rotating in this note:
 
-- the H/M/L Noether braid scaffold itself,
+- the indexed Noether braid scaffold itself,
 - the binary nesting order that defines generation,
 - the retained matter-versus-polarity-conjugate branch relation,
 - the topological structure used to motivate spin-$\tfrac{1}{2}$ behavior.
@@ -4351,7 +4353,7 @@ Those should be kept distinct unless a later derivation proves they collapse to 
 A minimal way to encode the hypothesis is by one angle $\alpha$ and one discrete color label $c$.
 
 - $\alpha$: polar misalignment of the axial frame relative to the core frame,
-- $c \in \{H,M,L\}$: the exceptional-axis label selecting the quark color sector.
+- $c \in \{1,2,3\}$: the persistent exceptional-axis index selecting the quark color sector.
 
 Then a first-pass rotation may be written as
 $$
@@ -4478,7 +4480,7 @@ Color picture:
 
 - one axis is exceptional,
 - color labels which exceptional-axis sector the quark occupies,
-- baryon color neutrality arises from H/M/L singlet closure.
+- baryon color neutrality arises from indexed-sector singlet closure.
 
 Extended picture proposed here:
 
@@ -4598,7 +4600,7 @@ At the finest scale, the photon unit is a composite assembly:
 
 #### Relation To The Symmetry-Breaking Threshold
 
-The photon carrier is close to the planar geometry assigned to the Family-A flat endpoint $\lambda_A=1$. At a horizon interface the three A1 binary axes are hypothesized to converge toward the group-translation direction while branch-derived speed rows approach $c_f$; in the photon channel, the carrier is already a propagating pair of planarized polarity-conjugate Noether braid assemblies. The comparison is not an identity between an ordinary photon and a black-hole horizon state. It is a shared geometry: planar lock, paired polarity-conjugate balance, transverse action, and a phase ledger whose frequency can be shifted by source, path, and reception records.
+The photon carrier is close to the planar geometry assigned to the Family-A flat endpoint $\lambda_A=1$. At a horizon interface the three Family-A binary axes are hypothesized to converge toward the group-translation direction while branch-derived speed rows approach $c_f$; in the photon channel, the carrier is already a propagating pair of planarized polarity-conjugate Noether braid assemblies. The comparison is not an identity between an ordinary photon and a black-hole horizon state. It is a shared prescribed geometry: planar lock, paired polarity-conjugate balance, transverse action, and a phase ledger whose frequency can be shifted by source, path, and reception records.
 
 The reduced bridge is the planar Noether braid chart. In that chart, the same three support-row ledgers that appear in the $x:y:z$ frequency-pattern search are studied after projecting the branch into a coplanar sector with retained phase offsets, effective lever arms, circulation signs, wake rows, and angular-momentum closure. The photon channel then asks whether two such planarized records can survive as a coaxial contra-rotating polarity-conjugate planar pair. This is a simpler chart than the full three-dimensional Noether braid, but it is still a theorem target: a clean visual or phase pattern is not enough unless the same retained row set carries the kinematic, wake, polarization, helicity, and event-ledger obligations.
 
@@ -5249,7 +5251,7 @@ Plainly, a quark is colored when the assembly has a "which axis is special" degr
 
 The [Euclidean void](../../../../markdown/aaa/foundations/euclidean-void.md) is populated by high-energy, small-scale Noether braids, often in tightly bound pro/anti groups. These form an ambient Noether sea of color-singlet braids.
 
-A Noether braid also has three ordered axes $(H,M,L)$, each carrying two polar sites.
+A Noether braid also has three persistently indexed axes $(1,2,3)$, each carrying two polar sites.
 
 - **Axial layer:** 6 polar sites total, 2 per axis.
 - **Symmetry breaking:** quarks do not keep the three axes equivalent.
@@ -5350,10 +5352,10 @@ This is a provenance target, not a new interaction law. It prevents the gluon st
 
 The octet count comes from the color-basis operator space.
 
-- **The basis:** we have 3 color basis states, equivalently the three exceptional-axis sectors $(H,M,L)$.
+- **The basis:** we have 3 color basis states, equivalently the three exceptional-axis sectors $(1,2,3)$.
 - **The matrix:** there are $3 \times 3 = 9$ possible couplings, corresponding to $U(3)$ before the singlet is removed.
 - **Off-diagonal color-changing modes:** six generators move or mix exceptionality between distinct axis sectors: $(HM),(HL),(ML)$, each with two Hermitian components. These are the color-changing corridor modes analogous to entries such as $R\bar{G}$ or $B\bar{R}$.
-- **Diagonal traceless modes:** two additional generators are neutral in net color change but still act nontrivially on relative H/M/L color phase and weighting. They are the diagonal traceless directions $H_1$ and $H_2$ described in [Color Charge and SU(3)](../../../../markdown/aaa/assemblies/fermions/color-charge-su3.md#generator-basis-from-axis-operations).
+- **Diagonal traceless modes:** two additional generators are neutral in net color change but still act nontrivially on relative color phase and weighting across the three indexed binary-axis sectors. They are the diagonal traceless directions $H_1$ and $H_2$ described in [Color Charge and SU(3)](../../../../markdown/aaa/assemblies/fermions/color-charge-su3.md#generator-basis-from-axis-operations).
 - **The singlet removal:** the equal superposition
   $$
   \frac{R\bar{R}+G\bar{G}+B\bar{B}}{\sqrt{3}}
@@ -5409,7 +5411,7 @@ in the confining window. At the assembly level, this says that an open color cor
 
 #### The Color Singlet (White)
 
-A proton such as $(u_R,u_G,d_B)$ is stable because the three quarks occupy the three exceptional-axis sectors once each; see also [Nucleon Structure](../../../../markdown/aaa/nuclear-atomic/nucleon-structure.md) and [Mesons](../../../../markdown/aaa/assemblies/mesons/mesons.md). This fixed assignment is a schematic component of the color-singlet state. The physical singlet is the fully antisymmetrized superposition over the $3!$ H/M/L assignments, with the Levi-Civita color tensor supplying the color-sector sign pattern.
+A proton such as $(u_R,u_G,d_B)$ is stable because the three quarks occupy the three exceptional-axis sectors once each; see also [Nucleon Structure](../../../../markdown/aaa/nuclear-atomic/nucleon-structure.md) and [Mesons](../../../../markdown/aaa/assemblies/mesons/mesons.md). This fixed assignment is a schematic component of the color-singlet state. The physical singlet is the fully antisymmetrized superposition over the $3!$ assignments to indexed sectors $a\in\{1,2,3\}$, with the Levi-Civita color tensor supplying the color-sector sign pattern.
 
 1. Red: H-exceptional
 2. Green: M-exceptional
@@ -5486,8 +5488,8 @@ A pion is a **two-braid (quark + antiquark) assembly**: one Generation‑I matte
 
 **Dynamical Role:**
 In the nucleus, a proton ($uud$) and neutron ($udd$) do not touch directly. Instead, they exchange pions by transiently polarizing the local Noether sea between them.
-*   **Mechanism:** A proton interacts with the Noether sea, associating a local nested shell braid into a transient $u\bar{d}$ assembly (a $\pi^+$), sustained by the binding-energy deficit of the nucleus. The proton effectively "hands off" its charge state to this transient assembly, becoming a neutron, while the effective pion-like loop spans the neighboring baryon record. The local Noether sea configuration relaxes once the loop dissociates or re-associates into the surrounding nuclear assemblies.
-*   **Topology:** The pion serves as an **effective flux loop** transporting axial-layer charge and phase orientation between the larger nested shell braid baryon assemblies. It is the "bucket brigade" of the nuclear binding energy.
+*   **Mechanism hypothesis:** A proton interacts with the Noether sea, associating a local candidate braid into a transient $u\bar{d}$ assembly (a $\pi^+$), sustained by the binding-energy deficit of the nucleus. The proton effectively "hands off" its charge state to this transient assembly, becoming a neutron, while the effective pion-like loop spans the neighboring baryon record. The local Noether sea configuration relaxes once the loop dissociates or re-associates into the surrounding nuclear assemblies.
+*   **Topology hypothesis:** The pion serves as an **effective flux loop** transporting axial-layer charge and phase orientation between the larger candidate-braid baryon assemblies. It is the "bucket brigade" of the nuclear binding energy.
 
 **The Yukawa Mechanism (Assembly Tension):**
 *   **Range vs. mass:** The force range scales as $R \sim \hbar/(m c_0)$ in the observer-level comparison because heavier assemblies (higher internal curvature) expose stronger Noether sea response and decohere over shorter distances. The pion’s low mass/low curvature lets the binding signal span a femtometer.
@@ -5509,10 +5511,10 @@ In the nucleus, a proton ($uud$) and neutron ($udd$) do not touch directly. Inst
 Kaons are the lightest mesons containing a **strange quark** (Generation II). They are critical because they exhibit **CP violation** (matter-antimatter asymmetry) and, in Standard Model language, decay relatively slowly via the Weak interaction. In $\mathbb{A}\mathbb{A}\mathbb{A}$ terms, that means the assembly dissociates only through comparatively weak reaction corridors, proving that "flavor" is not conserved in weak processes.
 
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Mapping (Geometric Structure):**
-A Kaon connects a **Generation-I braid scaffold** (nested shell braid, e.g., $u$ or a selected $d$ branch) with a selected **Generation-II shielding branch** (observer-level $s$); this is the mesonic-side version of the generation-bridging problem treated more abstractly in [Weak Mixing and CKM](../../../../markdown/aaa/philosophy-history/theory-bridges/weak-mixing-ckm.md). The down-type family-selection target is upstream of this meson shorthand: the kaon label assumes the relevant $d$ or $s$ branch has already survived the branch-selection criterion, rather than adding another observed down-type species.
+A Kaon candidate connects a **Generation-I full-shielding braid scaffold** (for example, $u$ or a selected $d$ branch) with a selected **Generation-II shielding branch** (observer-level $s$); this is the mesonic-side version of the generation-bridging problem treated more abstractly in [Weak Mixing and CKM](../../../../markdown/aaa/philosophy-history/theory-bridges/weak-mixing-ckm.md). The taxonomy member of each scaffold is unassigned. The down-type family-selection target is upstream of this meson shorthand: the kaon label assumes the relevant $d$ or $s$ branch has already survived the branch-selection criterion, rather than adding another observed down-type species.
 
 *   **Structure:** $u\bar{s}$ ($K^+$), $d\bar{s}$ ($K^0$), etc.
-*   **Shielding Mismatch / Geometric torsion ($\phi^{sd}_{\mathbb{A}\mathbb{A}\mathbb{A}}$):** The Gen-I braid scaffold presents a nested shell braid boundary ($S^1\!\times\!S^1\!\times\!S^1$); the Gen-II braid scaffold presents a reduced two-tier boundary ($S^1\!\times\!S^1$). Connecting these mismatched boundaries forces the flux manifold to twist. Let $\vartheta_{\mathrm{tw}}(s)$ denote the local twist density along the tube. Unlike the pion (net $\int \vartheta_{\mathrm{tw}}(s)\,ds=0$), the kaon carries non-zero twist charge $\phi^{sd}_{\mathbb{A}\mathbb{A}\mathbb{A}}$ that sets the CP-odd asymmetry and keeps the tube from relaxing to a straight, cancellation-friendly lock.
+*   **Shielding Mismatch / Geometric torsion ($\phi^{sd}_{\mathbb{A}\mathbb{A}\mathbb{A}}$):** The Gen-I candidate scaffold presents a hypothesized three-cycle support boundary ($S^1\!\times\!S^1\!\times\!S^1$); the Gen-II candidate scaffold presents a reduced two-cycle boundary ($S^1\!\times\!S^1$). Connecting these mismatched boundaries would force the flux manifold to twist. Let $\vartheta_{\mathrm{tw}}(s)$ denote the local twist density along the tube. Unlike the pion (net $\int \vartheta_{\mathrm{tw}}(s)\,ds=0$), the candidate kaon carries non-zero twist charge $\phi^{sd}_{\mathbb{A}\mathbb{A}\mathbb{A}}$ that would set the CP-odd asymmetry and keep the tube from relaxing to a straight, cancellation-friendly lock.
 *   **Torsion energy:** The 3-ring ↔ 2-ring boundary mismatch forces a twisted mapping of the flux tube cross-section. The integrated twist density along the tube is the phase $\phi^{sd}_{\mathbb{A}\mathbb{A}\mathbb{A}}$, storing potential energy that is *not* symmetric under $\phi\to-\phi$ when the geometry is chiral. The $K^0\!\leftrightarrow\!\bar K^0$ wobble is the system oscillating between two local minima of this torsion energy landscape, with the unaligned weak-coupling triads setting the barrier height.
 *   **Boundary-value framing:** The Gen I/Gen II interface is a boundary condition mismatch on the flux tube cross-section. A smooth solution requires non-zero twist density; $\phi^{sd}_{\mathbb{A}\mathbb{A}\mathbb{A}} = \int_0^{\ell_{\mathrm{tube}}} \vartheta_{\mathrm{tw}}(s)\,ds$ is that required twist integrated along the tube. CP-even pieces track $\vartheta_{\mathrm{tw}}(s)^2$; CP-odd pieces track $\text{sign}(\vartheta_{\mathrm{tw}}(s))$, so the asymmetry is geometric, not inserted.
 
@@ -5520,8 +5522,8 @@ A Kaon connects a **Generation-I braid scaffold** (nested shell braid, e.g., $u$
 Kaons are the primary laboratory for observing how Generation I stability breaks down into Generation II instability. Their oscillation ($K^0 \leftrightarrow \bar{K}^0$) implies the ability of the assembly to effectively invert its internal chirality via a transient polarization of the surrounding Noether braid assembly network. The corkscrew twist keeps the quark and antiquark **weak-coupling triads** from locking into a neutralizing plane; that persistent misalignment is the $\mathbb{A}\mathbb{A}\mathbb{A}$ analogue of the CKM weak phase for $s\!\to\! d$ transitions. When torsion energy pushes the system out of its local minimum, the stability criterion triggers the flip.
 
 #### CP/phase hook (Kaons)
-- The Gen-I nested shell braid to selected Gen-II shielding mismatch introduces a flux **twist phase**. Denote it $\phi^{sd}_{\mathbb{A}\mathbb{A}\mathbb{A}}$, defined as the relative axial rotation needed to mate the exposed Gen-II ring to a nested shell braid slot.
-- $\phi^{sd}_{\mathbb{A}\mathbb{A}\mathbb{A}}$ is the geometric analogue of the SM weak phase that enters $s\to d$ transitions (e.g., the CKM combination relevant to $\epsilon_K$). $\mathbb{A}\mathbb{A}\mathbb{A}$ predicts the CP-violating component of neutral-kaon mixing tracks the size of this twist; setting $\phi^{sd}_{\mathbb{A}\mathbb{A}\mathbb{A}}\to 0$ would suppress the $\epsilon_K$-like asymmetry while the CP-even oscillation channel remains a separate overlap and barrier-height row. In practice, $\phi^{sd}_{\mathbb{A}\mathbb{A}\mathbb{A}}$ would be estimated by the twist angle (or integer twist count) required to align a Gen-II shielding ring onto a nested shell braid docking site, and the residual unaligned portion supplies the CP-odd torque bias on the oscillatory flip.
+- The Gen-I to selected Gen-II shielding mismatch is hypothesized to introduce a flux **twist phase**. Denote it $\phi^{sd}_{\mathbb{A}\mathbb{A}\mathbb{A}}$, defined as the relative axial rotation needed to mate the exposed Gen-II cycle to a declared Gen-I support site.
+- $\phi^{sd}_{\mathbb{A}\mathbb{A}\mathbb{A}}$ is a candidate geometric analogue of the SM weak phase that enters $s\to d$ transitions (e.g., the CKM combination relevant to $\epsilon_K$). The proposed mapping predicts that the CP-violating component of neutral-kaon mixing tracks the size of this twist; setting $\phi^{sd}_{\mathbb{A}\mathbb{A}\mathbb{A}}\to 0$ would suppress the $\epsilon_K$-like asymmetry while the CP-even oscillation channel remains a separate overlap and barrier-height row. In practice, $\phi^{sd}_{\mathbb{A}\mathbb{A}\mathbb{A}}$ would be estimated by the twist angle (or integer twist count) required to align a Gen-II shielding cycle with a declared Gen-I support site, and the residual unaligned portion would supply the CP-odd acceleration bias on the oscillatory flip.
 
 #### Transient/effective exchange records ($\mathbb{A}\mathbb{A}\mathbb{A}$ strings)
 - **Nuclear charge swap:** $p(uud)\;\otimes\;\pi^-(d\bar u)\ \rightarrow\ n(udd)$ is an in-medium residual-strong exchange record. The effective pion-like flux loop carries axial-layer charge and phase between coupled baryon assemblies, while the full event ledger keeps baryon identities, recoil, and medium response explicit. The loop relaxes or re-associates into the surrounding nuclear assembly once the charge-state handoff closes; it is not a free pion propagation story.
@@ -5558,7 +5560,7 @@ These are excited states of the nucleon. At the observer-level Standard Model de
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Mapping (Geometric Structure):**
 A Delta baryon is a standard Noether braid assembly (like a proton) but with the three constituent braids treated in a **parallel spin alignment** (spin-$\tfrac{3}{2}$) rather than the Proton's mixed alignment (spin-$\tfrac{1}{2}$); compare the ground-state nucleon picture in [Nucleon Structure](../../../../markdown/aaa/nuclear-atomic/nucleon-structure.md). This is a downstream hadron-spin shorthand, not a substitute for the ordered-frame spinor proof.
 
-*   **Decorations / Pauli:** In the $\Delta^{++}$, three identical $u$-braids occupy the same location. To satisfy the observer-level Pauli constraint without geometric collapse, the hadron-level target is that they occupy the three distinct color sectors, so the exceptional-axis labels H, M, and L each appear once across the nested shell braid. This is a color-singlet mapping target until the spin-statistics proof supplies the exclusion rule.
+*   **Decorations / Pauli:** In the $\Delta^{++}$, three identical candidate $u$-braids occupy the same location. To satisfy the observer-level Pauli constraint without geometric collapse, the hadron-level target is that they occupy the three distinct color sectors, so exceptionality appears once on each indexed axis across the three candidate scaffolds. This is a color-singlet mapping target until the spin-statistics proof supplies the exclusion rule.
 *   **Dissociation:** The Delta dissociates rapidly ($\sim 10^{-24}$ s) via the strong force into a nucleon ($\pi N$). This corresponds to the spin alignment being mechanically unstable; once compression/spin lifts it off its local minimum, the assembly follows the gradient to the nucleon basin and sheds a pion.
 
 **Deltas in Dense Matter (EoS)**
@@ -5575,7 +5577,7 @@ Rows that mention spin alignment are shorthand targets for the downstream angula
 | SM family | Ground $\mathbb{A}\mathbb{A}\mathbb{A}$ geometry | First excited $\mathbb{A}\mathbb{A}\mathbb{A}$ geometry | Geometric change vs. SM mass gap |
 | --- | --- | --- | --- |
 | $\pi \rightarrow \rho$ | $q\bar q$ with anti-aligned spins / relaxed flux | $q\bar q$ with aligned spins / twisted or tighter flux | Spin alignment + higher flux mode → $m_\rho \sim 770$ MeV |
-| $N(p,n) \rightarrow \Delta$ | Nested shell braid with mixed spins; axis permutations for color | Nested shell braid with parallel spins; same axis permutations | All spins parallel raises rotational energy → $m_\Delta \sim 1232$ MeV |
+| $N(p,n) \rightarrow \Delta$ | Candidate-braid assembly with mixed spins; indexed-axis permutations for color | Candidate-braid assembly with parallel spins; same indexed-axis permutations | All spins parallel raises rotational energy → $m_\Delta \sim 1232$ MeV |
 
 ---
 
@@ -5598,11 +5600,11 @@ They are "ephemeral" because they are not topological attractors in the ambient 
 - **Rho mesons:** Candidate spin-1 alignment/tight flux stores energy; rapid strong dissociation to two pions releases that flux tension.
 
 **Reading SM quantum numbers inside $\mathbb{A}\mathbb{A}\mathbb{A}$**
-- **Charge $Q$:** Sum axis decorations; each axis with `+` contributes +1/3 e, `-` contributes −1/3 e, `0` contributes 0. Polarity conjugation flips signs. Meson pairs cancel most axes; nested shell braid permutations give $p=+1$, $n=0$.
+- **Charge $Q$:** Sum axis decorations; each axis with `+` contributes +1/3 e, `-` contributes −1/3 e, `0` contributes 0. Polarity conjugation flips signs. Meson pairs cancel most axes; indexed candidate-axis permutations give $p=+1$, $n=0$.
 - **Baryon number $B$:** +1/3 per matter braid, −1/3 per polarity-conjugate antimatter braid. Mesons sum to 0; baryons sum to 1.
 - **Strangeness $S$ (and heavier flavors):** Observer-level flavor tags are assigned after branch selection: a selected strange shielding branch gives $S=-1$, and its anti-branch gives $S=+1$. This does not assert that every down-type axial family is an additional observed species.
 - **Isospin $I_3$:** Swap $u\leftrightarrow d$ within the shared axis ordering; each swap flips $I_3$ by 1/2. The $\pi/\rho$ triplets and $K$ doublet follow directly.
-- **Spin/parity $J^P$:** Provisional bridge from braid spin alignment + flux mode. Spin‑0 mesons = anti‑aligned braids (pseudoscalar, $0^-$); spin‑1 $\rho$ = aligned braids or tighter flux ($1^-$); $\Delta$ = all three spins parallel ($3/2^+$). Parity tracks whether the flux/axis pattern inverts (odd for these mesons, even for ground-state nested shell braids).
+- **Spin/parity $J^P$:** Provisional bridge from braid spin alignment + flux mode. Spin‑0 mesons = anti‑aligned candidate braids (pseudoscalar, $0^-$); spin‑1 $\rho$ = aligned candidate braids or tighter flux ($1^-$); $\Delta$ = all three spins parallel ($3/2^+$). Parity is hypothesized to track whether the flux/axis pattern inverts (odd for these mesons, even for the proposed ground-state candidate braids).
 - **Lifetime / width:** Depth of the stability basin or steepness of the unstable manifold. Inverse axis pairs (π^0) or strongly over-twisted excited states (ρ, Δ) dissociate fast; non-inverse pairs and Gen-I/Gen-II kaon mismatches that require weak corridors (π±, $K$) live longer.
 
 #### SM quantum numbers (cheat sheet for particles discussed)
@@ -5631,7 +5633,7 @@ The table packs both the Standard Model quark makeup and the Architrino Assembly
 
 * An overbar on the quark symbol denotes the polarity-conjugate antimatter branch.
 * Constituents are concatenated with $\otimes$ to show distinct constituent braids (baryons chain three braids; mesons pair a quark with an antiquark).
-* Each matrix lists the three nested shell braid axes; the ordering is arbitrary, but all constituents in the same row use the **same** ordering.
+* Each matrix lists three persistently indexed candidate axes; the ordering is arbitrary, but all constituents in the same row use the **same** ordering. The matrix is a particle-bookkeeping chart, not a taxonomy-member definition.
 * Axis strings are **3×1 column matrices**: $\left[\begin{smallmatrix}+\\+\\0\end{smallmatrix}\right]$ `-` = electrino pair, `0` = mixed electrino/positrino, `+` = positrino pair.
 * When two patterns are allowed, they appear as a **3×2 matrix** whose columns are the options: $\left[\begin{smallmatrix}-&0\\-&0\\+&-\end{smallmatrix}\right]$.
 * Down-type rows with two matrix columns are branch-selection placeholders for candidate axial families with the same total inventory. They should not be read as two simultaneous observed species; a physical meson row assumes the declared $d$, $s$, or heavier down-type branch has already passed the single-family branch-selection target.
@@ -5639,13 +5641,13 @@ The table packs both the Standard Model quark makeup and the Architrino Assembly
 * Color neutrality comes from superposing/permuting which axis is exceptional—no fixed axis per baryon.
 
 **Axis matrix as braid tag (visual cue)**
-- Each column records the polarity-dyad class on one shared H/M/L axis, not a separate winding-direction convention.
-- Example: $\left[\begin{smallmatrix}+\\-\\0\end{smallmatrix}\right]$ means top axis carries a positive-polarity dyad, middle axis carries a negative-polarity dyad, and bottom axis carries a mixed dyad.
+- Each column records the polarity-dyad class on one shared indexed axis, not a separate winding-direction convention.
+- Example: $\left[\begin{smallmatrix}+\\-\\0\end{smallmatrix}\right]$ means the first displayed axis carries a positive-polarity dyad, the second carries a negative-polarity dyad, and the third carries a mixed dyad. Display order does not encode a radius or dynamical role.
 
 **Color/flux neutrality schematics**
 
-*Baryon nested shell braid (proton-like permutations)*
-$u_1:\left[\begin{smallmatrix}+\\+\\0\end{smallmatrix}\right],\quad u_2:\left[\begin{smallmatrix}+\\0\\+\end{smallmatrix}\right],\quad d_{F_{\mathrm I},H}:\left[\begin{smallmatrix}+\\-\\-\end{smallmatrix}\right]\;\;\Rightarrow\;$ exceptionality appears once on each H/M/L axis across the selected down-type family, so the baryon is color neutral while the net electric charge is $+1$.
+*Candidate baryon scaffolds (proton-like permutations)*
+$u_1:\left[\begin{smallmatrix}+\\+\\0\end{smallmatrix}\right],\quad u_2:\left[\begin{smallmatrix}+\\0\\+\end{smallmatrix}\right],\quad d_{F_{\mathrm I},1}:\left[\begin{smallmatrix}+\\-\\-\end{smallmatrix}\right]\;\;\Rightarrow\;$ exceptionality appears once on each indexed axis across the selected down-type family, so the baryon is color neutral while the net electric charge is $+1$.
 
 *Meson quark–antiquark pairing*
 $u:\left[\begin{smallmatrix}+\\+\\0\end{smallmatrix}\right]\;\otimes\;\bar u:\left[\begin{smallmatrix}-\\-\\0\end{smallmatrix}\right]\;\;\Rightarrow\;$ axis-by-axis cancellation of flux (color neutral).
@@ -5654,8 +5656,8 @@ $u:\left[\begin{smallmatrix}+\\+\\0\end{smallmatrix}\right]\;\otimes\;\bar u:\le
 
 | Particle | PDG symbol | SM class | SM quark content | $\mathbb{A}\mathbb{A}\mathbb{A}$ axis string per constituent | $\mathbb{A}\mathbb{A}\mathbb{A}$ highlight |
 | --- | --- | --- | --- | --- | --- |
-| Proton (p) | $p$ | baryon | $uud$ | $u\!\left[\begin{smallmatrix}+\\+\\0\end{smallmatrix}\right]\otimes u\!\left[\begin{smallmatrix}+\\+\\0\end{smallmatrix}\right]\otimes d\!\left[\begin{smallmatrix}-&0\\-&0\\+&-\end{smallmatrix}\right]$ | Color-neutral nested shell braid, ground state. |
-| Neutron (n) | $n$ | baryon | $udd$ | $u\!\left[\begin{smallmatrix}+\\+\\0\end{smallmatrix}\right]\otimes d\!\left[\begin{smallmatrix}-&0\\-&0\\+&-\end{smallmatrix}\right]\otimes d\!\left[\begin{smallmatrix}-&0\\-&0\\+&-\end{smallmatrix}\right]$ | Nested shell braid with net charge 0, stable. |
+| Proton (p) | $p$ | baryon | $uud$ | $u\!\left[\begin{smallmatrix}+\\+\\0\end{smallmatrix}\right]\otimes u\!\left[\begin{smallmatrix}+\\+\\0\end{smallmatrix}\right]\otimes d\!\left[\begin{smallmatrix}-&0\\-&0\\+&-\end{smallmatrix}\right]$ | Candidate color-neutral assembly, proposed ground state. |
+| Neutron (n) | $n$ | baryon | $udd$ | $u\!\left[\begin{smallmatrix}+\\+\\0\end{smallmatrix}\right]\otimes d\!\left[\begin{smallmatrix}-&0\\-&0\\+&-\end{smallmatrix}\right]\otimes d\!\left[\begin{smallmatrix}-&0\\-&0\\+&-\end{smallmatrix}\right]$ | Candidate net-neutral assembly; stability remains to be derived. |
 | Pion + | $\pi^{+}$ | meson | $u\bar d$ | $u\!\left[\begin{smallmatrix}+\\+\\0\end{smallmatrix}\right]\otimes \bar d\!\left[\begin{smallmatrix}+&0\\+&0\\-&+\end{smallmatrix}\right]$ | Non-inverse braids lack the fast inverse-pair radiative route; free dissociation uses a $W^+$ corridor, while in-medium exchange is residual strong. |
 | Pion 0 | $\pi^{0}$ | meson | $(u\bar u - d\bar d)/\sqrt{2}$ | $u\!\left[\begin{smallmatrix}+\\+\\0\end{smallmatrix}\right]\otimes \bar u\!\left[\begin{smallmatrix}-\\-\\0\end{smallmatrix}\right]$ (or $d\!\left[\begin{smallmatrix}-&0\\-&0\\+&-\end{smallmatrix}\right]\otimes \bar d\!\left[\begin{smallmatrix}+&0\\+&0\\-&+\end{smallmatrix}\right]$) | Isospin-triplet superposition; inverse matrices open the Gate C two-photon route $\pi^0\to\gamma\gamma$ and a very short lifetime. |
 | Pion - | $\pi^{-}$ | meson | $d\bar u$ | $d\!\left[\begin{smallmatrix}-&0\\-&0\\+&-\end{smallmatrix}\right]\otimes \bar u\!\left[\begin{smallmatrix}-\\-\\0\end{smallmatrix}\right]$ | Mirror of $\pi^+$: non-inverse braids, weak $W^-$ dissociation corridor. |

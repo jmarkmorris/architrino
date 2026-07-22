@@ -855,11 +855,11 @@ Hydrogen calculations need the proton to enter the atomic window as one color-si
 For a proton branch, let the three quark color sectors be
 
 $$
-s_{u_1},s_{u_2},s_d\in\{H,M,L\},
+s_{u_1},s_{u_2},s_d\in\{1,2,3\},
 \qquad
 \{s_{u_1},s_{u_2},s_d\}
 =
-\{H,M,L\}
+\{1,2,3\}
 $$
 
 The second condition is the color-singlet occupancy rule: the exceptional-axis sectors occur once each. Let $\mathcal L_{\mathrm{strong}}^{uud}(T)$ denote the strong-sector corridor ledger that locks these three quark branches into one accepted proton branch. At proton-sensitive resolution, the candidate source envelope in response channel $X$ is
@@ -2108,7 +2108,7 @@ The two-lobed (peanut/lemniscate-like) morphology separates strongly electroposi
 
 Hyde's explicit H-C-Si axis emphasizes group-14 centrality between electropositive and electronegative domains and links carbon-rich and silicon-rich materials regimes.
 
-In the $\mathbb{A}\mathbb{A}\mathbb{A}$ working interpretation, this axis corresponds to the radial tier where four outer nested shell braids can achieve a near-symmetric tetrahedral docking arrangement with maximally exposed neutral axes, giving a geometric route to catenation and directional covalency.
+In the $\mathbb{A}\mathbb{A}\mathbb{A}$ working interpretation, this axis corresponds to the radial tier where four candidate valence Noether braids could achieve a near-symmetric tetrahedral docking arrangement with maximally exposed neutral axes, giving a geometric route to catenation and directional covalency. This atomic mapping does not identify a taxonomy member.
 
 #### Branches and heavy-series treatment
 
@@ -2135,32 +2135,32 @@ The points below are collected as a framework-internal research program, not as 
 
 #### Assumptions
 
-- The $s, p, d, f$ orbital labels are treated as recovered labels for electron resonance and observer-level detection basins; the substrate-side hypothesis is that those basins are shaped by volume-exclusion zones of oblate spheroidal electron nested shell braid envelopes carrying six axial architrinos.
-- Electron nested shell braids are assumed to couple to the nuclear assembly ledger through the effective nuclear causal-wake envelope $\mathcal W_{\text{nuc}}$ and local Noether sea density gradients.
+- The $s, p, d, f$ orbital labels are treated as recovered labels for electron resonance and observer-level detection basins; the substrate-side hypothesis is that those basins are shaped by volume-exclusion zones of oblate spheroidal candidate electron-braid envelopes carrying six axial architrinos.
+- Candidate electron braids are assumed to couple to the nuclear assembly ledger through the effective nuclear causal-wake envelope $\mathcal W_{\text{nuc}}$ and local Noether sea density gradients.
 - Periodicity is assumed to be a geometric and dynamical outcome of finite-volume assembly constraints, not only a formal quantum-number indexing result.
 
 #### Mechanism and Derivation Sketch
 
 - Spiral-to-core symmetry mapping: Hyde's 2D spiral is treated as a projection of 3D docking topology around the nuclear source envelope $\mathcal W_{\text{nuc}}$, where each subshell bifurcation corresponds to a specific set of neutral-axis docking vectors.
-- Radial quantization condition: each concentric Hyde loop is treated as a discrete boundary where the local Noether sea pressure gradient drops enough to stabilize an additional shell of precessing nested shell braids; `pressure` here and below means the isotropic part of the canonical Noether sea stress $\Sigma_{\text{sea}}$, not a new medium variable.
+- Radial quantization condition: each concentric Hyde loop is treated as a discrete boundary where the local Noether sea pressure gradient drops enough to stabilize an additional atomic layer of precessing candidate braids; `pressure` here and below means the isotropic part of the canonical Noether sea stress $\Sigma_{\text{sea}}$, not a new medium variable.
 - In this view, the 2/8/18/32 shell periodicity emerges from finite-volume packing limits of Noether braid assemblies under these boundary conditions.
-- Volume-exclusion mechanism: each electron nested shell braid displaces the local Noether sea, and overlap of two precessing oblate spheroidal exclusion envelopes generates a sharply rising displacement-pressure gradient.
+- Volume-exclusion hypothesis: each candidate electron braid displaces the local Noether sea, and overlap of two precessing oblate spheroidal exclusion envelopes generates a sharply rising displacement-pressure gradient.
 - Dynamical resolution rule: when exclusion volumes intersect, assemblies must either separate into orthogonal precession phases or move to a larger-radius tier.
 - Pauli exclusion is therefore modeled as a mechanical non-overlap constraint enforced by Noether sea displacement pressure rather than only an abstract occupancy postulate.
 - This is a candidate realization of the geometric packing side of Pauli behavior. It must inherit the exchange-sign and state-counting recovery from [Fermi-Dirac and Bose-Einstein Statistics](../../../../markdown/aaa/quantum/fermi-dirac-and-bose-einstein-statistics.md) and the ordered-frame spinor proof program in [Angular Momentum and Spin](../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md), rather than standing as an independent Pauli derivation.
 - Subshell branching hypothesis ($s, p, d, f$): branching reflects the number and symmetry of available neutral-axis docking geometries permitted by six polar sites.
-- Secondary-relationship hypothesis: Hyde-highlighted diagonal and bridging relations are interpreted as shared exposed neutral-axis geometry in outer nested shell braids, which controls preferred bonding directions.
+- Secondary-relationship hypothesis: Hyde-highlighted diagonal and bridging relations are interpreted as shared exposed neutral-axis geometry in candidate valence braids, which controls preferred bonding directions.
 - Carbon-silicon centrality hypothesis: the H-C-Si axis is identified with the first tier permitting a symmetric four-site tetrahedral outer-docking pattern, giving a direct structural basis for group-14 bonding behavior.
 
 #### Predictions and Observables
 
 - If shell structure is a packing phenomenon, ionization-energy trends along Hyde's spiral should show systematic high-$Z$ deviations from idealized Dirac-limit expectations.
-- Mechanism for the deviation: increasing nuclear mass steepens the local Noether sea density gradient, geometrically compressing inner-shell nested shell braids and driving middle-binary velocities toward field-speed limits.
-- This inner-shell geometric strain changes the effective shielding potential seen by valence nested shell braids, producing measurable departures from standard relativistic-correction-only trends.
+- Candidate mechanism for the deviation: increasing nuclear mass steepens the local Noether sea density gradient, geometrically compressing core-region candidate braids and driving a declared indexed binary channel toward the field-speed fold.
+- This proposed core-region geometric strain changes the effective shielding potential seen by candidate valence braids, producing measurable departures from standard relativistic-correction-only trends.
 
 #### Failure Modes and Falsification Criteria
 
-- If multi-body simulations of nested shell braids with axial layers do not spontaneously produce discrete 2/8/18/32 packing regimes, the geometric-periodicity derivation fails.
+- If multi-body simulations of candidate braids with axial layers do not spontaneously produce discrete 2/8/18/32 packing regimes, the geometric-periodicity derivation fails.
 - If the model collapses into continuous charge distributions with no discrete angular nodes, the orbital-geometry mapping is falsified.
 - If predicted high-$Z$ ionization-energy deviations are absent beyond uncertainty and known correction terms, the proposed finite-volume mechanism is disfavored.
 
@@ -2941,6 +2941,6 @@ The source term enforces the no-new-iron guardrail, the segregation and phase te
 
 #### Threshold Crossing and Failure Modes
 
-Crossing $\mathcal{R}_{\text{tr},*}$ is the point at which reversible transport stops being the adequate description. Above threshold, some transported energy or action must route into an explicit channel: medium excitation, radiation-like transport, local heating, action shedding, or branch transition. For the dynamical bookkeeping of those channels, see [Energy](../../../../markdown/aaa/dynamics/energy.md) and [Nested Shell Braid Dynamics](../../../../markdown/aaa/noether-braid/braid-a1-dynamics.md#a1-dynamics).
+Crossing $\mathcal{R}_{\text{tr},*}$ is the point at which reversible transport stops being the adequate description. Above threshold, some transported energy or action must route into an explicit channel: medium excitation, radiation-like transport, local heating, action shedding, or branch transition. For the dynamical bookkeeping of those channels, see [Energy](../../../../markdown/aaa/dynamics/energy.md) and [A1 Dynamics](../../../../markdown/aaa/noether-braid/braid-a1-dynamics.md#a1-dynamics).
 
 The main failure modes are therefore sharp. If $\mathcal{R}_{\text{tr}} < \mathcal{R}_{\text{tr},*}$ still produces ordinary dissipative drag in stable atoms, the framework loses chemical stability. If $\mathcal{R}_{\text{tr}} > \mathcal{R}_{\text{tr},*}$ occurs without a logged excitation, radiation, heating, or branch-transition channel, the energy ledger is incomplete. If the threshold cannot be expressed in terms of assembly motion, local Noether sea state, medium response, and stability gap data, the medium-transport picture has not matured into a usable transport closure.
