@@ -558,7 +558,11 @@ export function preflightAnalyticalCampaignImport(options) {
   const summary = parseJsonBytes(summaryBytes, "campaign summary");
   const validated = validateManifestAndSummary(manifest, summary);
   const manifestDirectory = path.dirname(manifestPath);
-  const rawArtifacts = (manifest.rawArtifacts ?? []).map((descriptor) => {
+  const rawArtifactDescriptors = manifest.rawArtifacts ?? [];
+  const rawArtifacts = [];
+  for (let rawArtifactIndex = 0; rawArtifactIndex < rawArtifactDescriptors.length;
+    rawArtifactIndex += 1) {
+    const descriptor = rawArtifactDescriptors[rawArtifactIndex];
     const relativePath = safeRelativePath(descriptor.path, "raw artifact path");
     const absolutePath = path.resolve(manifestDirectory, relativePath);
     if (!absolutePath.startsWith(`${manifestDirectory}${path.sep}`)) {
@@ -574,9 +578,19 @@ export function preflightAnalyticalCampaignImport(options) {
         sha256Bytes(rawBytes) !== descriptor.rawSha256) {
       fail(`raw artifact ${relativePath} uncompressed identity is invalid.`);
     }
-    return { descriptor, absolutePath };
-  });
-  const cases = summary.cases.map((summaryCase, caseOrdinal) => {
+    rawArtifacts.push({ descriptor, absolutePath });
+    if ((rawArtifactIndex + 1) % 64 === 0 ||
+        rawArtifactIndex + 1 === rawArtifactDescriptors.length) {
+      options.onProgress?.({
+        stage: "import-preflight-raw-artifacts",
+        completedWork: rawArtifactIndex + 1,
+        totalWork: rawArtifactDescriptors.length,
+      });
+    }
+  }
+  const cases = [];
+  for (let caseOrdinal = 0; caseOrdinal < summary.cases.length; caseOrdinal += 1) {
+    const summaryCase = summary.cases[caseOrdinal];
     const absolutePacketPath = packetPathForCase(summaryCase, options);
     const packetBytes = readFileSync(absolutePacketPath);
     const acceptance = verifyIndependentCaseAcceptance(packetBytes, {
@@ -595,7 +609,7 @@ export function preflightAnalyticalCampaignImport(options) {
       summaryPath,
       acceptance.packet,
     );
-    return {
+    cases.push({
       caseOrdinal,
       summaryCase,
       packetBytes,
@@ -610,8 +624,14 @@ export function preflightAnalyticalCampaignImport(options) {
           memberId: acceptance.packet.source.taxonomy?.memberId ?? null,
           parameterVector: acceptance.packet.source.parameterVector,
         }),
-    };
-  });
+    });
+    options.onProgress?.({
+      stage: "import-preflight-case",
+      candidateId: summaryCase.caseId,
+      completedWork: caseOrdinal + 1,
+      totalWork: summary.cases.length,
+    });
+  }
   const preflight = {
     manifestPath,
     summaryPath,
@@ -749,7 +769,7 @@ function insertProtocol(database, packet) {
   });
 }
 
-function insertCampaignEnvelope(database, preflight) {
+function insertCampaignEnvelope(database, preflight, options = {}) {
   const packet = preflight.cases[0].acceptance.packet;
   insertProtocol(database, packet);
   const manifestArtifact = insertArtifact(database, {
@@ -892,7 +912,10 @@ function insertCampaignEnvelope(database, preflight) {
       canonicalBytes(coverage),
     );
   }
-  for (const rawArtifact of preflight.rawArtifacts) {
+  for (let rawArtifactIndex = 0;
+    rawArtifactIndex < preflight.rawArtifacts.length;
+    rawArtifactIndex += 1) {
+    const rawArtifact = preflight.rawArtifacts[rawArtifactIndex];
     const compressedBytes = readFileSync(rawArtifact.absolutePath);
     const rawBytes = gunzipSync(compressedBytes);
     const stored = insertArtifact(database, {
@@ -933,6 +956,15 @@ function insertCampaignEnvelope(database, preflight) {
       rawArtifact.descriptor.storedBytes,
       canonicalBytes(rawArtifact.descriptor.context),
     );
+    if ((rawArtifactIndex + 1) % 64 === 0 ||
+        rawArtifactIndex + 1 === preflight.rawArtifacts.length) {
+      options.onProgress?.({
+        stage: "import-raw-artifacts",
+        candidateId: rawArtifact.descriptor.candidateId,
+        completedWork: rawArtifactIndex + 1,
+        totalWork: preflight.rawArtifacts.length,
+      });
+    }
   }
 }
 
@@ -1691,7 +1723,7 @@ export function importAnalyticalCampaign(databasePath, options) {
   try {
     database.exec("BEGIN IMMEDIATE");
     try {
-      insertCampaignEnvelope(database, preflight);
+      insertCampaignEnvelope(database, preflight, options);
       const existingBatch = database.prepare(`
         SELECT state, last_committed_ordinal, committed_case_count, started_at
         FROM ingest_batch WHERE ingest_batch_id = ?
@@ -2165,13 +2197,18 @@ export function exportAnalyticalCampaign(databasePath, options) {
       ));
     }
     if (tableExists(database, "analytical_raw_artifact")) {
+      const rawArtifactTotal = Number(database.prepare(`
+        SELECT COUNT(*) AS count FROM analytical_raw_artifact
+        WHERE manifest_hash = ?
+      `).get(manifestHash).count);
       const rawArtifacts = database.prepare(`
         SELECT analytical_raw_artifact.*, artifact.payload, artifact.codec
         FROM analytical_raw_artifact
         JOIN artifact USING (artifact_hash)
         WHERE analytical_raw_artifact.manifest_hash = ?
         ORDER BY analytical_raw_artifact.relative_path
-      `).all(manifestHash);
+      `).iterate(manifestHash);
+      let rawArtifactIndex = 0;
       for (const row of rawArtifacts) {
         if (row.codec !== "gzip" ||
             sha256Bytes(row.payload) !== hashHex(row.compressed_hash) ||
@@ -2185,6 +2222,15 @@ export function exportAnalyticalCampaign(databasePath, options) {
           rawSha256: hashHex(row.raw_hash),
           compressedSha256: hashHex(row.compressed_hash),
         }));
+        rawArtifactIndex += 1;
+        if (rawArtifactIndex % 64 === 0 || rawArtifactIndex === rawArtifactTotal) {
+          options.onProgress?.({
+            stage: "export-raw-artifacts",
+            candidateId: row.candidate_id,
+            completedWork: rawArtifactIndex,
+            totalWork: rawArtifactTotal,
+          });
+        }
       }
     }
     const campaignAcceptanceRelativePath = path.join(
@@ -2331,10 +2377,14 @@ export function verifyAnalyticalCampaignDatabase(databasePath, options = {}) {
     if (!tableExists(database, "schema_migration")) {
       fail("database has no analytical campaign schema migrations.");
     }
+    const artifactTotal = Number(database.prepare(
+      "SELECT COUNT(*) AS count FROM artifact",
+    ).get().count);
     const artifacts = database.prepare(`
       SELECT artifact_hash, artifact_kind, codec, raw_bytes, stored_bytes, payload
       FROM artifact ORDER BY artifact_hash
-    `).all();
+    `).iterate();
+    let artifactIndex = 0;
     for (const row of artifacts) {
       const rawBytes = decodeArtifact(row);
       if (rawBytes.length !== row.raw_bytes || row.payload.length !== row.stored_bytes ||
@@ -2357,6 +2407,14 @@ export function verifyAnalyticalCampaignDatabase(databasePath, options = {}) {
         const hash = sha256Canonical(withoutField(summary, "summaryHash"));
         if (hash !== summary.summaryHash) fail("stored campaign summary hash is invalid.");
       }
+      artifactIndex += 1;
+      if (artifactIndex % 64 === 0 || artifactIndex === artifactTotal) {
+        options.onProgress?.({
+          stage: "verify-artifacts",
+          completedWork: artifactIndex,
+          totalWork: artifactTotal,
+        });
+      }
     }
     const exactSources = database.prepare(`
       SELECT source_hash, exact_source_artifact_hash
@@ -2378,11 +2436,15 @@ export function verifyAnalyticalCampaignDatabase(databasePath, options = {}) {
       }
     }
     if (tableExists(database, "analytical_raw_artifact")) {
+      const rawArtifactTotal = Number(database.prepare(
+        "SELECT COUNT(*) AS count FROM analytical_raw_artifact",
+      ).get().count);
       const rawArtifacts = database.prepare(`
         SELECT analytical_raw_artifact.*, artifact.payload, artifact.codec
         FROM analytical_raw_artifact JOIN artifact USING (artifact_hash)
         ORDER BY compressed_hash
-      `).all();
+      `).iterate();
+      let rawArtifactIndex = 0;
       for (const row of rawArtifacts) {
         const rawBytes = gunzipSync(row.payload);
         if (row.codec !== "gzip" || row.payload.length !== row.stored_bytes ||
@@ -2390,6 +2452,15 @@ export function verifyAnalyticalCampaignDatabase(databasePath, options = {}) {
             sha256Bytes(row.payload) !== hashHex(row.compressed_hash) ||
             sha256Bytes(rawBytes) !== hashHex(row.raw_hash)) {
           fail(`raw analytical artifact ${row.relative_path} failed hash/size verification.`);
+        }
+        rawArtifactIndex += 1;
+        if (rawArtifactIndex % 64 === 0 || rawArtifactIndex === rawArtifactTotal) {
+          options.onProgress?.({
+            stage: "verify-raw-artifacts",
+            candidateId: row.candidate_id,
+            completedWork: rawArtifactIndex,
+            totalWork: rawArtifactTotal,
+          });
         }
       }
       const incompleteCompleteCycleCases = Number(database.prepare(`
@@ -2463,7 +2534,7 @@ export function verifyAnalyticalCampaignDatabase(databasePath, options = {}) {
       schema: ANALYTICAL_CAMPAIGN_DATABASE_SCHEMA,
       integrity,
       fingerprint: databaseFingerprint(database),
-      artifactCount: artifacts.length,
+      artifactCount: artifactTotal,
       acceptedCaseCount: Number(
         database.prepare("SELECT COUNT(*) AS count FROM accepted_case").get().count,
       ),

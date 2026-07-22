@@ -308,15 +308,24 @@ test("generated campaign import is idempotent and deterministic export reproduce
   try {
     const { campaign, paths } = stageCurrentCandidateCampaign(directory);
     const databasePath = path.join(directory, "campaign.sqlite3");
+    const importProgress = [];
     const first = importAnalyticalCampaign(databasePath, {
       manifestPath: paths.manifestPath,
       summaryPath: paths.summaryPath,
       packetDirectory: paths.packetDirectory,
+      onProgress(progress) {
+        importProgress.push(progress);
+      },
     });
     assert.equal(first.caseCount, campaign.candidates.length);
     assert.equal(first.acceptedCaseCount, campaign.acceptedCandidateCount);
     assert.equal(first.rejectedCaseCount, campaign.rejectedCandidateCount);
     assert.equal(first.batchSize, 32);
+    assert.ok(importProgress.some((row) => row.stage === "import-preflight-case"));
+    if ((campaign.manifest.rawArtifacts ?? []).length > 0) {
+      assert.ok(importProgress.some((row) => row.stage === "import-preflight-raw-artifacts"));
+      assert.ok(importProgress.some((row) => row.stage === "import-raw-artifacts"));
+    }
     const firstInspection = inspectAnalyticalCampaignDatabase(databasePath);
     assert.equal(firstInspection.integrity, "ok");
     assert.equal(firstInspection.acceptedCaseCount, campaign.acceptedCandidateCount);
@@ -333,13 +342,20 @@ test("generated campaign import is idempotent and deterministic export reproduce
     assert.equal(secondInspection.artifactCount, campaign.artifacts.length + 2);
 
     const exportDirectory = path.join(directory, "export");
+    const exportProgress = [];
     const exported = exportAnalyticalCampaign(databasePath, {
       manifestHash: first.manifestHash,
       outputDirectory: exportDirectory,
+      onProgress(progress) {
+        exportProgress.push(progress);
+      },
     });
     assert.equal(exported.caseCount, campaign.candidates.length);
     assert.equal(exported.packetBoundSourceCount, 0);
     assert.ok(exported.fileCount > campaign.candidates.length);
+    if ((campaign.manifest.rawArtifacts ?? []).length > 0) {
+      assert.ok(exportProgress.some((row) => row.stage === "export-raw-artifacts"));
+    }
     assert.deepEqual(
       readFileSync(path.join(exportDirectory, path.basename(paths.manifestPath))),
       readFileSync(paths.manifestPath),
@@ -384,10 +400,19 @@ test("generated campaign import is idempotent and deterministic export reproduce
     assert.equal(backupResult.acceptedCaseCount, campaign.acceptedCandidateCount);
     assert.equal(backupResult.rejectedCaseCount, campaign.rejectedCandidateCount);
     assert.equal(backupResult.artifactCount, campaign.artifacts.length + 2);
+    const verifyProgress = [];
     assert.equal(
-      verifyAnalyticalCampaignDatabase(backupPath).fingerprint,
+      verifyAnalyticalCampaignDatabase(backupPath, {
+        onProgress(progress) {
+          verifyProgress.push(progress);
+        },
+      }).fingerprint,
       firstInspection.fingerprint,
     );
+    assert.ok(verifyProgress.some((row) => row.stage === "verify-artifacts"));
+    if ((campaign.manifest.rawArtifacts ?? []).length > 0) {
+      assert.ok(verifyProgress.some((row) => row.stage === "verify-raw-artifacts"));
+    }
     const backupExport = exportAnalyticalCampaign(backupPath, {
       manifestHash: first.manifestHash,
       outputDirectory: path.join(directory, "backup-export"),
