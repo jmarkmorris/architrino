@@ -56,6 +56,16 @@ test("braid taxonomy scanner ignores implementation identifiers and link destina
   assert.deepEqual(scanTextForBraidTaxonomyTerminology(source, "synthetic.md"), []);
 });
 
+test("braid taxonomy scanner does not confuse ordinary boundary or observable notation with braid coordinates", () => {
+  const source = [
+    "The model may require an outer boundary condition.",
+    "The apparent horizon is the outer boundary of the trapped region.",
+    "Use the context-indexed apparatus record $r_{O,C}=R_{O,C}(\Gamma)$.",
+  ].join("\n");
+
+  assert.deepEqual(scanTextForBraidTaxonomyTerminology(source, "synthetic.md"), []);
+});
+
 test("braid taxonomy scanner audits every older braid-name token requested by the taxonomy migration", () => {
   assert.deepEqual(RETIRED_BRAID_NAME_TOKENS, [
     "spindle",

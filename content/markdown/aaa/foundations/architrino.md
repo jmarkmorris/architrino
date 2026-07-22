@@ -94,7 +94,7 @@ This relocation keeps both sides of the inherited word `charge`. The effective c
 
 The normalization $|e|=6\epsilon$ is currently an input parameter and a high-priority explanatory target. In this convention, the architrino polarity unit is primitive for bookkeeping, and the observed electron or positron charge is a six-unit assembly-level multiple. The general structural target is a protected six-unit polarity inventory: six sign-carrying architrinos or six retained polarity slots whose signed sum supplies observer-level charge bookkeeping. This parent target does not yet decide whether the six units are internal to the Noether braid, externally coupled to it, embedded in its retained path-history, or realized by a non-axial coupled branch.
 
-The axial-layer model is one charged-fermion realization of that parent target. In that model, the six-unit inventory appears as a closed six-polar-site branch record: three polar dyads in a branch-defined axial frame, with each polar site occupied by one axial architrino of sign $\pm\epsilon$. Labels such as H/M/L are chart labels for a selected branch, not a primitive ordering of the three dyads. The protected-site version of the axial target asks for a finite site-stabilizer action $G_{\mathrm{ax}}$ on the Noether braid framing such that
+The axial-layer model is one charged-fermion realization of that parent target. In that model, the six-unit inventory appears as a closed six-polar-site branch record: three polar dyads in a branch-defined axial frame, with each polar site occupied by one axial architrino of sign $\pm\epsilon$. The dyads use persistent indices $a\in\{1,2,3\}$; those identities do not impose an ordering by radius or another derived property. The protected-site version of the axial target asks for a finite site-stabilizer action $G_{\mathrm{ax}}$ on the Noether braid framing such that
 $$
 \lvert G_{\mathrm{ax}}\text{-orbit}\rvert=6,
 $$
@@ -227,7 +227,7 @@ The canonical homes are:
 
 - [Master Equation](../dynamics/master-equation.md) for causal hits, delay roots, transmitter-side factors, transmitter-side acceleration weights, received acceleration, and branch topology.
 - [Binary Dynamics](../dynamics/binary-dynamics.md) for wake-speed regimes, partner hit versus self-hit behavior, spiral contraction, and maximum-curvature binary analysis.
-- [Nested Shell Braid Dynamics](../noether-braid/braid-a1-dynamics.md#a1-dynamics) for coupled nested shell braid speed regimes, alignment behavior, and assembly-stability mechanisms.
+- [A1 Dynamics](../noether-braid/braid-a1-dynamics.md#a1-dynamics) for coupled indexed-binary speed regimes, alignment behavior, and assembly-stability mechanisms.
 - [Noether Braid](../noether-braid/noether-braid.md) for the assembly-level Noether braid architecture built from those dynamics.
 
 ## Determinism and Multistability

@@ -4,7 +4,7 @@ In $\mathbb{A}\mathbb{A}\mathbb{A}$, energy accounting begins with moving archit
 
 This chapter answers four linked questions. What kinetic bookkeeping is allowed for a single architrino? How does work occur when a receiver crosses delayed causal wakes? How do assemblies hide or expose internal energy? How can Noether sea coupling make energy, inertia, and effective geometry appear at larger scales?
 
-The chapter underwrites [Particle Masses](../assemblies/particle-masses.md), [Nested Shell Braid Dynamics](../noether-braid/braid-a1-dynamics.md#a1-dynamics), [Noether Braid](../noether-braid/noether-braid.md), [Noether Sea Pro/Anti Coupling](../spacetime/noether-sea-pro-anti-coupling.md), [Emergent Metric](../spacetime/emergent-metric.md), and the constructive delay-energy standard in [Delay Dynamics Energy](../validation/simulations/action-energy/delay-dynamics-energy.md).
+The chapter underwrites [Particle Masses](../assemblies/particle-masses.md), [A1 Dynamics](../noether-braid/braid-a1-dynamics.md#a1-dynamics), [Noether Braid](../noether-braid/noether-braid.md), [Noether Sea Pro/Anti Coupling](../spacetime/noether-sea-pro-anti-coupling.md), [Emergent Metric](../spacetime/emergent-metric.md), and the constructive delay-energy standard in [Delay Dynamics Energy](../validation/simulations/action-energy/delay-dynamics-energy.md).
 
 All such dynamics unfold on a fixed ontological background: absolute time plus the Euclidean void. Accelerations and motion arise from **delayed causal hits from causal isochrons**, with line-of-action direction and transmitter-side acceleration weight, on this fixed background. We work in units with causal-wake propagation speed $c_f=1$.
 
@@ -604,7 +604,7 @@ Here $\mathcal F_T$ is the packet's chosen fluctuation-dissipation map, and $\ch
 At the fundamental level, the Euclidean void is an empty container. **Effective spacetime** is the observer-level summary of a **sea of high-energy Noether braid assemblies**:
 
 - These Noether braids are extremely small compared to ordinary particles (electrons, protons, etc.).
-- Each Noether braid is itself a tightly bound architrino assembly with very high internal kinetic and potential energy; the nested shell braid is the best-developed three-band subtype, not the definition of the sea.
+- Each Noether braid is itself a tightly bound architrino assembly with very high internal kinetic and potential energy; A1 is the best-developed Family-A member, not the definition of the sea.
 - As a sea, they form a **dense population of coupled assemblies** occupying the Euclidean void. This ambient Noether sea content carries non-zero assembly density and internal stress. It provides the constitutive relations (permittivity, permeability, and medium-dressed inertial response) that deform the primitive architrino dynamics into effective relativistic kinematics, providing the bridge-level spacetime medium for:
   - Emergent inertia and mass,
   - Effective causal-cone behavior and Lorentz-like behavior,
@@ -645,7 +645,7 @@ The surrounding Noether sea, and the arrangement of positive- and negative-polar
 
 - **Polarity cancellation**: positive- and negative-polarity architrinos within the assembly (and in surrounding Noether braids) emit wakes that interfere destructively at larger distances.
 - **Phase-structured far-field cancellation**: the geometry of internal orbits and Noether braid polarization patterns generates cancellation of most multipoles at scales $r \gg$ assembly size.
-- **Nested shielding**: in multi-tier fermion braid scaffolds, outer support tiers partially screen the deeper tiers from the surrounding sea. Generation shifts can therefore be read as loss of shielding tiers, not only as loss of constituent count.
+- **Indexed support shielding**: in multi-tier fermion braid scaffolds, outer support tiers partially screen the deeper tiers from the surrounding sea. Generation shifts can therefore be read as loss of shielding tiers, not only as loss of constituent count.
 
 At the reference-attractor level, define the **shielding (leakage) factor** as the leading isotropic projection of a larger far-field wake ledger:
 
@@ -994,7 +994,7 @@ At the exact causal-action level, global energy is conserved: self-hit just rout
 
 Inside an assembly, large internal causal-history energy can circulate through many branch channels. Outside the assembly, distant probes couple only to the portion of that ledger that survives phase cancellation, shielding, and Noether sea response.
 
-Architrinos and their assemblies are where the energy bookkeeping lives. The Noether sea is a dense population of high-energy Noether braid assemblies whose net long-range wake response is usually quiet because incoherent contributions cancel and shielded internal layers leak only weakly. In nested fermion braid scaffolds, outer support tiers screen deeper layers from the ambient Noether sea. The small residual exposure is what observer-level mass and gravitational response measure.
+Architrinos and their assemblies are where the energy bookkeeping lives. The Noether sea is a dense population of high-energy Noether braid assemblies whose net long-range wake response is usually quiet because incoherent contributions cancel and shielded internal layers leak only weakly. In indexed fermion source records, outer support tiers screen deeper layers from the ambient Noether sea. The small residual exposure is what observer-level mass and gravitational response measure.
 
 ## Summary and Role in the Larger Theory
 
@@ -1061,7 +1061,7 @@ K^{(b)}(r_\ast)+U^{(b)}(r_\ast)
 =
 K^{(b')}(r_\ast)+U^{(b')}(r_\ast)+\Delta_{\text{ledger}}
 $$
-where $\Delta_{\text{ledger}}$ is the declared root-change energy routed through the table entries such as $\varepsilon_o$, $\varepsilon_w$, and the middle-channel adjustment. The visible step is the ledger/gauge matching term; it is not additional to that matching.
+where $\Delta_{\text{ledger}}$ is the declared root-change energy routed through the table entries such as $\varepsilon_3$, $\varepsilon_w$, and the binary-2 adjustment. The visible step is the ledger/gauge matching term; it is not additional to that matching.
 Thus $U^{(b)}$ is a ledger-indexed potential, and the zero-section can jump when the active causal-root cell changes. A globally consistent energy ledger requires the $\Delta_{\text{ledger}}$ increments to glue around overlaps of ledger cells; otherwise the local potential gauges are individually consistent but the global binding-energy record is multivalued.
 
 ### Binding Energy and Total Energy
@@ -1117,65 +1117,65 @@ $$
 $$
 This finite impulse is a candidate substrate mechanism for changing the active causal-root ledger by a discrete amount without making primitive energy granular.
 
-Thus the candidate quantum of action is geometric bookkeeping: it is the action scale assigned to a threshold crossing of the causal-root ledger. The energy shift appears in steps because the allowed causal intersections have changed discretely, even though the path-history geometry and the local potential slope remain continuous through the regularized fold layer. A closed branch chart must still expose the root-change energy, wake exchange, middle-channel adjustment, and any mismatch routed into unresolved modes.
+Thus the candidate quantum of action is geometric bookkeeping: it is the action scale assigned to a threshold crossing of the causal-root ledger. The energy shift appears in steps because the allowed causal intersections have changed discretely, even though the path-history geometry and the local potential slope remain continuous through the regularized fold layer. A closed branch chart must still expose the root-change energy, wake exchange, closure-channel adjustment, and any mismatch routed into unresolved modes.
 
 Working bookkeeping hypothesis:
 
-- Outer binary registers a single-step transaction ($h$-like unit), meaning one minimal admissible update of its active partner and self channel ledger.
-- Middle binary adjusts to conserve total energy.
-- Inner binary executes a two-step shift ($2h$-like unit), i.e., two discrete ledger updates rather than one. The "step" corresponds to the system crossing a separatrix between basins of attraction in the nonlinear delay dynamics. While the underlying trajectory is continuous, the energy redistribution stabilizes only at discrete resonances (winding numbers and causal-root multiplicities), making the effective energy transfer appear quantized.
+- Source-record binary 3 registers a single-step transaction ($h$-like unit), meaning one minimal admissible update of its active partner and self channel ledger.
+- Source-record binary 2 adjusts to conserve total energy.
+- Source-record binary 1 executes a two-step shift ($2h$-like unit), i.e., two discrete ledger updates rather than one. The "step" corresponds to the system crossing a separatrix between basins of attraction in the nonlinear delay dynamics. While the underlying trajectory is continuous, the energy redistribution stabilizes only at discrete resonances (winding numbers and causal-root multiplicities), making the effective energy transfer appear quantized.
 
-This can read as an "amplified" response, but only because the inner binary is **releasing or reconfiguring retained internal energy** when the self-hit echo is engaged. It is **not** net energy creation; it is a redistribution between internal stores under a smooth $U(r)$.
+This can read as an "amplified" response, but only because source-record binary 1 is **releasing or reconfiguring retained internal energy** when the self-hit echo is engaged. It is **not** net energy creation; it is a redistribution between internal stores under a smooth $U(r)$. The assigned transaction, closure, and self-hit roles in this working record are hypotheses; the persistent indices do not carry those meanings in the taxonomy.
 
-### Nested Shell Braid as Routing/Locking Circuit (Analogy)
+### A1 Candidate as Routing/Locking Circuit (Analogy)
 
-It is useful (as a **bookkeeping analogy**) to think of the nested shell braid as a **routing/locking circuit** rather than a simple reservoir. An incoming single-step transaction ($h$-like) couples most strongly to the **outer binary**, the **middle binary** acts as a buffer/fulcrum that maintains overall consistency, and the **inner binary** can respond with a two-step reconfiguration when the self-hit echo is engaged. The effective response can resemble a geared or ratcheted redistribution, but the mechanism is still deterministic energy routing, not creation.
+It is useful (as a **bookkeeping analogy**) to think of this A1 candidate as a **routing/locking circuit** rather than a simple reservoir. An incoming single-step transaction ($h$-like) couples most strongly to source-record binary 3, binary 2 acts as a closure buffer that maintains overall consistency, and binary 1 can respond with a two-step reconfiguration when the self-hit echo is engaged. The effective response can resemble a geared or ratcheted redistribution, but the mechanism is still deterministic energy routing, not creation.
 
-In this language, a discrete input can **lock in** a new nested shell braid configuration: a threshold-triggered, history-dependent update that selects one stable branch over another. This is a **collapse-like** event in the phenomenological sense (a sudden, discrete state update), but in $\mathbb{A}\mathbb{A}\mathbb{A}$ it is treated as a **deterministic, microstate-sensitive bifurcation**, not an intrinsically stochastic collapse.
+In this language, a discrete input can **lock in** a new A1 configuration: a threshold-triggered, history-dependent update that selects one stable branch over another. This is a **collapse-like** event in the phenomenological sense (a sudden, discrete state update), but in $\mathbb{A}\mathbb{A}\mathbb{A}$ it is treated as a **deterministic, microstate-sensitive bifurcation**, not an intrinsically stochastic collapse.
 
-### Bookkeeping Table: One $h$ of Closed-Cycle Action (Outer $v < c_f$)
+### Bookkeeping Table: One $h$ of Closed-Cycle Action (Source-Record $v_3 < c_f$)
 
 For the $h$ versus $\hbar$ convention used here, see [Angular Momentum and Spin](../philosophy-history/theory-bridges/angular-momentum-and-spin.md).
 
 Assumptions for this bookkeeping pass:
 
-- $f$ labels a discrete outer-binary orbital state (frequency index). The three rows are **pre-hit** ($f-1$), **action/transition** ($f_{\psi}$), and **post-redistribution** ($f$). There is **one** step in frequency. The $f_{\psi}$ label is a transient bookkeeping state, not a new frequency index or literal wave function.
-- The transaction is a single closed-cycle action unit, $\Delta A_{\text{cycle}} = +h$, coupled first to the **outer** binary while $v_{\text{out}} < c_f$.
+- $f$ labels a discrete binary-3 orbital state (frequency index). The three rows are **pre-hit** ($f-1$), **action/transition** ($f_{\psi}$), and **post-redistribution** ($f$). There is **one** step in frequency. The $f_{\psi}$ label is a transient bookkeeping state, not a new frequency index or literal wave function.
+- The transaction is a single closed-cycle action unit, $\Delta A_{\text{cycle}} = +h$, coupled first to source-record binary 3 while $v_3 < c_f$.
 - The symbol $h$ labels action per full causal phase cycle. The associated radian-normalized rotational-action increment is $\hbar = h/(2\pi)$; in this local bookkeeping pass $\Delta I$ denotes that angular-momentum/action variable.
 - Energy bookkeeping uses action-angle language: for a small discrete step, $\Delta E \approx \omega\,\Delta I = f\,\Delta A_{\text{cycle}}$. This is a **notation choice**, not a claim about the exact micro-law.
-- The **inner binary** responds with a two-step reconfiguration. The **middle binary** adjusts to satisfy conservation of total energy and total angular momentum (including any causal-wake exchange).
+- Source-record binary 1 responds with a two-step reconfiguration. Binary 2 adjusts to satisfy conservation of total energy and total angular momentum (including any causal-wake exchange).
 
 Notation in the table:
 
-- $K_o, U_o$ = outer-binary kinetic and potential energies.
-- $K_m, U_m$ = middle-binary kinetic and potential energies.
-- $K_i, U_i$ = inner-binary kinetic and potential energies.
+- $K_3, U_3$ = binary-3 kinetic and potential energies.
+- $K_2, U_2$ = binary-2 kinetic and potential energies.
+- $K_1, U_1$ = binary-1 kinetic and potential energies.
 - Superscripts $(f-1)$, $(f_{\psi})$, and $(f)$ denote the state index (one-step update).
 
 Per-step increments (explicit, no deltas):
 
-- Outer step energy: $\varepsilon_o \equiv \omega_o \hbar$ with
-  $$k_o \equiv \chi_o\,\varepsilon_o,\quad u_o \equiv (1-\chi_o)\,\varepsilon_o,$$
-  so $k_o + u_o = \varepsilon_o$.
-- Inner step energy: $\varepsilon_i \equiv \omega_i \hbar$ with
-  $$k_i \equiv \chi_i\,\varepsilon_i,\quad u_i \equiv (1-\chi_i)\,\varepsilon_i,$$
-  so $k_i + u_i = \varepsilon_i$. Because the inner binary takes **two steps**, it adds $2k_i$ and $2u_i$.
-- Middle adjustment energy: $\varepsilon_m$ is whatever is needed to close the ledger. Here $\varepsilon_w$ denotes the **causal-wake exchange energy** during the step:
-  $$\varepsilon_m \equiv \varepsilon_w - 2\varepsilon_i,$$
+- Binary-3 step energy: $\varepsilon_3 \equiv \omega_3 \hbar$ with
+  $$k_3 \equiv \chi_3\,\varepsilon_3,\quad u_3 \equiv (1-\chi_3)\,\varepsilon_3,$$
+  so $k_3 + u_3 = \varepsilon_3$.
+- Binary-1 step energy: $\varepsilon_1 \equiv \omega_1 \hbar$ with
+  $$k_1 \equiv \chi_1\,\varepsilon_1,\quad u_1 \equiv (1-\chi_1)\,\varepsilon_1,$$
+  so $k_1 + u_1 = \varepsilon_1$. Because binary 1 takes **two steps** in this source record, it adds $2k_1$ and $2u_1$.
+- Binary-2 adjustment energy: $\varepsilon_2$ is whatever is needed to close the ledger. Here $\varepsilon_w$ denotes the **causal-wake exchange energy** during the step:
+  $$\varepsilon_2 \equiv \varepsilon_w - 2\varepsilon_1,$$
   and we split it as
-  $$k_m \equiv \chi_m\,\varepsilon_m,\quad u_m \equiv (1-\chi_m)\,\varepsilon_m.$$
+  $$k_2 \equiv \chi_2\,\varepsilon_2,\quad u_2 \equiv (1-\chi_2)\,\varepsilon_2.$$
 
-| State | Outer (o) | Middle (m) | Inner (i) | Notes |
+| State | Binary 3 | Binary 2 | Binary 1 | Notes |
 | --- | --- | --- | --- | --- |
-| $f-1$ | $K_o^{f-1}$, $U_o^{f-1}$ | $K_m^{f-1}$, $U_m^{f-1}$ | $K_i^{f-1}$, $U_i^{f-1}$ | Baseline. No pending transaction. |
-| $f_{\psi}$ | $K_o^{f_{\psi}} = K_o^{f-1} + k_o$<br>$U_o^{f_{\psi}} = U_o^{f-1} + u_o$ | $K_m^{f_{\psi}} = K_m^{f-1}$<br>$U_m^{f_{\psi}} = U_m^{f-1}$ | $K_i^{f_{\psi}} = K_i^{f-1}$<br>$U_i^{f_{\psi}} = U_i^{f-1}$ | Immediate post-hit. <br>Outer receives $\Delta I_o = +\hbar$ in the initial bookkeeping gauge. <br>Outer records a $(k_o,u_o)$ increment. |
-| $f$ | $K_o^{f} = K_o^{f-1} + k_o$<br>$U_o^{f} = U_o^{f-1} + u_o$ | $K_m^{f} = K_m^{f-1} + k_m$<br>$U_m^{f} = U_m^{f-1} + u_m$ | $K_i^{f} = K_i^{f-1} + 2k_i$<br>$U_i^{f} = U_i^{f-1} + 2u_i$ | Post-redistribution. <br>Outer update is complete at $f_{\psi}$; <br>only middle/inner continue to settle. |
+| $f-1$ | $K_3^{f-1}$, $U_3^{f-1}$ | $K_2^{f-1}$, $U_2^{f-1}$ | $K_1^{f-1}$, $U_1^{f-1}$ | Baseline. No pending transaction. |
+| $f_{\psi}$ | $K_3^{f_{\psi}} = K_3^{f-1} + k_3$<br>$U_3^{f_{\psi}} = U_3^{f-1} + u_3$ | $K_2^{f_{\psi}} = K_2^{f-1}$<br>$U_2^{f_{\psi}} = U_2^{f-1}$ | $K_1^{f_{\psi}} = K_1^{f-1}$<br>$U_1^{f_{\psi}} = U_1^{f-1}$ | Immediate post-hit. <br>Binary 3 receives $\Delta I_3 = +\hbar$ in the initial bookkeeping gauge. <br>Binary 3 records a $(k_3,u_3)$ increment. |
+| $f$ | $K_3^{f} = K_3^{f-1} + k_3$<br>$U_3^{f} = U_3^{f-1} + u_3$ | $K_2^{f} = K_2^{f-1} + k_2$<br>$U_2^{f} = U_2^{f-1} + u_2$ | $K_1^{f} = K_1^{f-1} + 2k_1$<br>$U_1^{f} = U_1^{f-1} + 2u_1$ | Post-redistribution. <br>Binary-3 update is complete at $f_{\psi}$; <br>only binaries 2 and 1 continue to settle. |
 
 Constraints to apply across the $f-1 \to f$ transition (bookkeeping level):
 
 - **Angular momentum / rotational action**: the sign rule is gauge-invariant only after declaring the allowed wake share:
   $$
-  \Delta I_{\text{out}}+\Delta I_{\text{mid}}+\Delta I_{\text{in}}+\Delta I_{\text{wake}}
+  \Delta I_3+\Delta I_2+\Delta I_1+\Delta I_{\text{wake}}
   =
   +\hbar,
   \qquad
@@ -1183,13 +1183,13 @@ Constraints to apply across the $f-1 \to f$ transition (bookkeeping level):
   \le
   \epsilon_w\hbar
   $$
-  For a **net positive** transaction, the layer increments must satisfy $\Delta I_k\ge-\epsilon_w\hbar$ for $k\in\{\text{out},\text{mid},\text{in}\}$. For a **net negative** transaction, the same bound applies with signs reversed. The nonnegative-increment claim is therefore an up-to-wake-tolerance statement, not a gauge-free statement that the wake channel carries exactly zero rotational action.
-- **Energy**: $(k_o+u_o) + (k_m+u_m) + 2(k_i+u_i) = \varepsilon_o + \varepsilon_w$. This is the explicit version of conservation using the per-step increments defined above.
+  For a **net positive** transaction, the binary increments must satisfy $\Delta I_a\ge-\epsilon_w\hbar$ for $a\in\{1,2,3\}$. For a **net negative** transaction, the same bound applies with signs reversed. The nonnegative-increment claim is therefore an up-to-wake-tolerance statement, not a gauge-free statement that the wake channel carries exactly zero rotational action.
+- **Energy**: $(k_3+u_3) + (k_2+u_2) + 2(k_1+u_1) = \varepsilon_3 + \varepsilon_w$. This is the explicit version of conservation using the per-step increments defined above.
 - **Root-ledger closure**: the transition must move from one admissible integer causal-root ledger to another and then close consistently over the full cycle. In a raw self-root table, separator crossings obey the parity rule $\Delta N\in 2\mathbb{Z}$ and $\Delta D=0$; in a grouped channel ledger, the same event may be recorded as one newly active channel.
 - **Cross-ledger gauge matching**: any jump in $r_{\min}^{(b)}$ and $B_{\max}^{(b)}$ is part of the declared $\Delta_{\text{ledger}}$ budget above. A table row may not count the same gauge-origin shift once in $U^{(b)}$ and again as an extra wake or oscillator energy.
 - **Smooth slope**: $dU/dr$ remains continuous across the graft; the discrete behavior comes from **state updates**, not a kink in $U(r)$.
 
-This table is intentionally explicit: every $h$ closed-cycle action transaction is represented by a radian-normalized $\hbar$ rotational-action increment, split into a kinetic part ($k$) and a potential part ($u$). The remaining freedom is **how** each binary partitions its step (the $\chi$ fractions) and how the middle, inner, and causal-wake channels redistribute the initial outer-binary coupling.
+This table is intentionally explicit: every $h$ closed-cycle action transaction is represented by a radian-normalized $\hbar$ rotational-action increment, split into a kinetic part ($k$) and a potential part ($u$). The remaining freedom is **how** each binary partitions its step (the $\chi$ fractions) and how binaries 2 and 1 plus the causal-wake channel redistribute the initial binary-3 coupling in this source record.
 
 ### Comparison to Coulomb and Standard Conventions
 

@@ -1,14 +1,14 @@
 # Quantum Operator Mapping
 
-The standard formulation of quantum mechanics relies on the abstract unitary evolution of state vectors in a complex Hilbert space. Within the $\mathbb{A}\mathbb{A}\mathbb{A}$ framework, this linear algebraic structure is an effective, continuum-limit approximation of a fundamentally non-linear, non-Markovian dynamical system. This document establishes the formal mapping between abstract quantum operators and the topological torques acting on nested shell braid assemblies, bounded by the causal-delay master equation.
+The standard formulation of quantum mechanics relies on the abstract unitary evolution of state vectors in a complex Hilbert space. Within the $\mathbb{A}\mathbb{A}\mathbb{A}$ framework, this linear algebraic structure is an effective, continuum-limit approximation of a fundamentally non-linear, non-Markovian dynamical system. This document establishes the formal mapping between abstract quantum operators and the topological torques acting on candidate A1 assemblies, bounded by the causal-delay master equation.
 
 The reader should treat an operator as a recovered record-channel map unless the local derivation says otherwise. Hilbert-space algebra is the target language that experiments already validate; the implementation question is which branch records, apparatus kernels, path-history ledgers, and coarse-grainings make that algebra emerge.
 
-## The Nested Shell Braid Qubit and Phase Space
+## The A1 Qubit Candidate and Phase Space
 
-A physical qubit corresponds to the stable orientational states of a nested shell braid assembly. Let $\hat{\mathbf{n}}_{\text{in}}$, $\hat{\mathbf{n}}_{\text{mid}}$, and $\hat{\mathbf{n}}_{\text{out}}$ denote the normal vectors of the inner ($v > c_f$), middle ($v = c_f$), and outer ($v < c_f$) binary orbital planes, respectively.
+A physical qubit is provisionally mapped to stable orientational states of a candidate A1 assembly. Let $\hat{\mathbf{n}}_1$, $\hat{\mathbf{n}}_2$, and $\hat{\mathbf{n}}_3$ denote the orbital-plane normals of its persistently indexed binaries. The reduced source record considered here assigns the speed classes $v_1>c_f$, $v_2=c_f$, and $v_3<c_f$; those assignments are record constraints, not meanings carried by the indices or by the A1 taxonomy.
 
-The computational basis states $|0\rangle$ and $|1\rangle$ are defined as the two meta-stable, minimal-energy topological alignments of $\hat{\mathbf{n}}_{\text{in}}$ and $\hat{\mathbf{n}}_{\text{out}}$ relative to the middle binary fulcrum $\hat{\mathbf{n}}_{\text{mid}}$. 
+The computational basis states $|0\rangle$ and $|1\rangle$ are defined as the two meta-stable, minimal-energy topological alignments of $\hat{\mathbf{n}}_1$ and $\hat{\mathbf{n}}_3$ relative to the source record's binary-2 reference normal $\hat{\mathbf{n}}_2$.
 
 The abstract Hilbert space $\mathcal{H}$ serves as an effective description of the continuous non-Markovian phase space $\Gamma$. The dynamics of the constituent architrinos are governed by the delayed, line-of-action, receiver-side causal-root sum defined in [Master Equation](../../dynamics/master-equation.md). This page uses that law as the substrate dynamics and treats Hilbert operators as recovered record-channel maps, not as primitive generators.
 
@@ -420,8 +420,8 @@ $$
 =
 \sup_{O\in\mathcal{A}_{\mathcal{Q},\mathcal{K},W,T_W}}
 D_{\mathrm{TV}}\!\left(
-P_{D_1}(R_O\,|\,\mathcal{Q},\mathcal{K},W,T_W),
-P_{D_2}(R_O\,|\,\mathcal{Q},\mathcal{K},W,T_W)
+P_{D_1}(\mathcal R[O]\,|\,\mathcal{Q},\mathcal{K},W,T_W),
+P_{D_2}(\mathcal R[O]\,|\,\mathcal{Q},\mathcal{K},W,T_W)
 \right)
 $$
 Here $D_{\mathrm{TV}}$ is total-variation distance between the two induced record distributions. If this residual is small, the two descriptions are equivalent only for that record channel and window. A claim about hidden dimensions, auxiliary spaces, or a different continuum field description still requires an $\mathbb{A}\mathbb{A}\mathbb{A}$ mapping from assembly state, causal-wake history, apparatus kernel, and retained boundary data. If the equivalence disappears when the observable set is enlarged, the extra structure was a comparison chart, not a substrate discovery.
@@ -568,19 +568,19 @@ Here $X$ ranges over declared critical assemblies or branch critical points and 
 
 ## Unitary Evolution and Topological Torques
 
-Quantum gates correspond to continuous, energy-conserving topological torques applied to the nested shell braid orbital planes.
+Quantum gates correspond to continuous, energy-conserving topological torques applied to the candidate A1 orbital planes.
 
-* **Pauli Operators ($X, Y, Z$):** These map to discrete $\pi$-rotations of the nested shell braid orientation axes. The torque $\boldsymbol{\tau} = \int \mathbf{r} \times \mathbf{F}_{\text{hist}} d^3x$ is applied via external causal wakes, smoothly rotating $\hat{\mathbf{n}}_{\text{in}}$ and $\hat{\mathbf{n}}_{\text{out}}$ while the middle binary maintains the $v = c_f$ stability threshold.
+* **Pauli Operators ($X, Y, Z$):** These map to discrete $\pi$-rotations of the candidate A1 orientation axes. The torque $\boldsymbol{\tau} = \int \mathbf{r} \times \mathbf{F}_{\text{hist}} d^3x$ is applied via external causal wakes, smoothly rotating $\hat{\mathbf{n}}_1$ and $\hat{\mathbf{n}}_3$ while source-record binary 2 remains on its declared $v_2=c_f$ threshold row.
 * **Hadamard Operator ($H$):** This operation is modeled as a critical bifurcation. The applied torque should drive the assembly into a controlled neighborhood of the saddle separating the $|0\rangle$ and $|1\rangle$ attractors, with an equiprobable meta-stable precessional state as the closure target rather than an assumed result.
 
-To prevent ionization or irreversible symmetry breaking during these operations, the total action $S = \int (T - V) dt$ must remain bounded. We define an ionization threshold $\Delta S_{\text{ionize}}$; any gate operation must satisfy $\Delta S \ll \Delta S_{\text{ionize}}$ to maintain the factorization of the nested shell braid structure.
+To prevent ionization or irreversible symmetry breaking during these operations, the total action $S = \int (T - V) dt$ must remain bounded. We define an ionization threshold $\Delta S_{\text{ionize}}$; any gate operation must satisfy $\Delta S \ll \Delta S_{\text{ionize}}$ to maintain the factorization of the candidate A1 structure.
 
 ## Entanglement via Path-History Potentials
 
 Entanglement-like behavior must separate newly established causal coupling from correlations inherited from a shared preparation event. New gates and near-range phase-locking require delayed causal-wake exchange. Ordinary separated Bell-pair tests instead use a pair-provenance ledger that was fixed at preparation and later read out by local apparatus interactions. There is no instantaneous action at a distance and no newly transmitted setting information during spacelike-separated measurement.
 
 * **Causal phase-locking:** As the causal wakes of nearby or deliberately coupled assemblies intersect, the continuous $1/r^2$ path-history potentials can force their orbital phases into coupled attractors. This is a finite-speed interaction and must obey the latency and fidelity bounds below.
-* **Controlled-NOT (CNOT) Gate:** This represents conditional logic where the target assembly's allowable phase space is dynamically bounded by the causal wake of the control assembly. The $v=c_f$ middle binary of the target assembly acts as a resonant receiver, only permitting a bit-flip torque if the control assembly's wake possesses the specific polarization geometry of the $|1\rangle$ state.
+* **Controlled-NOT (CNOT) Gate:** This represents conditional logic where the target assembly's allowable phase space is dynamically bounded by the causal wake of the control assembly. Source-record binary 2 of the target assembly, on its declared $v_2=c_f$ row, acts as a resonant receiver and permits a bit-flip torque only if the control assembly's wake possesses the specific polarization geometry of the $|1\rangle$ state.
 * **Bell-pair preparation:** Bell-state language is observer-level shorthand for a nonseparable pair-provenance record produced by a shared preparation event. After the pair is separated beyond causal contact for the measurement window, the Bell gate is not maintained by continuous bidirectional flux between detectors. The closure target is to derive the pair-provenance measure and the two local apparatus-response maps, then show that their compression reproduces the tested Bell correlations while preserving no-signaling and measurement independence.
 
 ## Measurement and Dynamical Collapse
@@ -665,4 +665,4 @@ The continuous loss of path-history coherence must be formalized as a transport 
 
 ## Statistical Falsifiability and Observables
 * **Finite-Time Born Rule Deviations:** If the Born rule in the $\mathbb{A}\mathbb{A}\mathbb{A}$ framework requires the local invariant-measure approximation to settle over the apparatus record window, ultra-fast sequential measurements approaching the local path-history delay timescale $d/c_f$ become the natural place to search for deviations from standard $|\psi|^2$ statistics.
-* **Non-Markovian Memory Tails:** Autocorrelation functions of sequential measurements on a single qubit are a candidate place to search for heavy-tailed decay rather than simple exponential decay. The proposed source is persistent self-hit memory in the inner binary, but this remains a simulation and experimental-signature target.
+* **Non-Markovian Memory Tails:** Autocorrelation functions of sequential measurements on a single qubit are a candidate place to search for heavy-tailed decay rather than simple exponential decay. The proposed source is persistent self-hit memory in whichever indexed binary the retained branch identifies as the self-hit carrier; this remains a simulation and experimental-signature target.

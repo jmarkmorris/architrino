@@ -321,16 +321,56 @@ is a geometry-response exposure fraction. It measures external cancellation unde
 
 The signed wake $\mathcal W$, unsigned wake $\mathcal W_{\mathrm{abs}}$, virtual-probe response $\mathbf A_p$, angular coefficients, and exposure fraction $\eta_{\mathrm{ext}}$ are the available analytical ledgers. None is an energy quantity. This method therefore does not report total energy, apparent energy, apparent-energy fractions, or stability scores. It also does not include a Noether-sea response. Introducing any such quantity requires a separate definition and cannot be accomplished by relabeling a wake-exposure measure.
 
-## Parameter Sampling
+## Analytical Evaluation Programs
+
+The measures in this chapter require analytical programs that evaluate the declared formulas for an exact source record. These programs are not assembly-evolution simulations. They hold the prescribed paths fixed and calculate their consequences at the requested absolute-coordinate events.
+
+The analytical program suite should have separable components for:
+
+1. validating and evaluating the source paths, velocities, accelerations, periods, and taxonomy coordinates;
+2. enumerating every retained causal root and recording its identity, topology, and $D_t$ margin;
+3. evaluating $\mathcal W$, $\mathcal W_{\mathrm{abs}}$, $\chi_{\mathcal W}$, and $\mathbf A_p$ at internal and external probes;
+4. reducing the event-level results into the separation, root, mismatch, exposure, angular, spectral, radial-scaling, symmetry, and sensitivity measures defined above; and
+5. emitting a result packet keyed by the exact source hash and protocol hash.
+
+Each component must expose numerical tolerances and convergence checks. Where a closed-form, symmetry-protected, static, or other independently known analytical case exists, it should be used as an independent check. Replaying output from the same program establishes reproducibility, not correctness.
+
+Only after these programs can calculate the common measure set should a broad parameter campaign begin. Otherwise a sampling run merely produces many configurations without a controlled basis for comparing them.
+
+## Monte Carlo Configuration-Space Analysis
 
 Let $\boldsymbol\theta$ contain the complete taxonomy coordinates, group-translation speed, phase origin, and any permitted prescribed-history coordinates. A sampling campaign must publish the domain $\Theta$, units, constraints, and sampling measure. There is no coordinate-free meaning to “random braid”; uniform sampling in radius, logarithmic radius, speed, or frequency represents different candidate populations.
 
-The analytical campaign has two stages:
+For a family/member candidate $M$, define its admissible configuration space by
 
-1. **Random coverage.** Draw a reproducible, seeded sample from each declared measure over $\Theta$. Use stratification so narrow coordinate regions are not lost by chance.
-2. **Directed refinement.** Refine around strong external cancellation, admissible root margins, and boundaries where root topology or prescribed-period closure changes. Include deliberately adverse directions so the method does not optimize only one favorable projection.
+$$
+\Theta_M
+=
+\left\{
+\boldsymbol\theta:
+\boldsymbol\theta\text{ satisfies the taxonomy relations and declared analysis gates for }M
+\right\}.
+$$
+
+A Monte Carlo campaign draws prescribed instantiations $\boldsymbol\theta^{(k)}\in\Theta_M$, builds the exact source record $S(\boldsymbol\theta^{(k)})$, and runs the analytical programs to obtain
+
+$$
+\mathbf G^{(k)}
+=
+\mathbf G\!\left[S(\boldsymbol\theta^{(k)});P\right].
+$$
+
+The common protocol $P$ must remain fixed across the compared sample. A changed source definition, measure, probe set, history depth, root policy, boundary, or normalization requires an impact review and invalidates every affected score. The campaign must recompute those scores before they re-enter the comparison population.
+
+The analytical campaign has three stages:
+
+1. **Monte Carlo coverage.** Draw a reproducible, seeded sample from each declared measure over $\Theta_M$. Use stratification so narrow coordinate regions are not lost by chance.
+2. **Directed refinement.** Add targeted samples around strong external cancellation, admissible root margins, candidate optima, and boundaries where root topology or prescribed-period closure changes. Include deliberately adverse directions so the method does not optimize only one favorable projection.
+3. **Robustness and sensitivity analysis.** Resample neighborhoods around leading instantiations, vary one declared coordinate at a time where useful, and report whether the apparent advantage survives small changes in coordinates, sampling measure, and numerical resolution.
 
 Every result row must include the family/member identifier, full parameter vector, source grade, sampling measure, seed or directed-selection rule, root status, numerical resolution, and metric uncertainty.
+
+The campaign output should include the distribution of every objective and gate, parameter-to-measure sensitivity, correlations that may reveal redundant coordinates, the non-dominated set under $\mathbf G_{\mathrm{an}}$, and the location and width of robust favorable regions. A single best sampled point is not enough: the central question is whether a candidate has a reproducible favorable region in configuration space or only a narrowly tuned instantiation.
 
 ## Candidate Grading
 
@@ -343,9 +383,11 @@ The prescribed-record analytical grade is fail-closed and occurs in this order:
 
 A prescribed chart receives only an analytical prescribed-record grade. Stability and energy are outside the method and outside its score.
 
-### Initial Prescribed-Candidate Cohort
+### Candidate Cohort Registry
 
-The initial comparison cohort contains four prescribed instantiations of `B1`. These candidate names describe their taxonomy coordinates; they do not create additional taxonomy members. All four use one common midpoint, the common axis $\hat{\mathbf n}_B=(0,0,1)$, group translation speed $s_{\mathrm{grp}}=0$, radii
+The comparison cohort spans every currently defined family/member class in the taxonomy. The short identifiers `A1`, `A1.1`, `A1.2`, `A1.3`, `A1.4`, `A2`, `C1`, and `C2` reserve comparison columns for exact source records still to be assigned. A column remains `Pending` until it names one complete source record $S$; a family/member definition alone is not a scored instantiation.
+
+Four exact `B1` prescribed instantiations already supply the first populated source-record cohort. These candidate names describe their taxonomy coordinates; they do not create additional taxonomy members. All four use one common midpoint, the common axis $\hat{\mathbf n}_B=(0,0,1)$, group translation speed $s_{\mathrm{grp}}=0$, radii
 
 $$
 (R_1,R_2,R_3)=(0.22,0.32,0.44),
@@ -362,9 +404,29 @@ common frequency $f=0.25$, and phases $(\phi_1,\phi_2,\phi_3)=(0,2\pi/3,4\pi/3)$
 
 The derived $h_a$ and $\rho_a$ values are shown to nine decimal places for identification; they are not analytical results. The complete source record $S$ remains authoritative for exact coordinates, endpoint identities, and polarities. Every scored row also depends on one common analysis protocol $P$.
 
-### Candidate Comparison Table
+### Candidate Comparison Tables
 
-The comparison table uses candidates as columns and metrics as rows. `Pending` means that the candidate has not yet been evaluated under the shared source-and-protocol declaration printed with the table. `NA` is reserved for a measure whose definition does not apply; it must not be used merely because a value has not been computed.
+The comparison tables use candidates as columns and metrics as rows. The family split keeps the tables readable; every table uses the same metric definitions and protocol. `Pending` means that an exact source record has not yet been assigned or that the candidate has not yet been evaluated under the shared source-and-protocol declaration printed with the table. `NA` is reserved for a measure whose definition does not apply; it must not be used merely because a value has not been computed.
+
+#### Family-A Candidates
+
+| Metric or gate | `A1` | `A1.1` | `A1.2` | `A1.3` | `A1.4` | `A2` |
+| --- | --- | --- | --- | --- | --- | --- |
+| Source-record hash | Pending | Pending | Pending | Pending | Pending | Pending |
+| Common protocol hash | Pending | Pending | Pending | Pending | Pending | Pending |
+| Prescribed-period closure | Pending | Pending | Pending | Pending | Pending | Pending |
+| Minimum separation $d_{\min}$ | Pending | Pending | Pending | Pending | Pending | Pending |
+| Root-transversality margin $\min|D_t|$ | Pending | Pending | Pending | Pending | Pending | Pending |
+| Root-topology completeness | Pending | Pending | Pending | Pending | Pending | Pending |
+| Numerical convergence | Pending | Pending | Pending | Pending | Pending | Pending |
+| External-exposure fraction $\eta_{\mathrm{ext}}(R)$ | Pending | Pending | Pending | Pending | Pending | Pending |
+| Anisotropy $\epsilon_{\mathrm{aniso}}(R)$ | Pending | Pending | Pending | Pending | Pending | Pending |
+| Peak external response $A_{\mathrm{ext,peak}}(R)$ | Pending | Pending | Pending | Pending | Pending | Pending |
+| Peak signed-cancellation ratio $\chi_{\mathcal W,\mathrm{peak}}(R)$ | Pending | Pending | Pending | Pending | Pending | Pending |
+| Source-parameter sensitivity $S_{\boldsymbol\theta}$ | Pending | Pending | Pending | Pending | Pending | Pending |
+| Dominance status | Pending | Pending | Pending | Pending | Pending | Pending |
+
+#### Family-B Candidates
 
 | Metric or gate | `B1 interior-coordinate reference` | `B1 high-axial-fraction interior` | `B1 all-equatorial boundary` | `B1 all-axial boundary` |
 | --- | --- | --- | --- | --- |
@@ -381,6 +443,24 @@ The comparison table uses candidates as columns and metrics as rows. `Pending` m
 | Peak signed-cancellation ratio $\chi_{\mathcal W,\mathrm{peak}}(R)$ | Pending | Pending | Pending | Pending |
 | Source-parameter sensitivity $S_{\boldsymbol\theta}$ | Pending | Pending | Pending | Pending |
 | Dominance status | Pending | Pending | Pending | Pending |
+
+#### Family-C Candidates
+
+| Metric or gate | `C1` | `C2` |
+| --- | --- | --- |
+| Source-record hash | Pending | Pending |
+| Common protocol hash | Pending | Pending |
+| Prescribed-period closure | Pending | Pending |
+| Minimum separation $d_{\min}$ | Pending | Pending |
+| Root-transversality margin $\min|D_t|$ | Pending | Pending |
+| Root-topology completeness | Pending | Pending |
+| Numerical convergence | Pending | Pending |
+| External-exposure fraction $\eta_{\mathrm{ext}}(R)$ | Pending | Pending |
+| Anisotropy $\epsilon_{\mathrm{aniso}}(R)$ | Pending | Pending |
+| Peak external response $A_{\mathrm{ext,peak}}(R)$ | Pending | Pending |
+| Peak signed-cancellation ratio $\chi_{\mathcal W,\mathrm{peak}}(R)$ | Pending | Pending |
+| Source-parameter sensitivity $S_{\boldsymbol\theta}$ | Pending | Pending |
+| Dominance status | Pending | Pending |
 
 Each published table must state the enclosing radius or radius sequence, surface and time reductions, probe polarity, normalization, tolerance, and uncertainty attached to every scalar row. A cell may link to a fuller ledger when a scalar would hide root transitions, angular structure, or phase dependence.
 
@@ -430,7 +510,7 @@ A publishable candidate analysis contains:
 4. the probe geometry and raw time-dependent curves;
 5. prescribed-period closure, root, separation, cancellation, anisotropy, spectral, and source-sensitivity metrics;
 6. an explicit analytical claim boundary that excludes energy and stability conclusions;
-7. the random and directed sampling declarations;
+7. the Monte Carlo, directed-refinement, and robustness sampling declarations;
 8. the gate result and multi-objective comparison vector; and
 9. the exact observation that would falsify each promoted claim.
 

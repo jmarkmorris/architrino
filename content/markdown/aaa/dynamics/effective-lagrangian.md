@@ -182,14 +182,14 @@ path-history solution is written, but only if the same causal-root ledger and
 retained branch record make the closed-cycle integral and canonical residual
 stable.
 
-The action variables are local objects unless the phase torus is globally unobstructed. For a three-layer nested shell braid chart, the phase circles of the outer, middle, and inner binaries need not form a trivial $T^3$ bundle over the retained branch family. A retained outer return cycle can carry a phase-entry degree pair rather than a single scalar winding. With $\rho_O:S^1_O\to\mathfrak B$ denoting one outer return cycle,
+The action variables are local objects unless the phase torus is globally unobstructed. For a three-binary Family-A chart, the indexed phase circles need not form a trivial $T^3$ bundle over the retained branch family. Choose any declared ordering $(a,b,c)$ of the persistent binary indices. A retained return cycle of binary $a$ can carry a phase-entry degree pair rather than a single scalar winding. With $\rho_a:S^1_a\to\mathfrak B$ denoting that return cycle,
 
 $$
-c_1[\theta^O,\theta^M,\theta^I]
+c_1[\theta^a,\theta^b,\theta^c]
 =
 \left(
-\operatorname{deg}(\theta^M\circ\rho_O),\,
-\operatorname{deg}(\theta^I\circ\rho_O)
+\operatorname{deg}(\theta^b\circ\rho_a),\,
+\operatorname{deg}(\theta^c\circ\rho_a)
 \right)
 =(m,n)
 \in\mathbb{Z}^2
@@ -833,7 +833,7 @@ with the integer tied to the phase-return degree pair above. Thus quantization i
 
 ### Topological Constraints and Assembly Stability
 
-The delayed action, after branch reduction to causal-locus and root-ledger data, constrains the allowed topological configurations of architrino assemblies in the Noether sea. Stable assemblies, such as nested maximal-curvature candidates inside nested shell braids, should therefore be treated as theorem targets for localized, phase-locked causal-locus classes rather than as already-proved vortices or continuum topological defects.
+The delayed action, after branch reduction to causal-locus and root-ledger data, constrains the allowed topological configurations of architrino assemblies in the Noether sea. Stable assemblies, such as maximum-curvature candidates inside Family-A braids, should therefore be treated as theorem targets for localized, phase-locked causal-locus classes rather than as already-proved vortices or continuum topological defects.
 
 The stability of these assemblies must be checked by the nonlinear self-hit feedback embedded in the interaction functional. When internal circulation velocities exceed $c_f$, the non-Markovian repulsion supplies a candidate branch-trapping mechanism; it becomes a robust geometric attractor only after a branch chart, Lyapunov or Floquet diagnostic, and history-aware energy bound are supplied. Likewise, mass-gap language is a closure target tied to discrete admissible branch classes, not an automatic consequence of writing the effective action.
 

@@ -450,7 +450,7 @@ $$
 \mathbf{J}_A+\mathbf{J}_B=\mathbf{0}
 $$
 
-That summary is necessary, but it is not the mechanism. The substrate question is how the total angular-momentum functional is conserved while the daughter nested shell braids redistribute action across inner, middle, and outer binaries, including self-action and causal-wake terms. The statement $\mathbf{J}_A=-\mathbf{J}_B$ is only the coarse ledger result of that deeper process.
+That summary is necessary, but it is not the mechanism. The substrate question is how the total angular-momentum functional is conserved while the daughter Noether braids redistribute action across all three indexed binaries, including self-action and causal-wake terms. The statement $\mathbf{J}_A=-\mathbf{J}_B$ is only the coarse ledger result of that deeper process.
 
 A source-level pair-provenance record should therefore replace the generic $\lambda$ placeholder before any Bell calculation is called physical. For a singlet-like source, write
 

@@ -113,7 +113,7 @@ s_a,\,
 $$
 Here $f_a$ is the layer frequency or return rate, $r_a$ is the characteristic radius or retained lever arm, $E_a$ is the retained branch-energy row, $s_a=\|\mathbf{v}_a\|$ is the scalar speed or speed statistic, $\phi_a$ is the phase offset, $\hat{\mathbf n}_a$ is the plane-normal or principal-direction row, and $\mathcal{L}_a$ is the active causal-root ledger. On a circular carrier chart one has $s_a=2\pi f_a r_a$, but that identity is only a chart relation. It does not make frequency, radius, speed, energy, phase, or ledger complexity subordinate to one fixed ordering.
 
-This generalization changes the search program. Instead of asking first whether the doubling-frequency `4:2:1` pattern, the role-assigned $(f+2,f,f-1)$ middle-hinge candidate, or another named row is correct, the solver should search the labeled but unordered domain
+This generalization changes the search program. Instead of asking first whether the doubling-frequency `4:2:1` pattern, the role-assigned $(f+2,f,f-1)$ binary-2 closure candidate, or another named row is correct, the solver should search the labeled but unordered domain
 $$
 \widetilde{\mathcal C}_{3R}
 =
@@ -147,7 +147,7 @@ r_1:r_2:r_3
 $$
 when the same angular-frequency convention is used. Thus an iso-frequency branch can naturally contain one or more super-field-speed carrier rows if a retained lever arm is large enough, while the primitive causal wake speed remains $c_f$. That is not a signal-speed violation. It is a branch-geometry statement: the transmitter trajectory can enter regimes with additional self-hit or partner-hit roots, Jacobian sign changes, folds, and caustic behavior.
 
-This insight changes how the current candidates should be read. Doubling-frequency locks, role-assigned middle-hinge frequency candidates, and iso-frequency rows are subfamilies of $\widetilde{\mathcal C}_{3B}$, not definitions of the Noether braid architecture. The iso-frequency row is especially valuable because it separates a common clock or return-frequency condition from the energy, radius, velocity, phase, and ledger data that may actually distinguish the three binaries. If such a branch exists, the energy differentials and speed regimes would be consequences of branch energy placement and retained lever-arm geometry, not of an imposed frequency hierarchy.
+This insight changes how the current candidates should be read. Doubling-frequency locks, source records that assign a closure role to binary 2, and iso-frequency rows are subfamilies of $\widetilde{\mathcal C}_{3B}$, not definitions of the Noether braid architecture. The iso-frequency row is especially valuable because it separates a common clock or return-frequency condition from the energy, radius, velocity, phase, and ledger data that may actually distinguish the three binaries. If such a branch exists, the energy differentials and speed regimes would be consequences of branch energy placement and retained lever-arm geometry, not of an imposed frequency hierarchy.
 
 The milestone is therefore both terminological and mathematical. `Noether braid` gives the six-body retained branch a name that matches the topology the proof program needs, while the generalized Noether braid configuration space prevents the notation from prejudging the solution. The next honest work is systematic search: scan broad $B_1:B_2:B_3$ configurations, preserve $S_3$ repeats, identify stable retained branches in a sea of like assemblies, compare their energy differentials, and then test where accessory architrinos can attach.
 
@@ -167,17 +167,17 @@ The interface also settled into a cleaner teaching grammar. The canvas exposes p
 
 This milestone matters because it turns causal-delay language into an inspectable object without letting the picture outrun the proof evidence. A reader can see the emitting point, the reception point, the two causal-wake series, the active cross-path contribution readout, and the distinction between visual replay and still-pending physical closure. For $\mathbb{A}\mathbb{A}\mathbb{A}$, that is useful pressure: the app has to keep teaching geometry, replay data, and proof status separate instead of letting them collapse into a single animation.
 
-## 2026-06-20: Noether Braid Middle-Hinge Candidate Narrowing
+## 2026-06-20: Noether Braid Binary-2 Closure Candidate Narrowing
 
 Relevant files:
 
 - [Angular Momentum and Spin](../philosophy-history/theory-bridges/angular-momentum-and-spin.md)
 - [Energy](../dynamics/energy.md)
-- [Nested Shell Braid Dynamics](../noether-braid/braid-a1-dynamics.md#a1-dynamics)
+- [A1 Dynamics](../noether-braid/braid-a1-dynamics.md#a1-dynamics)
 
-The angular-momentum and spin proof route gained a sharper reduced candidate target around the rank-three middle-hinge family. The work used canonical `(I,M,O)` frequency-triplet notation to compare the $(f+2,f,f-1)$ middle-hinge family against symmetric, doubling-frequency, and finite integer-lock controls. The point was not to accept a retained branch; it was to narrow the proof burden by making the candidate and its competitors machine-readable.
+The angular-momentum and spin proof route gained a sharper reduced candidate target around a rank-three source record that assigns the closure role to binary 2. The work used persistent `(1,2,3)` frequency-triplet notation to compare the indexed $(f+2,f,f-1)$ candidate against symmetric, doubling-frequency, and finite integer-lock controls. The point was not to accept a retained branch or make the closure role part of the taxonomy; it was to narrow the proof burden by making the candidate and its competitors machine-readable.
 
-The strongest evidence came from the combination of row lineage, self-hit parity, phase-lock coverage, point-event witnesses, route-local transport and recoil balance, and competitor auditing. The middle-hinge family remains on the candidate path because it keeps the strongest self-root parity proxy and phase-lock coverage among the tested families. At the same time, the retained branch claim remains false: common positive-width retained time-domain coverage, zero-slack retained transport, accepted wake energy, action scale, energy routing, and full point-event rules are still missing.
+The strongest evidence came from the combination of row lineage, self-hit parity, phase-lock coverage, point-event witnesses, route-local transport and recoil balance, and competitor auditing. The binary-2 closure candidate remains on the candidate path because it keeps the strongest self-root parity proxy and phase-lock coverage among the tested rows. At the same time, the retained branch claim remains false: common positive-width retained time-domain coverage, zero-slack retained transport, accepted wake energy, action scale, energy routing, and full point-event rules are still missing.
 
 This milestone matters because it replaced a broad question about whether a rank-three rotational-action pattern could carry angular-momentum and spin structure with a narrower branch-certificate problem. The live question is whether the route-authorized point-event and wake payloads can be lifted into one retained row set with accepted transport, partition, torque, phase, stability, and energy-routing rows. That is a much better mathematical target.
 
@@ -191,7 +191,7 @@ Relevant files:
 - [Assessment table](../validation/closure-scorecard.md#assessment-table)
 - [2026-06-20 assessment notes](../validation/closure-scorecard.md#2026-06-20-assessment-notes)
 
-The strongest rows show where the corpus has become unusually coherent. Axiom+Notation and Theory Architecture+Ontic Logic both score `99`, Coverage+Interface Readiness scores `96`, Falsification Gates scores `95`, Master EOM+Local Dynamics scores `80`, and Internal Constituent Dynamics scores `78`. Those numbers reflect stable canonical language, broad interface coverage, explicit failure conditions, stronger delayed path-history dynamics, and a more developed nested shell braid and Noether braid account.
+The strongest rows show where the corpus has become unusually coherent. Axiom+Notation and Theory Architecture+Ontic Logic both score `99`, Coverage+Interface Readiness scores `96`, Falsification Gates scores `95`, Master EOM+Local Dynamics scores `80`, and Internal Constituent Dynamics scores `78`. Those numbers reflect stable canonical language, broad interface coverage, explicit failure conditions, stronger delayed path-history dynamics, and a more developed Family-A and Noether braid account.
 
 The same update keeps the main closure burdens visible. Empirical Precision+Benchmark Validation is `39` with $\Delta=-59$, Formula+Coefficient Recovery is `48` with $\Delta=-48$, Parameter+Scale Closure is `42` with $\Delta=-28$, Potential+Action Closure and Conservation+Invariant Closure are both `71` with $\Delta=-27$, and UV/IR+Regularization Completion is `49` with $\Delta=-21$. The scorecard therefore refuses to let architecture substitute for a retained native record that derives central constants, Lorentz/PPN coefficients, photon-channel coefficients, Born/Bell measures, Standard Model mass and mixing values, radiation benchmarks, and shared cosmology residual fits.
 
@@ -271,7 +271,7 @@ Relevant files:
 - [Return-Cycle Lorentz Quantization](../philosophy-history/theory-bridges/return-cycle-lorentz-quantization.md)
 - [Lorentz Kinematics](../spacetime/lorentz-kinematics.md)
 
-The standalone [Ideal Noether Braid Lorentz Geometry App](../../../../ideal-braid.html) became the interactive inspection surface for the Noether braid Lorentz-geometry lesson built around an oblate spheroidal envelope. Its purpose is to make one candidate Noether braid deformation concrete: a nested shell braid is shown inside a velocity-dependent envelope, the user adjusts $\beta=v/c_f$, and the app ties the visible flattening to $\gamma$, $\xi=R_{\parallel}/R_{\perp}$, relative time, relative length, and the normalized center-of-mass energy ledger. The controls also keep the lesson inspectable rather than merely illustrative: paths, surface, axes, orbit scale, cycle speed, and markdown overlays let the reader compare the moving geometry with the equations on the same screen.
+The standalone [Ideal Noether Braid Lorentz Geometry App](../../../../ideal-braid.html) became the interactive inspection surface for the Noether braid Lorentz-geometry lesson built around an oblate spheroidal envelope. Its purpose is to make one candidate Noether braid deformation concrete: an A1 braid is shown inside a velocity-dependent envelope, the user adjusts $\beta=v/c_f$, and the app ties the visible flattening to $\gamma$, $\xi=R_{\parallel}/R_{\perp}$, relative time, relative length, and the normalized center-of-mass energy ledger. The controls also keep the lesson inspectable rather than merely illustrative: paths, surface, axes, orbit scale, cycle speed, and markdown overlays let the reader compare the moving geometry with the equations on the same screen.
 
 The app deliberately does not claim to prove Lorentz kinematics from Noether braid dynamics. It records the target geometry in a form that can be checked visually and algebraically: in the zero-extra-scale lesson case, the displayed oblate spheroidal envelope satisfies $R_{\parallel}=R_{\perp}/\gamma$ and $\xi=1/\gamma$. That makes the Lorentz factor more than a formula in a side panel; it becomes the aspect ratio of the displayed envelope. The app is therefore a dictionary between the formula, the return-cycle picture, and the geometry that a later branch-ledger derivation would have to recover.
 
@@ -297,23 +297,23 @@ v_k=2\pi f_k r_k=\beta_k c_f
 $$
 and then states explicitly the four assumptions that are actually doing the work.
 
-The first assumption is the one that now carries the regime claim: outside the black-hole event horizon, and through the horizon-transition regime, the Middle binary is pinned at the field speed,
+The first assumption is the one that now carries the regime claim: outside the black-hole event horizon, and through the horizon-transition regime, source-record binary 2 is pinned at the field speed,
 $$
-v_M=c_f
+v_2=c_f
 $$
-The second assumption is exact integer phase closure relative to the Outer period, $f_O:f_M:f_I=1:m:n$ with $1 < m < n$, so that when the Outer completes one cycle, the Middle and Inner also return to cycle start. The third assumption is fixed relative phase lock, and the fourth is a selection principle: among admissible integer locks, the realized one should be the one that maximizes cycle-averaged cancellation of the low-order far-field or effective potential signal.
+The second assumption is exact integer phase closure relative to the binary-3 period, $f_3:f_2:f_1=1:m:n$ with $1 < m < n$, so that when binary 3 completes one cycle, binaries 2 and 1 also return to cycle start. The third assumption is fixed relative phase lock, and the fourth is a selection principle: among admissible integer locks, the realized one should be the one that maximizes cycle-averaged cancellation of the low-order far-field or effective potential signal.
 
-Under these assumptions, the geometry is controlled by the integer pair $(m,n)$ together with the remaining speed factors $\beta_O$ and $\beta_I$. The immediate formulas are
+Under these assumptions, the geometry is controlled by the integer pair $(m,n)$ together with the remaining speed factors $\beta_3$ and $\beta_1$. The immediate formulas are
 $$
-r_M=\frac{r_O}{m\beta_O},
+r_2=\frac{r_3}{m\beta_3},
 \qquad
-r_I=\frac{\beta_I}{n\beta_O}\,r_O
+r_1=\frac{\beta_1}{n\beta_3}\,r_3
 $$
 So even if one later tests the doubling-frequency candidate $(m,n)=(2,4)$, the frequency lock $1:2:4$ does not force equal speeds and does not force self-similar radii.
 
 The conceptual gain is that the note now separates three different burdens cleanly. Kinematics gives the exact identity above. Integer phase closure gives commensurate frequencies. The cancellation principle is then the extra ingredient that might select one preferred integer lock from the commensurate lattice.
 
-This mattered for the larger program because the nested shell braid has to satisfy several closure burdens at once: frequency hierarchy, horizon behavior, radiation suppression, and eventually an effective stress-tensor story for higher assemblies. The revised note now reads as a live research surface with explicit assumptions and explicit non-assumptions.
+This mattered for the larger program because the A1 candidate has to satisfy several closure burdens at once: frequency hierarchy, horizon behavior, radiation suppression, and eventually an effective stress-tensor story for higher assemblies. The revised note now reads as a live research surface with explicit assumptions and explicit non-assumptions.
 
 ## Master Equation Canon
 

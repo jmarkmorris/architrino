@@ -314,7 +314,7 @@ Stabilizes the Higgs mass and enables unification in some models.
 $$
 \{Q_\alpha, \bar Q_{\dot\beta}\} = 2\sigma^\mu_{\alpha\dot\beta} P_\mu
 $$
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** $\mathbb{A}\mathbb{A}\mathbb{A}$ naturally relates fermionic 3D oblate spheroidal envelope configurations and bosonic 2D planar nested shell braid configurations of similar topological content. A full SUSY algebra would correspond to an approximate symmetry exchanging these geometric realizations of assemblies. Whether exact SUSY emerges depends on additional symmetry structure in the architrino dynamics; $\mathbb{A}\mathbb{A}\mathbb{A}$ does not require it but can mimic SUSY-like pairings as approximate assembly symmetries.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** $\mathbb{A}\mathbb{A}\mathbb{A}$ naturally relates fermionic 3D oblate spheroidal envelope configurations and bosonic 2D planar Noether braid configurations of similar topological content. A full SUSY algebra would correspond to an approximate symmetry exchanging these geometric realizations of assemblies. Whether exact SUSY emerges depends on additional symmetry structure in the architrino dynamics; $\mathbb{A}\mathbb{A}\mathbb{A}$ does not require it but can mimic SUSY-like pairings as approximate assembly symmetries.
 
 **What Still Works:** Supersymmetry (SUSY) remains indispensable as the standard predictive and organizational framework for the phenomena it was built to model, and any replacement must recover its empirical successes in the regime where practitioners currently use it.
 **What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the particles, symmetries, and couplings in this entry are treated as effective descriptors of Noether braid assemblies, axial-layer states, and medium-level interaction rules rather than primitive ontology.
@@ -414,7 +414,7 @@ Equivalent invariant relation (mass shell):
 $$
 E^2 = (pc)^2 + (mc^2)^2
 $$
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** Lorentz symmetry and an invariant “speed of light” are theorem targets for assemblies moving through an approximately homogeneous and isotropic Noether sea. Proper time corresponds to internal cycle count relative to absolute time, while time dilation and length contraction must be derived from moving-assembly deformation, clock-law retuning, two-way signal synchronization, and bounded preferred-frame leakage. The middle-binary $v=c_f$ regime supplies a candidate signal-scale mechanism, not a completed proof by itself.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** Lorentz symmetry and an invariant “speed of light” are theorem targets for assemblies moving through an approximately homogeneous and isotropic Noether sea. Proper time corresponds to internal cycle count relative to absolute time, while time dilation and length contraction must be derived from moving-assembly deformation, clock-law retuning, two-way signal synchronization, and bounded preferred-frame leakage. A declared binary channel near the $v=c_f$ fold supplies a candidate signal-scale mechanism, not a completed proof by itself.
 For the assembly-level closure used in this program, see [Effective Energy-Momentum Closure](../dynamics/energy.md#effective-energy-momentum-closure). For a detailed side-by-side bridge between SR language and the deformable Noether braid implementation story, see [Special Relativity and Deformable Noether Braids](theory-bridges/special-relativity-noether-braid.md).
 
 **What Still Works:** Special Relativity (SR) remains indispensable as the standard predictive and organizational framework for the phenomena it was built to model, and any replacement must recover its empirical successes in the regime where practitioners currently use it.
@@ -604,7 +604,7 @@ $$
 \right)^2
 \ll1.
 $$
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** An inflationary phase can be interpreted as a high-energy regime where inner nested shell braid components operate in the $v>c_f$ self-hit domain, driving rapid effective expansion/deflation of the Noether braid assembly-density record. The “inflaton” is a coarse-grained scalar describing the average state of this regime; its potential $V$ encodes how nested shell braid configurations relax toward lower-curvature, more equilibrated states.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** An inflationary phase can be interpreted as a high-energy regime where one or more indexed binaries of Family-A candidates operate in the $v>c_f$ self-hit domain, driving rapid effective expansion or contraction of the Noether braid assembly-density record. The “inflaton” is a coarse-grained scalar describing the average state of this regime; its potential $V$ encodes how Family-A configurations relax toward lower-curvature, more equilibrated states.
 
 **What Still Works:** Inflationary Cosmology remains indispensable as the standard predictive and organizational framework for the phenomena it was built to model, and any replacement must recover its empirical successes in the regime where practitioners currently use it.
 **What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the parameters and fields of this entry are reclassified as inference-level summaries of assembly-density history, medium relaxation, and observational pipeline fits rather than primitive global ingredients.

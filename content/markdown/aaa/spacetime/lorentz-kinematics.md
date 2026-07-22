@@ -100,7 +100,7 @@ The absolute velocity used by the substrate solver cannot remain an observer-acc
 
 ### Mathematical objective
 
-Given a translating bound assembly (binary and then nested shell braid), derive:
+Given a translating bound assembly (binary and then A1), derive:
 
 1. The velocity-dependent equilibrium shape tensor $Q(v)$ and its anisotropy.
 2. The velocity-dependent internal period $T(v)$.
@@ -760,9 +760,9 @@ k_4=-\frac{1}{9}\qquad \ell_4=\frac{2}{9}
 $$
 before leakage terms are added.
 
-### Outer-binary transduction hypothesis (working)
+### binary-3 transduction hypothesis (working)
 
-Assume the outer binary $L$ is the dominant transducer for energy exchange with passerby assemblies (non-locally coupled encounters). Under this hypothesis, the leading kinematic response is boundary-driven at $L$, then propagated inward through $M$ and $H$ couplings.
+Assume the binary 3 $L$ is the dominant transducer for energy exchange with passerby assemblies (non-locally coupled encounters). Under this hypothesis, the leading kinematic response is boundary-driven at $L$, then propagated inward through $M$ and $H$ couplings.
 
 For locally coupled assemblies (strong axial coupling), interaction pathways are distinct and should be modeled as a separate regime, not merged with passerby-transfer fits.
 
@@ -770,7 +770,7 @@ For locally coupled assemblies (strong axial coupling), interaction pathways are
 
 For an assembly state
 $$
-\mathcal{S}=\{v_{\text{tr}}, f_H,f_M,f_L,\mathbf{A},\mathcal{E}_{\text{excl}},\tau_{\text{op}}\}
+\mathcal{S}=\{v_{\text{tr}}, f_H,f_2,f_L,\mathbf{A},\mathcal{E}_{\text{excl}},\tau_{\text{op}}\}
 $$
 let one absorbed quantum $\Delta E_q$ induce
 $$
@@ -780,7 +780,7 @@ with the following structured components:
 
 1. Translational architrino speed increase: $\Delta v_{\text{tr}}>0$.
 2. Discrete frequency retuning of $H,M,L$: $\Delta f_k=n_k\,\delta f_k$, with $n_k\in\mathbb{Z}$ and $k\in\{H,M,L\}$.
-3. Nested shell braid axis realignment: $\Delta\mathbf{A}\neq 0$ (precession/tilt of principal axes).
+3. A1 axis realignment: $\Delta\mathbf{A}\neq 0$ (precession/tilt of principal axes).
 4. Exclusion-zone geometry shift: $\Delta\mathcal{E}_{\text{excl}}\neq 0$ (shape and orientation update).
 5. Operational time response shift: $\Delta\tau_{\text{op}}\neq 0$.
 
@@ -788,18 +788,18 @@ with the following structured components:
 
 The observer-level clock-dilation channel is not yet fully mapped in substrate variables. The working interpretation in this document is:
 $$
-\tau_{\text{op}}=\tau_{\text{op}}(f_H,f_M,f_L,\mathbf{A},\mathcal{E}_{\text{excl}},v_{\text{tr}})
+\tau_{\text{op}}=\tau_{\text{op}}(f_H,f_2,f_L,\mathbf{A},\mathcal{E}_{\text{excl}},v_{\text{tr}})
 $$
 where $\tau_{\text{op}}$ is an emergent clock functional of assembly internal frequencies, axis geometry, exclusion-zone shape, and translation state.
 
-The immediate task is to identify which subset dominates $\partial \tau_{\text{op}}/\partial E$ in the passerby-transfer regime, with the default prior that outer-binary $L$ mediated updates are first-order.
+The immediate task is to identify which subset dominates $\partial \tau_{\text{op}}/\partial E$ in the passerby-transfer regime, with the default prior that binary-3 $L$ mediated updates are first-order.
 
 ### Evolving scenario: exclusion-volume driven effective spacetime
 
 Working assumption:
 
 1. The outer precessing binary of a Noether braid defines the effective exclusion volume boundary; see [Braid Envelope Geometry](../noether-braid/braid-envelope-geometry.md).
-2. Each nested shell braid layer ($H,M,L$) has its own circulation axis.
+2. Each A1 layer ($H,M,L$) has its own circulation axis.
 3. Total angular and translational momentum are conserved at assembly level (up to modeled exchange channels with environment).
 
 Proposed mechanism chain under applied force (acceleration of a Noether braid-based assembly):
@@ -807,21 +807,21 @@ Proposed mechanism chain under applied force (acceleration of a Noether braid-ba
 1. External forcing increases translational state.
 2. Axis coupling drives partial alignment of $H,M,L$ circulation axes.
 3. Alignment is accompanied by binary radius contraction across layers (with layer-dependent sensitivity).
-4. The exclusion volume changes shape and orientation because its boundary is set by the precessing outer binary $L$.
+4. The exclusion volume changes shape and orientation because its boundary is set by the precessing binary 3 $L$.
 5. Neighboring assemblies then see changed path-history geometry and interaction timing.
 6. At coarse scale, this appears as a modified effective kinematic/geometric background, i.e. an emergent spacetime response.
 
 This can be treated as a coupled state map:
 $$
-(\mathbf V,\mathbf{A}_H,\mathbf{A}_M,\mathbf{A}_L,R_H,R_M,R_L,\mathcal{E}_{\text{excl}})
+(\mathbf V,\mathbf{A}_H,\mathbf{A}_M,\mathbf{A}_L,R_H,R_2,R_L,\mathcal{E}_{\text{excl}})
 \xrightarrow{\;\Delta \mathbf{p}\;}
-(\mathbf V',\mathbf{A}_H',\mathbf{A}_M',\mathbf{A}_L',R_H',R_M',R_L',\mathcal{E}_{\text{excl}}')
+(\mathbf V',\mathbf{A}_H',\mathbf{A}_M',\mathbf{A}_L',R_H',R_2',R_L',\mathcal{E}_{\text{excl}}')
 $$
 
 Initial directional hypothesis for acceleration response:
 $$
 \|\mathbf{A}_H-\mathbf{A}_L\|,\ \|\mathbf{A}_M-\mathbf{A}_L\| \downarrow\qquad
-R_H,R_M,R_L \downarrow
+R_H,R_2,R_L \downarrow
 $$
 with the strongest transduction at $L$.
 
@@ -1048,12 +1048,12 @@ Start with a single causal path-history binary under constant drift $\mathbf V$.
 2. Closed-form or asymptotic estimates for $(a_{\parallel}/a_{\perp})(\beta)$.
 3. First nonzero leakage coefficients in the $\beta$ expansion.
 
-### Stage B: nested shell braid full closure
+### Stage B: A1 full closure
 
-Promote to a nested shell braid with coupled circulation scales. Establish:
+Promote to a A1 with coupled circulation scales. Establish:
 
 1. Persistence of aligned attractor family under drift.
-2. Factorization or controlled coupling of inner/middle/outer period shifts.
+2. Factorization or controlled coupling of 1/2/3 period shifts.
 3. Emergent universal $\gamma$-law independent of axial-structure details, within a defined class.
 
 ### Stage C: continuum handoff
@@ -1068,7 +1068,7 @@ so local assembly kinematics and macroscopic refractive geometry are mathematica
 
 To connect the two-channel deformation model to observables, use the following sequence:
 
-1. Single-braid constitutive closure: derive or fit-test $R_\perp(E)$ and induced $\xi(E,\beta)$ from causal path-history nested shell braid dynamics.
+1. Single-braid constitutive closure: derive or fit-test $R_\perp(E)$ and induced $\xi(E,\beta)$ from causal path-history A1 dynamics.
 2. Effective-medium propagation law: construct $n_{\text{eff}}(\xi,\lambda,n)$ for signal transport through deformed Noether braid populations.
 3. Effective metric extraction: build $g_{\mu\nu}^{\text{eff}}$ from medium variables and preferred-frame structure.
 4. Weak-field consistency checks: verify Newtonian limit and required post-Newtonian behavior in the operational observer sector.
@@ -1325,7 +1325,7 @@ $$
 \left(-\frac{1}{3},-\frac{4}{3},-\frac{1}{9},\frac{2}{9}\right)
 +O(\epsilon_{\mathrm{br}}+\epsilon_{\mathrm{hier}}+\epsilon_{\mathrm{reg}})
 $$
-The error terms have distinct jobs. $\epsilon_{\mathrm{br}}$ measures branch-chart incompleteness or missed active roots, $\epsilon_{\mathrm{hier}}$ measures nested shell braid hierarchy leakage away from the binary benchmark, and $\epsilon_{\mathrm{reg}}$ measures finite-$\eta$ regularization error. This condition is stronger than fitting $L_{\parallel}=L_0/\gamma$ and $T(v)=\gamma T_0$. It says the fitted coefficients must be traceable to active causal roots with no independent Lorentz postulate and no per-observable retuning.
+The error terms have distinct jobs. $\epsilon_{\mathrm{br}}$ measures branch-chart incompleteness or missed active roots, $\epsilon_{\mathrm{hier}}$ measures A1 hierarchy leakage away from the binary benchmark, and $\epsilon_{\mathrm{reg}}$ measures finite-$\eta$ regularization error. This condition is stronger than fitting $L_{\parallel}=L_0/\gamma$ and $T(v)=\gamma T_0$. It says the fitted coefficients must be traceable to active causal roots with no independent Lorentz postulate and no per-observable retuning.
 
 This gives a possible prediction of the framework. If Lorentz behavior is rooted in causal-root progression, then the first nonzero deviations from exact Lorentz closure should not be arbitrary smooth functions of speed. They should inherit the structure of branch charts: smooth even-power drift terms inside a fixed chart, plus localized or resonant leakage near separator events, small-divisor interlayer resonances, or changes in admissible root multiplicity. In a nonresonant chart the leakage should obey
 $$
@@ -1354,13 +1354,13 @@ The technology-facing status is therefore conditional. The immediate test is not
 
 This also prevents overclaiming. This chapter does not prove that quantum mechanics causes special relativity. It states a narrower closure target: in $\mathbb{A}\mathbb{A}\mathbb{A}$, the discrete causal-root progression that supports quantum-facing assembly behavior must also generate the Lorentz formulas in the homogeneous weak-field observer limit. If the branch ledger produces quantum-like discreteness but fails to produce the Lorentz coefficient vector, then the proposed common mechanism fails. If it produces the Lorentz vector only by tuning a separate clock law, ruler law, or photon speed for each observable, the Lorentz bridge also fails.
 
-### Nested shell braid adiabatic decoupling bound
+### A1 adiabatic decoupling bound
 
 Let
 $$
 \mathbf{c}^{(2)}\equiv (k_2,\ell_2,k_4,\ell_4)_{\text{binary}}
 \qquad
-\mathbf{c}^{(3)}\equiv (k_2,\ell_2,k_4,\ell_4)_{\text{nested shell braid}}
+\mathbf{c}^{(3)}\equiv (k_2,\ell_2,k_4,\ell_4)_{\text{A1}}
 $$
 and define
 $$
@@ -1371,7 +1371,7 @@ $$
 \qquad
 \|x\|_W^2\equiv x^\top W x,\ W\succ 0
 $$
-For nested layers $(H,M,L)$, decompose the outer-channel stiffness as
+For the source record's indexed rows $(1,2,3)$, decompose the binary-3 channel stiffness as
 $$
 K_{ab}^{(3)}
 =
@@ -1383,19 +1383,19 @@ K_{ab}^{(L)}
 $$
 Under hierarchical separation
 $$
-\omega_H\gg \omega_M\gg \omega_L\qquad
-r_H\ll r_M\ll r_L
+\omega_H\gg \omega_2\gg \omega_L\qquad
+r_H\ll r_2\ll r_L
 $$
-apply Hamiltonian averaging (Lie-Deprit transform) to eliminate fast phases. The monopole part renormalizes $\mathcal{I}_0$ only; the dipole contribution vanishes in the inner-layer center-of-mass frame; the leading anisotropic correction is quadrupolar and scales as $(r_M/r_L)^2$. Therefore
+apply Hamiltonian averaging (Lie-Deprit transform) to eliminate fast phases. The monopole part renormalizes $\mathcal{I}_0$ only; the dipole contribution vanishes in the inner-layer center-of-mass frame; the leading anisotropic correction is quadrupolar and scales as $(r_2/r_L)^2$. Therefore
 $$
 \mathcal{D}_{23}
 \le
-C_Q\left(\frac{r_M}{r_L}\right)^2
+C_Q\left(\frac{r_2}{r_L}\right)^2
 +O\!\left(\left(\frac{r_H}{r_L}\right)^2\right)
 $$
 A sufficient closure condition is
 $$
-\left(\frac{r_M}{r_L}\right)^2\le C_{23}\epsilon_{\text{LV}}
+\left(\frac{r_2}{r_L}\right)^2\le C_{23}\epsilon_{\text{LV}}
 $$
 which yields
 $$
@@ -1404,9 +1404,9 @@ $$
 
 ### Spectral-decoupling vulnerability criterion
 
-The [Nested Shell Braid Adiabatic Decoupling Bound](#nested-shell-braid-adiabatic-decoupling-bound) assumes Diophantine nonresonance:
+The [A1 Adiabatic Decoupling Bound](#nested-shell-braid-adiabatic-decoupling-bound) assumes Diophantine nonresonance:
 $$
-|m\omega_L-n\omega_M|
+|m\omega_L-n\omega_2|
 \ge
 \frac{\gamma_D}{(|m|+|n|)^{\tau_D}}
 \quad
@@ -1416,7 +1416,7 @@ $$
 $$
 If this condition is violated so that
 $$
-|m\omega_L-n\omega_M|\lesssim \delta\omega_{\text{nl}}
+|m\omega_L-n\omega_2|\lesssim \delta\omega_{\text{nl}}
 $$
 for small integers $(m,n)$ and nonlinear coupling width $\delta\omega_{\text{nl}}$, then small divisors invalidate the homological equations of the Lie transform. The resulting secular resonance destroys adiabatic decoupling, can break KAM tori, and drives $O(1)$ interlayer energy exchange. In that regime, coefficient drift can exceed the quadrupole estimate and local preferred-frame leakage can rise above $O(\epsilon_{\text{LV}})$ even when geometric hierarchy is large.
 
@@ -1488,7 +1488,7 @@ If these equalities hold on the same branch ledger, the Lorentzian compensation 
 
 ### Theorem A (attractor existence under drift)
 
-For admissible coupling and regularization parameters, there exists a bounded translating attractor family for binary and nested shell braid systems for $\|\mathbf V\|<c_f$.
+For admissible coupling and regularization parameters, there exists a bounded translating attractor family for binary and A1 systems for $\|\mathbf V\|<c_f$.
 
 ### Theorem B (anisotropic deformation law)
 
@@ -1541,10 +1541,10 @@ the drift-response coefficients are locally identifiable from $(a_{\parallel}/a_
 
 ### Theorem F (cross-regime universality of closure coefficients)
 
-If binary and nested shell braid attracting branches exist, are smooth in $\beta$, share the same coarse-grained causal kernel class, and satisfy nonresonant hierarchy
+If binary and A1 attracting branches exist, are smooth in $\beta$, share the same coarse-grained causal kernel class, and satisfy nonresonant hierarchy
 $$
-\omega_H\gg \omega_M\gg \omega_L\qquad
-|m\omega_L-n\omega_M|
+\omega_H\gg \omega_2\gg \omega_L\qquad
+|m\omega_L-n\omega_2|
 \ge
 \frac{\gamma_D}{(|m|+|n|)^{\tau_D}}
 \ \ \forall\ m,n\in\mathbb{Z}\setminus\{0\}
@@ -1557,10 +1557,10 @@ $$
 \mathbf{c}^{(3)}-\mathbf{c}^{(2)}
 \right\|_{W}
 \le
-C_Q\left(\frac{r_M}{r_L}\right)^2
+C_Q\left(\frac{r_2}{r_L}\right)^2
 +O\!\left(\left(\frac{r_H}{r_L}\right)^2\right)
 $$
-In particular, if $(r_M/r_L)^2\le C_{23}\epsilon_{\text{LV}}$, operational Lorentz closure is universal across these two micro-regimes up to preferred-frame leakage.
+In particular, if $(r_2/r_L)^2\le C_{23}\epsilon_{\text{LV}}$, operational Lorentz closure is universal across these two micro-regimes up to preferred-frame leakage.
 
 ### Theorem G (structural-integrity common-limit closure)
 
@@ -1596,7 +1596,7 @@ The Lorentzian conspiracy program fails if any of the following occur:
 3. Residual anisotropy terms exceed accepted bounds after full observer construction.
 4. Different assembly decorations produce incompatible kinematic laws that prevent universal operational closure.
 5. The weak-field connection built from $g_{\mu\nu}^{\text{eff}}$ fails to reproduce a Newtonian Poisson limit for $\Phi_{\text{eff}}$ in the operational observer sector.
-6. Diophantine nonresonance fails (small-divisor regime), causing secular interlayer resonance and invalidating the adiabatic mismatch bound used in [Nested Shell Braid Adiabatic Decoupling Bound](#nested-shell-braid-adiabatic-decoupling-bound).
+6. Diophantine nonresonance fails (small-divisor regime), causing secular interlayer resonance and invalidating the adiabatic mismatch bound used in [A1 Adiabatic Decoupling Bound](#nested-shell-braid-adiabatic-decoupling-bound).
 7. The extracted Lorentz coefficients cannot be traced to the causal-root ledger on a completed branch chart, or the same ledger cannot generate clock, ruler, and two-way signal closure without separate per-observable tuning.
 
 ## Position in the $\mathbb{A}\mathbb{A}\mathbb{A}$ Program
@@ -1614,7 +1614,7 @@ Primary theory anchors:
 1. [dynamics/master-equation.md](../dynamics/master-equation.md)
 2. [dynamics/causal-action-functional.md](../dynamics/causal-action-functional.md)
 3. [dynamics/binary-dynamics.md](../dynamics/binary-dynamics.md)
-4. [Nested Shell Braid Dynamics](../noether-braid/braid-a1-dynamics.md#a1-dynamics)
+4. [A1 Dynamics](../noether-braid/braid-a1-dynamics.md#a1-dynamics)
 5. `spacetime/*`
 6. [validation/constraint-ledger.md](../validation/constraint-ledger.md)
 7. [validation/no-go-theorems.md](../validation/no-go-theorems.md)

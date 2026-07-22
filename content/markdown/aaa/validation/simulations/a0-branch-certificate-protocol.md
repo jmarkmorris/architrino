@@ -1,6 +1,6 @@
 # $A_0$ Branch Certificate Protocol
 
-This protocol defines the simulation-facing handoff for the $A_0$ reference attractor described in [Particle Masses](../../assemblies/particle-masses.md#reference-attractor-gate), [Nested Shell Braid Dynamics](../../noether-braid/braid-a1-dynamics.md#a1-dynamics), and [Energy](../../dynamics/energy.md). It specializes the general [Simulation Run Protocols](run-protocols.md) to the first neutral rest-branch nested shell braid mass-map target.
+This protocol defines the simulation-facing handoff for the $A_0$ reference attractor described in [Particle Masses](../../assemblies/particle-masses.md#reference-attractor-gate), [A1 Dynamics](../../noether-braid/braid-a1-dynamics.md#a1-dynamics), and [Energy](../../dynamics/energy.md). It specializes the general [Simulation Run Protocols](run-protocols.md) to the first neutral rest-branch A1 mass-map target.
 
 The protocol does not treat $A_0$ as a particle label. It treats $A_0$ as a calibration-free branch certificate problem: find a finite, stable, multi-scale causal-root ledger before energy, shielding, Noether sea response, or mass comparisons enter.
 
@@ -19,7 +19,7 @@ An auditable $A_0$ branch certificate should preserve one top-level packet shape
 | `metadata` | run identifier, code or derivation version, source commit, integrator, tolerances, $\eta$, sampling schedule, and history-window rule | makes the packet reproducible |
 | `sea_cell` | $u^i_{\text{sea}}$, $G_{\text{grad}}$, $n$, $\chi_{\text{sea}}$, declared $c_\star$, and boundary conditions | fixes the homogeneous Noether sea cell and prevents mixing $c_f$ with $c_{\text{eff}}$ |
 | `branch_label` | layer windings, inter-layer closure integers, handedness, carrier ellipticity, and active root-branch summary | identifies the branch being certified |
-| `z_lambda` | quotient-coordinate row $z_\Lambda$: $\varepsilon_{IM}$, $\varepsilon_{MO}$, $T_I/T_M$, $T_M/T_O$, $\delta_M$, layer ellipticities, $G_{\ell m}$, $\chi_N$, $H_I,H_M,H_O$, $\Phi_{\text{rel}}$, removed gauges $SO(3)$, $S^1_{\mathbf{k}}$, $\Gamma_\Lambda$, branch class $[\Lambda]$, and quotient-degeneracy status | records the reduced moduli coordinate rather than an unquotiented carrier representative |
+| `z_lambda` | quotient-coordinate row $z_\Lambda$: $\varepsilon_{12}$, $\varepsilon_{23}$, $T_1/T_2$, $T_2/T_3$, $\delta_2$, binary ellipticities, $G_{\ell m}$, $\chi_N$, $H_1,H_2,H_3$, $\Phi_{\text{rel}}$, removed gauges $SO(3)$, $S^1_{\mathbf{k}}$, $\Gamma_\Lambda$, branch class $[\Lambda]$, and quotient-degeneracy status | records the reduced moduli coordinate rather than an unquotiented carrier representative |
 | `branch_chart_revision` | conditional pre-rerun record for any revised reduced branch coordinate, including source fields, equality map, equation and coefficient counts, held-out residual rule, phase-origin rule when a phase split is used, symmetry or quotient behavior, locked-key exclusion, benchmark exclusion, and `accepted_history_boundary: false` | prevents residual-selected coordinates or post-fit added columns from masquerading as branch geometry |
 | `state_vector` | six architrino labels, polarities, reduced geometry, frequencies, phase offsets, carrier chart, history segment, and center gauge | gives the reduced Noether braid state vector |
 | `closure_system` | active variables, causal-root equations, layer phase closure, inter-layer closure, center-gauge closure, speed-ordering inequalities, and tolerances | ties closure labels to equations rather than only to names |
@@ -30,7 +30,7 @@ An auditable $A_0$ branch certificate should preserve one top-level packet shape
 | `Delta_k` | $\Delta_{\mathbf{k}}$ value, status, role, nonpositive-gap failure code, and note; Tier 0 emits null with `not_computed_in_tier0` | keeps the Floquet handoff visible before Tier 1 computes the return map |
 | `stability` | monodromy or finite-difference return map, excluded symmetry modes, non-symmetry Floquet multipliers, and the computed $\Delta_{\mathbf{k}}$ once Tier 1 exists | separates integer closure from attractor stability |
 | `group_velocity_anisotropy` | $\mathbf{V}_{\text{cm}}$, declared $c_\star$, $\beta_\star$, envelope ratio, forward/backward delay ratio, tensor $\mathcal{A}_{\mathrm{gv}}^{ij}$, refinement status, and whether the entry is rest residue, small-velocity response, or probe-induced drift | keeps motion-induced deformation separate from shielding leakage |
-| `energy_ledger` | sign-resolved kinetic content, interaction terms, wake/history terms, layer totals $E_I,E_M,E_O$, $E_{\text{internal}}(A_0)$, delayed-Noether status (`action-derived`, `quasi-Noether`, or `diagnostic-only`), the running retained-history energy-like functional across active self-hit crossings, and action per closed cycle after bounded-energy status | supplies the unshielded energy reservoir after Tier 1 passes |
+| `energy_ledger` | sign-resolved kinetic content, interaction terms, wake/history terms, binary totals $E_1,E_2,E_3$, $E_{\text{internal}}(A_0)$, delayed-Noether status (`action-derived`, `quasi-Noether`, or `diagnostic-only`), the running retained-history energy-like functional across active self-hit crossings, and action per closed cycle after bounded-energy status | supplies the unshielded energy reservoir after Tier 1 passes |
 | `far_field_shielding` | extraction radii, angular grid, selected wake channel, $\mathcal{L}(\hat{\mathbf{R}})$, naive constituent sum, leading isotropic projection, $\zeta(A_0)$, $\mathcal{L}_{\text{aniso}}$, and convergence status | turns shielding into an extracted far-field quantity after Tier 1 passes |
 | `medium_response` | acceleration probes, gradient probes, extracted $\mathcal{M}_{\text{sea}}^{ab}$ baseline, symmetric tensor part, antisymmetric residue, and response anisotropy | compatibility field for testing Noether sea inertial and gravitational response after shielding passes |
 | `mass_summary` | $\zeta(A_0)E_{\text{internal}}(A_0)/E_0$, unresolved constants, response-map assumptions, and explicitly excluded particle benchmarks | records only calibration-free mass-facing output |
@@ -110,8 +110,8 @@ Required inputs:
 
 - homogeneous Noether sea cell with $u^i_{\text{sea}}=0$, $G_{\text{grad}}=0$, $n=1$, $\chi_{\text{sea}}=1$, and primitive wake speed $c_f$;
 - layer labels $\ell\in\{I,M,O\}$ and polarity labels $\sigma\in\{+,-\}$;
-- scale ratios $\varepsilon_{IM}=R_I/R_M$ and $\varepsilon_{MO}=R_M/R_O$;
-- speed offsets enforcing $s_I > c_f$, $s_M \approx c_f$, and $s_O < c_f$;
+- scale ratios $\varepsilon_{12}=R_1/R_2$ and $\varepsilon_{23}=R_2/R_3$;
+- speed offsets enforcing $s_1 > c_f$, $s_2 \approx c_f$, and $s_3 < c_f$;
 - candidate handedness tuple and carrier ellipticity;
 - $\eta > 0$, sampling resolution, and history-window rule.
 
@@ -121,7 +121,7 @@ Required outputs:
 | --- | --- |
 | `branch_label` | layer windings, inter-layer closure integers, handedness, and active root-branch summary |
 | `closure_labels` | declared $T_{\mathbf{k}}$, winding integers, inter-layer closure integers, and active root classes |
-| `z_lambda` | reduced quotient-coordinate row $z_\Lambda$, including radius ratios, period ratios, $\delta_M$, layer ellipticities, plane Gram data $G_{\ell m}$, $\chi_N$, handedness labels, phase-offset quotient status, removed gauges, branch class $[\Lambda]$, and `quotient_degenerate` |
+| `z_lambda` | reduced quotient-coordinate row $z_\Lambda$, including radius ratios, period ratios, $\delta_2$, binary ellipticities, plane Gram data $G_{\ell m}$, $\chi_N$, handedness labels, phase-offset quotient status, removed gauges, branch class $[\Lambda]$, and `quotient_degenerate` |
 | `state_vector` | reduced geometry, frequencies, phase offsets, carrier chart, and center gauge |
 | `closure_system` | active causal-root, phase-closure, inter-layer-closure, center-gauge, and speed-ordering equations used by the row |
 | `root_ledger` | active and raw partner, self, and inter-layer root counts with delays, branch Jacobians, separator flags, root-count changes across separators, parity events, and excluded near-zero self roots separated |
@@ -144,7 +144,7 @@ The row-level `failure_code` field is a machine-readable enum. The accepted valu
 | `candidate` | all Tier 0 promotion gates pass | row may seed Tier 1 continuation only |
 | `quotient-degenerate` | $z_\Lambda$ has degenerate plane-normal Gram or orientation data after quotienting global rotations | reject the row as a reduced moduli coordinate |
 | `scale-separation-collapse` | radius or period ratios violate the declared separated-scale Tier 0 regime | reject the row or widen the scan only as a controlled scale-separation test |
-| `speed-order-collapse` | $\mathcal{R}_{\text{speed}}$ fails the intended $s_I > c_f$, $s_M \approx c_f$, $s_O < c_f$ ordering | reject the row before attractor continuation |
+| `speed-order-collapse` | $\mathcal{R}_{\text{speed}}$ fails the declared $s_1 > c_f$, $s_2 \approx c_f$, $s_3 < c_f$ constraint | reject the row before attractor continuation |
 | `phase-closure-open` | $\mathcal{R}_{\text{phase}}$ fails layer winding closure over $T_{\mathbf{k}}$ | reject the row until integer closure is restored |
 | `carrier-residual-open` | $\mathcal{R}_{\text{state}}$ or $\mathcal{R}_{\text{drift}}$ fails the Tier 0 carrier chart tolerance | reject the row as an unclosed diagnostic carrier |
 | `root-residual-open` | $\mathcal{R}_{\text{root}}$ fails on candidate active causal-root branches | reject the row until active roots solve within tolerance |
@@ -239,7 +239,7 @@ with $\mathbf D_\ell(T)$, the basis terms $\mathbf A_{a,B}$, the coefficient rul
 
 Tier 2 begins only after Tier 1 passes. It computes the internal-energy ledger and far-field shielding extraction described in [Energy](../../dynamics/energy.md). The required outputs are:
 
-- $E_I$, $E_M$, $E_O$, and $E_{\text{internal}}(A_0)$;
+- $E_1$, $E_2$, $E_3$, and $E_{\text{internal}}(A_0)$;
 - interaction and wake/history bookkeeping with no double counting;
 - far-field wake coefficients $\mathcal{L}(\hat{\mathbf{R}})$ over extraction radii and angular grids;
 - the naive constituent sum $\mathcal{L}_{\text{naive}}$ and the leading isotropic projection $\Pi_0\mathcal{L}$;

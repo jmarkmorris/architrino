@@ -1,10 +1,10 @@
 # Inflation Model
 
-This chapter records the current $\mathbb{A}\mathbb{A}\mathbb{A}$ reinterpretation of inflation-like behavior as a high-curvature alignment regime rather than as a separate inflaton ontology. Its purpose is to keep local-process, recycling, and strong-field framing explicit before any full quantitative closure is claimed. It sits between [Cosmology Ontology](./cosmology-ontology.md), [Expansion Mechanism](./expansion-mechanism.md), and the strong-field pages [Black Holes](../spacetime/black-holes.md) and [Mapping the Planck Scale to the Nested Shell Braid Geometry](../philosophy-history/theory-bridges/planck-scale-nested-shell-braid-alignment.md).
+This chapter records the current $\mathbb{A}\mathbb{A}\mathbb{A}$ reinterpretation of inflation-like behavior as a high-curvature alignment regime rather than as a separate inflaton ontology. Its purpose is to keep local-process, recycling, and strong-field framing explicit before any full quantitative closure is claimed. It sits between [Cosmology Ontology](./cosmology-ontology.md), [Expansion Mechanism](./expansion-mechanism.md), and the strong-field pages [Black Holes](../spacetime/black-holes.md) and [Mapping the Planck Scale to Family-A Alignment Geometry](../philosophy-history/theory-bridges/planck-scale-nested-shell-braid-alignment.md).
 
 ## Core Idea
 
-The early rapid-expansion phase is modeled as an emergent high-curvature regime of nested shell braid dynamics, not as a fundamental standalone inflaton ontology.
+The early rapid-expansion phase is modeled as an emergent high-curvature regime of Family-A dynamics, not as a fundamental standalone inflaton ontology.
 
 ## Local-Process Commitment
 
@@ -255,11 +255,11 @@ $$
 
 where $\Omega_{\text{eff}}(a)$ encodes the emergent high-curvature phase and its relaxation.
 
-As a toy kinematic decomposition, one can also track the expansion-rate profile by assigning separate qualitative roles to the three nested branches:
+As a toy kinematic decomposition, one can also track the expansion-rate profile by assigning separate qualitative roles to two declared indexed channels:
 $$
-\dot{R}(t) = v_I(t) + c_f + v_O(t)
+\dot{R}(t) = v_1(t) + c_f + v_3(t)
 $$
-Here the inner contribution $v_I(t)$ plays the role of a decaying high-curvature release term, the constant $c_f$ marks the transport/horizon channel, and the outer contribution $v_O(t)$ captures slower volumetric rebound. This is not a closed cosmological derivation, but it is a compact way to encode the intuition that inflation-like release, horizon-scale transport, and late-time expansion can all be read as different branches of the same nested shell braid process.
+Here the source record assigns $v_1(t)$ to a decaying high-curvature release term and $v_3(t)$ to slower volumetric rebound, while the constant $c_f$ marks the transport/horizon channel. These roles belong to this toy record and are not assigned by the taxonomy. This is not a closed cosmological derivation, but it is a compact way to encode the intuition that inflation-like release, horizon-scale transport, and late-time expansion can all be read as different channels of the same Family-A process.
 
 ## Expansion-Module Interface
 

@@ -13,12 +13,12 @@ The starting picture is deliberately simple. A Noether sea carrier is a Noether 
 - pro-Noether braid orientation
 - anti-Noether braid orientation
 
-For nested shell braid consumers, the working orientation convention is:
+For Noether braid consumers, the working orientation convention is:
 
 - pro-Noether braid orientation: precession order $H \to M \to L$ in time;
 - anti-Noether braid orientation: precession order $H \to L \to M$ in time.
 
-This ordered convention is the reader-facing orientation basis. The carrier for that two-valued label is not a coordinate convention. A completed pro/anti assignment must be a deformation-stable orientation row in the retained branch record, such as the ordered nested shell braid chirality and causal-writhe or framed-topology candidates discussed in [Constructing the Absolute Frame](../foundations/constructing-the-absolute-frame.md#parity-convention-and-dynamical-chirality) and [Horizon Chirality](horizon-chirality.md#proanti-before-planar-lock).
+This ordered convention is the reader-facing orientation basis. The carrier for that two-valued label is not a coordinate convention. A completed pro/anti assignment must be a deformation-stable orientation row in the retained branch record, such as the indexed Noether braid chirality and causal-writhe or framed-topology candidates discussed in [Constructing the Absolute Frame](../foundations/constructing-the-absolute-frame.md#parity-convention-and-dynamical-chirality) and [Horizon Chirality](horizon-chirality.md#proanti-before-planar-lock).
 
 The orientation label does not assign matter versus antimatter. Global polarity conjugation $C$ leaves the `HML/HLM` worldline order unchanged, while parity $P$ reverses it. A matter branch and its polarity-conjugate antimatter branch may therefore each occur on either pro/anti orientation once the full retained branch and charged-sector ledgers are supplied. This sea-level orientation balance is distinct from the visible-sector [matter-antimatter asymmetry](../philosophy-history/solving-the-crisis.md#matter-antimatter-asymmetry) question, which belongs to polarity-conjugate branch populations, weak-sector asymmetry, early-state boundary conditions, and reaction-ledger bias. The key claim is that stable large-scale Noether sea behavior may require both orientations to coexist and couple, so the Noether sea does not drift into one ordered-frame handedness.
 

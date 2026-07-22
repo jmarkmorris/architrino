@@ -804,13 +804,13 @@ $$
 
 Fold bifurcations create/annihilate roots in pairs. The signed degree $D_{ij}$ stays topologically fixed between folds, while the unsigned branch count $N_{ij}$ jumps by even integers.
 
-For a suggestive first folded branch used as a nested shell braid closure target, the reduced root-count analogy is
+For a suggestive first folded branch used as an A1.3 closure target, the reduced root-count analogy is
 
 $$
-N_O=1 \;\longrightarrow\; N_I=2
+N_3=1 \;\longrightarrow\; N_1=2
 $$
 
-This is not yet a nested shell braid closure result. It is the root-count counterpart one would need to justify before using the action-partition doubling target ($w_I=2w_O$) or the associated $1:2:4$ frequency-lock discussion as derived structure.
+This is not yet an A1.3 closure result. It is the root-count counterpart one would need to justify before using the action-partition doubling target ($w_1=2w_3$) or the associated indexed frequency lock $f_1:f_2:f_3=4:2:1$ as derived structure.
 
 **Intuition:** If the transmitter outruns its own emissions, it can emit multiple wake surfaces that later converge and intersect the same receiver location simultaneously (or nearly so, within regularization width $\eta$).
 
@@ -909,7 +909,7 @@ v<c_f-\frac{L_\parallel}{h}.
 $$
 Above that scale, the checkpoint no longer tracks the same causal-root ledger: the full Noether braid proof must show a ledger reorganization, a sea-mediated replacement record, or a declared failure of the translating-loop reduction.
 
-The two-leg loop is only a checkpoint. It has two phase points and one chosen orientation relative to the absolute motion. A real assembly has an effective internal phase distribution over a finite three-dimensional volume, and operational isotropy has to hold for all loop orientations at once. The closure target is therefore a full oblate-envelope-to-sphere reduction in the internal nested shell braid phase space, not just the equality
+The two-leg loop is only a checkpoint. It has two phase points and one chosen orientation relative to the absolute motion. A real assembly has an effective internal phase distribution over a finite three-dimensional volume, and operational isotropy has to hold for all loop orientations at once. The closure target is therefore a full oblate-envelope-to-sphere reduction in the internal Family-A phase space, not just the equality
 $$
 T_\parallel=T_\perp
 $$
@@ -2412,13 +2412,13 @@ positive transmitter-side floors, inactive gaps, finite memory depth, the
 receiver-side branch records, and signed radial/tangential residual closure on
 the same branch chart.
 
-The circular self-hit and partner-hit formulas are kernel benchmarks. They are not the Noether braid model. The Noether braid model is the six-body branch chart containing self, partner, and inter-layer causal roots, with hierarchy averaging only where justified by separated scales and certified branch data.
+The circular self-hit and partner-hit formulas are kernel benchmarks. They are not the Noether braid model. The Noether braid model is the six-body branch chart containing self, partner, and inter-binary causal roots, with hierarchy averaging only where justified by separated scales and certified branch data.
 
 ---
 
-#### Maximum‑curvature binary (inner binary idealization)
+#### Maximum‑curvature binary (declared indexed-binary idealization)
 
-For the full **two‑body** maximum‑curvature orbit (inner binary), we have:
+For a declared **two‑body** maximum-curvature orbit of binary $a$, we have:
 
 - Two charges on roughly circular orbits about their COM,
 - Both potentially with self‑hit,
@@ -3185,7 +3185,7 @@ Remarks:
   $$
   M_\text{assembly} = \frac{1}{V_\text{CM}} \frac{d}{dV_\text{CM}} \left(\text{total kinetic + interaction energy of internal motion}\right)
   $$
-  where $V_\text{CM}$ is the center‑of‑mass speed. In practice, this is computed from the internal architrino motions (e.g., the tight inner binary self‑hit orbit plus its interaction with partner binaries).
+  where $V_\text{CM}$ is the center‑of‑mass speed. In practice, this is computed from the internal architrino motions (e.g., the tight indexed-binary self-hit orbit plus its interaction with partner binaries).
 
 Thus kinetic energy splits naturally into:
 

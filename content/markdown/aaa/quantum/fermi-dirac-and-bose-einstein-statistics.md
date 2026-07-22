@@ -20,7 +20,7 @@ The answer must not erase substrate identity. Individual architrinos remain prov
 
 The relevant object is the Noether braid described in [Noether Braid](../noether-braid/noether-braid.md). Its geometric footprint is the dynamic exclusion envelope described in [Braid Envelope Geometry](../noether-braid/braid-envelope-geometry.md). Packing consumes the channel-specific interface $D_{a,\mathrm{packing}}$ from that chapter rather than treating a visual surface as a universal hard boundary.
 
-The family flag must remain explicit. A spindle-family matter candidate presents a fusiform envelope; a nested-family candidate presents an oblate spheroidal envelope. Either form can remain genuinely three-dimensional and volume-excluding. The statistics hypothesis therefore consumes a retained family-declared envelope and its packing interface, not the oblate sign $\xi<1$ as a universal Noether braid property.
+The family flag must remain explicit. A B1 matter candidate can present a fusiform envelope; a Family-A candidate can present an oblate spheroidal envelope. Either form can remain genuinely three-dimensional and volume-excluding. The statistics hypothesis therefore consumes a retained family-declared envelope and its packing interface, not the oblate sign $\xi<1$ as a universal Noether braid property.
 
 The orbital support still occupies a volume. Its exclusion envelope has thickness, principal axes, and a dynamically maintained interior. That 3D envelope is the candidate substrate basis for fermionic exclusion: another same-channel assembly cannot be inserted into the same effective state without disturbing the retained branch.
 
@@ -30,15 +30,15 @@ That statement has a controlled burden. The exclusion envelope can supply the ge
 
 ## Fermi-Dirac Regime: 3D Exclusion
 
-Fermi-Dirac behavior corresponds to Noether braid assemblies whose nested orbital support remains volumetric. Two such assemblies cannot be placed into the same effective state without forcing overlap of their dynamic exclusion envelopes.
+Fermi-Dirac behavior corresponds to Noether braid assemblies whose multi-binary orbital support remains volumetric. Two such assemblies cannot be placed into the same effective state without forcing overlap of their dynamic exclusion envelopes.
 
 In plain terms, the exclusion is not a command written onto a point particle. It is the cost of trying to make two retained assembly ledgers occupy one record-facing state while their wake histories, branch closures, and exclusion envelopes still need separate room.
 
 The exclusion is not a hard material wall. It is a path-history and wake-geometry obstruction:
 
 - the constituent architrinos sweep out persistent causal-wake structure,
-- the outer binary defines the dominant envelope boundary,
-- the inner and middle binaries maintain internal stabilizing density,
+- the assembly-level envelope is derived from the complete indexed-binary record,
+- all three indexed binaries contribute to the internal stabilizing density,
 - and nearby braids cannot share the same local state without disrupting those orbit closures.
 
 At the effective quantum level, that obstruction must appear as antisymmetric exchange bookkeeping and Pauli exclusion. At the assembly level, it is the candidate inability of two volumetric Noether braid envelopes to occupy the same state without losing stable Noether braid identity. The exchange sign still has to come from the ordered-frame spinor proof, not from volume exclusion alone.
@@ -59,7 +59,7 @@ In the pullback notation of [Angular Momentum and Spin](../philosophy-history/th
 
 ## Bose-Einstein Regime: 2D Coherence
 
-Bose-Einstein behavior corresponds to the regime where the relevant orbital support has been oblated toward an effectively two-dimensional structure. The key transition is not merely that the nested shell braid envelope is somewhat flattened. Ordinary nested shell braids are already oblate. The statistical transition occurs when oblation becomes strong enough that the active orbital support no longer behaves as a closed 3D exclusion volume.
+Bose-Einstein behavior corresponds to the regime where the relevant orbital support has been oblated toward an effectively two-dimensional structure. The key transition is not merely that a Family-A envelope is somewhat flattened. Family-A candidates can already be oblate. The statistical transition occurs when oblation becomes strong enough that the active orbital support no longer behaves as a closed 3D exclusion volume.
 
 In plain terms, the channel stops acting like many separate volumetric packages and starts acting like a shared coherent support. Multiple excitations can then be counted as occupying the same effective state because the physical support is phase-compatible rather than volume-exclusive.
 
@@ -182,8 +182,8 @@ For the fermionic branch, $\mathcal{R}_{\mathrm{ex}}$ is admissible only on reco
 This chapter depends on:
 
 - [Braid Envelope Geometry](../noether-braid/braid-envelope-geometry.md) for family-declared fusiform and oblate spheroidal exclusion envelopes and the packing-interface diagnostic,
-- [Noether Braid](../noether-braid/noether-braid.md) for the braid taxonomy and nested shell braid scaffold,
-- [Nested Shell Braid Dynamics](../noether-braid/braid-a1-dynamics.md#a1-dynamics) for the delayed-dynamics regime map,
+- [Noether Braid](../noether-braid/noether-braid.md) for the braid taxonomy and neutral scaffold,
+- [A1 Dynamics](../noether-braid/braid-a1-dynamics.md#a1-dynamics) for the delayed-dynamics regime map,
 - [Wavefunction Ontology](./wavefunction-ontology.md) for the effective probability bookkeeping seen by physical observers,
 - and [Electroweak Bosons](../assemblies/bosons/electroweak-bosons.md) for the photon-channel case where coherent planar-pair modes must recover Bose-Einstein occupation behavior.
 
@@ -199,4 +199,4 @@ The next proof steps are:
 4. Derive how phase-compatible 2D-supported channel excitations produce bosonic symmetric occupation.
 5. Check that mixed regimes do not create forbidden intermediate statistics for ordinary low-energy matter.
 
-Until those steps are complete, the claim should be treated as a precise geometry hypothesis: Fermi-Dirac statistics are expected to arise from 3D Noether braid exclusion plus the ordered-frame spinor exchange phase on the same retained row; Bose-Einstein statistics are expected to arise when nested shell braid orbital support is oblated into an effectively 2D coherent channel.
+Until those steps are complete, the claim should be treated as a precise geometry hypothesis: Fermi-Dirac statistics are expected to arise from 3D Noether braid exclusion plus the ordered-frame spinor exchange phase on the same retained row; Bose-Einstein statistics are expected to arise when Family-A orbital support is oblated into an effectively 2D coherent channel.

@@ -72,7 +72,7 @@ not a primitive frame-free photon scalar. The redshift task is to compute the en
 
 ## Composition
 
-The Noether sea is composed of neutral Noether braid assemblies. The best-developed Noether braid case is the nested shell braid, made from three nested electrino:positrino binaries. A Noether braid itself is not elementary; its stability is a downstream assembly result.
+The Noether sea is composed of neutral Noether braid assemblies. The best-developed prescribed case is Family A, made from three indexed electrino:positrino binaries. A Noether braid itself is not elementary; its stability is a downstream assembly result.
 
 This composition statement is a theorem target, not a permission to ignore other possible architrino assemblies. The universe-state inventory may contain many finite assembly classes: bare binaries, transient multi-body reaction corridors, larger $N$-site branches, charged assemblies, photon-channel packets, neutrino-like near-photon assemblies, and strong-field branch variants. Most of those may be physically real without being the ambient Noether sea population. The medium claim is that one neutral assembly class supplies the weak homogeneous background whose coarse variables recover clocks, rulers, signal speeds, pressure, inertia, and effective metric behavior.
 
@@ -108,7 +108,7 @@ $$
 
 The first term enforces weak homogeneous transparency and hides ordinary medium-drift leakage; the second term enforces that clocks, photon transport, matter response, or neutrino-like propagation still consume the same retained Noether sea record. A candidate class that sets the coupling to zero passes neither row: it may become invisible, but it no longer reconstructs the effective observables assigned to the Noether sea.
 
-The nested shell braid-centered Noether sea claim is therefore the statement that the corresponding class $\mathfrak C_{\mathrm{nest}}$ can drive $\mathcal R_{\mathrm{sea\text{-}class}}(\mathfrak C_{\mathrm{nest}})$ below the accepted tolerance while other candidate classes either fail one of the rows or are classified as localized matter, radiation, reaction, or strong-field branches. This is stronger than saying that nested shell braid exclusion volumes are visually plausible. It is a comparative selection problem over assembly classes.
+The Family-A-centered Noether sea claim is therefore the statement that the corresponding class $\mathfrak C_A$ can drive $\mathcal R_{\mathrm{sea\text{-}class}}(\mathfrak C_A)$ below the accepted tolerance while other candidate classes either fail one of the rows or are classified as localized matter, radiation, reaction, or strong-field branches. This is stronger than saying that Family-A exclusion envelopes are visually plausible. It is a comparative selection problem over assembly classes.
 
 The large-scale Noether sea is modeled as a balanced population of complementary Noether braid orientations.
 
@@ -126,7 +126,7 @@ The Noether sea changes how isolated assembly calculations should be read. A tru
 
 At the ontology level, a matter braid embedded in the Noether sea is an open assembly, not an isolated clockwork object. It exchanges angular momentum and causal-wake structure with neighboring neutral braids while preserving its own closure ledger. The exact boundary between assembly-locked and ambient contributions is the channel-dependent [assembly-Noether sea interface diagnostic](../noether-braid/braid-envelope-geometry.md#assembly-noether-sea-interface-diagnostic), $D_{a,X}$; spatial proximity alone does not decide which record owns a contribution.
 
-The current spindle-family evidence sharpens that picture without closing the full medium problem. At measurement level on the prescribed response families, a phase-matched responsive sea supplies forward torque to the inner circulation and cap-directed support, while the tested axially organized responses do not supply the missing equatorial support. At mechanism-estimate level, this motivates an angular-momentum metabolism: the sea feeds an assembly channel, internal wake transport redistributes that input, and outgoing wake returns angular momentum to the sea's orientation order. A self-consistent closed loop has not yet been derived, so the metabolism is a constitutive closure target rather than a retained-branch theorem.
+The current B1 evidence sharpens that picture without closing the full medium problem. At measurement level on the prescribed response records, a phase-matched responsive sea supplies forward torque to the source-record circulation channel and axial support, while the tested axially organized responses do not supply the missing equatorial support. At mechanism-estimate level, this motivates an angular-momentum metabolism: the sea feeds an assembly channel, internal wake transport redistributes that input, and outgoing wake returns angular momentum to the sea's orientation order. A self-consistent closed loop has not yet been derived, so the metabolism is a constitutive closure target rather than a retained-branch theorem.
 
 The static cage result gives the complementary effective picture. When a braid's support deficit selects a polar-covering neighbor cage, the retained object is a braid-plus-cage complex, closer to a molecule in a solvent than to a point object fixed at a lattice site. That comparison is effective framing, not ontology: the underlying objects remain Noether braid assemblies and causal wakes, and the cage still requires its own reciprocal force and stability ledger. Together, the metabolism and cage pictures explain why the Noether sea is part of the assembly's physical boundary conditions rather than decorative background.
 
@@ -416,7 +416,7 @@ $$
 
 The point of this expression is not to add a new quantum postulate at the Noether sea level. It records the same closed-cycle action accounting used in the [Cadence-Scale Retuning Hypothesis](../noether-braid/braid-a1-dynamics.md#cadence-scale-retuning-hypothesis): a cadence state carries energy as action per cycle times cycles per unit absolute time. A single Noether braid may cross a neighboring branch through an $h$-scale ledger step, while a large asynchronous ensemble can produce an apparently smooth drift in the coarse variables.
 
-At the single Noether braid level, each accepted $h$-scale transfer forces the braid to retune its cadence-scale closure. The retuning may appear as a cadence shift, shell-binary radius shift, envelope-scale change, envelope-ratio change, orientation or strain update, or modified coupling to neighboring braids. In the simplest fixed-speed shell-binary approximation,
+At the single Noether braid level, each accepted $h$-scale transfer requires the braid to retune its cadence-scale closure. The retuning may appear as a cadence shift, indexed-binary radius shift, envelope-scale change, envelope-ratio change, orientation or strain update, or modified coupling to neighboring braids. In the simplest fixed-speed indexed-binary approximation,
 
 $$
 v_N\sim 2\pi R_N\nu_N,
@@ -424,7 +424,7 @@ v_N\sim 2\pi R_N\nu_N,
 R_N\nu_N\approx\text{constant}
 $$
 
-so a higher accepted cadence corresponds to a smaller representative scale, while a lower accepted cadence corresponds to a larger representative scale. The full nested shell braid can partition the same transaction across its inner, middle, and outer layers, so this relation is a first estimate rather than a complete closure law.
+so a higher accepted cadence corresponds to a smaller representative scale, while a lower accepted cadence corresponds to a larger representative scale. A full Family-A record can partition the same transaction across its three indexed binaries, so this relation is a first estimate rather than a complete closure law.
 
 At the ensemble level, let $f_N(\nu,\mathbf X,T)$ be the local distribution of Noether braid cadence states. The cadence-space current is the coarse-grained flux of many branchwise retunings:
 
@@ -483,7 +483,7 @@ $$
 
 This pair test assumes the reverse increment returns to the starting cadence, $\Delta\nu_N^{(q,-)}(\nu+\Delta\nu_N^{(q,+)})=-\Delta\nu_N^{(q,+)}(\nu)$, so the second rate is evaluated on the paired reverse branch rather than an unrelated local decrement.
 
-If $\mathcal R_{\mathrm{db}}^{(T)}=0$ after coarse-graining, individual $+h$ and $-h$ ledger transitions may still occur, but the temperature channel produces no net cadence-space drift. If the residual is nonzero, the signed imbalance contributes to $J_\nu^{(T)}$ and therefore biases cadence-scale retuning. In the fixed-speed shell-binary approximation above, positive cadence drift trends toward smaller representative scale, while negative cadence drift trends toward larger representative scale. The full theorem target is to derive the rates $r_\varsigma$, the retuning increments $\Delta\nu_N^{(q,\varsigma)}$, and the layer partition of the same action transaction from a closed nested shell braid branch record rather than treating temperature as an external force.
+If $\mathcal R_{\mathrm{db}}^{(T)}=0$ after coarse-graining, individual $+h$ and $-h$ ledger transitions may still occur, but the temperature channel produces no net cadence-space drift. If the residual is nonzero, the signed imbalance contributes to $J_\nu^{(T)}$ and therefore biases cadence-scale retuning. In the fixed-speed indexed-binary approximation above, positive cadence drift trends toward smaller representative scale, while negative cadence drift trends toward larger representative scale. The full theorem target is to derive the rates $r_\varsigma$, the retuning increments $\Delta\nu_N^{(q,\varsigma)}$, and the indexed-binary partition of the same action transaction from a closed Family-A branch record rather than treating temperature as an external driver.
 
 ### Ambient-Branch Acceptance
 
@@ -969,7 +969,7 @@ Their observed inertia and mass are expected to depend on:
 
 - internal energy storage,
 - shielding depth,
-- exposure of inner binary structure,
+- exposure of declared indexed-binary structure,
 - medium-dressed compliance and inertial response,
 - and how the assembly closes its causal ledger relative to the surrounding Noether sea.
 
@@ -1025,4 +1025,4 @@ This page does not own:
 
 ## Summary Commitment
 
-> **Medium Commitment (Noether sea):** The Noether sea is the emergent physical medium formed by coupled neutral Noether braid assemblies occupying the Euclidean void. It carries density, stress, energy, orientation, flow, and response properties. Effective gravity, clock dilation, signal delay/refraction, inertia, and cosmological behavior are reconstructed from Noether sea dynamics and assembly coupling, not from curvature or expansion of the void itself. Matter assemblies and Noether braid branches are physically meaningful as local retained branches embedded in this medium record; isolated branch calculations are seed charts or limiting cases unless their Noether sea state and nearby-assembly boundary residuals are statused. The claim that nested shell braid-like neutral assemblies dominate the weak homogeneous medium remains a comparative selection target: other architrino assembly classes must be rejected, subordinated, or classified by the same ambient selection residual before Noether sea composition is closed.
+> **Medium Commitment (Noether sea):** The Noether sea is the emergent physical medium formed by coupled neutral Noether braid assemblies occupying the Euclidean void. It carries density, stress, energy, orientation, flow, and response properties. Effective gravity, clock dilation, signal delay/refraction, inertia, and cosmological behavior are reconstructed from Noether sea dynamics and assembly coupling, not from curvature or expansion of the void itself. Matter assemblies and Noether braid branches are physically meaningful as local retained branches embedded in this medium record; isolated branch calculations are seed charts or limiting cases unless their Noether sea state and nearby-assembly boundary residuals are statused. The claim that Family-A neutral assemblies dominate the weak homogeneous medium remains a comparative selection target: other architrino assembly classes must be rejected, subordinated, or classified by the same ambient selection residual before Noether sea composition is closed.

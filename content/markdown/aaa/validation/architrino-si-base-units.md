@@ -81,13 +81,13 @@ In this framework, the candidate substrate-level quantities are:
 - **Causal wake interaction kernel** (inverse-square line-of-action weighting modulated by the transmitter-side acceleration weight $W^{\mathrm{acc}}$ over causal wake surfaces, with regularized coincidence handling)
 
 ### Category C: Assembly Geometry (Emergent but Calculable)
-- **Nested shell braid radius ratios** (inner/middle/outer scales)
+- **A1 indexed radius tuple** $(R_1,R_2,R_3)$, with no radius order encoded by the indices
 - **Maximum curvature binary radius** $r_{\text{max-curv}}$ (where $v \gg c_f$)
 - **Reference Noether braid density** $\rho_{\text{NS},0}$ (the normalization scale for $n(\mathbf X,T)$)
 
 **Everything else** (masses, coupling constants, cosmological parameters) should be **derivable** from these via:
 - Self-hit dynamics (non-Markovian evolution)
-- Nested shell braid stability conditions (quantization)
+- A1 stability conditions (quantization)
 - Noether sea coupling (emergent metric, inertia)
 
 ### Primitive-to-Derived Measure Ladder
@@ -114,24 +114,24 @@ $$
 **Architrino Interpretation:**
 
 The hyperfine transition is caused by:
-- Interaction between the **outer electron's nested shell braid** (magnetic moment from its Middle Binary orbital motion at $v \approx c_f$)
-- The **nuclear spin** (magnetic moment from proton/neutron Middle Binary configurations)
+- Interaction between the **electron assembly's candidate A1 scaffold** and the nucleus; the source record used here assigns the magnetic-moment row to binary 2 at $v_2 \approx c_f$
+- The **nuclear spin** (magnetic moment from proton/neutron records with an explicitly assigned binary-2 channel)
 
 This is an atomic-clock validation target, not a closed spin derivation. The electron magnetic moment, nuclear spin ledger, and hyperfine coupling must inherit [Angular Momentum and Spin](../philosophy-history/theory-bridges/angular-momentum-and-spin.md), [Atomic Structure](../nuclear-atomic/atomic-structure.md), and [Atomic Spectra](../nuclear-atomic/atomic-spectra.md) before $\Delta \nu_{\text{Cs}}$ can be claimed from first principles.
 
 **What we must derive:**
 $$
-\Delta \nu_{\text{Cs}} = f(\text{nested shell braid geometry, } c_f, \epsilon, \text{ Noether sea coupling})
+\Delta \nu_{\text{Cs}} = f(\text{A1 indexed geometry, } c_f, \epsilon, \text{ Noether sea coupling})
 $$
 
 **Challenge:** The frequency is determined by:
-- The Middle Binary's orbital frequency (sets the magnetic moment)
+- The source record's binary-2 orbital frequency (sets the candidate magnetic-moment row)
 - The coupling strength between electron and atomic nucleus (mediated by Noether sea response, with photon exchange as the observer-level channel)
 - The nuclear configuration (133 nucleons = complex assembly)
 
 **Pathway:**
-1. Calculate the electron's Middle Binary orbital frequency $\omega_{\text{MB}}$ for Cs ground state
-2. Calculate the magnetic moment $\mu = \frac{\epsilon \cdot \omega_{\text{MB}} \cdot r_{\text{MB}}}{2}$ (classical analogue)
+1. Calculate the electron source record's binary-2 orbital frequency $\omega_2$ for the Cs ground state
+2. Calculate the magnetic moment $\mu = \frac{\epsilon \cdot \omega_2 \cdot r_2}{2}$ (classical analogue)
 3. Calculate the nuclear spin coupling via Noether sea-mediated potential exchange
 4. Derive the splitting frequency
 
@@ -184,27 +184,27 @@ via the Kibble balance (relating mechanical power to electromagnetic power).
 
 **Architrino Interpretation:**
 
-The Planck constant $h$ is the observer-level benchmark for a quantum of **closed-cycle action**. The $\mathbb{A}\mathbb{A}\mathbb{A}$ derivation target is to recover this scale from nested shell braid geometry and the lower recordable basin-measure scale, not to assume it as a primitive input. In the target reduction, $h$ is related to the radian-normalized **outer-binary rotational action** by $\hbar=h/(2\pi)$:
+The Planck constant $h$ is the observer-level benchmark for a quantum of **closed-cycle action**. The $\mathbb{A}\mathbb{A}\mathbb{A}$ derivation target is to recover this scale from A1 geometry and the lower recordable basin-measure scale, not to assume it as a primitive input. In the illustrative source record, $h$ is related to the radian-normalized **binary-3 rotational action** by $\hbar=h/(2\pi)$:
 $$
-L_{\text{outer}} = n \hbar = n \frac{h}{2\pi}
+L_3 = n \hbar = n \frac{h}{2\pi}
 $$
 
 **Hypothesis:**
 $$
-\hbar \stackrel{\text{hyp.}}{\approx} \epsilon \cdot c_f \cdot r_{\text{outer}},
+\hbar \stackrel{\text{hyp.}}{\approx} \epsilon \cdot c_f \cdot r_3,
 \qquad
 h = 2\pi\hbar
 $$
-where $r_{\text{outer}}$ is the characteristic radius of the outer binary in the hydrogen ground-state assembly. This is an internal nested shell braid action variable, not the observer-level electron orbital angular momentum quantum number $\ell$ of the hydrogen $1s$ state.
+where $r_3$ is the characteristic radius assigned to binary 3 in the hydrogen ground-state source record. This is an internal A1 action variable, not the observer-level electron orbital angular momentum quantum number $\ell$ of the hydrogen $1s$ state. The action role is source-record data, not a meaning of index 3 in the taxonomy.
 
 **Derivation pathway:**
-1. Calculate the outer-binary radius for the hydrogen ground-state assembly (energy minimization + self-hit constraints).
+1. Calculate $r_3$ for the hydrogen ground-state source record (energy minimization + self-hit constraints).
 2. Show that closed-cycle action quantization ($\oint p\,dq = n h$) and the equivalent radian-normalized relation ($I=n\hbar$) arise from geometric quantization of the internal binary orbit.
-3. Relate $h$ and $\hbar$ to $\epsilon$, $c_f$, and nested shell braid geometry.
+3. Relate $h$ and $\hbar$ to $\epsilon$, $c_f$, and indexed A1 geometry.
 
 **Target relation:**
 $$
-h \propto \epsilon \cdot c_f \cdot (\text{geometric factor from nested shell braid})
+h \propto \epsilon \cdot c_f \cdot (\text{geometric factor from A1})
 $$
 
 
@@ -227,7 +227,7 @@ $$
 **What we must explain:**
 - Why only integer multiples of $\epsilon$ appear in stable observer-level electric-charge inventories (charge quantization)
 - Why we observe $0, \pm |e|/3, \pm 2|e|/3, \pm |e|$ in nature, never an isolated $\pm\epsilon$ polarity unit
-- Candidate answer: **confinement or dynamical suppression**. The $\epsilon$ polarity units are bound in nested shell braids (quarks) or assemblies (leptons). Isolated $\pm\epsilon$ polarity units are not observed as stable observer-level particles, so the suppression mechanism remains a closure target rather than a completed infinite-energy theorem.
+- Candidate answer: **confinement or dynamical suppression**. The $\epsilon$ polarity units are bound in A1-based quark scaffolds or in lepton assemblies. Isolated $\pm\epsilon$ polarity units are not observed as stable observer-level particles, so the suppression mechanism remains a closure target rather than a completed infinite-energy theorem.
 
 
 ---
@@ -263,7 +263,7 @@ k_B = f(\text{thermalized ensemble measure, accessible mode energy, } c_f, \thet
 $$
 
 **Pathway:**
-1. Derive the effective assembly mass or accessible mode-energy scale from nested shell braid dynamics.
+1. Derive the effective assembly mass or accessible mode-energy scale from A1 dynamics.
 2. Declare the thermalized ensemble window, retained measure, and Noether sea state.
 3. Show that the accessible velocity or mode distribution recovers the Maxwell-Boltzmann or equipartition limit inside that window.
 4. Relate the distribution width to $k_B T_{\mathrm{temp}}$ while keeping shielded stored energy outside the accessible temperature channel.
@@ -297,7 +297,7 @@ N_A = \frac{1 \text{ g}}{1 \text{ amu}} = \frac{1 \text{ g}}{m_{\text{proton}}/1
 $$
 
 **What we must derive:**
-- The proton mass $m_p$ from nested shell braid geometry (3 quarks = 3 nested shell braids + gluon wake structure + Noether sea coupling)
+- The proton mass $m_p$ from A1-based assembly geometry (3 quarks = 3 A1 scaffolds + gluon wake structure + Noether sea coupling)
 
 
 ---
@@ -318,7 +318,7 @@ This is a **psychophysical constant**, not a physical one. It relates:
 The frequency 540 THz corresponds to green light ($\lambda \approx 555$ nm), where the human eye is most sensitive.
 
 **What we can say:**
-- Photons at 540 THz are planar-mode phase records with $\omega = 2\pi \times 540 \times 10^{12}$ rad/s; assigning that frequency to a specific Middle Binary is still a derivation target.
+- Photons at 540 THz are planar-mode phase records with $\omega = 2\pi \times 540 \times 10^{12}$ rad/s; assigning that frequency to a specific indexed binary is still a derivation target.
 - The human retina's photoreceptors (assemblies themselves) couple resonantly to this frequency
 - The constant 683 lm/W is **arbitrary**—it's a choice of units based on human biology
 
@@ -329,9 +329,9 @@ The frequency 540 THz corresponds to green light ($\lambda \approx 555$ nm), whe
 
 | SI Constant | Status in $\mathbb{A}\mathbb{A}\mathbb{A}$ | Derivation Pathway |
 |-------------|-------------------------------|-------------------|
-| $\Delta \nu_{\text{Cs}}$ | **Derivation target (open)** | Hyperfine splitting from middle-binary magnetic moments |
+| $\Delta \nu_{\text{Cs}}$ | **Derivation target (open)** | Hyperfine splitting from source-record binary-2 magnetic-moment rows |
 | $c$ | **Operational limit near $c_f$** | Low-gradient photon-channel speed; deviations are encoded by $\chi_\gamma$ |
-| $h$ | **Derivation target (open)** | Closed-cycle action quantization; equivalent outer-binary rotational-action increments in units of $\hbar$; lower recordable basin-measure scale after quantum closure |
+| $h$ | **Derivation target (open)** | Closed-cycle action quantization; source-record binary-3 rotational-action increments in units of $\hbar$; lower recordable basin-measure scale after quantum closure |
 | $e$ | **Recovered observer benchmark** | $|e|=6\epsilon$ after choosing the observer-level electric bookkeeping normalization |
 | $k_B$ | **Derivation target (open)** | Noether sea thermal equilibrium + assembly mass |
 | $N_A$ | **Emergent** | Follows from proton mass derivation |
@@ -346,16 +346,16 @@ If the $\mathbb{A}\mathbb{A}\mathbb{A}$ program succeeds, we can **replace** the
 ### Candidate Substrate Inputs (Architrino SI)
 1. **Architrino polarity-unit magnitude** $\epsilon=|e|/6$ (with observer charge benchmark $|e|=6\epsilon$)
 2. **Field speed** $c_f$ (replaces $c$)
-3. **Nested shell braid geometry parameter** (e.g., outer radius $r_{\text{outer}}$ or max-curvature radius) (replaces $h$)
+3. **A1 geometry parameter** (for example, source-record radius $r_3$ or the maximum-curvature radius) (replaces $h$)
 4. **Neutral Noether braid assembly mass** $m_{\text{NS}}$ (replaces $k_B$ when combined with $c_f$)
 
 **Everything else is intended to be derived after closure:**
 - $|e| = 6\epsilon$
 - $c_{\text{eff}}\to c_f$ in the low-gradient Noether sea limit
-- $h \stackrel{\text{target}}{=} 2\pi \epsilon \cdot c_f \cdot r_{\text{outer}}$ after the action-closure derivation, not by definition
+- $h \stackrel{\text{target}}{=} 2\pi \epsilon \cdot c_f \cdot r_3$ for the declared source record after the action-closure derivation, not by definition
 - $k_B = f(m_{\text{NS}}, c_f)$
 - $N_A = f(m_p / m_{\text{NS}})$
-- $\Delta \nu_{\text{Cs}} = f(\text{Cs nested shell braid geometry})$
+- $\Delta \nu_{\text{Cs}} = f(\text{Cs A1 geometry})$
 
 **Result target:** If the closure program succeeds, the seven SI constants reduce to **3-4 fundamental parameters**, with the rest emergent.
 
@@ -363,9 +363,9 @@ If the $\mathbb{A}\mathbb{A}\mathbb{A}$ program succeeds, we can **replace** the
 
 
 ### Tier 1 (Must Answer)
-1. **Derive $h$ from nested shell braid geometry**
-   - Show that Outer Binary quantization yields $L = n\hbar$
-   - Calculate $r_{\text{outer}}$ for hydrogen 1s
+1. **Derive $h$ from A1 geometry**
+   - Show that the declared binary-3 action row yields $L_3 = n\hbar$
+   - Calculate $r_3$ for the hydrogen 1s source record
    - Predict $h$ and compare to SI value
 
 2. **Confirm $c = c_f$ within bounds**
@@ -389,7 +389,7 @@ If the $\mathbb{A}\mathbb{A}\mathbb{A}$ program succeeds, we can **replace** the
    - Predict $k_B$ value
 
 ### Tier 3 (Refinement)
-6. **Map all SM particles to nested shell braid recipes**
+6. **Map all SM particles to family/member assembly recipes**
    - Create "particle cookbook" (analogous to chemical formulas)
    - Show charge, spin, statistics all emerge from geometry
 

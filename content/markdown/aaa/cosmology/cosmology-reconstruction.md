@@ -216,7 +216,7 @@ The short version is: redshift is a receipt, not a ruler by itself. Lambda-CDM r
 
 The universe-level container does not stretch in $\mathbb{A}\mathbb{A}\mathbb{A}$. The Euclidean void remains the fixed setting. The Noether sea inside it can still evolve.
 
-That distinction matters because Noether sea assemblies can change their radii, frequencies, coupling stiffness, and local density as they exchange energy with surrounding structures. A relaxing Noether sea region may contain assemblies whose outer-binary radii grow while their characteristic frequencies decrease. That can produce an expansion-like redshift trend without metric expansion of the void.
+That distinction matters because Noether sea assemblies can change their radii, frequencies, coupling stiffness, and local density as they exchange energy with surrounding structures. A relaxing Noether sea region may contain assemblies whose indexed binary radii grow while their characteristic frequencies decrease. That can produce an expansion-like redshift trend without metric expansion of the void.
 
 The cosmos is also not one uniform clock. A galaxy cluster, a low-density void, a filament, a young star-forming region, a strong-field environment, and the line of sight between them can have different Noether sea histories. Many subassemblies can have repeatable motion. Repeatable motion gives phase histories. A photon-channel packet crossing the cosmos samples many such histories before it is received.
 

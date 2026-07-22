@@ -40,8 +40,8 @@ The bridge separates four levels:
 | Level | Role |
 | --- | --- |
 | Substrate ontology | Architrinos evolve in the Euclidean void under absolute time and delayed causal wakes. |
-| Assembly dynamics | A Noether braid must close inner, middle, and outer binary return cycles through a causal-root ledger. |
-| Geometry projection | The outer-binary exclusion envelope exposes an oblate spheroidal envelope with shape ratio $\xi=R_{\parallel}/R_{\perp}$. |
+| Assembly dynamics | A Noether braid must close all three indexed binary return cycles through one causal-root ledger. |
+| Geometry projection | The assembly-level exclusion envelope exposes an oblate spheroidal envelope with shape ratio $\xi=R_{\parallel}/R_{\perp}$. |
 | Observer law | Physical Observers infer Lorentz contraction, clock dilation, and two-way signal invariance after branch averaging and Noether sea dressing. |
 
 This level separation is essential. The Lorentz equation is not being promoted to substrate ontology. It is an observer-level envelope that must be implemented by closed assembly dynamics.
@@ -199,7 +199,7 @@ t_+
 $$
 so $t_+\to\infty$ as $\beta_\star\to1$. The rear leg tends to zero, but the closed period diverges. Thus the clock does not diverge because the envelope is large; it diverges because the forward causal update has almost no catch-up margin left.
 
-The outer binary is special because it supplies the leading visible envelope. It is not sufficient by itself. A Lorentz-admissible branch must also retune the hidden inner and middle ledgers so that clock closure, action conservation, and leakage bounds are solved by the same branch.
+The visible assembly envelope is not supplied by one taxonomy-designated binary. A Lorentz-admissible branch must retune all three indexed binary ledgers so that the geometry projection, clock closure, action conservation, and leakage bounds are solved by the same branch.
 
 ## Simultaneity From the Leg Difference
 
@@ -277,17 +277,14 @@ for every branch class admitted as stable clock/ruler material.
 
 This is the precise sense in which the Lorentz equation is quantized. The smooth curve remains the observer-level envelope. The Noether braid implementation is discrete because each accepted material realization must be a closed causal-root ledger class.
 
-## All-Layer Closure Burden
+## All-Binary Closure Burden
 
-The full branch state is not just the outer oblate spheroidal envelope. For branch $q$, use the all-layer state
+The full branch state is not just the visible oblate spheroidal envelope. For branch $q$, use the indexed-binary state
 $$
 B_q(v)
 =
 \left(
-R_I,R_M,R_O;\,
-\omega_I,\omega_M,\omega_O;\,
-s_I,s_M,s_O;\,
-\mathbf{A}_I,\mathbf{A}_M,\mathbf{A}_O;\,
+\left(R_a,\omega_a,s_a,\mathbf{A}_a\right)_{a=1}^{3};\,
 \mathcal{L}_{\mathrm{root}};\,
 \mathcal{L}_{\mathrm{wake}}
 \right)_q
@@ -298,11 +295,11 @@ B_q(v)
 \longrightarrow
 B_{q'}(v+\Delta v)
 $$
-For each binary layer $\ell\in\{I,M,O\}$, the branch ledger can expose a layer-level phase and action row:
+For each persistent binary index $a\in\{1,2,3\}$, the branch ledger can expose a binary-level phase and action row:
 $$
-\Delta\phi_\ell=2\pi n_\ell
+\Delta\phi_a=2\pi n_a
 \qquad
-n_\ell\in\mathbb{Z}
+n_a\in\mathbb{Z}
 $$
 $$
 \Delta A_\ell=n_\ell h+\epsilon_\ell^{\mathrm{leak}}
@@ -322,7 +319,7 @@ $$
 and the all-layer energy ledger
 $$
 \sum_{\ell\in\{I,M,O\}}
-\int_{B_q\to B_{q'}}\omega_\ell\,dI_\ell
+\int_{B_q\to B_{q'}}\omega_a\,dI_a
 +
 \Delta E_{\text{wake}}
 =
@@ -332,14 +329,14 @@ The geometry projection is then the visible part of the sequence
 $$
 \text{one-}h\text{ action transaction}
 \longrightarrow
-\text{nested shell braid branch update}
+\text{Family-A branch update}
 \longrightarrow
-\text{outer-envelope oblation}
+\text{assembly-envelope oblation}
 \longrightarrow
 \text{effective }\gamma_\star(v)
 $$
 
-This sequence is the main reason the term `return-cycle` is preferred. The breakthrough is not simply that the outer envelope becomes oblate. The stronger claim is that the oblate spheroidal envelope is the visible projection of a closed all-layer branch ledger.
+This sequence is the main reason the term `return-cycle` is preferred. The breakthrough is not simply that the assembly envelope becomes oblate. The stronger claim is that the oblate spheroidal envelope is the visible projection of a closed all-binary branch ledger.
 
 ## Prediction And Failure Mode
 

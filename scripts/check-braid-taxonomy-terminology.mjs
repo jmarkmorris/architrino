@@ -92,14 +92,14 @@ export const TERMINOLOGY_RULES = [
   {
     id: "imo-coordinate-symbol",
     label: "I/M/O coordinate symbol",
-    pattern: /\b(?:R|r|f|v|w)_(?:\{?[IMO]\}?)\b|\\omega_(?:\{?[IMO]\}?)/g,
+    pattern: /\b(?:R|r|f|v|w)_(?:[IMO]\b|\{[IMO]\})|\\omega_(?:[IMO]\b|\{[IMO]\})/g,
     replacement: "use a persistent indexed coordinate such as R_a or f_a",
   },
   {
     id: "fixed-derived-role",
     label: "fixed positional dynamical role",
     pattern:
-      /\binner[ -]+self-hit\b|\bmiddle[ -]+(?:hinge|fulcrum|field-speed)\b|\bouter[ -]+(?:boundary|exterior-coupling)\b/gi,
+      /\binner[ -]+self-hit\b|\bmiddle[ -]+(?:hinge|fulcrum|field-speed)\b|\bouter[ -]+exterior-coupling\b/gi,
     replacement:
       "name the persistent binary index and grade the role as a branch-derived diagnostic",
   },
