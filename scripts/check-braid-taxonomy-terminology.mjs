@@ -22,14 +22,39 @@ export const MIGRATED_SCAN_TARGETS = [
 
 const CORPUS_SCAN_TARGETS = ["content/markdown/aaa"];
 
+export const RETIRED_BRAID_NAME_TOKENS = Object.freeze([
+  "spindle",
+  "drum",
+  "shell",
+  "nested",
+  "cap",
+  "uniaxial",
+  "triaxial",
+]);
+
+const RETIRED_BRAID_NAME_PATTERN = RETIRED_BRAID_NAME_TOKENS.join("|");
+const BRAID_NAME_CONTEXT_PATTERN = "braid|family|member|candidate|variant";
+
 export const TERMINOLOGY_RULES = [
   {
     id: "legacy-named-braid-family",
     label: "legacy named braid family",
-    pattern:
-      /\b(?:nested[ -]+shell|symmetric[ -]+shell)[ -]+braid\b|\b(?:spindle|shell|drum|cap)[ -]+(?:braid|family)\b/gi,
+    pattern: new RegExp(
+      `\\b(?:nested[ -]+shell|symmetric[ -]+shell)(?:[ -]+(?:${BRAID_NAME_CONTEXT_PATTERN}))?\\b|` +
+        `\\b(?:${RETIRED_BRAID_NAME_PATTERN})[ -]+(?:${BRAID_NAME_CONTEXT_PATTERN})\\b|` +
+        `\\b(?:${BRAID_NAME_CONTEXT_PATTERN})[ -]+(?:${RETIRED_BRAID_NAME_PATTERN})\\b`,
+      "gi",
+    ),
     replacement:
       "use the applicable family/member identifier, such as A1, A2, B1, or C1",
+  },
+  {
+    id: "legacy-braid-name-token",
+    label: "older braid-name token requiring contextual review",
+    pattern: new RegExp(`(?<!\\\\)\\b(?:${RETIRED_BRAID_NAME_PATTERN})\\b`, "gi"),
+    replacement:
+      "use a family/member identifier when the token names a braid geometry; retain it only when the local non-taxonomy meaning is explicit",
+    auditOnly: true,
   },
   {
     id: "positional-binary-role",
@@ -114,7 +139,11 @@ const REQUIRED_DEFINITIONS = [
   },
 ];
 
-export function scanTextForBraidTaxonomyTerminology(source, relativePath = "<memory>") {
+export function scanTextForBraidTaxonomyTerminology(
+  source,
+  relativePath = "<memory>",
+  { includeAuditOnly = true } = {},
+) {
   const findings = [];
   const lines = source.split(/\r?\n/);
   let inFence = false;
@@ -133,9 +162,23 @@ export function scanTextForBraidTaxonomyTerminology(source, relativePath = "<mem
       continue;
     }
 
+    const strictMatchRanges = [];
     for (const rule of TERMINOLOGY_RULES) {
+      if (rule.auditOnly && !includeAuditOnly) {
+        continue;
+      }
       rule.pattern.lastIndex = 0;
       for (const match of prose.matchAll(rule.pattern)) {
+        const matchStart = match.index;
+        const matchEnd = matchStart + match[0].length;
+        if (
+          rule.auditOnly &&
+          strictMatchRanges.some(
+            ([strictStart, strictEnd]) => matchStart < strictEnd && matchEnd > strictStart,
+          )
+        ) {
+          continue;
+        }
         findings.push({
           relativePath,
           lineNumber: lineIndex + 1,
@@ -145,6 +188,9 @@ export function scanTextForBraidTaxonomyTerminology(source, relativePath = "<mem
           match: match[0],
           excerpt: rawLine.trim(),
         });
+        if (!rule.auditOnly) {
+          strictMatchRanges.push([matchStart, matchEnd]);
+        }
       }
     }
   }
@@ -156,6 +202,7 @@ export function scanBraidTaxonomyTerminology({
   rootDir = ROOT_DIR,
   scope = "migrated",
   checkRequiredDefinitions = scope === "migrated",
+  includeAuditOnly = false,
 } = {}) {
   if (!new Set(["migrated", "corpus"]).has(scope)) {
     throw new Error(`unsupported braid-terminology scan scope: ${scope}`);
@@ -167,7 +214,11 @@ export function scanBraidTaxonomyTerminology({
 
   for (const relativePath of files) {
     const source = fs.readFileSync(path.join(rootDir, relativePath), "utf8");
-    findings.push(...scanTextForBraidTaxonomyTerminology(source, relativePath));
+    findings.push(
+      ...scanTextForBraidTaxonomyTerminology(source, relativePath, {
+        includeAuditOnly,
+      }),
+    );
   }
 
   if (checkRequiredDefinitions) {
@@ -262,14 +313,17 @@ function runCli() {
   const args = new Set(process.argv.slice(2));
   if (args.has("--help")) {
     console.log("Usage: node scripts/check-braid-taxonomy-terminology.mjs [--scope migrated|corpus] [--report]");
-    console.log("Default: strict migrated-scope regression check. Use --scope corpus --report to inventory all remaining stragglers without failing.");
+    console.log("Default: strict migrated-scope regression check. Use --scope corpus --report to inventory all remaining stragglers, including standalone older braid-name tokens, without failing.");
     return;
   }
 
   const scopeIndex = process.argv.indexOf("--scope");
   const scope = scopeIndex >= 0 ? process.argv[scopeIndex + 1] : "migrated";
   const reportOnly = args.has("--report");
-  const result = scanBraidTaxonomyTerminology({ scope });
+  const result = scanBraidTaxonomyTerminology({
+    scope,
+    includeAuditOnly: reportOnly,
+  });
 
   if (result.findings.length > 0) {
     console.error(

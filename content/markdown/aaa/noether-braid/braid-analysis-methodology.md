@@ -343,6 +343,47 @@ The prescribed-record analytical grade is fail-closed and occurs in this order:
 
 A prescribed chart receives only an analytical prescribed-record grade. Stability and energy are outside the method and outside its score.
 
+### Initial Prescribed-Candidate Cohort
+
+The initial comparison cohort contains four prescribed instantiations of `B1`. These candidate names describe their taxonomy coordinates; they do not create additional taxonomy members. All four use one common midpoint, the common axis $\hat{\mathbf n}_B=(0,0,1)$, group translation speed $s_{\mathrm{grp}}=0$, radii
+
+$$
+(R_1,R_2,R_3)=(0.22,0.32,0.44),
+$$
+
+common frequency $f=0.25$, and phases $(\phi_1,\phi_2,\phi_3)=(0,2\pi/3,4\pi/3)$. Their distinguishing coordinates are:
+
+| Candidate name | $(h_1,h_2,h_3)$ | $(\rho_1,\rho_2,\rho_3)$ | Coordinate status |
+| --- | --- | --- | --- |
+| `B1 interior-coordinate reference` | $(0.075244432,0.205692035,0.398775426)$ | $(0.206732377,0.245134222,0.185952035)$ | Interior for all three binaries |
+| `B1 high-axial-fraction interior` | $(0.206732377,0.315138481,0.438325667)$ | $(0.075244432,0.055567417,0.038348527)$ | Interior for all three binaries, with $h_a/R_a$ near the axial boundary |
+| `B1 all-equatorial boundary` | $(0,0,0)$ | $(0.22,0.32,0.44)$ | $h_a=0$ for all three binaries |
+| `B1 all-axial boundary` | $(0.22,0.32,0.44)$ | $(0,0,0)$ | $\rho_a=0$ for all three binaries |
+
+The derived $h_a$ and $\rho_a$ values are shown to nine decimal places for identification; they are not analytical results. The complete source record $S$ remains authoritative for exact coordinates, endpoint identities, and polarities. Every scored row also depends on one common analysis protocol $P$.
+
+### Candidate Comparison Table
+
+The comparison table uses candidates as columns and metrics as rows. `Pending` means that the candidate has not yet been evaluated under the shared source-and-protocol declaration printed with the table. `NA` is reserved for a measure whose definition does not apply; it must not be used merely because a value has not been computed.
+
+| Metric or gate | `B1 interior-coordinate reference` | `B1 high-axial-fraction interior` | `B1 all-equatorial boundary` | `B1 all-axial boundary` |
+| --- | --- | --- | --- | --- |
+| Source-record hash | Pending | Pending | Pending | Pending |
+| Common protocol hash | Pending | Pending | Pending | Pending |
+| Prescribed-period closure | Pending | Pending | Pending | Pending |
+| Minimum separation $d_{\min}$ | Pending | Pending | Pending | Pending |
+| Root-transversality margin $\min|D_t|$ | Pending | Pending | Pending | Pending |
+| Root-topology completeness | Pending | Pending | Pending | Pending |
+| Numerical convergence | Pending | Pending | Pending | Pending |
+| External-exposure fraction $\eta_{\mathrm{ext}}(R)$ | Pending | Pending | Pending | Pending |
+| Anisotropy $\epsilon_{\mathrm{aniso}}(R)$ | Pending | Pending | Pending | Pending |
+| Peak external response $A_{\mathrm{ext,peak}}(R)$ | Pending | Pending | Pending | Pending |
+| Peak signed-cancellation ratio $\chi_{\mathcal W,\mathrm{peak}}(R)$ | Pending | Pending | Pending | Pending |
+| Source-parameter sensitivity $S_{\boldsymbol\theta}$ | Pending | Pending | Pending | Pending |
+| Dominance status | Pending | Pending | Pending | Pending |
+
+Each published table must state the enclosing radius or radius sequence, surface and time reductions, probe polarity, normalization, tolerance, and uncertainty attached to every scalar row. A cell may link to a fuller ledger when a scalar would hide root transitions, angular structure, or phase dependence.
+
 Among prescribed candidates evaluated under the same protocol, report an analytical objective vector rather than hiding choices inside one number. One suitable starting vector is
 
 $$

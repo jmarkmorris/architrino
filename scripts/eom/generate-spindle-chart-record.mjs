@@ -10,6 +10,9 @@
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import {
+  EXACT_PRESCRIBED_SOURCE_RECORD_SCHEMA,
+} from "../../src/prescribed-path-analysis/ExactPrescribedSourceWake.mjs";
 
 export const SPINDLE_CHART_SPEC_SCHEMA = "spindle-braid-chart-spec.v0";
 export const SPINDLE_CHART_EMITTER_ID = "prescribed-spindle-chart-record-emitter.v0";
@@ -244,6 +247,56 @@ export function evaluateSpindleSite(spec, layerIndex, endpointIndex, time) {
     axialHeight: sign * axialHeight,
     carrierSpeed: Math.abs(spec.angularFrequency) * transverseRadius,
   });
+}
+
+export function createSpindleExactSourceRecord(rawSpec, options = {}) {
+  const spec = validateSpindleChartSpec(rawSpec);
+  const sources = [];
+  spec.layers.forEach((layer) => {
+    const transverseRadius = layer.radius * Math.cos(layer.capAngle);
+    const axialHeight = layer.radius * Math.sin(layer.capAngle);
+    layer.worldlineIds.forEach((worldlineId, endpointIndex) => {
+      const sign = endpointIndex === 0 ? 1 : -1;
+      const charge = endpointIndex === 0
+        ? layer.polarityAssignment
+        : -layer.polarityAssignment;
+      sources.push({
+        id: worldlineId,
+        charge,
+        trajectory: {
+          kind: "moving-circular.v1",
+          epochTime: 0,
+          centerAtEpoch: objectVector(add(
+            spec.responseCenter,
+            scale(spec.frame.axis, sign * axialHeight),
+          )),
+          centerVelocity: objectVector(scale(spec.frame.axis, spec.axialDriftSpeed)),
+          radiusU: objectVector(scale(spec.frame.e1, sign * transverseRadius)),
+          radiusV: objectVector(scale(spec.frame.e2, sign * transverseRadius)),
+          angularVelocity: spec.angularFrequency,
+          angularAcceleration: 0,
+          phaseAtEpoch: layer.phase,
+        },
+      });
+    });
+  });
+  return {
+    schema: EXACT_PRESCRIBED_SOURCE_RECORD_SCHEMA,
+    sourceId: spec.specId,
+    sourceSchema: spec.schema,
+    sourceHash: options.sourceHash ?? null,
+    generatingSpec: options.generatingSpec ?? null,
+    engineId: PRESCRIBED_GEOMETRY_ENGINE_ID,
+    engineVersion: SPINDLE_CHART_EMITTER_ID,
+    claimGrade: spec.claimGrade,
+    evidenceStatus: spec.evidenceStatus,
+    taxonomy: Object.freeze({ ...spec.taxonomy }),
+    history: {
+      start: spec.recordInterval.start,
+      end: spec.recordInterval.end,
+    },
+    sources,
+  };
 }
 
 export function generateSpindleChartRecord(rawSpec, options = {}) {
