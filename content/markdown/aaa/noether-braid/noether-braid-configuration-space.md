@@ -12,7 +12,7 @@ This distinction prevents premature naming. A three-row branch is valuable becau
 
 This chapter owns the rank-three angular-momentum-frame search variables: unordered layer labels, angular-momentum two-form rows, the plane-frame determinant, group velocity, energy/frequency/speed/radius ledgers, role assignment, and permutation accounting. It is the place to ask whether a candidate branch supplies three retained angular-momentum rows with enough conditioning to form a volumetric internal frame.
 
-It does not exhaust the full Noether braid class, certify A1 retention, or make $I{:}M{:}O$, $4{:}2{:}1$, iso-frequency, or field-speed hinge assumptions the default. Those are specializations that must declare their member definition and same-record branch rows before any analysis label is attached.
+It does not exhaust the full Noether braid class, certify A1 retention, or make $4{:}2{:}1$, iso-frequency, or field-speed-hinge assumptions the default. Those are specializations that must declare their member definition and same-record branch rows before any analysis label is attached.
 
 ## Evidence-Level Terms
 
@@ -120,7 +120,7 @@ When $D_{\mathrm{plane}}=0$ or the branch has no retained three-row frame, hande
 
 ## Speed, Hinge, And Frequency Families
 
-The speed regime records how retained speed rows relate to the field speed $c_f$. Sub-field-speed rows satisfy speeds below the local field-speed hinge; field-speed rows sit at the transition scale; super-field-speed rows enter regimes where delayed self-interaction can become available. In the A1 $I{:}M{:}O$ aliases, these rows are assigned only after the retained branch supplies the role map.
+The speed regime records how retained speed rows relate to the field speed $c_f$. Sub-field-speed rows satisfy speeds below the local field-speed hinge; field-speed rows sit at the transition scale; super-field-speed rows enter regimes where delayed self-interaction can become available. These diagnostics remain attached to the persistent indices $a\in\{1,2,3\}$; a later branch may distinguish one or more indices without renaming them.
 
 Field-speed hinge occupancy is a separate axis. It asks which row, if any, operates within a declared tolerance of $c_f$, and it must say which speed statistic is being tested: transverse carrier speed, orbital/circulation speed, or another branch-declared component. A hinge row is not automatically a self-hit row. It is the speed-regime condition at which the branch can transition from the partner-only regime toward a ledger with both partner-hit and self-hit access, provided the same-transmitter causal-root ledger and transversality rows also close.
 
@@ -137,7 +137,7 @@ The frequency-ratio family records return or winding-frequency relations. The ma
 | --- | --- |
 | iso-frequency `1:1:1` | Candidate family with common return rate across the three retained rows. The rigid common-axis member is [B1](braid-family-b.md#b1). |
 | integer-ratio `3:2:1` | Candidate family with integer return rates but no repeated-doubling assumption. |
-| doubling-frequency $4{:}2{:}1$ | The A1.3 member, in which each inward binary frequency doubles the next outer binary frequency, studied in [A1.3 Doubling-Frequency Resonance Lock](braid-a1-3-doubling-frequency-lock.md). |
+| doubling-frequency $4{:}2{:}1$ | The A1.3 member with indexed ratio $f_1:f_2:f_3=4:2:1$, studied in [A1.3 Doubling-Frequency Resonance Lock](braid-a1-3-doubling-frequency-lock.md). The ratio does not imply a radius order. |
 
 Frequency-ratio labels are candidate-family labels until the phase-return degree, causal-root ledger, finite-memory gluing, and stability rows close on the same branch. Hinge labels require their own speed and causal-root rows; they are not frequency-ratio names.
 
@@ -205,7 +205,7 @@ A six-body branch belongs to this sublocus only when its retained angular-moment
 
 ## General Branch State
 
-Use generic layer labels $a\in\{1,2,3\}$ before assigning nested `I:M:O` roles. These labels are bookkeeping labels only. They do not imply an ordering of frequency, radius, energy, speed, phase, plane orientation, or root-ledger complexity. The minimal branch record for this sublocus is
+Use the persistent binary indices $a\in\{1,2,3\}$. These labels are bookkeeping identities only. They do not imply an ordering of frequency, radius, energy, speed, phase, plane orientation, or root-ledger complexity, and they are not replaced when two coordinate values cross. The minimal branch record for this sublocus is
 $$
 \mathcal{T}_{3B}
 =
@@ -370,7 +370,7 @@ while the same internal angular-momentum ledger remains retained. Thus the retai
 
 ## Unordered Layer Semantics
 
-The search must not assume that one binary is inner, middle, outer, high-frequency, low-frequency, high-energy, low-energy, fast, slow, or geometrically privileged before the retained branch supplies that role. The raw search domain is therefore the labeled but unordered product
+The search must not assume that one binary is high-frequency, low-frequency, high-energy, low-energy, fast, slow, boundary-leading, field-speed-carrying, or otherwise geometrically privileged before the retained branch supplies that diagnostic. The raw search domain is therefore the indexed but unsorted product
 $$
 \widetilde{\mathcal C}_{3B}
 =
@@ -460,7 +460,7 @@ $$
 This is the layerwise specialization of the [signed causal-root complex](../dynamics/master-equation.md#signed-causal-root-complex): simple same-transmitter roots are split by the sign of their causal-root Jacobian before the layer contributes to assembly topological charge.
 A branch with one super-field-speed layer can carry a different assembly topological charge structure from a branch with two or three such layers, because the self-hit ledgers and signed degrees are layer-dependent. This is another reason the search must preserve the full unordered speed tuple $s_1:s_2:s_3$ rather than collapsing immediately to a preferred hierarchy.
 
-Family B realizes this decoupling directly. In [B1](braid-family-b.md#b1), each binary has internal speed $s_a=2\pi f\rho_a$, so the speed tuple is independent of the total-radius ordering when the transverse orbit radii are chosen independently. The equatorial and axial cases are coordinate boundaries of B1. Its harmonic-matching hypothesis and discrete-symmetry derivations are stated in [B1 Hypotheses and Discrete Symmetry](braid-b1-symmetry.md). No family ordering is asserted.
+Family B realizes this decoupling directly. In [B1](braid-family-b.md#b1), each binary has internal speed $s_a=2\pi f\rho_a$, so the speed tuple is independent of the total-radius values when the transverse orbit radii are chosen independently. The equatorial and axial cases are coordinate boundaries of B1. Its harmonic-matching hypothesis and discrete-symmetry derivations are stated in [B1 Hypotheses and Discrete Symmetry](braid-b1-symmetry.md). No family ordering is asserted.
 
 A terminology boundary applies throughout this section: the field-speed value $s_a=c_f$ is a **coordinate locus** of the configuration space — the boundary where the same-transmitter root inventory changes — and nothing here asserts that any dynamical mechanism holds a layer at that locus. Occupancy of the locus is a chart label, not an attractor claim.
 
@@ -500,44 +500,45 @@ The phrase "periodic table of the Noether braid" names the classification progra
 
 The classification is topological only where the entries are invariant under branch-preserving deformation. It is dynamical where the entries depend on energy balance, phase locking, sea response, and return-map stability. A promoted table must therefore carry both topological labels and dynamical margins.
 
-## Accessory-Architrino Capture
+## Accessory Configuration Capture
 
-After a stable rank-three braid has been retained, the next search level asks whether ordinary architrinos can become bound to that braid without destroying the braid ledger. In this search-stage sense, an **accessory architrino** is not a new ontological species. It is an architrino whose trajectory becomes coupled to an already retained braid branch.
+After a stable braid has been retained, the next search level asks whether an **Accessory Configuration** can couple to that braid without destroying the braid ledger. An Accessory Configuration is exactly six additional architrinos, each with a declared electrino or positrino polarity, that are associated with the braid but are not members of its neutral six-architrino core. Their positions may be inside, across, or outside the braid envelope. The name does not prescribe an axial, polar, planar, or surrounding placement.
 
-For a braid branch $B$, define a capture site as a region of phase-position-history space where an added architrino can acquire a bounded return ledger:
+For a braid branch $B$, define the admissible configuration set in the six-site phase-position-history space by
+
 $$
-\mathcal{C}_{\mathrm{cap}}(B)
+\mathcal{C}_{\mathrm{acc}}(B)
 =
 \left\{
-(\mathbf X,\mathbf V,q,\phi):
-\mathrm{Retain}_{\mathrm{acc}}(B;\mathbf X,\mathbf V,q,\phi)=1
+\left(
+\mathbf X_p,\mathbf V_p,\tau_p,\phi_p
+\right)_{p=1}^{6}:
+\mathrm{Retain}_{\mathrm{acc}}
+\!\left[
+B;\left(\mathbf X_p,\mathbf V_p,\tau_p,\phi_p\right)_{p=1}^{6}
+\right]
+=1
 \right\}.
 $$
-The capture predicate must use the same causal-root, action, energy, and return-map conventions as the braid branch. A site is not merely a low potential region. It must preserve the braid ledger while giving the added architrino a persistent delayed-return row, finite energy exchange, and bounded phase drift.
 
-Topologically, capture preserves the assembly topological charge of the braid branch while augmenting it with an accessory row. If $B_{\mathrm{braid}}$ has assembly topological charge $[\mathfrak B_{\mathrm{braid}}]_{\mathrm{top}}$, then an admissible captured branch should have
-$$
-[\mathfrak B_{\mathrm{braid}}\cup\mathrm{acc}]_{\mathrm{top}}
-=
-[\mathfrak B_{\mathrm{braid}}]_{\mathrm{top}}
-+\Delta_{\mathrm{acc}},
-$$
-where $\Delta_{\mathrm{acc}}$ is supplied by the accessory row's own causal-root and return ledger while the braid entries are unchanged. If the braid values of $N_s$, $M_p$, $c_1$, signed degree, or phase-return data change, the event is not capture in this sense; it is a braid reconfiguration through a fold, reconnection, or branch surgery.
+The retention predicate must use the same causal-root, action, energy, and return-map conventions as the braid branch. It must preserve the braid ledger while giving all six accessory architrinos bounded delayed-return rows, finite energy exchange, and bounded phase drift. Six visually plausible positions are not an Accessory Configuration branch certificate.
 
-The architectural question is therefore:
+Topologically, admissible capture preserves the braid's assembly topological charge while augmenting the complete assembly record with a six-site accessory ledger. If the core values of $N_s$, $M_p$, $c_1$, signed degree, or phase-return data change, the event is not capture in this sense; it is a braid reconfiguration through a fold, reconnection, or branch surgery.
+
+The architectural question is therefore
+
 $$
 B
 \longrightarrow
 \left(
-\mathcal{C}_{\mathrm{cap}}(B),
-\#\mathrm{captured},
-\mathrm{capture\ pattern},
-\Delta E_{\mathrm{capture}}
+\mathcal{C}_{\mathrm{acc}}(B),
+(\tau_p)_{p=1}^{6},
+\mathrm{placement\ record},
+\Delta E_{\mathrm{acc}}
 \right).
 $$
-This gives the next level of search after core rank-three stability: how many accessory architrinos can couple to the retained branch, which phase windows and polar regions they occupy, and how their capture changes the energy ledger. If the captured population becomes the six-site fermion organization, the canonical language is axial architrino, axial layer, polar site, polar dyad, and axial inventory.
 
-The six-site axial-layer target should therefore be read as a derived capture pattern, not as an assumed geometry of the core. The search question is whether there is a maximal accessory population whose capture preserves $[\mathfrak B_{\mathrm{core}}]_{\mathrm{top}}$ and organizes into a protected axial inventory. The arrangement may be axial, polar-dyad-based, planar-degenerate, or another retained capture architecture until the branch certificate decides it.
+An axial six-site organization is one possible derived Accessory Configuration, not its definition. The retained calculation must decide the polarity assignment, placement, and path geometry.
 
 ## Frame Orthogonality And Framing Anisotropy
 
@@ -595,7 +596,7 @@ while degeneration toward $D_{\mathrm{plane}}=0$ may produce large framing aniso
 
 ## Relation To The Doubling-frequency Chapter
 
-[A1.3 Doubling-Frequency Resonance Lock](braid-a1-3-doubling-frequency-lock.md) studies one restricted member inside this broader configuration space. It asks whether the A1 $I{:}M{:}O$ frequency triplet, especially the A1.3 $4{:}2{:}1$ member, can close as an integer phase-bundle lock with a stable return map and controlled caustic behavior.
+[A1.3 Doubling-Frequency Resonance Lock](braid-a1-3-doubling-frequency-lock.md) studies one restricted member inside this broader configuration space. It asks whether the indexed A1 frequency triplet, especially the A1.3 relation $f_1:f_2:f_3=4:2:1$, can close as an integer phase-bundle lock with a stable return map and controlled caustic behavior.
 
 The doubling-frequency chapter should therefore be read as a specialized search row:
 $$

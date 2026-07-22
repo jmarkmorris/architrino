@@ -155,15 +155,17 @@ $$
 
 The combined binary envelope is nearly spherical at the near-rest endpoint in a weak-gradient deep-space environment. Increasing group translation speed or gravitational gradient increases $\lambda_A$, compresses the envelope along $\hat{\mathbf u}_A$, and makes the envelope increasingly oblate. The event-horizon response endpoint and the photon-channel response endpoint use the flat limit $\lambda_A=1$. These endpoint assignments are prescribed Family-A taxonomy; deriving the response path and either physical channel from an EOM-solver record remains open.
 
-`A1` is the general Family-A member. Its binary indices are ordered by radius,
+`A1` is the general Family-A member. Its indices $a\in\{1,2,3\}$ are persistent record identities, not a sorting by radius, frequency, speed, or any derived dynamical role. Its radii satisfy only
 
 $$
-0<R_1<R_2<R_3,
+R_a>0,
+\qquad
+a\in\{1,2,3\},
 $$
 
-so binary 1 is inner, binary 2 is middle, and binary 3 is outer. A1 allows three independently assigned binary frequencies and assigns the middle binary, binary 2, the hinge role. A constrained variant `A1.x` inherits these Family-A and A1 characteristics except where its row explicitly replaces them.
+and may be assigned independently, including equal values. Its three frequencies are also independently assignable. If an evolved branch later supplies a field-speed carrier, a boundary-leading path, or another distinguished role, that role is a diagnostic derived from the branch record and does not relabel the binaries.
 
-`A2` is the fully symmetric Family-A member. It has no distinguished hinge. Its three binaries have equal radii, equal axial half-separations, equal transverse orbit radii, equal frequencies, one circulation sense, and phases separated by $120^\circ$. Thus a $120^\circ$ rotation about $\hat{\mathbf u}_A$ cyclically permutes the three binaries without selecting one of them.
+`A2` is the fully symmetric Family-A member. Its three binaries have equal radii, equal axial half-separations, equal transverse orbit radii, equal frequencies, one circulation sense, and phases separated by $120^\circ$. Thus a $120^\circ$ rotation about $\hat{\mathbf u}_A$ cyclically permutes the three binaries without selecting one of them.
 
 ## Family B: Coincident Binary Axes
 
@@ -217,19 +219,19 @@ The first three tables carry the geometry. The fourth table supplies optional na
 
 ### Individual Braid Master Table
 
-| Member ID | Braid index | Component member | Group translation speed | Binary-midpoint relation | Axis relation | Distinguished direction | Hinge binary | Common phase zero | Circulation data |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| `A1` | 1 | A1 | Variable $s_{\mathrm{grp}}$ | Unconstrained | Orthogonal at $\lambda_A=0$; coincident at $\lambda_A=1$ | Translation direction $\hat{\mathbf u}_A$ | 2 | $T=0$ | Not yet specified |
-| `A2` | 1 | A2 | Variable $s_{\mathrm{grp}}$ | Unconstrained | Orthogonal at $\lambda_A=0$; coincident at $\lambda_A=1$ | Translation direction $\hat{\mathbf u}_A$ | None | $T=0$ | One common sense |
-| `B1` | 1 | B1 | Variable $s_{\mathrm{grp}}$ | $\mathbf c_1=\mathbf c_2=\mathbf c_3=\mathbf X_{\mathrm{grp}}$ | $\hat{\mathbf n}_1=\hat{\mathbf n}_2=\hat{\mathbf n}_3=\hat{\mathbf n}_B$ | $\hat{\mathbf n}_B$ | None | $T=0$ | One common sense |
-| `C1` | 1 | B1 | Variable $s_{\mathrm{grp}}$ | Inherited from B1 within component 1 | Inherited from B1 | Inherited from B1 | None | $T=0$ | Common sense $q$ |
-| `C1` | 2 | B1 | Variable $s_{\mathrm{grp}}$ | Inherited from B1 within component 2 | Inherited from B1 | Inherited from B1 | None | $T=0$ | Common sense $q$ |
-| `C2` | 1 | B1 | Variable $s_{\mathrm{grp}}$ | Inherited from B1 within component 1 | Inherited from B1 | Inherited from B1 | None | $T=0$ | Sense $q$ |
-| `C2` | 2 | B1 | Variable $s_{\mathrm{grp}}$ | Inherited from B1 within component 2 | Inherited from B1 | Inherited from B1 | None | $T=0$ | Sense $-q$ |
+| Member ID | Braid index | Component member | Group translation speed | Binary-midpoint relation | Axis relation | Distinguished direction | Common phase zero | Circulation data |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| `A1` | 1 | A1 | Variable $s_{\mathrm{grp}}$ | Unconstrained | Orthogonal at $\lambda_A=0$; coincident at $\lambda_A=1$ | Translation direction $\hat{\mathbf u}_A$ | $T=0$ | Not yet specified |
+| `A2` | 1 | A2 | Variable $s_{\mathrm{grp}}$ | Unconstrained | Orthogonal at $\lambda_A=0$; coincident at $\lambda_A=1$ | Translation direction $\hat{\mathbf u}_A$ | $T=0$ | One common sense |
+| `B1` | 1 | B1 | Variable $s_{\mathrm{grp}}$ | $\mathbf c_1=\mathbf c_2=\mathbf c_3=\mathbf X_{\mathrm{grp}}$ | $\hat{\mathbf n}_1=\hat{\mathbf n}_2=\hat{\mathbf n}_3=\hat{\mathbf n}_B$ | $\hat{\mathbf n}_B$ | $T=0$ | One common sense |
+| `C1` | 1 | B1 | Variable $s_{\mathrm{grp}}$ | Inherited from B1 within component 1 | Inherited from B1 | Inherited from B1 | $T=0$ | Common sense $q$ |
+| `C1` | 2 | B1 | Variable $s_{\mathrm{grp}}$ | Inherited from B1 within component 2 | Inherited from B1 | Inherited from B1 | $T=0$ | Common sense $q$ |
+| `C2` | 1 | B1 | Variable $s_{\mathrm{grp}}$ | Inherited from B1 within component 1 | Inherited from B1 | Inherited from B1 | $T=0$ | Sense $q$ |
+| `C2` | 2 | B1 | Variable $s_{\mathrm{grp}}$ | Inherited from B1 within component 2 | Inherited from B1 | Inherited from B1 | $T=0$ | Sense $-q$ |
 
 ### Individual Binary Master Table
 
-Within `A1`, the symbols $R_1,R_2,R_3$ obey $0<R_1<R_2<R_3$ and identify the inner, middle, and outer binaries respectively. A repeated symbol $R$ or $f$ declares equality across the corresponding rows. Unconstrained phases remain $\phi_1,\phi_2,\phi_3$. The $h_a$ and $\rho_a$ columns carry the axial and transverse decomposition of $R_a$ defined above. Family-C members inherit the individual-binary rows of their two B1 components.
+Within `A1`, the symbols $R_1,R_2,R_3$ are independent positive coordinates attached to persistent binary indices. They do not encode a size order, and equality is permitted unless a constrained row says otherwise. A repeated symbol $R$ or $f$ declares equality across the corresponding rows. Unconstrained phases remain $\phi_1,\phi_2,\phi_3$. The $h_a$ and $\rho_a$ columns carry the axial and transverse decomposition of $R_a$ defined above. Family-C members inherit the individual-binary rows of their two B1 components.
 
 | Member ID | Braid index | Binary index | Radius | Axial half-separation | Transverse orbit radius | Frequency | Phase |
 | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -261,12 +263,12 @@ Family and member names are optional aliases. The Description column may aid nav
 
 | Member ID | Family name | Member name | Geometry record | Borg depiction | Description |
 | --- | --- | --- | --- | --- | --- |
-| `A1` | Noether core | General three-radius hinge | Not yet assigned | Not yet assigned | General Family-A member with pairwise different radii, independently assignable frequencies, and binary 2 in the hinge role. |
-| `A1.1` | Noether core | Equal-frequency unequal-radius | Not yet assigned | Not yet assigned | A1 constrained to one common binary frequency while retaining three different radii. |
+| `A1` | Noether core | General independent-coordinate | Not yet assigned | Not yet assigned | General Family-A member with independently assignable positive radii, frequencies, phases, and binary decompositions. |
+| `A1.1` | Noether core | Equal-frequency | Not yet assigned | Not yet assigned | A1 constrained to one common binary frequency while retaining independently assignable radii. |
 | `A1.2` | Noether core | Equal-frequency equal-radius | Not yet assigned | Not yet assigned | A1 constrained to equal radii, equal frequencies, and phases separated by $120^\circ$. |
-| `A1.3` | Noether core | 4:2:1-frequency unequal-radius | Not yet assigned | Not yet assigned | A1 constrained to the ordered frequency ratio $f_1:f_2:f_3=4:2:1$. |
-| `A1.4` | Noether core | 3:2:1-frequency unequal-radius | Not yet assigned | Not yet assigned | A1 constrained to the ordered frequency ratio $f_1:f_2:f_3=3:2:1$. |
-| `A2` | Noether core | Fully symmetric no-hinge | Not yet assigned | Not yet assigned | Three equivalent binaries with equal geometry, equal frequencies, $120^\circ$ phase spacing, one circulation sense, and no distinguished hinge. |
+| `A1.3` | Noether core | 4:2:1-frequency | Not yet assigned | Not yet assigned | A1 constrained to the indexed frequency ratio $f_1:f_2:f_3=4:2:1$; the ratio does not order the radii. |
+| `A1.4` | Noether core | 3:2:1-frequency | Not yet assigned | Not yet assigned | A1 constrained to the indexed frequency ratio $f_1:f_2:f_3=3:2:1$; the ratio does not order the radii. |
+| `A2` | Noether core | Fully symmetric | Not yet assigned | Not yet assigned | Three equivalent binaries with equal geometry, equal frequencies, $120^\circ$ phase spacing, and one circulation sense. |
 | `B1` | Coincident binary axes | Rigid common-frequency | Not yet assigned | Not yet assigned | One braid with one common binary midpoint, coincident binary axes, one common frequency, and one common circulation sense. |
 | `C1` | Two-braid composition | Co-rotating B1 pair | Not yet assigned | Not yet assigned | Two complete B1 braids with a common circulation sense and explicit relative placement, orientation, and phase. |
 | `C2` | Two-braid composition | Counter-rotating B1 pair | Not yet assigned | Not yet assigned | Two complete B1 braids with opposite circulation senses and explicit relative placement, orientation, and phase. |

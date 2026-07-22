@@ -33,7 +33,7 @@ The taxonomy remains compact. A family document explains inherited geometry once
 | `braid-families.md` | “Symmetric Shell Braid,” “One-Band Family,” and “Symmetric Member” | `braid-family-a.md`, member A2 | Migrated. The durable equal-geometry, equal-frequency, threefold-symmetry content is in A2 coordinates; the prior definition block was deleted. |
 | `braid-families.md` | A2 isolated-release and return-response material | `braid-family-a.md`, A2 retention subsection; shared certificate details remain in `braid-recovery-requirements.md` | Migrated with the equivariance theorem, recovery residual, conditional no-return certificate, and open evolution scope preserved. |
 | `braid-families.md` | A2 sea-embedding material | `braid-family-a.md`, A2 retention subsection | Migrated as an open member-specific environmental return-response route; population-selection burdens remain with the Noether sea. |
-| `braid-families.md` | Accessory dressing and apparent-energy interpretations | `braid-mathematics.md`, downstream assembly documents, and priority-only material | Migrated or triaged. The Thomson mechanism remains shared mathematics; the incompatible four-site/two-site quark shortcut is priority-only pending a six-site moment ledger. |
+| `braid-families.md` | Legacy accessory and apparent-energy interpretations | `braid-mathematics.md`, downstream assembly documents, and priority-only material | Migrated or triaged. Accessory Configuration is now a declared six-architrino record; the incompatible four-site/two-site quark shortcut is priority-only pending a six-site moment ledger. |
 | `braid-families.md` | “Nested Shell Braid,” its relation to the symmetric member, and its ordered-radius/frequency descriptions | `braid-family-a.md`, A1 and A1.x subsections | Migrated. The durable three-radius, hinge, frequency-variant, and symmetry-boundary content is in A1 coordinates; the prior definition block was deleted. |
 | `braid-families.md` | Integer phase-closure states | `braid-a1-dynamics.md`, with A1.3 specialization in `braid-a1-3-doubling-frequency-lock.md` | Migrated with exact periodicity kept separate from dynamical selection. |
 | `braid-families.md` | Cadence retuning, scaling curves, reduced closure labels, and dynamics | `braid-a1-dynamics.md` | Migrated into an A1 specialist chapter; no retained EOM-solver branch is asserted. |
@@ -72,7 +72,7 @@ The smallest useful first merge is Family A definition material only:
 - durable symmetry statements from the old symmetric-member section;
 - no retention, Noether sea selection, particle-generation, or mass-map claims.
 
-This batch produced one self-contained `braid-family-a.md`. After the destination and inbound links were established, the migrated definition blocks were deleted from `braid-families.md`; its A1 dynamics, accessory dressing, and other unassigned interpretation material remain for separate adjudication.
+This batch produced one self-contained `braid-family-a.md`. After the destination and inbound links were established, the migrated definition blocks were deleted from `braid-families.md`; its A1 dynamics, legacy accessory material, and other unassigned interpretation material remained for separate adjudication.
 
 ## Second Review Batch
 
@@ -114,7 +114,7 @@ The first post-definition batch moved the A2-specific retention unit into `braid
 - the resulting absorber target at the field-speed threshold;
 - the open like-assembly Noether sea response route.
 
-The migrated block was deleted from `braid-families.md`, and its live incoming links were redirected to the A2 owner. Accessory dressing was held outside A2 because it is an assembly-interpretation hypothesis rather than an A2 retention result; the final batch completed its separate triage.
+The migrated block was deleted from `braid-families.md`, and its live incoming links were redirected to the A2 owner. The legacy accessory material was held outside A2 because it is an assembly-interpretation hypothesis rather than an A2 retention result; the final batch completed its separate triage.
 
 ## Final Migration Batch
 
@@ -125,7 +125,7 @@ The final batch completed the source split and re-indexing:
 - renamed the A1.3 and B1 specialist chapters and repaired their live incoming links;
 - converted shared mathematics, envelope geometry, recovery requirements, configuration-space diagnostics, and topological charge to the accepted member identifiers;
 - removed polarity-placement and legacy support-name classifiers from the canonical-facing analysis space;
-- retained the shared Thomson dressing mechanism while routing the incompatible four-site/two-site quark shortcut to priority-only review against the current six-site inventory;
+- defined Accessory Configuration as a six-architrino record while routing the incompatible four-site/two-site quark shortcut to priority-only review;
 - removed the superseded `braid-families.md`, `spindle-braid.md`, and `doubling-frequency-lock.md` source paths.
 
 ## Current Source Inventory for Review
@@ -148,4 +148,4 @@ Migration is complete. The next pass should decide, one current source at a time
 | `braid-envelope-geometry.md` | Dynamic envelope and export interface | Should member-specific envelope projections be split from the shared interface? |
 | `noether-braid-topological-charge.md` | Candidate cross-member topological labels | Which definitions are mature enough to retain in reader-facing prose? |
 
-No legacy source remains to migrate. Controlled Archie terminology, downstream chapter titles, runtime identifiers, and generated artifacts are separate follow-up scopes; they are not hidden remnants of the source migration.
+No legacy source remains to migrate. The approved persistent-index batch has also removed inner/middle/outer and preassigned-hinge semantics from the taxonomy stack and its controlled Archie terminology. Downstream reader chapters, chapter titles, runtime identifiers, and generated artifacts remain separate follow-up scopes; they are not hidden remnants of the source migration.

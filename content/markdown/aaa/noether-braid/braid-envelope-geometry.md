@@ -662,15 +662,23 @@ The envelope form is member data: the union of the swept constituent paths, toge
 
 ### Near-Spherical-to-Oblate Form (A1)
 
-The A1 structure contains three ordered binaries whose reference orbital planes are mutually orthogonal by definition. Near rest in a weak, homogeneous Noether sea, the working response hypothesis is a nearly spherical time-averaged envelope. Increased translation speed or gravitational gradient compresses the envelope along the Family-A $(1,1,1)$ translation direction, so the envelope becomes increasingly oblate as the three binary axes converge toward that direction. This is the prescribed Family-A response, not an EOM-solver-retained settling result.
+The A1 structure contains three persistently indexed binaries whose reference orbital planes are mutually orthogonal by definition. Near rest in a weak, homogeneous Noether sea, the working response hypothesis is a nearly spherical time-averaged envelope. Increased translation speed or gravitational gradient compresses the envelope along the Family-A $(1,1,1)$ translation direction, so the envelope becomes increasingly oblate as the three binary axes converge toward that direction. This is the prescribed Family-A response, not an EOM-solver-retained settling result.
 
-The leading boundary of the exclusion envelope is set primarily by the **outer binary**:
-
-- it has the largest orbital radius,
-- it has the slowest frequency,
-- and its orbital plane defines the dominant equatorial plane of the assembly.
-
-The inner and middle binaries supply the high-frequency internal wake structure and stabilizing density of the envelope. The outer binary supplies the main geometric boundary. Under the prescribed compression response, the three layers together produce a flattened-pole, equatorial-bulge form: an **oblate spheroidal exclusion envelope**.
+No binary is assigned the leading boundary by the taxonomy. For a declared branch window $W$ and direction $\hat{\mathbf m}$, define the directional support of binary $a$ by
+$$
+H_a(\hat{\mathbf m};W)
+=
+\sup_{\substack{T\in W\\j\in\{1,2\}}}
+\hat{\mathbf m}\mathbin{\cdot}
+\left(\mathbf X_{aj}(T)-\mathbf X_{\mathrm{grp}}(T)\right),
+$$
+and the full path-history support by
+$$
+H_{\mathrm{env}}(\hat{\mathbf m};W)
+=
+\max_{a\in\{1,2,3\}}H_a(\hat{\mathbf m};W).
+$$
+An index is boundary-leading in direction $\hat{\mathbf m}$ only when it attains this maximum on the retained record. The maximizer may depend on direction or time, may be nonunique, and does not relabel the binary. Under the prescribed compression response, the union of all six paths produces the flattened-pole, equatorial-bulge form: an **oblate spheroidal exclusion envelope**.
 
 In low-stress A1 prose, "A1 envelope" means this effective path-history envelope, not a literal material surface.
 
@@ -698,7 +706,7 @@ but this is a moving-branch closure target linking the clock channel to the enve
 
 For branch-quantized Lorentz response, the envelope variables $(\xi,\lambda)$ are projection variables. They expose the geometry of a stable branch to external clocks, rulers, and nearby assemblies, but they do not by themselves contain the full branch state. The equations in this section state the family-general moving-envelope target; the A1 instantiation begins in [Retuning Projection to Envelope Variables](#retuning-projection-to-envelope-variables), while the B1 projection remains open.
 
-The hidden branch state contains the member-specific layer radii, frequencies, speeds, axes, active causal-root ledger, and wake exchange. In A1, the outer binary controls the leading boundary because it has the largest radius and weakest shielding; in B1, the leading surface must instead be projected from the six common-axis co-rotating paths. Therefore the observed ruler factor is extracted through the declared member envelope,
+The hidden branch state contains the member-specific binary radii, frequencies, speeds, axes, active causal-root ledger, and wake exchange. For A1 and B1 alike, the leading surface must be projected from all six paths. Therefore the observed ruler factor is extracted through the declared member envelope,
 $$
 \gamma_{\mathrm{rul}}^{(q)}(v)
 \equiv
@@ -706,7 +714,7 @@ $$
 =
 \frac{1}{\xi_q(v)}
 $$
-but the branch $q$ is accepted only when the inner and middle ledgers also retune consistently with clock closure, conservation, and preferred-frame leakage bounds.
+but the branch $q$ is accepted only when all three binary ledgers also retune consistently with clock closure, conservation, and preferred-frame leakage bounds.
 
 The direct Lorentz-to-geometry map comes from a closed return cycle. In a homogeneous cell, define
 $$
@@ -742,7 +750,7 @@ $$
 $$
 The role of the geometry chapter is to record this as an envelope projection, not as a primitive definition. The derivation and closure coefficients belong to [Lorentz Kinematics](../spacetime/lorentz-kinematics.md#closed-return-derivation-of-the-lorentz-axis-ratio).
 
-This distinction prevents an outer-only shortcut. An outer-binary oblation model can estimate the visible deformation channel, while a mature Lorentz closure must show that the same branch update also determines the clock factor
+This distinction prevents a single-binary shortcut. A branch-derived boundary-leading channel can estimate one visible deformation contribution, while a mature Lorentz closure must show that the same branch update also determines the clock factor
 $$
 \gamma_{\mathrm{clk}}^{(q)}(v)=\frac{T_q(v)}{T_{\mathrm{ref}}}
 $$
@@ -777,8 +785,8 @@ $$
 =
 \mathcal{P}_{\mathrm{env}}^{(q)}
 \!\left(
-\ln R_I,\ln R_M,\ln R_O,\,
-\mathbf{A}_I,\mathbf{A}_M,\mathbf{A}_O,\,
+\ln R_1,\ln R_2,\ln R_3,\,
+\mathbf{A}_1,\mathbf{A}_2,\mathbf{A}_3,\,
 \mathcal{L}_{\mathrm{root}},\mathcal{L}_{\mathrm{wake}}
 \right)
 $$
@@ -797,21 +805,21 @@ $$
 \Delta\ln R_{\perp,q}
 $$
 
-In the low-stress outer-dominated branch, this reduces to the useful estimate
+If one binary $a_{\mathrm{env}}$ is uniquely boundary-leading over the relevant directions and window, the projection reduces to the useful estimate
 
 $$
 \Delta\ln\lambda
 \approx
-\Delta\ln R_O,
+\Delta\ln R_{a_{\mathrm{env}}},
 \qquad
 \Delta\ln\xi
 \approx
-\Delta\ln R_{\parallel,O}
+\Delta\ln R_{\parallel,a_{\mathrm{env}}}
 -
-\Delta\ln R_{\perp,O}
+\Delta\ln R_{\perp,a_{\mathrm{env}}}
 $$
 
-This approximation is a projection estimate, not a branch proof. It fails when middle-layer hinge motion, inner self-hit history, axis precession, or neighbor-induced strain contributes at the same order as the outer binary. Those failures are informative: they identify which hidden ledger entries must be retained before the retuning map can be used for clock, ruler, or Noether sea transport calculations.
+This approximation is a projection estimate, not a branch proof. It fails when the maximizer changes with direction or time, when more than one binary contributes at the same order, or when root-history, axis precession, or neighbor-induced strain changes the interface independently of a single radius. Those failures are informative: they identify which hidden ledger entries must be retained before the retuning map can be used for clock, ruler, or Noether sea transport calculations.
 
 ## A1 Envelope Deformability
 
@@ -823,7 +831,7 @@ The oblate spheroidal envelope is deformable because it is generated by orbit pa
 - Noether sea density and stress,
 - and the braid's translational state through the Noether sea.
 
-External effective fields, nearby assembly wakes, and dense local assemblies can perturb the binary paths. The outer binary is the most exposed channel because it is the largest and most weakly shielded layer. A distortion of that outer path changes the exclusion envelope.
+External effective fields, nearby assembly wakes, and dense local assemblies can perturb the binary paths. The most exposed channel must be derived from the branch response and need not be the same index in every direction or environment. A distortion of any boundary-leading path changes the exclusion envelope.
 
 This gives A1 two distinct geometric roles:
 
@@ -853,4 +861,4 @@ For Noether sea modeling, use [Noether sea](../spacetime/noether-sea.md) and [No
 
 > **Member-Scoping Commitment:** B1's rest aspect ratio depends on its prescribed binary coordinates; A1 is near spherical in its weak-stress reference state and becomes increasingly oblate along its prescribed compression response. The moving Lorentz-projection target $\xi\to1/\gamma$ is a branch-response statement and must be derived separately for each member.
 
-> **Lorentz Projection Commitment:** In Lorentz closure, the outer-binary envelope supplies the leading observable ruler projection, while the accepted branch state remains a retained causal-root ledger. The geometry chapter records $\xi$ and $\lambda$ as projection variables; it does not reduce clock, mass, or action-ledger closure to outer-envelope shape alone.
+> **Lorentz Projection Commitment:** In Lorentz closure, the full six-path envelope supplies the observable ruler projection, while the accepted branch state remains a retained causal-root ledger. The geometry chapter records $\xi$ and $\lambda$ as projection variables; it does not reduce clock, mass, or action-ledger closure to one binary path or to envelope shape alone.

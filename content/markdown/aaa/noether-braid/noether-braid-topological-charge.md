@@ -20,7 +20,7 @@ where $N_s$ counts active self-hit roots, $M_p$ counts active partner-hit roots,
 $$
 c_1=(m,n)\in\mathbb{Z}^2
 $$
-rather than a scalar integer: $m$ and $n$ are the middle and inner winding numbers over one outer period.
+rather than a scalar integer: $m$ and $n$ are the binary-2 and binary-1 winding numbers over one binary-3 reference period.
 
 This compact form records the count data most directly emitted by a branch solver. The conserved refinement is
 $$
@@ -120,47 +120,47 @@ $$
 $$
 Fold-pair births and deaths appear as null-homologous bigons with local contributions $+1-1=0$. Summing oriented intersections in the self and partner sectors gives $D_t$ and $D_p$; summing their absolute values gives $N_s$ and $M_p$. This is the bridge to [Causal Action Functional](../dynamics/causal-action-functional.md#geometrictopological-framework): the same causal-locus components that carry action-counting weight also supply the signed root degrees used by the assembly topological charge.
 
-The third entry comes from the phase-return chart of a resonance-locked Noether braid. Let $\theta_O,\theta_M,\theta_I$ be the outer, middle, and inner phase coordinates on the retained return chart. Exact integer closure over one outer period $P_O$ means
+The third entry comes from the phase-return chart of a resonance-locked Noether braid. Let $\theta_1,\theta_2,\theta_3$ be the phase coordinates attached to the persistent binary indices. Exact integer closure over one binary-3 reference period $P_3$ means
 $$
-\theta_O(T+P_O)=\theta_O(T)+2\pi,
+\theta_3(T+P_3)=\theta_3(T)+2\pi,
 $$
 $$
-\theta_M(T+P_O)=\theta_M(T)+2\pi m,
+\theta_2(T+P_3)=\theta_2(T)+2\pi m,
 \qquad
-\theta_I(T+P_O)=\theta_I(T)+2\pi n.
+\theta_1(T+P_3)=\theta_1(T)+2\pi n.
 $$
 Equivalently, the relative-phase one-forms
 $$
-\vartheta_M=d\theta_M-m\,d\theta_O,
+\vartheta_2=d\theta_2-m\,d\theta_3,
 \qquad
-\vartheta_I=d\theta_I-n\,d\theta_O
+\vartheta_1=d\theta_1-n\,d\theta_3
 $$
-have integer holonomy and become flat on a promoted phase-locked branch. Let $\rho_O:S^1_O\to\mathfrak B$ be one retained outer return cycle. The shorthand
+have integer holonomy and become flat on a promoted phase-locked branch. Let $\rho_3:S^1_3\to\mathfrak B$ be one retained binary-3 return cycle. The shorthand
 $$
-c_1[\theta_O,\theta_M,\theta_I]
+c_1[\theta_1,\theta_2,\theta_3]
 =
 \left(
-\operatorname{deg}(\theta_M\circ\rho_O),\,
-\operatorname{deg}(\theta_I\circ\rho_O)
+\operatorname{deg}(\theta_2\circ\rho_3),\,
+\operatorname{deg}(\theta_1\circ\rho_3)
 \right)
 =(m,n)
 $$
-records this phase-return degree data. The doubling-frequency `4:2:1` candidate is the outer-normalized case $(m,n)=(2,4)$, equivalently canonical `I:M:O` frequency order $4:2:1$.
+records this phase-return degree data. The doubling-frequency `4:2:1` candidate is the binary-3-normalized case $(m,n)=(2,4)$, equivalently $f_1:f_2:f_3=4:2:1$.
 
-The symbol $c_1$ is retained as the established phase-entry notation, but it should not be read here as a literal first Chern class of principal circle bundles over the outer phase circle. Such bundles over $S^1_O$ are topologically trivial because $H^2(S^1_O;\mathbb{Z})=0$. The claim is the degree-pair claim
+The symbol $c_1$ is retained as the established phase-entry notation, but it should not be read here as a literal first Chern class of principal circle bundles over the binary-3 phase circle. Such bundles over $S^1_3$ are topologically trivial because $H^2(S^1_3;\mathbb{Z})=0$. The claim is the degree-pair claim
 $$
-(m,n)\in[S^1_O,S^1]\times[S^1_O,S^1]\cong\mathbb{Z}^2,
+(m,n)\in[S^1_3,S^1]\times[S^1_3,S^1]\cong\mathbb{Z}^2,
 $$
 with flat relative-phase recurrence on the retained return chart. If a later chart supplies a genuine two-torus curvature form, its first Chern number can be compared with this degree pair. Until then, $c_1=(m,n)$ means return-map degree data, not a curvature integral.
 
 The doubling-frequency data $(m,n)=(2,4)$ belong specifically to the frequency-separated A1.3 member. They are not generic Noether braid data. In particular, [B1](braid-family-b.md#b1) is common-frequency on one common-axis phase chart: its three path families do not supply three independent orbital-plane normals, so the rank-three phase entry defined here is suspended rather than assigned $(1,1)$ or $(2,4)$. A B1 branch may still report the partial charge $(N_s,M_p)$; a B1 lower-rank return invariant would require a separate definition and certificate.
 
-The phase entry is also conditional on the three support-row planes remaining independent. If $\hat{\mathbf n}_O,\hat{\mathbf n}_M,\hat{\mathbf n}_I$ are the retained orbital-plane normals, define
+The phase entry is also conditional on the three support-row planes remaining independent. If $\hat{\mathbf n}_1,\hat{\mathbf n}_2,\hat{\mathbf n}_3$ are the retained orbital-plane normals, define
 $$
 D_{\mathrm{plane}}
 =
 \det\!\left[
-\hat{\mathbf n}_O\ \hat{\mathbf n}_M\ \hat{\mathbf n}_I
+\hat{\mathbf n}_1\ \hat{\mathbf n}_2\ \hat{\mathbf n}_3
 \right].
 $$
 The degree pair is admissible only when
@@ -180,7 +180,7 @@ For a finite-$\eta$ branch chart $\mathfrak B$, the assembly topological charge 
 5. A finite local-to-global gluing result for the branch chart, or an explicit finite multistability family.
 6. For a rank-three branch, integer phase closure, flat relative-phase connection, and a plane-independence floor $|D_{\mathrm{plane}}|\ge\delta_{\mathrm{plane}}>0$.
 7. A return-map stability certificate, such as a Floquet or Conley-style branch certificate, after quotienting only true symmetry directions.
-8. If the middle layer is treated as a caustic-grazing carrier, regulator-stable middle-caustic rows showing that the reported root degrees and phase-return entry do not depend on the finite-$\eta$ convention in the promoted limit.
+8. If a binary $h\in\{1,2,3\}$ is treated as a caustic-grazing carrier, regulator-stable carrier rows showing that the reported root degrees and phase-return entry do not depend on the finite-$\eta$ convention in the promoted limit. The index $h$ is a branch diagnostic, not a taxonomy assignment.
 
 Under those conditions the compact assembly topological charge is
 $$
@@ -189,7 +189,7 @@ $$
 \left(
 N_s,\,
 M_p,\,
-c_1[\theta_O,\theta_M,\theta_I]
+c_1[\theta_1,\theta_2,\theta_3]
 \right)
 \in
 \mathbb{Z}_{\ge0}\times\mathbb{Z}_{\ge0}\times\mathbb{Z}^2.
@@ -277,7 +277,7 @@ A branch solver should extract the assembly topological charge in this order:
 6. Compute the lifted-strip fiber-intersection degrees that realize $D_t$ and $D_p$ whenever the causal-locus chart is available.
 7. Track fold, caustic, cusp, or inactive-gap transition metadata.
 8. For branches with a Noether braid phase-return chart, compute phase degree/holonomy $(m,n)$ from the returned phase chart, verify the floor $|D_{\mathrm{plane}}|\ge\delta_{\mathrm{plane}}>0$, and show that $(m,n)$ comes from the return map rather than from frequency ratios alone.
-9. If a middle caustic-grazing carrier is used, test that the signed degrees and phase-return entry are stable under the declared $\eta$ refinement.
+9. If a caustic-grazing carrier $h$ is used, test that the signed degrees and phase-return entry are stable under the declared $\eta$ refinement.
 10. Test gluing and finite continuation cardinality for the local charts.
 11. Test the return-map stability gap off true symmetry directions.
 12. Report $[\mathfrak B]_{\mathrm{top}}$ only after the same retained rows pass these checks.
@@ -300,7 +300,7 @@ The open proof burden is global:
 - prove gluing of the local causal-root charts into a finite labeled continuation family;
 - prove a positive stability gap for the assembly topological charge sector;
 - determine whether the entries are independent or constrained by radial balance, phase flatness, and Noether sea response, starting with the reachable theorem target that for a layer winding $k_a\in\{1,m,n\}$ the layerwise self-hit degree obeys a parity or lower-bound law $D_t^{(a)}\equiv f(k_a)\pmod 2$ derived from the circular self-hit fold-birth sequence and the lifted-strip fiber-intersection formula;
-- prove that caustic-grazing middle-carrier rows have regulator-stable signed degrees and phase-return entries, so the assembly topological charge does not depend on the finite-$\eta$ convention used to regularize the hinge;
+- prove that any caustic-grazing carrier rows have regulator-stable signed degrees and phase-return entries, so the assembly topological charge does not depend on the finite-$\eta$ convention used to regularize the field-speed transition;
 - map any certified sectors to observer-level particle quantum numbers without fitting the labels afterward.
 
 The chapter should therefore be read as the canonical definition and proof target for assembly topological charge, not as the completed topological periodic table.

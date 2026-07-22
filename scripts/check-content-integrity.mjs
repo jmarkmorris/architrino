@@ -49,6 +49,10 @@ const CHECKS = [
     args: ["scripts/check-polarity-notation-drift.mjs"],
   },
   {
+    name: "Check migrated braid taxonomy terminology",
+    args: ["scripts/check-braid-taxonomy-terminology.mjs"],
+  },
+  {
     name: "Smoke test manifest runtime routes/search",
     args: ["scripts/smoke-option3.mjs"],
   },

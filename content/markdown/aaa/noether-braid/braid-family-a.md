@@ -24,26 +24,26 @@ The coincident-axis endpoint is also a geometric boundary with Family B. A Famil
 
 ## A1
 
-A1 is the general three-radius Family-A member. Its indices follow the radius order $0<R_1<R_2<R_3$: binary 1 is inner, binary 2 is middle, and binary 3 is outer. Its three frequencies are independently assignable, and the middle binary has the distinguished hinge role. The hinge is a member assignment, not an additional coordinate and not a stability result.
+A1 is the general Family-A member. Its indices $a\in\{1,2,3\}$ are persistent record identities. They are not assigned by sorting the radii, frequencies, speeds, or later dynamical roles. The radii are independently assignable positive coordinates, and equal values are permitted. The three frequencies are likewise independently assignable.
 
-Because the radii are unequal, A1 does not have the exact cyclic pair-permutation symmetry of A2. A spatial rotation preserves radius, so it cannot map one A1 binary onto another binary of a different radius. An integer frequency ratio can make the full prescribed figure repeat after a common period, but it does not restore spatial equivalence among the three binaries.
+A1 does not require the exact cyclic binary-permutation symmetry of A2. When its binary coordinates differ, a spatial rotation cannot map one binary onto another with different geometry. An integer frequency ratio can make the full prescribed figure repeat after a common period, but it does not by itself establish spatial equivalence. A1 may meet the A2 coordinate locus when all of the additional A2 equalities and cyclic-equivalence conditions hold.
 
 ### A1 Constrained Variants
 
-Each constrained variant inherits A1's three different radii and binary-2 hinge unless its master-table row explicitly replaces a coordinate:
+Each constrained variant inherits A1's persistent binary indices and independently assignable coordinates unless its master-table row explicitly replaces a coordinate:
 
 | Member | Added constraint | What remains inherited |
 | --- | --- | --- |
-| `A1.1` | One common frequency. | Three different radii and the binary-2 hinge. |
-| `A1.2` | Equal radii, one common frequency, and phases $0$, $2\pi/3$, and $4\pi/3$. | The binary-2 hinge; the axial and transverse decompositions may still differ among binaries. |
-| `A1.3` | Ordered frequency ratio $f_1:f_2:f_3=4:2:1$. | Three different radii, unconstrained phases, and the binary-2 hinge. |
-| `A1.4` | Ordered frequency ratio $f_1:f_2:f_3=3:2:1$. | Three different radii, unconstrained phases, and the binary-2 hinge. |
+| `A1.1` | One common frequency. | Independently assignable radii, decompositions, and phases. |
+| `A1.2` | Equal radii, one common frequency, and phases $0$, $2\pi/3$, and $4\pi/3$. | The axial and transverse decompositions may still differ among binaries. |
+| `A1.3` | Indexed frequency ratio $f_1:f_2:f_3=4:2:1$. | Independently assignable radii and unconstrained phases; the ratio does not order the radii. |
+| `A1.4` | Indexed frequency ratio $f_1:f_2:f_3=3:2:1$. | Independently assignable radii and unconstrained phases; the ratio does not order the radii. |
 
 The exact radius, frequency, phase, axial-half-separation, and transverse-orbit-radius rows are carried only by the [Individual Binary Master Table](braid-taxonomy.md#individual-binary-master-table).
 
 ## A2
 
-A2 is the fully symmetric no-hinge Family-A member. Its three binaries have equal radii, equal axial half-separations, equal transverse orbit radii, equal frequencies, one circulation sense, and phases separated by $120^\circ$. No binary is distinguished. A $120^\circ$ rotation about the Family-A translation direction cyclically permutes the three binaries.
+A2 is the fully symmetric Family-A member. Its three binaries have equal radii, equal axial half-separations, equal transverse orbit radii, equal frequencies, one circulation sense, and phases separated by $120^\circ$. No binary is distinguished. A $120^\circ$ rotation about the Family-A translation direction cyclically permutes the three binaries.
 
 An exact near-rest reference fixture places the three binary axes on an orthonormal frame. At one common reference time, each positrino lies at distance $R$ from the braid center along one positive frame axis and its electrino partner lies at the antipodal point. This is the face-opposite seed used by the invariant-channel analysis in [Braid Mathematics](braid-mathematics.md#invariant-channels-and-equivariant-reductions).
 
@@ -103,15 +103,14 @@ The route inherits the return-response question directly: it asks whether the de
 
 A1.2 and A2 share equal radii, equal frequencies, and the same three phase values, but they are not identical members:
 
-| Coordinate or role | `A1.2` | `A2` |
+| Coordinate or relation | `A1.2` | `A2` |
 | --- | --- | --- |
-| Hinge | Binary 2 | None |
 | Axial half-separations | $h_1,h_2,h_3$ may differ | One common $h$ |
 | Transverse orbit radii | $\rho_1,\rho_2,\rho_3$ may differ | One common $\rho$ |
 | Circulation | Inherited A1 value is not yet specified | One common sense |
 | Cyclic binary equivalence | Not required | Required |
 
-A1.2 reaches the A2 coordinate locus only when the remaining binary geometries and circulation data also become equal and the distinguished hinge is removed. This is a boundary coincidence between member definitions, not evidence of a physical transition.
+A1.2 reaches the A2 coordinate locus only when the remaining binary geometries and circulation data also become equal and cyclic binary equivalence holds. This is a boundary coincidence between member definitions, not evidence of a physical transition.
 
 ## Claim Boundary
 

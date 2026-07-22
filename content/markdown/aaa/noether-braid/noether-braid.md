@@ -8,7 +8,7 @@ The simple idea is six persistent strands plus one shared ledger. The hard quest
 
 This question is the crux of the theory. The Noether sea, the particle architecture, the mass-response program, and the effective-metric recovery all rest on a retained six-body branch, so the retained-branch question is the central open obligation of this scene. The chapters here define the braid families, carry the shared mathematics, explain the configuration-space hypotheses, and state the requirements a retained branch must satisfy, each at its stated claim level. These chapters do not track the search: status, run results, and candidate rankings are not textbook content, and a result enters only once it is established at its stated claim level.
 
-One working principle of this scene deserves stating openly. When two statements derived along independent routes turn out to describe the same limit — the horizon-alignment condition and the vanishing of the axial polarity dipole, or the same minimum-energy arrangement organizing both the braid core and its accessory dressing — that coincidence is treated as a seam of the underlying ontology, not as an accident to admire. In a correct substrate theory one mechanism surfaces in many observer-level places precisely because it is one mechanism, so each multi-route convergence is logged, the common cause is hunted, and the identified mechanism is then required to make at least one new prediction beyond the statements it unified. Convergences that resist unification are equally valuable, because they mark places where the ontology is still missing a part.
+One working principle of this scene deserves stating openly. When two statements derived along independent routes turn out to describe the same limit — the horizon-alignment condition and the vanishing of the axial polarity dipole, or the same moment cancellation appearing in both a braid record and an Accessory Configuration — that coincidence is treated as a seam of the underlying ontology, not as an accident to admire. In a correct substrate theory one mechanism surfaces in many observer-level places precisely because it is one mechanism, so each multi-route convergence is logged, the common cause is hunted, and the identified mechanism is then required to make at least one new prediction beyond the statements it unified. Convergences that resist unification are equally valuable, because they mark places where the ontology is still missing a part.
 
 ## Neutral-Braid Base
 
@@ -23,7 +23,7 @@ $$
 \sum_{i=1}^{6}\sigma_i=0.
 $$
 
-Equivalently, the compact inventory is $3\epsilon_+ + 3\epsilon_-$. This ledger is imposed before any binary partition, member assignment, or reference fixture. Each architrino has three attractive opposite-polarity channels and two repulsive same-polarity channels among the other five sites. The $3+2$ count is an inventory fact, not a compressed acceleration law; an acceleration row must still be assembled from the retained causal roots and path history.
+Equivalently, the compact inventory is $3\epsilon_+ + 3\epsilon_-$. This ledger is imposed before any binary partition, member assignment, or reference fixture. Each architrino has three attractive opposite-polarity channels and two repulsive same-polarity channels among the other five sites. The $3+2$ count is an inventory fact, not a compressed acceleration law; the net acceleration must still be assembled from the retained causal roots and path history.
 
 Before a family chart is selected, the intrinsic path of architrino $i$ may be represented by a closed arclength curve
 
@@ -50,7 +50,7 @@ The prescribed geometry is organized by [Braid Taxonomy](braid-taxonomy.md). Its
 | Term | Definition | Additional structure |
 | --- | --- | --- |
 | [**neutral braid**](#neutral-braid-base) | The broad six-architrino neutral case before any required binary grouping or radial organization. | Polarity balance and causal-return bookkeeping. |
-| [**Family A**](braid-family-a.md) | One braid whose three binary axes are orthogonal at the near-rest endpoint and converge toward the group-translation direction under the prescribed response. | `A1` is the three-radius hinge member; `A2` is the fully symmetric no-hinge member. |
+| [**Family A**](braid-family-a.md) | One braid whose three binary axes are orthogonal at the near-rest endpoint and converge toward the group-translation direction under the prescribed response. | `A1` is the general independent-coordinate member; `A2` is the fully symmetric member. |
 | [**Family B**](braid-family-b.md) | One braid whose three binary midpoints and axes coincide. | `B1` is the rigid common-frequency member. |
 | [**Family C**](braid-family-c.md) | An assembly composed of two complete B1 braids. | `C1` has the same circulation sense; `C2` has the opposite circulation sense. |
 
@@ -81,7 +81,7 @@ It does not carry the detailed family derivations, select a frequency family, as
 | Family definition | [Braid Family C](braid-family-c.md) | The exact two-B1 composition chart, C1/C2 circulation relation, derived axis offset, and physical-mapping boundary. |
 | Configuration space | [Noether Braid Configuration Space](noether-braid-configuration-space.md) | The evidence-level terms and supplementary rank-three angular-momentum-frame diagnostics outside the canonical taxonomy. |
 | A1 dynamics and interpretation | [A1 Dynamics and Interpretation](braid-a1-dynamics.md) | A1 retention questions, closure labels, cadence retuning, scaling, alignment, and downstream hypotheses. |
-| Mathematics | [Braid Mathematics](braid-mathematics.md) | The core-agnostic machinery: invariant channels and equivariant reductions, exact channel identities, the exact speed budget, eigen-braid spectrum framing, fold-set action quantization as hypothesis, and the Thomson dressing mechanism. |
+| Mathematics | [Braid Mathematics](braid-mathematics.md) | The core-agnostic machinery: invariant channels and equivariant reductions, exact channel identities, the exact speed budget, eigen-braid spectrum framing, fold-set action quantization as hypothesis, and Accessory Configuration moment analysis. |
 | Analysis | [A1.3 Doubling-Frequency Resonance Lock](braid-a1-3-doubling-frequency-lock.md) | The A1.3 $4{:}2{:}1$ candidate and its lock analysis. |
 | Export | [Braid Envelope Geometry](braid-envelope-geometry.md) | The family-general envelope and observer-export interface: dynamic exclusion envelope, sea-interface diagnostic, canonical geometry variables, and the Lorentz projection. |
 | Export | [Noether Braid Topological Charge](noether-braid-topological-charge.md) | Classification of retained branch charts. |
