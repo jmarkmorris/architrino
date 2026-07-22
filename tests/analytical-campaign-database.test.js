@@ -31,7 +31,9 @@ function temporaryDirectory(label) {
 }
 
 function stageCurrentCandidateCampaign(directory) {
-  const campaign = buildAllCandidateAnalyticalCampaign();
+  const campaign = buildAllCandidateAnalyticalCampaign(undefined, {
+    evaluationMode: "baseline",
+  });
   const paths = writeAllCandidateAnalyticalCampaign(
     campaign,
     path.join(directory, "generated-campaign"),
@@ -116,7 +118,9 @@ function noRootPacket() {
 }
 
 test("independent acceptance derives gates from raw ledgers and covers no-root rows", () => {
-  const campaign = buildAllCandidateAnalyticalCampaign();
+  const campaign = buildAllCandidateAnalyticalCampaign(undefined, {
+    evaluationMode: "baseline",
+  });
   const acceptedCase = campaign.summary.cases.find((entry) => entry.gates.passed);
   const packetArtifact = campaign.artifacts.find(
     (artifact) => artifact.relativePath === acceptedCase.packetPath,
@@ -171,7 +175,7 @@ test("versioned migrations are checksummed and idempotent", () => {
              tool_version
       FROM schema_migration ORDER BY migration_ordinal
     `).all();
-    assert.equal(Number(first.prepare("PRAGMA user_version").get().user_version), 2);
+    assert.equal(Number(first.prepare("PRAGMA user_version").get().user_version), 3);
     first.close();
 
     const second = openAnalyticalCampaignDatabase(databasePath, {
@@ -184,7 +188,7 @@ test("versioned migrations are checksummed and idempotent", () => {
     `).all();
     second.close();
     assert.deepEqual(secondRows, firstRows);
-    assert.deepEqual(firstRows.map((row) => row.checksum_bytes), [32, 32]);
+    assert.deepEqual(firstRows.map((row) => row.checksum_bytes), [32, 32, 32]);
   } finally {
     rmSync(directory, { recursive: true, force: true });
   }

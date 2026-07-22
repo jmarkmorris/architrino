@@ -1,3 +1,92 @@
+export function findPointerLabelNode(nodes, clientX, clientY) {
+  if (!Array.isArray(nodes) || !Number.isFinite(clientX) || !Number.isFinite(clientY)) {
+    return null;
+  }
+
+  let closestNode = null;
+  let closestDistanceSquared = Infinity;
+
+  nodes.forEach((node) => {
+    const element = node?.labelObject?.element;
+    if (!element || typeof element.getBoundingClientRect !== "function") {
+      return;
+    }
+    if (
+      element.hidden === true ||
+      element.style?.display === "none" ||
+      element.style?.visibility === "hidden" ||
+      element.style?.opacity === "0"
+    ) {
+      return;
+    }
+
+    const rect = element.getBoundingClientRect();
+    if (
+      !Number.isFinite(rect?.left) ||
+      !Number.isFinite(rect?.right) ||
+      !Number.isFinite(rect?.top) ||
+      !Number.isFinite(rect?.bottom) ||
+      rect.right <= rect.left ||
+      rect.bottom <= rect.top ||
+      clientX < rect.left ||
+      clientX > rect.right ||
+      clientY < rect.top ||
+      clientY > rect.bottom
+    ) {
+      return;
+    }
+
+    const dx = clientX - (rect.left + rect.right) / 2;
+    const dy = clientY - (rect.top + rect.bottom) / 2;
+    const distanceSquared = dx * dx + dy * dy;
+    if (distanceSquared < closestDistanceSquared) {
+      closestNode = node;
+      closestDistanceSquared = distanceSquared;
+    }
+  });
+
+  return closestNode;
+}
+
+export function findPointerCircleNode(nodes, clientX, clientY, getScreenCircle) {
+  if (
+    !Array.isArray(nodes) ||
+    !Number.isFinite(clientX) ||
+    !Number.isFinite(clientY) ||
+    typeof getScreenCircle !== "function"
+  ) {
+    return null;
+  }
+
+  let closestNode = null;
+  let closestDistanceSquared = Infinity;
+
+  nodes.forEach((node) => {
+    const circle = getScreenCircle(node);
+    if (
+      !Number.isFinite(circle?.centerX) ||
+      !Number.isFinite(circle?.centerY) ||
+      !Number.isFinite(circle?.radius) ||
+      circle.radius <= 0
+    ) {
+      return;
+    }
+
+    const dx = clientX - circle.centerX;
+    const dy = clientY - circle.centerY;
+    const distanceSquared = dx * dx + dy * dy;
+    if (
+      distanceSquared <= circle.radius * circle.radius &&
+      distanceSquared < closestDistanceSquared
+    ) {
+      closestNode = node;
+      closestDistanceSquared = distanceSquared;
+    }
+  });
+
+  return closestNode;
+}
+
 export function createInteractionRuntime(deps) {
   const activePointers = new Map();
   const panState = {
@@ -11,10 +100,6 @@ export function createInteractionRuntime(deps) {
 
   let pinchStartDistance = 0;
   let pinchStartZoom = 1;
-
-  let lastTapTime = 0;
-  let lastTapX = 0;
-  let lastTapY = 0;
 
   function getWorldPerPixel() {
     const worldHeight = (deps.camera.top - deps.camera.bottom) / deps.camera.zoom;
@@ -108,27 +193,10 @@ export function createInteractionRuntime(deps) {
     if (activePointers.size === 0) {
       panState.active = false;
       if (!panState.moved && !deps.isTransitionActive()) {
-        if (!deps.focusOnPointer(event.clientX, event.clientY)) {
-          const now = deps.now();
-          const dx = event.clientX - lastTapX;
-          const dy = event.clientY - lastTapY;
-          const distance = Math.hypot(dx, dy);
-          if (now - lastTapTime < 320 && distance < 24) {
-            const currentLevel = deps.getCurrentLevel();
-            if (currentLevel && currentLevel.id !== deps.rootScenePath) {
-              deps.resetToRootScene();
-            }
-            lastTapTime = 0;
-          } else {
-            lastTapTime = now;
-            lastTapX = event.clientX;
-            lastTapY = event.clientY;
-          }
-        } else {
+        if (deps.focusOnPointer(event.clientX, event.clientY)) {
           if (typeof deps.onSuccessfulSphereClick === "function") {
             deps.onSuccessfulSphereClick();
           }
-          lastTapTime = 0;
         }
       }
     }

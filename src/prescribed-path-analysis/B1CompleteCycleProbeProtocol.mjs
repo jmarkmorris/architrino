@@ -7,6 +7,8 @@ import {
 
 export const B1_COMPLETE_CYCLE_PROBE_PROTOCOL_SCHEMA =
   "prescribed-path-analysis/b1-complete-cycle-probe-protocol.v1";
+export const COMPLETE_CYCLE_PROBE_PROTOCOL_SCHEMA =
+  "prescribed-path-analysis/complete-cycle-probe-protocol.v1";
 
 const TWO_PI = 2 * Math.PI;
 
@@ -156,20 +158,34 @@ function validateResolution(raw, label) {
 
 export function validateB1CompleteCycleProbeProtocol(rawProtocol) {
   const raw = object(rawProtocol, "complete-cycle probe protocol");
-  if (raw.schema !== B1_COMPLETE_CYCLE_PROBE_PROTOCOL_SCHEMA) {
-    throw new TypeError(`protocol requires schema ${B1_COMPLETE_CYCLE_PROBE_PROTOCOL_SCHEMA}.`);
+  const isB1 = raw.schema === B1_COMPLETE_CYCLE_PROBE_PROTOCOL_SCHEMA;
+  if (!isB1 && raw.schema !== COMPLETE_CYCLE_PROBE_PROTOCOL_SCHEMA) {
+    throw new TypeError(
+      `protocol requires schema ${B1_COMPLETE_CYCLE_PROBE_PROTOCOL_SCHEMA} or ` +
+      `${COMPLETE_CYCLE_PROBE_PROTOCOL_SCHEMA}.`,
+    );
   }
   const protocolId = string(raw.protocolId, "protocol.protocolId");
   const applicability = object(raw.applicability, "protocol.applicability");
-  if (applicability.familyId !== "B" || applicability.memberId !== "B1") {
-    throw new TypeError("protocol applicability must be Family B member B1.");
+  if (isB1 && (applicability.familyId !== "B" || applicability.memberId !== "B1")) {
+    throw new TypeError("B1 protocol applicability must be Family B member B1.");
+  }
+  if (!isB1 && (!Array.isArray(applicability.familyIds) ||
+      applicability.familyIds.join(",") !== "A,B,C")) {
+    throw new TypeError("cohort protocol applicability.familyIds must be [A, B, C].");
   }
   const sourceEnvelopeRadius = positive(
     applicability.maximumSourceEnvelopeRadius,
     "protocol.applicability.maximumSourceEnvelopeRadius",
   );
-  const sourceCount = positiveInteger(applicability.sourceCount, "protocol.applicability.sourceCount");
-  if (sourceCount !== 6) throw new RangeError("B1 protocol sourceCount must be 6.");
+  const sourceCounts = isB1
+    ? [positiveInteger(applicability.sourceCount, "protocol.applicability.sourceCount")]
+    : numericArray(applicability.sourceCounts, "protocol.applicability.sourceCounts")
+      .map((value, index) => positiveInteger(value, `protocol.applicability.sourceCounts[${index}]`));
+  if (isB1 && sourceCounts[0] !== 6) throw new RangeError("B1 protocol sourceCount must be 6.");
+  if (!isB1 && sourceCounts.join(",") !== "6,12") {
+    throw new RangeError("cohort protocol sourceCounts must be [6, 12].");
+  }
 
   const eventEvaluator = object(raw.eventEvaluator, "protocol.eventEvaluator");
   if (eventEvaluator.rootPolicy?.id !== ALL_RETAINED_SIMPLE_ROOTS_POLICY) {
@@ -187,7 +203,7 @@ export function validateB1CompleteCycleProbeProtocol(rawProtocol) {
     applicability.requiredPrescribedReturnPeriod,
     "protocol.applicability.requiredPrescribedReturnPeriod",
   ) !== cyclePeriod) {
-    throw new RangeError("complete-cycle period must equal the required B1 prescribed return period.");
+    throw new RangeError("complete-cycle period must equal the required prescribed return period.");
   }
   if (cycle.samplingRule !== "uniform-left-closed-periodic-grid.v1") {
     throw new TypeError("completeCycle.samplingRule must be uniform-left-closed-periodic-grid.v1.");
@@ -360,8 +376,15 @@ export function validateB1CompleteCycleProbeProtocol(rawProtocol) {
     "failClosedGates.quadratureConvergence.sourceSensitivityRelativeOrAbsolute",
   );
   const coordinates = sensitivity.coordinates;
-  if (!Array.isArray(coordinates) || coordinates.join(",") !== "alpha_1,alpha_2,alpha_3") {
-    throw new TypeError("local sensitivity coordinates must be alpha_1, alpha_2, alpha_3.");
+  if (isB1) {
+    if (!Array.isArray(coordinates) || coordinates.join(",") !== "alpha_1,alpha_2,alpha_3") {
+      throw new TypeError("B1 local sensitivity coordinates must be alpha_1, alpha_2, alpha_3.");
+    }
+  } else if (!Array.isArray(coordinates) ||
+      coordinates.join(",") !== "declared-primary-braid-phase-offset") {
+    throw new TypeError(
+      "cohort local sensitivity coordinates must be [declared-primary-braid-phase-offset].",
+    );
   }
   const step = positive(sensitivity.primaryStep, "localSourceSensitivity.primaryStep");
   const refinedStep = positive(sensitivity.refinedStep, "localSourceSensitivity.refinedStep");
@@ -407,7 +430,8 @@ export function summarizeB1CompleteCycleProbeProtocol(rawProtocol) {
     primary: {
       timeSamples: primary.timeSamples,
       internalFixedProbeCount: gridSide ** 3,
-      endpointReceiverCount: protocol.applicability.sourceCount,
+      endpointReceiverCount: protocol.applicability.sourceCount ??
+        Math.max(...protocol.applicability.sourceCounts),
       surfaceRadiusCount: radiusCount,
       surfaceDirectionCount,
       surfaceEventCount: radiusCount * surfaceDirectionCount * primary.timeSamples,

@@ -1,0 +1,266 @@
+{
+  "schema": "prescribed-path-analysis/complete-cycle-probe-protocol.v1",
+  "protocolId": "all-borg-candidates-complete-cycle-v1",
+  "claimGrade": "derived",
+  "claimBoundary": {
+    "prescribedPathAnalyticsOnly": true,
+    "pathEvolutionInvoked": false,
+    "eomSolverInvoked": false,
+    "excludedClaims": [
+      "stability",
+      "energy",
+      "retention",
+      "physical-realization"
+    ]
+  },
+  "applicability": {
+    "registryId": "all-borg-braid-candidates.v1",
+    "familyIds": ["A", "B", "C"],
+    "sourceCounts": [6, 12],
+    "maximumSourceEnvelopeRadius": 0.99,
+    "requiredPrescribedReturnPeriod": 4,
+    "requiredCenterVelocity": [0, 0, 0]
+  },
+  "eventEvaluator": {
+    "fieldSpeed": 4,
+    "coupling": 1,
+    "history": {
+      "start": 0,
+      "end": 8,
+      "minimumDelay": 1e-12
+    },
+    "rootPolicy": {
+      "id": "all-retained-simple-roots/sub-field-speed-certified.v1",
+      "tolerance": 1e-12,
+      "maxIterations": 128
+    },
+    "tolerances": {
+      "cancellationFloor": 1e-30,
+      "rootTransversalityFloor": 1e-8,
+      "minimumSeparationFloor": 1e-8,
+      "convergenceAbsolute": 1e-9
+    },
+    "geometry": {
+      "minimumSeparationSamples": 128
+    },
+    "convergence": {
+      "rootTolerance": 1e-14,
+      "maxIterations": 192,
+      "minimumSeparationSamples": 256
+    }
+  },
+  "completeCycle": {
+    "start": 4,
+    "period": 4,
+    "samplingRule": "uniform-left-closed-periodic-grid.v1",
+    "endpointConvention": "include-start/exclude-return-end.v1",
+    "timeQuadrature": "equal-weight-periodic-trapezoid.v1",
+    "primary": {
+      "timeSamples": 12,
+      "polarOrder": 8,
+      "azimuthCount": 16
+    },
+    "refined": {
+      "timeSamples": 24,
+      "polarOrder": 12,
+      "azimuthCount": 24
+    }
+  },
+  "internalProbes": {
+    "fixedCartesianGrid": {
+      "kind": "stationary-coordinate-probe-grid.v1",
+      "axisCoordinates": [-1.0, 0, 1.0],
+      "probePolarities": [1, -1],
+      "identitySubsets": {
+        "braidCenter": [[0, 0, 0]],
+        "declaredAxis": "candidate source record"
+      },
+      "deduplication": "one event per coordinate with all semantic identities retained.v1"
+    },
+    "sourceEndpointReceivers": {
+      "kind": "prescribed-source-endpoint-probe.v1",
+      "receiverPosition": "exact source position at each observation time",
+      "receiverPolarity": "source charge",
+      "selfHitPolicy": "exclude-same-source-id.v1",
+      "reportedRows": [
+        "per-transmitter acceleration contribution",
+        "net acceleration response",
+        "prescribed-path acceleration",
+        "partial prescribed-path equation mismatch",
+        "receiver-side factor D_r",
+        "root playback derivative D_r/D_t"
+      ],
+      "mismatchBoundary": "partial because self-hit and other possible acceleration contributions are omitted"
+    }
+  },
+  "enclosingSurfaces": {
+    "kind": "centered-sphere-sequence.v1",
+    "center": [0, 0, 0],
+    "radii": [1, 1.25, 1.5, 2],
+    "probePolarities": [1, -1],
+    "angularRule": "gauss-legendre-cos-theta/uniform-azimuth-product.v1",
+    "surfaceWeight": "R^2 times solid-angle weight",
+    "coordinateConvention": {
+      "cosThetaAxis": [0, 0, 1],
+      "phiZeroAxis": [1, 0, 0],
+      "positivePhiToward": [0, 1, 0]
+    }
+  },
+  "externalExposureReduction": {
+    "cycleSurfaceNormalization": "one-over-cycle-period.v1",
+    "netIntegrand": "squared-norm-of-net-probe-acceleration.v1",
+    "rawIntegrand": "square-of-sum-of-constituent-acceleration-magnitudes.v1",
+    "etaExt": "L_ext/(L_raw+exposureFloor).v1",
+    "exposureFloor": 1e-30,
+    "reportedMeasures": [
+      "L_ext(R) for each probe polarity",
+      "L_raw(R) for each probe polarity",
+      "eta_ext(R) for each probe polarity",
+      "peak surface acceleration norm and event identity",
+      "signed wake and unsigned wake surface norms"
+    ],
+    "polarityParityDiagnostic": "difference between positive and negative squared-norm rows"
+  },
+  "causalWakeFluxReduction": {
+    "integrationWindow": "one-complete-return-cycle.v1",
+    "normalProjection": "fieldSpeed-times-root-signed-wake-times-root-direction-dot-outward-normal.v1",
+    "rawAggregation": "sum-absolute-transmitter-root-normal-contributions-before-superposition.v1",
+    "residualAggregation": "absolute-signed-superposition-after-transmitter-root-summation.v1",
+    "etaWakeFlux": "residualCycleIntegral/rawCycleIntegral.v1",
+    "rawEmissionReference": "cycle-period-times-sum-absolute-source-polarity.v1",
+    "signedEmissionReference": "cycle-period-times-sum-signed-source-polarity.v1",
+    "fluxFloor": 1e-30,
+    "frequencyResolved": {
+      "angularBasis": "same-real-orthonormal-spherical-harmonic-basis-as-angularReduction.v1",
+      "temporalBasis": "complete-cycle-complex-dft.v1",
+      "transmitterRootTag": "transmitter-id-plus-root-ordinal.v1",
+      "rawCoefficientAggregation": "sum-transmitter-root-complex-magnitudes-before-superposition.v1",
+      "netCoefficientAggregation": "magnitude-of-transmitter-root-complex-sum.v1",
+      "etaWakeFluxCoefficient": "netMagnitude/rawMagnitude.v1",
+      "coefficientFloor": 1e-30,
+      "relativeComparisonFloor": 0.000001,
+      "reportedRows": [
+        "transmitter-root-tagged complex normal wake-flux coefficient",
+        "net complex coefficient",
+        "raw and net magnitude",
+        "frequency-and-angular-mode cancellation ratio",
+        "retained-band coverage and reconstruction residual"
+      ],
+      "claimBoundary": "frequency-resolved causal-wake cancellation only; signal-processing magnitude is not energy"
+    },
+    "reportedMeasures": [
+      "signed complete-cycle normal causal-wake flux",
+      "raw complete-cycle normal causal-wake flux",
+      "residual complete-cycle normal causal-wake flux",
+      "eta_W_flux(R)",
+      "raw and signed emission-reference residuals",
+      "frequency-and-angular-mode coefficients and cancellation ratios"
+    ],
+    "claimBoundary": "causal-wake measure only; not energy, potential, work, or leakage"
+  },
+  "angularReduction": {
+    "basis": "real-orthonormal-spherical-harmonics/condon-shortley.v1",
+    "realForm": "m-negative=sqrt(2)Im(Y_l_abs(m));m-zero=Y_l_0;m-positive=sqrt(2)Re(Y_l_m).v1",
+    "maximumDegree": 4,
+    "channels": [
+      "signedWake",
+      "unsignedWake",
+      "radialProbeAccelerationPositive",
+      "radialProbeAccelerationNegative",
+      "probeAccelerationNormSquaredPositive",
+      "probeAccelerationNormSquaredNegative"
+    ],
+    "powerByDegree": "sum-of-squared-real-coefficients.v1",
+    "anisotropy": {
+      "nonMonopolePowerFraction": "sum(l=1..4 power_l)/(sum(l=0..4 power_l)+floor)",
+      "rawNormalizedNonMonopoleAmplitude": "sqrt(sum(l=1..4 net_power_l)/(raw_constituent_power+floor))",
+      "floor": 1e-30
+    }
+  },
+  "spectralReduction": {
+    "basis": "complete-cycle-complex-dft.v1",
+    "normalization": "one-over-time-sample-count.v1",
+    "maximumHarmonic": 4,
+    "channels": [
+      "internal endpoint net acceleration components",
+      "surface signedWake angular coefficients",
+      "surface radial probe-acceleration angular coefficients",
+      "surface acceleration-norm-squared angular coefficients"
+    ],
+    "reportedRows": [
+      "complex coefficient",
+      "magnitude",
+      "phase",
+      "retained-band power",
+      "Parseval residual"
+    ]
+  },
+  "radialScalingReduction": {
+    "positiveMeasureRelativeFloor": 1e-24,
+    "positiveMeasures": [
+      "L_ext",
+      "L_raw",
+      "wake surface norms",
+      "wake-flux rows",
+      "angular power by degree",
+      "spectral band power"
+    ],
+    "pairwiseExponent": "-log(M(R_b)/M(R_a))/log(R_b/R_a)",
+    "globalFit": "unweighted-least-squares-of-log-measure-on-log-radius.v1",
+    "reportedRows": [
+      "pairwise exponent",
+      "global exponent",
+      "log-space fit residual",
+      "below-floor disposition"
+    ],
+    "claimBoundary": "report measured scaling only; do not preassign a far-field exponent"
+  },
+  "localSourceSensitivity": {
+    "coordinates": ["declared-primary-braid-phase-offset"],
+    "domain": [0, 6.283185307179586],
+    "coordinateSelection": "first declared binary phase in the canonical source specification",
+    "primaryStep": 0.04908738521234052,
+    "refinedStep": 0.02454369260617026,
+    "interiorStencil": "three-point-centered-periodic.v1",
+    "derivative": "measure difference per radian.v1",
+    "convergence": "absolute difference between primary-step and refined-step derivative",
+    "measures": [
+      "eta_ext at the outer enclosing radius",
+      "eta_W_flux at the outer enclosing radius",
+      "internal endpoint RMS acceleration response"
+    ]
+  },
+  "branchDiagnostics": {
+    "spatialGradient": "centered-coordinate-difference-with-root-identity-match.v1",
+    "temporalVariation": "centered-periodic-time-difference-with-root-identity-match.v1",
+    "coordinateStep": 0.001,
+    "timeStep": 0.001,
+    "probePosition": [0, 0, 0]
+  },
+  "symmetryReduction": {
+    "applicability": "only explicit source-record chart symmetries",
+    "undeclaredDisposition": "inapplicable-with-reason"
+  },
+  "failClosedGates": {
+    "sourceSpeed": "every source speed bound is strictly below field speed",
+    "rootCompleteness": "every retained event has the certified complete root ledger",
+    "rootTransversality": "minimum absolute D_t is at least 1e-8",
+    "minimumSeparation": "minimum source-source separation is at least 1e-8",
+    "eventConvergence": "maximum event-level change is at most 1e-9",
+    "quadratureConvergence": {
+      "exposureRelative": 0.01,
+      "anisotropyAbsolute": 0.01,
+      "retainedSpectralPowerRelative": 0.02,
+      "radialExponentAbsolute": 0.05,
+      "causalWakeFluxRelativeOrAbsolute": 0.01,
+      "frequencyResolvedWakeFluxRelativeOrAbsolute": 0.05,
+      "sourceSensitivityRelativeOrAbsolute": 0.02
+    },
+    "causalWakeFlux": {
+      "rawEmissionReferenceRelative": 0.01,
+      "signedEmissionReferenceRelativeOrAbsolute": 0.01,
+      "frequencyResolvedOutOfBandRmsFraction": 0.02
+    },
+    "failurePolicy": "reject affected source result; emit diagnostic ledger but no accepted reduced-measure row.v1"
+  }
+}

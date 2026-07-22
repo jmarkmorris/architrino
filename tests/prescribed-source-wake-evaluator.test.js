@@ -317,6 +317,65 @@ test("canonical translating-source case independently exercises the transmitter-
   assertNear(result.reducedMeasures.events[0].probeResponses[0].acceleration.x, 12 / 25);
 });
 
+test("moving endpoint receiver independently fixes D_r without changing instantaneous acceleration", () => {
+  const receiver = {
+    id: "moving-receiver",
+    charge: -1,
+    trajectory: {
+      kind: "moving-circular.v1",
+      epochTime: 0,
+      centerAtEpoch: { x: 2, y: 0, z: 0 },
+      centerVelocity: { x: 0, y: 0, z: 0 },
+      radiusU: { x: 0.2, y: 0, z: 0 },
+      radiusV: { x: 0, y: 0.2, z: 0 },
+      angularVelocity: Math.PI,
+      angularAcceleration: 0,
+      phaseAtEpoch: 0,
+    },
+  };
+  const observationTime = 2.25;
+  const angle = Math.PI / 4;
+  const receiverPosition = {
+    x: 2 + 0.2 * Math.cos(angle),
+    y: 0.2 * Math.sin(angle),
+    z: 0,
+  };
+  const receiverVelocity = {
+    x: -0.2 * Math.PI * Math.sin(angle),
+    y: 0.2 * Math.PI * Math.cos(angle),
+    z: 0,
+  };
+  const distance = Math.hypot(receiverPosition.x, receiverPosition.y);
+  const radialSpeed = (
+    receiverVelocity.x * receiverPosition.x + receiverVelocity.y * receiverPosition.y
+  ) / distance;
+  const protocol = analysisProtocol({ observationTime });
+  protocol.probes = [{
+    id: "moving-endpoint",
+    kind: "prescribed-source-endpoint-probe.v1",
+    sourceId: receiver.id,
+    selfHitPolicy: "exclude-same-source-id.v1",
+    observationTimes: [observationTime],
+    polarities: [1],
+  }];
+  const result = evaluatePrescribedRecordAnalysis({
+    sourceRecord: sourceRecord([linearSource("static-transmitter", 1), receiver]),
+    protocol,
+  });
+  const event = result.rawLedgers.causalRoots[0];
+  assert.equal(event.expectedTransmitterCount, 1);
+  assert.equal(event.rootCount, 1);
+  assert.equal(event.receiverSourceId, receiver.id);
+  const [root] = event.roots;
+  assert.equal(root.transmitterId, "static-transmitter");
+  assertNear(root.receiverRadialSpeed, radialSpeed);
+  assertNear(root.receiverSideFactorDr, 2 - radialSpeed);
+  assertNear(root.rootPlaybackDerivative, (2 - radialSpeed) / 2);
+  const expectedAccelerationMagnitude = 1 / (distance * distance);
+  const acceleration = event.measures.probeResponses[0].acceleration;
+  assertNear(Math.hypot(acceleration.x, acceleration.y, acceleration.z), expectedAccelerationMagnitude);
+});
+
 test("canonical protocol fails closed when convergence inputs are incomplete", () => {
   const protocol = analysisProtocol();
   delete protocol.convergence.rootTolerance;

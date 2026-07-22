@@ -1,12 +1,12 @@
 {
   "schema": "prescribed-braid-spec.v1",
   "specId": "illustrative-extreme-cap-tilt-spindle-variant-v0",
-  "label": "B1 — high-axial interior",
-  "provenanceDescription": "Exact B1 prescribed display paths at high axial fractions while remaining inside the B1 coordinate interior; the legacy source identity is retained only for stable machine compatibility.",
+  "label": "B1.2 — high-axial interior",
+  "provenanceDescription": "Exact B1.2 prescribed display paths at high axial fractions while remaining inside the B1 coordinate interior; the legacy source identity is retained only for stable machine compatibility.",
   "claimGrade": "chart-hypothesis",
   "evidenceStatus": "display-only",
   "date": "2026-07-22",
-  "taxonomy": { "familyId": "B", "familyLabel": "Family B", "memberId": "B1", "memberLabel": "rigid common-frequency", "instantiationLabel": "high-axial interior", "displayLabel": "B1 — high-axial interior", "canonSource": "content/markdown/aaa/noether-braid/braid-family-b.md#coordinate-boundaries" },
+  "taxonomy": { "familyId": "B", "familyLabel": "Family B", "memberId": "B1.2", "memberLabel": "high-axial interior", "displayLabel": "B1.2 — high-axial interior", "canonSource": "content/markdown/aaa/noether-braid/braid-family-b.md#b1-catalog-members" },
   "illustrativeCoordinates": { "status": "prescribed-display-coordinates", "choices": ["The center, common axis, radii, common frequency, phases, polarity assignments, and high-axial interior decomposition are prescribed display coordinates inherited from the verified legacy record."] },
   "compatibility": { "retainedIdentifiers": [
     { "kind": "source-spec-id", "value": "illustrative-extreme-cap-tilt-spindle-variant-v0", "reason": "Stable source identity consumed by existing record links." },

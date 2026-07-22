@@ -178,6 +178,8 @@ test("independent static-source evaluation fixes the full-cycle raw wake flux at
     near(surface.wakeFlux.signedCycleIntegral, 0, 2e-10);
     assert.equal(surface.wakeFlux.rawEmissionReference.expectedCycleIntegral, 24);
     assert.equal(surface.wakeFlux.rawEmissionReference.passed, true);
+    assert.equal(surface.wakeFlux.signedEmissionReference.expectedCycleIntegral, 0);
+    assert.equal(surface.wakeFlux.signedEmissionReference.passed, true);
     assert.match(surface.wakeFlux.claimBoundary, /not energy/);
   }
   assert.equal(

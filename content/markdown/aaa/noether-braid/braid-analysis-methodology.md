@@ -35,7 +35,7 @@ Comparing $\mathbf G[S;P]$ directly with $\mathbf G[S';P']$ is uncontrolled unle
 
 ## Superimposed Causal-Wake Map
 
-The requested wave formula is not an imported wave-equation partial differential equation. It is the superposition of the same delayed causal isochrons used by the [Master Equation](../dynamics/master-equation.md#path-history-sum-and-integral-representation).
+The $\mathbb{A}\mathbb{A}\mathbb{A}$-native wake equation used here is not an imported wave-equation partial differential equation. It constructs the superimposed causal-wake map from the same delayed causal isochrons used by the [Master Equation](../dynamics/master-equation.md#path-history-sum-and-integral-representation). The equation is the construction rule. For one declared source record and analysis protocol, its evaluated scalar is the wake map; the map's spatial or temporal structure is its wake pattern, and a frequency or angular-mode decomposition is its wake spectrum. An assembly's wake is shorthand for the superposition of its constituent architrino wakes, not emission by the assembly as a single transmitter.
 
 For source $j$, emission time $T_t<T$, and coordinate probe $\mathbf X$, define
 
@@ -67,7 +67,7 @@ T_t<T:g_j(T,\mathbf X;T_t)=0
 \right\}.
 $$
 
-A source-normalized signed causal-wake map is then
+The source-normalized signed wake equation is
 
 $$
 \boxed{
@@ -82,7 +82,7 @@ $$
 }
 $$
 
-for the declared retained-history start $T_{\min}$. This scalar records signed causal-wake exposure under the declared source normalization. It is not by itself energy, potential, or acceleration.
+for the declared retained-history start $T_{\min}$. For fixed source record $S$ and protocol $P$, the resulting scalar $\mathcal W(T,\mathbf X)$ is the causal-wake map. It records signed causal-wake exposure under the declared source normalization. It is not by itself energy, potential, or acceleration.
 
 For simple roots, define the transmitter-side factor
 
@@ -473,6 +473,8 @@ Only after these programs can calculate the common measure set should a broad pa
 ## Monte Carlo Configuration-Space Analysis
 
 Let $\boldsymbol\theta$ contain the complete taxonomy coordinates, group-translation speed, phase origin, and any permitted prescribed-history coordinates. A sampling campaign must publish the domain $\Theta$, units, constraints, and sampling measure. There is no coordinate-free meaning to “random braid”; uniform sampling in radius, logarithmic radius, speed, or frequency represents different candidate populations.
+
+For C1.1 and C2.1, the axial braid-center separation $d_C$ is a required Monte Carlo coordinate in $\boldsymbol\theta$. Each sampled source must retain the coaxial constraint $\Delta\mathbf C=d_C\hat{\mathbf n}_C$ while varying $d_C$ under the campaign's declared positive domain and sampling measure. The canonical display value $d_C=1.10$ is one reference point, not a fixed sampling value. A campaign must publish the minimum, maximum, units, and probability measure for $d_C$ before drawing samples.
 
 For a family/member candidate $M$, define its admissible configuration space by
 

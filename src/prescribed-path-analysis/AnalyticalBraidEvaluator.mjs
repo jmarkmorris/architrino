@@ -113,8 +113,12 @@ export function sha256Canonical(value) {
 function normalizeProbe(rawProbe, index) {
   const label = `protocol.probes[${index}]`;
   const id = concreteString(rawProbe?.id, `${label}.id`);
-  if (rawProbe?.kind !== "stationary-coordinate-probe.v1") {
-    throw new TypeError(`${label}.kind must be stationary-coordinate-probe.v1.`);
+  if (rawProbe?.kind !== "stationary-coordinate-probe.v1" &&
+      rawProbe?.kind !== "prescribed-source-endpoint-probe.v1") {
+    throw new TypeError(
+      `${label}.kind must be stationary-coordinate-probe.v1 or ` +
+      "prescribed-source-endpoint-probe.v1.",
+    );
   }
   if (!Array.isArray(rawProbe.observationTimes) || rawProbe.observationTimes.length === 0) {
     throw new TypeError(`${label}.observationTimes must be nonempty.`);
@@ -135,12 +139,28 @@ function normalizeProbe(rawProbe, index) {
   if (new Set(polarities).size !== polarities.length) {
     throw new TypeError(`${label}.polarities must be unique.`);
   }
-  return {
+  const common = {
     id,
     kind: rawProbe.kind,
-    position: vector(rawProbe.position, `${label}.position`),
     observationTimes,
     polarities,
+  };
+  if (rawProbe.kind === "stationary-coordinate-probe.v1") {
+    return {
+      ...common,
+      position: vector(rawProbe.position, `${label}.position`),
+    };
+  }
+  const sourceId = concreteString(rawProbe.sourceId, `${label}.sourceId`);
+  if (rawProbe.selfHitPolicy !== "exclude-same-source-id.v1") {
+    throw new TypeError(
+      `${label}.selfHitPolicy must be exclude-same-source-id.v1 for a moving endpoint receiver.`,
+    );
+  }
+  return {
+    ...common,
+    sourceId,
+    selfHitPolicy: rawProbe.selfHitPolicy,
   };
 }
 
@@ -399,6 +419,17 @@ function solveCertifiedRetainedRoot({
 }
 
 function evaluateEvent({ sourceRecord, protocol, probe, observationTime, rootTolerance, maxIterations }) {
+  const receiverSource = probe.kind === "prescribed-source-endpoint-probe.v1"
+    ? sourceRecord.sources.find((source) => source.id === probe.sourceId)
+    : null;
+  if (probe.kind === "prescribed-source-endpoint-probe.v1" && !receiverSource) {
+    throw new Error(`moving endpoint probe ${probe.id} names absent source ${probe.sourceId}.`);
+  }
+  const receiverState = receiverSource
+    ? evaluateExactPrescribedSourceState(receiverSource, observationTime)
+    : null;
+  const probePosition = receiverState?.position ?? probe.position;
+  const probeVelocity = receiverState?.velocity ?? { x: 0, y: 0, z: 0 };
   const retainedStart = Math.max(sourceRecord.history.start, protocol.history.start);
   const retainedEnd = Math.min(
     sourceRecord.history.end,
@@ -413,12 +444,13 @@ function evaluateEvent({ sourceRecord, protocol, probe, observationTime, rootTol
   const roots = [];
   const noRootTransmitters = [];
   for (const source of sourceRecord.sources) {
+    if (receiverSource && source.id === receiverSource.id) continue;
     const solved = solveCertifiedRetainedRoot({
       source,
       retainedStart,
       retainedEnd,
       observationTime,
-      probePosition: probe.position,
+      probePosition,
       fieldSpeed: protocol.fieldSpeed,
       tolerance: rootTolerance,
       maxIterations,
@@ -445,6 +477,8 @@ function evaluateEvent({ sourceRecord, protocol, probe, observationTime, rootTol
     if (!(transmitterSideFactorDt > 0)) {
       throw new RangeError(`causal root for ${source.id} is not a retained simple root.`);
     }
+    const receiverRadialSpeed = dot(probeVelocity, direction);
+    const receiverSideFactorDr = protocol.fieldSpeed - receiverRadialSpeed;
     const denominator = FOUR_PI * root.distance * root.distance * Math.abs(transmitterSideFactorDt);
     const accelerationBaseScale = protocol.coupling * source.charge *
       protocol.fieldSpeed / Math.abs(transmitterSideFactorDt) /
@@ -466,6 +500,9 @@ function evaluateEvent({ sourceRecord, protocol, probe, observationTime, rootTol
       residual: root.residual,
       transmitterRadialSpeed,
       transmitterSideFactorDt,
+      receiverRadialSpeed,
+      receiverSideFactorDr,
+      rootPlaybackDerivative: receiverSideFactorDr / transmitterSideFactorDt,
       rootTransversalityMargin: Math.abs(transmitterSideFactorDt),
       accelerationWeight: protocol.fieldSpeed / Math.abs(transmitterSideFactorDt),
       signedWakeContribution: source.charge / denominator,
@@ -496,7 +533,11 @@ function evaluateEvent({ sourceRecord, protocol, probe, observationTime, rootTol
     eventId: `${probe.id}@${observationTime}`,
     probeId: probe.id,
     observationTime,
-    probePosition: probe.position,
+    probeKind: probe.kind,
+    receiverSourceId: receiverSource?.id ?? null,
+    selfHitPolicy: receiverSource ? probe.selfHitPolicy : "not-applicable",
+    probePosition,
+    probeVelocity,
     retainedHistory: { start: retainedStart, end: retainedEnd },
     rootCompletenessCertification: {
       policy: ALL_RETAINED_SIMPLE_ROOTS_POLICY,
@@ -504,6 +545,7 @@ function evaluateEvent({ sourceRecord, protocol, probe, observationTime, rootTol
       reason:
         "Each transmitter residual is strictly increasing because its certified speed bound is below fieldSpeed; therefore the retained interval contains at most one root.",
     },
+    expectedTransmitterCount: sourceRecord.sources.length - (receiverSource ? 1 : 0),
     rootCount: roots.length,
     noRootCount: noRootTransmitters.length,
     roots,

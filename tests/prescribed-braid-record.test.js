@@ -59,7 +59,7 @@ function rotate120(vector) {
 }
 
 test("canonical target registry contains every requested candidate exactly once", () => {
-  assert.equal(PRESCRIBED_BRAID_TARGETS.length, 17);
+  assert.equal(PRESCRIBED_BRAID_TARGETS.length, 19);
   const labels = fixtures.map(({ spec }) => spec.taxonomy.displayLabel);
   assert.deepEqual(labels, [
     "A1 — coincident endpoint orbits",
@@ -73,16 +73,18 @@ test("canonical target registry contains every requested candidate exactly once"
     "A3.2 — equal frequency, equal radius",
     "A3.3 — 4:2:1 frequency",
     "A3.4 — 3:2:1 frequency",
-    "B1 — interior reference",
-    "B1 — high-axial interior",
-    "B1 — all-equatorial boundary",
-    "B1 — all-axial boundary",
+    "B1.1 — interior reference",
+    "B1.2 — high-axial interior",
+    "B1.3 — all-equatorial boundary",
+    "B1.4 — all-axial boundary",
     "C1 — co-rotating B1 pair",
     "C2 — counter-rotating B1 pair",
+    "C1.1 — co-rotating B1.3 pair",
+    "C2.1 — counter-rotating B1.3 pair",
   ]);
   assert.equal(new Set(labels).size, labels.length);
-  assert.equal(new Set(PRESCRIBED_BRAID_TARGETS.map((row) => row.specPath)).size, 17);
-  assert.equal(new Set(PRESCRIBED_BRAID_TARGETS.map((row) => row.outPath)).size, 17);
+  assert.equal(new Set(PRESCRIBED_BRAID_TARGETS.map((row) => row.specPath)).size, 19);
+  assert.equal(new Set(PRESCRIBED_BRAID_TARGETS.map((row) => row.outPath)).size, 19);
 });
 
 test("spec validation fails closed on nonfinite coordinates, broken radii, and incomplete return cycles", () => {
@@ -265,8 +267,12 @@ test("A1 endpoint paths share one orbit center while A3 preserves separated endp
   });
 });
 
-test("the four B1 records preserve the verified coordinate mapping and compatibility identities", () => {
+test("the B1.1 through B1.4 records preserve the verified coordinate mapping and compatibility identities", () => {
   const [interior, highAxial, equatorial, axial] = fixtures.slice(11, 15).map(({ spec }) => spec);
+  assert.deepEqual(
+    [interior, highAxial, equatorial, axial].map((spec) => spec.taxonomy.memberId),
+    ["B1.1", "B1.2", "B1.3", "B1.4"],
+  );
   assert.deepEqual(interior.braids[0].binaries.map((row) => row.radius), [0.22, 0.32, 0.44]);
   assert.deepEqual(interior.braids[0].binaries.map((row) => row.frequency), [0.25, 0.25, 0.25]);
   assert.ok(highAxial.braids[0].binaries.every((row) =>
@@ -279,6 +285,33 @@ test("the four B1 records preserve the verified coordinate mapping and compatibi
     assert.ok(spec.compatibility.retainedIdentifiers.length >= 4);
     assert.deepEqual(spec.braids[0].frameDefinition.axis, [0, 0, 1]);
   });
+
+  const invalidInterior = structuredClone(interior);
+  invalidInterior.braids[0].binaries[0].axialHalfSeparation = 0;
+  invalidInterior.braids[0].binaries[0].transverseOrbitRadius =
+    invalidInterior.braids[0].binaries[0].radius;
+  assert.throws(() => validatePrescribedBraidSpec(invalidInterior), /B1\.1 requires/);
+
+  const invalidHighAxial = structuredClone(highAxial);
+  invalidHighAxial.braids[0].binaries[0].axialHalfSeparation =
+    invalidHighAxial.braids[0].binaries[0].transverseOrbitRadius;
+  invalidHighAxial.braids[0].binaries[0].radius = Math.SQRT2 *
+    invalidHighAxial.braids[0].binaries[0].transverseOrbitRadius;
+  assert.throws(() => validatePrescribedBraidSpec(invalidHighAxial), /B1\.2 requires/);
+
+  const invalidEquatorial = structuredClone(equatorial);
+  invalidEquatorial.braids[0].binaries[0].axialHalfSeparation = 0.01;
+  invalidEquatorial.braids[0].binaries[0].transverseOrbitRadius = Math.sqrt(
+    invalidEquatorial.braids[0].binaries[0].radius ** 2 - 0.01 ** 2,
+  );
+  assert.throws(() => validatePrescribedBraidSpec(invalidEquatorial), /B1\.3 requires/);
+
+  const invalidAxial = structuredClone(axial);
+  invalidAxial.braids[0].binaries[0].transverseOrbitRadius = 0.01;
+  invalidAxial.braids[0].binaries[0].axialHalfSeparation = Math.sqrt(
+    invalidAxial.braids[0].binaries[0].radius ** 2 - 0.01 ** 2,
+  );
+  assert.throws(() => validatePrescribedBraidSpec(invalidAxial), /B1\.4 requires/);
 });
 
 test("C1 and C2 contain two complete B1 components and the declared relative circulation", () => {
@@ -292,6 +325,35 @@ test("C1 and C2 contain two complete B1 components and the declared relative cir
   }
   assert.deepEqual(c1.braids.map((braid) => braid.circulationSense), [1, 1]);
   assert.deepEqual(c2.braids.map((braid) => braid.circulationSense), [1, -1]);
+});
+
+test("C1.1 and C2.1 contain two all-equatorial B1.3 components", () => {
+  const c11 = fixtures[17].spec;
+  const c21 = fixtures[18].spec;
+  for (const spec of [c11, c21]) {
+    assert.equal(spec.braids.length, 2);
+    assert.deepEqual(spec.braids.map((braid) => braid.binaries.length), [3, 3]);
+    assert.deepEqual(spec.braids.map((braid) => braid.centerOffset), [[0, 0, -0.55], [0, 0, 0.55]]);
+    assert.deepEqual(spec.braids.map((braid) => braid.phaseOffset), [0, Math.PI / 3]);
+    assert.ok(spec.braids.every((braid) => braid.binaries.every((binary) =>
+      binary.axialHalfSeparation === 0 &&
+      binary.transverseOrbitRadius === binary.radius)));
+    assert.equal(generatePrescribedBraidRecord(spec).worldlines.length, 12);
+  }
+  assert.deepEqual(c11.braids.map((braid) => braid.circulationSense), [1, 1]);
+  assert.deepEqual(c21.braids.map((braid) => braid.circulationSense), [1, -1]);
+
+  const invalid = structuredClone(c11);
+  invalid.braids[1].binaries[0].axialHalfSeparation = 0.01;
+  invalid.braids[1].binaries[0].transverseOrbitRadius = Math.sqrt(
+    invalid.braids[1].binaries[0].radius ** 2 - 0.01 ** 2,
+  );
+  assert.throws(() => validatePrescribedBraidSpec(invalid), /two all-equatorial B1\.3 components/);
+
+  const noncoaxial = structuredClone(c11);
+  noncoaxial.braids[0].centerOffset = [-0.55, 0, 0];
+  noncoaxial.braids[1].centerOffset = [0.55, 0, 0];
+  assert.throws(() => validatePrescribedBraidSpec(noncoaxial), /coaxial B1\.3 components/);
 });
 
 test("exact analytical sources reproduce every declared endpoint path", () => {

@@ -1,7 +1,7 @@
 {
   "schema": "assembly-view-record.v0",
   "sourceId": "illustrative-planar-tri-binary-spindle-boundary-v0",
-  "title": "B1 — all-equatorial boundary",
+  "title": "B1.3 — all-equatorial boundary",
   "provenance": {
     "engineId": "prescribed-geometry",
     "engineVersion": "prescribed-braid-record-emitter.v1",
@@ -24,15 +24,14 @@
       "sphericalEnvelopeRadius": 0.5,
       "displayTrailPeriods": 1,
       "prescribedReturnPeriod": 4,
-      "description": "Exact B1 prescribed display paths with zero axial half-separation for all three binaries; the legacy source identity is retained only for stable machine compatibility.",
+      "description": "Exact B1.3 prescribed display paths with zero axial half-separation for all three binaries; the legacy source identity is retained only for stable machine compatibility.",
       "taxonomy": {
         "familyId": "B",
         "familyLabel": "Family B",
-        "memberId": "B1",
-        "memberLabel": "rigid common-frequency",
-        "instantiationLabel": "all-equatorial boundary",
-        "displayLabel": "B1 — all-equatorial boundary",
-        "canonSource": "content/markdown/aaa/noether-braid/braid-family-b.md#coordinate-boundaries"
+        "memberId": "B1.3",
+        "memberLabel": "all-equatorial boundary",
+        "displayLabel": "B1.3 — all-equatorial boundary",
+        "canonSource": "content/markdown/aaa/noether-braid/braid-family-b.md#b1-catalog-members"
       },
       "coordinates": {
         "group": {
@@ -25411,7 +25410,7 @@
     {
       "id": "planar-spindle-1-0-prescribed-return-cycle",
       "worldlineId": "planar-spindle-1-0",
-      "label": "B1 — all-equatorial boundary, planar-spindle-binary-1, endpoint 1",
+      "label": "B1.3 — all-equatorial boundary, planar-spindle-binary-1, endpoint 1",
       "points": [
         {
           "x": 0.22,
@@ -25903,7 +25902,7 @@
     {
       "id": "planar-spindle-1-1-prescribed-return-cycle",
       "worldlineId": "planar-spindle-1-1",
-      "label": "B1 — all-equatorial boundary, planar-spindle-binary-1, endpoint 2",
+      "label": "B1.3 — all-equatorial boundary, planar-spindle-binary-1, endpoint 2",
       "points": [
         {
           "x": -0.22,
@@ -26395,7 +26394,7 @@
     {
       "id": "planar-spindle-2-0-prescribed-return-cycle",
       "worldlineId": "planar-spindle-2-0",
-      "label": "B1 — all-equatorial boundary, planar-spindle-binary-2, endpoint 1",
+      "label": "B1.3 — all-equatorial boundary, planar-spindle-binary-2, endpoint 1",
       "points": [
         {
           "x": -0.15999999999999992,
@@ -26887,7 +26886,7 @@
     {
       "id": "planar-spindle-2-1-prescribed-return-cycle",
       "worldlineId": "planar-spindle-2-1",
-      "label": "B1 — all-equatorial boundary, planar-spindle-binary-2, endpoint 2",
+      "label": "B1.3 — all-equatorial boundary, planar-spindle-binary-2, endpoint 2",
       "points": [
         {
           "x": 0.15999999999999992,
@@ -27379,7 +27378,7 @@
     {
       "id": "planar-spindle-3-0-prescribed-return-cycle",
       "worldlineId": "planar-spindle-3-0",
-      "label": "B1 — all-equatorial boundary, planar-spindle-binary-3, endpoint 1",
+      "label": "B1.3 — all-equatorial boundary, planar-spindle-binary-3, endpoint 1",
       "points": [
         {
           "x": -0.2200000000000002,
@@ -27871,7 +27870,7 @@
     {
       "id": "planar-spindle-3-1-prescribed-return-cycle",
       "worldlineId": "planar-spindle-3-1",
-      "label": "B1 — all-equatorial boundary, planar-spindle-binary-3, endpoint 2",
+      "label": "B1.3 — all-equatorial boundary, planar-spindle-binary-3, endpoint 2",
       "points": [
         {
           "x": 0.2200000000000002,

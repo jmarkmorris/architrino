@@ -211,7 +211,12 @@ export async function rebuildAllCandidateAnalyticalDatabase(options = {}) {
   const exportDirectory = path.join(stagingDirectory, "exports");
   let published = false;
   try {
-    const campaign = buildAllCandidateAnalyticalCampaign(registryPath);
+    const campaign = buildAllCandidateAnalyticalCampaign(registryPath, {
+      outputDirectory: generatedCampaignDirectory,
+      evaluationMode: options.evaluationMode,
+      includeSensitivity: options.includeSensitivity !== false,
+      onProgress: options.onProgress,
+    });
     const generatedPaths = writeAllCandidateAnalyticalCampaign(
       campaign,
       generatedCampaignDirectory,
@@ -326,6 +331,9 @@ export async function rebuildAllCandidateAnalyticalDatabase(options = {}) {
       rejectedCaseCount: finalVerification.rejectedCaseCount,
       artifactCount: finalVerification.artifactCount,
       integrity: finalVerification.integrity,
+      slowestMeasuredStages: [...(campaign.runtimeTimings ?? [])]
+        .sort((left, right) => right.wallSeconds - left.wallSeconds)
+        .slice(0, 10),
     };
     options.onProgress?.({ stage: "rebuild-complete", ...report });
     return report;

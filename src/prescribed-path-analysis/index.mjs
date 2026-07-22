@@ -3,6 +3,7 @@ export * from "./ExactPrescribedSourceWake.mjs";
 export * from "./AnalyticalBraidEvaluator.mjs";
 export * from "./B1CompleteCycleProbeProtocol.mjs";
 export * from "./B1StreamingReductions.mjs";
+export * from "./CompleteCycleAnalyticalCampaign.mjs";
 export * from "./AllCandidateAnalyticalCampaign.mjs";
 export * from "./database/IndependentAnalyticalAcceptance.mjs";
 export * from "./database/AnalyticalCampaignDatabase.mjs";

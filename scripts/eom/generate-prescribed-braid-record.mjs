@@ -55,6 +55,8 @@ export const PRESCRIBED_BRAID_TARGETS = Object.freeze([
   target("illustrative-full-cap-axial-spindle-boundary.v0.json", "illustrative-full-cap-axial-spindle-boundary.assembly-view-record.v0.json"),
   target("family-c-c1-co-rotating-b1-pair.v1.json", "family-c-c1-co-rotating-b1-pair.assembly-view-record.v0.json"),
   target("family-c-c2-counter-rotating-b1-pair.v1.json", "family-c-c2-counter-rotating-b1-pair.assembly-view-record.v0.json"),
+  target("family-c-c1-1-co-rotating-b1-3-pair.v1.json", "family-c-c1-1-co-rotating-b1-3-pair.assembly-view-record.v0.json"),
+  target("family-c-c2-1-counter-rotating-b1-3-pair.v1.json", "family-c-c2-1-counter-rotating-b1-3-pair.assembly-view-record.v0.json"),
 ]);
 
 export const DEFAULT_PRESCRIBED_BRAID_SPEC_PATH = PRESCRIBED_BRAID_TARGETS[0].specPath;
@@ -65,8 +67,8 @@ const FAMILY_MEMBERS = Object.freeze({
     "A1", "A1.1", "A1.2", "A1.3", "A1.4", "A2",
     "A3", "A3.1", "A3.2", "A3.3", "A3.4",
   ]),
-  B: Object.freeze(["B1"]),
-  C: Object.freeze(["C1", "C2"]),
+  B: Object.freeze(["B1", "B1.1", "B1.2", "B1.3", "B1.4"]),
+  C: Object.freeze(["C1", "C1.1", "C2", "C2.1"]),
 });
 
 export function validatePrescribedBraidSpec(spec) {
@@ -357,16 +359,58 @@ function validateMemberConstraints(spec) {
   if (spec.taxonomy.familyId === "B" || spec.taxonomy.familyId === "C") {
     braids.forEach((braid, braidIndex) => validateB1Component(braid, braidIndex));
   }
+  if (memberId === "B1.1" && !binaries.every((binary) =>
+    binary.axialHalfSeparation > 0 && binary.transverseOrbitRadius > 0)) {
+    throw new RangeError("B1.1 requires h_a>0 and rho_a>0 for every binary.");
+  }
+  if (memberId === "B1.2" && !binaries.every((binary) =>
+    binary.axialHalfSeparation > binary.transverseOrbitRadius &&
+    binary.transverseOrbitRadius > 0)) {
+    throw new RangeError("B1.2 requires h_a>rho_a>0 for every binary.");
+  }
+  if (memberId === "B1.3" && !binaries.every((binary) =>
+    near(binary.axialHalfSeparation, 0) &&
+    near(binary.transverseOrbitRadius, binary.radius))) {
+    throw new RangeError("B1.3 requires h_a=0 and rho_a=R_a for every binary.");
+  }
+  if (memberId === "B1.4" && !binaries.every((binary) =>
+    near(binary.transverseOrbitRadius, 0) &&
+    near(binary.axialHalfSeparation, binary.radius))) {
+    throw new RangeError("B1.4 requires rho_a=0 and h_a=R_a for every binary.");
+  }
   if (spec.taxonomy.familyId === "C") {
     const [left, right] = braids;
     if (near(norm(subtract(left.centerOffset, right.centerOffset)), 0)) {
       throw new RangeError("Family C requires two distinct declared braid centers.");
     }
-    if (memberId === "C1" && left.circulationSense !== right.circulationSense) {
-      throw new RangeError("C1 requires a common circulation sense.");
+    if ((memberId === "C1" || memberId === "C1.1") &&
+        left.circulationSense !== right.circulationSense) {
+      throw new RangeError(`${memberId} requires a common circulation sense.`);
     }
-    if (memberId === "C2" && left.circulationSense !== -right.circulationSense) {
-      throw new RangeError("C2 requires opposite circulation senses.");
+    if ((memberId === "C2" || memberId === "C2.1") &&
+        left.circulationSense !== -right.circulationSense) {
+      throw new RangeError(`${memberId} requires opposite circulation senses.`);
+    }
+    if ((memberId === "C1.1" || memberId === "C2.1") &&
+        !braids.every((braid) => braid.binaries.every((binary) =>
+          near(binary.axialHalfSeparation, 0) &&
+          near(binary.transverseOrbitRadius, binary.radius)))) {
+      throw new RangeError(`${memberId} requires two all-equatorial B1.3 components.`);
+    }
+    if (memberId === "C1.1" || memberId === "C2.1") {
+      const leftAxis = left.frameDefinition.axis;
+      const rightAxis = right.frameDefinition.axis;
+      const centerDisplacement = subtract(right.centerOffset, left.centerOffset);
+      const transverseDisplacement = subtract(
+        centerDisplacement,
+        scale(leftAxis, dot(centerDisplacement, leftAxis)),
+      );
+      if (norm(subtract(leftAxis, rightAxis)) > GEOMETRY_TOLERANCE ||
+          norm(transverseDisplacement) > GEOMETRY_TOLERANCE) {
+        throw new RangeError(
+          `${memberId} requires coaxial B1.3 components separated along their common oriented axis.`,
+        );
+      }
     }
   }
 }

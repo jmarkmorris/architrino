@@ -1,8 +1,8 @@
 # Braid Family C
 
-Family C contains prescribed assemblies composed of two complete B1 braids. The canonical assembly coordinates and master-table rows are defined in [Braid Taxonomy](braid-taxonomy.md#family-c-two-braid-composition). This chapter gives the exact two-braid path chart, distinguishes braid-center displacement from axis offset, and defines C1 and C2.
+Family C contains prescribed assemblies composed of two complete B1 braids. The canonical assembly coordinates and master-table rows are defined in [Braid Taxonomy](braid-taxonomy.md#family-c-two-braid-composition). This chapter gives the exact two-braid path chart, distinguishes braid-center displacement from axis offset, and defines C1, C1.1, C2, and C2.1.
 
-Family C is a geometry-and-motion definition. It does not establish that a C1 or C2 record is generated, bound, retained, or stable under the EOM solver. The realization-independent retention burden is stated in [Braid Recovery Requirements](braid-recovery-requirements.md).
+Family C is a geometry-and-motion definition. It does not establish that a C1, C1.1, C2, or C2.1 record is generated, bound, retained, or stable under the EOM solver. The realization-independent retention burden is stated in [Braid Recovery Requirements](braid-recovery-requirements.md).
 
 ## Shared Family-C Composition
 
@@ -189,6 +189,32 @@ $$
 
 It inherits the same independent composition coordinates as C1. Opposite circulation does not by itself require coaxial axes, equal frequencies, phase lock, polarity conjugation, binding, or retention.
 
+## C1.1 and C2.1
+
+C1.1 is the all-equatorial constrained variant of C1, and C2.1 is the all-equatorial constrained variant of C2. Both component braids are B1.3 members:
+
+$$
+h_{ba}=0,
+\qquad
+\rho_{ba}=R_{ba},
+\qquad
+b\in\{1,2\},
+\quad
+a\in\{1,2,3\}.
+$$
+
+C1.1 and C2.1 also require one common oriented axis and a nonzero center displacement along that axis:
+
+$$
+\hat{\mathbf n}_2=\hat{\mathbf n}_1=\hat{\mathbf n}_C,
+\qquad
+\Delta\mathbf C=d_C\hat{\mathbf n}_C,
+\qquad
+d_C>0.
+$$
+
+The derived axis offset is therefore zero even though the braid centers are distinct. C1.1 retains the same-circulation relation $q_2=q_1$. C2.1 retains the opposite-circulation relation $q_2=-q_1$. The coordinate $d_C$ does not fix the relative phase or common-frequency values. The Borg representatives select $d_C=1.10$, centers at $(0,0,-0.55)$ and $(0,0,0.55)$, common z-axis frames, equal component frequencies $f_1=f_2=0.25$, and relative phase $\Delta\phi=\pi/3$ so that the circulation change is isolated in a directly comparable prescribed display.
+
 ## Interface With Two-Braid Physical Hypotheses
 
 Family C supplies a generic prescribed coordinate chart for two complete B1 records. A particle or transport hypothesis may occupy a constrained locus of this chart only after its extra relations are stated explicitly.
@@ -197,4 +223,4 @@ In particular, the photon-channel hypothesis is a **coaxial contra-rotating pola
 
 ## Claim Boundary
 
-The Family-C equations are exact prescribed paths. They would be falsified as EOM-solver branch claims by a same-record evolution showing that either component loses its B1 relations or that the declared inter-component coordinates fail the required causal-root, acceleration, action, and stability rows. Until such a record exists, C1 and C2 define display and comparison geometry rather than bound physical assemblies.
+The Family-C equations are exact prescribed paths. They would be falsified as EOM-solver branch claims by a same-record evolution showing that either component loses its B1 relations or that the declared inter-component coordinates fail the required causal-root, acceleration, action, and stability rows. Until such a record exists, C1, C1.1, C2, and C2.1 define display and comparison geometry rather than bound physical assemblies.

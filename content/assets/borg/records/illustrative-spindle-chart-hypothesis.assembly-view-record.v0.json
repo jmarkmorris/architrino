@@ -1,7 +1,7 @@
 {
   "schema": "assembly-view-record.v0",
   "sourceId": "illustrative-spindle-chart-hypothesis-v0",
-  "title": "B1 — interior reference",
+  "title": "B1.1 — interior reference",
   "provenance": {
     "engineId": "prescribed-geometry",
     "engineVersion": "prescribed-braid-record-emitter.v1",
@@ -24,15 +24,14 @@
       "sphericalEnvelopeRadius": 0.5,
       "displayTrailPeriods": 1,
       "prescribedReturnPeriod": 4,
-      "description": "Exact B1 prescribed display paths at the interior reference coordinates; the legacy source identity is retained only for stable machine compatibility.",
+      "description": "Exact B1.1 prescribed display paths at the interior reference coordinates; the legacy source identity is retained only for stable machine compatibility.",
       "taxonomy": {
         "familyId": "B",
         "familyLabel": "Family B",
-        "memberId": "B1",
-        "memberLabel": "rigid common-frequency",
-        "instantiationLabel": "interior reference",
-        "displayLabel": "B1 — interior reference",
-        "canonSource": "content/markdown/aaa/noether-braid/braid-family-b.md#b1"
+        "memberId": "B1.1",
+        "memberLabel": "interior reference",
+        "displayLabel": "B1.1 — interior reference",
+        "canonSource": "content/markdown/aaa/noether-braid/braid-family-b.md#b1-catalog-members"
       },
       "coordinates": {
         "group": {
@@ -25411,7 +25410,7 @@
     {
       "id": "spindle-1-0-prescribed-return-cycle",
       "worldlineId": "spindle-1-0",
-      "label": "B1 — interior reference, spindle-binary-1, endpoint 1",
+      "label": "B1.1 — interior reference, spindle-binary-1, endpoint 1",
       "points": [
         {
           "x": 0.20673237657289986,
@@ -25903,7 +25902,7 @@
     {
       "id": "spindle-1-1-prescribed-return-cycle",
       "worldlineId": "spindle-1-1",
-      "label": "B1 — interior reference, spindle-binary-1, endpoint 2",
+      "label": "B1.1 — interior reference, spindle-binary-1, endpoint 2",
       "points": [
         {
           "x": -0.20673237657289986,
@@ -26395,7 +26394,7 @@
     {
       "id": "spindle-2-0-prescribed-return-cycle",
       "worldlineId": "spindle-2-0",
-      "label": "B1 — interior reference, spindle-binary-2, endpoint 1",
+      "label": "B1.1 — interior reference, spindle-binary-2, endpoint 1",
       "points": [
         {
           "x": -0.12256711089903644,
@@ -26887,7 +26886,7 @@
     {
       "id": "spindle-2-1-prescribed-return-cycle",
       "worldlineId": "spindle-2-1",
-      "label": "B1 — interior reference, spindle-binary-2, endpoint 2",
+      "label": "B1.1 — interior reference, spindle-binary-2, endpoint 2",
       "points": [
         {
           "x": 0.12256711089903644,
@@ -27379,7 +27378,7 @@
     {
       "id": "spindle-3-0-prescribed-return-cycle",
       "worldlineId": "spindle-3-0",
-      "label": "B1 — interior reference, spindle-binary-3, endpoint 1",
+      "label": "B1.1 — interior reference, spindle-binary-3, endpoint 1",
       "points": [
         {
           "x": -0.09297601758295396,
@@ -27871,7 +27870,7 @@
     {
       "id": "spindle-3-1-prescribed-return-cycle",
       "worldlineId": "spindle-3-1",
-      "label": "B1 — interior reference, spindle-binary-3, endpoint 2",
+      "label": "B1.1 — interior reference, spindle-binary-3, endpoint 2",
       "points": [
         {
           "x": 0.09297601758295396,

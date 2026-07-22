@@ -377,6 +377,21 @@ Use `particle` when doing Standard Model comparison, detector language, cross-se
 
 Use `wave` when discussing standard QM language, experimental narratives, or intentionally effective descriptions. Use `wake` when naming the emitted substrate-level causal structure in $\mathbb{A}\mathbb{A}\mathbb{A}$.
 
+### Wake Equation, Map, Pattern, and Spectrum
+
+Use `wake equation` for the $\mathbb{A}\mathbb{A}\mathbb{A}$-native source-history construction that superposes the causal wakes emitted by the constituent architrinos in a declared source record. The wake equation is a construction rule, not the structure it produces. For a fixed source record and analysis protocol, the evaluated scalar over $(T,\mathbf X)$ is the `wake map`; its spatial or temporal structure is the `wake pattern`; and a frequency or angular-mode decomposition is the `wake spectrum`.
+
+This distinction keeps two nearby equations separate. The `Master Equation` is the acceleration law: it maps received causal-root hits to the acceleration of a receiving architrino. A standard or effective `wave equation` is a continuum comparison or recovery equation. Neither term is a synonym for `wake equation`. Likewise, an `assembly wake` is shorthand for the superposition of the constituent architrino wakes; the assembly is not treated as one transmitter.
+
+| When you mean... | Prefer | Avoid by default |
+| --- | --- | --- |
+| the native source-history construction of a superposed causal wake | `wake equation` | `wave equation` |
+| the evaluated scalar for one declared source record and protocol | `wake map` | `wake equation` when the result rather than the rule is meant |
+| the visible spatial or temporal structure of that map | `wake pattern` | `wave pattern` in substrate-level prose |
+| its frequency or angular-mode decomposition | `wake spectrum` | `wave spectrum` in substrate-level prose |
+| the received-hit acceleration law | `Master Equation` | `wake equation` |
+| a genuine continuum or quantum recovery equation | `wave equation`, qualified by level | `wake equation` |
+
 Sentence guidance:
 
 - Prefer: "The observed particle is an assembly in $\mathbb{A}\mathbb{A}\mathbb{A}$ ontology."

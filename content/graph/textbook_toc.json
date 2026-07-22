@@ -9,7 +9,7 @@
     },
     "counts": {
       "entries": 182,
-      "sections": 1456
+      "sections": 1457
     }
   },
   "tocRoot": {
@@ -2310,6 +2310,14 @@
                 "markdownPath": "content/markdown/aaa/noether-braid/braid-family-c.md",
                 "markdownSection": "C2",
                 "sectionKey": "c2",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "C1.1 and C2.1",
+                "markdownPath": "content/markdown/aaa/noether-braid/braid-family-c.md",
+                "markdownSection": "C1.1 and C2.1",
+                "sectionKey": "c1 1 and c2 1",
                 "headingLevel": 2
               },
               {

@@ -10,6 +10,10 @@ export const INDEPENDENT_ACCEPTANCE_INSTRUMENT_VERSION =
 
 const RESULT_PACKET_SCHEMA = "prescribed-path-analysis/result-packet.v1";
 const PROTOCOL_SCHEMA = "prescribed-path-analysis/analysis-protocol.v1";
+const COMPLETE_CYCLE_RESULT_SCHEMA =
+  "prescribed-path-analysis/complete-cycle-candidate-result.v1";
+const COMPLETE_CYCLE_PROTOCOL_SCHEMA =
+  "prescribed-path-analysis/complete-cycle-probe-protocol.v1";
 const ROOT_POLICY = "all-retained-simple-roots/sub-field-speed-certified.v1";
 const REQUIRED_EXCLUDED_CLAIMS = Object.freeze([
   "stability",
@@ -316,6 +320,130 @@ function closureProjectionMatches(packet, expectedIds) {
     closeEnough(reduced.maximumPhaseResidual, maximumPhase);
 }
 
+function verifyCompleteCyclePacketAcceptance(packet, rawBytes, options) {
+  const artifactHash = sha256Bytes(rawBytes);
+  const claimedResultHash = packet.resultHash;
+  const computedResultHash = sha256Canonical(withoutField(packet, "resultHash"));
+  const computedProtocolHash = sha256Canonical(packet.completeCycleProtocol);
+  const identityPassed = hashLooksValid(claimedResultHash) &&
+    claimedResultHash === computedResultHash &&
+    hashLooksValid(packet.source?.sourceHash) &&
+    packet.source.sourceHash === packet.source.exactSourceRecordHash &&
+    hashLooksValid(packet.completeCycleProtocolHash) &&
+    packet.completeCycleProtocolHash === computedProtocolHash &&
+    (!options.expectedProtocolHash ||
+      packet.completeCycleProtocolHash === options.expectedProtocolHash);
+  const boundaryPassed = packet.schema === COMPLETE_CYCLE_RESULT_SCHEMA &&
+    packet.completeCycleProtocol?.schema === COMPLETE_CYCLE_PROTOCOL_SCHEMA &&
+    packet.completeCycleProtocol?.eventEvaluator?.rootPolicy?.id === ROOT_POLICY &&
+    packet.reducer?.pathEvolutionInvoked === false &&
+    packet.reducer?.eomSolverInvoked === false &&
+    packet.claimGrade === "derived" &&
+    canonicalEqual(packet.excludedClaims, REQUIRED_EXCLUDED_CLAIMS);
+  const gateEntries = Object.entries(packet.gates ?? {});
+  const gateInventoryPassed = gateEntries.length === 7 &&
+    gateEntries.every(([id, passed]) => typeof id === "string" && typeof passed === "boolean");
+  const derivedAccepted = gateInventoryPassed && gateEntries.every(([, passed]) => passed);
+  const producerStatusConsistencyPassed =
+    packet.status?.accepted === derivedAccepted &&
+    packet.status?.disposition === (derivedAccepted ? "accepted" : "diagnostic-only") &&
+    canonicalEqual(
+      packet.status?.failedGates,
+      gateEntries.filter(([, passed]) => !passed).map(([id]) => id),
+    ) &&
+    (derivedAccepted ? packet.reducedMeasures !== null : packet.reducedMeasures === null);
+  const rawArtifacts = packet.rawArtifactInventory;
+  const rawArtifactInventoryPassed = Array.isArray(rawArtifacts) &&
+    rawArtifacts.length > 0 &&
+    rawArtifacts.every((row) =>
+      hashLooksValid(row?.rawSha256) &&
+      hashLooksValid(row?.compressedSha256) &&
+      row.codec === "gzip" &&
+      typeof row.path === "string" &&
+      Number.isSafeInteger(row.rawBytes) && row.rawBytes > 0 &&
+      Number.isSafeInteger(row.storedBytes) && row.storedBytes > 0);
+  const surface = packet.diagnosticReductions?.surface?.surface;
+  const surfaceProjectionPassed = ["primary", "refined"].every((resolution) =>
+    Array.isArray(surface?.[resolution]) &&
+    surface[resolution].length === packet.completeCycleProtocol.enclosingSurfaces.radii.length &&
+    surface[resolution].every((row) =>
+      row.wakeFlux?.rawEmissionReference?.passed === true &&
+      row.wakeFlux?.signedEmissionReference?.passed === true));
+  const projectionConsistencyPassed = gateInventoryPassed &&
+    rawArtifactInventoryPassed && surfaceProjectionPassed;
+  const structuralPassed = identityPassed && boundaryPassed &&
+    projectionConsistencyPassed && producerStatusConsistencyPassed;
+  const gates = [
+    makeGate({
+      gateId: "identity-and-boundary",
+      passed: identityPassed && boundaryPassed,
+      comparator: "all-contract-checks-pass",
+      failureCode: "identity-or-boundary-invalid",
+      details: { artifactHash, claimedResultHash, computedResultHash },
+    }),
+    makeGate({
+      gateId: "source-speed",
+      passed: structuralPassed,
+      comparator: "retained-raw-artifact-and-producer-gate",
+      failureCode: "source-speed-evidence-invalid",
+    }),
+    makeGate({
+      gateId: "root-completeness",
+      passed: structuralPassed,
+      comparator: "retained-raw-artifact-and-producer-gate",
+      failureCode: "root-completeness-evidence-invalid",
+    }),
+    makeGate({
+      gateId: "projection-consistency",
+      passed: projectionConsistencyPassed,
+      comparator: "raw-artifact-inventory-and-reference-projections-complete",
+      failureCode: "projection-consistency-failed",
+    }),
+    makeGate({
+      gateId: "producer-status-consistency",
+      passed: producerStatusConsistencyPassed,
+      comparator: "status-equals-derived-complete-cycle-gates",
+      failureCode: "producer-status-inconsistent",
+    }),
+    ...gateEntries.map(([gateId, passed]) => makeGate({
+      gateId: `complete-cycle/${gateId}`,
+      passed,
+      comparator: "producer-gate-pass",
+      failureCode: `complete-cycle-${gateId}-failed`,
+    })),
+  ];
+  const accepted = structuralPassed && derivedAccepted;
+  const failureCodes = gates.filter((gate) => !gate.passed)
+    .map((gate) => gate.failureCode).sort();
+  const evidenceWithoutHash = {
+    schema: "prescribed-record-analytics/independent-case-acceptance.v1",
+    instrumentVersion: INDEPENDENT_ACCEPTANCE_INSTRUMENT_VERSION,
+    evidenceScope:
+      "structural acceptance; mathematical correctness is supplied by separately authored closed-form tests",
+    resultHash: claimedResultHash ?? null,
+    artifactHash,
+    protocolHash: packet.completeCycleProtocolHash ?? null,
+    sourceHash: packet.source?.sourceHash ?? null,
+    accepted,
+    coreGateIds: CORE_GATE_IDS,
+    gates,
+    failureCodes,
+  };
+  const evidenceHash = sha256Canonical(evidenceWithoutHash);
+  return {
+    packet,
+    artifactHash,
+    resultHash: claimedResultHash,
+    protocolHash: packet.completeCycleProtocolHash,
+    sourceHash: packet.source?.sourceHash,
+    accepted,
+    gates,
+    failureCodes,
+    evidenceHash,
+    evidence: { ...evidenceWithoutHash, evidenceHash },
+  };
+}
+
 export function verifyIndependentCaseAcceptance(packetBytes, options = {}) {
   const rawBytes = Buffer.isBuffer(packetBytes)
     ? packetBytes
@@ -325,6 +453,9 @@ export function verifyIndependentCaseAcceptance(packetBytes, options = {}) {
     packet = JSON.parse(rawBytes.toString("utf8"));
   } catch (error) {
     throw new TypeError(`result packet is not valid JSON: ${error.message}`);
+  }
+  if (packet.schema === COMPLETE_CYCLE_RESULT_SCHEMA) {
+    return verifyCompleteCyclePacketAcceptance(packet, rawBytes, options);
   }
 
   const issues = [];
