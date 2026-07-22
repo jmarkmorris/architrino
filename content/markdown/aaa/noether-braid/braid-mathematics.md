@@ -2,149 +2,11 @@
 
 Six architrinos interacting through delayed causal wakes form a hard dynamical problem: the state is an entire path history, the per-hit accelerations arrive along causal roots that must be solved for, and no general closed-form solution exists. This chapter collects what can nevertheless be established exactly — by symmetry, geometry, and kinematics — before any support-band structure is chosen and before any branch is claimed to persist. The machinery here is core-agnostic: every braid realization in the [Noether Braid](noether-braid.md) family consumes it, and none of it asserts branch retention.
 
-The results divide by strength, and the division is stated with each result. Exact derivations include the symmetry-invariance lemma with its equivariant reductions, the A2 two-ring geometry of the face-opposite seed, the axial polarity dipole identity, the momentum-screw alignment, the exact speed budget, and the constant-lag reduction of the rotating-wave ansatz. Scoped negative results include the anti-damping family, which rejects specific rigid charts without rejecting the braid program. Candidate mechanisms at hypothesis level include the action-click picture at the causal-root fold set and the Accessory Configuration moment analysis. Theorem targets include the eigen-braid spectrum system. Claim levels travel with their statements throughout.
+The results divide by strength, and the division is stated with each result. Exact derivations include the transverse speed-budget lemmas and the constant-lag reduction of the rotating-wave ansatz. Scoped negative results include the anti-damping family, which rejects specific rigid charts without rejecting the braid program. Candidate mechanisms at hypothesis level include the action-click picture at the causal-root fold set and the Accessory Configuration moment analysis. Theorem targets include the eigen-braid spectrum system. Claim levels travel with their statements throughout. The A2-specific invariant channels, two-ring geometry, dipole identity, momentum-screw alignment, and return-response analysis live in [A2 Symmetry and Return Response](braid-a2-symmetry-and-return-response.md).
 
 ## Document Role
 
-This chapter owns the shared mathematical machinery of the braid family: invariant channels, equivariant reductions, exact channel identities, the substrate levels and speed hierarchy with the transverse causal budget lemma, the spiral-helical motion picture and mass thesis, the hinge equation sketch, the acceleration-gradient comparison, the scoped anti-damping negative results, the eigen-braid spectrum framing, the action-click mechanism, and the Accessory Configuration moment analysis. The neutral six-body base lives in [Noether Braid](noether-braid.md#neutral-braid-base); prescribed coordinates and definitions live in [Braid Taxonomy](braid-taxonomy.md), [Braid Family A](braid-family-a.md), and [Braid Family B](braid-family-b.md). The realization-independent proof obligations live in [Braid Recovery Requirements](braid-recovery-requirements.md). Realization chapters state which of this machinery their configurations inherit and what fixture-specific evidence they add.
-
-## Invariant Channels and Equivariant Reductions
-
-The sharpest currently proved structure in the braid family is a symmetry channel, not a retained branch. The face-opposite seed places the three electrinos opposite the three positrinos on the positive coordinate axes,
-
-$$
-\epsilon_{+,x}=(R,0,0),
-\qquad
-\epsilon_{+,y}=(0,R,0),
-\qquad
-\epsilon_{+,z}=(0,0,R),
-\qquad
-\epsilon_{-,i}=-\epsilon_{+,i}
-$$
-
-This seed lies on a common sphere, so it is the maximal-symmetry Family-A member — the A2 reference fixture defined in [Braid Family A](braid-family-a.md#a2). Two finite symmetry groups act on the seed by simultaneous spatial transformation and site relabeling. For a coordinate-axis permutation $\rho\in S_3$, let $M_\rho$ be the coordinate-permutation matrix and let $\rho$ permute site labels within each polarity; let $\iota$ compose point inversion with polarity exchange. Both act on configurations by
-
-$$
-(g\cdot\mathbf X)_\ell(t)=M_g\,\mathbf X_{g^{-1}\ell}(t)
-$$
-
-and because point inversion commutes with every permutation matrix, the groups are direct products: the zero-angular-momentum group $G_0=S_3\times\langle\iota\rangle$ of order twelve, and the body-diagonal rotating group $G_{\mathrm{rot}}=C_3\times\langle\iota\rangle$ of order six, where $C_3=\langle\varrho\rangle$ is the three-fold rotation about the body diagonal
-
-$$
-\hat{\mathbf n}=\frac{(1,1,1)}{\sqrt3}
-$$
-
-A note on what these symmetry operations are. No physical process relabels an electrino as a positrino: every architrino is unique, with its own provenance and path history. The operations above are comparison maps between two possible configurations of the universe — they say that if one configuration solves the delayed dynamics, then its transformed twin solves it too. When the seed happens to be its own twin, the twins' shared trajectory is constrained, and that constraint is the entire content of the channel.
-
-### The Six-Point Symmetry Invariant Lemma
-
-The channel statement is a derivation about the delayed dynamics, proved for the partner-wake master-equation kernel class. For receiver $\ell$ at reception time $T_r$, the retained acceleration law under proof is
-
-$$
-\mathbf A_\ell[\mathbf X]\!(T_r)
-=
-\sum_{\ell'}\;
-\sum_{T_t\in\mathcal R_{\ell\ell'}[\mathbf X]\!(T_r)}
-\sigma_\ell\sigma_{\ell'}\,\kappa\,
-\frac{W(T_t)}{\left(d^2+\varepsilon^2\right)^{3/2}}\;\mathbf d
-$$
-
-where $\mathbf d=\mathbf X_\ell(T_r)-\mathbf X_{\ell'}(T_t)$ with $d=\|\mathbf d\|$, the causal roots $T_t$ solve $d=c_f(T_r-T_t)$ within the retained history window, $\varepsilon$ is the softening, $\kappa$ the coupling, and the acceleration weight is $W=c_f/|D_t|$ on a sign-certified transmitter-side Jacobian floor. Receiver-side velocity remains in the signed root-playback record $D_r/D_t$ but not in this instantaneous acceleration kernel.
-
-Four explicit hypotheses carry the proof:
-
-1. **Kernel equivariance.** The acceleration magnitude depends only on invariant scalars times the polarity product $\sigma_\ell\sigma_{\ell'}$, directed along $\hat{\mathbf d}$.
-2. **Symmetric retained-root policy.** The retained-root set is determined by the root residual and declared invariant criteria only, with no ordering-dependent or label-dependent pruning.
-3. **Well-posedness window.** On the window, pairwise separations keep a positive floor and all speeds stay below field speed by a fixed margin; then each directed pair has exactly one causal root, the Jacobian floor is automatic, and the method of steps yields a unique forward solution.
-4. **Symmetric initial history.** The hold-window history is invariant under the acting group: the static seed is $G_0$-invariant, and the rigidly rotating seed about $\hat{\mathbf n}$ is $G_{\mathrm{rot}}$-invariant. Transpositions reverse the rotation sense and are excluded from the rotating group — this is where ordered-braid chirality first enters the rotating channel.
-
-**Lemma.** Under these hypotheses, the unique solution remains on the fixed-point set of the acting group for as long as the window lasts.
-
-The proof has two moves. First, functional equivariance: the root residual is built from norms, so the retained root sets of transformed pairs correspond, every kernel scalar is invariant, and the polarity product is preserved — permutations fix each $\sigma_\ell$, while $\iota$ flips both factors — so the acceleration functional transforms exactly as the configuration does. The $\iota$ case is precisely the charge-conjugate inversion oddness obligation: conjugating polarities and inverting space negates every acceleration. Second, uniqueness transfer: the transformed solution is again a solution with the same history, so uniqueness forces it to coincide with the original, which is exactly the statement that the solution stays on the fixed-point set.
-
-The lemma converts the six-body problem into small closed reduced systems. On the zero-angular-momentum channel the fixed-point set is
-
-$$
-\epsilon_{+,x}=(a,b,b),
-\qquad
-\epsilon_{+,y}=(b,a,b),
-\qquad
-\epsilon_{+,z}=(b,b,a),
-\qquad
-\epsilon_{-,i}=-\epsilon_{+,i}
-$$
-
-a closed two-function state-dependent delay system in $(a,b)$. On the body-diagonal rotating channel,
-
-$$
-\epsilon_{+,y}=\varrho\,\epsilon_{+,x},
-\qquad
-\epsilon_{+,z}=\varrho^2\,\epsilon_{+,x},
-\qquad
-\epsilon_{-,i}=-\epsilon_{+,i}
-$$
-
-a closed three-function reduced system in $\epsilon_{+,x}$ alone. Once the branch also carries group velocity along $\hat{\mathbf n}$, translation breaks $\iota$ while preserving $C_3$, and the reduction needs two representative worldlines, $\epsilon_{+,x}$ and $\epsilon_{-,x}$.
-
-Exact corollaries follow on the channel: the dynamic center is identically zero and antipodal pairs are exact; all six sites share one radius and one speed, so the reduced-radius diagnostic is exact rather than an empirical average; the acceleration of $\epsilon_{+,x}$ has the template $(A,B,B)$ forced by its stabilizer; and the kinematic angular momentum is exactly parallel to $\hat{\mathbf n}$ on the rotating channel.
-
-The scope boundary is part of the result. Invariance of the channel does not prove stability transverse to it, and no statement in this section claims branch retention. The lemma is a derivation-closure result for the invariance and reduction obligations only, proved for the declared kernel class; any solver kernel or runner that violates kernel equivariance or root-policy symmetry — an axis-fixed cap, asymmetric softening, ordering-dependent pruning — voids the conclusion for that run, which makes the lemma double as an audit predicate on implementations. Applying the channel to any retained-history record still requires the same-record receiver-side, action, wake, event, support, and stability rows demanded by [Braid Recovery Requirements](braid-recovery-requirements.md).
-
-### Polarity Conjugation
-
-Because the delayed acceleration kernel depends on polarity only through products $\sigma_i\sigma_j$, global polarity conjugation leaves every trajectory unchanged: an electrino-face-leading branch and a positrino-face-leading branch are exactly degenerate in isolation. The leading-octant sign can acquire physical meaning only through coupling to an environment that is not polarity-balanced, which is where ordered-braid chirality must obtain its content; the helicity sign of the momentum screw below is the candidate carrier of that chirality label. Translation along $\hat{\mathbf n}$, by contrast, produces a real asymmetry: with $\iota$ broken, the leading face meets fresh medium while the trailing face rides in the branch's own wake, and this fore-aft wake asymmetry is the native deformation channel developed further in [A1 Dynamics](braid-a1-dynamics.md#a1-dynamics).
-
-## A2 Two-Ring Geometry
-
-Every site of the face-opposite A2 seed has the same height $\pm R/\sqrt3$ along $\hat{\mathbf n}$ and the same lever arm $R\sqrt{2/3}$ from the axis, because the body diagonal makes equal angles $\arccos(1/\sqrt3)$ with the three coordinate axes. Viewed along $\hat{\mathbf n}$, the three electrinos form one triangular ring below the mid-plane and the three positrinos form a matching triangular ring above it. The two triangles are staggered by $60^\circ$, so their projections interleave into a hexagon.
-
-The two-ring view also organizes the neutral braid's channel bookkeeping. Each site's two repulsive channels connect it to its own ring mates, and its three attractive channels connect it to the opposite ring. Intra-ring repulsion spaces each ring at $120^\circ$, while inter-ring attraction sets the ring separation. The same minimum-energy logic that arranges accessory charges around a dressed assembly therefore already organizes the core itself: two mutually repelling rings are bound face-to-face by cross-ring attraction. Each member of one ring couples attractively to all three members of the other, and the staggered rings give those connections a zigzag pattern. Under rotation the connections wind into helices about the axis, and the handedness of the winding is the chirality datum carried by the rotating channel. Equal lever arms give every site the same tangential speed under rigid rotation about $\hat{\mathbf n}$, and on the rotating channel the three opposite-polarity pairs hold an exact $120^\circ$ phase separation at every instant, because the rotation by $2\pi/3$ about $\hat{\mathbf n}$ is one of the acting symmetries rather than an approximate phase convention.
-
-## Moments and the Axial Polarity Dipole
-
-A **moment** here is a polarity-weighted sum over the configuration: the plain total $\sum_\ell\sigma_\ell$ is the net polarity inventory, the first moment $\sum_\ell\sigma_\ell\mathbf X_\ell$ is the dipole (the signed offset of positive from negative content), and higher moments record signed shape at finer order. Moments matter because they are what a distant receiver can reconstruct from the superposed delayed potential, ranked by distance: the $\ell$-th moment controls the contribution fading as $1/r^{\ell+1}$. For a polarity-neutral assembly the dipole is independent of the choice of origin, so the braid's dipole is a well-defined property of the branch rather than of a coordinate convention.
-
-Since $\mathbb I+\varrho+\varrho^2=3\hat{\mathbf n}\hat{\mathbf n}^{\!\top}$ for the cyclic coordinate permutation $\varrho$, the polarity-signed dipole of the channel is exactly axial at all times, even under drift:
-
-$$
-\sum_{\ell}\sigma_\ell\,\mathbf X_\ell
-=
-3\left(\hat{\mathbf n}\cdot\left(\epsilon_{+,x}-\epsilon_{-,x}\right)\right)\hat{\mathbf n}
-$$
-
-The transverse dipole components cancel in balanced three-phase fashion. This cancellation is a statement about the braid's summed distant signature, not about the accelerations inside it: each architrino still receives the full delayed influence of all five partners through its own causal roots, and none of those per-receiver contributions vanish. What cancels is the collective polarity-signed moment that a distant receiver reconstructs from the superposed wakes. A branch that flattens toward the transverse plane therefore loses its leading polarity-signed moment entirely: the flattened fast configuration is quiet at dipole order, with its first surviving structure at higher moment order. This identity is the channel's native contribution to the energy-shielding story used by the nested chapters, and it links the terminal planar limit to wake quietness rather than to increased exposure.
-
-## Momentum Screw and Helicity
-
-The same projector identity pins both kinematic momenta to the axis on the rotating channel:
-
-$$
-\mathbf P_{\mathrm{kin}}
-=
-3\,\hat{\mathbf n}\cdot\left(\mathbf v_{+,x}+\mathbf v_{-,x}\right)\hat{\mathbf n},
-\qquad
-\mathbf J_{\mathrm{kin}}\parallel\hat{\mathbf n}
-$$
-
-The body-diagonal direction is therefore the central axis of the branch's momentum screw: the unique direction that carries both linear and angular kinematic momentum, with the transport state reduced to the two scalars $P_\parallel$ and $J_\parallel$. Their origin-independent combination $\mathbf J\cdot\mathbf P$ — helicity in normalized form, screw pitch in geometric form — is the natural combined label, since an origin shift changes $\mathbf J$ only by a term orthogonal to $\mathbf P$. In delayed dynamics the particle-only momenta are not separately conserved; the causal wakes carry momentum and angular momentum of their own, and conservation is a statement about the combined particle and wake ledger. On the channel, symmetry fixes the momentum directions exactly while the magnitudes exchange with the wake ledger.
-
-## The Exact Speed Budget
-
-Because the rotation is about the same axis as the drift, every site's tangential velocity is exactly perpendicular to the group velocity at every instant. The field-frame speed of each architrino on the translating rotating channel is therefore an exact quadrature,
-
-$$
-\beta^2 c_f^2=u^2+v_t^2
-$$
-
-with no cycle-dependent cross terms — a special property of body-diagonal transport, since a generic drift direction mixes with the rotation and makes the maximum speed a phase-dependent quantity. If a branch additionally pins its site speed at a fixed fraction of field speed, $\beta=\beta_\ast$, the tangential speed available to the internal cycle is forced to
-
-$$
-v_t(u)=\sqrt{\beta_\ast^2c_f^2-u^2}
-$$
-
-so the internal cadence of a faster-translating branch slows by exactly the square-root factor familiar from the light-clock argument. On this channel the Lorentz-style clock relation is not imported; it is the arithmetic of a fixed speed budget split between getting somewhere and going around. The pinning of $\beta_\ast$ — some mechanism holding a branch at a fixed speed budget — is a branch hypothesis that the retention program must earn; no such mechanism is currently established, and the quadrature itself is exact channel kinematics that stands independent of any pinning claim. At the $u\to\beta_\ast c_f$ endpoint the tangential budget vanishes and the internal cycle freezes, which is the channel's own statement of the terminal boundary: a branch cannot both translate at its full speed budget and keep an internal clock running.
-
-This is the same pinned-speed hypothesis that drives the retained A1 scaling material in [A1 Dynamics](braid-a1-dynamics.md#retention-and-interpretation): there, a branch that holds its layer speed fixed while accepting action transactions is forced onto the $R_\ell f_\ell\approx\text{constant}$ product law. The speed budget extends that one hypothesis to transport: a single pinned $\beta_\ast$ simultaneously fixes how the radius-frequency product retunes at rest and how the internal clock slows under translation, so the rest-level scaling branch and the moving clock export are two projections of one branch commitment rather than two independent assumptions.
+This chapter owns the shared mathematical machinery of the braid family: the substrate levels and speed hierarchy with the transverse speed-budget lemmas, the spiral-helical motion picture and mass thesis, the hinge equation sketch, the acceleration-gradient comparison, the scoped anti-damping negative results, the eigen-braid spectrum framing, the action-click mechanism, and the Accessory Configuration moment analysis. The neutral six-body base lives in [Noether Braid](noether-braid.md#neutral-braid-base); prescribed coordinates and definitions live in [Braid Taxonomy](braid-taxonomy.md), [Braid Family A](braid-family-a.md), and [Braid Family B](braid-family-b.md). The realization-independent proof obligations live in [Braid Recovery Requirements](braid-recovery-requirements.md). Realization chapters state which of this machinery their configurations inherit and what fixture-specific evidence they add.
 
 ## Substrate and Effective Levels
 
@@ -193,6 +55,52 @@ $$
 \frac{1}{\gamma_\star}
 $$
 from the same retained branch record, not append it as an independent Lorentz factor. The lemma fails as a citation target if a calculation solves primitive roots with $c_f$ and then reports an observer-level clock, ruler, or photon speed without the declared dressing map, or if the clock, ruler, and photon rows are sourced from different branch ledgers.
+
+### Transverse Internal-Motion Speed-Budget Lemma
+
+Let one site's native velocity be decomposed into group translation and internal motion,
+
+$$
+\mathbf V_i
+=
+\mathbf V_{\mathrm{grp}}+\mathbf v_i^{\mathrm{int}}
+$$
+
+The exact native speed identity is
+
+$$
+\|\mathbf V_i\|^2
+=
+\|\mathbf V_{\mathrm{grp}}\|^2
++
+\|\mathbf v_i^{\mathrm{int}}\|^2
++
+2\mathbf V_{\mathrm{grp}}\cdot\mathbf v_i^{\mathrm{int}}
+$$
+
+If the internal motion is transverse to the group translation at every instant, then the cross term vanishes and the site speed is the exact quadrature
+
+$$
+\|\mathbf V_i\|^2
+=
+u^2+v_{\mathrm{int},i}^2,
+\qquad
+u=\|\mathbf V_{\mathrm{grp}}\|,
+\qquad
+v_{\mathrm{int},i}=\|\mathbf v_i^{\mathrm{int}}\|
+$$
+
+If a branch additionally pins the total site speed to $\|\mathbf V_i\|=\beta_\ast c_f$, the available internal speed is forced to
+
+$$
+v_{\mathrm{int},i}(u)
+=
+\sqrt{\beta_\ast^2c_f^2-u^2}
+$$
+
+The quadrature is exact kinematics under the transverse-motion hypothesis. The pinning of $\beta_\ast$ is a separate branch hypothesis, not an established retention mechanism. The A2 body-diagonal rotating channel and the B1 axial screw chart are two realizations of the transverse geometry; neither realization makes fixed total site speed automatic. A record with $\mathbf V_{\mathrm{grp}}\cdot\mathbf v_i^{\mathrm{int}}\neq0$ falsifies use of the quadrature for that site and must retain the cross term, which generally makes the maximum speed phase dependent.
+
+The same pinned-speed hypothesis appears in the retained A1 scaling material of [A1 Dynamics](braid-a1-dynamics.md#retention-and-interpretation): a branch that holds an indexed internal speed fixed while accepting action transactions is forced onto the $R_a f_a\approx\text{constant}$ product law. The shared lemma shows how the hypothesis would also constrain transport; it does not establish that A1, A2, or B1 satisfies the pinning condition.
 
 ## Spiral-Helical Motion Picture
 
@@ -268,7 +176,7 @@ A recurring obstruction shapes the whole retention program: in chart after chart
 1. **Circular partner-wake binary.** On the uniform circular benchmark, the retained circular row has an inward radial component and a forward tangential work row; the combination accelerates the orbiting motion and prevents a partner-only constant-speed circle. Any sub-field-speed contraction claim must beat this row through non-circular geometry, wake-flux export, recoil, or a later multi-root ledger. The detailed statement lives in [Binary Dynamics](../dynamics/binary-dynamics.md).
 2. **Collinear self-hit reading.** Along a true collinear history, the same-transmitter term is naturally read as an anti-damping or positive-work contribution on the physically relevant post-crossing outbound branch: self-interaction tends to reinforce the current radial motion rather than furnish a centrifugal-style barrier. The open question is therefore whether partner attraction can recapture the motion despite that self-drive.
 3. **Frozen rigid octahedral chart.** The rigid zero-offset octahedral carrier at fixed speed is conjectured to carry a nonzero tangential residual rejecting the narrow fixed-speed branch chart; this conjecture is unverified, and the reading discipline for that chart is recorded in [Noether Braid](noether-braid.md#neutral-braid-base).
-4. **Zero-angular-momentum channel invariance.** The face-opposite seed placed on the zero-angular-momentum channel stays exactly on that channel: the dynamic center holds at zero, all six radii stay equal, and antipodal partners stay exact. This is the invariant-channel theorem, not a statement of the seed's dynamical fate, which is open; the fixture record lives in the [A2 isolated-release analysis](braid-family-a.md#isolated-release-and-the-return-response-question).
+4. **Zero-angular-momentum channel invariance.** The face-opposite seed placed on the zero-angular-momentum channel stays exactly on that channel: the dynamic center holds at zero, all six radii stay equal, and antipodal partners stay exact. This is the invariant-channel theorem, not a statement of the seed's dynamical fate, which is open; the fixture record lives in the [A2 isolated-release analysis](braid-a2-symmetry-and-return-response.md#isolated-release-and-the-return-response-question).
 5. **Rigid rotating-wave family.** The rigid single-frequency A2 rotating wave fails twice, independently. Axially: same-ring contributions have exactly zero axial component, while every opposite-ring contribution pulls the two rings together, and a sum of strictly one-signed terms cannot vanish — so the rigid rotating wave has no axial equilibrium at any two-ring aspect and any sub-field rim speed, and the rigid single-frequency family, if it existed, would be forced planar. This axial no-balance statement is a derivation. Tangentially: on the planar hexagon, the conjectured behavior is a strictly positive tangential residual growing with rim speed while the radial residual stays inward — the delayed kernel pumping the rotation rather than braking it. That tangential conjecture is unverified; the axial derivation stands on its own.
 
 The reading discipline matters as much as the results. Each entry is scoped to the chart and assumptions that produced it; the agreement across charts is qualitative consilience, and no ledger quantity may be consumed across charts. None of these results rejects the neutral braid, A1, A2, B1, and C-family, bounded-speed, controlled self-hit, fold-layer, or medium-response programs.
@@ -326,7 +234,7 @@ Whether a hinge click can supply a clean, chart-defined transacted amount depend
 
 A same-transmitter (self-hit) crossing on a smooth strand is born on the coincidence stratum. As the causal lag $\Delta\to 0$ the separation is $\lVert\mathbf X(T)-\mathbf X(T-\Delta)\rVert=\lvert\mathbf v\rvert\,\Delta+O(\Delta^2)$, so the same-transmitter root nucleates exactly at the field-speed crossing with a vanishing chord, $r_{ij}\to 0$ as the root opens. On the symmetric one-band channel this onset is a cusp rather than a generic fold, and the transacted amount is not fixed by the fold chart; it is set instead by the point-transceiver short-distance self-regularization scale $d_0$ — of order the near-field two-body scale $\kappa\epsilon^2/c_f^2$ of [Binary Dynamics](../dynamics/binary-dynamics.md) (with $\epsilon$ the architrino polarity-charge magnitude), and in the minimum-circular-binary reading the collapse-arresting radius itself, whose derivation from $\kappa$, $\epsilon$, and $c_f$ remains an open question noted in [Particle Masses](../assemblies/particle-masses.md). This is a scoped negative for any single-site absorber picture: the symmetric single-site self-hit cannot supply a chart-defined transacted amount, because its magnitude is a property of $d_0$ rather than of the branch geometry. Same-transmitter rows remain in the ontology and are what set $d_0$; they simply do not fix a clean click on their own.
 
-A cross-hit crossing between two distinct strands can instead be born at finite chord. When the transmitter-side alignment $\mathbf v_j\cdot\hat{\mathbf r}_{ij}=c_f$ holds at finite separation, the crossing sits on the caustic stratum with $r_{ij}\neq 0$: a generic (Whitney $A_2$) fold of nonzero curvature whose transacted impulse is finite and independent of the short-distance regularization. This is the surviving route to a chart-clean click magnitude, and it is a theorem target rather than a result. It is contingent on a hinge geometry that sustains the alignment $\mathbf v_j\cdot\hat{\mathbf r}_{ij}=c_f$ across a click window — the same dynamic-alignment and formation-history condition that gates the [A2 return-response question](braid-family-a.md#isolated-release-and-the-return-response-question). Whether a braid's own formation and recycling dynamics hold that alignment long enough to transact is the open question on which the clean click magnitude, and with it the whole hinge-absorber route, depends.
+A cross-hit crossing between two distinct strands can instead be born at finite chord. When the transmitter-side alignment $\mathbf v_j\cdot\hat{\mathbf r}_{ij}=c_f$ holds at finite separation, the crossing sits on the caustic stratum with $r_{ij}\neq 0$: a generic (Whitney $A_2$) fold of nonzero curvature whose transacted impulse is finite and independent of the short-distance regularization. This is the surviving route to a chart-clean click magnitude, and it is a theorem target rather than a result. It is contingent on a hinge geometry that sustains the alignment $\mathbf v_j\cdot\hat{\mathbf r}_{ij}=c_f$ across a click window — the same dynamic-alignment and formation-history condition that gates the [A2 return-response question](braid-a2-symmetry-and-return-response.md#isolated-release-and-the-return-response-question). Whether a braid's own formation and recycling dynamics hold that alignment long enough to transact is the open question on which the clean click magnitude, and with it the whole hinge-absorber route, depends.
 
 
 ## Accessory Configuration

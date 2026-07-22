@@ -92,7 +92,7 @@ $$
 \mathbf C(0)+s_{\mathrm{grp}}T\hat{\mathbf n}_B,
 $$
 
-each non-axial endpoint follows an exact screw path: axial translation plus circular motion about the same axis. The axial and transverse velocity components are orthogonal, so the exact site-speed split is the channel kinematics developed in [Braid Mathematics](braid-mathematics.md#the-exact-speed-budget). A mechanism that fixes the total speed budget remains an open branch hypothesis.
+each non-axial endpoint follows an exact screw path: axial translation plus circular motion about the same axis. The axial and transverse velocity components are orthogonal, so the exact site-speed split is the channel kinematics developed in [Braid Mathematics](braid-mathematics.md#transverse-internal-motion-speed-budget-lemma). A mechanism that fixes the total speed budget remains an open branch hypothesis.
 
 Axial translation is a B1 specialization, not a Family-B requirement. A record whose group velocity is not parallel to $\hat{\mathbf n}_B$ retains the same internal B1 geometry but is not an axial screw path.
 

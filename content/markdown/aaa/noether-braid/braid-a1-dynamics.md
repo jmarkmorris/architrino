@@ -4,6 +4,26 @@ This specialist chapter carries the retention, phase-closure, cadence-retuning, 
 
 Nothing in this chapter establishes an EOM-solver-retained A1 branch. Derived identities, conditional results, hypotheses, and observer-level mappings keep their stated claim grades.
 
+## Claim-Ownership Classification
+
+This chapter inherited material written before the present family/member taxonomy. The table below classifies that material by its proper owner; it classifies scope, not truth.
+
+| Claim unit | Classification | Consequence |
+| --- | --- | --- |
+| Symmetry-distance diagnostic relative to A2 | A1-specific hypothesis | The diagnostic depends on A1's departure from the A2 symmetry channel and does not generalize to every family. |
+| Retention, causal-root closure, perturbation recovery, and same-record shielding tests | Family-general recovery requirements | A1 is one instantiation. The proof contract belongs to [Braid Recovery Requirements](braid-recovery-requirements.md), and the common analysis record belongs to [Candidate Braid Analysis Methodology](braid-analysis-methodology.md). |
+| Integer phase return and root-ledger return | Family-general recovery requirement with an A1-specific coordinate form | Return is required for every periodic candidate; $(k_1,k_2,k_3)$ and $\Lambda_{A1}$ are A1 chart coordinates. |
+| Cadence-scale retuning map and rest-level scaling curve | A1-specific hypothesis | The maps depend on $\Lambda_{A1}$ and cannot be assigned to another member without a separate derivation. |
+| Fold-set action clicks | Family-general hypothesis | The machinery is owned by [Braid Mathematics](braid-mathematics.md#action-clicks-at-the-fold-set), not by A1. |
+| Reduced closure label $\Lambda_{A1}$ and its alignment restriction | A1-specific hypothesis | The label is available for A1 branch comparison only and does not establish a retained branch. |
+| Dynamic exclusion-envelope export | Family-general export requirement with an A1 realization | The shared interface is owned by [Braid Envelope Geometry](braid-envelope-geometry.md). |
+| Three-support-row shielding mapped to fermion generations | Unsupported legacy family assignment | No retained branch, shielding extraction, or particle map currently establishes the assignment. |
+| Family-A axis convergence under the prescribed response | A1-specific prescribed response and dynamical recovery target | The endpoint is part of the A1 chart; evolved convergence remains unproved. |
+| Event-horizon, Planck-scale, and dipole-quiet identifications | Unsupported legacy family assignments | These remain comparison hypotheses until A1-specific moment and strong-field records establish them. The A2 dipole theorem cannot be transferred to A1 by analogy. |
+| A Noether braid as the structural candidate for fermion recovery | Family-general recovery requirement | Assigning A1, rather than another retained member, to a fermion class remains unsupported. |
+
+An unsupported legacy family assignment is not part of the A1 definition and must not be consumed downstream as an A1 property. It remains visible here only as an explicitly graded hypothesis awaiting derivation or retirement.
+
 ## Retention and Interpretation
 
 The A1 geometry, persistent binary indices, and constrained variants are defined in [Braid Family A](braid-family-a.md#a1). The remaining material below concerns phase closure, retuning, dynamics, shielding, and downstream interpretations. It does not add coordinates to the A1 definition.
@@ -389,13 +409,13 @@ The same A1 motion that may supply shielding is the geometric footprint a retain
 
 ### A1 Shielding and Fermion Generations
 
-The broader assembly program suggests reading the number of retained binary support rows as a candidate hierarchy of fermion shielding tiers. This proposal counts support; it does not rank the three A1 binaries by radius:
+This section records an unsupported legacy family assignment. No retained branch, computed shielding ledger, or particle-recovery map currently establishes that support-row count determines fermion generation. The hypothesis counts support; it does not rank the three A1 binaries by radius:
 
 -   **Isolated binary:** the most exposed shielding tier, corresponding to Generation III.
 -   **Two-support-row shielding tier:** one additional retained support row, corresponding to the Generation-II shielding tier.
 -   **A1:** a retained three-support-row braid, corresponding to the Generation-I shielding tier.
 
-On this reading, the generation ladder is not an arbitrary label attached after the fact. It is the visible signature of how many retained support rows participate in shielding; this same shielding ladder is the starting point for [Particle Masses: Emergent Inertia in the Noether sea](../assemblies/particle-masses.md) and the charged-lepton story beginning with [Electron](../assemblies/fermions/electron.md).
+If an evolved family of records established this mapping, the generation ladder would become the visible signature of how many retained support rows participate in shielding. Until then, [Particle Masses: Emergent Inertia in the Noether sea](../assemblies/particle-masses.md) and the charged-lepton story beginning with [Electron](../assemblies/fermions/electron.md) may consume it only as a recovery target, not as an A1 property.
 
 Any attempt to pair this shielding ladder with accessory geometry must use a complete six-architrino [Accessory Configuration](braid-mathematics.md#accessory-configuration). The six sites may lie inside, across, or outside the braid envelope, and their polarity and position records must be declared. Accessory Configuration geometry is not part of the A1 dynamics definition.
 
@@ -407,15 +427,15 @@ The horizon-approach hypothesis for A1 is therefore permutation-neutral: as the 
 
 The canonical term for this whole-assembly transition is the **braid symmetry-breaking point**. It does not assign permanent roles to binaries 1, 2, or 3 and does not claim that their radii, frequencies, or energies become equal. Because $s_a=\omega_a\rho_a$, equal threshold speed does not by itself imply equal frequency, equal effective lever arm, equal radius, or equal energy.
 
-This makes A1 more than a particle scaffold. In this interpretation, a retained branch may contain a local black-hole dual in which the horizon-interface, same-transmitter-root, and exterior-coupling diagnostics coexist while the binary axes align. The mapping is branch-derived and may not be unique. It is a primitive assembly-level pattern, not an assertion that an ordinary particle is an observer-level compact object.
+The proposed local black-hole dual is an unsupported legacy family assignment. It asks whether a retained A1 branch can make the horizon-interface, same-transmitter-root, and exterior-coupling diagnostics coexist while the binary axes align. Only a branch-derived strong-field record could establish that mapping; the prescribed endpoint does not.
 
-**Mapping rule:** "Planck-scale" references in this framework map to the **event-horizon alignment condition** (coincident A1 binary axes with branch-derived field-speed occupancy), unless an explicit derivation links them to another scale; compare [Singularity Resolution](../spacetime/singularity-resolution.md) and [Mapping the Planck Scale to A1 Geometry](../philosophy-history/theory-bridges/planck-scale-nested-shell-braid-alignment.md).
+**Legacy mapping hypothesis (unsupported):** "Planck-scale" references may map to the **event-horizon alignment condition** (coincident A1 binary axes with branch-derived field-speed occupancy) only if an explicit derivation supplies that scale map; compare [Singularity Resolution](../spacetime/singularity-resolution.md) and [Mapping the Planck Scale to A1 Geometry](../philosophy-history/theory-bridges/planck-scale-nested-shell-braid-alignment.md).
 
-The alignment limit also has a wake-signature reading, at hypothesis level. The [axial polarity dipole identity](braid-mathematics.md#moments-and-the-axial-polarity-dipole) shows that a braid's leading polarity-signed moment lives entirely on its axial extent and vanishes as the configuration flattens toward the planar limit. Terminal alignment — coincident binary axes with the required branch-derived speed rows — is therefore also the **dipole-quiet limit**: an assembly driven into alignment stops broadcasting its leading polarity-signed structure exactly when it reaches the horizon condition. On this reading, the darkness of the horizon boundary is not only a causal-escape statement; the infalling assembly's loudest wake channel closes as a matter of geometry, leaving only higher-moment and phase data as the distinguishable content. That surviving content is what the alignment-restricted closure label $\Lambda_{A1}^{\mathrm{align}}$ enumerates, which makes the horizon-interface entropy counting and the dipole-quiet limit two views of the same restriction.
+The alignment limit also has a proposed wake-signature reading, but the available theorem is member-specific. The [axial polarity dipole identity](braid-a2-symmetry-and-return-response.md#moments-and-the-axial-polarity-dipole) proves the cancellation only for A2's symmetric two-ring geometry. A general A1 record does not inherit that identity. The A1 **dipole-quiet limit** is therefore a theorem target requiring an A1-specific cycle-resolved moment calculation. If that calculation leaves a nonzero leading polarity-signed moment at terminal alignment, the proposed identification with horizon darkness and the associated entropy interpretation fail.
 
 ### The Foundation for Fermions
 
-The Noether braid class supplies the structural scaffold used by the fermion program. Different closure labels, shielding tiers, energy records, and surrounding axial/wake structures are expected to map to Standard Model flavors and generations, but the mapping remains a derivation target until the branch labels, axial-layer inventory, and apparatus-coupling records have been recovered from the dynamics.
+The Noether braid class supplies a family-general structural candidate for the fermion program. Different closure labels, shielding tiers, energy records, and surrounding axial/wake structures may map to Standard Model flavors and generations, but no current result selects A1 or establishes that mapping. It remains a derivation target until retained branch labels, shielding ledgers, and apparatus-coupling records have been recovered from the dynamics.
 
 The collective motion, or **group velocity**, of a Noether braid assembly determines its emergent behavior. The way these assemblies interact and pack together can lead to different statistical properties. The geometry-facing version of that claim is developed in [Fermi-Dirac and Bose-Einstein Statistics](../quantum/fermi-dirac-and-bose-einstein-statistics.md): volumetric Noether braid envelopes are the substrate candidate for fermionic exclusion, while strongly oblated coherent support is the candidate route to bosonic shared occupation.
 

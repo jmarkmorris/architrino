@@ -76,17 +76,19 @@ It does not carry the detailed family derivations, select a frequency family, as
 | --- | --- | --- |
 | Requirements | [Braid Recovery Requirements](braid-recovery-requirements.md) | The realization-independent retention-certificate shape, its base-family instantiation, proof-burden order, and recovery-target inventory. |
 | Taxonomy | [Braid Taxonomy](braid-taxonomy.md) | The canonical coordinates, family/member identifiers, master tables, and prescribed response endpoints. |
-| Family definition and member analysis | [Braid Family A](braid-family-a.md) | The shared Family-A geometry, A1 variants, A2 symmetry, the A1.2/A2 boundary, and A2 retention diagnostics. |
+| Family definition | [Braid Family A](braid-family-a.md) | The shared Family-A geometry, A1 variants, the A2 definition, and the A1.2/A2 boundary. |
 | Family definition | [Braid Family B](braid-family-b.md) | The exact B1 path geometry, coordinate boundaries, axial-translation specialization, and Family-A boundary. |
 | Family definition | [Braid Family C](braid-family-c.md) | The exact two-B1 composition chart, C1/C2 circulation relation, derived axis offset, and physical-mapping boundary. |
 | Configuration space | [Noether Braid Configuration Space](noether-braid-configuration-space.md) | The evidence-level terms and supplementary rank-three angular-momentum-frame diagnostics outside the canonical taxonomy. |
 | A1 dynamics and interpretation | [A1 Dynamics and Interpretation](braid-a1-dynamics.md) | A1 retention questions, closure labels, cadence retuning, scaling, alignment, and downstream hypotheses. |
-| Mathematics | [Braid Mathematics](braid-mathematics.md) | The core-agnostic machinery: invariant channels and equivariant reductions, exact channel identities, the exact speed budget, eigen-braid spectrum framing, fold-set action quantization as hypothesis, and Accessory Configuration moment analysis. |
+| A2 symmetry and return response | [A2 Symmetry and Return Response](braid-a2-symmetry-and-return-response.md) | The A2 invariant-channel theorem, two-ring geometry, dipole identity, momentum screw, and return-response analysis. |
+| Mathematics | [Braid Mathematics](braid-mathematics.md) | The shared machinery: transverse speed-budget lemmas, eigen-braid spectrum framing, fold-set action quantization as hypothesis, and Accessory Configuration moment analysis. |
+| Analysis methodology | [Candidate Braid Analysis Methodology](braid-analysis-methodology.md) | The common causal-wake map, internal and external probes, energy-ledger interface, sampling method, and candidate-grading rules. |
 | Analysis | [A1.3 Doubling-Frequency Resonance Lock](braid-a1-3-doubling-frequency-lock.md) | The A1.3 $4{:}2{:}1$ candidate and its lock analysis. |
 | Export | [Braid Envelope Geometry](braid-envelope-geometry.md) | The family-general envelope and observer-export interface: dynamic exclusion envelope, sea-interface diagnostic, canonical geometry variables, and the Lorentz projection. |
 | Export | [Noether Braid Topological Charge](noether-braid-topological-charge.md) | Classification of retained branch charts. |
 
-A first reading should follow the table order: what a retained braid must satisfy, then the coordinate taxonomy and Family-A, Family-B, and Family-C definitions, then the broader configuration space, shared mathematics, and A1.3 analysis, with the export chapters as the interface layer. Search progress is not tracked in these chapters.
+A first reading should follow the table order: what a retained braid must satisfy, then the coordinate taxonomy and Family-A, Family-B, and Family-C definitions, then the broader configuration space and member specialists, then shared mathematics, the common analysis method, and candidate analyses, with the export chapters as the interface layer. Search progress is not tracked in these chapters.
 
 ## Medium-Selection Burden
 
