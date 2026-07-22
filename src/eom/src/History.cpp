@@ -1358,11 +1358,11 @@ RetainedHistory::uniform_circular_analytic_state(const Interval& time) const {
   };
 }
 
-double RetainedHistory::t_start() const noexcept {
+double RetainedHistory::t_start() const {
   return segments_.front().t_start();
 }
 
-double RetainedHistory::t_end() const noexcept {
+double RetainedHistory::t_end() const {
   return segments_.back().t_end();
 }
 

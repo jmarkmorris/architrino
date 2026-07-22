@@ -4,14 +4,14 @@
 
 - Kind: `priority-contract`
 - Claim level: `priority-only`
-- Status: `fixture-backed`
+- Status: `fixture-regression-and-local-full-corpus-passing`
 - Parent tracker: [Architrino MCP](priorities.md)
 
 ## Purpose
 
-`archie-source-index-snapshot/v1` is the first executable contract for the immutable data bundle that a future MCP adapter will consume.
+`archie-source-index-snapshot/v1` is the executable contract for the immutable data bundle consumed by the local MCP adapters.
 
-The contract does not create a public MCP endpoint or a complete production corpus index. It establishes the smaller supply-side boundary first: the same declared inputs must produce the same normalized snapshot; every output record must retain source provenance and visibility; derived routes must point to an authored canonical parent; and altered hashes or authority inflation must fail closed.
+The six-source fixture remains the small negative and regression surface. The mechanically enumerated local implementation is recorded in [Full-Corpus Local MCP V1](full-corpus-local-v1.md). Neither artifact creates a public MCP endpoint or claims an accepted-`main` publication.
 
 ## Implemented Artifacts
 
@@ -24,6 +24,10 @@ The contract does not create a public MCP endpoint or a complete production corp
 | [Negative suite](../../../tests/archie-service/fixtures/source-index/source-index-negative-suite.v1.json) | Declares failures for missing paths, duplicate ids, invalid parents, authority inflation, visibility leakage, false metadata provenance, and stale hashes. |
 | [Builder and checker](../../../scripts/archie-service/build-source-index.mjs) | Writes the review fixture in `--write` mode and performs deterministic, provenance, authority, route, and negative checks in `--check` mode. |
 | [Focused tests](../../../tests/archie-service-source-index-snapshot.test.js) | Rebuilds the fixture, tests input-order invariance, and confirms tampering and priority-authority inflation are rejected. |
+| [Full-corpus enumerator](../../../src/archie-service/source-index/full-corpus-v1.mjs) | Discovers declared authored documents and sections, eligible reading copies and scenes, exact metadata, typed structural edges, and local source-state provenance. |
+| [Full-corpus builder](../../../scripts/archie-service/build-full-corpus-source-index.mjs) | Atomically writes or check-only verifies the complete local snapshot. |
+| [Full-corpus snapshot](../../../content/generated/source-index/local-full-corpus-snapshot.v1.json) | Supplies the exact-content, search, graph, and metadata views used by the full-corpus launcher. |
+| [Full-corpus focused tests](../../../tests/archie-service-full-corpus-source-index.test.js) | Independently checks declared-document coverage, extraction, parents, visibility, determinism, Unicode continuation, and tamper rejection. |
 
 ## Snapshot Contents
 
@@ -147,4 +151,4 @@ The V1 contract is not accepted if any of these observations occurs:
 
 ## Remaining Boundary
 
-This artifact closes the first source-index contract object and now supplies the exact-content view required by [MCP Tool Contract V1](mcp-tool-contract-v1.md). It is still a representative fixture rather than complete production-corpus enumeration.
+The local full-corpus snapshot now supplies [MCP Tool Contract V1](mcp-tool-contract-v1.md). Publication from accepted `main`, atomic remote artifact storage, rollback history, and deployment freshness remain outside this local contract.

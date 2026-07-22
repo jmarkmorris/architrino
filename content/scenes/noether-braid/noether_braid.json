@@ -22,6 +22,22 @@
         "scenePath": "content/scenes/noether-braid/braid_recovery_requirements.json"
       },
       {
+        "nodeId": "braid_taxonomy",
+        "scenePath": "content/scenes/noether-braid/braid_taxonomy.json"
+      },
+      {
+        "nodeId": "braid_family_a",
+        "scenePath": "content/scenes/noether-braid/braid_family_a.json"
+      },
+      {
+        "nodeId": "braid_family_b",
+        "scenePath": "content/scenes/noether-braid/braid_family_b.json"
+      },
+      {
+        "nodeId": "braid_family_c",
+        "scenePath": "content/scenes/noether-braid/braid_family_c.json"
+      },
+      {
         "nodeId": "noether_braid_configuration_space",
         "scenePath": "content/scenes/noether-braid/noether_braid_configuration_space.json"
       },
@@ -30,12 +46,20 @@
         "scenePath": "content/scenes/noether-braid/explored_braid_geometries.json"
       },
       {
-        "nodeId": "braid_mathematics",
-        "scenePath": "content/scenes/noether-braid/braid_mathematics.json"
+        "nodeId": "braid_a2_symmetry_and_return_response",
+        "scenePath": "content/scenes/noether-braid/braid_a2_symmetry_and_return_response.json"
       },
       {
         "nodeId": "spindle_braid",
         "scenePath": "content/scenes/noether-braid/spindle_braid.json"
+      },
+      {
+        "nodeId": "braid_mathematics",
+        "scenePath": "content/scenes/noether-braid/braid_mathematics.json"
+      },
+      {
+        "nodeId": "braid_analysis_methodology",
+        "scenePath": "content/scenes/noether-braid/braid_analysis_methodology.json"
       },
       {
         "nodeId": "doubling_frequency_lock",
@@ -69,6 +93,38 @@
       "labelBadge": "doc"
     },
     {
+      "id": "braid_taxonomy",
+      "title": "Braid Taxonomy",
+      "radius": 2.05,
+      "color": "#67547f",
+      "labelTitle": "Braid Taxonomy",
+      "labelBadge": "doc"
+    },
+    {
+      "id": "braid_family_a",
+      "title": "Braid Family A",
+      "radius": 2.05,
+      "color": "#486a7c",
+      "labelTitle": "Braid Family A",
+      "labelBadge": "doc"
+    },
+    {
+      "id": "braid_family_b",
+      "title": "Braid Family B",
+      "radius": 2.05,
+      "color": "#5f647f",
+      "labelTitle": "Braid Family B",
+      "labelBadge": "doc"
+    },
+    {
+      "id": "braid_family_c",
+      "title": "Braid Family C",
+      "radius": 2.05,
+      "color": "#76577f",
+      "labelTitle": "Braid Family C",
+      "labelBadge": "doc"
+    },
+    {
       "id": "noether_braid_configuration_space",
       "title": "Noether Braid Configuration Space",
       "radius": 2.05,
@@ -78,10 +134,26 @@
     },
     {
       "id": "explored_braid_geometries",
-      "title": "Braid Families",
+      "title": "Braid A1 Dynamics and Interpretation",
       "radius": 2.05,
       "color": "#4f7466",
-      "labelTitle": "Braid Families",
+      "labelTitle": "Braid A1 Dynamics and Interpretation",
+      "labelBadge": "doc"
+    },
+    {
+      "id": "braid_a2_symmetry_and_return_response",
+      "title": "A2 Symmetry and Return Response",
+      "radius": 2.05,
+      "color": "#6a607c",
+      "labelTitle": "A2 Symmetry and Return Response",
+      "labelBadge": "doc"
+    },
+    {
+      "id": "spindle_braid",
+      "title": "B1 Hypotheses and Discrete Symmetry",
+      "radius": 2.05,
+      "color": "#655c7d",
+      "labelTitle": "B1 Hypotheses and Discrete Symmetry",
       "labelBadge": "doc"
     },
     {
@@ -93,19 +165,19 @@
       "labelBadge": "doc"
     },
     {
-      "id": "spindle_braid",
-      "title": "Spindle Braid",
+      "id": "braid_analysis_methodology",
+      "title": "Candidate Braid Analysis Methodology",
       "radius": 2.05,
-      "color": "#655c7d",
-      "labelTitle": "Spindle Braid",
+      "color": "#386b70",
+      "labelTitle": "Candidate Braid Analysis Methodology",
       "labelBadge": "doc"
     },
     {
       "id": "doubling_frequency_lock",
-      "title": "Doubling-Frequency Resonance Lock",
+      "title": "A1.3 Doubling-Frequency Resonance Lock",
       "radius": 2.05,
       "color": "#5a5f7a",
-      "labelTitle": "Doubling-Frequency Resonance Lock",
+      "labelTitle": "A1.3 Doubling-Frequency Resonance Lock",
       "labelBadge": "doc"
     },
     {

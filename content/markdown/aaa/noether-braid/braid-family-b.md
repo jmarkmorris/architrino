@@ -1,0 +1,107 @@
+# Braid Family B
+
+Family B contains prescribed one-braid geometries whose three binary axes are the same oriented line. The canonical coordinates and master-table rows are defined in [Braid Taxonomy](braid-taxonomy.md#family-b-coincident-binary-axes). This chapter gives the exact B1 path geometry, its coordinate boundaries, and its intersection with Family A.
+
+Family B is a geometry-and-motion definition. It does not establish that a B1 record is generated, retained, or stable under the EOM solver. The realization-independent retention burden is stated in [Braid Recovery Requirements](braid-recovery-requirements.md).
+
+## Shared Family-B Geometry
+
+Every Family-B member is one complete Noether braid composed of three neutral binaries. The binaries share one oriented axis $\hat{\mathbf n}_B$. The source-defined B1 chart also gives them one common midpoint, the braid center $\mathbf C(T)$.
+
+Choose transverse unit vectors $\hat{\mathbf e}_1$ and $\hat{\mathbf e}_2$ so that $(\hat{\mathbf e}_1,\hat{\mathbf e}_2,\hat{\mathbf n}_B)$ is an orthonormal frame. For binary $a\in\{1,2,3\}$, define
+
+$$
+\theta_a(T)=q\,2\pi fT+\phi_a,
+\qquad
+q\in\{+1,-1\},
+$$
+
+where $f$ is the common frequency, $\phi_a$ is the binary phase relative to the braid-level zero point, and $q$ is the common circulation sense. The binary half-separation vector is
+
+$$
+\mathbf d_a(T)
+=
+h_a\hat{\mathbf n}_B
++
+\rho_a
+\left[
+\cos\theta_a(T)\hat{\mathbf e}_1
++
+\sin\theta_a(T)\hat{\mathbf e}_2
+\right].
+$$
+
+The two endpoint paths are
+
+$$
+\mathbf X_{a1}(T)=\mathbf C(T)+\mathbf d_a(T),
+\qquad
+\mathbf X_{a2}(T)=\mathbf C(T)-\mathbf d_a(T).
+$$
+
+These equations make the B1 restrictions explicit: the endpoints of each neutral binary remain antipodal about the common braid center; all three binaries use the same axis, frequency, and circulation sense; and the radii, axial half-separations, transverse orbit radii, and phases may differ by binary.
+
+The radius decomposition $R_a^2=h_a^2+\rho_a^2$ is defined in the [Individual Binary](braid-taxonomy.md#individual-binary) coordinate section. The internal speed of either endpoint of binary $a$ is
+
+$$
+s_a=2\pi f\rho_a.
+$$
+
+Thus internal speed is controlled by transverse orbit radius rather than by total binary radius alone. If a display derives the optional angle $\alpha_a=\operatorname{atan2}(h_a,\rho_a)$, the same relation is $s_a=2\pi fR_a\cos\alpha_a$. The angle is not a primary taxonomy coordinate.
+
+## B1
+
+B1 is the rigid common-frequency member of Family B. Its member-level constraints are:
+
+| Coordinate or relation | B1 value |
+| --- | --- |
+| Braid count | One |
+| Binary midpoints | One common braid center $\mathbf C(T)$ |
+| Binary axes | $\hat{\mathbf n}_1=\hat{\mathbf n}_2=\hat{\mathbf n}_3=\hat{\mathbf n}_B$ |
+| Frequency | One common $f$ |
+| Circulation | One common sense $q$ |
+| Radii | $R_1,R_2,R_3$ independently assignable |
+| Axial half-separations | $h_1,h_2,h_3$ independently assignable subject to each radius decomposition |
+| Transverse orbit radii | $\rho_1,\rho_2,\rho_3$ independently assignable subject to each radius decomposition |
+| Phases | $\phi_1,\phi_2,\phi_3$ independently assignable relative to the common zero point |
+| Hinge | None |
+
+Rigid here means that the declared $R_a$, $h_a$, $\rho_a$, $f$, $\phi_a$, frame, and circulation sense do not change during the prescribed record. It is a kinematic restriction, not an EOM-solver rigidity result.
+
+## Coordinate Boundaries
+
+The equatorial and axial depictions are coordinate boundaries of B1, not separately identified braid families. Each binary can reach either boundary independently:
+
+| Boundary locus | Coordinate condition | Endpoint motion |
+| --- | --- | --- |
+| Equatorial | $h_a=0$, $\rho_a=R_a$ | The endpoints traverse one circle in the plane through $\mathbf C(T)$ orthogonal to $\hat{\mathbf n}_B$. |
+| Axial | $\rho_a=0$, $h_a=R_a$ | The endpoints remain on the common axis and have zero internal orbital speed. |
+| Interior | $h_a>0$, $\rho_a>0$ | The endpoints traverse separated transverse circles on opposite sides of the braid center. |
+
+The all-equatorial display sets $h_a=0$ for all three binaries. The all-axial display sets $\rho_a=0$ for all three binaries. Mixed boundary records are also permitted by the B1 coordinates. These loci do not carry decimal member IDs.
+
+At an axial locus, $\phi_a$ and $f$ remain prescribed record labels but no longer change that binary's endpoint positions because its transverse orbit radius is zero. Two axial records that differ only in those labels therefore depict the same path geometry unless another retained record gives the labels an independent dynamical role.
+
+## Axial Translation
+
+When the braid center translates along the common axis at constant group speed,
+
+$$
+\mathbf C(T)
+=
+\mathbf C(0)+s_{\mathrm{grp}}T\hat{\mathbf n}_B,
+$$
+
+each non-axial endpoint follows an exact screw path: axial translation plus circular motion about the same axis. The axial and transverse velocity components are orthogonal, so the exact site-speed split is the channel kinematics developed in [Braid Mathematics](braid-mathematics.md#transverse-internal-motion-speed-budget-lemma). A mechanism that fixes the total speed budget remains an open branch hypothesis.
+
+Axial translation is a B1 specialization, not a Family-B requirement. A record whose group velocity is not parallel to $\hat{\mathbf n}_B$ retains the same internal B1 geometry but is not an axial screw path.
+
+## Boundary with Family A
+
+Family A and Family B share a coordinate boundary. At $\lambda_A=1$, the three Family-A axes coincide with the Family-A translation direction. A common-frequency Family-A record with one common circulation sense then satisfies the B1 axis, frequency, and circulation relations. It reaches the source-defined common-center B1 chart only if its three binary midpoints also coincide with the braid center.
+
+This overlap is a coordinate-locus statement. It does not identify Family A with Family B away from the boundary and does not establish a physical transition between them.
+
+## Claim Boundary
+
+The B1 equations define prescribed paths exactly. They would be falsified as EOM-solver branch claims by a same-record evolution showing that the common-axis, common-frequency, common-center, or rigid-coordinate relations cannot be retained under the required causal-root, acceleration, action, and stability records. Until such evidence exists, B1 supplies an exact display geometry and explicit closure targets, not a retained physical braid.

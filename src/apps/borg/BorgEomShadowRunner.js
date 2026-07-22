@@ -55,22 +55,28 @@ export function createBorgEomShadowRunner(manifest, options = {}) {
   const config = createBorgEomShadowRunConfig(manifest, options);
   // A declared C1 initial datum is required. It is not EOM output; every live
   // extension remains explicitly conditioned on this accepted input history.
-  if (!Array.isArray(options.initialFrameRows) || options.initialFrameRows.length === 0) {
+  const suppliedHistories = options.initialRetainedHistories;
+  if (
+    (!Array.isArray(options.initialFrameRows) || options.initialFrameRows.length === 0) &&
+    (!Array.isArray(suppliedHistories) || suppliedHistories.length === 0)
+  ) {
     throw new TypeError(
-        "Borg EOM shadow runner requires initialFrameRows carrying an accepted continuous seed history.",
+        "Borg EOM shadow runner requires initialFrameRows or exact initialRetainedHistories.",
     );
   }
-  let histories = createBorgContinuousRetainedHistories(
-    options.initialFrameRows,
-    manifest,
-    {
-      historyStartTime: config.historyStartTime,
-      historyEndTime: config.startTime,
-      expectedPathCount: config.pathCount,
-      sourceProvenance: options.initialHistoryProvenance,
-      sourceClaimLevel: options.initialHistoryClaimLevel,
-    },
-  );
+  let histories = Array.isArray(suppliedHistories) && suppliedHistories.length > 0
+    ? validateBorgInitialRetainedHistories(suppliedHistories, config)
+    : createBorgContinuousRetainedHistories(
+        options.initialFrameRows,
+        manifest,
+        {
+          historyStartTime: config.historyStartTime,
+          historyEndTime: config.startTime,
+          expectedPathCount: config.pathCount,
+          sourceProvenance: options.initialHistoryProvenance,
+          sourceClaimLevel: options.initialHistoryClaimLevel,
+        },
+      );
   const runGrade = config.runGrade;
   const initialHistoryAccepted = histories.every(
     (history) => history.sourceAcceptedInitialDatum === true,
@@ -261,6 +267,58 @@ export function createBorgEomShadowRunner(manifest, options = {}) {
       }
     },
   });
+}
+
+export function validateBorgInitialRetainedHistories(histories, config) {
+  if (!Array.isArray(histories) || histories.length !== config.pathCount) {
+    throw new Error("Borg exact initial retained histories must cover every path identity.");
+  }
+  const pathIds = new Set();
+  const normalized = histories.map((history, historyIndex) => {
+    const pathId = String(history?.pathId ?? "");
+    if (!pathId || pathIds.has(pathId)) {
+      throw new Error("Borg exact initial retained histories require unique path identities.");
+    }
+    pathIds.add(pathId);
+    if (!Array.isArray(history.segments) || history.segments.length === 0) {
+      throw new Error(`Borg exact initial retained history ${pathId} has no segments.`);
+    }
+    history.segments.forEach((segment, segmentIndex) => {
+      const start = requiredFiniteNumber(
+        segment.startTime,
+        `initial retained segment ${historyIndex}:${segmentIndex} start`,
+      );
+      const end = requiredFiniteNumber(
+        segment.endTime,
+        `initial retained segment ${historyIndex}:${segmentIndex} end`,
+      );
+      if (!(end > start)) {
+        throw new Error(`Borg exact initial retained history ${pathId} has a nonpositive segment.`);
+      }
+      if (segmentIndex > 0 &&
+          String(history.segments[segmentIndex - 1].endTime) !== String(segment.startTime)) {
+        throw new Error(`Borg exact initial retained history ${pathId} is not contiguous.`);
+      }
+      if (!Array.isArray(segment.coefficients) || segment.coefficients.length !== 3 ||
+          segment.coefficients.some((axis) => !Array.isArray(axis) || axis.length !== 4)) {
+        throw new Error(`Borg exact initial retained history ${pathId} has invalid cubic coefficients.`);
+      }
+    });
+    if (String(history.coverageStart) !== String(history.segments[0].startTime) ||
+        String(history.coverageEnd) !== String(history.segments.at(-1).endTime) ||
+        Number(history.coverageEnd) !== config.startTime) {
+      throw new Error(
+        `Borg exact initial retained history ${pathId} must end at the selected evolution cut.`,
+      );
+    }
+    return Object.freeze({
+      ...history,
+      pathId,
+      pathKey: history.pathKey ?? Number(pathId),
+      segments: Object.freeze([...history.segments]),
+    });
+  });
+  return Object.freeze(normalized);
 }
 
 export function createBorgEomShadowRunConfig(manifest, options = {}) {

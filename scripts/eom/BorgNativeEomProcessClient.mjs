@@ -1,7 +1,12 @@
 import { createHash } from "node:crypto";
 import { spawn, spawnSync } from "node:child_process";
-import { statSync } from "node:fs";
-import { mkdirSync, rmSync } from "node:fs";
+import {
+  mkdirSync,
+  mkdtempSync,
+  readdirSync,
+  rmSync,
+  statSync,
+} from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 
@@ -26,16 +31,18 @@ export const BORG_NATIVE_EOM_PROCESS_CLIENT_VERSION =
   "borg-native-eom-process-client.v10";
 export const BORG_NATIVE_EOM_PROTOCOL_MAGIC = "EOM_BORG_NATIVE_V10";
 
+const BORG_HISTORY_TEMP_PARENT = join(
+  tmpdir(),
+  "architrino-eom-exact-history-borg-workers",
+);
+
 export function createBorgNativeEomProcessClient({
   binaryPath,
   binaryArgs = [],
   timeoutMs = 120000,
   returnDisplayHistoryExtensions = false,
   workerResidentMemoryReader = readWorkerResidentBytes,
-  historyTempRoot = join(
-    tmpdir(),
-    "architrino-eom-exact-history-borg-worker",
-  ),
+  historyTempRoot = null,
   historyDiskLimitBytes = 1024 ** 4,
 } = {}) {
   if (typeof binaryPath !== "string" || binaryPath.length === 0) {
@@ -51,13 +58,15 @@ export function createBorgNativeEomProcessClient({
       "Borg EOM process client workerResidentMemoryReader must be a function.",
     );
   }
-  if (typeof historyTempRoot !== "string" || historyTempRoot.length === 0 ||
+  if ((historyTempRoot != null &&
+       (typeof historyTempRoot !== "string" || historyTempRoot.length === 0)) ||
       !Number.isSafeInteger(historyDiskLimitBytes) ||
       historyDiskLimitBytes <= 0 || historyDiskLimitBytes > 1024 ** 4) {
     throw new TypeError(
       "Borg EOM exact-history storage requires a temporary root and a limit no larger than one TiB.",
     );
   }
+  historyTempRoot = historyTempRoot ?? createOwnedHistoryTempRoot();
   cleanHistoryTempRoot();
   const binaryProtocolMagic = queryBorgNativeEomProtocolMagic(binaryPath);
   if (binaryProtocolMagic !== BORG_NATIVE_EOM_PROTOCOL_MAGIC) {
@@ -354,6 +363,46 @@ export function createBorgNativeEomProcessClient({
 
   function cleanHistoryTempRoot() {
     rmSync(historyTempRoot, { recursive: true, force: true });
+  }
+}
+
+function createOwnedHistoryTempRoot() {
+  mkdirSync(BORG_HISTORY_TEMP_PARENT, { recursive: true });
+  cleanStaleHistoryTempRoots();
+  return mkdtempSync(join(
+    BORG_HISTORY_TEMP_PARENT,
+    `pid-${process.pid}-`,
+  ));
+}
+
+function cleanStaleHistoryTempRoots() {
+  for (const entry of readdirSync(BORG_HISTORY_TEMP_PARENT, {
+    withFileTypes: true,
+  })) {
+    if (!entry.isDirectory()) {
+      continue;
+    }
+    const match = /^pid-(\d+)-/u.exec(entry.name);
+    if (!match) {
+      continue;
+    }
+    const ownerPid = Number(match[1]);
+    if (ownerPid === process.pid || isLiveProcess(ownerPid)) {
+      continue;
+    }
+    rmSync(join(BORG_HISTORY_TEMP_PARENT, entry.name), {
+      recursive: true,
+      force: true,
+    });
+  }
+}
+
+function isLiveProcess(pid) {
+  try {
+    process.kill(pid, 0);
+    return true;
+  } catch (error) {
+    return error?.code === "EPERM";
   }
 }
 

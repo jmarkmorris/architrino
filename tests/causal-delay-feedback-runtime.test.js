@@ -1344,19 +1344,17 @@ test("causal delay feedback settings button uses a gear icon", () => {
   assert.equal(settingsButtonHtml.includes('d="M2.8 12h3"'), false);
 });
 
-test("causal delay feedback toolbar uses separate play and pause buttons without visible source chip", () => {
+test("causal delay feedback toolbar uses one play-pause toggle without visible source chip", () => {
   const html = readCausalDelayFeedbackHtml();
   const playIndex = html.indexOf('id="causal-delay-feedback-play"');
   const scrubIndex = html.indexOf('id="causal-delay-feedback-now"');
-  const pauseIndex = html.indexOf('id="causal-delay-feedback-pause"');
   const replayStatusIndex = html.indexOf('id="causal-delay-feedback-replay-status"');
 
   assert(playIndex > 0);
   assert(scrubIndex > playIndex);
-  assert(pauseIndex > scrubIndex);
-  assert(replayStatusIndex > pauseIndex);
+  assert(replayStatusIndex > scrubIndex);
   assert.match(html.slice(playIndex, scrubIndex), /aria-label="Play replay"/);
-  assert.match(html.slice(pauseIndex, replayStatusIndex), /aria-label="Pause replay"/);
+  assert.doesNotMatch(html, /id="causal-delay-feedback-pause"/);
   assert.match(html.slice(replayStatusIndex, replayStatusIndex + 180), /hidden/);
 });
 
@@ -4073,30 +4071,28 @@ test("causal delay feedback spacebar toggles play state", () => {
   assert.equal(runtime.isPlaying, false);
 });
 
-test("causal delay feedback playback buttons stay explicit play and pause controls", () => {
+test("causal delay feedback play-pause toggle follows the shared transport state", () => {
   const runtime = createCausalDelayFeedbackRuntime({
     document: new FakeDocument(),
     window: fakeWindow,
   });
   const playButton = new FakeElement();
-  const pauseButton = new FakeElement();
-  runtime.dom = { playButton, pauseButton };
+  const resetButton = new FakeElement();
+  runtime.dom = { playButton, resetButton };
 
   runtime.setPlaying(true);
 
-  assert.equal(playButton.attributes["aria-label"], "Play replay");
-  assert.equal(pauseButton.attributes["aria-label"], "Pause replay");
+  assert.equal(playButton.attributes["aria-label"], "Pause replay");
   assert.equal(playButton.attributes["aria-pressed"], "true");
-  assert.equal(pauseButton.attributes["aria-pressed"], "false");
-  assert.match(playButton.innerHTML, /M8 5v14l10-7z/);
-  assert.match(pauseButton.innerHTML, /M8 5v14/);
+  assert.match(playButton.innerHTML, /data-transport-icon="pause"/);
+  assert.match(playButton.innerHTML, /M8 5v14/);
+  assert.match(resetButton.innerHTML, /data-transport-icon="reset"/);
 
   runtime.setPlaying(false);
 
   assert.equal(playButton.attributes["aria-label"], "Play replay");
-  assert.equal(pauseButton.attributes["aria-label"], "Pause replay");
   assert.equal(playButton.attributes["aria-pressed"], "false");
-  assert.equal(pauseButton.attributes["aria-pressed"], "true");
+  assert.match(playButton.innerHTML, /data-transport-icon="play"/);
 });
 
 test("causal delay feedback spacebar leaves native controls alone", () => {

@@ -390,7 +390,15 @@ function sourceChip(record) {
 
 function findRecord(snapshot, topicOrRoute, sectionAnchor) {
   return snapshot.views.search.records.find((record) => {
-    const identityMatch = record.sourceId === topicOrRoute || record.route === topicOrRoute;
+    const anchorSuffix = record.sectionAnchor === null ? null : `#${record.sectionAnchor}`;
+    const routeWithoutAnchor =
+      anchorSuffix !== null && record.route.endsWith(anchorSuffix)
+        ? record.route.slice(0, -anchorSuffix.length)
+        : null;
+    const identityMatch =
+      record.sourceId === topicOrRoute ||
+      record.route === topicOrRoute ||
+      (sectionAnchor !== null && routeWithoutAnchor === topicOrRoute);
     const sectionMatch = sectionAnchor === null || record.sectionAnchor === sectionAnchor;
     return identityMatch && sectionMatch;
   });

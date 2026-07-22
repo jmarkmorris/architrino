@@ -5,6 +5,7 @@ import test from "node:test";
 import { fileURLToPath } from "node:url";
 
 import {
+  SPINDLE_CHART_TARGETS,
   evaluateSpindleSite,
   generateSpindleChartRecord,
   serializeSpindleChartRecord,
@@ -13,16 +14,16 @@ import {
 import { createEomHistoryDataset } from "../src/apps/shared/EomHistoryDataset.mjs";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
-const SPEC_PATH = path.join(
-  ROOT,
-  "reference/priorities/braid-program/configurations/illustrative-spindle-chart-hypothesis.v0.json",
-);
-const RECORD_PATH = path.join(
-  ROOT,
-  "content/assets/borg/records/illustrative-spindle-chart-hypothesis.assembly-view-record.v0.json",
-);
+const SPEC_PATH = SPINDLE_CHART_TARGETS[0].specPath;
+const RECORD_PATH = SPINDLE_CHART_TARGETS[0].outPath;
 const spec = JSON.parse(readFileSync(SPEC_PATH, "utf8"));
 const checkedRecord = JSON.parse(readFileSync(RECORD_PATH, "utf8"));
+const fixtures = SPINDLE_CHART_TARGETS.map(({ specPath, outPath }) => ({
+  specPath,
+  outPath,
+  spec: JSON.parse(readFileSync(specPath, "utf8")),
+  record: JSON.parse(readFileSync(outPath, "utf8")),
+}));
 
 function maximumComponentDifference(left, right) {
   return Math.max(...["x", "y", "z"].map((axis) => Math.abs(left[axis] - right[axis])));
@@ -49,6 +50,25 @@ test("spindle chart specification validates its finite right-handed frame and fi
   const invalidTrail = structuredClone(spec);
   invalidTrail.displayTrailPeriods = 0;
   assert.throws(() => validateSpindleChartSpec(invalidTrail), /displayTrailPeriods/);
+
+  const frequencyVariant = structuredClone(spec);
+  frequencyVariant.taxonomy.classification = "frequency-variant";
+  assert.equal(validateSpindleChartSpec(frequencyVariant), frequencyVariant);
+
+  const inventedClassification = structuredClone(spec);
+  inventedClassification.taxonomy.classification = "new-family-by-label";
+  assert.throws(() => validateSpindleChartSpec(inventedClassification), /frequency-variant/);
+});
+
+test("spindle chart target registry is immutable, ordered, and source/output unique", () => {
+  assert.equal(Object.isFrozen(SPINDLE_CHART_TARGETS), true);
+  assert.deepEqual(
+    fixtures.map(({ spec: source }) => source.taxonomy.classification),
+    ["family-member", "parameter-variant", "boundary-member", "boundary-member"],
+  );
+  assert.equal(new Set(SPINDLE_CHART_TARGETS.map((target) => target.specPath)).size, 4);
+  assert.equal(new Set(SPINDLE_CHART_TARGETS.map((target) => target.outPath)).size, 4);
+  SPINDLE_CHART_TARGETS.forEach((target) => assert.equal(Object.isFrozen(target), true));
 });
 
 test("prescribed spindle sites satisfy the sphere, antipodal, separation, and common-speed identities", () => {
@@ -217,4 +237,89 @@ test("generated spindle record is deterministic, checked in, ingestible, and pro
     () => createEomHistoryDataset(incompleteAxis),
     /binaries\[0\]\.axisDisplayHalfLength must be finite/,
   );
+});
+
+test("every registered spindle source generates its sealed record deterministically with taxonomy provenance", () => {
+  fixtures.forEach(({ spec: source, outPath, record }) => {
+    assert.equal(validateSpindleChartSpec(source), source);
+    const generatingSpec = path.relative(ROOT, SPINDLE_CHART_TARGETS.find(
+      (target) => target.outPath === outPath,
+    ).specPath);
+    const generated = generateSpindleChartRecord(source, { generatingSpec });
+    assert.equal(serializeSpindleChartRecord(generated), readFileSync(outPath, "utf8"));
+    assert.equal(serializeSpindleChartRecord(generated), serializeSpindleChartRecord(record));
+    const dataset = createEomHistoryDataset(generated);
+    assert.equal(generated.sourceId, source.specId);
+    assert.equal(dataset.provenance.engineId, "prescribed-geometry");
+    assert.equal(dataset.provenance.claimGrade, "chart-hypothesis");
+    assert.equal(dataset.provenance.evidenceStatus, "display-only");
+    assert.equal(dataset.provenance.prescribedGeometry.physicsInvoked, false);
+    assert.deepEqual(dataset.provenance.prescribedGeometry.taxonomy, source.taxonomy);
+    assert.equal(dataset.worldlines.length, 6);
+    assert.equal(dataset.binaries.length, 3);
+    assert.equal(dataset.ansatz.length, 6);
+  });
+});
+
+test("planar tri-binary boundary is exactly coplanar and periodic", () => {
+  const { spec: planar, record } = fixtures[2];
+  assert.equal(planar.layers.every((layer) => layer.capAngle === 0), true);
+  record.binaries.forEach((binary) => {
+    assert.equal(binary.separation, 0);
+    assert.equal(binary.planarOffset, 0);
+    assert.equal(binary.transverseRadius, binary.layerRadius);
+  });
+  record.ansatz.forEach((curve) => {
+    curve.points.forEach((point) => assert.ok(Math.abs(point.z) < 1e-15));
+  });
+  const period = 2 * Math.PI / Math.abs(planar.angularFrequency);
+  planar.layers.forEach((layer, layerIndex) => {
+    for (const endpointIndex of [0, 1]) {
+      const start = evaluateSpindleSite(planar, layerIndex, endpointIndex, 0.37);
+      const returned = evaluateSpindleSite(planar, layerIndex, endpointIndex, 0.37 + period);
+      start.position.forEach((value, axis) => {
+        assert.ok(Math.abs(value - returned.position[axis]) < 1e-13);
+      });
+    }
+  });
+  assert.deepEqual(record.worldlines.map((worldline) => worldline.polarity).sort(), [-1, -1, -1, 1, 1, 1]);
+});
+
+test("full-cap axial boundary reduces to three static antipodal axial pairs", () => {
+  const { spec: axial, record } = fixtures[3];
+  assert.equal(axial.layers.every((layer) => layer.capAngle === Math.PI / 2), true);
+  record.binaries.forEach((binary, index) => {
+    assert.ok(binary.transverseRadius < 1e-15);
+    assert.ok(binary.carrierSpeed < 1e-15);
+    assert.ok(Math.abs(binary.separation - 2 * axial.layers[index].radius) < 1e-15);
+  });
+  axial.layers.forEach((layer, layerIndex) => {
+    for (const endpointIndex of [0, 1]) {
+      const start = evaluateSpindleSite(axial, layerIndex, endpointIndex, 0);
+      const later = evaluateSpindleSite(axial, layerIndex, endpointIndex, 7.25);
+      start.position.forEach((value, axis) => {
+        assert.ok(Math.abs(value - later.position[axis]) < 1e-15);
+      });
+      assert.ok(Math.abs(start.position[0]) < 1e-15);
+      assert.ok(Math.abs(start.position[1]) < 1e-15);
+      const expectedZ = (endpointIndex === 0 ? 1 : -1) * layer.radius;
+      assert.ok(Math.abs(start.position[2] - expectedZ) < 1e-15);
+    }
+  });
+  assert.deepEqual(record.worldlines.map((worldline) => worldline.polarity).sort(), [-1, -1, -1, 1, 1, 1]);
+});
+
+test("extreme cap-tilt variant remains moving and uses the declared inspection angles", () => {
+  const { spec: extreme, record } = fixtures[1];
+  const expectedAngles = [70, 80, 85].map((degrees) => degrees * Math.PI / 180);
+  extreme.layers.forEach((layer, index) => {
+    assert.ok(Math.abs(layer.capAngle - expectedAngles[index]) < 1e-15);
+    assert.ok(record.binaries[index].transverseRadius > 0);
+    assert.ok(record.binaries[index].carrierSpeed > 0);
+    const start = evaluateSpindleSite(extreme, index, 0, 0);
+    const quarterTurn = evaluateSpindleSite(extreme, index, 0, 1);
+    assert.ok(Math.hypot(...start.position.map((value, axis) =>
+      value - quarterTurn.position[axis]
+    )) > 1e-3);
+  });
 });

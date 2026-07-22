@@ -37,7 +37,7 @@
         "status": "ok",
         "snapshot": {
           "snapshotId": "source_snapshot_fixture_001",
-          "snapshotSha256": "0f37ac2a582bccb817591a261fd0530e508943bb9279309c7ec861e656ce880c",
+          "snapshotSha256": "a84e5ce00e227b9acb4b39dcefc397be625e2570c50314e190607c2747d03a65",
           "repositoryRef": "fixture-ref",
           "visibilityPolicyVersion": "visibility_fixture_v1",
           "freshnessState": "fresh"
@@ -109,7 +109,7 @@
         "status": "ok",
         "snapshot": {
           "snapshotId": "source_snapshot_fixture_001",
-          "snapshotSha256": "0f37ac2a582bccb817591a261fd0530e508943bb9279309c7ec861e656ce880c",
+          "snapshotSha256": "a84e5ce00e227b9acb4b39dcefc397be625e2570c50314e190607c2747d03a65",
           "repositoryRef": "fixture-ref",
           "visibilityPolicyVersion": "visibility_fixture_v1",
           "freshnessState": "fresh"
@@ -181,7 +181,7 @@
         "status": "not_found",
         "snapshot": {
           "snapshotId": "source_snapshot_fixture_001",
-          "snapshotSha256": "0f37ac2a582bccb817591a261fd0530e508943bb9279309c7ec861e656ce880c",
+          "snapshotSha256": "a84e5ce00e227b9acb4b39dcefc397be625e2570c50314e190607c2747d03a65",
           "repositoryRef": "fixture-ref",
           "visibilityPolicyVersion": "visibility_fixture_v1",
           "freshnessState": "fresh"
@@ -220,7 +220,7 @@
         "status": "ok",
         "snapshot": {
           "snapshotId": "source_snapshot_fixture_001",
-          "snapshotSha256": "0f37ac2a582bccb817591a261fd0530e508943bb9279309c7ec861e656ce880c",
+          "snapshotSha256": "a84e5ce00e227b9acb4b39dcefc397be625e2570c50314e190607c2747d03a65",
           "repositoryRef": "fixture-ref",
           "visibilityPolicyVersion": "visibility_fixture_v1",
           "freshnessState": "fresh"
@@ -279,7 +279,7 @@
         "status": "ok",
         "snapshot": {
           "snapshotId": "source_snapshot_fixture_001",
-          "snapshotSha256": "0f37ac2a582bccb817591a261fd0530e508943bb9279309c7ec861e656ce880c",
+          "snapshotSha256": "a84e5ce00e227b9acb4b39dcefc397be625e2570c50314e190607c2747d03a65",
           "repositoryRef": "fixture-ref",
           "visibilityPolicyVersion": "visibility_fixture_v1",
           "freshnessState": "fresh"
@@ -356,7 +356,7 @@
         "status": "excluded_visibility",
         "snapshot": {
           "snapshotId": "source_snapshot_fixture_001",
-          "snapshotSha256": "0f37ac2a582bccb817591a261fd0530e508943bb9279309c7ec861e656ce880c",
+          "snapshotSha256": "a84e5ce00e227b9acb4b39dcefc397be625e2570c50314e190607c2747d03a65",
           "repositoryRef": "fixture-ref",
           "visibilityPolicyVersion": "visibility_fixture_v1",
           "freshnessState": "fresh"
@@ -394,7 +394,7 @@
         "status": "ok",
         "snapshot": {
           "snapshotId": "source_snapshot_fixture_001",
-          "snapshotSha256": "0f37ac2a582bccb817591a261fd0530e508943bb9279309c7ec861e656ce880c",
+          "snapshotSha256": "a84e5ce00e227b9acb4b39dcefc397be625e2570c50314e190607c2747d03a65",
           "repositoryRef": "fixture-ref",
           "visibilityPolicyVersion": "visibility_fixture_v1",
           "freshnessState": "fresh"
@@ -411,10 +411,10 @@
             "visibility": "development_status",
             "canonicalParent": null,
             "claimLabelFloor": "priority-only",
-            "selectionSha256": "8f435684fbfb173dd4648ec52e793239345b92ac541eabcfe2bf7436aa6b7d44"
+            "selectionSha256": "10cbf542daa5596b956d5ac193c07a0f2dd84007e3ea6bf9349154d857f36ff0"
           },
           "contentType": "markdown",
-          "content": "# Source Index Snapshot V1\n\n## Status\n\n- Kind: `priority-contract`\n- Claim level: `priority-only`\n- Status: `fixture-backed`\n- Parent tracker: [Architrino MCP](priorities.md)\n\n## Purpose\n\n`archie-source-index-snapshot/v1` is the first executable contract f",
+          "content": "# Source Index Snapshot V1\n\n## Status\n\n- Kind: `priority-contract`\n- Claim level: `priority-only`\n- Status: `fixture-regression-and-local-full-corpus-passing`\n- Parent tracker: [Architrino MCP](priorities.md)\n\n## Purpose\n\n`archie-source-index-snapshot/v1` ",
           "contentOffset": 0,
           "contentComplete": false,
           "metadata": []

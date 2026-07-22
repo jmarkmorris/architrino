@@ -117,7 +117,7 @@ export function createAnimatorCanvasBootstrapRuntime(options = {}) {
     operations.setFrameDefaults?.();
     operations.setCameraDefaults?.();
     operations.setTransportButtonIcon?.(dom.playToggleButton, "play");
-    operations.setTransportButtonIcon?.(dom.playResetButton, "restart");
+    operations.setTransportButtonIcon?.(dom.playResetButton, "first-frame");
     if (dom.sceneButton && !dom.sceneButton.dataset.bound) {
       dom.sceneButton.addEventListener("click", (event) => {
         event.preventDefault();

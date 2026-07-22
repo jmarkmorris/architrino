@@ -915,6 +915,95 @@ class NativeBorgProcessTests(unittest.TestCase):
             worker.stderr.close()
             self.assertEqual(list(storage.rglob("*.aehb")), [])
 
+    def test_invalid_exact_history_block_fails_closed_and_worker_recovers(self) -> None:
+        with tempfile.TemporaryDirectory(
+            prefix="borg-exact-history-corruption-test-"
+        ) as storage_name:
+            storage = Path(storage_name)
+            first_path_segments = [
+                "\t".join((
+                    "SEG", str(index - 130), str(index - 129),
+                    *(["0"] * 18),
+                ))
+                for index in range(130)
+            ]
+            second_path_segments = [
+                "\t".join((
+                    "SEG", str(index - 130), str(index - 129),
+                    "1", *(["0"] * 17),
+                ))
+                for index in range(130)
+            ]
+            first_request = "\n".join((
+                PROTOCOL_MAGIC,
+                run_record(
+                    "disk-corruption-display", "0", "0.1",
+                    run_grade="display", path_count="2",
+                ),
+                "PATH\tp\t1\t1\t0\t130",
+                *first_path_segments,
+                "PATH\tq\t-1\t1\t0\t130",
+                *second_path_segments,
+                "END", "",
+            ))
+            worker = subprocess.Popen(
+                [
+                    str(self.binary), "borg-shadow-server-v0",
+                    f"--history-temp-root={storage}",
+                    "--history-disk-limit-bytes=1099511627776",
+                    "--history-cache-blocks-per-thread=2",
+                ],
+                stdin=subprocess.PIPE, stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE, cwd=ROOT, text=True,
+            )
+            assert worker.stdin is not None
+            assert worker.stdout is not None
+            worker.stdin.write(first_request)
+            worker.stdin.flush()
+            first = json.loads(worker.stdout.readline())
+            self.assertEqual(first["status"], "completed")
+            cached_counts = [
+                130 + len(extension["segments"])
+                for extension in first["publishedExtensions"]
+            ]
+            disk_blocks = list(storage.rglob("*.aehb"))
+            self.assertGreaterEqual(len(disk_blocks), 2)
+            for block in disk_blocks:
+                block.unlink()
+
+            cached_request = "\n".join((
+                PROTOCOL_MAGIC,
+                run_record(
+                    "disk-corruption-display", "0.1", "0.2",
+                    run_grade="display", path_count="2",
+                ),
+                f"PATH\tp\t1\t1\t{cached_counts[0]}\t0",
+                f"PATH\tq\t-1\t1\t{cached_counts[1]}\t0",
+                "END", "",
+            ))
+            worker.stdin.write(cached_request)
+            worker.stdin.flush()
+            failed = json.loads(worker.stdout.readline())
+            self.assertEqual(failed["status"], "halted")
+            self.assertIn(
+                "exact history disk block",
+                failed["haltCode"],
+            )
+            self.assertIsNone(worker.poll())
+            self.assertEqual(list(storage.rglob("*.aehb")), [])
+
+            worker.stdin.write(first_request)
+            worker.stdin.flush()
+            recovered = json.loads(worker.stdout.readline())
+            self.assertEqual(recovered["status"], "completed")
+            self.assertEqual(recovered["acceptedEndTime"], "0.1")
+            worker.stdin.close()
+            worker.wait(timeout=10)
+            worker.stdout.close()
+            assert worker.stderr is not None
+            self.assertEqual(worker.stderr.read(), "")
+            worker.stderr.close()
+
     def test_display_exact_history_disk_limit_fails_before_partial_publish(self) -> None:
         with tempfile.TemporaryDirectory(
             prefix="borg-exact-history-cap-test-"

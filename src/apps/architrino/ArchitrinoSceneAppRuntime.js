@@ -4,6 +4,7 @@ import { AppDirector } from "../../director/AppDirector.js";
 import { createLevelRuntime } from "../../runtime/LevelRuntime.js";
 import { createMarkdownRuntime } from "../../runtime/MarkdownRuntime.js";
 import { createFileSourceRuntime } from "../../runtime/FileSourceRuntime.js";
+import { setTransportControlButtonPresentation } from "../../runtime/TransportControlIcons.js";
 import { createNodeFactory } from "../../runtime/NodeFactoryRuntime.js";
 import { hasActionableSceneSphereTarget } from "../../runtime/SceneSphereActionRuntime.js";
 import {
@@ -1111,27 +1112,10 @@ function vectorFromTriplet(source) {
 }
 
 function setAnimatorTransportButtonIcon(button, kind) {
-  if (!button) {
-    return;
-  }
-  const icons = {
-    play: {
-      label: "Play",
-      text: "▶",
-    },
-    pause: {
-      label: "Pause",
-      text: "||",
-    },
-    restart: {
-      label: "Restart",
-      text: "⏮",
-    },
-  };
-  const icon = icons[kind] ?? icons.play;
-  button.textContent = icon.text;
-  button.setAttribute("aria-label", icon.label);
-  button.title = icon.label;
+  setTransportControlButtonPresentation(button, {
+    kind,
+    pressed: kind === "pause",
+  });
 }
 
 function createAnimatorMarkerHitProxy(radius) {

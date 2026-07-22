@@ -115,7 +115,7 @@ The important reframing here is that `charge` is not being denied; it is being r
 
 | When you mean... | Canonical term | Transformation rule |
 | --- | --- | --- |
-| the ordered three-dimensional Noether braid orientation, such as retained `HML` versus `HLM` order | `pro-Noether braid orientation` / `anti-Noether braid orientation`; compactly `pro/anti orientation` | $C$ leaves the orientation unchanged because it relabels polarity at fixed worldlines; $P$ reverses the orientation |
+| the deformation-stable orientation of an indexed three-dimensional Noether braid frame | `pro-Noether braid orientation` / `anti-Noether braid orientation`; compactly `pro/anti orientation` | derive the sign from the indexed path or angular-momentum-frame record; $C$ leaves the orientation unchanged because it relabels polarity at fixed worldlines, while $P$ reverses the orientation |
 | the same worldlines with every architrino polarity reversed | `polarity-conjugate braid`, `polarity-conjugate branch`, or $C(\mathfrak B)$ | $C$ exchanges the two polarity assignments; $P$ does not perform this exchange |
 | a particle branch and its antiparticle branch | `matter branch` and `polarity-conjugate antimatter branch` when the matter assignment is established | the whole retained branch record and the charged-sector polarity inventory must transform together |
 | the two products of a pair-production channel under the named hypothesis below | `pro-anti fermion pair` (hypothesis-attached shorthand) | polarity-conjugate and orientation-opposite — a $CP$-image pair under the [orientation-antimatter correspondence hypothesis](#orientation-antimatter-correspondence-hypothesis) |
@@ -161,7 +161,7 @@ Two frequently used kinematic terms with canonical meanings (operator-ratified 2
 
 | When you mean... | Prefer | Notes | Example |
 | --- | --- | --- | --- |
-| the instantaneous position an architrino occupies in an assembly configuration | `site` | every architrino is a transceiver, so its site can transmit and receive; compounds inherit this (`six-site`, `single-site self-hit`, `polar site`) | "The spindle braid has six sites on five horizontal circles." |
+| the instantaneous position an architrino occupies in an assembly configuration | `site` | every architrino is a transceiver, so its site can transmit and receive; compounds inherit this (`six-site`, `single-site self-hit`, `polar site`) | "The B1 record has six sites on its prescribed common-axis paths." |
 | the point an arriving causal wake was born | `transmitter site at emission time $T_t$` | the delayed formalism evaluates the transmitter at the causal root's emission time, not at reception time | "The line of action runs from the transmitter site at $T_t$ to the receiver site at $T_r$." |
 | uniform, unaccelerated translation of an assembly (or of the medium) relative to the void frame | `drift`, `drift speed` $u$ | drift deliberately connotes non-acceleration — a drifting rotation is a rigid screw motion; accelerated translation should be named as such, never called drift | "At drift $u$ the pinned internal cadence is $\omega_0\sqrt{1-u^2/c_f^2}$." |
 
@@ -258,17 +258,18 @@ Each inherited alternative carries conceptual drag. `Vacuum` invites empty-space
 
 ## Noether Braid Usage
 
-Use `Noether braid` as the canonical reader-facing term for the neutral six-architrino assembly scaffold made from three electrinos and three positrinos. The term is broader than an exact-binary nested-shell branch: it names the retained six-worldline branch and its causal-return ledger before exact binary grouping, shell support, or nested ordering has been certified.
+Use `Noether braid` as the canonical reader-facing term for the neutral six-architrino assembly scaffold made from three electrinos and three positrinos. It names the retained six-worldline branch and its causal-return ledger before an exact three-binary decomposition or any family-member coordinates have been certified.
 
 | When you mean... | Prefer | Avoid by default | Example |
 | --- | --- | --- | --- |
 | the broad six-architrino neutral assembly class | `Noether braid` | legacy neutral-scaffold labels or treating the scaffold as the whole particle | "The Noether braid supplies the neutral scaffold." |
+| six additional architrinos associated with a braid, with each site's polarity and position declared | `Accessory Configuration` | `dressing`, an unspecified accessory count, or language that assumes the sites surround the braid | "The Accessory Configuration crosses the braid envelope in this record." |
 | a proposed branch or branch family before all certificate ledgers close | `candidate braid` | treating the branch as retained or certified before the same-ledger evidence closes | "The iso-frequency braid remains a candidate braid until its phase, support, energy, and stability ledgers close." |
 | a retained branch promoted through return-map, stability, alignment, and observer-export closure | `certified braid` | linear-operator status labels or using `retained branch` when Lorentz export and stability ledgers are still missing | "A certified braid must reproduce Lorentz clock and ruler deformation at observer export." |
-| the base six-body case before shell or binary reductions | `neutral braid` | `shell braid` or `nested shell braid` before support-band evidence is declared | "A neutral braid may have no certified binary partition." |
-| the rigid uniaxial iso-frequency candidate family | `spindle braid` | using a comparison-family term when the spindle family is meant | "The spindle braid's tilt angles decouple layer speeds from nesting radii." |
-| a one-band radial-support case (comparison family) | `shell braid` | `nested shell braid` when only one support band is in scope | "The shell braid carries a controlled radial support band." |
-| the three-band frequency-separated comparison family | `nested shell braid` | presenting the nested family as the default matter scaffold; use `Noether braid` for assembly-level claims and reserve `nested shell braid` for claims that depend on its three ordered bands or frequency separation | "The nested shell braid remains the named comparison population for the spindle route." |
+| the base six-body case before an exact binary decomposition | `Noether braid` or `candidate braid`, according to evidence level | assigning a family member before its coordinate relations are present | "The candidate braid does not yet have a certified binary partition." |
+| the common-midpoint, coincident-axis, common-frequency one-braid member | `B1` or `Family-B member B1` | old shape-based family aliases | "B1 has coincident binary axes and one common frequency." |
+| the fully symmetric Family-A member | `A2` or `Family-A member A2` | a support-band name that hides the equal-coordinate conditions | "A2 has three cyclically equivalent binaries." |
+| the general Family-A member or one of its indexed frequency variants | `A1`, `A1.3`, or the exact applicable member ID | `inner/middle/outer` naming or an old shape-based family alias | "A1.3 has the indexed frequency ratio $f_1:f_2:f_3=4:2:1$." |
 | a mathematically protected braid, link, or framing class | `protected braid class`, `linking class`, `framing class`, or the specific invariant | treating every Noether braid as already topologically protected | "A protected braid class is certified only after the assembly topological charge ledger closes." |
 
 The word `braid` is chosen because the object is a collection of persistent worldline strands whose delayed histories remain coupled. It should not be overread. A Noether braid is not automatically a braid-group invariant, a knot invariant, or a proof of fermionic exchange behavior. Those are additional theorem targets. When a sentence needs that stronger claim, name the actual invariant, such as a linking number, a framed self-linking sign, flat phase-bundle holonomy, or the full assembly topological charge.

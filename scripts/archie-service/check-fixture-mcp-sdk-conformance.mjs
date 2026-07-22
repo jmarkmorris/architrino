@@ -6,7 +6,7 @@ import { fileURLToPath, pathToFileURL } from "node:url";
 
 const sdkRoot = readArgument("--sdk-root");
 if (!sdkRoot) {
-  fail("Usage: node scripts/archie-service/check-fixture-mcp-sdk-conformance.mjs --sdk-root <installed @modelcontextprotocol/sdk directory>");
+  fail("Usage: node scripts/archie-service/check-fixture-mcp-sdk-conformance.mjs --sdk-root <installed @modelcontextprotocol/sdk directory> [--launcher <path>] [--server-name <name>]");
 }
 
 const packageJsonPath = path.join(sdkRoot, "package.json");
@@ -19,7 +19,9 @@ const [{ Client }, { StdioClientTransport }] = await Promise.all([
 ]);
 
 const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..");
-const launcher = path.join(repoRoot, "scripts/archie-service/run-fixture-mcp-server.mjs");
+const launcherArgument = readArgument("--launcher") ?? "scripts/archie-service/run-fixture-mcp-server.mjs";
+const launcher = path.isAbsolute(launcherArgument) ? launcherArgument : path.join(repoRoot, launcherArgument);
+const expectedServerName = readArgument("--server-name") ?? "architrino-fixture-mcp";
 const client = new Client({ name: "architrino-sdk-conformance", version: "1.0.0" }, { capabilities: {} });
 const transport = new StdioClientTransport({ command: process.execPath, args: [launcher], cwd: "/tmp", stderr: "pipe" });
 const stderrChunks = [];
@@ -30,7 +32,7 @@ try {
   await client.connect(transport);
   const serverVersion = client.getServerVersion();
   const capabilities = client.getServerCapabilities();
-  requireCondition(serverVersion?.name === "architrino-fixture-mcp", "SDK received the wrong server identity");
+  requireCondition(serverVersion?.name === expectedServerName, "SDK received the wrong server identity");
   requireCondition(Boolean(capabilities?.tools), "SDK did not negotiate the tools capability");
 
   const listed = await client.listTools();
@@ -64,7 +66,7 @@ try {
   }, null, 2)}\n`);
 } catch (error) {
   const stderr = stderrChunks.join("").trim();
-  process.stderr.write(`Archie fixture MCP SDK conformance failed: ${error.message}${stderr ? `\nserver stderr:\n${stderr}` : ""}\n`);
+  process.stderr.write(`Archie MCP SDK conformance failed: ${error.message}${stderr ? `\nserver stderr:\n${stderr}` : ""}\n`);
   process.exitCode = 1;
 } finally {
   await client.close().catch(() => {});
@@ -89,6 +91,6 @@ function requireCondition(condition, message) {
 }
 
 function fail(message) {
-  process.stderr.write(`Archie fixture MCP SDK conformance failed: ${message}\n`);
+  process.stderr.write(`Archie MCP SDK conformance failed: ${message}\n`);
   process.exit(1);
 }

@@ -2,7 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "noether_braid__spindle_braid",
-    "title": "Spindle Braid",
+    "title": "B1 Hypotheses and Discrete Symmetry",
     "type": "Scene-Markdown-View",
     "units": "relative",
     "wrapLabels": true,
@@ -11,7 +11,7 @@
     },
     "source": {
       "type": "markdown",
-      "path": "content/markdown/aaa/noether-braid/spindle-braid.md"
+      "path": "content/markdown/aaa/noether-braid/braid-b1-symmetry.md"
     },
     "view": {
       "columns": 1,

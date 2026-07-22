@@ -167,4 +167,4 @@ The reader-facing Noether sea pro/anti coupling chapter should state the provisi
 - [lorentz-kinematics](../../../content/markdown/aaa/spacetime/lorentz-kinematics.md)
 - [proper-time-and-time-dilation](../../../content/markdown/aaa/spacetime/proper-time-and-time-dilation.md)
 - [emergent-metric](../../../content/markdown/aaa/spacetime/emergent-metric.md)
-- [nested-shell-braid-dynamics](../../../content/markdown/aaa/noether-braid/braid-families.md#nested-shell-braid-dynamics)
+- [nested-shell-braid-dynamics](../../../content/markdown/aaa/noether-braid/braid-a1-dynamics.md#a1-dynamics)

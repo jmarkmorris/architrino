@@ -88,7 +88,7 @@ The fundamental claim is:
 
 A clock is any assembly with a **stable, countable internal cycle**. The native picture is not time itself slowing; the countable assembly cycle is what changes cadence:
 
-- Minimal model: a Noether braid where one shell binary, typically the middle binary, supplies the counted cycle.
+- Minimal model: a Noether braid with one declared clock-channel index $a_{\mathrm{clk}}\in\{1,2,3\}$ whose cycle is counted. The clock-channel role is extracted from the record and is not assigned by radius order.
 - Base frequency $\omega_0$ (or period $T_0 = 2\pi/\omega_0$) is defined for:
   - Clock **at rest** in the absolute frame.
   - In a region of homogeneous Noether sea density $n=1$ and negligible external gradients.
@@ -772,7 +772,7 @@ The first executable scaffold keeps the clock proof burden visible. Its accepted
 
 ## Mechanisms for Time Dilation
 
-Two coupled mechanisms change the internal frequency of a Noether braid clock (a named candidate realization is the [spindle braid](../noether-braid/spindle-braid.md)):
+Two coupled mechanisms change the internal frequency of a Noether braid clock (the prescribed common-axis candidate is [B1](../noether-braid/braid-family-b.md#b1)):
 
 ### Kinematic Effect (Velocity Dependence)
 
@@ -785,7 +785,7 @@ When the clock has center-of-mass velocity $\mathbf{V}_{\text{cm}}$ relative to 
  Primitive self-hit and partner-hit roots are mediated by delayed, radial path-history interactions at speed $c_f$. When those roots are dressed into an observer-level clock law, the transverse budget must be formed with the declared channel speed $c_\star$: $c_\star=c_f$ for a primitive branch test and $c_\star=c_{\text{eff}}(\mathbf X,T)$ for a Noether sea dressed clock comparison.
 
 3. **Shape deformation (Lorentz-link hypothesis):**
- To remain dynamically stable under increased $\|\mathbf{w}\|$, the nested shell braid's outer boundary becomes an **oblate spheroidal exclusion envelope**, flattened along the direction of motion:
+ Under the Family-A Lorentz-link hypothesis, increased $\|\mathbf{w}\|$ makes the complete braid's **oblate spheroidal exclusion envelope** flatten along the direction of motion:
  - At low $\|\mathbf{w}\|$, the oblate spheroidal exclusion envelope is nearly spherical.
  - As $\|\mathbf{w}\|\to c_\star$, that envelope contracts along $\hat{\mathbf{w}}$ while maintaining transverse dimensions, yielding semiaxes $(R_{\perp}, R_{\perp}, R_{\parallel})$ and $R_{\parallel} < R_{\perp}$.
  - This geometric dilation changes internal path lengths and curvature, lowering $\omega$.
@@ -928,24 +928,21 @@ In this chapter, Planck-scale references inherit that same alignment definition.
 
 To close the derivation gap, fix an explicit clock model and an explicit observable-extraction map.
 
-### Concrete Nested Shell Braid Clock State
+### Concrete A1 Clock State
 
-Use one neutral nested shell braid with six constituent architrinos:
+Use one A1 record with six constituent architrinos grouped into three persistently indexed neutral binaries:
 $$
-\mathcal{A}=\{i_+,i_-,m_+,m_-,o_+,o_-\}
+\mathcal{A}=\{1_+,1_-,2_+,2_-,3_+,3_-\}
 $$
 with intrinsic polarities $q_a=\pm\epsilon$, $\epsilon=|e|/6$, and trajectories $\mathbf X_a(T)$. No per-constituent inertial mass is assigned at the substrate level.
 
 Define pair-separation vectors
 $$
-\mathbf{r}_i=\mathbf X_{i+}-\mathbf X_{i-},\quad
-\mathbf{r}_m=\mathbf X_{m+}-\mathbf X_{m-},\quad
-\mathbf{r}_o=\mathbf X_{o+}-\mathbf X_{o-}
+\mathbf r_a=\mathbf X_{a+}-\mathbf X_{a-},
+\qquad
+a\in\{1,2,3\}
 $$
-with radii $R_b=\|\mathbf{r}_b\|$ for $b\in\{i,m,o\}$ and nested ordering
-$$
-R_i<R_m<R_o
-$$
+with radii $R_a=\|\mathbf r_a\|$. The three radii are independently assignable and do not order or relabel the binaries.
 
 ### Microscopic Evolution Equation (Regularized)
 
@@ -968,15 +965,15 @@ This is the dual-mollified finite-memory certification form used in the dynamica
 
 ### Clock Observable and Clock Map
 
-Take the middle binary as the clock channel. Let $\mathbf{e}_1,\mathbf{e}_2$ be an orthonormal basis of the mean orbital plane of $\mathbf{r}_m$, and define phase
+Declare $a_{\mathrm{clk}}\in\{1,2,3\}$ as the clock channel on the source record. Let $\mathbf{e}_1,\mathbf{e}_2$ be an orthonormal basis of the mean orbital plane of $\mathbf r_{a_{\mathrm{clk}}}$, and define phase
 $$
-\theta_m(T)=\operatorname{atan2}\!\big(\mathbf{r}_m\!\cdot\!\mathbf{e}_2,\mathbf{r}_m\!\cdot\!\mathbf{e}_1\big)
+\theta_{\mathrm{clk}}(T)=\operatorname{atan2}\!\big(\mathbf r_{a_{\mathrm{clk}}}\!\cdot\!\mathbf e_2,\mathbf r_{a_{\mathrm{clk}}}\!\cdot\!\mathbf e_1\big)
 $$
 On a window $[T_1,T_2]$, define measured frequency
 $$
 \omega_{\text{clk}}
 =
-\frac{\theta_m(T_2)-\theta_m(T_1)}{T_2-T_1}
+\frac{\theta_{\mathrm{clk}}(T_2)-\theta_{\mathrm{clk}}(T_1)}{T_2-T_1}
 $$
 For the reference run $(v=0,\Phi_N=0)$, set $\omega_0=\omega_{\text{clk}}^{\text{ref}}$ and define
 $$
@@ -1003,7 +1000,7 @@ Thus a boundary contribution may affect clock coupling only by changing the same
 
 ### Controlled Perturbation Family
 
-Run the same nested shell braid under controlled backgrounds:
+Run the same A1 clock record under controlled backgrounds:
 
 1. Uniform center-of-mass drift speed $v=\|\mathbf{V}_{\text{CM}}\|$ through homogeneous medium.
 2. Weak static potential background $\Phi_N(\mathbf X,T)$ (or $U\equiv-\Phi_N>0$).

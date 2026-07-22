@@ -21,7 +21,16 @@
         "z": 0
       },
       "sphericalEnvelopeRadius": 0.5,
-      "displayTrailPeriods": 1
+      "displayTrailPeriods": 1,
+      "taxonomy": {
+        "family": "spindle-braid",
+        "familyLabel": "Spindle braid",
+        "classification": "family-member",
+        "classificationLabel": "Named candidate family member",
+        "variant": "tilted-iso-frequency",
+        "variantLabel": "Tilted iso-frequency member",
+        "canonSource": "content/markdown/aaa/noether-braid/braid-b1-symmetry.md#definition-and-geometry"
+      }
     }
   },
   "window": {

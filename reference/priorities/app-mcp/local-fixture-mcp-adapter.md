@@ -4,13 +4,13 @@
 
 - Kind: `priority-implementation`
 - Claim level: `measured local fixture behavior`
-- Status: `sdk-and-codex-stdio-passing`
+- Status: `fixture-regression-and-full-corpus-stdio-passing`
 - Parent tracker: [Architrino MCP](priorities.md)
 - Tool semantics: [MCP Tool Contract V1](mcp-tool-contract-v1.md)
 
 ## Purpose
 
-The local fixture MCP adapter exposes the four bounded Architrino tools through a process-spawned stdio surface. It lets a local MCP client initialize the server, discover `search`, `read`, `topics`, and `neighbors`, and call them against the immutable fixture snapshot.
+The shared local MCP adapter exposes the four bounded Architrino tools through a process-spawned stdio surface. The fixture launcher retains the six-source regression bundle. The separate [Full-Corpus Local MCP V1](full-corpus-local-v1.md) launcher consumes the complete immutable local snapshot through the same request core.
 
 This is a local test server, not a production service. It contains no model calls, HTTP listener, remote network request, repository write, action handoff, provider credential, payment path, durable storage, authentication scheme, or public deployment configuration.
 
@@ -40,6 +40,8 @@ The repository has no root Node package manifest or lockfile. The adapter theref
 | [Protocol transcript](../../../tests/archie-service/fixtures/mcp/mcp-stdio-smoke.v1.json) | Stores initialization, initialized notification, tool discovery, all four tool calls, missing-source behavior, unknown-tool rejection, and ping. |
 | [Focused tests](../../../tests/archie-service-fixture-mcp-server.test.js) | Checks in-memory snapshot tamper rejection, lifecycle ordering, and the subprocess smoke. |
 | [Official SDK conformance runner](../../../scripts/archie-service/check-fixture-mcp-sdk-conformance.mjs) | Uses an independently installed official SDK client to negotiate, discover, call all four tools, check a missing source, ping, and close. |
+| [Full-corpus launcher](../../../scripts/archie-service/run-full-corpus-mcp-server.mjs) | Loads and validates the complete local snapshot once, with a distinct server identity and no per-request repository access. |
+| [Full-corpus smoke checker](../../../scripts/archie-service/check-full-corpus-mcp-server.mjs) | Launches from `/tmp` and checks all four tools, metadata, pagination, public visibility, errors, response ceilings, and no-write boundaries. |
 
 ## Runtime Boundary
 
@@ -115,7 +117,7 @@ The subprocess smoke currently proves:
 11. the adapter core imports no filesystem, HTTP, network, or child-process module and contains no write or fetch call;
 12. the launcher performs exactly one startup snapshot read and no write or network call.
 
-These measurements establish local fixture behavior. The separate conformance pass also establishes acceptance by official TypeScript SDK V1 `1.29.0` and the installed Codex client after correcting standard request-metadata handling. It does not establish compatibility with every current MCP client, direct ChatGPT desktop invocation, Streamable HTTP behavior, authentication, rate limiting, complete-corpus retrieval, deployment readiness, or public launch readiness.
+These measurements establish local stdio fixture behavior. The full-corpus smoke and focused tests independently establish complete-corpus local retrieval over 1,898 records, and the separate conformance pass establishes acceptance of both stdio launchers by official TypeScript SDK V1 `1.29.0` and Codex. The [Loopback Streamable HTTP Adapter](loopback-streamable-http-adapter.md) separately establishes HTTP, local authorization-hook, rate-limit, health, safe-log, and rollback-fixture behavior. Neither local adapter establishes remote deployment or public launch readiness.
 
 ## Acceptance Falsifiers
 
@@ -133,4 +135,4 @@ The local adapter is not accepted if:
 
 ## Remaining Boundary
 
-The next unresolved object is direct ChatGPT desktop conformance from a fresh client session. Official TypeScript SDK V1 and Codex are measured passing; ChatGPT desktop support is documented but has not yet been exercised through its own UI. Any compatibility correction must preserve the completed source-authority, visibility, provenance, pagination, response-budget, and no-side-effect contracts.
+The remaining local evidence boundary is named Codex and ChatGPT desktop conformance over the loopback URL. Direct full-corpus ChatGPT desktop conformance remains separately unmeasured because any persistent connection change requires operator approval. Any later correction must preserve the completed source-authority, visibility, provenance, pagination, response-budget, and no-side-effect contracts.

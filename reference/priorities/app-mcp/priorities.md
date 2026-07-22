@@ -12,7 +12,7 @@ This folder owns the proposed Model Context Protocol (MCP) access layer for the 
 
 The target is a read-only, source-grounded protocol surface over versioned indexes built from the repository's accepted `main` snapshot. The repository remains authoritative. Generated indexes and MCP responses remain derived routing and retrieval artifacts; they do not promote theory claims or replace authored corpus sources.
 
-The starting design is recorded in [architecture-proposal.md](architecture-proposal.md). The first executable source-index contract is recorded in [source-index-snapshot-v1.md](source-index-snapshot-v1.md), the bounded four-tool boundary is recorded in [mcp-tool-contract-v1.md](mcp-tool-contract-v1.md), the runnable local stdio surface is recorded in [local-fixture-mcp-adapter.md](local-fixture-mcp-adapter.md), and independent client results are recorded in [client-conformance.md](client-conformance.md). Provisional extensions belong in [brainstorming.md](brainstorming.md), and dated implementation or adjudication history belongs in [work-log.md](work-log.md).
+The starting design is recorded in [architecture-proposal.md](architecture-proposal.md). The executable source-index contract is recorded in [source-index-snapshot-v1.md](source-index-snapshot-v1.md), the bounded four-tool boundary is recorded in [mcp-tool-contract-v1.md](mcp-tool-contract-v1.md), the fixture regression surface is recorded in [local-fixture-mcp-adapter.md](local-fixture-mcp-adapter.md), the complete local implementation is recorded in [full-corpus-local-v1.md](full-corpus-local-v1.md), the remote safety boundary is recorded in [remote-transport-deployment-hardening-v1.md](remote-transport-deployment-hardening-v1.md), the loopback HTTP implementation is recorded in [loopback-streamable-http-adapter.md](loopback-streamable-http-adapter.md), and independent client results are recorded in [client-conformance.md](client-conformance.md). Provisional extensions belong in [brainstorming.md](brainstorming.md), and dated implementation or adjudication history belongs in [work-log.md](work-log.md).
 
 ## Objective
 
@@ -20,18 +20,17 @@ Define and implement the smallest deterministic MCP service that lets compatible
 
 ## Queue
 
-1. `chatgpt_desktop_conformance` — Restart the installed `architrino_fixture` connection from a fresh ChatGPT desktop session, call all four tools, record structured-result and missing-source behavior, then leave or remove the development connection according to operator preference. Status: `fresh-client-session-required`. Depends on: the completed official SDK and Codex passes plus the enabled shared connection in [client-conformance.md](client-conformance.md).
-2. `host_and_deployment_decision` — Refresh the provisional hosting comparison, choose a host, and define staging, production, health checks, rollback, rate limits, logs, secrets, and availability expectations. Status: `pending`. Depends on: `chatgpt_desktop_conformance`.
-3. `higher_order_graph_tools` — Add mechanically checkable graph operations such as `walk`, `trace`, `compare`, `related`, `context`, and `learning_path` only after their semantics and source-authority limits are fixture-tested. Status: `deferred`. Depends on: accepted V1 service evidence.
-4. `hybrid_semantic_retrieval` — Add embeddings only as a declared fallback after deterministic retrieval, with model/provider, privacy, freshness, cost, and source-authority gates. Status: `deferred`. Depends on: stable deterministic retrieval and measured recall gaps.
+1. `named_http_client_conformance` — Verify the loopback URL through ephemeral Codex and the supported ChatGPT desktop surface without replacing the working stdio entry or making a persistent HTTP configuration change without approval. Status: `pending`. Depends on: the completed [Loopback Streamable HTTP Adapter](loopback-streamable-http-adapter.md).
+2. `higher_order_graph_tools` — Add mechanically checkable graph operations such as `walk`, `trace`, `compare`, `related`, `context`, and `learning_path` only after their semantics and source-authority limits are fixture-tested. Status: `deferred`. Depends on: accepted V1 service evidence.
+3. `hybrid_semantic_retrieval` — Add embeddings only as a declared fallback after deterministic retrieval, with model/provider, privacy, freshness, cost, and source-authority gates. Status: `deferred`. Depends on: stable deterministic retrieval and measured recall gaps.
 
 ## Current Blocker
 
-The official TypeScript SDK V1 and installed Codex client accept the adapter. The shared `architrino_fixture` connection is installed, enabled, and independently reloaded by a fresh Codex turn. The remaining blocker is a direct ChatGPT desktop call after a connection restart or new chat; shared Codex behavior is not accepted as ChatGPT evidence.
+No blocker remains for the loopback HTTP implementation or official SDK conformance. Named Codex and ChatGPT HTTP conformance remains unmeasured. Remote readiness separately remains false because TLS ingress, a trusted proxy, exact deployment origins, an authorization server, an accepted-`main` snapshot, and a real prior rollback snapshot do not exist yet.
 
 ## Next Action
 
-From a fresh ChatGPT desktop session, restart or reload the installed connection, discover and call all four tools, verify the typed structured results and missing-source error, and retain or remove the development connection according to operator preference.
+Test the loopback URL through an ephemeral Codex configuration, then determine whether the supported ChatGPT desktop surface can use the same URL without disturbing the working stdio entry.
 
 ## Boundaries
 

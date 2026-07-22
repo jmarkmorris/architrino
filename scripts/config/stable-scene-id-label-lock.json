@@ -59,13 +59,21 @@
       "sceneId": "noether_braid",
       "sceneName": "Noether Braid",
       "objects": {
+        "braid_a2_symmetry_and_return_response": "A2 Symmetry and Return Response",
+        "braid_analysis_methodology": "Candidate Braid Analysis Methodology",
         "braid_envelope_geometry": "Braid Envelope Geometry",
-        "doubling_frequency_lock": "Doubling-Frequency Resonance Lock",
-        "explored_braid_geometries": "Braid Families",
+        "braid_family_a": "Braid Family A",
+        "braid_family_b": "Braid Family B",
+        "braid_family_c": "Braid Family C",
+        "braid_mathematics": "Braid Mathematics",
+        "braid_recovery_requirements": "Braid Recovery Requirements",
+        "braid_taxonomy": "Braid Taxonomy",
+        "doubling_frequency_lock": "A1.3 Doubling-Frequency Resonance Lock",
+        "explored_braid_geometries": "Braid A1 Dynamics and Interpretation",
         "noether_braid_configuration_space": "Noether Braid Configuration Space",
         "noether_braid_overview": "Noether Braid",
         "noether_braid_topological_charge": "Noether Braid Topological Charge",
-        "spindle_braid": "Spindle Braid"
+        "spindle_braid": "B1 Hypotheses and Discrete Symmetry"
       }
     },
     "content/scenes/foundations/foundations.json": {

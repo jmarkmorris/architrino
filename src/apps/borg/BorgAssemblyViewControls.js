@@ -33,17 +33,19 @@ export function createBorgAssemblyViewControls({
     const entry = session.selected;
     const presentation = createBorgAssemblyViewPresentation(entry);
     dom.controls.hidden = false;
-    dom.modeBoundary.dataset.mode = "assembly-view-replay";
-    dom.modeLabel.textContent = "Record replay";
-    dom.modeDetail.textContent = "A sealed prescribed path is open; the EOM solver is not running.";
-    dom.modeSwitch.hidden = false;
-    dom.modeSwitch.textContent = "Open simulation workspace";
     dom.dateChip.hidden = false;
     dom.dateChip.textContent = presentation.provenance.date;
     dom.dateChip.title = `Record date ${presentation.provenance.date}`;
     const prescribedGeometry = presentation.provenance.prescribedGeometry;
+    const taxonomy = prescribedGeometry?.taxonomy;
     renderFieldRows(documentLike, dom.provenance, [
       [prescribedGeometry ? "Geometry source" : "Engine", `${presentation.provenance.engineId} ${presentation.provenance.engineVersion}`],
+      ...(taxonomy ? [
+        ["Braid family", taxonomy.familyLabel],
+        ["Taxonomy class", taxonomy.classificationLabel],
+        ["Variant", taxonomy.variantLabel],
+        ["Canon source", taxonomy.canonSource],
+      ] : []),
       ["Physics invoked", prescribedGeometry ? "no — prescribed chart arithmetic only" : "see source engine provenance"],
       ["Run id", presentation.provenance.runId],
       ["Generating specification", presentation.provenance.generatingSpec],
