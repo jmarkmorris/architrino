@@ -2,7 +2,7 @@
 
 This chapter treats the Planck scale as an exploratory alignment-horizon problem for the A1 rather than as a finished derivation. Its purpose is to translate familiar Planck-unit relations into concrete geometric and dynamical targets inside the delayed A1 sector, then test which parts survive once full closure conditions are imposed.
 
-Its closest companions are [A1 Dynamics](../../noether-braid/braid-a1-dynamics.md#a1-dynamics), [Noether Braid Doubling-Frequency Resonance Lock](../../noether-braid/braid-a1-3-doubling-frequency-lock.md), [Angular Momentum and Spin](./angular-momentum-and-spin.md), [Horizon Chirality](../../spacetime/horizon-chirality.md), [Black Holes](../../spacetime/black-holes.md), and [Effective Lagrangian](../../dynamics/effective-lagrangian.md).
+Its closest companions are [A1 Dynamics](../../noether-braid/braid-a1-dynamics.md#a1-dynamics), [A3.3 Doubling-Frequency Resonance Lock](../../noether-braid/braid-a3-3-doubling-frequency-lock.md), [Angular Momentum and Spin](./angular-momentum-and-spin.md), [Horizon Chirality](../../spacetime/horizon-chirality.md), [Black Holes](../../spacetime/black-holes.md), and [Effective Lagrangian](../../dynamics/effective-lagrangian.md).
 
 The opening sections state the working thesis and the immediate kinematic map; later sections separate conjectural alignment, causal-wake framing, constant-mapping proposals, and failure modes. The reader should treat the whole note as a live mapping program, with explicit hypotheses rather than settled closure.
 

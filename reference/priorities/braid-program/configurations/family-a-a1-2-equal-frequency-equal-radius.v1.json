@@ -2,12 +2,12 @@
   "schema": "prescribed-braid-spec.v1",
   "specId": "family-a-a1-2-equal-frequency-equal-radius-v1",
   "label": "A1.2 — equal frequency, equal radius",
-  "provenanceDescription": "Exact A1.2 prescribed display paths with equal radii, equal frequencies, and the declared 120-degree phase spacing; the binary decompositions remain distinct.",
+  "provenanceDescription": "Exact A1.2 prescribed display paths with zero axial half-separation, coincident endpoint orbit centers, equal radii, equal frequencies, and the declared 120-degree phase spacing.",
   "claimGrade": "chart-hypothesis",
   "evidenceStatus": "display-only",
   "date": "2026-07-22",
   "taxonomy": { "familyId": "A", "familyLabel": "Family A", "memberId": "A1.2", "memberLabel": "equal frequency, equal radius", "displayLabel": "A1.2 — equal frequency, equal radius", "canonSource": "content/markdown/aaa/noether-braid/braid-family-a.md#a1-constrained-variants" },
-  "illustrativeCoordinates": { "status": "prescribed-display-coordinates", "choices": ["The flattening coordinate lambda_A=0.35 is illustrative.", "The common radius R=0.32, common frequency f=0.25, and three distinct axial/transverse decompositions are prescribed display choices.", "Normalized linear axis interpolation is illustrative between the taxonomy-defined endpoints."] },
+  "illustrativeCoordinates": { "status": "prescribed-display-coordinates", "choices": ["The flattening coordinate lambda_A=0.35 is illustrative.", "Every binary midpoint is the braid origin in the relative frame; h_a=0 and rho_a=R=0.32 make each endpoint pair traverse one common geometric circle.", "The common frequency f=0.25 and declared phase spacing are prescribed display choices.", "Normalized linear axis interpolation is illustrative between the taxonomy-defined endpoints."] },
   "sourceOrder": ["a1-2-binary-1", "a1-2-binary-2", "a1-2-binary-3"],
   "group": { "centerAtEpoch": [0, 0, 0], "velocity": [0, 0, 0] },
   "prescribedReturnPeriod": 4,
@@ -16,9 +16,9 @@
     "braidId": "a1-2-braid-1", "centerOffset": [0, 0, 0], "phaseOffset": 0, "circulationSense": 1,
     "frameDefinition": { "type": "family-a-flattening.v1", "nearRestAxes": [[1, 0, 0], [0, 1, 0], [0, 0, 1]], "flattening": 0.35, "interpolation": "normalized-linear-to-equal-component/v1", "phaseCompensatedCyclicFrames": false },
     "binaries": [
-      { "binaryIndex": 1, "binaryId": "a1-2-binary-1", "worldlineIds": ["a1-2-binary-1-endpoint-1", "a1-2-binary-1-endpoint-2"], "centerOffset": [0, 0, 0], "radius": 0.32, "axialHalfSeparation": 0.08, "transverseOrbitRadius": 0.30983866769659335, "frequency": 0.25, "phase": 0, "polarityAssignment": 1 },
-      { "binaryIndex": 2, "binaryId": "a1-2-binary-2", "worldlineIds": ["a1-2-binary-2-endpoint-1", "a1-2-binary-2-endpoint-2"], "centerOffset": [0, 0, 0], "radius": 0.32, "axialHalfSeparation": 0.16, "transverseOrbitRadius": 0.27712812921102037, "frequency": 0.25, "phase": 2.0943951023931953, "polarityAssignment": -1 },
-      { "binaryIndex": 3, "binaryId": "a1-2-binary-3", "worldlineIds": ["a1-2-binary-3-endpoint-1", "a1-2-binary-3-endpoint-2"], "centerOffset": [0, 0, 0], "radius": 0.32, "axialHalfSeparation": 0.24, "transverseOrbitRadius": 0.21166010488516726, "frequency": 0.25, "phase": 4.1887902047863905, "polarityAssignment": 1 }
+      { "binaryIndex": 1, "binaryId": "a1-2-binary-1", "worldlineIds": ["a1-2-binary-1-endpoint-1", "a1-2-binary-1-endpoint-2"], "centerOffset": [0, 0, 0], "radius": 0.32, "axialHalfSeparation": 0, "transverseOrbitRadius": 0.32, "frequency": 0.25, "phase": 0, "polarityAssignment": 1 },
+      { "binaryIndex": 2, "binaryId": "a1-2-binary-2", "worldlineIds": ["a1-2-binary-2-endpoint-1", "a1-2-binary-2-endpoint-2"], "centerOffset": [0, 0, 0], "radius": 0.32, "axialHalfSeparation": 0, "transverseOrbitRadius": 0.32, "frequency": 0.25, "phase": 2.0943951023931953, "polarityAssignment": -1 },
+      { "binaryIndex": 3, "binaryId": "a1-2-binary-3", "worldlineIds": ["a1-2-binary-3-endpoint-1", "a1-2-binary-3-endpoint-2"], "centerOffset": [0, 0, 0], "radius": 0.32, "axialHalfSeparation": 0, "transverseOrbitRadius": 0.32, "frequency": 0.25, "phase": 4.1887902047863905, "polarityAssignment": 1 }
     ]
   }],
   "recordInterval": { "start": 0, "end": 8, "delayHorizon": 2 },

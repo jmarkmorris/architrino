@@ -88,7 +88,7 @@ Relevant files:
 
 - [Noether Braid](../noether-braid/noether-braid.md)
 - [Noether Braid Configuration Space](../noether-braid/noether-braid-configuration-space.md)
-- [Noether Braid Doubling-Frequency Resonance Lock](../noether-braid/braid-a1-3-doubling-frequency-lock.md)
+- [A3.3 Doubling-Frequency Resonance Lock](../noether-braid/braid-a3-3-doubling-frequency-lock.md)
 - [Noether Braid Topological Charge](../noether-braid/noether-braid-topological-charge.md)
 
 The terminology shifted from `swarm` to `braid` because the older word suggested an unstructured collective. It described many objects in motion, but it did not carry the mathematical discipline now needed by the theory. The new word points directly at intertwined path histories, retained ordering, exchange, phase winding, and topological invariants. A Noether braid is not just a cloud of architrinos. It is a candidate six-body polarity-neutral retained branch, built from three electrinos and three positrinos, whose causal-root ledger, phase record, wake history, energy/action rows, and angular-momentum rows can be followed through delayed dynamics.
@@ -291,7 +291,7 @@ Only a small number of channels, especially neutron and muon beta-family reactio
 
 ## 2026-03-14: Doubling-Frequency Resonance Lock
 
-Today the doubling-frequency-lock note, [Noether Braid Doubling-Frequency Resonance Lock](../noether-braid/braid-a1-3-doubling-frequency-lock.md), was rewritten around an explicit assumption package. The live note now begins from the exact ring identity
+Today the doubling-frequency-lock note, [A3.3 Doubling-Frequency Resonance Lock](../noether-braid/braid-a3-3-doubling-frequency-lock.md), was rewritten around an explicit assumption package. The live note now begins from the exact ring identity
 $$
 v_k=2\pi f_k r_k=\beta_k c_f
 $$

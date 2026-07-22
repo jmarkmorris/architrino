@@ -59,15 +59,20 @@ function rotate120(vector) {
 }
 
 test("canonical target registry contains every requested candidate exactly once", () => {
-  assert.equal(PRESCRIBED_BRAID_TARGETS.length, 12);
+  assert.equal(PRESCRIBED_BRAID_TARGETS.length, 17);
   const labels = fixtures.map(({ spec }) => spec.taxonomy.displayLabel);
   assert.deepEqual(labels, [
-    "A1 — general",
+    "A1 — coincident endpoint orbits",
     "A1.1 — equal frequency",
     "A1.2 — equal frequency, equal radius",
     "A1.3 — 4:2:1 frequency",
     "A1.4 — 3:2:1 frequency",
     "A2 — fully symmetric",
+    "A3 — general",
+    "A3.1 — equal frequency",
+    "A3.2 — equal frequency, equal radius",
+    "A3.3 — 4:2:1 frequency",
+    "A3.4 — 3:2:1 frequency",
     "B1 — interior reference",
     "B1 — high-axial interior",
     "B1 — all-equatorial boundary",
@@ -76,8 +81,8 @@ test("canonical target registry contains every requested candidate exactly once"
     "C2 — counter-rotating B1 pair",
   ]);
   assert.equal(new Set(labels).size, labels.length);
-  assert.equal(new Set(PRESCRIBED_BRAID_TARGETS.map((row) => row.specPath)).size, 12);
-  assert.equal(new Set(PRESCRIBED_BRAID_TARGETS.map((row) => row.outPath)).size, 12);
+  assert.equal(new Set(PRESCRIBED_BRAID_TARGETS.map((row) => row.specPath)).size, 17);
+  assert.equal(new Set(PRESCRIBED_BRAID_TARGETS.map((row) => row.outPath)).size, 17);
 });
 
 test("spec validation fails closed on nonfinite coordinates, broken radii, and incomplete return cycles", () => {
@@ -95,7 +100,7 @@ test("spec validation fails closed on nonfinite coordinates, broken radii, and i
   const wrongMember = structuredClone(fixtures[3].spec);
   wrongMember.braids[0].binaries[0].frequency = 0.75;
   assert.throws(() => validatePrescribedBraidSpec(wrongMember), /4:2:1/);
-  const brokenCComponent = structuredClone(fixtures[10].spec);
+  const brokenCComponent = structuredClone(fixtures[15].spec);
   brokenCComponent.braids[1].binaries[1].frequency = 0.5;
   assert.throws(() => validatePrescribedBraidSpec(brokenCComponent), /common-frequency B1 component/);
 });
@@ -158,7 +163,7 @@ test("all paths close in position and velocity over the declared return period",
 });
 
 test("Family-A axes implement the declared flattening interpolation and preserve persistent indices", () => {
-  fixtures.slice(0, 6).forEach(({ spec }) => {
+  fixtures.slice(0, 11).forEach(({ spec }) => {
     const materialized = materializePrescribedBraidSpec(spec);
     const axes0 = spec.braids[0].frameDefinition.nearRestAxes;
     const lambda = spec.braids[0].frameDefinition.flattening;
@@ -170,6 +175,32 @@ test("Family-A axes implement the declared flattening interpolation and preserve
       near(norm(binary.frame.axis), 1, 2e-12);
     });
   });
+});
+
+test("A1 general uses the mutually orthogonal xy, xz, and yz orbit planes", () => {
+  const spec = fixtures[0].spec;
+  assert.equal(spec.braids[0].frameDefinition.flattening, 0);
+  const materialized = materializePrescribedBraidSpec(spec);
+  const axes = materialized.binaries.map((binary) => binary.frame.axis);
+  assert.deepEqual(axes, [[1, 0, 0], [0, 1, 0], [0, 0, 1]]);
+  near(dot(axes[0], axes[1]), 0);
+  near(dot(axes[0], axes[2]), 0);
+  near(dot(axes[1], axes[2]), 0);
+
+  for (const time of [0, 1, 2, 3, 4]) {
+    materialized.binaries.forEach((binary, binaryIndex) => {
+      for (const endpointIndex of [0, 1]) {
+        const state = evaluatePrescribedBraidSite(
+          spec,
+          0,
+          binaryIndex,
+          endpointIndex,
+          time,
+        );
+        near(dot(state.position, binary.frame.axis), 0, 3e-12);
+      }
+    });
+  }
 });
 
 test("A2 complete endpoint paths are cyclically equivalent under the declared 120-degree rotation", () => {
@@ -186,7 +217,7 @@ test("A2 complete endpoint paths are cyclically equivalent under the declared 12
 });
 
 test("Family-A member constraints are explicit and distinct", () => {
-  const rows = fixtures.slice(0, 6).map(({ spec }) => spec.braids[0].binaries);
+  const rows = fixtures.slice(0, 11).map(({ spec }) => spec.braids[0].binaries);
   assert.deepEqual(rows[0].map((row) => row.frequency), [0.25, 0.5, 0.75]);
   assert.deepEqual(rows[1].map((row) => row.frequency), [0.25, 0.25, 0.25]);
   assert.deepEqual(rows[2].map((row) => row.radius), [0.32, 0.32, 0.32]);
@@ -198,10 +229,39 @@ test("Family-A member constraints are explicit and distinct", () => {
     row.transverseOrbitRadius,
     row.frequency,
   ]))).size, 1);
+  assert.deepEqual(rows[6].map((row) => row.frequency), [0.25, 0.5, 0.75]);
+  assert.deepEqual(rows[7].map((row) => row.frequency), [0.25, 0.25, 0.25]);
+  assert.deepEqual(rows[8].map((row) => row.radius), [0.32, 0.32, 0.32]);
+  assert.deepEqual(rows[9].map((row) => row.frequency), [1, 0.5, 0.25]);
+  assert.deepEqual(rows[10].map((row) => row.frequency), [0.75, 0.5, 0.25]);
+});
+
+test("A1 endpoint paths share one orbit center while A3 preserves separated endpoint orbit centers", () => {
+  fixtures.slice(0, 5).forEach(({ spec }) => {
+    const materialized = materializePrescribedBraidSpec(spec);
+    materialized.binaries.forEach((binary) => {
+      vectorNear(binary.centerOffset, [0, 0, 0]);
+      near(binary.axialHalfSeparation, 0);
+      near(binary.transverseOrbitRadius, binary.radius);
+      const plusOrbitCenter = add(binary.centerOffset, scale(binary.frame.axis, binary.axialHalfSeparation));
+      const minusOrbitCenter = subtract(binary.centerOffset, scale(binary.frame.axis, binary.axialHalfSeparation));
+      vectorNear(plusOrbitCenter, minusOrbitCenter);
+    });
+  });
+  fixtures.slice(6, 11).forEach(({ spec }) => {
+    const materialized = materializePrescribedBraidSpec(spec);
+    materialized.binaries.forEach((binary) => {
+      vectorNear(binary.centerOffset, [0, 0, 0]);
+      assert.ok(binary.axialHalfSeparation > 0);
+      const plusOrbitCenter = add(binary.centerOffset, scale(binary.frame.axis, binary.axialHalfSeparation));
+      const minusOrbitCenter = subtract(binary.centerOffset, scale(binary.frame.axis, binary.axialHalfSeparation));
+      near(norm(subtract(plusOrbitCenter, minusOrbitCenter)), 2 * binary.axialHalfSeparation);
+    });
+  });
 });
 
 test("the four B1 records preserve the verified coordinate mapping and compatibility identities", () => {
-  const [interior, highAxial, equatorial, axial] = fixtures.slice(6, 10).map(({ spec }) => spec);
+  const [interior, highAxial, equatorial, axial] = fixtures.slice(11, 15).map(({ spec }) => spec);
   assert.deepEqual(interior.braids[0].binaries.map((row) => row.radius), [0.22, 0.32, 0.44]);
   assert.deepEqual(interior.braids[0].binaries.map((row) => row.frequency), [0.25, 0.25, 0.25]);
   assert.ok(highAxial.braids[0].binaries.every((row) =>
@@ -210,15 +270,15 @@ test("the four B1 records preserve the verified coordinate mapping and compatibi
     row.axialHalfSeparation === 0 && row.transverseOrbitRadius === row.radius));
   assert.ok(axial.braids[0].binaries.every((row) =>
     row.axialHalfSeparation === row.radius && row.transverseOrbitRadius === 0));
-  fixtures.slice(6, 10).forEach(({ spec }) => {
+  fixtures.slice(11, 15).forEach(({ spec }) => {
     assert.ok(spec.compatibility.retainedIdentifiers.length >= 4);
     assert.deepEqual(spec.braids[0].frameDefinition.axis, [0, 0, 1]);
   });
 });
 
 test("C1 and C2 contain two complete B1 components and the declared relative circulation", () => {
-  const c1 = fixtures[10].spec;
-  const c2 = fixtures[11].spec;
+  const c1 = fixtures[15].spec;
+  const c2 = fixtures[16].spec;
   for (const spec of [c1, c2]) {
     assert.equal(spec.braids.length, 2);
     assert.deepEqual(spec.braids.map((braid) => braid.binaries.length), [3, 3]);

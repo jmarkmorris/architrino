@@ -371,8 +371,9 @@ test("Borg path-history renderer uses native row segments, not visual smoothing 
   assert.match(runtimeSource, /function fitCameraToEnvelope\(margin\)/);
   assert.match(
     runtimeSource,
-    /borgEnvelopeRadius\(manifest\) \*\s*worldUnitsPerSolverUnit/,
+    /activeEnvelopeRadius\(\) \*\s*activeWorldUnitsPerSolverUnit\(\)/,
   );
+  assert.doesNotMatch(runtimeSource, /\bworldUnitsPerSolverUnit\b/);
   assert.match(runtimeSource, /DEFAULT_CAMERA_FIT_MARGIN = 1\.43/);
   assert.match(runtimeSource, /DEFAULT_PATH_TRAIL_DURATION = 30/);
   assert.match(runtimeSource, /PATH_TRAIL_DURATIONS = Object\.freeze\(\[30, 60, 90, 180, 360\]\)/);
@@ -447,7 +448,11 @@ test("Borg path-history renderer uses native row segments, not visual smoothing 
   assert.match(runtimeSource, /if \(firstReplayRows\) \{\s*rebuildParticleObjects\(\);/);
   assert.match(
     runtimeSource,
-    /provenance\.prescribedGeometry\?\.responseCenter \?\?\s*manifest\.simulationEnvelope\.center/,
+    /function activeEnvelopeCenter\(\)[\s\S]*provenance\.prescribedGeometry\?\.responseCenter \?\?\s*manifest\.simulationEnvelope\.center/,
+  );
+  assert.match(
+    runtimeSource,
+    /function activeEnvelopeRadius\(\)[\s\S]*prescribedGeometry\?\.sphericalEnvelopeRadius/,
   );
   assert.match(
     runtimeSource,

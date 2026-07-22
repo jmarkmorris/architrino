@@ -327,8 +327,6 @@ export function mountBorgApp(options = {}) {
   // leaves the prescribed paths with no matching visible architrinos.
   let currentFrames = replayActive ? [] : [...initialDisplayRows];
   let frameSets = createBorgFrameSetsFromRows(currentFrames);
-  const worldUnitsPerSolverUnit =
-    TARGET_ENVELOPE_WORLD_DIAMETER / (2 * manifest.simulationEnvelope.outerRadius);
   const scene = new THREE.Scene();
   const camera = new THREE.PerspectiveCamera(38, 1, 0.05, 100);
   const renderer = new THREE.WebGLRenderer({
@@ -607,7 +605,7 @@ export function mountBorgApp(options = {}) {
     });
     boundaryShellGroup.add(
       createBoundaryShellPoints({
-        radius: borgEnvelopeRadius(manifest),
+        radius: activeEnvelopeRadius(),
         color: ENVELOPE_GUIDE_COLOR,
         opacity: ENVELOPE_GUIDE_OPACITY,
       }),
@@ -680,7 +678,7 @@ export function mountBorgApp(options = {}) {
   }
 
   function createBoundaryShellPoints({ radius, color, opacity }) {
-    const worldRadius = radius * worldUnitsPerSolverUnit;
+    const worldRadius = radius * activeWorldUnitsPerSolverUnit();
     const points = [];
     for (let latIndex = 0; latIndex < BOUNDARY_SHELL_LATITUDE_COUNT; latIndex += 1) {
       const theta = (latIndex / (BOUNDARY_SHELL_LATITUDE_COUNT - 1)) * Math.PI;
@@ -758,8 +756,8 @@ export function mountBorgApp(options = {}) {
       return;
     }
     polarityEscapeLedger.appendFrameRows(frameRows, {
-      center: manifest.simulationEnvelope.center,
-      radius: borgEnvelopeRadius(manifest),
+      center: activeEnvelopeCenter(),
+      radius: activeEnvelopeRadius(),
     });
   }
 
@@ -775,10 +773,10 @@ export function mountBorgApp(options = {}) {
     if (state.polarityDiagnosticFrameIndex === rawFrameSet.frameIndex) {
       return;
     }
-    const sphereRadius = borgEnvelopeRadius(manifest);
+    const sphereRadius = activeEnvelopeRadius();
     state.polarityDiagnostics = calculateBorgPolarityDiagnostics({
       frames: rawFrameSet.frames,
-      center: manifest.simulationEnvelope.center,
+      center: activeEnvelopeCenter(),
       radius: sphereRadius,
       coreScale: state.eomCoreScale,
       escapeLedger: polarityEscapeLedger,
@@ -901,7 +899,7 @@ export function mountBorgApp(options = {}) {
     );
     const runtimeWakeHorizon = manifest.simulationEnvelope.fieldSpeed * runtimeHistoryDepth;
     renderFieldRows(dom.envelopeFields, [
-      ["outerRadius", borgEnvelopeRadius(manifest)],
+      ["outerRadius", activeEnvelopeRadius()],
       ["sampleInterval", activeSampleInterval()],
       ["seedHistoryDepth", runtimeHistoryDepth],
       ["fieldSpeed", manifest.simulationEnvelope.fieldSpeed],
@@ -2288,12 +2286,30 @@ export function mountBorgApp(options = {}) {
 
   /** Write solver coordinates into an existing {x,y,z} target; no allocation. */
   function writeSolverPositionToWorld(position, target) {
-    const center = activeReplayEntry?.dataset.provenance.prescribedGeometry?.responseCenter ??
-      manifest.simulationEnvelope.center;
-    target.x = (position.x - center.x) * worldUnitsPerSolverUnit;
-    target.y = (position.y - center.y) * worldUnitsPerSolverUnit;
-    target.z = (position.z - center.z) * worldUnitsPerSolverUnit;
+    const center = activeEnvelopeCenter();
+    const scale = activeWorldUnitsPerSolverUnit();
+    target.x = (position.x - center.x) * scale;
+    target.y = (position.y - center.y) * scale;
+    target.z = (position.z - center.z) * scale;
     return target;
+  }
+
+  function activeEnvelopeCenter() {
+    return activeReplayEntry?.dataset.provenance.prescribedGeometry?.responseCenter ??
+      manifest.simulationEnvelope.center;
+  }
+
+  function activeEnvelopeRadius() {
+    const prescribedRadius = Number(
+      activeReplayEntry?.dataset.provenance.prescribedGeometry?.sphericalEnvelopeRadius,
+    );
+    return Number.isFinite(prescribedRadius) && prescribedRadius > 0
+      ? prescribedRadius
+      : borgEnvelopeRadius(manifest);
+  }
+
+  function activeWorldUnitsPerSolverUnit() {
+    return TARGET_ENVELOPE_WORLD_DIAMETER / (2 * activeEnvelopeRadius());
   }
 
   function activeFrameTime() {
@@ -2311,8 +2327,8 @@ export function mountBorgApp(options = {}) {
 
   function fitCameraToEnvelope(margin) {
     const envelopeWorldRadius =
-      borgEnvelopeRadius(manifest) *
-      worldUnitsPerSolverUnit;
+      activeEnvelopeRadius() *
+      activeWorldUnitsPerSolverUnit();
     const verticalHalfFov = THREE.MathUtils.degToRad(camera.fov * 0.5);
     const horizontalHalfFov = Math.atan(Math.tan(verticalHalfFov) * Math.max(0.1, camera.aspect));
     const limitingHalfFov = Math.min(verticalHalfFov, horizontalHalfFov);
@@ -2438,7 +2454,7 @@ export function mountBorgApp(options = {}) {
             minimumStep: state.eomMinimumStep,
             runGrade: state.eomRunGrade,
             simulationOuterRadius:
-              activeEomRunnerOptions?.simulationOuterRadius ?? borgEnvelopeRadius(manifest),
+              activeEomRunnerOptions?.simulationOuterRadius ?? activeEnvelopeRadius(),
           },
         );
     const replayOptions = replayActive

@@ -12,7 +12,7 @@ test("Borg braid catalog is immutable record routing data with no geometry or ph
   assert.equal(BORG_BRAID_RECORD_CATALOG.id, BORG_BRAID_RECORD_CATALOG_ID);
   assert.equal(Object.isFrozen(BORG_BRAID_RECORD_CATALOG), true);
   assert.equal(Object.isFrozen(BORG_BRAID_RECORD_CATALOG.entries), true);
-  assert.equal(BORG_BRAID_RECORD_CATALOG.entries.length, 12);
+  assert.equal(BORG_BRAID_RECORD_CATALOG.entries.length, 17);
   assert.deepEqual(
     BORG_BRAID_RECORD_CATALOG.entries.map((entry) => entry.id),
     [
@@ -22,6 +22,11 @@ test("Borg braid catalog is immutable record routing data with no geometry or ph
       "family-a-a1-3-4-2-1-frequency-v1",
       "family-a-a1-4-3-2-1-frequency-v1",
       "family-a-a2-fully-symmetric-v1",
+      "family-a-a3-general-v1",
+      "family-a-a3-1-equal-frequency-v1",
+      "family-a-a3-2-equal-frequency-equal-radius-v1",
+      "family-a-a3-3-4-2-1-frequency-v1",
+      "family-a-a3-4-3-2-1-frequency-v1",
       "illustrative-spindle-chart-hypothesis-v0",
       "illustrative-extreme-cap-tilt-spindle-variant-v0",
       "illustrative-planar-tri-binary-spindle-boundary-v0",
@@ -33,12 +38,17 @@ test("Borg braid catalog is immutable record routing data with no geometry or ph
   assert.deepEqual(
     BORG_BRAID_RECORD_CATALOG.entries.map((entry) => entry.label),
     [
-      "A1 — general",
+      "A1 — coincident endpoint orbits",
       "A1.1 — equal frequency",
       "A1.2 — equal frequency, equal radius",
       "A1.3 — 4:2:1 frequency",
       "A1.4 — 3:2:1 frequency",
       "A2 — fully symmetric",
+      "A3 — general",
+      "A3.1 — equal frequency",
+      "A3.2 — equal frequency, equal radius",
+      "A3.3 — 4:2:1 frequency",
+      "A3.4 — 3:2:1 frequency",
       "B1 — interior reference",
       "B1 — high-axial interior",
       "B1 — all-equatorial boundary",
@@ -54,7 +64,7 @@ test("Borg braid catalog is immutable record routing data with no geometry or ph
   });
   assert.deepEqual(
     BORG_BRAID_RECORD_CATALOG.entries.map((entry) => entry.familyId),
-    ["A", "A", "A", "A", "A", "A", "B", "B", "B", "B", "C", "C"],
+    ["A", "A", "A", "A", "A", "A", "A", "A", "A", "A", "A", "B", "B", "B", "B", "C", "C"],
   );
 });
 
@@ -106,7 +116,7 @@ test("Borg braid selection persists the exact replay URL when history replacemen
   const navigation = createBorgBraidRecordNavigation({
     historyLike: { replaceState(...args) { replaced.push(args); } },
   });
-  const recordId = BORG_BRAID_RECORD_CATALOG.entries[10].id;
+  const recordId = BORG_BRAID_RECORD_CATALOG.entries[15].id;
   const expected = navigation.buildUrl(recordId);
   assert.equal(navigation.persistSelection(recordId), true);
   assert.deepEqual(replaced, [[null, "", expected]]);

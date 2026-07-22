@@ -1,10 +1,10 @@
 # Prescribed-Record Analytical Campaign Database Requirements
 
-Status: priority-only architecture requirements, version `v0.1`, 2026-07-22. No production database is implemented by this packet.
+Status: priority-only architecture requirements, version `v0.7`, 2026-07-22. SQLite is selected. The versioned schema, all-candidate registry, acceptance instrument, importer, fresh-database rebuild-and-swap command, exporter, and backup verifier are implemented. Retired analytical campaign outputs are not repository fixtures; benchmark acceptance must be refreshed against the next complete database generation.
 
 ## 1. Purpose and scope
 
-This packet defines a free, durable storage path for prescribed-record analytical campaigns before packet counts outgrow one JSON file per case. It is grounded in the live B1 cap-angle smoke and Monte Carlo coverage campaigns, the current `prescribed-path-analysis/result-packet.v1` contract, and the repository's [software architecture and maintenance guidance](../../../content/markdown/aaa/archie/software-architecture-and-maintenance.md).
+This packet defines a free, durable storage path for prescribed-record analytical campaigns before packet counts outgrow one JSON file per case. It is grounded in the current `prescribed-path-analysis/result-packet.v1` contract, temporary current-catalog campaign generation, and the repository's [software architecture and maintenance guidance](../../../content/markdown/aaa/archie/software-architecture-and-maintenance.md).
 
 The storage system must preserve the authority boundary already enforced by the [prescribed-path analytical evaluator](../../../src/prescribed-path-analysis/README.md): it evaluates exact prescribed paths, does not evolve those paths, and does not call the EOM solver. Database ingestion, indexing, aggregation, or export creates no stability, energy, retention, physical-realization, or completed braid-family grade. Acceleration-response rows remain prescribed-record analytical measurements.
 
@@ -15,31 +15,32 @@ The architecture target is one canonical storage path per responsibility:
 - exact hashes and versioned records define identity;
 - transactional metadata and hot reduced measures serve ordinary queries;
 - authoritative raw ledgers remain recoverable;
-- deterministic JSON export preserves review, fixture, and publication workflows; and
-- a later columnar tier may serve large analytical scans without redefining identity or acceptance.
+- deterministic JSON and Markdown exports preserve review, fixture, publication, and candidate-summary workflows; and
+- PostgreSQL remains a migration contingency only if measured SQLite limits are reached.
+
+The live SQLite files are runtime data, not repository source. V1 keeps them at the predictable checkout-local path `.local-data/braid-analysis/`, which is Git-ignored. The repository owns schemas, migrations, importer/exporter code, benchmark specifications, small deterministic fixtures, and user-visible Markdown summaries; Git does not own the database, its journal files, or its backups.
 
 This packet is `priority-only`. It does not promote a database choice into reader-facing $\mathbb{A}\mathbb{A}\mathbb{A}$ prose.
 
-## 2. Current measured evidence
+## 2. Retired sizing evidence and current verification boundary
 
-### 2.1 Inspected live artifacts
+### 2.1 Evidence boundary
 
-The measurement and requirements below were checked against:
+The packet-size measurements below remain architecture-sizing evidence only. Their analytical campaign outputs have been removed because the candidate geometries and measure set are being regenerated. They must not be cited as current candidate results, acceptance evidence, or corpus measurements. Current implementation checks use temporary campaigns generated from the live all-candidate registry and delete them after each test.
+
+The active contracts are:
 
 - [AnalyticalBraidEvaluator.mjs](../../../src/prescribed-path-analysis/AnalyticalBraidEvaluator.mjs), which constructs and hashes `result-packet.v1`;
 - [the evaluator contract](../../../src/prescribed-path-analysis/README.md);
-- [the B1 campaign runner](../../../scripts/eom/run-b1-prescribed-analysis-campaign.mjs);
-- the [smoke manifest](../../../src/prescribed-path-analysis/campaigns/b1-cap-angle-smoke/b1-cap-angle-smoke-campaign.manifest.v1.json) and [coverage manifest](../../../src/prescribed-path-analysis/campaigns/b1-cap-angle-coverage/b1-cap-angle-coverage-campaign.manifest.v1.json);
-- the [smoke summary](../../../src/prescribed-path-analysis/campaigns/b1-cap-angle-smoke/b1-cap-angle-smoke-campaign.summary.v1.json) and [coverage summary](../../../src/prescribed-path-analysis/campaigns/b1-cap-angle-coverage/b1-cap-angle-coverage-campaign.summary.v1.json);
-- representative coverage packets [sample 000](../../../src/prescribed-path-analysis/campaigns/b1-cap-angle-coverage/packets/sample-000.result-packet.v1.json), [sample 130](../../../src/prescribed-path-analysis/campaigns/b1-cap-angle-coverage/packets/sample-130.result-packet.v1.json), and the four checked anchor packet classes;
-- [campaign tests](../../../tests/b1-prescribed-analysis-campaign.test.js), [evaluator tests](../../../tests/prescribed-source-wake-evaluator.test.js), and [root tests](../../../tests/prescribed-orbit-causal-roots.test.js); and
+- [the all-candidate campaign generator](../../../src/prescribed-path-analysis/AllCandidateAnalyticalCampaign.mjs);
+- [database tests](../../../tests/analytical-campaign-database.test.js), [rebuild tests](../../../tests/all-candidate-analytical-rebuild.test.js), [evaluator tests](../../../tests/prescribed-source-wake-evaluator.test.js), and [root tests](../../../tests/prescribed-orbit-causal-roots.test.js); and
 - the Braid Program [method](method.md), [charter](README.md), and live priority-lane conventions.
 
-The coverage summary records 260 accepted cases: 256 seeded samples and four anchors. Every current case has one probe event, six retained roots, zero no-root rows, two probe polarities, six prescribed-period closure rows, fifteen primary and fifteen refined minimum-separation pair rows, one numerical-convergence row, and one reduced event row. Current tests independently exercise a one-root/one-no-root case and fail-closed campaign acceptance.
+The retired sizing set contained 260 cases: 256 seeded samples and four anchors. Its row shapes remain useful for capacity formulas, while current tests independently exercise accepted and rejected current-catalog cases, a one-root/one-no-root case, exact-source retention, and fail-closed campaign acceptance.
 
 ### 2.2 Direct footprint measurement
 
-All byte counts below were measured from the checked-in 2026-07-22 artifacts. `MB` is decimal; `MiB` uses powers of 1024.
+All byte counts below were measured from the retired 2026-07-22 sizing set. `MB` is decimal; `MiB` uses powers of 1024. The next complete generation must replace these calibration values before they govern a scale decision.
 
 | Item | Measured value |
 | --- | ---: |
@@ -57,7 +58,7 @@ All byte counts below were measured from the checked-in 2026-07-22 artifacts. `M
 | One cross-packet Brotli stream | 499,273 B |
 | Gzip-compressed coverage summary | 116,387 B |
 
-Compression results are measured on JSON bytes, not promises for a database or Parquet implementation. They do show that repeated field names, identities, and protocol data are highly compressible. Cross-packet gzip is 23% of compact packet bytes, while the measured Brotli stream is 7.7%.
+Compression results are measured on JSON bytes, not promises for a database implementation. They do show that repeated field names, identities, and protocol data are highly compressible. Cross-packet gzip is 23% of compact packet bytes, while the measured Brotli stream is 7.7%.
 
 ### 2.3 Packet decomposition
 
@@ -86,7 +87,7 @@ Current refinement storage has a further boundary: the packet retains primary ro
 
 ### 2.4 Repeated versus case-unique data
 
-The measured repetition pattern supports normalization and dictionary or columnar compression:
+The measured repetition pattern supports normalization and ordinary lossless compression:
 
 - One protocol and event schedule are repeated across all 260 packets.
 - Family/member identities, evaluator identity, schema ids, units, root policy, transmitter ids, pair ids, probe polarity, and field names recur in nearly every row.
@@ -162,7 +163,7 @@ For a transparent JSON-equivalent payload estimate, use the measured B1 compact 
 
 | Symbol | Calibrated bytes | Contents |
 | --- | ---: | --- |
-| $b_{\mathrm{eval}}$ | 6,927 | Case envelope, source/configuration provenance, protocol allocation, fixed reduced-measure and container overhead, calibrated so the current campaign reproduces its compact total. |
+| $b_{\mathrm{eval}}$ | 6,927 | Case envelope, source/configuration provenance, protocol allocation, fixed reduced-measure and container overhead, calibrated so the retired sizing set reproduces its compact total. |
 | $b_{\mathrm{event}}$ | 1,577 | Event shell, raw aggregate measures, and reduced event projection. |
 | $b_{\mathrm{root}}$ | 1,161 | Retained-root row excluding acceleration responses. |
 | $b_{\mathrm{no\ root}}$ | 214 | Measured explicit no-root row from the independent static sizing case. |
@@ -195,7 +196,7 @@ The scenarios below are workload envelopes, not forecasts or physical claims. Th
 
 | Scenario | Explicit dimensions | Retained evaluations | Events | Roots | Acceleration responses | JSON-equivalent payload |
 | --- | --- | ---: | ---: | ---: | ---: | ---: |
-| Current B1 | $F=M=K=S=P=L=Q=T=1$; $C=260$; $X=R=6$; $A=2$; $G=2$; $J=1$ because the V1 packet stores a comparison without a second full root ledger | 260 | 260 | 1,560 | 3,120 | 6.20 MiB, matching the measured 6.50 MB compact packets |
+| Retired B1 sizing case | $F=M=K=S=P=L=Q=T=1$; $C=260$; $X=R=6$; $A=2$; $G=2$; $J=1$ because the V1 packet stores a comparison without a second full root ledger | 260 | 260 | 1,560 | 3,120 | 6.20 MiB, matching the retired 6.50 MB compact-packet calibration |
 | Near-term envelope | $F=3$, $M=4$, $C=256$, $D=96$, $B=64$; $K=S=P=1$; $L=2$; $Q=4$, $T=8$; $X=R=6$; $A=2$; $G=1$, $J=1$ | 9,984 | 319,488 | 1,916,928 | 3,833,856 | 3.19 GiB |
 | Large envelope | $F=6$, $M=8$, $C=1,024$, $D=B=512$; $K=1$, $S=P=L=2$; $Q=16$, $T=32$; $X=R=8$; $A=2$; $G=1$, $J=1$ | 786,432 | 402,653,184 | 3,221,225,472 | 6,442,450,944 | 4.81 TiB |
 | Stress envelope | $F=8$, $M=12$, $C=4,096$, $D=B=2,048$; $K=S=P=L=2$; $Q=32$, $T=64$; $X=12$, $R=10$; $A=2$; $G=1$, $J=1$ | 12,582,912 | 25,769,803,776 | 257,698,037,760 | 515,396,075,520 | 382 TiB |
@@ -227,6 +228,7 @@ Technology selection must serve these workloads before it serves a preferred dat
 | Q8 | Locate source or protocol drift. | Group exact hashes by stable source/protocol id and evaluator/schema version; report multiple hashes and the campaigns that consumed each. |
 | Q9 | Resume interrupted ingestion without duplication. | Unique natural keys, content hashes, and an ingestion journal permit retry after any committed boundary. |
 | Q10 | Export a self-contained reproducibility packet. | Resolve manifest, source, protocol, case results, raw ledgers or authoritative packet artifact, acceptance evidence, and schema versions into deterministic ordered JSON. |
+| Q11 | Maintain a readable candidate digest. | Export a small Markdown table of named metric leaders, anchors, and operator-selected cases with selection reason, measured summaries, claim boundary, and exact result identity. A global `top` label requires a declared ranking policy; otherwise leadership is per named measure. |
 
 Secondary expected workloads are campaign-to-campaign comparison, family/member inventory, missing-artifact detection, backup verification, and rebuild of every summary projection from authoritative retained data.
 
@@ -249,7 +251,7 @@ The following are non-negotiable.
 
 ## 6. Logical schema
 
-Schema id: `prescribed_record_analytics_db/v1-draft`. Names below are logical and engine-neutral; physical SQL or non-SQL encodings may vary while preserving keys and constraints.
+Implemented SQLite schema id: `prescribed-record-analytics/sqlite.v1`, migration ordinal `2`. Names below state the engine-neutral logical contract; V1 materializes hot query tables and retains cold raw ledgers in exact compressed packet artifacts.
 
 | Entity | Primary identity and essential fields | Authority role |
 | --- | --- | --- |
@@ -285,7 +287,7 @@ Schema id: `prescribed_record_analytics_db/v1-draft`. Names below are logical an
 
 Database-generated integers may accelerate joins but are never exported as scientific identity. Exact hashes, stable ordinals, and schema-defined ids remain portable keys.
 
-## 7. Indexing and partitioning
+## 7. Indexing
 
 ### 7.1 Query-to-index map
 
@@ -295,7 +297,7 @@ Database-generated integers may accelerate joins but are never exported as scien
 | Q2 campaign enumeration | Unique `(manifest_hash, case_ordinal)` and `(manifest_hash, case_id)`; cluster or physically order campaign-case exports by ordinal. |
 | Q3 family/member ranges | `(family_id, member_id, promoted_parameter_1, promoted_parameter_2, ...)` for stable high-use coordinates. Less common coordinates use `configuration_parameter(parameter_id, numeric_value, configuration_hash)`. |
 | Q4 failed or marginal gates | `(gate_id, independent_pass, margin, result_hash)` where `margin` is a versioned projection from measured value and threshold. |
-| Q5 distributions/correlations | `(manifest_hash, measure_id, scalar_value)` or campaign-local columnar ordering. Keep vector components in explicit columns for common response measures. |
+| Q5 distributions/correlations | `(manifest_hash, measure_id, scalar_value)` with campaign-local B-tree ordering. Keep vector components in explicit columns for common response measures. |
 | Q6 roots for one event | `(event_id, transmitter_id, root_ordinal)` and matching response key. No-root rows use `(event_id, transmitter_id)`. |
 | Q7 refinements | `(source_hash, protocol_hash, refinement_id)` and convergence `(base_evaluation_id, compared_evaluation_id, event_id)`. |
 | Q8 drift | `(source_record_id, source_hash)`, `(protocol_id, protocol_hash)`, and campaign reference indexes. |
@@ -304,20 +306,9 @@ Database-generated integers may accelerate joins but are never exported as scien
 
 Portable B-trees are sufficient for V1 hash equality. A PostgreSQL hash index is optional only if a later benchmark beats B-tree equality without weakening portability.
 
-### 7.2 Partitioning rules
+### 7.2 Non-requirement
 
-V1 SQLite uses no physical table partitioning. At current and near-current size, partitions add migration and query complexity without evidence of benefit.
-
-When cold columnar storage opens:
-
-- partition by entity type first (`root`, `response`, `closure`, `separation`, `convergence`);
-- then by family/member and campaign or by a stable campaign hash bucket when one campaign is too large;
-- target approximately 128-512 MiB compressed Parquet shards and row groups sized by benchmark;
-- never create one Parquet file per configuration, event, or packet;
-- keep `source_hash`, `protocol_hash`, `manifest_hash`, `result_hash`, `event_id`, and refinement identity in every shard row needed for independent reconstruction; and
-- record each shard and its row-range manifest as a content-addressed artifact before making it visible.
-
-Partition pruning must match Q2-Q7. Family-only partitioning is insufficient for campaign enumeration; configuration-level partitioning recreates the small-file problem.
+Partitioning is not required or designed for this SQLite system.
 
 ### 7.3 Parameter and vector representation
 
@@ -325,54 +316,74 @@ The exact canonical parameter vector is stored once as authoritative bytes under
 
 PostgreSQL's `NUMERIC` is an exact arbitrary-precision decimal type, which is a material advantage if later evaluators emit decimal tokens beyond binary64 precision or if exact decimal arithmetic becomes a query requirement. The current JavaScript evaluator emits JSON numbers from binary64 values, so converting those current numbers to `NUMERIC` does not add information. Even in PostgreSQL, retain the original canonical token because equivalent numeric values can have different textual forms and packet hashes bind the canonical serialized record. [PostgreSQL numeric types](https://www.postgresql.org/docs/current/datatype-numeric.html).
 
-Vectors use explicit `x`, `y`, and `z` columns in hot tables. Cold Parquet may use a fixed-size struct if every supported reader preserves field names and numeric types. Opaque vector BLOBs are barred from query tables.
+SQLite has no native arbitrary-precision numeric storage class: `REAL` is binary64 and `NUMERIC` is a type affinity, not an unlimited-precision type. This is not a V1 blocker because the database does not need to reproduce the evaluator's high-precision arithmetic. When a future producer emits a value or certificate beyond binary64 precision, retain its exact canonical decimal token or canonical binary artifact as TEXT/BLOB together with precision bits, rounding policy, and certified bounds; add a nullable verified binary64 projection only for ordinary filtering and plotting. Do not store every transient high-precision intermediate. Store the exact inputs, outputs, bounds, and certificate fields required for replay, independent checking, and deterministic export. [SQLite storage classes and type affinity](https://www.sqlite.org/datatype3.html).
+
+An independent acceptance gate may use a binary64 projection only when the authoritative value is already binary64 or when a verified enclosure proves that projection cannot change the decision. If a value exceeds binary64 range or its projection could cross a threshold, the projection is null or advisory and the authoritative token or enclosure controls acceptance.
+
+Vectors use explicit `x`, `y`, and `z` columns in hot tables. Canonical packet artifacts preserve the schema-defined vector representation and array order. Opaque vector BLOBs are barred from query tables.
 
 ## 8. Compression and deduplication
 
-1. **Content-addressed deduplication:** source records, protocols, manifests, result packets, and cold shards are keyed by cryptographic hash. Campaigns reference them; they do not copy them.
+1. **Content-addressed deduplication:** source records, protocols, manifests, and result packet BLOBs are keyed by cryptographic hash. Campaigns reference them; they do not copy them.
 2. **Repeated identity normalization:** evaluator ids, schemas, protocol fields, probes, transmitter ids, pair ids, units, root status, and gate ids live in parent or dictionary-friendly columns rather than repeated JSON text.
-3. **Hot/cold split:** hot tables hold campaign membership, gates, and reduced scalar/vector measures. Raw roots and responses remain in an authoritative compressed packet artifact in V1 and may additionally enter columnar cold tables after the scale trigger.
-4. **V1 packet compression:** store the exact checked packet bytes or a lossless canonical export payload as a compressed BLOB with codec, compressed hash, uncompressed hash, and lengths. Gzip is available in the current Node runtime; zstd or another codec requires a separately approved dependency and must win the benchmark before adoption.
-5. **Columnar compression:** Parquet with zstd is the first scale-up candidate for large root, response, closure, separation, and convergence tables. Dictionary encoding should target repeated ids and enums; floating values remain lossless binary doubles matching the evaluator's JSON-number domain.
+3. **Hot/cold split:** hot tables hold campaign membership, gates, and reduced scalar/vector measures. Raw roots and responses remain in an authoritative compressed packet artifact in V1 and enter normalized ledger tables only when a measured query requires them.
+4. **V1 packet compression:** store the exact checked packet bytes as a gzip-compressed BLOB with codec, compressed length, uncompressed SHA-256, and uncompressed length. The measured B1 SQLite database was `0.853` times compact packet JSON while reproducing every packet byte. A different codec requires a separately approved dependency and must beat this conformance benchmark before adoption.
+5. **One authoritative store:** keep compressed packets and query tables in SQLite. Add normalized raw tables only for an observed query; migrate the whole logical schema to PostgreSQL only if a declared SQLite gate fails.
 6. **No lossy numeric compaction:** decimal rounding, float-width reduction, vector quantization, or tolerance-based row merging is forbidden for authoritative data.
 7. **No destructive summary retention policy:** summaries may be rebuilt or compacted because they are derived; authoritative source/protocol/manifest/result bytes and required raw ledgers remain reachable.
 8. **Safe physical compaction:** a new compressed artifact is written, hashed, row-count checked, export-tested, backed up, and atomically referenced before an older physical replica may be retired. Logical identity and at least one verified recoverable copy never disappear.
 
-The current measured cross-packet compression ratios justify compression work, but they do not select a codec. Codec selection is an empirical benchmark result.
+The archived [SQLite benchmark](analytical-campaign-database-benchmark.md) supports application-side gzip for V1 as a storage-mechanics result; the next complete generation must revalidate it. Cross-packet compression remains a sizing observation only; V1 preserves one independently addressable packet artifact per distinct content hash.
 
 ## 9. Ingestion, concurrency, and recovery
 
 ### 9.1 Ingestion transaction
 
-One case ingestion follows this fail-closed order:
+One bounded ingestion transaction contains at most 32 cases and follows this fail-closed order. The bound is measured: one transaction per gzip packet produced `9.75` times as much WAL as checkpointed database growth, while batches of 32 reduced that ratio to `1.93`.
 
 1. Read bytes and validate JSON/schema without trusting producer status.
 2. Recompute canonical source, protocol, result, and artifact hashes using the recorded canonicalization version.
 3. Reject any claimed hash mismatch before opening accepted-state writes.
 4. Begin one database transaction and register or resume the `ingest_batch` row.
-5. Insert-or-verify content-addressed source, protocol, configuration, and artifact rows. `ON CONFLICT` means compare canonical bytes and metadata, never silently ignore a difference.
-6. Insert the evaluation, event, root-or-no-root, acceleration-response, closure, separation, convergence, and reduced rows in staging state.
+5. For each case in ordinal order, insert-or-verify content-addressed source, protocol, configuration, and artifact rows. `ON CONFLICT` means compare canonical bytes and metadata, never silently ignore a difference.
+6. Insert the case's evaluation, event shell, numerical convergence, reduced rows, and compressed authoritative packet in staging state. V1 does not normalize every raw ledger.
 7. Run the separately versioned acceptance instrument against retained authoritative data and store gate evidence.
-8. Mark the case complete only if all required rows and independent gates exist.
-9. Commit once. On failure, roll back the case and record the ingest error outside the accepted view.
+8. Mark each case complete only if all required rows and independent gates exist.
+9. Commit the bounded batch once. On any failure, roll back the whole uncommitted batch, record the ingest error outside the accepted view, and resume idempotently from the last committed ordinal.
 
 Campaign acceptance runs only after the exact manifest inventory is present. The acceptance transaction verifies ordinals, hashes, counts, case completeness, and every required independent gate, then publishes the campaign acceptance row atomically.
 
-### 9.2 Concurrency posture
+### 9.2 Fresh-database rebuild and publication
 
-V1 uses one ingestion writer and concurrent readers on one local workstation. SQLite WAL mode is a benchmark candidate, but backups must treat the database, WAL, and shared-memory state correctly and use the backup API or `VACUUM INTO` rather than copying an active main file casually.
+Development regeneration uses a versioned all-candidate registry, not an in-place purge. The registry must match every live Borg catalog entry and prescribed-record generator target exactly, and it must classify every checked-in analytical campaign manifest as imported or explicitly excluded with a reason. Catalog, target, or campaign discovery drift is a hard preflight failure.
+
+One `rebuild-all` operation must:
+
+1. acquire one exclusive rebuild lock;
+2. create a fresh SQLite database in a staging directory on the target database's filesystem;
+3. generate one prescribed-path baseline case and exact source-record preimage for every registered catalog candidate under the registry's versioned protocol;
+4. import the generated campaign and every registered checked campaign idempotently;
+5. verify catalog count, candidate ordinals, complete accepted-plus-rejected inventory, exact source coverage for the generated campaign, campaign hashes, artifacts, database integrity, and deterministic exports;
+6. record a content-bound database generation containing the registry, catalog, campaign, candidate, acceptance, rejection, and export inventories; and
+7. in publish mode only, checkpoint and atomically rename the verified staged database over the live path, then verify the published file and restore the prior file if post-swap verification fails.
+
+Check mode performs the complete build and verification but never publishes. A complete candidate that fails an independent analytical validity gate remains queryable as rejected and must not appear in `accepted_case`; rejection is not an excuse to omit the candidate from the catalog inventory. A structurally incomplete or internally inconsistent case blocks the whole generation. The live database must not be deleted, emptied, or partially rewritten before the fresh generation passes.
+
+### 9.3 Concurrency posture
+
+V1 uses one ingestion writer and concurrent readers on one local workstation. Use SQLite WAL mode with `synchronous=FULL`, a busy timeout, bounded transactions of at most 32 cases, and controlled checkpoints at campaign and backup boundaries. Backups must treat the database, WAL, and shared-memory state correctly and use the backup API or `VACUUM INTO` rather than copying an active main file casually.
 
 Parallel evaluators may write packet bytes to a bounded ingestion queue, but only the database writer publishes accepted rows. Backpressure stops producers before memory or temporary storage becomes unbounded.
 
-Move metadata to PostgreSQL when measurements show a sustained need for multiple independent writer processes, remote writers, role-based access, or high-availability operation. DuckDB native-file writes remain a single-process analytical path; RocksDB concurrency would require application-owned schema and secondary-index logic.
+Move the complete logical schema to PostgreSQL when measurements show a sustained need for multiple independent writer processes, remote writers, role-based access, high-availability operation, or database-side exact decimal arithmetic. Do not split metadata and authoritative ledgers across engines unless a separate benchmark proves that the added recovery surface is necessary.
 
-### 9.3 Crash and corruption recovery
+### 9.4 Crash and corruption recovery
 
 - Restart scans `ingest_batch` rows not marked complete and resumes at the first absent natural key.
 - Replaying a committed case is a no-op after byte verification.
 - A staged or rolled-back case is never visible as accepted.
+- A failed all-candidate rebuild removes its staging directory and leaves the prior database live; a failure detected after the rename restores the prior file before returning an error.
 - Every backup is restored into a fresh location, checked for database integrity, row counts, artifact hashes, and deterministic exports.
-- Cold shard publication uses write-to-new, flush, hash, verify, then atomic manifest commit. Orphaned unreferenced shards are quarantined, not assumed valid.
 - Quarterly recovery drills are required once the database is the canonical campaign store; frequency may increase with campaign activity.
 
 ## 10. Export, backup, and migration
@@ -383,20 +394,19 @@ The exporter must produce:
 
 - one exact `result-packet.v1` JSON file for a selected result;
 - a manifest-ordered campaign directory with packets and summary;
-- a self-contained reproducibility bundle containing manifest, exact sources, protocols, packets or ledger shards, independent acceptance evidence, schema migrations, and an inventory of hashes; and
-- optional Parquet tables for analytical publication, always accompanied by the JSON/hash inventory that defines identity.
+- a self-contained reproducibility bundle containing manifest, exact sources, protocols, packets or ledger exports, independent acceptance evidence, schema migrations, and an inventory of hashes; and
+- a compact Markdown candidate table for the braid analysis methodology, using an explicit per-measure or operator-selection reason and never inventing an undeclared combined score.
 
-Exports use schema-defined array order, recursive key ordering where the existing hash contract requires it, and the original numeric domain. For the current B1 fixture and coverage campaign, the acceptance test is byte-for-byte regeneration of checked packet and summary files plus exact canonical hashes.
+Exports use schema-defined array order, recursive key ordering where the existing hash contract requires it, and the original numeric domain. Acceptance testing uses a temporary campaign generated from the live all-candidate registry: every exported packet and exact-source preimage must reproduce the generated staging bytes, and every manifest, summary, and canonical hash must verify. No retired result packet is an export fixture.
 
 ### 10.2 Backup policy
 
 Minimum V1 backup set:
 
 1. an application-consistent SQLite snapshot;
-2. any external cold artifacts referenced by hash;
-3. the schema migration bundle and exporter version;
-4. a plaintext hash inventory; and
-5. at least one offline or separately administered copy.
+2. the schema migration bundle and exporter version;
+3. a plaintext hash inventory; and
+4. at least one offline or separately administered copy outside the checkout.
 
 A backup is not accepted until a restore drill reproduces selected packet hashes and campaign counts. RAID, sync, or a cloud folder is not by itself a backup. License-free software does not make media, administration, or off-site copies free.
 
@@ -412,56 +422,87 @@ Migration is additive and reversible:
 6. Export the imported campaign to a temporary directory and compare every packet and summary byte/hash with the checked source.
 7. Keep deterministic JSON export available after the database becomes canonical, so fixtures, reviews, and publications do not require database access.
 
-Schema migrations are forward-only, checksummed, and tested on a restored copy. Every storage engine must support export to the engine-neutral logical schema before it can become canonical.
+Schema migrations are forward-only, checksummed, and tested on a restored copy. SQLite and PostgreSQL must both support the same deterministic logical export before either can hold canonical data.
+
+### 10.4 Repository and runtime-storage boundary
+
+The live database is stored inside the checkout for predictable local operation but must never be committed. Its growth, journal churn, and binary diffs are operational data; Git is not a database backup.
+
+The repository contains only:
+
+- versioned logical schema and migrations;
+- importer, exporter, integrity-check, and backup/restore tooling;
+- small deterministic test fixtures and expected hashes;
+- benchmark definitions and checked benchmark reports; and
+- the user-visible candidate summary table in [method.md](method.md).
+
+The default runtime directory is `.local-data/braid-analysis/` at the repository root. It contains the SQLite database, WAL and shared-memory files when enabled, temporary ingest files, and local recovery logs. The entire directory is Git-ignored. Backups and restore drills use a separately administered location outside the checkout; another file inside `.local-data/` is not an independent backup.
+
+Local paths are operational metadata. They are excluded from source, protocol, manifest, result, and deterministic-export hashes. Content hashes remain stable when a database is moved, restored, or migrated. Startup must fail if the runtime directory is not ignored by Git. Tests and benchmarks use disposable databases under a safe temporary directory and never commit them.
 
 ## 11. Technology comparison matrix
 
-All listed engines can operate with zero software-license fee. The differences are operational and architectural.
+All selected engines must permit genuine zero-software-license-cost local or self-hosted operation. The differences are operational and architectural; disk, compute, administration, and backup remain real costs.
 
 | Strategy | License and genuine local zero-cost operation | Complexity, ingestion, query, and compression | Transactions, recovery, and concurrency | Migration, portability, backup | Node.js, tools, and scale-up | Lock-in risk and verdict |
 | --- | --- | --- | --- | --- | --- | --- |
-| **SQLite** | Public domain; no server or service fee. [SQLite's authors dedicate the deliverable to the public domain](https://www.sqlite.org/copyright.html). Hardware, backup, and maintenance still cost resources. | Lowest operational complexity. Strong point/range queries and adequate grouped analysis over hot reductions. Row-store compression is limited, so packet BLOB compression is application-owned. Bulk prepared inserts are required. | Serializable ACID transactions and crash recovery are core guarantees; WAL permits concurrent readers with one writer but is not a multi-host design. [SQLite documents transactional durability](https://www.sqlite.org/transactional.html) and an [online backup API](https://www.sqlite.org/backup.html). | Single portable file plus controlled WAL state; simple schema migrations and snapshots. Engine-neutral exports remain required. | Excellent CLI/GUI ecosystem. Current Node includes `node:sqlite`, but the current LTS documentation still labels it release-candidate, so production binding/runtime choice must be benchmarked and pinned. [Node SQLite API](https://nodejs.org/download/release/latest-v24.x/docs/api/sqlite.html). Scale-up is export or replication into Parquet/PostgreSQL. | Low-to-medium lock-in with ordinary tables, explicit DDL migrations, and JSON/Parquet export. **Best V1.** |
-| **DuckDB with Parquet** | DuckDB is MIT; Apache Parquet is Apache-2.0. No server fee. [DuckDB license and design](https://duckdb.org/why_duckdb); [Parquet format license](https://github.com/apache/parquet-format/). | Excellent scans, distributions, correlations, compression, filter pushdown, and projection pushdown. Bulk ingestion is strong; point-update workload and tiny transactional case publication are less central to its design. [Parquet support](https://duckdb.org/docs/current/data/parquet/overview). | ACID within the embedded engine. One read-write process owns the native database; multiple processes may read only. Current multi-process write paths add services or newer catalog layers. [DuckDB concurrency](https://duckdb.org/docs/current/connect/concurrency). | Parquet is highly portable, but dataset manifests, atomic publication, small-file control, and backup consistency become application duties. DuckDB native-file version compatibility must be managed. | Primary Node Neo client exists and supports streaming/appending, with some API features still incomplete. [Node client](https://duckdb.org/docs/current/clients/node_neo/overview). Natural laptop-to-large analytical path. | Low format lock-in for Parquet; medium catalog/manifest complexity. **Best analytical and cold-ledger tier, not smallest transactional V1.** |
-| **Self-hosted PostgreSQL** | PostgreSQL License, free and open source with use/modification/distribution permitted without fee. [PostgreSQL license](https://www.postgresql.org/about/licence/). A running server, upgrades, monitoring, backup, and administration are unavoidable costs. | Highest baseline operational complexity here, but excellent indexes, joins, query planner, bulk load, JSON support, mature migrations, and exact arbitrary-precision `NUMERIC` columns. `NUMERIC` is valuable for future exact decimal records, though slower and larger than binary floating-point; it cannot recover precision absent from current binary64 evaluator output. Compression is row/page oriented unless paired with external columnar storage. [PostgreSQL numeric types](https://www.postgresql.org/docs/current/datatype-numeric.html). | Mature MVCC, multiple concurrent writers/readers, WAL, replication, point-in-time recovery, roles, and remote access. | `pg_dump`, physical backups, and logical migration are mature. Server version upgrades and restore procedures require administration. Declarative range/list/hash partitioning is available and should be used only after tables are large enough to benefit. [Partitioning guidance](https://www.postgresql.org/docs/current/ddl-partitioning.html). | Mature Node clients and inspection tools; clean path from one server to larger self-hosted operation. | Medium lock-in if PostgreSQL-specific types, extensions, or partition logic become authority. **Scale-up metadata choice when measured multi-writer, arbitrary-precision query, or remote-operation needs appear.** |
-| **Embedded ordered-key store, represented by RocksDB** | Dual GPLv2/Apache-2.0; Apache-2.0 can be selected. No service fee. [RocksDB repository and license](https://github.com/facebook/rocksdb). | Fast keyed ingestion, ordered prefix scans, Bloom filters, and configurable compression. Every logical relation, secondary index, range-query projection, migration, and export join becomes application code. LSM compaction adds write/space amplification. | WAL, checksums, batches, and optimistic/pessimistic transactions are available. Concurrency is embedded and process-local; recovery tuning is application-owned. [RocksDB overview](https://github.com/facebook/rocksdb/wiki/RocksDB-Overview). | Backup/checkpoint features exist, but a database is a directory of engine files, not one transparent artifact. Major-version and binding compatibility need care. | Node generally depends on third-party native bindings; debugging is less transparent than SQL shells. Scales keyed access well, not ad hoc correlations without a separate analytical layer. | High logical lock-in because keys and indexes encode the schema in custom code. **Reject for V1 unless benchmarks reveal a keyed-ingest requirement that SQL engines cannot meet.** |
-| **Custom append-only/content-addressed format** | No third-party database license. Development, verification, repair tooling, migrations, indexing, compaction, and recovery are entirely in-house costs. | Sequential writes and exact content identity can be excellent. Ad hoc filtering, range indexes, transactions, correlations, schema evolution, and compression dictionaries must be designed and maintained from scratch. | Atomic append and manifests can be built, but crash consistency, partial writes, concurrency, checksums, compaction, and recovery become new proof obligations. | Potentially portable only if the format is completely specified and multiple readers exist. Backup is easy to copy but hard to validate without mature tooling. | Node implementation is direct. Scaling requires building the database features this packet is trying not to reinvent. | Highest lock-in to project code and highest silent-corruption/migration risk. **Reject as the primary database. Retain content-addressed artifacts only as a narrow component.** |
-| **Hybrid: SQLite metadata/hot reductions plus compressed Parquet raw ledgers** | SQLite public domain, DuckDB MIT, Parquet Apache-2.0. Zero license fee locally; two storage forms increase operational and backup work. | Strong point/range/transactional metadata plus columnar root/response scans and compression. Complexity lies in atomic cross-store publication, shard sizing, manifests, and recovery. | SQLite remains the single metadata writer; immutable Parquet shards avoid in-place raw-ledger writes. Crash recovery requires orphan-shard detection and publish-after-hash ordering. | Engine-neutral Parquet plus deterministic JSON exports are portable. Backup must capture one consistent SQLite snapshot and every referenced shard. | Node can own SQLite ingestion and invoke a pinned DuckDB client for shard creation/query. Clean path to PostgreSQL metadata later without rewriting Parquet. | Low data-format lock-in, medium orchestration complexity. **Recommended scale-up after measured triggers, not day-one V1.** |
+| **SQLite — selected** | Public domain; no server or service fee. [SQLite's authors dedicate the deliverable to the public domain](https://www.sqlite.org/copyright.html). Hardware, backup, and maintenance still cost resources. | Lowest operational complexity. Strong indexed lookups and adequate grouped analysis over hot reductions. Packet BLOB compression is application-owned; bulk prepared inserts are required. | Serializable ACID transactions and crash recovery are core guarantees; WAL permits concurrent readers with one writer. [SQLite transactional guarantees](https://www.sqlite.org/transactional.html) and [online backup API](https://www.sqlite.org/backup.html). | One portable database plus controlled WAL state, checksummed migrations, snapshots, and deterministic exports. | The installed Node runtime provides `node:sqlite`; the binding and settings still require a benchmark and version pin. [Node SQLite API](https://nodejs.org/download/release/latest-v24.x/docs/api/sqlite.html). | Low lock-in when hashes, schemas, and exports remain engine-neutral. **Decision: use SQLite.** |
+| **Self-hosted PostgreSQL — contingency** | PostgreSQL License; free and open source without a service fee. [PostgreSQL license](https://www.postgresql.org/about/licence/). Server operation, upgrades, monitoring, and backup require more work. | Strong indexes, joins, bulk loading, JSON support, migrations, and exact arbitrary-precision `NUMERIC`. `NUMERIC` cannot recover precision absent from current binary64 evaluator output. [PostgreSQL numeric types](https://www.postgresql.org/docs/current/datatype-numeric.html). | Mature multiple-writer concurrency, WAL, roles, replication, and point-in-time recovery. | Mature logical and physical backup tools, with server administration and version upgrades. | Mature Node clients and inspection tools. | Medium lock-in if PostgreSQL-specific features become authoritative. **Use only if SQLite fails a declared concurrency, size, recovery, or exact-decimal query gate.** |
 
-SQLite, DuckDB, PostgreSQL, RocksDB, and Parquet deserve explicit credit for mature indexing, compression, transactions, tooling, portability, and recovery features. A project-specific layer should define only scientific identity, acceptance, and export rules, not reimplement their storage engines.
+SQLite and PostgreSQL receive explicit credit for mature indexing, transactions, tooling, portability, and recovery. The project-specific layer defines analytical identity, acceptance, and export rules; it does not reimplement database machinery.
 
 ## 12. Recommended V1
 
 ### 12.1 Decision
 
-Use **SQLite as the only V1 database**, with:
+Use **SQLite**, with:
 
 - normalized source, protocol, campaign, configuration, case, evaluation, gate, and reduced-measure tables;
 - one database writer and concurrent read-only query connections;
 - fixed 32-byte internal hash columns plus canonical lowercase hexadecimal exports;
 - exact parameter-vector bytes plus a small declared set of typed query columns;
 - one content-addressed compressed authoritative packet BLOB per distinct result;
+- gzip as the V1 packet codec;
+- WAL mode with `synchronous=FULL`, one writer, and transactions of at most 32 cases;
 - independent acceptance tables and accepted-only views;
 - checksummed forward migrations;
 - deterministic JSON import/export; and
-- application-consistent snapshot backups with restore-and-export tests.
+- application-consistent snapshot backups with restore-and-export tests; and
+- a Git-ignored runtime directory at `.local-data/braid-analysis/`.
 
 Do **not** physically normalize every root and acceleration-response row in the first production milestone. The authoritative compressed packet BLOB already supports Q6 by decompressing one exact result, while hot reduced tables support Q1-Q5 and Q7-Q9. The logical root/response schema is fixed now so a later importer can populate it without changing identity.
 
-This is preferable to filesystem-per-packet storage because it provides deterministic campaign enumeration, indexed hashes and ranges, idempotent transactional ingestion, independent accepted-only views, one backup surface, and versioned migrations. It is preferable to a completely custom database because SQLite supplies tested transactions, crash recovery, indexes, query planning, backup APIs, inspection tools, and a stable file format.
+SQLite replaces filesystem-per-packet storage with deterministic campaign enumeration, indexed hashes and ranges, idempotent transactional ingestion, independent accepted-only views, one backup surface, versioned migrations, tested crash recovery, and standard inspection tools.
 
 ### 12.2 V1 physical minimum
 
-The first implementation should contain only:
+The implementation contains:
 
 1. schema migration and ingest journal;
 2. source/protocol/manifest/configuration/campaign-case identities;
 3. result and compressed artifact identities;
 4. reduced event/case measures and independent gates;
 5. accepted-only views;
-6. deterministic importer/exporter; and
-7. backup/restore verification commands.
+6. deterministic importer/exporter;
+7. backup/restore verification commands;
+8. a runtime guard that verifies `.local-data/braid-analysis/` is ignored by Git; and
+9. repository-owned schema, migrations, tools, fixtures, benchmark definitions, and candidate Markdown without Git-owned database files.
 
-No production database is built in this requirements thread. Compression codec, SQLite binding, page size, WAL/checkpoint settings, and promoted parameter columns are benchmark outcomes, not architectural guesses.
+No production database is built in this requirements thread. The benchmark fixes gzip, the existing Node `node:sqlite` binding, WAL mode, `synchronous=FULL`, one writer, a 32-case maximum transaction, and controlled checkpoints. Page size and any additional promoted parameter columns remain implementation measurements.
+
+### 12.3 Implemented components and verification boundary
+
+- [migration `001-initial.sql`](../../../src/prescribed-path-analysis/database/migrations/001-initial.sql) defines strict tables, first-class 32-byte hashes, foreign keys, query indexes, acceptance tables, ingest journal, and the accepted-only view;
+- [migration `002-database-generation.sql`](../../../src/prescribed-path-analysis/database/migrations/002-database-generation.sql) records the registry-bound identity and completeness evidence for a fully rebuilt database generation;
+- [IndependentAnalyticalAcceptance.mjs](../../../src/prescribed-path-analysis/database/IndependentAnalyticalAcceptance.mjs) derives the required gates and rebuilds reduced projections from retained packet ledgers without treating producer booleans as sufficient evidence;
+- [AnalyticalCampaignDatabase.mjs](../../../src/prescribed-path-analysis/database/AnalyticalCampaignDatabase.mjs) implements complete preflight, bounded idempotent ingestion, interruption resume, deterministic export, integrity verification, and verified online backup;
+- [the all-candidate registry](../../../src/prescribed-path-analysis/campaigns/all-candidate-analytical-campaign.registry.v1.json) owns the exact catalog, generated baseline, imported campaign, and intentional-exclusion inventory;
+- [AllCandidateAnalyticalCampaign.mjs](../../../src/prescribed-path-analysis/AllCandidateAnalyticalCampaign.mjs) validates that registry against the live catalog and generator target map and constructs exact prescribed-path campaign artifacts;
+- [AnalyticalCampaignRebuild.mjs](../../../src/prescribed-path-analysis/database/AnalyticalCampaignRebuild.mjs) builds, verifies, records, and atomically publishes a fresh database generation with rollback;
+- [the database command](../../../scripts/eom/analytical-campaign-database.mjs) exposes migrate, import, rebuild-all check/publish, inspect, verify, export, and backup operations; and
+- [the database tests](../../../tests/analytical-campaign-database.test.js) and [rebuild tests](../../../tests/all-candidate-analytical-rebuild.test.js) cover no-root rows, producer-asserted status rejection, checksummed idempotent migration, zero-write failed preflight, interrupted-batch resume, complete re-import, exact-byte export, restored-backup verification, exact catalog coverage, omission rejection, nonpublishing checks, post-swap rollback, and deterministic fresh publication.
+
+This acceptance instrument is independent of producer-carried acceptance status and reduced projections. Current generated campaigns retain and verify each exact source-record preimage. The instrument verifies retained ledger evidence rather than establishing evaluator mathematics from an independent numerical implementation.
 
 ## 13. Scale-up triggers and migration path
 
@@ -469,81 +510,46 @@ No production database is built in this requirements thread. Compression codec, 
 
 | Trigger | Response |
 | --- | --- |
-| Raw root plus acceleration-response rows exceed 50 million, or full-ledger analytical scans exceed the latency gates in Section 15 | Add immutable Parquet root/response shards and DuckDB query views while SQLite remains the transactional catalog. |
-| SQLite database exceeds 20 GiB or backup/restore time exceeds the recovery window | Move cold packet/ledger artifacts out of the main database into hashed shard objects; retain hashes, sizes, and locations in SQLite. |
-| More than one independent writer is required, writer lock waits exceed the falsifier threshold, or remote authenticated writes become necessary | Migrate metadata/hot tables to self-hosted PostgreSQL using the same hashes and logical schema. |
+| A required cross-case raw-ledger query cannot meet the latency gate from packet artifacts | Backfill only the required normalized ledger tables into the same SQLite database, preserving packet artifacts as authority, and rerun the benchmark. |
+| Raw root plus acceleration-response rows exceed 50 million, normalized SQLite scans fail the latency gates, or the SQLite database exceeds 20 GiB and backup/restore exceeds the recovery window | Benchmark one complete logical migration to PostgreSQL. |
+| More than one independent writer is required, writer lock waits exceed the falsifier threshold, or remote authenticated writes become necessary | Migrate the complete logical schema to self-hosted PostgreSQL using the same hashes and export contracts. |
 | A future evaluator emits authoritative decimal values beyond binary64 precision, or exact decimal arithmetic becomes a required indexed query | Use PostgreSQL `NUMERIC` projections while retaining the original canonical decimal tokens and hashes; benchmark their storage and arithmetic cost. |
-| One campaign produces more than one target shard or hot table exceeds memory by a wide margin | Partition cold data by entity and campaign/family hash bucket; benchmark 128-512 MiB compressed shard targets. |
-| DuckDB/Parquet cannot meet exact-root inspection or scan thresholds | Evaluate a PostgreSQL-plus-Parquet or PostgreSQL-plus-DuckDB analytical path before any custom store. |
 
 The numerical values are predeclared benchmark gates, not claims that SQLite fails at those sizes.
 
 ### 13.2 Migration sequence
 
-1. V1 SQLite stores identities, hot reductions, gates, and compressed packets.
-2. A versioned backfill reads packet BLOBs, writes normalized ledger rows to temporary Parquet shards, verifies row counts and hashes, and publishes an immutable shard manifest.
-3. SQLite records each shard only after content hash, schema, row count, min/max keys, and deterministic sample exports pass.
-4. Queries read hot data from SQLite and large distributions/correlations from DuckDB over Parquet.
-5. If PostgreSQL opens, copy engine-neutral tables and hashes, dual-read in verification mode, compare every conformance query and export, then switch the catalog in one declared migration. Do not dual-write indefinitely.
+1. V1 SQLite stores identities, hot reductions, gates, and compressed packets under the Git-ignored `.local-data/braid-analysis/` directory.
+2. If a required raw-ledger query opens, a versioned backfill reads packet BLOBs and writes only the needed normalized ledger tables into a restored SQLite benchmark copy. It verifies row counts, hashes, and deterministic sample exports before publication.
+3. If SQLite remains within the latency, size, and recovery gates, publish the migration and continue with one database.
+4. If SQLite fails those gates, copy the engine-neutral logical tables and hashes into PostgreSQL, dual-read in verification mode, compare every conformance query and export, then switch in one declared migration. Do not dual-write indefinitely.
 
 No scale-up step changes packet, source, protocol, manifest, result, or acceptance identity.
 
 ## 14. Benchmark plan
 
-This thread installs no dependency and creates no production database. A separate benchmark may write only to a safe temporary directory and must report exact commands, runtime versions, and storage media.
+The next benchmark uses a disposable database and campaign artifacts generated from the exact live all-candidate registry. No analytical result JSON is checked into the repository. The benchmark report is accepted only when it records the registry hash, database-generation hash, candidate count, accepted and rejected counts, packet and row cardinalities, database size, query timings, integrity result, crash injections, verified backup restoration, and deterministic export inventories.
 
-### 14.1 Datasets
+The benchmark must cover:
 
-1. **Canonical B1 set:** all 260 coverage packets, manifest, and summary. This is the correctness and exact-export set.
-2. **Idempotency set:** the canonical set imported twice and in shuffled order. Logical counts must remain unchanged.
-3. **Failure set:** hash mismatch, truncated JSON, missing root/no-root coverage, failed gate, incomplete campaign, and producer-asserted accepted status without independent gate evidence.
-4. **Representative scale sets:** benchmark-only copies of the measured row shapes at 10,000 cases, one million reduced-measure rows, ten million root rows, and twenty million acceleration-response rows. Synthetic copy ids live only in a benchmark namespace and can never enter accepted views or claim scientific identity.
-5. **Compression set:** packet bytes concatenated by campaign and ledger columns projected by entity, using only lossless codecs.
+1. one complete current-catalog generation for correctness and deterministic export;
+2. an idempotent repeat import with unchanged logical counts;
+3. same-hash/different-byte rejection, compressed-artifact corruption, and forced interruption before and after commit;
+4. deterministic synthetic scale rows that exercise database mechanics without carrying an analytical claim; and
+5. exact packet BLOBs versus gzip packet BLOBs and the declared bounded transaction size.
 
-### 14.2 Operations and measurements
+Required gates remain: first import at most 10 seconds for the representative generation, idempotent retry at most 5 seconds, Q1 exact lookup p95 at most 50 milliseconds, Q2 10,000-case enumeration at most 500 milliseconds, Q3/Q4 million-row filters at most 2 seconds, Q5 distribution/correlation at most 10 seconds, Q6 one-event packet-root inspection p95 at most 100 milliseconds, primary storage at most `2.5` times compact retained bytes, WAL at most five times checkpointed primary growth, zero accepted partial rows after crash injection, and exact restored exports.
 
-Measure cold and warm runs separately:
+Run this benchmark before production publication and after any change to:
 
-- schema creation and migration time;
-- first import and idempotent re-import time;
-- database, journal, index, temporary, backup, and compressed-artifact bytes;
-- Q1-Q10 latency with p50/p95 and query plans;
-- WAL/checkpoint or equivalent write amplification;
-- one-event root inspection without loading unrelated packets;
-- distributions and correlations from reduced rows only;
-- concurrent read latency during one writer ingestion;
-- kill/restart at each ingestion phase;
-- corrupted artifact detection;
-- backup creation, restore time, and restored query latency; and
-- deterministic export byte/hash equality for all 260 packets and the coverage summary.
+- the Node or embedded SQLite version;
+- canonicalization or hash code;
+- schema, migrations, indexes, page size, journal, synchronization, checkpoint, or transaction-batch settings;
+- compression codec or level;
+- authoritative packet, manifest, summary, or acceptance schema; or
+- the runtime storage device or backup method when recovery time matters.
 
-Compare at minimum:
-
-1. SQLite with exact packet BLOBs and hot reductions;
-2. SQLite with gzip packet BLOBs;
-3. DuckDB native tables;
-4. DuckDB over zstd Parquet ledger tables; and
-5. the recommended SQLite-plus-Parquet scale-up shape.
-
-RocksDB or a custom append-only prototype should be benchmarked only if an earlier result identifies a specific unmet keyed-ingest or append requirement. Benchmarking every conceivable engine without a falsifying workload would add infrastructure rather than reduce uncertainty.
-
-### 14.3 Benchmark pass gates
-
-On the operator's current workstation, V1 should meet:
-
-- canonical 260-packet first import in at most 10 s;
-- idempotent re-import in at most 5 s with zero added logical rows;
-- Q1 exact lookup p95 at most 50 ms;
-- Q2 current campaign enumeration at most 100 ms and 10,000-case enumeration at most 500 ms;
-- Q3/Q4 filters over one million hot case rows at most 2 s;
-- Q5 distributions/correlations over ten million reduced rows at most 10 s;
-- Q6 one-event root inspection p95 at most 100 ms;
-- no accepted partial rows after any injected crash;
-- successful integrity check and complete restart after every crash point;
-- restored backup reproducing 100% of selected hashes and all 260 canonical packet bytes; and
-- steady-state total storage, including indexes and authoritative compressed packets but excluding independent backup copies, no more than 2.5 times compact JSON-equivalent payload for the same retained information.
-
-These thresholds are requirements to test. They are not measured performance claims in this packet.
+PostgreSQL is benchmarked only after a declared SQLite concurrency, exact-decimal, raw-ledger scan, size, or recovery gate fails. The retired benchmark report is not current acceptance evidence.
 
 ## 15. Risks, falsifiers, and open decisions
 
@@ -551,10 +557,11 @@ These thresholds are requirements to test. They are not measured performance cla
 
 - Duplicating authoritative packet BLOBs and hot reductions trades some V1 space for simple recovery; the benchmark must show that the cost stays below the storage gate.
 - SQLite's single-writer design may become a bottleneck earlier than byte volume does.
+- One-case gzip transactions caused excessive measured WAL churn; production must enforce the measured batch bound and checkpoint policy rather than relying on SQLite defaults.
 - Application-side compression can hide corruption unless both compressed and uncompressed hashes are checked.
 - Typed parameter projections can drift from canonical vectors unless ingestion verifies every projection.
-- Parquet scale-up can recreate filesystem sprawl if shard sizing or partition cardinality is uncontrolled.
-- Cross-store publication can expose catalog rows before shard durability unless ordering is atomic at the catalog boundary.
+- A missing or ineffective ignore rule could expose database and WAL files to Git or repository-wide tooling.
+- Keeping the live database inside the checkout makes an independent off-checkout backup mandatory; Git does not protect ignored runtime data.
 - A database-native summary can accidentally become authority unless rebuild provenance and independent acceptance remain explicit.
 - Node binding or runtime changes can become an undeclared storage dependency unless versions are pinned and exports remain engine-neutral.
 
@@ -568,16 +575,22 @@ Reject or revise the SQLite V1 recommendation if a representative benchmark obse
 4. a partial or producer-asserted failed case appears in an accepted view;
 5. the Section 14 latency or ingest gates fail after reasonable indexes and prepared bulk transactions are applied;
 6. steady-state primary storage exceeds 2.5 times the compact JSON-equivalent retained payload;
-7. WAL/checkpoint traffic exceeds five times committed logical bytes over a representative campaign without a documented recovery benefit;
+7. WAL bytes exceed five times checkpointed primary database growth over a representative campaign, or controlled checkpointing cannot bound temporary disk use;
 8. writer lock or busy failures affect more than 1% of case transactions under the intended one-writer/readers workload;
 9. crash injection produces corruption, an accepted partial campaign, or manual repair beyond replaying an idempotent batch;
 10. backup restore cannot meet a declared 24-hour recovery objective or fails any integrity/hash/export check;
 11. a one-event root inspection requires scanning unrelated raw ledgers;
 12. reduced distributions or correlations require loading packet BLOBs; or
-13. migration to engine-neutral JSON/Parquet loses units, coordinate definitions, probe polarity, tolerances, root policy, exact hashes, or array order.
+13. migration to engine-neutral JSON or tabular exports loses units, coordinate definitions, probe polarity, tolerances, root policy, exact hashes, or array order;
+14. moving or restoring the database changes any canonical identity because a machine-local path leaked into a hash; or
+15. the database, WAL, or temporary files are not ignored by Git, or a valid backup exists only inside the checkout.
+16. a registry can omit, duplicate, reorder, or drift from a live catalog candidate or checked campaign without blocking publication;
+17. a complete independently rejected candidate disappears from the database inventory or appears in `accepted_case`;
+18. check mode or a failed pre-swap rebuild changes the live database, or post-swap failure cannot restore its prior verified bytes; or
+19. a published database contains mixed campaign generations, lacks exactly one generation record, or cannot reproduce its recorded deterministic export inventories.
 
-If only analytical scans fail while transactional ingestion and exact export pass, keep SQLite for metadata and open the Parquet tier. If writer concurrency or remote operation fails, move metadata to PostgreSQL. If corruption or deterministic export fails, stop ingestion; performance does not compensate for loss of reproducibility.
+If only raw-ledger scans fail while transactional ingestion and exact export pass, first normalize the required ledger tables inside SQLite. If those scans, writer concurrency, exact-decimal queries, database size, or remote operation still fail, migrate the complete logical schema to PostgreSQL. If corruption or deterministic export fails, stop ingestion; performance does not compensate for loss of reproducibility.
 
-### 15.3 Open decision
+### 15.3 Decision status
 
-The remaining operator decision is whether to ratify **SQLite-only V1 with the Section 14 benchmark gates**, authorizing a separate benchmark/implementation packet. The compression codec and exact SQLite binding should be selected by that benchmark. No database dependency, production database, generated campaign artifact, evaluator mathematics, root policy, or acceptance semantic is changed here.
+The storage-engine decision is **SQLite**. The V1 physical settings are gzip packet BLOBs, indexed hot tables, the existing Node `node:sqlite` binding, WAL mode, `synchronous=FULL`, one writer, transactions of at most 32 cases, controlled checkpoints, and a fresh verified atomic rebuild-and-swap rather than purge-in-place. PostgreSQL is only the falsification-driven migration target stated in Section 13. The implementation is tested against temporary current-catalog campaigns; no retained analytical campaign JSON is repository source, and the database path changes no evaluator mathematics, source schema, root policy, or producer acceptance semantic.

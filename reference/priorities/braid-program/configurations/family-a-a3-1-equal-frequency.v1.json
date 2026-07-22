@@ -1,0 +1,21 @@
+{
+  "schema": "prescribed-braid-spec.v1",
+  "specId": "family-a-a3-1-equal-frequency-v1",
+  "label": "A3.1 — equal frequency",
+  "provenanceDescription": "Exact A3.1 prescribed display paths with one common frequency and independently selected remaining A3 coordinates.",
+  "claimGrade": "chart-hypothesis", "evidenceStatus": "display-only", "date": "2026-07-22",
+  "taxonomy": { "familyId": "A", "familyLabel": "Family A", "memberId": "A3.1", "memberLabel": "equal frequency", "displayLabel": "A3.1 — equal frequency", "canonSource": "content/markdown/aaa/noether-braid/braid-family-a.md#a3-constrained-variants" },
+  "illustrativeCoordinates": { "status": "prescribed-display-coordinates", "choices": ["The flattening coordinate lambda_A=0.35 is illustrative.", "Every binary midpoint is the braid origin in the relative frame; each positive h_a separates the two endpoint orbit centers along the binary axis.", "The common frequency f=0.25 and all remaining binary coordinates are prescribed display choices within A3.1.", "Normalized linear axis interpolation is illustrative between the taxonomy-defined endpoints."] },
+  "sourceOrder": ["a3-1-binary-1", "a3-1-binary-2", "a3-1-binary-3"],
+  "group": { "centerAtEpoch": [0, 0, 0], "velocity": [0, 0, 0] }, "prescribedReturnPeriod": 4, "displayTrailPeriods": 1,
+  "braids": [{ "braidId": "a3-1-braid-1", "centerOffset": [0, 0, 0], "phaseOffset": 0, "circulationSense": 1,
+    "frameDefinition": { "type": "family-a-flattening.v1", "nearRestAxes": [[1, 0, 0], [0, 1, 0], [0, 0, 1]], "flattening": 0.35, "interpolation": "normalized-linear-to-equal-component/v1", "phaseCompensatedCyclicFrames": false },
+    "binaries": [
+      { "binaryIndex": 1, "binaryId": "a3-1-binary-1", "worldlineIds": ["a3-1-binary-1-endpoint-1", "a3-1-binary-1-endpoint-2"], "centerOffset": [0, 0, 0], "radius": 0.21, "axialHalfSeparation": 0.06, "transverseOrbitRadius": 0.20124611797498107, "frequency": 0.25, "phase": 0, "polarityAssignment": 1 },
+      { "binaryIndex": 2, "binaryId": "a3-1-binary-2", "worldlineIds": ["a3-1-binary-2-endpoint-1", "a3-1-binary-2-endpoint-2"], "centerOffset": [0, 0, 0], "radius": 0.31, "axialHalfSeparation": 0.12, "transverseOrbitRadius": 0.28583211855912904, "frequency": 0.25, "phase": 0.7, "polarityAssignment": -1 },
+      { "binaryIndex": 3, "binaryId": "a3-1-binary-3", "worldlineIds": ["a3-1-binary-3-endpoint-1", "a3-1-binary-3-endpoint-2"], "centerOffset": [0, 0, 0], "radius": 0.43, "axialHalfSeparation": 0.2, "transverseOrbitRadius": 0.3806573262134856, "frequency": 0.25, "phase": 2.2, "polarityAssignment": 1 }
+    ] }],
+  "recordInterval": { "start": 0, "end": 8, "delayHorizon": 2 },
+  "interpolation": { "rule": "piecewise-cubic-hermite/v0", "interval": 0.05, "errorMethod": "fourth-derivative-hermite-envelope/v1", "positionDivisor": 300, "velocityDivisor": 8, "roundoffMultiplier": 64 },
+  "ansatzSampleCount": 96, "sphericalEnvelopeRadius": 0.55
+}

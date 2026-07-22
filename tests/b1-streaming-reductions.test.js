@@ -42,13 +42,39 @@ function scaled(vector, scalar) {
   };
 }
 
-function sample({ direction, signedWake, unsignedWake, amplitude, eventId }) {
+function sample({
+  direction,
+  signedWake,
+  unsignedWake,
+  amplitude,
+  eventId,
+  normalWakeFluxContributions = null,
+}) {
   const positive = scaled(direction.unitVector, amplitude);
   const negative = scaled(positive, -1);
+  const sourceRootContributions = normalWakeFluxContributions ?? [
+    {
+      sourceRootId: "synthetic-positive:root-0",
+      transmitterId: "synthetic-positive",
+      rootOrdinal: 0,
+      signed: (unsignedWake + signedWake) / 2,
+    },
+    {
+      sourceRootId: "synthetic-negative:root-0",
+      transmitterId: "synthetic-negative",
+      rootOrdinal: 0,
+      signed: (signedWake - unsignedWake) / 2,
+    },
+  ];
   return {
     eventId,
     signedWake,
     unsignedWake,
+    normalWakeFluxDensity: {
+      signed: signedWake,
+      raw: unsignedWake,
+      sourceRootContributions,
+    },
     probeAccelerations: { "1": positive, "-1": negative },
     rawAccelerationMagnitudeSums: { "1": Math.abs(amplitude), "-1": Math.abs(amplitude) },
   };
@@ -118,6 +144,11 @@ test("independent static closed form fixes exposure, wake norm, monopole power, 
     });
     near(surface.wakeSurfaceNorms.signedWake, Math.sqrt(4 * Math.PI) * 3 / surface.radius);
     near(surface.wakeSurfaceNorms.unsignedWake, Math.sqrt(4 * Math.PI) * 5 / surface.radius);
+    near(surface.wakeFlux.signedCycleIntegral, 4 * 4 * Math.PI * 3, 3e-10);
+    near(surface.wakeFlux.rawCycleIntegral, 4 * 4 * Math.PI * 5, 3e-10);
+    near(surface.wakeFlux.residualCycleIntegral, 4 * 4 * Math.PI * 3, 3e-10);
+    near(surface.wakeFlux.etaWakeFlux, 3 / 5, 2e-14);
+    assert.equal(surface.wakeFlux.rawEmissionReference, null);
     const signedMonopole = surface.angularPowerRows.find(
       (row) => row.channel === "signedWake" && row.degree === 0,
     );
@@ -132,6 +163,39 @@ test("independent static closed form fixes exposure, wake norm, monopole power, 
   near(radialRows.find(
     (row) => row.measureId === "angular-power/signedWake/degree-0",
   ).global.exponent, 4);
+});
+
+test("independent static-source evaluation fixes the full-cycle raw wake flux at every radius", () => {
+  const protocol = compactProtocol();
+  const packet = evaluateB1StreamingSurfaceReductions({
+    sourceRecord: staticSixSourceRecord(),
+    completeCycleProtocol: protocol,
+  });
+
+  assert.equal(packet.excludedClaims.includes("energy"), true);
+  for (const surface of packet.diagnosticReductions.surface.primary) {
+    near(surface.wakeFlux.rawCycleIntegral, 24, 3e-4);
+    near(surface.wakeFlux.signedCycleIntegral, 0, 2e-10);
+    assert.equal(surface.wakeFlux.rawEmissionReference.expectedCycleIntegral, 24);
+    assert.equal(surface.wakeFlux.rawEmissionReference.passed, true);
+    assert.match(surface.wakeFlux.claimBoundary, /not energy/);
+  }
+  assert.equal(
+    packet.convergenceComparisons.quadrature.gates.causalWakeFlux.passed,
+    true,
+  );
+  assert.equal(
+    packet.convergenceComparisons.quadrature.gates.rawEmissionReference.passed,
+    true,
+  );
+  assert.equal(
+    packet.convergenceComparisons.quadrature.gates.frequencyResolvedWakeFlux.passed,
+    true,
+  );
+  assert.equal(
+    packet.convergenceComparisons.quadrature.gates.frequencyResolvedWakeFluxBandCoverage.passed,
+    true,
+  );
 });
 
 test("symmetry-protected dipole occupies only the real l=1,m=0 angular channel", () => {
@@ -194,6 +258,85 @@ test("closed-form complete-cycle Fourier rows recover authored cosine and sine a
   const band = surface.spectralBandRows.find((row) =>
     row.channel === "radialProbeAccelerationPositive" && row.degree === null);
   near(band.parsevalResidual, 0, 2e-12);
+});
+
+test("source-tagged normal wake-flux coefficients resolve frequency-selective cancellation", () => {
+  const protocol = compactProtocol();
+  const surface = reduceB1SurfaceSampleGrid({
+    completeCycleProtocol: protocol,
+    radius: 1,
+    sampleAt: ({ direction, timeIndex, directionIndex }) => {
+      const phase = 2 * Math.PI * timeIndex / protocol.completeCycle.primary.timeSamples;
+      const sourceA = Math.cos(2 * phase) + 0.5 * Math.sin(3 * phase);
+      const sourceB = -0.5 * Math.cos(2 * phase) + 0.125 * Math.sin(3 * phase);
+      const signed = sourceA + sourceB;
+      const raw = Math.abs(sourceA) + Math.abs(sourceB);
+      return sample({
+        direction,
+        signedWake: signed,
+        unsignedWake: raw,
+        amplitude: 1,
+        eventId: `wake-flux-fourier-${timeIndex}-${directionIndex}`,
+        normalWakeFluxContributions: [
+          {
+            sourceRootId: "source-a:root-0",
+            transmitterId: "source-a",
+            rootOrdinal: 0,
+            signed: sourceA,
+          },
+          {
+            sourceRootId: "source-b:root-0",
+            transmitterId: "source-b",
+            rootOrdinal: 0,
+            signed: sourceB,
+          },
+        ],
+      });
+    },
+  });
+  const rootArea = Math.sqrt(4 * Math.PI);
+  const coefficient = (sourceRootId, harmonic) =>
+    surface.sourceTaggedWakeFluxSpectralRows.find((row) =>
+      row.sourceRootId === sourceRootId && row.degree === 0 && row.order === 0 &&
+      row.harmonic === harmonic);
+  near(coefficient("source-a:root-0", 2).real, 0.5 * rootArea, 3e-12);
+  near(coefficient("source-b:root-0", 2).real, -0.25 * rootArea, 3e-12);
+  near(coefficient("source-a:root-0", 3).imaginary, -0.25 * rootArea, 3e-12);
+  near(coefficient("source-b:root-0", 3).imaginary, -0.0625 * rootArea, 3e-12);
+
+  const cancellation = (harmonic) => surface.wakeFluxSpectralCancellationRows.find((row) =>
+    row.degree === 0 && row.order === 0 && row.harmonic === harmonic);
+  near(cancellation(2).rawMagnitude, 0.75 * rootArea, 3e-12);
+  near(cancellation(2).netMagnitude, 0.25 * rootArea, 3e-12);
+  near(cancellation(2).etaWakeFlux, 1 / 3, 3e-12);
+  near(cancellation(3).rawMagnitude, 0.3125 * rootArea, 3e-12);
+  near(cancellation(3).netMagnitude, 0.3125 * rootArea, 3e-12);
+  near(cancellation(3).etaWakeFlux, 1, 3e-12);
+  near(surface.sourceTaggedWakeFluxBandCoverage.parsevalRelativeResidual, 0, 2e-12);
+  near(surface.sourceTaggedWakeFluxBandCoverage.outOfBandRmsFraction, 0, 5e-8);
+  assert.match(surface.sourceTaggedWakeFluxBandCoverage.claimBoundary, /not energy/);
+});
+
+test("frequency-resolved wake-flux reduction fails closed without reconstructing source tags", () => {
+  const protocol = compactProtocol();
+  assert.throws(
+    () => reduceB1SurfaceSampleGrid({
+      completeCycleProtocol: protocol,
+      radius: 1,
+      sampleAt: ({ direction, timeIndex, directionIndex }) => {
+        const row = sample({
+          direction,
+          signedWake: 1,
+          unsignedWake: 1,
+          amplitude: 1,
+          eventId: `untagged-${timeIndex}-${directionIndex}`,
+        });
+        delete row.normalWakeFluxDensity.sourceRootContributions;
+        return row;
+      },
+    }),
+    /lacks source-root-tagged normal wake-flux contributions/,
+  );
 });
 
 test("streaming acceptance independently fails closed on every event-level validity obligation", () => {

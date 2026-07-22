@@ -1,0 +1,133 @@
+{
+  "schema": "prescribed-path-analysis/all-candidate-campaign-registry.v1",
+  "registryId": "all-borg-braid-candidates.v1",
+  "catalogId": "borg-braid-record-catalog.v0",
+  "generatedCampaign": {
+    "campaignId": "all-braid-candidate-baseline-v1",
+    "campaignStage": "all-candidate-prescribed-record-baseline",
+    "protocolPath": "src/prescribed-path-analysis/protocols/all-candidate-small-probe-protocol.v1.json"
+  },
+  "candidates": [
+    {
+      "candidateId": "family-a-a1-general-v1",
+      "familyId": "A",
+      "memberId": "A1",
+      "specPath": "reference/priorities/braid-program/configurations/family-a-a1-general.v1.json",
+      "recordPath": "content/assets/borg/records/family-a-a1-general.assembly-view-record.v0.json"
+    },
+    {
+      "candidateId": "family-a-a1-1-equal-frequency-v1",
+      "familyId": "A",
+      "memberId": "A1.1",
+      "specPath": "reference/priorities/braid-program/configurations/family-a-a1-1-equal-frequency.v1.json",
+      "recordPath": "content/assets/borg/records/family-a-a1-1-equal-frequency.assembly-view-record.v0.json"
+    },
+    {
+      "candidateId": "family-a-a1-2-equal-frequency-equal-radius-v1",
+      "familyId": "A",
+      "memberId": "A1.2",
+      "specPath": "reference/priorities/braid-program/configurations/family-a-a1-2-equal-frequency-equal-radius.v1.json",
+      "recordPath": "content/assets/borg/records/family-a-a1-2-equal-frequency-equal-radius.assembly-view-record.v0.json"
+    },
+    {
+      "candidateId": "family-a-a1-3-4-2-1-frequency-v1",
+      "familyId": "A",
+      "memberId": "A1.3",
+      "specPath": "reference/priorities/braid-program/configurations/family-a-a1-3-4-2-1-frequency.v1.json",
+      "recordPath": "content/assets/borg/records/family-a-a1-3-4-2-1-frequency.assembly-view-record.v0.json"
+    },
+    {
+      "candidateId": "family-a-a1-4-3-2-1-frequency-v1",
+      "familyId": "A",
+      "memberId": "A1.4",
+      "specPath": "reference/priorities/braid-program/configurations/family-a-a1-4-3-2-1-frequency.v1.json",
+      "recordPath": "content/assets/borg/records/family-a-a1-4-3-2-1-frequency.assembly-view-record.v0.json"
+    },
+    {
+      "candidateId": "family-a-a2-fully-symmetric-v1",
+      "familyId": "A",
+      "memberId": "A2",
+      "specPath": "reference/priorities/braid-program/configurations/family-a-a2-fully-symmetric.v1.json",
+      "recordPath": "content/assets/borg/records/family-a-a2-fully-symmetric.assembly-view-record.v0.json"
+    },
+    {
+      "candidateId": "family-a-a3-general-v1",
+      "familyId": "A",
+      "memberId": "A3",
+      "specPath": "reference/priorities/braid-program/configurations/family-a-a3-general.v1.json",
+      "recordPath": "content/assets/borg/records/family-a-a3-general.assembly-view-record.v0.json"
+    },
+    {
+      "candidateId": "family-a-a3-1-equal-frequency-v1",
+      "familyId": "A",
+      "memberId": "A3.1",
+      "specPath": "reference/priorities/braid-program/configurations/family-a-a3-1-equal-frequency.v1.json",
+      "recordPath": "content/assets/borg/records/family-a-a3-1-equal-frequency.assembly-view-record.v0.json"
+    },
+    {
+      "candidateId": "family-a-a3-2-equal-frequency-equal-radius-v1",
+      "familyId": "A",
+      "memberId": "A3.2",
+      "specPath": "reference/priorities/braid-program/configurations/family-a-a3-2-equal-frequency-equal-radius.v1.json",
+      "recordPath": "content/assets/borg/records/family-a-a3-2-equal-frequency-equal-radius.assembly-view-record.v0.json"
+    },
+    {
+      "candidateId": "family-a-a3-3-4-2-1-frequency-v1",
+      "familyId": "A",
+      "memberId": "A3.3",
+      "specPath": "reference/priorities/braid-program/configurations/family-a-a3-3-4-2-1-frequency.v1.json",
+      "recordPath": "content/assets/borg/records/family-a-a3-3-4-2-1-frequency.assembly-view-record.v0.json"
+    },
+    {
+      "candidateId": "family-a-a3-4-3-2-1-frequency-v1",
+      "familyId": "A",
+      "memberId": "A3.4",
+      "specPath": "reference/priorities/braid-program/configurations/family-a-a3-4-3-2-1-frequency.v1.json",
+      "recordPath": "content/assets/borg/records/family-a-a3-4-3-2-1-frequency.assembly-view-record.v0.json"
+    },
+    {
+      "candidateId": "illustrative-spindle-chart-hypothesis-v0",
+      "familyId": "B",
+      "memberId": "B1",
+      "specPath": "reference/priorities/braid-program/configurations/illustrative-spindle-chart-hypothesis.v0.json",
+      "recordPath": "content/assets/borg/records/illustrative-spindle-chart-hypothesis.assembly-view-record.v0.json"
+    },
+    {
+      "candidateId": "illustrative-extreme-cap-tilt-spindle-variant-v0",
+      "familyId": "B",
+      "memberId": "B1",
+      "specPath": "reference/priorities/braid-program/configurations/illustrative-extreme-cap-tilt-spindle-variant.v0.json",
+      "recordPath": "content/assets/borg/records/illustrative-extreme-cap-tilt-spindle-variant.assembly-view-record.v0.json"
+    },
+    {
+      "candidateId": "illustrative-planar-tri-binary-spindle-boundary-v0",
+      "familyId": "B",
+      "memberId": "B1",
+      "specPath": "reference/priorities/braid-program/configurations/illustrative-planar-tri-binary-spindle-boundary.v0.json",
+      "recordPath": "content/assets/borg/records/illustrative-planar-tri-binary-spindle-boundary.assembly-view-record.v0.json"
+    },
+    {
+      "candidateId": "illustrative-full-cap-axial-spindle-boundary-v0",
+      "familyId": "B",
+      "memberId": "B1",
+      "specPath": "reference/priorities/braid-program/configurations/illustrative-full-cap-axial-spindle-boundary.v0.json",
+      "recordPath": "content/assets/borg/records/illustrative-full-cap-axial-spindle-boundary.assembly-view-record.v0.json"
+    },
+    {
+      "candidateId": "family-c-c1-co-rotating-b1-pair-v1",
+      "familyId": "C",
+      "memberId": "C1",
+      "specPath": "reference/priorities/braid-program/configurations/family-c-c1-co-rotating-b1-pair.v1.json",
+      "recordPath": "content/assets/borg/records/family-c-c1-co-rotating-b1-pair.assembly-view-record.v0.json"
+    },
+    {
+      "candidateId": "family-c-c2-counter-rotating-b1-pair-v1",
+      "familyId": "C",
+      "memberId": "C2",
+      "specPath": "reference/priorities/braid-program/configurations/family-c-c2-counter-rotating-b1-pair.v1.json",
+      "recordPath": "content/assets/borg/records/family-c-c2-counter-rotating-b1-pair.assembly-view-record.v0.json"
+    }
+  ],
+  "checkedCampaigns": [],
+  "excludedCampaigns": []
+}

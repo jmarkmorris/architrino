@@ -28,7 +28,7 @@ export const DEFAULT_B1_COMPLETE_CYCLE_PROTOCOL_PATH = path.resolve(
 );
 export const DEFAULT_B1_COMPLETE_CYCLE_RESULT_PATH = path.resolve(
   REPOSITORY_ROOT,
-  "src/prescribed-path-analysis/fixtures/" +
+  ".tmp/prescribed-path-analysis/" +
     "b1-interior-complete-cycle-reduction.result-packet.v1.json",
 );
 export const DEFAULT_B1_COMPLETE_CYCLE_RAW_STORE_PATH = path.resolve(

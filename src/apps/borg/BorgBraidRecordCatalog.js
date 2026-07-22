@@ -5,7 +5,7 @@ const ENTRY_FIELDS = Object.freeze(["id", "label", "recordUrl", "familyId", "fam
 export const BORG_BRAID_RECORD_CATALOG = createBorgBraidRecordCatalog([
   {
     id: "family-a-a1-general-v1",
-    label: "A1 — general",
+    label: "A1 — coincident endpoint orbits",
     familyId: "A",
     familyLabel: "Family A",
     recordUrl: "content/assets/borg/records/family-a-a1-general.assembly-view-record.v0.json",
@@ -44,6 +44,41 @@ export const BORG_BRAID_RECORD_CATALOG = createBorgBraidRecordCatalog([
     familyId: "A",
     familyLabel: "Family A",
     recordUrl: "content/assets/borg/records/family-a-a2-fully-symmetric.assembly-view-record.v0.json",
+  },
+  {
+    id: "family-a-a3-general-v1",
+    label: "A3 — general",
+    familyId: "A",
+    familyLabel: "Family A",
+    recordUrl: "content/assets/borg/records/family-a-a3-general.assembly-view-record.v0.json",
+  },
+  {
+    id: "family-a-a3-1-equal-frequency-v1",
+    label: "A3.1 — equal frequency",
+    familyId: "A",
+    familyLabel: "Family A",
+    recordUrl: "content/assets/borg/records/family-a-a3-1-equal-frequency.assembly-view-record.v0.json",
+  },
+  {
+    id: "family-a-a3-2-equal-frequency-equal-radius-v1",
+    label: "A3.2 — equal frequency, equal radius",
+    familyId: "A",
+    familyLabel: "Family A",
+    recordUrl: "content/assets/borg/records/family-a-a3-2-equal-frequency-equal-radius.assembly-view-record.v0.json",
+  },
+  {
+    id: "family-a-a3-3-4-2-1-frequency-v1",
+    label: "A3.3 — 4:2:1 frequency",
+    familyId: "A",
+    familyLabel: "Family A",
+    recordUrl: "content/assets/borg/records/family-a-a3-3-4-2-1-frequency.assembly-view-record.v0.json",
+  },
+  {
+    id: "family-a-a3-4-3-2-1-frequency-v1",
+    label: "A3.4 — 3:2:1 frequency",
+    familyId: "A",
+    familyLabel: "Family A",
+    recordUrl: "content/assets/borg/records/family-a-a3-4-3-2-1-frequency.assembly-view-record.v0.json",
   },
   {
     id: "illustrative-spindle-chart-hypothesis-v0",

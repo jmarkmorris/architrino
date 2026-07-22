@@ -66,24 +66,9 @@ Object keys are sorted recursively before hashing; array order remains part of t
 
 The result claim grade is `derived`: it is conditional on the prescribed source record and protocol. The packet explicitly excludes stability, energy, retention, and physical-realization claims.
 
-## B1 Interior Small Fixture
+## Local Evaluation
 
-The checked fixture uses the `B1 interior-coordinate reference` source, one stationary probe at $(1,0.25,0.1)$, absolute time $T=4$, and probe polarities $+1$ and $-1$:
-
-- protocol: `fixtures/b1-interior-small-fixture.analysis-protocol.v1.json`;
-- result: `fixtures/b1-interior-small-fixture.result-packet.v1.json`;
-- exact source hash: `addada18d7f3e9abe61fc4ea1660cd1cb849473110d46dae6fa2bf16f458671f`;
-- protocol hash: `0fb7ee5c9f36fdac8186ac0155ed53fcc0b3363e44a144b160c1491404da1d50`;
-- result hash: `5ff8052ba89ed2c491fe7ae283798a1d931e342b1be7ca837a3e603f8c8803a5`.
-
-Check the deterministic result without writing:
-
-```bash
-node scripts/eom/evaluate-prescribed-source-wake.mjs \
-  --check src/prescribed-path-analysis/fixtures/b1-interior-small-fixture.result-packet.v1.json
-```
-
-Print a custom evaluation to standard output:
+Print an evaluation to standard output without retaining a repository result packet:
 
 ```bash
 node scripts/eom/evaluate-prescribed-source-wake.mjs \
@@ -91,7 +76,7 @@ node scripts/eom/evaluate-prescribed-source-wake.mjs \
   --protocol path/to/complete-analysis-protocol.json
 ```
 
-Regenerate a deliberately accepted fixture change with `--write <result-path>`, then rerun `--check`.
+Use `--write .tmp/prescribed-path-analysis/<name>.result-packet.v1.json` for a disposable local packet. Retained campaign results belong in the analytical database and deterministic exports, not in checked-in result JSON.
 
 ## Independent Checks
 
@@ -104,60 +89,46 @@ Regenerate a deliberately accepted fixture change with `--write <result-path>`, 
 
 Evaluator correctness is falsified if any independent value differs beyond the declared tolerance, if a retained root is missing, or if identical exact source and protocol inputs produce a different result hash.
 
-## Seeded B1 Cap-Angle Smoke Campaign
+## Analytical Campaign Database
 
-The first reproducible configuration-space smoke campaign is declared by `campaigns/b1-cap-angle-smoke/b1-cap-angle-smoke-campaign.manifest.v1.json`. It holds the B1 center, frame, radii, common frequency, phases, circulation sense, polarity assignments, and record interval fixed. It samples the three independent cap angles $\alpha_a\in[0,\pi/2]$ with a four-point seeded Latin hypercube, then sets $h_a=R_a\sin\alpha_a$ and $\rho_a=R_a\cos\alpha_a$. The four catalog B1 records are included as anchors in addition to the four sampled coordinates.
+The versioned SQLite implementation stores exact campaign artifacts and indexed hot measures without making the database file repository source. The default runtime file is `.local-data/braid-analysis/analytical-campaigns.sqlite3`; the directory is Git-ignored, and startup fails if that ignore rule is absent. The implementation uses the SQLite library embedded in the repository's Node runtime, so it does not require a separate SQLite package for these commands.
 
-The runner builds each `prescribed-path-analysis/exact-source-record.v1` through the prescribed-braid source emitter and passes it directly to `evaluatePrescribedRecordAnalysis`. It does not generate an assembly-view display record, evolve a path, or call the EOM solver.
+The importer preflights a complete manifest, summary, and packet inventory before its first campaign write. It recomputes result and protocol hashes, derives acceptance gates from retained ledger rows and protocol thresholds, stores exact packet bytes as content-addressed gzip artifacts, and publishes campaign acceptance only after every bounded transaction is present. Repeating an import verifies existing rows instead of duplicating them; an interrupted import resumes after its last committed ordinal.
 
-Reproduce the checked packets and compact summary without writing:
-
-```bash
-node scripts/eom/run-b1-prescribed-analysis-campaign.mjs --check
-```
-
-Write an explicitly accepted campaign update:
+Rebuild every registered analytical campaign into a fresh disposable database and verify it without changing the live database:
 
 ```bash
-node scripts/eom/run-b1-prescribed-analysis-campaign.mjs --write
+node scripts/eom/analytical-campaign-database.mjs rebuild-all --check
 ```
 
-The manifest schema `prescribed-path-analysis/b1-cap-angle-campaign-manifest.v1` binds:
-
-| Field | Contents |
-| --- | --- |
-| `seed`, `sampleCount`, `stratification` | PRNG algorithm and integer seed, number of sampled coordinates, and Latin-hypercube rule. |
-| `samplingMeasure` | Uniform measure in each of the three cap angles and the exact $h_a,\rho_a$ transforms. |
-| `fixedCoordinates` | Coordinates held common across all anchors and samples. |
-| `baseSpec`, `commonProtocol`, `anchors` | Repository paths plus byte hashes for every external campaign input, and the normalized common protocol hash. |
-| `implementedMeasures` | Measures the analytical evaluator currently emits. |
-| `outputs` | Deterministic packet directory and summary filename. |
-
-The summary schema `prescribed-path-analysis/b1-cap-angle-campaign-summary.v1` contains the manifest and protocol hashes, sampling declaration, fixed coordinates, per-case packet paths and hashes, sampled coordinates, gate results, implemented measures, cohort ranges, and one summary hash. Full raw ledgers remain in the eight per-case `prescribed-path-analysis/result-packet.v1` files.
-
-For seed `20260722`, the checked campaign contains four anchors and four sampled coordinates. All eight cases pass the declared source-speed/root-completeness, root-transversality, minimum-separation, and numerical-convergence gates. Its summary hash is `81a1fb902cff61ad55db95b2c9cb88f798710e853e35d324ce2059aea7020368`.
-
-This is a smoke campaign, not a configuration-space characterization. The result grade is `derived`, conditional on the prescribed records and common protocol. It does not establish stability, energy, retention, or physical realization. Reproducibility is falsified if the bound inputs and seed do not regenerate every packet and summary hash; an individual case is rejected if any fail-closed validity gate does not pass.
-
-## Full B1 Monte Carlo Coverage Campaign
-
-The first full initial-coverage campaign is declared by `campaigns/b1-cap-angle-coverage/b1-cap-angle-coverage-campaign.manifest.v1.json`. It fixes seed `20260722`, 256 Latin-hypercube samples, 256 equal-probability strata per cap-angle marginal, the smoke campaign's fixed B1 coordinates, the same four anchors, and the same complete analysis protocol. Each marginal stratum has angular width $\pi/512$, or $0.3515625$ degrees.
-
-The predeclared `all-cases-all-gates/fail-closed.v1` acceptance policy requires exactly 256 sampled cases plus four anchors. Every case must pass source-speed, root-completeness, root-transversality, minimum-separation, and numerical-convergence gates. A failed case rejects the campaign and permits no partial artifact write.
-
-The predeclared `seeded-population-descriptive-report.v1` policy keeps anchors outside the sampled distributions. For each implemented scalar measure it reports the minimum, maximum, mean, population standard deviation, and $5\%$, $25\%$, $50\%$, $75\%$, and $95\%$ linearly interpolated empirical quantiles. It also reports Pearson correlations between each sampled $\alpha_a$ and each scalar measure. Those correlations are descriptive associations and are explicitly not source-parameter sensitivity measures. The policy forbids a weighted score, ranking, dominance result, favorable-region claim, and partial-result report.
-
-Check the complete campaign without writing:
+When that check passes, publish the same registry contract by atomically replacing the live database:
 
 ```bash
-node scripts/eom/run-b1-prescribed-analysis-campaign.mjs \
-  --manifest src/prescribed-path-analysis/campaigns/b1-cap-angle-coverage/b1-cap-angle-coverage-campaign.manifest.v1.json \
-  --check
+node scripts/eom/analytical-campaign-database.mjs rebuild-all --publish
 ```
 
-The checked campaign contains 260 passing cases and has summary hash `77be2076b5b22108b1d0a6bf5937efde20c6b3b8470a725160d0246a77a504a0`. Across the 256 seeded samples, the minimum separation is at least `0.12178785465127749`, the root-transversality margin is at least `0.6725833904106403`, and the maximum reported numerical-convergence change is at most `6.157074849966193e-12`, below the protocol tolerance `1e-9`.
+The versioned [all-candidate registry](campaigns/all-candidate-analytical-campaign.registry.v1.json) must match the live Borg catalog and prescribed-record target map exactly. It also requires every checked campaign manifest to be either imported or explicitly excluded with a reason. The command evaluates the registered exact prescribed source records under one declared protocol, imports all registered checked campaigns, retains complete independently rejected candidate cases outside `accepted_case`, verifies exact source coverage, regenerates deterministic exports, records one database-generation hash, and only then swaps the fresh SQLite file into place. A missing candidate, undeclared manifest, hash mismatch, incomplete case, export failure, or post-swap verification failure leaves or restores the prior database. `--check` is always nonpublishing.
 
-This campaign completes only the methodology's initial Monte Carlo coverage stage for the currently implemented event and validity measures. It does not supply enclosing-surface exposure, anisotropy, spectral, radial-scaling, local source-sensitivity, directed-refinement, or robustness results. It therefore does not grade the complete analytical objective vector or establish a robust favorable region.
+This is the one-operation development reset path. Do not delete or empty the live database first: the fresh database is built beside it, and the prior generation remains the recoverable live copy until verification and the atomic swap succeed.
+
+Inspect, verify, export, and create a verified off-checkout backup with:
+
+```bash
+node scripts/eom/analytical-campaign-database.mjs inspect
+
+node scripts/eom/analytical-campaign-database.mjs verify
+
+node scripts/eom/analytical-campaign-database.mjs export-campaign \
+  --manifest-hash 6c8e668460d33ce582ba33438764a24628cf9de05d7fc54ca2c9e26845d61f08 \
+  --output-directory /safe/temporary/export-directory
+
+node scripts/eom/analytical-campaign-database.mjs backup \
+  --output /separately-administered/backup/analytical-campaigns.sqlite3
+```
+
+The exporter writes exact manifest, summary, and result-packet bytes plus deterministic source-envelope, exact-source, protocol, acceptance-evidence, and hash-inventory files. The generated all-candidate campaign stores and verifies each exact source-record preimage.
+
+Independent database acceptance is a separately authored verification of the retained analytical record. It is not a fresh numerical evaluation of the prescribed paths and does not establish the evaluator's mathematical correctness. Import, acceptance, query, export, or backup does not call the EOM solver or imply stability, energy, retention, physical realization, or completed braid-family grading.
 
 ## Smallest B1 Campaign Follow-Up
 
@@ -170,12 +141,14 @@ The protocol also predeclares:
 - both virtual-probe polarities on every fixed and surface coordinate;
 - same-source exclusion for the six moving endpoint receivers;
 - cycle-and-surface exposure norms and the raw constituent normalization;
+- complete-cycle signed, source-root-tagged raw, and residual normal causal-wake flux, together with $\eta_{\mathcal W,\mathrm{flux}}(R)$ and the reference $T_{\mathrm{ret}}\sum_j|q_j|$;
 - real orthonormal spherical harmonics through degree $8$;
 - complete-cycle Fourier rows through harmonic $16$;
+- source-root-tagged complex normal wake-flux coefficients and coefficient-level $\eta_{\mathcal W,\mathrm{flux}}^{(\ell mn)}(R)$ rows through the same angular and temporal band;
 - pairwise and global log-radius scaling rows without assuming an expected exponent; and
 - cap-angle sensitivities in $\alpha_1,\alpha_2,\alpha_3$ using a central step $\pi/512$, a half-step convergence check, and second-order one-sided stencils at domain boundaries.
 
-`buildB1SurfaceEventAnalysisProtocol` expands any declared radius and resolution into a canonical `analysis-protocol.v1` accepted by `evaluatePrescribedRecordAnalysis`. `evaluateB1StreamingSurfaceReductions` evaluates one stationary surface time batch at a time, independently rechecks the event validity obligations, passes each complete raw result packet to the configured analytical-data-store callback, and retains only reduction accumulators between batches. It emits the external-exposure, angular-power, anisotropy, complete-cycle spectral, and radial-scaling rows. Moving endpoint receivers and local source-sensitivity stencils remain outside this reduction result.
+`buildB1SurfaceEventAnalysisProtocol` expands any declared radius and resolution into a canonical `analysis-protocol.v1` accepted by `evaluatePrescribedRecordAnalysis`. `evaluateB1StreamingSurfaceReductions` evaluates one stationary surface time batch at a time, independently rechecks the event validity obligations, passes each complete raw result packet to the configured analytical-data-store callback, and retains only reduction accumulators between batches. It emits the external-exposure, complete-cycle normal causal-wake flux, angular-power, anisotropy, complete-cycle spectral, source-root-tagged normal wake-flux spectral, frequency-and-angular-mode cancellation, and radial-scaling entries. The frequency-resolved wake-flux rows retain each transmitter and root ordinal until the raw complex-magnitude sum and net complex sum have both been formed. The wake-flux entries remain causal-wake measures and are explicitly excluded from energy, potential, work, leakage, stability, retention, and physical-realization claims. Moving endpoint receivers and local source-sensitivity stencils remain outside this reduction result.
 
 Validate the declaration and its independent quadrature, symmetry, Fourier, causal-reach, and fail-closed checks with:
 
@@ -191,16 +164,16 @@ Write the deterministic B1 interior-reference reduction and its gzip-compressed 
 
 ```bash
 node scripts/eom/run-b1-complete-cycle-streaming-reduction.mjs \
-  --write src/prescribed-path-analysis/fixtures/b1-interior-complete-cycle-reduction.result-packet.v1.json
+  --write .tmp/prescribed-path-analysis/b1-interior-complete-cycle-reduction.result-packet.v1.json
 ```
 
-The raw result packets are written under `.tmp/prescribed-path-analysis/b1-interior-complete-cycle-raw/` by default. Every stored packet is bound into the reduction result by its compressed and uncompressed SHA-256 hashes, event result hash, event protocol hash, raw causal-root-ledger hash, row counts, radius, resolution, and time index. The checked reduction result retains the exact quadrature nodes and weights and the primary-versus-refined convergence comparisons.
+The raw result packets are written under `.tmp/prescribed-path-analysis/b1-interior-complete-cycle-raw/` by default. Every stored packet is bound into the reduction result by its compressed and uncompressed SHA-256 hashes, event result hash, event protocol hash, raw causal-root-ledger hash, entry counts, radius, resolution, and time index. The generated reduction result retains the exact quadrature nodes and weights, the primary-versus-refined convergence comparisons, the raw wake-flux residual against $T_{\mathrm{ret}}\sum_j|q_j|$, and the source-tagged retained-band coverage at every radius and resolution. The frequency rows fail closed when source tags do not reconstruct the sampled normal flux, the retained out-of-band RMS fraction exceeds its threshold, or primary and refined complex coefficients do not converge.
 
 Check the result without rewriting it:
 
 ```bash
 node scripts/eom/run-b1-complete-cycle-streaming-reduction.mjs \
-  --check src/prescribed-path-analysis/fixtures/b1-interior-complete-cycle-reduction.result-packet.v1.json
+  --check .tmp/prescribed-path-analysis/b1-interior-complete-cycle-reduction.result-packet.v1.json
 ```
 
 Add `--verify-raw-store` when the local raw store is present and should also be byte-hash checked. Moving endpoint probes and cap-angle stencil evaluation can use the same streaming boundary, but they are not implemented or inferred by this surface result.

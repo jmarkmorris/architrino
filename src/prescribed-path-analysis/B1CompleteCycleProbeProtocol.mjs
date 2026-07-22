@@ -247,6 +247,56 @@ export function validateB1CompleteCycleProbeProtocol(rawProtocol) {
   if (exposure.etaExt !== "L_ext/(L_raw+exposureFloor).v1") {
     throw new TypeError("externalExposureReduction.etaExt must bind the declared exposure ratio.");
   }
+  const wakeFlux = object(
+    raw.causalWakeFluxReduction,
+    "protocol.causalWakeFluxReduction",
+  );
+  if (wakeFlux.integrationWindow !== "one-complete-return-cycle.v1" ||
+      wakeFlux.normalProjection !==
+        "fieldSpeed-times-root-signed-wake-times-root-direction-dot-outward-normal.v1" ||
+      wakeFlux.rawAggregation !==
+        "sum-absolute-source-root-normal-contributions-before-superposition.v1" ||
+      wakeFlux.residualAggregation !==
+        "absolute-signed-superposition-after-source-root-summation.v1" ||
+      wakeFlux.etaWakeFlux !== "residualCycleIntegral/rawCycleIntegral.v1" ||
+      wakeFlux.rawEmissionReference !==
+        "cycle-period-times-sum-absolute-source-polarity.v1") {
+    throw new TypeError("causalWakeFluxReduction must bind the declared full-cycle formulas.");
+  }
+  const wakeFluxFloor = positive(
+    wakeFlux.fluxFloor,
+    "causalWakeFluxReduction.fluxFloor",
+  );
+  const frequencyResolvedWakeFlux = object(
+    wakeFlux.frequencyResolved,
+    "causalWakeFluxReduction.frequencyResolved",
+  );
+  if (frequencyResolvedWakeFlux.angularBasis !==
+        "same-real-orthonormal-spherical-harmonic-basis-as-angularReduction.v1" ||
+      frequencyResolvedWakeFlux.temporalBasis !== "complete-cycle-complex-dft.v1" ||
+      frequencyResolvedWakeFlux.sourceRootTag !==
+        "transmitter-id-plus-root-ordinal.v1" ||
+      frequencyResolvedWakeFlux.rawCoefficientAggregation !==
+        "sum-source-root-complex-magnitudes-before-superposition.v1" ||
+      frequencyResolvedWakeFlux.netCoefficientAggregation !==
+        "magnitude-of-source-root-complex-sum.v1" ||
+      frequencyResolvedWakeFlux.etaWakeFluxCoefficient !==
+        "netMagnitude/rawMagnitude.v1") {
+    throw new TypeError(
+      "causalWakeFluxReduction.frequencyResolved must bind the declared coefficient formulas.",
+    );
+  }
+  const wakeFluxCoefficientFloor = positive(
+    frequencyResolvedWakeFlux.coefficientFloor,
+    "causalWakeFluxReduction.frequencyResolved.coefficientFloor",
+  );
+  if (wakeFluxCoefficientFloor !== wakeFluxFloor) {
+    throw new RangeError("frequency-resolved coefficient floor must equal the wake-flux floor.");
+  }
+  positive(
+    frequencyResolvedWakeFlux.relativeComparisonFloor,
+    "causalWakeFluxReduction.frequencyResolved.relativeComparisonFloor",
+  );
   if (angular.realForm !==
       "m-negative=sqrt(2)Im(Y_l_abs(m));m-zero=Y_l_0;m-positive=sqrt(2)Re(Y_l_m).v1") {
     throw new TypeError("angularReduction.realForm must bind the real harmonic convention.");
@@ -286,6 +336,25 @@ export function validateB1CompleteCycleProbeProtocol(rawProtocol) {
     gates.quadratureConvergence?.radialExponentAbsolute,
     "failClosedGates.quadratureConvergence.radialExponentAbsolute",
   );
+  positive(
+    gates.quadratureConvergence?.causalWakeFluxRelativeOrAbsolute,
+    "failClosedGates.quadratureConvergence.causalWakeFluxRelativeOrAbsolute",
+  );
+  positive(
+    gates.quadratureConvergence?.frequencyResolvedWakeFluxRelativeOrAbsolute,
+    "failClosedGates.quadratureConvergence.frequencyResolvedWakeFluxRelativeOrAbsolute",
+  );
+  positive(
+    gates.causalWakeFlux?.rawEmissionReferenceRelative,
+    "failClosedGates.causalWakeFlux.rawEmissionReferenceRelative",
+  );
+  const outOfBandRmsThreshold = positive(
+    gates.causalWakeFlux?.frequencyResolvedOutOfBandRmsFraction,
+    "failClosedGates.causalWakeFlux.frequencyResolvedOutOfBandRmsFraction",
+  );
+  if (outOfBandRmsThreshold > 1) {
+    throw new RangeError("frequency-resolved out-of-band RMS threshold cannot exceed one.");
+  }
   positive(
     gates.quadratureConvergence?.sourceSensitivityRelativeOrAbsolute,
     "failClosedGates.quadratureConvergence.sourceSensitivityRelativeOrAbsolute",
@@ -357,6 +426,8 @@ export function summarizeB1CompleteCycleProbeProtocol(rawProtocol) {
       fixedInternalCoordinateEvents: true,
       movingEndpointReceiverEvents: false,
       surfaceAngularSpectralRadialReductions: true,
+      fullCycleCausalWakeFluxReduction: true,
+      frequencyResolvedCausalWakeFluxReduction: true,
       localSourceSensitivityReduction: false,
     },
   };

@@ -12,7 +12,6 @@ import {
 } from "../src/prescribed-path-analysis/index.mjs";
 import {
   DEFAULT_B1_ANALYSIS_PROTOCOL_PATH,
-  DEFAULT_B1_ANALYSIS_RESULT_PATH,
   evaluateSpindleAnalysisFromFiles,
   serializePrescribedRecordAnalysis,
 } from "../scripts/eom/evaluate-prescribed-source-wake.mjs";
@@ -330,13 +329,15 @@ test("canonical protocol fails closed when convergence inputs are incomplete", (
   }), /protocol\.convergence\.rootTolerance must be finite/);
 });
 
-test("checked-in B1 fixture packet is the deterministic canonical evaluation", () => {
-  const expected = fs.readFileSync(DEFAULT_B1_ANALYSIS_RESULT_PATH, "utf8");
-  const actual = serializePrescribedRecordAnalysis(evaluateSpindleAnalysisFromFiles({
+test("identical B1 source and protocol inputs produce deterministic packet bytes", () => {
+  const first = serializePrescribedRecordAnalysis(evaluateSpindleAnalysisFromFiles({
     protocolPath: DEFAULT_B1_ANALYSIS_PROTOCOL_PATH,
   }));
-  assert.equal(actual, expected);
-  const parsed = JSON.parse(actual);
+  const second = serializePrescribedRecordAnalysis(evaluateSpindleAnalysisFromFiles({
+    protocolPath: DEFAULT_B1_ANALYSIS_PROTOCOL_PATH,
+  }));
+  assert.equal(first, second);
+  const parsed = JSON.parse(first);
   assert.equal(parsed.source.recordId, "illustrative-spindle-chart-hypothesis-v0");
   assert.equal(parsed.reducedMeasures.events[0].rootCount, 6);
   assert.equal(parsed.reducedMeasures.validity.passed, true);

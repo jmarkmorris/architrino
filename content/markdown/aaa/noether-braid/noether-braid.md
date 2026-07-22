@@ -50,7 +50,7 @@ The prescribed geometry is organized by [Braid Taxonomy](braid-taxonomy.md). Its
 | Term | Definition | Additional structure |
 | --- | --- | --- |
 | [**neutral braid**](#neutral-braid-base) | The broad six-architrino neutral case before any required binary grouping or radial organization. | Polarity balance and causal-return bookkeeping. |
-| [**Family A**](braid-family-a.md) | One braid whose three binary axes are orthogonal at the near-rest endpoint and converge toward the group-translation direction under the prescribed response. | `A1` is the general independent-coordinate member; `A2` is the fully symmetric member. |
+| [**Family A**](braid-family-a.md) | One braid whose three binary axes are orthogonal at the near-rest endpoint and converge toward the group-translation direction under the prescribed response. | `A1` is the zero-axial-offset subset, `A2` is the fully symmetric member, and `A3` carries the general axial/transverse decomposition. |
 | [**Family B**](braid-family-b.md) | One braid whose three binary midpoints and axes coincide. | `B1` is the rigid common-frequency member. |
 | [**Family C**](braid-family-c.md) | An assembly composed of two complete B1 braids. | `C1` has the same circulation sense; `C2` has the opposite circulation sense. |
 
@@ -64,7 +64,7 @@ Canonical reader-facing prose uses **Noether braid** for the assembly class, **n
 
 A Noether braid is a candidate way for six architrinos to keep coming back into a repeatable causal relationship. The important object is not a drawn knot or a fixed material ring. It is the full branch record: which architrinos are present, which causal wakes return, which root identities stay active, and which conserved or nearly conserved quantities survive around the cycle.
 
-That is why the family identifiers are deliberately neutral. `A1`, `A2`, `B1`, `C1`, and `C2` point to explicit table rows; the identifiers do not themselves imply stability, mass response, photon behavior, or Noether sea dominance. Those claims require retained branch certificates and downstream export rows.
+That is why the family identifiers are deliberately neutral. `A1`, `A2`, `A3`, `B1`, `C1`, and `C2` point to explicit table rows; the identifiers do not themselves imply stability, mass response, photon behavior, or Noether sea dominance. Those claims require retained branch certificates and downstream export rows.
 
 ## Document Role
 
@@ -76,7 +76,7 @@ It does not carry the detailed family derivations, select a frequency family, as
 | --- | --- | --- |
 | Requirements | [Braid Recovery Requirements](braid-recovery-requirements.md) | The realization-independent retention-certificate shape, its base-family instantiation, proof-burden order, and recovery-target inventory. |
 | Taxonomy | [Braid Taxonomy](braid-taxonomy.md) | The canonical coordinates, family/member identifiers, master tables, and prescribed response endpoints. |
-| Family definition | [Braid Family A](braid-family-a.md) | The shared Family-A geometry, A1 variants, the A2 definition, and the A1.2/A2 boundary. |
+| Family definition | [Braid Family A](braid-family-a.md) | The shared Family-A geometry, A1 and A3 variants, the A2 definition, and their coordinate-locus relations. |
 | Family definition | [Braid Family B](braid-family-b.md) | The exact B1 path geometry, coordinate boundaries, axial-translation specialization, and Family-A boundary. |
 | Family definition | [Braid Family C](braid-family-c.md) | The exact two-B1 composition chart, C1/C2 circulation relation, derived axis offset, and physical-mapping boundary. |
 | Configuration space | [Noether Braid Configuration Space](noether-braid-configuration-space.md) | The evidence-level terms and supplementary rank-three angular-momentum-frame diagnostics outside the canonical taxonomy. |
@@ -84,7 +84,7 @@ It does not carry the detailed family derivations, select a frequency family, as
 | A2 symmetry and return response | [A2 Symmetry and Return Response](braid-a2-symmetry-and-return-response.md) | The A2 invariant-channel theorem, two-ring geometry, dipole identity, momentum screw, and return-response analysis. |
 | Mathematics | [Braid Mathematics](braid-mathematics.md) | The shared machinery: transverse speed-budget lemmas, eigen-braid spectrum framing, fold-set action quantization as hypothesis, and Accessory Configuration moment analysis. |
 | Analysis methodology | [Candidate Braid Analysis Methodology](braid-analysis-methodology.md) | The common causal-wake map, internal and external probes, energy-ledger interface, sampling method, and candidate-grading rules. |
-| Analysis | [A1.3 Doubling-Frequency Resonance Lock](braid-a1-3-doubling-frequency-lock.md) | The A1.3 $4{:}2{:}1$ candidate and its lock analysis. |
+| Analysis | [A3.3 Doubling-Frequency Resonance Lock](braid-a3-3-doubling-frequency-lock.md) | The A3.3 $4{:}2{:}1$ candidate, including its zero-axial-offset A1.3 locus, and its lock analysis. |
 | Export | [Braid Envelope Geometry](braid-envelope-geometry.md) | The family-general envelope and observer-export interface: dynamic exclusion envelope, sea-interface diagnostic, canonical geometry variables, and the Lorentz projection. |
 | Export | [Noether Braid Topological Charge](noether-braid-topological-charge.md) | Classification of retained branch charts. |
 

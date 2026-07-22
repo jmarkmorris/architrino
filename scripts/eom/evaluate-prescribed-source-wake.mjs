@@ -23,8 +23,8 @@ export const DEFAULT_B1_ANALYSIS_PROTOCOL_PATH = path.resolve(
   "../../src/prescribed-path-analysis/fixtures/b1-interior-small-fixture.analysis-protocol.v1.json",
 );
 export const DEFAULT_B1_ANALYSIS_RESULT_PATH = path.resolve(
-  SCRIPT_DIRECTORY,
-  "../../src/prescribed-path-analysis/fixtures/b1-interior-small-fixture.result-packet.v1.json",
+  REPOSITORY_ROOT,
+  ".tmp/prescribed-path-analysis/b1-interior-small-fixture.result-packet.v1.json",
 );
 
 function parseArgs(args) {

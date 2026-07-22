@@ -1,12 +1,12 @@
 # Braid Family A
 
-Family A contains prescribed one-braid geometries whose three binary axes are mutually orthogonal at the near-rest endpoint and converge toward the group-translation direction as the prescribed flattening coordinate increases. The canonical coordinates, response endpoints, and master-table rows are defined in [Braid Taxonomy](braid-taxonomy.md#family-a-noether-core). This chapter explains how those coordinates distinguish A1, its constrained variants, and A2.
+Family A contains prescribed one-braid geometries whose three binary axes are mutually orthogonal at the near-rest endpoint and converge toward the group-translation direction as the prescribed flattening coordinate increases. The canonical coordinates, response endpoints, and master-table rows are defined in [Braid Taxonomy](braid-taxonomy.md#family-a-noether-core). This chapter explains how those coordinates distinguish A1, A2, A3, and their constrained loci.
 
-Family A is a geometry-and-motion definition. It does not establish that an A1 or A2 record is generated, retained, or stable under the EOM solver. The realization-independent retention burden is stated in [Braid Recovery Requirements](braid-recovery-requirements.md).
+Family A is a geometry-and-motion definition. It does not establish that an A1, A2, or A3 record is generated, retained, or stable under the EOM solver. The realization-independent retention burden is stated in [Braid Recovery Requirements](braid-recovery-requirements.md).
 
 ## Shared Family-A Geometry
 
-Every Family-A member is one complete Noether braid composed of three neutral binaries. Each binary contains one electrino and one positrino. The binaries share a braid-level phase zero, while radius, axial half-separation, transverse orbit radius, frequency, phase, and circulation are binary coordinates.
+Every Family-A member is one complete Noether braid composed of three neutral binaries. Each binary contains one electrino and one positrino. The three binary midpoints coincide with the braid center. The binaries share a braid-level phase zero, while radius, axial half-separation, transverse orbit radius, frequency, phase, and circulation are binary coordinates.
 
 At the near-rest endpoint, the three binary axes are mutually orthogonal. Their equal-component direction is the Family-A translation direction. The complete braid translates along that direction, and the translation speed is the braid's group translation speed rather than an internal architrino speed.
 
@@ -24,18 +24,30 @@ The coincident-axis endpoint is also a geometric boundary with Family B. A Famil
 
 ## A1
 
-A1 is the general Family-A member. Its indices $a\in\{1,2,3\}$ are persistent record identities. They are not assigned by sorting the radii, frequencies, speeds, or later dynamical roles. The radii are independently assignable positive coordinates, and equal values are permitted. The three frequencies are likewise independently assignable.
+A1 is the zero-axial-offset Family-A member. Its indices $a\in\{1,2,3\}$ are persistent record identities. They are not assigned by sorting the radii, frequencies, speeds, or later dynamical roles. The radii are independently assignable positive coordinates, and equal values are permitted. The three frequencies are likewise independently assignable.
 
-A1 does not require the exact cyclic binary-permutation symmetry of A2. When its binary coordinates differ, a spatial rotation cannot map one binary onto another with different geometry. An integer frequency ratio can make the full prescribed figure repeat after a common period, but it does not by itself establish spatial equivalence. A1 may meet the A2 coordinate locus when all of the additional A2 equalities and cyclic-equivalence conditions hold.
+For every A1 binary,
+
+$$
+\mathbf c_a(T)=\mathbf X_{\mathrm{grp}}(T),
+\qquad
+h_a=0,
+\qquad
+\rho_a=R_a.
+$$
+
+The two architrinos therefore remain antipodal while traversing the same geometric circle, whose center is the braid center. The three binary circles need not share one plane: at the near-rest endpoint their plane normals are the three mutually orthogonal Family-A axes.
+
+A1 does not require the exact cyclic binary-permutation symmetry of A2. When its binary coordinates differ, a spatial rotation cannot map one binary onto another with different geometry. An integer frequency ratio can make the full prescribed figure repeat after a common period, but it does not by itself establish spatial equivalence.
 
 ### A1 Constrained Variants
 
-Each constrained variant inherits A1's persistent binary indices and independently assignable coordinates unless its master-table row explicitly replaces a coordinate:
+Each constrained variant inherits A1's persistent binary indices, common braid center, and zero axial half-separation unless its master-table row explicitly replaces another coordinate:
 
 | Member | Added constraint | What remains inherited |
 | --- | --- | --- |
-| `A1.1` | One common frequency. | Independently assignable radii, decompositions, and phases. |
-| `A1.2` | Equal radii, one common frequency, and phases $0$, $2\pi/3$, and $4\pi/3$. | The axial and transverse decompositions may still differ among binaries. |
+| `A1.1` | One common frequency. | Independently assignable radii and phases; $h_a=0$ and $\rho_a=R_a$. |
+| `A1.2` | Equal radii, one common frequency, and phases $0$, $2\pi/3$, and $4\pi/3$. | The shared zero-axial-offset relation remains fixed. |
 | `A1.3` | Indexed frequency ratio $f_1:f_2:f_3=4:2:1$. | Independently assignable radii and unconstrained phases; the ratio does not order the radii. |
 | `A1.4` | Indexed frequency ratio $f_1:f_2:f_3=3:2:1$. | Independently assignable radii and unconstrained phases; the ratio does not order the radii. |
 
@@ -51,18 +63,55 @@ The fixture is one exact A2 representative, not the whole A2 coordinate space. A
 
 The member-specific symmetry lemma, reduced channels, two-ring geometry, axial polarity-dipole identity, momentum-screw alignment, and retention questions are developed in [A2 Symmetry and Return Response](braid-a2-symmetry-and-return-response.md). Those results constrain the fixture under their stated assumptions; they do not certify A2 retention.
 
-## A1 and A2 Boundary
+## A3
 
-A1.2 and A2 share equal radii, equal frequencies, and the same three phase values, but they are not identical members:
+A3 is the general axial-decomposition Family-A member. It retains the common braid center and persistent binary identities of A1 while permitting each binary to carry its own nonnegative axial half-separation and transverse orbit radius:
 
-| Coordinate or relation | `A1.2` | `A2` |
+$$
+R_a^2=h_a^2+\rho_a^2.
+$$
+
+For endpoint sign $\sigma\in\{+1,-1\}$, the center of the endpoint's circular path is
+
+$$
+\mathbf O_{a,\sigma}(T)
+=
+\mathbf X_{\mathrm{grp}}(T)
++
+\sigma h_a\hat{\mathbf n}_a.
+$$
+
+Thus $h_a>0$ separates the two endpoint orbit centers by $2h_a\hat{\mathbf n}_a$, even though the endpoint positions remain antipodal about the binary midpoint at every common time. A3 permits $h_a=0$, so A1 is its exact zero-axial-offset subset rather than a disjoint class.
+
+### A3 Constrained Variants
+
+The A3 suffixes carry the same frequency, radius, and phase restrictions as the corresponding A1 suffixes, while retaining independently assignable axial/transverse decompositions:
+
+| Member | Added constraint | What remains inherited |
 | --- | --- | --- |
-| Axial half-separations | $h_1,h_2,h_3$ may differ | One common $h$ |
-| Transverse orbit radii | $\rho_1,\rho_2,\rho_3$ may differ | One common $\rho$ |
-| Circulation | Inherited A1 value is not yet specified | One common sense |
-| Cyclic binary equivalence | Not required | Required |
+| `A3.1` | One common frequency. | Independently assignable radii, decompositions, and phases. |
+| `A3.2` | Equal radii, one common frequency, and phases $0$, $2\pi/3$, and $4\pi/3$. | The axial and transverse decompositions may differ among binaries. |
+| `A3.3` | Indexed frequency ratio $f_1:f_2:f_3=4:2:1$. | Independently assignable radii, decompositions, and unconstrained phases. |
+| `A3.4` | Indexed frequency ratio $f_1:f_2:f_3=3:2:1$. | Independently assignable radii, decompositions, and unconstrained phases. |
 
-A1.2 reaches the A2 coordinate locus only when the remaining binary geometries and circulation data also become equal and cyclic binary equivalence holds. This is a boundary coincidence between member definitions, not evidence of a physical transition.
+For every shared suffix $n\in\{1,2,3,4\}$,
+
+$$
+A1.n=A3.n\mathbin{\cap}\{h_1=h_2=h_3=0\}.
+$$
+
+## A1, A2, and A3 Relations
+
+A1.2, A2, and A3.2 share equal radii, equal frequencies, and the same three phase values, but they are not identical members:
+
+| Coordinate or relation | `A1.2` | `A2` | `A3.2` |
+| --- | --- | --- | --- |
+| Axial half-separations | $h_1=h_2=h_3=0$ | One common $h$ | $h_1,h_2,h_3$ may differ |
+| Transverse orbit radii | $\rho_1=\rho_2=\rho_3=R$ | One common $\rho$ | $\rho_1,\rho_2,\rho_3$ may differ |
+| Circulation | Inherited A1 value is not yet specified | One common sense | Inherited A3 value is not yet specified |
+| Cyclic binary equivalence | Not required | Required | Not required |
+
+A1.2 is the $h=0$ locus of A3.2. A2 occupies the cyclically symmetric locus of A3 and intersects A1 when its common geometry also has $h=0$. These coordinate coincidences do not establish a physical transition.
 
 ## Claim Boundary
 

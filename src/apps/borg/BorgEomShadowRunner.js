@@ -355,6 +355,10 @@ export function createBorgEomShadowRunConfig(manifest, options = {}) {
     options.simulationOuterRadius,
     manifest.simulationEnvelope?.outerRadius ?? 50,
   );
+  const simulationCenter = requiredFiniteVector3(
+    options.simulationCenter ?? manifest.simulationEnvelope?.center ?? { x: 0, y: 0, z: 0 },
+    "simulation center",
+  );
   const fieldSpeed = positiveNumber(
     options.fieldSpeed,
     manifest.simulationEnvelope?.fieldSpeed ?? 1,
@@ -372,7 +376,7 @@ export function createBorgEomShadowRunConfig(manifest, options = {}) {
     enabled:
       runGrade === BORG_EOM_RUN_GRADE_DISPLAY &&
       options.causalHistoryRetention === true,
-    center: manifest.simulationEnvelope?.center,
+    center: simulationCenter,
     radius: outerRadius,
   });
   const coreScale = Number(budget.finiteWidth.coreScale);
@@ -434,6 +438,7 @@ export function createBorgEomShadowRunConfig(manifest, options = {}) {
     pathCount,
     sampleInterval,
     fieldSpeed,
+    simulationCenter,
     simulationOuterRadius: outerRadius,
     historyStartTime: roundTime(startTime - historyDepth),
     historyDepth,
@@ -1260,6 +1265,14 @@ function requiredFiniteNumber(value, label) {
     throw new TypeError(`Borg EOM ${label} must be finite.`);
   }
   return number;
+}
+
+function requiredFiniteVector3(value, label) {
+  return Object.freeze({
+    x: requiredFiniteNumber(value?.x, `${label} x`),
+    y: requiredFiniteNumber(value?.y, `${label} y`),
+    z: requiredFiniteNumber(value?.z, `${label} z`),
+  });
 }
 
 function finiteNumber(value, fallback) {

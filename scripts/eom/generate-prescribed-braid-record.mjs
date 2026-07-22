@@ -43,6 +43,11 @@ export const PRESCRIBED_BRAID_TARGETS = Object.freeze([
   target("family-a-a1-3-4-2-1-frequency.v1.json", "family-a-a1-3-4-2-1-frequency.assembly-view-record.v0.json"),
   target("family-a-a1-4-3-2-1-frequency.v1.json", "family-a-a1-4-3-2-1-frequency.assembly-view-record.v0.json"),
   target("family-a-a2-fully-symmetric.v1.json", "family-a-a2-fully-symmetric.assembly-view-record.v0.json"),
+  target("family-a-a3-general.v1.json", "family-a-a3-general.assembly-view-record.v0.json"),
+  target("family-a-a3-1-equal-frequency.v1.json", "family-a-a3-1-equal-frequency.assembly-view-record.v0.json"),
+  target("family-a-a3-2-equal-frequency-equal-radius.v1.json", "family-a-a3-2-equal-frequency-equal-radius.assembly-view-record.v0.json"),
+  target("family-a-a3-3-4-2-1-frequency.v1.json", "family-a-a3-3-4-2-1-frequency.assembly-view-record.v0.json"),
+  target("family-a-a3-4-3-2-1-frequency.v1.json", "family-a-a3-4-3-2-1-frequency.assembly-view-record.v0.json"),
   // These four output URLs and source ids remain stable compatibility contracts.
   target("illustrative-spindle-chart-hypothesis.v0.json", "illustrative-spindle-chart-hypothesis.assembly-view-record.v0.json"),
   target("illustrative-extreme-cap-tilt-spindle-variant.v0.json", "illustrative-extreme-cap-tilt-spindle-variant.assembly-view-record.v0.json"),
@@ -56,7 +61,10 @@ export const DEFAULT_PRESCRIBED_BRAID_SPEC_PATH = PRESCRIBED_BRAID_TARGETS[0].sp
 export const DEFAULT_PRESCRIBED_BRAID_RECORD_PATH = PRESCRIBED_BRAID_TARGETS[0].outPath;
 
 const FAMILY_MEMBERS = Object.freeze({
-  A: Object.freeze(["A1", "A1.1", "A1.2", "A1.3", "A1.4", "A2"]),
+  A: Object.freeze([
+    "A1", "A1.1", "A1.2", "A1.3", "A1.4", "A2",
+    "A3", "A3.1", "A3.2", "A3.3", "A3.4",
+  ]),
   B: Object.freeze(["B1"]),
   C: Object.freeze(["C1", "C2"]),
 });
@@ -302,18 +310,35 @@ function validateMemberConstraints(spec) {
   const phasePattern = [0, 2 * Math.PI / 3, 4 * Math.PI / 3];
   const phasesMatch = binaries.every((binary, index) =>
     near(wrappedAngle(binary.phase), wrappedAngle(phasePattern[index])));
-  if (memberId === "A1.1" && !equal((binary) => binary.frequency)) {
-    throw new RangeError("A1.1 requires one common frequency.");
+  if (spec.taxonomy.familyId === "A") {
+    if (!braids.every((braid) => braid.centerOffset.every((coordinate) => near(coordinate, 0))) ||
+        !binaries.every((binary) => binary.centerOffset.every((coordinate) => near(coordinate, 0)))) {
+      throw new RangeError("Family A requires every binary midpoint at the braid origin in the relative frame.");
+    }
   }
-  if (memberId === "A1.2" && !(
+  if (memberId === "A1" || memberId.startsWith("A1.")) {
+    if (!binaries.every((binary) =>
+      near(binary.axialHalfSeparation, 0) &&
+      near(binary.transverseOrbitRadius, binary.radius))) {
+      throw new RangeError(`${memberId} requires h_a=0 and rho_a=R_a for every binary.`);
+    }
+  }
+  if ((memberId === "A1.1" || memberId === "A3.1") && !equal((binary) => binary.frequency)) {
+    throw new RangeError(`${memberId} requires one common frequency.`);
+  }
+  if ((memberId === "A1.2" || memberId === "A3.2") && !(
     equal((binary) => binary.radius) &&
     equal((binary) => binary.frequency) &&
     phasesMatch
   )) {
-    throw new RangeError("A1.2 requires equal radii, equal frequencies, and 120-degree phase spacing.");
+    throw new RangeError(`${memberId} requires equal radii, equal frequencies, and 120-degree phase spacing.`);
   }
-  if (memberId === "A1.3") validateFrequencyRatio(binaries, [4, 2, 1], memberId);
-  if (memberId === "A1.4") validateFrequencyRatio(binaries, [3, 2, 1], memberId);
+  if (memberId === "A1.3" || memberId === "A3.3") {
+    validateFrequencyRatio(binaries, [4, 2, 1], memberId);
+  }
+  if (memberId === "A1.4" || memberId === "A3.4") {
+    validateFrequencyRatio(binaries, [3, 2, 1], memberId);
+  }
   if (memberId === "A2") {
     const frame = braids[0].frameDefinition;
     if (!(

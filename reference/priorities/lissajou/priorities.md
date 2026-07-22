@@ -29,4 +29,4 @@ The lane is also an external-contact opportunity: Lissajous and spherical-Lissaj
 
 - [shell-braid](../../../content/markdown/aaa/noether-braid/braid-a1-dynamics.md)
 - [nested-shell-braid](../../../content/markdown/aaa/noether-braid/braid-a1-dynamics.md)
-- [noether-braid-doubling-frequency-resonance-lock](../../../content/markdown/aaa/noether-braid/braid-a1-3-doubling-frequency-lock.md)
+- [noether-braid-doubling-frequency-resonance-lock](../../../content/markdown/aaa/noether-braid/braid-a3-3-doubling-frequency-lock.md)

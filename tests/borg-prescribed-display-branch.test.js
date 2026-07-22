@@ -5,8 +5,14 @@ import test from "node:test";
 import { BORG_DATASET_MANIFEST_V1 } from "../src/apps/borg/BorgAppManifest.js";
 import { createBorgAssemblyViewSession } from "../src/apps/borg/BorgAssemblyViewSession.js";
 import { createBorgBraidRecordNavigation } from "../src/apps/borg/BorgBootstrap.js";
-import { createBorgBraidRecordCatalog } from "../src/apps/borg/BorgBraidRecordCatalog.js";
-import { createBorgEomShadowRunner } from "../src/apps/borg/BorgEomShadowRunner.js";
+import {
+  BORG_BRAID_RECORD_CATALOG,
+  createBorgBraidRecordCatalog,
+} from "../src/apps/borg/BorgBraidRecordCatalog.js";
+import {
+  createBorgEomShadowRunConfig,
+  createBorgEomShadowRunner,
+} from "../src/apps/borg/BorgEomShadowRunner.js";
 import {
   BORG_PRESCRIBED_DISPLAY_PROFILE_V1,
   createBorgPrescribedDisplayBranch,
@@ -96,7 +102,43 @@ test("prescribed Display branch starts the EOM runner at the exact selected cut"
   assert.equal(runner.config.pathCount, 6);
   assert.equal(runner.config.coupling, "0.0005");
   assert.equal(runner.config.simulationOuterRadius, 0.5);
+  assert.deepEqual(runner.config.simulationCenter, { x: 0, y: 0, z: 0 });
   runner.dispose();
+});
+
+test("every catalog record prepares a Display branch with its record-owned envelope", () => {
+  BORG_BRAID_RECORD_CATALOG.entries.forEach((catalogEntry) => {
+    const catalogRecord = JSON.parse(readFileSync(new URL(
+      `../${catalogEntry.recordUrl}`,
+      import.meta.url,
+    )));
+    const entry = createBorgAssemblyViewSession([catalogRecord]).selected;
+    const prescribed = entry.dataset.provenance.prescribedGeometry;
+    const branch = createBorgPrescribedDisplayBranch({
+      entry,
+      cutTime: entry.dataset.window.start + prescribed.prescribedReturnPeriod,
+      eomClient: { async evolveRetainedHistories() {} },
+      manifest: BORG_DATASET_MANIFEST_V1,
+      runDuration: 60,
+      runId: `prescribed-display-catalog-test:${catalogEntry.id}`,
+    });
+
+    assert.deepEqual(branch.simulationEnvelope, {
+      center: prescribed.responseCenter,
+      radius: prescribed.sphericalEnvelopeRadius,
+    });
+    assert.deepEqual(branch.runnerOptions.simulationCenter, prescribed.responseCenter);
+    assert.equal(
+      branch.runnerOptions.simulationOuterRadius,
+      prescribed.sphericalEnvelopeRadius,
+    );
+    const runConfig = createBorgEomShadowRunConfig(
+      BORG_DATASET_MANIFEST_V1,
+      branch.runnerOptions,
+    );
+    assert.deepEqual(runConfig.simulationCenter, prescribed.responseCenter);
+    assert.equal(runConfig.simulationOuterRadius, prescribed.sphericalEnvelopeRadius);
+  });
 });
 
 test("prescribed Display branch refuses to invent a cut inside a source segment", () => {

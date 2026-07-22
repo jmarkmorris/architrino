@@ -162,12 +162,14 @@ function complexDft(values, maximumHarmonic) {
     }
   }
   const timeDomainPower = values.reduce((sum, value) => sum + value * value, 0) / count;
+  const outOfBandPower = Math.max(0, fullBandPower - retainedBandPower);
   return {
     retained,
     retainedBandPower,
     fullBandPower,
     timeDomainPower,
     parsevalResidual: fullBandPower - timeDomainPower,
+    outOfBandPower,
   };
 }
 
@@ -184,7 +186,10 @@ function sampleChannels(sample, direction) {
   };
 }
 
-function createSurfaceAccumulator(protocol, radius, resolution) {
+function createSurfaceAccumulator(protocol, radius, resolution, {
+  sourceAbsolutePolaritySum = null,
+  sourceRootIdentities = [],
+} = {}) {
   const grid = protocol.completeCycle[resolution];
   const directions = createSphericalProductQuadrature(grid);
   const times = createPeriodicCycleTimes({
@@ -204,6 +209,27 @@ function createSurfaceAccumulator(protocol, radius, resolution) {
     "-1": { external: 0, raw: 0, peak: null },
   };
   const wakeSquaredSums = { signedWake: 0, unsignedWake: 0 };
+  const wakeFluxSums = { signed: 0, raw: 0, residual: 0 };
+  const sourceRootFluxSeries = new Map();
+  for (const identity of sourceRootIdentities) {
+    if (typeof identity?.transmitterId !== "string" || !identity.transmitterId ||
+        !Number.isSafeInteger(identity.rootOrdinal) || identity.rootOrdinal < 0) {
+      throw new TypeError("source-root identity declarations must bind transmitter and ordinal.");
+    }
+    const sourceRootId = `${identity.transmitterId}:root-${identity.rootOrdinal}`;
+    if (sourceRootFluxSeries.has(sourceRootId)) {
+      throw new Error(`source-root identity ${sourceRootId} was declared twice.`);
+    }
+    sourceRootFluxSeries.set(sourceRootId, {
+      sourceRootId,
+      transmitterId: identity.transmitterId,
+      rootOrdinal: identity.rootOrdinal,
+      coefficientSeries: harmonics.map(() => Array(times.length).fill(0)),
+    });
+  }
+  const normalizedSourceAbsolutePolaritySum = sourceAbsolutePolaritySum === null
+    ? null
+    : positive(sourceAbsolutePolaritySum, "source absolute-polarity sum");
   const ingestedTimes = new Set();
   const batchDescriptors = [];
 
@@ -221,6 +247,7 @@ function createSurfaceAccumulator(protocol, radius, resolution) {
       channel,
       Array(harmonics.length).fill(0),
     ]));
+    const sourceRootCoefficientSums = new Map();
     for (let directionIndex = 0; directionIndex < directions.length; directionIndex += 1) {
       const direction = directions[directionIndex];
       const sample = samples[directionIndex];
@@ -248,6 +275,80 @@ function createSurfaceAccumulator(protocol, radius, resolution) {
       }
       wakeSquaredSums.signedWake += weight * sample.signedWake * sample.signedWake;
       wakeSquaredSums.unsignedWake += weight * sample.unsignedWake * sample.unsignedWake;
+      const signedNormalFluxDensity = finite(
+        sample.normalWakeFluxDensity?.signed,
+        `${sample.eventId}.normalWakeFluxDensity.signed`,
+      );
+      const rawNormalFluxDensity = nonnegative(
+        sample.normalWakeFluxDensity?.raw,
+        `${sample.eventId}.normalWakeFluxDensity.raw`,
+      );
+      if (Math.abs(signedNormalFluxDensity) > rawNormalFluxDensity + 1e-12) {
+        throw new Error(
+          `${sample.eventId} violates the source-tagged wake-flux triangle bound.`,
+        );
+      }
+      const sourceRootContributions = sample.normalWakeFluxDensity?.sourceRootContributions;
+      if (!Array.isArray(sourceRootContributions)) {
+        throw new Error(`${sample.eventId} lacks source-root-tagged normal wake-flux contributions.`);
+      }
+      const sampleSourceRootIds = new Set();
+      let taggedSignedNormalFluxDensity = 0;
+      let taggedRawNormalFluxDensity = 0;
+      for (const contribution of sourceRootContributions) {
+        const sourceRootId = typeof contribution?.sourceRootId === "string"
+          ? contribution.sourceRootId
+          : "";
+        const transmitterId = typeof contribution?.transmitterId === "string"
+          ? contribution.transmitterId
+          : "";
+        const rootOrdinal = contribution?.rootOrdinal;
+        if (!sourceRootId || !transmitterId ||
+            !Number.isSafeInteger(rootOrdinal) || rootOrdinal < 0) {
+          throw new Error(`${sample.eventId} has an invalid source-root wake-flux tag.`);
+        }
+        if (sourceRootId !== `${transmitterId}:root-${rootOrdinal}`) {
+          throw new Error(`${sample.eventId} has a noncanonical source-root wake-flux tag.`);
+        }
+        if (sampleSourceRootIds.has(sourceRootId)) {
+          throw new Error(`${sample.eventId} repeats source-root tag ${sourceRootId}.`);
+        }
+        sampleSourceRootIds.add(sourceRootId);
+        const signed = finite(
+          contribution.signed,
+          `${sample.eventId}.${sourceRootId}.signedNormalWakeFluxDensity`,
+        );
+        taggedSignedNormalFluxDensity += signed;
+        taggedRawNormalFluxDensity += Math.abs(signed);
+        const existing = sourceRootFluxSeries.get(sourceRootId);
+        if (existing && (existing.transmitterId !== transmitterId ||
+            existing.rootOrdinal !== rootOrdinal)) {
+          throw new Error(`source-root tag ${sourceRootId} changed identity.`);
+        }
+        if (!existing) {
+          sourceRootFluxSeries.set(sourceRootId, {
+            sourceRootId,
+            transmitterId,
+            rootOrdinal,
+            coefficientSeries: harmonics.map(() => Array(times.length).fill(0)),
+          });
+        }
+        const coefficientRow = sourceRootCoefficientSums.get(sourceRootId) ??
+          Array(harmonics.length).fill(0);
+        for (let harmonicIndex = 0; harmonicIndex < harmonics.length; harmonicIndex += 1) {
+          coefficientRow[harmonicIndex] +=
+            weight * signed * harmonicValues[directionIndex][harmonicIndex];
+        }
+        sourceRootCoefficientSums.set(sourceRootId, coefficientRow);
+      }
+      const taggedTolerance = 1e-12 * Math.max(1, rawNormalFluxDensity);
+      if (Math.abs(taggedSignedNormalFluxDensity - signedNormalFluxDensity) > taggedTolerance ||
+          Math.abs(taggedRawNormalFluxDensity - rawNormalFluxDensity) > taggedTolerance) {
+        throw new Error(`${sample.eventId} source-root wake-flux rows do not reconstruct the sample.`);
+      }
+      wakeFluxSums.signed += weight * signedNormalFluxDensity;
+      wakeFluxSums.raw += weight * rawNormalFluxDensity;
+      wakeFluxSums.residual += weight * Math.abs(signedNormalFluxDensity);
       for (const channel of CHANNELS) {
         for (let harmonicIndex = 0; harmonicIndex < harmonics.length; harmonicIndex += 1) {
           coefficientSums[channel][harmonicIndex] +=
@@ -258,6 +359,14 @@ function createSurfaceAccumulator(protocol, radius, resolution) {
     for (const channel of CHANNELS) {
       for (let harmonicIndex = 0; harmonicIndex < harmonics.length; harmonicIndex += 1) {
         coefficients[channel][harmonicIndex][timeIndex] = coefficientSums[channel][harmonicIndex];
+      }
+    }
+    for (const sourceRoot of sourceRootFluxSeries.values()) {
+      const sums = sourceRootCoefficientSums.get(sourceRoot.sourceRootId) ??
+        Array(harmonics.length).fill(0);
+      for (let harmonicIndex = 0; harmonicIndex < harmonics.length; harmonicIndex += 1) {
+        sourceRoot.coefficientSeries[harmonicIndex][timeIndex] =
+          radius * radius * sums[harmonicIndex];
       }
     }
     ingestedTimes.add(timeIndex);
@@ -287,6 +396,51 @@ function createSurfaceAccumulator(protocol, radius, resolution) {
     const wakeSurfaceNorms = {
       signedWake: Math.sqrt(surfaceFactor * wakeSquaredSums.signedWake),
       unsignedWake: Math.sqrt(surfaceFactor * wakeSquaredSums.unsignedWake),
+    };
+    const cycleSurfaceFactor = radius * radius * protocol.completeCycle.period / timeCount;
+    const signedCycleIntegral = cycleSurfaceFactor * wakeFluxSums.signed;
+    const rawCycleIntegral = cycleSurfaceFactor * wakeFluxSums.raw;
+    const residualCycleIntegral = cycleSurfaceFactor * wakeFluxSums.residual;
+    const fluxFloor = protocol.causalWakeFluxReduction.fluxFloor;
+    if (!(rawCycleIntegral > fluxFloor)) {
+      throw new Error(
+        `${resolution} radius ${radius} has no admissible raw cycle-integrated wake flux.`,
+      );
+    }
+    const etaWakeFlux = residualCycleIntegral / rawCycleIntegral;
+    if (etaWakeFlux < -1e-12 || etaWakeFlux > 1 + 1e-12) {
+      throw new Error(`${resolution} radius ${radius} wake-flux ratio left [0,1].`);
+    }
+    const expectedRawCycleIntegral = normalizedSourceAbsolutePolaritySum === null
+      ? null
+      : protocol.completeCycle.period * normalizedSourceAbsolutePolaritySum;
+    const rawEmissionReference = expectedRawCycleIntegral === null
+      ? null
+      : {
+          expectedCycleIntegral: expectedRawCycleIntegral,
+          absoluteResidual: rawCycleIntegral - expectedRawCycleIntegral,
+          relativeResidual: Math.abs(rawCycleIntegral - expectedRawCycleIntegral) /
+            Math.max(Math.abs(expectedRawCycleIntegral), fluxFloor),
+          threshold:
+            protocol.failClosedGates.causalWakeFlux.rawEmissionReferenceRelative,
+        };
+    if (rawEmissionReference) {
+      rawEmissionReference.passed =
+        rawEmissionReference.relativeResidual <= rawEmissionReference.threshold;
+    }
+    const wakeFlux = {
+      integrationWindow: {
+        start: protocol.completeCycle.start,
+        period: protocol.completeCycle.period,
+        endpointConvention: protocol.completeCycle.endpointConvention,
+      },
+      signedCycleIntegral,
+      rawCycleIntegral,
+      residualCycleIntegral,
+      etaWakeFlux,
+      rawEmissionReference,
+      claimBoundary:
+        "cycle-integrated causal-wake measure; not energy, potential, work, or leakage",
     };
     const angularPowerRows = [];
     const anisotropyRows = [];
@@ -365,6 +519,156 @@ function createSurfaceAccumulator(protocol, radius, resolution) {
         spectralBandRows.push({ channel, degree, retainedBandPower });
       });
     }
+    if (sourceRootFluxSeries.size === 0) {
+      throw new Error(`${resolution} radius ${radius} lacks source-root wake-flux series.`);
+    }
+    const frequencyConfig = protocol.causalWakeFluxReduction.frequencyResolved;
+    const coefficientFloor = frequencyConfig.coefficientFloor;
+    const sourceTaggedWakeFluxSpectralRows = [];
+    const aggregateCoefficientRows = new Map();
+    const sourceTaggedBandTotals = {
+      retainedBandPower: 0,
+      fullBandPower: 0,
+      timeDomainPower: 0,
+      parsevalResidual: 0,
+      outOfBandPower: 0,
+    };
+    const orderedSourceRoots = [...sourceRootFluxSeries.values()].sort((left, right) =>
+      left.sourceRootId.localeCompare(right.sourceRootId));
+    for (const sourceRoot of orderedSourceRoots) {
+      for (let harmonicIndex = 0; harmonicIndex < harmonics.length; harmonicIndex += 1) {
+        const angular = harmonics[harmonicIndex];
+        const spectral = complexDft(
+          sourceRoot.coefficientSeries[harmonicIndex],
+          protocol.spectralReduction.maximumHarmonic,
+        );
+        sourceTaggedBandTotals.retainedBandPower += spectral.retainedBandPower;
+        sourceTaggedBandTotals.fullBandPower += spectral.fullBandPower;
+        sourceTaggedBandTotals.timeDomainPower += spectral.timeDomainPower;
+        sourceTaggedBandTotals.parsevalResidual += spectral.parsevalResidual;
+        sourceTaggedBandTotals.outOfBandPower += spectral.outOfBandPower;
+        for (const coefficient of spectral.retained) {
+          const row = {
+            sourceRootId: sourceRoot.sourceRootId,
+            transmitterId: sourceRoot.transmitterId,
+            rootOrdinal: sourceRoot.rootOrdinal,
+            degree: angular.degree,
+            order: angular.order,
+            harmonic: coefficient.harmonic,
+            frequencyCyclesPerAbsoluteTime:
+              coefficient.harmonic / protocol.completeCycle.period,
+            angularFrequency:
+              2 * Math.PI * coefficient.harmonic / protocol.completeCycle.period,
+            real: coefficient.real,
+            imaginary: coefficient.imaginary,
+            magnitude: coefficient.magnitude,
+            phase: coefficient.phase,
+            oneSidedPower: coefficient.oneSidedPower,
+          };
+          sourceTaggedWakeFluxSpectralRows.push(row);
+          const key = `${angular.id}:n${coefficient.harmonic}`;
+          const aggregate = aggregateCoefficientRows.get(key) ?? {
+            degree: angular.degree,
+            order: angular.order,
+            harmonic: coefficient.harmonic,
+            frequencyCyclesPerAbsoluteTime: row.frequencyCyclesPerAbsoluteTime,
+            angularFrequency: row.angularFrequency,
+            netReal: 0,
+            netImaginary: 0,
+            rawMagnitude: 0,
+            sourceRootCount: 0,
+          };
+          aggregate.netReal += coefficient.real;
+          aggregate.netImaginary += coefficient.imaginary;
+          aggregate.rawMagnitude += coefficient.magnitude;
+          aggregate.sourceRootCount += 1;
+          aggregateCoefficientRows.set(key, aggregate);
+        }
+      }
+    }
+    const sortedAggregateCoefficientRows = [...aggregateCoefficientRows.values()]
+      .sort((left, right) => left.harmonic - right.harmonic ||
+        left.degree - right.degree || left.order - right.order);
+    const maximumRawCoefficientMagnitude = Math.max(
+      ...sortedAggregateCoefficientRows.map((row) => row.rawMagnitude),
+      coefficientFloor,
+    );
+    const effectiveCoefficientFloor = Math.max(
+      coefficientFloor,
+      maximumRawCoefficientMagnitude * frequencyConfig.relativeComparisonFloor,
+    );
+    const wakeFluxSpectralCancellationRows = sortedAggregateCoefficientRows.map((row) => {
+        const netMagnitude = Math.hypot(row.netReal, row.netImaginary);
+        const admissible = row.rawMagnitude > effectiveCoefficientFloor;
+        const etaWakeFlux = admissible ? netMagnitude / row.rawMagnitude : null;
+        if (netMagnitude > row.rawMagnitude + 1e-12 * Math.max(1, row.rawMagnitude) ||
+            (etaWakeFlux !== null && (etaWakeFlux < -1e-12 || etaWakeFlux > 1 + 1e-12))) {
+          throw new Error(
+            `${resolution} radius ${radius} frequency-resolved wake-flux ratio left [0,1].`,
+          );
+        }
+        return {
+          ...row,
+          netMagnitude,
+          etaWakeFlux,
+          status: admissible ? "admissible" : "below-coefficient-floor",
+        };
+      });
+    const harmonicCancellation = new Map();
+    for (const row of wakeFluxSpectralCancellationRows) {
+      const aggregate = harmonicCancellation.get(row.harmonic) ?? {
+        harmonic: row.harmonic,
+        frequencyCyclesPerAbsoluteTime: row.frequencyCyclesPerAbsoluteTime,
+        angularFrequency: row.angularFrequency,
+        netModeNormSquared: 0,
+        rawModeNormSquared: 0,
+        admissibleAngularModeCount: 0,
+      };
+      aggregate.netModeNormSquared += row.netMagnitude * row.netMagnitude;
+      aggregate.rawModeNormSquared += row.rawMagnitude * row.rawMagnitude;
+      if (row.status === "admissible") aggregate.admissibleAngularModeCount += 1;
+      harmonicCancellation.set(row.harmonic, aggregate);
+    }
+    const wakeFluxHarmonicCancellationRows = [...harmonicCancellation.values()]
+      .sort((left, right) => left.harmonic - right.harmonic)
+      .map((row) => {
+        const netModeNorm = Math.sqrt(row.netModeNormSquared);
+        const rawModeNorm = Math.sqrt(row.rawModeNormSquared);
+        return {
+          harmonic: row.harmonic,
+          frequencyCyclesPerAbsoluteTime: row.frequencyCyclesPerAbsoluteTime,
+          angularFrequency: row.angularFrequency,
+          netModeNorm,
+          rawModeNorm,
+          etaWakeFlux: rawModeNorm > effectiveCoefficientFloor ? netModeNorm / rawModeNorm : null,
+          admissibleAngularModeCount: row.admissibleAngularModeCount,
+          status: rawModeNorm > effectiveCoefficientFloor
+            ? "admissible"
+            : "below-coefficient-floor",
+        };
+      });
+    const sourceTaggedWakeFluxBandCoverage = {
+      sourceRootCount: orderedSourceRoots.length,
+      maximumDegree: protocol.angularReduction.maximumDegree,
+      maximumHarmonic: protocol.spectralReduction.maximumHarmonic,
+      absoluteCoefficientFloor: coefficientFloor,
+      relativeCoefficientFloor: frequencyConfig.relativeComparisonFloor,
+      maximumRawCoefficientMagnitude,
+      effectiveCoefficientFloor,
+      ...sourceTaggedBandTotals,
+      parsevalRelativeResidual: Math.abs(sourceTaggedBandTotals.parsevalResidual) /
+        Math.max(sourceTaggedBandTotals.timeDomainPower, coefficientFloor),
+      outOfBandRmsFraction: Math.sqrt(
+        sourceTaggedBandTotals.outOfBandPower /
+          Math.max(sourceTaggedBandTotals.timeDomainPower, coefficientFloor),
+      ),
+      threshold:
+        protocol.failClosedGates.causalWakeFlux.frequencyResolvedOutOfBandRmsFraction,
+      claimBoundary: frequencyConfig.claimBoundary,
+    };
+    sourceTaggedWakeFluxBandCoverage.passed =
+      sourceTaggedWakeFluxBandCoverage.outOfBandRmsFraction <=
+        sourceTaggedWakeFluxBandCoverage.threshold;
     return {
       radius,
       resolution,
@@ -378,17 +682,22 @@ function createSurfaceAccumulator(protocol, radius, resolution) {
         L_rawDifference: exposures[0].L_raw - exposures[1].L_raw,
       },
       wakeSurfaceNorms,
+      wakeFlux,
       angularPowerRows,
       anisotropyRows,
       spectralCoefficientRows,
       spectralBandRows,
+      sourceTaggedWakeFluxSpectralRows,
+      wakeFluxSpectralCancellationRows,
+      wakeFluxHarmonicCancellationRows,
+      sourceTaggedWakeFluxBandCoverage,
     };
   }
 
   return { directions, times, ingestTimeSamples, finalize };
 }
 
-function extractSample(event, polarityValues) {
+function extractSample(event, polarityValues, surfaceNormal, fieldSpeed) {
   if (!event.rootCompletenessCertification?.complete) {
     throw new Error(`event ${event.eventId} lacks a complete causal-root certificate.`);
   }
@@ -411,10 +720,31 @@ function extractSample(event, polarityValues) {
       return sum + vectorNorm(contribution.acceleration);
     }, 0);
   }
+  let signedNormalFluxDensity = 0;
+  let rawNormalFluxDensity = 0;
+  const sourceRootContributions = [];
+  for (const root of event.roots) {
+    const normalProjection = dot(root.direction, surfaceNormal);
+    const signedContribution = fieldSpeed * root.signedWakeContribution * normalProjection;
+    signedNormalFluxDensity += signedContribution;
+    rawNormalFluxDensity += Math.abs(signedContribution);
+    sourceRootContributions.push({
+      sourceRootId: `${root.transmitterId}:root-${root.rootOrdinal}`,
+      transmitterId: root.transmitterId,
+      rootOrdinal: root.rootOrdinal,
+      eventRootId: root.rootId,
+      signed: signedContribution,
+    });
+  }
   return {
     eventId: event.eventId,
     signedWake: finite(event.measures.signedWake, `${event.eventId}.signedWake`),
     unsignedWake: finite(event.measures.unsignedWake, `${event.eventId}.unsignedWake`),
+    normalWakeFluxDensity: {
+      signed: signedNormalFluxDensity,
+      raw: rawNormalFluxDensity,
+      sourceRootContributions,
+    },
     probeAccelerations,
     rawAccelerationMagnitudeSums,
   };
@@ -563,6 +893,22 @@ function radialMeasureRows(surfaceRows, floor, relativeFloor = 0) {
     });
     add("signed-wake-surface-norm", surface.radius, surface.wakeSurfaceNorms.signedWake);
     add("unsigned-wake-surface-norm", surface.radius, surface.wakeSurfaceNorms.unsignedWake);
+    add(
+      "wake-flux/raw-cycle-integral",
+      surface.radius,
+      surface.wakeFlux.rawCycleIntegral,
+    );
+    add(
+      "wake-flux/residual-cycle-integral",
+      surface.radius,
+      surface.wakeFlux.residualCycleIntegral,
+    );
+    add(
+      "wake-flux/cancellation-ratio",
+      surface.radius,
+      surface.wakeFlux.etaWakeFlux,
+      1,
+    );
     const angularTotals = new Map(surface.anisotropyRows.map(
       (row) => [row.channel, row.retainedPower],
     ));
@@ -577,6 +923,27 @@ function radialMeasureRows(surfaceRows, floor, relativeFloor = 0) {
       surface.radius,
       row.retainedBandPower,
     ));
+    surface.wakeFluxHarmonicCancellationRows.forEach((row) => {
+      add(
+        `wake-flux-frequency/raw-mode-n${row.harmonic}`,
+        surface.radius,
+        row.rawModeNorm,
+      );
+      add(
+        `wake-flux-frequency/net-mode-n${row.harmonic}`,
+        surface.radius,
+        row.netModeNorm,
+        row.rawModeNorm,
+      );
+      if (row.etaWakeFlux !== null) {
+        add(
+          `wake-flux-frequency/cancellation-ratio-n${row.harmonic}`,
+          surface.radius,
+          row.etaWakeFlux,
+          1,
+        );
+      }
+    });
   }
   return [...byMeasure.entries()].map(([measureId, values]) => {
     const sorted = [...values].sort((left, right) => left.radius - right.radius);
@@ -618,6 +985,10 @@ function compareReductions(primarySurfaces, refinedSurfaces, primaryRadial, refi
   const exposureEntries = [];
   const anisotropyEntries = [];
   const spectralEntries = [];
+  const wakeFluxEntries = [];
+  const rawEmissionReferenceEntries = [];
+  const frequencyResolvedWakeFluxEntries = [];
+  const frequencyResolvedBandEntries = [];
   for (const primary of primarySurfaces) {
     const refined = refinedSurfaces.find((row) => row.radius === primary.radius);
     for (const primaryExposure of primary.exposures) {
@@ -680,6 +1051,144 @@ function compareReductions(primarySurfaces, refinedSurfaces, primaryRadial, refi
         ),
       });
     }
+    for (const measure of [
+      "signedCycleIntegral",
+      "rawCycleIntegral",
+      "residualCycleIntegral",
+      "etaWakeFlux",
+    ]) {
+      const primaryValue = primary.wakeFlux[measure];
+      const refinedValue = refined.wakeFlux[measure];
+      const referenceScale = measure === "etaWakeFlux"
+        ? 1
+        : primary.wakeFlux.rawEmissionReference?.expectedCycleIntegral ?? 1;
+      wakeFluxEntries.push({
+        radius: primary.radius,
+        measure,
+        primary: primaryValue,
+        refined: refinedValue,
+        relativeOrAbsoluteChange: Math.abs(primaryValue - refinedValue) /
+          Math.max(Math.abs(primaryValue), Math.abs(refinedValue), referenceScale, floor),
+      });
+    }
+    for (const surface of [primary, refined]) {
+      const reference = surface.wakeFlux.rawEmissionReference;
+      rawEmissionReferenceEntries.push({
+        radius: surface.radius,
+        resolution: surface.resolution,
+        expected: reference?.expectedCycleIntegral ?? null,
+        measured: surface.wakeFlux.rawCycleIntegral,
+        relativeResidual: reference?.relativeResidual ?? Number.POSITIVE_INFINITY,
+        passed: reference?.passed === true,
+      });
+    }
+    const frequencyConfig = protocol.causalWakeFluxReduction.frequencyResolved;
+    const maximumRawCoefficient = Math.max(
+      ...primary.wakeFluxSpectralCancellationRows.map((row) => row.rawMagnitude),
+      ...refined.wakeFluxSpectralCancellationRows.map((row) => row.rawMagnitude),
+      frequencyConfig.coefficientFloor,
+    );
+    const coefficientComparisonFloor = Math.max(
+      frequencyConfig.coefficientFloor,
+      maximumRawCoefficient * frequencyConfig.relativeComparisonFloor,
+    );
+    const refinedSourceRows = new Map(refined.sourceTaggedWakeFluxSpectralRows.map((row) => [
+      `${row.sourceRootId}:l${row.degree}:m${row.order}:n${row.harmonic}`,
+      row,
+    ]));
+    for (const primaryRow of primary.sourceTaggedWakeFluxSpectralRows) {
+      const key = `${primaryRow.sourceRootId}:l${primaryRow.degree}:m${primaryRow.order}:n${primaryRow.harmonic}`;
+      const refinedRow = refinedSourceRows.get(key);
+      const comparisonScale = Math.max(
+        primaryRow.magnitude,
+        refinedRow?.magnitude ?? 0,
+        coefficientComparisonFloor,
+      );
+      if (comparisonScale <= coefficientComparisonFloor &&
+          primaryRow.magnitude < coefficientComparisonFloor &&
+          (refinedRow?.magnitude ?? 0) < coefficientComparisonFloor) continue;
+      frequencyResolvedWakeFluxEntries.push({
+        kind: "source-root-coefficient",
+        radius: primary.radius,
+        sourceRootId: primaryRow.sourceRootId,
+        degree: primaryRow.degree,
+        order: primaryRow.order,
+        harmonic: primaryRow.harmonic,
+        primary: { real: primaryRow.real, imaginary: primaryRow.imaginary },
+        refined: refinedRow
+          ? { real: refinedRow.real, imaginary: refinedRow.imaginary }
+          : null,
+        relativeOrAbsoluteChange: refinedRow
+          ? Math.hypot(
+            primaryRow.real - refinedRow.real,
+            primaryRow.imaginary - refinedRow.imaginary,
+          ) / comparisonScale
+          : Number.POSITIVE_INFINITY,
+        identityMatch: Boolean(refinedRow),
+      });
+    }
+    const refinedCancellationRows = new Map(refined.wakeFluxSpectralCancellationRows.map((row) => [
+      `l${row.degree}:m${row.order}:n${row.harmonic}`,
+      row,
+    ]));
+    for (const primaryRow of primary.wakeFluxSpectralCancellationRows) {
+      const key = `l${primaryRow.degree}:m${primaryRow.order}:n${primaryRow.harmonic}`;
+      const refinedRow = refinedCancellationRows.get(key);
+      const comparisonScale = Math.max(
+        primaryRow.rawMagnitude,
+        refinedRow?.rawMagnitude ?? 0,
+        coefficientComparisonFloor,
+      );
+      if (comparisonScale <= coefficientComparisonFloor &&
+          primaryRow.rawMagnitude < coefficientComparisonFloor &&
+          (refinedRow?.rawMagnitude ?? 0) < coefficientComparisonFloor) continue;
+      const netChange = refinedRow
+        ? Math.hypot(
+          primaryRow.netReal - refinedRow.netReal,
+          primaryRow.netImaginary - refinedRow.netImaginary,
+        ) / comparisonScale
+        : Number.POSITIVE_INFINITY;
+      const rawChange = refinedRow
+        ? Math.abs(primaryRow.rawMagnitude - refinedRow.rawMagnitude) / comparisonScale
+        : Number.POSITIVE_INFINITY;
+      const ratioChange = refinedRow && primaryRow.etaWakeFlux !== null &&
+          refinedRow.etaWakeFlux !== null
+        ? Math.abs(primaryRow.etaWakeFlux - refinedRow.etaWakeFlux)
+        : 0;
+      frequencyResolvedWakeFluxEntries.push({
+        kind: "cancellation-coefficient",
+        radius: primary.radius,
+        degree: primaryRow.degree,
+        order: primaryRow.order,
+        harmonic: primaryRow.harmonic,
+        primary: {
+          netReal: primaryRow.netReal,
+          netImaginary: primaryRow.netImaginary,
+          rawMagnitude: primaryRow.rawMagnitude,
+          etaWakeFlux: primaryRow.etaWakeFlux,
+        },
+        refined: refinedRow
+          ? {
+            netReal: refinedRow.netReal,
+            netImaginary: refinedRow.netImaginary,
+            rawMagnitude: refinedRow.rawMagnitude,
+            etaWakeFlux: refinedRow.etaWakeFlux,
+          }
+          : null,
+        relativeOrAbsoluteChange: Math.max(netChange, rawChange, ratioChange),
+        identityMatch: Boolean(refinedRow),
+      });
+    }
+    for (const surface of [primary, refined]) {
+      frequencyResolvedBandEntries.push({
+        radius: surface.radius,
+        resolution: surface.resolution,
+        outOfBandRmsFraction: surface.sourceTaggedWakeFluxBandCoverage.outOfBandRmsFraction,
+        parsevalRelativeResidual:
+          surface.sourceTaggedWakeFluxBandCoverage.parsevalRelativeResidual,
+        passed: surface.sourceTaggedWakeFluxBandCoverage.passed,
+      });
+    }
   }
   const refinedRadialById = new Map(refinedRadial.map((row) => [row.measureId, row]));
   const radialEntries = [];
@@ -737,6 +1246,42 @@ function compareReductions(primarySurfaces, refinedSurfaces, primaryRadial, refi
       ),
       entries: radialEntries,
     },
+    causalWakeFlux: {
+      threshold: thresholds.causalWakeFluxRelativeOrAbsolute,
+      maximumChange: Math.max(
+        ...wakeFluxEntries.map((row) => row.relativeOrAbsoluteChange),
+        0,
+      ),
+      entries: wakeFluxEntries,
+    },
+    rawEmissionReference: {
+      threshold: protocol.failClosedGates.causalWakeFlux.rawEmissionReferenceRelative,
+      maximumChange: Math.max(
+        ...rawEmissionReferenceEntries.map((row) => row.relativeResidual),
+        0,
+      ),
+      entries: rawEmissionReferenceEntries,
+      identityMatch: rawEmissionReferenceEntries.every((row) => row.passed),
+    },
+    frequencyResolvedWakeFlux: {
+      threshold: thresholds.frequencyResolvedWakeFluxRelativeOrAbsolute,
+      maximumChange: Math.max(
+        ...frequencyResolvedWakeFluxEntries.map((row) => row.relativeOrAbsoluteChange),
+        0,
+      ),
+      entries: frequencyResolvedWakeFluxEntries,
+      identityMatch: frequencyResolvedWakeFluxEntries.every((row) => row.identityMatch),
+    },
+    frequencyResolvedWakeFluxBandCoverage: {
+      threshold:
+        protocol.failClosedGates.causalWakeFlux.frequencyResolvedOutOfBandRmsFraction,
+      maximumChange: Math.max(
+        ...frequencyResolvedBandEntries.map((row) => row.outOfBandRmsFraction),
+        0,
+      ),
+      entries: frequencyResolvedBandEntries,
+      identityMatch: frequencyResolvedBandEntries.every((row) => row.passed),
+    },
   };
   for (const gate of Object.values(gates)) {
     gate.passed = gate.maximumChange <= gate.threshold && gate.identityMatch !== false;
@@ -748,6 +1293,7 @@ export function reduceB1SurfaceSampleGrid({
   completeCycleProtocol: rawProtocol,
   radius,
   resolution = "primary",
+  sourceAbsolutePolaritySum = null,
   sampleAt,
 }) {
   const protocol = validateB1CompleteCycleProbeProtocol(rawProtocol);
@@ -758,7 +1304,9 @@ export function reduceB1SurfaceSampleGrid({
     throw new TypeError("resolution must be primary or refined.");
   }
   if (typeof sampleAt !== "function") throw new TypeError("sampleAt must be a function.");
-  const accumulator = createSurfaceAccumulator(protocol, radius, resolution);
+  const accumulator = createSurfaceAccumulator(protocol, radius, resolution, {
+    sourceAbsolutePolaritySum,
+  });
   accumulator.times.forEach((time, timeIndex) => {
     const samples = accumulator.directions.map((direction, directionIndex) => sampleAt({
       radius,
@@ -797,6 +1345,10 @@ export function evaluateB1StreamingSurfaceReductions({
     throw new TypeError("onSurfacePacket must be a function when supplied.");
   }
   independentlyCheckB1SourceApplicability(sourceRecord, protocol);
+  const sourceAbsolutePolaritySum = sourceRecord.sources.reduce(
+    (sum, sourceRow) => sum + Math.abs(finite(sourceRow.charge, `${sourceRow.id}.charge`)),
+    0,
+  );
   const completeCycleProtocolHash = sha256Canonical(protocol);
   const quadratureRules = {};
   const surfaceReductions = { primary: [], refined: [] };
@@ -815,7 +1367,13 @@ export function evaluateB1StreamingSurfaceReductions({
     };
     for (const radius of protocol.enclosingSurfaces.radii) {
       const fullProtocol = buildB1SurfaceEventAnalysisProtocol(protocol, { radius, resolution });
-      const accumulator = createSurfaceAccumulator(protocol, radius, resolution);
+      const accumulator = createSurfaceAccumulator(protocol, radius, resolution, {
+        sourceAbsolutePolaritySum,
+        sourceRootIdentities: sourceRecord.sources.map((sourceRow) => ({
+          transmitterId: sourceRow.id,
+          rootOrdinal: 0,
+        })),
+      });
       for (let timeIndex = 0; timeIndex < resolutionGrid.timeSamples; timeIndex += 1) {
         const eventProtocol = batchProtocol(fullProtocol, timeIndex);
         const eventPacket = evaluate({ sourceRecord, protocol: eventProtocol });
@@ -843,12 +1401,17 @@ export function evaluateB1StreamingSurfaceReductions({
           descriptor.artifact = onSurfacePacket(eventPacket, { ...descriptor });
         }
         const eventByProbe = new Map(events.map((event) => [event.probeId, event]));
-        const samples = fullProtocol.probes.map((probe) => {
+        const samples = fullProtocol.probes.map((probe, directionIndex) => {
           const event = eventByProbe.get(probe.id);
           if (!event || event.observationTime !== accumulator.times[timeIndex]) {
             throw new Error(`surface batch is missing ${probe.id} at time index ${timeIndex}.`);
           }
-          return extractSample(event, protocol.enclosingSurfaces.probePolarities);
+          return extractSample(
+            event,
+            protocol.enclosingSurfaces.probePolarities,
+            accumulator.directions[directionIndex].unitVector,
+            protocol.eventEvaluator.fieldSpeed,
+          );
         });
         accumulator.ingestTimeSamples(timeIndex, samples, descriptor);
         surfaceEvaluations.push(descriptor);

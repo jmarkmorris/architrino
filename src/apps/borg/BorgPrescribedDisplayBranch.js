@@ -39,7 +39,7 @@ export function createBorgPrescribedDisplayBranch({
   if (!manifest || typeof manifest !== "object") {
     throw new TypeError("A prescribed Display branch requires the Borg manifest.");
   }
-  validateProfile(profile, manifest, dataset);
+  validateProfile(profile, manifest);
 
   const cut = requiredFiniteNumber(cutTime, "selected cut time");
   if (!(cut > dataset.window.start && cut <= dataset.window.end)) {
@@ -58,6 +58,10 @@ export function createBorgPrescribedDisplayBranch({
   ));
   const displayRows = createDisplayRows(dataset, pathMap, cut, profile.sampleInterval);
   const certifiedBudget = getBorgCertifiedBudgetPreset(profile.certifiedBudgetId);
+  const responseCenter = requiredVector3(
+    dataset.provenance.prescribedGeometry.responseCenter,
+    "prescribed response center",
+  );
   const sphericalEnvelopeRadius = requiredPositiveNumber(
     dataset.provenance.prescribedGeometry.sphericalEnvelopeRadius,
     "prescribed spherical-envelope radius",
@@ -74,6 +78,10 @@ export function createBorgPrescribedDisplayBranch({
     sourceRunId: dataset.provenance.runId,
     selectedCutTime: cut,
     profile,
+    simulationEnvelope: Object.freeze({
+      center: responseCenter,
+      radius: sphericalEnvelopeRadius,
+    }),
     pathMap,
     displayRows,
     retainedHistories,
@@ -92,6 +100,7 @@ export function createBorgPrescribedDisplayBranch({
       pathCount: retainedHistories.length,
       fieldSpeed: profile.fieldSpeed,
       coupling: profile.coupling,
+      simulationCenter: responseCenter,
       simulationOuterRadius: sphericalEnvelopeRadius,
       sampleInterval: profile.sampleInterval,
       chunkDuration: profile.chunkDuration,
@@ -166,7 +175,7 @@ function createDisplayRows(dataset, pathMap, cutTime, sampleInterval) {
   return Object.freeze(rows);
 }
 
-function validateProfile(profile, manifest, dataset) {
+function validateProfile(profile, manifest) {
   if (profile?.schema !== "borg-prescribed-display-profile.v1" ||
       profile.runGrade !== "display" || profile.promotionEligible !== false) {
     throw new TypeError("The prescribed branch profile must be fixed to non-promotable Display grade.");
@@ -174,15 +183,19 @@ function validateProfile(profile, manifest, dataset) {
   if (Number(profile.fieldSpeed) !== Number(manifest.simulationEnvelope?.fieldSpeed)) {
     throw new RangeError("The prescribed Display profile field speed does not match Borg.");
   }
-  const radius = Number(dataset.provenance.prescribedGeometry.sphericalEnvelopeRadius);
-  if (radius !== Number(manifest.simulationEnvelope?.outerRadius)) {
-    throw new RangeError("The prescribed geometry spherical envelope does not match Borg.");
-  }
   getBorgCertifiedBudgetPreset(profile.certifiedBudgetId);
   requiredPositiveNumber(profile.sampleInterval, "profile sample interval");
   requiredPositiveNumber(profile.chunkDuration, "profile chunk duration");
   requiredPositiveNumber(profile.fieldSpeed, "profile field speed");
   requiredPositiveNumber(profile.coupling, "profile coupling");
+}
+
+function requiredVector3(value, label) {
+  return Object.freeze({
+    x: requiredFiniteNumber(value?.x, `${label} x`),
+    y: requiredFiniteNumber(value?.y, `${label} y`),
+    z: requiredFiniteNumber(value?.z, `${label} z`),
+  });
 }
 
 function requiredFiniteNumber(value, label) {

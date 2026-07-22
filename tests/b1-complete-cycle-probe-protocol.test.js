@@ -41,6 +41,18 @@ test("declared B1 protocol covers one complete retained-history cycle and fixes 
   assert.equal(summary.refined.surfaceEventCount, 4 * 18 * 36 * 128);
   assert.equal(summary.primary.internalFixedProbeCount, 125);
   assert.equal(summary.primary.endpointReceiverCount, 6);
+  assert.equal(
+    summary.implementedByCurrentEvaluator.fullCycleCausalWakeFluxReduction,
+    true,
+  );
+  assert.equal(
+    summary.implementedByCurrentEvaluator.frequencyResolvedCausalWakeFluxReduction,
+    true,
+  );
+  assert.equal(
+    protocol.causalWakeFluxReduction.claimBoundary,
+    "causal-wake measure only; not energy, potential, work, or leakage",
+  );
 
   // Independent causal reach bound: T_t >= T - (R_surface + R_source)/c_f.
   const earliestPossibleEmission = 4 - (2 + 0.5) / 1;
@@ -159,5 +171,20 @@ test("protocol validation fails closed on surface/history and resolution defects
   assert.throws(
     () => validateB1CompleteCycleProbeProtocol(aliasedSpectrum),
     /Nyquist margin/,
+  );
+
+  const relabeledAsEnergy = loadProtocol();
+  relabeledAsEnergy.causalWakeFluxReduction.normalProjection = "energy-flux.v1";
+  assert.throws(
+    () => validateB1CompleteCycleProbeProtocol(relabeledAsEnergy),
+    /must bind the declared full-cycle formulas/,
+  );
+
+  const discardedSourceTags = loadProtocol();
+  discardedSourceTags.causalWakeFluxReduction.frequencyResolved.sourceRootTag =
+    "discard-before-superposition.v1";
+  assert.throws(
+    () => validateB1CompleteCycleProbeProtocol(discardedSourceTags),
+    /must bind the declared coefficient formulas/,
   );
 });
