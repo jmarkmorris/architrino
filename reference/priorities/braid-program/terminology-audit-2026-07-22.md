@@ -1,6 +1,6 @@
 # Braid Terminology Audit — 2026-07-22
 
-Status: active; corpus and scanner corrections completed, public `ideal braid` rename awaiting one operator decision.
+Status: source migration and enforcement complete; generated rebuild awaiting explicit operator authorization under the repository's generated-artifact rule.
 
 ## Scope and Evidence
 
@@ -18,7 +18,7 @@ That command prints the file, line, rule, replacement guidance, and full source-
 node scripts/check-braid-taxonomy-terminology.mjs
 ```
 
-The strict gate now scans all 198 reader-facing corpus Markdown files rather than a hand-selected migrated subset. The command also checks 15 Borg configuration/reader-facing control surfaces, for 213 controlled files in its current combined output.
+The strict gate now scans all 198 reader-facing corpus Markdown files rather than a hand-selected migrated subset. The command also checks 15 Borg configuration/reader-facing control surfaces and 7 A1 public-display source surfaces, for 220 controlled files in its current combined output.
 
 ## Inventory Totals
 
@@ -26,9 +26,9 @@ Post-correction report-mode inventory:
 
 | Class | Occurrence hits | Interpretation |
 | --- | ---: | --- |
-| Taxonomy member identifiers (`A1`, `A1.x`, `A2`, `B1`, `C1`, `C2`) | 575 | Audit candidates. This count includes canonical definitions, justified geometry references, links, and symbol collisions; it is not a defect count. |
+| Taxonomy member identifiers (`A1`, `A1.x`, `A2`, `B1`, `C1`, `C2`) | 590 | Audit candidates. This count includes canonical definitions, justified geometry references, links, and symbol collisions; it is not a defect count. The increase from the pre-decision count records the approved A1 display name and its explicit prescribed-geometry ownership. |
 | Taxonomy family identifiers (`Family-A`, `Family-B`, `Family-C`) | 230 | Audit candidates. Retain only where the defining geometry is local or explicitly delegated. |
-| `ideal braid` display phrases | 12 | Audit-only pending the public-name decision below. |
+| Noncanonical `ideal braid` display phrases | 0 | Strictly enforced after the public-name decision. One exact dated research-notebook heading is exempt as a concrete historical title. |
 | Standalone retired-name tokens (`spindle`, `drum`, `shell`, `nested`, `cap`, `uniaxial`, `triaxial`) | 141 | Audit candidates dominated by ordinary non-taxonomy meanings such as causal shell, nested calculation, or cap/boundary language. Contextual braid-name forms remain strict failures. |
 | Positional support/layer phrases | 1 | Historical source-era use in `aaa-journey.md`; the same sentence states that the current taxonomy retires those identities. |
 | Strict terminology defects remaining | 0 | Whole-corpus gate passes. |
@@ -72,7 +72,7 @@ Verdict codes:
 | --- | --- | --- | --- |
 | `archie/aaa-journey.md` | `Family-A` | 31, 84 | Historical/current-status account of indexed Family-A support; no new record assignment. `E` historical context. |
 | `archie/comparative-glossary.md` | `A1`, `A2`, `B1`, `C1`, `C2`, `Family-A`, `Family-B` | 26, 54, 55, 76, 86, 103, 104, 109 | Controlled definitions and exact comparison rows, including B1 coordinates and the B1 equatorial boundary. `J-C`. |
-| `archie/ideal-braid-guide.md` | `A1`, `Family-A` | 18, 168 | The app's prescribed A1 geometry and Family-A display scale; ownership is completed by the guide/runtime analysis below. `J-C`, with public name pending. |
+| `archie/ideal-braid-guide.md` | `A1`, `Family-A` | 1, 3, 18, 168 | The app's prescribed A1 geometry and Family-A display scale; ownership is completed by the guide/runtime analysis below. `J-C`. |
 | `archie/mathematics-terminology.md` | `Family-A` | 76 | Controlled definition of the Family-A terminal-alignment term, not a new branch assignment. `J-R`. |
 | `archie/research-notebook.md` | `A1`, `Family-A` | 176, 194, 274, 316 | A navigation label plus status/app-candidate references. The app reference delegates to its guide; closure burdens remain explicit. `M: J-R/J-H`, with line 176 `E` navigation. |
 | `archie/terminology-usage.md` | `A1`, `A1.3`, `A2`, `B1`, `Family-A` | 164, 270-272 | Controlled vocabulary examples that state the defining common-axis, symmetry, or indexed-frequency relations. `J-C`. |
@@ -175,6 +175,8 @@ Stable identifiers and compatibility surfaces are not reader-facing terminology 
 
 ## `Ideal Braid` Ownership Inventory
 
+The following totals are the **pre-migration ownership baseline** used to decide what could be renamed and what had to remain stable. They are retained as audit evidence rather than presented as current-tree counts.
+
 Excluding this self-describing audit file, the live tracked-tree search finds `Ideal Noether Braid`, `Ideal Braid`, `ideal braid`, `ideal-braid`, or `ideal_braid` in 50 files and 481 matching source lines. One HTML app contains many repeated CSS, DOM, and JavaScript machine spellings, so matching-line count is not a count of independent meanings. The complete file inventory is reproducible with:
 
 ```bash
@@ -199,7 +201,7 @@ The 50 files do not all mean the same thing. Their ownership divides semanticall
 | Ownership class | Representative paths | Verdict |
 | --- | --- | --- |
 | Prescribed geometry | `content/markdown/aaa/archie/ideal-braid-guide.md`, `ideal-braid.html`, `src/apps/ideal-braid/IdealBraidRuntime.js` | The runtime uses three mutually orthogonal default binary normals, unequal radii, unequal frequencies, and convergence toward the common translation direction. This is prescribed A1 geometry, not a generic ideal braid and not A2. |
-| Reader-facing app proper name | `README.md`, app title and aria labels in `ideal-braid.html`, reader links in Lorentz and return-cycle chapters, scene/application titles | Rename after operator choice. Preferred display name: `A1 Lorentz Geometry`. |
+| Reader-facing app proper name | `README.md`, app title and aria labels in `ideal-braid.html`, reader links in Lorentz and return-cycle chapters, scene/application titles | Renamed to `A1 Lorentz Geometry`. |
 | Stable route and filenames | `ideal-braid.html`, `src/apps/ideal-braid/`, `content/scenes/archie/ideal_braid.json`, `ideal-braid-guide.md` | Preserve initially as compatibility aliases. A display-name change does not require route breakage. |
 | Stable machine identifiers | app ID `ideal-braid`, scene ID `archie__ideal_braid`, model/config hashes, CSS/DOM selectors, exported runtime names | Preserve. Renaming these has no theory value and creates launch, saved-link, test, and provenance risk. |
 | Tests and launch contracts | `tests/ideal-braid-runtime.test.js`, `standalone-app-launch.test.js`, `transport-control-icons.test.js` | Update only reader-facing test descriptions if desired; retain contract assertions. |
@@ -222,15 +224,17 @@ The strongest replacement map by meaning is:
 
 Renaming routes, filenames, app IDs, scene IDs, DOM selectors, hashes, or runtime exports in the same pass would risk broken bookmarks, iOS handoff, scene launch, tests, saved provenance, and generated indexes. The safe architecture is a display-name correction with old machine strings retained as compatibility contracts.
 
-## Decision Required
+## Decision Implemented
 
-Ranked choices:
+The operator selected the preferred display-only correction (`a`) on 2026-07-22:
 
-1. **Preferred — display-only correction:** rename the public app/guide/scene/link label to `A1 Lorentz Geometry`; keep `ideal-braid` and `ideal_braid` routes, filenames, IDs, hashes, selectors, and runtime exports as compatibility contracts.
-2. **Broader compatibility migration:** use `A1 Lorentz Geometry` publicly and introduce new route/file/identifier aliases while retaining the old contracts. This adds work and risk without improving taxonomy correctness.
-3. **Keep the display name:** retain `Ideal Noether Braid` as an app proper-name exception, while the guide states that it displays prescribed A1 geometry. This leaves `ideal` as a misleading reader-facing geometry label.
+1. The public app, guide, scene, link, and operator-facing impact labels now use `A1 Lorentz Geometry`.
+2. The app identifies its geometry as prescribed A1 geometry; the display name does not assert a retained branch, stability, or Lorentz recovery.
+3. Visible binary labels use persistent `Binary 1`, `Binary 2`, and `Binary 3`; `Reference orbit` replaces the reader-facing positional `Outer orbit` label.
+4. Existing `ideal-braid` and `ideal_braid` routes, filenames, app and scene IDs, model/config hashes, DOM/CSS selectors, and runtime exports remain unchanged compatibility contracts.
+5. One dated heading, `2026-06-10: Ideal Noether Braid Lorentz Geometry App`, remains in the research notebook as an exact historical title. The scanner exempts only that full line in that one file; the same phrase anywhere else fails the strict gate.
 
-No public `ideal braid` rename has been made before this decision.
+The public-name rule is therefore fail-closed: a new use of `Ideal Noether Braid`, `Ideal Braid`, or `ideal braid` fails unless it is a protected machine string, unrelated mathematical ideality, quoted text, or the one exact historical heading above.
 
 ## Scanner Coverage and Expansion
 
@@ -238,27 +242,48 @@ The scanner now has four layers of coverage:
 
 | Enforcement | Terminology classes |
 | --- | --- |
-| Audit-only corpus inventory | family/member IDs; `ideal braid`; standalone retired tokens `spindle`, `drum`, `shell`, `nested`, `cap`, `uniaxial`, `triaxial`; positional support/layer/orbit/channel phrases. |
-| Strict corpus failures | contextual retired braid names; fixed inner/middle/outer binary identity; positional radius triplets; `I:M:O`; shielding codes `IMO`, `IM-`, `I--`; `HML/HLM` and separated H/M/L triplets; positional coordinate symbols; fixed self-hit/hinge/exterior roles; retired axis-neutral/axis-polarized labels; retired Thomson dressing terminology. |
+| Audit-only corpus inventory | family/member IDs; standalone retired tokens `spindle`, `drum`, `shell`, `nested`, `cap`, `uniaxial`, `triaxial`; positional support/layer/orbit/channel phrases. |
+| Strict corpus failures | noncanonical `ideal braid` display names; contextual retired braid names; fixed inner/middle/outer binary identity; positional radius triplets; `I:M:O`; shielding codes `IMO`, `IM-`, `I--`; `HML/HLM` and separated H/M/L triplets; positional coordinate symbols; fixed self-hit/hinge/exterior roles; retired axis-neutral/axis-polarized labels; retired Thomson dressing terminology. |
 | Required-definition gate | Persistent indices are not radius/frequency/role sorting, labels do not change under evolution, and Accessory Configuration geometry remains defined in the taxonomy and terminology canon. |
 | Borg reader/config gate | Retired shape labels and `extreme tilt` are rejected in source-defined display labels, provenance descriptions, taxonomy labels, illustrative-coordinate descriptions, catalog labels, and visible Borg UI strings. |
+| A1 public-display gate | The root README, standalone HTML, scene/application titles, runtime display strings, path-analysis diagnostics, and foundational-impact labels reject the old space-separated display name while leaving hyphenated and underscored machine contracts untouched. |
 
 The expansion made in this campaign is exact and test-backed:
 
 - all 198 corpus Markdown files are strict-scan targets, not a hand-selected migration subset;
 - member and family identifiers are audit-only because ordinary theorem/table symbols create unavoidable collisions;
-- `ideal braid` is audit-only pending the operator decision;
+- noncanonical `ideal braid` display names are strict after the operator decision, with one exact file-and-line-content exemption for the dated research-notebook heading;
+- seven public-display source surfaces receive a separate space-separated-name scan so that `ideal-braid` and `ideal_braid` machine strings remain exempt without hiding reader-facing regressions;
 - comma-separated H/M/L, positional binary phrases with up to three intervening adjectives, and shielding codes are strict;
 - Borg prescribed-source and visible-reader strings receive their own semantic scan rather than scanning machine payload keys blindly;
 - unit tests cover every new rule, the audit-only/strict split, false-positive-safe inline machine strings, and Borg values.
 
 Remaining false-positive risks are controlled rather than hidden. `A1` through `C2` can be theorem, axiom, or ledger-row labels; `Family A` can be an ordinary grammatical phrase; `shell`, `nested`, and `cap` have many non-taxonomy meanings; and an `inner orbit` can be an independently defined display or boundary role. These classes remain audit-only unless braid context makes the retired meaning explicit. Inline code and fenced code are excluded from prose scanning because stable machine contracts are not terminology authority; dedicated semantic scanners cover reader-facing values inside code where needed.
 
-No newly discovered reader-facing terminology class remains unenforced except the deliberately audit-only public `ideal braid` name. Generated artifacts and stable machine IDs are outside automatic replacement by design, not missed scope.
+No newly discovered reader-facing terminology class remains unenforced. Generated artifacts and stable machine IDs are outside automatic replacement by design, not missed scope.
 
 ## Validation State
 
-- Strict combined terminology scan: passes, 213 controlled files, zero findings; the corpus component is 198 Markdown files.
-- Scanner unit tests: 13/13 pass.
+- Strict combined terminology scan: passes, 220 controlled files, zero findings; the corpus component is 198 Markdown files.
+- Scanner unit tests: 16/16 pass.
+- Targeted scanner, A1 Lorentz Geometry runtime, standalone-launch, transport-control, and markdown-layout tests: 56/56 pass.
+- Content-manifest validation: passes in strict check mode with zero errors and zero warnings across 383 scene configs, 198 corpus Markdown files, and 874 repository Markdown files.
+- iOS package check: passes against the currently generated reading copies. It must be rerun after those upstream copies are rebuilt.
 - `git diff --check`: passes.
-- Audit-only member/family/ideal findings remain reportable by design; they are not hidden behind the strict gate.
+- Audit-only member/family and ambiguous retired-token findings remain reportable by design; they are not hidden behind the strict gate.
+- Generated scene graph/TOC check: drift in `content/graph/scene_graph.json`, `content/graph/textbook_toc.json`, and `content/generated/markdown/textbook/toc.md`.
+- Generated reading-copy check: drift in all 12 textbook reading-copy Markdown files. This check covers the whole corpus, so the drift set is broader than the two source chapters edited by the display-name migration.
+- Full-corpus source-index check: drift in `content/generated/source-index/local-full-corpus-snapshot.v1.json`.
+- The scene and Markdown index validator checks membership rather than display-field equality; `content/scenes/scenes_index.json` therefore still needs an authorized rebuild to propagate the changed scene title even though validation passes.
+
+Repository policy forbids implicit generator writes during an ordinary edit batch. The exact rebuild sequence, if authorized, is:
+
+```bash
+node scripts/validate-content.mjs --write --strict
+node scripts/build-scene-graph.mjs --write --strict
+node scripts/build-textbook-md-pdf.mjs --write
+node scripts/archie-service/build-full-corpus-source-index.mjs --write
+node scripts/export-ios-textbook-package.mjs --write --strict
+```
+
+After that sequence, rerun the corresponding `--check` commands, the strict terminology scan, the targeted tests, and `git diff --check` before closing the migration.

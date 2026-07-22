@@ -134,7 +134,7 @@ export async function solveCircularSelfHitSpanWithPrescribedPathAnalysis(fieldSp
 export async function solveCircularSelfHitSpanRowWithPrescribedPathAnalysis(fieldSpeedRatio, options = {}) {
   const rows = await solveCircularSelfHitSpanRowsWithPrescribedPathAnalysis([fieldSpeedRatio], options);
   if (rows.length === 0) {
-    throw new Error("Ideal Braid prescribed-path analysis did not include a circular self-hit span record.");
+    throw new Error("A1 Lorentz Geometry prescribed-path analysis did not include a circular self-hit span record.");
   }
   return rows[0];
 }
@@ -156,7 +156,7 @@ function extractCircularSelfHitSpanRows(runHandle = {}) {
   const geometry = response.geometry ?? response;
   const rows = Array.isArray(geometry.circularSelfHitSpans) ? geometry.circularSelfHitSpans : [];
   if (rows.length === 0) {
-    throw new Error("Ideal Braid prescribed-path analysis did not include a circular self-hit span record.");
+    throw new Error("A1 Lorentz Geometry prescribed-path analysis did not include a circular self-hit span record.");
   }
   return rows.map((row) => ({
     analysisId: IDEAL_BRAID_ANALYSIS_ID,

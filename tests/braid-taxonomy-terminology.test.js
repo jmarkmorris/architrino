@@ -5,6 +5,8 @@ import { fileURLToPath } from "node:url";
 
 import {
   RETIRED_BRAID_NAME_TOKENS,
+  scanA1PublicDisplayTerminology,
+  scanA1PublicDisplayText,
   scanBorgPrescribedTaxonomyTerminology,
   scanBorgReaderFacingValue,
   scanBraidTaxonomyTerminology,
@@ -45,7 +47,7 @@ test("braid taxonomy scanner detects each retired terminology class", () => {
   );
 });
 
-test("braid taxonomy scanner audits member and family labels without making them strict failures", () => {
+test("braid taxonomy scanner audits member and family labels while enforcing the approved public app name", () => {
   const source = [
     "The A1 candidate is compared with B1, C1, C2, and Family-A geometry.",
     "The Ideal Noether Braid app displays a prescribed path.",
@@ -61,12 +63,49 @@ test("braid taxonomy scanner audits member and family labels without making them
       "taxonomy-member-identifier",
     ].sort(),
   );
+  const strictFindings = scanTextForBraidTaxonomyTerminology(source, "synthetic.md", {
+    includeAuditOnly: false,
+  });
+  assert.equal(strictFindings.length, 1);
+  assert.equal(strictFindings[0].ruleId, "ideal-braid-name");
+});
+
+test("braid taxonomy scanner preserves only the concrete dated historical app title", () => {
+  const relativePath = "content/markdown/aaa/archie/research-notebook.md";
   assert.deepEqual(
-    scanTextForBraidTaxonomyTerminology(source, "synthetic.md", {
-      includeAuditOnly: false,
-    }),
+    scanTextForBraidTaxonomyTerminology(
+      "## 2026-06-10: Ideal Noether Braid Lorentz Geometry App",
+      relativePath,
+      { includeAuditOnly: false },
+    ),
     [],
   );
+
+  const findings = scanTextForBraidTaxonomyTerminology(
+    "The Ideal Noether Braid app is the current public name.",
+    relativePath,
+    { includeAuditOnly: false },
+  );
+  assert.equal(findings.length, 1);
+  assert.equal(findings[0].ruleId, "ideal-braid-name");
+});
+
+test("A1 public-display scanner rejects old prose labels but preserves machine contracts", () => {
+  const source = [
+    "<h1>Ideal Noether Braid</h1>",
+    'const appId = "ideal-braid";',
+    'const sceneId = "ideal_braid";',
+    'const selector = "#ideal-braid-title";',
+  ].join("\n");
+  const findings = scanA1PublicDisplayText(source, "synthetic-app.html");
+  assert.equal(findings.length, 1);
+  assert.equal(findings[0].ruleId, "ideal-braid-public-display");
+});
+
+test("A1 public display surfaces use the approved name", () => {
+  const result = scanA1PublicDisplayTerminology();
+  assert.equal(result.files.length, 7);
+  assert.deepEqual(result.findings, []);
 });
 
 test("braid taxonomy scanner catches comma-separated H/M/L positional notation", () => {

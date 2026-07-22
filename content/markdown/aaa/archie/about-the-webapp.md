@@ -18,7 +18,7 @@ This guide should be read alongside:
 - [software-architecture-and-maintenance.md](software-architecture-and-maintenance.md)
 - [comparative-glossary.md](comparative-glossary.md)
 - [github-presence-and-community.md](github-presence-and-community.md)
-- [Ideal Noether Braid Guide](ideal-braid-guide.md)
+- [A1 Lorentz Geometry Guide](ideal-braid-guide.md)
 - [photon-guide.md](photon-guide.md)
 - [research-notebook.md](research-notebook.md)
 
@@ -60,7 +60,7 @@ The webapp also includes non-document surfaces where interaction is primary.
 Current examples include:
 
 - image, reaction-diagram, and animation tools for selected assembly examples, with PDG-derived reaction data used only where provenance is clear enough for curated presentation.
-- the Ideal Braid Lorentz lesson, which links a Noether braid oblate spheroidal envelope, $\beta$, $\gamma$, length contraction, time dilation, and the normalized energy ledger in one inspection surface.
+- the A1 Lorentz Geometry lesson, which links a prescribed A1 oblate spheroidal envelope, $\beta$, $\gamma$, length contraction, time dilation, and the normalized energy ledger in one inspection surface.
 - the Photon and Polarization Visualization App, which exposes a candidate planar pair, Virtual Observer electric-field reconstruction, and derived polarization diagnostics in one inspection surface.
 - periodic-table and element navigation overlays,
 - other domain-specific scene behaviors where the scene is more than a reading panel.

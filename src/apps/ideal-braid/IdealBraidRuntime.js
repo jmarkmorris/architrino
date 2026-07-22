@@ -25,19 +25,19 @@ import {
 const BINARY_META = [
   {
     id: "inner",
-    label: "Inner",
+    label: "Binary 1",
     color: "#7dd3fc",
     shellColor: "#8fb6d8",
   },
   {
     id: "middle",
-    label: "Middle",
+    label: "Binary 2",
     color: "#fbbf24",
     shellColor: "#c4cbd4",
   },
   {
     id: "outer",
-    label: "Outer",
+    label: "Binary 3",
     color: "#f472b6",
     shellColor: "#c9b7d8",
   },
@@ -89,7 +89,7 @@ const ASSEMBLY_TRANSVERSE_AXIS_V = new THREE.Vector3(
 );
 const IDEAL_BRAID_DOCS = {
   notes: {
-    name: "Ideal Braid Guide",
+    name: "A1 Lorentz Geometry Guide",
     markdownPath: "content/markdown/aaa/archie/ideal-braid-guide.md",
     markdownColumns: 1,
   },
@@ -542,7 +542,7 @@ function extractIdealBraidFlightTimeRow(runHandle = {}) {
   const geometry = response.geometry ?? response;
   const rows = Array.isArray(geometry.delayedPotentials) ? geometry.delayedPotentials : [];
   if (rows.length === 0) {
-    throw new Error("Ideal Braid prescribed-path analysis did not include a delayed-potential row.");
+    throw new Error("A1 Lorentz Geometry prescribed-path analysis did not include a delayed-potential row.");
   }
   return {
     analysisId: IDEAL_BRAID_ANALYSIS_ID,
@@ -834,7 +834,7 @@ function normalizeSolverSamplePoints(samplePoints) {
 function normalizeSolverArchitrinos(model) {
   const architrinos = Array.isArray(model?.architrinos) ? model.architrinos : [];
   if (architrinos.length === 0) {
-    throw new TypeError("Ideal Braid potential sample request requires at least one architrino.");
+    throw new TypeError("A1 Lorentz Geometry potential sample request requires at least one architrino.");
   }
   return architrinos;
 }

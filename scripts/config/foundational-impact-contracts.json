@@ -230,7 +230,7 @@
           "matter-antimatter chirality retained-history target"
         ],
         "applications": [
-          "ideal braid visual surfaces"
+          "A1 Lorentz Geometry visual surfaces"
         ],
         "validation": [
           "content validation"
@@ -420,10 +420,10 @@
           "matter-antimatter chirality retained-history target"
         ],
         "simulations": [
-          "ideal braid runtime"
+          "A1 Lorentz Geometry runtime"
         ],
         "applications": [
-          "Ideal Braid app",
+          "A1 Lorentz Geometry app",
           "Animator",
           "PDG edit surfaces"
         ],
@@ -671,7 +671,7 @@
         "applications": [
           "Animator",
           "Photon",
-          "Ideal Braid",
+          "A1 Lorentz Geometry",
           "Borg",
           "Causal Delay Feedback"
         ],

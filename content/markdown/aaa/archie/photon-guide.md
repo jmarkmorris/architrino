@@ -10,7 +10,7 @@ The left braid is the trailing braid and rotates counter-clockwise. The right br
 
 ## Main View
 
-The upper stage shows the two face-on braids on the left and an edge-on side view on the right. Each active indexed binary contributes one blue electrino marker and one red positrino marker. The face-on markers, orbit paths, and path-history trails follow the Ideal Braid visual grammar.
+The upper stage shows the two face-on braids on the left and an edge-on side view on the right. Each active indexed binary contributes one blue electrino marker and one red positrino marker. The face-on markers, orbit paths, and path-history trails follow the A1 Lorentz Geometry visual grammar.
 
 The side view shows the same pair along the line of translation. Each planar braid appears as a vertical glowing trace with the same height as the diameter of the largest enabled binary. The red and blue side-view markers move up and down along those traces, as they would when the orbit is viewed from the side.
 
