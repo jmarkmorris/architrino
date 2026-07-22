@@ -52,15 +52,15 @@ function sample({
 }) {
   const positive = scaled(direction.unitVector, amplitude);
   const negative = scaled(positive, -1);
-  const sourceRootContributions = normalWakeFluxContributions ?? [
+  const transmitterRootContributions = normalWakeFluxContributions ?? [
     {
-      sourceRootId: "synthetic-positive:root-0",
+      transmitterRootId: "synthetic-positive:root-0",
       transmitterId: "synthetic-positive",
       rootOrdinal: 0,
       signed: (unsignedWake + signedWake) / 2,
     },
     {
-      sourceRootId: "synthetic-negative:root-0",
+      transmitterRootId: "synthetic-negative:root-0",
       transmitterId: "synthetic-negative",
       rootOrdinal: 0,
       signed: (signedWake - unsignedWake) / 2,
@@ -73,7 +73,7 @@ function sample({
     normalWakeFluxDensity: {
       signed: signedWake,
       raw: unsignedWake,
-      sourceRootContributions,
+      transmitterRootContributions,
     },
     probeAccelerations: { "1": positive, "-1": negative },
     rawAccelerationMagnitudeSums: { "1": Math.abs(amplitude), "-1": Math.abs(amplitude) },
@@ -260,7 +260,7 @@ test("closed-form complete-cycle Fourier rows recover authored cosine and sine a
   near(band.parsevalResidual, 0, 2e-12);
 });
 
-test("source-tagged normal wake-flux coefficients resolve frequency-selective cancellation", () => {
+test("transmitter-tagged normal wake-flux coefficients resolve frequency-selective cancellation", () => {
   const protocol = compactProtocol();
   const surface = reduceB1SurfaceSampleGrid({
     completeCycleProtocol: protocol,
@@ -279,13 +279,13 @@ test("source-tagged normal wake-flux coefficients resolve frequency-selective ca
         eventId: `wake-flux-fourier-${timeIndex}-${directionIndex}`,
         normalWakeFluxContributions: [
           {
-            sourceRootId: "source-a:root-0",
+            transmitterRootId: "source-a:root-0",
             transmitterId: "source-a",
             rootOrdinal: 0,
             signed: sourceA,
           },
           {
-            sourceRootId: "source-b:root-0",
+            transmitterRootId: "source-b:root-0",
             transmitterId: "source-b",
             rootOrdinal: 0,
             signed: sourceB,
@@ -295,9 +295,9 @@ test("source-tagged normal wake-flux coefficients resolve frequency-selective ca
     },
   });
   const rootArea = Math.sqrt(4 * Math.PI);
-  const coefficient = (sourceRootId, harmonic) =>
-    surface.sourceTaggedWakeFluxSpectralRows.find((row) =>
-      row.sourceRootId === sourceRootId && row.degree === 0 && row.order === 0 &&
+  const coefficient = (transmitterRootId, harmonic) =>
+    surface.transmitterTaggedWakeFluxSpectralRows.find((row) =>
+      row.transmitterRootId === transmitterRootId && row.degree === 0 && row.order === 0 &&
       row.harmonic === harmonic);
   near(coefficient("source-a:root-0", 2).real, 0.5 * rootArea, 3e-12);
   near(coefficient("source-b:root-0", 2).real, -0.25 * rootArea, 3e-12);
@@ -312,12 +312,12 @@ test("source-tagged normal wake-flux coefficients resolve frequency-selective ca
   near(cancellation(3).rawMagnitude, 0.3125 * rootArea, 3e-12);
   near(cancellation(3).netMagnitude, 0.3125 * rootArea, 3e-12);
   near(cancellation(3).etaWakeFlux, 1, 3e-12);
-  near(surface.sourceTaggedWakeFluxBandCoverage.parsevalRelativeResidual, 0, 2e-12);
-  near(surface.sourceTaggedWakeFluxBandCoverage.outOfBandRmsFraction, 0, 5e-8);
-  assert.match(surface.sourceTaggedWakeFluxBandCoverage.claimBoundary, /not energy/);
+  near(surface.transmitterTaggedWakeFluxBandCoverage.parsevalRelativeResidual, 0, 2e-12);
+  near(surface.transmitterTaggedWakeFluxBandCoverage.outOfBandRmsFraction, 0, 5e-8);
+  assert.match(surface.transmitterTaggedWakeFluxBandCoverage.claimBoundary, /not energy/);
 });
 
-test("frequency-resolved wake-flux reduction fails closed without reconstructing source tags", () => {
+test("frequency-resolved wake-flux reduction fails closed without reconstructing transmitter tags", () => {
   const protocol = compactProtocol();
   assert.throws(
     () => reduceB1SurfaceSampleGrid({
@@ -331,11 +331,11 @@ test("frequency-resolved wake-flux reduction fails closed without reconstructing
           amplitude: 1,
           eventId: `untagged-${timeIndex}-${directionIndex}`,
         });
-        delete row.normalWakeFluxDensity.sourceRootContributions;
+        delete row.normalWakeFluxDensity.transmitterRootContributions;
         return row;
       },
     }),
-    /lacks source-root-tagged normal wake-flux contributions/,
+    /lacks transmitter-root-tagged normal wake-flux contributions/,
   );
 });
 

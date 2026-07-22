@@ -395,7 +395,7 @@ That yields a disciplined provisional picture:
 - [singularity-resolution.md](./singularity-resolution.md): canonical horizon alignment condition.
 - [black-holes.md](./black-holes.md): horizon interface and strong-field ontology.
 - [A1 Dynamics](../noether-braid/braid-a1-dynamics.md#a1-dynamics): regime map, planarity diagnostics, and alignment observables.
-- [Mapping the Planck Scale to Family-A Geometry](../philosophy-history/theory-bridges/planck-scale-nested-shell-braid-alignment.md): terminal planar lock and alignment-horizon interpretation.
+- [Mapping the Planck Scale to Family-A Geometry](../philosophy-history/theory-bridges/mapping-planck-scale-a1-geometry.md): terminal planar lock and alignment-horizon interpretation.
 - [angular-momentum-and-spin.md](../philosophy-history/theory-bridges/angular-momentum-and-spin.md): shared proof ledger for promoting boundary-helicity proxy language into observer-level spin or helicity claims.
 - [../assemblies/fermions/color-charge-su3.md](../assemblies/fermions/color-charge-su3.md): separation of pro/anti ordered orientation from matter/antimatter polarity conjugation.
 - [../assemblies/fermions/quantum-number-mapping.md](../assemblies/fermions/quantum-number-mapping.md): ordered-triad, polarity-conjugation, and chirality language.

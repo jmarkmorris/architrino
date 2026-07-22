@@ -255,9 +255,9 @@ export function validateB1CompleteCycleProbeProtocol(rawProtocol) {
       wakeFlux.normalProjection !==
         "fieldSpeed-times-root-signed-wake-times-root-direction-dot-outward-normal.v1" ||
       wakeFlux.rawAggregation !==
-        "sum-absolute-source-root-normal-contributions-before-superposition.v1" ||
+        "sum-absolute-transmitter-root-normal-contributions-before-superposition.v1" ||
       wakeFlux.residualAggregation !==
-        "absolute-signed-superposition-after-source-root-summation.v1" ||
+        "absolute-signed-superposition-after-transmitter-root-summation.v1" ||
       wakeFlux.etaWakeFlux !== "residualCycleIntegral/rawCycleIntegral.v1" ||
       wakeFlux.rawEmissionReference !==
         "cycle-period-times-sum-absolute-source-polarity.v1") {
@@ -274,12 +274,12 @@ export function validateB1CompleteCycleProbeProtocol(rawProtocol) {
   if (frequencyResolvedWakeFlux.angularBasis !==
         "same-real-orthonormal-spherical-harmonic-basis-as-angularReduction.v1" ||
       frequencyResolvedWakeFlux.temporalBasis !== "complete-cycle-complex-dft.v1" ||
-      frequencyResolvedWakeFlux.sourceRootTag !==
+      frequencyResolvedWakeFlux.transmitterRootTag !==
         "transmitter-id-plus-root-ordinal.v1" ||
       frequencyResolvedWakeFlux.rawCoefficientAggregation !==
-        "sum-source-root-complex-magnitudes-before-superposition.v1" ||
+        "sum-transmitter-root-complex-magnitudes-before-superposition.v1" ||
       frequencyResolvedWakeFlux.netCoefficientAggregation !==
-        "magnitude-of-source-root-complex-sum.v1" ||
+        "magnitude-of-transmitter-root-complex-sum.v1" ||
       frequencyResolvedWakeFlux.etaWakeFluxCoefficient !==
         "netMagnitude/rawMagnitude.v1") {
     throw new TypeError(

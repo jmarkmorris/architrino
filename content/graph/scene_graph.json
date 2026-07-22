@@ -3167,6 +3167,12 @@
       "nodeType": "markdown_doc"
     },
     {
+      "id": "content/markdown/aaa/philosophy-history/theory-bridges/mapping-planck-scale-a1-geometry.md",
+      "name": "Mapping the Planck Scale to the A1 Geometry",
+      "path": "content/markdown/aaa/philosophy-history/theory-bridges/mapping-planck-scale-a1-geometry.md",
+      "nodeType": "markdown_doc"
+    },
+    {
       "id": "content/markdown/aaa/philosophy-history/theory-bridges/measurement-problem-and-collapse.md",
       "name": "Measurement Problem and Collapse",
       "path": "content/markdown/aaa/philosophy-history/theory-bridges/measurement-problem-and-collapse.md",
@@ -3176,12 +3182,6 @@
       "id": "content/markdown/aaa/philosophy-history/theory-bridges/pilot-wave-character.md",
       "name": "Pilot-Wave Character: Traditional de Broglie–Bohm Theory and Architrino Assembly Architecture",
       "path": "content/markdown/aaa/philosophy-history/theory-bridges/pilot-wave-character.md",
-      "nodeType": "markdown_doc"
-    },
-    {
-      "id": "content/markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-braid-alignment.md",
-      "name": "Mapping the Planck Scale to the A1 Geometry",
-      "path": "content/markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-braid-alignment.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -3461,6 +3461,12 @@
       "nodeType": "markdown_doc"
     },
     {
+      "id": "content/markdown/aaa/validation/simulations/a1-action-increment-protocol.md",
+      "name": "A1 Action-Increment Protocol",
+      "path": "content/markdown/aaa/validation/simulations/a1-action-increment-protocol.md",
+      "nodeType": "markdown_doc"
+    },
+    {
       "id": "content/markdown/aaa/validation/simulations/action-energy/action-model.md",
       "name": "Action Model Comparison",
       "path": "content/markdown/aaa/validation/simulations/action-energy/action-model.md",
@@ -3584,12 +3590,6 @@
       "id": "content/markdown/aaa/validation/simulations/hydrogen-gamma-n-spectral-row-toy-scan.md",
       "name": "Hydrogen $\\Gamma_N$ Spectral Coefficient Row Toy Scan",
       "path": "content/markdown/aaa/validation/simulations/hydrogen-gamma-n-spectral-row-toy-scan.md",
-      "nodeType": "markdown_doc"
-    },
-    {
-      "id": "content/markdown/aaa/validation/simulations/nested-shell-braid-action-increment-protocol.md",
-      "name": "A1 Action-Increment Protocol",
-      "path": "content/markdown/aaa/validation/simulations/nested-shell-braid-action-increment-protocol.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -8176,6 +8176,15 @@
       "implicit": false
     },
     {
+      "nodeId": "markdown_doc:content/markdown/aaa/philosophy-history/theory-bridges/mapping-planck-scale-a1-geometry.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/philosophy-history/theory-bridges/mapping-planck-scale-a1-geometry.md",
+      "name": "Mapping the Planck Scale to the A1 Geometry",
+      "path": "content/markdown/aaa/philosophy-history/theory-bridges/mapping-planck-scale-a1-geometry.md",
+      "searchTarget": "content/markdown/aaa/philosophy-history/theory-bridges/mapping-planck-scale-a1-geometry.md",
+      "implicit": false
+    },
+    {
       "nodeId": "markdown_doc:content/markdown/aaa/philosophy-history/theory-bridges/measurement-problem-and-collapse.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/philosophy-history/theory-bridges/measurement-problem-and-collapse.md",
@@ -8191,15 +8200,6 @@
       "name": "Pilot-Wave Character: Traditional de Broglie–Bohm Theory and Architrino Assembly Architecture",
       "path": "content/markdown/aaa/philosophy-history/theory-bridges/pilot-wave-character.md",
       "searchTarget": "content/markdown/aaa/philosophy-history/theory-bridges/pilot-wave-character.md",
-      "implicit": false
-    },
-    {
-      "nodeId": "markdown_doc:content/markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-braid-alignment.md",
-      "nodeType": "markdown_doc",
-      "id": "content/markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-braid-alignment.md",
-      "name": "Mapping the Planck Scale to the A1 Geometry",
-      "path": "content/markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-braid-alignment.md",
-      "searchTarget": "content/markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-braid-alignment.md",
       "implicit": false
     },
     {
@@ -8617,6 +8617,15 @@
       "implicit": false
     },
     {
+      "nodeId": "markdown_doc:content/markdown/aaa/validation/simulations/a1-action-increment-protocol.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/validation/simulations/a1-action-increment-protocol.md",
+      "name": "A1 Action-Increment Protocol",
+      "path": "content/markdown/aaa/validation/simulations/a1-action-increment-protocol.md",
+      "searchTarget": "content/markdown/aaa/validation/simulations/a1-action-increment-protocol.md",
+      "implicit": false
+    },
+    {
       "nodeId": "markdown_doc:content/markdown/aaa/validation/simulations/action-energy/action-model.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/validation/simulations/action-energy/action-model.md",
@@ -8803,15 +8812,6 @@
       "name": "Hydrogen $\\Gamma_N$ Spectral Coefficient Row Toy Scan",
       "path": "content/markdown/aaa/validation/simulations/hydrogen-gamma-n-spectral-row-toy-scan.md",
       "searchTarget": "content/markdown/aaa/validation/simulations/hydrogen-gamma-n-spectral-row-toy-scan.md",
-      "implicit": false
-    },
-    {
-      "nodeId": "markdown_doc:content/markdown/aaa/validation/simulations/nested-shell-braid-action-increment-protocol.md",
-      "nodeType": "markdown_doc",
-      "id": "content/markdown/aaa/validation/simulations/nested-shell-braid-action-increment-protocol.md",
-      "name": "A1 Action-Increment Protocol",
-      "path": "content/markdown/aaa/validation/simulations/nested-shell-braid-action-increment-protocol.md",
-      "searchTarget": "content/markdown/aaa/validation/simulations/nested-shell-braid-action-increment-protocol.md",
       "implicit": false
     },
     {
@@ -14582,7 +14582,7 @@
     },
     {
       "from": "scene:content/scenes/philosophy_history/theory_bridges/planck_scale_nested_shell_braid_alignment.json",
-      "to": "markdown_doc:content/markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-braid-alignment.md",
+      "to": "markdown_doc:content/markdown/aaa/philosophy-history/theory-bridges/mapping-planck-scale-a1-geometry.md",
       "edgeType": "markdown_doc",
       "source": "content/scenes/philosophy_history/theory_bridges/planck_scale_nested_shell_braid_alignment.json",
       "field": "scene.source.path"
@@ -15065,7 +15065,7 @@
     },
     {
       "from": "scene:content/scenes/validation/sim_nested_shell_braid_action_increment_protocol.json",
-      "to": "markdown_doc:content/markdown/aaa/validation/simulations/nested-shell-braid-action-increment-protocol.md",
+      "to": "markdown_doc:content/markdown/aaa/validation/simulations/a1-action-increment-protocol.md",
       "edgeType": "markdown_doc",
       "source": "content/scenes/validation/sim_nested_shell_braid_action_increment_protocol.json",
       "field": "scene.source.path"

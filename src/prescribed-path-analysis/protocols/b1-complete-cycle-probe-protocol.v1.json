@@ -133,37 +133,37 @@
   "causalWakeFluxReduction": {
     "integrationWindow": "one-complete-return-cycle.v1",
     "normalProjection": "fieldSpeed-times-root-signed-wake-times-root-direction-dot-outward-normal.v1",
-    "rawAggregation": "sum-absolute-source-root-normal-contributions-before-superposition.v1",
-    "residualAggregation": "absolute-signed-superposition-after-source-root-summation.v1",
+    "rawAggregation": "sum-absolute-transmitter-root-normal-contributions-before-superposition.v1",
+    "residualAggregation": "absolute-signed-superposition-after-transmitter-root-summation.v1",
     "etaWakeFlux": "residualCycleIntegral/rawCycleIntegral.v1",
     "rawEmissionReference": "cycle-period-times-sum-absolute-source-polarity.v1",
     "fluxFloor": 1e-30,
     "frequencyResolved": {
       "angularBasis": "same-real-orthonormal-spherical-harmonic-basis-as-angularReduction.v1",
       "temporalBasis": "complete-cycle-complex-dft.v1",
-      "sourceRootTag": "transmitter-id-plus-root-ordinal.v1",
-      "rawCoefficientAggregation": "sum-source-root-complex-magnitudes-before-superposition.v1",
-      "netCoefficientAggregation": "magnitude-of-source-root-complex-sum.v1",
+      "transmitterRootTag": "transmitter-id-plus-root-ordinal.v1",
+      "rawCoefficientAggregation": "sum-transmitter-root-complex-magnitudes-before-superposition.v1",
+      "netCoefficientAggregation": "magnitude-of-transmitter-root-complex-sum.v1",
       "etaWakeFluxCoefficient": "netMagnitude/rawMagnitude.v1",
       "coefficientFloor": 1e-30,
       "relativeComparisonFloor": 0.000001,
       "reportedRows": [
-        "source-root-tagged complex normal wake-flux coefficient",
+        "transmitter-root-tagged complex normal wake-flux coefficient",
         "net complex normal wake-flux coefficient by temporal harmonic and angular mode",
         "raw coefficient magnitude",
         "net coefficient magnitude",
         "frequency-and-angular-mode cancellation ratio",
-        "source-tagged retained-band coverage"
+        "transmitter-tagged retained-band coverage"
       ],
       "claimBoundary": "frequency-resolved causal-wake cancellation only; signal-processing magnitude is not energy"
     },
     "reportedMeasures": [
       "signed complete-cycle normal-projected causal-wake flux",
-      "source-root-tagged raw complete-cycle normal-projected causal-wake flux",
+      "transmitter-root-tagged raw complete-cycle normal-projected causal-wake flux",
       "absolute residual complete-cycle normal-projected causal-wake flux",
       "eta_W_flux(R)",
       "raw emission-reference residual",
-      "source-root-tagged frequency-and-angular-mode normal wake-flux coefficients",
+      "transmitter-root-tagged frequency-and-angular-mode normal wake-flux coefficients",
       "frequency-and-angular-mode cancellation ratios"
     ],
     "claimBoundary": "causal-wake measure only; not energy, potential, work, or leakage"

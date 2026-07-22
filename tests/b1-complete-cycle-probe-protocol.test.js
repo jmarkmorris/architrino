@@ -181,7 +181,7 @@ test("protocol validation fails closed on surface/history and resolution defects
   );
 
   const discardedSourceTags = loadProtocol();
-  discardedSourceTags.causalWakeFluxReduction.frequencyResolved.sourceRootTag =
+  discardedSourceTags.causalWakeFluxReduction.frequencyResolved.transmitterRootTag =
     "discard-before-superposition.v1";
   assert.throws(
     () => validateB1CompleteCycleProbeProtocol(discardedSourceTags),

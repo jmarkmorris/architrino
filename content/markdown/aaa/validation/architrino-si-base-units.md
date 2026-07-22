@@ -2,7 +2,7 @@
 
 This chapter examines how the modern SI system interfaces with $\mathbb{A}\mathbb{A}\mathbb{A}$. Its purpose is to ask which defining constants might be derivable, which remain primitive, and what kinds of constant-relations the theory should eventually explain if its geometric closure program succeeds.
 
-It should be read together with [Parameter Ledger](parameter-ledger.md), [Angular Momentum and Spin](../philosophy-history/theory-bridges/angular-momentum-and-spin.md), [Mapping the Planck Scale](../philosophy-history/theory-bridges/planck-scale-nested-shell-braid-alignment.md), [Energy](../dynamics/energy.md), [Particle Masses](../assemblies/particle-masses.md), and [Atomic Spectra](../nuclear-atomic/atomic-spectra.md).
+It should be read together with [Parameter Ledger](parameter-ledger.md), [Angular Momentum and Spin](../philosophy-history/theory-bridges/angular-momentum-and-spin.md), [Mapping the Planck Scale](../philosophy-history/theory-bridges/mapping-planck-scale-a1-geometry.md), [Energy](../dynamics/energy.md), [Particle Masses](../assemblies/particle-masses.md), and [Atomic Spectra](../nuclear-atomic/atomic-spectra.md).
 
 ## Executive Summary
 

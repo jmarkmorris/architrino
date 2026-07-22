@@ -8741,16 +8741,16 @@
                   },
                   {
                     "id": "validation_simulations__sim_branch_quantum__sim_nested_shell_braid_action_increment_protocol",
-                    "title": "Nested Shell Braid Action-Increment Protocol",
+                    "title": "A1 Action-Increment Protocol",
                     "kind": "markdown-view",
                     "sceneType": "Scene-Markdown-View",
                     "scenePath": "content/scenes/validation/sim_nested_shell_braid_action_increment_protocol.json",
-                    "markdownPath": "content/markdown/aaa/validation/simulations/nested-shell-braid-action-increment-protocol.md",
+                    "markdownPath": "content/markdown/aaa/validation/simulations/a1-action-increment-protocol.md",
                     "sections": [
                       {
                         "kind": "markdown-section",
                         "title": "Closure Question",
-                        "markdownPath": "content/markdown/aaa/validation/simulations/nested-shell-braid-action-increment-protocol.md",
+                        "markdownPath": "content/markdown/aaa/validation/simulations/a1-action-increment-protocol.md",
                         "markdownSection": "Closure Question",
                         "sectionKey": "closure question",
                         "headingLevel": 2
@@ -8758,7 +8758,7 @@
                       {
                         "kind": "markdown-section",
                         "title": "Accepted Transition Class",
-                        "markdownPath": "content/markdown/aaa/validation/simulations/nested-shell-braid-action-increment-protocol.md",
+                        "markdownPath": "content/markdown/aaa/validation/simulations/a1-action-increment-protocol.md",
                         "markdownSection": "Accepted Transition Class",
                         "sectionKey": "accepted transition class",
                         "headingLevel": 2
@@ -8766,7 +8766,7 @@
                       {
                         "kind": "markdown-section",
                         "title": "Master-Equation Increment",
-                        "markdownPath": "content/markdown/aaa/validation/simulations/nested-shell-braid-action-increment-protocol.md",
+                        "markdownPath": "content/markdown/aaa/validation/simulations/a1-action-increment-protocol.md",
                         "markdownSection": "Master-Equation Increment",
                         "sectionKey": "master equation increment",
                         "headingLevel": 2
@@ -8774,7 +8774,7 @@
                       {
                         "kind": "markdown-section",
                         "title": "Branch-Chart Conservation Pullback",
-                        "markdownPath": "content/markdown/aaa/validation/simulations/nested-shell-braid-action-increment-protocol.md",
+                        "markdownPath": "content/markdown/aaa/validation/simulations/a1-action-increment-protocol.md",
                         "markdownSection": "Branch-Chart Conservation Pullback",
                         "sectionKey": "branch chart conservation pullback",
                         "headingLevel": 2
@@ -8782,7 +8782,7 @@
                       {
                         "kind": "markdown-section",
                         "title": "Cluster and Stability Residuals",
-                        "markdownPath": "content/markdown/aaa/validation/simulations/nested-shell-braid-action-increment-protocol.md",
+                        "markdownPath": "content/markdown/aaa/validation/simulations/a1-action-increment-protocol.md",
                         "markdownSection": "Cluster and Stability Residuals",
                         "sectionKey": "cluster and stability residuals",
                         "headingLevel": 2
@@ -8790,7 +8790,7 @@
                       {
                         "kind": "markdown-section",
                         "title": "Field-Speed Approach Scan",
-                        "markdownPath": "content/markdown/aaa/validation/simulations/nested-shell-braid-action-increment-protocol.md",
+                        "markdownPath": "content/markdown/aaa/validation/simulations/a1-action-increment-protocol.md",
                         "markdownSection": "Field-Speed Approach Scan",
                         "sectionKey": "field speed approach scan",
                         "headingLevel": 2
@@ -8798,7 +8798,7 @@
                       {
                         "kind": "markdown-section",
                         "title": "Required Packet Files",
-                        "markdownPath": "content/markdown/aaa/validation/simulations/nested-shell-braid-action-increment-protocol.md",
+                        "markdownPath": "content/markdown/aaa/validation/simulations/a1-action-increment-protocol.md",
                         "markdownSection": "Required Packet Files",
                         "sectionKey": "required packet files",
                         "headingLevel": 2
@@ -8806,7 +8806,7 @@
                       {
                         "kind": "markdown-section",
                         "title": "Promotion Gates",
-                        "markdownPath": "content/markdown/aaa/validation/simulations/nested-shell-braid-action-increment-protocol.md",
+                        "markdownPath": "content/markdown/aaa/validation/simulations/a1-action-increment-protocol.md",
                         "markdownSection": "Promotion Gates",
                         "sectionKey": "promotion gates",
                         "headingLevel": 2
@@ -8814,7 +8814,7 @@
                       {
                         "kind": "markdown-section",
                         "title": "Failure-Code Enum",
-                        "markdownPath": "content/markdown/aaa/validation/simulations/nested-shell-braid-action-increment-protocol.md",
+                        "markdownPath": "content/markdown/aaa/validation/simulations/a1-action-increment-protocol.md",
                         "markdownSection": "Failure-Code Enum",
                         "sectionKey": "failure code enum",
                         "headingLevel": 2
@@ -8822,7 +8822,7 @@
                       {
                         "kind": "markdown-section",
                         "title": "Interpretation",
-                        "markdownPath": "content/markdown/aaa/validation/simulations/nested-shell-braid-action-increment-protocol.md",
+                        "markdownPath": "content/markdown/aaa/validation/simulations/a1-action-increment-protocol.md",
                         "markdownSection": "Interpretation",
                         "sectionKey": "interpretation",
                         "headingLevel": 2
@@ -12116,16 +12116,16 @@
                   },
                   {
                     "id": "theory_bridges__planck_scale_nested_shell_braid_alignment",
-                    "title": "Planck Scale Nested Shell Braid Alignment",
+                    "title": "Mapping the Planck Scale to the A1 Geometry",
                     "kind": "markdown-view",
                     "sceneType": "Scene-Markdown-View",
                     "scenePath": "content/scenes/philosophy_history/theory_bridges/planck_scale_nested_shell_braid_alignment.json",
-                    "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-braid-alignment.md",
+                    "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/mapping-planck-scale-a1-geometry.md",
                     "sections": [
                       {
                         "kind": "markdown-section",
                         "title": "Thesis",
-                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-braid-alignment.md",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/mapping-planck-scale-a1-geometry.md",
                         "markdownSection": "Thesis",
                         "sectionKey": "thesis",
                         "headingLevel": 2
@@ -12133,7 +12133,7 @@
                       {
                         "kind": "markdown-section",
                         "title": "Operational Probing Limit",
-                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-braid-alignment.md",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/mapping-planck-scale-a1-geometry.md",
                         "markdownSection": "Operational Probing Limit",
                         "sectionKey": "operational probing limit",
                         "headingLevel": 2
@@ -12141,7 +12141,7 @@
                       {
                         "kind": "markdown-section",
                         "title": "What Planck Units Imply About the binary 3",
-                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-braid-alignment.md",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/mapping-planck-scale-a1-geometry.md",
                         "markdownSection": "What Planck Units Imply About the binary 3",
                         "sectionKey": "what planck units imply about the binary 3",
                         "headingLevel": 2
@@ -12149,7 +12149,7 @@
                       {
                         "kind": "markdown-section",
                         "title": "Kinematic and Dynamical Alignment Conditions",
-                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-braid-alignment.md",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/mapping-planck-scale-a1-geometry.md",
                         "markdownSection": "Kinematic and Dynamical Alignment Conditions",
                         "sectionKey": "kinematic and dynamical alignment conditions",
                         "headingLevel": 2
@@ -12157,7 +12157,7 @@
                       {
                         "kind": "markdown-section",
                         "title": "Energy as Causal-Wake Interaction History",
-                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-braid-alignment.md",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/mapping-planck-scale-a1-geometry.md",
                         "markdownSection": "Energy as Causal-Wake Interaction History",
                         "sectionKey": "energy as causal wake interaction history",
                         "headingLevel": 2
@@ -12165,7 +12165,7 @@
                       {
                         "kind": "markdown-section",
                         "title": "Discrete Ladder and Phase-Slip Dynamics (Hypothesis)",
-                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-braid-alignment.md",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/mapping-planck-scale-a1-geometry.md",
                         "markdownSection": "Discrete Ladder and Phase-Slip Dynamics (Hypothesis)",
                         "sectionKey": "discrete ladder and phase slip dynamics hypothesis",
                         "headingLevel": 2
@@ -12173,7 +12173,7 @@
                       {
                         "kind": "markdown-section",
                         "title": "Spin Transition and Configuration-Space Topology (Hypothesis)",
-                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-braid-alignment.md",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/mapping-planck-scale-a1-geometry.md",
                         "markdownSection": "Spin Transition and Configuration-Space Topology (Hypothesis)",
                         "sectionKey": "spin transition and configuration space topology hypothesis",
                         "headingLevel": 2
@@ -12181,7 +12181,7 @@
                       {
                         "kind": "markdown-section",
                         "title": "Emergent Constants: $\\hbar$, $\\ell_P$, and $G$",
-                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-braid-alignment.md",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/mapping-planck-scale-a1-geometry.md",
                         "markdownSection": "Emergent Constants: $\\hbar$, $\\ell_P$, and $G$",
                         "sectionKey": "emergent constants hbar ell p and g",
                         "headingLevel": 2
@@ -12189,7 +12189,7 @@
                       {
                         "kind": "markdown-section",
                         "title": "Horizon Microstructure and “Condensate-Like” Phases (Conjecture)",
-                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-braid-alignment.md",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/mapping-planck-scale-a1-geometry.md",
                         "markdownSection": "Horizon Microstructure and “Condensate-Like” Phases (Conjecture)",
                         "sectionKey": "horizon microstructure and condensate like phases conjecture",
                         "headingLevel": 2
@@ -12197,7 +12197,7 @@
                       {
                         "kind": "markdown-section",
                         "title": "Constraints, Assumptions, and Failure Modes",
-                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-braid-alignment.md",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/mapping-planck-scale-a1-geometry.md",
                         "markdownSection": "Constraints, Assumptions, and Failure Modes",
                         "sectionKey": "constraints assumptions and failure modes",
                         "headingLevel": 2

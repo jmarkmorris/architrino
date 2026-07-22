@@ -1115,7 +1115,7 @@ This chapter centralizes the black-hole ontology and hands specific tasks to adj
 - [singularity-resolution.md](./singularity-resolution.md): canonical horizon alignment condition and singularity replacement language.
 - [general-relativity.md](./general-relativity.md): weak-field and strong-field observational closure targets.
 - [A1 Dynamics](../noether-braid/braid-a1-dynamics.md#a1-dynamics): prescribed A1 regime map, recycling sketches, and kinematic hypotheses; it does not establish the black-hole assignment.
-- [Mapping the Planck Scale to the A1 Geometry](../philosophy-history/theory-bridges/planck-scale-nested-shell-braid-alignment.md): exploratory Planck-alignment interpretation of terminal horizon locking.
+- [Mapping the Planck Scale to the A1 Geometry](../philosophy-history/theory-bridges/mapping-planck-scale-a1-geometry.md): exploratory Planck-alignment interpretation of terminal horizon locking.
 - [../cosmology/dark-energy.md](../cosmology/dark-energy.md): effective dark-energy source terms and late-time expansion history.
 - [../cosmology/CMB.md](../cosmology/CMB.md): recycling cosmology and SMBH-sourced chronology mapping.
 - [../cosmology/dark-matter.md](../cosmology/dark-matter.md): dark-sector processing and SMBH recycling constraints.

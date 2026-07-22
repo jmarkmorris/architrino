@@ -188,7 +188,7 @@ function sampleChannels(sample, direction) {
 
 function createSurfaceAccumulator(protocol, radius, resolution, {
   sourceAbsolutePolaritySum = null,
-  sourceRootIdentities = [],
+  transmitterRootIdentities = [],
 } = {}) {
   const grid = protocol.completeCycle[resolution];
   const directions = createSphericalProductQuadrature(grid);
@@ -210,18 +210,18 @@ function createSurfaceAccumulator(protocol, radius, resolution, {
   };
   const wakeSquaredSums = { signedWake: 0, unsignedWake: 0 };
   const wakeFluxSums = { signed: 0, raw: 0, residual: 0 };
-  const sourceRootFluxSeries = new Map();
-  for (const identity of sourceRootIdentities) {
+  const transmitterRootFluxSeries = new Map();
+  for (const identity of transmitterRootIdentities) {
     if (typeof identity?.transmitterId !== "string" || !identity.transmitterId ||
         !Number.isSafeInteger(identity.rootOrdinal) || identity.rootOrdinal < 0) {
-      throw new TypeError("source-root identity declarations must bind transmitter and ordinal.");
+      throw new TypeError("transmitter-root identity declarations must bind transmitter and ordinal.");
     }
-    const sourceRootId = `${identity.transmitterId}:root-${identity.rootOrdinal}`;
-    if (sourceRootFluxSeries.has(sourceRootId)) {
-      throw new Error(`source-root identity ${sourceRootId} was declared twice.`);
+    const transmitterRootId = `${identity.transmitterId}:root-${identity.rootOrdinal}`;
+    if (transmitterRootFluxSeries.has(transmitterRootId)) {
+      throw new Error(`transmitter-root identity ${transmitterRootId} was declared twice.`);
     }
-    sourceRootFluxSeries.set(sourceRootId, {
-      sourceRootId,
+    transmitterRootFluxSeries.set(transmitterRootId, {
+      transmitterRootId,
       transmitterId: identity.transmitterId,
       rootOrdinal: identity.rootOrdinal,
       coefficientSeries: harmonics.map(() => Array(times.length).fill(0)),
@@ -247,7 +247,7 @@ function createSurfaceAccumulator(protocol, radius, resolution, {
       channel,
       Array(harmonics.length).fill(0),
     ]));
-    const sourceRootCoefficientSums = new Map();
+    const transmitterRootCoefficientSums = new Map();
     for (let directionIndex = 0; directionIndex < directions.length; directionIndex += 1) {
       const direction = directions[directionIndex];
       const sample = samples[directionIndex];
@@ -285,66 +285,66 @@ function createSurfaceAccumulator(protocol, radius, resolution, {
       );
       if (Math.abs(signedNormalFluxDensity) > rawNormalFluxDensity + 1e-12) {
         throw new Error(
-          `${sample.eventId} violates the source-tagged wake-flux triangle bound.`,
+          `${sample.eventId} violates the transmitter-tagged wake-flux triangle bound.`,
         );
       }
-      const sourceRootContributions = sample.normalWakeFluxDensity?.sourceRootContributions;
-      if (!Array.isArray(sourceRootContributions)) {
-        throw new Error(`${sample.eventId} lacks source-root-tagged normal wake-flux contributions.`);
+      const transmitterRootContributions = sample.normalWakeFluxDensity?.transmitterRootContributions;
+      if (!Array.isArray(transmitterRootContributions)) {
+        throw new Error(`${sample.eventId} lacks transmitter-root-tagged normal wake-flux contributions.`);
       }
-      const sampleSourceRootIds = new Set();
+      const sampleTransmitterRootIds = new Set();
       let taggedSignedNormalFluxDensity = 0;
       let taggedRawNormalFluxDensity = 0;
-      for (const contribution of sourceRootContributions) {
-        const sourceRootId = typeof contribution?.sourceRootId === "string"
-          ? contribution.sourceRootId
+      for (const contribution of transmitterRootContributions) {
+        const transmitterRootId = typeof contribution?.transmitterRootId === "string"
+          ? contribution.transmitterRootId
           : "";
         const transmitterId = typeof contribution?.transmitterId === "string"
           ? contribution.transmitterId
           : "";
         const rootOrdinal = contribution?.rootOrdinal;
-        if (!sourceRootId || !transmitterId ||
+        if (!transmitterRootId || !transmitterId ||
             !Number.isSafeInteger(rootOrdinal) || rootOrdinal < 0) {
-          throw new Error(`${sample.eventId} has an invalid source-root wake-flux tag.`);
+          throw new Error(`${sample.eventId} has an invalid transmitter-root wake-flux tag.`);
         }
-        if (sourceRootId !== `${transmitterId}:root-${rootOrdinal}`) {
-          throw new Error(`${sample.eventId} has a noncanonical source-root wake-flux tag.`);
+        if (transmitterRootId !== `${transmitterId}:root-${rootOrdinal}`) {
+          throw new Error(`${sample.eventId} has a noncanonical transmitter-root wake-flux tag.`);
         }
-        if (sampleSourceRootIds.has(sourceRootId)) {
-          throw new Error(`${sample.eventId} repeats source-root tag ${sourceRootId}.`);
+        if (sampleTransmitterRootIds.has(transmitterRootId)) {
+          throw new Error(`${sample.eventId} repeats transmitter-root tag ${transmitterRootId}.`);
         }
-        sampleSourceRootIds.add(sourceRootId);
+        sampleTransmitterRootIds.add(transmitterRootId);
         const signed = finite(
           contribution.signed,
-          `${sample.eventId}.${sourceRootId}.signedNormalWakeFluxDensity`,
+          `${sample.eventId}.${transmitterRootId}.signedNormalWakeFluxDensity`,
         );
         taggedSignedNormalFluxDensity += signed;
         taggedRawNormalFluxDensity += Math.abs(signed);
-        const existing = sourceRootFluxSeries.get(sourceRootId);
+        const existing = transmitterRootFluxSeries.get(transmitterRootId);
         if (existing && (existing.transmitterId !== transmitterId ||
             existing.rootOrdinal !== rootOrdinal)) {
-          throw new Error(`source-root tag ${sourceRootId} changed identity.`);
+          throw new Error(`transmitter-root tag ${transmitterRootId} changed identity.`);
         }
         if (!existing) {
-          sourceRootFluxSeries.set(sourceRootId, {
-            sourceRootId,
+          transmitterRootFluxSeries.set(transmitterRootId, {
+            transmitterRootId,
             transmitterId,
             rootOrdinal,
             coefficientSeries: harmonics.map(() => Array(times.length).fill(0)),
           });
         }
-        const coefficientRow = sourceRootCoefficientSums.get(sourceRootId) ??
+        const coefficientRow = transmitterRootCoefficientSums.get(transmitterRootId) ??
           Array(harmonics.length).fill(0);
         for (let harmonicIndex = 0; harmonicIndex < harmonics.length; harmonicIndex += 1) {
           coefficientRow[harmonicIndex] +=
             weight * signed * harmonicValues[directionIndex][harmonicIndex];
         }
-        sourceRootCoefficientSums.set(sourceRootId, coefficientRow);
+        transmitterRootCoefficientSums.set(transmitterRootId, coefficientRow);
       }
       const taggedTolerance = 1e-12 * Math.max(1, rawNormalFluxDensity);
       if (Math.abs(taggedSignedNormalFluxDensity - signedNormalFluxDensity) > taggedTolerance ||
           Math.abs(taggedRawNormalFluxDensity - rawNormalFluxDensity) > taggedTolerance) {
-        throw new Error(`${sample.eventId} source-root wake-flux rows do not reconstruct the sample.`);
+        throw new Error(`${sample.eventId} transmitter-root wake-flux rows do not reconstruct the sample.`);
       }
       wakeFluxSums.signed += weight * signedNormalFluxDensity;
       wakeFluxSums.raw += weight * rawNormalFluxDensity;
@@ -361,11 +361,11 @@ function createSurfaceAccumulator(protocol, radius, resolution, {
         coefficients[channel][harmonicIndex][timeIndex] = coefficientSums[channel][harmonicIndex];
       }
     }
-    for (const sourceRoot of sourceRootFluxSeries.values()) {
-      const sums = sourceRootCoefficientSums.get(sourceRoot.sourceRootId) ??
+    for (const transmitterRoot of transmitterRootFluxSeries.values()) {
+      const sums = transmitterRootCoefficientSums.get(transmitterRoot.transmitterRootId) ??
         Array(harmonics.length).fill(0);
       for (let harmonicIndex = 0; harmonicIndex < harmonics.length; harmonicIndex += 1) {
-        sourceRoot.coefficientSeries[harmonicIndex][timeIndex] =
+        transmitterRoot.coefficientSeries[harmonicIndex][timeIndex] =
           radius * radius * sums[harmonicIndex];
       }
     }
@@ -519,39 +519,39 @@ function createSurfaceAccumulator(protocol, radius, resolution, {
         spectralBandRows.push({ channel, degree, retainedBandPower });
       });
     }
-    if (sourceRootFluxSeries.size === 0) {
-      throw new Error(`${resolution} radius ${radius} lacks source-root wake-flux series.`);
+    if (transmitterRootFluxSeries.size === 0) {
+      throw new Error(`${resolution} radius ${radius} lacks transmitter-root wake-flux series.`);
     }
     const frequencyConfig = protocol.causalWakeFluxReduction.frequencyResolved;
     const coefficientFloor = frequencyConfig.coefficientFloor;
-    const sourceTaggedWakeFluxSpectralRows = [];
+    const transmitterTaggedWakeFluxSpectralRows = [];
     const aggregateCoefficientRows = new Map();
-    const sourceTaggedBandTotals = {
+    const transmitterTaggedBandTotals = {
       retainedBandPower: 0,
       fullBandPower: 0,
       timeDomainPower: 0,
       parsevalResidual: 0,
       outOfBandPower: 0,
     };
-    const orderedSourceRoots = [...sourceRootFluxSeries.values()].sort((left, right) =>
-      left.sourceRootId.localeCompare(right.sourceRootId));
-    for (const sourceRoot of orderedSourceRoots) {
+    const orderedTransmitterRoots = [...transmitterRootFluxSeries.values()].sort((left, right) =>
+      left.transmitterRootId.localeCompare(right.transmitterRootId));
+    for (const transmitterRoot of orderedTransmitterRoots) {
       for (let harmonicIndex = 0; harmonicIndex < harmonics.length; harmonicIndex += 1) {
         const angular = harmonics[harmonicIndex];
         const spectral = complexDft(
-          sourceRoot.coefficientSeries[harmonicIndex],
+          transmitterRoot.coefficientSeries[harmonicIndex],
           protocol.spectralReduction.maximumHarmonic,
         );
-        sourceTaggedBandTotals.retainedBandPower += spectral.retainedBandPower;
-        sourceTaggedBandTotals.fullBandPower += spectral.fullBandPower;
-        sourceTaggedBandTotals.timeDomainPower += spectral.timeDomainPower;
-        sourceTaggedBandTotals.parsevalResidual += spectral.parsevalResidual;
-        sourceTaggedBandTotals.outOfBandPower += spectral.outOfBandPower;
+        transmitterTaggedBandTotals.retainedBandPower += spectral.retainedBandPower;
+        transmitterTaggedBandTotals.fullBandPower += spectral.fullBandPower;
+        transmitterTaggedBandTotals.timeDomainPower += spectral.timeDomainPower;
+        transmitterTaggedBandTotals.parsevalResidual += spectral.parsevalResidual;
+        transmitterTaggedBandTotals.outOfBandPower += spectral.outOfBandPower;
         for (const coefficient of spectral.retained) {
           const row = {
-            sourceRootId: sourceRoot.sourceRootId,
-            transmitterId: sourceRoot.transmitterId,
-            rootOrdinal: sourceRoot.rootOrdinal,
+            transmitterRootId: transmitterRoot.transmitterRootId,
+            transmitterId: transmitterRoot.transmitterId,
+            rootOrdinal: transmitterRoot.rootOrdinal,
             degree: angular.degree,
             order: angular.order,
             harmonic: coefficient.harmonic,
@@ -565,7 +565,7 @@ function createSurfaceAccumulator(protocol, radius, resolution, {
             phase: coefficient.phase,
             oneSidedPower: coefficient.oneSidedPower,
           };
-          sourceTaggedWakeFluxSpectralRows.push(row);
+          transmitterTaggedWakeFluxSpectralRows.push(row);
           const key = `${angular.id}:n${coefficient.harmonic}`;
           const aggregate = aggregateCoefficientRows.get(key) ?? {
             degree: angular.degree,
@@ -576,12 +576,12 @@ function createSurfaceAccumulator(protocol, radius, resolution, {
             netReal: 0,
             netImaginary: 0,
             rawMagnitude: 0,
-            sourceRootCount: 0,
+            transmitterRootCount: 0,
           };
           aggregate.netReal += coefficient.real;
           aggregate.netImaginary += coefficient.imaginary;
           aggregate.rawMagnitude += coefficient.magnitude;
-          aggregate.sourceRootCount += 1;
+          aggregate.transmitterRootCount += 1;
           aggregateCoefficientRows.set(key, aggregate);
         }
       }
@@ -648,28 +648,28 @@ function createSurfaceAccumulator(protocol, radius, resolution, {
             : "below-coefficient-floor",
         };
       });
-    const sourceTaggedWakeFluxBandCoverage = {
-      sourceRootCount: orderedSourceRoots.length,
+    const transmitterTaggedWakeFluxBandCoverage = {
+      transmitterRootCount: orderedTransmitterRoots.length,
       maximumDegree: protocol.angularReduction.maximumDegree,
       maximumHarmonic: protocol.spectralReduction.maximumHarmonic,
       absoluteCoefficientFloor: coefficientFloor,
       relativeCoefficientFloor: frequencyConfig.relativeComparisonFloor,
       maximumRawCoefficientMagnitude,
       effectiveCoefficientFloor,
-      ...sourceTaggedBandTotals,
-      parsevalRelativeResidual: Math.abs(sourceTaggedBandTotals.parsevalResidual) /
-        Math.max(sourceTaggedBandTotals.timeDomainPower, coefficientFloor),
+      ...transmitterTaggedBandTotals,
+      parsevalRelativeResidual: Math.abs(transmitterTaggedBandTotals.parsevalResidual) /
+        Math.max(transmitterTaggedBandTotals.timeDomainPower, coefficientFloor),
       outOfBandRmsFraction: Math.sqrt(
-        sourceTaggedBandTotals.outOfBandPower /
-          Math.max(sourceTaggedBandTotals.timeDomainPower, coefficientFloor),
+        transmitterTaggedBandTotals.outOfBandPower /
+          Math.max(transmitterTaggedBandTotals.timeDomainPower, coefficientFloor),
       ),
       threshold:
         protocol.failClosedGates.causalWakeFlux.frequencyResolvedOutOfBandRmsFraction,
       claimBoundary: frequencyConfig.claimBoundary,
     };
-    sourceTaggedWakeFluxBandCoverage.passed =
-      sourceTaggedWakeFluxBandCoverage.outOfBandRmsFraction <=
-        sourceTaggedWakeFluxBandCoverage.threshold;
+    transmitterTaggedWakeFluxBandCoverage.passed =
+      transmitterTaggedWakeFluxBandCoverage.outOfBandRmsFraction <=
+        transmitterTaggedWakeFluxBandCoverage.threshold;
     return {
       radius,
       resolution,
@@ -688,10 +688,10 @@ function createSurfaceAccumulator(protocol, radius, resolution, {
       anisotropyRows,
       spectralCoefficientRows,
       spectralBandRows,
-      sourceTaggedWakeFluxSpectralRows,
+      transmitterTaggedWakeFluxSpectralRows,
       wakeFluxSpectralCancellationRows,
       wakeFluxHarmonicCancellationRows,
-      sourceTaggedWakeFluxBandCoverage,
+      transmitterTaggedWakeFluxBandCoverage,
     };
   }
 
@@ -723,14 +723,14 @@ function extractSample(event, polarityValues, surfaceNormal, fieldSpeed) {
   }
   let signedNormalFluxDensity = 0;
   let rawNormalFluxDensity = 0;
-  const sourceRootContributions = [];
+  const transmitterRootContributions = [];
   for (const root of event.roots) {
     const normalProjection = dot(root.direction, surfaceNormal);
     const signedContribution = fieldSpeed * root.signedWakeContribution * normalProjection;
     signedNormalFluxDensity += signedContribution;
     rawNormalFluxDensity += Math.abs(signedContribution);
-    sourceRootContributions.push({
-      sourceRootId: `${root.transmitterId}:root-${root.rootOrdinal}`,
+    transmitterRootContributions.push({
+      transmitterRootId: `${root.transmitterId}:root-${root.rootOrdinal}`,
       transmitterId: root.transmitterId,
       rootOrdinal: root.rootOrdinal,
       eventRootId: root.rootId,
@@ -744,7 +744,7 @@ function extractSample(event, polarityValues, surfaceNormal, fieldSpeed) {
     normalWakeFluxDensity: {
       signed: signedNormalFluxDensity,
       raw: rawNormalFluxDensity,
-      sourceRootContributions,
+      transmitterRootContributions,
     },
     probeAccelerations,
     rawAccelerationMagnitudeSums,
@@ -1095,12 +1095,12 @@ function compareReductions(primarySurfaces, refinedSurfaces, primaryRadial, refi
       frequencyConfig.coefficientFloor,
       maximumRawCoefficient * frequencyConfig.relativeComparisonFloor,
     );
-    const refinedSourceRows = new Map(refined.sourceTaggedWakeFluxSpectralRows.map((row) => [
-      `${row.sourceRootId}:l${row.degree}:m${row.order}:n${row.harmonic}`,
+    const refinedSourceRows = new Map(refined.transmitterTaggedWakeFluxSpectralRows.map((row) => [
+      `${row.transmitterRootId}:l${row.degree}:m${row.order}:n${row.harmonic}`,
       row,
     ]));
-    for (const primaryRow of primary.sourceTaggedWakeFluxSpectralRows) {
-      const key = `${primaryRow.sourceRootId}:l${primaryRow.degree}:m${primaryRow.order}:n${primaryRow.harmonic}`;
+    for (const primaryRow of primary.transmitterTaggedWakeFluxSpectralRows) {
+      const key = `${primaryRow.transmitterRootId}:l${primaryRow.degree}:m${primaryRow.order}:n${primaryRow.harmonic}`;
       const refinedRow = refinedSourceRows.get(key);
       const comparisonScale = Math.max(
         primaryRow.magnitude,
@@ -1111,9 +1111,9 @@ function compareReductions(primarySurfaces, refinedSurfaces, primaryRadial, refi
           primaryRow.magnitude < coefficientComparisonFloor &&
           (refinedRow?.magnitude ?? 0) < coefficientComparisonFloor) continue;
       frequencyResolvedWakeFluxEntries.push({
-        kind: "source-root-coefficient",
+        kind: "transmitter-root-coefficient",
         radius: primary.radius,
-        sourceRootId: primaryRow.sourceRootId,
+        transmitterRootId: primaryRow.transmitterRootId,
         degree: primaryRow.degree,
         order: primaryRow.order,
         harmonic: primaryRow.harmonic,
@@ -1186,10 +1186,10 @@ function compareReductions(primarySurfaces, refinedSurfaces, primaryRadial, refi
       frequencyResolvedBandEntries.push({
         radius: surface.radius,
         resolution: surface.resolution,
-        outOfBandRmsFraction: surface.sourceTaggedWakeFluxBandCoverage.outOfBandRmsFraction,
+        outOfBandRmsFraction: surface.transmitterTaggedWakeFluxBandCoverage.outOfBandRmsFraction,
         parsevalRelativeResidual:
-          surface.sourceTaggedWakeFluxBandCoverage.parsevalRelativeResidual,
-        passed: surface.sourceTaggedWakeFluxBandCoverage.passed,
+          surface.transmitterTaggedWakeFluxBandCoverage.parsevalRelativeResidual,
+        passed: surface.transmitterTaggedWakeFluxBandCoverage.passed,
       });
     }
   }
@@ -1372,7 +1372,7 @@ export function evaluateB1StreamingSurfaceReductions({
       const fullProtocol = buildB1SurfaceEventAnalysisProtocol(protocol, { radius, resolution });
       const accumulator = createSurfaceAccumulator(protocol, radius, resolution, {
         sourceAbsolutePolaritySum,
-        sourceRootIdentities: sourceRecord.sources.map((sourceRow) => ({
+        transmitterRootIdentities: sourceRecord.sources.map((sourceRow) => ({
           transmitterId: sourceRow.id,
           rootOrdinal: 0,
         })),

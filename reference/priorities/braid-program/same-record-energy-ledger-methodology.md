@@ -19,7 +19,7 @@ The strongest currently legitimate split is therefore:
 3. permit a separate prescribed-path **work and drive diagnostic** after moving receiver rows are added; and
 4. reserve total energy, wake-history energy, surface energy transport, and intrinsic leakage for a realized branch whose acceleration, action, boundary, and Noether-sea rows close on one record.
 
-The proposed enclosing-surface idea has one crucial correction. The plain surface integral of the scalar wake $\mathcal W$ is not generally invariant: it omits the outward-normal projection, and the region between two surfaces can hold a time-varying amount of wake measure. On a complete return cycle, however, a normal-projected, source-tagged raw flux has a candidate surface-independent integral when the source paths stay inside both fixed convex surfaces and the stored wake measure returns to the same state. Its signed or cancellation-reduced companion need not be independent of radius. This creates a useful linear wake-cancellation diagnostic, not an energy or potential measure.
+The proposed enclosing-surface idea has one crucial correction. The plain surface integral of the scalar wake $\mathcal W$ is not generally invariant: it omits the outward-normal projection, and the region between two surfaces can hold a time-varying amount of wake measure. On a complete return cycle, however, a normal-projected, transmitter-tagged raw flux has a candidate surface-independent integral when the source paths stay inside both fixed convex surfaces and the stored wake measure returns to the same state. Its signed or cancellation-reduced companion need not be independent of radius. This creates a useful linear wake-cancellation diagnostic, not an energy or potential measure.
 
 The recommended program choice is **open a realized-branch energy program tied to the delayed action**. A prescribed-path work diagnostic is a useful prerequisite, but it is not the energy program and cannot support an escaping-energy fraction.
 
@@ -37,9 +37,9 @@ Falsifier: this verdict is overturned if a current authoritative packet is shown
 | Candidate definition | A same-action time-cut charge may define wake-history energy in flight. | Requires one time-translation-invariant delayed action whose Euler variation yields the accepted acceleration row. | The Euler residual, endpoint residual, or time-translation charge fails under refinement. |
 | Candidate definition | A localized time-cut charge and its boundary variation may define energy inside $V_R$ and transport through $S_R$. | Requires a spatial localization derived from the same nonlocal action; wake amplitude is not a substitute. | The proposed localization changes the total charge, violates the shell identity, or produces radius-dependent imbalance after in-flight storage is included. |
 | Derived | The source-normalized causal-wake distribution admits a normal-projected transport identity away from causal-root folds. | Distributional differentiation of the already-declared $\mathcal W$ kernel; this is a wake-measure identity, not an energy law. | An independently evaluated static-source case fails the closed-surface identity, or the shell-storage balance fails under refinement. |
-| Candidate diagnostic | Over a complete periodic return cycle, the source-tagged raw causal-wake flux through any fixed convex enclosing surface equals the cycle duration times the summed absolute source normalization when the shell storage is periodic. | Requires complete history, complete roots, fixed surfaces containing every source path, and declared fold handling. | The raw cycle integral changes with enclosing radius after quadrature, history, and root refinements, or the shell storage does not return to its initial value. |
-| Inferred | A residual-to-raw normal-flux ratio can measure signed wake cancellation without becoming an energy fraction. | Triangle inequality and the source-tagged raw denominator; radius invariance of the residual is not assumed. | The ratio leaves $[0,1]$ with a valid denominator, or a result is interpreted as energy, realized work, or intrinsic leakage. |
-| Inferred | Complete-cycle scalar cancellation can hide frequency-selective cancellation, so the normal wake-flux diagnostic requires source-tagged complex coefficients before superposition. | A phase-preserving Fourier reduction over the same complete return cycle, resolved jointly by temporal harmonic, angular mode, and radius. | The frequency-resolved rows fail to reconstruct the signed time-and-surface samples, fail refinement, or are interpreted as emitted energy. |
+| Candidate diagnostic | Over a complete periodic return cycle, the transmitter-tagged raw causal-wake flux through any fixed convex enclosing surface equals the cycle duration times the summed absolute source normalization when the shell storage is periodic. | Requires complete history, complete roots, fixed surfaces containing every source path, and declared fold handling. | The raw cycle integral changes with enclosing radius after quadrature, history, and root refinements, or the shell storage does not return to its initial value. |
+| Inferred | A residual-to-raw normal-flux ratio can measure signed wake cancellation without becoming an energy fraction. | Triangle inequality and the transmitter-tagged raw denominator; radius invariance of the residual is not assumed. | The ratio leaves $[0,1]$ with a valid denominator, or a result is interpreted as energy, realized work, or intrinsic leakage. |
+| Inferred | Complete-cycle scalar cancellation can hide frequency-selective cancellation, so the normal wake-flux diagnostic requires transmitter-tagged complex coefficients before superposition. | A phase-preserving Fourier reduction over the same complete return cycle, resolved jointly by temporal harmonic, angular mode, and radius. | The frequency-resolved rows fail to reconstruct the signed time-and-surface samples, fail refinement, or are interpreted as emitted energy. |
 | Inferred | Frequency-resolved wake coefficients may index an action-derived braid-energy decomposition, but they do not determine potential-like or kinetic-like storage without the same-action modal kernel and internal-state observability. | Candidate bridge from the periodic retained branch to an action-derived Noether charge; external wake coefficients are output coordinates, not the charge itself. | Two admitted branches have the same external coefficient ledger but different action-derived charges, or no kernel derived from the accepted action reproduces the same-record balance. |
 | Inferred | Gross outward transport, signed net transport, outside storage, and eventual receiver work are inequivalent. | Follows from allowing simultaneous inward/outward transport, finite in-flight storage, and actual receiver paths. | A same-action theorem proves the quantities identical under explicitly stated restrictions. |
 | Inferred | An intrinsic leakage ratio requires an unforced realized branch or an explicit subtraction of same-record drive and environment work. | Balance-law consequence; recommendation rather than completed branch result. | A driven prescribed cycle closes with nonzero export and zero drive/environment work under an accepted same-record ledger. |
@@ -499,7 +499,7 @@ $$
 
 In plain language, simultaneous readings on the two surfaces sample wake surfaces emitted at different transmitter phases. No individual wake front stalls. A difference between the readings changes the integrated wake measure currently in transit between the surfaces.
 
-Replacing each $q_j$ by $|q_j|$ before summation defines the corresponding raw storage and transport rows. Their volume balance has $\sum_j|q_j|$ on the right-hand side. This source-tagged replacement must occur before any signed superposition; taking the absolute value only after summation would discard the raw emission ledger.
+Replacing each $q_j$ by $|q_j|$ before summation defines the corresponding raw storage and transport rows. Their volume balance has $\sum_j|q_j|$ on the right-hand side. This transmitter-tagged replacement must occur before any signed superposition; taking the absolute value only after summation would discard the raw emission ledger.
 
 For cancellation analysis, retain source and root tags before taking absolute values. On a simple-root chart, the cycle-integrated raw and residual rows are
 
@@ -563,7 +563,7 @@ Falsifiers: reject surface invariance if the raw cycle row changes across enclos
 
 The complete-cycle scalars $F_{\mathrm{raw}}$ and $F_{\mathrm{res}}$ do not state which braid frequencies survive cancellation. Opposite-polarity contributions can cancel strongly in one temporal harmonic and weakly in another, while the integration over the complete cycle reports only their aggregate. The frequency ledger must preserve complex phase because phase is what permits or prevents superposition cancellation.
 
-For each retained source-root branch $a$, real angular basis function $Y_{\ell m}$, enclosing radius $R$, and complete-cycle harmonic $n$, define the source-tagged complex normal-flux coefficient
+For each retained transmitter-root branch $a$, real angular basis function $Y_{\ell m}$, enclosing radius $R$, and complete-cycle harmonic $n$, define the transmitter-tagged complex normal-flux coefficient
 
 $$
 \widetilde f_{a,\ell mn}(R)
@@ -578,7 +578,7 @@ f_a(T,\mathbf X)Y_{\ell m}(\widehat{\mathbf X})
 \Omega_0=\frac{2\pi}{T_{\mathrm{ret}}}.
 $$
 
-Retain the source-root tags until both the raw and net rows are formed:
+Retain the transmitter-root tags until both the raw and net rows are formed:
 
 $$
 A_{\mathrm{raw},\ell mn}(R)
@@ -601,9 +601,9 @@ $$
 
 The triangle inequality again gives a value in $[0,1]$. This coefficient-level ratio measures phase-resolved signed-wake cancellation at one temporal harmonic and angular mode. It is not spectral energy. A separate Fourier transform of the rectified trace $\int_{S_R}|\sum_a f_a|\,dA$ may be reported as a **rectified-residual spectrum**, but the absolute value creates new sum, difference, and multiple frequencies. Those components must not be misidentified as the frequencies emitted by the source paths.
 
-Current status: implemented analytical diagnostic. The streaming reducer retains source-root-tagged complex normal-flux coefficients, net and raw coefficient magnitudes, $\eta_{\mathcal W,\mathrm{flux}}^{(\ell mn)}(R)$, per-harmonic angular-mode norms, radial-scaling rows, retained-band coverage, and primary-versus-refined convergence entries. A relative coefficient floor prevents numerical-zero channels from receiving cancellation ratios or logarithmic radial exponents. A separately authored two-source fixture fixes one harmonic at $\eta=1/3$ and another at $\eta=1$, while an untagged sample fails closed. The result remains a wake-frequency diagnostic and not spectral energy.
+Current status: implemented analytical diagnostic. The streaming reducer retains transmitter-root-tagged complex normal-flux coefficients, net and raw coefficient magnitudes, $\eta_{\mathcal W,\mathrm{flux}}^{(\ell mn)}(R)$, per-harmonic angular-mode norms, radial-scaling rows, retained-band coverage, and primary-versus-refined convergence entries. A relative coefficient floor prevents numerical-zero channels from receiving cancellation ratios or logarithmic radial exponents. A separately authored two-source fixture fixes one harmonic at $\eta=1/3$ and another at $\eta=1$, while an untagged sample fails closed. The result remains a wake-frequency diagnostic and not spectral energy.
 
-Falsifiers: reject a frequency row if inverse reconstruction does not recover the sampled signed normal-flux field within the declared retained-band residual, if primary and refined time grids disagree beyond tolerance, if source-root tags are discarded before the raw coefficient is formed, or if a rectification-created harmonic is reported as a source-emission harmonic.
+Falsifiers: reject a frequency row if inverse reconstruction does not recover the sampled signed normal-flux field within the declared retained-band residual, if primary and refined time grids disagree beyond tolerance, if transmitter-root tags are discarded before the raw coefficient is formed, or if a rectification-created harmonic is reported as a transmitter-emission harmonic.
 
 ### 5.11 Candidate spectral bridge to braid energy
 
@@ -638,7 +638,7 @@ First test: construct two prescribed periodic records with nearly identical acce
 | Outside storage $E_{\mathrm{outside}}$ | Same-record energy stored outside $V_R$ at a time cut. | Depends on the accepted charge and gauge | No | Undefined. |
 | Eventual receiver work $W_{\mathrm{rec,out}}$ | Energy actually delivered along declared external receiver paths. | Yes | Yes | Unavailable in current packets. |
 | External acceleration exposure | How strongly virtual probes could accelerate under the prescribed source. | Norm rows are nonnegative | No | Computable now; explicitly not energy. |
-| Raw causal-wake flux $F_{\mathrm{raw}}$ | Total source-tagged wake-measure crossing over the selected surface and window. | No | No | Candidate analytical row; surface invariant over a complete periodic cycle only under the Section 5.9 conditions. |
+| Raw causal-wake flux $F_{\mathrm{raw}}$ | Total transmitter-tagged wake-measure crossing over the selected surface and window. | No | No | Candidate analytical row; surface invariant over a complete periodic cycle only under the Section 5.9 conditions. |
 | Residual causal-wake flux $F_{\mathrm{res}}$ | Signed superposition remaining after local cancellation, aggregated in absolute value over surface and time. | No | No | Candidate analytical row; radius dependence is allowed. |
 | $\eta_{\mathcal W,\mathrm{flux}}$ | Residual causal-wake flux relative to the raw emission-normalized flux. | No | No | Candidate cancellation diagnostic, not energy, potential, work, or leakage. |
 
@@ -788,7 +788,7 @@ Present:
 - $\mathcal L_{\mathrm{ext}}$, $\mathcal L_{\mathrm{raw}}$, and $\eta_{\mathrm{ext}}$;
 - complete-cycle $F_{\mathrm{signed}}$, $F_{\mathrm{raw}}$, $F_{\mathrm{res}}$, and $\eta_{\mathcal W,\mathrm{flux}}$;
 - the raw emission-reference residual against $T_{\mathrm{ret}}\sum_j|q_j|$;
-- source-root-tagged complex normal wake-flux coefficients, per-$(\ell,m,n)$ cancellation ratios, per-harmonic angular-mode norms, retained-band coverage, and radial scaling;
+- transmitter-root-tagged complex normal wake-flux coefficients, per-$(\ell,m,n)$ cancellation ratios, per-harmonic angular-mode norms, retained-band coverage, and radial scaling;
 - angular coefficient magnitude-squared rows called `power`;
 - anisotropy, spectra, radial scaling, hashes, and quadrature convergence.
 
@@ -829,7 +829,7 @@ Falsifier: any apparent conservation or leakage result that disappears when $\et
 | Centered static-source wake flux | Closed-form causal-wake distribution evaluated outside the production reducer | Every enclosing sphere gives $\Phi_{\mathcal W}=q_j$ and the raw row gives $|q_j|$. | Normal projection, normalization, or surface quadrature is wrong. |
 | Two-radius wake shell balance | Independently integrated $N_{\mathcal W}(V_2\setminus V_1,T)$ plus production surface rows | The instantaneous flux difference equals minus the shell-storage derivative. | A surface row, storage row, root, or time derivative is wrong. |
 | Periodic raw wake-flux invariance | Complete-cycle calculation on at least three enclosing radii | $F_{\mathrm{raw}}=T_{\mathrm{ret}}\sum_j|q_j|$ within the predeclared convergence tolerance. | History is incomplete, storage is not periodic, or root/surface/time reduction is inaccurate. |
-| Coincident opposite-polarity wake control | Independently authored paired-source case | $F_{\mathrm{res}}=0$ while $F_{\mathrm{raw}}>0$. | Source tags were discarded before the raw reduction or signed cancellation is wrong. |
+| Coincident opposite-polarity wake control | Independently authored paired-source case | $F_{\mathrm{res}}=0$ while $F_{\mathrm{raw}}>0$. | Transmitter tags were discarded before the raw reduction or signed cancellation is wrong. |
 | Two-radius delayed balance | Same action and branch evaluated at $R_1<R_2$ | Difference in boundary timing is balanced by energy stored in the shell. | In-flight storage or radius synchronization is missing. |
 | Inward/outward angular split | Authored surface case with simultaneous opposite oriented sectors | Gross out and in remain nonzero while net may vanish. | $[\Phi_{\mathrm{net}}]_+$ was incorrectly used as gross transport. |
 | Self-hit case | Analytically controlled nontrivial self-root toy history | Self-hit power and action rows appear once; trivial coincidence appears zero times. | Self-interaction policy is incomplete or double counted. |
@@ -884,7 +884,7 @@ The following items preserve the dependency order from wake transport to a possi
 
 **Grade:** candidate non-energy diagnostic.
 
-Define the source-tagged wake measure stored in the shell $V_{R_2}\setminus V_{R_1}$ and test the instantaneous identity
+Define the transmitter-tagged wake measure stored in the shell $V_{R_2}\setminus V_{R_1}$ and test the instantaneous identity
 
 $$
 \frac{dN_{\mathcal W}(V_{R_2}\setminus V_{R_1},T)}{dT}
@@ -893,7 +893,7 @@ $$
 =0,
 $$
 
-with $R_1<R_2$, fixed enclosing surfaces, complete causal roots, the same history window, and the same source tags on every term. The implementation artifact is an independently integrated shell-storage row compared with the existing surface-flux rows before cycle integration. This diagnostic tests whether instantaneous differences between enclosing radii are explained by wake measure in flight; it remains distinct from energy storage or energy transport.
+with $R_1<R_2$, fixed enclosing surfaces, complete causal roots, the same history window, and the same transmitter tags on every term. The implementation artifact is an independently integrated shell-storage row compared with the existing surface-flux rows before cycle integration. This diagnostic tests whether instantaneous differences between enclosing radii are explained by wake measure in flight; it remains distinct from energy storage or energy transport.
 
 **Acceptance condition:** the residual converges to the declared tolerance under time, surface-quadrature, root, and history refinement for separately authored static and periodic cases.
 

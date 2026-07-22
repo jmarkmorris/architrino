@@ -21,6 +21,12 @@ const STOP_WORDS = new Set([
   "with",
 ]);
 
+// Stable compatibility routes may intentionally retain a legacy filename while
+// presenting the current reader-facing title.
+const COMPATIBILITY_TITLE_ALIASES = new Map([
+  ["content/markdown/aaa/archie/ideal-braid-guide.md", "A1 Lorentz Geometry Guide"],
+]);
+
 const args = process.argv.slice(2);
 const wantsHelp = args.includes("--help") || args.includes("-h");
 const unknownArgs = args.filter((arg) => !["--help", "-h"].includes(arg));
@@ -154,6 +160,10 @@ function titleMatchesFilename(title, filenameBase) {
   return overlap / fileTokens.length >= 0.75 && overlap / titleTokens.length >= 0.5;
 }
 
+function isApprovedCompatibilityAlias(sourcePath, title) {
+  return COMPATIBILITY_TITLE_ALIASES.get(sourcePath) === title;
+}
+
 function sourceMarkdownTitleRows() {
   const markdownPaths = walkFiles(
     MARKDOWN_ROOT,
@@ -169,7 +179,7 @@ function sourceMarkdownTitleRows() {
       continue;
     }
     const filenameBase = path.basename(markdownPath, ".md");
-    if (!titleMatchesFilename(title, filenameBase)) {
+    if (!isApprovedCompatibilityAlias(markdownPath, title) && !titleMatchesFilename(title, filenameBase)) {
       rows.push({ title, filenameBase, sourcePath: markdownPath });
     }
   }
@@ -197,7 +207,7 @@ function sceneMarkdownSourceRows() {
       continue;
     }
     const filenameBase = path.basename(sourcePath, ".md");
-    if (!titleMatchesFilename(title, filenameBase)) {
+    if (!isApprovedCompatibilityAlias(sourcePath, title) && !titleMatchesFilename(title, filenameBase)) {
       rows.push({ title, filenameBase, sourcePath, scenePath });
     }
   }
