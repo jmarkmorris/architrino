@@ -291,6 +291,25 @@ export function createSpindleExactSourceRecord(rawSpec, options = {}) {
     claimGrade: spec.claimGrade,
     evidenceStatus: spec.evidenceStatus,
     taxonomy: Object.freeze({ ...spec.taxonomy }),
+    parameterVector: {
+      responseCenter: objectVector(spec.responseCenter),
+      frame: {
+        e1: objectVector(spec.frame.e1),
+        e2: objectVector(spec.frame.e2),
+        axis: objectVector(spec.frame.axis),
+      },
+      axialDriftSpeed: spec.axialDriftSpeed,
+      angularFrequency: spec.angularFrequency,
+      prescribedPeriod: 2 * Math.PI / Math.abs(spec.angularFrequency),
+      layers: spec.layers.map((layer) => ({
+        binaryId: layer.binaryId,
+        worldlineIds: [...layer.worldlineIds],
+        radius: layer.radius,
+        capAngle: layer.capAngle,
+        phase: layer.phase,
+        polarityAssignment: layer.polarityAssignment,
+      })),
+    },
     history: {
       start: spec.recordInterval.start,
       end: spec.recordInterval.end,

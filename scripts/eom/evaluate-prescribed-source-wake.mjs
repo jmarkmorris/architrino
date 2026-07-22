@@ -5,36 +5,29 @@ import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
-import { evaluatePrescribedSourceWake } from "../../src/prescribed-path-analysis/index.mjs";
+import { evaluatePrescribedRecordAnalysis } from "../../src/prescribed-path-analysis/index.mjs";
 import {
   createSpindleExactSourceRecord,
   DEFAULT_SPINDLE_SPEC_PATH,
 } from "./generate-spindle-chart-record.mjs";
 
 const SCRIPT_PATH = fileURLToPath(import.meta.url);
-
-function finiteNumber(value, label) {
-  const number = Number(value);
-  if (!Number.isFinite(number)) throw new TypeError(`${label} must be finite.`);
-  return number;
-}
-
-function parsePosition(value) {
-  const entries = String(value).split(",").map((entry) => Number(entry.trim()));
-  if (entries.length !== 3 || entries.some((entry) => !Number.isFinite(entry))) {
-    throw new TypeError("--position must contain three comma-separated finite numbers.");
-  }
-  return { x: entries[0], y: entries[1], z: entries[2] };
-}
+const SCRIPT_DIRECTORY = path.dirname(SCRIPT_PATH);
+export const DEFAULT_B1_ANALYSIS_PROTOCOL_PATH = path.resolve(
+  SCRIPT_DIRECTORY,
+  "../../src/prescribed-path-analysis/fixtures/b1-interior-small-fixture.analysis-protocol.v1.json",
+);
+export const DEFAULT_B1_ANALYSIS_RESULT_PATH = path.resolve(
+  SCRIPT_DIRECTORY,
+  "../../src/prescribed-path-analysis/fixtures/b1-interior-small-fixture.result-packet.v1.json",
+);
 
 function parseArgs(args) {
   const parsed = {
     specPath: DEFAULT_SPINDLE_SPEC_PATH,
-    observationTime: null,
-    probePosition: null,
-    probeCharge: 1,
-    fieldSpeed: 1,
-    coupling: 1,
+    protocolPath: DEFAULT_B1_ANALYSIS_PROTOCOL_PATH,
+    checkPath: null,
+    writePath: null,
   };
   for (let index = 0; index < args.length; index += 1) {
     const key = args[index];
@@ -42,46 +35,60 @@ function parseArgs(args) {
     if (!value) throw new TypeError(`${key} requires a value.`);
     index += 1;
     if (key === "--spec") parsed.specPath = path.resolve(value);
-    else if (key === "--time") parsed.observationTime = finiteNumber(value, "--time");
-    else if (key === "--position") parsed.probePosition = parsePosition(value);
-    else if (key === "--probe-charge") parsed.probeCharge = finiteNumber(value, "--probe-charge");
-    else if (key === "--field-speed") parsed.fieldSpeed = finiteNumber(value, "--field-speed");
-    else if (key === "--coupling") parsed.coupling = finiteNumber(value, "--coupling");
+    else if (key === "--protocol") parsed.protocolPath = path.resolve(value);
+    else if (key === "--check") parsed.checkPath = path.resolve(value);
+    else if (key === "--write") parsed.writePath = path.resolve(value);
     else throw new TypeError(`unknown argument ${key}.`);
   }
-  if (parsed.observationTime === null || parsed.probePosition === null) {
-    throw new TypeError("--time and --position are required.");
+  if (parsed.checkPath && parsed.writePath) {
+    throw new TypeError("--check and --write are mutually exclusive.");
   }
   return parsed;
 }
 
-export function evaluateSpindleWakeFromFile(options) {
-  const sourceBytes = fs.readFileSync(options.specPath);
-  const sourceHash = createHash("sha256").update(sourceBytes).digest("hex");
+export function evaluateSpindleAnalysisFromFiles(options = {}) {
+  const specPath = options.specPath ?? DEFAULT_SPINDLE_SPEC_PATH;
+  const protocolPath = options.protocolPath ?? DEFAULT_B1_ANALYSIS_PROTOCOL_PATH;
+  const sourceBytes = fs.readFileSync(specPath);
+  const upstreamSourceHash = createHash("sha256").update(sourceBytes).digest("hex");
   const spec = JSON.parse(sourceBytes.toString("utf8"));
+  const protocol = JSON.parse(fs.readFileSync(protocolPath, "utf8"));
   const exactRecord = createSpindleExactSourceRecord(spec, {
-    sourceHash,
-    generatingSpec: path.relative(process.cwd(), options.specPath),
+    sourceHash: upstreamSourceHash,
+    generatingSpec: path.relative(process.cwd(), specPath),
   });
-  const result = evaluatePrescribedSourceWake({
-    sourceRecord: exactRecord,
-    observationTime: options.observationTime,
-    probePosition: options.probePosition,
-    probeCharge: options.probeCharge,
-    fieldSpeed: options.fieldSpeed,
-    coupling: options.coupling,
-  });
-  const resultPayloadSha256 = createHash("sha256")
-    .update(JSON.stringify(result))
-    .digest("hex");
-  return { ...result, resultPayloadSha256 };
+  return evaluatePrescribedRecordAnalysis({ sourceRecord: exactRecord, protocol });
+}
+
+export function serializePrescribedRecordAnalysis(packet) {
+  return `${JSON.stringify(packet, null, 2)}\n`;
 }
 
 function runCli() {
-  const result = evaluateSpindleWakeFromFile(parseArgs(process.argv.slice(2)));
-  process.stdout.write(`${JSON.stringify(result, null, 2)}\n`);
+  const options = parseArgs(process.argv.slice(2));
+  const serialized = serializePrescribedRecordAnalysis(
+    evaluateSpindleAnalysisFromFiles(options),
+  );
+  if (options.writePath) {
+    fs.mkdirSync(path.dirname(options.writePath), { recursive: true });
+    fs.writeFileSync(options.writePath, serialized);
+    process.stdout.write(`prescribed-record analysis result written: ${options.writePath}\n`);
+    return;
+  }
+  if (options.checkPath) {
+    if (!fs.existsSync(options.checkPath)) {
+      throw new Error(`prescribed-record analysis result is missing: ${options.checkPath}`);
+    }
+    if (fs.readFileSync(options.checkPath, "utf8") !== serialized) {
+      throw new Error(
+        "prescribed-record analysis result drift: run " +
+        `node scripts/eom/evaluate-prescribed-source-wake.mjs --write ${options.checkPath}`,
+      );
+    }
+    process.stdout.write(`prescribed-record analysis result check passed: ${options.checkPath}\n`);
+    return;
+  }
+  process.stdout.write(serialized);
 }
 
-if (process.argv[1] && path.resolve(process.argv[1]) === SCRIPT_PATH) {
-  runCli();
-}
+if (process.argv[1] && path.resolve(process.argv[1]) === SCRIPT_PATH) runCli();
