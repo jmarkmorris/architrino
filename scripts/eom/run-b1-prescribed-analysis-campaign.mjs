@@ -41,11 +41,41 @@ const REQUIRED_IMPLEMENTED_MEASURES = Object.freeze([
   "root-transversality-margin",
   "numerical-convergence",
 ]);
+const REQUIRED_FULL_CAMPAIGN_GATES = Object.freeze([
+  "source-speed",
+  "root-completeness",
+  "root-transversality",
+  "minimum-separation",
+  "numerical-convergence",
+]);
+const REQUIRED_SCALAR_STATISTICS = Object.freeze([
+  "minimum",
+  "maximum",
+  "mean",
+  "population-standard-deviation",
+  "quantiles",
+]);
+const REQUIRED_ASSOCIATION_PARAMETERS = Object.freeze(["alpha_1", "alpha_2", "alpha_3"]);
+const REQUIRED_ASSOCIATION_MEASURES = Object.freeze([
+  "signedWake",
+  "unsignedWake",
+  "signedCancellationRatio",
+  "positiveProbeAccelerationMagnitude",
+  "negativeProbeAccelerationMagnitude",
+  "minimumSeparation",
+  "rootTransversalityMargin",
+  "numericalConvergenceMaximumChange",
+]);
 
 export const DEFAULT_B1_CAP_ANGLE_CAMPAIGN_MANIFEST_PATH = path.resolve(
   REPOSITORY_ROOT,
   "src/prescribed-path-analysis/campaigns/b1-cap-angle-smoke/" +
     "b1-cap-angle-smoke-campaign.manifest.v1.json",
+);
+export const DEFAULT_B1_CAP_ANGLE_COVERAGE_MANIFEST_PATH = path.resolve(
+  REPOSITORY_ROOT,
+  "src/prescribed-path-analysis/campaigns/b1-cap-angle-coverage/" +
+    "b1-cap-angle-coverage-campaign.manifest.v1.json",
 );
 
 function finiteNumber(value, label) {
@@ -276,6 +306,75 @@ export function validateB1CapAngleCampaignManifest(manifest) {
       }
     });
   });
+  if (manifest.campaignStage != null) {
+    if (manifest.campaignStage !== "monte-carlo-coverage") {
+      throw new TypeError("manifest.campaignStage must be monte-carlo-coverage when declared.");
+    }
+    const acceptance = manifest.acceptancePolicy;
+    if (acceptance?.id !== "all-cases-all-gates/fail-closed.v1" ||
+        acceptance.failureDisposition !== "reject-campaign-and-write-no-artifacts") {
+      throw new TypeError("full B1 coverage requires the fail-closed all-case acceptance policy.");
+    }
+    if (positiveInteger(
+      acceptance.requiredSeededSampleCount,
+      "manifest.acceptancePolicy.requiredSeededSampleCount",
+    ) !== sampleCount ||
+        positiveInteger(
+          acceptance.requiredAnchorCount,
+          "manifest.acceptancePolicy.requiredAnchorCount",
+        ) !== manifest.anchors.length ||
+        positiveInteger(
+          acceptance.requiredTotalCaseCount,
+          "manifest.acceptancePolicy.requiredTotalCaseCount",
+        ) !== sampleCount + manifest.anchors.length) {
+      throw new RangeError("manifest acceptance counts must equal anchors plus seeded samples.");
+    }
+    exactArray(
+      acceptance.requiredGates,
+      REQUIRED_FULL_CAMPAIGN_GATES,
+      "manifest.acceptancePolicy.requiredGates",
+    );
+    const reporting = manifest.reportingPolicy;
+    if (reporting?.id !== "seeded-population-descriptive-report.v1" ||
+        reporting.anchorTreatment !==
+          "report-separately-exclude-from-sampled-distributions" ||
+        reporting.sampledPopulation !== "all-accepted-seeded-samples" ||
+        reporting.eventReduction !== "single-declared-probe-event" ||
+        reporting.quantileRule !== "linear-interpolation-on-sorted-sample/v1" ||
+        reporting.ranking !== "none" || reporting.weightedScore !== "none" ||
+        reporting.partialResults !== "forbidden") {
+      throw new TypeError("full B1 coverage reporting policy is incomplete or changed.");
+    }
+    exactArray(
+      reporting.scalarStatistics,
+      REQUIRED_SCALAR_STATISTICS,
+      "manifest.reportingPolicy.scalarStatistics",
+    );
+    if (!Array.isArray(reporting.quantileProbabilities) ||
+        reporting.quantileProbabilities.length === 0 ||
+        reporting.quantileProbabilities.some((probability, index, values) =>
+          !Number.isFinite(probability) || probability <= 0 || probability >= 1 ||
+          (index > 0 && probability <= values[index - 1]))) {
+      throw new RangeError(
+        "manifest reporting quantiles must be strictly increasing probabilities in (0,1).",
+      );
+    }
+    if (reporting.parameterAssociation?.method !== "pearson-correlation/v1") {
+      throw new TypeError("full B1 coverage requires the declared Pearson association rule.");
+    }
+    exactArray(
+      reporting.parameterAssociation.parameters,
+      REQUIRED_ASSOCIATION_PARAMETERS,
+      "manifest.reportingPolicy.parameterAssociation.parameters",
+    );
+    exactArray(
+      reporting.parameterAssociation.measures,
+      REQUIRED_ASSOCIATION_MEASURES,
+      "manifest.reportingPolicy.parameterAssociation.measures",
+    );
+  } else if (manifest.acceptancePolicy != null || manifest.reportingPolicy != null) {
+    throw new TypeError("campaign policies require a declared campaignStage.");
+  }
   exactArray(
     manifest.implementedMeasures,
     REQUIRED_IMPLEMENTED_MEASURES,
@@ -500,6 +599,157 @@ function campaignRanges(cases, polarities) {
   };
 }
 
+function quantile(sortedValues, probability) {
+  const position = probability * (sortedValues.length - 1);
+  const lowerIndex = Math.floor(position);
+  const upperIndex = Math.ceil(position);
+  if (lowerIndex === upperIndex) return sortedValues[lowerIndex];
+  const fraction = position - lowerIndex;
+  return sortedValues[lowerIndex] * (1 - fraction) + sortedValues[upperIndex] * fraction;
+}
+
+export function descriptiveStatistics(values, probabilities) {
+  if (!Array.isArray(values) || values.length === 0 ||
+      values.some((value) => !Number.isFinite(value))) {
+    throw new TypeError("campaign descriptive statistics require finite nonempty values.");
+  }
+  const sorted = [...values].sort((left, right) => left - right);
+  const mean = values.reduce((sum, value) => sum + value, 0) / values.length;
+  const populationVariance = values.reduce(
+    (sum, value) => sum + (value - mean) ** 2,
+    0,
+  ) / values.length;
+  return {
+    count: values.length,
+    minimum: sorted[0],
+    maximum: sorted.at(-1),
+    mean,
+    populationStandardDeviation: Math.sqrt(populationVariance),
+    quantiles: Object.fromEntries(
+      probabilities.map((probability) => [String(probability), quantile(sorted, probability)]),
+    ),
+  };
+}
+
+export function pearsonCorrelation(left, right) {
+  if (left.length !== right.length || left.length < 2) {
+    throw new RangeError("Pearson correlation requires equal arrays with at least two values.");
+  }
+  const leftMean = left.reduce((sum, value) => sum + value, 0) / left.length;
+  const rightMean = right.reduce((sum, value) => sum + value, 0) / right.length;
+  let covarianceSum = 0;
+  let leftSquareSum = 0;
+  let rightSquareSum = 0;
+  for (let index = 0; index < left.length; index += 1) {
+    const leftDelta = left[index] - leftMean;
+    const rightDelta = right[index] - rightMean;
+    covarianceSum += leftDelta * rightDelta;
+    leftSquareSum += leftDelta ** 2;
+    rightSquareSum += rightDelta ** 2;
+  }
+  const denominator = Math.sqrt(leftSquareSum * rightSquareSum);
+  if (!(denominator > 0)) {
+    throw new RangeError("Pearson correlation is undefined for a constant campaign column.");
+  }
+  return covarianceSum / denominator;
+}
+
+function caseMeasure(row, measure) {
+  if (row.eventMeasures.length !== 1) {
+    throw new Error("full B1 coverage reporting requires one declared probe event per case.");
+  }
+  const event = row.eventMeasures[0];
+  const responseMagnitude = (polarity) => {
+    const response = event.probeResponses.find((entry) => entry.probePolarity === polarity);
+    if (!response) throw new Error(`campaign event lacks probe polarity ${polarity}.`);
+    return response.accelerationMagnitude;
+  };
+  const values = {
+    signedWake: event.signedWake,
+    unsignedWake: event.unsignedWake,
+    signedCancellationRatio: event.signedCancellationRatio,
+    positiveProbeAccelerationMagnitude: responseMagnitude(1),
+    negativeProbeAccelerationMagnitude: responseMagnitude(-1),
+    minimumSeparation: row.minimumSeparation.value,
+    rootTransversalityMargin: row.rootTransversalityMargin,
+    numericalConvergenceMaximumChange: row.numericalConvergence.maximumReportedChange,
+  };
+  if (!(measure in values)) throw new TypeError(`unsupported campaign report measure ${measure}.`);
+  return values[measure];
+}
+
+function gateCounts(cases) {
+  const count = (read) => cases.filter(read).length;
+  return {
+    sourceSpeed: { passed: cases.length, failed: 0 },
+    rootCompleteness: {
+      passed: count((row) => row.gates.rootTopologyComplete),
+      failed: count((row) => !row.gates.rootTopologyComplete),
+    },
+    rootTransversality: {
+      passed: count((row) => row.gates.rootTransversalityPassed),
+      failed: count((row) => !row.gates.rootTransversalityPassed),
+    },
+    minimumSeparation: {
+      passed: count((row) => row.gates.minimumSeparationPassed),
+      failed: count((row) => !row.gates.minimumSeparationPassed),
+    },
+    numericalConvergence: {
+      passed: count((row) => row.gates.numericalConvergencePassed),
+      failed: count((row) => !row.gates.numericalConvergencePassed),
+    },
+  };
+}
+
+function fullCampaignReport(caseRows, reportingPolicy) {
+  const anchors = caseRows.filter((row) => row.caseType === "anchor");
+  const samples = caseRows.filter((row) => row.caseType === "seeded-sample");
+  const measures = reportingPolicy.parameterAssociation.measures;
+  const probabilities = reportingPolicy.quantileProbabilities;
+  const statistics = Object.fromEntries(measures.map((measure) => [
+    measure,
+    descriptiveStatistics(samples.map((row) => caseMeasure(row, measure)), probabilities),
+  ]));
+  const parameterColumns = Object.fromEntries(
+    reportingPolicy.parameterAssociation.parameters.map((parameter, index) => [
+      parameter,
+      samples.map((row) => row.coordinates.capAngles[index]),
+    ]),
+  );
+  const measureColumns = Object.fromEntries(measures.map((measure) => [
+    measure,
+    samples.map((row) => caseMeasure(row, measure)),
+  ]));
+  return {
+    policy: reportingPolicy,
+    anchors: {
+      count: anchors.length,
+      treatment: reportingPolicy.anchorTreatment,
+      gateCounts: gateCounts(anchors),
+    },
+    seededPopulation: {
+      count: samples.length,
+      gateCounts: gateCounts(samples),
+      scalarStatistics: statistics,
+      parameterMeasurePearsonCorrelations: Object.fromEntries(
+        Object.entries(parameterColumns).map(([parameter, parameterValues]) => [
+          parameter,
+          Object.fromEntries(Object.entries(measureColumns).map(([measure, measureValues]) => [
+            measure,
+            pearsonCorrelation(parameterValues, measureValues),
+          ])),
+        ]),
+      ),
+    },
+    interpretationBoundary: {
+      correlationsAreSensitivityMeasures: false,
+      weightedScoreComputed: false,
+      dominanceComputed: false,
+      favorableRegionClaimed: false,
+    },
+  };
+}
+
 function packetFilename(caseId) {
   return `${caseId}.result-packet.v1.json`;
 }
@@ -610,11 +860,24 @@ export function buildB1CapAngleCampaign(rawManifest, options = {}) {
 
   const allPassed = caseRows.every((row) => row.gates.passed === true);
   if (!allPassed) throw new Error("campaign contains a failed analytical validity gate.");
+  const anchorCount = caseRows.filter((row) => row.caseType === "anchor").length;
+  const seededSampleCount = caseRows.filter((row) => row.caseType === "seeded-sample").length;
+  if (manifest.acceptancePolicy && (
+    caseRows.length !== manifest.acceptancePolicy.requiredTotalCaseCount ||
+    anchorCount !== manifest.acceptancePolicy.requiredAnchorCount ||
+    seededSampleCount !== manifest.acceptancePolicy.requiredSeededSampleCount
+  )) {
+    throw new Error("campaign case inventory does not satisfy the predeclared acceptance policy.");
+  }
   const polarities = protocol.probes.flatMap((probe) => probe.polarities);
   const uniquePolarities = [...new Set(polarities)];
+  const declaredReport = manifest.reportingPolicy
+    ? fullCampaignReport(caseRows, manifest.reportingPolicy)
+    : null;
   const summaryWithoutHash = {
     schema: B1_CAP_ANGLE_CAMPAIGN_SUMMARY_SCHEMA,
     campaignId: manifest.campaignId,
+    ...(manifest.campaignStage ? { campaignStage: manifest.campaignStage } : {}),
     manifestPath: relativeRepositoryPath(manifestPath),
     manifestHash,
     claimGrade: manifest.claimGrade,
@@ -642,13 +905,22 @@ export function buildB1CapAngleCampaign(rawManifest, options = {}) {
     implementedMeasures: manifest.implementedMeasures,
     caseCounts: {
       total: caseRows.length,
-      anchors: caseRows.filter((row) => row.caseType === "anchor").length,
-      seededSamples: caseRows.filter((row) => row.caseType === "seeded-sample").length,
+      anchors: anchorCount,
+      seededSamples: seededSampleCount,
       passed: caseRows.filter((row) => row.gates.passed).length,
       failed: caseRows.filter((row) => !row.gates.passed).length,
     },
     cases: caseRows,
     implementedMeasureRanges: campaignRanges(caseRows, uniquePolarities),
+    ...(manifest.acceptancePolicy ? {
+      acceptance: {
+        policy: manifest.acceptancePolicy,
+        accepted: true,
+        acceptedCaseCount: caseRows.length,
+        rejectedCaseCount: 0,
+      },
+      report: declaredReport,
+    } : {}),
     validity: {
       allCasesPassed: allPassed,
       allRootTopologiesComplete: caseRows.every((row) => row.gates.rootTopologyComplete),
@@ -662,7 +934,9 @@ export function buildB1CapAngleCampaign(rawManifest, options = {}) {
     status: {
       code: "ok",
       severity: "ok",
-      message: "seeded B1 prescribed-record analytical smoke campaign completed",
+      message: manifest.campaignStage === "monte-carlo-coverage"
+        ? "seeded B1 prescribed-record analytical Monte Carlo coverage campaign completed"
+        : "seeded B1 prescribed-record analytical smoke campaign completed",
     },
     falsifier:
       "Reject campaign reproducibility if the bound manifest and seed do not reproduce every packet and summary hash; reject an analytical case if any declared validity gate fails.",
@@ -768,7 +1042,7 @@ function runCli() {
   if (options.mode === "write") writeB1CapAngleCampaign(campaign);
   else checkB1CapAngleCampaign(campaign);
   process.stdout.write(
-    `B1 cap-angle smoke campaign ${options.mode} passed: ` +
+    `B1 cap-angle campaign ${options.mode} passed: ` +
     `${campaign.caseRows.length} cases, summary ${campaign.summary.summaryHash}\n`,
   );
 }

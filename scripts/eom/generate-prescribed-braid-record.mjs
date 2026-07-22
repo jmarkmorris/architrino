@@ -329,14 +329,33 @@ function validateMemberConstraints(spec) {
       );
     }
   }
+  if (spec.taxonomy.familyId === "B" || spec.taxonomy.familyId === "C") {
+    braids.forEach((braid, braidIndex) => validateB1Component(braid, braidIndex));
+  }
   if (spec.taxonomy.familyId === "C") {
     const [left, right] = braids;
+    if (near(norm(subtract(left.centerOffset, right.centerOffset)), 0)) {
+      throw new RangeError("Family C requires two distinct declared braid centers.");
+    }
     if (memberId === "C1" && left.circulationSense !== right.circulationSense) {
       throw new RangeError("C1 requires a common circulation sense.");
     }
     if (memberId === "C2" && left.circulationSense !== -right.circulationSense) {
       throw new RangeError("C2 requires opposite circulation senses.");
     }
+  }
+}
+
+function validateB1Component(braid, braidIndex) {
+  const [reference, ...others] = braid.binaries;
+  if (!others.every((binary) => near(binary.frequency, reference.frequency))) {
+    throw new RangeError(`braids[${braidIndex}] must be a common-frequency B1 component.`);
+  }
+  if (!braid.binaries.every((binary) =>
+    binary.centerOffset.every((coordinate) => near(coordinate, 0)))) {
+    throw new RangeError(
+      `braids[${braidIndex}] must place every B1 binary midpoint at its braid center.`,
+    );
   }
 }
 
@@ -692,7 +711,11 @@ export function generatePrescribedBraidRecord(rawSpec, options = {}) {
       runId: spec.specId,
       claimGrade: spec.claimGrade,
       evidenceStatus: spec.evidenceStatus,
-      generatingSpec: options.generatingSpec ?? path.relative(REPOSITORY_ROOT, options.specPath ?? ""),
+      generatingSpec: options.generatingSpec ?? (
+        options.specPath
+          ? path.relative(REPOSITORY_ROOT, options.specPath)
+          : "inline-prescribed-braid-spec"
+      ),
       date: spec.date,
       prescribedGeometry: {
         emitterId: PRESCRIBED_BRAID_EMITTER_ID,

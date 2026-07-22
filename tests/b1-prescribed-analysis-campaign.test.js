@@ -4,17 +4,24 @@ import test from "node:test";
 
 import {
   B1_CAP_ANGLE_CAMPAIGN_SUMMARY_SCHEMA,
+  DEFAULT_B1_CAP_ANGLE_COVERAGE_MANIFEST_PATH,
   DEFAULT_B1_CAP_ANGLE_CAMPAIGN_MANIFEST_PATH,
   assertCampaignPacketPasses,
   buildB1CapAngleCampaign,
   checkB1CapAngleCampaign,
+  descriptiveStatistics,
   generateSeededB1CapAngleSamples,
   loadAndBuildB1CapAngleCampaign,
+  pearsonCorrelation,
   validateB1CapAngleCampaignManifest,
 } from "../scripts/eom/run-b1-prescribed-analysis-campaign.mjs";
 
 function readManifest() {
   return JSON.parse(fs.readFileSync(DEFAULT_B1_CAP_ANGLE_CAMPAIGN_MANIFEST_PATH, "utf8"));
+}
+
+function readCoverageManifest() {
+  return JSON.parse(fs.readFileSync(DEFAULT_B1_CAP_ANGLE_COVERAGE_MANIFEST_PATH, "utf8"));
 }
 
 function assertNear(actual, expected, tolerance = 1e-14) {
@@ -58,6 +65,24 @@ test("seeded sampler is reproducible and independently satisfies every cap-angle
       assertNear(h ** 2 + rho ** 2, radius ** 2);
     });
   });
+});
+
+test("descriptive reductions agree with separately calculated finite-array values", () => {
+  const statistics = descriptiveStatistics([1, 2, 3, 4], [0.25, 0.5, 0.75]);
+  assert.deepEqual(statistics, {
+    count: 4,
+    minimum: 1,
+    maximum: 4,
+    mean: 2.5,
+    populationStandardDeviation: Math.sqrt(1.25),
+    quantiles: {
+      "0.25": 1.75,
+      "0.5": 2.5,
+      "0.75": 3.25,
+    },
+  });
+  assertNear(pearsonCorrelation([1, 2, 3], [2, 4, 6]), 1);
+  assertNear(pearsonCorrelation([1, 2, 3], [6, 4, 2]), -1);
 });
 
 test("campaign evaluates four anchors and four samples with the canonical result-packet contract", () => {
@@ -146,4 +171,63 @@ test("campaign packet gate rejects EOM provenance and every fail-closed validity
 
 test("checked campaign packets and summary reproduce byte for byte", () => {
   assert.doesNotThrow(() => checkB1CapAngleCampaign(loadAndBuildB1CapAngleCampaign()));
+});
+
+test("full B1 coverage manifest predeclares 256 samples and accepts only all-gate passage", () => {
+  const manifest = readCoverageManifest();
+  assert.equal(validateB1CapAngleCampaignManifest(manifest), manifest);
+  assert.equal(manifest.campaignStage, "monte-carlo-coverage");
+  assert.equal(manifest.sampleCount, 256);
+  assert.deepEqual(manifest.acceptancePolicy.requiredGates, [
+    "source-speed",
+    "root-completeness",
+    "root-transversality",
+    "minimum-separation",
+    "numerical-convergence",
+  ]);
+  assert.equal(manifest.reportingPolicy.ranking, "none");
+  assert.equal(manifest.reportingPolicy.weightedScore, "none");
+
+  const samples = generateSeededB1CapAngleSamples(manifest);
+  for (let dimension = 0; dimension < 3; dimension += 1) {
+    assert.deepEqual(
+      samples.map((sample) => sample.strata[dimension]).sort((left, right) => left - right),
+      Array.from({ length: 256 }, (_, index) => index),
+    );
+  }
+});
+
+test("full B1 coverage report excludes anchors from distributions and forbids rankings", () => {
+  const campaign = loadAndBuildB1CapAngleCampaign(
+    DEFAULT_B1_CAP_ANGLE_COVERAGE_MANIFEST_PATH,
+  );
+  assert.deepEqual(campaign.summary.caseCounts, {
+    total: 260,
+    anchors: 4,
+    seededSamples: 256,
+    passed: 260,
+    failed: 0,
+  });
+  assert.equal(campaign.summary.acceptance.accepted, true);
+  assert.equal(campaign.summary.report.anchors.count, 4);
+  assert.equal(campaign.summary.report.seededPopulation.count, 256);
+  Object.values(campaign.summary.report.seededPopulation.scalarStatistics).forEach(
+    (statistics) => assert.equal(statistics.count, 256),
+  );
+  assert.deepEqual(campaign.summary.report.interpretationBoundary, {
+    correlationsAreSensitivityMeasures: false,
+    weightedScoreComputed: false,
+    dominanceComputed: false,
+    favorableRegionClaimed: false,
+  });
+  assert.doesNotThrow(() => checkB1CapAngleCampaign(campaign));
+});
+
+test("full B1 coverage manifest rejects post-declaration acceptance-policy drift", () => {
+  const manifest = readCoverageManifest();
+  manifest.acceptancePolicy.requiredSeededSampleCount = 255;
+  assert.throws(
+    () => validateB1CapAngleCampaignManifest(manifest),
+    /acceptance counts must equal anchors plus seeded samples/,
+  );
 });

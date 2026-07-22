@@ -139,6 +139,26 @@ For seed `20260722`, the checked campaign contains four anchors and four sampled
 
 This is a smoke campaign, not a configuration-space characterization. The result grade is `derived`, conditional on the prescribed records and common protocol. It does not establish stability, energy, retention, or physical realization. Reproducibility is falsified if the bound inputs and seed do not regenerate every packet and summary hash; an individual case is rejected if any fail-closed validity gate does not pass.
 
+## Full B1 Monte Carlo Coverage Campaign
+
+The first full initial-coverage campaign is declared by `campaigns/b1-cap-angle-coverage/b1-cap-angle-coverage-campaign.manifest.v1.json`. It fixes seed `20260722`, 256 Latin-hypercube samples, 256 equal-probability strata per cap-angle marginal, the smoke campaign's fixed B1 coordinates, the same four anchors, and the same complete analysis protocol. Each marginal stratum has angular width $\pi/512$, or $0.3515625$ degrees.
+
+The predeclared `all-cases-all-gates/fail-closed.v1` acceptance policy requires exactly 256 sampled cases plus four anchors. Every case must pass source-speed, root-completeness, root-transversality, minimum-separation, and numerical-convergence gates. A failed case rejects the campaign and permits no partial artifact write.
+
+The predeclared `seeded-population-descriptive-report.v1` policy keeps anchors outside the sampled distributions. For each implemented scalar measure it reports the minimum, maximum, mean, population standard deviation, and $5\%$, $25\%$, $50\%$, $75\%$, and $95\%$ linearly interpolated empirical quantiles. It also reports Pearson correlations between each sampled $\alpha_a$ and each scalar measure. Those correlations are descriptive associations and are explicitly not source-parameter sensitivity measures. The policy forbids a weighted score, ranking, dominance result, favorable-region claim, and partial-result report.
+
+Check the complete campaign without writing:
+
+```bash
+node scripts/eom/run-b1-prescribed-analysis-campaign.mjs \
+  --manifest src/prescribed-path-analysis/campaigns/b1-cap-angle-coverage/b1-cap-angle-coverage-campaign.manifest.v1.json \
+  --check
+```
+
+The checked campaign contains 260 passing cases and has summary hash `77be2076b5b22108b1d0a6bf5937efde20c6b3b8470a725160d0246a77a504a0`. Across the 256 seeded samples, the minimum separation is at least `0.12178785465127749`, the root-transversality margin is at least `0.6725833904106403`, and the maximum reported numerical-convergence change is at most `6.157074849966193e-12`, below the protocol tolerance `1e-9`.
+
+This campaign completes only the methodology's initial Monte Carlo coverage stage for the currently implemented event and validity measures. It does not supply enclosing-surface exposure, anisotropy, spectral, radial-scaling, local source-sensitivity, directed-refinement, or robustness results. It therefore does not grade the complete analytical objective vector or establish a robust favorable region.
+
 ## Smallest B1 Campaign Follow-Up
 
-The next step is to promote the smoke manifest into a declared B1 configuration-space campaign by choosing the required sample count and acceptance/reporting policy before increasing it. The existing sampler, exact-record construction, common protocol, anchor inclusion, packet inventory, and fail-closed gates can remain unchanged.
+The next analytical step is to assign a complete-cycle internal and enclosing-surface probe protocol before directed refinement. That protocol must add the still-pending external exposure, anisotropy, peak external response, spectral, radial-scaling, and local source-sensitivity measures without changing or relabeling the present wake and acceleration-response results.

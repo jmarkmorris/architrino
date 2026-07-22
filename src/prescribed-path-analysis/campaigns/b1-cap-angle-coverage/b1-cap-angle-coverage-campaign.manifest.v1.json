@@ -1,0 +1,229 @@
+{
+  "schema": "prescribed-path-analysis/b1-cap-angle-campaign-manifest.v1",
+  "campaignId": "b1-cap-angle-coverage-v1",
+  "campaignStage": "monte-carlo-coverage",
+  "date": "2026-07-22",
+  "claimGrade": "derived",
+  "claimScope": "conditional prescribed-record analytical Monte Carlo coverage campaign for implemented measures",
+  "sourceClaimGrade": "chart-hypothesis",
+  "sourceEvidenceStatus": "display-only",
+  "excludedClaims": [
+    "stability",
+    "energy",
+    "retention",
+    "physical-realization"
+  ],
+  "seed": {
+    "algorithm": "mulberry32/v1",
+    "value": 20260722
+  },
+  "sampleCount": 256,
+  "stratification": {
+    "method": "latin-hypercube/v1",
+    "strataPerDimension": 256,
+    "withinStratumRule": "seeded-uniform-half-open/v1"
+  },
+  "samplingMeasure": {
+    "id": "independent-uniform-cap-angle/v1",
+    "coordinates": [
+      {
+        "id": "alpha_1",
+        "minimum": 0,
+        "maximum": 1.5707963267948966,
+        "unit": "radian"
+      },
+      {
+        "id": "alpha_2",
+        "minimum": 0,
+        "maximum": 1.5707963267948966,
+        "unit": "radian"
+      },
+      {
+        "id": "alpha_3",
+        "minimum": 0,
+        "maximum": 1.5707963267948966,
+        "unit": "radian"
+      }
+    ],
+    "derivedCoordinates": {
+      "axialHalfSeparation": "h_a=R_a*sin(alpha_a)",
+      "transverseOrbitRadius": "rho_a=R_a*cos(alpha_a)",
+      "radiusIdentity": "h_a^2+rho_a^2=R_a^2"
+    }
+  },
+  "fixedCoordinates": {
+    "responseCenter": [
+      0,
+      0,
+      0
+    ],
+    "frame": {
+      "e1": [
+        1,
+        0,
+        0
+      ],
+      "e2": [
+        0,
+        1,
+        0
+      ],
+      "axis": [
+        0,
+        0,
+        1
+      ],
+      "orthonormalTolerance": 1e-12
+    },
+    "axialDriftSpeed": 0,
+    "ordinaryFrequency": 0.25,
+    "angularFrequency": 1.5707963267948966,
+    "radii": [
+      0.22,
+      0.32,
+      0.44
+    ],
+    "phases": [
+      0,
+      2.0943951023931953,
+      4.1887902047863905
+    ],
+    "polarityAssignments": [
+      1,
+      -1,
+      1
+    ],
+    "recordInterval": {
+      "start": 0,
+      "end": 8,
+      "delayHorizon": 2
+    }
+  },
+  "baseSpec": {
+    "path": "reference/priorities/braid-program/configurations/illustrative-spindle-chart-hypothesis.v0.json",
+    "sourceFileSha256": "f5e2129b40e6de5f5a242c76ab36a65dbad01a04569628621aee81fdc049c958"
+  },
+  "commonProtocol": {
+    "path": "src/prescribed-path-analysis/fixtures/b1-interior-small-fixture.analysis-protocol.v1.json",
+    "sourceFileSha256": "ee1ca5ea317f7ba6b3c7f471dd7e20edce8adf09b625f459b2ad7ad1c052549a",
+    "protocolHash": "0fb7ee5c9f36fdac8186ac0155ed53fcc0b3363e44a144b160c1491404da1d50"
+  },
+  "anchors": [
+    {
+      "caseId": "anchor-b1-interior-coordinate-reference",
+      "label": "B1 interior-coordinate reference",
+      "specPath": "reference/priorities/braid-program/configurations/illustrative-spindle-chart-hypothesis.v0.json",
+      "sourceFileSha256": "f5e2129b40e6de5f5a242c76ab36a65dbad01a04569628621aee81fdc049c958",
+      "expectedCapAngles": [
+        0.3490658503988659,
+        0.6981317007977318,
+        1.1344640137963142
+      ]
+    },
+    {
+      "caseId": "anchor-b1-high-axial-fraction-interior",
+      "label": "B1 high-axial-fraction interior",
+      "specPath": "reference/priorities/braid-program/configurations/illustrative-extreme-cap-tilt-spindle-variant.v0.json",
+      "sourceFileSha256": "35e9e02a56f252428af513b58e9ed4b81cf2f9684a0d591d89c0c3243baaf33e",
+      "expectedCapAngles": [
+        1.2217304763960306,
+        1.3962634015954636,
+        1.4835298641951802
+      ]
+    },
+    {
+      "caseId": "anchor-b1-all-equatorial-boundary",
+      "label": "B1 all-equatorial boundary",
+      "specPath": "reference/priorities/braid-program/configurations/illustrative-planar-tri-binary-spindle-boundary.v0.json",
+      "sourceFileSha256": "ef6cf2b3d59ac89648eb54368d7f061f215402757d52d0dfa897e2314df7f3d1",
+      "expectedCapAngles": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "caseId": "anchor-b1-all-axial-boundary",
+      "label": "B1 all-axial boundary",
+      "specPath": "reference/priorities/braid-program/configurations/illustrative-full-cap-axial-spindle-boundary.v0.json",
+      "sourceFileSha256": "d4e24340692c1d1f96b07b11f80203f92176aea27bced8dfd4dbccd4aa128866",
+      "expectedCapAngles": [
+        1.5707963267948966,
+        1.5707963267948966,
+        1.5707963267948966
+      ]
+    }
+  ],
+  "acceptancePolicy": {
+    "id": "all-cases-all-gates/fail-closed.v1",
+    "requiredTotalCaseCount": 260,
+    "requiredAnchorCount": 4,
+    "requiredSeededSampleCount": 256,
+    "requiredGates": [
+      "source-speed",
+      "root-completeness",
+      "root-transversality",
+      "minimum-separation",
+      "numerical-convergence"
+    ],
+    "failureDisposition": "reject-campaign-and-write-no-artifacts"
+  },
+  "reportingPolicy": {
+    "id": "seeded-population-descriptive-report.v1",
+    "anchorTreatment": "report-separately-exclude-from-sampled-distributions",
+    "sampledPopulation": "all-accepted-seeded-samples",
+    "eventReduction": "single-declared-probe-event",
+    "scalarStatistics": [
+      "minimum",
+      "maximum",
+      "mean",
+      "population-standard-deviation",
+      "quantiles"
+    ],
+    "quantileProbabilities": [
+      0.05,
+      0.25,
+      0.5,
+      0.75,
+      0.95
+    ],
+    "quantileRule": "linear-interpolation-on-sorted-sample/v1",
+    "parameterAssociation": {
+      "method": "pearson-correlation/v1",
+      "parameters": [
+        "alpha_1",
+        "alpha_2",
+        "alpha_3"
+      ],
+      "measures": [
+        "signedWake",
+        "unsignedWake",
+        "signedCancellationRatio",
+        "positiveProbeAccelerationMagnitude",
+        "negativeProbeAccelerationMagnitude",
+        "minimumSeparation",
+        "rootTransversalityMargin",
+        "numericalConvergenceMaximumChange"
+      ]
+    },
+    "ranking": "none",
+    "weightedScore": "none",
+    "partialResults": "forbidden"
+  },
+  "implementedMeasures": [
+    "retained-root-count",
+    "signed-wake",
+    "unsigned-wake",
+    "signed-cancellation-ratio",
+    "positive-and-negative-probe-acceleration",
+    "prescribed-period-closure",
+    "minimum-separation",
+    "root-transversality-margin",
+    "numerical-convergence"
+  ],
+  "outputs": {
+    "directory": "src/prescribed-path-analysis/campaigns/b1-cap-angle-coverage",
+    "packetDirectory": "packets",
+    "summaryFilename": "b1-cap-angle-coverage-campaign.summary.v1.json"
+  }
+}

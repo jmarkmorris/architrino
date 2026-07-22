@@ -1,0 +1,1211 @@
+{
+  "schema": "prescribed-path-analysis/result-packet.v1",
+  "evaluator": {
+    "id": "prescribed-record-analytical-braid-evaluator",
+    "version": "v1",
+    "pathEvolutionInvoked": false,
+    "eomSolverInvoked": false
+  },
+  "claimGrade": "derived",
+  "claimScope": "conditional analytical consequence of the exact prescribed source record and complete protocol",
+  "excludedClaims": [
+    "stability",
+    "energy",
+    "retention",
+    "physical-realization"
+  ],
+  "source": {
+    "recordId": "b1-cap-angle-coverage-v1-sample-027",
+    "sourceHash": "3be6f1f01a4dffadd12f642b900321a532eb8072e0bbeaf1aedc5bfa25f9361f",
+    "upstreamSourceHash": "654be3846fb3e1f1035d57854dcf84e6dce880f178a6ebb9c15b7f0840b4b4e0",
+    "sourceSchema": "prescribed-braid-spec.v1",
+    "exactSourceRecordSchema": "prescribed-path-analysis/exact-source-record.v1",
+    "generatingSpec": "src/prescribed-path-analysis/campaigns/b1-cap-angle-coverage/b1-cap-angle-coverage-campaign.manifest.v1.json#sample-027",
+    "engineId": "prescribed-geometry",
+    "engineVersion": "prescribed-braid-record-emitter.v1",
+    "sourceClaimGrade": "chart-hypothesis",
+    "sourceEvidenceStatus": "display-only",
+    "taxonomy": {
+      "familyId": "B",
+      "familyLabel": "Family B",
+      "memberId": "B1",
+      "memberLabel": "rigid common-frequency",
+      "instantiationLabel": "seeded sample 027",
+      "displayLabel": "B1 — seeded sample 027",
+      "canonSource": "content/markdown/aaa/noether-braid/braid-family-b.md#b1"
+    },
+    "parameterVector": {
+      "group": {
+        "centerAtEpoch": [
+          0,
+          0,
+          0
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ]
+      },
+      "prescribedReturnPeriod": 4,
+      "braids": [
+        {
+          "braidId": "b1-interior-reference-braid-1",
+          "centerOffset": [
+            0,
+            0,
+            0
+          ],
+          "phaseOffset": 0,
+          "circulationSense": 1,
+          "frameDefinition": {
+            "type": "orthonormal.v1",
+            "e1": [
+              1,
+              0,
+              0
+            ],
+            "e2": [
+              0,
+              1,
+              0
+            ],
+            "axis": [
+              0,
+              0,
+              1
+            ]
+          },
+          "binaries": [
+            {
+              "binaryIndex": 1,
+              "binaryId": "spindle-binary-1",
+              "worldlineIds": [
+                "spindle-1-0",
+                "spindle-1-1"
+              ],
+              "centerOffset": [
+                0,
+                0,
+                0
+              ],
+              "radius": 0.22,
+              "axialHalfSeparation": 0.21959954283361752,
+              "transverseOrbitRadius": 0.013268036300304162,
+              "frequency": 0.25,
+              "phase": 0,
+              "circulationSense": 1,
+              "polarityAssignment": 1,
+              "axis": {
+                "x": 0,
+                "y": 0,
+                "z": 1
+              },
+              "transverseFrame": [
+                {
+                  "x": 1,
+                  "y": 0,
+                  "z": 0
+                },
+                {
+                  "x": 0,
+                  "y": 1,
+                  "z": 0
+                }
+              ]
+            },
+            {
+              "binaryIndex": 2,
+              "binaryId": "spindle-binary-2",
+              "worldlineIds": [
+                "spindle-2-0",
+                "spindle-2-1"
+              ],
+              "centerOffset": [
+                0,
+                0,
+                0
+              ],
+              "radius": 0.32,
+              "axialHalfSeparation": 0.288535854882186,
+              "transverseOrbitRadius": 0.13837290358811616,
+              "frequency": 0.25,
+              "phase": 2.0943951023931953,
+              "circulationSense": 1,
+              "polarityAssignment": -1,
+              "axis": {
+                "x": 0,
+                "y": 0,
+                "z": 1
+              },
+              "transverseFrame": [
+                {
+                  "x": 1,
+                  "y": 0,
+                  "z": 0
+                },
+                {
+                  "x": 0,
+                  "y": 1,
+                  "z": 0
+                }
+              ]
+            },
+            {
+              "binaryIndex": 3,
+              "binaryId": "spindle-binary-3",
+              "worldlineIds": [
+                "spindle-3-0",
+                "spindle-3-1"
+              ],
+              "centerOffset": [
+                0,
+                0,
+                0
+              ],
+              "radius": 0.44,
+              "axialHalfSeparation": 0.19423351491051558,
+              "transverseOrbitRadius": 0.394807980777373,
+              "frequency": 0.25,
+              "phase": 4.1887902047863905,
+              "circulationSense": 1,
+              "polarityAssignment": 1,
+              "axis": {
+                "x": 0,
+                "y": 0,
+                "z": 1
+              },
+              "transverseFrame": [
+                {
+                  "x": 1,
+                  "y": 0,
+                  "z": 0
+                },
+                {
+                  "x": 0,
+                  "y": 1,
+                  "z": 0
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "illustrativeCoordinates": {
+        "status": "prescribed-display-coordinates",
+        "choices": [
+          "The three axial half-separations and transverse orbit radii are deterministically derived from the campaign cap-angle sample."
+        ]
+      },
+      "compatibility": {
+        "retainedIdentifiers": [
+          {
+            "kind": "source-spec-id",
+            "value": "illustrative-spindle-chart-hypothesis-v0",
+            "reason": "Stable source identity consumed by existing record links and analytical fixtures."
+          },
+          {
+            "kind": "source-filename",
+            "value": "illustrative-spindle-chart-hypothesis.v0.json",
+            "reason": "Stable configuration path consumed by existing analytical tooling."
+          },
+          {
+            "kind": "record-url",
+            "value": "content/assets/borg/records/illustrative-spindle-chart-hypothesis.assembly-view-record.v0.json",
+            "reason": "Stable Borg query URL."
+          },
+          {
+            "kind": "binary-and-worldline-id-set",
+            "value": "spindle-binary-1..3; spindle-1-0..spindle-3-1",
+            "reason": "Stable endpoint identities inside the sealed display record."
+          }
+        ]
+      }
+    }
+  },
+  "protocolHash": "0fb7ee5c9f36fdac8186ac0155ed53fcc0b3363e44a144b160c1491404da1d50",
+  "protocol": {
+    "schema": "prescribed-path-analysis/analysis-protocol.v1",
+    "protocolId": "b1-interior-small-fixture-v1",
+    "fieldSpeed": 1,
+    "coupling": 1,
+    "history": {
+      "start": 0,
+      "end": 8,
+      "minimumDelay": 1e-12
+    },
+    "returnWindow": {
+      "start": 0,
+      "period": 4
+    },
+    "rootPolicy": {
+      "id": "all-retained-simple-roots/sub-field-speed-certified.v1",
+      "tolerance": 1e-12,
+      "maxIterations": 128
+    },
+    "tolerances": {
+      "cancellationFloor": 1e-30,
+      "rootTransversalityFloor": 1e-8,
+      "minimumSeparationFloor": 1e-8,
+      "convergenceAbsolute": 1e-9
+    },
+    "geometry": {
+      "minimumSeparationSamples": 128,
+      "samplingRule": "uniform-left-closed-periodic-grid.v1"
+    },
+    "convergence": {
+      "rootTolerance": 1e-14,
+      "maxIterations": 192,
+      "minimumSeparationSamples": 256
+    },
+    "probes": [
+      {
+        "id": "b1-interior-coordinate-reference-probe",
+        "kind": "stationary-coordinate-probe.v1",
+        "position": {
+          "x": 1,
+          "y": 0.25,
+          "z": 0.1
+        },
+        "observationTimes": [
+          4
+        ],
+        "polarities": [
+          1,
+          -1
+        ]
+      }
+    ]
+  },
+  "tolerances": {
+    "cancellationFloor": 1e-30,
+    "rootTransversalityFloor": 1e-8,
+    "minimumSeparationFloor": 1e-8,
+    "convergenceAbsolute": 1e-9,
+    "primaryRootTolerance": 1e-12,
+    "refinedRootTolerance": 1e-14
+  },
+  "probeDefinitions": [
+    {
+      "id": "b1-interior-coordinate-reference-probe",
+      "kind": "stationary-coordinate-probe.v1",
+      "position": {
+        "x": 1,
+        "y": 0.25,
+        "z": 0.1
+      },
+      "observationTimes": [
+        4
+      ],
+      "polarities": [
+        1,
+        -1
+      ]
+    }
+  ],
+  "rawLedgers": {
+    "causalRoots": [
+      {
+        "eventId": "b1-interior-coordinate-reference-probe@4",
+        "probeId": "b1-interior-coordinate-reference-probe",
+        "observationTime": 4,
+        "probePosition": {
+          "x": 1,
+          "y": 0.25,
+          "z": 0.1
+        },
+        "retainedHistory": {
+          "start": 0,
+          "end": 3.999999999999
+        },
+        "rootCompletenessCertification": {
+          "policy": "all-retained-simple-roots/sub-field-speed-certified.v1",
+          "complete": true,
+          "reason": "Each transmitter residual is strictly increasing because its certified speed bound is below fieldSpeed; therefore the retained interval contains at most one root."
+        },
+        "rootCount": 6,
+        "noRootCount": 0,
+        "roots": [
+          {
+            "rootId": "b1-interior-coordinate-reference-probe<-spindle-1-0:simple:0",
+            "rootOrdinal": 0,
+            "rootStatus": "retained-simple-root",
+            "transmitterId": "spindle-1-0",
+            "transmitterCharge": 1,
+            "emissionTime": 2.9582031024939957,
+            "receptionTime": 4,
+            "delay": 1.0417968975060043,
+            "transmitterPosition": {
+              "x": -0.0008704794540723708,
+              "y": -0.013239450622523083,
+              "z": 0.21959954283361752
+            },
+            "transmitterVelocity": {
+              "x": 0.020796480406641667,
+              "y": -0.001367345929007307,
+              "z": 0
+            },
+            "displacement": {
+              "x": 1.0008704794540724,
+              "y": 0.2632394506225231,
+              "z": -0.11959954283361751
+            },
+            "direction": {
+              "x": 0.9607155500753571,
+              "y": 0.25267828235307344,
+              "z": -0.11480120848886785
+            },
+            "distance": 1.0417968975057867,
+            "residual": -2.1760371282653068e-13,
+            "transmitterRadialSpeed": 0.019634003492774103,
+            "transmitterSideFactorDt": 0.9803659965072259,
+            "rootTransversalityMargin": 0.9803659965072259,
+            "accelerationWeight": 1.0200272179601544,
+            "signedWakeContribution": 0.07478866429256109,
+            "unsignedWakeContribution": 0.07478866429256109,
+            "probeAccelerationContributions": [
+              {
+                "probePolarity": 1,
+                "acceleration": {
+                  "x": 0.9029016800784229,
+                  "y": 0.23747262718712617,
+                  "z": -0.10789270977398212
+                }
+              },
+              {
+                "probePolarity": -1,
+                "acceleration": {
+                  "x": -0.9029016800784229,
+                  "y": -0.23747262718712617,
+                  "z": 0.10789270977398212
+                }
+              }
+            ],
+            "rootIterations": 39,
+            "finalBracket": [
+              2.9582031024939957,
+              2.9582031024939957
+            ],
+            "endpointResiduals": [
+              -2.9750882872985263,
+              1.0249117127004788
+            ],
+            "certifiedSpeedBound": 0.020841382684299126,
+            "certifiedMonotonicityMargin": 0.9791586173157009
+          },
+          {
+            "rootId": "b1-interior-coordinate-reference-probe<-spindle-1-1:simple:0",
+            "rootOrdinal": 0,
+            "rootStatus": "retained-simple-root",
+            "transmitterId": "spindle-1-1",
+            "transmitterCharge": -1,
+            "emissionTime": 2.925233845214457,
+            "receptionTime": 4,
+            "delay": 1.074766154785543,
+            "transmitterPosition": {
+              "x": 0.001554650475378611,
+              "y": 0.013176640283683622,
+              "z": -0.21959954283361752
+            },
+            "transmitterVelocity": {
+              "x": -0.020697818157107896,
+              "y": 0.002442039256174662,
+              "z": 0
+            },
+            "displacement": {
+              "x": 0.9984453495246214,
+              "y": 0.23682335971631638,
+              "z": 0.3195995428336175
+            },
+            "direction": {
+              "x": 0.928988454910127,
+              "y": 0.22034873229089108,
+              "z": 0.29736658659219256
+            },
+            "distance": 1.074766154786298,
+            "residual": 7.549516567451064e-13,
+            "transmitterRadialSpeed": -0.018689933855479762,
+            "transmitterSideFactorDt": 1.0186899338554798,
+            "rootTransversalityMargin": 1.0186899338554798,
+            "accelerationWeight": 0.9816529709047549,
+            "signedWakeContribution": -0.0676270055623163,
+            "unsignedWakeContribution": 0.0676270055623163,
+            "probeAccelerationContributions": [
+              {
+                "probePolarity": 1,
+                "acceleration": {
+                  "x": -0.7894785570217581,
+                  "y": -0.1872580851690087,
+                  "z": -0.2527098614072676
+                }
+              },
+              {
+                "probePolarity": -1,
+                "acceleration": {
+                  "x": 0.7894785570217581,
+                  "y": 0.1872580851690087,
+                  "z": 0.2527098614072676
+                }
+              }
+            ],
+            "rootIterations": 40,
+            "finalBracket": [
+              2.925233845214457,
+              2.925233845214457
+            ],
+            "endpointResiduals": [
+              -2.9085074525369716,
+              1.0914925474620238
+            ],
+            "certifiedSpeedBound": 0.020841382684299126,
+            "certifiedMonotonicityMargin": 0.9791586173157009
+          },
+          {
+            "rootId": "b1-interior-coordinate-reference-probe<-spindle-2-0:simple:0",
+            "rootOrdinal": 0,
+            "rootStatus": "retained-simple-root",
+            "transmitterId": "spindle-2-0",
+            "transmitterCharge": -1,
+            "emissionTime": 3.075777139237429,
+            "receptionTime": 4,
+            "delay": 0.9242228607625709,
+            "transmitterPosition": {
+              "x": 0.11077066762825143,
+              "y": 0.08292719481929642,
+              "z": 0.288535854882186
+            },
+            "transmitterVelocity": {
+              "x": -0.1302617330135556,
+              "y": 0.17399815782707567,
+              "z": 0
+            },
+            "displacement": {
+              "x": 0.8892293323717486,
+              "y": 0.16707280518070358,
+              "z": -0.18853585488218602
+            },
+            "direction": {
+              "x": 0.9621373481688108,
+              "y": 0.1807711237987875,
+              "z": -0.2039939314274124
+            },
+            "distance": 0.9242228607632532,
+            "residual": 6.823430709346212e-13,
+            "transmitterRadialSpeed": -0.09387583584021675,
+            "transmitterSideFactorDt": 1.0938758358402167,
+            "rootTransversalityMargin": 1.0938758358402167,
+            "accelerationWeight": 0.9141805378961408,
+            "signedWakeContribution": -0.0851664792401247,
+            "unsignedWakeContribution": 0.0851664792401247,
+            "probeAccelerationContributions": [
+              {
+                "probePolarity": 1,
+                "acceleration": {
+                  "x": -1.0297116620707758,
+                  "y": -0.19346732012381257,
+                  "z": 0.2183211477885772
+                }
+              },
+              {
+                "probePolarity": -1,
+                "acceleration": {
+                  "x": 1.0297116620707758,
+                  "y": 0.19346732012381257,
+                  "z": -0.2183211477885772
+                }
+              }
+            ],
+            "rootIterations": 37,
+            "finalBracket": [
+              3.075777139237429,
+              3.075777139237429
+            ],
+            "endpointResiduals": [
+              -2.90654286423275,
+              1.0934571357660523
+            ],
+            "certifiedSpeedBound": 0.21735564868415722,
+            "certifiedMonotonicityMargin": 0.7826443513158428
+          },
+          {
+            "rootId": "b1-interior-coordinate-reference-probe<-spindle-2-1:simple:0",
+            "rootOrdinal": 0,
+            "rootStatus": "retained-simple-root",
+            "transmitterId": "spindle-2-1",
+            "transmitterCharge": 1,
+            "emissionTime": 2.7684010024161028,
+            "receptionTime": 4,
+            "delay": 1.2315989975838972,
+            "transmitterPosition": {
+              "x": -0.1366098257030003,
+              "y": -0.02201853693599939,
+              "z": -0.288535854882186
+            },
+            "transmitterVelocity": {
+              "x": 0.0345866369404656,
+              "y": -0.2145862124183639,
+              "z": 0
+            },
+            "displacement": {
+              "x": 1.1366098257030002,
+              "y": 0.27201853693599937,
+              "z": 0.388535854882186
+            },
+            "direction": {
+              "x": 0.9228732955551815,
+              "y": 0.22086615649214159,
+              "z": 0.31547269496345887
+            },
+            "distance": 1.2315989975842125,
+            "residual": 3.1530333899354446e-13,
+            "transmitterRadialSpeed": -0.015475748357632234,
+            "transmitterSideFactorDt": 1.0154757483576322,
+            "rootTransversalityMargin": 1.0154757483576322,
+            "accelerationWeight": 0.9847601004921469,
+            "signedWakeContribution": 0.051663274198968996,
+            "unsignedWakeContribution": 0.051663274198968996,
+            "probeAccelerationContributions": [
+              {
+                "probePolarity": 1,
+                "acceleration": {
+                  "x": 0.5991476631881181,
+                  "y": 0.14339069315035274,
+                  "z": 0.2048111359353041
+                }
+              },
+              {
+                "probePolarity": -1,
+                "acceleration": {
+                  "x": -0.5991476631881181,
+                  "y": -0.14339069315035274,
+                  "z": -0.2048111359353041
+                }
+              }
+            ],
+            "rootIterations": 38,
+            "finalBracket": [
+              2.7684010024161028,
+              2.7684010024161028
+            ],
+            "endpointResiduals": [
+              -2.9256855710548786,
+              1.074314428944322
+            ],
+            "certifiedSpeedBound": 0.21735564868415722,
+            "certifiedMonotonicityMargin": 0.7826443513158428
+          },
+          {
+            "rootId": "b1-interior-coordinate-reference-probe<-spindle-3-0:simple:0",
+            "rootOrdinal": 0,
+            "rootStatus": "retained-simple-root",
+            "transmitterId": "spindle-3-0",
+            "transmitterCharge": 1,
+            "emissionTime": 2.753044849260953,
+            "receptionTime": 4,
+            "delay": 1.2469551507390468,
+            "transmitterPosition": {
+              "x": -0.24183920705436737,
+              "y": 0.31206912634354167,
+              "z": 0.19423351491051558
+            },
+            "transmitterVelocity": {
+              "x": -0.49019703736652775,
+              "y": -0.3798801381159907,
+              "z": 0
+            },
+            "displacement": {
+              "x": 1.2418392070543673,
+              "y": -0.06206912634354167,
+              "z": -0.09423351491051557
+            },
+            "direction": {
+              "x": 0.9958972512509886,
+              "y": -0.049776550749840554,
+              "z": -0.0755708935118143
+            },
+            "distance": 1.2469551507391357,
+            "residual": 8.881784197001252e-14,
+            "transmitterRadialSpeed": -0.4692767591109161,
+            "transmitterSideFactorDt": 1.4692767591109162,
+            "rootTransversalityMargin": 1.4692767591109162,
+            "accelerationWeight": 0.68060696788338,
+            "signedWakeContribution": 0.03483251718092785,
+            "unsignedWakeContribution": 0.03483251718092785,
+            "probeAccelerationContributions": [
+              {
+                "probePolarity": 1,
+                "acceleration": {
+                  "x": 0.43592247203543355,
+                  "y": -0.021788108185870615,
+                  "z": -0.033078764573569654
+                }
+              },
+              {
+                "probePolarity": -1,
+                "acceleration": {
+                  "x": -0.43592247203543355,
+                  "y": 0.021788108185870615,
+                  "z": 0.033078764573569654
+                }
+              }
+            ],
+            "rootIterations": 30,
+            "finalBracket": [
+              2.753044849260953,
+              2.753044849260953
+            ],
+            "endpointResiduals": [
+              -2.66096372406111,
+              1.3390362759382335
+            ],
+            "certifiedSpeedBound": 0.6201629259944076,
+            "certifiedMonotonicityMargin": 0.3798370740055924
+          },
+          {
+            "rootId": "b1-interior-coordinate-reference-probe<-spindle-3-1:simple:0",
+            "rootOrdinal": 0,
+            "rootStatus": "retained-simple-root",
+            "transmitterId": "spindle-3-1",
+            "transmitterCharge": -1,
+            "emissionTime": 3.26422405205549,
+            "receptionTime": 4,
+            "delay": 0.7357759479445098,
+            "transmitterPosition": {
+              "x": 0.3924839498895444,
+              "y": -0.04277488474102701,
+              "z": -0.19423351491051558
+            },
+            "transmitterVelocity": {
+              "x": 0.0671906318302803,
+              "y": 0.6165123468124485,
+              "z": 0
+            },
+            "displacement": {
+              "x": 0.6075160501104556,
+              "y": 0.29277488474102703,
+              "z": 0.2942335149105156
+            },
+            "direction": {
+              "x": 0.8256807684563463,
+              "y": 0.39791309509228223,
+              "z": 0.39989553305259284
+            },
+            "distance": 0.7357759479444324,
+            "residual": -7.749356711883593e-14,
+            "transmitterRadialSpeed": 0.3007963486054412,
+            "transmitterSideFactorDt": 0.6992036513945588,
+            "rootTransversalityMargin": 0.6992036513945588,
+            "accelerationWeight": 1.4301984808081367,
+            "signedWakeContribution": -0.21023028281158188,
+            "unsignedWakeContribution": 0.21023028281158188,
+            "probeAccelerationContributions": [
+              {
+                "probePolarity": 1,
+                "acceleration": {
+                  "x": -2.1813095853948545,
+                  "y": -1.0512194078368184,
+                  "z": -1.0564566751809041
+                }
+              },
+              {
+                "probePolarity": -1,
+                "acceleration": {
+                  "x": 2.1813095853948545,
+                  "y": 1.0512194078368184,
+                  "z": 1.0564566751809041
+                }
+              }
+            ],
+            "rootIterations": 40,
+            "finalBracket": [
+              3.26422405205549,
+              3.26422405205549
+            ],
+            "endpointResiduals": [
+              -3.140243143836754,
+              0.859756856161711
+            ],
+            "certifiedSpeedBound": 0.6201629259944076,
+            "certifiedMonotonicityMargin": 0.3798370740055924
+          }
+        ],
+        "noRootTransmitters": [],
+        "measures": {
+          "signedWake": -0.20173931194156494,
+          "unsignedWake": 0.5243082232864807,
+          "signedCancellationRatio": 0.38477235904677975,
+          "probeResponses": [
+            {
+              "probePolarity": 1,
+              "acceleration": {
+                "x": -2.062527989185414,
+                "y": -1.0728696009780314,
+                "z": -1.0270057272118422
+              }
+            },
+            {
+              "probePolarity": -1,
+              "acceleration": {
+                "x": 2.062527989185414,
+                "y": 1.0728696009780314,
+                "z": 1.0270057272118422
+              }
+            }
+          ],
+          "rootTransversalityMargin": 0.6992036513945588,
+          "maximumRootResidual": 7.549516567451064e-13
+        }
+      }
+    ],
+    "prescribedPeriodClosure": [
+      {
+        "transmitterId": "spindle-1-0",
+        "startTime": 0,
+        "endTime": 4,
+        "positionResidual": {
+          "x": 0,
+          "y": -3.2497316372276763e-18,
+          "z": 0
+        },
+        "positionResidualNorm": 3.2497316372276763e-18,
+        "velocityResidual": {
+          "x": 5.104666518826399e-18,
+          "y": 0,
+          "z": 0
+        },
+        "velocityResidualNorm": 5.104666518826399e-18,
+        "phaseResidual": 0
+      },
+      {
+        "transmitterId": "spindle-1-1",
+        "startTime": 0,
+        "endTime": 4,
+        "positionResidual": {
+          "x": 0,
+          "y": 3.2497316372276763e-18,
+          "z": 0
+        },
+        "positionResidualNorm": 3.2497316372276763e-18,
+        "velocityResidual": {
+          "x": -5.104666518826399e-18,
+          "y": 0,
+          "z": 0
+        },
+        "velocityResidualNorm": 5.104666518826399e-18,
+        "phaseResidual": 0
+      },
+      {
+        "transmitterId": "spindle-2-0",
+        "startTime": 0,
+        "endTime": 4,
+        "positionResidual": {
+          "x": 8.326672684688674e-17,
+          "y": 6.938893903907228e-17,
+          "z": 0
+        },
+        "positionResidualNorm": 1.0838898772828417e-16,
+        "velocityResidual": {
+          "x": -1.1102230246251565e-16,
+          "y": 1.249000902703301e-16,
+          "z": 0
+        },
+        "velocityResidualNorm": 1.6711069443220838e-16,
+        "phaseResidual": 0
+      },
+      {
+        "transmitterId": "spindle-2-1",
+        "startTime": 0,
+        "endTime": 4,
+        "positionResidual": {
+          "x": -8.326672684688674e-17,
+          "y": -6.938893903907228e-17,
+          "z": 0
+        },
+        "positionResidualNorm": 1.0838898772828417e-16,
+        "velocityResidual": {
+          "x": 1.1102230246251565e-16,
+          "y": -1.249000902703301e-16,
+          "z": 0
+        },
+        "velocityResidualNorm": 1.6711069443220838e-16,
+        "phaseResidual": 0
+      },
+      {
+        "transmitterId": "spindle-3-0",
+        "startTime": 0,
+        "endTime": 4,
+        "positionResidual": {
+          "x": -3.608224830031759e-16,
+          "y": 2.7755575615628914e-16,
+          "z": 0
+        },
+        "positionResidualNorm": 4.552252871008668e-16,
+        "velocityResidual": {
+          "x": -3.3306690738754696e-16,
+          "y": -5.551115123125783e-16,
+          "z": 0
+        },
+        "velocityResidualNorm": 6.473657049138938e-16,
+        "phaseResidual": 0
+      },
+      {
+        "transmitterId": "spindle-3-1",
+        "startTime": 0,
+        "endTime": 4,
+        "positionResidual": {
+          "x": 3.608224830031759e-16,
+          "y": -2.7755575615628914e-16,
+          "z": 0
+        },
+        "positionResidualNorm": 4.552252871008668e-16,
+        "velocityResidual": {
+          "x": 3.3306690738754696e-16,
+          "y": 5.551115123125783e-16,
+          "z": 0
+        },
+        "velocityResidualNorm": 6.473657049138938e-16,
+        "phaseResidual": 0
+      }
+    ],
+    "minimumSeparation": [
+      {
+        "pairId": "spindle-1-0<->spindle-1-1",
+        "leftTransmitterId": "spindle-1-0",
+        "rightTransmitterId": "spindle-1-1",
+        "minimumSeparation": 0.44,
+        "firstMinimumSampleTime": 0
+      },
+      {
+        "pairId": "spindle-1-0<->spindle-2-0",
+        "leftTransmitterId": "spindle-1-0",
+        "rightTransmitterId": "spindle-2-0",
+        "minimumSeparation": 0.16096972715798302,
+        "firstMinimumSampleTime": 0
+      },
+      {
+        "pairId": "spindle-1-0<->spindle-2-1",
+        "leftTransmitterId": "spindle-1-0",
+        "rightTransmitterId": "spindle-2-1",
+        "minimumSeparation": 0.5250607078602287,
+        "firstMinimumSampleTime": 0
+      },
+      {
+        "pairId": "spindle-1-0<->spindle-3-0",
+        "leftTransmitterId": "spindle-1-0",
+        "rightTransmitterId": "spindle-3-0",
+        "minimumSeparation": 0.4024066903842085,
+        "firstMinimumSampleTime": 0.34375
+      },
+      {
+        "pairId": "spindle-1-0<->spindle-3-1",
+        "leftTransmitterId": "spindle-1-0",
+        "rightTransmitterId": "spindle-3-1",
+        "minimumSeparation": 0.567511106088707,
+        "firstMinimumSampleTime": 0.15625
+      },
+      {
+        "pairId": "spindle-1-1<->spindle-2-0",
+        "leftTransmitterId": "spindle-1-1",
+        "rightTransmitterId": "spindle-2-0",
+        "minimumSeparation": 0.5250607078602287,
+        "firstMinimumSampleTime": 0
+      },
+      {
+        "pairId": "spindle-1-1<->spindle-2-1",
+        "leftTransmitterId": "spindle-1-1",
+        "rightTransmitterId": "spindle-2-1",
+        "minimumSeparation": 0.16096972715798302,
+        "firstMinimumSampleTime": 0
+      },
+      {
+        "pairId": "spindle-1-1<->spindle-3-0",
+        "leftTransmitterId": "spindle-1-1",
+        "rightTransmitterId": "spindle-3-0",
+        "minimumSeparation": 0.567511106088707,
+        "firstMinimumSampleTime": 0.15625
+      },
+      {
+        "pairId": "spindle-1-1<->spindle-3-1",
+        "leftTransmitterId": "spindle-1-1",
+        "rightTransmitterId": "spindle-3-1",
+        "minimumSeparation": 0.4024066903842085,
+        "firstMinimumSampleTime": 0.34375
+      },
+      {
+        "pairId": "spindle-2-0<->spindle-2-1",
+        "leftTransmitterId": "spindle-2-0",
+        "rightTransmitterId": "spindle-2-1",
+        "minimumSeparation": 0.64,
+        "firstMinimumSampleTime": 0
+      },
+      {
+        "pairId": "spindle-2-0<->spindle-3-0",
+        "leftTransmitterId": "spindle-2-0",
+        "rightTransmitterId": "spindle-3-0",
+        "minimumSeparation": 0.4884097256576401,
+        "firstMinimumSampleTime": 0.25
+      },
+      {
+        "pairId": "spindle-2-0<->spindle-3-1",
+        "leftTransmitterId": "spindle-2-0",
+        "rightTransmitterId": "spindle-3-1",
+        "minimumSeparation": 0.5945216059009365,
+        "firstMinimumSampleTime": 2.59375
+      },
+      {
+        "pairId": "spindle-2-1<->spindle-3-0",
+        "leftTransmitterId": "spindle-2-1",
+        "rightTransmitterId": "spindle-3-0",
+        "minimumSeparation": 0.5945216059009365,
+        "firstMinimumSampleTime": 2.59375
+      },
+      {
+        "pairId": "spindle-2-1<->spindle-3-1",
+        "leftTransmitterId": "spindle-2-1",
+        "rightTransmitterId": "spindle-3-1",
+        "minimumSeparation": 0.4884097256576401,
+        "firstMinimumSampleTime": 0.25
+      },
+      {
+        "pairId": "spindle-3-0<->spindle-3-1",
+        "leftTransmitterId": "spindle-3-0",
+        "rightTransmitterId": "spindle-3-1",
+        "minimumSeparation": 0.8799999999999999,
+        "firstMinimumSampleTime": 0.40625
+      }
+    ],
+    "refinedMinimumSeparation": [
+      {
+        "pairId": "spindle-1-0<->spindle-1-1",
+        "leftTransmitterId": "spindle-1-0",
+        "rightTransmitterId": "spindle-1-1",
+        "minimumSeparation": 0.44,
+        "firstMinimumSampleTime": 0
+      },
+      {
+        "pairId": "spindle-1-0<->spindle-2-0",
+        "leftTransmitterId": "spindle-1-0",
+        "rightTransmitterId": "spindle-2-0",
+        "minimumSeparation": 0.16096972715798302,
+        "firstMinimumSampleTime": 0
+      },
+      {
+        "pairId": "spindle-1-0<->spindle-2-1",
+        "leftTransmitterId": "spindle-1-0",
+        "rightTransmitterId": "spindle-2-1",
+        "minimumSeparation": 0.5250607078602287,
+        "firstMinimumSampleTime": 0
+      },
+      {
+        "pairId": "spindle-1-0<->spindle-3-0",
+        "leftTransmitterId": "spindle-1-0",
+        "rightTransmitterId": "spindle-3-0",
+        "minimumSeparation": 0.4024066903842085,
+        "firstMinimumSampleTime": 0.046875
+      },
+      {
+        "pairId": "spindle-1-0<->spindle-3-1",
+        "leftTransmitterId": "spindle-1-0",
+        "rightTransmitterId": "spindle-3-1",
+        "minimumSeparation": 0.567511106088707,
+        "firstMinimumSampleTime": 0.015625
+      },
+      {
+        "pairId": "spindle-1-1<->spindle-2-0",
+        "leftTransmitterId": "spindle-1-1",
+        "rightTransmitterId": "spindle-2-0",
+        "minimumSeparation": 0.5250607078602287,
+        "firstMinimumSampleTime": 0
+      },
+      {
+        "pairId": "spindle-1-1<->spindle-2-1",
+        "leftTransmitterId": "spindle-1-1",
+        "rightTransmitterId": "spindle-2-1",
+        "minimumSeparation": 0.16096972715798302,
+        "firstMinimumSampleTime": 0
+      },
+      {
+        "pairId": "spindle-1-1<->spindle-3-0",
+        "leftTransmitterId": "spindle-1-1",
+        "rightTransmitterId": "spindle-3-0",
+        "minimumSeparation": 0.567511106088707,
+        "firstMinimumSampleTime": 0.015625
+      },
+      {
+        "pairId": "spindle-1-1<->spindle-3-1",
+        "leftTransmitterId": "spindle-1-1",
+        "rightTransmitterId": "spindle-3-1",
+        "minimumSeparation": 0.4024066903842085,
+        "firstMinimumSampleTime": 0.046875
+      },
+      {
+        "pairId": "spindle-2-0<->spindle-2-1",
+        "leftTransmitterId": "spindle-2-0",
+        "rightTransmitterId": "spindle-2-1",
+        "minimumSeparation": 0.64,
+        "firstMinimumSampleTime": 0
+      },
+      {
+        "pairId": "spindle-2-0<->spindle-3-0",
+        "leftTransmitterId": "spindle-2-0",
+        "rightTransmitterId": "spindle-3-0",
+        "minimumSeparation": 0.4884097256576401,
+        "firstMinimumSampleTime": 0.046875
+      },
+      {
+        "pairId": "spindle-2-0<->spindle-3-1",
+        "leftTransmitterId": "spindle-2-0",
+        "rightTransmitterId": "spindle-3-1",
+        "minimumSeparation": 0.5945216059009365,
+        "firstMinimumSampleTime": 2.484375
+      },
+      {
+        "pairId": "spindle-2-1<->spindle-3-0",
+        "leftTransmitterId": "spindle-2-1",
+        "rightTransmitterId": "spindle-3-0",
+        "minimumSeparation": 0.5945216059009365,
+        "firstMinimumSampleTime": 2.484375
+      },
+      {
+        "pairId": "spindle-2-1<->spindle-3-1",
+        "leftTransmitterId": "spindle-2-1",
+        "rightTransmitterId": "spindle-3-1",
+        "minimumSeparation": 0.4884097256576401,
+        "firstMinimumSampleTime": 0.046875
+      },
+      {
+        "pairId": "spindle-3-0<->spindle-3-1",
+        "leftTransmitterId": "spindle-3-0",
+        "rightTransmitterId": "spindle-3-1",
+        "minimumSeparation": 0.8799999999999999,
+        "firstMinimumSampleTime": 0.40625
+      }
+    ],
+    "numericalConvergence": [
+      {
+        "eventId": "b1-interior-coordinate-reference-probe@4",
+        "rootIdentityMatch": true,
+        "maximumEmissionTimeChange": 7.389644451905042e-13,
+        "signedWakeChange": 1.2156942119645464e-14,
+        "unsignedWakeChange": 7.216449660063518e-15,
+        "signedCancellationRatioChange": 1.787459069646502e-14,
+        "responseChanges": [
+          {
+            "probePolarity": 1,
+            "maximumComponentChange": 2.1538326677728037e-13
+          },
+          {
+            "probePolarity": -1,
+            "maximumComponentChange": 2.1538326677728037e-13
+          }
+        ],
+        "maximumProbeAccelerationComponentChange": 2.1538326677728037e-13
+      }
+    ]
+  },
+  "reducedMeasures": {
+    "events": [
+      {
+        "eventId": "b1-interior-coordinate-reference-probe@4",
+        "probeId": "b1-interior-coordinate-reference-probe",
+        "observationTime": 4,
+        "rootCount": 6,
+        "noRootCount": 0,
+        "signedWake": -0.20173931194156494,
+        "unsignedWake": 0.5243082232864807,
+        "signedCancellationRatio": 0.38477235904677975,
+        "probeResponses": [
+          {
+            "probePolarity": 1,
+            "acceleration": {
+              "x": -2.062527989185414,
+              "y": -1.0728696009780314,
+              "z": -1.0270057272118422
+            }
+          },
+          {
+            "probePolarity": -1,
+            "acceleration": {
+              "x": 2.062527989185414,
+              "y": 1.0728696009780314,
+              "z": 1.0270057272118422
+            }
+          }
+        ],
+        "rootTransversalityMargin": 0.6992036513945588,
+        "maximumRootResidual": 7.549516567451064e-13
+      }
+    ],
+    "prescribedPeriodClosure": {
+      "start": 0,
+      "end": 4,
+      "period": 4,
+      "maximumPositionResidual": 4.552252871008668e-16,
+      "maximumVelocityResidual": 6.473657049138938e-16,
+      "maximumPhaseResidual": 0
+    },
+    "minimumSeparation": {
+      "value": 0.16096972715798302,
+      "pairId": "spindle-1-0<->spindle-2-0",
+      "firstMinimumSampleTime": 0,
+      "sampleCount": 128,
+      "samplingRule": "uniform-left-closed-periodic-grid.v1"
+    },
+    "rootTransversalityMargin": 0.6992036513945588,
+    "numericalConvergence": {
+      "comparisonRule": "primary-versus-tighter-root-and-denser-periodic-grid.v1",
+      "absoluteTolerance": 1e-9,
+      "eventConvergence": {
+        "primaryRootTolerance": 1e-12,
+        "refinedRootTolerance": 1e-14,
+        "entries": [
+          {
+            "eventId": "b1-interior-coordinate-reference-probe@4",
+            "rootIdentityMatch": true,
+            "maximumEmissionTimeChange": 7.389644451905042e-13,
+            "signedWakeChange": 1.2156942119645464e-14,
+            "unsignedWakeChange": 7.216449660063518e-15,
+            "signedCancellationRatioChange": 1.787459069646502e-14,
+            "responseChanges": [
+              {
+                "probePolarity": 1,
+                "maximumComponentChange": 2.1538326677728037e-13
+              },
+              {
+                "probePolarity": -1,
+                "maximumComponentChange": 2.1538326677728037e-13
+              }
+            ],
+            "maximumProbeAccelerationComponentChange": 2.1538326677728037e-13
+          }
+        ],
+        "maximumChange": 7.389644451905042e-13,
+        "rootIdentitiesMatch": true
+      },
+      "minimumSeparation": {
+        "primarySampleCount": 128,
+        "refinedSampleCount": 256,
+        "primaryValue": 0.16096972715798302,
+        "refinedValue": 0.16096972715798302,
+        "absoluteChange": 0,
+        "minimumPairIdentityMatch": true
+      },
+      "maximumReportedChange": 7.389644451905042e-13,
+      "passed": true
+    },
+    "validity": {
+      "rootTopologyComplete": true,
+      "rootTransversalityPassed": true,
+      "minimumSeparationPassed": true,
+      "numericalConvergencePassed": true,
+      "passed": true
+    }
+  },
+  "status": {
+    "code": "ok",
+    "severity": "ok",
+    "message": "prescribed-record analytical measures evaluated under the complete protocol"
+  },
+  "falsifier": "Reject evaluator correctness if an independent closed-form or symmetry-protected case differs beyond the declared tolerance, if a retained root is missing, or if identical exact source and protocol inputs produce a different result hash.",
+  "resultHash": "085a7ace768404b3b9301cf790788bb8718174550c8e23c68ed865a96522bd65"
+}

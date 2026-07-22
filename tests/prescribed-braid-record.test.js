@@ -95,6 +95,9 @@ test("spec validation fails closed on nonfinite coordinates, broken radii, and i
   const wrongMember = structuredClone(fixtures[3].spec);
   wrongMember.braids[0].binaries[0].frequency = 0.75;
   assert.throws(() => validatePrescribedBraidSpec(wrongMember), /4:2:1/);
+  const brokenCComponent = structuredClone(fixtures[10].spec);
+  brokenCComponent.braids[1].binaries[1].frequency = 0.5;
+  assert.throws(() => validatePrescribedBraidSpec(brokenCComponent), /common-frequency B1 component/);
 });
 
 test("every endpoint remains finite, antipodal, and on its declared binary coordinates", () => {
