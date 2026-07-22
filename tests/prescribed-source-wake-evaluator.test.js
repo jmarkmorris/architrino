@@ -170,7 +170,7 @@ test("uniformly translating closed form exercises the transmitter-side causal fa
   assertNear(result.virtualProbeAcceleration.x, 12 / 25);
 });
 
-test("spindle adapter preserves every exact source path and supports a six-source evaluation", () => {
+test("compatibility adapter preserves every exact B1 source path and supports a six-source evaluation", () => {
   const spec = JSON.parse(fs.readFileSync(
     new URL(
       "../reference/priorities/braid-program/configurations/illustrative-spindle-chart-hypothesis.v0.json",
@@ -184,11 +184,11 @@ test("spindle adapter preserves every exact source path and supports a six-sourc
   assert.equal(exactRecord.sources.length, 6);
 
   const testTime = 1.2345;
-  spec.layers.forEach((layer, layerIndex) => {
-    layer.worldlineIds.forEach((worldlineId, endpointIndex) => {
+  spec.braids[0].binaries.forEach((binary, binaryIndex) => {
+    binary.worldlineIds.forEach((worldlineId, endpointIndex) => {
       const source = exactRecord.sources.find((row) => row.id === worldlineId);
       const actual = evaluateExactPrescribedSourceState(source, testTime);
-      const expected = evaluateSpindleSite(spec, layerIndex, endpointIndex, testTime);
+      const expected = evaluateSpindleSite(spec, binaryIndex, endpointIndex, testTime);
       assertNear(actual.position.x, expected.position[0], 1e-12);
       assertNear(actual.position.y, expected.position[1], 1e-12);
       assertNear(actual.position.z, expected.position[2], 1e-12);

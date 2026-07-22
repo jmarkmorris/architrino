@@ -7,12 +7,17 @@ import { fileURLToPath } from "node:url";
 
 import { evaluatePrescribedRecordAnalysis } from "../../src/prescribed-path-analysis/index.mjs";
 import {
-  createSpindleExactSourceRecord,
-  DEFAULT_SPINDLE_SPEC_PATH,
-} from "./generate-spindle-chart-record.mjs";
+  createPrescribedBraidExactSourceRecord,
+} from "./generate-prescribed-braid-record.mjs";
 
 const SCRIPT_PATH = fileURLToPath(import.meta.url);
 const SCRIPT_DIRECTORY = path.dirname(SCRIPT_PATH);
+const REPOSITORY_ROOT = path.resolve(SCRIPT_DIRECTORY, "../..");
+export const DEFAULT_B1_SOURCE_SPEC_PATH = path.resolve(
+  REPOSITORY_ROOT,
+  "reference/priorities/braid-program/configurations/" +
+    "illustrative-spindle-chart-hypothesis.v0.json",
+);
 export const DEFAULT_B1_ANALYSIS_PROTOCOL_PATH = path.resolve(
   SCRIPT_DIRECTORY,
   "../../src/prescribed-path-analysis/fixtures/b1-interior-small-fixture.analysis-protocol.v1.json",
@@ -24,7 +29,7 @@ export const DEFAULT_B1_ANALYSIS_RESULT_PATH = path.resolve(
 
 function parseArgs(args) {
   const parsed = {
-    specPath: DEFAULT_SPINDLE_SPEC_PATH,
+    specPath: DEFAULT_B1_SOURCE_SPEC_PATH,
     protocolPath: DEFAULT_B1_ANALYSIS_PROTOCOL_PATH,
     checkPath: null,
     writePath: null,
@@ -47,15 +52,15 @@ function parseArgs(args) {
 }
 
 export function evaluateSpindleAnalysisFromFiles(options = {}) {
-  const specPath = options.specPath ?? DEFAULT_SPINDLE_SPEC_PATH;
+  const specPath = options.specPath ?? DEFAULT_B1_SOURCE_SPEC_PATH;
   const protocolPath = options.protocolPath ?? DEFAULT_B1_ANALYSIS_PROTOCOL_PATH;
   const sourceBytes = fs.readFileSync(specPath);
   const upstreamSourceHash = createHash("sha256").update(sourceBytes).digest("hex");
   const spec = JSON.parse(sourceBytes.toString("utf8"));
   const protocol = JSON.parse(fs.readFileSync(protocolPath, "utf8"));
-  const exactRecord = createSpindleExactSourceRecord(spec, {
+  const exactRecord = createPrescribedBraidExactSourceRecord(spec, {
     sourceHash: upstreamSourceHash,
-    generatingSpec: path.relative(process.cwd(), specPath),
+    generatingSpec: path.relative(REPOSITORY_ROOT, specPath),
   });
   return evaluatePrescribedRecordAnalysis({ sourceRecord: exactRecord, protocol });
 }

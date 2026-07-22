@@ -314,7 +314,7 @@ Everything beyond this chart is open. $M$ and $G$ follow from the exact kinemati
 
 ## A1 Spin Scaffold
 
-The A1 scaffold carries three persistent binary indices $a\in\{1,2,3\}$ with independently assignable radii, frequencies, phases, and plane normals. No index has a fixed radius order or dynamical role. Self-hit activity, proximity to a causal-root fold, external exposure, and wake-ledger dominance are branch-derived diagnostics measured on a particular record.
+The A1 scaffold carries three persistent binary indices $a\in\{1,2,3\}$ with independently assignable positive radii and frequencies. Its binary axes are mutually orthogonal at the Family-A near-rest endpoint and converge toward the group-translation direction along the prescribed flattening coordinate $\lambda_A$; phases, axial half-separations, transverse orbit radii, and circulation remain binary coordinates. No index has a fixed radius order or dynamical role. Self-hit activity, proximity to a causal-root fold, external exposure, and wake-ledger dominance are branch-derived diagnostics measured on a particular record. These coordinates define prescribed geometry only; an EOM-solver-retained A1 spin scaffold remains unproved.
 
 In a reduced action-angle chart define
 
@@ -2129,7 +2129,7 @@ Whether the transacted unit is constant under drift has not been established. Th
 
 The closure route below is written in the A1 per-frequency chart: its integer ledger counts three per-binary windings, and its holonomy object is the normal triad. In B1, one common cadence collapses the winding triple and the locked frame replaces the normal triad, so B1 needs its own derivation of the route. The orbital lesson should be used as a method, not merely as a dictionary. In ordinary atomic-orbital theory, one chooses the angular configuration space, imposes single-valuedness and finite angular behavior, and then reads the surviving labels as quantum numbers. The clean generalization is that ordinary orbital labels come from closure and regularity on an effective angular envelope, while A1 labels should come from closure, root-ledger admissibility, normal-triad holonomy, and stability of the three indexed binaries. In $\mathbb{A}\mathbb{A}\mathbb{A}$ this style of reasoning begins one layer lower: first classify the stable A1 closures, then ask which causal-wake envelopes and observer-level orbital labels they support.
 
-For a A1, the first closure object is the three-binary phase and root ledger over a stable return period $T$. A useful theorem-target form is
+For an A1, the first closure object is the three-binary phase and root ledger over a stable return period $T$. A useful theorem-target form is
 
 $$
 \Theta_a(T)

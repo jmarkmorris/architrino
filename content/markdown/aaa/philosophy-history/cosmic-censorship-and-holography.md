@@ -2,7 +2,7 @@
 
 This chapter groups three closely connected ideas about gravitational extremality and informational closure: cosmic censorship, holography, and AdS/CFT. Cosmic censorship concerns whether singular behavior is hidden behind horizons. Holography concerns whether bulk physics admits lower-dimensional encoding. AdS/CFT provides the strongest formal realization of that idea by relating a gravitational bulk theory to a non-gravitational boundary theory.
 
-The chapter treats these ideas as comparison pressure, not as imported ontology. They are valuable because they show how horizons, boundaries, and information accounting can become mathematically strict. They become $\mathbb{A}\mathbb{A}\mathbb{A}$ claims only after the horizon-interface regime is derived from Family-A alignment, Noether sea response, and finite boundary data.
+The chapter treats these ideas as comparison pressure, not as imported ontology. They are valuable because they show how horizons, boundaries, and information accounting can become mathematically strict. They become $\mathbb{A}\mathbb{A}\mathbb{A}$ claims only after a horizon-interface regime is derived from candidate braid alignment, Noether sea response, and finite boundary data; no taxonomy label supplies that derivation.
 
 ## Conceptual View
 
@@ -17,11 +17,11 @@ $$
 
 ## $\mathbb{A}\mathbb{A}\mathbb{A}$ View
 
-Within $\mathbb{A}\mathbb{A}\mathbb{A}$, these concepts are treated as high-level clues rather than as final ontology. The project does not start from a fundamental AdS bulk or a literal boundary CFT. Instead, it interprets horizon structure as a constitutive interface between different Family-A regimes. In that setting, cosmic censorship becomes a statement about access to maximal-curvature regimes, holography becomes a statement about compressed interface encoding, and AdS/CFT becomes a suggestive dual-language analogue rather than the primitive architecture itself.
+Within $\mathbb{A}\mathbb{A}\mathbb{A}$, these concepts are treated as high-level clues rather than as final ontology. The project does not start from a fundamental AdS bulk or a literal boundary CFT. Instead, it investigates horizon structure as a candidate constitutive interface along the prescribed Family-A response: three binary axes run from mutual orthogonality toward the group-translation direction as $\lambda_A$ increases. In that setting, cosmic censorship becomes a statement about access to maximal-curvature regimes, holography becomes a statement about compressed interface encoding, and AdS/CFT becomes a suggestive dual-language analogue rather than the primitive architecture itself. The black-hole assignment, dynamics, stability, and retention remain unproved.
 
-The same restraint applies to Ryu-Takayanagi, island, and replica-wormhole entropy results. They are strongest here as comparison mathematics showing how Page-curve recovery can be organized in controlled holographic settings. They should not be imported as horizon ontology. The $\mathbb{A}\mathbb{A}\mathbb{A}$ mapping target is narrower: determine which boundary-encoding features survive as effective compression laws after the horizon-interface regime is derived from Family-A alignment and Noether sea dynamics.
+The same restraint applies to Ryu-Takayanagi, island, and replica-wormhole entropy results. They are strongest here as comparison mathematics showing how Page-curve recovery can be organized in controlled holographic settings. They should not be imported as horizon ontology. The $\mathbb{A}\mathbb{A}\mathbb{A}$ mapping target is narrower: determine which boundary-encoding features survive as effective compression laws after a horizon-interface regime is derived from the candidate alignment response and Noether sea dynamics.
 
-| Family-A regime | $f$ | Speed regime | Black-hole region | Volume | AdS/CFT side |
+| Candidate alignment regime | $f$ | Speed regime | Black-hole region | Volume | AdS/CFT side |
 | :--- | :--: | :---: | :--- | :--- | :--- |
 | Inner (self-hit) | 4 | $v > c_f$ | Inside the black hole | Inflation/deflation | AdS interior (gravity side) |
 | Middle (interface) | 2 | $v = c_f$ | Event horizon | Flat | Holographic horizon/interface |
@@ -29,11 +29,11 @@ The same restraint applies to Ryu-Takayanagi, island, and replica-wormhole entro
 
 This table is a regime-map hypothesis, not a proved black-hole interior theorem. It is useful only if the native strong-field branch later supplies the same causal-root, transversality, Jacobian-floor, regularization, and bounded-energy rows required of self-hit dynamics elsewhere.
 
-The more precise architrino picture is a radial Family-A alignment state in which all three indexed binary axes converge while their source record may assign different speed and deformation regimes. In that sense, "inside," "horizon," and "outside" should be read as a constitutive continuum parameterized by Family-A deformation rather than as three disconnected ontological zones.
+The more precise candidate picture is a radial alignment state in which all three persistent binary axes converge while their source record may assign different speed and deformation regimes. In that sense, "inside," "horizon," and "outside" should be read as a proposed constitutive continuum parameterized by the declared alignment coordinate rather than as three disconnected ontological zones.
 
-That continuum has both a local and a macroscopic reading. Locally, a source record can assign one indexed binary to a self-hit regime, another to the field-speed row, and another to exterior coupling; the taxonomy does not fix those roles. Macroscopically, the same candidate regime split appears as black-hole interior, horizon interface, and exterior observer region. The holographic comparison is therefore not a separate metaphysics added on top of the theory; it is a dual-language description of a transition pattern proposed for Family-A dynamics.
+That continuum has both a local and a macroscopic reading. Locally, a source record can assign one indexed binary to a self-hit regime, another to the field-speed row, and another to exterior coupling; the taxonomy does not fix those roles. Macroscopically, the same candidate regime split appears as black-hole interior, horizon interface, and exterior observer region. The holographic comparison is therefore not a separate metaphysics added on top of the theory; it is a dual-language description of a candidate transition pattern whose dynamics still must be derived.
 
-For this reason the preferred local term is **Horizon interface**: surface degrees of freedom with terminally aligned Family-A braids, without asserting that the interface is literally a conventional CFT. Horizon interface means:
+For this reason the preferred local term is **Horizon interface**: proposed surface degrees of freedom built from terminally aligned candidate braids, without asserting either a retained Family-A branch or that the interface is literally a conventional CFT. Horizon interface means:
 
 - Assemblies fixed at $v=c_f$ tangentially (middle and outer loops locked),
 - Planck-frequency hierarchy (inner 4x, middle 2x, outer 1x),
@@ -64,7 +64,7 @@ Time follows the same rule. Absolute time remains the substrate parameter. Exter
 
 ## Geometric Proof Targets
 
-- Derive the horizon-interface regime as a constitutive transition between volumetric and self-hit Family-A states.
+- Derive the horizon-interface regime as a constitutive transition between volumetric and self-hit candidate braid states, then determine whether the retained branch occupies the prescribed Family-A chart.
 - Show which elements of boundary encoding survive as effective compression laws without requiring fundamental boundary ontology.
 - Derive the AdS/CFT regime map from one horizon-interface record: exterior CFT-like clock and volume export, $v=c_f$ boundary compression, AdS-like self-hit cadence, inward deflationary compression, and outward inflation-like release.
 - Treat black-hole entropy and Page-curve recovery as downstream consistency targets after the native horizon-interface mechanism is specified, not as source derivations for the ontology.

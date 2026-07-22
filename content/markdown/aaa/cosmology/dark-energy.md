@@ -79,7 +79,7 @@ Late-time cosmological acceleration, in this picture, is a statement about how t
 
 ### Baseline Energy of the Noether Sea
 
-In the A1 case, each Noether braid in the Noether sea carries internal binding energy distributed across its three indexed support rows:
+In the candidate three-support-row case, each Noether braid in the Noether sea carries hypothesized internal binding energy distributed across its three persistent indices. This constitutive model does not identify a taxonomy member:
 
 - **binary 1** ($v > c_f$, self-hit regime): highest energy density, tightest orbit, contributes to the gravitational charge and inertial mass of the assembly.
 - **binary 2** ($v = c_f$): defines the effective causal speed; carries intermediate energy.
@@ -580,7 +580,7 @@ The comparison should be stated carefully. A single harmonic oscillator's zero-p
 In the $\mathbb{A}\mathbb{A}\mathbb{A}$ framework, the problem is reframed as an ontology mismatch:
 
 - QFT zero-point energies are not physical observables of the Euclidean void (which carries no energy). They are artifacts of the continuum-field approximation applied to a substrate that is fundamentally discrete (point architrinos) and finite (a definite number of Noether braid assemblies per unit volume).
-- In the A1 source record used here, binaries 1 and 2 store enormous energy densities locally (self-hit regime, $v > c_f$ and $v = c_f$), but this energy is locked into stable, high-frequency orbital modes that do not gravitate as a cosmological constant. Only the slowly varying, large-scale stress assigned to the binary-3 sector contributes to $\rho_{\mathrm{DE,eff}}$ in this candidate map.
+- In the candidate source record used here, binaries 1 and 2 are hypothesized to store large local energy densities (self-hit regime, $v > c_f$ and $v = c_f$), but this energy would be locked into high-frequency orbital modes rather than exported as a cosmological constant. Only the slowly varying, large-scale stress provisionally assigned to binary 3 contributes to $\rho_{\mathrm{DE,eff}}$ in this candidate map. None of these roles is a meaning of the persistent indices.
 - The observed smallness of $\rho_\Lambda$ relative to naïve QFT estimates reflects the fact that most internal Noether braid energy is dynamically inert on Hubble timescales—it is shielded by the source record indexed-support hierarchy, not canceled by fine-tuning.
 
 ### Coupling-Selection Target
@@ -858,7 +858,7 @@ The DESI DR2 matter-conversion comparison sharpens the source-history side of th
 
 ### How $\mathbb{A}\mathbb{A}\mathbb{A}$ Would Read Such a Signal
 
-From the standpoint of $\mathbb{A}\mathbb{A}\mathbb{A}$, a positive coupling of this kind would not be read as black holes creating energy from nothing or as the Euclidean void itself driving mass growth. The relevant interpretation would instead be constitutive: black holes are regions where the Noether sea is driven into the strongest known alignment, compression, and recycling regimes, so they are natural places for energy partition between inner, middle, and outer A1 layers to become macroscopically visible.
+From the standpoint of $\mathbb{A}\mathbb{A}\mathbb{A}$, a positive coupling of this kind would not be read as black holes creating energy from nothing or as the Euclidean void itself driving mass growth. The relevant interpretation would instead be constitutive: black holes are candidate regions where the Noether sea enters extreme alignment, compression, and recycling regimes, so they are natural places for an indexed energy partition among binaries 1, 2, and 3 to become macroscopically visible. This is an inferred source-record role, not a taxonomy assignment.
 
 That yields a disciplined three-layer reading:
 

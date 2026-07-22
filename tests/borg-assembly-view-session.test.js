@@ -139,6 +139,7 @@ test("prescribed chart trails use the source-defined number of full rotations", 
     physicsInvoked: false,
     responseCenter: { x: 0, y: 0, z: 0 },
     sphericalEnvelopeRadius: 1,
+    prescribedReturnPeriod: 4,
     displayTrailPeriods: 2,
   };
   const entry = createBorgAssemblyViewSession([raw]).selected;

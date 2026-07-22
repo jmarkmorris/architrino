@@ -334,7 +334,7 @@ $$
 \to
 \frac{1}{\gamma_{\text{eff}}(v)}
 $$
-An outer-only model can be useful as a first observable projection or reduced diagnostic, but it cannot prove Lorentz closure unless the inner and middle ledgers have already been shown to retune consistently and stay hidden below the preferred-frame leakage bound.
+A binary-3-only model can be useful as a first observable projection or reduced diagnostic when a source record explicitly assigns that boundary role, but it cannot prove Lorentz closure unless the binary-1 and binary-2 ledgers have already been shown to retune consistently and stay hidden below the preferred-frame leakage bound. These roles are provisional and do not redefine the persistent indices.
 
 ## Mass-Energy Channel
 
@@ -478,8 +478,8 @@ To promote this bridge from mapping to derivation, the following targets must cl
 7. Show that clock, ruler, momentum, and energy channels share the same $\gamma_{\text{eff}}$ to the required order.
 8. Bound preferred-frame leakage and identify the leading measurable correction terms.
 9. Derive the branch-quantized Lorentz response: for each stable admissible causal-root ledger class $q$, compute $B_q(v)$, extract $\gamma_{\mathrm{clk}}^{(q)}$ and $\gamma_{\mathrm{rul}}^{(q)}$, and show that all accepted clock/ruler branches collapse to the same effective $\gamma_{\text{eff}}$ within $O(\epsilon_{\mathrm{LV}})$.
-10. Prove that the outer-envelope oblation is the observable projection of a whole-braid branch update, not an independently assigned deformation law.
+10. Prove that the exclusion-envelope oblation is the observable projection of a whole-braid branch update, not an independently assigned deformation law.
 
 ## Summary Commitment
 
-> **Special Relativity Bridge Commitment:** Special relativity is retained as the effective observer-level bookkeeping of clocks, rulers, energy, and momentum in homogeneous weak-field conditions. The proposed $\mathbb{A}\mathbb{A}\mathbb{A}$ implementation is that deformable Noether braids preserve finite-speed causal wake closure by retuning internal phase, all three support layers, outer-envelope geometry, and medium-dressed response. The mature theory must derive the Lorentz factor as a shared branch-quantized closure consequence, not assign it separately to clocks, rods, mass, and momentum.
+> **Special Relativity Bridge Commitment:** Special relativity is retained as the effective observer-level bookkeeping of clocks, rulers, energy, and momentum in homogeneous weak-field conditions. The proposed $\mathbb{A}\mathbb{A}\mathbb{A}$ implementation is that deformable Noether braids preserve finite-speed causal wake closure by retuning internal phase, all three persistently indexed support rows, exclusion-envelope geometry, and medium-dressed response. The mature theory must derive the Lorentz factor as a shared branch-quantized closure consequence, not assign it separately to clocks, rods, mass, and momentum.

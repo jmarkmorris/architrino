@@ -69,7 +69,7 @@ $$
 a\in\{1,2,3\}
 $$
 
-The script applies the source-record A1 speed gates:
+The script applies the candidate source-record speed gates below. These branch roles do not assign an A1 or other taxonomy member:
 
 $$
 s_1'>c_f,
@@ -143,7 +143,7 @@ The default mock packet has two rows.
 | Scenario | Expected behavior |
 | --- | --- |
 | `same_branch_plus_minus_balance` | Plus and minus one-$h$ retunings both pass the speed gates. Unequal local rates leave a small signed current, `net_J_nu.value` near `0.0017019`. |
-| `middle_hinge_violation_control` | The linear action constraint solves, but the middle layer leaves the declared hinge tolerance. The row fails with `middle-hinge-violation`. |
+| `middle_hinge_violation_control` | The linear action constraint solves, but source-record binary 2 leaves the declared hinge tolerance. The compatibility ID remains unchanged; the row fails with `middle-hinge-violation`. |
 
 These numbers are fixture expectations only. They validate arithmetic, packet shape, branch-gate reporting, and the current estimate. They do not validate a physical Noether braid branch.
 

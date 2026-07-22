@@ -217,7 +217,7 @@ MCB stability claims rely on the well-posedness of the regularized SD-NDDE. In t
 
 #### The Maximum-Curvature Binary (MCB) as Fundamental Unit
 
-The architecture hypothesizes that the **maximum-curvature binary (MCB)** would be reachable first by one declared indexed binary of an A1 assembly, stabilized by certified same-transmitter self-hit roots on the super-field-speed circular branch. Contingent on Conjectures A/B, it would supply candidate **fundamental physical units** (length and time); see **Emergent Properties and Measurement Standards** below for the explicit definitions.
+The architecture hypothesizes that the **maximum-curvature binary (MCB)** would be reachable first by one declared persistent binary index of a candidate Noether braid, stabilized by certified same-transmitter self-hit roots on the super-field-speed circular branch. This mechanism does not by itself assign a braid-taxonomy member. Contingent on Conjectures A/B, it would supply candidate **fundamental physical units** (length and time); see **Emergent Properties and Measurement Standards** below for the explicit definitions.
 
 **Universal cap target (explicit):** If a stable MCB branch is certified, it would define a single limit state with one radius/speed pair. Binaries may sit below that limit, but the claim that no binary can exceed the MCB curvature or pass beyond its defining radius/speed remains conditional on the full signed-root ledger and stability certificate.
 
@@ -226,7 +226,7 @@ If realized, the MCB radius $r_{\text{min}}$ is expected to be determined by the
 2. self-hit repulsion (non-Markovian feedback when same-transmitter roots exist; super-field-speed circular history is the relevant branch),
 3. Centripetal requirement for stable circular orbit.
 
-**Dynamical priority (attractor status):** The architecture hypothesizes the MCB is a **robust attractor**, not a finely tuned periodic orbit. Only if the multipliers lie strictly inside the unit circle and the basin is non-trivial do we have the attractor the architecture relies on. If neutrality or instability is found, the Family-A ladder and Noether braid claims must be downgraded or the interaction law revised (e.g., additional damping/medium effects).
+**Dynamical priority (attractor status):** The architecture hypothesizes the MCB is a **robust attractor**, not a finely tuned periodic orbit. Only if the multipliers lie strictly inside the unit circle and the basin is non-trivial do we have the attractor the architecture relies on. If neutrality or instability is found, the candidate Family-A ladder and broader Noether braid claims must be downgraded or the interaction law revised (e.g., additional damping/medium effects).
 
 ### Setup and Notation (Symmetric Frame)
 

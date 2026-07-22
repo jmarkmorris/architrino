@@ -1,6 +1,6 @@
 # $A_0$ Branch Certificate Protocol
 
-This protocol defines the simulation-facing handoff for the $A_0$ reference attractor described in [Particle Masses](../../assemblies/particle-masses.md#reference-attractor-gate), [A1 Dynamics](../../noether-braid/braid-a1-dynamics.md#a1-dynamics), and [Energy](../../dynamics/energy.md). It specializes the general [Simulation Run Protocols](run-protocols.md) to the first neutral rest-branch A1 mass-map target.
+This protocol defines the simulation-facing handoff for the $A_0$ reference attractor described in [Particle Masses](../../assemblies/particle-masses.md#reference-attractor-gate), [A1 Dynamics](../../noether-braid/braid-a1-dynamics.md#a1-dynamics), and [Energy](../../dynamics/energy.md). It specializes the general [Simulation Run Protocols](run-protocols.md) to the first neutral rest-branch mass-map candidate constrained to A1 coordinates: persistent indices, independently assignable positive radii and frequencies, mutually orthogonal near-rest axes, the declared Family-A response direction, and explicit remaining binary coordinates. The target is not called retained or stable until the same-record certificate rows pass.
 
 The protocol does not treat $A_0$ as a particle label. It treats $A_0$ as a calibration-free branch certificate problem: find a finite, stable, multi-scale causal-root ledger before energy, shielding, Noether sea response, or mass comparisons enter.
 

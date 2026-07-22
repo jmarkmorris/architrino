@@ -12,7 +12,7 @@ It is the Generation-I charged-lepton reference case for [Noether Braid](../../n
 
 ## Axial Inventory and Generation Core
 
-The electron uses the charged-fermion axial-layer rule in its lowest shielding-coherence class. The $e^-$ branch has a pro-A1 Noether braid with shielding support from all three indexed binaries and a six-site axial inventory of $6\epsilon_-$. The $e^+$ branch is the charge-conjugate branch with axial inventory $6\epsilon_+$. In both cases the charged lepton is a color singlet: the axial layer carries electric and weak bookkeeping, not color-axis exceptionality.
+The electron uses the charged-fermion axial-layer rule in its lowest shielding-coherence class. The working hypothesis assigns the $e^-$ branch a pro-oriented candidate Noether braid with shielding support from all three indexed binaries and a six-site axial inventory of $6\epsilon_-$. The $e^+$ branch is the charge-conjugate candidate with axial inventory $6\epsilon_+$. This particle assignment does not identify a taxonomy member or establish a retained branch. In both cases the charged lepton is a color singlet: the axial layer carries electric and weak bookkeeping, not color-axis exceptionality.
 
 Using the shielding-quotient notation from [Quantum Number Mapping](./quantum-number-mapping.md#candidate-generation-operator), the generation-core record is therefore not a new charge pattern. It is the shielding-coherence class of the same charged-lepton axial inventory:
 

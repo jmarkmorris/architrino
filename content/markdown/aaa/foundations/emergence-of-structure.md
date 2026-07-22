@@ -235,7 +235,7 @@ For the weak homogeneous Noether sea case, local neutrality can be stronger than
 
 This convergence discipline is what lets **metastable assemblies** maintain their general form for long periods. Persistence requires the branch to say which wakes matter, which far contributions cancel or screen, and which histories remain in the retained account.
 
-The infinite-history statement is therefore not a claim that every past wake carries equal computational weight. In principle, an architrino receives the delayed wake history that intersects it. In practical assembly dynamics, the active burden is bounded by inverse-square wake dilution, phase cancellation across remote populations, and the shielding or screening supplied by A1 and other retained Noether-braid records. The mathematical task is to identify which causal-root branches remain dynamically active in a regime, not to treat the entire past universe as an undifferentiated influence of equal importance.
+The infinite-history statement is therefore not a claim that every past wake carries equal computational weight. In principle, an architrino receives the delayed wake history that intersects it. In practical assembly dynamics, the active burden is bounded by inverse-square wake dilution, phase cancellation across remote populations, and any shielding or screening demonstrated by retained Noether-braid records. The mathematical task is to identify which causal-root branches remain dynamically active in a regime, not to infer shielding from an A1 label or treat the entire past universe as an undifferentiated influence of equal importance.
 
 Self-hit is not defined by speed alone. It occurs when the same-transmitter causal-root set is nonempty:
 $$

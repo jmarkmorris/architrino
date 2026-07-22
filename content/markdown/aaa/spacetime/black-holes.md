@@ -1,6 +1,6 @@
 # Black Holes in the $\mathbb{A}\mathbb{A}\mathbb{A}$ Framework
 
-This chapter is the main black-hole orientation document for the spacetime branch. Its purpose is to tell the reader what survives from standard compact-object phenomenology, what is being reinterpreted at the constitutive level, and how the strong-field A1 regime is supposed to replace singularity language without losing observational discipline.
+This chapter is the main black-hole orientation document for the spacetime branch. Its purpose is to tell the reader what survives from standard compact-object phenomenology, what is being reinterpreted at the constitutive level, and how a candidate strong-field Noether-braid regime is supposed to replace singularity language without losing observational discipline. No black-hole constituent is assigned a braid-taxonomy member here.
 
 The opening establishes the three-layer distinction between observables, constitutive strong-field structure, and substrate ontology. The later sections then work through horizon conditions, interior regime structure, release channels, and cosmological embedding.
 
@@ -16,17 +16,17 @@ The chapter does not replace weak-field or observer-level black-hole phenomenolo
 
 ## What the Framework Treats as a Black Hole
 
-In $\mathbb{A}\mathbb{A}\mathbb{A}$, a black hole is not a hole in the Euclidean void. It is a region of the Noether sea driven into an extreme alignment and compression regime by sustained inward transport of matter, radiation, and medium deformation. The effective exterior still behaves like a compact gravitating source, but the interior ontology is not a geometric singularity. It is a structured A1 regime with three coupled zones:
+In $\mathbb{A}\mathbb{A}\mathbb{A}$, a black hole is not a hole in the Euclidean void. It is a region of the Noether sea hypothesized to enter an extreme alignment and compression regime through sustained inward transport of matter, radiation, and medium deformation. The effective exterior still behaves like a compact gravitating source, but the candidate interior ontology is not a geometric singularity. It is a proposed Noether-braid regime with three coupled zones:
 
-| Zone | A1 role | Constituent branch-speed regime | Effective black-hole language |
+| Zone | Candidate braid role | Constituent branch-speed regime | Effective black-hole language |
 | :--- | :--- | :--- | :--- |
 | Exterior bulk | outer-dominant volumetric assemblies | outer branch $v_3 < c_f$ in ordinary exterior coupling | outside observer region |
-| Horizon interface | middle-layer locking with outer-layer terminal alignment | $v_2=c_f$ with $v_3\to c_f$ for the locked interface components | event/apparent horizon comparison |
+| Horizon interface | source-record binary-2 locking with binary-3 terminal alignment | $v_2=c_f$ with $v_3\to c_f$ for the locked interface components | event/apparent horizon comparison; roles are provisional, not taxonomy identities |
 | Interior core | self-hit-dominant maximal-curvature assemblies | branch-derived self-hit carrier speed exceeds $c_f$ | black-hole interior |
 
 This should be read as one constitutive continuum rather than three disconnected objects. The black-hole vocabulary remains useful at the effective level, but the ontic content is a regime map of the Noether sea.
 
-The same regime map already appears locally inside the A1 source record used here. Binary 2 is assigned the symmetry-breaking threshold, binary 1 the beyond-threshold self-hit continuation, and binary 3 the exterior-coupling channel that strong-field collapse drives toward terminal alignment. These are source-record assignments, not meanings of the persistent indices. In this sense a Noether braid contains the primitive black-hole analogue: a local horizon/interior pattern that can later be population-amplified into an observer-level compact object. This is not an imported primordial-black-hole model. It is the native claim that black-hole structure is the large-scale continuation of a branch pattern already present in the assembly ontology.
+The working source record assigns binary 2 the symmetry-breaking threshold, binary 1 the beyond-threshold self-hit continuation, and binary 3 the exterior-coupling channel that strong-field collapse would drive toward terminal Family-A alignment. These are provisional source-record assignments, not meanings of the persistent indices and not a retained-branch result. In this conjecture a candidate Noether braid contains the primitive black-hole analogue: a local horizon/interior pattern that could later be population-amplified into an observer-level compact object. This is not an imported primordial-black-hole model; it is a falsifiable proposed continuation from assembly-scale branch behavior.
 
 When the local branch is described from the assembly side, this transition is the braid symmetry-breaking point: the source record's binary-2 threshold row remains at $c_f$, binary 3 is driven to the same terminal threshold, and binary 1 supplies the self-hit interior continuation.
 
@@ -101,7 +101,7 @@ M_{\mathrm{Ch}}\approx \frac{5.83}{\mu_e^2}M_\odot
 $$
 with $\mu_e$ the nucleons-per-electron composition factor. In a collapsing iron core, electron capture lowers the electron fraction $Y_e=1/\mu_e$, so the effective support limit falls as the active core is already compressed.
 
-The $\mathbb{A}\mathbb{A}\mathbb{A}$ reading is that the Chandrasekhar calculation is not merely a historical astrophysics result. It is an observer-level signature of an assembly support channel losing authority. In the white-dwarf branch, electron assemblies still act as a pressure reservoir: their volumetric A1 envelopes supply effective exclusion and packing response while nuclei remain identifiable. As compression drives the electron population into the relativistic regime, additional inward work no longer returns as a proportionally stronger outward support law. The same work is increasingly routed into cadence, exposed response, heat, neutrino channels, nuclear breakup, Noether sea stress, and remnant bookkeeping.
+The $\mathbb{A}\mathbb{A}\mathbb{A}$ reading is that the Chandrasekhar calculation is not merely a historical astrophysics result. It is an observer-level signature of an assembly support channel losing authority. In the white-dwarf candidate mapping, volumetric electron-braid envelopes would supply effective exclusion and packing response while nuclei remain identifiable. As compression drives the electron population into the relativistic regime, additional inward work no longer returns as a proportionally stronger outward support law. The same work is increasingly routed into cadence, exposed response, heat, neutrino channels, nuclear breakup, Noether sea stress, and remnant bookkeeping.
 
 The branch distinction should not be collapsed into a single "shrinking electron" picture. Ordinary orbital compression belongs to the atomic and condensed-matter precursors. Degenerate electron pressure belongs to a delocalized fermion reservoir after ordinary orbitals have ceased to be the right description. Material Noether braid scale compression is a deeper assembly-level ledger that must be derived separately from the same retained compact-region record. A successful $\mathbb{A}\mathbb{A}\mathbb{A}$ collapse map has to connect these stages without pretending that an atomic orbital radius, a Fermi spacing, and a Noether braid scale ratio are the same variable.
 
@@ -182,7 +182,7 @@ $$
 
 ### Neutron-Star Branch as a Radial Test
 
-The neutron-star branch is the sharpest compact-object test before horizon-interface language becomes active. It is already far outside weak-field matter, but it remains a non-horizon branch as long as volumetric neutron-rich matter support has not been forced into terminal A1 alignment. For a spherical bookkeeping radius $r$ inside a star of surface radius $R_*$, the useful local record is not a scalar density alone but a Noether sea state and matter-response bundle,
+The neutron-star branch is the sharpest compact-object test before horizon-interface language becomes active. It is already far outside weak-field matter, but it remains a non-horizon branch in the candidate mapping as long as volumetric neutron-rich matter support has not been forced into terminal Family-A alignment. For a spherical bookkeeping radius $r$ inside a star of surface radius $R_*$, the useful local record is not a scalar density alone but a Noether sea state and matter-response bundle,
 
 $$
 \Theta_{\mathrm{NS}}(r)
@@ -229,7 +229,7 @@ v_2 = c_f,
 v_3 \to c_f
 $$
 
-with the middle and binaries 3 becoming coplanar and co-linear with the binary 1 at alignment and precession ceasing in that limit.
+with binaries 2 and 3 becoming coplanar and collinear with binary 1 at alignment and precession ceasing in that limit.
 
 This condition fixes the local meaning of the horizon in the framework. The horizon is not merely a geometric surface drawn inside an effective metric. It is the constitutive interface where terminal alignment is reached and where ordinary volumetric assemblies are compressed into a boundary-like state. For Planck-language mapping, the rule used throughout the project is that the relevant "Planck scale" is this alignment condition unless a more specific derivation overrides it.
 
@@ -336,7 +336,7 @@ At the assembly level, opposite-charge binaries driven past the hinge near $c_f$
 
 The constitutive claim is modest but important: singularity language remains a warning that weak-field effective variables have exceeded their domain, while the ontic replacement is a structured maximum-curvature core with finite internal bookkeeping.
 
-One preserved strong-field intuition is that sufficiently old or sufficiently compressed interiors may approach an ordered collapse limit rather than a thermalized point. In that heuristic picture, maximal-curvature A1 braids pack into a near-crystalline interior, while most entropy remains associated with the active shear and shredding layers nearer the horizon interface. This is not yet a constitutive derivation, but it is a useful candidate for how collapse can saturate without an ontic singularity.
+One preserved strong-field intuition is that sufficiently old or sufficiently compressed interiors may approach an ordered collapse limit rather than a thermalized point. In that heuristic picture, maximal-curvature candidate braids pack into a near-crystalline interior, while most entropy remains associated with the active shear and shredding layers nearer the horizon interface. This is not yet a constitutive derivation or a taxonomy assignment, but it is a useful candidate for how collapse can saturate without an ontic singularity.
 
 ### High-Energy Probe Closure Target
 
@@ -475,7 +475,7 @@ where $\Delta E_{H,j}$ is the horizon-interface or interior strong-field row and
 
 This is the disciplined version of the "roiling horizon" intuition. The horizon interface may contain intense photon-channel and photon-adjacent activity, and some of it may be routed into jets, diffuse radiative outflow, dark-sector escape, or later visible conversion. But each proposed route must state the release selector, the energy-frequency ledger, the polarization and angular-momentum handoff, and the coupling to the surrounding Noether sea. Otherwise the claim has only renamed black-hole radiation rather than deriving a strong-field transport channel.
 
-Modern holographic entropy work, including Ryu-Takayanagi, island, and replica-wormhole calculations, should be treated in this chapter as a comparison framework rather than as imported ontology. Its value is that it sharpens a high-value consistency target: a mature horizon-interface model should explain how compressed interface bookkeeping can remain compatible with Page-curve recovery and smooth effective horizons. It does not, by itself, supply the $\mathbb{A}\mathbb{A}\mathbb{A}$ mechanism. The native task is still to derive entropy and information accounting from terminal A1 alignment, path-history bookkeeping, Noether sea storage, and release-channel selection.
+Modern holographic entropy work, including Ryu-Takayanagi, island, and replica-wormhole calculations, should be treated in this chapter as a comparison framework rather than as imported ontology. Its value is that it sharpens a high-value consistency target: a mature horizon-interface model should explain how compressed interface bookkeeping can remain compatible with Page-curve recovery and smooth effective horizons. It does not, by itself, supply the $\mathbb{A}\mathbb{A}\mathbb{A}$ mechanism. The local task is still to derive entropy and information accounting from the hypothesized terminal Family-A alignment, path-history bookkeeping, Noether sea storage, and release-channel selection.
 
 The Ryu-Takayanagi comparison makes this distinction sharper. A region-anchored entropy surface is not automatically the event horizon; in vacuum or nonthermal comparisons it can have no horizon component at all, while in thermal black-hole limits a large-region surface can wrap the horizon. For a candidate strong-field record $\theta$, let $\gamma_A^{\mathrm{eff}}(\theta)$ be the effective entropy surface associated with access region $A$, and let $H_{\mathrm{eff}}(\theta)=\{F_H=0\}$ denote the observer-level horizon surface selected by the same record. The useful diagnostic is the horizon-wrapping fraction
 $$
@@ -697,7 +697,7 @@ This gives a compact comparison rule for evaporation and endpoint proposals. A p
 
 No-hair, cosmic-censorship, Cauchy-horizon, and endpoint theorems enter this chapter with the same assumption discipline. Their strongest use is to preserve exterior compact-object behavior, horizon regularity, non-arbitrary continuation, and finite-release accounting where their hypotheses match the comparison regime. When a theorem assumes an isolated vacuum black hole, asymptotically flat exterior, or global hyperbolicity condition, it cannot by itself settle a black hole embedded in an evolving Noether sea. The retained burden is sharper: the native horizon-interface record must reproduce the exterior $(M,\mathbf{J},Q)$ coarse-graining, avoid observer-level naked-singularity pathology, and select a finite continuation family using finite active-medium boundary data.
 
-As a heuristic geometric picture, the horizon can also be described as a **dimensional pinch** in the A1 shape trajectory. On this reading, ordinary 3D assemblies are flattened toward a near-planar disk at the alignment interface, while the interior self-hit regime permits re-opening of the suppressed axial degree of freedom. In shorthand, the proposed shape path is
+As a heuristic geometric picture, the horizon can also be described as a **dimensional pinch** along the candidate Family-A response path. On this reading, ordinary 3D assemblies are flattened toward a near-planar disk at the alignment interface, while the interior self-hit regime permits re-opening of the suppressed axial degree of freedom. In shorthand, the proposed response path is
 $$
 \text{3D sphere} \to \text{2D horizon disk} \to \text{3D interior reopening}
 $$
@@ -1044,7 +1044,7 @@ Within $\mathbb{A}\mathbb{A}\mathbb{A}$, such a signal would be interpreted cons
 
 That interpretation remains conditional. The observational correlation must first survive ordinary astrophysical alternatives such as hidden accretion, merger incompleteness, host selection, and mass-calibration drift. Even if the correlation survives, the theory still must show how interior recycling feeds a cosmological source term without spoiling other closure targets.
 
-In local usage, $K$ should therefore be treated as a phenomenological diagnostic rather than as a primitive constant of nature. Its value summarizes how strongly the population of recycling sites appears to track the expansion history in a given observational reconstruction. The underlying $\mathbb{A}\mathbb{A}\mathbb{A}$ claim would remain deeper: any apparent coupling must emerge from A1 alignment, maximum-curvature storage, interface transport, and outward medium loading.
+In local usage, $K$ should therefore be treated as a phenomenological diagnostic rather than as a primitive constant of nature. Its value summarizes how strongly the population of recycling sites appears to track the expansion history in a given observational reconstruction. The underlying $\mathbb{A}\mathbb{A}\mathbb{A}$ hypothesis remains deeper: any apparent coupling must emerge from a derived braid-alignment response, maximum-curvature storage, interface transport, and outward medium loading.
 
 ## Population History and Source Accounting
 
@@ -1114,8 +1114,8 @@ This chapter centralizes the black-hole ontology and hands specific tasks to adj
 
 - [singularity-resolution.md](./singularity-resolution.md): canonical horizon alignment condition and singularity replacement language.
 - [general-relativity.md](./general-relativity.md): weak-field and strong-field observational closure targets.
-- [A1 Dynamics](../noether-braid/braid-a1-dynamics.md#a1-dynamics): A1 regime map, recycling sketches, and kinematic hypotheses.
-- [Mapping the Planck Scale to the A1 Geometry](../philosophy-history/theory-bridges/planck-scale-nested-shell-braid-alignment.md): Planck-alignment interpretation of terminal horizon locking.
+- [A1 Dynamics](../noether-braid/braid-a1-dynamics.md#a1-dynamics): prescribed A1 regime map, recycling sketches, and kinematic hypotheses; it does not establish the black-hole assignment.
+- [Mapping the Planck Scale to the A1 Geometry](../philosophy-history/theory-bridges/planck-scale-nested-shell-braid-alignment.md): exploratory Planck-alignment interpretation of terminal horizon locking.
 - [../cosmology/dark-energy.md](../cosmology/dark-energy.md): effective dark-energy source terms and late-time expansion history.
 - [../cosmology/CMB.md](../cosmology/CMB.md): recycling cosmology and SMBH-sourced chronology mapping.
 - [../cosmology/dark-matter.md](../cosmology/dark-matter.md): dark-sector processing and SMBH recycling constraints.

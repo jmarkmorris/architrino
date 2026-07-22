@@ -236,6 +236,10 @@ function validatePrescribedGeometryProvenance(provenance, { claimGrade, evidence
     declaration.displayTrailPeriods,
     "provenance.prescribedGeometry.displayTrailPeriods",
   );
+  requiredPositiveNumber(
+    declaration.prescribedReturnPeriod,
+    "provenance.prescribedGeometry.prescribedReturnPeriod",
+  );
 }
 
 function normalizeWindow(record, worldlines, { isAssemblyViewRecord = false } = {}) {

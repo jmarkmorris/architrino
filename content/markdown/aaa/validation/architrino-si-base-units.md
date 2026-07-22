@@ -81,6 +81,9 @@ In this framework, the candidate substrate-level quantities are:
 - **Causal wake interaction kernel** (inverse-square line-of-action weighting modulated by the transmitter-side acceleration weight $W^{\mathrm{acc}}$ over causal wake surfaces, with regularized coincidence handling)
 
 ### Category C: Assembly Geometry (Emergent but Calculable)
+
+In this section `A1` means only the prescribed Family-A member with persistent binary indices, independently assignable positive radii and frequencies, mutually orthogonal axes at the near-rest endpoint, and axes that converge toward the group-translation direction along $\lambda_A$. Axial half-separations, transverse orbit radii, phases, and circulation remain explicit binary coordinates. None of the unit, particle, quantization, stability, or retention claims below follows from that definition; each remains a derivation target and fails if the same evolved record does not retain the declared coordinates and required ledger rows.
+
 - **A1 indexed radius tuple** $(R_1,R_2,R_3)$, with no radius order encoded by the indices
 - **Maximum curvature binary radius** $r_{\text{max-curv}}$ (where $v \gg c_f$)
 - **Reference Noether braid density** $\rho_{\text{NS},0}$ (the normalization scale for $n(\mathbf X,T)$)
@@ -114,14 +117,14 @@ $$
 **Architrino Interpretation:**
 
 The hyperfine transition is caused by:
-- Interaction between the **electron assembly's candidate A1 scaffold** and the nucleus; the source record used here assigns the magnetic-moment row to binary 2 at $v_2 \approx c_f$
+- Interaction between the **electron assembly's candidate braid scaffold** and the nucleus; the source record used here assigns the magnetic-moment row to binary 2 at $v_2 \approx c_f$, but neither the electron identity nor this role follows from the taxonomy
 - The **nuclear spin** (magnetic moment from proton/neutron records with an explicitly assigned binary-2 channel)
 
 This is an atomic-clock validation target, not a closed spin derivation. The electron magnetic moment, nuclear spin ledger, and hyperfine coupling must inherit [Angular Momentum and Spin](../philosophy-history/theory-bridges/angular-momentum-and-spin.md), [Atomic Structure](../nuclear-atomic/atomic-structure.md), and [Atomic Spectra](../nuclear-atomic/atomic-spectra.md) before $\Delta \nu_{\text{Cs}}$ can be claimed from first principles.
 
 **What we must derive:**
 $$
-\Delta \nu_{\text{Cs}} = f(\text{A1 indexed geometry, } c_f, \epsilon, \text{ Noether sea coupling})
+\Delta \nu_{\text{Cs}} = f(\text{candidate indexed braid geometry, } c_f, \epsilon, \text{ Noether sea coupling})
 $$
 
 **Challenge:** The frequency is determined by:
@@ -195,7 +198,7 @@ $$
 \qquad
 h = 2\pi\hbar
 $$
-where $r_3$ is the characteristic radius assigned to binary 3 in the hydrogen ground-state source record. This is an internal A1 action variable, not the observer-level electron orbital angular momentum quantum number $\ell$ of the hydrogen $1s$ state. The action role is source-record data, not a meaning of index 3 in the taxonomy.
+where $r_3$ is the characteristic radius assigned to binary 3 in the hydrogen ground-state source record. This is a candidate internal braid action variable, not the observer-level electron orbital angular momentum quantum number $\ell$ of the hydrogen $1s$ state. The particle assignment and action role are source-record hypotheses, not meanings of index 3 or of an A1 taxonomy label.
 
 **Derivation pathway:**
 1. Calculate $r_3$ for the hydrogen ground-state source record (energy minimization + self-hit constraints).
@@ -227,7 +230,7 @@ $$
 **What we must explain:**
 - Why only integer multiples of $\epsilon$ appear in stable observer-level electric-charge inventories (charge quantization)
 - Why we observe $0, \pm |e|/3, \pm 2|e|/3, \pm |e|$ in nature, never an isolated $\pm\epsilon$ polarity unit
-- Candidate answer: **confinement or dynamical suppression**. The $\epsilon$ polarity units are bound in A1-based quark scaffolds or in lepton assemblies. Isolated $\pm\epsilon$ polarity units are not observed as stable observer-level particles, so the suppression mechanism remains a closure target rather than a completed infinite-energy theorem.
+- Candidate answer: **confinement or dynamical suppression**. The working particle map binds the $\epsilon$ polarity units in candidate quark or lepton braid scaffolds. Isolated $\pm\epsilon$ polarity units are not observed as stable observer-level particles, so the braid assignment and suppression mechanism remain closure targets rather than completed theorems.
 
 
 ---
@@ -297,7 +300,7 @@ N_A = \frac{1 \text{ g}}{1 \text{ amu}} = \frac{1 \text{ g}}{m_{\text{proton}}/1
 $$
 
 **What we must derive:**
-- The proton mass $m_p$ from A1-based assembly geometry (3 quarks = 3 A1 scaffolds + gluon wake structure + Noether sea coupling)
+- The proton mass $m_p$ from candidate braid-based assembly geometry (3 candidate quark scaffolds + gluon wake structure + Noether sea coupling)
 
 
 ---
@@ -355,7 +358,7 @@ If the $\mathbb{A}\mathbb{A}\mathbb{A}$ program succeeds, we can **replace** the
 - $h \stackrel{\text{target}}{=} 2\pi \epsilon \cdot c_f \cdot r_3$ for the declared source record after the action-closure derivation, not by definition
 - $k_B = f(m_{\text{NS}}, c_f)$
 - $N_A = f(m_p / m_{\text{NS}})$
-- $\Delta \nu_{\text{Cs}} = f(\text{Cs A1 geometry})$
+- $\Delta \nu_{\text{Cs}} = f(\text{candidate Cs braid geometry})$
 
 **Result target:** If the closure program succeeds, the seven SI constants reduce to **3-4 fundamental parameters**, with the rest emergent.
 

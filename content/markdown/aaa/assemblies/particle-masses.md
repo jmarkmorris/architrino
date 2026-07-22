@@ -770,7 +770,7 @@ $$
 \frac{(r_e+r_\mu+r_\tau)^2}{r_e^2+r_\mu^2+r_\tau^2}=\frac{3}{2}
 $$
 
-Within $\mathbb{A}\mathbb{A}\mathbb{A}$, the natural place to test this is the generation-by-shielding ladder. If the three charged leptons are the same braid-scaffold-plus-axial-layer architecture viewed through three shielding-support vectors, then a mass-root relation may be an external clue that the exposure map from A1, Generation-II shielding, and Generation-III shielding branches is more constrained than a generic monotone hierarchy.
+Within $\mathbb{A}\mathbb{A}\mathbb{A}$, the natural place to test this is the generation-by-shielding ladder. If the three charged leptons are the same candidate braid-scaffold-plus-axial-layer architecture viewed through three shielding-support vectors, then a mass-root relation may be an external clue that the exposure map from full, Generation-II, and Generation-III shielding branches is more constrained than a generic monotone hierarchy. This particle map does not assign a braid-taxonomy member.
 
 The conservative use of Koide here is therefore:
 
@@ -799,7 +799,7 @@ That means a Koide-like benchmark, if it is useful at all, belongs first to the 
 
 To advance from qualitative thesis to quantitative mass prediction, the active mass program must close five linked steps.
 
-1. **Stable A1 attractor:** derive one robust Noether braid attractor family with indexed radii, frequencies, branch data, and stability diagnostics.
+1. **Stable A1 attractor target:** derive one robust Noether braid attractor family whose three persistent binaries have independently assignable positive radii and frequencies, mutually orthogonal axes at the Family-A near-rest endpoint, and axes that converge toward the group-translation direction along the prescribed flattening coordinate; record the remaining binary coordinates, branch data, and stability diagnostics. The `A1` label fixes this prescribed chart but does not prejudge retention.
 2. **Internal energy ledger:** compute the dimensionless internal energy stored in that attractor without assuming the particle mass being derived.
 3. **Shielding extraction:** derive $\zeta(A)$ from far-field wake cancellation and exposed coupling geometry.
 4. **Medium-dressed response:** derive the response tensor that turns shielded internal energy into inertial and gravitational response in the weak-field regime.
@@ -807,11 +807,11 @@ To advance from qualitative thesis to quantitative mass prediction, the active m
 
 ### Reference Attractor Gate
 
-The first mass-side calculation should not begin by fitting the electron mass. It should begin with a calibration-free reference attractor, denoted $A_0$: a neutral, rest-branch A1 braid in a weak homogeneous Noether sea cell. This gate turns the mass thesis from a symbolic relation into a concrete closure target that can be checked before particle labels, charged-lepton ratios, or measured constants enter the calculation.
+The first mass-side calculation should not begin by fitting the electron mass. It should begin with a calibration-free reference attractor, denoted $A_0$: a neutral rest-branch candidate constrained to the A1 prescribed coordinates in a weak homogeneous Noether sea cell. This gate turns the mass thesis from a symbolic relation into a concrete closure target that can be checked before particle labels, charged-lepton ratios, or measured constants enter the calculation. Failure to retain the A1 coordinate relations on the same evolved record rejects this candidate before any mass comparison.
 
 This attractor should not be pictured as three independent circular binaries. Its source record assigns different causal-speed regimes to the persistent indices: binary 1 is self-hit and super-field-speed on the active branch, binary 2 sits near the $v=c_f$ fold, and binary 3 remains sub-field-speed as the shielding and boundary-coupling channel. These assignments define the $A_0$ candidate record; they are not taxonomy-assigned roles. Circular or elliptic pictures can still be useful as carrier charts, but only after the coupled root ledger, phase lock, and stability diagnostics are respected.
 
-For the mass program, this distinction controls which internal corrections matter. Nonresonant fast structure in the inner layer may average out of the leading far-field shielding estimate, especially when the layer scales differ strongly. Resonant corrections, near-separator corrections, and small leakage asymmetries cannot be discarded in the same way, because they can change the accepted branch, the Floquet gap, or the extracted $\zeta(A_0)$ itself.
+For the mass program, this distinction controls which internal corrections matter. Nonresonant fast structure in source-record binary 1 may average out of the leading far-field shielding estimate, especially when the binary scales differ strongly. Resonant corrections, near-separator corrections, and small leakage asymmetries cannot be discarded in the same way, because they can change the accepted branch, the Floquet gap, or the extracted $\zeta(A_0)$ itself. The fast role is measured on the record and is not a meaning of index 1.
 
 The minimal $A_0$ output contract is:
 

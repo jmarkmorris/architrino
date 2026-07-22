@@ -604,7 +604,7 @@ $$
 \right)^2
 \ll1.
 $$
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** An inflationary phase can be interpreted as a high-energy regime where one or more indexed binaries of Family-A candidates operate in the $v>c_f$ self-hit domain, driving rapid effective expansion or contraction of the Noether braid assembly-density record. The “inflaton” is a coarse-grained scalar describing the average state of this regime; its potential $V$ encodes how Family-A configurations relax toward lower-curvature, more equilibrated states.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** An inflationary phase is conjectured to be a high-energy regime where one or more persistent binary indices of candidate Noether braids enter a $v>c_f$ self-hit domain, driving rapid effective expansion or contraction of the assembly-density record. This source-record role does not identify a taxonomy family. The “inflaton” is a coarse-grained scalar describing the average state of this candidate regime; its potential $V$ would encode relaxation toward lower-curvature, more equilibrated states.
 
 **What Still Works:** Inflationary Cosmology remains indispensable as the standard predictive and organizational framework for the phenomena it was built to model, and any replacement must recover its empirical successes in the regime where practitioners currently use it.
 **What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the parameters and fields of this entry are reclassified as inference-level summaries of assembly-density history, medium relaxation, and observational pipeline fits rather than primitive global ingredients.

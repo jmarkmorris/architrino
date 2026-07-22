@@ -385,9 +385,9 @@ A prescribed chart receives only an analytical prescribed-record grade. Stabilit
 
 ### Candidate Cohort Registry
 
-The comparison cohort spans every currently defined family/member class in the taxonomy. The short identifiers `A1`, `A1.1`, `A1.2`, `A1.3`, `A1.4`, `A2`, `C1`, and `C2` reserve comparison columns for exact source records still to be assigned. A column remains `Pending` until it names one complete source record $S$; a family/member definition alone is not a scored instantiation.
+The comparison cohort spans every currently defined family/member class in the taxonomy. Each column below now names one complete prescribed source record $S$. The source-record hash identifies that exact record; it is not an analytical score. Every analytical cell remains `Pending` until the candidate has been evaluated under the common protocol declared for the completed cohort.
 
-Four exact `B1` prescribed instantiations already supply the first populated source-record cohort. These candidate names describe their taxonomy coordinates; they do not create additional taxonomy members. All four use one common midpoint, the common axis $\hat{\mathbf n}_B=(0,0,1)$, group translation speed $s_{\mathrm{grp}}=0$, radii
+The four exact `B1` prescribed instantiations retain compatibility source identifiers while using taxonomy-first display names. These candidate names describe their taxonomy coordinates; they do not create additional taxonomy members. All four use one common midpoint, the common axis $\hat{\mathbf n}_B=(0,0,1)$, group translation speed $s_{\mathrm{grp}}=0$, radii
 
 $$
 (R_1,R_2,R_3)=(0.22,0.32,0.44),
@@ -397,22 +397,22 @@ common frequency $f=0.25$, and phases $(\phi_1,\phi_2,\phi_3)=(0,2\pi/3,4\pi/3)$
 
 | Candidate name | $(h_1,h_2,h_3)$ | $(\rho_1,\rho_2,\rho_3)$ | Coordinate status |
 | --- | --- | --- | --- |
-| `B1 interior-coordinate reference` | $(0.075244432,0.205692035,0.398775426)$ | $(0.206732377,0.245134222,0.185952035)$ | Interior for all three binaries |
-| `B1 high-axial-fraction interior` | $(0.206732377,0.315138481,0.438325667)$ | $(0.075244432,0.055567417,0.038348527)$ | Interior for all three binaries, with $h_a/R_a$ near the axial boundary |
-| `B1 all-equatorial boundary` | $(0,0,0)$ | $(0.22,0.32,0.44)$ | $h_a=0$ for all three binaries |
-| `B1 all-axial boundary` | $(0.22,0.32,0.44)$ | $(0,0,0)$ | $\rho_a=0$ for all three binaries |
+| `B1 — interior reference` | $(0.075244432,0.205692035,0.398775426)$ | $(0.206732377,0.245134222,0.185952035)$ | Interior for all three binaries |
+| `B1 — high-axial interior` | $(0.206732377,0.315138481,0.438325667)$ | $(0.075244432,0.055567417,0.038348527)$ | Interior for all three binaries, with $h_a/R_a$ near the axial boundary |
+| `B1 — all-equatorial boundary` | $(0,0,0)$ | $(0.22,0.32,0.44)$ | $h_a=0$ for all three binaries |
+| `B1 — all-axial boundary` | $(0.22,0.32,0.44)$ | $(0,0,0)$ | $\rho_a=0$ for all three binaries |
 
 The derived $h_a$ and $\rho_a$ values are shown to nine decimal places for identification; they are not analytical results. The complete source record $S$ remains authoritative for exact coordinates, endpoint identities, and polarities. Every scored row also depends on one common analysis protocol $P$.
 
 ### Candidate Comparison Tables
 
-The comparison tables use candidates as columns and metrics as rows. The family split keeps the tables readable; every table uses the same metric definitions and protocol. `Pending` means that an exact source record has not yet been assigned or that the candidate has not yet been evaluated under the shared source-and-protocol declaration printed with the table. `NA` is reserved for a measure whose definition does not apply; it must not be used merely because a value has not been computed.
+The comparison tables use candidates as columns and metrics as rows. The family split keeps the tables readable; every table uses the same metric definitions and protocol. `Pending` means that the candidate has not yet been evaluated under the shared source-and-protocol declaration printed with the table. `NA` is reserved for a measure whose definition does not apply; it must not be used merely because a value has not been computed.
 
 #### Family-A Candidates
 
 | Metric or gate | `A1` | `A1.1` | `A1.2` | `A1.3` | `A1.4` | `A2` |
 | --- | --- | --- | --- | --- | --- | --- |
-| Source-record hash | Pending | Pending | Pending | Pending | Pending | Pending |
+| Source-record hash | `aa974681189f3ece5068c499ed93a901ce4719c39a44302c2e563d23bf464717` | `d5ef7ac45284cf6ff100f6f10e162020448912ff52d44e543418c8aaaf70787f` | `edf5599cbdd6245cecd9b6aa3d9ad078be8849706306383becc8b2c29f70074f` | `1d7af234bf15296f9e4cfb6341b7137375a996cbcbe502141e1d6b5a331e8beb` | `75e6e79632c76938dc8aa176544eeb932a7d70efba949774d83abbb824718b9e` | `96b5d0cf9161fb542818d3a1a6b2cbe819edd1603ef7bc239e6991813dfe7cb4` |
 | Common protocol hash | Pending | Pending | Pending | Pending | Pending | Pending |
 | Prescribed-period closure | Pending | Pending | Pending | Pending | Pending | Pending |
 | Minimum separation $d_{\min}$ | Pending | Pending | Pending | Pending | Pending | Pending |
@@ -428,9 +428,9 @@ The comparison tables use candidates as columns and metrics as rows. The family 
 
 #### Family-B Candidates
 
-| Metric or gate | `B1 interior-coordinate reference` | `B1 high-axial-fraction interior` | `B1 all-equatorial boundary` | `B1 all-axial boundary` |
+| Metric or gate | `B1 — interior reference` | `B1 — high-axial interior` | `B1 — all-equatorial boundary` | `B1 — all-axial boundary` |
 | --- | --- | --- | --- | --- |
-| Source-record hash | Pending | Pending | Pending | Pending |
+| Source-record hash | `3ad1e879d3364db0d332bdc59cac042c3c5bc552365a2e227f2392339ab2506b` | `31f8d06f954c9c9fe64c8a9d2316d479dad49b8eb2437bba844a718b03202cd0` | `c2079804643afa4254a7f037ee479f804af0a2c88f4b2680fe9c69c836f7595b` | `a61aba26f4258e3b5a80595da1bb7f84e0c8790da0b43d732e08ee3f7e320ed6` |
 | Common protocol hash | Pending | Pending | Pending | Pending |
 | Prescribed-period closure | Pending | Pending | Pending | Pending |
 | Minimum separation $d_{\min}$ | Pending | Pending | Pending | Pending |
@@ -448,7 +448,7 @@ The comparison tables use candidates as columns and metrics as rows. The family 
 
 | Metric or gate | `C1` | `C2` |
 | --- | --- | --- |
-| Source-record hash | Pending | Pending |
+| Source-record hash | `65e8bd4c68a36fb59ff67fab4e8bef78aba640a66f796752e49276235c7fdb7a` | `61bcdb5871affe8aa76a12e1ac0765f81eaf67342fa164eab33b28a8878c29d7` |
 | Common protocol hash | Pending | Pending |
 | Prescribed-period closure | Pending | Pending |
 | Minimum separation $d_{\min}$ | Pending | Pending |

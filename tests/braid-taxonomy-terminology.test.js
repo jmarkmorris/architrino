@@ -5,6 +5,8 @@ import { fileURLToPath } from "node:url";
 
 import {
   RETIRED_BRAID_NAME_TOKENS,
+  scanBorgPrescribedTaxonomyTerminology,
+  scanBorgReaderFacingValue,
   scanBraidTaxonomyTerminology,
   scanTextForBraidTaxonomyTerminology,
 } from "../scripts/check-braid-taxonomy-terminology.mjs";
@@ -15,9 +17,9 @@ const SCRIPT_PATH = fileURLToPath(
 
 test("braid taxonomy scanner detects each retired terminology class", () => {
   const source = [
-    "The nested shell braid contains an inner binary and an outer binary.",
+    "The nested shell braid contains an inner binary and an outer precessing binary.",
     "The spindle family uses inner/middle/outer shielding.",
-    "Its I:M:O order is HML, with $R_{inner}$ and $f_O$ fixed.",
+    "Its I:M:O order is HML, with shielding code IMO and $R_{inner}$ and $f_O$ fixed.",
     "The inner self-hit branch turns around a middle hinge.",
     "This binary is axis-polarized by the Thomson Dressing Mechanism.",
   ].join("\n");
@@ -32,6 +34,7 @@ test("braid taxonomy scanner detects each retired terminology class", () => {
       "hml-triplet",
       "imo-coordinate-symbol",
       "imo-triplet",
+      "legacy-shielding-role-code",
       "legacy-named-braid-family",
       "positional-binary-role",
       "positional-coordinate-symbol",
@@ -39,6 +42,62 @@ test("braid taxonomy scanner detects each retired terminology class", () => {
       "retired-axis-polarity",
       "retired-dressing-name",
     ].sort(),
+  );
+});
+
+test("braid taxonomy scanner audits member and family labels without making them strict failures", () => {
+  const source = [
+    "The A1 candidate is compared with B1, C1, C2, and Family-A geometry.",
+    "The Ideal Noether Braid app displays a prescribed path.",
+  ].join("\n");
+  const reportFindings = scanTextForBraidTaxonomyTerminology(source, "synthetic.md");
+  const reportRuleIds = new Set(reportFindings.map((finding) => finding.ruleId));
+
+  assert.deepEqual(
+    [...reportRuleIds].sort(),
+    [
+      "ideal-braid-name",
+      "taxonomy-family-identifier",
+      "taxonomy-member-identifier",
+    ].sort(),
+  );
+  assert.deepEqual(
+    scanTextForBraidTaxonomyTerminology(source, "synthetic.md", {
+      includeAuditOnly: false,
+    }),
+    [],
+  );
+});
+
+test("braid taxonomy scanner catches comma-separated H/M/L positional notation", () => {
+  const findings = scanTextForBraidTaxonomyTerminology(
+    "The legacy order is ($H,M,L$).",
+    "synthetic.md",
+    { includeAuditOnly: false },
+  );
+
+  assert.equal(findings.length, 1);
+  assert.equal(findings[0].ruleId, "hml-triplet");
+  assert.equal(findings[0].match, "H,M,L");
+});
+
+test("braid taxonomy scanner audits broader positional support phrases", () => {
+  const findings = scanTextForBraidTaxonomyTerminology(
+    "The outer support tier screens an inner layer.",
+    "synthetic.md",
+  );
+
+  assert.equal(
+    findings.filter((finding) => finding.ruleId === "positional-support-role-audit").length,
+    2,
+  );
+  assert.deepEqual(
+    scanTextForBraidTaxonomyTerminology(
+      "The outer support tier screens an inner layer.",
+      "synthetic.md",
+      { includeAuditOnly: false },
+    ),
+    [],
   );
 });
 
@@ -53,7 +112,12 @@ test("braid taxonomy scanner ignores implementation identifiers and link destina
     "```",
   ].join("\n");
 
-  assert.deepEqual(scanTextForBraidTaxonomyTerminology(source, "synthetic.md"), []);
+  assert.deepEqual(
+    scanTextForBraidTaxonomyTerminology(source, "synthetic.md", {
+      includeAuditOnly: false,
+    }),
+    [],
+  );
 });
 
 test("braid taxonomy scanner does not confuse ordinary boundary or observable notation with braid coordinates", () => {
@@ -126,6 +190,32 @@ test("strict gating catches contextual old braid names without rejecting unrelat
     "synthetic.md",
   );
   assert.deepEqual(reportFindings, []);
+});
+
+test("Borg reader-facing fields reject retired candidate labels in every controlled surface class", () => {
+  for (const field of [
+    "catalog label",
+    "source title",
+    "UI string",
+    "provenance description",
+    "illustrative coordinate description",
+  ]) {
+    const findings = scanBorgReaderFacingValue(
+      "Extreme cap-tilt spindle candidate",
+      "synthetic-borg-surface",
+      field,
+    );
+    assert.ok(findings.length >= 2);
+    assert.ok(findings.every((finding) =>
+      finding.ruleId === "retired-borg-candidate-label" && finding.excerpt.startsWith(field)));
+  }
+});
+
+test("Borg prescribed taxonomy scan excludes compatibility identifiers but gates visible metadata", () => {
+  const result = scanBorgPrescribedTaxonomyTerminology();
+  assert.ok(result.files.some((relativePath) =>
+    relativePath.endsWith("illustrative-spindle-chart-hypothesis.v0.json")));
+  assert.deepEqual(result.findings, []);
 });
 
 test("migrated braid taxonomy ownership scope has no terminology stragglers", () => {

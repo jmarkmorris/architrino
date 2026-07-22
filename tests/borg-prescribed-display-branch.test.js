@@ -48,8 +48,8 @@ test("prescribed Display profile is explicit, fixed-grade, and non-promotable", 
 
 test("Borg workbench loads any catalog entry in place", async () => {
   const catalog = createBorgBraidRecordCatalog([
-    { id: "first", label: "First", recordUrl: "first.json" },
-    { id: "second", label: "Second", recordUrl: "second.json" },
+    { id: "first", label: "First", recordUrl: "first.json", familyId: "A", familyLabel: "Family A" },
+    { id: "second", label: "Second", recordUrl: "second.json", familyId: "B", familyLabel: "Family B" },
   ]);
   const fetched = [];
   const navigation = createBorgBraidRecordNavigation({

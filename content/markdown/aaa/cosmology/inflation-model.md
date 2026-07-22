@@ -4,7 +4,7 @@ This chapter records the current $\mathbb{A}\mathbb{A}\mathbb{A}$ reinterpretati
 
 ## Core Idea
 
-The early rapid-expansion phase is modeled as an emergent high-curvature regime of Family-A dynamics, not as a fundamental standalone inflaton ontology.
+The early rapid-expansion phase is hypothesized to arise from a high-curvature continuation of the prescribed Family-A response, not from a fundamental standalone inflaton ontology. Here Family A means only the one-braid chart whose three binary axes are mutually orthogonal at $\lambda_A=0$ and converge toward the group-translation direction as $\lambda_A\to1$; the cosmological assignment, dynamics, stability, and retention do not follow from that geometry.
 
 ## Local-Process Commitment
 
@@ -30,7 +30,7 @@ This keeps conceptual overlap with cyclical-universe intuitions while preserving
 
 In the broader recycling picture, SMBH-core dynamics provide the persistent source architecture:
 
-- high-curvature interior dynamics load energy into middle-layer/horizon channels,
+- candidate high-curvature dynamics load energy into the source-record binary-2 and horizon-interface channels,
 - outbound disturbances seed expansion-like phases in the surrounding Noether sea,
 - inflation-like behavior is therefore a regime of core-driven release and relaxation, not a separate scalar field ontology.
 
@@ -259,7 +259,7 @@ As a toy kinematic decomposition, one can also track the expansion-rate profile 
 $$
 \dot{R}(t) = v_1(t) + c_f + v_3(t)
 $$
-Here the source record assigns $v_1(t)$ to a decaying high-curvature release term and $v_3(t)$ to slower volumetric rebound, while the constant $c_f$ marks the transport/horizon channel. These roles belong to this toy record and are not assigned by the taxonomy. This is not a closed cosmological derivation, but it is a compact way to encode the intuition that inflation-like release, horizon-scale transport, and late-time expansion can all be read as different channels of the same Family-A process.
+Here the source record assigns $v_1(t)$ to a decaying high-curvature release term and $v_3(t)$ to slower volumetric rebound, while the constant $c_f$ marks the transport/horizon channel. These roles belong to this toy record and are not assigned by the taxonomy. This is not a closed cosmological derivation, but it is a compact way to encode the conjecture that inflation-like release, horizon-scale transport, and late-time expansion could be different channels of one candidate continuation of the Family-A response.
 
 ## Expansion-Module Interface
 

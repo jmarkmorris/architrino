@@ -121,7 +121,7 @@ The residual ledger should track at least four quantities:
 
 | Ledger entry | Required meaning |
 | --- | --- |
-| $\delta\Theta_a$ | phase-closure mismatch of each indexed A1 binary |
+| $\delta\Theta_a$ | phase-closure mismatch of each persistent binary index in the candidate source record; no taxonomy member is implied |
 | $\Delta E_{\text{int}}$ | excess internal energy above the nearest stable rung |
 | $\Delta \mathbf{p}_{\text{asm}}$ | change in assembly momentum during the drive |
 | $\Delta \mathcal{J}_{\text{wake}}$ | angular-momentum and causal-wake ledger imbalance to be closed |

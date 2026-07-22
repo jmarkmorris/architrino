@@ -6,21 +6,16 @@ import { fileURLToPath } from "node:url";
 
 const ROOT_DIR = path.resolve(fileURLToPath(new URL("..", import.meta.url)));
 
-export const MIGRATED_SCAN_TARGETS = [
-  "content/markdown/aaa/noether-braid",
-  "content/markdown/aaa/archie/comparative-glossary.md",
-  "content/markdown/aaa/archie/mathematics-terminology.md",
-  "content/markdown/aaa/archie/terminology-usage.md",
-  "content/markdown/aaa/spacetime/proper-time-and-time-dilation.md",
-  "content/markdown/aaa/reactions/mode-taxonomy.md",
-  "content/markdown/aaa/foundations/emergence-of-structure.md",
-  "content/markdown/aaa/assemblies/bosons/electroweak-bosons.md",
-  "content/markdown/aaa/cosmology/dark-matter.md",
-  "content/markdown/aaa/cosmology/CMB.md",
-  "content/markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md",
-];
+export const MIGRATED_SCAN_TARGETS = ["content/markdown/aaa"];
 
 const CORPUS_SCAN_TARGETS = ["content/markdown/aaa"];
+
+const BORG_PRESCRIBED_CONFIG_DIRECTORY =
+  "reference/priorities/braid-program/configurations";
+const BORG_READER_SURFACES = Object.freeze([
+  "src/apps/borg/BorgAssemblyViewControls.js",
+  "borg.html",
+]);
 
 export const RETIRED_BRAID_NAME_TOKENS = Object.freeze([
   "spindle",
@@ -36,6 +31,30 @@ const RETIRED_BRAID_NAME_PATTERN = RETIRED_BRAID_NAME_TOKENS.join("|");
 const BRAID_NAME_CONTEXT_PATTERN = "braid|family|member|candidate|variant";
 
 export const TERMINOLOGY_RULES = [
+  {
+    id: "taxonomy-member-identifier",
+    label: "taxonomy member identifier requiring local coordinate ownership",
+    pattern: /\b(?:A1(?:\.[123])?|A2|B1|C1|C2)\b/g,
+    replacement:
+      "retain only when the local passage states the defining coordinates or explicitly delegates them to the canonical member definition; otherwise use Noether braid, candidate braid, or prescribed braid geometry",
+    auditOnly: true,
+  },
+  {
+    id: "taxonomy-family-identifier",
+    label: "taxonomy family identifier requiring local geometry ownership",
+    pattern: /\bFamily[ -]?[ABC]\b/gi,
+    replacement:
+      "retain only when the local passage states or explicitly delegates the defining family geometry",
+    auditOnly: true,
+  },
+  {
+    id: "ideal-braid-name",
+    label: "ideal braid label pending ownership decision",
+    pattern: /\bideal[ -]+(?:Noether[ -]+)?braid\b/gi,
+    replacement:
+      "audit the occurrence as an app proper name, stable machine contract, prescribed A1 geometry, or unsupported generic ideality claim before renaming",
+    auditOnly: true,
+  },
   {
     id: "legacy-named-braid-family",
     label: "legacy named braid family",
@@ -59,7 +78,8 @@ export const TERMINOLOGY_RULES = [
   {
     id: "positional-binary-role",
     label: "fixed inner/middle/outer binary role",
-    pattern: /\b(?:inner|middle|outer)[ -]+binar(?:y|ies)\b/gi,
+    pattern:
+      /\b(?:inner|middle|outer)(?:[ -]+[a-z]+){0,3}[ -]+binar(?:y|ies)\b|\bbinar(?:y|ies)(?:[ -]+[a-z]+){0,3}[ -]+(?:inner|middle|outer)\b/gi,
     replacement:
       "use the persistent binary index and state any radius or branch-derived role separately",
   },
@@ -76,9 +96,16 @@ export const TERMINOLOGY_RULES = [
     replacement: "use persistent indexed rows 1:2:3",
   },
   {
+    id: "legacy-shielding-role-code",
+    label: "inner/middle/outer shielding role code",
+    pattern: /(?<![A-Za-z0-9_])(?:IMO|IM-|I--)(?![A-Za-z0-9_])/g,
+    replacement:
+      "use the literal persistent-index support vector, such as (1,1,1), (1,1,0), or (1,0,0), without assigning radius roles",
+  },
+  {
     id: "hml-triplet",
     label: "H/M/L ordered triplet notation",
-    pattern: /\b(?:HML|HLM)\b|\bH\s*(?::|\/|\{:\})\s*[ML]\s*(?::|\/|\{:\})\s*[LM]\b/g,
+    pattern: /\b(?:HML|HLM)\b|\bH\s*(?::|\/|,|\{:\})\s*[ML]\s*(?::|\/|,|\{:\})\s*[LM]\b/g,
     replacement:
       "use persistent binary indices; do not encode a high/middle/low order in the identity",
   },
@@ -102,6 +129,15 @@ export const TERMINOLOGY_RULES = [
       /\binner[ -]+self-hit\b|\bmiddle[ -]+(?:hinge|fulcrum|field-speed)\b|\bouter[ -]+exterior-coupling\b/gi,
     replacement:
       "name the persistent binary index and grade the role as a branch-derived diagnostic",
+  },
+  {
+    id: "positional-support-role-audit",
+    label: "inner/middle/outer support or layer phrase requiring ownership review",
+    pattern:
+      /\b(?:inner|middle|outer)[ -]+(?:layer|orbit|envelope|site|ledger|channel|tier|support|engine|binary|axis)\b/gi,
+    replacement:
+      "use a persistent index for braid identity, retain only an explicit display, boundary, historical, or independently defined non-taxonomy meaning",
+    auditOnly: true,
   },
   {
     id: "retired-axis-polarity",
@@ -172,6 +208,12 @@ export function scanTextForBraidTaxonomyTerminology(
         const matchStart = match.index;
         const matchEnd = matchStart + match[0].length;
         if (
+          rule.id === "positional-radius-triplet" &&
+          /do not (?:encode|use|assign)\s*$/i.test(prose.slice(Math.max(0, matchStart - 32), matchStart))
+        ) {
+          continue;
+        }
+        if (
           rule.auditOnly &&
           strictMatchRanges.some(
             ([strictStart, strictEnd]) => matchStart < strictEnd && matchEnd > strictStart,
@@ -221,11 +263,85 @@ export function scanBraidTaxonomyTerminology({
     );
   }
 
+  if (scope === "migrated") {
+    const borg = scanBorgPrescribedTaxonomyTerminology({ rootDir });
+    files.push(...borg.files.filter((relativePath) => !files.includes(relativePath)));
+    findings.push(...borg.findings);
+    files.sort((left, right) => left.localeCompare(right));
+  }
+
   if (checkRequiredDefinitions) {
     findings.push(...findMissingDefinitions(rootDir));
   }
 
   return { scope, files, findings };
+}
+
+export function scanBorgReaderFacingValue(value, relativePath, field) {
+  if (typeof value !== "string") return [];
+  const findings = [];
+  const pattern = new RegExp(
+    `\\b(?:${RETIRED_BRAID_NAME_PATTERN}|extreme[ -]+tilt)\\b`,
+    "gi",
+  );
+  for (const match of value.matchAll(pattern)) {
+    findings.push({
+      relativePath,
+      lineNumber: 1,
+      ruleId: "retired-borg-candidate-label",
+      label: "retired Borg candidate terminology",
+      replacement: "use the canonical A/B/C taxonomy identifier and technical coordinates",
+      match: match[0],
+      excerpt: `${field}: ${value}`,
+    });
+  }
+  return findings;
+}
+
+export function scanBorgPrescribedTaxonomyTerminology({ rootDir = ROOT_DIR } = {}) {
+  const files = [];
+  const findings = [];
+  const catalogPath = "src/apps/borg/BorgBraidRecordCatalog.js";
+  const catalogSource = fs.readFileSync(path.join(rootDir, catalogPath), "utf8");
+  files.push(catalogPath);
+  for (const match of catalogSource.matchAll(/\blabel:\s*"([^"]+)"/g)) {
+    findings.push(...scanBorgReaderFacingValue(match[1], catalogPath, "catalog label"));
+  }
+
+  const configDirectory = path.join(rootDir, BORG_PRESCRIBED_CONFIG_DIRECTORY);
+  for (const filename of fs.readdirSync(configDirectory).sort()) {
+    if (!filename.endsWith(".json")) continue;
+    const relativePath = `${BORG_PRESCRIBED_CONFIG_DIRECTORY}/${filename}`;
+    const parsed = JSON.parse(fs.readFileSync(path.join(rootDir, relativePath), "utf8"));
+    if (parsed.schema !== "prescribed-braid-spec.v1") continue;
+    files.push(relativePath);
+    const values = [
+      ["source title", parsed.label],
+      ["provenance description", parsed.provenanceDescription],
+      ["family label", parsed.taxonomy?.familyLabel],
+      ["member label", parsed.taxonomy?.memberLabel],
+      ["instantiation label", parsed.taxonomy?.instantiationLabel],
+      ["display label", parsed.taxonomy?.displayLabel],
+      ...((parsed.illustrativeCoordinates?.choices ?? []).map((value, index) =>
+        [`illustrative coordinate description ${index + 1}`, value])),
+    ];
+    for (const [field, value] of values) {
+      findings.push(...scanBorgReaderFacingValue(value, relativePath, field));
+    }
+  }
+
+  for (const relativePath of BORG_READER_SURFACES) {
+    const source = fs.readFileSync(path.join(rootDir, relativePath), "utf8");
+    files.push(relativePath);
+    const readerText = relativePath.endsWith(".html")
+      ? source.replace(/<style\b[\s\S]*?<\/style>/gi, "").replace(/<script\b[\s\S]*?<\/script>/gi, "").replace(/<[^>]+>/g, " ")
+      : [...source.matchAll(/(?:"([^"\n]*)"|'([^'\n]*)'|`([^`\n]*)`)/g)]
+        .map((match) => match[1] ?? match[2] ?? match[3] ?? "")
+        .join("\n");
+    findings.push(...scanBorgReaderFacingValue(readerText, relativePath, "UI string"));
+  }
+
+  return { files: files.sort((left, right) => left.localeCompare(right)), findings };
 }
 
 function collectMarkdownFiles(rootDir, targets) {

@@ -504,11 +504,9 @@ export function mountBorgApp(options = {}) {
     replayDisplayMode: activeReplayEntry?.dataset.provenance.claimGrade === "chart-hypothesis"
       ? "chart-pose"
       : "animated",
-    pathTrailDuration: normalizePathTrailDuration(
-      activeReplayEntry
-        ? resolveBorgAssemblyViewTrail(activeReplayEntry).duration
-        : DEFAULT_PATH_TRAIL_DURATION,
-    ),
+    pathTrailDuration: activeReplayEntry
+      ? resolveBorgAssemblyViewTrail(activeReplayEntry).duration
+      : normalizePathTrailDuration(DEFAULT_PATH_TRAIL_DURATION),
   };
 
   if (replayActive && initialEomSeed) {
@@ -1203,11 +1201,23 @@ export function mountBorgApp(options = {}) {
       label: "Random architrinos",
     });
     const entries = navigation?.catalog?.entries ?? [];
+    const familyGroups = new Map();
     entries.forEach((catalogEntry) => {
-      appendBorgRadioChoice(documentLike, dom.startingGeometryOptions, {
-        name: "borg-starting-geometry",
-        value: catalogEntry.id,
-        label: catalogEntry.label,
+      const group = familyGroups.get(catalogEntry.familyId) ?? [];
+      group.push(catalogEntry);
+      familyGroups.set(catalogEntry.familyId, group);
+    });
+    familyGroups.forEach((familyEntries) => {
+      const heading = documentLike.createElement("div");
+      heading.className = "borg-radio-heading";
+      heading.textContent = familyEntries[0].familyLabel;
+      dom.startingGeometryOptions.append(heading);
+      familyEntries.forEach((catalogEntry) => {
+        appendBorgRadioChoice(documentLike, dom.startingGeometryOptions, {
+          name: "borg-starting-geometry",
+          value: catalogEntry.id,
+          label: catalogEntry.label,
+        });
       });
     });
     if (activeStartingGeometryId !== "random" &&
@@ -1331,6 +1341,7 @@ export function mountBorgApp(options = {}) {
       }
       const record = await navigation.load(nextId);
       enterPrescribedReplay(nextId, createBorgAssemblyViewSession([record]));
+      navigation.persistSelection?.(nextId);
     } catch (error) {
       dom.prescribedBranchFeedback.value = error?.message ?? String(error);
       dom.prescribedBranchFeedback.textContent = dom.prescribedBranchFeedback.value;
@@ -1403,6 +1414,7 @@ export function mountBorgApp(options = {}) {
     state.sourceMode = "recorded-eom-dataset-chunks";
     state.eomDisplayStarted = false;
     state.compactedPathHistory = Object.freeze({});
+    state.pathTrailDuration = resolveBorgAssemblyViewTrail(activeReplayEntry).duration;
     state.liveRunRetention = createBorgLiveRunRetentionSnapshot({ frameRows: [] });
     state.replayDisplayMode = activeReplayEntry.dataset.provenance.claimGrade === "chart-hypothesis"
       ? "chart-pose"

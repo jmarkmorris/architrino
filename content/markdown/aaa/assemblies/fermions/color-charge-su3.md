@@ -1,6 +1,6 @@
 # Color Charge and SU(3)
 
-This chapter gives the assembly-level interpretation of color charge and effective `SU(3)` structure. Its purpose is to explain how quark color bookkeeping, confinement language, and A1 scaffold geometry are meant to fit together before the full topological confinement derivation is closed. It is the fermion-side companion to [Gluons and the Strong Force: Geometric Origins](../bosons/gluons.md) and [Quarks](./quarks.md).
+This chapter gives a candidate assembly-level interpretation of color charge and effective `SU(3)` structure. Its purpose is to explain how quark color bookkeeping, confinement language, and a prescribed A1 scaffold are hypothesized to fit together before the particle assignment and full topological confinement derivation are closed. It is the fermion-side companion to [Gluons and the Strong Force: Geometric Origins](../bosons/gluons.md) and [Quarks](./quarks.md).
 
 The standard color label is extremely successful as algebra. The implementation question is different: what physical feature of a quark assembly can be counted in three ways, transformed by an octet of corridor modes, and hidden inside color-singlet hadrons? This chapter answers at the recovery-target level: color is axis exceptionality in the axial frame of a Noether braid assembly.
 
@@ -12,7 +12,7 @@ That means the word `color` should be read as a structured bookkeeping channel, 
 
 ### A1 Scaffold
 
-The working Gen-I fermion mapping uses an **A1 scaffold**: three indexed electrino:positrino binaries in a Family-A geometry. **Noether braid** remains the broader neutral six-architrino class; see [Noether Braid](../../noether-braid/noether-braid.md).
+The working Gen-I fermion mapping uses a candidate **A1 scaffold**: three persistently indexed electrino:positrino binaries whose positive radii and frequencies are independently assignable, whose axes are mutually orthogonal at the Family-A near-rest endpoint, and whose axes converge toward the group-translation direction along the prescribed flattening coordinate. Phases, axial half-separations, transverse orbit radii, and circulation remain explicit binary coordinates. **Noether braid** remains the broader neutral six-architrino class; see [Noether Braid](../../noether-braid/noether-braid.md). The taxonomy defines this prescribed geometry only; it does not establish a quark assignment, retention, stability, or color mechanism.
 
 The scaffold supplies the stable reference triad. The axial layer supplies the visible polarity pattern. Color appears only when those two facts together leave one axis distinguishable from the other two.
 
@@ -59,7 +59,7 @@ For a Gen‑I baryon (3 quarks):
 - 18 axial architrinos
 - **36 architrinos** total.
 
-We use **A1** for this indexed Family-A member and **Noether braid** for the broader neutral six-architrino class.
+We use **A1** only for this prescribed indexed Family-A member and **Noether braid** for the broader neutral six-architrino class. Every color and particle assignment in this chapter remains a candidate mapping.
 
 
 

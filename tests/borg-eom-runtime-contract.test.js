@@ -650,8 +650,9 @@ test("Borg prescribed-geometry provenance presents source-carried braid taxonomy
     "utf8",
   );
   assert.match(assemblyViewControlsSource, /\["Braid family", taxonomy\.familyLabel\]/);
-  assert.match(assemblyViewControlsSource, /\["Taxonomy class", taxonomy\.classificationLabel\]/);
-  assert.match(assemblyViewControlsSource, /\["Variant", taxonomy\.variantLabel\]/);
+  assert.match(assemblyViewControlsSource, /\["Candidate", taxonomy\.displayLabel\]/);
+  assert.match(assemblyViewControlsSource, /\["Member definition", `\$\{taxonomy\.memberId\} — \$\{taxonomy\.memberLabel\}`\]/);
+  assert.match(assemblyViewControlsSource, /\["Instantiation", taxonomy\.instantiationLabel\]/);
   assert.match(assemblyViewControlsSource, /\["Canon source", taxonomy\.canonSource\]/);
 });
 

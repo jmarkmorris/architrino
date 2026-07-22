@@ -263,12 +263,12 @@ Family and member names are optional aliases. The Description column may aid nav
 
 | Member ID | Family name | Member name | Geometry record | Borg depiction | Description |
 | --- | --- | --- | --- | --- | --- |
-| `A1` | Noether core | General independent-coordinate | Not yet assigned | Not yet assigned | General Family-A member with independently assignable positive radii, frequencies, phases, and binary decompositions. |
-| `A1.1` | Noether core | Equal-frequency | Not yet assigned | Not yet assigned | A1 constrained to one common binary frequency while retaining independently assignable radii. |
-| `A1.2` | Noether core | Equal-frequency equal-radius | Not yet assigned | Not yet assigned | A1 constrained to equal radii, equal frequencies, and phases separated by $120^\circ$. |
-| `A1.3` | Noether core | 4:2:1-frequency | Not yet assigned | Not yet assigned | A1 constrained to the indexed frequency ratio $f_1:f_2:f_3=4:2:1$; the ratio does not order the radii. |
-| `A1.4` | Noether core | 3:2:1-frequency | Not yet assigned | Not yet assigned | A1 constrained to the indexed frequency ratio $f_1:f_2:f_3=3:2:1$; the ratio does not order the radii. |
-| `A2` | Noether core | Fully symmetric | Not yet assigned | Not yet assigned | Three equivalent binaries with equal geometry, equal frequencies, $120^\circ$ phase spacing, and one circulation sense. |
-| `B1` | Coincident binary axes | Rigid common-frequency | Not yet assigned | Not yet assigned | One braid with one common binary midpoint, coincident binary axes, one common frequency, and one common circulation sense. |
-| `C1` | Two-braid composition | Co-rotating B1 pair | Not yet assigned | Not yet assigned | Two complete B1 braids with a common circulation sense and explicit relative placement, orientation, and phase. |
-| `C2` | Two-braid composition | Counter-rotating B1 pair | Not yet assigned | Not yet assigned | Two complete B1 braids with opposite circulation senses and explicit relative placement, orientation, and phase. |
+| `A1` | Noether core | General independent-coordinate | `family-a-a1-general-v1` | `A1 — general` | General Family-A member with independently assignable positive radii, frequencies, phases, and binary decompositions. |
+| `A1.1` | Noether core | Equal-frequency | `family-a-a1-1-equal-frequency-v1` | `A1.1 — equal frequency` | A1 constrained to one common binary frequency while retaining independently assignable radii. |
+| `A1.2` | Noether core | Equal-frequency equal-radius | `family-a-a1-2-equal-frequency-equal-radius-v1` | `A1.2 — equal frequency, equal radius` | A1 constrained to equal radii, equal frequencies, and phases separated by $120^\circ$. |
+| `A1.3` | Noether core | 4:2:1-frequency | `family-a-a1-3-4-2-1-frequency-v1` | `A1.3 — 4:2:1 frequency` | A1 constrained to the indexed frequency ratio $f_1:f_2:f_3=4:2:1$; the ratio does not order the radii. |
+| `A1.4` | Noether core | 3:2:1-frequency | `family-a-a1-4-3-2-1-frequency-v1` | `A1.4 — 3:2:1 frequency` | A1 constrained to the indexed frequency ratio $f_1:f_2:f_3=3:2:1$; the ratio does not order the radii. |
+| `A2` | Noether core | Fully symmetric | `family-a-a2-fully-symmetric-v1` | `A2 — fully symmetric` | Three equivalent binaries with equal geometry, equal frequencies, $120^\circ$ phase spacing, and one circulation sense. |
+| `B1` | Coincident binary axes | Rigid common-frequency | Four source records: interior, high-axial, all-equatorial, and all-axial | Four `B1` coordinate labels in Borg | One braid with one common binary midpoint, coincident binary axes, one common frequency, and one common circulation sense. |
+| `C1` | Two-braid composition | Co-rotating B1 pair | `family-c-c1-co-rotating-b1-pair-v1` | `C1 — co-rotating B1 pair` | Two complete B1 braids with a common circulation sense and explicit relative placement, orientation, and phase. |
+| `C2` | Two-braid composition | Counter-rotating B1 pair | `family-c-c2-counter-rotating-b1-pair-v1` | `C2 — counter-rotating B1 pair` | Two complete B1 braids with opposite circulation senses and explicit relative placement, orientation, and phase. |

@@ -100,7 +100,9 @@ The absolute velocity used by the substrate solver cannot remain an observer-acc
 
 ### Mathematical objective
 
-Given a translating bound assembly (binary and then A1), derive:
+Given a translating bound assembly, first for one binary and then for the prescribed A1 chart, derive:
+
+Here `A1` means one complete Family-A braid with persistent binary indices $a\in\{1,2,3\}$, independently assignable positive radii $R_a$ and frequencies $f_a$, mutually orthogonal binary axes at $\lambda_A=0$, and axes converging toward the group-translation direction as $\lambda_A\to1$. Axial half-separations, transverse orbit radii, phases, and circulation remain explicit binary coordinates. The label supplies no Lorentz law, retained branch, hierarchy, particle assignment, or stability result; those are the theorem targets below, falsified if same-record evolution fails the coordinate or observer-residual gates.
 
 1. The velocity-dependent equilibrium shape tensor $Q(v)$ and its anisotropy.
 2. The velocity-dependent internal period $T(v)$.
@@ -762,7 +764,7 @@ before leakage terms are added.
 
 ### binary-3 transduction hypothesis (working)
 
-Assume the binary 3 $L$ is the dominant transducer for energy exchange with passerby assemblies (non-locally coupled encounters). Under this hypothesis, the leading kinematic response is boundary-driven at $L$, then propagated inward through $M$ and $H$ couplings.
+Assume binary 3 is the dominant transducer for energy exchange with passerby assemblies (non-locally coupled encounters). Under this source-record hypothesis, the leading kinematic response is boundary-driven at binary 3, then propagated through binaries 2 and 1. The indices are persistent identities, not a radius or energy ordering.
 
 For locally coupled assemblies (strong axial coupling), interaction pathways are distinct and should be modeled as a separate regime, not merged with passerby-transfer fits.
 
@@ -770,7 +772,7 @@ For locally coupled assemblies (strong axial coupling), interaction pathways are
 
 For an assembly state
 $$
-\mathcal{S}=\{v_{\text{tr}}, f_H,f_2,f_L,\mathbf{A},\mathcal{E}_{\text{excl}},\tau_{\text{op}}\}
+\mathcal{S}=\{v_{\text{tr}}, f_1,f_2,f_3,\mathbf{A},\mathcal{E}_{\text{excl}},\tau_{\text{op}}\}
 $$
 let one absorbed quantum $\Delta E_q$ induce
 $$
@@ -779,7 +781,7 @@ $$
 with the following structured components:
 
 1. Translational architrino speed increase: $\Delta v_{\text{tr}}>0$.
-2. Discrete frequency retuning of $H,M,L$: $\Delta f_k=n_k\,\delta f_k$, with $n_k\in\mathbb{Z}$ and $k\in\{H,M,L\}$.
+2. Discrete frequency retuning of binaries $1,2,3$: $\Delta f_k=n_k\,\delta f_k$, with $n_k\in\mathbb{Z}$ and $k\in\{1,2,3\}$.
 3. A1 axis realignment: $\Delta\mathbf{A}\neq 0$ (precession/tilt of principal axes).
 4. Exclusion-zone geometry shift: $\Delta\mathcal{E}_{\text{excl}}\neq 0$ (shape and orientation update).
 5. Operational time response shift: $\Delta\tau_{\text{op}}\neq 0$.
@@ -788,42 +790,42 @@ with the following structured components:
 
 The observer-level clock-dilation channel is not yet fully mapped in substrate variables. The working interpretation in this document is:
 $$
-\tau_{\text{op}}=\tau_{\text{op}}(f_H,f_2,f_L,\mathbf{A},\mathcal{E}_{\text{excl}},v_{\text{tr}})
+\tau_{\text{op}}=\tau_{\text{op}}(f_1,f_2,f_3,\mathbf{A},\mathcal{E}_{\text{excl}},v_{\text{tr}})
 $$
 where $\tau_{\text{op}}$ is an emergent clock functional of assembly internal frequencies, axis geometry, exclusion-zone shape, and translation state.
 
-The immediate task is to identify which subset dominates $\partial \tau_{\text{op}}/\partial E$ in the passerby-transfer regime, with the default prior that binary-3 $L$ mediated updates are first-order.
+The immediate task is to identify which subset dominates $\partial \tau_{\text{op}}/\partial E$ in the passerby-transfer regime, with the default prior that binary-3-mediated updates are first-order.
 
 ### Evolving scenario: exclusion-volume driven effective spacetime
 
 Working assumption:
 
-1. The outer precessing binary of a Noether braid defines the effective exclusion volume boundary; see [Braid Envelope Geometry](../noether-braid/braid-envelope-geometry.md).
-2. Each A1 layer ($H,M,L$) has its own circulation axis.
+1. In the working source record, binary 3 defines the effective exclusion-volume boundary; see [Braid Envelope Geometry](../noether-braid/braid-envelope-geometry.md). This is a provisional branch role, not a taxonomy identity.
+2. Each A1 binary ($1,2,3$) has its own circulation axis.
 3. Total angular and translational momentum are conserved at assembly level (up to modeled exchange channels with environment).
 
 Proposed mechanism chain under applied force (acceleration of a Noether braid-based assembly):
 
 1. External forcing increases translational state.
-2. Axis coupling drives partial alignment of $H,M,L$ circulation axes.
+2. Axis coupling drives partial alignment of the three persistently indexed circulation axes.
 3. Alignment is accompanied by binary radius contraction across layers (with layer-dependent sensitivity).
-4. The exclusion volume changes shape and orientation because its boundary is set by the precessing binary 3 $L$.
+4. The exclusion volume changes shape and orientation because the working source record assigns its boundary to precessing binary 3.
 5. Neighboring assemblies then see changed path-history geometry and interaction timing.
 6. At coarse scale, this appears as a modified effective kinematic/geometric background, i.e. an emergent spacetime response.
 
 This can be treated as a coupled state map:
 $$
-(\mathbf V,\mathbf{A}_H,\mathbf{A}_M,\mathbf{A}_L,R_H,R_2,R_L,\mathcal{E}_{\text{excl}})
+(\mathbf V,\mathbf{A}_1,\mathbf{A}_2,\mathbf{A}_3,R_1,R_2,R_3,\mathcal{E}_{\text{excl}})
 \xrightarrow{\;\Delta \mathbf{p}\;}
-(\mathbf V',\mathbf{A}_H',\mathbf{A}_M',\mathbf{A}_L',R_H',R_2',R_L',\mathcal{E}_{\text{excl}}')
+(\mathbf V',\mathbf{A}_1',\mathbf{A}_2',\mathbf{A}_3',R_1',R_2',R_3',\mathcal{E}_{\text{excl}}')
 $$
 
 Initial directional hypothesis for acceleration response:
 $$
-\|\mathbf{A}_H-\mathbf{A}_L\|,\ \|\mathbf{A}_M-\mathbf{A}_L\| \downarrow\qquad
-R_H,R_2,R_L \downarrow
+\|\mathbf{A}_1-\mathbf{A}_3\|,\ \|\mathbf{A}_2-\mathbf{A}_3\| \downarrow\qquad
+R_1,R_2,R_3 \downarrow
 $$
-with the strongest transduction at $L$.
+with the strongest transduction provisionally assigned to binary 3.
 
 Interpretive thesis:
 
@@ -1050,7 +1052,7 @@ Start with a single causal path-history binary under constant drift $\mathbf V$.
 
 ### Stage B: A1 full closure
 
-Promote to a A1 with coupled circulation scales. Establish:
+Promote to an A1 with coupled circulation scales. Establish:
 
 1. Persistence of aligned attractor family under drift.
 2. Factorization or controlled coupling of 1/2/3 period shifts.
@@ -1375,27 +1377,27 @@ For the source record's indexed rows $(1,2,3)$, decompose the binary-3 channel s
 $$
 K_{ab}^{(3)}
 =
-K_{ab}^{(L)}
+K_{ab}^{(3)}
 +
-\left\langle \frac{\partial^2\mathcal{U}_{L\leftrightarrow M}}{\partial r_a\partial r_b}\right\rangle_{\text{cyc}}
+\left\langle \frac{\partial^2\mathcal{U}_{3\leftrightarrow 2}}{\partial r_a\partial r_b}\right\rangle_{\text{cyc}}
 +
-\left\langle \frac{\partial^2\mathcal{U}_{L\leftrightarrow H}}{\partial r_a\partial r_b}\right\rangle_{\text{cyc}}
+\left\langle \frac{\partial^2\mathcal{U}_{3\leftrightarrow 1}}{\partial r_a\partial r_b}\right\rangle_{\text{cyc}}
 $$
 Under hierarchical separation
 $$
-\omega_H\gg \omega_2\gg \omega_L\qquad
-r_H\ll r_2\ll r_L
+\omega_1\gg \omega_2\gg \omega_3\qquad
+r_1\ll r_2\ll r_3
 $$
-apply Hamiltonian averaging (Lie-Deprit transform) to eliminate fast phases. The monopole part renormalizes $\mathcal{I}_0$ only; the dipole contribution vanishes in the inner-layer center-of-mass frame; the leading anisotropic correction is quadrupolar and scales as $(r_2/r_L)^2$. Therefore
+apply Hamiltonian averaging (Lie-Deprit transform) to eliminate fast phases. The monopole part renormalizes $\mathcal{I}_0$ only; the dipole contribution vanishes in the binary-1 center-of-mass frame; the leading anisotropic correction is quadrupolar and scales as $(r_2/r_3)^2$. This hierarchy is a declared source-record ordering, not a meaning of the persistent indices. Therefore
 $$
 \mathcal{D}_{23}
 \le
-C_Q\left(\frac{r_2}{r_L}\right)^2
-+O\!\left(\left(\frac{r_H}{r_L}\right)^2\right)
+C_Q\left(\frac{r_2}{r_3}\right)^2
++O\!\left(\left(\frac{r_1}{r_3}\right)^2\right)
 $$
 A sufficient closure condition is
 $$
-\left(\frac{r_2}{r_L}\right)^2\le C_{23}\epsilon_{\text{LV}}
+\left(\frac{r_2}{r_3}\right)^2\le C_{23}\epsilon_{\text{LV}}
 $$
 which yields
 $$
@@ -1404,7 +1406,7 @@ $$
 
 ### Spectral-decoupling vulnerability criterion
 
-The [A1 Adiabatic Decoupling Bound](#nested-shell-braid-adiabatic-decoupling-bound) assumes Diophantine nonresonance:
+The [A1 Adiabatic Decoupling Bound](#a1-adiabatic-decoupling-bound) assumes Diophantine nonresonance:
 $$
 |m\omega_L-n\omega_2|
 \ge
@@ -1557,10 +1559,10 @@ $$
 \mathbf{c}^{(3)}-\mathbf{c}^{(2)}
 \right\|_{W}
 \le
-C_Q\left(\frac{r_2}{r_L}\right)^2
-+O\!\left(\left(\frac{r_H}{r_L}\right)^2\right)
+C_Q\left(\frac{r_2}{r_3}\right)^2
++O\!\left(\left(\frac{r_1}{r_3}\right)^2\right)
 $$
-In particular, if $(r_2/r_L)^2\le C_{23}\epsilon_{\text{LV}}$, operational Lorentz closure is universal across these two micro-regimes up to preferred-frame leakage.
+In particular, if $(r_2/r_3)^2\le C_{23}\epsilon_{\text{LV}}$, operational Lorentz closure is universal across these two micro-regimes up to preferred-frame leakage.
 
 ### Theorem G (structural-integrity common-limit closure)
 
@@ -1596,7 +1598,7 @@ The Lorentzian conspiracy program fails if any of the following occur:
 3. Residual anisotropy terms exceed accepted bounds after full observer construction.
 4. Different assembly decorations produce incompatible kinematic laws that prevent universal operational closure.
 5. The weak-field connection built from $g_{\mu\nu}^{\text{eff}}$ fails to reproduce a Newtonian Poisson limit for $\Phi_{\text{eff}}$ in the operational observer sector.
-6. Diophantine nonresonance fails (small-divisor regime), causing secular interlayer resonance and invalidating the adiabatic mismatch bound used in [A1 Adiabatic Decoupling Bound](#nested-shell-braid-adiabatic-decoupling-bound).
+6. Diophantine nonresonance fails (small-divisor regime), causing secular interbinary resonance and invalidating the adiabatic mismatch bound used in [A1 Adiabatic Decoupling Bound](#a1-adiabatic-decoupling-bound).
 7. The extracted Lorentz coefficients cannot be traced to the causal-root ledger on a completed branch chart, or the same ledger cannot generate clock, ruler, and two-way signal closure without separate per-observable tuning.
 
 ## Position in the $\mathbb{A}\mathbb{A}\mathbb{A}$ Program

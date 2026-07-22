@@ -683,9 +683,26 @@ function compareEventLedgers(primaryEvents, refinedEvents, protocol) {
   };
 }
 
+function exactParameterVector(sourceRecord) {
+  if (sourceRecord.parameterVector && typeof sourceRecord.parameterVector === "object") {
+    return sourceRecord.parameterVector;
+  }
+  return {
+    history: sourceRecord.history,
+    sources: sourceRecord.sources.map((source) => ({
+      id: source.id,
+      charge: source.charge,
+      trajectory: source.trajectory,
+    })),
+  };
+}
+
 export function evaluatePrescribedRecordAnalysis(request = {}) {
   const sourceRecord = validateExactPrescribedSourceRecord(request.sourceRecord);
   const protocol = validatePrescribedRecordAnalysisProtocol(request.protocol);
+  if (sourceRecord.sources.length < 2) {
+    throw new RangeError("analytical braid evaluation requires at least two prescribed sources.");
+  }
   if (protocol.history.start < sourceRecord.history.start ||
       protocol.history.end > sourceRecord.history.end) {
     throw new RangeError("protocol history must lie within the exact source-record history.");
@@ -788,7 +805,7 @@ export function evaluatePrescribedRecordAnalysis(request = {}) {
       sourceClaimGrade: sourceRecord.claimGrade ?? null,
       sourceEvidenceStatus: sourceRecord.evidenceStatus ?? null,
       taxonomy: sourceRecord.taxonomy ?? null,
-      parameterVector: sourceRecord.parameterVector ?? null,
+      parameterVector: exactParameterVector(sourceRecord),
     },
     protocolHash,
     protocol,

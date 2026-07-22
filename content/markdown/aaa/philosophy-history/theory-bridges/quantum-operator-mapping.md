@@ -1,12 +1,12 @@
 # Quantum Operator Mapping
 
-The standard formulation of quantum mechanics relies on the abstract unitary evolution of state vectors in a complex Hilbert space. Within the $\mathbb{A}\mathbb{A}\mathbb{A}$ framework, this linear algebraic structure is an effective, continuum-limit approximation of a fundamentally non-linear, non-Markovian dynamical system. This document establishes the formal mapping between abstract quantum operators and the topological torques acting on candidate A1 assemblies, bounded by the causal-delay master equation.
+The standard formulation of quantum mechanics relies on the abstract unitary evolution of state vectors in a complex Hilbert space. Within the $\mathbb{A}\mathbb{A}\mathbb{A}$ framework, this linear algebraic structure is an effective, continuum-limit approximation of a fundamentally non-linear, non-Markovian dynamical system. This document states a candidate mapping between abstract quantum operators and assembly-level rotational response in candidate Noether braids, bounded by the causal-delay master equation. The qubit proposal does not assign a braid-taxonomy member.
 
 The reader should treat an operator as a recovered record-channel map unless the local derivation says otherwise. Hilbert-space algebra is the target language that experiments already validate; the implementation question is which branch records, apparatus kernels, path-history ledgers, and coarse-grainings make that algebra emerge.
 
-## The A1 Qubit Candidate and Phase Space
+## Candidate Noether-Braid Qubit and Phase Space
 
-A physical qubit is provisionally mapped to stable orientational states of a candidate A1 assembly. Let $\hat{\mathbf{n}}_1$, $\hat{\mathbf{n}}_2$, and $\hat{\mathbf{n}}_3$ denote the orbital-plane normals of its persistently indexed binaries. The reduced source record considered here assigns the speed classes $v_1>c_f$, $v_2=c_f$, and $v_3<c_f$; those assignments are record constraints, not meanings carried by the indices or by the A1 taxonomy.
+A physical qubit is provisionally mapped to stable orientational states of a candidate Noether-braid assembly. Let $\hat{\mathbf{n}}_1$, $\hat{\mathbf{n}}_2$, and $\hat{\mathbf{n}}_3$ denote the orbital-plane normals of its persistently indexed binaries. The reduced source record considered here assigns the speed classes $v_1>c_f$, $v_2=c_f$, and $v_3<c_f$; those assignments are record constraints, not meanings carried by the indices and not evidence for A1 or another taxonomy member.
 
 The computational basis states $|0\rangle$ and $|1\rangle$ are defined as the two meta-stable, minimal-energy topological alignments of $\hat{\mathbf{n}}_1$ and $\hat{\mathbf{n}}_3$ relative to the source record's binary-2 reference normal $\hat{\mathbf{n}}_2$.
 
@@ -568,12 +568,12 @@ Here $X$ ranges over declared critical assemblies or branch critical points and 
 
 ## Unitary Evolution and Topological Torques
 
-Quantum gates correspond to continuous, energy-conserving topological torques applied to the candidate A1 orbital planes.
+Quantum gates are hypothesized to correspond to continuous, energy-conserving assembly rotations applied to the candidate braid's orbital planes.
 
-* **Pauli Operators ($X, Y, Z$):** These map to discrete $\pi$-rotations of the candidate A1 orientation axes. The torque $\boldsymbol{\tau} = \int \mathbf{r} \times \mathbf{F}_{\text{hist}} d^3x$ is applied via external causal wakes, smoothly rotating $\hat{\mathbf{n}}_1$ and $\hat{\mathbf{n}}_3$ while source-record binary 2 remains on its declared $v_2=c_f$ threshold row.
+* **Pauli Operators ($X, Y, Z$):** These are candidate maps to discrete $\pi$-rotations of the braid orientation axes. An assembly-level rotational response is supplied by external causal wakes, smoothly rotating $\hat{\mathbf{n}}_1$ and $\hat{\mathbf{n}}_3$ while source-record binary 2 remains on its declared $v_2=c_f$ threshold row. The response must ultimately be derived from the acceleration-first master equation rather than inserted as a primitive force law.
 * **Hadamard Operator ($H$):** This operation is modeled as a critical bifurcation. The applied torque should drive the assembly into a controlled neighborhood of the saddle separating the $|0\rangle$ and $|1\rangle$ attractors, with an equiprobable meta-stable precessional state as the closure target rather than an assumed result.
 
-To prevent ionization or irreversible symmetry breaking during these operations, the total action $S = \int (T - V) dt$ must remain bounded. We define an ionization threshold $\Delta S_{\text{ionize}}$; any gate operation must satisfy $\Delta S \ll \Delta S_{\text{ionize}}$ to maintain the factorization of the candidate A1 structure.
+To prevent ionization or irreversible symmetry breaking during these operations, the candidate effective action $S = \int (T - V) dt$ must remain bounded. We define an ionization threshold $\Delta S_{\text{ionize}}$; any gate operation must satisfy $\Delta S \ll \Delta S_{\text{ionize}}$ to maintain the factorization of the candidate braid structure. This is an effective assembly target, not an architrino-level premise.
 
 ## Entanglement via Path-History Potentials
 

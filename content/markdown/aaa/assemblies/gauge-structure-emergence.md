@@ -267,7 +267,7 @@ Quantum field theory for uniformly accelerated, Rindler observers predicts that 
 Why do observer-level electric charges appear in units of $e/3$?
 *   The Standard Model asserts this; $\mathbb{A}\mathbb{A}\mathbb{A}$ treats it as a stability-selection closure target grounded first in a protected six-unit polarity inventory, with the six-site axial layer as the current charged-fermion working realization.
 *   **Stability Selection:** The $\mathbb{U}_{\text{now}}$ universe-state perspective sees that arbitrary clusters of $\epsilon$ polarity units are likely unstable. They either collapse into an unstable self-hit branch or disperse.
-*   **The Survivors:** Specific geometric configurations of six sign-carrying units are candidate stable resonances where attractive and repulsive accelerations balance through the assembly branch. In the axial-layer realization these appear as six-pole axial patterns supported by the A1 structure. The local combinatorics reproduce the observed charge set; dynamical exclusion of non-SM stable assemblies remains part of the closure burden.
+*   **The Survivors:** Specific geometric configurations of six sign-carrying units are candidate stable resonances where attractive and repulsive accelerations balance through the assembly branch. In the axial-layer realization these appear as six-pole axial patterns supported by a candidate Noether braid; this construction does not assign a taxonomy member. The local combinatorics reproduce the observed charge set; dynamical exclusion of non-SM stable assemblies remains part of the closure burden.
 
 **SM Charge Quantization ($\mathbb{A}\mathbb{A}\mathbb{A}$: Six $\epsilon$ Polarity Slots)**
 

@@ -1,0 +1,972 @@
+{
+  "schema": "prescribed-path-analysis/b1-cap-angle-campaign-summary.v1",
+  "campaignId": "b1-cap-angle-smoke-v1",
+  "manifestPath": "src/prescribed-path-analysis/campaigns/b1-cap-angle-smoke/b1-cap-angle-smoke-campaign.manifest.v1.json",
+  "manifestHash": "0a4cb278d4aef2f03cbfb163daf682fba967ce6a75fc9f403f3cfd6793901caa",
+  "claimGrade": "derived",
+  "claimScope": "conditional prescribed-record analytical smoke campaign",
+  "sourceClaimGrade": "chart-hypothesis",
+  "sourceEvidenceStatus": "display-only",
+  "excludedClaims": [
+    "stability",
+    "energy",
+    "retention",
+    "physical-realization"
+  ],
+  "evaluator": {
+    "id": "prescribed-record-analytical-braid-evaluator",
+    "pathEvolutionInvoked": false,
+    "eomSolverInvoked": false
+  },
+  "sampling": {
+    "seed": {
+      "algorithm": "mulberry32/v1",
+      "value": 20260722
+    },
+    "sampleCount": 4,
+    "stratification": {
+      "method": "latin-hypercube/v1",
+      "strataPerDimension": 4,
+      "withinStratumRule": "seeded-uniform-half-open/v1"
+    },
+    "samplingMeasure": {
+      "id": "independent-uniform-cap-angle/v1",
+      "coordinates": [
+        {
+          "id": "alpha_1",
+          "minimum": 0,
+          "maximum": 1.5707963267948966,
+          "unit": "radian"
+        },
+        {
+          "id": "alpha_2",
+          "minimum": 0,
+          "maximum": 1.5707963267948966,
+          "unit": "radian"
+        },
+        {
+          "id": "alpha_3",
+          "minimum": 0,
+          "maximum": 1.5707963267948966,
+          "unit": "radian"
+        }
+      ],
+      "derivedCoordinates": {
+        "axialHalfSeparation": "h_a=R_a*sin(alpha_a)",
+        "transverseOrbitRadius": "rho_a=R_a*cos(alpha_a)",
+        "radiusIdentity": "h_a^2+rho_a^2=R_a^2"
+      }
+    },
+    "fixedCoordinates": {
+      "responseCenter": [
+        0,
+        0,
+        0
+      ],
+      "frame": {
+        "e1": [
+          1,
+          0,
+          0
+        ],
+        "e2": [
+          0,
+          1,
+          0
+        ],
+        "axis": [
+          0,
+          0,
+          1
+        ],
+        "orthonormalTolerance": 1e-12
+      },
+      "axialDriftSpeed": 0,
+      "ordinaryFrequency": 0.25,
+      "angularFrequency": 1.5707963267948966,
+      "radii": [
+        0.22,
+        0.32,
+        0.44
+      ],
+      "phases": [
+        0,
+        2.0943951023931953,
+        4.1887902047863905
+      ],
+      "polarityAssignments": [
+        1,
+        -1,
+        1
+      ],
+      "recordInterval": {
+        "start": 0,
+        "end": 8,
+        "delayHorizon": 2
+      }
+    }
+  },
+  "commonProtocol": {
+    "path": "src/prescribed-path-analysis/fixtures/b1-interior-small-fixture.analysis-protocol.v1.json",
+    "sourceFileSha256": "ee1ca5ea317f7ba6b3c7f471dd7e20edce8adf09b625f459b2ad7ad1c052549a",
+    "protocolHash": "0fb7ee5c9f36fdac8186ac0155ed53fcc0b3363e44a144b160c1491404da1d50"
+  },
+  "implementedMeasures": [
+    "retained-root-count",
+    "signed-wake",
+    "unsigned-wake",
+    "signed-cancellation-ratio",
+    "positive-and-negative-probe-acceleration",
+    "prescribed-period-closure",
+    "minimum-separation",
+    "root-transversality-margin",
+    "numerical-convergence"
+  ],
+  "caseCounts": {
+    "total": 8,
+    "anchors": 4,
+    "seededSamples": 4,
+    "passed": 8,
+    "failed": 0
+  },
+  "cases": [
+    {
+      "caseId": "anchor-b1-interior-coordinate-reference",
+      "label": "B1 interior-coordinate reference",
+      "caseType": "anchor",
+      "packetPath": "src/prescribed-path-analysis/campaigns/b1-cap-angle-smoke/packets/anchor-b1-interior-coordinate-reference.result-packet.v1.json",
+      "sourceRecordId": "illustrative-spindle-chart-hypothesis-v0",
+      "sourceHash": "3ad1e879d3364db0d332bdc59cac042c3c5bc552365a2e227f2392339ab2506b",
+      "resultHash": "70484c4c824fe29352b407c0b52fed7e23516fd9e0979dd7146f8a773d368452",
+      "protocolHash": "0fb7ee5c9f36fdac8186ac0155ed53fcc0b3363e44a144b160c1491404da1d50",
+      "coordinates": {
+        "radii": [
+          0.22,
+          0.32,
+          0.44
+        ],
+        "capAngles": [
+          0.34906585039886584,
+          0.6981317007977317,
+          1.1344640137963142
+        ],
+        "axialHalfSeparations": [
+          0.07524443153164712,
+          0.20569203509969256,
+          0.398775426296126
+        ],
+        "transverseOrbitRadii": [
+          0.20673237657289986,
+          0.24513422179807298,
+          0.18595203516590775
+        ]
+      },
+      "gates": {
+        "rootTopologyComplete": true,
+        "rootTransversalityPassed": true,
+        "minimumSeparationPassed": true,
+        "numericalConvergencePassed": true,
+        "passed": true
+      },
+      "rootCount": 6,
+      "noRootCount": 0,
+      "eventMeasures": [
+        {
+          "eventId": "b1-interior-coordinate-reference-probe@4",
+          "observationTime": 4,
+          "signedWake": -0.06909328413642568,
+          "unsignedWake": 0.41783051684577854,
+          "signedCancellationRatio": 0.165361986142166,
+          "probeResponses": [
+            {
+              "probePolarity": 1,
+              "acceleration": {
+                "x": -0.7559648299000894,
+                "y": 0.04967306911507513,
+                "z": -0.5405865286716359
+              },
+              "accelerationMagnitude": 0.9306900841968994
+            },
+            {
+              "probePolarity": -1,
+              "acceleration": {
+                "x": 0.7559648299000894,
+                "y": -0.04967306911507513,
+                "z": 0.5405865286716359
+              },
+              "accelerationMagnitude": 0.9306900841968994
+            }
+          ],
+          "rootTransversalityMargin": 0.7368434291493589,
+          "maximumRootResidual": 9.807710199538633e-13
+        }
+      ],
+      "prescribedPeriodClosure": {
+        "start": 0,
+        "end": 4,
+        "period": 4,
+        "maximumPositionResidual": 2.1677797545656835e-16,
+        "maximumVelocityResidual": 3.236828524569469e-16,
+        "maximumPhaseResidual": 0
+      },
+      "minimumSeparation": {
+        "value": 0.3620458261762783,
+        "pairId": "spindle-1-0<->spindle-2-1",
+        "firstMinimumSampleTime": 0.0625,
+        "sampleCount": 128,
+        "samplingRule": "uniform-left-closed-periodic-grid.v1"
+      },
+      "rootTransversalityMargin": 0.7368434291493589,
+      "numericalConvergence": {
+        "maximumReportedChange": 1.3358203432289883e-12,
+        "passed": true
+      }
+    },
+    {
+      "caseId": "anchor-b1-high-axial-fraction-interior",
+      "label": "B1 high-axial-fraction interior",
+      "caseType": "anchor",
+      "packetPath": "src/prescribed-path-analysis/campaigns/b1-cap-angle-smoke/packets/anchor-b1-high-axial-fraction-interior.result-packet.v1.json",
+      "sourceRecordId": "illustrative-extreme-cap-tilt-spindle-variant-v0",
+      "sourceHash": "31f8d06f954c9c9fe64c8a9d2316d479dad49b8eb2437bba844a718b03202cd0",
+      "resultHash": "fd88922b83317ea96892395be57b5feb5a4a321b1c3bb171e0c6c2f114c2e7c1",
+      "protocolHash": "0fb7ee5c9f36fdac8186ac0155ed53fcc0b3363e44a144b160c1491404da1d50",
+      "coordinates": {
+        "radii": [
+          0.22,
+          0.32,
+          0.44
+        ],
+        "capAngles": [
+          1.2217304763960306,
+          1.3962634015954636,
+          1.4835298641951802
+        ],
+        "axialHalfSeparations": [
+          0.20673237657289983,
+          0.31513848096390656,
+          0.438325667160368
+        ],
+        "transverseOrbitRadii": [
+          0.07524443153164714,
+          0.055567416853417734,
+          0.03834852680896958
+        ]
+      },
+      "gates": {
+        "rootTopologyComplete": true,
+        "rootTransversalityPassed": true,
+        "minimumSeparationPassed": true,
+        "numericalConvergencePassed": true,
+        "passed": true
+      },
+      "rootCount": 6,
+      "noRootCount": 0,
+      "eventMeasures": [
+        {
+          "eventId": "b1-interior-coordinate-reference-probe@4",
+          "observationTime": 4,
+          "signedWake": -0.005796317397079143,
+          "unsignedWake": 0.40551901394939327,
+          "signedCancellationRatio": 0.014293577360598173,
+          "probeResponses": [
+            {
+              "probePolarity": 1,
+              "acceleration": {
+                "x": -0.03434606896515702,
+                "y": 0.08618535053080903,
+                "z": -0.47578392633681
+              },
+              "accelerationMagnitude": 0.4847452028230385
+            },
+            {
+              "probePolarity": -1,
+              "acceleration": {
+                "x": 0.03434606896515702,
+                "y": -0.08618535053080903,
+                "z": 0.47578392633681
+              },
+              "accelerationMagnitude": 0.4847452028230385
+            }
+          ],
+          "rootTransversalityMargin": 0.8922631436126529,
+          "maximumRootResidual": 7.744915819785092e-13
+        }
+      ],
+      "prescribedPeriodClosure": {
+        "start": 0,
+        "end": 4,
+        "period": 4,
+        "maximumPositionResidual": 4.443059973708341e-17,
+        "maximumVelocityResidual": 6.938893903907228e-17,
+        "maximumPhaseResidual": 0
+      },
+      "minimumSeparation": {
+        "value": 0.14786601618387468,
+        "pairId": "extreme-cap-spindle-2-0<->extreme-cap-spindle-3-0",
+        "firstMinimumSampleTime": 0.0625,
+        "sampleCount": 128,
+        "samplingRule": "uniform-left-closed-periodic-grid.v1"
+      },
+      "rootTransversalityMargin": 0.8922631436126529,
+      "numericalConvergence": {
+        "maximumReportedChange": 6.963318810448982e-13,
+        "passed": true
+      }
+    },
+    {
+      "caseId": "anchor-b1-all-equatorial-boundary",
+      "label": "B1 all-equatorial boundary",
+      "caseType": "anchor",
+      "packetPath": "src/prescribed-path-analysis/campaigns/b1-cap-angle-smoke/packets/anchor-b1-all-equatorial-boundary.result-packet.v1.json",
+      "sourceRecordId": "illustrative-planar-tri-binary-spindle-boundary-v0",
+      "sourceHash": "c2079804643afa4254a7f037ee479f804af0a2c88f4b2680fe9c69c836f7595b",
+      "resultHash": "910e787c8972cb37a3d37328fd8c65effec30e8a19a894cf8fa1b6b8e2cca865",
+      "protocolHash": "0fb7ee5c9f36fdac8186ac0155ed53fcc0b3363e44a144b160c1491404da1d50",
+      "coordinates": {
+        "radii": [
+          0.22,
+          0.32,
+          0.44
+        ],
+        "capAngles": [
+          0,
+          0,
+          0
+        ],
+        "axialHalfSeparations": [
+          0,
+          0,
+          0
+        ],
+        "transverseOrbitRadii": [
+          0.22,
+          0.32,
+          0.44
+        ]
+      },
+      "gates": {
+        "rootTopologyComplete": true,
+        "rootTransversalityPassed": true,
+        "minimumSeparationPassed": true,
+        "numericalConvergencePassed": true,
+        "passed": true
+      },
+      "rootCount": 6,
+      "noRootCount": 0,
+      "eventMeasures": [
+        {
+          "eventId": "b1-interior-coordinate-reference-probe@4",
+          "observationTime": 4,
+          "signedWake": -0.2583864393106817,
+          "unsignedWake": 0.5673912368275433,
+          "signedCancellationRatio": 0.4553937786480432,
+          "probeResponses": [
+            {
+              "probePolarity": 1,
+              "acceleration": {
+                "x": -3.08753143620966,
+                "y": -0.7014445505732885,
+                "z": -0.6020604044347446
+              },
+              "accelerationMagnitude": 3.2229414449691722
+            },
+            {
+              "probePolarity": -1,
+              "acceleration": {
+                "x": 3.08753143620966,
+                "y": 0.7014445505732885,
+                "z": 0.6020604044347446
+              },
+              "accelerationMagnitude": 3.2229414449691722
+            }
+          ],
+          "rootTransversalityMargin": 0.7275758746903803,
+          "maximumRootResidual": 9.663381206337363e-13
+        }
+      ],
+      "prescribedPeriodClosure": {
+        "start": 0,
+        "end": 4,
+        "period": 4,
+        "maximumPositionResidual": 5.117875266520903e-16,
+        "maximumVelocityResidual": 7.550332863779066e-16,
+        "maximumPhaseResidual": 0
+      },
+      "minimumSeparation": {
+        "value": 0.2835489375751564,
+        "pairId": "planar-spindle-1-0<->planar-spindle-2-1",
+        "firstMinimumSampleTime": 2.125,
+        "sampleCount": 128,
+        "samplingRule": "uniform-left-closed-periodic-grid.v1"
+      },
+      "rootTransversalityMargin": 0.7275758746903803,
+      "numericalConvergence": {
+        "maximumReportedChange": 5.396794122702886e-12,
+        "passed": true
+      }
+    },
+    {
+      "caseId": "anchor-b1-all-axial-boundary",
+      "label": "B1 all-axial boundary",
+      "caseType": "anchor",
+      "packetPath": "src/prescribed-path-analysis/campaigns/b1-cap-angle-smoke/packets/anchor-b1-all-axial-boundary.result-packet.v1.json",
+      "sourceRecordId": "illustrative-full-cap-axial-spindle-boundary-v0",
+      "sourceHash": "a61aba26f4258e3b5a80595da1bb7f84e0c8790da0b43d732e08ee3f7e320ed6",
+      "resultHash": "7f921cb85a28e0dd36aab19c2831fa8d78313677e1c6af72b93bfc6e92aee865",
+      "protocolHash": "0fb7ee5c9f36fdac8186ac0155ed53fcc0b3363e44a144b160c1491404da1d50",
+      "coordinates": {
+        "radii": [
+          0.22,
+          0.32,
+          0.44
+        ],
+        "capAngles": [
+          1.5707963267948966,
+          1.5707963267948966,
+          1.5707963267948966
+        ],
+        "axialHalfSeparations": [
+          0.22,
+          0.32,
+          0.44
+        ],
+        "transverseOrbitRadii": [
+          0,
+          0,
+          0
+        ]
+      },
+      "gates": {
+        "rootTopologyComplete": true,
+        "rootTransversalityPassed": true,
+        "minimumSeparationPassed": true,
+        "numericalConvergencePassed": true,
+        "passed": true
+      },
+      "rootCount": 6,
+      "noRootCount": 0,
+      "eventMeasures": [
+        {
+          "eventId": "b1-interior-coordinate-reference-probe@4",
+          "observationTime": 4,
+          "signedWake": 0.006960772050465476,
+          "unsignedWake": 0.40438844455794354,
+          "signedCancellationRatio": 0.017213083469965692,
+          "probeResponses": [
+            {
+              "probePolarity": 1,
+              "acceleration": {
+                "x": 0.1179790903601311,
+                "y": 0.029494772590032775,
+                "z": -0.478022586427266
+              },
+              "accelerationMagnitude": 0.4932490248413622
+            },
+            {
+              "probePolarity": -1,
+              "acceleration": {
+                "x": -0.1179790903601311,
+                "y": -0.029494772590032775,
+                "z": 0.478022586427266
+              },
+              "accelerationMagnitude": 0.4932490248413622
+            }
+          ],
+          "rootTransversalityMargin": 1,
+          "maximumRootResidual": 9.279244039817058e-13
+        }
+      ],
+      "prescribedPeriodClosure": {
+        "start": 0,
+        "end": 4,
+        "period": 4,
+        "maximumPositionResidual": 0,
+        "maximumVelocityResidual": 0,
+        "maximumPhaseResidual": 0
+      },
+      "minimumSeparation": {
+        "value": 0.1,
+        "pairId": "axial-spindle-1-0<->axial-spindle-2-0",
+        "firstMinimumSampleTime": 0,
+        "sampleCount": 128,
+        "samplingRule": "uniform-left-closed-periodic-grid.v1"
+      },
+      "rootTransversalityMargin": 1,
+      "numericalConvergence": {
+        "maximumReportedChange": 9.379164112033322e-13,
+        "passed": true
+      }
+    },
+    {
+      "caseId": "sample-000",
+      "label": "B1 seeded cap-angle sample 000",
+      "caseType": "seeded-sample",
+      "packetPath": "src/prescribed-path-analysis/campaigns/b1-cap-angle-smoke/packets/sample-000.result-packet.v1.json",
+      "sourceRecordId": "b1-cap-angle-smoke-v1-sample-000",
+      "sourceHash": "ee90d2c8503f4dcedd5c4cdd1de673a56a47690b2a015927ed3f92767bf55dee",
+      "resultHash": "424e4938cb380d644bb89008327e16f3c849f78eb316462aa663d35ba31e3ef3",
+      "protocolHash": "0fb7ee5c9f36fdac8186ac0155ed53fcc0b3363e44a144b160c1491404da1d50",
+      "coordinates": {
+        "radii": [
+          0.22,
+          0.32,
+          0.44
+        ],
+        "capAngles": [
+          0.6442386085639596,
+          0.609996384340733,
+          1.3168545898793986
+        ],
+        "axialHalfSeparations": [
+          0.1321297640500838,
+          0.1833166388892113,
+          0.42588906614755095
+        ],
+        "transverseOrbitRadii": [
+          0.17590260217537765,
+          0.2622880285227721,
+          0.11053733910297897
+        ],
+        "sampling": {
+          "sampleIndex": 0,
+          "strata": [
+            1,
+            1,
+            3
+          ],
+          "unitCoordinates": [
+            0.4101350363343954,
+            0.3883357593440451,
+            0.8383356692502275
+          ]
+        }
+      },
+      "gates": {
+        "rootTopologyComplete": true,
+        "rootTransversalityPassed": true,
+        "minimumSeparationPassed": true,
+        "numericalConvergencePassed": true,
+        "passed": true
+      },
+      "rootCount": 6,
+      "noRootCount": 0,
+      "eventMeasures": [
+        {
+          "eventId": "b1-interior-coordinate-reference-probe@4",
+          "observationTime": 4,
+          "signedWake": -0.04754438779478342,
+          "unsignedWake": 0.4073942937076682,
+          "signedCancellationRatio": 0.11670361742695295,
+          "probeResponses": [
+            {
+              "probePolarity": 1,
+              "acceleration": {
+                "x": -0.5433666751729332,
+                "y": 0.18867666692285223,
+                "z": -0.6132654266646629
+              },
+              "accelerationMagnitude": 0.8407976640499163
+            },
+            {
+              "probePolarity": -1,
+              "acceleration": {
+                "x": 0.5433666751729332,
+                "y": -0.18867666692285223,
+                "z": 0.6132654266646629
+              },
+              "accelerationMagnitude": 0.8407976640499163
+            }
+          ],
+          "rootTransversalityMargin": 0.7675666168002534,
+          "maximumRootResidual": 6.366018823200648e-13
+        }
+      ],
+      "prescribedPeriodClosure": {
+        "start": 0,
+        "end": 4,
+        "period": 4,
+        "maximumPositionResidual": 1.7772239894833365e-16,
+        "maximumVelocityResidual": 3.002224531865041e-16,
+        "maximumPhaseResidual": 0
+      },
+      "minimumSeparation": {
+        "value": 0.38534916407179787,
+        "pairId": "spindle-1-0<->spindle-2-0",
+        "firstMinimumSampleTime": 2.375,
+        "sampleCount": 128,
+        "samplingRule": "uniform-left-closed-periodic-grid.v1"
+      },
+      "rootTransversalityMargin": 0.7675666168002534,
+      "numericalConvergence": {
+        "maximumReportedChange": 8.242295734817162e-13,
+        "passed": true
+      }
+    },
+    {
+      "caseId": "sample-001",
+      "label": "B1 seeded cap-angle sample 001",
+      "caseType": "seeded-sample",
+      "packetPath": "src/prescribed-path-analysis/campaigns/b1-cap-angle-smoke/packets/sample-001.result-packet.v1.json",
+      "sourceRecordId": "b1-cap-angle-smoke-v1-sample-001",
+      "sourceHash": "fe86bef0e130103f05e1af7ce47fc7da0a9479d85bf0fa8678960459e19c919e",
+      "resultHash": "629d28cf5e3f3c0f05b01ff5b6069c1f905257ff54f77d1a405362eb694454ba",
+      "protocolHash": "0fb7ee5c9f36fdac8186ac0155ed53fcc0b3363e44a144b160c1491404da1d50",
+      "coordinates": {
+        "radii": [
+          0.22,
+          0.32,
+          0.44
+        ],
+        "capAngles": [
+          0.9359008912287378,
+          0.12516782887391306,
+          0.9162805731637361
+        ],
+        "axialHalfSeparations": [
+          0.17712941781548003,
+          0.03994920033465883,
+          0.34907084003398337
+        ],
+        "transverseOrbitRadii": [
+          0.13048053243434096,
+          0.3174965533554991,
+          0.2678610621907731
+        ],
+        "sampling": {
+          "sampleIndex": 1,
+          "strata": [
+            2,
+            0,
+            2
+          ],
+          "unitCoordinates": [
+            0.5958130123326555,
+            0.0796843147254549,
+            0.5833223299123347
+          ]
+        }
+      },
+      "gates": {
+        "rootTopologyComplete": true,
+        "rootTransversalityPassed": true,
+        "minimumSeparationPassed": true,
+        "numericalConvergencePassed": true,
+        "passed": true
+      },
+      "rootCount": 6,
+      "noRootCount": 0,
+      "eventMeasures": [
+        {
+          "eventId": "b1-interior-coordinate-reference-probe@4",
+          "observationTime": 4,
+          "signedWake": -0.11438628892890518,
+          "unsignedWake": 0.4407346551349568,
+          "signedCancellationRatio": 0.25953549963952594,
+          "probeResponses": [
+            {
+              "probePolarity": 1,
+              "acceleration": {
+                "x": -1.1722192485877068,
+                "y": -0.23202270101806177,
+                "z": -1.1515679437287976
+              },
+              "accelerationMagnitude": 1.6595304244186113
+            },
+            {
+              "probePolarity": -1,
+              "acceleration": {
+                "x": 1.1722192485877068,
+                "y": 0.23202270101806177,
+                "z": 1.1515679437287976
+              },
+              "accelerationMagnitude": 1.6595304244186113
+            }
+          ],
+          "rootTransversalityMargin": 0.7080274867499264,
+          "maximumRootResidual": 9.299228054260311e-13
+        }
+      ],
+      "prescribedPeriodClosure": {
+        "start": 0,
+        "end": 4,
+        "period": 4,
+        "maximumPositionResidual": 3.1646225226420963e-16,
+        "maximumVelocityResidual": 4.775249788392736e-16,
+        "maximumPhaseResidual": 0
+      },
+      "minimumSeparation": {
+        "value": 0.3514615738129141,
+        "pairId": "spindle-1-0<->spindle-2-1",
+        "firstMinimumSampleTime": 1.84375,
+        "sampleCount": 128,
+        "samplingRule": "uniform-left-closed-periodic-grid.v1"
+      },
+      "rootTransversalityMargin": 0.7080274867499264,
+      "numericalConvergence": {
+        "maximumReportedChange": 1.1368683772161603e-12,
+        "passed": true
+      }
+    },
+    {
+      "caseId": "sample-002",
+      "label": "B1 seeded cap-angle sample 002",
+      "caseType": "seeded-sample",
+      "packetPath": "src/prescribed-path-analysis/campaigns/b1-cap-angle-smoke/packets/sample-002.result-packet.v1.json",
+      "sourceRecordId": "b1-cap-angle-smoke-v1-sample-002",
+      "sourceHash": "fdd126f995cb2b6fbb91046f2c8fbc06fb037301e1bb2a1f83e03f6926e02e61",
+      "resultHash": "80d339d7f07fd7f2e6e36dfbf46cb1dd5bf987ed1afce192cb498bbfda9b12f0",
+      "protocolHash": "0fb7ee5c9f36fdac8186ac0155ed53fcc0b3363e44a144b160c1491404da1d50",
+      "coordinates": {
+        "radii": [
+          0.22,
+          0.32,
+          0.44
+        ],
+        "capAngles": [
+          1.4181157188975893,
+          0.8942252111322365,
+          0.5008089520401952
+        ],
+        "axialHalfSeparations": [
+          0.21744072699670144,
+          0.24951174464782103,
+          0.21125953369919695
+        ],
+        "transverseOrbitRadii": [
+          0.033459381989898535,
+          0.20035940028558816,
+          0.3859655547081862
+        ],
+        "sampling": {
+          "sampleIndex": 2,
+          "strata": [
+            3,
+            2,
+            1
+          ],
+          "unitCoordinates": [
+            0.9028005061554722,
+            0.5692814503563568,
+            0.3188248810474761
+          ]
+        }
+      },
+      "gates": {
+        "rootTopologyComplete": true,
+        "rootTransversalityPassed": true,
+        "minimumSeparationPassed": true,
+        "numericalConvergencePassed": true,
+        "passed": true
+      },
+      "rootCount": 6,
+      "noRootCount": 0,
+      "eventMeasures": [
+        {
+          "eventId": "b1-interior-coordinate-reference-probe@4",
+          "observationTime": 4,
+          "signedWake": -0.1999455958166861,
+          "unsignedWake": 0.516439778716461,
+          "signedCancellationRatio": 0.3871614930856469,
+          "probeResponses": [
+            {
+              "probePolarity": 1,
+              "acceleration": {
+                "x": -2.046590438666926,
+                "y": -0.9792025799984273,
+                "z": -1.0880468226373818
+              },
+              "accelerationMagnitude": 2.516190772689893
+            },
+            {
+              "probePolarity": -1,
+              "acceleration": {
+                "x": 2.046590438666926,
+                "y": 0.9792025799984273,
+                "z": 1.0880468226373818
+              },
+              "accelerationMagnitude": 2.516190772689893
+            }
+          ],
+          "rootTransversalityMargin": 0.6897273978806036,
+          "maximumRootResidual": 8.493206138382448e-13
+        }
+      ],
+      "prescribedPeriodClosure": {
+        "start": 0,
+        "end": 4,
+        "period": 4,
+        "maximumPositionResidual": 4.236704743275018e-16,
+        "maximumVelocityResidual": 7.108895957933346e-16,
+        "maximumPhaseResidual": 0
+      },
+      "minimumSeparation": {
+        "value": 0.22135011047782963,
+        "pairId": "spindle-1-0<->spindle-2-0",
+        "firstMinimumSampleTime": 0.21875,
+        "sampleCount": 128,
+        "samplingRule": "uniform-left-closed-periodic-grid.v1"
+      },
+      "rootTransversalityMargin": 0.6897273978806036,
+      "numericalConvergence": {
+        "maximumReportedChange": 8.952838470577262e-13,
+        "passed": true
+      }
+    },
+    {
+      "caseId": "sample-003",
+      "label": "B1 seeded cap-angle sample 003",
+      "caseType": "seeded-sample",
+      "packetPath": "src/prescribed-path-analysis/campaigns/b1-cap-angle-smoke/packets/sample-003.result-packet.v1.json",
+      "sourceRecordId": "b1-cap-angle-smoke-v1-sample-003",
+      "sourceHash": "916c2cce7e045cc64b0d9a4cccb6498ea4abe9f7bee3972ded0ba7535596bd1c",
+      "resultHash": "cae2e696e9918d60edbe17407541ba71c43aea6e9e48662dac1ba8c07d7dad56",
+      "protocolHash": "0fb7ee5c9f36fdac8186ac0155ed53fcc0b3363e44a144b160c1491404da1d50",
+      "coordinates": {
+        "radii": [
+          0.22,
+          0.32,
+          0.44
+        ],
+        "capAngles": [
+          0.02139990716345914,
+          1.2475683433719804,
+          0.13571493599754555
+        ],
+        "axialHalfSeparations": [
+          0.004707620242919056,
+          0.30342881879966055,
+          0.05953143133602993
+        ],
+        "transverseOrbitRadii": [
+          0.2199496267595116,
+          0.10164129043770925,
+          0.435954135985752
+        ],
+        "sampling": {
+          "sampleIndex": 3,
+          "strata": [
+            0,
+            3,
+            0
+          ],
+          "unitCoordinates": [
+            0.013623604027088732,
+            0.7942266747704707,
+            0.08639881166163832
+          ]
+        }
+      },
+      "gates": {
+        "rootTopologyComplete": true,
+        "rootTransversalityPassed": true,
+        "minimumSeparationPassed": true,
+        "numericalConvergencePassed": true,
+        "passed": true
+      },
+      "rootCount": 6,
+      "noRootCount": 0,
+      "eventMeasures": [
+        {
+          "eventId": "b1-interior-coordinate-reference-probe@4",
+          "observationTime": 4,
+          "signedWake": -0.22500958766354429,
+          "unsignedWake": 0.5645787092401973,
+          "signedCancellationRatio": 0.3985442312664593,
+          "probeResponses": [
+            {
+              "probePolarity": 1,
+              "acceleration": {
+                "x": -2.6074480241953646,
+                "y": -0.8304535700858962,
+                "z": -0.3394587397558442
+              },
+              "accelerationMagnitude": 2.757475397341805
+            },
+            {
+              "probePolarity": -1,
+              "acceleration": {
+                "x": 2.6074480241953646,
+                "y": 0.8304535700858962,
+                "z": 0.3394587397558442
+              },
+              "accelerationMagnitude": 2.757475397341805
+            }
+          ],
+          "rootTransversalityMargin": 0.7273652761627707,
+          "maximumRootResidual": 9.95981075391228e-13
+        }
+      ],
+      "prescribedPeriodClosure": {
+        "start": 0,
+        "end": 4,
+        "period": 4,
+        "maximumPositionResidual": 4.775249788392736e-16,
+        "maximumVelocityResidual": 8.005932084973442e-16,
+        "maximumPhaseResidual": 0
+      },
+      "minimumSeparation": {
+        "value": 0.3623546486581941,
+        "pairId": "spindle-1-0<->spindle-2-1",
+        "firstMinimumSampleTime": 0.21875,
+        "sampleCount": 128,
+        "samplingRule": "uniform-left-closed-periodic-grid.v1"
+      },
+      "rootTransversalityMargin": 0.7273652761627707,
+      "numericalConvergence": {
+        "maximumReportedChange": 6.185274514791672e-12,
+        "passed": true
+      }
+    }
+  ],
+  "implementedMeasureRanges": {
+    "signedWake": {
+      "minimum": -0.2583864393106817,
+      "maximum": 0.006960772050465476
+    },
+    "unsignedWake": {
+      "minimum": 0.40438844455794354,
+      "maximum": 0.5673912368275433
+    },
+    "signedCancellationRatio": {
+      "minimum": 0.014293577360598173,
+      "maximum": 0.4553937786480432
+    },
+    "probeAccelerationMagnitudeByPolarity": {
+      "1": {
+        "minimum": 0.4847452028230385,
+        "maximum": 3.2229414449691722
+      },
+      "-1": {
+        "minimum": 0.4847452028230385,
+        "maximum": 3.2229414449691722
+      }
+    },
+    "minimumSeparation": {
+      "minimum": 0.1,
+      "maximum": 0.38534916407179787
+    },
+    "rootTransversalityMargin": {
+      "minimum": 0.6897273978806036,
+      "maximum": 1
+    },
+    "numericalConvergenceMaximumChange": {
+      "minimum": 6.963318810448982e-13,
+      "maximum": 6.185274514791672e-12
+    }
+  },
+  "validity": {
+    "allCasesPassed": true,
+    "allRootTopologiesComplete": true,
+    "allRootTransversalityGatesPassed": true,
+    "allMinimumSeparationGatesPassed": true,
+    "allNumericalConvergenceGatesPassed": true
+  },
+  "status": {
+    "code": "ok",
+    "severity": "ok",
+    "message": "seeded B1 prescribed-record analytical smoke campaign completed"
+  },
+  "falsifier": "Reject campaign reproducibility if the bound manifest and seed do not reproduce every packet and summary hash; reject an analytical case if any declared validity gate fails.",
+  "summaryHash": "81a1fb902cff61ad55db95b2c9cb88f798710e853e35d324ce2059aea7020368"
+}

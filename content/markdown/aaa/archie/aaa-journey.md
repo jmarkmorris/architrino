@@ -36,7 +36,7 @@ The present theory still owes the exact derivation. The historical point is narr
 
 ## 2021: Noether Naming, Clock And Ruler Roles, And Strong-Sector Linkage
 
-The Noether-braid idea sharpened when inner, middle, and outer support roles were treated as distinct retained roles rather than generic subcomponents. The binary also began to carry clock-and-ruler significance: a variable assembly whose frequency, radius, and energy could become a route toward effective measurement rather than a mere particle ingredient.
+The source-era Noether-braid idea sharpened when it assigned distinct inner, middle, and outer support roles rather than generic subcomponents. The current taxonomy retires those labels as fixed identities: records begin with persistent binary indices $1,2,3$, and any radius or support role must be derived on a retained branch. The binary also began to carry clock-and-ruler significance: a variable assembly whose frequency, radius, and energy could become a route toward effective measurement rather than a mere particle ingredient.
 
 The same stage produced an important strong-sector lead. Quark-like Noether braids, polar vortices, binary couplings, apparent energy, shielded energy, and color-like bookkeeping began to be discussed together. In current language, this is not a claim that gluons have already been derived as binaries. It is a historical source signal for a precise recovery problem: recover SU(3)-like generator structure, confinement, gluon-like transport, proton spin accounting, and color neutrality from accepted $\mathbb{A}\mathbb{A}\mathbb{A}$ carriers.
 

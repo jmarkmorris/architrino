@@ -231,6 +231,18 @@ export function createBorgAssemblyViewPresentation(entry, { time } = {}) {
 }
 
 function resolveSourcePeriod(entry) {
+  const prescribedReturnPeriod = Number(
+    entry?.dataset?.provenance?.prescribedGeometry?.prescribedReturnPeriod,
+  );
+  if (Number.isFinite(prescribedReturnPeriod) && prescribedReturnPeriod > 0) {
+    return Object.freeze({
+      available: true,
+      period: prescribedReturnPeriod,
+      frequency: null,
+      sourceBinaryIndex: null,
+      source: "prescribed-return-period",
+    });
+  }
   const frequencies = entry.dataset.binaries
     .map((binary) => Number(binary?.frequency))
     .filter((frequency) => Number.isFinite(frequency) && frequency > 0);

@@ -42,10 +42,12 @@ export function createBorgAssemblyViewControls({
       [prescribedGeometry ? "Geometry source" : "Engine", `${presentation.provenance.engineId} ${presentation.provenance.engineVersion}`],
       ...(taxonomy ? [
         ["Braid family", taxonomy.familyLabel],
-        ["Taxonomy class", taxonomy.classificationLabel],
-        ["Variant", taxonomy.variantLabel],
+        ["Candidate", taxonomy.displayLabel],
+        ["Member definition", `${taxonomy.memberId} — ${taxonomy.memberLabel}`],
+        ...(taxonomy.instantiationLabel ? [["Instantiation", taxonomy.instantiationLabel]] : []),
         ["Canon source", taxonomy.canonSource],
       ] : []),
+      ...prescribedCoordinateRows(prescribedGeometry),
       ["Physics invoked", prescribedGeometry ? "no — prescribed chart arithmetic only" : "see source engine provenance"],
       ["Run id", presentation.provenance.runId],
       ["Generating specification", presentation.provenance.generatingSpec],
@@ -64,7 +66,7 @@ export function createBorgAssemblyViewControls({
     const trail = resolveBorgAssemblyViewTrail(entry);
     dom.trailSummary.textContent = trail.periodCount == null
       ? `Trail depth: ${format(trail.duration)} recorded time units.`
-      : `Trail: ${trail.periodCount} full rotation${trail.periodCount === 1 ? "" : "s"} (${format(trail.duration)} recorded time units).`;
+      : `Trail: ${trail.periodCount} complete prescribed return cycle${trail.periodCount === 1 ? "" : "s"} (${format(trail.duration)} recorded time units).`;
     dom.cameraMode.querySelector?.('option[value="co-rotating"]')?.toggleAttribute?.(
       "disabled",
       trail.period == null || !hasPlaneNormal(entry),
@@ -274,7 +276,7 @@ function renderFieldRows(documentLike, container, rows) {
 function renderBinaryGeometryTable(documentLike, table, binaryRows) {
   table.textContent = "";
   const caption = documentLike.createElement("caption");
-  caption.textContent = "Source-defined spindle braid geometry";
+  caption.textContent = "Source-defined prescribed-braid coordinates";
   const head = documentLike.createElement("thead");
   const headRow = documentLike.createElement("tr");
   ["Field", ...binaryRows.map((_, index) => `Binary ${index + 1}`)].forEach((label) => {
@@ -287,12 +289,14 @@ function renderBinaryGeometryTable(documentLike, table, binaryRows) {
   const body = documentLike.createElement("tbody");
   const rows = [
     ["Source id", (binary) => binary.sourceId],
-    ["Radius", (binary) => binary.raw.layerRadius],
+    ["Component braid", (binary) => binary.raw.braidId],
+    ["Persistent binary index", (binary) => binary.raw.binaryIndex],
+    ["Radius", (binary) => binary.raw.radius],
     ["Frequency", (binary) => binary.frequency],
-    ["Cap angle", (binary) => formatDegrees(binary.raw.capAngle)],
-    ["Axial spacing", (binary) => binary.planarOffset],
+    ["Axial half-separation", (binary) => binary.raw.axialHalfSeparation],
+    ["Transverse orbit radius", (binary) => binary.raw.transverseOrbitRadius],
     ["Phase", (binary) => formatDegrees(binary.phase)],
-    ["Transverse radius", (binary) => binary.raw.transverseRadius],
+    ["Circulation sense", (binary) => signed(binary.raw.circulationSense)],
     ["Carrier speed", (binary) => binary.raw.carrierSpeed],
     ["Polarity assignment", (binary) => signed(binary.raw.polarityAssignment)],
   ];
@@ -310,6 +314,25 @@ function renderBinaryGeometryTable(documentLike, table, binaryRows) {
     body.append(row);
   });
   table.append(caption, head, body);
+}
+
+function prescribedCoordinateRows(prescribedGeometry) {
+  const coordinates = prescribedGeometry?.coordinates;
+  if (!coordinates) return [];
+  const braids = coordinates.braids ?? [];
+  const flattening = braids[0]?.frameDefinition?.flattening;
+  const centers = braids.map((braid) => `(${braid.centerOffset.join(", ")})`).join("; ");
+  const phases = braids.map((braid) => formatDegrees(braid.phaseOffset)).join("; ");
+  const circulations = braids.map((braid) => signed(braid.circulationSense)).join("; ");
+  return [
+    ["Braid count", braids.length],
+    ["Prescribed return period", coordinates.prescribedReturnPeriod],
+    ...(flattening == null ? [] : [["Family-A flattening coordinate", flattening]]),
+    ["Braid-center offsets", centers],
+    ["Braid phase offsets", phases],
+    ["Braid circulation senses", circulations],
+    ["Coordinate status", coordinates.illustrativeCoordinates?.status],
+  ];
 }
 
 function formatDegrees(radians) {

@@ -34,7 +34,7 @@ The emitted `z_lambda` object is the row-level representation of $z_\Lambda$. It
 | `schema` | version marker for the quotient-coordinate row |
 | `radius_ratios` | $\varepsilon_{IM}$ and $\varepsilon_{MO}$ |
 | `period_ratios` | $T_I/T_M$ and $T_M/T_O$, so time-scale separation is checked alongside radius separation |
-| `delta_M` | middle-layer speed offset $(s_M-c_f)/c_f$ |
+| `delta_M` | compatibility field for the source-record binary-2 speed offset $(s_2-c_f)/c_f$; the stable field name is not a taxonomy identity |
 | `ellipticity` and `ellipticity_status` | layer ellipticity data and whether Tier 0 used a shared scalar chart |
 | `plane_gram` | $G_{\ell m}$ values for the quotient-reduced binary-plane normals |
 | `orientation_class` | $\chi_N$, the triple product, and a nondegenerate or degenerate status |

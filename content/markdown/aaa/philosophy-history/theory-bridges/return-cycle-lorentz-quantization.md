@@ -353,7 +353,7 @@ B_r\,\mathcal{W}_r(\beta)\cos(2m_r\theta+\varphi_r)
 $$
 where each residual label $r$ must be traceable to a named branch-chart feature. A residual with no branch source is not a successful prediction; it is fitting error or an incomplete closure model.
 
-The failure mode is equally sharp. If the outer envelope gives
+The failure mode is equally sharp. If the declared exclusion envelope gives
 $$
 \xi_q(v)
 \approx

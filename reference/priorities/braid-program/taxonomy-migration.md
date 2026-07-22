@@ -154,6 +154,19 @@ Migration is complete. The next pass should decide, one current source at a time
 
 No legacy source remains to migrate. The approved persistent-index batch has also removed inner/middle/outer and preassigned-hinge semantics from the taxonomy stack and its controlled Archie terminology. Downstream reader chapters, chapter titles, runtime identifiers, and generated artifacts remain separate follow-up scopes; they are not hidden remnants of the source migration.
 
+## 2026-07-22 Borg Prescribed-Record Integration
+
+Borg now routes one family-neutral prescribed-record generator through the complete A/B/C candidate cohort. The four pre-existing B1 records preserve their stable machine identities and endpoint paths while their source titles, catalog labels, displayed titles, taxonomy metadata, and provenance descriptions use the canonical coordinate names.
+
+| Retained source and record ID | Retained source filename | Retained record filename | Prior source title | Prior catalog label | Canonical Borg label |
+| --- | --- | --- | --- | --- | --- |
+| `illustrative-spindle-chart-hypothesis-v0` | `illustrative-spindle-chart-hypothesis.v0.json` | `illustrative-spindle-chart-hypothesis.assembly-view-record.v0.json` | Illustrative spindle chart hypothesis | Illustrative spindle prescribed geometry | `B1 — interior reference` |
+| `illustrative-extreme-cap-tilt-spindle-variant-v0` | `illustrative-extreme-cap-tilt-spindle-variant.v0.json` | `illustrative-extreme-cap-tilt-spindle-variant.assembly-view-record.v0.json` | Illustrative extreme cap-tilt spindle variant | Spindle variant — extreme cap tilt | `B1 — high-axial interior` |
+| `illustrative-planar-tri-binary-spindle-boundary-v0` | `illustrative-planar-tri-binary-spindle-boundary.v0.json` | `illustrative-planar-tri-binary-spindle-boundary.assembly-view-record.v0.json` | Illustrative planar tri-binary spindle boundary | Spindle boundary — planar tri-binary | `B1 — all-equatorial boundary` |
+| `illustrative-full-cap-axial-spindle-boundary-v0` | `illustrative-full-cap-axial-spindle-boundary.v0.json` | `illustrative-full-cap-axial-spindle-boundary.assembly-view-record.v0.json` | Illustrative full-cap axial spindle boundary | Not previously catalogued | `B1 — all-axial boundary` |
+
+All four rows are Family B, member B1. They retain the common axis $(0,0,1)$, radii $(0.22,0.32,0.44)$, frequencies $(0.25,0.25,0.25)$, phases $(0,2\pi/3,4\pi/3)$, and the exact prior endpoint identifiers and paths. Their respective $(h_1,h_2,h_3)$ and $(\rho_1,\rho_2,\rho_3)$ rows are interior reference, high-axial interior, all-equatorial, and all-axial as recorded in the candidate analysis methodology. The compatibility names remain only in stable IDs, filenames, record URLs, endpoint IDs, the compatibility wrapper path, and this migration ledger.
+
 ## Wider-Corpus Taxonomy Audit
 
 The first exact-use audit found seven of 143 AAA documents outside `noether-braid` and the controlled Archie terminology that use the family/member taxonomy in its intended braid sense:

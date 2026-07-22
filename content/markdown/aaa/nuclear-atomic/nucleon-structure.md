@@ -79,11 +79,11 @@ Hydrogen calculations need the proton to enter the atomic window as one color-si
 For a proton branch, let the three quark color sectors be
 
 $$
-s_{u_1},s_{u_2},s_d\in\{H,M,L\},
+s_{u_1},s_{u_2},s_d\in\{1,2,3\},
 \qquad
 \{s_{u_1},s_{u_2},s_d\}
 =
-\{H,M,L\}
+\{1,2,3\}
 $$
 
 The second condition is the color-singlet occupancy rule: the exceptional-axis sectors occur once each. Let $\mathcal L_{\mathrm{strong}}^{uud}(T)$ denote the strong-sector corridor ledger that locks these three quark branches into one accepted proton branch. At proton-sensitive resolution, the candidate source envelope in response channel $X$ is

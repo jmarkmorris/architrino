@@ -772,7 +772,7 @@ The first executable scaffold keeps the clock proof burden visible. Its accepted
 
 ## Mechanisms for Time Dilation
 
-Two coupled mechanisms change the internal frequency of a Noether braid clock (the prescribed common-axis candidate is [B1](../noether-braid/braid-family-b.md#b1)):
+Two coupled mechanisms change the internal frequency of a Noether braid clock (the prescribed [B1](../noether-braid/braid-family-b.md#b1) candidate has one common midpoint, one coincident binary axis, one common frequency, and one common circulation sense, while its per-binary radii, axial half-separations, transverse orbit radii, and phases remain independent):
 
 ### Kinematic Effect (Velocity Dependence)
 
@@ -943,6 +943,8 @@ $$
 a\in\{1,2,3\}
 $$
 with radii $R_a=\|\mathbf r_a\|$. The three radii are independently assignable and do not order or relabel the binaries.
+
+For this state to carry the A1 label, its three binary axes must also be mutually orthogonal at the Family-A near-rest endpoint and converge toward the group-translation direction along the prescribed flattening coordinate $\lambda_A$. The frequencies $f_a$ remain independently assignable, and the axial half-separations $h_a$, transverse orbit radii $\rho_a$, phases $\phi_a$, and circulation rows remain explicit binary coordinates. This prescribed chart does not establish that the clock is retained or stable under EOM-solver evolution; failure to preserve the declared coordinate relations on the same evolved record would falsify the A1 clock assignment.
 
 ### Microscopic Evolution Equation (Regularized)
 

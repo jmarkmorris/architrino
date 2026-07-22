@@ -6,20 +6,22 @@ Its closest companions are [A1 Dynamics](../../noether-braid/braid-a1-dynamics.m
 
 The opening sections state the working thesis and the immediate kinematic map; later sections separate conjectural alignment, causal-wake framing, constant-mapping proposals, and failure modes. The reader should treat the whole note as a live mapping program, with explicit hypotheses rather than settled closure.
 
-The simple way to read the chapter is this: ordinary Planck formulas are not being used as standalone constants that already explain the world. They are being used as hard clues. If a A1 really supplies the deepest stable clock-and-ruler standard, then the familiar Planck combinations should reappear as consequences of one extreme alignment branch, one action ledger, and one observer-export channel. If the constants can be fitted only one at a time, the mapping has failed.
+Here `A1` has only its prescribed taxonomy meaning: one complete Family-A braid with persistent binary indices $a\in\{1,2,3\}$, independently assignable positive radii $R_a$ and frequencies $f_a$, mutually orthogonal binary axes at $\lambda_A=0$, and axes that converge toward the group-translation direction as $\lambda_A\to1$. The axial half-separations $h_a$, transverse orbit radii $\rho_a$, phases $\phi_a$, and circulation rows remain binary coordinates; no equality, radius order, particle identity, stability, or retained branch follows from the member label. Every Planck, fermion, black-hole, and constant assignment below is therefore a conjecture about this prescribed chart. A same-record EOM-solver evolution that cannot retain the declared coordinate relations would falsify the physical A1 assignment.
+
+The simple way to read the chapter is this: ordinary Planck formulas are not being used as standalone constants that already explain the world. They are being used as hard clues. If an A1 really supplies the deepest stable clock-and-ruler standard, then the familiar Planck combinations should reappear as consequences of one extreme alignment branch, one action ledger, and one observer-export channel. If the constants can be fitted only one at a time, the mapping has failed.
 
 This keeps the claim level honest. The chapter preserves what Planck-unit reasoning gets right: it marks the point where localization, action, gravity, and signal speed stop being separable bookkeeping problems. The $\mathbb{A}\mathbb{A}\mathbb{A}$ addition is the recovery target: identify the physical branch whose delayed causal geometry makes those bookkeeping limits show up.
 
 ## Thesis
 
-This chapter maps the Planck scale into A1 geometry and dynamics. The inherited Planck formulas are used as constraints and comparison targets, not as settled ontology. The immediate aim is to identify which geometric quantities, delay-feedback conditions, and alignment variables would have to be derived before the Planck scale can be claimed as a A1 closure result.
+This chapter maps the Planck scale into A1 geometry and dynamics. The inherited Planck formulas are used as constraints and comparison targets, not as settled ontology. The immediate aim is to identify which geometric quantities, delay-feedback conditions, and alignment variables would have to be derived before the Planck scale can be claimed as an A1 closure result.
 
 We propose that the Planck scale corresponds, in the architrino architecture, to a specific **alignment-lock state** of A1 assemblies in the Noether sea:
 
 > 
 > **Working Thesis (Planck Alignment Horizon).**
 > 
-> A A1 reaches the Planck state when, in the forward sector, both component speeds approach the field speed $c_f$ and the **full delay-feedback loop** admits a final, marginally stable, phase-locked configuration. The component-speed statement and the combined-speed statement are distinct: $v_{\text{trans}}\to c_f$ and $v_{\text{orb}}^{\text{tan}}\to c_f$ name the terminal component limits, while $v_{\text{eff}}=\|\mathbf{v}_{\text{trans}}+\mathbf{v}_{\text{orb}}^{\text{tan}}\|$ names the forward-sector vector sum used for wedge geometry. In this state:
+> An A1 reaches the proposed Planck state when, in the forward sector, both component speeds approach the field speed $c_f$ and the **full delay-feedback loop** admits a final, marginally stable, phase-locked configuration. The component-speed statement and the combined-speed statement are distinct: $v_{\text{trans}}\to c_f$ and $v_{\text{orb}}^{\text{tan}}\to c_f$ name the terminal component limits, while $v_{\text{eff}}=\|\mathbf{v}_{\text{trans}}+\mathbf{v}_{\text{orb}}^{\text{tan}}\|$ names the forward-sector vector sum used for wedge geometry. In this state:
 > 1. The kinematic transition to flattening occurs as $v_{\text{trans}} \to c_f$ and $v_{\text{orb}}^{\text{tan}} \to c_f$ in the forward sector, starving new one-way causal updates ahead of the forward edge (local horizon behavior).
 > 2. The geometry collapses from a 3D precessing oblate spheroidal envelope (fermion-like) to a 2D, co-planar disk (boson-like).
 > 3. In the planar limit, the combined in-plane motion outruns $c_f$, so the emission history forms a Mach-wedge causal wake with half-angle
@@ -65,7 +67,7 @@ E_{\mathrm{cross}}^2 \sim \frac{\hbar c_f^5}{2G},
 \ell_{\mathrm{probe,min}} \sim O(\ell_P)
 $$
 
-Thus the Planck scale is not merely a guessed lattice spacing or primitive grain of length. It is an operational closure point: attempts to force shorter localization either lose resolution through quantum wavelength or replace the target region with a horizon-scale causal boundary. This supports the interpretation of $\ell_P$ as the observed trace of a A1 alignment horizon rather than as proof that spacetime is made of smaller static beads.
+Thus the Planck scale is not merely a guessed lattice spacing or primitive grain of length. It is an operational closure point: attempts to force shorter localization either lose resolution through quantum wavelength or replace the target region with a horizon-scale causal boundary. This motivates testing $\ell_P$ as the observed trace of an A1 alignment horizon rather than treating it as proof that spacetime is made of smaller static beads.
 
 In plain terms, the probe argument says that "looking smaller" is not a neutral act. A higher-energy probe both sharpens the wavelength and loads more stress into the region being probed. The observed lower bound is therefore a joint readout of resolution, energy loading, and horizon-facing response. In this chapter that joint readout becomes a branch test: the A1 account must explain why the same attempted compression becomes alignment or horizon behavior instead of an ordinary smaller ruler.
 
@@ -130,12 +132,12 @@ We treat the Planck relations as constraints on a **specific alignment geometry*
 $$
 2\pi R_{\text{align}} f_P = c_f \quad \Rightarrow \quad 2\pi R_{\text{align}} = \ell_P
 $$
-So the Planck length maps to the **outer circumference**, with $R_{\text{align}} = \ell_P/(2\pi)$.
+So the Planck length maps to the **declared alignment circumference**, with $R_{\text{align}} = \ell_P/(2\pi)$.
 
 With $E = h f$, the action per cycle is $S = E/f = h$; here $h$ is the action increment per unit frequency (per cycle), so the $2\pi$ factor belongs to the geometry (circumference), not the constant.
 Outside the alignment point, the $R$–$f$ mapping is not fixed by kinematics alone; it requires the full delay-feedback dynamics (i.e., $v(R)$ from the equations of motion).
 
-**Economy hypothesis:** $G$ and $h$ are linked through the alignment geometry. The effective compliance scales with the **alignment area** of the outer orbit ($R_{\text{align}}^2$), while $c_f^3$ provides the causal throughput scale and $h$ sets the action-per-cycle. This is the compact, geometry-first linkage we are testing:
+**Economy hypothesis:** $G$ and $h$ are linked through the alignment geometry. The effective compliance scales with the **alignment area** of the declared reference orbit ($R_{\text{align}}^2$), while $c_f^3$ provides the causal throughput scale and $h$ sets the action-per-cycle. This is the compact, geometry-first linkage we are testing:
 $$
 G \propto \frac{c_f^3 (\text{alignment geometry})}{h}
 $$
@@ -281,11 +283,11 @@ We propose an effective spin/statistics mapping via a reduction in configuration
 
 In the low-energy / weak-alignment regime:
 
-- Inner, Middle, and binaries 3 occupy **non-coplanar planes**.
+- Binaries 1, 2, and 3 occupy **non-coplanar planes**.
 - Total angular momentum **J** is fixed (no external torque), but the normals of the three support-row planes wobble: their composite orientation precesses around **J**, often following small-circle, Lissajous, or figure-8 paths in orientation space (not a rigid cone).
 - The full causal configuration (including self-hit history and relative plane orientations) is not restored by a simple $2\pi$ spatial rotation.
 
-> **Hypothesis:** The effective orientation space of such a A1 behaves like an $SU(2)$-type double cover of spatial rotations:
+> **Hypothesis:** The effective orientation space of such an A1 behaves like an $SU(2)$-type double cover of spatial rotations:
 > a $2\pi$ rotation changes the internal causal phase; a $4\pi$ rotation restores it.  
 > This is the candidate route to spin-$\tfrac{1}{2}$-like behavior and Pauli-style exclusion from overlapping 3D precession volumes.
 
@@ -322,9 +324,9 @@ Whenever we identify $c$ with $c_f$ in Planck formulas, we explicitly appeal to 
 
 ### Minimal Cycle Action: $\mathcal{A}_{\text{align}}^{\text{cycle}}$, $I_{\text{align}}$, and $h$
 
-Let $I$ denote the radian-normalized total rotational action of a A1 assembly: the action-angle variable that has the same units and role as angular momentum. Let $\mathcal{A}_{\text{cycle}}=2\pi I$ denote the corresponding closed-cycle action.
+Let $I$ denote the radian-normalized total rotational action of an A1 assembly: the action-angle variable that has the same units and role as angular momentum. Let $\mathcal{A}_{\text{cycle}}=2\pi I$ denote the corresponding closed-cycle action.
 
-Because a A1 can carry several internal frequency rows, $\mathcal{A}_{\text{cycle}}$ is defined on a closed return of the retained branch ledger, not on one chosen component frequency by itself. Component frequencies may coincide, lock in rational ratios, or remain distinct inside the branch. The $h$ mapping asks whether the recordable closed return exports one universal action increment after the full phase, causal-root, energy, and wake rows close.
+Because an A1 can carry several internal frequency rows, $\mathcal{A}_{\text{cycle}}$ is defined on a closed return of the retained branch ledger, not on one chosen component frequency by itself. Component frequencies may coincide, lock in rational ratios, or remain distinct inside the branch. The $h$ mapping asks whether the recordable closed return exports one universal action increment after the full phase, causal-root, energy, and wake rows close.
 
 - For generic modes $n$, $I(n)$ and $\mathcal{A}_{\text{cycle}}(n)$ depend on axial structure and environment.
 - For the Planck alignment state $n_{\text{max}}$, we expect a **universal attractor** dominated by:

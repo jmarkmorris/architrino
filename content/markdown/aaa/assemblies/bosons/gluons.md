@@ -17,7 +17,7 @@ Plainly, a quark is colored when the assembly has a "which axis is special" degr
 
 The [Euclidean void](../../foundations/euclidean-void.md) is populated by high-energy, small-scale Noether braids, often in tightly bound pro/anti groups. These form an ambient Noether sea of color-singlet braids.
 
-A Noether braid also has three ordered axes $(H,M,L)$, each carrying two polar sites.
+A Noether braid also has three persistently indexed axes $(1,2,3)$, each carrying two polar sites.
 
 - **Axial layer:** 6 polar sites total, 2 per axis.
 - **Symmetry breaking:** quarks do not keep the three axes equivalent.
@@ -118,7 +118,7 @@ This is a provenance target, not a new interaction law. It prevents the gluon st
 
 The octet count comes from the color-basis operator space.
 
-- **The basis:** we have 3 color basis states, equivalently the three exceptional-axis sectors $(H,M,L)$.
+- **The basis:** we have 3 color basis states, equivalently the three exceptional-axis sectors $(1,2,3)$.
 - **The matrix:** there are $3 \times 3 = 9$ possible couplings, corresponding to $U(3)$ before the singlet is removed.
 - **Off-diagonal color-changing modes:** six generators move or mix exceptionality between distinct axis sectors: $(HM),(HL),(ML)$, each with two Hermitian components. These are the color-changing corridor modes analogous to entries such as $R\bar{G}$ or $B\bar{R}$.
 - **Diagonal traceless modes:** two additional generators are neutral in net color change but still act nontrivially on relative color phase and weighting across the three indexed binary-axis sectors. They are the diagonal traceless directions $H_1$ and $H_2$ described in [Color Charge and SU(3)](../fermions/color-charge-su3.md#generator-basis-from-axis-operations).

@@ -2,7 +2,7 @@
 
 This chapter studies one narrow theory question: how the Noether braid `pro/anti` distinction should be understood as a Family-A braid approaches the planar horizon state. For this note we set aside bookkeeping questions and focus on geometry, orbit direction, and the reduction from a 3D precessing scaffold to a planar exterior view.
 
-The guiding problem is simple. In ordinary low-stress conditions, the Family-A braid is a fully 3D object with ordered binary roles and precession structure. At the event horizon, the same assembly is driven toward coplanarity and alignment. The question is whether `pro/anti` remains directly visible in that planar state or whether only a reduced exterior spin pattern survives.
+The guiding problem is simple. In ordinary low-stress conditions, the Family-A braid is a fully 3D object with persistent binary indices, an ordered set of normals, and precession structure. At the event horizon, the same assembly is hypothesized to approach coplanarity and alignment. The question is whether `pro/anti` remains directly visible in that planar state or whether only a reduced exterior spin pattern survives.
 
 The chapter is therefore a reduction map, not a new chirality doctrine. It keeps four labels from collapsing into one another: the deeper 3D pro/anti branch orientation, polarity conjugation at fixed worldlines, the planar clockwise/counterclockwise sign seen from an exterior normal, and any later helicity-like sign tied to a propagation or translation axis.
 
