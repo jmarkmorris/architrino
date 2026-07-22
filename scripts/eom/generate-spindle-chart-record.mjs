@@ -282,7 +282,7 @@ export function createSpindleExactSourceRecord(rawSpec, options = {}) {
   });
   return {
     schema: EXACT_PRESCRIBED_SOURCE_RECORD_SCHEMA,
-    sourceId: spec.specId,
+    recordId: spec.specId,
     sourceSchema: spec.schema,
     sourceHash: options.sourceHash ?? null,
     generatingSpec: options.generatingSpec ?? null,

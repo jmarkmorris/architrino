@@ -1,4 +1,4 @@
-# A1 Dynamics and Interpretation
+# Braid A1 Dynamics and Interpretation
 
 This specialist chapter carries the retention, phase-closure, cadence-retuning, scaling, strong-field, and downstream interpretation hypotheses specific to A1. The A1 coordinates and constrained variants are defined in [Braid Family A](braid-family-a.md#a1); the realization-independent proof contract is defined in [Braid Recovery Requirements](braid-recovery-requirements.md).
 

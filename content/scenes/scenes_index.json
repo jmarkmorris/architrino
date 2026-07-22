@@ -1884,6 +1884,36 @@
       "id": "noether_braid__doubling_frequency_lock",
       "name": "Doubling-Frequency Resonance Lock",
       "path": "content/scenes/noether-braid/doubling_frequency_lock.json"
+    },
+    {
+      "id": "noether_braid__braid_a2_symmetry_and_return_response",
+      "name": "A2 Symmetry and Return Response",
+      "path": "content/scenes/noether-braid/braid_a2_symmetry_and_return_response.json"
+    },
+    {
+      "id": "noether_braid__braid_analysis_methodology",
+      "name": "Candidate Braid Analysis Methodology",
+      "path": "content/scenes/noether-braid/braid_analysis_methodology.json"
+    },
+    {
+      "id": "noether_braid__braid_family_a",
+      "name": "Braid Family A",
+      "path": "content/scenes/noether-braid/braid_family_a.json"
+    },
+    {
+      "id": "noether_braid__braid_family_b",
+      "name": "Braid Family B",
+      "path": "content/scenes/noether-braid/braid_family_b.json"
+    },
+    {
+      "id": "noether_braid__braid_family_c",
+      "name": "Braid Family C",
+      "path": "content/scenes/noether-braid/braid_family_c.json"
+    },
+    {
+      "id": "noether_braid__braid_taxonomy",
+      "name": "Braid Taxonomy",
+      "path": "content/scenes/noether-braid/braid_taxonomy.json"
     }
   ]
 }

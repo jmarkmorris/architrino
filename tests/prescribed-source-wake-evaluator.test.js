@@ -15,7 +15,7 @@ import {
 function sourceRecord(sources, history = { start: 0, end: 4 }) {
   return {
     schema: EXACT_PRESCRIBED_SOURCE_RECORD_SCHEMA,
-    sourceId: "closed-form-test-record",
+    recordId: "closed-form-test-record",
     sourceSchema: "closed-form-test.v1",
     engineId: "prescribed-geometry",
     engineVersion: "independent-test-fixture.v1",

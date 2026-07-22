@@ -80,7 +80,7 @@ It does not carry the detailed family derivations, select a frequency family, as
 | Family definition | [Braid Family B](braid-family-b.md) | The exact B1 path geometry, coordinate boundaries, axial-translation specialization, and Family-A boundary. |
 | Family definition | [Braid Family C](braid-family-c.md) | The exact two-B1 composition chart, C1/C2 circulation relation, derived axis offset, and physical-mapping boundary. |
 | Configuration space | [Noether Braid Configuration Space](noether-braid-configuration-space.md) | The evidence-level terms and supplementary rank-three angular-momentum-frame diagnostics outside the canonical taxonomy. |
-| A1 dynamics and interpretation | [A1 Dynamics and Interpretation](braid-a1-dynamics.md) | A1 retention questions, closure labels, cadence retuning, scaling, alignment, and downstream hypotheses. |
+| Braid A1 dynamics and interpretation | [Braid A1 Dynamics and Interpretation](braid-a1-dynamics.md) | A1 retention questions, closure labels, cadence retuning, scaling, alignment, and downstream hypotheses. |
 | A2 symmetry and return response | [A2 Symmetry and Return Response](braid-a2-symmetry-and-return-response.md) | The A2 invariant-channel theorem, two-ring geometry, dipole identity, momentum screw, and return-response analysis. |
 | Mathematics | [Braid Mathematics](braid-mathematics.md) | The shared machinery: transverse speed-budget lemmas, eigen-braid spectrum framing, fold-set action quantization as hypothesis, and Accessory Configuration moment analysis. |
 | Analysis methodology | [Candidate Braid Analysis Methodology](braid-analysis-methodology.md) | The common causal-wake map, internal and external probes, energy-ledger interface, sampling method, and candidate-grading rules. |

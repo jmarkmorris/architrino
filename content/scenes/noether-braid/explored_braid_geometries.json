@@ -2,7 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "noether_braid__explored_braid_geometries",
-    "title": "A1 Dynamics and Interpretation",
+    "title": "Braid A1 Dynamics and Interpretation",
     "type": "Scene-Markdown-View",
     "units": "relative",
     "wrapLabels": true,

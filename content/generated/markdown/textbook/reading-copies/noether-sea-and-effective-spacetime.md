@@ -416,7 +416,7 @@ $$
 E_N=h\nu_N
 $$
 
-The point of this expression is not to add a new quantum postulate at the Noether sea level. It records the same closed-cycle action accounting used in the [Cadence-Scale Retuning Hypothesis](../../../../markdown/aaa/noether-braid/braid-families.md#cadence-scale-retuning-hypothesis): a cadence state carries energy as action per cycle times cycles per unit absolute time. A single Noether braid may cross a neighboring branch through an $h$-scale ledger step, while a large asynchronous ensemble can produce an apparently smooth drift in the coarse variables.
+The point of this expression is not to add a new quantum postulate at the Noether sea level. It records the same closed-cycle action accounting used in the [Cadence-Scale Retuning Hypothesis](../../../../markdown/aaa/noether-braid/braid-a1-dynamics.md#cadence-scale-retuning-hypothesis): a cadence state carries energy as action per cycle times cycles per unit absolute time. A single Noether braid may cross a neighboring branch through an $h$-scale ledger step, while a large asynchronous ensemble can produce an apparently smooth drift in the coarse variables.
 
 At the single Noether braid level, each accepted $h$-scale transfer forces the braid to retune its cadence-scale closure. The retuning may appear as a cadence shift, shell-binary radius shift, envelope-scale change, envelope-ratio change, orientation or strain update, or modified coupling to neighboring braids. In the simplest fixed-speed shell-binary approximation,
 
@@ -439,7 +439,7 @@ f_N
 \right\rangle_{\Delta A_{\mathrm{cyc}}=\pm h}
 $$
 
-where the average is taken over accepted $h$-scale transactions inside the coarse-graining cell. Once the single-braid [retuning map](../../../../markdown/aaa/noether-braid/braid-families.md#cadence-scale-retuning-hypothesis) $\mathcal{R}_{\mathrm{cyc}}^{(q,\varsigma)}$ is specified, the first current estimate is
+where the average is taken over accepted $h$-scale transactions inside the coarse-graining cell. Once the single-braid [retuning map](../../../../markdown/aaa/noether-braid/braid-a1-dynamics.md#cadence-scale-retuning-hypothesis) $\mathcal{R}_{\mathrm{cyc}}^{(q,\varsigma)}$ is specified, the first current estimate is
 
 $$
 J_\nu(\nu,\mathbf X,T)
@@ -1718,7 +1718,7 @@ The fundamental claim is:
 
 A clock is any assembly with a **stable, countable internal cycle**. The native picture is not time itself slowing; the countable assembly cycle is what changes cadence:
 
-- Minimal model: a Noether braid where one shell binary, typically the middle binary, supplies the counted cycle.
+- Minimal model: a Noether braid with one declared clock-channel index $a_{\mathrm{clk}}\in\{1,2,3\}$ whose cycle is counted. The clock-channel role is extracted from the record and is not assigned by radius order.
 - Base frequency $\omega_0$ (or period $T_0 = 2\pi/\omega_0$) is defined for:
   - Clock **at rest** in the absolute frame.
   - In a region of homogeneous Noether sea density $n=1$ and negligible external gradients.
@@ -2402,7 +2402,7 @@ The first executable scaffold keeps the clock proof burden visible. Its accepted
 
 ### Mechanisms for Time Dilation
 
-Two coupled mechanisms change the internal frequency of a Noether braid clock (a named candidate realization is the [spindle braid](../../../../markdown/aaa/noether-braid/spindle-braid.md)):
+Two coupled mechanisms change the internal frequency of a Noether braid clock (the prescribed common-axis candidate is [B1](../../../../markdown/aaa/noether-braid/braid-family-b.md#b1)):
 
 #### Kinematic Effect (Velocity Dependence)
 
@@ -2415,7 +2415,7 @@ When the clock has center-of-mass velocity $\mathbf{V}_{\text{cm}}$ relative to 
  Primitive self-hit and partner-hit roots are mediated by delayed, radial path-history interactions at speed $c_f$. When those roots are dressed into an observer-level clock law, the transverse budget must be formed with the declared channel speed $c_\star$: $c_\star=c_f$ for a primitive branch test and $c_\star=c_{\text{eff}}(\mathbf X,T)$ for a Noether sea dressed clock comparison.
 
 3. **Shape deformation (Lorentz-link hypothesis):**
- To remain dynamically stable under increased $\|\mathbf{w}\|$, the nested shell braid's outer boundary becomes an **oblate spheroidal exclusion envelope**, flattened along the direction of motion:
+ Under the Family-A Lorentz-link hypothesis, increased $\|\mathbf{w}\|$ makes the complete braid's **oblate spheroidal exclusion envelope** flatten along the direction of motion:
  - At low $\|\mathbf{w}\|$, the oblate spheroidal exclusion envelope is nearly spherical.
  - As $\|\mathbf{w}\|\to c_\star$, that envelope contracts along $\hat{\mathbf{w}}$ while maintaining transverse dimensions, yielding semiaxes $(R_{\perp}, R_{\perp}, R_{\parallel})$ and $R_{\parallel} < R_{\perp}$.
  - This geometric dilation changes internal path lengths and curvature, lowering $\omega$.
@@ -2558,24 +2558,21 @@ In this chapter, Planck-scale references inherit that same alignment definition.
 
 To close the derivation gap, fix an explicit clock model and an explicit observable-extraction map.
 
-#### Concrete Nested Shell Braid Clock State
+#### Concrete A1 Clock State
 
-Use one neutral nested shell braid with six constituent architrinos:
+Use one A1 record with six constituent architrinos grouped into three persistently indexed neutral binaries:
 $$
-\mathcal{A}=\{i_+,i_-,m_+,m_-,o_+,o_-\}
+\mathcal{A}=\{1_+,1_-,2_+,2_-,3_+,3_-\}
 $$
 with intrinsic polarities $q_a=\pm\epsilon$, $\epsilon=|e|/6$, and trajectories $\mathbf X_a(T)$. No per-constituent inertial mass is assigned at the substrate level.
 
 Define pair-separation vectors
 $$
-\mathbf{r}_i=\mathbf X_{i+}-\mathbf X_{i-},\quad
-\mathbf{r}_m=\mathbf X_{m+}-\mathbf X_{m-},\quad
-\mathbf{r}_o=\mathbf X_{o+}-\mathbf X_{o-}
+\mathbf r_a=\mathbf X_{a+}-\mathbf X_{a-},
+\qquad
+a\in\{1,2,3\}
 $$
-with radii $R_b=\|\mathbf{r}_b\|$ for $b\in\{i,m,o\}$ and nested ordering
-$$
-R_i<R_m<R_o
-$$
+with radii $R_a=\|\mathbf r_a\|$. The three radii are independently assignable and do not order or relabel the binaries.
 
 #### Microscopic Evolution Equation (Regularized)
 
@@ -2598,15 +2595,15 @@ This is the dual-mollified finite-memory certification form used in the dynamica
 
 #### Clock Observable and Clock Map
 
-Take the middle binary as the clock channel. Let $\mathbf{e}_1,\mathbf{e}_2$ be an orthonormal basis of the mean orbital plane of $\mathbf{r}_m$, and define phase
+Declare $a_{\mathrm{clk}}\in\{1,2,3\}$ as the clock channel on the source record. Let $\mathbf{e}_1,\mathbf{e}_2$ be an orthonormal basis of the mean orbital plane of $\mathbf r_{a_{\mathrm{clk}}}$, and define phase
 $$
-\theta_m(T)=\operatorname{atan2}\!\big(\mathbf{r}_m\!\cdot\!\mathbf{e}_2,\mathbf{r}_m\!\cdot\!\mathbf{e}_1\big)
+\theta_{\mathrm{clk}}(T)=\operatorname{atan2}\!\big(\mathbf r_{a_{\mathrm{clk}}}\!\cdot\!\mathbf e_2,\mathbf r_{a_{\mathrm{clk}}}\!\cdot\!\mathbf e_1\big)
 $$
 On a window $[T_1,T_2]$, define measured frequency
 $$
 \omega_{\text{clk}}
 =
-\frac{\theta_m(T_2)-\theta_m(T_1)}{T_2-T_1}
+\frac{\theta_{\mathrm{clk}}(T_2)-\theta_{\mathrm{clk}}(T_1)}{T_2-T_1}
 $$
 For the reference run $(v=0,\Phi_N=0)$, set $\omega_0=\omega_{\text{clk}}^{\text{ref}}$ and define
 $$
@@ -2633,7 +2630,7 @@ Thus a boundary contribution may affect clock coupling only by changing the same
 
 #### Controlled Perturbation Family
 
-Run the same nested shell braid under controlled backgrounds:
+Run the same A1 clock record under controlled backgrounds:
 
 1. Uniform center-of-mass drift speed $v=\|\mathbf{V}_{\text{CM}}\|$ through homogeneous medium.
 2. Weak static potential background $\Phi_N(\mathbf X,T)$ (or $U\equiv-\Phi_N>0$).
@@ -4407,7 +4404,7 @@ Primary theory anchors:
 1. [dynamics/master-equation.md](../../../../markdown/aaa/dynamics/master-equation.md)
 2. [dynamics/causal-action-functional.md](../../../../markdown/aaa/dynamics/causal-action-functional.md)
 3. [dynamics/binary-dynamics.md](../../../../markdown/aaa/dynamics/binary-dynamics.md)
-4. [Nested Shell Braid Dynamics](../../../../markdown/aaa/noether-braid/braid-families.md#nested-shell-braid-dynamics)
+4. [Nested Shell Braid Dynamics](../../../../markdown/aaa/noether-braid/braid-a1-dynamics.md#a1-dynamics)
 5. `spacetime/*`
 6. [validation/constraint-ledger.md](../../../../markdown/aaa/validation/constraint-ledger.md)
 7. [validation/no-go-theorems.md](../../../../markdown/aaa/validation/no-go-theorems.md)
@@ -7162,7 +7159,7 @@ At this interface:
 
 This is why the project treats holographic language as suggestive but not primitive. The horizon behaves like an information-compression interface because the constitutive degrees of freedom have been forced into a constrained alignment state. That motivates the analogy to holography and AdS/CFT without requiring a literal boundary-field ontology.
 
-The alignment state also silences the assemblies geometrically, at hypothesis level. The [axial polarity dipole identity](../../../../markdown/aaa/noether-braid/braid-mathematics.md#moments-and-the-axial-polarity-dipole) places a braid's leading polarity-signed moment entirely on its axial extent, so flattening into the alignment-locked sheet extinguishes the leading term of each assembly's wake signature: the horizon condition and the dipole-quiet condition are the same limit. Darkness at the interface is then not only a causal-escape statement — the loudest broadcast channel of every aligned assembly closes as a matter of geometry, and what remains distinguishable is exactly the higher-moment and phase content that the alignment-restricted closure label $\Lambda_{\text{NS}}^{\mathrm{align}}$ enumerates for the entropy count. The collapse of precession in the same limit is the matching symmetry statement: precession measures distance from the symmetric channel, so an alignment-locked sheet is also a precession-silenced sheet, and the two observables should extinguish together. Both statements are exported from the braid scene and inherit its evidence boundary; neither is a retained-branch claim.
+The alignment state also silences the assemblies geometrically, at hypothesis level. The [axial polarity dipole identity](../../../../markdown/aaa/noether-braid/braid-a2-symmetry-and-return-response.md#moments-and-the-axial-polarity-dipole) places a braid's leading polarity-signed moment entirely on its axial extent, so flattening into the alignment-locked sheet extinguishes the leading term of each assembly's wake signature: the horizon condition and the dipole-quiet condition are the same limit. Darkness at the interface is then not only a causal-escape statement — the loudest broadcast channel of every aligned assembly closes as a matter of geometry, and what remains distinguishable is exactly the higher-moment and phase content that the alignment-restricted closure label $\Lambda_{\text{NS}}^{\mathrm{align}}$ enumerates for the entropy count. The collapse of precession in the same limit is the matching symmetry statement: precession measures distance from the symmetric channel, so an alignment-locked sheet is also a precession-silenced sheet, and the two observables should extinguish together. Both statements are exported from the braid scene and inherit its evidence boundary; neither is a retained-branch claim.
 
 #### Horizon-Adjacent Photon Channel
 
@@ -7840,7 +7837,7 @@ This chapter centralizes the black-hole ontology and hands specific tasks to adj
 
 - [singularity-resolution.md](../../../../markdown/aaa/spacetime/singularity-resolution.md): canonical horizon alignment condition and singularity replacement language.
 - [general-relativity.md](../../../../markdown/aaa/spacetime/general-relativity.md): weak-field and strong-field observational closure targets.
-- [Nested Shell Braid Dynamics](../../../../markdown/aaa/noether-braid/braid-families.md#nested-shell-braid-dynamics): nested shell braid regime map, recycling sketches, and kinematic hypotheses.
+- [Nested Shell Braid Dynamics](../../../../markdown/aaa/noether-braid/braid-a1-dynamics.md#a1-dynamics): nested shell braid regime map, recycling sketches, and kinematic hypotheses.
 - [Mapping the Planck Scale to the Nested Shell Braid Geometry](../../../../markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-braid-alignment.md): Planck-alignment interpretation of terminal horizon locking.
 - [../cosmology/dark-energy.md](../../../../markdown/aaa/cosmology/dark-energy.md): effective dark-energy source terms and late-time expansion history.
 - [../cosmology/CMB.md](../../../../markdown/aaa/cosmology/CMB.md): recycling cosmology and SMBH-sourced chronology mapping.
@@ -7852,7 +7849,7 @@ In $\mathbb{A}\mathbb{A}\mathbb{A}$, black holes are strong-field Noether sea re
 
 ## Singularity Resolution
 
-This chapter explains what replaces a singularity in the strong-field part of the model. The guiding idea is not that an infinite-density point is hidden behind better coordinates. It is that compact Noether braid assemblies enter a finite maximum-curvature or horizon-interface regime whose boundary data must close. This is the canonical strong-field bridge for [Noether Braid](../../../../markdown/aaa/noether-braid/noether-braid.md), [Nested Shell Braid Dynamics](../../../../markdown/aaa/noether-braid/braid-families.md#nested-shell-braid-dynamics), and [Black Holes](../../../../markdown/aaa/spacetime/black-holes.md).
+This chapter explains what replaces a singularity in the strong-field part of the model. The guiding idea is not that an infinite-density point is hidden behind better coordinates. It is that compact Noether braid assemblies enter a finite maximum-curvature or horizon-interface regime whose boundary data must close. This is the canonical strong-field bridge for [Noether Braid](../../../../markdown/aaa/noether-braid/noether-braid.md), [Nested Shell Braid Dynamics](../../../../markdown/aaa/noether-braid/braid-a1-dynamics.md#a1-dynamics), and [Black Holes](../../../../markdown/aaa/spacetime/black-holes.md).
 
 The important conversion is from an infinite-endpoint question to a finite-boundary-data question. The strong-field model must say what assembly state is packed, what exterior records remain readable, what boundary data determine continuation, and why no zero-volume or arbitrary branch endpoint is required.
 
@@ -8198,7 +8195,7 @@ The next question is whether a rapidly translating nested shell braid should dri
 
 The answer is dynamical rather than purely kinematic. Straight-line translation does **not** require that result merely from conservation laws. In the path-history dynamics, total linear momentum and total angular momentum are distinct conserved quantities, so an isolated translating assembly may in principle carry internal angular momentum whose axis is not parallel to the center-of-mass velocity.
 
-The stronger argument comes from the high-velocity delay geometry. Use the primitive branch-chart channel here: $v_{\text{trans}}=\|\mathbf V_{\text{trans}}\|$ is the native center-drift speed, $\beta_f=v_{\text{trans}}/c_f$, and $\gamma_f=(1-\beta_f^2)^{-1/2}$. Let $(x_{\perp,1},x_{\perp,2},x_\parallel)$ be principal-frame coordinates for the oblate spheroidal envelope, with $x_\parallel$ along the translation direction. Then the geometry inherited from [Braid Envelope Geometry](../../../../markdown/aaa/noether-braid/braid-envelope-geometry.md) and its dynamics treatment in [Nested Shell Braid Dynamics](../../../../markdown/aaa/noether-braid/braid-families.md#nested-shell-braid-dynamics) is
+The stronger argument comes from the high-velocity delay geometry. Use the primitive branch-chart channel here: $v_{\text{trans}}=\|\mathbf V_{\text{trans}}\|$ is the native center-drift speed, $\beta_f=v_{\text{trans}}/c_f$, and $\gamma_f=(1-\beta_f^2)^{-1/2}$. Let $(x_{\perp,1},x_{\perp,2},x_\parallel)$ be principal-frame coordinates for the oblate spheroidal envelope, with $x_\parallel$ along the translation direction. Then the geometry inherited from [Braid Envelope Geometry](../../../../markdown/aaa/noether-braid/braid-envelope-geometry.md) and its dynamics treatment in [Nested Shell Braid Dynamics](../../../../markdown/aaa/noether-braid/braid-a1-dynamics.md#a1-dynamics) is
 
 $$
 \frac{x_{\perp,1}^2+x_{\perp,2}^2}{R_\perp^2}
@@ -8444,7 +8441,7 @@ That yields a disciplined provisional picture:
 
 - [singularity-resolution.md](../../../../markdown/aaa/spacetime/singularity-resolution.md): canonical horizon alignment condition.
 - [black-holes.md](../../../../markdown/aaa/spacetime/black-holes.md): horizon interface and strong-field ontology.
-- [Nested Shell Braid Dynamics](../../../../markdown/aaa/noether-braid/braid-families.md#nested-shell-braid-dynamics): regime map, planarity diagnostics, and alignment observables.
+- [Nested Shell Braid Dynamics](../../../../markdown/aaa/noether-braid/braid-a1-dynamics.md#a1-dynamics): regime map, planarity diagnostics, and alignment observables.
 - [Mapping the Planck Scale to the Nested Shell Braid Geometry](../../../../markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-braid-alignment.md): terminal planar lock and alignment-horizon interpretation.
 - [angular-momentum-and-spin.md](../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md): shared proof ledger for promoting boundary-helicity proxy language into observer-level spin or helicity claims.
 - [../assemblies/fermions/color-charge-su3.md](../../../../markdown/aaa/assemblies/fermions/color-charge-su3.md): separation of pro/anti ordered orientation from matter/antimatter polarity conjugation.

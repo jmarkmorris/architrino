@@ -133,7 +133,7 @@ export function validateExactPrescribedSourceRecord(record) {
       `exact prescribed source record requires schema ${EXACT_PRESCRIBED_SOURCE_RECORD_SCHEMA}.`,
     );
   }
-  concreteString(record.sourceId, "sourceRecord.sourceId");
+  concreteString(record.recordId, "sourceRecord.recordId");
   if (record.engineId !== "prescribed-geometry") {
     throw new TypeError("sourceRecord.engineId must be prescribed-geometry.");
   }
@@ -277,14 +277,14 @@ function buildContribution({ source, solved, observationTime, probeCharge, field
   const accelerationScale = coupling * Math.sign(chargeProduct) * Math.abs(chargeProduct) *
     (fieldSpeed / Math.abs(transmitterFactor)) / (distance * distance);
   return {
-    sourceId: source.id,
-    sourceCharge: source.charge,
+    transmitterId: source.id,
+    transmitterCharge: source.charge,
     rootStatus: "simple_unique_root",
     emissionTime: root.emissionTime,
     receptionTime: observationTime,
     delay: observationTime - root.emissionTime,
-    sourcePosition: root.state.position,
-    sourceVelocity: root.state.velocity,
+    transmitterPosition: root.state.position,
+    transmitterVelocity: root.state.velocity,
     displacement: root.displacement,
     direction,
     distance,
@@ -355,7 +355,7 @@ export function evaluatePrescribedSourceWake(request = {}) {
     });
     if (!solved.root) {
       noRootSources.push({
-        sourceId: source.id,
+        transmitterId: source.id,
         rootStatus: "no_retained_root",
         reason: solved.reason,
         retainedInterval: solved.bracket,
@@ -387,7 +387,7 @@ export function evaluatePrescribedSourceWake(request = {}) {
   return {
     schema: PRESCRIBED_SOURCE_WAKE_EVALUATION_SCHEMA,
     sourceRecord: {
-      sourceId: sourceRecord.sourceId,
+      recordId: sourceRecord.recordId,
       sourceSchema: sourceRecord.sourceSchema ?? sourceRecord.schema,
       sourceHash: sourceRecord.sourceHash ?? null,
       generatingSpec: sourceRecord.generatingSpec ?? null,
