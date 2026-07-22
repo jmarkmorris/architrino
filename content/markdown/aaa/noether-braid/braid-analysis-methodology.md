@@ -1,8 +1,8 @@
 # Candidate Braid Analysis Methodology
 
-This chapter defines a common analysis method for prescribed braid charts and evolved candidate braid records. Its purpose is comparison: every candidate should be evaluated with the same causal-wake formula, probe set, energy boundaries, return window, and grading rules before one geometry is said to shield, close, or outperform another.
+This chapter defines an analytical method for prescribed braid records. Its purpose is controlled comparison: every candidate is evaluated with the same causal-wake formula, probe set, retained-history rule, return window, and scoring rules before one geometry is said to cancel or expose more wake than another.
 
-The method does not promote a prescribed path to a retained solution of the EOM solver. A prescribed record supports geometry and causal-wake diagnostics. An evolved record supports dynamical claims only to the grade established by its residuals, root certificate, refinement study, and perturbation response.
+A prescribed record supplies known transmitter paths from which the delayed roots, wake superposition, virtual-probe response, cancellation, angular structure, and spectra can be evaluated at any event $(T,\mathbf X)$. The method concerns only those analytical consequences of the declared paths. It does not assess assembly stability, environmental support, or any unprescribed motion.
 
 The phrase **absolute observer position** means a coordinate probe at an event $(T,\mathbf X)$ in absolute time and the Euclidean void. It does not introduce a Physical Observer or an effective spacetime frame. The native coordinates are
 
@@ -16,13 +16,22 @@ Every published candidate analysis must identify one source record. At minimum t
 
 - the paths $\mathbf X_j(T)$, velocities $\mathbf V_j(T)$, polarities $q_j$, and persistent identities of all architrinos;
 - the family/member identifier and complete taxonomy-coordinate row;
-- whether the paths are prescribed geometry or EOM-solver output;
+- the prescribed-geometry engine and chart version;
 - the retained history interval, analysis window, return duration $T_{\mathrm{ret}}$, and absolute-time origin $T_0$;
 - the field speed $c_f$, coupling convention, root policy, self-hit policy, and any mollifier or cutoff;
 - the spatial probe set, enclosing surfaces, temporal sampling rule, and numerical tolerances; and
 - the source hash, engine identity, parameter vector, sampling seed, and generated result hash.
 
-An analysis that changes its probe set, history depth, root policy, or boundary while comparing candidates is not a controlled comparison unless the change is declared as a separate sensitivity study.
+Write the scored result as $\mathbf G[S;P]$, where $S$ is the complete source record and $P$ is the complete analysis protocol. The protocol includes the probe set, history depth, root policy, surface geometry, normalization, tolerances, and sampling rule.
+
+Any source change $S\rightarrow S'$ invalidates the prior score by default. A score may be retained only when a dependency review demonstrates that the changed field cannot enter that measure. In particular:
+
+- a path, radius, frequency, phase, group-translation, polarity, or retained-history change requires new roots and recomputation of every downstream wake measure;
+- a probe, boundary, root-policy, normalization, or tolerance change defines a new protocol $P'$ and requires every compared candidate to be evaluated under $P'$;
+- an added environmental response defines a different analysis outside the scope of this method; and
+- a metadata-only correction may preserve numerical measures only when the source identity and dependency review are recorded with the correction.
+
+Comparing $\mathbf G[S;P]$ directly with $\mathbf G[S';P']$ is uncontrolled unless the difference is explicitly presented as a sensitivity study. The dependency review must state which measures were invalidated, which were recomputed, and why any retained measure is invariant.
 
 ## Superimposed Causal-Wake Map
 
@@ -118,6 +127,53 @@ $$
 
 lies near zero when the signed contributions cancel and near one when they reinforce, subject to the declared denominator floor $\varepsilon_{\mathcal W}>0$.
 
+### Explicit Prescribed-Orbit Reduction
+
+For a circular prescribed endpoint with fixed orbit center $\mathbf C_j$, orthonormal plane vectors $\mathbf u_j$ and $\mathbf v_j$, radius $R_j$, angular frequency $\omega_j$, and phase $\phi_j$, write
+
+$$
+\mathbf X_j(T_t)
+=
+\mathbf C_j
++
+R_j\left[
+\mathbf u_j\cos(\omega_jT_t+\phi_j)
++
+\mathbf v_j\sin(\omega_jT_t+\phi_j)
+\right].
+$$
+
+At an arbitrary event $(T,\mathbf X)$, define
+
+$$
+\mathbf d_j=\mathbf X-\mathbf C_j,
+\qquad
+A_j=\mathbf d_j\cdot\mathbf u_j,
+\qquad
+B_j=\mathbf d_j\cdot\mathbf v_j,
+$$
+
+$$
+H_j=\sqrt{A_j^2+B_j^2},
+\qquad
+\delta_j=\operatorname{atan2}(B_j,A_j).
+$$
+
+The causal-root condition then reduces exactly to the scalar equation
+
+$$
+\boxed{
+c_f^2(T-T_t)^2
+=
+\|\mathbf d_j\|^2+R_j^2
+-2R_jH_j\cos(\omega_jT_t+\phi_j-\delta_j)
+}
+$$
+
+for each transmitter $j$. Thus the full spatial problem does not require evolving the source: at each requested $(T,\mathbf X)$, solve this one-dimensional delayed-time equation over the retained history, substitute all certified roots into $\mathcal W$ or $\mathbf A_p$, and sum the six endpoint contributions. A translating orbit is handled by placing the declared center path $\mathbf C_j(T_t)$ directly in the original causal equation; the fixed-center reduction above applies in a co-translating coordinate chart only when that chart and its conversion back to absolute coordinates are stated.
+
+This reduction supports complete time traces, spatial slices, enclosing-surface maps, angular decompositions, and spectra for prescribed circular records. More general prescribed paths use the same root equation $g_j=0$ without the circular trigonometric reduction.
+
 ### Virtual-Probe Response
 
 The scalar wake map does not encode the polarity or direction of a receiving architrino. For a stationary virtual probe with declared charge $q_p$ at $\mathbf X$, the acceleration-first response is
@@ -134,7 +190,7 @@ $$
 }
 $$
 
-under the canonical simple-root Master EOM convention. The stationary probe is a comparison instrument, not an added source in the braid record. Positive- and negative-polarity probe responses must be reported separately when their distinction matters.
+under the canonical simple-root acceleration convention of the Master Equation. The stationary probe is a comparison instrument, not an added source in the braid record. Positive- and negative-polarity probe responses must be reported separately when their distinction matters.
 
 For a moving diagnostic probe $\mathbf X_p(T)$, the same arriving-hit strength applies at its current position. Its velocity changes root playback through
 
@@ -174,18 +230,23 @@ $$
 
 the internal report must retain each pairwise contribution, the net vector, its components in the declared braid frame, root identities, $D_t$ margins, and root-playback derivatives. Cycle averages must not replace peak values or root-transition events.
 
-For a declared primitive kinetic scalar $K(s)$, the corresponding received kinetic-energy rate is
+Because the paths are known, their required kinematic acceleration is also known analytically. Define the prescribed-path equation mismatch
 
 $$
-\dot E_{k,i}^{\mathrm{others}}(T)
+\boxed{
+\mathbf R_i^{\mathrm{path}}(T)
 =
-\mu_K(s_i)
-\mathbf A_i^{\mathrm{others}}(T)\cdot\mathbf V_i(T),
-\qquad
-\mu_K(s)=\frac{K'(s)}{s}.
+\frac{d^2\mathbf X_i}{dT^2}
+-
+\left(
+\mathbf A_i^{\mathrm{others}}(T)
++
+\mathbf A_i^{\mathrm{self}}(T)
+\right)
+}
 $$
 
-This is an energy-rate row only when it uses the same kinetic scalar and causal-hit convention as the owning energy ledger. The unweighted diagnostic $\mathbf A\cdot\mathbf V$ is an acceleration-power proxy, not energy.
+under the declared self-hit convention. This is a pointwise comparison between the acceleration required by the prescribed path and the acceleration supplied by the analytical causal-hit sum. Its peak, RMS, mean vector, phase dependence, and per-binary decomposition are legitimate prescribed-record measures. If the self-hit term or another accepted acceleration row is unavailable, the result must be labeled a partial mismatch rather than a complete Master Equation residual. A small mismatch measures compatibility of the declared chart with the evaluated acceleration rows; it does not establish stability.
 
 ## Probe Geometry
 
@@ -198,27 +259,40 @@ A candidate should be tested on the same nested probe geometry:
 5. a far-field directional grid with enough angular resolution to separate isotropic and anisotropic leakage; and
 6. adaptive samples near small-$|D_t|$ roots, close approaches, envelope extrema, and rapid phase changes.
 
-The enclosing radius $R$ must be large enough to test the intended far-field approximation and varied to show whether the extracted multipole coefficients have settled. A single favorable direction cannot establish shielding.
+The enclosing radius $R$ must be large enough to test the intended far-field approximation and varied to show whether the extracted angular coefficients have settled. A single favorable direction cannot establish external wake cancellation.
 
 ## Objective Measures
 
-The first analysis pass should publish the following measures. Each is objective once the source record, norm, boundary, and sampling rule have been fixed.
+Every measure in this chapter is a deterministic analytical consequence of a prescribed source record. Root finding, quadrature, and sampling may be performed numerically, but they evaluate the declared formulas rather than evolving the source.
+
+### Prescribed-Record Analytical Measures
 
 | Measure | Definition or required record | What it tests |
 | --- | --- | --- |
-| Return residual | Position, velocity, phase, root-ledger, and wake-ledger difference between $T_0$ and $T_0+T_{\mathrm{ret}}$ | Whether one complete cycle actually returns |
-| Minimum separation | $\min_{T,i\ne j}\|\mathbf X_i(T)-\mathbf X_j(T)\|$ | Collision or near-collision margin |
-| Root-transversality margin | $\min|D_{t,j}|$ over all retained probe and internal roots | Distance from an unresolved caustic boundary |
-| Root-topology ledger | Root counts, identities, births, deaths, and reconnections versus $T$ | Whether averaged curves hide branch changes |
-| Internal response balance | Per-architrino peak and RMS $\|\mathbf A_i^{\mathrm{others}}\|$, plus spread across $i$ | Load imbalance and internally exposed channels |
-| Internal energy-rate closure | Cycle integral of all declared $\dot E_{k,i}$ rows plus interaction, wake, boundary, and sea rows | Whether the energy ledger returns |
-| External signed exposure | $\mathcal W$ on $S_R$ through the complete cycle | Net polarity-signed leakage |
-| External raw exposure | $\mathcal W_{\mathrm{abs}}$ on $S_R$ through the complete cycle | Strength before cancellation |
-| Directional response | $\mathbf A_p$ for both probe polarities on $S_R$ | Vector leakage and polarity dependence |
-| Multipole ledger | Cycle-resolved isotropic, dipole, quadrupole, and higher retained coefficients | Which external channels survive cancellation |
-| Anisotropy | Non-isotropic far-field ledger relative to the naive constituent ledger | Whether a scalar shielding summary is admissible |
+| Prescribed-period closure | Position, velocity, and phase differences between $T_0$ and $T_0+T_{\mathrm{ret}}$ | Whether the declared formulas and chosen return period are internally consistent |
+| Minimum separation | $d_{\min}=\min_{T,i\ne j}\|\mathbf X_i(T)-\mathbf X_j(T)\|$ | Whether the prescribed chart contains a collision, an undeclared coincidence, or a near-singular pair geometry |
+| Root-transversality margin | $\min|D_{t,j}|$ over all retained probe and internal roots | Distance from an unresolved causal-root fold |
+| Root-topology ledger | Root counts, identities, births, deaths, and reconnections versus $T$ | Whether averaged curves hide causal-branch changes |
+| Internal prescribed-path response | Per-endpoint peak, RMS, and cycle integral of $\mathbf A_i^{\mathrm{others}}$ evaluated on the prescribed paths | The acceleration that the other prescribed paths would deliver, not whether those paths persist |
+| Prescribed-path equation mismatch | Peak, RMS, mean, phase-resolved, and per-binary rows of $\mathbf R_i^{\mathrm{path}}$ | Pointwise compatibility between the prescribed kinematics and the evaluated acceleration rows |
+| External signed exposure | $\mathcal W$ on $S_R$ through the complete cycle | Net polarity-signed wake exposure |
+| External raw exposure | $\mathcal W_{\mathrm{abs}}$ on $S_R$ through the complete cycle | Wake strength before signed cancellation |
+| Directional response | $\mathbf A_p$ for both probe polarities on $S_R$ | Vector exposure and polarity dependence |
+| Angular ledger | Cycle-resolved isotropic and higher angular coefficients | Which external angular channels survive cancellation |
+| Anisotropy | Non-isotropic far-field ledger relative to the naive constituent ledger | Whether a scalar cancellation summary is adequate |
+| Spatial response gradient | $\nabla_{\mathbf X}\mathbf A_p$ away from source paths and causal-root folds | How differently nearby absolute-coordinate probes respond |
+| Temporal variation | $\partial_T\mathcal W$ and $\partial_T\mathbf A_p$ on continuous root branches | Peak rate of change and phase localization of wake features |
+| Radial scaling | The same angular and exposure rows evaluated over a declared sequence of enclosing radii $R$ | Whether a claimed far-field regime and its power-law scaling have been reached |
+| Symmetry residual | Difference between a measure and its transform under each declared chart symmetry | Which prescribed symmetries survive in the causal-wake field |
 | Spectral ledger | Fourier coefficients over $T_{\mathrm{ret}}$ for selected internal and external rows | Harmonic content, sidebands, and phase locking |
-| Robustness | Change of all reported measures under path perturbation and numerical refinement | Whether a favorable result is structurally stable |
+| Source-parameter sensitivity | Recomputed measures under declared changes of radius, frequency, phase, orientation, and translation | How dependent the analytical result is on the prescribed coordinates |
+| Numerical convergence | Change under tighter root and quadrature tolerances for the same $S$ and $P$ | Whether the analytical result has been evaluated accurately |
+
+Minimum separation is a validity diagnostic, not a claim that architrinos are hard objects. A zero separation may make the $1/r^2$ response singular or expose an undeclared coincidence in the chart. A small separation warns that a reported score may be dominated by a near-singular pair. It should normally be a gate or an annotation, not a reward to maximize.
+
+The term **return residual** is replaced here by **prescribed-period closure residual**. It checks only that the declared path formulas return to the same position, velocity, and phase after $T_{\mathrm{ret}}$. It is often zero by construction and is an integrity check on the chart and selected period, not a stability measure. Root and wake ledgers may also be checked for periodicity, but their endpoint differences remain analytical consistency diagnostics.
+
+Spatial and temporal derivatives must be evaluated branch by branch. At a causal-root birth, death, or fold, the discontinuity or singular behavior is itself the reported event; a derivative must not be fabricated by differencing across it.
 
 Two additional diagnostics are useful but must not be mislabeled as energy. Define the cycle-and-surface external-exposure norm
 
@@ -241,92 +315,51 @@ $$
 {\mathcal L_{\mathrm{raw}}(R)+\varepsilon_L}
 $$
 
-is a geometry-response exposure fraction. It measures external cancellation under a declared probe and surface convention. It is not the apparent-energy fraction.
+is a geometry-response exposure fraction. It measures external cancellation under a declared probe and surface convention. It is analytically computable from a prescribed record and is not the apparent-energy fraction.
 
-## Energy and External-Wake Ledgers
+## Analytical Claim Boundary
 
-The energy analysis must use the definitions and boundary balance in [Energy](../dynamics/energy.md#assemblies-internal-vs-apparent-energy). Four rows must remain distinct:
-
-| Ledger | Meaning |
-| --- | --- |
-| $E_{\mathrm{total},W}$ | The history-aware total for the declared finite window: architrino kinetic/configuration energy, retained wake-history energy, Noether sea energy when included, and boundary terms |
-| $E_{\mathrm{internal}}(A)$ | Energy retained by the braid assembly and its declared immediate environment |
-| $\mathcal L_{\mathrm{wake}}(A)$ | Far-field wake ledger, including isotropic and anisotropic coefficients |
-| $E_{\mathrm{apparent}}(A)$ | Externally exposed energy inferred only after the wake ledger is mapped through a declared probe and Noether sea response |
-
-The far-field leakage factor is
-
-$$
-\zeta(A)
-=
-\frac{\|\Pi_0\mathcal L_{\mathrm{wake}}(A)\|}
-{\|\mathcal L_{\mathrm{naive}}(A)\|},
-$$
-
-with anisotropic leakage reported separately. At roadmap grade,
-
-$$
-E_{\mathrm{apparent}}(A)
-\sim
-\zeta(A)E_{\mathrm{internal}}(A).
-$$
-
-The candidate-analysis report should publish both requested fractions:
-
-$$
-f_{\mathrm{app,int}}
-=
-\frac{E_{\mathrm{apparent}}}{E_{\mathrm{internal}}},
-\qquad
-f_{\mathrm{app,tot}}
-=
-\frac{E_{\mathrm{apparent}}}{E_{\mathrm{total},W}}.
-$$
-
-Neither ratio is accepted merely because $\eta_{\mathrm{ext}}$ is small. The apparent-energy map must close on the same record, window, Noether sea response, and boundary flux as the total-energy ledger. If the energy residual fails to converge, or if a claimed subset fraction falls outside its declared ledger bounds, the energy grade fails even when the geometry-response plot looks well shielded.
+The signed wake $\mathcal W$, unsigned wake $\mathcal W_{\mathrm{abs}}$, virtual-probe response $\mathbf A_p$, angular coefficients, and exposure fraction $\eta_{\mathrm{ext}}$ are the available analytical ledgers. None is an energy quantity. This method therefore does not report total energy, apparent energy, apparent-energy fractions, or stability scores. It also does not include a Noether-sea response. Introducing any such quantity requires a separate definition and cannot be accomplished by relabeling a wake-exposure measure.
 
 ## Parameter Sampling
 
-Let $\boldsymbol\theta$ contain the complete taxonomy coordinates, group-translation speed, phase origin, environmental coordinates, and any permitted history coordinates. A sampling campaign must publish the domain $\Theta$, units, constraints, and sampling measure. There is no coordinate-free meaning to “random braid”; uniform sampling in radius, logarithmic radius, speed, or frequency represents different candidate populations.
+Let $\boldsymbol\theta$ contain the complete taxonomy coordinates, group-translation speed, phase origin, and any permitted prescribed-history coordinates. A sampling campaign must publish the domain $\Theta$, units, constraints, and sampling measure. There is no coordinate-free meaning to “random braid”; uniform sampling in radius, logarithmic radius, speed, or frequency represents different candidate populations.
 
-The recommended campaign has three stages:
+The analytical campaign has two stages:
 
 1. **Random coverage.** Draw a reproducible, seeded sample from each declared measure over $\Theta$. Use stratification so narrow coordinate regions are not lost by chance.
-2. **Directed refinement.** Refine around low residuals, strong external cancellation, admissible root margins, and boundaries where root topology or return behavior changes. Include deliberately adverse directions so the method does not optimize only one favorable projection.
-3. **Dynamical adjudication.** Send surviving prescribed charts to the EOM solver with declared histories and perturbations. Recompute every metric on the evolved record rather than carrying prescribed-geometry scores forward.
+2. **Directed refinement.** Refine around strong external cancellation, admissible root margins, and boundaries where root topology or prescribed-period closure changes. Include deliberately adverse directions so the method does not optimize only one favorable projection.
 
 Every result row must include the family/member identifier, full parameter vector, source grade, sampling measure, seed or directed-selection rule, root status, numerical resolution, and metric uncertainty.
 
 ## Candidate Grading
 
-Grading is fail-closed and occurs in proof order:
+The prescribed-record analytical grade is fail-closed and occurs in this order:
 
-1. **Record validity:** complete provenance, finite values, legal coordinates, and reproducible paths.
-2. **Geometric admissibility:** no undeclared collision, complete return window, and stable metric extraction.
-3. **Causal admissibility:** complete retained roots, declared self-hit treatment, and resolved fold events.
-4. **Dynamical retention:** EOM-solver residuals, branch return, perturbation recovery, and collapse tests.
-5. **Energy and action closure:** same-record ledgers with convergent boundary and numerical residuals.
-6. **External performance:** shielding, apparent energy, anisotropy, peak exposure, and robustness.
+1. **Record validity:** complete provenance, finite values, legal coordinates, reproducible paths, and a current score for the exact source hash.
+2. **Geometric admissibility:** no undeclared collision or coincidence, a complete declared period, and converged geometric extraction.
+3. **Causal admissibility:** complete retained roots, declared self-hit treatment, resolved fold events, and converged root sums.
+4. **Analytical wake comparison:** signed and raw exposure, cancellation, anisotropy, spectra, peak response, and source-parameter sensitivity under one common protocol.
 
-A prescribed chart can pass only the first three gates and can be ranked only as a prescribed geometry. It cannot receive a retained-braid grade.
+A prescribed chart receives only an analytical prescribed-record grade. Stability and energy are outside the method and outside its score.
 
-Among candidates at the same accepted grade, report a vector of objectives rather than hiding choices inside one number:
+Among prescribed candidates evaluated under the same protocol, report an analytical objective vector rather than hiding choices inside one number. One suitable starting vector is
 
 $$
-\mathbf G
+\mathbf G_{\mathrm{an}}
 =
 \left(
-\mathcal R_{\mathrm{return}},
-f_{\mathrm{app,int}},
 \eta_{\mathrm{ext}},
 \epsilon_{\mathrm{aniso}},
-A_{\mathrm{internal,peak}},
-\mathcal R_E,
-\mathcal R_{\mathrm{pert}}
-\right).
+A_{\mathrm{ext,peak}},
+\chi_{\mathcal W,\mathrm{peak}},
+S_{\boldsymbol\theta}
+\right),
 $$
 
-One candidate dominates another only when it is no worse on every declared objective and better on at least one. A single weighted score is permitted only after the weights and normalization are fixed before inspecting the result. “Lowest apparent energy” and “strongest shielding” are therefore legitimate comparison questions, but neither can compensate for failed causal roots, failed retention, or an unclosed total-energy ledger.
+where $S_{\boldsymbol\theta}$ is the declared sensitivity of the wake measures to source-coordinate changes. Prescribed-period closure, minimum separation, and the root-transversality margin are validity gates or annotations rather than performance rewards.
+
+One candidate dominates another only when it is no worse on every declared objective and better on at least one. A single weighted score is permitted only after the weights and normalization are fixed before inspecting the result. “Strongest analytical wake cancellation” is a legitimate comparison question. “Lowest apparent energy” is not a quantity defined by this methodology.
 
 Separate grades are required for a family/member chart and for a particular instantiation. A strong instantiation supports existence within a sampled region; it does not establish that the family as a whole has the same performance.
 
@@ -339,10 +372,12 @@ Borg should expose this method as a record-derived analysis surface. A user shou
 - individual transmitter contributions and their vector sum;
 - root count, root identity, $D_t$, and fold events;
 - time graphs over the full return cycle;
-- spatial slices, enclosing-surface maps, spectra, and multipole coefficients; and
-- the external-wake, apparent-energy, total-energy, and fraction rows at their actual available claim grade.
+- spatial slices, enclosing-surface maps, spectra, and angular coefficients; and
+- source-parameter sensitivity, invalidated-score status, and the exact source and protocol hashes.
 
 The graph must remain synchronized with animation time and preserve source-record provenance. Borg may also present a teaching sequence that highlights selected binaries, axes, wakes, envelopes, roots, or probes while explanatory text appears on the canvas. Teaching cues are annotations on the record; they are not evidence generated by the record.
+
+Energy and stability controls should not appear as outputs of this analytical surface because the method does not define them.
 
 ## Minimum Publication Packet
 
@@ -352,10 +387,10 @@ A publishable candidate analysis contains:
 2. the superimposed causal-wake formula and all normalization choices;
 3. the internal receiver-wake ledger through one complete return cycle;
 4. the probe geometry and raw time-dependent curves;
-5. return, root, separation, shielding, anisotropy, spectral, and robustness metrics;
-6. total, internal, wake, apparent-energy, boundary, and residual ledgers at their available grades;
+5. prescribed-period closure, root, separation, cancellation, anisotropy, spectral, and source-sensitivity metrics;
+6. an explicit analytical claim boundary that excludes energy and stability conclusions;
 7. the random and directed sampling declarations;
 8. the gate result and multi-objective comparison vector; and
 9. the exact observation that would falsify each promoted claim.
 
-This packet makes candidate comparison reproducible while preserving the central distinction: a visually compelling prescribed braid is a geometry hypothesis until the EOM solver and the same-record ledgers establish more.
+This packet makes analytical candidate comparison reproducible. A prescribed braid remains a prescribed geometry with analytically evaluated causal-wake properties; the method makes no claim about stability or physical retention.

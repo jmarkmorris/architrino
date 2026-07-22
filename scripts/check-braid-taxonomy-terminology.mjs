@@ -11,6 +11,13 @@ export const MIGRATED_SCAN_TARGETS = [
   "content/markdown/aaa/archie/comparative-glossary.md",
   "content/markdown/aaa/archie/mathematics-terminology.md",
   "content/markdown/aaa/archie/terminology-usage.md",
+  "content/markdown/aaa/spacetime/proper-time-and-time-dilation.md",
+  "content/markdown/aaa/reactions/mode-taxonomy.md",
+  "content/markdown/aaa/foundations/emergence-of-structure.md",
+  "content/markdown/aaa/assemblies/bosons/electroweak-bosons.md",
+  "content/markdown/aaa/cosmology/dark-matter.md",
+  "content/markdown/aaa/cosmology/CMB.md",
+  "content/markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md",
 ];
 
 const CORPUS_SCAN_TARGETS = ["content/markdown/aaa"];

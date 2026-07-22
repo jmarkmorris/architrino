@@ -29,7 +29,7 @@ At the finest scale, the photon unit is a composite assembly:
 
 ### Relation To The Symmetry-Breaking Threshold
 
-The photon carrier is therefore close to the same planar geometry that appears at the nested shell braid symmetry-breaking threshold. At a horizon interface the middle and outer nested shell braid layers are driven toward $v=c_f$ and terminal coplanarity; in the photon channel, the carrier is already a propagating pair of planarized polarity-conjugate Noether braid assemblies. The comparison is not an identity between an ordinary photon and a black-hole horizon state. It is a shared geometry: planar lock, paired polarity-conjugate balance, transverse action, and a phase ledger whose frequency can be shifted by source, path, and reception records.
+The photon carrier is close to the planar geometry assigned to the Family-A flat endpoint $\lambda_A=1$. At a horizon interface the three A1 binary axes are hypothesized to converge toward the group-translation direction while branch-derived speed rows approach $c_f$; in the photon channel, the carrier is already a propagating pair of planarized polarity-conjugate Noether braid assemblies. The comparison is not an identity between an ordinary photon and a black-hole horizon state. It is a shared geometry: planar lock, paired polarity-conjugate balance, transverse action, and a phase ledger whose frequency can be shifted by source, path, and reception records.
 
 The reduced bridge is the planar Noether braid chart. In that chart, the same three support-row ledgers that appear in the $x:y:z$ frequency-pattern search are studied after projecting the branch into a coplanar sector with retained phase offsets, effective lever arms, circulation signs, wake rows, and angular-momentum closure. The photon channel then asks whether two such planarized records can survive as a coaxial contra-rotating polarity-conjugate planar pair. This is a simpler chart than the full three-dimensional Noether braid, but it is still a theorem target: a clean visual or phase pattern is not enough unless the same retained row set carries the kinematic, wake, polarization, helicity, and event-ledger obligations.
 
@@ -523,7 +523,7 @@ The distinction between photon helicity and massive-vector spin should remain ex
     *   This kick ejects a "corridor of influence" that nucleates from the superposition of the constituent architrinos' delayed wakes.
 *   **Selection Rules (Phase History):**
     *   Coupling is not "magic"; it requires geometric compatibility.
-    *   **Chirality:** Allowed couplings follow from the **Path-History Geometry**. The corridor's internal spiral must match the phase structure of the target's nested shell braid support rows. "Wrong-handed" targets present a phase mismatch, preventing the tether from locking on.
+    *   **Chirality:** Allowed couplings follow from the **Path-History Geometry**. The corridor's internal spiral must match the phase structure of the target's indexed Noether braid rows. "Wrong-handed" targets present a phase mismatch, preventing the tether from locking on.
 *   **Absorption:** The corridor is re-captured by a target binary, integrating its payload and updating the target's internal mode energy.
 
 ### Low-Energy Four-Fermi Limit
@@ -566,7 +566,7 @@ This is not a new substrate interaction. It is the low-energy observer limit of 
 The Higgs comparison is modeled here as a candidate resonance of the Noether sea structure rather than as a propagating assembly *through* the ambient Noether sea. That identification remains a closure target until the same branch record predicts the observed scalar mass, channel rates, and coupling pattern.
 
 ### Geometric Structure
-*   **The Substrate:** The Noether sea is a coupled population of neutral Noether braid assemblies; in the nested shell braid case, each assembly carries the balanced inventory $3\epsilon_+ + 3\epsilon_-$, organized as three nested $(1\epsilon_+ + 1\epsilon_-)$ binaries.
+*   **The Substrate:** The Noether sea is a coupled population of neutral Noether braid assemblies. A three-binary member carries the balanced inventory $3\epsilon_+ + 3\epsilon_-$, organized as three indexed $(1\epsilon_+ + 1\epsilon_-)$ binaries.
 *   **Scalar Target:** The candidate Higgs channel is a **radial breathing mode** ($r \to r + \delta r$) of these Noether braid assemblies.
 *   **Spin-$0$:** The oscillation is purely radial (scalar), possessing no vector orientation.
 

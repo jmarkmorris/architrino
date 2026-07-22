@@ -6,7 +6,7 @@ Nothing in this chapter establishes an EOM-solver-retained A1 branch. Derived id
 
 ## Claim-Ownership Classification
 
-This chapter inherited material written before the present family/member taxonomy. The table below classifies that material by its proper owner; it classifies scope, not truth.
+The claims in this chapter have three distinct scopes: A1-specific hypotheses, family-general recovery requirements stated in A1 coordinates, and physical assignments that are not established for A1. The table classifies scope, not truth.
 
 | Claim unit | Classification | Consequence |
 | --- | --- | --- |
@@ -17,12 +17,12 @@ This chapter inherited material written before the present family/member taxonom
 | Fold-set action clicks | Family-general hypothesis | The machinery is owned by [Braid Mathematics](braid-mathematics.md#action-clicks-at-the-fold-set), not by A1. |
 | Reduced closure label $\Lambda_{A1}$ and its alignment restriction | A1-specific hypothesis | The label is available for A1 branch comparison only and does not establish a retained branch. |
 | Dynamic exclusion-envelope export | Family-general export requirement with an A1 realization | The shared interface is owned by [Braid Envelope Geometry](braid-envelope-geometry.md). |
-| Three-support-row shielding mapped to fermion generations | Unsupported legacy family assignment | No retained branch, shielding extraction, or particle map currently establishes the assignment. |
+| Three-support-row shielding mapped to fermion generations | Unsupported A1 assignment | No retained branch, shielding extraction, or particle map currently establishes the assignment. |
 | Family-A axis convergence under the prescribed response | A1-specific prescribed response and dynamical recovery target | The endpoint is part of the A1 chart; evolved convergence remains unproved. |
-| Event-horizon, Planck-scale, and dipole-quiet identifications | Unsupported legacy family assignments | These remain comparison hypotheses until A1-specific moment and strong-field records establish them. The A2 dipole theorem cannot be transferred to A1 by analogy. |
+| Event-horizon, Planck-scale, and dipole-quiet identifications | Unsupported A1 assignments | These remain comparison hypotheses until A1-specific moment and strong-field records establish them. The A2 dipole theorem cannot be transferred to A1 by analogy. |
 | A Noether braid as the structural candidate for fermion recovery | Family-general recovery requirement | Assigning A1, rather than another retained member, to a fermion class remains unsupported. |
 
-An unsupported legacy family assignment is not part of the A1 definition and must not be consumed downstream as an A1 property. It remains visible here only as an explicitly graded hypothesis awaiting derivation or retirement.
+An unsupported A1 assignment is not part of the A1 definition and must not be consumed downstream as an A1 property. It remains an explicitly graded hypothesis awaiting derivation or rejection.
 
 ## Retention and Interpretation
 
@@ -224,7 +224,7 @@ $$
 
 therefore require one more branch-closure equation.
 
-One possible closure is a branch-pinned speed — stated as a chart hypothesis only; no mechanism holding a branch at fixed speed is established, and an earlier proposed pinning mechanism was retired when its own condition was measured false. If the selected binary channel keeps
+One possible closure is a branch-pinned speed, stated as a chart hypothesis only. No mechanism holding a branch at fixed speed is established. If the selected binary channel keeps
 
 $$
 v_a=\beta_ac_f
@@ -409,7 +409,7 @@ The same A1 motion that may supply shielding is the geometric footprint a retain
 
 ### A1 Shielding and Fermion Generations
 
-This section records an unsupported legacy family assignment. No retained branch, computed shielding ledger, or particle-recovery map currently establishes that support-row count determines fermion generation. The hypothesis counts support; it does not rank the three A1 binaries by radius:
+This section states an unsupported A1 assignment. No retained branch, computed shielding ledger, or particle-recovery map currently establishes that support-row count determines fermion generation. The hypothesis counts support; it does not rank the three A1 binaries by radius:
 
 -   **Isolated binary:** the most exposed shielding tier, corresponding to Generation III.
 -   **Two-support-row shielding tier:** one additional retained support row, corresponding to the Generation-II shielding tier.
@@ -427,9 +427,9 @@ The horizon-approach hypothesis for A1 is therefore permutation-neutral: as the 
 
 The canonical term for this whole-assembly transition is the **braid symmetry-breaking point**. It does not assign permanent roles to binaries 1, 2, or 3 and does not claim that their radii, frequencies, or energies become equal. Because $s_a=\omega_a\rho_a$, equal threshold speed does not by itself imply equal frequency, equal effective lever arm, equal radius, or equal energy.
 
-The proposed local black-hole dual is an unsupported legacy family assignment. It asks whether a retained A1 branch can make the horizon-interface, same-transmitter-root, and exterior-coupling diagnostics coexist while the binary axes align. Only a branch-derived strong-field record could establish that mapping; the prescribed endpoint does not.
+The proposed local black-hole dual is an unsupported A1 assignment. It asks whether a retained A1 branch can make the horizon-interface, same-transmitter-root, and exterior-coupling diagnostics coexist while the binary axes align. Only a branch-derived strong-field record could establish that mapping; the prescribed endpoint does not.
 
-**Legacy mapping hypothesis (unsupported):** "Planck-scale" references may map to the **event-horizon alignment condition** (coincident A1 binary axes with branch-derived field-speed occupancy) only if an explicit derivation supplies that scale map; compare [Singularity Resolution](../spacetime/singularity-resolution.md) and [Mapping the Planck Scale to A1 Geometry](../philosophy-history/theory-bridges/planck-scale-nested-shell-braid-alignment.md).
+**Mapping hypothesis (unsupported):** "Planck-scale" references may map to the **event-horizon alignment condition** (coincident A1 binary axes with branch-derived field-speed occupancy) only if an explicit derivation supplies that scale map; compare [Singularity Resolution](../spacetime/singularity-resolution.md) and [Mapping the Planck Scale to A1 Geometry](../philosophy-history/theory-bridges/planck-scale-nested-shell-braid-alignment.md).
 
 The alignment limit also has a proposed wake-signature reading, but the available theorem is member-specific. The [axial polarity dipole identity](braid-a2-symmetry-and-return-response.md#moments-and-the-axial-polarity-dipole) proves the cancellation only for A2's symmetric two-ring geometry. A general A1 record does not inherit that identity. The A1 **dipole-quiet limit** is therefore a theorem target requiring an A1-specific cycle-resolved moment calculation. If that calculation leaves a nonzero leading polarity-signed moment at terminal alignment, the proposed identification with horizon darkness and the associated entropy interpretation fail.
 
