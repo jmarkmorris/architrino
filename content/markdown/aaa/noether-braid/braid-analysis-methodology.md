@@ -433,7 +433,7 @@ A_{\mathrm{net},\ell mn}(R)
 \left|\sum_a\widetilde f_{a,\ell mn}(R)\right|.
 $$
 
-For $A_{\mathrm{raw},\ell mn}$ above the declared coefficient floor, define
+For $A_{\mathrm{raw},\ell mn}$ above the declared effective coefficient floor, define
 
 $$
 \eta_{\mathcal W,\mathrm{flux}}^{(\ell mn)}(R)
@@ -443,6 +443,8 @@ $$
 $$
 
 The triangle inequality gives $0 \le \eta_{\mathcal W,\mathrm{flux}}^{(\ell mn)}(R) \le 1$. A value near zero identifies strong phase-sensitive cancellation in one temporal-harmonic and angular-mode channel. A value near one identifies little cancellation in that channel. The reducer also reports the Euclidean norm over the retained angular modes for each temporal harmonic and evaluates those rows across the declared enclosing radii.
+
+The effective coefficient floor is the larger of a declared absolute floor and a declared fraction of the largest raw coefficient on that enclosing surface. Source-root coefficients below that floor remain available as diagnostic rows, but they do not receive accepted cancellation ratios. A logarithmic radial fit for a net coefficient or cancellation ratio additionally requires the net magnitude to exceed the same floor at every fitted radius. This prevents numerical zero from acquiring an arbitrary radial exponent.
 
 The frequency ledger must report retained-band coverage. A coefficient is accepted only when source-root tags reconstruct the sampled signed normal flux, primary and refined grids agree within tolerance, and the source-tagged signal outside the retained harmonic band remains below its declared RMS fraction. A Fourier transform of the rectified trace $\int_{S_R}|\sum_a f_a|\,dA$ is a different diagnostic: rectification creates sum, difference, and multiple frequencies. Those created frequencies must not be reported as source-emission frequencies.
 

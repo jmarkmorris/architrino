@@ -16,10 +16,13 @@ import {
   mergeBorgFrameRows,
 } from "../src/apps/borg/BorgFrameRows.js";
 import {
+  BORG_PRESCRIBED_PATH_TRAIL_COLOR,
+  createBorgParticleStyles,
   createDefaultEomShadowRunnerOptions,
   formatBorgTimelineTime,
 } from "../src/apps/borg/BorgAppRuntime.js";
 import {
+  BORG_PRESCRIBED_DISPLAY_OVERSAMPLE_FACTOR,
   BORG_EOM_RECORD_REPLAY_RUNNER_VERSION,
   BORG_EOM_RECORD_REPLAY_RUN_SOURCE,
   createBorgEomRecordReplayRunner,
@@ -77,6 +80,20 @@ test("Borg path history is on and visible by default", () => {
     BORG_APP_SURFACE_DESIGN_V1.layerStrip.find((entry) => entry.layer === "path-history")?.state,
     "on",
   );
+});
+
+test("prescribed orbital trails are neutral purple while endpoint colors retain polarity", () => {
+  const frames = [
+    { pathKey: 1, stateFlags: 1 },
+    { pathKey: 2, stateFlags: 2 },
+  ];
+  const prescribed = createBorgParticleStyles(frames, { prescribedGeometry: true });
+  assert.equal(prescribed.get(1).pathColor, BORG_PRESCRIBED_PATH_TRAIL_COLOR);
+  assert.equal(prescribed.get(2).pathColor, BORG_PRESCRIBED_PATH_TRAIL_COLOR);
+  assert.notEqual(prescribed.get(1).color, prescribed.get(2).color);
+
+  const evolved = createBorgParticleStyles(frames);
+  assert.notEqual(evolved.get(1).pathColor, evolved.get(2).pathColor);
 });
 
 test("Borg timeline uses a fixed-width hours-minutes-seconds clock", () => {
@@ -261,6 +278,38 @@ test("Borg record replay chunks carry recorded frames with record provenance", a
   await runner.dispose();
 });
 
+test("Borg display-oversamples prescribed cubic records by four without changing the record", async () => {
+  const record = JSON.parse(readFileSync(new URL(
+    "../content/assets/borg/records/family-a-a1-general.assembly-view-record.v0.json",
+    import.meta.url,
+  )));
+  const recordSampleInterval = record.window.sampleInterval;
+  const runner = createBorgEomRecordReplayRunner(record, {
+    targetDuration: recordSampleInterval,
+    chunkDuration: recordSampleInterval,
+  });
+
+  assert.equal(runner.config.recordSampleInterval, recordSampleInterval);
+  assert.equal(
+    runner.config.displayOversampleFactor,
+    BORG_PRESCRIBED_DISPLAY_OVERSAMPLE_FACTOR,
+  );
+  assert.equal(
+    runner.config.sampleInterval,
+    recordSampleInterval / BORG_PRESCRIBED_DISPLAY_OVERSAMPLE_FACTOR,
+  );
+  assert.equal(record.window.sampleInterval, recordSampleInterval);
+
+  const chunk = await runner.computeNextChunk();
+  assert.deepEqual(
+    [...new Set(chunk.frames.map((frame) => frame.time))],
+    [0, 0.0125, 0.025, 0.0375, 0.05],
+  );
+  assert.equal(chunk.frames.length, 5 * record.worldlines.length);
+  assert.ok(chunk.frames.every((frame) => frame.valueAuthority === "recorded-eom-output"));
+  await runner.dispose();
+});
+
 test("Borg record replay never upgrades authority from producer-asserted evidence status", async () => {
   const runner = createBorgEomRecordReplayRunner(
     createBorgEomRecordFixture({ evidenceStatus: "canonical" }),
@@ -329,7 +378,7 @@ test("Borg record replay fails closed on foreign or ungraded records", () => {
   assert.throws(() => createBorgEomRecordReplayRunner(ungraded), /claim grade/);
 });
 
-test("Borg path-history renderer uses native row segments, not visual smoothing curves", () => {
+test("Borg path-history renderer joins replay rows without visual smoothing curves", () => {
   const runtimeSource = readFileSync(
     new URL("../src/apps/borg/BorgAppRuntime.js", import.meta.url),
     "utf8",
@@ -343,8 +392,8 @@ test("Borg path-history renderer uses native row segments, not visual smoothing 
     "utf8",
   );
   const htmlSource = readFileSync(new URL("../borg.html", import.meta.url), "utf8");
-  // Trail rendering moved to BorgPathTrails.js; the no-smoothing guard follows
-  // the code it guards.
+  // Prescribed cubic records may be sampled more densely before reaching this
+  // renderer. The renderer itself still joins those evaluated rows directly.
   const pathTrailsSource = readFileSync(
     new URL("../src/apps/borg/BorgPathTrails.js", import.meta.url),
     "utf8",

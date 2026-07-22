@@ -641,6 +641,7 @@ function createSurfaceAccumulator(protocol, radius, resolution, {
           netModeNorm,
           rawModeNorm,
           etaWakeFlux: rawModeNorm > effectiveCoefficientFloor ? netModeNorm / rawModeNorm : null,
+          effectiveCoefficientFloor,
           admissibleAngularModeCount: row.admissibleAngularModeCount,
           status: rawModeNorm > effectiveCoefficientFloor
             ? "admissible"
@@ -923,19 +924,21 @@ function radialMeasureRows(surfaceRows, floor, relativeFloor = 0) {
       surface.radius,
       row.retainedBandPower,
     ));
-    surface.wakeFluxHarmonicCancellationRows.forEach((row) => {
+    surface.wakeFluxHarmonicCancellationRows
+      .filter((row) => row.status === "admissible")
+      .forEach((row) => {
       add(
         `wake-flux-frequency/raw-mode-n${row.harmonic}`,
         surface.radius,
         row.rawModeNorm,
       );
-      add(
-        `wake-flux-frequency/net-mode-n${row.harmonic}`,
-        surface.radius,
-        row.netModeNorm,
-        row.rawModeNorm,
-      );
-      if (row.etaWakeFlux !== null) {
+      if (row.netModeNorm > row.effectiveCoefficientFloor) {
+        add(
+          `wake-flux-frequency/net-mode-n${row.harmonic}`,
+          surface.radius,
+          row.netModeNorm,
+          row.rawModeNorm,
+        );
         add(
           `wake-flux-frequency/cancellation-ratio-n${row.harmonic}`,
           surface.radius,
@@ -943,7 +946,7 @@ function radialMeasureRows(surfaceRows, floor, relativeFloor = 0) {
           1,
         );
       }
-    });
+      });
   }
   return [...byMeasure.entries()].map(([measureId, values]) => {
     const sorted = [...values].sort((left, right) => left.radius - right.radius);

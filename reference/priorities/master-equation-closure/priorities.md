@@ -1,4 +1,4 @@
-# Master-Equation Closure and Certified Eigen-Braid Root
+# Master-Equation Closure
 
 ## Workstream Metadata
 
@@ -11,26 +11,17 @@
 
 ## Task Queue
 
-1. `independent_causal_wake_state_closure` — Derive the smallest independently evolving causal wake state that produces the canonical transmitter-side acceleration on regular charts, gives a finite accepted coincident same-transmitter transition, and closes energy, momentum, and angular momentum on the same non-circular update. Status: `minimum-state-derived; closed-negatively-under-current-primitives; blocked-on-new-Architrino-native-construction`; this is the first global Master Equation blocker. Packets: [Independent Causal Wake-State Closure](independent-causal-wake-state-closure.md) and [Independent Causal Wake-State Minimum and Obstruction](analysis-independent-causal-wake-state.md). Depends on: a new construction that jointly supplies the maturity law, motion-account maps, emission capacity, and reception transfer.
-2. `certified_eigen_braid` — Exhibit one retained eigen-braid branch with transmitter-side acceleration weights, finite active-root and inactive-gap ledgers, finite memory, bounded EOM and returned-section residuals, the accepted wake-state accounts, and a positive non-symmetry stability margin. Status: `blocked-on-wake-state-and-branch-recompute`. Depends on: items 1 and 3.
-3. `spiral_branch_chart_test` — Rebuild one VP-1 or A1 acceleration/action packet using $c_f/|D_t|$ for acceleration and $D_r/D_t$ only for root playback. Status: `a1-acceleration-rebuilt; outward-aggregate-and-action-open`. The retained A1 chart now has derived acceleration-weight intervals and a turn-center diagnostic; action and conservation remain blocked on item 1. Packet: [Spiral A1 Transmitter-Side Rebuild](spiral-a1-restart.md). Depends on: item 1 for action and conserved accounts.
-4. `a1_outward_constants_handoff` — Emit A1 outward constants only after the rebuilt A1 packet carries same-record transmitter-side acceleration, signed playback, accepted aggregation, and the wake-state accounts required by the claim. Status: `blocked-on-outward-aggregate-and-wake-state`. Depends on: items 1 and 3.
-5. `emission_flux_playback_and_conservation_separation` — Derive the simple-root transmitter-time emission collapse and signed reception-time playback as separate identities, then admit conservation only through the wake-state update in item 1. Status: `priority-only`. Depends on: item 1 for conservation.
-6. `binary_perturbation_projection_classifier` — Classify finite binary perturbations by radial response, tangential response, cadence/radius retuning, and branch transition on one accepted retained branch. Status: `priority-only`. Depends on: item 2.
-7. `topological_causal_root_ledger_proof_target` — Refine the EOM-independent torus ledger theorem, boundary operator, and large-box limit without treating topology or playback as acceleration/action evidence. Status: `priority-only-theorem-target`. Depends on: none for topology; downstream use depends on an accepted branch consumer.
-8. `lorentz_gr_bridge` — Extract moving-assembly contraction and clock records, populate the shared [pressure-dependent Noether sea constitutive response](pressure-dependent-noether-sea-constitutive-response.md), and derive the weak-field metric export. Status: `pending`. Depends on: item 2.
-9. `lorentz_test_residual_handoff` — Export RMS, PPN, and SME-style residual records from one shared branch, clock, ruler, signal, and medium-response record. Status: `pending`. Depends on: item 8.
-10. `tier0_tier1_runs` — Own the $A_0$ Tier 0/Tier 1 branch-chart basis, fail-closed result interpretation, and accepted-physics boundary while consuming EOM-evolved records and generic EOM convergence/provenance records. Status: `active-routing-consolidated`; physical promotion depends on items 1–3.
-11. `field_speed_action_self_hit_scan` — Own transmitter-history binding, signed playback, transmitter-side acceleration, wake-state accounts, delayed-Noether accounting, and branch-certificate acceptance for the Braid Program's approach-to-$c_f$ campaign. Status: `blocked-on-wake-state`. Depends on: items 1, 2, and 12.
-12. `eta_positive_package` — Consolidate the formal finite-$\eta$ existence, uniqueness, continuation, and no-runaway package as a mathematical proof obligation. Status: `pending`. Depends on: item 10.
+1. `causal_wake_update_law` — Derive the smallest independently evolving wake state, with state variables and emission, propagation, reception, and boundary updates declared before evolution. On regular charts the update must reduce to the canonical transmitter-side acceleration without reading future receiver history or defining the wake from a conservation residual. Status: `blocked-on-new-Architrino-native-construction`. Evidence and obstruction packets: [Independent Causal Wake-State Closure](independent-causal-wake-state-closure.md) and [Independent Causal Wake-State Minimum and Obstruction](analysis-independent-causal-wake-state.md).
+2. `finite_coincident_same_transmitter_transition` — Derive a finite, unique, open-neighborhood continuation through complete coincident same-transmitter root birth on the state update from item 1. The continuation must not be an event-only patch or depend on regulator path. Status: `blocked-on-item-1`; accept only jointly with item 3. Negative controls: [source-density fold and coincident-birth analysis](../app-eom/analysis-source-density-fold-and-coincident-birth.md) and [minimal causal wake-state analysis](../app-eom/analysis-minimal-causal-wake-state-model.md).
+3. `same_update_conserved_accounts` — Derive Architrino-native motion, wake, and boundary accounts for energy, momentum, and angular momentum on exactly the causal retained-history update used by items 1 and 2. The account maps must be fixed before evolution and may not import mass-based single-architrino formulas or be defined as whatever cancels the residual. Status: `blocked-on-item-1`; accept only jointly with item 2.
 
 ## Scope
 
-The workstream must close the canonical transmitter-side Master Equation beyond
-its present fail-closed domain, exhibit the first certified eigen-braid, and
-route that accepted branch into action, stability, Lorentz/GR, and downstream
-coefficient programs. Standard-physics equations enter only as downstream
-recovery tests; they are not premises of substrate dynamics.
+This workstream owns only the three coupled obligations above: the causal wake
+update law, the finite coincident same-transmitter transition, and all three
+conserved accounts on that same update. A certified braid belongs to the Braid
+Program, while observer-level recovery belongs to its downstream theory lanes.
+Neither is a Master Equation closure task.
 
 The live global blocker is not another receiver-weighted branch certificate.
 It is the absence of one Architrino-native causal state update that both crosses
@@ -39,7 +30,7 @@ accounts. Root topology, inactive gaps, finite-memory bounds, transmitter-side
 floors, and signed playback remain necessary geometry. They do not determine
 the missing wake state or its accounts.
 
-## Top-Ranked Closure Target
+## Joint Closure Target
 
 The candidate complete causal state at absolute time $T$ has the form
 

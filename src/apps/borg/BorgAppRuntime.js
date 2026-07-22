@@ -15,6 +15,7 @@ import {
   createBorgFrameSetsFromRows,
 } from "./BorgFrameRows.js";
 import {
+  borgRecordReplayDisplayOversampleFactor,
   BORG_EOM_RECORD_REPLAY_RUN_SOURCE,
   createBorgEomRecordReplayRunner,
 } from "./BorgEomRecordReplayRunner.js";
@@ -219,6 +220,8 @@ const PARTICLE_POLARITY_STYLES = Object.freeze({
   }),
 });
 
+export const BORG_PRESCRIBED_PATH_TRAIL_COLOR = 0xc6b6ff;
+
 export function mountBorgApp(options = {}) {
   const documentLike = options.documentLike ?? globalThis.document;
   const windowLike = options.windowLike ?? globalThis.window;
@@ -367,7 +370,9 @@ export function mountBorgApp(options = {}) {
   const particleObjects = new Map();
   const velocityLines = new Map();
   const architrinoPointTexture = createArchitrinoPointTexture(documentLike);
-  const particleStyles = createParticleStyles(currentFrames);
+  const particleStyles = createBorgParticleStyles(currentFrames, {
+    prescribedGeometry: replayActive,
+  });
   const pathTrails = createBorgPathTrails({
     group: pathGroup,
     renderOrder: PATH_RENDER_ORDER,
@@ -615,7 +620,9 @@ export function mountBorgApp(options = {}) {
   function rebuildParticleObjects() {
     disposeParticleObjects();
     particleStyles.clear();
-    createParticleStyles(currentFrames).forEach((style, pathKey) => {
+    createBorgParticleStyles(currentFrames, {
+      prescribedGeometry: replayActive,
+    }).forEach((style, pathKey) => {
       particleStyles.set(pathKey, style);
     });
 
@@ -2319,9 +2326,17 @@ export function mountBorgApp(options = {}) {
   }
 
   function activeSampleInterval() {
-    return replayActive
-      ? activeReplayEntry?.dataset.window.sampleInterval ?? manifest.simulationEnvelope.sampleInterval
-      : activeEomRunnerOptions?.sampleInterval ??
+    if (replayActive) {
+      const configuredInterval = Number(options.eomRecordReplay?.sampleInterval);
+      if (Number.isFinite(configuredInterval) && configuredInterval > 0) {
+        return configuredInterval;
+      }
+      const recordInterval = Number(activeReplayEntry?.dataset.window.sampleInterval);
+      return Number.isFinite(recordInterval) && recordInterval > 0
+        ? recordInterval / borgRecordReplayDisplayOversampleFactor(activeReplayEntry?.dataset)
+        : manifest.simulationEnvelope.sampleInterval;
+    }
+    return activeEomRunnerOptions?.sampleInterval ??
       manifest.simulationEnvelope.sampleInterval;
   }
 
@@ -3144,7 +3159,7 @@ function queryRequiredElement(documentLike, selector) {
   return element;
 }
 
-function createParticleStyles(frames) {
+export function createBorgParticleStyles(frames, { prescribedGeometry = false } = {}) {
   const styles = new Map();
   frames.forEach((frame) => {
     if (styles.has(frame.pathKey)) {
@@ -3154,6 +3169,9 @@ function createParticleStyles(frames) {
       frame.stateFlags === 1 ? PARTICLE_POLARITY_STYLES.positrino : PARTICLE_POLARITY_STYLES.electrino;
     styles.set(frame.pathKey, {
       ...baseStyle,
+      pathColor: prescribedGeometry
+        ? BORG_PRESCRIBED_PATH_TRAIL_COLOR
+        : baseStyle.pathColor,
       label: String(frame.pathKey),
     });
   });

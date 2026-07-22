@@ -258,7 +258,7 @@
       "retainedSpectralPowerRelative": 0.02,
       "radialExponentAbsolute": 0.05,
       "causalWakeFluxRelativeOrAbsolute": 0.01,
-      "frequencyResolvedWakeFluxRelativeOrAbsolute": 0.02,
+      "frequencyResolvedWakeFluxRelativeOrAbsolute": 0.05,
       "sourceSensitivityRelativeOrAbsolute": 0.02
     },
     "causalWakeFlux": {

@@ -1,6 +1,6 @@
 # Same-Record Energy-Ledger Methodology
 
-Status: priority-only energy methodology, version `v0.4`, 2026-07-22. The complete-cycle normal causal-wake flux diagnostic developed in Section 5.9 and its frequency-resolved extension in Section 5.10 are promoted into the prescribed-record analytical methodology and implemented in the B1 streaming reducer. The remaining energy methodology stays priority-only and authorizes no escaping-energy or total-braid-energy fraction.
+Status: priority-only energy methodology, version `v0.5`, 2026-07-22. The complete-cycle normal causal-wake flux diagnostic developed in Section 5.9 and its frequency-resolved extension in Section 5.10 are promoted into the prescribed-record analytical methodology and implemented in the B1 streaming reducer. Section 15 records the ordered future-consideration sequence. The remaining energy methodology stays priority-only and authorizes no escaping-energy or total-braid-energy fraction.
 
 Promotion classification: `mixed`. The complete-cycle normal causal-wake flux diagnostic is `promote now` as an analytical wake measure. The energy construction remains `priority-only`, blocked by the missing accepted delayed action for the canonical Master Equation, missing receiver-side and realized-work entries in current analytical packets, missing spatial localization of the action-level Noether charge, missing prescribed-drive work, and missing Noether-sea exchange.
 
@@ -40,6 +40,7 @@ Falsifier: this verdict is overturned if a current authoritative packet is shown
 | Candidate diagnostic | Over a complete periodic return cycle, the source-tagged raw causal-wake flux through any fixed convex enclosing surface equals the cycle duration times the summed absolute source normalization when the shell storage is periodic. | Requires complete history, complete roots, fixed surfaces containing every source path, and declared fold handling. | The raw cycle integral changes with enclosing radius after quadrature, history, and root refinements, or the shell storage does not return to its initial value. |
 | Inferred | A residual-to-raw normal-flux ratio can measure signed wake cancellation without becoming an energy fraction. | Triangle inequality and the source-tagged raw denominator; radius invariance of the residual is not assumed. | The ratio leaves $[0,1]$ with a valid denominator, or a result is interpreted as energy, realized work, or intrinsic leakage. |
 | Inferred | Complete-cycle scalar cancellation can hide frequency-selective cancellation, so the normal wake-flux diagnostic requires source-tagged complex coefficients before superposition. | A phase-preserving Fourier reduction over the same complete return cycle, resolved jointly by temporal harmonic, angular mode, and radius. | The frequency-resolved rows fail to reconstruct the signed time-and-surface samples, fail refinement, or are interpreted as emitted energy. |
+| Inferred | Frequency-resolved wake coefficients may index an action-derived braid-energy decomposition, but they do not determine potential-like or kinetic-like storage without the same-action modal kernel and internal-state observability. | Candidate bridge from the periodic retained branch to an action-derived Noether charge; external wake coefficients are output coordinates, not the charge itself. | Two admitted branches have the same external coefficient ledger but different action-derived charges, or no kernel derived from the accepted action reproduces the same-record balance. |
 | Inferred | Gross outward transport, signed net transport, outside storage, and eventual receiver work are inequivalent. | Follows from allowing simultaneous inward/outward transport, finite in-flight storage, and actual receiver paths. | A same-action theorem proves the quantities identical under explicitly stated restrictions. |
 | Inferred | An intrinsic leakage ratio requires an unforced realized branch or an explicit subtraction of same-record drive and environment work. | Balance-law consequence; recommendation rather than completed branch result. | A driven prescribed cycle closes with nonzero export and zero drive/environment work under an accepted same-record ledger. |
 | Unresolved closure target | The normalized characteristic-tail action candidate yields the canonical Master Equation and a lower-bounded Noether energy on a retained braid branch. | Current corpus action program. | A nonzero irreducible Euler residual or unbounded energy on an admitted chart rejects the candidate. |
@@ -600,9 +601,32 @@ $$
 
 The triangle inequality again gives a value in $[0,1]$. This coefficient-level ratio measures phase-resolved signed-wake cancellation at one temporal harmonic and angular mode. It is not spectral energy. A separate Fourier transform of the rectified trace $\int_{S_R}|\sum_a f_a|\,dA$ may be reported as a **rectified-residual spectrum**, but the absolute value creates new sum, difference, and multiple frequencies. Those components must not be misidentified as the frequencies emitted by the source paths.
 
-Current status: implemented analytical diagnostic. The streaming reducer retains source-root-tagged complex normal-flux coefficients, net and raw coefficient magnitudes, $\eta_{\mathcal W,\mathrm{flux}}^{(\ell mn)}(R)$, per-harmonic angular-mode norms, radial-scaling rows, retained-band coverage, and primary-versus-refined convergence entries. A separately authored two-source fixture fixes one harmonic at $\eta=1/3$ and another at $\eta=1$, while an untagged sample fails closed. The result remains a wake-frequency diagnostic and not spectral energy.
+Current status: implemented analytical diagnostic. The streaming reducer retains source-root-tagged complex normal-flux coefficients, net and raw coefficient magnitudes, $\eta_{\mathcal W,\mathrm{flux}}^{(\ell mn)}(R)$, per-harmonic angular-mode norms, radial-scaling rows, retained-band coverage, and primary-versus-refined convergence entries. A relative coefficient floor prevents numerical-zero channels from receiving cancellation ratios or logarithmic radial exponents. A separately authored two-source fixture fixes one harmonic at $\eta=1/3$ and another at $\eta=1$, while an untagged sample fails closed. The result remains a wake-frequency diagnostic and not spectral energy.
 
 Falsifiers: reject a frequency row if inverse reconstruction does not recover the sampled signed normal-flux field within the declared retained-band residual, if primary and refined time grids disagree beyond tolerance, if source-root tags are discarded before the raw coefficient is formed, or if a rectification-created harmonic is reported as a source-emission harmonic.
+
+### 5.11 Candidate spectral bridge to braid energy
+
+The frequency-resolved wake ledger and a future braid-energy ledger are expected to be related because both depend on the same periodic paths, velocities, causal roots, phases, and delayed interaction history. That shared dependency does not make the wake coefficients energy coordinates automatically. The raw full-cycle wake flux is fixed by $T_{\mathrm{ret}}\sum_j|q_j|$ under the Section 5.9 conditions, so it contains no braid-specific potential-like or kinetic-like discrimination by itself. The surviving complex coefficients do carry geometry and phase information, but an external surface projection can have a nontrivial null space: distinct internal braid states can produce the same exterior coefficient ledger.
+
+If an accepted delayed action supplies a periodic-branch Noether charge and its second variation is meaningful on a declared chart, a candidate modal representation has the schematic form
+
+$$
+E_{\mathfrak B}^{(2)}
+=
+\sum_{n,\ell,m}
+\sum_{a,b}
+\widetilde z_{a,\ell mn}^{*}
+K^{E}_{ab,\ell mn}[\mathfrak B]
+\widetilde z_{b,\ell mn}
++E_{\mathrm{endpoint}}+E_{\mathrm{core}}+E_{\mathrm{sea}},
+$$
+
+where $\widetilde z_{a,\ell mn}$ denotes the action's internal branch variables rather than the measured surface coefficients, and $K^{E}$ is derived from the same action and Noether construction. The normal wake-flux coefficients are then candidate observations $\widetilde f=C\widetilde z$. Recovering energy from $\widetilde f$ requires both the action-derived kernel $K^{E}$ and an observability result showing which internal modes the map $C$ preserves. Choosing $K^{E}=I$, summing coefficient magnitudes squared, or calling Parseval `power` energy is barred.
+
+Potential-like storage would reside in delayed interaction and wake-history cross terms of the accepted charge. Kinetic-like storage would require the actual branch velocities and an $\mathbb{A}\mathbb{A}\mathbb{A}$-derived kinetic convention; it cannot be imported as $\tfrac12mv^2$ for massless architrinos. Frequency-selective cancellation may therefore identify exterior-bright and exterior-dark wake channels, but a dark exterior channel can still carry internal action charge. The spectrum can organize a future energy decomposition and test its balance; it cannot supply the decomposition before the action does.
+
+First test: construct two prescribed periodic records with nearly identical accepted exterior $\widetilde f_{\ell mn}(R)$ rows but different internal path-speed or delayed-link ledgers. If a future same-action charge distinguishes them, the exterior spectrum is not energy-complete. Conversely, any proposed spectral energy kernel must reproduce the independently derived same-record Noether charge, drive work, endpoint storage, and radius balance without retuning between records.
 
 ## 6. What the external quantity means
 
@@ -851,3 +875,76 @@ The energy portion of this packet remains `priority-only` because it supplies a 
 - no same-record Noether-sea exchange exists.
 
 Promotion target, only after those blockers close: the energy-construction standard in `content/markdown/aaa/validation/simulations/action-energy/delay-dynamics-energy.md`, followed by a consistent update to `content/markdown/aaa/dynamics/energy.md` and the braid analysis claim boundary. No promotion is authorized by this packet.
+
+## 15. Ordered future-consideration sequence
+
+The following items preserve the dependency order from wake transport to a possible total-energy ledger. They are future considerations, not current implementation authority. Each item must retain one source/protocol/branch identity and fail closed when its required rows are absent. Completion of an earlier item does not promote any later item automatically.
+
+### 15.1 Instantaneous two-radius causal-wake shell balance
+
+**Grade:** candidate non-energy diagnostic.
+
+Define the source-tagged wake measure stored in the shell $V_{R_2}\setminus V_{R_1}$ and test the instantaneous identity
+
+$$
+\frac{dN_{\mathcal W}(V_{R_2}\setminus V_{R_1},T)}{dT}
++\Phi_{\mathcal W}(R_2,T)
+-\Phi_{\mathcal W}(R_1,T)
+=0,
+$$
+
+with $R_1<R_2$, fixed enclosing surfaces, complete causal roots, the same history window, and the same source tags on every term. The implementation artifact is an independently integrated shell-storage row compared with the existing surface-flux rows before cycle integration. This diagnostic tests whether instantaneous differences between enclosing radii are explained by wake measure in flight; it remains distinct from energy storage or energy transport.
+
+**Acceptance condition:** the residual converges to the declared tolerance under time, surface-quadrature, root, and history refinement for separately authored static and periodic cases.
+
+**Falsifier:** the residual persists after refinement, or agreement requires a radius-dependent normalization or an unrecorded retardation shift.
+
+**Possible promotion destination after acceptance:** `content/markdown/aaa/noether-braid/braid-analysis-methodology.md` as a causal-wake diagnostic only.
+
+### 15.2 Prescribed-path work-and-drive row
+
+**Grade:** candidate work diagnostic; unavailable in current packets.
+
+Implement the Section 13 work-and-drive row in a separate diagnostic consumer or sibling packet. Exact moving braid endpoints act as receivers; every row retains receiver identity, partner and declared self-hit status, $D_t$, $D_r$, $D_r/D_t$, $W^{\mathrm{acc}}$, line of action, per-hit acceleration, receiver velocity, the declared kinetic convention, summed interaction power, required prescribed acceleration, inventory-completeness status, and external drive power.
+
+**Acceptance condition:** independently authored static-receiver and driven-periodic calculations respectively give zero realized receiver work and a closed drive/work/storage balance within declared tolerance.
+
+**Falsifier:** a stationary actual receiver accumulates nonzero work, a driven periodic fixture exports work without booking its external prescription, or any missing receiver/root/self-hit/environment row still permits an accepted result.
+
+**Possible promotion destination after acceptance:** the prescribed-path analytical methodology and `content/markdown/aaa/validation/simulations/action-energy/delay-dynamics-energy.md`, while continuing to exclude total energy, conservation, intrinsic leakage, stability, retention, and physical realization.
+
+### 15.3 Action-derived energy construction
+
+**Grade:** unresolved derivation/closure target.
+
+Author a delayed-action toy model independently of the production implementation, derive its time-translation Noether charge in closed form, and reproduce that invariant with a separate evaluator. Then derive, rather than assume, the action-level kinetic, delayed interaction, characteristic-tail endpoint, core, and spatial-boundary terms needed to define $E_{\mathrm{wake},R}$ and $\Phi_E$. Any modal energy kernel must come from this same action and must state which internal modes are observable in the exterior wake coefficients.
+
+**Acceptance condition:** the independently derived charge is invariant on the closed toy solution, its Euler variation reproduces the declared toy dynamics, its localized boundary identity closes, and the production implementation agrees without the oracle being modified in the same change.
+
+**Falsifier:** a nonzero irreducible Euler residual remains, the charge is unbounded on the admitted chart, the boundary localization fails, or agreement exists only through a shared implementation assumption.
+
+**Possible promotion destination after acceptance:** `content/markdown/aaa/validation/simulations/action-energy/delay-dynamics-energy.md` and then `content/markdown/aaa/dynamics/energy.md`.
+
+### 15.4 Realized-branch same-record energy ledger
+
+**Grade:** unresolved derivation/closure target dependent on Section 15.3.
+
+Pull the accepted delayed action and Noether construction back onto a retained branch generated by the EOM solver. The same record must bind realized paths, complete partner and nontrivial self-hit roots, accelerations, receiver power, drive and environment work, kinetic and delayed-history terms, characteristic-tail endpoints, spatial boundary terms, energy in flight between radii, regulator and core conventions, and finite-memory refinement. EOM-solver replay is trajectory evidence only; correctness still requires the independent action checks from Section 15.3.
+
+**Acceptance condition:** the same-record balance residual converges under regulator, core, history, root, temporal, and radius refinement, and an unforced branch separates intrinsic storage change from all declared drive and environment work.
+
+**Falsifier:** balance closure depends on mixing records, omitting self-hits or endpoint terms, retuning partitions between branches, or treating solver self-replay as an independent energy proof.
+
+**Possible promotion destination after acceptance:** `content/markdown/aaa/validation/simulations/action-energy/delay-dynamics-energy.md`, `content/markdown/aaa/dynamics/energy.md`, `content/markdown/aaa/noether-braid/braid-analysis-methodology.md`, and `content/markdown/aaa/noether-braid/braid-recovery-requirements.md`.
+
+### 15.5 Noether-sea exchange, lower bound, and fraction authorization
+
+**Grade:** unresolved derivation/closure target dependent on Sections 15.3 and 15.4.
+
+Embed the retained branch in a declared same-record Noether-sea response and derive the exchange term that closes the branch, wake-history, boundary, drive, and environment ledger. Establish a same-action lower bound or available-energy denominator that is invariant under an allowed common energy-zero shift. Only after those results close may the program reconsider an escaping-energy or total-braid-energy fraction; an arbitrary absolute-energy denominator or a hidden $\varepsilon_E$ remains barred.
+
+**Acceptance condition:** the Noether-sea exchange and the rest of the ledger close on one record across the declared refinements, the denominator remains meaningful under allowed gauge shifts, and the ratio distinguishes unforced intrinsic leakage from drive- or environment-supplied transport.
+
+**Falsifier:** the sea term is inferred from a residual rather than supplied by a declared response record, the lower bound changes under an allowed energy-zero shift, or the fraction changes when the enclosing radius is moved after in-flight storage is accounted for.
+
+**Possible promotion destination after acceptance:** `content/markdown/aaa/dynamics/energy.md`, `content/markdown/aaa/validation/simulations/action-energy/delay-dynamics-energy.md`, and the relevant Noether-sea response treatment under `content/markdown/aaa/spacetime/`.
