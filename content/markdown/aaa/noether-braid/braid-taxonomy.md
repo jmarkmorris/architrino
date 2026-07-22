@@ -305,6 +305,8 @@ Within A1 and A3, the symbols $R_1,R_2,R_3$ are independent positive coordinates
 
 Family and member names are optional aliases. The Description column may aid navigation, but it does not define the geometry and must not introduce a characteristic absent from the first three master tables.
 
+Every Family-A Borg depiction in this table selects the near-rest endpoint $\lambda_A=0$. Its three source-defined binary axes are the mutually orthogonal $x$, $y$, and $z$ axes, so the corresponding binary orbit planes are yz, xz, and xy. The wider taxonomy retains the prescribed interpolation through $0 < \lambda_A < 1$ and the coincident-axis endpoint at $\lambda_A=1$.
+
 | Member ID | Family name | Member name | Geometry record | Borg depiction | Description |
 | --- | --- | --- | --- | --- | --- |
 | `A1` | Noether core | Coincident endpoint orbits | `family-a-a1-general-v1` | `A1 — coincident endpoint orbits` | Zero-axial-offset Family-A member whose two endpoint paths share one geometric circle within each binary. |

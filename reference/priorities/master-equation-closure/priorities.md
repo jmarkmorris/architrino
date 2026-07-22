@@ -12,7 +12,7 @@
 ## Task Queue
 
 1. `causal_wake_update_law` — Derive the smallest independently evolving wake state, with state variables and emission, propagation, reception, and boundary updates declared before evolution. On regular charts the update must reduce to the canonical transmitter-side acceleration without reading future receiver history or defining the wake from a conservation residual. Status: `blocked-on-new-Architrino-native-construction`. Evidence and obstruction packets: [Independent Causal Wake-State Closure](independent-causal-wake-state-closure.md) and [Independent Causal Wake-State Minimum and Obstruction](analysis-independent-causal-wake-state.md).
-2. `finite_coincident_same_transmitter_transition` — Derive a finite, unique, open-neighborhood continuation through complete coincident same-transmitter root birth on the state update from item 1. The continuation must not be an event-only patch or depend on regulator path. Status: `blocked-on-item-1`; accept only jointly with item 3. Negative controls: [source-density fold and coincident-birth analysis](../app-eom/analysis-source-density-fold-and-coincident-birth.md) and [minimal causal wake-state analysis](../app-eom/analysis-minimal-causal-wake-state-model.md).
+2. `finite_coincident_same_transmitter_transition` — Derive a finite, unique, open-neighborhood continuation through complete coincident same-transmitter root birth on the state update from item 1. The continuation must not be an event-only patch or depend on regulator path. Status: `blocked-on-item-1`; accept only jointly with item 3. Negative controls: [transmitter-side fold and coincident-birth analysis](../app-eom/analysis-transmitter-factor-fold-and-coincident-birth.md) and [causal retained-history functional](../app-eom/analysis-transmitter-factor-causal-history-functional.md).
 3. `same_update_conserved_accounts` — Derive Architrino-native motion, wake, and boundary accounts for energy, momentum, and angular momentum on exactly the causal retained-history update used by items 1 and 2. The account maps must be fixed before evolution and may not import mass-based single-architrino formulas or be defined as whatever cancels the residual. Status: `blocked-on-item-1`; accept only jointly with item 2.
 
 ## Scope
@@ -103,9 +103,9 @@ regulator-path dependent, or closes only one of the three conserved accounts.
 | Packet class | Current disposition |
 | --- | --- |
 | [Receiver-normal branch-strength certificate](history/receiver-normal-branch-strength-certificate.md), [receiver-normal restart ledger](history/receiver-normal-master-equation-restart-ledger.md), and [receiver-normal wake-action factor](history/receiver-normal-wake-action-factor.md) | Revoked as current acceleration, action, or promotion authority and isolated under `history/`. Do not populate or cite their receiver-weighted certificate targets as current evidence. |
-| [Detailed branch-closure program](branch-closure-program.md), [A1 restart](spiral-a1-restart.md), and [VP-1 restart](spiral-vp1-restart.md) | Root geometry may survive. Every acceleration, action, power, force-balance, stability, outward-constant, or pass/fail conclusion depending on $|D_r/D_t|$ must be recomputed with transmitter-side acceleration and separate playback. |
+| [Historical branch-closure program](history/branch-closure-program.md), [A1 restart](spiral-a1-restart.md), and [VP-1 restart](spiral-vp1-restart.md) | Root geometry may survive. Every acceleration, action, power, force-balance, stability, outward-constant, or pass/fail conclusion depending on $|D_r/D_t|$ must be recomputed with transmitter-side acceleration and separate playback. |
 | A1 and VP-1 root-window, inactive-gap, finite-memory, Jacobian, and root-transport packets | Preserve certified root identities, retained intervals, history coverage, $D_t$ floors, and $D_r/D_t$ playback within their declared reach. Remove receiver-weighted acceleration dependencies before reuse. |
-| [Pressure-dependent Noether sea constitutive response](pressure-dependent-noether-sea-constitutive-response.md) | Retain as a derivation target, but replace its receiver-weighted intake with accepted transmitter-side branch records and the wake-state variables derived by item 1. |
+| [Pressure-dependent Noether sea constitutive response](pressure-dependent-noether-sea-constitutive-response.md) | Retain as a downstream derivation target, but do not count it as a Master Equation closure task. Its intake must use accepted transmitter-side branch records and the wake-state variables derived by item 1. |
 | Canonical Master Equation and `master_eom_binding/v1` EOM records | Current authority on the certified regular domain. Receiver-side factors remain required for signed playback, not acceleration magnitude. |
 | Numerical evidence produced under the removed acceleration law | Historical only. It may test instrumentation or topology within its declared reach, but it cannot support a current physical branch, stability, action, or recovery claim without recomputation. |
 
@@ -128,16 +128,16 @@ $D_r/D_t$ has been classified as playback rather than acceleration strength.
 
 | Task | Primary corpus destination | Gate |
 | --- | --- | --- |
-| `independent_causal_wake_state_closure` | [Master Equation](../../../content/markdown/aaa/dynamics/master-equation.md) and [Energy](../../../content/markdown/aaa/dynamics/energy.md) | One independently reconstructed causal update derives its wake variables, regular-domain reduction, finite coincident same-transmitter transition, and all three conserved accounts without residual-defined bookkeeping. |
-| `certified_eigen_braid` | [Noether Braid Configuration Space](../../../content/markdown/aaa/noether-braid/noether-braid-configuration-space.md), [Noether Braid Topological Charge](../../../content/markdown/aaa/noether-braid/noether-braid-topological-charge.md), and [Energy](../../../content/markdown/aaa/dynamics/energy.md) | One replayable retained branch closes root, memory, acceleration, wake-state, returned-section, and stability records under refinement. |
-| `spiral_branch_chart_test` | [Master Equation](../../../content/markdown/aaa/dynamics/master-equation.md) | One VP-1 or A1 candidate reports retained topology, transmitter-side radial/tangential aggregation, separate signed playback, and negative controls. |
-| `lorentz_gr_bridge` | [Lorentz Kinematics](../../../content/markdown/aaa/spacetime/lorentz-kinematics.md), [Emergent Metric](../../../content/markdown/aaa/spacetime/emergent-metric.md), and [Proper Time and Time Dilation](../../../content/markdown/aaa/spacetime/proper-time-and-time-dilation.md) | Moving-assembly and shared medium-response packets close without per-observable retuning or preferred-frame leakage above bound. |
+| `causal_wake_update_law` | [Master Equation](../../../content/markdown/aaa/dynamics/master-equation.md) | One independently evolving state update declares its variables and update rules in advance and reduces to the regular transmitter-side acceleration law. |
+| `finite_coincident_same_transmitter_transition` | [Master Equation](../../../content/markdown/aaa/dynamics/master-equation.md) | The same update gives a finite, unique, regulator-independent continuation through complete coincident same-transmitter birth on an open neighborhood. |
+| `same_update_conserved_accounts` | [Master Equation](../../../content/markdown/aaa/dynamics/master-equation.md) and [Energy](../../../content/markdown/aaa/dynamics/energy.md) | Fixed Architrino-native motion, wake, and boundary accounts close energy, momentum, and angular momentum on that same update. |
 
 ## Dependencies
 
 - The EOM solver supplies retained histories, certified transmitter-side acceleration records, signed playback, and fail-closed singular-event records. It does not invent the missing wake state.
-- The coincident-birth and conservation-obstruction analyses in `../app-eom/` define negative controls for item 1.
-- Mass, quantum, spin, cosmology, and reaction programs may consume an accepted branch certificate but may not infer closure from its existence.
+- The coincident-birth and conservation-obstruction analyses in `../app-eom/` define negative controls for items 1–3.
+- The Braid Program may use the closed update to test candidate braids, but even a certified braid would not replace any of these three derivations.
+- Mass, quantum, spin, cosmology, reaction, and observer-recovery programs are downstream consumers, not tasks in this queue.
 
 ## Related Priorities
 

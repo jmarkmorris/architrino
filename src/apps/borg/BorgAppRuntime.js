@@ -87,8 +87,9 @@ import {
 
 const TARGET_ENVELOPE_WORLD_DIAMETER = 6.2;
 const BORG_LIVE_RUN_BUDGET_VERSION = "borg-live-run-budget.v1";
-const CAMERA_MIN_DISTANCE = 4.8;
-const CAMERA_MAX_DISTANCE = 28;
+const CAMERA_ORTHOGRAPHIC_DISTANCE = 12;
+const CAMERA_MIN_VIEW_HALF_HEIGHT = 0.8;
+const CAMERA_MAX_VIEW_HALF_HEIGHT = 24;
 const DEFAULT_CAMERA_FIT_MARGIN = 1.43;
 const DEFAULT_PATH_TRAIL_DURATION = 30;
 const PATH_TRAIL_DURATIONS = Object.freeze([30, 60, 90, 180, 360]);
@@ -331,7 +332,7 @@ export function mountBorgApp(options = {}) {
   let currentFrames = replayActive ? [] : [...initialDisplayRows];
   let frameSets = createBorgFrameSetsFromRows(currentFrames);
   const scene = new THREE.Scene();
-  const camera = new THREE.PerspectiveCamera(38, 1, 0.05, 100);
+  const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0.05, 100);
   const renderer = new THREE.WebGLRenderer({
     canvas: dom.canvas,
     antialias: true,
@@ -389,7 +390,8 @@ export function mountBorgApp(options = {}) {
         .filter((layer) => layer.state === "on-locked")
         .map((layer) => layer.layer),
     ]),
-    cameraDistance: CAMERA_MIN_DISTANCE,
+    cameraAspect: 1,
+    cameraViewHalfHeight: 1,
     cameraFitMargin: DEFAULT_CAMERA_FIT_MARGIN,
     selectedPathKey: null,
     dragging: false,
@@ -2207,12 +2209,13 @@ export function mountBorgApp(options = {}) {
     event.preventDefault();
     const direction = event.deltaY > 0 ? 1 : -1;
     state.cameraFitMargin = null;
-    state.cameraDistance = clamp(
-      state.cameraDistance * (direction > 0 ? 1.08 : 0.92),
-      CAMERA_MIN_DISTANCE,
-      CAMERA_MAX_DISTANCE,
+    state.cameraViewHalfHeight = clamp(
+      state.cameraViewHalfHeight * (direction > 0 ? 1.08 : 0.92),
+      CAMERA_MIN_VIEW_HALF_HEIGHT,
+      CAMERA_MAX_VIEW_HALF_HEIGHT,
     );
-    camera.position.set(0, 0, state.cameraDistance);
+    updateOrthographicProjection();
+    camera.position.set(0, 0, CAMERA_ORTHOGRAPHIC_DISTANCE);
     camera.lookAt(0, 0, 0);
     render();
   }
@@ -2256,10 +2259,11 @@ export function mountBorgApp(options = {}) {
     const height = Math.max(1, Math.floor(rect.height));
     renderer.setPixelRatio(Math.min(2, windowLike.devicePixelRatio || 1));
     renderer.setSize(width, height, false);
-    camera.aspect = width / height;
-    camera.updateProjectionMatrix();
+    state.cameraAspect = width / height;
     if (state.cameraFitMargin != null) {
       fitCameraToEnvelope(state.cameraFitMargin);
+    } else {
+      updateOrthographicProjection();
     }
     render();
   }
@@ -2344,16 +2348,33 @@ export function mountBorgApp(options = {}) {
     const envelopeWorldRadius =
       activeEnvelopeRadius() *
       activeWorldUnitsPerSolverUnit();
-    const verticalHalfFov = THREE.MathUtils.degToRad(camera.fov * 0.5);
-    const horizontalHalfFov = Math.atan(Math.tan(verticalHalfFov) * Math.max(0.1, camera.aspect));
-    const limitingHalfFov = Math.min(verticalHalfFov, horizontalHalfFov);
-    state.cameraDistance = clamp(
-      (envelopeWorldRadius / Math.sin(limitingHalfFov)) * margin,
-      CAMERA_MIN_DISTANCE,
-      CAMERA_MAX_DISTANCE,
-    );
-    camera.position.set(0, 0, state.cameraDistance);
+    const frustum = calculateBorgOrthographicFrustum({
+      envelopeWorldRadius,
+      margin,
+      aspect: state.cameraAspect,
+    });
+    state.cameraViewHalfHeight = frustum.top;
+    applyOrthographicFrustum(frustum);
+    camera.position.set(0, 0, CAMERA_ORTHOGRAPHIC_DISTANCE);
     camera.lookAt(0, 0, 0);
+  }
+
+  function updateOrthographicProjection() {
+    const halfWidth = state.cameraViewHalfHeight * state.cameraAspect;
+    applyOrthographicFrustum({
+      left: -halfWidth,
+      right: halfWidth,
+      top: state.cameraViewHalfHeight,
+      bottom: -state.cameraViewHalfHeight,
+    });
+  }
+
+  function applyOrthographicFrustum({ left, right, top, bottom }) {
+    camera.left = left;
+    camera.right = right;
+    camera.top = top;
+    camera.bottom = bottom;
+    camera.updateProjectionMatrix();
   }
 
   function getFrameSetIndex(frameIndex) {
@@ -3335,6 +3356,34 @@ export function createDefaultEomShadowRunnerOptions(
     chunkDuration: configured.chunkDuration ?? preset.effectiveChunkDuration ?? preset.chunkDuration,
     initialFrameRows: configured.initialFrameRows ?? initialFrameRows ?? undefined,
   };
+}
+
+export function calculateBorgOrthographicFrustum({
+  envelopeWorldRadius,
+  margin,
+  aspect,
+}) {
+  const numericRadius = Number(envelopeWorldRadius);
+  const numericMargin = Number(margin);
+  const numericAspect = Number(aspect);
+  if (!Number.isFinite(numericRadius) || numericRadius <= 0) {
+    throw new TypeError("Borg orthographic envelope radius must be positive and finite.");
+  }
+  if (!Number.isFinite(numericMargin) || numericMargin <= 0) {
+    throw new TypeError("Borg orthographic camera-fit margin must be positive and finite.");
+  }
+  if (!Number.isFinite(numericAspect) || numericAspect <= 0) {
+    throw new TypeError("Borg orthographic viewport aspect must be positive and finite.");
+  }
+  const limitingDimensionScale = Math.min(1, numericAspect);
+  const halfHeight = (numericRadius * numericMargin) / limitingDimensionScale;
+  const halfWidth = halfHeight * numericAspect;
+  return Object.freeze({
+    left: -halfWidth,
+    right: halfWidth,
+    top: halfHeight,
+    bottom: -halfHeight,
+  });
 }
 
 export function getBorgVelocityRayLength(speed) {

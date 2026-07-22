@@ -10,6 +10,8 @@ Every Family-A member is one complete Noether braid composed of three neutral bi
 
 At the near-rest endpoint, the three binary axes are mutually orthogonal. Their equal-component direction is the Family-A translation direction. The complete braid translates along that direction, and the translation speed is the braid's group translation speed rather than an internal architrino speed.
 
+Every Family-A Borg catalog representative uses this near-rest endpoint: $\lambda_A=0$, source axes along $x$, $y$, and $z$, and corresponding binary orbit planes yz, xz, and xy. This prescribed display selection does not remove the intermediate and flat response geometries from the wider Family-A taxonomy.
+
 The prescribed flattening coordinate $\lambda_A$ connects two endpoint geometries:
 
 | $\lambda_A$ | Binary-axis relation | Envelope description |

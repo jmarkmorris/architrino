@@ -3,7 +3,7 @@
 Claim level: priority-only technical program. This focused packet preserves the
 long-form circular, spiral, branch-chart, response-tensor, Lorentz/GR, and
 falsifier mathematics that should not crowd the live queue. Current rank,
-status, blockers, and routing live in [priorities.md](priorities.md).
+status, blockers, and routing live in [priorities.md](../priorities.md).
 
 ## Program Boundary
 
@@ -12,13 +12,13 @@ program behind the compact tracker: the branch cohomology target, retained
 history charts, circular and spiral obstruction routes, branch-chart closure
 object, bare-void response tensor, moving-assembly extraction, medium-response
 contract, and falsifiers. The transmitter-side acceleration, signed-playback,
-causal wake-state, and restart rules are defined in [priorities.md](priorities.md),
-[the wake-state analysis](analysis-independent-causal-wake-state.md), and the A1
+causal wake-state, and restart rules are defined in [priorities.md](../priorities.md),
+[the wake-state analysis](../analysis-independent-causal-wake-state.md), and the A1
 and VP-1 rebuild packets.
 
 ## Current Theorem Order
 
-The workstream root is the first certified eigen-braid. The causal-action theorem spine, signed delay-map theorem pack, circular obstruction, and forward-root-starvation propositions give the architecture a closed grammar, but they do not yet exhibit a stable assembly. Every downstream coefficient program inherits that absence: mass, Lorentz/GR coefficients, quantum Born weights, spin-statistics, and cosmology can develop forms and residual routing, but they cannot promote coefficient-level derivations until at least one retained eigen-braid exists.
+The downstream branch-program root is the first certified braid. The causal-action theorem spine, signed delay-map theorem pack, circular obstruction, and forward-root-starvation propositions give the architecture a closed grammar, but they do not yet exhibit a stable assembly. Every downstream coefficient program inherits that absence: mass, Lorentz/GR coefficients, quantum Born weights, spin-statistics, and cosmology can develop forms and residual routing, but they cannot promote coefficient-level derivations until at least one certified braid exists.
 
 The immediate target is not a transmitter-side circular or spiral no-go.
 Circular and spiral records that do not carry $W^{\mathrm{acc}}=c_f/|D_t|$,
@@ -38,24 +38,24 @@ $$
 =
 0,
 $$
-on the same retained row set. A candidate that cancels only a pointwise tangential residual without closing this cohomology balance remains a search hit, not a certified eigen-braid.
+on the same retained row set. A candidate that cancels only a pointwise tangential residual without closing this cohomology balance remains a search hit, not a certified braid.
 
 The current priority order is:
 
 | Milestone | Priority | Closure object | Why it moves first |
 | :--- | :---: | :--- | :--- |
-| M0 | P0 | Certified eigen-braid packet | Root blocker for all coefficient programs; no stable assembly is currently certified. |
+| M0 | P0 | Certified-braid packet | Root blocker for all coefficient programs; no stable assembly is currently certified. |
 | M3 | P0 red-team | Spin-statistics $\mathbb{Z}_2$ holonomy wall | Highest-risk falsification node for fermionic antisymmetry; a negative result reshapes the matter sector. |
 | M2 | P1 analytic | Curvature-bounded no-proliferation lemma | Needed so finite branch certificates cannot hide uncontrolled self-root accumulation. |
-| M1 | P1 consolidation | Branch-symplectic-promotion certificate | One certificate should serve binary closure, doubling-frequency return, effective Hamiltonian promotion, and eigen-braid testing. |
+| M1 | P1 consolidation | Branch-symplectic-promotion certificate | One certificate should serve binary closure, doubling-frequency return, effective Hamiltonian promotion, and braid certification. |
 | M5 | P2 geometry | $|D_{\mathrm{plane}}|\to1\Rightarrow\|Q_{\mathcal A}\|\to0$ | Converts Lorentz, equivalence-principle, and anisotropy rows into one framing-isotropy theorem after a branch exists. |
-| M4 | P2 derived coefficients | Mass map and $\mathcal R_\alpha(A,A')$ across two species | Requires at least two certified eigen-braids, so it is decisive but downstream of M0. |
+| M4 | P2 derived coefficients | Mass map and $\mathcal R_\alpha(A,A')$ across two species | Requires at least two certified braids, so it is decisive but downstream of M0. |
 
-Form-level mappings may be claimed now only with their inherited blockers. The GR bridge owns the effective metric and weak clock form; the quantum bridge owns the Madelung/Hamilton-Jacobi and Bohr-Sommerfeld forms; the cosmology bridge owns transport-redshift constraints and tired-light exclusion. None of those rows derives its coefficients until the eigen-braid, Noether sea response, and mass-map dependencies close.
+Form-level mappings may be claimed now only with their inherited blockers. The GR bridge owns the effective metric and weak clock form; the quantum bridge owns the Madelung/Hamilton-Jacobi and Bohr-Sommerfeld forms; the cosmology bridge owns transport-redshift constraints and tired-light exclusion. None of those rows derives its coefficients until the certified-braid, Noether sea response, and mass-map dependencies close.
 
 ## Branch-Chart Promotion Standard
 
-The updated [master-equation](../../../content/markdown/aaa/dynamics/master-equation.md) promotes the causal-root complex, singular-stratum routing, local-to-global branch-chart gluing target, finite-continuation cardinality, starvation scale for forward partner rows, and finite-window wake-escapement boundary identity into the core closure grammar. A local residual or pointwise branch trace is not enough unless the retained chart also reports signed root-complex data, fold versus higher-stratum routing, finite memory, overlap/gluing consistency where a global claim is made, and boundary wake-history charges on the same retained row set.
+The updated [master-equation](../../../../content/markdown/aaa/dynamics/master-equation.md) promotes the causal-root complex, singular-stratum routing, local-to-global branch-chart gluing target, finite-continuation cardinality, starvation scale for forward partner rows, and finite-window wake-escapement boundary identity into the core closure grammar. A local residual or pointwise branch trace is not enough unless the retained chart also reports signed root-complex data, fold versus higher-stratum routing, finite memory, overlap/gluing consistency where a global claim is made, and boundary wake-history charges on the same retained row set.
 
 Practical condition: active proof and simulation packets should treat retained
 root topology as conditional geometry only. Acceleration, action, power,
@@ -65,7 +65,7 @@ playback, and causal wake-account evidence.
 
 ### Local Reconstruction And Regulator Rows
 
-The [master-equation](../../../content/markdown/aaa/dynamics/master-equation.md) refinement sharpens the same closure burden. A promoted branch certificate should report the branch-chart local inverse data behind $\mathfrak B(\Gamma,\mathcal S;h,\eta,\epsilon_c)$, the $H^0$ global-section count for finite continuation, any $\check H^1$ gluing obstruction, separate $\eta$ versus $\epsilon_c$ regulator status, finite-window degree changes caused by memory-boundary starvation, and any $\ell=2$ quadrupole leakage $Q_A$ when a moving-loop Lorentz checkpoint is used.
+The [master-equation](../../../../content/markdown/aaa/dynamics/master-equation.md) refinement sharpens the same closure burden. A promoted branch certificate should report the branch-chart local inverse data behind $\mathfrak B(\Gamma,\mathcal S;h,\eta,\epsilon_c)$, the $H^0$ global-section count for finite continuation, any $\check H^1$ gluing obstruction, separate $\eta$ versus $\epsilon_c$ regulator status, finite-window degree changes caused by memory-boundary starvation, and any $\ell=2$ quadrupole leakage $Q_A$ when a moving-loop Lorentz checkpoint is used.
 
 Practical condition: use `force_action_restart_required` wherever a row
 uses branch strength. Existing circular, spiral, A1, transport, finite-collar,
@@ -80,23 +80,23 @@ accounts are reported on the same retained state.
 
 | Task | Detailed source | Primary promotion target | Promotion gate |
 | --- | --- | --- | --- |
-| `certified_eigen_braid` | This file, [Noether Braid Configuration Space](../../../content/markdown/aaa/noether-braid/noether-braid-configuration-space.md), [Noether Braid Topological Charge](../../../content/markdown/aaa/noether-braid/noether-braid-topological-charge.md), [binary-dynamics](../../../content/markdown/aaa/dynamics/binary-dynamics.md), and the active proof-program packets | [Noether Braid Configuration Space](../../../content/markdown/aaa/noether-braid/noether-braid-configuration-space.md), [Noether Braid Topological Charge](../../../content/markdown/aaa/noether-braid/noether-braid-topological-charge.md), [energy](../../../content/markdown/aaa/dynamics/energy.md), [emergent-metric](../../../content/markdown/aaa/spacetime/emergent-metric.md), and [quantum-summary](../../../content/markdown/aaa/quantum/quantum-summary.md) | One replayable retained branch packet reports the same causal-root ledger, signed-degree refinement, Noether wake-history charges, finite-memory window, group-velocity/response-center row, assembly topological charge, and positive non-symmetry stability margin under refinement. |
-| `independent_causal_wake_state_closure` | [wake-state closure packet](independent-causal-wake-state-closure.md) and [minimum-state analysis](analysis-independent-causal-wake-state.md) | [master-equation](../../../content/markdown/aaa/dynamics/master-equation.md) and [energy](../../../content/markdown/aaa/dynamics/energy.md) | One causal construction must supply directional wake state, finite coincident same-transmitter continuation, fixed motion accounts, wake accounts, and boundary flux without residual-defined balancing. |
-| `circular_asymptotics` | This file | [master-equation](../../../content/markdown/aaa/dynamics/master-equation.md) | Higher-winding circular records restart from same-record $D_t$, $D_r$, $W^{\mathrm{acc}}$, and signed-playback intervals before any self-hit or tangential no-go is promoted. |
-| `spiral_branch_chart_test` | [spiral-vp1-restart](spiral-vp1-restart.md) and [spiral-a1-restart](spiral-a1-restart.md) | [master-equation](../../../content/markdown/aaa/dynamics/master-equation.md) and doubling-frequency-lock | One admissible variable-pitch candidate must report retained root topology plus same-record transmitter-side acceleration, separate signed playback, radial and tangential aggregates, causal wake accounts, and negative controls before any physical verdict is promoted. |
-| `lorentz_gr_bridge` | [lorentz-gr-bridge-handoff](lorentz-gr-bridge-handoff.md) | [lorentz-kinematics](../../../content/markdown/aaa/spacetime/lorentz-kinematics.md), [emergent-metric](../../../content/markdown/aaa/spacetime/emergent-metric.md), and [proper-time-and-time-dilation](../../../content/markdown/aaa/spacetime/proper-time-and-time-dilation.md) | Moving Noether braid contraction and clock retuning are extracted first; only after that independent moving-assembly packet closes may coarse-grained medium response be used for weak-field GR and PPN targets. |
-| `lorentz_test_residual_handoff` | [lorentz-test-residual-handoff](lorentz-test-residual-handoff.md) | [lorentz-kinematics](../../../content/markdown/aaa/spacetime/lorentz-kinematics.md), [emergent-metric](../../../content/markdown/aaa/spacetime/emergent-metric.md), and [lorentz-invariance-test-suite](../cross-theory-mapping/lorentz-invariance-test-suite.md) | RMS, PPN, and SME-style residual rows are exported only after the Lorentz/GR bridge supplies one shared branch, clock, ruler, signal, and medium-response artifact. |
+| `certified_braid` | This file, [Noether Braid Configuration Space](../../../../content/markdown/aaa/noether-braid/noether-braid-configuration-space.md), [Noether Braid Topological Charge](../../../../content/markdown/aaa/noether-braid/noether-braid-topological-charge.md), [binary-dynamics](../../../../content/markdown/aaa/dynamics/binary-dynamics.md), and the active proof-program packets | [Noether Braid Configuration Space](../../../../content/markdown/aaa/noether-braid/noether-braid-configuration-space.md), [Noether Braid Topological Charge](../../../../content/markdown/aaa/noether-braid/noether-braid-topological-charge.md), [energy](../../../../content/markdown/aaa/dynamics/energy.md), [emergent-metric](../../../../content/markdown/aaa/spacetime/emergent-metric.md), and [quantum-summary](../../../../content/markdown/aaa/quantum/quantum-summary.md) | One replayable retained branch packet reports the same causal-root ledger, signed-degree refinement, Noether wake-history charges, finite-memory window, group-velocity/response-center row, assembly topological charge, and positive non-symmetry stability margin under refinement. |
+| `causal_wake_update_law` | [wake-state closure packet](../independent-causal-wake-state-closure.md) and [minimum-state analysis](../analysis-independent-causal-wake-state.md) | [master-equation](../../../../content/markdown/aaa/dynamics/master-equation.md) and [energy](../../../../content/markdown/aaa/dynamics/energy.md) | One causal construction must supply directional wake state, finite coincident same-transmitter continuation, fixed motion accounts, wake accounts, and boundary flux without residual-defined balancing. |
+| `circular_asymptotics` | This file | [master-equation](../../../../content/markdown/aaa/dynamics/master-equation.md) | Higher-winding circular records restart from same-record $D_t$, $D_r$, $W^{\mathrm{acc}}$, and signed-playback intervals before any self-hit or tangential no-go is promoted. |
+| `spiral_branch_chart_test` | [spiral-vp1-restart](../spiral-vp1-restart.md) and [spiral-a1-restart](../spiral-a1-restart.md) | [master-equation](../../../../content/markdown/aaa/dynamics/master-equation.md) and doubling-frequency-lock | One admissible variable-pitch candidate must report retained root topology plus same-record transmitter-side acceleration, separate signed playback, radial and tangential aggregates, causal wake accounts, and negative controls before any physical verdict is promoted. |
+| `lorentz_gr_bridge` | [lorentz-gr-bridge-handoff](../lorentz-gr-bridge-handoff.md) | [lorentz-kinematics](../../../../content/markdown/aaa/spacetime/lorentz-kinematics.md), [emergent-metric](../../../../content/markdown/aaa/spacetime/emergent-metric.md), and [proper-time-and-time-dilation](../../../../content/markdown/aaa/spacetime/proper-time-and-time-dilation.md) | Moving Noether braid contraction and clock retuning are extracted first; only after that independent moving-assembly packet closes may coarse-grained medium response be used for weak-field GR and PPN targets. |
+| `lorentz_test_residual_handoff` | [lorentz-test-residual-handoff](../lorentz-test-residual-handoff.md) | [lorentz-kinematics](../../../../content/markdown/aaa/spacetime/lorentz-kinematics.md), [emergent-metric](../../../../content/markdown/aaa/spacetime/emergent-metric.md), and [lorentz-invariance-test-suite](../../cross-theory-mapping/lorentz-invariance-test-suite.md) | RMS, PPN, and SME-style residual rows are exported only after the Lorentz/GR bridge supplies one shared branch, clock, ruler, signal, and medium-response artifact. |
 
 ## Available Action Kernel
 
-`characteristic_tail_noether_closure` is closed at the local action-kernel level. [master-equation](../../../content/markdown/aaa/dynamics/master-equation.md) now fixes the endpoint-clear normalized delayed-interior characteristic-tail kernel, proves the receiver-gradient identity
+`characteristic_tail_noether_closure` is closed at the local action-kernel level. [master-equation](../../../../content/markdown/aaa/dynamics/master-equation.md) now fixes the endpoint-clear normalized delayed-interior characteristic-tail kernel, proves the receiver-gradient identity
 $$
 D_{ij}K_{\mathrm{eff}}^{(\eta)}
 =
 -
 \frac{\delta_\eta(g)}{r^2},
 $$
-and defines the corresponding energy, momentum, and angular-momentum wake-history increments across a time cut. [effective-lagrangian](../../../content/markdown/aaa/dynamics/effective-lagrangian.md) and [nested-shell-braid-dynamics](../../../content/markdown/aaa/noether-braid/braid-a1-dynamics.md#a1-dynamics) now consume that kernel as the available action-level repair rather than as a missing Noether-boundary placeholder.
+and defines the corresponding energy, momentum, and angular-momentum wake-history increments across a time cut. [effective-lagrangian](../../../../content/markdown/aaa/dynamics/effective-lagrangian.md) and [nested-shell-braid-dynamics](../../../../content/markdown/aaa/noether-braid/braid-a1-dynamics.md#a1-dynamics) now consume that kernel as the available action-level repair rather than as a missing Noether-boundary placeholder.
 
 This completion does not certify a branch or terminal label. Downstream consumers must still pull the increments back to their retained branch charts and prove closure of $K_{\mu}+E_{\mathrm{wake,eff}}^{(\eta)}$, $\mathbf{P}_{\mathrm{mech}}+\mathbf{P}_{\mathrm{wake,eff}}^{(\eta)}$, and $\mathbf{J}_{\mathrm{mech}}+\mathbf{J}_{\mathrm{wake,eff}}^{(\eta)}$ with the same root-ledger, memory-depth, and Jacobian-floor conditions used by the Master EOM. The corpus now states this as a concrete branch-chart conservation test rather than as an open handoff phrase: the required output is the retained-chart pullback of the three Noether totals, with exact wake-history charges separated from work-integral and torque-projection diagnostics.
 
@@ -108,7 +108,7 @@ three conserved accounts remain fail closed. VP-1 remains a transmitter-side
 rebuild target.
 
 The A1 finite-collar continuation now starts from the derived acceleration-weight
-intervals in [spiral-a1-restart.md](spiral-a1-restart.md). The next usable
+intervals in [spiral-a1-restart.md](../spiral-a1-restart.md). The next usable
 artifact is an outward evaluation of the radial and tangential aggregates on the
 same retained boxes, followed by the accepted causal wake accounts. Point values
 alone do not license A1 outward constants or a constant-rate verdict.
@@ -117,7 +117,7 @@ alone do not license A1 outward constants or a constant-rate verdict.
 
 - First accepted causal wake-state construction and first outward A1 aggregate
   certificate using transmitter-side acceleration and separate playback.
-- First certified eigen-braid packet for a six-body Noether braid branch, preferably a collinear breather or non-circular signed-sheet branch rather than the bare circular MCB.
+- First certified-braid packet for a six-body Noether braid branch, preferably a collinear breather or non-circular signed-sheet branch rather than the bare circular MCB.
 - Numerical branch-chart evaluation of the normalized delayed-interior characteristic-tail kernel and its Noether wake-history boundary terms under the stated pullback contract.
 - Bare-void branch response tensor for isolated assemblies, computed from branch-chart momentum susceptibility before Noether sea dressing.
 - Full 3D translating three-binary NFDE / DDE control for emergent $\gamma$-scaling.
@@ -815,7 +815,7 @@ Keep the maximum-curvature-wall question tied to both tracks. The Jacobian-null 
   2. coarse-grain the same causal medium into a constitutive response that yields $g_{\mu\nu}^{\mathrm{eff}}$, weak-field PPN closure, and suppressed preferred-frame leakage.
 - Keep the two stages independent in proof order. The moving-assembly extraction uses the delayed root equations, branch admissibility, hierarchy averaging, and clock/ruler observables; weak-field PPN supplies downstream tests of the dressed medium response, not a prerequisite for extracting the homogeneous moving-assembly laws.
 - Close $d\tau/dt = F(v,\rho,\Phi)$ and the substrate-to-metric functional.
-- Derive the weak-field map from hit-density and medium variables to $g_{\mathrm{eff}}$ constraints in [emergent-metric](../../../content/markdown/aaa/spacetime/emergent-metric.md) and [proper-time-and-time-dilation](../../../content/markdown/aaa/spacetime/proper-time-and-time-dilation.md).
+- Derive the weak-field map from hit-density and medium variables to $g_{\mathrm{eff}}$ constraints in [emergent-metric](../../../../content/markdown/aaa/spacetime/emergent-metric.md) and [proper-time-and-time-dilation](../../../../content/markdown/aaa/spacetime/proper-time-and-time-dilation.md).
 - Derive the constitutive closure from the coarse-grained medium itself rather than postulating it:
   - take the continuum limit of the $\eta$-regularized delayed action and effective medium Lagrangian seriously;
   - declare the scaling-limit datum for any $\eta\to0^+$ claim: regulator family, scaling trajectory, observable maps, normalization or mixing rules, test-window class, convergence topology, and the uniform-control or reconstruction condition required by the promoted statement;
@@ -1168,14 +1168,14 @@ Interface falsifier. If a downstream basin weight, shielding coefficient, or res
 - angular-momentum-spin
 - mass-map
 - doubling-frequency-lock
-- [quantum-closure](../quantum-closure/priorities.md)
-- [strong-field-closure](../strong-field-closure/priorities.md)
-- [cosmology-closure](../cosmology-closure/priorities.md)
+- [quantum-closure](../../quantum-closure/priorities.md)
+- [strong-field-closure](../../strong-field-closure/priorities.md)
+- [cosmology-closure](../../cosmology-closure/priorities.md)
 
 ## Related AAA Notes
 
-- [master-equation](../../../content/markdown/aaa/dynamics/master-equation.md)
-- [lorentz-kinematics](../../../content/markdown/aaa/spacetime/lorentz-kinematics.md)
-- [emergent-metric](../../../content/markdown/aaa/spacetime/emergent-metric.md)
-- [proper-time-and-time-dilation](../../../content/markdown/aaa/spacetime/proper-time-and-time-dilation.md)
-- [quantum-summary](../../../content/markdown/aaa/quantum/quantum-summary.md)
+- [master-equation](../../../../content/markdown/aaa/dynamics/master-equation.md)
+- [lorentz-kinematics](../../../../content/markdown/aaa/spacetime/lorentz-kinematics.md)
+- [emergent-metric](../../../../content/markdown/aaa/spacetime/emergent-metric.md)
+- [proper-time-and-time-dilation](../../../../content/markdown/aaa/spacetime/proper-time-and-time-dilation.md)
+- [quantum-summary](../../../../content/markdown/aaa/quantum/quantum-summary.md)

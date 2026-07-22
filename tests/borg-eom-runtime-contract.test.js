@@ -17,6 +17,7 @@ import {
 } from "../src/apps/borg/BorgFrameRows.js";
 import {
   BORG_PRESCRIBED_PATH_TRAIL_COLOR,
+  calculateBorgOrthographicFrustum,
   createBorgParticleStyles,
   createDefaultEomShadowRunnerOptions,
   formatBorgTimelineTime,
@@ -378,6 +379,33 @@ test("Borg record replay fails closed on foreign or ungraded records", () => {
   assert.throws(() => createBorgEomRecordReplayRunner(ungraded), /claim grade/);
 });
 
+test("Borg orthographic camera fits the limiting viewport dimension without depth scaling", () => {
+  assert.deepEqual(
+    calculateBorgOrthographicFrustum({
+      envelopeWorldRadius: 2,
+      margin: 1.5,
+      aspect: 2,
+    }),
+    { left: -6, right: 6, top: 3, bottom: -3 },
+  );
+  assert.deepEqual(
+    calculateBorgOrthographicFrustum({
+      envelopeWorldRadius: 2,
+      margin: 1.5,
+      aspect: 0.5,
+    }),
+    { left: -3, right: 3, top: 6, bottom: -6 },
+  );
+  assert.throws(
+    () => calculateBorgOrthographicFrustum({
+      envelopeWorldRadius: 3,
+      margin: 1.5,
+      aspect: 0,
+    }),
+    /viewport aspect must be positive and finite/,
+  );
+});
+
 test("Borg path-history renderer joins replay rows without visual smoothing curves", () => {
   const runtimeSource = readFileSync(
     new URL("../src/apps/borg/BorgAppRuntime.js", import.meta.url),
@@ -411,6 +439,9 @@ test("Borg path-history renderer joins replay rows without visual smoothing curv
   assert.match(runtimeSource, /BOUNDARY_SHELL_LONGITUDE_COUNT = 48/);
   assert.match(runtimeSource, /ENVELOPE_GUIDE_COLOR = 0xcbd0c8/);
   assert.match(runtimeSource, /ENVELOPE_GUIDE_OPACITY = 0\.88/);
+  assert.match(runtimeSource, /new THREE\.OrthographicCamera\(/);
+  assert.doesNotMatch(runtimeSource, /new THREE\.PerspectiveCamera\(/);
+  assert.match(runtimeSource, /calculateBorgOrthographicFrustum/);
   assert.match(runtimeSource, /new THREE\.Points\(/);
   assert.equal((runtimeSource.match(/boundaryShellGroup\.add\(\s*createBoundaryShellPoints\(\{/g) ?? []).length, 1);
   assert.doesNotMatch(runtimeSource, /centralBallGroup/);

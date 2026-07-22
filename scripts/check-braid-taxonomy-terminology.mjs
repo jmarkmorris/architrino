@@ -16,6 +16,10 @@ const BORG_READER_SURFACES = Object.freeze([
   "src/apps/borg/BorgAssemblyViewControls.js",
   "borg.html",
 ]);
+const CERTIFICATION_READER_SURFACES = Object.freeze([
+  "src/apps/borg/BorgAssemblyViewControls.js",
+  "src/apps/assembly-explorer/AssemblyConfigurationExplorerRuntime.js",
+]);
 const A1_PUBLIC_DISPLAY_SURFACES = Object.freeze([
   "README.md",
   "ideal-braid.html",
@@ -42,6 +46,14 @@ const RETIRED_BRAID_NAME_PATTERN = RETIRED_BRAID_NAME_TOKENS.join("|");
 const BRAID_NAME_CONTEXT_PATTERN = "braid|family|member|candidate|variant";
 
 export const TERMINOLOGY_RULES = [
+  {
+    id: "eigen-braid-certificate-status",
+    label: "eigen-braid used as certificate status",
+    pattern:
+      /\b(?:certified|retained)[ -]+eigen[ -]+braid\b|\beigen[ -]+braid[ -]+status\b/gi,
+    replacement:
+      "use candidate braid or certified braid; reserve eigen-braid spectrum for the discrete-mode theorem target",
+  },
   {
     id: "taxonomy-member-identifier",
     label: "taxonomy member identifier requiring local coordinate ownership",
@@ -181,7 +193,12 @@ const REQUIRED_DEFINITIONS = [
   },
   {
     file: "content/markdown/aaa/archie/mathematics-terminology.md",
-    snippets: ["| Accessory Configuration |", "inside, across, or outside the braid envelope"],
+    snippets: [
+      "| Accessory Configuration |",
+      "inside, across, or outside the braid envelope",
+      "| eigen-braid spectrum |",
+      "Membership in the eigen-braid spectrum does not certify a braid",
+    ],
   },
 ];
 
@@ -289,6 +306,11 @@ export function scanBraidTaxonomyTerminology({
       ...a1PublicDisplay.files.filter((relativePath) => !files.includes(relativePath)),
     );
     findings.push(...a1PublicDisplay.findings);
+    const certificationDisplay = scanCertificationDisplayTerminology({ rootDir });
+    files.push(
+      ...certificationDisplay.files.filter((relativePath) => !files.includes(relativePath)),
+    );
+    findings.push(...certificationDisplay.findings);
     files.sort((left, right) => left.localeCompare(right));
   }
 
@@ -328,6 +350,31 @@ export function scanA1PublicDisplayTerminology({ rootDir = ROOT_DIR } = {}) {
   return { files: files.sort((left, right) => left.localeCompare(right)), findings };
 }
 
+export function scanCertificationDisplayTerminology({ rootDir = ROOT_DIR } = {}) {
+  const files = [...CERTIFICATION_READER_SURFACES];
+  const findings = [];
+  const pattern =
+    /\b(?:certified|retained)[ -]+eigen[ -]+braid\b|\beigen[ -]+braid[ -]+status\b/gi;
+  for (const relativePath of files) {
+    const source = fs.readFileSync(path.join(rootDir, relativePath), "utf8");
+    for (const [lineIndex, rawLine] of source.split(/\r?\n/).entries()) {
+      for (const match of rawLine.matchAll(pattern)) {
+        findings.push({
+          relativePath,
+          lineNumber: lineIndex + 1,
+          ruleId: "eigen-braid-certificate-status",
+          label: "eigen-braid used as certificate status",
+          replacement:
+            "use Braid certification in UI; reserve eigen-braid spectrum for the discrete-mode theorem target",
+          match: match[0],
+          excerpt: rawLine.trim(),
+        });
+      }
+    }
+  }
+  return { files: files.sort((left, right) => left.localeCompare(right)), findings };
+}
+
 export function scanBorgReaderFacingValue(value, relativePath, field) {
   if (typeof value !== "string") return [];
   const findings = [];
@@ -342,6 +389,20 @@ export function scanBorgReaderFacingValue(value, relativePath, field) {
       ruleId: "retired-borg-candidate-label",
       label: "retired Borg candidate terminology",
       replacement: "use the canonical A/B/C taxonomy identifier and technical coordinates",
+      match: match[0],
+      excerpt: `${field}: ${value}`,
+    });
+  }
+  const certificateStatusPattern =
+    /\b(?:certified|retained)[ -]+eigen[ -]+braid\b|\beigen[ -]+braid[ -]+status\b/gi;
+  for (const match of value.matchAll(certificateStatusPattern)) {
+    findings.push({
+      relativePath,
+      lineNumber: 1,
+      ruleId: "eigen-braid-certificate-status",
+      label: "eigen-braid used as certificate status",
+      replacement:
+        "use Braid certification in UI; reserve eigen-braid spectrum for the discrete-mode theorem target",
       match: match[0],
       excerpt: `${field}: ${value}`,
     });

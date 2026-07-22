@@ -6,6 +6,15 @@ Use [brainstorming.md](brainstorming.md) for provisional ideas, insights, concep
 
 ## Log Entries
 
+- 2026-07-22: Normalized braid terminology across canon, current priority
+  packets, and app contracts. `Eigen-braid spectrum` now names only the
+  discrete-mode theorem target; candidate braid and certified braid name
+  certificate status. Reduced the live Master Equation queue to three coupled
+  future obligations: the causal wake update law, a finite coincident
+  same-transmitter transition, and energy, momentum, and angular momentum
+  accounts on that same update. No new wake law, transition, conservation
+  result, certified braid, or observer-recovery claim was derived or promoted.
+
 - 2026-07-20: Completed the receiver-factor authority audit. The obsolete
   receiver-weighted branch-strength, restart-ledger, and wake-action packets
   were moved under `history/`; current shared trackers and branch packets now

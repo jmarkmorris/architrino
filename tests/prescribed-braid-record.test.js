@@ -177,16 +177,21 @@ test("Family-A axes implement the declared flattening interpolation and preserve
   });
 });
 
-test("A1 general uses the mutually orthogonal xy, xz, and yz orbit planes", () => {
-  const spec = fixtures[0].spec;
-  assert.equal(spec.braids[0].frameDefinition.flattening, 0);
-  const materialized = materializePrescribedBraidSpec(spec);
-  const axes = materialized.binaries.map((binary) => binary.frame.axis);
-  assert.deepEqual(axes, [[1, 0, 0], [0, 1, 0], [0, 0, 1]]);
-  near(dot(axes[0], axes[1]), 0);
-  near(dot(axes[0], axes[2]), 0);
-  near(dot(axes[1], axes[2]), 0);
+test("every Family-A catalog candidate uses the mutually orthogonal near-rest frame", () => {
+  fixtures.slice(0, 11).forEach(({ spec }) => {
+    assert.equal(spec.braids[0].frameDefinition.flattening, 0);
+    const materialized = materializePrescribedBraidSpec(spec);
+    const axes = materialized.binaries.map((binary) => binary.frame.axis);
+    assert.deepEqual(axes, [[1, 0, 0], [0, 1, 0], [0, 0, 1]]);
+    near(dot(axes[0], axes[1]), 0);
+    near(dot(axes[0], axes[2]), 0);
+    near(dot(axes[1], axes[2]), 0);
+  });
+});
 
+test("A1 general zero-axial-offset paths remain in the xy, xz, and yz planes", () => {
+  const spec = fixtures[0].spec;
+  const materialized = materializePrescribedBraidSpec(spec);
   for (const time of [0, 1, 2, 3, 4]) {
     materialized.binaries.forEach((binary, binaryIndex) => {
       for (const endpointIndex of [0, 1]) {
